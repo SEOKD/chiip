@@ -1,0 +1,9 @@
+# 역방향 L8 커뮤니티 원천 (BUILD_PROMPT §11.4 L8, §11.9, §21.6) — 공개 RSS·공개 API만
+hacker_news: {enabled: true, api: "https://hn.algolia.com/api/v1/search_by_date", note: "공개 검색 API"}
+reddit:
+  enabled: false        # §21.6: 공개 서브레딧 RSS만 허용하되 약관 재확인 후 켠다(마스터 확인)
+  subreddits: [hardware, semiconductors, chipdesign, LocalLLaMA, overclocking]
+substack:               # 마스터가 고른 독립 뉴스레터의 공개 RSS(유료 본문은 수집 안 됨 — 제목·공개 요약만)
+  feeds: []             # 예: "https://<newsletter>.substack.com/feed"
+x_twitter: {enabled: false, note: "유료 API — 제외(§21.6). 마스터 큐레이션 계정은 수동 확인"}
+telegram: {enabled: false, note: "자동 수집 제외(§21.6)"}

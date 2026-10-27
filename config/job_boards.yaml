@@ -1,0 +1,3 @@
+# 공개 잡보드 API 대상 (§11.4 L6 타사 공고, §12 해외 법인) — Greenhouse·Lever 공개 API만
+greenhouse: []     # 보드 토큰 목록 (예: 팹리스·가속기 스타트업). https://boards-api.greenhouse.io/v1/boards/<token>/jobs
+lever: []          # 회사 슬러그 목록. https://api.lever.co/v0/postings/<slug>?mode=json

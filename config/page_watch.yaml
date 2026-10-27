@@ -1,0 +1,8 @@
+# 역방향 L7 웹 변경 감시 대상 (BUILD_PROMPT §11.4 L7, §11.8) — 공개 페이지만, 하루 1회
+# 추가는 마스터 승인. selector가 없으면 페이지 전체 텍스트 비교.
+pages: []
+# 예:
+# - id: pw-nvidia-partners
+#   url: "https://..."
+#   watch_for: [co-skhynix, co-samsung]
+#   note: "파트너 목록 페이지"

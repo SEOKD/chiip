@@ -13,6 +13,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE / "reverse" / "collectors"))
 sys.path.insert(0, str(HERE / "usgov" / "federal"))
+sys.path.insert(0, str(HERE / "usgov" / "adapters"))
+sys.path.insert(0, str(HERE / "talent" / "collectors"))
 from pollers import common  # noqa: E402
 
 JOBS = [  # (job id, module, interval_min)
@@ -20,6 +22,13 @@ JOBS = [  # (job id, module, interval_min)
     ("src-edgar-fts", "edgar_fts", 120),
     ("src-dart-counterparty", "dart_counterparty", 720),
     ("src-twse-monthly", "twse_monthly", 1440),
+    # 5단계 v1
+    ("src-communities", "communities", 60),
+    ("src-foreign-press", "foreign_press", 120),
+    ("src-openalex", "openalex", 10080),
+    ("src-page-diff", "page_diff", 1440),
+    ("src-job-boards", "jobs_boards", 1440),
+    ("src-legistar", "legistar", 1440),
 ]
 
 
