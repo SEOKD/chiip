@@ -95,5 +95,33 @@ class TestValidators(unittest.TestCase):
         self.assertTrue(any("텔레그램" in h for h in hits))
 
 
+class TestModelCalc(unittest.TestCase):
+    def test_driver_math_and_scenario(self):
+        import model_calc as m
+        rows = [{"period": "2027Q1", "segment": "A", "driver": d, "value": v} for d, v in
+                [("volume", "10"), ("asp", "5"), ("asp@bull", "6"), ("cogs_per_unit", "2")]]
+        rows += [{"period": "2027Q1", "segment": "전사", "driver": d, "value": v} for d, v in
+                 [("opex", "10"), ("tax_rate", "0.2"), ("da", "3"), ("capex", "4")]]
+        base = m.compute(m.pick(rows, "기본"))[-1]
+        bull = m.compute(m.pick(rows, "bull"))[-1]
+        self.assertEqual(base["revenue"], 50)
+        self.assertEqual(base["operating_profit"], 20)
+        self.assertAlmostEqual(base["fcf"], 15)
+        self.assertEqual(bull["revenue"], 60)
+
+
+class TestTriangulate(unittest.TestCase):
+    def test_convergence_and_origin_dedupe(self):
+        import triangulate as t
+        rules = {"weights": {"S1": 1, "S2": 3, "S3": 8, "S4": 20}}
+        sigs = [{"id": "a", "strength": "S2", "layer": "L1", "origin_id": "o1"},
+                {"id": "b", "strength": "S2", "layer": "L6", "origin_id": "o2"},
+                {"id": "c", "strength": "S2", "layer": "L6", "origin_id": "o2"}]  # 재인용 — 하나로
+        r = t.assess(sigs, rules)
+        self.assertEqual(r["independent"], 2)
+        self.assertEqual(r["alert"], "수렴경보→P1")
+        self.assertEqual(t.assess([{"id": "x", "strength": "S4", "layer": "L1"}], rules)["alert"], "단독경보(S4+)→P0")
+
+
 if __name__ == "__main__":
     unittest.main()

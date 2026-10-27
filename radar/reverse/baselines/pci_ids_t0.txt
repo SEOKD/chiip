@@ -1,0 +1,63 @@
+co-samsung|144d|Samsung Electronics Co Ltd|1600|S4LN053X01 AHCI SSD Controller(Apple slot)
+co-samsung|144d|Samsung Electronics Co Ltd|a544|Exynos 8890 PCIe Root Complex
+co-samsung|144d|Samsung Electronics Co Ltd|a575|Exynos 7420 PCIe Root Complex
+co-samsung|144d|Samsung Electronics Co Ltd|a5e3|Exynos 5433 PCIe Root Complex
+co-samsung|144d|Samsung Electronics Co Ltd|a800|XP941 PCIe SSD
+co-samsung|144d|Samsung Electronics Co Ltd|a801|S4LN058A01[SSUBX] AHCI SSD Controller (Apple slot)
+co-samsung|144d|Samsung Electronics Co Ltd|a802|NVMe SSD Controller SM951/PM951
+co-samsung|144d|Samsung Electronics Co Ltd|a804|NVMe SSD Controller SM961/PM961/SM963
+co-samsung|144d|Samsung Electronics Co Ltd|a806|PM971 BGA PCIe x2 NVMe SSD
+co-samsung|144d|Samsung Electronics Co Ltd|a808|NVMe SSD Controller SM981/PM981/PM983
+co-samsung|144d|Samsung Electronics Co Ltd|a809|NVMe SSD Controller 980 (DRAM-less)
+co-samsung|144d|Samsung Electronics Co Ltd|a80a|NVMe SSD Controller PM9A1/PM9A3/980PRO
+co-samsung|144d|Samsung Electronics Co Ltd|a80b|NVMe SSD Controller PM9B1 (DRAM-less)
+co-samsung|144d|Samsung Electronics Co Ltd|a80c|NVMe SSD Controller S4LV008[Pascal]
+co-samsung|144d|Samsung Electronics Co Ltd|a80d|NVMe SSD Controller PM9C1a (DRAM-less)
+co-samsung|144d|Samsung Electronics Co Ltd|a80e|NVMe SSD Controller PM9D3a
+co-samsung|144d|Samsung Electronics Co Ltd|a80f|BM9C1 QLC NVME SSD (DRAM-less)
+co-samsung|144d|Samsung Electronics Co Ltd|a810|NVMe SSD 9100 PRO [PM9E1]
+co-samsung|144d|Samsung Electronics Co Ltd|a811|BM9H1 NVME SSD (DRAM-less)
+co-samsung|144d|Samsung Electronics Co Ltd|a820|NVMe SSD Controller 171X
+co-samsung|144d|Samsung Electronics Co Ltd|a821|NVMe SSD Controller 172X
+co-samsung|144d|Samsung Electronics Co Ltd|a822|NVMe SSD Controller 172Xa/172Xb
+co-samsung|144d|Samsung Electronics Co Ltd|a824|NVMe SSD Controller PM173X
+co-samsung|144d|Samsung Electronics Co Ltd|a825|NVMe SSD Controller PM173Xa
+co-samsung|144d|Samsung Electronics Co Ltd|a826|NVMe SSD Controller PM174X
+co-samsung|144d|Samsung Electronics Co Ltd|a900|NVMe SSD Controller PM9DXa
+co-samsung|144d|Samsung Electronics Co Ltd|aa00|NVMe SSD Controller BM1743
+co-samsung|144d|Samsung Electronics Co Ltd|ac00|NVMe SSD Controller PM175x
+co-samsung|144d|Samsung Electronics Co Ltd|ecec|Exynos 8895 PCIe Root Complex
+co-skhynix|025e|Solidigm|0b60|NVMe DC SSD [Sentinel Rock Plus controller]
+co-skhynix|025e|Solidigm|0b70|NVMe DC SSD [Yorktown controller]
+co-skhynix|025e|Solidigm|2b59|NVMe DC SSD [Atomos Prime]
+co-skhynix|025e|Solidigm|f1ab|P41 Plus NVMe SSD (DRAM-less) [Echo Harbor]
+co-skhynix|025e|Solidigm|f1ac|P44 Pro NVMe SSD [Hollywood Beach]
+co-skhynix|1c5c|SK hynix|1069|PCB01 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1282|PC300 NVMe Solid State Drive 128GB
+co-skhynix|1c5c|SK hynix|1283|PC300 NVMe Solid State Drive 256GB
+co-skhynix|1c5c|SK hynix|1284|PC300 NVMe Solid State Drive 512GB
+co-skhynix|1c5c|SK hynix|1285|PC300 NVMe Solid State Drive 1TB
+co-skhynix|1c5c|SK hynix|1327|BC501 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1339|BC511 NVMe SSD
+co-skhynix|1c5c|SK hynix|1504|PC400 NVMe SSD
+co-skhynix|1c5c|SK hynix|1527|PC401 NVMe Solid State Drive 256GB
+co-skhynix|1c5c|SK hynix|1627|PC601 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1639|PC611 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1739|BC701 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|174a|Gold P31/BC711/PC711 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1959|Platinum P41/PC801 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1969|PC811 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|1d59|BC901 NVMe Solid State Drive (DRAM-less)
+co-skhynix|1c5c|SK hynix|1f69|PVC10 NVMe Solid State Drive (DRAM-less)
+co-skhynix|1c5c|SK hynix|2069|PEB110 Series NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2204|960GB TLC PCIe Gen3 x4 NVMe M.2 22110
+co-skhynix|1c5c|SK hynix|2427|PE6010 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2429|PE6011 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|243b|PE6110 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2527|PE4010 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2839|PE8000 Series NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2849|PE81x0 U.2/3 NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|284a|PE8110 Series NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2a49|PE9110 Series NVMe Solid State Drive
+co-skhynix|1c5c|SK hynix|2a59|PE9010 Series NVMe Solid State Drives
+co-skhynix|1c5c|SK hynix|2b59|Px10x0 Series NVMe Solid State Drives

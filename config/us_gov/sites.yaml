@@ -11,7 +11,8 @@
   description: 삼성전자 텍사스 오스틴 팹
   jurisdictions: {state: TX, county: Travis County, city: Austin, school_district: "", appraisal_district: "", utilities: []}
   state_agencies: [환경청(TCEQ), 감사관실, 전력 계통·규제(ERCOT·PUC)]
-  meeting_platforms: []
+  meeting_platforms:
+    - {platform: legistar, client: austintexas, body: "Austin City Council 등", verified: "2026-10-28 Web API 응답 확인"}
   watch_radius_km: 30
 - site_id: us-skhynix-westlafayette
   company: co-skhynix

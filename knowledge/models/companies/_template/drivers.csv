@@ -1,0 +1,8 @@
+period,segment,driver,value,unit,basis,evidence_ids,note
+2026Q4,예시사업부,volume,0,백만 개,자체추정,,예시 행 — 복사 후 삭제
+2026Q4,예시사업부,asp,0,원/개,자체추정,,
+2026Q4,예시사업부,cogs_per_unit,0,원/개,자체추정,,
+2026Q4,전사,opex,0,십억 원,자체추정,,
+2026Q4,전사,da,0,십억 원,자체추정,,
+2026Q4,전사,capex,0,십억 원,자체추정,,
+2026Q4,전사,tax_rate,0.22,비율,자체추정,,법인세율 가정

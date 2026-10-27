@@ -29,6 +29,10 @@ JOBS = [  # (job id, module, interval_min)
     ("src-page-diff", "page_diff", 1440),
     ("src-job-boards", "jobs_boards", 1440),
     ("src-legistar", "legistar", 1440),
+    # 6단계 v2
+    ("src-kernel-lore", "kernel_watch", 1440),
+    ("src-pci-ids", "pci_ids", 10080),
+    ("src-usaspending", "usaspending", 10080),
 ]
 
 
