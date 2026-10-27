@@ -30,7 +30,8 @@ SECRET_PATTERNS = [
         r"(?i)\b(?:api[_-]?key|secret|token|client[_-]?secret|password|crtfc_key)\b\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{16,}")),
 ]
 # local-only 원문을 그대로 옮긴 흔적
-LOCAL_PATH_RE = re.compile(r"(?i)local-only[\\/](?:sealed|embargo|licensed|secrets)[\\/]\S+\.(?:txt|md|pdf|docx|csv)")
+# (자리표시자 `<FI-id>.md` 같은 설명용 경로는 제외)
+LOCAL_PATH_RE = re.compile(r"(?i)local-only[\\/](?:sealed|embargo|licensed|secrets)[\\/](?:[^\s<>{}*`'\"\\/]+[\\/])*[^\s<>{}*`'\"\\/]+\.(?:txt|md|pdf|docx|csv)")
 
 
 def load_denylist():

@@ -1,0 +1,21 @@
+id: C-20261027-001
+created: 2026-10-27
+subject: {company: co-skhynix, product: pr-hbm4, role: 제조, customer: null, period: 2026Q2}
+statement: "SK하이닉스는 2026년 2분기에 HBM4 대량 출하(mass shipments)를 시작했다고 밝혔다."
+claim_type: 확정사실
+speaker_type: 기업
+novelty: 신규
+supersedes: null
+status: {manufacturing: 출하, customer: null, business: null}
+supply_relation: 미확인
+evidence:
+  - {source_id: S-20260728-001, locator: "본문 10문단", speaker: "회사 보도자료", gist_ko: "2분기 중 HBM4 대량 출하를 시작했다고 서술. 고객명은 밝히지 않음."}
+radar_card: null
+field_intel_ref: null
+public_corroborated: true
+confidence: 높음
+financial_link: [물량]
+falsifier: "확정 실적·콜에서 HBM4 출하 시점이 3분기 이후로 정정되거나, 대량 출하가 아닌 샘플·소량 공급으로 확인될 때"
+next_check: "2026-10-28 3분기 실적 발표에서 HBM4 출하 비중·고객 수 언급 확인"
+user_confirmed: false
+tags: [hbm4, 잠정실적]

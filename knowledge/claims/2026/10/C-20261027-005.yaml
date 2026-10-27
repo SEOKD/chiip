@@ -1,0 +1,21 @@
+id: C-20261027-005
+created: 2026-10-27
+subject: {company: co-skhynix, product: null, role: 제조, customer: null, period: 2027H1}
+statement: "SK하이닉스는 M15X 양산을 앞당기고 있으며, 용인 1기 클린룸을 2027년 초 오픈할 계획이라고 밝혔다."
+claim_type: 가이던스
+speaker_type: 기업
+novelty: 신규
+supersedes: null
+status: {manufacturing: null, customer: null, business: 건설}
+supply_relation: 해당없음
+evidence:
+  - {source_id: S-20260728-001, locator: "본문 15문단", speaker: "회사 보도자료", gist_ko: "M15X 양산 가속, 용인 1기 클린룸 2027년 초 오픈. P&T7·M17 등은 수요·투자 효율에 따라 단계적으로 진행."}
+radar_card: null
+field_intel_ref: null
+public_corroborated: true
+confidence: 중간
+financial_link: [시점]
+falsifier: "용인 1기 클린룸 오픈이 2027년 하반기 이후로 연기될 때"
+next_check: "용인 클러스터 지자체 고시·EIASS·장비 반입 보도, 3분기 콜의 일정 언급"
+user_confirmed: false
+tags: [capa, yongin, m15x]

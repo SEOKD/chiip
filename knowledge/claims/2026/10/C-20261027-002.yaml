@@ -1,0 +1,21 @@
+id: C-20261027-002
+created: 2026-10-27
+subject: {company: co-skhynix, product: pr-hbm4, role: 제조, customer: null, period: 2026H2}
+statement: "SK하이닉스는 2026년 하반기에 HBM4 생산을 확대(ramp up)할 계획이라고 밝혔다."
+claim_type: 가이던스
+speaker_type: 기업
+novelty: 신규
+supersedes: null
+status: {manufacturing: null, customer: null, business: null}
+supply_relation: 해당없음
+evidence:
+  - {source_id: S-20260728-001, locator: "본문 10문단", speaker: "회사 보도자료", gist_ko: "하반기 HBM4 생산 확대 계획을 제시. 물량·비중 수치는 없음."}
+radar_card: null
+field_intel_ref: null
+public_corroborated: true
+confidence: 중간
+financial_link: [물량, 시점]
+falsifier: "3분기·4분기 실적에서 HBM4 비중 확대가 확인되지 않거나 램프 지연을 언급할 때"
+next_check: "2026-10-28 3분기 실적의 HBM4 램프 진척 언급"
+user_confirmed: false
+tags: [hbm4]

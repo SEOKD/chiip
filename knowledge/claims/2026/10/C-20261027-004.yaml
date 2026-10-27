@@ -1,0 +1,21 @@
+id: C-20261027-004
+created: 2026-10-27
+subject: {company: co-skhynix, product: pr-hbm4e, role: 제조, customer: null, period: 2026H1}
+statement: "SK하이닉스는 2026년 상반기에 HBM4E 샘플 출하를 완료했다고 밝혔다."
+claim_type: 확정사실
+speaker_type: 기업
+novelty: 신규
+supersedes: null
+status: {manufacturing: null, customer: 샘플, business: null}
+supply_relation: 미확인
+evidence:
+  - {source_id: S-20260728-001, locator: "본문 10문단", speaker: "회사 보도자료", gist_ko: "상반기에 HBM4E 샘플 출하 완료. 고객·인증 진척은 언급 없음."}
+radar_card: null
+field_intel_ref: null
+public_corroborated: true
+confidence: 높음
+financial_link: [시점]
+falsifier: "샘플 출하 시점이 정정될 때"
+next_check: "HBM4E 고객 인증 완료 발표 또는 콜 언급"
+user_confirmed: false
+tags: [hbm4e]
