@@ -23,5 +23,12 @@
 | 5 | 완료 | claude.yml, 주간 리뷰·채점 6종, 역방향 v1 수집기 6종·스킬, 인재·미국 v1 스킬, Legistar 어댑터, 예약 작업(아침·저녁 등록 / 주간·역방향은 마스터 등록), CES 운용 문서 |
 | 6 | 완료 | 투자·공개 스킬 6종(public-content는 Notion 게시 승인 필수), model_calc·propose_weights, v2 수집기(커널·PCI ID·USASpending), mirror-trade, 주가 원천 후보 문서, 오스틴 Legistar |
 
+## 운영 시작 (2026-10-28)
+- Claude CLI 로그인(Max) → 헤드리스 판정 실측 성공, 07:09 첫 자동 카드 3장
+- 텔레그램 @chiip_dean_bot 연결, 07:17 시험 발송 성공. `notify.py --chat-id` 추가
+- DART·네이버 수집 제외(마스터 결정, §21.6). 네이버 검색 API는 신규 신청 종료·개정 약관(AI 입력 금지)도 확인
+- 아침 브리프 첫 실행이 도구 권한 대기로 멈춤 + 예약 작업 작업 폴더가 임시 폴더로 잡힌 문제 발견 → 세션을 저장소로 옮긴 뒤 재등록
+- 초안 1차 검토: `docs/reviews/2026-10-28_draft_review.md`
+
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

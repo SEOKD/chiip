@@ -6,12 +6,11 @@
 
 | # | 할 일 | 방법 | 효과 |
 |---|---|---|---|
-| 1 | **Claude CLI 로그인** | 터미널에서 `claude` 실행 → 안내에 따라 브라우저 로그인(한 번만) | 레이더 신규 항목을 모델이 자동 판정(P0 즉시 알림·P1 묶음). 지금은 판정 대상이 전부 브리프 대기열로 감 |
-| 2 | **텔레그램 봇** | 텔레그램에서 @BotFather → `/newbot` → 토큰 받기. 만든 봇에게 아무 말이나 보낸 뒤 채팅 id 확인 | 알림 수신. 지금은 `radar/state/outbox.log`에만 기록 |
-| 3 | **DART OpenAPI 키** | opendart.fss.or.kr 회원가입 → 인증키 신청 | 국내 T0 공시 3~5분 감시 + 규칙 P0 선알림 + 타사 공시·공시유보 추적 |
-| 4 | **네이버 검색 API 키** | developers.naver.com → 애플리케이션 등록 → 검색 API | 국내 T0 뉴스 실시간 |
-| 5 | 키 입력 | `D:\local-only\secrets\.env` 를 메모장으로 열어 `DART_API_KEY=`, `NAVER_CLIENT_ID=`, `NAVER_CLIENT_SECRET=`, `TELEGRAM_BOT_TOKEN=`, `TELEGRAM_CHAT_ID=` 뒤에 값 붙여 넣기 | 치입은 이 값을 보지 않습니다 |
-| 6 | 알림 시험 | `py radar/notify.py "시험"` | 텔레그램으로 "시험"이 오면 성공 |
+| 1 | **Claude CLI 로그인** (완료 10-28) | 터미널에서 `claude` 실행 → 안내에 따라 브라우저 로그인(한 번만) | 레이더 신규 항목을 모델이 자동 판정(P0 즉시 알림·P1 묶음). 지금은 판정 대상이 전부 브리프 대기열로 감 |
+| 2 | **텔레그램 봇** (완료 10-28, @chiip_dean_bot) | 텔레그램에서 @BotFather → `/newbot` → 토큰 받기. 만든 봇에게 아무 말이나 보낸 뒤 채팅 id 확인 | 알림 수신. 지금은 `radar/state/outbox.log`에만 기록 |
+| 3·4 | ~~DART·네이버 키~~ | **제외(2026-10-28 마스터 결정)** — 국내 공시·뉴스는 마스터가 이미 접함. `BUILD_PROMPT.md` §21.6 | 국내 레이더는 Google News(ko)·뉴스룸으로 최소 유지 |
+| 5 | 키 입력 | `D:\local-only\secrets\.env` — `TELEGRAM_BOT_TOKEN=`, `TELEGRAM_CHAT_ID=` | 완료(10-28). 치입은 이 값을 보지 않습니다 |
+| 6 | 알림 시험 | `py radar/notify.py "시험"` | 완료(10-28 07:17 발송 성공) |
 
 선택 키: `SEC_USER_AGENT=이름 이메일`(SEC 접속 예절 — 없으면 일반 UA로 동작), api.data.gov 키(`REGULATIONS_GOV_API_KEY`, `CONGRESS_API_KEY`, `GOVINFO_API_KEY` — 의견서·의회 추적).
 

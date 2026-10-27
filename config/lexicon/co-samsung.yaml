@@ -8,8 +8,9 @@ names:
   zh_hans: [三星电子]
   zh_hant: [三星電子]
   ja: [サムスン電子]
-legal_entities: []        # 종속회사 목록에서 추출 예정 (예: 미국 반도체 법인)
-sites: [화성, 평택, 기흥, 온양, 천안, Austin, Taylor]
+# 1차 검토 2026-10-28 — 사업보고서 종속회사 목록으로 최종 확인 필요
+legal_entities: [Samsung Austin Semiconductor, Samsung Semiconductor Inc.]
+sites: [화성, 평택, 기흥, 온양, 천안, Austin, Taylor, 시안, 西安, 쑤저우, 苏州]
 products: []
 codenames: []
 part_number_prefixes: []

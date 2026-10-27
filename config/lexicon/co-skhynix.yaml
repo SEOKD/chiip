@@ -4,12 +4,13 @@ entity: co-skhynix
 draft: true
 names:
   ko: [SK하이닉스, 하이닉스]
-  en: [SK hynix, SK Hynix, Hynix, Solidigm]
+  en: [SK hynix, SK Hynix, Hynix]
   zh_hans: [SK海力士, 海力士]
   zh_hant: [SK海力士]
   ja: [SKハイニックス]
-legal_entities: [Solidigm]
-sites: [이천, 청주, 용인, West Lafayette]
+# 종속회사는 별도 표시로 매칭(본사 발언과 구분). 1차 검토 2026-10-28 — 사업보고서 종속회사 목록으로 최종 확인 필요
+legal_entities: [Solidigm, SK hynix America, SK hynix Semiconductor (China)]
+sites: [이천, 청주, 용인, West Lafayette, 无锡, 대련, 大连]
 products: []
 codenames: []
 part_number_prefixes: []

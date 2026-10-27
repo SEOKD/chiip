@@ -15,10 +15,10 @@
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: "호출 한도 초과 시 status 020(공식 안내상 2만 건 이상). corp_code 1회 조회 시 최대 100개사"
+  terms_note: "제외(2026-10-28 마스터 결정 — 국내 공시는 마스터가 이미 실시간으로 접함, 타 봇과 중복). 호출 한도 초과 시 status 020. corp_code 1회 조회 시 최대 100개사"
   reliability_default: 1차
   verified: true
-  enabled: true
+  enabled: false
 
 - id: src-kind
   name: KRX KIND 공시
@@ -47,10 +47,10 @@
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: "공식 문서 사이트 자동 조회 실패 — 키 발급 후 첫 호출로 규격·일일 한도 확인. 원문 저장 금지"
+  terms_note: "제외(2026-10-28 마스터 결정 — 국내 뉴스는 마스터가 이미 접함). 참고: 개발자센터 검색 API 신규 신청 7/31 종료·API HUB 이관, 9/7 개정 특약이 결과의 저장·캐싱·AI 입력·요약 금지(보도 기준)"
   reliability_default: 2차
   verified: false
-  enabled: true
+  enabled: false
 
 - id: src-gnews-t0-ko
   name: Google News RSS (T0 기업명, 한국어)

@@ -1,6 +1,7 @@
 """저빈도 수집 진입점 — 역방향 레이더 v0 + 미국 관보 (작업 스케줄러 30분마다)
 
-원천별 간격(분): 관보 60, EDGAR 전문 검색 120, DART 타사·공시유보 720, 대만 월매출 1440.
+원천별 간격(분): 관보 60, EDGAR 전문 검색 120, 대만 월매출 1440.
+DART 타사·공시유보는 2026-10-28 마스터 결정으로 제외(국내 공시는 마스터가 직접 접함).
 새 레이더 항목(관보)이 생기면 run_triage를 호출한다. 역방향 후보는 scout가 판정한다.
 사용: py radar/run_hourly.py [--force]
 """
@@ -20,7 +21,6 @@ from pollers import common  # noqa: E402
 JOBS = [  # (job id, module, interval_min)
     ("src-fedreg", "fedreg", 60),
     ("src-edgar-fts", "edgar_fts", 120),
-    ("src-dart-counterparty", "dart_counterparty", 720),
     ("src-twse-monthly", "twse_monthly", 1440),
     # 5단계 v1
     ("src-communities", "communities", 60),

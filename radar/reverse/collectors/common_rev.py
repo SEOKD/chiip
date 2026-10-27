@@ -34,7 +34,12 @@ def lexicon():
 
 def english_names(eid, lex=None):
     lex = lex or lexicon()
-    return [n for n in lex[eid]["names"] if re.fullmatch(r"[A-Za-z0-9 .,&'-]+", n) and len(n) >= 5]
+    seen, out = set(), []
+    for n in lex[eid]["names"]:  # 대소문자만 다른 표기는 하나로(전문 검색은 대소문자 무시)
+        if re.fullmatch(r"[A-Za-z0-9 .,&'-]+", n) and len(n) >= 5 and n.lower() not in seen:
+            seen.add(n.lower())
+            out.append(n)
+    return out
 
 
 def save_candidates(layer, source_id, cands):

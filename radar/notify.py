@@ -7,6 +7,7 @@
 
 사용: py radar/notify.py "메시지"        (시험 발송)
       py radar/notify.py --flush         (P1 묶음 발송)
+      py radar/notify.py --chat-id       (봇에게 말을 건 개인 대화방 id 찾기 — 토큰은 출력하지 않음)
 """
 import json
 import sys
@@ -102,8 +103,29 @@ def flush_p1(min_age_min=60, force=False):
     return len(rows)
 
 
+def find_chat_ids():
+    token = common.load_env().get("TELEGRAM_BOT_TOKEN")
+    if not token:
+        return "TELEGRAM_BOT_TOKEN 이 비어 있습니다"
+    try:
+        with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/getUpdates", timeout=20) as r:
+            res = json.loads(r.read()).get("result", [])
+    except Exception as exc:  # 토큰이 섞일 수 있는 URL은 출력하지 않음
+        return f"조회 실패: {type(exc).__name__} (토큰 확인)"
+    chats = {}
+    for u in res:
+        c = (u.get("message") or u.get("edited_message") or {}).get("chat", {})
+        if c.get("type") == "private":
+            chats[c["id"]] = c.get("first_name", "")
+    if not chats:
+        return "대화 기록 없음 — 텔레그램에서 봇에게 아무 말이나 보낸 뒤 다시 실행"
+    return "\n".join(f"TELEGRAM_CHAT_ID={cid}   ({name})" for cid, name in chats.items())
+
+
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--flush":
         print(flush_p1(force=True))
+    elif len(sys.argv) > 1 and sys.argv[1] == "--chat-id":
+        print(find_chat_ids())
     else:
         print(send(" ".join(sys.argv[1:]) or "치입 알림 시험", "TEST"))
