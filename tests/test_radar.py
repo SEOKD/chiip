@@ -123,5 +123,34 @@ class TestTriangulate(unittest.TestCase):
         self.assertEqual(t.assess([{"id": "x", "strength": "S4", "layer": "L1"}], rules)["alert"], "단독경보(S4+)→P0")
 
 
+class TestPressWire(unittest.TestCase):
+    def setUp(self):
+        from pollers import press_wire
+        self.p = press_wire
+        self.cfg = press_wire._cfg()
+
+    def entry(self, title, desc):
+        return {"title": title, "desc": desc, "link": "https://example.com/x", "date": ""}
+
+    def test_listing_regions(self):
+        self.assertEqual(self.p.listing("Foo (NASDAQ: FOO) today", self.cfg), (["US"], "NASDAQ: FOO"))
+        self.assertEqual(self.p.listing("Baz (KRX: 000660) said", self.cfg)[0], ["KR"])
+        self.assertEqual(self.p.listing("Acme (Euronext Paris: ACM)", self.cfg)[0], ["EU"])
+        self.assertEqual(self.p.listing("Private Co. announced", self.cfg), ([], None))
+
+    def test_classify(self):
+        sector = {"sector_feed": True}
+        general = {"sector_feed": False}
+        r = self.p.classify(self.entry("Foo Announces Definitive Agreement to Acquire Bar", "Foo (NASDAQ: FOO) today"), sector, self.cfg)
+        self.assertEqual(r[2], ["mna"])
+        # 일반 피드는 분야 표현이 있어야 통과
+        self.assertIsNone(self.p.classify(self.entry("Bank Reports Q3 Results", "Bank (NYSE: BNK) today"), general, self.cfg))
+        self.assertIsNotNone(self.p.classify(self.entry("Chipco Reports Q3 Results", "Chipco (NASDAQ: CHP), a semiconductor maker"), general, self.cfg))
+        # 비상장·로펌 광고·번역판 제외
+        self.assertIsNone(self.p.classify(self.entry("Startup Launches GPU Cloud", "Startup Inc. today"), sector, self.cfg))
+        self.assertIsNone(self.p.classify(self.entry("FOO Investors Have Opportunity to Lead Securities Fraud Lawsuit", "(NASDAQ: FOO)"), sector, self.cfg))
+        self.assertIsNone(self.p.classify(self.entry("Foo gewinnt Grossauftrag für Chips", "Foo (SIX: FOO)"), sector, self.cfg))
+
+
 if __name__ == "__main__":
     unittest.main()

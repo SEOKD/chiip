@@ -27,7 +27,9 @@
 - Claude CLI 로그인(Max) → 헤드리스 판정 실측 성공, 07:09 첫 자동 카드 3장
 - 텔레그램 @chiip_dean_bot 연결, 07:17 시험 발송 성공. `notify.py --chat-id` 추가
 - DART·네이버 수집 제외(마스터 결정, §21.6). 네이버 검색 API는 신규 신청 종료·개정 약관(AI 입력 금지)도 확인
-- 아침 브리프 첫 실행이 도구 권한 대기로 멈춤 + 예약 작업 작업 폴더가 임시 폴더로 잡힌 문제 발견 → 세션을 저장소로 옮긴 뒤 재등록
+- 아침 브리프 첫 실행이 도구 권한 대기로 멈춤 + 예약 작업 작업 폴더가 임시 폴더로 잡힌 문제 발견 → 세션을 저장소로 옮긴 뒤 4개 재등록(chiip-brief-morning·chiip-brief-evening·chiip-weekly-review·chiip-reverse-scout, 작업 폴더 `C:\Users\석진\chiip`, Auto 모드). 프롬프트에서 DART 제거, PATH 보정 안내 추가
+- 앱이 Git·Python 설치 전 PATH로 떠 있어 훅이 모든 저장을 막음 → PC 재부팅으로 해결(훅은 수정하지 않음)
+- 저녁 브리프에 '글로벌 공식 발표' 절 추가: PR Newswire 9개 피드 + Business Wire M&A 피드(`radar/pollers/press_wire.py`). MarketScreener(약관상 재사용 금지·자동 접속 403)·GlobeNewswire(자동 접속 403)는 제외
 - 초안 1차 검토: `docs/reviews/2026-10-28_draft_review.md`
 
 ## 마스터 할 일

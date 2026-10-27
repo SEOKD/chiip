@@ -1,0 +1,16 @@
+# 글로벌 증시 주간 상승률 (위클리 리뷰 · Dean's Ticker 형식) — draft, 마스터 확인 전
+# 수집기(데이터 원천 확정 후 구현)가 금요일 종가 기준으로 knowledge/models/weekly_movers/YYYY-Www.csv 를 만든다.
+# 원천 후보와 확인 결과: docs/market_data_options.md
+
+week_basis: "직전 주 금요일 종가 → 이번 주 금요일 종가(각 시장 현지 기준). 휴장일이면 마지막 거래일"
+regions:
+  - {key: US, title: "US", count: 20, market_cap_usd_min: 10_000_000_000}
+  - {key: US_SMALL, title: "US(<$10B)", count: 10, market_cap_usd_min: 1_000_000_000, market_cap_usd_max: 10_000_000_000}
+  - {key: EU, title: "Europe", count: 10, market_cap_usd_min: 1_000_000_000}   # 영국 포함(채널 형식상 Europe 한 묶음)
+  - {key: JP, title: "Japan", count: 10, market_cap_usd_min: 1_000_000_000}
+  - {key: KR, title: "Korea", count: 10, market_cap_krw_min: 300_000_000_000}  # 코스피·코스닥, 3천억 원 이상(예시 목록 기준 추정 — 마스터 확인)
+
+# 잡음 제외: 우선주·ETF·SPAC·리츠, 주간 평균 거래대금 하한(시장별), 상장 첫 주 종목
+exclude: [preferred, etf, etn, spac, reit, first_week_ipo]
+min_avg_daily_value_usd: 5_000_000
+link: "https://t.me/d_ticker"

@@ -329,3 +329,65 @@
   reliability_default: 1차
   verified: false
   enabled: false
+
+# ===== P. 공식 보도자료 배포처 (저녁 브리프 '글로벌 공식 발표', 2026-10-28 마스터 지시) =====
+# run_on: hourly → run_poll(5분)이 아니라 run_hourly(30분)가 radar/pollers/press_wire.py로 수집. 피드·분류 규칙은 config/press_wire.yaml
+- id: src-prn
+  name: PR Newswire 분야별 RSS
+  category: P-보도자료
+  module: press_wire
+  method: rss
+  endpoint_doc: "https://www.prnewswire.com/rss/"
+  auth: none
+  scope: [T0, T1, T2, 글로벌]
+  interval_min: 30
+  run_on: hourly
+  language: en
+  terms_note: "robots.txt 허용(2026-10-28 확인). 제목·링크·요약 앞부분만 저장, 원문 저장 금지"
+  reliability_default: 1차(회사 발표)
+  verified: true
+  enabled: true
+
+- id: src-bw
+  name: Business Wire RSS
+  category: P-보도자료
+  module: press_wire
+  method: rss
+  endpoint_doc: "https://feed.businesswire.com/rss/home/"
+  auth: none
+  scope: [T0, T1, T2, 글로벌]
+  interval_min: 30
+  run_on: hourly
+  language: en
+  terms_note: "RSS 전용 서버 응답 확인(2026-10-28). www 목록 페이지는 자동 접속 차단 — 반도체·기술·실적·계약 피드 주소는 마스터가 브라우저에서 복사해 추가. 현재 M&A 피드만"
+  reliability_default: 1차(회사 발표)
+  verified: false
+  enabled: true
+
+- id: src-globenewswire
+  name: GlobeNewswire RSS
+  category: P-보도자료
+  method: rss
+  endpoint_doc: "https://www.globenewswire.com/rss/list"
+  auth: none
+  scope: [글로벌]
+  run_on: hourly
+  language: en
+  terms_note: "제외 — robots.txt·RSS·목록 페이지 모두 자동 접속 403(2026-10-28). 우회하지 않음"
+  reliability_default: 1차(회사 발표)
+  verified: false
+  enabled: false
+
+- id: src-marketscreener
+  name: MarketScreener 뉴스
+  category: P-보도자료
+  method: html
+  endpoint_doc: "https://www.marketscreener.com/navigation/contrat-4T.htm"
+  auth: none
+  scope: [글로벌]
+  run_on: manual
+  language: en
+  terms_note: "자동 수집 제외 — 약관 제4조가 다운로드·복제·재배포 금지, 링크도 사전 허가 필요, 자동 접속 403. 마스터 수동 확인만"
+  reliability_default: 2차
+  verified: true
+  enabled: false

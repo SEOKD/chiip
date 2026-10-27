@@ -1,0 +1,75 @@
+# 공식 보도자료 수집 (저녁 브리프 '글로벌 공식 발표' 절) — radar/pollers/press_wire.py
+# 2026-10-28 마스터 지시: 미국·일본·EU·영국·한국 상장 반도체·AI 하드웨어·소프트웨어 종목의 5분류 공식 자료.
+# 원문 저장 금지: 제목·링크·발행시각·요약 앞부분만.
+# 제외: MarketScreener(약관 제4조가 다운로드·재사용·무단 링크 금지, 자동 접속 403 — 마스터 수동 확인만),
+#       GlobeNewswire(robots.txt·RSS·목록 페이지 모두 자동 접속 403).
+
+feeds:
+  # PR Newswire 공식 RSS (robots.txt 허용 확인 2026-10-28). 없는 주소는 전체 뉴스로 대체되므로 확인된 것만
+  - {id: prn-semis, wire: PRN, url: "https://www.prnewswire.com/rss/business-technology-latest-news/semiconductors-list.rss", sector_feed: true}
+  - {id: prn-hw, wire: PRN, url: "https://www.prnewswire.com/rss/business-technology-latest-news/computer-hardware-list.rss", sector_feed: true}
+  - {id: prn-components, wire: PRN, url: "https://www.prnewswire.com/rss/business-technology-latest-news/electronic-components-list.rss", sector_feed: true}
+  - {id: prn-eda, wire: PRN, url: "https://www.prnewswire.com/rss/business-technology-latest-news/electronic-design-automation-list.rss", sector_feed: true}
+  - {id: prn-sw, wire: PRN, url: "https://www.prnewswire.com/rss/business-technology-latest-news/computer-software-list.rss", sector_feed: false}
+  - {id: prn-networks, wire: PRN, url: "https://www.prnewswire.com/rss/business-technology-latest-news/networks-list.rss", sector_feed: false}
+  - {id: prn-earnings, wire: PRN, url: "https://www.prnewswire.com/rss/financial-services-latest-news/earnings-list.rss", sector_feed: false}
+  - {id: prn-mna, wire: PRN, url: "https://www.prnewswire.com/rss/financial-services-latest-news/acquisitions-mergers-and-takeovers-list.rss", sector_feed: false}
+  - {id: prn-contracts, wire: PRN, url: "https://www.prnewswire.com/rss/financial-services-latest-news/contracts-list.rss", sector_feed: false}
+  # Business Wire 공식 RSS 서버(feed.businesswire.com). 확인된 것은 M&A 피드뿐 — 반도체·기술·실적·계약 피드 주소는
+  # 목록 페이지가 자동 접속을 막아 마스터가 브라우저에서 복사해 추가(형식: https://feed.businesswire.com/rss/home/?rss=...)
+  - {id: bw-mna, wire: BW, url: "https://feed.businesswire.com/rss/home/?rss=G1QFDERJXkJeEFtRWA==", sector_feed: false}
+
+# sector_feed: false 피드는 아래 분야 표현이 제목·요약에 있어야 통과 (정규식, 대소문자 무시)
+sector_patterns:
+  - 'semiconductor'
+  - '\bchips?\b'
+  - '\bchipmaker'
+  - '\bwafer'
+  - '\bfoundry'
+  - '\bfabs?\b'
+  - '\bHBM'
+  - '\bDRAM'
+  - '\bNAND'
+  - 'memory (chip|module|solution|product)'
+  - '\bGPUs?\b'
+  - '\bASICs?\b'
+  - 'AI accelerator'
+  - 'AI (infrastructure|server|data ?cent|factory|cluster|compute|chip|hardware)'
+  - 'data ?cent(er|re)s?'
+  - 'inference'
+  - 'generative AI'
+  - '\bLLMs?\b'
+  - 'AI (model|platform|software|agent)'
+  - '\bEDA\b'
+  - 'lithograph'
+  - '\bEUV\b'
+  - 'advanced packaging'
+  - '(chip|IC|semiconductor) packaging'
+  - '\bsubstrate'
+  - 'interconnect'
+  - 'photonic'
+  - 'optical (module|transceiver|interconnect)'
+  - '\bSerDes'
+  - '\b(800G|1\.6T|3\.2T)\b'
+  - '\b(SiC|GaN)\b'
+  - '\bMLCC'
+  - 'supercomput'
+
+# 상장 표시 → 지역. 보도자료 첫머리의 '(NASDAQ: XXX)' 같은 괄호 표기에서 찾는다 (정규식)
+exchanges:
+  US: '\b(NASDAQ|Nasdaq(?! (Stockholm|Helsinki|Copenhagen|Baltic))|NYSE|NYSE American|Cboe|OTCQX)\b'
+  JP: '\b(TSE|TYO|Tokyo Stock Exchange|TOKYO)\b'
+  EU: '\b(Euronext|XETRA|Xetra|FWB|FRA|ETR|EPA|AMS|EBR|BME|SIX|BIT|Borsa Italiana|Nasdaq (Stockholm|Helsinki|Copenhagen))\b'
+  UK: '\b(LSE|LON|AIM|London Stock Exchange)\b'
+  KR: '\b(KRX|KOSPI|KOSDAQ|Korea Exchange)\b'
+
+# 5분류(마스터 지정 표현). 제목 우선, 없으면 요약 앞부분. 여러 개 해당 가능
+categories:
+  - {key: mna, label: "Mergers and Acquisitions", pattern: 'acqui|merger|\bmerge|takeover|tender offer|divest|spin-?off|definitive agreement|to be acquired'}
+  - {key: contract, label: "Commercial contract wins/terminations", pattern: 'contract|awarded|\baward\b|\border(s)?\b|purchase agreement|supply agreement|selected (by|as)|design win|multi-year agreement|terminat|cancel'}
+  - {key: pressure, label: "Market pressures", pattern: 'price increase|shortage|tariff|export control|restructur|layoff|workforce reduction|impairment|delist|going concern|supply constraint|recall|lowers? (guidance|outlook)|cuts? (guidance|outlook)'}
+  - {key: financials, label: "Corporate Financials", pattern: 'quarter|results|earnings|revenue|guidance|outlook|dividend|buyback|repurchase|offering|\bnotes\b|credit facility|financing|chief financial officer|\bCFO\b'}
+  - {key: innovation, label: "Innovation and expansions", pattern: 'launch|unveil|introduc|new fab|expan|opens|groundbreaking|capacity|mass production|sampl|qualif|next-generation|first-ever|breakthrough'}
+
+# 잡음 제외 (제목 기준)
+exclude_pattern: 'Securities Fraud|Class Action|Investors Have Opportunity|Shareholder Alert|INVESTOR ALERT|Deadline|Law Firm|Investigation (of|on behalf)|to Participate in|to Present at|to Report|to Host|to Announce|Webcast|Conference Call|Fireside Chat'

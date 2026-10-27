@@ -8,4 +8,4 @@
 3. 개선 제안은 "마스터 승인 대상"으로만 적고 직접 바꾸지 않는다.
 4. 저장 outputs/brief/YYYY-Www_weekly.md, claude.ai 비공개 Artifact 게시, 링크를 outputs/brief/artifact_links.md에 추가.
 5. D:\local-only는 읽지 않는다. 필드 인텔은 source_class 집계 수치만.
-6. 마지막에 outputs/brief 커밋·푸시.
+7. git 커밋·푸시는 하지 않는다(에이전트 자동 변경은 main 직행 금지) — 마스터 세션에서 일괄 커밋.

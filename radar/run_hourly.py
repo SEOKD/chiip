@@ -22,6 +22,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-fedreg", "fedreg", 60),
     ("src-edgar-fts", "edgar_fts", 120),
     ("src-twse-monthly", "twse_monthly", 1440),
+    ("src-press-wire", "pollers.press_wire", 30),  # PR Newswire·Business Wire (저녁 브리프 '글로벌 공식 발표')
     # 5단계 v1
     ("src-communities", "communities", 60),
     ("src-foreign-press", "foreign_press", 120),
