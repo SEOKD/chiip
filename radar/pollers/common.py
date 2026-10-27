@@ -1,0 +1,252 @@
+"""레이더 공통 모듈 — 정규화·중복제거·상태·헬스 (BUILD_PROMPT §5.12, §10.4)
+
+수집 스크립트는 모델을 호출하지 않는다. 새 항목 판단은 run_triage.py가 한다.
+"""
+import hashlib
+import html
+import json
+import os
+import re
+import urllib.parse
+import urllib.request
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parents[2]
+KST = timezone(timedelta(hours=9))
+LOCAL_ONLY = Path(os.environ.get("CHIIP_LOCAL_ONLY", r"D:\local-only"))
+STATE = ROOT / "radar" / "state"
+INBOX = ROOT / "radar" / "inbox"
+UA = "chiip-radar/0.1 (personal research)"
+
+
+# ---------- 시간 ----------
+def now_kst():
+    return datetime.now(KST)
+
+
+def iso(dt):
+    return dt.isoformat(timespec="seconds")
+
+
+# ---------- 설정 ----------
+def load_yaml(path):
+    p = ROOT / path if not Path(path).is_absolute() else Path(path)
+    if not p.exists():
+        return None
+    return yaml.safe_load(p.read_text(encoding="utf-8"))
+
+
+def load_env():
+    """D:\\local-only\\secrets\\.env 를 읽는다. 값은 로그·출력에 쓰지 않는다."""
+    env = {}
+    f = LOCAL_ONLY / "secrets" / ".env"
+    if f.exists():
+        for line in f.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                env[k.strip()] = v.strip().strip('"').strip("'")
+    for k, v in os.environ.items():
+        if k.isupper():
+            env.setdefault(k, v)
+    return env
+
+
+def load_watchlist():
+    import csv
+    with (ROOT / "config" / "watchlist.csv").open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def tier_of(entity_id, watchlist=None):
+    for row in watchlist or load_watchlist():
+        if row["entity_id"] == entity_id:
+            return row["tier"]
+    return None
+
+
+def entity_aliases():
+    """entity_id -> 검색용 이름 목록 (watchlist 이름 + 엔티티 파일 aliases + lexicon names)"""
+    out = {}
+    for row in load_watchlist():
+        names = {row["name"]}
+        base = re.sub(r"\s*\(.*?\)", "", row["name"]).strip()
+        names.add(base)
+        efile = ROOT / "knowledge" / "entities" / "companies" / f"{row['entity_id']}.md"
+        if efile.exists():
+            text = efile.read_text(encoding="utf-8")
+            m = re.search(r"^aliases:\s*\[(.*?)\]", text, re.M)
+            if m:
+                names.update(a.strip() for a in m.group(1).split(",") if a.strip())
+        lex = load_yaml(f"config/lexicon/{row['entity_id']}.yaml")
+        if lex and isinstance(lex.get("names"), dict):
+            for vals in lex["names"].values():
+                names.update(vals or [])
+        out[row["entity_id"]] = sorted(n for n in names if len(n) >= 2)
+    return out
+
+
+_ALIAS_CACHE = None
+
+
+def match_entities(text):
+    global _ALIAS_CACHE
+    if _ALIAS_CACHE is None:
+        _ALIAS_CACHE = entity_aliases()
+    hits = []
+    low = text.lower()
+    for eid, names in _ALIAS_CACHE.items():
+        for n in names:
+            # 짧은 영문 약칭은 단어 경계로
+            if re.fullmatch(r"[A-Za-z]{2,4}", n):
+                if re.search(rf"\b{re.escape(n)}\b", text):
+                    hits.append(eid)
+                    break
+            elif n.lower() in low:
+                hits.append(eid)
+                break
+    return hits
+
+
+_KW_CACHE = None
+
+
+def match_keywords(text):
+    global _KW_CACHE
+    if _KW_CACHE is None:
+        data = load_yaml("config/keywords.yaml") or {}
+        kws = set()
+        for key, vals in data.items():
+            if key == "events":
+                for v in (vals or {}).values():
+                    kws.update(v)
+            else:
+                for v in vals or []:
+                    kws.update(p.strip() for p in str(v).split("/"))
+        _KW_CACHE = sorted(k for k in kws if len(k) >= 2)
+    low = text.lower()
+    return [k for k in _KW_CACHE if k.lower() in low]
+
+
+# ---------- HTTP ----------
+def http_get(url, params=None, headers=None, timeout=20):
+    if params:
+        url = url + ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return resp.read()
+
+
+def strip_tags(s):
+    return html.unescape(re.sub(r"<[^>]+>", "", s or "")).strip()
+
+
+# ---------- 상태 ----------
+def _read_json(path, default):
+    if path.exists():
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            return default
+    return default
+
+
+def _write_json(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp.replace(path)
+
+
+def load_state(name, default=None):
+    return _read_json(STATE / f"{name}.json", {} if default is None else default)
+
+
+def save_state(name, data):
+    _write_json(STATE / f"{name}.json", data)
+
+
+def record_health(source_id, ok, error=None):
+    h = load_state("health")
+    e = h.setdefault(source_id, {"last_ok": None, "last_error": None, "error_count": 0})
+    if ok:
+        e["last_ok"] = iso(now_kst())
+        e["error_count"] = 0
+    else:
+        e["last_error"] = f"{iso(now_kst())} {str(error)[:200]}"
+        e["error_count"] += 1
+    save_state("health", h)
+
+
+def is_due(source_id, interval_min):
+    last = load_state("last_run").get(source_id)
+    if not last:
+        return True
+    return now_kst() - datetime.fromisoformat(last) >= timedelta(minutes=interval_min)
+
+
+def mark_run(source_id):
+    s = load_state("last_run")
+    s[source_id] = iso(now_kst())
+    save_state("last_run", s)
+
+
+def interval_for(tier, when=None):
+    """alert_rules.yaml schedule 에서 현재 시각의 폴링 간격(분)"""
+    when = when or now_kst()
+    rules = (load_yaml("config/alert_rules.yaml") or {}).get("schedule", {})
+    key = "weekend" if when.weekday() >= 5 else "weekday"
+    hhmm = when.strftime("%H:%M")
+    col = "T0" if tier == "T0" else "T2"
+    for slot in rules.get(key, []):
+        a, b = slot["from"], slot["to"]
+        inside = (a <= hhmm < b) if a < b else (hhmm >= a or hhmm < b)
+        if inside:
+            return slot.get(col, 60)
+    return 60
+
+
+# ---------- 항목 ----------
+def make_item(source_id, uid, url, title, published_at, doc_type, language, snippet="", extra=None):
+    text = f"{title} {snippet}"
+    item = {
+        "item_id": f"{source_id}:{uid}",
+        "source_id": source_id,
+        "url": url,
+        "title": title.strip(),
+        "published_at": published_at,
+        "detected_at": iso(now_kst()),
+        "entities_matched": match_entities(text),
+        "keywords_matched": match_keywords(text),
+        "doc_type": doc_type,
+        "language": language,
+        "snippet": (snippet or "")[:200],
+        "content_hash": hashlib.sha1(f"{title}|{url}".encode("utf-8")).hexdigest(),
+        "event_cluster": None,
+    }
+    if extra:
+        item.update(extra)
+    return item
+
+
+def save_new_items(items):
+    """처음 보는 항목만 inbox에 저장하고 반환"""
+    seen = load_state("seen")
+    new = []
+    for it in items:
+        if it["item_id"] in seen or it["content_hash"] in seen.values():
+            continue
+        seen[it["item_id"]] = it["content_hash"]
+        day = INBOX / now_kst().strftime("%Y%m%d")
+        day.mkdir(parents=True, exist_ok=True)
+        safe = re.sub(r"[^A-Za-z0-9_.-]", "_", it["item_id"])[:120]
+        (day / f"{safe}.json").write_text(json.dumps(it, ensure_ascii=False, indent=1), encoding="utf-8")
+        new.append(it)
+    # 오래된 seen 정리(최근 2만 건 유지)
+    if len(seen) > 20000:
+        seen = dict(list(seen.items())[-20000:])
+    save_state("seen", seen)
+    return new

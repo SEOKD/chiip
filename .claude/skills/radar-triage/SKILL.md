@@ -1,0 +1,43 @@
+---
+name: radar-triage
+description: 레이더 신규 항목 묶음(JSON 파일)을 빠르게 분류한다. 관련성(티어)·이벤트 유형·1차 출처 여부·novelty·알림 등급(P0~P3)을 1차 판정하고 P0·P1은 영향 카드 초안을 만든다. run_triage.py가 헤드리스로 호출하며, 수동으로 "레이더 판정"을 요청할 때도 쓴다.
+argument-hint: "[radar/state/triage_batch.json]"
+---
+
+# radar-triage — 레이더 1차 분류
+
+## 입력
+`$ARGUMENTS` = 항목 배열 JSON 파일 경로(BUILD_PROMPT §5.12 형식). 파일을 Read로 연다.
+
+## 판정 기준
+**알림 등급** (`config/alert_rules.yaml` 참고)
+| 등급 | 조건 |
+|---|---|
+| P0 | T0의 잠정실적·실적·가이던스 변경·대형 공급계약·대규모 증설/CAPEX 변경·생산 차질. 업계 판도를 바꾸는 T2 발표(주요 고객의 공급사 변경 등) |
+| P1 | T0 관련 신제품·인증·양산 진척, T0 대상 IB 의견·목표가 변경, T2 실적, 핵심 지표 서프라이즈 |
+| P2 | T1 공시, 학회 논문, 표준, 일반 업계 뉴스 |
+| P3 | 반복·재인용 보도, 관련성 낮음, 광고·주가 시황 단순 나열 |
+
+**보정 규칙**
+- 1차 출처(공시·회사 보도자료)가 아닌 보도는 같은 내용이라도 한 단계 낮춰 판단하되, P0 후보면 P1로 두고 `reason`에 "1차 출처 대기".
+- 같은 사건을 다룬 여러 기사는 가장 빠른 1건만 P0/P1, 나머지 P3(`reason: 재인용`).
+- 제목만으로 판단이 어려우면 낮은 등급 + `reason`에 이유.
+- `knowledge/claims/`에 이미 있는 내용이면 novelty 반복 → P3.
+
+**이벤트 유형**: 실적|잠정실적|가이던스|수주·공급계약|증설·CAPEX|제품·기술발표|인증·양산|가격|M&A|규제·정책|인사|사고·차질|학회논문|표준|IB의견변경|컨센서스변경|기타
+
+## P0·P1 카드 초안
+1. `py scripts/chiip_ids.py card` 로 id 발급.
+2. `docs/templates/card.yaml` 형식으로 `radar/cards/YYYY/MM/<id>.yaml` 작성. 채울 것: item_ids, first_seen_source, detected_at, published_at, entities, event_type, headline_ko, what_happened(2문장, 확인된 사실만), primary_source_confirmed, alert_level, verification: 1차판정, open_questions. 영향(first_order 등)은 `impact-card`가 채운다 — 모르면 비워 둔다.
+3. 시장 반응·컨센서스는 "미확인".
+
+## 출력
+최종 응답은 구조화 결과만(스키마는 호출 측 `--json-schema`가 강제):
+```json
+{"results":[{"item_id":"…","level":"P1","event_type":"인증·양산","what":"1문장 요약","impact":"HBM 매출 상향·중 (추정)","reason":"판정 근거 1줄","card_path":"radar/cards/2026/10/R-…yaml"}]}
+```
+모든 입력 항목에 결과 1개씩. P2·P3는 card_path 생략.
+
+## 금지
+- 확인 안 된 내용을 what에 사실처럼 쓰기. 헤드라인 → 사실 금지(금지표).
+- local-only 폴더 읽기. 지식 레이어(claims) 직접 수정 — 승격은 claim-intake로.

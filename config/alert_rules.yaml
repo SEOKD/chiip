@@ -1,0 +1,47 @@
+# 알림 등급 규칙 (BUILD_PROMPT §10.6, §21.3) — 초안, 마스터 확정 전
+levels:
+  P0: {deliver: immediate, flash_note: true}
+  P1: {deliver: batch_60min}
+  P2: {deliver: brief}
+  P3: {deliver: archive}
+
+# 모델 판정 전에 스크립트가 바로 보내는 P0 (T0 + DART 보고서명 패턴)
+deterministic_p0:
+  scope_tiers: [T0]
+  dart_report_patterns:
+    - "잠정"                  # 연결재무제표기준영업(잠정)실적 등
+    - "단일판매ㆍ공급계약"
+    - "단일판매·공급계약"
+    - "신규시설투자"
+    - "유형자산취득"
+    - "생산중단"
+    - "영업정지"
+    - "대표이사변경"
+    - "타법인주식및출자증권취득"
+    - "회사합병"
+    - "회사분할"
+  dart_exclude_patterns:
+    - "[기재정정]"            # 정정공시는 P1로 (원공시와 대조 필요)
+  message_prefix: "[P0-규칙]"
+  suffix: "(1차 판정 전)"
+
+# 키워드 가중 — radar-triage 참고값
+priority_keywords:
+  P0: [잠정실적, 공급계약, 증설, 생산 중단, 화재, 수출통제, Entity List]
+  P1: [양산, 인증, 퀄, qualification, 목표주가, 투자의견, HBM4, CoWoS, 유리기판]
+
+# 폴링 간격(분) — 티어 × 시간대(KST). run_poll.py가 사용
+schedule:
+  weekday:
+    - {from: "08:00", to: "16:00", T0: 5, T2: 60}
+    - {from: "16:00", to: "23:00", T0: 10, T2: 60}
+    - {from: "23:00", to: "08:00", T0: 30, T2: 60}
+  weekend:
+    - {from: "00:00", to: "24:00", T0: 60, T2: 180}
+  boost_on_calendar_days: 0.5     # calendar.csv에 해당 기업 일정이 있는 날은 간격 × 0.5
+
+# 비용 상한
+caps:
+  daily_model_calls: 200
+  daily_p0_deep_analysis: 10
+  overflow_to: brief

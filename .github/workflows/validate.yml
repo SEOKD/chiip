@@ -1,0 +1,24 @@
+name: validate
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: 주장 검증
+        run: python scripts/validate_claims.py
+      - name: 필드 인텔 포인터 검증
+        run: python scripts/validate_field_index.py
+      - name: 봉인·비밀키 검사 (금칙어 파일은 클라우드에 없음 — 비밀키 패턴만)
+        run: python scripts/scan_sealed.py
+      - name: 단위 경고
+        run: python scripts/check_units.py
+      - name: 단위 테스트
+        run: python -m unittest discover -s tests -v

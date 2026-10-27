@@ -1,0 +1,15 @@
+# 사업장 표기 정규화 사전 (§12.3) — 공고의 위치 표기 변형 → 표준 site 코드
+# 구축 시 공식 채용 공고·사업보고서 사업장 목록으로 보강. 확인 안 된 사업장은 넣지 않는다.
+co-samsung:
+  KR-hwaseong: [화성, Hwaseong]
+  KR-pyeongtaek: [평택, Pyeongtaek]
+  KR-giheung: [기흥, Giheung]
+  KR-onyang: [온양, Onyang]
+  KR-cheonan: [천안, Cheonan]
+  US-austin: [Austin, 오스틴]
+  US-taylor: [Taylor, 테일러]
+co-skhynix:
+  KR-icheon: [이천, Icheon]
+  KR-cheongju: [청주, Cheongju]
+  KR-yongin: [용인, Yongin]
+  US-westlafayette: [West Lafayette, 웨스트라피엣, Lafayette]

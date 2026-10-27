@@ -1,21 +1,24 @@
-# 수집 원천 등록부 (BUILD_PROMPT §5.11). 1단계는 T0 원천 위주의 초안.
-# verified: false = 공식 문서로 엔드포인트·호출 제한·약관을 아직 확인하지 않음 → 구현 직전 확인(§0.2-4)
-# enabled: false = 아직 수집기 없음. 3단계부터 순서대로 켠다.
+# 수집 원천 등록부 (BUILD_PROMPT §5.11)
+# module: radar/pollers/<module>.py 또는 rss(공통). 없으면 run_poll이 건너뜀.
+# verified: 공식 문서·첫 호출로 엔드포인트·약관을 확인했는가
+# enabled: true면 run_poll(로컬) 또는 클라우드 루틴이 사용. 키가 없으면 자동으로 건너뛰고 health에 기록.
 
+# ===== A. 규제 공시 =====
 - id: src-dart
-  name: DART 전자공시 OpenAPI
+  name: DART 전자공시 OpenAPI (list.json)
   category: A-규제공시
+  module: dart
   method: api
-  endpoint_doc: "https://opendart.fss.or.kr"
+  endpoint_doc: "https://opendart.fss.or.kr/guide/detail.do?apiGrpCd=DS001&apiId=2019001"
   auth: env:DART_API_KEY
-  scope: [T0, T1]
+  scope: [T0]
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: "일일 호출 한도 확인 필요"
+  terms_note: "호출 한도 초과 시 status 020(공식 안내상 2만 건 이상). corp_code 1회 조회 시 최대 100개사"
   reliability_default: 1차
-  verified: false
-  enabled: false
+  verified: true
+  enabled: true
 
 - id: src-kind
   name: KRX KIND 공시
@@ -23,18 +26,20 @@
   method: html
   endpoint_doc: "https://kind.krx.co.kr"
   auth: none
-  scope: [T0, T1]
+  scope: [T0]
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: "robots.txt·이용약관 확인 필요. DART와 중복 시 DART 우선"
+  terms_note: "DART와 중복. robots.txt·약관 확인 전 비활성"
   reliability_default: 1차
   verified: false
   enabled: false
 
+# ===== F. 뉴스 =====
 - id: src-naver-news
   name: 네이버 뉴스 검색 API
   category: F-뉴스
+  module: naver_news
   method: search_api
   endpoint_doc: "https://developers.naver.com/docs/serviceapi/search/news/news.md"
   auth: env:NAVER_CLIENT_ID,NAVER_CLIENT_SECRET
@@ -42,56 +47,105 @@
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: "일일 호출 한도 확인 필요. 원문 저장 금지(제목·링크·요지만)"
+  terms_note: "공식 문서 사이트 자동 조회 실패 — 키 발급 후 첫 호출로 규격·일일 한도 확인. 원문 저장 금지"
   reliability_default: 2차
   verified: false
-  enabled: false
+  enabled: true
 
-- id: src-google-news-rss
-  name: Google News RSS 쿼리
+- id: src-gnews-t0-ko
+  name: Google News RSS (T0 기업명, 한국어)
   category: F-뉴스
+  module: rss
   method: rss
-  endpoint_doc: ""
+  feed_queries: ["@watchlist"]
+  hl: ko
+  gl: KR
+  endpoint_doc: "https://news.google.com/rss"
   auth: none
-  scope: [T0, T2]
+  scope: [T0]
   interval_min: 30
   run_on: both
-  language: multi
-  terms_note: "이용 조건 확인 필요"
+  language: ko
+  doc_type: 기사
+  terms_note: "공개 RSS. 과도한 호출 금지(30분 이상 간격). 원문 저장 금지"
   reliability_default: 2차
-  verified: false
-  enabled: false
+  verified: true
+  enabled: true
 
-# --- T0 7사 뉴스룸·IR (주소는 공식 사이트에서 확인 후 기입) ---
-- id: src-newsroom-samsung
-  name: 삼성전자 뉴스룸
-  category: B-기업1차
+- id: src-gnews-t0-en
+  name: Google News RSS (T0 영문명, 영어권)
+  category: F-뉴스
+  module: rss
   method: rss
-  endpoint_doc: ""
+  feed_queries: ['"SK hynix" when:1d', '"Samsung Electronics" semiconductor when:1d', '"Samsung Electro-Mechanics" when:1d', '"LG Innotek" when:1d', '"ISU Petasys" when:7d', '"Lotte Energy Materials" when:7d']
+  hl: en-US
+  gl: US
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [T0]
+  interval_min: 60
+  run_on: both
+  language: en
+  doc_type: 기사
+  terms_note: "공개 RSS"
+  reliability_default: 2차
+  verified: true
+  enabled: true
+
+# ===== B. T0 기업 1차 자료 =====
+- id: src-newsroom-samsung
+  name: 삼성전자 뉴스룸 (한국)
+  category: B-기업1차
+  module: rss
+  method: rss
+  feed_url: "https://news.samsung.com/kr/feed"
+  endpoint_doc: "https://news.samsung.com/kr"
   auth: none
   scope: [co-samsung]
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: ""
+  doc_type: 보도자료
+  terms_note: "공식 RSS (2026-10-27 응답 확인)"
   reliability_default: 1차
-  verified: false
-  enabled: false
+  verified: true
+  enabled: true
 
-- id: src-newsroom-skhynix
-  name: SK하이닉스 뉴스룸
+- id: src-newsroom-skhynix-ko
+  name: SK하이닉스 뉴스룸 (한국)
   category: B-기업1차
+  module: rss
   method: rss
-  endpoint_doc: ""
+  feed_url: "https://news.skhynix.co.kr/feed/"
+  endpoint_doc: "https://news.skhynix.co.kr"
   auth: none
   scope: [co-skhynix]
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: ""
+  doc_type: 보도자료
+  terms_note: "공식 RSS (2026-10-27 응답 확인)"
   reliability_default: 1차
-  verified: false
-  enabled: false
+  verified: true
+  enabled: true
+
+- id: src-newsroom-skhynix-en
+  name: SK hynix Newsroom (Global)
+  category: B-기업1차
+  module: rss
+  method: rss
+  feed_url: "https://news.skhynix.com/feed/"
+  endpoint_doc: "https://news.skhynix.com"
+  auth: none
+  scope: [co-skhynix]
+  interval_min: 10
+  run_on: both
+  language: en
+  doc_type: 보도자료
+  terms_note: "공식 RSS (2026-10-27 응답 확인)"
+  reliability_default: 1차
+  verified: true
+  enabled: true
 
 - id: src-newsroom-semco
   name: 삼성전기 보도자료
@@ -103,7 +157,7 @@
   interval_min: 10
   run_on: local
   language: ko
-  terms_note: ""
+  terms_note: "RSS 경로 미확인(rss.do 404). 페이지 구조·약관 확인 후 html 폴러 작성. 당분간 Google News로 대체"
   reliability_default: 1차
   verified: false
   enabled: false
@@ -118,7 +172,7 @@
   interval_min: 10
   run_on: local
   language: ko
-  terms_note: ""
+  terms_note: "RSS 미확인. Google News로 대체"
   reliability_default: 1차
   verified: false
   enabled: false
@@ -133,7 +187,7 @@
   interval_min: 10
   run_on: local
   language: ko
-  terms_note: ""
+  terms_note: "RSS 미확인. Google News로 대체"
   reliability_default: 1차
   verified: false
   enabled: false
@@ -148,7 +202,7 @@
   interval_min: 10
   run_on: local
   language: ko
-  terms_note: ""
+  terms_note: "RSS 미확인. Google News로 대체"
   reliability_default: 1차
   verified: false
   enabled: false
@@ -163,12 +217,12 @@
   interval_min: 10
   run_on: local
   language: ko
-  terms_note: ""
+  terms_note: "RSS 미확인. Google News로 대체"
   reliability_default: 1차
   verified: false
   enabled: false
 
-# --- 3단계 인재·조직 레이더 v0 (§12) ---
+# ===== K. 인재·조직 (§12) =====
 - id: src-careers-samsung
   name: 삼성 그룹 공식 채용 포털
   category: K-인재조직
@@ -179,7 +233,7 @@
   interval_min: 1440
   run_on: local
   language: ko
-  terms_note: "약관·robots.txt 확인 전 수집 금지"
+  terms_note: "약관·robots.txt·페이지 구조 확인 전 수집 금지(radar/talent/collectors/README.md)"
   reliability_default: 1차
   verified: false
   enabled: false
@@ -194,38 +248,7 @@
   interval_min: 1440
   run_on: local
   language: ko
-  terms_note: "약관·robots.txt 확인 전 수집 금지"
-  reliability_default: 1차
-  verified: false
-  enabled: false
-
-# --- 4단계 (참고용 자리) ---
-- id: src-sec-edgar
-  name: SEC EDGAR (공시·전문 검색)
-  category: A-규제공시
-  method: api
-  endpoint_doc: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces"
-  auth: none
-  scope: [T2]
-  interval_min: 60
-  run_on: cloud
-  language: en
-  terms_note: "접속 식별(User-Agent) 요구·초당 호출 제한 준수"
-  reliability_default: 1차
-  verified: false
-  enabled: false
-
-- id: src-fedreg
-  name: Federal Register API (사전 공람 포함)
-  category: L-미국정부
-  method: api
-  endpoint_doc: "https://www.federalregister.gov/developers/documentation/api/v1"
-  auth: none
-  scope: [T0]
-  interval_min: 60
-  run_on: cloud
-  language: en
-  terms_note: ""
+  terms_note: "약관·robots.txt·페이지 구조 확인 전 수집 금지"
   reliability_default: 1차
   verified: false
   enabled: false
