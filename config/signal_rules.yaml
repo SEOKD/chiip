@@ -1,0 +1,16 @@
+# 신호 강도·삼각측량 규칙 (BUILD_PROMPT §11.6) — 초안, 마스터 확정 전
+weights: {S0: 0, S1: 1, S2: 3, S3: 8, S4: 20, S5: 40}
+source_reliability_default: 1.0      # 선행성 장부가 쌓이면 원천별 가중치 조정 '제안'
+independence:
+  # 독립 = 서로 다른 layer 그리고 서로 다른 origin_id
+  same_origin_counts_once: true
+alerts:
+  convergence:                        # 수렴 경보 → P1
+    - {min_count: 2, strength: S2, independent: true}
+    - {min_s1: 2, plus_s2: 1, independent: true}
+  single:
+    S3: P1
+    S4_T0: P0
+promotion:
+  claim_intake_min_strength: S3       # S1·S2는 주장으로 승격하지 않음(P16)
+community_is_clue_only: true

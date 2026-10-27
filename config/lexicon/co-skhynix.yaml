@@ -1,0 +1,22 @@
+# 다국어 실체 사전 (BUILD_PROMPT §11.2) — draft: 공식 자료(사업보고서 종속회사 목록·회사 영문/중문 표기)로 lexicon-build가 보강, 마스터 확인 전
+# codenames·part_number_prefixes는 공식 확인된 것만 넣는다.
+entity: co-skhynix
+draft: true
+names:
+  ko: [SK하이닉스, 하이닉스]
+  en: [SK hynix, SK Hynix, Hynix, Solidigm]
+  zh_hans: [SK海力士, 海力士]
+  zh_hant: [SK海力士]
+  ja: [SKハイニックス]
+legal_entities: [Solidigm]
+sites: [이천, 청주, 용인, West Lafayette]
+products: []
+codenames: []
+part_number_prefixes: []
+executives: []
+euphemisms:
+  en: ["a Korean memory supplier", "a leading HBM supplier", "Korean memory vendor"]
+  zh: ["韩国存储大厂", "韓系記憶體大廠"]
+  ja: ["韓国メモリー大手"]
+negative_context:
+  - "SK텔레콤·SK이노베이션·SK온 등 다른 SK 계열사 단독 문맥"

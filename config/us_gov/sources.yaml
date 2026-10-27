@@ -1,0 +1,15 @@
+# 미국 정부 원천 (BUILD_PROMPT §13.2~13.4) — run_on: cloud 기본. key가 필요한 원천은 키 입력 전 비활성.
+federal:
+  - {id: src-fedreg, name: Federal Register API, url: "https://www.federalregister.gov/api/v1/documents.json", key: none, enabled: true, verified: true}
+  - {id: src-fedreg-pi, name: Federal Register Public Inspection, url: "https://www.federalregister.gov/api/v1/public-inspection-documents/current.json", key: none, enabled: true, verified: true}
+  - {id: src-regulations-gov, name: Regulations.gov API, url: "https://api.regulations.gov/v4/", key: "env:REGULATIONS_GOV_API_KEY (api.data.gov)", enabled: false, verified: false}
+  - {id: src-congress, name: Congress.gov API, url: "https://api.congress.gov/v3/", key: "env:CONGRESS_API_KEY (api.data.gov)", enabled: false, verified: false}
+  - {id: src-govinfo, name: GovInfo API, url: "https://api.govinfo.gov/", key: "env:GOVINFO_API_KEY (api.data.gov)", enabled: false, verified: false}
+  - {id: src-usaspending, name: USASpending API, url: "https://api.usaspending.gov/", key: none, enabled: false, verified: false, stage: 6}
+terms: [semiconductor, "integrated circuit", "export administration regulations", "advanced computing", "high bandwidth memory", "Section 232", CHIPS, "entity list", "advanced packaging", "data center"]
+agencies_of_interest: [industry-and-security-bureau, commerce-department, trade-representative-office-of-united-states, international-trade-commission, energy-department, treasury-department, internal-revenue-service]
+state:   # 5단계 v1
+  TX: [주지사실 경제개발·반도체 혁신 기금, 감사관실(세제 감면·법인 공개정보), TCEQ 인허가 검색, TDLR 건설 등록, ERCOT 대형 부하·PUC 문서함]
+  IN: [IEDC 이사회·인센티브, IDEM 전자 문서함, IURC 문서함]
+local:   # 5단계 v1 — 거점별 meeting_platforms 확인 후 어댑터 구현
+  adapters_planned: [legistar, granicus, civicclerk, boarddocs, civicplus, socrata, arcgis, rss_html]

@@ -1,0 +1,27 @@
+# 거울 매트릭스 (BUILD_PROMPT §11.5) — draft: 대상·코드는 마스터 확정 전
+# tw_codes: 대만증권거래소(TWSE) 상장 코드 — twse_monthly.py가 월매출을 수집. 장외(TPEx) 기업은 별도 원천 필요.
+# 코드는 수집 결과의 '파일에 없는 코드' 목록으로 검증한다.
+mirrors:
+  co-skhynix:
+    - {name: 대만 패키징·테스트, tw_codes: [3711], data: 월매출, cadence: 월}
+    - {name: 대만 서버 ODM(HBM 탑재 시스템 조립), tw_codes: [2382, 6669, 2317], data: 월매출, cadence: 월}
+  co-samsung:
+    - {name: 대만 파운드리(경쟁 거울), tw_codes: [2330], data: 월매출, cadence: 월}
+    - {name: 대만 서버 ODM, tw_codes: [2382, 6669, 2317], data: 월매출, cadence: 월}
+  co-semco:
+    - {name: 대만 MLCC, tw_codes: [2327, 2492], data: 월매출, cadence: 월}
+    - {name: 대만 패키지 기판, tw_codes: [3037, 3189, 8046], data: 월매출, cadence: 월}
+  co-lginnotek:
+    - {name: 대만 광학 렌즈, tw_codes: [3008, 3406], data: 월매출, cadence: 월}
+    - {name: 대만 패키지 기판, tw_codes: [3037, 3189, 8046], data: 월매출, cadence: 월}
+  co-isupetasys:
+    - {name: 대만 고다층 PCB, tw_codes: [2368, 3044], data: 월매출, cadence: 월}
+    - {name: 대만 스위치·네트워크, tw_codes: [2345], data: 월매출, cadence: 월}
+  co-doosan:
+    - {name: 대만 고성능 CCL, tw_codes: [2383, 6213, 6274], data: 월매출, cadence: 월}
+  co-lotteem:
+    - {name: 대만 회로용 동박·CCL, tw_codes: [2383, 6274], data: 월매출, cadence: 월}
+other_mirrors:   # 5~6단계
+  - 장비사 지역별 매출(한국 비중) — 분기 실적
+  - 일본 재무성·네덜란드 통계청 대한국 장비 수출(L3)
+  - 가속기 고객 콜의 메모리 공급 언급, GPU 사양 DB 메모리 표기(수동 확인)

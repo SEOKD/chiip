@@ -1,0 +1,17 @@
+# 규정 영향 매핑 (BUILD_PROMPT §13.5⑤) — ECCN·HTS → 제품 → T0 노출
+# ⚠ draft: 코드·규정 문구는 rule-impact 실행 시 '현행 규정 원문'(eCFR·Federal Register)으로 확인해 채운다.
+#   기억에 의존한 코드 기재 금지. 확인 전 항목은 verified: false.
+export_controls:
+  - eccn: ""            # 예: 첨단 컴퓨팅 IC·HBM 관련 품목 — 원문 확인 후 기입
+    description_ko: "첨단 컴퓨팅 집적회로·관련 메모리(HBM) 통제 품목"
+    products: [pr-hbm4, pr-hbm4e]
+    t0_exposure: [co-skhynix, co-samsung]
+    source_rule: ""
+    verified: false
+tariffs:
+  - hts: ""             # 예: 메모리 집적회로 HTS 소호 — 원문 확인 후 기입
+    description_ko: "메모리 집적회로 수입 관세 품목"
+    products: []
+    t0_exposure: [co-skhynix, co-samsung]
+    source_rule: ""
+    verified: false

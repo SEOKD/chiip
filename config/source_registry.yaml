@@ -222,6 +222,83 @@
   verified: false
   enabled: false
 
+# ===== B/F. T2 글로벌 (4단계 확장) =====
+- id: src-newsroom-nvidia
+  name: NVIDIA Newsroom
+  category: B-기업1차
+  module: rss
+  method: rss
+  feed_url: "https://nvidianews.nvidia.com/releases.xml"
+  endpoint_doc: "https://nvidianews.nvidia.com"
+  auth: none
+  scope: [co-nvidia]
+  interval_min: 60
+  run_on: both
+  language: en
+  doc_type: 보도자료
+  terms_note: "공식 RSS (2026-10-28 응답 확인)"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-gnews-t2-en
+  name: Google News RSS (T2 핵심 이벤트)
+  category: F-뉴스
+  module: rss
+  method: rss
+  feed_queries: ['HBM supplier qualification when:1d', 'CoWoS capacity when:1d', '"glass substrate" semiconductor when:1d', 'CCL copper clad laminate AI server when:7d', 'MLCC AI server when:7d', 'export controls semiconductor Commerce when:1d']
+  hl: en-US
+  gl: US
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [T2]
+  interval_min: 60
+  run_on: both
+  language: en
+  doc_type: 기사
+  terms_note: "공개 RSS"
+  reliability_default: 2차
+  verified: true
+  enabled: true
+
+# ===== C. 학회·논문 =====
+- id: src-arxiv-csar
+  name: arXiv cs.AR (Hardware Architecture) 신규 논문
+  category: C-학회
+  module: rss
+  method: rss
+  feed_url: "https://rss.arxiv.org/rss/cs.AR"
+  endpoint_doc: "https://info.arxiv.org/help/rss.html"
+  auth: none
+  scope: [T2]
+  interval_min: 720
+  run_on: both
+  language: en
+  doc_type: 논문
+  terms_note: "공개 RSS. 키워드·기업 매칭되는 논문만 판정 대상"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+# ===== L. 미국 정부 (§13) — 관보는 radar/usgov/federal/fedreg.py(run_hourly) =====
+- id: src-whitehouse
+  name: White House Presidential Actions
+  category: L-미국정부
+  module: rss
+  method: rss
+  feed_url: "https://www.whitehouse.gov/presidential-actions/feed/"
+  endpoint_doc: "https://www.whitehouse.gov/presidential-actions/"
+  auth: none
+  scope: [T2]
+  interval_min: 60
+  run_on: both
+  language: en
+  doc_type: 규제·정책
+  terms_note: "공식 RSS (2026-10-28 응답 확인). 관련 키워드 매칭분만 판정"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
 # ===== K. 인재·조직 (§12) =====
 - id: src-careers-samsung
   name: 삼성 그룹 공식 채용 포털

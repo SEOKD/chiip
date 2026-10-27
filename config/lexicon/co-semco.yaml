@@ -1,0 +1,23 @@
+# 다국어 실체 사전 (BUILD_PROMPT §11.2) — draft: 공식 자료(사업보고서 종속회사 목록·회사 영문/중문 표기)로 lexicon-build가 보강, 마스터 확인 전
+# codenames·part_number_prefixes는 공식 확인된 것만 넣는다.
+entity: co-semco
+draft: true
+names:
+  ko: [삼성전기]
+  en: [Samsung Electro-Mechanics, SEMCO]
+  zh_hans: [三星电机]
+  zh_hant: [三星電機]
+  ja: [サムスン電機]
+legal_entities: []
+sites: []
+products: []
+codenames: []
+part_number_prefixes: []
+executives: []
+euphemisms:
+  en: ["a Korean substrate supplier", "a Korean MLCC maker"]
+  zh: ["韓系載板廠", "韓系MLCC大廠"]
+  ja: []
+negative_context:
+  - "삼성전자 단독 문맥"
+  - "SEMCO가 다른 회사 약칭으로 쓰인 경우(예: 해외 동명 기업)"

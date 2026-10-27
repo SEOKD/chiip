@@ -1,0 +1,22 @@
+# 다국어 실체 사전 (BUILD_PROMPT §11.2) — draft: 공식 자료(사업보고서 종속회사 목록·회사 영문/중문 표기)로 lexicon-build가 보강, 마스터 확인 전
+# codenames·part_number_prefixes는 공식 확인된 것만 넣는다.
+entity: co-isupetasys
+draft: true
+names:
+  ko: [이수페타시스]
+  en: [ISU Petasys, Isu Petasys]
+  zh_hans: []
+  zh_hant: []
+  ja: []
+legal_entities: []
+sites: []
+products: []
+codenames: []
+part_number_prefixes: []
+executives: []
+euphemisms:
+  en: ["a Korean high-layer-count PCB maker"]
+  zh: ["韓系PCB廠"]
+  ja: []
+negative_context:
+  - "이수화학·이수앱지스 등 이수그룹 다른 회사"

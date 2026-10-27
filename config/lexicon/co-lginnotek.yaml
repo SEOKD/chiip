@@ -1,0 +1,22 @@
+# 다국어 실체 사전 (BUILD_PROMPT §11.2) — draft: 공식 자료(사업보고서 종속회사 목록·회사 영문/중문 표기)로 lexicon-build가 보강, 마스터 확인 전
+# codenames·part_number_prefixes는 공식 확인된 것만 넣는다.
+entity: co-lginnotek
+draft: true
+names:
+  ko: [LG이노텍]
+  en: [LG Innotek]
+  zh_hans: [LG伊诺特]
+  zh_hant: [LG伊諾特]
+  ja: [LGイノテック]
+legal_entities: []
+sites: []
+products: []
+codenames: []
+part_number_prefixes: []
+executives: []
+euphemisms:
+  en: ["a Korean camera module supplier"]
+  zh: ["韓系鏡頭模組廠"]
+  ja: []
+negative_context:
+  - "LG전자·LG디스플레이·LG에너지솔루션 단독 문맥"

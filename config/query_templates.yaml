@@ -1,0 +1,7 @@
+# 역방향 쿼리 템플릿 (BUILD_PROMPT §11.11) — {en} {ko} {zh_hant} {zh_hans} {ja} 는 lexicon 이름으로 치환
+edgar_fts: '"{en}"'
+gov_docs_web: ['site:gov "{en}" filetype:pdf', '"{en}" permit application']
+cninfo: ['"{zh_hans}" 招股说明书 客户', '"{zh_hans}" 问询函 供应商']
+taiwan_press: ['"{zh_hant}" 訂單 OR 擴產 OR 認證']
+japan_press: ['"{ja}" 受注 OR 採用 OR 量産']
+korean_counterparty: ['"{ko}" 공급계약 상대방']

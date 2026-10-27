@@ -1,0 +1,7 @@
+indicator_id,name,frequency,release_rule,source_id,unit,last_period,last_value,prior_value,yoy,mom,surprise_note,linked_theses,updated
+ind-kr-semi-export,한국 반도체 수출,월(잠정 월중·확정 월초),관세청·산업부 발표일 — 확인 필요,,백만 달러,,,,,,,,
+ind-kr-semi-export-city,시군구별 반도체 수출(이천·청주·평택 등),월,관세청 — 확인 필요,,백만 달러,,,,,,,,
+ind-tw-monthly-rev,대만 상장사 월매출(거울 매트릭스),월(익월 10일 전후),TWSE 공개 데이터 — mirror_monthly.csv,src-twse-monthly,천 대만달러,,,,,,,,
+ind-semi-equip-billings,SEMI 장비 출하,월·분기,SEMI 발표 — 확인 필요,,백만 달러,,,,,,,,
+ind-jp-equip-sales,일본 반도체 장비 판매(SEAJ),월,SEAJ — 확인 필요,,십억 엔,,,,,,,,
+ind-hyperscaler-capex,하이퍼스케일러 CAPEX,분기,각사 실적 발표,,십억 달러,,,,,,,,

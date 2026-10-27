@@ -1,0 +1,23 @@
+# 다국어 실체 사전 (BUILD_PROMPT §11.2) — draft: 공식 자료(사업보고서 종속회사 목록·회사 영문/중문 표기)로 lexicon-build가 보강, 마스터 확인 전
+# codenames·part_number_prefixes는 공식 확인된 것만 넣는다.
+entity: co-doosan
+draft: true
+names:
+  ko: [두산 전자BG, 두산전자, 두산 CCL]
+  en: [Doosan Electro-Materials, Doosan Corporation Electro-Materials]
+  zh_hans: [斗山电子]
+  zh_hant: [斗山電子]
+  ja: []
+legal_entities: []
+sites: []
+products: []
+codenames: []
+part_number_prefixes: []
+executives: []
+euphemisms:
+  en: ["a Korean CCL supplier"]
+  zh: ["韓系CCL廠"]
+  ja: []
+negative_context:
+  - "두산에너빌리티·두산밥캣·두산로보틱스·두산퓨얼셀 문맥"
+  - "'두산' 단독 표기(지주사·스포츠 구단 등) — 전자BG·CCL 문맥이 있어야 매칭"

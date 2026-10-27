@@ -1,0 +1,22 @@
+# 미국 거점 레지스트리 (BUILD_PROMPT §13.1) — 관할은 공식 자료로 확인 후 채운다(빈칸 = 미확인)
+- site_id: us-samsung-taylor
+  company: co-samsung
+  description: 삼성전자 텍사스 테일러 팹
+  jurisdictions: {state: TX, county: Williamson County, city: Taylor, school_district: "", appraisal_district: "", utilities: []}
+  state_agencies: [환경청(TCEQ), 감사관실, 주지사실 경제개발, 전력 계통·규제(ERCOT·PUC)]
+  meeting_platforms: []      # 1단계 확인 대상: 시의회·카운티 위원회가 쓰는 플랫폼(Legistar·Granicus·CivicClerk 등)
+  watch_radius_km: 30
+- site_id: us-samsung-austin
+  company: co-samsung
+  description: 삼성전자 텍사스 오스틴 팹
+  jurisdictions: {state: TX, county: Travis County, city: Austin, school_district: "", appraisal_district: "", utilities: []}
+  state_agencies: [환경청(TCEQ), 감사관실, 전력 계통·규제(ERCOT·PUC)]
+  meeting_platforms: []
+  watch_radius_km: 30
+- site_id: us-skhynix-westlafayette
+  company: co-skhynix
+  description: SK하이닉스 인디애나 웨스트라피엣 패키징 공장
+  jurisdictions: {state: IN, county: Tippecanoe County, city: West Lafayette, school_district: "", appraisal_district: "", utilities: []}
+  state_agencies: [경제개발공사(IEDC), 환경관리청(IDEM), 공공요금 규제위원회(IURC)]
+  meeting_platforms: []
+  watch_radius_km: 30

@@ -1,0 +1,23 @@
+# 다국어 실체 사전 (BUILD_PROMPT §11.2) — draft: 공식 자료(사업보고서 종속회사 목록·회사 영문/중문 표기)로 lexicon-build가 보강, 마스터 확인 전
+# codenames·part_number_prefixes는 공식 확인된 것만 넣는다.
+entity: co-samsung
+draft: true
+names:
+  ko: [삼성전자, 삼성 파운드리, 삼성 메모리]
+  en: [Samsung Electronics, Samsung Foundry, Samsung Semiconductor]
+  zh_hans: [三星电子]
+  zh_hant: [三星電子]
+  ja: [サムスン電子]
+legal_entities: []        # 종속회사 목록에서 추출 예정 (예: 미국 반도체 법인)
+sites: [화성, 평택, 기흥, 온양, 천안, Austin, Taylor]
+products: []
+codenames: []
+part_number_prefixes: []
+executives: []
+euphemisms:
+  en: ["a Korean memory supplier", "a leading memory manufacturer in Korea", "Korean IDM customer", "a major Korean foundry"]
+  zh: ["韩国存储大厂", "韓系記憶體大廠", "韓系晶圓代工"]
+  ja: ["韓国メモリー大手"]
+negative_context:
+  - "스마트폰·가전(DX) 단독 문맥 — 반도체 언급 없으면 오탐"
+  - "삼성전기·삼성SDI·삼성바이오로직스 등 다른 계열사 문맥"

@@ -30,7 +30,8 @@ SECRET_PATTERNS = [
         r"(?i)\b(?:api[_-]?key|secret|token|client[_-]?secret|password|crtfc_key)\b\s*[:=]\s*['\"]?[A-Za-z0-9_\-]{16,}")),
 ]
 # local-only 원문을 그대로 옮긴 흔적
-# (자리표시자 `<FI-id>.md` 같은 설명용 경로는 제외)
+# (자리표시자 `<FI-id>.md` 같은 설명용 경로와, 지시서가 정의한 정식 파일명은 제외)
+SPEC_FILES = ("capa_overlay.csv", "denylist.txt")
 LOCAL_PATH_RE = re.compile(r"(?i)local-only[\\/](?:sealed|embargo|licensed|secrets)[\\/](?:[^\s<>{}*`'\"\\/]+[\\/])*[^\s<>{}*`'\"\\/]+\.(?:txt|md|pdf|docx|csv)")
 
 
@@ -84,7 +85,8 @@ def scan(path, terms):
         for kind, pattern in SECRET_PATTERNS:
             if pattern.search(line):
                 hits.append(f"{display(path)}:{n} 비밀키 패턴({kind})")
-        if LOCAL_PATH_RE.search(line):
+        m = LOCAL_PATH_RE.search(line)
+        if m and not m.group(0).lower().endswith(SPEC_FILES):
             hits.append(f"{display(path)}:{n} local-only 원문 파일 경로 언급 — 내용 복제 여부 확인")
     return hits
 
