@@ -1,16 +1,43 @@
 # 글로벌 증시 주간 상승률 (위클리 리뷰 · Dean's Ticker 형식) — draft, 마스터 확인 전
-# 수집기(데이터 원천 확정 후 구현)가 금요일 종가 기준으로 knowledge/models/weekly_movers/YYYY-Www.csv 를 만든다.
-# 원천 후보와 확인 결과: docs/market_data_options.md
+# 수집기: radar/markets/weekly_movers.py (EODHD 스크리너 API, 키 EODHD_API_KEY는 D:\local-only\secrets\.env)
+# 출력: knowledge/models/weekly_movers/YYYY-Www.csv  — 토요일 06:00~09:00 KST 사이 1회(위클리 리뷰 09:13 전)
+# 등락률: EODHD 스크리너 refund_5d_p(최근 5거래일). 휴장일이 낀 주는 금요일→금요일과 다를 수 있음(파일에 표시)
 
-week_basis: "직전 주 금요일 종가 → 이번 주 금요일 종가(각 시장 현지 기준). 휴장일이면 마지막 거래일"
-regions:
-  - {key: US, title: "US", count: 20, market_cap_usd_min: 10_000_000_000}
-  - {key: US_SMALL, title: "US(<$10B)", count: 10, market_cap_usd_min: 1_000_000_000, market_cap_usd_max: 10_000_000_000}
-  - {key: EU, title: "Europe", count: 10, market_cap_usd_min: 1_000_000_000}   # 영국 포함(채널 형식상 Europe 한 묶음)
-  - {key: JP, title: "Japan", count: 10, market_cap_usd_min: 1_000_000_000}
-  - {key: KR, title: "Korea", count: 10, market_cap_krw_min: 300_000_000_000}  # 코스피·코스닥, 3천억 원 이상(예시 목록 기준 추정 — 마스터 확인)
-
-# 잡음 제외: 우선주·ETF·SPAC·리츠, 주간 평균 거래대금 하한(시장별), 상장 첫 주 종목
-exclude: [preferred, etf, etn, spac, reit, first_week_ipo]
-min_avg_daily_value_usd: 5_000_000
+provider: eodhd
 link: "https://t.me/d_ticker"
+fetch_limit: 100          # 거래소별로 5일 상승률 상위 몇 개를 받아 거를지(최대 500)
+min_avg_volume_200d: 50000 # 거래량 하한(주) — 거래 거의 없는 종목 제외
+
+regions:
+  - key: US
+    title: "US"
+    count: 20
+    exchanges: [us]
+    market_cap_usd_min: 10_000_000_000
+  - key: US_SMALL
+    title: "US(<$10B)"
+    count: 10
+    exchanges: [us]
+    market_cap_usd_min: 1_000_000_000
+    market_cap_usd_max: 10_000_000_000
+  - key: EU
+    title: "Europe"          # 영국 포함(채널 형식상 Europe 한 묶음)
+    count: 10
+    exchanges: [LSE, XETRA, PA, AS, MI, MC, SW, ST, CO, HE, BR, OL]
+    market_cap_usd_min: 1_000_000_000
+  - key: JP
+    title: "Japan"
+    count: 10
+    exchanges: []            # EODHD 도쿄 거래소 코드 미확인 — 키 발급 후 exchanges-list로 확인해 채움
+    market_cap_usd_min: 1_000_000_000
+  - key: KR
+    title: "Korea"
+    count: 10
+    exchanges: [KO, KQ]
+    market_cap_usd_min: 200_000_000   # 약 3천억 원(예시 목록 기준 추정 — 마스터 확인)
+
+# 통화별 USD 환산(시총 하한 계산용). 스크리너 시총은 상장 통화 기준이라 환산 필요. 매 실행 시 EODHD 환율로 갱신, 실패하면 아래 값
+fx_fallback_per_usd: {USD: 1, GBP: 0.78, GBX: 78, EUR: 0.92, CHF: 0.88, SEK: 10.5, DKK: 6.9, NOK: 10.8, JPY: 150, KRW: 1400}
+
+# 이름에 이게 들어가면 제외(우선주·ETF·워런트 등)
+exclude_name_pattern: '\b(ETF|ETN|Fund|Trust Units|Warrant|Rights|Preferred|Pref|SPAC|Acquisition Corp)\b|우선주|\d우B?$|스팩'

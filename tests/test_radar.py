@@ -152,5 +152,34 @@ class TestPressWire(unittest.TestCase):
         self.assertIsNone(self.p.classify(self.entry("Foo gewinnt Grossauftrag für Chips", "Foo (SIX: FOO)"), sector, self.cfg))
 
 
+class TestWeeklyMovers(unittest.TestCase):
+    def test_pick_filters_and_converts(self):
+        from markets import weekly_movers as wm
+        cfg = {"exclude_name_pattern": r"\bETF\b|우선주", "min_avg_volume_200d": 1000}
+        rates = {"USD": 1, "KRW": 1400}
+        rows = [
+            {"name": "Big Gainer Inc", "code": "BIG", "exchange": "US", "currency_symbol": "USD", "refund_5d_p": 30.4,
+             "market_capitalization": 2e10, "sector": "Technology", "industry": "Software", "avgvol_200d": 5e5},
+            {"name": "Some ETF", "code": "ETF1", "currency_symbol": "USD", "refund_5d_p": 50, "market_capitalization": 5e10,
+             "sector": "Fund", "avgvol_200d": 5e5},
+            {"name": "Tiny Co", "code": "TNY", "currency_symbol": "USD", "refund_5d_p": 40, "market_capitalization": 5e8,
+             "sector": "Tech", "avgvol_200d": 5e5},
+            {"name": "No Sector Fund", "code": "NSF", "currency_symbol": "USD", "refund_5d_p": 45, "market_capitalization": 3e10,
+             "avgvol_200d": 5e5},
+            {"name": "Big Gainer Inc", "code": "BIG2", "currency_symbol": "USD", "refund_5d_p": 29, "market_capitalization": 2e10,
+             "sector": "Technology", "avgvol_200d": 5e5},
+        ]
+        out = wm.pick(rows, {"count": 5, "market_cap_usd_min": 1e10}, cfg, rates)
+        self.assertEqual([r["ticker"] for r in out], ["BIG"])
+        kr = [{"name": "삼현", "code": "437730", "currency_symbol": "KRW", "refund_5d_p": 13.2,
+               "market_capitalization": 4e11, "sector": "Industrials", "avgvol_200d": 2e5}]
+        self.assertEqual(wm.pick(kr, {"count": 10, "market_cap_usd_min": 2e8}, cfg, rates)[0]["market_cap_usd"], round(4e11 / 1400))
+
+    def test_collect_waits_outside_window(self):
+        from markets import weekly_movers as wm
+        if common.now_kst().weekday() != 5:
+            self.assertEqual(wm.collect(), (0, 0))
+
+
 if __name__ == "__main__":
     unittest.main()

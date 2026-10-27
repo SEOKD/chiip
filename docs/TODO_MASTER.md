@@ -42,7 +42,7 @@
 | 18 | 분야 모듈 11종 기술 내용 — 특히 포토·트랙·EUV·메모리 공정 | `.claude/skills/domain-*` |
 | 19 | 커뮤니티 원천: Reddit 켤지, 구독할 Substack 피드 | `config/community_sources.yaml` |
 | 20 | 웹 변경 감시 페이지, 잡보드 대상 | `config/page_watch.yaml`, `config/job_boards.yaml` |
-| 21 | **주가 원천 선택 — 위클리 '글로벌 증시 주간 상승률'(Dean's Ticker 형식)에 필요.** 정하기 전엔 그 절이 "데이터 미수집"으로 나감 | `docs/market_data_options.md`, `config/weekly_movers.yaml`(지역별 시총 기준선 draft) |
+| 21 | **EODHD 키 (위클리 주간 상승률, 마스터 결정 10-28).** ① eodhd.com 무료 가입(카드 불필요) → `.env`에 `EODHD_API_KEY=` 입력 → 치입이 일본 지원 여부 확인 ② 확인되면 'EOD+Intraday All World Extended'($29.99/월, 스크리너 포함)로 업그레이드 ③ Dean's Ticker 채널 게시까지 하려면 개인 요금제는 표시·재배포 금지 — sales@eodhistoricaldata.com에 채널 게시 조건 문의 | `config/weekly_movers.yaml`(지역별 시총 기준선 draft), `radar/markets/weekly_movers.py` |
 | 21-1 | Business Wire 피드 주소 추가: 브라우저에서 businesswire.com RSS 페이지 → Semiconductor·Technology·Earnings·Contracts 피드 주소 복사 → 치입에게 전달 | `config/press_wire.yaml` (지금은 M&A 피드만) |
 | 21-2 | 예약 작업 산출물(브리프·역방향 요약)은 커밋하지 않고 남음 — 마스터 세션에서 "브리프 커밋해"로 일괄 커밋 | `outputs/brief/`, `radar/cards/` |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |

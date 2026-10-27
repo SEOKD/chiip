@@ -10,7 +10,7 @@ argument-hint: "[주차 YYYY-Www]"
 - `py scripts/score_radar.py`, `score_reverse.py`, `score_field_intel.py`, `score_predictions.py` 결과
 - `knowledge/models/indicators.csv`, `mirror_monthly.csv` 변화
 - 다음 주 `knowledge/calendar.csv`
-- **주간 상승률 데이터**: `knowledge/models/weekly_movers/YYYY-Www.csv` (수집기가 만든 결정론적 데이터. 열: region, rank, pct_change, name_en, ticker, market_cap_usd, industry)
+- **주간 상승률 데이터**: `knowledge/models/weekly_movers/YYYY-Www.csv` (`radar/markets/weekly_movers.py`가 토요일 06~09시에 EODHD 스크리너로 만든 결정론적 데이터. 열: region, rank, pct_change, name_en, ticker, exchange, currency, market_cap_usd, sector, industry, last_day, as_of). 등락률은 최근 5거래일 기준 — 휴장일이 낀 주는 그 사실을 한 줄 적는다. `radar/state/weekly_movers.json`의 `missing`에 있는 지역은 "데이터 미수집"
 
 ## 글로벌 증시 주간 상승률 절 — 마스터 채널 'Dean's Ticker'(https://t.me/d_ticker, 마스터 소유) 형식
 ```
