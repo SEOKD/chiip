@@ -1,0 +1,8 @@
+id: E-001
+category: 정의정확성
+prompt: "실리콘 포토닉스 광 엔진에서 MRM의 역할을 설명해 줘."
+failure_pattern: "MRM과 스위치를 같은 기능 부품으로 혼동"
+expected_behavior: ""   # 기술적 정답은 마스터 확인 전까지 비움
+severity: critical
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

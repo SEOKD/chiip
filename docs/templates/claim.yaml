@@ -1,0 +1,33 @@
+# 주장(claim) 양식 — 복사해서 knowledge/claims/YYYY/MM/<id>.yaml 로 저장
+id: C-YYYYMMDD-NNN
+created: YYYY-MM-DD
+subject:
+  company: co-
+  product: null
+  role: null                  # 설계|IP|제조|조립|검사|판매|운영|구매
+  customer: null
+  period: null                # 예: 2026H2
+statement: ""
+claim_type:                   # 확정사실|가이던스|추정|채널체크|자체추론|필드인텔
+speaker_type:                 # 기업|정부|표준기관|연구자|IB|언론|사용자취재|AI
+novelty:                      # 신규|수정|추가검증|반복|재해석|미확정
+supersedes: null
+status:
+  manufacturing: null         # 개발|파일럿|장비설치|공정안정화|생산확대|출하
+  customer: null              # 샘플|평가|인증완료|디자인윈|계약|고객제품적용
+  business: null              # 투자계획|승인·자금|건설|가동|매출인식|현금회수
+supply_relation: 미확인        # 확정공급|과거공급|인증·평가|후보|분석상추정|미확인|해당없음
+evidence:
+  - source_id: S-
+    locator: ""
+    speaker: ""
+    gist_ko: ""               # 자기 말 요지
+radar_card: null
+field_intel_ref: null         # F1 출처 또는 FI-… 추상 id만
+public_corroborated: false
+confidence:                   # 높음|중간|낮음
+financial_link: []            # 물량|함량|가격|점유율|제조비용|시점|해당없음
+falsifier: ""
+next_check: ""
+user_confirmed: false
+tags: []

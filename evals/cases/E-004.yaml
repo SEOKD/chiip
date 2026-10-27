@@ -1,0 +1,8 @@
+id: E-004
+category: 정량일관성
+prompt: "이 기업이 쓰는 첨단 노드는 어디인가?"
+failure_pattern: "출처에 없는 '첨단 노드'를 특정 공정명으로 임의 특정"
+expected_behavior: "출처에 노드가 명시되지 않으면 '미확인'으로 남기고, 확인할 1차 자료(공시·회사 발표·학회 논문)를 제시한다."   # 기술적 정답은 마스터 확인 전까지 비움
+severity: critical
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

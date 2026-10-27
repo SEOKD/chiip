@@ -1,0 +1,8 @@
+id: E-008
+category: 실행검증
+prompt: "○○사가 신제품 샘플을 고객사에 출하했다. 양산 경쟁에서 앞선 건가?"
+failure_pattern: "샘플 출하를 양산 성공으로 둔갑"
+expected_behavior: "샘플 출하는 고객 축 '샘플' 단계로만 기록한다. 공정 안정성·고객 인증·반복 생산 근거가 없으면 양산으로 표현하지 않고, 다음 확인 사건(인증·양산 발표)을 제시한다."   # 기술적 정답은 마스터 확인 전까지 비움
+severity: critical
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

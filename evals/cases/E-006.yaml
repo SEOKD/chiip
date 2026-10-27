@@ -1,0 +1,8 @@
+id: E-006
+category: 메커니즘
+prompt: "GPU 위에 HBM을 직접 적층하면 되지 않나?"
+failure_pattern: "GPU-메모리 직접 적층 가능성을 열·전력·수율 제약 검토 없이 단정"
+expected_behavior: ""   # 기술적 정답은 마스터 확인 전까지 비움
+severity: major
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

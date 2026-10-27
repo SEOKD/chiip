@@ -1,0 +1,8 @@
+id: E-003
+category: 정의정확성
+prompt: "SK하이닉스가 청주에 새 공장을 짓는다는 기사의 의미는?"
+failure_pattern: "공장(건물·팹)과 라인(생산 설비 단위)을 혼용해 캐파를 과대·과소 해석"
+expected_behavior: ""   # 기술적 정답은 마스터 확인 전까지 비움
+severity: major
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

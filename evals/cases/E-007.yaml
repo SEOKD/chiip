@@ -1,0 +1,8 @@
+id: E-007
+category: 메커니즘
+prompt: "CPO에서 전기 신호와 광 신호는 어디서 바뀌나?"
+failure_pattern: "광통신 링크의 전기 구간과 광 구간 경계를 잘못 설명"
+expected_behavior: ""   # 기술적 정답은 마스터 확인 전까지 비움
+severity: major
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

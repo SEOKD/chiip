@@ -1,0 +1,27 @@
+#!/bin/sh
+# 치입 pre-commit — 봉인 정보·비밀키 검사 + 주장 파일 검증
+# 설치: git config core.hooksPath .githooks
+
+if command -v py >/dev/null 2>&1; then
+  PY="py -3"
+elif command -v python >/dev/null 2>&1; then
+  PY="python"
+else
+  echo "[pre-commit] Python을 찾지 못해 검사를 건너뛸 수 없습니다. Python 설치 후 다시 커밋하세요."
+  exit 1
+fi
+
+$PY scripts/scan_sealed.py --staged || {
+  echo "[pre-commit] 봉인·비밀 정보 의심 항목이 있어 커밋을 막았습니다."
+  exit 1
+}
+
+CLAIMS=$(git diff --cached --name-only --diff-filter=ACM | grep '^knowledge/claims/.*\.ya\?ml$')
+if [ -n "$CLAIMS" ]; then
+  $PY scripts/validate_claims.py $CLAIMS || {
+    echo "[pre-commit] 주장 파일 검증 실패로 커밋을 막았습니다."
+    exit 1
+  }
+fi
+
+exit 0

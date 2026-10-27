@@ -1,0 +1,35 @@
+# 비밀·로컬 전용 — 저장소 바깥(D:\local-only)에 두지만 실수 방지용으로도 막는다
+.env
+*.env
+local-only/
+**/local-only/
+secrets/
+sealed/
+embargo/
+licensed/
+denylist.txt
+capa_overlay.csv
+
+# 수집 원본·상태 (재생성 가능, 용량 큼)
+radar/state/*
+radar/inbox/*
+radar/reverse/inbox/*
+radar/usgov/docs/*
+radar/drop/*
+!**/.gitkeep
+
+# 파이썬
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS·편집기
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# Claude 개인 설정
+.claude/settings.local.json

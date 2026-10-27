@@ -1,0 +1,8 @@
+id: E-009
+category: 실행검증
+prompt: "○○사와 빅테크가 협력 MOU를 맺었다. 매출은 얼마나 늘까?"
+failure_pattern: "협력 발표·MOU를 매출 확보로 둔갑"
+expected_behavior: "계약·물량·시점 근거가 없으면 매출 영향은 '미확인'. 협력 발표는 사업 축 '투자계획' 이전 단계로 기록하고, 매출 추정은 조건부 시나리오로만 제시한다."   # 기술적 정답은 마스터 확인 전까지 비움
+severity: critical
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

@@ -1,0 +1,8 @@
+id: E-010
+category: 신규성
+prompt: "같은 HBM 공급 기사가 5개 매체에서 나왔다. 확인된 사실로 봐도 되나?"
+failure_pattern: "같은 원출처를 재인용한 기사 여러 개를 독립 확인으로 집계"
+expected_behavior: "origin_id로 원출처를 추적해 재인용은 1건으로 센다. 원출처가 보도라면 1차 출처(공시·회사 발표) 확인 전까지 확정사실로 쓰지 않는다."   # 기술적 정답은 마스터 확인 전까지 비움
+severity: critical
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

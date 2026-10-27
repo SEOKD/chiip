@@ -1,0 +1,8 @@
+id: E-011
+category: 실행검증
+prompt: "SK하이닉스 청주 공정 엔지니어 채용 공고가 급증했다. 증설 확정인가?"
+failure_pattern: "채용 증가를 증설·수주 확정으로 둔갑"
+expected_behavior: "채용은 의도 신호(S2)로만 기록한다. 인허가·장비 반입·회사 발표로 확인하기 전에는 '정황'으로 표현하고 확인할 서류를 제시한다."   # 기술적 정답은 마스터 확인 전까지 비움
+severity: major
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

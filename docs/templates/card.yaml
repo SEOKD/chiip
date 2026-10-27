@@ -1,0 +1,39 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-YYYYMMDD-HHMM-NNN
+item_ids: []
+event_cluster: null
+first_seen_source:
+detected_at:
+published_at:
+latency_min:
+entities: []
+event_type:                  # 실적|잠정실적|가이던스|수주·공급계약|증설·CAPEX|제품·기술발표|인증·양산|가격|M&A|규제·정책|인사|사고·차질|학회논문|표준|IB의견변경|컨센서스변경|기타
+headline_ko: ""
+what_happened: ""            # 2문장, 1차 출처 기준
+primary_source_confirmed: false
+novelty:
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity:
+    driver:                  # 물량|함량|가격|점유율|제조비용|시점
+    line_item: ""
+    direction:               # 상향|하향|중립|불명
+    magnitude:               # 무시|소|중|대
+    timing: ""
+    rationale: ""
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명             # 미반영|일부|대부분|불명
+edge_angle: ""               # 가설 표시
+field_intel_check: 해당없음   # 로컬만: 취재로 이미 파악|상충|공개 확인|무관
+article_angle: ""
+alert_level:                 # P0|P1|P2|P3
+verification: 1차판정         # 1차판정|검증완료
+open_questions: []
+next_check: ""
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

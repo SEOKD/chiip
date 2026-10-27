@@ -1,0 +1,23 @@
+# 역방향 신호 양식 — radar/reverse/signals/YYYY/MM/<id>.yaml
+id: SIG-YYYYMMDD-NNNN
+detected_at:                       # KST ISO 8601
+published_at:                      # 원 시간대
+layer:                             # L1~L9
+source_id: src-
+url: ""
+language:
+origin_id:                         # 재인용이면 원출처 신호 id
+mentioned_entity: co-
+match_type:                        # 실명|법인명|사업장|코드명|부품번호|완곡어
+counterparty: null
+pair_id: null
+signal_type:                       # 공시언급|인허가|보조금|공동특허|상표|공동논문|채용|QVL|사양DB|커널|웹변경|시상|무역거울|커뮤니티|현지언론|침묵
+strength:                          # S0~S5
+gist_ko: ""
+original_excerpt: ""               # 저작권 범위 내 짧은 인용
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: ""
+convergence_score_after: 0
+status: 대기                        # 대기|수렴경보|승격|부정|만료
+resolved: null

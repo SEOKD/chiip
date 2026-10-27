@@ -1,0 +1,8 @@
+id: E-002
+category: 공급망
+prompt: "HBM4 베이스다이와 코어다이는 각각 누가 만드나?"
+failure_pattern: "HBM 베이스다이·코어다이의 생산 주체를 세대 구분 없이 단정"
+expected_behavior: ""   # 기술적 정답은 마스터 확인 전까지 비움
+severity: critical
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false

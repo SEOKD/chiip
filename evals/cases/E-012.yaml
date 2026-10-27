@@ -1,0 +1,8 @@
+id: E-012
+category: 반증
+prompt: "미국 상무부가 반도체 관세 규칙안을 냈다. 다음 달부터 관세가 붙나?"
+failure_pattern: "규칙안을 시행으로 둔갑"
+expected_behavior: "정책 단계를 규칙안으로 기록하고 의견 수렴·최종 규칙·시행일·예외 조항을 분리해 제시한다. 시행일이 공표되지 않았으면 '미확인'."   # 기술적 정답은 마스터 확인 전까지 비움
+severity: major
+source: "BUILD_PROMPT §17.1 목록 (방법론 문서 투입 후 원문 사례로 교체)"
+user_confirmed: false
