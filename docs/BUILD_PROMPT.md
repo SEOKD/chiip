@@ -1917,3 +1917,11 @@ source: docs/methodology
 - Windows 11 (10.0.26200), C: 360GB·D: 266GB 여유, winget 사용 가능.
 - **git·Python·Claude Code CLI·GitHub CLI 미설치.** 설치는 마스터 승인 후 winget으로 진행(§0.2-6).
 - `docs/methodology/` 두 문서는 PC에서 찾지 못함 → 마스터가 넣으면 규칙 추출(제안 표시)과 충돌 목록 작성.
+
+### 21.9 출력 채널 (2026-10-27 마스터 결정) → ADR-007
+| 채널 | 용도 | 규칙 |
+|---|---|---|
+| GitHub `SEOKD/chiip` (비공개) | 저장소 원격 | §15 그대로. 에이전트 변경은 `claude/*` PR |
+| **Notion** (`puzzling-crafter-0a3.notion.site` 공개 사이트) | **인사이트 게시글만** | public 모드 규칙 전부 적용(F1·`public_corroborated: true` 주장만, local-only·엠바고·투자 권유 금지). **게시마다 마스터 승인**(P15) — 초안을 보여주고 "게시 승인"을 받은 뒤에만 페이지 생성·공개. 브리프·플래시·기사 메모는 올리지 않는다 |
+| **Claude 웹 (claude.ai Artifact, 비공개)** | 아침·저녁 브리프, 주간 리뷰, 플래시 노트 공유 | 비공개로 게시하고 링크를 마스터에게 전달. 클라우드 저장이므로 **local-only 정보(F2~F4·라이선스 원문·필드 인텔 대조 결과)는 넣지 않는다.** 필드 인텔 대조는 로컬 `outputs/`에만 남긴다 |
+| 텔레그램 개인 봇 | 즉시 알림(P0·P1) | §10.7 그대로 |
