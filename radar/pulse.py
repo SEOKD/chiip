@@ -1,0 +1,244 @@
+"""30분 펄스 (마스터 지시 2026-10-28 "30분마다 ① 기사 거리 원본 찾기 ② 텐배거 발굴 → 알파 레이더, 영어권·미국 주식 중심")
+
+결정론 관문 — 모델(예약 작업 chiip-pulse)은 이 스크립트가 새 원본을 내놓을 때만 판단한다(CLAUDE.md '모델로 고빈도 폴링하지 않는다'의
+마스터 지시 예외를 좁히는 장치). 기사가 아니라 **원본**만 모은다:
+  논문     arXiv cs.AR(inbox) + cs.ET·physics.app-ph(여기서 6시간마다 직접, 기술 키워드 통과분) — Nature 계열은 robots.txt가 Claude 차단
+  보도자료 PR Newswire·Business Wire·기업 뉴스룸(inbox, 영어판만)
+  공시     SEC 8-K — 감시 목록은 sec_filings(inbox), 목록 밖은 여기서 EDGAR 전문검색으로 Item 1.01(중요 계약)·7.01·8.01
+           × AI·반도체·데이터센터 전력 업종(SIC) × 유통주식 가치 1.5억 달러 이상 = 3자 보도자료·계약의 1차 흔적
+  정부     백악관·미국 연방·주 정책 원천(inbox)
+뉴스 기사(Google News·9개 매체)·리서치 블로그·중국·일본 정책 원천은 넣지 않는다.
+출력: radar/pulse/YYYYMMDD_HHMM.json(git 제외) — sources(점수순)·candidates(감시 목록 밖 미국 상장 티커)·queue(알파 산정 대기)
+사용: py radar/pulse.py                 # 수집·출력. 새 원본도 대기열도 없으면 '종료' 줄
+      py radar/pulse.py --end            # 회차 끝(잠금 해제)
+      py radar/pulse.py --enqueue <id> "<이름 (티커)>" "<이유>"   # 발굴 종목을 '알파 산정' 대기열에
+"""
+import json
+import re
+import sys
+import time
+from datetime import datetime, timedelta
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pollers import common, rss, sec_earnings_all as sea  # noqa: E402
+from pollers.press_wire import NON_EN_RE  # noqa: E402
+
+OUT = common.ROOT / "radar" / "pulse"
+STATE = "pulse"
+LOCK_MIN = 25          # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지)
+TOP = {"공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
+PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
+DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
+# 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
+CLASSES = [("논문", ("src-arxiv-", "src-openalex")),
+           ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
+           ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
+           ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
+CLASS_W = {"공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+TECH_RE = re.compile(
+    r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
+    r"wafer|foundry|semiconductor|transistor|GAA|nanosheet|backside power|3D.?(IC|stack|integration)|TSV|interconnect|photonic|"
+    r"co-packaged|\bCPO\b|optical (transceiver|interconnect|module)|SerDes|PCIe|\bCXL\b|NVLink|UALink|Ethernet switch|"
+    r"\bGPUs?\b|\bTPU\b|\bASICs?\b|accelerator|inference|data ?cent(er|re)|power delivery|voltage regulat|\bGaN\b|\bSiC\b|"
+    r"power (semiconductor|electronics|module)|liquid cool|immersion cool|transformer|power grid|gas turbine|fuel cell|"
+    r"small modular reactor|\bSMR\b|superconduct|\bPCB\b|circuit board|AI (chip|server|infrastructure|factory|cluster)", re.I)
+US_TICKER_RE = re.compile(r"\((?:NASDAQ|Nasdaq|NYSE|NYSE American|NYSE Arca|Cboe)\s*:\s*([A-Z][A-Z0-9.\-]{0,6})\)")
+QUEUE_BUSY = [((8, 5), (8, 45)), ((18, 5), (18, 45))]   # chiip-valuation-queue 실행 창 — 이때 펄스는 알파 산정을 건너뜀
+
+
+def class_of(source_id):
+    for name, prefixes in CLASSES:
+        if source_id.startswith(prefixes) and not source_id.endswith("-ko"):
+            return name
+    return None
+
+
+def score(it, cls):
+    text = f"{it.get('title', '')} {it.get('snippet', '')}"
+    s = CLASS_W.get(cls, 0) + min(len(TECH_RE.findall(text)), 4)
+    s += 3 if it.get("entities_matched") else 0
+    s += 2 if US_TICKER_RE.search(text) else 0
+    s += 2 if any(k in str(it.get("sec_items", "")) for k in ("1.01", "8.01")) else 0
+    s -= 2 if re.search(r"\b10-[QK]\b|\b425\b", it.get("title", "")) else 0   # 정기 보고서·합병 서류는 기사 원본으로 약함
+    return s
+
+
+def relevant(it, cls):
+    text = f"{it.get('title', '')} {it.get('snippet', '')}"
+    if it.get("language") not in (None, "en") or NON_EN_RE.search(it.get("title", "")):
+        return False
+    if cls == "공시" or it.get("entities_matched"):
+        return True
+    return bool(TECH_RE.search(text))
+
+
+def inbox_items(since):
+    out = []
+    today = common.now_kst()
+    for day in {today.strftime("%Y%m%d"), (today - timedelta(days=1)).strftime("%Y%m%d")}:
+        folder = common.ROOT / "radar" / "inbox" / day
+        if not folder.exists():
+            continue
+        for f in folder.glob("src-*.json"):
+            try:
+                it = json.loads(f.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError):
+                continue
+            cls = class_of(it.get("source_id", ""))
+            if not cls or (it.get("detected_at") or "") <= since or not relevant(it, cls):
+                continue
+            out.append(dict(it, source_class=cls))
+    return out
+
+
+def fetch_papers(st):
+    """cs.ET·physics.app-ph — 6시간마다, 기술 키워드 통과 + 처음 본 것만"""
+    last = st.get("paper_fetch") or ""
+    if last and datetime.fromisoformat(last) > common.now_kst() - timedelta(hours=PAPER_EVERY_H):
+        return []
+    seen, out = set(st.get("papers_seen", [])), []
+    for sid, url in PAPER_FEEDS.items():
+        try:
+            entries = rss.parse_feed(common.http_get(url, timeout=30))
+        except Exception:
+            continue
+        for e in entries:
+            title, desc = common.strip_tags(e["title"]), common.strip_tags(e["desc"])
+            if e["link"] in seen or not TECH_RE.search(f"{title} {desc}"):
+                continue
+            seen.add(e["link"])
+            out.append({"source_id": sid, "source_class": "논문", "url": e["link"], "title": title, "published_at": rss.to_iso(e["date"]),
+                        "detected_at": common.iso(common.now_kst()), "snippet": desc[:300], "language": "en", "entities_matched": []})
+        time.sleep(1)
+    st["paper_fetch"] = common.iso(common.now_kst())
+    st["papers_seen"] = sorted(seen)[-3000:]
+    return out
+
+
+def fetch_deals(st, days=2):
+    """감시 목록 밖 AI·전력 업종 8-K의 1.01·7.01·8.01 — 계약·3자 발표의 1차 흔적"""
+    today = common.now_kst().date()
+    watch = sea.watch_tickers()
+    seen, floats, out = set(st.get("deals_seen", [])), st.get("float_cache", {}), []
+    for adsh, s in sea.fetch_hits(today - timedelta(days=days), today):
+        items = [i for i in (s.get("items") or []) if i in DEAL_ITEMS]
+        if not items or adsh in seen:
+            continue
+        seen.add(adsh)
+        sic = (s.get("sics") or [""])[0]
+        name, ticker, cik = sea.parse_name((s.get("display_names") or [""])[0])
+        if not ticker or ticker.upper() in watch or not sea.relevant(sic):
+            continue
+        cached = floats.get(cik)
+        if cached and cached[1] >= str(today - timedelta(days=30)):
+            fl = cached[0]
+        else:
+            fl = sea.public_float(cik)
+            floats[cik] = [fl, str(today)]
+            time.sleep(0.15)
+        if fl is not None and fl < sea.MIN_FLOAT:
+            continue
+        url = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/"
+        label = "·".join(f"{i} {DEAL_ITEMS[i]}" for i in items)
+        out.append({"source_id": "src-sec-deals", "source_class": "공시", "url": url, "title": f"[SEC 8-K {label}] {name} ({ticker})",
+                    "published_at": s.get("file_date"), "detected_at": common.iso(common.now_kst()), "language": "en",
+                    "snippet": f"SIC {sic} {sea.relevant(sic)} · 유통주식 가치 {('%.1f억$' % (fl / 1e8)) if fl else '미상'}",
+                    "sec_items": ",".join(items), "ticker": ticker, "entities_matched": []})
+    st["deals_seen"] = sorted(seen)[-5000:]
+    st["float_cache"] = floats
+    return out
+
+
+def candidates(sources, watch):
+    """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
+    c = {}
+    for it in sources:
+        tks = set(US_TICKER_RE.findall(f"{it.get('title', '')} {it.get('snippet', '')}"))
+        if it.get("ticker") and it.get("source_id") == "src-sec-deals":
+            tks.add(it["ticker"])
+        for tk in tks:
+            if tk.upper() in watch:
+                continue
+            c.setdefault(tk, {"ticker": tk, "id": "us-" + re.sub(r"[^a-z0-9]", "", tk.lower()), "urls": []})
+            if len(c[tk]["urls"]) < 3:
+                c[tk]["urls"].append(it["url"])
+    return sorted(c.values(), key=lambda x: -len(x["urls"]))
+
+
+def queue_busy(now):
+    hm = (now.hour, now.minute)
+    return any(a <= hm <= b for a, b in QUEUE_BUSY)
+
+
+def alpha_queue():
+    p = common.STATE / "v2_queue.json"
+    q = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+    return [x for x in q if x.get("kind") == "알파 산정"]
+
+
+def run(now=None):
+    now = now or common.now_kst()
+    st = common.load_state(STATE, {})
+    lock = st.get("lock")
+    if lock and datetime.fromisoformat(lock) > now - timedelta(minutes=LOCK_MIN):
+        return None, f"[펄스] 이전 회차 진행 중({lock[11:16]} 시작) → 종료"
+    since = st.get("watermark") or common.iso(now - timedelta(hours=2))
+    sources, errors = inbox_items(since), []
+    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals)):
+        try:
+            sources += fn(st)
+        except Exception as exc:
+            errors.append(f"{key}: {type(exc).__name__}")
+    for it in sources:
+        it["score"] = score(it, it["source_class"])
+    sources.sort(key=lambda x: -x["score"])
+    q = alpha_queue()
+    busy = queue_busy(now)
+    st["watermark"] = common.iso(now)
+    if not sources and (not q or busy):
+        common.save_state(STATE, st)
+        return None, f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''} → 종료"
+    counts = {c: sum(1 for s in sources if s["source_class"] == c) for c, _ in CLASSES}
+    watch = sea.watch_tickers()
+    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker")
+    data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
+            "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
+            "candidates": candidates(sources, watch)[:20],
+            "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy}}
+    OUT.mkdir(parents=True, exist_ok=True)
+    path = OUT / f"{now.strftime('%Y%m%d_%H%M')}.json"
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+    st["lock"] = common.iso(now)
+    common.save_state(STATE, st)
+    rel = path.relative_to(common.ROOT).as_posix()
+    msg = (f"[펄스] 원본 {len(sources)}(" + "·".join(f"{c} {n}" for c, n in counts.items()) + f") · 후보 티커 {len(data['candidates'])}"
+           f" · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창 — 이번엔 건너뜀)' if busy else ''} → {rel}" + (f" · 실패 {errors}" if errors else ""))
+    return path, msg
+
+
+def end():
+    st = common.load_state(STATE, {})
+    st.pop("lock", None)
+    common.save_state(STATE, st)
+
+
+def main(argv):
+    if "--end" in argv:
+        end()
+        print("[펄스] 회차 종료")
+        return 0
+    if "--enqueue" in argv:
+        i = argv.index("--enqueue")
+        eid, name, reason = argv[i + 1:i + 4]
+        added = sea.enqueue(eid, name, reason)
+        print(f"[펄스] 알파 산정 대기열 {'추가' if added else '이미 있음'}: {eid}")
+        return 0
+    _, msg = run()
+    print(msg)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
