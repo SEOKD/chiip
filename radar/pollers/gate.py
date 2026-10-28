@@ -33,7 +33,33 @@ def focus_state():
         age = timedelta(days=999)
     if age > timedelta(days=int(cfg.get("stale_days", 3))) and cfg.get("fail_open", True):
         return None, f"점수 {age.days}일 지남"
-    return set(data.get("focus", [])) | set(cfg.get("always_include") or []), ""
+    return set(data.get("focus", [])) | set(cfg.get("always_include") or []) | extra_focus(), ""
+
+
+def extra_focus():
+    """알파 잠재력 기준 이상 + 마스터 노션 Stocks + 레이더 테마(config/earnings_watch.yaml radar_themes) — 포커스 점수와 무관하게 추적"""
+    if "extra_focus" not in _CACHE:
+        ew = common.load_yaml("config/earnings_watch.yaml") or {}
+        s = set(ew.get("master_stocks") or [])
+        for ids in (ew.get("radar_themes") or {}).values():   # 레이더 테마(데이터센터 전력 등, 마스터 지시)
+            s |= set(ids or [])
+        p = common.ROOT / "knowledge" / "models" / "alpha" / "latest.json"
+        if p.exists():
+            try:
+                s |= set(json.loads(p.read_text(encoding="utf-8")).get("pass", []))
+            except ValueError:
+                pass
+        _CACHE["extra_focus"] = s
+    return _CACHE["extra_focus"]
+
+
+def watch_ids():
+    """어닝 감시 전체(valuation universe + earnings_watch extra) — 이 종목들의 공시·실적은 포커스와 무관하게 저장"""
+    if "watch" not in _CACHE:
+        ids = {u["id"] for u in (common.load_yaml("config/valuation.yaml") or {}).get("universe", [])}
+        ids |= {u["id"] for u in (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []}
+        _CACHE["watch"] = ids
+    return _CACHE["watch"]
 
 
 def news_allowed(item):
@@ -54,6 +80,8 @@ def keep(item, focus):
         return True
     if focus is None:
         return True
+    if ents and item.get("doc_type") in ("공시", "실적") and any(e in watch_ids() for e in ents):
+        return True   # 감시 종목의 공시·실적은 핵심 루프(알파 감지)의 원천이라 항상 저장
     if ents:
         return any(e in focus for e in ents)
     return item.get("doc_type") in SECTOR_TYPES

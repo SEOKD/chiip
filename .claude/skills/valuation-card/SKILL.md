@@ -20,6 +20,7 @@ argument-hint: "[기업 id] (예: co-skhynix)"
 ## 동인 파일 작성·갱신 규칙 (v2 `drivers.yaml`, 핵심 루프 대기열 처리 때)
 - 양식은 `knowledge/models/companies/co-innio/drivers.yaml`을 따른다: id·name·ticker·unit·unit_usd(정수)·industry(config/valuation_v2.yaml industry 키)·region_mix·tax·horizon·**as_of**·market{date, price, shares, net_debt, source}·rev0·ic0·scenarios(bear·base·bull, prob 합 1)·mc·notes·evidence.
 - 시가는 공개 시세(날짜·출처 기록). 투하자본·순차입은 최근 분기 보고서. 성장·마진 경로는 컨센서스(`manual_consensus.csv`)와 대조해 notes에 '컨센서스보다 높음/낮음/미입력'을 적는다.
+- 계속가치 RONIC은 기본 = WACC(McKinsey). 설치 기반 서비스·특허·브랜드처럼 해자가 증명된 경우에만 `ronic_spread`(예: 0.03)를 주고 근거를 notes에 쓴다 — 값은 3단계 백테스트로 보정할 파라미터다.
 - 근거가 약한 가정은 notes에 '근거 약함'. 확률은 25/50/25 기본값을 피하고 증거로 정한다. 공개 자료만(local-only·필드 인텔·채널체크 금지).
 - 갱신(실적 뒤): 새 실적·가이던스로 rev0·마진 출발점·성장 경로를 고치고 as_of를 바꾼다. 바꾼 이유를 notes 맨 앞에 한 줄.
 

@@ -73,7 +73,7 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     blk = upside.block(co, base_d, mc, mcap, cfg["upside"], sample)
     rs = dcf.rate_sensitivity(base_d)
     dec = decision.compute(mc, mcap, coc["ke"], coc["rf"], cfg["decision"], cfg["upside"]["horizon_years"])
-    return {"decision": dec, "drivers_as_of": str(co.get("as_of", "")), "entity": entity, "name": co["name"], "as_of": date.today().isoformat(), "market": m, "mcap": mcap, "coc": coc,
+    return {"decision": dec, "drivers_as_of": str(co.get("as_of", "")), "ronic_spread": co.get("ronic_spread", 0.0), "entity": entity, "name": co["name"], "as_of": date.today().isoformat(), "market": m, "mcap": mcap, "coc": coc,
             "g_term": g_term, "base": {"v0": base["equity"] / mcap, "cv_share": base["cv_share"], "ep_gap": base["ep_gap"],
                                        "roic_y1": base["rows"][0]["roic"], "roic_y5": base["rows"][4]["roic"]},
             "scenarios": scen, "upside": blk, "rate_50bp": rs, "regime": {"rf": reg["rf_us"], "erp": reg["erp"], "as_of": reg["as_of"]},

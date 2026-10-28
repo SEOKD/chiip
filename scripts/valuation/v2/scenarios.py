@@ -24,6 +24,6 @@ def drivers(company, scen, wacc, g_term):
     m = company["market"]
     return {"rev0": company["rev0"], "growth": growth_path(scen["growth"], n), "margin": margin_spec_path(scen["margin"], n),
             "tax": company["tax"], "s2c": scen.get("s2c", company.get("s2c")), "ic0": company["ic0"], "wacc": wacc,
-            "g_term": scen.get("g_term", g_term), "ronic": None, "net_debt": m["net_debt"], "shares": m["shares"],
+            "g_term": scen.get("g_term", g_term), "ronic": (wacc + company["ronic_spread"]) if company.get("ronic_spread") else None, "net_debt": m["net_debt"], "shares": m["shares"],
             "nonop": company.get("nonop", 0.0), "minority": company.get("minority", 0.0),
             "midyear": company.get("midyear", True)}

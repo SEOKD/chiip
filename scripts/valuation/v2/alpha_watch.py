@@ -4,6 +4,7 @@
   ① 텔레그램으로 나간 P0·P1 알림(radar/state/alerts.json — 실적·보도자료·공시·정책 등)의 종목이 알파 기준 이상
   ② 알파 점수가 새로 기준 이상으로 올라옴(첫 실행은 기준선만 저장 — 소급 알림 없음)
   ③ 알파 기준 이상 종목의 실적 발표일·다음 날(knowledge/models/earnings/upcoming.json)
+  ④ 레이더 inbox의 실적·공시·보도자료(텔레그램 등급과 무관) — 알파 점수가 없는 감시 종목이면 '알파 산정' 대기열
 처리: 종목 동인(knowledge/models/companies/<id>/drivers.yaml)이 있으면 v2 실행 → 3요인 텔레그램(⭐ 노션 버튼).
       동인이 없거나 오래됐거나(drivers_stale_days) 실적 뒤면 radar/state/v2_queue.json에 올려 예약 작업
       chiip-valuation-queue(모델)가 동인을 작성·갱신한 뒤 `--entity <id> --send`로 다시 부른다.
@@ -46,10 +47,35 @@ def _ts(s):
         return None
 
 
-def detect(now, st, passed, alerts, events, c):
-    """{id: [이유...]} 와 P0 포함 종목 집합"""
+EVENT_TYPES = ("실적", "공시", "보도자료")
+
+
+def recent_items(since, now):
+    """radar/inbox의 오늘·어제 폴더에서 since 이후 수집된 실적·공시·보도자료 항목"""
+    out = []
+    for k in range(2):
+        day = common.INBOX / (now - timedelta(days=k)).strftime("%Y%m%d")
+        if not day.exists():
+            continue
+        for f in day.glob("*.json"):
+            try:
+                it = json.loads(f.read_text(encoding="utf-8"))
+            except ValueError:
+                continue
+            t = _ts(it.get("detected_at"))
+            if t and t > since and it.get("doc_type") in EVENT_TYPES:
+                out.append(it)
+    return out
+
+
+def detect(now, st, passed, alerts, events, c, items=None):
+    """{id: [이유...]} 와 P0 포함 종목 집합. items: 실적·공시·보도자료 수집 항목(텔레그램 등급과 무관하게 직접 감지)"""
     out, p0 = {}, set()
     since = _ts(st.get("last_run")) or (now - timedelta(hours=c["lookback_hours"]))
+    for it in items or []:
+        for e in it.get("entities_matched") or []:
+            if e in passed:
+                out.setdefault(e, []).append(f"{it['doc_type']}: {it.get('title', '')[:90]}")
     for a in alerts.values():
         t = _ts(a.get("sent_at"))
         if not t or t <= since or a.get("level") not in c["levels"]:
@@ -117,6 +143,8 @@ def message(r, name, alpha_total, reasons, update_note=None):
         pct = u["implied_pct"][0]
         L.append(f"시장 내포 5년 매출 CAGR {u['implied_cagr']:.0%}" + (f"(기저율 상위 {100 - pct:.0f}%)" if pct is not None else ""))
     L.append(f"가정: 동인 {r.get('drivers_as_of') or '미상'} · 시가 {r['market'].get('date', '미상')} · WACC {r['coc']['wacc']:.1%} · 몬테카를로 {u.get('n', 0):,}회")
+    if not r.get("ronic_spread"):
+        L.append("보수 가정: 계속가치 RONIC=WACC(장기 성장의 가치 0)·장기 마진 페이드 — 해자 큰 기업은 과소평가될 수 있음(종목별 스프레드는 백테스트로 보정 예정)")
     if update_note:
         L.append(update_note)
     L.append(DISCLAIMER)
@@ -152,9 +180,17 @@ def run(send=True, now=None):
     alerts = common.load_state("alerts", {})
     up = ROOT / "knowledge" / "models" / "earnings" / "upcoming.json"
     events = json.loads(up.read_text(encoding="utf-8"))["events"] if up.exists() else []
-    found, p0 = detect(now, st, passed, alerts, events, c)
+    since = _ts(st.get("last_run")) or (now - timedelta(hours=c["lookback_hours"]))
+    items = recent_items(since, now)
+    found, p0 = detect(now, st, passed, alerts, events, c, items)
     evaluated = st.get("evaluated", {})
     n_sent = n_q = 0
+    # 알파 점수가 없는 감시 종목에 실적·공시가 나오면 점수부터(모델) — 점수가 5 이상이면 그다음 동인·3요인
+    import gate_ids
+    for it in items:
+        for e in it.get("entities_matched") or []:
+            if e in gate_ids.watch() and (rows.get(e) or {}).get("total") is None:
+                n_q += enqueue(e, e, f"{it['doc_type']}: {it.get('title', '')[:90]}", "알파 산정")
     for eid, reasons in found.items():
         if evaluated.get(eid) == now.date().isoformat() and eid not in p0:
             continue
@@ -205,7 +241,9 @@ def main(argv):
         passed, _ = alpha.load_latest(now.date())
         up = ROOT / "knowledge" / "models" / "earnings" / "upcoming.json"
         events = json.loads(up.read_text(encoding="utf-8"))["events"] if up.exists() else []
-        found, p0 = detect(now, st, passed, common.load_state("alerts", {}), events, cfg()["alpha_watch"])
+        cw = cfg()["alpha_watch"]
+        since = _ts(st.get("last_run")) or (now - timedelta(hours=cw["lookback_hours"]))
+        found, p0 = detect(now, st, passed, common.load_state("alerts", {}), events, cw, recent_items(since, now))
         print(f"[알파 감지(시험)] 알파 기준 이상 {len(passed)}종목 · 감지 {len(found)}")
         for e, rs in found.items():
             print(f"- {e}: {' / '.join(rs)} · 동인 {'있음' if drivers_path(e).exists() else '없음'}")

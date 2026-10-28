@@ -31,7 +31,9 @@ class TestGate(unittest.TestCase):
     def test_focus_rules(self):
         focus = {"co-micron"}
         self.assertTrue(gate.keep(item("공시", ["co-micron"]), focus))
-        self.assertFalse(gate.keep(item("공시", ["co-ti"]), focus))
+        self.assertTrue(gate.keep(item("공시", ["co-ti"]), focus))       # 감시 종목 공시·실적은 항상(핵심 루프 원천, 2026-10-28)
+        self.assertFalse(gate.keep(item("보도자료", ["co-ti"]), focus))  # 포커스 밖 종목 보도자료는 버림
+        self.assertFalse(gate.keep(item("공시", ["co-unknown"]), focus)) # 감시 목록 밖 종목 공시는 버림
         self.assertFalse(gate.keep(item("보도자료"), focus))           # 종목 없는 보도자료는 버림
         self.assertTrue(gate.keep(item("규제·정책", ["co-ti"]), focus))  # 정책은 항상
         self.assertTrue(gate.keep(item("학회·협회"), focus))

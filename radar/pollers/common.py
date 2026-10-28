@@ -92,6 +92,13 @@ def entity_aliases():
             out[u["id"]] = sorted(n for n in (u.get("aliases") or [u["name"]]) if len(n) >= 2)
         elif u.get("en") and u["en"] not in out[u["id"]]:
             out[u["id"]] = sorted(out[u["id"]] + [u["en"]])
+    # 어닝 감시 확장 종목(config/earnings_watch.yaml extra) — 레이더·공시·핵심 루프가 같은 종목을 보게(2026-10-28 GEV 누락 수정)
+    for u in (load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []:
+        if u["id"] not in out:
+            names = set(u.get("aliases") or [u["name"]])
+            if u.get("kind_name"):
+                names.add(u["kind_name"])
+            out[u["id"]] = sorted(n for n in names if len(n) >= 2)
     return out
 
 

@@ -58,9 +58,13 @@ NEWS7_SITES = ("(site:reuters.com OR site:bloomberg.com OR site:wsj.com OR site:
 def focus7_urls(src, chunk=8):
     from . import gate
     focus, _ = gate.focus_state()
-    uni = (common.load_yaml("config/valuation.yaml") or {}).get("universe", [])
-    names = []
+    uni = list((common.load_yaml("config/valuation.yaml") or {}).get("universe", []))
+    uni += (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []   # 알파·마스터 Stocks·레이더 테마 종목도
+    names, seen = [], set()
     for u in uni:
+        if u["id"] in seen:
+            continue
+        seen.add(u["id"])
         if focus is not None and u["id"] not in focus:
             continue
         if u.get("region") == "KR":  # 영문 매체 검색엔 영문명이 필요 — 한국 종목은 universe의 en 또는 lexicon 영문명

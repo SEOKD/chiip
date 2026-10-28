@@ -83,7 +83,7 @@ def run(only=None):
         if not tk or (only and tk.upper() != only.upper()):
             continue
         try:
-            cik = sec_filings.cik_for(tk, st)
+            cik = sec_filings.cik_for(tk, st, (u.get("aliases") or [u.get("name")])[0])
             if not cik:
                 errors.append(f"{tk}: CIK 없음")
                 continue

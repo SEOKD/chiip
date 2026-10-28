@@ -87,3 +87,13 @@ class TestAlphaWatch(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestInboxDetection(unittest.TestCase):
+    def test_filing_item_triggers_without_telegram(self):
+        now = datetime(2026, 10, 28, 21, 0, tzinfo=KST)
+        st = {"last_run": "2026-10-28T20:00:00+09:00", "alpha_seen": {"co-gevernova": 6.0}}
+        items = [{"doc_type": "실적", "title": "[SEC 8-K 실적] GE Vernova", "entities_matched": ["co-gevernova"]}]
+        found, _ = alpha_watch.detect(now, st, {"co-gevernova": 6.0}, {}, [], TestAlphaWatch.CW, items)
+        self.assertIn("co-gevernova", found)
+        self.assertTrue(found["co-gevernova"][0].startswith("실적"))

@@ -8,29 +8,37 @@ kind_name_override:          # universe 이름과 KIND 회사명이 다를 때
 # 마스터 노션 Stocks 페이지의 종목(2026-10-28 동기화) — 알파 점수·어닝 캘린더에 항상 포함. 노션에 새 종목 페이지가 생기면 insight-review/focus 작업이 추가
 master_stocks: [co-samsung, co-oracle, co-innio, co-lotteem, co-coherent, co-dell, co-quanta-services, co-caci]
 master_themes: ["OCP 2026", "해양시추"]   # Stocks 안의 테마 페이지 — 내러티브 재료
+# 레이더 테마(마스터 지시 2026-10-28 "데이터센터 전력 관련주도 레이더 망에"): 이 목록의 종목은 포커스 점수와 무관하게
+# 뉴스(9개 매체)·공시·보도자료를 추적하고 알파 점수·핵심 루프 대상이 된다(radar/pollers/gate.py extra_focus)
+radar_themes:
+  dc_power: [co-gevernova, co-bloom, co-innio, co-siemensenergy, co-caterpillar, co-cummins, co-wartsila, co-rollsroyce, co-mhi, co-doosanenerbility, co-oklo, co-nuscale,
+             co-vistra, co-constellation, co-talen, co-nrg, co-nextera, co-enchantedrock, co-voltagrid, co-solaris, co-liberty, co-generac, co-crusoe,
+             co-eaton, co-hubbell, co-nvent, co-powell, co-siemens, co-schneider, co-abb, co-legrand, co-hitachi, co-melco, co-hdhyundaielec, co-lselectric, co-hyosunghi, co-sanil, co-vertiv,
+             co-prysmian, co-nexans, co-nkt, co-taihan, co-lscorp, co-valmont, co-plpc,
+             co-quanta-services, co-mastec, co-myr, co-primoris, co-emcor, co-comfort, co-sterling, co-ies, co-argan, co-dycom]
 extra:
   # 마스터 Stocks (AI 밸류체인 밖일 수 있음)
-  - {id: co-quanta-services, name: Quanta Services, code: PWR.US, region: US, sub: power_infra, master: true}
+  - {id: co-quanta-services, name: Quanta Services, code: PWR.US, region: US, sub: power_infra, master: true, aliases: ["Quanta Services"]}
   - {id: co-caci, name: CACI International, code: CACI.US, region: US, sub: software, master: true}
   # 한국
-  - {id: co-samsungsds, name: 삼성SDS, kind_name: 삼성에스디에스, code: 018260.KO, region: KR, sub: software}
-  - {id: co-lgcns, name: LG CNS, kind_name: LG씨엔에스, code: 064400.KO, region: KR, sub: software}
-  - {id: co-lselectric, name: LS일렉트릭, kind_name: 엘에스일렉트릭, code: 010120.KO, region: KR, sub: power_infra}
-  - {id: co-taihan, name: 대한전선, kind_name: 대한전선, code: 001440.KO, region: KR, sub: power_infra}
-  - {id: co-hyosunghi, name: 효성중공업, kind_name: 효성중공업, code: 298040.KO, region: KR, sub: power_infra}
-  - {id: co-doosanenerbility, name: 두산에너빌리티, kind_name: 두산에너빌리티, code: 034020.KO, region: KR, sub: power_infra}
-  - {id: co-samsungsdi, name: 삼성SDI, kind_name: 삼성SDI, code: 006400.KO, region: KR, sub: power_infra, note: "데이터센터 ESS·BBU — 경계 사례"}
-  - {id: co-lge, name: LG전자, kind_name: LG전자, code: 066570.KO, region: KR, sub: power_infra, note: "데이터센터 냉각(칠러) — 경계 사례"}
+  - {id: co-samsungsds, name: 삼성SDS, kind_name: 삼성에스디에스, code: 018260.KO, region: KR, sub: software, aliases: ["삼성SDS", "삼성에스디에스", "Samsung SDS"]}
+  - {id: co-lgcns, name: LG CNS, kind_name: LG씨엔에스, code: 064400.KO, region: KR, sub: software, aliases: ["LG CNS", "LG씨엔에스"]}
+  - {id: co-lselectric, name: LS일렉트릭, kind_name: 엘에스일렉트릭, code: 010120.KO, region: KR, sub: power_infra, aliases: ["LS일렉트릭", "엘에스일렉트릭", "LS ELECTRIC", "LS Electric"]}
+  - {id: co-taihan, name: 대한전선, kind_name: 대한전선, code: 001440.KO, region: KR, sub: power_infra, aliases: ["대한전선", "Taihan Cable", "Taihan"]}
+  - {id: co-hyosunghi, name: 효성중공업, kind_name: 효성중공업, code: 298040.KO, region: KR, sub: power_infra, aliases: ["효성중공업", "Hyosung Heavy"]}
+  - {id: co-doosanenerbility, name: 두산에너빌리티, kind_name: 두산에너빌리티, code: 034020.KO, region: KR, sub: power_infra, aliases: ["두산에너빌리티", "Doosan Enerbility"]}
+  - {id: co-samsungsdi, name: 삼성SDI, kind_name: 삼성SDI, code: 006400.KO, region: KR, sub: power_infra, note: "데이터센터 ESS·BBU — 경계 사례", aliases: ["삼성SDI", "Samsung SDI"]}
+  - {id: co-lge, name: LG전자, kind_name: LG전자, code: 066570.KO, region: KR, sub: power_infra, note: "데이터센터 냉각(칠러) — 경계 사례", aliases: ["LG전자", "LG Electronics"]}
   - {id: co-skc, name: SKC, kind_name: SKC, code: 011790.KO, region: KR, sub: substrate, note: "유리기판(앱솔릭스)"}
   - {id: co-chipsnmedia, name: 칩스앤미디어, kind_name: 칩스앤미디어, code: 094360.KQ, region: KR, sub: eda_ip}
   - {id: co-gaonchips, name: 가온칩스, kind_name: 가온칩스, code: 399720.KQ, region: KR, sub: eda_ip}
   - {id: co-techwing, name: 테크윙, kind_name: 테크윙, code: 089030.KQ, region: KR, sub: semicap}
   - {id: co-hanamicron, name: 하나마이크론, kind_name: 하나마이크론, code: 067310.KQ, region: KR, sub: substrate}
   # 미국
-  - {id: co-innio, name: INNIO, code: INIO.US, region: US, sub: power_infra}
-  - {id: co-gevernova, name: GE Vernova, code: GEV.US, region: US, sub: power_infra}
+  - {id: co-innio, name: INNIO, code: INIO.US, region: US, sub: power_infra, aliases: ["INNIO", "Jenbacher"]}
+  - {id: co-gevernova, name: GE Vernova, code: GEV.US, region: US, sub: power_infra, aliases: ["GE Vernova", "GEV"]}
   - {id: co-amphenol, name: Amphenol, code: APH.US, region: US, sub: components}
-  - {id: co-corning, name: Corning, code: GLW.US, region: US, sub: networking}
+  - {id: co-corning, name: Corning, code: GLW.US, region: US, sub: networking, aliases: ["Corning Inc", "Corning Incorporated", "Corning (GLW)"]}
   - {id: co-celestica, name: Celestica, code: CLS.US, region: US, sub: server}
   - {id: co-amkor, name: Amkor, code: AMKR.US, region: US, sub: substrate}
   - {id: co-rambus, name: Rambus, code: RMBS.US, region: US, sub: eda_ip}
@@ -38,7 +46,7 @@ extra:
   - {id: co-vicor, name: Vicor, code: VICR.US, region: US, sub: power_infra}
   - {id: co-bloom, name: Bloom Energy, code: BE.US, region: US, sub: power_infra}
   - {id: co-generac, name: Generac, code: GNRC.US, region: US, sub: power_infra}
-  - {id: co-ultraclean, name: Ultra Clean, code: UCTT.US, region: US, sub: semicap}
+  - {id: co-ultraclean, name: Ultra Clean, code: UCTT.US, region: US, sub: semicap, aliases: ["Ultra Clean Holdings", "Ultra Clean"]}
   - {id: co-formfactor, name: FormFactor, code: FORM.US, region: US, sub: semicap}
   - {id: co-lumentum, name: Lumentum, code: LITE.US, region: US, sub: networking}
   - {id: co-ciena, name: Ciena, code: CIEN.US, region: US, sub: networking}
@@ -53,20 +61,68 @@ extra:
   - {id: co-schneider, name: Schneider Electric, code: SU.PA, region: EU, sub: power_infra}
   - {id: co-siemensenergy, name: Siemens Energy, code: ENR.XETRA, region: EU, sub: power_infra}
   - {id: co-infineon, name: Infineon, code: IFX.XETRA, region: EU, sub: analog}
-  - {id: co-besi, name: BE Semiconductor, code: BESI.AS, region: EU, sub: semicap}
+  - {id: co-besi, name: BE Semiconductor, code: BESI.AS, region: EU, sub: semicap, aliases: ["BE Semiconductor", "Besi"]}
   - {id: co-asmi, name: ASM International, code: ASM.AS, region: EU, sub: semicap}
   - {id: co-munters, name: Munters, code: MTRS.ST, region: EU, sub: power_infra}
   - {id: co-hubersuhner, name: Huber+Suhner, code: HUBN.SW, region: EU, sub: networking}
   - {id: co-sap, name: SAP, code: SAP.XETRA, region: EU, sub: software}
   - {id: co-nokia, name: Nokia, code: NOKIA.HE, region: EU, sub: networking}
   # 일본
-  - {id: co-disco, name: DISCO, code: 6146.TSE, region: JP, sub: semicap}
-  - {id: co-shinetsu, name: Shin-Etsu Chemical, code: 4063.TSE, region: JP, sub: substrate}
+  - {id: co-disco, name: DISCO, code: 6146.TSE, region: JP, sub: semicap, aliases: ["DISCO Corp", "DISCO Corporation", "ディスコ"]}
+  - {id: co-shinetsu, name: Shin-Etsu Chemical, code: 4063.TSE, region: JP, sub: substrate, aliases: ["Shin-Etsu Chemical", "Shin-Etsu", "信越化学"]}
   - {id: co-lasertec, name: Lasertec, code: 6920.TSE, region: JP, sub: semicap}
   - {id: co-fujikura, name: Fujikura, code: 5803.TSE, region: JP, sub: networking}
   # 대만
-  - {id: co-delta, name: Delta Electronics, code: 2308.TW, region: TW, sub: power_infra}
+  - {id: co-delta, name: Delta Electronics, code: 2308.TW, region: TW, sub: power_infra, aliases: ["Delta Electronics", "台達電"]}
   - {id: co-elitematerial, name: Elite Material, code: 2383.TW, region: TW, sub: substrate}
-  - {id: co-quanta, name: Quanta Computer, code: 2382.TW, region: TW, sub: server}
+  - {id: co-quanta, name: Quanta Computer, code: 2382.TW, region: TW, sub: server, aliases: ["Quanta Computer", "廣達"]}
   - {id: co-wiwynn, name: Wiwynn, code: 6669.TW, region: TW, sub: server}
   - {id: co-accton, name: Accton, code: 2345.TW, region: TW, sub: networking}
+  # ── 데이터센터 전력 밸류체인(마스터 지시 2026-10-28) ──
+  # 발전원(가스터빈·가스엔진·연료전지·원전·SMR)
+  - {id: co-caterpillar, name: Caterpillar, code: CAT.US, region: US, sub: power_infra, segment: 발전원}
+  - {id: co-cummins, name: Cummins, code: CMI.US, region: US, sub: power_infra, segment: 발전원}
+  - {id: co-wartsila, name: Wartsila, code: WRT1V.HE, region: EU, sub: power_infra, segment: 발전원, aliases: ["Wärtsilä", "Wartsila"]}
+  - {id: co-rollsroyce, name: Rolls-Royce, code: RR.LSE, region: UK, sub: power_infra, segment: 발전원, aliases: ["Rolls-Royce Holdings", "Rolls-Royce Power Systems", "mtu Power"]}
+  - {id: co-mhi, name: Mitsubishi Heavy Industries, code: 7011.TSE, region: JP, sub: power_infra, segment: 발전원, aliases: ["Mitsubishi Heavy Industries", "Mitsubishi Heavy", "三菱重工"]}
+  - {id: co-oklo, name: Oklo, code: OKLO.US, region: US, sub: power_infra, segment: 발전원, aliases: ["Oklo Inc", "Oklo"]}
+  - {id: co-nuscale, name: NuScale Power, code: SMR.US, region: US, sub: power_infra, segment: 발전원, aliases: ["NuScale"]}
+  # 발전사업자(대형 IPP)
+  - {id: co-vistra, name: Vistra, code: VST.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["Vistra Corp", "Vistra Energy", "Vistra"]}
+  - {id: co-constellation, name: Constellation Energy, code: CEG.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["Constellation Energy"]}
+  - {id: co-talen, name: Talen Energy, code: TLN.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["Talen Energy"]}
+  - {id: co-nrg, name: NRG Energy, code: NRG.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["NRG Energy"]}
+  - {id: co-nextera, name: NextEra Energy, code: NEE.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["NextEra Energy", "NextEra"]}
+  # 분산형·모듈형 발전사업자(비상장은 code 없음 — 뉴스·상대방 공시로만 추적)
+  - {id: co-enchantedrock, name: Enchanted Rock, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["Enchanted Rock"]}
+  - {id: co-voltagrid, name: VoltaGrid, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["VoltaGrid"]}
+  - {id: co-crusoe, name: Crusoe, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["Crusoe Energy", "Crusoe AI"]}
+  - {id: co-solaris, name: Solaris Energy Infrastructure, code: SEI.US, region: US, sub: power_infra, segment: 분산형발전, aliases: ["Solaris Energy Infrastructure", "Solaris Energy"]}
+  - {id: co-liberty, name: Liberty Energy, code: LBRT.US, region: US, sub: power_infra, segment: 분산형발전, aliases: ["Liberty Energy", "Liberty Power Innovations"]}
+  # 전력설비(배전반·변압기·UPS·차단기)
+  - {id: co-eaton, name: Eaton, code: ETN.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["Eaton Corp", "Eaton Corporation"]}
+  - {id: co-hubbell, name: Hubbell, code: HUBB.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["Hubbell"]}
+  - {id: co-nvent, name: nVent Electric, code: NVT.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["nVent"]}
+  - {id: co-powell, name: Powell Industries, code: POWL.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["Powell Industries"]}
+  - {id: co-siemens, name: Siemens, code: SIE.XETRA, region: EU, sub: power_infra, segment: 전력설비, aliases: ["Siemens AG", "Siemens Smart Infrastructure"]}
+  - {id: co-legrand, name: Legrand, code: LR.PA, region: EU, sub: power_infra, segment: 전력설비, aliases: ["Legrand"]}
+  - {id: co-hitachi, name: Hitachi, code: 6501.TSE, region: JP, sub: power_infra, segment: 전력설비, aliases: ["Hitachi Energy", "Hitachi Ltd", "日立"]}
+  - {id: co-melco, name: Mitsubishi Electric, code: 6503.TSE, region: JP, sub: power_infra, segment: 전력설비, aliases: ["Mitsubishi Electric", "三菱電機"]}
+  - {id: co-sanil, name: 산일전기, kind_name: 산일전기, code: 062040.KQ, region: KR, sub: power_infra, segment: 전력설비, aliases: ["산일전기", "Sanil Electric"]}
+  # 송전망(케이블·송전 구조물)
+  - {id: co-prysmian, name: Prysmian, code: PRY.MI, region: EU, sub: power_infra, segment: 송전망, aliases: ["Prysmian"]}
+  - {id: co-nexans, name: Nexans, code: NEX.PA, region: EU, sub: power_infra, segment: 송전망, aliases: ["Nexans"]}
+  - {id: co-nkt, name: NKT, code: NKT.CO, region: EU, sub: power_infra, segment: 송전망, aliases: ["NKT A/S", "NKT Cables"]}
+  - {id: co-lscorp, name: LS, kind_name: LS, code: 006260.KO, region: KR, sub: power_infra, segment: 송전망, aliases: ["LS전선", "LS Cable", "LS Corp"]}
+  - {id: co-valmont, name: Valmont Industries, code: VMI.US, region: US, sub: power_infra, segment: 송전망, aliases: ["Valmont Industries"]}
+  - {id: co-plpc, name: Preformed Line Products, code: PLPC.US, region: US, sub: power_infra, segment: 송전망, aliases: ["Preformed Line Products"]}
+  # 전력망·송전망 엔지니어링·EPC
+  - {id: co-mastec, name: MasTec, code: MTZ.US, region: US, sub: power_infra, segment: EPC, aliases: ["MasTec"]}
+  - {id: co-myr, name: MYR Group, code: MYRG.US, region: US, sub: power_infra, segment: EPC, aliases: ["MYR Group"]}
+  - {id: co-primoris, name: Primoris Services, code: PRIM.US, region: US, sub: power_infra, segment: EPC, aliases: ["Primoris"]}
+  - {id: co-emcor, name: EMCOR, code: EME.US, region: US, sub: power_infra, segment: EPC, aliases: ["EMCOR Group", "EMCOR"]}
+  - {id: co-comfort, name: Comfort Systems USA, code: FIX.US, region: US, sub: power_infra, segment: EPC, aliases: ["Comfort Systems USA", "Comfort Systems"]}
+  - {id: co-sterling, name: Sterling Infrastructure, code: STRL.US, region: US, sub: power_infra, segment: EPC, aliases: ["Sterling Infrastructure"]}
+  - {id: co-ies, name: IES Holdings, code: IESC.US, region: US, sub: power_infra, segment: EPC, aliases: ["IES Holdings"]}
+  - {id: co-argan, name: Argan, code: AGX.US, region: US, sub: power_infra, segment: EPC, aliases: ["Argan Inc", "Gemma Power Systems"]}
+  - {id: co-dycom, name: Dycom Industries, code: DY.US, region: US, sub: power_infra, segment: EPC, aliases: ["Dycom Industries", "Dycom"]}

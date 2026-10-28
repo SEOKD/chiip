@@ -30,33 +30,48 @@ def ticker_of(u):
     return u.get("sec_ticker")  # 해외 본주 + 미국 ADR(TSMC→TSM 등)
 
 
-def cik_for(ticker, state):
+def cik_for(ticker, state, name=None):
+    """티커 → CIK. 티커 검색이 비면(예: GEV — 0건) 회사명으로 다시 찾고 티커 일치를 확인한다(2026-10-28 GEV 누락 수정).
+    실패(None)는 하루 뒤 다시 시도한다"""
     ciks = state.setdefault("ciks", {})
-    if ticker in ciks:
+    tried = state.setdefault("cik_miss", {})
+    if ciks.get(ticker):
         return ciks[ticker]
-    data = json.loads(common.http_get(LOOKUP, {"keysTyped": ticker}, {"User-Agent": _ua()}))
+    today = common.now_kst().date().isoformat()
+    if tried.get(ticker) == today:
+        return None
     cik = None
-    for h in data.get("hits", {}).get("hits", []):
-        if ticker.upper() in str(h["_source"].get("tickers", "")).upper().split(", "):
-            cik = h["_id"]
+    for q in [ticker] + ([name] if name else []):
+        data = json.loads(common.http_get(LOOKUP, {"keysTyped": q}, {"User-Agent": _ua()}))
+        for h in data.get("hits", {}).get("hits", []):
+            if ticker.upper() in str(h["_source"].get("tickers", "")).upper().split(", "):
+                cik = h["_id"]
+                break
+        if cik:
             break
-    ciks[ticker] = cik
+    if cik:
+        ciks[ticker] = cik
+        tried.pop(ticker, None)
+    else:
+        tried[ticker] = today
     return cik
 
 
 def poll(env=None, days=3):
     focus, _ = gate.focus_state()
-    uni = (common.load_yaml("config/valuation.yaml") or {}).get("universe", [])
+    uni = list((common.load_yaml("config/valuation.yaml") or {}).get("universe", []))
+    uni += (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []   # 어닝 감시 확장 종목도(2026-10-28 GEV 누락 수정)
+    watch = gate.watch_ids()
     state = common.load_state("sec_filings", {})
     since = (common.now_kst() - timedelta(days=days)).date().isoformat()
     items = []
     for u in uni:
-        if focus is not None and u["id"] not in focus:
+        if focus is not None and u["id"] not in focus and u["id"] not in watch:
             continue
         tk = ticker_of(u)
         if not tk:
             continue
-        cik = cik_for(tk, state)
+        cik = cik_for(tk, state, (u.get("aliases") or [u.get("name")])[0])
         time.sleep(0.15)
         if not cik:
             continue

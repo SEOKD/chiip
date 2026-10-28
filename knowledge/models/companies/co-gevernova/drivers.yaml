@@ -1,0 +1,31 @@
+# GE Vernova(GEV) 밸류에이션 v2 동인 — 2026-10-28 3Q 실적 직후 작성(알파 감지 첫 처리). 금액 단위 10억 달러
+id: co-gevernova
+name: GE Vernova
+ticker: GEV
+unit: "B$"
+unit_usd: 1000000000
+industry: electrical_equipment
+region_mix: {US: 0.6, EU: 0.4}
+tax: 0.20
+horizon: 10
+as_of: 2026-10-28
+market: {date: 2026-10-28, price: 895.08, shares: 0.2663, net_debt: -9.0, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 3.72 − 현금 12.72(보도자료상 3Q 말 현금 16.8)"}
+rev0: 47.0          # 2026 매출 가이던스 46.5~47.5(3Q 보도자료에서 45.5~46.5에서 상향) 중간값
+ic0: 2.4            # 3Q 10-Q 자기자본 11.38 + 총차입 3.72 − 현금 12.72 — 고객 선수금(계약부채)이 운전자본을 조달해 투하자본이 작다(조달 측 근사)
+scenarios:
+  # 기본: 잔고(1,970억 달러, 4분기 2,000억+ 예상) 전환으로 2027 +16%, 가스 장비 가격·전력 부문 마진 확대
+  base: {prob: 0.50, growth: {start: 0.16, end: 0.04, decay: 0.80}, margin: {m0: 0.12, target: 0.18, year_target: 3, lr: 0.15, lam: 0.25}, s2c: 5.0}
+  # 강세: 가스터빈 슬롯 가격 상승 지속·전기화 고성장, 풍력 적자 축소
+  bull: {prob: 0.25, growth: {start: 0.20, end: 0.045, decay: 0.82}, margin: {m0: 0.125, target: 0.21, year_target: 3, lr: 0.17, lam: 0.20}, s2c: 6.0}
+  # 약세: AI 데이터센터 투자 둔화로 슬롯 예약(SRA)의 수주 전환 지연·가격 정체, 풍력 손실 확대
+  bear: {prob: 0.25, growth: {start: 0.08, end: 0.03, decay: 0.60}, margin: {m0: 0.115, target: 0.14, year_target: 3, lr: 0.11, lam: 0.40}, s2c: 3.5}
+mc: {sigma_growth: 0.03, sigma_margin: 0.015, sigma_s2c: 0.20, sigma_wacc: 0.005}
+notes:
+  - "3Q26(2026-10-28): 수주 293억 달러(유기 +96%), 매출 126억(+27%), 조정 EBITDA 마진 15.4%, FCF 54억, 잔고 1,970억(분기 +200억). 2026 가이던스 상향: 매출 465~475억, 조정 EBITDA 마진 13.5~14.5%, FCF 160~170억(기존 115~125억)"
+  - "전력 부문: 수주 218억(+178%), 마진 21.4%. 가스 장비 잔고 64GW + 슬롯 예약 58GW = 122GW(연말 130GW+ 예상), 분기 출하 5GW"
+  - "마진 출발점: 3Q 영업이익률 11.0%(10-Q), 조정 EBITDA 가이던스에서 감가상각 약 2%p를 뺀 EBITA 약 12%로 근사(근거 약함)"
+  - "컨센서스 미입력(노션 요청 목록에 없음 — 필요 시 추가). yfinance 선행 P/E 35.5배·52주 고점 1,196달러 대비 약 25% 하락"
+  - "재투자 효율 5.0: 선수금 구조로 증분 투하자본이 작다(9개월 영업현금흐름 167억 — SEC 10-Q). 판단 — 근거 약함"
+evidence:
+  - "SEC 8-K 2026-10-28 보도자료 https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm"
+  - "SEC 10-Q 2026-10-28 XBRL CIK 1996810"

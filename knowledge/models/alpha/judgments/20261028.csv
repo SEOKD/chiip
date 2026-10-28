@@ -67,3 +67,7 @@ co-caci,upside,3,매출 성장 8%·국방 IT — AI 밸류체인 노출 작음,e
 co-caci,gap,4,선행 P/E 17·52주 고점 근처,easyconomics company_profile(yfinance) 2026-10-28
 co-caci,bottleneck,2,병목 해결 기술 아님,
 co-caci,asymmetry,4,시총 $14.7B·애널리스트 20명,easyconomics company_profile(yfinance) 2026-10-28
+co-gevernova,upside,7,"3Q 수주 +96%·잔고 1,970억 달러·FCF 가이던스 115~125억→160~170억 상향 — 이익 전망 상향 진행 중",https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
+co-gevernova,gap,4,선행 P/E 35.5배·EV/EBITDA 약 59배로 프리미엄 크나 52주 고점 대비 약 25% 하락(easyconomics/yfinance 2026-10-28) — 근거 약함,https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
+co-gevernova,bottleneck,9,"가스터빈 = 데이터센터 전력 핵심 병목, 가스 장비 잔고+슬롯 예약 122GW(연말 130GW+ 예상)",https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
+co-gevernova,asymmetry,2,"시가총액 약 2,380억 달러·애널리스트 40명 — 발견 여지 작음",https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm

@@ -1984,3 +1984,9 @@ source: docs/methodology
 - 경계: 치입은 투자자문 자격이 없다 — 지표·확률로만 표기, 매수·매도 지시·금액 결정 금지, 문구 시험으로 검사. 가치 수렴 가정(5년 뒤 시장가 = 내재가치) 명시.
 - 동인 자동 작성 예약 작업(chiip-valuation-queue)은 자동 모드 안전 분류기가 등록을 거부 → 초안 `docs/tasks/chiip-valuation-queue.md`, 마스터 판단 대기(TODO 21-9).
 
+### 21.18 감시망 확장·GEV 누락 수정 (2026-10-28 마스터 지시)
+- 문제: GEV 실적(SEC 8-K 2.02, 2026-10-28 19:16 KST)을 감지 못함. 원인 4개 — ① 어닝 감시 확장 종목이 엔티티 매칭에 없음 ② SEC 공시 수집이 밸류에이션 유니버스만 봄 ③ 알파 점수 없음 ④ 티커 'GEV'의 CIK 검색 0건(회사명 검색 보조 없음). 미국 실적 일정은 무료 키(Finnhub) 전이라 비어 있음.
+- 수정: common.entity_aliases에 earnings_watch extra(오탐 방지 aliases), gate — 알파 기준 이상·마스터 Stocks·레이더 테마는 포커스와 같게 + 감시 종목 공시·실적은 항상 저장, sec_filings — 감시 목록 전체·CIK 회사명 보조·실패 하루 뒤 재시도, alpha_watch — inbox의 실적·공시·보도자료를 텔레그램 등급과 무관하게 직접 감지, 알파 미산정 감시 종목은 '알파 산정' 대기열(예약 작업 chiip-valuation-queue가 최대 10종목 처리).
+- 마스터 지시 "데이터센터 전력 관련주도 레이더 망에": radar_themes.dc_power 55종목 — 발전원(GEV·BE·INNIO·Siemens Energy·Caterpillar·Cummins·Wärtsilä·Rolls-Royce·MHI·두산에너빌리티·Oklo·NuScale), 발전사업자(VST·CEG·TLN·NRG·NEE), 분산형·모듈형(Enchanted Rock·VoltaGrid·Crusoe(비상장)·Solaris·Liberty·Generac), 전력설비(Eaton·Hubbell·nVent·Powell·Siemens·Schneider·ABB·Legrand·Hitachi·Mitsubishi Electric·HD현대일렉트릭·LS일렉트릭·효성중공업·산일전기·Vertiv), 송전망(Prysmian·Nexans·NKT·대한전선·LS·Valmont·PLP), 전력망 EPC(Quanta·MasTec·MYR·Primoris·EMCOR·Comfort Systems·Sterling·IES·Argan·Dycom).
+- 결과: GEV 8-K·10-Q 수집 → 알파 5.5(판단, SEC 보도자료 근거) → v2 동인 작성 → 3요인 텔레그램 발송. 모델 기본 가정(계속가치 RONIC=WACC·마진 페이드)이 해자 기업을 과소평가할 수 있음을 메시지에 명시, 종목별 ronic_spread 지원(3단계 보정).
+
