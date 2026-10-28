@@ -55,7 +55,7 @@
 | 21-9 | ✅ **동인 자동 작성 예약 작업 등록(10-28 마스터 승인).** chiip-valuation-queue, 매일 08:10·18:10 — 대기열(radar/state/v2_queue.json) 종목의 v2 동인을 작성·갱신하고 3요인 텔레그램 발송. 자동 모드로 저장됨(앱 Scheduled에서 변경 가능) | `docs/tasks/chiip-valuation-queue.md` |
 | 21-10 | ✅ **valuation-queue 개정(10-28 마스터 승인·반영).** 알파 5점 이상 종목의 동인 작성 전에 내러티브 프리미엄(스킬 narrative-premium)을 먼저 쓴다. 3요인 메시지에 '내러티브' 줄 | `docs/tasks/chiip-valuation-queue.md` |
 | 21-7 | **노션 즉시 처리를 '5분·수정 감지'로 올리려면 NOTION_TOKEN(10-28).** ① notion.so/profile/integrations → 새 내부 통합(읽기·쓰기·댓글 없음 가능) ② **Insights·Informations·Stocks 세 페이지 각각** ⋯ → 연결 추가 → 그 통합 선택(허브 '치입 인텔리전스'도) ③ 토큰을 `D:\local-only\secrets\.env`에 `NOTION_TOKEN=` (채팅에 붙이지 않기) ④ 치입에게 '노션 토큰 넣었다' → 기준선 시각 채우기(`py radar/notion_watch.py --baseline`)·시험. 그 전엔 매시간(07~23시) 새 페이지만 감지 | `config/notion.yaml`, `radar/notion_watch.py` |
-| 21-11 | **프로바이저 예약 작업 등록 승인(10-29).** 매일 05:30 6개 기능 재평가 → 보강 지시 갱신·텔레그램 1통. 치입의 등록 시도를 자동 모드 분류기가 거부. 치입에게 "프로바이저 등록 승인"이라고 하거나 앱 Scheduled에서 초안대로 생성. 등록 전에도 첫 평가 지시는 6개 작업지시서에 들어가 있음 | `docs/tasks/chiip-proviser.md` |
+| 21-11 | ✅ **프로바이저 예약 작업 등록(10-29 마스터 지시).** chiip-proviser, 매일 22:00 — 6개 기능 재평가 → 보강 지시 갱신·텔레그램 1통. 자동 모드로 저장됨(앱 Scheduled에서 변경 가능) | `docs/tasks/chiip-proviser.md` |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |
 
 ## E. 실전 시험 (게이트 대신)

@@ -2030,5 +2030,5 @@ source: docs/methodology
 - 채점 10점 = 축 5개(1차성·인과 사슬·반대 검증·정량·기저율·결정 가치·반증) × 2점 − 운영 결함. 9 미만이면 감점마다 근거(직접 확인한 URL·파일·재계산·논문, 못 찾으면 미확인)·지시·기대 효과.
 - 작업지시서 반영: 6개 예약 작업 끝에 '프로바이저 보강' 절(첫 지시 직접 삽입 + 매 회차 `docs/proviser/<taskId>.md`를 먼저 읽기 + 산출물에 `보강 적용: D-…`). 예약 실행 중에는 앱이 작업지시서 수정을 막으므로 이후 갱신은 파일로, 구조 문제는 TODO_MASTER '작업지시서 개정 요청'.
 - 첫 평가(2026-10-29): pulse 5.5·Weekly 6.0·reporter 6.5·ten-bagger 7.5·Model Lab 8.0·Notion 8.5, 지시 24개. 큰 결함: pulse가 정리된 valuation-queue로 '작성'을 넘김(19건 적체), ten-bagger 일정(매일)과 지시서(주간) 불일치, reporter가 갱신 끊긴 입력을 읽음.
-- 매일 05:30 재평가 예약 작업 `chiip-proviser`는 분류기 거부 → 초안 `docs/tasks/chiip-proviser.md`(TODO 21-11).
+- 매일 재평가 예약 작업 `chiip-proviser`: 05:30 안은 분류기 거부 → 마스터 지시로 매일 22:00 등록(`docs/tasks/chiip-proviser.md`). 그날 산출물을 평가해 다음 날 아침 회차 전에 지시 갱신.
 
