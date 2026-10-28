@@ -53,6 +53,7 @@
 - 내러티브 프리미엄(§21.20, 마스터 지시): 원천 약관·robots 점검 → 자동 수집 10곳(Substack 10개 공개 RSS·Hacker News·Google News 색인의 SA·Fool·Benzinga·MarketBeat·Barron's·IBD·Investopedia·TipRanks·Zacks 제목·IB 커버리지 변화 제목) + 모델 단계(easyconomics 콜 질문·노션 IB 요지). 레딧·VIC·StockTwits·X·SA/Fool 직접 접속 제외. `radar/narrative_sources.py`(제목 언급·재게재 필터), 스킬 narrative-premium, 첫 분석 UCTT(태동·gap+1)·TTMI(컨센서스·gap+1)·VICR(확산·과밀·gap−1/upside+1), 등록부 섹터 내러티브 3개 추가, 3요인 메시지 '내러티브' 줄, 시험 7개. 예약 작업 개정은 분류기 거부 → 마스터 '개정 승인' 후 반영
 - 노션 올림 즉시 처리(§21.16, 마스터 지시): notion_watch(토큰 시 5분)·chiip-notion-watch(매시간)·notion-intake 스킬·notion_state·notion_write. 첫 처리: Informations 법안 추적표 → 중간선거 후 수혜 후보 보고서·텔레그램 발송
 - 30분 펄스(§21.21, 마스터 지시): `radar/pulse.py`(결정론 관문 — inbox의 원본만[논문·보도자료·공시·정부, 기사 제외] + arXiv cs.ET·physics.app-ph 직접 + 감시 목록 밖 AI·전력 업종 8-K 1.01·7.01·8.01, 유형별 상한, 후보 티커, 회차 잠금, valuation-queue 실행 창 회피), 예약 작업 chiip-pulse(`*/30`, 자동 모드, ① [기사 원본] ② 텐배거 발굴 → 알파 산정 ≤8 → [알파 레이더]), 시험 5개. Nature 계열은 robots.txt가 Claude 차단 → 제외
+- 알파 점수 SemiAnalysis 렌즈(§21.17, 마스터 지시): 7원리 + 크라우딩, 42종목 규칙 보정(29행), 5.0 이상 23종목
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

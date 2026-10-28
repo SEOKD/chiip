@@ -2018,3 +2018,9 @@ source: docs/methodology
 - 출력 `radar/pulse/YYYYMMDD_HHMM.json`(git 제외): sources(유형별 상한 공시 15·보도자료 15·논문 12·정부 8), candidates(감시 목록 밖 미국 상장 티커), queue(알파 산정 대기). 회차 잠금 25분, chiip-valuation-queue 실행 창(08:05~08:45·18:05~18:45)에는 알파 산정을 건너뛴다.
 - 예약 작업 `chiip-pulse`(`*/30 * * * *`, 자동 모드, `docs/tasks/chiip-pulse.md`): ① 원본을 직접 열어 확인 → 기준(신규성·미국 상장사·한국 기업 연결·숫자·지금 써야 할 이유)을 넘는 최대 3건 `[기사 원본]` 텔레그램, outputs/article/sources/ 기록·URL 중복 방지 ② 병목 → 해결 기술 → 작은 공급사 경로의 미국 중소형주를 '알파 산정' 대기열에 → 최대 8종목 산정 → 새 5점 이상 `[알파 레이더]`. 동인·내러티브·3요인은 chiip-valuation-queue(08:10·18:10)가 이어 받는다.
 
+### 21.17 알파 점수 SemiAnalysis 렌즈 (2026-10-28 마스터 지시)
+- 지시: "알파 점수 매길 때 세미애널러시스의 내러티브 논리를 100% 답습했으면 좋겠다."
+- 구현: `knowledge/narratives/lens_semianalysis.md` — 공개 근거(제품 설명·무료 RSS 제목·공개 인터뷰)로 정리한 7원리 L1~L7(바텀업 공급망 숫자 / 결속 병목과 이동 / TCO 승자 / 서류·물건 검증 / 통념을 숫자로 반박 / 코디자인 / 경제성·자금 회의). `config/alpha.yaml lens`, tenbagger-card '알파 점수' 절과 narrative-premium에 판단 틀로 연결, reason에 `SA Ln:` 태그.
+- 반대 검증으로 남긴 안전장치: ① 유료 본문 미사용(방법만 따르고 결론 복제 금지, §14) ② 크라우딩 — SA가 이미 공개적으로 민 논지는 가격 반영이 시작됐으므로 gap −1, 알파는 같은 논리로 SA가 아직 안 다룬 종목·숫자에서 찾는다 ③ 렌즈 성과는 가상 추적으로 검증(model-lab).
+- 첫 적용(2026-10-28, `knowledge/models/alpha/judgments/20261028_sa.csv` 29행): 전력·송배전 bottleneck −1, 칩 공급망 +1(SA '2027 +50GW, 부족이 칩으로 이동 가능'), Oracle·Dell·Celestica upside −1(L7), 두산에너빌리티 gap −1(크라우딩). 5.0 경계: 삼성전자·Teradyne 진입, Quanta 이탈. 종목별 바텀업 재판단(L1 숫자)은 토요일 주간 재산정에서.
+

@@ -12,6 +12,8 @@ argument-hint: "<entity_id> [<entity_id> ...]"
 - 모델 단계(가능하면): easyconomics MCP `analyst_rating_changes`, `analyst_qa_calls`→`analyst_qa_call`(셀사이드가 콜에서 묻는 것 = IB 내러티브의 초점), 최근 `earnings_call_transcript`(경영진 내러티브). 마스터 노션 Informations의 IB 리포트 요지(라이선스 — 문장 복제 금지, 출처·요지만).
 - 제외 원천(robots·약관): 레딧·ValueInvestorsClub·StockTwits·X(유료 API 승인 대기)·사이트 직접 접속(Seeking Alpha·Motley Fool). 레딧 글은 마스터가 크롬 확장으로 넘긴 것만.
 
+- 판단 틀: `knowledge/narratives/lens_semianalysis.md`(SemiAnalysis 렌즈 L1~L7·크라우딩, 마스터 지시 2026-10-28) — 내러티브를 '병목·TCO·바텀업 숫자'로 바꿀 수 있는지가 1순위 질문.
+
 ## 2. 거르기
 - 제목에 종목명·티커·핵심 제품이 없는 일반 시황 기사는 버린다(색인 검색이라 잡음이 섞인다). 같은 사건 재인용은 하나로(`origin_id` 원칙).
 - 채널을 구분해 센다: 커뮤니티(개인·독립 분석가) / IB(목표가·등급) / 회사(콜·보도자료) / 언론.

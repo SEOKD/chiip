@@ -27,6 +27,7 @@ argument-hint: "[발굴 | 카드 <회사> | 점검]"
 - 노션 Stocks에 새 종목 페이지가 생겼으면 `earnings_watch.yaml` extra·master_stocks에 추가하고 점수를 매긴다.
 - reason 한 문장, evidence는 URL·카드 id·파일 경로. 근거가 약하면 4~6점과 '근거 약함'. 공개 자료만(local-only·필드 인텔·Informations 채널체크 금지).
 - 내러티브(마스터 지시 2026-10-28): 5.0 이상 종목은 스킬 narrative-premium으로 `knowledge/narratives/companies/<id>.md`를 쓴다(멀티플 프리미엄을 정하는 섹터·기업 내러티브, 단계·과밀, IB 커버리지 흐름, 커뮤니티 논조). 30일 이내 파일이 있으면 그 `alpha_effect`(gap·upside 보정 제안)를 판정에 반영하고 이유에 '내러티브: 단계'를 붙인다 — 과밀·컨센서스면 gap을 낮추고, 태동·확산 + 숫자 전환 직전이면 높인다.
+- **SemiAnalysis 렌즈(마스터 지시 2026-10-28, `knowledge/narratives/lens_semianalysis.md`) — 모든 판단에 적용:** upside는 '시스템 출하 × 시스템당 콘텐츠 × 가격'으로 바꿀 수 있어야 하고(L1, 못 바꾸면 ≤5), 모델·소프트웨어 변화가 콘텐츠를 늘리는지 본다(L6), 차입·자본 투입으로 용량을 파는 쪽은 −1(L7). bottleneck은 지금·다음 결속 병목 보유가 높고 해소 쪽 병목은 −1(L2), 고객 TCO를 낮추는 제품은 가산(L3). gap은 시장 통념과 바텀업 숫자의 차이(L5) — SA가 이미 공개적으로 민 논지는 −1(크라우딩). 근거가 주장뿐이면 '근거 약함'(L4). reason 끝에 적용 원리를 `SA L2:` 처럼 붙인다. SA 무료 글은 `radar/inbox`의 rw-semianalysis 항목(제목·부제)으로 매주 확인하고, 렌즈 '현재 적용' 절을 갱신한다. 유료 본문은 쓰지 않는다.
 - 끝나면 `py scripts/alpha/score.py --finalize`. 알파 점수는 매수 의견이 아니다.
 
 ## 경계

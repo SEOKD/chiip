@@ -92,7 +92,7 @@ def load_latest(today=None):
     fresh = {}
     for cid, r in data.get("rows", {}).items():
         try:
-            age = (today - datetime.strptime(r["scored_on"], "%Y%m%d").date()).days
+            age = (today - datetime.strptime(r["scored_on"][:8], "%Y%m%d").date()).days   # 20261028_sa 같은 같은 날 보정 파일 허용
         except (KeyError, ValueError):
             continue
         if r.get("total") is not None and age <= int(c.get("stale_days", 14)):
