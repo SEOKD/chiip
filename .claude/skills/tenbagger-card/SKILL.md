@@ -26,6 +26,7 @@ argument-hint: "[발굴 | 카드 <회사> | 점검]"
 - 주 1회(토요일) **전 종목 재산정**: 대상 = `config/earnings_watch.yaml`의 valuation universe + extra + `master_stocks`(마스터 노션 Stocks) + `watch.csv` 추적 종목. 바뀐 종목만 `knowledge/models/alpha/judgments/YYYYMMDD.csv`에 쓴다(열 id,component,score,reason,evidence — 날짜 파일이 여러 개면 종목·요소별 최신 판단을 씀).
 - 노션 Stocks에 새 종목 페이지가 생겼으면 `earnings_watch.yaml` extra·master_stocks에 추가하고 점수를 매긴다.
 - reason 한 문장, evidence는 URL·카드 id·파일 경로. 근거가 약하면 4~6점과 '근거 약함'. 공개 자료만(local-only·필드 인텔·Informations 채널체크 금지).
+- 내러티브(마스터 지시 2026-10-28): 5.0 이상 종목은 스킬 narrative-premium으로 `knowledge/narratives/companies/<id>.md`를 쓴다(멀티플 프리미엄을 정하는 섹터·기업 내러티브, 단계·과밀, IB 커버리지 흐름, 커뮤니티 논조). 30일 이내 파일이 있으면 그 `alpha_effect`(gap·upside 보정 제안)를 판정에 반영하고 이유에 '내러티브: 단계'를 붙인다 — 과밀·컨센서스면 gap을 낮추고, 태동·확산 + 숫자 전환 직전이면 높인다.
 - 끝나면 `py scripts/alpha/score.py --finalize`. 알파 점수는 매수 의견이 아니다.
 
 ## 경계

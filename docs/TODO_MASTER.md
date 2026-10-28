@@ -53,6 +53,7 @@
 | 21-7 | **무료 데이터 키(10-28).** ① **KRX OPEN API**: openapi.krx.co.kr 회원가입 → 로그인 → 마이페이지 'API 인증키 신청' → '유가증권 일별매매정보'·'코스닥 일별매매정보'·종목기본정보 서비스 신청 → 승인 후 '인증키 발급내역'의 키를 `.env`에 `KRX_API_KEY=` ② **Finnhub**: finnhub.io → 'Get free API key' 가입 → 대시보드의 키를 `.env`에 `FINNHUB_API_KEY=` (무료: 미국 시세·1개월 실적 일정·EPS 서프라이즈, 개인 용도) ③ **SEC_USER_AGENT**(21-4와 같음): `.env`에 `SEC_USER_AGENT="Chiip research <마스터 연락 이메일>"` — SEC 일괄 재무(미국 전 상장사 기저율)는 이게 없으면 403 ④ 키를 넣고 '키 넣었다'고 말해 주면 치입이 공식 문서로 접속 방식을 확인하고 붙임. 채팅에 키를 붙여 넣지 않기 | `radar/markets/prices_free.py`, `scripts/valuation/v2/sec_bulk.py` |
 | 21-8 | **치입 크롬 확장(10-28).** ① PowerShell에서 `scripts/start_chiip_server.ps1` 실행(로그인 때 자동 시작은 선택: `shell:startup`에 바로가기) ② 크롬 `chrome://extensions` → 개발자 모드 → '압축해제된 확장 프로그램을 로드합니다' → `extension/chiip` 폴더 ③ 확장 옵션에 `radar/state/ext_token.txt` 값 붙여넣기 → '연결 시험'. 토큰은 채팅·저장소에 붙이지 않기 | `extension/chiip/README.md` |
 | 21-9 | ✅ **동인 자동 작성 예약 작업 등록(10-28 마스터 승인).** chiip-valuation-queue, 매일 08:10·18:10 — 대기열(radar/state/v2_queue.json) 종목의 v2 동인을 작성·갱신하고 3요인 텔레그램 발송. 자동 모드로 저장됨(앱 Scheduled에서 변경 가능) | `docs/tasks/chiip-valuation-queue.md` |
+| 21-10 | **valuation-queue 개정 승인(10-28).** 알파 5점 이상 종목의 동인 작성 전에 내러티브 프리미엄(스킬 narrative-premium)을 먼저 쓰도록 예약 작업 지시문을 고치려 했으나 자동 모드 안전 분류기가 거부. 치입에게 "valuation-queue 개정 승인"이라고 하거나 앱 Scheduled에서 개정안으로 교체. 반영 전에도 3요인 메시지에 '내러티브' 줄은 붙음(파일 없으면 '미작성') | `docs/tasks/chiip-valuation-queue.md` |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |
 
 ## E. 실전 시험 (게이트 대신)

@@ -50,6 +50,7 @@
 - 핵심 루프·3요인(§21.17, 마스터 승인): decision.py(매수 매력·위험 예산 지표·상방)·alpha_watch.py(매시간 감지 → v2 → 텔레그램), 등록부 prm-v2-dec-* 7개, 시험 8개. 동인 작성 예약 작업은 안전 분류기 거부 → 초안만
 - GEV 누락 수정·데이터센터 전력 55종목 레이더 편입(§21.18): 엔티티·수집 관문·SEC 공시(CIK 회사명 보조)·inbox 직접 감지·알파 산정 대기열, GEV 알파 5.5 → v2 3요인 발송
 - 알파 레이더 자동화(§21.19): 전체 미국 상장사 실적 스캐너(EDGAR 8-K 2.02·SIC 선별·초소형 제외) → 알파 산정 대기열 → 예약 작업이 산정·감시 목록 추가·동인·텔레그램 요약. 10/27 수동 레이더 24종목 산정, 13종목 신규 5점 이상
+- 내러티브 프리미엄(§21.20, 마스터 지시): 원천 약관·robots 점검 → 자동 수집 10곳(Substack 10개 공개 RSS·Hacker News·Google News 색인의 SA·Fool·Benzinga·MarketBeat·Barron's·IBD·Investopedia·TipRanks·Zacks 제목·IB 커버리지 변화 제목) + 모델 단계(easyconomics 콜 질문·노션 IB 요지). 레딧·VIC·StockTwits·X·SA/Fool 직접 접속 제외. `radar/narrative_sources.py`(제목 언급·재게재 필터), 스킬 narrative-premium, 첫 분석 UCTT(태동·gap+1)·TTMI(컨센서스·gap+1)·VICR(확산·과밀·gap−1/upside+1), 등록부 섹터 내러티브 3개 추가, 3요인 메시지 '내러티브' 줄, 시험 7개. 예약 작업 개정은 분류기 거부 → 초안
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

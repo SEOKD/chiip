@@ -40,6 +40,26 @@ def drivers_path(eid):
     return ROOT / "knowledge" / "models" / "companies" / eid / "drivers.yaml"
 
 
+def narrative_line(eid, today=None, stale_days=30):
+    """스킬 narrative-premium 결과(knowledge/narratives/companies/<id>.md) 한 줄 — 없거나 오래되면 그렇게 적는다"""
+    p = ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
+    if not p.exists():
+        return "내러티브: 미작성(narrative-premium 대기)"
+    try:
+        fm = yaml.safe_load(p.read_text(encoding="utf-8").split("---")[1]) or {}
+    except (IndexError, yaml.YAMLError):
+        return "내러티브: 파일 형식 오류"
+    as_of = str(fm.get("as_of") or "")
+    try:
+        age = ((today or date.today()) - date.fromisoformat(as_of)).days
+    except ValueError:
+        age = None
+    eff = fm.get("alpha_effect") or {}
+    tail = f" · 알파 보정 제안 gap {eff.get('gap', 0):+d}·upside {eff.get('upside', 0):+d}" if eff else ""
+    stale = f" — {age}일 전, 갱신 필요" if age is not None and age > stale_days else ""
+    return f"내러티브({fm.get('stage', '미판정')}·과밀 {fm.get('crowding', '미상')}): {fm.get('summary', '')}{tail} [{as_of}{stale}]"
+
+
 def _ts(s):
     try:
         return datetime.fromisoformat(str(s))
@@ -138,6 +158,7 @@ def message(r, name, alpha_total, reasons, update_note=None):
     L += [f"· 근거: {x}" for x in reasons[:3]]
     if r.get("decision"):
         L += decision.lines(r["decision"])
+    L.append(narrative_line(r.get("entity") or ""))
     u = r["upside"]
     if u.get("implied_cagr") is not None:
         pct = u["implied_pct"][0]

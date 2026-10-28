@@ -95,3 +95,34 @@ narratives:
     falsifiers: [제도 후퇴, 환원 축소]
     evidence: []
     stage: 미판정
+  # 2026-10-28 스킬 narrative-premium 첫 실행(UCTT·TTMI·VICR)에서 추가 — 단계는 그날 근거 기준
+  - id: nar-wfe-cycle-2028
+    story: AI·첨단 공정 수요로 웨이퍼 팹 장비(WFE) 투자가 2028년까지 늘어난다
+    kpis: [대형 장비사 가이던스, SEMI 연간 WFE 전망, 메모리·파운드리 CAPEX, 장비 부품 공급 차질]
+    model_variables: [장비 수주, 매출 성장 지속기간, 가동률, 서브시스템 증설 회수]
+    keywords: 'WFE|wafer fab equipment|semiconductor equipment|chip.gear|chip equipment|장비 투자|반도체 장비|半導体製造装置|半导体设备'
+    exposure: {co-amat: 1.0, co-lam: 1.0, co-kla: 0.9, co-asml: 0.9, co-tel: 0.9, co-ultraclean: 1.0}
+    falsifiers: [장비사 가이던스 하향, 메모리·파운드리 CAPEX 축소, 중국 장비 수요 급감]
+    evidence: []
+    stage: 확산
+    stage_reason: "2026-10-28 — Jefferies 2028년까지 성장(SA 10/26)·AMAT·Lam 강세 장문 vs Lam 가이던스 실망(IBD 10/21). 대형주는 컨센서스, 서브시스템 소형주는 태동"
+  - id: nar-dc-high-voltage-power
+    story: AI 랙 전력 밀도가 올라 데이터센터 전력 구조가 고전압 직류·48V 수직 전력 공급으로 바뀌고, 전력 변환 부품의 가치가 커진다
+    kpis: [고전압 직류 랙 채택 일정, VPD(수직 전력 공급) 탑재 고객 수, 전력 변환 부품 ASP, 로열티 매출]
+    model_variables: [랙당 전력 부품 컨텐츠, 점유율, 마진·ROIC]
+    keywords: '800 ?V|high.voltage DC|HVDC|48 ?V|vertical power|VPD|power delivery|수직 전력|고전압 직류|直流'
+    exposure: {co-vicor: 1.0, co-delta: 0.6, co-vertiv: 0.5, co-infineon: 0.4}
+    falsifiers: [고전압 전환 일정 지연, 통합 전압조정기(IVR)로 대체, 가속기 전력 증가 둔화]
+    evidence: []
+    stage: 확산
+    stage_reason: "2026-10-28 — Barron's 고전압 기사 2건(10/22·10/28, 본문 미확인), Vicor 콜에서 48V·2세대 VPD 채택 질문. 숫자 전환은 Vicor 로열티에서 시작"
+  - id: nar-ai-pcb-content
+    story: AI 서버·스위치의 고다층 PCB 컨텐츠가 늘어 보드 업체의 성장·마진이 재평가된다
+    kpis: [데이터센터·네트워킹 매출 비중, 신제품(N+M 등) 비중, 고다층 캐파·수율, 고객 프로젝트 일정]
+    model_variables: [보드 ASP, 데이터센터 매출 비중, 증설, 레버리지]
+    keywords: 'PCB|high.layer|고다층|MLB|circuit board|다층 ?기판|多層基板|多层板'
+    exposure: {co-ttm: 1.0, co-isupetasys: 1.0, co-doosan: 0.5, co-celestica: 0.4}
+    falsifiers: [데이터센터 매출의 반복 가이던스 미달, 고객 프로젝트 취소, 피어 증설로 가격 하락]
+    evidence: []
+    stage: 컨센서스
+    stage_reason: "2026-10-28 — TTM 실적일 −30%·IB 목표가 일제 하향(가이던스는 상향)으로 과밀 해소. Celestica 강세 장문은 지속"
