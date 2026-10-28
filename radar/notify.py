@@ -83,6 +83,8 @@ def telegram_allowed(item):
     if not rule:
         return True, ""
     src = item.get("source_id", "")
+    if item.get("doc_type") in rule.get("brief_only_doc_types", []):
+        return False, f"브리프 전용({item.get('doc_type')})"
     if src in rule.get("wire_sources", []):
         return (True, "") if src in rule.get("allowed_wire_sources", []) else (False, "배포처 제한")
     if item.get("doc_type") != "기사":

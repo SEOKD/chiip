@@ -14,6 +14,7 @@ argument-hint: "[YYYY-MM-DD]"
 - 주가: 공개 웹에서 확인 가능할 때만 종목·지수 대비 등락. 못 하면 "미확인"
 - `knowledge/calendar.csv` 내일 일정
 - **밸류에이션 레이더**: `py scripts/valuation/engine.py --digest evening` 출력(한국 장 마감 반영 — T0 표를 먼저)
+- **리서치·투자자 동향**: `py radar/pollers/research_watch.py --digest --hours 10` 출력(§21.11). 쓰는 규칙은 morning-brief의 같은 절과 같다
 
 ## 글로벌 공식 발표 절 작성 규칙
 - 분류는 마스터 지정 5개 표현 그대로: **Commercial contract wins/terminations · Corporate Financials · Market pressures · Mergers and Acquisitions · Innovation and expansions**. 지역은 미국·일본·EU·영국·한국.
@@ -34,6 +35,7 @@ argument-hint: "[YYYY-MM-DD]"
   - Mergers and Acquisitions
   - Innovation and expansions
 ■ 밸류에이션 레이더 (오늘 T0 뉴스·공식 발표가 리비전·멀티플·내러티브 중 어디를 움직였나)
+■ 리서치·투자자 동향 (T0·T2·내러티브와 닿는 글 최대 5건, "(의견)", 새 글 없으면 생략)
 ■ 판정 변경 (아침 대비 바뀐 카드: 1차판정→검증완료, 등급 조정)
 ■ 주장 승격 후보 (claim-intake 대기 목록)
 ■ 내일 일정

@@ -1933,3 +1933,11 @@ source: docs/methodology
 - 레이더와의 연결: 내러티브 강도는 레이더 수집 항목(`radar/inbox`)의 키워드 일치 건수(`knowledge/narratives/registry.yaml`).
 - 출력: 아침·저녁 브리프 '■ 밸류에이션 레이더' 절(`engine.py --digest`), 실적 후 카드(`outputs/invest/valuation/`), 위클리 섹터 표. invest 모드 경계 — 목표주가·투자의견 없음, "공개 자료 기반 분석이며 투자 권유가 아님".
 - 데이터: EODHD 펀더멘털(추정치·리비전, 'Fundamentals'·'ALL-IN-ONE' 요금제) + EOD 가격 + 수동 컨센서스. 요금제는 마스터 결정 대기(TODO 21).
+
+### 21.11 리서치·투자자 실시간 감시 (2026-10-28 마스터 지시)
+- 지시: "X에 SemiAnalysis 등 시장 영향력이 높은 리서치 기관·투자자 계정의 실시간 정보도 팔로업". 목록 `config/research_watch.yaml`(29개 계정·매체, 마스터 검토 대상).
+- 채널 ① **공개 RSS**(`src-research-feeds`, 30분, 지금 가동) — SemiAnalysis·Stratechery·Fabricated Knowledge·Chips and Cheese·Damodaran 등 15개 피드. 유료 글은 제목·공개 요약만.
+- 채널 ② **X 공식 API**(`src-research-x`, 15분) — 사용량 과금(2026-10-28 공식 가격표: 글 1건 $0.005, 사용자 조회 $0.010, 같은 자원 24시간 안 재요청은 1회 과금). 월 상한 `monthly_post_cap`(기본 1만 건 ≈ $50). **§21.6 'X API 제외'는 그대로 두고 꺼진 채 대기** — 마스터가 비용 승인하고 키를 넣으면 등록부 `enabled: true`로 켜고 §21.6·CLAUDE.md 제외 원천 문구를 고친다(TODO 21-3).
+- X 웹 화면 수집(스크래핑·Nitter류 미러)은 하지 않는다: x.com robots.txt가 모든 경로 차단.
+- 성격: 의견·추정·채널체크 = 단서(S1~S2). 사실로 쓰지 않고 주체를 붙인다. claim 승격은 claim-intake, 재인용은 독립 확인 아님(`origin_id`). 계정 적중 기록은 `knowledge/handle_reputation.csv`.
+- 흐름: 수집 → radar/inbox → radar-triage(기본 P2, 새 구체 수치·채널체크면 P1, P0 없음 — 경영진 공식 발표 성격만 예외) → 아침·저녁 브리프 '■ 리서치·투자자 동향'(`research_watch.py --digest`). **텔레그램은 보내지 않는다**(`telegram_filter.brief_only_doc_types`). 수집 글은 밸류에이션 내러티브 강도 계산에도 함께 들어간다.

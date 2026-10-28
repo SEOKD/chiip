@@ -61,7 +61,7 @@ def run_source(src, env):
         from pollers import rss
         return rss.poll_source(src)
     module = importlib.import_module(f"pollers.{mod}")
-    return module.poll(env)
+    return getattr(module, src.get("entry", "poll"))(env)  # 한 모듈에 원천이 여럿이면 entry로 함수 지정
 
 
 def deterministic_p0(items):

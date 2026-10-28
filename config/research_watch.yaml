@@ -1,0 +1,185 @@
+# 리서치·투자자 감시 목록 (BUILD_PROMPT §21.11, 마스터 지시 2026-10-28)
+# 시장 영향력이 큰 리서치 기관·독립 애널리스트·투자자의 새 글을 실시간으로 따라간다.
+# 채널 두 가지:
+#   feed — 공개 RSS(뉴스레터·블로그). 무료, 지금 가동. 유료 글은 제목·공개 요약만 들어온다.
+#   x    — X 공식 API(사용량 과금). 비용 승인·키 입력 전까지 꺼 둔다(§21.6 'X API 제외' 유지).
+# X 웹 화면 수집은 하지 않는다: x.com robots.txt가 모든 경로를 막는다(User-agent: * / Disallow: /, 2026-10-28 확인).
+# 이 목록의 글은 '의견·추정·채널체크'다. 사실로 쓰지 않는다(S1~S2 단서, claim 승격은 claim-intake로).
+# 계정 평판(맞힘·틀림·선행일)은 knowledge/handle_reputation.csv. 개인 신원 추적 금지.
+
+x_api:
+  # 켜기: config/source_registry.yaml src-research-x 의 enabled: true (마스터 비용 승인 + 키 입력 후, TODO 21-3)
+  key_env: X_BEARER_TOKEN     # D:\local-only\secrets\.env — 값은 출력·커밋 금지
+  base: "https://api.x.com/2"
+  doc: "https://docs.x.com/x-api/users/get-posts"
+  pricing_doc: "https://docs.x.com/x-api/getting-started/pricing"   # 2026-10-28: 글 읽기 1건 $0.005, 사용자 조회 $0.010, 같은 자원 24시간(UTC) 안 재요청은 1회 과금
+  monthly_post_cap: 10000     # 이번 달 받은 글이 이 수에 닿으면 멈춤(≈ $50). 비용 상한 안전장치
+  exclude: [replies, retweets]   # 답글·리트윗 제외(인용 글은 포함)
+  max_results: 20
+
+# kind: 리서치기관 | 독립애널리스트 | 셀사이드 | 투자자 | 경영진 | 데이터·연구
+# x_handle: 확실하지 않으면 null + verify 메모. 첫 X 실행 때 사용자 조회로 실재 확인하고 radar/state/research_x_ids.json에 id 저장.
+accounts:
+  - id: rw-semianalysis
+    name: SemiAnalysis
+    kind: 리서치기관
+    why: "AI 인프라·반도체 공급망 리서치. 가속기 TCO·HBM·CoWoS·데이터센터 전력 모델이 업계·바이사이드 기준점"
+    feed: "https://newsletter.semianalysis.com/feed"
+    x_handle: SemiAnalysis_
+  - id: rw-dylanpatel
+    name: Dylan Patel (SemiAnalysis)
+    kind: 리서치기관
+    why: "SemiAnalysis 대표. X에 리포트 요지·업계 반응을 리포트보다 먼저 올리는 경우가 많다"
+    x_handle: dylan522p
+  - id: rw-fabknowledge
+    name: Fabricated Knowledge (Doug O'Laughlin)
+    kind: 독립애널리스트
+    why: "반도체·장비 사이클·AI 인프라 투자 관점 뉴스레터"
+    feed: "https://www.fabricatedknowledge.com/feed"
+    x_handle: null            # verify: 공식 계정 확인 후 입력
+  - id: rw-stratechery
+    name: Stratechery (Ben Thompson)
+    kind: 독립애널리스트
+    why: "빅테크 전략·AI 수익화·CAPEX 논리. 하이퍼스케일러 내러티브의 기준점"
+    feed: "https://stratechery.com/feed/"
+    x_handle: benthompson
+  - id: rw-chipsandcheese
+    name: Chips and Cheese
+    kind: 데이터·연구
+    why: "CPU·GPU 마이크로아키텍처 실측 분석"
+    feed: "https://chipsandcheese.com/feed/"
+    x_handle: null            # verify
+  - id: rw-irrational
+    name: Irrational Analysis
+    kind: 독립애널리스트
+    why: "반도체·네트워킹 종목 분석, 시장 메모"
+    feed: "https://irrationalanalysis.substack.com/feed"
+    x_handle: null            # verify
+  - id: rw-citrini
+    name: Citrini Research
+    kind: 투자자
+    why: "테마형 바스켓(AI 인프라·전력 등)으로 내러티브 형성에 영향"
+    feed: "https://www.citriniresearch.com/feed"
+    x_handle: citrini7        # verify
+  - id: rw-chipletter
+    name: The Chip Letter
+    kind: 독립애널리스트
+    why: "반도체 산업사·경영진 인터뷰"
+    feed: "https://thechipletter.substack.com/feed"
+    x_handle: null
+  - id: rw-damodaran
+    name: Aswath Damodaran
+    kind: 데이터·연구
+    why: "밸류에이션 방법론·섹터 내재 프리미엄(엔비디아·AI 밸류 글). 밸류에이션 시스템의 반대 검증용"
+    feed: "https://aswathdamodaran.blogspot.com/feeds/posts/default"
+    x_handle: AswathDamodaran
+  - id: rw-uncoveralpha
+    name: UncoverAlpha (Rihard Jarc)
+    kind: 독립애널리스트
+    why: "채널체크·대체 데이터로 클라우드·AI 수요 추적"
+    feed: "https://www.uncoveralpha.com/feed"
+    x_handle: RihardJarc      # verify
+  - id: rw-morethanmoore
+    name: More Than Moore (Ian Cutress)
+    kind: 독립애널리스트
+    why: "반도체 기술·경영진 인터뷰"
+    feed: "https://morethanmoore.substack.com/feed"
+    x_handle: IanCutress
+  - id: rw-nextplatform
+    name: The Next Platform
+    kind: 데이터·연구
+    why: "HPC·AI 시스템 아키텍처 심층 기사"
+    feed: "https://www.nextplatform.com/feed/"
+    x_handle: null
+  - id: rw-servethehome
+    name: ServeTheHome
+    kind: 데이터·연구
+    why: "서버·네트워킹 하드웨어 실물 리뷰, OCP·핫칩스 현장 사진"
+    feed: "https://www.servethehome.com/feed/"
+    x_handle: null
+  - id: rw-epoch
+    name: Epoch AI
+    kind: 데이터·연구
+    why: "AI 연산량·학습 비용·하드웨어 추세 데이터"
+    feed: "https://epochai.substack.com/feed"
+    x_handle: EpochAIResearch # verify
+  - id: rw-chinatalk
+    name: ChinaTalk
+    kind: 데이터·연구
+    why: "중국 반도체·수출통제 정책 분석"
+    feed: "https://www.chinatalk.media/feed"
+    x_handle: null
+  - id: rw-bigtech
+    name: Big Technology (Alex Kantrowitz)
+    kind: 독립애널리스트
+    why: "빅테크 경영진 인터뷰·AI 사업 동향"
+    feed: "https://www.bigtechnology.com/feed"
+    x_handle: null
+  # ---- X 전용(뉴스레터 없음 또는 X가 주 채널) ----
+  - id: rw-bajarin
+    name: Ben Bajarin (Creative Strategies)
+    kind: 독립애널리스트
+    why: "반도체·PC·AI 기기 시장 분석, 업계 경영진과 접점"
+    x_handle: BenBajarin
+  - id: rw-moorhead
+    name: Patrick Moorhead (Moor Insights)
+    kind: 독립애널리스트
+    why: "반도체·데이터센터 업계 분석, 경영진 인터뷰"
+    x_handle: PatrickMoorhead
+  - id: rw-kuo
+    name: Ming-Chi Kuo (TF International)
+    kind: 셀사이드
+    why: "애플·공급망 부품 채택 전망. 기기 부품(카메라모듈·기판) 수요 단서"
+    x_handle: mingchikuo
+  - id: rw-nystedt
+    name: Dan Nystedt
+    kind: 데이터·연구
+    why: "TSMC·대만 공급망 월매출·현지 보도 요약이 가장 빠름"
+    x_handle: dnystedt
+  - id: rw-jukan
+    name: Jukan
+    kind: 데이터·연구
+    why: "한국·대만 반도체 보도·증권사 자료 요약을 영어로 확산 — 국내 이슈가 해외 시장에 번지는 경로"
+    x_handle: Jukanlosreve    # verify
+    note: "2차 확산 계정. 원출처(국내 보도·증권사)를 따로 확인해야 하고 재인용은 독립 확인이 아니다(origin_id)"
+  - id: rw-taekim
+    name: Tae Kim (Barron's)
+    kind: 데이터·연구
+    why: "엔비디아·AI 반도체 기자. 업계 소식 확산 속도가 빠름"
+    x_handle: firstadopter
+  - id: rw-gavinbaker
+    name: Gavin Baker (Atreides)
+    kind: 투자자
+    why: "AI 반도체·CAPEX 사이클 바이사이드 관점, 시장 내러티브에 영향"
+    x_handle: GavinSBaker
+  - id: rw-gerstner
+    name: Brad Gerstner (Altimeter)
+    kind: 투자자
+    why: "AI CAPEX·빅테크 바이사이드 관점"
+    x_handle: altcap
+  - id: rw-ives
+    name: Dan Ives (Wedbush)
+    kind: 셀사이드
+    why: "빅테크·AI 셀사이드 의견. 리테일 투자 심리에 영향"
+    x_handle: DivesTech
+  - id: rw-kindig
+    name: Beth Kindig (I/O Fund)
+    kind: 독립애널리스트
+    why: "AI 반도체 종목 분석"
+    x_handle: Beth_Kindig     # verify
+  - id: rw-kakashii
+    name: Kakashii
+    kind: 독립애널리스트
+    why: "반도체 공급망·실적 분석 계정"
+    x_handle: kakashiii111    # verify
+  # ---- 경영진(발언이 곧 1차 자료) ----
+  - id: rw-lisasu
+    name: Lisa Su (AMD)
+    kind: 경영진
+    why: "AMD CEO 공개 발언"
+    x_handle: LisaSu
+  - id: rw-altman
+    name: Sam Altman (OpenAI)
+    kind: 경영진
+    why: "OpenAI 연산 확보·인프라 계약 발언 — HBM·가속기 수요 내러티브"
+    x_handle: sama

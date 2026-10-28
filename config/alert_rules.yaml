@@ -64,3 +64,4 @@ telegram_filter:
     - "GlobeNewswire News Room"
   allowed_wire_sources: [src-prn]   # 보도자료 배포처 수집분 중 텔레그램 허용(Business Wire src-bw는 제외)
   wire_sources: [src-prn, src-bw, src-globenewswire]
+  brief_only_doc_types: [리서치, SNS]   # 리서치·투자자 글(research_watch)은 의견이라 텔레그램 대신 브리프로만(§21.11)

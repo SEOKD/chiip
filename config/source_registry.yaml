@@ -391,3 +391,40 @@
   reliability_default: 2차
   verified: true
   enabled: false
+
+# ===== R. 리서치·투자자 감시 (§21.11, config/research_watch.yaml) — 의견·추정, 사실 아님 =====
+- id: src-research-feeds
+  name: 리서치 기관·독립 애널리스트 공개 RSS
+  category: R-리서치
+  module: research_watch
+  entry: poll_feeds
+  method: rss
+  endpoint_doc: "config/research_watch.yaml"
+  auth: none
+  scope: [글로벌]
+  interval_min: 30
+  run_on: local
+  language: en
+  doc_type: 리서치
+  terms_note: "각 뉴스레터·블로그의 공개 RSS(2026-10-28 15개 응답 확인). 유료 글은 제목·공개 요약만. 제목·링크·200자만 저장"
+  reliability_default: 의견
+  verified: true
+  enabled: true
+
+- id: src-research-x
+  name: X 공식 API — 리서치·투자자 계정 타임라인
+  category: R-리서치
+  module: research_watch
+  entry: poll_x
+  method: api
+  endpoint_doc: "https://docs.x.com/x-api/users/get-posts"
+  auth: X_BEARER_TOKEN
+  scope: [글로벌]
+  interval_min: 15
+  run_on: local
+  language: en
+  doc_type: SNS
+  terms_note: "사용량 과금(글 1건 $0.005, 2026-10-28 공식 가격표). 월 상한 config/research_watch.yaml. 웹 화면 수집 금지(robots.txt 전면 차단). §21.6 'X API 제외'는 마스터 승인 시에만 해제"
+  reliability_default: 의견
+  verified: false
+  enabled: false       # 마스터 비용 승인 + X_BEARER_TOKEN 입력 후 true (TODO 21-3) — X 수집의 유일한 스위치

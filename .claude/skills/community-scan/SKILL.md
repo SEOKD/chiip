@@ -12,3 +12,4 @@ argument-hint: "[YYYYMMDD]"
 5. 루머가 확인·부정되면 선행성 장부와 평판 장부를 함께 갱신.
 6. 개인 게시물 장문 저장 금지(링크 + 자기 말 요지).
 7. 신호 레코드: `docs/templates/signal.yaml`, id `py scripts/chiip_ids.py signal`, 저장 `radar/reverse/signals/YYYY/MM/`. 강도 S0~S5(§11.6), 대안 설명 필수, 원문 짧게 보존·번역 병기(번역은 증거 아님).
+8. 리서치 기관·투자자 계정(SemiAnalysis 등)은 L8이 아니라 `radar/pollers/research_watch.py`(§21.11, 레이더 inbox)로 들어온다. 그 주장이 확인·부정되면 같은 평판 장부(`handle_reputation.csv`, platform `x`·`rss`)에 기록한다.

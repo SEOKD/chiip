@@ -24,6 +24,11 @@ argument-hint: "[radar/state/triage_batch.json]"
 - 제목만으로 판단이 어려우면 낮은 등급 + `reason`에 이유.
 - `knowledge/claims/`에 이미 있는 내용이면 novelty 반복 → P3.
 
+**리서치·SNS 항목** (`doc_type: 리서치|SNS`, src-research-feeds·src-research-x — config/research_watch.yaml)
+- 리서치 기관·투자자의 의견·추정이다. 이벤트 유형은 원칙적으로 `IB의견변경` 또는 `기타`, what에는 "○○는 …라고 주장"처럼 주체를 붙인다.
+- 기본 P2. T0 실적 동인(HBM 점유·가격·고객 인증·CAPEX)에 대한 **새로운 구체 수치·채널체크**면 P1(1차 출처 대기). P0는 주지 않는다 — 경영진 계정(kind 경영진)의 회사 공식 발표 성격 글만 예외적으로 P0 후보.
+- 같은 주장을 다른 계정이 퍼 나른 것은 재인용 P3. 글이 인용한 원출처(보도·공시·증권사 자료)가 있으면 open_questions에 적는다.
+
 **이벤트 유형**: 실적|잠정실적|가이던스|수주·공급계약|증설·CAPEX|제품·기술발표|인증·양산|가격|M&A|규제·정책|인사|사고·차질|학회논문|표준|IB의견변경|컨센서스변경|기타
 
 ## P0·P1 카드 초안
