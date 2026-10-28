@@ -16,6 +16,8 @@ radar/inbox/*
 radar/reverse/inbox/*
 radar/usgov/docs/*
 radar/drop/*
+knowledge/models/valuation/prices/
+knowledge/models/valuation/latest.*
 !**/.gitkeep
 
 # 파이썬

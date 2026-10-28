@@ -1,0 +1,116 @@
+# 밸류에이션 시스템 설정 (docs/valuation/framework.md, ADR-008) — 초안, 마스터 확정 전
+# 수집: radar/markets/valuation_data.py (결정론) / 계산: scripts/valuation/engine.py (결정론) / 해석: 스킬 valuation-card (모델)
+provider: eodhd             # Fundamentals(추정치·리비전)는 EODHD 'Fundamentals' 또는 'ALL-IN-ONE' 요금제 필요. 가격(EOD)은 모든 유료 요금제
+code_verified: false        # EODHD 종목 코드는 키 입력 후 일괄 확인(일본 거래소 코드 미확인 → code: null은 건너뜀)
+
+# 수집 시간대(KST) — 하루 두 번. 아침 브리프(06:00대)·저녁 브리프(22:00대) 전에 끝나게
+slots:
+  - {name: morning, from: "05:00", to: "06:00"}   # 미국 장 마감 반영(아침 브리프 06:00대 전)
+  - {name: evening, from: "15:45", to: "17:00"}   # 한국 장 마감 반영
+price_history_days: 400     # 수익률 분해(30·90·365일)·실적 반응용
+
+params:
+  discount_rate: {US: 0.09, KR: 0.10, TW: 0.09, JP: 0.08, EU: 0.09}   # 역DCF 할인율(자기자본비용 가정 — 마스터 확인)
+  horizon_years: 5                                                    # 역DCF: N년 뒤 EPS × 장기 P/E
+  min_regression_n: 12                                                # 정당 멀티플 회귀 최소 표본
+  pe_cap: 200                                                         # 이보다 큰 P/E(적자 근접)는 회귀·백분위 제외
+  history_min_days: 20                                                # 자기 역사 백분위에 필요한 스냅숏 수
+  narrative_window_days: 7
+
+# 하위 섹터 — 기본 방법(공개 IB 관행 종합, framework.md §4). terminal_pe = 역DCF 장기 P/E 가정
+subsectors:
+  memory:       {label: 메모리, cyclical: true, terminal_pe: 10, primary: "P/B 사이클 밴드 + 2년 평균·정상화 P/E", cross: "내포 P/E ↔ P/B 교차 검증", key: "DRAM·NAND ASP, HBM 비중·점유율, 비트 성장, CAPEX"}
+  accelerator:  {label: AI 가속기·ASIC, cyclical: false, terminal_pe: 22, primary: "2년 선행 P/E, PEG", cross: "S&P500 대비 상대 P/E", key: "하이퍼스케일러 CAPEX, CoWoS 배정, 고객 집중도"}
+  foundry:      {label: 파운드리·로직, cyclical: false, terminal_pe: 18, primary: "선행 P/E", cross: "ROE 대비 P/B", key: "가동률, 노드 믹스, CAPEX 강도, 가격"}
+  semicap:      {label: 반도체 장비, cyclical: true, terminal_pe: 20, primary: "정상화 EPS × 사이클 중간 P/E", cross: "사이클 고점·저점 P/E", key: "WFE 전망, 중국 비중, 수주·백로그"}
+  substrate:    {label: 기판·PCB·소재, cyclical: true, terminal_pe: 13, primary: "FY1·FY2 P/E", cross: "EV/EBITDA, P/B", key: "AI 서버 비중, ASP, 가동률, 증설"}
+  components:   {label: 부품·모듈, cyclical: true, terminal_pe: 12, primary: "FY1·FY2 P/E", cross: "EV/EBITDA", key: "고객(애플 등) 물량, 믹스, 환율"}
+  analog:       {label: 아날로그·전력반도체, cyclical: true, terminal_pe: 20, primary: "사이클 평균 EPS × 평균 P/E", cross: "재고일수", key: "재고 조정 단계, 산업·차량 수요"}
+  networking:   {label: 네트워킹·광, cyclical: false, terminal_pe: 22, primary: "선행 P/E", cross: "성장 조정 EV/S", key: "800G·1.6T 전환, 스케일업·아웃 수요"}
+  eda_ip:       {label: EDA·IP, cyclical: false, terminal_pe: 30, primary: "EV/FCF, 선행 P/E", cross: "역사 대비 프리미엄", key: "백로그, 로열티, 고객 설계 착수"}
+  software:     {label: AI 소프트웨어, cyclical: false, terminal_pe: 25, primary: "성장 조정 EV/S(EV/선행매출 ÷ 2년 성장률)", cross: "Rule of 40, EV/FCF", key: "NRR, RPO, AI 매출 공개"}
+  hyperscaler:  {label: 하이퍼스케일러, cyclical: false, terminal_pe: 20, primary: "선행 P/E, SOTP(클라우드)", cross: "EV/EBITDA, FCF 추이", key: "CAPEX 가이던스 — 공급사 매출의 선행 지표"}
+  server:       {label: 서버·ODM, cyclical: false, terminal_pe: 14, primary: "선행 P/E", cross: "ROIC, 운전자본", key: "GB·랙 출하, 마진"}
+  power_infra:  {label: 전력·냉각 인프라, cyclical: false, terminal_pe: 20, primary: "FY2 P/E", cross: "수주잔고·Book-to-bill", key: "변압기·냉각 리드타임, 데이터센터 착공"}
+  storage:      {label: 스토리지(HDD·SSD), cyclical: true, terminal_pe: 12, primary: "정상화 P/E", cross: "P/B", key: "엑사바이트 출하, 가격"}
+  conglomerate: {label: 복합기업, cyclical: true, terminal_pe: 12, primary: "SOTP(사업부별 피어 배수) − 지주 할인", cross: "P/B", key: "사업부별 이익 기여"}
+
+# 유니버스 — 감시 목록(watchlist) + 회귀 표본용 글로벌 피어. region은 할인율·국가 할인 변수
+universe:
+  # T0 (한국)
+  - {id: co-samsung, name: 삼성전자, code: 005930.KO, region: KR, sub: conglomerate}
+  - {id: co-skhynix, name: SK하이닉스, code: 000660.KO, region: KR, sub: memory}
+  - {id: co-semco, name: 삼성전기, code: 009150.KO, region: KR, sub: components}
+  - {id: co-lginnotek, name: LG이노텍, code: 011070.KO, region: KR, sub: components}
+  - {id: co-doosan, name: 두산, code: 000150.KO, region: KR, sub: conglomerate}
+  - {id: co-lotteem, name: 롯데에너지머티리얼즈, code: 020150.KO, region: KR, sub: substrate}
+  - {id: co-isupetasys, name: 이수페타시스, code: 007660.KO, region: KR, sub: substrate}
+  # 한국 후보
+  - {id: co-hanmisemi, name: 한미반도체, code: 042700.KO, region: KR, sub: semicap}
+  - {id: co-wonikips, name: 원익IPS, code: 240810.KQ, region: KR, sub: semicap}
+  - {id: co-jusung, name: 주성엔지니어링, code: 036930.KQ, region: KR, sub: semicap}
+  - {id: co-eotechnics, name: 이오테크닉스, code: 039030.KQ, region: KR, sub: semicap}
+  - {id: co-soulbrain, name: 솔브레인, code: 357780.KQ, region: KR, sub: substrate}
+  - {id: co-isc, name: ISC, code: 095340.KQ, region: KR, sub: semicap}
+  - {id: co-leeno, name: 리노공업, code: 058470.KQ, region: KR, sub: semicap}
+  - {id: co-daeduck, name: 대덕전자, code: 353200.KO, region: KR, sub: substrate}
+  - {id: co-simmtech, name: 심텍, code: 222800.KQ, region: KR, sub: substrate}
+  - {id: co-hdhyundaielec, name: HD현대일렉트릭, code: 267260.KO, region: KR, sub: power_infra}
+  # 미국
+  - {id: co-nvidia, name: NVIDIA, code: NVDA.US, region: US, sub: accelerator}
+  - {id: co-amd, name: AMD, code: AMD.US, region: US, sub: accelerator}
+  - {id: co-broadcom, name: Broadcom, code: AVGO.US, region: US, sub: accelerator}
+  - {id: co-marvell, name: Marvell, code: MRVL.US, region: US, sub: accelerator}
+  - {id: co-qualcomm, name: Qualcomm, code: QCOM.US, region: US, sub: foundry}
+  - {id: co-intel, name: Intel, code: INTC.US, region: US, sub: foundry}
+  - {id: co-micron, name: Micron, code: MU.US, region: US, sub: memory}
+  - {id: co-sandisk, name: SanDisk, code: SNDK.US, region: US, sub: memory}
+  - {id: co-wdc, name: Western Digital, code: WDC.US, region: US, sub: storage}
+  - {id: co-seagate, name: Seagate, code: STX.US, region: US, sub: storage}
+  - {id: co-amat, name: Applied Materials, code: AMAT.US, region: US, sub: semicap}
+  - {id: co-lam, name: Lam Research, code: LRCX.US, region: US, sub: semicap}
+  - {id: co-kla, name: KLA, code: KLAC.US, region: US, sub: semicap}
+  - {id: co-teradyne, name: Teradyne, code: TER.US, region: US, sub: semicap}
+  - {id: co-ti, name: Texas Instruments, code: TXN.US, region: US, sub: analog}
+  - {id: co-adi, name: Analog Devices, code: ADI.US, region: US, sub: analog}
+  - {id: co-onsemi, name: onsemi, code: ON.US, region: US, sub: analog}
+  - {id: co-arista, name: Arista, code: ANET.US, region: US, sub: networking}
+  - {id: co-coherent, name: Coherent, code: COHR.US, region: US, sub: networking}
+  - {id: co-credo, name: Credo, code: CRDO.US, region: US, sub: networking}
+  - {id: co-asteralabs, name: Astera Labs, code: ALAB.US, region: US, sub: networking}
+  - {id: co-synopsys, name: Synopsys, code: SNPS.US, region: US, sub: eda_ip}
+  - {id: co-cadence, name: Cadence, code: CDNS.US, region: US, sub: eda_ip}
+  - {id: co-arm, name: Arm, code: ARM.US, region: US, sub: eda_ip}
+  - {id: co-alphabet, name: Alphabet, code: GOOGL.US, region: US, sub: hyperscaler}
+  - {id: co-microsoft, name: Microsoft, code: MSFT.US, region: US, sub: hyperscaler}
+  - {id: co-amazon, name: Amazon, code: AMZN.US, region: US, sub: hyperscaler}
+  - {id: co-meta, name: Meta, code: META.US, region: US, sub: hyperscaler}
+  - {id: co-oracle, name: Oracle, code: ORCL.US, region: US, sub: hyperscaler}
+  - {id: co-apple, name: Apple, code: AAPL.US, region: US, sub: components}
+  - {id: co-palantir, name: Palantir, code: PLTR.US, region: US, sub: software}
+  - {id: co-servicenow, name: ServiceNow, code: NOW.US, region: US, sub: software}
+  - {id: co-snowflake, name: Snowflake, code: SNOW.US, region: US, sub: software}
+  - {id: co-smci, name: Super Micro, code: SMCI.US, region: US, sub: server}
+  - {id: co-dell, name: Dell, code: DELL.US, region: US, sub: server}
+  - {id: co-vertiv, name: Vertiv, code: VRT.US, region: US, sub: power_infra}
+  - {id: co-asml, name: ASML, code: ASML.US, region: EU, sub: semicap}
+  # 대만
+  - {id: co-tsmc, name: TSMC, code: 2330.TW, region: TW, sub: foundry}
+  - {id: co-unimicron, name: Unimicron, code: 3037.TW, region: TW, sub: substrate}
+  - {id: co-ase, name: ASE, code: 3711.TW, region: TW, sub: substrate}
+  # 일본 — EODHD 거래소 코드 확인 전(code: null → 건너뜀)
+  - {id: co-tel, name: Tokyo Electron, code: null, jp_code: "8035", region: JP, sub: semicap}
+  - {id: co-ibiden, name: Ibiden, code: null, jp_code: "4062", region: JP, sub: substrate}
+  - {id: co-ajinomoto, name: Ajinomoto, code: null, jp_code: "2802", region: JP, sub: substrate}
+  - {id: co-nittobo, name: Nittobo, code: null, jp_code: "3110", region: JP, sub: substrate}
+  - {id: co-advantest, name: Advantest, code: null, jp_code: "6857", region: JP, sub: semicap}
+
+# 반영도 지수 구성(0~100, 높을수록 기대가 많이 반영됨) — 구성 요소별 가중치. 없는 요소는 빼고 재정규화
+priced_in_weights:
+  pe_vs_peer: 1.0          # 하위 섹터 중앙값 대비 선행 P/E 백분위
+  pe_vs_history: 1.0       # 자기 스냅숏 역사 내 선행 P/E 백분위
+  residual_premium: 1.0    # 정당 멀티플 회귀 잔차(펀더멘털로 설명 안 되는 프리미엄) 백분위
+  price_ahead_of_revision: 1.0   # 90일 주가 z − 90일 리비전 z 백분위
+  implied_growth_gap: 1.0  # 역DCF 내포 성장률 − 컨센서스 FY1 성장률 백분위
+  implied_bull_prob: 1.0   # 시나리오 사이 주가 위치(강세 확률) — scenarios.csv 있을 때만
+  beat_and_drop: 0.5       # 최근 4회 실적에서 서프라이즈인데 하락한 비율

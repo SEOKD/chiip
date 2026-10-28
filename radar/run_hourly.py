@@ -24,6 +24,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-twse-monthly", "twse_monthly", 1440),
     ("src-press-wire", "pollers.press_wire", 30),  # PR Newswire·Business Wire (저녁 브리프 '글로벌 공식 발표')
     ("src-weekly-movers", "markets.weekly_movers", 30),  # EODHD 주간 상승률 — 모듈이 토 06~09시·주 1회만 실제 실행
+    ("src-valuation", "markets.valuation_data", 30),  # 밸류에이션 수집·계산 — 모듈이 05~06시·15:45~17시에만 실제 실행
     # 5단계 v1
     ("src-communities", "communities", 60),
     ("src-foreign-press", "foreign_press", 120),

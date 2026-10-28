@@ -27,6 +27,8 @@ argument-hint: "[기업 id] [분기 예: 2026Q3]"
 8. **주장 승격** — 신규성 ≥2 또는 중요성 ≥2 항목을 `claim-intake`로 등록.
 9. **시장 반응**(가능할 때만): 발표 다음 거래일 종목·업종 지수 대비 등락. 확인 못 하면 "미확인".
 
+- 마지막 단계: 실적 반영 후 수집·계산(`py radar/markets/valuation_data.py --force`) → `valuation-card <기업 id>`로 시나리오·반영도 갱신(invest 모드 경계 준수, report 출력과 분리).
+
 ## 출력 (report 모드)
 ```
 [모드: report / 범위: <기업> <분기> 실적·콜 / 기준시각: …]

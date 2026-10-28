@@ -1926,3 +1926,10 @@ source: docs/methodology
 | **Notion** (`puzzling-crafter-0a3.notion.site` 공개 사이트) | **인사이트 게시글만** | public 모드 규칙 전부 적용(F1·`public_corroborated: true` 주장만, local-only·엠바고·투자 권유 금지). **게시마다 마스터 승인**(P15) — 초안을 보여주고 "게시 승인"을 받은 뒤에만 페이지 생성·공개. 브리프·플래시·기사 메모는 올리지 않는다 |
 | **Claude 웹 (claude.ai Artifact, 비공개)** | 아침·저녁 브리프, 주간 리뷰, 플래시 노트 공유 | 비공개로 게시하고 링크를 마스터에게 전달. 클라우드 저장이므로 **local-only 정보(F2~F4·라이선스 원문·필드 인텔 대조 결과)는 넣지 않는다.** 필드 인텔 대조는 로컬 `outputs/`에만 남긴다 |
 | 텔레그램 개인 봇 | 즉시 알림(P0·P1) | §10.7 그대로 |
+
+### 21.10 밸류에이션 시스템 (2026-10-28 마스터 지시) → ADR-008
+- "뉴스 전달자로 끝나지 않고 세미애널리시스처럼 뉴스와 리서치를 병행": 멀티플 프리미엄·EPS 리비전·내러티브·가격 반영도를 정량화하는 6층 시스템. 상세 `docs/valuation/framework.md`.
+- 아키텍처 위치: §4.1 레이어에 **밸류에이션 레이어** 추가 — L0 수집(`radar/markets/valuation_data.py`, run_hourly) → L1~L5 계산(`scripts/valuation/engine.py`) → 해석(스킬 `valuation-card`). 숫자는 코드, 시나리오·내러티브 단계·해석은 모델.
+- 레이더와의 연결: 내러티브 강도는 레이더 수집 항목(`radar/inbox`)의 키워드 일치 건수(`knowledge/narratives/registry.yaml`).
+- 출력: 아침·저녁 브리프 '■ 밸류에이션 레이더' 절(`engine.py --digest`), 실적 후 카드(`outputs/invest/valuation/`), 위클리 섹터 표. invest 모드 경계 — 목표주가·투자의견 없음, "공개 자료 기반 분석이며 투자 권유가 아님".
+- 데이터: EODHD 펀더멘털(추정치·리비전, 'Fundamentals'·'ALL-IN-ONE' 요금제) + EOD 가격 + 수동 컨센서스. 요금제는 마스터 결정 대기(TODO 21).

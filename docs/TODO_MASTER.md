@@ -43,6 +43,7 @@
 | 19 | 커뮤니티 원천: Reddit 켤지, 구독할 Substack 피드 | `config/community_sources.yaml` |
 | 20 | 웹 변경 감시 페이지, 잡보드 대상 | `config/page_watch.yaml`, `config/job_boards.yaml` |
 | 21 | **EODHD 키 (위클리 주간 상승률, 마스터 결정 10-28).** ① eodhd.com 무료 가입(카드 불필요) → `.env`에 `EODHD_API_KEY=` 입력 → 치입이 일본 지원 여부 확인 ② 확인되면 'EOD+Intraday All World Extended'($29.99/월, 스크리너 포함)로 업그레이드 ③ Dean's Ticker 채널 게시까지 하려면 개인 요금제는 표시·재배포 금지 — sales@eodhistoricaldata.com에 채널 게시 조건 문의 | `config/weekly_movers.yaml`(지역별 시총 기준선 draft), `radar/markets/weekly_movers.py` |
+| 21-0 | **밸류에이션 데이터 요금제 결정(10-28).** 추정치·리비전은 EODHD 'Fundamentals'($59.99, 가격 없음) 또는 'ALL-IN-ONE'($99.99, 가격+스크리너+펀더멘털)에만 있음 — 올인원이면 21번 $29.99 대신 하나로. 한국 추정치가 비면 T0 7종목만 `manual_consensus.csv`에 주 1회 입력(올해·내년 EPS 평균 등). 할인율·장기 P/E·유니버스·내러티브 노출 가중치 초안 검토 | `config/valuation.yaml`, `knowledge/narratives/registry.yaml`, `knowledge/models/valuation/README.md` |
 | 21-1 | Business Wire 피드 주소 추가: 브라우저에서 businesswire.com RSS 페이지 → Semiconductor·Technology·Earnings·Contracts 피드 주소 복사 → 치입에게 전달 | `config/press_wire.yaml` (지금은 M&A 피드만) |
 | 21-2 | 예약 작업 산출물(브리프·역방향 요약)은 커밋하지 않고 남음 — 마스터 세션에서 "브리프 커밋해"로 일괄 커밋 | `outputs/brief/`, `radar/cards/` |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |

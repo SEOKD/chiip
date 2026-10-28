@@ -34,6 +34,7 @@
 - 위클리 '글로벌 증시 주간 상승률'(Dean's Ticker 형식): Koyfin(API 없음·Plus 내보내기 없음)·TIKR(다운로드 불가) 검토 후 마스터가 EODHD 자동화 선택 → `radar/markets/weekly_movers.py`(토 06~09시, run_hourly 연결). 키 입력·일본 지원 확인·채널 게시 조건은 마스터 몫
 - 레이더 판정 때마다 claude 콘솔 창이 뜨던 문제(10-28 하루 47회): 작업 스케줄러는 `pyw`(창 없음)인데 `run_triage.py`가 띄우는 `claude.exe`가 새 콘솔을 열었음 → `CREATE_NO_WINDOW`로 숨김 실행
 - 텔레그램 알림 매체 제한(마스터 지시): 국내 언론 기사 제외, 기사는 Reuters·Bloomberg·WSJ·The Information·Business Insider·PR Newswire·GlobeNewswire만(`config/alert_rules.yaml` telegram_filter, `notify.telegram_allowed`). 막힌 P0·P1은 브리프 대기열로. 기업 뉴스룸 보도자료·공시·정부 문서는 기사가 아니므로 유지, Business Wire 수집분은 텔레그램 제외
+- 밸류에이션 시스템(ADR-008, BUILD_PROMPT §21.10): IB 5곳 공개 방법 종합 → 6층(수집·리비전·멀티플·내포 기대·내러티브·반영도). `radar/markets/valuation_data.py`(EODHD 펀더멘털·가격·수동 컨센서스, 05~06시·15:45~17시), `scripts/valuation/engine.py`(순수 파이썬 회귀·역DCF·수익률 분해·반영도 지수), 스킬 `valuation-card`, 아침·저녁 브리프 '밸류에이션 레이더' 절(예약 작업 지시문 갱신). 키·요금제 전이라 지금은 내러티브 강도만 실데이터
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

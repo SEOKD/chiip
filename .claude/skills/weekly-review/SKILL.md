@@ -44,6 +44,7 @@ Korea (https://t.me/d_ticker)
 [모드: brief / 범위: YYYY-Www / 기준시각: …]
 ■ 이번 주 한 문장
 ■ 글로벌 증시 주간 상승률 (Dean's Ticker 형식) + 반도체·AI 종목 한 줄
+■ 섹터 밸류에이션 (`py scripts/valuation/engine.py --digest evening` + 하위 섹터별 NTM P/E 중앙값·리비전·반영도 주간 변화, 내러티브 단계 변화)
 ■ 테제별 변화 (강화·약화·무관, 근거 id)
 ■ 지표·거울 데이터
 ■ 예측 원장 (만기 도래·판정)

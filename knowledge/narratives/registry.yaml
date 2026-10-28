@@ -1,0 +1,97 @@
+# 내러티브 등록부 (docs/valuation/framework.md §5) — 초안, 마스터 검토 전
+# - keywords: 레이더 수집 항목(제목·요약)에서 강도를 세는 정규식(대소문자 무시). 한·영·중·일
+# - model_variables: 이 이야기가 사실이 되면 바뀌는 모델 변수(Damodaran '이야기 → 숫자')
+# - exposure: 기업별 노출 가중치 0~1(매출·이익 민감도 추정, 가설). 근거가 생기면 evidence에 주장 id
+# - stage(태동·확산·컨센서스·과밀·소멸·붕괴·미판정)·stage_reason은 스킬 valuation-card가 판정해 갱신(모델 판단)
+# - 강도·가속도는 scripts/valuation/engine.py가 매번 계산(결정론) — 이 파일에 쓰지 않는다
+narratives:
+  - id: nar-hbm4-leadership
+    story: HBM4 세대에서 공급사 간 점유율·가격 결정력이 다시 갈린다
+    kpis: [HBM4 고객 인증·출하 시점, HBM 매출 비중, HBM ASP 프리미엄]
+    model_variables: [HBM 출하량, HBM ASP, DRAM 영업이익률]
+    keywords: 'HBM4|HBM 4|12단|16단|12-high|16-high|hybrid bonding|하이브리드 본딩|HBM.{0,8}(인증|퀄|qualif)'
+    exposure: {co-skhynix: 1.0, co-samsung: 0.6, co-micron: 0.8, co-hanmisemi: 0.7, co-nvidia: 0.2}
+    falsifiers: [주요 고객의 HBM4 채택 지연, HBM 가격 협상 하향, 경쟁사 인증 동시 통과로 프리미엄 소멸]
+    evidence: [C-20261027-001, C-20261027-003]
+    stage: 미판정
+  - id: nar-custom-asic
+    story: 하이퍼스케일러 자체 칩(ASIC)이 GPU 수요 일부를 대체하며 설계·IP·패키징 수혜가 이동한다
+    kpis: [ASIC 출하·고객 수, 브로드컴·마벨 AI 매출, TPU·Trainium 세대 전환]
+    model_variables: [가속기 물량 점유율, 고객 집중도, 기판·HBM 탑재량]
+    keywords: 'custom (ASIC|silicon|accelerator)|커스텀 (ASIC|칩)|자체 칩|TPU|Trainium|MTIA|Maia|XPU'
+    exposure: {co-broadcom: 1.0, co-marvell: 0.9, co-alphabet: 0.4, co-amazon: 0.3, co-nvidia: -0.3, co-ase: 0.3}
+    falsifiers: [ASIC 프로젝트 취소·지연, GPU 대비 TCO 열위 확인]
+    evidence: []
+    stage: 미판정
+  - id: nar-cowos-bottleneck
+    story: CoWoS 등 첨단 패키징 캐파가 AI 가속기 출하의 병목이다
+    kpis: [CoWoS 월 캐파, OSAT 증설, 패키징 리드타임]
+    model_variables: [가속기 출하 시점, 패키징 ASP, 기판 수요]
+    keywords: 'CoWoS|SoIC|advanced packaging|첨단 패키징|先進封裝|先进封装|CoPoS|panel.level'
+    exposure: {co-tsmc: 0.8, co-ase: 0.7, co-ibiden: 0.6, co-unimicron: 0.5, co-amat: 0.3, co-hanmisemi: 0.4}
+    falsifiers: [CoWoS 공급 과잉·가동률 하락, 가속기 수요 둔화]
+    evidence: []
+    stage: 미판정
+  - id: nar-ai-capex-durability
+    story: 하이퍼스케일러 AI CAPEX가 2027년 이후에도 늘어난다
+    kpis: [빅테크 CAPEX 가이던스, 데이터센터 착공·전력 계약, 클라우드 매출 성장]
+    model_variables: [가속기·메모리·네트워크 수요 지속 기간, 장기 성장률]
+    keywords: 'capex|설비투자|data ?cent(er|re)|데이터센터|資本支出|资本开支|hyperscaler|하이퍼스케일러'
+    exposure: {co-nvidia: 1.0, co-broadcom: 0.8, co-skhynix: 0.8, co-micron: 0.7, co-arista: 0.8, co-vertiv: 0.8, co-hdhyundaielec: 0.6, co-isupetasys: 0.7, co-tsmc: 0.6}
+    falsifiers: [빅테크 CAPEX 가이던스 하향, AI 매출화 부진으로 투자 축소 발언]
+    evidence: []
+    stage: 미판정
+  - id: nar-memory-cycle-duration
+    story: 이번 메모리 상승 사이클은 장기 계약(LTA)으로 과거보다 길다
+    kpis: [DRAM·NAND 계약가, 장기 계약 비중·기간, 재고 주수, 신규 팹 가동 시점]
+    model_variables: [정상화 EPS, 사이클 지속 기간, 적정 P/E·P/B 밴드]
+    keywords: 'LTA|장기 ?계약|long.term agreement|DRAM (가격|price|contract)|NAND (가격|price)|메모리 (가격|사이클|슈퍼)|supercycle|記憶體|存储|メモリ'
+    exposure: {co-skhynix: 1.0, co-samsung: 0.7, co-micron: 1.0, co-sandisk: 0.9, co-wdc: 0.4, co-seagate: 0.3}
+    falsifiers: [계약가 하락 전환, 재고 주수 증가, 증설 가속 발표]
+    evidence: [C-20261027-003]
+    stage: 미판정
+  - id: nar-glass-substrate
+    story: 유리기판이 차세대 패키지 기판으로 채택된다
+    kpis: [고객 인증, 시제품→양산 일정, 경쟁 기술(유기 기판) 대비 수율]
+    model_variables: [기판 ASP, 신규 매출 시점]
+    keywords: 'glass (substrate|core)|유리 ?기판|玻璃基板|ガラス基板|TGV'
+    exposure: {co-semco: 0.4, co-lginnotek: 0.2, co-ibiden: 0.2}
+    falsifiers: [고객 채택 연기, 수율 문제 공개]
+    evidence: []
+    stage: 미판정
+  - id: nar-inference-edge
+    story: AI 수요의 중심이 학습에서 추론·엣지로 이동한다
+    kpis: [추론 매출 비중, 온디바이스 AI 탑재, 토큰 처리량]
+    model_variables: [제품 믹스, 메모리 탑재량, 가속기 ASP]
+    keywords: 'inference|추론|edge AI|온디바이스|on.device|推論|推理'
+    exposure: {co-nvidia: 0.5, co-amd: 0.5, co-qualcomm: 0.6, co-apple: 0.4, co-arm: 0.6, co-micron: 0.3}
+    falsifiers: [추론 단가 급락으로 하드웨어 수요 둔화]
+    evidence: []
+    stage: 미판정
+  - id: nar-export-controls
+    story: 미국 수출통제·중국 자립이 반도체 수요와 장비 매출 지도를 바꾼다
+    kpis: [BIS 규칙, 중국 매출 비중, 중국 장비 수입]
+    model_variables: [중국 매출, 장비 수주, 리스크 할인]
+    keywords: 'export control|수출 ?통제|Entity List|BIS|出口管制|輸出規制|chip ban'
+    exposure: {co-nvidia: -0.4, co-amat: -0.5, co-lam: -0.5, co-kla: -0.4, co-asml: -0.4, co-samsung: -0.2, co-skhynix: -0.2}
+    falsifiers: [통제 완화·면제 연장]
+    evidence: []
+    stage: 미판정
+  - id: nar-power-cooling-bottleneck
+    story: 데이터센터의 병목이 전력·냉각으로 옮겨 간다
+    kpis: [변압기 리드타임, 전력 계약(PPA), 액체냉각 채택]
+    model_variables: [수주잔고, 가격, 증설 시점]
+    keywords: '변압기|transformer|power grid|전력망|liquid cool|액체 ?냉각|液冷|PPA|gigawatt|기가와트'
+    exposure: {co-vertiv: 1.0, co-hdhyundaielec: 1.0}
+    falsifiers: [리드타임 단축, 데이터센터 착공 지연]
+    evidence: []
+    stage: 미판정
+  - id: nar-korea-valueup
+    story: 한국 기업 주주환원·지배구조 개선(밸류업)이 코리아 디스카운트를 줄인다
+    kpis: [자사주 소각·배당, 상법 개정, 외국인 지분]
+    model_variables: [할인율, 지주 할인, P/B 밴드]
+    keywords: '밸류업|value.up|자사주 ?(매입|소각)|주주환원|배당 ?(확대|정책|성향)|분기배당|코리아 디스카운트|Korea discount'
+    exposure: {co-samsung: 0.6, co-skhynix: 0.4, co-doosan: 0.6, co-semco: 0.3, co-lginnotek: 0.3}
+    falsifiers: [제도 후퇴, 환원 축소]
+    evidence: []
+    stage: 미판정
