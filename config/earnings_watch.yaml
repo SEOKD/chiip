@@ -1,0 +1,72 @@
+# 어닝 캘린더 감시 목록 (마스터 지시 2026-10-28) — AI 밸류체인(SW 포함), 미국·EU·영국·일본·한국·대만
+# 대상 = config/valuation.yaml universe 전체 + 아래 extra + knowledge/models/tenbagger/watch.csv 추적 종목
+# kind_name: KRX KIND IR 일정의 회사명(정확히 일치). code: EODHD 형식(미검증 — 키 입력 후 일괄 확인, valuation.yaml code_verified와 같음)
+# 일정은 모두 수집·저장하고, 텔레그램은 알파 잠재력 점수(config/alpha.yaml) 5.0 이상만 보낸다.
+code_verified: false
+kind_name_override:          # universe 이름과 KIND 회사명이 다를 때
+  co-samsung: 삼성전자
+# 마스터 노션 Stocks 페이지의 종목(2026-10-28 동기화) — 알파 점수·어닝 캘린더에 항상 포함. 노션에 새 종목 페이지가 생기면 insight-review/focus 작업이 추가
+master_stocks: [co-samsung, co-oracle, co-innio, co-lotteem, co-coherent, co-dell, co-quanta-services, co-caci]
+master_themes: ["OCP 2026", "해양시추"]   # Stocks 안의 테마 페이지 — 내러티브 재료
+extra:
+  # 마스터 Stocks (AI 밸류체인 밖일 수 있음)
+  - {id: co-quanta-services, name: Quanta Services, code: PWR.US, region: US, sub: power_infra, master: true}
+  - {id: co-caci, name: CACI International, code: CACI.US, region: US, sub: software, master: true}
+  # 한국
+  - {id: co-samsungsds, name: 삼성SDS, kind_name: 삼성에스디에스, code: 018260.KO, region: KR, sub: software}
+  - {id: co-lgcns, name: LG CNS, kind_name: LG씨엔에스, code: 064400.KO, region: KR, sub: software}
+  - {id: co-lselectric, name: LS일렉트릭, kind_name: 엘에스일렉트릭, code: 010120.KO, region: KR, sub: power_infra}
+  - {id: co-taihan, name: 대한전선, kind_name: 대한전선, code: 001440.KO, region: KR, sub: power_infra}
+  - {id: co-hyosunghi, name: 효성중공업, kind_name: 효성중공업, code: 298040.KO, region: KR, sub: power_infra}
+  - {id: co-doosanenerbility, name: 두산에너빌리티, kind_name: 두산에너빌리티, code: 034020.KO, region: KR, sub: power_infra}
+  - {id: co-samsungsdi, name: 삼성SDI, kind_name: 삼성SDI, code: 006400.KO, region: KR, sub: power_infra, note: "데이터센터 ESS·BBU — 경계 사례"}
+  - {id: co-lge, name: LG전자, kind_name: LG전자, code: 066570.KO, region: KR, sub: power_infra, note: "데이터센터 냉각(칠러) — 경계 사례"}
+  - {id: co-skc, name: SKC, kind_name: SKC, code: 011790.KO, region: KR, sub: substrate, note: "유리기판(앱솔릭스)"}
+  - {id: co-chipsnmedia, name: 칩스앤미디어, kind_name: 칩스앤미디어, code: 094360.KQ, region: KR, sub: eda_ip}
+  - {id: co-gaonchips, name: 가온칩스, kind_name: 가온칩스, code: 399720.KQ, region: KR, sub: eda_ip}
+  - {id: co-techwing, name: 테크윙, kind_name: 테크윙, code: 089030.KQ, region: KR, sub: semicap}
+  - {id: co-hanamicron, name: 하나마이크론, kind_name: 하나마이크론, code: 067310.KQ, region: KR, sub: substrate}
+  # 미국
+  - {id: co-innio, name: INNIO, code: INIO.US, region: US, sub: power_infra}
+  - {id: co-gevernova, name: GE Vernova, code: GEV.US, region: US, sub: power_infra}
+  - {id: co-amphenol, name: Amphenol, code: APH.US, region: US, sub: components}
+  - {id: co-corning, name: Corning, code: GLW.US, region: US, sub: networking}
+  - {id: co-celestica, name: Celestica, code: CLS.US, region: US, sub: server}
+  - {id: co-amkor, name: Amkor, code: AMKR.US, region: US, sub: substrate}
+  - {id: co-rambus, name: Rambus, code: RMBS.US, region: US, sub: eda_ip}
+  - {id: co-ttm, name: TTM Technologies, code: TTMI.US, region: US, sub: substrate}
+  - {id: co-vicor, name: Vicor, code: VICR.US, region: US, sub: power_infra}
+  - {id: co-bloom, name: Bloom Energy, code: BE.US, region: US, sub: power_infra}
+  - {id: co-generac, name: Generac, code: GNRC.US, region: US, sub: power_infra}
+  - {id: co-ultraclean, name: Ultra Clean, code: UCTT.US, region: US, sub: semicap}
+  - {id: co-formfactor, name: FormFactor, code: FORM.US, region: US, sub: semicap}
+  - {id: co-lumentum, name: Lumentum, code: LITE.US, region: US, sub: networking}
+  - {id: co-ciena, name: Ciena, code: CIEN.US, region: US, sub: networking}
+  - {id: co-fabrinet, name: Fabrinet, code: FN.US, region: US, sub: networking}
+  - {id: co-coreweave, name: CoreWeave, code: CRWV.US, region: US, sub: hyperscaler}
+  - {id: co-equinix, name: Equinix, code: EQIX.US, region: US, sub: hyperscaler}
+  - {id: co-ibm, name: IBM, code: IBM.US, region: US, sub: software}
+  - {id: co-commvault, name: Commvault, code: CVLT.US, region: US, sub: software}
+  - {id: co-nxp, name: NXP, code: NXPI.US, region: US, sub: analog}
+  # EU·영국
+  - {id: co-abb, name: ABB, code: ABBN.SW, region: EU, sub: power_infra}
+  - {id: co-schneider, name: Schneider Electric, code: SU.PA, region: EU, sub: power_infra}
+  - {id: co-siemensenergy, name: Siemens Energy, code: ENR.XETRA, region: EU, sub: power_infra}
+  - {id: co-infineon, name: Infineon, code: IFX.XETRA, region: EU, sub: analog}
+  - {id: co-besi, name: BE Semiconductor, code: BESI.AS, region: EU, sub: semicap}
+  - {id: co-asmi, name: ASM International, code: ASM.AS, region: EU, sub: semicap}
+  - {id: co-munters, name: Munters, code: MTRS.ST, region: EU, sub: power_infra}
+  - {id: co-hubersuhner, name: Huber+Suhner, code: HUBN.SW, region: EU, sub: networking}
+  - {id: co-sap, name: SAP, code: SAP.XETRA, region: EU, sub: software}
+  - {id: co-nokia, name: Nokia, code: NOKIA.HE, region: EU, sub: networking}
+  # 일본
+  - {id: co-disco, name: DISCO, code: 6146.TSE, region: JP, sub: semicap}
+  - {id: co-shinetsu, name: Shin-Etsu Chemical, code: 4063.TSE, region: JP, sub: substrate}
+  - {id: co-lasertec, name: Lasertec, code: 6920.TSE, region: JP, sub: semicap}
+  - {id: co-fujikura, name: Fujikura, code: 5803.TSE, region: JP, sub: networking}
+  # 대만
+  - {id: co-delta, name: Delta Electronics, code: 2308.TW, region: TW, sub: power_infra}
+  - {id: co-elitematerial, name: Elite Material, code: 2383.TW, region: TW, sub: substrate}
+  - {id: co-quanta, name: Quanta Computer, code: 2382.TW, region: TW, sub: server}
+  - {id: co-wiwynn, name: Wiwynn, code: 6669.TW, region: TW, sub: server}
+  - {id: co-accton, name: Accton, code: 2345.TW, region: TW, sub: networking}

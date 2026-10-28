@@ -1,9 +1,4 @@
 date,time_kst,type,entity_or_event,description,expectation_note_ref,status
-2026-10-28,09:00 이전,실적발표,co-skhynix,"3분기 실적 발표(회사 사전 안내를 인용한 2차 보도 기준, 회사 IR 원문 확인 필요)",,확인(2차)
-2026-12-12,,학회,IEDM 2026,"IEEE IEDM 2026, 2026-12-12~16, San Francisco Hilton Union Square (전시 12-14~16)",,확인
-2027-01-06,,제품행사,CES 2027,"CES 2027, 2027-01-06~09, Las Vegas Convention Center (마스터 출장 2027-01-02 출발 예정)",,확인
-2027-02-14,,학회,ISSCC 2027,"IEEE ISSCC 2027, 2027-02-14~18, San Francisco Marriott Marquis",,확인
-2027-12-04,,학회,IEDM 2027,"IEEE IEDM 2027, 2027-12-04~08, San Francisco Hilton Union Square",,확인
 ,,잠정실적,co-samsung,4분기 잠정실적 — 날짜 공식 확인 필요,,미확인
 ,,실적발표,co-samsung,4분기 확정 실적·컨퍼런스콜 — 날짜 공식 확인 필요,,미확인
 ,,실적발표,co-skhynix,4분기 실적·컨퍼런스콜 — 날짜 공식 확인 필요,,미확인
@@ -12,5 +7,24 @@ date,time_kst,type,entity_or_event,description,expectation_note_ref,status
 ,,실적발표,co-doosan,4분기 실적 — 날짜 공식 확인 필요,,미확인
 ,,실적발표,co-lotteem,4분기 실적 — 날짜 공식 확인 필요,,미확인
 ,,실적발표,co-isupetasys,4분기 실적 — 날짜 공식 확인 필요,,미확인
+2026-10-28,09:00 이전,실적발표,co-skhynix,"3분기 실적 발표(회사 사전 안내를 인용한 2차 보도 기준, 회사 IR 원문 확인 필요)",,확인(2차)
+2026-10-28,13:00,실적발표,co-semco,삼성전기 2026년도 3분기 경영실적 발표 (KIND IR일정 자동),,예정
+2026-10-28,14:00,실적발표,co-skc,SKC 2026년 3분기 경영실적 발표 (KIND IR일정 자동),,예정
+2026-10-28,16:00,실적발표,co-lge,LG전자 2026년 3분기 경영실적 발표 (KIND IR일정 자동),,예정
+2026-10-29,10:00,실적발표,co-samsung,삼성전자 Announce 3Q 2026 results of Samsung Electronics (KIND IR일정 자동),,예정
+2026-10-29,14:00,실적발표,co-samsungsds,삼성SDS 2026년 3분기 경영실적 설명회 (KIND IR일정 자동),,예정
+2026-10-29,10:00,실적발표,co-samsungsdi,삼성SDI 3Q FY2026 Earnings release (KIND IR일정 자동),,예정
+2026-10-29,15:45,실적발표,co-doosanenerbility,두산에너빌리티 Q3 2026 earnings release (KIND IR일정 자동),,예정
+2026-10-29,15:00,실적발표,co-taihan,대한전선 '26.3분기 실적 발표 (KIND IR일정 자동),,예정
+2026-10-29,09:00,실적발표,co-skc,SKC 2026년 3분기 실적 및 경영현황 설명 (KIND IR일정 자동),,예정
+2026-10-29,09:00,실적발표,co-isc,ISC 2026년 3분기 경영실적 및 경영현황 설명 (KIND IR일정 자동),,예정
+2026-10-30,10:30,실적발표,co-lgcns,LG CNS 2026년 3분기 경영실적 발표 (KIND IR일정 자동),,예정
+2026-11-04,09:00,실적발표,co-daeduck,대덕전자 2026년 3분기 경영실적 및 향후전망 설명 (KIND IR일정 자동),,예정
+2026-11-05,10:00,실적발표,co-lotteem,롯데에너지머티리얼즈 3Q 2026 Earnings Conference Call (KIND IR일정 자동),,예정
+2026-11-09,16:00,실적발표,co-doosan,두산 2026년 3분기 (주)두산 경영실적 발표 (KIND IR일정 자동),,예정
 2026-11-16,,기타,인사 시즌 모드 시작(삼성전자·SK하이닉스),"§12.5 ±2주 고빈도. 삼성전자 과거 발표: 사장단 2023-11-27·2024-11-27, 임원 2023-11-29·2024-11-29(삼성 뉴스룸 목록). SK하이닉스 과거일 미확인. 올해 날짜 미정",,확인(과거일)
 2026-12-11,,기타,인사 시즌 모드 종료,,,예정
+2026-12-12,,학회,IEDM 2026,"IEEE IEDM 2026, 2026-12-12~16, San Francisco Hilton Union Square (전시 12-14~16)",,확인
+2027-01-06,,제품행사,CES 2027,"CES 2027, 2027-01-06~09, Las Vegas Convention Center (마스터 출장 2027-01-02 출발 예정)",,확인
+2027-02-14,,학회,ISSCC 2027,"IEEE ISSCC 2027, 2027-02-14~18, San Francisco Marriott Marquis",,확인
+2027-12-04,,학회,IEDM 2027,"IEEE IEDM 2027, 2027-12-04~08, San Francisco Hilton Union Square",,확인

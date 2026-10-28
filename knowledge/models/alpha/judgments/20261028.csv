@@ -1,0 +1,69 @@
+id,component,score,reason,evidence
+co-samsung,upside,6,"3Q 잠정 영업익 107.4조로 컨센서스 소폭 상회, HBM4 양산 본격화 — 이미 큰 숫자라 추가 서프라이즈 폭은 제한",https://www.fnnews.com/news/202610080501541626
+co-samsung,gap,5,가격·추정치 미수집으로 내포 기대 미계산 — 근거 약함,knowledge/models/focus/judgments/20261028.csv
+co-samsung,bottleneck,6,HBM4·범용 메모리 공급 주도권 회복(메모리 계약 단축 보도),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-a
+co-samsung,asymmetry,2,초대형주·커버리지 최다 — 발견 여지 낮음,knowledge/models/focus/scores/20261028.csv
+co-samsungsdi,upside,6,"3Q 영업익 컨센서스 3개월 새 148억→1251억으로 급상향, AI 데이터센터 ESS·BBU 수요",https://economist.co.kr/article/view/ecn202609150005
+co-samsungsdi,gap,5,"리비전이 이미 크게 반영됐을 가능성, 내포 기대 미계산 — 근거 약함",https://economist.co.kr/article/view/ecn202609150005
+co-samsungsdi,bottleneck,4,"BBU·ESS는 경쟁 공급사 다수, 비중국 공급망이 차별점일 뿐 독점 아님",https://www.dailian.co.kr/news/view/1638976/
+co-samsungsdi,asymmetry,3,대형주·커버리지 많음,
+co-samsungsds,upside,3,"3Q 컨센서스 영업익 +5.3%, 물류 원가·SI 부진 — 상향 여지 작음",https://news.bizwatch.co.kr/article/mobile/2026/10/20/0022/
+co-samsungsds,gap,4,내포 기대 미계산 — 근거 약함,
+co-samsungsds,bottleneck,2,AI 클라우드·데이터센터 운영은 병목 해결 기술이 아님,
+co-samsungsds,asymmetry,3,대형주,
+co-taihan,upside,6,"상반기 수주잔고 4조원 돌파, HVDC·해저케이블 수주, 연간 영업익 전망 상향",https://view.asiae.co.kr/article/2026071516392414795
+co-taihan,gap,5,"3Q 원화 강세로 눈높이 하회 우려(일시적) — 내포 기대 미계산, 근거 약함",https://news.bizwatch.co.kr/article/industry/2026/10/20/0003
+co-taihan,bottleneck,6,초고압·해저 케이블 생산능력은 송전망 증설의 병목,https://dealsite.co.kr/articles/166287
+co-taihan,asymmetry,6,중형주·커버리지 상대적으로 적음,
+co-doosanenerbility,upside,7,"가스터빈 누적 23기(미국 12기) 수주, 수주잔고 24.1조(+46%), 캐파 8→12기 증설",https://www.smarttoday.co.kr/ko-kr/articles/104492
+co-doosanenerbility,gap,4,원전·가스터빈 내러티브로 이미 재평가됐을 가능성 — 근거 약함,https://biz.sbs.co.kr/amp/article/20000324917
+co-doosanenerbility,bottleneck,8,대형 가스터빈은 세계 공급사가 손에 꼽히는 데이터센터 전력 병목,https://sateconomy.co.kr/news/view/1065601901370817
+co-doosanenerbility,asymmetry,3,대형주·커버리지 많음,
+co-skc,upside,5,유리기판 인증 시 큰 옵션이지만 양산 일정 '예측 어려움' 공시로 확률 하락,https://v.daum.net/v/Bc7tFoPKYF
+co-skc,gap,4,"기대감으로 주가가 먼저 오름, 4000억 유상증자 희석",https://news.mtn.co.kr/news-detail/2026082116362761766
+co-skc,bottleneck,5,유리기판은 차세대 패키징 해법이나 현재 병목은 아님(AMD 샘플 인증 단계),https://v.daum.net/v/Bc7tFoPKYF
+co-skc,asymmetry,6,결과가 양자택일인 옵션형 구조,
+co-isc,upside,7,"2Q 사상 최대 매출 729억·영업익 213억, AI 비중 81%, 통합 테스트 솔루션 확대",https://www.mt.co.kr/stock/2026/07/27/2026072714449672226
+co-isc,gap,5,내포 기대 미계산 — 근거 약함,
+co-isc,bottleneck,6,AI 가속기·HBM 고사양 테스트 소켓 — 메모리 3사 공급 확대,https://www.mt.co.kr/stock/2026/07/27/2026072714449672226
+co-isc,asymmetry,7,소형주·커버리지 적음,
+co-lgcns,upside,4,"3Q 컨센서스 영업익 +13%, 클라우드·AI 매출 비중 59%, 인도네시아 AI 데이터센터",https://news.bizwatch.co.kr/article/mobile/2026/10/20/0022/
+co-lgcns,gap,4,내포 기대 미계산 — 근거 약함,
+co-lgcns,bottleneck,2,IT 서비스 — 병목 해결 기술 아님,
+co-lgcns,asymmetry,4,중대형주,
+co-daeduck,upside,7,"FC-BGA 가동률 70~75%→90%, 대면적 양산 진입, 생산능력 4500→6500억(1Q27), 로직 기판 매출 2.1배",https://stock.pstatic.net/stock-research/company/61/20260803_company_595815000.pdf
+co-daeduck,gap,5,"환율 역풍으로 3Q 눈높이 조정 — 내포 기대 미계산, 근거 약함",https://core.asiae.co.kr/article/2026101917263682470
+co-daeduck,bottleneck,6,AI 가속기용 대면적 FC-BGA 캐파는 공급 제약,https://stock.pstatic.net/stock-research/company/61/20260803_company_595815000.pdf
+co-daeduck,asymmetry,7,중소형주·장기공급계약(LTA) 발표가 카탈리스트,
+co-lotteem,upside,5,고사양 동박 스펙 상향(HVLP3→4) 옵션이나 회사 공급 실적 미확인 — 근거 약함,https://news.bizwatch.co.kr/article/industry/2025/02/20/0030
+co-lotteem,gap,6,업황 부진으로 기대가 낮음(포커스 판단) — 근거 약함,knowledge/models/focus/judgments/20261028.csv
+co-lotteem,bottleneck,4,"AI용 CCL 동박 공급사 중 하나, 독점 근거 없음",
+co-lotteem,asymmetry,6,"중형주·해외 관심 낮음, 마스터 Stocks 종목",
+co-doosan,upside,7,"전자BG 2Q 매출 +42%·영업익률 30%, 엔비디아 블랙웰 컴퓨트 트레이 CCL 독점·베라 루빈 주요 벤더",https://stock.pstatic.net/stock-research/company/66/20260728_company_385799000.pdf
+co-doosan,gap,5,지주 할인 존재하나 이미 재평가 진행 — 근거 약함,https://news.mtn.co.kr/news-detail/2026041714380652229
+co-doosan,bottleneck,8,AI GPU 서버용 고사양 CCL 단독 공급 — 대체 어려움,https://stock.pstatic.net/stock-research/company/66/20260728_company_385799000.pdf
+co-doosan,asymmetry,4,대형 지주사·커버리지 있음,
+co-innio,upside,8,3Q 콜: 가이던스 상향·잔고 8B·서비스 강도 $50k/MW 수치화 — 치입 모델 영향 +8점,outputs/invest/20261028_innio_q3_delta.md
+co-innio,gap,8,"주가는 WACC 11.1% 또는 장기 장비마진 5.8%를 가정해야 나옴, 52주 고점 대비 -60%",outputs/invest/20261028_innio_q3_delta.md
+co-innio,bottleneck,7,비하인드더미터 가스엔진 — 2027년 물량 매진·캐파 확장이 병목 해소의 핵심,outputs/invest/20261028_innio_q3_delta.md
+co-innio,asymmetry,6,시총 $12.7B·애널리스트 10명·공매도 유동주식 22.8%,easyconomics company_profile(yfinance) 2026-10-28
+co-oracle,upside,6,"매출 성장 29.6%·실적 서프라이즈 지속, AI 클라우드 수주 전환 시 이익 레버리지",easyconomics company_profile(yfinance) 2026-10-28
+co-oracle,gap,7,선행 P/E 11.9·52주 고점 대비 -54% — 시장이 FCF 적자(-$45.9B)·차입 $169B 위험을 크게 할인,easyconomics company_profile(yfinance) 2026-10-28
+co-oracle,bottleneck,5,AI 연산 용량 공급자 — 병목 해결 기술보다 자본 투입형,
+co-oracle,asymmetry,2,시총 $396B·애널리스트 44명,easyconomics company_profile(yfinance) 2026-10-28
+co-coherent,upside,7,"선행 EPS $13.9 vs 직전 $4.1, 매출 성장 33.7%·8분기 연속 서프라이즈(1.6T·CPO·OCS)",easyconomics company_profile(yfinance) 2026-10-28
+co-coherent,gap,6,선행 P/E 17·52주 고점 대비 -46%,easyconomics company_profile(yfinance) 2026-10-28
+co-coherent,bottleneck,7,AI 광 트랜시버·레이저(InP) 캐파는 스케일업·아웃의 병목,
+co-coherent,asymmetry,4,시총 $46B·애널리스트 31명,easyconomics company_profile(yfinance) 2026-10-28
+co-dell,upside,5,매출 +57.7%·EPS 서프라이즈 43~64% — 이미 강한 실적,easyconomics company_profile(yfinance) 2026-10-28
+co-dell,gap,4,"52주 저점 대비 4.5배, 고점 근처",easyconomics company_profile(yfinance) 2026-10-28
+co-dell,bottleneck,3,AI 서버 조립·통합 — 병목 해결 기술 아님(GPU 배정 의존),
+co-dell,asymmetry,2,시총 $319B,easyconomics company_profile(yfinance) 2026-10-28
+co-quanta-services,upside,6,"매출 +41%·최근 2분기 EPS 서프라이즈 28~32%, 송전·데이터센터 전력 건설",easyconomics company_profile(yfinance) 2026-10-28
+co-quanta-services,gap,4,선행 P/E 29 프리미엄(고점 대비 -27%),easyconomics company_profile(yfinance) 2026-10-28
+co-quanta-services,bottleneck,7,송전망 건설 인력·역량은 데이터센터 전력 연결의 병목,
+co-quanta-services,asymmetry,3,시총 $87B·애널리스트 34명,easyconomics company_profile(yfinance) 2026-10-28
+co-caci,upside,3,매출 성장 8%·국방 IT — AI 밸류체인 노출 작음,easyconomics company_profile(yfinance) 2026-10-28
+co-caci,gap,4,선행 P/E 17·52주 고점 근처,easyconomics company_profile(yfinance) 2026-10-28
+co-caci,bottleneck,2,병목 해결 기술 아님,
+co-caci,asymmetry,4,시총 $14.7B·애널리스트 20명,easyconomics company_profile(yfinance) 2026-10-28

@@ -1964,3 +1964,9 @@ source: docs/methodology
 - 반대 검증 반영: 매일 피팅하면 과적합 → 매일은 학습·제안, 피팅·채택은 표본 외 개선 확인 후 주·월 단위. 가격·추정치 데이터(TODO 21-0) 전에는 피팅·DCF 실수치·텐배거 정량 선별 불가 → A단계(데이터 무관)부터.
 - 경계: invest 모드 규칙 그대로(목표주가·매수 의견 없음, local-only·필드 인텔은 정량 판정에 쓰지 않음, 대조 결과는 로컬 파일만). 노션 '치입 검토'는 비공개 허브에만.
 
+### 21.15 어닝 캘린더·알파 잠재력 점수·마스터 노션 구조 (2026-10-28 마스터 지시)
+- 지시: ① Yahoo Finance·Finviz·Investing.com에서 미국·EU·영국·일본·한국·대만 AI 밸류체인(SW 포함) 어닝 캘린더를 매일 → 약관·robots 확인 결과 세 곳 모두 쓰지 않음(Yahoo는 AI 수집기 전면 차단, Finviz·Investing.com은 자동 수집 금지로 알려짐). ② 한국은 KRX KIND IR 일정 공시(DART 제외 원칙 유지, 마스터 선택). ③ "무작정 다 보내면 정보 과잉 — 텐배거 가능성(1000%가 아니라 그만큼 큰 알파) 10점 만점 5점 이상만 어닝 캘린더 전달". ④ 노션은 Insights·Informations·Stocks로 분류 — 이름을 기억하고 역할별로 구분.
+- 구현: 수집 `radar/markets/earnings_calendar.py`(run_hourly 30분 호출, 수집 6시간마다, 07~09시 첫 실행 때 발송·월요일 7일치, 기준 미달·미산정 건수만 표시) · 대상 `config/earnings_watch.yaml`(valuation universe + extra + master_stocks + 텐배거 추적) · 점수 `config/alpha.yaml`·`scripts/alpha/score.py`(요소 upside·gap·bottleneck·asymmetry, 가중 0.3·0.3·0.2·0.2, 요소 2개 미만 미산정, 14일 지나면 미산정, fail_closed) · 판단은 매일 06:40 focus-score 작업(7일 내 발표 종목 보충) + 토요일 tenbagger 작업(전 종목 재산정) · 일정은 `knowledge/calendar.csv`에도 추가 · 파라미터 등록부 prm-alpha-*.
+- 해외 일정: EODHD `/api/calendar/earnings`(키 입력 시 자동). 일본 JPX 결산발표 예정일·대만 TWSE 공개 데이터는 약관 확인 후 추가(TDnet·MOPS는 robots 차단).
+- 노션(`config/notion.yaml` pages): Insights = 마스터 인사이트 글(검토 대상, 글 아래 '치입 검토' 하위 페이지만 작성, 검토 상태 `scripts/insight_state.py`) / Informations = 수집 정보(근거 재료, IB 요지는 라이선스 취급, 채널체크는 필드 인텔 가능성 → invest·public 판정 금지) / Stocks = 종목·테마 커버리지(어닝 캘린더·알파 점수 대상에 항상 포함). 기존 '오피니언·인사이트' DB는 남겨 두되 새로 쓰지 않음.
+

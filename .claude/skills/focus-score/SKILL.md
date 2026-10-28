@@ -14,7 +14,8 @@ description: 포커스 종목 점수(10점 만점)를 매일 산정한다. AI �
    - reason은 한 문장, evidence는 카드·주장 id 또는 출처 URL. 근거가 약하면 점수를 중간(4~6)에 두고 reason에 "근거 약함".
    - 전 종목을 매일 다시 쓸 필요는 없다: 전일 판단 파일을 복사해 바뀐 종목만 고친다(어제 이후 실적·가이던스·큰 뉴스·주가 급변이 있었던 종목 우선).
 3. `py scripts/focus/score.py --finalize --send` — 합성·변화 계산·포커스 목록(knowledge/models/focus/latest.json, 수집 관문이 읽음)·텔레그램 발송.
-4. 노션 대기열: `py radar/telegram_inbox.py --export`에 항목이 있으면(NOTION_TOKEN 없음) 노션 커넥터로 `config/notion.yaml` archive.data_source에 페이지를 만들고 `py radar/telegram_inbox.py --mark-done <ref,...>`. 메모 갱신(status memo_update)은 page_id 페이지의 '마스터 메모'만 고친다.
+4. 알파 점수 보충(어닝 캘린더용, `config/alpha.yaml`): `knowledge/models/earnings/upcoming.json`에서 앞으로 7일 안에 발표하는 종목 중 `knowledge/models/alpha/latest.json`에 점수가 없거나 scored_on이 14일 넘은 종목만 알파 판단을 `knowledge/models/alpha/judgments/<오늘>.csv`에 쓰고 `py scripts/alpha/score.py --finalize`(07~09시 실적 일정 발송 전에 끝나야 한다). 기준은 스킬 tenbagger-card '알파 점수' 절.
+5. 노션 대기열: `py radar/telegram_inbox.py --export`에 항목이 있으면(NOTION_TOKEN 없음) 노션 커넥터로 `config/notion.yaml` archive.data_source에 페이지를 만들고 `py radar/telegram_inbox.py --mark-done <ref,...>`. 메모 갱신(status memo_update)은 page_id 페이지의 '마스터 메모'만 고친다.
 
 ## 요소 기준 (0~10)
 | 요소 | 높음(8~10) | 중간(4~6) | 낮음(0~3) |

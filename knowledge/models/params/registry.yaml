@@ -567,3 +567,84 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-alpha-w-upside
+  model: alpha.score
+  binding: config/alpha.yaml#weights.upside
+  value: 0.3
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.3
+    basis: 초안 가중(상방·괴리 0.3, 병목·비대칭 0.2) — 근거 없음, 피팅 대상
+    source: null
+  fit:
+    method: 알파 점수 상위군의 이후 6·12개월 초과수익(기준지수 대비) 순위 상관 → 사전값 쪽 축소
+    target: 초과수익
+    data: alpha/judgments 이력 × 가격(EODHD)
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha-w-gap
+  model: alpha.score
+  binding: config/alpha.yaml#weights.gap
+  value: 0.3
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.3
+    basis: 초안 가중(상방·괴리 0.3, 병목·비대칭 0.2) — 근거 없음, 피팅 대상
+    source: null
+  fit:
+    method: 알파 점수 상위군의 이후 6·12개월 초과수익(기준지수 대비) 순위 상관 → 사전값 쪽 축소
+    target: 초과수익
+    data: alpha/judgments 이력 × 가격(EODHD)
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha-w-bottleneck
+  model: alpha.score
+  binding: config/alpha.yaml#weights.bottleneck
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: 초안 가중(상방·괴리 0.3, 병목·비대칭 0.2) — 근거 없음, 피팅 대상
+    source: null
+  fit:
+    method: 알파 점수 상위군의 이후 6·12개월 초과수익(기준지수 대비) 순위 상관 → 사전값 쪽 축소
+    target: 초과수익
+    data: alpha/judgments 이력 × 가격(EODHD)
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha-w-asymmetry
+  model: alpha.score
+  binding: config/alpha.yaml#weights.asymmetry
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: 초안 가중(상방·괴리 0.3, 병목·비대칭 0.2) — 근거 없음, 피팅 대상
+    source: null
+  fit:
+    method: 알파 점수 상위군의 이후 6·12개월 초과수익(기준지수 대비) 순위 상관 → 사전값 쪽 축소
+    target: 초과수익
+    data: alpha/judgments 이력 × 가격(EODHD)
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha-threshold
+  model: alpha.score
+  binding: config/alpha.yaml#threshold
+  value: 5.0
+  unit: 점
+  status: adopted
+  prior:
+    value: 5.0
+    basis: 마스터 지시(5.0 이상만 실적 일정 발송) — 피팅하지 않는다
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+  fixed_by_master: true

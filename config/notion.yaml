@@ -1,10 +1,22 @@
 # 노션 구성 (BUILD_PROMPT §21.13) — id는 비밀이 아니다. 토큰(NOTION_TOKEN)은 D:\local-only\secrets\.env 에만.
 # 허브 '치입 인텔리전스'는 비공개 페이지로 만들었다(2026-10-28). 공개 사이트로 옮기면 public 모드 규칙을 적용한다.
+# ── 마스터가 정한 노션 구조(2026-10-28) — 최상위 페이지 3개, 각 페이지 아래 하위 페이지. 이름·역할을 바꾸지 않는다 ──
+pages:
+  insights:          # Insights — 마스터의 투자·리서치 인사이트 글(제목 YYMMDD). 치입 핵심 역할의 검토 대상(스킬 insight-review)
+    id: "407b5d1e-0998-800a-99aa-c6f8581276ba"
+    role: "마스터 의견·테제. 치입은 글 아래 하위 페이지 '치입 검토 YYYY-MM-DD'만 만든다(본문 수정 금지)"
+  informations:      # Informations — 마스터가 모은 정보(채널체크·IB 리포트 요지·CAPEX·정책). 검토·분석의 근거 재료
+    id: "407b5d1e-0998-803a-8359-e41e621d673c"
+    role: "읽기 전용 재료. IB 리포트 요지는 라이선스 자료 취급(저장소 복제 금지), 채널체크는 필드 인텔일 수 있음 → invest·public 판정에 쓰지 않고 대조는 로컬만"
+  stocks:            # Stocks — 마스터의 종목·테마 커버리지(제목 '회사명 티커' 또는 테마명)
+    id: "407b5d1e-0998-803d-a81a-d5570164959f"
+    role: "마스터 관심 종목 = 어닝 캘린더·알파 점수 대상에 항상 포함(config/earnings_watch.yaml master_stocks). 테마 페이지(OCP 2026, 해양시추 등)는 내러티브 재료"
+# ── 치입이 만든 비공개 허브(2026-10-28) ──
 hub_page: "407b5d1e-0998-81ce-9ec6-c98ef4690a18"
 archive:                   # 인텔 아카이브 — 텔레그램 ⭐ 버튼으로 고른 정보
   database: "ecd5a1f1-da43-440f-a7e8-832523214445"
   data_source: "d8ef687a-4ed6-42a7-a269-eaf0592c149b"
-insights:                  # 오피니언·인사이트 — 마스터가 직접 쓰는 글
+insights_db:               # (구) 오피니언·인사이트 DB — 마스터가 Insights 페이지를 쓰므로 검토 대상은 pages.insights. DB는 남겨 두되 새로 쓰지 않음
   database: "9fc11985-c743-4e35-b2d2-6077510d74b0"
   data_source: "0c42a0c8-d473-4b08-82c0-404bf4508d61"
 api:

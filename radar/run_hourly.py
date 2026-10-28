@@ -39,6 +39,7 @@ JOBS = [  # (job id, module, interval_min)
     # 부가가치 엔진(§21.14) — 모델 고도화 재료. 레이더 판정·알림과 무관
     ("src-literature", "literature", 360),  # 논문·실무 리서치(판단은 예약 작업 chiip-model-lab)
     ("src-sec-xbrl", "markets.sec_xbrl", 10080),  # 미국 상장·ADR 재무 이력(주 1회)
+    ("src-earnings-calendar", "markets.earnings_calendar", 30),  # AI 밸류체인 어닝 일정 — 수집 6시간마다, 07~09시 알파 5점 이상만 텔레그램
 ]
 
 

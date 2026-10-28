@@ -42,6 +42,7 @@
 - 뉴스 매체 9곳(마스터 지시): CNBC·Seeking Alpha 추가. 두 곳은 robots.txt가 Claude 등 AI 수집기를 차단 → Google News 색인(제목·링크)으로만
 - 부가가치 엔진 A단계(§21.14·ADR-010, 마스터 승인): CLAUDE.md 사명 절, 파라미터 등록부(35개, 기존 상수 26개 이전) + 피팅 하네스(walk-forward·축소·채택 관문), 논문 수집기(arXiv q-fin·NBER·연준·다모다란·Alpha Architect), SEC XBRL 재무 이력(39종목), 스킬 insight-review·model-lab·article-pitch·tenbagger-card, 노션 인사이트 DB 검토 속성 6개, 예약 작업 4개(인사이트 07:30·21:30, 모델 연구 14:30, 기사 소재 평일 16:40, 텐배거 토 10:30), 예측 원장 owner·origin 열
 - 데이터 요금제(마스터 결정): EODHD ALL-IN-ONE 승인. 키 입력(마스터) 후 B단계
+- 어닝 캘린더·알파 점수(§21.15, 마스터 지시): KIND IR일정 수집(10/28~11/18 15건), 알파 잠재력 첫 산정 17종목(5.0 이상 10), 07~09시 5점 이상만 텔레그램. 노션 Insights·Informations·Stocks 역할 고정, insight-review를 Insights 하위 페이지 기준으로 개정
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`
