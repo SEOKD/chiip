@@ -54,6 +54,7 @@
 | 21-8 | **치입 크롬 확장(10-28).** ① PowerShell에서 `scripts/start_chiip_server.ps1` 실행(로그인 때 자동 시작은 선택: `shell:startup`에 바로가기) ② 크롬 `chrome://extensions` → 개발자 모드 → '압축해제된 확장 프로그램을 로드합니다' → `extension/chiip` 폴더 ③ 확장 옵션에 `radar/state/ext_token.txt` 값 붙여넣기 → '연결 시험'. 토큰은 채팅·저장소에 붙이지 않기 | `extension/chiip/README.md` |
 | 21-9 | ✅ **동인 자동 작성 예약 작업 등록(10-28 마스터 승인).** chiip-valuation-queue, 매일 08:10·18:10 — 대기열(radar/state/v2_queue.json) 종목의 v2 동인을 작성·갱신하고 3요인 텔레그램 발송. 자동 모드로 저장됨(앱 Scheduled에서 변경 가능) | `docs/tasks/chiip-valuation-queue.md` |
 | 21-10 | **valuation-queue 개정 승인(10-28).** 알파 5점 이상 종목의 동인 작성 전에 내러티브 프리미엄(스킬 narrative-premium)을 먼저 쓰도록 예약 작업 지시문을 고치려 했으나 자동 모드 안전 분류기가 거부. 치입에게 "valuation-queue 개정 승인"이라고 하거나 앱 Scheduled에서 개정안으로 교체. 반영 전에도 3요인 메시지에 '내러티브' 줄은 붙음(파일 없으면 '미작성') | `docs/tasks/chiip-valuation-queue.md` |
+| 21-7 | **노션 즉시 처리를 '5분·수정 감지'로 올리려면 NOTION_TOKEN(10-28).** ① notion.so/profile/integrations → 새 내부 통합(읽기·쓰기·댓글 없음 가능) ② **Insights·Informations·Stocks 세 페이지 각각** ⋯ → 연결 추가 → 그 통합 선택(허브 '치입 인텔리전스'도) ③ 토큰을 `D:\local-only\secrets\.env`에 `NOTION_TOKEN=` (채팅에 붙이지 않기) ④ 치입에게 '노션 토큰 넣었다' → 기준선 시각 채우기(`py radar/notion_watch.py --baseline`)·시험. 그 전엔 매시간(07~23시) 새 페이지만 감지 | `config/notion.yaml`, `radar/notion_watch.py` |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |
 
 ## E. 실전 시험 (게이트 대신)

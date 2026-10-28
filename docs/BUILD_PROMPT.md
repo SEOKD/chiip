@@ -2005,3 +2005,10 @@ source: docs/methodology
 - 연결: tenbagger-card '알파 점수'가 30일 이내 alpha_effect를 반영, 3요인 텔레그램에 '내러티브' 한 줄(`alpha_watch.narrative_line`), chiip-valuation-queue가 동인 작성 전에 내러티브를 먼저 쓴다(개정안 `docs/tasks/chiip-valuation-queue.md`, 마스터 승인 대기 TODO 21-10).
 - 첫 실행(UCTT·TTMI·VICR): UCTT 태동·과밀 낮음(커뮤니티 45일 1건, IB 목표가 80~150달러로 분산, 쟁점 = 증설 대가) / TTMI 컨센서스(실적일 −30%, 가이던스 상향인데 목표가 3곳 하향 = 배수 압축, 쟁점 = 데이터센터 일정·부채) / VICR 확산·커뮤니티 과밀(SA 강세 장문 4편·약세 0, 쟁점 = VPD 로열티의 반복성). 섹터 내러티브 3개 추가(WFE 2028·고전압 전력·AI PCB 컨텐츠).
 
+### 21.16 노션 올림 즉시 처리 (2026-10-28 마스터 지시)
+- 지시: "이런 걸 좀 알아서 자동으로 해라. 내가 직접 일일이 입력하면 에이전트가 아니라 챗봇이지 않겠니? 내가 노션에 올리는 즉시 이를 파악해 실시간으로 결과물을 만들고 텔레그램 봇으로 공유해라." (계기: Informations '261028 미국 데이터센터 관련 법안' → 중간선거 후 초당적 입법 수혜 후보 요청, `outputs/report/policy/20261028_post_midterm_bipartisan.md`)
+- 감지: ① `radar/notion_watch.py` — run_poll(5분)에서 호출, NOTION_TOKEN 필요. Insights·Stocks 1단계, Informations 2단계 하위 페이지의 last_edited_time을 보고 새·수정 페이지가 10분 이상 그대로면 본문·첨부(xlsx·csv 표준 라이브러리 파싱)를 `radar/notion/inbox/`(git 제외)에 뽑아 대기열 → 별도 작업자 프로세스가 헤드리스 `/notion-intake`(Insights opus, 나머지 sonnet, 하루 20건 상한) → 스킬이 쓴 텔레그램 문안 발송 → 처리 표시. ② 토큰 전 임시: 예약 작업 `chiip-notion-watch`(07~23시 매시간, 커넥터, 새 페이지만 — 수정은 토큰이 있어야 감지).
+- 처리(스킬 `notion-intake`): Informations = 정책·법안(단계·일정·수혜/피해·반대 검증) / IB 요지(라이선스 — 자기 말 요지만) / 채널체크(필드 인텔 가능성 — 텔레그램엔 건수만, 대조는 로컬) / CAPEX·산업 데이터. Insights = insight-review(검토 하위 페이지는 `scripts/notion_write.py` 또는 커넥터). Stocks = 감시 목록 추가·알파 점수·논지 검토.
+- 상태: `scripts/notion_state.py`(radar/state/notion_watch.json). 감시를 켤 때 있던 페이지 20건은 기준선(다음 수정 때만 처리), 법안 페이지는 처리 완료 표시.
+- 경계: 마스터 노션 페이지는 읽기 전용(Insights 아래 '치입 검토' 하위 페이지 생성만), 첨부 원본·IB 문장 저장소 복제 금지, 목표주가·매수/매도 표현 금지.
+

@@ -839,3 +839,20 @@
   reliability_default: 1차
   verified: true
   enabled: true
+
+- id: src-notion-watch
+  name: 마스터 노션 Insights·Informations·Stocks 감시 (올림 즉시 처리)
+  category: I-학습
+  method: api
+  endpoint_doc: "https://developers.notion.com/reference/get-block-children"
+  auth: env:NOTION_TOKEN
+  scope: [마스터]
+  interval_min: 5
+  run_on: local
+  language: ko
+  doc_type: 마스터자료
+  terms_note: "마스터 본인 워크스페이스. 읽기 전용(Insights 아래 '치입 검토' 하위 페이지 생성만). 본문·첨부는 radar/notion/inbox(git 제외)에만, IB 요지는 라이선스 취급. 토큰 없으면 예약 작업 chiip-notion-watch(커넥터, 매시간)"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+

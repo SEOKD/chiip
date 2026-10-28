@@ -102,6 +102,11 @@ def main(argv=None):
             telegram_inbox.run()
         except Exception as exc:
             common.record_health("telegram-inbox", False, f"{type(exc).__name__}: {exc}")
+        try:  # 노션 실시간 감시(마스터 지시 2026-10-28) — NOTION_TOKEN 있을 때만, 처리는 별도 작업자 프로세스
+            import notion_watch
+            notion_watch.run()
+        except Exception as exc:
+            common.record_health("src-notion-watch", False, f"{type(exc).__name__}: {exc}")
         new_total = []
         for src in registry():
             if args.only and src["id"] != args.only:

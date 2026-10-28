@@ -127,6 +127,7 @@
 - **수집 범위:** 뉴스는 Reuters·Bloomberg·WSJ·The Information·Business Insider·CNBC·Seeking Alpha·PR Newswire·GlobeNewswire 9곳만(CNBC·Seeking Alpha는 robots.txt가 AI 수집기를 막아 Google News 색인으로만). 중심은 정부 자료(각국 정책·행정명령)·기업 공시·실적 자료·학회·협회. 종목 자료는 **포커스 점수 5.0 이상 + 알파 잠재력 5.0 이상 + 마스터 노션 Stocks + 레이더 테마(데이터센터 전력 55종목, `config/earnings_watch.yaml` radar_themes)**만, 감시 목록 전체의 공시·실적은 항상(`config/focus.yaml`, `radar/pollers/gate.py`).
 - **실적 일정 = 알파 잠재력 5.0 이상 종목만**(`config/alpha.yaml`, '텐배거 가능성' 10점 = 1000%가 아니라 그만큼 큰 알파). 매일 07~09시 텔레그램 1통(월요일은 7일치). 원천은 KIND IR일정·EODHD(`radar/markets/earnings_calendar.py`).
 - **마스터 노션 구조(이름·역할 고정, `config/notion.yaml` pages):** **Insights** = 마스터 인사이트 글(치입 검토 대상, 글 아래 '치입 검토' 하위 페이지만 작성) / **Informations** = 마스터 수집 정보(근거 재료, IB 요지는 라이선스 취급·채널체크는 필드 인텔 가능성 → invest·public 금지) / **Stocks** = 마스터 종목·테마 커버리지(어닝 캘린더·알파 점수 대상에 항상 포함).
+- **노션 올림 즉시 처리(마스터 지시 2026-10-28 '일일이 입력하면 챗봇'):** 마스터가 Insights·Informations·Stocks에 페이지를 올리거나 고치면 치입이 알아서 역할별 분석(스킬 `notion-intake`) → `outputs/report/notion/` + 텔레그램. 감지는 `radar/notion_watch.py`(NOTION_TOKEN, 5분·수정 감지) 또는 예약 작업 `chiip-notion-watch`(토큰 전, 매시간 새 페이지). 상태 `scripts/notion_state.py`.
 - **Notion(비공개 허브 '치입 인텔리전스') = ⭐ 인텔 아카이브(+ 구 오피니언·인사이트 DB).** ⭐로 고른 정보만 기록(요지·링크, 원문 복제 금지, local-only·필드 인텔 금지). 공개 사이트에 올리는 글은 public 모드 규칙 + 마스터가 직접 게시.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 
