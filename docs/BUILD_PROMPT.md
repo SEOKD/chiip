@@ -2024,3 +2024,11 @@ source: docs/methodology
 - 반대 검증으로 남긴 안전장치: ① 유료 본문 미사용(방법만 따르고 결론 복제 금지, §14) ② 크라우딩 — SA가 이미 공개적으로 민 논지는 가격 반영이 시작됐으므로 gap −1, 알파는 같은 논리로 SA가 아직 안 다룬 종목·숫자에서 찾는다 ③ 렌즈 성과는 가상 추적으로 검증(model-lab).
 - 첫 적용(2026-10-28, `knowledge/models/alpha/judgments/20261028_sa.csv` 29행): 전력·송배전 bottleneck −1, 칩 공급망 +1(SA '2027 +50GW, 부족이 칩으로 이동 가능'), Oracle·Dell·Celestica upside −1(L7), 두산에너빌리티 gap −1(크라우딩). 5.0 경계: 삼성전자·Teradyne 진입, Quanta 이탈. 종목별 바텀업 재판단(L1 숫자)은 토요일 주간 재산정에서.
 
+### 21.22 Chiip proviser (2026-10-29 마스터 지시 "6개의 기능만 남겨놨다. 더 이상 추가로 만들지 마라. 나머지 6개의 추론을 재평가하는 proviser")
+- 남은 기능 6개: chiip-pulse·chiip-article-pitch(reporter)·chiip-tenbagger·chiip-notion-watch·chiip-model-lab·chiip-weekly-review. 정리된 기능(valuation-queue·insight-review·focus-score·reverse-scout 등)은 다시 만들지 않는다.
+- 다른 접근: 기능은 '새 정보 → 이야기 → 결론'(내부 관점), 프로바이저는 결론 → 전제 역추적·외부 관점(기저율)·사전 부검·경쟁 가설·숫자 재계산·결정 가치 + 기능별 반대 렌즈(pulse: 신호 대 잡음·Cohen & Frazzini 2008·Bessembinder 2018 / reporter: 데스크 킬 테스트 / ten-bagger: 기저율·Greenwood & Hanson 2015 경쟁 무시 / Notion: 반동조 검사 / Model Lab: McLean & Pontiff 2016·Harvey·Liu·Zhu 2016 / Weekly: 자기 채점 편향). `docs/proviser/README.md`.
+- 채점 10점 = 축 5개(1차성·인과 사슬·반대 검증·정량·기저율·결정 가치·반증) × 2점 − 운영 결함. 9 미만이면 감점마다 근거(직접 확인한 URL·파일·재계산·논문, 못 찾으면 미확인)·지시·기대 효과.
+- 작업지시서 반영: 6개 예약 작업 끝에 '프로바이저 보강' 절(첫 지시 직접 삽입 + 매 회차 `docs/proviser/<taskId>.md`를 먼저 읽기 + 산출물에 `보강 적용: D-…`). 예약 실행 중에는 앱이 작업지시서 수정을 막으므로 이후 갱신은 파일로, 구조 문제는 TODO_MASTER '작업지시서 개정 요청'.
+- 첫 평가(2026-10-29): pulse 5.5·Weekly 6.0·reporter 6.5·ten-bagger 7.5·Model Lab 8.0·Notion 8.5, 지시 24개. 큰 결함: pulse가 정리된 valuation-queue로 '작성'을 넘김(19건 적체), ten-bagger 일정(매일)과 지시서(주간) 불일치, reporter가 갱신 끊긴 입력을 읽음.
+- 매일 05:30 재평가 예약 작업 `chiip-proviser`는 분류기 거부 → 초안 `docs/tasks/chiip-proviser.md`(TODO 21-11).
+
