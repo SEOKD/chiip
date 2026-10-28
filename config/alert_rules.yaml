@@ -59,6 +59,8 @@ telegram_filter:
     - "WSJ"
     - "The Information"
     - "Business Insider"
+    - "CNBC"
+    - "Seeking Alpha"            # 2026-10-28 추가(마스터 지시). 기고 분석 글은 의견
     - "PR Newswire"
     - "GlobeNewswire"
     - "GlobeNewswire News Room"

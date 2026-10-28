@@ -116,7 +116,7 @@
 
 ## 출력 채널 (§21.9 → §21.13 개정)
 - **실시간 전달 = 텔레그램 개인 봇.** 아침·저녁 브리프는 중단(2026-10-28 마스터 지시). P0·P1은 건별 즉시, 알림마다 '⭐ 노션 기록' 버튼.
-- **수집 범위:** 뉴스는 Reuters·Bloomberg·WSJ·The Information·Business Insider·PR Newswire·GlobeNewswire 7곳만. 중심은 정부 자료(각국 정책·행정명령)·기업 공시·실적 자료·학회·협회. 종목 자료는 **포커스 점수 5.0 이상**만(`config/focus.yaml`, 매일 갱신·변화는 텔레그램).
+- **수집 범위:** 뉴스는 Reuters·Bloomberg·WSJ·The Information·Business Insider·CNBC·Seeking Alpha·PR Newswire·GlobeNewswire 9곳만(CNBC·Seeking Alpha는 robots.txt가 AI 수집기를 막아 Google News 색인으로만). 중심은 정부 자료(각국 정책·행정명령)·기업 공시·실적 자료·학회·협회. 종목 자료는 **포커스 점수 5.0 이상**만(`config/focus.yaml`, 매일 갱신·변화는 텔레그램).
 - **Notion(비공개 허브 '치입 인텔리전스') = 마스터의 인텔 아카이브 + 오피니언·인사이트.** ⭐로 고른 정보만 기록(요지·링크, 원문 복제 금지, local-only·필드 인텔 금지). 공개 사이트에 올리는 글은 public 모드 규칙 + 마스터가 직접 게시.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 

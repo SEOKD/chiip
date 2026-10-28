@@ -50,7 +50,9 @@ def _older_than(iso_s, days):
     return common.now_kst() - dt > timedelta(days=days)
 
 
-NEWS7_SITES = "(site:reuters.com OR site:bloomberg.com OR site:wsj.com OR site:theinformation.com OR site:businessinsider.com)"
+# 마스터 지정 매체(7곳 → 9곳, 2026-10-28 CNBC·Seeking Alpha 추가). 두 곳은 robots.txt가 AI 수집기를 막아 Google News 색인으로만 본다
+NEWS7_SITES = ("(site:reuters.com OR site:bloomberg.com OR site:wsj.com OR site:theinformation.com OR site:businessinsider.com"
+               " OR site:cnbc.com OR site:seekingalpha.com)")
 
 
 def focus7_urls(src, chunk=8):

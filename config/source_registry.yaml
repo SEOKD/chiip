@@ -694,7 +694,7 @@
   enabled: true
 
 - id: src-news7-focus
-  name: 마스터 지정 7개 매체 × 포커스 종목 (Google News 도메인 제한)
+  name: 마스터 지정 9개 매체 × 포커스 종목 (Google News 도메인 제한)
   category: F-뉴스
   module: rss
   method: rss
@@ -706,7 +706,7 @@
   run_on: local
   language: en
   doc_type: 기사
-  terms_note: "Reuters·Bloomberg·WSJ·The Information·Business Insider 도메인만. PR Newswire는 src-prn, GlobeNewswire는 자동 접속 차단"
+  terms_note: "Reuters·Bloomberg·WSJ·The Information·Business Insider·CNBC·Seeking Alpha 도메인만(Google News 색인 제목·링크). CNBC·Seeking Alpha는 robots.txt가 Claude 등 AI 수집기를 차단 → 사이트 직접 접속 금지. PR Newswire는 src-prn, GlobeNewswire는 자동 접속 차단"
   reliability_default: 2차
   verified: true
   enabled: true

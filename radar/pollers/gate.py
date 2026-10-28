@@ -3,9 +3,9 @@
 0) 신선도: 공개 시각이 오래된 항목은 버린다(config/alert_rules.yaml freshness — 마스터 지시 "무조건 시의성").
 1) 관심도 집계: 관문에 걸러지기 전 모든 항목의 종목 언급을 날짜별로 센다(포커스 점수의 attention 재료).
    걸러진 종목도 세야 다시 포커스에 들어올 수 있다.
-2) 뉴스 제한: doc_type '기사'는 마스터가 정한 7개 매체(alert_rules telegram_filter.allowed_publishers)만 저장.
+2) 뉴스 제한: doc_type '기사'는 마스터가 정한 9개 매체(alert_rules telegram_filter.allowed_publishers)만 저장.
 3) 포커스 관문: 종목이 잡힌 항목은 포커스 종목(점수 ≥ 기준)이 하나라도 있어야 저장.
-   종목이 안 잡힌 항목은 정책·학회·협회·X·리서치·7곳 기사만 저장(업계 전반 자료). 보도자료·공시는 종목이 있어야 한다.
+   종목이 안 잡힌 항목은 정책·학회·협회·X·리서치·지정 매체 기사만 저장(업계 전반 자료). 보도자료·공시는 종목이 있어야 한다.
 """
 import json
 from datetime import datetime, timedelta
