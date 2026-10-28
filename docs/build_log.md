@@ -45,6 +45,7 @@
 - 어닝 캘린더·알파 점수(§21.15, 마스터 지시): KIND IR일정 수집(10/28~11/18 15건), 알파 잠재력 첫 산정 17종목(5.0 이상 10), 07~09시 5점 이상만 텔레그램. 노션 Insights·Informations·Stocks 역할 고정, insight-review를 Insights 하위 페이지 기준으로 개정
 - 밸류에이션 v2(§21.16, 마스터 승인): 설계안·문헌 노트, 1단계 엔진(regime·wacc·reorg·dcf·pie·baserates·montecarlo·upside·run) + 시험 13개, INNIO·Vertiv·Micron 시험 카드, SEC XBRL 계정 교체 기간 보완, 요인 분해 도구(factor_impact)
 - 무료 데이터 조합(마스터 결정): EODHD 보류. TWSE·TPEx 무료 시세 수집(대만 8종목), SEC 일괄 재무 기저율 수집기(SEC_USER_AGENT 대기), KRX·Finnhub 키 대기
+- 컨센서스·어닝콜 수동 입력(마스터 제안): 노션 Informations > 'Consensus · Earnings Call' DB, 요청 27건(알파 후보 10종목·v2 이관 7종목, 컨센서스 17·한국 어닝콜 10), 처리 경로를 인사이트 검토 예약 작업·earnings-delta에 연결
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

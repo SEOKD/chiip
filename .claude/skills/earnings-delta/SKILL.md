@@ -10,6 +10,11 @@ argument-hint: "[기업 id] [분기 예: 2026Q3]"
 - 이번 분기 자료(실적 발표문·슬라이드·콜 스크립트) — `source-ingest`로 먼저 등록
 - 비교 기준: 직전 분기 같은 자료, 회사 가이던스, 컨센서스(있으면), 관련 테제·주장
 
+## 수동 입력 자료 (마스터 노션 2026-10-28)
+- 컨센서스·한국 어닝콜은 마스터가 노션 Informations > 'Consensus · Earnings Call' DB(`config/notion.yaml` pages.consensus_intake)에 넣는다. 미국·유럽 어닝콜 원문은 easyconomics(earnings_call_transcript)로 치입이 직접 받는다.
+- 처리: 상태 '입력 완료' 행을 읽어 → 컨센서스 숫자는 `knowledge/models/valuation/manual_consensus.csv`(as_of,id,period,fy_end,eps_avg,eps_low,eps_high,n_analysts,rev_avg,source,note)에 한 행씩, 어닝콜은 자기 말 요지로 비교 기준에 사용 → 노션 행 상태 '치입 반영', 치입 메모에 반영 내용 한 줄. 원문 문장·표를 저장소에 옮기지 않는다.
+- 필요한 종목이 DB에 없으면 '요청' 상태로 새 행을 추가해 마스터에게 요청한다(우선순위: 알파 5.0 이상 → v2 이관 종목 → 참고).
+
 ## 절차
 1. **주제별 발언 추출** — 표준 주제: 수요(최종 시장별) / 물량(출하·비트그로스) / 가격(ASP) / 믹스 / 가동률·재고 / 원가·수율 / CAPEX·증설 / 제품·기술 로드맵 / 고객·인증 / 가이던스 / 리스크.
    각 발언에 `source_id + locator(쪽·분)` 기록.

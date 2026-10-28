@@ -14,6 +14,7 @@ argument-hint: "[기업 id] (예: co-skhynix)"
 ## v2 정량 블록 (2026-10-28, docs/valuation/v2_architecture.md)
 - 종목에 `knowledge/models/companies/<id>/drivers.yaml`(시나리오·확률·성장/마진 경로·재투자 효율·투하자본·시가)이 있으면 `py scripts/valuation/v2/run.py <id> --save`로 정량 블록을 만들어 카드에 붙인다: WACC 분해, 시나리오별 가치/시총, 몬테카를로 분포, P(5년 뒤 ≥1.5·2·3·10배), 시장 내포 CAGR과 기저율 백분위, 2배·10배에 필요한 CAGR, 금리 +50bp 민감도, 알파 정량 제안.
 - 표기: 시가총액 대비 배수·확률·필요 가정만(주당 가치·목표주가 금지 — 마스터 결정). 동인 가정마다 근거와 '근거 약함' 표시. 기저율 표본 편향 문구를 지우지 않는다.
+- 컨센서스는 `manual_consensus.csv`(마스터 노션 'Consensus · Earnings Call' 입력분)와 대조해 동인 성장 경로가 컨센서스보다 높은지 낮은지 카드에 적는다. 없으면 '컨센서스 미입력'.
 - 결과가 직관과 크게 다르면 먼저 가정(성장 경로·장기 마진·재투자 효율·WACC)을 점검하고, 시장 내포 가정과의 차이로 설명한다(“시장이 틀렸다”는 consensus-gap 절차 후에만).
 
 ## 절차
