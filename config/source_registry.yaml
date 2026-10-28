@@ -710,3 +710,36 @@
   reliability_default: 2차
   verified: true
   enabled: true
+
+# ===== I. 부가가치 엔진 재료 (§21.14, ADR-010) — run_hourly 작업(레이더 판정·알림 아님, module 없음) =====
+- id: src-literature
+  name: 논문·실무 리서치 (arXiv q-fin·NBER·연준 FEDS/IFDP·다모다란·Alpha Architect)
+  category: I-학습
+  method: rss
+  endpoint_doc: "radar/literature.py FEEDS"
+  auth: none
+  scope: [글로벌]
+  interval_min: 360
+  run_on: local
+  language: en
+  doc_type: 논문
+  terms_note: "공개 RSS(2026-10-28 접속 확인). 제목·초록·링크만, 유료 원문 받지 않음. 판단은 예약 작업 chiip-model-lab"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-sec-xbrl
+  name: SEC XBRL companyfacts (미국 상장·ADR 재무 이력)
+  category: I-학습
+  method: api
+  endpoint_doc: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces"
+  auth: none
+  scope: [글로벌]
+  interval_min: 10080
+  run_on: local
+  language: en
+  doc_type: 재무
+  terms_note: "data.sec.gov/api/xbrl/companyfacts(2026-10-28 39종목 응답 확인). 미국 정부 자료. SEC_USER_AGENT 권장(TODO 21-4)"
+  reliability_default: 1차
+  verified: true
+  enabled: true

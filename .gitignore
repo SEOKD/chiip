@@ -37,3 +37,5 @@ desktop.ini
 .claude/settings.local.json
 knowledge/models/focus/latest.json
 knowledge/models/focus/prepared/
+radar/literature/inbox/*
+knowledge/models/fundamentals/us/

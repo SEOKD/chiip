@@ -18,7 +18,15 @@ def main(argv):
         print(f"- 판정 필요: {r['pred_id']} {r['statement']} (기한 {r['deadline']})")
     if brier:
         print(f"- 브라이어 점수(낮을수록 좋음): {sum(brier)/len(brier):.3f} (n={len(brier)})")
-    print("※ 사후 수정 금지 — 정정은 새 행으로")
+    # 마스터 예측과 치입 예측을 따로 채점(§21.14 성적표) — 어느 분야에서 누구의 판단이 더 맞는지
+    by = {}
+    for r in scored:
+        if r.get("probability"):
+            o = 1.0 if r["outcome"] in ("1", "true") else 0.0
+            by.setdefault(r.get("owner") or "미표시", []).append((float(r["probability"]) - o) ** 2)
+    for owner, v in sorted(by.items()):
+        print(f"  · {owner}: {sum(v)/len(v):.3f} (n={len(v)})")
+    print("※ 사후 수정 금지: 정정은 새 행으로")
     return 0
 
 

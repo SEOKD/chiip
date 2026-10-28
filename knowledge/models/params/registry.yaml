@@ -1,0 +1,569 @@
+note: 파라미터 등록부 — scripts/fit/registry.py. 값을 바꾸면 binding 위치의 config도 같이 바꾸고 changelog.csv에 남긴다.
+adoption:
+  min_oos_improvement: 0.05
+  min_oos_n: 30
+  approval_rel_change: 0.2
+  shrink_k: 20
+  rule: 표본 외 손실이 사전값 대비 5% 이상 줄고 표본 외 관측 30개 이상일 때만 채택. 상대 변화 20% 이상은 마스터 승인
+params:
+- id: prm-val-disc-us
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#params.discount_rate.US
+  value: 0.09
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.09
+    basis: '초안 가정(마스터 확인 전). 사전값 후보: 무위험금리 + 베타×다모다란 내재 ERP + 국가위험 프리미엄'
+    source: null
+  fit:
+    method: CAPM 재구성(무위험금리·ERP·국가위험 공개 자료)
+    target: 자기자본비용
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-disc-kr
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#params.discount_rate.KR
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 가정(마스터 확인 전). 사전값 후보: 무위험금리 + 베타×다모다란 내재 ERP + 국가위험 프리미엄'
+    source: null
+  fit:
+    method: CAPM 재구성(무위험금리·ERP·국가위험 공개 자료)
+    target: 자기자본비용
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-disc-tw
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#params.discount_rate.TW
+  value: 0.09
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.09
+    basis: '초안 가정(마스터 확인 전). 사전값 후보: 무위험금리 + 베타×다모다란 내재 ERP + 국가위험 프리미엄'
+    source: null
+  fit:
+    method: CAPM 재구성(무위험금리·ERP·국가위험 공개 자료)
+    target: 자기자본비용
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-disc-jp
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#params.discount_rate.JP
+  value: 0.08
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.08
+    basis: '초안 가정(마스터 확인 전). 사전값 후보: 무위험금리 + 베타×다모다란 내재 ERP + 국가위험 프리미엄'
+    source: null
+  fit:
+    method: CAPM 재구성(무위험금리·ERP·국가위험 공개 자료)
+    target: 자기자본비용
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-disc-eu
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#params.discount_rate.EU
+  value: 0.09
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.09
+    basis: '초안 가정(마스터 확인 전). 사전값 후보: 무위험금리 + 베타×다모다란 내재 ERP + 국가위험 프리미엄'
+    source: null
+  fit:
+    method: CAPM 재구성(무위험금리·ERP·국가위험 공개 자료)
+    target: 자기자본비용
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-horizon
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#params.horizon_years
+  value: 5
+  unit: 년
+  status: prior
+  prior:
+    value: 5
+    basis: IB 관행(5년 명시 예측 + 터미널)
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-memory
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.memory.terminal_pe
+  value: 10
+  unit: 배
+  status: prior
+  prior:
+    value: 10
+    basis: 메모리 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-accelerator
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.accelerator.terminal_pe
+  value: 22
+  unit: 배
+  status: prior
+  prior:
+    value: 22
+    basis: AI 가속기·ASIC 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-foundry
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.foundry.terminal_pe
+  value: 18
+  unit: 배
+  status: prior
+  prior:
+    value: 18
+    basis: 파운드리·로직 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-semicap
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.semicap.terminal_pe
+  value: 20
+  unit: 배
+  status: prior
+  prior:
+    value: 20
+    basis: 반도체 장비 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-substrate
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.substrate.terminal_pe
+  value: 13
+  unit: 배
+  status: prior
+  prior:
+    value: 13
+    basis: 기판·PCB·소재 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-components
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.components.terminal_pe
+  value: 12
+  unit: 배
+  status: prior
+  prior:
+    value: 12
+    basis: 부품·모듈 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-analog
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.analog.terminal_pe
+  value: 20
+  unit: 배
+  status: prior
+  prior:
+    value: 20
+    basis: 아날로그·전력반도체 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-networking
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.networking.terminal_pe
+  value: 22
+  unit: 배
+  status: prior
+  prior:
+    value: 22
+    basis: 네트워킹·광 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-eda_ip
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.eda_ip.terminal_pe
+  value: 30
+  unit: 배
+  status: prior
+  prior:
+    value: 30
+    basis: EDA·IP 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-software
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.software.terminal_pe
+  value: 25
+  unit: 배
+  status: prior
+  prior:
+    value: 25
+    basis: AI 소프트웨어 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-hyperscaler
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.hyperscaler.terminal_pe
+  value: 20
+  unit: 배
+  status: prior
+  prior:
+    value: 20
+    basis: 하이퍼스케일러 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-server
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.server.terminal_pe
+  value: 14
+  unit: 배
+  status: prior
+  prior:
+    value: 14
+    basis: 서버·ODM 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-power_infra
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.power_infra.terminal_pe
+  value: 20
+  unit: 배
+  status: prior
+  prior:
+    value: 20
+    basis: 전력·냉각 인프라 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-storage
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.storage.terminal_pe
+  value: 12
+  unit: 배
+  status: prior
+  prior:
+    value: 12
+    basis: 스토리지(HDD·SSD) 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-val-tpe-conglomerate
+  model: valuation.reverse_dcf
+  binding: config/valuation.yaml#subsectors.conglomerate.terminal_pe
+  value: 12
+  unit: 배
+  status: prior
+  prior:
+    value: 12
+    basis: 복합기업 장기 P/E 초안(공개 IB 관행 종합, framework.md §4)
+    source: null
+  fit:
+    method: 섹터 장기 평균 P/E(사이클 전체 구간) + 축소 추정
+    target: N년 뒤 정상 P/E
+    data: 가격·EPS 이력 10년+(데이터 결정 후)
+    last_fit: null
+    oos_metric: null
+- id: prm-focus-w-attention
+  model: focus.score
+  binding: config/focus.yaml#weights.attention
+  value: 0.25
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.25
+    basis: 균등 가중(근거 없음 — 피팅 대상)
+    source: null
+  fit:
+    method: 다음 30일 |수익률|·언급량 예측력 회귀(합=1 제약, 사전값 쪽 축소)
+    target: 추적 가치 실현도
+    data: scores/*.csv 30일+ × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-focus-w-narrative
+  model: focus.score
+  binding: config/focus.yaml#weights.narrative
+  value: 0.25
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.25
+    basis: 균등 가중(근거 없음 — 피팅 대상)
+    source: null
+  fit:
+    method: 다음 30일 |수익률|·언급량 예측력 회귀(합=1 제약, 사전값 쪽 축소)
+    target: 추적 가치 실현도
+    data: scores/*.csv 30일+ × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-focus-w-fundamental
+  model: focus.score
+  binding: config/focus.yaml#weights.fundamental
+  value: 0.25
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.25
+    basis: 균등 가중(근거 없음 — 피팅 대상)
+    source: null
+  fit:
+    method: 다음 30일 |수익률|·언급량 예측력 회귀(합=1 제약, 사전값 쪽 축소)
+    target: 추적 가치 실현도
+    data: scores/*.csv 30일+ × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-focus-w-multiple
+  model: focus.score
+  binding: config/focus.yaml#weights.multiple
+  value: 0.25
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.25
+    basis: 균등 가중(근거 없음 — 피팅 대상)
+    source: null
+  fit:
+    method: 다음 30일 |수익률|·언급량 예측력 회귀(합=1 제약, 사전값 쪽 축소)
+    target: 추적 가치 실현도
+    data: scores/*.csv 30일+ × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-focus-threshold
+  model: focus.score
+  binding: config/focus.yaml#threshold
+  value: 5.0
+  unit: 점
+  status: adopted
+  prior:
+    value: 5.0
+    basis: 마스터 지시(5.0 이상) — 피팅하지 않는다(마스터 결정 값)
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+  fixed_by_master: true
+- id: prm-tb-w-fcf_yield
+  model: tenbagger.screen
+  binding: config/tenbagger.yaml#factors.fcf_yield.weight
+  value: 0.25
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.25
+    basis: Yartseva(2025, Birmingham City Univ. 워킹페이퍼, 2009~2024 NYSE·Nasdaq 464개 멀티배거) — FCF 수익률이 가장 강한 예측 변수라는 2차 보도. 원문 확인 대기
+    source: null
+  fit:
+    method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
+    target: 10배 달성·기준지수 초과
+    data: watch.csv + 가격·재무 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-w-book_to_market
+  model: tenbagger.screen
+  binding: config/tenbagger.yaml#factors.book_to_market.weight
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 같은 연구 2차 보도(장부가 대비 낮은 가격) + Fama-French 가치 요인. 원문 확인 대기
+    source: null
+  fit:
+    method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
+    target: 10배 달성·기준지수 초과
+    data: watch.csv + 가격·재무 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-w-size
+  model: tenbagger.screen
+  binding: config/tenbagger.yaml#factors.size.weight
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 소형주일수록 10배 경로의 산술적 여지 — 기준 연구별로 정의 다름. 원문 확인 대기
+    source: null
+  fit:
+    method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
+    target: 10배 달성·기준지수 초과
+    data: watch.csv + 가격·재무 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-w-quality
+  model: tenbagger.screen
+  binding: config/tenbagger.yaml#factors.quality.weight
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 총이익률·ROIC 수준·개선(수익성 요인 문헌). 원문 확인 대기
+    source: null
+  fit:
+    method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
+    target: 10배 달성·기준지수 초과
+    data: watch.csv + 가격·재무 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-w-growth_accel
+  model: tenbagger.screen
+  binding: config/tenbagger.yaml#factors.growth_accel.weight
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 매출 성장 가속 — 실무 문헌(100-bagger류). 학술 근거 약함, 피팅으로 검증
+    source: null
+  fit:
+    method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
+    target: 10배 달성·기준지수 초과
+    data: watch.csv + 가격·재무 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-w-bottleneck
+  model: tenbagger.screen
+  binding: config/tenbagger.yaml#factors.bottleneck.weight
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 치입 자체 요인 — 병목 해결 기술 노출도(모델 판단 0~10). 근거 없음, 가상 추적 성과로 피팅
+    source: null
+  fit:
+    method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
+    target: 10배 달성·기준지수 초과
+    data: watch.csv + 가격·재무 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-val-erp-us
+  model: valuation.wacc
+  binding: null
+  value: null
+  unit: 비율
+  status: proposed
+  prior:
+    value: null
+    basis: 다모다란 월간 내재 ERP(공개) — 값 미입력, model-lab이 출처·날짜와 함께 등록
+    source: null
+  fit:
+    method: 월 1회 공개값 갱신
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-val-mem-pb-roe-slope
+  model: valuation.cycle_band
+  binding: null
+  value: null
+  unit: 배/ROE
+  status: proposed
+  prior:
+    value: null
+    basis: 메모리 P/B–ROE 회귀 기울기(IB 관행) — 데이터 확보 후 추정
+    source: null
+  fit:
+    method: 사이클 전체 구간 OLS + 축소
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sig-revision-halflife
+  model: signal.revision
+  binding: null
+  value: null
+  unit: 일
+  status: proposed
+  prior:
+    value: null
+    basis: EPS 리비전 신호의 반감기 — 리비전 모멘텀 문헌, 원문 확인 후 사전값
+    source: null
+  fit:
+    method: walk-forward 회귀
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
