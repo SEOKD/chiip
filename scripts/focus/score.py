@@ -206,32 +206,25 @@ def _fmt(x, nd=1):
     return "—" if x is None else f"{x:.{nd}f}"
 
 
-def digest(latest=None, near=5):
+def digest(latest=None, near=3):
+    """텔레그램용 — 마스터 지시(10-28): 종목명 + 총점(전일 대비)만. 요소별 점수는 scores/*.csv에"""
     latest = latest or json.loads((DIR / "latest.json").read_text(encoding="utf-8"))
     th = float(latest.get("threshold", 5.0))
     names = {r["id"]: r["name"] for r in latest["rows"]}
-    lines = [f"[포커스 점수 {latest['day'][4:6]}/{latest['day'][6:]}] 기준 {th:.1f} · 추적 {len(latest['focus'])}종목"
-             + (f" (전일 {latest['prev_day'][4:6]}/{latest['prev_day'][6:]} 대비)" if latest.get("prev_day") else " (첫 산정)")]
+    head = f"[AI 밸류체인 포커스 {latest['day'][4:6]}/{latest['day'][6:]}] {len(latest['focus'])}종목 (기준 {th:.1f})"
+    lines = [head]
     if latest.get("entered"):
-        lines.append("신규 편입: " + ", ".join(names.get(i, i) for i in latest["entered"]))
+        lines.append("편입: " + ", ".join(names.get(i, i) for i in latest["entered"]))
     if latest.get("exited"):
         lines.append("제외: " + ", ".join(names.get(i, i) for i in latest["exited"]))
-    lines.append("종목 총점(변화) | 관심·내러티브·펀더룸·멀티플 (판=모델 판단)")
 
     def row(r):
-        d = "" if r["delta"] is None else f"({r['delta']:+.1f})"
-        src = dict(s.split("=") for s in r["sources"].split(";") if "=" in s)
-        parts = [_fmt(r[k]) + ("판" if src.get(k) == "판단" else "") for k in COMPONENTS]
-        return f"{r['name']} {_fmt(r['total'])}{d} | {'·'.join(parts)}"
-    for r in latest["rows"]:
-        if r["focus"]:
-            lines.append(row(r))
+        d = "" if r["delta"] is None else f" ({r['delta']:+.1f})"
+        return f"{r['name']} {_fmt(r['total'])}{d}"
+    lines.extend(row(r) for r in latest["rows"] if r["focus"])
     below = [r for r in latest["rows"] if not r["focus"] and r["total"] is not None][:near]
     if below:
-        lines.append(f"— 기준 아래 상위 {len(below)}")
-        lines.extend(row(r) for r in below)
-    if latest.get("unscored"):
-        lines.append(f"미산정 {len(latest['unscored'])}종목(요소 부족)")
+        lines.append("— 기준 아래: " + ", ".join(row(r) for r in below))
     lines.append("공개 자료 기반 분석이며 투자 권유가 아님")
     return "\n".join(lines)
 

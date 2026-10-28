@@ -1,5 +1,6 @@
 """수집 관문 (BUILD_PROMPT §21.13) — common.save_new_items가 저장 직전에 부른다.
 
+0) 신선도: 공개 시각이 오래된 항목은 버린다(config/alert_rules.yaml freshness — 마스터 지시 "무조건 시의성").
 1) 관심도 집계: 관문에 걸러지기 전 모든 항목의 종목 언급을 날짜별로 센다(포커스 점수의 attention 재료).
    걸러진 종목도 세야 다시 포커스에 들어올 수 있다.
 2) 뉴스 제한: doc_type '기사'는 마스터가 정한 7개 매체(alert_rules telegram_filter.allowed_publishers)만 저장.
@@ -89,9 +90,40 @@ def mentions(days=7, end=None):
     return out
 
 
+def _published(item):
+    s = str(item.get("published_at") or "").strip()
+    if not s:
+        return None
+    try:
+        dt = datetime.fromisoformat(s.replace("Z", "+00:00"))
+    except ValueError:
+        try:
+            from email.utils import parsedate_to_datetime
+            dt = parsedate_to_datetime(s)
+        except (TypeError, ValueError):
+            return None
+    return dt if dt.tzinfo else dt.replace(tzinfo=common.KST)
+
+
+def is_fresh(item, stage="collect"):
+    """공개 시각 기준 신선도(config/alert_rules.yaml freshness). stage: collect | alert"""
+    if "fresh" not in _CACHE:
+        _CACHE["fresh"] = (common.load_yaml("config/alert_rules.yaml") or {}).get("freshness") or {}
+    rule = _CACHE["fresh"]
+    limits = rule.get(stage) or {}
+    if not limits:
+        return True
+    dt = _published(item)
+    dtype = item.get("doc_type")
+    if dt is None:
+        return dtype not in rule.get("drop_undated", [])
+    hours = limits.get(dtype, limits.get("default", 48))
+    return common.now_kst() - dt <= timedelta(hours=hours)  # 미래 시각(지방 회의 예정일 등)은 통과
+
+
 def apply(items):
     if not items:
         return items
     count_mentions(items)
     focus, _ = focus_state()
-    return [it for it in items if keep(it, focus)]
+    return [it for it in items if is_fresh(it, "collect") and keep(it, focus)]

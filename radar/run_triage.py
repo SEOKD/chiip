@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from pollers import common  # noqa: E402
+from pollers import common, gate  # noqa: E402
 import notify  # noqa: E402
 
 BATCH = common.STATE / "triage_batch.json"
@@ -153,6 +153,8 @@ def main(argv=None):
             card = Path(r.get("card_path") or "").stem or None
             msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card)
             ok, why = notify.telegram_allowed(it)
+            if ok and not gate.is_fresh(it, "alert"):  # 판정 사이 시간이 지나 오래된 자료는 보내지 않음
+                ok, why = False, f"오래됨(공개 {str(it.get('published_at', ''))[:16]})"
             if lvl in ("P0", "P1") and not ok:
                 to_brief(it, lvl, why)
                 if lvl == "P0":

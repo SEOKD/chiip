@@ -72,13 +72,14 @@ class TestScore(unittest.TestCase):
         self.assertIsNone(rows["b"]["total"])   # 요소 1개 → 미산정
         self.assertFalse(rows["b"]["focus"])
 
-    def test_digest_marks_judgment(self):
+    def test_digest_total_only(self):
         latest = {"day": "20261028", "prev_day": None, "threshold": 5.0, "focus": ["a"], "entered": [], "exited": [],
                   "unscored": [], "rows": [{"id": "a", "name": "A", "total": 6.0, "delta": None, "focus": True,
                                             "attention": 6.0, "narrative": 6.0, "fundamental": 6.0, "multiple": None,
                                             "sources": "attention=계산;narrative=계산;fundamental=판단"}]}
         text = score.digest(latest)
-        self.assertIn("6.0판", text)
+        self.assertIn("A 6.0", text)
+        self.assertNotIn("판", text)       # 총점만(마스터 지시)
         self.assertIn("투자 권유가 아님", text)
 
 
@@ -131,3 +132,22 @@ class TestNotionAndButton(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestFreshness(unittest.TestCase):
+    def test_old_news_dropped(self):
+        from datetime import timedelta
+        now = common.now_kst()
+        old = item("기사", title="x - Reuters"); old["published_at"] = common.iso(now - timedelta(days=6))
+        new = item("기사", title="x - Reuters"); new["published_at"] = common.iso(now - timedelta(hours=3))
+        undated = item("기사", title="x - Reuters")
+        policy_undated = item("규제·정책")
+        future = item("규제·정책"); future["published_at"] = common.iso(now + timedelta(days=5))
+        self.assertFalse(gate.is_fresh(old, "collect"))
+        self.assertTrue(gate.is_fresh(new, "collect"))
+        self.assertFalse(gate.is_fresh(undated, "collect"))
+        self.assertTrue(gate.is_fresh(policy_undated, "collect"))
+        self.assertTrue(gate.is_fresh(future, "alert"))
+        mid = item("기사"); mid["published_at"] = common.iso(now - timedelta(hours=30))
+        self.assertTrue(gate.is_fresh(mid, "collect"))
+        self.assertFalse(gate.is_fresh(mid, "alert"))   # 수집은 됐어도 24시간 넘으면 알림 안 함
