@@ -126,3 +126,23 @@ class TestWaccRegime(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestFreeData(unittest.TestCase):
+    def test_roc_date_and_parsers(self):
+        sys.path.insert(0, str(ROOT / "radar" / "markets"))
+        sys.path.insert(0, str(ROOT / "radar"))
+        import prices_free
+        self.assertEqual(prices_free.roc_date("1151027"), "2026-10-27")
+        q = prices_free.parse_twse([{"Date": "1151027", "Code": "2330", "ClosingPrice": "2,400.00", "TradeVolume": "100"}])
+        self.assertEqual(q["2330.TW"]["close"], 2400.0)
+        q2 = prices_free.parse_tpex([{"Date": "1151028", "SecuritiesCompanyCode": "5274", "Close": "3500", "TradingShares": "5"}])
+        self.assertEqual(q2["5274.TWO"]["date"], "2026-10-28")
+
+    def test_sec_bulk_annual_revenue(self):
+        import sec_bulk
+        facts = {"cik": 1, "entityName": "X", "facts": {"us-gaap": {"Revenues": {"units": {"USD": [
+            {"start": "2024-01-01", "end": "2024-12-31", "val": 100, "fy": 2024, "fp": "FY", "form": "10-K", "filed": "2025-02-01"},
+            {"start": "2024-10-01", "end": "2024-12-31", "val": 30, "fy": 2024, "fp": "FY", "form": "10-K", "filed": "2025-02-01"},
+            {"start": "2025-01-01", "end": "2025-12-31", "val": 130, "fy": 2025, "fp": "FY", "form": "10-K", "filed": "2026-02-01"}]}}}}}
+        self.assertEqual(sec_bulk.annual_revenue(facts), [(2024, 100), (2025, 130)])   # 분기값은 제외

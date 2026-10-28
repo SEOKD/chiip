@@ -775,3 +775,35 @@
   reliability_default: 1차
   verified: true
   enabled: true
+
+- id: src-prices-free
+  name: 무료 시세 (대만 TWSE STOCK_DAY_ALL·TPEx 장외 종가, KRX·Finnhub는 키 입력 후)
+  category: I-학습
+  method: api
+  endpoint_doc: "https://openapi.twse.com.tw / https://www.tpex.org.tw/openapi"
+  auth: none
+  scope: [TW]
+  interval_min: 720
+  run_on: local
+  language: zh
+  doc_type: 시장
+  terms_note: "대만 거래소 공개 OpenAPI(키 불필요, 2026-10-28 응답 확인). 비공개 사용"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-sec-bulk
+  name: SEC 일괄 재무 companyfacts.zip (미국 전 상장사 연간 매출 — 기저율 표본)
+  category: I-학습
+  method: bulk
+  endpoint_doc: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces"
+  auth: env:SEC_USER_AGENT
+  scope: [US]
+  interval_min: 43200
+  run_on: local
+  language: en
+  doc_type: 재무
+  terms_note: "일반 UA는 403(2026-10-28 확인) — 연락처 든 SEC_USER_AGENT 필요. 미국 정부 자료"
+  reliability_default: 1차
+  verified: false
+  enabled: true

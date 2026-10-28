@@ -13,9 +13,24 @@ BUCKETS = [(0, 1e9, "<10억$"), (1e9, 1e10, "10~100억$"), (1e10, 5e10, "100~500
 BIAS_NOTE = "표본: SEC XBRL 미국 상장 AI 밸류체인 생존 종목 — 고성장 쪽 편향"
 
 
+BULK = Path(__file__).resolve().parents[3] / "knowledge" / "models" / "baserates" / "us_revenue_annual.csv"
+BULK_NOTE = "표본: SEC 일괄 데이터 미국 전 상장사(XBRL 이후 연간 매출) — 상장 폐지 기업 일부 포함"
+
+
 def windows(years=5):
-    """[(출발 매출(달러), CAGR)] 겹치는 years년 구간 전부"""
+    """[(출발 매출(달러), CAGR)] 겹치는 years년 구간 전부. SEC 일괄 표본(sec_bulk.py)이 있으면 그것을 쓴다"""
     out = []
+    if BULK.exists():
+        import csv
+        series = {}
+        with BULK.open(encoding="utf-8", newline="") as fh:
+            for r in csv.DictReader(fh):
+                series.setdefault(r["cik"], {})[int(r["year"])] = float(r["revenue"])
+        for rev in series.values():
+            for y in rev:
+                if y + years in rev and rev[y] > 0:
+                    out.append((rev[y], (rev[y + years] / rev[y]) ** (1 / years) - 1))
+        return out
     for f in sorted(reorg.FUND.glob("*.csv")):
         rev = {y: v["revenue"] for y, v in reorg.annual(f.stem).items() if v.get("revenue")}
         for y in rev:
@@ -36,10 +51,10 @@ def percentile(cagr, start_rev, years=5, min_n=30, sample=None):
     sample = sample if sample is not None else windows(years)
     lo, hi, name = bucket_of(start_rev)
     xs = sorted(c for r, c in sample if lo <= r < hi)
-    note = BIAS_NOTE
+    note = BULK_NOTE if BULK.exists() else BIAS_NOTE
     if len(xs) < min_n:
         xs = sorted(c for _, c in sample)
-        name, note = "전체", BIAS_NOTE + f" · 규모 구간 표본 부족으로 전체 사용"
+        name, note = "전체", note + " · 규모 구간 표본 부족으로 전체 사용"
     if len(xs) < min_n:
         return None, len(xs), name, "표본 부족"
     pct = 100.0 * bisect.bisect_left(xs, cagr) / len(xs)

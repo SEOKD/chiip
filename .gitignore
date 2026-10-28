@@ -43,3 +43,5 @@ knowledge/models/earnings/upcoming.json
 knowledge/models/alpha/latest.json
 knowledge/models/valuation/regime/
 knowledge/models/valuation/v2/
+knowledge/models/fundamentals/bulk/
+knowledge/models/baserates/

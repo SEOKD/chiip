@@ -1976,4 +1976,4 @@ source: docs/methodology
 - 1단계 구현(`scripts/valuation/v2/`): regime(FRED 국채·스프레드·환율 + 다모다란 ERP·국가위험·업종 베타 사전값, run_hourly 하루 1회), wacc(바텀업 베타), reorg(SEC XBRL 재구성·R&D 자본화), dcf(FCFF·가치 동인 계속가치·EP 항등·기중 할인·금리 민감도·h년 뒤 지분가치), scenarios, pie(내포 성장·마진), baserates(5년 매출 CAGR 분포 — 1단계 표본은 편향), montecarlo(시나리오 혼합 + Schwartz·Moon형 성장 경로), upside(분포·확률·필요 가정 + 알파 3요소 정량 제안), run(카드). 종목 동인: `knowledge/models/companies/<id>/drivers.yaml`(1단계 시험: INNIO·Vertiv·Micron).
 - 마스터 결정(승인 시): 상승여력은 분포·확률·필요 가정으로만 표기(주당 가치·목표주가 없음). 2단계 이관 종목 INNIO·SK하이닉스·두산·ServiceNow.
 - 상수는 파라미터 등록부 prm-v2-*(binding config/valuation_v2.yaml). 2단계(업종 모듈·EODHD)·3단계(기저율·피팅·백테스트)·4단계(알파 정량화).
-
+- **데이터(2026-10-28 마스터 결정 변경)**: EODHD 보류, 무료 조합 먼저 — 대만 TWSE·TPEx 공개 API(가동), 한국 KRX OPEN API·미국 Finnhub(무료 키 입력 대기, 키 입력 후 공식 문서로 접속 확인), 미국 전 상장사 기저율은 SEC 일괄 재무(`scripts/valuation/v2/sec_bulk.py`, SEC_USER_AGENT 필요). 글로벌 컨센서스는 무료 대안 없음 → easyconomics(일부)·수동 입력.
