@@ -82,7 +82,7 @@ def run_claude(prompt, model, schema=None, timeout=900):
     # 작업 스케줄러(pyw, 창 없음)에서 콘솔 프로그램을 띄우면 Windows가 새 콘솔 창을 연다 → 숨김 콘솔로 실행
     flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
     proc = subprocess.run(cmd, cwd=common.ROOT, capture_output=True, text=True, encoding="utf-8",
-                          timeout=timeout, creationflags=flags)
+                          stdin=subprocess.DEVNULL, timeout=timeout, creationflags=flags)
     calls_today(1)
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     if proc.returncode != 0 or out.get("is_error"):
@@ -152,6 +152,12 @@ def main(argv=None):
             lvl = r["level"]
             card = Path(r.get("card_path") or "").stem or None
             msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card)
+            ok, why = notify.telegram_allowed(it)
+            if lvl in ("P0", "P1") and not ok:
+                to_brief(it, lvl, why)
+                if lvl == "P0":
+                    deep_analysis(r, it)
+                continue
             if lvl == "P0":
                 notify.send(("(규칙 선알림 후속) " if it["item_id"] in rule_sent else "") + msg, "P0")
                 deep_analysis(r, it)

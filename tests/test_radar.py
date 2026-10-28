@@ -181,5 +181,24 @@ class TestWeeklyMovers(unittest.TestCase):
             self.assertEqual(wm.collect(), (0, 0))
 
 
+class TestTelegramFilter(unittest.TestCase):
+    def test_publishers(self):
+        import notify
+        ko = {"source_id": "src-gnews-t0-ko", "doc_type": "기사", "title": "SK하이닉스 3분기 실적 - 연합뉴스"}
+        en = {"source_id": "src-gnews-t0-en", "doc_type": "기사", "title": "SK Hynix profit soars - Reuters"}
+        src = {"source_id": "src-gnews-t2-en", "doc_type": "기사", "title": "x - y", "publisher": "The Wall Street Journal"}
+        bloomberg_cite = {"source_id": "src-gnews-t0-ko", "doc_type": "기사", "title": "블룸버그 \"삼성\" - 한국경제"}
+        self.assertFalse(notify.telegram_allowed(ko)[0])
+        self.assertTrue(notify.telegram_allowed(en)[0])
+        self.assertTrue(notify.telegram_allowed(src)[0])
+        self.assertFalse(notify.telegram_allowed(bloomberg_cite)[0])
+
+    def test_non_news_and_wires(self):
+        import notify
+        self.assertTrue(notify.telegram_allowed({"source_id": "src-skhynix-newsroom", "doc_type": "보도자료", "title": "실적"})[0])
+        self.assertTrue(notify.telegram_allowed({"source_id": "src-prn", "doc_type": "보도자료", "title": "a"})[0])
+        self.assertFalse(notify.telegram_allowed({"source_id": "src-bw", "doc_type": "보도자료", "title": "a"})[0])
+
+
 if __name__ == "__main__":
     unittest.main()

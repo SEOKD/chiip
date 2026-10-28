@@ -18,7 +18,8 @@ def parse_feed(raw):
     out = []
     for it in root.iter("item"):
         out.append({"title": it.findtext("title") or "", "link": it.findtext("link") or "",
-                    "date": it.findtext("pubDate") or "", "desc": it.findtext("description") or ""})
+                    "date": it.findtext("pubDate") or "", "desc": it.findtext("description") or "",
+                    "publisher": it.findtext("source") or ""})
     for it in root.iter(f"{ATOM}entry"):
         link = it.find(f"{ATOM}link")
         out.append({"title": it.findtext(f"{ATOM}title") or "", "link": link.get("href") if link is not None else "",
@@ -59,6 +60,8 @@ def poll_source(src):
             if not e["link"]:
                 continue
             extra = {"tier": src.get("tier_hint")}
+            if e.get("publisher"):
+                extra["publisher"] = e["publisher"].strip()
             if entity:
                 extra["query_entity"] = entity
             it = common.make_item(

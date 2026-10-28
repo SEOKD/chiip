@@ -45,3 +45,22 @@ caps:
   daily_model_calls: 200
   daily_p0_deep_analysis: 10
   overflow_to: brief
+
+# 텔레그램 알림 매체 제한 (2026-10-28 마스터 지시)
+# - 국내 언론사 기사는 보내지 않는다. 기사는 아래 매체만. 막힌 항목은 브리프 대기열로 간다(수집은 계속).
+# - 기업 뉴스룸 보도자료·공시·정부 문서·논문(doc_type이 '기사'가 아닌 것)은 언론 기사가 아니므로 이 제한을 받지 않는다.
+telegram_filter:
+  allowed_publishers:          # 기사 매체명 전체 일치(대소문자 무시) — Google News 제목 끝 ' - 매체명'
+    - "Reuters"
+    - "Bloomberg"
+    - "Bloomberg.com"
+    - "The Wall Street Journal"
+    - "Wall Street Journal"
+    - "WSJ"
+    - "The Information"
+    - "Business Insider"
+    - "PR Newswire"
+    - "GlobeNewswire"
+    - "GlobeNewswire News Room"
+  allowed_wire_sources: [src-prn]   # 보도자료 배포처 수집분 중 텔레그램 허용(Business Wire src-bw는 제외)
+  wire_sources: [src-prn, src-bw, src-globenewswire]

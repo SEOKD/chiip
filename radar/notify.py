@@ -69,6 +69,29 @@ def _log(line):
         f.write(f"{common.iso(common.now_kst())} {line}\n")
 
 
+def publisher(item):
+    """기사 매체명: RSS <source> 값, 없으면 Google News 제목 끝 ' - 매체명'"""
+    if item.get("publisher"):
+        return item["publisher"].strip()
+    title = item.get("title", "")
+    return title.rsplit(" - ", 1)[1].strip() if " - " in title else ""
+
+
+def telegram_allowed(item):
+    """텔레그램 매체 제한(config/alert_rules.yaml telegram_filter). (허용 여부, 사유)"""
+    rule = (common.load_yaml("config/alert_rules.yaml") or {}).get("telegram_filter")
+    if not rule:
+        return True, ""
+    src = item.get("source_id", "")
+    if src in rule.get("wire_sources", []):
+        return (True, "") if src in rule.get("allowed_wire_sources", []) else (False, "배포처 제한")
+    if item.get("doc_type") != "기사":
+        return True, ""
+    pub = publisher(item)
+    allowed = {p.lower() for p in rule.get("allowed_publishers", [])}
+    return (True, "") if pub.lower() in allowed else (False, f"매체 제한({pub or '매체 미상'})")
+
+
 def format_item(level, item, what=None, impact=None, card_id=None):
     ent = ",".join(item.get("entities_matched", [])) or "-"
     lines = [f"[{level}] {ent} | {item.get('doc_type', '')} | {item.get('detected_at', '')[11:16]}",
