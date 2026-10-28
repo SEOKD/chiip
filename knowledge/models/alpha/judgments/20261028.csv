@@ -71,3 +71,99 @@ co-gevernova,upside,7,"3Q 수주 +96%·잔고 1,970억 달러·FCF 가이던스 
 co-gevernova,gap,4,선행 P/E 35.5배·EV/EBITDA 약 59배로 프리미엄 크나 52주 고점 대비 약 25% 하락(easyconomics/yfinance 2026-10-28) — 근거 약함,https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
 co-gevernova,bottleneck,9,"가스터빈 = 데이터센터 전력 핵심 병목, 가스 장비 잔고+슬롯 예약 122GW(연말 130GW+ 예상)",https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
 co-gevernova,asymmetry,2,"시가총액 약 2,380억 달러·애널리스트 40명 — 발견 여지 작음",https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
+co-ultraclean,upside,7,"1차 판정(미검증): EPS +22.3%·매출 +4.3% 서프라이즈, 시간외 +17%, 매출 성장 24% — AI 장비 수요 반등 초입",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1275014/000162828026067578/uctt-20261027.htm
+co-ultraclean,gap,8,"1차 판정(미검증): 선행 P/E 8.2배, 52주 고점 144달러 대비 −64%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1275014/000162828026067578/uctt-20261027.htm
+co-ultraclean,bottleneck,5,1차 판정(미검증): 가스 공급 등 장비 하위시스템 — 경쟁사(Ichor 등) 있어 병목 노출 중간,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1275014/000162828026067578/uctt-20261027.htm
+co-ultraclean,asymmetry,8,1차 판정(미검증): 시가총액 23억 달러·애널리스트 6명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1275014/000162828026067578/uctt-20261027.htm
+co-ttm,upside,7,"1차 판정(미검증): EPS +16.5%·매출 +6.5% 서프라이즈, 매출 성장 60% — AI 서버·네트워킹 고다층 PCB",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1116942/000119312526434993/d28453d8k.htm
+co-ttm,gap,8,"1차 판정(미검증): 선행 P/E 10.4배, 52주 고점 224달러 대비 −61%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1116942/000119312526434993/d28453d8k.htm
+co-ttm,bottleneck,6,1차 판정(미검증): AI용 고다층 기판 캐파 제약 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1116942/000119312526434993/d28453d8k.htm
+co-ttm,asymmetry,6,1차 판정(미검증): 시가총액 91억 달러·애널리스트 6명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1116942/000119312526434993/d28453d8k.htm
+co-vicor,upside,7,"1차 판정(미검증): 매출 성장 78.5%, 영업이익률 36.6% — AI 가속기용 수직 전력 공급 모듈",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-vicor,gap,5,1차 판정(미검증): 선행 P/E 34.9배로 높으나 52주 고점 383달러 대비 −45%,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-vicor,bottleneck,7,1차 판정(미검증): 48V·수직 전력 공급 특허·라이선스 — 대체 어려움(근거 약함),마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-vicor,asymmetry,7,1차 판정(미검증): 시가총액 98억 달러·애널리스트 5명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-celestica,upside,7,"1차 판정(미검증): 매출 성장 82.5%, EPS +11.1%·매출 +6.7% 서프라이즈 — 하이퍼스케일러 AI 네트워킹·서버",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm
+co-celestica,gap,7,"1차 판정(미검증): 선행 P/E 12.3배, 52주 고점 474달러 대비 −42%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm
+co-celestica,bottleneck,5,"1차 판정(미검증): ODM·EMS — 경쟁 존재, 고객 집중",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm
+co-celestica,asymmetry,4,1차 판정(미검증): 시가총액 349억 달러·애널리스트 25명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm
+co-rambus,upside,6,"1차 판정(미검증): 매출 성장 22%, EPS·매출 소폭 상회 — DDR5 RCD·MRDIMM 등 AI 메모리 대역폭 칩",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-20261026.htm
+co-rambus,gap,6,"1차 판정(미검증): 선행 P/E 22.9배, 52주 고점 174달러 대비 −49%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-20261026.htm
+co-rambus,bottleneck,6,1차 판정(미검증): 메모리 인터페이스 칩 과점(근거 약함),마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-20261026.htm
+co-rambus,asymmetry,6,1차 판정(미검증): 시가총액 96억 달러·애널리스트 11명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-20261026.htm
+co-amkor,upside,4,"1차 판정(미검증): 매출 정체(+0.2%), EPS·매출 소폭 하회 — 첨단 패키징 램프 지연 신호",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1047127/000104712726000049/amkr-20261026.htm
+co-amkor,gap,7,"1차 판정(미검증): 선행 P/E 14.4배, 52주 고점 96.7달러 대비 −59%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1047127/000104712726000049/amkr-20261026.htm
+co-amkor,bottleneck,6,1차 판정(미검증): 2.5D 등 첨단 패키징 캐파(애리조나) — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1047127/000104712726000049/amkr-20261026.htm
+co-amkor,asymmetry,6,1차 판정(미검증): 시가총액 99억 달러·애널리스트 16명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1047127/000104712726000049/amkr-20261026.htm
+co-corning,upside,6,"1차 판정(미검증): 매출 성장 18.4%, EPS +3.4%·매출 +1.0% 상회 — AI 데이터센터 광섬유·연결",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027.htm
+co-corning,gap,6,1차 판정(미검증): 선행 P/E 28배이나 52주 고점 272달러 대비 −54%,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027.htm
+co-corning,bottleneck,6,1차 판정(미검증): 광섬유·커넥티비티 캐파 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027.htm
+co-corning,asymmetry,3,"1차 판정(미검증): 시가총액 1,088억 달러·애널리스트 23명",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027.htm
+co-valmont,upside,4,"1차 판정(미검증): 매출 성장 5.5%, EPS +9.5% 상회·매출 −1.3% 하회 — 송전 구조물 수요",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-valmont,gap,6,"1차 판정(미검증): 선행 P/E 16.7배, 52주 고점 586달러 대비 −25%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-valmont,bottleneck,6,1차 판정(미검증): 송전 철탑·폴 수주잔고 — 송전망 병목(근거 약함),마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-valmont,asymmetry,6,1차 판정(미검증): 시가총액 84억 달러·애널리스트 7명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-generac,upside,5,"1차 판정(미검증): 매출 성장 10.6%, EPS +4.6% 상회·매출 −2.2% 하회 — 데이터센터용 대형 발전기 확대",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1474735/000143774926033685/gnrc20261027c_8k.htm
+co-generac,gap,6,"1차 판정(미검증): 선행 P/E 14.9배, 52주 고점 296달러 대비 −35%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1474735/000143774926033685/gnrc20261027c_8k.htm
+co-generac,bottleneck,5,1차 판정(미검증): 대형 디젤·가스 비상발전기 리드타임 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1474735/000143774926033685/gnrc20261027c_8k.htm
+co-generac,asymmetry,5,1차 판정(미검증): 시가총액 114억 달러·애널리스트 25명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1474735/000143774926033685/gnrc20261027c_8k.htm
+co-itron,upside,5,"1차 판정(미검증): EPS +24.4% 상회·매출 +0.6%, 주가 +7.8% — 계통 엣지·전력망 관리",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-itron,gap,6,1차 판정(미검증): 주가 반응 외 멀티플 미확인 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-itron,bottleneck,4,1차 판정(미검증): 전력망 계량·관리 — 데이터센터 전력과 간접 연결,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-itron,asymmetry,6,1차 판정(미검증): 시가총액 42억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-rogers,upside,4,1차 판정(미검증): EPS +16.8% 상회·매출 −0.8% — 전력 모듈 기판·RF 소재,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-rogers,gap,6,"1차 판정(미검증): 주가 +5.0%, 멀티플 미확인 — 근거 약함",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-rogers,bottleneck,4,1차 판정(미검증): 전력 반도체용 세라믹 기판(curamik) — AI 연결 간접,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-rogers,asymmetry,7,1차 판정(미검증): 시가총액 24억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-bakerhughes,upside,6,"1차 판정(미검증): EPS +16.7%·매출 +4.4% 상회, 주가 +5.3% — 가스터빈(NovaLT)·LNG 장비, 데이터센터 전력 수주",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-bakerhughes,gap,5,1차 판정(미검증): 멀티플 미확인 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-bakerhughes,bottleneck,6,1차 판정(미검증): 중소형 가스터빈 공급 — 데이터센터 전력 병목 수혜,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-bakerhughes,asymmetry,3,1차 판정(미검증): 시가총액 586억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-hubbell,upside,5,"1차 판정(미검증): 매출 성장 24.6%, EPS +2.6%·매출 +1.1% 상회 — 송배전 부품·데이터센터 전기",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/48898/000162828026067421/hubb-20261027.htm
+co-hubbell,gap,5,"1차 판정(미검증): 선행 P/E 18.9배, 52주 고점 565달러 대비 −23%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/48898/000162828026067421/hubb-20261027.htm
+co-hubbell,bottleneck,6,1차 판정(미검증): 유틸리티 송배전 부품 리드타임 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/48898/000162828026067421/hubb-20261027.htm
+co-hubbell,asymmetry,4,1차 판정(미검증): 시가총액 229억 달러·애널리스트 18명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/48898/000162828026067421/hubb-20261027.htm
+co-cadence,upside,5,"1차 판정(미검증): 매출 성장 22%, 소폭 상회 — AI 칩 설계 EDA",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/813672/000081367226000116/cdns-20261023.htm
+co-cadence,gap,3,"1차 판정(미검증): 선행 P/E 34.8배, 고점 대비 −18%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/813672/000081367226000116/cdns-20261023.htm
+co-cadence,bottleneck,7,1차 판정(미검증): EDA 과점,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/813672/000081367226000116/cdns-20261023.htm
+co-cadence,asymmetry,2,1차 판정(미검증): 시가총액 945억 달러·애널리스트 28명,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/813672/000081367226000116/cdns-20261023.htm
+co-nxp,upside,4,"1차 판정(미검증): 매출 성장 19.5%, 소폭 상회, 시간외 −7.7% — 차량·산업용 위주",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1413447/000141344726000057/nxpi-20261027.htm
+co-nxp,gap,6,1차 판정(미검증): 선행 P/E 13.8배,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1413447/000141344726000057/nxpi-20261027.htm
+co-nxp,bottleneck,2,1차 판정(미검증): AI·데이터센터 연결 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1413447/000141344726000057/nxpi-20261027.htm
+co-nxp,asymmetry,3,1차 판정(미검증): 시가총액 639억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1413447/000141344726000057/nxpi-20261027.htm
+co-nextera,upside,4,"1차 판정(미검증): 매출 성장 1.6%, 매출 −4.5% 하회 — 425 공시(합병 관련) 진행",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-nextera,gap,5,"1차 판정(미검증): 선행 P/E 18.8배, 고점 대비 −17%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-nextera,bottleneck,4,1차 판정(미검증): 재생·가스 발전 PPA — 병목 노출 중간,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-nextera,asymmetry,1,"1차 판정(미검증): 시가총액 1,729억 달러",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-commvault,upside,5,"1차 판정(미검증): 매출 성장 13%, EPS +11.3% 상회",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1169561/000116956126000032/cvlt-20261027.htm
+co-commvault,gap,3,"1차 판정(미검증): 선행 P/E 27.5배, 52주 고점 부근",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1169561/000116956126000032/cvlt-20261027.htm
+co-commvault,bottleneck,2,1차 판정(미검증): 데이터 보호 SW — AI HW 병목과 무관,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1169561/000116956126000032/cvlt-20261027.htm
+co-commvault,asymmetry,6,1차 판정(미검증): 시가총액 72억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28; https://www.sec.gov/Archives/edgar/data/1169561/000116956126000032/cvlt-20261027.htm
+co-seagate,upside,6,1차 판정(미검증): EPS +3.9%·매출 +1.7% 상회 — AI 데이터 저장 엑사바이트 수요·HAMR,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-seagate,gap,4,"1차 판정(미검증): 멀티플 미확인, 큰 상승 이후로 추정 — 근거 약함",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-seagate,bottleneck,6,1차 판정(미검증): HDD 2강 체제·캐파 규율,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-seagate,asymmetry,2,"1차 판정(미검증): 시가총액 1,519억 달러",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-teradyne,upside,6,1차 판정(미검증): EPS +10.1%·매출 +4.0% 상회 — AI 컴퓨트·HBM 테스트,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-teradyne,gap,4,1차 판정(미검증): 멀티플 미확인 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-teradyne,bottleneck,6,1차 판정(미검증): SoC·메모리 테스트 과점,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-teradyne,asymmetry,3,1차 판정(미검증): 시가총액 506억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-asmi,upside,5,"1차 판정(미검증): EPS −6.2% 하회·매출 +2.4% 상회, 주가 +7.9% — GAA·ALD 수요",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-asmi,gap,4,1차 판정(미검증): 멀티플 미확인 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-asmi,bottleneck,7,1차 판정(미검증): ALD 선도,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-asmi,asymmetry,3,1차 판정(미검증): 시가총액 419억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-f5,upside,4,"1차 판정(미검증): EPS·매출 +3.7% 상회, 시간외 −7.0%",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-f5,gap,4,1차 판정(미검증): 멀티플 미확인,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-f5,bottleneck,3,1차 판정(미검증): 애플리케이션 전달·보안 — AI 트래픽 간접,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-f5,asymmetry,4,1차 판정(미검증): 시가총액 260억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-jci,upside,5,"1차 판정(미검증): EPS +5.1%·매출 +1.0% 상회, 주가 +5.7% — 데이터센터 냉각(칠러)",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-jci,gap,4,1차 판정(미검증): 멀티플 미확인 — 근거 약함,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-jci,bottleneck,5,1차 판정(미검증): 대형 칠러·열관리 — 냉각 병목 중간,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-jci,asymmetry,2,1차 판정(미검증): 시가총액 944억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-mirion,upside,4,"1차 판정(미검증): EPS 부합·매출 +0.9%, 시간외 −5.3% — 원자력 계측",마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-mirion,gap,4,1차 판정(미검증): 멀티플 미확인,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-mirion,bottleneck,5,1차 판정(미검증): 원전 재가동·SMR 공급망 계측,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-mirion,asymmetry,6,1차 판정(미검증): 시가총액 38억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-alfalaval,upside,3,1차 판정(미검증): EPS −5.8%·매출 −1.1% 하회 — 데이터센터 액체냉각 열교환기는 일부,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-alfalaval,gap,4,1차 판정(미검증): 멀티플 미확인,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-alfalaval,bottleneck,4,1차 판정(미검증): 열교환기 — 냉각 병목 간접,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28
+co-alfalaval,asymmetry,3,1차 판정(미검증): 시가총액 230억 달러,마스터 제공 Investing.com 10/27 실적표(2026-10-28 대화); easyconomics company_profile(yfinance) 2026-10-28

@@ -15,7 +15,7 @@ radar_themes:
              co-vistra, co-constellation, co-talen, co-nrg, co-nextera, co-enchantedrock, co-voltagrid, co-solaris, co-liberty, co-generac, co-crusoe,
              co-eaton, co-hubbell, co-nvent, co-powell, co-siemens, co-schneider, co-abb, co-legrand, co-hitachi, co-melco, co-hdhyundaielec, co-lselectric, co-hyosunghi, co-sanil, co-vertiv,
              co-prysmian, co-nexans, co-nkt, co-taihan, co-lscorp, co-valmont, co-plpc,
-             co-quanta-services, co-mastec, co-myr, co-primoris, co-emcor, co-comfort, co-sterling, co-ies, co-argan, co-dycom]
+             co-quanta-services, co-mastec, co-myr, co-primoris, co-emcor, co-comfort, co-sterling, co-ies, co-argan, co-dycom, co-bakerhughes, co-itron, co-mirion]
 extra:
   # 마스터 Stocks (AI 밸류체인 밖일 수 있음)
   - {id: co-quanta-services, name: Quanta Services, code: PWR.US, region: US, sub: power_infra, master: true, aliases: ["Quanta Services"]}
@@ -126,3 +126,11 @@ extra:
   - {id: co-ies, name: IES Holdings, code: IESC.US, region: US, sub: power_infra, segment: EPC, aliases: ["IES Holdings"]}
   - {id: co-argan, name: Argan, code: AGX.US, region: US, sub: power_infra, segment: EPC, aliases: ["Argan Inc", "Gemma Power Systems"]}
   - {id: co-dycom, name: Dycom Industries, code: DY.US, region: US, sub: power_infra, segment: EPC, aliases: ["Dycom Industries", "Dycom"]}
+  # ── 10/27 실적 레이더에서 추가(2026-10-28) ──
+  - {id: co-bakerhughes, name: Baker Hughes, code: BKR.US, region: US, sub: power_infra, segment: 발전원, aliases: ["Baker Hughes"]}
+  - {id: co-itron, name: Itron, code: ITRI.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["Itron"]}
+  - {id: co-rogers, name: Rogers Corp, code: ROG.US, region: US, sub: components, aliases: ["Rogers Corporation", "Rogers Corp"]}
+  - {id: co-jci, name: Johnson Controls, code: JCI.US, region: US, sub: power_infra, segment: 냉각, aliases: ["Johnson Controls"]}
+  - {id: co-mirion, name: Mirion Technologies, code: MIR.US, region: US, sub: power_infra, segment: 발전원, aliases: ["Mirion Technologies", "Mirion"]}
+  - {id: co-alfalaval, name: Alfa Laval, code: ALFA.ST, region: EU, sub: power_infra, segment: 냉각, aliases: ["Alfa Laval"]}
+  - {id: co-f5, name: F5, code: FFIV.US, region: US, sub: software, aliases: ["F5 Inc", "F5 Networks"]}

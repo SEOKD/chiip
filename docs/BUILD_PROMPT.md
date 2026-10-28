@@ -1990,3 +1990,10 @@ source: docs/methodology
 - 마스터 지시 "데이터센터 전력 관련주도 레이더 망에": radar_themes.dc_power 55종목 — 발전원(GEV·BE·INNIO·Siemens Energy·Caterpillar·Cummins·Wärtsilä·Rolls-Royce·MHI·두산에너빌리티·Oklo·NuScale), 발전사업자(VST·CEG·TLN·NRG·NEE), 분산형·모듈형(Enchanted Rock·VoltaGrid·Crusoe(비상장)·Solaris·Liberty·Generac), 전력설비(Eaton·Hubbell·nVent·Powell·Siemens·Schneider·ABB·Legrand·Hitachi·Mitsubishi Electric·HD현대일렉트릭·LS일렉트릭·효성중공업·산일전기·Vertiv), 송전망(Prysmian·Nexans·NKT·대한전선·LS·Valmont·PLP), 전력망 EPC(Quanta·MasTec·MYR·Primoris·EMCOR·Comfort Systems·Sterling·IES·Argan·Dycom).
 - 결과: GEV 8-K·10-Q 수집 → 알파 5.5(판단, SEC 보도자료 근거) → v2 동인 작성 → 3요인 텔레그램 발송. 모델 기본 가정(계속가치 RONIC=WACC·마진 페이드)이 해자 기업을 과소평가할 수 있음을 메시지에 명시, 종목별 ronic_spread 지원(3단계 보정).
 
+### 21.19 알파 레이더 자동화 (2026-10-28 마스터 지시 "이런 걸 자동으로 하라니까?")
+- 계기: 마스터가 Investing.com 10/27 글로벌 어닝 캘린더를 붙여 넣고 "알파 레이더를 돌려 텐배거 종목을 리스트업" 요청. Investing.com은 약관상 자동 수집 금지라 같은 일을 SEC 공식 원천으로 자동화.
+- `radar/pollers/sec_earnings_all.py`(run_hourly 60분): EDGAR 전문검색으로 최근 이틀 8-K Item 2.02 전부 → SIC로 AI·반도체·하드웨어·데이터센터 전력·냉각·전력망 EPC만 → 유통주식 가치 1.5억 달러 미만 제외 → '알파 산정' 대기열(감시 목록 종목은 sec_filings 담당). 첫 실행: 이틀간 관련 17건.
+- 예약 작업 chiip-valuation-queue 개정: 알파 산정 최대 15종목/회 → 5.0 이상 신규 종목은 감시 목록 추가·동인 작성(최대 5/회)·텔레그램 '[알파 레이더]' 요약 1통.
+- 10/27 수동 레이더(마스터 제공 표): AI·전력 관련 24종목 산정 → 13종목 새로 5.0 이상(Ultra Clean 7.1·TTM 6.9·Vicor 6.4·Celestica·Rambus 6.0·Amkor 5.7·Corning·Valmont 5.4·Generac·Itron 5.3·Rogers 5.2·Baker Hughes 5.1·Hubbell 5.0) — 1차 판정, 미검증.
+- 한계: 미국만(한국은 KIND IR 일정, 대만·일본·유럽 실적은 무료 원천 확보 전). 서프라이즈(컨센서스 대비)는 무료 자동 원천이 없어 모델이 8-K·공개 시세로 판단.
+

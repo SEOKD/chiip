@@ -823,3 +823,19 @@
   reliability_default: 2차
   verified: true
   enabled: true
+
+- id: src-sec-earnings-all
+  name: 전체 미국 상장사 실적 스캐너 (SEC EDGAR 전문검색 8-K Item 2.02 — Investing.com 어닝 캘린더 대체)
+  category: A-규제공시
+  method: api
+  endpoint_doc: "https://efts.sec.gov/LATEST/search-index (EDGAR full-text search)"
+  auth: none
+  scope: [US]
+  interval_min: 60
+  run_on: local
+  language: en
+  doc_type: 실적
+  terms_note: "SEC 공개 검색(2026-10-28 응답 확인, 일반 UA). AI·반도체·전력 업종(SIC)만, 유통주식 가치 1.5억 달러 미만 제외 → 알파 산정 대기열. Investing.com·Yahoo·Finviz는 약관·robots로 자동 수집 안 함"
+  reliability_default: 1차
+  verified: true
+  enabled: true

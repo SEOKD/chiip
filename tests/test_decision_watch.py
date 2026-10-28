@@ -97,3 +97,13 @@ class TestInboxDetection(unittest.TestCase):
         found, _ = alpha_watch.detect(now, st, {"co-gevernova": 6.0}, {}, [], TestAlphaWatch.CW, items)
         self.assertIn("co-gevernova", found)
         self.assertTrue(found["co-gevernova"][0].startswith("실적"))
+
+
+class TestEarningsScanner(unittest.TestCase):
+    def test_parse_and_relevance(self):
+        from pollers import sec_earnings_all as s
+        self.assertEqual(s.parse_name("Jersey Mike's Subs Inc.  (JMKE)  (CIK 0002127043)"), ("Jersey Mike's Subs Inc.", "JMKE", "0002127043"))
+        self.assertEqual(s.parse_name("ACM Research, Inc.  (ACMR)  (CIK 0001680062)")[1], "ACMR")
+        self.assertEqual(s.relevant("3674"), "AI·반도체")
+        self.assertEqual(s.relevant("3613"), "전력·인프라")
+        self.assertEqual(s.relevant("5812"), "")
