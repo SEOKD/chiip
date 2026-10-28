@@ -41,9 +41,15 @@ def run():
                                   "url": ev.get("EventInSiteURL") or base, "original_title": title[:300],
                                   "signal_type_hint": "인허가"})
     n = save_candidates("L2", SOURCE_ID, cands)
+    # 실시간 보고(§21.12): 같은 안건을 레이더 항목으로도 넣어 radar-triage → 텔레그램 흐름을 탄다
+    radar = common.save_new_items([common.make_item(
+        SOURCE_ID, c["uid"], c["url"], f"[지방안건 {c['counterparty']}] {c['original_title'][:160]}",
+        str(c.get("published_at") or ""), "규제·정책", "en", c["original_title"][:200],
+        extra={"policy_level": "지방", "codename": c["match_text"]}) for c in cands])
     common.record_health(SOURCE_ID, True)
-    return len(cands), n
+    print(f"Legistar: 역방향 후보 신규 {n}")
+    return len(cands), len(radar)
 
 
 if __name__ == "__main__":
-    print("Legistar: 후보 %d, 신규 %d" % run())
+    print("Legistar: 안건 %d, 레이더 신규 %d" % run())

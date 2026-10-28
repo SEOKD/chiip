@@ -1941,3 +1941,12 @@ source: docs/methodology
 - X 웹 화면 수집(스크래핑·Nitter류 미러)은 하지 않는다: x.com robots.txt가 모든 경로 차단.
 - 성격: 의견·추정·채널체크 = 단서(S1~S2). 사실로 쓰지 않고 주체를 붙인다. claim 승격은 claim-intake, 재인용은 독립 확인 아님(`origin_id`). 계정 적중 기록은 `knowledge/handle_reputation.csv`.
 - 흐름: 수집 → radar/inbox → radar-triage(기본 P2, 새 구체 수치·채널체크면 P1, P0 없음 — 경영진 공식 발표 성격만 예외) → 아침·저녁 브리프 '■ 리서치·투자자 동향'(`research_watch.py --digest`). **텔레그램은 보내지 않는다**(`telegram_filter.brief_only_doc_types`). 수집 글은 밸류에이션 내러티브 강도 계산에도 함께 들어간다.
+
+### 21.12 텔레그램 실시간 보고 범위 확대 (2026-10-28 마스터 지시)
+- 지시: 텔레그램 보고에 7개 매체 외에 X 결과물, 미국 정부(연방·주·지방) 자료와 AI 하드웨어 관련 재정정책·행정명령, EU·회원국·일본·대만·중국의 관련 정책·행정명령, 반도체·AI 하드웨어 학회·협회(OCP 등) 세미나 자료를 실시간으로.
+- 텔레그램 필터(`config/alert_rules.yaml` telegram_filter): 매체 제한은 `doc_type: 기사`에만 걸린다. X 글(`SNS`)은 이제 허용, 뉴스레터 RSS(`리서치`)는 브리프 전용 유지. `규제·정책`·`학회·협회`·보도자료·공시는 P0·P1이면 발송.
+- 원천(`config/source_registry.yaml` G·H절, 10개): 미국 연방 공식 RSS(백악관 뉴스·팩트시트·NIST·에너지부) + 기관 도메인 검색(BIS·상무부·USTR·재무부·의회), 주·지방(거점 주지사실·시·카운티), EU 집행위 RSS + 회원국(독·네·프·Chips JU), 일본(관저 RSS + METI·내각부), 대만(행정원 RSS + 경제부·국과회), 중국(상무부·국무원·공신부·발개위), 협회 RSS(OCP·MLCommons·CXL·UEC·UALink·NVMe·IEEE Spectrum) + 협회·학회 도메인 검색(SEMI·SIA·JEDEC·imec·UCIe·Hot Chips·IEDM·ISSCC·VLSI·ECTC·OFC·SEAJ·TSIA·WSTS). 기존 관보(src-fedreg)·행정명령(src-whitehouse) 유지.
+- 접근 원칙: 공식 RSS가 열리면 직접 받는다. 자동 접속을 막는 곳(METI·MOEA·상무부 403, MOFCOM DNS 실패 등)은 우회하지 않고 Google News를 정부 도메인(`site:`)으로 제한한 색인을 쓴다. 잡음 제어는 `include_regex`(주제어)와 `max_age_days: 3`.
+- 지방정부: Legistar 안건(오스틴)을 역방향 후보와 함께 레이더 항목으로도 넣어 판정·알림(4시간 주기).
+- 판정(radar-triage): 정책은 확정 조치가 T0에 직접 닿으면 P0, 행정명령·법 시행·최종 규칙·보조금 확정·재정 예산·규칙안·거점 지방 안건 의결이면 P1, 발의·연설·의견 수렴은 P2. 학회·협회는 표준·사양·MLPerf·학회 프로그램·협회 통계·T0·T2 세미나 자료가 P1. 단계 분리(발의·규칙안·최종·시행 / 발표·계약·지급)와 원문 언어 보존·번역 병기.
+

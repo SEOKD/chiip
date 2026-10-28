@@ -428,3 +428,249 @@
   reliability_default: 의견
   verified: false
   enabled: false       # 마스터 비용 승인 + X_BEARER_TOKEN 입력 후 true (TODO 21-3) — X 수집의 유일한 스위치
+
+# ===== G. 정책·행정명령 — 미국(연방·주·지방)·EU·회원국·일본·대만·중국 (§21.12) =====
+# 1차 공식 RSS가 열리면 직접 받고 include_regex로 분야 글만 남긴다. 자동 접속을 막는 곳(METI·MOEA·MOFCOM·상무부 403 등)은
+# 우회하지 않고 Google News를 정부 도메인(site:)으로 제한해 받는다. doc_type 규제·정책은 텔레그램 매체 제한 대상이 아님.
+- id: src-policy-us-fed
+  name: 미국 연방 공식 RSS(백악관 뉴스·팩트시트, NIST·CHIPS, 에너지부)
+  category: L-미국정부
+  module: rss
+  method: rss
+  feed_urls: ["https://www.whitehouse.gov/news/feed/", "https://www.whitehouse.gov/fact-sheets/feed/", "https://www.nist.gov/news-events/news/rss.xml", "https://www.energy.gov/rss/newsroom.xml"]
+  include_regex: "semiconductor|chip|CHIPS|artificial intelligence|\\bAI\\b|data cent|export control|tariff|Section 232|critical mineral|rare earth|gallium|germanium|grid|transmission|nuclear|supercomput|quantum|Genesis Mission"
+  endpoint_doc: "https://www.whitehouse.gov/news/"
+  auth: none
+  scope: [글로벌]
+  interval_min: 30
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "공식 RSS 4개 응답 확인(2026-10-28). 행정명령은 src-whitehouse(presidential-actions), 관보는 src-fedreg"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-policy-us-fed-gn
+  name: 미국 연방 기관(상무부·BIS·USTR·재무부·의회) — Google News 도메인 제한
+  category: L-미국정부
+  module: rss
+  method: rss
+  feed_queries:
+    - "site:bis.gov when:2d"
+    - "site:commerce.gov (semiconductor OR chips OR \"artificial intelligence\" OR tariff OR \"Section 232\") when:2d"
+    - "site:ustr.gov (semiconductor OR \"Section 301\" OR tariff) when:2d"
+    - "site:treasury.gov (\"outbound investment\" OR semiconductor) when:2d"
+    - "site:congress.gov (semiconductor OR \"chip security\" OR \"export control\") when:2d"
+  hl: en-US
+  gl: US
+  include_regex: "semiconductor|chip|export|Entity List|tariff|Section 232|Section 301|artificial intelligence|\\\
+  bAI\\b|outbound|comput|critical mineral|rare earth"
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "commerce.gov RSS 403·bis.gov RSS 파싱 불가(2026-10-28) → 우회 대신 Google News 색인. 링크는 기관 원문으로 연결"
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
+- id: src-policy-us-state
+  name: 미국 주·지방정부(텍사스·인디애나·애리조나·뉴욕·오하이오·아이다호, 거점 시·카운티) — Google News 도메인 제한
+  category: L-미국정부
+  module: rss
+  method: rss
+  feed_queries:
+    - "(site:gov.texas.gov OR site:texaswideopenforbusiness.com) (semiconductor OR Samsung OR \"data center\" OR chip) when:2d"
+    - "(site:in.gov OR site:iedc.in.gov) (semiconductor OR \"SK hynix\" OR \"data center\" OR chip) when:2d"
+    - "site:azgovernor.gov (semiconductor OR TSMC OR \"data center\") when:2d"
+    - "(site:governor.ny.gov OR site:esd.ny.gov) (semiconductor OR Micron OR chip) when:2d"
+    - "site:governor.ohio.gov (Intel OR semiconductor OR \"data center\") when:2d"
+    - "site:gov.idaho.gov (Micron OR semiconductor) when:2d"
+    - "(site:taylortx.gov OR site:wilco.org OR site:austintexas.gov OR site:westlafayette.in.gov OR site:tippecanoe.in.gov) (Samsung OR \"SK hynix\" OR semiconductor OR Project) when:7d"
+  hl: en-US
+  gl: US
+  include_regex: "semiconductor|chip|Samsung|SK hynix|Micron|Intel|TSMC|data cent|Project [A-Z]|incentive|abatement"
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "주지사실 RSS 대부분 404·403(2026-10-28). 오스틴 의회 안건은 src-legistar가 레이더로도 넣음"
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
+- id: src-policy-eu
+  name: EU 집행위 공식 RSS(Press Corner·디지털 전략)
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_urls: ["https://ec.europa.eu/commission/presscorner/api/rss?language=en", "https://digital-strategy.ec.europa.eu/en/rss.xml"]
+  include_regex: "semiconductor|chip|Chips Act|artificial intelligence|\\bAI\\b|gigafactor|data cent|export control|dual.use|tariff|critical raw|rare earth|gallium|supercomput|EuroHPC|quantum|State aid"
+  endpoint_doc: "https://ec.europa.eu/commission/presscorner"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "공식 RSS 응답 확인(2026-10-28)"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-policy-eu-gn
+  name: EU·회원국 정부(Chips JU·독일·네덜란드·프랑스) — Google News 도메인 제한
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_queries:
+    - "(site:ec.europa.eu OR site:chips-ju.europa.eu OR site:eur-lex.europa.eu) (semiconductor OR \"Chips Act\" OR \"AI gigafactory\" OR \"export control\") when:2d"
+    - "(site:government.nl OR site:rijksoverheid.nl) (semiconductor OR ASML OR \"export control\" OR halfgeleider OR exportcontrole) when:2d"
+    - "(site:bundesregierung.de OR site:bundeswirtschaftsministerium.de) (Halbleiter OR Chip OR \"Künstliche Intelligenz\" OR Rechenzentrum) when:2d"
+    - "(site:economie.gouv.fr OR site:elysee.fr OR site:info.gouv.fr) (semi-conducteurs OR \"intelligence artificielle\" OR \"data center\") when:2d"
+  hl: en-US
+  gl: US
+  include_regex: "semiconductor|chip|Halbleiter|halfgeleider|semi-conducteur|\\bAI\\b|intelligen|export|economic\
+  \ security|wirtschaftliche Sicherheit|Rechenzentr|data cent|gigafactor"
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "독일 경제부 RSS 인증서 오류·네덜란드·프랑스 RSS 404(2026-10-28) → Google News 색인. 원문 언어(de·nl·fr) 보존"
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
+- id: src-policy-jp
+  name: 일본 정부(총리관저 RSS + 경제산업성·내각부·재무성) — METI는 Google News 도메인 제한
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_url: "https://www.kantei.go.jp/index-jnews.rdf"
+  include_regex: "半導体|ラピダス|Rapidus|AI|人工知能|データセンター|経済安全保障|輸出管理|補正予算|GX|電力"
+  feed_queries:
+    - "site:meti.go.jp (半導体 OR ラピダス OR データセンター OR 輸出管理 OR 人工知能) when:2d"
+    - "(site:cao.go.jp OR site:mof.go.jp) 半導体 when:2d"
+  hl: ja
+  gl: JP
+  endpoint_doc: "https://www.kantei.go.jp"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: ja
+  doc_type: 규제·정책
+  terms_note: "관저 RSS 응답 확인, METI RSS 403(2026-10-28) → 우회 없이 Google News 색인. 원문 보존·번역 병기"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-policy-tw
+  name: 대만 정부(행정원 RSS + 경제부·국가과학위원회·국제무역서) — 경제부는 Google News 도메인 제한
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_url: "https://www.ey.gov.tw/RSS_Content.aspx?ModuleType=7"
+  include_regex: "半導體|晶片|AI|人工智慧|算力|資料中心|出口管制|台積電|電力|關稅|232"
+  feed_queries:
+    - "(site:moea.gov.tw OR site:nstc.gov.tw OR site:trade.gov.tw) (半導體 OR 晶片 OR AI OR 出口管制 OR 關稅) when:2d"
+  hl: zh-TW
+  gl: TW
+  endpoint_doc: "https://www.ey.gov.tw"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: zh
+  doc_type: 규제·정책
+  terms_note: "행정원 RSS 응답 확인, 경제부 RSS 403(2026-10-28) → Google News 색인"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-policy-cn
+  name: 중국 정부(상무부·국무원·공업정보화부·발개위·인터넷정보판공실) — Google News 도메인 제한
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_queries:
+    - "site:mofcom.gov.cn (出口管制 OR 半导体 OR 集成电路 OR 稀土 OR 镓 OR 锗 OR 不可靠实体清单 OR 出口许可) when:2d"
+    - "site:www.gov.cn (集成电路 OR 半导体 OR 人工智能 OR 算力) when:2d"
+    - "(site:miit.gov.cn OR site:ndrc.gov.cn OR site:cac.gov.cn) (半导体 OR 集成电路 OR 算力 OR 人工智能) when:2d"
+  hl: zh-CN
+  gl: CN
+  include_regex: "半导体|集成电路|芯片|出口管制|稀土|镓|锗|人工智能|算力|实体清单|出口许可|两用物项|光刻"
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: zh
+  doc_type: 규제·정책
+  terms_note: "gov.cn RSS 인증서 오류·mofcom DNS 실패·miit 404(2026-10-28) → Google News 색인. 원문 보존·번역 병기"
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
+# ===== H. 학회·협회·표준 단체 (§21.12) — 세미나·사양·통계 발표 =====
+- id: src-assoc-feeds
+  name: AI 하드웨어 협회·표준 단체 공식 RSS(OCP·MLCommons·CXL·UEC·UALink·NVMe·IEEE Spectrum 반도체)
+  category: C-학회·협회
+  module: rss
+  method: rss
+  feed_urls: ["https://www.opencompute.org/blog/rss", "https://mlcommons.org/feed/", "https://computeexpresslink.org/feed/", "https://ultraethernet.org/feed/", "https://ualinkconsortium.org/feed/", "https://www.nvmexpress.org/feed/", "https://spectrum.ieee.org/feeds/topic/semiconductors.rss"]
+  endpoint_doc: "https://www.opencompute.org"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 학회·협회
+  terms_note: "공식 RSS 7개 응답 확인(2026-10-28). 발표 자료는 링크만, 원문 저장 안 함"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-assoc-gn
+  name: 반도체 협회·학회(SEMI·SIA·JEDEC·imec·UCIe·Hot Chips·IEDM·ISSCC·VLSI·ECTC·OFC·OCP·SEAJ·TSIA·WSTS) — Google News 도메인 제한
+  category: C-학회·협회
+  module: rss
+  method: rss
+  feed_queries:
+    - "(site:semi.org OR site:semiconductors.org OR site:jedec.org OR site:imec-int.com OR site:uciexpress.org) when:2d"
+    - "(site:hotchips.org OR site:ieee-iedm.org OR site:isscc.org OR site:vlsisymposium.org OR site:ectc.net OR site:ofcconference.org OR site:opencompute.org) when:3d"
+    - "(site:seaj.or.jp OR site:tsia.org.tw OR site:wsts.org OR site:ksia.or.kr) when:3d"
+  hl: en-US
+  gl: US
+  include_regex: "semiconductor|chip|standard|HBM|DRAM|memory|packag|AI|forecast|billing|sales|equipment|fab|wafer|program|paper|conference|symposium|summit|半導|半导"
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: 학회·협회
+  terms_note: "SEMI·SIA·JEDEC·ECTC 등 RSS 403·404·파싱 불가(2026-10-28) → Google News 색인. 학회 프로그램·논문 선별은 conference-tracker"
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true

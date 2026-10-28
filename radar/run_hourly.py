@@ -31,7 +31,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-openalex", "openalex", 10080),
     ("src-page-diff", "page_diff", 1440),
     ("src-job-boards", "jobs_boards", 1440),
-    ("src-legistar", "legistar", 1440),
+    ("src-legistar", "legistar", 240),  # 지방 안건 — 실시간 보고 대상(§21.12)
     # 6단계 v2
     ("src-kernel-lore", "kernel_watch", 1440),
     ("src-pci-ids", "pci_ids", 10080),
@@ -48,7 +48,7 @@ def main(argv):
         try:
             res = importlib.import_module(mod).run()
             print(jid, res)
-            if jid == "src-fedreg" and res[1]:
+            if jid in ("src-fedreg", "src-legistar") and res[1]:  # 레이더 inbox에 새 항목을 넣는 작업
                 new_radar = True
         except RuntimeError as exc:
             common.record_health(jid, False, exc)

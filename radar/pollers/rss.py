@@ -3,8 +3,10 @@
 source_registry.yaml 에서 method: rss 이고 feed_url(또는 feed_queries)이 있는 원천을 읽는다.
 """
 import hashlib
+import re
 import urllib.parse
 import xml.etree.ElementTree as ET
+from datetime import datetime, timedelta
 from email.utils import parsedate_to_datetime
 
 from . import common
@@ -37,9 +39,22 @@ def to_iso(s):
         return s  # Atom은 이미 ISO
 
 
+def _older_than(iso_s, days):
+    """날짜를 못 읽으면(정적 페이지 등) 오래된 것으로 본다"""
+    try:
+        dt = datetime.fromisoformat(iso_s.replace("Z", "+00:00"))
+    except (AttributeError, ValueError):
+        return True
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=common.KST)
+    return common.now_kst() - dt > timedelta(days=days)
+
+
 def feed_urls(src):
     if src.get("feed_url"):
         yield src["feed_url"], None
+    for u in src.get("feed_urls", []) or []:
+        yield u, None
     for q in src.get("feed_queries", []) or []:
         if q == "@watchlist":
             for row in common.load_watchlist():
@@ -55,9 +70,25 @@ def feed_urls(src):
 
 def poll_source(src):
     items = []
-    for url, entity in feed_urls(src):
-        for e in parse_feed(common.http_get(url)):
+    # 잡음이 많은 원천(정부 피드·도메인 제한 검색)은 include_regex에 맞는 글만 받는다
+    inc = re.compile(src["include_regex"], re.I) if src.get("include_regex") else None
+    max_age = src.get("max_age_days")
+    urls = list(feed_urls(src))
+    failed = []
+    for url, entity in urls:
+        try:
+            entries = parse_feed(common.http_get(url))
+        except Exception as exc:  # 피드 여럿 중 하나가 죽어도 나머지는 받는다
+            if len(urls) == 1:
+                raise
+            failed.append(f"{url[:60]}: {type(exc).__name__}")
+            continue
+        for e in entries:
             if not e["link"]:
+                continue
+            if inc and not inc.search(f"{e['title']} {common.strip_tags(e['desc'])}"):
+                continue
+            if max_age and _older_than(to_iso(e["date"]), max_age):  # site: 쿼리는 when:이 잘 안 먹어 옛 문서가 섞인다
                 continue
             extra = {"tier": src.get("tier_hint")}
             if e.get("publisher"):
@@ -71,6 +102,8 @@ def poll_source(src):
             if entity and entity not in it["entities_matched"]:
                 it["entities_matched"].append(entity)
             items.append(it)
+    if failed and len(failed) == len(urls):
+        raise RuntimeError("피드 전부 실패: " + "; ".join(failed[:3]))
     # 뉴스룸처럼 scope가 단일 기업이면 매칭 보강
     scope = src.get("scope") or []
     if len(scope) == 1 and str(scope[0]).startswith("co-"):

@@ -36,6 +36,7 @@
 - 텔레그램 알림 매체 제한(마스터 지시): 국내 언론 기사 제외, 기사는 Reuters·Bloomberg·WSJ·The Information·Business Insider·PR Newswire·GlobeNewswire만(`config/alert_rules.yaml` telegram_filter, `notify.telegram_allowed`). 막힌 P0·P1은 브리프 대기열로. 기업 뉴스룸 보도자료·공시·정부 문서는 기사가 아니므로 유지, Business Wire 수집분은 텔레그램 제외
 - 밸류에이션 시스템(ADR-008, BUILD_PROMPT §21.10): IB 5곳 공개 방법 종합 → 6층(수집·리비전·멀티플·내포 기대·내러티브·반영도). `radar/markets/valuation_data.py`(EODHD 펀더멘털·가격·수동 컨센서스, 05~06시·15:45~17시), `scripts/valuation/engine.py`(순수 파이썬 회귀·역DCF·수익률 분해·반영도 지수), 스킬 `valuation-card`, 아침·저녁 브리프 '밸류에이션 레이더' 절(예약 작업 지시문 갱신). 키·요금제 전이라 지금은 내러티브 강도만 실데이터
 - 리서치·투자자 실시간 감시(§21.11, 마스터 지시): `config/research_watch.yaml` 29개 계정·매체. 공개 RSS 15개(`src-research-feeds`) 가동, X 공식 API(`src-research-x`)는 코드 완성·비용 승인 대기(사용량 과금, 월 상한). X 웹 수집은 robots.txt 전면 차단이라 안 함. 트리아지 기본 P2·텔레그램 제외·아침·저녁 브리프 '리서치·투자자 동향' 절
+- 텔레그램 실시간 보고 확대(§21.12, 마스터 지시): X 글 허용, 정책·행정명령(미국 연방·주·지방, EU·회원국, 일본·대만·중국)·학회·협회 원천 10개 추가(공식 RSS 직접 + 차단된 기관은 Google News 도메인 제한), 트리아지 정책·학회 P0/P1 기준, Legistar 안건 레이더 편입
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

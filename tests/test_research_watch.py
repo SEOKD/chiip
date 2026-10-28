@@ -123,10 +123,13 @@ class TestDigestAndTelegram(Base):
         self.assertIn("A Research", out)
         self.assertIn("HBM4 note", out)
 
-    def test_research_not_sent_to_telegram(self):
+    def test_telegram_routing(self):
         import notify
-        self.assertFalse(notify.telegram_allowed({"source_id": "src-research-x", "doc_type": "SNS", "title": "a"})[0])
+        # X 글은 텔레그램 허용(§21.12), 뉴스레터 RSS는 브리프 전용
+        self.assertTrue(notify.telegram_allowed({"source_id": "src-research-x", "doc_type": "SNS", "title": "a"})[0])
         self.assertFalse(notify.telegram_allowed({"source_id": "src-research-feeds", "doc_type": "리서치", "title": "a"})[0])
+        for src, dt in (("src-policy-cn", "규제·정책"), ("src-legistar", "규제·정책"), ("src-assoc-gn", "학회·협회")):
+            self.assertTrue(notify.telegram_allowed({"source_id": src, "doc_type": dt, "title": "x - 中华人民共和国商务部"})[0])
 
 
 if __name__ == "__main__":
