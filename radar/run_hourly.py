@@ -50,6 +50,7 @@ JOBS = [  # (job id, module, interval_min)
 
 
 def main(argv):
+    common.stay_awake()
     force = "--force" in argv
     new_radar = False
     for jid, mod, every in JOBS:

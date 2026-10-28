@@ -54,6 +54,7 @@
 - 노션 올림 즉시 처리(§21.16, 마스터 지시): notion_watch(토큰 시 5분)·chiip-notion-watch(매시간)·notion-intake 스킬·notion_state·notion_write. 첫 처리: Informations 법안 추적표 → 중간선거 후 수혜 후보 보고서·텔레그램 발송
 - 30분 펄스(§21.21, 마스터 지시): `radar/pulse.py`(결정론 관문 — inbox의 원본만[논문·보도자료·공시·정부, 기사 제외] + arXiv cs.ET·physics.app-ph 직접 + 감시 목록 밖 AI·전력 업종 8-K 1.01·7.01·8.01, 유형별 상한, 후보 티커, 회차 잠금, valuation-queue 실행 창 회피), 예약 작업 chiip-pulse(`*/30`, 자동 모드, ① [기사 원본] ② 텐배거 발굴 → 알파 산정 ≤8 → [알파 레이더]), 시험 5개. Nature 계열은 robots.txt가 Claude 차단 → 제외
 - 알파 점수 SemiAnalysis 렌즈(§21.17, 마스터 지시): 7원리 + 크라우딩, 42종목 규칙 보정(29행), 5.0 이상 23종목
+- 밤사이 미실행(2026-10-29): PC가 22:55~07:28 절전(S3) → 예약 작업·수집기 정지(reporter·ten-bagger 지연, pulse 16회 건너뜀). 마스터 승인으로 작업 스케줄러 chiip-radar(5분)·chiip-hourly(30분)에 '절전 중 깨우기', 수집 중 절전 방지(`common.stay_awake`, 프로세스 종료 시 해제). 윈도우 전원 설정은 그대로(마스터 몫), 배터리일 때는 깨우기 타이머 비활성(기존 설정)
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

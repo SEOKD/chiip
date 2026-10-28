@@ -85,6 +85,7 @@ def deterministic_p0(items):
 
 
 def main(argv=None):
+    common.stay_awake()
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--no-triage", action="store_true")

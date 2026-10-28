@@ -7,6 +7,7 @@ import html
 import json
 import os
 import re
+import sys
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -20,6 +21,14 @@ LOCAL_ONLY = Path(os.environ.get("CHIIP_LOCAL_ONLY", r"D:\local-only"))
 STATE = ROOT / "radar" / "state"
 INBOX = ROOT / "radar" / "inbox"
 UA = "chiip-radar/0.1 (personal research)"
+
+
+def stay_awake():
+    """수집 중 절전 진입 막기(이 프로세스가 끝나면 자동 해제) — 작업 스케줄러 '절전 중 깨우기'로 깨어난 뒤
+    수집을 마치기 전에 다시 잠들지 않게(마스터 승인 2026-10-29). 윈도우 전원 설정은 바꾸지 않는다"""
+    if sys.platform == "win32":
+        import ctypes
+        ctypes.windll.kernel32.SetThreadExecutionState(0x80000000 | 0x00000001)   # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
 
 
 # ---------- 시간 ----------
