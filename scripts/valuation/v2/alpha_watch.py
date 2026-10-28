@@ -230,9 +230,14 @@ def main(argv):
         text, sent = evaluate_and_send(a.entity, [a.reason], total, a.send, cfg())
         print(text)
         print("발송" if sent else "(발송 안 함)")
-        if a.send:   # 대기열에서 처리 완료로 제거
+        if a.send:   # 대기열에서 처리 완료로 제거 + 오늘 처리함으로 기록(매시간 루프의 같은 날 중복 발송 방지)
             q = [x for x in load_queue() if x["id"] != a.entity]
             QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=1), encoding="utf-8")
+            st = common.load_state(STATE, {})
+            st.setdefault("evaluated", {})[a.entity] = common.now_kst().date().isoformat()
+            if total is not None and total >= 5.0:
+                st.setdefault("alpha_seen", {})[a.entity] = total
+            common.save_state(STATE, st)
         return 0
     if a.dry:
         import score as alpha
