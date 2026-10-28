@@ -41,6 +41,7 @@
 - 신선도 관문(마스터 지시): 10/21·22 기사가 10/28 발송된 문제(src-news7-focus의 when:1d 무시) → 공개 시각 기준 수집·발송 시한(`freshness`). 포커스 점수 텔레그램은 총점만
 - 뉴스 매체 9곳(마스터 지시): CNBC·Seeking Alpha 추가. 두 곳은 robots.txt가 Claude 등 AI 수집기를 차단 → Google News 색인(제목·링크)으로만
 - 부가가치 엔진 A단계(§21.14·ADR-010, 마스터 승인): CLAUDE.md 사명 절, 파라미터 등록부(35개, 기존 상수 26개 이전) + 피팅 하네스(walk-forward·축소·채택 관문), 논문 수집기(arXiv q-fin·NBER·연준·다모다란·Alpha Architect), SEC XBRL 재무 이력(39종목), 스킬 insight-review·model-lab·article-pitch·tenbagger-card, 노션 인사이트 DB 검토 속성 6개, 예약 작업 4개(인사이트 07:30·21:30, 모델 연구 14:30, 기사 소재 평일 16:40, 텐배거 토 10:30), 예측 원장 owner·origin 열
+- 데이터 요금제(마스터 결정): EODHD ALL-IN-ONE 승인. 키 입력(마스터) 후 B단계
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

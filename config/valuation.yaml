@@ -1,6 +1,6 @@
 # 밸류에이션 시스템 설정 (docs/valuation/framework.md, ADR-008) — 초안, 마스터 확정 전
 # 수집: radar/markets/valuation_data.py (결정론) / 계산: scripts/valuation/engine.py (결정론) / 해석: 스킬 valuation-card (모델)
-provider: eodhd             # Fundamentals(추정치·리비전)는 EODHD 'Fundamentals' 또는 'ALL-IN-ONE' 요금제 필요. 가격(EOD)은 모든 유료 요금제
+provider: eodhd             # 마스터 결정(2026-10-28): ALL-IN-ONE(펀더멘털·EOD 30년+·스크리너, 일 10만 호출). 키 EODHD_API_KEY 입력 대기
 code_verified: false        # EODHD 종목 코드는 키 입력 후 일괄 확인(일본 거래소 코드 미확인 → code: null은 건너뜀)
 
 # 수집 시간대(KST) — 하루 두 번. 아침 브리프(06:00대)·저녁 브리프(22:00대) 전에 끝나게

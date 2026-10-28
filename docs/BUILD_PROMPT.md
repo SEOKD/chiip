@@ -1932,7 +1932,7 @@ source: docs/methodology
 - 아키텍처 위치: §4.1 레이어에 **밸류에이션 레이어** 추가 — L0 수집(`radar/markets/valuation_data.py`, run_hourly) → L1~L5 계산(`scripts/valuation/engine.py`) → 해석(스킬 `valuation-card`). 숫자는 코드, 시나리오·내러티브 단계·해석은 모델.
 - 레이더와의 연결: 내러티브 강도는 레이더 수집 항목(`radar/inbox`)의 키워드 일치 건수(`knowledge/narratives/registry.yaml`).
 - 출력: 아침·저녁 브리프 '■ 밸류에이션 레이더' 절(`engine.py --digest`), 실적 후 카드(`outputs/invest/valuation/`), 위클리 섹터 표. invest 모드 경계 — 목표주가·투자의견 없음, "공개 자료 기반 분석이며 투자 권유가 아님".
-- 데이터: EODHD 펀더멘털(추정치·리비전, 'Fundamentals'·'ALL-IN-ONE' 요금제) + EOD 가격 + 수동 컨센서스. 요금제는 마스터 결정 대기(TODO 21).
+- 데이터: EODHD 펀더멘털(추정치·리비전, 'Fundamentals'·'ALL-IN-ONE' 요금제) + EOD 가격 + 수동 컨센서스. 요금제는 마스터 결정 대기(TODO 21). **→ 2026-10-28 ALL-IN-ONE 승인(TODO 21-0), 키 입력 대기.**
 
 ### 21.11 리서치·투자자 실시간 감시 (2026-10-28 마스터 지시)
 - 지시: "X에 SemiAnalysis 등 시장 영향력이 높은 리서치 기관·투자자 계정의 실시간 정보도 팔로업". 목록 `config/research_watch.yaml`(29개 계정·매체, 마스터 검토 대상).
