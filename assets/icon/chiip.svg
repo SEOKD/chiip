@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 치입(Chiip) 아이콘: 반도체 다이 + 레이더 스윕 + 포착 신호 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F1B33"/>
+      <stop offset="1" stop-color="#070C18"/>
+    </linearGradient>
+    <linearGradient id="die" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#13284A"/>
+      <stop offset="1" stop-color="#0B1830"/>
+    </linearGradient>
+    <radialGradient id="sweep" cx="256" cy="256" r="118" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="dieclip"><rect x="138" y="138" width="236" height="236" rx="22"/></clipPath>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- 핀(네 변) -->
+  <g fill="#22D3EE" opacity="0.9">
+    <rect x="178" y="92" width="22" height="40" rx="6"/><rect x="222" y="92" width="22" height="40" rx="6"/>
+    <rect x="268" y="92" width="22" height="40" rx="6"/><rect x="312" y="92" width="22" height="40" rx="6"/>
+    <rect x="178" y="380" width="22" height="40" rx="6"/><rect x="222" y="380" width="22" height="40" rx="6"/>
+    <rect x="268" y="380" width="22" height="40" rx="6"/><rect x="312" y="380" width="22" height="40" rx="6"/>
+    <rect x="92" y="178" width="40" height="22" rx="6"/><rect x="92" y="222" width="40" height="22" rx="6"/>
+    <rect x="92" y="268" width="40" height="22" rx="6"/><rect x="92" y="312" width="40" height="22" rx="6"/>
+    <rect x="380" y="178" width="40" height="22" rx="6"/><rect x="380" y="222" width="40" height="22" rx="6"/>
+    <rect x="380" y="268" width="40" height="22" rx="6"/><rect x="380" y="312" width="40" height="22" rx="6"/>
+  </g>
+  <!-- 다이 -->
+  <rect x="138" y="138" width="236" height="236" rx="22" fill="url(#die)" stroke="#22D3EE" stroke-width="8"/>
+  <g clip-path="url(#dieclip)">
+    <!-- 레이더 동심원 -->
+    <g fill="none" stroke="#22D3EE" stroke-opacity="0.35" stroke-width="5">
+      <circle cx="256" cy="256" r="40"/><circle cx="256" cy="256" r="78"/><circle cx="256" cy="256" r="116"/>
+    </g>
+    <line x1="256" y1="140" x2="256" y2="372" stroke="#22D3EE" stroke-opacity="0.2" stroke-width="4"/>
+    <line x1="140" y1="256" x2="372" y2="256" stroke="#22D3EE" stroke-opacity="0.2" stroke-width="4"/>
+    <!-- 스윕 -->
+    <path d="M256 256 L256 136 A120 120 0 0 1 359.9 196 Z" fill="url(#sweep)"/>
+    <line x1="256" y1="256" x2="359.9" y2="196" stroke="#67E8F9" stroke-width="7" stroke-linecap="round"/>
+  </g>
+  <!-- 포착 신호 -->
+  <circle cx="318" cy="208" r="20" fill="#F59E0B" opacity="0.25"/>
+  <circle cx="318" cy="208" r="11" fill="#FBBF24"/>
+  <circle cx="256" cy="256" r="9" fill="#67E8F9"/>
+</svg>
