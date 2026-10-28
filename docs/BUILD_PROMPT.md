@@ -1970,3 +1970,10 @@ source: docs/methodology
 - 해외 일정: EODHD `/api/calendar/earnings`(키 입력 시 자동). 일본 JPX 결산발표 예정일·대만 TWSE 공개 데이터는 약관 확인 후 추가(TDnet·MOPS는 robots 차단).
 - 노션(`config/notion.yaml` pages): Insights = 마스터 인사이트 글(검토 대상, 글 아래 '치입 검토' 하위 페이지만 작성, 검토 상태 `scripts/insight_state.py`) / Informations = 수집 정보(근거 재료, IB 요지는 라이선스 취급, 채널체크는 필드 인텔 가능성 → invest·public 판정 금지) / Stocks = 종목·테마 커버리지(어닝 캘린더·알파 점수 대상에 항상 포함). 기존 '오피니언·인사이트' DB는 남겨 두되 새로 쓰지 않음.
 
+### 21.16 밸류에이션 v2 (2026-10-28 마스터 지시·승인, 1단계 구현) → docs/valuation/v2_architecture.md
+- 지시: "텐배거(큰 알파) 종목을 발굴하고 내러티브·펀더멘털·비즈니스 관점에서 상승여력을 판단할 전문적·고도화된 밸류에이션 모델. McKinsey *Valuation* 같은 바이블과 최신 논문으로 현재 시장 역학을 반영한 시의성 높은 모델링."
+- 설계 원칙 9개(ROIC·성장·WACC, 기대 역산, 이야기→5개 입력, 기저율, 회귀·경쟁 반응, 분포, 회계 보정, 매일 할인율, 표본 외 채택)와 모듈 M0~M9. 문헌 근거 `knowledge/models/lab/notes/20261028_valuation_literature.md`.
+- 1단계 구현(`scripts/valuation/v2/`): regime(FRED 국채·스프레드·환율 + 다모다란 ERP·국가위험·업종 베타 사전값, run_hourly 하루 1회), wacc(바텀업 베타), reorg(SEC XBRL 재구성·R&D 자본화), dcf(FCFF·가치 동인 계속가치·EP 항등·기중 할인·금리 민감도·h년 뒤 지분가치), scenarios, pie(내포 성장·마진), baserates(5년 매출 CAGR 분포 — 1단계 표본은 편향), montecarlo(시나리오 혼합 + Schwartz·Moon형 성장 경로), upside(분포·확률·필요 가정 + 알파 3요소 정량 제안), run(카드). 종목 동인: `knowledge/models/companies/<id>/drivers.yaml`(1단계 시험: INNIO·Vertiv·Micron).
+- 마스터 결정(승인 시): 상승여력은 분포·확률·필요 가정으로만 표기(주당 가치·목표주가 없음). 2단계 이관 종목 INNIO·SK하이닉스·두산·ServiceNow.
+- 상수는 파라미터 등록부 prm-v2-*(binding config/valuation_v2.yaml). 2단계(업종 모듈·EODHD)·3단계(기저율·피팅·백테스트)·4단계(알파 정량화).
+

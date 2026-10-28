@@ -45,10 +45,12 @@ KEEP_FORMS = {"10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F"}
 
 
 def extract(facts):
-    """companyfacts JSON → 행 목록. 같은 (계정, 기간 끝, 기간 시작, fp)는 가장 늦게 제출된 값 하나만"""
+    """companyfacts JSON → 행 목록. 같은 (계정, 기간 끝, 기간 시작, fp)는 가장 늦게 제출된 값 하나만.
+    후보 개념은 앞의 것이 우선 — 뒤 개념은 앞 개념에 없는 기간만 채운다(회사가 분기 중 태그를 바꾼 경우)"""
     rows = {}
     tax = facts.get("facts", {})
     for metric, cands in CONCEPTS.items():
+        taken = set()  # 앞 개념이 이미 채운 기간
         for c in cands:
             ns, name = c.split(":")
             node = tax.get(ns, {}).get(name)
@@ -59,12 +61,14 @@ def extract(facts):
                     if v.get("form") not in KEEP_FORMS:
                         continue
                     key = (metric, v.get("end"), v.get("start", ""), v.get("fp"))
+                    if key in taken:
+                        continue
                     if key in rows and rows[key]["filed"] >= v.get("filed", ""):
                         continue
                     rows[key] = {"metric": metric, "concept": c, "fy": v.get("fy"), "fp": v.get("fp"), "form": v.get("form"),
                                  "start": v.get("start", ""), "end": v.get("end"), "filed": v.get("filed", ""),
                                  "value": v.get("val"), "unit": unit}
-            break  # 첫 번째로 있는 개념만(개념을 섞으면 단위·정의가 달라진다)
+            taken |= {k for k in rows if k[0] == metric}
     return sorted(rows.values(), key=lambda r: (r["metric"], r["end"], r["start"]))
 
 

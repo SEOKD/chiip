@@ -1,0 +1,65 @@
+# INNIO 2Q(2026-07-28) → 3Q(2026-10-27) 콜 요인 — scripts/valuation/factor_impact.py co-innio
+# kind: 신규(2Q에 없던 사실·수치) / 업데이트(2Q 수치가 바뀜) / 반복(변화 없음 — 모델 영향 0)
+# confidence: 확정사실 1.0 · 회사 가이던스 0.8 · 경영진 목표·장기 전망 0.5 · 정황 0.3
+# 출처: 3Q 콜(easyconomics earnings_call_transcript 2026-10-27), 2Q 콜(2026-07-28), SEC 10-Q XBRL(CIK 2109150)
+factors:
+  - id: F1
+    label: "FY26 가이던스 상향(매출 3.8~3.9→3.9~4.0B, 조정 EBITDA 720~740→780~800M, 장비 비중 65→63%)"
+    kind: 업데이트
+    confidence: 0.8
+    changes: {rev_2026: 3.95, ebitda_2026: 0.79, svc_2026: 1.46}
+  - id: F2
+    label: "장비 마진 조기 도달(3Q 17.1%, 2Q 가이던스는 4Q 출구 high teens) + SG&A 19→16→11%, 2027 추가 개선·중기 목표 초과 달성 발언"
+    kind: 업데이트
+    confidence: 0.6
+    changes: {eq_margin: {2027: 0.180, 2028: 0.185}}
+  - id: F3
+    label: "장비 $/kW 수치 공개(3Q ≈$650, '앞으로 600 이상') — 컨테이너 범위 확대"
+    kind: 신규
+    confidence: 0.7
+    changes: {usd_per_kw: 610}
+  - id: F4
+    label: "수주잔고 6.6→8.0B, 잔고+슬롯 15→19GW, 슬롯 가시성 2030→2031"
+    kind: 업데이트
+    confidence: 0.6
+    changes: {util_2029_2031: 0.95}
+  - id: F5
+    label: "신규 설치분 서비스 강도 >$50k/MW/년(기존 $30k) 수치화, 10년 누적 >$500M/GW, 500MW LTSA(메이저 오버홀 포함)"
+    kind: 신규
+    confidence: 0.5
+    changes: {svc_int_dc: 50.0}
+  - id: F6
+    label: "서비스 EBITDA 2030년대 중반 4배 목표·마이너 오버홀 비중 확대로 장기 마진 상승"
+    kind: 신규
+    confidence: 0.4
+    changes: {svc_margin_2035: 0.35}
+  - id: F7
+    label: "고객 집중도 수치 공개(최대 고객 2024 20%→2025 41%→향후 ~21%), 네오클라우드 배정 없음·토지 개발사 미거래(신용위험 완화)"
+    kind: 신규
+    confidence: 0.4
+    changes: {wacc: 0.0975}
+  - id: F8
+    label: "캐파 실행: 워키쇼 첫 Jenbacher 발전기 조립, 2030 목표 '약 10GW'→'10GW 초과'"
+    kind: 업데이트
+    confidence: 0.4
+    changes: {gw: {2030: 9.6}}
+  - id: F9
+    label: "순차입 감소(현금 1.04→1.20B, 장기차입 2.61→2.60B), 순레버리지 2.1x(연말 3.6x)"
+    kind: 업데이트
+    confidence: 1.0
+    changes: {net_debt: 1.74}
+  - id: F10
+    label: "CAPEX 가속(상반기 94M → 9개월 187M, 3Q 93M) — 2026·확장기 CAPEX 상향"
+    kind: 신규
+    confidence: 0.8
+    changes: {capex: {2026: 0.29, 2027: 0.38, 2028: 0.38}}
+  - id: F11
+    label: "수주 모멘텀 둔화 신호(3Q 장비 수주 2.2B < 2Q 2.3B, 전력·압축 수주 감소, 12개월 B/B 4.4→3.3)"
+    kind: 신규
+    confidence: 0.3
+    deltas: {util_2029_2031: -0.02}
+  - id: F12
+    label: "단기 서비스 성장 고한자릿수 '변함없음', 취소·지연 없음 유지"
+    kind: 반복
+    confidence: 1.0
+    changes: {}

@@ -759,3 +759,19 @@
   reliability_default: 1차
   verified: true
   enabled: true
+
+- id: src-regime
+  name: 밸류에이션 v2 시장 체제 (FRED 국채 10·30년·하이일드·투자등급 스프레드·환율)
+  category: I-학습
+  method: csv
+  endpoint_doc: "https://fred.stlouisfed.org/graph/fredgraph.csv"
+  auth: none
+  scope: [글로벌]
+  interval_min: 1440
+  run_on: local
+  language: en
+  doc_type: 시장
+  terms_note: "FRED 공개 CSV(키 불필요, 2026-10-28 응답 확인). 다모다란 ERP·국가위험·업종 베타는 config/valuation_v2.yaml 사전값(월 1회 model-lab 갱신)"
+  reliability_default: 1차
+  verified: true
+  enabled: true

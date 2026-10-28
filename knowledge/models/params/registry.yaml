@@ -648,3 +648,291 @@ params:
     last_fit: null
     oos_metric: null
   fixed_by_master: true
+- id: prm-v2-erp
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#regime_priors.erp.value
+  value: 0.042
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.042
+    basis: Damodaran 월간 내재 ERP 2026-10-01(TTM·조정 배당) — 피팅하지 않고 월 1회 공개값으로 갱신
+    source: null
+  fit:
+    method: 월 1회 공개값 갱신
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-fade-narrow
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.fade_lambda.narrow
+  value: 0.38
+  unit: 연 회귀율
+  status: prior
+  prior:
+    value: 0.38
+    basis: Fama·French(2000) 수익성 회귀 연 ~38%(narrow), 해자별 조정은 판단
+    source: null
+  fit:
+    method: 유니버스 ROIC 이력 부분조정 회귀(해자 등급별) → 축소
+    target: ROIC 회귀 속도
+    data: EODHD·SEC 연간 ROIC
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-fade-wide
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.fade_lambda.wide
+  value: 0.15
+  unit: 연 회귀율
+  status: prior
+  prior:
+    value: 0.15
+    basis: Fama·French(2000) 수익성 회귀 연 ~38%(narrow), 해자별 조정은 판단
+    source: null
+  fit:
+    method: 유니버스 ROIC 이력 부분조정 회귀(해자 등급별) → 축소
+    target: ROIC 회귀 속도
+    data: EODHD·SEC 연간 ROIC
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-fade-commodity
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.fade_lambda.commodity
+  value: 0.5
+  unit: 연 회귀율
+  status: prior
+  prior:
+    value: 0.5
+    basis: Fama·French(2000) 수익성 회귀 연 ~38%(narrow), 해자별 조정은 판단
+    source: null
+  fit:
+    method: 유니버스 ROIC 이력 부분조정 회귀(해자 등급별) → 축소
+    target: ROIC 회귀 속도
+    data: EODHD·SEC 연간 ROIC
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-gterm-us
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.g_term.US
+  value: 0.035
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.035
+    basis: 장기 명목 GDP 성장 관행(상한) — 판단
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-gterm-kr
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.g_term.KR
+  value: 0.03
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.03
+    basis: 장기 명목 GDP 성장 관행(상한) — 판단
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-gterm-tw
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.g_term.TW
+  value: 0.03
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.03
+    basis: 장기 명목 GDP 성장 관행(상한) — 판단
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-gterm-jp
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.g_term.JP
+  value: 0.02
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.02
+    basis: 장기 명목 GDP 성장 관행(상한) — 판단
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-gterm-eu
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.g_term.EU
+  value: 0.03
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.03
+    basis: 장기 명목 GDP 성장 관행(상한) — 판단
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-ronic-spread
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.ronic_spread
+  value: 0.0
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.0
+    basis: 'McKinsey: 계속가치 RONIC = WACC가 기본(대부분 기업은 장기적으로 초과수익 소멸)'
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-rndlife-semiconductor
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.rnd_life.semiconductor
+  value: 5
+  unit: 년
+  status: prior
+  prior:
+    value: 5
+    basis: Damodaran 관행·Lev·Srivastava(R&D 평균 5.1년) — 업종별 피팅 대상
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-rndlife-semicap
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.rnd_life.semicap
+  value: 5
+  unit: 년
+  status: prior
+  prior:
+    value: 5
+    basis: Damodaran 관행·Lev·Srivastava(R&D 평균 5.1년) — 업종별 피팅 대상
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-rndlife-software
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.rnd_life.software
+  value: 3
+  unit: 년
+  status: prior
+  prior:
+    value: 3
+    basis: Damodaran 관행·Lev·Srivastava(R&D 평균 5.1년) — 업종별 피팅 대상
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-rndlife-default
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.rnd_life.default
+  value: 5
+  unit: 년
+  status: prior
+  prior:
+    value: 5
+    basis: Damodaran 관행·Lev·Srivastava(R&D 평균 5.1년) — 업종별 피팅 대상
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-kd-spread
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#defaults.pretax_cost_of_debt_spread
+  value: 0.015
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.015
+    basis: '임시: 실제 채권 수익률·합성 등급 전 무위험 + 1.5%p'
+    source: null
+  fit:
+    method: null
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-up-upside-full-prob
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#upside.upside_full_prob
+  value: 0.5
+  unit: 환산
+  status: prior
+  prior:
+    value: 0.5
+    basis: 상승여력 → 알파 점수 환산 초안(근거 없음)
+    source: null
+  fit:
+    method: 알파 정량 점수와 이후 12개월 초과수익 순위 상관 최대화
+    target: 초과수익
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-up-asym-points-per-doubling
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#upside.asym_points_per_doubling
+  value: 2.5
+  unit: 환산
+  status: prior
+  prior:
+    value: 2.5
+    basis: 상승여력 → 알파 점수 환산 초안(근거 없음)
+    source: null
+  fit:
+    method: 알파 정량 점수와 이후 12개월 초과수익 순위 상관 최대화
+    target: 초과수익
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-up-gap-points-per-10pct
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#upside.gap_points_per_10pct
+  value: 1.0
+  unit: 환산
+  status: prior
+  prior:
+    value: 1.0
+    basis: 상승여력 → 알파 점수 환산 초안(근거 없음)
+    source: null
+  fit:
+    method: 알파 정량 점수와 이후 12개월 초과수익 순위 상관 최대화
+    target: 초과수익
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null

@@ -43,6 +43,7 @@
 - 부가가치 엔진 A단계(§21.14·ADR-010, 마스터 승인): CLAUDE.md 사명 절, 파라미터 등록부(35개, 기존 상수 26개 이전) + 피팅 하네스(walk-forward·축소·채택 관문), 논문 수집기(arXiv q-fin·NBER·연준·다모다란·Alpha Architect), SEC XBRL 재무 이력(39종목), 스킬 insight-review·model-lab·article-pitch·tenbagger-card, 노션 인사이트 DB 검토 속성 6개, 예약 작업 4개(인사이트 07:30·21:30, 모델 연구 14:30, 기사 소재 평일 16:40, 텐배거 토 10:30), 예측 원장 owner·origin 열
 - 데이터 요금제(마스터 결정): EODHD ALL-IN-ONE 승인. 키 입력(마스터) 후 B단계
 - 어닝 캘린더·알파 점수(§21.15, 마스터 지시): KIND IR일정 수집(10/28~11/18 15건), 알파 잠재력 첫 산정 17종목(5.0 이상 10), 07~09시 5점 이상만 텔레그램. 노션 Insights·Informations·Stocks 역할 고정, insight-review를 Insights 하위 페이지 기준으로 개정
+- 밸류에이션 v2(§21.16, 마스터 승인): 설계안·문헌 노트, 1단계 엔진(regime·wacc·reorg·dcf·pie·baserates·montecarlo·upside·run) + 시험 13개, INNIO·Vertiv·Micron 시험 카드, SEC XBRL 계정 교체 기간 보완, 요인 분해 도구(factor_impact)
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

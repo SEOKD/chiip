@@ -1,0 +1,24 @@
+# Vertiv(VRT) 밸류에이션 v2 동인 — 1단계 시험(2026-10-28). 금액 단위 10억 달러
+id: co-vertiv
+name: Vertiv
+ticker: VRT
+unit: "B$"
+unit_usd: 1000000000
+industry: electrical_equipment
+region_mix: {US: 0.6, EU: 0.2, TW: 0.2}
+tax: 0.22
+horizon: 10
+market: {price: 208.56, shares: 0.385, net_debt: 0.23, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 3.34 − 현금 3.11"}
+rev0: 11.9          # 2026 추정(최근 12개월 매출 11.48, 성장 24% — 4분기 반영 근사, 근거 약함)
+ic0: 5.5            # FY2025 10-K 자기자본 3.94 + 장기차입 2.89 − 현금 1.73 = 5.10에 2026 증분 근사
+scenarios:
+  base: {prob: 0.50, growth: {start: 0.20, end: 0.035, decay: 0.75}, margin: {m0: 0.205, target: 0.230, year_target: 3, lr: 0.18, lam: 0.38}, s2c: 4.0}
+  bull: {prob: 0.25, growth: {start: 0.28, end: 0.040, decay: 0.78}, margin: {m0: 0.210, target: 0.250, year_target: 3, lr: 0.20, lam: 0.25}, s2c: 5.0}
+  bear: {prob: 0.25, growth: {start: 0.10, end: 0.030, decay: 0.60}, margin: {m0: 0.195, target: 0.190, year_target: 3, lr: 0.15, lam: 0.50}, s2c: 3.0}
+mc: {sigma_growth: 0.04, sigma_margin: 0.015, sigma_s2c: 0.20, sigma_wacc: 0.005}
+notes:
+  - "증분 매출/투하자본 최근 3년 약 6.0(SEC XBRL) — 기본 4.0으로 보수화"
+  - "영업이익률 최근 12개월 20.4%, FY2025 17.9%(무형자산 상각 포함 영업이익 기준)"
+  - "1단계 한계: 컨센서스 추정치 없음(EODHD 대기) — 성장 경로는 판단"
+evidence:
+  - "SEC 10-K XBRL (knowledge/models/fundamentals/us/VRT.csv)"

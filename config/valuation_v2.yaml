@@ -1,0 +1,53 @@
+# 밸류에이션 v2 설정 (docs/valuation/v2_architecture.md, 마스터 승인 2026-10-28 1단계)
+# 사전값(prior)마다 출처·확인 시점. 모델 상수는 파라미터 등록부(knowledge/models/params/registry.yaml)와 binding으로 연결.
+# 매일 바뀌는 값(무위험금리·스프레드·환율)은 여기 두지 않고 scripts/valuation/v2/regime.py가 FRED에서 받는다.
+
+regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model-lab이 월 1회 갱신(날짜·URL 기록)
+  erp: {value: 0.0420, as_of: "2026-10-01", source: "Damodaran implied ERP (TTM, adjusted payout) — pages.stern.nyu.edu/~adamodar"}
+  crp:                       # 국가위험 프리미엄(Damodaran 2026-01-05)
+    as_of: "2026-01-05"
+    US: 0.0023
+    KR: 0.0064
+    TW: 0.0078
+    JP: 0.0091
+    EU: 0.0000               # 독일·네덜란드(Aaa) 기준. 회원국별 차이는 매출 지역 가중 시 별도
+    UK: 0.0078
+  industry:                  # Damodaran 업종 자본비용(미국, 2026-01): 부채 포함 베타·자기자본 비중
+    as_of: "2026-01"
+    semiconductor:   {beta: 1.52, equity_weight: 0.9747}
+    semicap:         {beta: 1.40, equity_weight: 0.9536}
+    software:        {beta: 1.28, equity_weight: 0.9472}
+    software_internet: {beta: 1.69, equity_weight: 0.8905}
+    computers:       {beta: 1.35, equity_weight: 0.9558}
+    electronics:     {beta: 0.97, equity_weight: 0.9008}
+    electrical_equipment: {beta: 1.25, equity_weight: 0.8928}
+    telecom_equipment: {beta: 0.92, equity_weight: 0.9156}
+    power_utility:   {beta: 0.48, equity_weight: 0.5742}
+
+fred_series:                 # regime.py가 매일 받는 FRED 계열(키 불필요 CSV)
+  ust10y: DGS10
+  ust30y: DGS30
+  hy_oas: BAMLH0A0HYM2
+  ig_oas: BAMLC0A0CM
+  usdkrw: DEXKOUS
+  usdjpy: DEXJPUS
+  usdtwd: DEXTAUS
+
+defaults:
+  tax: 0.25                  # 영업세율 기본(회사별 drivers에서 덮어씀)
+  g_term: {US: 0.035, KR: 0.030, TW: 0.030, JP: 0.020, EU: 0.030}   # 장기 명목성장 상한(사전값, 근거: 장기 명목 GDP 관행)
+  ronic_spread: 0.0          # 계속가치 RONIC = WACC + spread (McKinsey 기본: 성장의 가치 창출 없음)
+  fade_lambda: {narrow: 0.38, wide: 0.15, commodity: 0.50}          # Fama·French(2000) 연 ~38% 회귀, 해자별 조정(피팅 대상)
+  rnd_life: {semiconductor: 5, semicap: 5, software: 3, default: 5}  # R&D 자본화 상각 연수(Damodaran 관행, 피팅 대상)
+  pretax_cost_of_debt_spread: 0.015   # 실제 채권 수익률을 모르면 무위험금리 + 이 값(합성 등급 전 임시)
+  midyear: true             # 기중 할인(McKinsey 관행) — 종목 drivers에서 midyear: false로 끌 수 있음
+  mc_draws: 5000
+  mc_seed: 20261028
+  baserate_min_n: 30         # 기저율 백분위를 보여줄 최소 표본
+
+upside:                      # 상승여력 블록 → 알파 4요소 정량 제안(마스터 결정: 목표주가 대신 분포·확률·필요 가정만 표기)
+  horizon_years: 5
+  multiples: [1.5, 2, 3, 10]
+  upside_full_prob: 0.5      # P(5년 뒤 가치 ≥ 2배) 가 이 값이면 upside 10점
+  asym_points_per_doubling: 2.5   # 비대칭(상방/하방 기대) 2배마다 +2.5점(5점 기준)
+  gap_points_per_10pct: 1.0  # 우리 기본 가정과 시장 내포 가정의 기저율 백분위 차이 10%p마다 1점
