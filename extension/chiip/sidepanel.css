@@ -1,0 +1,29 @@
+:root {
+  --bg: #0b1220; --panel: #111b2e; --line: #1f2d47; --text: #e6edf7; --muted: #8aa0bf;
+  --accent: #22d3ee; --warn: #fbbf24; --bad: #f87171; --good: #34d399;
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 12px; background: var(--bg); color: var(--text); font: 13px/1.5 "Malgun Gothic", system-ui, sans-serif; }
+header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+header h1 { font-size: 16px; margin: 0; flex: 0; white-space: nowrap; }
+header #updated { flex: 1; font-size: 11px; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-bottom: 10px; }
+h2 { font-size: 13px; margin: 0 0 6px; color: var(--accent); }
+.muted { color: var(--muted); font-size: 12px; }
+button { background: #17263f; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; cursor: pointer; font: inherit; }
+button:hover { border-color: var(--accent); }
+button.primary { background: #0e7490; border-color: #0e7490; }
+textarea { width: 100%; margin: 6px 0; background: #0d1729; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 6px; font: inherit; resize: vertical; }
+.row { display: flex; gap: 6px; }
+.list { list-style: none; margin: 0; padding: 0; }
+.list li { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px dashed var(--line); }
+.list li:last-child { border-bottom: 0; }
+.score { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.up { color: var(--good); } .down { color: var(--bad); }
+.pass { color: var(--warn); }
+.alerts { list-style: none; margin: 0; padding: 0; }
+.alerts li { padding: 6px 0; border-bottom: 1px solid var(--line); white-space: pre-wrap; word-break: break-word; }
+.alerts .meta { color: var(--muted); font-size: 11px; }
+.error { background: #3a1620; border: 1px solid #7f1d1d; color: #fecaca; border-radius: 8px; padding: 8px; margin-bottom: 10px; }
+footer { text-align: center; margin-top: 6px; }
+a { color: var(--accent); }

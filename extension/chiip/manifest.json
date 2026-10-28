@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "치입 Chiip",
+  "version": "0.1.0",
+  "description": "치입 리서치 에이전트 — 실시간 알림·알파·포커스·실적 일정 보기, 보고 있는 페이지를 치입에게 보내기(로컬 서버 127.0.0.1:8765)",
+  "minimum_chrome_version": "116",
+  "icons": { "128": "icons/chiip_128.png" },
+  "action": { "default_title": "치입 열기", "default_icon": { "128": "icons/chiip_128.png" } },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "options_page": "options.html",
+  "background": { "service_worker": "background.js" },
+  "permissions": ["sidePanel", "storage", "contextMenus", "activeTab", "scripting"],
+  "host_permissions": ["http://127.0.0.1:8765/*"]
+}

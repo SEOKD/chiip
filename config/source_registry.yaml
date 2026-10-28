@@ -807,3 +807,19 @@
   reliability_default: 1차
   verified: false
   enabled: true
+
+- id: src-chrome-ext
+  name: 마스터 제보 (치입 크롬 확장 → 로컬 서버 /api/send)
+  category: M-마스터
+  method: local_http
+  endpoint_doc: "scripts/chiip_server.py, extension/chiip/README.md"
+  auth: env:token(radar/state/ext_token.txt)
+  scope: [글로벌]
+  interval_min: 0
+  run_on: local
+  language: ko
+  doc_type: 마스터 제보
+  terms_note: "마스터가 직접 고른 페이지라 9개 매체·포커스 종목 수집 관문(gate.apply)을 거치지 않고 inbox에 바로 들어간다. 판정(P0~P3)·신선도 규칙은 그대로. 제목·URL·선택 문단·메모만 저장(원문 전체 복제 안 함)"
+  reliability_default: 2차
+  verified: true
+  enabled: true

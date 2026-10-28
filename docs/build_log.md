@@ -46,6 +46,7 @@
 - 밸류에이션 v2(§21.16, 마스터 승인): 설계안·문헌 노트, 1단계 엔진(regime·wacc·reorg·dcf·pie·baserates·montecarlo·upside·run) + 시험 13개, INNIO·Vertiv·Micron 시험 카드, SEC XBRL 계정 교체 기간 보완, 요인 분해 도구(factor_impact)
 - 무료 데이터 조합(마스터 결정): EODHD 보류. TWSE·TPEx 무료 시세 수집(대만 8종목), SEC 일괄 재무 기저율 수집기(SEC_USER_AGENT 대기), KRX·Finnhub 키 대기
 - 컨센서스·어닝콜 수동 입력(마스터 제안): 노션 Informations > 'Consensus · Earnings Call' DB, 요청 27건(알파 후보 10종목·v2 이관 7종목, 컨센서스 17·한국 어닝콜 10), 처리 경로를 인사이트 검토 예약 작업·earnings-delta에 연결
+- 치입 크롬 확장(마스터 선택): 로컬 서버(scripts/chiip_server.py, 127.0.0.1:8765, 토큰 인증) + 확장(extension/chiip: 옆 패널·우클릭 보내기·설정), 마스터 제보는 레이더 판정 또는 ⭐ 노션 대기열, 시험 6개
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

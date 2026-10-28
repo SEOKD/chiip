@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>치입 설정</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <section>
+    <h2>치입 서버 연결</h2>
+    <p class="muted">PC에서 <code>scripts/start_chiip_server.ps1</code>을 실행하면 <code>radar/state/ext_token.txt</code>에 토큰이 생깁니다. 그 값을 아래에 붙여 넣으세요. 토큰은 이 브라우저에만 저장됩니다.</p>
+    <input id="token" type="password" style="width:100%;padding:6px;background:#0d1729;color:#e6edf7;border:1px solid #1f2d47;border-radius:8px">
+    <div class="row" style="margin-top:8px">
+      <button id="save" class="primary">저장</button>
+      <button id="test">연결 시험</button>
+    </div>
+    <div id="msg" class="muted" style="margin-top:6px"></div>
+  </section>
+  <script src="api.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

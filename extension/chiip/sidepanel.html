@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>치입</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <header>
+    <img src="icons/chiip_128.png" alt="" width="28" height="28">
+    <h1>치입</h1>
+    <span id="updated" class="muted"></span>
+    <button id="refresh" title="새로고침">↻</button>
+  </header>
+
+  <section class="send">
+    <h2>지금 보는 페이지 보내기</h2>
+    <div id="pageinfo" class="muted"></div>
+    <textarea id="note" rows="2" placeholder="메모(선택) — 왜 중요한지 한 줄"></textarea>
+    <div class="row">
+      <button id="sendRadar" class="primary">레이더 판정</button>
+      <button id="sendNotion">⭐ 노션 기록</button>
+    </div>
+    <div id="sendResult" class="muted"></div>
+  </section>
+
+  <div id="error" class="error" hidden></div>
+
+  <section>
+    <h2>시장 체제</h2>
+    <div id="regime"></div>
+  </section>
+
+  <section>
+    <h2>실적 일정 <span class="muted">(<b class="pass">●</b> 알파 기준 이상)</span></h2>
+    <ul id="earnings" class="list"></ul>
+  </section>
+
+  <section>
+    <h2>알파 잠재력 상위</h2>
+    <ul id="alpha" class="list"></ul>
+  </section>
+
+  <section>
+    <h2>포커스 점수 상위</h2>
+    <ul id="focus" class="list"></ul>
+  </section>
+
+  <section>
+    <h2>최근 텔레그램 알림</h2>
+    <ul id="alerts" class="alerts"></ul>
+  </section>
+
+  <footer class="muted">공개 자료 기반 분석이며 투자 권유가 아님 · <a href="options.html" target="_blank">설정</a></footer>
+  <script src="api.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
