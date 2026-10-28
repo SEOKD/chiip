@@ -79,7 +79,10 @@ def run_claude(prompt, model, schema=None, timeout=900):
            "--permission-mode", "dontAsk", "--permission-prompts", "none"]
     if schema:
         cmd += ["--json-schema", json.dumps(schema, ensure_ascii=False)]
-    proc = subprocess.run(cmd, cwd=common.ROOT, capture_output=True, text=True, encoding="utf-8", timeout=timeout)
+    # 작업 스케줄러(pyw, 창 없음)에서 콘솔 프로그램을 띄우면 Windows가 새 콘솔 창을 연다 → 숨김 콘솔로 실행
+    flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+    proc = subprocess.run(cmd, cwd=common.ROOT, capture_output=True, text=True, encoding="utf-8",
+                          timeout=timeout, creationflags=flags)
     calls_today(1)
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     if proc.returncode != 0 or out.get("is_error"):
