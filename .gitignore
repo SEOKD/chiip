@@ -35,3 +35,5 @@ desktop.ini
 
 # Claude 개인 설정
 .claude/settings.local.json
+knowledge/models/focus/latest.json
+knowledge/models/focus/prepared/

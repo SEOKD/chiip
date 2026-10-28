@@ -1,0 +1,134 @@
+id,component,score,reason,evidence
+co-samsung,fundamental,8,메모리 가격 주도권 회복·HBM4 진입·파운드리 회복 여부로 이익 전망 폭이 넓음,https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-skhynix,fundamental,9,3Q26 사상 최대 실적·영업이익률 80%대·대규모 주주환원 — 추정치 상향 진행 중,https://www.cnbc.com/2026/10/28/sk-hynix-third-quarter-profit.html
+co-semco,fundamental,6,"AI 서버 MLCC·FC-BGA 수요 기대, 공개 수치 미확인(근거 약함)",mentions7
+co-lginnotek,fundamental,5,"애플 신모델 사이클·유리기판 선택지, 변화 폭 보통(근거 약함)",mentions7
+co-doosan,fundamental,6,"전자BG CCL의 AI 가속기 수요 + 지주 구조, 공개 수치 미확인(근거 약함)",mentions7
+co-lotteem,attention,4,7일 언급 8건은 국내 기사 위주 수집 편향 — 해외 관심 낮음,mentions7
+co-lotteem,fundamental,4,AI 서버용 고급 동박 기대 대비 업황 부진(근거 약함),mentions7
+co-isupetasys,fundamental,7,AI 가속기·800G 스위치용 MLB 수요·증설 진행(근거 약함),mentions7
+co-hanmisemi,attention,6,HBM4 TC 본더 수주 이슈로 국내외 관심 지속,mentions7
+co-hanmisemi,fundamental,7,HBM4 TC 본더 수주 확대 vs 경쟁사 진입 — 상하방 모두 큼(근거 약함),mentions7
+co-wonikips,fundamental,6,메모리 증설 사이클 수혜 장비(근거 약함),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-jusung,fundamental,6,메모리·ALD 장비 증설 수혜 기대(근거 약함),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-eotechnics,fundamental,6,HBM·첨단 패키징 레이저 장비 수요(근거 약함),mentions7
+co-soulbrain,fundamental,5,"메모리 가동률 상승에 따른 소재 물량 증가, 변화 폭 보통(근거 약함)",mentions7
+co-isc,fundamental,5,AI 칩 테스트 소켓 수요(근거 약함),mentions7
+co-leeno,fundamental,5,"AI·모바일 테스트 소켓, 변화 폭 보통(근거 약함)",mentions7
+co-daeduck,fundamental,5,FC-BGA·메모리 기판 회복(근거 약함),mentions7
+co-simmtech,fundamental,6,메모리 업사이클에 따른 메모리 기판 물량 증가(근거 약함),https://wccftech.com/peak-dram-prices-in-sight-as-samsung-sk-hynix-double-down-on-long-term-contracts/
+co-hdhyundaielec,attention,6,미국 데이터센터 전력 설비 수요로 관심 유지(언급 3건은 과소 집계),mentions7
+co-hdhyundaielec,fundamental,6,미국 변압기 수주 잔고·AI 데이터센터 전력 수요(근거 약함),mentions7
+co-nvidia,attention,10,"AI 반도체 기준 종목, 이번 주 빅테크 실적·CAPEX 발표가 직접 연결",https://www.cnbc.com/2026/10/27/stock-market-today-live-updates.html
+co-nvidia,fundamental,7,Vera Rubin 양산 램프·CAPEX 지속성 논쟁으로 전망 폭 넓음,https://www.opencompute.org/blog/rss
+co-amd,attention,9,2026년 대폭 재평가·Helios 랙 출하·대형 고객 계약으로 관심 최상위,https://www.pulse.bot/semiconductors/news/changing-of-the-guard-amd-intel-and-micron-soar-while-nvidia-lags-59565de3-953a-4905-958b-8b73ce7f9793/
+co-amd,narrative,8,추론·대안 GPU 내러티브의 직접 수혜(등록부 노출 낮게 잡힘 → 보정),https://www.pulse.bot/semiconductors/news/changing-of-the-guard-amd-intel-and-micron-soar-while-nvidia-lags-59565de3-953a-4905-958b-8b73ce7f9793/
+co-amd,fundamental,8,MI450·Helios 4분기 램프 성패에 따라 이익 전망 상하방 모두 큼,https://www.opencompute.org/blog/rss
+co-broadcom,attention,9,"맞춤형 ASIC·이더넷 스케일업 핵심, 빅테크 CAPEX 주간",https://www.cnbc.com/2026/10/27/stock-market-today-live-updates.html
+co-broadcom,fundamental,7,맞춤형 ASIC 램프 기대 vs 상반기 가이던스 실망 이력 — 폭 넓음,https://www.opencompute.org/blog/rss
+co-marvell,attention,7,맞춤형 ASIC·광 DSP 기대로 반도체 랠리 주도 종목에 반복 등장,https://finance.yahoo.com/markets/article/marvell-sandisk-sk-hynix-lead-semiconductor-stock-rally-as-sp-500-trades-at-record-highs-172216048.html
+co-marvell,narrative,7,맞춤형 ASIC·광 인터커넥트 내러티브 노출(등록부 노출 보정),https://finance.yahoo.com/markets/article/marvell-sandisk-sk-hynix-lead-semiconductor-stock-rally-as-sp-500-trades-at-record-highs-172216048.html
+co-marvell,fundamental,7,맞춤형 XPU 램프 불확실성으로 상하방 폭 큼(근거 약함),https://finance.yahoo.com/markets/article/marvell-sandisk-sk-hynix-lead-semiconductor-stock-rally-as-sp-500-trades-at-record-highs-172216048.html
+co-qualcomm,attention,4,"AI 데이터센터 진입은 선택지 수준, 시장 관심 보통 이하",mentions7
+co-qualcomm,fundamental,4,"휴대폰 중심, 데이터센터 기여 미확인(근거 약함)",mentions7
+co-intel,attention,8,2026년 급등·파운드리·정부 지분 이슈로 관심 높음,https://www.pulse.bot/semiconductors/news/changing-of-the-guard-amd-intel-and-micron-soar-while-nvidia-lags-59565de3-953a-4905-958b-8b73ce7f9793/
+co-intel,narrative,7,미국 내 파운드리·18A 정책 내러티브 직접 노출,https://www.pulse.bot/semiconductors/news/changing-of-the-guard-amd-intel-and-micron-soar-while-nvidia-lags-59565de3-953a-4905-958b-8b73ce7f9793/
+co-intel,fundamental,7,턴어라운드 성패가 이분법적 — 상하방 폭 큼,https://www.pulse.bot/semiconductors/news/changing-of-the-guard-amd-intel-and-micron-soar-while-nvidia-lags-59565de3-953a-4905-958b-8b73ce7f9793/
+co-micron,attention,9,"메모리 업사이클 대표 미국 종목, SK하이닉스 실적에 동반 급등",https://www.cnbc.com/2026/10/28/sk-hynix-third-quarter-profit.html
+co-micron,fundamental,9,DRAM·HBM 가격 상승과 HBM4로 추정치 상향 진행,https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-sandisk,attention,7,NAND 가격 상승 기대로 반도체 랠리 주도 종목,https://finance.yahoo.com/markets/article/marvell-sandisk-sk-hynix-lead-semiconductor-stock-rally-as-sp-500-trades-at-record-highs-172216048.html
+co-sandisk,fundamental,8,NAND 가격 2027년 3분기 정점 전망(UBS 인용 보도) — 이익 레버리지 큼,https://wccftech.com/peak-dram-prices-in-sight-as-samsung-sk-hynix-double-down-on-long-term-contracts/
+co-wdc,attention,5,AI 데이터 저장 수요로 관심 보통,mentions7
+co-wdc,fundamental,6,HDD 수요·가격 개선(근거 약함),mentions7
+co-seagate,attention,7,10/27 실적 발표(8-K 2.02) 직후,https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stx-20261027.htm
+co-seagate,fundamental,7,방금 나온 실적·가이던스로 추정치 재조정 구간,https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stx-20261027.htm
+co-amat,attention,6,메모리 증설 사이클·수출통제 이슈로 관심 보통 이상,mentions7
+co-amat,narrative,5,WFE 업사이클·대중국 수출통제 내러티브 노출(등록부 보정),mentions7
+co-amat,fundamental,6,메모리 CAPEX 확대 vs 중국 매출 리스크(근거 약함),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-lam,attention,6,메모리·NAND 증설 직접 수혜 장비사,mentions7
+co-lam,narrative,6,메모리 사이클 지속 내러티브 노출(등록부 보정),https://wccftech.com/peak-dram-prices-in-sight-as-samsung-sk-hynix-double-down-on-long-term-contracts/
+co-lam,fundamental,7,메모리 CAPEX 업사이클로 수주 전망 상향 여지(근거 약함),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-kla,attention,5,"공정 제어 장비, 관심 보통",mentions7
+co-kla,narrative,4,WFE 사이클 간접 노출,mentions7
+co-kla,fundamental,5,변화 폭 보통(근거 약함),mentions7
+co-teradyne,attention,5,AI 칩·HBM 테스트 수요로 관심 보통,mentions7
+co-teradyne,fundamental,6,AI 컴퓨트 테스트 수요 확대(근거 약함),mentions7
+co-ti,attention,4,"아날로그 회복 국면, AI 연결 약함",mentions7
+co-ti,fundamental,4,완만한 회복(근거 약함),mentions7
+co-adi,attention,4,"아날로그 회복 국면, AI 연결 약함",mentions7
+co-adi,fundamental,4,완만한 회복(근거 약함),mentions7
+co-onsemi,attention,4,"전력 반도체, AI 데이터센터 연결은 일부",mentions7
+co-onsemi,fundamental,4,차량 수요 부진·데이터센터 전력 일부 상쇄(근거 약함),mentions7
+co-arista,attention,7,OCP 2026 이더넷 스케일업 발표 등 네트워킹 핵심,https://www.opencompute.org/blog/rss
+co-arista,fundamental,6,스케일업 이더넷 채택 속도가 변수,https://www.opencompute.org/blog/rss
+co-coherent,attention,6,1.6T 광모듈·CPO 전환 관심,mentions7
+co-coherent,narrative,7,광 인터커넥트·CPO 내러티브 직접 노출(등록부 보정),https://www.opencompute.org/blog/rss
+co-coherent,fundamental,7,광모듈 수요 급증 vs CPO 대체 리스크(근거 약함),https://www.opencompute.org/blog/rss
+co-credo,attention,6,OCP에서 ALC 신제품·표준화 추진,https://www.opencompute.org/blog/rss
+co-credo,narrative,7,구리·광 인터커넥트 전환 내러티브 직접 노출,https://www.opencompute.org/blog/rss
+co-credo,fundamental,7,AEC 수요 확대·신제품 2027 양산 목표 — 폭 넓음(근거 약함),https://www.opencompute.org/blog/rss
+co-asteralabs,attention,6,스케일업 연결(UALink·PCIe) 핵심 종목,https://www.opencompute.org/blog/rss
+co-asteralabs,narrative,6,스케일업 인터커넥트 내러티브 노출,https://www.opencompute.org/blog/rss
+co-asteralabs,fundamental,7,고객 집중·신제품 램프로 상하방 폭 큼(근거 약함),https://www.opencompute.org/blog/rss
+co-synopsys,attention,4,"EDA, AI 연결은 간접",mentions7
+co-synopsys,fundamental,4,"안정적, 변화 폭 작음(근거 약함)",mentions7
+co-cadence,attention,4,"EDA, AI 에이전트 EDA 발표 있으나 관심 보통",https://www.nextplatform.com/hpc/2026/10/26/cadence-nvidia-unveil-new-ai-models-to-put-eda-on-autopilot/5305228
+co-cadence,fundamental,4,"안정적, 변화 폭 작음(근거 약함)",mentions7
+co-arm,attention,5,에이전틱 AI CPU 수요 전망 제시(OCP),https://www.opencompute.org/blog/rss
+co-arm,fundamental,5,"로열티 구조, 데이터센터 CPU 확대 속도 변수(근거 약함)",https://www.opencompute.org/blog/rss
+co-alphabet,attention,8,이번 주 실적·TPU 외부 판매 이슈,https://www.cnbc.com/2026/10/27/stock-market-today-live-updates.html
+co-alphabet,narrative,7,맞춤형 ASIC(TPU)·클라우드 성장 내러티브(등록부 보정),https://www.wealthprofessional.ca/investments/equity-markets/what-happened-on-big-tech-earnings-night/392319
+co-alphabet,fundamental,6,클라우드 고성장 vs CAPEX 부담,https://www.wealthprofessional.ca/investments/equity-markets/what-happened-on-big-tech-earnings-night/392319
+co-microsoft,attention,8,이번 주 실적·Maia 300 배치 계획,https://www.servethehome.com/microsoft-maia-300-shown-at-ocp-2026/
+co-microsoft,narrative,6,자체 가속기·AI CAPEX 내러티브 노출,https://www.servethehome.com/microsoft-maia-300-shown-at-ocp-2026/
+co-microsoft,fundamental,5,"AI 매출 확대 vs CAPEX 부담, 변화 폭 보통",https://www.wealthprofessional.ca/investments/equity-markets/what-happened-on-big-tech-earnings-night/392319
+co-amazon,attention,8,이번 주 실적·Trainium 분석(SemiAnalysis 10/23),https://newsletter.semianalysis.com/feed
+co-amazon,narrative,6,맞춤형 학습 칩(Trainium) 내러티브(등록부 보정),https://newsletter.semianalysis.com/feed
+co-amazon,fundamental,5,"2026 CAPEX 약 2,000억 달러 — AWS 성장 대비 부담",https://www.wealthprofessional.ca/investments/equity-markets/what-happened-on-big-tech-earnings-night/392319
+co-meta,attention,8,이번 주 실적·CAPEX 상향 이력,https://www.wealthprofessional.ca/investments/equity-markets/what-happened-on-big-tech-earnings-night/392319
+co-meta,narrative,6,AI CAPEX 확대·자체 칩(MTIA) 내러티브,https://www.opencompute.org/blog/rss
+co-meta,fundamental,6,CAPEX 상향이 이익에 주는 부담이 쟁점,https://www.wealthprofessional.ca/investments/equity-markets/what-happened-on-big-tech-earnings-night/392319
+co-oracle,attention,7,OCI 가속기 확대·대형 계약 이슈,https://www.nextplatform.com/ai/2026/10/27/oracle-is-expanding-the-accelerator-options-in-oci-for-enterprises/5305815
+co-oracle,narrative,7,AI CAPEX 지속성·차입 조달 내러티브 직접 노출,mentions7
+co-oracle,fundamental,7,수주 잔고 대비 자금 조달·마진 리스크 — 폭 넓음(근거 약함),mentions7
+co-apple,attention,6,부품 공급망 영향 크나 AI 반도체 관심은 보통,mentions7
+co-apple,fundamental,4,변화 폭 작음(근거 약함),mentions7
+co-palantir,attention,6,"AI 소프트웨어 대표, 관심 보통 이상",mentions7
+co-palantir,narrative,5,AI 소프트웨어 수익화 내러티브,mentions7
+co-palantir,fundamental,5,고성장 지속 여부(근거 약함),mentions7
+co-servicenow,attention,4,AI 하드웨어 연결 약함,mentions7
+co-servicenow,fundamental,4,변화 폭 작음(근거 약함),mentions7
+co-snowflake,attention,4,AI 하드웨어 연결 약함,mentions7
+co-snowflake,fundamental,5,AI 데이터 수요(근거 약함),mentions7
+co-smci,attention,5,"AI 서버 조립, 관심 보통",mentions7
+co-smci,narrative,5,AI 서버 수요 내러티브 간접 노출,mentions7
+co-smci,fundamental,6,마진 변동성 큼(근거 약함),mentions7
+co-dell,attention,5,AI 서버 수요,mentions7
+co-dell,narrative,5,AI 서버 내러티브 간접 노출,mentions7
+co-dell,fundamental,5,변화 폭 보통(근거 약함),mentions7
+co-vertiv,attention,6,"전력·냉각 병목 대표 종목, 800V DC 전환 논의(OCP)",https://www.opencompute.org/blog/rss
+co-vertiv,fundamental,6,수주 잔고 증가 vs 경쟁(근거 약함),https://www.opencompute.org/blog/rss
+co-asml,attention,6,High-NA·대중국 수출통제 이슈,mentions7
+co-asml,narrative,5,수출통제·첨단 공정 내러티브 노출(등록부 보정),mentions7
+co-asml,fundamental,6,메모리 EUV 채택 확대 vs 중국 비중 하락(근거 약함),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-tsmc,attention,9,AI 칩 생산 병목(CoWoS·N2) 기준 종목,mentions7
+co-tsmc,narrative,8,CoWoS 병목·N2 램프 내러티브 핵심(등록부 보정),mentions7
+co-tsmc,fundamental,7,월매출·CoWoS 증설로 추정치 상향 여지,mentions7
+co-unimicron,attention,4,"ABF 기판, 관심 보통 이하",mentions7
+co-unimicron,fundamental,6,ABF 기판 업사이클 기대(근거 약함),mentions7
+co-ase,attention,4,첨단 패키징 가격 인상 보도,mentions7
+co-ase,fundamental,6,첨단 패키징 단가 인상 보도(2026.7)(근거 약함),mentions7
+co-tel,attention,5,메모리 증설 수혜 일본 장비,mentions7
+co-tel,narrative,5,WFE 업사이클 내러티브 노출,mentions7
+co-tel,fundamental,6,메모리 CAPEX 확대 수혜(근거 약함),https://www.tomshardware.com/tech-industry/samsung-and-sk-hynix-shorten-memory-contracts-as-pricing-power-shifts-back-to-suppliers
+co-ibiden,attention,5,AI 가속기용 ABF 기판 선두,mentions7
+co-ibiden,narrative,6,기판 병목·유리기판 내러티브 노출(등록부 보정),mentions7
+co-ibiden,fundamental,7,AI 가속기 기판 증설·수요 — 폭 넓음(근거 약함),mentions7
+co-ajinomoto,attention,3,"ABF 필름, 관심 낮음",mentions7
+co-ajinomoto,fundamental,5,"ABF 필름 수요 증가, 사업 비중 작음(근거 약함)",mentions7
+co-nittobo,attention,4,T-glass 공급 부족 이슈,mentions7
+co-nittobo,narrative,6,기판 소재(T-glass) 병목 내러티브 노출,mentions7
+co-nittobo,fundamental,7,T-glass 공급 부족으로 가격·물량 레버리지(근거 약함),mentions7
+co-advantest,attention,6,AI SoC·HBM 테스트 수요,mentions7
+co-advantest,narrative,6,AI 테스트 수요 내러티브 노출,mentions7
+co-advantest,fundamental,7,AI 칩 테스트 시간 증가로 수요 확대(근거 약함),mentions7

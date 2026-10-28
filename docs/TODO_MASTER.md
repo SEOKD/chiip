@@ -47,6 +47,7 @@
 | 21-1 | Business Wire 피드 주소 추가: 브라우저에서 businesswire.com RSS 페이지 → Semiconductor·Technology·Earnings·Contracts 피드 주소 복사 → 치입에게 전달 | `config/press_wire.yaml` (지금은 M&A 피드만) |
 | 21-2 | 예약 작업 산출물(브리프·역방향 요약)은 커밋하지 않고 남음 — 마스터 세션에서 "브리프 커밋해"로 일괄 커밋 | `outputs/brief/`, `radar/cards/` |
 | 21-3 | **X 공식 API 비용 승인 여부(10-28).** 리서치·투자자 X 계정 감시는 코드 완성·꺼짐 상태. 사용량 과금(글 1건 $0.005, 29개 계정 예상 월 4~5천 건 ≈ $20~25, 월 상한 1만 건 ≈ $50 안전장치). 승인 시: ① console.x.com 개발자 계정·크레딧 구매(마스터 직접) ② Bearer Token을 `D:\local-only\secrets\.env`에 `X_BEARER_TOKEN=`으로 입력 ③ 치입에게 'X 켜' → 등록부 enabled·§21.6·CLAUDE.md 제외 원천 문구 수정. 계정 목록에서 `x_handle: null`·`# verify` 항목 확인·추가 | `config/research_watch.yaml`, `config/source_registry.yaml` src-research-x |
+| 21-4 | **노션·SEC 키(10-28).** ① 노션 ⭐ 즉시 기록을 원하면 notion.so/profile/integrations에서 내부 통합 생성 → 허브 '치입 인텔리전스' 페이지 ⋯ → 연결 추가 → 토큰을 `.env`에 `NOTION_TOKEN=` (없으면 매일 06:40에 반영) ② SEC 접속 규칙상 연락처가 든 User-Agent를 `.env`에 `SEC_USER_AGENT="Chiip research <연락 이메일>"` ③ 포커스 점수 기준·가중치·고정 종목(always_include) 검토 | `config/focus.yaml`, `config/notion.yaml` |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |
 
 ## E. 실전 시험 (게이트 대신)

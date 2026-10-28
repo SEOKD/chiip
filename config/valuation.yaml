@@ -46,64 +46,64 @@ universe:
   - {id: co-lotteem, name: 롯데에너지머티리얼즈, code: 020150.KO, region: KR, sub: substrate}
   - {id: co-isupetasys, name: 이수페타시스, code: 007660.KO, region: KR, sub: substrate}
   # 한국 후보
-  - {id: co-hanmisemi, name: 한미반도체, code: 042700.KO, region: KR, sub: semicap}
-  - {id: co-wonikips, name: 원익IPS, code: 240810.KQ, region: KR, sub: semicap}
-  - {id: co-jusung, name: 주성엔지니어링, code: 036930.KQ, region: KR, sub: semicap}
-  - {id: co-eotechnics, name: 이오테크닉스, code: 039030.KQ, region: KR, sub: semicap}
-  - {id: co-soulbrain, name: 솔브레인, code: 357780.KQ, region: KR, sub: substrate}
-  - {id: co-isc, name: ISC, code: 095340.KQ, region: KR, sub: semicap}
-  - {id: co-leeno, name: 리노공업, code: 058470.KQ, region: KR, sub: semicap}
-  - {id: co-daeduck, name: 대덕전자, code: 353200.KO, region: KR, sub: substrate}
-  - {id: co-simmtech, name: 심텍, code: 222800.KQ, region: KR, sub: substrate}
-  - {id: co-hdhyundaielec, name: HD현대일렉트릭, code: 267260.KO, region: KR, sub: power_infra}
+  - {id: co-hanmisemi, name: 한미반도체, code: 042700.KO, region: KR, sub: semicap, en: "Hanmi Semiconductor"}
+  - {id: co-wonikips, name: 원익IPS, code: 240810.KQ, region: KR, sub: semicap, en: "Wonik IPS"}
+  - {id: co-jusung, name: 주성엔지니어링, code: 036930.KQ, region: KR, sub: semicap, en: "Jusung Engineering"}
+  - {id: co-eotechnics, name: 이오테크닉스, code: 039030.KQ, region: KR, sub: semicap, en: "EO Technics"}
+  - {id: co-soulbrain, name: 솔브레인, code: 357780.KQ, region: KR, sub: substrate, en: "Soulbrain"}
+  - {id: co-isc, name: ISC, code: 095340.KQ, region: KR, sub: semicap, en: "ISC Co"}
+  - {id: co-leeno, name: 리노공업, code: 058470.KQ, region: KR, sub: semicap, en: "Leeno Industrial"}
+  - {id: co-daeduck, name: 대덕전자, code: 353200.KO, region: KR, sub: substrate, en: "Daeduck Electronics"}
+  - {id: co-simmtech, name: 심텍, code: 222800.KQ, region: KR, sub: substrate, en: "Simmtech"}
+  - {id: co-hdhyundaielec, name: HD현대일렉트릭, code: 267260.KO, region: KR, sub: power_infra, en: "HD Hyundai Electric"}
   # 미국
   - {id: co-nvidia, name: NVIDIA, code: NVDA.US, region: US, sub: accelerator}
   - {id: co-amd, name: AMD, code: AMD.US, region: US, sub: accelerator}
   - {id: co-broadcom, name: Broadcom, code: AVGO.US, region: US, sub: accelerator}
-  - {id: co-marvell, name: Marvell, code: MRVL.US, region: US, sub: accelerator}
-  - {id: co-qualcomm, name: Qualcomm, code: QCOM.US, region: US, sub: foundry}
-  - {id: co-intel, name: Intel, code: INTC.US, region: US, sub: foundry}
+  - {id: co-marvell, name: Marvell, code: MRVL.US, region: US, sub: accelerator, aliases: ["Marvell"]}
+  - {id: co-qualcomm, name: Qualcomm, code: QCOM.US, region: US, sub: foundry, aliases: ["Qualcomm"]}
+  - {id: co-intel, name: Intel, code: INTC.US, region: US, sub: foundry, aliases: ["Intel Corp", "Intel's", "Intel "]}
   - {id: co-micron, name: Micron, code: MU.US, region: US, sub: memory}
-  - {id: co-sandisk, name: SanDisk, code: SNDK.US, region: US, sub: memory}
-  - {id: co-wdc, name: Western Digital, code: WDC.US, region: US, sub: storage}
-  - {id: co-seagate, name: Seagate, code: STX.US, region: US, sub: storage}
+  - {id: co-sandisk, name: SanDisk, code: SNDK.US, region: US, sub: memory, aliases: ["SanDisk", "Sandisk"]}
+  - {id: co-wdc, name: Western Digital, code: WDC.US, region: US, sub: storage, aliases: ["Western Digital"]}
+  - {id: co-seagate, name: Seagate, code: STX.US, region: US, sub: storage, aliases: ["Seagate"]}
   - {id: co-amat, name: Applied Materials, code: AMAT.US, region: US, sub: semicap}
   - {id: co-lam, name: Lam Research, code: LRCX.US, region: US, sub: semicap}
-  - {id: co-kla, name: KLA, code: KLAC.US, region: US, sub: semicap}
-  - {id: co-teradyne, name: Teradyne, code: TER.US, region: US, sub: semicap}
-  - {id: co-ti, name: Texas Instruments, code: TXN.US, region: US, sub: analog}
-  - {id: co-adi, name: Analog Devices, code: ADI.US, region: US, sub: analog}
-  - {id: co-onsemi, name: onsemi, code: ON.US, region: US, sub: analog}
-  - {id: co-arista, name: Arista, code: ANET.US, region: US, sub: networking}
-  - {id: co-coherent, name: Coherent, code: COHR.US, region: US, sub: networking}
-  - {id: co-credo, name: Credo, code: CRDO.US, region: US, sub: networking}
-  - {id: co-asteralabs, name: Astera Labs, code: ALAB.US, region: US, sub: networking}
-  - {id: co-synopsys, name: Synopsys, code: SNPS.US, region: US, sub: eda_ip}
-  - {id: co-cadence, name: Cadence, code: CDNS.US, region: US, sub: eda_ip}
-  - {id: co-arm, name: Arm, code: ARM.US, region: US, sub: eda_ip}
+  - {id: co-kla, name: KLA, code: KLAC.US, region: US, sub: semicap, aliases: ["KLA Corp", "KLA"]}
+  - {id: co-teradyne, name: Teradyne, code: TER.US, region: US, sub: semicap, aliases: ["Teradyne"]}
+  - {id: co-ti, name: Texas Instruments, code: TXN.US, region: US, sub: analog, aliases: ["Texas Instruments"]}
+  - {id: co-adi, name: Analog Devices, code: ADI.US, region: US, sub: analog, aliases: ["Analog Devices"]}
+  - {id: co-onsemi, name: onsemi, code: ON.US, region: US, sub: analog, aliases: ["onsemi", "ON Semiconductor"]}
+  - {id: co-arista, name: Arista, code: ANET.US, region: US, sub: networking, aliases: ["Arista Networks", "Arista"]}
+  - {id: co-coherent, name: Coherent, code: COHR.US, region: US, sub: networking, aliases: ["Coherent Corp"]}
+  - {id: co-credo, name: Credo, code: CRDO.US, region: US, sub: networking, aliases: ["Credo Technology", "Credo Tech"]}
+  - {id: co-asteralabs, name: Astera Labs, code: ALAB.US, region: US, sub: networking, aliases: ["Astera Labs"]}
+  - {id: co-synopsys, name: Synopsys, code: SNPS.US, region: US, sub: eda_ip, aliases: ["Synopsys"]}
+  - {id: co-cadence, name: Cadence, code: CDNS.US, region: US, sub: eda_ip, aliases: ["Cadence Design"]}
+  - {id: co-arm, name: Arm, code: ARM.US, region: US, sub: eda_ip, aliases: ["Arm Holdings"]}
   - {id: co-alphabet, name: Alphabet, code: GOOGL.US, region: US, sub: hyperscaler}
-  - {id: co-microsoft, name: Microsoft, code: MSFT.US, region: US, sub: hyperscaler}
-  - {id: co-amazon, name: Amazon, code: AMZN.US, region: US, sub: hyperscaler}
-  - {id: co-meta, name: Meta, code: META.US, region: US, sub: hyperscaler}
-  - {id: co-oracle, name: Oracle, code: ORCL.US, region: US, sub: hyperscaler}
+  - {id: co-microsoft, name: Microsoft, code: MSFT.US, region: US, sub: hyperscaler, aliases: ["Microsoft"]}
+  - {id: co-amazon, name: Amazon, code: AMZN.US, region: US, sub: hyperscaler, aliases: ["Amazon", "AWS"]}
+  - {id: co-meta, name: Meta, code: META.US, region: US, sub: hyperscaler, aliases: ["Meta Platforms", "Meta's"]}
+  - {id: co-oracle, name: Oracle, code: ORCL.US, region: US, sub: hyperscaler, aliases: ["Oracle"]}
   - {id: co-apple, name: Apple, code: AAPL.US, region: US, sub: components}
-  - {id: co-palantir, name: Palantir, code: PLTR.US, region: US, sub: software}
-  - {id: co-servicenow, name: ServiceNow, code: NOW.US, region: US, sub: software}
-  - {id: co-snowflake, name: Snowflake, code: SNOW.US, region: US, sub: software}
-  - {id: co-smci, name: Super Micro, code: SMCI.US, region: US, sub: server}
-  - {id: co-dell, name: Dell, code: DELL.US, region: US, sub: server}
-  - {id: co-vertiv, name: Vertiv, code: VRT.US, region: US, sub: power_infra}
+  - {id: co-palantir, name: Palantir, code: PLTR.US, region: US, sub: software, aliases: ["Palantir"]}
+  - {id: co-servicenow, name: ServiceNow, code: NOW.US, region: US, sub: software, aliases: ["ServiceNow"]}
+  - {id: co-snowflake, name: Snowflake, code: SNOW.US, region: US, sub: software, aliases: ["Snowflake Inc"]}
+  - {id: co-smci, name: Super Micro, code: SMCI.US, region: US, sub: server, aliases: ["Super Micro", "Supermicro"]}
+  - {id: co-dell, name: Dell, code: DELL.US, region: US, sub: server, aliases: ["Dell Technologies", "Dell"]}
+  - {id: co-vertiv, name: Vertiv, code: VRT.US, region: US, sub: power_infra, aliases: ["Vertiv"]}
   - {id: co-asml, name: ASML, code: ASML.US, region: EU, sub: semicap}
   # 대만
-  - {id: co-tsmc, name: TSMC, code: 2330.TW, region: TW, sub: foundry}
+  - {id: co-tsmc, name: TSMC, code: 2330.TW, region: TW, sub: foundry, sec_ticker: TSM}
   - {id: co-unimicron, name: Unimicron, code: 3037.TW, region: TW, sub: substrate}
-  - {id: co-ase, name: ASE, code: 3711.TW, region: TW, sub: substrate}
+  - {id: co-ase, name: ASE, code: 3711.TW, region: TW, sub: substrate, sec_ticker: ASX, aliases: ["ASE Technology", "ASE Holding", "日月光"]}
   # 일본 — EODHD 거래소 코드 확인 전(code: null → 건너뜀)
   - {id: co-tel, name: Tokyo Electron, code: null, jp_code: "8035", region: JP, sub: semicap}
   - {id: co-ibiden, name: Ibiden, code: null, jp_code: "4062", region: JP, sub: substrate}
   - {id: co-ajinomoto, name: Ajinomoto, code: null, jp_code: "2802", region: JP, sub: substrate}
   - {id: co-nittobo, name: Nittobo, code: null, jp_code: "3110", region: JP, sub: substrate}
-  - {id: co-advantest, name: Advantest, code: null, jp_code: "6857", region: JP, sub: semicap}
+  - {id: co-advantest, name: Advantest, code: null, jp_code: "6857", region: JP, sub: semicap, aliases: ["Advantest", "アドバンテスト"]}
 
 # 반영도 지수 구성(0~100, 높을수록 기대가 많이 반영됨) — 구성 요소별 가중치. 없는 요소는 빼고 재정규화
 priced_in_weights:

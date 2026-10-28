@@ -70,7 +70,7 @@
   terms_note: "공개 RSS. 과도한 호출 금지(30분 이상 간격). 원문 저장 금지"
   reliability_default: 2차
   verified: true
-  enabled: true
+  enabled: false       # 2026-10-28 마스터 지시: 뉴스는 7개 매체만 — 국내 언론 검색 중단(§21.13)
 
 - id: src-gnews-t0-en
   name: Google News RSS (T0 영문명, 영어권)
@@ -672,5 +672,41 @@
   doc_type: 학회·협회
   terms_note: "SEMI·SIA·JEDEC·ECTC 등 RSS 403·404·파싱 불가(2026-10-28) → Google News 색인. 학회 프로그램·논문 선별은 conference-tracker"
   reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
+# ===== S. 포커스 종목 공시·실적·7개 매체 뉴스 (§21.13) =====
+- id: src-sec-filings
+  name: SEC EDGAR 제출 서류(포커스 종목 8-K 실적·중요 계약, 10-Q·10-K, 6-K·20-F)
+  category: A-규제공시
+  module: sec_filings
+  method: api
+  endpoint_doc: "https://www.sec.gov/search-filings/edgar-application-programming-interfaces"
+  auth: none
+  scope: [글로벌]
+  interval_min: 15
+  run_on: local
+  language: en
+  doc_type: 공시
+  terms_note: "data.sec.gov submissions(2026-10-28 응답 확인). SEC 규칙상 연락처가 든 User-Agent 권장 → SEC_USER_AGENT(.env, TODO 21-4)"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-news7-focus
+  name: 마스터 지정 7개 매체 × 포커스 종목 (Google News 도메인 제한)
+  category: F-뉴스
+  module: rss
+  method: rss
+  feed_queries: ["@focus7"]
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 15
+  run_on: local
+  language: en
+  doc_type: 기사
+  terms_note: "Reuters·Bloomberg·WSJ·The Information·Business Insider 도메인만. PR Newswire는 src-prn, GlobeNewswire는 자동 접속 차단"
+  reliability_default: 2차
   verified: true
   enabled: true

@@ -5,6 +5,8 @@
 - 공개 채널 게시 기능은 만들지 않는다(P15).
 - 발송 전 가드: 금칙어(denylist), 엠바고 표시가 있으면 차단.
 
+- P0·P1 알림은 건별 즉시 발송(2026-10-28 마스터 지시: 브리프 대신 실시간, §21.13) + '⭐ 노션 기록' 버튼.
+
 사용: py radar/notify.py "메시지"        (시험 발송)
       py radar/notify.py --flush         (P1 묶음 발송)
       py radar/notify.py --chat-id       (봇에게 말을 건 개인 대화방 id 찾기 — 토큰은 출력하지 않음)
@@ -39,7 +41,26 @@ def guard(text):
     return None
 
 
-def send(text, level="P1"):
+ALERTS = "alerts"  # radar/state/alerts.json — ⭐ 버튼이 가리키는 알림 내용(노션 기록용)
+
+
+def remember_alert(item, level, what=None, impact=None, card_id=None):
+    """알림 1건을 기억하고 콜백용 짧은 ref를 돌려준다(callback_data 64바이트 제한)"""
+    import hashlib
+    ref = hashlib.sha1(item["item_id"].encode()).hexdigest()[:12]
+    st = common.load_state(ALERTS, {})
+    st[ref] = {"item_id": item["item_id"], "level": level, "title": item.get("title", ""), "url": item.get("url", ""),
+               "what": what, "impact": impact, "card": card_id, "doc_type": item.get("doc_type"),
+               "entities": item.get("entities_matched", []), "published_at": item.get("published_at"),
+               "publisher": item.get("publisher") or publisher(item), "source_id": item.get("source_id"),
+               "sent_at": common.iso(common.now_kst())}
+    if len(st) > 3000:
+        st = dict(list(st.items())[-3000:])
+    common.save_state(ALERTS, st)
+    return ref
+
+
+def send(text, level="P1", ref=None):
     reason = guard(text)
     if reason:
         _log(f"[차단:{reason}] (내용 생략)")
@@ -49,8 +70,10 @@ def send(text, level="P1"):
     if not token or not chat:
         _log(f"[미발송-키없음][{level}] {text}")
         return False
-    data = urllib.parse.urlencode({"chat_id": chat, "text": text[:MAX_LEN],
-                                   "disable_web_page_preview": "true"}).encode()
+    payload = {"chat_id": chat, "text": text[:MAX_LEN], "disable_web_page_preview": "true"}
+    if ref:  # 알림마다 '⭐ 노션 기록' 버튼 — 누르면 radar/telegram_inbox.py가 인텔 아카이브에 기록
+        payload["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": "⭐ 노션 기록", "callback_data": f"save:{ref}"}]]})
+    data = urllib.parse.urlencode(payload).encode()
     try:
         with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data=data, timeout=20) as r:
             ok = json.loads(r.read()).get("ok", False)

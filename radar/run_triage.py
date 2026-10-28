@@ -2,7 +2,7 @@
 
 - 관련성 없는 항목(기업·키워드 매칭 0)은 모델 없이 P3 보관.
 - 나머지는 헤드리스 Claude Code(`claude -p "/radar-triage …"`, 소형 모델)로 일괄 판정.
-- P0: 즉시 알림 + impact-card(상위 모델) / P1: 1시간 묶음 / P2: 브리프 대기열 / P3: 보관
+- P0: 즉시 알림 + impact-card(상위 모델) / P1: 즉시 알림(§21.13 실시간 전달) / P2: 대기열 보관 / P3: 보관
 - claude CLI가 없거나 로그인 전이면 전부 브리프 대기열(미판정)로 보내고 헬스에 기록.
 
 사용: py radar/run_triage.py [--dry-run]
@@ -158,11 +158,12 @@ def main(argv=None):
                 if lvl == "P0":
                     deep_analysis(r, it)
                 continue
-            if lvl == "P0":
-                notify.send(("(규칙 선알림 후속) " if it["item_id"] in rule_sent else "") + msg, "P0")
-                deep_analysis(r, it)
-            elif lvl == "P1":
-                notify.queue_p1(msg)
+            if lvl in ("P0", "P1"):  # 실시간 전달: P1도 묶지 않고 건별 즉시(§21.13)
+                ref = notify.remember_alert(it, lvl, r.get("what"), r.get("impact"), card)
+                prefix = "(규칙 선알림 후속) " if it["item_id"] in rule_sent else ""
+                notify.send(prefix + msg, lvl, ref=ref)
+                if lvl == "P0":
+                    deep_analysis(r, it)
             elif lvl == "P2":
                 to_brief(it, "P2", r.get("reason", ""))
         mark_triaged(by_id.keys())

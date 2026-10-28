@@ -50,12 +50,39 @@ def _older_than(iso_s, days):
     return common.now_kst() - dt > timedelta(days=days)
 
 
+NEWS7_SITES = "(site:reuters.com OR site:bloomberg.com OR site:wsj.com OR site:theinformation.com OR site:businessinsider.com)"
+
+
+def focus7_urls(src, chunk=8):
+    from . import gate
+    focus, _ = gate.focus_state()
+    uni = (common.load_yaml("config/valuation.yaml") or {}).get("universe", [])
+    names = []
+    for u in uni:
+        if focus is not None and u["id"] not in focus:
+            continue
+        if u.get("region") == "KR":  # 영문 매체 검색엔 영문명이 필요 — 한국 종목은 universe의 en 또는 lexicon 영문명
+            lex = common.load_yaml(f"config/lexicon/{u['id']}.yaml") or {}
+            en = u.get("en") or ((lex.get("names") or {}).get("en") or [None])[0]
+            if not en:
+                continue
+            names.append(en)
+        else:
+            names.append((u.get("aliases") or [u["name"]])[0].strip())
+    for i in range(0, len(names), chunk):
+        q = f"{NEWS7_SITES} (" + " OR ".join(f'"{n}"' for n in names[i:i + chunk]) + ") when:1d"
+        yield GNEWS.format(q=urllib.parse.quote(q), hl="en-US", gl="US"), None
+
+
 def feed_urls(src):
     if src.get("feed_url"):
         yield src["feed_url"], None
     for u in src.get("feed_urls", []) or []:
         yield u, None
     for q in src.get("feed_queries", []) or []:
+        if q == "@focus7":  # 포커스 종목 × 마스터 지정 7개 매체(도메인 제한), 8종목씩 묶어 한 쿼리
+            yield from focus7_urls(src)
+            continue
         if q == "@watchlist":
             for row in common.load_watchlist():
                 if row["tier"] in src.get("scope", ["T0"]):

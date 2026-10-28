@@ -3,6 +3,8 @@ name: morning-brief
 description: 07:00 KST 아침 브리프를 만든다. 밤사이 미국·대만·일본 이벤트, 국내 T0 영향, 오늘 일정·지표 발표, 수집 장애를 정리해 outputs/brief/에 저장하고 claude.ai 비공개 Artifact로 공유한다.
 argument-hint: "[YYYY-MM-DD]"
 ---
+> **중단(2026-10-28 마스터 지시, BUILD_PROMPT §21.13):** 브리프 대신 텔레그램 실시간 전달. 예약 작업은 비활성 — 마스터가 요청할 때만 수동 실행.
+
 
 # morning-brief — 아침 브리프
 

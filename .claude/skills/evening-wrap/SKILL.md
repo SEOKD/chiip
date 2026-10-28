@@ -3,6 +3,8 @@ name: evening-wrap
 description: 장 마감 후(16:30 KST 이후) 브리프. 당일 T0 뉴스·카드, 미국·일본·EU·영국·한국 상장 반도체·AI 하드웨어·소프트웨어 종목의 공식 보도자료(5분류), 주가 반응(공개 자료로 확인 가능할 때만), 내일 일정을 outputs/brief/에 저장하고 claude.ai 비공개 Artifact로 공유한다.
 argument-hint: "[YYYY-MM-DD]"
 ---
+> **중단(2026-10-28 마스터 지시, BUILD_PROMPT §21.13):** 브리프 대신 텔레그램 실시간 전달. 예약 작업은 비활성 — 마스터가 요청할 때만 수동 실행.
+
 
 # evening-wrap — 저녁 브리프
 

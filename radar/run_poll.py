@@ -97,6 +97,11 @@ def main(argv=None):
         return 0
     try:
         env = common.load_env()
+        try:  # 텔레그램 '⭐ 노션 기록' 버튼·답장 메모 처리 → 노션 인텔 아카이브(§21.13)
+            import telegram_inbox
+            telegram_inbox.run()
+        except Exception as exc:
+            common.record_health("telegram-inbox", False, f"{type(exc).__name__}: {exc}")
         new_total = []
         for src in registry():
             if args.only and src["id"] != args.only:

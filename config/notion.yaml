@@ -1,0 +1,15 @@
+# 노션 구성 (BUILD_PROMPT §21.13) — id는 비밀이 아니다. 토큰(NOTION_TOKEN)은 D:\local-only\secrets\.env 에만.
+# 허브 '치입 인텔리전스'는 비공개 페이지로 만들었다(2026-10-28). 공개 사이트로 옮기면 public 모드 규칙을 적용한다.
+hub_page: "407b5d1e-0998-81ce-9ec6-c98ef4690a18"
+archive:                   # 인텔 아카이브 — 텔레그램 ⭐ 버튼으로 고른 정보
+  database: "ecd5a1f1-da43-440f-a7e8-832523214445"
+  data_source: "d8ef687a-4ed6-42a7-a269-eaf0592c149b"
+insights:                  # 오피니언·인사이트 — 마스터가 직접 쓰는 글
+  database: "9fc11985-c743-4e35-b2d2-6077510d74b0"
+  data_source: "0c42a0c8-d473-4b08-82c0-404bf4508d61"
+api:
+  base: "https://api.notion.com/v1"
+  version: "2026-03-11"    # developers.notion.com/reference/post-page 확인(2026-10-28)
+  token_env: NOTION_TOKEN  # 마스터가 내부 통합(integration)을 만들고 허브 페이지에 연결한 뒤 입력. 없으면 대기열 → 예약 작업이 노션 커넥터로 기록
+# 유형 매핑(doc_type → 아카이브 '유형')
+type_map: {"규제·정책": "정부·정책", "공시": "공시·실적", "실적": "공시·실적", "기사": "뉴스(7곳)", "SNS": "X·리서치", "리서치": "X·리서치", "학회·협회": "학회·협회", "보도자료": "보도자료"}

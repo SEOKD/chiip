@@ -86,6 +86,12 @@ def entity_aliases():
             for vals in lex["names"].values():
                 names.update(vals or [])
         out[row["entity_id"]] = sorted(n for n in names if len(n) >= 2)
+    # 밸류에이션 유니버스(config/valuation.yaml)에만 있는 종목 — aliases가 있으면 그것만(일반 단어 오탐 방지)
+    for u in (load_yaml("config/valuation.yaml") or {}).get("universe", []):
+        if u["id"] not in out:
+            out[u["id"]] = sorted(n for n in (u.get("aliases") or [u["name"]]) if len(n) >= 2)
+        elif u.get("en") and u["en"] not in out[u["id"]]:
+            out[u["id"]] = sorted(out[u["id"]] + [u["en"]])
     return out
 
 
@@ -233,7 +239,9 @@ def make_item(source_id, uid, url, title, published_at, doc_type, language, snip
 
 
 def save_new_items(items):
-    """처음 보는 항목만 inbox에 저장하고 반환"""
+    """처음 보는 항목만 inbox에 저장하고 반환. 저장 전 수집 관문(뉴스 7곳·포커스 종목, pollers/gate.py)을 거친다"""
+    from . import gate
+    items = gate.apply(items)
     seen = load_state("seen")
     new = []
     for it in items:
