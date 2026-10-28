@@ -8,7 +8,8 @@ industry: electrical_equipment
 region_mix: {US: 0.6, EU: 0.2, TW: 0.2}
 tax: 0.22
 horizon: 10
-market: {price: 208.56, shares: 0.385, net_debt: 0.23, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 3.34 − 현금 3.11"}
+as_of: 2026-10-28
+market: {date: 2026-10-28, price: 208.56, shares: 0.385, net_debt: 0.23, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 3.34 − 현금 3.11"}
 rev0: 11.9          # 2026 추정(최근 12개월 매출 11.48, 성장 24% — 4분기 반영 근사, 근거 약함)
 ic0: 5.5            # FY2025 10-K 자기자본 3.94 + 장기차입 2.89 − 현금 1.73 = 5.10에 2026 증분 근사
 scenarios:

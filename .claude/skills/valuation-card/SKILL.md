@@ -17,6 +17,12 @@ argument-hint: "[기업 id] (예: co-skhynix)"
 - 컨센서스는 `manual_consensus.csv`(마스터 노션 'Consensus · Earnings Call' 입력분)와 대조해 동인 성장 경로가 컨센서스보다 높은지 낮은지 카드에 적는다. 없으면 '컨센서스 미입력'.
 - 결과가 직관과 크게 다르면 먼저 가정(성장 경로·장기 마진·재투자 효율·WACC)을 점검하고, 시장 내포 가정과의 차이로 설명한다(“시장이 틀렸다”는 consensus-gap 절차 후에만).
 
+## 동인 파일 작성·갱신 규칙 (v2 `drivers.yaml`, 핵심 루프 대기열 처리 때)
+- 양식은 `knowledge/models/companies/co-innio/drivers.yaml`을 따른다: id·name·ticker·unit·unit_usd(정수)·industry(config/valuation_v2.yaml industry 키)·region_mix·tax·horizon·**as_of**·market{date, price, shares, net_debt, source}·rev0·ic0·scenarios(bear·base·bull, prob 합 1)·mc·notes·evidence.
+- 시가는 공개 시세(날짜·출처 기록). 투하자본·순차입은 최근 분기 보고서. 성장·마진 경로는 컨센서스(`manual_consensus.csv`)와 대조해 notes에 '컨센서스보다 높음/낮음/미입력'을 적는다.
+- 근거가 약한 가정은 notes에 '근거 약함'. 확률은 25/50/25 기본값을 피하고 증거로 정한다. 공개 자료만(local-only·필드 인텔·채널체크 금지).
+- 갱신(실적 뒤): 새 실적·가이던스로 rev0·마진 출발점·성장 경로를 고치고 as_of를 바꾼다. 바꾼 이유를 notes 맨 앞에 한 줄.
+
 ## 절차
 1. `py scripts/valuation/engine.py --card <id>` 실행. 데이터 상태(스냅숏 날짜·주의 플래그)부터 적는다.
 2. **시나리오** (`knowledge/models/valuation/scenarios.csv`에 행 추가 — 수정하지 않고 새 as_of로 추가):

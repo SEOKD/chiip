@@ -16,6 +16,7 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 sys.path.insert(0, str(HERE))
 import baserates  # noqa: E402
+import decision  # noqa: E402
 import dcf  # noqa: E402
 import montecarlo  # noqa: E402
 import regime as regime_mod  # noqa: E402
@@ -26,6 +27,24 @@ import wacc as wacc_mod  # noqa: E402
 DISCLAIMER = "공개 자료 기반 분석이며 투자 권유가 아님"
 
 
+def resolve_market(co):
+    """drivers의 시가와 무료 시세 파일(knowledge/models/valuation/prices/<code>.csv) 중 최신을 쓴다"""
+    import csv
+    m = dict(co["market"])
+    code = co.get("code")
+    if not code:
+        val = yaml.safe_load((ROOT / "config" / "valuation.yaml").read_text(encoding="utf-8"))
+        ew = yaml.safe_load((ROOT / "config" / "earnings_watch.yaml").read_text(encoding="utf-8"))
+        code = next((u.get("code") for u in val.get("universe", []) + (ew.get("extra") or []) if u["id"] == co["id"]), None)
+    p = ROOT / "knowledge" / "models" / "valuation" / "prices" / f"{code}.csv" if code else None
+    if p and p.exists():
+        with p.open(encoding="utf-8", newline="") as fh:
+            rows = [r for r in csv.DictReader(fh) if r.get("close")]
+        if rows and rows[-1]["date"] > str(m.get("date", "")):
+            m.update({"price": float(rows[-1]["close"]), "date": rows[-1]["date"], "source": rows[-1].get("source", "무료 시세")})
+    return m
+
+
 def load_company(entity):
     return yaml.safe_load((ROOT / "knowledge" / "models" / "companies" / entity / "drivers.yaml").read_text(encoding="utf-8"))
 
@@ -34,6 +53,7 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     cfg = cfg or yaml.safe_load((ROOT / "config" / "valuation_v2.yaml").read_text(encoding="utf-8"))
     reg = reg or regime_mod.load() or regime_mod.build()
     co = load_company(entity)
+    co["market"] = resolve_market(co)
     m = co["market"]
     mcap = m["price"] * m["shares"]
     coc = wacc_mod.cost_of_capital(reg, co["industry"], co["region_mix"], mcap, m["net_debt"], co["tax"],
@@ -52,7 +72,8 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     sample = baserates.windows(5)
     blk = upside.block(co, base_d, mc, mcap, cfg["upside"], sample)
     rs = dcf.rate_sensitivity(base_d)
-    return {"entity": entity, "name": co["name"], "as_of": date.today().isoformat(), "market": m, "mcap": mcap, "coc": coc,
+    dec = decision.compute(mc, mcap, coc["ke"], coc["rf"], cfg["decision"], cfg["upside"]["horizon_years"])
+    return {"decision": dec, "drivers_as_of": str(co.get("as_of", "")), "entity": entity, "name": co["name"], "as_of": date.today().isoformat(), "market": m, "mcap": mcap, "coc": coc,
             "g_term": g_term, "base": {"v0": base["equity"] / mcap, "cv_share": base["cv_share"], "ep_gap": base["ep_gap"],
                                        "roic_y1": base["rows"][0]["roic"], "roic_y5": base["rows"][4]["roic"]},
             "scenarios": scen, "upside": blk, "rate_50bp": rs, "regime": {"rf": reg["rf_us"], "erp": reg["erp"], "as_of": reg["as_of"]},
@@ -85,6 +106,8 @@ def render(r):
             L.append(f"- 5년 뒤 {mult}배에 필요한 매출 CAGR(기본 마진 유지) {rc:.1%} → {_pct(pt)}" if rc is not None else f"- {mult}배 필요 CAGR: 역산 불가(마진·재투자 가정으로 도달 불가)")
         L.append(f"- 금리 민감도: 할인율 +50bp → 가치 {r['rate_50bp']['chg']:+.1%} (듀레이션 약 {r['rate_50bp']['duration']:.0f}년)")
         L.append(f"- 알파 정량 제안(병목 제외): " + ", ".join(f"{k} {v}" for k, v in u["alpha"].items()))
+    if r.get("decision"):
+        L += ["", "**의사결정 보조 3요인**(투자자문 아님 — 판단을 돕는 지표, 가치 수렴 가정)"] + [f"- {x}" for x in decision.lines(r["decision"])]
     if r["notes"]:
         L += ["", "**가정 메모**"] + [f"- {x}" for x in r["notes"]]
     if r["evidence"]:

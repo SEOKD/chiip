@@ -8,7 +8,8 @@ industry: electrical_equipment
 region_mix: {US: 0.6, EU: 0.4}
 tax: 0.25
 horizon: 10
-market: {price: 16.98, shares: 0.750, net_debt: 1.62, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 2.82 − 현금 1.20"}
+as_of: 2026-10-28
+market: {date: 2026-10-28, price: 16.98, shares: 0.750, net_debt: 1.62, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 2.82 − 현금 1.20"}
 rev0: 3.95          # FY2026 가이던스 중간값(3.9~4.0, 3Q 콜 2026-10-27)
 ic0: 1.96           # 3Q 10-Q 자기자본 0.34 + 총차입 2.82 − 현금 1.20 (조달 측 근사, 1단계)
 scenarios:

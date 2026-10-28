@@ -936,3 +936,115 @@ params:
     data: v2 카드 이력 × 가격
     last_fit: null
     oos_metric: null
+- id: prm-v2-dec-kelly-fraction
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.kelly_fraction
+  value: 0.25
+  unit: 비율
+  status: adopted
+  prior:
+    value: 0.25
+    basis: 분수 켈리 1/4 — 추정 오차 대비 위험 관리 상수(MacLean·Thorp·Ziemba 관행). 피팅하지 않음
+    source: null
+  fit:
+    method: null
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-dec-max-position
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.max_position
+  value: 0.1
+  unit: 비율
+  status: adopted
+  prior:
+    value: 0.1
+    basis: 위험 예산 지표 상한(이론) — 위험 관리 상수
+    source: null
+  fit:
+    method: null
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-dec-strong-excess
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.strong_excess
+  value: 0.05
+  unit: '%p'
+  status: prior
+  prior:
+    value: 0.05
+    basis: 정량 신호 '강함' 기준 — 초안, 신호별 이후 초과수익으로 보정 대상
+    source: null
+  fit:
+    method: 신호 등급별 이후 12개월 초과수익·적중률로 보정(walk-forward)
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-dec-strong-p-beat
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.strong_p_beat
+  value: 0.6
+  unit: 확률
+  status: prior
+  prior:
+    value: 0.6
+    basis: 정량 신호 '강함' 기준 — 초안, 확률 보정 대상
+    source: null
+  fit:
+    method: 신호 등급별 이후 12개월 초과수익·적중률로 보정(walk-forward)
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-dec-strong-mos
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.strong_mos
+  value: 0.8
+  unit: 배
+  status: prior
+  prior:
+    value: 0.8
+    basis: 정량 신호 '강함' 안전마진 기준 — 초안
+    source: null
+  fit:
+    method: 신호 등급별 이후 12개월 초과수익·적중률로 보정(walk-forward)
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-dec-neutral-excess
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.neutral_excess
+  value: 0.0
+  unit: '%p'
+  status: prior
+  prior:
+    value: 0.0
+    basis: 정량 신호 '중립'·위험 예산 0 경계 — 초안
+    source: null
+  fit:
+    method: 신호 등급별 이후 12개월 초과수익·적중률로 보정(walk-forward)
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-dec-neutral-p-beat
+  model: valuation.v2.decision
+  binding: config/valuation_v2.yaml#decision.neutral_p_beat
+  value: 0.5
+  unit: 확률
+  status: prior
+  prior:
+    value: 0.5
+    basis: 정량 신호 '중립' 기준 — 초안
+    source: null
+  fit:
+    method: 신호 등급별 이후 12개월 초과수익·적중률로 보정(walk-forward)
+    target: null
+    data: v2 카드 이력 × 가격
+    last_fit: null
+    oos_metric: null

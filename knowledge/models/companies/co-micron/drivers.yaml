@@ -9,7 +9,8 @@ region_mix: {US: 0.5, TW: 0.3, JP: 0.2}
 tax: 0.15
 horizon: 10
 g_term: 0.03
-market: {price: 928.76, shares: 1.1314, net_debt: -38.25, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 5.18 − 현금 43.43(순현금)"}
+as_of: 2026-10-28
+market: {date: 2026-10-28, price: 928.76, shares: 1.1314, net_debt: -38.25, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 5.18 − 현금 43.43(순현금)"}
 rev0: 133.19        # FY2026(2026-08 결산) 10-K 매출(SEC XBRL), 영업이익률 74.6%
 ic0: 102.8          # FY2026 자기자본 138.4 + 장기차입 2.8 − 현금 38.4
 scenarios:

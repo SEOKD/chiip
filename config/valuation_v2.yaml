@@ -51,3 +51,20 @@ upside:                      # 상승여력 블록 → 알파 4요소 정량 제
   upside_full_prob: 0.5      # P(5년 뒤 가치 ≥ 2배) 가 이 값이면 upside 10점
   asym_points_per_doubling: 2.5   # 비대칭(상방/하방 기대) 2배마다 +2.5점(5점 기준)
   gap_points_per_10pct: 1.0  # 우리 기본 가정과 시장 내포 가정의 기저율 백분위 차이 10%p마다 1점
+
+decision:                    # 의사결정 보조 3요인(scripts/valuation/v2/decision.py) — 투자자문 아님, 지표·확률로만 표기
+  kelly_fraction: 0.25       # 분수 켈리(추정 오차 대비, MacLean·Thorp·Ziemba 관행) — 피팅 대상 아님(위험 관리 상수)
+  max_position: 0.10         # 위험 예산 지표 상한(이론값)
+  strong_excess: 0.05        # 정량 신호 '강함': 연 기대 초과수익 ≥ 5%p
+  strong_p_beat: 0.60        #   그리고 자기자본비용 초과 확률 ≥ 60%
+  strong_mos: 0.80           #   그리고 안전마진(P10 내재가치/시총) ≥ 0.8
+  neutral_excess: 0.0        # '중립': 초과수익 ≥ 0
+  neutral_p_beat: 0.50       #   그리고 초과 확률 ≥ 50%
+  watch_draws: 3000          # 알파 감지 자동 실행 때 몬테카를로 횟수
+
+alpha_watch:                 # 핵심 루프(scripts/valuation/v2/alpha_watch.py): 실시간 정보 → 알파 ≥ 기준 감지 → v2 → 텔레그램
+  levels: [P0, P1]           # 이 등급으로 텔레그램에 나간 알림의 종목이 알파 기준 이상이면 감지
+  lookback_hours: 26         # 첫 실행·장애 복구 때 되돌아볼 시간
+  earnings_days_after: 1     # 실적 발표일과 그 다음 날 재평가
+  drivers_stale_days: 45     # 동인 기준일이 이보다 오래되면 '동인 갱신' 대기열에 올림
+
