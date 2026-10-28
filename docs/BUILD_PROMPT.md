@@ -2002,7 +2002,7 @@ source: docs/methodology
 - 원천(`config/narrative_sources.yaml`, 2026-10-28 robots·약관 점검): 자동 = Substack 투자·산업 뉴스레터 10곳 공개 RSS, Hacker News 공개 API, Google News 색인 제목(Seeking Alpha·Motley Fool·Benzinga·MarketBeat·Barron's·IBD·Investopedia·TipRanks·Zacks), IB 커버리지 변화 제목(개시·상향·하향·목표가). 모델 단계 = easyconomics 콜 셀사이드 질문(`analyst_qa_calls`), 마스터 노션 Informations IB 요지, ib-digest. 제외 = 레딧·ValueInvestorsClub(robots 전면 차단), Seeking Alpha·Motley Fool 직접 접속(AI 수집기 차단), StockTwits(AI 수집기 광범위 차단 — 보류), Bluesky(403), X(유료 API 승인 대기 §21.6). 레딧 글은 마스터가 크롬 확장으로 넘긴 것만 판정.
 - 수집(결정론): `radar/narrative_sources.py <id>` → `knowledge/narratives/evidence/<id>.json`(git 제외). 제목에 종목명·티커(단어 경계)가 없거나 같은 제목 재게재면 버리고 수를 남긴다. 섹터는 하위 섹터별 검색어·제목 정규식.
 - 판단(모델): 스킬 `narrative-premium` → `knowledge/narratives/companies/<id>.md`(섹터 내러티브 3~5개 × 가치 입력·방향·단계, 기업 프리미엄·디스카운트 요인, IB 커버리지 흐름, 커뮤니티 논조, 숫자로 바꾸기, 반증 조건, alpha_effect 제안). 새 섹터 내러티브는 등록부(`knowledge/narratives/registry.yaml`)에 추가.
-- 연결: tenbagger-card '알파 점수'가 30일 이내 alpha_effect를 반영, 3요인 텔레그램에 '내러티브' 한 줄(`alpha_watch.narrative_line`), chiip-valuation-queue가 동인 작성 전에 내러티브를 먼저 쓴다(개정안 `docs/tasks/chiip-valuation-queue.md`, 마스터 승인 대기 TODO 21-10).
+- 연결: tenbagger-card '알파 점수'가 30일 이내 alpha_effect를 반영, 3요인 텔레그램에 '내러티브' 한 줄(`alpha_watch.narrative_line`), chiip-valuation-queue가 동인 작성 전에 내러티브를 먼저 쓴다(`docs/tasks/chiip-valuation-queue.md`, 10-28 마스터 개정 승인·반영).
 - 첫 실행(UCTT·TTMI·VICR): UCTT 태동·과밀 낮음(커뮤니티 45일 1건, IB 목표가 80~150달러로 분산, 쟁점 = 증설 대가) / TTMI 컨센서스(실적일 −30%, 가이던스 상향인데 목표가 3곳 하향 = 배수 압축, 쟁점 = 데이터센터 일정·부채) / VICR 확산·커뮤니티 과밀(SA 강세 장문 4편·약세 0, 쟁점 = VPD 로열티의 반복성). 섹터 내러티브 3개 추가(WFE 2028·고전압 전력·AI PCB 컨텐츠).
 
 ### 21.16 노션 올림 즉시 처리 (2026-10-28 마스터 지시)
