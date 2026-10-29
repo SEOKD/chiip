@@ -2068,3 +2068,7 @@ source: docs/methodology
 - 펄스 ⑤ **속보 판단**: 실시간 레이더가 보낸 P0·P1(alerts.json)을 회차당 3건 CIF로 깊게 판단(`radar/pulse.py` fetch_alerts, `--judged`). 텔레그램 맨 위 '■ 치입 판단', 모든 절에 '치입 판단·인사이트 x/10' 줄. 포트폴리오에는 프로바이저 교차 전파 지시로 같은 틀.
 - **일본 정보망** `config/jp_watch.yaml`(일본 AI 밸류체인 45개사·일본어 이름·코드·일본 매체 목록) + `radar/pollers/jp_disclosure.py`(10분, Google News 일본판 색인): 적시공시 제목 미러(日経会社情報DIGITAL '…(適時開示)')는 공시, 株探·日経·日刊工業 등은 기사. TDnet은 robots.txt 차단이라 직접 수집 안 함. 판정 상향: 일본 감시 기업의 실적 전망 수정·설비투자·주주환원·인수·자금 조달·결산 → P1(종목×사건 종류 24시간 1번). 첫 시험에서 이비덴 적시공시 5건·어드밴테스트 상향·자사주 2,800억 엔 포착.
 - 오탐 교정: 영문 회사 이름은 단어 경계로만 매칭(Applebee's→Apple 오탐), M&A 문구에서 buyout 제외(희망퇴직 오탐), 관련 기업 규칙은 AI·데이터센터·전력 문맥 필요(지멘스에너지 해상풍력 오탐).
+
+### 21.28 텐배거 일일 리포트 (2026-10-29 마스터 지시 "Chiip ten-bagger도 텐배거 종목 리포트를 쓰고 그래프로 시각화해 html로 남겨라, 오후 11시마다 하루 하나씩")
+- 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
+- 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).

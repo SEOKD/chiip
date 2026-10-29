@@ -7,7 +7,7 @@
 |---|---|---|
 | chiip-pulse | Chiip pulse (30분) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
 | chiip-article-pitch | Chiip reporter (평일 06:00) | outputs/article/pitch/ (`<날짜>.md`, `_tg.txt`, log.csv) |
-| chiip-tenbagger | Chiip ten-bagger (30분 — 매시 15·45분, 새 신호 있을 때만) | knowledge/models/tenbagger/cards/, watch.csv, judgments, 실행 요약 |
+| chiip-tenbagger | Chiip ten-bagger (30분 — 매시 15·45분, 새 신호 있을 때만) + 일일 리포트 chiip-tenbagger-report(매일 23:00) | knowledge/models/tenbagger/cards/, watch.csv, judgments, 실행 요약, outputs/tenbagger/reports/(HTML·JSON·log.csv) |
 | chiip-notion-watch | Chiip Notion Tracker (매시간) | outputs/report/notion/, Insights '치입 검토' 하위 페이지, knowledge/predictions.csv |
 | chiip-model-lab | Chiip Model Laboratory (매일 18:00) | knowledge/models/lab/notes/, proposals/, outputs/report/lab/ |
 | chiip-weekly-review | Chiip Weekly Review (토 07:00) | outputs/brief/YYYY-Www_weekly.md |

@@ -60,6 +60,39 @@ def remember_alert(item, level, what=None, impact=None, card_id=None):
     return ref
 
 
+def send_document(path, caption="", level="REPORT"):
+    """파일(HTML 리포트 등)을 마스터 개인 텔레그램으로 보낸다 — 2026-10-29 텐배거 일일 리포트. 본문 검사(guard)는 캡션과 파일 내용 모두에"""
+    path = Path(path)
+    body_text = path.read_text(encoding="utf-8", errors="ignore") if path.suffix in (".html", ".md", ".txt") else ""
+    reason = guard(caption) or (guard(body_text) if body_text else None)
+    if reason:
+        _log(f"[차단:{reason}] 파일 {path.name}")
+        return False
+    env = common.load_env()
+    token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")
+    if not token or not chat:
+        _log(f"[미발송-키없음][{level}] 파일 {path.name}")
+        return False
+    import uuid
+    bnd = uuid.uuid4().hex
+    parts = []
+    for k, v in (("chat_id", chat), ("caption", caption[:1000])):
+        parts.append(f'--{bnd}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode("utf-8"))
+    parts.append(f'--{bnd}\r\nContent-Disposition: form-data; name="document"; filename="{path.name}"\r\nContent-Type: application/octet-stream\r\n\r\n'.encode("utf-8")
+                 + path.read_bytes() + b"\r\n")
+    parts.append(f"--{bnd}--\r\n".encode())
+    req = urllib.request.Request(f"https://api.telegram.org/bot{token}/sendDocument", data=b"".join(parts),
+                                 headers={"Content-Type": f"multipart/form-data; boundary={bnd}"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            ok = json.loads(r.read()).get("ok", False)
+    except Exception as exc:   # 토큰이 섞일 수 있는 URL은 기록하지 않음
+        _log(f"[발송실패][{level}] 파일 {path.name} {type(exc).__name__}")
+        return False
+    _log(f"[발송{'됨' if ok else '실패'}][{level}] 파일 {path.name} · {caption[:60]}")
+    return ok
+
+
 def send(text, level="P1", ref=None):
     reason = guard(text)
     if reason:

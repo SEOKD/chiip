@@ -1,0 +1,247 @@
+"""텐배거 일일 리포트 HTML 렌더러 (마스터 지시 2026-10-29 "Chiip ten-bagger도 텐배거 종목 리포트를 쓰고 그래프로 시각화해
+체계적인 자료를 html 파일로 남겨라. 오후 11시마다 하루 하나씩")
+
+모델(예약 작업 chiip-tenbagger-report)은 내용만 JSON으로 쓰고, 모양·차트는 이 스크립트가 늘 같은 방식으로 그린다.
+문자열 안의 **굵게**만 <b>로 바꾸고 나머지 HTML은 모두 이스케이프한다(수집한 웹 문장이 섞여도 스크립트가 끼어들지 않게).
+사용: py scripts/tenbagger/report_html.py outputs/tenbagger/reports/20261029_CBRS.json   → 같은 이름 .html
+
+JSON 구조(필수 = *):
+{ "title"*, "subtitle", "date"*, "ticker"*, "company"*, "biz"* (사업 1줄), "lead",
+  "verdict": {"view"*: "치입 판단 한 줄", "confidence": "고|중|저", "insight": 7, "alpha": 6.1},
+  "summary": [{"q": "질문", "a": "답(**굵게** 가능)"}],
+  "tiles": [{"k": "이름", "v": "값", "sub": "설명", "tone": "red|grn|blue|"}],
+  "sections": [{"h2"*: "제목", "blocks": [블록...]}],
+  "sources": ["출처 1", ...] }
+블록 종류: {"type":"p","text"} · {"type":"ul","items":[...]} · {"type":"hl","text"} · {"type":"h3","text"}
+  · {"type":"table","headers":[...],"rows":[[...]...]}
+  · {"type":"chart","chart":{"kind":"line","title","unit","log":false,"series":[{"name","color":"a|b|c|d|e","points":[["2025-03",12.3,"설명"]...]}]}}
+  · {"type":"chart","chart":{"kind":"bars","title","unit","categories":[...],"series":[{"name","color","values":[...]}]}}
+  · {"type":"chart","chart":{"kind":"hbars","title","unit","rows":[{"label","bars":[{"name","color","value"}]}]}}
+  · {"type":"chart","chart":{"kind":"scenario","title","unit","current":112.6,"cases":[{"name":"약세","value":60,"prob":0.3,"color":"b","why":"…"}]}}
+"""
+import html
+import json
+import math
+import re
+import sys
+from datetime import date
+from pathlib import Path
+
+COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
+CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c}}
+:root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;font-size:15px}.w{max-width:820px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:21px;margin:0 0 4px;line-height:1.35}h2{font-size:18px;margin:30px 0 8px;padding-top:10px;border-top:2px solid var(--fg)}h3{font-size:15.5px;margin:18px 0 6px}
+.lead{color:var(--mut);font-size:13.5px;margin:0 0 12px}.card{background:var(--card);border-radius:12px;padding:12px 14px;margin:12px 0}.hl{background:var(--hl);border-radius:12px;padding:12px 14px;margin:12px 0}
+.ans{display:grid;grid-template-columns:1fr;gap:8px}.ans div{background:var(--card);border-radius:10px;padding:10px 12px}.ans b.q{display:block;font-size:12.5px;color:var(--mut)}
+table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600}
+.tw{overflow-x:auto}.mut{color:var(--mut)}.sm{font-size:12.5px}.red{color:var(--b)}.blue{color:var(--c)}.grn{color:var(--d)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
+svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
+ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
+.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}"""
+DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
+
+
+def t(s):
+    """이스케이프 후 **굵게**만 허용"""
+    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(s if s is not None else "")))
+
+
+def _legend(series):
+    return '<div class="lg">' + "".join(f'<i style="background:{COLORS.get(s.get("color", "c"), "var(--c)")}"></i>{t(s["name"])}' for s in series) + "</div>"
+
+
+def _fmt(v):
+    if v is None:
+        return "-"
+    return f"{v:,.0f}" if abs(v) >= 100 else (f"{v:,.1f}" if abs(v) >= 10 else f"{v:,.2f}")
+
+
+def chart_line(c):
+    W, H, L, R, T, B = 700, 260, 48, 14, 14, 26
+    series = c.get("series") or []
+    keys = sorted({p[0] for s in series for p in s.get("points") or []})
+    vals = [p[1] for s in series for p in s.get("points") or [] if p[1] is not None]
+    if not keys or not vals:
+        return ""
+    log = bool(c.get("log")) and min(vals) > 0
+    lo, hi = (min(vals), max(vals))
+    if log:
+        lo, hi = math.log10(lo) - 0.1, math.log10(hi) + 0.1
+    else:
+        pad = (hi - lo) * 0.1 or abs(hi) * 0.1 or 1
+        lo, hi = min(0, lo - pad) if lo >= 0 else lo - pad, hi + pad
+    X = lambda k: L + (keys.index(k) / max(len(keys) - 1, 1)) * (W - L - R)
+    Y = lambda v: T + (hi - (math.log10(v) if log else v)) / (hi - lo) * (H - T - B)
+    g = []
+    for i in range(5):
+        v = lo + (hi - lo) * i / 4
+        real = 10 ** v if log else v
+        g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(real):.1f}" y2="{Y(real):.1f}" stroke="var(--line)"/><text x="{L - 4}" y="{Y(real) + 3:.1f}" text-anchor="end">{_fmt(real)}</text>')
+    step = max(1, len(keys) // 8)
+    for i, k in enumerate(keys):
+        if i % step == 0 or i == len(keys) - 1:
+            g.append(f'<text x="{X(k):.1f}" y="{H - 6}" text-anchor="middle">{t(k)}</text>')
+    for s in series:
+        col = COLORS.get(s.get("color", "c"), "var(--c)")
+        pts = [p for p in s.get("points") or [] if p[1] is not None]
+        g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2" points="{" ".join(f"{X(p[0]):.1f},{Y(p[1]):.1f}" for p in pts)}"/>')
+        for p in pts:
+            note = f" · {p[2]}" if len(p) > 2 and p[2] else ""
+            g.append(f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="4" fill="{col}" stroke="var(--bg)" stroke-width="2"><title>{t(s["name"])} {t(p[0])}: {_fmt(p[1])}{t(c.get("unit", ""))}{t(note)}</title></circle>')
+    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
+def chart_bars(c):
+    W, H, L, B, T = 700, 250, 48, 30, 18
+    cats, series = c.get("categories") or [], c.get("series") or []
+    vals = [v for s in series for v in s.get("values") or [] if v is not None]
+    if not cats or not vals:
+        return ""
+    lo, hi = min(0, min(vals)), max(0, max(vals)) * 1.15 or 1
+    Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
+    gw = (W - L - 10) / len(cats)
+    bw = max(4, (gw - 10) / max(len(series), 1))
+    g = [f'<line x1="{L}" x2="{W - 10}" y1="{Y(0):.1f}" y2="{Y(0):.1f}" stroke="var(--line)"/>']
+    for i in range(5):
+        v = lo + (hi - lo) * i / 4
+        g.append(f'<text x="{L - 4}" y="{Y(v) + 3:.1f}" text-anchor="end">{_fmt(v)}</text>')
+    for ci, cat in enumerate(cats):
+        x0 = L + ci * gw + 5
+        for si, s in enumerate(series):
+            v = (s.get("values") or [None] * len(cats))[ci]
+            if v is None:
+                continue
+            col = COLORS.get(s.get("color", "c"), "var(--c)")
+            y, h = (Y(v), Y(0) - Y(v)) if v >= 0 else (Y(0), Y(v) - Y(0))
+            x = x0 + si * bw
+            g.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw - 2:.1f}" height="{max(h, 1):.1f}" rx="2" fill="{col}"><title>{t(s["name"])} {t(cat)}: {_fmt(v)}{t(c.get("unit", ""))}</title></rect>')
+            if len(series) <= 2:
+                g.append(f'<text x="{x + (bw - 2) / 2:.1f}" y="{(y - 3) if v >= 0 else (y + h + 10):.1f}" text-anchor="middle" style="font-size:9.5px">{_fmt(v)}</text>')
+        g.append(f'<text x="{x0 + gw / 2 - 5:.1f}" y="{H - 10}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
+    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
+def chart_hbars(c):
+    rows = c.get("rows") or []
+    vals = [b.get("value") or 0 for r in rows for b in r.get("bars") or []]
+    if not rows or not vals:
+        return ""
+    W, L, R = 700, 120, 60
+    mx = max(vals) * 1.1 or 1
+    X = lambda v: L + max(v, 0) / mx * (W - L - R)
+    names = []
+    for r in rows:
+        for b in r.get("bars") or []:
+            if b["name"] not in [n["name"] for n in names]:
+                names.append({"name": b["name"], "color": b.get("color", "c")})
+    g, y = [], 10
+    for r in rows:
+        bars = r.get("bars") or []
+        g.append(f'<text x="{L - 6}" y="{y + 8 * len(bars) + 4}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(r["label"])}</text>')
+        for b in bars:
+            col = COLORS.get(b.get("color", "c"), "var(--c)")
+            g.append(f'<rect x="{L}" y="{y}" width="{max(2, X(b.get("value") or 0) - L):.1f}" height="14" rx="3" fill="{col}"><title>{t(r["label"])} {t(b["name"])}: {_fmt(b.get("value"))}{t(c.get("unit", ""))}</title></rect>'
+                     f'<text x="{X(b.get("value") or 0) + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}</text>')
+            y += 17
+        y += 14
+    return _legend(names) + f'<svg viewBox="0 0 {W} {y + 4}">{"".join(g)}</svg>'
+
+
+def chart_scenario(c):
+    cases = c.get("cases") or []
+    if not cases:
+        return ""
+    cur = c.get("current")
+    W, L, R = 700, 120, 70
+    mx = max([k.get("value") or 0 for k in cases] + [cur or 0]) * 1.1 or 1
+    X = lambda v: L + v / mx * (W - L - R)
+    g, y = [], 10
+    for k in cases:
+        col = COLORS.get(k.get("color", "c"), "var(--c)")
+        mult = f" ({k['value'] / cur:.1f}배)" if cur else ""
+        prob = f" · 확률 {k['prob'] * 100:.0f}%" if k.get("prob") is not None else ""
+        g.append(f'<text x="{L - 6}" y="{y + 12}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(k["name"])}</text>'
+                 f'<rect x="{L}" y="{y}" width="{max(2, X(k["value"]) - L):.1f}" height="16" rx="3" fill="{col}"><title>{t(k["name"])}: {_fmt(k["value"])}{t(c.get("unit", ""))}{mult}{prob} — {t(k.get("why", ""))}</title></rect>'
+                 f'<text x="{X(k["value"]) + 4:.1f}" y="{y + 12}">{_fmt(k["value"])}{mult}{prob}</text>')
+        y += 26
+    if cur:
+        g.append(f'<line x1="{X(cur):.1f}" x2="{X(cur):.1f}" y1="4" y2="{y}" stroke="var(--fg)" stroke-dasharray="4 3"/><text x="{X(cur) + 4:.1f}" y="{y + 12}">현재 {_fmt(cur)}</text>')
+        ev = sum((k.get("prob") or 0) * k["value"] for k in cases)
+        if ev and abs(sum(k.get("prob") or 0 for k in cases) - 1) < 0.02:
+            g.append(f'<text x="{L}" y="{y + 26}" style="fill:var(--fg)">확률 가중 {_fmt(ev)} ({ev / cur:.2f}배)</text>')
+            y += 14
+    return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
+
+
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario}
+
+
+def block(b):
+    k = b.get("type")
+    if k == "p":
+        return f"<p>{t(b.get('text'))}</p>"
+    if k == "h3":
+        return f"<h3>{t(b.get('text'))}</h3>"
+    if k == "hl":
+        return f'<div class="hl sm">{t(b.get("text"))}</div>'
+    if k == "ul":
+        return "<ul>" + "".join(f"<li>{t(i)}</li>" for i in b.get("items") or []) + "</ul>"
+    if k == "table":
+        head = "".join(f"<th>{t(h)}</th>" for h in b.get("headers") or [])
+        rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
+        cap = f"<b>{t(b['title'])}</b>" if b.get("title") else ""
+        return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
+    if k == "chart":
+        c = b.get("chart") or {}
+        fn = CHARTS.get(c.get("kind"))
+        if not fn:
+            return ""
+        note = f'<div class="sm mut">{t(c.get("note"))}</div>' if c.get("note") else ""
+        return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}{note}</div>'
+    return ""
+
+
+def render(d):
+    for key in ("title", "date", "ticker", "company", "biz"):
+        if not d.get(key):
+            raise ValueError(f"필수 항목 없음: {key}")
+    v = d.get("verdict") or {}
+    parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+             f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
+             f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
+             f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}' + (f" · {t(d['lead'])}" if d.get("lead") else "") + "</p>"]
+    if v:
+        badges = "".join(f'<span class="badge">{t(x)}</span>' for x in (
+            f"확신도 {v['confidence']}" if v.get("confidence") else None,
+            f"인사이트 {v['insight']}/10" if v.get("insight") is not None else None,
+            f"알파 {v['alpha']}" if v.get("alpha") is not None else None) if x)
+        parts.append(f'<div class="verdict"><b>치입 판단</b> {badges}<br>{t(v.get("view"))}</div>')
+    if d.get("summary"):
+        parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(
+            f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
+    if d.get("tiles"):
+        parts.append('<div class="tiles">' + "".join(
+            f'<div class="tile"><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="k">{t(x.get("sub"))}</div></div>'
+            for x in d["tiles"]) + "</div>")
+    for s in d.get("sections") or []:
+        parts.append(f"<h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []))
+    src = "; ".join(t(x) for x in d.get("sources") or [])
+    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
+    return "".join(parts)
+
+
+def main(argv):
+    sys.stdout.reconfigure(encoding="utf-8")
+    src = Path(argv[0])
+    d = json.loads(src.read_text(encoding="utf-8"))
+    out = src.with_suffix(".html")
+    out.write_text(render(d), encoding="utf-8")
+    print(f"[텐배거 리포트] {out} ({out.stat().st_size // 1024}KB)")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
