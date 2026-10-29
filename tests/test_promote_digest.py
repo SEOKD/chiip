@@ -129,3 +129,14 @@ class TestAudit20261029(unittest.TestCase):
              mock.patch.object(notify, "_log", lambda line: sent.append(line)):
             notify.send("\n".join(["가" * 100] * 80), "PULSE")   # 약 8,000자
         self.assertGreaterEqual(len(sent), 3)                  # 한 통으로 잘리지 않고 여러 통으로 나뉜다
+
+
+class TestCompanyLine(unittest.TestCase):
+    def test_company_line_order(self):
+        import notify
+        self.assertIn("커스텀 AI 칩", notify.company_line(["co-marvell"]))           # company_lines.yaml 우선
+        self.assertEqual(notify.company_line(["co-unknown-x"], "광 모듈 제조"), "광 모듈 제조")   # 없으면 판정 모델 biz
+        self.assertIsNone(notify.company_line([]))                                       # 근거 없으면 비운다
+        msg = notify.format_item("P1", {"entities_matched": ["us-cbrs"], "doc_type": "기사", "detected_at": "2026-10-29T15:00",
+                                        "title": "t", "url": "u"})
+        self.assertIn("기업: 웨이퍼 한 장 크기 AI 칩", msg.splitlines()[1])

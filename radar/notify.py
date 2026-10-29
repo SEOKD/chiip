@@ -136,10 +136,48 @@ def telegram_allowed(item):
     return (True, "") if pub.lower() in allowed else (False, f"매체 제한({pub or '매체 미상'})")
 
 
-def format_item(level, item, what=None, impact=None, card_id=None):
+SUB_KO = {"power_infra": "데이터센터·전력 인프라", "semicap": "반도체 장비", "substrate": "반도체 기판·PCB", "networking": "네트워크 장비·칩",
+          "software": "소프트웨어", "components": "전자 부품", "hyperscaler": "클라우드(하이퍼스케일러)", "eda_ip": "반도체 설계 도구·IP",
+          "accelerator": "AI 가속기·칩", "analog": "아날로그·전력 반도체", "server": "서버 제조", "memory": "메모리 반도체",
+          "foundry": "파운드리(반도체 위탁생산)", "conglomerate": "복합 기업", "storage": "스토리지", "ems": "전자제품 위탁생산(EMS)",
+          "materials": "반도체 소재", "devices": "전자 기기", "robotics": "로봇", "semis": "반도체", "cooling": "데이터센터 냉각"}
+_LINES = {}
+
+
+def company_line(entity_ids, biz=None):
+    """알림 맨 위 '기업:' 1줄(마스터 지시 2026-10-29 — 어떤 사업을 하는 기업인지). config/company_lines.yaml → watchlist
+    value_chain_role → 판정 모델의 biz → 감시 목록 sub. 하나도 없으면 None(지어내지 않는다)"""
+    if "lines" not in _LINES:
+        _LINES["lines"] = (common.load_yaml("config/company_lines.yaml") or {}).get("lines") or {}
+        _LINES["wl"] = {r["entity_id"]: (r.get("name"), r.get("value_chain_role")) for r in common.load_watchlist()}
+        subs = {}
+        for f in ("config/valuation.yaml", "config/earnings_watch.yaml"):
+            d = common.load_yaml(f) or {}
+            for u in (d.get("universe") or []) + (d.get("extra") or []):
+                subs.setdefault(u["id"], (u.get("name"), u.get("sub")))
+        _LINES["sub"] = subs
+    for e in entity_ids or []:
+        if _LINES["lines"].get(e):
+            return _LINES["lines"][e]
+        name, role = _LINES["wl"].get(e, (None, None))
+        if role:
+            return f"{name} — {role}"
+    if biz:
+        return biz
+    for e in entity_ids or []:
+        name, sub = _LINES["sub"].get(e, (None, None))
+        if sub:
+            return f"{name} — {SUB_KO.get(sub, sub)}"
+    return None
+
+
+def format_item(level, item, what=None, impact=None, card_id=None, biz=None):
     ent = ",".join(item.get("entities_matched", [])) or "-"
-    lines = [f"[{level}] {ent} | {item.get('doc_type', '')} | {item.get('detected_at', '')[11:16]}",
-             f"무엇: {what or item['title']}"]
+    lines = [f"[{level}] {ent} | {item.get('doc_type', '')} | {item.get('detected_at', '')[11:16]}"]
+    line = company_line(item.get("entities_matched"), biz)
+    if line:
+        lines.append(f"기업: {line}")
+    lines.append(f"무엇: {what or item['title']}")
     if impact:
         lines.append(f"영향: {impact} (1차 판정)")
     lines.append(item["url"])

@@ -1,0 +1,16 @@
+# 기업 사업 설명 1줄 (마스터 지시 2026-10-29 "어떤 기능이든 종목 정보·소식 전달과 밸류 판단을 제시할 때 어떤 사업을 하는 기업인지 설명란 1줄")
+# 실시간 알림(radar/notify.py company_line)이 먼저 이 파일을 보고, 없으면 config/watchlist.csv value_chain_role →
+# 판정 모델이 쓴 biz → 감시 목록 하위 섹터(sub) 순으로 채운다. 근거: 회사 10-K·S-1 사업 설명, easyconomics 회사 개요(description_ko) 요약.
+# 판정·포트폴리오·펄스가 새 종목의 설명을 확인하면 여기에 한 줄씩 추가한다(지어내지 않는다 — 모르면 쓰지 않는다).
+lines:
+  co-enchantedrock: "데이터센터·산업용 천연가스 분산 발전(마이크로그리드·브리지 전력) 설계·설치·운영 (ERock, 옛 Enchanted Rock)"
+  co-innio: "Jenbacher·Waukesha 가스 엔진 발전 설비 제조와 엔진 애프터서비스 — 데이터센터 자가발전 수요 포함"
+  us-ccxi: "휴머노이드 로봇 Digit을 만드는 Agility Robotics와 합병하는 스팩(합병 후 티커 AGLT)"
+  co-marvell: "데이터센터용 커스텀 AI 칩(XPU)·광 모듈용 DSP·네트워크·스토리지 반도체 설계(팹리스)"
+  co-quanta-services: "전력망 송배전·변전·데이터센터 전기 인프라 시공(미국 최대 전력 인프라 시공사)"
+  us-cbrs: "웨이퍼 한 장 크기 AI 칩(WSE) 기반 추론 시스템 판매와 추론 클라우드 운영"
+  co-broadcom: "커스텀 AI 가속기(ASIC)·이더넷 스위치 칩·광 부품 설계와 인프라 소프트웨어(VMware)"
+  co-nvidia: "AI 가속기(GPU)·NVLink·네트워킹·CUDA 소프트웨어 — AI 데이터센터 핵심 공급사(팹리스)"
+  co-meta: "페이스북·인스타그램·왓츠앱 광고 플랫폼 운영, AI 인프라 대규모 투자 하이퍼스케일러"
+  co-samsung: "메모리(DRAM·HBM·NAND)·파운드리·시스템LSI·스마트폰·가전 종합 전자 기업"
+  co-skhynix: "메모리 반도체(DRAM·HBM·NAND) 설계·제조 — AI 가속기용 HBM 1위권"

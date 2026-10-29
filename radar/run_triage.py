@@ -35,6 +35,7 @@ SCHEMA = {
             "what": {"type": "string"},
             "impact": {"type": "string"},
             "reason": {"type": "string"},
+            "biz": {"type": "string"},
             "card_path": {"type": "string"}},
         "required": ["item_id", "level", "reason"]}}},
     "required": ["results"]}
@@ -168,7 +169,7 @@ def main(argv=None):
                     if dup:
                         lvl, r["reason"] = "P2", f"중복 하향(이미 보냄: {dup[:60]})"
             card = Path(r.get("card_path") or "").stem or None
-            msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card)
+            msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card, r.get("biz"))
             ok, why = notify.telegram_allowed(it)
             if ok and not gate.is_fresh(it, "alert"):  # 판정 사이 시간이 지나 오래된 자료는 보내지 않음
                 ok, why = False, f"오래됨(공개 {str(it.get('published_at', ''))[:16]})"
