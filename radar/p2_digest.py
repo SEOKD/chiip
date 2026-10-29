@@ -97,7 +97,7 @@ def build(entries, now):
     for e in entries:
         lv[e.get("level")] = lv.get(e.get("level"), 0) + 1
     head = " · ".join(f"{k} {v}" for k, v in sorted(lv.items(), key=lambda x: -LEVEL_SCORE.get(x[0], 0)))
-    lines = [f"[Chiip 뉴스 요약 {now.month}/{now.day}] 대기열 {len(entries)}건({head}) — 같은 제목 묶어 {len(groups)}건 중 상위 {min(TOP, len(groups))}"]
+    lines = [f"[Chiip News Digest {now.month}/{now.day}] 대기열 {len(entries)}건({head}) — 같은 제목 묶어 {len(groups)}건 중 상위 {min(TOP, len(groups))}"]
     body = []
     for i, g in enumerate(ranked[:TOP], 1):
         e = g["entry"]

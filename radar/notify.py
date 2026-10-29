@@ -28,6 +28,13 @@ MAX_LEN = 3800
 BRAND = ("치입", "Chiip")   # 마스터 지시 2026-10-29: 텔레그램·GitHub 보고에는 '치입' 대신 'Chiip'으로 표기
 
 
+LABELS = [   # 텔레그램 기능 이름은 영어로(마스터 지시 2026-10-29 "Chiip 펄스를 Chiip Pulse로, 나머지도 영어로") — 긴 이름부터
+    ("Chiip 포트폴리오 데일리", "Chiip Portfolio Daily"), ("Chiip 텐배거 리포트", "Chiip Ten-bagger Report"), ("Chiip 리포트 게시", "Chiip Report"),
+    ("Chiip 뉴스 요약", "Chiip News Digest"), ("Chiip 숏 리포트", "Chiip Short Report"), ("Chiip 실적 일정", "Chiip Earnings Calendar"),
+    ("Chiip 기사 소재", "Chiip Article Pitch"), ("Chiip 인사이트 검토", "Chiip Insight Review"), ("Chiip 알파 레이더", "Chiip Alpha Radar"),
+    ("Chiip 발굴", "Chiip Discovery"), ("Chiip 포트폴리오", "Chiip Portfolio"), ("Chiip 텐배거", "Chiip Ten-bagger"), ("Chiip 펄스", "Chiip Pulse"),
+    ("Chiip 포커스", "Chiip Focus"), ("Chiip 알림", "Chiip Alerts"), ("Chiip 판단", "Chiip View"), ("Chiip 프로바이저", "Chiip Proviser"),
+    ("· 늦은 보고", "· Late"), ("· 개정판", "· Revised"), (" 정정]", " Correction]")]
 LEVEL_TAG_RE = re.compile(r"\[P[0-3](?:[-·][^\]]{0,12})?\]\s?")   # 내부 등급 코드 — 마스터에게 드러내지 않는다(2026-10-29 지시)
 
 
@@ -37,6 +44,8 @@ LEVEL_WORD_RE = re.compile(r"(?<![\w/.=-])P[0-3](?![\w/.=-])(\s?·\s?|\s)?")   #
 def brand(text):
     """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
     text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", (text or "").replace(*BRAND))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
+    for ko, en in LABELS:
+        text = text.replace(ko, en)
     return LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text))
 
 
@@ -314,7 +323,7 @@ def flush_p1(min_age_min=60, force=False):
     oldest = datetime.fromisoformat(rows[0]["at"])
     if not force and common.now_kst() - oldest < timedelta(minutes=min_age_min):
         return 0
-    body = f"[Chiip 알림 {len(rows)}건]\n\n" + "\n\n".join(r["text"] for r in rows)
+    body = f"[Chiip Alerts · {len(rows)}]\n\n" + "\n\n".join(r["text"] for r in rows)
     send(body, "P1")
     P1_QUEUE.write_text("", encoding="utf-8")
     return len(rows)

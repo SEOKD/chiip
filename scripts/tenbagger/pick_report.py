@@ -39,6 +39,10 @@ def _universe():
         for u in (d.get("universe") or []) + (d.get("extra") or []):
             code = u.get("code") or u.get("jp_code") or ""
             out.setdefault(u["id"], {"id": u["id"], "name": u.get("name"), "ticker": code.replace(".US", "") if code else None})
+    disc = yaml.safe_load((ROOT / "config" / "discovery.yaml").read_text(encoding="utf-8")) if (ROOT / "config" / "discovery.yaml").exists() else {}
+    for t in (disc or {}).get("themes") or []:   # Chiip Discovery 후보(일본·대만·한국 포함, 2026-10-29)
+        for c in t.get("candidates") or []:
+            out.setdefault(c["id"], {"id": c["id"], "name": c["name"], "ticker": str(c.get("code")), "market": c.get("market")})
     return out
 
 
@@ -58,6 +62,10 @@ def pick(today=None):
             for r in csv.DictReader(f):
                 if r.get("status") != "종료" and r.get("cand_id") and r["cand_id"] not in done:
                     return {"id": r["cand_id"], "name": r.get("company"), "ticker": r.get("ticker"), "reason": "텐배거 추적 후보"}
+    cov = yaml.safe_load((ROOT / "config" / "coverage.yaml").read_text(encoding="utf-8")) if (ROOT / "config" / "coverage.yaml").exists() else {}
+    for c in (cov or {}).get("companies") or []:   # 발굴 위원회 통과(커버리지 focus) — 아직 리포트가 없으면 우선
+        if c.get("stage", "focus") == "focus" and c["id"] not in done:
+            return {"id": c["id"], "name": c.get("name"), "ticker": str(c.get("code")), "market": c.get("market"), "reason": "Chiip Discovery 커버리지"}
     al = ROOT / "knowledge" / "models" / "alpha" / "latest.json"
     if al.exists():
         d = json.loads(al.read_text(encoding="utf-8"))

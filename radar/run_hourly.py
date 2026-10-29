@@ -46,6 +46,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-sec-earnings-all", "pollers.sec_earnings_all", 60),  # 전체 미국 상장사 실적(8-K 2.02) → AI·전력 업종이면 알파 산정 대기열(Investing 캘린더 대체)
     ("src-alpha-watch", "alpha_watch", 60),  # 핵심 루프: P0·P1 알림·알파 진입·실적일 → 알파 ≥5면 v2 3요인 텔레그램(동인 없으면 대기열)  # 밸류에이션 v2 시장 체제(FRED 국채·스프레드·환율) — 하루 1회
     ("src-earnings-calendar", "markets.earnings_calendar", 30),
+    ("src-attention", "attention", 1440),  # Chiip Discovery 투자자 관심도(하루 1회, 2026-10-29 마스터 지시)
     ("src-p2-digest", "p2_digest", 30),  # P2·막힌 P0/P1 하루 1통 요약 — 모듈이 08~10시 첫 실행 때만 발송(2026-10-29 마스터 지시)  # AI 밸류체인 어닝 일정 — 수집 6시간마다, 07~09시 알파 5점 이상만 텔레그램
 ]
 

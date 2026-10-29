@@ -85,7 +85,7 @@ def main(argv):
     if not a.no_send:
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
-        text = f"[Chiip 리포트 게시] {a.title}\n" + "\n".join(links) + "\n(비공개 저장소 — 로그인 필요, 그래프 화면은 텔레그램 파일로)"
+        text = f"[Chiip Report] {a.title}\n" + "\n".join(links) + "\n(비공개 저장소 — 로그인 필요, 그래프 화면은 텔레그램 파일로)"
         print("텔레그램:", notify.send(text, "REPORT"))
     return 0
 

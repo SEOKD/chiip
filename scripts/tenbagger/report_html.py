@@ -218,7 +218,7 @@ def render(d):
             f"확신도 {v['confidence']}" if v.get("confidence") else None,
             f"인사이트 {v['insight']}/10" if v.get("insight") is not None else None,
             f"알파 {v['alpha']}" if v.get("alpha") is not None else None) if x)
-        parts.append(f'<div class="verdict"><b>Chiip 판단</b> {badges}<br>{t(v.get("view"))}</div>')
+        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}</div>')
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(
             f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
@@ -230,7 +230,7 @@ def render(d):
         parts.append(f"<h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []))
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
-    return "".join(parts).replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
+    return "".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View").replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
 
 
 def main(argv):

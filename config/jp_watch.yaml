@@ -19,6 +19,8 @@ companies:
   - {id: jp-ushio, code: "6925", ja: ["ウシオ電機"], en: "Ushio", sub: semicap}
   - {id: jp-hamamatsu, code: "6965", ja: ["浜松ホトニクス"], en: "Hamamatsu Photonics", sub: components}
   # 소재·기판
+  - {id: jp-uniontool, code: "6278", ja: ["ユニオンツール"], en: "Union Tool", sub: substrate}   # PCB 초소경 드릴 — 2026-10-29 발굴 엔진
+  - {id: jp-micronics, code: "6871", ja: ["日本マイクロニクス"], en: "Micronics Japan", sub: semicap}   # 프로브 카드(HBM·AI 칩 테스트) — 2026-10-29 발굴 엔진
   - {id: co-ibiden, code: "4062", ja: ["イビデン"], en: "Ibiden", sub: substrate}
   - {id: co-shinetsu, code: "4063", ja: ["信越化学", "信越化学工業"], en: "Shin-Etsu Chemical", sub: materials}
   - {id: jp-sumco, code: "3436", ja: ["ＳＵＭＣＯ"], en: "SUMCO", sub: materials}

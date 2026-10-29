@@ -6,6 +6,8 @@
 # 회사 id는 config/jp_watch.yaml과 같다.
 seeds: ["/ir/", "/ja/ir/", "/jp/ir/", "/ir/library/", "/ja/ir/library/", "/jp/ir/library/", "/ir/event/", "/ir/presentation/",
         "/ja/investors/", "/ir/index.html", "/company/ir/", "/corporate/ir/"]
+# 2026-10-29 첫 탐색: Q&A 발견 15곳(도쿄일렉트론·도쿄정밀·후루카와전공·신에츠·미쓰비시전기·어드반테스트·SCREEN·에바라·TDK·르네사스·TOWA·레조낙 등),
+# IR 페이지는 있으나 Q&A 0건 16곳(공개 안 함 또는 탐색 실패 — 주간 발굴 회차에서 모델이 회사 IR 페이지를 직접 보고 ir_pages를 채운다), IR 페이지 0건 7곳(경로 추정값 입력).
 companies:
   co-tel: {site: "https://www.tel.co.jp"}
   co-advantest: {site: "https://www.advantest.com"}
@@ -18,12 +20,12 @@ companies:
   jp-ebara: {site: "https://www.ebara.co.jp"}
   jp-shibaura: {site: "https://www.shibaura.co.jp"}
   jp-ushio: {site: "https://www.ushio.co.jp"}
-  jp-hamamatsu: {site: "https://www.hamamatsu.com"}
+  jp-hamamatsu: {site: "https://www.hamamatsu.com", ir_pages: ["https://www.hamamatsu.com/jp/ja/our-company/investor-relations.html"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   co-ibiden: {site: "https://www.ibiden.co.jp"}
   co-shinetsu: {site: "https://www.shinetsu.co.jp"}
   jp-sumco: {site: "https://www.sumcosi.com"}
   jp-resonac: {site: "https://www.resonac.com"}
-  co-ajinomoto: {site: "https://www.ajinomoto.co.jp"}
+  co-ajinomoto: {site: "https://www.ajinomoto.co.jp", ir_pages: ["https://www.ajinomoto.co.jp/company/jp/ir/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   co-nittobo: {site: "https://www.nittobo.co.jp"}
   jp-tok: {site: "https://www.tok.co.jp"}
   jp-hoya: {site: "https://www.hoya.com"}
@@ -31,7 +33,7 @@ companies:
   jp-neg: {site: "https://www.neg.co.jp"}
   jp-dnp: {site: "https://www.dnp.co.jp"}
   jp-toppan: {site: "https://www.holdings.toppan.com"}
-  jp-mitsuikinzoku: {site: "https://www.mitsui-kinzoku.com"}
+  jp-mitsuikinzoku: {site: "https://www.mitsui-kinzoku.com", ir_pages: ["https://www.mitsui-kinzoku.com/ir/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-sumibe: {site: "https://www.sumibe.co.jp"}
   jp-jxmetals: {site: "https://www.jx-nmm.com"}
   jp-meiko: {site: "https://www.meiko-elec.com"}
@@ -42,13 +44,15 @@ companies:
   jp-tdk: {site: "https://www.tdk.com"}
   jp-taiyoyuden: {site: "https://www.yuden.co.jp"}
   jp-kyocera: {site: "https://www.kyocera.co.jp"}
-  jp-kioxia: {site: "https://www.kioxia-holdings.com"}
+  jp-kioxia: {site: "https://www.kioxia-holdings.com", ir_pages: ["https://www.kioxia-holdings.com/ja-jp/ir.html"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-renesas: {site: "https://www.renesas.com"}
-  jp-socionext: {site: "https://www.socionext.com"}
+  jp-socionext: {site: "https://www.socionext.com", ir_pages: ["https://www.socionext.com/jp/ir/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-rohm: {site: "https://www.rohm.co.jp"}
-  co-hitachi: {site: "https://www.hitachi.co.jp"}
+  co-hitachi: {site: "https://www.hitachi.co.jp", ir_pages: ["https://www.hitachi.co.jp/IR/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   co-melco: {site: "https://www.mitsubishielectric.co.jp"}
-  co-mhi: {site: "https://www.mhi.com"}
+  co-mhi: {site: "https://www.mhi.com", ir_pages: ["https://www.mhi.com/jp/finance/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-fujielectric: {site: "https://www.fujielectric.co.jp"}
   jp-sakura: {site: "https://www.sakura.ad.jp", ir_pages: ["https://www.sakura.ad.jp/corporate/ir/"]}
   jp-sbg: {site: "https://group.softbank", ir_pages: ["https://group.softbank/ir/financials/annual_reports"]}
+  jp-uniontool: {site: "https://www.uniontool.co.jp"}
+  jp-micronics: {site: "https://www.mjc.co.jp"}

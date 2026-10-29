@@ -42,10 +42,10 @@ class TestRender(unittest.TestCase):
         d["verdict"]["view"] = "치입 판단: 조건부"
         h = report_html.render(d)
         self.assertNotIn("치입", h)
-        self.assertIn("Chiip 판단", h)
+        self.assertIn("Chiip View", h)
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
-        self.assertEqual(notify.brand("[치입 펄스 16:04] 치입은"), "[Chiip 펄스 16:04] Chiip은")
+        self.assertEqual(notify.brand("[치입 펄스 16:04] 치입은"), "[Chiip Pulse 16:04] Chiip은")
 
     def test_required_fields(self):
         d = self.base()

@@ -945,3 +945,20 @@
   terms_note: "2026-10-29 마스터 지시(easyconomics에 일본 어닝콜 없음 — 일본판 IR 페이지에서 Q&A 전문). 매 요청 robots.txt 확인·1초 간격, 로그인 영역 접근 안 함. 원문 텍스트는 radar/inbox/jp_qa/(git 제외)에만, 저장소에는 요약·15단어 이하 인용·링크. PDF는 pdftotext(Git 설치본)"
   reliability_default: 1차(회사 공식)
   enabled: true
+
+- id: src-tw-disclosure
+  name: 대만 원문 공시(TWSE 重大訊息) × Chiip Discovery·커버리지 대만 종목
+  category: B-공시
+  module: tw_disclosure
+  entry: poll
+  method: api
+  endpoint_doc: "https://openapi.twse.com.tw/v1/opendata/t187ap04_L"
+  auth: none
+  scope: [글로벌]
+  interval_min: 30
+  run_on: local
+  language: zh
+  doc_type: 공시
+  terms_note: "2026-10-29 마스터 지시(발굴 종목의 원문 팔로업). TWSE 공식 OpenAPI — 회사 공시 원문. TPEx 종목은 다음 단계"
+  reliability_default: 1차(회사 공시)
+  enabled: true

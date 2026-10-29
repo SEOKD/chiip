@@ -55,8 +55,8 @@ class TestTelegramFormat(unittest.TestCase):
     def test_md_and_codes(self):
         self.assertEqual(notify.md_to_html("**판단** a<b\n[원문](https://s.gov/a?x=1&y=2)"),
                          '<b>판단</b> a&lt;b\n<a href="https://s.gov/a?x=1&amp;y=2">원문</a>')
-        self.assertEqual(notify.brand("[치입 펄스 16:24]\n본문\n보강 적용: D-20261029-02\n끝"), "[Chiip 펄스 16:24]\n본문\n끝")
-        self.assertEqual(notify.brand("[치입 포트폴리오 P0 · 늦은 보고]"), "[Chiip 포트폴리오 늦은 보고]")
+        self.assertEqual(notify.brand("[치입 펄스 16:24]\n본문\n보강 적용: D-20261029-02\n끝"), "[Chiip Pulse 16:24]\n본문\n끝")
+        self.assertEqual(notify.brand("[치입 포트폴리오 P0 · 늦은 보고]"), "[Chiip Portfolio Late]")   # 기능 이름 영어(2026-10-29)
 
 
 if __name__ == "__main__":

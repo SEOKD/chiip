@@ -1,0 +1,4 @@
+# Chiip 커버리지 — 발굴 위원회를 통과한 종목(scripts/discovery/screen.py --promote가 추가). 마스터가 직접 넣거나 빼도 된다.
+# 이 목록의 종목은: 원문 팔로업(일본 적시공시·IR Q&A, 대만 重大訊息·월매출, 미국 SEC) · 실적(Dean's Ticker 3단 양식) · 텐배거 리포트 대기열에 자동 연결된다.
+# stage: focus(우선) | bench(대기) · since: 편입일 · memo: 위원회 메모 경로
+companies: []
