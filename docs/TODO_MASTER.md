@@ -72,3 +72,4 @@
 | 26 | CES 이후: 역방향 백테스트 사건 10건 선정(`reverse-backtest`) |
 | 27 | (2026-10-29 펄스 제안) PDF 텍스트 추출 패키지 `pypdf` 설치 승인 여부 — 일본·해외 IR 결산 PDF(예: 富士通 2Q 요약)를 펄스가 3회차 연속 읽지 못함. 승인 시 `py -m pip install pypdf` |
 | 21-30 | **Fiscal.ai 전환 뒤 정리(2026-10-30).** ① easyconomics 커넥터는 더 쓰지 않으니 앱에서 연결 해제(선택) ② Fiscal.ai REST API 키가 있으면 `D:\local-only\secrets\.env`에 `FISCAL_API_KEY=`로 — 수집기가 시가총액·일봉을 직접 받게 바꿀 수 있다(선택, 없으면 모델이 MCP로) ③ 예약 작업 chiip-valuation-queue는 목록에 없다(지시문만 갱신) — 다시 켤지 결정 | `knowledge/methods/data_fiscal.md`, ADR-012 |
+| 28 | (2026-10-30 IR Q&A 절차) 일본·대만·홍콩 설명회 **영상 자체 전사(D등급)** 도구 승인 여부 — 예: 로컬 음성 인식 `openai-whisper`(오픈소스, 설치 시 PyTorch 포함 수 GB). 회사 사이트가 직접 배포하는 영상·음성 파일만 대상, YouTube는 약관상 내려받지 않음. 승인 전엔 영상 주소·길이만 기록 | `knowledge/methods/jp_ir_qa_procedure.md`, `tw_hk_ir_qa_procedure.md` |
