@@ -18,6 +18,10 @@ JSON 구조(필수 = *):
   · {"type":"chart","chart":{"kind":"bars","title","unit","categories":[...],"series":[{"name","color","values":[...]}]}}
   · {"type":"chart","chart":{"kind":"hbars","title","unit","rows":[{"label","bars":[{"name","color","value"}]}]}}
   · {"type":"chart","chart":{"kind":"scenario","title","unit","current":112.6,"cases":[{"name":"약세","value":60,"prob":0.3,"color":"b","why":"…"}]}}
+  · {"type":"chart","chart":{"kind":"candle","title","unit","bars":[["2026-10-28",600,609.4,581.8,606.9]...],
+       "hlines":[{"y":643.4,"label":"38.2% 643","color":"e"}],"zones":[{"y0":599,"y1":602,"label":"지지","tone":"grn|red"}]}}  — 한국식 색(상승 빨강·하락 파랑)
+  · bars에 "stack": true면 쌓인 막대
+금액 단위는 렌더 직후 radar/units.py money_units로 $25B·$M·$T 표기로 바꾼다(마스터 지시 2026-10-29).
 """
 import html
 import json
@@ -26,6 +30,9 @@ import re
 import sys
 from datetime import date
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "radar"))
+from units import money_units  # noqa: E402
 
 COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
@@ -94,7 +101,73 @@ def chart_line(c):
     return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
+def chart_stack(c):
+    """쌓인 막대(양수만) — 범주가 많으면 x축 이름을 솎아 낸다"""
+    W, H, L, B, T = 700, 250, 48, 30, 18
+    cats, series = c.get("categories") or [], c.get("series") or []
+    tots = [sum((s.get("values") or [0] * len(cats))[i] or 0 for s in series) for i in range(len(cats))]
+    if not cats or not any(tots):
+        return ""
+    hi = max(tots) * 1.1
+    Y = lambda v: T + (hi - v) / hi * (H - T - B)
+    gw = (W - L - 10) / len(cats)
+    g = [f'<line x1="{L}" x2="{W - 10}" y1="{Y(0):.1f}" y2="{Y(0):.1f}" stroke="var(--line)"/>']
+    for i in range(5):
+        v = hi * i / 4
+        g.append(f'<text x="{L - 4}" y="{Y(v) + 3:.1f}" text-anchor="end">{_fmt(v)}</text>')
+    step = max(1, len(cats) // 10)
+    for ci, cat in enumerate(cats):
+        x, base = L + ci * gw + 1, 0.0
+        for s in series:
+            v = (s.get("values") or [None] * len(cats))[ci]
+            if not v:
+                continue
+            col = COLORS.get(s.get("color", "c"), "var(--c)")
+            g.append(f'<rect x="{x:.1f}" y="{Y(base + v):.1f}" width="{max(gw - 2, 1):.1f}" height="{max(Y(base) - Y(base + v), 0.5):.1f}" fill="{col}"><title>{t(s["name"])} {t(cat)}: {_fmt(v)}{t(c.get("unit", ""))}</title></rect>')
+            base += v
+        if ci % step == 0:
+            g.append(f'<text x="{x + gw / 2:.1f}" y="{H - 10}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
+    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
+def chart_candle(c):
+    """캔들(OHLC) + 수평선·구간 띠. 한국식 색 — 상승(종가 ≥ 시가) 빨강, 하락 파랑"""
+    bars = [b for b in c.get("bars") or [] if len(b) >= 5 and None not in b[1:5]]
+    if not bars:
+        return ""
+    W, H, L, R, T, B = 700, 300, 52, 96, 12, 26
+    lo = min(min(b[3] for b in bars), *[h["y"] for h in c.get("hlines") or []] or [math.inf], *[z["y0"] for z in c.get("zones") or []] or [math.inf])
+    hi = max(max(b[2] for b in bars), *[h["y"] for h in c.get("hlines") or []] or [-math.inf], *[z["y1"] for z in c.get("zones") or []] or [-math.inf])
+    pad = (hi - lo) * 0.04 or 1
+    lo, hi = lo - pad, hi + pad
+    Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
+    gw = (W - L - R) / len(bars)
+    g = []
+    for i in range(5):
+        v = lo + (hi - lo) * i / 4
+        g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(v):.1f}" y2="{Y(v):.1f}" stroke="var(--line)"/><text x="{L - 4}" y="{Y(v) + 3:.1f}" text-anchor="end">{_fmt(v)}</text>')
+    for z in c.get("zones") or []:
+        col = "var(--d)" if z.get("tone") == "grn" else "var(--b)"
+        g.append(f'<rect x="{L}" y="{Y(z["y1"]):.1f}" width="{W - L - R}" height="{max(Y(z["y0"]) - Y(z["y1"]), 2):.1f}" fill="{col}" opacity="0.16"><title>{t(z.get("label"))} {_fmt(z["y0"])}~{_fmt(z["y1"])}</title></rect>')
+    for h in c.get("hlines") or []:
+        col = COLORS.get(h.get("color", "e"), "var(--e)")
+        g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(h["y"]):.1f}" y2="{Y(h["y"]):.1f}" stroke="{col}" stroke-dasharray="4 3"/>'
+                 f'<text x="{W - R + 4}" y="{Y(h["y"]) + 3:.1f}" style="font-size:9.5px">{t(h.get("label"))}</text>')
+    step = max(1, len(bars) // 8)
+    for i, (d, o, hh, ll, cl) in enumerate(b[:5] for b in bars):
+        x = L + i * gw + gw / 2
+        col = "var(--b)" if cl >= o else "var(--c)"
+        g.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{Y(hh):.1f}" y2="{Y(ll):.1f}" stroke="{col}"/>'
+                 f'<rect x="{x - max(gw * 0.35, 0.6):.1f}" y="{Y(max(o, cl)):.1f}" width="{max(gw * 0.7, 1.2):.1f}" height="{max(abs(Y(o) - Y(cl)), 0.8):.1f}" fill="{col}">'
+                 f'<title>{t(d)} 시 {_fmt(o)} 고 {_fmt(hh)} 저 {_fmt(ll)} 종 {_fmt(cl)}</title></rect>')
+        if i % step == 0:
+            g.append(f'<text x="{x:.1f}" y="{H - 8}" text-anchor="middle" style="font-size:9.5px">{t(str(d)[2:])}</text>')
+    return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
 def chart_bars(c):
+    if c.get("stack"):
+        return chart_stack(c)
     W, H, L, B, T = 700, 250, 48, 30, 18
     cats, series = c.get("categories") or [], c.get("series") or []
     vals = [v for s in series for v in s.get("values") or [] if v is not None]
@@ -176,7 +249,7 @@ def chart_scenario(c):
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario}
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle}
 
 
 def block(b):
@@ -230,7 +303,8 @@ def render(d):
         parts.append(f"<h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []))
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
-    return "".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View").replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
+    out = "".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View").replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
+    return money_units(out)   # $25B·$M·$T 표기(마스터 지시 2026-10-29)
 
 
 def main(argv):

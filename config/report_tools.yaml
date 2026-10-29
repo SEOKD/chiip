@@ -1,0 +1,14 @@
+# 텐배거 리포트 보조 지표 상수 (마스터 지시 2026-10-29 — 수급 볼륨 지표·월주일 피보나치)
+# 코드: scripts/tenbagger/flow.py(Chiip Flow), scripts/tenbagger/levels.py(가격 구간). 값의 출처·상태·피팅 계획은
+# knowledge/models/params/registry.yaml(prm-flow-*, prm-lv-*) — 값을 바꾸면 등록부와 changelog.csv도 같이.
+flow:
+  rvol_min: 1.8          # 이상 거래일: 거래량 ÷ 직전 50일 중앙값
+  z_min: 2.0             # 또는 직전 50일 z
+  cmf_n: 20              # 기관 Chaikin Money Flow 기간(거래일)
+  pressure_n: 60         # 장외 공매도 비율 z 기준 기간
+  pressure_smooth: 5     # z 평활(거래일)
+levels:
+  zz_floor: {월봉: 0.20, 주봉: 0.10, 일봉: 0.05}   # 지그재그 전환 최소 폭
+  atr_mult: 2.5          # 지그재그 임계 = max(하한, atr_mult × ATR14 ÷ 가격)
+  atr_n: 14
+  band: 0.012            # 겹침 묶음 폭

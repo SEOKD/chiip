@@ -17,6 +17,7 @@ datapack.json (금액은 unit 하나로 통일 — 보통 B$, 비율은 소수):
                 "rev_low": {"FY2027": ...}, "rev_high": {"FY2027": ...}, "n_analysts", "revisions_90d": {"rev": +0.05}},
   "guidance":  {"rev_fy0": [lo, hi], "ebit_margin_fy0": m, "rev_basis", "margin_basis", "source"},
   "call":      {"date", "tone"(없으면 레이더로), "tone_score", "tone_delta", "guidance_direction": "raise|maintain|cut", "kpis": {...}, "risks": [...], "source"},
+               # 리포트용(동인에는 쓰지 않음): "prev_date", "deltas", consensus.surprise·revisions·price_window, multiples_now — scripts/tenbagger/earnings_view.py 설명
   "peers_basis": "ttm|ntm", "peers_source": "…", "peers": [{"ticker","ev_sales","growth","ebit_margin"}],   # 4곳 이상, 대상과 같은 기준
   "sbc_pct_rev": 0.06,                                                      # margin_basis가 non_gaap이면 필수 — 이익률에서 차감(SBC는 비용)
   "raw": {"retrieved_at", "easyconomics_profile", "quarters_gaap", "balance_…", "estimates_sales_m", "sec", …},   # 원자료 스냅숏 — datapack_check.py가 대조

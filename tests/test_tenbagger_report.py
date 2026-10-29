@@ -180,3 +180,46 @@ class TestMultiples(unittest.TestCase):
         self.assertAlmostEqual(d["fundamental"] + d["firm"], d["total"])   # 두 몫의 곱 = 전체
         self.assertTrue(all(x["warranted"] is None or x["warranted"] > 0 for x in m["peers"]))   # 음수 내재 멀티플은 버린다
         self.assertGreater(m["history"]["p50"], m["current"])              # 상장 이후 멀티플이 식었다
+
+
+import earnings_view  # noqa: E402
+
+
+class TestEarningsView(unittest.TestCase):
+    """어닝콜 변화 가치 영향·서프라이즈·리비전·멀티플 프리미엄(2026-10-29 마스터 지시)"""
+
+    def co(self):
+        return {"rev0": 1.0, "ic0": 0.5, "tax": 0.21, "horizon": 10, "market": {"net_debt": 0.0, "shares": 1.0},
+                "scenarios": {"base": {"growth": {"start": 0.20, "end": 0.03, "decay": 0.7},
+                                       "margin": {"m0": 0.15, "target": 0.20, "year_target": 3, "lr": 0.18, "lam": 0.3}, "s2c": 2.0}}}
+
+    def test_call_delta_reverts_driver(self):
+        imp = earnings_view.call_value_impact(self.co(), 0.09, 0.03, [
+            {"id": "F1", "driver": "margin_target", "shift": 0.02, "confidence": 0.8},
+            {"id": "F2", "driver": "wacc", "shift": 0.01, "confidence": 0.5},
+            {"id": "F3", "kind": "반복", "driver": None, "shift": 0}])
+        f1, f2, f3 = imp["rows"]
+        self.assertGreater(f1["solo"], 0)                 # 목표 이익률이 올랐다 → 가치 +
+        self.assertLess(f2["solo"], 0)                    # 할인율이 올랐다 → 가치 −
+        self.assertEqual(f3["solo"], 0.0)                 # 반복은 0
+        self.assertAlmostEqual(f1["weighted"], f1["solo"] * 0.8)
+        co = self.co()
+        co["scenarios"]["base"]["margin"]["target"] -= 0.02
+        prior = earnings_view._equity(co, co["scenarios"]["base"], 0.09, 0.03)
+        self.assertAlmostEqual(f1["solo"], imp["base_equity"] / prior - 1)
+
+    def test_revisions_and_price_decomposition(self):
+        r = earnings_view.revisions({"rows": [{"period": "Q4", "metric": "EPS", "from": 0.18, "to": 0.1768},
+                                              {"period": "Q1", "metric": "EPS", "from": 0.16, "to": 0.1671}]},
+                                    {"from": 26.22, "to": 18.35})
+        self.assertAlmostEqual(r["total"]["EPS"]["rev"], (0.1768 + 0.1671) / 0.34 - 1)
+        d = r["decomp"]
+        self.assertAlmostEqual((1 + d["eps"]) * (1 + d["rerate"]), 1 + d["price"])   # 곱 분해가 정확
+
+    def test_premiums_and_surprise(self):
+        pm = earnings_view.premiums({"pe_fwd": 30, "growth": 0.30},
+                                    [{"pe_fwd": 20, "growth": 0.10}, {"pe_fwd": 15, "growth": 0.05}, {"pe_fwd": 25, "growth": 0.20}])
+        self.assertAlmostEqual(pm[0]["premium"], 30 / 20 - 1)
+        self.assertLess(pm[0]["growth_adj_premium"], 0)   # 성장이 높아 성장 조정하면 할인
+        sp = earnings_view.surprises([{"actual": 1167.9, "est": 1045.7}])
+        self.assertAlmostEqual(sp[0]["surprise"], 1167.9 / 1045.7 - 1)

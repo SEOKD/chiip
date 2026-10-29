@@ -1198,3 +1198,115 @@ params:
     data: bands_history.csv 누적(3년 이상 필요)
     last_fit: null
     oos_metric: null
+- id: prm-flow-rvol-min
+  model: tenbagger.flow
+  binding: config/report_tools.yaml#flow.rvol_min
+  value: 1.8
+  unit: 배(거래량 ÷ 직전 50일 중앙값)
+  status: prior
+  prior:
+    value: 1.8
+    basis: 이상 거래일 기준 — 상대 거래량(RVOL) 1.5~2배를 '이례적'으로 보는 실무 관행의 중간값, z ≥ 2(prm-flow-z-min)와 OR. 사건 태그를 붙이는 날 수가 120거래일에 5~10일이 되게 고른 사전값
+    source: null
+  fit:
+    method: 태그 적중률 — 이상일로 잡힌 날 중 공개 사건이 확인된 비율 vs 놓친 사건(실적·8-K) 비율의 균형
+    target: 사건 탐지 정밀도·재현율
+    data: datapack events 누적
+    last_fit: null
+    oos_metric: null
+- id: prm-flow-z-min
+  model: tenbagger.flow
+  binding: config/report_tools.yaml#flow.z_min
+  value: 2.0
+  unit: 표준편차(직전 50일)
+  status: prior
+  prior:
+    value: 2.0
+    basis: 정규 근사 상위 약 2.3% — 거래량 급증의 통계적 기준(관행)
+    source: null
+  fit:
+    method: prm-flow-rvol-min과 같음
+    target: 사건 탐지
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-flow-cmf-n
+  model: tenbagger.flow
+  binding: config/report_tools.yaml#flow.cmf_n
+  value: 20
+  unit: 거래일
+  status: prior
+  prior:
+    value: 20
+    basis: Chaikin Money Flow 표준 기간(21일 전후) — 기관 거래량에만 적용
+    source: Chaikin Money Flow(실무 지표) · 리테일 분해는 Boehmer, Jones, Zhang & Zhang (2021, JF 76(5)) 'Tracking Retail Investor Activity'
+  fit:
+    method: 이후 20거래일 초과수익과의 순위 상관(표본 외)
+    target: 기관 매집 신호의 예측력
+    data: 리포트 종목 누적
+    last_fit: null
+    oos_metric: null
+- id: prm-flow-pressure-n
+  model: tenbagger.flow
+  binding: config/report_tools.yaml#flow.pressure_n
+  value: 60
+  unit: 거래일(z 기준 기간, 5일 평활)
+  status: prior
+  prior:
+    value: 60
+    basis: 장외 공매도 비율의 60일 z — 마켓메이커가 리테일 매수에 공매도로 물량을 대는 구조를 쓰는 실무 관행(다크풀 지표 계열). 학술 검증 제한적 — '정황' 표기
+    source: null
+  fit:
+    method: 이후 5·20거래일 수익률과의 상관, 리테일 매수 정황의 방향 적중률
+    target: 리테일 방향 신호
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-lv-zz-floor
+  model: tenbagger.levels
+  binding: config/report_tools.yaml#levels.zz_floor
+  value: {월봉: 0.20, 주봉: 0.10, 일봉: 0.05}
+  unit: 비율(지그재그 전환 최소 폭)
+  status: prior
+  prior:
+    value: {월봉: 0.20, 주봉: 0.10, 일봉: 0.05}
+    basis: 지그재그 기본값의 실무 관행(5%·10%·20%) — 실제 임계는 max(하한, prm-lv-atr-mult × ATR14 ÷ 가격)
+    source: null
+  fit:
+    method: 표시한 지지·저항 구간에서 가격이 멈춘 비율(Osler 2000 방식의 '반전 빈도') vs 무작위 수준 대조
+    target: 구간의 반전 적중률
+    data: 리포트 종목 누적(구간 표시 후 60거래일)
+    last_fit: null
+    oos_metric: null
+- id: prm-lv-atr-mult
+  model: tenbagger.levels
+  binding: config/report_tools.yaml#levels.atr_mult
+  value: 2.5
+  unit: 배(ATR14 대비)
+  status: prior
+  prior:
+    value: 2.5
+    basis: ATR 기반 지그재그·샹들리에 청산의 흔한 배수(2~3배) 중간값 — PWR 2026-10 검증 — 5% 고정은 작은 반등(613→645)을 스윙으로 잡았고, ATR 배수로 722→527 다리를 잡음
+    source: null
+  fit:
+    method: prm-lv-zz-floor와 같음
+    target: 구간 반전 적중률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-lv-band
+  model: tenbagger.levels
+  binding: config/report_tools.yaml#levels.band
+  value: 0.012
+  unit: 비율(겹침 묶음 폭)
+  status: prior
+  prior:
+    value: 0.012
+    basis: 서로 다른 기준선을 한 구간으로 묶는 폭 — 대형주 일중 변동(ATR의 1/3 안팎)보다 좁게. 라운드 넘버 주문 집중(Osler 2003, JF 58(5))과 BLL(1992, JF 47(5)) 거래 범위 기준선을 함께 센다
+    source: Osler (2003) Currency Orders and Exchange Rate Dynamics, JF · Brock, Lakonishok & LeBaron (1992) Simple Technical Trading Rules, JF
+  fit:
+    method: 묶음 강도별 반전 적중률(강도 높을수록 적중률이 높아야 정보가 있다)
+    target: 강도 ↔ 반전 빈도 단조성
+    data: null
+    last_fit: null
+    oos_metric: null

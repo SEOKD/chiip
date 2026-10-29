@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
+from units import money_units  # noqa: E402
 
 OUTBOX = common.STATE / "outbox.log"
 P1_QUEUE = common.STATE / "p1_queue.jsonl"
@@ -46,7 +47,7 @@ def brand(text):
     text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", (text or "").replace(*BRAND))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
     for ko, en in LABELS:
         text = text.replace(ko, en)
-    return LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text))
+    return money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text)))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
 
 
 LINK_RE = re.compile(r"\[([^\]\n]{1,80})\]\((https?://[^\s)]+)\)")

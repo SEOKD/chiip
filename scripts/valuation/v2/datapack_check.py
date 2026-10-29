@@ -30,7 +30,8 @@ def derived_tone(call):
 
 def check(p):
     raw, pf, fin, cons = p.get("raw") or {}, p.get("profile") or {}, p.get("financials") or {}, p.get("consensus") or {}
-    ez, q, bs = raw.get("easyconomics_profile") or {}, raw.get("quarters_gaap") or {}, raw.get("balance_2026_06_30") or raw.get("balance") or {}
+    ez, q = raw.get("easyconomics_profile") or {}, raw.get("quarters_gaap") or {}
+    bs = next((v for k, v in sorted(raw.items()) if k.startswith("balance") and isinstance(v, dict)), {})   # balance_<날짜> 또는 balance
     out = []
 
     def add(name, status, detail):
@@ -42,7 +43,16 @@ def check(p):
         f"가격 {pf.get('price')} × 표지 주식 {cover} = {(pf.get('price') or 0) * (cover or 0):.2f} vs easyconomics {ez.get('market_cap')}")
     add("가격 일치", "통과" if _near(pf.get("price"), ez.get("price"), 0.001) else "실패", f"{pf.get('price')} vs {ez.get('price')}")
     nd_ok = _near(pf.get("cash"), ez.get("total_cash"), 0.01) and _near(pf.get("debt"), ez.get("total_debt"), 0.01)
-    add("현금·차입 대조", "통과" if nd_ok else "실패", f"현금 {pf.get('cash')} vs {ez.get('total_cash')} · 차입(리스 포함) {pf.get('debt')} vs {ez.get('total_debt')}")
+    detail = f"현금 {pf.get('cash')} vs {ez.get('total_cash')} · 차입(리스 포함) {pf.get('debt')} vs {ez.get('total_debt')}"
+    # easyconomics(yfinance) 재무상태표가 지난 분기 값이면 더 최신 1차 재무상태표(10-Q·8-K, raw.balance_<날짜>)와 맞는지 본다(2026-10-29 PWR: 8월 채권 발행 반영)
+    bs_key = next((k for k in sorted(raw) if k.startswith("balance_") and isinstance(raw[k], dict)), None)
+    if not nd_ok and bs_key and ez.get("balance_date") and bs_key[8:].replace("_", "-") > ez["balance_date"]:
+        b = raw[bs_key]
+        b_cash = b.get("cash", 0) + b.get("st_investments", 0)
+        b_debt = b.get("debt_current", 0) + b.get("debt_lt", 0) + b.get("lease_current", 0) + b.get("lease_lt", 0)
+        nd_ok = _near(pf.get("cash"), b_cash, 0.01) and _near(pf.get("debt"), b_debt, 0.01)
+        detail = f"현금 {pf.get('cash')} vs 재무상태표({bs_key[8:]}) {b_cash:.4f} · 차입 {pf.get('debt')} vs {b_debt:.4f} — easyconomics({ez['balance_date']})보다 최신 1차 자료"
+    add("현금·차입 대조", "통과" if nd_ok else "실패", detail)
     rev4, op4 = q.get("rev") or {}, q.get("op_income") or {}
     add("TTM 매출 = 4분기 합", "통과" if len(rev4) == 4 and _near(fin.get("rev_ttm"), sum(rev4.values()), 0.005) else "실패",
         f"{fin.get('rev_ttm')} vs {sum(rev4.values()):.4f}({len(rev4)}분기)")
@@ -63,7 +73,7 @@ def check(p):
     gd = p.get("guidance") or {}
     add("회사 가이던스 반영", "통과" if gd.get("rev_fy0") and gd.get("source") else "실패", gd.get("source", "가이던스 없음")[:80])
     dl = p.get("dilution") or {}
-    sec_pot = (raw.get("sec") or {}).get("antidilutive_2026_06_30")
+    sec_pot = next((v for k, v in sorted((raw.get("sec") or {}).items()) if k.startswith("antidilutive")), None)   # antidilutive_<날짜>
     pot = dl.get("potential_total") if dl.get("potential_total") is not None else sum(dl.get(k) or 0 for k in ("options", "rsu", "warrants", "converts_shares"))
     same_day = dl.get("date") and dl.get("date") == pf.get("shares_date")
     st = "통과" if dl.get("source") and same_day and (sec_pot is None or _near(pot, sec_pot, 0.01)) else ("경고" if dl.get("source") else "실패")

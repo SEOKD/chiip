@@ -1,0 +1,873 @@
+{
+ "id": "co-quanta-services",
+ "name": "Quanta Services",
+ "ticker": "PWR",
+ "as_of": "2026-10-29",
+ "unit": "B$",
+ "industry": "electrical_equipment",
+ "industry_note": "config/valuation_v2.yaml 업종표에 건설·엔지니어링 행이 없어 전기장비(β 1.25)로 대리 — PWR 5년 베타 1.27(easyconomics/yfinance)과 근사",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.25,
+ "profile": {
+  "price": 637.0,
+  "shares_basic": 0.150533,
+  "shares_date": "2026-09-30",
+  "cash": 2.315271,
+  "debt": 7.511895,
+  "source": "가격 = easyconomics company_profile 2026-10-29 장중(23:00 KST) · 기본 주식 = 3Q26 가중평균 기본 150,533천 주(8-K EX-99.1, 희석 증권과 같은 날짜 기준) · 현금·차입 = 8-K EX-99.1 재무상태표 2026-09-30: 현금 2,315.3 · 유동 차입 639.3 + 장기 차입 6,351.7 + 운용리스 129.8 + 391.0 (백만$). easyconomics 값(현금 0.506·차입 6.603)은 2026-06-30 기준이라 8월 선순위채 $2.0B 발행·9월 기간대출 $0.62B 상환 전"
+ },
+ "dilution": {
+  "potential_total": 0.00216,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-09-30",
+  "source": "8-K EX-99.1 EPS 표 — 3Q26 가중평균 희석 152,693천 주 − 기본 150,533천 주 = 2,160천 주(RSU·조건부 주식). 10월 인수 대가 주식 약 $149M(≈0.23M주)은 미반영(0.15%)"
+ },
+ "financials": {
+  "rev_ttm": 37.2886,
+  "ebit_ttm": 2.5451,
+  "invested_capital": 15.7322,
+  "capex_9m": 0.719,
+  "dep_9m": 0.3508,
+  "amort_9m": 0.498,
+  "sbc_9m": 0.1939,
+  "rev_growth_ttm": 0.371,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26 매출 7,841.9 + 7,874.8 + 9,557.0 + 12,014.9백만$, 영업이익 484.9 + 338.8 + 694.8 + 1,026.5백만$(SEC XBRL OperatingIncomeLoss — 4Q25 = FY25 1,611.5 − 9M25 1,126.6). 투하자본 = 자기자본 10,535.6 + 차입 6,991.1 + 리스 520.8 − 현금 2,315.3(2026-09-30). 영업권 8,081.6·무형 3,169.9 포함(연쇄 인수). 무형자산 상각 9M 498.0백만$(매출의 1.7%)는 GAAP 영업이익에 들어 있다"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 40.6227,
+   "FY2027": 45.768
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.093,
+   "FY2027": 0.0938
+  },
+  "margin_basis": "non_gaap",
+  "n_analysts": 34,
+  "quarters_est": {
+   "2026Q4": 11.176,
+   "2027Q1": 9.7326,
+   "2027Q2": 11.2432,
+   "2027Q3": 12.4623,
+   "2027Q4": 12.3299
+  },
+  "quarters_act": {
+   "2026Q1": 7.8748,
+   "2026Q2": 9.557,
+   "2026Q3": 12.0149
+  },
+  "ebitda_est_m": {
+   "2026Q4": 1175.4,
+   "2027Q1": 920.9,
+   "2027Q2": 1255.0,
+   "2027Q3": 1376.0,
+   "FY2026": 4150.7,
+   "FY2027": 4819.7,
+   "FY2028": 5670.2
+  },
+  "note": "easyconomics 재무제표(추정 열) 2026-10-29 조회 — 3Q 발표 전 값(FY2026 연간 추정 39.58B$ = 2Q 가이던스 중간과 같음). FY2026 = 1~3Q 실적 29.447 + 4Q 추정 11.176. FY2027 = 연간 추정 45.768(4Q27은 연간 − 1~3Q 추정 역산). 이익률 = 조정 EBITDA 추정 ÷ 매출 − 감가상각(9M26 350.8 ÷ 29,446.7 = 1.19%, FY27은 1.15%) = 조정 EBITA(비GAAP, 무형 상각 전). FY2028 매출 추정 52.672",
+  "surprise": [
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 7874.8,
+    "est": 7001.8
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.68,
+    "est": 2.0381
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 9557.0,
+    "est": 8609.8
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 4.24,
+    "est": 3.3071
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 12014.9,
+    "est": 11033.8
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 6.06,
+    "est": 5.0202
+   }
+  ],
+  "revisions": {
+   "from_date": "2026-07-30",
+   "to_date": "2026-10-29",
+   "from_label": "2Q 콜 회사 가이던스 중간",
+   "source": "컨센서스가 3Q 발표 뒤 아직 갱신되지 않아 회사 가이던스 중간값끼리 비교 — 2Q 8-K(2026-07-30) FY26 조정 EPS 16.45~16.95·매출 39.3~39.7B$ → 3Q 8-K(2026-10-29) 17.90~18.30·41.3~41.6B$",
+   "rows": [
+    {
+     "period": "FY2026",
+     "metric": "EPS",
+     "from": 16.7,
+     "to": 18.1
+    },
+    {
+     "period": "FY2026",
+     "metric": "매출(백만$)",
+     "from": 39500,
+     "to": 41450
+    }
+   ]
+  },
+  "price_window": {
+   "from": 561.14,
+   "to": 637.0,
+   "note": "2Q 콜 전날(7/29) 종가 → 10/29 장중"
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   41.3,
+   41.6
+  ],
+  "rev_basis": "gaap",
+  "ebit_margin_fy0": 0.0953,
+  "margin_basis": "non_gaap",
+  "adj_ebitda_fy0": [
+   4.4,
+   4.49
+  ],
+  "adj_eps_fy0": [
+   17.9,
+   18.3
+  ],
+  "gaap_eps_fy0": [
+   12.57,
+   12.97
+  ],
+  "fcf_fy0": [
+   2.5,
+   3.0
+  ],
+  "q4_implied": {
+   "rev": 12.003,
+   "adj_eps": 5.12,
+   "note": "FY 중간 − 9M 실적(매출 29.447, 조정 EPS 12.98) — 4Q 매출 컨센서스 11.176 대비 +7.4%(Chiip 계산)"
+  },
+  "next_year": "2027 '강한 두 자릿수' 조정 EPS 성장 기회(숫자 미제시) — 3Q 보도자료 CEO 발언(신규)",
+  "source": "2026-10-29 3Q26 8-K EX-99.1 — FY2026 매출 41.3~41.6B$(직전 39.3~39.7), 조정 EBITDA 4.40~4.49B$(직전 4.09~4.21), 조정 EPS 17.90~18.30$(직전 16.45~16.95), FCF 2.5~3.0B$(직전 2.0~2.5). EBITA 이익률 9.53% = 조정 EBITDA 중간 4.445 ÷ 매출 중간 41.45 − 감가상각 1.19%(Chiip 계산)"
+ },
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-07-30",
+  "tone": "up",
+  "tone_score": null,
+  "tone_delta": null,
+  "guidance_direction": "raise",
+  "kpis": {
+   "backlog_b": 63.73,
+   "backlog_12m_b": 38.45,
+   "rpo_b": 41.75,
+   "backlog_q2_b": 53.4,
+   "backlog_yoy": 0.627,
+   "rpo_yoy": 0.991,
+   "electric_margin_3q": 0.126,
+   "electric_margin_3q25": 0.114,
+   "ui_margin_3q": 0.094,
+   "adj_ebitda_3q_b": 1.449,
+   "fcf_3q_b": 1.199,
+   "contract_liabilities_b": 5.536,
+   "contract_liabilities_dec25_b": 3.258,
+   "tech_share_rev": "15~20%(2Q 콜)"
+  },
+  "guidance_changes": [
+   "FY26 매출 39.3~39.7 → 41.3~41.6B$",
+   "FY26 조정 EPS 16.45~16.95 → 17.90~18.30$",
+   "FY26 FCF 2.0~2.5 → 2.5~3.0B$"
+  ],
+  "new_topics": [
+   "2027 강한 두 자릿수 조정 EPS 성장 기회",
+   "2026 Investor Day 다년 목표를 앞서가는 중",
+   "철제 모노폴·조명 구조물 제조사 인수(송배전 공급망 수직 통합)"
+  ],
+  "dropped_topics": [],
+  "analyst_focus": [
+   "UBS — 마진 상단",
+   "Jefferies — 가스 발전 EPC 위험·기술 TAM",
+   "Bernstein — 모듈·조립식·800VDC",
+   "Baird — FCF·선수금",
+   "Roth — 데이터센터 모라토리엄",
+   "Goldman Sachs — 가이던스 상향 동인"
+  ],
+  "analyst_focus_note": "3Q 콜(오늘 09:00 ET) 원문 미공개 — 질문 초점은 2Q 콜(2026-07-30) 기준",
+  "risks": [
+   "대형 송전·발전 수주 시점(분기 수주 들쭉날쭉)",
+   "숙련 인력 확보·교육 부담",
+   "데이터센터 지역 규제(뉴욕 모라토리엄, 최대 10개 주 논의)",
+   "복합화력 EPC 계약 위험",
+   "연쇄 인수 — 영업권·무형 11.3B$ > 자기자본 10.5B$"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "item": "FY26 매출 가이던스 상향(중간 +1.95B$ — 3Q 초과 0.98B$ + 4Q 내포 +0.97B$)",
+    "prior": "39.3~39.7B$",
+    "latest": "41.3~41.6B$",
+    "driver": "rev0",
+    "shift": 1.95,
+    "confidence": 0.8,
+    "source": "3Q 8-K EX-99.1"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "item": "FY26 조정 EBITDA 마진(가이던스 중간)",
+    "prior": "10.51%",
+    "latest": "10.72%",
+    "driver": "margin_m0",
+    "shift": 0.0021,
+    "confidence": 0.8,
+    "source": "3Q 8-K EX-99.1(Chiip 계산)"
+   },
+   {
+    "id": "D3",
+    "kind": "업데이트",
+    "item": "총 수주잔고 53.4 → 63.7B$(+19% QoQ, +63% YoY), RPO 33.6 → 41.8B$",
+    "prior": "53.4B$",
+    "latest": "63.7B$",
+    "driver": "growth_decay",
+    "shift": 0.05,
+    "confidence": 1.0,
+    "source": "3Q 8-K 수주잔고 표"
+   },
+   {
+    "id": "D4",
+    "kind": "신규",
+    "item": "2027 '강한 두 자릿수' 조정 EPS 성장 기회",
+    "prior": "2Q 콜: 송배전 현 사업 높은 한 자릿수, 두 자릿수 가능",
+    "latest": "2027 강한 두 자릿수 EPS",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "3Q 8-K CEO 인용"
+   },
+   {
+    "id": "D5",
+    "kind": "업데이트",
+    "item": "FY26 FCF 가이던스 +0.5B$(계약부채 3.26 → 5.54B$, 선수금 구조)",
+    "prior": "2.0~2.5B$",
+    "latest": "2.5~3.0B$",
+    "driver": "s2c",
+    "shift": 0.3,
+    "confidence": 0.8,
+    "source": "3Q 8-K EX-99.1 재무상태표·FCF 표"
+   },
+   {
+    "id": "D6",
+    "kind": "신규",
+    "item": "2026 Investor Day 다년 목표보다 앞서가는 중",
+    "prior": "언급 없음",
+    "latest": "pacing ahead",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "3Q 8-K CEO 인용"
+   }
+  ],
+  "source": "3Q26 8-K EX-99.1(2026-10-29, 가이던스 상향 — 오늘 콜 원문·실적 변화 레이더 미산출) + 2Q 콜 easyconomics earnings_summary 2026-07-30(레이더 톤 6.1, 직전 5.3, raise→raise)"
+ },
+ "multiples_now": {
+  "pe_fwd": 31.96,
+  "ev_ebitda": 32.0,
+  "ev_sales": 2.961,
+  "growth": 0.411,
+  "note": "easyconomics(yfinance) 2026-10-29 — 동종사와 같은 원천·기준(TTM, 3Q 반영 전). 3Q 반영 EV/TTM 매출 = (95.77 + 7.51 − 2.32) ÷ 37.29 = 2.71배(Chiip 계산)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "easyconomics company_profile 2026-10-29(yfinance TTM) + SEC XBRL Goodwill·IntangibleAssetsNetExcludingGoodwill(최신 10-Q) — easyconomics company_peers가 기계 업종(CAT·DE)을 돌려줘 전력·전기 시공 동종 5사를 직접 지정",
+ "peers": [
+  {
+   "ticker": "MTZ",
+   "rev": 16.109,
+   "ebit_margin": 0.0542,
+   "mcap": 14.919,
+   "pb": 4.171,
+   "debt": 3.235,
+   "cash": 0.316,
+   "ev_sales": 1.08,
+   "ev_ebitda": 13.29,
+   "pe_fwd": 15.03,
+   "growth": 0.234,
+   "goodwill": 2.36,
+   "intangibles": 0.73
+  },
+  {
+   "ticker": "EME",
+   "rev": 18.598,
+   "ebit_margin": 0.1062,
+   "mcap": 31.467,
+   "pb": 7.737,
+   "debt": 0.548,
+   "cash": 0.924,
+   "ev_sales": 1.589,
+   "ev_ebitda": 14.85,
+   "pe_fwd": 18.8,
+   "growth": 0.198,
+   "goodwill": 1.712,
+   "intangibles": 1.441
+  },
+  {
+   "ticker": "FIX",
+   "rev": 12.543,
+   "ebit_margin": 0.1647,
+   "mcap": 47.864,
+   "pb": 14.246,
+   "debt": 0.374,
+   "cash": 2.224,
+   "ev_sales": 3.6,
+   "ev_ebitda": 19.87,
+   "pe_fwd": 20.28,
+   "growth": 0.537,
+   "goodwill": 1.15,
+   "intangibles": 0.548
+  },
+  {
+   "ticker": "MYRG",
+   "rev": 4.006,
+   "ebit_margin": 0.062,
+   "mcap": 4.368,
+   "pb": 6.594,
+   "debt": 0.067,
+   "cash": 0.138,
+   "ev_sales": 1.07,
+   "ev_ebitda": 14.74,
+   "pe_fwd": 19.34,
+   "growth": 0.201,
+   "goodwill": 0.224,
+   "intangibles": 0.231
+  },
+  {
+   "ticker": "PRIM",
+   "rev": 7.284,
+   "ebit_margin": -0.0156,
+   "mcap": 4.053,
+   "pb": 2.504,
+   "debt": 1.279,
+   "cash": 0.218,
+   "ev_sales": 0.691,
+   "ev_ebitda": 15.64,
+   "pe_fwd": 14.39,
+   "growth": -0.107,
+   "goodwill": 1.052,
+   "intangibles": 0.375
+  }
+ ],
+ "sbc_pct_rev": 0.0058,
+ "overrides": {
+  "growth_base": {
+   "start": 0.12,
+   "end": 0.035,
+   "decay": 0.85
+  },
+  "margin_base": {
+   "target": 0.1,
+   "year_target": 4,
+   "lr": 0.1,
+   "lam": 0.35
+  },
+  "s2c": 3.0,
+  "why": "성장 1년차 12%·감속 0.85: 총 수주잔고 63.7B$ = TTM 매출 1.71배(+63% YoY), 컨센서스 FY28 매출 +15.1%(FY27 대비, 3Q 전 값)·경영진 '대형 송전·발전은 2027 하반기 현장, 2030년대까지' — 기본 규칙(감속 0.7)은 FY28을 +8%로 그려 컨센서스보다 낮다. 이 경로의 FY28 매출 ≈ 51.4B$(컨센서스 52.7B$) / 장기 이익률 10%(조정 EBITA − SBC, GAAP 근사): 기본값 15%는 일반 규칙 — 3Q 부문 이익률 전력 12.6%·지하인프라 9.4%에서 본사비(무형 상각 제외 1.9%)를 빼면 10.1%(계절 최고 분기), 경영진은 유틸리티 전력 10~12%를 상단으로 제시, 동종 EMCOR 10.6%·MasTec 5.4%·MYR 6.2%·Comfort 16.5%(MEP 집중) / 매출÷투하자본 3.0: TTM 2.37은 영업권 8.1B$·무형 3.2B$가 섞인 값. 9개월 증분은 계약부채(+2.28B$)가 운전자본을 대서 10배를 넘지만 인수 주도 성장(영업권)을 섞어 보수적으로 3.0"
+ },
+ "history": {
+  "basis": "EV/TTM 매출 — 반월 간격 종가(knowledge/models/companies/co-quanta-services/ohlcv.csv), 주식 0.150343B·순차입 5.20B$ 고정(근사), TTM은 그 날짜에 공개된 4분기 합(~2/18 27.19, 2/19~ 28.48, 4/30~ 30.12, 7/30~ 32.91, 10/29~ 37.29)",
+  "ev_sales": [
+   {
+    "date": "2025-11-14",
+    "value": 2.56
+   },
+   {
+    "date": "2025-11-28",
+    "value": 2.76
+   },
+   {
+    "date": "2025-12-15",
+    "value": 2.6
+   },
+   {
+    "date": "2025-12-26",
+    "value": 2.58
+   },
+   {
+    "date": "2026-01-15",
+    "value": 2.67
+   },
+   {
+    "date": "2026-01-28",
+    "value": 2.85
+   },
+   {
+    "date": "2026-02-13",
+    "value": 3.09
+   },
+   {
+    "date": "2026-02-27",
+    "value": 3.16
+   },
+   {
+    "date": "2026-03-13",
+    "value": 3.13
+   },
+   {
+    "date": "2026-03-27",
+    "value": 3.09
+   },
+   {
+    "date": "2026-04-15",
+    "value": 3.31
+   },
+   {
+    "date": "2026-04-28",
+    "value": 3.51
+   },
+   {
+    "date": "2026-05-15",
+    "value": 4.02
+   },
+   {
+    "date": "2026-05-28",
+    "value": 3.82
+   },
+   {
+    "date": "2026-06-15",
+    "value": 3.79
+   },
+   {
+    "date": "2026-06-26",
+    "value": 3.61
+   },
+   {
+    "date": "2026-07-15",
+    "value": 3.41
+   },
+   {
+    "date": "2026-07-28",
+    "value": 3.11
+   },
+   {
+    "date": "2026-08-14",
+    "value": 3.29
+   },
+   {
+    "date": "2026-08-28",
+    "value": 2.91
+   },
+   {
+    "date": "2026-09-15",
+    "value": 2.96
+   },
+   {
+    "date": "2026-09-28",
+    "value": 3.1
+   },
+   {
+    "date": "2026-10-15",
+    "value": 3.09
+   },
+   {
+    "date": "2026-10-28",
+    "value": 2.93
+   },
+   {
+    "date": "2026-10-29",
+    "value": 2.71
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-07-30",
+   "tag": "2Q 실적·가이던스 상향",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-14",
+   "tag": "GLJ Research의 GE Vernova 매도 개시 — AI 전력주 동반 하락(Yahoo Finance 보도)"
+  },
+  {
+   "date": "2026-09-24",
+   "tag": "Bernstein 매수 상향(목표 $775)"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "AI 전력주 업종 매도 주간(Motley Fool 10-28 '1주 7~13% 하락' 보도, 직접 원인 1차 미확인)"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "GE Vernova 3Q 실적 — 수주 급증(Barron's)·PWR 실적 전날"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "3Q 실적·가이던스 상향",
+   "kind": "earnings"
+  }
+ ],
+ "narrative": {
+  "as_of": "2026-10-29",
+  "stage": "컨센서스",
+  "crowding": "중간",
+  "summary": "PWR의 프리미엄은 'AI 데이터센터'보다 '전력망 연결의 관문 + 희소한 숙련 인력 + 수주잔고의 길이'라는 이야기에서 나온다. 오늘 실적은 이 이야기를 숫자로 바꿨다(수주잔고 +19% QoQ, 4분기까지 올린 가이던스). 다만 리테일 관심은 거의 없고(레딧 225위·국내 텔레그램 0건) 셀사이드는 이미 강세(34명 중 매수 28) — 남은 상방은 '리비전' 경로에서 나와야 한다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "등급",
+      "매수 28 · 보유 5 · 매도 1(34명)",
+      "강한 매수 쏠림",
+      "easyconomics company_profile"
+     ],
+     [
+      "목표가",
+      "평균 $787.8 · 범위 $483~960(29명)",
+      "평균 대비 현재가 +23.7% 여지, 분산 큼",
+      "easyconomics altdata consensus 10-28"
+     ],
+     [
+      "최근 의견",
+      "Bernstein 상향(9/24, $775) · Guggenheim(10/10)·BMO(10/22)·Citi(10/24) 매수 · Truist 목표 상향(10/27)",
+      "실적 전 상향 흐름",
+      "narrative_sources(Google News 색인 제목)"
+     ],
+     [
+      "콜 질문 초점(2Q)",
+      "마진 상단·가스 발전 EPC 위험·기술 TAM·FCF 선수금·데이터센터 규제",
+      "'얼마나 오래·얼마나 높이'로 이동",
+      "easyconomics earnings_summary 2026-07-30"
+     ]
+    ],
+    "read": "셀사이드는 이미 강세 쪽에 몰려 있다. 그들이 묻는 것은 성장 여부가 아니라 마진 상단(전력 10~12%)과 대형 송전·발전의 수주 시점 — 즉 리비전의 크기와 시점이다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "94%",
+      "기관 주도 종목",
+      "easyconomics company_profile"
+     ],
+     [
+      "공매도",
+      "3.46M주(10/15) · 2주 전 대비 +8.2% · 커버 3.6일",
+      "실적 전 헤지 소폭 증가",
+      "easyconomics altdata short_interest"
+     ],
+     [
+      "Chiip Flow",
+      "최근 20일 거래 중 리테일 몫 약 8% · 기관 CMF +0.15",
+      "기관 매집 쪽",
+      "FINRA regShoDaily·weeklySummary(이 리포트 수급 절)"
+     ],
+     [
+      "내부자·행동주의",
+      "내부자 매수 없음 · 행동주의 없음",
+      "중립",
+      "easyconomics altdata"
+     ]
+    ],
+    "read": "보유는 기관이 거의 다 갖고 있고, 거래의 90% 이상도 기관이다. 10월 AI 전력주 매도 주간에 기관 자금 흐름은 오히려 매집 쪽으로 돌았다 — 업종 이탈보다 종목 선별."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧(ApeWisdom)",
+      "225위 · 24시간 언급 1건",
+      "관심 거의 없음",
+      "apewisdom.io 공개 API 2026-10-29"
+     ],
+     [
+      "국내 텔레그램(증권사 리서치 공개 채널 5곳, 14일 672건)",
+      "0건",
+      "국내 리테일 시야 밖",
+      "t.me/s 공개 미리보기 언급 수(radar/attention.py)"
+     ],
+     [
+      "X",
+      "미수집",
+      "X Counts API 키 입력 전",
+      "TODO 21-3"
+     ],
+     [
+      "위키백과 조회",
+      "하루 약 115회(20일 평균 116, 최고 162)",
+      "평탄",
+      "easyconomics altdata wiki"
+     ]
+    ],
+    "read": "리테일 쏠림이 없다 — 밈·테마 프리미엄이 아니다. 반대로 말하면 리테일 유입이라는 추가 수급 동력도 아직 없다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "Barron's",
+      "'노동력이 핵심'(9/24) · 퀀트 종목(10/7)",
+      "숙련 인력 해자 프레임",
+      "Google News 색인"
+     ],
+     [
+      "업종 기사",
+      "'AI 전력주 1주 7~13% 하락'(Motley Fool 10/28) · 'GE Vernova 수주 급증'(Barron's 10/28)",
+      "업종 변동성 큼",
+      "Google News 색인"
+     ]
+    ],
+    "read": "언론 프레임은 'AI 전력 테마'와 '노동력 희소성' 두 갈래. PWR은 테마 변동성 속에 노동력·수주잔고 이야기로 버티는 중."
+   }
+  },
+  "factors": [
+   {
+    "name": "전력망 연결의 관문(송전·변전 슈퍼사이클)",
+    "thesis": "데이터센터·제조 리쇼어링 부하가 전력망 연결 대기열을 만들고, 765·500·345kV 대형 송전과 변전소가 그 병목 — PWR은 북미 최대 숙련 송전 인력",
+    "inputs": "성장 지속(감속 계수)·매출",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "총 수주잔고 63.7B$ = TTM 매출의 1.71배, 12개월분 38.4B$가 TTM의 103%",
+    "status": "강화",
+    "falsifier": "2분기 연속 수주잔고 정체(book-to-bill < 1.0) 또는 대형 송전 착공이 2028년 이후로 밀림",
+    "source": "3Q 8-K 수주잔고 표 · 2Q 콜"
+   },
+   {
+    "name": "AI 데이터센터 전력·플랜트 보조시설",
+    "thesis": "칩을 뺀 데이터센터 공사의 80~90%를 자체 수행 — MEP는 수주잔고에 잡히기 전 분기 안에 매출화(현장당 분기 $300M 사례)",
+    "inputs": "매출 성장·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "기술 부문 매출 비중 15~20%(2Q 콜) — 3Q 갱신치 미확인",
+    "status": "유지",
+    "falsifier": "하이퍼스케일러 설비투자 감액, 주별 데이터센터 모라토리엄 확산",
+    "source": "2Q 콜 · 업종 기사"
+   },
+   {
+    "name": "숙련 인력 희소성 = 해자",
+    "thesis": "숙련공 양성에 약 4년 — 85,000명+, 1년 +15,500명, 교육 연 $250M. 경쟁사가 단기에 따라올 수 없는 공급 제약",
+    "inputs": "이익률 지속·위험(β) 감소",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "3Q 전력 부문 이익률 12.6% — 경영진이 말한 유틸리티 10~12% 범위 상단 이미 도달",
+    "status": "강화",
+    "falsifier": "교육·신입 비중 증가로 전력 마진이 11% 아래로 복귀",
+    "source": "2Q 콜 · Barron's 9/24"
+   },
+   {
+    "name": "현금 전환 개선(선수금 구조)",
+    "thesis": "MEP·EPC·재생에너지 계약에서 유리한 현금 조건 — 성장이 운전자본을 덜 먹는다",
+    "inputs": "매출÷투하자본(재투자 부담)",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "계약부채 3.26 → 5.54B$(9개월 +2.28B$), FY26 FCF 가이던스 +0.5B$",
+    "status": "강화",
+    "falsifier": "계약부채 감소·FCF 전환율 55% 아래",
+    "source": "3Q 8-K 재무상태표·FCF 표"
+   },
+   {
+    "name": "연쇄 인수 플랫폼(수직 통합)",
+    "thesis": "변압기·차단기·전주·모노폴 제조와 경로 설계까지 인수 — 공급망 병목을 직접 쥔다",
+    "inputs": "매출·이익률(시너지), 투하자본(영업권)",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "2026년 인수 5건 + 9~10월 2건(0.245B$) · 영업권·무형 11.3B$",
+    "status": "유지",
+    "falsifier": "인수 기업 마진 희석, 영업권 손상",
+    "source": "3Q 8-K · 2Q 콜"
+   },
+   {
+    "name": "반대 내러티브: AI 전력 거품·업종 디레이팅",
+    "thesis": "동종사가 52주 고점 대비 25~64% 하락한 가운데 PWR은 −19% — 선행 PER 32배로 동종 14~20배를 크게 웃돈다. 테마가 꺾이면 프리미엄이 가장 먼저 깎인다",
+    "inputs": "멀티플(위험 프리미엄)",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "선행 PER 31.96 vs 동종 중앙 18.8(EME)",
+    "status": "강화",
+    "falsifier": "동종사 반등 동반 + PWR 이익 리비전 지속(프리미엄을 이익이 따라잡음)",
+    "source": "easyconomics company_profile(동종 5사)"
+   }
+  ],
+  "attention": [
+   {
+    "label": "셀사이드 매수 비율(%)",
+    "value": 82.4,
+    "unit": "%"
+   },
+   {
+    "label": "기관 보유(%)",
+    "value": 94.0,
+    "unit": "%"
+   },
+   {
+    "label": "리테일 거래 몫(%)",
+    "value": 7.9,
+    "unit": "%"
+   },
+   {
+    "label": "레딧 24시간 언급(건)",
+    "value": 1,
+    "unit": "건"
+   }
+  ]
+ },
+ "sources": [
+  "SEC 8-K EX-99.1 2026-10-29(3Q26 실적·가이던스·수주잔고·재무상태표) · 2026-07-30(2Q26 가이던스)",
+  "SEC XBRL companyfacts CIK 1050915(분기 영업이익·영업권·무형·현금·dei 주식 수, 조회 2026-10-29)",
+  "easyconomics company_profile(PWR·MTZ·EME·FIX·MYRG·PRIM)·financial_statements(분기·연간 추정)·earnings_summary 2026-07-30·company_altdata·company_short_volume·company_price_history (조회 2026-10-29 23:00 KST)",
+  "FINRA api.finra.org regShoDaily·weeklySummary(공개)",
+  "apewisdom.io 공개 API · t.me/s 공개 채널 미리보기(언급 수만)",
+  "Google News 색인 제목(radar/narrative_sources.py)"
+ ],
+ "raw": {
+  "retrieved_at": "2026-10-29T23:20:00+09:00",
+  "easyconomics_profile": {
+   "price": 637.0,
+   "market_cap": 95.7687,
+   "enterprise_value": 97.4426,
+   "shares_outstanding_yf": 0.150343,
+   "total_cash": 0.506431,
+   "total_debt": 6.603135,
+   "balance_date": "2026-06-30",
+   "revenue_ttm": 32.9051,
+   "ev_sales": 2.961,
+   "ev_ebitda": 32.0,
+   "forward_pe": 31.955,
+   "eps_forward": 19.934,
+   "revenue_growth": 0.411,
+   "short_pct_float": 0.0264,
+   "analyst_total": 34,
+   "target_price": 787.8
+  },
+  "shares_cover_implied": 0.150343,
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 7.841948,
+    "2026Q1": 7.874787,
+    "2026Q2": 9.556997,
+    "2026Q3": 12.014877
+   },
+   "op_income": {
+    "2025Q4": 0.484929,
+    "2026Q1": 0.338779,
+    "2026Q2": 0.694834,
+    "2026Q3": 1.026547
+   }
+  },
+  "balance_2026_09_30": {
+   "cash": 2.315271,
+   "st_investments": 0.0,
+   "debt_current": 0.639343,
+   "debt_lt": 6.351734,
+   "lease_current": 0.129783,
+   "lease_lt": 0.391035,
+   "equity": 10.535611,
+   "nci": 0.086186,
+   "goodwill": 8.08161,
+   "intangibles": 3.16987,
+   "contract_liabilities": 5.535809,
+   "shares_cover_2026_10_26": 0.150677
+  },
+  "estimates_sales_m": {
+   "2026Q1_act": 7874.8,
+   "2026Q2_act": 9557.0,
+   "2026Q3_act": 12014.9,
+   "2026Q4": 11176.0,
+   "2027Q1": 9732.6,
+   "2027Q2": 11243.2,
+   "2027Q3": 12462.3,
+   "2027Q4": 12329.9
+  },
+  "estimates_annual": {
+   "rev_b": {
+    "FY2026": 39.5795,
+    "FY2027": 45.768,
+    "FY2028": 52.6721
+   },
+   "ebitda_b": {
+    "FY2026": 4.1507,
+    "FY2027": 4.8197,
+    "FY2028": 5.6702
+   }
+  },
+  "sec": {
+   "diluted_minus_basic_2026_09_30": 0.00216,
+   "contract_liabilities_2025_12_31": 3.258465
+  },
+  "radar_2026_07_30": {
+   "tone_score": 6.1,
+   "prev_tone_score": 5.3,
+   "guidance_direction": "raise",
+   "prev_guidance_direction": "raise"
+  },
+  "anchors": {
+   "low": {
+    "date": "2022-01-24",
+    "price": 93.91,
+    "note": "5년 일봉 중 2021-10~2022-01만 확보 — 확인 범위 최저(5년 전체 최저 여부 미확인)"
+   },
+   "high": {
+    "date": "2026-05-06",
+    "price": 788.75,
+    "note": "사상 최고(52주 최고와 같음)"
+   }
+  },
+  "retail": {
+   "apewisdom": {
+    "rank": 225,
+    "mentions": 1,
+    "mentions_24h_ago": 1
+   },
+   "telegram_14d": {
+    "mentions": 0,
+    "messages_scanned": 672,
+    "channels": 5
+   }
+  }
+ }
+}

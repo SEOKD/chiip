@@ -10,6 +10,11 @@ scripts/valuation/v2/run.py의 evaluate()를 다시 돌려(같은 시드) 다음
      영구성장률은 가치를 거의 바꾸지 않는다 → 가치를 실제로 가르는 두 동인으로 바꾸고, WACC·RONIC 민감도는 한 줄로
   ⑥ 상대가치(comps) — 동종사 EV/매출 vs 성장 회귀(데이터 묶음 peers가 있을 때), 내포 배수와 현재 배수
   ⑦ 동인 출처(provenance) — 컨센서스·가이던스·어닝콜·재무 중 어디서 왔는지
+  ⑧ 별도 절 '어닝콜 변화·컨센서스·멀티플 프리미엄·EPS 리비전' — scripts/tenbagger/earnings_view.py(직전 콜 대비 변화의 가치 영향, 실적 vs 컨센서스,
+     같은 분기 리비전과 주가 분해, 동종 대비 멀티플 프리미엄). 밸류에이션 절 바로 앞에 넣는다
+  ⑨ 별도 절 세 개(2026-10-29 마스터 지시, 재료가 있을 때만): '내러티브'(narrative_view.py — datapack narrative + 멀티플 엔진 회사 고유 프리미엄 +
+     EPS 리비전), '수급 — 누가 왜 샀나'(flow.py — ohlcv.csv + FINRA 공개 API), '가격 구간 — 월·주·일 피보나치'(levels.py — ohlcv.csv + raw.anchors).
+     순서: 어닝콜 → 내러티브 → 밸류에이션 → 수급 → 가격 구간 → (모델의 시나리오 절)
 사용: py scripts/tenbagger/v2_to_report.py <entity_id> --merge outputs/tenbagger/reports/<날짜>_<티커>.json
       (merge 없이 --out <파일>이면 절만 따로 저장)
 """
@@ -141,6 +146,7 @@ def build(entity, draws=3000):
         # 멀티플(2026-10-29 마스터 지시): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인·프리미엄 분해 → 합리적 멀티플
         import multiples
         mm = multiples.analyze(dp, base_d, mcap, c["wacc"], r["g_term"])
+        r["_mm"] = mm   # 내러티브 절이 회사 고유 프리미엄을 쓴다
         if mm.get("current") and mm["peers"]:
             blocks.extend(multiples.report_blocks(mm, r["unit"], mcap, co.get("name", entity)))
         import datapack_check
@@ -154,6 +160,40 @@ def build(entity, draws=3000):
     return {"h2": "밸류에이션 — 맥킨지·IB 방식(v2 엔진)", "blocks": blocks}, r
 
 
+def earnings_section(entity, r):
+    """⑧ 어닝콜 변화의 가치 영향·실적 vs 컨센서스·EPS 리비전·멀티플 프리미엄(2026-10-29 마스터 지시) — scripts/tenbagger/earnings_view.py"""
+    dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
+    if not dp_path.exists():
+        return None
+    import earnings_view
+    co = v2run.load_company(entity)
+    co["market"] = v2run.resolve_market(co)
+    return earnings_view.report_section(json.loads(dp_path.read_text(encoding="utf-8")), co, r["mcap"], r["coc"]["wacc"], r["g_term"], r["unit"])
+
+
+def extra_sections(entity, r):
+    """⑨ 내러티브·수급·가격 구간 — 재료가 없으면 None(그 절만 빠진다)"""
+    dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
+    dp = json.loads(dp_path.read_text(encoding="utf-8")) if dp_path.exists() else {}
+    import flow
+    import levels
+    import narrative_view
+    out = {"narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None}
+    for k, mod in (("flow", flow), ("levels", levels)):
+        try:
+            sec = mod.report_section(entity, dp)
+        except Exception as exc:   # 외부 조회(FINRA) 실패가 리포트 전체를 막지 않게
+            print(f"  [{k}] 절 생략: {type(exc).__name__}: {exc}")
+            sec = None
+        if sec:
+            sec.pop("_summary", None)
+        out[k] = sec
+    return out
+
+
+EXTRA_H2 = ("내러티브 — ", "수급 — ", "가격 구간 — ")
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
@@ -163,16 +203,21 @@ def main(argv):
     ap.add_argument("--draws", type=int, default=3000)
     a = ap.parse_args(argv)
     sec, r = build(a.entity, a.draws)
+    esec = earnings_section(a.entity, r)
+    xs = extra_sections(a.entity, r)
     if a.merge:
         p = Path(a.merge)
         d = json.loads(p.read_text(encoding="utf-8"))
-        d["sections"] = [s for s in d.get("sections") or [] if not s.get("h2", "").startswith("밸류에이션 — 맥킨지")]
+        d["sections"] = [s for s in d.get("sections") or [] if not s.get("h2", "").startswith(("밸류에이션 — 맥킨지", "어닝콜 변화·컨센서스") + EXTRA_H2)]
         idx = next((i for i, s in enumerate(d["sections"]) if "시나리오" in s.get("h2", "")), len(d["sections"]))
-        d["sections"].insert(idx, sec)
+        for x in (xs["levels"], xs["flow"], sec, xs["narrative"], esec):   # 앞에 끼워 넣으므로 역순: 어닝콜 → 내러티브 → 밸류에이션 → 수급 → 가격 구간
+            if x:
+                d["sections"].insert(idx, x)
         v = d.setdefault("verdict", {})
         v.setdefault("alpha", None)
         p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
-        print(f"[v2→리포트] {p} 에 '밸류에이션' 절 병합 (블록 {len(sec['blocks'])}개)")
+        print(f"[v2→리포트] {p} 에 '밸류에이션' 절 병합 (블록 {len(sec['blocks'])}개)" + (f" + '어닝콜·컨센서스·멀티플·리비전' 절(블록 {len(esec['blocks'])}개)" if esec else " — 어닝콜·컨센서스 절 재료 없음(datapack call.deltas·consensus.surprise·revisions·multiples_now)"))
+        print("  추가 절: " + " · ".join(f"{k} {'있음' if v else '재료 없음'}" for k, v in xs.items()))
     if a.out or not a.merge:
         out = Path(a.out or f"{a.entity}_v2_section.json")
         out.write_text(json.dumps(sec, ensure_ascii=False, indent=1), encoding="utf-8")

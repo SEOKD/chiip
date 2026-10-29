@@ -1,4 +1,5 @@
-"""오늘 텐배거 리포트 종목 고르기 (예약 작업 chiip-tenbagger-report, 매일 23:00) — 2026-10-29 마스터 지시
+"""오늘 텐배거 리포트 종목 고르기 (예약 작업 chiip-tenbagger-report, 하루 3건 07·13·22시 — 2026-10-29 마스터 지시, 이전 23:00 1건)
+같은 날 앞 회차가 --done으로 기록한 종목은 30일 규칙으로 빠지므로 회차마다 다른 종목이 나온다.
 
 우선순위(같은 종목은 30일 안에 다시 쓰지 않는다 — outputs/tenbagger/reports/log.csv):
   1. 마스터 요청 대기열 knowledge/models/tenbagger/report_queue.txt (한 줄에 티커 또는 id, 먼저 쓴 것부터)

@@ -1,1 +1,2 @@
 pred_id,made_on,thesis_id,statement,metric,target,deadline,probability,basis,resolved_on,outcome,notes,owner,origin
+P-20261029-12,2026-10-29,,"Quanta Services(PWR) FY2027 첫 가이던스(4Q26 실적, 2027-02)의 조정 EPS 중간값이 FY2026 조정 EPS 실적 대비 +15% 이상이다",FY27 조정 EPS 가이던스 중간 ÷ FY26 조정 EPS 실적 − 1,>=+15%,2027-03-15,0.60,3Q26 8-K: 4Q 내포 조정 EPS $5.12(직전 내포 $4.76 대비 +7.6%)·총 수주잔고 $63.7B(TTM 매출 1.71배)·CEO '2027 강한 두 자릿수 조정 EPS 성장 기회'; 반증: 2Q 콜 '대형 송전 현장 투입은 2027 하반기',,,텐배거 리포트(마스터 수동 지정) — 킬 3: +10% 미만,치입,outputs/tenbagger/reports/20261029_PWR.json
