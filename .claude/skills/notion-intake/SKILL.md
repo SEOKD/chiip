@@ -29,6 +29,7 @@ argument-hint: "<insights|informations|stocks> <page_id> [inbox 텍스트 경로
 ### Stocks (종목·테마 커버리지)
 - 종목 페이지(제목 '회사명 티커'): `config/earnings_watch.yaml` extra·master_stocks에 없으면 추가(id·name·code·region·sub, code 미검증 표시) → 알파 판단 4요소를 써서 finalize → 페이지에 마스터 메모가 있으면 그 논지를 짧게 검토(가장 약한 고리·다음 확인). 다가오는 실적 일정이 있으면 함께 적는다.
 - 테마 페이지(OCP 2026·해양시추 등): 관련 종목 목록·내러티브 단계(`narrative-premium` 원리)·치입 감시 목록과의 겹침.
+- **텐배거 리포트 우선 색인**(마스터 지시 2026-10-30 "Stocks 티커 중 최신(±7일) 어닝콜 스크립트와 컨센서스를 입력해 놓은 종목부터 분석"): 종목 페이지를 새로 보거나 고친 것을 볼 때마다 본문을 `radar/inbox/notion_stocks/<page_id>.md`(git 제외)에 저장하고 `py scripts/tenbagger/notion_stocks.py --classify radar/inbox/notion_stocks/<page_id>.md --page-id <id> --title "<제목>" --edited <편집일>` — 어닝콜 스크립트·컨센서스·IB 내용·콜 날짜를 규칙으로 판별해 색인(knowledge/models/notion/stocks_index.json)에 넣는다. 판별은 스크립트가 한다(모델은 읽기만).
 
 ## 경계
 - local-only 읽기 금지. 마스터 노션 페이지(Insights·Informations·Stocks)는 **읽기만** — 수정·삭제 금지(Insights 하위 '치입 검토' 페이지 생성만 허용).

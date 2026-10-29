@@ -3,6 +3,7 @@
 
 우선순위(같은 종목은 30일 안에 다시 쓰지 않는다 — outputs/tenbagger/reports/log.csv):
   1. 마스터 요청 대기열 knowledge/models/tenbagger/report_queue.txt (한 줄에 티커 또는 id, 먼저 쓴 것부터)
+  1-2. 마스터 노션 Stocks — 오늘 ±7일 어닝콜 스크립트 + 컨센서스가 입력된 종목(콜 날짜가 가까운 순, 그 콜 이후 리포트가 없으면 30일 안이라도 다시 쓴다 — 2026-10-30 마스터 지시)
   2. 텐배거 추적 목록 watch.csv의 진행 중 후보 중 리포트가 없는 것
   3. 알파 잠재력 최신 점수(knowledge/models/alpha/latest.json) 5.0 이상, 점수 높은 순
   4. 마스터 보유 종목(config/portfolio.yaml) 중 오래 안 쓴 것
@@ -47,6 +48,26 @@ def _universe():
     return out
 
 
+def notion_pick(today, uni):
+    """마스터 노션 Stocks — 오늘 ±7일 안의 어닝콜 스크립트 + 컨센서스가 입력된 종목(scripts/tenbagger/notion_stocks.py 색인, 마스터 지시 2026-10-30).
+    30일 재작성 금지 대신 '그 콜 날짜 이후에 이미 쓴 리포트가 없을 것' — 새 실적이 나왔으면 30일 안이라도 다시 쓴다"""
+    import notion_stocks
+    rows = []
+    if LOG.exists():
+        with LOG.open(encoding="utf-8", newline="") as f:
+            rows = list(csv.DictReader(f))
+    for p in notion_stocks.eligible(today):
+        tk = p["ticker"].upper()
+        u = next((x for x in uni.values() if (x.get("ticker") or "").upper() == tk), None)
+        eid = (u or {}).get("id") or (f"us-{tk.lower()}" if not tk.isdigit() else tk)
+        if any(r["date"] >= p["call_date"] and (r["id"] == eid or (r.get("ticker") or "").upper() == tk) for r in rows):
+            continue
+        return {"id": eid, "name": (u or {}).get("name") or p.get("company"), "ticker": tk,
+                "reason": f"노션 Stocks — 어닝콜 {p['call_date']}({p.get('date_basis')})·컨센서스 입력" + (" · IB 내용 있음" if p.get("has_ib") else ""),
+                "notion_page": p.get("page_id")}
+    return None
+
+
 def pick(today=None):
     today = today or date.today()
     done = recent(today)
@@ -57,11 +78,14 @@ def pick(today=None):
             if key and key not in done:
                 hit = uni.get(key) or next((u for u in uni.values() if (u.get("ticker") or "").upper() == key.upper()), None)
                 return {**(hit or {"id": key, "name": key, "ticker": key}), "reason": "마스터 요청 대기열"}
+    hit = notion_pick(today, uni)
+    if hit:
+        return hit
     tb = ROOT / "knowledge" / "models" / "tenbagger" / "watch.csv"
     if tb.exists():
         with tb.open(encoding="utf-8", newline="") as f:
             for r in csv.DictReader(f):
-                if r.get("status") != "종료" and r.get("cand_id") and r["cand_id"] not in done:
+                if r.get("status") != "종료" and r.get("cand_id") and r["cand_id"] not in done and (r.get("ticker") or "") not in done:   # 후보 번호(TB-…)와 티커 둘 다로 중복 확인(2026-10-30 INIO 재선택 버그)
                     return {"id": r["cand_id"], "name": r.get("company"), "ticker": r.get("ticker"), "reason": "텐배거 추적 후보"}
     cov = yaml.safe_load((ROOT / "config" / "coverage.yaml").read_text(encoding="utf-8")) if (ROOT / "config" / "coverage.yaml").exists() else {}
     for c in (cov or {}).get("companies") or []:   # 발굴 위원회 통과(커버리지 focus) — 아직 리포트가 없으면 우선

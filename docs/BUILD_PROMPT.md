@@ -2111,6 +2111,12 @@ source: docs/methodology
 - 개정(같은 날 마스터 지시 "방위주에는 Kongsberg, CSG 같은 유럽 방위 종목도 넣어줘"): 그 밖 유럽 15개사 추가 → 기업 102. 상장 확인(거래소·회사 발표) — Kongsberg Gruppen(KOG, 오슬로 — 해양 부문은 2026-04-23 Kongsberg Maritime KMAR로 분리 상장, 방위 지도 밖), CSG(유로넥스트 암스테르담, 2026-01-23 상장·공모가 €25, 2026-10-29 시총 €14.8B), Saab·MilDef(스톡홀름), BAE Systems·QinetiQ·Babcock·Chemring(2025 Bain 제안 거절 보도, 2026 상태 확인 대기)·Cohort·Rolls-Royce(런던), Theon(암스테르담), Kitron(오슬로), Steyr Motors(프랑크푸르트 — **Red Cat 공개매수 주당 €39, 수락 기간 2026-12-18까지**, 발굴 후보 제외), 비상장 Nammo·Patria. `ec_ticker`(easyconomics 인자: BA.L·CSG.AS 등), `not_titles`(Kongsberg Maritime 제목은 방위 Kongsberg로 보지 않음), 뉴스룸 도메인 14개, 발굴 테마 후보 9개(CSG·Chemring·Kongsberg·Saab·Theon·Cohort·MilDef·Babcock 등). YAML이 국가 코드 NO를 false로 읽는 함정 → 따옴표.
 - 남은 한계: 미 국방부 일일 계약 본문(금액·업체)은 자동으로 못 읽는다 — 회사 보도자료·8-K로 확인. 유럽 규제 공시(EQS·AMF·SDIR·CNMV) 직접 수집은 다음 단계. SAM.gov는 키 필요(선택).
 
+### 21.42 노션 Stocks 우선 텐배거 리포트 (2026-10-30 마스터 지시 "내 노션 Stocks의 티커 중 최신(현 시점 ±7일) 어닝콜 스크립트와 컨센서스를 입력해 놓은 종목부터 분석하라. IB 리포트 내용이 있으면 참조하라. 이 구조를 텐배거 리포트 엔진에 넣도록 설계하라")
+- 색인 `knowledge/models/notion/stocks_index.json` ← `scripts/tenbagger/notion_stocks.py --classify`(제목 '회사명 티커'·어닝콜 표지어·발언자 줄·컨센서스+지표·증권사/목표가·콜 날짜를 규칙으로 판별, 모델은 노션 읽기만). 갱신: 리포트 회차 0단계(최근 8일 편집 페이지) + notion-intake(새 페이지).
+- `pick_report.py` 1-2단계: 마스터 요청 대기열 다음, ±7일 콜·컨센서스 입력 종목(콜 날짜 가까운 순). 30일 재작성 금지 대신 '그 콜 이후 리포트 없음'.
+- 리포트 2-0단계: 스크립트 → call, 컨센서스 → consensus(easyconomics와 대조), IB 내용 → narrative 셀사이드 'IB 요지(마스터 노션, 라이선스)' — 문장 복제·목표가 결론화 금지, 외부 공유 금지 표기.
+- 함께 고친 것: 텐배거 추적 목록 단계가 후보 번호로만 중복을 봐 같은 날 쓴 INIO를 다시 고르던 버그 → 티커로도 확인.
+
 ### 21.41 Proviser — 당일 텐배거 리포트 3건 점검·수정 (2026-10-29 마스터 지시 "그날 하루 적은 3건의 텐배거 리포트 내용에 틀린 게 없는지 다시 점검하고, 분석이 올바른 과정으로 진행됐고 결론이 합리적으로 산출됐는지 모두 정량적으로 평가해 수정·보완하라. 당일 이외 리포트는 건들지 마라. 하루에 3건만. Proviser의 기능 중 하나로 추가하라. 기존 기능은 그대로")
 - 대상: outputs/tenbagger/reports/log.csv의 그날 가장 최근 3건. 다른 날짜는 열지도 고치지도 않는다.
 - 자동 점검 13개 `scripts/proviser/report_audit.py`(사실: 데이터 검증 10/10·시나리오 현재값 = 원자료·원자료 조회일·$B 표기 / 과정: 의무 절·차트 렌더·1차 출처·보강 표시 / 결론: 확률 합·확률 가중 재계산·v2와 차이 설명·킬 조건과 날짜·처방 표현과 면책) + 모델 점검(1차 출처 재대조·절차·결론·재계산·반증). 최종 = 0.6 × 루브릭 + 0.4 × 자동, 소수 첫째 자리(docs/proviser/reports/report_scores.csv).
