@@ -3,16 +3,19 @@
 
 결정론 수집(하루 1회, run_hourly). 원천은 config/discovery.yaml attention.sources 중 enabled만 — CLAUDE.md 컴플라이언스 안에서:
   google_news(영문명 글로벌 + 일본어/중국어/한국어 현지명), seeking_alpha·substack(Google News 색인 제목만), research_feeds(공개 RSS 수집분),
-  reddit(ApeWisdom, 미국 티커). X·텔레그램은 CLAUDE.md 제외 원천이라 꺼져 있다(마스터 승인 시 집계 수만).
+  reddit(ApeWisdom, 미국 티커), x(X 공식 API Counts: Recent — 언급 수만), telegram(공개 채널 웹 미리보기 t.me/s — 언급 글 수만).
+  X·텔레그램은 2026-10-29 마스터 허용("허용") — 회사명 언급 수만 세고 글 본문·작성자는 저장하지 않는다(ADR-011).
 쓰는 것: knowledge/models/discovery/attention.csv(날짜·종목·원천·7일 언급 수 — 누적), attention_latest.json(가속 = 오늘 7일 수 ÷ 직전
 4주 같은 원천 평균, 쏠림 = 후보 안 백분위). 기사 본문은 저장하지 않는다(수만).
 """
 import csv
+import html
 import json
+import re
 import sys
 import time
 import urllib.parse
-from datetime import timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -22,7 +25,9 @@ from pollers import rss  # noqa: E402
 OUT = common.ROOT / "knowledge" / "models" / "discovery"
 CSV = OUT / "attention.csv"
 LATEST = OUT / "attention_latest.json"
-INVESTOR_SOURCES = ("news_global", "seeking_alpha", "substack", "research_feeds")
+INVESTOR_SOURCES = ("news_global", "seeking_alpha", "substack", "research_feeds", "x", "telegram")
+X_COUNTS = "https://api.x.com/2/tweets/counts/recent"   # 2026-10-29 공식 문서 docs.x.com/x-api/posts/get-count-of-recent-posts
+TG_PAGE = "https://t.me/s/{ch}"
 LOCALE = {"jp": ("ja", "JP"), "tw": ("zh-TW", "TW"), "kr": ("ko", "KR"), "us": ("en-US", "US")}
 
 
@@ -82,13 +87,135 @@ def sellside_count(cid, days=7):
     return n
 
 
+def aliases(c):
+    """회사명 별칭(영문명·현지명·한국어 표기 ko) — 4자 이하 영문(ISC·ITEQ 등)은 다른 말과 겹쳐 뺀다"""
+    names = [c.get("name"), c.get("local")] + list(c.get("ko") or [])
+    return [a for a in dict.fromkeys(n.strip() for n in names if n) if not (a.isascii() and len(a) <= 4)]
+
+
+def alias_patterns(c):
+    """영문은 단어 경계·대소문자 무시, 한·중·일 표기는 부분 문자열"""
+    return [re.compile(rf"(?<![A-Za-z0-9]){re.escape(a)}(?![A-Za-z0-9])", re.I) if a.isascii() else re.compile(re.escape(a))
+            for a in aliases(c)]
+
+
+def x_query(c):
+    terms = [f'"{a}"' for a in aliases(c)]
+    if c.get("market") == "us" and c.get("code"):
+        terms.append(f"${c['code']}")
+    return f"({' OR '.join(terms)}) -is:retweet"
+
+
+def x_count(c, token, days=7):
+    """X 공식 API Counts: Recent — 최근 days일 언급 글 수(글 본문은 받지 않는다). 실패 = None"""
+    start = datetime.now(timezone.utc) - timedelta(days=min(days, 7)) + timedelta(minutes=5)   # 최근 7일 안이어야 함
+    params = {"query": x_query(c), "granularity": "day", "start_time": start.strftime("%Y-%m-%dT%H:%M:%SZ")}
+    try:
+        d = json.loads(common.http_get(X_COUNTS, params=params, headers={"Authorization": f"Bearer {token}"}, timeout=25))
+    except Exception:
+        return None
+    meta = d.get("meta") or {}
+    tot = meta.get("total_post_count", meta.get("total_tweet_count"))   # 신 필드명 post_count, 구 tweet_count
+    if tot is None and "data" in d:
+        tot = sum(x.get("post_count", x.get("tweet_count", 0)) for x in d["data"] or [])
+    return tot
+
+
+def x_counts(cands, cfg, env=None, days=7):
+    """종목마다 1요청($0.005, 2026-10-29 공식 가격표). 키가 없으면 ({}, '키 없음'), 월 상한에 닿으면 거기서 멈춘다"""
+    token = (env if env is not None else common.load_env()).get(cfg.get("key_env", "X_BEARER_TOKEN"))
+    if not token:
+        return {}, "X 키 없음"
+    month, cap = common.now_kst().strftime("%Y-%m"), int(cfg.get("monthly_cap", 1500))
+    st = common.load_state("attention_x", {})
+    if st.get("month") != month:
+        st = {"month": month, "requests": 0}
+    out = {}
+    for cid, c in cands.items():
+        if st["requests"] >= cap:
+            common.save_state("attention_x", st)
+            return out, f"X 월 상한 {cap}건 도달"
+        st["requests"] += 1
+        out[cid] = x_count(c, token, days)
+        time.sleep(1.0)
+    common.save_state("attention_x", st)
+    return out, f"X {len(out)}종목(이번 달 {st['requests']}건)"
+
+
+TG_TIME_RE = re.compile(r'<time datetime="([^"]+)"')
+TG_POST_RE = re.compile(r'data-post="[^"/]+/(\d+)"')
+
+
+def tg_messages(page):
+    """t.me/s 웹 미리보기 한 쪽 → [(글 번호, UTC 시각, 텍스트)]. 텍스트는 언급을 세는 데만 쓰고 저장하지 않는다"""
+    out = []
+    for block in page.split('class="tgme_widget_message_wrap')[1:]:
+        pid, ts = TG_POST_RE.search(block), TG_TIME_RE.search(block)
+        if not pid or not ts:
+            continue
+        text = html.unescape(re.sub(r"<[^>]+>", " ", block))
+        out.append((int(pid.group(1)), datetime.fromisoformat(ts.group(1)), text))
+    return out
+
+
+def tg_channel(handle, cutoff, max_pages=25, fetch=None):
+    """공개 채널 하나를 cutoff까지 거슬러 읽는다(?before=최소 글 번호, 요청 사이 1초)"""
+    fetch = fetch or (lambda url: common.http_get(url, timeout=25).decode("utf-8", "replace"))
+    msgs, url = [], TG_PAGE.format(ch=handle)
+    for _ in range(max_pages):
+        page = tg_messages(fetch(url))
+        if not page:
+            break
+        msgs += [m for m in page if m[1] >= cutoff]
+        low = min(m[0] for m in page)
+        if min(m[1] for m in page) < cutoff or low <= 1:
+            break
+        url = TG_PAGE.format(ch=handle) + f"?before={low}"
+        time.sleep(1.0)
+    return msgs
+
+
+def tg_counts(channels, cands, days=7, max_pages=25, fetch=None):
+    """채널마다 한 번 훑어 종목별 '언급 글 수'(채널 합)를 센다. 반환 ({cid: n}, {handle: {"msgs", "last"}})"""
+    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    pats = {cid: alias_patterns(c) for cid, c in cands.items()}
+    counts, status = {cid: 0 for cid in cands}, {}
+    for ch in channels:
+        h = ch["handle"] if isinstance(ch, dict) else ch
+        try:
+            msgs = tg_channel(h, cutoff, max_pages, fetch)
+        except Exception as e:
+            status[h] = {"error": type(e).__name__}
+            continue
+        status[h] = {"msgs": len(msgs), "last": max((m[1] for m in msgs), default=None)}
+        for _, _, text in msgs:
+            for cid, ps in pats.items():
+                counts[cid] += any(p.search(text) for p in ps)
+    return counts, status
+
+
 def collect():
     cfg = (common.load_yaml("config/discovery.yaml") or {}).get("attention") or {}
-    src = {k: v.get("enabled") for k, v in (cfg.get("sources") or {}).items()}
+    srcs = cfg.get("sources") or {}
+    src = {k: v.get("enabled") for k, v in srcs.items()}
     days = int(cfg.get("window_days", 7))
     today = common.now_kst().strftime("%Y-%m-%d")
-    rows = []
-    for cid, c in candidates().items():
+    rows, notes = [], []
+    cands = candidates()
+    tg = {}
+    if src.get("telegram"):
+        t = srcs["telegram"]
+        tg, st = tg_counts(t.get("channels") or [], cands, days, int(t.get("max_pages", 25)))
+        notes.append(f"텔레그램 {sum(1 for v in st.values() if v.get('msgs'))}/{len(st)}채널")
+    xs = {}
+    if src.get("x"):
+        xs, note = x_counts(cands, srcs["x"], days=days)
+        notes.append(note)
+    for cid, c in cands.items():
+        if cid in tg:
+            rows.append((today, cid, "telegram", tg[cid]))
+        if cid in xs:
+            rows.append((today, cid, "x", xs[cid]))
         en, local = c.get("name"), c.get("local")
         q = f'"{en}"'
         if src.get("google_news"):
@@ -103,7 +230,7 @@ def collect():
             rows.append((today, cid, "research_feeds", research_feed_count([en, local], days)))
         rows.append((today, cid, "sellside_events", sellside_count(cid, days)))
         time.sleep(0.3)
-    return rows
+    return rows, notes
 
 
 def summarize(all_rows, today):
@@ -140,7 +267,7 @@ def summarize(all_rows, today):
 
 def run():
     OUT.mkdir(parents=True, exist_ok=True)
-    rows = collect()
+    rows, notes = collect()
     new = not CSV.exists()
     with CSV.open("a", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
@@ -153,7 +280,8 @@ def run():
     latest = summarize(all_rows, today)
     LATEST.write_text(json.dumps({"date": today, "rows": latest}, ensure_ascii=False, indent=1), encoding="utf-8")
     top = sorted(latest.items(), key=lambda kv: -(kv[1]["accel"] or 0))[:3]
-    return f"관심도 {len(latest)}종목 · 가속 상위 " + ", ".join(f"{k} {v['accel']:.2f}" for k, v in top if v["accel"]), 0
+    return (f"관심도 {len(latest)}종목 · 가속 상위 " + (", ".join(f"{k} {v['accel']:.2f}" for k, v in top if v["accel"]) or "기준선 쌓는 중(4주)")
+            + "".join(f" · {n}" for n in notes)), 0
 
 
 if __name__ == "__main__":

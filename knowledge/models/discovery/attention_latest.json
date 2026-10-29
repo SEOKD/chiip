@@ -2,14 +2,51 @@
  "date": "2026-10-29",
  "rows": {
   "jp-taiyoyuden": {
-   "total": 71.0,
+   "total": 69.0,
    "by_source": {
     "news_global": {
      "n": 7.0,
      "accel": null
     },
     "news_local": {
-     "n": 53.0,
+     "n": 52.0,
+     "accel": null
+    },
+    "seeking_alpha": {
+     "n": 10.0,
+     "accel": null
+    },
+    "substack": {
+     "n": 0.0,
+     "accel": null
+    },
+    "research_feeds": {
+     "n": 0.0,
+     "accel": null
+    },
+    "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
+    }
+   },
+   "accel": null,
+   "investor": 17.0,
+   "saturated": [],
+   "crowding_pct": 74
+  },
+  "jp-murata": {
+   "total": 67.0,
+   "by_source": {
+    "news_global": {
+     "n": 19.0,
+     "accel": null
+    },
+    "news_local": {
+     "n": 37.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -27,59 +64,30 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
-    }
-   },
-   "accel": null,
-   "investor": 18.0,
-   "saturated": [],
-   "crowding_pct": 74
-  },
-  "jp-murata": {
-   "total": 79.0,
-   "by_source": {
-    "news_global": {
-     "n": 21.0,
-     "accel": null
     },
-    "news_local": {
-     "n": 46.0,
-     "accel": null
-    },
-    "seeking_alpha": {
-     "n": 12.0,
-     "accel": null
-    },
-    "substack": {
-     "n": 0.0,
-     "accel": null
-    },
-    "research_feeds": {
-     "n": 0.0,
-     "accel": null
-    },
-    "sellside_events": {
+    "telegram": {
      "n": 0.0,
      "accel": null
     }
    },
    "accel": null,
-   "investor": 33.0,
+   "investor": 30.0,
    "saturated": [],
-   "crowding_pct": 85
+   "crowding_pct": 84
   },
   "tw-yageo": {
-   "total": 107.0,
+   "total": 104.0,
    "by_source": {
     "news_global": {
      "n": 6.0,
      "accel": null
     },
     "news_local": {
-     "n": 100.0,
+     "n": 91.0,
      "accel": null
     },
     "seeking_alpha": {
-     "n": 1.0,
+     "n": 2.0,
      "accel": null
     },
     "substack": {
@@ -91,55 +99,61 @@
      "accel": null
     },
     "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    },
+    "telegram": {
+     "n": 5.0,
+     "accel": null
+    }
+   },
+   "accel": null,
+   "investor": 13.0,
+   "saturated": [],
+   "crowding_pct": 68
+  },
+  "tw-walsintech": {
+   "total": 38.0,
+   "by_source": {
+    "news_global": {
+     "n": 7.0,
+     "accel": null
+    },
+    "news_local": {
+     "n": 31.0,
+     "accel": null
+    },
+    "seeking_alpha": {
+     "n": 0.0,
+     "accel": null
+    },
+    "substack": {
+     "n": 0.0,
+     "accel": null
+    },
+    "research_feeds": {
+     "n": 0.0,
+     "accel": null
+    },
+    "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    },
+    "telegram": {
      "n": 0.0,
      "accel": null
     }
    },
    "accel": null,
    "investor": 7.0,
-   "saturated": [
-    "news_local"
-   ],
-   "crowding_pct": 56
-  },
-  "tw-walsintech": {
-   "total": 31.0,
-   "by_source": {
-    "news_global": {
-     "n": 6.0,
-     "accel": null
-    },
-    "news_local": {
-     "n": 25.0,
-     "accel": null
-    },
-    "seeking_alpha": {
-     "n": 0.0,
-     "accel": null
-    },
-    "substack": {
-     "n": 0.0,
-     "accel": null
-    },
-    "research_feeds": {
-     "n": 0.0,
-     "accel": null
-    },
-    "sellside_events": {
-     "n": 0.0,
-     "accel": null
-    }
-   },
-   "accel": null,
-   "investor": 6.0,
    "saturated": [],
-   "crowding_pct": 37
+   "crowding_pct": 48
   },
   "co-semco": {
-   "total": 185.0,
+   "total": 226.0,
    "by_source": {
     "news_global": {
-     "n": 65.0,
+     "n": 91.0,
      "accel": null
     },
     "news_local": {
@@ -147,7 +161,7 @@
      "accel": null
     },
     "seeking_alpha": {
-     "n": 3.0,
+     "n": 2.0,
      "accel": null
     },
     "substack": {
@@ -161,24 +175,28 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 16.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 85.0,
+   "investor": 126.0,
    "saturated": [
     "news_local"
    ],
    "crowding_pct": 100
   },
   "co-nittobo": {
-   "total": 15.0,
+   "total": 20.0,
    "by_source": {
     "news_global": {
      "n": 2.0,
      "accel": null
     },
     "news_local": {
-     "n": 13.0,
+     "n": 18.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -196,22 +214,26 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 2.0,
    "saturated": [],
-   "crowding_pct": 19
+   "crowding_pct": 16
   },
   "tw-taiwanglass": {
-   "total": 48.0,
+   "total": 75.0,
    "by_source": {
     "news_global": {
      "n": 6.0,
      "accel": null
     },
     "news_local": {
-     "n": 41.0,
+     "n": 68.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -229,22 +251,26 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 7.0,
    "saturated": [],
-   "crowding_pct": 56
+   "crowding_pct": 48
   },
   "tw-emc": {
-   "total": 110.0,
+   "total": 114.0,
    "by_source": {
     "news_global": {
-     "n": 8.0,
+     "n": 10.0,
      "accel": null
     },
     "news_local": {
-     "n": 98.0,
+     "n": 97.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -260,24 +286,28 @@
      "accel": null
     },
     "sellside_events": {
+     "n": 3.0,
+     "accel": null
+    },
+    "telegram": {
      "n": 0.0,
      "accel": null
     }
    },
    "accel": null,
-   "investor": 12.0,
+   "investor": 14.0,
    "saturated": [],
-   "crowding_pct": 70
+   "crowding_pct": 71
   },
   "tw-tuc": {
-   "total": 96.0,
+   "total": 99.0,
    "by_source": {
     "news_global": {
-     "n": 6.0,
+     "n": 7.0,
      "accel": null
     },
     "news_local": {
-     "n": 89.0,
+     "n": 91.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -295,26 +325,30 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 7.0,
+   "investor": 8.0,
    "saturated": [],
-   "crowding_pct": 56
+   "crowding_pct": 61
   },
   "tw-iteq": {
-   "total": 93.0,
+   "total": 52.0,
    "by_source": {
     "news_global": {
      "n": 5.0,
      "accel": null
     },
     "news_local": {
-     "n": 73.0,
+     "n": 31.0,
      "accel": null
     },
     "seeking_alpha": {
-     "n": 13.0,
+     "n": 14.0,
      "accel": null
     },
     "substack": {
@@ -328,22 +362,26 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 20.0,
+   "investor": 21.0,
    "saturated": [],
    "crowding_pct": 81
   },
   "tw-gce": {
-   "total": 43.0,
+   "total": 45.0,
    "by_source": {
     "news_global": {
      "n": 8.0,
      "accel": null
     },
     "news_local": {
-     "n": 35.0,
+     "n": 37.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -361,12 +399,16 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 8.0,
    "saturated": [],
-   "crowding_pct": 63
+   "crowding_pct": 61
   },
   "kr-isupetasys": {
    "total": 40.0,
@@ -394,22 +436,26 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 5.0,
    "saturated": [],
-   "crowding_pct": 30
+   "crowding_pct": 32
   },
   "kr-doosan": {
-   "total": 100.0,
+   "total": 91.0,
    "by_source": {
     "news_global": {
      "n": 0.0,
      "accel": null
     },
     "news_local": {
-     "n": 100.0,
+     "n": 91.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -427,14 +473,16 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 0.0,
-   "saturated": [
-    "news_local"
-   ],
-   "crowding_pct": 4
+   "saturated": [],
+   "crowding_pct": 3
   },
   "jp-uniontool": {
    "total": 11.0,
@@ -462,6 +510,10 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
@@ -470,18 +522,18 @@
    "crowding_pct": 26
   },
   "jp-jxmetals": {
-   "total": 63.0,
+   "total": 42.0,
    "by_source": {
     "news_global": {
      "n": 10.0,
      "accel": null
     },
     "news_local": {
-     "n": 52.0,
+     "n": 32.0,
      "accel": null
     },
     "seeking_alpha": {
-     "n": 1.0,
+     "n": 0.0,
      "accel": null
     },
     "substack": {
@@ -495,12 +547,16 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 11.0,
+   "investor": 10.0,
    "saturated": [],
-   "crowding_pct": 67
+   "crowding_pct": 65
   },
   "jp-sumiden": {
    "total": 61.0,
@@ -510,7 +566,7 @@
      "accel": null
     },
     "news_local": {
-     "n": 41.0,
+     "n": 40.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -528,30 +584,34 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 1.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 20.0,
+   "investor": 21.0,
    "saturated": [],
    "crowding_pct": 81
   },
   "co-advantest": {
-   "total": 145.0,
+   "total": 152.0,
    "by_source": {
     "news_global": {
-     "n": 44.0,
+     "n": 43.0,
      "accel": null
     },
     "news_local": {
-     "n": 91.0,
+     "n": 98.0,
      "accel": null
     },
     "seeking_alpha": {
-     "n": 7.0,
+     "n": 6.0,
      "accel": null
     },
     "substack": {
-     "n": 3.0,
+     "n": 4.0,
      "accel": null
     },
     "research_feeds": {
@@ -561,12 +621,16 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 1.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 54.0,
    "saturated": [],
-   "crowding_pct": 96
+   "crowding_pct": 97
   },
   "jp-micronics": {
    "total": 15.0,
@@ -594,22 +658,26 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 6.0,
    "saturated": [],
-   "crowding_pct": 37
+   "crowding_pct": 35
   },
   "tw-winway": {
-   "total": 15.0,
+   "total": 34.0,
    "by_source": {
     "news_global": {
      "n": 2.0,
      "accel": null
     },
     "news_local": {
-     "n": 13.0,
+     "n": 32.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -625,6 +693,10 @@
      "accel": null
     },
     "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    },
+    "telegram": {
      "n": 0.0,
      "accel": null
     }
@@ -632,25 +704,25 @@
    "accel": null,
    "investor": 2.0,
    "saturated": [],
-   "crowding_pct": 19
+   "crowding_pct": 16
   },
   "tw-mpi": {
-   "total": 87.0,
+   "total": 42.0,
    "by_source": {
     "news_global": {
-     "n": 43.0,
+     "n": 3.0,
      "accel": null
     },
     "news_local": {
-     "n": 38.0,
+     "n": 39.0,
      "accel": null
     },
     "seeking_alpha": {
-     "n": 3.0,
+     "n": 0.0,
      "accel": null
     },
     "substack": {
-     "n": 3.0,
+     "n": 0.0,
      "accel": null
     },
     "research_feeds": {
@@ -660,22 +732,26 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 49.0,
+   "investor": 3.0,
    "saturated": [],
-   "crowding_pct": 93
+   "crowding_pct": 19
   },
   "tw-chpt": {
-   "total": 41.0,
+   "total": 36.0,
    "by_source": {
     "news_global": {
      "n": 7.0,
      "accel": null
     },
     "news_local": {
-     "n": 34.0,
+     "n": 29.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -691,6 +767,10 @@
      "accel": null
     },
     "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    },
+    "telegram": {
      "n": 0.0,
      "accel": null
     }
@@ -698,7 +778,7 @@
    "accel": null,
    "investor": 7.0,
    "saturated": [],
-   "crowding_pct": 56
+   "crowding_pct": 48
   },
   "tw-avc": {
    "total": 36.0,
@@ -726,6 +806,10 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
@@ -734,14 +818,14 @@
    "crowding_pct": 26
   },
   "tw-auras": {
-   "total": 20.0,
+   "total": 21.0,
    "by_source": {
     "news_global": {
      "n": 2.0,
      "accel": null
     },
     "news_local": {
-     "n": 18.0,
+     "n": 19.0,
      "accel": null
     },
     "seeking_alpha": {
@@ -759,18 +843,22 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 2.0,
    "saturated": [],
-   "crowding_pct": 19
+   "crowding_pct": 16
   },
   "tw-delta": {
-   "total": 138.0,
+   "total": 140.0,
    "by_source": {
     "news_global": {
-     "n": 24.0,
+     "n": 26.0,
      "accel": null
     },
     "news_local": {
@@ -792,14 +880,18 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
-   "investor": 38.0,
+   "investor": 40.0,
    "saturated": [
     "news_local"
    ],
-   "crowding_pct": 89
+   "crowding_pct": 90
   },
   "tw-bizlink": {
    "total": 37.0,
@@ -827,12 +919,16 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 7.0,
    "saturated": [],
-   "crowding_pct": 56
+   "crowding_pct": 48
   },
   "tw-lotes": {
    "total": 21.0,
@@ -860,26 +956,145 @@
     "sellside_events": {
      "n": 0.0,
      "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
     }
    },
    "accel": null,
    "investor": 1.0,
    "saturated": [],
-   "crowding_pct": 7
+   "crowding_pct": 6
   },
   "tw-kingslide": {
-   "total": 86.0,
+   "total": 78.0,
    "by_source": {
     "news_global": {
      "n": 7.0,
      "accel": null
     },
     "news_local": {
-     "n": 78.0,
+     "n": 70.0,
      "accel": null
     },
     "seeking_alpha": {
      "n": 1.0,
+     "accel": null
+    },
+    "substack": {
+     "n": 0.0,
+     "accel": null
+    },
+    "research_feeds": {
+     "n": 0.0,
+     "accel": null
+    },
+    "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    },
+    "telegram": {
+     "n": 0.0,
+     "accel": null
+    }
+   },
+   "accel": null,
+   "investor": 8.0,
+   "saturated": [],
+   "crowding_pct": 61
+  },
+  "tw-topoint": {
+   "total": 47.0,
+   "by_source": {
+    "telegram": {
+     "n": 0.0,
+     "accel": null
+    },
+    "news_global": {
+     "n": 5.0,
+     "accel": null
+    },
+    "news_local": {
+     "n": 42.0,
+     "accel": null
+    },
+    "seeking_alpha": {
+     "n": 0.0,
+     "accel": null
+    },
+    "substack": {
+     "n": 0.0,
+     "accel": null
+    },
+    "research_feeds": {
+     "n": 0.0,
+     "accel": null
+    },
+    "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    }
+   },
+   "accel": null,
+   "investor": 5.0,
+   "saturated": [],
+   "crowding_pct": 32
+  },
+  "co-isc": {
+   "total": 42.0,
+   "by_source": {
+    "telegram": {
+     "n": 0.0,
+     "accel": null
+    },
+    "news_global": {
+     "n": 32.0,
+     "accel": null
+    },
+    "news_local": {
+     "n": 7.0,
+     "accel": null
+    },
+    "seeking_alpha": {
+     "n": 0.0,
+     "accel": null
+    },
+    "substack": {
+     "n": 3.0,
+     "accel": null
+    },
+    "research_feeds": {
+     "n": 0.0,
+     "accel": null
+    },
+    "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    }
+   },
+   "accel": null,
+   "investor": 35.0,
+   "saturated": [],
+   "crowding_pct": 87
+  },
+  "co-leeno": {
+   "total": 33.0,
+   "by_source": {
+    "telegram": {
+     "n": 1.0,
+     "accel": null
+    },
+    "news_global": {
+     "n": 7.0,
+     "accel": null
+    },
+    "news_local": {
+     "n": 25.0,
+     "accel": null
+    },
+    "seeking_alpha": {
+     "n": 0.0,
      "accel": null
     },
     "substack": {
@@ -898,7 +1113,44 @@
    "accel": null,
    "investor": 8.0,
    "saturated": [],
-   "crowding_pct": 63
+   "crowding_pct": 61
+  },
+  "co-innio": {
+   "total": 52.0,
+   "by_source": {
+    "telegram": {
+     "n": 0.0,
+     "accel": null
+    },
+    "news_global": {
+     "n": 40.0,
+     "accel": null
+    },
+    "news_local": {
+     "n": 4.0,
+     "accel": null
+    },
+    "seeking_alpha": {
+     "n": 8.0,
+     "accel": null
+    },
+    "substack": {
+     "n": 0.0,
+     "accel": null
+    },
+    "research_feeds": {
+     "n": 0.0,
+     "accel": null
+    },
+    "sellside_events": {
+     "n": 0.0,
+     "accel": null
+    }
+   },
+   "accel": null,
+   "investor": 48.0,
+   "saturated": [],
+   "crowding_pct": 94
   }
  }
 }

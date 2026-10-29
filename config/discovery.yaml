@@ -17,9 +17,9 @@ themes:
     driver: "AI 서버·가속기 보드 출하 × 대당 MLCC 함량(개수·고용량 비중) × ASP"
     evidence: ["대만 MLCC 월매출(Yageo·Walsin)", "회사 결산 자료의 데이터센터·서버 용도 매출", "가동률·리드타임 발언(IR Q&A)"]
     candidates:
-      - {id: jp-taiyoyuden, name: Taiyo Yuden, market: jp, code: "6976", edge: 7, why: "고용량 MLCC 3강, 서버용 비중 상승 여지 — 무라타 대비 저평가 구간이 반복"}
-      - {id: jp-murata, name: Murata Manufacturing, market: jp, code: "6981", edge: 8, why: "MLCC 세계 1위·초소형 고용량 기술 선도 — 대형주라 10배 경로는 제한"}
-      - {id: tw-yageo, name: Yageo, local: "國巨", market: tw, code: "2327", edge: 6, why: "범용 MLCC·저항·탄탈 최대 — AI 서버용 탄탈·폴리머 커패시터(KEMET) 노출"}
+      - {id: jp-taiyoyuden, name: Taiyo Yuden, ko: ["다이요유덴", "타이요유덴"], market: jp, code: "6976", edge: 7, why: "고용량 MLCC 3강, 서버용 비중 상승 여지 — 무라타 대비 저평가 구간이 반복"}
+      - {id: jp-murata, name: Murata Manufacturing, ko: ["무라타"], market: jp, code: "6981", edge: 8, why: "MLCC 세계 1위·초소형 고용량 기술 선도 — 대형주라 10배 경로는 제한"}
+      - {id: tw-yageo, name: Yageo, local: "國巨", ko: ["야게오"], market: tw, code: "2327", edge: 6, why: "범용 MLCC·저항·탄탈 최대 — AI 서버용 탄탈·폴리머 커패시터(KEMET) 노출"}
       - {id: tw-walsintech, name: Walsin Technology, local: "華新科", market: tw, code: "2492", edge: 4, why: "범용 MLCC 2선 — 업황 지표용"}
       - {id: co-semco, name: Samsung Electro-Mechanics, local: "삼성전기", market: kr, code: "009150", edge: 7, why: "고용량 MLCC 2위권 + FC-BGA — AI 서버 함량 증가 직접 수혜"}
   - id: glasscloth
@@ -28,7 +28,7 @@ themes:
     driver: "AI 가속기·스위치 기판 면적 × 층수 × 특수 유리섬유 사용 비율"
     evidence: ["니토보 결산 자료의 스페셜티 유리 매출·가동률", "기판사(이비덴·유니마이크론) 원재료 조달 발언", "대만 CCL 월매출"]
     candidates:
-      - {id: co-nittobo, name: Nitto Boseki, market: jp, code: "3110", edge: 9, why: "T-glass(저열팽창)·NE-glass(저유전) 사실상 독점 — 증설 속도가 곧 업계 병목"}
+      - {id: co-nittobo, name: Nitto Boseki, ko: ["닛토보", "니토보"], market: jp, code: "3110", edge: 9, why: "T-glass(저열팽창)·NE-glass(저유전) 사실상 독점 — 증설 속도가 곧 업계 병목"}
       - {id: tw-taiwanglass, name: Taiwan Glass, local: "台玻", market: tw, code: "1802", edge: 4, why: "대만 유리섬유 — 저유전 품목 진입 여부가 관건(미확인)"}
   - id: ccl_pcb
     name: 고층 PCB·고성능 CCL(M8~M9급)
@@ -39,35 +39,39 @@ themes:
       - {id: tw-emc, name: Elite Material, local: "台光電", market: tw, code: "2383", edge: 8, why: "AI 가속기·스위치용 초저손실 CCL 1위권"}
       - {id: tw-tuc, name: Taiwan Union Technology, local: "台燿", market: tw, code: "6274", edge: 6, why: "고속 CCL 2선 — 신규 인증 확대 여부"}
       - {id: tw-iteq, name: ITEQ, local: "聯茂", market: tw, code: "6213", edge: 5, why: "고속 CCL — 점유율 변동성"}
-      - {id: tw-gce, name: Gold Circuit Electronics, local: "金像電", market: tw, code: "2368", edge: 7, why: "AI 서버·스위치 고층 PCB"}
+      - {id: tw-gce, name: Gold Circuit Electronics, local: "金像電", ko: ["골드서킷"], market: tw, code: "2368", edge: 7, why: "AI 서버·스위치 고층 PCB"}
       - {id: kr-isupetasys, name: Isu Petasys, local: "이수페타시스", market: kr, code: "007660", edge: 7, why: "북미 스위치·가속기 고층 PCB"}
-      - {id: kr-doosan, name: Doosan(전자BG), local: "두산전자", market: kr, code: "000150", edge: 6, why: "AI 가속기용 CCL — 지주회사 구조로 순수 노출 희석"}
+      - {id: kr-doosan, name: Doosan(전자BG), local: "두산전자", ko: ["두산 전자BG"], market: kr, code: "000150", edge: 6, why: "AI 가속기용 CCL — 지주회사 구조로 순수 노출 희석"}
   - id: pcbdrill
     name: PCB 초소경 드릴
     bottleneck: "고층·고밀도 AI 보드는 드릴 비트 마모가 커 소모량이 급증 — 초소경 고경도 비트는 소수 업체"
     driver: "AI 보드 층수·홀 수 × 비트 수명 단축 × ASP"
     evidence: ["유니온툴 결산의 드릴 매출·수주", "대만 PCB 업체 증설", "가동률 발언"]
     candidates:
-      - {id: jp-uniontool, name: Union Tool, market: jp, code: "6278", edge: 8, why: "PCB 초소경 드릴 세계 1위 — AI 고층 PCB 소모품, 레버리지 큼"}
+      - {id: jp-uniontool, name: Union Tool, ko: ["유니온툴"], market: jp, code: "6278", edge: 8, why: "PCB 초소경 드릴 세계 1위 — AI 고층 PCB 소모품, 레버리지 큼"}
+      - {id: tw-topoint, name: Topoint Technology, local: "尖點", market: tw, code: "8021", edge: 5, why: "대만 PCB 마이크로 드릴 비트 + 드릴 가공 서비스 — 유니온툴 2선, 2026-10-29 시총 NT$635억·EV/매출 11배로 이미 높게 평가(easyconomics company_profile)"}
   - id: targets_inp
     name: 스퍼터링 타깃·InP 기판(광·첨단 공정 소재)
     bottleneck: "첨단 공정 스퍼터링 타깃과 광 트랜시버용 인화인듐(InP) 기판은 일본 소수 업체 — 1.6T 광모듈·CPO 확대로 InP 수요 급증"
     driver: "첨단 웨이퍼 투입량 × 타깃 소모 / 광 트랜시버 출하 × 레이저·수광 소자 수"
     evidence: ["JX금속 결산의 반도체 소재·InP 매출", "광모듈사(코히런트·루멘텀) 부품 조달 발언", "증설 적시공시"]
     candidates:
-      - {id: jp-jxmetals, name: JX Advanced Metals, market: jp, code: "5016", edge: 8, why: "반도체 스퍼터링 타깃 세계 1위 + InP 기판 — 2025 상장 신규주"}
-      - {id: jp-sumiden, name: Sumitomo Electric, market: jp, code: "5802", edge: 6, why: "InP 기판·광 부품 + 전선 — 대형 복합주라 희석"}
+      - {id: jp-jxmetals, name: JX Advanced Metals, ko: ["JX금속", "JX어드밴스드메탈"], market: jp, code: "5016", edge: 8, why: "반도체 스퍼터링 타깃 세계 1위 + InP 기판 — 2025 상장 신규주"}
+      - {id: jp-sumiden, name: Sumitomo Electric, ko: ["스미토모전공", "스미토모전기"], market: jp, code: "5802", edge: 6, why: "InP 기판·광 부품 + 전선 — 대형 복합주라 희석"}
   - id: probe_test
     name: AI 칩·HBM 테스트·프로브 카드
     bottleneck: "HBM·대형 AI 칩은 테스트 시간·핀 수가 폭증 — 프로브 카드·소켓·테스터 수요가 칩 출하보다 빨리 늘어남"
     driver: "AI 칩·HBM 출하 × 테스트 단계·시간 × 소모품 교체"
     evidence: ["어드반테스트 수주", "대만 테스트 소켓·프로브 월매출(WinWay·MPI·CHPT)", "HBM 세대 전환 발언"]
     candidates:
-      - {id: co-advantest, name: Advantest, market: jp, code: "6857", edge: 9, why: "SoC·HBM 테스터 과점 — 대형주"}
+      - {id: co-advantest, name: Advantest, ko: ["어드반테스트", "아드반테스트"], market: jp, code: "6857", edge: 9, why: "SoC·HBM 테스터 과점 — 대형주"}
       - {id: jp-micronics, name: Micronics Japan, market: jp, code: "6871", edge: 7, why: "메모리용 프로브 카드 — HBM 테스트 수혜"}
-      - {id: tw-winway, name: WinWay Technology, local: "穎崴", market: tw, code: "6515", edge: 6, why: "AI 칩 테스트 소켓"}
+      - {id: tw-winway, name: WinWay Technology, local: "穎崴", ko: ["윈웨이"], market: tw, code: "6515", edge: 6, why: "AI 칩 테스트 소켓"}
       - {id: tw-mpi, name: MPI Corporation, local: "旺矽", market: tw, code: "6223", edge: 6, why: "프로브 카드·프로버"}
       - {id: tw-chpt, name: Chunghwa Precision Test, local: "中華精測", market: tw, code: "6510", edge: 6, why: "프로브 카드"}
+      # 2026-10-29 19:45 추가 — 신호: ASE 3Q26 6-K 테스트 장비 CAPEX 10.67억$ ≈ 테스트 매출의 129%(Chiip 계산). ASE→두 회사 공급 관계는 미확인.
+      - {id: co-isc, name: ISC, local: "아이에스시", market: kr, code: "095340", edge: 6, why: "실리콘 러버 테스트 소켓 — 최근 4분기 매출 2,202억 원(+26%)·영업이익률 27%(easyconomics/DART 2026-10-29), 시총 구간 확인 필요"}
+      - {id: co-leeno, name: Leeno Industrial, local: "리노공업", market: kr, code: "058470", edge: 5, why: "포고핀·테스트 소켓 — 매출 3,725억 원(+34%)·영업이익률 48%(easyconomics/DART 2026-10-29), 시총 상한(2조 원) 초과 가능성 — 미확인"}
   - id: thermal_power
     name: 액체 냉각·전력 공급
     bottleneck: "랙당 전력 100kW+ — 수랭 콜드플레이트·CDU와 48V·HVDC 전원 공급장치가 랙 출하의 병목"
@@ -76,16 +80,23 @@ themes:
     candidates:
       - {id: tw-avc, name: Asia Vital Components, local: "奇鋐", market: tw, code: "3017", edge: 7, why: "AI 서버 수랭·공랭 모듈"}
       - {id: tw-auras, name: Auras Technology, local: "雙鴻", market: tw, code: "3324", edge: 6, why: "콜드플레이트"}
-      - {id: tw-delta, name: Delta Electronics, local: "台達電", market: tw, code: "2308", edge: 8, why: "AI 랙 전원·냉각 — 대형주"}
+      - {id: tw-delta, name: Delta Electronics, local: "台達電", ko: ["델타전자", "델타일렉트로닉스"], market: tw, code: "2308", edge: 8, why: "AI 랙 전원·냉각 — 대형주"}
+  - id: onsite_power
+    name: 데이터센터 현장 발전(왕복동 가스엔진·발전기)
+    bottleneck: "전력망 접속 대기 — 데이터센터가 현장 가스엔진·발전기로 주전원·브리지 전원을 직접 확보"
+    driver: "전력망 접속 대기 GW × 현장 발전 채택률 × $/kW"
+    evidence: ["캐터필러 3Q26 8-K Ex.99.1: Power Generation 매출 34.21억$(+30%), '주로 데이터센터' 대형 왕복동 엔진 — 증설 언급 없음", "INNIO 수주잔고·B/B(감시 카드 TB-20261029-INIO)"]
+    candidates:
+      - {id: co-innio, name: INNIO N.V., local: "INNIO (Jenbacher)", market: us, code: "INIO", edge: 6, why: "왕복동 가스엔진 — 텐배거 감시 중(TB-20261029-INIO), 10배 경로는 캐파 3배 필요"}
   - id: interconnect_mech
     name: 고속 케이블·커넥터·슬라이드 레일
     bottleneck: "랙 내부 구리 연결(AEC·커넥터)과 중량 랙용 레일 — 인증 공급사 소수"
     driver: "AI 랙 출하 × 랙당 케이블·커넥터·레일 함량"
     evidence: ["대만 월매출(BizLink·Lotes·King Slide)", "랙 공급망 보도(원문)"]
     candidates:
-      - {id: tw-bizlink, name: BizLink, local: "貿聯", market: tw, code: "3665", edge: 6, why: "AI 랙 고속 케이블(AEC)"}
+      - {id: tw-bizlink, name: BizLink, local: "貿聯", ko: ["비즈링크"], market: tw, code: "3665", edge: 6, why: "AI 랙 고속 케이블(AEC)"}
       - {id: tw-lotes, name: Lotes, local: "嘉澤", market: tw, code: "3533", edge: 6, why: "CPU·GPU 소켓 커넥터"}
-      - {id: tw-kingslide, name: King Slide, local: "川湖", market: tw, code: "2059", edge: 6, why: "서버 슬라이드 레일 — 고마진"}
+      - {id: tw-kingslide, name: King Slide, local: "川湖", ko: ["킹슬라이드"], market: tw, code: "2059", edge: 6, why: "서버 슬라이드 레일 — 고마진"}
 
 code_verified: false
 
@@ -99,8 +110,24 @@ attention:
     substack: {enabled: true, note: "Google News 색인(site:substack.com) + config/research_watch.yaml 공개 RSS 본문 제목·요약에서 회사명 언급"}
     reddit: {enabled: true, note: "ApeWisdom 공개 API(미국 티커만)"}
     sellside_events: {enabled: true, note: "회사 원문 공시 속 증권사 투자자 행사 초청·법인설명회 수(대만 重大訊息·일본 적시공시) — IB 커버리지 관심의 선행 신호"}
-    x: {enabled: false, note: "CLAUDE.md 제외 원천(X API) — 마스터 승인 시 공식 API 집계 수만(본문 저장 안 함)"}
-    telegram: {enabled: false, note: "CLAUDE.md 제외 원천(텔레그램 자동 수집) — 마스터 승인 시 공개 채널 웹 미리보기의 회사명 언급 수만(본문 저장 안 함)"}
+    # X·텔레그램 — 2026-10-29 마스터 허용(ADR-011): 회사명 언급 수만. 글 본문·작성자·계정은 저장하지 않는다.
+    x:
+      enabled: true
+      key_env: X_BEARER_TOKEN   # D:\local-only\secrets\.env — 입력 전엔 건너뜀(TODO 21-3과 같은 키)
+      monthly_cap: 1500         # 이번 달 요청 수 상한(≈ $7.5) — 닿으면 멈춤
+      note: "X 공식 API Counts: Recent(GET /2/tweets/counts/recent) — 종목당 하루 1요청 $0.005(2026-10-29 공식 가격표, 30종목 ≈ 월 $4.5). 글 본문은 받지 않는다. 타임라인 본문 수집(src-research-x)은 별도 승인 대기"
+    telegram:
+      enabled: true
+      max_pages: 25             # 채널당 7일을 거슬러 읽는 최대 쪽 수(쪽당 약 20글, 요청 사이 1초)
+      note: "공개 채널 웹 미리보기(t.me/s/<핸들>, robots.txt 없음 2026-10-29 확인)에서 회사명이 나온 글 수만 — 본문은 메모리에서 세고 버림. 비공개 그룹·봇 API·계정 로그인 사용 금지"
+      # 2026-10-29 t.me/s로 실재·최근 활동 확인한 공개 채널만. 마스터가 핸들을 알려주면 추가(Dean's Ticker 등 — 추측 금지)
+      channels:
+        - {handle: HanaResearch, name: "하나증권 리서치", kind: 셀사이드, verified: 2026-10-29}
+        - {handle: KiwoomResearch, name: "키움증권 리서치센터", kind: 셀사이드, verified: 2026-10-29}
+        - {handle: ShinhanResearch, name: "신한 리서치", kind: 셀사이드, verified: 2026-10-29}
+        - {handle: SKSResearch, name: "SK증권 Research", kind: 셀사이드, verified: 2026-10-29}
+        - {handle: ihresearch, name: "IH Research", kind: 개인 리서치(운영자 미확인), verified: 2026-10-29}
+        - {handle: mojotrick, name: "MojoTrick.com | Semiconductors", kind: 반도체 큐레이션(마지막 글 2026-08-18), verified: 2026-10-29}
 
 # 선별 점수 가중치(사전값 — 주간·월간 성과로 피팅, knowledge/models/params/registry.yaml에 등록 대상)
 scoring:

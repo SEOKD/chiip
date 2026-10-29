@@ -1898,9 +1898,9 @@ source: docs/methodology
 ### 21.6 개정 4 — 원천 조정 (§11.4·§12.2·§13 보강) → ADR-005
 | 원천 | 처리 |
 |---|---|
-| X(트위터) API | 제외(유료). 마스터 큐레이션 계정 수동 확인만 |
+| X(트위터) API | 제외(유료). 마스터 큐레이션 계정 수동 확인만 **(2026-10-29 개정 → §21.34: 관심도 언급 수 집계만 허용)** |
 | Reddit | 공식 API 대신 **공개 서브레딧 RSS만**. 약관 재확인 후 사용 |
-| 텔레그램 채널 자동 수집 | 제외. 개인 계정(MTProto) 접속 금지. 봇은 알림 발송 전용 |
+| 텔레그램 채널 자동 수집 | 제외. 개인 계정(MTProto) 접속 금지. 봇은 알림 발송 전용 **(2026-10-29 개정 → §21.34: 공개 채널 웹 미리보기의 회사명 언급 수 집계만 허용)** |
 | ImportYeti·TechPowerUp·벤더 QVL 페이지 | 자동 수집 제외. 마스터 수동 확인 또는 공식 API·명시적 허용 확인 시에만 |
 | 미국 주·카운티·시 원천 | §13.1 1차 거점(오스틴·테일러·웨스트라피엣) 관할부터. 해당 관할이 실제 쓰는 플랫폼을 먼저 확인하고 그 어댑터만 구현, 나머지 관할은 수동 |
 | CNINFO·EIASS·지자체 고시 | 3·4단계에서 접근 가능성(해외 IP 차단·robots.txt) 시험 후 결정. 불가 시 로컬 실행 또는 수동 |
@@ -2073,9 +2073,16 @@ source: docs/methodology
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
 
+### 21.34 X·텔레그램 관심도 집계 허용 (2026-10-29 마스터 "허용" — 질문: "X·텔레그램 관심도 집계(회사명 언급 수만, 본문 저장 없음)를 허용하시겠습니까?") → ADR-011
+- 범위: Chiip Ten-bagger Discovery 후보·커버리지 종목의 **회사명 언급 수만**(`radar/attention.py`, 하루 1회). 글 본문·작성자·계정 목록은 저장하지 않는다 — 본문은 메모리에서 세고 버린다. `src-research-x`(X 타임라인 본문 수집)는 이 허용에 포함되지 않아 꺼진 채 TODO 21-3 대기.
+- X: 공식 API Counts: Recent(`GET https://api.x.com/2/tweets/counts/recent`, Bearer, query ≤ 4096자, start_time 최근 7일 안, 응답 `data[].post_count`·`meta.total_post_count` — 2026-10-29 공식 문서 확인). 종목당 하루 1요청 $0.005(2026-10-29 공식 가격표) → 30종목 ≈ 월 $4.5, 상한 `monthly_cap` 1,500요청. 질의 = 영문명·현지명·한국어 표기(`ko`)를 OR, 미국 종목은 $티커, 리트윗 제외. 키(`X_BEARER_TOKEN`) 입력 전엔 건너뛴다.
+- 텔레그램: 공개 채널 웹 미리보기 `t.me/s/<핸들>`(robots.txt 없음, 2026-10-29 확인)을 채널당 한 번 7일 거슬러(`?before=`, 요청 사이 1초) 읽어 별칭이 나온 글 수를 센다. 채널은 `config/discovery.yaml` `attention.sources.telegram.channels` — 실재·활동을 확인한 공개 채널만(첫 목록: 하나·키움·신한·SK증권 리서치, IH Research, MojoTrick), 추측 핸들 금지, 마스터가 추가. 봇 API·MTProto·비공개 그룹 사용 금지.
+- 별칭 매칭: 영문은 단어 경계·대소문자 무시, 4자 이하 영문(ISC·ITEQ 등)은 오탐 때문에 제외. 한·중·일 표기는 부분 문자열.
+- 쏠림(crowding) 계산의 투자자 원천에 x·telegram을 넣었다. 첫 실측(2026-10-29, 5개 채널 357글): 삼성전기 16·Yageo 5·스미토모전공·Advantest·리노공업 각 1 — 국내 셀사이드 채널이라 한국 종목 쪽으로 기울어 있다(해석 시 주의).
+
 ### 21.33 Chiip Ten-bagger Discovery·영어 표기 (2026-10-29 마스터 지시 "Chiip 펄스를 Chiip Pulse로, 나머지도 영어로", "Taiyo Yuden·JX Advanced Metals·Nitto Boseki·Yageo·Union Tool 같은 엣지 AI 밸류체인 종목 발굴 — 원문 팔로업·실적·텐배거 리포트, 커뮤니티 관심도, 글로벌 IB의 접근법·의사결정 답습")
 - 텔레그램 기능 이름 영어: `notify.LABELS`(Chiip Pulse·Portfolio·Ten-bagger Report·News Digest·View·Alerts·Discovery 등)가 발송 직전 변환.
-- 발굴 엔진: `config/discovery.yaml`(AI 서버 BOM 병목 8테마 — MLCC·저유전 유리섬유·고층 PCB/CCL·PCB 드릴·타깃/InP·테스트/프로브·냉각/전력·케이블/커넥터/레일, 후보 27개 일·대만·한국, edge 판단·현지명) → `radar/attention.py`(매일: 글로벌·현지 언론, Seeking Alpha·Substack 색인, 공개 리서치 RSS, **IB 행사 초청 공시**, 레딧 — 가속·쏠림; X·텔레그램은 CLAUDE.md 제외 원천이라 꺼 둠) → `scripts/discovery/screen.py`(IB식 단계 관문: 아이디어→선별→심층 대기열→위원회 메모(원문 증거 2개+·변이 관점·촉매·킬 조건·red-team)→커버리지 편입) → `config/coverage.yaml` → 원문 팔로업(대만 `src-tw-disclosure` TWSE 重大訊息 + 사건 규칙, 일본 적시공시·IR Q&A) · 실적(3단 양식) · 텐배거 리포트 대기열(`pick_report` 커버리지 우선). 방법 `knowledge/methods/discovery_ib_process.md`, Chiip Ten-bagger 기능의 발굴 단계(일요일 첫 회차, `docs/tasks/chiip-tenbagger.md` — 마스터 지시 2026-10-29 '발굴 엔진은 Ten-bagger 기능에').
+- 발굴 엔진: `config/discovery.yaml`(AI 서버 BOM 병목 8테마 — MLCC·저유전 유리섬유·고층 PCB/CCL·PCB 드릴·타깃/InP·테스트/프로브·냉각/전력·케이블/커넥터/레일, 후보 27개 일·대만·한국, edge 판단·현지명) → `radar/attention.py`(매일: 글로벌·현지 언론, Seeking Alpha·Substack 색인, 공개 리서치 RSS, **IB 행사 초청 공시**, 레딧 — 가속·쏠림; X·텔레그램은 CLAUDE.md 제외 원천이라 꺼 둠 → §21.34로 언급 수 집계 허용) → `scripts/discovery/screen.py`(IB식 단계 관문: 아이디어→선별→심층 대기열→위원회 메모(원문 증거 2개+·변이 관점·촉매·킬 조건·red-team)→커버리지 편입) → `config/coverage.yaml` → 원문 팔로업(대만 `src-tw-disclosure` TWSE 重大訊息 + 사건 규칙, 일본 적시공시·IR Q&A) · 실적(3단 양식) · 텐배거 리포트 대기열(`pick_report` 커버리지 우선). 방법 `knowledge/methods/discovery_ib_process.md`, Chiip Ten-bagger 기능의 발굴 단계(일요일 첫 회차, `docs/tasks/chiip-tenbagger.md` — 마스터 지시 2026-10-29 '발굴 엔진은 Ten-bagger 기능에').
 
 ### 21.32 일본 IR 질의응답·멀티플 엔진·실적 3단 양식 (2026-10-29 마스터 지시)
 - **일본 IR 질의응답**("easyconomics에는 일본 어닝콜이 없다 — 일본판 IR 페이지의 Q&A 전문을 가져와 분석"): `config/jp_ir.yaml`(45개사 도메인·IR 페이지) → `radar/pollers/jp_ir_qa.py`(src-jp-ir-qa, 6시간, robots 매회 확인·1초 간격, 영문 경로 제외, 決算説明会 質疑応答류 탐지, PDF는 pdftotext, 원문 텍스트는 radar/inbox/jp_qa/만) → 펄스 ⑥ IR 질의응답(🎙, 직전 Q&A 대비 분석, outputs/report/jp_qa/) → 텐배거 데이터 묶음 일본 종목 call.
