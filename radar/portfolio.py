@@ -251,6 +251,15 @@ def upcoming(today, days=14):
 
 
 # ---------- 회차 ----------
+def calendar_due(now):
+    """어닝 캘린더의 Fiscal.ai 일정 파일을 오늘 아직 받지 않았으면 True(05시 이후) — 모델이 --fiscal-code → execute_code → --fiscal-put"""
+    try:
+        from markets import earnings_calendar as ec
+        return ec.fiscal_due(now)
+    except Exception:
+        return False
+
+
 def is_daily(now, st):
     """데일리 = 화~토(미국 월~금 장 마감 다음 날 아침) 07시 이후 그날 첫 회차"""
     return now.weekday() in (1, 2, 3, 4, 5) and now.hour >= 7 and st.get("daily_day") != now.date().isoformat()
@@ -331,8 +340,9 @@ def run(now=None):
     daily = is_daily(now, st)
     earnings_hit = sorted({i["ticker"] for i in items if i.get("kind") == "공시" and "2.02" in (i.get("items") or "")})
     common.save_state(STATE, st)
+    cal = " · 실적 일정 갱신" if calendar_due(now) else ""   # Fiscal.ai events_calendar — 모델 몫(2026-10-30)
     if not items and not daily:
-        return None, f"[포트폴리오] 새 자료 없음({len(hs)}종목)" + (f" · 실패 {errors}" if errors else "") + " → 종료"
+        return None, f"[포트폴리오] 새 자료 없음({len(hs)}종목)" + (f" · 실패 {errors}" if errors else "") + cal + (" → 일정만" if cal else " → 종료")
 
     items.sort(key=lambda i: (-i.get("score", 0), i.get("ticker") or ""))
     OUT.mkdir(parents=True, exist_ok=True)
@@ -353,7 +363,7 @@ def run(now=None):
         by[i["kind"]] = by.get(i["kind"], 0) + 1
     rel = path.relative_to(common.ROOT).as_posix()
     return path, (f"[포트폴리오] {len(hs)}종목 · 새 자료 {len(items)}건 {by}" + (" · 데일리" if daily else "") +
-                  (f" · 실적 공시 {earnings_hit}" if earnings_hit else "") + f" → {rel}" + (f" · 실패 {errors}" if errors else ""))
+                  (f" · 실적 공시 {earnings_hit}" if earnings_hit else "") + cal + f" → {rel}" + (f" · 실패 {errors}" if errors else ""))
 
 
 def end():

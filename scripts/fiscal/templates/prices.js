@@ -3,7 +3,10 @@ async () => {
   // 출력 텍스트를 파일로 저장 → py scripts/fiscal/adapter.py --ohlcv <id> <파일>
   const k = "__KEY__";
   const px = await codemode.company_stock_prices({ companyKey: k });
-  const rows = (px.prices || []).filter(p => p.closePrice != null).sort((a, b) => a.date < b.date ? -1 : 1);
+  let rows = (px.prices || []).filter(p => p.closePrice != null).sort((a, b) => a.date < b.date ? -1 : 1);
+  // 미확정 마지막 봉 제외 — 장중·당일 행은 거래량이 수백 주로 온다(거래량 < 직전 20일 중앙값의 1%면 버린다)
+  const med = a => { const s = a.slice().sort((x, y) => x - y); return s.length ? s[Math.floor(s.length / 2)] : 0; };
+  if (rows.length > 21 && (rows[rows.length - 1].volume || 0) < 0.01 * med(rows.slice(-21, -1).map(p => p.volume || 0))) rows = rows.slice(0, -1);
   const r2 = x => x == null ? "" : Math.round(x * 100) / 100;
   const daily = rows.slice(-260).map(p => {
     const o = p.openPrice == null ? p.closePrice : p.openPrice;
