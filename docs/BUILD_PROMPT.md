@@ -2073,6 +2073,13 @@ source: docs/methodology
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
 
+### 21.45 일본 결산설명회 Q&A 확보 절차 — 지시문 A·B·출처 등급 (2026-10-30 마스터 지시, 지시문 A(공식 IR)·B(대체 경로) 원문 제공)
+- 절차 문서 `knowledge/methods/jp_ir_qa_procedure.md`. 우선순위 Q&A > 전문 > 요지 > 영상·음성, 説明会資料·決算短信은 항상 함께. 일본어판·영문판 모두.
+- 출처 등급 A 회사 원문 / B 회사 편집 요지 / C 제3자 전사(로그미 등) / D 자체 전사 / E 언론 재구성. **가이던스·수치는 A·B로만 확정**, C~E는 톤·맥락.
+- 수집기 `radar/pollers/jp_ir_qa.py`: tier_of·scan_page(등급·언어·외부 전사·자료)·로그미 추적·IR 프로필(`radar/state/jp_ir_profile.json`)·자료는 있는데 Q&A 없으면 +3·+7영업일 재확인(도쿄증권거래소 휴장일 `config/jp_ir.yaml holidays`) → 둘 다 없으면 'Q&A 미게재 — 지시문 B 대상' 항목.
+- 지시문 B(B1~B10)는 펄스 ⑥에서 모델이 수행. 접근 판정: MarketScreener 403(쓰지 않음)·Seeking Alpha 색인 제목만·닛케이 유료벽 우회 금지·株探 기사 페이지만·YouTube 내려받기 금지. B9 IR 문의는 메일 초안만(발송은 마스터).
+- 노션 '일본 IR 프로필' DB(치입 인텔리전스 허브, `config/notion.yaml jp_ir_profile`)를 모델이 동기화. D등급 자체 전사는 음성 인식 도구 승인 후(TODO_MASTER).
+
 ### 21.44 데이터 원천 = Fiscal.ai(MCP), easyconomics 퇴역 (2026-10-30 마스터 지시 "Chiip Pulse·Portfolio·Ten-bagger·Reporter·Analysis·Notion Tracker·Model Laboratory·Proviser·Weekly Review는 이제 앞으로 Easyconomics를 쓰지 말고 Fiscal.ai만 MCP로 연결해 써라. 7가지 기능을 모두 쓰도록 하라. 지금부터 시스템 엔진 아키텍처에 이를 전부 반영하라") → ADR-012
 - 데이터 계약 `knowledge/methods/data_fiscal.md`: ① 뉴스(company_news·top_news·news_summary, 중요도 1~5) ② 컨센서스(Zacks analyst_estimates·5년 history·ratings + Fiscal estimates·가이던스 출처) ③ 재무·세그먼트·일별 배수·일봉·주식 수 ④ IR 이벤트·트랜스크립트(화자·Q&A)·events_calendar·earnings_summary ⑤ 13F·내부자 ⑥ 펀드 레터 ⑦ 피어(세그먼트)·Fiscal 포트폴리오(읽기 전용) → 9개 기능별 사용 표.
 - 본보기 `scripts/fiscal/templates/`(fundamentals·prices·news·consensus·holders·fund_letters·transcript_qa — PWR로 실측 2026-10-30) → `scripts/fiscal/adapter.py`(--fund·--ohlcv·--key), 회사 키 캐시 `config/fiscal_keys.yaml`. `levels.py`는 장기 월봉(ohlcv_m.csv, 최근 60개월)으로 월봉 스윙, 고가·저가 근사 표기.

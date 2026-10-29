@@ -35,3 +35,30 @@ class TestQaLinks(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestProcedureA(unittest.TestCase):
+    """지시문 A(2026-10-30) — 우선순위·출처 등급·외부 전사·게재 시차"""
+    HTML = ('<a href="/ir/qa_2q.pdf">決算説明会 主な質疑応答</a><a href="/ir/script.pdf">決算説明会 スクリプト付き資料</a>'
+            '<a href="/ir/slides.pdf">決算説明会資料</a><a href="https://finance.logmi.jp/articles/1">ログミーFinance</a>'
+            '<a href="https://www.youtube.com/watch?v=x">決算説明会 動画</a><a href="/en/ir/qa_e.pdf">Q&A summary earnings briefing</a>'
+            '<a href="/faq/">よくあるご質問</a>')
+
+    def test_scan_tiers_and_grades(self):
+        from pollers import jp_ir_qa as j
+        s = j.scan_page(self.HTML, "https://www.example.co.jp/ir/library/")
+        d = s["docs"]
+        self.assertEqual(d["https://www.example.co.jp/ir/qa_2q.pdf"][:3], (1, "Q&A", "B"))       # 主な質疑応答 = 회사 편집 요지
+        self.assertEqual(d["https://www.example.co.jp/ir/script.pdf"][2], "A")                   # 스크립트 = 회사 원문(발표부)
+        self.assertEqual(d["https://www.example.co.jp/en/ir/qa_e.pdf"][4], "en")                 # 영문판도 본다
+        self.assertIn("https://www.example.co.jp/ir/slides.pdf", s["materials"])
+        self.assertIn("https://finance.logmi.jp/articles/1", s["external"])
+        self.assertFalse(any("faq" in u for u in d))                                              # 일반 FAQ 제외
+        p = j.profile_of("x", s)
+        self.assertEqual(p["qa_format"], "요지")
+        self.assertIn("로그미", p["external"])
+
+    def test_business_days_skip_tse_holidays(self):
+        from datetime import date
+        from pollers import jp_ir_qa as j
+        self.assertEqual(j.add_bdays(date(2026, 10, 30), 3, ["2026-11-03"]), date(2026, 11, 5))   # 금 → 월·수·목(11/3 휴장)

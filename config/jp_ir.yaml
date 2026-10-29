@@ -8,6 +8,8 @@ seeds: ["/ir/", "/ja/ir/", "/jp/ir/", "/ir/library/", "/ja/ir/library/", "/jp/ir
         "/ja/investors/", "/ir/index.html", "/company/ir/", "/corporate/ir/"]
 # 2026-10-29 첫 탐색: Q&A 발견 15곳(도쿄일렉트론·도쿄정밀·후루카와전공·신에츠·미쓰비시전기·어드반테스트·SCREEN·에바라·TDK·르네사스·TOWA·레조낙 등),
 # IR 페이지는 있으나 Q&A 0건 16곳(공개 안 함 또는 탐색 실패 — 주간 발굴 회차에서 모델이 회사 IR 페이지를 직접 보고 ir_pages를 채운다), IR 페이지 0건 7곳(경로 추정값 입력).
+# 도쿄증권거래소 휴장일(게재 시차 영업일 계산용 — 확인된 날짜만, 매년 갱신)
+holidays: ["2026-11-03", "2026-11-23", "2026-12-31", "2027-01-01", "2027-01-11", "2027-02-11", "2027-02-23"]
 companies:
   co-tel: {site: "https://www.tel.co.jp"}
   co-advantest: {site: "https://www.advantest.com"}

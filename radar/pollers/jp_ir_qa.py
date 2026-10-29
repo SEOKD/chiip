@@ -38,6 +38,73 @@ QA_EXCLUDE_RE = re.compile(r"よくあるご質問|よくある質問|株主様�
 IR_PAGE_RE = re.compile(r"IR(資料|ライブラリ|ライブラリー|イベント|情報)|決算説明|説明会|決算短信|プレゼンテーション|投資家情報|株主・投資家|/ir/|investors", re.I)
 ENGLISH_PATH_RE = re.compile(r"/(en|english|global)(/|$)|_e\.pdf$|-en\.pdf$|/eng/", re.I)
 MAX_FETCH_DISCOVER = 10
+# 마스터 지시문 A(2026-10-30) — 자료 우선순위와 출처 등급(A 회사 원문·스크립트 / B 회사 편집 요지 / C 제3자 전사 / D 자체 전사 / E 보도 재구성)
+TRANSCRIPT_RE = re.compile(r"書き起こし|全文|スクリプト|transcript|presentation with script", re.I)
+SUMMARY_RE = re.compile(r"要旨|概要|summary", re.I)
+VIDEO_RE = re.compile(r"動画|音声|配信|オンデマンド|webcast|audio|youtube\.com|youtu\.be|\.mp4", re.I)
+MATERIAL_RE = re.compile(r"説明会資料|プレゼンテーション資料|決算短信|決算補足|補足資料|presentation material|supplementary", re.I)
+EXTERNAL_RE = re.compile(r"finance\.logmi\.jp|logmi\.jp|scriptsasia|youtube\.com|youtu\.be", re.I)
+TIERS = {1: ("Q&A", "B"), 2: ("전문·스크립트", "A"), 3: ("요지", "B"), 4: ("영상·음성", "D")}
+RECHECK_BDAYS = (3, 7)   # 게재 시차 — 설명회 자료가 나온 뒤 +3·+7영업일에 Q&A 재확인, 둘 다 없으면 지시문 B(대체 경로)로
+
+
+def tier_of(hay):
+    """링크 앵커+주소 → (등급 번호, 이름, 출처 등급) 또는 None. 1 Q&A > 2 전문 > 3 요지 > 4 영상"""
+    if QA_EXCLUDE_RE.search(hay):
+        return None
+    if QA_RE.search(hay):
+        t = TIERS[1]
+        return 1, t[0], ("A" if TRANSCRIPT_RE.search(hay) else t[1])   # Q&A 전문이면 A, 회사가 고른 '主な質疑'면 B
+    if TRANSCRIPT_RE.search(hay):
+        return (2,) + TIERS[2]
+    if SUMMARY_RE.search(hay) and QA_CONTEXT_RE.search(hay):
+        return (3,) + TIERS[3]
+    if VIDEO_RE.search(hay) and QA_CONTEXT_RE.search(hay):
+        return (4,) + TIERS[4]
+    return None
+
+
+def add_bdays(d, n, holidays=None):
+    """일본 영업일 n일 뒤 — 주말과 config/jp_ir.yaml holidays(도쿄증권거래소 휴장일) 제외"""
+    hol = set(holidays if holidays is not None else (common.load_yaml("config/jp_ir.yaml") or {}).get("holidays") or [])
+    while n > 0:
+        d += timedelta(days=1)
+        if d.weekday() < 5 and d.isoformat() not in hol:
+            n -= 1
+    return d
+
+
+def scan_page(html_text, base):
+    """한 IR 페이지(일본어·영문 모두) → {"docs": {url: (tier, 이름, 등급, 앵커, 언어)}, "materials": {url: 앵커}, "external": {url: 앵커}}"""
+    page_ctx = bool(QA_CONTEXT_RE.search(common.strip_tags(html_text or "")[:20000]))
+    out = {"docs": {}, "materials": {}, "external": {}}
+    for href, inner in LINK_RE.findall(html_text or ""):
+        url = urllib.parse.urljoin(base, htmllib.unescape(href.strip())).split("#")[0]
+        if urllib.parse.urlparse(url).scheme not in ("http", "https"):
+            continue
+        title = re.sub(r"\s+", " ", htmllib.unescape(common.strip_tags(inner))).strip()
+        hay = f"{title} {urllib.parse.unquote(url)}"
+        if EXTERNAL_RE.search(url):
+            out["external"][url] = title
+            continue
+        t = tier_of(hay)
+        if t and (QA_CONTEXT_RE.search(hay) or page_ctx):
+            out["docs"][url] = t + (title, "en" if ENGLISH_PATH_RE.search(url) else "ja")
+        elif MATERIAL_RE.search(hay):
+            out["materials"][url] = title
+    return out
+
+
+def profile_of(cid, scan, prev=None):
+    """회사 IR 프로필(지시문 A 7) — IR 페이지·Q&A 형식(전문/요지/없음)·언어·외부 전사 채널·영상 유무. 게재 시차는 관측되면 누적"""
+    docs = scan["docs"].values()
+    best = min((d[0] for d in docs), default=None)
+    fmt = {1: "전문" if any(d[0] == 1 and d[2] == "A" for d in docs) else "요지", 2: "전문(발표부)", 3: "요지", 4: "없음(영상만)"}.get(best, "없음")
+    ext = sorted({"로그미" if "logmi" in u else "SCRIPTS Asia" if "scriptsasia" in u else "YouTube" for u in scan["external"]})
+    p = dict(prev or {})
+    p.update({"qa_format": fmt, "languages": sorted({d[4] for d in docs}) or ["ja"], "external": ext or ["없음"],
+              "video": any(d[0] == 4 for d in docs) or "YouTube" in ext, "checked_at": common.iso(common.now_kst())})
+    return p
 REDISCOVER_DAYS = 7
 
 
@@ -184,8 +251,52 @@ def poll(env=None, only=None):
                         qa.update(qa_links(_text(fetch(pg)), pg))
                     except Exception:
                         continue
+            # 지시문 A(2026-10-30): 우선순위별 자료·외부 전사·IR 프로필·게재 시차
+            scan = {"docs": {}, "materials": {}, "external": {}}
+            for pg in cs["pages"]:
+                try:
+                    sp = scan_page(_text(fetch(pg)), pg)
+                except Exception:
+                    continue
+                for k in scan:
+                    scan[k].update(sp[k])
+            for u, ttl in list(scan["external"].items()):   # 로그미 書き起こし(robots 허용) — 질의응답이 있으면 C등급 Q&A
+                if "logmi" in u and u not in cs["seen"] and allowed(u):
+                    try:
+                        if re.search(r"質疑応答|質問者", _text(fetch(u))):
+                            scan["docs"][u] = (1, "Q&A(로그미)", "C", ttl, "ja")
+                    except Exception:
+                        pass
+            for u, d in scan["docs"].items():
+                if d[0] <= 3:
+                    qa.setdefault(u, d[3])
+            prof = st.setdefault("profiles", {})
+            prof[cid] = profile_of(cid, scan, prof.get(cid))
+            prof[cid]["ir_pages"] = cs["pages"][:4]
+            meta = scan["docs"]
             first = not cs["seen"] and not cs.get("baselined")
             new = [(u, t) for u, t in qa.items() if u not in cs["seen"]]
+            mats_seen = cs.setdefault("materials_seen", [])
+            new_mats = [u for u in scan["materials"] if u not in mats_seen]
+            pend = cs.setdefault("pending", [])
+            today = now.date()
+            if new and pend:   # 기다리던 Q&A가 올라옴 → 게재 시차 기록
+                lag = (today - datetime.fromisoformat(pend[0]["found"]).date()).days
+                prof[cid]["lag_days"] = lag
+                pend.clear()
+            for p in list(pend):
+                if today >= datetime.fromisoformat(p["due"][-1]).date():   # +7영업일까지 없음 → 지시문 B(대체 경로)
+                    pend.remove(p)
+                    nm = names.get(cid, {})
+                    label = (nm.get("ja") or [nm.get("en", cid)])[0]
+                    items.append(common.make_item(
+                        SRC, hashlib.sha1(("fallback|" + p["material"]).encode()).hexdigest()[:16], p["material"],
+                        f"{label}（{nm.get('code', '')}）決算説明会 Q&A 미게재(+{RECHECK_BDAYS[-1]}영업일) — 지시문 B 대상", common.iso(now), "IR 질의응답", "ja",
+                        "공식 IR에 Q&A 없음 — 로그미·제3자 전사·영상·보도·다른 IR 행사·주주와의 대화·자료 비교 순으로(knowledge/methods/jp_ir_qa_procedure.md B)",
+                        extra={"entities_matched": [cid], "publisher": nm.get("en", cid), "source_class": "IR 질의응답", "fallback": True, "material": p["material"]}))
+            if new_mats and not first and not new:   # 설명회 자료는 나왔는데 Q&A가 없다 → 실패로 보지 않고 +3·+7영업일 재확인
+                pend.append({"material": new_mats[0], "found": today.isoformat(), "due": [add_bdays(today, n).isoformat() for n in RECHECK_BDAYS]})
+            cs["materials_seen"] = (mats_seen + new_mats)[-200:]
             if first:   # 기준선: 알림 없이 기록하고, 최신으로 보이는 1건만 텍스트를 받아 둔다(데이터 묶음 call 재료)
                 cs["seen"], cs["baselined"] = sorted(qa), True
                 latest = sorted(qa.items(), key=lambda x: x[0])[-1:] if qa else []
@@ -205,13 +316,16 @@ def poll(env=None, only=None):
                     SRC, hashlib.sha1(u.encode()).hexdigest()[:16], u, f"{label}（{nm.get('code', '')}）IR 質疑応答: {t[:80]}",
                     common.iso(now), "IR 질의응답", "ja", f"글자 {len(text)} · 로컬 {path.name}",
                     extra={"entities_matched": [cid], "local_text": str(path.relative_to(common.ROOT)), "chars": len(text),
-                           "publisher": nm.get("en", cid), "source_class": "IR 질의응답"}))
+                           "publisher": nm.get("en", cid), "source_class": "IR 질의응답",
+                           "tier": (meta.get(u) or (1, "Q&A", "B"))[1], "grade": (meta.get(u) or (1, "Q&A", "B"))[2],
+                           "lang": (meta.get(u) or (0, 0, 0, 0, "ja"))[4]}))
                 cs["seen"].append(u)
                 cs["latest_text"], cs["latest_url"] = str(path.relative_to(common.ROOT)), u
             cs["seen"] = cs["seen"][-300:]
         except Exception as exc:   # 회사 하나가 실패해도 나머지는 본다
             errors.append(f"{cid}: {type(exc).__name__}")
     common.save_state("jp_ir_qa", st)
+    common.save_state("jp_ir_profile", st.get("profiles") or {})   # 일본 IR 프로필 — 모델이 노션 '일본 IR 프로필'과 맞춘다(지시문 A 0·7)
     if errors:
         print("일본 IR Q&A 일부 실패:", ", ".join(errors[:10]))
     return items
