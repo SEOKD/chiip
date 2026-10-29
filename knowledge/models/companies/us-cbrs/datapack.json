@@ -13,9 +13,9 @@
   "price": 112.56,
   "shares_basic": 0.228204,
   "shares_date": "2026-06-30",
-  "cash": 7.922,
-  "debt": 1.486,
-  "source": "가격 = easyconomics company_profile 2026-10-28 종가 · 주식 수 = 10-Q 재무상태표 2026-06-30 228,203,927주(희석 증권과 같은 날짜) · 현금 = 현금 6.742 + 단기투자 1.179 · 차입 = 단기 0.736 + 장기 0.182 + 리스 0.568(easyconomics 재무상태표 2026-06-30)"
+  "cash": 7.9215,
+  "debt": 0.751,
+  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-28 종가(10/29 봉은 거래량 100주로 미확정이라 쓰지 않음) · 주식 수 = 기본 228,203,927(2026-06-30)·표지 237,564,041(2026-08-05, Fiscal.ai shares_outstanding) · 현금 = 현금 6,742.2 + 투자 1,179.4백만$ · 차입 = 장기 182.2 + 리스 568.8백만$(Fiscal.ai 공시 원문)"
  },
  "dilution": {
   "potential_total": 0.076011,
@@ -29,18 +29,18 @@
  "financials": {
   "rev_ttm": 0.6807,
   "ebit_ttm": -0.5524,
-  "invested_capital": 2.719,
+  "invested_capital": 1.984,
   "capex_1h": 0.5489,
   "da_1h": 0.0426,
   "sbc_1h": 0.3866,
   "rev_growth_ttm": 0.743,
   "basis": "GAAP",
-  "note": "TTM = 2025Q3~2026Q2 4개 분기 합(매출 135.7+171.4+193.4+180.1백만$, 영업이익 −26.5−33.7−15.0−477.2백만$). 2Q26 영업손실에 상장 관련 SBC 3.77억$ 포함. 투하자본 = 자기자본 9.155 + 차입 0.918 + 리스 0.568 − 현금·단기투자 7.922(영업 접근 — 운전자본 0.459 + 유형자산 1.515 + 기타 장기자산 0.991 − 기타 장기부채 0.245 — 과 일치). 현금흐름표는 2025년 하반기 분기 값이 비어 있어 설비투자·감가상각·SBC는 1H26만"
+  "note": "TTM = 2025Q3~2026Q2 4개 분기 합(매출 135.7+171.4+193.4+180.1백만$, 영업이익 −26.5−33.7−15.0−477.2백만$). 2Q26 영업손실에 상장 관련 SBC 3.77억$ 포함. 투하자본 = 자기자본 9.155 + 차입 0.918 + 리스 0.568 − 현금·단기투자 7.922(영업 접근 — 운전자본 0.459 + 유형자산 1.515 + 기타 장기자산 0.991 − 기타 장기부채 0.245 — 과 일치). 현금흐름표는 2025년 하반기 분기 값이 비어 있어 설비투자·감가상각·SBC는 1H26만 · 2026-10-30 Fiscal.ai 재대조: 투하자본 = 자기자본 9,155 + 장기 차입 182 + 리스 568 − 현금·투자 7,921백만$(이전 묶음의 유동 차입 736 제외)"
  },
  "consensus": {
   "rev": {
-   "FY2026": 0.8904,
-   "FY2027": 2.9136
+   "FY2026": 0.8857,
+   "FY2027": 2.755
   },
   "rev_basis": "core",
   "ebit_margin": {
@@ -48,7 +48,7 @@
    "FY2027": 0.025
   },
   "margin_basis": "non_gaap",
-  "n_analysts": 14,
+  "n_analysts": 4,
   "quarters_est": {
    "2026Q3": 0.2147,
    "2026Q4": 0.2745,
@@ -61,7 +61,7 @@
    "2026Q1": 0.1913,
    "2026Q2": 0.2099
   },
-  "note": "매출 = easyconomics 분기 컨센서스·실적 합(코어 기준 — 회사 '코어 매출'. 2Q26 GAAP 1.801 vs 코어 2.099, 차이는 비현금 차감 항목으로 추정·미확인). FY2026 이익률 = 회사 코어 영업이익률 가이던스 중간(−18%) — 컨센서스 영업이익 미제공. FY2027 = EPS 컨센서스 합 1.279$ × 희석 주식 0.3042 = 순이익 0.389 − 이자수익(현금 7.922 × 4%) 0.317, 세금 0(이월결손금) → 영업이익 0.072 ÷ 매출 2.914 = 2.5%(EPS 실적치가 GAAP과 달라 비GAAP 기준으로 봄)"
+  "note": "매출 = easyconomics 분기 컨센서스·실적 합(코어 기준 — 회사 '코어 매출'. 2Q26 GAAP 1.801 vs 코어 2.099, 차이는 비현금 차감 항목으로 추정·미확인). FY2026 이익률 = 회사 코어 영업이익률 가이던스 중간(−18%) — 컨센서스 영업이익 미제공. FY2027 = EPS 컨센서스 합 1.279$ × 희석 주식 0.3042 = 순이익 0.389 − 이자수익(현금 7.922 × 4%) 0.317, 세금 0(이월결손금) → 영업이익 0.072 ÷ 매출 2.914 = 2.5%(EPS 실적치가 GAAP과 달라 비GAAP 기준으로 봄) · 2026-10-30 Zacks(Fiscal.ai): FY2026 코어 매출 = 실적 2분기 + 3·4Q 추정, FY2027 = 분기 합(연간 2.926과 일치), 애널리스트 2~4명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
  },
  "guidance": {
   "rev_fy0": [
@@ -73,7 +73,7 @@
   "margin_basis": "non_gaap",
   "next_year": "2027 코어 매출 2026의 3배 초과(숫자 미제시)",
   "long_term": "코어 총마진 2027년 이후 60% 이상 목표",
-  "source": "2026-08-12 2Q26 실적 발표·어닝콜(easyconomics earnings_summary) — FY2026 코어 매출 8.8~8.9억$(상향), 코어 영업이익률 −19~−17%, 3Q 코어 매출 2.14~2.16억$"
+  "source": "회사 2Q26 실적 보도자료·콜(2026-08-12, Fiscal.ai ir_events q2-2026) — FY2026 코어 매출 0.88~0.89B$(상향), 코어 영업이익률 −19~−17%, 3Q 코어 매출 0.214~0.216B$"
  },
  "call": {
   "date": "2026-08-12",
@@ -118,71 +118,71 @@
  "peers": [
   {
    "ticker": "NVDA",
-   "rev": 302.97,
-   "ebit_margin": 0.66237,
-   "mcap": 5200.781,
-   "pb": 22.712,
-   "debt": 38.86,
-   "cash": 62.469,
-   "ev_sales": 17.055,
-   "growth": 1.059,
+   "rev": 302.969,
+   "ebit_margin": 0.6521,
+   "mcap": 5164.39,
+   "pb": 22.55,
+   "debt": 38.351,
+   "cash": 99.369,
+   "ev_sales": 16.84,
+   "growth": 0.8338,
    "goodwill": 21.125,
    "intangibles": 2.998
   },
   {
    "ticker": "AMD",
    "rev": 41.305,
-   "ebit_margin": 0.1725,
-   "mcap": 944.289,
-   "pb": 14.043,
-   "debt": 4.276,
+   "ebit_margin": 0.1571,
+   "mcap": 936.19,
+   "pb": 13.93,
+   "debt": 3.401,
    "cash": 13.111,
-   "ev_sales": 22.647,
-   "growth": 0.501,
+   "ev_sales": 22.45,
+   "growth": 0.3954,
    "goodwill": 25.47,
    "intangibles": 15.635
   },
   {
    "ticker": "AVGO",
    "rev": 89.104,
-   "ebit_margin": 0.54307,
-   "mcap": 1679.411,
-   "pb": 16.848,
+   "ebit_margin": 0.4805,
+   "mcap": 1648.48,
+   "pb": 16.54,
    "debt": 59.419,
    "cash": 23.975,
-   "ev_sales": 19.246,
-   "growth": 0.855,
+   "ev_sales": 18.9,
+   "growth": 0.4869,
    "goodwill": 97.801,
    "intangibles": 26.325
   },
   {
    "ticker": "MRVL",
-   "rev": 9.4503,
-   "ebit_margin": 0.16679,
-   "mcap": 226.159,
-   "pb": 11.907,
-   "debt": 5.286,
+   "rev": 9.45,
+   "ebit_margin": 0.1652,
+   "mcap": 200.82,
+   "pb": 10.84,
+   "debt": 4.963,
    "cash": 3.933,
-   "ev_sales": 23.494,
-   "growth": 0.365,
+   "ev_sales": 21.36,
+   "growth": 0.3062,
    "goodwill": 13.874,
    "intangibles": 2.347
   },
   {
    "ticker": "CRWV",
    "rev": 7.59,
-   "ebit_margin": -0.01903,
-   "mcap": 35.26,
-   "pb": 7.011,
-   "debt": 51.613,
+   "ebit_margin": -0.0304,
+   "mcap": 34.98,
+   "pb": 6.96,
+   "debt": 44.095,
    "cash": 5.539,
-   "ev_sales": 10.716,
-   "growth": 1.125,
+   "ev_sales": 10.68,
+   "growth": 1.1528,
    "goodwill": 1.101,
    "intangibles": 0.245
   }
  ],
- "peers_source": "easyconomics company_profile(yfinance) 2026-10-28 — EV/매출·영업이익률·매출·시가총액·PBR·차입·현금 모두 최근 12개월(TTM), 성장 = 최근 분기 전년 대비. ROIC는 엔진이 NOPAT ÷ (자기자본(시총÷PBR)+차입−현금)으로 계산(영업권 포함). AI 가속기 4사 + AI 클라우드 1사(Cerebras 매출의 다수가 클라우드) · 영업권·무형자산 = SEC XBRL companyfacts(Goodwill, IntangibleAssetsNetExcludingGoodwill, 최신 10-Q, 조회 2026-10-29) — 신규 투자 수익률(RONIC)·자본 회전율은 영업권·인수 무형자산을 뺀 투하자본으로",
+ "peers_source": "Fiscal.ai 표준화 분기 재무(최근 4분기 합, 성장 = TTM ÷ 직전 TTM)·daily ratios(시총·EV/매출, 2026-10-29)",
  "sbc_pct_rev": 0.06,
  "overrides": {
   "margin_base": {
@@ -198,10 +198,11 @@
   "easyconomics company_profile·financial_statements(분기 손익·재무상태·현금흐름)·earnings_summary 2026-08-12·company_peers (조회 2026-10-29 17:20 KST)",
   "SEC XBRL companyfacts CIK 2021728(희석 증권·SBC, 조회 2026-10-29)",
   "SEC 10-Q 2026-08-12 · 424B4 2026-05-14",
-  "outputs/invest/short/20261029_CBRS.md"
+  "outputs/invest/short/20261029_CBRS.md",
+  "Fiscal.ai MCP 2026-10-30 — 공시 원문 재무(auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·13F 2Q26(394개 기관)·뉴스(10/27 Oracle OCI 제휴, 10/28 Culper 숏 포지션 공시)"
  ],
  "raw": {
-  "retrieved_at": "2026-10-29T17:20:00+09:00",
+  "retrieved_at": "2026-10-30T01:00:00+09:00",
   "easyconomics_profile": {
    "price": 112.56,
    "market_cap": 26.74,
@@ -216,7 +217,7 @@
    "eps_forward": 1.27368,
    "operating_margin_ttm": -2.64968
   },
-  "shares_cover_implied": 0.23756,
+  "shares_cover_implied": 0.237564,
   "quarters_gaap": {
    "rev": {
     "2025Q3": 0.135714,
@@ -234,12 +235,13 @@
   "balance_2026_06_30": {
    "cash": 6.742,
    "st_investments": 1.179,
-   "debt_current": 0.736,
+   "debt_current": 0.0,
    "debt_lt": 0.182,
    "lease_current": 0.088,
    "lease_lt": 0.48,
    "equity": 9.155,
-   "shares": 0.228204
+   "shares": 0.228204,
+   "note": "Fiscal.ai 공시 원문(as-reported) 2026-06-30 — 유동 차입 항목 없음(이전 묶음의 유동 차입 736백만$는 원문에서 확인되지 않아 제외), 제한 현금 684.7은 현금에서 뺌"
   },
   "cashflow_1h26": {
    "capex": 0.5489,
@@ -249,12 +251,12 @@
   "estimates_sales_m": {
    "2026Q1_act": 191.348,
    "2026Q2_act": 209.869,
-   "2026Q3": 214.7029,
-   "2026Q4": 274.4635,
-   "2027Q1": 402.7222,
-   "2027Q2": 567.0025,
-   "2027Q3": 821.9707,
-   "2027Q4": 1121.9419
+   "2026Q3": 215.82,
+   "2026Q4": 268.636,
+   "2027Q1": 383.486,
+   "2027Q2": 531.345,
+   "2027Q3": 784.755,
+   "2027Q4": 1055.46
   },
   "estimates_eps": {
    "2027Q1": -0.0762,
@@ -358,66 +360,68 @@
      0.215
     ]
    }
+  },
+  "source": "Fiscal.ai MCP(execute_code)",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_CBRS",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqGS-CBRS",
+   "price": 112.56,
+   "market_cap": 26.7402,
+   "total_cash": 7.9215,
+   "total_debt": 0.751,
+   "shares_outstanding": 0.237564,
+   "ev_sales": 31.8,
+   "as_of": "2026-10-28"
+  },
+  "zacks": {
+   "FY2026_rev": 0.8853,
+   "FY2027_rev": 2.9264,
+   "FY2027_ebit": 0.3361,
+   "price_target": {
+    "mean": 267,
+    "median": 290,
+    "low": 149,
+    "high": 330,
+    "n": 11
+   },
+   "rating": {
+    "strongBuy": 9,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "n": 11
+   },
+   "asOf": "2026-10-21",
+   "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "note": "분기 실적(act)은 코어 매출(회사 가이던스 기준)로 둔다 — GAAP 분기 매출은 quarters_gaap"
   }
  },
  "history": {
-  "basis": "EV/TTM 매출 — 상장 이후 반월 간격 종가(easyconomics company_price_history), 완전 희석 주식·현재 순현금 고정(근사), TTM은 그 날짜에 공개된 4분기 합(5/14~6/22 0.510, 6/23~8/11 0.604, 8/12~ 0.681)",
+  "basis": "Fiscal.ai daily ratio_ev_to_sales(월 표본)",
   "ev_sales": [
    {
-    "date": "2026-05-14",
-    "value": 173.0
+    "date": "2026-06-01",
+    "value": 25.0
    },
    {
-    "date": "2026-05-29",
-    "value": 128.8
-   },
-   {
-    "date": "2026-06-12",
-    "value": 115.1
-   },
-   {
-    "date": "2026-06-22",
-    "value": 121.3
-   },
-   {
-    "date": "2026-06-30",
-    "value": 100.7
-   },
-   {
-    "date": "2026-07-15",
-    "value": 82.1
+    "date": "2026-07-01",
+    "value": 64.7
    },
    {
     "date": "2026-07-31",
-    "value": 89.5
-   },
-   {
-    "date": "2026-08-11",
-    "value": 107.6
-   },
-   {
-    "date": "2026-08-14",
-    "value": 88.4
+    "value": 57.2
    },
    {
     "date": "2026-08-31",
-    "value": 72.9
-   },
-   {
-    "date": "2026-09-15",
-    "value": 72.8
+    "value": 54.8
    },
    {
     "date": "2026-09-30",
-    "value": 69.9
-   },
-   {
-    "date": "2026-10-15",
-    "value": 54.1
+    "value": 52.5
    },
    {
     "date": "2026-10-28",
-    "value": 40.8
+    "value": 31.8
    }
   ]
  },
@@ -430,22 +434,22 @@
    "sell_side": {
     "metrics": [
      [
-      "애널리스트 수",
-      "14명(매수 13·보유 1·매도 0)",
-      "커버리지 규모",
-      "easyconomics company_profile 2026-10-30 00시"
+      "애널리스트 의견(Zacks)",
+      "11명 — 강력 매수 9·매수 1·보유 1·매도 0",
+      "상장 주관사 중심의 강세 합의",
+      "Fiscal.ai analyst_ratings — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
      ],
      [
-      "목표가 평균·범위",
-      "$282.75 ($175~$330)",
-      "현재가 $112.56 대비 평균 +151% — IB 기대의 증거(치입 목표가 아님)",
+      "목표가 평균·범위(Zacks)",
+      "$267 (중앙 $290, $149~$330, 11명)",
+      "10/28 종가 $112.56 대비 평균 +137% — IB 기대의 증거(Chiip 목표가 아님)",
       "같은 곳"
      ],
      [
-      "콜 질문 증권사",
+      "2Q 콜 질문 증권사",
       "UBS, TD Cowen, Barclays, Needham, Morgan Stanley, Mizuho",
-      "콜 질문 초점 = 셀사이드 내러티브의 초점",
-      "데이터 묶음 call(easyconomics)"
+      "질문 초점 = OpenAI 램프·코어 마진·CAPEX",
+      "Fiscal.ai ir_events_transcript(q2-2026) 화자 목록"
      ]
     ],
     "read": "상장 주관·커버리지 증권사가 대부분 — 추론 속도·OpenAI 계약을 성장 근거로 본다"
@@ -453,10 +457,16 @@
    "buy_side": {
     "metrics": [
      [
-      "기관 보유 비중",
-      "80%",
-      "상장 직후라 락업·앵커 투자자 비중이 크다",
-      "easyconomics company_profile"
+      "13F 기관 보유(2Q26, 첫 공시)",
+      "394개 기관 · 8,680만 주(표지 주식의 약 37%)",
+      "상위: Eclipse 5.0%·Fidelity 3.7%·Altimeter 3.2%·Coatue 3.1%·Capital World 1.7% — 벤처·성장주 펀드 중심",
+      "Fiscal.ai institutional_holders 2026Q2"
+     ],
+     [
+      "펀드 레터 언급",
+      "0건",
+      "헤지펀드 레터 논지 아직 없음",
+      "Fiscal.ai company_fund_letters"
      ],
      [
       "공매도 비중(유통 주식)",
@@ -547,6 +557,21 @@
     "status": "강화",
     "falsifier": "10-Q 내용연수 유지·손상 없음(11/12)",
     "source": "Culper 요약·리포트 ③ 절"
+   },
+   {
+    "name": "Oracle OCI 제휴(고객 다변화)",
+    "thesis": "Oracle 클라우드에서 Cerebras 추론을 제공 — 관계사·OpenAI 의존에서 벗어나는 첫 대형 채널",
+    "inputs": "성장·고객 위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "계약 규모 미공개(미확인)",
+    "status": "태동",
+    "falsifier": "OCI 매출 기여가 4Q26·1Q27 공시에 안 보임",
+    "source": "Fiscal.ai company_news 2026-10-27(중요도 3)"
    }
   ]
  }
