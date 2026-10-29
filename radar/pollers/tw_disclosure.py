@@ -1,4 +1,4 @@
-"""대만 원문 공시(重大訊息) — Chiip Discovery·커버리지 대만 종목 (마스터 지시 2026-10-29 "발굴하고 관련 보도(반드시 원문)를 팔로업하라").
+"""대만 원문 공시(重大訊息) — Chiip Ten-bagger 발굴·커버리지 대만 종목 (마스터 지시 2026-10-29 "발굴하고 관련 보도(반드시 원문)를 팔로업하라").
 
 TWSE OpenAPI 上市公司每日重大訊息(t187ap04_L, 공식 공개 API)에서 config/discovery.yaml·config/coverage.yaml의 대만 종목만 거른다.
 회사가 직접 낸 공시라 '원문'이다(event_gate의 1차 자료). 월매출은 src-twse-monthly가 따로 받는다. TPEx(상장 장외) 종목은 다음 단계.

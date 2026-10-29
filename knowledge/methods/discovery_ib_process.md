@@ -1,7 +1,7 @@
-# Chiip Discovery — IB 리서치 하우스식 발굴·의사결정 절차
+# Chiip Ten-bagger Discovery — IB 리서치 하우스식 발굴·의사결정 절차
 
 > 마스터 지시(2026-10-29): "Taiyo Yuden, JX Advanced Metals, Nitto Boseki, Yageo, Union Tool 같은 엣지 있는 AI 밸류체인 종목을 발굴하는 데 집중하라. 발굴하고 관련 보도(반드시 원문)를 팔로업하고 실적도 챙기고 텐배거 리포트도 적어라. 투자 커뮤니티 관심도를 트래킹하고 글로벌 IB 리서치 하우스의 전통적이고 독보적인 접근 방법과 의사결정 과정을 답습해 발굴 역량을 갖춰라."
-> 구현: `config/discovery.yaml`(테마·후보·가중치) · `radar/attention.py`(관심도) · `scripts/discovery/screen.py`(선별·편입) · `config/coverage.yaml`(커버리지) · 대만 `radar/pollers/tw_disclosure.py` · 일본 `jp_disclosure.py`·`jp_ir_qa.py` · 예약 작업 `chiip-discovery`(주간, `docs/tasks/chiip-discovery.md`).
+> 구현: `config/discovery.yaml`(테마·후보·가중치) · `radar/attention.py`(관심도) · `scripts/discovery/screen.py`(선별·편입) · `config/coverage.yaml`(커버리지) · 대만 `radar/pollers/tw_disclosure.py` · 일본 `jp_disclosure.py`·`jp_ir_qa.py` · Chiip Ten-bagger 일요일 발굴 회차(`docs/tasks/chiip-tenbagger.md` 5번).
 
 ## 글로벌 IB 리서치의 공통 관행을 옮긴 것 (특정 하우스의 내부 절차를 안다고 주장하지 않는다 — 공개적으로 알려진 일반 관행)
 1. **테마 → 병목 → 함량(content per unit)**: 셀사이드 반도체·부품 팀은 최종 제품(AI 서버·가속기 보드·스위치)을 분해해 부품별 '대당 함량 × 출하'로 수요를 세운다. 이익은 공급이 막힌 곳(소수 공급사·긴 증설 리드타임·인증 장벽)에 몰린다 → `themes[].bottleneck·driver`.

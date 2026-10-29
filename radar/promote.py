@@ -140,7 +140,7 @@ def match(item):
         tk = re.search(r"\((?:NASDAQ|NYSE|NYSEAMERICAN|TSX|ASX)?:?\s*([A-Z]{1,5})\)", title)
         if (firm or sh["terms"].search(title)) and (ents or org or (site and tk)):
             return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else tk.group(1) if tk else re.sub(r"\W+", " ", title.lower())[:50]))
-    if item.get("source_id") == "src-tw-disclosure" and ents and TW_EVENT_RE.search(title) and not TW_NOISE_RE.search(title):   # 대만 원문 공시(2026-10-29 Chiip Discovery)
+    if item.get("source_id") == "src-tw-disclosure" and ents and TW_EVENT_RE.search(title) and not TW_NOISE_RE.search(title):   # 대만 원문 공시(2026-10-29 Chiip Ten-bagger Discovery)
         return "규칙 상향: 대만 공시", f"tw:{','.join(ents)}:{TW_EVENT_RE.search(title).group(0)}"
     if item.get("source_id") == "src-jp-disclosure" and ents and not noise(item):   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
         cls = next((k for k, rx in JP_EVENT if rx.search(title)), None)

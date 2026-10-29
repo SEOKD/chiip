@@ -141,7 +141,7 @@
 - **실적 발표 = Dean's Ticker 3단 양식**(2026-10-29 마스터 지시): ① 지표 정리(Results·Guidance, est. 병기, After) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 ■) ③ 칼럼 — 세 통 따로(`knowledge/methods/earnings_format.md`).
 - **일본 어닝콜 = IR 질의응답**(2026-10-29): easyconomics에 없음 → 일본판 IR 페이지의 決算説明会 質疑応答(`radar/pollers/jp_ir_qa.py`, `config/jp_ir.yaml`) → 펄스 🎙.
 - **멀티플 산정**(2026-10-29): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인 분해 → 합리적 멀티플(`scripts/valuation/v2/multiples.py`, `knowledge/methods/multiples.md`).
-- **Chiip Discovery**(2026-10-29 마스터 지시): 엣지 AI 밸류체인 종목(일·대만·한국·미국) 발굴 — `config/discovery.yaml` 테마·후보 → `radar/attention.py` 관심도(가속·쏠림·IB 행사 초청) → `scripts/discovery/screen.py` IB식 단계 관문·위원회 메모 → `config/coverage.yaml` 편입 시 원문 팔로업(대만 重大訊息·일본 적시공시·IR Q&A)·실적·텐배거 리포트 자동 연결. X·텔레그램 관심도는 제외 원천이라 마스터 승인 전 꺼 둠.
+- **Chiip Ten-bagger Discovery**(2026-10-29 마스터 지시, Ten-bagger 기능의 발굴 단계 — 일요일 첫 회차 전체 선별·매 회차 신호 기반 후보 추가, `docs/tasks/chiip-tenbagger.md`): 엣지 AI 밸류체인 종목(일·대만·한국·미국) 발굴 — `config/discovery.yaml` 테마·후보 → `radar/attention.py` 관심도(가속·쏠림·IB 행사 초청) → `scripts/discovery/screen.py` IB식 단계 관문·위원회 메모 → `config/coverage.yaml` 편입 시 원문 팔로업(대만 重大訊息·일본 적시공시·IR Q&A)·실적·텐배거 리포트 자동 연결. X·텔레그램 관심도는 제외 원천이라 마스터 승인 전 꺼 둠.
 - **보고 표기 = Chiip**(2026-10-29 마스터 지시): 텔레그램 봇·GitHub에 보고할 때는 '치입' 대신 'Chiip', 기능 이름도 영어(Chiip Pulse·Portfolio·Ten-bagger Report·Discovery 등, `notify.LABELS`). `radar/notify.py` `brand()`가 발송 직전 일괄 변환, 리포트 HTML·게시 제목도 변환.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 

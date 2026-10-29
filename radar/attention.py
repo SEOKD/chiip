@@ -1,4 +1,4 @@
-"""투자자 관심도 추적 — Chiip Discovery 후보의 관심 가속·쏠림 (마스터 지시 2026-10-29 "telegram, x, substack, seekingalpha 등
+"""투자자 관심도 추적 — Chiip Ten-bagger Discovery 후보의 관심 가속·쏠림 (마스터 지시 2026-10-29 "telegram, x, substack, seekingalpha 등
 투자 커뮤니티의 투자자 관심도를 잘 트래킹하라").
 
 결정론 수집(하루 1회, run_hourly). 원천은 config/discovery.yaml attention.sources 중 enabled만 — CLAUDE.md 컴플라이언스 안에서:

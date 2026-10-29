@@ -1,4 +1,4 @@
-"""Chiip Discovery 선별 — IB 리서치 하우스식 단계 관문으로 후보를 줄인다 (마스터 지시 2026-10-29, 방법 knowledge/methods/discovery_ib_process.md).
+"""Chiip Ten-bagger Discovery 선별 — IB 리서치 하우스식 단계 관문으로 후보를 줄인다 (마스터 지시 2026-10-29, 방법 knowledge/methods/discovery_ib_process.md).
 
 입력: config/discovery.yaml(테마·후보·edge·가중치) · knowledge/models/discovery/attention_latest.json(radar/attention.py)
       · knowledge/models/discovery/fundamentals.json(주간 회차에 모델이 easyconomics company_profile로 채움:
@@ -101,7 +101,7 @@ def run(today=None):
         r["stage"] = "③ 심층 대기열"
     OUTD.mkdir(parents=True, exist_ok=True)
     f = lambda v: "-" if v is None else f"{v:.1f}"
-    L = [f"# Chiip Discovery 선별 {today.isoformat()}", "",
+    L = [f"# Chiip Ten-bagger Discovery 선별 {today.isoformat()}", "",
          f"펀더멘털 확보 {sum(1 for r in rows if r['id'] in fund)}/{len(rows)} · 관심도 {len(att)}/{len(rows)} · 커버리지 {len(cov)}", "",
          "| 순위 | 종목 | 시장·코드 | 테마 | 점수 | edge | 성장 | 커버 공백 | 관심 가속 | 쏠림 | 밸류 | 규모 | 단계 | 빠진 자료 |", "|" + "---|" * 14]
     for i, r in enumerate(rows, 1):

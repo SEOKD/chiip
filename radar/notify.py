@@ -32,7 +32,7 @@ LABELS = [   # 텔레그램 기능 이름은 영어로(마스터 지시 2026-10-
     ("Chiip 포트폴리오 데일리", "Chiip Portfolio Daily"), ("Chiip 텐배거 리포트", "Chiip Ten-bagger Report"), ("Chiip 리포트 게시", "Chiip Report"),
     ("Chiip 뉴스 요약", "Chiip News Digest"), ("Chiip 숏 리포트", "Chiip Short Report"), ("Chiip 실적 일정", "Chiip Earnings Calendar"),
     ("Chiip 기사 소재", "Chiip Article Pitch"), ("Chiip 인사이트 검토", "Chiip Insight Review"), ("Chiip 알파 레이더", "Chiip Alpha Radar"),
-    ("Chiip 발굴", "Chiip Discovery"), ("Chiip 포트폴리오", "Chiip Portfolio"), ("Chiip 텐배거", "Chiip Ten-bagger"), ("Chiip 펄스", "Chiip Pulse"),
+    ("Chiip 발굴", "Chiip Ten-bagger Discovery"), ("Chiip 포트폴리오", "Chiip Portfolio"), ("Chiip 텐배거", "Chiip Ten-bagger"), ("Chiip 펄스", "Chiip Pulse"),
     ("Chiip 포커스", "Chiip Focus"), ("Chiip 알림", "Chiip Alerts"), ("Chiip 판단", "Chiip View"), ("Chiip 프로바이저", "Chiip Proviser"),
     ("· 늦은 보고", "· Late"), ("· 개정판", "· Revised"), (" 정정]", " Correction]")]
 LEVEL_TAG_RE = re.compile(r"\[P[0-3](?:[-·][^\]]{0,12})?\]\s?")   # 내부 등급 코드 — 마스터에게 드러내지 않는다(2026-10-29 지시)

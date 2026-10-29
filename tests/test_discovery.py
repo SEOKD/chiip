@@ -1,4 +1,4 @@
-"""Chiip Discovery 시험 (마스터 지시 2026-10-29 — 엣지 AI 밸류체인 종목 발굴·관심도·IB식 선별·원문 팔로업)"""
+"""Chiip Ten-bagger Discovery 시험 (마스터 지시 2026-10-29 — 엣지 AI 밸류체인 종목 발굴·관심도·IB식 선별·원문 팔로업)"""
 import sys
 import unittest
 from pathlib import Path

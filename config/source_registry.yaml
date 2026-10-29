@@ -947,7 +947,7 @@
   enabled: true
 
 - id: src-tw-disclosure
-  name: 대만 원문 공시(TWSE 重大訊息) × Chiip Discovery·커버리지 대만 종목
+  name: 대만 원문 공시(TWSE 重大訊息) × Chiip Ten-bagger 발굴·커버리지 대만 종목
   category: B-공시
   module: tw_disclosure
   entry: poll
