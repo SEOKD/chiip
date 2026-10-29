@@ -1,0 +1,86 @@
+auto: true
+id: us-cbrs
+name: Cerebras Systems
+ticker: CBRS
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-10-28'
+market:
+  date: '2026-10-28'
+  price: 112.56
+  shares: 0.2925
+  net_debt: -6.43
+  source: easyconomics company_profile(yfinance) 2026-10-28 · 10-Q 2026-06-30 발행주식
+    2.376억
+rev0: 0.89
+ic0: 3.15
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 2.2742
+      end: 0.035
+      decay: 0.45
+    margin:
+      m0: -0.55
+      target: 0.22
+      year_target: 4
+      lr: 0.15
+      lam: 0.35
+    s2c: 1.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 2.8427
+      end: 0.04
+      decay: 0.5
+    margin:
+      m0: -0.55
+      target: 0.3
+      year_target: 4
+      lr: 0.15
+      lam: 0.25
+    s2c: 1.15
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.9097
+      end: 0.030000000000000002
+      decay: 0.35
+    margin:
+      m0: -0.55
+      target: 0.14
+      year_target: 4
+      lr: 0.15
+      lam: 0.5
+    s2c: 0.85
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 0.89
+  growth: 컨센서스 1년차 227.4%
+  margin: 출발 컨센서스 FY2026 -55.0% → 목표 컨센서스 FY2027 3.0%(1년)
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5
+  range: 고·저 추정 없음 — 초고성장 규칙(약세 ×0.4·강세 ×1.25)
+  probs: '어닝콜 톤 ''flat'' 규칙 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '목표 이익률 22%: AI 가속기 동종(MRVL 17%·LITE 28%) 중간, 클라우드 감가상각 부담 반영 / 매출÷투하자본
+    1.0: 자체 클라우드 장비 보유형(2.5~5년 수명)이라 자본 집약 — TTM 0.22는 램프 초기라 대표성 없음'
+  shares: 완전 희석 = 기본 0.2376 + 옵션·RSU·워런트·전환 0.0549
+notes:
+- 자동 생성(build_drivers) 2026-10-29 — 데이터 묶음 2026-10-28
+- '어닝콜 위험: OpenAI 단일 고객 집중(RPO 대부분)'
+- '어닝콜 위험: 웨이퍼 현장 수명·교체 CAPEX(숏 리포트 논점)'
+- '어닝콜 위험: 락업 해제 22%(11/10 전후)'
+evidence:
+- SEC 10-Q 2026-08-12
+- 424B4 2026-05-14
+- easyconomics company_profile·earnings(2026-10-28)
+- outputs/invest/short/20261029_CBRS.md

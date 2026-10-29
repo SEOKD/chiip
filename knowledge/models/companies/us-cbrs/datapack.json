@@ -1,0 +1,15 @@
+{
+ "id": "us-cbrs", "name": "Cerebras Systems", "ticker": "CBRS", "as_of": "2026-10-28", "unit": "B$",
+ "industry": "semiconductor", "region_mix": {"US": 1.0}, "tax": 0.21,
+ "profile": {"price": 112.56, "shares_basic": 0.2376, "cash": 7.92, "debt": 1.49, "source": "easyconomics company_profile(yfinance) 2026-10-28 · 10-Q 2026-06-30 발행주식 2.376억"},
+ "dilution": {"options": 0.0215, "rsu": 0.0, "warrants": 0.0334, "converts_shares": 0.0},
+ "financials": {"rev_ttm": 0.681, "ebit_ttm": -0.90, "invested_capital": 3.15, "note": "EBIT TTM은 1H26 영업손실 −4.92억$(10-Q) 연환산 근사 · 투하자본 = 자기자본(PBR 역산 9.58) + 차입 1.49 − 현금 7.92"},
+ "consensus": {"rev": {"FY2026": 0.890, "FY2027": 2.914}, "ebit_margin": {"FY2026": -0.55, "FY2027": 0.03},
+               "n_analysts": 14, "note": "FY2026 = 1Q·2Q 실적 + 3Q·4Q 추정, FY2027 = 분기 추정 합(easyconomics). 이익률은 EPS 추정에서 근사"},
+ "call": {"date": "2026-08-12", "tone": "flat", "risks": ["OpenAI 단일 고객 집중(RPO 대부분)", "웨이퍼 현장 수명·교체 CAPEX(숏 리포트 논점)", "락업 해제 22%(11/10 전후)"]},
+ "peers": [{"ticker": "MRVL", "ev_sales_ntm": 23.5, "growth_ntm": 0.365, "ebit_margin": 0.17}, {"ticker": "LITE", "ev_sales_ntm": 26.8, "growth_ntm": 1.09, "ebit_margin": 0.28}],
+ "overrides": {"margin_base": {"m0": -0.55, "target": 0.22, "year_target": 4, "lr": 0.15, "lam": 0.35},
+               "s2c": 1.0,
+               "why": "목표 이익률 22%: AI 가속기 동종(MRVL 17%·LITE 28%) 중간, 클라우드 감가상각 부담 반영 / 매출÷투하자본 1.0: 자체 클라우드 장비 보유형(2.5~5년 수명)이라 자본 집약 — TTM 0.22는 램프 초기라 대표성 없음"},
+ "sources": ["SEC 10-Q 2026-08-12", "424B4 2026-05-14", "easyconomics company_profile·earnings(2026-10-28)", "outputs/invest/short/20261029_CBRS.md"]
+}
