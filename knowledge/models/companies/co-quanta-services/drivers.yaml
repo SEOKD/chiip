@@ -1,0 +1,107 @@
+auto: true
+id: co-quanta-services
+name: Quanta Services
+ticker: PWR
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.25
+horizon: 10
+as_of: '2026-10-29'
+market:
+  date: '2026-10-29'
+  price: 637.0
+  shares: 0.152693
+  net_debt: 5.196624
+  source: '가격 = easyconomics company_profile 2026-10-29 장중(23:00 KST) · 기본 주식 = 3Q26
+    가중평균 기본 150,533천 주(8-K EX-99.1, 희석 증권과 같은 날짜 기준) · 현금·차입 = 8-K EX-99.1 재무상태표 2026-09-30:
+    현금 2,315.3 · 유동 차입 639.3 + 장기 차입 6,351.7 + 운용리스 129.8 + 391.0 (백만$). easyconomics
+    값(현금 0.506·차입 6.603)은 2026-06-30 기준이라 8월 선순위채 $2.0B 발행·9월 기간대출 $0.62B 상환 전'
+rev0: 41.45
+ic0: 15.7322
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.12
+      end: 0.035
+      decay: 0.85
+    margin:
+      m0: 0.0895
+      target: 0.1
+      year_target: 4
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.088
+    s2c: 3.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.1458
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.0895
+      target: 0.12
+      year_target: 4
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.088
+    s2c: 3.45
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.0625
+      end: 0.030000000000000002
+      decay: 0.75
+    margin:
+      m0: 0.0895
+      target: 0.08
+      year_target: 4
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.088
+    s2c: 2.55
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [41.3, 41.6] (2026-10-29 3Q26 8-K EX-99.1 — FY2026 매출 41.3~41.6B$(직전
+    39.3~39.7), 조정 EBITDA 4.40~4.49B$(직전 4.09~4.21), 조정 EPS 17.90~18.30$(직전 16.45~16.95),
+    FCF 2.5~3.0B$(직전 2.0~2.5). EBITA 이익률 9.53% = 조정 EBITDA 중간 4.445 ÷ 매출 중간 41.45
+    − 감가상각 1.19%(Chiip 계산))
+  growth: 컨센서스 1년차 10.4%
+  margin: 1년차 컨센서스 8.8% 고정 → 목표 10%(4년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.37 → 덮어쓰기 3.0
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '성장 1년차 12%·감속 0.85: 총 수주잔고 63.7B$ = TTM 매출 1.71배(+63% YoY), 컨센서스 FY28
+    매출 +15.1%(FY27 대비, 3Q 전 값)·경영진 ''대형 송전·발전은 2027 하반기 현장, 2030년대까지'' — 기본 규칙(감속
+    0.7)은 FY28을 +8%로 그려 컨센서스보다 낮다. 이 경로의 FY28 매출 ≈ 51.4B$(컨센서스 52.7B$) / 장기 이익률 10%(조정
+    EBITA − SBC, GAAP 근사): 기본값 15%는 일반 규칙 — 3Q 부문 이익률 전력 12.6%·지하인프라 9.4%에서 본사비(무형
+    상각 제외 1.9%)를 빼면 10.1%(계절 최고 분기), 경영진은 유틸리티 전력 10~12%를 상단으로 제시, 동종 EMCOR 10.6%·MasTec
+    5.4%·MYR 6.2%·Comfort 16.5%(MEP 집중) / 매출÷투하자본 3.0: TTM 2.37은 영업권 8.1B$·무형 3.2B$가
+    섞인 값. 9개월 증분은 계약부채(+2.28B$)가 운전자본을 대서 10배를 넘지만 인수 주도 성장(영업권)을 섞어 보수적으로 3.0'
+  shares: '완전 희석 = 기본 0.150533(2026-09-30) + 옵션·RSU·워런트·전환 0.0022 — 8-K EX-99.1 EPS
+    표 — 3Q26 가중평균 희석 152,693천 주 − 기본 150,533천 주 '
+notes:
+- 자동 생성(build_drivers) 2026-10-29 — 데이터 묶음 2026-10-29
+- '어닝콜 위험: 대형 송전·발전 수주 시점(분기 수주 들쭉날쭉)'
+- '어닝콜 위험: 숙련 인력 확보·교육 부담'
+- '어닝콜 위험: 데이터센터 지역 규제(뉴욕 모라토리엄, 최대 10개 주 논의)'
+evidence:
+- SEC 8-K EX-99.1 2026-10-29(3Q26 실적·가이던스·수주잔고·재무상태표) · 2026-07-30(2Q26 가이던스)
+- SEC XBRL companyfacts CIK 1050915(분기 영업이익·영업권·무형·현금·dei 주식 수, 조회 2026-10-29)
+- easyconomics company_profile(PWR·MTZ·EME·FIX·MYRG·PRIM)·financial_statements(분기·연간
+  추정)·earnings_summary 2026-07-30·company_altdata·company_short_volume·company_price_history
+  (조회 2026-10-29 23:00 KST)
+- FINRA api.finra.org regShoDaily·weeklySummary(공개)
+- apewisdom.io 공개 API · t.me/s 공개 채널 미리보기(언급 수만)
+- Google News 색인 제목(radar/narrative_sources.py)
