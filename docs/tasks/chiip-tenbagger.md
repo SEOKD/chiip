@@ -1,6 +1,6 @@
 # 예약 작업: chiip-tenbagger (Chiip Ten-bagger — 발굴·카드·가상 추적·알파 재산정)
 
-- 일정(cron, 로컬 시각): `15,45 * * * *` — 30분마다(pulse 00·30분과 엇갈림), 새 병목 신호가 있을 때만 깊게
+- 일정(cron, 로컬 시각): `15,45 * * * *` — 30분마다(pulse는 5분마다라 겹칠 수 있다 — 각자 잠금으로 처리), 새 병목 신호가 있을 때만 깊게
 - 권한 모드: 자동(Auto)
 - 2026-10-29 마스터 지시: "Chiip Discovery 발굴 엔진은 Chiip Ten-bagger 기능에 집어 넣어라" — 발굴 엔진(테마 지도·관심도·IB식 선별·위원회 메모·커버리지 편입)은 이 기능의 **발굴 단계**다. 별도 예약 작업을 두지 않는다.
 - 같은 기능의 일일 리포트는 `docs/tasks/chiip-tenbagger-report.md`(Chiip Analysis, 매일 23:00).
@@ -14,7 +14,7 @@
 환경: PowerShell에서 py·git이 "인식되지 않는다"고 나오면 명령 앞에 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User');` 를 붙인다. 출력이 깨지면 `$env:PYTHONIOENCODING='utf-8'`.
 
 ### 30분 실행 규칙 (마스터 지시 2026-10-29 "Chiip ten-bagger도 30분마다 작동하게")
-매시 15·45분에 돈다(chiip-pulse는 00·30분 — 겹치지 않게). 한 회차는 20분 안에 끝낸다.
+매시 15·45분에 돈다(chiip-pulse는 5분마다 — 2026-10-30부터 겹칠 수 있으니 pulse 파일은 읽기만). 한 회차는 20분 안에 끝낸다.
 - 관문: radar/state/tenbagger_last.txt(없으면 지난 24시간 기준)의 시각 이후 새 병목 신호가 있는지 파일 수정 시각으로 확인한다 — radar/cards/ 새 카드, knowledge/pairs/·knowledge/narratives/ 변경, outputs/article/sources/ 새 원본(pulse), radar/pulse/ 새 파일, knowledge/models/alpha/judgments/ 오늘 파일의 새 5점 이상, **outputs/report/jp_qa/ 새 일본 IR Q&A 분석, knowledge/models/discovery/attention_latest.json의 관심 가속 2.0 이상 종목, radar/pulse/ 파일의 '방위' 원본(각국 국방 조달·방위 기업 수주 — 2026-10-29 방위 섹터 추가)**. 하나도 없고 아래 요일 일도 없으면 시각만 기록하고 바로 끝낸다(텔레그램 없음).
 - 끝날 때마다 radar/state/tenbagger_last.txt에 현재 시각(KST ISO)을 쓴다.
 - 신규 후보는 **하루 최대 2개**(watch.csv의 오늘 등록 행 수로 확인). pulse가 오늘 이미 알파를 산정한 종목은 다시 산정하지 않는다.

@@ -88,6 +88,7 @@
 - 데이터 원천 Fiscal.ai 전환(§21.44·ADR-012, 마스터 2026-10-30): easyconomics 퇴역. knowledge/methods/data_fiscal.md(7개 기능 → 엔진 단계), scripts/fiscal/templates 7개(PWR 실측), scripts/fiscal/adapter.py, config/fiscal_keys.yaml, levels 장기 월봉. 운영 지시문·스킬·설정·스크립트 주석과 예약 작업 프롬프트 2개 교체. 시험 tests/test_fiscal_adapter.py
 - 어닝 캘린더 Fiscal.ai 전환(마스터 2026-10-30 "어닝캘린더도 Fiscal.ai를 참조하라"): scripts/fiscal/templates/calendar.js(미국 티커 50개 묶음 + 회사 키 묶음, 확정·추정·예상·장전·장후), radar/markets/earnings_calendar.py --fiscal-code·--fiscal-put·fiscal_events·merge(한국은 KIND 보조 — Fiscal에 코스닥 없음·코스피 일부, EODHD는 예비), radar/portfolio.py 05시 이후 '실적 일정 갱신' 신호, config/fiscal_keys.yaml 1차 상장 키 6개. 실측 79건(10/29~11/20). 일봉 본보기 미확정 마지막 봉 제외(거래량 < 직전 20일 중앙값 1%). 시험 tests/test_fiscal_calendar.py
 - 텐배거 리포트 노션 Stocks 게시·INNIO·Cerebras Fiscal.ai 재작성(마스터 2026-10-30): scripts/tenbagger/report_notion.py(JSON → 노션 마크다운, $ 이스케이프), publish_report.py --caption(텔레그램 = 캡션 + GitHub 링크만), 노션 '이니오 INIO'·'세레브라스 CBRS' 아래 10/30 리포트 하위 페이지(notion_log.csv). 두 리포트 컨센서스를 Zacks(Fiscal.ai history)로 교체 — INIO EPS 리비전 +4.3% → +1.7%(제출 2~3명·매출 추정 8월 초 이후 미갱신이라 방향 참고용), CBRS 어닝콜·컨센서스 절 추가. 감사 INIO 9.5·CBRS 9.4. 단위 버그 수정(숫자 뒤 B$가 '6.6$B'로 바뀌던 것, radar/units.py ⑤), 표 주석 렌더(report_html)
+- 펄스 5분 주기·실적 건 분리(§21.26 개정, 마스터 2026-10-30 "Pulse는 10분이 아닌 5분마다", "여러 종목을 감지했을 때 어닝이 나오면 어닝 양식대로"): 예약 작업 chiip-pulse `*/5`, 잠금 9분 유지·한 회차 4분 목표·알파 회차당 2종목. 실적 건은 묶음에서 빼서 Dean's Ticker 3단, 실적 숫자엔 발표 전 Zacks est.(earnings_format.md: 매출·영업이익·EPS est. 의무, OCF·CAPEX·FCF 당분기, 이름 괄호 설명 금지). AMZN·SNDK 정정 발송.
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`
