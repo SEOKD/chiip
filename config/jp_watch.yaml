@@ -1,0 +1,61 @@
+# 일본 정보망 (마스터 지시 2026-10-29 "이비덴이 연간 실적 전망치 상향 발표했는데 왜 찾아서 보고 안 하나? 일본 정보망도 체계적으로 뚫어라")
+# radar/pollers/jp_disclosure.py가 10분마다 Google News 일본판 색인(hl=ja, gl=JP)에서 이 회사들의 적시공시(適時開示) 제목 미러
+# (日経会社情報DIGITAL '…(適時開示)')와 일본 매체 속보(株探·日経·日刊工業 등)를 찾는다.
+# TDnet·EDINET 직접 수집은 하지 않는다(TDnet은 robots.txt 차단). 원문 확인은 회사 IR 페이지 PDF로(모델 몫).
+# code는 도쿄증권거래소 4자리(일부 미검증 — code_verified false). ja는 일본어 표기(제목 매칭·검색어), en은 영문.
+code_verified: false
+companies:
+  # 반도체 장비
+  - {id: co-tel, code: "8035", ja: ["東京エレクトロン", "東エレク"], en: "Tokyo Electron", sub: semicap}
+  - {id: co-advantest, code: "6857", ja: ["アドバンテスト"], en: "Advantest", sub: semicap}
+  - {id: co-disco, code: "6146", ja: ["ディスコ"], en: "DISCO", sub: semicap}
+  - {id: co-lasertec, code: "6920", ja: ["レーザーテック"], en: "Lasertec", sub: semicap}
+  - {id: jp-screen, code: "7735", ja: ["ＳＣＲＥＥＮ", "SCREENホールディングス"], en: "SCREEN Holdings", sub: semicap}
+  - {id: jp-kokusai, code: "6525", ja: ["ＫＯＫＵＳＡＩ", "KOKUSAI ELECTRIC", "国際電気"], en: "Kokusai Electric", sub: semicap}
+  - {id: jp-tokyoseimitsu, code: "7729", ja: ["東京精密"], en: "Tokyo Seimitsu", sub: semicap}
+  - {id: jp-towa, code: "6315", ja: ["ＴＯＷＡ"], en: "TOWA", sub: semicap}
+  - {id: jp-ebara, code: "6361", ja: ["荏原製作所", "荏原"], en: "Ebara", sub: semicap}
+  - {id: jp-shibaura, code: "6590", ja: ["芝浦メカトロニクス"], en: "Shibaura Mechatronics", sub: semicap}
+  - {id: jp-ushio, code: "6925", ja: ["ウシオ電機"], en: "Ushio", sub: semicap}
+  - {id: jp-hamamatsu, code: "6965", ja: ["浜松ホトニクス"], en: "Hamamatsu Photonics", sub: components}
+  # 소재·기판
+  - {id: co-ibiden, code: "4062", ja: ["イビデン"], en: "Ibiden", sub: substrate}
+  - {id: co-shinetsu, code: "4063", ja: ["信越化学", "信越化学工業"], en: "Shin-Etsu Chemical", sub: materials}
+  - {id: jp-sumco, code: "3436", ja: ["ＳＵＭＣＯ"], en: "SUMCO", sub: materials}
+  - {id: jp-resonac, code: "4004", ja: ["レゾナック"], en: "Resonac", sub: materials}
+  - {id: co-ajinomoto, code: "2802", ja: ["味の素"], en: "Ajinomoto", sub: substrate}
+  - {id: co-nittobo, code: "3110", ja: ["日東紡", "日東紡績"], en: "Nittobo", sub: substrate}
+  - {id: jp-tok, code: "4186", ja: ["東京応化", "東京応化工業"], en: "Tokyo Ohka Kogyo", sub: materials}
+  - {id: jp-hoya, code: "7741", ja: ["ＨＯＹＡ"], en: "HOYA", sub: materials}
+  - {id: jp-agc, code: "5201", ja: ["ＡＧＣ"], en: "AGC", sub: materials}
+  - {id: jp-neg, code: "5214", ja: ["日本電気硝子"], en: "Nippon Electric Glass", sub: materials}
+  - {id: jp-dnp, code: "7912", ja: ["大日本印刷"], en: "Dai Nippon Printing", sub: substrate}
+  - {id: jp-toppan, code: "7911", ja: ["ＴＯＰＰＡＮ", "TOPPANホールディングス"], en: "TOPPAN", sub: substrate}
+  - {id: jp-mitsuikinzoku, code: "5706", ja: ["三井金属"], en: "Mitsui Kinzoku", sub: materials}
+  - {id: jp-sumibe, code: "4203", ja: ["住友ベークライト"], en: "Sumitomo Bakelite", sub: materials}
+  - {id: jp-jxmetals, code: "5016", ja: ["ＪＸ金属"], en: "JX Advanced Metals", sub: materials}
+  - {id: jp-meiko, code: "6787", ja: ["メイコー"], en: "Meiko Electronics", sub: substrate}
+  # 광·전선·부품
+  - {id: co-fujikura, code: "5803", ja: ["フジクラ"], en: "Fujikura", sub: networking}
+  - {id: jp-furukawa, code: "5801", ja: ["古河電工", "古河電気工業"], en: "Furukawa Electric", sub: networking}
+  - {id: jp-sumiden, code: "5802", ja: ["住友電工", "住友電気工業"], en: "Sumitomo Electric", sub: networking}
+  - {id: jp-murata, code: "6981", ja: ["村田製作所"], en: "Murata", sub: components}
+  - {id: jp-tdk, code: "6762", ja: ["ＴＤＫ"], en: "TDK", sub: components}
+  - {id: jp-taiyoyuden, code: "6976", ja: ["太陽誘電"], en: "Taiyo Yuden", sub: components}
+  - {id: jp-kyocera, code: "6971", ja: ["京セラ"], en: "Kyocera", sub: components}
+  # 반도체·시스템
+  - {id: jp-kioxia, code: "285A", ja: ["キオクシア"], en: "Kioxia", sub: memory}
+  - {id: jp-renesas, code: "6723", ja: ["ルネサス", "ルネサスエレクトロニクス"], en: "Renesas", sub: semis}
+  - {id: jp-socionext, code: "6526", ja: ["ソシオネクスト"], en: "Socionext", sub: eda_ip}
+  - {id: jp-rohm, code: "6963", ja: ["ローム"], en: "Rohm", sub: analog}
+  # 전력·중전·데이터센터
+  - {id: co-hitachi, code: "6501", ja: ["日立製作所", "日立"], en: "Hitachi", sub: power_infra}
+  - {id: co-melco, code: "6503", ja: ["三菱電機"], en: "Mitsubishi Electric", sub: power_infra}
+  - {id: co-mhi, code: "7011", ja: ["三菱重工", "三菱重工業"], en: "Mitsubishi Heavy Industries", sub: power_infra}
+  - {id: jp-fujielectric, code: "6504", ja: ["富士電機"], en: "Fuji Electric", sub: power_infra}
+  - {id: jp-sakura, code: "3778", ja: ["さくらインターネット"], en: "Sakura Internet", sub: hyperscaler}
+  - {id: jp-sbg, code: "9984", ja: ["ソフトバンクグループ", "ソフトバンクＧ"], en: "SoftBank Group", sub: hyperscaler}
+# 제목에 이 말이 있으면 사건으로 본다(검색어로도 쓴다)
+event_terms: ["適時開示", "業績予想", "上方修正", "下方修正", "決算", "受注", "設備投資", "新工場", "増産", "買収", "提携", "増配", "最高益", "自社株買い", "公募", "新株"]
+# 일본 매체(제목 끝 ' - 매체명', 정확히 일치). 기사는 이 매체만 저장·발송 — 9개 영어 매체 규칙의 일본판
+publishers: ["日本経済新聞", "日経会社情報DIGITAL", "株探", "株探ニュース", "Yahoo!ファイナンス", "日刊工業新聞", "電波新聞", "ロイター", "Reuters", "ブルームバーグ", "Bloomberg.co.jp", "みんかぶ", "MINKABU", "QUICK Money World", "日経クロステック", "EE Times Japan", "MONOist"]

@@ -57,6 +57,15 @@ EVENT_CLASS = [("ma", re.compile(r"acqui|merger|takeover|\bbuy(s|ing)?\b|deal|ta
                ("legal", re.compile(r"lawsuit|probe|investigation|ban\b|tariff|export control", re.I))]
 
 
+JP_EVENT = [("guide", re.compile(r"業績予想の修正|上方修正|下方修正|最高益|通期.{0,6}(引き上げ|引き下げ)")),
+            ("capex", re.compile(r"設備投資|新工場|増産|固定資産の取得")),
+            ("return", re.compile(r"自社株買い|自己株式の取得|増配")),
+            ("deal", re.compile(r"買収|株式取得|提携|資本業務提携|公開買付|ＴＯＢ|TOB")),
+            ("equity", re.compile(r"公募|新株|第三者割当|転換社債")),
+            ("earn", re.compile(r"決算短信|決算速報|決算"))]
+JP_LABEL = {"guide": "실적 전망 수정", "capex": "설비투자", "return": "주주환원", "deal": "인수·제휴", "equity": "자금 조달", "earn": "실적 발표"}
+
+
 def level_for(item, why):
     """보유 종목의 큰 사건(M&A·실적·가이던스·증자·투자의견·경영진)은 P0, 나머지 상향은 P1"""
     if why and "숏 리포트" in why and "보유 종목" in why:
@@ -122,6 +131,10 @@ def match(item):
         org = _fin()["orgs"].search(title)
         if (firm or sh["terms"].search(title)) and (ents or org):
             return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else re.sub(r"\W+", " ", title.lower())[:50]))
+    if item.get("source_id") == "src-jp-disclosure" and ents:   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
+        cls = next((k for k, rx in JP_EVENT if rx.search(title)), None)
+        if cls:
+            return f"규칙 상향: 일본 {JP_LABEL[cls]}", f"jp:{','.join(ents)}:{cls}"
     ev = (r.get("portfolio_related") or {}).get("event") or r"$^"
     for tk, pat in _holdings():   # 마스터 보유 종목 자체(2026-10-29 — MRVL·Lumentum 인수 협상 보도가 P2로 묻힌 뒤)
         if pat.search(title):
@@ -163,7 +176,7 @@ def match(item):
     return None
 
 
-NOISE_RE = re.compile(r"transcript|earnings call (presentation|slides)|\bslides\b|\bpresentation\b|\bvideo\b|podcast|daily briefing|"
+NOISE_RE = re.compile(r"株価・株式情報|後場コメント|前場コメント|株価指数先物|個別銘柄戦略|決算発表予定|注目銘柄|transcript|earnings call (presentation|slides)|\bslides\b|\bpresentation\b|\bvideo\b|podcast|daily briefing|"
                       r"newsletter|stock price|in real time|live updates?|what to know|stocks to watch|top stocks|premarket|"
                       r"pre-market movers|movers|closing bell|market wrap|evening briefing|morning briefing|\bopinion\b", re.I)
 _STOP = {"the", "a", "an", "of", "to", "in", "on", "for", "and", "as", "at", "by", "with", "its", "is", "are", "after", "from", "says", "said"}

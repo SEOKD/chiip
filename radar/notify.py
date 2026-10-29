@@ -125,6 +125,8 @@ def telegram_allowed(item):
     if not rule:
         return True, ""
     src = item.get("source_id", "")
+    if src == "src-jp-disclosure":   # 일본 정보망 — 적시공시 미러·일본 매체(config/jp_watch.yaml publishers), 2026-10-29
+        return True, ""
     if item.get("doc_type") in rule.get("brief_only_doc_types", []):
         return False, f"브리프 전용({item.get('doc_type')})"
     if src in rule.get("wire_sources", []):
@@ -155,6 +157,8 @@ def company_line(entity_ids, biz=None):
             d = common.load_yaml(f) or {}
             for u in (d.get("universe") or []) + (d.get("extra") or []):
                 subs.setdefault(u["id"], (u.get("name"), u.get("sub")))
+        for co in (common.load_yaml("config/jp_watch.yaml") or {}).get("companies") or []:   # 일본 정보망 45개사
+            subs.setdefault(co["id"], (f"{co['en']}({(co.get('ja') or [''])[0]})", co.get("sub")))
         _LINES["sub"] = subs
     for e in entity_ids or []:
         if _LINES["lines"].get(e):

@@ -856,3 +856,19 @@
   verified: true
   enabled: true
 
+- id: src-jp-disclosure
+  name: 일본 정보망 — 적시공시 미러(日経会社情報DIGITAL)·일본 매체 속보 × 일본 AI 밸류체인 45개사 (Google News 일본판 색인)
+  category: B-공시
+  module: jp_disclosure
+  entry: poll
+  method: rss
+  endpoint_doc: "https://news.google.com/rss (hl=ja, gl=JP)"
+  auth: none
+  scope: [글로벌]
+  interval_min: 10
+  run_on: local
+  language: ja
+  doc_type: 공시
+  terms_note: "2026-10-29 마스터 지시(이비덴 실적 예상 상향 누락). TDnet은 robots.txt 차단이라 직접 수집 안 함 — Google News 색인의 제목·링크만, 원문은 회사 IR PDF. 대상·매체는 config/jp_watch.yaml"
+  reliability_default: 1차(제목 미러)
+  enabled: true

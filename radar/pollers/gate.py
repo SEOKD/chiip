@@ -74,6 +74,8 @@ def watch_ids():
 def news_allowed(item):
     if item.get("doc_type") != "기사":
         return True
+    if item.get("source_id") == "src-jp-disclosure":   # 일본 매체는 수집기가 config/jp_watch.yaml publishers로 이미 거름(2026-10-29)
+        return True
     if "allowed" not in _CACHE:
         rule = (common.load_yaml("config/alert_rules.yaml") or {}).get("telegram_filter") or {}
         _CACHE["allowed"] = {p.lower() for p in rule.get("allowed_publishers", [])}

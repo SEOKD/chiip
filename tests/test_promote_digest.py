@@ -140,3 +140,15 @@ class TestCompanyLine(unittest.TestCase):
         msg = notify.format_item("P1", {"entities_matched": ["us-cbrs"], "doc_type": "기사", "detected_at": "2026-10-29T15:00",
                                         "title": "t", "url": "u"})
         self.assertIn("기업: 웨이퍼 한 장 크기 AI 칩", msg.splitlines()[1])
+
+
+class TestJapanNetwork(unittest.TestCase):
+    def test_classify_and_promote(self):
+        from pollers import jp_disclosure as jp
+        self.assertEqual(jp.classify("イビデン[4062]：通期連結業績予想の修正に関するお知らせ(適時開示) ：日経会社情報DIGITAL", "日本経済新聞"), ("공시", True))
+        self.assertEqual(jp.classify("イビデンが一時４％安 - 株探", "株探"), ("기사", True))
+        self.assertEqual(jp.classify("イビデン 掲示板", "某ブログ"), (None, False))
+        it = {"title": "アドバンテスト－買い気配 1100万株・2800億円を上限に自社株買い", "entities_matched": ["co-advantest"],
+              "source_id": "src-jp-disclosure", "snippet": ""}
+        self.assertEqual(promote.match(it)[1], "jp:co-advantest:return")
+        self.assertTrue(promote.noise({"title": "信越化学工業(株)【SHECY】：株価・株式情報 - Yahoo!ファイナンス"}))
