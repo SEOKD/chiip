@@ -62,6 +62,7 @@
 - pulse 개정(마스터 지시): 미보도 원문만(영어권·국내 언론 검색으로 보도 여부 확인, 보도됐으면 제외, 없으면 '없음'), 8-K 첨부·보도자료 속 숨은 이름까지 끝까지 훑기, 한 통에 미보도 원문 + 알파 레이더 함께, '작성' 대기열 적재 중단
 - Chiip Portfolio(§21.23, 마스터 지시): `config/portfolio.yaml`(EROC·INIO·CCXI·MRVL·PWR — SEC cik로 실체 확인, CCXI = Agility Robotics 합병 스팩·환매 마감 10/29 17:00 ET·주총 11/2), 결정론 관문 `radar/portfolio.py`(SEC 새 제출·Google News 색인 보도자료·9개 매체·IB 커버리지·커뮤니티 제목·ApeWisdom 레딧 언급·위키 조회·HN·일정 알림, 커버리지 기록·전일 대비, 일정 추가), 레이더 관문·어닝 캘린더 보유 종목 포함, 시험 6개, 첫 실행 6건(INIO 3Q 실적 8-K·CCXI 일정·MRVL 레딧 언급 18회/전일 1회). 예약 작업 chiip-portfolio(매시 35분) 마스터 승인 후 등록·프로바이저 예약 작업 7개 대상으로 개정
 - 누락 교정(§21.24, 마스터 지시): Broadcom–Anthropic 630억 달러·앤트로픽 IPO·Meta 증자/엔비디아 투자·MRVL–Lumentum이 T0 중심 판정으로 P2 → 읽히지 않는 브리프 대기열. 판정 상향 규칙(`radar/promote.py` 6종·24시간 서명)·스킬 radar-triage 'AI 밸류체인·보유 종목' 절, P2 하루 1통(`radar/p2_digest.py`, 08~10시), 펄스 ③ AI 파이낸싱(`config/financing_watch.yaml` 40개 발행사 SEC 자금 조달 서류 + 자금 조달 제목, 미보도 규칙 제외, 직전 대비 비교) — 예약 작업 chiip-pulse 개정, 포트폴리오 첫 회차 뉴스 기준선 폐지·IB 제목 필터, 시험 8개
+- 엔진 점검·개수(§21.25, 마스터 지시 '중대장은 실망했다'): Google News 쿼리 절반 포화로 기사 약 3분의 2 누락 발견 → 포화 분할 재질의·6시간 창·3시간 쓸어 담기, 보유 종목 사건 결정론 상향(큰 사건 P0·종목×사건 종류 묶음), 점검 기록 docs/audit/20261029_engine_audit.md, MRVL–Lumentum 플래시 늦은 보고 발송
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

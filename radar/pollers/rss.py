@@ -53,6 +53,46 @@ def _older_than(iso_s, days):
 # 마스터 지정 매체(7곳 → 9곳, 2026-10-28 CNBC·Seeking Alpha 추가). 두 곳은 robots.txt가 AI 수집기를 막아 Google News 색인으로만 본다
 NEWS7_SITES = ("(site:reuters.com OR site:bloomberg.com OR site:wsj.com OR site:theinformation.com OR site:businessinsider.com"
                " OR site:cnbc.com OR site:seekingalpha.com)")
+# 포화 분할용 매체 묶음 — 한 종목만으로도 100건 상한에 닿으면(엔비디아 등) 주요 4곳과 나머지로 나눠 다시 묻는다
+NEWS7_SITE_GROUPS = ("(site:reuters.com OR site:bloomberg.com OR site:wsj.com OR site:theinformation.com)",
+                     "(site:businessinsider.com OR site:cnbc.com OR site:seekingalpha.com)")
+GNEWS_CAP = 95   # Google News RSS는 한 쿼리 최대 100건 — 이 이상이면 최신 기사가 잘렸을 수 있다(2026-10-29 측정: 14개 쿼리 중 7개 포화)
+
+
+FOCUS7_WINDOW = "6h"        # 15분마다 도는 회차는 최근 6시간만 묻는다(포화 줄이기) — when:은 시간 단위도 먹는다(2026-10-29 시험)
+FOCUS7_SWEEP_H = 3           # 3시간마다 한 번은 when:1d로 빠진 것 쓸어 담기
+
+
+def _focus7_url(names, sites=NEWS7_SITES, window="1d"):
+    q = f"{sites} (" + " OR ".join(f'"{n}"' for n in names) + f") when:{window}"
+    return GNEWS.format(q=urllib.parse.quote(q), hl="en-US", gl="US")
+
+
+def focus7_entries(names, sites=NEWS7_SITES, stats=None, window="1d"):
+    """포화(100건 상한)면 종목을 반으로 나눠 다시 묻고, 한 종목이면 매체 묶음으로 나눈다 — 상한에 밀려 최신 기사가 빠지던 문제
+    (MRVL–Lumentum 보도 지연·누락 점검, 2026-10-29). stats는 {"requests": n, "saturated": n}"""
+    import time
+    entries = parse_feed(common.http_get(_focus7_url(names, sites, window)))
+    if stats is not None:
+        stats["requests"] = stats.get("requests", 0) + 1
+    if len(entries) < GNEWS_CAP:
+        return entries
+    if stats is not None:
+        stats["saturated"] = stats.get("saturated", 0) + 1
+    time.sleep(0.3)
+    if len(names) > 1:
+        mid = len(names) // 2
+        parts = [focus7_entries(names[:mid], sites, stats, window), focus7_entries(names[mid:], sites, stats, window)]
+    elif sites == NEWS7_SITES:
+        parts = [focus7_entries(names, g, stats, window) for g in NEWS7_SITE_GROUPS]
+    else:
+        return entries   # 한 종목·한 매체 묶음도 포화 — 더 나누지 않는다(상태에 포화로 남음)
+    seen, out = set(), []
+    for e in entries + [x for part in parts for x in part]:
+        if e["link"] and e["link"] not in seen:
+            seen.add(e["link"])
+            out.append(e)
+    return out
 
 
 def focus7_urls(src, chunk=8):
@@ -76,8 +116,7 @@ def focus7_urls(src, chunk=8):
         else:
             names.append((u.get("aliases") or [u["name"]])[0].strip())
     for i in range(0, len(names), chunk):
-        q = f"{NEWS7_SITES} (" + " OR ".join(f'"{n}"' for n in names[i:i + chunk]) + ") when:1d"
-        yield GNEWS.format(q=urllib.parse.quote(q), hl="en-US", gl="US"), None
+        yield "@focus7", names[i:i + chunk]   # poll_source가 focus7_entries로 포화 분할하며 받는다
 
 
 def feed_urls(src):
@@ -108,9 +147,18 @@ def poll_source(src):
     max_age = src.get("max_age_days")
     urls = list(feed_urls(src))
     failed = []
+    stats, window = {}, FOCUS7_WINDOW
+    if any(u == "@focus7" for u, _ in urls):
+        st7 = common.load_state("focus7_stats", {})
+        last = (st7.get("sweep") or {}).get(src["id"])
+        if not last or datetime.fromisoformat(last) < common.now_kst() - timedelta(hours=FOCUS7_SWEEP_H):
+            window = "1d"
     for url, entity in urls:
         try:
-            entries = parse_feed(common.http_get(url))
+            if url == "@focus7":
+                entries, entity = focus7_entries(entity, stats=stats, window=window), None
+            else:
+                entries = parse_feed(common.http_get(url))
         except Exception as exc:  # 피드 여럿 중 하나가 죽어도 나머지는 받는다
             if len(urls) == 1:
                 raise
@@ -135,6 +183,12 @@ def poll_source(src):
             if entity and entity not in it["entities_matched"]:
                 it["entities_matched"].append(entity)
             items.append(it)
+    if stats:
+        st = common.load_state("focus7_stats", {})
+        st[src["id"]] = {**stats, "window": window, "queries": sum(1 for u, _ in urls if u == "@focus7"), "at": common.iso(common.now_kst())}
+        if window == "1d":
+            st.setdefault("sweep", {})[src["id"]] = common.iso(common.now_kst())
+        common.save_state("focus7_stats", st)
     if failed and len(failed) == len(urls):
         raise RuntimeError("피드 전부 실패: " + "; ".join(failed[:3]))
     # 뉴스룸처럼 scope가 단일 기업이면 매칭 보강

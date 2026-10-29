@@ -32,6 +32,38 @@ def _fin():
     return _CACHE["fin"]
 
 
+def _holdings():
+    """[(보유 티커, 정규식)] — 회사명·별칭·티커"""
+    if "held" not in _CACHE:
+        out = []
+        for h in (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []:
+            if h.get("status", "보유") != "보유":
+                continue
+            alts = [r"\b" + re.escape(n) + r"\b" for n in (h.get("names") or [h["name"]])] + [r"\b" + re.escape(h["ticker"]) + r"\b"]
+            out.append((h["ticker"], re.compile("|".join(alts), re.I)))
+        _CACHE["held"] = out
+    return _CACHE["held"]
+
+
+MAJOR_RE = re.compile(r"acqui|merger|takeover|\bbuy(s|ing)?\b|deal|talks|is said to|earnings|results|guidance|forecast|offering|convertible|"
+                      r"downgrade|upgrade|lawsuit|probe|ban\b|CEO|CFO|resign", re.I)
+
+
+EVENT_CLASS = [("ma", re.compile(r"acqui|merger|takeover|\bbuy(s|ing)?\b|deal|talks|is said to|bid\b", re.I)),
+               ("earn", re.compile(r"earnings|results|guidance|forecast|outlook", re.I)),
+               ("fin", re.compile(r"offering|convertible|notes|debt|raise", re.I)),
+               ("rating", re.compile(r"downgrade|upgrade|price target|initiat", re.I)),
+               ("mgmt", re.compile(r"\bCEO\b|\bCFO\b|resign|appoint", re.I)),
+               ("legal", re.compile(r"lawsuit|probe|investigation|ban\b|tariff|export control", re.I))]
+
+
+def level_for(item, why):
+    """보유 종목의 큰 사건(M&A·실적·가이던스·증자·투자의견·경영진)은 P0, 나머지 상향은 P1"""
+    if why and why.startswith("규칙 상향: 보유 종목") and MAJOR_RE.search(_title(item)):
+        return "P0"
+    return "P1"
+
+
 def _related():
     """[(보유 티커, 관련 이름, 정규식)]"""
     if "related" not in _CACHE:
@@ -71,6 +103,12 @@ def match(item):
     title = _title(item)
     text = f"{title} {item.get('snippet') or ''}"
     ents = sorted(item.get("entities_matched") or [])
+    ev = (r.get("portfolio_related") or {}).get("event") or r"$^"
+    for tk, pat in _holdings():   # 마스터 보유 종목 자체(2026-10-29 — MRVL·Lumentum 인수 협상 보도가 P2로 묻힌 뒤)
+        if pat.search(title):
+            cls = next((k for k, rx in EVENT_CLASS if rx.search(title)), "event" if re.search(ev, title, re.I) else None)
+            if cls:   # 사건 문구가 없는 시황('shares edge higher')은 올리지 않는다. 같은 사건 기사 여러 건은 종목×사건 종류로 묶는다
+                return f"규칙 상향: 보유 종목 {tk}", f"held:{tk}:{cls}"
     m = r.get("frontier_ipo") or {}
     if m:
         terms = re.compile(m["terms"], re.I)

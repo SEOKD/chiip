@@ -23,6 +23,7 @@ import promote  # noqa: E402
 BATCH = common.STATE / "triage_batch.json"
 BRIEF_QUEUE = common.STATE / "brief_queue.jsonl"
 BATCH_SIZE = 25
+RANK = {"P0": 3, "P1": 2, "P2": 1, "P3": 0}
 SCHEMA = {
     "type": "object",
     "properties": {"results": {"type": "array", "items": {
@@ -152,10 +153,11 @@ def main(argv=None):
             if not it:
                 continue
             lvl = r["level"]
-            if lvl in ("P2", "P3"):   # 규칙 상향(radar/promote.py) — T0 중심 판정이 낮춘 AI 밸류체인 사건·보유 종목 관련
+            if lvl in ("P1", "P2", "P3"):   # 규칙 상향(radar/promote.py) — T0 중심 판정이 낮춘 AI 밸류체인 사건·보유 종목
                 why_up = promote.check(it)
-                if why_up:
-                    lvl, r["reason"] = "P1", f"{why_up} (모델 {r['level']}: {r.get('reason', '')})"
+                new = promote.level_for(it, why_up) if why_up else None
+                if new and RANK[new] > RANK[lvl]:
+                    lvl, r["reason"] = new, f"{why_up} (모델 {r['level']}: {r.get('reason', '')})"
                     r["what"] = f"[{why_up}] {r.get('what') or it['title']}"
             card = Path(r.get("card_path") or "").stem or None
             msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card)

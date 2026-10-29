@@ -28,7 +28,13 @@ class TestPromote(unittest.TestCase):
 
     def test_financing_and_ma_promoted(self):
         self.assertIn("AI 자금 조달($3B)", promote.match(item("Nvidia to Invest $3 Billion in Meta’s Equity Offering as They Expand AI Partnership - WSJ", ents=(), pub="WSJ"))[0])
-        self.assertIn("M&A", promote.match(item("Marvell Is Said to Near Deal for Lumentum In AI-Related Megadeal - Bloomberg.com", ents=("co-marvell",), pub="Bloomberg.com"))[0])
+        self.assertIn("M&A", promote.match(item("Coherent in talks to buy optics maker - Bloomberg.com", ents=("co-coherent",), pub="Bloomberg.com"))[0])
+        # 보유 종목(MRVL) 자체의 M&A 보도는 P0, 같은 사건 기사들은 한 서명으로 묶인다
+        a = item("Marvell Is Said to Near Deal for Lumentum In AI-Related Megadeal - Bloomberg.com", ents=("co-marvell",), pub="Bloomberg.com")
+        b = item("Marvell in Talks to Buy Lumentum - The Information", ents=("co-marvell",), pub="The Information")
+        self.assertEqual(promote.match(a)[1], promote.match(b)[1])
+        self.assertEqual(promote.level_for(a, promote.match(a)[0]), "P0")
+        self.assertIsNone(promote.match(item("Marvell shares edge higher in early trade - CNBC", ents=("co-marvell",), pub="CNBC")))
         self.assertIsNone(promote.match(item("Microsoft is offering buyouts to around 60,000 employees - Business Insider", ents=("co-microsoft",), pub="Business Insider")))
 
     def test_not_promoted(self):
