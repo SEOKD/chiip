@@ -2073,6 +2073,12 @@ source: docs/methodology
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
 
+### 21.38 Proviser — 소수 첫째 자리 품질 점수·단계적 파라미터 최적화 (2026-10-29 마스터 지시 "각 시스템의 기능(산출물 품질)을 매일 10점 만점에 소수점 첫째 자리까지 평가하고, 높일 방안을 고민해 파라미터를 최적화하라. 더 필요하면 논문을 참조해 금융공학 박사로서 모델 디자인을 고도화하라. 억지로 늘리지 말고 피팅 후에도 안 되면 단계적으로 추가")
+- 점수 = (1 − w) × 루브릭(축 A~E 0.1 단위 − 운영 결함) + w × 성과 지표(로그에서 결정론 계산), w = 0.4 × N/(N+20)(뷸만 신뢰도). 소수 첫째 자리. `scripts/proviser/quality.py`, 기능별 지표·floor·target `config/proviser.yaml`. scores.csv에 rubric·kpi·kpi_w 열 추가.
+- 단계적 파라미터 설계 `scripts/fit/stepwise.py`: 0 데이터 확보 → 1 기존 피팅 → 2 잔차 진단(|t| ≥ 2 + 논문 근거 후보 1개만 proposed) → 3 유지. 확장 채택은 `harness.nested_test`(짝지은 표본 외 손실 t — Diebold & Mariano 1995, 누적 시도 수 본페로니 문턱 — Harvey·Liu·Zhu 2016) + 표본 외 관측 ≥ 10 × (파라미터 수 + 1)(Peduzzi et al. 1996). 등록부 `design` 절. 작업 지시 `knowledge/models/params/queue.yaml`(매일) → Model Lab 일요일 회차가 위에서부터 처리.
+- 역할 분리: 프로바이저는 평가·진단·fit 정의·proposed·제안서만, 값 변경은 Model Lab 일요일 채택 관문만(과적합 방지 — CLAUDE.md 사명 '피팅·채택은 표본 외 개선이 확인될 때 주·월 단위로'). 예약 작업 chiip-proviser는 지시문 원본(docs/tasks/chiip-proviser.md)을 읽는 포인터로 바꿨다.
+- 첫 판정(2026-10-29): 연결된 13개 모델 모두 0~1단계 — 피팅 자료 정의·기존 피팅이 먼저이고 새 파라미터는 아직 넣을 단계가 아니다.
+
 ### 21.34 X·텔레그램 관심도 집계 허용 (2026-10-29 마스터 "허용" — 질문: "X·텔레그램 관심도 집계(회사명 언급 수만, 본문 저장 없음)를 허용하시겠습니까?") → ADR-011
 - 범위: Chiip Ten-bagger Discovery 후보·커버리지 종목의 **회사명 언급 수만**(`radar/attention.py`, 하루 1회). 글 본문·작성자·계정 목록은 저장하지 않는다 — 본문은 메모리에서 세고 버린다. `src-research-x`(X 타임라인 본문 수집)는 이 허용에 포함되지 않아 꺼진 채 TODO 21-3 대기.
 - X: 공식 API Counts: Recent(`GET https://api.x.com/2/tweets/counts/recent`, Bearer, query ≤ 4096자, start_time 최근 7일 안, 응답 `data[].post_count`·`meta.total_post_count` — 2026-10-29 공식 문서 확인). 종목당 하루 1요청 $0.005(2026-10-29 공식 가격표) → 30종목 ≈ 월 $4.5, 상한 `monthly_cap` 1,500요청. 질의 = 영문명·현지명·한국어 표기(`ko`)를 OR, 미국 종목은 $티커, 리트윗 제외. 키(`X_BEARER_TOKEN`) 입력 전엔 건너뛴다.

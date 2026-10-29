@@ -21,6 +21,7 @@ argument-hint: "[daily | weekly | 논문 URL]"
 6. 공개 수치 사전값: 다모다란 월간 내재 ERP 등은 날짜·URL과 함께 `prm-val-erp-us` 등에 기록.
 
 ## weekly (일요일)
+0. **Proviser 작업 지시를 먼저**(마스터 지시 2026-10-29 — 단계적 고도화): `knowledge/models/params/queue.yaml`(`py scripts/fit/stepwise.py --status --write`가 매일 갱신)을 위에서부터 처리한다. 0단계 '데이터 확보'는 등록부 fit.data·target·method를 정의(자료가 정말 없으면 '필요 자료'로 남김), 1단계 '기존 피팅'은 아래 1~3, 2단계 '잔차 진단'의 새 파라미터 제안은 `stepwise.can_adopt_extension(model, 기존 손실, 확장 손실, 등록부, 확장 후 파라미터 수)` — 짝지은 표본 외 검정 + 누적 시도 수 본페로니 보정 + 관측 수 규칙을 모두 통과할 때만 채택. 1단계가 끝나지 않은 모델에 새 파라미터를 넣지 않는다.
 1. 데이터가 있는 제안서부터 `scripts/fit/harness.py`로 검증: `evaluate(series, fit_fn, predict_fn, prior, k, min_train)` → `adoption_decision(...)`. 검증 스크립트는 `scripts/fit/jobs/<param>.py`로 남긴다(재실행 가능해야 함).
 2. 통과: 등록부 value·status·fit 블록 갱신 + binding 위치 config를 Edit + `registry.py --check` 일치 확인 + `changelog.csv` 한 행. 상대 변화 20% 이상(`registry.needs_approval`)이면 config는 그대로 두고 `status: fitted` + `docs/TODO_MASTER.md`에 승인 요청.
 3. 실패: 제안서에 결과·이유를 적고 상태 유지. 실패도 기록이다.

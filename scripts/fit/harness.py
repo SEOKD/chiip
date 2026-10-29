@@ -73,6 +73,31 @@ def adoption_decision(oos_prior, oos_fit, n_oos, rule):
     return True, f"표본 외 개선 {gain:.1%} (n={n_oos})"
 
 
+def nested_test(base_losses, ext_losses, trials=1, alpha=0.05, min_gain=0.05):
+    """기존 모델 vs 기존+파라미터 1개의 표본 외 손실 비교(같은 관측끼리 짝) — 단계적 파라미터 추가 관문(scripts/fit/stepwise.py).
+    짝지은 손실 차 d = 기존 − 확장의 t 통계(Diebold & Mariano 1995, JBES — 1기 앞 예측이라 HAC 생략)를
+    다중 검정 보정 문턱과 비교한다: 모델에 지금까지 시도한 파라미터 수(trials)로 본페로니 보정(Harvey, Liu & Zhu 2016, RFS — 데이터 스누핑).
+    반환 (통과 여부, 이유, {"gain","t","hurdle","n"})"""
+    from statistics import NormalDist
+    pairs = [(b, e) for b, e in zip(base_losses, ext_losses) if b is not None and e is not None]
+    n = len(pairs)
+    hurdle = max(1.96, NormalDist().inv_cdf(1 - alpha / (2 * max(1, trials))))
+    if n < 3:
+        return False, f"짝지은 표본 외 관측 {n} < 3", {"gain": None, "t": None, "hurdle": round(hurdle, 2), "n": n}
+    d = [b - e for b, e in pairs]
+    mb = sum(b for b, _ in pairs) / n
+    md = sum(d) / n
+    sd = math.sqrt(sum((x - md) ** 2 for x in d) / (n - 1))
+    t = md / (sd / math.sqrt(n)) if sd > 0 else (math.inf if md > 0 else 0.0)
+    gain = md / mb if mb else None
+    st = {"gain": None if gain is None else round(gain, 4), "t": round(t, 2) if math.isfinite(t) else t, "hurdle": round(hurdle, 2), "n": n}
+    if gain is None or gain < min_gain:
+        return False, f"표본 외 개선 {0 if gain is None else gain:.1%} < {min_gain:.0%}", st
+    if t < hurdle:
+        return False, f"t {t:.2f} < 보정 문턱 {hurdle:.2f}(누적 시도 {trials})", st
+    return True, f"개선 {gain:.1%}, t {t:.2f} ≥ {hurdle:.2f}(누적 시도 {trials}, n={n})", st
+
+
 def brier(probs, outcomes):
     pairs = [(float(p), float(o)) for p, o in zip(probs, outcomes) if p not in (None, "") and o not in (None, "")]
     return sum((p - o) ** 2 for p, o in pairs) / len(pairs) if pairs else None

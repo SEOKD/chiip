@@ -75,5 +75,6 @@
 - Chiip Discovery·영어 표기(§21.33, 마스터 지시): 텔레그램 기능명 영어 변환, 발굴 엔진(테마 8·후보 27·관심도 추적·IB 행사 초청 신호·선별 단계 관문·커버리지·대만 원문 공시 수집과 사건 규칙·리포트 대기열 연결), 일본 IR 탐색 45개사 결과(Q&A 15곳)·Union Tool·Micronics Japan 추가, 발굴 엔진은 마스터 지시로 Chiip Ten-bagger 기능에 통합(일요일 첫 회차 발굴 전체 선별, 지시문 원본 docs/tasks/chiip-tenbagger.md 신설·예약 작업이 파일을 읽도록 개정, 별도 예약 작업 없음), Chiip Analysis 예약 시각 22:00→23:00 바로잡음
 - X·텔레그램 관심도 집계(§21.34·ADR-011, 마스터 2026-10-29 "허용"): radar/attention.py에 X 공식 API Counts: Recent(종목당 하루 1요청 $0.005, 월 상한 1,500, 키 입력 전 건너뜀)와 텔레그램 공개 채널 웹 미리보기(t.me/s, 6채널, 7일 거슬러 읽기) 언급 글 수 집계 — 본문·작성자 미저장, 쏠림 투자자 원천에 포함. 후보 14곳 한국어 별칭(ko), 4자 이하 영문 별칭 제외. CLAUDE.md 제외 원천 문구·§21.6 개정. src-research-x(타임라인 본문)는 꺼진 채 TODO 21-3. 첫 실측 5채널 357글: 삼성전기 16·Yageo 5. 시험 7건 추가
 
+- Proviser 개편(§21.38, 마스터 2026-10-29): 기능 7개 산출물 품질을 소수 첫째 자리로 — 루브릭(0.1 단위) + 성과 지표(놓친 사건·재발송률·브라이어·채택률·데이터 검증·검증 완료율·갱신 경과일)의 뷸만 신뢰 가중(scripts/proviser/quality.py, config/proviser.yaml). 단계적 파라미터 설계 scripts/fit/stepwise.py(데이터 확보 → 기존 피팅 → 잔차 진단 때만 논문 근거 1개 → 유지)와 harness.nested_test(Diebold-Mariano + 본페로니 누적 시도 보정), 등록부 design 절, queue.yaml → Model Lab 일요일. 예약 작업 chiip-proviser는 포인터로. 시험 tests/test_proviser.py
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

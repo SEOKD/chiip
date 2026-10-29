@@ -5,6 +5,12 @@ adoption:
   approval_rel_change: 0.2
   shrink_k: 20
   rule: 표본 외 손실이 사전값 대비 5% 이상 줄고 표본 외 관측 30개 이상일 때만 채택. 상대 변화 20% 이상은 마스터 승인
+design:   # 단계적 모델 고도화(마스터 지시 2026-10-29 Proviser — "억지로 늘리지 말고 피팅 후에도 안 되면 추가") · scripts/fit/stepwise.py
+  rule: "① 피팅 자료 확보 ② 기존 파라미터 피팅이 먼저 ③ 피팅 후에도 연결 기능 품질이 목표 미달이고 잔차에 체계적 구조(|t| ≥ 2)가 있을 때만 ④ 논문 근거(서지·작동 원리)가 있는 파라미터를 한 번에 1개 proposed ⑤ 기존 vs 기존+1 짝지은 표본 외 검정(Diebold-Mariano) + 누적 시도 수 본페로니 보정(Harvey·Liu·Zhu 2016) + 관측 수 규칙 통과 시에만 채택"
+  alpha: 0.05
+  obs_per_param: 10        # 표본 외 관측 ≥ 10 × (파라미터 수 + 1) — Peduzzi et al. (1996, J Clin Epidemiol) EPV 10 규칙
+  one_at_a_time: true
+  quality_target: 9.0      # config/proviser.yaml scoring.target과 같게
 params:
 - id: prm-val-disc-us
   model: valuation.reverse_dcf

@@ -1,0 +1,57 @@
+# Chiip proviser 설정 — 마스터 지시 2026-10-29 "각 시스템의 기능(산출물 품질)을 매일 10점 만점에 소수점 첫째 자리까지 평가하고,
+# 높일 방안을 고민해 파라미터를 최적화하라. 파라미터가 더 필요하면 논문 등 전문 기술 자료로 금융공학 박사로서 고민해 모델 디자인을 고도화하라.
+# 억지로 늘리지 말고, 피팅이 끝나도 결과가 안 나오면 파라미터를 추가하는 식으로 단계적으로."
+#
+# 점수 = (1 − w) × 루브릭(축 A~E 0.1 단위 합 − 운영 결함) + w × 성과 지표(KPI) 점수, 소수 첫째 자리 반올림
+#   w = kpi_max_weight × N / (N + credibility_k) — 뷸만 신뢰도(Bühlmann 1967): 성과 표본 N이 적으면 루브릭(판단) 쪽으로 당긴다
+# 계산 scripts/proviser/quality.py · 단계적 파라미터 설계 scripts/fit/stepwise.py · 등록부 knowledge/models/params/registry.yaml design 절
+scoring:
+  decimals: 1
+  axis_step: 0.1          # 축 A~E는 0.0~2.0을 0.1 단위로(이전 0.5 단위 — 소수 첫째 자리 평가에 맞춰 세분)
+  ops_max: 1.5
+  kpi_max_weight: 0.4
+  credibility_k: 20       # 성과 관측 20개면 KPI 가중 = 0.4 × 0.5 = 0.2
+  target: 9.0
+
+# 기능 → 성과 지표(결정론, 로그에서 계산) · 연결 파라미터 모델(등록부 model 값)
+# 지표마다 floor(0점)·target(10점) 사이 선형. higher: 클수록 좋음 여부
+systems:
+  chiip-pulse:
+    kpis:
+      - {id: radar_misses_7d, higher: false, floor: 5, target: 0, note: "evals/radar_misses.csv 지난 7일 놓친 사건 수"}
+      - {id: dup_send_rate_7d, higher: false, floor: 0.2, target: 0.0, note: "outputs/article/sources/log.csv 같은 url 재발송 비율"}
+      - {id: brier_pulse, higher: false, floor: 0.35, target: 0.10, note: "knowledge/predictions.csv 판정된 펄스 예측의 브라이어"}
+    param_models: [alpha.score, signal.revision]
+  chiip-article-pitch:
+    kpis:
+      - {id: pitch_adoption_30d, higher: true, floor: 0.0, target: 0.3, note: "outputs/article/pitch/log.csv 마스터 채택률(30일)"}
+    param_models: []
+  chiip-tenbagger:
+    kpis:
+      - {id: datapack_score_7d, higher: true, floor: 5.0, target: 10.0, note: "지난 7일 리포트 종목의 datapack_check 점수 평균"}
+      - {id: brier_tenbagger, higher: false, floor: 0.35, target: 0.10, note: "텐배거 출처 예측의 브라이어"}
+    param_models: [tenbagger.screen, alpha.score, valuation.v2, valuation.v2.decision, valuation.wacc, valuation.v2.datapack_check]
+  chiip-notion-watch:
+    kpis:
+      - {id: brier_notion, higher: false, floor: 0.35, target: 0.10, note: "노션 검토 출처 예측의 브라이어"}
+    param_models: []
+  chiip-model-lab:
+    kpis:
+      - {id: lab_validation_rate, higher: true, floor: 0.0, target: 0.8, note: "등록부 proposed 중 검증 완료(fitted·adopted·retired) 비율"}
+    param_models: [lab.proposal_gate]
+  chiip-weekly-review:
+    kpis:
+      - {id: brier_skill_all, higher: true, floor: -0.3, target: 0.3, note: "전체 예측 브라이어 기술 점수(BSS = 1 − B ÷ 기준선 B)"}
+    param_models: [focus.score]
+  chiip-portfolio:
+    kpis:
+      - {id: portfolio_freshness_days, higher: false, floor: 7, target: 1, note: "knowledge/models/portfolio/coverage.csv 마지막 갱신 경과일"}
+      - {id: brier_portfolio, higher: false, floor: 0.35, target: 0.10, note: "포트폴리오 출처 예측의 브라이어"}
+    param_models: [valuation.reverse_dcf, valuation.cycle_band]
+
+# 예측 출처(origin) 경로로 기능을 가른다
+prediction_origins:
+  chiip-pulse: ["outputs/article/sources", "radar/pulse"]
+  chiip-tenbagger: ["outputs/tenbagger", "knowledge/models/tenbagger"]
+  chiip-notion-watch: ["outputs/report/notion"]
+  chiip-portfolio: ["outputs/invest/portfolio"]
