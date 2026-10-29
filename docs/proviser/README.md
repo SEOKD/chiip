@@ -2,7 +2,7 @@
 
 > "Chip pulse 등 나머지 6개의 추론을 재평가하는 Chip proviser를 만들어라. proviser는 이들의 추론 방식과 다른 접근 방법으로 사고하며 이들 추론 점수를 평가하고, 10점 만점에 9점 미만일 경우 10점으로 끌어올릴 수 있는 근거를 생성하고 이를 각 기능의 작업지시서에 넣어라." 마스터는 기능을 6개만 남겼다 — 프로바이저는 새 기능을 만들지 않고 6개를 고친다.
 
-## 대상 (예약 작업 6개)
+## 대상 (예약 작업 7개 — 2026-10-29 마스터 지시로 portfolio 추가)
 | taskId | 이름 | 산출물(평가 표본) |
 |---|---|---|
 | chiip-pulse | Chiip pulse (30분) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
@@ -11,6 +11,7 @@
 | chiip-notion-watch | Chiip Notion Tracker (매시간) | outputs/report/notion/, Insights '치입 검토' 하위 페이지, knowledge/predictions.csv |
 | chiip-model-lab | Chiip Model Laboratory (매일 18:00) | knowledge/models/lab/notes/, proposals/, outputs/report/lab/ |
 | chiip-weekly-review | Chiip Weekly Review (토 07:00) | outputs/brief/YYYY-Www_weekly.md |
+| chiip-portfolio | Chiip Portfolio (매시 35분, 새 자료 있을 때만 + 화~토 데일리) — 2026-10-29 마스터 지시로 7번째 추가 | outputs/invest/portfolio/ (`<날짜>.md`, `_tg.txt`, tickers/), knowledge/models/portfolio/coverage.csv, radar/portfolio/ |
 실행 기록은 예약 작업 실행 목록(list_task_runs)의 요약으로 보완한다. 표본이 없으면 작업지시서 자체를 평가한다('사전 평가').
 
 ## 다른 접근 — 기능은 앞으로, 프로바이저는 거꾸로·바깥에서
@@ -30,6 +31,7 @@
 | ten-bagger | 병목 → 해결 기술 → 작은 공급사(내부 관점) | 기저율(Bessembinder 2018) + 경쟁 무시(Greenwood & Hanson 2015: 높은 수익이 공급 증설을 부른다) + 탈락 후보 기록 |
 | Notion Tracker | 마스터 의도 우선 | 반(反)동조 검사(찬성·반대 근거의 대칭) + 단일 출처·재인용(origin_id) 점검 |
 | Model Lab | 논문 → 파라미터 | 재현성·출판 편향(McLean & Pontiff 2016: 공개 후 예측력 감쇠, Harvey·Liu·Zhu 2016: t>3.0) + 외적 타당성(표본·시장 차이) |
+| Portfolio | 보유 종목의 새 사실 팔로업(보유자 관점) | 보유 편향 교정 — 불리한 사실을 유리한 것과 같은 무게로 썼나(처분 효과·확증 편향), 목표가·관심도 변화를 원인 사건과 분리했나 |
 | Weekly Review | 자기 성적 채점 | 자기 채점 편향 교정(단순 기준선 대비 개선 폭) + 주가 원인 금지표 |
 
 ## 채점 (10점 = 축 5개 × 2점, 0.5점 단위) — 산출물 표본마다 매기고 평균

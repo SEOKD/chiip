@@ -43,6 +43,7 @@ def extra_focus():
         s = set(ew.get("master_stocks") or [])
         for ids in (ew.get("radar_themes") or {}).values():   # 레이더 테마(데이터센터 전력 등, 마스터 지시)
             s |= set(ids or [])
+        s |= portfolio_ids()   # 마스터 포트폴리오(config/portfolio.yaml, 2026-10-29)
         p = common.ROOT / "knowledge" / "models" / "alpha" / "latest.json"
         if p.exists():
             try:
@@ -51,6 +52,12 @@ def extra_focus():
                 pass
         _CACHE["extra_focus"] = s
     return _CACHE["extra_focus"]
+
+
+def portfolio_ids():
+    """마스터 포트폴리오 보유 종목 id — 레이더·어닝 캘린더가 점수와 무관하게 항상 포함"""
+    hs = (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []
+    return {h["id"] for h in hs if h.get("status", "보유") == "보유" and h.get("id")}
 
 
 def watch_ids():

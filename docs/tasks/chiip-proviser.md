@@ -15,7 +15,7 @@
 작업 폴더: C:\Users\석진\chiip (git 저장소). 먼저 CLAUDE.md, 그다음 `docs/proviser/README.md`(평가 틀 — 이 지시의 상세, 특히 '매일 향상' 절)를 읽고 따른다.
 환경: PowerShell에서 py·git이 "인식되지 않는다"고 나오면 명령 앞에 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User');` 를 붙인다. 출력이 깨지면 `$env:PYTHONIOENCODING='utf-8'`.
 
-사명(마스터 지시 2026-10-29): "6개의 기능만 남겨놨다. 더 이상 추가로 만들지 마라. 나머지 6개의 추론을 다른 접근으로 재평가하고, 9점 미만이면 10점으로 끌어올릴 근거를 생성해 각 기능의 작업지시서에 넣어라." 그리고 "프로바이저는 모든 기능의 역량을 매일 향상시키겠다는 목표로 작업한다. 기능의 역량이 전일보다 떨어졌다고 파악되면 반드시 끌어올려야 한다. 사고 구조·추론 구조·체계를 하나하나 요인 분석해 향상시키는 데 목표를 둔다. 시계열에 따른 익스포넨셜 효과를 노린다." 목표는 9점 통과가 아니라 **6개 기능 모두가 매일 전일보다 나아지는 것**이다. 대상: chiip-pulse, chiip-article-pitch(Chiip reporter), chiip-tenbagger, chiip-notion-watch, chiip-model-lab, chiip-weekly-review. 매일 22:00(KST)에 실행해 다음 날 아침 회차 전에 지시를 갱신한다.
+사명(마스터 지시 2026-10-29): "6개의 기능만 남겨놨다. 더 이상 추가로 만들지 마라. 나머지 6개의 추론을 다른 접근으로 재평가하고, 9점 미만이면 10점으로 끌어올릴 근거를 생성해 각 기능의 작업지시서에 넣어라." 그리고 "프로바이저는 모든 기능의 역량을 매일 향상시키겠다는 목표로 작업한다. 기능의 역량이 전일보다 떨어졌다고 파악되면 반드시 끌어올려야 한다. 사고 구조·추론 구조·체계를 하나하나 요인 분석해 향상시키는 데 목표를 둔다. 시계열에 따른 익스포넨셜 효과를 노린다." 목표는 9점 통과가 아니라 **6개 기능 모두가 매일 전일보다 나아지는 것**이다. 대상: chiip-pulse, chiip-article-pitch(Chiip reporter), chiip-tenbagger, chiip-notion-watch, chiip-model-lab, chiip-weekly-review, chiip-portfolio(2026-10-29 마스터 지시로 추가 — Chiip Portfolio, 표본 outputs/invest/portfolio/). 매일 22:00(KST)에 실행해 다음 날 아침 회차 전에 지시를 갱신한다.
 
 1. 표본: 기능마다 지난 24시간 산출물(README '대상' 표 경로)과 예약 작업 실행 목록(list_task_runs) 요약. 기능당 최대 3개(pulse는 텔레그램이 나간 회차 위주). Weekly Review는 새 리뷰가 있을 때만. 표본이 없으면 '표본 없음 — 이전 점수 유지'로 원장에 적되, 그 기능의 작업지시서·최근 지시 준수 상태로 개선 지시 1개는 낸다.
 2. 다른 방식으로 다시 생각하기(README '다른 접근'): 결론 → 전제 역추적(전제마다 1차 출처를 직접 연다) → 외부 관점·기저율 → 사전 부검 → 경쟁 가설 2개 → 숫자 재계산 → 결정 가치 + 기능별 반대 렌즈. 기능이 쓴 렌즈를 되풀이하지 않는다.
@@ -28,6 +28,6 @@
    - 7일 이동 평균과 일간 개선율을 원장에 적는다. 개선율이 0 이하로 3일 이어지면 '정체' — 지시를 늘리지 말고 접근(렌즈·층)을 바꾼다.
    - '현재 보강 지시'는 기능당 최대 7개 — 넘으면 기대 효과가 작은 것부터 내린다(복구 R-는 내리지 않는다).
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
-8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[프로바이저 YYYY-MM-DD] pulse x.x(±d) · reporter x.x(±d) · ten-bagger x.x(±d) · Notion x.x(±d) · Model Lab x.x(±d) · Weekly x.x(±d)` / `6개 7일 평균 x.x(전주 대비 ±d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
+8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[프로바이저 YYYY-MM-DD] pulse x.x(±d) · reporter x.x(±d) · ten-bagger x.x(±d) · Notion x.x(±d) · Model Lab x.x(±d) · Weekly x.x(±d) · Portfolio x.x(±d)` / `7개 7일 평균 x.x(전주 대비 ±d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
 9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현.
 10. git 커밋·푸시는 하지 않는다. 마스터 세션에서 일괄 커밋한다.

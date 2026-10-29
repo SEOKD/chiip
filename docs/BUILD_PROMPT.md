@@ -2032,3 +2032,11 @@ source: docs/methodology
 - 첫 평가(2026-10-29): pulse 5.5·Weekly 6.0·reporter 6.5·ten-bagger 7.5·Model Lab 8.0·Notion 8.5, 지시 24개. 큰 결함: pulse가 정리된 valuation-queue로 '작성'을 넘김(19건 적체), ten-bagger 일정(매일)과 지시서(주간) 불일치, reporter가 갱신 끊긴 입력을 읽음.
 - 매일 재평가 예약 작업 `chiip-proviser`: 05:30 안은 분류기 거부 → 마스터 지시로 매일 22:00 등록(`docs/tasks/chiip-proviser.md`). 그날 산출물을 평가해 다음 날 아침 회차 전에 지시 갱신.
 - 매일 향상(2026-10-29 마스터 지시 "모든 기능의 역량을 매일 향상… 전일보다 떨어지면 반드시 끌어올려라… 시계열 익스포넨셜 효과"): 목표 = 9점 통과가 아니라 매일 전일 대비 향상. 요인 3층(사고 구조·추론 구조·체계) 역량 원장, 회귀 시 5 Whys → 복구 지시 R-(회복 확인 전 유지, 2일 연속 하락은 절차 강제), 모든 기능에 매일 지렛대 요인 지시 1개, 졸업 지시 → 상시 원칙(누적·7개 넘으면 압축), 교차 전파 X-, 7일 이동 평균·3일 정체 시 접근 전환. `docs/proviser/README.md` '매일 향상'.
+
+### 21.23 Chiip Portfolio (2026-10-29 마스터 지시 "포트폴리오에 담고 있는 종목에 관한 정보를 팔로업 — 공시·어닝·어닝콜 스크립트·전망·IB 커버리지·레딧 등 투자 커뮤니티 관심도. 포트폴리오는 변화가 있을 때마다 알려주겠다")
+- 보유 종목 = `config/portfolio.yaml` holdings(티커·cik·별칭·위키 문서). 첫 등록: EROC(ERock, 옛 Enchanted Rock, 2026-06-09 NYSE 상장)·INIO(마스터 표기 INNIO)·CCXI(Churchill Capital Corp XI — Agility Robotics와 합병하는 스팩, 합병 후 AGLT)·MRVL·PWR. 수량·평단·비중은 받지 않는다. 마스터가 바뀐 종목을 알려주면 이 파일만 고친다.
+- 결정론 관문 `radar/portfolio.py`(매시): SEC submissions 새 제출 전부(점수: 실적 10·중요 8-K 8·정기 보고서·증권신고서 6·Form 4 3·425 2), Google News 색인 제목(보도자료 3사·9개 매체·IB 커버리지 문구·커뮤니티 사이트), ApeWisdom 공개 API(레딧 등 언급 수 — 레딧은 robots.txt 전면 차단이라 직접 수집 안 함, 언급 10회 이상·24시간 전의 3배 이상 = 급증), 위키백과 조회수(하루 1회, 28일 중앙값의 3배·300회 이상), Hacker News(하루 1회), events 일정의 전날·당일 알림. 처음 보는 종목은 48시간 이내만(첫 회차 폭주 방지). 새 자료도 데일리도 없으면 종료.
+- 모델 몫(easyconomics): 실적 요약·어닝콜(라이선스 취급 — 자기 말 요약)·애널리스트 질문·컨센서스·목표가·내부자·공매도·락업·포지셔닝. 데일리 = 화~토 07시 이후 첫 회차(미국 월~금 장 마감 다음 날). 커버리지 숫자는 `--record`로 `knowledge/models/portfolio/coverage.csv`에 쌓고 전일 대비를 스크립트가 계산. 일정은 `--event`.
+- 연결: 레이더 수집 관문(`gate.portfolio_ids` → extra_focus)·어닝 캘린더(알파 점수와 무관하게 보유 종목 포함, '보유' 표시)·감시 목록(us-ccxi 추가, co-enchantedrock 상장 반영).
+- 예약 작업 `chiip-portfolio`(매시 35분, `docs/tasks/chiip-portfolio.md`) — 등록은 자동 모드 분류기 거부로 마스터 승인 대기. 프로바이저 7번째 대상(`docs/proviser/chiip-portfolio.md`, 교차 전파 지시 4개).
+- invest 모드: local-only·필드 인텔·노션 Informations IB 요지 금지, '사라/팔아라/보유하라'·목표주가·비중 지시 금지(애널리스트 목표가는 제3자 숫자로 출처와 함께), 하단 면책 문구.

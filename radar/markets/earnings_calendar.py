@@ -170,16 +170,19 @@ def digest(events, days, today=None):
     passed, rows = alpha.load_latest(today)
     end = today + timedelta(days=days - 1)
     win = [e for e in events if today.isoformat() <= e["date"] <= end.isoformat()]
-    keep = [e for e in win if e["id"] in passed]
+    from pollers import gate
+    held = gate.portfolio_ids()   # 마스터 포트폴리오는 알파 점수와 무관하게 항상(2026-10-29)
+    keep = [e for e in win if e["id"] in passed or e["id"] in held]
     unscored = sum(1 for e in win if (rows.get(e["id"]) or {}).get("total") is None)
     if not keep:
         return None
     span = "오늘·내일" if days == 2 else f"{days}일"
-    lines = [f"[실적 일정 · 알파 5점 이상] {span} {len(keep)}건"]
+    lines = [f"[실적 일정 · 알파 5점 이상·보유 종목] {span} {len(keep)}건"]
     for e in sorted(keep, key=lambda e: (e["date"], e["time_kst"])):
         d = datetime.strptime(e["date"], "%Y-%m-%d").date()
         when = e["time_kst"] or e["local"] or "시각 미정"
-        lines.append(f"- {d.month}/{d.day}({WD[d.weekday()]}) {when} {e['name']} — 알파 {passed[e['id']]:.1f}")
+        tag = f"알파 {passed[e['id']]:.1f}" if e["id"] in passed else "보유"
+        lines.append(f"- {d.month}/{d.day}({WD[d.weekday()]}) {when} {e['name']} — {tag}")
     lines.append(f"(같은 기간 발표 {len(win)}건 중 기준 미달 {len(win) - len(keep) - unscored}·미산정 {unscored}건은 생략)")
     lines.append("공개 자료 기반 분석이며 투자 권유가 아님")
     return "\n".join(lines)

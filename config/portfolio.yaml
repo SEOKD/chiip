@@ -1,0 +1,63 @@
+# 마스터 포트폴리오 (마스터 지시 2026-10-29 "Chiip Portfolio — 포트폴리오에 담고 있는 종목의 정보를 팔로업")
+# 종목이 바뀌면 마스터가 알려준다 → 치입이 이 파일만 고친다(holdings 추가·삭제, 삭제는 status: 종료 + ended).
+# 보유 수량·평단·비중은 받지 않고 적지 않는다(필요 없음). 치입은 투자자문이 아니다 — 팔로업은 사실·지표·일정만.
+# 실체 확인: SEC EDGAR 회사 검색·submissions(cik), easyconomics 회사 개요 (2026-10-29)
+updated: 2026-10-29
+holdings:
+  - id: co-enchantedrock
+    ticker: EROC
+    name: ERock, Inc.
+    cik: 2110029
+    exchange: NYSE
+    names: ["ERock", "Enchanted Rock"]     # 옛 이름 Enchanted Rock, Inc.(EDGAR formerNames) — 2026-06-09 IPO
+    wiki: null                              # 위키 'Enchanted_Rock'은 텍사스 지형 문서라 쓰지 않는다
+    sub: power_infra
+    since: 2026-10-29
+    status: 보유
+  - id: co-innio
+    ticker: INIO                            # 마스터 표기 'INNIO' — 실제 Nasdaq 티커는 INIO
+    name: INNIO N.V.
+    cik: 2109150
+    exchange: Nasdaq
+    names: ["INNIO", "Jenbacher", "Waukesha"]
+    wiki: Jenbacher
+    sub: power_infra
+    since: 2026-10-29
+    status: 보유
+  - id: us-ccxi
+    ticker: CCXI
+    name: Churchill Capital Corp XI
+    cik: 2074973
+    exchange: Nasdaq
+    names: ["Churchill Capital Corp XI", "Agility Robotics"]
+    wiki: Agility_Robotics
+    sub: robotics
+    kind: spac                              # 스팩 — 합병 대상 Agility Robotics(휴머노이드), 합병 후 티커 AGLT·회사명 Agility Robotics, Inc.
+    since: 2026-10-29
+    status: 보유
+  - id: co-marvell
+    ticker: MRVL
+    name: Marvell Technology
+    cik: 1835632
+    exchange: Nasdaq
+    names: ["Marvell"]
+    wiki: Marvell_Technology
+    sub: accelerator
+    since: 2026-10-29
+    status: 보유
+  - id: co-quanta-services
+    ticker: PWR
+    name: Quanta Services
+    cik: 1050915
+    exchange: NYSE
+    names: ["Quanta Services"]
+    wiki: Quanta_Services
+    sub: power_infra
+    since: 2026-10-29
+    status: 보유
+
+# 날짜가 확정된 일정(1차 출처 있는 것만). 관문이 D-1·당일에 알린다. 치입이 실적일·IR 행사·투표일을 확인하면 여기에 추가한다.
+# time은 현지 시각과 KST를 함께. confirmed: false는 추정(알림에 '미확정' 표시).
+events:
+  - {date: 2026-10-29, ticker: CCXI, what: "환매 청구 마감 — 10/29 17:00 ET (KST 10/30 06:00 — 한국 기준 오늘 밤), DWAC로 Continental에 주식 인도", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109058/ea0297114-07.htm", confirmed: true}
+  - {date: 2026-11-02, ticker: CCXI, what: "임시주총(합병 승인 투표) 09:00 ET (KST 11/2 23:00)", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109077/ea0308496-8k425_church11.htm", confirmed: true}

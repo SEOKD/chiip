@@ -20,6 +20,8 @@ extra:
   # 마스터 Stocks (AI 밸류체인 밖일 수 있음)
   - {id: co-quanta-services, name: Quanta Services, code: PWR.US, region: US, sub: power_infra, master: true, aliases: ["Quanta Services"]}
   - {id: co-caci, name: CACI International, code: CACI.US, region: US, sub: software, master: true}
+  # 마스터 포트폴리오 (config/portfolio.yaml, 2026-10-29) — 합병 완료 후 티커 AGLT·회사명 Agility Robotics
+  - {id: us-ccxi, name: Churchill Capital Corp XI, code: CCXI.US, region: US, sub: robotics, aliases: ["Churchill Capital Corp XI", "Agility Robotics"]}
   # 한국
   - {id: co-samsungsds, name: 삼성SDS, kind_name: 삼성에스디에스, code: 018260.KO, region: KR, sub: software, aliases: ["삼성SDS", "삼성에스디에스", "Samsung SDS"]}
   - {id: co-lgcns, name: LG CNS, kind_name: LG씨엔에스, code: 064400.KO, region: KR, sub: software, aliases: ["LG CNS", "LG씨엔에스"]}
@@ -94,7 +96,7 @@ extra:
   - {id: co-nrg, name: NRG Energy, code: NRG.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["NRG Energy"]}
   - {id: co-nextera, name: NextEra Energy, code: NEE.US, region: US, sub: power_infra, segment: 발전사업자, aliases: ["NextEra Energy", "NextEra"]}
   # 분산형·모듈형 발전사업자(비상장은 code 없음 — 뉴스·상대방 공시로만 추적)
-  - {id: co-enchantedrock, name: Enchanted Rock, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["Enchanted Rock"]}
+  - {id: co-enchantedrock, name: ERock, code: EROC.US, region: US, sub: power_infra, segment: 분산형발전, listed: true, aliases: ["ERock", "Enchanted Rock"]}   # 2026-06-09 NYSE 상장(옛 Enchanted Rock, Inc. — EDGAR formerNames)
   - {id: co-voltagrid, name: VoltaGrid, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["VoltaGrid"]}
   - {id: co-crusoe, name: Crusoe, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["Crusoe Energy", "Crusoe AI"]}
   - {id: co-solaris, name: Solaris Energy Infrastructure, code: SEI.US, region: US, sub: power_infra, segment: 분산형발전, aliases: ["Solaris Energy Infrastructure", "Solaris Energy"]}
