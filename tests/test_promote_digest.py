@@ -163,3 +163,28 @@ class TestPulseAlertsInput(unittest.TestCase):
         with mock.patch.object(pulse.common, "load_state", return_value=alerts):
             got = pulse.fetch_alerts({"judged": ["a"], "alerts_floor": "2026-10-29T13:00"})
         self.assertEqual([g["title"] for g in got], ["P0", "P1 new"])   # P0 먼저, 판단한 건·P2 제외
+
+
+class TestEventGate(unittest.TestCase):
+    def test_original_only_once(self):
+        st = {}
+        load = lambda n, d=None: st.setdefault(n, d if d is not None else {})
+        save = lambda n, data: st.__setitem__(n, data)
+        now = datetime(2026, 10, 29, 15, 25, tzinfo=KST)
+        primary = {"title": "イビデン[4062]：通期連結業績予想の修正に関するお知らせ(適時開示) ：日経会社情報DIGITAL - 日本経済新聞",
+                   "entities_matched": ["co-ibiden"], "doc_type": "공시", "source_id": "src-jp-disclosure"}
+        tanshin = {"title": "イビデン[4062]：2027年3月期 第2四半期決算短信(適時開示)", "entities_matched": ["co-ibiden"],
+                   "doc_type": "공시", "source_id": "src-jp-disclosure"}
+        article = {"title": "【決算速報】イビデン、今期経常を6％上方修正 - Yahoo!ファイナンス", "entities_matched": ["co-ibiden"],
+                   "doc_type": "기사", "source_id": "src-jp-disclosure"}
+        scoop = {"title": "Marvell Is Said to Near Deal for Lumentum - Bloomberg", "entities_matched": ["co-marvell"],
+                 "doc_type": "기사", "source_id": "src-news7-focus"}
+        with mock.patch.object(promote.common, "load_state", side_effect=load), mock.patch.object(promote.common, "save_state", side_effect=save):
+            self.assertFalse(promote.event_gate(article, "P1", now)[0])          # 회사 발표형 사건의 파생 기사는 P1 아님
+            self.assertTrue(promote.event_gate(primary, "P1", now)[0])           # 원문은 한 번
+            self.assertFalse(promote.event_gate(tanshin, "P1", now)[0])          # 같은 실적 발표의 다른 공시는 중복
+            self.assertTrue(promote.event_gate(scoop, "P1", now)[0])             # 단독·관계자 보도는 원문이 없으니 예외
+            self.assertFalse(promote.event_gate(dict(scoop, title="Marvell in talks to buy Lumentum - The Information"), "P1", now)[0])
+
+    def test_cjk_duplicate_words(self):
+        self.assertTrue(promote._words("イビデン、今期経常を上方修正"))

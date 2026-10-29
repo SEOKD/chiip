@@ -189,7 +189,12 @@ def noise(item):
 
 
 def _words(t):
-    return {w for w in re.sub(r"[^a-z0-9$ ]", " ", t.lower()).split() if w not in _STOP and len(w) > 1}
+    """영문은 단어, 한·중·일은 글자 2개씩 — 일본어 제목이 빈 집합이 되어 중복 검사를 빠져나가던 문제(2026-10-29 이비덴)"""
+    t = re.sub(r"\[\d{3,4}[A-Z]?\]|\d{4}年\d{1,2}月\d{1,2}日|\(適時開示\)|：日経会社情報DIGITAL|日本経済新聞", " ", t)
+    out = {w for w in re.sub(r"[^a-z0-9$ ]", " ", t.lower()).split() if w not in _STOP and len(w) > 1}
+    cjk = re.sub(r"[^぀-ヿ一-鿿가-힯]", "", t)
+    out |= {cjk[i:i + 2] for i in range(len(cjk) - 1)}
+    return out
 
 
 def duplicate_of(item, hours=12, now=None):
@@ -215,6 +220,75 @@ def duplicate_of(item, hours=12, now=None):
         if j >= 0.7 or (ents & set(a.get("entities") or []) and j >= 0.5):
             return a.get("title")
     return None
+
+
+# ---- 사건 단위 발송(마스터 지시 2026-10-29 "P1은 항상 원문 중심으로만 중복 없이 한 번만") ----
+EVENT_TYPES = [   # (종류, 회사가 스스로 발표하는 사건인가, 정규식 — 영·일·한)
+    ("guide", True, re.compile(r"guidance|outlook|forecast|raises?.{0,20}(view|target|outlook)|業績予想|上方修正|下方修正|通期.{0,6}(予想|見通し)|가이던스|전망치|실적 전망", re.I)),
+    ("earn", True, re.compile(r"earnings|results|quarter|revenue|profit|決算|最高益|増益|減益|실적|영업이익|매출", re.I)),
+    ("capex", True, re.compile(r"capex|capital (spending|expenditure)|new (plant|fab|factory)|expan(d|sion)|設備投資|新工場|増産|固定資産の取得|증설|설비투자", re.I)),
+    ("return", True, re.compile(r"buyback|repurchase|dividend|自社株買い|自己株式|増配|配当|자사주|배당", re.I)),
+    ("equity", True, re.compile(r"offering|convertible|private placement|公募|新株|第三者割当|転換社債|유상증자|전환사채", re.I)),
+    ("contract", True, re.compile(r"contract|order|agreement|supply deal|受注|契約|수주|공급계약", re.I)),
+    ("deal", False, re.compile(r"acqui|merger|takeover|in talks|nears? (a )?deal|買収|TOB|ＴＯＢ|인수|합병", re.I)),
+    ("short", False, re.compile(r"short seller|short report|we are short|空売り|공매도", re.I)),
+    ("rating", False, re.compile(r"upgrade|downgrade|price target|initiat|目標株価|レーティング|목표주가|투자의견", re.I)),
+    ("legal", False, re.compile(r"lawsuit|probe|investigation|antitrust|DOJ|FTC|SAMR|ban\b|tariff|export control|訴訟|調査|소송|조사", re.I)),
+]
+PRIMARY_SOURCES = ("src-sec", "src-newsroom", "src-prn", "src-bw", "src-globenewswire", "src-dart", "src-edgar")
+SCOOP_RE = re.compile(r"exclusive|scoop|is said to|people familiar|sources say|in talks|단독|関係者", re.I)
+
+
+def event_type(item):
+    title = _title(item)
+    for name, company_originated, rx in EVENT_TYPES:
+        if rx.search(title):
+            return name, company_originated
+    return "other", False
+
+
+def is_primary(item):
+    """회사·정부가 직접 낸 1차 자료인가 — 공시·보도자료·적시공시 원문(미러), 기업 뉴스룸"""
+    sid = item.get("source_id") or ""
+    if item.get("doc_type") in ("공시", "보도자료", "실적", "규제·정책") or sid.startswith(PRIMARY_SOURCES):
+        return True
+    return "適時開示" in (item.get("title") or "")
+
+
+def event_key(item):
+    """같은 사건 = 같은 주 종목 + 같은 사건 종류(하루 단위는 상태의 24시간 창으로). 종목이 없으면 제목 앞부분"""
+    ents = sorted(item.get("entities_matched") or [])
+    etype, _ = event_type(item)
+    if etype in ("guide", "earn"):   # 실적과 가이던스는 같은 발표에서 함께 나온다 — 한 사건으로
+        etype = "results"
+    who = ents[0] if ents else re.sub(r"\W+", "", _title(item).lower())[:20]
+    return f"{who}:{etype}"
+
+
+def event_gate(item, level, now=None, window_h=24):
+    """P0·P1을 보내기 전 사건 단위 판정 → (보낼지, 앞머리, 사유).
+    ① 회사 발표형 사건(실적·가이던스·설비투자·주주환원·증자·계약)은 원문(공시·보도자료)만 보낸다 — 파생 기사는 P2(단독·관계자 보도는 예외)
+    ② 같은 사건은 24시간에 한 번 — 단, 기사로 먼저 나간 사건의 원문이 나중에 오면 '[원문 확인]'으로 한 번 더"""
+    now = now or common.now_kst()
+    etype, company_originated = event_type(item)
+    primary = is_primary(item)
+    if level in ("P0", "P1") and company_originated and not primary and not SCOOP_RE.search(_title(item)):
+        return False, "", f"원문 중심 — 회사 발표형 사건({etype})의 파생 기사"
+    key = event_key(item)
+    st = common.load_state("events_sent", {})
+    prev = st.get(key)
+    fresh = prev and datetime.fromisoformat(prev["at"]) > now - timedelta(hours=window_h)
+    if fresh:
+        if primary and not prev.get("primary"):
+            st[key] = {"at": prev["at"], "primary": True}
+            common.save_state("events_sent", st)
+            return True, "[원문 확인] ", "기사로 먼저 나간 사건의 원문"
+        return False, "", f"같은 사건 이미 발송({prev['at'][11:16]})"
+    st[key] = {"at": common.iso(now), "primary": primary}
+    for k in [k for k, v in st.items() if datetime.fromisoformat(v["at"]) < now - timedelta(days=3)]:
+        del st[k]
+    common.save_state("events_sent", st)
+    return True, "", ""
 
 
 def check(item, now=None):

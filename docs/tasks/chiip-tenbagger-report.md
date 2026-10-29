@@ -39,11 +39,12 @@
 5. 그리기·확인: `py scripts/tenbagger/report_html.py <json>` → .html. 출력에 오류가 없고 파일이 생겼는지 확인한다(차트 수 = svg 수).
 
 6. 텔레그램(레벨 'REPORT'): `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send_document(r'<html 경로>', '<캡션>', 'REPORT')"`. 캡션(1,000자 이내): `[치입 텐배거 리포트 MM/DD] 회사(티커) — 제목` / `기업: 사업 1줄` / `치입 판단: … · 인사이트 x/10` / `시나리오: 약세 x(확률) · 기본 · 강세 → 확률 가중 x(배수)` / `킬 조건 1개 · 다음 확인 사건(날짜)` / `연구 후보이지 매수 권유 아님 · 1차 판정, 미검증`.
+   이어서 GitHub 링크: `py scripts/publish_report.py <html 경로> <json 경로> --title "텐배거 리포트 MM/DD 회사(티커)"` — 작업 트리를 건드리지 않고 claude/reports 브랜치에 올린 뒤 링크를 텔레그램으로 보낸다(마스터 지시 2026-10-29). 실패하면 오류 한 줄을 기록하고 파일 발송은 그대로 둔다.
 
 7. 기록: `py scripts/tenbagger/pick_report.py --done <id> <티커> <html 경로> "<치입 판단 한 줄>"`. 처음 다루는 후보면 knowledge/models/tenbagger/watch.csv에 등록일 가격과 함께 한 행 추가(tenbagger-card 규칙), 측정 가능한 예측 1개를 knowledge/predictions.csv에(owner 치입, origin 리포트 파일). 기업 사업 설명이 config/company_lines.yaml에 없으면 한 줄 추가.
 
 금지: D:\local-only 읽기, 필드 인텔·채널체크 사용, 로그인·유료벽 우회, robots.txt가 막은 사이트 접속, 원문·트랜스크립트 전체 복제, '사라/팔아라/보유하라'·목표주가·비중 지시, 공개 채널 게시, 확인 안 된 단정.
-git 커밋·푸시는 하지 않는다. 마스터 세션에서 일괄 커밋한다.
+git 커밋·푸시는 하지 않는다(예외: publish_report.py가 claude/reports 브랜치에 리포트 파일만 올리는 것). main은 마스터 세션에서 일괄 커밋한다.
 
 ## 프로바이저 보강
 매 회차 시작 전에 `docs/proviser/chiip-tenbagger.md`의 '상시 원칙'과 '현재 보강 지시'를 읽고 적용한다(이 리포트는 Chiip ten-bagger 기능의 일부). 리포트 '출처' 끝에 `보강 적용: D-…`를 적는다.

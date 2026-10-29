@@ -168,6 +168,11 @@ def main(argv=None):
                     dup = promote.duplicate_of(it)
                     if dup:
                         lvl, r["reason"] = "P2", f"중복 하향(이미 보냄: {dup[:60]})"
+            ev_prefix = ""
+            if lvl in ("P0", "P1"):   # 원문 중심·사건당 한 번(2026-10-29 마스터 지시)
+                go, ev_prefix, why_ev = promote.event_gate(it, lvl)
+                if not go:
+                    lvl, r["reason"] = "P2", f"{why_ev} (모델 {r['level']})"
             card = Path(r.get("card_path") or "").stem or None
             msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card, r.get("biz"))
             ok, why = notify.telegram_allowed(it)
@@ -181,7 +186,7 @@ def main(argv=None):
             if lvl in ("P0", "P1"):  # 실시간 전달: P1도 묶지 않고 건별 즉시(§21.13)
                 ref = notify.remember_alert(it, lvl, r.get("what"), r.get("impact"), card)
                 prefix = "(규칙 선알림 후속) " if it["item_id"] in rule_sent else ""
-                notify.send(prefix + msg, lvl, ref=ref)
+                notify.send(prefix + ev_prefix + msg, lvl, ref=ref)
                 if lvl == "P0":
                     deep_analysis(r, it)
             elif lvl == "P2":
