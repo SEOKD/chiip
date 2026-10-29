@@ -65,6 +65,20 @@ JP_EVENT = [("guide", re.compile(r"業績予想の修正|上方修正|下方修�
             ("earn", re.compile(r"決算短信|決算速報"))]   # '決算' 단독은 시황·기업 정보 페이지까지 잡아 제외(2026-10-29)
 TW_EVENT_RE = re.compile(r"財務報告|自結|營收|財務預測|資本支出|擴廠|擴產|現金增資|可轉換公司債|收購|併購|合併(?!財務)|重大合約|股利|庫藏股|取得.{0,6}(設備|廠房)")
 TW_NOISE_RE = re.compile(r"代子公司|代重要子公司|聯合授信|授信|背書保證|資金貸與|更正|補充說明|更新取得|增資.{0,10}(子公司|轉投資)")   # 자회사 대리·금융 약정·정정 — 원문이지만 사건 아님
+# 방위 섹터(2026-10-29 마스터 지시, config/defense.yaml) — 수주·계약·대외군사판매·양산 결정·실적. 다국어 원문 제목
+DEF_EVENT_RE = re.compile(r"\b(contracts?|awards?|awarded|orders?|selected|framework|multi-?year|full-rate production|LRIP|Foreign Military Sales?|backlog|results|guidance)\b|"
+                          r"Rahmenvertrag|Auftrag|Bestellung|commande|contrat|contratto|contrato|adjudica|契約|受注|業績予想", re.I)
+DEF_NOISE_RE = re.compile(r"webinar|conference call invitation|invitation|celebrat|showcase|demonstrat|exercise|anniversary|visits?\b|award(s|ed)? (for|to) (employee|excellence)|"
+                          r"scholarship|career|sponsor|\bhonou?r", re.I)
+
+
+def defense_ids():
+    if "def" not in _DEF:
+        _DEF["def"] = {c["id"] for c in common.defense_companies()}
+    return _DEF["def"]
+
+
+_DEF = {}
 JP_LABEL = {"guide": "실적 전망 수정", "capex": "설비투자", "return": "주주환원", "deal": "인수·제휴", "equity": "자금 조달", "earn": "실적 발표"}
 
 
@@ -142,6 +156,16 @@ def match(item):
             return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else tk.group(1) if tk else re.sub(r"\W+", " ", title.lower())[:50]))
     if item.get("source_id") == "src-tw-disclosure" and ents and TW_EVENT_RE.search(title) and not TW_NOISE_RE.search(title):   # 대만 원문 공시(2026-10-29 Chiip Ten-bagger Discovery)
         return "규칙 상향: 대만 공시", f"tw:{','.join(ents)}:{TW_EVENT_RE.search(title).group(0)}"
+    sid = item.get("source_id") or ""
+    dsca = re.match(r"DSCA [\d-]+", title) if sid == "src-defense-gov-gn" else None
+    if dsca:   # 미 대외군사판매 의회 통보(DSCA 보도자료 번호)
+        return "규칙 상향: 미 대외군사판매 통보", f"dsca:{dsca.group(0)}"
+    dents = [e for e in ents if e in defense_ids()]
+    dev = DEF_EVENT_RE.search(title)
+    if dents and dev and not DEF_NOISE_RE.search(title):
+        amt = amount_billion(text)
+        if sid.startswith("src-defense-") or (amt is not None and amt >= 1):   # 방위 원천은 수주·계약이면, 그 밖(보도자료 배포처·SEC)은 10억 달러 이상만
+            return "규칙 상향: 방위 수주·계약", f"def:{','.join(dents)}:{dev.group(0).lower()}"
     if item.get("source_id") == "src-jp-disclosure" and ents and not noise(item):   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
         cls = next((k for k, rx in JP_EVENT if rx.search(title)), None)
         if cls:

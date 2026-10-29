@@ -57,6 +57,20 @@ companies:
   - {id: jp-fujielectric, code: "6504", ja: ["富士電機"], en: "Fuji Electric", sub: power_infra}
   - {id: jp-sakura, code: "3778", ja: ["さくらインターネット"], en: "Sakura Internet", sub: hyperscaler}
   - {id: jp-sbg, code: "9984", ja: ["ソフトバンクグループ", "ソフトバンクＧ"], en: "SoftBank Group", sub: hyperscaler}
+  # 방위(마스터 지시 2026-10-29 "Ten-bagger와 Pulse에 방위 섹터 — 일본 포함", config/defense.yaml). 미쓰비시중공업·미쓰비시전기는 위에 있음
+  - {id: jp-khi, code: "7012", ja: ["川崎重工", "川崎重工業"], en: "Kawasaki Heavy Industries", sub: defense}
+  - {id: jp-ihi, code: "7013", ja: ["ＩＨＩ", "IHI"], en: "IHI", sub: defense}
+  - {id: jp-nec, code: "6701", ja: ["日本電気", "ＮＥＣ"], en: "NEC", sub: defense}
+  - {id: jp-fujitsu, code: "6702", ja: ["富士通"], en: "Fujitsu", sub: defense}
+  - {id: jp-subaru, code: "7270", ja: ["ＳＵＢＡＲＵ"], en: "Subaru", sub: defense}
+  - {id: jp-jsw, code: "5631", ja: ["日本製鋼所", "日本製鋼"], en: "Japan Steel Works", sub: defense}
+  - {id: jp-hosoya, code: "4274", ja: ["細谷火工"], en: "Hosoya Pyro-Engineering", sub: defense}
+  - {id: jp-ishikawa, code: "6208", ja: ["石川製作所"], en: "Ishikawa Seisakusho", sub: defense}
+  - {id: jp-howa, code: "6203", ja: ["豊和工業"], en: "Howa Machinery", sub: defense}
+  - {id: jp-tokyokeiki, code: "7721", ja: ["東京計器"], en: "Tokyo Keiki", sub: defense}
+  - {id: jp-nof, code: "4403", ja: ["日油"], en: "NOF", sub: defense}
+  - {id: jp-shimadzu, code: "7701", ja: ["島津製作所", "島津"], en: "Shimadzu", sub: defense}
+  - {id: jp-oki, code: "6703", ja: ["沖電気工業", "沖電気"], en: "Oki Electric", sub: defense}
 # 제목에 이 말이 있으면 사건으로 본다(검색어로도 쓴다)
 event_terms: ["適時開示", "業績予想", "上方修正", "下方修正", "決算", "受注", "設備投資", "新工場", "増産", "買収", "提携", "増配", "最高益", "自社株買い", "公募", "新株"]
 # 일본 매체(제목 끝 ' - 매체명', 정확히 일치). 기사는 이 매체만 저장·발송 — 9개 영어 매체 규칙의 일본판

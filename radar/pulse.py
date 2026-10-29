@@ -29,17 +29,19 @@ from pollers.press_wire import NON_EN_RE  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 10분 주기(2026-10-29 마스터 지시)
-TOP = {"속보 판단": 3, "IR 질의응답": 4, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"속보 판단": 3, "IR 질의응답": 4, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
 CLASSES = [("IR 질의응답", ("src-jp-ir-qa",)),   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
+           ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
     r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
     r"wafer|foundry|semiconductor|transistor|GAA|nanosheet|backside power|3D.?(IC|stack|integration)|TSV|interconnect|photonic|"
@@ -81,6 +83,15 @@ def is_financing(it, fin, pubs):
     return True
 
 
+_DEF_IDS = []
+
+
+def defense_ids():
+    if not _DEF_IDS:
+        _DEF_IDS.append({c["id"] for c in common.defense_companies()})
+    return _DEF_IDS[0]
+
+
 def class_of(source_id):
     for name, prefixes in CLASSES:
         if source_id.startswith(prefixes) and not source_id.endswith("-ko"):
@@ -101,6 +112,8 @@ def score(it, cls):
 def relevant(it, cls):
     text = f"{it.get('title', '')} {it.get('snippet', '')}"
     if cls == "IR 질의응답":   # 일본어 원문이 정상 — 언어 필터 예외
+        return True
+    if cls == "방위":   # 독·프·이·스·일 국방부 원문이 정상 — 언어 필터 예외(원천에서 조달어로 이미 거름)
         return True
     if it.get("language") not in (None, "en") or NON_EN_RE.search(it.get("title", "")):
         return False
@@ -128,6 +141,9 @@ def inbox_items(since):
                 out.append(dict(it, source_class="파이낸싱"))
                 continue
             cls = class_of(it.get("source_id", ""))
+            # 방위 지도 기업의 수주·계약 보도자료·공시(보도자료 배포처·SEC)도 방위로 모은다
+            if cls in ("보도자료", "공시") and set(it.get("entities_matched") or []) & defense_ids() and DEF_WORD_RE.search(it.get("title", "")):
+                cls = "방위"
             if not cls or not relevant(it, cls):
                 continue
             out.append(dict(it, source_class=cls))

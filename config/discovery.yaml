@@ -97,6 +97,59 @@ themes:
       - {id: tw-bizlink, name: BizLink, local: "貿聯", ko: ["비즈링크"], market: tw, code: "3665", edge: 6, why: "AI 랙 고속 케이블(AEC)"}
       - {id: tw-lotes, name: Lotes, local: "嘉澤", market: tw, code: "3533", edge: 6, why: "CPU·GPU 소켓 커넥터"}
       - {id: tw-kingslide, name: King Slide, local: "川湖", ko: ["킹슬라이드"], market: tw, code: "2059", edge: 6, why: "서버 슬라이드 레일 — 고마진"}
+  # ── 방위 병목 테마(마스터 지시 2026-10-29 "Ten-bagger와 Pulse에 방위 섹터도 넣어라" — 지도 config/defense.yaml, 틀 knowledge/methods/defense_lens.md §7)
+  # edge는 치입 1차 판정(미검증) — 근거 한 줄, 일요일 회차가 원문 증거로 고친다. 방위 지도의 중소형만(대형 프라임은 구간 엔진에서 본다).
+  - id: munitions_energetics
+    name: 탄약·에너제틱(포탄·추진제·화약·신관)
+    bottleneck: "2022년 이후 포탄·추진제 수요가 생산 능력을 넘었다 — 니트로셀룰로스·추진제 원료와 장전 라인 증설이 2~4년 걸린다"
+    driver: "국가 비축 목표·연간 조달 발수 × 단가 × 점유"
+    evidence: ["연간 생산 능력(발/년) 증설 공정", "원료 공장 착공·가동", "다년 구매 계약"]
+    candidates:
+      - {id: jp-hosoya, name: Hosoya Pyro-Engineering, local: "細谷火工", ko: ["호소야화공"], market: jp, code: "4274", edge: 5, why: "방위성용 화공품 — 일본 방위비 증액의 소형 수혜 후보, 매출 규모·수주 확인 필요(1차 판정)"}
+      - {id: us-npk, name: National Presto Industries, market: us, code: "NPK", edge: 6, why: "탄약·신관(AMTEC) — 미 육군 탄약 생산 확대 노출, 다년 계약 확인 필요(1차 판정)"}
+      - {id: jp-jsw, name: Japan Steel Works, local: "日本製鋼所", ko: ["일본제강소"], market: jp, code: "5631", edge: 5, why: "포·포신과 대형 단조품 — 화포 체계 병목 부품, 방위 비중은 일부(1차 판정)"}
+  - id: srm_missile
+    name: 고체 로켓 모터·미사일 추진·구조
+    bottleneck: "요격체·미사일 생산률 목표를 고체 로켓 모터(SRM)·추진 부품 공급이 막는다 — 공급사 소수, 증설 2~4년"
+    driver: "연간 미사일 조달 발수 × 발당 추진·구조 함량"
+    evidence: ["다년 조달 계약(multi-year)", "로켓 모터 증설·가동", "프라임의 공급사 증설 지원 발표"]
+    candidates:
+      - {id: it-avio, name: Avio, market: eu, code: "AVIO", edge: 6, why: "방공 미사일용 고체 로켓 모터 + 베가 발사체 — 유럽 방공 수요 노출(1차 판정)"}
+      - {id: us-krmn, name: Karman Space & Defense, market: us, code: "KRMN", edge: 6, why: "미사일·발사체 구조물·추진 부품·분리 장치(1차 판정)"}
+      - {id: jp-ishikawa, name: Ishikawa Seisakusho, local: "石川製作所", ko: ["이시카와제작소"], market: jp, code: "6208", edge: 4, why: "방위 장비(기뢰 등) 소형주 — 방위 매출 비중·수주 미확인(1차 판정)"}
+  - id: gan_radar_ew
+    name: GaN 레이더·전자전·적외선(반도체 겹침)
+    bottleneck: "능동 위상배열 레이더·전자전의 GaN 고출력 MMIC·적외선 검출기·FPGA — 방산 인증 반도체 공급이 좁다(마스터 공정 엔지니어 관점 엣지)"
+    driver: "플랫폼 탑재 수 × 레이더·센서 함량 + 짧은 업그레이드 주기"
+    evidence: ["레이더·센서 수주", "GaN·적외선 부품 공급 계약", "플랫폼 업그레이드 프로그램"]
+    candidates:
+      - {id: de-hensoldt, name: Hensoldt, market: eu, code: "HAG", edge: 7, why: "TRML-4D 등 방공 레이더·전자광학 — 유럽 방공 수요의 센서 층(1차 판정)"}
+      - {id: us-mrcy, name: Mercury Systems, market: us, code: "MRCY", edge: 6, why: "방위용 신호처리·보안 컴퓨팅 서브시스템 — 레이더·전자전 함량(1차 판정)"}
+      - {id: jp-tokyokeiki, name: Tokyo Keiki, local: "東京計器", ko: ["도쿄계기"], market: jp, code: "7721", edge: 5, why: "방위용 레이더 경보 장치 — 일본 방위비 증액 노출, 비중 확인 필요(1차 판정)"}
+      - {id: fr-exosens, name: Exosens, market: eu, code: "EXENS", edge: 6, why: "야간 투시 영상증폭관·광검출기 — 공급사 소수(1차 판정)"}
+  - id: cuas_unmanned
+    name: 대드론·무인기 대량 생산
+    bottleneck: "소모성 무인기·대드론 수요가 시제·평가에서 대량 발주로 넘어가는 구간 — 비중국 모터·배터리·카메라 공급망과 대량 생산 라인이 막힌다"
+    driver: "양산 발주 대수 × 단가 — 시제→양산 전환 시점"
+    evidence: ["양산 계약 전환", "비중국 부품 조달 규정", "생산 라인 증설"]
+    candidates:
+      - {id: us-rcat, name: Red Cat Holdings, market: us, code: "RCAT", edge: 5, why: "미 육군 소형 정찰 무인기 — 양산 전환 확인 필요(1차 판정)"}
+      - {id: us-ktos, name: Kratos Defense & Security Solutions, market: us, code: "KTOS", edge: 6, why: "전투·표적 무인기·극초음속 — 2026-10-29 시총 $8.1B, 매출 +30.5%(easyconomics)"}
+  - id: naval_capacity
+    name: 조선·추진 캐파(잠수함·함정·무인정)
+    bottleneck: "도크·숙련 인력·추진 체계가 가장 느리게 늘어난다 — 함정 수요가 조선 캐파를 넘는다"
+    driver: "건조 척수 × 척당 가격(공정 진행률)"
+    evidence: ["건조 계약·진행률", "조선소 증설·인력", "잠수함 수출 경쟁 결과"]
+    candidates:
+      - {id: de-renk, name: Renk Group, market: eu, code: "R3NK", edge: 6, why: "전차 변속기·함정 추진 기어 — 지상·해상 양쪽 병목 부품(1차 판정)"}
+      - {id: fr-exail, name: Exail Technologies, market: eu, code: "EXA", edge: 6, why: "기뢰 대응 무인 체계·관성 항법 — 해양 무인화(1차 판정)"}
+  - id: space_isr
+    name: 정찰 위성·데이터
+    bottleneck: "고빈도 정찰 수요 대비 위성 버스 양산·발사 슬롯이 부족"
+    driver: "위성 기수 × 단가 + 데이터 구독"
+    evidence: ["정부 위성군·데이터 계약", "발사 일정", "구독 재계약"]
+    candidates:
+      - {id: us-bksy, name: BlackSky Technology, market: us, code: "BKSY", edge: 5, why: "고빈도 정찰 위성 영상 — 정부 고객 중심(1차 판정)"}
 
 code_verified: false
 

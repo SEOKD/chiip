@@ -108,7 +108,16 @@ def entity_aliases():
             if u.get("kind_name"):
                 names.add(u["kind_name"])
             out[u["id"]] = sorted(n for n in names if len(n) >= 2)
+    # 방위 섹터 지도(config/defense.yaml, 마스터 지시 2026-10-29) — 이미 있는 종목은 현지 표기만 더한다
+    for u in defense_companies():
+        names = set(u.get("aliases") or [u["name"]]) | ({u["local"]} if u.get("local") else set())
+        out[u["id"]] = sorted(set(out.get(u["id"], [])) | {n for n in names if len(n) >= 2})
     return out
+
+
+def defense_companies():
+    """방위 섹터 지도의 기업 목록(상장·비상장 모두)"""
+    return (load_yaml("config/defense.yaml") or {}).get("companies") or []
 
 
 _ALIAS_CACHE = None

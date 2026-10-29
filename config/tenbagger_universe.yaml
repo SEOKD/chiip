@@ -1,0 +1,87 @@
+# Ten-bagger 시가총액 구간 엔진 — 추가 시드 (마스터 지시 2026-10-29 "$1B 이상 $10B 미만 반도체, AI 밸류체인 및 소프트웨어, 방위 종목들도 다뤄라")
+# 감시 목록(valuation·earnings_watch)·발굴 후보·방위 지도에 없는 미국 상장 중형주. 시가총액은 적지 않는다 — 일요일 Ten-bagger 회차가
+# easyconomics company_profile로 채우고 scripts/tenbagger/bands.py가 구간을 정한다(구간이 $1~10B 밖이면 그 구간으로 간다).
+# 티커는 2026-10-29 기준 확인 전(미검증): 조회 실패·상장 폐지(인수 등)면 회차가 이 목록에서 지우고 기록에 남긴다.
+# EODHD_API_KEY가 들어오면 bands.py가 EODHD 스크리너로 이 목록보다 넓은 유니버스를 자동으로 만든다.
+verified: false
+seeds:
+  semis:
+    - {ticker: LSCC, name: Lattice Semiconductor}
+    - {ticker: RMBS, name: Rambus}
+    - {ticker: SITM, name: SiTime}
+    - {ticker: POWI, name: Power Integrations}
+    - {ticker: DIOD, name: Diodes}
+    - {ticker: SLAB, name: Silicon Labs}
+    - {ticker: SYNA, name: Synaptics}
+    - {ticker: AMKR, name: Amkor Technology}
+    - {ticker: FORM, name: FormFactor}
+    - {ticker: ONTO, name: Onto Innovation}
+    - {ticker: CAMT, name: Camtek}
+    - {ticker: NVMI, name: Nova}
+    - {ticker: ACLS, name: Axcelis Technologies}
+    - {ticker: KLIC, name: Kulicke and Soffa}
+    - {ticker: COHU, name: Cohu}
+    - {ticker: UCTT, name: Ultra Clean Holdings}
+    - {ticker: VECO, name: Veeco Instruments}
+    - {ticker: PLAB, name: Photronics}
+    - {ticker: AEIS, name: Advanced Energy Industries}
+    - {ticker: AAOI, name: Applied Optoelectronics}
+    - {ticker: CRDO, name: Credo Technology}
+    - {ticker: ALAB, name: Astera Labs}
+    - {ticker: MTSI, name: MACOM Technology Solutions}
+    - {ticker: AOSL, name: Alpha and Omega Semiconductor}
+    - {ticker: INDI, name: indie Semiconductor}
+    - {ticker: AMBA, name: Ambarella}
+    - {ticker: CEVA, name: CEVA}
+    - {ticker: MXL, name: MaxLinear}
+    - {ticker: SMTC, name: Semtech}
+    - {ticker: QRVO, name: Qorvo}
+    - {ticker: SWKS, name: Skyworks Solutions}
+    - {ticker: ENTG, name: Entegris}
+    - {ticker: MKSI, name: MKS}
+    - {ticker: NVTS, name: Navitas Semiconductor}
+    - {ticker: TER, name: Teradyne}
+    - {ticker: FN, name: Fabrinet}
+    - {ticker: VSH, name: Vishay Intertechnology}
+    - {ticker: SGH, name: Penguin Solutions}
+  software:
+    - {ticker: PATH, name: UiPath}
+    - {ticker: GTLB, name: GitLab}
+    - {ticker: ESTC, name: Elastic}
+    - {ticker: DOCN, name: DigitalOcean}
+    - {ticker: FROG, name: JFrog}
+    - {ticker: S, name: SentinelOne}
+    - {ticker: TENB, name: Tenable}
+    - {ticker: RPD, name: Rapid7}
+    - {ticker: QLYS, name: Qualys}
+    - {ticker: VRNS, name: Varonis Systems}
+    - {ticker: BOX, name: Box}
+    - {ticker: DBX, name: Dropbox}
+    - {ticker: NCNO, name: nCino}
+    - {ticker: APPN, name: Appian}
+    - {ticker: PEGA, name: Pegasystems}
+    - {ticker: DT, name: Dynatrace}
+    - {ticker: MDB, name: MongoDB}
+    - {ticker: OKTA, name: Okta}
+    - {ticker: CVLT, name: Commvault Systems}
+    - {ticker: BL, name: BlackLine}
+    - {ticker: WK, name: Workiva}
+    - {ticker: AI, name: C3.ai}
+    - {ticker: SOUN, name: SoundHound AI}
+    - {ticker: PD, name: PagerDuty}
+    - {ticker: FIVN, name: Five9}
+    - {ticker: ZETA, name: Zeta Global}
+    - {ticker: INTA, name: Intapp}
+    - {ticker: BRZE, name: Braze}
+    - {ticker: ASAN, name: Asana}
+    - {ticker: CWAN, name: Clearwater Analytics}
+    - {ticker: IONQ, name: IonQ}
+    - {ticker: RGTI, name: Rigetti Computing}
+    - {ticker: QBTS, name: D-Wave Quantum}
+  ai_hw:
+    - {ticker: NBIS, name: Nebius Group}
+    - {ticker: APLD, name: Applied Digital}
+    - {ticker: IREN, name: IREN}
+    - {ticker: CORZ, name: Core Scientific}
+    - {ticker: WULF, name: TeraWulf}
+    - {ticker: CIFR, name: Cipher Mining}

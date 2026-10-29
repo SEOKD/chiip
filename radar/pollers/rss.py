@@ -135,15 +135,23 @@ def feed_urls(src):
                     yield GNEWS.format(q=urllib.parse.quote(f'"{name}" when:1d'),
                                        hl=src.get("hl", "ko"), gl=src.get("gl", "KR")), row["entity_id"]
         else:
+            # {q, hl, gl}이면 질의마다 언어·지역을 따로 — 한 원천에 여러 나라 정부 도메인(방위, 2026-10-29)
+            hl, gl = (q.get("hl"), q.get("gl")) if isinstance(q, dict) else (None, None)
+            q = q["q"] if isinstance(q, dict) else q
             ents = common.match_entities(q)
-            yield (GNEWS.format(q=urllib.parse.quote(q), hl=src.get("hl", "ko"), gl=src.get("gl", "KR")),
+            yield (GNEWS.format(q=urllib.parse.quote(q), hl=hl or src.get("hl", "ko"), gl=gl or src.get("gl", "KR")),
                    ents[0] if ents else None)
+    # 회사 뉴스룸 도메인 → 그 회사로 귀속(제목에 회사명이 없는 보도자료도 관문을 통과하게, 방위 2026-10-29)
+    for dom, ent in (src.get("domain_entities") or {}).items():
+        q = src.get("domain_query", "site:{d} when:2d").format(d=dom)
+        yield GNEWS.format(q=urllib.parse.quote(q), hl=src.get("hl", "en-US"), gl=src.get("gl", "US")), ent
 
 
 def poll_source(src):
     items = []
     # 잡음이 많은 원천(정부 피드·도메인 제한 검색)은 include_regex에 맞는 글만 받는다
     inc = re.compile(src["include_regex"], re.I) if src.get("include_regex") else None
+    exc = re.compile(src["exclude_regex"], re.I) if src.get("exclude_regex") else None   # 채용 공고·행사 안내 등 잡음
     max_age = src.get("max_age_days")
     urls = list(feed_urls(src))
     failed = []
@@ -168,6 +176,11 @@ def poll_source(src):
             if not e["link"]:
                 continue
             if inc and not inc.search(f"{e['title']} {common.strip_tags(e['desc'])}"):
+                continue
+            if exc and exc.search(e["title"]):
+                continue
+            # 제목 단어 수 하한(' - 매체' 꼬리 제외) — 빈 제목·직무 페이지 거름
+            if src.get("min_title_words") and len(re.sub(r"\s+[-–]\s+[^-–]+$", "", e["title"]).split()) < src["min_title_words"]:
                 continue
             if max_age and _older_than(to_iso(e["date"]), max_age):  # site: 쿼리는 when:이 잘 안 먹어 옛 문서가 섞인다
                 continue

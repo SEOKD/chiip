@@ -220,7 +220,7 @@ SUB_KO = {"power_infra": "데이터센터·전력 인프라", "semicap": "반도
           "software": "소프트웨어", "components": "전자 부품", "hyperscaler": "클라우드(하이퍼스케일러)", "eda_ip": "반도체 설계 도구·IP",
           "accelerator": "AI 가속기·칩", "analog": "아날로그·전력 반도체", "server": "서버 제조", "memory": "메모리 반도체",
           "foundry": "파운드리(반도체 위탁생산)", "conglomerate": "복합 기업", "storage": "스토리지", "ems": "전자제품 위탁생산(EMS)",
-          "materials": "반도체 소재", "devices": "전자 기기", "robotics": "로봇", "semis": "반도체", "cooling": "데이터센터 냉각"}
+          "materials": "반도체 소재", "devices": "전자 기기", "robotics": "로봇", "semis": "반도체", "cooling": "데이터센터 냉각", "defense": "방위"}
 _LINES = {}
 
 
@@ -238,9 +238,12 @@ def company_line(entity_ids, biz=None):
         for co in (common.load_yaml("config/jp_watch.yaml") or {}).get("companies") or []:   # 일본 정보망 45개사
             subs.setdefault(co["id"], (f"{co['en']}({(co.get('ja') or [''])[0]})", co.get("sub")))
         _LINES["sub"] = subs
+        _LINES["def"] = {c["id"]: c["biz"] for c in common.defense_companies() if c.get("biz")}   # 방위 섹터 지도
     for e in entity_ids or []:
         if _LINES["lines"].get(e):
             return _LINES["lines"][e]
+        if _LINES["def"].get(e):
+            return _LINES["def"][e]
         name, role = _LINES["wl"].get(e, (None, None))
         if role:
             return f"{name} — {role}"
@@ -268,6 +271,9 @@ def _tickers():
                 out.setdefault(u["id"], (u.get("name"), re.sub(r"\.(US|KO|KQ|T|TW|HK)$", "", code) or None))
         for co in (common.load_yaml("config/jp_watch.yaml") or {}).get("companies") or []:
             out.setdefault(co["id"], (co.get("en"), co.get("code")))
+        for c in common.defense_companies():   # 방위 섹터 지도 — RHM.XETRA → RHM, 7012.TSE → 7012
+            code = re.sub(r"\.[A-Z]+$", "", str(c.get("code") or "")) or None
+            out.setdefault(c["id"], (c.get("name"), code))
         _LINES["tk"] = out
     return _LINES["tk"]
 

@@ -1054,3 +1054,147 @@ params:
     data: v2 카드 이력 × 가격
     last_fit: null
     oos_metric: null
+- id: prm-lab-shrink-postpub
+  model: lab.proposal_gate
+  binding: null
+  value: 0.58
+  unit: 비율(효과 감쇠)
+  status: proposed
+  prior:
+    value: 0.58
+    basis: 수익률 예측 변수(요인·이상현상)의 논문 효과는 공개 뒤 약 58% 약해진다 — 사전값 = 논문 효과 × (1 − 0.58). McLean & Pontiff(2016, JF 71(1)) 97개 예측 변수. 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기
+    source: https://doi.org/10.1111/jofi.12365
+  fit:
+    method: 치입 제안서의 논문 효과 vs 표본 외 실현 효과 비율 누적(제안서 10건 이상 후)
+    target: 표본 외 효과 / 논문 효과
+    data: lab/proposals 검증 결과
+    last_fit: null
+    oos_metric: null
+- id: prm-lab-shrink-oos
+  model: lab.proposal_gate
+  binding: null
+  value: 0.26
+  unit: 비율(효과 감쇠)
+  status: proposed
+  prior:
+    value: 0.26
+    basis: 공개 전 표본 밖 구간 감쇠 약 26%(통계적 편향 몫) — 차익거래 경로가 없는 실물·회계 효과(투자 축소·부도율 등)에는 이 값만 적용. McLean & Pontiff(2016). 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기
+    source: https://doi.org/10.1111/jofi.12365
+  fit:
+    method: prm-lab-shrink-postpub와 같음
+    target: 표본 외 효과 / 논문 효과
+    data: lab/proposals 검증 결과
+    last_fit: null
+    oos_metric: null
+- id: prm-lab-tstat-hurdle
+  model: lab.proposal_gate
+  binding: null
+  value: 3.0
+  unit: t값
+  status: proposed
+  prior:
+    value: 3.0
+    basis: 다중검정 보정 — 새 요인은 t ≥ 3.0, 미달이면 제안서에 '탐색적' 표시. Harvey, Liu & Zhu(2016, RFS 29(1)); Hou·Xue·Zhang(2020)도 t>3 기준(20261028 노트). 프로바이저 D-20261029-01
+    source: https://doi.org/10.1093/rfs/hhv059
+  fit:
+    method: 고정 관문(피팅 안 함)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-hiddendebt-int-multiple
+  model: valuation.v2.datapack_check
+  binding: null
+  value: 2.0
+  unit: 배(실제 이자 / 예측 이자)
+  status: proposed
+  prior:
+    value: 2.0
+    basis: 숨은 부채(기간 중 차입) 탐지 — 이자비용이 '전기말 보고 부채 × 반사실 금리(무위험 대용 + Baa 스프레드 + 부도위험)'의 2배를 넘으면 표시. Kallen(2026, IFDP 1441) 기준 중 하나(다른 둘은 횡단면 1σ·자기 이력 2σ 초과). 미국 Compustat 1984~2025 분기, 12% 기업 해당. MLP-20261029-01
+    source: https://doi.org/10.17016/IFDP.2026.1441
+  fit:
+    method: 표시 여부 → 이후 4분기 '자금 조달 사건(증자·전환·신용 강등)·설비투자 축소' 로지스틱, 문턱 1.5·2.0·3.0 비교(walk-forward)
+    target: 이후 4분기 자금 조달 스트레스 사건
+    data: 커버리지 종목 분기 이자비용·부채 이력(easyconomics 재무제표) — 데이터 병목
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-exit-evs-semis
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.semis.exit_ev_sales
+  value: 5.0
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 5.0
+    basis: 10배 산술의 성숙기 출구 배수 — 반도체 업종 배수(Damodaran 미국 업종 배수 참고)보다 낮게 둔 보수적 사전값(마스터 지시 2026-10-29 시가총액 구간 엔진). 원문 수치 확인 대기
+    source: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/psdata.html
+  fit:
+    method: 구간별 10배 달성 종목의 달성 시점 EV/매출 분포 중앙값(사후)과 비교
+    target: 10배 달성 시점 EV/매출
+    data: 시가총액 구간 이력 bands_history.csv + 매출(누적 필요)
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-exit-evs-aihw
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.ai_hw.exit_ev_sales
+  value: 2.5
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 2.5
+    basis: AI 밸류체인 하드웨어(기판·부품·전력·냉각·네트워킹) 성숙기 출구 배수 — 전자 부품·장비 업종 배수 참고 보수적 사전값. 원문 수치 확인 대기
+    source: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/psdata.html
+  fit:
+    method: prm-tb-exit-evs-semis와 같음
+    target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-exit-evs-software
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.software.exit_ev_sales
+  value: 6.0
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 6.0
+    basis: 소프트웨어 성숙기 출구 배수 — 소프트웨어 업종 배수 참고 보수적 사전값. 원문 수치 확인 대기
+    source: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/psdata.html
+  fit:
+    method: prm-tb-exit-evs-semis와 같음
+    target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-exit-evs-defense
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.defense.exit_ev_sales
+  value: 2.0
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 2.0
+    basis: 방위 성숙기 출구 배수 — 항공우주·방위 업종 배수 참고 보수적 사전값(2026-10-29 실측 LMT 2.0배·Rheinmetall 4.4배·Hensoldt 4.5배, easyconomics). 원문 수치 확인 대기
+    source: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/psdata.html
+  fit:
+    method: prm-tb-exit-evs-semis와 같음
+    target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-tenx-share-hard
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.verdict.share_hard
+  value: 0.3
+  unit: 비율(필요 매출 ÷ 참조 시장)
+  status: prior
+  prior:
+    value: 0.3
+    basis: 10배에 필요한 매출이 참조 시장(현재, 성장 미반영)의 30%를 넘으면 '산술적으로 어려움', 10%(share_stretch) 넘으면 '도전적' — 치입 판단 사전값, 근거 문헌 없음(가상 추적으로 피팅)
+    source: null
+  fit:
+    method: 구간 판정별 이후 3·5년 실제 배수 분포 비교(판정이 정보가 있는지)
+    target: 판정 → 실현 배수
+    data: bands_history.csv 누적(3년 이상 필요)
+    last_fit: null
+    oos_metric: null

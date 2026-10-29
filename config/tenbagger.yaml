@@ -3,8 +3,9 @@
 # 스킬: tenbagger-card(후보 카드) / 가상 추적: knowledge/models/tenbagger/watch.csv / 요인 가중치는 파라미터 등록부에서 피팅
 
 universe:
-  scope: "AI 하드웨어 밸류체인(반도체·장비·소재·부품·기판·전력·냉각·네트워킹) 중소형주"
-  regions: [KR, US, TW, JP]
+  # 2026-10-29 마스터 지시로 확대: "$1B 이상 $10B 미만 반도체, AI 밸류체인 및 소프트웨어, 방위 종목들도 다뤄라" + 방위 섹터(config/defense.yaml)
+  scope: "반도체·AI 밸류체인(하드웨어·장비·소재·부품·기판·전력·냉각·네트워킹)·소프트웨어·방위 — 시가총액 구간(bands)별로 나눠 발굴"
+  regions: [KR, US, TW, JP, DE, FR, IT, ES]
   market_cap:                     # 발굴 시점 시가총액 구간(추천안). 상한을 넘으면 10배 경로가 비현실적, 하한 미만은 유동성·정보 부족
     KR: {min_krw: 100000000000, max_krw: 2000000000000}   # 1,000억~2조 원
     US: {min_usd: 100000000, max_usd: 3000000000}         # 1억~30억 달러
@@ -12,6 +13,46 @@ universe:
     JP: {min_usd: 100000000, max_usd: 3000000000}
   min_avg_daily_value_usd: 1000000  # 일평균 거래대금 하한(추천안)
   exclude: ["적자 지속 + 현금 소진 18개월 미만", "감사의견 비적정", "관리종목·거래정지"]
+
+# 시가총액 구간(bands) — 마스터 지시 2026-10-29 "시가총액 $10B~$20B … $200B 이상 등 체계적으로 나눠 접근해야 텐배거 종목을 더욱 용이하게
+# 찾을 수 있다. 이를 엔진에 담아라." 엔진 scripts/tenbagger/bands.py: 구간 안에서만 백분위로 순위(작은 회사와 큰 회사를 같은 잣대로 비교하지 않음),
+# 구간별 상위 per_band_top, 10배 산술(목표 시총 → 필요 매출 → 필요 성장률 → 참조 시장 대비 점유), 구간 이동 기록.
+# B6($50~60B)은 마스터 목록에 빠져 있어 구간을 잇기 위해 넣었다. B0은 기존 소형주 구간.
+bands:
+  per_band_top: 3
+  horizons_years: [5, 10]
+  stale_days: 7            # 시가총액이 이보다 오래되면 일요일 회차가 easyconomics로 갱신
+  refresh_per_run: 40      # 한 회차 갱신 상한(모델 호출 비용)
+  list:
+    - {id: B0,  label: "$0.1–1B",   min_usd: 1.0e+8,  max_usd: 1.0e+9}
+    - {id: B1,  label: "$1–10B",    min_usd: 1.0e+9,  max_usd: 1.0e+10}
+    - {id: B2,  label: "$10–20B",   min_usd: 1.0e+10, max_usd: 2.0e+10}
+    - {id: B3,  label: "$20–30B",   min_usd: 2.0e+10, max_usd: 3.0e+10}
+    - {id: B4,  label: "$30–40B",   min_usd: 3.0e+10, max_usd: 4.0e+10}
+    - {id: B5,  label: "$40–50B",   min_usd: 4.0e+10, max_usd: 5.0e+10}
+    - {id: B6,  label: "$50–60B",   min_usd: 5.0e+10, max_usd: 6.0e+10}
+    - {id: B7,  label: "$60–80B",   min_usd: 6.0e+10, max_usd: 8.0e+10}
+    - {id: B8,  label: "$80–100B",  min_usd: 8.0e+10, max_usd: 1.0e+11}
+    - {id: B9,  label: "$100–150B", min_usd: 1.0e+11, max_usd: 1.5e+11}
+    - {id: B10, label: "$150–200B", min_usd: 1.5e+11, max_usd: 2.0e+11}
+    - {id: B11, label: "$200B+",    min_usd: 2.0e+11, max_usd: null}
+  # 섹터별 10배 산술 사전값(verified: false). exit_ev_sales = 성숙기 출구 EV/매출(보수적), tam_usd = 참조 시장 규모(현재, 성장 미반영) — 확실하지 않으면 null(점유 계산 생략)
+  sectors:
+    semis:    {name: 반도체(설계·장비·소재·메모리·파운드리), exit_ev_sales: 5.0, tam_usd: 6.276e+11, tam_basis: "WSTS 2024년 세계 반도체 시장 6,276억 달러(SIA 2025-02 발표) — 원문 재확인 대기", verified: false}
+    ai_hw:    {name: AI 밸류체인 하드웨어(기판·부품·전력·냉각·네트워킹·서버), exit_ev_sales: 2.5, tam_usd: null, tam_basis: "하위 시장이 여러 개라 단일 참조 없음 — 테마별 함량 모델(discovery driver)로 대체", verified: false}
+    software: {name: 소프트웨어(AI 플랫폼·인프라·응용), exit_ev_sales: 6.0, tam_usd: null, tam_basis: "Gartner 세계 소프트웨어 지출 전망 — 수치 원문 확인 후 기입", verified: false}
+    defense:  {name: 방위(대기업·제품·서비스·솔루션), exit_ev_sales: 2.0, tam_usd: 2.718e+12, tam_basis: "SIPRI 2024년 세계 군사비 2조 7,180억 달러(2025-04 발표) — 기업 매출 풀은 이 중 조달·연구개발·운영 계약 일부라 상한 참조", verified: false}
+  # 10배 산술 판정 문턱(사전값, registry prm-tb-tenx-*): 필요 매출의 참조 시장 점유·목표 시총 ÷ 유니버스 최대 시총
+  verdict: {share_stretch: 0.1, share_hard: 0.3, vs_max_stretch: 1.0, vs_max_hard: 2.0}
+  exit_basis: "출구 EV/매출은 성숙 업종 배수(Damodaran 미국 업종 배수 참고)보다 낮게 둔 보수적 사전값 — 원문 수치 확인·피팅 대상(knowledge/models/params/registry.yaml)"
+  # 구간 엔진 자동 유니버스(EODHD 스크리너 — EODHD_API_KEY 입력 후). 산업 이름은 EODHD 분류(미검증, 첫 실행 때 확인)
+  eodhd:
+    min_usd: 1.0e+9
+    exchanges: [us, XETRA, PA, MI, MC, TSE]
+    filters:
+      - {sector: Technology, industries: ["Semiconductors", "Semiconductor Equipment & Materials", "Software - Application", "Software - Infrastructure"]}
+      - {sector: Industrials, industries: ["Aerospace & Defense"]}
+  fx_fallback: {USD: 1.0, TWD: null}   # ECB 기준환율(eurofxref-daily)에 없는 통화 — null이면 USD 환산 불가 표시
 
 # 발굴 경로
 paths:

@@ -46,6 +46,7 @@ def extra_focus():
         for ids in (ew.get("radar_themes") or {}).values():   # 레이더 테마(데이터센터 전력 등, 마스터 지시)
             s |= set(ids or [])
         s |= portfolio_ids()   # 마스터 포트폴리오(config/portfolio.yaml, 2026-10-29)
+        s |= {c["id"] for c in common.defense_companies()}   # 방위 섹터 지도(config/defense.yaml, 2026-10-29 마스터 지시)
         p = common.ROOT / "knowledge" / "models" / "alpha" / "latest.json"
         if p.exists():
             try:

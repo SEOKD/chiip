@@ -962,3 +962,97 @@
   terms_note: "2026-10-29 마스터 지시(발굴 종목의 원문 팔로업). TWSE 공식 OpenAPI — 회사 공시 원문. TPEx 종목은 다음 단계"
   reliability_default: 1차(회사 공시)
   enabled: true
+
+# ===== D. 방위(Defense) 섹터 (2026-10-29 마스터 지시 "Ten-bagger와 Pulse에 방위 섹터 — 유럽(독·프·이·스)·일본·미국") =====
+# 지도 config/defense.yaml, 분석 틀 knowledge/methods/defense_lens.md. 미 국방부(war.gov·defense.gov)는 Akamai가 자동 접속을 막아
+# (robots.txt도 Access Denied, 2026-10-29 확인) 우회하지 않고 Google News 도메인 색인 제목·링크로만 받는다. 각국 국방부도 같은 방식.
+# 펄스 '방위' 분류(radar/pulse.py — 원본 접두 src-defense-), 판정 상향 radar/promote.py 방위 규칙.
+- id: src-defense-gov-gn
+  name: 각국 국방 조달·예산(미 국방부 일일 계약·DSCA·NATO/EU·독일·프랑스·이탈리아·스페인·일본) — Google News 도메인 제한
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_queries:
+    - {q: "(site:war.gov OR site:defense.gov) (contract OR contracts OR award) when:2d", hl: en-US, gl: US}
+    - {q: "site:dsca.mil when:3d", hl: en-US, gl: US}
+    - {q: "(site:nato.int OR site:defence-industry-space.ec.europa.eu OR site:eda.europa.eu) when:2d", hl: en-US, gl: US}
+    - {q: "(site:bmvg.de OR site:bundeswehr.de OR site:baainbw.de) when:2d", hl: de, gl: DE}
+    - {q: "site:defense.gouv.fr when:2d", hl: fr, gl: FR}
+    - {q: "site:difesa.it when:2d", hl: it, gl: IT}
+    - {q: "(site:defensa.gob.es OR site:lamoncloa.gob.es) defensa when:2d", hl: es, gl: ES}
+    - {q: "site:mod.go.jp when:2d", hl: ja, gl: JP}
+  include_regex: 'contracts?\b|award|procure|purchas|acquisi|\borders?\b|DSCA|Foreign Military Sale|\bFMS\b|budget|appropriat|obligation|NDAA|ammunition|munition|EDIP|\bSAFE\b|European Defence Fund|\bEDF\b|NSPA|OCCAR|Beschaffung|Vertrag|Auftrag|Rahmenvertrag|25-Mio|Haushalt|Bestellung|commande|contrat|livraison|loi de programmation|\bLPM\b|contratto|approvvigionament|acquisizion|bilancio|contrato|adquisici|Programas? Especiales?|presupuesto|Consejo de Ministros|契約|調達|装備|予算|概算要求|取得'
+  exclude_regex: '\bJobs?\b|Careers?|Stellenangebot|Karriere|recrutement|concorso|oposiciones|採用|CIG:|Fasc\.|Area Procurement|分任支出負担行為担当官|入札公告|公募'
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: multi
+  doc_type: 규제·정책
+  terms_note: "war.gov·defense.gov 자동 접속 차단(Akamai, 2026-10-29) → 우회 없이 Google News 색인 제목·링크만. 프랑스·이탈리아·스페인·일본 국방부 질의는 3일 100건 포화라 조달·예산어(include_regex)로 거름. 원문 언어 보존·번역 병기"
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
+- id: src-defense-newsroom-gn
+  name: 방위 기업 뉴스룸(유럽·미국 프라임·중소형·비상장) — 도메인별 Google News 색인, 회사로 귀속
+  category: B-기업1차
+  module: rss
+  method: rss
+  domain_query: "site:{d} when:2d"
+  domain_entities:
+    rheinmetall.com: de-rheinmetall
+    hensoldt.net: de-hensoldt
+    renk.com: de-renk
+    tkms.com: de-tkms
+    ohb.de: de-ohb
+    knds.com: eu-knds
+    helsing.ai: de-helsing
+    quantum-systems.com: de-quantumsystems
+    thalesgroup.com: fr-thales
+    safran-group.com: fr-safran
+    dassault-aviation.com: fr-dassault
+    airbus.com: eu-airbus
+    exail.com: fr-exail
+    exosens.com: fr-exosens
+    naval-group.com: fr-navalgroup
+    mbda-systems.com: eu-mbda
+    leonardo.com: it-leonardo
+    fincantieri.com: it-fincantieri
+    avio.com: it-avio
+    indracompany.com: es-indra
+    navantia.es: es-navantia
+    lockheedmartin.com: us-lmt
+    rtx.com: us-rtx
+    northropgrumman.com: us-noc
+    gd.com: us-gd
+    l3harris.com: us-lhx
+    hii.com: us-hii
+    boeing.mediaroom.com: us-ba
+    kratosdefense.com: us-ktos
+    avinc.com: us-avav
+    bwxt.com: us-bwxt
+    mrcy.com: us-mrcy
+    leonardodrs.com: us-drs
+    curtisswright.com: us-cw
+    textron.com: us-txt
+    anduril.com: us-anduril
+  # 채용 공고가 색인의 대부분(2026-10-29 실측: Rheinmetall·Safran·Northrop 결과 대부분이 직무 페이지·빈 제목) → 직무명 패턴과 제목 단어 수 하한
+  exclude_regex: '\bJobs?\b|Careers?|Job Search|Stellenangebot|Karriere|Webinar|Cookie|Privacy|Terms of Use|Sitemap|Untitled|#AmazingJobs|Talent transfair|\((m|w|f|h)/(m|w|f|h)/(d|x)\)|\b(M/F|H/F|F/H|M/W)\b|\bLevel \d|/hr\b|\bShift\b|\b20\d\d (Associate|Intern)|\b(Engineer|Technician|Manager|Analyst|Specialist|Coordinator|Inspector|Administrator|Representative|Officer|Assistant|Intern|Internship|Apprentice|Trainee|Werkstudent|Director|Expert|Lead|Tester|Mechanic|Machinist|Operator|Planner|Buyer|Controller|Accountant|Scientist|Support|Assembler|Bonder|Welder|Electrician|Developer|Architect|Designer)( \d| [IVX]+)?\s*(-|–|,|\(|$)|\s(I{1,3}|IV|[1-4])\s+-\s|\b20\d\d-\d{4,}\b|Business Development –'
+  min_title_words: 5
+  hl: en-US
+  gl: US
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 2
+  run_on: local
+  language: en
+  doc_type: 보도자료
+  terms_note: "회사 공식 뉴스룸의 Google News 색인 제목·링크(2026-10-29 도메인 질의 실측: 유럽 8곳 3일 61건·미국 프라임 100건·미국 중형 55건, 채용 페이지 섞임 → exclude_regex). 원문 페이지는 robots.txt 확인 뒤에만 연다"
+  reliability_default: 1차(회사 공식)
+  verified: true
+  enabled: true

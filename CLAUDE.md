@@ -68,6 +68,11 @@
 | 법안 발의·규칙안 → 시행 | 의결·최종 규칙·시행일·예외 |
 | 보조금 발표 → 자금 수령 | 최종 계약·지급 실적·조건 이행 |
 | 지방 안건 상정 → 투자 확정 | 의결·협약 체결·착공 |
+| 프레임워크 계약 → 매출 확정 (방위) | 개별 발주(call-off) 금액·물량·인도 일정 |
+| 예산 증액·GDP 목표 → 기업 수주 (방위) | 예산 성립(의결)·조달 계획·계약 체결 |
+| IDIQ 상한액 → 매출 규모 (방위) | 실제 발주액(obligated)·경쟁 수주 여부 |
+| 수출 MOU·우선협상·DSCA 통보 → 수출 확정 (방위) | 정부 간 계약(LOA)·수출 승인·선급금 |
+| LRIP(초도 양산) → 전력화 양산 (방위) | 전력화 양산(FRP) 결정·연간 조달 물량 |
 
 ## 경계 — 최우선
 **로컬 전용 `D:\local-only\`** (저장소 바깥): `sealed\`(F3·F4, denylist), `embargo\`(F2), `licensed\`(IB 리포트 원문), `secrets\.env`(키).
@@ -143,6 +148,8 @@
 - **일본 어닝콜 = IR 질의응답**(2026-10-29): easyconomics에 없음 → 일본판 IR 페이지의 決算説明会 質疑応答(`radar/pollers/jp_ir_qa.py`, `config/jp_ir.yaml`) → 펄스 🎙.
 - **멀티플 산정**(2026-10-29): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인 분해 → 합리적 멀티플(`scripts/valuation/v2/multiples.py`, `knowledge/methods/multiples.md`).
 - **Chiip Ten-bagger Discovery**(2026-10-29 마스터 지시, Ten-bagger 기능의 발굴 단계 — 일요일 첫 회차 전체 선별·매 회차 신호 기반 후보 추가, `docs/tasks/chiip-tenbagger.md`): 엣지 AI 밸류체인 종목(일·대만·한국·미국) 발굴 — `config/discovery.yaml` 테마·후보 → `radar/attention.py` 관심도(가속·쏠림·IB 행사 초청) → `scripts/discovery/screen.py` IB식 단계 관문·위원회 메모 → `config/coverage.yaml` 편입 시 원문 팔로업(대만 重大訊息·일본 적시공시·IR Q&A)·실적·텐배거 리포트 자동 연결. X·텔레그램 관심도는 언급 수만(2026-10-29 마스터 허용 — X Counts API는 키 입력 후, 텔레그램은 `attention.sources.telegram.channels` 공개 채널).
+- **방위(Defense) 섹터**(2026-10-29 마스터 지시 "Ten-bagger와 Pulse에 방위 섹터 — 유럽(독·프·이·스)·일본·미국, 대기업·제품 제조사·서비스·솔루션, 제품은 대분류로"): 지도 `config/defense.yaml`(부문 4·제품 대분류 10·기업 87, 레이더 종목 인식·수집 관문·기업 1줄에 자동 연결) · 원천 `src-defense-gov-gn`(미 국방부 일일 계약·DSCA·NATO/EU·각국 국방부 — war.gov는 자동 접속 차단이라 Google News 색인만)·`src-defense-newsroom-gn`(방위 기업 뉴스룸, 도메인별 귀속) · 펄스 🛡 Defense(미보도 규칙 없음) · 판정 상향 방위 수주·DSCA · 분석 틀 `knowledge/methods/defense_lens.md`(예산 단계·금지 연결) · Ten-bagger 발굴 방위 병목 테마 6개 · 일본 방위 13종목 적시공시·IR Q&A.
+- **시가총액 구간 엔진**(2026-10-29 마스터 지시 "$1B~$10B 반도체·AI 밸류체인·소프트웨어·방위도 다루고 $10B~$20B … $200B 이상 구간별로 나눠 접근하라"): `scripts/tenbagger/bands.py` — B0 $0.1–1B · B1 $1–10B · B2 $10–20B · B3~B5 $10B 단위 · B6 $50–60B(구간을 잇기 위해 추가) · B7 $60–80B · B8 $80–100B · B9 $100–150B · B10 $150–200B · B11 $200B+(`config/tenbagger.yaml` bands). 구간 안에서만 백분위 점수, 구간별 상위 3, 10배 산술(목표 시총 → 필요 매출 → 참조 시장 점유), 구간 이동 기록. 시가총액은 일요일 Ten-bagger 회차가 easyconomics로(`--stale`·`--put`, ECB 환율), EODHD 키가 들어오면 스크리너로 자동 유니버스. 펄스 🚀 머리줄에 구간 표기.
 - **보고 표기 = Chiip**(2026-10-29 마스터 지시): 텔레그램 봇·GitHub에 보고할 때는 '치입' 대신 'Chiip', 기능 이름도 영어(Chiip Pulse·Portfolio·Ten-bagger Report·Discovery 등, `notify.LABELS`). `radar/notify.py` `brand()`가 발송 직전 일괄 변환, 리포트 HTML·게시 제목도 변환.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 

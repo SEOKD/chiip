@@ -56,3 +56,13 @@ companies:
   jp-sbg: {site: "https://group.softbank", ir_pages: ["https://group.softbank/ir/financials/annual_reports"]}
   jp-uniontool: {site: "https://www.uniontool.co.jp"}
   jp-micronics: {site: "https://www.mjc.co.jp"}
+  # 방위(2026-10-29) — NEC(403)·富士通(429)은 자동 접속 거절, 石川製作所·豊和工業은 도메인 미확인이라 넣지 않음(적시공시 미러로만)
+  jp-khi: {site: "https://www.khi.co.jp"}
+  jp-ihi: {site: "https://www.ihi.co.jp"}
+  jp-subaru: {site: "https://www.subaru.co.jp"}
+  jp-jsw: {site: "https://www.jsw.co.jp"}
+  jp-hosoya: {site: "https://hosoya-pyro.co.jp"}
+  jp-tokyokeiki: {site: "https://www.tokyokeiki.jp"}
+  jp-nof: {site: "https://www.nof.co.jp"}
+  jp-shimadzu: {site: "https://www.shimadzu.co.jp"}
+  jp-oki: {site: "https://www.oki.com/jp"}

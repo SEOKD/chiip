@@ -1,0 +1,190 @@
+# 방위(Defense) 섹터 지도 — 마스터 지시 2026-10-29 "Ten-bagger와 Pulse에 방위 섹터도 넣어라. 유럽(독일·프랑스·이탈리아·스페인)부터
+# 일본·미국까지. 방위 대기업·방위 제품 제조사·방위 서비스·방위 솔루션 등 포트폴리오 전반. 방위 제품은 대분류로 나눠 접근하라."
+#
+# 쓰는 곳: radar/pollers/common.py entity_aliases(레이더 종목 인식) · radar/pollers/gate.py extra_focus(이 지도 종목의 공시·보도자료·뉴스는
+#   포커스와 무관하게 수집) · radar/notify.py(기업 1줄·종목코드) · radar/pulse.py '방위' 원본 분류 · scripts/tenbagger/bands.py(시가총액 구간 유니버스)
+#   · config/discovery.yaml 방위 병목 테마 · 분석 틀 knowledge/methods/defense_lens.md
+# code는 EODHD 형식(미검증 — 키 입력 후 일괄 확인). exposure(방산 비중)는 확실한 것만: core(본업) / major(큰 비중) / partial(일부), 모르면 비움.
+# biz는 회사 공시·IR 개요를 자기 말로 1줄. 지어내지 않는다 — 모르면 쓰지 않는다.
+code_verified: false
+
+# ── 부문(segment) ──
+segments:
+  prime: "방위 대기업 — 다영역 시스템 통합(프라임 계약자). 정부와 직접 계약하고 하청 공급망을 거느린다"
+  product: "방위 제품 제조사 — 아래 제품 대분류의 체계·부품을 만든다"
+  services: "방위 서비스 — MRO(정비)·훈련·군수 지원·기지 운영·정부 IT·엔지니어링 서비스(인력·시간 기반 계약)"
+  solutions: "방위 솔루션 — 지휘통제(C2) 소프트웨어·데이터·AI·사이버·시뮬레이션·통합 임무 체계(소프트웨어·IP 기반)"
+
+# ── 방위 제품 대분류(마스터 지시 '대분류로 나눠 접근') — 병목·실적 동인·확인 자료 ──
+products:
+  air:
+    name: 항공(전투기·수송기·헬기·훈련기·항공 엔진·기체 구조물)
+    driver: "기체 인도 대수 × 단가 + 엔진·부품 애프터마켓(운용 시간 비례)"
+    bottleneck: "엔진 단조·주조(초내열합금), 숙련 인력, 다년 인증 — 프로그램이 정해지면 수십 년 독점"
+    evidence: ["정부 조달 계획·다년 계약", "인도 대수 공시", "엔진 정비 수요(운용 시간)"]
+  land:
+    name: 지상 전투 체계(전차·장갑차·자주포·전술차량·파워팩·변속기)
+    driver: "차량 발주 대수 × 단가 + 현대화·개량 + 예비 부품"
+    bottleneck: "장갑 강판·변속기·파워팩 등 소수 공급사, 생산 라인 증설 리드타임"
+    evidence: ["프레임워크 계약 대비 개별 발주(call-off)", "독일 연방의회 예산위원회 2,500만 유로 이상 조달 승인", "수출 정부 간 계약"]
+  naval:
+    name: 해상(수상함·잠수함·무인 수상/수중정·함정 전투체계·추진)
+    driver: "건조 척수 × 척당 가격(수년 공정 진행률로 매출 인식)"
+    bottleneck: "조선소 도크·숙련 인력·원자로/추진 체계 — 조선 캐파가 가장 느리게 늘어난다"
+    evidence: ["건조 계약·진행률", "조선소 증설·인력 채용", "잠수함 수출 경쟁 결과"]
+  missile_ad:
+    name: 미사일·방공(유도무기·요격체·고체 로켓 모터·발사대·탐색기)
+    driver: "연간 조달 발수 × 단가 — 재고 소진(실전 사용)이 다년 보충 수요"
+    bottleneck: "고체 로켓 모터·탐색기·에너제틱 소재 — 공급사 소수, 증설 2~4년"
+    evidence: ["다년 조달 계약(multi-year)", "로켓 모터 증설·가동", "요격체 생산률 목표 발언"]
+  munitions:
+    name: 탄약·에너제틱(포탄·추진제·화약·폭약·신관)
+    driver: "연간 생산 발수 × 단가, 국가 비축 목표"
+    bottleneck: "니트로셀룰로스·TNT·추진제 원료, 장전 라인 — 2022년 이후 가장 뚜렷한 병목"
+    evidence: ["연간 생산 능력(발/년) 증설 공정", "원료 공장 착공·가동", "정부 비축 목표·다년 구매"]
+  c4isr_ew:
+    name: 방위 전자(레이더·전자광학·전자전·통신·센서·항전)
+    driver: "플랫폼 탑재 수 × 함량 + 업그레이드 주기(플랫폼보다 짧다)"
+    bottleneck: "GaN 고출력 반도체(MMIC)·적외선 검출기·FPGA 등 반도체 부품, 보안 인증 인력"
+    evidence: ["레이더·센서 수주", "GaN·적외선 부품 공급 계약", "플랫폼 업그레이드 프로그램"]
+  unmanned:
+    name: 무인·자율(무인기·배회형 탄약·대드론·무인 지상 차량)
+    driver: "소모성 대량 조달(단가 낮고 물량 큼) — 조달 방식이 시제품→양산으로 빨리 넘어가는지"
+    bottleneck: "모터·배터리·카메라·통신 모듈의 비(非)중국 공급망, 대량 생산 라인"
+    evidence: ["양산 계약 전환(시제·평가 → 대량 발주)", "비중국 부품 조달 규정", "실전 사용 평가"]
+  space:
+    name: 우주·위성(정찰·통신 위성, 발사체, 우주 감시·미사일 경보)
+    driver: "위성 기수 × 단가 + 데이터·서비스 구독 + 발사 횟수"
+    bottleneck: "발사 슬롯, 위성 버스 양산, 방사선 내성 부품"
+    evidence: ["정부 위성군 계약(미 우주개발청 등)", "발사 일정", "데이터 구독 계약"]
+  small_arms:
+    name: 소화기·개인 장비(총기·방탄·야간 투시·개인 통신)
+    driver: "병력 수 × 교체 주기 × 단가"
+    bottleneck: "영상증폭관·열상 검출기(야간 투시) 소수 공급사"
+    evidence: ["군 제식 채택", "다년 공급 계약"]
+  components:
+    name: 방산 부품·소재(특수강·티타늄·단조·주조·커넥터·전자부품·액추에이터)
+    driver: "플랫폼·탄약 생산률에 비례하는 함량 — 여러 프로그램에 동시 노출"
+    bottleneck: "초내열합금·티타늄 단조, 인증 공급사(교체에 수년)"
+    evidence: ["프라임의 공급사 증설 지원", "장기 공급 계약", "가격 인상 공시"]
+
+# ── 수요 동인(정책 단계 분리 — 발표·의결·시행·계약은 다르다) ──
+# 숫자는 원문 확인 전엔 쓰지 않는다. 확인하면 knowledge/policy/에 claim으로.
+demand:
+  - {region: NATO, item: "국방비 GDP 목표 상향(2025년 헤이그 정상회의 합의)", check: "각국 예산법·다년 계획에 반영됐는지(합의 ≠ 예산)"}
+  - {region: EU, item: "ReArm Europe·SAFE 대출·EDIP·유럽방위기금(EDF)", check: "대출 집행·공동 조달 계약·선정 결과"}
+  - {region: DE, item: "국방비 부채 제동 예외(2025년 기본법 개정)·특별기금", check: "연방의회 예산위원회 2,500만 유로 이상 조달 승인(25-Mio-Vorlagen)·BAAINBw 계약"}
+  - {region: FR, item: "군사계획법(LPM)", check: "DGA 발주 공시"}
+  - {region: IT, item: "다년 국방 계획 문서(DPP)", check: "의회 승인·국방부 계약"}
+  - {region: ES, item: "특별 현대화 프로그램(PEM)", check: "각료회의 승인(라 몬클로아 각료회의 참고자료)·국방부 계약"}
+  - {region: JP, item: "방위력 정비 계획·GDP 2% 목표", check: "개산요구 → 정부안 → 국회 성립 → 방위장비청 중앙조달 계약"}
+  - {region: US, item: "국방 예산(대통령 예산안 → NDAA 수권 → 세출 → 집행)", check: "세출 성립·계약 발주(obligation)·국방부 일일 계약 공시"}
+
+# ── 1차 자료처(레이더 원천은 config/source_registry.yaml src-defense-*) ──
+primary_sources:
+  US: ["SEC 8-K·10-Q(기존 src-sec-*)", "국방부 일일 계약 공시(war.gov — 자동 접속 차단, Google News 색인으로만)", "DSCA 대외군사판매 의회 통보", "의회 NDAA·세출(hill-watch)", "SAM.gov(API 키 필요, 미가동)"]
+  EU: ["EU 집행위 국방산업·우주총국(DEFIS)", "NATO·NSPA·OCCAR"]
+  DE: ["회사 적시공시(EQS)", "연방국방부(BMVg)·연방군 조달청(BAAINBw)", "연방의회 예산위원회"]
+  FR: ["회사 규제 공시(AMF)", "DGA·국방부"]
+  IT: ["회사 공시(SDIR)", "국방부"]
+  ES: ["CNMV 기타 중요 정보", "국방부·각료회의 참고자료"]
+  JP: ["적시공시(기존 src-jp-disclosure 미러)", "방위성·방위장비청 계약 실적"]
+
+# ── 기업 ──
+# market: de·fr·it·es·eu·jp·us / listed: false = 비상장(상대방·공급망 신호로만, 밸류에이션 없음)
+companies:
+  # 독일
+  - {id: de-rheinmetall, name: Rheinmetall, country: DE, market: de, code: RHM.XETRA, listed: true, segments: [prime, product], products: [land, munitions, missile_ad, c4isr_ew], exposure: core, aliases: ["Rheinmetall"], biz: "탄약·전차·장갑차·방공 체계를 만드는 독일 최대 방산 기업"}
+  - {id: de-hensoldt, name: Hensoldt, country: DE, market: de, code: HAG.XETRA, listed: true, segments: [product], products: [c4isr_ew], exposure: core, aliases: ["Hensoldt"], biz: "레이더·전자광학·전자전 센서 전문 독일 방산 전자 기업"}
+  - {id: de-renk, name: Renk Group, country: DE, market: de, code: R3NK.XETRA, listed: true, segments: [product], products: [land, naval, components], exposure: major, aliases: ["Renk Group", "RENK"], biz: "전차·장갑차 변속기와 함정 추진 기어 제조"}
+  - {id: de-tkms, name: TKMS, country: DE, market: de, code: TKMS.XETRA, listed: true, segments: [product], products: [naval], exposure: core, aliases: ["TKMS", "thyssenkrupp Marine Systems"], biz: "잠수함·수상함 건조(티센크루프에서 분사 상장)"}
+  - {id: de-ohb, name: OHB, country: DE, market: de, code: OHB.XETRA, listed: true, segments: [product], products: [space], aliases: ["OHB SE"], biz: "정찰·항법·통신 위성 제작 독일 우주 기업"}
+  - {id: de-mtu, name: MTU Aero Engines, country: DE, market: de, code: MTX.XETRA, listed: true, segments: [product], products: [air, components], exposure: partial, aliases: ["MTU Aero Engines"], biz: "항공 엔진 부품·정비(민수 중심, 군용 엔진 일부)"}
+  - {id: eu-knds, name: KNDS, country: DE, market: eu, listed: false, segments: [prime, product], products: [land, munitions], exposure: core, aliases: ["KNDS", "Krauss-Maffei Wegmann", "Nexter"], biz: "독일·프랑스 합작 지상 무기 체계 기업(레오파르트 전차·자주포, 비상장)"}
+  - {id: de-diehl, name: Diehl Defence, country: DE, market: de, listed: false, segments: [product], products: [missile_ad, munitions], exposure: core, aliases: ["Diehl Defence"], biz: "IRIS-T 방공 미사일 제조(비상장 디일 그룹)"}
+  - {id: de-helsing, name: Helsing, country: DE, market: de, listed: false, segments: [solutions, product], products: [unmanned, c4isr_ew], exposure: core, aliases: ["Helsing"], biz: "방위 AI 소프트웨어·무인기(비상장)"}
+  - {id: de-quantumsystems, name: Quantum Systems, country: DE, market: de, listed: false, segments: [product], products: [unmanned], exposure: core, aliases: ["Quantum Systems"], biz: "정찰용 무인기 제조(비상장)"}
+  # 프랑스·범유럽
+  - {id: fr-thales, name: Thales, country: FR, market: fr, code: HO.PA, listed: true, segments: [prime, product, solutions], products: [c4isr_ew, missile_ad, space, naval], exposure: major, aliases: ["Thales Group", "Thales"], biz: "레이더·통신·방공·우주·사이버를 아우르는 프랑스 방산·보안 기업"}
+  - {id: fr-safran, name: Safran, country: FR, market: fr, code: SAF.PA, listed: true, segments: [product], products: [air, c4isr_ew, components], exposure: partial, aliases: ["Safran"], biz: "항공 엔진·착륙장치·항법·전자광학 제조(민수 중심, 라팔 엔진 등 군수)"}
+  - {id: fr-dassault, name: Dassault Aviation, country: FR, market: fr, code: AM.PA, listed: true, segments: [prime, product], products: [air], exposure: major, aliases: ["Dassault Aviation"], biz: "라팔 전투기와 팔콘 비즈니스 제트 제조"}
+  - {id: eu-airbus, name: Airbus, country: FR, market: fr, code: AIR.PA, listed: true, segments: [prime, product], products: [air, space], exposure: partial, aliases: ["Airbus"], biz: "민항기 중심 항공우주 기업 — 방위·우주 부문(수송기·위성·유로파이터 지분) 보유"}
+  - {id: fr-exail, name: Exail Technologies, country: FR, market: fr, code: EXA.PA, listed: true, segments: [product], products: [naval, unmanned, c4isr_ew], aliases: ["Exail"], biz: "해양 무인 체계(기뢰 대응 드론)·관성 항법 장치 제조"}
+  - {id: fr-exosens, name: Exosens, country: FR, market: fr, code: EXENS.PA, listed: true, segments: [product], products: [small_arms, c4isr_ew], aliases: ["Exosens"], biz: "야간 투시용 영상증폭관·광검출기 제조"}
+  - {id: fr-eutelsat, name: Eutelsat, country: FR, market: fr, code: ETL.PA, listed: true, segments: [product, services], products: [space], exposure: partial, aliases: ["Eutelsat", "OneWeb"], biz: "정지궤도·저궤도(원웹) 위성 통신 사업자 — 정부·군 통신 수요"}
+  - {id: fr-figeac, name: Figeac Aero, country: FR, market: fr, code: FGA.PA, listed: true, segments: [product], products: [components], exposure: partial, aliases: ["Figeac Aero", "Figeac Aéro"], biz: "항공기 구조 부품·엔진 부품 정밀 가공(민수 중심)"}
+  - {id: fr-navalgroup, name: Naval Group, country: FR, market: fr, listed: false, segments: [prime, product], products: [naval], exposure: core, aliases: ["Naval Group"], biz: "프랑스 국영 잠수함·수상함 건조사(탈레스 지분, 비상장)"}
+  - {id: eu-mbda, name: MBDA, country: FR, market: eu, listed: false, segments: [product], products: [missile_ad], exposure: core, aliases: ["MBDA"], biz: "에어버스·BAE·레오나르도 합작 유럽 미사일 기업(비상장)"}
+  # 이탈리아
+  - {id: it-leonardo, name: Leonardo, country: IT, market: it, code: LDO.MI, listed: true, segments: [prime, product], products: [air, c4isr_ew, space, land], exposure: major, aliases: ["Leonardo S.p.A.", "Leonardo SpA"], biz: "헬기·항공기·방위 전자·우주를 아우르는 이탈리아 방산 대기업"}
+  - {id: it-fincantieri, name: Fincantieri, country: IT, market: it, code: FCT.MI, listed: true, segments: [product], products: [naval], exposure: partial, aliases: ["Fincantieri"], biz: "크루즈선·군함·잠수함 건조 조선사"}
+  - {id: it-avio, name: Avio, country: IT, market: it, code: AVIO.MI, listed: true, segments: [product], products: [space, missile_ad], aliases: ["Avio S.p.A.", "Avio SpA"], biz: "베가 발사체와 방공 미사일용 고체 로켓 모터 제조"}
+  - {id: us-drs, name: Leonardo DRS, country: US, market: us, code: DRS.US, listed: true, segments: [product], products: [c4isr_ew, naval], exposure: core, aliases: ["Leonardo DRS"], biz: "적외선 센서·전술 통신·함정 전력 체계 제조(레오나르도의 미국 자회사)"}
+  - {id: it-elettronica, name: Elettronica, country: IT, market: it, listed: false, segments: [product], products: [c4isr_ew], exposure: core, aliases: ["Elettronica S.p.A."], biz: "전자전 체계 전문(비상장)"}
+  # 스페인
+  - {id: es-indra, name: Indra Sistemas, country: ES, market: es, code: IDR.MC, listed: true, segments: [prime, solutions, product], products: [c4isr_ew, space], exposure: major, aliases: ["Indra Sistemas", "Grupo Indra"], biz: "레이더·전자전·항공교통·방위 시스템 통합을 하는 스페인 방산·IT 기업"}
+  - {id: es-amper, name: Amper, country: ES, market: es, code: AMP.MC, listed: true, segments: [product, services], products: [c4isr_ew], exposure: partial, aliases: ["Grupo Amper", "Amper S.A."], biz: "방위·보안 통신 체계와 에너지·산업 엔지니어링 서비스"}
+  - {id: es-navantia, name: Navantia, country: ES, market: es, listed: false, segments: [prime, product], products: [naval], exposure: core, aliases: ["Navantia"], biz: "스페인 국영 군함·잠수함 건조사(비상장)"}
+  - {id: es-escribano, name: Escribano Mechanical & Engineering, country: ES, market: es, listed: false, segments: [product], products: [land, c4isr_ew], exposure: core, aliases: ["Escribano Mechanical", "EM&E"], biz: "원격 무장 스테이션·전자광학 장비 제조(비상장)"}
+  - {id: es-gmv, name: GMV, country: ES, market: es, listed: false, segments: [solutions], products: [space, c4isr_ew], aliases: ["GMV Innovating Solutions"], biz: "위성 관제·항법·방위 소프트웨어(비상장)"}
+  # 일본
+  - {id: co-mhi, name: Mitsubishi Heavy Industries, local: 三菱重工, country: JP, market: jp, code: 7011.TSE, listed: true, segments: [prime, product], products: [air, naval, missile_ad, land, space], exposure: partial, biz: "발전·항공우주·방위를 아우르는 일본 최대 방산 계약 기업"}
+  - {id: jp-khi, name: Kawasaki Heavy Industries, local: 川崎重工, country: JP, market: jp, code: 7012.TSE, listed: true, segments: [prime, product], products: [air, naval], exposure: partial, aliases: ["Kawasaki Heavy Industries", "川崎重工"], biz: "초계기·수송기·잠수함과 오토바이·로봇·에너지 설비를 만드는 중공업"}
+  - {id: jp-ihi, name: IHI, local: IHI, country: JP, market: jp, code: 7013.TSE, listed: true, segments: [product], products: [air, space, missile_ad], exposure: partial, aliases: ["IHI Corporation", "IHI Corp"], biz: "항공 엔진·고체 로켓(IHI에어로스페이스)과 에너지·산업 설비"}
+  - {id: co-melco, name: Mitsubishi Electric, local: 三菱電機, country: JP, market: jp, code: 6503.TSE, listed: true, segments: [product], products: [c4isr_ew, missile_ad, space], exposure: partial, biz: "전력·FA 기기 중심 전기 기업 — 방위 레이더·미사일 탐색기·위성 제조"}
+  - {id: jp-nec, name: NEC, local: 日本電気, country: JP, market: jp, code: 6701.TSE, listed: true, segments: [product, solutions], products: [c4isr_ew, space], exposure: partial, aliases: ["NEC Corporation", "日本電気"], biz: "IT 서비스·통신 기업 — 방위 레이더·통신·위성 체계"}
+  - {id: jp-fujitsu, name: Fujitsu, local: 富士通, country: JP, market: jp, code: 6702.TSE, listed: true, segments: [solutions], products: [c4isr_ew], exposure: partial, aliases: ["Fujitsu", "富士通"], biz: "IT 서비스 기업 — 방위성 지휘통제·정보 시스템"}
+  - {id: jp-subaru, name: Subaru, country: JP, market: jp, code: 7270.TSE, listed: true, segments: [product], products: [air], exposure: partial, aliases: ["Subaru Corporation"], biz: "자동차 중심 — 항공우주 부문이 육상자위대 헬기·기체 부품 제조"}
+  - {id: jp-jsw, name: Japan Steel Works, local: 日本製鋼所, country: JP, market: jp, code: 5631.TSE, listed: true, segments: [product], products: [land, components], exposure: partial, aliases: ["Japan Steel Works", "日本製鋼所"], biz: "대형 단조품·사출성형기와 포·포신 등 방위 장비 제조"}
+  - {id: jp-hosoya, name: Hosoya Pyro-Engineering, local: 細谷火工, country: JP, market: jp, code: 4274.TSE, listed: true, segments: [product], products: [munitions], aliases: ["Hosoya Pyro-Engineering", "細谷火工"], biz: "신호탄·화공품 등 방위성용 화약류 제조 소형주"}
+  - {id: jp-ishikawa, name: Ishikawa Seisakusho, local: 石川製作所, country: JP, market: jp, code: 6208.TSE, listed: true, segments: [product], products: [munitions, naval], aliases: ["Ishikawa Seisakusho", "石川製作所"], biz: "방위 장비(기뢰 등)와 섬유 기계·종이 가공 기계 제조 소형주"}
+  - {id: jp-howa, name: Howa Machinery, local: 豊和工業, country: JP, market: jp, code: 6203.TSE, listed: true, segments: [product], products: [small_arms], exposure: partial, aliases: ["Howa Machinery", "豊和工業"], biz: "공작기계·공압 기기와 자위대 제식 소총 제조"}
+  - {id: jp-tokyokeiki, name: Tokyo Keiki, local: 東京計器, country: JP, market: jp, code: 7721.TSE, listed: true, segments: [product], products: [c4isr_ew], exposure: partial, aliases: ["Tokyo Keiki", "東京計器"], biz: "선박 항법 기기·유압 기기와 방위용 레이더 경보 장치 제조"}
+  - {id: jp-nof, name: NOF Corporation, local: 日油, country: JP, market: jp, code: 4403.TSE, listed: true, segments: [product], products: [munitions], exposure: partial, aliases: ["NOF Corporation", "日油"], biz: "유지·화학·의약 소재와 추진제·화약류 제조"}
+  - {id: jp-shimadzu, name: Shimadzu, local: 島津製作所, country: JP, market: jp, code: 7701.TSE, listed: true, segments: [product], products: [c4isr_ew, air], exposure: partial, aliases: ["Shimadzu", "島津製作所"], biz: "분석·의료 기기 중심 — 항공기 탑재 장비(조종석 표시기 등) 제조"}
+  - {id: jp-oki, name: Oki Electric Industry, local: 沖電気工業, country: JP, market: jp, code: 6703.TSE, listed: true, segments: [product], products: [naval, c4isr_ew], exposure: partial, aliases: ["Oki Electric", "沖電気"], biz: "통신·ATM·EMS와 해상자위대 소나 등 수중 음향 장비"}
+  # 미국 — 프라임
+  - {id: us-lmt, name: Lockheed Martin, country: US, market: us, code: LMT.US, listed: true, segments: [prime, product], products: [air, missile_ad, space], exposure: core, aliases: ["Lockheed Martin"], biz: "F-35 전투기·미사일·방공·위성을 만드는 세계 최대 방산 기업"}
+  - {id: us-rtx, name: RTX, country: US, market: us, code: RTX.US, listed: true, segments: [prime, product], products: [missile_ad, c4isr_ew, air, components], exposure: major, aliases: ["RTX Corporation", "Raytheon", "Pratt & Whitney"], biz: "미사일·방공 레이더(레이시온)와 항공 엔진(프랫앤휘트니)·항공 부품(콜린스)"}
+  - {id: us-noc, name: Northrop Grumman, country: US, market: us, code: NOC.US, listed: true, segments: [prime, product], products: [air, space, missile_ad, munitions], exposure: core, aliases: ["Northrop Grumman"], biz: "B-21 폭격기·우주·미사일 방어·고체 로켓 모터·탄약을 만드는 방산 기업"}
+  - {id: us-gd, name: General Dynamics, country: US, market: us, code: GD.US, listed: true, segments: [prime, product, services], products: [naval, land, munitions], exposure: major, aliases: ["General Dynamics"], biz: "핵잠수함·전차·탄약과 걸프스트림 비즈니스 제트·정부 IT 서비스"}
+  - {id: us-ba, name: Boeing, country: US, market: us, code: BA.US, listed: true, segments: [prime, product], products: [air, space, missile_ad], exposure: partial, aliases: ["Boeing Defense", "Boeing"], biz: "민항기 중심 — 방위·우주·안보 부문(전투기·급유기·헬기·위성)"}
+  - {id: us-lhx, name: L3Harris Technologies, country: US, market: us, code: LHX.US, listed: true, segments: [prime, product], products: [c4isr_ew, space, missile_ad], exposure: core, aliases: ["L3Harris"], biz: "전술 통신·전자전·우주 센서·로켓 추진(에어로젯 로켓다인) 방산 기업"}
+  - {id: us-hii, name: Huntington Ingalls Industries, country: US, market: us, code: HII.US, listed: true, segments: [prime, product, services], products: [naval], exposure: core, aliases: ["Huntington Ingalls", "HII"], biz: "미 해군 항공모함·잠수함·구축함을 건조하는 최대 군함 조선사"}
+  # 미국 — 제품 제조사(중소형 포함)
+  - {id: us-ktos, name: Kratos Defense & Security Solutions, country: US, market: us, code: KTOS.US, listed: true, segments: [product], products: [unmanned, missile_ad, space, c4isr_ew], exposure: core, aliases: ["Kratos Defense", "Kratos"], biz: "표적·전투 무인기, 극초음속·로켓 추진, 위성 지상 체계 방산 기업"}
+  - {id: us-avav, name: AeroVironment, country: US, market: us, code: AVAV.US, listed: true, segments: [product], products: [unmanned, space, c4isr_ew], exposure: core, aliases: ["AeroVironment"], biz: "소형 무인기·배회형 탄약(스위치블레이드)·대드론·우주 체계 제조"}
+  - {id: us-bwxt, name: BWX Technologies, country: US, market: us, code: BWXT.US, listed: true, segments: [product], products: [naval, components], exposure: major, aliases: ["BWX Technologies", "BWXT"], biz: "미 해군 함정용 원자로·핵연료 부품 독점 공급사"}
+  - {id: us-cw, name: Curtiss-Wright, country: US, market: us, code: CW.US, listed: true, segments: [product], products: [components, naval, c4isr_ew], exposure: major, aliases: ["Curtiss-Wright"], biz: "함정 펌프·밸브, 방위용 전자 하드웨어·센서 등 핵심 부품 제조"}
+  - {id: us-mrcy, name: Mercury Systems, country: US, market: us, code: MRCY.US, listed: true, segments: [product], products: [c4isr_ew, components], exposure: core, aliases: ["Mercury Systems"], biz: "방위용 신호처리 모듈·보안 컴퓨팅 서브시스템 제조"}
+  - {id: us-txt, name: Textron, country: US, market: us, code: TXT.US, listed: true, segments: [product], products: [air, land, unmanned], exposure: partial, aliases: ["Textron", "Bell Textron"], biz: "벨 헬기·세스나 항공기와 방위 체계(무인기·차량) 제조"}
+  - {id: us-tdg, name: TransDigm, country: US, market: us, code: TDG.US, listed: true, segments: [product], products: [components], exposure: partial, aliases: ["TransDigm"], biz: "항공기용 독점 부품(독자 설계 부품) 다수를 보유한 부품 지주회사"}
+  - {id: us-hei, name: HEICO, country: US, market: us, code: HEI.US, listed: true, segments: [product], products: [components, c4isr_ew], exposure: partial, aliases: ["HEICO"], biz: "항공기 대체 부품(PMA)·방위 전자 부품 제조"}
+  - {id: us-hwm, name: Howmet Aerospace, country: US, market: us, code: HWM.US, listed: true, segments: [product], products: [components], exposure: partial, aliases: ["Howmet Aerospace", "Howmet"], biz: "항공 엔진 터빈 블레이드 주조·체결 부품 제조"}
+  - {id: us-krmn, name: Karman Space & Defense, country: US, market: us, code: KRMN.US, listed: true, segments: [product], products: [missile_ad, space, components], exposure: core, aliases: ["Karman Space & Defense", "Karman Space"], biz: "미사일·발사체용 구조물·추진 부품·분리 장치 제조"}
+  - {id: us-tdy, name: Teledyne Technologies, country: US, market: us, code: TDY.US, listed: true, segments: [product], products: [c4isr_ew, unmanned, space], exposure: partial, aliases: ["Teledyne"], biz: "적외선·영상 센서(FLIR), 계측기, 해양·무인 체계 제조"}
+  - {id: us-mog, name: Moog, country: US, market: us, code: MOG-A.US, listed: true, segments: [product], products: [components, missile_ad, space], exposure: major, aliases: ["Moog Inc"], biz: "항공기·미사일·위성용 정밀 구동(액추에이터) 장치 제조"}
+  - {id: us-dco, name: Ducommun, country: US, market: us, code: DCO.US, listed: true, segments: [product], products: [components], aliases: ["Ducommun"], biz: "항공·방위용 전자 조립품·기체 구조물 제조"}
+  - {id: us-rcat, name: Red Cat Holdings, country: US, market: us, code: RCAT.US, listed: true, segments: [product], products: [unmanned], exposure: core, aliases: ["Red Cat Holdings", "Teal Drones"], biz: "미 육군 소형 정찰 무인기 제조(Teal Drones)"}
+  - {id: us-onds, name: Ondas Holdings, country: US, market: us, code: ONDS.US, listed: true, segments: [product], products: [unmanned], aliases: ["Ondas Holdings"], biz: "자율 무인기·대드론 체계와 산업용 무선 네트워크"}
+  - {id: us-npk, name: National Presto Industries, country: US, market: us, code: NPK.US, listed: true, segments: [product], products: [munitions], exposure: major, aliases: ["National Presto"], biz: "방위 탄약·신관(AMTEC) 중심, 가정용 기기 사업 병행"}
+  - {id: us-oln, name: Olin, country: US, market: us, code: OLN.US, listed: true, segments: [product], products: [munitions], exposure: partial, aliases: ["Olin Corporation", "Winchester Ammunition"], biz: "염소·알칼리 화학 중심 — 윈체스터 탄약(미 육군 레이크시티 탄약창 운영)"}
+  - {id: us-rklb, name: Rocket Lab, country: US, market: us, code: RKLB.US, listed: true, segments: [product], products: [space], exposure: partial, aliases: ["Rocket Lab"], biz: "소형·중형 발사체와 위성 버스·부품 — 미 우주개발청 위성 계약"}
+  - {id: us-rdw, name: Redwire, country: US, market: us, code: RDW.US, listed: true, segments: [product], products: [space, unmanned], exposure: partial, aliases: ["Redwire"], biz: "우주 인프라 부품(태양전지판·구조물)과 무인기 체계"}
+  - {id: us-fly, name: Firefly Aerospace, country: US, market: us, code: FLY.US, listed: true, segments: [product], products: [space], exposure: partial, aliases: ["Firefly Aerospace"], biz: "소형 발사체·달 착륙선 제조 우주 기업"}
+  - {id: us-voyg, name: Voyager Technologies, country: US, market: us, code: VOYG.US, listed: true, segments: [product, solutions], products: [space, missile_ad], aliases: ["Voyager Technologies"], biz: "국방·우주 기술(미사일 추진 부품·우주 정거장 사업) 기업"}
+  - {id: us-pl, name: Planet Labs, country: US, market: us, code: PL.US, listed: true, segments: [product, solutions], products: [space], exposure: partial, aliases: ["Planet Labs"], biz: "지구 관측 위성군 운영·위성 영상 데이터 구독"}
+  - {id: us-bksy, name: BlackSky Technology, country: US, market: us, code: BKSY.US, listed: true, segments: [product, solutions], products: [space], exposure: major, aliases: ["BlackSky"], biz: "고빈도 정찰 위성 영상·분석 서비스(정부 고객 중심)"}
+  - {id: us-anduril, name: Anduril Industries, country: US, market: us, listed: false, segments: [product, solutions], products: [unmanned, missile_ad, c4isr_ew], exposure: core, aliases: ["Anduril"], biz: "자율 무기·대드론·지휘통제 소프트웨어(비상장)"}
+  - {id: us-shieldai, name: Shield AI, country: US, market: us, listed: false, segments: [product, solutions], products: [unmanned], exposure: core, aliases: ["Shield AI"], biz: "무인기 자율비행 AI·무인기(비상장)"}
+  # 미국 — 서비스·솔루션
+  - {id: co-palantir, name: Palantir, country: US, market: us, code: PLTR.US, listed: true, segments: [solutions], products: [c4isr_ew], exposure: major, biz: "정부·기업용 데이터 통합·AI 분석 소프트웨어 — 미 국방 지휘통제·표적 체계"}
+  - {id: co-caci, name: CACI International, country: US, market: us, code: CACI.US, listed: true, segments: [services, solutions], products: [c4isr_ew], exposure: core, biz: "국방·정보기관 대상 IT·전자전·신호정보 서비스와 솔루션"}
+  - {id: us-ldos, name: Leidos, country: US, market: us, code: LDOS.US, listed: true, segments: [services, solutions], products: [c4isr_ew], exposure: major, aliases: ["Leidos"], biz: "국방·보건·민간 정부 대상 IT·엔지니어링 서비스 최대 기업"}
+  - {id: us-bah, name: Booz Allen Hamilton, country: US, market: us, code: BAH.US, listed: true, segments: [services, solutions], exposure: major, aliases: ["Booz Allen Hamilton", "Booz Allen"], biz: "국방·정보기관 대상 컨설팅·AI·사이버 서비스"}
+  - {id: us-saic, name: Science Applications International, country: US, market: us, code: SAIC.US, listed: true, segments: [services, solutions], exposure: major, aliases: ["Science Applications International"], biz: "국방·우주·정보기관 대상 IT 현대화·시스템 엔지니어링 서비스"}
+  - {id: us-psn, name: Parsons, country: US, market: us, code: PSN.US, listed: true, segments: [services, solutions], products: [c4isr_ew], aliases: ["Parsons Corporation"], biz: "국방·정보(사이버·우주) 서비스와 인프라 엔지니어링"}
+  - {id: us-kbr, name: KBR, country: US, market: us, code: KBR.US, listed: true, segments: [services], exposure: major, aliases: ["KBR Inc"], biz: "국방·우주 정부 서비스(군수·엔지니어링)와 에너지 기술"}
+  - {id: us-amtm, name: Amentum, country: US, market: us, code: AMTM.US, listed: true, segments: [services], exposure: major, aliases: ["Amentum"], biz: "국방·에너지·우주 정부 대상 엔지니어링·기술 지원 서비스"}
+  - {id: us-vvx, name: V2X, country: US, market: us, code: VVX.US, listed: true, segments: [services], exposure: core, aliases: ["V2X Inc"], biz: "군 기지 운영·장비 정비·군수 지원 서비스"}
+  - {id: us-bbai, name: BigBear.ai, country: US, market: us, code: BBAI.US, listed: true, segments: [solutions], exposure: major, aliases: ["BigBear.ai"], biz: "국방·국경 보안 대상 AI 분석·의사결정 소프트웨어"}
