@@ -180,7 +180,8 @@ def send(text, level="P1", ref=None, html_mode=False, md=False):
         common.record_health("telegram", False, type(exc).__name__)
         return False
     common.record_health("telegram", ok, None if ok else "ok=false")
-    _log(f"[발송{'됨' if ok else '실패'}][{level}] {text[:80]}")
+    paras = f" ¶{text.count(chr(10) * 2) + 1}" if level in ("P0", "P1") else ""   # 알림 3문단 양식 확인용(머리줄·☞·•)
+    _log(f"[발송{'됨' if ok else '실패'}][{level}]{paras} {text[:80]}")
     return ok
 
 
