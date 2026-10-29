@@ -12,10 +12,12 @@
 - 매출 $92.3B (est. $90.7B), YoY 18%
 - {핵심 사업 지표} YoY +48% (est. +45%)
 - GPM 67.8% (est. 67.3%)
+- 영업이익 $46.0B (est. $44.1B)
 - OPM 49.8% (est. 48.6%)
 - EPS $4.89 (est. $4.72)
 - OCF $58.0B (est. $53.8B)
 - CAPEX $39.37B (est. $46.99B)
+- FCF $18.6B (est. $6.8B)
 
 {다음 분기} Guidance
 - 매출 $96.0B~$97.1B (est. $95.7B)
@@ -28,14 +30,19 @@ FY{연도} Guidance
 After +3%
 ```
 - 지표는 그 회사의 실적을 가르는 것만(반도체 장비: 수주·수주잔고·지역별 매출, 메모리: 비트 출하·ASP, 클라우드: 클라우드 성장률·RPO 등). 순서: 매출 → 핵심 사업 지표 → 이익률 → EPS → 현금흐름·설비투자.
-- `(est. …)`는 **컨센서스 숫자가 있을 때만**(Fiscal.ai consensus.js — Zacks 추정치, 표기 의무 · 회사 자료의 시장 기대 언급). 없으면 괄호를 빼고 지어내지 않는다.
-- **Results의 매출·영업이익·EPS에는 est.를 반드시 찾아 붙인다**(마스터 지시 2026-10-30). `company_analyst_estimates({history:true})`에서 그 분기의 **발표일 이전 마지막 값**(asOf < earningsDate)을 쓴다 — 발표 뒤 남은 행(애널리스트 1명·asOf 없음)은 실적치가 섞인 것이라 쓰지 않는다. 영업이익 est.는 Zacks EBIT. 세그먼트(AWS 등)는 Zacks에 없으니 비운다.
-- 한 줄 순서: `지표 값 (est. 값), YoY x%` — est.가 값 바로 옆, YoY는 쉼표 뒤(부호는 마이너스일 때만). 가격 사이클 업종(메모리 등)은 `, QoQ x%`를 뒤에 더한다. 이익률은 `영업이익 $28.1B (est. $26.2B), OPM 13.9%`.
+- **est. 출처 순위(마스터 지시 2026-10-30 "Fiscal.ai 1순위, Zacks 2순위")** — 본보기 `scripts/fiscal/templates/earnings_est.js`가 지표마다 고른다.
+  1. **Fiscal.ai 자체 추정** `company_estimates`(가이던스·모델·Agentic Consensus — 애널리스트 설문이 아니다). 발표한 분기에는 Fiscal이 발표 전에 얼려 둔 추정이 남는다. **asOf가 발표일 전날 이전인 칸만** 쓴다 — 발표 당일·이후 asOf는 새 가이던스로 덮어쓴 값이라 '가이던스 vs est.' 비교가 무너진다(Fiscal 추정은 이력이 없다).
+  2. **Zacks 컨센서스** `company_analyst_estimates({history:true})`에서 그 분기의 발표일 전 마지막 값(asOf < 발표일). 발표 뒤 남은 행(애널리스트 1명·asOf 없음)은 쓰지 않는다. 영업이익은 Zacks EBIT.
+  3. 둘 다 없으면 괄호를 뺀다(회사 자료의 시장 기대 언급은 출처를 기록 파일에). 지어내지 않는다.
+- **est.는 매출·영업이익·OPM·EPS·OCF·CAPEX·FCF 모두 찾아 붙인다**(Fiscal.ai가 OCF·CAPEX·FCF 추정을 준다 — 2026-10-30 확인). OPM est.는 같은 제공처의 영업이익 est. ÷ 매출 est.(Fiscal끼리·Zacks끼리만). GPM est.는 Fiscal 매출총이익(GAAP)으로만 나오므로 GPM 줄이 GAAP일 때만 붙인다. 세그먼트(AWS 등)는 두 곳 모두 없어 비운다.
+- **기준이 같은 est.만**: 조정 EPS 줄에는 조정 EPS est.(Fiscal eps_adjusted·Zacks EPS), GAAP 줄에는 GAAP est. 기준이 다르면 괄호를 뺀다.
+- **Zacks 표기는 Zacks 수치를 쓴 줄이 하나라도 있을 때만** 맨 아래에 단다. Fiscal 추정만 썼으면 달지 않는다. 기록 파일에는 줄마다 출처(fiscal:source·zacks)와 asOf를 적는다.
+- 한 줄 순서: `지표 값 (est. 값), YoY x%` — est.가 값 바로 옆, YoY는 쉼표 뒤(부호는 마이너스일 때만). 가격 사이클 업종(메모리 등)은 `, QoQ x%`를 뒤에 더한다. **영업이익과 OPM은 따로 두 줄**(`- 영업이익 $8.87B (est. $8.76B)` / `- OPM 80.4% (est. 82.1%)`).
 - **OCF·CAPEX·FCF는 당분기(3개월) 수치**(마스터 지시 2026-10-30). 최근 12개월(TTM)·누적(YTD)을 쓰지 않는다 — 회사가 TTM·누적만 헤드라인으로 내도 Fiscal.ai 분기 현금흐름표(`company_financials_standardized` cash-flow-statement, quarterly)로, 없으면 누적에서 직전 누적을 빼서 계산한다. FCF = 당분기 OCF − 당분기 CAPEX.
-- 지표 이름 뒤에 부가 설명 괄호를 달지 않는다 — `CAPEX(유형자산 매입, 3Q)`가 아니라 `CAPEX`. 예외는 `(조정)` 하나(아래 GAAP/조정 규칙, 예 `EPS(조정) $49.51 (est. $47.00)`). 정의·계산 방식은 기록 파일(`outputs/article/sources/`)에만.
+- 지표 이름 뒤에 부가 설명 괄호를 달지 않는다 — `CAPEX(유형자산 매입, 3Q)`가 아니라 `CAPEX`. `(조정)`도 쓰지 않는다. 정의·계산 방식·GAAP/조정 구분은 기록 파일(`outputs/article/sources/`)에만.
 - 가이던스가 바뀌면 `이전 → 새`. 범위는 `~`. 단위: 달러 $B·$M, 원 조·억, 엔 億円(또는 조엔), 퍼센트포인트는 %p.
 - `After +3%` = 발표 후 시간외(또는 다음 거래일 장중) 등락률 — 확인 못 하면 줄을 뺀다. 일본·한국은 `발표 다음 날 +x%`.
-- GAAP과 조정(non-GAAP) 숫자가 다르면 회사가 헤드라인으로 쓴 쪽을 쓰고 지표 이름 뒤에 `(조정)`을 붙인다.
+- GAAP과 조정(non-GAAP) 숫자가 다르면 **조정 값을 쓰되 표기에는 `(조정)`을 붙이지 않는다**(마스터 지시 2026-10-30). 조정 값을 썼다는 사실은 기록 파일에 적는다.
 
 ## ② 뉴팩트 정리 — 직전 분기 콜 대비 새로 나오거나 바뀐 것만
 ```
