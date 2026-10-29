@@ -1,0 +1,21 @@
+# AI 파이낸싱 감시 (마스터 지시 2026-10-29 "AI 밸류체인 투자자라면 파이낸싱 시장 파악이 중요 — 메타가 클래스C 신주로 유증한다더니
+# 실제로는 엔비디아가 참여하면서 클래스A로 발행. 이런 소식을 Chiip Pulse가 가져와야 한다")
+# radar/pulse.py가 30분마다 쓴다. 보도 여부와 무관(미보도 규칙 적용 안 함) — 값어치는 자본 구조·조건·참여자에 있다.
+
+# SEC 제출을 직접 보는 발행사(미국 상장 티커). 자금 조달 서류만 본다: 424B2·424B3·424B5·FWP·S-3ASR·S-3·S-1·F-1,
+# 8-K 항목 1.01(중요 계약)·2.03(직접 금융 채무 발생)·3.02(미등록 증권 발행)·8.01·7.01, SC 13D(전략적 지분)
+issuers:
+  hyperscaler: [META, MSFT, GOOGL, AMZN, ORCL, AAPL]
+  ai_chip: [NVDA, AMD, AVGO, MRVL, MU, INTC, TSM, ARM, QCOM]
+  neocloud: [CRWV, NBIS, IREN, CIFR, APLD, WULF, GLXY]
+  infra_power: [VRT, GEV, CEG, VST, TLN, OKLO, ETN, PWR, INIO, EROC]
+  network_server: [ANET, DELL, SMCI, CSCO, COHR, LITE, CRDO, ALAB]
+
+# 뉴스·보도자료 제목에서 AI 밸류체인 자금 조달을 알아볼 이름(감시 기업 매칭이 없을 때 보조) — 비상장 AI 랩·사모 신용·인프라 펀드 포함
+org_names: ["Meta", "Microsoft", "Alphabet", "Google", "Amazon", "AWS", "Oracle", "Apple", "Nvidia", "AMD", "Broadcom", "Marvell", "Micron",
+            "TSMC", "Intel", "Arm", "CoreWeave", "Nebius", "IREN", "Cipher", "Applied Digital", "Crusoe", "Lambda", "OpenAI", "Anthropic", "xAI",
+            "Mistral", "Stargate", "SoftBank", "Blue Owl", "Blackstone", "Apollo", "Brookfield", "KKR", "BlackRock", "GIP", "MGX", "Ares",
+            "Vertiv", "GE Vernova", "Constellation", "Vistra", "Talen", "Oklo", "data center", "AI infrastructure"]
+
+# 제목에 이 문구가 있으면 자금 조달 사건으로 본다
+terms: 'offering|convertible|preferred|depositary|mandatory|notes? (offering|sale|issue)|senior notes|bonds?\b|debt (deal|financing|sale|raise|package)|equity (raise|offering|sale|investment|stake)|raises? \$|capital raise|private (credit|placement)|financing (vehicle|deal|package|facility)|\bSPV\b|joint venture|lease financing|\bloans?\b|credit (facility|line)|invests? \$|investment of \$|to invest|takes? (a )?stake|forward sale|at-the-market|share sale|stock sale|\bIPO\b|\bS-1\b|valuation of \$|funding round|tender offer'

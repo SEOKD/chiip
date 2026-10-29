@@ -129,6 +129,13 @@ def _norm(t):
     return re.sub(r"\W+", " ", (t or "").rsplit(" - ", 1)[0].lower()).strip()
 
 
+def _recent(iso, hours):
+    try:
+        return datetime.fromisoformat(str(iso).replace("Z", "+00:00")) >= common.now_kst() - timedelta(hours=hours)
+    except (TypeError, ValueError):
+        return False
+
+
 def fetch_news(h, st, first, days=2):
     c = ns.cfg()["auto"]
     names = h.get("names") or [h["name"]]
@@ -156,6 +163,8 @@ def fetch_news(h, st, first, days=2):
             if allow is not None and pub.lower() not in allow:
                 continue    # 기사 = 9개 매체만(CLAUDE.md 수집 범위)
             k = kind
+            if kind == "IB 커버리지" and not terms_re.search(it["title"]):
+                continue    # 검색어가 본문에만 걸린 시황·추천 글은 버린다(제목에 목표가·상향·하향·개시가 있어야)
             if kind != "IB 커버리지" and terms_re.search(it["title"]):
                 k = "IB 커버리지"
             key = _norm(it["title"])
@@ -165,8 +174,8 @@ def fetch_news(h, st, first, days=2):
             if key in seen or it["url"] in seen:
                 continue
             new_ids.append(key)
-            if first:
-                continue    # 첫 회차는 기준선만(색인 제목은 날짜가 부정확해 48시간 규칙 대신 전부 본 것으로)
+            if first and not _recent(it.get("date"), FIRST_RUN_H):
+                continue    # 첫 회차는 48시간 안 기사만 내놓는다(2026-10-29 수정 — 기준선 처리로 MRVL·Lumentum 인수 협상 보도를 놓쳤다)
             out.append({"kind": k, "ticker": h["ticker"], "title": it["title"], "url": it["url"], "date": it.get("date"),
                         "publisher": pub, "score": {"보도자료": 6, "IB 커버리지": 6, "보도": 5, "커뮤니티 글": 3}[k], "id": key})
         time.sleep(0.6)
@@ -262,7 +271,8 @@ def run(now=None):
     for h in hs:
         t = h["ticker"]
         first = t not in known
-        for name, fn in (("SEC", lambda: fetch_sec(h, st, now, first)), ("뉴스", lambda: fetch_news(h, st, first))):
+        first_news = f"news:{t}" not in st.get("seen", {})
+        for name, fn in (("SEC", lambda: fetch_sec(h, st, now, first)), ("뉴스", lambda: fetch_news(h, st, first_news))):
             try:
                 got, ids = fn()
                 errs = [g for g in got if g.get("kind") == "오류"]

@@ -1,5 +1,7 @@
 """30분 펄스 (마스터 지시 2026-10-28 "30분마다 ① 기사 거리 원본 찾기 ② 텐배거 발굴 → 알파 레이더, 영어권·미국 주식 중심")
 
+AI 파이낸싱(2026-10-29 마스터 지시 "AI 밸류체인 투자자라면 파이낸싱 시장 파악이 중요"): config/financing_watch.yaml 발행사의
+  SEC 자금 조달 서류(424B·FWP·S-3ASR·8-K 2.03·3.02 등) + inbox의 자금 조달 제목(보도자료·공시·9개 매체 기사) — 보도 여부와 무관.
 결정론 관문 — 모델(예약 작업 chiip-pulse)은 이 스크립트가 새 원본을 내놓을 때만 판단한다(CLAUDE.md '모델로 고빈도 폴링하지 않는다'의
 마스터 지시 예외를 좁히는 장치). 기사가 아니라 **원본**만 모은다:
   논문     arXiv cs.AR(inbox) + cs.ET·physics.app-ph(여기서 6시간마다 직접, 기술 키워드 통과분) — Nature 계열은 robots.txt가 Claude 차단
@@ -27,7 +29,7 @@ from pollers.press_wire import NON_EN_RE  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 25          # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지)
-TOP = {"공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"파이낸싱": 12, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
@@ -36,7 +38,7 @@ CLASSES = [("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"파이낸싱": 4, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 TECH_RE = re.compile(
     r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
     r"wafer|foundry|semiconductor|transistor|GAA|nanosheet|backside power|3D.?(IC|stack|integration)|TSV|interconnect|photonic|"
@@ -45,7 +47,37 @@ TECH_RE = re.compile(
     r"power (semiconductor|electronics|module)|liquid cool|immersion cool|transformer|power grid|gas turbine|fuel cell|"
     r"small modular reactor|\bSMR\b|superconduct|\bPCB\b|circuit board|AI (chip|server|infrastructure|factory|cluster)", re.I)
 US_TICKER_RE = re.compile(r"\((?:NASDAQ|Nasdaq|NYSE|NYSE American|NYSE Arca|Cboe)\s*:\s*([A-Z][A-Z0-9.\-]{0,6})\)")
+# AI 파이낸싱(마스터 지시 2026-10-29) — config/financing_watch.yaml. 보도 여부와 무관하게 모은다(기사도 9개 매체면 포함)
+FIN_FORMS = {"424B2", "424B3", "424B5", "FWP", "S-3ASR", "S-3", "S-1", "F-1", "SC 13D", "SCHEDULE 13D"}
+FIN_8K_ITEMS = {"1.01": "중요 계약", "2.03": "금융 채무 발생", "3.02": "미등록 증권 발행", "7.01": "공정공시", "8.01": "기타 중요 사건"}
 QUEUE_BUSY = [((8, 5), (8, 45)), ((18, 5), (18, 45))]   # chiip-valuation-queue 실행 창 — 이때 펄스는 알파 산정을 건너뜀
+
+
+def _fin_cfg():
+    c = common.load_yaml("config/financing_watch.yaml") or {}
+    c["_terms"] = re.compile(c.get("terms") or r"$^", re.I)
+    c["_orgs"] = re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in c.get("org_names") or []) or r"$^", re.I)
+    return c
+
+
+def _allowed_publishers():
+    rule = (common.load_yaml("config/alert_rules.yaml") or {}).get("telegram_filter") or {}
+    return {p.lower() for p in rule.get("allowed_publishers", [])}
+
+
+def is_financing(it, fin, pubs):
+    """inbox 항목 중 AI 밸류체인 자금 조달 — 보도자료·공시는 그대로, 기사는 9개 매체만(국내·한국어 제외)"""
+    title = it.get("title") or ""
+    if it.get("source_id", "").endswith("-ko") or re.search(r"[가-힣]", title):
+        return False
+    if not fin["_terms"].search(title):
+        return False
+    if not (it.get("entities_matched") or fin["_orgs"].search(title)):
+        return False
+    if it.get("doc_type") == "기사":
+        pub = (it.get("publisher") or (title.rsplit(" - ", 1)[1] if " - " in title else "")).strip().lower()
+        return pub in pubs
+    return True
 
 
 def class_of(source_id):
@@ -77,6 +109,7 @@ def relevant(it, cls):
 def inbox_items(since):
     out = []
     today = common.now_kst()
+    fin, pubs = _fin_cfg(), _allowed_publishers()
     for day in {today.strftime("%Y%m%d"), (today - timedelta(days=1)).strftime("%Y%m%d")}:
         folder = common.ROOT / "radar" / "inbox" / day
         if not folder.exists():
@@ -86,8 +119,13 @@ def inbox_items(since):
                 it = json.loads(f.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 continue
+            if (it.get("detected_at") or "") <= since:
+                continue
+            if is_financing(it, fin, pubs):
+                out.append(dict(it, source_class="파이낸싱"))
+                continue
             cls = class_of(it.get("source_id", ""))
-            if not cls or (it.get("detected_at") or "") <= since or not relevant(it, cls):
+            if not cls or not relevant(it, cls):
                 continue
             out.append(dict(it, source_class=cls))
     return out
@@ -151,6 +189,52 @@ def fetch_deals(st, days=2):
     return out
 
 
+def fetch_financing(st, days=3):
+    """발행사 SEC 제출 중 자금 조달 서류(424B·FWP·S-3ASR·8-K 2.03·3.02 등). FWP는 회사·날짜당 1건으로 묶는다"""
+    from pollers import sec_filings as sec
+    ua = {"User-Agent": sec._ua()}
+    tickers = [t for ts in (_fin_cfg().get("issuers") or {}).values() for t in ts or []]
+    since = (common.now_kst() - timedelta(days=days)).date().isoformat()
+    cikst = st.setdefault("fin_ciks", {})
+    seen, out, fwp_day = set(st.get("fin_seen", [])), [], set()
+    for tk in tickers:
+        cik = sec.cik_for(tk, cikst)
+        time.sleep(0.12)
+        if not cik:
+            continue
+        try:
+            d = json.loads(common.http_get(sec.SUB.format(cik=cik), headers=ua))
+        except Exception:
+            continue
+        time.sleep(0.12)
+        r = d.get("filings", {}).get("recent", {})
+        for i, form in enumerate(r.get("form", [])):
+            if r["filingDate"][i] < since:
+                break
+            acc = r["accessionNumber"][i]
+            if acc in seen:
+                continue
+            items = [x for x in ((r.get("items") or [""] * len(r["form"]))[i] or "").split(",") if x in FIN_8K_ITEMS]
+            if not (form in FIN_FORMS or (form.startswith("8-K") and items)):
+                continue
+            seen.add(acc)
+            if form == "FWP":
+                if (tk, r["filingDate"][i]) in fwp_day:
+                    continue
+                fwp_day.add((tk, r["filingDate"][i]))
+            if form.startswith("8-K") and set(items) <= {"7.01", "8.01"} and "2.02" in str((r.get("items") or [""])[i]):
+                continue   # 실적 8-K의 부수 항목은 파이낸싱이 아니다
+            label = "·".join(f"{x} {FIN_8K_ITEMS[x]}" for x in items) if items else form
+            out.append({"source_id": "src-sec-financing", "source_class": "파이낸싱",
+                        "url": f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-', '')}/{r['primaryDocument'][i]}",
+                        "title": f"[SEC {form} {label}] {d.get('name', tk)} ({tk})", "published_at": (r.get("acceptanceDateTime") or [""] * len(r["form"]))[i] or r["filingDate"][i],
+                        "detected_at": common.iso(common.now_kst()), "language": "en", "ticker": tk, "entities_matched": [],
+                        "snippet": f"{form} {(r.get('primaryDocDescription') or [''] * len(r['form']))[i]} · 색인 https://www.sec.gov/Archives/edgar/data/{int(cik)}/{acc.replace('-', '')}/",
+                        "sec_items": ",".join(items)})
+    st["fin_seen"] = sorted(seen)[-5000:]
+    return out
+
+
 def candidates(sources, watch):
     """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
     c = {}
@@ -186,7 +270,7 @@ def run(now=None):
         return None, f"[펄스] 이전 회차 진행 중({lock[11:16]} 시작) → 종료"
     since = st.get("watermark") or common.iso(now - timedelta(hours=2))
     sources, errors = inbox_items(since), []
-    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals)):
+    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing)):
         try:
             sources += fn(st)
         except Exception as exc:
@@ -200,7 +284,7 @@ def run(now=None):
     if not sources and (not q or busy):
         common.save_state(STATE, st)
         return None, f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''} → 종료"
-    counts = {c: sum(1 for s in sources if s["source_class"] == c) for c, _ in CLASSES}
+    counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker")
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,

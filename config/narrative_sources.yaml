@@ -18,7 +18,7 @@ auto:                        # 자동 수집(결정론)
   community_headlines:       # 사이트 직접 접속 금지(robots) → Google News 색인의 제목·링크만
     sites: [seekingalpha.com, fool.com, benzinga.com, marketbeat.com, barrons.com, investors.com, investopedia.com, tipranks.com, zacks.com]
   analyst_actions:           # IB 커버리지 변화(개시·상향·하향·목표가) — Google News 색인 제목
-    terms: ["price target", "upgrade", "downgrade", "initiates coverage", "initiated", "overweight", "outperform", "underweight"]
+    terms: ["price target", "upgrade", "downgrade", "initiates coverage", "initiated", "overweight", "outperform", "underweight", "coverage", "buy rating", "sell rating"]
   news7: "기존 9개 매체(src-news7-focus)"
 
 model:                       # 모델 단계(헤드리스·저빈도)에서만

@@ -2,7 +2,8 @@
 
 - 관련성 없는 항목(기업·키워드 매칭 0)은 모델 없이 P3 보관.
 - 나머지는 헤드리스 Claude Code(`claude -p "/radar-triage …"`, 소형 모델)로 일괄 판정.
-- P0: 즉시 알림 + impact-card(상위 모델) / P1: 즉시 알림(§21.13 실시간 전달) / P2: 대기열 보관 / P3: 보관
+- P0: 즉시 알림 + impact-card(상위 모델) / P1: 즉시 알림(§21.13 실시간 전달) / P2: 대기열 → 하루 1통 요약(p2_digest) / P3: 보관
+- 규칙 상향(promote.py, 2026-10-29): 모델이 P2·P3로 둔 AI 밸류체인 대형 거래·프런티어 AI 상장·주요 매체 단독·보유 종목 관련 사건은 P1
 - claude CLI가 없거나 로그인 전이면 전부 브리프 대기열(미판정)로 보내고 헬스에 기록.
 
 사용: py radar/run_triage.py [--dry-run]
@@ -17,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common, gate  # noqa: E402
 import notify  # noqa: E402
+import promote  # noqa: E402
 
 BATCH = common.STATE / "triage_batch.json"
 BRIEF_QUEUE = common.STATE / "brief_queue.jsonl"
@@ -150,6 +152,11 @@ def main(argv=None):
             if not it:
                 continue
             lvl = r["level"]
+            if lvl in ("P2", "P3"):   # 규칙 상향(radar/promote.py) — T0 중심 판정이 낮춘 AI 밸류체인 사건·보유 종목 관련
+                why_up = promote.check(it)
+                if why_up:
+                    lvl, r["reason"] = "P1", f"{why_up} (모델 {r['level']}: {r.get('reason', '')})"
+                    r["what"] = f"[{why_up}] {r.get('what') or it['title']}"
             card = Path(r.get("card_path") or "").stem or None
             msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card)
             ok, why = notify.telegram_allowed(it)
