@@ -267,7 +267,8 @@ def block(b):
         head = "".join(f"<th>{t(h)}</th>" for h in b.get("headers") or [])
         rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
         cap = f"<b>{t(b['title'])}</b>" if b.get("title") else ""
-        return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
+        note = f'<div class="sm mut">{t(b.get("note"))}</div>' if b.get("note") else ""   # 표 출처·Zacks 표기
+        return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table>{note}</div>'
     if k == "chart":
         c = b.get("chart") or {}
         fn = CHARTS.get(c.get("kind"))

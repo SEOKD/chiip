@@ -42,6 +42,13 @@ class TestUnits(unittest.TestCase):
         for a, b in cases.items():
             self.assertEqual(money_units(a), b, a)
 
+    def test_money_units_number_b_dollar(self):
+        """2026-10-30 — 숫자 뒤 B$가 '6.6$B'로 바뀌던 것"""
+        cases = {"6.6B$·15GW": "$6.6B·15GW", "34.2 B$)": "$34.2B)", "0.88~0.89B$": "$0.88~0.89B", "순차입 -0.15 B$": "순차입 -$0.15B",
+                 "단위 B$,": "단위 $B,"}
+        for a, b in cases.items():
+            self.assertEqual(money_units(a), b, a)
+
     def test_won_yen_untouched(self):
         for x in ("3,000억 원", "시총 3,700억 엔", "2조 원", "$1.2B", "$3.4억 원", "1만 명", "1억 주", "직원 8만 5천 명"):
             self.assertEqual(money_units(x), x)

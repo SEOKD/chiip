@@ -2,3 +2,5 @@ date,id,ticker,html,view
 2026-10-29,us-cbrs,CBRS,outputs/tenbagger/reports/20261029_CBRS.html,밸류는 웨이퍼 수명·시스템 원가 두 숫자에 — EV가 수주잔고의 0.8배
 2026-10-29,co-innio,INIO,outputs/tenbagger/reports/20261029_INIO.html,"이익 추정 +4.3%·주가 −31.8% → 멀티플 −34.6%; 3Q 콜 정보 가치 +15.9%; DCF 0.82배·MC 기대 1.00배, 10배 경로 없음(2~3배 후보)"
 2026-10-29,co-quanta-services,PWR,outputs/tenbagger/reports/20261029_PWR.html,"실적이 리비전 경로로 프리미엄 일부 정당화(주가 +13.5% = EPS +8.4% × 멀티플 +4.7%); DCF 0.44배·시장 내포 CAGR 30%, 10배 경로 닫힘(프리미엄 지속성 점검 대상)"
+2026-10-30,co-innio,INIO,outputs/tenbagger/reports/20261030_INIO.html,"Fiscal.ai 재작성: EPS 추정 +1.7%(Zacks)·주가 −31.8% → 배수 −32.9%; DCF 기본 0.78배(확률 가중 0.90배)·합리적 멀티플 1.72배, 10배 경로 없음(2~3배 후보)"
+2026-10-30,us-cbrs,CBRS,outputs/tenbagger/reports/20261030_CBRS.html,"Fiscal.ai 재작성: DCF 기본 0.29배(확률 가중 0.37배)·합리적 멀티플 0.63배, 고유 프리미엄 +87%; 정당화엔 장기 이익률 약 49% 필요, EV가 수주잔고의 0.77배"

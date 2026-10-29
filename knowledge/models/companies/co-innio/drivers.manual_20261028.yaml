@@ -1,0 +1,27 @@
+# INNIO(INIO) 밸류에이션 v2 동인 — 1단계 시험(2026-10-28). 금액 단위 10억 달러
+id: co-innio
+name: INNIO
+ticker: INIO
+unit: "B$"
+unit_usd: 1000000000
+industry: electrical_equipment
+region_mix: {US: 0.6, EU: 0.4}
+tax: 0.25
+horizon: 10
+as_of: 2026-10-28
+market: {date: 2026-10-28, price: 16.98, shares: 0.750, net_debt: 1.62, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 2.82 − 현금 1.20"}
+rev0: 3.95          # FY2026 가이던스 중간값(3.9~4.0, 3Q 콜 2026-10-27)
+ic0: 1.96           # 3Q 10-Q 자기자본 0.34 + 총차입 2.82 − 현금 1.20 (조달 측 근사, 1단계)
+scenarios:
+  base: {prob: 0.50, growth: {start: 0.33, end: 0.035, decay: 0.70}, margin: {m0: 0.165, target: 0.190, year_target: 3, lr: 0.15, lam: 0.38}, s2c: 3.0}
+  bull: {prob: 0.25, growth: {start: 0.38, end: 0.040, decay: 0.75}, margin: {m0: 0.170, target: 0.210, year_target: 3, lr: 0.17, lam: 0.25}, s2c: 3.5}
+  bear: {prob: 0.25, growth: {start: 0.20, end: 0.030, decay: 0.60}, margin: {m0: 0.160, target: 0.155, year_target: 3, lr: 0.12, lam: 0.50}, s2c: 2.5}
+mc: {sigma_growth: 0.04, sigma_margin: 0.015, sigma_s2c: 0.20, sigma_wacc: 0.005}
+notes:
+  - "기본: 2027 매출 +33%(컨센서스 2027 분기 합 약 52.7억 달러와 정합) → 캐파 10GW+(2030) 경로로 감속. EBITA 마진 = 조정 EBITDA ~20% − D&A ~3.5%"
+  - "약세: AI 데이터센터 수요 둔화·고객 신용 사건(2026-10 네오클라우드 신용 재평가 보도) — 성장 20%에서 빠른 감속, 장기 마진 12%"
+  - "강세: 서비스 플라이휠($50k/MW/년 신규 설치분) 조기 실현, 장기 마진 17%"
+  - "1단계 한계: 투하자본 조달 측 근사, 서비스·장비 부문 분리 안 함(2단계 전력 인프라 모듈에서 분리)"
+evidence:
+  - "outputs/invest/20261028_innio_q3_delta.md (2Q→3Q 콜 분석)"
+  - "SEC 10-Q XBRL CIK 2109150"

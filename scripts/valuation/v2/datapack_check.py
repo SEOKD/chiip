@@ -40,7 +40,7 @@ def check(p):
     add("원자료 스냅숏", "통과" if raw.get("retrieved_at") else "실패", f"조회 시각 {raw.get('retrieved_at', '없음')}")
     cover = raw.get("shares_cover_implied")
     add("시가총액 대조", "통과" if _near((pf.get("price") or 0) * (cover or 0), ez.get("market_cap"), 0.01) else "실패",
-        f"가격 {pf.get('price')} × 표지 주식 {cover} = {(pf.get('price') or 0) * (cover or 0):.2f} vs easyconomics {ez.get('market_cap')}")
+        f"가격 {pf.get('price')} × 표지 주식 {cover} = {(pf.get('price') or 0) * (cover or 0):.2f} vs 원자료 개요 {ez.get('market_cap')}")
     add("가격 일치", "통과" if _near(pf.get("price"), ez.get("price"), 0.001) else "실패", f"{pf.get('price')} vs {ez.get('price')}")
     nd_ok = _near(pf.get("cash"), ez.get("total_cash"), 0.01) and _near(pf.get("debt"), ez.get("total_debt"), 0.01)
     detail = f"현금 {pf.get('cash')} vs {ez.get('total_cash')} · 차입(리스 포함) {pf.get('debt')} vs {ez.get('total_debt')}"
@@ -51,7 +51,7 @@ def check(p):
         b_cash = b.get("cash", 0) + b.get("st_investments", 0)
         b_debt = b.get("debt_current", 0) + b.get("debt_lt", 0) + b.get("lease_current", 0) + b.get("lease_lt", 0)
         nd_ok = _near(pf.get("cash"), b_cash, 0.01) and _near(pf.get("debt"), b_debt, 0.01)
-        detail = f"현금 {pf.get('cash')} vs 재무상태표({bs_key[8:]}) {b_cash:.4f} · 차입 {pf.get('debt')} vs {b_debt:.4f} — easyconomics({ez['balance_date']})보다 최신 1차 자료"
+        detail = f"현금 {pf.get('cash')} vs 재무상태표({bs_key[8:]}) {b_cash:.4f} · 차입 {pf.get('debt')} vs {b_debt:.4f} — 개요({ez['balance_date']})보다 최신 1차 자료"
     add("현금·차입 대조", "통과" if nd_ok else "실패", detail)
     rev4, op4 = q.get("rev") or {}, q.get("op_income") or {}
     add("TTM 매출 = 4분기 합", "통과" if len(rev4) == 4 and _near(fin.get("rev_ttm"), sum(rev4.values()), 0.005) else "실패",

@@ -14,17 +14,18 @@ market:
   date: '2026-10-28'
   price: 112.56
   shares: 0.304215
-  net_debt: -6.436
-  source: 가격 = easyconomics company_profile 2026-10-28 종가 · 주식 수 = 10-Q 재무상태표 2026-06-30
-    228,203,927주(희석 증권과 같은 날짜) · 현금 = 현금 6.742 + 단기투자 1.179 · 차입 = 단기 0.736 + 장기 0.182
-    + 리스 0.568(easyconomics 재무상태표 2026-06-30)
+  net_debt: -7.1705
+  source: 가격 = Fiscal.ai company_stock_prices 2026-10-28 종가(10/29 봉은 거래량 100주로 미확정이라
+    쓰지 않음) · 주식 수 = 기본 228,203,927(2026-06-30)·표지 237,564,041(2026-08-05, Fiscal.ai
+    shares_outstanding) · 현금 = 현금 6,742.2 + 투자 1,179.4백만$ · 차입 = 장기 182.2 + 리스 568.8백만$(Fiscal.ai
+    공시 원문)
 rev0: 0.885
-ic0: 2.719
+ic0: 1.984
 scenarios:
   base:
     prob: 0.5
     growth:
-      start: 2.2922
+      start: 2.113
       end: 0.035
       decay: 0.45
     margin:
@@ -39,7 +40,7 @@ scenarios:
   bull:
     prob: 0.3
     growth:
-      start: 2.8653
+      start: 2.6412
       end: 0.04
       decay: 0.5
     margin:
@@ -54,7 +55,7 @@ scenarios:
   bear:
     prob: 0.2
     growth:
-      start: 0.9169
+      start: 0.8452
       end: 0.030000000000000002
       decay: 0.35
     margin:
@@ -72,9 +73,9 @@ mc:
   sigma_s2c: 0.2
   sigma_wacc: 0.005
 provenance:
-  rev0: 회사 가이던스 중간값 [0.88, 0.89] (2026-08-12 2Q26 실적 발표·어닝콜(easyconomics earnings_summary)
-    — FY2026 코어 매출 8.8~8.9억$(상향), 코어 영업이익률 −19~−17%, 3Q 코어 매출 2.14~2.16억$)
-  growth: 컨센서스 1년차 229.2%
+  rev0: 회사 가이던스 중간값 [0.88, 0.89] (회사 2Q26 실적 보도자료·콜(2026-08-12, Fiscal.ai ir_events
+    q2-2026) — FY2026 코어 매출 0.88~0.89B$(상향), 코어 영업이익률 −19~−17%, 3Q 코어 매출 0.214~0.216B$)
+  growth: 컨센서스 1년차 211.3%
   margin: 1년차 컨센서스 -3.5% 고정 → 목표 22%(4년차, 덮어쓰기) → 장기 수렴 15%
   s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 1.0
   range: 고·저 추정 없음 — 초고성장 규칙(약세 ×0.4·강세 ×1.25)
@@ -85,7 +86,7 @@ provenance:
     컨센서스)을 GAAP으로 맞추는 차감 — 상장 전 1Q26 5.0%, 상장 후 RSU 정상 수준 미확인'
   shares: 완전 희석 = 기본 0.228204(2026-06-30) + 옵션·RSU·워런트·전환 0.0760 — SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarn
 notes:
-- 자동 생성(build_drivers) 2026-10-29 — 데이터 묶음 2026-10-28
+- 자동 생성(build_drivers) 2026-10-30 — 데이터 묶음 2026-10-28
 - '어닝콜 위험: OpenAI·AWS 고객 집중'
 - '어닝콜 위험: 데이터센터 확보·구축 지연'
 - '어닝콜 위험: 임차 시스템으로 인한 총마진 하락(3Q 저점)'
@@ -95,3 +96,6 @@ evidence:
 - SEC XBRL companyfacts CIK 2021728(희석 증권·SBC, 조회 2026-10-29)
 - SEC 10-Q 2026-08-12 · 424B4 2026-05-14
 - outputs/invest/short/20261029_CBRS.md
+- Fiscal.ai MCP 2026-10-30 — 공시 원문 재무(auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks
+  Investment Research, Inc., www.zacksdata.com)·13F 2Q26(394개 기관)·뉴스(10/27 Oracle
+  OCI 제휴, 10/28 Culper 숏 포지션 공시)

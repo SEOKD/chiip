@@ -80,5 +80,8 @@ def money_units(text):
     s = re.sub(r"\(\s*백만\s*(?:달러|불)\s*\)", "($M)", s)
     s = re.sub(r"\(\s*(?:십억|10억)\s*(?:달러|불)\s*\)", "($B)", s)
     s = re.sub(r"\(\s*조\s*(?:달러|불)\s*\)", "($T)", s)
+    # ⑤ 숫자 뒤 B$·M$·T$: 6.6B$ → $6.6B · 0.88~0.89B$ → $0.88~0.89B · 34.2 B$ → $34.2B (2026-10-30 INIO 리포트 '6.6$B' 표기 수정)
+    s = re.sub(rf"(?P<sign>[−-]?)(?P<a>{_NUM})\s*~\s*(?P<b>{_NUM})\s*(?P<u>[MBT])\$", r"\g<sign>$\g<a>~\g<b>\g<u>", s)
+    s = re.sub(rf"(?P<sign>[−-]?)(?<![\d.])(?P<n>{_NUM})\s*(?P<u>[MBT])\$", r"\g<sign>$\g<n>\g<u>", s)
     s = re.sub(r"(?<![A-Za-z$])([MBT])\$(?![A-Za-z0-9])", r"$\1", s)
     return s

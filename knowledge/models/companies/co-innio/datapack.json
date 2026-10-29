@@ -16,7 +16,7 @@
   "shares_date": "2026-09-30",
   "cash": 1.1958,
   "debt": 2.8174,
-  "source": "가격 = easyconomics company_profile 2026-10-28 종가 18.35 · 주식 수 = SEC dei EntityCommonStockSharesOutstanding 750,000,000(2026-10-26)·10-Q 3Q 가중평균 750,000,000 · 현금 = 10-Q 2026-09-30 1,195.8백만$ · 차입 = easyconomics total_debt 2,817.4백만$(10-Q 장기차입 2,596.1 + 유동 15.2 + 운용·금융리스 120.7 = 2,732.0 — 차이 85백만$는 yfinance 집계 항목, 보수적으로 큰 값)"
+  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-28 종가(10/29 봉은 거래량 100주로 미확정이라 쓰지 않음) · 주식 수 750,000,000(Fiscal.ai shares_outstanding 2026-09-30·10-26) · 현금·차입 = Fiscal.ai 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$)"
  },
  "dilution": {
   "potential_total": 0.0017,
@@ -29,27 +29,27 @@
  },
  "financials": {
   "rev_ttm": 3.5148,
-  "ebit_ttm": 0.3885,
-  "invested_capital": 1.8744,
+  "ebit_ttm": 0.3797,
+  "invested_capital": 1.9678,
   "capex_ttm": 0.2909,
   "da_fy2025": 0.1535,
   "sbc_3q": 0.00273,
   "rev_growth_ttm": 0.573,
   "basis": "GAAP",
-  "note": "TTM = 2025Q4~2026Q3 매출 740.6+668.6+937.7+1,167.9백만$(easyconomics 분기 손익 = SEC 10-Q 일치), 영업이익 86.7+63.1+45.1+193.6백만$ — 4Q25 영업이익은 FY2025 355.3(easyconomics 표준화) − 9M25 268.6(SEC)로 역산(기준 혼재, ±10백만$ 미확인). 투하자본 = 자기자본 338.2 + 차입 2,611.3 + 리스 120.7 − 현금 1,195.8(조달 측, 10-Q 2026-09-30). 영업권 1,666.8·무형 700.0 포함 — 영업권 제외 시 투하자본 음수(고객 선수금 1,598.2가 운전자본을 댄다). CAPEX TTM = 9M26 187.3 + 4Q25 103.6(FY25 171.2 − 9M25 67.6)"
+  "note": "TTM = Fiscal.ai 표준화 분기 손익 2025Q4~2026Q3 매출 740.6+668.6+937.7+1,167.9, 영업이익 77.9+63.1+45.1+193.6백만$(4Q25 영업이익은 이전 역산값 86.7 → Fiscal 공시값 77.9로 정정). 투하자본 = 자기자본 346.2 + 차입 2,817.4 − 현금 1,195.8"
  },
  "consensus": {
   "rev": {
-   "FY2026": 3.9927,
-   "FY2027": 5.2407
+   "FY2026": 4.0033,
+   "FY2027": 5.1635
   },
   "rev_basis": "gaap",
   "ebit_margin": {
-   "FY2026": 0.162,
-   "FY2027": 0.177
+   "FY2026": 0.1223,
+   "FY2027": 0.1726
   },
-  "margin_basis": "non_gaap",
-  "n_analysts": 10,
+  "margin_basis": "gaap",
+  "n_analysts": 2,
   "quarters_est": {
    "2026Q4": 1.2185,
    "2027Q1": 1.1922,
@@ -69,7 +69,7 @@
    "2027Q3": 277.7,
    "2027Q4": 325.4
   },
-  "note": "매출 = easyconomics 분기 추정 합(FY2026 = 1~3Q 실적 2,774.2 + 4Q 추정 1,218.5). 이익률 = 조정 EBITDA 추정(FY2027 1,128.5백만$ ÷ 5,240.7 = 21.5%) − 감가상각 3.8%(3Q26 44.4 ÷ 1,167.9) = 조정 EBITA 17.7%(추정·비GAAP). FY2026 = 회사 가이던스 조정 EBITDA 20% − 3.8%",
+  "note": "Zacks(Fiscal.ai analyst_estimates 2026-10-28): 연간 매출은 분기 합(실적 3분기 + 4Q 추정), EBIT 이익률 = Zacks EBIT ÷ Zacks 연간 매출(기준 미공시 — GAAP로 취급, SBC 차감 안 함). 애널리스트 2명 — 커버리지 얕아 확신도 낮음. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
   "surprise": [
    {
     "period": "2026Q2",
@@ -163,7 +163,7 @@
    0.8
   ],
   "deliveries_gw_fy0": 4.5,
-  "source": "2026-10-27 3Q 실적 발표·어닝콜(easyconomics earnings_summary) — FY2026 매출 39~40억$(38~39억$에서 상향), 조정 EBITDA 7.8~8.0억$(마진 약 20%, 직전 약 19%). EBITA 이익률 16.2% = 20% − 감가상각 3.8%(Chiip 계산)"
+  "source": "회사 3Q 실적 보도자료·콜(2026-10-27, Fiscal.ai ir_events: press_release·transcript q3-2026) — FY2026 매출 3.9~4.0B$ 상향"
  },
  "call": {
   "date": "2026-10-27",
@@ -343,80 +343,77 @@
   "note": "easyconomics(yfinance) 2026-10-28 — 선행 P/E는 선행 12개월 EPS 0.826$ 기준, EV/EBITDA·EV/매출은 TTM(GAAP). 조정 EBITDA 선행 12개월(4Q26~3Q27 추정 합 1,055백만$) 기준 EV/EBITDA = 14.6배(Chiip 계산)"
  },
  "peers_basis": "ttm",
- "peers_source": "easyconomics company_profile(yfinance) 2026-10-28 — 매출·EBIT 이익률·시가총액·PBR·차입·현금·EV/매출·EV/EBITDA = TTM, 선행 P/E = 선행 12개월, 성장 = 최근 분기 전년 대비. Wärtsilä는 유로(비율만 사용). 영업권·무형 = SEC XBRL(CAT·CMI 2026-06-30, GEV 2026-09-30). 왕복동 엔진 발전(CAT·CMI·Wärtsilä)·데이터센터 현장 발전(BE)·가스터빈(GEV) — 사업 혼합이 달라 순수 비교 아님",
+ "peers_source": "Fiscal.ai 표준화 분기 재무(최근 4분기 합, 성장 = TTM ÷ 직전 TTM)·daily ratios(시총·EV/매출·EV/EBITDA, 2026-10-29, 달러 환산) — CMI 최근 분기 2026-06-30",
  "peers": [
   {
    "ticker": "CAT",
-   "rev": 74.729,
-   "ebit_margin": 0.2218,
-   "mcap": 327.92,
-   "pb": 16.91,
-   "debt": 45.146,
-   "cash": 5.945,
-   "ev_sales": 4.913,
-   "ev_ebitda": 22.59,
-   "pe_fwd": 21.89,
-   "growth": 0.24,
-   "goodwill": 5.859,
-   "intangibles": 0.42
+   "rev": 77.773,
+   "ebit_margin": 0.1833,
+   "mcap": 302.65,
+   "pb": 14.09,
+   "debt": 37.021,
+   "cash": 7.929,
+   "ev_sales": 4.37,
+   "ev_ebitda": 20.38,
+   "growth": 0.2026,
+   "goodwill": 5.905,
+   "intangibles": 0.409
   },
   {
    "ticker": "CMI",
    "rev": 34.708,
-   "ebit_margin": 0.119,
-   "mcap": 73.15,
-   "pb": 5.694,
-   "debt": 8.286,
+   "ebit_margin": 0.1122,
+   "mcap": 72.02,
+   "pb": 5.18,
+   "debt": 7.544,
    "cash": 3.924,
-   "ev_sales": 2.264,
-   "ev_ebitda": 15.65,
-   "pe_fwd": 15.26,
-   "growth": 0.094,
+   "ev_sales": 2.21,
+   "ev_ebitda": 15.33,
+   "growth": 0.0293,
    "goodwill": 2.222,
    "intangibles": 2.168
   },
   {
    "ticker": "GEV",
-   "rev": 41.367,
-   "ebit_margin": 0.0747,
-   "mcap": 233.85,
-   "pb": 21.17,
-   "debt": 3.72,
-   "cash": 12.72,
-   "ev_sales": 5.573,
-   "ev_ebitda": 58.71,
-   "pe_fwd": 34.73,
-   "growth": 0.219,
+   "rev": 44.041,
+   "ebit_margin": 0.0642,
+   "mcap": 240.08,
+   "pb": 19.15,
+   "debt": 2.795,
+   "cash": 16.764,
+   "ev_sales": 5.16,
+   "ev_ebitda": 53.41,
+   "growth": 0.1691,
    "goodwill": 9.609,
    "intangibles": 4.343
   },
   {
    "ticker": "BE",
    "rev": 3.83,
-   "ebit_margin": 0.1849,
-   "mcap": 67.41,
-   "pb": 34.87,
-   "debt": 2.787,
+   "ebit_margin": 0.1481,
+   "mcap": 67.07,
+   "pb": 34.17,
+   "debt": 2.779,
    "cash": 2.487,
-   "ev_sales": 17.69,
-   "ev_ebitda": 112.4,
-   "pe_fwd": 42.95,
-   "growth": 1.381,
-   "goodwill": 0.002,
+   "ev_sales": 17.6,
+   "ev_ebitda": 108.46,
+   "growth": 1.1059,
+   "goodwill": 0.0,
    "intangibles": 0.0
   },
   {
    "ticker": "WRT1V",
-   "rev": 6.827,
-   "ebit_margin": 0.1387,
-   "mcap": 15.69,
-   "pb": 5.873,
-   "debt": 0.548,
-   "cash": 2.469,
-   "ev_sales": 2.005,
-   "ev_ebitda": 15.25,
-   "pe_fwd": 20.35,
-   "growth": -0.063
+   "rev": 7.62,
+   "ebit_margin": 0.1324,
+   "mcap": 17.51,
+   "pb": 5.81,
+   "debt": 0.549,
+   "cash": 2.797,
+   "ev_sales": 2.08,
+   "ev_ebitda": 12.45,
+   "growth": 0.068,
+   "goodwill": 0.0,
+   "intangibles": 1.76
   }
  ],
  "sbc_pct_rev": 0.002,
@@ -431,63 +428,23 @@
   "why": "목표 조정 EBITA 이익률 19%(4년차): 장비 마진 3Q 17.1% 도달 + 서비스(마진 32%) 비중이 2030년대 확대 — 동종 CAT 22%·Wärtsilä 14%·CMI 12% 사이, 장기 17%로 수렴 / 매출÷투하자본 3.0: TTM 1.9는 인수 영업권 1.67B$가 섞인 값 — 증분 기준으로는 고객 선수금(9개월 +782백만$)이 운전자본을 대고 CAPEX는 매출 증가분의 약 20%(TTM 291백만$ ÷ 매출 증가 1.28B$) → 증분 3~5, 보수적으로 3 / SBC 0.2%: 3Q SBC 2.7백만$ ÷ 매출 1,168"
  },
  "history": {
-  "basis": "EV/TTM 매출 — 반월 간격 종가(easyconomics company_price_history), 주식 0.75B·순차입 1.62B$ 고정(근사), TTM은 그 날짜에 공개된 4분기 합(~7/27 2.811, 7/28~10/26 3.090, 10/27~ 3.515)",
+  "basis": "Fiscal.ai daily ratio_ev_to_sales(월말 표본)",
   "ev_sales": [
    {
-    "date": "2026-06-08",
-    "value": 9.57
-   },
-   {
-    "date": "2026-06-15",
-    "value": 9.84
-   },
-   {
-    "date": "2026-06-22",
-    "value": 11.55
-   },
-   {
-    "date": "2026-06-30",
-    "value": 11.13
-   },
-   {
-    "date": "2026-07-15",
-    "value": 8.62
-   },
-   {
-    "date": "2026-07-27",
-    "value": 7.76
-   },
-   {
     "date": "2026-07-31",
-    "value": 6.45
-   },
-   {
-    "date": "2026-08-14",
-    "value": 7.18
+    "value": 6.5
    },
    {
     "date": "2026-08-31",
-    "value": 5.43
-   },
-   {
-    "date": "2026-09-15",
-    "value": 4.84
+    "value": 5.5
    },
    {
     "date": "2026-09-30",
-    "value": 4.93
-   },
-   {
-    "date": "2026-10-15",
-    "value": 4.53
-   },
-   {
-    "date": "2026-10-26",
-    "value": 4.56
+    "value": 4.3
    },
    {
     "date": "2026-10-28",
-    "value": 4.38
+    "value": 4.4
    }
   ]
  },
@@ -495,10 +452,11 @@
   "easyconomics company_profile·financial_statements(분기 손익)·financials_summary(연간)·earnings_summary 2026-10-27·2026-07-28·company_price_history (조회 2026-10-29 KST)",
   "SEC XBRL companyfacts CIK 2109150(10-Q 2026-09-30: 매출·영업이익·재무상태·희석 증권·CAPEX, 조회 2026-10-29)",
   "SEC XBRL 동종 영업권(CAT 18230·CMI 26172·GEV 1996810·BE 1664703)",
-  "outputs/invest/20261028_innio_q3_delta.md · knowledge/models/companies/co-innio/factors.yaml(회사 전용 요인 모델)"
+  "outputs/invest/20261028_innio_q3_delta.md · knowledge/models/companies/co-innio/factors.yaml(회사 전용 요인 모델)",
+  "Fiscal.ai MCP 2026-10-30 — 표준화 재무(공시 원문 auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·뉴스(10/22 620MW 후속 수주, 10/27 3Q 실적)·3Q 콜 Q&A 질문 증권사 8곳"
  ],
  "raw": {
-  "retrieved_at": "2026-10-29T19:30:00+09:00",
+  "retrieved_at": "2026-10-30T01:00:00+09:00",
   "easyconomics_profile": {
    "price": 18.35,
    "market_cap": 13.7625,
@@ -524,7 +482,7 @@
     "2026Q3": 1.1679
    },
    "op_income": {
-    "2025Q4": 0.0867,
+    "2025Q4": 0.0779,
     "2026Q1": 0.0631,
     "2026Q2": 0.0451,
     "2026Q3": 0.1936
@@ -533,32 +491,33 @@
   "balance_2026_09_30": {
    "cash": 1.1958,
    "st_investments": 0.0,
-   "debt_current": 0.0152,
+   "debt_current": 0.2213,
    "debt_lt": 2.5961,
-   "lease_current": 0.0285,
-   "lease_lt": 0.0922,
-   "equity": 0.3382,
+   "lease_current": 0.0,
+   "lease_lt": 0.0,
+   "equity": 0.3462,
    "goodwill": 1.6668,
    "intangibles": 0.7,
    "contract_liabilities": 1.5982,
-   "shares": 0.75
+   "shares": 0.75,
+   "note": "Fiscal.ai 표준화 재무상태표 2026-09-30 — 단기 차입 221.3(유동 차입·리스 포함), 장기 2,596.1, 자기자본 346.2백만$"
   },
   "estimates_sales_m": {
    "2026Q1_act": 668.6,
    "2026Q2_act": 937.7,
    "2026Q3_act": 1167.9,
-   "2026Q4": 1218.5,
-   "2027Q1": 1192.2,
-   "2027Q2": 1359.6,
-   "2027Q3": 1271.9,
-   "2027Q4": 1417.0
+   "2026Q4": 1229.1,
+   "2027Q1": 1192.45,
+   "2027Q2": 1335.63,
+   "2027Q3": 1240.445,
+   "2027Q4": 1395.01
   },
   "estimates_eps": {
-   "2026Q4": 0.1768,
-   "2027Q1": 0.1671,
-   "2027Q2": 0.2087,
-   "2027Q3": 0.225,
-   "2027Q4": 0.2416
+   "2026Q4": 0.17333,
+   "2027Q1": 0.16,
+   "2027Q2": 0.18,
+   "2027Q3": 0.195,
+   "2027Q4": 0.245
   },
   "estimates_prev_call_2026_07_28": {
    "eps": {
@@ -599,6 +558,41 @@
    "2026-10-15": 16.5,
    "2026-10-26": 16.63,
    "2026-10-28": 18.35
+  },
+  "source": "Fiscal.ai MCP(execute_code) — company_stock_prices·daily_ratios·shares_outstanding·financials_standardized·analyst_estimates(Zacks)·analyst_ratings(Zacks)·peers 값",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_INIO",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqGS-INIO",
+   "price": 18.35,
+   "market_cap": 13.7625,
+   "total_cash": 1.1958,
+   "total_debt": 2.8174,
+   "shares_outstanding": 0.75,
+   "ev_sales": 4.4,
+   "as_of": "2026-10-28"
+  },
+  "zacks": {
+   "FY2026_rev": 3.8596,
+   "FY2026_ebit": 0.472,
+   "FY2027_rev": 5.1635,
+   "FY2027_ebit": 0.8914,
+   "n_rev": 2,
+   "price_target": {
+    "mean": 35.6,
+    "low": 22,
+    "high": 41,
+    "n": 10
+   },
+   "rating": {
+    "strongBuy": 6,
+    "buy": 2,
+    "hold": 3,
+    "sell": 0,
+    "n": 11
+   },
+   "asOf": "2026-10-28",
+   "note": "Zacks 연간 FY2026 3.86(10/28)과 분기 합 4.00(4Q 추정 7/31) 불일치 — 분기 합을 쓴다. 매출 추정 애널리스트 2명뿐(커버리지 얕음)",
+   "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
   }
  },
  "narrative": {
@@ -610,22 +604,22 @@
    "sell_side": {
     "metrics": [
      [
-      "애널리스트 수",
-      "10명(매수 8·보유 2·매도 0)",
-      "커버리지 규모",
-      "easyconomics company_profile 2026-10-30 00시"
+      "애널리스트 의견(Zacks)",
+      "11명 — 강력 매수 6·매수 2·보유 3·매도 0",
+      "커버리지는 넓지만 매출 추정 제출은 2명뿐",
+      "Fiscal.ai analyst_ratings·estimates — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
      ],
      [
-      "목표가 평균·범위",
-      "$31.4 ($21~$42)",
-      "현재가 $18.35 대비 평균 +71% — IB 기대의 증거(치입 목표가 아님)",
+      "목표가 평균·범위(Zacks)",
+      "$35.6 ($22~$41, 10명)",
+      "10/28 종가 $18.35 대비 평균 +94% — IB 기대의 증거(Chiip 목표가 아님)",
       "같은 곳"
      ],
      [
-      "콜 질문 증권사",
-      "Morgan Stanley, Goldman Sachs, Bank of America, JPMorgan, Baird",
-      "콜 질문 초점 = 셀사이드 내러티브의 초점",
-      "데이터 묶음 call(easyconomics)"
+      "3Q 콜 질문 증권사",
+      "Morgan Stanley, Goldman Sachs, RBC, JP Morgan, Bank of America, Baird, Citigroup, BNP Paribas",
+      "질문 초점 = 수주 지속·슬롯·백로그 신용·서비스 마진",
+      "Fiscal.ai ir_events_transcript(q3-2026) 화자 목록"
      ]
     ],
     "read": "질문 초점이 수주 지속·슬롯 시점·백로그 신용 질에 몰렸다 = 사이클 정점 걱정"
@@ -633,10 +627,16 @@
    "buy_side": {
     "metrics": [
      [
-      "기관 보유 비중",
-      "60%",
-      "상장 직후라 락업·앵커 투자자 비중이 크다",
-      "easyconomics company_profile"
+      "13F 기관 보유",
+      "미공개(상장 2026-06 — Fiscal.ai '아직 없음')",
+      "첫 13F(3Q) 공시는 11월 중순",
+      "Fiscal.ai institutional_holders"
+     ],
+     [
+      "펀드 레터 언급",
+      "0건",
+      "헤지펀드 레터에 아직 등장하지 않음 — 바이사이드 논지 미형성",
+      "Fiscal.ai company_fund_letters"
      ],
      [
       "공매도 비중(유통 주식)",

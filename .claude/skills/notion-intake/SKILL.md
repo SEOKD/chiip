@@ -32,6 +32,6 @@ argument-hint: "<insights|informations|stocks> <page_id> [inbox 텍스트 경로
 - **텐배거 리포트 우선 색인**(마스터 지시 2026-10-30 "Stocks 티커 중 최신(±7일) 어닝콜 스크립트와 컨센서스를 입력해 놓은 종목부터 분석"): 종목 페이지를 새로 보거나 고친 것을 볼 때마다 본문을 `radar/inbox/notion_stocks/<page_id>.md`(git 제외)에 저장하고 `py scripts/tenbagger/notion_stocks.py --classify radar/inbox/notion_stocks/<page_id>.md --page-id <id> --title "<제목>" --edited <편집일>` — 어닝콜 스크립트·컨센서스·IB 내용·콜 날짜를 규칙으로 판별해 색인(knowledge/models/notion/stocks_index.json)에 넣는다. 판별은 스크립트가 한다(모델은 읽기만).
 
 ## 경계
-- local-only 읽기 금지. 마스터 노션 페이지(Insights·Informations·Stocks)는 **읽기만** — 수정·삭제 금지(Insights 하위 '치입 검토' 페이지 생성만 허용).
+- local-only 읽기 금지. 마스터 노션 페이지(Insights·Informations·Stocks)는 **읽기만** — 수정·삭제 금지(Insights 하위 '치입 검토' 페이지 생성, 그리고 Stocks 아래 '<한국어명> <티커>' 종목 페이지가 없을 때 새로 만들기·그 종목 페이지 아래 '텐배거 리포트 YYYY-MM-DD — …' 하위 페이지 생성·같은 날 갱신만 허용 — 2026-10-30 마스터 지시, `docs/tasks/chiip-tenbagger-report.md` 6c).
 - 목표주가·매수/매도 표현 금지. 잘못된 연결 금지표 적용(법안 발의 → 시행, 주가 급락 → 원인 특정).
 - 원문 전체 복제 금지(메타 + 자기 말 요약 + 링크). 첨부 원본은 저장소에 넣지 않는다.

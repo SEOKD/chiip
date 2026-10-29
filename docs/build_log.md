@@ -87,6 +87,7 @@
 - 대만 法說會·홍콩 실적 브리핑 Q&A 확보 절차(§21.46, 마스터 2026-10-30): tw_disclosure.py 召開法人說明會 감지(parse_conference·tw_ir_profile 빈도), 펄스 언어 필터 예외, 절차 문서 knowledge/methods/tw_hk_ir_qa_procedure.md(접근 판정 표·홍콩 유형 A~D), 노션 '아시아 IR 프로필'로 확장, coverage.yaml adr·hk_type 필드. 시험 tests/test_tw_ir.py
 - 데이터 원천 Fiscal.ai 전환(§21.44·ADR-012, 마스터 2026-10-30): easyconomics 퇴역. knowledge/methods/data_fiscal.md(7개 기능 → 엔진 단계), scripts/fiscal/templates 7개(PWR 실측), scripts/fiscal/adapter.py, config/fiscal_keys.yaml, levels 장기 월봉. 운영 지시문·스킬·설정·스크립트 주석과 예약 작업 프롬프트 2개 교체. 시험 tests/test_fiscal_adapter.py
 - 어닝 캘린더 Fiscal.ai 전환(마스터 2026-10-30 "어닝캘린더도 Fiscal.ai를 참조하라"): scripts/fiscal/templates/calendar.js(미국 티커 50개 묶음 + 회사 키 묶음, 확정·추정·예상·장전·장후), radar/markets/earnings_calendar.py --fiscal-code·--fiscal-put·fiscal_events·merge(한국은 KIND 보조 — Fiscal에 코스닥 없음·코스피 일부, EODHD는 예비), radar/portfolio.py 05시 이후 '실적 일정 갱신' 신호, config/fiscal_keys.yaml 1차 상장 키 6개. 실측 79건(10/29~11/20). 일봉 본보기 미확정 마지막 봉 제외(거래량 < 직전 20일 중앙값 1%). 시험 tests/test_fiscal_calendar.py
+- 텐배거 리포트 노션 Stocks 게시·INNIO·Cerebras Fiscal.ai 재작성(마스터 2026-10-30): scripts/tenbagger/report_notion.py(JSON → 노션 마크다운, $ 이스케이프), publish_report.py --caption(텔레그램 = 캡션 + GitHub 링크만), 노션 '이니오 INIO'·'세레브라스 CBRS' 아래 10/30 리포트 하위 페이지(notion_log.csv). 두 리포트 컨센서스를 Zacks(Fiscal.ai history)로 교체 — INIO EPS 리비전 +4.3% → +1.7%(제출 2~3명·매출 추정 8월 초 이후 미갱신이라 방향 참고용), CBRS 어닝콜·컨센서스 절 추가. 감사 INIO 9.5·CBRS 9.4. 단위 버그 수정(숫자 뒤 B$가 '6.6$B'로 바뀌던 것, radar/units.py ⑤), 표 주석 렌더(report_html)
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

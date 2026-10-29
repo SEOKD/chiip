@@ -77,6 +77,7 @@ def main(argv):
     ap.add_argument("files", nargs="+")
     ap.add_argument("--title", required=True)
     ap.add_argument("--no-send", action="store_true")
+    ap.add_argument("--caption", default="", help="링크 위에 붙일 요약(파일 경로 또는 글) — 텔레그램은 GitHub 링크만(마스터 지시 2026-10-30)")
     a = ap.parse_args(argv)
     links, commit = publish(a.files, a.title)
     print(f"[게시] {BRANCH} {commit[:12]}")
@@ -85,7 +86,8 @@ def main(argv):
     if not a.no_send:
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
-        text = f"[Chiip Report] {a.title}\n" + "\n".join(links) + "\n(비공개 저장소 — 로그인 필요, 그래프 화면은 텔레그램 파일로)"
+        cap = Path(a.caption).read_text(encoding="utf-8").strip() if a.caption and Path(a.caption).exists() else a.caption.strip()
+        text = (cap + "\n\n" if cap else f"[Chiip Report] {a.title}\n") + "\n".join(links) + "\n(비공개 저장소 — 로그인 필요)"
         print("텔레그램:", notify.send(text, "REPORT"))
     return 0
 
