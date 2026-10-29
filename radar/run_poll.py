@@ -67,6 +67,38 @@ def run_source(src, env):
     return getattr(module, src.get("entry", "poll"))(env)  # 한 모듈에 원천이 여럿이면 entry로 함수 지정
 
 
+def fast_lane(items):
+    """규칙 빠른 길(2026-10-29 '즉시 포착' 점검): 보유 종목 큰 사건·숏 리포트·AI 밸류체인 대형 거래 등 radar/promote.py 규칙에
+    걸리는 새 항목은 모델 판정(haiku, 묶음 순차·일일 상한)을 기다리지 않고 수집 직후 보낸다. 모델이 실패하거나 상한에 걸려도
+    규칙 건은 나간다. 같은 사건 반복·잡음·오래된 자료는 판정 단계와 같은 관문으로 거른다. 보낸 id는 run_triage가 다시 보내지 않는다"""
+    import promote
+    from pollers import gate
+    sent = []
+    for it in items:
+        try:
+            if not gate.is_fresh(it, "alert") or promote.noise(it) or not notify.telegram_allowed(it)[0]:
+                continue
+            why = promote.check(it)
+            if not why:
+                continue
+            lvl = promote.level_for(it, why)
+            if promote.duplicate_of(it):
+                continue
+            go, _, _ = promote.event_gate(it, lvl)
+            if not go:
+                continue
+            ref = notify.remember_alert(it, lvl, why, None, None)
+            notify.send(notify.format_item(lvl, it), lvl, ref=ref, html_mode=True)
+            sent.append(it["item_id"])
+        except Exception as exc:   # 빠른 길이 실패해도 수집·판정은 계속
+            print(f"빠른 길 오류 {it.get('item_id')}: {type(exc).__name__}: {exc}")
+    if sent:
+        st = common.load_state("rule_fast", {"ids": []})
+        st["ids"] = (st["ids"] + sent)[-1000:]
+        common.save_state("rule_fast", st)
+    return sent
+
+
 def deterministic_p0(items):
     rules = (common.load_yaml("config/alert_rules.yaml") or {}).get("deterministic_p0", {})
     pats = rules.get("dart_report_patterns", [])
@@ -141,6 +173,9 @@ def main(argv=None):
             sent = deterministic_p0(new_total)
             if sent:
                 print(f"규칙 P0 선알림 {len(sent)}건")
+            fast = fast_lane(new_total)
+            if fast:
+                print(f"규칙 빠른 길 발송 {len(fast)}건")
         notify.flush_p1()
         prune_inbox()
         if new_total and not args.no_triage:

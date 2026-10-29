@@ -127,6 +127,7 @@ def main(argv=None):
 
     caps = (common.load_yaml("config/alert_rules.yaml") or {}).get("caps", {})
     rule_sent = set(common.load_state("rule_p0", {"ids": []})["ids"])
+    fast_sent = set(common.load_state("rule_fast", {"ids": []})["ids"])   # run_poll 규칙 빠른 길로 이미 보낸 건
     exe = claude_exe()
     for i in range(0, len(relevant), BATCH_SIZE):
         batch = relevant[i:i + BATCH_SIZE]
@@ -183,10 +184,13 @@ def main(argv=None):
                 if lvl == "P0":
                     deep_analysis(r, it)
                 continue
+            if it["item_id"] in fast_sent:   # 규칙 빠른 길로 이미 발송 — 다시 보내지 않고 P0 심층 분석만
+                if lvl == "P0":
+                    deep_analysis(r, it)
+                continue
             if lvl in ("P0", "P1"):  # 실시간 전달: P1도 묶지 않고 건별 즉시(§21.13)
                 ref = notify.remember_alert(it, lvl, r.get("what"), r.get("impact"), card)
-                prefix = "(규칙 선알림 후속) " if it["item_id"] in rule_sent else ""
-                notify.send(prefix + ev_prefix + msg, lvl, ref=ref)
+                notify.send(msg, lvl, ref=ref, html_mode=True)   # 한 줄 양식(2026-10-29) — 머리말·등급 코드 없음
                 if lvl == "P0":
                     deep_analysis(r, it)
             elif lvl == "P2":

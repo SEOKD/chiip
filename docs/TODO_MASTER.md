@@ -12,7 +12,7 @@
 | 5 | 키 입력 | `D:\local-only\secrets\.env` — `TELEGRAM_BOT_TOKEN=`, `TELEGRAM_CHAT_ID=` | 완료(10-28). 치입은 이 값을 보지 않습니다 |
 | 6 | 알림 시험 | `py radar/notify.py "시험"` | 완료(10-28 07:17 발송 성공) |
 
-선택 키: `SEC_USER_AGENT=이름 이메일`(SEC 접속 예절 — 없으면 일반 UA로 동작), api.data.gov 키(`REGULATIONS_GOV_API_KEY`, `CONGRESS_API_KEY`, `GOVINFO_API_KEY` — 의견서·의회 추적).
+선택 키(2026-10-29 즉시 포착 점검): `EODHD_API_KEY` — 있으면 보유 종목 장중 급락 트리거(Culper처럼 사이트가 자동 접근을 막는 숏 리포트도 주가 급락으로 먼저 감지)를 만들 수 있음(지연 시세 플랜 확인 필요). `SEC_USER_AGENT=이름 이메일`(SEC 접속 예절 — 없으면 일반 UA로 동작), api.data.gov 키(`REGULATIONS_GOV_API_KEY`, `CONGRESS_API_KEY`, `GOVINFO_API_KEY` — 의견서·의회 추적).
 
 ## B. Claude 데스크톱 앱에서
 

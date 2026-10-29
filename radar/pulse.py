@@ -237,7 +237,7 @@ def fetch_financing(st, days=3):
 
 def _short_cfg():
     c = common.load_yaml("config/short_watch.yaml") or {}
-    c["_firms"] = re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in c.get("firms") or []) or r"$^", re.I)
+    c["_firms"] = re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in (c.get("firms") or []) + (c.get("firm_short") or [])) or r"$^", re.I)
     c["_terms"] = re.compile(c.get("terms") or r"$^", re.I)
     return c
 

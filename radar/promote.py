@@ -78,7 +78,8 @@ def level_for(item, why):
 def _shorts():
     if "shorts" not in _CACHE:
         c = common.load_yaml("config/short_watch.yaml") or {}
-        _CACHE["shorts"] = {"firms": re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in c.get("firms") or []) or r"$^", re.I),
+        names = (c.get("firms") or []) + (c.get("firm_short") or [])   # 정식 이름 + 기사 제목의 짧은 이름(2026-10-29)
+        _CACHE["shorts"] = {"firms": re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in names) or r"$^", re.I),
                             "terms": re.compile(c.get("terms") or r"$^", re.I)}
     return _CACHE["shorts"]
 
@@ -124,13 +125,19 @@ def match(item):
     ents = sorted(item.get("entities_matched") or [])
     sh = _shorts()
     firm, short = sh["firms"].search(title), sh["terms"].search(title) or re.search(r"\bshort", title, re.I)
-    if (firm and short) or short:   # 숏 리포트(2026-10-29 — Culper의 Cerebras 리포트 누락 뒤). 운용사 이름만 걸린 다른 글은 제외
+    site = item.get("source_id") == "src-short-sites"   # 운용사 원문 사이트의 새 글 = 그 자체가 숏 리포트(2026-10-29)
+    if site and not firm:
+        firm = re.search(re.escape(_publisher(item) or "운용사"), _publisher(item) or "운용사")
+    # 숏 리포트(2026-10-29 — Culper의 Cerebras 리포트 누락 뒤). 실제 제목은 'short'를 안 쓰는 경우가 많다
+    # ('Culper Research Takes Aim at Cerebras', 'Cerebras shares fall after Culper report') → 운용사 이름 + 대상 종목이면 충분
+    if firm or short:
         target = next((tk for tk, pat in _holdings() if pat.search(title)), None)
         if target and (firm or sh["terms"].search(title)):
             return f"규칙 상향: 보유 종목 {target} 숏 리포트", f"short:{target}"
         org = _fin()["orgs"].search(title)
-        if (firm or sh["terms"].search(title)) and (ents or org):
-            return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else re.sub(r"\W+", " ", title.lower())[:50]))
+        tk = re.search(r"\((?:NASDAQ|NYSE|NYSEAMERICAN|TSX|ASX)?:?\s*([A-Z]{1,5})\)", title)
+        if (firm or sh["terms"].search(title)) and (ents or org or (site and tk)):
+            return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else tk.group(1) if tk else re.sub(r"\W+", " ", title.lower())[:50]))
     if item.get("source_id") == "src-jp-disclosure" and ents and not noise(item):   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
         cls = next((k for k, rx in JP_EVENT if rx.search(title)), None)
         if cls:

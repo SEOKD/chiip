@@ -402,7 +402,7 @@
   endpoint_doc: "config/research_watch.yaml"
   auth: none
   scope: [글로벌]
-  interval_min: 30
+  interval_min: 15
   run_on: local
   language: en
   doc_type: 리서치
@@ -871,4 +871,60 @@
   doc_type: 공시
   terms_note: "2026-10-29 마스터 지시(이비덴 실적 예상 상향 누락). TDnet은 robots.txt 차단이라 직접 수집 안 함 — Google News 색인의 제목·링크만, 원문은 회사 IR PDF. 대상·매체는 config/jp_watch.yaml"
   reliability_default: 1차(제목 미러)
+  enabled: true
+
+# ===== 즉시 포착 보강 (2026-10-29 마스터 지시 "CBRS 숏 리포트·Marvell의 Lumentum 인수 기사를 즉시 찾아오는 파이프라인" 점검 — 4.5/10) =====
+- id: src-short-sites
+  name: 숏 운용사 원문 사이트 직접 감시(공개 RSS·목록 페이지 새 링크) × 19곳
+  category: F-뉴스
+  module: short_sites
+  entry: poll
+  method: rss
+  endpoint_doc: "config/short_watch.yaml sites"
+  auth: none
+  scope: [글로벌]
+  interval_min: 5
+  run_on: local
+  language: en
+  doc_type: 숏 리포트
+  terms_note: "매 회차 robots.txt 확인(막히면 건너뜀). 403·로그인 우회 금지 — Culper·Iceberg·Ningi·Jehoshaphat(403)·Hunterbrook(robots 차단)은 제외하고 Google News 색인(펄스)으로만. 제목·링크만 저장, 원문 복제 금지"
+  reliability_default: 의견(숏 운용사 주장)
+  enabled: true
+
+- id: src-bbg-direct
+  name: Bloomberg 공개 RSS(technology·markets·business) 직접 — Google News 색인 지연(중앙값 28분) 제거
+  category: F-뉴스
+  module: rss
+  method: rss
+  feed_urls: ["https://feeds.bloomberg.com/technology/news.rss", "https://feeds.bloomberg.com/markets/news.rss", "https://feeds.bloomberg.com/business/news.rss"]
+  publisher: Bloomberg
+  endpoint_doc: "https://feeds.bloomberg.com"
+  auth: none
+  scope: [글로벌]
+  interval_min: 5
+  max_age_days: 1
+  run_on: local
+  language: en
+  doc_type: 기사
+  terms_note: "2026-10-29 확인: feeds.bloomberg.com은 robots.txt 없음(404 = 제한 없음), 피드 리더용 공개 RSS. www.bloomberg.com은 AI 수집기를 막으므로 기사 본문은 열지 않는다 — 제목·링크·발행 시각만. Marvell–Lumentum 기사는 이 피드에 21:05 UTC(Google News 21:18, 우리 수집 22:37)"
+  reliability_default: 2차
+  enabled: true
+
+- id: src-bi-direct
+  name: Business Insider 공개 RSS 직접
+  category: F-뉴스
+  module: rss
+  method: rss
+  feed_urls: ["https://feeds.businessinsider.com/custom/all"]
+  publisher: Business Insider
+  endpoint_doc: "https://feeds.businessinsider.com"
+  auth: none
+  scope: [글로벌]
+  interval_min: 5
+  max_age_days: 1
+  run_on: local
+  language: en
+  doc_type: 기사
+  terms_note: "2026-10-29 확인: feeds.businessinsider.com robots.txt 없음. 제목·링크만. WSJ(feeds.a.dj.com)는 2025-01 이후 갱신 정지·403, The Information 피드는 robots.txt 확인 불가(403) → Google News 색인으로만"
+  reliability_default: 2차
   enabled: true

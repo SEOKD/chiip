@@ -11,7 +11,9 @@
       py radar/notify.py --flush         (P1 묶음 발송)
       py radar/notify.py --chat-id       (봇에게 말을 건 개인 대화방 id 찾기 — 토큰은 출력하지 않음)
 """
+import html
 import json
+import re
 import sys
 import urllib.parse
 import urllib.request
@@ -26,9 +28,31 @@ MAX_LEN = 3800
 BRAND = ("치입", "Chiip")   # 마스터 지시 2026-10-29: 텔레그램·GitHub 보고에는 '치입' 대신 'Chiip'으로 표기
 
 
+LEVEL_TAG_RE = re.compile(r"\[P[0-3](?:[-·][^\]]{0,12})?\]\s?")   # 내부 등급 코드 — 마스터에게 드러내지 않는다(2026-10-29 지시)
+
+
+LEVEL_WORD_RE = re.compile(r"(?<![\w/.=-])P[0-3](?![\w/.=-])(\s?·\s?|\s)?")   # 문장 속 'P0 · '·'P1 ' 등
+
+
 def brand(text):
-    """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로 나간다"""
-    return (text or "").replace(*BRAND)
+    """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
+    text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", (text or "").replace(*BRAND))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
+    return LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text))
+
+
+LINK_RE = re.compile(r"\[([^\]\n]{1,80})\]\((https?://[^\s)]+)\)")
+
+
+def md_to_html(text):
+    """펄스 양식용 가벼운 표기 → 텔레그램 HTML(2026-10-29 마스터 지시 '가독성'). **굵게**와 [이름](주소)만 쓰고 나머지는 이스케이프 —
+    긴 SEC 주소를 이름 뒤로 숨긴다. 태그는 한 줄 안에서 닫히므로 문단 단위 분할에도 깨지지 않는다"""
+    out, pos = [], 0
+    for m in LINK_RE.finditer(text or ""):
+        out.append(html.escape(text[pos:m.start()], quote=False))
+        out.append(f'<a href="{html.escape(m.group(2), quote=True)}">{html.escape(m.group(1), quote=False)}</a>')
+        pos = m.end()
+    out.append(html.escape((text or "")[pos:], quote=False))
+    return re.sub(r"\*\*([^*\n]{1,300})\*\*", r"<b>\1</b>", "".join(out))
 
 
 def _denylist():
@@ -100,8 +124,10 @@ def send_document(path, caption="", level="REPORT"):
     return ok
 
 
-def send(text, level="P1", ref=None):
+def send(text, level="P1", ref=None, html_mode=False, md=False):
     text = brand(text)
+    if md:   # 펄스·포트폴리오 양식 — **굵게**·[이름](주소) → HTML
+        text, html_mode = md_to_html(text), True
     reason = guard(text)
     if reason:
         _log(f"[차단:{reason}] (내용 생략)")
@@ -123,7 +149,7 @@ def send(text, level="P1", ref=None):
                 cur = f"{cur}\n{para}" if cur else para
         if cur:
             parts.append(cur)
-        oks = [send(p + f"\n({i}/{len(parts)})", level, ref if i == 1 else None) for i, p in enumerate(parts, 1)]
+        oks = [send(p + f"\n({i}/{len(parts)})", level, ref if i == 1 else None, html_mode) for i, p in enumerate(parts, 1)]
         return all(oks)
     env = common.load_env()
     token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")
@@ -131,6 +157,8 @@ def send(text, level="P1", ref=None):
         _log(f"[미발송-키없음][{level}] {text}")
         return False
     payload = {"chat_id": chat, "text": text, "disable_web_page_preview": "true"}
+    if html_mode:   # 기사 제목에 링크를 숨겨 한 줄 양식을 지킨다
+        payload["parse_mode"] = "HTML"
     if ref:  # 알림마다 '⭐ 노션 기록' 버튼 — 누르면 radar/telegram_inbox.py가 인텔 아카이브에 기록
         payload["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": "⭐ 노션 기록", "callback_data": f"save:{ref}"}]]})
     data = urllib.parse.urlencode(payload).encode()
@@ -216,19 +244,58 @@ def company_line(entity_ids, biz=None):
     return None
 
 
+def _tickers():
+    """entity_id → (이름, 종목코드). 보유 종목 → 감시 목록 → 밸류에이션 유니버스 → 어닝 감시 확장 → 일본 정보망 순"""
+    if "tk" not in _LINES:
+        out = {}
+        for h in (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []:
+            out.setdefault(h.get("id"), (h.get("name"), h.get("ticker")))
+        for r in common.load_watchlist():
+            out.setdefault(r["entity_id"], (re.sub(r"\s*\(.*?\)", "", r.get("name") or ""), r.get("ticker")))
+        for f in ("config/valuation.yaml", "config/earnings_watch.yaml"):
+            d = common.load_yaml(f) or {}
+            for u in (d.get("universe") or []) + (d.get("extra") or []):
+                code = str(u.get("code") or u.get("ticker") or "")
+                out.setdefault(u["id"], (u.get("name"), re.sub(r"\.(US|KO|KQ|T|TW|HK)$", "", code) or None))
+        for co in (common.load_yaml("config/jp_watch.yaml") or {}).get("companies") or []:
+            out.setdefault(co["id"], (co.get("en"), co.get("code")))
+        _LINES["tk"] = out
+    return _LINES["tk"]
+
+
+def stock_label(entity_ids):
+    """'Marvell(MRVL)' — 보유 종목을 앞에, 최대 2개. 모르면 이름만, 아무것도 없으면 '시장'"""
+    held = {h.get("id") for h in (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []}
+    labs = []
+    for e in sorted(entity_ids or [], key=lambda e: e not in held):
+        name, code = _tickers().get(e, (None, None))
+        if name:
+            name = re.sub(r",?\s+(Inc\.?|Corp\.?|Corporation|Ltd\.?|plc|Co\.,? Ltd\.?|Holdings|N.V.)$", "", name.strip())
+            labs.append(f"{name}({code})" if code else name)
+        if len(labs) == 2:
+            break
+    return "·".join(labs) or "시장"
+
+
+def alert_time(item):
+    """기사 공개 시각(KST). 오늘이 아니면 날짜를 붙인다"""
+    from datetime import datetime
+    raw = str(item.get("published_at") or item.get("detected_at") or "")
+    try:
+        t = datetime.fromisoformat(raw.replace("Z", "+00:00"))
+        t = t.astimezone(common.now_kst().tzinfo) if t.tzinfo else t
+    except ValueError:
+        return raw[11:16]
+    return t.strftime("%H:%M") if t.date() == common.now_kst().date() else t.strftime("%m/%d %H:%M")
+
+
 def format_item(level, item, what=None, impact=None, card_id=None, biz=None):
-    ent = ",".join(item.get("entities_matched", [])) or "-"
-    lines = [f"[{level}] {ent} | {item.get('doc_type', '')} | {item.get('detected_at', '')[11:16]}"]
-    line = company_line(item.get("entities_matched"), biz)
-    if line:
-        lines.append(f"기업: {line}")
-    lines.append(f"무엇: {what or item['title']}")
-    if impact:
-        lines.append(f"영향: {impact} (1차 판정)")
-    lines.append(item["url"])
-    if card_id:
-        lines.append(f"카드: {card_id}")
-    return "\n".join(lines)
+    """실시간 알림 한 줄 — 마스터 지시 2026-10-29 "종목(종목코드)｜기사｜시간 — 이렇게만 표기하라, P1 같은 코드명은 드러내지 마라".
+    기사 제목에 원문 링크를 건다(html_mode=True로 보낼 것). level·what·impact·card_id·biz는 호출 호환용(표기 안 함)"""
+    title = html.escape(item.get("title") or "")
+    url = item.get("url") or ""
+    art = f'<a href="{html.escape(url, quote=True)}">{title}</a>' if url else title
+    return f"{html.escape(stock_label(item.get('entities_matched')))}｜{art}｜{alert_time(item)}"
 
 
 def queue_p1(text):
@@ -247,7 +314,7 @@ def flush_p1(min_age_min=60, force=False):
     oldest = datetime.fromisoformat(rows[0]["at"])
     if not force and common.now_kst() - oldest < timedelta(minutes=min_age_min):
         return 0
-    body = f"[P1 묶음 {len(rows)}건]\n\n" + "\n\n".join(r["text"] for r in rows)
+    body = f"[Chiip 알림 {len(rows)}건]\n\n" + "\n\n".join(r["text"] for r in rows)
     send(body, "P1")
     P1_QUEUE.write_text("", encoding="utf-8")
     return len(rows)

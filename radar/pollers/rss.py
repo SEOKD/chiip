@@ -172,8 +172,8 @@ def poll_source(src):
             if max_age and _older_than(to_iso(e["date"]), max_age):  # site: 쿼리는 when:이 잘 안 먹어 옛 문서가 섞인다
                 continue
             extra = {"tier": src.get("tier_hint")}
-            if e.get("publisher"):
-                extra["publisher"] = e["publisher"].strip()
+            if e.get("publisher") or src.get("publisher"):   # 매체 직접 RSS는 원천에 매체명을 적는다(2026-10-29 Bloomberg 직접 피드)
+                extra["publisher"] = (e.get("publisher") or src["publisher"]).strip()
             if entity:
                 extra["query_entity"] = entity
             it = common.make_item(

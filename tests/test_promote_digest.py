@@ -137,9 +137,13 @@ class TestCompanyLine(unittest.TestCase):
         self.assertIn("커스텀 AI 칩", notify.company_line(["co-marvell"]))           # company_lines.yaml 우선
         self.assertEqual(notify.company_line(["co-unknown-x"], "광 모듈 제조"), "광 모듈 제조")   # 없으면 판정 모델 biz
         self.assertIsNone(notify.company_line([]))                                       # 근거 없으면 비운다
-        msg = notify.format_item("P1", {"entities_matched": ["us-cbrs"], "doc_type": "기사", "detected_at": "2026-10-29T15:00",
-                                        "title": "t", "url": "u"})
-        self.assertIn("기업: 웨이퍼 한 장 크기 AI 칩", msg.splitlines()[1])
+        msg = notify.format_item("P1", {"entities_matched": ["co-lumentum", "co-marvell"], "doc_type": "기사",
+                                        "published_at": "2020-10-28T21:18:00+00:00", "title": "Marvell Nears Deal for Lumentum & Co",
+                                        "url": "https://x/y?a=1&b=2"})
+        self.assertTrue(msg.startswith("Marvell Technology(MRVL)·Lumentum"), msg)                  # 보유 종목 먼저
+        self.assertIn('｜<a href="https://x/y?a=1&amp;b=2">Marvell Nears Deal for Lumentum &amp; Co</a>｜10/29 06:18', msg)
+        self.assertNotIn("P1", msg)                                                       # 등급 코드는 드러내지 않는다(2026-10-29)
+        self.assertEqual(notify.brand("[P1] 무엇 [P0-규칙] x"), "무엇 x")
 
 
 class TestJapanNetwork(unittest.TestCase):

@@ -9,6 +9,36 @@ firms: ["Culper Research", "Muddy Waters", "Hindenburg Research", "Citron Resear
         "Snowcap Research", "Glasshouse Research", "Ningi Research", "Capybara Research", "White Diamond Research",
         "Edwin Dorsey", "The Bear Cave", "Bonitas Research", "Night Market Research", "Mariner Research", "Jehoshaphat Research",
         "Emerson Analytics", "Pelican Research", "Lionheart III"]
+# 기사 제목이 흔히 쓰는 짧은 이름(2026-10-29 점검: 'Cerebras shares fall after Culper report'가 정식 이름 'Culper Research'로만 찾아 누락).
+# 일반 단어와 겹치는 이름(Iceberg·Scorpion·Mariner·Pelican·Emerson·Night Market·Bleecker Street)은 넣지 않는다.
+firm_short: ["Culper", "Muddy Waters", "Hindenburg", "Citron", "Grizzly", "Kerrisdale", "Spruce Point", "Blue Orca", "Fuzzy Panda",
+             "Wolfpack", "Viceroy", "Morpheus Research", "Gotham City", "Snowcap", "Glasshouse", "Ningi", "Capybara", "Bonitas", "Jehoshaphat",
+             "J Capital", "White Diamond", "Bear Cave"]
 # 운용사 이름 없이도 숏 리포트를 알아볼 제목 문구
 terms: 'short report|short[- ]seller|short sell(er|ing) report|we are short|is short\b|takes? (a )?short position|short position in|bear(ish)? report|activist short|shorting'
 # 숏 리포트 제목이 AI 밸류체인 종목인지 볼 때는 config/financing_watch.yaml org_names + 감시 기업 매칭 + 보유 종목을 함께 쓴다
+
+# 운용사 원문 사이트 직접 감시(radar/pollers/short_sites.py, 원천 src-short-sites, 5분) — 2026-10-29 파이프라인 점검.
+# 2026-10-29 접속 확인: robots.txt 허용 + 응답. feed = 공개 RSS, 없으면 page(목록 페이지 링크 비교).
+# 제외: Culper Research·Iceberg Research·Ningi Research·Jehoshaphat Research(자동 접근 403 — 우회 금지, Google News 색인으로만),
+#       Hunterbrook(robots.txt 차단), Muddy Waters(도메인 응답 없음), Kerrisdale(시간 초과), Hindenburg(2025-01 해산).
+sites:
+  - {firm: "Grizzly Research", url: "https://grizzlyreports.com", feed: "https://grizzlyreports.com/feed"}
+  - {firm: "Blue Orca", url: "https://www.blueorcacapital.com", feed: "https://www.blueorcacapital.com/feed"}
+  - {firm: "Fuzzy Panda", url: "https://fuzzypandaresearch.com", feed: "https://fuzzypandaresearch.com/feed"}
+  - {firm: "Morpheus Research", url: "https://morpheus-research.com", feed: "https://morpheus-research.com/feed"}
+  - {firm: "The Bear Cave", url: "https://thebearcave.substack.com", feed: "https://thebearcave.substack.com/feed"}
+  - {firm: "Citron Research", url: "https://citronresearch.com"}
+  - {firm: "Spruce Point", url: "https://www.sprucepointcap.com"}
+  - {firm: "Wolfpack Research", url: "https://www.wolfpackresearch.com"}
+  - {firm: "Bleecker Street Research", url: "https://www.bleeckerstreetresearch.com"}
+  - {firm: "J Capital Research", url: "https://www.jcapitalresearch.com"}
+  - {firm: "Viceroy Research", url: "https://viceroyresearch.org"}
+  - {firm: "Gotham City Research", url: "https://www.gothamcityresearch.com"}
+  - {firm: "Scorpion Capital", url: "https://scorpioncapital.com"}
+  - {firm: "Snowcap Research", url: "https://www.snowcapresearch.com"}
+  - {firm: "Glasshouse Research", url: "https://glasshouseresearch.com"}
+  - {firm: "Capybara Research", url: "https://capybararesearch.com"}
+  - {firm: "Bonitas Research", url: "https://www.bonitasresearch.com"}
+  - {firm: "Night Market Research", url: "https://nightmarketresearch.com"}
+  - {firm: "Pelican Research", url: "https://pelicanresearch.com"}
