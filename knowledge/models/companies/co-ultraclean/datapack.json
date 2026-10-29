@@ -1,0 +1,799 @@
+{
+ "id": "co-ultraclean",
+ "name": "Ultra Clean Holdings",
+ "ticker": "UCTT",
+ "as_of": "2026-10-30",
+ "unit": "B$",
+ "industry": "semicap",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.21,
+ "profile": {
+  "price": 54.7,
+  "shares_basic": 0.04796,
+  "shares_date": "2026-10-21",
+  "cash": 0.44,
+  "debt": 0.8101,
+  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-29 종가 · 주식 수 47,960,159(Fiscal.ai shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25 장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜 CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)"
+ },
+ "dilution": {
+  "potential_total": 0.00094,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-10-21",
+  "source": "4Q 가이던스 희석 주식 약 48.9백만 주(3Q 콜 CFO) − 표지 기본 주식 47.96백만 = 약 0.94백만 주(RSU·PSU 추정). SEC XBRL 반희석 증권 미조회"
+ },
+ "financials": {
+  "rev_ttm": 2.4443,
+  "ebit_ttm": 0.1055,
+  "invested_capital": 1.3525,
+  "capex_ttm": 0.0554,
+  "da_ttm": 0.0772,
+  "sbc_ttm": 0.022,
+  "s2c": 1.8,
+  "rev_growth_ttm": 0.158,
+  "basis": "GAAP",
+  "note": "TTM = Fiscal.ai 표준화 분기 손익 4Q25~3Q26 매출 506.7+533.7+644.9+759.0, 영업이익(매출총이익 − 판관비 − 연구개발비) 10.9+11.4+29.5+53.7백만$ — 세전이익과 영업외손익으로 역검산 일치. CAPEX 10.1+9.6+16.2+19.5, 감가상각 19.3+19.2+19.3+19.4, SBC 4.8+3.2+6.4+7.6. 투하자본 = 자기자본(비지배 포함) 982.4(9/25 813.3 + ATM 169.1) + 차입·리스 810.1 − 현금 440.0"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 2.78816,
+   "FY2027": 3.75,
+   "FY2028": 4.5
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.0812,
+   "FY2027": 0.1159
+  },
+  "margin_basis": "non_gaap",
+  "rev_low": {
+   "FY2027": 3.2
+  },
+  "rev_high": {
+   "FY2027": 4.2
+  },
+  "n_analysts": 7,
+  "quarters_est": {
+   "2026Q4": 0.85056,
+   "2027Q1": 0.88,
+   "2027Q2": 0.925,
+   "2027Q3": 0.965,
+   "2027Q4": 0.98
+  },
+  "quarters_act": {
+   "2026Q1": 0.5337,
+   "2026Q2": 0.6449,
+   "2026Q3": 0.759
+  },
+  "note": "매출 = Fiscal.ai 자체 추정(company_estimates, 2026-10-29 — 3Q 실적 반영) 분기 합. Zacks 매출 추정은 8/6 이후 갱신이 없어(FY26 2.71·FY27 3.71B$, 2명) 쓰지 않고 대조만. EBIT 이익률 = Zacks EBIT(10/28 갱신) ÷ Zacks 연간 매출 — 비GAAP 기준으로 보고 SBC 0.9% 차감. 범위(FY27)는 Fiscal 분기 최저·최고 합의 근사. 애널리스트 7명(의견 기준) Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 759.0,
+    "est": 730.8
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.15,
+    "est": 0.96
+   }
+  ],
+  "revisions": {
+   "from_date": "2026-06-10",
+   "to_date": "2026-08-07",
+   "from_label": "2Q 실적 전(6/10) Zacks",
+   "source": "Fiscal.ai analyst_estimates history(Zacks) — 같은 분기끼리. Zacks 분기 추정은 8/7 이후 갱신 없음(3Q 콜 후 리비전은 Fiscal 자체 추정 4Q26 850.6백만$·EPS 1.30으로만 관찰). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.91,
+     "to": 1.12
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 0.9,
+     "to": 1.21
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 1.03,
+     "to": 1.47
+    },
+    {
+     "period": "2026Q4",
+     "metric": "매출(백만$)",
+     "from": 724.1,
+     "to": 809.6
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출(백만$)",
+     "from": 707.6,
+     "to": 856.0
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출(백만$)",
+     "from": 756.2,
+     "to": 915.2
+    }
+   ]
+  },
+  "price_window": {
+   "from": 91.88,
+   "to": 87.25,
+   "note": "리비전 구간과 같은 기간: 6/9 종가 → 8/7 종가"
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   2.7376,
+   2.7976
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "q4_rev": [
+   0.8,
+   0.86
+  ],
+  "q4_eps": [
+   1.11,
+   1.35
+  ],
+  "q4_diluted_shares_m": 48.9,
+  "long_term": "매출 $4B에서 총이익률 20%(비GAAP 영업이익률 약 10%) — 2Q·3Q 콜 반복",
+  "source": "회사 3Q 실적 보도자료·콜(2026-10-27, Fiscal.ai ir_events q3-2026): 4Q 매출 $800~860M·EPS $1.11~1.35 → FY2026 = 1~3Q 실적 1,937.6 + 4Q 가이던스"
+ },
+ "call": {
+  "date": "2026-10-27",
+  "prev_date": "2026-08-03",
+  "tone": "up",
+  "tone_score": 6.5,
+  "tone_delta": 0.5,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_3q_m": 759.0,
+   "gm_3q": 0.173,
+   "op_margin_nongaap_3q": 0.09,
+   "top2_customers": 0.61,
+   "memory_share": 0.34,
+   "foundry_logic_share": 0.52,
+   "services_share": 0.1,
+   "inventory_m": 723.3,
+   "ocf_3q_m": -42.3,
+   "npi_wins": 8,
+   "capacity_runrate": "$4B 1H27 → $5B+ 단계적"
+  },
+  "guidance_changes": [
+   "4Q 매출 $800~860M(중간값 +9.4% QoQ) — 직전 3Q 가이던스 $700~750M 대비 상단 돌파 후 다시 상향",
+   "2027 WFE 'mid-2027 $200B 런레이트' → '2027년 $200B 이상'으로 확정적 표현"
+  ],
+  "new_topics": [
+   "ATM 증자: 3Q 43.2만 주(평균 $80.13)·4Q 첫 주 220만 주(평균 $78.45) — 순조달 약 $203M",
+   "필리핀 세부 용접(weldment) 캐파 2배·말레이시아·태국 수직계열화 캐파 2배(2027)",
+   "NPI 8건 수주(식각·ALD·PVD·리소그래피)",
+   "신임 CFO 첫 콜 — 현금 전환·자본 배분 규율",
+   "최대 증착 고객의 광학 검사 진출 = 서브시스템 신규 기회"
+  ],
+  "dropped_topics": [
+   "CFO 교체 공백(2Q 콜에서 전임 CFO 은퇴 발표) — 해소"
+  ],
+  "analyst_focus": [
+   "UBS — 증설의 대가(고객 장기 약정)·$5B 캐파가 함의하는 WFE",
+   "Needham — MFC(질량유량제어기) 부족·공급망 차질",
+   "TD Cowen — NPI와 부품 부족 대응",
+   "Oppenheimer — 타사 부품 차질이 고객 장비 완성을 막는지·광학 검사",
+   "Craig-Hallum — 2028년 가시성"
+  ],
+  "risks": [
+   "상위 2고객 61% 집중",
+   "재고 $723M(+$93M QoQ)·영업현금흐름 3분기 연속 마이너스",
+   "MFC 부족 1~2분기 지속(경영진)",
+   "ATM 증자 희석(10월 약 5%)",
+   "증설이 고객 약정 없이 선행될 위험"
+  ],
+  "source": "Fiscal.ai company_ir_events_transcript q3-2026(2026-10-27)·q2-2026(2026-08-03) — 요지만 자기 말로(라이선스 자료). 톤: 가이던스 상단 돌파·WFE 표현 확정(Craig-Hallum '지난 콜보다 더 긍정')을 상향으로 판정",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "4Q 매출 가이던스",
+    "prior": "3Q 가이던스 $700~750M",
+    "latest": "3Q 실적 $759M, 4Q $800~860M",
+    "driver": "rev0",
+    "shift": 0.04,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "2027 WFE 전망",
+    "prior": "mid-2027 $200B 런레이트",
+    "latest": "2027년 $200B 이상(고객 가시성 기반)",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.5,
+    "source": "3Q 콜 CEO"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "캐파 로드맵",
+    "prior": "$4B(1H27)·$5B 계획 중",
+    "latest": "$5B 이상 단계적, 세부·말레이시아·태국 2배",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "3Q 콜 CEO·CFO"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "총이익률",
+    "prior": "2Q 16.7%",
+    "latest": "3Q 17.3%(비GAAP 영업이익률 9.0%)",
+    "driver": "margin_m0",
+    "shift": 0.006,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F5",
+    "kind": "반복",
+    "item": "장기 이익률 목표",
+    "prior": "$4B에서 총이익률 20%",
+    "latest": "$4B에서 총이익률 20%(유지)",
+    "driver": "margin_target",
+    "shift": 0.0,
+    "confidence": 0.5,
+    "source": "2Q·3Q 콜"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "NPI 프로그램 수주",
+    "prior": "수치 없음",
+    "latest": "8건(식각·ALD·PVD·리소), 비슷한 수가 인증 중",
+    "driver": "margin_lr",
+    "shift": 0.005,
+    "confidence": 0.3,
+    "source": "3Q 콜 CEO"
+   },
+   {
+    "id": "F7",
+    "kind": "부정",
+    "item": "운전자본 투입",
+    "prior": "재고 $630M·영업현금 −$41M",
+    "latest": "재고 $723M·영업현금 −$42M",
+    "driver": "s2c",
+    "shift": -0.2,
+    "confidence": 1.0,
+    "source": "10-Q 2026-09-25"
+   },
+   {
+    "id": "F8",
+    "kind": "신규",
+    "item": "ATM 증자",
+    "prior": "없음",
+    "latest": "약 $203M 순조달(주식 약 +5.6%)",
+    "driver": "net_debt",
+    "shift": -0.203,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO·10-Q 표지"
+   },
+   {
+    "id": "F9",
+    "kind": "부정",
+    "item": "MFC 공급 부족",
+    "prior": "질문 없음",
+    "latest": "1~2분기 지속 가능(경영진)",
+    "driver": "growth_start",
+    "shift": -0.01,
+    "confidence": 0.3,
+    "source": "3Q Q&A(Needham)"
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 9.8,
+  "ev_ebitda": 17.78,
+  "ev_sales": 1.33,
+  "growth": 0.158,
+  "note": "선행 P/E = $54.70 ÷ Fiscal.ai 자체 추정 선행 4분기 조정 EPS 5.59(1.30+1.31+1.44+1.54) — Chiip 계산. EV/EBITDA·EV/매출 = Fiscal.ai daily ratios 2026-10-29(TTM GAAP)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai company_peers(ICHR 직접 경쟁, MKSI 사업모델) + 반도체 서브시스템·부품 동종(AEIS·ENTG·KLIC) — 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM), EV/매출·EV/EBITDA = daily ratios 2026-10-29",
+ "peers": [
+  {
+   "ticker": "ICHR",
+   "rev": 1.0138,
+   "ebit_margin": -0.0237,
+   "mcap": 1.5892,
+   "pb": 1.84,
+   "debt": 0.1541,
+   "cash": 0.2565,
+   "ev_sales": 1.47,
+   "ev_ebitda": 178.6,
+   "growth": 0.091
+  },
+  {
+   "ticker": "MKSI",
+   "rev": 4.347,
+   "ebit_margin": 0.1567,
+   "mcap": 14.6169,
+   "pb": 4.89,
+   "debt": 4.186,
+   "cash": 0.611,
+   "ev_sales": 4.18,
+   "ev_ebitda": 17.77,
+   "growth": 0.163
+  },
+  {
+   "ticker": "AEIS",
+   "rev": 2.0378,
+   "ebit_margin": 0.1321,
+   "mcap": 9.6021,
+   "pb": 6.5,
+   "debt": 1.377,
+   "cash": 1.3965,
+   "ev_sales": 4.71,
+   "ev_ebitda": 28.94,
+   "growth": 0.246
+  },
+  {
+   "ticker": "ENTG",
+   "rev": 3.5247,
+   "ebit_margin": 0.1821,
+   "mcap": 24.448,
+   "pb": 5.64,
+   "debt": 3.361,
+   "cash": 0.3565,
+   "ev_sales": 7.79,
+   "ev_ebitda": 27.95,
+   "growth": 0.094
+  },
+  {
+   "ticker": "KLIC",
+   "rev": 0.9502,
+   "ebit_margin": 0.1321,
+   "mcap": 4.1696,
+   "pb": 4.57,
+   "debt": 0.0381,
+   "cash": 0.5166,
+   "ev_sales": 3.88,
+   "ev_ebitda": 26.08,
+   "growth": 0.444
+  }
+ ],
+ "sbc_pct_rev": 0.009,
+ "overrides": {
+  "margin_base": {
+   "target": 0.1,
+   "year_target": 3,
+   "lr": 0.3,
+   "lam": 0.35
+  },
+  "s2c": 2.2,
+  "why": "목표 영업이익률 10%(SBC 차감 후, 3년차): 회사 목표 '매출 $4B에서 총이익률 20%·비GAAP 영업이익률 약 10%' + $5B 단계의 추가 가동률 효과를 SBC 0.9%와 상쇄로 봄(Zacks FY27 11.6% − SBC = 10.7%보다 낮게) — 동종 MKSI 16%·AEIS 13%보다 낮은 위탁 생산형 구조라 그 이상은 가정하지 않는다 / 매출÷투하자본 2.2: TTM 1.8은 재고 선매입($723M)이 부풀린 값, 증분 기준 CAPEX는 매출 증가분의 약 5%이나 재고·매출채권이 증분 매출의 약 40%를 묶는다 → 2.2(보수)"
+ },
+ "history": {
+  "basis": "Fiscal.ai daily ratio_ev_to_sales(월말 표본)",
+  "ev_sales": [
+   {
+    "date": "2023-12-29",
+    "value": 1.1
+   },
+   {
+    "date": "2024-03-28",
+    "value": 1.41
+   },
+   {
+    "date": "2024-06-28",
+    "value": 1.39
+   },
+   {
+    "date": "2024-09-30",
+    "value": 1.12
+   },
+   {
+    "date": "2024-12-31",
+    "value": 0.97
+   },
+   {
+    "date": "2025-03-31",
+    "value": 0.64
+   },
+   {
+    "date": "2025-06-30",
+    "value": 0.66
+   },
+   {
+    "date": "2025-09-30",
+    "value": 0.78
+   },
+   {
+    "date": "2025-12-31",
+    "value": 0.76
+   },
+   {
+    "date": "2026-01-30",
+    "value": 1.17
+   },
+   {
+    "date": "2026-02-27",
+    "value": 1.55
+   },
+   {
+    "date": "2026-03-31",
+    "value": 1.6
+   },
+   {
+    "date": "2026-04-30",
+    "value": 1.95
+   },
+   {
+    "date": "2026-05-29",
+    "value": 2.11
+   },
+   {
+    "date": "2026-06-30",
+    "value": 3.21
+   },
+   {
+    "date": "2026-07-31",
+    "value": 1.99
+   },
+   {
+    "date": "2026-08-31",
+    "value": 1.67
+   },
+   {
+    "date": "2026-09-30",
+    "value": 1.77
+   },
+   {
+    "date": "2026-10-29",
+    "value": 1.33
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-08-04",
+   "tag": "2Q 실적 다음 날(8/3 발표)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-02",
+   "tag": "4Q 첫 주 ATM 220만 주 매도 구간(평균 $78.45, 3Q 콜 공개)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-05",
+   "tag": "UBS 목표가 하향(증설 사유, 제목 기준)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "Lam Research 실적 전망 실망(IBD 10/21)·최대 고객 공급 제약 언급",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "3Q 실적 다음 날(10/27 장후 발표) · Needham 목표가 $80 하향",
+   "kind": "earnings"
+  }
+ ],
+ "sources": [
+  "Fiscal.ai MCP 2026-10-30 07시 조회: company_profile·stock_prices(일봉·월봉)·daily_ratios·shares_outstanding·financials_standardized(분기 손익·재무상태·현금흐름, 원문 auditUrl)·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers",
+  "10-Q 2026-09-25 원문: https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm",
+  "3Q 실적 보도자료: https://www.prnewswire.com/news-releases/ultra-clean-reports-third-quarter-2026-financial-results-302921159.html",
+  "Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-UCTT",
+  "knowledge/narratives/companies/co-ultraclean.md(2026-10-28 내러티브 수집)"
+ ],
+ "raw": {
+  "retrieved_at": "2026-10-30T07:20:00+09:00",
+  "shares_cover_implied": 0.04796,
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_UCTT",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqGS-UCTT",
+   "price": 54.7,
+   "market_cap": 2.6234,
+   "total_cash": 0.2709,
+   "total_debt": 0.8101,
+   "shares_outstanding": 0.04796,
+   "ev_sales": 1.33,
+   "ev_ebitda": 17.78,
+   "as_of": "2026-10-29",
+   "balance_date": "2026-09-25",
+   "note": "시총 = daily calculated_market_cap 2026-10-29(2,623,420,697$). 현금·차입 = 표준화 재무상태표 2026-09-25(장기차입 635.1 + 유동 리스 22.3 + 리스 152.7)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.5067,
+    "2026Q1": 0.5337,
+    "2026Q2": 0.6449,
+    "2026Q3": 0.759
+   },
+   "op_income": {
+    "2025Q4": 0.0109,
+    "2026Q1": 0.0114,
+    "2026Q2": 0.0295,
+    "2026Q3": 0.0537
+   },
+   "gross_profit": {
+    "2025Q4": 0.0773,
+    "2026Q1": 0.0844,
+    "2026Q2": 0.1037,
+    "2026Q3": 0.1284
+   },
+   "ocf": {
+    "2025Q4": 0.0081,
+    "2026Q1": -0.0333,
+    "2026Q2": -0.0411,
+    "2026Q3": -0.0423
+   }
+  },
+  "balance_2026_10_21": {
+   "cash": 0.44,
+   "st_investments": 0.0,
+   "debt_current": 0.0,
+   "debt_lt": 0.6351,
+   "lease_current": 0.0223,
+   "lease_lt": 0.1527,
+   "equity": 0.9824,
+   "goodwill": 0.1142,
+   "intangibles": 0.1364,
+   "inventory": 0.7233,
+   "receivables": 0.2724,
+   "shares": 0.04796,
+   "note": "형식상 추정 재무상태표: 10-Q 2026-09-25(현금 270.9·자기자본 813.3, 비지배 포함) + 10월 첫째 주 ATM 순조달 169.1백만$(3Q 콜 CFO — 일부를 차입 상환에 썼다고 했으나 금액 미공개라 현금으로 둠, 순차입은 같다)"
+  },
+  "estimates_sales_m": {
+   "2026Q1_act": 533.7,
+   "2026Q2_act": 644.9,
+   "2026Q3_act": 759.0,
+   "2026Q4": 850.56,
+   "2027Q1": 880.0,
+   "2027Q2": 925.0,
+   "2027Q3": 965.0,
+   "2027Q4": 980.0,
+   "2028Q1": 1069.69,
+   "2028Q2": 1139.0,
+   "2028Q3": 1184.89,
+   "2028Q4": 1106.42
+  },
+  "estimates_eps_adj": {
+   "2026Q4": 1.3,
+   "2027Q1": 1.31,
+   "2027Q2": 1.44,
+   "2027Q3": 1.54,
+   "2027Q4": 1.56
+  },
+  "zacks": {
+   "FY2026_rev": 2.7136,
+   "FY2026_ebit": 0.2202,
+   "FY2027_rev": 3.7145,
+   "FY2027_ebit": 0.4307,
+   "FY2028_rev": 3.8919,
+   "n_rev": 2,
+   "rev_asOf": "2026-08-06",
+   "ebit_asOf": "2026-10-28",
+   "price_target": {
+    "mean": 113.14,
+    "median": 120,
+    "low": 80,
+    "high": 150,
+    "n": 7,
+    "asOf": "2026-10-28"
+   },
+   "rating": {
+    "strongBuy": 5,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "n": 7,
+    "asOf": "2026-10-21"
+   },
+   "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "holders_13f_2026Q2": {
+   "holders": 409,
+   "shares_m": 42.34,
+   "net_change_m": -3.23,
+   "increased": 87,
+   "decreased": 151,
+   "top_buyers": [
+    "AllianceBernstein +0.74M",
+    "Franklin +0.34M",
+    "Driehaus +0.25M",
+    "Nomura AM +0.21M",
+    "Wells Fargo +0.18M"
+   ]
+  },
+  "insider": {
+   "open_market_buys": 4,
+   "open_market_sells": 33,
+   "recent": "2026-06·07 CFO·CAO 장내 매도, 2026-08~09 세금 원천징수·부여만"
+  },
+  "sec": {},
+  "source": "Fiscal.ai MCP — 위 sources"
+ },
+ "narrative": {
+  "as_of": "2026-10-30",
+  "stage": "태동",
+  "crowding": "낮음",
+  "summary": "'2027~28 WFE 증설 사이클의 서브시스템 아웃소싱 수혜'는 실적으로 확인되는데(3Q 매출 +49%), 주가는 6/30 고점 대비 −62% — 시장은 증설 대가(재고·증자)와 장비주 디레이팅을 먼저 가격에 넣었다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견(Zacks)",
+      "7명 — 강력 매수 5·매수 1·보유 1·매도 0",
+      "의견은 강세 일색이나 매출 추정 제출은 2명(8/6 이후 미갱신)",
+      "Fiscal.ai analyst_ratings — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+     ],
+     [
+      "목표가 평균·범위(Zacks)",
+      "$113.1 ($80~$150, 7명)",
+      "10/29 종가 $54.70 대비 평균 +107% — IB 기대의 증거(Chiip 목표가 아님), 범위가 약 2배로 분산 큼",
+      "같은 곳"
+     ],
+     [
+      "3Q 콜 질문 증권사",
+      "UBS·Needham·TD Cowen·Oppenheimer·Craig-Hallum",
+      "질문 초점 = 증설의 대가(장기 약정)·MFC 부족·공급망 차질",
+      "Fiscal.ai ir_events_transcript(q3-2026)"
+     ],
+     [
+      "실적 후 목표가 조정",
+      "Needham $80로 하향(10/28, 밸류에이션 사유 — 제목 기준)",
+      "이익이 아니라 배수 문제로 낮춤",
+      "Fiscal.ai company_news(moomoo 색인)"
+     ]
+    ],
+    "read": "셀사이드는 실적은 인정하지만 '증설 대가'와 사이클 지속성에 질문이 몰린다 — 배수 확장을 막는 쪽"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 기관(2026Q2)",
+      "409곳 · 순 −3.23백만 주 · 증가 87·감소 151",
+      "고점 직전 분기에 이미 기관 순매도(차익 실현)",
+      "Fiscal.ai institutional_holders 2026Q2(45일 지연)"
+     ],
+     [
+      "펀드 레터(2026Q2~Q3)",
+      "RAM Smid 비중 축소(강세 유지)·Next Century 전량 매도(약세)·Nomura Small Cap 보유(고확신)·Liontrust 청산(목표 도달)",
+      "바이사이드는 '사이클 초기'에 동의하면서도 3분기에 차익·장비주 이탈",
+      "Fiscal.ai company_fund_letters"
+     ],
+     [
+      "내부자 장내 거래(누적)",
+      "매수 4·매도 33",
+      "6~7월 전임 CFO·CAO 장내 매도, 8월 이후는 세금 원천징수만",
+      "Fiscal.ai insider_transactions"
+     ]
+    ],
+    "read": "바이사이드는 고점에서 줄였다 — 지금은 다시 살 근거(현금 전환)를 기다리는 단계"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧(ApeWisdom)",
+      "미수집",
+      "이번 회차 조회하지 않음",
+      "—"
+     ],
+     [
+      "커뮤니티 기사 제목(45일)",
+      "1건",
+      "Substack 0·HN 0 — 리테일 무관심",
+      "knowledge/narratives/companies/co-ultraclean.md(10/28)"
+     ]
+    ],
+    "read": "리테일 관심이 거의 없다 — 가격은 기관·셀사이드가 정한다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "업종 기사",
+      "SA·IBD·Barron's 장비주 기사 다수(10/21~26)",
+      "'AI 심리 냉각 → 장비주 디레이팅' vs 'WFE 2028까지 성장'",
+      "co-ultraclean.md 섹터 표"
+     ]
+    ],
+    "read": "언론은 UCTT를 개별로 다루지 않고 장비 업종 흐름으로 묶는다"
+   }
+  },
+  "factors": [
+   {
+    "name": "WFE 2027~28 다년 증설(AI 메모리·GAA·HBM)",
+    "thesis": "2027 WFE $200B 이상, 고객이 서브시스템을 외부로 넘겨 UCTT가 업종보다 빨리 큰다",
+    "inputs": "성장 지속기간",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "3Q 매출 +48.8% YoY·4Q 가이던스 중간값 +9.4% QoQ, 메모리 비중 34%",
+    "status": "강화",
+    "falsifier": "대형 장비사(AMAT·LRCX) 2027 WFE 전망 하향(2027-01~02 실적)",
+    "source": "3Q 콜·co-ultraclean.md"
+   },
+   {
+    "name": "이익률 레버리지(가동률·고부가 NPI)",
+    "thesis": "$4B에서 총이익률 20% — 가동률과 build-to-spec 제품 믹스로 마진이 오른다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "총이익률 2Q 16.7% → 3Q 17.3%, NPI 8건",
+    "status": "유지",
+    "falsifier": "매출 $850M 이상 분기에 총이익률 17% 미만",
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "name": "증설의 대가 — 재고·증자(약세)",
+    "thesis": "고객 약정 없이 캐파·재고를 먼저 사고, 그 돈을 증자로 메운다 — 사이클이 꺾이면 ROIC가 무너진다",
+    "inputs": "재투자 효율·희석",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "재고 $723M(+$93M), 영업현금 3분기 연속 음수, ATM 약 $203M(주식 +5.6%)",
+    "status": "강화",
+    "falsifier": "4Q 영업현금흐름 플러스 전환·재고 회전 개선(2027-02 4Q 실적)",
+    "source": "10-Q·3Q 콜"
+   },
+   {
+    "name": "장비주 디레이팅(AI 심리 냉각, 약세)",
+    "thesis": "AI 투자 지속성 의심이 장비 업종 배수를 누른다",
+    "inputs": "위험·배수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "EV/매출 6/30 3.21배 → 10/29 1.33배(−59%), 같은 기간 선행 매출 추정은 상향",
+    "status": "확산",
+    "falsifier": "장비 업종 배수 회복과 함께 UCTT EV/매출 2배 회복",
+    "source": "Fiscal.ai daily ratios·co-ultraclean.md"
+   },
+   {
+    "name": "고객 집중(상위 2사 61%)",
+    "thesis": "AMAT·LRCX 내부 생산 전환 또는 이원화 시 물량이 빠진다",
+    "inputs": "위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "상위 2고객 61%(3Q)",
+    "status": "유지",
+    "falsifier": "상위 2고객 비중 55% 미만으로 분산(10-K)",
+    "source": "3Q 콜 CFO"
+   }
+  ]
+ }
+}
