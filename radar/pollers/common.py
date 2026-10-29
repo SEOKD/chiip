@@ -16,6 +16,26 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def _hide_child_windows():
+    """창 없는 수집기(pyw)가 띄우는 하위 프로그램(pdftotext·git·claude 등)이 CMD 창을 띄우지 않게 — 모든 subprocess의 기본값에
+    CREATE_NO_WINDOW를 더한다(마스터 지시 2026-10-30 "계속 CMD 창이 뜬다"). 호출부가 직접 준 flags는 그대로 두고 비트만 더한다"""
+    if os.name != "nt":
+        return
+    import subprocess
+    if getattr(subprocess.Popen, "_chiip_hidden", False):
+        return
+    orig = subprocess.Popen.__init__
+
+    def init(self, *a, **kw):
+        kw["creationflags"] = kw.get("creationflags", 0) | getattr(subprocess, "CREATE_NO_WINDOW", 0x08000000)
+        orig(self, *a, **kw)
+    subprocess.Popen.__init__ = init
+    subprocess.Popen._chiip_hidden = True
+
+
+_hide_child_windows()
 KST = timezone(timedelta(hours=9))
 LOCAL_ONLY = Path(os.environ.get("CHIIP_LOCAL_ONLY", r"D:\local-only"))
 STATE = ROOT / "radar" / "state"

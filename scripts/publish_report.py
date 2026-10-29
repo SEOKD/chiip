@@ -21,7 +21,7 @@ BRANCH = "claude/reports"
 
 def git(*args, env=None, input_=None):
     r = subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, text=True, encoding="utf-8",
-                       env=env, input=input_)
+                       env=env, input=input_, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))   # 예약 작업에서 창 없이(2026-10-30)
     if r.returncode != 0:
         raise RuntimeError(f"git {' '.join(args[:2])} 실패: {r.stderr.strip()[:200]}")
     return r.stdout.strip()

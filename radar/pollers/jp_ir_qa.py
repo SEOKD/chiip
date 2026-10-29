@@ -145,7 +145,8 @@ def to_text(url, raw):
         tmp = CACHE / "_tmp.pdf"
         tmp.write_bytes(raw)
         try:
-            r = subprocess.run([exe, "-enc", "UTF-8", "-layout", str(tmp), "-"], capture_output=True, timeout=60)
+            r = subprocess.run([exe, "-enc", "UTF-8", "-layout", str(tmp), "-"], capture_output=True, timeout=60,
+                               creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))   # 창 없이(2026-10-30 CMD 창 문제)
             return r.stdout.decode("utf-8", "ignore")
         except Exception:
             return ""
