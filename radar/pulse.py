@@ -391,16 +391,23 @@ def run(now=None):
     q = alpha_queue()
     busy = queue_busy(now)
     st["watermark"] = common.iso(now)
-    if not sources and (not q or busy):
+    try:   # 어닝콜 전문 신규 게재(마스터 지시 2026-10-30) — 대기 건이 있고 20분이 지났거나 정리할 전문이 남았으면 회차를 연다
+        import transcript_watch
+        tw = transcript_watch.due()
+    except Exception as exc:
+        tw = {"due": False, "error": type(exc).__name__}
+    if not sources and (not q or busy) and not tw.get("due"):
         common.save_state(STATE, st)
-        return None, f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''} → 종료"
+        return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
+                      f" · 어닝콜 전문 대기 {tw.get('waiting', 0)} → 종료")
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars")
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],
-            "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy}}
+            "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
+            "transcripts": tw}
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{now.strftime('%Y%m%d_%H%M')}.json"
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -408,7 +415,8 @@ def run(now=None):
     common.save_state(STATE, st)
     rel = path.relative_to(common.ROOT).as_posix()
     msg = (f"[펄스] 원본 {len(sources)}(" + "·".join(f"{c} {n}" for c, n in counts.items()) + f") · 후보 티커 {len(data['candidates'])}"
-           f" · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창 — 이번엔 건너뜀)' if busy else ''} → {rel}" + (f" · 실패 {errors}" if errors else ""))
+           f" · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창 — 이번엔 건너뜀)' if busy else ''}"
+           f" · 어닝콜 전문 {'확인 차례' if tw.get('check') else '대기'} {tw.get('waiting', 0)}·정리 {tw.get('to_summarize', 0)} → {rel}" + (f" · 실패 {errors}" if errors else ""))
     return path, msg
 
 
