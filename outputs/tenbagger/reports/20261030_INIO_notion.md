@@ -1,6 +1,6 @@
 > 2026-10-30 · INNIO N.V.(INIO) · 기업: Jenbacher·Waukesha 가스 엔진 발전 설비 제조와 엔진 애프터서비스 — 데이터센터 자가발전 수요 포함
 
-**그래프 포함 리포트:** [GitHub에서 보기](https://github.com/SEOKD/chiip/blob/225c3f919758/outputs/tenbagger/reports/20261030_INIO.md)
+**그래프 포함 리포트:** [GitHub에서 보기](https://github.com/SEOKD/chiip/blob/6c16912b5711/outputs/tenbagger/reports/20261030_INIO.md)
 
 ## Chiip View
 **컨빅션 중 · 알파 7/10 · 업사이드 +26%**

@@ -36,9 +36,9 @@ from units import money_units  # noqa: E402
 
 COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
-@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c}}
-:root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;font-size:15px}.w{max-width:820px;margin:0 auto;padding:20px 16px 48px}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;font-size:15px}.w{max-width:820px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1{font-size:21px;margin:0 0 4px;line-height:1.35}h2{font-size:18px;margin:30px 0 8px;padding-top:10px;border-top:2px solid var(--fg)}h3{font-size:15.5px;margin:18px 0 6px}
 .lead{color:var(--mut);font-size:13.5px;margin:0 0 12px}.card{background:var(--card);border-radius:12px;padding:12px 14px;margin:12px 0}.hl{background:var(--hl);border-radius:12px;padding:12px 14px;margin:12px 0}
 .ans{display:grid;grid-template-columns:1fr;gap:8px}.ans div{background:var(--card);border-radius:10px;padding:10px 12px}.ans b.q{display:block;font-size:12.5px;color:var(--mut)}
@@ -349,6 +349,16 @@ def render(d):
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
     out = "".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View").replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
     return money_units(out)   # $25B·$M·$T 표기(마스터 지시 2026-10-29)
+
+
+def artifact_html(d):
+    """claude.ai 비공개 Artifact 판(마스터 지시 2026-10-30 "리포트 링크는 html로" — 모바일에서 그대로 보이는 보기 링크).
+    게시 때 문서 뼈대가 씌워지므로 doctype·html·head·body를 빼고, 이름 같은 짧은 <title>과 옆 여백 약속 메타를 맨 위에 둔다."""
+    full = render(d)
+    style = re.search(r"<style>.*?</style>", full, re.S).group(0)
+    body = re.search(r"<body>(.*)</body>", full, re.S).group(1)
+    name = f"{d['ticker']} 텐배거 리포트 {str(d['date'])[5:].replace('-', '·')}"
+    return f'<title>{html.escape(name)}</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n{style}\n{body}\n'
 
 
 def main(argv):

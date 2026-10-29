@@ -4,10 +4,10 @@
  "ticker": "CBRS",
  "company": "Cerebras Systems",
  "github": {
-  "md": "https://github.com/SEOKD/chiip/blob/d4cb28fb337a/outputs/tenbagger/reports/20261030_CBRS.md",
-  "html": "https://github.com/SEOKD/chiip/blob/d4cb28fb337a/outputs/tenbagger/reports/20261030_CBRS.html",
-  "commit": "d4cb28fb337a8770204855169b048588c7dc85a0",
-  "at": "2026-10-30T06:36:45+09:00"
+  "md": "https://github.com/SEOKD/chiip/blob/1013335e77f0/outputs/tenbagger/reports/20261030_CBRS.md",
+  "html": "https://github.com/SEOKD/chiip/blob/1013335e77f0/outputs/tenbagger/reports/20261030_CBRS.html",
+  "commit": "1013335e77f025522597d6d9b849fd88f0ee919b",
+  "at": "2026-10-30T06:46:52+09:00"
  },
  "notion": {
   "status": "ok",
@@ -18,6 +18,11 @@
  "telegram": {
   "sent": true,
   "notion_ok": true,
-  "at": "2026-10-30T06:39:40+09:00"
+  "at": "2026-10-30T06:47:16+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/SekPwcktQWrMrh1eNdxsQs",
+  "at": "2026-10-30T06:47:15+09:00"
  }
 }

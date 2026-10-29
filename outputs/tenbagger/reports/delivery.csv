@@ -5,3 +5,9 @@ time,stem,ticker,step,status,detail
 2026-10-30T06:39:39+09:00,20261030_INIO,INIO,notion,ok,https://app.notion.com/p/408b5d1e0998815dba94e235950c57a4
 2026-10-30T06:39:40+09:00,20261030_CBRS,CBRS,telegram,ok,노션 포함
 2026-10-30T06:39:41+09:00,20261030_INIO,INIO,telegram,ok,노션 포함
+2026-10-30T06:46:52+09:00,20261030_CBRS,CBRS,github,ok,https://github.com/SEOKD/chiip/blob/1013335e77f0/outputs/tenbagger/reports/20261030_CBRS.md
+2026-10-30T06:46:57+09:00,20261030_INIO,INIO,github,ok,https://github.com/SEOKD/chiip/blob/6c16912b5711/outputs/tenbagger/reports/20261030_INIO.md
+2026-10-30T06:47:15+09:00,20261030_CBRS,CBRS,artifact,ok,https://claude.ai/artifact/SekPwcktQWrMrh1eNdxsQs
+2026-10-30T06:47:15+09:00,20261030_INIO,INIO,artifact,ok,https://claude.ai/artifact/K56v5DQJuyw3KZuRgMCyph
+2026-10-30T06:47:16+09:00,20261030_CBRS,CBRS,telegram,ok,노션 포함
+2026-10-30T06:47:17+09:00,20261030_INIO,INIO,telegram,ok,노션 포함

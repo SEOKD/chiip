@@ -1,6 +1,6 @@
 > 2026-10-30 · Cerebras Systems(CBRS) · 기업: 웨이퍼 한 장 크기 AI 칩(WSE) 기반 추론 시스템 판매와 추론 클라우드 운영
 
-**그래프 포함 리포트:** [GitHub에서 보기](https://github.com/SEOKD/chiip/blob/d4cb28fb337a/outputs/tenbagger/reports/20261030_CBRS.md)
+**그래프 포함 리포트:** [GitHub에서 보기](https://github.com/SEOKD/chiip/blob/1013335e77f0/outputs/tenbagger/reports/20261030_CBRS.md)
 
 ## Chiip View
 **컨빅션 중 · 알파 8/10 · 업사이드 +29%**
