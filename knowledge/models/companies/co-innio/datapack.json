@@ -1,0 +1,604 @@
+{
+ "id": "co-innio",
+ "name": "INNIO",
+ "ticker": "INIO",
+ "as_of": "2026-10-28",
+ "unit": "B$",
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "US": 0.6,
+  "EU": 0.4
+ },
+ "tax": 0.25,
+ "profile": {
+  "price": 18.35,
+  "shares_basic": 0.75,
+  "shares_date": "2026-09-30",
+  "cash": 1.1958,
+  "debt": 2.8174,
+  "source": "가격 = easyconomics company_profile 2026-10-28 종가 18.35 · 주식 수 = SEC dei EntityCommonStockSharesOutstanding 750,000,000(2026-10-26)·10-Q 3Q 가중평균 750,000,000 · 현금 = 10-Q 2026-09-30 1,195.8백만$ · 차입 = easyconomics total_debt 2,817.4백만$(10-Q 장기차입 2,596.1 + 유동 15.2 + 운용·금융리스 120.7 = 2,732.0 — 차이 85백만$는 yfinance 집계 항목, 보수적으로 큰 값)"
+ },
+ "dilution": {
+  "potential_total": 0.0017,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-09-30",
+  "source": "SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount 2026Q3 = 1.7백만 주(상장 후 부여 RSU·옵션) — 전량 반영"
+ },
+ "financials": {
+  "rev_ttm": 3.5148,
+  "ebit_ttm": 0.3885,
+  "invested_capital": 1.8744,
+  "capex_ttm": 0.2909,
+  "da_fy2025": 0.1535,
+  "sbc_3q": 0.00273,
+  "rev_growth_ttm": 0.573,
+  "basis": "GAAP",
+  "note": "TTM = 2025Q4~2026Q3 매출 740.6+668.6+937.7+1,167.9백만$(easyconomics 분기 손익 = SEC 10-Q 일치), 영업이익 86.7+63.1+45.1+193.6백만$ — 4Q25 영업이익은 FY2025 355.3(easyconomics 표준화) − 9M25 268.6(SEC)로 역산(기준 혼재, ±10백만$ 미확인). 투하자본 = 자기자본 338.2 + 차입 2,611.3 + 리스 120.7 − 현금 1,195.8(조달 측, 10-Q 2026-09-30). 영업권 1,666.8·무형 700.0 포함 — 영업권 제외 시 투하자본 음수(고객 선수금 1,598.2가 운전자본을 댄다). CAPEX TTM = 9M26 187.3 + 4Q25 103.6(FY25 171.2 − 9M25 67.6)"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 3.9927,
+   "FY2027": 5.2407
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.162,
+   "FY2027": 0.177
+  },
+  "margin_basis": "non_gaap",
+  "n_analysts": 10,
+  "quarters_est": {
+   "2026Q4": 1.2185,
+   "2027Q1": 1.1922,
+   "2027Q2": 1.3596,
+   "2027Q3": 1.2719,
+   "2027Q4": 1.417
+  },
+  "quarters_act": {
+   "2026Q1": 0.6686,
+   "2026Q2": 0.9377,
+   "2026Q3": 1.1679
+  },
+  "ebitda_est_m": {
+   "2026Q4": 252.1,
+   "2027Q1": 236.6,
+   "2027Q2": 288.8,
+   "2027Q3": 277.7,
+   "2027Q4": 325.4
+  },
+  "note": "매출 = easyconomics 분기 추정 합(FY2026 = 1~3Q 실적 2,774.2 + 4Q 추정 1,218.5). 이익률 = 조정 EBITDA 추정(FY2027 1,128.5백만$ ÷ 5,240.7 = 21.5%) − 감가상각 3.8%(3Q26 44.4 ÷ 1,167.9) = 조정 EBITA 17.7%(추정·비GAAP). FY2026 = 회사 가이던스 조정 EBITDA 20% − 3.8%",
+  "surprise": [
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 937.7,
+    "est": 881.71
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.08,
+    "est": 0.0568
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 1167.9,
+    "est": 1045.74
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.15,
+    "est": 0.1158
+   }
+  ],
+  "revisions": {
+   "from_date": "2026-07-28",
+   "to_date": "2026-10-28",
+   "from_label": "2Q 콜 시점 컨센서스",
+   "source": "직전 = easyconomics earnings_summary 2026-07-28(2Q 콜 당시 분기 컨센서스 — EPS 0.01$·매출 0.01B$ 단위 반올림이라 분기별 리비전 ±3% 오차), 지금 = easyconomics company_profile 2026-10-28",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.18,
+     "to": 0.1768
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 0.16,
+     "to": 0.1671
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 0.19,
+     "to": 0.2087
+    },
+    {
+     "period": "2026Q4",
+     "metric": "매출(백만$)",
+     "from": 1220,
+     "to": 1218.5
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출(백만$)",
+     "from": 1180,
+     "to": 1192.2
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출(백만$)",
+     "from": 1300,
+     "to": 1359.6
+    }
+   ]
+  },
+  "price_window": {
+   "from": 26.92,
+   "to": 18.35,
+   "note": "2Q 콜 전날(7/27) 종가 → 10/28 종가"
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   3.9,
+   4.0
+  ],
+  "ebit_margin_fy0": 0.162,
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "ebitda_fy0": [
+   0.78,
+   0.8
+  ],
+  "deliveries_gw_fy0": 4.5,
+  "source": "2026-10-27 3Q 실적 발표·어닝콜(easyconomics earnings_summary) — FY2026 매출 39~40억$(38~39억$에서 상향), 조정 EBITDA 7.8~8.0억$(마진 약 20%, 직전 약 19%). EBITA 이익률 16.2% = 20% − 감가상각 3.8%(Chiip 계산)"
+ },
+ "call": {
+  "date": "2026-10-27",
+  "prev_date": "2026-07-28",
+  "tone_score": 6.2,
+  "tone_delta": 0.2,
+  "guidance_direction": "raise",
+  "kpis": {
+   "backlog_b": 8.0,
+   "backlog_plus_slots_gw": 19,
+   "orders_3q_b": 2.2,
+   "btb_ttm": 3.3,
+   "eq_margin_3q": 0.171,
+   "svc_margin_3q": 0.32,
+   "usd_per_kw_3q": 650,
+   "net_leverage": 2.1,
+   "capacity_gw_2030": "10 초과"
+  },
+  "guidance_changes": [
+   "FY26 매출 38~39→39~40억$",
+   "조정 EBITDA 7.2~7.4→7.8~8.0억$, 마진 19→20%",
+   "4Q 인도 약 1.5GW·연 4.5GW"
+  ],
+  "new_topics": [
+   "신규 설치분 서비스 강도 >$50k/MW/년(기존 약 $30k)",
+   "최대 고객 비중 2024 20%·2025 41%·향후 약 21%",
+   "네오클라우드·토지 개발사 미거래",
+   "Type 6 물 사용량 0.1L/MWh 미만",
+   "M&A 시 레버리지 2.5배 허용"
+  ],
+  "dropped_topics": [
+   "장비 마진 하락 설명(2Q 14%) — 3Q 17.1%로 해소"
+  ],
+  "analyst_focus": [
+   "Morgan Stanley — 수주 지속·슬롯 시점",
+   "Goldman Sachs — $/kW 가격 vs 범위",
+   "Bank of America — 백로그 신용 질",
+   "JPMorgan — 서비스 마진·고객 자체 정비",
+   "Baird — 주 인허가·물 규제"
+  ],
+  "risks": [
+   "증설 실행(3.5→10GW+)",
+   "데이터센터 고객 집중(2025 최대 고객 41%)",
+   "텍사스 등 인허가",
+   "3Q 수주 2.2B$로 2Q 2.3B$ 대비 둔화(전력·압축)"
+  ],
+  "source": "easyconomics earnings_summary 2026-10-27·2026-07-28(실적 변화 레이더 톤 6.0→6.2, 가이던스 raise→raise)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "FY26 매출 가이던스 상향",
+    "prior": "38~39억$",
+    "latest": "39~40억$",
+    "driver": "rev0",
+    "shift": 0.1,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "그룹 조정 EBITDA 마진 가이던스",
+    "prior": "약 19%",
+    "latest": "약 20%(장비 3Q 17.1% 조기 도달)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "장비 $/kW 공개·1H27 매출 추정 상향",
+    "prior": "수치 없음",
+    "latest": "3Q 약 $650/kW, 앞으로 600 이상",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.7,
+    "source": "3Q Q&A(Goldman Sachs)·컨센서스 1H27 +2.9%"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "수주잔고·슬롯",
+    "prior": "6.6B$·15GW+·2030까지",
+    "latest": "8.0B$·약 19GW·2031까지",
+    "driver": "growth_decay",
+    "shift": 0.03,
+    "confidence": 0.6,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "신규 설치분 서비스 강도",
+    "prior": "상당히 높다(수치 없음)",
+    "latest": ">$50k/MW/년(기존 약 $30k)",
+    "driver": "margin_lr",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "3Q 콜·Q&A(BNP Paribas)"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "서비스 EBITDA 장기 목표",
+    "prior": "2.5배 유지 또는 개선",
+    "latest": "2030년대 중반 4배",
+    "driver": "margin_target",
+    "shift": 0.005,
+    "confidence": 0.4,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F7",
+    "kind": "신규",
+    "item": "고객 집중·신용 공개",
+    "prior": "과다 아님(수치 없음)",
+    "latest": "2025 최대 고객 41%→향후 약 21%, 네오클라우드 무배정",
+    "driver": "wacc",
+    "shift": -0.0025,
+    "confidence": 0.4,
+    "source": "3Q 콜 CEO·Q&A(BofA)"
+   },
+   {
+    "id": "F8",
+    "kind": "업데이트",
+    "item": "순차입 감소",
+    "prior": "1.69B$(2Q, 리스 포함)",
+    "latest": "1.54B$(3Q, 리스 포함)",
+    "driver": "net_debt",
+    "shift": -0.15,
+    "confidence": 1.0,
+    "source": "10-Q XBRL"
+   },
+   {
+    "id": "F9",
+    "kind": "신규",
+    "item": "증설 CAPEX 가속",
+    "prior": "상반기 94백만$",
+    "latest": "3Q 93백만$(9개월 187)",
+    "driver": "s2c",
+    "shift": -0.1,
+    "confidence": 0.8,
+    "source": "10-Q XBRL"
+   },
+   {
+    "id": "F10",
+    "kind": "부정",
+    "item": "3Q 수주 둔화",
+    "prior": "2Q 2.3B$, B/B 4.4",
+    "latest": "3Q 2.2B$(전력 546→265·압축 281→116백만$), B/B 3.3",
+    "driver": "growth_decay",
+    "shift": -0.02,
+    "confidence": 0.3,
+    "source": "두 콜"
+   },
+   {
+    "id": "F11",
+    "kind": "반복",
+    "item": "취소·지연 없음, 서비스 고한자릿수 성장",
+    "prior": "같음",
+    "latest": "같음",
+    "driver": null,
+    "shift": 0,
+    "confidence": 1.0,
+    "source": "두 콜"
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 22.21,
+  "ev_ebitda": 28.38,
+  "ev_sales": 4.379,
+  "growth": 0.573,
+  "note": "easyconomics(yfinance) 2026-10-28 — 선행 P/E는 선행 12개월 EPS 0.826$ 기준, EV/EBITDA·EV/매출은 TTM(GAAP). 조정 EBITDA 선행 12개월(4Q26~3Q27 추정 합 1,055백만$) 기준 EV/EBITDA = 14.6배(Chiip 계산)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "easyconomics company_profile(yfinance) 2026-10-28 — 매출·EBIT 이익률·시가총액·PBR·차입·현금·EV/매출·EV/EBITDA = TTM, 선행 P/E = 선행 12개월, 성장 = 최근 분기 전년 대비. Wärtsilä는 유로(비율만 사용). 영업권·무형 = SEC XBRL(CAT·CMI 2026-06-30, GEV 2026-09-30). 왕복동 엔진 발전(CAT·CMI·Wärtsilä)·데이터센터 현장 발전(BE)·가스터빈(GEV) — 사업 혼합이 달라 순수 비교 아님",
+ "peers": [
+  {
+   "ticker": "CAT",
+   "rev": 74.729,
+   "ebit_margin": 0.2218,
+   "mcap": 327.92,
+   "pb": 16.91,
+   "debt": 45.146,
+   "cash": 5.945,
+   "ev_sales": 4.913,
+   "ev_ebitda": 22.59,
+   "pe_fwd": 21.89,
+   "growth": 0.24,
+   "goodwill": 5.859,
+   "intangibles": 0.42
+  },
+  {
+   "ticker": "CMI",
+   "rev": 34.708,
+   "ebit_margin": 0.119,
+   "mcap": 73.15,
+   "pb": 5.694,
+   "debt": 8.286,
+   "cash": 3.924,
+   "ev_sales": 2.264,
+   "ev_ebitda": 15.65,
+   "pe_fwd": 15.26,
+   "growth": 0.094,
+   "goodwill": 2.222,
+   "intangibles": 2.168
+  },
+  {
+   "ticker": "GEV",
+   "rev": 41.367,
+   "ebit_margin": 0.0747,
+   "mcap": 233.85,
+   "pb": 21.17,
+   "debt": 3.72,
+   "cash": 12.72,
+   "ev_sales": 5.573,
+   "ev_ebitda": 58.71,
+   "pe_fwd": 34.73,
+   "growth": 0.219,
+   "goodwill": 9.609,
+   "intangibles": 4.343
+  },
+  {
+   "ticker": "BE",
+   "rev": 3.83,
+   "ebit_margin": 0.1849,
+   "mcap": 67.41,
+   "pb": 34.87,
+   "debt": 2.787,
+   "cash": 2.487,
+   "ev_sales": 17.69,
+   "ev_ebitda": 112.4,
+   "pe_fwd": 42.95,
+   "growth": 1.381,
+   "goodwill": 0.002,
+   "intangibles": 0.0
+  },
+  {
+   "ticker": "WRT1V",
+   "rev": 6.827,
+   "ebit_margin": 0.1387,
+   "mcap": 15.69,
+   "pb": 5.873,
+   "debt": 0.548,
+   "cash": 2.469,
+   "ev_sales": 2.005,
+   "ev_ebitda": 15.25,
+   "pe_fwd": 20.35,
+   "growth": -0.063
+  }
+ ],
+ "sbc_pct_rev": 0.002,
+ "overrides": {
+  "margin_base": {
+   "target": 0.19,
+   "year_target": 4,
+   "lr": 0.17,
+   "lam": 0.35
+  },
+  "s2c": 3.0,
+  "why": "목표 조정 EBITA 이익률 19%(4년차): 장비 마진 3Q 17.1% 도달 + 서비스(마진 32%) 비중이 2030년대 확대 — 동종 CAT 22%·Wärtsilä 14%·CMI 12% 사이, 장기 17%로 수렴 / 매출÷투하자본 3.0: TTM 1.9는 인수 영업권 1.67B$가 섞인 값 — 증분 기준으로는 고객 선수금(9개월 +782백만$)이 운전자본을 대고 CAPEX는 매출 증가분의 약 20%(TTM 291백만$ ÷ 매출 증가 1.28B$) → 증분 3~5, 보수적으로 3 / SBC 0.2%: 3Q SBC 2.7백만$ ÷ 매출 1,168"
+ },
+ "history": {
+  "basis": "EV/TTM 매출 — 반월 간격 종가(easyconomics company_price_history), 주식 0.75B·순차입 1.62B$ 고정(근사), TTM은 그 날짜에 공개된 4분기 합(~7/27 2.811, 7/28~10/26 3.090, 10/27~ 3.515)",
+  "ev_sales": [
+   {
+    "date": "2026-06-08",
+    "value": 9.57
+   },
+   {
+    "date": "2026-06-15",
+    "value": 9.84
+   },
+   {
+    "date": "2026-06-22",
+    "value": 11.55
+   },
+   {
+    "date": "2026-06-30",
+    "value": 11.13
+   },
+   {
+    "date": "2026-07-15",
+    "value": 8.62
+   },
+   {
+    "date": "2026-07-27",
+    "value": 7.76
+   },
+   {
+    "date": "2026-07-31",
+    "value": 6.45
+   },
+   {
+    "date": "2026-08-14",
+    "value": 7.18
+   },
+   {
+    "date": "2026-08-31",
+    "value": 5.43
+   },
+   {
+    "date": "2026-09-15",
+    "value": 4.84
+   },
+   {
+    "date": "2026-09-30",
+    "value": 4.93
+   },
+   {
+    "date": "2026-10-15",
+    "value": 4.53
+   },
+   {
+    "date": "2026-10-26",
+    "value": 4.56
+   },
+   {
+    "date": "2026-10-28",
+    "value": 4.38
+   }
+  ]
+ },
+ "sources": [
+  "easyconomics company_profile·financial_statements(분기 손익)·financials_summary(연간)·earnings_summary 2026-10-27·2026-07-28·company_price_history (조회 2026-10-29 KST)",
+  "SEC XBRL companyfacts CIK 2109150(10-Q 2026-09-30: 매출·영업이익·재무상태·희석 증권·CAPEX, 조회 2026-10-29)",
+  "SEC XBRL 동종 영업권(CAT 18230·CMI 26172·GEV 1996810·BE 1664703)",
+  "outputs/invest/20261028_innio_q3_delta.md · knowledge/models/companies/co-innio/factors.yaml(회사 전용 요인 모델)"
+ ],
+ "raw": {
+  "retrieved_at": "2026-10-29T19:30:00+09:00",
+  "easyconomics_profile": {
+   "price": 18.35,
+   "market_cap": 13.7625,
+   "enterprise_value": 15.3921,
+   "shares_outstanding_yf": 0.75,
+   "total_cash": 1.1958,
+   "total_debt": 2.8174,
+   "revenue_ttm": 3.5148,
+   "ev_sales": 4.379,
+   "ev_ebitda": 28.378,
+   "forward_pe": 22.215,
+   "eps_forward": 0.82603,
+   "revenue_growth": 0.573,
+   "short_pct_float": 0.2118,
+   "analyst_total": 10
+  },
+  "shares_cover_implied": 0.75,
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.7406,
+    "2026Q1": 0.6686,
+    "2026Q2": 0.9377,
+    "2026Q3": 1.1679
+   },
+   "op_income": {
+    "2025Q4": 0.0867,
+    "2026Q1": 0.0631,
+    "2026Q2": 0.0451,
+    "2026Q3": 0.1936
+   }
+  },
+  "balance_2026_09_30": {
+   "cash": 1.1958,
+   "st_investments": 0.0,
+   "debt_current": 0.0152,
+   "debt_lt": 2.5961,
+   "lease_current": 0.0285,
+   "lease_lt": 0.0922,
+   "equity": 0.3382,
+   "goodwill": 1.6668,
+   "intangibles": 0.7,
+   "contract_liabilities": 1.5982,
+   "shares": 0.75
+  },
+  "estimates_sales_m": {
+   "2026Q1_act": 668.6,
+   "2026Q2_act": 937.7,
+   "2026Q3_act": 1167.9,
+   "2026Q4": 1218.5,
+   "2027Q1": 1192.2,
+   "2027Q2": 1359.6,
+   "2027Q3": 1271.9,
+   "2027Q4": 1417.0
+  },
+  "estimates_eps": {
+   "2026Q4": 0.1768,
+   "2027Q1": 0.1671,
+   "2027Q2": 0.2087,
+   "2027Q3": 0.225,
+   "2027Q4": 0.2416
+  },
+  "estimates_prev_call_2026_07_28": {
+   "eps": {
+    "2026Q3": 0.12,
+    "2026Q4": 0.18,
+    "2027Q1": 0.16,
+    "2027Q2": 0.19
+   },
+   "sales_b": {
+    "2026Q3": 1.03,
+    "2026Q4": 1.22,
+    "2027Q1": 1.18,
+    "2027Q2": 1.3
+   }
+  },
+  "sec": {
+   "antidilutive_2026_09_30": 0.0017,
+   "contract_liabilities_2025_12_31": 0.8161
+  },
+  "radar_2026_10_27": {
+   "tone_score": 6.2,
+   "prev_tone_score": 6.0,
+   "guidance_direction": "raise",
+   "prev_guidance_direction": "raise"
+  },
+  "price_history_points": {
+   "2026-06-08": 33.72,
+   "2026-06-15": 34.72,
+   "2026-06-22": 41.13,
+   "2026-06-30": 39.55,
+   "2026-07-15": 30.16,
+   "2026-07-27": 26.92,
+   "2026-07-31": 24.42,
+   "2026-08-14": 27.43,
+   "2026-08-31": 20.2,
+   "2026-09-15": 17.79,
+   "2026-09-30": 18.13,
+   "2026-10-15": 16.5,
+   "2026-10-26": 16.63,
+   "2026-10-28": 18.35
+  }
+ }
+}
