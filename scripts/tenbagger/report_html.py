@@ -44,6 +44,7 @@ h1{font-size:21px;margin:0 0 4px;line-height:1.35}h2{font-size:18px;margin:30px 
 .ans{display:grid;grid-template-columns:1fr;gap:8px}.ans div{background:var(--card);border-radius:10px;padding:10px 12px}.ans b.q{display:block;font-size:12.5px;color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600}
 .tw{overflow-x:auto}.mut{color:var(--mut)}.sm{font-size:12.5px}.red{color:var(--b)}.blue{color:var(--c)}.grn{color:var(--d)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(360px,100%),1fr));gap:4px 12px}.gal>div{min-width:0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
 ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
@@ -277,21 +278,52 @@ def block(b):
     return ""
 
 
+# 내부 약어 → 풀어 쓴 말(마스터 지시 2026-10-29 "v2 기본이 뭐였더라? 암호로 해놓으면 직관적으로 못 알아보니 의미를 풀어서 표기하라")
+PLAIN = [("DCF(v2, ", "DCF("), ("v2 기본 시나리오", "DCF 기본 시나리오"), ("v2 기본", "DCF 내재가치(기본)"), ("v2 강세", "DCF 내재가치(강세)"), ("v2 약세", "DCF 내재가치(약세)"),
+         ("MC P50", "몬테카를로 중앙값"), ("MC 기대", "몬테카를로 기대값"), ("v2 엔진", "현금흐름 할인(DCF) 엔진"), ("v2 DCF", "DCF"),
+         ("v2 결과", "DCF 결과"), ("v2의", "DCF의"), ("(v2,", "(DCF,"), ("v2 ", "DCF ")]
+GLOSSARY = ("읽는 법 — '배' = 현금흐름으로 계산한 주주가치 ÷ 지금 시가총액(1.0배 = 지금 주가가 현금흐름으로 설명됨, 0.5배 = 절반만 설명됨). "
+            "DCF 내재가치 = 회사 가이던스·컨센서스로 만든 미래 현금흐름을 자본비용으로 할인한 값. 몬테카를로 = 가정을 무작위로 3,000번 바꿔 본 분포.")
+
+
+def plain(s):
+    for a, b in PLAIN:
+        s = s.replace(a, b)
+    return s
+
+
+def upside(d):
+    """Chiip View 업사이드(+%) — verdict.upside가 있으면 그것, 없으면 판단 시나리오 확률 가중값 ÷ 현재값 − 1(기간은 시나리오 제목)"""
+    v = d.get("verdict") or {}
+    if v.get("upside") is not None:
+        return v["upside"], v.get("upside_basis") or ""
+    sc = next((b["chart"] for s in d.get("sections") or [] for b in s.get("blocks") or []
+               if b.get("type") == "chart" and (b.get("chart") or {}).get("kind") == "scenario"), None)
+    if not sc or not sc.get("current") or not sc.get("cases"):
+        return None, ""
+    ew = sum(float(c.get("prob") or 0) * float(c.get("value") or 0) for c in sc["cases"])
+    return ew / float(sc["current"]) - 1, f"판단 시나리오 확률 가중 · {sc.get('title', '')}"
+
+
 def render(d):
     for key in ("title", "date", "ticker", "company", "biz"):
         if not d.get(key):
             raise ValueError(f"필수 항목 없음: {key}")
+    d = json.loads(plain(json.dumps(d, ensure_ascii=False)))
     v = d.get("verdict") or {}
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
              f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
              f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}' + (f" · {t(d['lead'])}" if d.get("lead") else "") + "</p>"]
-    if v:
+    if v:   # 마스터 지시 2026-10-29: 확신도 → 컨빅션(같은 고·중·저), 인사이트 → 알파(같은 10점 체계), 업사이드 +% 추가
+        up, basis = upside(d)
+        alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
         badges = "".join(f'<span class="badge">{t(x)}</span>' for x in (
-            f"확신도 {v['confidence']}" if v.get("confidence") else None,
-            f"인사이트 {v['insight']}/10" if v.get("insight") is not None else None,
-            f"알파 {v['alpha']}" if v.get("alpha") is not None else None) if x)
-        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}</div>')
+            f"컨빅션 {v['confidence']}" if v.get("confidence") else None,
+            f"알파 {alpha}/10" if alpha is not None else None,
+            f"업사이드 {up:+.0%}" if up is not None else None) if x)
+        note = f'<div class="sm mut">업사이드 기준: {t(basis)} — 가격 목표가 아니라 시나리오 확률 가중 지표</div>' if up is not None and basis else ""
+        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}{note}</div>')
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(
             f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
@@ -299,8 +331,19 @@ def render(d):
         parts.append('<div class="tiles">' + "".join(
             f'<div class="tile"><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="k">{t(x.get("sub"))}</div></div>'
             for x in d["tiles"]) + "</div>")
+    parts.append(f'<div class="sm mut">{t(GLOSSARY)}</div>')
+    # 그래프 전체를 상단에(마스터 지시 2026-10-29 "Chiip View와 한 장 요약 다음 시각물 그래프를 전부 — 시간이 없을 때 상단만 보고 파악")
+    figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind"))]
+    num = {id(b): i for i, (_, b) in enumerate(figs, 1)}
+    if figs:
+        parts.append("<h2>한눈에 보기 — 그래프 전체</h2><div class=\"gal\">" + "".join(
+            f'<div id="fig{num[id(b)]}">' + block(b).replace("<b>", f'<b>그림 {num[id(b)]} · ', 1) + f'<div class="sm mut">↳ {t(s.get("h2"))}</div></div>'
+            for s, b in figs) + "</div>")
     for s in d.get("sections") or []:
-        parts.append(f"<h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []))
+        body = "".join(
+            (f'<p class="sm mut">📊 <a href="#fig{num[id(b)]}">그림 {num[id(b)]}</a> · {t((b.get("chart") or {}).get("title"))} (위 \'한눈에 보기\')</p>'
+             if id(b) in num else block(b)) for b in s.get("blocks") or [])
+        parts.append(f"<h2>{t(s.get('h2'))}</h2>" + body)
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
     out = "".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View").replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)

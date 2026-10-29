@@ -216,7 +216,7 @@ def candle_chart(bars, title, sw, zs, price, tail):
 
 def report_section(entity, dp=None):
     daily = flow.load_ohlcv(entity)
-    if len(daily) < 120:
+    if len(daily) < 60:   # 상장 3개월 미만은 스윙이 성립하지 않는다(2026-10-30: 상장 후 60~119거래일 종목은 '상장 이후 전체'로 그린다)
         return None
     anchors = ((dp or {}).get("raw") or {}).get("anchors")
     z = zones(daily, anchors)
@@ -249,6 +249,8 @@ def report_section(entity, dp=None):
     blocks.append(candle_chart(resample(daily, "W"), "주봉 — 52주 스윙 되돌림", sw["주봉"], zs, price, 52))
     blocks.append(candle_chart(daily, "일봉 — 마지막 완료 스윙 되돌림(최근 90거래일)", sw["일봉"], zs, price, 90))
     note = "월봉은 확보한 일봉 기간만큼만 그린다"
+    if len(daily) < 120:
+        note = f"상장 후 {len(daily)}거래일뿐이라 월·주봉 스윙은 상장 이후 전체 구간이다(장기 지지·저항으로 읽지 말 것)"
     if anchors:
         note += f" — 장기 기준점: {anchors.get('low', {}).get('note', '')}"
     blocks.append({"type": "p", "text": "**기법과 근거:** 스윙은 ATR 지그재그(임계 = max(월 20%·주 10%·일 5%, 2.5×ATR14)), 되돌림 23.6~78.6%·확장 127.2·161.8%. 함께 본 기준선: 50·200일 이동평균과 50·150·200일 거래 범위 고저"
@@ -267,7 +269,7 @@ def main(argv):
     dp = json.loads(dpp.read_text(encoding="utf-8")) if dpp.exists() else {}
     sec = report_section(entity, dp)
     if not sec:
-        print("[가격 구간] 일봉 120일 이상 필요")
+        print("[가격 구간] 일봉 60일 이상 필요")
         return 1
     s = sec["_summary"]
     print(f"[가격 구간] {entity} 현재 ${s['price']:,.2f}")
