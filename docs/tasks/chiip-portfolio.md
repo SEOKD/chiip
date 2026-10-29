@@ -45,6 +45,7 @@
    - 측정 가능한 전망(회사 가이던스 달성 여부 등)은 스킬 prediction-log로 등록할 수 있다(owner 치입).
 
 5. 텔레그램 — 레벨 'PORTFOLIO'. outputs/invest/portfolio/<YYYYMMDD_HHMM>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PORTFOLIO')"`.
+   - 금액은 `$50.6B`·`$420M`·`$1.2T`로 쓴다(506억$·4,200만$·백만 달러 표기 금지 — 마스터 지시 2026-10-29). 엔·원은 억 엔·조 원 그대로. 발송 직전 `radar/units.py`가 한 번 더 바꾸지만 처음부터 이렇게 쓴다.
    - 보내는 조건: P0·P1이 1건 이상이거나, 오늘·내일 일정이 있거나, 데일리 회차. 기록만 할 것뿐이면 보내지 않는다.
    - 보유 종목이 실적을 발표한 회차: **실적 발표는 Dean's Ticker 3단 양식(마스터 지시 2026-10-29, `knowledge/methods/earnings_format.md`)**: 실적·가이던스 발표 건은 위 블록 대신 ① 지표 정리(Results·Guidance를 `(est. …)`와 나란히, `After ±x%`) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 `■` 줄, `(시기 구체화)`·`(전망 실현)` 꼬리표) ③ 칼럼(숫자 뒤 이유와 파급, 4~7문단) — 세 통을 따로 `notify.send(본문, 'PORTFOLIO')`(서식 없음)로 보낸다. 파일 outputs/article/earnings/<YYYYMMDD>_<티커>_1·2·3.txt. 컨센서스·직전 콜은 easyconomics earnings_summary·earnings_call_transcript(이번·직전 날짜), 일본은 IR 질의응답 원문.
    - 형식:

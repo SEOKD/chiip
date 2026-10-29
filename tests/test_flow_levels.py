@@ -34,8 +34,16 @@ class TestUnits(unittest.TestCase):
         for a, b in cases.items():
             self.assertEqual(money_units(a), b, a)
 
+    def test_money_units_more_forms(self):
+        """2026-10-29 보강 — Pulse '506억$' 지적 뒤 남아 있던 형태(만·$앞·억+천만·백만 1,000 이상·불)"""
+        cases = {"506억$": "$50.6B", "4,200만$": "$42M", "$3.4억": "$340M", "3억 4천만 달러": "$340M", "3억 4,000만 달러": "$340M",
+                 "12,014.9백만$": "$12.0B", "30억 불": "$3B", "30억불": "$3B", "120억~150억$": "$12~15B", "4,000~5,000만$": "$40~50M",
+                 "−18억$": "−$1.8B", "10.67억$": "$1.07B", "50만 달러": "$500K", "$1.2조": "$1.2T"}
+        for a, b in cases.items():
+            self.assertEqual(money_units(a), b, a)
+
     def test_won_yen_untouched(self):
-        for x in ("3,000억 원", "시총 3,700억 엔", "2조 원", "$1.2B"):
+        for x in ("3,000억 원", "시총 3,700억 엔", "2조 원", "$1.2B", "$3.4억 원", "1만 명", "1억 주", "직원 8만 5천 명"):
             self.assertEqual(money_units(x), x)
 
     def test_notify_brand_converts(self):
