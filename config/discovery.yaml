@@ -41,7 +41,7 @@ themes:
       - {id: tw-iteq, name: ITEQ, local: "聯茂", market: tw, code: "6213", edge: 5, why: "고속 CCL — 점유율 변동성"}
       - {id: tw-gce, name: Gold Circuit Electronics, local: "金像電", market: tw, code: "2368", edge: 7, why: "AI 서버·스위치 고층 PCB"}
       - {id: kr-isupetasys, name: Isu Petasys, local: "이수페타시스", market: kr, code: "007660", edge: 7, why: "북미 스위치·가속기 고층 PCB"}
-      - {id: kr-doosan, name: Doosan(전자BG), local: "두산", market: kr, code: "000150", edge: 6, why: "AI 가속기용 CCL — 지주회사 구조로 순수 노출 희석"}
+      - {id: kr-doosan, name: Doosan(전자BG), local: "두산전자", market: kr, code: "000150", edge: 6, why: "AI 가속기용 CCL — 지주회사 구조로 순수 노출 희석"}
   - id: pcbdrill
     name: PCB 초소경 드릴
     bottleneck: "고층·고밀도 AI 보드는 드릴 비트 마모가 커 소모량이 급증 — 초소경 고경도 비트는 소수 업체"
@@ -66,7 +66,7 @@ themes:
       - {id: co-advantest, name: Advantest, market: jp, code: "6857", edge: 9, why: "SoC·HBM 테스터 과점 — 대형주"}
       - {id: jp-micronics, name: Micronics Japan, market: jp, code: "6871", edge: 7, why: "메모리용 프로브 카드 — HBM 테스트 수혜"}
       - {id: tw-winway, name: WinWay Technology, local: "穎崴", market: tw, code: "6515", edge: 6, why: "AI 칩 테스트 소켓"}
-      - {id: tw-mpi, name: MPI, local: "旺矽", market: tw, code: "6223", edge: 6, why: "프로브 카드·프로버"}
+      - {id: tw-mpi, name: MPI Corporation, local: "旺矽", market: tw, code: "6223", edge: 6, why: "프로브 카드·프로버"}
       - {id: tw-chpt, name: Chunghwa Precision Test, local: "中華精測", market: tw, code: "6510", edge: 6, why: "프로브 카드"}
   - id: thermal_power
     name: 액체 냉각·전력 공급

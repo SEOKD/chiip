@@ -22,6 +22,7 @@ from pollers import rss  # noqa: E402
 OUT = common.ROOT / "knowledge" / "models" / "discovery"
 CSV = OUT / "attention.csv"
 LATEST = OUT / "attention_latest.json"
+INVESTOR_SOURCES = ("news_global", "seeking_alpha", "substack", "research_feeds")
 LOCALE = {"jp": ("ja", "JP"), "tw": ("zh-TW", "TW"), "kr": ("ko", "KR"), "us": ("en-US", "US")}
 
 
@@ -127,9 +128,13 @@ def summarize(all_rows, today):
     for cid, o in out.items():
         acc = [v["accel"] for v in o["by_source"].values() if v["accel"] is not None]
         o["accel"] = sum(acc) / len(acc) if acc else None
-    totals = sorted(o["total"] for o in out.values())
+    # 쏠림은 투자자 원천으로만 — 현지 언론은 Google News 상한(100건)에 자주 걸리고 투자자 관심과 다르다(2026-10-29 첫 기준선)
     for o in out.values():
-        o["crowding_pct"] = round(100 * sum(1 for x in totals if x <= o["total"]) / len(totals)) if totals else None
+        o["investor"] = sum(v["n"] for s, v in o["by_source"].items() if s in INVESTOR_SOURCES)
+        o["saturated"] = [s for s, v in o["by_source"].items() if v["n"] >= 100]
+    inv = sorted(o["investor"] for o in out.values())
+    for o in out.values():
+        o["crowding_pct"] = round(100 * sum(1 for x in inv if x <= o["investor"]) / len(inv)) if inv else None
     return out
 
 
