@@ -1,7 +1,8 @@
 async () => {
   // 실적 지표 정리(Dean's Ticker ①)의 (est. …) — 마스터 지시 2026-10-30: 1순위 Fiscal.ai 자체 추정(company_estimates), 2순위 Zacks(company_analyst_estimates history).
   // 발표 전 값만 쓴다: Fiscal 칸은 asOf가 발표일(earningsDate) 전날 이전일 때만(발표 뒤엔 새 가이던스로 덮어쓴다), Zacks는 history에서 발표일 전 마지막 값.
-  // 기준(GAAP·조정)이 실적 줄과 다르면 est.를 붙이지 않는다. OPM est.는 같은 출처의 영업이익 est. ÷ 매출 est.
+  // 기준(GAAP·조정)이 실적 줄과 다르면 est.를 붙이지 않는다 — 예외 GPM: Fiscal 매출총이익은 GAAP뿐이라 조정 GPM 줄에도 붙인다(마스터 지시 2026-10-30).
+  // 이익률 est.는 같은 제공처의 분자 est. ÷ 매출 est.(OPM = 영업이익, GPM = 매출총이익). 영업이익 금액 줄은 양식에서 뺐지만 OPM 계산에 쓴다.
   // __KEY__ = NASDAQ_SNDK 형식. 출력 pick[분기][지표] = {est, src: 'fiscal:<source>'|'zacks', asOf} | null. zacks_used=true면 Zacks 표기를 단다.
   const k = "__KEY__";
   const [fe, z] = await Promise.all([
@@ -28,7 +29,7 @@ async () => {
     const prov = v => String(v.src).split(":")[0];                                // fiscal / zacks — 이익률은 같은 제공처끼리만 나눈다
     const ratio = (num, rv, basis) => num && rv && prov(num) === prov(rv) ? { est: num.est / rv.est, src: num.src + "÷" + rv.src, asOf: num.asOf, basis, derived: true } : null;
     o.opm_adjusted = ratio(o.ebit_adjusted, o.revenue, "adjusted"); o.opm = ratio(o.ebit, o.revenue, "gaap");
-    o.gpm = ratio(o.gross_profit, o.revenue, "gaap");                              // Fiscal 매출총이익은 GAAP만 — 조정 GPM 줄에는 붙이지 않는다
+    o.gpm = ratio(o.gross_profit, o.revenue, "gaap");                              // Fiscal 매출총이익은 GAAP 기준 — 조정 GPM 줄에도 붙이고 기준 차이는 기록 파일에
     return o;
   };
   const pick = { reported: pickFor(rep), guidance: pickFor(next) };
