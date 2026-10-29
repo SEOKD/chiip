@@ -36,6 +36,17 @@ class TestRender(unittest.TestCase):
         self.assertIn("투자 권유가 아님", h)
         self.assertNotIn("NaN", h)
 
+    def test_brand_chiip(self):
+        """텔레그램·GitHub 보고는 '치입' 대신 'Chiip'(마스터 지시 2026-10-29)"""
+        d = self.base()
+        d["verdict"]["view"] = "치입 판단: 조건부"
+        h = report_html.render(d)
+        self.assertNotIn("치입", h)
+        self.assertIn("Chiip 판단", h)
+        sys.path.insert(0, str(ROOT / "radar"))
+        import notify
+        self.assertEqual(notify.brand("[치입 펄스 16:04] 치입은"), "[Chiip 펄스 16:04] Chiip은")
+
     def test_required_fields(self):
         d = self.base()
         del d["biz"]

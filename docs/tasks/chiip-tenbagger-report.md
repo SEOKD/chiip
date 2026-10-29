@@ -32,7 +32,7 @@
 
 5. 밸류에이션 절 병합 → 그리기·확인: `py scripts/tenbagger/v2_to_report.py <id> --merge <json>` 다음 `py scripts/tenbagger/report_html.py <json>` → .html. 출력에 오류가 없고 파일이 생겼는지 확인한다(차트 수 = svg 수).
 
-6. 텔레그램(레벨 'REPORT'): `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send_document(r'<html 경로>', '<캡션>', 'REPORT')"`. 캡션(1,000자 이내): `[치입 텐배거 리포트 MM/DD] 회사(티커) — 제목` / `기업: 사업 1줄` / `치입 판단: … · 인사이트 x/10` / `밸류: v2 기본 x배·MC P50 x배·시장 내포 CAGR x% · 판단 시나리오 확률 가중 x배` / `킬 조건 1개 · 다음 확인 사건(날짜)` / `연구 후보이지 매수 권유 아님 · 1차 판정, 미검증`.
+6. 텔레그램(레벨 'REPORT'): `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send_document(r'<html 경로>', '<캡션>', 'REPORT')"`. 캡션(1,000자 이내): `[Chiip 텐배거 리포트 MM/DD] 회사(티커) — 제목` / `기업: 사업 1줄` / `Chiip 판단: … · 인사이트 x/10` / `밸류: v2 기본 x배·MC P50 x배·시장 내포 CAGR x% · 판단 시나리오 확률 가중 x배` / `킬 조건 1개 · 다음 확인 사건(날짜)` / `연구 후보이지 매수 권유 아님 · 1차 판정, 미검증`.
    이어서 GitHub 링크: `py scripts/publish_report.py <html 경로> <json 경로> knowledge/models/companies/<id>/datapack.json knowledge/models/companies/<id>/drivers.yaml --title "텐배거 리포트 MM/DD 회사(티커)"` — 작업 트리를 건드리지 않고 claude/reports 브랜치에 올린 뒤 링크를 텔레그램으로 보낸다(마스터 지시 2026-10-29). 실패하면 오류 한 줄을 기록하고 파일 발송은 그대로 둔다.
 
 7. 기록: `py scripts/tenbagger/pick_report.py --done <id> <티커> <html 경로> "<치입 판단 한 줄>"`. 처음 다루는 후보면 knowledge/models/tenbagger/watch.csv에 등록일 가격과 함께 한 행 추가(tenbagger-card 규칙), 측정 가능한 예측 1개를 knowledge/predictions.csv에(owner 치입, origin 리포트 파일). 기업 사업 설명이 config/company_lines.yaml에 없으면 한 줄 추가.

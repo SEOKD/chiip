@@ -23,6 +23,12 @@ from pollers import common  # noqa: E402
 OUTBOX = common.STATE / "outbox.log"
 P1_QUEUE = common.STATE / "p1_queue.jsonl"
 MAX_LEN = 3800
+BRAND = ("치입", "Chiip")   # 마스터 지시 2026-10-29: 텔레그램·GitHub 보고에는 '치입' 대신 'Chiip'으로 표기
+
+
+def brand(text):
+    """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로 나간다"""
+    return (text or "").replace(*BRAND)
 
 
 def _denylist():
@@ -63,6 +69,7 @@ def remember_alert(item, level, what=None, impact=None, card_id=None):
 def send_document(path, caption="", level="REPORT"):
     """파일(HTML 리포트 등)을 마스터 개인 텔레그램으로 보낸다 — 2026-10-29 텐배거 일일 리포트. 본문 검사(guard)는 캡션과 파일 내용 모두에"""
     path = Path(path)
+    caption = brand(caption)
     body_text = path.read_text(encoding="utf-8", errors="ignore") if path.suffix in (".html", ".md", ".txt") else ""
     reason = guard(caption) or (guard(body_text) if body_text else None)
     if reason:
@@ -94,6 +101,7 @@ def send_document(path, caption="", level="REPORT"):
 
 
 def send(text, level="P1", ref=None):
+    text = brand(text)
     reason = guard(text)
     if reason:
         _log(f"[차단:{reason}] (내용 생략)")
@@ -270,4 +278,4 @@ if __name__ == "__main__":
     elif len(sys.argv) > 1 and sys.argv[1] == "--chat-id":
         print(find_chat_ids())
     else:
-        print(send(" ".join(sys.argv[1:]) or "치입 알림 시험", "TEST"))
+        print(send(" ".join(sys.argv[1:]) or "Chiip 알림 시험", "TEST"))

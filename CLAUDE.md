@@ -136,6 +136,7 @@
 - **텐배거 일일 리포트**(2026-10-29): 매일 23:00 텐배거 종목 1개를 차트 포함 HTML(outputs/tenbagger/reports/)로 만들어 텔레그램 파일로(예약 작업 chiip-tenbagger-report). 밸류에이션은 맥킨지·IB 방식 의무: easyconomics 데이터 묶음(컨센서스·가이던스·어닝콜·동종사) → `build_drivers.py` → v2 → `v2_to_report.py --merge`. 연구 후보이지 매수 권유 아님.
 - **일본 정보망**(2026-10-29): `config/jp_watch.yaml` 45개사 적시공시 미러·일본 매체를 10분마다(`radar/pollers/jp_disclosure.py`, TDnet 직접 수집 안 함).
 - **기업 설명 1줄**(2026-10-29 마스터 지시): 어떤 기능이든 종목 정보·소식·밸류 판단을 전할 때 종목명 아래 `기업: 어떤 사업을 하는 회사인지 1줄`(config/company_lines.yaml, 없으면 10-K·회사 개요를 자기 말로 — 모르면 미확인). 실시간 알림은 radar/notify.py가 자동으로 붙인다.
+- **보고 표기 = Chiip**(2026-10-29 마스터 지시): 텔레그램 봇·GitHub에 보고할 때는 '치입' 대신 'Chiip'. `radar/notify.py` `brand()`가 발송 직전 일괄 변환, 리포트 HTML·게시 제목도 변환.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 
 ## 언어
