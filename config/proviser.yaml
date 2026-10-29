@@ -55,3 +55,21 @@ prediction_origins:
   chiip-tenbagger: ["outputs/tenbagger", "knowledge/models/tenbagger"]
   chiip-notion-watch: ["outputs/report/notion"]
   chiip-portfolio: ["outputs/invest/portfolio"]
+
+# 당일 텐배거 리포트 3건 정량 점검·수정(마스터 지시 2026-10-29 "그날 하루 적은 3건의 텐배거 리포트 … 틀린 게 없는지·올바른 과정·합리적 결론을
+# 정량 평가해 수정·보완하라. 당일 이외 리포트는 건들지 마라") — scripts/proviser/report_audit.py
+reports:
+  max_per_day: 3          # 그날 log.csv의 가장 최근 3건만
+  auto_weight: 0.4        # 최종 = 0.6 × 프로바이저 루브릭(사실·과정·결론·정량·반증) + 0.4 × 자동 점검 13개
+  price_tol: 0.02         # 시나리오 현재값 vs 원자료 가격·시가총액
+  ratio_tol: 0.05         # 확률 가중값 재계산 vs 본문(배)
+  required:               # 의무 절 — 제목(멀티플은 본문 전체)에서 찾는 정규식
+    "밸류에이션(맥킨지·IB)": "밸류에이션 — 맥킨지"
+    "멀티플(동종·할인 분해)": "합리적 멀티플|동종사|할인 분해"
+    "어닝콜 변화·컨센서스": "어닝콜 변화"
+    "내러티브": "내러티브"
+    "수급": "수급"
+    "가격 구간(피보나치)": "피보나치|가격 구간"
+    "판단 시나리오": "판단 시나리오|시나리오"
+    "반대 검증": "반대 검증"
+    "킬 조건·체크리스트": "킬 조건"

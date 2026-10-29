@@ -4,7 +4,7 @@
 > 앱이 켜져 있을 때 실행(PC는 수집기 깨우기 타이머로 깨어 있음). 권한 모드는 앱 Scheduled에서 바꿀 수 있다.
 
 - 이름: Chiip proviser
-- 일정(cron, 로컬 시각): `0 22 * * *` — 그날 산출물을 재평가해 다음 날 아침 회차(reporter 06:00·ten-bagger 07:00) 전에 지시 갱신
+- 일정(cron, 로컬 시각): `0 23 * * *` — 그날 산출물을 재평가해 다음 날 아침 회차(reporter 06:00·ten-bagger 07:00) 전에 지시 갱신. 2026-10-29 22:00 → 23:00: 텐배거 리포트 세 번째 회차가 22:00이라, 당일 3건 점검(6-3)이 같은 날 끝나려면 그 뒤에 돌아야 한다
 - 설명: 기능 7개(6개 + 2026-10-29 추가된 Portfolio)의 역량을 매일 전일보다 끌어올린다 — 사고 구조·추론 구조·체계 요인 분석, 회귀 시 복구 지시, 졸업 지시의 상시 원칙화·교차 전파로 누적 향상
 
 ## 지시문
@@ -39,7 +39,20 @@
    d. 채택은 Model Lab 일요일 회차가 `stepwise.can_adopt_extension`(짝지은 표본 외 검정 Diebold-Mariano 1995 + 누적 시도 수 본페로니 보정 Harvey·Liu·Zhu 2016 + 표본 외 관측 ≥ 10 × (파라미터 수 + 1))으로 한다. 프로바이저는 다음 날 결과(changelog.csv)와 그 기능의 품질 변화를 확인한다 — 채택했는데 품질이 안 오르면 그 파라미터가 품질과 연결돼 있다는 가정부터 의심한다.
    e. 억지로 늘리지 않는다: 같은 모델에 동시에 두 개 이상 제안 금지, 1단계 미완료 모델에 새 파라미터 금지, 근거 논문 없는 파라미터 금지(실무 관행만이면 '실무 근거'로 표시하고 사전값을 보수적으로), 공개 후 감쇠(McLean & Pontiff 2016)를 사전값에 반영.
 
+6-3. **당일 텐배거 리포트 3건 점검·수정**(2026-10-29 마스터 지시 "그날 하루 적은 3건의 텐배거 리포트 내용에 틀린 게 없는지 다시 점검하고, 분석이 올바른 과정으로 진행됐고 결론이 합리적으로 산출됐는지 모두 정량적으로 평가해 수정·보완하라. 당일 이외 리포트는 건들지 마라. 하루에 3건만"). 기존 1~6-2 단계는 그대로 하고 이 단계를 더한다.
+   a. 대상: `py scripts/proviser/report_audit.py --write` — outputs/tenbagger/reports/log.csv에서 **오늘 날짜의 가장 최근 3건**만. 다른 날짜 리포트는 열지도 고치지도 않는다. 3건이 안 되면 있는 것만(22:00 회차가 아직 안 끝났으면 끝날 때까지 기다리지 말고 끝난 것만 — 그래서 이 작업은 23:00에 돈다).
+   b. 자동 점검 13개(사실 4·과정 4·결론 5 — 데이터 검증 10/10, 시나리오 현재값 = 원자료, 원자료 조회일, 금액 $B 표기, 의무 절, 차트·렌더, 1차 출처, 보강 표시, 확률 합, 확률 가중값 재계산, v2와 차이 설명, 킬 조건·날짜, 처방 표현·면책)는 스크립트가 한다. 결과 docs/proviser/reports/<YYYYMMDD>.md.
+   c. 모델 점검(이 단계의 핵심 — 자동 점검이 못 보는 것): 리포트마다 ① **사실** — 머리 타일·판단 문장·핵심 표의 숫자를 1차 출처(8-K EX-99.1·10-Q·회사 IR·easyconomics 원자료)로 다시 열어 대조(숫자마다 출처·일치 여부) ② **과정** — 의무 절차(datapack_check 10/10 → build_drivers → v2 → v2_to_report --merge → 렌더)와 README '다른 접근'(역추적·기저율·사전 부검·경쟁 가설)을 따랐는지, 금지표 위반 고리 ③ **결론** — 판단 시나리오 확률·값이 근거와 맞는지, 치입 판단이 숫자에서 나오는지, v2와 다르면 원인이 설명됐는지, 반대 논리가 가장 강한 것인지 ④ **정량** — 10배 산술·손익분기(`py scripts/insight/insight_calc.py`)·확률 가중값·단위·분모·기간을 재계산 ⑤ **반증** — 킬 조건이 측정 가능하고 날짜가 붙었는지. 축마다 0.0~2.0(0.1 단위)과 근거 한 줄을 docs/proviser/reports/<YYYYMMDD>.md '프로바이저 판단'에 쓴다.
+   d. 최종 점수: `py scripts/proviser/report_audit.py --final <id> <사실> <과정> <결론> <정량> <반증> fixes=<정정 수> --write` → 0.6 × 루브릭 + 0.4 × 자동, 소수 첫째 자리(docs/proviser/reports/report_scores.csv).
+   e. **수정·보완**(틀렸거나 빠졌을 때만, 그날 3건만):
+      - 사실 오류·계산 오류·단위 표기: 그 리포트 JSON(outputs/tenbagger/reports/<오늘>_<티커>.json)의 해당 문장·숫자를 고친다. 밸류에이션 입력이 틀렸으면 그 종목 datapack을 원자료로 고치고 `build_drivers.py` → `v2_to_report.py <id> --merge <json>`을 다시 돈다.
+      - 빠진 의무 절(내러티브·수급·피보나치 등): 그 리포트의 재료(narrative·ohlcv·FINRA는 자동)를 채워 `v2_to_report.py --merge`로 넣는다. 오늘 안에 채울 수 없으면 '미확인 — 필요 자료'로 그 절을 만들어 둔다(지어내지 않는다).
+      - 결론이 숫자와 맞지 않으면: 판단 문장·시나리오를 고치고 무엇이 왜 바뀌었는지 남긴다. 결론 방향이 바뀌면 판단 문장 앞에 '(정정)'.
+      - 모든 수정은 리포트 맨 끝 절 **'정정 기록 — Chiip Proviser HH:MM'**에 '무엇을(전 → 후) · 왜 · 근거' 표로 남긴다(원래 판단을 지우지 않고 추적 가능하게).
+      - 그다음 `py scripts/tenbagger/report_html.py <json>` → 렌더 확인(차트 수 = svg 수) → 텔레그램 `notify.send_document(<html>, '[Chiip Ten-bagger Report MM/DD · Revised] 회사(티커) — 정정 n건: 한 줄', 'REPORT')` → `py scripts/publish_report.py <html> <json> …`(같은 파일 갱신). 수정이 없으면 다시 보내지 않는다.
+   f. 같은 감점이 3건 중 2건 이상에서 나오면 chiip-tenbagger 보강 지시(docs/proviser/chiip-tenbagger.md)로 올린다 — 내일 리포트부터 같은 오류가 나오지 않게(이 단계의 학습 고리).
+
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
-8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
-9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현, **파라미터 값을 직접 바꾸기·매일 피팅·채택**(값 변경은 Model Lab 일요일 채택 관문만 — 프로바이저가 고칠 수 있는 것은 등록부의 fit 정의·proposed 항목·제안서·queue), 마스터 고정값(`fixed_by_master: true`) 변경.
+8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
+9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만 — **예외: 6-3의 당일 텐배거 리포트 3건과 그 종목 datapack은 고칠 수 있다. 다른 날짜 리포트·다른 기능 산출물은 그대로**), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현, **파라미터 값을 직접 바꾸기·매일 피팅·채택**(값 변경은 Model Lab 일요일 채택 관문만 — 프로바이저가 고칠 수 있는 것은 등록부의 fit 정의·proposed 항목·제안서·queue), 마스터 고정값(`fixed_by_master: true`) 변경.
 10. git 커밋·푸시는 하지 않는다. 마스터 세션에서 일괄 커밋한다.

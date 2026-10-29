@@ -2111,6 +2111,13 @@ source: docs/methodology
 - 개정(같은 날 마스터 지시 "방위주에는 Kongsberg, CSG 같은 유럽 방위 종목도 넣어줘"): 그 밖 유럽 15개사 추가 → 기업 102. 상장 확인(거래소·회사 발표) — Kongsberg Gruppen(KOG, 오슬로 — 해양 부문은 2026-04-23 Kongsberg Maritime KMAR로 분리 상장, 방위 지도 밖), CSG(유로넥스트 암스테르담, 2026-01-23 상장·공모가 €25, 2026-10-29 시총 €14.8B), Saab·MilDef(스톡홀름), BAE Systems·QinetiQ·Babcock·Chemring(2025 Bain 제안 거절 보도, 2026 상태 확인 대기)·Cohort·Rolls-Royce(런던), Theon(암스테르담), Kitron(오슬로), Steyr Motors(프랑크푸르트 — **Red Cat 공개매수 주당 €39, 수락 기간 2026-12-18까지**, 발굴 후보 제외), 비상장 Nammo·Patria. `ec_ticker`(easyconomics 인자: BA.L·CSG.AS 등), `not_titles`(Kongsberg Maritime 제목은 방위 Kongsberg로 보지 않음), 뉴스룸 도메인 14개, 발굴 테마 후보 9개(CSG·Chemring·Kongsberg·Saab·Theon·Cohort·MilDef·Babcock 등). YAML이 국가 코드 NO를 false로 읽는 함정 → 따옴표.
 - 남은 한계: 미 국방부 일일 계약 본문(금액·업체)은 자동으로 못 읽는다 — 회사 보도자료·8-K로 확인. 유럽 규제 공시(EQS·AMF·SDIR·CNMV) 직접 수집은 다음 단계. SAM.gov는 키 필요(선택).
 
+### 21.41 Proviser — 당일 텐배거 리포트 3건 점검·수정 (2026-10-29 마스터 지시 "그날 하루 적은 3건의 텐배거 리포트 내용에 틀린 게 없는지 다시 점검하고, 분석이 올바른 과정으로 진행됐고 결론이 합리적으로 산출됐는지 모두 정량적으로 평가해 수정·보완하라. 당일 이외 리포트는 건들지 마라. 하루에 3건만. Proviser의 기능 중 하나로 추가하라. 기존 기능은 그대로")
+- 대상: outputs/tenbagger/reports/log.csv의 그날 가장 최근 3건. 다른 날짜는 열지도 고치지도 않는다.
+- 자동 점검 13개 `scripts/proviser/report_audit.py`(사실: 데이터 검증 10/10·시나리오 현재값 = 원자료·원자료 조회일·$B 표기 / 과정: 의무 절·차트 렌더·1차 출처·보강 표시 / 결론: 확률 합·확률 가중 재계산·v2와 차이 설명·킬 조건과 날짜·처방 표현과 면책) + 모델 점검(1차 출처 재대조·절차·결론·재계산·반증). 최종 = 0.6 × 루브릭 + 0.4 × 자동, 소수 첫째 자리(docs/proviser/reports/report_scores.csv).
+- 수정은 틀렸거나 빠진 것만: 그 리포트 JSON·그 종목 datapack → 다시 병합·렌더·발송('· Revised')·게시, 리포트 끝 '정정 기록' 절(전 → 후·이유·근거). 같은 감점이 2건 이상이면 chiip-tenbagger 보강 지시로.
+- 예약 작업 chiip-proviser 22:00 → 23:00(세 번째 리포트 22:00 뒤에 돌아야 같은 날 3건을 본다). 기존 기능(7개 평가·파라미터 단계)은 그대로.
+- 첫 자동 점검(2026-10-29): CBRS 6.5 · INIO 8.5 · PWR 10.0 — 오전 두 건은 나중에 의무화된 절과 $B 표기가 빠져 있다.
+
 ### 21.38 Proviser — 소수 첫째 자리 품질 점수·단계적 파라미터 최적화 (2026-10-29 마스터 지시 "각 시스템의 기능(산출물 품질)을 매일 10점 만점에 소수점 첫째 자리까지 평가하고, 높일 방안을 고민해 파라미터를 최적화하라. 더 필요하면 논문을 참조해 금융공학 박사로서 모델 디자인을 고도화하라. 억지로 늘리지 말고 피팅 후에도 안 되면 단계적으로 추가")
 - 점수 = (1 − w) × 루브릭(축 A~E 0.1 단위 − 운영 결함) + w × 성과 지표(로그에서 결정론 계산), w = 0.4 × N/(N+20)(뷸만 신뢰도). 소수 첫째 자리. `scripts/proviser/quality.py`, 기능별 지표·floor·target `config/proviser.yaml`. scores.csv에 rubric·kpi·kpi_w 열 추가.
 - 단계적 파라미터 설계 `scripts/fit/stepwise.py`: 0 데이터 확보 → 1 기존 피팅 → 2 잔차 진단(|t| ≥ 2 + 논문 근거 후보 1개만 proposed) → 3 유지. 확장 채택은 `harness.nested_test`(짝지은 표본 외 손실 t — Diebold & Mariano 1995, 누적 시도 수 본페로니 문턱 — Harvey·Liu·Zhu 2016) + 표본 외 관측 ≥ 10 × (파라미터 수 + 1)(Peduzzi et al. 1996). 등록부 `design` 절. 작업 지시 `knowledge/models/params/queue.yaml`(매일) → Model Lab 일요일 회차가 위에서부터 처리.
