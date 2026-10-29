@@ -32,13 +32,17 @@ def _fin():
     return _CACHE["fin"]
 
 
+KIND = {}   # 티커 → 보유|관심
+
+
 def _holdings():
     """[(보유 티커, 정규식)] — 회사명·별칭·티커"""
     if "held" not in _CACHE:
         out = []
         for h in (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []:
-            if h.get("status", "보유") != "보유":
+            if h.get("status", "보유") not in ("보유", "관심"):   # 관심 = 와치리스트(2026-10-30) — 상향은 같게, 등급은 P1(보유만 P0)
                 continue
+            KIND[h["ticker"]] = h.get("status", "보유")
             alts = [r"\b" + re.escape(n) + r"\b" for n in (h.get("names") or [h["name"]])] + [r"\b" + re.escape(h["ticker"]) + r"\b"]
             out.append((h["ticker"], re.compile("|".join(alts), re.I)))
         _CACHE["held"] = out
@@ -114,7 +118,7 @@ def _related():
     if "related" not in _CACHE:
         out = []
         for h in (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []:
-            if h.get("status", "보유") != "보유":
+            if h.get("status", "보유") not in ("보유", "관심"):
                 continue
             for n in h.get("related") or []:
                 out.append((h["ticker"], n, re.compile(rf"\b{re.escape(n)}\b", re.I)))
@@ -158,7 +162,7 @@ def match(item):
     if firm or short:
         target = next((tk for tk, pat in _holdings() if pat.search(title)), None)
         if target and (firm or sh["terms"].search(title)):
-            return f"규칙 상향: 보유 종목 {target} 숏 리포트", f"short:{target}"
+            return f"규칙 상향: {KIND.get(target, '보유')} 종목 {target} 숏 리포트", f"short:{target}"
         org = _fin()["orgs"].search(title)
         tk = re.search(r"\((?:NASDAQ|NYSE|NYSEAMERICAN|TSX|ASX)?:?\s*([A-Z]{1,5})\)", title)
         if (firm or sh["terms"].search(title)) and (ents or org or (site and tk)):
@@ -184,7 +188,7 @@ def match(item):
         if pat.search(title):
             cls = next((k for k, rx in EVENT_CLASS if rx.search(title)), "event" if re.search(ev, title, re.I) else None)
             if cls:   # 사건 문구가 없는 시황('shares edge higher')은 올리지 않는다. 같은 사건 기사 여러 건은 종목×사건 종류로 묶는다
-                return f"규칙 상향: 보유 종목 {tk}", f"held:{tk}:{cls}"
+                return f"규칙 상향: {KIND.get(tk, '보유')} 종목 {tk}", f"held:{tk}:{cls}"
     m = r.get("frontier_ipo") or {}
     if m:
         terms = re.compile(m["terms"], re.I)

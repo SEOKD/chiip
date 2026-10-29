@@ -52,7 +52,7 @@ SEEN_CAP = 400
 
 
 def holdings():
-    return [h for h in (common.load_yaml(CFG) or {}).get("holdings") or [] if h.get("status", "보유") == "보유"]
+    return [h for h in (common.load_yaml(CFG) or {}).get("holdings") or [] if h.get("status", "보유") in ("보유", "관심")]   # 관심 = 와치리스트(2026-10-30) — 팔로업은 같게
 
 
 def events():

@@ -60,7 +60,7 @@ def extra_focus():
 def portfolio_ids():
     """마스터 포트폴리오 보유 종목 id — 레이더·어닝 캘린더가 점수와 무관하게 항상 포함"""
     hs = (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []
-    return {h["id"] for h in hs if h.get("status", "보유") == "보유" and h.get("id")}
+    return {h["id"] for h in hs if h.get("status", "보유") in ("보유", "관심") and h.get("id")}   # 관심(와치리스트)도 추적
 
 
 def watch_ids():

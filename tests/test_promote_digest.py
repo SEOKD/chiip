@@ -19,7 +19,40 @@ def item(title, ents=("co-broadcom",), pub=None, doc="기사", sid="src-news7-fo
     return {"title": title, "entities_matched": list(ents), "publisher": pub, "doc_type": doc, "source_id": sid, "snippet": ""}
 
 
+# 시험용 고정 포트폴리오(2026-10-29 구성 — MRVL·CBRS 보유). 실제 config/portfolio.yaml이 바뀌어도 규칙 시험은 그대로(2026-10-30)
+_FIXED_PF = {"holdings": [
+    {"id": "co-marvell", "ticker": "MRVL", "name": "Marvell Technology", "names": ["Marvell"], "status": "보유",
+     "related": ["Broadcom", "Alchip", "Credo", "Astera Labs", "Trainium", "Maia", "MediaTek"]},
+    {"id": "us-cbrs", "ticker": "CBRS", "name": "Cerebras Systems Inc.", "names": ["Cerebras", "Cerebras Systems"], "status": "보유",
+     "related": ["Etched", "Groq", "SambaNova", "G42", "MBZUAI", "Paricon"]}]}
+
+
+def _pin_portfolio(cls):
+    orig = promote.common.load_yaml
+
+    def fake(rel):
+        return _FIXED_PF if str(rel).replace("\\", "/").endswith("config/portfolio.yaml") else orig(rel)
+    cls._orig_load = orig
+    promote.common.load_yaml = fake
+    promote._CACHE.clear()
+    promote.KIND.clear()
+
+
+def _unpin_portfolio(cls):
+    promote.common.load_yaml = cls._orig_load
+    promote._CACHE.clear()
+    promote.KIND.clear()
+
+
 class TestPromote(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        _pin_portfolio(cls)
+
+    @classmethod
+    def tearDownClass(cls):
+        _unpin_portfolio(cls)
+
     def test_misses_of_20261029_now_promoted(self):
         self.assertIn("대형 거래", promote.match(item("Wall Street banks, Blackstone line up $63 billion to finance Broadcom AI chips for Anthropic - Reuters", pub="Reuters"))[0])
         self.assertIn("WSJ 단독", promote.match(item("Exclusive | Broadcom CEO Intervened to Seal Debt Deal - WSJ", pub="WSJ"))[0])

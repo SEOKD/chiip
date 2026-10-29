@@ -19,7 +19,40 @@ def judge(title, publisher, source_id):
     return promote.level_for(it, hit[0]) if hit else None
 
 
+# 시험용 고정 포트폴리오(2026-10-29 구성 — MRVL·CBRS 보유). 실제 config/portfolio.yaml이 바뀌어도 규칙 시험은 그대로(2026-10-30)
+_FIXED_PF = {"holdings": [
+    {"id": "co-marvell", "ticker": "MRVL", "name": "Marvell Technology", "names": ["Marvell"], "status": "보유",
+     "related": ["Broadcom", "Alchip", "Credo", "Astera Labs", "Trainium", "Maia", "MediaTek"]},
+    {"id": "us-cbrs", "ticker": "CBRS", "name": "Cerebras Systems Inc.", "names": ["Cerebras", "Cerebras Systems"], "status": "보유",
+     "related": ["Etched", "Groq", "SambaNova", "G42", "MBZUAI", "Paricon"]}]}
+
+
+def _pin_portfolio(cls):
+    orig = promote.common.load_yaml
+
+    def fake(rel):
+        return _FIXED_PF if str(rel).replace("\\", "/").endswith("config/portfolio.yaml") else orig(rel)
+    cls._orig_load = orig
+    promote.common.load_yaml = fake
+    promote._CACHE.clear()
+    promote.KIND.clear()
+
+
+def _unpin_portfolio(cls):
+    promote.common.load_yaml = cls._orig_load
+    promote._CACHE.clear()
+    promote.KIND.clear()
+
+
 class TestMissedEvents(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        _pin_portfolio(cls)
+
+    @classmethod
+    def tearDownClass(cls):
+        _unpin_portfolio(cls)
+
     def test_marvell_lumentum(self):
         for title, pub, src in [("Marvell Is Said to Near Megadeal for Lumentum in AI Push", "Bloomberg", "src-bbg-direct"),
                                 ("Marvell in Talks to Buy Lumentum - The Information", "The Information", "src-news7-focus"),
