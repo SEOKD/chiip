@@ -2038,5 +2038,5 @@ source: docs/methodology
 - 결정론 관문 `radar/portfolio.py`(매시): SEC submissions 새 제출 전부(점수: 실적 10·중요 8-K 8·정기 보고서·증권신고서 6·Form 4 3·425 2), Google News 색인 제목(보도자료 3사·9개 매체·IB 커버리지 문구·커뮤니티 사이트), ApeWisdom 공개 API(레딧 등 언급 수 — 레딧은 robots.txt 전면 차단이라 직접 수집 안 함, 언급 10회 이상·24시간 전의 3배 이상 = 급증), 위키백과 조회수(하루 1회, 28일 중앙값의 3배·300회 이상), Hacker News(하루 1회), events 일정의 전날·당일 알림. 처음 보는 종목은 48시간 이내만(첫 회차 폭주 방지). 새 자료도 데일리도 없으면 종료.
 - 모델 몫(easyconomics): 실적 요약·어닝콜(라이선스 취급 — 자기 말 요약)·애널리스트 질문·컨센서스·목표가·내부자·공매도·락업·포지셔닝. 데일리 = 화~토 07시 이후 첫 회차(미국 월~금 장 마감 다음 날). 커버리지 숫자는 `--record`로 `knowledge/models/portfolio/coverage.csv`에 쌓고 전일 대비를 스크립트가 계산. 일정은 `--event`.
 - 연결: 레이더 수집 관문(`gate.portfolio_ids` → extra_focus)·어닝 캘린더(알파 점수와 무관하게 보유 종목 포함, '보유' 표시)·감시 목록(us-ccxi 추가, co-enchantedrock 상장 반영).
-- 예약 작업 `chiip-portfolio`(매시 35분, `docs/tasks/chiip-portfolio.md`) — 등록은 자동 모드 분류기 거부로 마스터 승인 대기. 프로바이저 7번째 대상(`docs/proviser/chiip-portfolio.md`, 교차 전파 지시 4개).
+- 예약 작업 `chiip-portfolio`(매시 35분, `docs/tasks/chiip-portfolio.md`) — 마스터 승인 후 등록(2026-10-29), 프로바이저 예약 작업도 7개 대상으로 개정. 프로바이저 7번째 대상(`docs/proviser/chiip-portfolio.md`, 교차 전파 지시 4개).
 - invest 모드: local-only·필드 인텔·노션 Informations IB 요지 금지, '사라/팔아라/보유하라'·목표주가·비중 지시 금지(애널리스트 목표가는 제3자 숫자로 출처와 함께), 하단 면책 문구.

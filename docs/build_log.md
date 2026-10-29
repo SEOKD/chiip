@@ -60,7 +60,7 @@
 - ten-bagger 30분 주기(마스터 지시): 매시 15·45분(pulse 00·30분과 엇갈림), 관문 = radar/state/tenbagger_last.txt 이후 새 병목 신호(카드·페어·내러티브·pulse 원본·5점 이상 판단) 없으면 즉시 종료, 전 종목 재산정은 토요일 첫 회차·월간 점검은 첫 토요일 첫 회차만, 신규 후보 하루 2개 상한. 프로바이저 D-04 갱신
 - ten-bagger easyconomics 데이터(마스터 지시): 후보·알파 대상 종목마다 재무·실적 지표·컨센서스·어닝콜·수출(trade_nowcast), 하루 한 번 매크로 컴포짓·유동성 모니터·시장 포지셔닝(radar/state/tenbagger_market_<날짜>.md 재사용). 1차 자료와 다르면 1차 우선, 실패는 미확인, 원문 통째 저장 금지
 - pulse 개정(마스터 지시): 미보도 원문만(영어권·국내 언론 검색으로 보도 여부 확인, 보도됐으면 제외, 없으면 '없음'), 8-K 첨부·보도자료 속 숨은 이름까지 끝까지 훑기, 한 통에 미보도 원문 + 알파 레이더 함께, '작성' 대기열 적재 중단
-- Chiip Portfolio(§21.23, 마스터 지시): `config/portfolio.yaml`(EROC·INIO·CCXI·MRVL·PWR — SEC cik로 실체 확인, CCXI = Agility Robotics 합병 스팩·환매 마감 10/29 17:00 ET·주총 11/2), 결정론 관문 `radar/portfolio.py`(SEC 새 제출·Google News 색인 보도자료·9개 매체·IB 커버리지·커뮤니티 제목·ApeWisdom 레딧 언급·위키 조회·HN·일정 알림, 커버리지 기록·전일 대비, 일정 추가), 레이더 관문·어닝 캘린더 보유 종목 포함, 시험 6개, 첫 실행 6건(INIO 3Q 실적 8-K·CCXI 일정·MRVL 레딧 언급 18회/전일 1회). 예약 작업 chiip-portfolio(매시 35분)는 분류기 거부 → 마스터 승인 대기, 프로바이저 7번째 대상
+- Chiip Portfolio(§21.23, 마스터 지시): `config/portfolio.yaml`(EROC·INIO·CCXI·MRVL·PWR — SEC cik로 실체 확인, CCXI = Agility Robotics 합병 스팩·환매 마감 10/29 17:00 ET·주총 11/2), 결정론 관문 `radar/portfolio.py`(SEC 새 제출·Google News 색인 보도자료·9개 매체·IB 커버리지·커뮤니티 제목·ApeWisdom 레딧 언급·위키 조회·HN·일정 알림, 커버리지 기록·전일 대비, 일정 추가), 레이더 관문·어닝 캘린더 보유 종목 포함, 시험 6개, 첫 실행 6건(INIO 3Q 실적 8-K·CCXI 일정·MRVL 레딧 언급 18회/전일 1회). 예약 작업 chiip-portfolio(매시 35분) 마스터 승인 후 등록·프로바이저 예약 작업 7개 대상으로 개정
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`
