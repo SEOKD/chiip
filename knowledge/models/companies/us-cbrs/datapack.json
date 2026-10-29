@@ -5,7 +5,9 @@
  "as_of": "2026-10-28",
  "unit": "B$",
  "industry": "semiconductor",
- "region_mix": {"US": 1.0},
+ "region_mix": {
+  "US": 1.0
+ },
  "tax": 0.21,
  "profile": {
   "price": 112.56,
@@ -17,7 +19,10 @@
  },
  "dilution": {
   "potential_total": 0.076011,
-  "options": null, "rsu": null, "warrants": null, "converts_shares": 0.0,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
   "date": "2026-06-30",
   "source": "SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount 2026-06-30 = 76,011,000주(옵션·RSU·워런트 합 — 종류별 분해는 10-Q 본문 미확인). OpenAI 워런트(구매 실적 연동)도 포함된 것으로 보고 전량 반영(보수적)"
  },
@@ -33,17 +38,36 @@
   "note": "TTM = 2025Q3~2026Q2 4개 분기 합(매출 135.7+171.4+193.4+180.1백만$, 영업이익 −26.5−33.7−15.0−477.2백만$). 2Q26 영업손실에 상장 관련 SBC 3.77억$ 포함. 투하자본 = 자기자본 9.155 + 차입 0.918 + 리스 0.568 − 현금·단기투자 7.922(영업 접근 — 운전자본 0.459 + 유형자산 1.515 + 기타 장기자산 0.991 − 기타 장기부채 0.245 — 과 일치). 현금흐름표는 2025년 하반기 분기 값이 비어 있어 설비투자·감가상각·SBC는 1H26만"
  },
  "consensus": {
-  "rev": {"FY2026": 0.8904, "FY2027": 2.9136},
+  "rev": {
+   "FY2026": 0.8904,
+   "FY2027": 2.9136
+  },
   "rev_basis": "core",
-  "ebit_margin": {"FY2026": -0.18, "FY2027": 0.025},
+  "ebit_margin": {
+   "FY2026": -0.18,
+   "FY2027": 0.025
+  },
   "margin_basis": "non_gaap",
   "n_analysts": 14,
-  "quarters_est": {"2026Q3": 0.2147, "2026Q4": 0.2745, "2027Q1": 0.4027, "2027Q2": 0.5670, "2027Q3": 0.8220, "2027Q4": 1.1219},
-  "quarters_act": {"2026Q1": 0.1913, "2026Q2": 0.2099},
+  "quarters_est": {
+   "2026Q3": 0.2147,
+   "2026Q4": 0.2745,
+   "2027Q1": 0.4027,
+   "2027Q2": 0.567,
+   "2027Q3": 0.822,
+   "2027Q4": 1.1219
+  },
+  "quarters_act": {
+   "2026Q1": 0.1913,
+   "2026Q2": 0.2099
+  },
   "note": "매출 = easyconomics 분기 컨센서스·실적 합(코어 기준 — 회사 '코어 매출'. 2Q26 GAAP 1.801 vs 코어 2.099, 차이는 비현금 차감 항목으로 추정·미확인). FY2026 이익률 = 회사 코어 영업이익률 가이던스 중간(−18%) — 컨센서스 영업이익 미제공. FY2027 = EPS 컨센서스 합 1.279$ × 희석 주식 0.3042 = 순이익 0.389 − 이자수익(현금 7.922 × 4%) 0.317, 세금 0(이월결손금) → 영업이익 0.072 ÷ 매출 2.914 = 2.5%(EPS 실적치가 GAAP과 달라 비GAAP 기준으로 봄)"
  },
  "guidance": {
-  "rev_fy0": [0.880, 0.890],
+  "rev_fy0": [
+   0.88,
+   0.89
+  ],
   "rev_basis": "core",
   "ebit_margin_fy0": -0.18,
   "margin_basis": "non_gaap",
@@ -56,25 +80,117 @@
   "tone_score": 7.4,
   "tone_delta": 1.1,
   "guidance_direction": "raise",
-  "kpis": {"rpo_b": 25.4, "core_gross_margin_2q": 0.406, "dc_capacity_mw": 600, "liquidity_b": 8.6, "revolver_b": 0.85},
-  "guidance_changes": ["FY2026 코어 매출 가이던스 상향", "3Q 코어 총마진 38~40%를 저점으로 제시", "2027 코어 매출 3배 초과"],
-  "new_topics": ["AMD Helios·AWS Trainium 분리형 추론(프리필/디코드)", "CS-4 공개·CS-5 2027 하반기", "AWS Bedrock 2027 1분기"],
-  "analyst_focus": ["UBS", "TD Cowen", "Barclays", "Needham", "Morgan Stanley", "Mizuho"],
-  "risks": ["OpenAI·AWS 고객 집중", "데이터센터 확보·구축 지연", "임차 시스템으로 인한 총마진 하락(3Q 저점)", "웨이퍼 현장 수명·교체 CAPEX(숏 리포트 논점)", "락업 해제(11/10 전후)"],
+  "kpis": {
+   "rpo_b": 25.4,
+   "core_gross_margin_2q": 0.406,
+   "dc_capacity_mw": 600,
+   "liquidity_b": 8.6,
+   "revolver_b": 0.85
+  },
+  "guidance_changes": [
+   "FY2026 코어 매출 가이던스 상향",
+   "3Q 코어 총마진 38~40%를 저점으로 제시",
+   "2027 코어 매출 3배 초과"
+  ],
+  "new_topics": [
+   "AMD Helios·AWS Trainium 분리형 추론(프리필/디코드)",
+   "CS-4 공개·CS-5 2027 하반기",
+   "AWS Bedrock 2027 1분기"
+  ],
+  "analyst_focus": [
+   "UBS",
+   "TD Cowen",
+   "Barclays",
+   "Needham",
+   "Morgan Stanley",
+   "Mizuho"
+  ],
+  "risks": [
+   "OpenAI·AWS 고객 집중",
+   "데이터센터 확보·구축 지연",
+   "임차 시스템으로 인한 총마진 하락(3Q 저점)",
+   "웨이퍼 현장 수명·교체 CAPEX(숏 리포트 논점)",
+   "락업 해제(11/10 전후)"
+  ],
   "source": "easyconomics earnings_summary 2026-08-12 + 실적 변화 레이더(톤 7.4, 직전 6.3, 가이던스 상향)"
  },
  "peers_basis": "ttm",
  "peers": [
-  {"ticker": "NVDA", "ev_sales": 17.055, "growth": 1.059, "ebit_margin": 0.662},
-  {"ticker": "AMD", "ev_sales": 22.647, "growth": 0.501, "ebit_margin": 0.1725},
-  {"ticker": "AVGO", "ev_sales": 19.246, "growth": 0.855, "ebit_margin": 0.543},
-  {"ticker": "MRVL", "ev_sales": 23.494, "growth": 0.365, "ebit_margin": 0.1668},
-  {"ticker": "CRWV", "ev_sales": 10.716, "growth": 1.125, "ebit_margin": -0.019}
+  {
+   "ticker": "NVDA",
+   "rev": 302.97,
+   "ebit_margin": 0.66237,
+   "mcap": 5200.781,
+   "pb": 22.712,
+   "debt": 38.86,
+   "cash": 62.469,
+   "ev_sales": 17.055,
+   "growth": 1.059,
+   "goodwill": 21.125,
+   "intangibles": 2.998
+  },
+  {
+   "ticker": "AMD",
+   "rev": 41.305,
+   "ebit_margin": 0.1725,
+   "mcap": 944.289,
+   "pb": 14.043,
+   "debt": 4.276,
+   "cash": 13.111,
+   "ev_sales": 22.647,
+   "growth": 0.501,
+   "goodwill": 25.47,
+   "intangibles": 15.635
+  },
+  {
+   "ticker": "AVGO",
+   "rev": 89.104,
+   "ebit_margin": 0.54307,
+   "mcap": 1679.411,
+   "pb": 16.848,
+   "debt": 59.419,
+   "cash": 23.975,
+   "ev_sales": 19.246,
+   "growth": 0.855,
+   "goodwill": 97.801,
+   "intangibles": 26.325
+  },
+  {
+   "ticker": "MRVL",
+   "rev": 9.4503,
+   "ebit_margin": 0.16679,
+   "mcap": 226.159,
+   "pb": 11.907,
+   "debt": 5.286,
+   "cash": 3.933,
+   "ev_sales": 23.494,
+   "growth": 0.365,
+   "goodwill": 13.874,
+   "intangibles": 2.347
+  },
+  {
+   "ticker": "CRWV",
+   "rev": 7.59,
+   "ebit_margin": -0.01903,
+   "mcap": 35.26,
+   "pb": 7.011,
+   "debt": 51.613,
+   "cash": 5.539,
+   "ev_sales": 10.716,
+   "growth": 1.125,
+   "goodwill": 1.101,
+   "intangibles": 0.245
+  }
  ],
- "peers_source": "easyconomics company_profile(yfinance) 2026-10-28 — EV/매출·매출 성장·영업이익률 모두 최근 12개월(TTM). AI 가속기 4사 + AI 클라우드 1사(Cerebras 매출의 다수가 클라우드)",
+ "peers_source": "easyconomics company_profile(yfinance) 2026-10-28 — EV/매출·영업이익률·매출·시가총액·PBR·차입·현금 모두 최근 12개월(TTM), 성장 = 최근 분기 전년 대비. ROIC는 엔진이 NOPAT ÷ (자기자본(시총÷PBR)+차입−현금)으로 계산(영업권 포함). AI 가속기 4사 + AI 클라우드 1사(Cerebras 매출의 다수가 클라우드) · 영업권·무형자산 = SEC XBRL companyfacts(Goodwill, IntangibleAssetsNetExcludingGoodwill, 최신 10-Q, 조회 2026-10-29) — 신규 투자 수익률(RONIC)·자본 회전율은 영업권·인수 무형자산을 뺀 투하자본으로",
  "sbc_pct_rev": 0.06,
  "overrides": {
-  "margin_base": {"target": 0.22, "year_target": 4, "lr": 0.15, "lam": 0.35},
+  "margin_base": {
+   "target": 0.22,
+   "year_target": 4,
+   "lr": 0.15,
+   "lam": 0.35
+  },
   "s2c": 1.0,
   "why": "목표 영업이익률 22%(GAAP, SBC 포함): AI 가속기 동종 AMD 17%·MRVL 17%와 회사 장기 코어 총마진 60%+ 목표 사이 — 클라우드 감가상각 부담 반영 / 매출÷투하자본 1.0: 자체 클라우드 장비 보유형(1H26 설비투자 5.49억$ > 매출 3.74억$, 최대 고객이 데이터센터 투자 일부 보전) — 램프 초기 TTM 값은 대표성 없음 / SBC 6%: 비GAAP 이익률(가이던스·EPS 컨센서스)을 GAAP으로 맞추는 차감 — 상장 전 1Q26 5.0%, 상장 후 RSU 정상 수준 미확인"
  },
@@ -86,17 +202,223 @@
  ],
  "raw": {
   "retrieved_at": "2026-10-29T17:20:00+09:00",
-  "easyconomics_profile": {"price": 112.56, "market_cap": 26.740, "enterprise_value": 20.306, "shares_outstanding_yf": 0.112247, "total_cash": 7.9215, "total_debt": 1.4871, "revenue_ttm": 0.68067, "ev_sales": 29.832, "revenue_growth": 0.743, "analyst_total": 14, "eps_forward": 1.27368, "operating_margin_ttm": -2.64968},
+  "easyconomics_profile": {
+   "price": 112.56,
+   "market_cap": 26.74,
+   "enterprise_value": 20.306,
+   "shares_outstanding_yf": 0.112247,
+   "total_cash": 7.9215,
+   "total_debt": 1.4871,
+   "revenue_ttm": 0.68067,
+   "ev_sales": 29.832,
+   "revenue_growth": 0.743,
+   "analyst_total": 14,
+   "eps_forward": 1.27368,
+   "operating_margin_ttm": -2.64968
+  },
   "shares_cover_implied": 0.23756,
   "quarters_gaap": {
-   "rev": {"2025Q3": 0.135714, "2025Q4": 0.171443, "2026Q1": 0.193406, "2026Q2": 0.180110},
-   "op_income": {"2025Q3": -0.026469, "2025Q4": -0.033741, "2026Q1": -0.015037, "2026Q2": -0.477233}
+   "rev": {
+    "2025Q3": 0.135714,
+    "2025Q4": 0.171443,
+    "2026Q1": 0.193406,
+    "2026Q2": 0.18011
+   },
+   "op_income": {
+    "2025Q3": -0.026469,
+    "2025Q4": -0.033741,
+    "2026Q1": -0.015037,
+    "2026Q2": -0.477233
+   }
   },
-  "balance_2026_06_30": {"cash": 6.742, "st_investments": 1.179, "debt_current": 0.736, "debt_lt": 0.182, "lease_current": 0.088, "lease_lt": 0.480, "equity": 9.155, "shares": 0.228204},
-  "cashflow_1h26": {"capex": 0.5489, "da": 0.0426, "sbc": 0.3866},
-  "estimates_sales_m": {"2026Q1_act": 191.348, "2026Q2_act": 209.869, "2026Q3": 214.7029, "2026Q4": 274.4635, "2027Q1": 402.7222, "2027Q2": 567.0025, "2027Q3": 821.9707, "2027Q4": 1121.9419},
-  "estimates_eps": {"2027Q1": -0.0762, "2027Q2": 0.1144, "2027Q3": 0.4684, "2027Q4": 0.7722},
-  "sec": {"antidilutive_2026_06_30": 0.076011, "sbc_2026Q2": 0.377008},
-  "radar_2026_08_12": {"tone_score": 7.4, "prev_tone_score": 6.3, "guidance_direction": "raise"}
+  "balance_2026_06_30": {
+   "cash": 6.742,
+   "st_investments": 1.179,
+   "debt_current": 0.736,
+   "debt_lt": 0.182,
+   "lease_current": 0.088,
+   "lease_lt": 0.48,
+   "equity": 9.155,
+   "shares": 0.228204
+  },
+  "cashflow_1h26": {
+   "capex": 0.5489,
+   "da": 0.0426,
+   "sbc": 0.3866
+  },
+  "estimates_sales_m": {
+   "2026Q1_act": 191.348,
+   "2026Q2_act": 209.869,
+   "2026Q3": 214.7029,
+   "2026Q4": 274.4635,
+   "2027Q1": 402.7222,
+   "2027Q2": 567.0025,
+   "2027Q3": 821.9707,
+   "2027Q4": 1121.9419
+  },
+  "estimates_eps": {
+   "2027Q1": -0.0762,
+   "2027Q2": 0.1144,
+   "2027Q3": 0.4684,
+   "2027Q4": 0.7722
+  },
+  "sec": {
+   "antidilutive_2026_06_30": 0.076011,
+   "sbc_2026Q2": 0.377008
+  },
+  "radar_2026_08_12": {
+   "tone_score": 7.4,
+   "prev_tone_score": 6.3,
+   "guidance_direction": "raise"
+  },
+  "price_history_points": {
+   "2026-05-14": 311.07,
+   "2026-05-29": 236.99,
+   "2026-06-12": 214.0,
+   "2026-06-22": 224.43,
+   "2026-06-30": 221.0,
+   "2026-07-15": 184.01,
+   "2026-07-31": 198.71,
+   "2026-08-11": 234.76,
+   "2026-08-14": 218.98,
+   "2026-08-31": 184.24,
+   "2026-09-15": 184.03,
+   "2026-09-30": 177.65,
+   "2026-10-15": 142.17,
+   "2026-10-28": 112.56
+  },
+  "peer_goodwill_sec": {
+   "NVDA": {
+    "Goodwill": [
+     "2026-07-26",
+     21.125
+    ],
+    "IntangibleAssetsNetExcludingGoodwill": [
+     "2026-07-26",
+     2.998
+    ],
+    "FiniteLivedIntangibleAssetsNet": [
+     "2026-07-26",
+     2.998
+    ]
+   },
+   "AMD": {
+    "Goodwill": [
+     "2026-06-27",
+     25.47
+    ],
+    "IntangibleAssetsNetExcludingGoodwill": [
+     "2026-06-27",
+     15.635
+    ],
+    "FiniteLivedIntangibleAssetsNet": [
+     "2026-06-27",
+     15.635
+    ]
+   },
+   "AVGO": {
+    "Goodwill": [
+     "2026-08-02",
+     97.801
+    ],
+    "IntangibleAssetsNetExcludingGoodwill": [
+     "2026-08-02",
+     26.325
+    ],
+    "FiniteLivedIntangibleAssetsNet": [
+     "2026-08-02",
+     26.325
+    ]
+   },
+   "MRVL": {
+    "Goodwill": [
+     "2026-08-01",
+     13.874
+    ],
+    "IntangibleAssetsNetExcludingGoodwill": [
+     "2026-08-01",
+     2.347
+    ],
+    "FiniteLivedIntangibleAssetsNet": [
+     "2026-08-01",
+     1.05
+    ]
+   },
+   "CRWV": {
+    "Goodwill": [
+     "2026-06-30",
+     1.101
+    ],
+    "IntangibleAssetsNetExcludingGoodwill": [
+     "2026-06-30",
+     0.245
+    ],
+    "FiniteLivedIntangibleAssetsNet": [
+     "2026-06-30",
+     0.215
+    ]
+   }
+  }
+ },
+ "history": {
+  "basis": "EV/TTM 매출 — 상장 이후 반월 간격 종가(easyconomics company_price_history), 완전 희석 주식·현재 순현금 고정(근사), TTM은 그 날짜에 공개된 4분기 합(5/14~6/22 0.510, 6/23~8/11 0.604, 8/12~ 0.681)",
+  "ev_sales": [
+   {
+    "date": "2026-05-14",
+    "value": 173.0
+   },
+   {
+    "date": "2026-05-29",
+    "value": 128.8
+   },
+   {
+    "date": "2026-06-12",
+    "value": 115.1
+   },
+   {
+    "date": "2026-06-22",
+    "value": 121.3
+   },
+   {
+    "date": "2026-06-30",
+    "value": 100.7
+   },
+   {
+    "date": "2026-07-15",
+    "value": 82.1
+   },
+   {
+    "date": "2026-07-31",
+    "value": 89.5
+   },
+   {
+    "date": "2026-08-11",
+    "value": 107.6
+   },
+   {
+    "date": "2026-08-14",
+    "value": 88.4
+   },
+   {
+    "date": "2026-08-31",
+    "value": 72.9
+   },
+   {
+    "date": "2026-09-15",
+    "value": 72.8
+   },
+   {
+    "date": "2026-09-30",
+    "value": 69.9
+   },
+   {
+    "date": "2026-10-15",
+    "value": 54.1
+   },
+   {
+    "date": "2026-10-28",
+    "value": 40.8
+   }
+  ]
  }
 }
