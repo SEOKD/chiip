@@ -45,6 +45,8 @@ LEVEL_WORD_RE = re.compile(r"(?<![\w/.=-])P[0-3](?![\w/.=-])(\s?·\s?|\s)?")   #
 def brand(text):
     """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
     text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", (text or "").replace(*BRAND))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
+    # 회사 설명 줄의 '모델:'·'성장:'·'내러티브:' 머리말은 빼고 내용만(마스터 지시 2026-10-30)
+    text = re.sub(r"(?m)^(☞\s*)?(?:비즈니스\s*)?(?:모델|성장(?:\s*동력)?|내러티브)\s*[:：]\s*", r"\1", text)
     for ko, en in LABELS:
         text = text.replace(ko, en)
     return money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text)))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)

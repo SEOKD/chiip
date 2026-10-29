@@ -28,7 +28,7 @@ class TestAlertFormat(unittest.TestCase):
         msg = notify.format_item("P1", ITEM, points=["a", "b", "c", "d"], profile=["모델", "성장", "내러티브"])
         head, prof, pts = msg.split("\n\n")
         self.assertTrue(head.startswith("Quanta Services(PWR)｜<a href="))
-        self.assertTrue(head.endswith("｜21:05"))
+        self.assertTrue(head.endswith("21:05"))   # 오늘이 아니면 날짜가 붙는다
         self.assertEqual(prof, "☞ 모델\n성장\n내러티브")
         self.assertEqual(pts.splitlines(), ["• a", "• b", "• c"])   # 핵심은 3개까지
         self.assertNotIn("P1", msg)                                  # 등급 코드 비노출 유지
