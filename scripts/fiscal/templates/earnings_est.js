@@ -19,8 +19,9 @@ async () => {
     const r = rows.sort((a, b) => String(a.asOf) < String(b.asOf) ? -1 : 1).slice(-1)[0];
     return r ? { est: r.mean, src: "zacks", asOf: r.asOf, n: r.numEstimates } : null;
   };
-  const fis = (d, key) => { const c = d && d.metricsValues[key]; return c && c.mean != null && pre(c.asOf) ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf, basis: c.basis, actual: c.actual } : null; };
-  const lines = { revenue: ["revenue", "analyst_revenue"], ebit_adjusted: ["ebit_adjusted", "analyst_ebit"], ebit: ["ebit", null], eps_adjusted: ["eps_adjusted", "analyst_eps"], eps_gaap: ["eps_gaap", null],
+  // guidance_calculated(연간 가이던스를 분기로 나눈 값)는 분기 기대치가 아니다 — Zacks로 넘긴다(2026-10-30 FTAI)
+  const fis = (d, key) => { const c = d && d.metricsValues[key]; return c && c.mean != null && pre(c.asOf) && !(d.periodType === "Quarterly" && c.source === "guidance_calculated") ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf, basis: c.basis, actual: c.actual } : null; };
+  const lines = { revenue: ["revenue", "analyst_revenue"], ebitda_adjusted: ["ebitda_adjusted", "analyst_ebitda"], ebit_adjusted: ["ebit_adjusted", "analyst_ebit"], ebit: ["ebit", null], eps_adjusted: ["eps_adjusted", "analyst_eps"], eps_gaap: ["eps_gaap", null],
     gross_profit: ["gross_profit", null], operating_cash_flow: ["operating_cash_flow", null], capex: ["capex", null], free_cash_flow: ["free_cash_flow", null] };
   const pickFor = d => {
     if (!d) return null;

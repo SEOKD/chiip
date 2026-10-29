@@ -30,7 +30,7 @@ After +3%
 ```
 - 지표는 그 회사의 실적을 가르는 것만(반도체 장비: 수주·수주잔고·지역별 매출, 메모리: 비트 출하·ASP, 클라우드: 클라우드 성장률·RPO 등). 순서: 매출 → 핵심 사업 지표 → 이익률 → EPS → 현금흐름·설비투자.
 - **est. 출처 순위(마스터 지시 2026-10-30 "Fiscal.ai 1순위, Zacks 2순위")** — 본보기 `scripts/fiscal/templates/earnings_est.js`가 지표마다 고른다.
-  1. **Fiscal.ai 자체 추정** `company_estimates`(가이던스·모델·Agentic Consensus — 애널리스트 설문이 아니다). 발표한 분기에는 Fiscal이 발표 전에 얼려 둔 추정이 남는다. **asOf가 발표일 전날 이전인 칸만** 쓴다 — 발표 당일·이후 asOf는 새 가이던스로 덮어쓴 값이라 '가이던스 vs est.' 비교가 무너진다(Fiscal 추정은 이력이 없다).
+  1. **Fiscal.ai 자체 추정** `company_estimates`(가이던스·모델·Agentic Consensus — 애널리스트 설문이 아니다). 발표한 분기에는 Fiscal이 발표 전에 얼려 둔 추정이 남는다. **asOf가 발표일 전날 이전인 칸만** 쓴다. source가 `guidance_calculated`(연간 가이던스를 분기로 나눈 값)인 분기 칸은 기대치가 아니므로 쓰지 않고 2순위로 넘긴다(2026-10-30 FTAI — 분기 조정 EBITDA $428M이 연간 가이던스 4분의 1에 가까운 값이었다) — 발표 당일·이후 asOf는 새 가이던스로 덮어쓴 값이라 '가이던스 vs est.' 비교가 무너진다(Fiscal 추정은 이력이 없다).
   2. **Zacks 컨센서스** `company_analyst_estimates({history:true})`에서 그 분기의 발표일 전 마지막 값(asOf < 발표일). 발표 뒤 남은 행(애널리스트 1명·asOf 없음)은 쓰지 않는다. 영업이익은 Zacks EBIT.
   3. 둘 다 없으면 괄호를 뺀다(회사 자료의 시장 기대 언급은 출처를 기록 파일에). 지어내지 않는다.
 - **est.는 매출·GPM·OPM·EPS·OCF·CAPEX·FCF 모두 찾아 붙인다**(Fiscal.ai가 OCF·CAPEX·FCF 추정을 준다 — 2026-10-30 확인). Fiscal에는 이익률 칸이 따로 없어 나눠서 만든다(같은 제공처·둘 다 발표 전 asOf일 때만):

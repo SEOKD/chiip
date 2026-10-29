@@ -12,7 +12,7 @@ master_themes: ["OCP 2026", "해양시추"]   # Stocks 안의 테마 페이지 �
 # 뉴스(9개 매체)·공시·보도자료를 추적하고 알파 점수·핵심 루프 대상이 된다(radar/pollers/gate.py extra_focus)
 radar_themes:
   dc_power: [co-gevernova, co-bloom, co-innio, co-siemensenergy, co-caterpillar, co-cummins, co-wartsila, co-rollsroyce, co-mhi, co-doosanenerbility, co-oklo, co-nuscale,
-             co-vistra, co-constellation, co-talen, co-nrg, co-nextera, co-enchantedrock, co-voltagrid, co-solaris, co-liberty, co-generac, co-crusoe,
+             co-vistra, co-constellation, co-talen, co-nrg, co-nextera, co-enchantedrock, co-voltagrid, co-solaris, co-liberty, co-generac, co-crusoe, co-ftai, co-propetro, co-atlasenergy, co-babcock,
              co-eaton, co-hubbell, co-nvent, co-powell, co-siemens, co-schneider, co-abb, co-legrand, co-hitachi, co-melco, co-hdhyundaielec, co-lselectric, co-hyosunghi, co-sanil, co-vertiv,
              co-prysmian, co-nexans, co-nkt, co-taihan, co-lscorp, co-valmont, co-plpc,
              co-quanta-services, co-mastec, co-myr, co-primoris, co-emcor, co-comfort, co-sterling, co-ies, co-argan, co-dycom, co-bakerhughes, co-itron, co-mirion]
@@ -103,6 +103,12 @@ extra:
   - {id: co-crusoe, name: Crusoe, code: null, region: US, sub: power_infra, segment: 분산형발전, listed: false, aliases: ["Crusoe Energy", "Crusoe AI"]}
   - {id: co-solaris, name: Solaris Energy Infrastructure, code: SEI.US, region: US, sub: power_infra, segment: 분산형발전, aliases: ["Solaris Energy Infrastructure", "Solaris Energy"]}
   - {id: co-liberty, name: Liberty Energy, code: LBRT.US, region: US, sub: power_infra, segment: 분산형발전, aliases: ["Liberty Energy", "Liberty Power Innovations"]}
+  # 전력 사업 확장(다른 업종에서 발전으로 — 마스터 지시 2026-10-30 "FTAI 같이 Power 사업 분야를 확대하고 있는 기업도 레이더 망에")
+  # FTAI는 3Q26 실적(8-K 2026-10-29)으로 확인: Mod-1 25MW 터빈 100대+ 계약(2027~28). 나머지 셋은 2024~25 회사 발표 기준 — 다음 실적에서 전력 매출·수주를 재확인
+  - {id: co-ftai, name: FTAI Aviation, code: FTAI.US, region: US, sub: power_infra, segment: 전력확장, aliases: ["FTAI Aviation", "FTAI Power"]}
+  - {id: co-propetro, name: ProPetro Holding, code: PUMP.US, region: US, sub: power_infra, segment: 전력확장, aliases: ["ProPetro", "PROPWR"]}
+  - {id: co-atlasenergy, name: Atlas Energy Solutions, code: AESI.US, region: US, sub: power_infra, segment: 전력확장, aliases: ["Atlas Energy Solutions", "Moser Energy Systems"]}
+  - {id: co-babcock, name: Babcock & Wilcox, code: BW.US, region: US, sub: power_infra, segment: 전력확장, aliases: ["Babcock & Wilcox", "Babcock and Wilcox"]}
   # 전력설비(배전반·변압기·UPS·차단기)
   - {id: co-eaton, name: Eaton, code: ETN.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["Eaton Corp", "Eaton Corporation"]}
   - {id: co-hubbell, name: Hubbell, code: HUBB.US, region: US, sub: power_infra, segment: 전력설비, aliases: ["Hubbell"]}

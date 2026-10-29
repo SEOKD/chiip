@@ -3,6 +3,10 @@
 # 판정 모델이 쓴 biz → 감시 목록 하위 섹터(sub) 순으로 채운다. 근거: 회사 10-K·S-1 사업 설명, Fiscal.ai company_profile 개요(description) 요약(2026-10-30부터, 이전 줄은 easyconomics).
 # 판정·포트폴리오·펄스가 새 종목의 설명을 확인하면 여기에 한 줄씩 추가한다(지어내지 않는다 — 모르면 쓰지 않는다).
 lines:
+  co-ftai: "CFM56 엔진 정비 모듈·부품 판매와 항공기 엔진 리스, 항공 엔진을 데이터센터용 25MW 가스터빈(FTAI Power Mod-1)으로 개조 (FTAI Aviation)"
+  co-propetro: "미국 셰일 유정 압력 펌핑(수압파쇄) 서비스, 천연가스 발전 설비 임대(PROPWR)로 전력 사업 확대 (ProPetro)"
+  co-atlasenergy: "퍼미안 분지 프랙 샌드(유정용 모래) 생산·물류, 발전 설비(Moser Energy Systems)로 전력 사업 확대 (Atlas Energy Solutions)"
+  co-babcock: "발전용 보일러·환경 설비 제조·서비스, 데이터센터용 발전 프로젝트로 확대 (Babcock & Wilcox)"
   co-enchantedrock: "데이터센터·산업용 천연가스 분산 발전(마이크로그리드·브리지 전력) 설계·설치·운영 (ERock, 옛 Enchanted Rock)"
   co-innio: "Jenbacher·Waukesha 가스 엔진 발전 설비 제조와 엔진 애프터서비스 — 데이터센터 자가발전 수요 포함"
   us-ccxi: "휴머노이드 로봇 Digit을 만드는 Agility Robotics와 합병하는 스팩(합병 후 티커 AGLT)"
