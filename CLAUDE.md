@@ -138,6 +138,9 @@
 - **기업 설명 1줄**(2026-10-29 마스터 지시): 어떤 기능이든 종목 정보·소식·밸류 판단을 전할 때 종목명 아래 `기업: 어떤 사업을 하는 회사인지 1줄`(config/company_lines.yaml, 없으면 10-K·회사 개요를 자기 말로 — 모르면 미확인). 실시간 알림은 예외 — 아래 '실시간 알림 양식'.
 - **실시간 알림 양식**(2026-10-29 마스터 지시): `종목(종목코드)｜기사｜시간` 한 줄만(기사 제목에 원문 링크). P0·P1 등 등급 코드·지시 번호·'보강 적용'은 텔레그램에 드러내지 않는다(`notify.format_item`·`brand()`). 규칙 건은 모델 판정 전 수집 직후 발송(`run_poll.fast_lane`).
 - **펄스 양식**(2026-10-29 마스터 지시 "문단 띄어쓰기·직관적·간결·핵심 빠짐없이"): 건마다 머리줄·**판단**·근거 5줄·링크, 문단 사이 빈 줄, 인사이트 순, 내부 코드는 기록 파일에만(`docs/tasks/chiip-pulse.md` 3단계). 예약 작업 chiip-pulse는 이 지시서 파일을 읽어 수행한다.
+- **실적 발표 = Dean's Ticker 3단 양식**(2026-10-29 마스터 지시): ① 지표 정리(Results·Guidance, est. 병기, After) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 ■) ③ 칼럼 — 세 통 따로(`knowledge/methods/earnings_format.md`).
+- **일본 어닝콜 = IR 질의응답**(2026-10-29): easyconomics에 없음 → 일본판 IR 페이지의 決算説明会 質疑応答(`radar/pollers/jp_ir_qa.py`, `config/jp_ir.yaml`) → 펄스 🎙.
+- **멀티플 산정**(2026-10-29): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인 분해 → 합리적 멀티플(`scripts/valuation/v2/multiples.py`, `knowledge/methods/multiples.md`).
 - **보고 표기 = Chiip**(2026-10-29 마스터 지시): 텔레그램 봇·GitHub에 보고할 때는 '치입' 대신 'Chiip'. `radar/notify.py` `brand()`가 발송 직전 일괄 변환, 리포트 HTML·게시 제목도 변환.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 

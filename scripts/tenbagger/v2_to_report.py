@@ -5,6 +5,7 @@ scripts/valuation/v2/run.py의 evaluate()를 다시 돌려(같은 시드) 다음
   ② 시나리오 표 — 확률·지금 가치/시총·5년 뒤·5년 매출 CAGR, 기본 시나리오 ROIC·계속가치 비중·경제적 이익 항등 오차
   ③ 몬테카를로 분포(histogram) — 지금 가치/시총, P10·P50·P90·기대값
   ④ 가격 내포 기대 vs 기저율(hbars) — 시장 내포 CAGR·기본·2배·10배 필요 CAGR과 그 기저율 백분위(Mauboussin)
+  ⑥ 멀티플 — scripts/valuation/v2/multiples.py(과거·동종 레인지, 펀더멘털 내재, 할인 분해, 합리적 멀티플, ROIC 비례 표)
   ⑤ 민감도 격자 — 장기 이익률 × 매출÷투하자본(기본 시나리오 가치/시총). 2026-10-29 CBRS 점검: 계속가치가 RONIC = WACC라
      영구성장률은 가치를 거의 바꾸지 않는다 → 가치를 실제로 가르는 두 동인으로 바꾸고, WACC·RONIC 민감도는 한 줄로
   ⑥ 상대가치(comps) — 동종사 EV/매출 vs 성장 회귀(데이터 묶음 peers가 있을 때), 내포 배수와 현재 배수
@@ -137,22 +138,11 @@ def build(entity, draws=3000):
     dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
     if dp_path.exists():
         dp = json.loads(dp_path.read_text(encoding="utf-8"))
-        ev = mcap + co["market"]["net_debt"]
-        basis = dp.get("peers_basis", "ntm")   # 동종과 대상은 같은 기준끼리만 비교(2026-10-29: TTM 동종 값을 '선행'으로 표기한 오류)
-        if basis == "ttm":
-            fin = dp.get("financials") or {}
-            g_t, cur, blab = fin.get("rev_growth_ttm"), (ev / fin["rev_ttm"] if fin.get("rev_ttm") else None), "최근 12개월"
-        else:
-            revs = [dp["consensus"]["rev"][k] for k in sorted((dp.get("consensus") or {}).get("rev") or {})]
-            g_t = revs[1] / revs[0] - 1 if len(revs) >= 2 else None
-            cur, blab = (ev / revs[1] if len(revs) >= 2 else None), "선행"
-        cp = comps(dp.get("peers"), g_t, cur) if g_t is not None and cur else None
-        if cp:
-            blocks.append({"type": "chart", "chart": {"kind": "hbars", "title": f"상대가치 — EV/{blab} 매출 ({cp['method']})", "unit": "배", "rows": [
-                {"label": "동종 회귀 내포", "bars": [{"name": "EV/매출", "color": "d", "value": round(cp["implied"], 2)}]},
-                {"label": "현재(완전 희석)", "bars": [{"name": "EV/매출", "color": "b", "value": round(cp["current"], 2)}]}],
-                "note": (f"회귀 설명력 R² {cp['r2']:.2f}" if cp.get("r2") is not None else "동종 4사 미만 — 중앙값") + f" · 대상 {blab} 성장 {g_t:.1%} · 동종 "
-                        + ", ".join(f"{x['ticker']} {x.get('ev_sales', x.get('ev_sales_ntm')):.1f}배" for x in dp.get("peers") or []) + f" · 출처 {dp.get('peers_source', '미기재')[:60]}"}})
+        # 멀티플(2026-10-29 마스터 지시): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인·프리미엄 분해 → 합리적 멀티플
+        import multiples
+        mm = multiples.analyze(dp, base_d, mcap, c["wacc"], r["g_term"])
+        if mm.get("current") and mm["peers"]:
+            blocks.extend(multiples.report_blocks(mm, r["unit"], mcap, co.get("name", entity)))
         import datapack_check
         chk = datapack_check.check(dp)
         blocks.append({"type": "table", "title": f"데이터 검증 — 원자료(easyconomics·SEC) ↔ 밸류에이션 입력 대조 {chk['score']}/10",

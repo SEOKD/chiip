@@ -84,7 +84,7 @@ def news_allowed(item):
 
 
 def keep(item, focus):
-    if item.get("source_id") == "src-short-sites":   # 숏 운용사 원문은 포커스와 무관하게 저장(2026-10-29)
+    if item.get("source_id") in ("src-short-sites", "src-jp-ir-qa"):   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
         return True
     if not news_allowed(item):
         return False

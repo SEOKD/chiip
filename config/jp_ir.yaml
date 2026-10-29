@@ -1,0 +1,54 @@
+# 일본 AI 밸류체인 IR 질의응답(Q&A) 수집 (마스터 지시 2026-10-29 "easyconomics에는 일본 어닝콜이 없다. 일본 종목은 공식 IR 페이지에서
+# Q&A 전문이 있으면 가져와 분석하라. 영문판이 아니라 일본판으로 들어가야 나온다")
+# radar/pollers/jp_ir_qa.py가 일본어 IR 페이지에서 '決算説明会 質疑応答'류 문서를 찾아 새 것만 내려받고(PDF는 pdftotext) 텍스트를
+# radar/inbox/jp_qa/(git 제외)에 둔다. 판단은 펄스(⑥ IR 질의응답)가 한다. 저장소에는 자기 말 요약·15단어 이하 인용·링크만.
+# site = 회사 대표 도메인(일본어판). ir_pages = 질의응답이 실리는 일본어 IR 페이지(확인되면 적는다 — 비어 있으면 seeds로 자동 탐색).
+# 회사 id는 config/jp_watch.yaml과 같다.
+seeds: ["/ir/", "/ja/ir/", "/jp/ir/", "/ir/library/", "/ja/ir/library/", "/jp/ir/library/", "/ir/event/", "/ir/presentation/",
+        "/ja/investors/", "/ir/index.html", "/company/ir/", "/corporate/ir/"]
+companies:
+  co-tel: {site: "https://www.tel.co.jp"}
+  co-advantest: {site: "https://www.advantest.com"}
+  co-disco: {site: "https://www.disco.co.jp"}
+  co-lasertec: {site: "https://www.lasertec.co.jp"}
+  jp-screen: {site: "https://www.screen.co.jp"}
+  jp-kokusai: {site: "https://www.kokusai-electric.com"}
+  jp-tokyoseimitsu: {site: "https://www.accretech.com"}
+  jp-towa: {site: "https://www.towajapan.co.jp"}
+  jp-ebara: {site: "https://www.ebara.co.jp"}
+  jp-shibaura: {site: "https://www.shibaura.co.jp"}
+  jp-ushio: {site: "https://www.ushio.co.jp"}
+  jp-hamamatsu: {site: "https://www.hamamatsu.com"}
+  co-ibiden: {site: "https://www.ibiden.co.jp"}
+  co-shinetsu: {site: "https://www.shinetsu.co.jp"}
+  jp-sumco: {site: "https://www.sumcosi.com"}
+  jp-resonac: {site: "https://www.resonac.com"}
+  co-ajinomoto: {site: "https://www.ajinomoto.co.jp"}
+  co-nittobo: {site: "https://www.nittobo.co.jp"}
+  jp-tok: {site: "https://www.tok.co.jp"}
+  jp-hoya: {site: "https://www.hoya.com"}
+  jp-agc: {site: "https://www.agc.com"}
+  jp-neg: {site: "https://www.neg.co.jp"}
+  jp-dnp: {site: "https://www.dnp.co.jp"}
+  jp-toppan: {site: "https://www.holdings.toppan.com"}
+  jp-mitsuikinzoku: {site: "https://www.mitsui-kinzoku.com"}
+  jp-sumibe: {site: "https://www.sumibe.co.jp"}
+  jp-jxmetals: {site: "https://www.jx-nmm.com"}
+  jp-meiko: {site: "https://www.meiko-elec.com"}
+  co-fujikura: {site: "https://www.fujikura.co.jp"}
+  jp-furukawa: {site: "https://www.furukawa.co.jp"}
+  jp-sumiden: {site: "https://sei.co.jp"}
+  jp-murata: {site: "https://corporate.murata.com"}
+  jp-tdk: {site: "https://www.tdk.com"}
+  jp-taiyoyuden: {site: "https://www.yuden.co.jp"}
+  jp-kyocera: {site: "https://www.kyocera.co.jp"}
+  jp-kioxia: {site: "https://www.kioxia-holdings.com"}
+  jp-renesas: {site: "https://www.renesas.com"}
+  jp-socionext: {site: "https://www.socionext.com"}
+  jp-rohm: {site: "https://www.rohm.co.jp"}
+  co-hitachi: {site: "https://www.hitachi.co.jp"}
+  co-melco: {site: "https://www.mitsubishielectric.co.jp"}
+  co-mhi: {site: "https://www.mhi.com"}
+  jp-fujielectric: {site: "https://www.fujielectric.co.jp"}
+  jp-sakura: {site: "https://www.sakura.ad.jp", ir_pages: ["https://www.sakura.ad.jp/corporate/ir/"]}
+  jp-sbg: {site: "https://group.softbank", ir_pages: ["https://group.softbank/ir/financials/annual_reports"]}

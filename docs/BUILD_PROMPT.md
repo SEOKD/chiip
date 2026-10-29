@@ -2073,6 +2073,11 @@ source: docs/methodology
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
 
+### 21.32 일본 IR 질의응답·멀티플 엔진·실적 3단 양식 (2026-10-29 마스터 지시)
+- **일본 IR 질의응답**("easyconomics에는 일본 어닝콜이 없다 — 일본판 IR 페이지의 Q&A 전문을 가져와 분석"): `config/jp_ir.yaml`(45개사 도메인·IR 페이지) → `radar/pollers/jp_ir_qa.py`(src-jp-ir-qa, 6시간, robots 매회 확인·1초 간격, 영문 경로 제외, 決算説明会 質疑応答류 탐지, PDF는 pdftotext, 원문 텍스트는 radar/inbox/jp_qa/만) → 펄스 ⑥ IR 질의응답(🎙, 직전 Q&A 대비 분석, outputs/report/jp_qa/) → 텐배거 데이터 묶음 일본 종목 call.
+- **멀티플 엔진**("과거 레인지를 넘어 동종 레인지·할인이 시장 예상대로인지·ROIC 비례"): `scripts/valuation/v2/multiples.py` — 자기 과거 레인지, 동종 25·50·75분위, 펀더멘털 내재 EV/매출(같은 엔진·WACC로 성장·이익률·영업권 제외 자본 회전율 자본화), 섹터 심리 배율, 할인·프리미엄 분해(펀더멘털 몫 × 기업 고유 몫), 합리적 멀티플, ROIC 비례 정상 상태 표(맥킨지 가치 동인 공식), 정상 상태 할인 교차 확인. 문헌·한계 `knowledge/methods/multiples.md`. 동종 영업권·무형자산은 SEC XBRL.
+- **실적 3단 양식**("딘스티커 양식처럼"): `knowledge/methods/earnings_format.md` — ① 지표 정리(est. 병기·After) ② 뉴팩트 정리(직전 콜 대비) ③ 칼럼, 세 통 따로. 펄스·포트폴리오·프로바이저 P-20261029-04, 포트폴리오 예약 작업도 지시서 파일을 읽도록 개정.
+
 ### 21.31 밸류에이션 전 과정 점검·데이터 검증 (2026-10-29 마스터 지시 "CBRS 시나리오 0.23배·0.38배가 어떤 멀티플인가 — 수치가 이상", "easyconomics 로우 데이터가 변함 없는지 전 과정 10점 점검·10점으로 고도화")
 - 데이터 묶음에 원자료 스냅숏(`raw`) 의무, `scripts/valuation/v2/datapack_check.py` 13개 대조(시총·현금·차입·TTM 4분기 합·투하자본·분기 컨센서스 합·가이던스·희석 같은 날짜·톤=레이더·동종 4곳·기준 표기) — 10/10 아니면 리포트 단계로 가지 않음, 리포트 '데이터 검증' 표.
 - 동인: 컨센서스 연도 이익률 앵커, 덮어쓰기 부분 병합, 비GAAP → SBC 차감, 톤은 레이더로, 희석 potential_total. 계산: 미래 지분가치의 순현금 이자·부족분 WACC. 리포트: '배' 정의·기업가치 분해·이익률×자본 집약도 민감도·같은 기준 동종 회귀.

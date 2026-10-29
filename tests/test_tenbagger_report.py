@@ -149,3 +149,34 @@ class TestValuationAudit(unittest.TestCase):
              "ic0": 1.0, "wacc": 0.10, "g_term": 0.03, "net_debt": 0.0, "shares": 1.0, "kd": 0.04}
         e0, e5 = dcf.value(d)["equity"], dcf.equity_at(d, 5)
         self.assertLess((e5 / e0) ** 0.2 - 1, 0.13)   # 적자 재투자를 싼 차입으로 메워 부풀리지 않는다
+
+
+import multiples  # noqa: E402
+
+
+class TestMultiples(unittest.TestCase):
+    """멀티플 엔진(2026-10-29 마스터 지시 — 동종 레인지·할인 분해·ROIC 비례 멀티플)"""
+
+    def test_value_driver_formula(self):
+        row = next(r for r in multiples.steady_state_table(0.10, 0.03) if r["roic"] == 0.15)
+        self.assertAlmostEqual(row["ev_nopat"], (1 - 0.03 / 0.15) / (0.10 - 0.03))
+        self.assertAlmostEqual(row["ev_sales"][0.22], row["ev_nopat"] * 0.22 * 0.79)
+
+    def test_goodwill_excluded_for_reinvestment(self):
+        p = {"rev": 10.0, "ebit_margin": 0.2, "mcap": 100.0, "pb": 5.0, "debt": 2.0, "cash": 2.0, "goodwill": 12.0, "intangibles": 3.0}
+        roic, roic_ex, s2c, ic = multiples.peer_fundamentals(p)
+        self.assertAlmostEqual(roic, 10 * 0.2 * 0.79 / 20)       # 영업권 포함 투하자본 20
+        self.assertAlmostEqual(roic_ex, 10 * 0.2 * 0.79 / 5)     # 영업권·무형 제외 5
+        self.assertAlmostEqual(s2c, 2.0)
+
+    def test_cbrs_decomposition_is_exact(self):
+        import run as v2run
+        co = v2run.load_company("us-cbrs")
+        co["market"] = v2run.resolve_market(co)
+        r = v2run.evaluate("us-cbrs", draws=50)
+        base = scenarios.drivers(co, co["scenarios"]["base"], r["coc"]["wacc"], r["g_term"])
+        m = multiples.analyze(datapack_check.load("us-cbrs"), base, r["mcap"], r["coc"]["wacc"], r["g_term"])
+        d = m["decomp"]
+        self.assertAlmostEqual(d["fundamental"] + d["firm"], d["total"])   # 두 몫의 곱 = 전체
+        self.assertTrue(all(x["warranted"] is None or x["warranted"] > 0 for x in m["peers"]))   # 음수 내재 멀티플은 버린다
+        self.assertGreater(m["history"]["p50"], m["current"])              # 상장 이후 멀티플이 식었다

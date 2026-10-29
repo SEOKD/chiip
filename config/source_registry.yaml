@@ -928,3 +928,20 @@
   terms_note: "2026-10-29 확인: feeds.businessinsider.com robots.txt 없음. 제목·링크만. WSJ(feeds.a.dj.com)는 2025-01 이후 갱신 정지·403, The Information 피드는 robots.txt 확인 불가(403) → Google News 색인으로만"
   reliability_default: 2차
   enabled: true
+
+- id: src-jp-ir-qa
+  name: 일본 AI 밸류체인 45개사 IR 질의응답(決算説明会 質疑応答) — 일본어 IR 페이지 직접
+  category: B-공시
+  module: jp_ir_qa
+  entry: poll
+  method: html
+  endpoint_doc: "config/jp_ir.yaml"
+  auth: none
+  scope: [글로벌]
+  interval_min: 360
+  run_on: local
+  language: ja
+  doc_type: IR 질의응답
+  terms_note: "2026-10-29 마스터 지시(easyconomics에 일본 어닝콜 없음 — 일본판 IR 페이지에서 Q&A 전문). 매 요청 robots.txt 확인·1초 간격, 로그인 영역 접근 안 함. 원문 텍스트는 radar/inbox/jp_qa/(git 제외)에만, 저장소에는 요약·15단어 이하 인용·링크. PDF는 pdftotext(Git 설치본)"
+  reliability_default: 1차(회사 공식)
+  enabled: true
