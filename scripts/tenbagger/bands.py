@@ -14,7 +14,8 @@
 사용: py scripts/tenbagger/bands.py              # 구간 표·구간별 상위·10배 산술·구간 이동
       py scripts/tenbagger/bands.py --stale [N]  # 시총이 없거나 오래된 종목(Fiscal.ai 갱신 대상) 'id ticker market' 목록
       py scripts/tenbagger/bands.py --put <id|티커> <profile.json>   # (옛) easyconomics company_profile 응답 → fundamentals.json — 새 갱신은 scripts/fiscal/adapter.py --fund
-      py scripts/tenbagger/bands.py --band <id|티커>             # 구간 이름(펄스 🚀 머리줄)
+      py scripts/tenbagger/bands.py --band <id|티커>             # 구간 이름(구간 내 순위·이동 기록용)
+      py scripts/tenbagger/bands.py --cap <id|티커>              # 시가총액 '시총 $4.55B'(펄스 🚀 머리줄, 2026-10-30)
 """
 import csv
 import json
@@ -398,6 +399,22 @@ def band_label(cid):
     return b["label"] if b else None
 
 
+def cap_text(usd):
+    """$4.55B·$812M·$1.21T — 유효숫자 3자리(마스터 지시 2026-10-30 "범위 대신 시가총액을 명시하라")"""
+    if not usd or usd <= 0:
+        return None
+    for unit, div in (("T", 1e12), ("B", 1e9), ("M", 1e6)):
+        if usd >= div:
+            v = usd / div
+            return f"${v:.3g}{unit}" if v < 100 else f"${v:.0f}{unit}"
+    return f"${usd:,.0f}"
+
+
+def cap_label(cid):
+    """펄스 🚀 머리줄용 — fundamentals.json 시총(달러 환산). 없으면 None"""
+    return cap_text((load_fund().get(cid) or {}).get("mcap_usd"))
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if argv and argv[0] == "--stale":
@@ -405,7 +422,12 @@ def main(argv):
             tk, mk = ticker_of(r)
             print(f"{r['id']} {tk} {mk}")
         return 0
-    if argv and argv[0] == "--band":   # 펄스 🚀 머리줄용: py scripts/tenbagger/bands.py --band KTOS → '$1–10B'(시총 없으면 '구간 미확인')
+    if argv and argv[0] == "--cap":    # 펄스 🚀 머리줄용: py scripts/tenbagger/bands.py --cap SEI → '시총 $4.55B'(없으면 '시총 미확인')
+        cid = resolve_id(argv[1])
+        cap = cap_label(cid) if cid else None
+        print(f"시총 {cap}" if cap else "시총 미확인")
+        return 0
+    if argv and argv[0] == "--band":   # 구간 이름: py scripts/tenbagger/bands.py --band KTOS → '$1–10B'(시총 없으면 '구간 미확인')
         cid = resolve_id(argv[1])
         print((band_label(cid) if cid else None) or "구간 미확인")
         return 0

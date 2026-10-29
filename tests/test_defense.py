@@ -118,6 +118,14 @@ class TestBands(unittest.TestCase):
         self.assertEqual(bands.band_of(3e12, self.bl)["id"], "B11")
         self.assertIsNone(bands.band_of(5e7, self.bl))
 
+    def test_cap_text(self):
+        # 펄스 🚀 머리줄은 구간 대신 시가총액(마스터 지시 2026-10-30)
+        self.assertEqual(bands.cap_text(4.55e9), "$4.55B")
+        self.assertEqual(bands.cap_text(8.12e8), "$812M")
+        self.assertEqual(bands.cap_text(1.214e12), "$1.21T")
+        self.assertEqual(bands.cap_text(1.234e11), "$123B")
+        self.assertIsNone(bands.cap_text(None))
+
     def test_band_relative_score(self):
         factors = {"growth_accel": {"weight": 1.0, "direction": "high"}, "size": {"weight": 1.0, "direction": "low"}}
         rows = [{"id": "a", "fv": {"growth_accel": 0.5, "size": 2e9}}, {"id": "b", "fv": {"growth_accel": 0.1, "size": 8e9}},
