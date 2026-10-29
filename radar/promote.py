@@ -62,7 +62,7 @@ JP_EVENT = [("guide", re.compile(r"業績予想の修正|上方修正|下方修�
             ("return", re.compile(r"自社株買い|自己株式の取得|増配")),
             ("deal", re.compile(r"買収|株式取得|提携|資本業務提携|公開買付|ＴＯＢ|TOB")),
             ("equity", re.compile(r"公募|新株|第三者割当|転換社債")),
-            ("earn", re.compile(r"決算短信|決算速報|決算"))]
+            ("earn", re.compile(r"決算短信|決算速報"))]   # '決算' 단독은 시황·기업 정보 페이지까지 잡아 제외(2026-10-29)
 JP_LABEL = {"guide": "실적 전망 수정", "capex": "설비투자", "return": "주주환원", "deal": "인수·제휴", "equity": "자금 조달", "earn": "실적 발표"}
 
 
@@ -131,7 +131,7 @@ def match(item):
         org = _fin()["orgs"].search(title)
         if (firm or sh["terms"].search(title)) and (ents or org):
             return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else re.sub(r"\W+", " ", title.lower())[:50]))
-    if item.get("source_id") == "src-jp-disclosure" and ents:   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
+    if item.get("source_id") == "src-jp-disclosure" and ents and not noise(item):   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
         cls = next((k for k, rx in JP_EVENT if rx.search(title)), None)
         if cls:
             return f"규칙 상향: 일본 {JP_LABEL[cls]}", f"jp:{','.join(ents)}:{cls}"
@@ -177,7 +177,7 @@ def match(item):
     return None
 
 
-NOISE_RE = re.compile(r"株価・株式情報|後場コメント|前場コメント|株価指数先物|個別銘柄戦略|決算発表予定|注目銘柄|transcript|earnings call (presentation|slides)|\bslides\b|\bpresentation\b|\bvideo\b|podcast|daily briefing|"
+NOISE_RE = re.compile(r"株価・株式情報|企業情報|：企業概要|寄り前|引け後|後場コメント|前場コメント|株価指数先物|個別銘柄戦略|決算発表予定|注目銘柄|transcript|earnings call (presentation|slides)|\bslides\b|\bpresentation\b|\bvideo\b|podcast|daily briefing|"
                       r"newsletter|stock price|in real time|live updates?|what to know|stocks to watch|top stocks|premarket|"
                       r"pre-market movers|movers|closing bell|market wrap|evening briefing|morning briefing|\bopinion\b", re.I)
 _STOP = {"the", "a", "an", "of", "to", "in", "on", "for", "and", "as", "at", "by", "with", "its", "is", "are", "after", "from", "says", "said"}
