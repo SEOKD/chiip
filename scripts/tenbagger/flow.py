@@ -2,7 +2,7 @@
 생겼는지, 수급이 리테일과 기관 중에 어디서 발생하고 있는지 정량적으로 보여주는 볼륨 인디케이터를 하나 만들어라")
 
 원자료
-  ① 일봉 OHLCV — knowledge/models/companies/<id>/ohlcv.csv(date,o,h,l,c,v). 지금은 모델이 easyconomics company_price_history로 채운다
+  ① 일봉 OHLCV — knowledge/models/companies/<id>/ohlcv.csv(date,o,h,l,c,v). 모델이 Fiscal.ai prices.js 출력을 scripts/fiscal/adapter.py --ohlcv로 넣는다(고가·저가 근사, 월봉 ohlcv_m.csv)
      (EODHD 키가 들어오면 결정론 수집으로 바꾼다 — TODO_MASTER).
   ② FINRA Reg SHO 일별(api.finra.org regShoDaily, 공개·인증 불필요) — 장외(TRF) 체결 거래량·그중 공매도 거래량. 결정론 조회, finra.json에 캐시.
   ③ FINRA OTC 주간(api.finra.org weeklySummary, 공개, 약 2주 지연) — ATS(다크풀)와 비ATS 장외 거래량을 체결 회사별로.
@@ -63,8 +63,19 @@ def company_dir(entity):
     return ROOT / "knowledge" / "models" / "companies" / entity
 
 
-def load_ohlcv(entity):
+def load_monthly(entity):
+    """월봉(ohlcv_m.csv, Fiscal.ai 장기 이력 — scripts/fiscal/adapter.py --ohlcv) — 없으면 빈 목록"""
+    return load_ohlcv(entity, "ohlcv_m.csv")
+
+
+def approx_hl(entity):
+    """일봉 고가·저가가 시가·종가 근사인가(Fiscal.ai 일봉) — 파일 첫 줄 주석으로 판단"""
     p = company_dir(entity) / "ohlcv.csv"
+    return p.exists() and p.read_text(encoding="utf-8")[:200].startswith("# source: Fiscal.ai")
+
+
+def load_ohlcv(entity, name="ohlcv.csv"):
+    p = company_dir(entity) / name
     if not p.exists():
         return []
     lines = [l for l in p.read_text(encoding="utf-8").splitlines() if l and not l.startswith("#")]

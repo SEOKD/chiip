@@ -70,3 +70,5 @@
 | 24 | 취재 메모 3건으로 `field-intake` 시험(F4는 원문 대신 포인터만) |
 | 25 | SK하이닉스 3분기 실적(2026-10-28 오전)으로 `earnings-delta` 실전 시험 — 2분기 주장 C-20261027-001~005가 비교 기준 |
 | 26 | CES 이후: 역방향 백테스트 사건 10건 선정(`reverse-backtest`) |
+| 27 | (2026-10-29 펄스 제안) PDF 텍스트 추출 패키지 `pypdf` 설치 승인 여부 — 일본·해외 IR 결산 PDF(예: 富士通 2Q 요약)를 펄스가 3회차 연속 읽지 못함. 승인 시 `py -m pip install pypdf` |
+| 21-30 | **Fiscal.ai 전환 뒤 정리(2026-10-30).** ① easyconomics 커넥터는 더 쓰지 않으니 앱에서 연결 해제(선택) ② Fiscal.ai REST API 키가 있으면 `D:\local-only\secrets\.env`에 `FISCAL_API_KEY=`로 — 수집기가 시가총액·일봉을 직접 받게 바꿀 수 있다(선택, 없으면 모델이 MCP로) ③ 예약 작업 chiip-valuation-queue는 목록에 없다(지시문만 갱신) — 다시 켤지 결정 | `knowledge/methods/data_fiscal.md`, ADR-012 |

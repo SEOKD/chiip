@@ -9,7 +9,7 @@ argument-hint: "<entity_id> [<entity_id> ...]"
 
 ## 1. 근거 모으기 (결정론)
 - `py radar/narrative_sources.py <id>` → `knowledge/narratives/evidence/<id>.json`: 커뮤니티 헤드라인(Google News 색인 제목), IB 커버리지 변화(개시·상향·하향·목표가 제목), 섹터 헤드라인, Substack 10곳 언급, Hacker News.
-- 모델 단계(가능하면): easyconomics MCP `analyst_rating_changes`, `analyst_qa_calls`→`analyst_qa_call`(셀사이드가 콜에서 묻는 것 = IB 내러티브의 초점), 최근 `earnings_call_transcript`(경영진 내러티브). 마스터 노션 Informations의 IB 리포트 요지(라이선스 — 문장 복제 금지, 출처·요지만).
+- 모델 단계(가능하면, Fiscal.ai — knowledge/methods/data_fiscal.md): `consensus.js`(Zacks 목표가·의견 분포·5년 리비전 — 표기 의무), `transcript_qa.js`(셀사이드가 콜에서 묻는 것 = IB 내러티브의 초점), `fund_letters.js`(바이사이드 롱·숏·확신도·변이 관점), `news.js`(중요도 1~2). 마스터 노션 Informations의 IB 리포트 요지(라이선스 — 문장 복제 금지, 출처·요지만).
 - 제외 원천(robots·약관): 레딧·ValueInvestorsClub·StockTwits·X(유료 API 승인 대기)·사이트 직접 접속(Seeking Alpha·Motley Fool). 레딧 글은 마스터가 크롬 확장으로 넘긴 것만.
 
 - 판단 틀: `knowledge/narratives/lens_semianalysis.md`(SemiAnalysis 렌즈 L1~L7·크라우딩, 마스터 지시 2026-10-28) — 내러티브를 '병목·TCO·바텀업 숫자'로 바꿀 수 있는지가 1순위 질문.

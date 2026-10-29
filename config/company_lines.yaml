@@ -1,6 +1,6 @@
 # 기업 사업 설명 1줄 (마스터 지시 2026-10-29 "어떤 기능이든 종목 정보·소식 전달과 밸류 판단을 제시할 때 어떤 사업을 하는 기업인지 설명란 1줄")
 # 실시간 알림(radar/notify.py company_line)이 먼저 이 파일을 보고, 없으면 config/watchlist.csv value_chain_role →
-# 판정 모델이 쓴 biz → 감시 목록 하위 섹터(sub) 순으로 채운다. 근거: 회사 10-K·S-1 사업 설명, easyconomics 회사 개요(description_ko) 요약.
+# 판정 모델이 쓴 biz → 감시 목록 하위 섹터(sub) 순으로 채운다. 근거: 회사 10-K·S-1 사업 설명, Fiscal.ai company_profile 개요(description) 요약(2026-10-30부터, 이전 줄은 easyconomics).
 # 판정·포트폴리오·펄스가 새 종목의 설명을 확인하면 여기에 한 줄씩 추가한다(지어내지 않는다 — 모르면 쓰지 않는다).
 lines:
   co-enchantedrock: "데이터센터·산업용 천연가스 분산 발전(마이크로그리드·브리지 전력) 설계·설치·운영 (ERock, 옛 Enchanted Rock)"

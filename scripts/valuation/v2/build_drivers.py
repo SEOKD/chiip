@@ -1,7 +1,7 @@
 """데이터 묶음(datapack) → v2 동인(drivers.yaml) 자동 생성 (마스터 지시 2026-10-29 "텐배거 리포트 밸류에이션 모델링에서 easyconomics의
 컨센서스·어닝콜 스크립트 등 기업 정보를 모두 취합해 변수로 활용하도록")
 
-흐름: 모델이 easyconomics(+SEC·IR)에서 모은 숫자를 knowledge/models/companies/<id>/datapack.json에 쓴다 →
+흐름: 모델이 Fiscal.ai(+SEC·IR, 2026-10-30부터 — 옛 묶음은 easyconomics)에서 모은 숫자를 knowledge/models/companies/<id>/datapack.json에 쓴다 →
 이 스크립트가 정해진 규칙으로 동인을 만든다(어느 동인이 어느 자료에서 왔는지 provenance에 남김) → scripts/valuation/v2/run.py.
 손으로 만든 drivers.yaml(auto 표시 없음)이 이미 있으면 덮어쓰지 않고 drivers.auto.yaml로 쓴다(비교용).
 
@@ -20,7 +20,7 @@ datapack.json (금액은 unit 하나로 통일 — 보통 B$, 비율은 소수):
                # 리포트용(동인에는 쓰지 않음): "prev_date", "deltas", consensus.surprise·revisions·price_window, multiples_now — scripts/tenbagger/earnings_view.py 설명
   "peers_basis": "ttm|ntm", "peers_source": "…", "peers": [{"ticker","ev_sales","growth","ebit_margin"}],   # 4곳 이상, 대상과 같은 기준
   "sbc_pct_rev": 0.06,                                                      # margin_basis가 non_gaap이면 필수 — 이익률에서 차감(SBC는 비용)
-  "raw": {"retrieved_at", "easyconomics_profile", "quarters_gaap", "balance_…", "estimates_sales_m", "sec", …},   # 원자료 스냅숏 — datapack_check.py가 대조
+  "raw": {"retrieved_at", "fiscal_profile"(옛 easyconomics_profile), "quarters_gaap", "balance_…", "estimates_sales_m", "sec", …},   # 원자료 스냅숏 — datapack_check.py가 대조
   "scenario_probs": {"bear": 0.25, "base": 0.5, "bull": 0.25},             # 선택 — 없으면 규칙
   "overrides": {"growth_base": {...}, "margin_base": {...}, "s2c": x, "why": "…"}   # 선택 — 모델이 이유와 함께
 }
@@ -158,7 +158,7 @@ def build(p):
         "auto": True, "id": p["id"], "name": p["name"], "ticker": p.get("ticker"), "unit": p.get("unit", "B$"),
         "unit_usd": 1e9 if p.get("unit", "B$") == "B$" else None, "industry": p["industry"], "region_mix": p.get("region_mix") or {"US": 1.0},
         "tax": p.get("tax", 0.21), "horizon": 10, "as_of": p.get("as_of") or date.today().isoformat(),
-        "market": {"date": p.get("as_of"), "price": pf["price"], "shares": round(shares, 6), "net_debt": round(net_debt, 6), "source": pf.get("source", "easyconomics")},
+        "market": {"date": p.get("as_of"), "price": pf["price"], "shares": round(shares, 6), "net_debt": round(net_debt, 6), "source": pf.get("source", "Fiscal.ai")},
         "rev0": round(rev0, 6), "ic0": round(ic0, 6),
         "scenarios": {
             "base": {"prob": probs["base"], "growth": growth_base, "margin": margin_base, "s2c": s2c},

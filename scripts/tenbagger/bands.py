@@ -6,14 +6,14 @@
 
 유니버스(시드): config/valuation.yaml universe · config/earnings_watch.yaml extra · config/discovery.yaml 후보 · config/coverage.yaml ·
   config/defense.yaml 상장 기업. EODHD_API_KEY가 있으면 EODHD 스크리너로 시총 $1B 이상 반도체·소프트웨어·방위를 자동으로 더한다.
-시가총액·펀더멘털: knowledge/models/discovery/fundamentals.json — 일요일 Ten-bagger 회차의 모델이 easyconomics company_profile 응답을
+시가총액·펀더멘털: knowledge/models/discovery/fundamentals.json — 일요일 Ten-bagger 회차의 모델이 Fiscal.ai fundamentals.js 출력을(scripts/fiscal/adapter.py --fund, 2026-10-30 ADR-012 — 옛 easyconomics 응답은 --put)
   `--put <id> <응답 JSON 파일>`로 넣는다(필드 추출·통화 환산은 이 스크립트가 한다, 환율은 ECB 기준환율).
 점수: config/tenbagger.yaml factors(FCF 수익률·B/M·크기·질·성장·병목)를 구간 안 백분위로 → 0~10. 빠진 값은 중립(50%)이고 '빠진 자료'로 표시.
 출력: outputs/tenbagger/bands/<YYYYMMDD>.md · 구간 이동 knowledge/models/tenbagger/bands_history.csv. 점수는 판단 보조 — 매수 권유 아님.
 
 사용: py scripts/tenbagger/bands.py              # 구간 표·구간별 상위·10배 산술·구간 이동
-      py scripts/tenbagger/bands.py --stale [N]  # 시총이 없거나 오래된 종목(easyconomics 갱신 대상) 'id ticker market' 목록
-      py scripts/tenbagger/bands.py --put <id|티커> <profile.json>   # easyconomics company_profile 응답 → fundamentals.json
+      py scripts/tenbagger/bands.py --stale [N]  # 시총이 없거나 오래된 종목(Fiscal.ai 갱신 대상) 'id ticker market' 목록
+      py scripts/tenbagger/bands.py --put <id|티커> <profile.json>   # (옛) easyconomics company_profile 응답 → fundamentals.json — 새 갱신은 scripts/fiscal/adapter.py --fund
       py scripts/tenbagger/bands.py --band <id|티커>             # 구간 이름(펄스 🚀 머리줄)
 """
 import csv
@@ -91,7 +91,7 @@ def universe():
             r["sector"] = "defense"   # 방산이 본업이면 방위 잣대(출구 배수·참조 시장)로 본다
         r["defense"] = True
         if c.get("ec_ticker"):
-            r["ec_ticker"] = c["ec_ticker"]   # easyconomics 인자가 거래소 코드와 다를 때(영국 BA.L 등)
+            r["ec_ticker"] = c["ec_ticker"]   # 조회 인자가 거래소 코드와 다를 때(영국 BA.L 등) — Fiscal.ai 회사 키는 config/fiscal_keys.yaml
     return out
 
 
@@ -101,7 +101,7 @@ def market_of(code):
 
 
 def ticker_of(row):
-    """easyconomics company_profile 인자(ticker, market) — RHM.XETRA → (RHM, eu), 7011.TSE → (7011, jp)"""
+    """조회 인자(ticker, market — Fiscal.ai 키 확인의 출발점) — RHM.XETRA → (RHM, eu), 7011.TSE → (7011, jp)"""
     code = str(row.get("code") or "")
     return row.get("ec_ticker") or re.sub(r"\.[A-Z]+$", "", code), row.get("market") or market_of(code) or "us"
 
@@ -157,7 +157,7 @@ def eodhd_rows(key, http_get, fx):
     return out
 
 
-# ---------- easyconomics 응답 넣기 ----------
+# ---------- 개요 응답 넣기(옛 easyconomics 형식 — Fiscal.ai는 scripts/fiscal/adapter.py) ----------
 def ingest_profile(cid, prof, fx, today=None):
     """company_profile 응답(data) → fundamentals.json 한 행. 금액은 USD로(통화 = currency)"""
     p = prof.get("data", prof)

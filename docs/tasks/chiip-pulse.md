@@ -15,7 +15,7 @@
 
 배경(마스터 지시 2026-10-28·29): "30분마다 ① 기사 거리 — 기사를 찾는 게 아니라 원본(논문·보도자료·3자 보도자료) ② 텐배거 발굴 후 알파 레이더 감지. 영어권 웹, 미국 주식 중심." "pulse는 기사 소재 발굴뿐 아니라 알파 레이더 감지도 같이 제공해라. 기사 소재는 국내 언론에 보도된 것은 가져오지 말고 어디에서도 보도하지 않은 원문을 가져오는 데만 집중하라. 없으면 없다고 해도 된다. 다만 최선을 다해 찾아라." 그리고 "AI 밸류체인 투자자라면 파이낸싱 시장 파악이 중요하다 — 메타가 클래스C 신주로 유증하겠다더니 실제로는 엔비디아가 참여하면서 클래스A로 발행한다. 이런 소식을 가져와야 한다"(2026-10-29). 수집은 결정론 스크립트가 하고 너는 새 원본이 있을 때만 판단한다. 10분마다 돈다(2026-10-29 마스터 지시 "알아서 찾아서 줘야지, Pulse는 10분마다 보고"). 한 회차는 8분 안에 끝낸다 — 다음 회차와 겹치지 않게. 남은 일(알파 산정·추가 원문 확인)은 다음 회차로 넘긴다. 새 것이 생기면 마스터가 묻기 전에 바로 보낸다. 그리고 "Cerebras는 텐배거 가능성이 높은 종목인데 숏 리포트가 나왔으면 웹 서칭으로 찾아서 밸류 판단을 해줘야지"(2026-10-29). 그리고 "Pulse가 단순 정보 전달에 그친다. 이 정보의 밸류 판단과 인사이트 제공이 핵심이다"(2026-10-29).
 
-**모든 보고의 핵심 = 치입 인사이트 판단 틀(CIF)** — `knowledge/methods/insight_framework.md`를 먼저 읽는다. 보내는 건마다 ① 새로움 ② 중요도 ③ 밸류 다리 ④ 가격 반영 ⑤ 반영 지연·파급 ⑥ 기저율 ⑦ 치입 판단(변이 관점·확신도·반증·예측)을 거친다. 숫자는 반드시 `py scripts/insight/insight_calc.py`(materiality·bridge·priced·breakeven·diffusion·score·baserate)로 계산하고, 시가총액·주가 변동·컨센서스는 easyconomics company_profile(일본 종목은 market jp)로 읽는다. 인사이트 점수 7 이상은 '치입 판단'을 맨 위에 두고 측정 가능한 예측을 knowledge/predictions.csv에 등록(owner 치입, origin 펄스 파일), 4 미만은 사실 한 줄로만 보낸다. 사실 나열만으로 끝나는 건은 보내지 않는다.
+**모든 보고의 핵심 = 치입 인사이트 판단 틀(CIF)** — `knowledge/methods/insight_framework.md`를 먼저 읽는다. 보내는 건마다 ① 새로움 ② 중요도 ③ 밸류 다리 ④ 가격 반영 ⑤ 반영 지연·파급 ⑥ 기저율 ⑦ 치입 판단(변이 관점·확신도·반증·예측)을 거친다. 숫자는 반드시 `py scripts/insight/insight_calc.py`(materiality·bridge·priced·breakeven·diffusion·score·baserate)로 계산하고, 시가총액·주가 변동·컨센서스는 Fiscal.ai로 읽는다(ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code` → 본보기 `scripts/fiscal/templates/fundamentals.js`·`consensus.js`·`news.js`, 데이터 계약 `knowledge/methods/data_fiscal.md`, 회사 키 `config/fiscal_keys.yaml` — 일본·한국 종목은 키 확인 후, 없으면 회사 IR). Zacks 컨센서스·목표가·의견을 실을 때는 'Data provided by Zacks Investment Research, Inc., www.zacksdata.com' 표기. 인사이트 점수 7 이상은 '치입 판단'을 맨 위에 두고 측정 가능한 예측을 knowledge/predictions.csv에 등록(owner 치입, origin 펄스 파일), 4 미만은 사실 한 줄로만 보낸다. 사실 나열만으로 끝나는 건은 보내지 않는다.
 
 0. `py radar/pulse.py`를 실행한다. 출력이 '→ 종료'로 끝나면(새 원본 없음·대기열 없음, 또는 이전 회차 진행 중) 아무것도 하지 말고 끝낸다(텔레그램 없음). 아니면 출력의 펄스 파일(radar/pulse/YYYYMMDD_HHMM.json)을 읽는다: sources(유형별 점수순 원본 — source_class 속보 판단·IR 질의응답·숏 리포트·신규 상장·파이낸싱·방위·공시·보도자료·논문·정부), candidates(감시 목록 밖 미국 상장 티커), queue(알파 산정 대기, busy=true면 이번엔 알파 산정 건너뜀).
 
@@ -24,7 +24,7 @@
    - 가이던스 수정은 '상반기 초과분만 얹었는지(하반기 내포치 비교)', 계약·투자는 '규모 ÷ 시총·매출', 증자는 '희석률·앵커 투자자', M&A는 '프리미엄·지불 수단·손익분기 프리미엄'을 반드시 계산한다.
    - 한국 기업·보유 종목(config/portfolio.yaml)으로의 파급(수혜·피해·경쟁 공급 증가)을 한 줄 넣는다.
    - 판단을 마친 알림은 `py radar/pulse.py --judged <alert_ref ...>`로 표시한다(못 끝낸 건은 다음 회차로).
-   - **실적 발표는 Dean's Ticker 3단 양식(마스터 지시 2026-10-29, `knowledge/methods/earnings_format.md`)**: 실적·가이던스 발표 건은 위 블록 대신 ① 지표 정리(Results·Guidance를 `(est. …)`와 나란히, `After ±x%`) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 `■` 줄, `(시기 구체화)`·`(전망 실현)` 꼬리표) ③ 칼럼(숫자 뒤 이유와 파급, 4~7문단) — 세 통을 따로 `notify.send(본문, 'PULSE')`(서식 없음)로 보낸다. 파일 outputs/article/earnings/<YYYYMMDD>_<티커>_1·2·3.txt. 컨센서스·직전 콜은 easyconomics earnings_summary·earnings_call_transcript(이번·직전 날짜), 일본은 IR 질의응답 원문.
+   - **실적 발표는 Dean's Ticker 3단 양식(마스터 지시 2026-10-29, `knowledge/methods/earnings_format.md`)**: 실적·가이던스 발표 건은 위 블록 대신 ① 지표 정리(Results·Guidance를 `(est. …)`와 나란히, `After ±x%`) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 `■` 줄, `(시기 구체화)`·`(전망 실현)` 꼬리표) ③ 칼럼(숫자 뒤 이유와 파급, 4~7문단) — 세 통을 따로 `notify.send(본문, 'PULSE')`(서식 없음)로 보낸다. 파일 outputs/article/earnings/<YYYYMMDD>_<티커>_1·2·3.txt. 컨센서스·직전 콜은 Fiscal.ai `consensus.js`(Zacks — 표기 의무)·`transcript_qa.js`·`company_earnings_summary`(이번·직전 이벤트 q{분기}-{연도}), 일본은 IR 질의응답 원문.
 
 1. ① 미보도 원문 — 최대 3건, 어디에도 보도되지 않은 것만.
    - 최선을 다해 찾는다: sources를 점수 상위만 보지 말고 유형별(공시·보도자료·논문·정부)로 끝까지 훑는다. 8-K는 본문뿐 아니라 첨부(EX-99.1 보도자료, EX-10 계약서 요약·물량·기간·고객명)를 연다. 보도자료는 본문 속 고객·파트너·수치를 본다. 논문은 저자 소속(기업 연구소)과 수치 결과를 본다. 3자 보도자료 = 고객·파트너·정부가 낸 발표에서 다른 기업(특히 한국 기업·미국 중소형주)이 드러나는 것 — 이런 '숨은 이름'이 미보도일 가능성이 가장 높다.
@@ -47,7 +47,7 @@
    - 대상 종목·운용사·발표 시각을 확정하고, 리포트 원문을 찾는다: 운용사 사이트는 robots.txt를 확인한 뒤 열고, 막혀 있으면 보도·요약으로만(원문 복제 금지, 인용은 한 줄 15단어 이하). 같은 리포트의 후속 보도는 한 건으로 묶는다.
    - 주장을 3~7개로 나눠 각각 **1차 출처로 검증**한다(SEC 10-Q·10-K·S-1·424B·8-K, 회사 보도자료·콜, 논문, 특허). 주장마다 '확정 / 일부 확인 / 반박 근거 있음 / 검증 불가'와 근거 URL. 익명 인터뷰·자체 모델 추정은 '검증 불가 — 숏 측 추정'으로 둔다.
    - **엔지니어 관점 반대 검증**: 기술 주장(수명·수율·발열·신뢰성)은 메커니즘(열 사이클 피로 vs 고온 체류 — 아레니우스, 전자이동(EM), 절연막 파괴(TDDB) 등)과 숏 측 모델의 가정을 짚는다.
-   - **밸류 판단**: 이 주장이 맞으면 바뀌는 핵심 변수 1~2개(예: 장비 수명 → 교체 CAPEX → 계약 손익분기)를 골라 손익분기값을 계산하고, 현재 가격(easyconomics company_profile — 시가총액·EV·매출·컨센서스·공매도 비율)과 컨센서스가 그 변수를 얼마로 두는지 비교한다. 보호예수(락업) 해제·내부자 매도(Form 4·144)·실적일 등 수급 일정도 적는다.
+   - **밸류 판단**: 이 주장이 맞으면 바뀌는 핵심 변수 1~2개(예: 장비 수명 → 교체 CAPEX → 계약 손익분기)를 골라 손익분기값을 계산하고, 현재 가격(Fiscal.ai `fundamentals.js` — 시가총액·EV/매출·매출·컨센서스, 13F·내부자는 `holders.js`, 공매도 거래량은 Fiscal.ai에 없어 FINRA)과 컨센서스가 그 변수를 얼마로 두는지 비교한다. 보호예수(락업) 해제·내부자 매도(Form 4·144)·실적일 등 수급 일정도 적는다.
    - 회사 반박(보도자료·8-K)이 나오면 '갱신'으로 다시 보낸다.
    - 대상이 감시 목록 밖이면 config/earnings_watch.yaml extra에 추가하고 `py radar/pulse.py --enqueue us-<티커> ...`로 알파 산정 대기열에 넣는다. 기록은 outputs/invest/short/<YYYYMMDD>_<티커>.md.
    - '숏 리포트가 맞다/틀렸다'로 단정하지 않는다 — 주장별 판정과 반증 조건·다음 확인 사건으로 쓴다.
@@ -64,7 +64,7 @@
    - 분석 틀은 `knowledge/methods/defense_lens.md`를 먼저 읽는다: 부문(대기업·제품·서비스·솔루션)과 제품 대분류(항공·지상·해상·미사일방공·탄약·방위전자·무인·우주·소화기·부품) 중 어디인지, 예산 단계(§4) 중 어디인지 적는다.
    - 미 국방부(war.gov)는 자동 접속이 막혀 있다 — 색인 제목·링크만 쓰고, 금액·물량은 회사 보도자료·8-K·적시공시로 확인한다. 확인 못 하면 '미확인'. 일일 계약 목록(Contracts for …)은 방위 지도 기업이 $100M 이상 받은 건만 골라 건별로.
    - **금지 연결**(defense_lens §5): 프레임워크 ≠ 개별 발주, IDIQ 상한 ≠ 집행, 예산 ≠ 계약, DSCA 통보 ≠ 계약, MOU·우선협상 ≠ 수출 계약, LRIP ≠ 전력화 양산.
-   - 점유: 금액 ÷ 연매출·수주잔고(easyconomics company_profile, 유럽은 market 인자). 한국 방산·반도체(GaN·FPGA) 파급은 관계가 확인될 때만.
+   - 점유: 금액 ÷ 연매출·수주잔고(Fiscal.ai `fundamentals.js`·company_financials_standardized, 유럽은 회사 키 확인 후). 한국 방산·반도체(GaN·FPGA) 파급은 관계가 확인될 때만.
    - 원문 언어(독·프·이·스·일)는 보존하고 번역을 병기한다(번역은 증거가 아니다).
    - 방위 기업 실적 발표는 Dean's Ticker 3단 양식(1-0과 같음). 방위 지도의 중소형이 병목 테마(config/discovery.yaml 방위 테마)에 맞으면 2번 발굴로 넘긴다.
 
@@ -73,7 +73,7 @@
 2. ② 텐배거 발굴 → 알파 레이더 감지.
    a. 발굴: candidates와 sources(1번에서 찾은 숨은 이름 포함)에서 '병목 → 해결 기술 → 작은 공급사' 경로(`.claude/skills/tenbagger-card/SKILL.md` 발굴 기준)에 맞는 미국 중소형주를 고른다. 대형 유틸리티·무관 업종(소비재 등)은 버린다. 고른 종목마다 `py radar/pulse.py --enqueue us-<티커소문자> "<이름> (<티커>)" "<원본 URL> · <한 줄 이유>"`.
    a2. **조용한 매집형 상승 watch**(마스터 지시 2026-10-29 "FormFactor·Nova 같은 엣지 중소형은 반드시 관측 — 기관 자금이 들어오며 조용히 꾸준히 오르는 종목"): knowledge/models/discovery/quiet_latest.json의 watch 종목(마스터 지정 always_watch 포함)은 레이더 종목 인식·SEC 공시 수집에 이미 들어가 있다. 이 종목의 공시·실적·보도자료가 sources에 오면 미보도 여부와 무관하게 검토하고, 보낼 때 머리줄 끝에 `· 조용한 상승 watch`(관문 미통과면 `· 관측 중`)를 붙인다. 근거 줄 `수급`에 quiet_latest.json의 기관 매집(ATS 비중 변화·리테일 비중)을 한 줄로.
-   b. 알파 산정(queue.busy가 false일 때만): radar/state/v2_queue.json의 kind '알파 산정'을 먼저 들어온 순으로 최대 3종목(10분 회차). 원본(8-K·보도자료)·공개 시세/멀티플(easyconomics MCP — ToolSearch로 `select:mcp__easyconomics__company_profile,mcp__easyconomics__earnings_summary,mcp__easyconomics__company_financials_summary` 등을 불러 사용)로 tenbagger-card '알파 점수' 절의 4요소(upside·gap·bottleneck·asymmetry)를 knowledge/models/alpha/judgments/<오늘 YYYYMMDD>.csv에 쓴다(근거 URL, 약하면 4~6점·'근거 약함', 이유 앞에 '1차 판정(미검증):'). knowledge/narratives/companies/<id>.md가 있고 30일 이내면 그 alpha_effect를 반영하고 이유에 '내러티브: 단계'를 붙인다. 감시 목록에 없는 종목(id가 us-…)은 config/earnings_watch.yaml extra에 id·name·code(티커.US)·region·sub·aliases를 추가한다(데이터센터 전력 업종이면 radar_themes.dc_power에도). 그다음 `py scripts/alpha/score.py --finalize`. 처리한 항목은 대기열에서 지운다. kind '작성'은 대기열에 넣지 않는다(처리 기능 없음).
+   b. 알파 산정(queue.busy가 false일 때만): radar/state/v2_queue.json의 kind '알파 산정'을 먼저 들어온 순으로 최대 3종목(10분 회차). 원본(8-K·보도자료)·공개 시세/멀티플(Fiscal.ai — ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code` → `fundamentals.js`·`consensus.js`·`news.js` 본보기)로 tenbagger-card '알파 점수' 절의 4요소(upside·gap·bottleneck·asymmetry)를 knowledge/models/alpha/judgments/<오늘 YYYYMMDD>.csv에 쓴다(근거 URL, 약하면 4~6점·'근거 약함', 이유 앞에 '1차 판정(미검증):'). knowledge/narratives/companies/<id>.md가 있고 30일 이내면 그 alpha_effect를 반영하고 이유에 '내러티브: 단계'를 붙인다. 감시 목록에 없는 종목(id가 us-…)은 config/earnings_watch.yaml extra에 id·name·code(티커.US)·region·sub·aliases를 추가한다(데이터센터 전력 업종이면 radar_themes.dc_power에도). 그다음 `py scripts/alpha/score.py --finalize`. 처리한 항목은 대기열에서 지운다. kind '작성'은 대기열에 넣지 않는다(처리 기능 없음).
 
 3. 텔레그램 — 한 회차 1통(레벨 'PULSE'). 텍스트 파일 outputs/article/sources/<YYYYMMDD_HHMM>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PULSE', md=True)"`(md=True — `**굵게**`·`[이름](주소)`가 텔레그램 서식이 된다. 길면 문단 단위로 자동 분할).
    - 보내는 조건: 속보 판단(인사이트 4 이상)·새(또는 갱신된) 숏 리포트·미보도 원문·새(또는 갱신된) AI 파이낸싱·새 방위 건(인사이트 4 이상)·새 알파 5.0 이상 중 하나라도 있을 때. 모두 없으면 보내지 않는다(기록만).
@@ -92,7 +92,7 @@
      🐻 숏 리포트: `주장` (n개 중 확정 a · 일부 b · 반박 c · 불가 d) / `핵심` (가장 무거운 주장과 판정) / `밸류` (핵심 변수 손익분기 vs 현재) / `수급` (락업·내부자·실적일) / `다음`.
      💰 파이낸싱: `조건` (증권·규모·가격) / `참여자` / `직전 대비` / `함의` (돈의 흐름, 확정/미확인) / `다음`.
      🛡 Defense: 머리줄 `🛡 ① 회사(종목코드)｜사건 한 줄 · 제품 대분류` + 사업 1줄 + 판단 + `조건` (금액·기간·상한/확정) / `단계` (예산·계약 단계) / `점유` (매출·수주잔고 대비) / `파급` / `다음`.
-     🚀 알파: 머리줄 `🚀 ③ 이름(티커)｜알파 x.x · 시가총액 구간 — 발굴 경로`(구간은 `py scripts/tenbagger/bands.py --band <티커>` — 시총이 없으면 알파 산정 때 받은 easyconomics company_profile 응답을 파일로 저장해 `--put <티커> <파일>`로 먼저 넣는다. 예: `· $1–10B`) + 사업 1줄 + 판단 + `숫자`·`반대`·`다음`.
+     🚀 알파: 머리줄 `🚀 ③ 이름(티커)｜알파 x.x · 시가총액 구간 — 발굴 경로`(구간은 `py scripts/tenbagger/bands.py --band <티커>` — 시총이 없으면 Fiscal.ai `fundamentals.js` 출력을 파일로 저장해 `py scripts/fiscal/adapter.py --fund <id> <파일>`로 먼저 넣는다. 예: `· $1–10B`) + 사업 1줄 + 판단 + `숫자`·`반대`·`다음`.
    - 링크 줄: `[8-K 원문](주소) · [보도](주소)` — 1차 출처를 먼저.
    - 본보기(숫자는 형식 설명용):
 ```

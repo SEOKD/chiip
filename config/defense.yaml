@@ -5,7 +5,7 @@
 #   포커스와 무관하게 수집) · radar/notify.py(기업 1줄·종목코드) · radar/pulse.py '방위' 원본 분류 · scripts/tenbagger/bands.py(시가총액 구간 유니버스)
 #   · config/discovery.yaml 방위 병목 테마 · 분석 틀 knowledge/methods/defense_lens.md
 # 2026-10-29 개정: 그 밖 유럽(노르웨이·체코·스웨덴·영국·그리스·오스트리아·핀란드) 추가 — 마스터 "Kongsberg, CSG 같은 유럽 방위 종목도".
-# code는 EODHD 형식(미검증 — 키 입력 후 일괄 확인). ec_ticker는 easyconomics 인자가 code와 다를 때만.
+# code는 EODHD 형식(미검증 — 키 입력 후 일괄 확인). ec_ticker는 옛 easyconomics 조회 인자(기록) — 2026-10-30부터 조회는 Fiscal.ai 회사 키(config/fiscal_keys.yaml).
 # not_titles: 별칭이 겹치는 다른 회사 제목(예: 분리 상장한 Kongsberg Maritime) — 방위 판정 상향·펄스 방위 분류에서 그 회사로 보지 않는다. exposure(방산 비중)는 확실한 것만: core(본업) / major(큰 비중) / partial(일부), 모르면 비움.
 # biz는 회사 공시·IR 개요를 자기 말로 1줄. 지어내지 않는다 — 모르면 쓰지 않는다.
 code_verified: false
@@ -130,7 +130,7 @@ companies:
   - {id: es-escribano, name: Escribano Mechanical & Engineering, country: ES, market: es, listed: false, segments: [product], products: [land, c4isr_ew], exposure: core, aliases: ["Escribano Mechanical", "EM&E"], biz: "원격 무장 스테이션·전자광학 장비 제조(비상장)"}
   - {id: es-gmv, name: GMV, country: ES, market: es, listed: false, segments: [solutions], products: [space, c4isr_ew], aliases: ["GMV Innovating Solutions"], biz: "위성 관제·항법·방위 소프트웨어(비상장)"}
   # 그 밖 유럽(마스터 지시 2026-10-29 "방위주에는 Kongsberg, CSG 같은 유럽 방위 종목도 넣어줘") — 상장·티커는 거래소·회사 발표로 확인(2026-10-29).
-  # ec_ticker = easyconomics company_profile 인자(영국 .L, 오슬로 .OL, 스톡홀름 .ST, 암스테르담 .AS — 2026-10-29 BA.L·CSG 조회로 확인)
+  # ec_ticker = 옛 easyconomics company_profile 인자(기록 — 지금 조회는 Fiscal.ai 키, 영국 .L, 오슬로 .OL, 스톡홀름 .ST, 암스테르담 .AS — 2026-10-29 BA.L·CSG 조회로 확인)
   - {id: no-kongsberg, name: Kongsberg Gruppen, country: "NO", market: eu, code: KOG.OL, ec_ticker: KOG.OL, listed: true, segments: [prime, product], products: [missile_ad, c4isr_ew, space], exposure: major, aliases: ["Kongsberg Gruppen", "Kongsberg Defence", "Kongsberg"], not_titles: ["Kongsberg Maritime", "Kongsberg Digital"], biz: "NSM·JSM 미사일·NASAMS 방공·원격 무장 스테이션을 만드는 노르웨이 방산 기업(해양 부문은 2026-04 Kongsberg Maritime으로 분리 상장)"}
   - {id: cz-csg, name: CSG, country: CZ, market: eu, code: CSG.AS, ec_ticker: CSG.AS, listed: true, segments: [prime, product], products: [munitions, land, c4isr_ew, small_arms], exposure: core, aliases: ["Czechoslovak Group", "CSG N.V."], biz: "중·대구경 탄약(155mm 등)·군용 차량·방공 레이더·소구경 탄약을 만드는 체코 방산 그룹(2026-01 유로넥스트 암스테르담 상장)"}
   - {id: se-saab, name: Saab, country: SE, market: eu, code: SAAB-B.ST, ec_ticker: SAAB-B.ST, listed: true, segments: [prime, product], products: [air, missile_ad, c4isr_ew, naval, small_arms], exposure: core, aliases: ["Saab AB", "Saab"], biz: "그리펜 전투기·레이더·미사일·잠수함·대전차 화기(칼 구스타프)를 만드는 스웨덴 방산 대기업"}

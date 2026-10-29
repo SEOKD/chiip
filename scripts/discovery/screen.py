@@ -1,7 +1,7 @@
 """Chiip Ten-bagger Discovery 선별 — IB 리서치 하우스식 단계 관문으로 후보를 줄인다 (마스터 지시 2026-10-29, 방법 knowledge/methods/discovery_ib_process.md).
 
 입력: config/discovery.yaml(테마·후보·edge·가중치) · knowledge/models/discovery/attention_latest.json(radar/attention.py)
-      · knowledge/models/discovery/fundamentals.json(주간 회차에 모델이 easyconomics company_profile로 채움:
+      · knowledge/models/discovery/fundamentals.json(주간 회차에 모델이 Fiscal.ai fundamentals.js → scripts/fiscal/adapter.py --fund로 채움:
         {id: {"as_of","mcap_usd","rev_growth","op_margin","ev_sales","n_analysts","source"}}) · config/coverage.yaml
 단계: ① 아이디어(테마 지도 전부) → ② 선별(점수 ≥ 6.0, edge ≥ 6, 펀더멘털 확보) → ③ 심층 대기열(선별 통과·미커버 상위 3) →
       ④ 위원회 메모(모델이 템플릿으로 작성) → ⑤ 커버리지 편입(--promote) — 편입되면 원문 팔로업·실적·텐배거 리포트 대기열에 자동 연결.

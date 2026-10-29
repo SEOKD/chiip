@@ -151,7 +151,7 @@ def build(entity, draws=3000):
             blocks.extend(multiples.report_blocks(mm, r["unit"], mcap, co.get("name", entity)))
         import datapack_check
         chk = datapack_check.check(dp)
-        blocks.append({"type": "table", "title": f"데이터 검증 — 원자료(easyconomics·SEC) ↔ 밸류에이션 입력 대조 {chk['score']}/10",
+        blocks.append({"type": "table", "title": f"데이터 검증 — 원자료(Fiscal.ai·SEC) ↔ 밸류에이션 입력 대조 {chk['score']}/10",
                        "headers": ["검사", "결과", "내용"], "rows": [[c["name"], c["status"], c["detail"][:140]] for c in chk["checks"]]})
     prov = co.get("provenance") or {}
     if prov:

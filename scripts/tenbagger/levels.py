@@ -108,11 +108,11 @@ def dominant(bars, kind, anchors=None):
             lo, hi = (a, b) if a[2] == "L" else (b, a)
             return {"low": lo[1], "high": hi[1], "low_date": lo[3], "high_date": hi[3], "up": a[2] == "L", "basis": f"ATR 지그재그 {th * 100:.1f}% 마지막 완료 다리"}
         bars = bars[-84:]
-    win = bars[-52:] if kind == "주봉" else bars
+    win = bars[-52:] if kind == "주봉" else bars[-60:]   # 월봉은 최근 5년(60개월) — 장기 월봉이 있으면 그만큼(2026-10-30 Fiscal.ai)
     lo_b = min(win, key=lambda b: b["l"])
     hi_b = max(win, key=lambda b: b["h"])
     sw = {"low": lo_b["l"], "high": hi_b["h"], "low_date": lo_b.get("ld", lo_b["date"]), "high_date": hi_b.get("hd", hi_b["date"]),
-          "basis": "최근 52주 최저↔최고" if kind == "주봉" else "확보 구간 최저↔최고"}
+          "basis": "최근 52주 최저↔최고" if kind == "주봉" else ("최근 60개월 최저↔최고" if len(bars) >= 60 else "확보 구간 최저↔최고")}
     if kind == "월봉" and anchors:
         a_lo, a_hi = anchors.get("low") or {}, anchors.get("high") or {}
         if a_lo.get("price") and a_lo["price"] < sw["low"]:
@@ -133,9 +133,16 @@ def round_levels(price):
     return [x for x in range(base, int(price * 1.25) + step, step) if x > 0]
 
 
-def collect_levels(daily, anchors=None):
+def merge_monthly(monthly, daily):
+    """장기 월봉(ohlcv_m.csv) + 일봉에서 만든 최근 월봉 — 같은 달은 일봉 쪽을 쓴다"""
+    recent = resample(daily, "M")
+    seen = {b["date"][:7] for b in recent}
+    return [b for b in (monthly or []) if b["date"][:7] not in seen] + recent
+
+
+def collect_levels(daily, anchors=None, monthly=None):
     price = daily[-1]["c"]
-    frames = {"주봉": resample(daily, "W"), "일봉": daily, "월봉": resample(daily, "M")}
+    frames = {"주봉": resample(daily, "W"), "일봉": daily, "월봉": merge_monthly(monthly, daily) if monthly else resample(daily, "M")}
     swings, lv = {}, []
     for k, bars in frames.items():
         sw = dominant(bars, k, anchors)
@@ -184,8 +191,8 @@ def cluster(levels, band=BAND):
     return out
 
 
-def zones(daily, anchors=None, n=3, min_strength=2.0):
-    price, swings, lv = collect_levels(daily, anchors)
+def zones(daily, anchors=None, n=3, min_strength=2.0, monthly=None):
+    price, swings, lv = collect_levels(daily, anchors, monthly)
     cl = [g for g in cluster(lv) if g["strength"] >= min_strength]
     sup = sorted([g for g in cl if g["hi"] < price * 0.998], key=lambda g: -g["mid"])[:n]
     res = sorted([g for g in cl if g["lo"] > price * 1.002], key=lambda g: g["mid"])[:n]
@@ -219,7 +226,8 @@ def report_section(entity, dp=None):
     if len(daily) < 60:   # 상장 3개월 미만은 스윙이 성립하지 않는다(2026-10-30: 상장 후 60~119거래일 종목은 '상장 이후 전체'로 그린다)
         return None
     anchors = ((dp or {}).get("raw") or {}).get("anchors")
-    z = zones(daily, anchors)
+    monthly = flow.load_monthly(entity)
+    z = zones(daily, anchors, monthly=monthly)
     price = z["price"]
     sw = z["swings"]
     blocks = []
@@ -245,12 +253,14 @@ def report_section(entity, dp=None):
                   + [f"{v:,.1f}" for v in s["ret"].values()])
     blocks.append({"type": "table", "title": "시간 단위별 피보나치 되돌림($)", "headers": ["단위", "지배 스윙", "다리", "23.6%", "38.2%", "50%", "61.8%", "78.6%"], "rows": fr})
     zs = z["support"] + z["resistance"] + z["at"]
-    blocks.append(candle_chart(resample(daily, "M"), "월봉 — 장기 스윙 되돌림", sw["월봉"], zs, price, 24))
+    blocks.append(candle_chart(merge_monthly(monthly, daily) if monthly else resample(daily, "M"), "월봉 — 장기 스윙 되돌림", sw["월봉"], zs, price, 60 if monthly else 24))
     blocks.append(candle_chart(resample(daily, "W"), "주봉 — 52주 스윙 되돌림", sw["주봉"], zs, price, 52))
     blocks.append(candle_chart(daily, "일봉 — 마지막 완료 스윙 되돌림(최근 90거래일)", sw["일봉"], zs, price, 90))
-    note = "월봉은 확보한 일봉 기간만큼만 그린다"
+    note = "월봉은 최근 60개월(Fiscal.ai 장기 월봉)" if monthly else "월봉은 확보한 일봉 기간만큼만 그린다"
+    if flow.approx_hl(entity):
+        note += " · 고가·저가는 Fiscal.ai 일봉에 없어 시가·종가로 근사(스윙 고저가 실제보다 좁게 잡힐 수 있다)"
     if len(daily) < 120:
-        note = f"상장 후 {len(daily)}거래일뿐이라 월·주봉 스윙은 상장 이후 전체 구간이다(장기 지지·저항으로 읽지 말 것)"
+        note = f"상장 후 {len(daily)}거래일뿐이라 월·주봉 스윙은 상장 이후 전체 구간이다(장기 지지·저항으로 읽지 말 것)" + (" · 고가·저가 근사" if flow.approx_hl(entity) else "")
     if anchors:
         note += f" — 장기 기준점: {anchors.get('low', {}).get('note', '')}"
     blocks.append({"type": "p", "text": "**기법과 근거:** 스윙은 ATR 지그재그(임계 = max(월 20%·주 10%·일 5%, 2.5×ATR14)), 되돌림 23.6~78.6%·확장 127.2·161.8%. 함께 본 기준선: 50·200일 이동평균과 50·150·200일 거래 범위 고저"

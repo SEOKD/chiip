@@ -21,7 +21,7 @@ universe:
 bands:
   per_band_top: 3
   horizons_years: [5, 10]
-  stale_days: 7            # 시가총액이 이보다 오래되면 일요일 회차가 easyconomics로 갱신
+  stale_days: 7            # 시가총액이 이보다 오래되면 일요일 회차가 Fiscal.ai로 갱신(scripts/fiscal/adapter.py --fund)
   refresh_per_run: 40      # 한 회차 갱신 상한(모델 호출 비용)
   list:
     - {id: B0,  label: "$0.1–1B",   min_usd: 1.0e+8,  max_usd: 1.0e+9}

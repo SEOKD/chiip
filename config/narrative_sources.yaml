@@ -22,7 +22,7 @@ auto:                        # 자동 수집(결정론)
   news7: "기존 9개 매체(src-news7-focus)"
 
 model:                       # 모델 단계(헤드리스·저빈도)에서만
-  easyconomics: [analyst_rating_changes, analyst_qa_calls, analyst_qa_call, earnings_call_transcript, company_news]
+  fiscal_ai: [consensus.js, transcript_qa.js, fund_letters.js, news.js, holders.js]   # scripts/fiscal/templates — 2026-10-30 easyconomics 퇴역(ADR-012)
   # 2026-10-28 확인: analyst_rating_changes는 종목 지정 없이 시장 전체·최근 5일만(days>5는 422) → 60일 이력은 auto.analyst_actions 제목으로.
   #   analyst_qa_calls·analyst_qa_call은 종목별 최근 콜의 셀사이드 질문을 줌 = IB 내러티브 초점(질문자 개인 이름 저장 금지, 증권사명만)
   notion: "마스터 노션 Informations — IB 리포트 요지(라이선스 취급: 원문 문장 복제 금지, 출처·요지만)"

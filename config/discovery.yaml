@@ -7,7 +7,7 @@
 # 흐름: 테마(병목·BOM 함량) → 후보 → [관심도 radar/attention.py · 펀더멘털 knowledge/models/discovery/fundamentals.json]
 #       → 선별 점수 scripts/discovery/screen.py → 증거(원문)·위원회 메모(knowledge/methods/discovery_ib_process.md)
 #       → 커버리지(config/coverage.yaml) → 원문 팔로업(일본 적시공시·IR Q&A / 대만 重大訊息·월매출 / 미국 SEC) + 실적 + 텐배거 리포트 대기열
-# code는 거래소 코드(일본 4자리·대만 4자리·한국 6자리·미국 티커). code_verified: false면 첫 주간 회차에 easyconomics company_profile(market jp/tw/kr)로 확인.
+# code는 거래소 코드(일본 4자리·대만 4자리·한국 6자리·미국 티커). code_verified: false면 첫 주간 회차에 Fiscal.ai company_profile(회사 키 '<거래소>_<티커>', config/fiscal_keys.yaml)로 확인(2026-10-30 easyconomics 퇴역).
 # edge(0~10)는 치입 판단(병목에서 대체 불가성·점유율·가격 결정력) — 근거 한 줄과 함께, 주간 회차에서 고친다.
 
 themes:

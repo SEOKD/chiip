@@ -10,7 +10,7 @@ IB 커버리지·레딧 등 투자 커뮤니티 관심도 등 다양한 채널")
   커뮤니티 관심도  ApeWisdom 공개 API(레딧·4chan 언급 수 집계 — 레딧은 robots.txt 전면 차단이라 직접 수집하지 않음)
                  + 위키백과 일간 조회수(Wikimedia REST, 하루 1회) + Hacker News(하루 1회)
   일정      config/portfolio.yaml events — 당일·전날 알림
-모델 몫(easyconomics MCP): 실적 요약·어닝콜 스크립트·컨센서스·목표가·포지셔닝 — 예약 작업이 '데일리'(화~토 07시 이후 첫 회차)와
+모델 몫(Fiscal.ai MCP, 2026-10-30 ADR-012): 실적 요약·어닝콜 스크립트·컨센서스(Zacks)·목표가·13F·내부자·펀드 레터·Fiscal 포트폴리오 대조 — 예약 작업이 '데일리'(화~토 07시 이후 첫 회차)와
 실적 공시가 잡힌 회차에 부른다. 커버리지 숫자는 --record로 남겨 전일 대비를 결정론으로 계산한다.
 출력: radar/portfolio/YYYYMMDD_HHMM.json(git 제외) · 상태 radar/state/portfolio.json
 사용: py radar/portfolio.py                     # 수집·출력. 새 자료도 데일리도 없으면 '종료' 줄
@@ -362,7 +362,7 @@ def end():
     common.save_state(STATE, st)
 
 
-# ---------- 커버리지 기록(모델이 easyconomics로 읽은 숫자) ----------
+# ---------- 커버리지 기록(모델이 Fiscal.ai로 읽은 숫자) ----------
 def coverage_rows():
     if not COVERAGE.exists():
         return []

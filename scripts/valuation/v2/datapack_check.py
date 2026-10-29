@@ -30,7 +30,7 @@ def derived_tone(call):
 
 def check(p):
     raw, pf, fin, cons = p.get("raw") or {}, p.get("profile") or {}, p.get("financials") or {}, p.get("consensus") or {}
-    ez, q = raw.get("easyconomics_profile") or {}, raw.get("quarters_gaap") or {}
+    ez, q = raw.get("fiscal_profile") or raw.get("easyconomics_profile") or {}, raw.get("quarters_gaap") or {}   # 2026-10-30 원천 = Fiscal.ai(ADR-012), 옛 묶음은 easyconomics
     bs = next((v for k, v in sorted(raw.items()) if k.startswith("balance") and isinstance(v, dict)), {})   # balance_<날짜> 또는 balance
     out = []
 
@@ -44,7 +44,7 @@ def check(p):
     add("가격 일치", "통과" if _near(pf.get("price"), ez.get("price"), 0.001) else "실패", f"{pf.get('price')} vs {ez.get('price')}")
     nd_ok = _near(pf.get("cash"), ez.get("total_cash"), 0.01) and _near(pf.get("debt"), ez.get("total_debt"), 0.01)
     detail = f"현금 {pf.get('cash')} vs {ez.get('total_cash')} · 차입(리스 포함) {pf.get('debt')} vs {ez.get('total_debt')}"
-    # easyconomics(yfinance) 재무상태표가 지난 분기 값이면 더 최신 1차 재무상태표(10-Q·8-K, raw.balance_<날짜>)와 맞는지 본다(2026-10-29 PWR: 8월 채권 발행 반영)
+    # 개요(Fiscal.ai·옛 easyconomics) 재무상태표가 지난 분기 값이면 더 최신 1차 재무상태표(10-Q·8-K, raw.balance_<날짜>)와 맞는지 본다(2026-10-29 PWR: 8월 채권 발행 반영)
     bs_key = next((k for k in sorted(raw) if k.startswith("balance_") and isinstance(raw[k], dict)), None)
     if not nd_ok and bs_key and ez.get("balance_date") and bs_key[8:].replace("_", "-") > ez["balance_date"]:
         b = raw[bs_key]

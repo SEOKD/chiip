@@ -83,6 +83,7 @@
 - 텐배거 리포트 개편(§21.41, 마스터 2026-10-29): 하루 3건(07·13·22시, chiip-tenbagger-report cron 변경), 자동 삽입 세 절 — 내러티브 다각(`narrative_view.py`), 수급 Chiip Flow(`flow.py`, FINRA 공개 API로 리테일 도매 체결 vs 기관·이상 거래일 원인), 월·주·일 피보나치 겹침(`levels.py`, ATR 지그재그·BLL 기준선·라운드 넘버), 렌더러 캔들·쌓인 막대, 금액 단위 `radar/units.py`($25B·$M·$T, notify·렌더 공통), 데이터 검증의 최신 재무상태표 대조, 상수 `config/report_tools.yaml`·등록부 7개. 첫 산출 PWR 3Q26(마스터 수동 지정 — 데이터 검증 10/10, v2 0.44배·시장 내포 CAGR 30%, 10배 경로 닫힘, 예측 P-20261029-12). 시험 19개 추가(전체 210 통과).
 - 실시간 알림 3문단 양식(§21.42, 마스터 2026-10-29 "종목｜내용｜시간 → ☞ 회사 설명 3줄 → 핵심 내용 3개"): radar/notify.py format_item·company_profile·remember_profile·snippet_points, config/company_profiles.yaml(30일 캐시), radar-triage 출력 points·profile, run_poll 빠른 길 enrich(haiku 1회, 실패 시 요약문 문장), 묶음 발송 구분선. 시험 tests/test_alert_format.py
 - 발굴 메커니즘 점검·조용한 매집형 상승(§21.43, 마스터 2026-10-29 "FormFactor·Nova 같은 엣지 중소형 반드시 관측 — 기관 자금이 들어오며 조용히 꾸준히 오르는 종목"): 빈틈 ① 구간 시드·발굴 후보가 레이더 인식·SEC 수집에서 빠짐 → common.discovery_entities·edge_watch_entries(일반어 이름은 aliases로만) ② 점수에 추세·매집 신호 없음 → scripts/discovery/quiet.py(정보 이산성·52주 고점·FINRA ATS 비중·리테일 비중·EPS 서프라이즈, 관문). 테마 metrology_inspection(Nova·Onto·Camtek)·probe_test에 FormFactor·Cohu, screen.py quiet 요소, 등록부 prm-quiet-w-*. 시험 tests/test_quiet.py
+- 데이터 원천 Fiscal.ai 전환(§21.44·ADR-012, 마스터 2026-10-30): easyconomics 퇴역. knowledge/methods/data_fiscal.md(7개 기능 → 엔진 단계), scripts/fiscal/templates 7개(PWR 실측), scripts/fiscal/adapter.py, config/fiscal_keys.yaml, levels 장기 월봉. 운영 지시문·스킬·설정·스크립트 주석과 예약 작업 프롬프트 2개 교체. 시험 tests/test_fiscal_adapter.py
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

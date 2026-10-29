@@ -16,7 +16,7 @@
 | 단계 | 관문(통과 조건) | 산출 |
 |---|---|---|
 | ① 아이디어 | 테마 지도(`config/discovery.yaml`)에 있음 — 병목·함량 동인·확인 자료가 적혀 있어야 | 후보 행 |
-| ② 선별 | 점수 ≥ 6.0, edge ≥ 6, 펀더멘털 확보(easyconomics) | 순위표 `outputs/discovery/<날짜>.md` |
+| ② 선별 | 점수 ≥ 6.0, edge ≥ 6, 펀더멘털 확보(Fiscal.ai) | 순위표 `outputs/discovery/<날짜>.md` |
 | ③ 심층 대기열 | 선별 통과·미커버 상위 3 | — |
 | ④ 위원회 메모 | **원문 증거 2개 이상**(회사 공시·결산 자료·IR Q&A·고객/공급사 공시, 2차 보도 단독 불가) + 변이 관점 + 날짜 붙은 촉매 + 킬 조건 + 멀티플(동종 레인지·할인 분해) + red-team 반론 | `knowledge/models/discovery/memos/<날짜>_<id>.md` |
 | ⑤ 커버리지 | 메모 결론 focus/bench → `py scripts/discovery/screen.py --promote <id> --stage focus --memo <경로>` | `config/coverage.yaml` + 리포트 대기열 |

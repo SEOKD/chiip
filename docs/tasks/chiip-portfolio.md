@@ -14,28 +14,28 @@
 작업 폴더: C:\Users\석진\chiip (git 저장소). 먼저 CLAUDE.md를 읽고 그 규칙을 따른다.
 환경: PowerShell에서 py·git이 "인식되지 않는다"고 나오면 명령 앞에 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User');` 를 붙인다. 출력이 깨지면 `$env:PYTHONIOENCODING='utf-8'`.
 
-배경(마스터 지시 2026-10-29): "Chiip Portfolio — 내가 포트폴리오에 담고 있는 종목에 관한 정보를 팔로업한다. 공시·어닝·어닝콜 스크립트·전망·IB 커버리지·레딧 등 투자 커뮤니티 관심도 등 다양한 채널을 참조하라. 포트폴리오는 변화가 있을 때마다 알려주겠다." 보유 종목은 config/portfolio.yaml holdings(status 보유). 모드는 invest — D:\local-only를 읽지 않고, 공개 자료와 easyconomics 데이터만 쓴다. 치입은 투자자문이 아니다: 사실·숫자·일정·지표만 전하고 '사라/팔아라/보유하라'·목표주가·비중 지시를 하지 않는다(애널리스트 목표가는 제3자 숫자로 출처와 함께 전할 수 있다). 한 회차는 20분 안에 끝낸다.
+배경(마스터 지시 2026-10-29): "Chiip Portfolio — 내가 포트폴리오에 담고 있는 종목에 관한 정보를 팔로업한다. 공시·어닝·어닝콜 스크립트·전망·IB 커버리지·레딧 등 투자 커뮤니티 관심도 등 다양한 채널을 참조하라. 포트폴리오는 변화가 있을 때마다 알려주겠다." 보유 종목은 config/portfolio.yaml holdings(status 보유). 모드는 invest — D:\local-only를 읽지 않고, 공개 자료와 Fiscal.ai 데이터만 쓴다(데이터 계약 knowledge/methods/data_fiscal.md, ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`). 치입은 투자자문이 아니다: 사실·숫자·일정·지표만 전하고 '사라/팔아라/보유하라'·목표주가·비중 지시를 하지 않는다(애널리스트 목표가는 제3자 숫자로 출처와 함께 전할 수 있다). 한 회차는 20분 안에 끝낸다.
 
 0. `py radar/portfolio.py`를 실행한다. 출력이 '→ 종료'로 끝나면 아무것도 하지 말고 끝낸다(텔레그램 없음). 아니면 출력의 파일(radar/portfolio/YYYYMMDD_HHMM.json)을 읽는다: items(점수순 새 자료 — kind 공시·보도자료·보도·IB 커버리지·커뮤니티 글·관심도·일정), daily(데일리 회차 여부), earnings_hit(실적 8-K가 잡힌 티커), attention(레딧 등 언급·위키 조회), upcoming(14일 일정), coverage_last(직전 커버리지 기록).
 
 1. 새 자료 판정 — 종목별로.
    - 공시: 본문을 연다. 8-K는 색인(index URL)에서 EX-99.1 보도자료·EX-10 계약을 연다. 분류: 실적(→ 2번) / 중요 계약·인수·처분(1.01·2.01) / 임원 변동(5.02) / 증자·희석(3.02, S-1·S-3·424B, 전환사채) / 주주총회 결과(5.07) / 내부자 거래(Form 4 — 매수·매도 방향, 주식 수·금액, 10b5-1 계획 여부, 보유 대비 비율) / 대주주 지분(13D·13G) / 정기 보고서(10-Q·10-K — 직전 분기 대비 바뀐 위험 요인·백로그·고객 집중도만). 스팩 425는 제목·첫 문단만 훑고 새 숫자(고객·계약·환매율·투표 결과)가 있을 때만 쓴다.
    - 보도자료·보도·커뮤니티 글: 제목·링크로만 다룬다(robots.txt가 막은 사이트는 열지 않는다). 보도자료는 회사 공식 페이지나 PR Newswire·Business Wire·GlobeNewswire 원문이 열리면 숫자를 확인한다.
-   - IB 커버리지: 제목에서 증권사·행동(개시·상향·하향·목표가 변경)·새 목표가를 읽고, ToolSearch로 `select:mcp__easyconomics__analyst_rating_changes`를 불러(시장 전체·최근 5일) 티커로 걸러 대조한다. 대조되지 않으면 '제목 기준, 미대조'.
+   - IB 커버리지: 제목에서 증권사·행동(개시·상향·하향·목표가 변경)·새 목표가를 읽고, Fiscal.ai `consensus.js`의 ratings(목표가·의견 분포, Zacks)를 portfolio 기록의 직전 값과 비교해 변화로 대조한다. 대조되지 않으면 '제목 기준, 미대조'.
    - 관심도(레딧 등 언급 급증·위키 조회 급증): 신호이지 주장이 아니다(S1). 같은 날 원인 사건(공시·보도·실적)을 찾아 붙이고, 없으면 '원인 미확인'. 주가 급등 → 펀더멘털 변화로 잇지 않는다(금지표).
    - 일정(오늘·내일): 그대로 전한다.
    - 중요도: P0 = 실적·가이던스 변경·M&A·합병 투표 결과·증자·대규모 계약·임원 CEO/CFO 변동·애널리스트 상향/하향 / P1 = 그 밖에 숫자가 있는 새 사실 / 기록만 = 반복 홍보물·소액 계획 매매·숫자 없는 제목.
 
-2. 실적(earnings_hit 또는 1번에서 실적 공시) — 스킬 earnings-delta 방식. ToolSearch로 `select:mcp__easyconomics__earnings_summary,mcp__easyconomics__earnings_call_transcript,mcp__easyconomics__company_ir_events,mcp__easyconomics__company_ir_transcript,mcp__easyconomics__analyst_qa_calls,mcp__easyconomics__company_financials_summary`를 불러 쓴다.
-   - 보도자료 숫자(매출·영업이익·EPS·가이던스)를 1차로 적고, 컨센서스 대비(easyconomics), 직전 가이던스 대비, 직전 분기 콜에서 회사가 한 말 대비를 나란히 둔다. 단위·기간(회계연도 차이 — MRVL은 1월 결산)을 맞출 수 없으면 '비교 불가'.
+2. 실적(earnings_hit 또는 1번에서 실적 공시) — 스킬 earnings-delta 방식. Fiscal.ai(ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`)의 company_earnings_summary·company_ir_events·`transcript_qa.js`·`consensus.js`를 쓴다.
+   - 보도자료 숫자(매출·영업이익·EPS·가이던스)를 1차로 적고, 컨센서스 대비(Fiscal.ai — Zacks 표기 의무), 직전 가이던스 대비, 직전 분기 콜에서 회사가 한 말 대비를 나란히 둔다. 단위·기간(회계연도 차이 — MRVL은 1월 결산)을 맞출 수 없으면 '비교 불가'.
    - 어닝콜(트랜스크립트가 나왔으면): 가이던스 변화, 애널리스트 질문의 초점(증권사명만, 질문자 개인 이름 저장 금지), 경영진이 새로 꺼낸 말·사라진 말(침묵도 신호). 트랜스크립트는 라이선스 자료로 다룬다 — 자기 말로 요약, 직접 인용은 한 줄·15단어 이하.
    - 종목별로 보는 동인(없으면 '미공시'): EROC 백로그·배치 MW·데이터센터 브리지 전력 비중·총이익률 / INIO 수주·백로그·데이터센터 비중·서비스 매출 / MRVL 데이터센터 매출·커스텀 XPU·광 인터커넥트 / PWR 백로그·전력·데이터센터 관련 매출·마진 / CCXI(Agility Robotics) Digit 배치 대수·고객 수·환매율·합병 후 현금 / CBRS 매출·RPO(수주잔고)·OpenAI 트랜치 인도·고객 집중도(G42·MBZUAI·OpenAI)·매출총이익률·유형자산 처분·손상·클라우드 장비 CAPEX·보증충당금·내용연수(숏 리포트 논점: 웨이퍼 현장 수명).
    - 아직 트랜스크립트가 없으면 '콜 요약 대기'로 두고 다음 회차에 다시 본다(radar/state/portfolio.json의 pending에 남기지 말고 오늘 기록 파일에 '대기' 줄로).
 
 3. 데일리(daily=true일 때만, 화~토 07시 이후 첫 회차):
-   - 종목마다 `mcp__easyconomics__company_profile`로 가격·목표가(평균·최저·최고)·의견 분포·공매도 비율·선행 PER을 읽고 `py radar/portfolio.py --record <티커> price=.. target_mean=.. target_low=.. target_high=.. buy=.. hold=.. sell=.. rec=.. short_pct=.. fwd_pe=.. next_earnings=.. source=easyconomics`로 기록한다. 출력되는 '이전 대비' 변화가 데일리의 핵심 재료다.
-   - `mcp__easyconomics__company_altdata`로 내부자 거래·공매도·정부 계약·락업·애널리스트 변화 중 새로 생긴 것만 본다.
-   - 다음 실적일: `company_ir_events`(event_type earnings) 또는 easyconomics 실적 캘린더로 확인하고, config/portfolio.yaml events에 없으면 `py radar/portfolio.py --event <YYYY-MM-DD> <티커> "<무엇, 현지시각·KST>" <출처URL>`(날짜가 회사 발표가 아니면 `--unconfirmed`). 상장 1년 안 된 종목(EROC 2026-06-09 IPO, INIO, CBRS 2026-05 IPO)은 보호예수(락업) 해제일을 증권신고서에서 확인해 같은 방식으로 넣는다(이미 있는 추정 일정은 확인되면 confirmed로 고친다).
+   - 종목마다 Fiscal.ai `fundamentals.js`·`consensus.js`(ratings)로 가격·목표가(평균·최저·최고)·의견 분포·선행 EPS를 읽고(공매도 비율은 Fiscal.ai에 없다 — FINRA 공매도 거래량 또는 비움) `py radar/portfolio.py --record <티커> price=.. target_mean=.. target_low=.. target_high=.. buy=.. hold=.. sell=.. rec=.. short_pct=.. fwd_pe=.. next_earnings=.. source=Fiscal.ai`로 기록한다. 출력되는 '이전 대비' 변화가 데일리의 핵심 재료다.
+   - Fiscal.ai `holders.js`(내부자 거래·13F 기관 보유 변화)·`news.js`(중요도 1~2)·`fund_letters.js`(새 펀드 레터 논지) 중 새로 생긴 것만 본다. Fiscal 포트폴리오(terminal_list_portfolios·terminal_get_portfolio, 읽기 전용)가 config/portfolio.yaml과 다르면 한 줄로 알린다(고치지 않는다).
+   - 다음 실적일: `company_ir_events`(event_type earnings) 또는 Fiscal.ai events_calendar로 확인하고, config/portfolio.yaml events에 없으면 `py radar/portfolio.py --event <YYYY-MM-DD> <티커> "<무엇, 현지시각·KST>" <출처URL>`(날짜가 회사 발표가 아니면 `--unconfirmed`). 상장 1년 안 된 종목(EROC 2026-06-09 IPO, INIO, CBRS 2026-05 IPO)은 보호예수(락업) 해제일을 증권신고서에서 확인해 같은 방식으로 넣는다(이미 있는 추정 일정은 확인되면 confirmed로 고친다).
    - 시장 맥락은 하루 한 번만 짧게: `market_positioning`·`liquidity_monitor`에서 보유 종목 업종(전력 인프라·반도체·로봇)에 걸리는 변화 한 줄. 없으면 생략.
    - 스팩(kind: spac): 투표 결과·환매율·합병 완료 8-K(2.01·5.01·5.03, 회사명 변경)가 나오면 config/portfolio.yaml의 그 종목 ticker를 새 티커(AGLT)·name을 새 회사명으로 고치고(cik 그대로, names에 옛 이름 유지), 텔레그램에 '보유 종목 티커 변경'을 적는다. 보유 구성 자체(추가·삭제)는 마스터가 알려줄 때만 바꾼다.
 
@@ -47,7 +47,7 @@
 5. 텔레그램 — 레벨 'PORTFOLIO'. outputs/invest/portfolio/<YYYYMMDD_HHMM>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PORTFOLIO')"`.
    - 금액은 `$50.6B`·`$420M`·`$1.2T`로 쓴다(506억$·4,200만$·백만 달러 표기 금지 — 마스터 지시 2026-10-29). 엔·원은 억 엔·조 원 그대로. 발송 직전 `radar/units.py`가 한 번 더 바꾸지만 처음부터 이렇게 쓴다.
    - 보내는 조건: P0·P1이 1건 이상이거나, 오늘·내일 일정이 있거나, 데일리 회차. 기록만 할 것뿐이면 보내지 않는다.
-   - 보유 종목이 실적을 발표한 회차: **실적 발표는 Dean's Ticker 3단 양식(마스터 지시 2026-10-29, `knowledge/methods/earnings_format.md`)**: 실적·가이던스 발표 건은 위 블록 대신 ① 지표 정리(Results·Guidance를 `(est. …)`와 나란히, `After ±x%`) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 `■` 줄, `(시기 구체화)`·`(전망 실현)` 꼬리표) ③ 칼럼(숫자 뒤 이유와 파급, 4~7문단) — 세 통을 따로 `notify.send(본문, 'PORTFOLIO')`(서식 없음)로 보낸다. 파일 outputs/article/earnings/<YYYYMMDD>_<티커>_1·2·3.txt. 컨센서스·직전 콜은 easyconomics earnings_summary·earnings_call_transcript(이번·직전 날짜), 일본은 IR 질의응답 원문.
+   - 보유 종목이 실적을 발표한 회차: **실적 발표는 Dean's Ticker 3단 양식(마스터 지시 2026-10-29, `knowledge/methods/earnings_format.md`)**: 실적·가이던스 발표 건은 위 블록 대신 ① 지표 정리(Results·Guidance를 `(est. …)`와 나란히, `After ±x%`) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 `■` 줄, `(시기 구체화)`·`(전망 실현)` 꼬리표) ③ 칼럼(숫자 뒤 이유와 파급, 4~7문단) — 세 통을 따로 `notify.send(본문, 'PORTFOLIO')`(서식 없음)로 보낸다. 파일 outputs/article/earnings/<YYYYMMDD>_<티커>_1·2·3.txt. 컨센서스·직전 콜은 Fiscal.ai `consensus.js`(Zacks — 표기 의무)·`transcript_qa.js`·`company_earnings_summary`(이번·직전 이벤트 q{분기}-{연도}), 일본은 IR 질의응답 원문.
    - 형식:
      `[Chiip Portfolio HH:MM]` (데일리면 `[Chiip Portfolio Daily MM/DD]`)
      종목마다(새 것이 있는 종목만) `■ 티커 회사명 — 한 줄 요지` / `- 무엇: 숫자(1차 출처)` / `- 기대 대비: 컨센서스·가이던스 대비` / `- 의미: 인과 한 줄(확정/미확인)` / `- 다음 확인: 사건(날짜)` / `- 원문: URL`.

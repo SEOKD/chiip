@@ -1,0 +1,5 @@
+# Fiscal.ai 회사 키 캐시 — 감시 목록 id → '<EXCHANGE>_<TICKER>'(knowledge/methods/data_fiscal.md, 마스터 지시 2026-10-30)
+# 모르는 id는 모델이 company_profile로 NYSE_·NASDAQ_ 순서로 확인하고 `py scripts/fiscal/adapter.py --key <id> <키> [terminalUrl]`로 넣는다.
+# 한국·일본·대만 상장사는 키·데이터 범위를 확인하고, 없으면 넣지 않는다(지어내지 않는다). terminal_url은 응답 값 그대로(손으로 만들지 않는다).
+keys:
+  co-quanta-services: {checked: '2026-10-30', key: NYSE_PWR, terminal_url: 'https://fiscal.ai/company/NYSE-PWR'}
