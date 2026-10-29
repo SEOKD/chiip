@@ -75,7 +75,16 @@ DEF_NOISE_RE = re.compile(r"webinar|conference call invitation|invitation|celebr
 def defense_ids():
     if "def" not in _DEF:
         _DEF["def"] = {c["id"] for c in common.defense_companies()}
+        # 별칭이 겹치는 다른 회사 제목(config/defense.yaml not_titles — 예: Kongsberg Maritime)
+        _DEF["not"] = {c["id"]: re.compile("|".join(map(re.escape, c["not_titles"])), re.I)
+                       for c in common.defense_companies() if c.get("not_titles")}
     return _DEF["def"]
+
+
+def defense_hits(ents, title):
+    """기사에 잡힌 방위 지도 기업 — not_titles에 걸리면 그 회사가 아니다"""
+    ids = defense_ids()
+    return [e for e in ents if e in ids and not (_DEF["not"].get(e) and _DEF["not"][e].search(title))]
 
 
 _DEF = {}
@@ -160,7 +169,7 @@ def match(item):
     dsca = re.match(r"DSCA [\d-]+", title) if sid == "src-defense-gov-gn" else None
     if dsca:   # 미 대외군사판매 의회 통보(DSCA 보도자료 번호)
         return "규칙 상향: 미 대외군사판매 통보", f"dsca:{dsca.group(0)}"
-    dents = [e for e in ents if e in defense_ids()]
+    dents = defense_hits(ents, title)
     dev = DEF_EVENT_RE.search(title)
     if dents and dev and not DEF_NOISE_RE.search(title):
         amt = amount_billion(text)

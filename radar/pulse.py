@@ -83,13 +83,9 @@ def is_financing(it, fin, pubs):
     return True
 
 
-_DEF_IDS = []
-
-
-def defense_ids():
-    if not _DEF_IDS:
-        _DEF_IDS.append({c["id"] for c in common.defense_companies()})
-    return _DEF_IDS[0]
+def defense_hits(ents, title):
+    from promote import defense_hits as hits   # 방위 지도 기업(not_titles 제외) — 판정 상향과 같은 기준
+    return hits(ents, title)
 
 
 def class_of(source_id):
@@ -142,7 +138,7 @@ def inbox_items(since):
                 continue
             cls = class_of(it.get("source_id", ""))
             # 방위 지도 기업의 수주·계약 보도자료·공시(보도자료 배포처·SEC)도 방위로 모은다
-            if cls in ("보도자료", "공시") and set(it.get("entities_matched") or []) & defense_ids() and DEF_WORD_RE.search(it.get("title", "")):
+            if cls in ("보도자료", "공시") and defense_hits(it.get("entities_matched") or [], it.get("title", "")) and DEF_WORD_RE.search(it.get("title", "")):
                 cls = "방위"
             if not cls or not relevant(it, cls):
                 continue

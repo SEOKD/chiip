@@ -35,6 +35,11 @@ class TestDefenseMap(unittest.TestCase):
                 self.assertTrue(c.get("code"), c["id"])
         countries = {c["country"] for c in d["companies"]}
         self.assertTrue({"DE", "FR", "IT", "ES", "JP", "US"} <= countries)
+        # 그 밖 유럽(마스터 "Kongsberg, CSG 같은 유럽 방위 종목도") — 국가 코드는 문자열(YAML이 NO를 false로 읽는 함정)
+        self.assertTrue({"NO", "CZ", "SE", "GB"} <= countries)
+        self.assertTrue(all(isinstance(c["country"], str) for c in d["companies"]))
+        for cid in ("no-kongsberg", "cz-csg", "se-saab", "gb-bae"):
+            self.assertIn(cid, ids)
 
     def test_aliases_match_and_avoid_false_positives(self):
         common._ALIAS_CACHE = None
@@ -91,6 +96,11 @@ class TestDefenseRadar(unittest.TestCase):
         prn = {"source_id": "src-prn", "entities_matched": ["us-ktos"]}
         self.assertIsNone(promote.match({**prn, "title": "Kratos awarded $12 million contract"}))
         self.assertIsNotNone(promote.match({**prn, "title": "Kratos awarded $1.2 billion contract for drones"}))
+        # 분리 상장한 Kongsberg Maritime은 방위 Kongsberg가 아니다(not_titles)
+        kog = {"source_id": "src-prn", "entities_matched": ["no-kongsberg"]}
+        self.assertIsNone(promote.match({**kog, "title": "Kongsberg Maritime wins $1.5 billion contract for offshore vessels"}))
+        self.assertIsNotNone(promote.match({**kog, "title": "Kongsberg wins $1.2 billion NSM missile contract"}))
+        self.assertEqual(pulse.defense_hits(["no-kongsberg"], "Kongsberg Maritime order"), [])
 
 
 class TestBands(unittest.TestCase):
@@ -142,6 +152,9 @@ class TestBands(unittest.TestCase):
         self.assertTrue({"semis", "ai_hw", "software", "defense"} <= secs)
         self.assertEqual(bands.ticker_of(u["de-rheinmetall"]), ("RHM", "eu"))
         self.assertEqual(bands.resolve_id("ALAB", u), "co-asteralabs")   # 같은 회사는 감시 목록 id로
+        self.assertEqual(bands.resolve_id("BA", u), "us-ba")              # 맨 티커가 겹치면 미국 상장 먼저
+        self.assertEqual(bands.resolve_id("BA.L", u), "gb-bae")           # 영국은 easyconomics 티커로
+        self.assertEqual(bands.ticker_of(u["cz-csg"]), ("CSG.AS", "eu"))
 
 
 if __name__ == "__main__":

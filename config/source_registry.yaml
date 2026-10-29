@@ -1039,8 +1039,23 @@
     curtisswright.com: us-cw
     textron.com: us-txt
     anduril.com: us-anduril
+    # 그 밖 유럽(2026-10-29 "Kongsberg, CSG 같은 유럽 방위 종목도") — kongsberg.com은 분리 상장한 Kongsberg Maritime과 도메인을 같이 써서 해양 글도 섞인다
+    kongsberg.com: no-kongsberg
+    csg.com: cz-csg
+    saab.com: se-saab
+    baesystems.com: gb-bae
+    qinetiq.com: gb-qinetiq
+    babcockinternational.com: gb-babcock
+    chemring.com: gb-chemring
+    cohortplc.com: gb-cohort
+    theon.com: gr-theon
+    mildef.com: se-mildef
+    kitron.com: no-kitron
+    steyr-motors.com: at-steyr
+    nammo.com: no-nammo
+    patriagroup.com: fi-patria
   # 채용 공고가 색인의 대부분(2026-10-29 실측: Rheinmetall·Safran·Northrop 결과 대부분이 직무 페이지·빈 제목) → 직무명 패턴과 제목 단어 수 하한
-  exclude_regex: '\bJobs?\b|Careers?|Job Search|Stellenangebot|Karriere|Webinar|Cookie|Privacy|Terms of Use|Sitemap|Untitled|#AmazingJobs|Talent transfair|\((m|w|f|h)/(m|w|f|h)/(d|x)\)|\b(M/F|H/F|F/H|M/W)\b|\bLevel \d|/hr\b|\bShift\b|\b20\d\d (Associate|Intern)|\b(Engineer|Technician|Manager|Analyst|Specialist|Coordinator|Inspector|Administrator|Representative|Officer|Assistant|Intern|Internship|Apprentice|Trainee|Werkstudent|Director|Expert|Lead|Tester|Mechanic|Machinist|Operator|Planner|Buyer|Controller|Accountant|Scientist|Support|Assembler|Bonder|Welder|Electrician|Developer|Architect|Designer)( \d| [IVX]+)?\s*(-|–|,|\(|$)|\s(I{1,3}|IV|[1-4])\s+-\s|\b20\d\d-\d{4,}\b|Business Development –'
+  exclude_regex: '\bJobs?\b|Careers?|Job Search|Stellenangebot|Karriere|Webinar|Cookie|Privacy|Terms of Use|Sitemap|Untitled|#AmazingJobs|Talent transfair|\((m|w|f|h)/(m|w|f|h)/(d|x)\)|\b(M/F|H/F|F/H|M/W)\b|\bLevel \d|/hr\b|\bShift\b|\b20\d\d (Associate|Intern)|\b(Engineer|Technician|Manager|Analyst|Specialist|Coordinator|Inspector|Administrator|Representative|Officer|Assistant|Intern|Internship|Apprentice|Trainee|Werkstudent|Director|Expert|Lead|Tester|Mechanic|Machinist|Operator|Planner|Buyer|Controller|Accountant|Scientist|Support|Assembler|Bonder|Welder|Electrician|Developer|Architect|Designer)( \d| [IVX]+)?\s*(-|–|,|\(|$)|\s(I{1,3}|IV|[1-4])\s+-\s|\b20\d\d-\d{4,}\b|Business Development –|\bthesis\b|Examensarbete|\bDeveloper for\b'
   min_title_words: 5
   hl: en-US
   gl: US

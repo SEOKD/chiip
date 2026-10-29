@@ -108,6 +108,9 @@ themes:
       - {id: jp-hosoya, name: Hosoya Pyro-Engineering, local: "細谷火工", ko: ["호소야화공"], market: jp, code: "4274", edge: 5, why: "방위성용 화공품 — 일본 방위비 증액의 소형 수혜 후보, 매출 규모·수주 확인 필요(1차 판정)"}
       - {id: us-npk, name: National Presto Industries, market: us, code: "NPK", edge: 6, why: "탄약·신관(AMTEC) — 미 육군 탄약 생산 확대 노출, 다년 계약 확인 필요(1차 판정)"}
       - {id: jp-jsw, name: Japan Steel Works, local: "日本製鋼所", ko: ["일본제강소"], market: jp, code: "5631", edge: 5, why: "포·포신과 대형 단조품 — 화포 체계 병목 부품, 방위 비중은 일부(1차 판정)"}
+      # 그 밖 유럽(마스터 2026-10-29 "Kongsberg, CSG 같은 유럽 방위 종목도")
+      - {id: cz-csg, name: CSG, local: "Czechoslovak Group", market: eu, code: "CSG", edge: 7, why: "유럽 최대급 중·대구경 탄약 생산 — 2026-10-29 시총 €14.8B(공모가 €25 대비 약 −41%), 매출 +18%·영업이익률 24%(easyconomics), 1차 판정"}
+      - {id: gb-chemring, name: Chemring Group, market: eu, code: "CHG", edge: 7, why: "기만체(플레어)·에너제틱 소재 — 공급사 소수인 에너제틱 층, 2026년 상장 상태 확인 대기(1차 판정)"}
   - id: srm_missile
     name: 고체 로켓 모터·미사일 추진·구조
     bottleneck: "요격체·미사일 생산률 목표를 고체 로켓 모터(SRM)·추진 부품 공급이 막는다 — 공급사 소수, 증설 2~4년"
@@ -117,6 +120,7 @@ themes:
       - {id: it-avio, name: Avio, market: eu, code: "AVIO", edge: 6, why: "방공 미사일용 고체 로켓 모터 + 베가 발사체 — 유럽 방공 수요 노출(1차 판정)"}
       - {id: us-krmn, name: Karman Space & Defense, market: us, code: "KRMN", edge: 6, why: "미사일·발사체 구조물·추진 부품·분리 장치(1차 판정)"}
       - {id: jp-ishikawa, name: Ishikawa Seisakusho, local: "石川製作所", ko: ["이시카와제작소"], market: jp, code: "6208", edge: 4, why: "방위 장비(기뢰 등) 소형주 — 방위 매출 비중·수주 미확인(1차 판정)"}
+      - {id: no-kongsberg, name: Kongsberg Gruppen, market: eu, code: "KOG", edge: 7, why: "NSM·JSM 미사일·NASAMS 방공 — 생산률 증설이 수요를 따라가는지가 관건, 2026-04 해양 분리 후 방위 비중 상승(1차 판정)"}
   - id: gan_radar_ew
     name: GaN 레이더·전자전·적외선(반도체 겹침)
     bottleneck: "능동 위상배열 레이더·전자전의 GaN 고출력 MMIC·적외선 검출기·FPGA — 방산 인증 반도체 공급이 좁다(마스터 공정 엔지니어 관점 엣지)"
@@ -127,6 +131,10 @@ themes:
       - {id: us-mrcy, name: Mercury Systems, market: us, code: "MRCY", edge: 6, why: "방위용 신호처리·보안 컴퓨팅 서브시스템 — 레이더·전자전 함량(1차 판정)"}
       - {id: jp-tokyokeiki, name: Tokyo Keiki, local: "東京計器", ko: ["도쿄계기"], market: jp, code: "7721", edge: 5, why: "방위용 레이더 경보 장치 — 일본 방위비 증액 노출, 비중 확인 필요(1차 판정)"}
       - {id: fr-exosens, name: Exosens, market: eu, code: "EXENS", edge: 6, why: "야간 투시 영상증폭관·광검출기 — 공급사 소수(1차 판정)"}
+      - {id: gr-theon, name: Theon International, market: eu, code: "THEON", edge: 6, why: "야간 투시경·열상 조준경 — Exosens와 같은 영상증폭 사슬의 장비 층(1차 판정)"}
+      - {id: se-saab, name: Saab, market: eu, code: "SAAB-B", edge: 6, why: "지상·해상 감시 레이더(Giraffe 등)·전자전 — 유럽 방공 수요의 센서 층, 대형주(1차 판정)"}
+      - {id: gb-cohort, name: Cohort, market: eu, code: "CHRT", edge: 5, why: "해군 소나·전자전 소형주(1차 판정)"}
+      - {id: se-mildef, name: MilDef Group, market: eu, code: "MILDEF", edge: 5, why: "군용 견고형 컴퓨터 — 지휘통제 디지털화 함량(1차 판정)"}
   - id: cuas_unmanned
     name: 대드론·무인기 대량 생산
     bottleneck: "소모성 무인기·대드론 수요가 시제·평가에서 대량 발주로 넘어가는 구간 — 비중국 모터·배터리·카메라 공급망과 대량 생산 라인이 막힌다"
@@ -143,6 +151,7 @@ themes:
     candidates:
       - {id: de-renk, name: Renk Group, market: eu, code: "R3NK", edge: 6, why: "전차 변속기·함정 추진 기어 — 지상·해상 양쪽 병목 부품(1차 판정)"}
       - {id: fr-exail, name: Exail Technologies, market: eu, code: "EXA", edge: 6, why: "기뢰 대응 무인 체계·관성 항법 — 해양 무인화(1차 판정)"}
+      - {id: gb-babcock, name: Babcock International, market: eu, code: "BAB", edge: 6, why: "영국 핵잠수함 정비·함정 건조 — 정비 도크·숙련 인력 캐파(1차 판정)"}
   - id: space_isr
     name: 정찰 위성·데이터
     bottleneck: "고빈도 정찰 수요 대비 위성 버스 양산·발사 슬롯이 부족"

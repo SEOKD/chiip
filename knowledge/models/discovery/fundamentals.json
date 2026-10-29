@@ -29,6 +29,21 @@
   "sector_src": "Technology",
   "source": "easyconomics company_profile (yfinance) NVDA"
  },
+ "cz-csg": {
+  "as_of": "2026-10-29",
+  "currency": "EUR",
+  "ev_sales": 2.229,
+  "fcf_yield": -0.03062063419279853,
+  "industry": "Aerospace & Defense",
+  "mcap_usd": 16472385944.9856,
+  "n_analysts": 0,
+  "op_margin": 0.24097,
+  "pb": 4.4419093,
+  "rev_growth": 0.183,
+  "rev_ttm_usd": 8035085605.478399,
+  "sector_src": "Industrials",
+  "source": "easyconomics company_profile (yfinance) CSG.AS"
+ },
  "de-hensoldt": {
   "as_of": "2026-10-29",
   "currency": "EUR",
@@ -58,6 +73,21 @@
   "rev_ttm_usd": 12706093113.7536,
   "sector_src": "Industrials",
   "source": "easyconomics company_profile (yfinance) RHM.DE"
+ },
+ "gb-bae": {
+  "as_of": "2026-10-29",
+  "currency": "GBp",
+  "ev_sales": 2.237,
+  "fcf_yield": 0.048110758905155614,
+  "industry": "Aerospace & Defense",
+  "mcap_usd": 81154187647.27432,
+  "n_analysts": 0,
+  "op_margin": 0.09668,
+  "pb": 5.0495763,
+  "rev_growth": 0.077,
+  "rev_ttm_usd": 39038913546.571815,
+  "sector_src": "Industrials",
+  "source": "easyconomics company_profile (yfinance) BA.L"
  },
  "jp-khi": {
   "as_of": "2026-10-29",

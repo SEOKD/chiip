@@ -4,7 +4,9 @@
 # 쓰는 곳: radar/pollers/common.py entity_aliases(레이더 종목 인식) · radar/pollers/gate.py extra_focus(이 지도 종목의 공시·보도자료·뉴스는
 #   포커스와 무관하게 수집) · radar/notify.py(기업 1줄·종목코드) · radar/pulse.py '방위' 원본 분류 · scripts/tenbagger/bands.py(시가총액 구간 유니버스)
 #   · config/discovery.yaml 방위 병목 테마 · 분석 틀 knowledge/methods/defense_lens.md
-# code는 EODHD 형식(미검증 — 키 입력 후 일괄 확인). exposure(방산 비중)는 확실한 것만: core(본업) / major(큰 비중) / partial(일부), 모르면 비움.
+# 2026-10-29 개정: 그 밖 유럽(노르웨이·체코·스웨덴·영국·그리스·오스트리아·핀란드) 추가 — 마스터 "Kongsberg, CSG 같은 유럽 방위 종목도".
+# code는 EODHD 형식(미검증 — 키 입력 후 일괄 확인). ec_ticker는 easyconomics 인자가 code와 다를 때만.
+# not_titles: 별칭이 겹치는 다른 회사 제목(예: 분리 상장한 Kongsberg Maritime) — 방위 판정 상향·펄스 방위 분류에서 그 회사로 보지 않는다. exposure(방산 비중)는 확실한 것만: core(본업) / major(큰 비중) / partial(일부), 모르면 비움.
 # biz는 회사 공시·IR 개요를 자기 말로 1줄. 지어내지 않는다 — 모르면 쓰지 않는다.
 code_verified: false
 
@@ -127,6 +129,23 @@ companies:
   - {id: es-navantia, name: Navantia, country: ES, market: es, listed: false, segments: [prime, product], products: [naval], exposure: core, aliases: ["Navantia"], biz: "스페인 국영 군함·잠수함 건조사(비상장)"}
   - {id: es-escribano, name: Escribano Mechanical & Engineering, country: ES, market: es, listed: false, segments: [product], products: [land, c4isr_ew], exposure: core, aliases: ["Escribano Mechanical", "EM&E"], biz: "원격 무장 스테이션·전자광학 장비 제조(비상장)"}
   - {id: es-gmv, name: GMV, country: ES, market: es, listed: false, segments: [solutions], products: [space, c4isr_ew], aliases: ["GMV Innovating Solutions"], biz: "위성 관제·항법·방위 소프트웨어(비상장)"}
+  # 그 밖 유럽(마스터 지시 2026-10-29 "방위주에는 Kongsberg, CSG 같은 유럽 방위 종목도 넣어줘") — 상장·티커는 거래소·회사 발표로 확인(2026-10-29).
+  # ec_ticker = easyconomics company_profile 인자(영국 .L, 오슬로 .OL, 스톡홀름 .ST, 암스테르담 .AS — 2026-10-29 BA.L·CSG 조회로 확인)
+  - {id: no-kongsberg, name: Kongsberg Gruppen, country: "NO", market: eu, code: KOG.OL, ec_ticker: KOG.OL, listed: true, segments: [prime, product], products: [missile_ad, c4isr_ew, space], exposure: major, aliases: ["Kongsberg Gruppen", "Kongsberg Defence", "Kongsberg"], not_titles: ["Kongsberg Maritime", "Kongsberg Digital"], biz: "NSM·JSM 미사일·NASAMS 방공·원격 무장 스테이션을 만드는 노르웨이 방산 기업(해양 부문은 2026-04 Kongsberg Maritime으로 분리 상장)"}
+  - {id: cz-csg, name: CSG, country: CZ, market: eu, code: CSG.AS, ec_ticker: CSG.AS, listed: true, segments: [prime, product], products: [munitions, land, c4isr_ew, small_arms], exposure: core, aliases: ["Czechoslovak Group", "CSG N.V."], biz: "중·대구경 탄약(155mm 등)·군용 차량·방공 레이더·소구경 탄약을 만드는 체코 방산 그룹(2026-01 유로넥스트 암스테르담 상장)"}
+  - {id: se-saab, name: Saab, country: SE, market: eu, code: SAAB-B.ST, ec_ticker: SAAB-B.ST, listed: true, segments: [prime, product], products: [air, missile_ad, c4isr_ew, naval, small_arms], exposure: core, aliases: ["Saab AB", "Saab"], biz: "그리펜 전투기·레이더·미사일·잠수함·대전차 화기(칼 구스타프)를 만드는 스웨덴 방산 대기업"}
+  - {id: gb-bae, name: BAE Systems, country: GB, market: eu, code: BA.LSE, ec_ticker: BA.L, listed: true, segments: [prime, product, services], products: [air, naval, land, munitions, c4isr_ew], exposure: core, aliases: ["BAE Systems"], biz: "잠수함·함정·전투 차량·탄약·전자전과 유로파이터·MBDA 지분을 가진 유럽 최대 방산 기업(영국)"}
+  - {id: gb-qinetiq, name: QinetiQ, country: GB, market: eu, code: QQ.LSE, ec_ticker: QQ.L, listed: true, segments: [services, solutions], products: [c4isr_ew], exposure: core, aliases: ["QinetiQ"], biz: "영국·미국 국방부 대상 시험평가·훈련·연구개발 서비스와 방위 기술"}
+  - {id: gb-babcock, name: Babcock International, country: GB, market: eu, code: BAB.LSE, ec_ticker: BAB.L, listed: true, segments: [services, product], products: [naval], exposure: major, aliases: ["Babcock International"], biz: "영국 핵잠수함 정비·함정 건조·군 장비 지원 서비스"}
+  - {id: gb-chemring, name: Chemring Group, country: GB, market: eu, code: CHG.LSE, ec_ticker: CHG.L, listed: true, segments: [product], products: [munitions, c4isr_ew], exposure: core, aliases: ["Chemring"], biz: "항공기 기만체(플레어·채프)·에너제틱 소재·화생방·폭발물 탐지 장비 제조", note: "2025-02 Bain Capital 인수 제안(거절 보도) — 2026년 상태 확인 대기"}
+  - {id: gb-cohort, name: Cohort, country: GB, market: eu, code: CHRT.LSE, ec_ticker: CHRT.L, listed: true, segments: [product, services], products: [c4isr_ew, naval], aliases: ["Cohort plc"], biz: "해군 소나·통신·전자전 장비와 방위 기술 자문을 하는 영국 중소형 방산 지주회사"}
+  - {id: co-rollsroyce, name: Rolls-Royce, country: GB, market: eu, code: RR.LSE, ec_ticker: RR.L, listed: true, segments: [product], products: [air, naval], exposure: partial, biz: "민항 엔진 중심 — 군용 항공 엔진·잠수함 원자로·발전 설비"}
+  - {id: gr-theon, name: Theon International, country: GR, market: eu, code: THEON.AS, ec_ticker: THEON.AS, listed: true, segments: [product], products: [small_arms, c4isr_ew], exposure: core, aliases: ["Theon International"], biz: "야간 투시경·열상 조준경 등 전자광학 장비 제조(그리스, 유로넥스트 암스테르담 상장)"}
+  - {id: se-mildef, name: MilDef Group, country: SE, market: eu, code: MILDEF.ST, ec_ticker: MILDEF.ST, listed: true, segments: [product, solutions], products: [c4isr_ew], exposure: core, aliases: ["MilDef"], biz: "군용 견고형(러기드) 컴퓨터·네트워크 장비와 전술 IT 솔루션"}
+  - {id: no-kitron, name: Kitron, country: "NO", market: eu, code: KIT.OL, ec_ticker: KIT.OL, listed: true, segments: [product], products: [components], exposure: partial, aliases: ["Kitron ASA"], biz: "방위·산업·의료 전자 조립을 하는 전자제품 위탁생산(EMS) 기업"}
+  - {id: at-steyr, name: Steyr Motors, country: AT, market: eu, code: 4X0.XETRA, ec_ticker: 4X0.DE, listed: true, segments: [product], products: [land, naval, components], exposure: major, aliases: ["Steyr Motors"], biz: "군용 차량·보트용 고출력 소형 디젤 엔진·발전기 제조(오스트리아, 프랑크푸르트 상장)", note: "Red Cat(us-rcat) 공개매수 진행 — 주당 €39 현금, 2026-10-21 사업결합 계약, 수락 기간 2026-12-18까지·50%+1주 조건. 성사 시 상장 폐지 가능 — 발굴 후보에서 제외"}
+  - {id: no-nammo, name: Nammo, country: "NO", market: eu, listed: false, segments: [product], products: [munitions, missile_ad], exposure: core, aliases: ["Nammo"], biz: "탄약·로켓 모터 제조(노르웨이 정부·핀란드 Patria 합작, 비상장)"}
+  - {id: fi-patria, name: Patria, country: FI, market: eu, listed: false, segments: [product, services], products: [land, air], exposure: core, aliases: ["Patria Oyj"], biz: "장갑차(AMV)·박격포 체계·항공 정비(핀란드 정부 다수 지분·Kongsberg 지분, 비상장)"}
   # 일본
   - {id: co-mhi, name: Mitsubishi Heavy Industries, local: 三菱重工, country: JP, market: jp, code: 7011.TSE, listed: true, segments: [prime, product], products: [air, naval, missile_ad, land, space], exposure: partial, biz: "발전·항공우주·방위를 아우르는 일본 최대 방산 계약 기업"}
   - {id: jp-khi, name: Kawasaki Heavy Industries, local: 川崎重工, country: JP, market: jp, code: 7012.TSE, listed: true, segments: [prime, product], products: [air, naval], exposure: partial, aliases: ["Kawasaki Heavy Industries", "川崎重工"], biz: "초계기·수송기·잠수함과 오토바이·로봇·에너지 설비를 만드는 중공업"}

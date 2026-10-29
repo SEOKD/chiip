@@ -37,7 +37,8 @@ SUB_SECTOR = {"semicap": "semis", "accelerator": "semis", "memory": "semis", "fo
 THEME_SECTOR = {"targets_inp": "semis", "probe_test": "semis", "munitions_energetics": "defense", "srm_missile": "defense",
                 "gan_radar_ew": "defense", "cuas_unmanned": "defense", "naval_capacity": "defense", "space_isr": "defense"}
 SUFFIX_MARKET = {"US": "us", "KO": "kr", "KQ": "kr", "TSE": "jp", "T": "jp", "TW": "tw", "TWO": "tw",
-                 "XETRA": "eu", "F": "eu", "PA": "eu", "MI": "eu", "MC": "eu", "AS": "eu", "SW": "eu", "CO": "eu", "HE": "eu", "ST": "eu"}
+                 "XETRA": "eu", "F": "eu", "DE": "eu", "PA": "eu", "MI": "eu", "MC": "eu", "AS": "eu", "SW": "eu", "CO": "eu", "HE": "eu", "ST": "eu",
+                 "OL": "eu", "LSE": "eu", "L": "eu"}
 
 
 def _y(p):
@@ -89,6 +90,8 @@ def universe():
         if c.get("exposure") in ("core", "major") and r["sector"] != "software":
             r["sector"] = "defense"   # 방산이 본업이면 방위 잣대(출구 배수·참조 시장)로 본다
         r["defense"] = True
+        if c.get("ec_ticker"):
+            r["ec_ticker"] = c["ec_ticker"]   # easyconomics 인자가 거래소 코드와 다를 때(영국 BA.L 등)
     return out
 
 
@@ -100,7 +103,7 @@ def market_of(code):
 def ticker_of(row):
     """easyconomics company_profile 인자(ticker, market) — RHM.XETRA → (RHM, eu), 7011.TSE → (7011, jp)"""
     code = str(row.get("code") or "")
-    return re.sub(r"\.[A-Z]+$", "", code), row.get("market") or market_of(code) or "us"
+    return row.get("ec_ticker") or re.sub(r"\.[A-Z]+$", "", code), row.get("market") or market_of(code) or "us"
 
 
 # ---------- 환율·EODHD ----------
@@ -370,11 +373,17 @@ def write_report(today, bands, by_band, top, rows, migrations):
 
 
 def resolve_id(arg, uni=None):
-    """id 또는 티커(KTOS·7012·RHM) → 유니버스 id. 같은 회사가 여러 목록에 있으면 먼저 등록된 id(감시 목록 우선)"""
+    """id 또는 티커(KTOS·7012·RHM·BA.L) → 유니버스 id. 같은 회사가 여러 목록에 있으면 먼저 등록된 id(감시 목록 우선).
+    맨 티커가 여러 시장에 겹치면(BA = Boeing·BAE) 미국 상장을 먼저 — 다른 시장은 BA.L처럼 easyconomics 티커로"""
     uni = universe() if uni is None else uni
     if arg in uni:
         return arg
-    hits = [cid for cid, r in uni.items() if re.sub(r"\.[A-Z]+$", "", str(r.get("code") or "")).upper() == arg.upper()]
+    a = arg.upper()
+    exact = [cid for cid, r in uni.items() if str(r.get("ec_ticker") or "").upper() == a or str(r.get("code") or "").upper() == a]
+    if exact:
+        return exact[0]
+    hits = [cid for cid, r in uni.items() if re.sub(r"\.[A-Z]+$", "", str(r.get("code") or "")).upper() == a]
+    hits.sort(key=lambda cid: uni[cid].get("market") != "us")
     return hits[0] if hits else None
 
 
