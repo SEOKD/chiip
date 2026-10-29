@@ -47,6 +47,10 @@ def brand(text):
     text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", (text or "").replace(*BRAND))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
     # 회사 설명 줄의 '모델:'·'성장:'·'내러티브:' 머리말은 빼고 내용만(마스터 지시 2026-10-30)
     text = re.sub(r"(?m)^(☞\s*)?(?:비즈니스\s*)?(?:모델|성장(?:\s*동력)?|내러티브)\s*[:：]\s*", r"\1", text)
+    # 펄스·포트폴리오 근거 줄 머리말('**판단**', '· 숫자 —' 등)도 빼고 내용만(마스터 지시 2026-10-30)
+    text = re.sub(r"(?m)^\*\*판단\*\*\s*(.+)$", r"**\1**", text)   # 판단 문장은 머리말 없이 굵게
+    text = re.sub(r"(?m)^판단\s+(?=\S)", "", text)
+    text = re.sub(r"(?m)^(·\s*)(?:숫자|가격|파급|반대|다음|야마|보도 확인|주장|핵심|밸류|수급|조건|참여자|직전 대비|함의|단계|점유|AI 수요|바뀐 말|질문 초점)\s*[—–-]\s*", r"\1", text)
     for ko, en in LABELS:
         text = text.replace(ko, en)
     return money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text)))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
