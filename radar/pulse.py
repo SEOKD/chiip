@@ -28,8 +28,8 @@ from pollers.press_wire import NON_EN_RE  # noqa: E402
 
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
-LOCK_MIN = 25          # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지)
-TOP = {"파이낸싱": 12, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 10분 주기(2026-10-29 마스터 지시)
+TOP = {"숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
@@ -38,7 +38,7 @@ CLASSES = [("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"파이낸싱": 4, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 TECH_RE = re.compile(
     r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
     r"wafer|foundry|semiconductor|transistor|GAA|nanosheet|backside power|3D.?(IC|stack|integration)|TSV|interconnect|photonic|"
@@ -235,12 +235,80 @@ def fetch_financing(st, days=3):
     return out
 
 
+def _short_cfg():
+    c = common.load_yaml("config/short_watch.yaml") or {}
+    c["_firms"] = re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in c.get("firms") or []) or r"$^", re.I)
+    c["_terms"] = re.compile(c.get("terms") or r"$^", re.I)
+    return c
+
+
+def fetch_shorts(st, days=2):
+    """숏 리포트(2026-10-29 마스터 지시 — Culper의 Cerebras 리포트 누락 뒤): Google News 색인 제목에서 숏 운용사 이름 또는
+    숏 문구 + AI 밸류체인 이름. 운용사 이름은 8개씩 묶어 묻는다(포화 방지). 국내 언론 제외, 매체 제한 없음(숏 리포트 첫 보도는 업계지가 많다)"""
+    from pollers import rss as prss
+    import urllib.parse
+    sc, fin = _short_cfg(), _fin_cfg()
+    firms = sc.get("firms") or []
+    queries = [" OR ".join(f'"{n}"' for n in firms[i:i + 8]) for i in range(0, len(firms), 8)]
+    queries.append('("short report" OR "short seller" OR "we are short" OR "short position") (AI OR chip OR semiconductor OR "data center" OR GPU OR power OR optical)')
+    seen, out = set(st.get("shorts_seen", [])), []
+    for q in queries:
+        url = prss.GNEWS.format(q=urllib.parse.quote(f"({q}) when:{days}d"), hl="en-US", gl="US")
+        try:
+            entries = prss.parse_feed(common.http_get(url, timeout=30))
+        except Exception:
+            continue
+        for e in entries:
+            title = common.strip_tags(e["title"])
+            key = re.sub(r"\W+", " ", title.rsplit(" - ", 1)[0].lower()).strip()[:90]
+            if key in seen or re.search(r"[가-힣]", title):
+                continue
+            firm = sc["_firms"].search(title)
+            short = sc["_terms"].search(title) or re.search(r"\bshort", title, re.I)
+            org = fin["_orgs"].search(title)
+            tk = US_TICKER_RE.search(title) or re.search(r"\((?:NASDAQ|NYSE)?:?\s*([A-Z]{2,5})\)", title)
+            if not ((firm and (short or org or tk or re.search(r"alleg|report|says|shares (fall|drop|slide|sink|tumble)", title, re.I)))
+                    or (short and (org or tk))):
+                continue    # 운용사 이름만 걸린 다른 글(다큐·소송 기사 등)·대상 불명 숏 문구는 버린다
+            seen.add(key)
+            out.append({"source_id": "src-short-reports", "source_class": "숏 리포트", "url": e["link"], "title": title,
+                        "published_at": prss.to_iso(e["date"]), "detected_at": common.iso(common.now_kst()), "language": "en",
+                        "publisher": e.get("publisher"), "entities_matched": [],
+                        "snippet": f"운용사 {firm.group(0) if firm else '미상'} · 대상 {org.group(0) if org else (tk.group(1) if tk else '미상')}"})
+        time.sleep(0.5)
+    st["shorts_seen"] = sorted(seen)[-3000:]
+    return out
+
+
+def fetch_new_listings(st, days=3):
+    """신규 상장(424B4·S-1) 중 AI·반도체·데이터센터 전력 업종(SIC)·감시 목록 밖 — Cerebras(2026-05 상장)가 감시 목록에 없던 구멍 보완"""
+    today = common.now_kst().date()
+    watch = sea.watch_tickers()
+    seen, out = set(st.get("ipo_seen", [])), []
+    for form in ("424B4", "S-1"):
+        for adsh, s in sea.fetch_hits(today - timedelta(days=days), today, max_pages=3, forms=form):
+            if adsh in seen:
+                continue
+            seen.add(adsh)
+            sic = (s.get("sics") or [""])[0]
+            name, ticker, cik = sea.parse_name((s.get("display_names") or [""])[0])
+            if not sea.relevant(sic) or (ticker and ticker.upper() in watch):
+                continue
+            out.append({"source_id": "src-sec-ipo", "source_class": "신규 상장",
+                        "url": f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/",
+                        "title": f"[SEC {form} 신규 상장] {name}" + (f" ({ticker})" if ticker else ""), "published_at": s.get("file_date"),
+                        "detected_at": common.iso(common.now_kst()), "language": "en", "ticker": ticker, "entities_matched": [],
+                        "snippet": f"SIC {sic} {sea.relevant(sic)}"})
+    st["ipo_seen"] = sorted(seen)[-3000:]
+    return out
+
+
 def candidates(sources, watch):
     """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
     c = {}
     for it in sources:
         tks = set(US_TICKER_RE.findall(f"{it.get('title', '')} {it.get('snippet', '')}"))
-        if it.get("ticker") and it.get("source_id") == "src-sec-deals":
+        if it.get("ticker") and it.get("source_id") in ("src-sec-deals", "src-sec-ipo"):
             tks.add(it["ticker"])
         for tk in tks:
             if tk.upper() in watch:
@@ -270,7 +338,7 @@ def run(now=None):
         return None, f"[펄스] 이전 회차 진행 중({lock[11:16]} 시작) → 종료"
     since = st.get("watermark") or common.iso(now - timedelta(hours=2))
     sources, errors = inbox_items(since), []
-    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing)):
+    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings)):
         try:
             sources += fn(st)
         except Exception as exc:
@@ -286,7 +354,7 @@ def run(now=None):
         return None, f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''} → 종료"
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
-    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker")
+    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher")
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],

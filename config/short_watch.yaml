@@ -1,0 +1,14 @@
+# 공매도 리포트(숏 리포트) 감시 (마스터 지시 2026-10-29 — Culper Research의 Cerebras(CBRS) 숏 리포트를 놓친 뒤
+# "숏 리포트가 나왔으면 웹 서칭으로 찾아서 밸류 판단을 해줘야지. 에이전트 엔진 아키텍처에 이를 찾는 시스템도 설계해라")
+# radar/pulse.py가 10분 회차마다 Google News 색인 제목으로 찾는다(리포트 사이트 직접 수집 아님 — 열람은 모델이 robots.txt 확인 후).
+# 보도 여부와 무관(미보도 규칙 적용 안 함). 판정 상향: radar/promote.py short_report(보유 종목이면 P0).
+# 운용사 이름은 공개 활동 이력 기준(치입 선정 — 마스터 검토). 활동 중단 운용사도 재개 가능성 때문에 남긴다.
+firms: ["Culper Research", "Muddy Waters", "Hindenburg Research", "Citron Research", "Grizzly Research", "Kerrisdale Capital",
+        "Spruce Point", "Blue Orca", "Fuzzy Panda", "Wolfpack Research", "Bleecker Street Research", "J Capital Research",
+        "Viceroy Research", "Iceberg Research", "Morpheus Research", "Gotham City Research", "Scorpion Capital", "Hunterbrook",
+        "Snowcap Research", "Glasshouse Research", "Ningi Research", "Capybara Research", "White Diamond Research",
+        "Edwin Dorsey", "The Bear Cave", "Bonitas Research", "Night Market Research", "Mariner Research", "Jehoshaphat Research",
+        "Emerson Analytics", "Pelican Research", "Lionheart III"]
+# 운용사 이름 없이도 숏 리포트를 알아볼 제목 문구
+terms: 'short report|short[- ]seller|short sell(er|ing) report|we are short|is short\b|takes? (a )?short position|short position in|bear(ish)? report|activist short|shorting'
+# 숏 리포트 제목이 AI 밸류체인 종목인지 볼 때는 config/financing_watch.yaml org_names + 감시 기업 매칭 + 보유 종목을 함께 쓴다

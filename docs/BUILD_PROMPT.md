@@ -2053,3 +2053,11 @@ source: docs/methodology
 - 수집: Google News 9개 매체 × 포커스 종목 쿼리 14개 중 7개가 100건 상한에 포화 → 기사 약 3분의 2 누락. 포화 시 종목 반분할·매체 묶음 분할 재질의, 15분 회차 when:6h + 3시간마다 when:1d(`radar/pollers/rss.py` focus7_entries, 통계 radar/state/focus7_stats.json).
 - 판정: 보유 종목(config/portfolio.yaml) 자체 사건을 결정론으로 상향 — M&A·실적·증자·투자의견·경영진은 P0(impact-card 심층 분석까지), 기타 사건 P1, 시황 제목은 제외. 같은 사건 기사는 종목×사건 종류로 24시간 1번(`radar/promote.py`). 모델이 P1으로 둔 보유 종목 큰 사건도 P0로 올린다.
 - 첫 적용: MRVL–Lumentum 플래시(outputs/invest/portfolio/20261029_MRVL_LITE_flash.md) 텔레그램 발송 — 주식 교환 가정 EPS 손익분기 프리미엄 약 34%, MRVL 10/22 리볼버 증액(가설).
+
+### 21.26 펄스 10분·숏 리포트·신규 상장 (2026-10-29 마스터 지시 "알아서 찾아서 줘야지, Pulse는 10분마다", "Cerebras 숏 리포트가 나왔으면 웹 서칭으로 찾아서 밸류 판단을 해줘야지. 에이전트 엔진 아키텍처에 이를 찾는 시스템도 설계해라")
+- 펄스 주기 30분 → **10분**(`*/10`), 회차 잠금 9분, 한 회차 8분 안, 알파 산정 회차당 3종목.
+- 누락 진단(Culper의 CBRS 숏 리포트, 10/28 16:03 UTC = 10/29 01:03 KST 첫 보도): ① CBRS(2026-05 상장)가 감시 목록에 아예 없었다 ② 숏 리포트를 찾는 원천·규칙이 없었다 ③ 수집된 것은 뉴스레터 글 1건('Culper Research vs Cerebras', 리서치 피드 — 텔레그램 제외 유형)뿐.
+- 숏 리포트 감지(`config/short_watch.yaml`, `radar/pulse.py` fetch_shorts): 숏 운용사 32곳 이름(8개씩 묶음) + 숏 문구 × AI 밸류체인 이름·티커, Google News 색인 제목(국내 제외, 매체 제한 없음 — 첫 보도가 업계지인 경우가 많다). 실데이터 시험에서 CBRS 건 6개 보도 포착. 판정 상향: 보유 종목 숏 리포트 P0, AI 밸류체인 숏 리포트 P1(`radar/promote.py`).
+- 펄스 ④ 숏 리포트 절(가장 먼저 처리, 미보도 규칙 제외): 주장 3~7개를 1차 서류로 검증(확정/일부/반박/불가), 엔지니어 관점 반대 검증(열 사이클 피로 vs 고온 체류 열화), 핵심 변수 손익분기값 vs 현재 가격·컨센서스, 락업·내부자 매도·실적일, 회사 반박 시 갱신. 기록 outputs/invest/short/.
+- 신규 상장(`fetch_new_listings`): EDGAR 전문검색 424B4·S-1 × AI·반도체·데이터센터 전력 SIC × 감시 목록 밖 → 모델이 감시 목록·알파 대기열 편입. CBRS는 감시 목록(us-cbrs)·파이낸싱 발행사·알파 대기열에 추가.
+- 첫 적용: CBRS 숏 리포트 검증·밸류(outputs/invest/short/20261029_CBRS.md) 텔레그램 발송 — OpenAI 계약 손익분기 수명 2.1~4.2년(할인 없음), EV/RPO 0.8배.

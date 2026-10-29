@@ -37,6 +37,18 @@ class TestPromote(unittest.TestCase):
         self.assertIsNone(promote.match(item("Marvell shares edge higher in early trade - CNBC", ents=("co-marvell",), pub="CNBC")))
         self.assertIsNone(promote.match(item("Microsoft is offering buyouts to around 60,000 employees - Business Insider", ents=("co-microsoft",), pub="Business Insider")))
 
+    def test_short_reports(self):
+        why, _ = promote.match(item("Culper Research Says We Are Short Cerebras Systems - TradingView", ents=(), pub="TradingView"))
+        self.assertIn("숏 리포트", why)
+        held = item("Muddy Waters says it is short Marvell, questions custom chip margins - Reuters", ents=(), pub="Reuters")
+        self.assertEqual(promote.level_for(held, promote.match(held)[0]), "P0")            # 보유 종목 숏 리포트는 P0
+        self.assertIsNone(promote.match(item("Killing Cass Lake | Documentary - Hunterbrook", ents=())))   # 운용사 이름만
+
+    def test_pulse_short_filter_config(self):
+        sc = pulse._short_cfg()
+        self.assertTrue(sc["_firms"].search("Culper Research Says We Are Short Cerebras"))
+        self.assertFalse(sc["_firms"].search("Jack Dorsey’s new app"))                    # 일반 성씨는 운용사 목록에서 뺐다
+
     def test_not_promoted(self):
         self.assertIsNone(promote.match(item("Broadcom shares slip in morning trade - Reuters")))
         self.assertIsNone(promote.match(item("Utility signs $12 billion pipeline deal - Reuters", ents=())))   # AI 문맥 없음

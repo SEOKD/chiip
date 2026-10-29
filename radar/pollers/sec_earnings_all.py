@@ -37,11 +37,11 @@ def parse_name(display):
     return m.group(1).strip(), m.group(2).split(",")[0].strip(), m.group(3)
 
 
-def fetch_hits(start, end, max_pages=8):
+def fetch_hits(start, end, max_pages=8, forms="8-K"):
     """[(adsh, _source)] — 8-K 전부(페이지 100건), adsh 중복 제거"""
     seen, out = set(), []
     for page in range(max_pages):
-        q = {"forms": "8-K", "dateRange": "custom", "startdt": start.isoformat(), "enddt": end.isoformat(), "from": page * 100}
+        q = {"forms": forms, "dateRange": "custom", "startdt": start.isoformat(), "enddt": end.isoformat(), "from": page * 100}
         d = json.loads(common.http_get(EFTS + "?" + urllib.parse.urlencode(q), headers={"User-Agent": sec_filings._ua()}, timeout=40))
         hits = d.get("hits", {}).get("hits", [])
         for h in hits:

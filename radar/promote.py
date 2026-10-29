@@ -59,9 +59,19 @@ EVENT_CLASS = [("ma", re.compile(r"acqui|merger|takeover|\bbuy(s|ing)?\b|deal|ta
 
 def level_for(item, why):
     """보유 종목의 큰 사건(M&A·실적·가이던스·증자·투자의견·경영진)은 P0, 나머지 상향은 P1"""
+    if why and "숏 리포트" in why and "보유 종목" in why:
+        return "P0"
     if why and why.startswith("규칙 상향: 보유 종목") and MAJOR_RE.search(_title(item)):
         return "P0"
     return "P1"
+
+
+def _shorts():
+    if "shorts" not in _CACHE:
+        c = common.load_yaml("config/short_watch.yaml") or {}
+        _CACHE["shorts"] = {"firms": re.compile("|".join(r"\b" + re.escape(n) + r"\b" for n in c.get("firms") or []) or r"$^", re.I),
+                            "terms": re.compile(c.get("terms") or r"$^", re.I)}
+    return _CACHE["shorts"]
 
 
 def _related():
@@ -103,6 +113,15 @@ def match(item):
     title = _title(item)
     text = f"{title} {item.get('snippet') or ''}"
     ents = sorted(item.get("entities_matched") or [])
+    sh = _shorts()
+    firm, short = sh["firms"].search(title), sh["terms"].search(title) or re.search(r"\bshort", title, re.I)
+    if (firm and short) or short:   # 숏 리포트(2026-10-29 — Culper의 Cerebras 리포트 누락 뒤). 운용사 이름만 걸린 다른 글은 제외
+        target = next((tk for tk, pat in _holdings() if pat.search(title)), None)
+        if target and (firm or sh["terms"].search(title)):
+            return f"규칙 상향: 보유 종목 {target} 숏 리포트", f"short:{target}"
+        org = _fin()["orgs"].search(title)
+        if (firm or sh["terms"].search(title)) and (ents or org):
+            return "규칙 상향: AI 밸류체인 숏 리포트", "short:" + (",".join(ents) or (org.group(0).lower() if org else re.sub(r"\W+", " ", title.lower())[:50]))
     ev = (r.get("portfolio_related") or {}).get("event") or r"$^"
     for tk, pat in _holdings():   # 마스터 보유 종목 자체(2026-10-29 — MRVL·Lumentum 인수 협상 보도가 P2로 묻힌 뒤)
         if pat.search(title):

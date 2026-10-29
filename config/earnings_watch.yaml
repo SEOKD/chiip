@@ -22,6 +22,8 @@ extra:
   - {id: co-caci, name: CACI International, code: CACI.US, region: US, sub: software, master: true}
   # 마스터 포트폴리오 (config/portfolio.yaml, 2026-10-29) — 합병 완료 후 티커 AGLT·회사명 Agility Robotics
   - {id: us-ccxi, name: Churchill Capital Corp XI, code: CCXI.US, region: US, sub: robotics, aliases: ["Churchill Capital Corp XI", "Agility Robotics"]}
+  # 웨이퍼 스케일 AI 가속기 — 2026-05 Nasdaq 상장, 감시 목록 누락(Culper 숏 리포트 2026-10-28 놓침) 뒤 추가
+  - {id: us-cbrs, name: Cerebras Systems, code: CBRS.US, region: US, sub: accelerator, aliases: ["Cerebras", "CBRS"]}
   # 한국
   - {id: co-samsungsds, name: 삼성SDS, kind_name: 삼성에스디에스, code: 018260.KO, region: KR, sub: software, aliases: ["삼성SDS", "삼성에스디에스", "Samsung SDS"]}
   - {id: co-lgcns, name: LG CNS, kind_name: LG씨엔에스, code: 064400.KO, region: KR, sub: software, aliases: ["LG CNS", "LG씨엔에스"]}
