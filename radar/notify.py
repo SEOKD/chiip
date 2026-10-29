@@ -304,13 +304,101 @@ def alert_time(item):
     return t.strftime("%H:%M") if t.date() == common.now_kst().date() else t.strftime("%m/%d %H:%M")
 
 
-def format_item(level, item, what=None, impact=None, card_id=None, biz=None):
-    """실시간 알림 한 줄 — 마스터 지시 2026-10-29 "종목(종목코드)｜기사｜시간 — 이렇게만 표기하라, P1 같은 코드명은 드러내지 마라".
-    기사 제목에 원문 링크를 건다(html_mode=True로 보낼 것). level·what·impact·card_id·biz는 호출 호환용(표기 안 함)"""
+PROFILES = common.ROOT / "config" / "company_profiles.yaml"
+PROFILE_MAX_AGE_DAYS = 30   # 내러티브는 변한다 — 30일 지난 설명은 판정 모델이 새로 쓴 것으로 바꾼다
+_SENT_RE = re.compile(r"(?<=[.!?。])\s+|(?<=다\.)\s*|\n+")
+
+
+def _profiles():
+    if "prof" not in _LINES:
+        _LINES["prof"] = (common.load_yaml("config/company_profiles.yaml") or {}).get("profiles") or {}
+    return _LINES["prof"]
+
+
+def _fresh(as_of, days=PROFILE_MAX_AGE_DAYS):
+    from datetime import date
+    try:
+        return (common.now_kst().date() - date.fromisoformat(str(as_of)[:10])).days <= days
+    except ValueError:
+        return False
+
+
+def _narrative_summary(eid):
+    """knowledge/narratives/companies/<id>.md 머리의 summary(30일 이내만) — narrative-premium 스킬이 쓴 지금의 내러티브"""
+    f = common.ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
+    if not f.exists():
+        return None
+    head = f.read_text(encoding="utf-8")[:1500]
+    s, a = re.search(r"^summary:\s*(.+)$", head, re.M), re.search(r"^as_of:\s*(\S+)", head, re.M)
+    return s.group(1).strip() if s and a and _fresh(a.group(1)) else None
+
+
+def company_profile(entity_ids, model_lines=None, biz=None):
+    """알림의 '☞ 회사 설명' 최대 3줄(마스터 지시 2026-10-29 "비즈니스 모델, 성장동력, 내러티브 등 3줄 정도").
+    config/company_profiles.yaml(30일 이내) → 판정 모델이 준 3줄 → 기업 1줄 + 지금의 내러티브 요약. 지어내지 않는다(없으면 빈 목록)"""
+    eids = list(entity_ids or [])
+    for e in eids:
+        p = _profiles().get(e)
+        if p and p.get("lines") and _fresh(p.get("as_of")):
+            return [l for l in p["lines"] if l][:3]
+    lines = [l.strip() for l in (model_lines or []) if l and l.strip()][:3]
+    if lines:
+        return lines
+    out = [x for x in (company_line(eids, biz), next((s for s in map(_narrative_summary, eids) if s), None)) if x]
+    return out[:3]
+
+
+def remember_profile(entity_ids, lines, source="판정 모델"):
+    """판정 모델이 쓴 회사 설명 3줄을 저장(없거나 30일 지난 것만 바꿈) — 다음 알림부터 같은 설명을 다시 묻지 않는다"""
+    lines = [l.strip() for l in (lines or []) if l and l.strip()][:3]
+    eid = next(iter(entity_ids or []), None)
+    if len(lines) < 2 or not eid:
+        return False
+    cur = _profiles().get(eid)
+    if cur and _fresh(cur.get("as_of")):
+        return False
+    import yaml
+    head = "".join(l + "\n" for l in PROFILES.read_text(encoding="utf-8").splitlines() if l.startswith("#")) if PROFILES.exists() else ""
+    data = (common.load_yaml("config/company_profiles.yaml") or {}).get("profiles") or {}
+    data[eid] = {"lines": lines, "as_of": common.now_kst().strftime("%Y-%m-%d"), "source": source}
+    PROFILES.write_text(head + yaml.safe_dump({"profiles": data}, allow_unicode=True, sort_keys=False, width=200), encoding="utf-8")
+    _LINES["prof"] = data
+    return True
+
+
+def snippet_points(item, n=3):
+    """모델 요약이 없을 때의 핵심 줄 — 기사 요약문(snippet)에서 제목과 다른 문장만 최대 n개. 없으면 빈 목록(채우지 않는다)"""
+    title = re.sub(r"\W+", "", (item.get("title") or "").lower())
+    out = []
+    for s in _SENT_RE.split(common.strip_tags(item.get("snippet") or "")):
+        s = s.strip(" -·•")
+        key = re.sub(r"\W+", "", s.lower())
+        if len(key) < 12 or key in title or title[:40] in key:
+            continue
+        out.append(s if len(s) <= 90 else s[:88] + "…")
+        if len(out) == n:
+            break
+    return out
+
+
+def format_item(level, item, what=None, impact=None, card_id=None, biz=None, points=None, profile=None):
+    """실시간 알림 — 마스터 지시 2026-10-29 양식:
+        종목(종목코드)｜기사(원문 링크)｜시간
+        ☞ 회사 설명 3줄(비즈니스 모델·성장 동력·내러티브)
+        • 핵심 내용 1~3
+    등급 코드는 드러내지 않는다(html_mode=True로 보낼 것). points·profile은 판정 모델 출력, 없으면 저장된 설명·요약문으로 채운다.
+    level·what·impact·card_id는 호출 호환용(표기 안 함)"""
     title = html.escape(item.get("title") or "")
     url = item.get("url") or ""
     art = f'<a href="{html.escape(url, quote=True)}">{title}</a>' if url else title
-    return f"{html.escape(stock_label(item.get('entities_matched')))}｜{art}｜{alert_time(item)}"
+    parts = [f"{html.escape(stock_label(item.get('entities_matched')))}｜{art}｜{alert_time(item)}"]
+    prof = company_profile(item.get("entities_matched"), profile, biz)
+    if prof:
+        parts.append("☞ " + "\n".join(html.escape(l, quote=False) for l in prof))
+    pts = [p.strip() for p in (points or []) if p and p.strip()][:3] or snippet_points(item)
+    if pts:
+        parts.append("\n".join(f"• {html.escape(p, quote=False)}" for p in pts))
+    return "\n\n".join(parts)
 
 
 def queue_p1(text):
@@ -329,7 +417,7 @@ def flush_p1(min_age_min=60, force=False):
     oldest = datetime.fromisoformat(rows[0]["at"])
     if not force and common.now_kst() - oldest < timedelta(minutes=min_age_min):
         return 0
-    body = f"[Chiip Alerts · {len(rows)}]\n\n" + "\n\n".join(r["text"] for r in rows)
+    body = f"[Chiip Alerts · {len(rows)}]\n\n" + "\n\n─────────\n\n".join(r["text"] for r in rows)   # 건마다 3문단(2026-10-29 양식) — 구분선
     send(body, "P1")
     P1_QUEUE.write_text("", encoding="utf-8")
     return len(rows)

@@ -36,6 +36,8 @@ SCHEMA = {
             "impact": {"type": "string"},
             "reason": {"type": "string"},
             "biz": {"type": "string"},
+            "points": {"type": "array", "items": {"type": "string"}},
+            "profile": {"type": "array", "items": {"type": "string"}},
             "card_path": {"type": "string"}},
         "required": ["item_id", "level", "reason"]}}},
     "required": ["results"]}
@@ -175,7 +177,9 @@ def main(argv=None):
                 if not go:
                     lvl, r["reason"] = "P2", f"{why_ev} (모델 {r['level']})"
             card = Path(r.get("card_path") or "").stem or None
-            msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card, r.get("biz"))
+            if lvl in ("P0", "P1") and r.get("profile"):   # 회사 설명 3줄 저장(30일) — 다음 알림은 다시 묻지 않는다
+                notify.remember_profile(it.get("entities_matched"), r["profile"])
+            msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card, r.get("biz"), r.get("points"), r.get("profile"))
             ok, why = notify.telegram_allowed(it)
             if ok and not gate.is_fresh(it, "alert"):  # 판정 사이 시간이 지나 오래된 자료는 보내지 않음
                 ok, why = False, f"오래됨(공개 {str(it.get('published_at', ''))[:16]})"

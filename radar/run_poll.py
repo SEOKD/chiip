@@ -8,6 +8,7 @@ Windows 작업 스케줄러가 몇 분마다 실행한다. 모델은 부르지 �
 """
 import argparse
 import importlib
+import json
 import os
 import sys
 import traceback
@@ -73,7 +74,7 @@ def fast_lane(items):
     규칙 건은 나간다. 같은 사건 반복·잡음·오래된 자료는 판정 단계와 같은 관문으로 거른다. 보낸 id는 run_triage가 다시 보내지 않는다"""
     import promote
     from pollers import gate
-    sent = []
+    sent, go_list = [], []
     for it in items:
         try:
             if not gate.is_fresh(it, "alert") or promote.noise(it) or not notify.telegram_allowed(it)[0]:
@@ -85,18 +86,59 @@ def fast_lane(items):
             if promote.duplicate_of(it):
                 continue
             go, _, _ = promote.event_gate(it, lvl)
-            if not go:
-                continue
-            ref = notify.remember_alert(it, lvl, why, None, None)
-            notify.send(notify.format_item(lvl, it), lvl, ref=ref, html_mode=True)
-            sent.append(it["item_id"])
+            if go:
+                go_list.append((it, lvl, why))
         except Exception as exc:   # 빠른 길이 실패해도 수집·판정은 계속
             print(f"빠른 길 오류 {it.get('item_id')}: {type(exc).__name__}: {exc}")
+    extra = enrich([it for it, _, _ in go_list]) if go_list else {}
+    for it, lvl, why in go_list:
+        try:
+            e = extra.get(it["item_id"]) or {}
+            if e.get("profile"):
+                notify.remember_profile(it.get("entities_matched"), e["profile"], "빠른 길 모델")
+            ref = notify.remember_alert(it, lvl, why, None, None)
+            notify.send(notify.format_item(lvl, it, points=e.get("points"), profile=e.get("profile")), lvl, ref=ref, html_mode=True)
+            sent.append(it["item_id"])
+        except Exception as exc:
+            print(f"빠른 길 발송 오류 {it.get('item_id')}: {type(exc).__name__}: {exc}")
     if sent:
         st = common.load_state("rule_fast", {"ids": []})
         st["ids"] = (st["ids"] + sent)[-1000:]
         common.save_state("rule_fast", st)
     return sent
+
+
+FAST_SCHEMA = {"type": "object", "properties": {"results": {"type": "array", "items": {"type": "object", "properties": {
+    "item_id": {"type": "string"}, "points": {"type": "array", "items": {"type": "string"}},
+    "profile": {"type": "array", "items": {"type": "string"}}}, "required": ["item_id"]}}}, "required": ["results"]}
+FAST_PROMPT = (
+    "radar/state/fast_batch.json의 뉴스 항목마다 한국어로 두 가지를 쓴다(마스터 지시 2026-10-29 실시간 알림 양식). "
+    "① points: 핵심 내용 최대 3줄(각 60자 안팎) — 무엇이 일어났나·숫자(단위 그대로, 금액은 $50.6B·$420M 표기)·왜 중요한가. "
+    "제목·요약(snippet)에 있는 사실만 쓰고, 헤드라인을 사실로 단정하지 말고 주체를 붙인다(예: '로이터 보도'). 쓸 사실이 1~2개면 1~2줄만. "
+    "② profile: 주인공 기업(entities_matched 첫 종목) 설명 3줄 — 비즈니스 모델 / 성장 동력 / 시장의 내러티브. "
+    "known_line·narrative가 있으면 그것과 맞게 쓴다. 확실히 아는 사실만, 모르면 빈 배열. 매수·매도 표현 금지. 결과는 구조화 출력만.")
+
+
+def enrich(items):
+    """빠른 길 건의 핵심 3줄·회사 설명 3줄 — 소형 모델(haiku) 1회(규칙 건이 있을 때만, 일일 호출 상한 공유).
+    실패·상한이면 {} — 알림은 저장된 회사 설명·기사 요약문 문장으로 나간다(발송을 막지 않는다)"""
+    import run_triage
+    try:
+        cap = ((common.load_yaml("config/alert_rules.yaml") or {}).get("caps") or {}).get("daily_model_calls", 200)
+        if not run_triage.claude_exe() or run_triage.calls_today() >= cap:
+            return {}
+        batch = [{"item_id": it["item_id"], "title": it.get("title"), "snippet": it.get("snippet"), "url": it.get("url"),
+                  "source_id": it.get("source_id"), "published_at": it.get("published_at"), "entities_matched": it.get("entities_matched"),
+                  "known_line": notify.company_line(it.get("entities_matched")),
+                  "narrative": next((s for s in map(notify._narrative_summary, it.get("entities_matched") or []) if s), None)} for it in items]
+        f = common.STATE / "fast_batch.json"
+        f.write_text(json.dumps(batch, ensure_ascii=False, indent=1), encoding="utf-8")
+        out = run_triage.run_claude(FAST_PROMPT, "haiku", FAST_SCHEMA, timeout=180)
+        return {r["item_id"]: r for r in (out.get("structured_output") or {}).get("results", []) if r.get("item_id")}
+    except Exception as exc:
+        print(f"빠른 길 요약 실패: {type(exc).__name__}: {exc}")
+        common.record_health("fast-enrich", False, exc)
+        return {}
 
 
 def deterministic_p0(items):
