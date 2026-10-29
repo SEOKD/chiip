@@ -16,7 +16,9 @@ datapack 추가 필드:
            "deltas": [{"id","kind":"신규|업데이트|부정|반복","item","prior","latest","driver","shift","confidence","source"}]}
      driver = rev0 | growth_start | growth_end | growth_decay | margin_m0 | margin_target | margin_lr | s2c | wacc | net_debt   (shift는 직전 → 최신 변화량, 소수)
      growth_decay = 성장 감속 계수(gₜ = end + (start − end)·decay^(t−1)) — 수주잔고·슬롯처럼 '고성장이 얼마나 오래 가나'를 바꾸는 사실
-  "consensus": {..., "surprise": [{"period":"2026Q3","metric":"매출","unit":"M$","actual":1167.9,"est":1045.7}],
+  "consensus": {..., "surprise": [{"period":"2026Q3","metric":"매출","unit":"M$","actual":1167.9,"est":1045.7,"est_src":"zacks","basis":"gaap"}],
+     ← Fiscal.ai 본보기 scripts/fiscal/templates/surprise.js 출력 rows 그대로(최근 4개 분기, EPS·조정 EBIT/EBITDA는 Non-GAAP, 2026-10-30)
+  call.deltas 각 항목에 "label"(그래프에 쓸 짧은 이름, 16자 이내 — 예 "OpenAI 2GW 옵션")을 넣으면 그래프가 그 이름을 쓴다
                 "revisions": {"from_date","to_date","from_label","source","rows":[{"period":"2026Q4","metric":"EPS","from":0.18,"to":0.1768}]},
                 "price_window": {"from": 26.22, "to": 18.35}}
   "multiples_now": {"pe_fwd","ev_ebitda","ev_sales","growth"},  peers 각 행에 같은 이름(pe_fwd·ev_ebitda·ev_sales·growth)
@@ -95,12 +97,20 @@ def call_value_impact(co, wacc, g_term, deltas):
             "solo_sum": sum(r["solo"] or 0 for r in rows), "weighted_sum": sum(r["weighted"] for r in rows)}
 
 
-def surprises(rows):
+def surprises(rows, n=4):
+    """최근 n개 분기만(마스터 지시 2026-10-30 "분기별 서프라이즈는 최근 4개 분기로 시계열") — 분기 오름차순"""
     out = []
     for r in rows or []:
         a, e = r.get("actual"), r.get("est")
         out.append({**r, "surprise": (a / e - 1) if a is not None and e else None})
-    return out
+    keep = sorted({str(r.get("period") or "") for r in out})[-n:]
+    return sorted([r for r in out if str(r.get("period") or "") in keep], key=lambda r: (str(r.get("period") or ""), r.get("metric", "")))
+
+
+def short_label(r, n=16):
+    """콜 변화 항목의 그래프 이름 — datapack의 label(짧은 이름)이 있으면 그것, 없으면 항목 내용 앞부분(F1·F2 같은 번호 대신, 2026-10-30)"""
+    t = str(r.get("label") or r.get("item") or r.get("id") or "").strip()
+    return t if len(t) <= n else t[:n - 1].rstrip() + "…"
 
 
 def revisions(rv, price=None):
@@ -160,28 +170,35 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
             drv = DRIVERS.get(r.get("driver"), "—")
             sh = r.get("shift")
             sh_txt = "—" if not sh else (f"{sh:+,.2f} {unit}" if r.get("driver") in ("rev0", "net_debt") else (f"{sh:+.2%}" if abs(sh) < 0.01 else f"{sh:+.1%}"))
-            rows.append([f"{r.get('id', '')} {r.get('kind', '')}", r.get("item", ""), r.get("prior", ""), r.get("latest", ""),
+            rows.append([r.get("kind", ""), r.get("item", ""), r.get("prior", ""), r.get("latest", ""),
                          f"{drv} {sh_txt}", f"{r.get('confidence', 0):.1f}", _pct(r["solo"]), _pct(r["weighted"])])
         rows.append(["**합계**", "단독 합 / 확신도 가중 합", "", "", f"동시 적용 {_pct(imp['joint'])}", "", f"**{_pct(imp['solo_sum'])}**", f"**{_pct(imp['weighted_sum'])}**"])
         B.append({"type": "table", "title": "직전 콜 대비 새로 나오거나 바뀐 내용 → 가치 영향 (v2 기본 시나리오 주주가치 기준)",
                   "headers": ["항목", "내용", "직전 콜", "최신 콜", "모델 동인 이동", "확신도", "단독 Δ가치", "확신도 가중"], "rows": rows})
         bars = [r for r in imp["rows"] if r["solo"]]
         if bars:
-            B.append({"type": "chart", "chart": {"kind": "bars", "title": "콜 변화 항목별 주주가치 영향 (%)", "unit": "%",
-                      "categories": [r.get("id", "") for r in bars],
-                      "series": [{"name": "단독 Δ가치", "color": "c", "values": [round(r["solo"] * 100, 1) for r in bars]},
-                                 {"name": "확신도 가중", "color": "e", "values": [round(r["weighted"] * 100, 1) for r in bars]}],
+            # 가로 막대 + 항목 이름(마스터 지시 2026-10-30 "x축 F1~F9로는 직관적으로 파악하지 못한다") — 영향이 큰 순
+            bars = sorted(bars, key=lambda r: -abs(r["weighted"] or r["solo"] or 0))
+            B.append({"type": "chart", "chart": {"kind": "hbars", "title": "콜 변화 항목별 주주가치 영향 (%)", "unit": "%",
+                      "rows": [{"label": short_label(r), "bars": [{"name": "단독 Δ가치", "color": "c", "value": round(r["solo"] * 100, 1)},
+                                                                {"name": "확신도 가중", "color": "e", "value": round(r["weighted"] * 100, 1)}]} for r in bars],
                       "note": f"직전 콜 정보만으로 본 가치 {imp['prior_equity']:,.2f} → 최신 {imp['base_equity']:,.2f} {unit}(시가총액 {mcap:,.2f}의 {imp['prior_equity'] / mcap:.2f}배 → {imp['base_equity'] / mcap:.2f}배)"}})
         B.append({"type": "p", "text": f"**읽는 법:** 확신도 가중 합 {_pct(imp['weighted_sum'])}이 '이번 콜로 기업가치가 얼마나 바뀌었나'에 대한 Chiip 기준값이다. 단독 합({_pct(imp['solo_sum'])})과 "
                   f"동시 적용({_pct(imp['joint'])})의 차이는 동인끼리 곱해지는 상호작용(예: 성장 × 이익률). 경영진 발언(확신도 0.5 이하) 비중이 크면 다음 분기 숫자로 확인될 때까지 가치로 다 넣지 않는다."})
     sp = surprises(cons.get("surprise"))
     if sp:
-        B.append({"type": "table", "title": "실적 vs 컨센서스 (발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈"],
-                  "rows": [[r["period"], r["metric"], f"{r['actual']:,.4g} {r.get('unit', '')}", f"{r['est']:,.4g} {r.get('unit', '')}" if r.get("est") else "-", _pct(r["surprise"])] for r in sp]})
+        src = lambda r: "Zacks" if r.get("est_src") == "zacks" else ("Fiscal.ai" if r.get("est_src") else "-")
+        gaap = sorted({r["metric"] for r in sp if r.get("basis") == "gaap" and r["metric"] != "매출"})
+        B.append({"type": "table", "title": "실적 vs 컨센서스 — 최근 4개 분기 (Non-GAAP 조정 기준, 발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈", "추정 출처"],
+                  "rows": [[r["period"], r["metric"], f"{r['actual']:,.4g} {r.get('unit', '')}", f"{r['est']:,.4g} {r.get('unit', '')}" if r.get("est") else "-", _pct(r["surprise"]), src(r)] for r in sp],
+                  "note": " · ".join(x for x in (
+                      "추정 = Fiscal.ai가 발표 전에 얼려 둔 추정(1순위) → Zacks 발표 직전 컨센서스(2순위)",
+                      f"{', '.join(gaap)}는 회사가 조정 값을 내지 않아 GAAP" if gaap else "",
+                      "Data provided by Zacks Investment Research, Inc., www.zacksdata.com" if any(r.get("est_src") == "zacks" for r in sp) else "") if x)})
         per = sorted({r["period"] for r in sp if r["surprise"] is not None})
         mets = sorted({r["metric"] for r in sp if r["surprise"] is not None})
         if per and mets:
-            B.append({"type": "chart", "chart": {"kind": "bars", "title": "분기별 서프라이즈 (%)", "unit": "%", "categories": per,
+            B.append({"type": "chart", "chart": {"kind": "bars", "title": "분기별 서프라이즈 (%) — 최근 4개 분기", "unit": "%", "categories": per,
                       "series": [{"name": m, "color": "cdeb"[i % 4], "values": [next((round(r["surprise"] * 100, 1) for r in sp if r["period"] == p and r["metric"] == m and r["surprise"] is not None), None) for p in per]} for i, m in enumerate(mets)]}})
     rv = cons.get("revisions")
     if rv:

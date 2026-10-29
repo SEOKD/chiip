@@ -223,3 +223,22 @@ class TestEarningsView(unittest.TestCase):
         self.assertLess(pm[0]["growth_adj_premium"], 0)   # 성장이 높아 성장 조정하면 할인
         sp = earnings_view.surprises([{"actual": 1167.9, "est": 1045.7}])
         self.assertAlmostEqual(sp[0]["surprise"], 1167.9 / 1045.7 - 1)
+
+    def test_surprise_keeps_last_four_quarters(self):
+        rows = [{"period": f"2025Q{q}", "metric": "매출", "actual": 10 + q, "est": 10} for q in (1, 2, 3, 4)] +                [{"period": "2026Q1", "metric": "매출", "actual": 15, "est": 12}, {"period": "2026Q1", "metric": "EPS", "actual": 1.1, "est": 1.0}]
+        sp = earnings_view.surprises(rows)
+        self.assertEqual(sorted({r["period"] for r in sp}), ["2025Q2", "2025Q3", "2025Q4", "2026Q1"])   # 마스터 지시 2026-10-30 — 최근 4개 분기
+
+    def test_call_chart_uses_item_names_not_ids(self):
+        dp = {"call": {"prev_date": "2026-08-01", "date": "2026-10-29", "deltas": [
+            {"id": "F1", "kind": "신규", "item": "OpenAI 2GW 옵션 행사 가능성 언급", "label": "OpenAI 2GW 옵션", "driver": "growth_start", "shift": 0.05, "confidence": 0.5},
+            {"id": "F2", "kind": "업데이트", "item": "장기 코어 영업이익률 목표 하향 조정", "driver": "margin_target", "shift": -0.02, "confidence": 0.8}]}}
+        sec = earnings_view.report_section(dp, self.co(), 10.0, 0.09, 0.03, "B$")
+        ch = [b["chart"] for b in sec["blocks"] if b.get("type") == "chart" and b["chart"]["title"].startswith("콜 변화")][0]
+        labels = [r["label"] for r in ch["rows"]]
+        self.assertEqual(ch["kind"], "hbars")
+        self.assertIn("OpenAI 2GW 옵션", labels)
+        self.assertTrue(any(l.startswith("장기 코어 영업이익률") for l in labels))
+        self.assertFalse(any(l in ("F1", "F2") for l in labels))
+        html = report_html.chart_hbars(ch)   # 음수 막대도 그린다
+        self.assertIn("stroke-dasharray", html)

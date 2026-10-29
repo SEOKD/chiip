@@ -199,13 +199,17 @@ def chart_bars(c):
 
 
 def chart_hbars(c):
+    """가로 막대 — 음수도 그린다(0 기준선 왼쪽). 항목 이름이 긴 그래프(콜 변화 항목 등)를 위해 이름 칸을 넓게(2026-10-30)"""
     rows = c.get("rows") or []
     vals = [b.get("value") or 0 for r in rows for b in r.get("bars") or []]
     if not rows or not vals:
         return ""
-    W, L, R = 700, 120, 60
-    mx = max(vals) * 1.1 or 1
-    X = lambda v: L + max(v, 0) / mx * (W - L - R)
+    W, L, R = 700, 180, 56
+    hi, lo = max(max(vals), 0), min(min(vals), 0)
+    span = (hi - lo) * 1.12 or 1
+    base = lo * 1.12   # 음수가 있으면 왼쪽 여유를 두고 0 기준선을 오른쪽으로 민다
+    X = lambda v: L + ((v - base) if lo < 0 else max(v, 0)) / span * (W - L - R)
+    x0 = X(0)
     names = []
     for r in rows:
         for b in r.get("bars") or []:
@@ -214,13 +218,18 @@ def chart_hbars(c):
     g, y = [], 10
     for r in rows:
         bars = r.get("bars") or []
-        g.append(f'<text x="{L - 6}" y="{y + 8 * len(bars) + 4}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(r["label"])}</text>')
+        g.append(f'<text x="{L - 8}" y="{y + 8 * len(bars) + 4}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(r["label"])}</text>')
         for b in bars:
+            v = b.get("value") or 0
             col = COLORS.get(b.get("color", "c"), "var(--c)")
-            g.append(f'<rect x="{L}" y="{y}" width="{max(2, X(b.get("value") or 0) - L):.1f}" height="14" rx="3" fill="{col}"><title>{t(r["label"])} {t(b["name"])}: {_fmt(b.get("value"))}{t(c.get("unit", ""))}</title></rect>'
-                     f'<text x="{X(b.get("value") or 0) + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}</text>')
+            x1, x2 = sorted((x0, X(v)))
+            g.append(f'<rect x="{x1:.1f}" y="{y}" width="{max(2, x2 - x1):.1f}" height="14" rx="3" fill="{col}"><title>{t(r["label"])} {t(b["name"])}: {_fmt(b.get("value"))}{t(c.get("unit", ""))}</title></rect>'
+                     + (f'<text x="{x2 + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}</text>' if v >= 0 else
+                        f'<text x="{x1 - 4:.1f}" y="{y + 11}" text-anchor="end">{_fmt(b.get("value"))}</text>'))
             y += 17
         y += 14
+    if lo < 0:
+        g.append(f'<line x1="{x0:.1f}" x2="{x0:.1f}" y1="4" y2="{y - 6}" stroke="var(--mut)" stroke-dasharray="3 3"/>')
     return _legend(names) + f'<svg viewBox="0 0 {W} {y + 4}">{"".join(g)}</svg>'
 
 
