@@ -15,8 +15,9 @@ async () => {
     const r = rows.sort((a, b) => String(a.asOf) < String(b.asOf) ? -1 : 1).slice(-1)[0];
     return r ? { est: r.mean, src: "zacks", asOf: r.asOf, n: r.numEstimates } : null;
   };
-  const fis = (d, key, ed) => { const c = d.metricsValues[key]; return c && c.mean != null && c.asOf && (!ed || String(c.asOf).slice(0, 10) < ed) && c.source !== "guidance_calculated" ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf } : null; };
-  const lines = [["매출", "revenue", "analyst_revenue", 1e6, "M$"], ["EPS", "eps_adjusted", "analyst_eps", 1, "$"], ["조정 EBIT", "ebit_adjusted", "analyst_ebit", 1e6, "M$"], ["조정 EBITDA", "ebitda_adjusted", "analyst_ebitda", 1e6, "M$"]];
+  const fis = (d, key, ed, allowCalc) => { const c = d.metricsValues[key]; return c && c.mean != null && c.asOf && (!ed || String(c.asOf).slice(0, 10) < ed) && (allowCalc || c.source !== "guidance_calculated") ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf } : null; };
+  // 이익 지표는 조정 값만, 이름에 '조정'을 붙이지 않는다(마스터 지시 2026-10-30 — EBITDA·EBIT·EPS)
+  const lines = [["매출", "revenue", "analyst_revenue", 1e6, "M$"], ["EPS", "eps_adjusted", "analyst_eps", 1, "$"], ["EBIT", "ebit_adjusted", "analyst_ebit", 1e6, "M$"], ["EBITDA", "ebitda_adjusted", "analyst_ebitda", 1e6, "M$"]];
   const rows = [];
   for (const d of done) {
     const ed = d.earningsDate ? String(d.earningsDate).slice(0, 10) : null;
@@ -24,8 +25,8 @@ async () => {
     for (const [name, key, zk, div, unit] of lines) {
       const c = d.metricsValues[key];
       if (!c || c.actual == null) continue;
-      if (key !== "revenue" && key !== "eps_adjusted" && c.basis !== "adjusted") continue;   // 조정 EBIT·EBITDA는 회사가 낼 때만
-      const e = fis(d, key, ed) || zack(d.reportDate, ed, zk);
+      if (key !== "revenue" && c.basis !== "adjusted") continue;   // 조정 값을 내지 않는 이익 지표는 뺀다(GAAP으로 채우지 않는다)
+      const e = fis(d, key, ed) || zack(d.reportDate, ed, zk) || fis(d, key, ed, true);
       rows.push({ period, metric: name, unit, actual: Math.round(c.actual / div * 1000) / 1000, est: e ? Math.round(e.est / div * 1000) / 1000 : null,
         est_src: e ? e.src : null, est_asof: e ? e.asOf : null, basis: c.basis || null, earnings_date: ed });
     }

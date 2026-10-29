@@ -19,14 +19,15 @@ async () => {
     const r = rows.sort((a, b) => String(a.asOf) < String(b.asOf) ? -1 : 1).slice(-1)[0];
     return r ? { est: r.mean, src: "zacks", asOf: r.asOf, n: r.numEstimates } : null;
   };
-  // guidance_calculated(연간 가이던스를 분기로 나눈 값)는 분기 기대치가 아니다 — Zacks로 넘긴다(2026-10-30 FTAI)
-  const fis = (d, key) => { const c = d && d.metricsValues[key]; return c && c.mean != null && pre(c.asOf) && !(d.periodType === "Quarterly" && c.source === "guidance_calculated") ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf, basis: c.basis, actual: c.actual } : null; };
+  // guidance_calculated(연간 가이던스를 분기로 나눈 값)는 3순위 — Zacks가 없을 때만(2026-10-30 FTAI는 Zacks, 프리즈미안은 Zacks 없음 → Fiscal 계산값)
+  const calc = (d, key) => d && d.periodType === "Quarterly" && (d.metricsValues[key] || {}).source === "guidance_calculated";
+  const fis = (d, key, allowCalc) => { const c = d && d.metricsValues[key]; return c && c.mean != null && pre(c.asOf) && (allowCalc || !calc(d, key)) ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf, basis: c.basis, actual: c.actual } : null; };
   const lines = { revenue: ["revenue", "analyst_revenue"], ebitda_adjusted: ["ebitda_adjusted", "analyst_ebitda"], ebit_adjusted: ["ebit_adjusted", "analyst_ebit"], ebit: ["ebit", null], eps_adjusted: ["eps_adjusted", "analyst_eps"], eps_gaap: ["eps_gaap", null],
     gross_profit: ["gross_profit", null], operating_cash_flow: ["operating_cash_flow", null], capex: ["capex", null], free_cash_flow: ["free_cash_flow", null] };
   const pickFor = d => {
     if (!d) return null;
     const o = {};
-    for (const [name, [fk, zk]] of Object.entries(lines)) o[name] = fis(d, fk) || (zk ? zack(d.reportDate, zk) : null);
+    for (const [name, [fk, zk]] of Object.entries(lines)) o[name] = fis(d, fk) || (zk ? zack(d.reportDate, zk) : null) || fis(d, fk, true);
     const prov = v => String(v.src).split(":")[0];                                // fiscal / zacks — 이익률은 같은 제공처끼리만 나눈다
     const ratio = (num, rv, basis) => num && rv && prov(num) === prov(rv) ? { est: num.est / rv.est, src: num.src + "÷" + rv.src, asOf: num.asOf, basis, derived: true } : null;
     o.opm_adjusted = ratio(o.ebit_adjusted, o.revenue, "adjusted"); o.opm = ratio(o.ebit, o.revenue, "gaap");

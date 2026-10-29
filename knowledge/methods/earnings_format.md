@@ -30,10 +30,10 @@ After +3%
 ```
 - 지표는 그 회사의 실적을 가르는 것만(반도체 장비: 수주·수주잔고·지역별 매출, 메모리: 비트 출하·ASP, 클라우드: 클라우드 성장률·RPO 등). 순서: 매출 → 핵심 사업 지표 → 이익률 → EPS → 현금흐름·설비투자.
 - **est. 출처 순위(마스터 지시 2026-10-30 "Fiscal.ai 1순위, Zacks 2순위")** — 본보기 `scripts/fiscal/templates/earnings_est.js`가 지표마다 고른다.
-  1. **Fiscal.ai 자체 추정** `company_estimates`(가이던스·모델·Agentic Consensus — 애널리스트 설문이 아니다). 발표한 분기에는 Fiscal이 발표 전에 얼려 둔 추정이 남는다. **asOf가 발표일 전날 이전인 칸만** 쓴다. source가 `guidance_calculated`(연간 가이던스를 분기로 나눈 값)인 분기 칸은 기대치가 아니므로 쓰지 않고 2순위로 넘긴다(2026-10-30 FTAI — 분기 조정 EBITDA $428M이 연간 가이던스 4분의 1에 가까운 값이었다) — 발표 당일·이후 asOf는 새 가이던스로 덮어쓴 값이라 '가이던스 vs est.' 비교가 무너진다(Fiscal 추정은 이력이 없다).
+  1. **Fiscal.ai 자체 추정** `company_estimates`(가이던스·모델·Agentic Consensus — 애널리스트 설문이 아니다). 발표한 분기에는 Fiscal이 발표 전에 얼려 둔 추정이 남는다. **asOf가 발표일 전날 이전인 칸만** 쓴다. source가 `guidance_calculated`(연간 가이던스를 분기로 나눈 값)인 분기 칸은 2순위(Zacks)가 없을 때만 쓴다 — 3순위(2026-10-30 FTAI는 Zacks EBITDA, 프리즈미안은 Zacks 커버리지가 없어 Fiscal 계산값).
   2. **Zacks 컨센서스** `company_analyst_estimates({history:true})`에서 그 분기의 발표일 전 마지막 값(asOf < 발표일). 발표 뒤 남은 행(애널리스트 1명·asOf 없음)은 쓰지 않는다. 영업이익은 Zacks EBIT.
   3. 둘 다 없으면 괄호를 뺀다(회사 자료의 시장 기대 언급은 출처를 기록 파일에). 지어내지 않는다.
-- **est.는 매출·GPM·OPM·EPS·OCF·CAPEX·FCF 모두 찾아 붙인다**(Fiscal.ai가 OCF·CAPEX·FCF 추정을 준다 — 2026-10-30 확인). Fiscal에는 이익률 칸이 따로 없어 나눠서 만든다(같은 제공처·둘 다 발표 전 asOf일 때만):
+- **est.는 매출·GPM·EBITDA·OPM·EPS·OCF·CAPEX·FCF 모두 찾아 붙인다**(EBITDA는 회사가 조정 EBITDA를 내면 반드시 — Fiscal ebitda_adjusted → Zacks EBITDA → Fiscal 계산값, 마스터 지시 2026-10-30 "프리즈미안 조정 EBITDA est.가 왜 없나")(Fiscal.ai가 OCF·CAPEX·FCF 추정을 준다 — 2026-10-30 확인). Fiscal에는 이익률 칸이 따로 없어 나눠서 만든다(같은 제공처·둘 다 발표 전 asOf일 때만):
   - **GPM est. = Fiscal 매출총이익(gross_profit) 추정 ÷ 매출 추정**(마스터 지시 2026-10-30 "GPM도 Fiscal.ai에서 가져와라"). Fiscal 매출총이익은 **GAAP 기준**이라 실적 줄이 조정 GPM이어도 그대로 붙인다(차이는 보통 주식보상 몇 bp — 예 샌디스크 조정 85.1%·GAAP 85.0%). 기준 차이는 기록 파일에 적는다. Zacks에는 매출총이익률이 없다(EBITDA 마진만) — 발표 전 Fiscal 값이 없으면 비운다.
   - **OPM est. = 영업이익 추정 ÷ 매출 추정** — 조정 OPM 줄은 Fiscal ebit_adjusted(없으면 Zacks EBIT ÷ Zacks 매출), GAAP 줄은 Fiscal ebit.
   - 세그먼트(AWS 등)는 두 곳 모두 없어 비운다.
@@ -44,7 +44,7 @@ After +3%
 - 지표 이름 뒤에 부가 설명 괄호를 달지 않는다 — `CAPEX(유형자산 매입, 3Q)`가 아니라 `CAPEX`. `(조정)`도 쓰지 않는다. 정의·계산 방식·GAAP/조정 구분은 기록 파일(`outputs/article/sources/`)에만.
 - 가이던스가 바뀌면 `이전 → 새`. 범위는 `~`. 단위: 달러 $B·$M, 원 조·억, 엔 億円(또는 조엔), 퍼센트포인트는 %p.
 - `After +3%` = 발표 후 시간외(또는 다음 거래일 장중) 등락률 — 확인 못 하면 줄을 뺀다. 일본·한국은 `발표 다음 날 +x%`.
-- **모든 지표는 Non-GAAP(조정) 값**(마스터 지시 2026-10-30 "GPM 등 모든 지표 항목은 Non-GAAP로 하라") — 매출·GPM·OPM·EPS 모두 회사가 낸 조정 값(회사가 조정 값을 내지 않는 지표는 GAAP 그대로). 표기에는 `(조정)`을 붙이지 않는다. est.도 Non-GAAP를 쓴다(Fiscal eps_adjusted·ebit_adjusted, Zacks EPS·EBIT) — GPM est.만 Fiscal이 GAAP 매출총이익뿐이라 GAAP 기준(기록 파일에 메모). OCF·CAPEX·FCF는 현금흐름표 값(FCF는 OCF − CAPEX). GAAP 값은 기록 파일에.
+- **이익 지표는 조정(adj.) 값만**(마스터 지시 2026-10-30 "GPM 등 모든 지표는 Non-GAAP로" → 같은 날 "EBITDA 포함 profit류 지표들은 조정만 써라") — GPM·EBITDA·EBIT·OPM·순이익·EPS는 회사가 낸 조정 값만 쓴다. **회사가 그 지표의 조정 값을 내지 않으면 줄을 뺀다**(GAAP으로 채우지 않는다 — 예 조정 EPS가 없는 회사는 EPS 줄 없음). 기준이 확인되지 않는 이익 숫자(콜 발언의 'EPS 약 €4.60' 등)도 뺀다. **표기에는 '조정'·'(조정)'·'adj.'를 붙이지 않는다** — `EBITDA €851M`, `EPS $49.51`. 매출·현금흐름(OCF·CAPEX·FCF)은 이익 지표가 아니라 보고값 그대로. est.도 조정 기준(Fiscal eps_adjusted·ebit_adjusted·ebitda_adjusted, Zacks EPS·EBIT·EBITDA) — GPM est.만 Fiscal 매출총이익이 GAAP뿐이라 GAAP 기준(기록 파일에 메모). GAAP 값은 기록 파일에.
 
 ## ② 뉴팩트 정리 — 직전 분기 콜 대비 새로 나오거나 바뀐 것만
 ```
