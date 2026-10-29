@@ -2073,6 +2073,12 @@ source: docs/methodology
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
 
+### 21.46 대만 法說會·홍콩 실적 브리핑 Q&A 확보 절차 (2026-10-30 마스터 지시, 대만·홍콩 지시문 원문 제공)
+- 절차 문서 `knowledge/methods/tw_hk_ir_qa_procedure.md` — 일본(§21.45)과 같은 출처 등급 A~E, 가이던스·수치는 A·B만.
+- 대만: `radar/pollers/tw_disclosure.py`가 TWSE OpenAPI 重大訊息의 '召開法人說明會' 공고를 🎙 IR 질의응답으로 표시(개최일·自辦/受邀·주최 증권사·影音·영문 언급 — 없는 값은 None)하고 `radar/state/tw_ir_profile.json`에 빈도를 쌓는다. 펄스 `inbox_items`가 `ir_event` 항목을 언어 필터 예외로 통과. MOPS 신 사이트는 건별 열람만, 구 mopsov는 robots 전면 금지라 쓰지 않음. 월별 매출로 가이던스 대조.
+- 홍콩: 감시 종목 없음 — 커버리지 편입 시 `hk_type`(A 미국 동시상장·B A+H·C 본토 H주 단독·D 홍콩 현지)별 경로를 모델이 수행. 上证路演·全景网 robots 허용, HKEXnews·cninfo는 robots 확인 불가 → 건별 열람.
+- 노션 '일본 IR 프로필' → '아시아 IR 프로필'(시장·설명회 빈도·自辦/受邀·미국 ADR·홍콩 유형·다른 상장 코드·브리핑 플랫폼·다시보기 기간 열 추가).
+
 ### 21.45 일본 결산설명회 Q&A 확보 절차 — 지시문 A·B·출처 등급 (2026-10-30 마스터 지시, 지시문 A(공식 IR)·B(대체 경로) 원문 제공)
 - 절차 문서 `knowledge/methods/jp_ir_qa_procedure.md`. 우선순위 Q&A > 전문 > 요지 > 영상·음성, 説明会資料·決算短信은 항상 함께. 일본어판·영문판 모두.
 - 출처 등급 A 회사 원문 / B 회사 편집 요지 / C 제3자 전사(로그미 등) / D 자체 전사 / E 언론 재구성. **가이던스·수치는 A·B로만 확정**, C~E는 톤·맥락.

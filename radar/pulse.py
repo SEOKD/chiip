@@ -136,7 +136,7 @@ def inbox_items(since):
             if is_financing(it, fin, pubs):
                 out.append(dict(it, source_class="파이낸싱"))
                 continue
-            cls = class_of(it.get("source_id", ""))
+            cls = "IR 질의응답" if it.get("ir_event") else class_of(it.get("source_id", ""))   # 대만 法說會 공고(2026-10-30) — 중문 원문이라 언어 필터 예외
             # 방위 지도 기업의 수주·계약 보도자료·공시(보도자료 배포처·SEC)도 방위로 모은다
             if cls in ("보도자료", "공시") and defense_hits(it.get("entities_matched") or [], it.get("title", "")) and DEF_WORD_RE.search(it.get("title", "")):
                 cls = "방위"

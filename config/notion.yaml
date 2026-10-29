@@ -29,7 +29,8 @@ api:
   token_env: NOTION_TOKEN  # 마스터가 내부 통합(integration)을 만들고 허브 페이지에 연결한 뒤 입력. 없으면 대기열 → 예약 작업이 노션 커넥터로 기록
 # 유형 매핑(doc_type → 아카이브 '유형')
 type_map: {"규제·정책": "정부·정책", "공시": "공시·실적", "실적": "공시·실적", "기사": "뉴스(7곳)", "SNS": "X·리서치", "리서치": "X·리서치", "학회·협회": "학회·협회", "보도자료": "보도자료"}
-# 일본 IR 프로필(지시문 A 0·7, 2026-10-30) — 회사별 Q&A 확보 경로. Chiip이 radar/state/jp_ir_profile.json과 맞춘다(회사당 1행, 있으면 갱신)
+# 아시아 IR 프로필(구 '일본 IR 프로필', 지시문 A 0·7 + 대만·홍콩 지시문, 2026-10-30) — 회사별 Q&A 확보 경로. 시장(일본/대만/홍콩) 열로 구분.
+# Chiip이 radar/state/jp_ir_profile.json·tw_ir_profile.json과 맞춘다(회사당 1행, 있으면 갱신). 키 이름은 호환을 위해 jp_ir_profile 유지
 jp_ir_profile:
   database: "e224ae98-23c3-4bfa-930f-611b22fad621"
   data_source: "6186716e-e964-4ada-a5d9-b46e5f445517"
