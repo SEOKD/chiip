@@ -30,7 +30,7 @@ systems:
     kpis:
       - {id: datapack_score_7d, higher: true, floor: 5.0, target: 10.0, note: "지난 7일 리포트 종목의 datapack_check 점수 평균"}
       - {id: brier_tenbagger, higher: false, floor: 0.35, target: 0.10, note: "텐배거 출처 예측의 브라이어"}
-    param_models: [tenbagger.screen, alpha.score, valuation.v2, valuation.v2.decision, valuation.wacc, valuation.v2.datapack_check]
+    param_models: [tenbagger.screen, alpha.score, valuation.v2, valuation.v2.decision, valuation.wacc, valuation.v2.datapack_check, discovery.quiet]
   chiip-notion-watch:
     kpis:
       - {id: brier_notion, higher: false, floor: 0.35, target: 0.10, note: "노션 검토 출처 예측의 브라이어"}

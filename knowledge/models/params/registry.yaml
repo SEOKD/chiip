@@ -1310,3 +1310,83 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-quiet-w-trend
+  model: discovery.quiet
+  binding: config/discovery.yaml#quiet.weights.trend
+  value: 0.3
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.3
+    basis: 꾸준한 상승(정보 이산성·52주 고점 근접·추세 R²)이 '조용한 상승'의 정의 그 자체라 가장 크게. 일봉이 없으면 200일선·골든크로스·고점 근접으로 대신
+    source: Da, Gurun & Warachka (2014) Frog in the Pan, RFS 27(7) · George & Hwang (2004) The 52-Week High and Momentum Investing, JF 59(5) · Jegadeesh & Titman (1993) JF 48(1)
+  fit:
+    method: 시가총액 구간 안 순위 → 이후 3·6개월 초과수익의 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 구간 대비 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-quiet-w-accumulation
+  model: discovery.quiet
+  binding: config/discovery.yaml#quiet.weights.accumulation
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: FINRA 주간 장외 자료의 ATS(기관 블록) 비중 상승·리테일 도매 비중 낮음 = 기관 주도 체결의 대리 변수. 13F보다 빠르지만 잡음이 커서 추세보다 작게
+    source: Boehmer, Jones, Zhang & Zhang (2021) Tracking Retail Investor Activity, JF 76(5) · FINRA OTC Transparency(주간 ATS·비ATS 공개 자료)
+  fit:
+    method: 같은 순위 상관 — ATS 비중 변화가 이후 초과수익과 연결되는지
+    target: 이후 6개월 구간 대비 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-quiet-w-neglect
+  model: discovery.quiet
+  binding: config/discovery.yaml#quiet.weights.neglect
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 덜 알려진 종목의 정보 비효율(소외주 효과) — 공개 후 감쇠(McLean & Pontiff 2016)를 감안해 작게
+    source: Arbel & Strebel (1983) Pay Attention to Neglected Firms!, JPM 9(2) · McLean & Pontiff (2016) JF 71(1)
+  fit:
+    method: 같은 순위 상관
+    target: 이후 6개월 구간 대비 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-quiet-w-fundamental
+  model: discovery.quiet
+  binding: config/discovery.yaml#quiet.weights.fundamental
+  value: 0.25
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.25
+    basis: 기관 매집이 지속되려면 실적이 받쳐야 한다 — EPS 서프라이즈 연속(실적 발표 후 표류)·선행 EPS 상향·매출 성장
+    source: Bernard & Thomas (1989) Post-Earnings-Announcement Drift, JAR 27 · Chan, Jegadeesh & Lakonishok (1996) Momentum Strategies, JF 51(5)
+  fit:
+    method: 같은 순위 상관
+    target: 이후 6개월 구간 대비 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-quiet-w-edge
+  model: discovery.quiet
+  binding: config/discovery.yaml#quiet.weights.edge
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: 치입 병목 판단(발굴 테마 edge) — 근거 없는 자체 요인이라 작게 시작, 가상 추적 성과로 피팅
+    source: null
+  fit:
+    method: 같은 순위 상관
+    target: 이후 6개월 구간 대비 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null

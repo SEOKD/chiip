@@ -65,6 +65,9 @@ themes:
     evidence: ["어드반테스트 수주", "대만 테스트 소켓·프로브 월매출(WinWay·MPI·CHPT)", "HBM 세대 전환 발언"]
     candidates:
       - {id: co-advantest, name: Advantest, ko: ["어드반테스트", "아드반테스트"], market: jp, code: "6857", edge: 9, why: "SoC·HBM 테스터 과점 — 대형주"}
+      # 2026-10-29 마스터 지시 "FormFactor·Nova 같은 엣지 있는 중소형 종목 반드시 관측" — 미국 상장 프로브·테스트
+      - {id: co-formfactor, name: FormFactor, aliases: ["FormFactor"], market: us, code: "FORM", edge: 7, why: "프로브 카드(DRAM·HBM·첨단 로직) — HBM 적층 전 웨이퍼 테스트 수요에 직접 노출"}
+      - {id: us-cohu, name: Cohu, aliases: ["Cohu"], market: us, code: "COHU", edge: 5, why: "테스트 핸들러·접촉부·검사 — 사이클 회복 레버리지, 엣지는 중간"}
       - {id: jp-micronics, name: Micronics Japan, market: jp, code: "6871", edge: 7, why: "메모리용 프로브 카드 — HBM 테스트 수혜"}
       - {id: tw-winway, name: WinWay Technology, local: "穎崴", ko: ["윈웨이"], market: tw, code: "6515", edge: 6, why: "AI 칩 테스트 소켓"}
       - {id: tw-mpi, name: MPI Corporation, local: "旺矽", market: tw, code: "6223", edge: 6, why: "프로브 카드·프로버"}
@@ -88,6 +91,15 @@ themes:
     evidence: ["캐터필러 3Q26 8-K Ex.99.1: Power Generation 매출 34.21억$(+30%), '주로 데이터센터' 대형 왕복동 엔진 — 증설 언급 없음", "INNIO 수주잔고·B/B(감시 카드 TB-20261029-INIO)"]
     candidates:
       - {id: co-innio, name: INNIO N.V., local: "INNIO (Jenbacher)", market: us, code: "INIO", edge: 6, why: "왕복동 가스엔진 — 텐배거 감시 중(TB-20261029-INIO), 10배 경로는 캐파 3배 필요"}
+  - id: metrology_inspection
+    name: 공정 제어·계측·검사(첨단 로직·HBM·첨단 패키징)
+    bottleneck: "GAA·후면 전력·하이브리드 본딩·HBM 적층은 단계마다 막 두께·형상·결함을 더 자주 재야 수율이 나온다 — 공정 제어 집약도(웨이퍼당 계측 단계)가 노드·적층 수보다 빨리 는다(양산 엔지니어 관점: 측정 못 하면 램프가 멈춘다)"
+    driver: "첨단 웨이퍼 출하 × 웨이퍼당 계측·검사 단계 × 장비 단가 + 첨단 패키징 검사"
+    evidence: ["계측사 실적의 첨단 로직·메모리·패키징 비중", "GAA·HBM 고객 램프 발언", "고객 CAPEX의 공정 제어 비중"]
+    candidates:
+      - {id: us-nvmi, name: Nova, aliases: ["Nova Ltd", "Nova Measuring", "Nova Ltd."], market: us, code: "NVMI", edge: 8, why: "광학(OCD)·X선·화학 계측 — GAA·HBM에서 계측 단계 증가의 직접 수혜, 조용한 중형주의 본보기"}
+      - {id: us-onto, name: Onto Innovation, aliases: ["Onto Innovation"], market: us, code: "ONTO", edge: 7, why: "첨단 패키징 검사·계측·리소(패널 레벨) — AI 패키징 병목"}
+      - {id: us-camt, name: Camtek, aliases: ["Camtek"], market: us, code: "CAMT", edge: 7, why: "첨단 패키징·HBM 검사·계측 — 패키징 단계 검사 수요"}
   - id: interconnect_mech
     name: 고속 케이블·커넥터·슬라이드 레일
     bottleneck: "랙 내부 구리 연결(AEC·커넥터)과 중량 랙용 레일 — 인증 공급사 소수"
@@ -163,6 +175,17 @@ themes:
 code_verified: false
 
 # 투자자 관심도 원천 — CLAUDE.md 컴플라이언스(약관·robots·제외 원천) 안에서
+# 조용한 매집형 상승(scripts/discovery/quiet.py, 마스터 지시 2026-10-29 "수급과 관심도가 제한적이지만 기관 자금이 유입되면서 조용하면서
+# 꾸준히 상승하는 종목을 잘 발굴") — 가중치 = 등록부 prm-quiet-w-* 사전값(단계적 고도화로 피팅)
+quiet:
+  weights: {trend: 0.30, accumulation: 0.20, neglect: 0.15, fundamental: 0.25, edge: 0.10}
+  gates: {max_drawdown: 0.35, min_to_high: 0.70}   # 126일 최대 낙폭 35% 초과·52주 고점의 70% 미만이면 '조용한 상승' 아님
+  watch_min: 6.0        # watch 문턱(0~10)
+  top_n: 15             # watch 상한(마스터 지정 always_watch 제외)
+  finra_top: 40         # FINRA 주간 자료를 받을 1차 상위 미국 종목 수(요청 수 제한)
+  min_band_n: 5         # 구간 안 비교 대상이 이보다 적으면 전체 백분위
+  always_watch: [co-formfactor, us-nvmi, us-onto, us-camt]   # 마스터 지시로 반드시 관측(점수 무관)
+
 attention:
   window_days: 7
   baseline_weeks: 4
@@ -200,3 +223,4 @@ scoring:
   crowding: -0.10       # 관심 절대 수준이 이미 높으면 감점(SemiAnalysis 렌즈의 크라우딩)
   valuation: 0.15       # 같은 테마 안 EV/매출 ÷ 성장의 상대 수준(낮을수록)
   size_fit: 0.15        # 텐배거 시가총액 구간(config/tenbagger.yaml universe.market_cap) 안이면 가점
+  quiet: 0.15           # 조용한 매집형 상승 점수(scripts/discovery/quiet.py, 2026-10-29) — 꾸준한 상승·기관 매집·관심 부족·실적 확인

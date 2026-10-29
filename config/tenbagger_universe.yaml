@@ -10,25 +10,25 @@ seeds:
     - {ticker: RMBS, name: Rambus}
     - {ticker: SITM, name: SiTime}
     - {ticker: POWI, name: Power Integrations}
-    - {ticker: DIOD, name: Diodes}
+    - {ticker: DIOD, name: Diodes, aliases: ["Diodes Incorporated", "Diodes Inc"]}
     - {ticker: SLAB, name: Silicon Labs}
     - {ticker: SYNA, name: Synaptics}
-    - {ticker: AMKR, name: Amkor Technology}
+    - {ticker: AMKR, name: Amkor Technology, aliases: ["Amkor Technology", "Amkor"]}
     - {ticker: FORM, name: FormFactor}
     - {ticker: ONTO, name: Onto Innovation}
     - {ticker: CAMT, name: Camtek}
-    - {ticker: NVMI, name: Nova}
-    - {ticker: ACLS, name: Axcelis Technologies}
-    - {ticker: KLIC, name: Kulicke and Soffa}
+    - {ticker: NVMI, name: Nova, aliases: ["Nova Ltd", "Nova Ltd.", "Nova Measuring"]}
+    - {ticker: ACLS, name: Axcelis Technologies, aliases: ["Axcelis Technologies", "Axcelis"]}
+    - {ticker: KLIC, name: Kulicke and Soffa, aliases: ["Kulicke and Soffa", "Kulicke & Soffa", "Kulicke"]}
     - {ticker: COHU, name: Cohu}
-    - {ticker: UCTT, name: Ultra Clean Holdings}
-    - {ticker: VECO, name: Veeco Instruments}
+    - {ticker: UCTT, name: Ultra Clean Holdings, aliases: ["Ultra Clean Holdings", "Ultra Clean"]}
+    - {ticker: VECO, name: Veeco Instruments, aliases: ["Veeco Instruments", "Veeco"]}
     - {ticker: PLAB, name: Photronics}
     - {ticker: AEIS, name: Advanced Energy Industries}
     - {ticker: AAOI, name: Applied Optoelectronics}
     - {ticker: CRDO, name: Credo Technology}
     - {ticker: ALAB, name: Astera Labs}
-    - {ticker: MTSI, name: MACOM Technology Solutions}
+    - {ticker: MTSI, name: MACOM Technology Solutions, aliases: ["MACOM Technology", "MACOM"]}
     - {ticker: AOSL, name: Alpha and Omega Semiconductor}
     - {ticker: INDI, name: indie Semiconductor}
     - {ticker: AMBA, name: Ambarella}
@@ -36,52 +36,52 @@ seeds:
     - {ticker: MXL, name: MaxLinear}
     - {ticker: SMTC, name: Semtech}
     - {ticker: QRVO, name: Qorvo}
-    - {ticker: SWKS, name: Skyworks Solutions}
+    - {ticker: SWKS, name: Skyworks Solutions, aliases: ["Skyworks Solutions", "Skyworks"]}
     - {ticker: ENTG, name: Entegris}
-    - {ticker: MKSI, name: MKS}
+    - {ticker: MKSI, name: MKS, aliases: ["MKS Instruments", "MKS Inc"]}
     - {ticker: NVTS, name: Navitas Semiconductor}
     - {ticker: TER, name: Teradyne}
     - {ticker: FN, name: Fabrinet}
-    - {ticker: VSH, name: Vishay Intertechnology}
+    - {ticker: VSH, name: Vishay Intertechnology, aliases: ["Vishay Intertechnology", "Vishay"]}
     - {ticker: SGH, name: Penguin Solutions}
   software:
     - {ticker: PATH, name: UiPath}
     - {ticker: GTLB, name: GitLab}
-    - {ticker: ESTC, name: Elastic}
+    - {ticker: ESTC, name: Elastic, aliases: ["Elastic N.V.", "Elastic NV", "Elasticsearch"]}
     - {ticker: DOCN, name: DigitalOcean}
     - {ticker: FROG, name: JFrog}
     - {ticker: S, name: SentinelOne}
-    - {ticker: TENB, name: Tenable}
+    - {ticker: TENB, name: Tenable, aliases: ["Tenable Holdings", "Tenable Inc"]}
     - {ticker: RPD, name: Rapid7}
     - {ticker: QLYS, name: Qualys}
     - {ticker: VRNS, name: Varonis Systems}
-    - {ticker: BOX, name: Box}
+    - {ticker: BOX, name: Box, aliases: ["Box Inc", "Box, Inc."]}
     - {ticker: DBX, name: Dropbox}
     - {ticker: NCNO, name: nCino}
     - {ticker: APPN, name: Appian}
     - {ticker: PEGA, name: Pegasystems}
     - {ticker: DT, name: Dynatrace}
     - {ticker: MDB, name: MongoDB}
-    - {ticker: OKTA, name: Okta}
+    - {ticker: OKTA, name: Okta, aliases: ["Okta"]}
     - {ticker: CVLT, name: Commvault Systems}
     - {ticker: BL, name: BlackLine}
     - {ticker: WK, name: Workiva}
-    - {ticker: AI, name: C3.ai}
+    - {ticker: AI, name: C3.ai, aliases: ["C3.ai"]}
     - {ticker: SOUN, name: SoundHound AI}
     - {ticker: PD, name: PagerDuty}
     - {ticker: FIVN, name: Five9}
     - {ticker: ZETA, name: Zeta Global}
     - {ticker: INTA, name: Intapp}
-    - {ticker: BRZE, name: Braze}
-    - {ticker: ASAN, name: Asana}
+    - {ticker: BRZE, name: Braze, aliases: ["Braze Inc"]}
+    - {ticker: ASAN, name: Asana, aliases: ["Asana Inc"]}
     - {ticker: CWAN, name: Clearwater Analytics}
-    - {ticker: IONQ, name: IonQ}
+    - {ticker: IONQ, name: IonQ, aliases: ["IonQ"]}
     - {ticker: RGTI, name: Rigetti Computing}
     - {ticker: QBTS, name: D-Wave Quantum}
   ai_hw:
     - {ticker: NBIS, name: Nebius Group}
-    - {ticker: APLD, name: Applied Digital}
-    - {ticker: IREN, name: IREN}
+    - {ticker: APLD, name: Applied Digital, aliases: ["Applied Digital"]}
+    - {ticker: IREN, name: IREN, aliases: ["IREN Limited", "IREN"]}
     - {ticker: CORZ, name: Core Scientific}
     - {ticker: WULF, name: TeraWulf}
     - {ticker: CIFR, name: Cipher Mining}

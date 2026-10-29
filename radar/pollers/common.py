@@ -108,11 +108,62 @@ def entity_aliases():
             if u.get("kind_name"):
                 names.add(u["kind_name"])
             out[u["id"]] = sorted(n for n in names if len(n) >= 2)
+    # Ten-bagger 발굴 후보·커버리지·구간 시드(2026-10-29) — 같은 코드가 이미 감시 목록에 있으면 그 id에 이름만 더한다
+    by_code = {}
+    for f in ("config/valuation.yaml", "config/earnings_watch.yaml"):
+        for u in (load_yaml(f) or {}).get("universe" if "valuation" in f else "extra") or []:
+            if u.get("code"):
+                by_code.setdefault(str(u["code"]).upper(), u["id"])
+    for cid, names, code in discovery_entities():
+        key = by_code.get(code.upper(), cid) if code else cid
+        if names or key in out:
+            out[key] = sorted(set(out.get(key, [])) | {n for n in names if len(n) >= 2})
     # 방위 섹터 지도(config/defense.yaml, 마스터 지시 2026-10-29) — 이미 있는 종목은 현지 표기만 더한다
     for u in defense_companies():
         names = set(u.get("aliases") or [u["name"]]) | ({u["local"]} if u.get("local") else set())
         out[u["id"]] = sorted(set(out.get(u["id"], [])) | {n for n in names if len(n) >= 2})
     return out
+
+
+GENERIC_NAMES = {"Elastic", "Diodes", "Tenable", "Applied", "Box", "Nova", "Asana", "Braze"}   # 일반어와 겹치는 회사명 — aliases가 있어야 인식
+
+
+def _distinct(name):
+    """레이더 인식에 써도 되는 이름인가 — 짧거나 일반어면 aliases로만(2026-10-29: 'Nova'·'Box'·'Diodes' 오탐 방지)"""
+    return bool(name) and len(name) >= 5 and name not in GENERIC_NAMES
+
+
+def discovery_entities():
+    """Ten-bagger 발굴 후보·커버리지·구간 시드 → [(id, 이름 목록, 코드)] — 마스터 지시 2026-10-29 "FormFactor·Nova 같은 엣지 있는
+    중소형 종목도 반드시 관측": 발굴 대상이 레이더 종목 인식·SEC 공시 수집에서 빠지지 않게"""
+    out = []
+    for t in (load_yaml("config/discovery.yaml") or {}).get("themes") or []:
+        for c in t.get("candidates") or []:
+            names = list(c.get("aliases") or ([c["name"]] if _distinct(c.get("name")) else []))
+            names += [c["local"]] if c.get("local") else []
+            names += list(c.get("ko") or [])
+            code = f"{c.get('code')}.US" if c.get("market") == "us" and c.get("code") else str(c.get("code") or "")
+            out.append((c["id"], names, code))
+    for c in (load_yaml("config/coverage.yaml") or {}).get("companies") or []:
+        out.append((c["id"], [c["name"]] if _distinct(c.get("name")) else [], str(c.get("code") or "")))
+    for seeds in ((load_yaml("config/tenbagger_universe.yaml") or {}).get("seeds") or {}).values():
+        for s in seeds or []:
+            names = list(s.get("aliases") or ([s["name"]] if _distinct(s.get("name")) else []))
+            out.append((f"us-{s['ticker'].lower()}", names, f"{s['ticker']}.US"))
+    return out
+
+
+def edge_watch_entries():
+    """SEC 공시 수집에 더할 미국 상장 발굴 종목 — 조용한 매집형 상승 watch(knowledge/models/discovery/quiet_latest.json) + 마스터 지정 always_watch"""
+    q = ROOT / "knowledge" / "models" / "discovery" / "quiet_latest.json"
+    ids = set(json.loads(q.read_text(encoding="utf-8")).get("watch") or []) if q.exists() else set()
+    ids |= set(((load_yaml("config/discovery.yaml") or {}).get("quiet") or {}).get("always_watch") or [])
+    out = {}
+    for cid, names, code in discovery_entities():   # 발굴 후보와 구간 시드에 같은 종목이 있으면 이름을 합친다
+        if cid in ids and code.endswith(".US"):
+            e = out.setdefault(cid, {"id": cid, "name": (names or [cid])[0], "aliases": [], "code": code})
+            e["aliases"] = list(dict.fromkeys(e["aliases"] + list(names)))
+    return list(out.values())
 
 
 def defense_companies():

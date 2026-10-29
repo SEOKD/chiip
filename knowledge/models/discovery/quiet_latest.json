@@ -1,0 +1,424 @@
+{
+ "date": "2026-10-29",
+ "weights": {
+  "trend": 0.3,
+  "accumulation": 0.2,
+  "neglect": 0.15,
+  "fundamental": 0.25,
+  "edge": 0.1
+ },
+ "watch": [
+  "co-formfactor",
+  "us-nvmi",
+  "us-onto",
+  "us-camt"
+ ],
+ "rows": [
+  {
+   "id": "co-formfactor",
+   "name": "FormFactor",
+   "code": "FORM.US",
+   "band": "B1",
+   "score": 7.22,
+   "comp": {
+    "trend": 7.5,
+    "accumulation": 5.0,
+    "neglect": 7.0,
+    "fundamental": 9.0,
+    "edge": 6.7
+   },
+   "missing": [],
+   "gate": [
+    "200일선 아래",
+    "52주 고점의 62%"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": -0.2836518533104892,
+    "retail_share": 0.11330676886976157,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "de-rheinmetall",
+   "name": "Rheinmetall",
+   "code": "RHM.XETRA",
+   "band": "B6",
+   "score": 6.45,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.0,
+    "neglect": 8.4,
+    "fundamental": 8.8,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "accumulation",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {}
+  },
+  {
+   "id": "us-nvmi",
+   "name": "Nova",
+   "code": "NVMI",
+   "band": "B2",
+   "score": 5.79,
+   "comp": {
+    "trend": 2.5,
+    "accumulation": 8.3,
+    "neglect": 4.2,
+    "fundamental": 7.5,
+    "edge": 8.8
+   },
+   "missing": [],
+   "gate": [
+    "200일선 아래",
+    "52주 고점의 55%"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": 0.009200170516542872,
+    "retail_share": 0.03815786636964805,
+    "weeks": 9
+   }
+  },
+  {
+   "id": "us-lscc",
+   "name": "Lattice Semiconductor",
+   "code": "LSCC.US",
+   "band": "B2",
+   "score": 5.67,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.0,
+    "neglect": 2.5,
+    "fundamental": 9.2,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": -0.08943768649044026,
+    "retail_share": 0.08058407064646025,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "co-asteralabs",
+   "name": "Astera Labs",
+   "code": "ALAB.US",
+   "band": "B5",
+   "score": 5.43,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 4.1,
+    "neglect": 2.8,
+    "fundamental": 8.8,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": -0.02274344632392533,
+    "retail_share": 0.31580776837201274,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "us-gtlb",
+   "name": "GitLab",
+   "code": "GTLB.US",
+   "band": "B1",
+   "score": 5.4,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 7.0,
+    "neglect": 5.0,
+    "fundamental": 5.0,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": 0.0247266756206469,
+    "retail_share": 0.14367271944292495,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "us-camt",
+   "name": "Camtek",
+   "code": "CAMT",
+   "band": "B1",
+   "score": 5.32,
+   "comp": {
+    "trend": 2.5,
+    "accumulation": 9.0,
+    "neglect": 9.0,
+    "fundamental": 3.0,
+    "edge": 6.7
+   },
+   "missing": [],
+   "gate": [
+    "200일선 아래",
+    "52주 고점의 59%"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": 0.035043408620970995,
+    "retail_share": 0.05060261393192426,
+    "weeks": 9
+   }
+  },
+  {
+   "id": "de-hensoldt",
+   "name": "Hensoldt",
+   "code": "HAG",
+   "band": "B2",
+   "score": 5.04,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.0,
+    "neglect": 7.5,
+    "fundamental": 4.2,
+    "edge": 3.8
+   },
+   "missing": [
+    "trend",
+    "accumulation"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {}
+  },
+  {
+   "id": "cz-csg",
+   "name": "CSG",
+   "code": "CSG",
+   "band": "B2",
+   "score": 4.62,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.0,
+    "neglect": 7.5,
+    "fundamental": 2.5,
+    "edge": 3.8
+   },
+   "missing": [
+    "trend",
+    "accumulation"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {}
+  },
+  {
+   "id": "us-onto",
+   "name": "Onto Innovation",
+   "code": "ONTO",
+   "band": "B2",
+   "score": 4.54,
+   "comp": {
+    "trend": 7.5,
+    "accumulation": 1.7,
+    "neglect": 0.8,
+    "fundamental": 5.8,
+    "edge": 3.8
+   },
+   "missing": [],
+   "gate": [
+    "200일선 아래",
+    "52주 고점의 58%"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": -0.09755667591587314,
+    "retail_share": 0.13463922791577704,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "gb-bae",
+   "name": "BAE Systems",
+   "code": "BA.LSE",
+   "band": "B8",
+   "score": 4.5,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.0,
+    "neglect": 8.4,
+    "fundamental": 0.9,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "accumulation",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {}
+  },
+  {
+   "id": "co-nvidia",
+   "name": "NVIDIA",
+   "code": "NVDA.US",
+   "band": "B11",
+   "score": 4.33,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 0.5,
+    "neglect": 0.3,
+    "fundamental": 8.8,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": -0.024809535024220897,
+    "retail_share": 0.4951514940611276,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "jp-khi",
+   "name": "Kawasaki Heavy Industries",
+   "code": "7012.TSE",
+   "band": "B2",
+   "score": 4.33,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.0,
+    "neglect": 7.5,
+    "fundamental": 0.8,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "accumulation",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {}
+  },
+  {
+   "id": "us-lmt",
+   "name": "Lockheed Martin",
+   "code": "LMT.US",
+   "band": "B9",
+   "score": 3.98,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 5.9,
+    "neglect": 2.2,
+    "fundamental": 1.9,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": 0.0012713545134422355,
+    "retail_share": 0.3265866469882904,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "us-ktos",
+   "name": "Kratos Defense & Security Solutions",
+   "code": "KTOS",
+   "band": "B1",
+   "score": 3.77,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 1.0,
+    "neglect": 1.0,
+    "fundamental": 7.0,
+    "edge": 1.7
+   },
+   "missing": [
+    "trend"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": -0.0010751878094977796,
+    "retail_share": 0.489273501193695,
+    "weeks": 11
+   }
+  },
+  {
+   "id": "us-avav",
+   "name": "AeroVironment",
+   "code": "AVAV.US",
+   "band": "B1",
+   "score": 3.3,
+   "comp": {
+    "trend": 5.0,
+    "accumulation": 3.0,
+    "neglect": 3.0,
+    "fundamental": 1.0,
+    "edge": 5.0
+   },
+   "missing": [
+    "trend",
+    "edge"
+   ],
+   "gate": [
+    "추세 자료 없음"
+   ],
+   "trend_basis": "개요",
+   "acc": {
+    "ats_shift": 0.007688572987255227,
+    "retail_share": 0.47691600949872937,
+    "weeks": 11
+   }
+  }
+ ]
+}

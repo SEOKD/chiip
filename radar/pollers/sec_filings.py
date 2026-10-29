@@ -61,6 +61,8 @@ def poll(env=None, days=3):
     focus, _ = gate.focus_state()
     uni = list((common.load_yaml("config/valuation.yaml") or {}).get("universe", []))
     uni += (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []   # 어닝 감시 확장 종목도(2026-10-28 GEV 누락 수정)
+    have = {str(u.get("code", "")).upper() for u in uni}
+    uni += [u for u in common.edge_watch_entries() if u["code"].upper() not in have]   # 조용한 매집형 상승 watch·마스터 지정 관측(2026-10-29 Nova 등)
     watch = gate.watch_ids()
     state = common.load_state("sec_filings", {})
     since = (common.now_kst() - timedelta(days=days)).date().isoformat()

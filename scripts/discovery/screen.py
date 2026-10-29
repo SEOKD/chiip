@@ -37,9 +37,10 @@ def lin(x, x0, y0, x1, y1):
     return y0 + (y1 - y0) * t
 
 
-def components(c, fund, att, theme_val, caps, fx_ok=True):
+def components(c, fund, att, theme_val, caps, fx_ok=True, quiet=None):
     f, a = fund.get(c["id"]) or {}, att.get(c["id"]) or {}
     comp = {"edge": float(c.get("edge") or 5)}
+    comp["quiet"] = (quiet or {}).get(c["id"])   # 조용한 매집형 상승 점수(scripts/discovery/quiet.py, 2026-10-29)
     comp["growth"] = lin(f.get("rev_growth"), 0.0, 2.0, 0.6, 10.0)
     n = f.get("n_analysts")
     comp["coverage_gap"] = None if n is None else (10.0 if n <= 3 else lin(n, 3, 10.0, 20, 1.0))
@@ -87,10 +88,11 @@ def run(today=None):
     att = (_j(DISC / "attention_latest.json") or {}).get("rows") or {}
     tv = theme_valuation(cfg.get("themes") or [], fund)
     w = cfg.get("scoring") or {}
+    quiet = {r["id"]: r.get("score") for r in (_j(DISC / "quiet_latest.json") or {}).get("rows") or []}
     rows = []
     for t in cfg.get("themes") or []:
         for c in t.get("candidates") or []:
-            comp = components(c, fund, att, tv, caps)
+            comp = components(c, fund, att, tv, caps, quiet=quiet)
             s, missing = score(comp, w)
             stage = "⑤ 커버리지" if c["id"] in cov else ("② 선별 통과" if s and s >= 6.0 and comp["edge"] >= 6 and c["id"] in fund else "① 아이디어")
             rows.append({"id": c["id"], "name": c["name"], "market": c.get("market"), "code": c.get("code"), "theme": t["name"], "score": s,
@@ -103,11 +105,11 @@ def run(today=None):
     f = lambda v: "-" if v is None else f"{v:.1f}"
     L = [f"# Chiip Ten-bagger Discovery 선별 {today.isoformat()}", "",
          f"펀더멘털 확보 {sum(1 for r in rows if r['id'] in fund)}/{len(rows)} · 관심도 {len(att)}/{len(rows)} · 커버리지 {len(cov)}", "",
-         "| 순위 | 종목 | 시장·코드 | 테마 | 점수 | edge | 성장 | 커버 공백 | 관심 가속 | 쏠림 | 밸류 | 규모 | 단계 | 빠진 자료 |", "|" + "---|" * 14]
+         "| 순위 | 종목 | 시장·코드 | 테마 | 점수 | edge | 성장 | 커버 공백 | 관심 가속 | 쏠림 | 밸류 | 규모 | 조용한 상승 | 단계 | 빠진 자료 |", "|" + "---|" * 15]
     for i, r in enumerate(rows, 1):
         c = r["comp"]
         L.append(f"| {i} | {r['name']} | {r['market']} {r['code']} | {r['theme']} | **{f(r['score'])}** | {f(c['edge'])} | {f(c['growth'])} | {f(c['coverage_gap'])} | "
-                 f"{f(c['attention_accel'])} | {f(c['crowding'])} | {f(c['valuation'])} | {f(c['size_fit'])} | {r['stage']} | {', '.join(r['missing']) or '-'} |")
+                 f"{f(c['attention_accel'])} | {f(c['crowding'])} | {f(c['valuation'])} | {f(c['size_fit'])} | {f(c.get('quiet'))} | {r['stage']} | {', '.join(r['missing']) or '-'} |")
     L += ["", "## 심층 대기열(위원회 메모 작성 대상)"] + [f"- {r['name']}({r['market']} {r['code']}) — {r['why']}" for r in deep] + \
          ["", "점수는 판단 보조(가중치 config/discovery.yaml scoring — 성과로 피팅). 연구 후보이지 매수 권유 아님."]
     path = OUTD / f"{today.strftime('%Y%m%d')}.md"

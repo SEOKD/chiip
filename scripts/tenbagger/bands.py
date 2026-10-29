@@ -34,7 +34,7 @@ EODHD = "https://eodhd.com/api/screener"
 # 감시 목록 하위 섹터 → 구간 엔진 섹터
 SUB_SECTOR = {"semicap": "semis", "accelerator": "semis", "memory": "semis", "foundry": "semis", "analog": "semis", "eda_ip": "semis",
               "semis": "semis", "materials": "semis", "software": "software", "hyperscaler": "software"}
-THEME_SECTOR = {"targets_inp": "semis", "probe_test": "semis", "munitions_energetics": "defense", "srm_missile": "defense",
+THEME_SECTOR = {"targets_inp": "semis", "probe_test": "semis", "metrology_inspection": "semis", "munitions_energetics": "defense", "srm_missile": "defense",
                 "gan_radar_ew": "defense", "cuas_unmanned": "defense", "naval_capacity": "defense", "space_isr": "defense"}
 SUFFIX_MARKET = {"US": "us", "KO": "kr", "KQ": "kr", "TSE": "jp", "T": "jp", "TW": "tw", "TWO": "tw",
                  "XETRA": "eu", "F": "eu", "DE": "eu", "PA": "eu", "MI": "eu", "MC": "eu", "AS": "eu", "SW": "eu", "CO": "eu", "HE": "eu", "ST": "eu",
@@ -169,7 +169,12 @@ def ingest_profile(cid, prof, fx, today=None):
            "currency": cur, "mcap_usd": mcap, "rev_ttm_usd": rev, "rev_growth": p.get("revenue_growth"), "op_margin": p.get("operating_margin"),
            "ev_sales": p.get("ev_sales"), "pb": p.get("pb_ratio"), "n_analysts": p.get("analyst_total"),
            "fcf_yield": (fcf / p["market_cap"]) if fcf is not None and p.get("market_cap") else None,
-           "sector_src": p.get("sector"), "industry": p.get("industry")}
+           "sector_src": p.get("sector"), "industry": p.get("industry"),
+           # 조용한 매집형 상승 재료(scripts/discovery/quiet.py, 마스터 지시 2026-10-29) — 추세·관심·실적 확인
+           "price": p.get("price"), "ma50": p.get("fifty_day_avg"), "ma200": p.get("two_hundred_day_avg"),
+           "high_52w": p.get("high_52w"), "low_52w": p.get("low_52w"), "inst_own": p.get("institution_ownership"),
+           "short_pct": p.get("short_pct_float"), "eps_fwd": p.get("eps_forward"), "eps_ttm": p.get("eps_trailing"),
+           "surprises": [h.get("eps_surprise_pct") for h in (p.get("earnings_history") or [])[:4]]}
     if mcap is None:
         rec["note"] = f"환율 없음({cur}) — USD 환산 불가"
     return rec
