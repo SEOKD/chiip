@@ -1,0 +1,23 @@
+{
+ "stem": "20261030_INIO",
+ "date": "2026-10-30",
+ "ticker": "INIO",
+ "company": "INNIO N.V.",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/225c3f919758/outputs/tenbagger/reports/20261030_INIO.md",
+  "html": "https://github.com/SEOKD/chiip/blob/225c3f919758/outputs/tenbagger/reports/20261030_INIO.html",
+  "commit": "225c3f919758ce6ec1ff31d35968e581a70ded99",
+  "at": "2026-10-30T06:38:36+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/408b5d1e0998815dba94e235950c57a4",
+  "stock_page": "https://app.notion.com/p/3f6b5d1e099880a0bc87dc6872fdbe3d",
+  "at": "2026-10-30T06:39:39+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-30T06:39:41+09:00"
+ }
+}

@@ -1,0 +1,23 @@
+{
+ "stem": "20261030_CBRS",
+ "date": "2026-10-30",
+ "ticker": "CBRS",
+ "company": "Cerebras Systems",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/d4cb28fb337a/outputs/tenbagger/reports/20261030_CBRS.md",
+  "html": "https://github.com/SEOKD/chiip/blob/d4cb28fb337a/outputs/tenbagger/reports/20261030_CBRS.html",
+  "commit": "d4cb28fb337a8770204855169b048588c7dc85a0",
+  "at": "2026-10-30T06:36:45+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/408b5d1e099881da88a5fee6a3f3c6d0",
+  "stock_page": "https://app.notion.com/p/408b5d1e099881ab80b3c0aaf1f47aea",
+  "at": "2026-10-30T06:38:31+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-30T06:39:40+09:00"
+ }
+}
