@@ -29,19 +29,19 @@
 2. 실적(earnings_hit 또는 1번에서 실적 공시) — 스킬 earnings-delta 방식. ToolSearch로 `select:mcp__easyconomics__earnings_summary,mcp__easyconomics__earnings_call_transcript,mcp__easyconomics__company_ir_events,mcp__easyconomics__company_ir_transcript,mcp__easyconomics__analyst_qa_calls,mcp__easyconomics__company_financials_summary`를 불러 쓴다.
    - 보도자료 숫자(매출·영업이익·EPS·가이던스)를 1차로 적고, 컨센서스 대비(easyconomics), 직전 가이던스 대비, 직전 분기 콜에서 회사가 한 말 대비를 나란히 둔다. 단위·기간(회계연도 차이 — MRVL은 1월 결산)을 맞출 수 없으면 '비교 불가'.
    - 어닝콜(트랜스크립트가 나왔으면): 가이던스 변화, 애널리스트 질문의 초점(증권사명만, 질문자 개인 이름 저장 금지), 경영진이 새로 꺼낸 말·사라진 말(침묵도 신호). 트랜스크립트는 라이선스 자료로 다룬다 — 자기 말로 요약, 직접 인용은 한 줄·15단어 이하.
-   - 종목별로 보는 동인(없으면 '미공시'): EROC 백로그·배치 MW·데이터센터 브리지 전력 비중·총이익률 / INIO 수주·백로그·데이터센터 비중·서비스 매출 / MRVL 데이터센터 매출·커스텀 XPU·광 인터커넥트 / PWR 백로그·전력·데이터센터 관련 매출·마진 / CCXI(Agility Robotics) Digit 배치 대수·고객 수·환매율·합병 후 현금.
+   - 종목별로 보는 동인(없으면 '미공시'): EROC 백로그·배치 MW·데이터센터 브리지 전력 비중·총이익률 / INIO 수주·백로그·데이터센터 비중·서비스 매출 / MRVL 데이터센터 매출·커스텀 XPU·광 인터커넥트 / PWR 백로그·전력·데이터센터 관련 매출·마진 / CCXI(Agility Robotics) Digit 배치 대수·고객 수·환매율·합병 후 현금 / CBRS 매출·RPO(수주잔고)·OpenAI 트랜치 인도·고객 집중도(G42·MBZUAI·OpenAI)·매출총이익률·유형자산 처분·손상·클라우드 장비 CAPEX·보증충당금·내용연수(숏 리포트 논점: 웨이퍼 현장 수명).
    - 아직 트랜스크립트가 없으면 '콜 요약 대기'로 두고 다음 회차에 다시 본다(radar/state/portfolio.json의 pending에 남기지 말고 오늘 기록 파일에 '대기' 줄로).
 
 3. 데일리(daily=true일 때만, 화~토 07시 이후 첫 회차):
    - 종목마다 `mcp__easyconomics__company_profile`로 가격·목표가(평균·최저·최고)·의견 분포·공매도 비율·선행 PER을 읽고 `py radar/portfolio.py --record <티커> price=.. target_mean=.. target_low=.. target_high=.. buy=.. hold=.. sell=.. rec=.. short_pct=.. fwd_pe=.. next_earnings=.. source=easyconomics`로 기록한다. 출력되는 '이전 대비' 변화가 데일리의 핵심 재료다.
    - `mcp__easyconomics__company_altdata`로 내부자 거래·공매도·정부 계약·락업·애널리스트 변화 중 새로 생긴 것만 본다.
-   - 다음 실적일: `company_ir_events`(event_type earnings) 또는 easyconomics 실적 캘린더로 확인하고, config/portfolio.yaml events에 없으면 `py radar/portfolio.py --event <YYYY-MM-DD> <티커> "<무엇, 현지시각·KST>" <출처URL>`(날짜가 회사 발표가 아니면 `--unconfirmed`). 상장 1년 안 된 종목(EROC 2026-06-09 IPO, INIO)은 보호예수(락업) 해제일을 증권신고서에서 확인해 같은 방식으로 넣는다.
+   - 다음 실적일: `company_ir_events`(event_type earnings) 또는 easyconomics 실적 캘린더로 확인하고, config/portfolio.yaml events에 없으면 `py radar/portfolio.py --event <YYYY-MM-DD> <티커> "<무엇, 현지시각·KST>" <출처URL>`(날짜가 회사 발표가 아니면 `--unconfirmed`). 상장 1년 안 된 종목(EROC 2026-06-09 IPO, INIO, CBRS 2026-05 IPO)은 보호예수(락업) 해제일을 증권신고서에서 확인해 같은 방식으로 넣는다(이미 있는 추정 일정은 확인되면 confirmed로 고친다).
    - 시장 맥락은 하루 한 번만 짧게: `market_positioning`·`liquidity_monitor`에서 보유 종목 업종(전력 인프라·반도체·로봇)에 걸리는 변화 한 줄. 없으면 생략.
    - 스팩(kind: spac): 투표 결과·환매율·합병 완료 8-K(2.01·5.01·5.03, 회사명 변경)가 나오면 config/portfolio.yaml의 그 종목 ticker를 새 티커(AGLT)·name을 새 회사명으로 고치고(cik 그대로, names에 옛 이름 유지), 텔레그램에 '보유 종목 티커 변경'을 적는다. 보유 구성 자체(추가·삭제)는 마스터가 알려줄 때만 바꾼다.
 
 4. 기록:
    - outputs/invest/portfolio/<YYYYMMDD>.md에 회차별로 덧붙인다(시각·종목·자료·판정·근거 URL).
-   - outputs/invest/portfolio/tickers/<티커>.md는 종목별 팔로업 장부다 — 맨 위 '현재 상태'(최근 실적·가이던스·다음 일정·컨센서스 요약·열린 질문)를 고쳐 쓰고, 아래 '타임라인'에 날짜순으로 한 줄씩 쌓는다. 처음이면 만든다.
+   - outputs/invest/portfolio/tickers/<티커>.md는 종목별 팔로업 장부다 — 맨 위 '현재 상태'(최근 실적·가이던스·다음 일정·컨센서스 요약·열린 질문)를 고쳐 쓰고, 아래 '타임라인'에 날짜순으로 한 줄씩 쌓는다. 처음이면 만든다(CBRS는 outputs/invest/short/20261029_CBRS.md의 숏 리포트 검증을 '현재 상태'의 열린 질문으로 옮겨 시작한다).
    - 측정 가능한 전망(회사 가이던스 달성 여부 등)은 스킬 prediction-log로 등록할 수 있다(owner 치입).
 
 5. 텔레그램 — 레벨 'PORTFOLIO'. outputs/invest/portfolio/<YYYYMMDD_HHMM>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PORTFOLIO')"`.

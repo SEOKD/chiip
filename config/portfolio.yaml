@@ -3,7 +3,7 @@
 # related = 경쟁사·고객·핵심 제품명(치입 선정, 공개 자료 기준 — 마스터 검토). 레이더 판정이 이 이름의 사건을 P1로 올린다(config/alert_rules.yaml promote_p1).
 # 보유 수량·평단·비중은 받지 않고 적지 않는다(필요 없음). 치입은 투자자문이 아니다 — 팔로업은 사실·지표·일정만.
 # 실체 확인: SEC EDGAR 회사 검색·submissions(cik), easyconomics 회사 개요 (2026-10-29)
-updated: 2026-10-29
+updated: 2026-10-29   # CBRS 추가(마스터 지시 2026-10-29 오후)
 holdings:
   - id: co-enchantedrock
     ticker: EROC
@@ -61,9 +61,24 @@ holdings:
     related: ["MasTec", "MYR Group", "Primoris", "EMCOR", "Sterling Infrastructure", "Dycom"]
     since: 2026-10-29
     status: 보유
+  - id: us-cbrs
+    ticker: CBRS
+    name: Cerebras Systems Inc.
+    cik: 2021728
+    exchange: Nasdaq
+    names: ["Cerebras", "Cerebras Systems"]
+    wiki: Cerebras
+    sub: accelerator
+    related: ["Etched", "Groq", "SambaNova", "G42", "MBZUAI", "Paricon"]
+    since: 2026-10-29
+    status: 보유
 
 # 날짜가 확정된 일정(1차 출처 있는 것만). 관문이 D-1·당일에 알린다. 치입이 실적일·IR 행사·투표일을 확인하면 여기에 추가한다.
 # time은 현지 시각과 KST를 함께. confirmed: false는 추정(알림에 '미확정' 표시).
 events:
   - {date: 2026-10-29, ticker: CCXI, what: "환매 청구 마감 — 10/29 17:00 ET (KST 10/30 06:00 — 한국 기준 오늘 밤), DWAC로 Continental에 주식 인도", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109058/ea0297114-07.htm", confirmed: true}
   - {date: 2026-11-02, ticker: CCXI, what: "임시주총(합병 승인 투표) 09:00 ET (KST 11/2 23:00)", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109077/ea0308496-8k425_church11.htm", confirmed: true}
+  - {"date": "2026-10-29", "ticker": "PWR", "what": "3분기 실적 발표 장 시작 전·콜 09:00 ET (KST 10/29 22:00)", "source": "https://investors.quantaservices.com/news-events/press-releases/detail/406/quanta-services-announces-third-quarter-2026-earnings-release-webcast-schedule", "confirmed": true}
+  - {"date": "2026-12-07", "ticker": "EROC", "what": "IPO 보호예수 해제 추정일(가격결정 2026-06-10 기준 180일, 증권신고서 미대조)", "source": "https://www.sec.gov/Archives/edgar/data/2110029/000119312526265898/0001193125-26-265898-index.htm", "confirmed": false}
+  - {"date": "2026-11-10", "ticker": "CBRS", "what": "IPO 보호예수 마지막 해제 추정(424B4: 3분기 실적 발표 후 둘째 거래일과 상장 180일 중 이른 날 — 남은 약 3,100만 주+옵션 2,150만 주, Culper는 11/9로 계산)", "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2021728&type=424B4", "confirmed": false}
+  - {"date": "2026-11-12", "ticker": "CBRS", "what": "3분기 실적 발표 예정(Culper 리포트 인용, 회사 공지 미확인) — 유형자산 처분·손상·교체 CAPEX·보증충당금 확인", "source": "http://www.culperresearch.com", "confirmed": false}
