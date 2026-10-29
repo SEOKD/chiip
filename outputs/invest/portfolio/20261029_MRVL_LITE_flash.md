@@ -1,4 +1,4 @@
-[모드: flash(invest) / 범위: 보유 MRVL — Lumentum 인수 협상 보도 / 기준시각: 2026-10-29 14:40 KST]
+[모드: flash(invest) / 범위: 보유 MRVL — Lumentum 인수 협상 보도 / 기준시각: 2026-10-29 14:05 KST]
 
 # MRVL × Lumentum(LITE) 인수 협상 — 1차 판정, 미검증
 
@@ -6,7 +6,7 @@
 
 ## 무엇이 나왔나
 - Bloomberg: Marvell이 Lumentum 인수 합의에 근접했다(보도 시각 2026-10-28 22:55 UTC = 10/29 07:55 KST, 'is said to' — 익명 취재원). The Information: 인수 협상 중(22:18 UTC).
-- 1차 출처 없음: MRVL·LITE 모두 관련 8-K·보도자료 없음(EDGAR 확인 10/29 14:30 KST, MRVL 최근 제출 10/23 8-K, LITE 10/06 DEF 14A). 거래 조건(가격·현금/주식)은 미공개.
+- 1차 출처 없음: MRVL·LITE 모두 관련 8-K·보도자료 없음(EDGAR 확인 10/29 14:00 KST, MRVL 최근 제출 10/23 8-K, LITE 10/06 DEF 14A). 거래 조건(가격·현금/주식)은 미공개.
 - 시장 반응(보도 제목 기준): LITE 시간외 +15~17%(Benzinga·TradingKey), MRVL 시간외 하락(Yahoo·marketscreener — 폭 미확인).
 
 ## 숫자 (easyconomics, 10/28 종가 기준)
