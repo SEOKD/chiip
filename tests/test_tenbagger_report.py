@@ -58,3 +58,43 @@ class TestPick(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
+import build_drivers  # noqa: E402
+import v2_to_report  # noqa: E402
+
+
+class TestDatapackToDrivers(unittest.TestCase):
+    def pack(self, **kw):
+        p = {"id": "x", "name": "X", "industry": "semiconductor", "region_mix": {"US": 1.0},
+             "profile": {"price": 10, "shares_basic": 1.0, "cash": 2, "debt": 1},
+             "dilution": {"warrants": 0.1}, "financials": {"rev_ttm": 1.0, "ebit_ttm": 0.1, "invested_capital": 0.5},
+             "consensus": {"rev": {"FY2026": 1.2, "FY2027": 1.5, "FY2028": 1.8}, "ebit_margin": {"FY2026": 0.10, "FY2027": 0.15}},
+             "call": {"tone": "down", "risks": ["고객 집중"]}}
+        p.update(kw)
+        return p
+
+    def test_consensus_and_call_become_drivers(self):
+        d = build_drivers.build(self.pack())
+        self.assertAlmostEqual(d["rev0"], 1.2)
+        self.assertAlmostEqual(d["scenarios"]["base"]["growth"]["start"], 0.25, places=3)   # 1.5/1.2−1
+        self.assertEqual(d["scenarios"]["bear"]["prob"], 0.30)                              # 콜 톤 down → 약세 확률↑
+        self.assertAlmostEqual(d["market"]["shares"], 1.1)                                  # 워런트 포함 완전 희석
+        self.assertAlmostEqual(d["market"]["net_debt"], -1.0)
+        self.assertIn("컨센서스", d["provenance"]["growth"])
+
+    def test_guidance_overrides_consensus_and_guardrails(self):
+        d = build_drivers.build(self.pack(guidance={"rev_fy0": [1.3, 1.5]}))
+        self.assertAlmostEqual(d["rev0"], 1.4)
+        hyper = build_drivers.build(self.pack(consensus={"rev": {"FY2026": 1.0, "FY2027": 3.3}}))
+        self.assertLessEqual(hyper["mc"]["sigma_growth"], 0.12)                              # 초고성장 변동성 상한
+        self.assertEqual(hyper["scenarios"]["base"]["growth"]["decay"], 0.45)
+
+    def test_comps_and_histogram(self):
+        cp = v2_to_report.comps([{"growth_ntm": g, "ev_sales_ntm": 2 + 10 * g} for g in (0.1, 0.2, 0.3, 0.4)], 0.5, 9.0)
+        self.assertAlmostEqual(cp["implied"], 7.0, places=3)
+        self.assertAlmostEqual(cp["r2"], 1.0, places=6)
+        labels, pct = v2_to_report.histogram([i / 100 for i in range(100)], bins=5, lo=0, hi=1)
+        self.assertEqual(len(labels), 5)
+        self.assertAlmostEqual(sum(pct), 100, places=0)

@@ -2072,3 +2072,8 @@ source: docs/methodology
 ### 21.28 텐배거 일일 리포트 (2026-10-29 마스터 지시 "Chiip ten-bagger도 텐배거 종목 리포트를 쓰고 그래프로 시각화해 html로 남겨라, 오후 11시마다 하루 하나씩")
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
+
+### 21.29 맥킨지·IB 밸류에이션 의무화 + easyconomics 데이터 묶음 (2026-10-29 마스터 지시 "맥킨지 밸류에이션·월스트리트 IB 최신 기법이 모두 반영됐는지 점검하라", "easyconomics의 컨센서스·어닝콜 스크립트 등 기업 정보를 모두 취합해 변수로 활용하라")
+- 점검 결과(`docs/audit/20261029_valuation_methods_audit.md`): v2 엔진은 맥킨지 골격을 갖췄으나 일일 리포트가 엔진을 쓰지 않았고 동인을 손으로 넣었다.
+- 구조: easyconomics 15개 도구 → `knowledge/models/companies/<id>/datapack.json`(profile·dilution·financials·consensus·guidance·call·peers·sources) → `scripts/valuation/v2/build_drivers.py`(가이던스 > 컨센서스 > TTM, 컨센서스 고·저 추정 → 강세·약세, 어닝콜 톤 → 시나리오 확률, 완전 희석 주식 수, 초고성장 감속·변동성 상한, overrides는 이유 필수, 동인 출처 표, 수동 drivers.yaml 우선) → v2 run → `scripts/tenbagger/v2_to_report.py --merge`(WACC 구성·시나리오 ROIC·계속가치 비중·EP 검증·몬테카를로 분포·가격 내포 CAGR vs 기저율·민감도 격자 WACC×g·동종 EV/매출–성장 회귀·동인 출처·의사결정 보조) → 리포트 '밸류에이션 — 맥킨지·IB 방식' 절.
+- 판단 시나리오(배수 기준)가 v2 DCF와 다르면 원인 설명 의무. 남은 한계: SOTP·실패 확률 보정·추정치 수정 모멘텀·TCO(model-lab 후보).
