@@ -50,9 +50,12 @@ def registry():
 
 
 def interval(src):
+    """원천이 interval_min을 정했으면 그대로 쓴다. 2026-10-29 점검: 9개 매체 뉴스(src-news7-focus)·감시 종목 SEC 공시(src-sec-filings)가
+    15분으로 설정돼 있었는데 티어 기본값(T2 60분)이 max()로 덮어 1시간마다만 돌았다 — MRVL·Lumentum 등 보도 지연의 한 원인"""
+    if src.get("interval_min"):
+        return int(src["interval_min"])
     tier = "T0" if any(str(x) == "T0" or str(x).startswith("co-") for x in src.get("scope", [])) else "T2"
-    base = common.interval_for(tier)
-    return max(base, int(src.get("interval_min", base)))
+    return common.interval_for(tier)
 
 
 def run_source(src, env):

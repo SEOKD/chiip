@@ -163,6 +163,46 @@ def match(item):
     return None
 
 
+NOISE_RE = re.compile(r"transcript|earnings call (presentation|slides)|\bslides\b|\bpresentation\b|\bvideo\b|podcast|daily briefing|"
+                      r"newsletter|stock price|in real time|live updates?|what to know|stocks to watch|top stocks|premarket|"
+                      r"pre-market movers|movers|closing bell|market wrap|evening briefing|morning briefing|\bopinion\b", re.I)
+_STOP = {"the", "a", "an", "of", "to", "in", "on", "for", "and", "as", "at", "by", "with", "its", "is", "are", "after", "from", "says", "said"}
+
+
+def noise(item):
+    """제목만 봐도 새 사실이 아닌 것(콜 녹취 전재·발표 자료·영상·브리핑·시세 페이지) — P1에서 P2로 내린다"""
+    return bool(NOISE_RE.search(_title(item)))
+
+
+def _words(t):
+    return {w for w in re.sub(r"[^a-z0-9$ ]", " ", t.lower()).split() if w not in _STOP and len(w) > 1}
+
+
+def duplicate_of(item, hours=12, now=None):
+    """지난 hours 안에 보낸 P0·P1(radar/state/alerts.json)과 같은 사건이면 그 제목 — 같은 종목 + 제목 단어 겹침 50% 이상,
+    또는 종목 무관 70% 이상(같은 사건 기사가 여러 매체·배치로 들어와 P1이 겹치던 문제, 2026-10-29)"""
+    now = now or common.now_kst()
+    w = _words(_title(item))
+    if len(w) < 3:
+        return None
+    ents = set(item.get("entities_matched") or [])
+    for a in common.load_state("alerts", {}).values():
+        try:
+            if datetime.fromisoformat(a.get("sent_at")) < now - timedelta(hours=hours):
+                continue
+        except (TypeError, ValueError):
+            continue
+        if a.get("item_id") == item.get("item_id"):
+            continue
+        aw = _words((a.get("title") or "").rsplit(" - ", 1)[0])
+        if not aw:
+            continue
+        j = len(w & aw) / len(w | aw)
+        if j >= 0.7 or (ents & set(a.get("entities") or []) and j >= 0.5):
+            return a.get("title")
+    return None
+
+
 def check(item, now=None):
     """P1로 올릴 이유 또는 None. 올리면 서명을 기록한다(window_h 안 같은 서명은 None)"""
     hit = match(item)

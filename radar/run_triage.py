@@ -153,12 +153,20 @@ def main(argv=None):
             if not it:
                 continue
             lvl = r["level"]
+            why_up = None
             if lvl in ("P1", "P2", "P3"):   # 규칙 상향(radar/promote.py) — T0 중심 판정이 낮춘 AI 밸류체인 사건·보유 종목
                 why_up = promote.check(it)
                 new = promote.level_for(it, why_up) if why_up else None
                 if new and RANK[new] > RANK[lvl]:
                     lvl, r["reason"] = new, f"{why_up} (모델 {r['level']}: {r.get('reason', '')})"
                     r["what"] = f"[{why_up}] {r.get('what') or it['title']}"
+            if lvl in ("P0", "P1") and not why_up:   # 규칙 상향 건은 서명으로 이미 중복을 막는다
+                if lvl == "P1" and promote.noise(it):   # 콜 녹취 전재·영상·브리핑·시세 페이지 — 새 사실 아님(2026-10-29). P0는 내리지 않는다
+                    lvl, r["reason"] = "P2", f"잡음 하향(모델 {r['level']}): {r.get('reason', '')}"
+                else:
+                    dup = promote.duplicate_of(it)
+                    if dup:
+                        lvl, r["reason"] = "P2", f"중복 하향(이미 보냄: {dup[:60]})"
             card = Path(r.get("card_path") or "").stem or None
             msg = notify.format_item(lvl, it, r.get("what"), r.get("impact"), card)
             ok, why = notify.telegram_allowed(it)

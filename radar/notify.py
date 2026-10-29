@@ -65,12 +65,31 @@ def send(text, level="P1", ref=None):
     if reason:
         _log(f"[차단:{reason}] (내용 생략)")
         return False
+    if len(text) > MAX_LEN:   # 2026-10-29: 숏 리포트·파이낸싱이 붙은 펄스가 3,800자를 넘으면 뒷부분이 잘렸다 → 문단 단위로 나눠 보낸다
+        lim = MAX_LEN - 20   # '(i/n)' 꼬리를 붙여도 한도 안 — 넘으면 다시 나뉘며 끝없이 재귀한다
+        parts, cur = [], ""
+        for para in text.split("\n"):
+            while len(para) > lim:
+                if cur:
+                    parts.append(cur)
+                    cur = ""
+                parts.append(para[:lim])
+                para = para[lim:]
+            if cur and len(cur) + len(para) + 1 > lim:
+                parts.append(cur)
+                cur = para
+            else:
+                cur = f"{cur}\n{para}" if cur else para
+        if cur:
+            parts.append(cur)
+        oks = [send(p + f"\n({i}/{len(parts)})", level, ref if i == 1 else None) for i, p in enumerate(parts, 1)]
+        return all(oks)
     env = common.load_env()
     token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         _log(f"[미발송-키없음][{level}] {text}")
         return False
-    payload = {"chat_id": chat, "text": text[:MAX_LEN], "disable_web_page_preview": "true"}
+    payload = {"chat_id": chat, "text": text, "disable_web_page_preview": "true"}
     if ref:  # 알림마다 '⭐ 노션 기록' 버튼 — 누르면 radar/telegram_inbox.py가 인텔 아카이브에 기록
         payload["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": "⭐ 노션 기록", "callback_data": f"save:{ref}"}]]})
     data = urllib.parse.urlencode(payload).encode()

@@ -24,6 +24,8 @@ def _cfg():
 def focus_state():
     """(포커스 id 집합 또는 None=관문 열림, 사유)"""
     cfg = _cfg()
+    if cfg.get("retired"):   # 포커스 점수 기능 정리(2026-10-29) — 점수 대신 감시 목록 전체를 추적한다
+        return None, "포커스 점수 폐지 — 감시 목록 전체"
     if not FOCUS_FILE.exists():
         return (None, "점수 파일 없음") if cfg.get("fail_open", True) else (set(cfg.get("always_include") or []), "")
     data = json.loads(FOCUS_FILE.read_text(encoding="utf-8"))

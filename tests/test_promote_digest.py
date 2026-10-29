@@ -99,3 +99,33 @@ class TestPulseFinancing(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestAudit20261029(unittest.TestCase):
+    def test_noise(self):
+        self.assertTrue(promote.noise(item("Vertiv Holdings Co (VRT) Q3 2026 Earnings Call Transcript - Seeking Alpha")))
+        self.assertTrue(promote.noise(item("Check out Cerebras Systems's stock price (CBRS) in real time - CNBC")))
+        self.assertFalse(promote.noise(item("Marvell Is Said to Near Megadeal for Lumentum - Bloomberg")))
+
+    def test_duplicate_of(self):
+        now = datetime(2026, 10, 29, 14, 20, tzinfo=KST)
+        sent = {"r1": {"item_id": "a", "title": "SK Hynix plans $75 billion shareholder return program - Reuters", "entities": ["co-skhynix"],
+                       "sent_at": "2026-10-29T14:11:23+09:00"}}
+        with mock.patch.object(promote.common, "load_state", return_value=sent):
+            self.assertIsNotNone(promote.duplicate_of(item("SK Hynix unveils $75 billion shareholder return program - Bloomberg", ents=("co-skhynix",)), now=now))
+            self.assertIsNone(promote.duplicate_of(item("SK Hynix profits surge on HBM demand - Bloomberg", ents=("co-skhynix",)), now=now))
+            self.assertIsNone(promote.duplicate_of(item("SK Hynix plans $75 billion shareholder return program - WSJ", ents=("co-skhynix",)),
+                                                   now=now + timedelta(hours=13)))   # 12시간 지나면 중복 아님
+
+    def test_interval_respects_source_setting(self):
+        import run_poll
+        self.assertEqual(run_poll.interval({"id": "src-news7-focus", "scope": ["글로벌"], "interval_min": 15}), 15)
+
+    def test_notify_splits_long_text(self):
+        import notify
+        sent = []
+        with mock.patch.object(notify, "guard", return_value=None), \
+             mock.patch.object(notify.common, "load_env", return_value={}), \
+             mock.patch.object(notify, "_log", lambda line: sent.append(line)):
+            notify.send("\n".join(["가" * 100] * 80), "PULSE")   # 약 8,000자
+        self.assertGreaterEqual(len(sent), 3)                  # 한 통으로 잘리지 않고 여러 통으로 나뉜다

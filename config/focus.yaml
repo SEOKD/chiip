@@ -14,6 +14,7 @@ threshold: 5.0
 min_components: 2          # 요소가 2개 미만이면 총점 없음(미산정)
 weights: {attention: 0.25, narrative: 0.25, fundamental: 0.25, multiple: 0.25}
 always_include: []         # 점수와 무관하게 항상 추적할 종목 id (예: co-skhynix). 마스터가 정한다
+retired: true              # 2026-10-29: 포커스 점수 예약 작업(chiip-focus-score)이 정리돼 점수가 갱신되지 않는다 → 관문은 감시 목록 전체(약 200종목)를 추적
 fail_open: true            # 점수 파일이 없거나 오래되면(3일) 관문을 열어 전부 받는다(정보 누락 방지)
 stale_days: 3
 send_time_note: "매일 06:40 KST 예약 작업(chiip-focus-score) → 텔레그램으로 점수표·변화 발송"
