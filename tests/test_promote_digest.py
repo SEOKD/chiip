@@ -152,3 +152,14 @@ class TestJapanNetwork(unittest.TestCase):
               "source_id": "src-jp-disclosure", "snippet": ""}
         self.assertEqual(promote.match(it)[1], "jp:co-advantest:return")
         self.assertTrue(promote.noise({"title": "信越化学工業(株)【SHECY】：株価・株式情報 - Yahoo!ファイナンス"}))
+
+
+class TestPulseAlertsInput(unittest.TestCase):
+    def test_fetch_alerts_orders_and_skips_judged(self):
+        alerts = {"a": {"level": "P1", "title": "P1 old", "sent_at": "2026-10-29T15:00:00+09:00", "entities": []},
+                  "b": {"level": "P0", "title": "P0", "sent_at": "2026-10-29T14:00:00+09:00", "entities": []},
+                  "c": {"level": "P1", "title": "P1 new", "sent_at": "2026-10-29T15:30:00+09:00", "entities": []},
+                  "d": {"level": "P2", "title": "P2", "sent_at": "2026-10-29T15:40:00+09:00", "entities": []}}
+        with mock.patch.object(pulse.common, "load_state", return_value=alerts):
+            got = pulse.fetch_alerts({"judged": ["a"], "alerts_floor": "2026-10-29T13:00"})
+        self.assertEqual([g["title"] for g in got], ["P0", "P1 new"])   # P0 먼저, 판단한 건·P2 제외

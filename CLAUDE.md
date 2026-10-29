@@ -132,6 +132,8 @@
 - **마스터 노션 구조(이름·역할 고정, `config/notion.yaml` pages):** **Insights** = 마스터 인사이트 글(치입 검토 대상, 글 아래 '치입 검토' 하위 페이지만 작성) / **Informations** = 마스터 수집 정보(근거 재료, IB 요지는 라이선스 취급·채널체크는 필드 인텔 가능성 → invest·public 금지) / **Stocks** = 마스터 종목·테마 커버리지(어닝 캘린더·알파 점수 대상에 항상 포함).
 - **노션 올림 즉시 처리(마스터 지시 2026-10-28 '일일이 입력하면 챗봇'):** 마스터가 Insights·Informations·Stocks에 페이지를 올리거나 고치면 치입이 알아서 역할별 분석(스킬 `notion-intake`) → `outputs/report/notion/` + 텔레그램. 감지는 `radar/notion_watch.py`(NOTION_TOKEN, 5분·수정 감지) 또는 예약 작업 `chiip-notion-watch`(토큰 전, 매시간 새 페이지). 상태 `scripts/notion_state.py`.
 - **Notion(비공개 허브 '치입 인텔리전스') = ⭐ 인텔 아카이브(+ 구 오피니언·인사이트 DB).** ⭐로 고른 정보만 기록(요지·링크, 원문 복제 금지, local-only·필드 인텔 금지). 공개 사이트에 올리는 글은 public 모드 규칙 + 마스터가 직접 게시.
+- **인사이트 판단 틀**(2026-10-29 마스터 지시 "정보 전달이 아니라 밸류 판단과 인사이트"): 펄스·포트폴리오의 모든 보고는 `knowledge/methods/insight_framework.md` 7단계(새로움·중요도·밸류 다리·가격 반영·반영 지연·기저율·치입 판단)와 `scripts/insight/insight_calc.py` 계산을 거친다. 인사이트 점수 7 이상은 판단을 맨 위에·예측 등록.
+- **일본 정보망**(2026-10-29): `config/jp_watch.yaml` 45개사 적시공시 미러·일본 매체를 10분마다(`radar/pollers/jp_disclosure.py`, TDnet 직접 수집 안 함).
 - **기업 설명 1줄**(2026-10-29 마스터 지시): 어떤 기능이든 종목 정보·소식·밸류 판단을 전할 때 종목명 아래 `기업: 어떤 사업을 하는 회사인지 1줄`(config/company_lines.yaml, 없으면 10-K·회사 개요를 자기 말로 — 모르면 미확인). 실시간 알림은 radar/notify.py가 자동으로 붙인다.
 - 주간 리뷰·플래시 = claude.ai 비공개 Artifact. GitHub `SEOKD/chiip`은 비공개 저장소.
 

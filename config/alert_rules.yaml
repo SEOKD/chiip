@@ -86,7 +86,7 @@ promote_p1:
   ai_financing:                # AI 밸류체인 자금 조달 10억 달러 이상(문구는 config/financing_watch.yaml terms, 이름은 org_names 또는 감시 기업)
     min_billion: 1
   ma_talks:                    # 감시 기업 M&A 협상·인수 보도(주요 매체) — 1차 출처 대기 P1
-    pattern: 'in talks|nears? (a )?deal|is said to|weighs? (a )?(sale|bid|deal)|explor\w* (a )?sale|to (buy|acquire)|agrees? to (buy|acquire)|acquisition of|merger|takeover|\bbuyout\b'
+    pattern: 'in talks|nears? (a )?deal|is said to|weighs? (a )?(sale|bid|deal)|explor\w* (a )?sale|to (buy|acquire)|agrees? to (buy|acquire)|acquisition of|merger|takeover'
   portfolio_related:           # config/portfolio.yaml holdings의 related(경쟁사·고객) + 사건 문구 → '보유 ○○ 관련'
     event: 'deal|contract|order|wins?\b|financ|custom|design win|supply|guidance|earnings|results|acqui|partner|capex|lawsuit|ban\b|tariff|price|launch|ship'
 

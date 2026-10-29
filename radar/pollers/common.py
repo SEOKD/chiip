@@ -127,7 +127,11 @@ def match_entities(text):
                 if re.search(rf"\b{re.escape(n)}\b", text):
                     hits.append(eid)
                     break
-            elif n.lower() in low:
+            elif re.search(r"[A-Za-z]", n):   # 영문 이름은 단어 경계로(2026-10-29: 'Applebee's'가 Apple로 잡혀 P1 오발송)
+                if re.search(rf"(?<![A-Za-z0-9]){re.escape(n)}(?![A-Za-z0-9])", text, re.I):
+                    hits.append(eid)
+                    break
+            elif n.lower() in low:   # 한·중·일 이름은 부분 일치
                 hits.append(eid)
                 break
     return hits

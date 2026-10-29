@@ -55,3 +55,15 @@ events:
     magnitude: null
     note: "SEC 서류 열람·변동성·거래 급증으로 가격 발견을 앞당긴다(2006~2011년 124건). 공매도자의 우위는 공개 정보 처리 능력"
     source: "Ljungqvist & Qian (2016), How Constraining Are Limits to Arbitrage?, Review of Financial Studies 29(8); Engelberg, Reed & Ringgenberg (2012), How Are Shorts Informed?, Journal of Financial Economics 105(2)"
+  earnings_drift:
+    label: 실적 발표 뒤 같은 방향 표류(PEAD)
+    direction: delayed_same_sign
+    magnitude: null
+    note: "실적 서프라이즈 방향으로 발표 후 수주~수개월 표류. 발표 당일 반응이 서프라이즈와 반대면 해석 주의"
+    source: "Bernard & Thomas (1989), Post-Earnings-Announcement Drift: Delayed Price Response or Risk Premium?, Journal of Accounting Research 27"
+  slow_bad_news_small:
+    label: 소형·커버리지 적은 종목의 나쁜 소식
+    direction: delayed_same_sign
+    magnitude: null
+    note: "작고 애널리스트가 적은 종목일수록, 특히 나쁜 소식이 늦게 반영된다"
+    source: "Hong, Lim & Stein (2000), Bad News Travels Slowly: Size, Analyst Coverage, and the Profitability of Momentum Strategies, Journal of Finance 55(1)"

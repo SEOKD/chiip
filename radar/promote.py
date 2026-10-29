@@ -169,9 +169,10 @@ def match(item):
     if m and ents and _publisher(item).lower() in {p.lower() for p in m.get("publishers") or []} and re.search(m["pattern"], title, re.I):
         return f"규칙 상향: {_publisher(item)} 단독", "excl:" + re.sub(r"\W+", " ", title.lower()).strip()[:80]
     m = r.get("portfolio_related") or {}
+    ctx = (r.get("mega_deal") or {}).get("context") or r"$^"
     if m:
-        for tk, name, pat in _related():
-            if pat.search(title) and re.search(m["event"], title, re.I):
+        for tk, name, pat in _related():   # AI·데이터센터·전력 문맥이 있어야(2026-10-29: 지멘스에너지 해상풍력 협력이 INIO 관련으로 오발송)
+            if pat.search(title) and re.search(m["event"], title, re.I) and re.search(ctx, title, re.I):
                 return f"규칙 상향: 보유 {tk} 관련({name})", f"rel:{tk}:{name.lower()}"
     return None
 

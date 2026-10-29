@@ -2061,3 +2061,10 @@ source: docs/methodology
 - 펄스 ④ 숏 리포트 절(가장 먼저 처리, 미보도 규칙 제외): 주장 3~7개를 1차 서류로 검증(확정/일부/반박/불가), 엔지니어 관점 반대 검증(열 사이클 피로 vs 고온 체류 열화), 핵심 변수 손익분기값 vs 현재 가격·컨센서스, 락업·내부자 매도·실적일, 회사 반박 시 갱신. 기록 outputs/invest/short/.
 - 신규 상장(`fetch_new_listings`): EDGAR 전문검색 424B4·S-1 × AI·반도체·데이터센터 전력 SIC × 감시 목록 밖 → 모델이 감시 목록·알파 대기열 편입. CBRS는 감시 목록(us-cbrs)·파이낸싱 발행사·알파 대기열에 추가.
 - 첫 적용: CBRS 숏 리포트 검증·밸류(outputs/invest/short/20261029_CBRS.md) 텔레그램 발송 — OpenAI 계약 손익분기 수명 2.1~4.2년(할인 없음), EV/RPO 0.8배.
+
+### 21.27 인사이트 판단 틀·일본 정보망 (2026-10-29 마스터 지시 "Pulse가 단순 정보 전달에 그친다 — 밸류 판단과 인사이트가 핵심, 논문·기술 자료로 방법론을 익혀 보고 체계를 재설계하라", "이비덴 실적 전망 상향을 왜 보고 안 하나 — 일본 정보망도 체계적으로 뚫어라")
+- **치입 인사이트 판단 틀(CIF)** `knowledge/methods/insight_framework.md`: ① 새로움(Tetlock 2011 묵은 뉴스, Huberman & Regev 2001) ② 중요도(금액÷시총·매출·EV) ③ 밸류 다리(가치 동인 → Δ가치·손익분기값, Mauboussin & Rappaport) ④ 가격 반영(비정상 수익률·반영 비율, MacKinlay 1997) ⑤ 반영 지연·파급(Cohen & Frazzini 2008, Cohen & Lou 2012, Cohen·Malloy·Nguyen 2020, DellaVigna & Pollet 2009, Ljungqvist & Qian 2016, Engelberg 외 2012, Hong·Lim·Stein 2000) ⑥ 기저율(`config/insight/base_rates.yaml` — 유상증자 −3% Asquith & Mullins 1986, 주식 교환 인수 Travlos 1987, PEAD Bernard & Thomas 1989 등) ⑦ 치입 판단(변이 관점·확신도·반증·측정 가능한 예측). 인사이트 점수 = 새로움 3 + 중요도 3 + 가격 오류 가능성 2 + 확신도 2; 7 이상은 판단을 맨 위에·예측 등록, 4 미만은 사실 한 줄.
+- 계산기 `scripts/insight/insight_calc.py`(materiality·bridge·priced·breakeven·diffusion·score·baserate) — 모델이 숫자를 같은 방식으로 계산.
+- 펄스 ⑤ **속보 판단**: 실시간 레이더가 보낸 P0·P1(alerts.json)을 회차당 3건 CIF로 깊게 판단(`radar/pulse.py` fetch_alerts, `--judged`). 텔레그램 맨 위 '■ 치입 판단', 모든 절에 '치입 판단·인사이트 x/10' 줄. 포트폴리오에는 프로바이저 교차 전파 지시로 같은 틀.
+- **일본 정보망** `config/jp_watch.yaml`(일본 AI 밸류체인 45개사·일본어 이름·코드·일본 매체 목록) + `radar/pollers/jp_disclosure.py`(10분, Google News 일본판 색인): 적시공시 제목 미러(日経会社情報DIGITAL '…(適時開示)')는 공시, 株探·日経·日刊工業 등은 기사. TDnet은 robots.txt 차단이라 직접 수집 안 함. 판정 상향: 일본 감시 기업의 실적 전망 수정·설비투자·주주환원·인수·자금 조달·결산 → P1(종목×사건 종류 24시간 1번). 첫 시험에서 이비덴 적시공시 5건·어드밴테스트 상향·자사주 2,800억 엔 포착.
+- 오탐 교정: 영문 회사 이름은 단어 경계로만 매칭(Applebee's→Apple 오탐), M&A 문구에서 buyout 제외(희망퇴직 오탐), 관련 기업 규칙은 AI·데이터센터·전력 문맥 필요(지멘스에너지 해상풍력 오탐).

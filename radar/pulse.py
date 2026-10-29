@@ -29,7 +29,7 @@ from pollers.press_wire import NON_EN_RE  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 10분 주기(2026-10-29 마스터 지시)
-TOP = {"숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"속보 판단": 3, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
@@ -38,7 +38,7 @@ CLASSES = [("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"속보 판단": 8, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 TECH_RE = re.compile(
     r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
     r"wafer|foundry|semiconductor|transistor|GAA|nanosheet|backside power|3D.?(IC|stack|integration)|TSV|interconnect|photonic|"
@@ -303,6 +303,27 @@ def fetch_new_listings(st, days=3):
     return out
 
 
+def fetch_alerts(st, since=None):
+    """속보 판단(2026-10-29 마스터 지시 "단순 정보 전달이 아니라 밸류 판단과 인사이트가 핵심"): 실시간 레이더가 지난 회차 이후 보낸
+    P0·P1(radar/state/alerts.json) 중 아직 판단하지 않은 것 — 펄스가 인사이트 판단 틀(knowledge/methods/insight_framework.md)로 깊게 본다.
+    P0 먼저, 같은 등급은 최근 순. 회차당 TOP['속보 판단']건, 나머지는 다음 회차로(판단한 것만 judged에 남는다 — 모델이 --judged로 표시)"""
+    judged = set(st.get("judged", []))
+    out = []
+    for ref, a in common.load_state("alerts", {}).items():
+        if ref in judged or a.get("level") not in ("P0", "P1"):
+            continue
+        if since and (a.get("sent_at") or "") <= (st.get("alerts_floor") or ""):
+            continue
+        out.append({"source_id": "src-alerts", "source_class": "속보 판단", "url": a.get("url"), "title": a.get("title"),
+                    "published_at": a.get("published_at"), "detected_at": a.get("sent_at"), "language": "en",
+                    "entities_matched": a.get("entities") or [], "snippet": f"{a.get('level')} · {a.get('what') or ''}"[:300],
+                    "alert_ref": ref, "level": a.get("level")})
+    out.sort(key=lambda x: (x["level"] != "P0", x["detected_at"] or ""), reverse=False)
+    p0 = [x for x in out if x["level"] == "P0"]
+    p1 = sorted([x for x in out if x["level"] == "P1"], key=lambda x: x["detected_at"] or "", reverse=True)
+    return p0 + p1
+
+
 def candidates(sources, watch):
     """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
     c = {}
@@ -338,6 +359,12 @@ def run(now=None):
         return None, f"[펄스] 이전 회차 진행 중({lock[11:16]} 시작) → 종료"
     since = st.get("watermark") or common.iso(now - timedelta(hours=2))
     sources, errors = inbox_items(since), []
+    if "alerts_floor" not in st:   # 처음 켤 때는 지금 이후 알림만(과거 알림 수백 건을 한꺼번에 판단하지 않게)
+        st["alerts_floor"] = common.iso(now - timedelta(hours=6))
+    try:
+        sources += fetch_alerts(st, since)
+    except Exception as exc:
+        errors.append(f"속보 판단: {type(exc).__name__}")
     for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings)):
         try:
             sources += fn(st)
@@ -354,7 +381,7 @@ def run(now=None):
         return None, f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''} → 종료"
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
-    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher")
+    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level")
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],
@@ -370,6 +397,12 @@ def run(now=None):
     return path, msg
 
 
+def mark_judged(refs):
+    st = common.load_state(STATE, {})
+    st["judged"] = (st.get("judged", []) + [r for r in refs if r])[-3000:]
+    common.save_state(STATE, st)
+
+
 def end():
     st = common.load_state(STATE, {})
     st.pop("lock", None)
@@ -380,6 +413,11 @@ def main(argv):
     if "--end" in argv:
         end()
         print("[펄스] 회차 종료")
+        return 0
+    if "--judged" in argv:   # 모델이 속보 판단을 마친 알림 ref를 표시
+        refs = argv[argv.index("--judged") + 1:]
+        mark_judged(refs)
+        print(f"[펄스] 속보 판단 완료 표시 {len(refs)}건")
         return 0
     if "--enqueue" in argv:
         i = argv.index("--enqueue")
