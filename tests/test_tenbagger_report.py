@@ -109,3 +109,43 @@ class TestDatapackToDrivers(unittest.TestCase):
         labels, pct = v2_to_report.histogram([i / 100 for i in range(100)], bins=5, lo=0, hi=1)
         self.assertEqual(len(labels), 5)
         self.assertAlmostEqual(sum(pct), 100, places=0)
+
+
+sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
+import datapack_check  # noqa: E402
+import dcf  # noqa: E402
+import scenarios  # noqa: E402
+
+
+class TestValuationAudit(unittest.TestCase):
+    """2026-10-29 CBRS 전 과정 점검에서 나온 결함의 회귀 시험"""
+
+    def test_cbrs_datapack_matches_raw(self):
+        r = datapack_check.check(datapack_check.load("us-cbrs"))
+        self.assertEqual(r["score"], 10.0, [c for c in r["checks"] if c["status"] != "통과"])
+
+    def test_checker_catches_old_errors(self):
+        p = datapack_check.load("us-cbrs")
+        p["financials"]["ebit_ttm"] = -0.9          # 1H 연환산 근사
+        p["call"]["tone"] = "flat"                   # 레이더는 상향
+        p["peers"] = p["peers"][:2]
+        bad = {c["name"] for c in datapack_check.check(p)["checks"] if c["status"] == "실패"}
+        self.assertTrue({"TTM 영업이익 = 4분기 합", "어닝콜 톤 = 실적 레이더", "동종사 4곳 이상·기준 표기"} <= bad)
+
+    def test_margin_anchor_keeps_consensus_year1(self):
+        path = scenarios.margin_spec_path({"m0": -0.55, "target": 0.22, "year_target": 4, "lr": 0.15, "lam": 0.35, "anchors": [0.03]}, 10)
+        self.assertAlmostEqual(path[0], 0.03)        # 덮어쓰기와 무관하게 1년차 = 컨센서스
+        self.assertAlmostEqual(path[3], 0.22)
+
+    def test_non_gaap_margin_subtracts_sbc_and_tone_from_radar(self):
+        p = TestDatapackToDrivers().pack(consensus={"rev": {"FY2026": 1.0, "FY2027": 1.5}, "ebit_margin": {"FY2026": 0.0, "FY2027": 0.10},
+                                                    "margin_basis": "non_gaap"}, sbc_pct_rev=0.05, call={"guidance_direction": "raise"})
+        d = build_drivers.build(p)
+        self.assertAlmostEqual(d["scenarios"]["base"]["margin"]["anchors"][0], 0.05)
+        self.assertEqual(d["scenarios"]["bull"]["prob"], 0.30)   # 가이던스 상향 → up
+
+    def test_future_equity_grows_near_cost_of_capital(self):
+        d = {"rev0": 1.0, "growth": [1.0, 0.5, 0.3, 0.2, 0.1, 0.05, 0.04, 0.04, 0.04, 0.04], "margin": [0.2] * 10, "tax": 0.21, "s2c": 1.0,
+             "ic0": 1.0, "wacc": 0.10, "g_term": 0.03, "net_debt": 0.0, "shares": 1.0, "kd": 0.04}
+        e0, e5 = dcf.value(d)["equity"], dcf.equity_at(d, 5)
+        self.assertLess((e5 / e0) ** 0.2 - 1, 0.13)   # 적자 재투자를 싼 차입으로 메워 부풀리지 않는다

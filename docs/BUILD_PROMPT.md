@@ -2073,6 +2073,11 @@ source: docs/methodology
 - 예약 작업 `chiip-tenbagger-report`(매일 23:00, Chiip ten-bagger 기능의 일부): 종목 선정(`scripts/tenbagger/pick_report.py` — 마스터 요청 대기열 → 텐배거 추적 후보 → 알파 5점 이상 높은 순 → 보유 종목, 30일 안 재작성 금지) → 자료(easyconomics·SEC·적시공시·IR) → 판단(10배 경로 숫자·가격 내포 기대·핵심 변수 손익분기·시나리오 3개 확률·반대 검증·킬 조건·체크리스트, 인사이트 판단 틀) → 내용 JSON → `scripts/tenbagger/report_html.py`가 HTML·SVG 차트(line·bars·hbars·scenario)로 렌더(본보기: 마스터 제공 '토큰값 변곡점 3사' 형식, 다크 모드, 마우스 올리면 값) → 텔레그램 파일 발송(`notify.send_document`) → log.csv·watch.csv·예측 등록.
 - 렌더러는 **굵게**만 허용하고 나머지 HTML은 이스케이프(수집 문장 속 스크립트 차단). 첫 리포트: CBRS(2026-10-29, 시나리오 확률 가중 1.28배·P(10배) 2% 미만 판단).
 
+### 21.31 밸류에이션 전 과정 점검·데이터 검증 (2026-10-29 마스터 지시 "CBRS 시나리오 0.23배·0.38배가 어떤 멀티플인가 — 수치가 이상", "easyconomics 로우 데이터가 변함 없는지 전 과정 10점 점검·10점으로 고도화")
+- 데이터 묶음에 원자료 스냅숏(`raw`) 의무, `scripts/valuation/v2/datapack_check.py` 13개 대조(시총·현금·차입·TTM 4분기 합·투하자본·분기 컨센서스 합·가이던스·희석 같은 날짜·톤=레이더·동종 4곳·기준 표기) — 10/10 아니면 리포트 단계로 가지 않음, 리포트 '데이터 검증' 표.
+- 동인: 컨센서스 연도 이익률 앵커, 덮어쓰기 부분 병합, 비GAAP → SBC 차감, 톤은 레이더로, 희석 potential_total. 계산: 미래 지분가치의 순현금 이자·부족분 WACC. 리포트: '배' 정의·기업가치 분해·이익률×자본 집약도 민감도·같은 기준 동종 회귀.
+- 기록 `docs/audit/20261029_valuation_methods_audit.md` 2차 점검(4.5 → 10/10).
+
 ### 21.30 즉시 포착 점검·텔레그램 양식 (2026-10-29 마스터 지시 "CBRS 숏 리포트나 Marvell의 Lumentum 인수 기사를 즉시 찾아오는 파이프라인을 10점 만점에 점검, 9점 미만이면 재점검", "P1 코드명을 드러내지 마라 — 종목(종목코드)｜기사｜시간", "펄스 문단 띄어쓰기·직관적·간결")
 - 점검(재현): Bloomberg 기사는 Bloomberg 피드 21:05 UTC → Google News 21:18 → 수집 22:37(92분). 개수 후 Google News 경유 지연 중앙값 31분·90% 92분. Culper 원문은 미수집, 제3자 글만 2.6시간 뒤. 숏 규칙은 제목에 'short'가 없으면 미적용, 규칙 상향은 모델 판정 뒤에만(모델 실패·일일 상한 시 소실).
 - 보강: ① 숏 운용사 원문 19곳 직접(`radar/pollers/short_sites.py`, src-short-sites 5분, robots 매회 확인, 403·차단 5곳 제외) ② Bloomberg·Business Insider 공개 RSS 직접(src-bbg-direct·src-bi-direct 5분, 제목·링크만) ③ 숏 규칙: 운용사 정식·짧은 이름 + 대상 종목이면 상향, 원문 사이트 새 글은 그 자체로 숏 리포트 ④ 규칙 빠른 길(`run_poll.fast_lane`): 규칙 건은 모델 판정을 기다리지 않고 수집 직후 발송 ⑤ 회귀 시험 `tests/test_pipeline_replay.py`(놓친 사건 제목 그대로) ⑥ 놓침 기록 evals/radar_misses.csv.

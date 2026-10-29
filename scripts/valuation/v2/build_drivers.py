@@ -9,14 +9,17 @@ datapack.json (금액은 unit 하나로 통일 — 보통 B$, 비율은 소수):
 { "id","name","ticker","as_of","unit":"B$",
   "industry": "semiconductor|semicap|software|software_internet|computers|electronics|electrical_equipment|telecom_equipment|power_utility",
   "region_mix": {"US":1.0}, "tax": 0.21,
-  "profile":   {"price", "shares_basic", "cash", "debt", "source"},
-  "dilution":  {"options", "rsu", "warrants", "converts_shares"}           # 백만 주가 아니라 shares_basic과 같은 단위(10억 주 등)
+  "profile":   {"price", "shares_basic", "shares_date", "cash", "debt"(리스 포함), "source"},
+  "dilution":  {"potential_total" 또는 "options","rsu","warrants","converts_shares", "date"(= shares_date), "source"}   # shares_basic과 같은 단위
   "financials":{"rev_ttm", "ebit_ttm", "invested_capital", "capex_ttm", "da_ttm", "sbc_ttm", "s2c"},
-  "consensus": {"rev": {"FY2026": x, "FY2027": y, ...}, "ebit_margin": {"FY2026": m, ...},
+  "consensus": {"rev": {"FY2026": x, "FY2027": y, ...}, "ebit_margin": {"FY2026": m, ...}, "rev_basis": "core|gaap", "margin_basis": "gaap|non_gaap",
+                "quarters_est": {...},
                 "rev_low": {"FY2027": ...}, "rev_high": {"FY2027": ...}, "n_analysts", "revisions_90d": {"rev": +0.05}},
-  "guidance":  {"rev_fy0": [lo, hi], "ebit_margin_fy0": m, "source"},
-  "call":      {"date", "tone": "up|flat|down", "kpis": {...}, "guidance_changes": [...], "risks": [...], "source"},
-  "peers":     [{"ticker","ev_sales_ntm","growth_ntm","ebit_margin"}],
+  "guidance":  {"rev_fy0": [lo, hi], "ebit_margin_fy0": m, "rev_basis", "margin_basis", "source"},
+  "call":      {"date", "tone"(없으면 레이더로), "tone_score", "tone_delta", "guidance_direction": "raise|maintain|cut", "kpis": {...}, "risks": [...], "source"},
+  "peers_basis": "ttm|ntm", "peers_source": "…", "peers": [{"ticker","ev_sales","growth","ebit_margin"}],   # 4곳 이상, 대상과 같은 기준
+  "sbc_pct_rev": 0.06,                                                      # margin_basis가 non_gaap이면 필수 — 이익률에서 차감(SBC는 비용)
+  "raw": {"retrieved_at", "easyconomics_profile", "quarters_gaap", "balance_…", "estimates_sales_m", "sec", …},   # 원자료 스냅숏 — datapack_check.py가 대조
   "scenario_probs": {"bear": 0.25, "base": 0.5, "bull": 0.25},             # 선택 — 없으면 규칙
   "overrides": {"growth_base": {...}, "margin_base": {...}, "s2c": x, "why": "…"}   # 선택 — 모델이 이유와 함께
 }
@@ -75,9 +78,12 @@ def build(p):
     growth_base = {"start": round(g1, 4), "end": end, "decay": round(decay, 3)}
 
     # 이익률: 가이던스 > 컨센서스 당해 > TTM, 목표는 컨센서스 가장 먼 해 > 동종 중앙값 > 현재
-    margins = cons.get("ebit_margin") or {}
-    if gd.get("ebit_margin_fy0") is not None:
-        m0, src = gd["ebit_margin_fy0"], "회사 가이던스"
+    # 기준 맞추기(2026-10-29 CBRS 점검): 비GAAP 이익률(가이던스·EPS 컨센서스)은 SBC를 빼 GAAP과 같은 기준으로 — SBC는 실제 비용(맥킨지)
+    sbc = p.get("sbc_pct_rev") if cons.get("margin_basis") == "non_gaap" else None
+    margins = {k: v - (sbc or 0) for k, v in (cons.get("ebit_margin") or {}).items()}
+    g_basis_ok = gd.get("margin_basis", cons.get("margin_basis")) == cons.get("margin_basis")
+    if gd.get("ebit_margin_fy0") is not None and g_basis_ok:
+        m0, src = gd["ebit_margin_fy0"] - (sbc or 0), "회사 가이던스"
     elif margins:
         m0, src = margins[sorted(margins)[0]], f"컨센서스 {sorted(margins)[0]}"
     else:
@@ -90,7 +96,9 @@ def build(p):
     else:
         target, tsrc, yt = m0, "현재 유지", 3
     margin_base = {"m0": round(m0, 4), "target": round(target, 4), "year_target": int(yt), "lr": 0.15, "lam": 0.35}
-    prov["margin"] = f"출발 {src} {m0:.1%} → 목표 {tsrc} {target:.1%}({int(yt)}년)"
+    prov["margin"] = f"출발 {src} {m0:.1%} → 목표 {tsrc} {target:.1%}({int(yt)}년)" + (f" · 비GAAP → SBC {sbc:.0%} 차감" if sbc else "")
+    if gd.get("ebit_margin_fy0") is not None and not g_basis_ok:
+        prov["margin"] += " · 가이던스 이익률은 기준이 달라 비교 불가로 제외"
 
     # 재투자 효율(매출/투하자본 증분)
     if fin.get("s2c"):
@@ -114,7 +122,10 @@ def build(p):
         else:
             g_bear, g_bull = g1 * 0.6, g1 * 1.4
             prov["range"] = "고·저 추정 없음 — 1년차 성장 ±40%"
-    tone = call.get("tone") or "flat"
+    if not call.get("tone"):   # 어닝콜 톤은 실적 변화 레이더(가이던스 방향·톤 변화)에서 — 2026-10-29 CBRS는 상향인데 flat으로 적혀 있었다
+        import datapack_check
+        call = {**call, "tone": datapack_check.derived_tone(call) or "flat"}
+    tone = call["tone"]
     probs = p.get("scenario_probs") or dict(zip(("bear", "base", "bull"), TONE_PROB.get(tone, TONE_PROB["flat"])))
     prov["probs"] = ("데이터 묶음 지정" if p.get("scenario_probs") else f"어닝콜 톤 '{tone}' 규칙") + f" {probs}"
     spread = clamp(abs(target - m0) * 0.5, 0.02, 0.08)   # 강세·약세 목표 이익률 폭 — 최대 ±8%p
@@ -123,12 +134,22 @@ def build(p):
     if ov:
         prov["overrides"] = ov.get("why", "이유 미기재")
     growth_base = ov.get("growth_base", growth_base)
-    margin_base = ov.get("margin_base", margin_base)
+    margin_base = {**margin_base, **(ov.get("margin_base") or {})}   # 덮어쓰기는 준 항목만 바꾼다(출발점 m0 등은 자료 그대로)
     s2c = ov.get("s2c", s2c)
+    if len(margins) >= 2 and "anchors" not in margin_base:   # 컨센서스가 있는 해(기준연도 다음 해부터)는 덮어쓰기와 무관하게 고정
+        margin_base["anchors"] = [round(margins[k], 4) for k in sorted(margins)[1:]]
+        margin_base["year_target"] = max(int(margin_base.get("year_target", 3)), len(margin_base["anchors"]) + 1)
+    if "margin_base" in ov or margin_base.get("anchors"):   # 출처 표가 덮어쓰기 뒤의 실제 경로를 말하게
+        k = len(margin_base.get("anchors") or [])
+        head = (f"{'1' if k == 1 else f'1~{k}'}년차 컨센서스 {', '.join(f'{m:.1%}' for m in margin_base['anchors'])} 고정 → ") if k else f"출발 {margin_base['m0']:.0%} → "
+        prov["margin"] = head + f"목표 {margin_base['target']:.0%}({margin_base['year_target']}년차{', 덮어쓰기' if 'margin_base' in ov else ''}) → 장기 수렴 {margin_base.get('lr', 0.15):.0%}"
+    if "s2c" in ov:
+        prov["s2c"] += f" → 덮어쓰기 {s2c}"
 
     pf, dl = p["profile"], p.get("dilution") or {}
-    shares = pf["shares_basic"] + sum(dl.get(k) or 0 for k in ("options", "rsu", "warrants", "converts_shares"))
-    prov["shares"] = f"완전 희석 = 기본 {pf['shares_basic']} + 옵션·RSU·워런트·전환 {shares - pf['shares_basic']:.4f}"
+    pot = dl["potential_total"] if dl.get("potential_total") is not None else sum(dl.get(k) or 0 for k in ("options", "rsu", "warrants", "converts_shares"))
+    shares = pf["shares_basic"] + pot
+    prov["shares"] = f"완전 희석 = 기본 {pf['shares_basic']}({pf.get('shares_date', '날짜 미기재')}) + 옵션·RSU·워런트·전환 {pot:.4f}" + (f" — {dl['source'][:60]}" if dl.get("source") else "")
     net_debt = (pf.get("debt") or 0) - (pf.get("cash") or 0)
     ic0 = fin.get("invested_capital") or max(0.1, rev0 / s2c)
 
@@ -149,7 +170,7 @@ def build(p):
         "notes": [f"자동 생성(build_drivers) {date.today().isoformat()} — 데이터 묶음 {p.get('as_of')}"] + ([f"어닝콜 위험: {r}" for r in call.get("risks") or []][:3]),
         "evidence": p.get("sources") or [],
     }
-    return drivers
+    return json.loads(json.dumps(drivers))   # 시나리오끼리 같은 목록을 공유하면 YAML 별칭(&id)이 생긴다
 
 
 def main(argv):

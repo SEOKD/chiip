@@ -65,7 +65,10 @@ class TestDCF(unittest.TestCase):
         rows, _ = dcf.project(d)
         pv_fcf = sum(r["fcff"] / (1 + d["wacc"]) ** r["t"] for r in rows[:5])
         ev_now = dcf.value(d)["ev"]
-        ev5 = e5 + d["net_debt"] - sum(r["fcff"] for r in rows[:5])
+        nd = d["net_debt"]   # 순현금엔 kd, 부족분엔 WACC(2026-10-29 개정 — dcf.equity_at과 같은 규칙)
+        for r in rows[:5]:
+            nd = nd * (1 + (d.get("kd", 0.0) if nd < 0 else d["wacc"])) - r["fcff"]
+        ev5 = e5 + nd
         self.assertAlmostEqual(ev_now, pv_fcf + ev5 / (1 + d["wacc"]) ** 5, places=6)
 
 

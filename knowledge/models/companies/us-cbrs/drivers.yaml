@@ -13,51 +13,58 @@ as_of: '2026-10-28'
 market:
   date: '2026-10-28'
   price: 112.56
-  shares: 0.2925
-  net_debt: -6.43
-  source: easyconomics company_profile(yfinance) 2026-10-28 · 10-Q 2026-06-30 발행주식
-    2.376억
-rev0: 0.89
-ic0: 3.15
+  shares: 0.304215
+  net_debt: -6.436
+  source: 가격 = easyconomics company_profile 2026-10-28 종가 · 주식 수 = 10-Q 재무상태표 2026-06-30
+    228,203,927주(희석 증권과 같은 날짜) · 현금 = 현금 6.742 + 단기투자 1.179 · 차입 = 단기 0.736 + 장기 0.182
+    + 리스 0.568(easyconomics 재무상태표 2026-06-30)
+rev0: 0.885
+ic0: 2.719
 scenarios:
   base:
     prob: 0.5
     growth:
-      start: 2.2742
+      start: 2.2922
       end: 0.035
       decay: 0.45
     margin:
-      m0: -0.55
+      m0: -0.24
       target: 0.22
       year_target: 4
       lr: 0.15
       lam: 0.35
+      anchors:
+      - -0.035
     s2c: 1.0
   bull:
-    prob: 0.25
+    prob: 0.3
     growth:
-      start: 2.8427
+      start: 2.8653
       end: 0.04
       decay: 0.5
     margin:
-      m0: -0.55
+      m0: -0.24
       target: 0.3
       year_target: 4
       lr: 0.15
       lam: 0.25
+      anchors:
+      - -0.035
     s2c: 1.15
   bear:
-    prob: 0.25
+    prob: 0.2
     growth:
-      start: 0.9097
+      start: 0.9169
       end: 0.030000000000000002
       decay: 0.35
     margin:
-      m0: -0.55
+      m0: -0.24
       target: 0.14
       year_target: 4
       lr: 0.15
       lam: 0.5
+      anchors:
+      - -0.035
     s2c: 0.85
 mc:
   sigma_growth: 0.12
@@ -65,22 +72,26 @@ mc:
   sigma_s2c: 0.2
   sigma_wacc: 0.005
 provenance:
-  rev0: 컨센서스 FY2026 0.89
-  growth: 컨센서스 1년차 227.4%
-  margin: 출발 컨센서스 FY2026 -55.0% → 목표 컨센서스 FY2027 3.0%(1년)
-  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5
+  rev0: 회사 가이던스 중간값 [0.88, 0.89] (2026-08-12 2Q26 실적 발표·어닝콜(easyconomics earnings_summary)
+    — FY2026 코어 매출 8.8~8.9억$(상향), 코어 영업이익률 −19~−17%, 3Q 코어 매출 2.14~2.16억$)
+  growth: 컨센서스 1년차 229.2%
+  margin: 1년차 컨센서스 -3.5% 고정 → 목표 22%(4년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 1.0
   range: 고·저 추정 없음 — 초고성장 규칙(약세 ×0.4·강세 ×1.25)
-  probs: '어닝콜 톤 ''flat'' 규칙 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
-  overrides: '목표 이익률 22%: AI 가속기 동종(MRVL 17%·LITE 28%) 중간, 클라우드 감가상각 부담 반영 / 매출÷투하자본
-    1.0: 자체 클라우드 장비 보유형(2.5~5년 수명)이라 자본 집약 — TTM 0.22는 램프 초기라 대표성 없음'
-  shares: 완전 희석 = 기본 0.2376 + 옵션·RSU·워런트·전환 0.0549
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '목표 영업이익률 22%(GAAP, SBC 포함): AI 가속기 동종 AMD 17%·MRVL 17%와 회사 장기 코어 총마진
+    60%+ 목표 사이 — 클라우드 감가상각 부담 반영 / 매출÷투하자본 1.0: 자체 클라우드 장비 보유형(1H26 설비투자 5.49억$ >
+    매출 3.74억$, 최대 고객이 데이터센터 투자 일부 보전) — 램프 초기 TTM 값은 대표성 없음 / SBC 6%: 비GAAP 이익률(가이던스·EPS
+    컨센서스)을 GAAP으로 맞추는 차감 — 상장 전 1Q26 5.0%, 상장 후 RSU 정상 수준 미확인'
+  shares: 완전 희석 = 기본 0.228204(2026-06-30) + 옵션·RSU·워런트·전환 0.0760 — SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarn
 notes:
 - 자동 생성(build_drivers) 2026-10-29 — 데이터 묶음 2026-10-28
-- '어닝콜 위험: OpenAI 단일 고객 집중(RPO 대부분)'
-- '어닝콜 위험: 웨이퍼 현장 수명·교체 CAPEX(숏 리포트 논점)'
-- '어닝콜 위험: 락업 해제 22%(11/10 전후)'
+- '어닝콜 위험: OpenAI·AWS 고객 집중'
+- '어닝콜 위험: 데이터센터 확보·구축 지연'
+- '어닝콜 위험: 임차 시스템으로 인한 총마진 하락(3Q 저점)'
 evidence:
-- SEC 10-Q 2026-08-12
-- 424B4 2026-05-14
-- easyconomics company_profile·earnings(2026-10-28)
+- easyconomics company_profile·financial_statements(분기 손익·재무상태·현금흐름)·earnings_summary
+  2026-08-12·company_peers (조회 2026-10-29 17:20 KST)
+- SEC XBRL companyfacts CIK 2021728(희석 증권·SBC, 조회 2026-10-29)
+- SEC 10-Q 2026-08-12 · 424B4 2026-05-14
 - outputs/invest/short/20261029_CBRS.md

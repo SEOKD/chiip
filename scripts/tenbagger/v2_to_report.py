@@ -5,7 +5,8 @@ scripts/valuation/v2/run.py의 evaluate()를 다시 돌려(같은 시드) 다음
   ② 시나리오 표 — 확률·지금 가치/시총·5년 뒤·5년 매출 CAGR, 기본 시나리오 ROIC·계속가치 비중·경제적 이익 항등 오차
   ③ 몬테카를로 분포(histogram) — 지금 가치/시총, P10·P50·P90·기대값
   ④ 가격 내포 기대 vs 기저율(hbars) — 시장 내포 CAGR·기본·2배·10배 필요 CAGR과 그 기저율 백분위(Mauboussin)
-  ⑤ 민감도 격자 — WACC ±1%p × 영구성장 ±0.5%p(기본 시나리오 가치/시총)
+  ⑤ 민감도 격자 — 장기 이익률 × 매출÷투하자본(기본 시나리오 가치/시총). 2026-10-29 CBRS 점검: 계속가치가 RONIC = WACC라
+     영구성장률은 가치를 거의 바꾸지 않는다 → 가치를 실제로 가르는 두 동인으로 바꾸고, WACC·RONIC 민감도는 한 줄로
   ⑥ 상대가치(comps) — 동종사 EV/매출 vs 성장 회귀(데이터 묶음 peers가 있을 때), 내포 배수와 현재 배수
   ⑦ 동인 출처(provenance) — 컨센서스·가이던스·어닝콜·재무 중 어디서 왔는지
 사용: py scripts/tenbagger/v2_to_report.py <entity_id> --merge outputs/tenbagger/reports/<날짜>_<티커>.json
@@ -43,8 +44,10 @@ def histogram(xs, bins=14, lo=None, hi=None):
 
 
 def comps(peers, target_growth, target_ev_sales):
-    """EV/매출 = a + b × 성장 (최소제곱). 동종 4개 미만이면 중앙값"""
-    pts = [(p["growth_ntm"], p["ev_sales_ntm"]) for p in peers or [] if p.get("growth_ntm") is not None and p.get("ev_sales_ntm")]
+    """EV/매출 = a + b × 성장 (최소제곱). 동종 4개 미만이면 중앙값. 동종 값은 ev_sales·growth(기준은 datapack peers_basis) —
+    예전 이름 ev_sales_ntm·growth_ntm도 읽는다"""
+    pts = [(p.get("growth", p.get("growth_ntm")), p.get("ev_sales", p.get("ev_sales_ntm"))) for p in peers or []]
+    pts = [(g, v) for g, v in pts if g is not None and v]
     if not pts:
         return None
     if len(pts) < 4:
@@ -71,9 +74,20 @@ def build(entity, draws=3000):
     blocks.append({"type": "table", "title": "할인율(WACC) 구성", "headers": ["항목", "값"], "rows": [
         ["무위험(미 10년)", f"{c['rf']:.2%}"], ["주식 위험 프리미엄", f"{c['erp']:.2%}"], ["레버드 베타(바텀업)", f"{c['beta']:.2f} (무레버 {c['beta_unlevered']:.2f})"],
         ["국가위험", f"{c['crp']:.2%}"], ["자기자본비용", f"{c['ke']:.2%}"], ["부채비중", f"{c['debt_weight']:.0%}"], ["WACC", f"**{c['wacc']:.2%}**"], ["영구성장", f"{r['g_term']:.1%}"]]})
-    rows = [[n, f"{s['prob']:.0%}", f"{s['v0']:.2f}배", f"{s['v5']:.2f}배", f"{s['cagr5']:.1%}"] for n, s in r["scenarios"].items()]
-    blocks.append({"type": "table", "title": "시나리오별 내재가치 (현재 시가총액 대비)", "headers": ["시나리오", "확률", "지금", "5년 뒤", "5년 매출 CAGR"], "rows": rows})
-    blocks.append({"type": "p", "text": f"기본 시나리오: ROIC 1년차 {b['roic_y1']:.0%} → 5년차 {b['roic_y5']:.0%} · 계속가치 비중 {b['cv_share']:.0%} · 경제적 이익 항등 오차 {b['ep_gap']:.1e}(DCF와 EP 가치가 같아야 정상) · 할인율 +50bp → 가치 {r['rate_50bp']['chg']:+.1%}(듀레이션 약 {r['rate_50bp']['duration']:.0f}년)"})
+    ko = {"base": "기본", "bull": "강세", "bear": "약세"}
+    rows = []
+    for n, s in r["scenarios"].items():
+        sd = scenarios.drivers(co, co["scenarios"][n], c["wacc"], r["g_term"])
+        rows.append([ko.get(n, n), f"{s['prob']:.0%}", f"{s['v0'] * mcap:,.1f}", f"**{s['v0']:.2f}배**", f"{s['v5']:.2f}배", f"{s['cagr5']:.1%}", f"{sd['margin'][4]:.0%}"])
+    blocks.append({"type": "table", "title": f"시나리오별 DCF 주주가치 ÷ 현재 시가총액({mcap:,.1f} {r['unit']})",
+                   "headers": ["시나리오", "확률", f"주주가치({r['unit']})", "지금", "5년 뒤(할인 전)", "5년 매출 CAGR", "5년차 영업이익률"], "rows": rows})
+    blocks.append({"type": "p", "text": "**읽는 법:** '배'는 PER·EV/매출 같은 멀티플이 아니라 **DCF로 계산한 주주가치 ÷ 지금 시가총액**이다. 1.0배 = 그 시나리오 가정이 지금 주가와 같은 가치, 0.3배 = 가정대로면 주가의 30%만 현금흐름으로 설명된다. "
+                   "'5년 뒤'는 5년 뒤 시점의 주주가치(그때 돈, 할인 전)를 지금 시가총액으로 나눈 값 — 지금 사서 5년 들고 있을 때 그 시점 내재가치가 지금 가격의 몇 배인가. 매년 약 WACC만큼 커진다(배당 없음, 적자 현금흐름은 차입으로 메운다고 가정)."})
+    ev_b = dcf.value(base_d)["ev"]
+    pv_cv = ev_b * b["cv_share"]
+    blocks.append({"type": "p", "text": f"기본 시나리오 분해: 기업가치 {ev_b:,.1f} = 1~10년 현금흐름 현재가치 {ev_b - pv_cv:,.1f} + 11년차 이후(계속가치) {pv_cv:,.1f} {r['unit']}"
+                   f"(초기 재투자가 커서 1~10년 합이 음수면 계속가치가 기업가치의 100%를 넘는다) · 순현금 {-base_d['net_debt']:,.1f} · ROIC 1년차 {b['roic_y1']:.0%} → 5년차 {b['roic_y5']:.0%} · "
+                   f"경제적 이익 항등 오차 {b['ep_gap']:.1e}(DCF와 EP 가치가 같아야 정상) · 할인율 +50bp → 가치 {r['rate_50bp']['chg']:+.1%}"})
     mc = montecarlo.simulate(co, c["wacc"], r["g_term"], 5, draws, 20261028)
     labels, pct = histogram([v / mcap for v in mc["v0"]])
     if labels:
@@ -96,30 +110,53 @@ def build(entity, draws=3000):
             pct_note.append(f"{mult}배 필요 성장 기저율 상위 {100 - t[0]:.0f}%")
     blocks.append({"type": "chart", "chart": {"kind": "hbars", "title": "가격 내포 기대 vs 필요 성장 (5년 매출 CAGR %)", "unit": "%", "rows": bars,
                    "note": " · ".join(pct_note) + " — 기저율: 같은 매출 규모 미국 상장사가 실제로 달성한 5년 CAGR 분포(SEC 재무)"}})
+    bs = co["scenarios"]["base"]
+    s2cs = sorted({round(bs.get("s2c") or 1.0, 2), 0.75, 1.5, 2.5})
+    lrs = sorted({round(bs["margin"]["target"], 2), 0.15, 0.30, 0.40}) if isinstance(bs["margin"], dict) else [0.15, 0.30, 0.40]
     grid_rows = []
-    for dw in (-0.01, -0.005, 0.0, 0.005, 0.01):
-        row = [f"WACC {c['wacc'] + dw:.1%}"]
-        for dg in (-0.005, 0.0, 0.005):
-            d = dict(base_d, wacc=c["wacc"] + dw, g_term=r["g_term"] + dg)
+    for lr in lrs:
+        row = [f"장기 이익률 {lr:.0%}"]
+        for s2 in s2cs:
+            sc = {**bs, "margin": {**bs["margin"], "target": lr, "lr": lr}, "s2c": s2}
             try:
-                row.append(f"{dcf.value(d)['equity'] / mcap:.2f}")
-            except (ValueError, ZeroDivisionError):
+                row.append(f"{dcf.value(scenarios.drivers(co, sc, c['wacc'], r['g_term']))['equity'] / mcap:.2f}")
+            except (ValueError, ZeroDivisionError, TypeError):
                 row.append("-")
         grid_rows.append(row)
-    blocks.append({"type": "table", "title": "민감도 — 기본 시나리오 가치/시총", "headers": ["", f"영구성장 {r['g_term'] - 0.005:.1%}", f"{r['g_term']:.1%}", f"{r['g_term'] + 0.005:.1%}"], "rows": grid_rows})
+    blocks.append({"type": "table", "title": "민감도 — 기본 시나리오 가치/시총(매출 경로 고정, 장기 이익률 × 매출÷투하자본)",
+                   "headers": [""] + [f"매출÷투하자본 {s:g}" for s in s2cs], "rows": grid_rows})
+    alt = []
+    for label, d in (("WACC −1%p", dict(base_d, wacc=c["wacc"] - 0.01)), ("WACC +1%p", dict(base_d, wacc=c["wacc"] + 0.01)),
+                     ("RONIC 20%(11년차 이후 성장이 가치 창출)", dict(base_d, ronic=0.20))):
+        try:
+            alt.append(f"{label} {dcf.value(d)['equity'] / mcap:.2f}배")
+        except (ValueError, ZeroDivisionError):
+            pass
+    blocks.append({"type": "p", "text": "매출÷투하자본 = 매출 1달러를 늘리는 데 드는 설비·운전자본(높을수록 가볍다). 장기 이익률은 4년차 목표와 이후 수렴값을 같이 바꾼 것. "
+                   f"계속가치는 RONIC = WACC(11년차 이후 성장은 가치를 만들지 않는다는 맥킨지 보수 가정) · 다른 축: " + " · ".join(alt)})
     dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
     if dp_path.exists():
         dp = json.loads(dp_path.read_text(encoding="utf-8"))
-        revs = [dp["consensus"]["rev"][k] for k in sorted((dp.get("consensus") or {}).get("rev") or {})]
-        g_ntm = revs[1] / revs[0] - 1 if len(revs) >= 2 else None
         ev = mcap + co["market"]["net_debt"]
-        cur = ev / revs[1] if len(revs) >= 2 else None
-        cp = comps(dp.get("peers"), g_ntm, cur) if g_ntm is not None else None
+        basis = dp.get("peers_basis", "ntm")   # 동종과 대상은 같은 기준끼리만 비교(2026-10-29: TTM 동종 값을 '선행'으로 표기한 오류)
+        if basis == "ttm":
+            fin = dp.get("financials") or {}
+            g_t, cur, blab = fin.get("rev_growth_ttm"), (ev / fin["rev_ttm"] if fin.get("rev_ttm") else None), "최근 12개월"
+        else:
+            revs = [dp["consensus"]["rev"][k] for k in sorted((dp.get("consensus") or {}).get("rev") or {})]
+            g_t = revs[1] / revs[0] - 1 if len(revs) >= 2 else None
+            cur, blab = (ev / revs[1] if len(revs) >= 2 else None), "선행"
+        cp = comps(dp.get("peers"), g_t, cur) if g_t is not None and cur else None
         if cp:
-            blocks.append({"type": "chart", "chart": {"kind": "hbars", "title": f"상대가치 — EV/선행 매출 ({cp['method']})", "unit": "배", "rows": [
-                {"label": "동종 내포", "bars": [{"name": "EV/매출", "color": "d", "value": round(cp["implied"], 2)}]},
-                {"label": "현재", "bars": [{"name": "EV/매출", "color": "b", "value": round(cp["current"], 2)}]}],
-                "note": (f"회귀 설명력 R² {cp['r2']:.2f}" if cp.get("r2") is not None else "동종 4사 미만 — 중앙값") + f" · 대상 선행 성장 {g_ntm:.1%}"}})
+            blocks.append({"type": "chart", "chart": {"kind": "hbars", "title": f"상대가치 — EV/{blab} 매출 ({cp['method']})", "unit": "배", "rows": [
+                {"label": "동종 회귀 내포", "bars": [{"name": "EV/매출", "color": "d", "value": round(cp["implied"], 2)}]},
+                {"label": "현재(완전 희석)", "bars": [{"name": "EV/매출", "color": "b", "value": round(cp["current"], 2)}]}],
+                "note": (f"회귀 설명력 R² {cp['r2']:.2f}" if cp.get("r2") is not None else "동종 4사 미만 — 중앙값") + f" · 대상 {blab} 성장 {g_t:.1%} · 동종 "
+                        + ", ".join(f"{x['ticker']} {x.get('ev_sales', x.get('ev_sales_ntm')):.1f}배" for x in dp.get("peers") or []) + f" · 출처 {dp.get('peers_source', '미기재')[:60]}"}})
+        import datapack_check
+        chk = datapack_check.check(dp)
+        blocks.append({"type": "table", "title": f"데이터 검증 — 원자료(easyconomics·SEC) ↔ 밸류에이션 입력 대조 {chk['score']}/10",
+                       "headers": ["검사", "결과", "내용"], "rows": [[c["name"], c["status"], c["detail"][:140]] for c in chk["checks"]]})
     prov = co.get("provenance") or {}
     if prov:
         blocks.append({"type": "table", "title": "동인 출처 — 어느 자료가 어느 변수가 됐나", "headers": ["동인", "출처·값"], "rows": [[k, v] for k, v in prov.items()]})
