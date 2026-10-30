@@ -1,0 +1,8 @@
+# 어닝콜 인사이트 피드 파라미터 (scripts/insight/call_feed.py · scripts/fiscal/templates/call_feed.js) — 2026-10-30 마스터 지시
+# 값의 출처·피팅 상태는 knowledge/models/params/registry.yaml(prm-callfeed-*). 바꾸면 등록부와 changelog.csv도 같이.
+params:
+  beta_window: 120        # β 추정 창(거래일) — MacKinlay (1997) 사건 연구 관행
+  beta_min: 60            # β 최소 표본(미만이면 β = 1)
+  runup_days: 20          # 발표 전 상승 창(거래일) — 기대 수준 근사
+  short_answer_words: 40  # 답변 회피 후보: 경영진 답변 단어 수 미만 — Hollander, Pronk & Roelofsen (2010)
+  question_min_words: 25  # 물음표 없는 애널리스트 발언이 이 단어 수 이상이면 질문으로 본다(인사말 제외)

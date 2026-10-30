@@ -30,8 +30,9 @@
    a. `check`가 true면: `py radar/transcript_watch.py --code` 출력(본보기 scripts/fiscal/templates/transcript_check.js, 최대 36건)을 execute_code로 돌리고 결과를 파일로 저장 → `py radar/transcript_watch.py --put <파일>` → 정리 대상 목록(우선순위 순, `scope`·`files` 포함). 이미 콜 기준 ②·③을 보낸 실적은 스크립트가 '이미 정리'로 넘긴다.
    b. 한 회차에 **2건까지** 정리한다(남은 건은 다음 회차 — `to_summarize`가 남아 있으면 관문이 다시 연다). 이번 콜 전문은 `company_ir_events_transcript`(eventKey = 목록의 event), 직전 분기 콜은 그 전 분기 키로.
    c. `scope` "3단"(보유·레이더 테마·노션 Stocks·알파 5+): Dean's Ticker 3단(`knowledge/methods/earnings_format.md`). `files`에 ①이 있으면 ①은 다시 보내지 않고 ②·③만, 없으면 ①부터(est.는 earnings_est.js). 보도자료로 ②를 먼저 보냈던 실적(--await 표시)은 ② 제목 끝에 `(어닝콜 반영)`을 붙여 콜 기준으로 다시 쓴다.
-   d. `scope` "② 뉴팩트"(나머지 감시 종목): ② 뉴팩트 한 통만(직전 콜 대비, 많아도 8줄). 숫자가 놀랍거나 한국 기업·보유 종목 파급이 크면 3단으로 올린다.
-   e. 보낸 뒤 `py radar/transcript_watch.py --done <key> <event>`. 이 건들은 묶음 메시지에 넣지 않는다(실적 건과 같은 규칙 — 따로 보낸다). 전사는 라이선스 자료 — 요지만 자기 말로, 인용 15단어 이하.
+   d. `scope` "② 뉴팩트"(나머지 감시 종목): ② 뉴팩트 한 통만(직전 콜 대비, 많아도 8줄). 숫자가 놀랍거나 한국 기업·보유 종목 파급이 크면 3단으로 올린다. ②는 범위와 무관하게 제목 아래 `☞ 회사 설명 1줄`(마스터 지시 2026-10-30).
+   d2. **④ 인사이트 피드 — c·d 어느 범위든 ②(·③) 다음에 한 통**(마스터 지시 2026-10-30 "뒤늦게 올라오면 뉴팩트 정리와 함께 인사이트 피드도"). 목록의 `feed.code`(= `py scripts/insight/call_feed.py code <키> <이벤트>`) 출력을 execute_code → 파일 → `py scripts/insight/call_feed.py calc <파일> <키> <이벤트>`로 반응일 AR·β·발표 전 상승·표류·Q&A 비교를 받고, CIF 7단계(콜용 조정 — 새로움 최대 2, `insight_calc.py diffusion --callqa`, 기저율 `call_qa_content`·`call_nonanswer`·`earnings_drift`)로 판단해 `knowledge/methods/earnings_format.md` ④ 양식으로 `feed.file`에 쓰고 `notify.send(본문, 'PULSE', md=True)`. 인사이트 4 미만이면 짧은 형식, 7 이상이면 예측 등록. 보낸 뒤 `py scripts/insight/call_feed.py log <키> <이벤트> --score … --view … --conf …`.
+   e. 보낸 뒤 `py radar/transcript_watch.py --done <key> <event>` — ④ 파일이 없으면 '미완료'로 돌려준다(못 쓰는 사유가 있으면 `--no-feed <이유>`). 이 건들은 묶음 메시지에 넣지 않는다(실적 건과 같은 규칙 — 따로 보낸다). 전사는 라이선스 자료 — 요지만 자기 말로, 인용 15단어 이하.
    f. 실적 발표 건을 보도자료로 먼저 보내고 콜 전문을 기다리는 경우(1-0의 '콜 반영 갱신 대기')는 `py radar/transcript_watch.py --await <회사 키> <q분기-연도>`로 표시해 둔다.
 
 1. ① 미보도 원문 — 최대 3건, 어디에도 보도되지 않은 것만.

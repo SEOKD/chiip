@@ -9,9 +9,11 @@
 사용: py radar/transcript_watch.py                  # 상태 요약(JSON)
       py radar/transcript_watch.py --code           # 확인할 [{key, event}]를 채운 execute_code 본문(최대 36건)
       py radar/transcript_watch.py --put <파일>      # execute_code 출력 → 새로 올라온 전문 목록(정리 대상, 우선순위 순)
-      py radar/transcript_watch.py --done <key> <event>   # 정리를 마친 전문
+      py radar/transcript_watch.py --done <key> <event> [--no-feed <이유>]   # 정리를 마친 전문(④ 인사이트 피드 파일이 있어야 완료)
       py radar/transcript_watch.py --await <key> <event>  # 보도자료로 ②를 먼저 보낸 실적 — 전문이 오면 ②·③을 콜 기준으로 다시
 정리 범위: 보유·레이더 테마·노션 Stocks·알파 5+(tier 0·1)는 Dean's Ticker 3단(① 미발송이면 ①부터), 나머지(tier 2)는 ② 뉴팩트 한 통.
+  + 어느 범위든 ④ 인사이트 피드 한 통(마스터 지시 2026-10-30 "뒤늦게 올라오면 뉴팩트 정리와 함께 인사이트 피드도") — 숫자는
+  scripts/insight/call_feed.py(발표 반응 AR·β·게재까지 표류·Q&A 비교), 양식은 knowledge/methods/earnings_format.md ④. --done은 ④ 파일이 있어야 완료로 친다.
   이미 콜 기준 ②를 보낸 실적(②·③ 파일이 있고 --await 표시가 없음)은 '이미 정리'로 넘긴다.
 """
 import json
@@ -120,16 +122,30 @@ def due(now=None, st=None):
     return {"due": check or bool(to_summarize(st)), "check": check, "waiting": len(waiting), "to_summarize": len(to_summarize(st))}
 
 
+def _rel(p):
+    return p.relative_to(common.ROOT).as_posix() if p.is_relative_to(common.ROOT) else str(p)
+
+
+def feed_path(r, now=None):
+    """④ 인사이트 피드 파일 — 전문을 찾은 날(KST) 이름"""
+    at = datetime.fromisoformat(r["found_at"]) if r.get("found_at") else (now or datetime.now(timezone.utc))
+    day = (at + timedelta(hours=9)).strftime("%Y%m%d")
+    return EARN / f"{day}_{(r.get('ticker') or '').upper()}_4.txt"
+
+
 def earnings_files(r):
-    """이미 보낸 Dean's Ticker 파일(발표일·다음 날 KST 파일명)"""
+    """이미 보낸 Dean's Ticker 파일(발표일·다음 날·전문 발견일 KST 파일명, ④ = 인사이트 피드)"""
     t = (r.get("ticker") or "").upper()
     d = datetime.fromisoformat(r["date"])
+    days = [d, d + timedelta(days=1)]
+    if r.get("found_at"):
+        days.append(datetime.fromisoformat(r["found_at"]) + timedelta(hours=9))
     out = {}
-    for day in (d, d + timedelta(days=1)):
-        for n in (1, 2, 3):
+    for day in days:
+        for n in (1, 2, 3, 4):
             p = EARN / f"{day.strftime('%Y%m%d')}_{t}_{n}.txt"
             if p.exists():
-                out[n] = p.relative_to(common.ROOT).as_posix() if p.is_relative_to(common.ROOT) else str(p)
+                out[n] = _rel(p)
     return out
 
 
@@ -159,17 +175,24 @@ def put(path, now=None):
     st["last_check"] = now.isoformat()
     st["last_errors"] = (data.get("errors") or [])[:10]
     common.save_state(STATE, st)
-    return [dict(r, files=earnings_files(r), scope="3단" if r.get("tier", 2) < 2 else "② 뉴팩트") for r in to_summarize(st)]
+    return [dict(r, files=earnings_files(r), scope="3단" if r.get("tier", 2) < 2 else "② 뉴팩트",
+                 feed={"file": _rel(feed_path(r)), "code": f"py scripts/insight/call_feed.py code {r['key']} {r['event']}"})
+            for r in to_summarize(st)]
 
 
-def done(key, event, now=None):
+def done(key, event, no_feed=None, now=None):
+    """정리 완료 — ④ 인사이트 피드 파일이 없으면 완료로 치지 않는다(다음 회차가 다시 잡는다). 피드를 못 쓰는 사유가 있으면 no_feed로 남긴다"""
     st = common.load_state(STATE, {})
     r = st.get("events", {}).get(f"{key}|{event}")
     if not r:
-        return False
+        return "해당 건 없음"
+    if 4 not in earnings_files(r) and not no_feed:
+        return f"미완료 — 인사이트 피드 파일 없음({_rel(feed_path(r))}). 보낸 뒤 다시, 못 쓰면 --no-feed <이유>"
     r.update({"status": "done", "done_at": (now or datetime.now(timezone.utc)).isoformat()})
+    if no_feed:
+        r["no_feed"] = no_feed
     common.save_state(STATE, st)
-    return True
+    return "완료"
 
 
 def mark_await(key, event, now=None):
@@ -200,7 +223,8 @@ def main(argv):
         return 0
     if "--done" in argv:
         i = argv.index("--done")
-        print("완료" if done(argv[i + 1], argv[i + 2]) else "해당 건 없음")
+        nf = " ".join(argv[argv.index("--no-feed") + 1:]) if "--no-feed" in argv else None
+        print(done(argv[i + 1], argv[i + 2], nf))
         return 0
     print(json.dumps(due(), ensure_ascii=False))
     return 0

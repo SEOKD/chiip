@@ -85,6 +85,7 @@ DIFFUSION = {
     "afterhours": ("금요일·장 마감 후 발표", "DellaVigna & Pollet (2009), JF 64(2)"),
     "short": ("공개 숏 리포트", "Ljungqvist & Qian (2016), RFS 29(8)"),
     "smallcap": ("소형주·커버리지 적음", "Hong, Lim & Stein (2000), JF 55(1)"),
+    "callqa": ("어닝콜 Q&A 속 변화·답변 회피(전문 지연 게재)", "Matsumoto, Pronk & Roelofsen (2011), TAR 86(4); Hollander, Pronk & Roelofsen (2010), JAR 48(3)"),
     "foreign": ("외국어 1차 자료(일본어·중국어 공시)", "치입 운영 가설 — 문헌 미확인"),
 }
 

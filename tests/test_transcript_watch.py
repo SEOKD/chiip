@@ -65,8 +65,19 @@ class TestTranscriptWatch(unittest.TestCase):
         self.assertEqual(todo[0]["scope"], "3단")
         self.assertEqual(self.state["events"]["NASDAQ_BBB|q1-2027"]["status"], "done")
         self.assertFalse(tw.due(NOW)["check"])   # 방금 확인 — 20분 안에는 다시 묻지 않는다
-        self.assertTrue(tw.done("NASDAQ_AAA", "q3-2026", NOW))
+        self.assertTrue(todo[0]["feed"]["file"].endswith("20261030_AAA_4.txt"))   # ④ 인사이트 피드 = 전문 발견일(KST) 이름
+        self.assertTrue(tw.done("NASDAQ_AAA", "q3-2026", now=NOW).startswith("미완료"))   # ④ 없이는 완료가 아니다
+        self.assertEqual(len(tw.to_summarize(self.state)), 1)
+        Path(self.tmp.name, "20261030_AAA_4.txt").write_text("x", encoding="utf-8")
+        self.assertEqual(tw.done("NASDAQ_AAA", "q3-2026", now=NOW), "완료")
         self.assertEqual(tw.to_summarize(self.state), [])
+
+    def test_done_with_no_feed_reason(self):
+        out = Path(self.tmp.name) / "out.json"
+        out.write_text(json.dumps({"found": [{"key": "NASDAQ_AAA", "event": "q3-2026", "paragraphs": 90}]}), encoding="utf-8")
+        tw.put(out, NOW)
+        self.assertEqual(tw.done("NASDAQ_AAA", "q3-2026", "종가 없음", NOW), "완료")
+        self.assertEqual(self.state["events"]["NASDAQ_AAA|q3-2026"]["no_feed"], "종가 없음")
 
     def test_await_forces_rewrite_even_with_files(self):
         for n in (1, 2, 3):

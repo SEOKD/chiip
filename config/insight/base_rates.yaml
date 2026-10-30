@@ -67,3 +67,17 @@ events:
     magnitude: null
     note: "작고 애널리스트가 적은 종목일수록, 특히 나쁜 소식이 늦게 반영된다"
     source: "Hong, Lim & Stein (2000), Bad News Travels Slowly: Size, Analyst Coverage, and the Profitability of Momentum Strategies, Journal of Finance 55(1)"
+  call_qa_content:
+    label: 어닝콜 Q&A 내용·어조(발표문 대비)
+    direction: delayed_same_sign
+    magnitude: null
+    note: "Q&A 구간이 경영진 발표문보다 정보가 많다(애널리스트 질문이 공시 밖 정보를 끌어낸다). Q&A 어조는 발표 당일 비정상 수익률과 이후 60거래일 표류를 실적 서프라이즈와 별개로 설명 — 전문을 늦게 읽어도 표류 구간에는 값이 남는다"
+    source: "Matsumoto, Pronk & Roelofsen (2011), What Makes Conference Calls Useful?, The Accounting Review 86(4); Price, Doran, Peterson & Bliss (2012), Earnings Conference Calls and Stock Returns: The Incremental Informativeness of Textual Tone, Journal of Banking & Finance 36(4); Frankel, Johnson & Skinner (1999), Journal of Accounting Research 37(1)"
+    added: "2026-10-30 마스터 직접 지시(어닝콜 인사이트 피드) — model-lab 제안서 없이 추가, 주간 피팅 때 표본 외 점검"
+  call_nonanswer:
+    label: 어닝콜 답변 회피(질문에 답하지 않음)
+    direction: negative
+    magnitude: null
+    note: "경영진이 질문에 답하지 않으면 시장은 나쁜 소식을 숨긴 것으로 읽는다(침묵도 신호). 짧은 답·'말하지 않겠다' 표현은 후보일 뿐 — 원문 맥락으로 판정"
+    source: "Hollander, Pronk & Roelofsen (2010), Does Silence Speak? An Empirical Analysis of Disclosure Choices During Conference Calls, Journal of Accounting Research 48(3)"
+    added: "2026-10-30 마스터 직접 지시(어닝콜 인사이트 피드) — model-lab 제안서 없이 추가, 주간 피팅 때 표본 외 점검"

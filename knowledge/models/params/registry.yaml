@@ -1390,3 +1390,51 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-callfeed-beta-window
+  model: insight.call_feed
+  binding: config/insight/call_feed.yaml#params.beta_window
+  value: 120
+  unit: 거래일
+  status: prior
+  prior:
+    value: 120
+    basis: 사건 연구의 추정 창 관행(사건 전 약 120거래일 시장 모형 β) — 반응일 비정상 수익률 AR = 종목 − β×시장 근사. 2026-10-30 마스터 지시(어닝콜 인사이트 피드)
+    source: MacKinlay (1997) Event Studies in Economics and Finance, JEL 35(1)
+  fit:
+    method: 창 길이별 반응일 AR 분산 비교(짧을수록 잡음, 길수록 β 변화 놓침)
+    target: 인사이트 피드 판단 이후 20거래일 AR 예측 오차
+    data: knowledge/models/earnings/call_feed/log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-callfeed-runup-window
+  model: insight.call_feed
+  binding: config/insight/call_feed.yaml#params.runup_days
+  value: 20
+  unit: 거래일
+  status: prior
+  prior:
+    value: 20
+    basis: 발표 전 상승폭을 기대 수준의 근사로 — 많이 오른 채 발표를 맞으면 같은 서프라이즈에도 반응이 작다(기준선이 높다). 약 1개월
+    source: 치입 운영 가정 — 문헌 값 미확인(PEAD 문헌은 발표 전후 창을 따로 둔다, Bernard & Thomas 1989 JAR 27)
+  fit:
+    method: 10·20·40거래일 비교
+    target: 반응일 AR 설명력
+    data: knowledge/models/earnings/call_feed/log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-callfeed-short-answer
+  model: insight.call_feed
+  binding: config/insight/call_feed.yaml#params.short_answer_words
+  value: 40
+  unit: 단어
+  status: prior
+  prior:
+    value: 40
+    basis: 답변 회피 후보 — 경영진 답변이 40단어 미만이거나 '말하지 않겠다'류 표현. 후보일 뿐 모델이 원문 맥락으로 판정
+    source: Hollander, Pronk & Roelofsen (2010) Does Silence Speak?, JAR 48(3)
+  fit:
+    method: 후보 중 모델이 회피로 판정한 비율(정밀도)·놓친 회피(재현율) 표본 점검
+    target: 회피 판정 정밀도
+    data: knowledge/models/earnings/call_feed/log.csv
+    last_fit: null
+    oos_metric: null
