@@ -95,6 +95,7 @@
 - 소비재·게임·콘텐츠IP 발굴(Chiip Consumer, 마스터 2026-10-30 — 타카라토미 실적 +11% 계기, 설계안 승인 '이대로 구현'): config/consumer.yaml(30종목·국면 문턱·가중치) · knowledge/methods/consumer_lens.md · radar/consumer_attention.py(위키 조회·스팀 추천·애플 순위·브랜드 뉴스, run_hourly 하루 1회) · scripts/discovery/consumer.py(국면 판정·점수·株探 --kabutan·--put-q) · scripts/fiscal/templates/consumer.js · 펄스 '소비재' 클래스(지도 종목 실적·적시공시·급가속)·🛍 블록 · Ten-bagger d3·bands sectors.consumer · 레이더 종목 인식·수집 관문·SEC·기업 1줄·일본 적시공시/IR 자료실 10개사 · 등록부 prm-consumer-* 15개. 원천 점검: 아마존·레딧 직접·틱톡·스팀 리뷰 API·eir-parts.net은 robots 차단. 시험 tests/test_consumer.py
 - 텐배거 리포트 양식 개정(마스터 2026-10-30): 맨 앞 내러티브 절(여섯 렌즈·제품·서비스·기술, narrative_view.lead_section)·배수 사다리(ladder.py — $30B 미만 2·3·5·10배, $30B~$100B 2·3·5배, $100B 이상 2배)·그림 고정 3·5·8(pin)·지난 12개월 EPS 리비전 추이와 최근 4개 분기 주가 분해(revision_view.py, eps_history.js)·논문 표기 제거(scrub). 알파 레이더 재실행 최상위 UCTT 7.3 리포트를 새 양식으로 재작성
 - 텐배거 리포트 양식 2차 개정(마스터 2026-10-30): 리포트에서 데이터 제공처 이름·Zacks 표기 제거(구분은 '모델 추정'·'애널리스트 추정', 렌더러 scrub), 본문 아래 부가 설명 제거(업사이드 기준·차트와 표 주석·읽는 법), 전문 용어·영어 약자 기관명 한국어 풀이(config/report_glossary.yaml), 콜 변화 영향에서 확신도 가중 수치 제거, 분기별 서프라이즈 매출·OPM·EPS(EBITA Margin 대체 지원). UCTT 리포트 같은 링크로 재발행
+- 한국 IR 자료 상시 감시(마스터 2026-10-30 재점검 후 지시): radar/pollers/kr_ir_docs.py·config/kr_ir.yaml — IRGO 종목 페이지 + 공식 자료실, 경영실적 자료·콜 스크립트를 펄스 ⑥-2·⑥으로, 그림 PDF는 원본 보관
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

@@ -34,8 +34,8 @@ PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-a
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
-CLASSES = [("IR 질의응답", ("src-jp-ir-qa",)),   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
-           ("IR 자료", ("src-jp-ir-docs",)),   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
+CLASSES = [("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa")),   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
+           ("IR 자료", ("src-jp-ir-docs", "src-kr-ir-docs")),   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
            ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
@@ -118,7 +118,7 @@ def score(it, cls):
 
 def relevant(it, cls):
     text = f"{it.get('title', '')} {it.get('snippet', '')}"
-    if cls in ("IR 질의응답", "IR 자료"):   # 일본어 원문이 정상 — 언어 필터 예외
+    if cls in ("IR 질의응답", "IR 자료"):   # 일본어·한국어 원문이 정상 — 언어 필터 예외
         return True
     if cls == "방위":   # 독·프·이·스·일 국방부 원문이 정상 — 언어 필터 예외(원천에서 조달어로 이미 거름)
         return True
@@ -436,7 +436,7 @@ def run(now=None):
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",
-            "kind", "period", "doc_date", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike")   # IR 자료·Q&A·소비재 필드(2026-10-30)
+            "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike")   # IR 자료·Q&A·소비재 필드(2026-10-30)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],
