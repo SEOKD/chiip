@@ -101,6 +101,7 @@
 - 기준 멀티플 = Fwd 1Y 이익 지표(마스터 2026-10-30): multiples.main_metric·choose_basis, forward_multiples.js, adapter --forward-multiples, 시장÷내재는 EV끼리
 - 실적 지표 주가 줄(마스터 2026-10-30): 보고 시점 기준 장중·장전·장후 ±x%, radar/markets/session.py
 - 그림 5 재개정(마스터 2026-10-30): 선 위 사건 번호만, 점선 없음, 번호별 설명은 그래프 아래
+- 기준 멀티플 세 분류(마스터 2026-10-30): Fwd 1Y·2Y·3Y 그림 3개, 2·3Y는 같은 가격으로 분모만 바꾸고 3Y 모자란 분기는 마지막 연도 추정 성장률로 연장, 재료 없으면 merge 중단
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

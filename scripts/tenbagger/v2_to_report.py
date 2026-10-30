@@ -241,6 +241,9 @@ def main(argv):
     esec = earnings_section(a.entity, r)
     xs = extra_sections(a.entity, r)
     if a.merge:
+        fw = json.loads((ROOT / "knowledge" / "models" / "companies" / a.entity / "datapack.json").read_text(encoding="utf-8")).get("forward") or {}
+        if not a.legacy and "horizons" not in fw:
+            raise SystemExit("datapack에 Fwd 1Y·2Y·3Y 멀티플이 없다 — scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples 먼저(docs/tasks/chiip-tenbagger-report.md 2번). 옛 리포트 정정은 --legacy")
         if not a.legacy and not (xs["lead"] and xs["ladder"]):
             raise SystemExit("datapack에 narrative.lead와 ladder가 있어야 한다(docs/tasks/chiip-tenbagger-report.md 2번) — 옛 리포트 정정은 --legacy")
         p = Path(a.merge)

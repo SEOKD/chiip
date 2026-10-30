@@ -76,21 +76,34 @@ def put_eps_history(cid, out):
     return len(out.get("rows") or [])
 
 
+def later_multiples(row, ntm, horizons):
+    """Fwd 2Y·3Y 배수 = Fwd 1Y 배수 × 다음 4개 분기 이익 ÷ 그 해 이익 — 같은 가격·EV로 분모만 바꾼다. 이익이 0 이하면 비움"""
+    out = {}
+    for h in (2, 3):
+        later = (horizons or {}).get(str(h)) or {}
+        for key, field in (("pe_fwd", "eps"), ("ev_ebitda_fwd", "ebitda")):
+            mult, base, x = row.get(key), (ntm or {}).get(field), later.get(field)
+            out[f"{key}{h}"] = round(mult * base / x, 2) if mult and base and base > 0 and x and x > 0 else None
+    return out
+
+
 def put_forward(cid, out):
-    """forward_multiples.js 출력 → datapack multiples_now·forward·peers·history (Fwd 1Y 멀티플, 2026-10-30 마스터 지시). 반환: (대상 배수, 채운 동종 수, 과거 점 수)"""
+    """forward_multiples.js 출력 → datapack multiples_now·forward·peers·history (Fwd 1Y·2Y·3Y 멀티플, 2026-10-30 마스터 지시). 반환: (대상 배수, 채운 동종 수, 과거 점 수)"""
     p = ROOT / "knowledge" / "models" / "companies" / cid / "datapack.json"
     dp = json.loads(p.read_text(encoding="utf-8"))
     t = out.get("target") or {}
     now = dp.setdefault("multiples_now", {})
     for k in ("pe_fwd", "ev_ebitda_fwd"):
         now[k] = t.get(k)
-    dp["forward"] = {"as_of": out.get("as_of"), "ntm": out.get("ntm") or {}, "guided": out.get("guided") or {}, "src": t.get("src") or {}, "source": out.get("source")}
+    now.update(later_multiples(t, out.get("ntm"), out.get("horizons")))
+    dp["forward"] = {"as_of": out.get("as_of"), "ntm": out.get("ntm") or {}, "horizons": out.get("horizons") or {}, "guided": out.get("guided") or {}, "src": t.get("src") or {}, "source": out.get("source")}
     by_ticker = {k.split("_", 1)[-1]: v for k, v in (out.get("peers") or {}).items()}
     n = 0
     for row in dp.get("peers") or []:
         v = by_ticker.get(row.get("ticker"))
         if v:
             row.update({"pe_fwd": v.get("pe_fwd"), "ev_ebitda_fwd": v.get("ev_ebitda_fwd")})
+            row.update(later_multiples(v, v.get("ntm"), v.get("horizons")))
             q = v.get("ntm") or {}
             if q.get("revenue") and q.get("ebit") is not None:
                 row["ntm_ebit_margin"] = round(q["ebit"] / q["revenue"], 4)
@@ -101,7 +114,7 @@ def put_forward(cid, out):
     for k in ("pe_fwd", "ev_ebitda_fwd"):
         hist[k] = [{"date": r["date"], "value": r[k]} for r in out.get("history") or [] if r.get(k)]
     p.write_text(json.dumps(dp, ensure_ascii=False, indent=1), encoding="utf-8")
-    return {k: t.get(k) for k in ("pe_fwd", "ev_ebitda_fwd")}, n, len(out.get("history") or [])
+    return {k: now.get(k) for k in ("pe_fwd", "pe_fwd2", "pe_fwd3", "ev_ebitda_fwd", "ev_ebitda_fwd2", "ev_ebitda_fwd3")}, n, len(out.get("history") or [])
 
 
 def put_key(cid, key, url=None):
@@ -134,7 +147,7 @@ def main(argv):
         return 0
     if len(argv) >= 3 and argv[0] == "--forward-multiples":
         now, n, h = put_forward(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")))
-        print(f"[Fiscal.ai→Fwd 1Y 멀티플] {argv[1]} {now} · 동종 {n}곳 · 과거 {h}개월")
+        print(f"[Fiscal.ai→Fwd 1Y·2Y·3Y 멀티플] {argv[1]} {now} · 동종 {n}곳 · 과거 {h}개월")
         return 0
     if len(argv) >= 3 and argv[0] == "--key":
         put_key(argv[1], argv[2], argv[3] if len(argv) > 3 else None)

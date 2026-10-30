@@ -5,6 +5,8 @@
 멀티플 기준(마스터 지시 2026-10-30 "EV/매출 말고 Fwd 1Y P/E나 Fwd 1Y EV/EBITDA 등 이익 지표로. EPS가 주요 지표면 P/E, EBITDA가 주요 지표면 EV/EBITDA"):
   choose_basis가 회사마다 하나를 고른다 — EPS가 주요 지표면 Fwd 1Y P/E, EBITDA가 주요 지표면 Fwd 1Y EV/EBITDA. 선행 이익이 적자이거나 재료가 없을 때만 EV/매출(이유를 본문에 적는다).
   재료: 본보기 scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples → datapack multiples_now·forward·peers·history.
+  세 분류(같은 날 마스터 지시 "Fwd 1Y, Fwd 2Y, Fwd 3Y로 세 분류로 나눠서 그림을 보여줘"): 다음 4개 분기 · 5~8번째 · 9~12번째 분기 이익 기준. 기준 키 pe_fwd·pe_fwd2·pe_fwd3(EV/EBITDA도 같다).
+  시장÷내재는 EV끼리 재므로 세 분류가 같은 값을 쓰고, 분해·합리적 가치는 Fwd 1Y 기준으로 한 번만 적는다. 과거 레인지는 Fwd 1Y만 있다(2·3년 앞 추정 이력이 없다).
 
 방법(knowledge/methods/multiples.md에 문헌·한계):
   1) 자기 과거 레인지 — datapack history.<기준>(날짜별) 분위.
@@ -25,6 +27,7 @@ import dcf
 import scenarios
 
 BASES = {"pe_fwd": "Fwd 1Y P/E", "ev_ebitda_fwd": "Fwd 1Y EV/EBITDA", "ev_sales": "EV/매출"}
+HORIZONS = ((1, "Fwd 1Y"), (2, "Fwd 2Y"), (3, "Fwd 3Y"))
 DA_SHARE = 0.5     # 선행 EBITDA에서 감가상각이 이 비중 이상이면 순이익이 설비 상각에 가려진다 → EBITDA가 주요 지표
 MIN_PEERS = 3      # 동종 배수가 이보다 적으면 그 기준으로 비교하지 않는다
 
@@ -46,6 +49,27 @@ def main_metric(dp):
             return "ebitda", "회사가 EPS가 아니라 EBITDA로 가이던스를 낸다"
     parts = (["회사가 EPS로 가이던스를 내고"] if guided.get("eps") else []) + ([f"향후 12개월 EBITDA 중 감가상각이 {1 - ebit / ebitda:.0%}뿐이라"] if ebitda and ebit is not None else [])
     return "eps", (" ".join(parts) + " 순이익이 실적을 가장 잘 나타낸다") if parts else "EPS를 주요 지표로 본다"
+
+
+def horizon_key(basis, h):
+    return basis if h == 1 else f"{basis}{h}"
+
+
+def horizon_views(dp, basis, peers, sentiment, ratio_t, history):
+    """Fwd 1Y·2Y·3Y 그림 재료 — 대상 배수와 동종 MIN_PEERS곳이 있는 분류만. 내재 = 시장 배수 ÷ 시장÷내재(EV끼리, 세 분류 공통)"""
+    if basis == "ev_sales" or not ratio_t:
+        return []
+    now, name, out = dp.get("multiples_now") or {}, BASES[basis].split(" ", 2)[2], []
+    for h, head in HORIZONS:
+        k = horizon_key(basis, h)
+        acts = [x[k] for x in peers if (x.get(k) or 0) > 0]
+        if (now.get(k) or 0) <= 0 or len(acts) < MIN_PEERS:
+            continue
+        tw = now[k] / ratio_t
+        out.append({"h": h, "key": k, "label": f"{head} {name}", "current": now[k], "target_warranted": tw, "history": history if h == 1 else None,
+                    "peer_range": {q: pct(acts, v) for q, v in (("p25", 0.25), ("p50", 0.5), ("p75", 0.75))},
+                    "rational": {q: tw * sentiment[q] for q in ("p25", "p50", "p75") if sentiment.get(q)}})
+    return out
 
 
 def choose_basis(dp):
@@ -135,6 +159,8 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     if hist:
         out["history"] = {"p10": pct(hist, 0.1), "p50": pct(hist, 0.5), "p90": pct(hist, 0.9), "n": len(hist),
                           "basis": (dp.get("history") or {}).get("basis", "")}
+    out["horizons"] = horizon_views(dp, basis, peers, out["sentiment"], ev / ev_dcf if ev_dcf > 0 else None, out.get("history"))
+    out["ext"] = max((((dp.get("forward") or {}).get("horizons") or {}).get(str(h["h"])) or {}).get("ext") or 0 for h in out["horizons"]) if out["horizons"] else 0
     if cur and med_act and tw and med_w and med_r and tw > 0:
         total = math.log(cur / med_act)
         firm = math.log((cur / tw) / med_r)            # 대상의 시장÷내재 배율이 동종 중앙보다 얼마나 높은가(기업 고유)
@@ -169,27 +195,38 @@ def report_blocks(m, unit, mcap, name="대상"):
     B = []
     f = lambda x, d=1: "-" if x is None else f"{x:.{d}f}"
     lb, earn = m["label"], m["basis"] != "ev_sales"
-    B.append({"type": "p", "text": f"**기준 멀티플은 {lb}이다.** {m['why']}."})
-    rows = [[x["ticker"], f(x["market"]), f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}",
+    views = m.get("horizons") or []
+    names = " · ".join(v["label"] for v in views) or lb
+    extra = f" Fwd 1Y는 다음 4개 분기, Fwd 2Y는 5~8번째, Fwd 3Y는 9~12번째 분기 이익 기준이다." if views else ""
+    if m.get("ext"):
+        extra += f" Fwd 3Y는 추정이 끝난 뒤 최대 {m['ext']}개 분기를 마지막 회계연도 추정 성장률로 연장했다."
+    if any(v["h"] > 1 for v in views):
+        extra += " 과거 레인지는 Fwd 1Y만 있다."
+    B.append({"type": "p", "text": f"**기준 멀티플은 {names}이다.** {m['why']}.{extra}"})
+    cols = [(v["key"], v["label"]) for v in views] or [("market", lb)]
+    rows = [[x["ticker"]] + [f(x.get(k)) for k, _ in cols] + [f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}",
              ("-" if x["roic"] is None else f"{x['roic']:.0%}") + " / " + ("-" if x.get("roic_ex") is None else f"{x['roic_ex']:.0%}"),
              f(x["s2c"], 2), f(x["warranted"]), f(x["ratio"], 2)] for x in m["peers"]]
     pr, s = m["peer_range"], m["sentiment"]
-    rows.append(["**동종 중앙**", f(pr["p50"]), "", "", "", "", "", f(s["p50"], 2)])
-    rows.append([f"**{name}**", f(m["current"]), "", "", "", "", f(m["target_warranted"]), f(m["current"] / m["target_warranted"], 2) if m.get("target_warranted") and m["target_warranted"] > 0 else "-"])
-    B.append({"type": "table", "title": f"동종 레인지와 펀더멘털 내재 멀티플 ({lb}, {'향후 12개월 추정 기준' if earn else '최근 12개월'})",
-              "headers": ["회사", lb, "성장", "영업이익률", "ROIC 영업권 포함/제외", "매출÷투하자본(영업권 제외)", "펀더멘털 내재", "시장÷내재"], "rows": rows})
-    bars = [{"label": "현재", "bars": [{"name": lb, "color": "e", "value": round(m["current"], 1)}]}]
-    if m.get("history"):
-        h = m["history"]
-        bars.append({"label": f"자기 과거 중앙(10~90분위 {h['p10']:.0f}~{h['p90']:.0f})", "bars": [{"name": lb, "color": "a", "value": round(h["p50"], 1)}]})
-    bars.append({"label": f"동종 중앙(25~75분위 {pr['p25']:.0f}~{pr['p75']:.0f})", "bars": [{"name": lb, "color": "b", "value": round(pr["p50"], 1)}]})
-    if m.get("target_warranted"):
-        bars.append({"label": "펀더멘털 내재(v2 기본)", "bars": [{"name": lb, "color": "c", "value": round(m["target_warranted"], 1)}]})
-    if m.get("rational"):
-        r = m["rational"]
-        bars.append({"label": f"합리적(내재 × 섹터 심리, {r.get('p25', 0):.0f}~{r.get('p75', 0):.0f})", "bars": [{"name": lb, "color": "d", "value": round(r["p50"], 1)}]})
-    B.append({"type": "chart", "chart": {"kind": "hbars", "title": f"{lb} — 과거·동종·펀더멘털·합리적 멀티플 (배)", "unit": "배", "rows": bars,
-              "note": "펀더멘털 내재 = 같은 WACC·계속가치 규칙으로 각 회사의 성장·이익률·자본 회전율을 자본화한 가치 ÷ 같은 분모. 섹터 심리 = 동종의 시장 ÷ 내재 배율"}})
+    rows.append(["**동종 중앙**"] + [f(v["peer_range"]["p50"]) for v in views or [{"peer_range": pr}]] + ["", "", "", "", "", f(s["p50"], 2)])
+    rows.append([f"**{name}**"] + [f(v["current"]) for v in views or [{"current": m["current"]}]] + ["", "", "", "", f(m["target_warranted"]), f(m["current"] / m["target_warranted"], 2) if m.get("target_warranted") and m["target_warranted"] > 0 else "-"])
+    B.append({"type": "table", "title": f"동종 레인지와 펀더멘털 내재 멀티플 ({names if views else lb + ', 최근 12개월'}{' 추정 기준' if views else ''})",
+              "headers": ["회사"] + [c for _, c in cols] + ["성장", "영업이익률", "ROIC 영업권 포함/제외", "매출÷투하자본(영업권 제외)", f"펀더멘털 내재({lb})", "시장÷내재"], "rows": rows})
+    for v in views or [{"label": lb, "current": m["current"], "history": m.get("history"), "peer_range": pr, "target_warranted": m.get("target_warranted"), "rational": m.get("rational")}]:
+        n = v["label"]
+        bars = [{"label": "현재", "bars": [{"name": n, "color": "e", "value": round(v["current"], 1)}]}]
+        if v.get("history"):
+            h = v["history"]
+            bars.append({"label": f"자기 과거 중앙(10~90분위 {h['p10']:.0f}~{h['p90']:.0f})", "bars": [{"name": n, "color": "a", "value": round(h["p50"], 1)}]})
+        vr = v["peer_range"]
+        bars.append({"label": f"동종 중앙(25~75분위 {vr['p25']:.0f}~{vr['p75']:.0f})", "bars": [{"name": n, "color": "b", "value": round(vr["p50"], 1)}]})
+        if v.get("target_warranted"):
+            bars.append({"label": "펀더멘털 내재(v2 기본)", "bars": [{"name": n, "color": "c", "value": round(v["target_warranted"], 1)}]})
+        if v.get("rational"):
+            r = v["rational"]
+            bars.append({"label": f"합리적(내재 × 섹터 심리, {r.get('p25', 0):.0f}~{r.get('p75', 0):.0f})", "bars": [{"name": n, "color": "d", "value": round(r["p50"], 1)}]})
+        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 215, "title": f"{n} — 과거·동종·펀더멘털·합리적 멀티플 (배)", "unit": "배", "rows": bars,
+                  "note": "펀더멘털 내재 = 같은 WACC·계속가치 규칙으로 각 회사의 성장·이익률·자본 회전율을 자본화한 가치 ÷ 같은 분모. 섹터 심리 = 동종의 시장 ÷ 내재 배율"}})
     if m.get("decomp"):
         d = m["decomp"]
         pc = lambda x: f"{math.exp(x) - 1:+.0%}"

@@ -1,6 +1,8 @@
 async () => {
   // Fwd 1Y 멀티플 묶음 — 텐배거 리포트 멀티플 절의 재료(마스터 지시 2026-10-30 "Fwd 1Y P/E나 Fwd 1Y EV/EBITDA 등 이익 지표로. Fwd 1Y 멀티플은 Fiscal.ai에서 우선적으로").
   // 순서: Fiscal 자체 Forward 배수(ratio_forward_*, 분모 = 다음 4개 분기 추정) → 없으면 Street Forward(ratio_street_forward_*).
+  // Fwd 2Y·3Y(마스터 지시 2026-10-30 "Fwd 1Y, Fwd 2Y, Fwd 3Y 세 분류"): Fiscal에 배수가 없어 company_estimates의 5~8번째·9~12번째 분기 추정으로 분모를 만든다 — 배수 계산은 adapter.put_forward.
+  // 추정은 9~10개 분기까지만 있어 Fwd 3Y의 모자란 분기(최대 3개)는 전년 같은 분기 × (1 + 마지막 회계연도 추정 성장률, −30~+50%로 제한)로 연장하고 ext에 개수를 남긴다.
   // 과거 레인지는 일별 Forward 배수가 없어 월말 가격 ÷ 그 시점 다음 4개 분기 추정 합으로 계산한다(추정 변경 이력).
   // 출력 → 파일 저장 → py scripts/fiscal/adapter.py --forward-multiples <id> <파일> → datapack multiples_now·forward·peers·history.
   // Street 값·추정 이력은 Zacks 수치 — 데이터 묶음에 표기 의무("Data provided by Zacks Investment Research, Inc., www.zacksdata.com"). 리포트 본문에는 제공처를 쓰지 않는다.
@@ -24,17 +26,41 @@ async () => {
   const ntmOf = async key => {
     const fe = await codemode.company_estimates({ companyKey: key }).catch(() => ({ data: [] }));
     const qs = (fe.data || []).filter(r => r.periodType === "Quarterly").sort((a, b) => (a.reportDate < b.reportDate ? -1 : 1));
-    const next4 = qs.filter(r => (r.metricsValues.revenue || {}).actual == null).slice(0, 4);
-    const sum = id => { const v = next4.map(r => (r.metricsValues[id] || {}).mean); return next4.length === 4 && v.every(x => x != null) ? v.reduce((a, b) => a + b, 0) : null; };
-    const guided = id => next4.some(r => /^guidance/.test((r.metricsValues[id] || {}).source || ""));
+    const unreported = r => (r.metricsValues.revenue || {}).actual == null;
+    const next = qs.filter(unreported);
+    const annual = (fe.data || []).filter(r => r.periodType === "Annual" && unreported(r)).sort((a, b) => (a.fiscalYear < b.fiscalYear ? -1 : 1));
+    const val = (r, id) => (r.metricsValues[id] || {}).mean;
+    const growth = id => {
+      const v = annual.map(r => val(r, id)).filter(x => x != null);
+      if (v.length < 2 || v[v.length - 2] <= 0 || v[v.length - 1] <= 0) return null;
+      return Math.min(0.5, Math.max(-0.3, v[v.length - 1] / v[v.length - 2] - 1));
+    };
+    const windowOf = (id, from) => {   // from번째 분기부터 4개 합 [합, 연장한 분기 수]
+      const g = growth(id);
+      const v = [];
+      let ext = 0;
+      for (let i = from; i < from + 4; i++) {
+        if (i < next.length) {
+          v[i] = val(next[i], id);
+        } else {
+          const base = i - 4 < next.length ? val(next[i - 4], id) : null;   // null × 숫자는 0이 되므로 먼저 거른다
+          v[i] = g != null && base != null ? base * (1 + g) : null;
+          ext++;
+        }
+        if (v[i] == null) return [null, 0];
+      }
+      return ext > 3 ? [null, 0] : [v.slice(from).reduce((a, b) => a + b, 0), ext];
+    };
+    const best = (ids, from) => { for (const id of ids) { const r = windowOf(id, from); if (r[0] != null) return r; } return [null, 0]; };
+    const guided = id => next.slice(0, 4).some(r => /^guidance/.test((r.metricsValues[id] || {}).source || ""));
     const epsId = fe.primaryEpsBasis === "adjusted" ? "eps_adjusted" : "eps_gaap";
-    const ebitda = sum("ebitda_adjusted") != null ? sum("ebitda_adjusted") : sum("ebitda");
-    const ebit = sum("ebit_adjusted") != null ? sum("ebit_adjusted") : sum("ebit");
-    const last4 = qs.filter(r => (r.metricsValues.revenue || {}).actual != null).slice(-4).map(r => r.metricsValues.revenue.actual);
-    return { qs, ntm: { eps: sum(epsId), ebitda, ebit, revenue: sum("revenue"), rev_ttm: last4.length === 4 ? last4.reduce((a, b) => a + b, 0) : null },
-             guided: { eps: guided(epsId), ebitda: guided("ebitda_adjusted") || guided("ebitda") } };
+    const EPS = [epsId], EBITDA = ["ebitda_adjusted", "ebitda"], EBIT = ["ebit_adjusted", "ebit"];
+    const later = from => { const [eps, e1] = best(EPS, from), [ebitda, e2] = best(EBITDA, from); return { eps, ebitda, ext: Math.max(e1, e2) }; };
+    const last4 = qs.filter(r => !unreported(r)).slice(-4).map(r => r.metricsValues.revenue.actual);
+    return { qs, ntm: { eps: best(EPS, 0)[0], ebitda: best(EBITDA, 0)[0], ebit: best(EBIT, 0)[0], revenue: best(["revenue"], 0)[0], rev_ttm: last4.length === 4 ? last4.reduce((a, b) => a + b, 0) : null },
+             horizons: { 2: later(4), 3: later(8) }, guided: { eps: guided(epsId), ebitda: guided("ebitda_adjusted") || guided("ebitda") } };
   };
-  const { qs, ntm, guided } = await ntmOf(k);
+  const { qs, ntm, horizons, guided } = await ntmOf(k);
 
   // 과거 레인지 — 월말 Fwd 1Y P/E·EV/EBITDA
   const z = await codemode.company_analyst_estimates({ companyKey: k, history: true });
@@ -78,7 +104,7 @@ async () => {
   });
 
   const peerRows = {};
-  for (const p of peers) peerRows[p] = { ...(await latest(p)), ntm: (await ntmOf(p)).ntm };
-  console.log(JSON.stringify({ key: k, as_of: (rows[rows.length - 1] || {}).date, target, ntm, guided,
+  for (const p of peers) { const f = await ntmOf(p); peerRows[p] = { ...(await latest(p)), ntm: f.ntm, horizons: f.horizons }; }
+  console.log(JSON.stringify({ key: k, as_of: (rows[rows.length - 1] || {}).date, target, ntm, horizons, guided,
     peers: peerRows, history, source: "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com" }));
 }

@@ -175,6 +175,28 @@ class TestMultiples(unittest.TestCase):
         return {"profile": {"debt": 1.0, "cash": 2.0}, "financials": {"rev_ttm": 5.0}, "peers": peers, "history": {"pe_fwd": [{"date": "2026-01-30", "value": 22.0}], "ev_ebitda_fwd": [{"date": "2026-01-30", "value": 11.0}]},
                 "multiples_now": {"pe_fwd": 12.0, "ev_ebitda_fwd": 8.0, "ev_sales": 1.8}, **kw}
 
+    def test_three_horizons_each_get_a_chart(self):
+        base = {"rev0": 5.0, "growth": [0.2] * 5, "margin": [0.2] * 5, "tax": 0.21, "s2c": 2.0, "ic0": 3.0, "wacc": 0.1, "g_term": 0.03, "net_debt": -1.0, "shares": 1.0}
+        dp = self._forward_dp(main_metric="eps", forward={"horizons": {"2": {"ext": 0}, "3": {"ext": 2}}})
+        dp["multiples_now"].update({"pe_fwd2": 9.0, "pe_fwd3": 7.5})
+        for i, p in enumerate(dp["peers"]):
+            p.update({"pe_fwd2": 12.0 + i, "pe_fwd3": 10.0 + i})
+        m = multiples.analyze(dp, base, 12.0, 0.1, 0.03)
+        self.assertEqual([v["label"] for v in m["horizons"]], ["Fwd 1Y P/E", "Fwd 2Y P/E", "Fwd 3Y P/E"])
+        self.assertAlmostEqual(m["horizons"][2]["target_warranted"], m["target_warranted"] * 7.5 / 12.0)   # 시장÷내재는 세 분류 공통
+        self.assertEqual(m["horizons"][1]["history"], None)
+        self.assertEqual(m["ext"], 2)
+        bl = multiples.report_blocks(m, "B$", 12.0, "대상")
+        titles = [b["chart"]["title"] for b in bl if b["type"] == "chart"]
+        self.assertEqual(titles, [f"Fwd {h}Y P/E — 과거·동종·펀더멘털·합리적 멀티플 (배)" for h in (1, 2, 3)])
+        table = next(b for b in bl if b["type"] == "table")
+        self.assertEqual(table["headers"][1:4], ["Fwd 1Y P/E", "Fwd 2Y P/E", "Fwd 3Y P/E"])
+        self.assertEqual(len({len(r) for r in table["rows"]} | {len(table["headers"])}), 1)
+        self.assertIn("최대 2개 분기를 마지막 회계연도 추정 성장률로 연장", json.dumps(bl, ensure_ascii=False))
+        for row in dp["peers"][:2]:      # 동종이 모자란 분류는 그리지 않는다
+            row.pop("pe_fwd3")
+        self.assertEqual([v["h"] for v in multiples.analyze(dp, base, 12.0, 0.1, 0.03)["horizons"]], [1, 2])
+
     def test_main_metric_picks_multiple(self):
         dp = self._forward_dp(forward={"ntm": {"eps": 5.0, "ebitda": 1.0, "ebit": 0.8}, "guided": {"eps": True}})
         self.assertEqual(multiples.choose_basis(dp)[0], "pe_fwd")
@@ -269,6 +291,8 @@ class TestEarningsView(unittest.TestCase):
         peers = [{"pe_fwd": 15, "ev_ebitda_fwd": 10, "ev_sales": 3}, {"pe_fwd": 25, "ev_ebitda_fwd": 14, "ev_sales": 5}]
         pm = earnings_view.premiums({"pe_fwd": 20, "ev_ebitda_fwd": 12, "ev_sales": 4}, peers)
         self.assertEqual([x["metric"] for x in pm], ["Fwd 1Y P/E", "Fwd 1Y EV/EBITDA"])
+        p2 = earnings_view.premiums({"pe_fwd": 20, "pe_fwd2": 15}, [{"pe_fwd": 15, "pe_fwd2": 10}, {"pe_fwd": 25, "pe_fwd2": 14}])
+        self.assertEqual([x["metric"] for x in p2], ["Fwd 1Y P/E", "Fwd 2Y P/E"])
         self.assertEqual([x["metric"] for x in earnings_view.premiums({"ev_sales": 4}, peers)], ["EV/매출"])   # 선행 재료가 없을 때만
 
     def test_premiums_and_surprise(self):

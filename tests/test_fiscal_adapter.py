@@ -74,17 +74,20 @@ class TestForwardMultiples(unittest.TestCase):
             d = Path(tmp) / "knowledge" / "models" / "companies" / "co-x"
             d.mkdir(parents=True)
             (d / "datapack.json").write_text(json.dumps({"multiples_now": {"ev_sales": 2.0}, "peers": [{"ticker": "AAA"}, {"ticker": "BBB"}]}), encoding="utf-8")
-            out = {"as_of": "2026-10-30", "target": {"pe_fwd": 9.1, "ev_ebitda_fwd": 5.6, "src": {"pe_fwd": "fiscal"}}, "ntm": {"eps": 5.6}, "guided": {"eps": True},
-                   "peers": {"NASDAQ_AAA": {"pe_fwd": 15.0, "ev_ebitda_fwd": 12.0, "ntm": {"revenue": 120.0, "ebit": 24.0, "rev_ttm": 100.0}}},
+            out = {"as_of": "2026-10-30", "target": {"pe_fwd": 9.1, "ev_ebitda_fwd": 5.6, "src": {"pe_fwd": "fiscal"}}, "ntm": {"eps": 5.6, "ebitda": 4.0},
+                   "horizons": {"2": {"eps": 7.0, "ebitda": 5.0, "ext": 0}, "3": {"eps": -1.0, "ebitda": 8.0, "ext": 2}}, "guided": {"eps": True},
+                   "peers": {"NASDAQ_AAA": {"pe_fwd": 15.0, "ev_ebitda_fwd": 12.0, "ntm": {"revenue": 120.0, "ebit": 24.0, "rev_ttm": 100.0, "eps": 2.0}, "horizons": {"2": {"eps": 3.0}}}},
                    "history": [{"date": "2026-08-31", "pe_fwd": 14.4, "ev_ebitda_fwd": None}, {"date": "2026-09-30", "pe_fwd": 14.2, "ev_ebitda_fwd": 10.2}]}
             with patch.object(adapter, "ROOT", Path(tmp)):
                 now, n, h = adapter.put_forward("co-x", out)
             dp = json.loads((d / "datapack.json").read_text(encoding="utf-8"))
         self.assertEqual((now["pe_fwd"], n, h), (9.1, 1, 2))
-        self.assertEqual(dp["multiples_now"], {"ev_sales": 2.0, "pe_fwd": 9.1, "ev_ebitda_fwd": 5.6})
+        self.assertEqual(dp["multiples_now"], {"ev_sales": 2.0, "pe_fwd": 9.1, "ev_ebitda_fwd": 5.6, "pe_fwd2": 7.28, "ev_ebitda_fwd2": 4.48, "pe_fwd3": None, "ev_ebitda_fwd3": 2.8})   # 3년 뒤 적자면 비움
+        self.assertEqual(dp["peers"][0]["pe_fwd2"], 10.0)
+        self.assertEqual(dp["forward"]["horizons"]["3"]["ext"], 2)
         self.assertEqual({k: dp["peers"][0][k] for k in ("pe_fwd", "ntm_ebit_margin", "ntm_growth")}, {"pe_fwd": 15.0, "ntm_ebit_margin": 0.2, "ntm_growth": 0.2})
         self.assertNotIn("pe_fwd", dp["peers"][1])
-        self.assertEqual(dp["forward"]["ntm"], {"eps": 5.6})
+        self.assertEqual(dp["forward"]["ntm"], {"eps": 5.6, "ebitda": 4.0})
         self.assertEqual(len(dp["history"]["pe_fwd"]), 2)
         self.assertEqual(dp["history"]["ev_ebitda_fwd"], [{"date": "2026-09-30", "value": 10.2}])
 
