@@ -251,7 +251,8 @@ def main(argv):
         merge_lead(d, xs["lead"], xs["ladder"], xs["summary"])
         v = d.setdefault("verdict", {})
         v.setdefault("alpha", None)
-        p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+        import report_html
+        p.write_text(json.dumps(report_html.clean_vendor(d), ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"[v2→리포트] {p} 에 '밸류에이션' 절 병합 (블록 {len(sec['blocks'])}개)" + (f" + '어닝콜·컨센서스·멀티플·리비전' 절(블록 {len(esec['blocks'])}개)" if esec else " — 어닝콜·컨센서스 절 재료 없음(datapack call.deltas·consensus.surprise·revisions·multiples_now)"))
         print("  추가 절: " + " · ".join(f"{k} {'있음' if v else '재료 없음'}" for k, v in xs.items() if k != "summary"))
     if a.out or not a.merge:

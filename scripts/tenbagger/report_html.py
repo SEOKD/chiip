@@ -385,19 +385,19 @@ def _walk(o, fn):
     return fn(o)
 
 
-# 데이터 제공처 이름을 남기지 않는다(마스터 지시 2026-10-30 "재무 데이터와 컨센서스 데이터, 어닝콜 스크립트를 가져온 출처를 남기지 마라") — 구분이 필요한 곳은 '모델 추정'·'애널리스트 추정'
+# 데이터 제공처 이름을 남기지 않는다(마스터 지시 2026-10-30 "재무 데이터와 컨센서스 데이터, 어닝콜 스크립트를 가져온 출처를 남기지 마라", "출처를 남기면 가독성이 떨어진다") — 추정치는 일반 명칭 '컨센서스'로만
 VENDOR_RE = re.compile(r"Fiscal\.ai|fiscal\.ai|Zacks|zacks|easyconomics|ir_events|company_estimates")
 VENDOR_SUBS = [(re.compile(r"\s*\[?\(?Data provided by Zacks Investment Research, Inc\.,?\s*\[?www\.zacksdata\.com\]?(?:\([^)]*\))?\)?\.?"), ""),
                (re.compile(r"[,·]?\s*(?:Fiscal\.ai\s*)?(?:company_)?(?:ir_events(?:_transcript)?|estimates)(?:\s*q\d-\d{4})?"), ""),
                (re.compile(r"\s*\(https?://www\.zacksdata\.com\)"), ""),
-               (re.compile(r"(?:Fiscal\.ai|Fiscal)\s*(?:자체\s*)?추정"), "모델 추정"),
-               (re.compile(r"Zacks\s*(?:컨센서스|추정)"), "애널리스트 추정"),
+               (re.compile(r"(?:Fiscal\.ai|Fiscal)\s*(?:자체\s*)?추정|모델 추정"), "컨센서스"),
+               (re.compile(r"Zacks\s*(?:컨센서스|추정)|애널리스트 추정"), "컨센서스"),
                (re.compile(r"Zacks\s*(의견|목표가)"), r"애널리스트 \1"),
-               (re.compile(r"Zacks(?=\s*[$CF\d])"), "애널리스트 추정"),
-               (re.compile(r"\(Fiscal\)"), "(모델 추정)"),
-               (re.compile(r"(?<![A-Za-z])Fiscal(?=\s*\$)"), "모델 추정"),
+               (re.compile(r"Zacks(?=\s*[$CF\d])"), "컨센서스"),
+               (re.compile(r"\s*\(Fiscal\)"), ""),
+               (re.compile(r"(?<![A-Za-z])Fiscal(?=\s*\$)"), "컨센서스"),
                (re.compile(r"(?:Fiscal\.ai|Zacks)\s*(?:일별 배수|재무|일봉|장기 월봉|개요|표준화)?\s*(?:기준)?\s*"), ""),
-               (re.compile(r"(?<![A-Za-z])Fiscal(?![A-Za-z ]*[Yy]ear)"), "모델"),
+               (re.compile(r"(?<![A-Za-z])Fiscal(?![A-Za-z ]*[Yy]ear)"), "컨센서스"),
                (re.compile(r"\s*[(（]\s*[)）]"), "")]
 NOT_SOURCE = re.compile(r"Fiscal|fiscal\.ai|Zacks|zacks|트랜스크립트|easyconomics|보강 적용")
 
@@ -466,6 +466,12 @@ def gloss(d):
             elif k == "table":
                 b["rows"] = [[g(c) for c in r] for r in b.get("rows") or []]
     return d
+
+
+def clean_vendor(d):
+    """리포트 JSON에 저장하기 전 제공처 표기를 지운다 — 차트·표 주석까지(렌더되지 않는 칸도 파일에 남지 않게)"""
+    d = {**d, "sources": [x for x in d.get("sources") or [] if not NOT_SOURCE.search(str(x))]}
+    return _walk(d, _strip_vendor)
 
 
 def scrub(d):

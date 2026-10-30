@@ -118,10 +118,20 @@ class TestScrub(unittest.TestCase):
             for w in ("Fiscal", "Zacks", "zacksdata", "읽는 법", "보강 적용", "MCP", "트랜스크립트"):
                 self.assertNotIn(w, out)
         h = report_html.render(d)
-        self.assertIn("모델 추정 $5.85", h)
-        self.assertIn("애널리스트 추정 CY2027", h)
+        self.assertIn("컨센서스(시장 평균 추정) $5.85", h)
+        self.assertIn("컨센서스 CY2027", h)
+        self.assertNotIn("모델 추정", h)
+        self.assertNotIn("애널리스트 추정", h)
         self.assertIn("애널리스트 의견 7명", h)
         self.assertIn("https://www.sec.gov/x.htm", h)
+
+    def test_saved_json_has_no_vendor_even_in_notes(self):
+        d = {**BASE, "sources": ["Zacks 의견", "10-K"], "sections": [{"h2": "s", "blocks": [
+            {"type": "chart", "chart": {**chart("주가 vs Fiscal.ai 자체 추정")["chart"], "note": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"}}]}]}
+        out = json.dumps(report_html.clean_vendor(d), ensure_ascii=False)
+        for w in ("Fiscal", "Zacks", "zacks"):
+            self.assertNotIn(w, out)
+        self.assertIn("주가 vs 컨센서스", out)
 
     def test_unknown_vendor_form_fails(self):
         d = {**BASE, "sections": [{"h2": "s", "blocks": [{"type": "p", "text": "자료는 fiscal.ai 화면"}]}]}
