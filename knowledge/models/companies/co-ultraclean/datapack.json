@@ -72,24 +72,142 @@
   "note": "매출 = Fiscal.ai 자체 추정(company_estimates, 2026-10-29 — 3Q 실적 반영) 분기 합. Zacks 매출 추정은 8/6 이후 갱신이 없어(FY26 2.71·FY27 3.71B$, 2명) 쓰지 않고 대조만. EBIT 이익률 = Zacks EBIT(10/28 갱신) ÷ Zacks 연간 매출 — 비GAAP 기준으로 보고 SBC 0.9% 차감. 범위(FY27)는 Fiscal 분기 최저·최고 합의 근사. 애널리스트 7명(의견 기준) Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
   "surprise": [
    {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 506.7,
+    "est": 507.735,
+    "est_src": "zacks",
+    "est_asof": "2025-10-31",
+    "basis": "gaap",
+    "earnings_date": "2026-02-23"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.24,
+    "est": 0.23,
+    "est_src": "zacks",
+    "est_asof": "2025-10-31",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-23"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "백만$",
+    "actual": 25,
+    "est": 28.6,
+    "est_src": "zacks",
+    "est_asof": "2025-10-29",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-23"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 533.7,
+    "est": 525.555,
+    "est_src": "zacks",
+    "est_asof": "2026-02-26",
+    "basis": "gaap",
+    "earnings_date": "2026-04-28"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.31,
+    "est": 0.27,
+    "est_src": "zacks",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-28"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "백만$",
+    "actual": 27.1,
+    "est": 28.3,
+    "est_src": "zacks",
+    "est_asof": "2026-02-24",
+    "basis": "adjusted",
+    "earnings_date": "2026-04-28"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "백만$",
+    "actual": 644.9,
+    "est": 585.3,
+    "est_src": "zacks",
+    "est_asof": "2026-04-30",
+    "basis": "gaap",
+    "earnings_date": "2026-08-03"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.7,
+    "est": 0.52,
+    "est_src": "zacks",
+    "est_asof": "2026-06-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-03"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "백만$",
+    "actual": 45.1,
+    "est": 35.7,
+    "est_src": "zacks",
+    "est_asof": "2026-06-09",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-03"
+   },
+   {
     "period": "2026Q3",
     "metric": "매출",
     "unit": "백만$",
-    "actual": 759.0,
-    "est": 730.8
+    "actual": 759,
+    "est": 730.802,
+    "est_src": "fiscal:guidance_adjusted",
+    "est_asof": "2026-08-03",
+    "basis": "gaap",
+    "earnings_date": "2026-10-27"
    },
    {
     "period": "2026Q3",
     "metric": "EPS",
     "unit": "$",
     "actual": 1.15,
-    "est": 0.96
+    "est": 0.962,
+    "est_src": "fiscal:guidance_adjusted",
+    "est_asof": "2026-08-03",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-27"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "백만$",
+    "actual": 68.6,
+    "est": 61.906,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-20",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-27"
    }
   ],
   "revisions": {
    "from_date": "2026-08-03",
    "to_date": "2026-10-29",
-   "from_label": "2Q 실적 직전(8/3) Zacks",
+   "from_label": "2Q 실적 직전",
    "source": "Fiscal.ai analyst_estimates history(Zacks) — 같은 분기끼리, 표본 1명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
     {
