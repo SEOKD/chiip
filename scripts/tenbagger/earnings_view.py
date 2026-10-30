@@ -108,6 +108,22 @@ def surprises(rows, n=4):
     return sorted([r for r in out if str(r.get("period") or "") in keep], key=lambda r: (str(r.get("period") or ""), r.get("metric", "")))
 
 
+def margin_surprises(sp):
+    """이익률 서프라이즈(%p) — EBIT → OPM, 회사가 EBITA를 주요 지표로 쓰면 EBITA Margin(마스터 지시 2026-10-30). 추정은 같은 제공처 쌍(매출·이익)으로"""
+    name, num = ("EBITA Margin", "EBITA") if any(r["metric"] == "EBITA" for r in sp) else ("OPM", "EBIT")
+    rev = {r["period"]: r for r in sp if r["metric"] == "매출"}
+    fam = lambda r: str(r.get("est_src") or "").split(":")[0]
+    out = []
+    for r in sp:
+        v = rev.get(r["period"])
+        if r["metric"] != num or not v or not v.get("actual"):
+            continue
+        act = r["actual"] / v["actual"] * 100
+        est = r["est"] / v["est"] * 100 if r.get("est") and v.get("est") and fam(r) == fam(v) else None
+        out.append({"period": r["period"], "metric": name, "actual": act, "est": est, "surprise": act - est if est is not None else None})
+    return name, out
+
+
 def short_label(r, n=16):
     """콜 변화 항목의 그래프 이름 — datapack의 label(짧은 이름)이 있으면 그것, 없으면 항목 내용 앞부분(F1·F2 같은 번호 대신, 2026-10-30)"""
     t = str(r.get("label") or r.get("item") or r.get("id") or "").strip()
@@ -172,36 +188,38 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
             sh = r.get("shift")
             sh_txt = "—" if not sh else (f"{sh:+,.2f} {unit}" if r.get("driver") in ("rev0", "net_debt") else (f"{sh:+.2%}" if abs(sh) < 0.01 else f"{sh:+.1%}"))
             rows.append([r.get("kind", ""), r.get("item", ""), r.get("prior", ""), r.get("latest", ""),
-                         f"{drv} {sh_txt}", f"{r.get('confidence', 0):.1f}", _pct(r["solo"]), _pct(r["weighted"])])
-        rows.append(["**합계**", "단독 합 / 확신도 가중 합", "", "", f"동시 적용 {_pct(imp['joint'])}", "", f"**{_pct(imp['solo_sum'])}**", f"**{_pct(imp['weighted_sum'])}**"])
+                         f"{drv} {sh_txt}", f"{r.get('confidence', 0):.1f}", _pct(r["solo"])])
+        rows.append(["**합계**", "단독 합", "", "", f"동시 적용 {_pct(imp['joint'])}", "", f"**{_pct(imp['solo_sum'])}**"])
         B.append({"type": "table", "title": "직전 콜 대비 새로 나오거나 바뀐 내용 → 가치 영향 (v2 기본 시나리오 주주가치 기준)",
-                  "headers": ["항목", "내용", "직전 콜", "최신 콜", "모델 동인 이동", "확신도", "단독 Δ가치", "확신도 가중"], "rows": rows})
+                  "headers": ["항목", "내용", "직전 콜", "최신 콜", "모델 동인 이동", "확신도", "가치 영향"], "rows": rows})
         bars = [r for r in imp["rows"] if r["solo"]]
         if bars:
             # 가로 막대 + 항목 이름(마스터 지시 2026-10-30 "x축 F1~F9로는 직관적으로 파악하지 못한다") — 영향이 큰 순
-            bars = sorted(bars, key=lambda r: -abs(r["weighted"] or r["solo"] or 0))
-            B.append({"type": "chart", "chart": {"kind": "hbars", "title": "콜 변화 항목별 주주가치 영향 (%)", "unit": "%",
-                      "rows": [{"label": short_label(r), "bars": [{"name": "단독 Δ가치", "color": "c", "value": round(r["solo"] * 100, 1)},
-                                                                {"name": "확신도 가중", "color": "e", "value": round(r["weighted"] * 100, 1)}]} for r in bars],
+            bars = sorted(bars, key=lambda r: -abs(r["solo"] or 0))   # 확신도 가중 수치는 싣지 않는다(마스터 지시 2026-10-30)
+            B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "콜 변화 항목별 주주가치 영향 (%)", "unit": "%",
+                      "rows": [{"label": short_label(r), "bars": [{"name": "가치 영향", "color": "c", "value": round(r["solo"] * 100, 1)}]} for r in bars],
                       "note": f"직전 콜 정보만으로 본 가치 {imp['prior_equity']:,.2f} → 최신 {imp['base_equity']:,.2f} {unit}(시가총액 {mcap:,.2f}의 {imp['prior_equity'] / mcap:.2f}배 → {imp['base_equity'] / mcap:.2f}배)"}})
-        B.append({"type": "p", "text": f"**읽는 법:** 확신도 가중 합 {_pct(imp['weighted_sum'])}이 '이번 콜로 기업가치가 얼마나 바뀌었나'에 대한 Chiip 기준값이다. 단독 합({_pct(imp['solo_sum'])})과 "
-                  f"동시 적용({_pct(imp['joint'])})의 차이는 동인끼리 곱해지는 상호작용(예: 성장 × 이익률). 경영진 발언(확신도 0.5 이하) 비중이 크면 다음 분기 숫자로 확인될 때까지 가치로 다 넣지 않는다."})
     sp = surprises(cons.get("surprise"))
     if sp:
-        src = lambda r: "Zacks" if r.get("est_src") == "zacks" else ("Fiscal.ai" if r.get("est_src") else "-")
         sp = [r for r in sp if r["metric"] == "매출" or r.get("basis") in (None, "adjusted")]   # 이익 지표는 조정 값만(2026-10-30)
-        gaap = []
-        B.append({"type": "table", "title": "실적 vs 컨센서스 — 최근 4개 분기 (이익 지표는 조정 기준, 발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈", "추정 출처"],
-                  "rows": [[r["period"], r["metric"], f"{r['actual']:,.4g} {r.get('unit', '')}", f"{r['est']:,.4g} {r.get('unit', '')}" if r.get("est") else "-", _pct(r["surprise"]), src(r)] for r in sp],
-                  "note": " · ".join(x for x in (
-                      "추정 = Fiscal.ai가 발표 전에 얼려 둔 추정(1순위) → Fiscal 추정이 없을 때만 Zacks 발표 직전 컨센서스",
-                      f"{', '.join(gaap)}는 회사가 조정 값을 내지 않아 GAAP" if gaap else "",
-                      "Data provided by Zacks Investment Research, Inc., www.zacksdata.com" if any(r.get("est_src") == "zacks" for r in sp) else "") if x)})
-        per = sorted({r["period"] for r in sp if r["surprise"] is not None})
-        mets = sorted({r["metric"] for r in sp if r["surprise"] is not None})
-        if per and mets:
-            B.append({"type": "chart", "chart": {"kind": "bars", "title": "분기별 서프라이즈 (%) — 최근 4개 분기", "unit": "%", "categories": per,
-                      "series": [{"name": m, "color": "cdeb"[i % 4], "values": [next((round(r["surprise"] * 100, 1) for r in sp if r["period"] == p and r["metric"] == m and r["surprise"] is not None), None) for p in per]} for i, m in enumerate(mets)]}})
+        mg_name, mg = margin_surprises(sp)
+        order = ("매출", mg_name, "EPS")
+        shown = sorted([r for r in sp if r["metric"] in order] + mg, key=lambda r: (r["period"], order.index(r["metric"])))
+
+        def cells(r):
+            if r["metric"] == mg_name:
+                return f"{r['actual']:.1f}%", f"{r['est']:.1f}%" if r.get("est") is not None else "-", f"{r['surprise']:+.1f}%p" if r.get("surprise") is not None else "-"
+            amt = lambda v: f"${v:,.2f}" if r.get("unit") == "$" else f"{v:,.4g} {r.get('unit', '')}"
+            return amt(r["actual"]), amt(r["est"]) if r.get("est") else "-", _pct(r["surprise"])
+        B.append({"type": "table", "title": "실적 vs 컨센서스 — 최근 4개 분기 (이익 지표는 조정 기준, 발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈"],
+                  "rows": [[r["period"], r["metric"], *cells(r)] for r in shown]})
+        per = sorted({r["period"] for r in shown if r["surprise"] is not None})
+        pick = lambda p, m: next((round(r["surprise"] * (1 if m == mg_name else 100), 1) for r in shown if r["period"] == p and r["metric"] == m and r["surprise"] is not None), None)
+        series_sp = [{"name": m, "color": c, "values": [pick(p, m) for p in per]} for m, c in zip(order, "ced")]
+        series_sp = [s for s in series_sp if any(v is not None for v in s["values"])]
+        if per:
+            B.append({"type": "chart", "chart": {"kind": "bars", "w": 440, "title": f"분기별 서프라이즈 — {'·'.join(s['name'] for s in series_sp)} (%, {mg_name}은 %p), 최근 4개 분기", "unit": "%",
+                                                 "categories": per, "series": series_sp}})
     import revision_view
     series = revision_view.blocks(dp)   # 그림 5·8 — 지난 12개월 리비전 추이와 최근 4개 분기 분해(마스터 지시 2026-10-30)
     B.extend(series)

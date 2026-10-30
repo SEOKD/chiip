@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import report_html  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "radar"))
-from units import money_units  # noqa: E402
+from units import chiip_name, money_units  # noqa: E402
 
 
 def cell(x):
@@ -34,7 +34,7 @@ def render(d, github=None, charts=None, h1=False):
     """github = 원본 링크 줄, charts = 그림 n번의 이미지 경로(GitHub 마크다운 판 — report_md.py), h1 = 맨 위 제목 줄"""
     d = report_html.scrub(json.loads(report_html.plain(json.dumps(d, ensure_ascii=False))))   # v2·MC 같은 약어 풀어 쓰기·참고 문헌 제거(리포트 HTML과 같게)
     v = d.get("verdict") or {}
-    up, basis = report_html.upside(d)
+    up, _ = report_html.upside(d)
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     badges = " · ".join(x for x in (f"컨빅션 {v['confidence']}" if v.get("confidence") else "", f"알파 {alpha}/10" if alpha is not None else "",
                                      f"업사이드 {up:+.0%}" if up is not None else "") if x)
@@ -43,13 +43,10 @@ def render(d, github=None, charts=None, h1=False):
     if github:
         L += [f"**그래프 포함 리포트:** [GitHub에서 보기]({github})", ""]
     L += ["## Chiip View", f"**{badges}**" if badges else "", "", str(v.get("view") or "")]
-    if up is not None and basis:
-        L += ["", f"업사이드 기준: {basis} — 가격 목표가 아니라 시나리오 확률 가중 지표"]
     if d.get("summary"):
         L += ["", "## 한 장 요약"] + [f"- **{s.get('q')}** {s.get('a')}" for s in d["summary"]]
     if d.get("tiles"):
         L += ["", "## 핵심 숫자", table(["항목", "값", "설명"], [[t.get("k"), t.get("v"), t.get("sub")] for t in d["tiles"]])]
-    L += ["", report_html.GLOSSARY]
     order = report_html.figures(d)
     num = {id(b): i for i, (_, b) in enumerate(order, 1)}   # 그림 번호 = HTML 갤러리 순서(pin 포함)
     if order and not charts:
@@ -70,7 +67,7 @@ def render(d, github=None, charts=None, h1=False):
                 n = num[id(b)]
                 c = b["chart"]
                 if charts and n <= len(charts) and charts[n - 1]:   # GitHub 판: 그림을 그 자리에(2026-10-30 마스터 지시 "github 링크로 결과물을 볼 수 있어야")
-                    L += ["", f"**그림 {n} · {c.get('title')}**", "", f"![그림 {n}]({charts[n - 1]})"] + ([f"_{c['note']}_"] if c.get("note") else [])
+                    L += ["", f"**그림 {n} · {c.get('title')}**", "", f"![그림 {n}]({charts[n - 1]})"]
                 else:
                     L += ["", f"📊 그림 {n} · {c.get('title')} — 위 HTML 임베드·GitHub 리포트"]
     src = d.get("sources") or []
@@ -78,7 +75,7 @@ def render(d, github=None, charts=None, h1=False):
         L += ["", "## 출처"] + [f"- {x}" for x in src]
     L += ["", f"_{report_html.DISCLAIMER}_"]
     text = "\n".join(x for x in L if x is not None)
-    text = text.replace("치입 판단", "Chiip View").replace("치입", "Chiip")
+    text = chiip_name(text.replace("치입 판단", "Chiip View"))
     out = money_units(re.sub(r"\n{3,}", "\n\n", text))
     # 노션·GitHub 마크다운은 $...$를 수식으로 읽는다 — 금액의 $는 \$로(2026-10-30 INIO·CBRS 업로드)
     return re.sub(r"(?<!\\)\$", r"\\$", out)

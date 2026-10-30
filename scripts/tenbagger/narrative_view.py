@@ -62,13 +62,13 @@ def report_section(dp, mm=None):
     blocks.append({"type": "table", "title": "내러티브 요인 — 누가 믿고, 멀티플·리비전 중 어디로 작동하나",
                    "headers": ["요인", "셀사이드", "바이사이드", "리테일", "작동 경로", "숫자로 바꾸면", "상태", "반증 조건"], "rows": rows})
     blocks.append({"type": "ul", "items": [f"**{f.get('name')}** — {f.get('thesis', '')}" + (f" (바뀌는 입력: {f['inputs']})" if f.get("inputs") else "")
-                                           + (f" [{f['source']}]" if f.get("source") else "") for f in n["factors"]]})
+                                           for f in n["factors"]]})
     for key, label in LAYERS:
         lay = (n.get("layers") or {}).get(key)
         if not lay:
             continue
         if lay.get("metrics"):
-            blocks.append({"type": "table", "title": f"{label}", "headers": ["지표", "값", "추세·해석", "출처"], "rows": lay["metrics"]})
+            blocks.append({"type": "table", "title": f"{label}", "headers": ["지표", "값", "추세·해석"], "rows": [m[:3] for m in lay["metrics"]]})   # 데이터 출처 열은 싣지 않는다(2026-10-30)
         if lay.get("read"):
             blocks.append({"type": "p", "text": f"**{label} 해석:** {lay['read']}"})
     att = [a for a in n.get("attention") or [] if a.get("value") is not None]

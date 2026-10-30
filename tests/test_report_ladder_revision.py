@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
 sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
 
+import earnings_view  # noqa: E402
 import ladder  # noqa: E402
 import narrative_view  # noqa: E402
 import report_html  # noqa: E402
@@ -94,18 +95,102 @@ class TestScrub(unittest.TestCase):
     def test_citations_removed_everywhere(self):
         d = {**BASE, "summary": [{"q": "q", "a": "경쟁 증설(Greenwood & Hanson 2015 — 과소평가)을 본다"}],
              "sections": [{"h2": "s", "blocks": [{"type": "p", "text": "희귀하다(Bessembinder 2018). CES 2026 발표"}]}],
-             "sources": ["기저율: Bessembinder (2018) JFE 129(3) · Greenwood & Hanson (2015) QJE 130(1)", "Fiscal.ai 2026-10-30"]}
+             "sources": ["기저율: Bessembinder (2018) JFE 129(3) · Greenwood & Hanson (2015) QJE 130(1)", "10-Q 2026-09-25"]}
         h = report_html.render(d)
         for w in ("Greenwood", "Hanson", "Bessembinder", "JFE"):
             self.assertNotIn(w, h)
         self.assertIn("CES 2026", h)
-        self.assertIn("Fiscal.ai 2026-10-30", h)
+        self.assertIn("10-Q 2026-09-25", h)
         self.assertNotIn("Greenwood", report_notion.render(d))
 
     def test_citation_outside_parens_fails(self):
         d = {**BASE, "sections": [{"h2": "s", "blocks": [{"type": "p", "text": "Bessembinder 2018은 희귀하다고 했다"}]}]}
         with self.assertRaises(ValueError):
             report_html.render(d)
+
+    def test_vendor_names_leave_no_trace(self):
+        text = "Fiscal 자체 추정 $5.85, Zacks CY2027 $6.63, Zacks 의견 7명, Fiscal.ai 일별 배수 기준 EV/매출. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+        d = {**BASE, "lead": "Fiscal.ai(MCP) 조회", "summary": [{"q": "q", "a": text}],
+             "sections": [{"h2": "s", "blocks": [{"type": "p", "text": "**읽는 법:** 지운다"}, {"type": "p", "text": "리비전 출처: Zacks"},
+                                                  {"type": "table", "headers": ["a"], "rows": [["Fiscal $3.75B"]], "note": "Zacks 표기"}]}],
+             "sources": ["Fiscal.ai MCP 조회", "Zacks 의견", "트랜스크립트는 라이선스 자료", "보강 적용: D-1", "10-K 2025: https://www.sec.gov/x.htm"]}
+        for out in (report_html.render(d), report_notion.render(d)):
+            for w in ("Fiscal", "Zacks", "zacksdata", "읽는 법", "보강 적용", "MCP", "트랜스크립트"):
+                self.assertNotIn(w, out)
+        h = report_html.render(d)
+        self.assertIn("모델 추정 $5.85", h)
+        self.assertIn("애널리스트 추정 CY2027", h)
+        self.assertIn("애널리스트 의견 7명", h)
+        self.assertIn("https://www.sec.gov/x.htm", h)
+
+    def test_unknown_vendor_form_fails(self):
+        d = {**BASE, "sections": [{"h2": "s", "blocks": [{"type": "p", "text": "자료는 fiscal.ai 화면"}]}]}
+        with self.assertRaises(ValueError):
+            report_html.render(d)
+
+    def test_side_notes_are_not_drawn(self):
+        d = {**BASE, "verdict": {"view": "v", "upside": 0.2, "upside_basis": "기준 문장"},
+             "sections": [{"h2": "s", "blocks": [{"type": "chart", "chart": {**chart("주가")["chart"], "note": "차트 주석"}},
+                                                  {"type": "table", "headers": ["a"], "rows": [["1"]], "note": "표 주석"}]}]}
+        h = report_html.render(d)
+        for w in ("기준 문장", "차트 주석", "표 주석", "업사이드 기준", "↳"):
+            self.assertNotIn(w, h)
+        self.assertIn("업사이드 +20%", h)
+
+    def test_gloss_once_and_keeps_urls_and_existing(self):
+        d = {**BASE, "verdict": {"view": "EPS가 올랐다. EPS는 또 올랐다. WFE(장비 투자)와 EV/매출을 본다."},
+             "summary": [{"q": "q", "a": "CY2027 추정과 CY2028 추정. SEMI 자료 https://x.com/EPS/WFE"}],
+             "sections": [{"h2": "s", "blocks": [{"type": "table", "headers": ["a"], "rows": [["DCF 1.1배"]]}]}]}
+        h = report_html.render(d)
+        self.assertEqual(h.count("EPS(주당순이익)"), 1)
+        self.assertIn("EPS는 또", h)
+        self.assertIn("WFE(장비 투자)", h)
+        self.assertIn("EV/매출(기업가치 ÷ 매출)", h)
+        self.assertIn("CY2027(캘린더 2027년)", h)
+        self.assertIn("CY2028 추정", h)
+        self.assertIn("SEMI(국제반도체장비재료협회)", h)
+        self.assertIn("https://x.com/EPS/WFE", h)
+        self.assertIn("DCF(현금흐름 할인 평가) 1.1배", h)
+
+
+class TestSurprise(unittest.TestCase):
+    ROWS = [{"period": "2026Q2", "metric": "매출", "unit": "M$", "actual": 100, "est": 90, "est_src": "zacks", "basis": "gaap"},
+            {"period": "2026Q2", "metric": "EPS", "unit": "$", "actual": 1.2, "est": 1.0, "est_src": "zacks", "basis": "adjusted"},
+            {"period": "2026Q2", "metric": "EBIT", "unit": "M$", "actual": 10, "est": 9, "est_src": "zacks", "basis": "adjusted"},
+            {"period": "2026Q3", "metric": "매출", "unit": "M$", "actual": 110, "est": 100, "est_src": "fiscal:model", "basis": "gaap"},
+            {"period": "2026Q3", "metric": "EPS", "unit": "$", "actual": 1.1, "est": 1.1, "est_src": "fiscal:model", "basis": "adjusted"},
+            {"period": "2026Q3", "metric": "EBIT", "unit": "M$", "actual": 11, "est": 9, "est_src": "zacks", "basis": "adjusted"}]
+
+    def _section(self, rows, deltas=None):
+        dp = {"id": "x", "consensus": {"surprise": rows}, "call": {"deltas": deltas or []}}
+        return earnings_view.report_section(dp, None, 10.0, 0.09, 0.03, "B$")
+
+    def test_chart_has_sales_opm_eps(self):
+        sec = self._section(self.ROWS)
+        c = next(b["chart"] for b in sec["blocks"] if b["type"] == "chart")
+        self.assertEqual([s["name"] for s in c["series"]], ["매출", "OPM", "EPS"])
+        self.assertIn("매출·OPM·EPS", c["title"])
+        self.assertEqual(c["series"][1]["values"], [0.0, None])   # 10% vs 10%, 3분기는 매출·이익 추정 제공처가 달라 비교하지 않는다
+        self.assertEqual(c["series"][2]["values"], [20.0, 0.0])
+        t = next(b for b in sec["blocks"] if b["type"] == "table")
+        self.assertNotIn("추정 출처", t["headers"])
+
+    def test_ebita_margin_replaces_opm(self):
+        rows = [{**r, "metric": "EBITA"} if r["metric"] == "EBIT" else r for r in self.ROWS]
+        c = next(b["chart"] for b in self._section(rows)["blocks"] if b["type"] == "chart")
+        self.assertEqual([s["name"] for s in c["series"]], ["매출", "EBITA Margin", "EPS"])
+        self.assertIn("EBITA Margin은 %p", c["title"])
+
+    def test_call_impact_has_no_weighted_figure(self):
+        co = {"rev0": 1.0, "s2c": 2.0, "unit_usd": 1e9, "market": {"net_debt": 0.0, "price": 10.0, "shares": 0.1},
+              "scenarios": {"base": {"growth": {"start": 0.2, "end": 0.03, "decay": 0.7}, "margin": {"m0": 0.1, "target": 0.1, "lr": 0.1}, "s2c": 2.0}}, "tax": 0.21, "horizon": 10}
+        dp = {"id": "x", "consensus": {}, "call": {"deltas": [{"id": "F1", "label": "라벨", "item": "항목", "driver": "growth_start", "shift": 0.01, "confidence": 0.5}]}}
+        with mock.patch.object(earnings_view, "call_value_impact", return_value={
+                "rows": [{**dp["call"]["deltas"][0], "solo": 0.1, "weighted": 0.05}], "joint": 0.1, "solo_sum": 0.1, "weighted_sum": 0.05, "prior_equity": 1.0, "base_equity": 1.1}):
+            sec = earnings_view.report_section(dp, co, 10.0, 0.09, 0.03, "B$")
+        self.assertNotIn("확신도 가중", json.dumps(sec, ensure_ascii=False))
+        c = next(b["chart"] for b in sec["blocks"] if b["type"] == "chart")
+        self.assertEqual(len(c["rows"][0]["bars"]), 1)
 
 
 class TestFigures(unittest.TestCase):

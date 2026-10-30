@@ -26,6 +26,8 @@ JSON 구조(필수 = *):
   · 차트에 "pin": n이면 갤러리 n번째로 고정(그림 3 = 가격 내포 기대, 5 = EPS 리비전 추이, 8 = 주가 분해 — 마스터 지시 2026-10-30), 나머지는 절 순서대로
 금액 단위는 렌더 직후 radar/units.py money_units로 $25B·$M·$T 표기로 바꾼다(마스터 지시 2026-10-29).
 학술 논문 표기('저자 연도')는 남기지 않는다(마스터 지시 2026-10-30) — scrub()이 괄호째 지우고 출처 목록에서 빼며, 그래도 남으면 렌더가 실패한다.
+데이터 제공처 이름(재무·컨센서스·어닝콜 스크립트를 가져온 곳)도 남기지 않는다. 본문 아래 부가 설명(차트·표 note, 업사이드 기준, 읽는 법)은 그리지 않는다(같은 날 마스터 지시).
+전문 용어·기관 약자는 처음 나오는 곳에 '용어(한국어 풀이)'로 적는다 — config/report_glossary.yaml, gloss().
 """
 import html
 import json
@@ -35,8 +37,11 @@ import sys
 from datetime import date
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "radar"))
-from units import money_units  # noqa: E402
+import yaml
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "radar"))
+from units import chiip_name, money_units  # noqa: E402
 
 COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
@@ -339,15 +344,13 @@ def block(b):
         head = "".join(f"<th>{t(h)}</th>" for h in b.get("headers") or [])
         rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
         cap = f"<b>{t(b['title'])}</b>" if b.get("title") else ""
-        note = f'<div class="sm mut">{t(b.get("note"))}</div>' if b.get("note") else ""   # 표 출처·Zacks 표기
-        return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table>{note}</div>'
+        return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
     if k == "chart":
         c = b.get("chart") or {}
         fn = CHARTS.get(c.get("kind"))
         if not fn:
             return ""
-        note = f'<div class="sm mut">{t(c.get("note"))}</div>' if c.get("note") else ""
-        return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}{note}</div>'
+        return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}</div>'
     return ""
 
 
@@ -355,8 +358,6 @@ def block(b):
 PLAIN = [("DCF(v2, ", "DCF("), ("v2 기본 시나리오", "DCF 기본 시나리오"), ("v2 기본", "DCF 내재가치(기본)"), ("v2 강세", "DCF 내재가치(강세)"), ("v2 약세", "DCF 내재가치(약세)"),
          ("MC P50", "몬테카를로 중앙값"), ("MC 기대", "몬테카를로 기대값"), ("v2 엔진", "현금흐름 할인(DCF) 엔진"), ("v2 DCF", "DCF"),
          ("v2 결과", "DCF 결과"), ("v2의", "DCF의"), ("(v2,", "(DCF,"), ("v2 ", "DCF ")]
-GLOSSARY = ("읽는 법 — '배' = 현금흐름으로 계산한 주주가치 ÷ 지금 시가총액(1.0배 = 지금 주가가 현금흐름으로 설명됨, 0.5배 = 절반만 설명됨). "
-            "DCF 내재가치 = 회사 가이던스·컨센서스로 만든 미래 현금흐름을 자본비용으로 할인한 값. 몬테카를로 = 가정을 무작위로 3,000번 바꿔 본 분포.")
 
 
 def plain(s):
@@ -384,14 +385,101 @@ def _walk(o, fn):
     return fn(o)
 
 
-def scrub(d):
-    """본문에서 '(저자 연도)' 괄호를 지우고, 그런 문헌만 적은 출처 줄을 뺀다. 괄호 밖에 인용이 남으면 ValueError — 모델이 문장을 고쳐야 한다"""
-    d = {**d, "sources": [x for x in d.get("sources") or [] if not REF_CITE.search(str(x))]}
-    d = _walk(d, _scrub_text)
-    left = REF_CITE.search(json.dumps(d, ensure_ascii=False))
-    if left:
-        raise ValueError(f"참고 문헌 표기가 남아 있다: {left.group(0)[:60]}")
+# 데이터 제공처 이름을 남기지 않는다(마스터 지시 2026-10-30 "재무 데이터와 컨센서스 데이터, 어닝콜 스크립트를 가져온 출처를 남기지 마라") — 구분이 필요한 곳은 '모델 추정'·'애널리스트 추정'
+VENDOR_RE = re.compile(r"Fiscal\.ai|fiscal\.ai|Zacks|zacks|easyconomics|ir_events|company_estimates")
+VENDOR_SUBS = [(re.compile(r"\s*\[?\(?Data provided by Zacks Investment Research, Inc\.,?\s*\[?www\.zacksdata\.com\]?(?:\([^)]*\))?\)?\.?"), ""),
+               (re.compile(r"[,·]?\s*(?:Fiscal\.ai\s*)?(?:company_)?(?:ir_events(?:_transcript)?|estimates)(?:\s*q\d-\d{4})?"), ""),
+               (re.compile(r"\s*\(https?://www\.zacksdata\.com\)"), ""),
+               (re.compile(r"(?:Fiscal\.ai|Fiscal)\s*(?:자체\s*)?추정"), "모델 추정"),
+               (re.compile(r"Zacks\s*(?:컨센서스|추정)"), "애널리스트 추정"),
+               (re.compile(r"Zacks\s*(의견|목표가)"), r"애널리스트 \1"),
+               (re.compile(r"Zacks(?=\s*[$CF\d])"), "애널리스트 추정"),
+               (re.compile(r"\(Fiscal\)"), "(모델 추정)"),
+               (re.compile(r"(?<![A-Za-z])Fiscal(?=\s*\$)"), "모델 추정"),
+               (re.compile(r"(?:Fiscal\.ai|Zacks)\s*(?:일별 배수|재무|일봉|장기 월봉|개요|표준화)?\s*(?:기준)?\s*"), ""),
+               (re.compile(r"(?<![A-Za-z])Fiscal(?![A-Za-z ]*[Yy]ear)"), "모델"),
+               (re.compile(r"\s*[(（]\s*[)）]"), "")]
+NOT_SOURCE = re.compile(r"Fiscal|fiscal\.ai|Zacks|zacks|트랜스크립트|easyconomics|보강 적용")
+
+
+def _strip_vendor(x):
+    if not isinstance(x, str):
+        return x
+    for pat, rep in VENDOR_SUBS:
+        x = pat.sub(rep, x)
+    return x
+
+
+def _glossary():
+    return yaml.safe_load((ROOT / "config" / "report_glossary.yaml").read_text(encoding="utf-8"))["terms"]
+
+
+_YEAR = re.compile(r"(?<![A-Za-z0-9])(CY|FY)(20\d\d)(?![A-Za-z0-9(（])")
+_URL = re.compile(r"(https?://\S+)")
+
+
+def gloss_text(s, terms, pat, seen):
+    """처음 나온 용어 뒤에 (풀이). 바로 뒤에 괄호가 있으면 이미 풀이된 것으로 본다. 주소는 건드리지 않는다"""
+    def one(m):
+        w = m.group(0)
+        if w in seen:
+            return w
+        after = m.string[m.end():m.end() + 2]
+        if after[:1] in ("(", "（"):
+            if after[1:2].isdigit() or after[1:2] in ("+", "-", "−", "$", "~"):
+                return w   # '멀티플(−54%)'처럼 숫자 괄호면 다음에 나오는 곳에서 풀이한다
+            seen.add(w)
+            return w
+        seen.add(w)
+        return f"{w}({terms[w]})"
+
+    def year(m):
+        key = m.group(1)
+        if key in seen:
+            return m.group(0)
+        seen.add(key)
+        return f"{m.group(0)}({'캘린더' if key == 'CY' else '회계연도'} {m.group(2)}년)"
+    out = []
+    for part in _URL.split(s):
+        out.append(part if _URL.fullmatch(part) else _YEAR.sub(year, pat.sub(one, part)))
+    return "".join(out)
+
+
+def gloss(d):
+    """읽는 순서대로(Chiip View → 요약 → 본문 글·표) 용어를 처음 나오는 곳에서 풀이한다. 숫자 타일·차트 글자는 건드리지 않는다"""
+    terms = _glossary()
+    names = sorted(terms, key=len, reverse=True)
+    pat = re.compile(r"(?<![A-Za-z0-9/.\-])(?:" + "|".join(re.escape(x) for x in names) + r")(?![A-Za-z0-9/\-])")
+    seen = set()
+    g = lambda x: gloss_text(x, terms, pat, seen) if isinstance(x, str) else x
+    if d.get("verdict"):
+        d["verdict"]["view"] = g(d["verdict"].get("view"))
+    for s in d.get("summary") or []:
+        s["a"] = g(s.get("a"))
+    for sec in d.get("sections") or []:
+        for b in sec.get("blocks") or []:
+            k = b.get("type")
+            if k in ("p", "hl", "h3"):
+                b["text"] = g(b.get("text"))
+            elif k == "ul":
+                b["items"] = [g(i) for i in b.get("items") or []]
+            elif k == "table":
+                b["rows"] = [[g(c) for c in r] for r in b.get("rows") or []]
     return d
+
+
+def scrub(d):
+    """참고 문헌·데이터 제공처·읽는 법 문단을 지우고 용어를 풀이한다. 괄호 밖에 인용이나 제공처가 남으면 ValueError — 모델이 문장을 고쳐야 한다"""
+    d = {**d, "sources": [x for x in d.get("sources") or [] if not REF_CITE.search(str(x)) and not NOT_SOURCE.search(str(x))]}
+    d.pop("lead", None)
+    d = _walk(_walk(d, _scrub_text), _strip_vendor)
+    for s in d.get("sections") or []:
+        s["blocks"] = [b for b in s.get("blocks") or [] if not (b.get("type") in ("p", "hl") and str(b.get("text")).startswith(("**읽는 법", "리비전 출처")))]
+    body = json.dumps(d, ensure_ascii=False)
+    left = REF_CITE.search(body) or VENDOR_RE.search(body)
+    if left:
+        raise ValueError(f"남기면 안 되는 표기가 있다: {body[max(0, left.start() - 30):left.end() + 30]}")
+    return gloss(d)
 
 
 def upside(d):
@@ -416,16 +504,15 @@ def render(d):
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
              f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
-             f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}' + (f" · {t(d['lead'])}" if d.get("lead") else "") + "</p>"]
+             f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}</p>']
     if v:   # 마스터 지시 2026-10-29: 확신도 → 컨빅션(같은 고·중·저), 인사이트 → 알파(같은 10점 체계), 업사이드 +% 추가
-        up, basis = upside(d)
+        up, _ = upside(d)
         alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
         badges = "".join(f'<span class="badge">{t(x)}</span>' for x in (
             f"컨빅션 {v['confidence']}" if v.get("confidence") else None,
             f"알파 {alpha}/10" if alpha is not None else None,
             f"업사이드 {up:+.0%}" if up is not None else None) if x)
-        note = f'<div class="sm mut">업사이드 기준: {t(basis)} — 가격 목표가 아니라 시나리오 확률 가중 지표</div>' if up is not None and basis else ""
-        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}{note}</div>')
+        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}</div>')
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(
             f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
@@ -433,14 +520,13 @@ def render(d):
         parts.append('<div class="tiles">' + "".join(
             f'<div class="tile"><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="k">{t(x.get("sub"))}</div></div>'
             for x in d["tiles"]) + "</div>")
-    parts.append(f'<div class="sm mut">{t(GLOSSARY)}</div>')
     # 그래프 전체를 상단에(마스터 지시 2026-10-29 "Chiip View와 한 장 요약 다음 시각물 그래프를 전부 — 시간이 없을 때 상단만 보고 파악")
     figs = figures(d)
     num = {id(b): i for i, (_, b) in enumerate(figs, 1)}
     if figs:
         parts.append("<h2>한눈에 보기 — 그래프 전체</h2><div class=\"gal\">" + "".join(
-            f'<div id="fig{num[id(b)]}">' + block(b).replace("<b>", f'<b>그림 {num[id(b)]} · ', 1) + f'<div class="sm mut">↳ {t(s.get("h2"))}</div></div>'
-            for s, b in figs) + "</div>")
+            f'<div id="fig{num[id(b)]}">' + block(b).replace("<b>", f'<b>그림 {num[id(b)]} · ', 1) + "</div>"
+            for _, b in figs) + "</div>")
     for s in d.get("sections") or []:
         body = "".join(
             (f'<p class="sm mut">📊 <a href="#fig{num[id(b)]}">그림 {num[id(b)]}</a> · {t((b.get("chart") or {}).get("title"))} (위 \'한눈에 보기\')</p>'
@@ -448,7 +534,7 @@ def render(d):
         parts.append(f"<h2>{t(s.get('h2'))}</h2>" + body)
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
-    out = "".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View").replace("치입", "Chiip")   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
+    out = chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
     return money_units(out)   # $25B·$M·$T 표기(마스터 지시 2026-10-29)
 
 

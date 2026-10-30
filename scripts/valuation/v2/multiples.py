@@ -168,5 +168,5 @@ def report_blocks(m, unit, mcap, name="대상"):
     if m.get("forward"):
         fw = m["forward"]
         B.append({"type": "p", "text": f"정상 상태 교차 확인: v2 기본 시나리오의 5년차 ROIC {fw['roic5']:.0%}·영업이익률 {fw['margin5']:.0%}이면 정상 상태 EV/NOPAT {fw['ev_nopat']:.1f}배(5년차 EV/매출 {fw['ev_sales5']:.1f}배). "
-                  f"이를 지금으로 할인하면 주주가치 ÷ 시가총액 {fw['value_x']:.2f}배 — 고성장 기업은 현재 멀티플이 아니라 정상 상태 멀티플을 할인해 비교한다(맥킨지 『Valuation』 멀티플 장)."})
+                  f"이를 지금으로 할인하면 주주가치 ÷ 시가총액 {fw['value_x']:.2f}배 — 고성장 기업은 현재 멀티플이 아니라 정상 상태 멀티플을 할인해 비교한다."})
     return B

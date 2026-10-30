@@ -18,7 +18,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 WINDOW_DAYS = 14
-ZACKS = "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
 
 
 def _d(s):
@@ -221,7 +220,7 @@ def blocks(dp):
                                      "series": [{"name": f"CY{y} EPS 추정", "color": colors[y], "points": [[d.isoformat(), v] for d, v in pts]} for y, pts in tr.items()],
                                      "events": [{"date": r["date"], "mark": r["mark"], "kind": r.get("kind"), "tag": r.get("tag"),
                                                  "pct": ("겹침" if r["overlap"] else _sign(r["rev"]))} for r in ev],
-                                     "note": f"계단선 = 조정 EPS 추정이 바뀐 날. 숫자 = 사건 전 → 후 CY{end.year + 1} EPS 변화. 파란 점선 실적, 금색 점선 내러티브. {n_txt}. {ZACKS}"}}]
+                                     "note": f"계단선 = 조정 EPS 추정이 바뀐 날. 숫자 = 사건 전 → 후 CY{end.year + 1} EPS 변화. 파란 점선 실적, 금색 점선 내러티브. {n_txt}."}}]
     rows = []
     for r in ev:
         a0, a1 = r["a"]
@@ -230,7 +229,7 @@ def blocks(dp):
                      "실적 창과 겹침" if r["overlap"] else _sign(r["rev"], 1), _sign(r["reaction"], 1)])
     B.append({"type": "table", "title": "사건별 EPS 리비전 — 실적 발표·내러티브 변화 때 추정이 어떻게 움직였나",
               "headers": ["#", "날짜", "구분", "사건", f"CY{end.year} EPS 전→후", f"CY{end.year + 1} EPS 전→후", "리비전", "주가 반응"], "rows": rows,
-              "note": f"전 = 사건 전날까지, 후 = 최대 {WINDOW_DAYS}일(다음 사건 전날까지). 주가 반응 = 장후 발표는 다음 거래일, 그 밖은 그날. {n_txt}. {ZACKS}"})
+              "note": f"전 = 사건 전날까지, 후 = 최대 {WINDOW_DAYS}일(다음 사건 전날까지). 주가 반응 = 장후 발표는 다음 거래일, 그 밖은 그날. {n_txt}."})
     dec = decompose(h, dp["revision_events"], px)
     if dec:
         B.append({"type": "chart", "chart": {"kind": "bars", "pin": 8, "w": 440, "title": "최근 4개 분기 주가 변화 분해 = EPS 리비전 × 멀티플 변화 (%, 실적 발표 사이 구간)", "unit": "%",
@@ -238,16 +237,15 @@ def blocks(dp):
                                              "series": [{"name": "주가", "color": "a", "values": [round(x["price"] * 100, 1) for x in dec]},
                                                         {"name": "EPS 리비전", "color": "d", "values": [round(x["rev"] * 100, 1) for x in dec]},
                                                         {"name": "멀티플 변화", "color": "b", "values": [round(x["rerate"] * 100, 1) for x in dec]}],
-                                             "note": f"(1 + 주가) = (1 + EPS 리비전) × (1 + 멀티플 변화). EPS는 구간 시작의 선행 12개월 기간을 고정해 같은 기간끼리 비교. {ZACKS}"}})
+                                             "note": f"(1 + 주가) = (1 + EPS 리비전) × (1 + 멀티플 변화). EPS는 구간 시작의 선행 12개월 기간을 고정해 같은 기간끼리 비교."}})
         B.append({"type": "table", "title": "분기별 주가 분해 — 실적 발표 사이 구간",
                   "headers": ["구간", "기간", "주가", "EPS 리비전", "멀티플 변화", "선행 P/E 시작 → 끝"],
                   "rows": [[x["label"], f"{x['from'].isoformat()[2:]} ~ {x['to'].isoformat()[2:]}", f"${x['p0']:,.2f} → ${x['p1']:,.2f} ({_sign(x['price'])})", _sign(x["rev"]), _sign(x["rerate"]),
-                            f"{x['pe0']:.1f}배 → {x['pe1']:.1f}배" if x["pe0"] and x["pe1"] else "-"] for x in dec],
-                  "note": ZACKS})
+                            f"{x['pe0']:.1f}배 → {x['pe1']:.1f}배" if x["pe0"] and x["pe1"] else "-"] for x in dec]})
         cum = {k: 1.0 for k in ("price", "rev", "rerate")}
         for x in dec:
             for k in cum:
                 cum[k] *= 1 + x[k]
         who = "멀티플" if abs(cum["rerate"] - 1) > abs(cum["rev"] - 1) else "EPS 리비전"
-        B.append({"type": "p", "text": f"**해석:** {len(dec)}개 구간 누적 주가 {_sign(cum['price'] - 1)} = EPS 리비전 {_sign(cum['rev'] - 1)} × 멀티플 {_sign(cum['rerate'] - 1)}. 더 크게 움직인 쪽은 **{who}**다."})
+        B.append({"type": "p", "text": f"**해석:** {len(dec)}개 구간 누적 주가 {_sign(cum['price'] - 1)} = EPS 리비전 {_sign(cum['rev'] - 1)} × 멀티플 {_sign(cum['rerate'] - 1)}. 더 크게 움직인 쪽은 **{who}**이다."})
     return B

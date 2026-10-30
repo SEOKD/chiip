@@ -30,8 +30,8 @@ class TestReportTop(unittest.TestCase):
     def test_plain_words(self):
         h = report_html.render(D)
         self.assertNotIn("v2", h)
-        self.assertIn("DCF 내재가치(기본)", h)
-        self.assertIn("몬테카를로 중앙값", h)
+        self.assertIn("내재가치(기본)", h)
+        self.assertIn("중앙값", h)
 
     def test_gallery_first_and_once(self):
         h = report_html.render(D)

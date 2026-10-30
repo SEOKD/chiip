@@ -54,7 +54,7 @@ def build(src):
     cdir = src.parent / "charts"
     cdir.mkdir(exist_ok=True)
     rels = []
-    for n, c in enumerate(charts_of(d), 1):
+    for n, c in enumerate(charts_of(report_html.scrub(json.loads(json.dumps(d, ensure_ascii=False)))), 1):   # 그림 글자도 HTML과 같게(제공처 제거)
         svg = standalone(c)
         p = cdir / f"{src.stem}_{n}.svg"
         if svg:

@@ -256,9 +256,9 @@ def report_section(entity, dp=None):
     blocks.append(candle_chart(merge_monthly(monthly, daily) if monthly else resample(daily, "M"), "월봉 — 장기 스윙 되돌림", sw["월봉"], zs, price, 60 if monthly else 24))
     blocks.append(candle_chart(resample(daily, "W"), "주봉 — 52주 스윙 되돌림", sw["주봉"], zs, price, 52))
     blocks.append(candle_chart(daily, "일봉 — 마지막 완료 스윙 되돌림(최근 90거래일)", sw["일봉"], zs, price, 90))
-    note = "월봉은 최근 60개월(Fiscal.ai 장기 월봉)" if monthly else "월봉은 확보한 일봉 기간만큼만 그린다"
+    note = "월봉은 최근 60개월" if monthly else "월봉은 확보한 일봉 기간만큼만 그린다"
     if flow.approx_hl(entity):
-        note += " · 고가·저가는 Fiscal.ai 일봉에 없어 시가·종가로 근사(스윙 고저가 실제보다 좁게 잡힐 수 있다)"
+        note += " · 고가·저가는 일봉 자료에 없어 시가·종가로 근사(스윙 고저가 실제보다 좁게 잡힐 수 있다)"
     if len(daily) < 120:
         note = f"상장 후 {len(daily)}거래일뿐이라 월·주봉 스윙은 상장 이후 전체 구간이다(장기 지지·저항으로 읽지 말 것)" + (" · 고가·저가 근사" if flow.approx_hl(entity) else "")
     if anchors:
