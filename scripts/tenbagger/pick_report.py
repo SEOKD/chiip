@@ -1,4 +1,4 @@
-"""오늘 텐배거 리포트 종목 고르기 (예약 작업 chiip-tenbagger-report, 하루 3건 07·13·22시 — 2026-10-29 마스터 지시, 이전 23:00 1건)
+"""오늘 텐배거 리포트 종목 고르기 (예약 작업 chiip-tenbagger-report, 주중 매시간 — 2026-10-30 마스터 지시, 이전 하루 3건)
 같은 날 앞 회차가 --done으로 기록한 종목은 30일 규칙으로 빠지므로 회차마다 다른 종목이 나온다.
 
 우선순위(같은 종목은 30일 안에 다시 쓰지 않는다 — outputs/tenbagger/reports/log.csv):
@@ -7,6 +7,7 @@
   2. 텐배거 추적 목록 watch.csv의 진행 중 후보 중 리포트가 없는 것
   3. 알파 잠재력 최신 점수(knowledge/models/alpha/latest.json) 5.0 이상, 점수 높은 순
   4. 마스터 보유 종목(config/portfolio.yaml) 중 오래 안 쓴 것
+  5. 후보가 바닥나면(주중 매시간은 주 120건) 알파 5.0 미만 산정 종목, 그다음 알파 5.0 이상 중 7일 지난 종목
 사용: py scripts/tenbagger/pick_report.py            → JSON 한 줄(id·name·ticker·reason)
       py scripts/tenbagger/pick_report.py --done <id> <ticker> <html 경로> <치입 판단 한 줄>   → log.csv에 기록, 대기열에서 제거
 """
@@ -23,12 +24,13 @@ LOG = ROOT / "outputs" / "tenbagger" / "reports" / "log.csv"
 QUEUE = ROOT / "knowledge" / "models" / "tenbagger" / "report_queue.txt"
 FIELDS = ["date", "id", "ticker", "html", "view"]
 REPEAT_DAYS = 30
+REPEAT_MIN_DAYS = 7    # 주중 매시간 회차에서 후보가 바닥났을 때만 — 이보다 짧으면 같은 내용 반복이다
 
 
-def recent(today):
+def recent(today, days=REPEAT_DAYS):
     if not LOG.exists():
         return set()
-    cut = (today - timedelta(days=REPEAT_DAYS)).isoformat()
+    cut = (today - timedelta(days=days)).isoformat()
     with LOG.open(encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["date"] >= cut]
     return {r["id"] for r in rows} | {r["ticker"] for r in rows if r.get("ticker")}
@@ -104,7 +106,17 @@ def pick(today=None):
     for h in pf.get("holdings") or []:
         if h.get("status", "보유") == "보유" and h["id"] not in done and h["ticker"] not in done:
             return {"id": h["id"], "name": h["name"], "ticker": h["ticker"], "reason": "보유 종목"}
-    return {"id": None, "reason": "후보 없음(모두 30일 안에 작성)"}
+    if al.exists():
+        th = float(d.get("threshold", 5.0))
+        scored = sorted(((k, v) for k, v in (d.get("rows") or {}).items() if v.get("total") is not None and (uni.get(k) or {}).get("ticker")), key=lambda kv: -kv[1]["total"])
+        for k, v in scored:
+            if v["total"] < th and k not in done and uni[k]["ticker"] not in done:
+                return {"id": k, "name": v.get("name") or uni[k].get("name"), "ticker": uni[k]["ticker"], "reason": f"알파 {v['total']}(5.0 이상 후보 소진)"}
+        soon = recent(today, REPEAT_MIN_DAYS)
+        for k, v in scored:
+            if v["total"] >= th and k not in soon and uni[k]["ticker"] not in soon:
+                return {"id": k, "name": v.get("name") or uni[k].get("name"), "ticker": uni[k]["ticker"], "reason": f"알파 {v['total']}(후보 소진, {REPEAT_MIN_DAYS}일 지난 재작성)"}
+    return {"id": None, "reason": f"후보 없음(모두 {REPEAT_MIN_DAYS}일 안에 작성)"}
 
 
 def done(eid, ticker, html_path, view, today=None):

@@ -97,7 +97,7 @@ def fast_lane(items):
             if e.get("profile"):
                 notify.remember_profile(it.get("entities_matched"), e["profile"], "빠른 길 모델")
             ref = notify.remember_alert(it, lvl, why, None, None)
-            notify.send(notify.format_item(lvl, it, points=e.get("points"), profile=e.get("profile")), lvl, ref=ref, html_mode=True)
+            notify.send(notify.format_item(lvl, it, points=e.get("points"), profile=e.get("profile"), synergy=e.get("synergy")), lvl, ref=ref, html_mode=True)
             sent.append(it["item_id"])
         except Exception as exc:
             print(f"빠른 길 발송 오류 {it.get('item_id')}: {type(exc).__name__}: {exc}")
@@ -110,14 +110,16 @@ def fast_lane(items):
 
 FAST_SCHEMA = {"type": "object", "properties": {"results": {"type": "array", "items": {"type": "object", "properties": {
     "item_id": {"type": "string"}, "points": {"type": "array", "items": {"type": "string"}},
-    "profile": {"type": "array", "items": {"type": "string"}}}, "required": ["item_id"]}}}, "required": ["results"]}
+    "profile": {"type": "array", "items": {"type": "string"}}, "synergy": {"type": "string"}}, "required": ["item_id"]}}}, "required": ["results"]}
 FAST_PROMPT = (
-    "radar/state/fast_batch.json의 뉴스 항목마다 한국어로 두 가지를 쓴다(마스터 지시 2026-10-29 실시간 알림 양식). "
+    "radar/state/fast_batch.json의 뉴스 항목마다 한국어로 쓴다(마스터 지시 2026-10-29 실시간 알림 양식). "
     "① points: 핵심 내용 최대 3줄(각 60자 안팎) — 무엇이 일어났나·숫자(단위 그대로, 금액은 $50.6B·$420M 표기)·왜 중요한가. "
     "제목·요약(snippet)에 있는 사실만 쓰고, 헤드라인을 사실로 단정하지 말고 주체를 붙인다(예: '로이터 보도'). 쓸 사실이 1~2개면 1~2줄만. "
     "② profile: 주인공 기업(entities_matched 첫 종목) 설명 3줄 — 비즈니스 모델 / 성장 동력 / 시장의 내러티브. "
     "각 줄 45자 안팎(휴대폰 한 줄), '모델:'·'성장:'·'내러티브:' 같은 머리말 없이 내용만(마스터 지시 2026-10-30). "
-    "known_line·narrative가 있으면 그것과 맞게 쓴다. 확실히 아는 사실만, 모르면 빈 배열. 매수·매도 표현 금지. 결과는 구조화 출력만.")
+    "known_line·narrative가 있으면 그것과 맞게 쓴다. 확실히 아는 사실만, 모르면 빈 배열. "
+    "③ synergy: M&A(인수·합병·사업부 매각) 기사일 때만 한 줄(70자 안팎) — 인수기업과 피인수기업의 비즈니스 모델·제품 포트폴리오를 놓고 무엇이 이어지나(교차판매·제품 공백 메우기·기술 내재화·고객·원가). "
+    "기사에 없는 판단이므로 끝에 '(추정)'을 붙인다. 피인수기업 사업을 모르면 '피인수기업 사업 미확인'이라고 쓴다. M&A가 아니면 비운다. 매수·매도 표현 금지. 결과는 구조화 출력만.")
 
 
 def enrich(items):

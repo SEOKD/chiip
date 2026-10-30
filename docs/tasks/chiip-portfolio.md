@@ -24,6 +24,7 @@
    - IB 커버리지: 제목에서 증권사·행동(개시·상향·하향·목표가 변경)·새 목표가를 읽고, Fiscal.ai `consensus.js`의 ratings(목표가·의견 분포, Zacks)를 portfolio 기록의 직전 값과 비교해 변화로 대조한다. 대조되지 않으면 '제목 기준, 미대조'.
    - 관심도(레딧 등 언급 급증·위키 조회 급증): 신호이지 주장이 아니다(S1). 같은 날 원인 사건(공시·보도·실적)을 찾아 붙이고, 없으면 '원인 미확인'. 주가 급등 → 펀더멘털 변화로 잇지 않는다(금지표).
    - 일정(오늘·내일): 그대로 전한다.
+   - M&A(보유 종목 또는 경쟁사·고객): `- 의미:` 다음에 `- 시너지:` 한 줄 — 인수기업과 피인수기업의 비즈니스 모델·포트폴리오로 본 효과, 끝에 '(추정)'(마스터 지시 2026-10-30).
    - 중요도: P0 = 실적·가이던스 변경·M&A·합병 투표 결과·증자·대규모 계약·임원 CEO/CFO 변동·애널리스트 상향/하향 / P1 = 그 밖에 숫자가 있는 새 사실 / 기록만 = 반복 홍보물·소액 계획 매매·숫자 없는 제목.
 
 2. 실적(earnings_hit 또는 1번에서 실적 공시) — 스킬 earnings-delta 방식. Fiscal.ai(ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`)의 company_earnings_summary·company_ir_events·`transcript_qa.js`·`consensus.js`를 쓴다.

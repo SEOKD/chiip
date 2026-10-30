@@ -29,7 +29,7 @@ class TestAlertFormat(unittest.TestCase):
         head, prof, pts = msg.split("\n\n")
         self.assertTrue(head.startswith("Quanta Services(PWR)｜<a href="))
         self.assertTrue(head.endswith("21:05"))   # 오늘이 아니면 날짜가 붙는다
-        self.assertEqual(prof, "☞ 모델\n성장\n내러티브")
+        self.assertEqual(prof, "☞ 모델 · 성장 · 내러티브")   # 한 줄로 잇는다(2026-10-30)
         self.assertEqual(pts.splitlines(), ["• a", "• b", "• c"])   # 핵심은 3개까지
         self.assertNotIn("P1", msg)                                  # 등급 코드 비노출 유지
 
@@ -62,6 +62,17 @@ class TestAlertFormat(unittest.TestCase):
             finally:
                 notify.PROFILES = saved
                 notify.common.load_yaml = orig_load
+
+
+class TestAlertLines(unittest.TestCase):
+    def test_profile_joins_on_one_line_without_heads(self):
+        self.assertEqual(notify.profile_line(["모델: 기기 판매 + 서비스.", "성장: 서비스 매출", "멀티플 근거(시장 해석)"]),
+                         "기기 판매 + 서비스 · 서비스 매출 · 멀티플 근거(시장 해석)")
+
+    def test_synergy_only_when_given(self):
+        item = {"title": "t", "url": "", "entities_matched": []}
+        self.assertIn("• 시너지: AI 에이전트 기능 내재화(추정)", notify.format_item("P1", item, points=["a"], synergy="AI 에이전트 기능 내재화(추정)"))
+        self.assertNotIn("시너지", notify.format_item("P1", item, points=["a"]))
 
 
 if __name__ == "__main__":

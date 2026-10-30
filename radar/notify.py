@@ -390,11 +390,20 @@ def snippet_points(item, n=3):
     return out
 
 
-def format_item(level, item, what=None, impact=None, card_id=None, biz=None, points=None, profile=None):
+PROFILE_HEAD_RE = re.compile(r"^(?:비즈니스\s*)?(?:모델|성장(?:\s*동력)?|내러티브)\s*[:：]\s*")
+
+
+def profile_line(lines):
+    """☞ 회사 설명을 한 줄로 잇는다(마스터 지시 2026-10-30 "두 줄로 문단이 나뉘는데 한 줄로 이어지도록") — 머리말·끝 마침표를 떼고 ' · '로"""
+    return " · ".join(PROFILE_HEAD_RE.sub("", l.strip()).rstrip(" .") for l in lines if l and l.strip())
+
+
+def format_item(level, item, what=None, impact=None, card_id=None, biz=None, points=None, profile=None, synergy=None):
     """실시간 알림 — 마스터 지시 2026-10-29 양식:
         종목(종목코드)｜기사(원문 링크)｜시간
-        ☞ 회사 설명 3줄(비즈니스 모델·성장 동력·내러티브)
+        ☞ 회사 설명 한 줄(비즈니스 모델·성장 동력·내러티브)
         • 핵심 내용 1~3
+        • 시너지: M&A 기사일 때만 — 인수기업·피인수기업 사업과 포트폴리오로 본 효과 한 줄(2026-10-30)
     등급 코드는 드러내지 않는다(html_mode=True로 보낼 것). points·profile은 판정 모델 출력, 없으면 저장된 설명·요약문으로 채운다.
     level·what·impact·card_id는 호출 호환용(표기 안 함)"""
     title = html.escape(item.get("title") or "")
@@ -403,10 +412,13 @@ def format_item(level, item, what=None, impact=None, card_id=None, biz=None, poi
     parts = [f"{html.escape(stock_label(item.get('entities_matched')))}｜{art}｜{alert_time(item)}"]
     prof = company_profile(item.get("entities_matched"), profile, biz)
     if prof:
-        parts.append("☞ " + "\n".join(html.escape(l, quote=False) for l in prof))
+        parts.append("☞ " + html.escape(profile_line(prof), quote=False))
     pts = [p.strip() for p in (points or []) if p and p.strip()][:3] or snippet_points(item)
-    if pts:
-        parts.append("\n".join(f"• {html.escape(p, quote=False)}" for p in pts))
+    lines = [f"• {html.escape(p, quote=False)}" for p in pts]
+    if synergy and synergy.strip():
+        lines.append(f"• 시너지: {html.escape(synergy.strip(), quote=False)}")
+    if lines:
+        parts.append("\n".join(lines))
     return "\n\n".join(parts)
 
 
