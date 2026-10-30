@@ -75,3 +75,14 @@ companies:
   jp-nof: {site: "https://www.nof.co.jp"}
   jp-shimadzu: {site: "https://www.shimadzu.co.jp"}
   jp-oki: {site: "https://www.oki.com/jp"}
+  # 소비재·게임·콘텐츠IP(Chiip Consumer, 2026-10-30) — 자료실은 jp_ir_docs가 자동 탐색
+  jp-takaratomy: {site: "https://www.takaratomy.co.jp"}
+  jp-sanrio: {site: "https://www.sanrio.co.jp"}
+  jp-bandainamco: {site: "https://www.bandainamco.co.jp"}
+  jp-capcom: {site: "https://www.capcom.co.jp"}
+  jp-nintendo: {site: "https://www.nintendo.co.jp"}
+  jp-konami: {site: "https://www.konami.com"}
+  jp-squareenix: {site: "https://www.hd.square-enix.com"}
+  jp-toei-anim: {site: "https://corp.toei-anim.co.jp"}
+  jp-kadokawa: {site: "https://group.kadokawa.co.jp"}
+  jp-asics: {site: "https://corp.asics.com"}

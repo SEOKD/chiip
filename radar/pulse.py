@@ -29,7 +29,7 @@ from pollers.press_wire import NON_EN_RE  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
-TOP = {"속보 판단": 3, "IR 질의응답": 4, "IR 자료": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"속보 판단": 3, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
@@ -41,7 +41,7 @@ CLASSES = [("IR 질의응답", ("src-jp-ir-qa",)),   # 일본 IR 질의응답 �
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "IR 자료": 6, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
     r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
@@ -54,6 +54,10 @@ US_TICKER_RE = re.compile(r"\((?:NASDAQ|Nasdaq|NYSE|NYSE American|NYSE Arca|Cboe
 # AI 파이낸싱(마스터 지시 2026-10-29) — config/financing_watch.yaml. 보도 여부와 무관하게 모은다(기사도 9개 매체면 포함)
 FIN_FORMS = {"424B2", "424B3", "424B5", "FWP", "S-3ASR", "S-3", "S-1", "F-1", "SC 13D", "SCHEDULE 13D"}
 FIN_8K_ITEMS = {"1.01": "중요 계약", "2.03": "금융 채무 발생", "3.02": "미등록 증권 발행", "7.01": "공정공시", "8.01": "기타 중요 사건"}
+# Chiip Consumer(마스터 지시 2026-10-30 — 비AI 급성장 소비재·게임·콘텐츠IP): config/consumer.yaml 지도 종목의 실적·업적 수정·월차(적시공시 미러·SEC·보도자료)
+# + radar/consumer_attention.py의 수요 관심 급가속(IP·브랜드 위키 조회·스팀 추천) — 렌즈 knowledge/methods/consumer_lens.md
+CONSUMER_EVENT_RE = re.compile(r"決算|業績|上方修正|下方修正|月次|増配|株式分割|最高益|earnings|results|guidance|quarter|outlook|raises|record", re.I)
+CONSUMER_LATEST = common.ROOT / "knowledge" / "models" / "consumer" / "attention_latest.json"
 QUEUE_BUSY = [((8, 5), (8, 45)), ((18, 5), (18, 45))]   # chiip-valuation-queue 실행 창 — 이때 펄스는 알파 산정을 건너뜀
 
 
@@ -89,6 +93,12 @@ def defense_hits(ents, title):
     return hits(ents, title)
 
 
+def consumer_hits(ents, _c={}):
+    if "ids" not in _c:
+        _c["ids"] = {c["id"] for c in common.consumer_companies()}
+    return [e for e in ents if e in _c["ids"]]
+
+
 def class_of(source_id):
     for name, prefixes in CLASSES:
         if source_id.startswith(prefixes) and not source_id.endswith("-ko"):
@@ -111,6 +121,8 @@ def relevant(it, cls):
     if cls in ("IR 질의응답", "IR 자료"):   # 일본어 원문이 정상 — 언어 필터 예외
         return True
     if cls == "방위":   # 독·프·이·스·일 국방부 원문이 정상 — 언어 필터 예외(원천에서 조달어로 이미 거름)
+        return True
+    if cls == "소비재":   # 일본 적시공시 미러·한국어 원문 포함 — 지도 종목 + 실적·업적 문구로 이미 거름
         return True
     if it.get("language") not in (None, "en") or NON_EN_RE.search(it.get("title", "")):
         return False
@@ -141,6 +153,9 @@ def inbox_items(since):
             # 방위 지도 기업의 수주·계약 보도자료·공시(보도자료 배포처·SEC)도 방위로 모은다
             if cls in ("보도자료", "공시") and defense_hits(it.get("entities_matched") or [], it.get("title", "")) and DEF_WORD_RE.search(it.get("title", "")):
                 cls = "방위"
+            # 소비재 지도 종목의 실적·업적 수정·월차(일본 적시공시 미러 포함) — 기사는 제외(원문만)
+            if cls in (None, "보도자료", "공시") and consumer_hits(it.get("entities_matched") or []) and CONSUMER_EVENT_RE.search(it.get("title", ""))                     and (it.get("doc_type") in ("공시", "실적", "보도자료") or "適時開示" in it.get("title", "")):
+                cls = "소비재"
             if not cls or not relevant(it, cls):
                 continue
             out.append(dict(it, source_class=cls))
@@ -340,6 +355,23 @@ def fetch_alerts(st, since=None):
     return p0 + p1
 
 
+def fetch_consumer_spikes(st):
+    """수요 관심 급가속(하루 1회 갱신) — 새 관측일 때만, 상위 5건"""
+    if not CONSUMER_LATEST.exists():
+        return []
+    d = json.loads(CONSUMER_LATEST.read_text(encoding="utf-8"))
+    if (d.get("as_of") or "") <= st.get("consumer_spikes_at", ""):
+        return []
+    st["consumer_spikes_at"] = d.get("as_of") or ""
+    out = []
+    for s in (d.get("spikes") or [])[:5]:
+        what = f"위키 '{s['key'].split(':', 1)[-1]}' 7일 조회 {s.get('views7')}" if s["source"] == "wiki" else f"스팀 앱 {s['key']} 7일 추천 +{s.get('gain7')}"
+        out.append({"source_id": "consumer-attention", "source_class": "소비재", "url": "", "title": f"{s['name']} 수요 관심 급가속 ×{s['accel']} — {what}",
+                    "published_at": d.get("as_of"), "detected_at": common.iso(common.now_kst()), "snippet": "radar/consumer_attention.py", "language": "ko",
+                    "entities_matched": [s["id"]], "consumer_spike": s})
+    return out
+
+
 def candidates(sources, watch):
     """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
     c = {}
@@ -381,7 +413,7 @@ def run(now=None):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings)):
+    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("소비재", fetch_consumer_spikes)):
         try:
             sources += fn(st)
         except Exception as exc:
@@ -403,7 +435,8 @@ def run(now=None):
                       f" · 어닝콜 전문 대기 {tw.get('waiting', 0)} → 종료")
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
-    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars")
+    keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",
+            "kind", "period", "doc_date", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike")   # IR 자료·Q&A·소비재 필드(2026-10-30)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],

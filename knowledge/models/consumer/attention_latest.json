@@ -1,0 +1,878 @@
+{
+ "date": "2026-10-30",
+ "as_of": "2026-10-30T15:33:08+09:00",
+ "rows": {
+  "jp-takaratomy": {
+   "name": "Takara Tomy",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Beyblade": {
+     "views7": 4451,
+     "base7": 3985,
+     "accel": 1.12
+    },
+    "ja:ベイブレード": {
+     "views7": 1272,
+     "base7": 1510,
+     "accel": 0.84
+    },
+    "en2:Tomica": {
+     "views7": 57,
+     "base7": 43,
+     "accel": 1.33
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Beyblade X": {
+     "n7": 26,
+     "accel": null,
+     "saturated": false
+    },
+    "ベイブレードX": {
+     "n7": 16,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.06
+  },
+  "jp-sanrio": {
+   "name": "Sanrio",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Hello Kitty": {
+     "views7": 13192,
+     "base7": 12320,
+     "accel": 1.07
+    },
+    "ja:ハローキティ": {
+     "views7": 3284,
+     "base7": 2700,
+     "accel": 1.22
+    },
+    "en2:Cinnamoroll": {
+     "views7": 3351,
+     "base7": 3065,
+     "accel": 1.09
+    },
+    "en3:Kuromi": {
+     "views7": 6321,
+     "base7": 6146,
+     "accel": 1.03
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Sanrio": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    },
+    "Kuromi": {
+     "n7": 20,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.08
+  },
+  "jp-bandainamco": {
+   "name": "Bandai Namco Holdings",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Gundam": {
+     "views7": 9560,
+     "base7": 10116,
+     "accel": 0.95
+    },
+    "en2:Tamagotchi": {
+     "views7": 5860,
+     "base7": 5776,
+     "accel": 1.01
+    },
+    "ja:機動戦士ガンダム": {
+     "views7": 7762,
+     "base7": 8102,
+     "accel": 0.96
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Gunpla": {
+     "n7": 33,
+     "accel": null,
+     "saturated": false
+    },
+    "Tamagotchi": {
+     "n7": 32,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.97
+  },
+  "jp-capcom": {
+   "name": "Capcom",
+   "segment": "games",
+   "wiki": {
+    "en:Monster Hunter": {
+     "views7": 6088,
+     "base7": 6379,
+     "accel": 0.95
+    },
+    "en2:Resident Evil": {
+     "views7": 48896,
+     "base7": 91510,
+     "accel": 0.53
+    }
+   },
+   "steam": {
+    "2246340": {
+     "total": 203736,
+     "gain7": null,
+     "accel": null
+    },
+    "1364780": {
+     "total": 51363,
+     "gain7": null,
+     "accel": null
+    }
+   },
+   "apple": [],
+   "news": {
+    "Monster Hunter Wilds": {
+     "n7": 19,
+     "accel": null,
+     "saturated": false
+    },
+    "Resident Evil": {
+     "n7": 41,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.58
+  },
+  "jp-nintendo": {
+   "name": "Nintendo",
+   "segment": "games",
+   "wiki": {
+    "en:Nintendo Switch 2": {
+     "views7": 21062,
+     "base7": 20827,
+     "accel": 1.01
+    },
+    "ja:Nintendo Switch 2": {
+     "views7": 2965,
+     "base7": 3000,
+     "accel": 0.99
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Switch 2": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.01
+  },
+  "jp-konami": {
+   "name": "Konami Group",
+   "segment": "games",
+   "wiki": {
+    "en:Yu-Gi-Oh!": {
+     "views7": 8235,
+     "base7": 8938,
+     "accel": 0.92
+    },
+    "en2:eFootball": {
+     "views7": 0,
+     "base7": 0,
+     "accel": 1.0
+    }
+   },
+   "steam": {
+    "1665460": {
+     "total": 1203,
+     "gain7": null,
+     "accel": null
+    }
+   },
+   "apple": [],
+   "news": {
+    "Yu-Gi-Oh!": {
+     "n7": 59,
+     "accel": null,
+     "saturated": false
+    },
+    "eFootball": {
+     "n7": 34,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.92
+  },
+  "jp-squareenix": {
+   "name": "Square Enix Holdings",
+   "segment": "games",
+   "wiki": {
+    "en:Final Fantasy": {
+     "views7": 12878,
+     "base7": 11232,
+     "accel": 1.15
+    },
+    "en2:Dragon Quest": {
+     "views7": 5906,
+     "base7": 6368,
+     "accel": 0.93
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Final Fantasy": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    },
+    "Dragon Quest": {
+     "n7": 89,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.08
+  },
+  "jp-toei-anim": {
+   "name": "Toei Animation",
+   "segment": "content_ip",
+   "wiki": {
+    "en:One Piece": {
+     "views7": 29401,
+     "base7": 31226,
+     "accel": 0.94
+    },
+    "en2:Dragon Ball": {
+     "views7": 14139,
+     "base7": 14424,
+     "accel": 0.98
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "One Piece": {
+     "n7": 87,
+     "accel": null,
+     "saturated": false
+    },
+    "Dragon Ball": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.95
+  },
+  "jp-kadokawa": {
+   "name": "Kadokawa",
+   "segment": "content_ip",
+   "wiki": {
+    "en:Elden Ring": {
+     "views7": 22472,
+     "base7": 16564,
+     "accel": 1.36
+    },
+    "en2:FromSoftware": {
+     "views7": 11904,
+     "base7": 11156,
+     "accel": 1.07
+    }
+   },
+   "steam": {
+    "1245620": {
+     "total": 835029,
+     "gain7": null,
+     "accel": null
+    }
+   },
+   "apple": [],
+   "news": {
+    "FromSoftware": {
+     "n7": 16,
+     "accel": null,
+     "saturated": false
+    },
+    "Elden Ring": {
+     "n7": 42,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.26
+  },
+  "jp-asics": {
+   "name": "ASICS",
+   "segment": "apparel",
+   "wiki": {
+    "en:Asics": {
+     "views7": 4245,
+     "base7": 5160,
+     "accel": 0.82
+    },
+    "en2:Onitsuka Tiger": {
+     "views7": 4606,
+     "base7": 4700,
+     "accel": 0.98
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Onitsuka Tiger": {
+     "n7": 8,
+     "accel": null,
+     "saturated": false
+    },
+    "ASICS": {
+     "n7": 66,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.9
+  },
+  "kr-samyang": {
+   "name": "Samyang Foods",
+   "segment": "food_bev",
+   "wiki": {
+    "en:Buldak": {
+     "views7": 1527,
+     "base7": 1528,
+     "accel": 1.0
+    },
+    "ko:불닭볶음면": {
+     "views7": 262,
+     "base7": 171,
+     "accel": 1.53
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Buldak": {
+     "n7": 14,
+     "accel": null,
+     "saturated": false
+    },
+    "불닭볶음면": {
+     "n7": 11,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.08
+  },
+  "kr-apr": {
+   "name": "APR",
+   "segment": "beauty",
+   "wiki": {},
+   "steam": {},
+   "apple": [],
+   "news": {
+    "medicube": {
+     "n7": 3,
+     "accel": null,
+     "saturated": false
+    },
+    "메디큐브": {
+     "n7": 26,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": null
+  },
+  "kr-silicon2": {
+   "name": "Silicon2",
+   "segment": "beauty",
+   "wiki": {},
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Silicon2": {
+     "n7": 0,
+     "accel": null,
+     "saturated": false
+    },
+    "실리콘투": {
+     "n7": 9,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": null
+  },
+  "kr-hybe": {
+   "name": "HYBE",
+   "segment": "content_ip",
+   "wiki": {
+    "en:BTS": {
+     "views7": 31719,
+     "base7": 34752,
+     "accel": 0.91
+    },
+    "en2:Hybe Corporation": {
+     "views7": 1804,
+     "base7": 2354,
+     "accel": 0.77
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "BTS": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    },
+    "HYBE": {
+     "n7": 29,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.9
+  },
+  "kr-krafton": {
+   "name": "Krafton",
+   "segment": "games",
+   "wiki": {
+    "en:PUBG: Battlegrounds": {
+     "views7": 5996,
+     "base7": 6471,
+     "accel": 0.93
+    },
+    "en2:Inzoi": {
+     "views7": 6,
+     "base7": 10,
+     "accel": 0.62
+    }
+   },
+   "steam": {
+    "578080": {
+     "total": 1768565,
+     "gain7": null,
+     "accel": null
+    },
+    "2456740": {
+     "total": 30604,
+     "gain7": null,
+     "accel": null
+    }
+   },
+   "apple": [],
+   "news": {
+    "PUBG": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    },
+    "inZOI": {
+     "n7": 1,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.93
+  },
+  "kr-shiftup": {
+   "name": "Shift Up",
+   "segment": "games",
+   "wiki": {
+    "en:Stellar Blade": {
+     "views7": 4715,
+     "base7": 3986,
+     "accel": 1.18
+    },
+    "en2:Goddess of Victory: Nikke": {
+     "views7": 3265,
+     "base7": 2601,
+     "accel": 1.26
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Stellar Blade": {
+     "n7": 4,
+     "accel": null,
+     "saturated": false
+    },
+    "NIKKE": {
+     "n7": 6,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.21
+  },
+  "hk-popmart": {
+   "name": "Pop Mart",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Labubu": {
+     "views7": 6626,
+     "base7": 5859,
+     "accel": 1.13
+    },
+    "en2:Pop Mart": {
+     "views7": 1980,
+     "base7": 1661,
+     "accel": 1.19
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Labubu": {
+     "n7": 22,
+     "accel": null,
+     "saturated": false
+    },
+    "Pop Mart": {
+     "n7": 34,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 1.14
+  },
+  "hk-laopu": {
+   "name": "Laopu Gold",
+   "segment": "apparel",
+   "wiki": {},
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Laopu Gold": {
+     "n7": 1,
+     "accel": null,
+     "saturated": false
+    },
+    "老铺黄金": {
+     "n7": 14,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": null
+  },
+  "hk-mixue": {
+   "name": "Mixue Group",
+   "segment": "food_bev",
+   "wiki": {
+    "en:Mixue Ice Cream & Tea": {
+     "views7": 3392,
+     "base7": 4102,
+     "accel": 0.83
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Mixue": {
+     "n7": 3,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.83
+  },
+  "us-elf": {
+   "name": "e.l.f. Beauty",
+   "segment": "beauty",
+   "wiki": {},
+   "steam": {},
+   "apple": [],
+   "news": {
+    "e.l.f. Cosmetics": {
+     "n7": 9,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": null
+  },
+  "us-celh": {
+   "name": "Celsius Holdings",
+   "segment": "food_bev",
+   "wiki": {
+    "en:Celsius Holdings": {
+     "views7": 2125,
+     "base7": 2466,
+     "accel": 0.86
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Celsius energy drink": {
+     "n7": 6,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.86
+  },
+  "us-onon": {
+   "name": "On Holding",
+   "segment": "apparel",
+   "wiki": {},
+   "steam": {},
+   "apple": [],
+   "news": {
+    "On Running": {
+     "n7": 50,
+     "accel": null,
+     "saturated": false
+    },
+    "On Cloud shoes": {
+     "n7": 2,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": null
+  },
+  "us-deck": {
+   "name": "Deckers Brands",
+   "segment": "apparel",
+   "wiki": {
+    "en:Hoka One One": {
+     "views7": 139,
+     "base7": 180,
+     "accel": 0.77
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Hoka shoes": {
+     "n7": 44,
+     "accel": null,
+     "saturated": false
+    },
+    "UGG": {
+     "n7": 49,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.77
+  },
+  "us-rblx": {
+   "name": "Roblox",
+   "segment": "platform",
+   "wiki": {
+    "en:Roblox": {
+     "views7": 77062,
+     "base7": 148250,
+     "accel": 0.52
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Roblox": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.52
+  },
+  "us-duol": {
+   "name": "Duolingo",
+   "segment": "platform",
+   "wiki": {
+    "en:Duolingo": {
+     "views7": 5755,
+     "base7": 5923,
+     "accel": 0.97
+    }
+   },
+   "steam": {},
+   "apple": [
+    {
+     "country": "us",
+     "feed": "top-free",
+     "rank": 77,
+     "app": "Duolingo: Learn Languages"
+    },
+    {
+     "country": "kr",
+     "feed": "top-free",
+     "rank": 27,
+     "app": "듀오링고(Duolingo): 언어 학습"
+    }
+   ],
+   "news": {
+    "Duolingo": {
+     "n7": 68,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.97
+  },
+  "us-fnko": {
+   "name": "Funko",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Funko": {
+     "views7": 1700,
+     "base7": 1774,
+     "accel": 0.96
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Funko Pop": {
+     "n7": 44,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.96
+  },
+  "us-mat": {
+   "name": "Mattel",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Barbie": {
+     "views7": 7110,
+     "base7": 7783,
+     "accel": 0.91
+    },
+    "en2:Hot Wheels": {
+     "views7": 3643,
+     "base7": 4353,
+     "accel": 0.84
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Mattel": {
+     "n7": 54,
+     "accel": null,
+     "saturated": false
+    },
+    "Hot Wheels": {
+     "n7": 75,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.89
+  },
+  "us-bros": {
+   "name": "Dutch Bros",
+   "segment": "food_bev",
+   "wiki": {
+    "en:Dutch Bros": {
+     "views7": 26,
+     "base7": 60,
+     "accel": 0.44
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Dutch Bros": {
+     "n7": 100,
+     "accel": null,
+     "saturated": true
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.44
+  },
+  "us-cava": {
+   "name": "CAVA Group",
+   "segment": "food_bev",
+   "wiki": {},
+   "steam": {},
+   "apple": [],
+   "news": {
+    "CAVA restaurant": {
+     "n7": 5,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": null
+  },
+  "gb-gaw": {
+   "name": "Games Workshop",
+   "segment": "toys_ip",
+   "wiki": {
+    "en:Warhammer 40,000": {
+     "views7": 12288,
+     "base7": 15097,
+     "accel": 0.81
+    }
+   },
+   "steam": {},
+   "apple": [],
+   "news": {
+    "Warhammer": {
+     "n7": 97,
+     "accel": null,
+     "saturated": false
+    }
+   },
+   "missing": [],
+   "demand_accel": 0.81
+  }
+ },
+ "spikes": []
+}

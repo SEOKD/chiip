@@ -41,6 +41,8 @@ def candidates():
             out.setdefault(c["id"], {**c, "theme": t["id"], "local": local})
     for c in (common.load_yaml("config/coverage.yaml") or {}).get("companies") or []:
         out.setdefault(c["id"], c)
+    for c in common.consumer_companies():   # 소비재·게임·콘텐츠IP — 리테일·투자자 반응(뉴스·Seeking Alpha·Substack·X·텔레그램 언급 수, 2026-10-30)
+        out.setdefault(c["id"], {**c, "theme": "consumer:" + str(c.get("segment"))})
     return out
 
 

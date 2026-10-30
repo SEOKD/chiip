@@ -1438,3 +1438,243 @@ params:
     data: knowledge/models/earnings/call_feed/log.csv
     last_fit: null
     oos_metric: null
+- id: prm-consumer-w-growth
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.growth
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 최근 매출 YoY — 성장 자체가 소비재 재평가의 1차 동인
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-accel
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.accel
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 성장 가속(%p) — 사이클 진입의 정의. 실무 문헌(100-bagger류)의 성장 가속 요인과 같은 크기
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-persistence
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.persistence
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: +20% 연속 기간 — 구조적 성장과 일회성 히트를 가른다
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-margin
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.margin
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: 매출총이익률 변화 — 가격 결정력(Novy-Marx 2013 총이익 수익성 요인의 소비재 적용)
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-sell-through
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.sell_through
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: 재고 증가율 − 매출 증가율 — 채널 밀어내기 점검(셀시어스 2024 재고 조정 사례)
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-demand-attention
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.demand_attention
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: IP·브랜드 위키 조회·스팀 추천·앱 순위·브랜드 뉴스 가속 — 소비재 렌즈의 핵심 선행 신호라 가장 크게
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-retail-buzz
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.retail_buzz
+  value: 0.05
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.05
+    basis: 투자자·리테일 원천 언급 가속 — 가격과 함께 움직여 선행성이 약하다고 보고 작게
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-w-runway
+  model: discovery.consumer
+  binding: config/consumer.yaml#weights.runway
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 여력 — 쏠림 낮음·같은 지도 안 EV/매출÷성장·해외 비중 상승
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 소비재 지도 안 점수 순위 → 이후 3·6개월 초과수익 순위 상관(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-structural-min-growth
+  model: discovery.consumer
+  binding: config/consumer.yaml#phase.structural.min_growth
+  value: 0.2
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.2
+    basis: 구조적 성장의 최소 YoY — 업계 통념의 고성장 문턱(+20%)
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-structural-min-periods
+  model: discovery.consumer
+  binding: config/consumer.yaml#phase.structural.min_periods
+  value: 4
+  unit: 기간
+  status: prior
+  prior:
+    value: 4
+    basis: 연속 기간 — 1년(4개 분기) 이상이어야 일회성 히트와 구분
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-structural-max-gm-drop
+  model: discovery.consumer
+  binding: config/consumer.yaml#phase.structural.max_gm_drop
+  value: 0.02
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.02
+    basis: 구조적 성장 판정에서 허용하는 매출총이익률 하락폭 — 2%p(점포 확장형은 초기 이익률이 낮다, 더치브로스 2026-10-30 첫 실행)
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-upcycle-accel
+  model: discovery.consumer
+  binding: config/consumer.yaml#phase.upcycle.accel_pp
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: 상승 사이클 진입 — 최근 YoY가 직전 4개 기간 평균보다 10%p 이상
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-late-crowding
+  model: discovery.consumer
+  binding: config/consumer.yaml#phase.late.crowding_pct
+  value: 90
+  unit: 백분위
+  status: prior
+  prior:
+    value: 90
+    basis: 사이클 후반 경고의 쏠림 문턱 — 투자자 원천 상위 10%
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-late-inv-gap
+  model: discovery.consumer
+  binding: config/consumer.yaml#phase.late.inv_gap_pp
+  value: 0.15
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.15
+    basis: 재고 증가율이 매출보다 15%p 이상 빠르면 밀어내기 의심
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-consumer-spike-accel
+  model: discovery.consumer
+  binding: config/consumer.yaml#attention.spike_accel
+  value: 2.0
+  unit: 배
+  status: prior
+  prior:
+    value: 2.0
+    basis: 수요 관심 급가속 — 최근 7일이 직전 4주 주평균의 2배
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-30 마스터 지시 Chiip Consumer)
+  fit:
+    method: 국면 판정 후 6개월 매출 성장 유지율·초과수익 비교(문턱 그리드)
+    target: 국면 판정 정밀도
+    data: knowledge/models/consumer/latest.json
+    last_fit: null
+    oos_metric: null

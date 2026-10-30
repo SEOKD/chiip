@@ -1,0 +1,2065 @@
+{
+ "us-elf": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_ELF",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 215507000,
+    "gross_profit": 152365000,
+    "inventory": 147228000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 270943000,
+    "gross_profit": 191957000,
+    "inventory": 204504000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 321143000,
+    "gross_profit": 227202000,
+    "inventory": 191489000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 324477000,
+    "gross_profit": 231283000,
+    "inventory": 199563000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 301075000,
+    "gross_profit": 214059000,
+    "inventory": 238798000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 355320000,
+    "gross_profit": 253305000,
+    "inventory": 214786000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 332645000,
+    "gross_profit": 237039000,
+    "inventory": 187170000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 353739000,
+    "gross_profit": 244541000,
+    "inventory": 170379000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 343936000,
+    "gross_profit": 238858000,
+    "inventory": 247390000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 489505000,
+    "gross_profit": 347495000,
+    "inventory": 220622000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 449292000,
+    "gross_profit": 326453000,
+    "inventory": 220246000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 479373000,
+    "gross_profit": 398840000,
+    "inventory": 246814000
+   }
+  ],
+  "mcap": 6664953148,
+  "ev_sales": 4.11006,
+  "n_analysts": 19
+ },
+ "us-celh": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_CELH",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 384757000,
+    "gross_profit": 194082000,
+    "inventory": 198704000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 347435000,
+    "gross_profit": 166245000,
+    "inventory": 229275000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 355708000,
+    "gross_profit": 182207000,
+    "inventory": 197504000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 401977000,
+    "gross_profit": 209098000,
+    "inventory": 180669000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 265748000,
+    "gross_profit": 122229000,
+    "inventory": 197572000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 332197000,
+    "gross_profit": 166673000,
+    "inventory": 131165000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 329276000,
+    "gross_profit": 172373000,
+    "inventory": 141159000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 739259000,
+    "gross_profit": 380851000,
+    "inventory": 230046000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 725106000,
+    "gross_profit": 372279000,
+    "inventory": 282514000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 721628000,
+    "gross_profit": 341830000,
+    "inventory": 337698000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 782615000,
+    "gross_profit": 378067000,
+    "inventory": 364146000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 817925000,
+    "gross_profit": 393688000,
+    "inventory": 390602000
+   }
+  ],
+  "mcap": 7125466924,
+  "ev_sales": 2.92788,
+  "n_analysts": 22
+ },
+ "us-onon": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_ONON",
+  "currency": "CHF",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 480500000,
+    "gross_profit": 287700000,
+    "inventory": 424500000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 447100000,
+    "gross_profit": 270200000,
+    "inventory": 356500000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 508200000,
+    "gross_profit": 303300000,
+    "inventory": 365300000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 567700000,
+    "gross_profit": 340200000,
+    "inventory": 401300000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 635800000,
+    "gross_profit": 385300000,
+    "inventory": 348900000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 606600000,
+    "gross_profit": 376800000,
+    "inventory": 419200000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 726600000,
+    "gross_profit": 435300000,
+    "inventory": 399300000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 749200000,
+    "gross_profit": 460800000,
+    "inventory": 360400000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 794400000,
+    "gross_profit": 522200000,
+    "inventory": 380600000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 743800000,
+    "gross_profit": 475300000,
+    "inventory": 419800000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 831900000,
+    "gross_profit": 534300000,
+    "inventory": 406000000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 850300000,
+    "gross_profit": 555700000,
+    "inventory": 472900000
+   }
+  ],
+  "mcap": 10962242258,
+  "ev_sales": 2.57983,
+  "n_analysts": 29
+ },
+ "us-deck": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_DECK",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-12-31",
+    "revenue": 1560307000,
+    "gross_profit": 916569000,
+    "inventory": 538963000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 959758000,
+    "gross_profit": 539476000,
+    "inventory": 474311000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 825347000,
+    "gross_profit": 470000000,
+    "inventory": 753282000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 1311320000,
+    "gross_profit": 733272000,
+    "inventory": 777891000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 1827165000,
+    "gross_profit": 1102623000,
+    "inventory": 576669000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 1021780000,
+    "gross_profit": 579768000,
+    "inventory": 495226000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 964538000,
+    "gross_profit": 537906000,
+    "inventory": 849351000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 1430840000,
+    "gross_profit": 803822000,
+    "inventory": 835595000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 1957549000,
+    "gross_profit": 1171360000,
+    "inventory": 633485000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 1119369000,
+    "gross_profit": 644638000,
+    "inventory": 487018000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 1019531000,
+    "gross_profit": 575163000,
+    "inventory": 807580000
+   },
+   {
+    "period": "2026-09-30",
+    "revenue": 1480554000,
+    "gross_profit": 895112000,
+    "inventory": 860849000
+   }
+  ],
+  "mcap": 11046803724,
+  "ev_sales": 1.86061,
+  "n_analysts": 28
+ },
+ "us-rblx": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_RBLX",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-12-31",
+    "revenue": 749939000,
+    "gross_profit": 133215000,
+    "inventory": null
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 801300000,
+    "gross_profit": 193095000,
+    "inventory": null
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 893543000,
+    "gross_profit": 265652000,
+    "inventory": null
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 918953000,
+    "gross_profit": 237821000,
+    "inventory": null
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 988183000,
+    "gross_profit": 266010000,
+    "inventory": null
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 1035000000,
+    "gross_profit": 286000000,
+    "inventory": null
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 1081000000,
+    "gross_profit": 268000000,
+    "inventory": null
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 1360000000,
+    "gross_profit": 315000000,
+    "inventory": null
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 1414551000,
+    "gross_profit": 292692000,
+    "inventory": null
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 1442000000,
+    "gross_profit": 401000000,
+    "inventory": null
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 1469000000,
+    "gross_profit": 451000000,
+    "inventory": null
+   },
+   {
+    "period": "2026-09-30",
+    "revenue": 1572000000,
+    "gross_profit": 466000000,
+    "inventory": null
+   }
+  ],
+  "mcap": 37546322236,
+  "ev_sales": 6.1209,
+  "n_analysts": 28
+ },
+ "us-duol": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_DUOL",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 137624000,
+    "gross_profit": 101370000,
+    "inventory": null
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 150985000,
+    "gross_profit": 110414000,
+    "inventory": null
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 167553000,
+    "gross_profit": 122362000,
+    "inventory": null
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 178327000,
+    "gross_profit": 130978000,
+    "inventory": null
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 192594000,
+    "gross_profit": 140414000,
+    "inventory": null
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 209550000,
+    "gross_profit": 150625000,
+    "inventory": null
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 230743000,
+    "gross_profit": 164096000,
+    "inventory": null
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 252265000,
+    "gross_profit": 182581000,
+    "inventory": null
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 271713000,
+    "gross_profit": 196911000,
+    "inventory": null
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 282868000,
+    "gross_profit": 205869000,
+    "inventory": null
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 291967000,
+    "gross_profit": 213096000,
+    "inventory": null
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 298454000,
+    "gross_profit": 216740000,
+    "inventory": null
+   }
+  ],
+  "mcap": 6381179229,
+  "ev_sales": 4.50082,
+  "n_analysts": 23
+ },
+ "us-fnko": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_FNKO",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 312944000,
+    "gross_profit": 104008000,
+    "inventory": 162062000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 291236000,
+    "gross_profit": 109409000,
+    "inventory": 119458000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 215699000,
+    "gross_profit": 86272000,
+    "inventory": 112282000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 247657000,
+    "gross_profit": 104048000,
+    "inventory": 108999000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 292765000,
+    "gross_profit": 119809000,
+    "inventory": 118563000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 293729000,
+    "gross_profit": 124403000,
+    "inventory": 92580000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 190739000,
+    "gross_profit": 76871000,
+    "inventory": 87735000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 193469000,
+    "gross_profit": 62040000,
+    "inventory": 101344000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 250905000,
+    "gross_profit": 100751000,
+    "inventory": 99805000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 273096000,
+    "gross_profit": 111607000,
+    "inventory": 83136000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 200919000,
+    "gross_profit": 88827000,
+    "inventory": 76816000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 207719000,
+    "gross_profit": 117629000,
+    "inventory": null
+   }
+  ],
+  "mcap": 374611675,
+  "ev_sales": 0.639592,
+  "n_analysts": 4
+ },
+ "us-mat": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_MAT",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 1918788000,
+    "gross_profit": 977934000,
+    "inventory": 790521000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 1620688000,
+    "gross_profit": 790189000,
+    "inventory": 571609000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 809508000,
+    "gross_profit": 388870000,
+    "inventory": 669335000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 1079728000,
+    "gross_profit": 530736000,
+    "inventory": 776863000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 1843904000,
+    "gross_profit": 978996000,
+    "inventory": 737182000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 1646405000,
+    "gross_profit": 835466000,
+    "inventory": 501732000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 826629000,
+    "gross_profit": 408096000,
+    "inventory": 658420000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 1018562000,
+    "gross_profit": 518951000,
+    "inventory": 867898000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 1735972000,
+    "gross_profit": 868252000,
+    "inventory": 826582000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 1766460000,
+    "gross_profit": 810358000,
+    "inventory": 563142000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 862171000,
+    "gross_profit": 386780000,
+    "inventory": 676885000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 1125326000,
+    "gross_profit": 542121000,
+    "inventory": 829798000
+   }
+  ],
+  "mcap": 4422636000,
+  "ev_sales": 1.19627,
+  "n_analysts": 13
+ },
+ "us-bros": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_BROS",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-09-30",
+    "revenue": 264507000,
+    "gross_profit": 75184000,
+    "inventory": 50296000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 254123000,
+    "gross_profit": 59125000,
+    "inventory": 46953000
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 275099000,
+    "gross_profit": 71773000,
+    "inventory": 45393000
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 324918000,
+    "gross_profit": 90281000,
+    "inventory": 46651000
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 338212000,
+    "gross_profit": 90051000,
+    "inventory": 38381000
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 342786000,
+    "gross_profit": 87948000,
+    "inventory": 36488000
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 355152000,
+    "gross_profit": 89993000,
+    "inventory": 38225000
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 415813000,
+    "gross_profit": 120044000,
+    "inventory": 42419000
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 423584000,
+    "gross_profit": 106779000,
+    "inventory": 45295000
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 443610000,
+    "gross_profit": 107130000,
+    "inventory": 48917000
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 464412000,
+    "gross_profit": 107476000,
+    "inventory": 37392000
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 550851000,
+    "gross_profit": 151056000,
+    "inventory": 41253000
+   }
+  ],
+  "mcap": 6066636296,
+  "ev_sales": 4.65224,
+  "n_analysts": 26
+ },
+ "us-cava": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_CAVA",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-10-01",
+    "revenue": 175553000,
+    "gross_profit": 44487000,
+    "inventory": 5726000
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 177170000,
+    "gross_profit": 39864000,
+    "inventory": 5637000
+   },
+   {
+    "period": "2024-04-21",
+    "revenue": 259006000,
+    "gross_profit": 65366000,
+    "inventory": 6304000
+   },
+   {
+    "period": "2024-07-14",
+    "revenue": 233495000,
+    "gross_profit": 62360000,
+    "inventory": 7195000
+   },
+   {
+    "period": "2024-10-06",
+    "revenue": 243817000,
+    "gross_profit": 62647000,
+    "inventory": 7335000
+   },
+   {
+    "period": "2024-12-29",
+    "revenue": 227395000,
+    "gross_profit": 51432000,
+    "inventory": 7600000
+   },
+   {
+    "period": "2025-04-20",
+    "revenue": 331826000,
+    "gross_profit": 84063000,
+    "inventory": null
+   },
+   {
+    "period": "2025-07-13",
+    "revenue": 280615000,
+    "gross_profit": 74681000,
+    "inventory": 7994000
+   },
+   {
+    "period": "2025-10-05",
+    "revenue": 292238000,
+    "gross_profit": 72366000,
+    "inventory": 8579000
+   },
+   {
+    "period": "2025-12-28",
+    "revenue": 274985000,
+    "gross_profit": 59357000,
+    "inventory": 9017000
+   },
+   {
+    "period": "2026-04-19",
+    "revenue": 438270000,
+    "gross_profit": 111192000,
+    "inventory": 9259000
+   },
+   {
+    "period": "2026-07-12",
+    "revenue": 368436000,
+    "gross_profit": 95582000,
+    "inventory": 9799000
+   }
+  ],
+  "mcap": 6916094984,
+  "ev_sales": 5.09578,
+  "n_analysts": 31
+ },
+ "gb-gaw": {
+  "as_of": "2026-10-30",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "LSE_GAW",
+  "currency": "GBP",
+  "q": [
+   {
+    "period": "2023-08-26",
+    "revenue": 123850000,
+    "gross_profit": 87800000,
+    "inventory": null
+   },
+   {
+    "period": "2023-11-26",
+    "revenue": 123850000,
+    "gross_profit": 87800000,
+    "inventory": 36300000
+   },
+   {
+    "period": "2024-02-25",
+    "revenue": 139000000,
+    "gross_profit": 99450000,
+    "inventory": null
+   },
+   {
+    "period": "2024-06-02",
+    "revenue": 139000000,
+    "gross_profit": 99450000,
+    "inventory": 42200000
+   },
+   {
+    "period": "2024-09-01",
+    "revenue": 149750000,
+    "gross_profit": 106000000,
+    "inventory": 36300000
+   },
+   {
+    "period": "2024-12-01",
+    "revenue": 149750000,
+    "gross_profit": 106000000,
+    "inventory": 36300000
+   },
+   {
+    "period": "2025-03-01",
+    "revenue": 159000000,
+    "gross_profit": 116500000,
+    "inventory": 39700000
+   },
+   {
+    "period": "2025-06-01",
+    "revenue": 159000000,
+    "gross_profit": 116500000,
+    "inventory": 39700000
+   },
+   {
+    "period": "2025-08-31",
+    "revenue": 166050000,
+    "gross_profit": 117750000,
+    "inventory": 39900000
+   },
+   {
+    "period": "2025-11-30",
+    "revenue": 166050000,
+    "gross_profit": 117750000,
+    "inventory": 39900000
+   },
+   {
+    "period": "2026-02-28",
+    "revenue": 163800000,
+    "gross_profit": 121450000,
+    "inventory": 46500000
+   },
+   {
+    "period": "2026-05-31",
+    "revenue": 163800000,
+    "gross_profit": 121450000,
+    "inventory": 46500000
+   }
+  ],
+  "mcap": 5300392496,
+  "ev_sales": 7.84219,
+  "n_analysts": null
+ },
+ "jp-takaratomy": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 41956.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 54198.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 34236.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 39552.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 49483.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 59725.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 38537.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 43102.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 52976.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 64173.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 48075.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 53586.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 67123.0,
+    "operating_profit": 8204.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 74263.0,
+    "operating_profit": 10723.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 55263.0,
+    "operating_profit": 1786.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 59479.0,
+    "operating_profit": 4597.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 68405.0,
+    "operating_profit": 7133.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 80754.0,
+    "operating_profit": 9865.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 61817.0,
+    "operating_profit": 2651.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 64047.0,
+    "operating_profit": 5512.0,
+    "src": "https://kabutan.jp/stock/finance?code=7867"
+   }
+  ]
+ },
+ "jp-sanrio": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 12991.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 14769.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 14201.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 13829.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 16801.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 20995.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 20999.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 20315.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 23615.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 28495.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 27556.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 28911.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 33896.0,
+    "operating_profit": 12845.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 41979.0,
+    "operating_profit": 17502.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 40118.0,
+    "operating_profit": 10713.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 43097.0,
+    "operating_profit": 20198.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 44579.0,
+    "operating_profit": 18985.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 55518.0,
+    "operating_profit": 23215.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 50894.0,
+    "operating_profit": 15461.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 52035.0,
+    "operating_profit": 22435.0,
+    "src": "https://kabutan.jp/stock/finance?code=8136"
+   }
+  ]
+ },
+ "jp-bandainamco": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 215597.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 234665.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 260959.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 216241.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 261379.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 265567.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 246902.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 224812.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 277190.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 270033.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 278175.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 280627.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 330764.0,
+    "operating_profit": 69647.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 344272.0,
+    "operating_profit": 65563.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 285850.0,
+    "operating_profit": 996.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 300430.0,
+    "operating_profit": 51921.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 343386.0,
+    "operating_profit": 53560.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 358427.0,
+    "operating_profit": 51914.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 346003.0,
+    "operating_profit": 32122.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 328494.0,
+    "operating_profit": 69204.0,
+    "src": "https://kabutan.jp/stock/finance?code=7832"
+   }
+  ]
+ },
+ "jp-capcom": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-12-31",
+    "revenue": 18168.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 21891.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 25232.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 23835.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 30604.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 46259.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 43858.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 31076.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 31245.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 46231.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 29597.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 26805.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 32451.0,
+    "operating_profit": 10294.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 80751.0,
+    "operating_profit": 34757.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 45502.0,
+    "operating_profit": 24597.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 35650.0,
+    "operating_profit": 14736.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 34163.0,
+    "operating_profit": 14969.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 80050.0,
+    "operating_profit": 20993.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 70410.0,
+    "operating_profit": 41054.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   },
+   {
+    "period": "2026-09-30",
+    "revenue": 50477.0,
+    "operating_profit": 19715.0,
+    "src": "https://kabutan.jp/stock/finance?code=9697"
+   }
+  ]
+ },
+ "jp-nintendo": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 301625.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 695947.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 375125.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 307460.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 349514.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 638204.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 306499.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 461341.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 334896.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 598559.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 277069.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 246638.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 276661.0,
+    "operating_profit": 67003.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 432919.0,
+    "operating_profit": 126084.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 208704.0,
+    "operating_profit": 34956.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 572363.0,
+    "operating_profit": 56928.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 527202.0,
+    "operating_profit": 88253.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 806318.0,
+    "operating_profit": 155212.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 407168.0,
+    "operating_profit": 59724.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 517813.0,
+    "operating_profit": 142596.0,
+    "src": "https://kabutan.jp/stock/finance?code=7974"
+   }
+  ]
+ },
+ "jp-konami": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-12-31",
+    "revenue": 75562.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 84474.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 71905.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 76454.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 78519.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 87443.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 72633.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 81218.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 99245.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 107218.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 90039.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 94045.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 126745.0,
+    "operating_profit": 36856.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 110773.0,
+    "operating_profit": 15244.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 96964.0,
+    "operating_profit": 27732.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 127875.0,
+    "operating_profit": 36536.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 128181.0,
+    "operating_profit": 37520.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 140657.0,
+    "operating_profit": 34103.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 129524.0,
+    "operating_profit": 45285.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   },
+   {
+    "period": "2026-09-30",
+    "revenue": 178451.0,
+    "operating_profit": 65979.0,
+    "src": "https://kabutan.jp/stock/finance?code=9766"
+   }
+  ]
+ },
+ "jp-squareenix": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 80313.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 104710.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 91648.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 74876.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 88516.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 92224.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 87651.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 85669.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 86377.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 85566.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 98732.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 69915.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 87676.0,
+    "operating_profit": 10332.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 90928.0,
+    "operating_profit": 12205.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 75987.0,
+    "operating_profit": 7199.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 59275.0,
+    "operating_profit": 9018.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 74620.0,
+    "operating_profit": 18260.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 81560.0,
+    "operating_profit": 19109.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 82206.0,
+    "operating_profit": 8349.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 78423.0,
+    "operating_profit": 17008.0,
+    "src": "https://kabutan.jp/stock/finance?code=9684"
+   }
+  ]
+ },
+ "jp-toei-anim": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 16553.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 12782.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 14498.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 18061.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 24389.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 22614.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 22393.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 19884.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 26300.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 20933.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 21537.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 23059.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 25905.0,
+    "operating_profit": 10309.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 23736.0,
+    "operating_profit": 6384.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 28136.0,
+    "operating_profit": 9055.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 19488.0,
+    "operating_profit": 6578.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 25466.0,
+    "operating_profit": 10060.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 22187.0,
+    "operating_profit": 6680.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 26528.0,
+    "operating_profit": 7700.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 22033.0,
+    "operating_profit": 7465.0,
+    "src": "https://kabutan.jp/stock/finance?code=4816"
+   }
+  ]
+ },
+ "jp-kadokawa": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 52777.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 52830.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 63567.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 64264.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 58375.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 67088.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 65702.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 58835.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 65372.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 62817.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 71085.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 65860.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 70460.0,
+    "operating_profit": 4597.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 70267.0,
+    "operating_profit": 5212.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 71328.0,
+    "operating_profit": 813.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 64844.0,
+    "operating_profit": 2318.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 69089.0,
+    "operating_profit": 3232.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 69058.0,
+    "operating_profit": 827.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 79917.0,
+    "operating_profit": 1725.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 68252.0,
+    "operating_profit": 1264.0,
+    "src": "https://kabutan.jp/stock/finance?code=9468"
+   }
+  ]
+ },
+ "jp-asics": {
+  "as_of": "2026-10-30",
+  "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2021-09-30",
+    "revenue": 112729.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2021-12-31",
+    "revenue": 81875.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2022-03-31",
+    "revenue": 105329.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2022-06-30",
+    "revenue": 119751.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2022-09-30",
+    "revenue": 137988.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2022-12-31",
+    "revenue": 121533.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2023-03-31",
+    "revenue": 152297.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2023-06-30",
+    "revenue": 137782.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2023-09-30",
+    "revenue": 158026.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2023-12-31",
+    "revenue": 122358.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 174102.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 168097.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 183255.0,
+    "operating_profit": 32527.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 153072.0,
+    "operating_profit": 8588.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 208313.0,
+    "operating_profit": 44511.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 194485.0,
+    "operating_profit": 36621.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 222257.0,
+    "operating_profit": 46474.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 185861.0,
+    "operating_profit": 14913.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 270265.0,
+    "operating_profit": 60762.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 264218.0,
+    "operating_profit": 59724.0,
+    "src": "https://kabutan.jp/stock/finance?code=7936"
+   }
+  ]
+ }
+}

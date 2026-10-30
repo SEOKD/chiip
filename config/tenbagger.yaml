@@ -42,6 +42,7 @@ bands:
     ai_hw:    {name: AI 밸류체인 하드웨어(기판·부품·전력·냉각·네트워킹·서버), exit_ev_sales: 2.5, tam_usd: null, tam_basis: "하위 시장이 여러 개라 단일 참조 없음 — 테마별 함량 모델(discovery driver)로 대체", verified: false}
     software: {name: 소프트웨어(AI 플랫폼·인프라·응용), exit_ev_sales: 6.0, tam_usd: null, tam_basis: "Gartner 세계 소프트웨어 지출 전망 — 수치 원문 확인 후 기입", verified: false}
     defense:  {name: 방위(대기업·제품·서비스·솔루션), exit_ev_sales: 2.0, tam_usd: 2.718e+12, tam_basis: "SIPRI 2024년 세계 군사비 2조 7,180억 달러(2025-04 발표) — 기업 매출 풀은 이 중 조달·연구개발·운영 계약 일부라 상한 참조", verified: false}
+    consumer: {name: 소비재·게임·콘텐츠IP(Chiip Consumer, config/consumer.yaml), exit_ev_sales: 2.0, tam_usd: null, tam_basis: "하위 시장(완구·게임·뷰티·식음료·IP 라이선스)이 여러 개라 단일 참조 없음 — 지역 확장·침투율로 대체(knowledge/methods/consumer_lens.md)", verified: false}
   # 10배 산술 판정 문턱(사전값, registry prm-tb-tenx-*): 필요 매출의 참조 시장 점유·목표 시총 ÷ 유니버스 최대 시총
   verdict: {share_stretch: 0.1, share_hard: 0.3, vs_max_stretch: 1.0, vs_max_hard: 2.0}
   exit_basis: "출구 EV/매출은 성숙 업종 배수(Damodaran 미국 업종 배수 참고)보다 낮게 둔 보수적 사전값 — 원문 수치 확인·피팅 대상(knowledge/models/params/registry.yaml)"

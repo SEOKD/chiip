@@ -84,6 +84,9 @@ def universe():
         for s in seeds or []:
             if not any(r.get("code") == f"{s['ticker']}.US" for r in out.values()):
                 add(f"us-{s['ticker'].lower()}", s["name"], f"{s['ticker']}.US", "us", sector, "seed")
+    for c in _y("config/consumer.yaml").get("companies") or []:   # 소비재·게임·콘텐츠IP(Chiip Consumer, 2026-10-30) — 출구 배수는 sectors.consumer
+        code = f"{c['code']}.US" if c.get("market") == "us" else c.get("code")
+        add(c["id"], c.get("name"), code, c.get("market"), "consumer", "consumer")
     for c in _y("config/defense.yaml").get("companies") or []:
         if not c.get("listed"):
             continue

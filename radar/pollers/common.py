@@ -138,6 +138,10 @@ def entity_aliases():
         key = by_code.get(code.upper(), cid) if code else cid
         if names or key in out:
             out[key] = sorted(set(out.get(key, [])) | {n for n in names if len(n) >= 2})
+    # 소비재·게임·콘텐츠IP 지도(config/consumer.yaml, 마스터 지시 2026-10-30) — 일반어 이름은 aliases로만
+    for u in consumer_companies():
+        names = set(u.get("aliases") or ([u["name"]] if _distinct(u.get("name")) else [])) | ({u["local"]} if u.get("local") else set()) | set(u.get("ko") or [])
+        out[u["id"]] = sorted(set(out.get(u["id"], [])) | {n for n in names if len(n) >= 2})
     # 방위 섹터 지도(config/defense.yaml, 마스터 지시 2026-10-29) — 이미 있는 종목은 현지 표기만 더한다
     for u in defense_companies():
         names = set(u.get("aliases") or [u["name"]]) | ({u["local"]} if u.get("local") else set())
@@ -183,7 +187,15 @@ def edge_watch_entries():
         if cid in ids and code.endswith(".US"):
             e = out.setdefault(cid, {"id": cid, "name": (names or [cid])[0], "aliases": [], "code": code})
             e["aliases"] = list(dict.fromkeys(e["aliases"] + list(names)))
+    for c in consumer_companies():   # 소비재 지도의 미국 상장 종목도 SEC 공시(8-K 실적)를 받는다(2026-10-30)
+        if c.get("market") == "us" and c.get("code"):
+            out.setdefault(c["id"], {"id": c["id"], "name": c["name"], "aliases": list(c.get("aliases") or [c["name"]]), "code": f"{c['code']}.US"})
     return list(out.values())
+
+
+def consumer_companies():
+    """소비재·게임·콘텐츠IP 지도의 기업 목록(Chiip Consumer, 2026-10-30)"""
+    return (load_yaml("config/consumer.yaml") or {}).get("companies") or []
 
 
 def defense_companies():

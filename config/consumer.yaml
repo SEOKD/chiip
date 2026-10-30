@@ -1,0 +1,133 @@
+# Chiip Consumer — 비AI 급성장 소비재·게임·콘텐츠IP 발굴 (마스터 지시 2026-10-30)
+# "일본 완구주 Tomy Company가 오늘 실적 나오고 11% 쐈다. 종목 레이더망에 Non-AI 섹터 중 급성장하는 소비재·게임·콘텐츠IP 종목을 발굴하는
+#  알고리즘도 넣어라. 전례 없는 구조적 성장 국면·상승 사이클 진입·상승 사이클 여력 — AI 밸류체인·방위와 다른 관점으로. 소비재는 트렌드에
+#  민감하니 아마존 같은 글로벌 이커머스 관심도, 온라인 커뮤니티 등 리테일 채널 반응을 살펴 어떤 내러티브가 있는지 엣지 있게 캐치.
+#  Chiip Pulse와 Ten-bagger 엔진에 넣어 설계하라." (설계안 승인: 같은 날 "이대로 구현")
+#
+# 렌즈: AI·방위는 공급 병목(누가 막힌 곳을 푸나), 소비재·IP는 수요(실제로 팔려 나가는가·얼마나 더 퍼질 수 있나) — knowledge/methods/consumer_lens.md
+# 흐름: 이 지도 → 수요 관심도 radar/consumer_attention.py(IP·브랜드 위키 조회·앱 순위·스팀 추천 증가·브랜드 뉴스, 하루 1회)
+#       + 리테일 반응 radar/attention.py(투자자 원천: 뉴스·Seeking Alpha·Substack·X·텔레그램 — 이 지도 종목을 후보에 포함)
+#       + 펀더멘털 knowledge/models/consumer/fundamentals.json(Fiscal.ai consumer.js 또는 회사 결산 자료 --put-q)
+#       → 국면 판정·점수 scripts/discovery/consumer.py → outputs/discovery/consumer_<날짜>.md · knowledge/models/consumer/latest.json
+#       → Chiip Pulse 🛍 Consumer(지도 종목 실적·적시공시·관심 급가속) · Ten-bagger 일요일 발굴(소비재 선별)
+# fiscal = Fiscal.ai 회사 키 — 재무가 있는 것만(2026-10-30 확인: 미국·영국 11곳). 캡콤 XJPX_9697·닌텐도 XJPX_7974·미쉐 XHKG_2097은 키는 있으나 재무·주가 없음, 나머지 아시아 소비재는 키 자체가 없음 → 회사 결산 자료로 --put-q.
+# wiki = {언어: 문서 제목} 위키 조회수(Wikimedia 공식 API, robots 제한 없음) — 제목이 틀리면 수집기가 'missing'으로 기록, 주간 회차에서 고친다(1차 입력, 미검증).
+# steam = 스팀 앱 id(store.steampowered.com/api/appdetails 누적 추천 수, robots 허용) · apps = 애플 앱 순위 RSS의 개발사 이름 패턴(정규식) · terms = 브랜드 뉴스 검색어.
+# 아마존: robots.txt가 ClaudeBot을 명시적으로 막아 직접 수집 금지(2026-10-30 확인). 공식 경로 PA-API(마스터 어소시에이트 계정)·Keepa API(유료) — docs/TODO_MASTER.md.
+# 레딧 직접 수집·틱톡·스팀 리뷰 API는 robots 차단이라 쓰지 않는다(레딧은 ApeWisdom 미국 티커 언급 수만).
+
+segments:
+  toys_ip: 완구·캐릭터 IP
+  games: 게임(콘솔·PC·모바일)
+  content_ip: 애니·음악·웹툰·출판 IP
+  beauty: 뷰티·퍼스널케어(K-뷰티 포함)
+  food_bev: 식음료(K-푸드·기능성 음료·외식)
+  apparel: 스포츠·패션 브랜드
+  platform: 소비자 앱·플랫폼
+
+companies:
+  # 일본
+  - {id: jp-takaratomy, name: Takara Tomy, local: "タカラトミー", ko: ["타카라토미"], market: jp, code: "7867", segment: toys_ip,
+     wiki: {en: Beyblade, ja: ベイブレード, en2: Tomica}, apps: "TAKARA TOMY", terms: ["Beyblade X", "ベイブレードX"],
+     why: "베이블레이드 X 세계 확산·토미카·리카 — 2026-10-30 실적 발표 날 +11%(마스터 제보), 해외 매출 비중 상승 여부가 구조 판정의 핵심"}
+  - {id: jp-sanrio, name: Sanrio, local: "サンリオ", ko: ["산리오"], market: jp, code: "8136", segment: toys_ip,
+     wiki: {en: Hello Kitty, ja: ハローキティ, en2: Cinnamoroll, en3: Kuromi}, apps: "Sanrio", terms: ["Sanrio", "Kuromi"],
+     why: "캐릭터 라이선스 — 해외(북미·중국) 라이선스 매출 성장률과 이익률이 구조 판정 재료"}
+  - {id: jp-bandainamco, name: Bandai Namco Holdings, local: "バンダイナムコ", ko: ["반다이남코"], market: jp, code: "7832", segment: toys_ip,
+     wiki: {en: Gundam, en2: Tamagotchi, ja: 機動戦士ガンダム}, apps: "BANDAI NAMCO", terms: ["Gunpla", "Tamagotchi"],
+     why: "IP 축(건담·드래곤볼·원피스 카드) 수직 통합 — 트레이딩 카드·건프라 해외 매출"}
+  - {id: jp-capcom, name: Capcom, local: "カプコン", ko: ["캡콤"], market: jp, code: "9697", segment: games,
+     wiki: {en: Monster Hunter, en2: Resident Evil}, steam: [2246340, 1364780], apps: "CAPCOM", terms: ["Monster Hunter Wilds", "Resident Evil"],
+     why: "구작 디지털 장기 판매(카탈로그) 비중이 이익 안정성을 바꾼 사례 — 신작 사이클 + 카탈로그 매출"}
+  - {id: jp-nintendo, name: Nintendo, local: "任天堂", ko: ["닌텐도"], market: jp, code: "7974", segment: games,
+     wiki: {en: Nintendo Switch 2, ja: Nintendo Switch 2}, apps: "Nintendo", terms: ["Switch 2"],
+     why: "콘솔 세대 교체 사이클 — 대형주라 10배 경로는 제한, 사이클 기준점(게임 섹터 체온계)"}
+  - {id: jp-konami, name: Konami Group, local: "コナミ", ko: ["코나미"], market: jp, code: "9766", segment: games,
+     wiki: {en: Yu-Gi-Oh!, en2: eFootball}, steam: [1665460], apps: "KONAMI", terms: ["Yu-Gi-Oh!", "eFootball"],
+     why: "유희왕 카드·모바일·리메이크 — 디지털 비중"}
+  - {id: jp-squareenix, name: Square Enix Holdings, local: "スクウェア・エニックス", ko: ["스퀘어에닉스"], market: jp, code: "9684", segment: games,
+     wiki: {en: Final Fantasy, en2: Dragon Quest}, apps: "SQUARE ENIX", terms: ["Final Fantasy", "Dragon Quest"],
+     why: "구조조정·멀티플랫폼 전환 — 턴어라운드형(성장 확인 전)"}
+  - {id: jp-toei-anim, name: Toei Animation, local: "東映アニメーション", ko: ["토에이애니메이션"], market: jp, code: "4816", segment: content_ip,
+     wiki: {en: One Piece, en2: Dragon Ball}, terms: ["One Piece", "Dragon Ball"],
+     why: "원피스·드래곤볼 판권 — 해외 라이선스·게임 로열티"}
+  - {id: jp-kadokawa, name: Kadokawa, local: "KADOKAWA", ko: ["가도카와"], market: jp, code: "9468", segment: content_ip,
+     wiki: {en: Elden Ring, en2: FromSoftware}, steam: [1245620], terms: ["FromSoftware", "Elden Ring"],
+     why: "출판·애니 IP + 프롬소프트웨어(게임) — 소니 지분 투자(2025)로 IP 전략 연결"}
+  - {id: jp-asics, name: ASICS, local: "アシックス", ko: ["아식스"], market: jp, code: "7936", segment: apparel,
+     wiki: {en: Asics, en2: Onitsuka Tiger}, terms: ["Onitsuka Tiger", "ASICS"],
+     why: "오니츠카 타이거·러닝화 프리미엄화 — 이익률 구조 변화가 핵심 재료"}
+  # 한국
+  - {id: kr-samyang, name: Samyang Foods, local: "삼양식품", market: kr, code: "003230", segment: food_bev,
+     wiki: {en: Buldak, ko: 불닭볶음면}, terms: ["Buldak", "불닭볶음면"],
+     why: "불닭 수출(해외 비중 70%+ 보도, 원문 확인 대기) — 한국 라면 수출 통계(관세청)가 월 단위 선행 지표"}
+  - {id: kr-apr, name: APR, local: "에이피알", market: kr, code: "278470", segment: beauty,
+     terms: ["medicube", "메디큐브"], why: "메디큐브 뷰티 디바이스·화장품 — 미국 아마존·틱톡샵 채널 의존, 채널 반응이 선행"}
+  - {id: kr-silicon2, name: Silicon2, local: "실리콘투", market: kr, code: "257720", segment: beauty,
+     terms: ["Silicon2", "실리콘투", "Stylekorean"], why: "K-뷰티 해외 유통 플랫폼 — 브랜드 확산의 도매 길목"}
+  - {id: kr-hybe, name: HYBE, local: "하이브", market: kr, code: "352820", segment: content_ip,
+     wiki: {en: BTS, en2: Hybe Corporation}, apps: "HYBE|Weverse", terms: ["BTS", "HYBE"], why: "BTS 완전체 활동 사이클·위버스 플랫폼"}
+  - {id: kr-krafton, name: Krafton, local: "크래프톤", market: kr, code: "259960", segment: games,
+     wiki: {en: "PUBG: Battlegrounds", en2: Inzoi}, steam: [578080, 2456740], apps: "KRAFTON", terms: ["PUBG", "inZOI"],
+     why: "배틀그라운드 장기 운영 + 신작 파이프라인"}
+  - {id: kr-shiftup, name: Shift Up, local: "시프트업", market: kr, code: "462870", segment: games,
+     wiki: {en: Stellar Blade, en2: "Goddess of Victory: Nikke"}, apps: "SHIFT UP", terms: ["Stellar Blade", "NIKKE"],
+     why: "스텔라 블레이드 PC 확장·니케 — 소수 IP 집중"}
+  # 홍콩·중국
+  - {id: hk-popmart, name: Pop Mart, local: "泡泡瑪特", ko: ["팝마트"], market: hk, code: "9992", segment: toys_ip,
+     wiki: {en: Labubu, en2: Pop Mart}, apps: "Pop Mart", terms: ["Labubu", "Pop Mart"],
+     why: "라부부 글로벌 확산(2024~25) — 구조적 성장 vs 유행 정점 판정의 기준 사례"}
+  - {id: hk-laopu, name: Laopu Gold, local: "老鋪黃金", market: hk, code: "6181", segment: apparel,
+     terms: ["Laopu Gold", "老铺黄金"], why: "고가 고법 금 장신구 — 중국 고소득층 소비 프리미엄화"}
+  - {id: hk-mixue, name: Mixue Group, local: "蜜雪冰城", market: hk, code: "2097", segment: food_bev,
+     wiki: {en: "Mixue Ice Cream & Tea"}, terms: ["Mixue"], why: "초저가 음료 프랜차이즈 해외 점포 확장"}
+  # 미국·유럽
+  - {id: us-elf, name: e.l.f. Beauty, market: us, code: ELF, fiscal: NYSE_ELF, segment: beauty, aliases: ["e.l.f. Beauty"],
+     terms: ["e.l.f. Cosmetics"], why: "저가 프리미엄 뷰티 점유율 확대 — 리테일러 진열 확대·국제화"}
+  - {id: us-celh, name: Celsius Holdings, market: us, code: CELH, fiscal: NASDAQ_CELH, segment: food_bev, aliases: ["Celsius Holdings"],
+     wiki: {en: Celsius Holdings}, terms: ["Celsius energy drink"], why: "에너지 음료 — 2023 급성장 후 유통 재고 조정(사이클 후반 반례)·Alani Nu 인수"}
+  - {id: us-onon, name: On Holding, market: us, code: ONON, fiscal: NYSE_ONON, segment: apparel, aliases: ["On Holding"],
+     terms: ["On Running", "On Cloud shoes"], why: "프리미엄 러닝화 — 직판(DTC) 비중·아시아 확장"}
+  - {id: us-deck, name: Deckers Brands, market: us, code: DECK, fiscal: NYSE_DECK, segment: apparel, aliases: ["Deckers Brands", "Deckers Outdoor"],
+     wiki: {en: Hoka One One}, terms: ["Hoka shoes", "UGG"], why: "호카 성장 감속 여부 — 브랜드 사이클 위치"}
+  - {id: us-rblx, name: Roblox, market: us, code: RBLX, fiscal: NYSE_RBLX, segment: platform, aliases: ["Roblox"],
+     wiki: {en: Roblox}, apps: "Roblox", terms: ["Roblox"], why: "사용자 시간·부킹 성장 — 플랫폼형 IP 생태계"}
+  - {id: us-duol, name: Duolingo, market: us, code: DUOL, fiscal: NASDAQ_DUOL, segment: platform, aliases: ["Duolingo"],
+     wiki: {en: Duolingo}, apps: "Duolingo", terms: ["Duolingo"], why: "유료 전환·일간 사용자 성장"}
+  - {id: us-fnko, name: Funko, market: us, code: FNKO, fiscal: NASDAQ_FNKO, segment: toys_ip, aliases: ["Funko"],
+     wiki: {en: Funko}, terms: ["Funko Pop"], why: "수집형 완구 — 재고·관세 위험, 팝마트와 대조군"}
+  - {id: us-mat, name: Mattel, market: us, code: MAT, fiscal: NASDAQ_MAT, segment: toys_ip, aliases: ["Mattel"],
+     wiki: {en: Barbie, en2: Hot Wheels}, terms: ["Mattel", "Hot Wheels"], why: "IP 영상화(바비) 이후 — 성숙 완구의 기준점"}
+  - {id: us-bros, name: Dutch Bros, market: us, code: BROS, fiscal: NYSE_BROS, segment: food_bev, aliases: ["Dutch Bros"],
+     wiki: {en: Dutch Bros}, terms: ["Dutch Bros"], why: "드라이브스루 커피 점포 확장 — 동일점 성장·신규 점포 수익성"}
+  - {id: us-cava, name: CAVA Group, market: us, code: CAVA, fiscal: NYSE_CAVA, segment: food_bev, aliases: ["CAVA Group"],
+     terms: ["CAVA restaurant"], why: "지중해식 패스트캐주얼 점포 확장 — 동일점 트래픽"}
+  - {id: gb-gaw, name: Games Workshop, market: eu, code: GAW, fiscal: LSE_GAW, segment: toys_ip, aliases: ["Games Workshop"],
+     wiki: {en: "Warhammer 40,000"}, terms: ["Warhammer"], why: "워해머 IP — 아마존과 영상화 계약, 라이선스 매출이 구조 변수"}
+
+# 국면 판정(사전값 — knowledge/models/params/registry.yaml prm-consumer-*). 분기 매출 YoY 기준, 반기 결산 회사는 반기 YoY
+phase:
+  structural: {min_growth: 0.20, min_periods: 4, max_gm_drop: 0.02}   # 4개 기간 연속 +20% 이상 + 매출총이익률 하락 2%p 이내 → '구조적 성장'
+  upcycle: {accel_pp: 0.10}                        # 최근 YoY − 직전 4개 기간 평균 YoY ≥ +10%p → '상승 사이클 진입'
+  late: {crowding_pct: 90, inv_gap_pp: 0.15}       # 쏠림 상위 10% + 성장 감속 + (재고 증가율 − 매출 증가율) ≥ 15%p → '사이클 후반 경고'
+  watch_min: 6.0                                   # 점수 문턱(0~10) — 이상이거나 구조·진입 국면이면 watch
+
+# 점수 가중치(사전값 — 주간·월간 성과로 피팅). 합 1.0
+weights:
+  growth: 0.15            # 최근 매출 YoY
+  accel: 0.15             # 성장 가속(%p)
+  persistence: 0.10       # +20% 이상 연속 기간 수
+  margin: 0.10            # 매출총이익률 변화(가격 결정력)
+  sell_through: 0.10      # 재고 증가율 − 매출 증가율(낮을수록 실판매 — 밀어내기 점검)
+  demand_attention: 0.20  # IP·브랜드 위키 조회·스팀 추천·앱 순위·브랜드 뉴스 가속
+  retail_buzz: 0.05       # 투자자·리테일 원천 언급 가속(radar/attention.py)
+  runway: 0.15            # 여력 — 해외 비중 상승 여지·쏠림 낮음·같은 지도 안 EV/매출 ÷ 성장
+
+# 수요 관심도 수집(radar/consumer_attention.py)
+attention:
+  window_days: 7          # 최근 7일 ÷ 직전 28일 주평균
+  spike_accel: 2.0        # 이 가속 이상이면 펄스 '관심 급가속' 원본(하루 1회 관측)
+  spike_min_views: 20000  # 위키 7일 조회가 이보다 적으면 급가속이라도 잡음으로 본다
+  apple_countries: [us, jp, kr]
+  apple_feeds: [top-free, top-paid]
+  user_agent: "Chiip research fhteo1101@gmail.com"   # Wikimedia API 정책: 연락처가 든 UA

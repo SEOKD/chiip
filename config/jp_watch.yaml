@@ -71,7 +71,18 @@ companies:
   - {id: jp-nof, code: "4403", ja: ["日油"], en: "NOF", sub: defense}
   - {id: jp-shimadzu, code: "7701", ja: ["島津製作所", "島津"], en: "Shimadzu", sub: defense}
   - {id: jp-oki, code: "6703", ja: ["沖電気工業", "沖電気"], en: "Oki Electric", sub: defense}
+  # 소비재·게임·콘텐츠IP(Chiip Consumer, 2026-10-30 마스터 지시 — config/consumer.yaml과 같은 id)
+  - {id: jp-takaratomy, code: "7867", ja: ["タカラトミー"], en: "Takara Tomy", sub: consumer}
+  - {id: jp-sanrio, code: "8136", ja: ["サンリオ"], en: "Sanrio", sub: consumer}
+  - {id: jp-bandainamco, code: "7832", ja: ["バンダイナムコ"], en: "Bandai Namco", sub: consumer}
+  - {id: jp-capcom, code: "9697", ja: ["カプコン"], en: "Capcom", sub: consumer}
+  - {id: jp-nintendo, code: "7974", ja: ["任天堂"], en: "Nintendo", sub: consumer}
+  - {id: jp-konami, code: "9766", ja: ["コナミグループ", "コナミＧ"], en: "Konami Group", sub: consumer}
+  - {id: jp-squareenix, code: "9684", ja: ["スクウェア・エニックス", "スクエニ"], en: "Square Enix", sub: consumer}
+  - {id: jp-toei-anim, code: "4816", ja: ["東映アニメーション", "東映アニメ"], en: "Toei Animation", sub: consumer}
+  - {id: jp-kadokawa, code: "9468", ja: ["ＫＡＤＯＫＡＷＡ", "KADOKAWA"], en: "Kadokawa", sub: consumer}
+  - {id: jp-asics, code: "7936", ja: ["アシックス"], en: "ASICS", sub: consumer}
 # 제목에 이 말이 있으면 사건으로 본다(검색어로도 쓴다)
-event_terms: ["適時開示", "業績予想", "上方修正", "下方修正", "決算", "受注", "設備投資", "新工場", "増産", "買収", "提携", "増配", "最高益", "自社株買い", "公募", "新株"]
+event_terms: ["適時開示", "業績予想", "上方修正", "下方修正", "決算", "受注", "設備投資", "新工場", "増産", "買収", "提携", "増配", "最高益", "自社株買い", "公募", "新株", "月次"]
 # 일본 매체(제목 끝 ' - 매체명', 정확히 일치). 기사는 이 매체만 저장·발송 — 9개 영어 매체 규칙의 일본판
 publishers: ["日本経済新聞", "日経会社情報DIGITAL", "株探", "株探ニュース", "Yahoo!ファイナンス", "日刊工業新聞", "電波新聞", "ロイター", "Reuters", "ブルームバーグ", "Bloomberg.co.jp", "みんかぶ", "MINKABU", "QUICK Money World", "日経クロステック", "EE Times Japan", "MONOist"]
