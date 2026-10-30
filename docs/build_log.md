@@ -105,6 +105,7 @@
 - 원자력·위성 밸류체인 발굴(마스터 2026-10-31): discovery 테마 4개·watch 연결·구간 섹터 nuclear·space·분석 틀
 - 원자력·위성 정부 원천(마스터 2026-10-31): src-nuclear-nrc·src-nuclear-doe·src-space-gov-gn, 펄스 ☢·🛰 분류, 판정 상향, rss.py exclude_regex 결함 수정
 - TradingView 양방향 동기화(마스터 2026-10-31): radar/tv_sync.py, config/tradingview.yaml, tradingview_symbols.csv, 스킬 tv-sync, 예약 작업 chiip-tv-sync
+- 실적 지표 주가 줄 필수화(마스터 2026-10-31): TradingView 시세 → radar/markets/session.py --line
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

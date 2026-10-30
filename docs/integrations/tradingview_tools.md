@@ -72,6 +72,8 @@ NVDA 1분봉의 마지막 봉은 조회 26초 전에 시작한 현재 분 봉이
 
 `get-ohlcv`는 정규장만 주지만 스크리너 열 `premarket_change`·`premarket_close`·`postmarket_change`·`postmarket_close`로 장전·장후 값을 받을 수 있다. 시장마다 비어 있는 칸이 있다(2026-10-31 조회: KRX는 장후 값 있음·장전 없음, TSE는 둘 다 없음, XETR·NVDA는 장전 값 있음). 값이 비면 지어내지 않는다.
 
+실적 지표의 주가 줄이 이 값을 쓴다(`radar/markets/session.py --line`, 2026-10-31 마스터 지시). TradingView 시세의 쓰임은 이 줄과 와치리스트 동기화뿐이고 재무·추정은 Fiscal.ai 그대로다.
+
 ## 와치리스트 표기 주의
 
 - `###이름`은 종목이 아니라 **섹션 구분**이다. 보이지 않는 문자가 섞인 섹션 이름이 있어 손으로 다시 치지 않고 조회 결과를 그대로 쓴다.

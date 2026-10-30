@@ -40,5 +40,34 @@ class TestSession(unittest.TestCase):
             session.label("OTC_X")
 
 
+class TestPriceLine(unittest.TestCase):
+    RTH = at(2026, 10, 30, 1, 0)      # 미국 장중(12:00 ET)
+    PRE = at(2026, 10, 29, 21, 0)     # 미국 장전(08:00 ET)
+    POST = at(2026, 10, 30, 6, 0)     # 미국 장후(17:00 ET)
+
+    def test_each_session_uses_its_own_value(self):
+        d = {"change": 2.34, "premarket_change": -1.2, "postmarket_change": 5.0, "update_mode": "streaming"}
+        self.assertEqual(session.reaction("NASDAQ_UCTT", d, now=self.RTH), "장중 +2.3%")
+        self.assertEqual(session.reaction("NASDAQ_UCTT", d, now=self.PRE), "장전 -1.2%")
+        self.assertEqual(session.reaction("NASDAQ_UCTT", d, now=self.POST), "장후 +5.0%")
+
+    def test_delay_is_shown(self):
+        d = {"change": -7.08, "update_mode": "delayed_streaming_1200"}
+        self.assertEqual(session.reaction("KRX:000660", d, now=at(2026, 10, 30, 11, 0)), "장중 -7.1% (20분 지연)")
+
+    def test_no_after_hours_value(self):
+        d = {"change": -3.0, "postmarket_change": None}
+        self.assertEqual(session.reaction("TSE:6702", d, now=at(2026, 10, 30, 16, 0)), "종가 -3.0%")     # 장중 발표
+        self.assertEqual(session.reaction("TSE:6702", d, after_close=True, now=at(2026, 10, 30, 16, 0)), "")  # 마감 뒤 발표 — 반응 전
+        self.assertEqual(session.reaction("TSE:6702", {}, now=at(2026, 10, 30, 16, 0)), "")
+        self.assertEqual(session.reaction("LSE:BAB", {"change": -0.24, "postmarket_change": 0}, now=at(2026, 10, 31, 2, 0)), "종가 -0.2%")   # 런던은 시간외 없음 = 0
+
+    def test_fiscal_key_to_tradingview(self):
+        self.assertEqual(session.tv_symbol("NASDAQ_UCTT"), "NASDAQ:UCTT")
+        self.assertEqual(session.tv_symbol("XKRX_009150"), "KRX:009150")
+        self.assertEqual(session.tv_symbol("XJPX_6702"), "TSE:6702")
+        self.assertEqual(session.tv_symbol("KRX:000660"), "KRX:000660")
+
+
 if __name__ == "__main__":
     unittest.main()
