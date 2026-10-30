@@ -103,6 +103,7 @@
 - 그림 5 재개정(마스터 2026-10-30): 선 위 사건 번호만, 점선 없음, 번호별 설명은 그래프 아래
 - 기준 멀티플 세 분류(마스터 2026-10-30): Fwd 1Y·2Y·3Y 그림 3개, 2·3Y는 같은 가격으로 분모만 바꾸고 3Y 모자란 분기는 마지막 연도 추정 성장률로 연장, 재료 없으면 merge 중단
 - 원자력·위성 밸류체인 발굴(마스터 2026-10-31): discovery 테마 4개·watch 연결·구간 섹터 nuclear·space·분석 틀
+- 원자력·위성 정부 원천(마스터 2026-10-31): src-nuclear-nrc·src-nuclear-doe·src-space-gov-gn, 펄스 ☢·🛰 분류, 판정 상향, rss.py exclude_regex 결함 수정
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

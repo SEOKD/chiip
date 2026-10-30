@@ -151,7 +151,7 @@ def poll_source(src):
     items = []
     # 잡음이 많은 원천(정부 피드·도메인 제한 검색)은 include_regex에 맞는 글만 받는다
     inc = re.compile(src["include_regex"], re.I) if src.get("include_regex") else None
-    exc = re.compile(src["exclude_regex"], re.I) if src.get("exclude_regex") else None   # 채용 공고·행사 안내 등 잡음
+    exclude = re.compile(src["exclude_regex"], re.I) if src.get("exclude_regex") else None   # 채용 공고·행사 안내 등 잡음
     max_age = src.get("max_age_days")
     urls = list(feed_urls(src))
     failed = []
@@ -177,7 +177,7 @@ def poll_source(src):
                 continue
             if inc and not inc.search(f"{e['title']} {common.strip_tags(e['desc'])}"):
                 continue
-            if exc and exc.search(e["title"]):
+            if exclude and exclude.search(e["title"]):
                 continue
             # 제목 단어 수 하한(' - 매체' 꼬리 제외) — 빈 제목·직무 페이지 거름
             if src.get("min_title_words") and len(re.sub(r"\s+[-–]\s+[^-–]+$", "", e["title"]).split()) < src["min_title_words"]:

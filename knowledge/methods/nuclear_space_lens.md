@@ -1,6 +1,7 @@
 # 원자력·위성 밸류체인 분석 틀
 
 > 마스터 지시(2026-10-31): "CCJ, LEU, Babcock 같은 원자력 밸류체인 종목과 YSS, RKLB, PL 같은 위성 밸류체인 종목도 종목발굴 레이더 망에 포함시켜줘."
+> 원천(같은 날 "원천도 추가해줘"): `src-nuclear-nrc`(NRC 공식 RSS + 색인) · `src-nuclear-doe`(에너지부 공식 RSS) · `src-space-gov-gn`(우주개발청·우주군·NASA·FCC·FAA 색인) → 펄스 ☢ Nuclear·🛰 Space(`docs/tasks/chiip-pulse.md` 1-6b), 판정 상향 `radar/promote.py`.
 > 지도: `config/discovery.yaml` 테마 `nuclear_fuel`·`nuclear_reactor`·`satellite_launch`·`satellite_data`(`watch: true` — 레이더 종목 인식·SEC 공시·수집 관문에 자동 연결). 구간 엔진 섹터 `nuclear`·`space`.
 
 두 분야 모두 발표에서 매출까지가 길고, 정부 인허가·계약 단계가 실적을 가른다. 단계를 나눠 적고 한 단계로 다음 단계를 채우지 않는다.

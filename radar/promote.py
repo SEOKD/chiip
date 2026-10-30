@@ -72,8 +72,23 @@ TW_NOISE_RE = re.compile(r"代子公司|代重要子公司|聯合授信|授信|�
 # 방위 섹터(2026-10-29 마스터 지시, config/defense.yaml) — 수주·계약·대외군사판매·양산 결정·실적. 다국어 원문 제목
 DEF_EVENT_RE = re.compile(r"\b(contracts?|awards?|awarded|orders?|selected|framework|multi-?year|full-rate production|LRIP|Foreign Military Sales?|backlog|results|guidance)\b|"
                           r"Rahmenvertrag|Auftrag|Bestellung|commande|contrat|contratto|contrato|adjudica|契約|受注|業績予想", re.I)
+# 원자력·위성(2026-10-31 마스터 지시, knowledge/methods/nuclear_space_lens.md) — 인허가 단계·정부 계약·위성군 트랜치
+NS_EVENT_RE = re.compile(r"\b(construction permit|operating license|combined license|design (certification|approval)|early site permit|final investment decision|"
+                         r"HALEU|contracts?|awards?|awarded|tranche|task order|offtake|National Security Space Launch|launch license)\b", re.I)
+NS_MILLIONS_RE = re.compile(r"\$\s?[1-9]\d{2}(?:\.\d+)?\s?(?:million|M)\b", re.I)   # $100M 이상
 DEF_NOISE_RE = re.compile(r"webinar|conference call invitation|invitation|celebrat|showcase|demonstrat|exercise|anniversary|visits?\b|award(s|ed)? (for|to) (employee|excellence)|"
                           r"scholarship|career|sponsor|\bhonou?r", re.I)
+
+
+def ns_rule(title, text, sid, ents):
+    """(상향 사유, 묶음 키) 또는 None. 정부 문서는 사건이면, 그 밖은 지도 종목의 $100M 이상 사건만"""
+    nev = NS_EVENT_RE.search(title)
+    if not nev or DEF_NOISE_RE.search(title):
+        return None
+    nents = sorted(set(ents) & common.watch_theme_ids())
+    if sid.startswith(("src-nuclear-", "src-space-")) or (nents and ((amount_billion(text) or 0) >= 1 or NS_MILLIONS_RE.search(text or ""))):
+        return "규칙 상향: 원자력·위성 인허가·계약", f"ns:{','.join(nents) or sid}:{nev.group(0).lower()}:{title[:40]}"
+    return None
 
 
 def defense_ids():
@@ -179,6 +194,9 @@ def match(item):
         amt = amount_billion(text)
         if sid.startswith("src-defense-") or (amt is not None and amt >= 1):   # 방위 원천은 수주·계약이면, 그 밖(보도자료 배포처·SEC)은 10억 달러 이상만
             return "규칙 상향: 방위 수주·계약", f"def:{','.join(dents)}:{dev.group(0).lower()}"
+    ns = ns_rule(title, text, sid, ents)
+    if ns:
+        return ns
     if item.get("source_id") == "src-jp-disclosure" and ents and not noise(item):   # 일본 정보망(2026-10-29 — 이비덴·어드밴테스트 실적 상향 누락 뒤)
         cls = next((k for k, rx in JP_EVENT if rx.search(title)), None)
         if cls:

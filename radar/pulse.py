@@ -29,19 +29,21 @@ from pollers.press_wire import NON_EN_RE  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
-TOP = {"속보 판단": 3, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"속보 판단": 3, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
 CLASSES = [("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa")),   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
            ("IR 자료", ("src-jp-ir-docs", "src-kr-ir-docs")),   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
+           ("원자력·위성", ("src-nuclear-", "src-space-")),   # NRC·에너지부·우주개발청 등(2026-10-31 마스터 지시, knowledge/methods/nuclear_space_lens.md)
            ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
     r"HBM|DRAM|NAND|SRAM|memory|chiplet|hybrid bond|advanced packaging|CoWoS|interposer|substrate|EUV|lithograph|photoresist|"
@@ -122,6 +124,8 @@ def relevant(it, cls):
         return True
     if cls == "방위":   # 독·프·이·스·일 국방부 원문이 정상 — 언어 필터 예외(원천에서 조달어로 이미 거름)
         return True
+    if cls == "원자력·위성":   # 정부 문서는 회사명이 없어도 인허가·계약이면 본다(원천에서 이미 거름)
+        return True
     if cls == "소비재":   # 일본 적시공시 미러·한국어 원문 포함 — 지도 종목 + 실적·업적 문구로 이미 거름
         return True
     if it.get("language") not in (None, "en") or NON_EN_RE.search(it.get("title", "")):
@@ -153,6 +157,9 @@ def inbox_items(since):
             # 방위 지도 기업의 수주·계약 보도자료·공시(보도자료 배포처·SEC)도 방위로 모은다
             if cls in ("보도자료", "공시") and defense_hits(it.get("entities_matched") or [], it.get("title", "")) and DEF_WORD_RE.search(it.get("title", "")):
                 cls = "방위"
+            # 원자력·위성 지도 종목의 계약·인허가 보도자료·공시도 같이 모은다(방위와 겹치면 방위 분류)
+            if cls in ("보도자료", "공시") and set(it.get("entities_matched") or []) & common.watch_theme_ids() and NS_WORD_RE.search(it.get("title", "")):
+                cls = "원자력·위성"
             # 소비재 지도 종목의 실적·업적 수정·월차(일본 적시공시 미러 포함) — 기사는 제외(원문만)
             if cls in (None, "보도자료", "공시") and consumer_hits(it.get("entities_matched") or []) and CONSUMER_EVENT_RE.search(it.get("title", ""))                     and (it.get("doc_type") in ("공시", "실적", "보도자료") or "適時開示" in it.get("title", "")):
                 cls = "소비재"

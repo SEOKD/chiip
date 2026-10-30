@@ -1032,6 +1032,78 @@
 # 지도 config/defense.yaml, 분석 틀 knowledge/methods/defense_lens.md. 미 국방부(war.gov·defense.gov)는 Akamai가 자동 접속을 막아
 # (robots.txt도 Access Denied, 2026-10-29 확인) 우회하지 않고 Google News 도메인 색인 제목·링크로만 받는다. 각국 국방부도 같은 방식.
 # 펄스 '방위' 분류(radar/pulse.py — 원본 접두 src-defense-), 판정 상향 radar/promote.py 방위 규칙.
+# 원자력·위성 밸류체인 정부 문서(마스터 2026-10-31 "원천도 추가해줘") — 펄스 '원자력·위성' 분류(radar/pulse.py 접두 src-nuclear-·src-space-), 판정 상향 radar/promote.py.
+- id: src-nuclear-nrc
+  name: 미국 원자력규제위원회(NRC) 보도자료 — 공식 RSS + 색인
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_url: "https://www.nrc.gov/public-involve/rss?feed=news"
+  feed_queries:
+    - {q: "site:nrc.gov (license OR permit OR approval OR application OR certification) when:3d", hl: en-US, gl: US}
+  exclude_regex: 'Workshop|Webinar|Public Meeting|Open House|Pre-Application Meeting|Pre-Submittal Meeting|Event Notification Report|Becoming a Nuclear Supplier|Commissioner .* Speech|Job|Career|Scholarship|Inspection Findings|Annual Assessment|Violation'
+  endpoint_doc: "https://www.nrc.gov/public-involve/listserver.html"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 14
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "공식 RSS(2026-10-31 응답 확인, 마지막 글 9/9 — 갱신이 뜸해 색인을 함께 본다). robots.txt는 자동 요청에 403을 돌려줘 내용 미확인 — 공개된 RSS만 받고 페이지를 긁지 않는다."
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-nuclear-doe
+  name: 미국 에너지부(DOE) 원자력국·뉴스룸 — 공식 RSS, 핵연료·원자로 관련만
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_urls:
+    - "https://www.energy.gov/ne/rss.xml"
+    - "https://www.energy.gov/newsroom/rss.xml"
+  include_regex: 'nuclear|uranium|HALEU|LEU\b|enrich|reactor|\bSMR\b|fuel cycle|centrifuge|Genesis Mission.*nuclear|Loan Programs? Office.*(nuclear|reactor)'
+  exclude_regex: 'Job|Career|Internship|Scholarship|Student|Webinar|Workshop'
+  endpoint_doc: "https://www.energy.gov/ne/office-nuclear-energy"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 14
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "공식 RSS(2026-10-31 응답·robots.txt 확인, /ne/rss.xml은 /rss/ne/… 로 넘어간다). /search는 쓰지 않는다."
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
+- id: src-space-gov-gn
+  name: 미국 우주 조달·규제(우주개발청 SDA·우주군·NASA 계약·FCC·FAA) — Google News 도메인 제한
+  category: L-해외정부
+  module: rss
+  method: rss
+  feed_queries:
+    - {q: "site:sda.mil when:7d", hl: en-US, gl: US}
+    - {q: "site:spaceforce.mil (contract OR award OR launch OR \"National Security Space Launch\") when:3d", hl: en-US, gl: US}
+    - {q: "site:nasa.gov (contract OR award OR selects) when:3d", hl: en-US, gl: US}
+    - {q: "site:fcc.gov (satellite OR \"space bureau\" OR \"direct to device\" OR spectrum) when:3d", hl: en-US, gl: US}
+    - {q: "site:faa.gov (\"commercial space\" OR \"launch license\") when:7d", hl: en-US, gl: US}
+  include_regex: 'contracts?\b|award|tranche|launch|orbit|satellite|spacecraft|solicitation|task order|\bNSSL\b|license|spectrum|direct.to.device|selects?\b'
+  exclude_regex: 'Job|Career|Internship|Scholarship|Student|Webinar|Workshop|Astronaut|Hubble|Webb|Artemis Crew|Citizen Science|Hawk of the Week|congressional staff|Supports \d+\w* Launch|\bvisit'
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 7
+  run_on: local
+  language: en
+  doc_type: 규제·정책
+  terms_note: "SDA는 RSS가 없고(2026-10-31 /feed 404), 우주군 SSC·FCC는 자동 접속이 막혀 있다 — 우회 없이 Google News 색인 제목·링크만. 금액·물량은 회사 보도자료·8-K로 확인."
+  reliability_default: 1차(기관 문서 색인)
+  verified: true
+  enabled: true
+
 - id: src-defense-gov-gn
   name: 각국 국방 조달·예산(미 국방부 일일 계약·DSCA·NATO/EU·독일·프랑스·이탈리아·스페인·일본) — Google News 도메인 제한
   category: L-해외정부
