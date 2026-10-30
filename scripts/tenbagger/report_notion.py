@@ -32,7 +32,7 @@ def table(headers, rows):
 
 def render(d, github=None, charts=None, h1=False):
     """github = 원본 링크 줄, charts = 그림 n번의 이미지 경로(GitHub 마크다운 판 — report_md.py), h1 = 맨 위 제목 줄"""
-    d = json.loads(report_html.plain(json.dumps(d, ensure_ascii=False)))   # v2·MC 같은 약어 풀어 쓰기(리포트 HTML과 같게)
+    d = report_html.scrub(json.loads(report_html.plain(json.dumps(d, ensure_ascii=False))))   # v2·MC 같은 약어 풀어 쓰기·참고 문헌 제거(리포트 HTML과 같게)
     v = d.get("verdict") or {}
     up, basis = report_html.upside(d)
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
@@ -50,10 +50,10 @@ def render(d, github=None, charts=None, h1=False):
     if d.get("tiles"):
         L += ["", "## 핵심 숫자", table(["항목", "값", "설명"], [[t.get("k"), t.get("v"), t.get("sub")] for t in d["tiles"]])]
     L += ["", report_html.GLOSSARY]
-    figs = [b["chart"].get("title") for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart"]
-    if figs and not charts:
-        L += ["", "## 그래프(위 HTML 임베드·GitHub 리포트에서 보기)"] + [f"{i}. {t}" for i, t in enumerate(figs, 1)]
-    n = 0
+    order = report_html.figures(d)
+    num = {id(b): i for i, (_, b) in enumerate(order, 1)}   # 그림 번호 = HTML 갤러리 순서(pin 포함)
+    if order and not charts:
+        L += ["", "## 그래프(위 HTML 임베드·GitHub 리포트에서 보기)"] + [f"{i}. {b['chart'].get('title')}" for i, (_, b) in enumerate(order, 1)]
     for s in d.get("sections") or []:
         L += ["", f"## {s.get('h2')}"]
         for b in s.get("blocks") or []:
@@ -66,8 +66,8 @@ def render(d, github=None, charts=None, h1=False):
                 L += [""] + [f"- {i}" for i in b.get("items") or []]
             elif k == "table":
                 L += ["", f"**{b['title']}**" if b.get("title") else "", table(b.get("headers") or [], b.get("rows") or [])]
-            elif k == "chart":
-                n += 1
+            elif k == "chart" and id(b) in num:
+                n = num[id(b)]
                 c = b["chart"]
                 if charts and n <= len(charts) and charts[n - 1]:   # GitHub 판: 그림을 그 자리에(2026-10-30 마스터 지시 "github 링크로 결과물을 볼 수 있어야")
                     L += ["", f"**그림 {n} · {c.get('title')}**", "", f"![그림 {n}]({charts[n - 1]})"] + ([f"_{c['note']}_"] if c.get("note") else [])

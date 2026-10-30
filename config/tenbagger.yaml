@@ -55,6 +55,14 @@ bands:
       - {sector: Industrials, industries: ["Aerospace & Defense"]}
   fx_fallback: {USD: 1.0, TWD: null}   # ECB 기준환율(eurofxref-daily)에 없는 통화 — null이면 USD 환산 불가 표시
 
+# 리포트 배수 사다리 — 마스터 지시 2026-10-30 "10배가 되려면?을 시가총액 $30B 미만인 경우만 최대 10배(2·3·5·10배)로 나누고, $30B~$100B 사이는 최대 5배, $100B 이상은 최대 2배로"
+# 엔진 scripts/tenbagger/ladder.py. 위 bands(발굴 구간)와 별개다 — 마지막 구간은 max_usd: null
+ladder:
+  tiers:
+    - {max_usd: 3.0e+10, steps: [2, 3, 5, 10]}
+    - {max_usd: 1.0e+11, steps: [2, 3, 5]}
+    - {max_usd: null, steps: [2]}
+
 # 발굴 경로
 paths:
   bottleneck: "병목(bottleneck-scan) → 해결 기술 → 그 기술을 가진 작은 공급사 — 치입 엣지(양산 관점·역방향 레이더)"

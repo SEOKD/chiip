@@ -148,7 +148,7 @@ def report_blocks(m, unit, mcap, name="대상"):
         pc = lambda x: f"{math.exp(x) - 1:+.0%}"
         B.append({"type": "p", "text": f"**할인·프리미엄 분해:** {name}의 EV/매출은 동종 중앙 대비 **{pc(d['total'])}** = 동종과 같은 섹터 심리를 받는다면 펀더멘털(성장·이익률·ROIC)로 정당한 몫 {pc(d['fundamental'])} × "
                   f"{name}에만 얹힌 기업 고유 몫 **{pc(d['firm'])}**(두 몫을 곱하면 전체). 심리를 빼고 펀더멘털만 비교하면 동종 중앙 내재 대비 {pc(d['fund_only'])}. "
-                  "기업 고유 몫이 양(+)이면 시장이 동종보다 더 큰 기대를 얹은 것(할인이 덜 됐다), 음(−)이면 더 할인한 것이다 — Rhodes-Kropf·Robinson·Viswanathan(2005)의 '기업 고유 오차 vs 섹터 오차' 분해 방식."})
+                  "기업 고유 몫이 양(+)이면 시장이 동종보다 더 큰 기대를 얹은 것(할인이 덜 됐다), 음(−)이면 더 할인한 것이다."})
     if m.get("rational_value_x"):
         rv = m["rational_value_x"]
         B.append({"type": "p", "text": f"**합리적 멀티플:** {m['rational']['p50']:.1f}배(섹터 심리 25~75분위 {m['rational'].get('p25', 0):.1f}~{m['rational'].get('p75', 0):.1f}배) → 주주가치 ÷ 시가총액 "
@@ -158,7 +158,7 @@ def report_blocks(m, unit, mcap, name="대상"):
         B.append({"type": "p", "text": f"한계: 동종 영업이익률은 GAAP(인수 무형자산 상각 포함)이라 인수가 큰 {', '.join(heavy)}는 내재 멀티플이 낮게·심리 배율이 높게 나온다 → 합리적 멀티플이 위로 치우칠 수 있다(상각 전 이익 EBITA로 바꾸면 낮아질 가능성). 동종 성장은 최근 분기 전년 대비, 표본 {len(m['peers'])}곳 — 방향 판단용."})
     if m.get("regression") and m["regression"]["b"] > 0:
         g = m["regression"]
-        B.append({"type": "p", "text": f"동종 {g['n']}사 회귀(시장 EV/매출 = {g['a']:.1f} + {g['b']:.2f} × 펀더멘털 내재, R² {g['r2']:.2f}) — Bhojraj·Lee(2002)의 '펀더멘털로 정당화되는 멀티플'. "
+        B.append({"type": "p", "text": f"동종 {g['n']}사 회귀(시장 EV/매출 = {g['a']:.1f} + {g['b']:.2f} × 펀더멘털 내재, R² {g['r2']:.2f}) — 펀더멘털로 정당화되는 멀티플. "
                   + (f"{name}에 대입하면 {g['implied']:.1f}배." if g.get("implied") is not None else "") + (" 표본이 작아 참고용." if g["n"] < 6 else "")})
     st = m["steady"]
     ms = list(st[0]["ev_sales"])

@@ -383,7 +383,7 @@ def report_section(entity, dp=None, refresh=False, finra=None, symbol=None):
                        "headers": ["주 시작", "전체(주)", "거래소", "ATS(다크풀)", "리테일 도매", "기타 장외"],
                        "rows": [[w["week"], _k(w["total"]), _p(w["lit"]), _p(w["ats"]), _p(w["retail"]), _p(w["other_otc"])] for w in a["weeks"]]})
     blocks.append({"type": "p", "text": "**읽는 법:** 리테일 몫이 늘면서 주가가 오르면 리테일 주도 랠리(되돌림 위험 큼), 기관 CMF가 +로 돌며 거래량이 늘면 기관 매집 쪽이다. "
-                                        "근거: 리테일 식별은 Boehmer·Jones·Zhang·Zhang(2021, JF)의 장외 도매 체결 방식, 자금 흐름은 Chaikin Money Flow. "
+                                        "리테일 식별은 장외 도매 체결 방식, 자금 흐름은 Chaikin Money Flow. "
                                         "한계: 도매 체결사 물량에 일부 기관 주문이 섞이고, 리테일 지정가 주문 일부는 거래소로 간다 — 근사치다. 지표일 뿐 매매 권유가 아니다."})
     return {"h2": "수급 — 누가 왜 샀나(Chiip Flow)", "blocks": blocks, "_summary": {
         "retail_share_20": rs_now, "retail_share_prev60": rs_prev, "cmf": cm[-1], "pressure": rp, "inst_share_abn": a["inst_share_abn"],

@@ -20,8 +20,12 @@ JSON 구조(필수 = *):
   · {"type":"chart","chart":{"kind":"scenario","title","unit","current":112.6,"cases":[{"name":"약세","value":60,"prob":0.3,"color":"b","why":"…"}]}}
   · {"type":"chart","chart":{"kind":"candle","title","unit","bars":[["2026-10-28",600,609.4,581.8,606.9]...],
        "hlines":[{"y":643.4,"label":"38.2% 643","color":"e"}],"zones":[{"y0":599,"y1":602,"label":"지지","tone":"grn|red"}]}}  — 한국식 색(상승 빨강·하락 파랑)
+  · {"type":"chart","chart":{"kind":"revision","title","unit","start","end","series":[{"name","color","points":[["2026-02-26",4.2]...]}],
+       "events":[{"date","mark":"①","kind":"실적|내러티브","tag","pct":"+110%"}]}}  — 날짜 축 계단선 + 사건 깃발(revision_view.py가 만든다)
   · bars에 "stack": true면 쌓인 막대
+  · 차트에 "pin": n이면 갤러리 n번째로 고정(그림 3 = 가격 내포 기대, 5 = EPS 리비전 추이, 8 = 주가 분해 — 마스터 지시 2026-10-30), 나머지는 절 순서대로
 금액 단위는 렌더 직후 radar/units.py money_units로 $25B·$M·$T 표기로 바꾼다(마스터 지시 2026-10-29).
+학술 논문 표기('저자 연도')는 남기지 않는다(마스터 지시 2026-10-30) — scrub()이 괄호째 지우고 출처 목록에서 빼며, 그래도 남으면 렌더가 실패한다.
 """
 import html
 import json
@@ -47,7 +51,7 @@ table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{bord
 /* 그래프 한 줄에 하나(마스터 지시 2026-10-30 "가로 한 줄에 두 개라 작게 보인다") */.gal{display:grid;grid-template-columns:1fr;gap:8px}.gal>div{min-width:0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
-ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
+ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px;overflow-wrap:anywhere}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
 .badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}"""
 DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 
@@ -166,10 +170,59 @@ def chart_candle(c):
     return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
+def chart_revision(c):
+    """날짜 축 계단선 + 사건 깃발. 사건마다 번호·변화율을 그림에 직접 쓴다(모바일은 마우스오버가 없다)"""
+    series = c.get("series") or []
+    vals = [p[1] for s in series for p in s.get("points") or [] if p[1] is not None]
+    if not vals:
+        return ""
+    d0, d1 = date.fromisoformat(c["start"]), date.fromisoformat(c["end"])
+    span = (d1 - d0).days or 1
+    W, H, L, R, T, B = 440, 340, 34, 10, 70, 22   # 휴대폰 폭에서 글자가 읽히게 좁은 좌표계(마스터는 모바일로 본다)
+    X = lambda s: L + (date.fromisoformat(str(s)[:10]) - d0).days / span * (W - L - R)
+    lo, hi = min(0, min(vals)), max(vals) * 1.08 or 1
+    Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
+    g = []
+    for i in range(5):
+        v = lo + (hi - lo) * i / 4
+        g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(v):.1f}" y2="{Y(v):.1f}" stroke="var(--line)"/><text x="{L - 4}" y="{Y(v) + 3:.1f}" text-anchor="end">{_fmt(v)}</text>')
+    y, m = d0.year, d0.month
+    while date(y, m, 1) <= d1:
+        if date(y, m, 1) >= d0 and m % 2 == 0:
+            x = X(date(y, m, 1).isoformat())
+            g.append(f'<text x="{x:.1f}" y="{H - 6}" text-anchor="middle" style="font-size:9.5px">{str(y)[2:]}-{m:02d}</text>')
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    for i, e in enumerate(c.get("events") or []):
+        x = X(e["date"])
+        col = "var(--c)" if e.get("kind") == "실적" else "var(--e)"
+        ty = 13 + (i % 4) * 15   # 가까운 사건이 겹치지 않게 네 줄로 엇갈린다
+        pct = str(e.get("pct") or "")
+        tag = f'{e.get("mark")} {pct}' if pct not in ("", "+0%", "-0%", "0%", "-", "겹침") else str(e.get("mark"))   # 변화가 없으면 번호만 — 표에 전부 있다
+        tx = min(max(x, L + 14), W - R - 16)
+        g.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{ty + 3}" y2="{H - B}" stroke="{col}" stroke-dasharray="3 3" opacity="0.75"/>'
+                 f'<text x="{tx:.1f}" y="{ty}" text-anchor="middle" style="fill:{col};font-size:11.5px;font-weight:700">{t(tag)}'
+                 f'<title>{t(e["date"])} {t(e.get("tag"))} {t(e.get("pct"))}</title></text>')
+    for s in series:
+        col = COLORS.get(s.get("color", "c"), "var(--c)")
+        pts = [p for p in s.get("points") or [] if p[1] is not None]
+        path, prev = [], None
+        for p in pts:
+            if prev is not None:
+                path.append(f"{X(p[0]):.1f},{Y(prev):.1f}")
+            path.append(f"{X(p[0]):.1f},{Y(p[1]):.1f}")
+            prev = p[1]
+        path.append(f"{X(c['end']):.1f},{Y(prev):.1f}")
+        g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2.2" points="{" ".join(path)}"/>')
+        g.append(f'<text x="{X(c["end"]) - 2:.1f}" y="{Y(prev) - 5:.1f}" text-anchor="end" style="fill:{col};font-size:11px;font-weight:700">{_fmt(prev)}</text>')
+        for p in pts:
+            g.append(f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="3" fill="{col}"><title>{t(s["name"])} {t(p[0])}: {_fmt(p[1])}</title></circle>')
+    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
 def chart_bars(c):
     if c.get("stack"):
         return chart_stack(c)
-    W, H, L, B, T = 700, 250, 48, 30, 18
+    W, H, L, B, T = c.get("w", 700), 250, 48, 30, 18
     cats, series = c.get("categories") or [], c.get("series") or []
     vals = [v for s in series for v in s.get("values") or [] if v is not None]
     if not cats or not vals:
@@ -192,7 +245,7 @@ def chart_bars(c):
             y, h = (Y(v), Y(0) - Y(v)) if v >= 0 else (Y(0), Y(v) - Y(0))
             x = x0 + si * bw
             g.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw - 2:.1f}" height="{max(h, 1):.1f}" rx="2" fill="{col}"><title>{t(s["name"])} {t(cat)}: {_fmt(v)}{t(c.get("unit", ""))}</title></rect>')
-            if len(series) <= 2:
+            if len(series) <= 3:
                 g.append(f'<text x="{x + (bw - 2) / 2:.1f}" y="{(y - 3) if v >= 0 else (y + h + 10):.1f}" text-anchor="middle" style="font-size:9.5px">{_fmt(v)}</text>')
         g.append(f'<text x="{x0 + gw / 2 - 5:.1f}" y="{H - 10}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
     return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
@@ -204,7 +257,7 @@ def chart_hbars(c):
     vals = [b.get("value") or 0 for r in rows for b in r.get("bars") or []]
     if not rows or not vals:
         return ""
-    W, L, R = 700, 180, 56
+    W, L, R = c.get("w", 700), c.get("label_w", 180), 56
     hi, lo = max(max(vals), 0), min(min(vals), 0)
     span = (hi - lo) * 1.12 or 1
     base = lo * 1.12   # 음수가 있으면 왼쪽 여유를 두고 0 기준선을 오른쪽으로 민다
@@ -259,7 +312,17 @@ def chart_scenario(c):
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle}
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision}
+
+
+def figures(d):
+    """그림 번호 순서 [(절, 블록)…] — pin이 있는 차트를 그 번호에 꽂고 나머지는 절 순서대로. HTML 갤러리·마크다운·노션이 같은 번호를 쓴다"""
+    figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind"))]
+    pinned = sorted((f for f in figs if f[1]["chart"].get("pin")), key=lambda f: f[1]["chart"]["pin"])
+    out = [f for f in figs if not f[1]["chart"].get("pin")]
+    for f in pinned:
+        out.insert(min(f[1]["chart"]["pin"] - 1, len(out)), f)
+    return out
 
 
 def block(b):
@@ -302,6 +365,35 @@ def plain(s):
     return s
 
 
+# 양식에 참고 문헌을 남기지 않는다(마스터 지시 2026-10-30 "양식에 'Greenwood & Hanson 2015' 같은 참고 자료 출처를 남기지 마라") — 저자 목록은 저장소 인용에서 뽑았다
+REF_NAMES = r"Bessembinder|Greenwood|Mauboussin|Damodaran|Shiller|Bhojraj|Rhodes-Kropf|Boehmer|Lakonishok|LeBaron|Osler|Asquith|Karceski|Yartseva|Rappaport|Peduzzi"
+REF_JOURNAL = r"JFE|QJE|JF|RFS|JFQA|JPE|AER|FRBNY|Journal of Finance"
+REF_PAREN = re.compile(rf"\s*[(（][^()（）]*(?:\b(?:{REF_NAMES})\b|(?<!\d)(?:19|20)\d\d(?!\d)[^()（）]*\b(?:{REF_JOURNAL})\b)[^()（）]*[)）]")
+REF_CITE = re.compile(rf"\b(?:{REF_NAMES})\b[^.。;]{{0,40}}(?<!\d)(?:19|20)\d\d(?!\d)")   # 한글 조사가 붙어도 잡히게 \b 대신 숫자 경계
+
+
+def _scrub_text(x):
+    return REF_PAREN.sub("", x) if isinstance(x, str) else x
+
+
+def _walk(o, fn):
+    if isinstance(o, dict):
+        return {k: _walk(v, fn) for k, v in o.items()}
+    if isinstance(o, list):
+        return [_walk(v, fn) for v in o]
+    return fn(o)
+
+
+def scrub(d):
+    """본문에서 '(저자 연도)' 괄호를 지우고, 그런 문헌만 적은 출처 줄을 뺀다. 괄호 밖에 인용이 남으면 ValueError — 모델이 문장을 고쳐야 한다"""
+    d = {**d, "sources": [x for x in d.get("sources") or [] if not REF_CITE.search(str(x))]}
+    d = _walk(d, _scrub_text)
+    left = REF_CITE.search(json.dumps(d, ensure_ascii=False))
+    if left:
+        raise ValueError(f"참고 문헌 표기가 남아 있다: {left.group(0)[:60]}")
+    return d
+
+
 def upside(d):
     """Chiip View 업사이드(+%) — verdict.upside가 있으면 그것, 없으면 판단 시나리오 확률 가중값 ÷ 현재값 − 1(기간은 시나리오 제목)"""
     v = d.get("verdict") or {}
@@ -319,7 +411,7 @@ def render(d):
     for key in ("title", "date", "ticker", "company", "biz"):
         if not d.get(key):
             raise ValueError(f"필수 항목 없음: {key}")
-    d = json.loads(plain(json.dumps(d, ensure_ascii=False)))
+    d = scrub(json.loads(plain(json.dumps(d, ensure_ascii=False))))
     v = d.get("verdict") or {}
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
@@ -343,7 +435,7 @@ def render(d):
             for x in d["tiles"]) + "</div>")
     parts.append(f'<div class="sm mut">{t(GLOSSARY)}</div>')
     # 그래프 전체를 상단에(마스터 지시 2026-10-29 "Chiip View와 한 장 요약 다음 시각물 그래프를 전부 — 시간이 없을 때 상단만 보고 파악")
-    figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind"))]
+    figs = figures(d)
     num = {id(b): i for i, (_, b) in enumerate(figs, 1)}
     if figs:
         parts.append("<h2>한눈에 보기 — 그래프 전체</h2><div class=\"gal\">" + "".join(

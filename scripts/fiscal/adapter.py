@@ -67,6 +67,15 @@ def put_ohlcv(cid, text):
     return len(daily) - 1, max(0, len(monthly) - 1)
 
 
+def put_eps_history(cid, out):
+    """eps_history.js 출력 → datapack consensus.eps_history (그림 5·8 재료, 2026-10-30)"""
+    p = ROOT / "knowledge" / "models" / "companies" / cid / "datapack.json"
+    dp = json.loads(p.read_text(encoding="utf-8"))
+    dp.setdefault("consensus", {})["eps_history"] = {"basis": out.get("basis"), "updated_at": out.get("updatedAt"), "source": out.get("source"), "rows": out.get("rows") or []}
+    p.write_text(json.dumps(dp, ensure_ascii=False, indent=1), encoding="utf-8")
+    return len(out.get("rows") or [])
+
+
 def put_key(cid, key, url=None):
     d = (yaml.safe_load(KEYS.read_text(encoding="utf-8")) if KEYS.exists() else None) or {}
     head = "".join(l + "\n" for l in KEYS.read_text(encoding="utf-8").splitlines() if l.startswith("#")) if KEYS.exists() else ""
@@ -90,6 +99,10 @@ def main(argv):
     if len(argv) >= 3 and argv[0] == "--ohlcv":
         n, m = put_ohlcv(argv[1], Path(argv[2]).read_text(encoding="utf-8"))
         print(f"[Fiscal.ai→일봉] {argv[1]} 일봉 {n} · 월봉 {m}(고저 근사)")
+        return 0
+    if len(argv) >= 3 and argv[0] == "--eps-history":
+        n = put_eps_history(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")))
+        print(f"[Fiscal.ai→EPS 이력] {argv[1]} {n}행 → datapack consensus.eps_history")
         return 0
     if len(argv) >= 3 and argv[0] == "--key":
         put_key(argv[1], argv[2], argv[3] if len(argv) > 3 else None)

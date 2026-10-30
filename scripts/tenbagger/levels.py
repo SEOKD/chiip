@@ -263,8 +263,8 @@ def report_section(entity, dp=None):
         note = f"상장 후 {len(daily)}거래일뿐이라 월·주봉 스윙은 상장 이후 전체 구간이다(장기 지지·저항으로 읽지 말 것)" + (" · 고가·저가 근사" if flow.approx_hl(entity) else "")
     if anchors:
         note += f" — 장기 기준점: {anchors.get('low', {}).get('note', '')}"
-    blocks.append({"type": "p", "text": "**기법과 근거:** 스윙은 ATR 지그재그(임계 = max(월 20%·주 10%·일 5%, 2.5×ATR14)), 되돌림 23.6~78.6%·확장 127.2·161.8%. 함께 본 기준선: 50·200일 이동평균과 50·150·200일 거래 범위 고저"
-                                        "(Brock·Lakonishok·LeBaron 1992, JF), 라운드 넘버($50 단위, Osler 2003 JF·Osler 2000 FRBNY EPR). "
+    blocks.append({"type": "p", "text": "**기법:** 스윙은 ATR 지그재그(임계 = max(월 20%·주 10%·일 5%, 2.5×ATR14)), 되돌림 23.6~78.6%·확장 127.2·161.8%. 함께 본 기준선: 50·200일 이동평균과 50·150·200일 거래 범위 고저, "
+                                        "라운드 넘버($50 단위). "
                                         "피보나치 비율 자체의 학술 근거는 약하다 — 다수가 같은 선에 주문을 두는 데서 오는 효과로 보고, 여러 기준선이 겹친 구간만 강하게 본다. "
                                         f"{note}."})
     return {"h2": "가격 구간 — 월·주·일 피보나치와 겹침 구간", "blocks": blocks, "_summary": {

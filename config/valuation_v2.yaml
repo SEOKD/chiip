@@ -47,7 +47,7 @@ defaults:
 
 upside:                      # 상승여력 블록 → 알파 4요소 정량 제안(마스터 결정: 목표주가 대신 분포·확률·필요 가정만 표기)
   horizon_years: 5
-  multiples: [1.5, 2, 3, 10]
+  multiples: [1.5, 2, 3, 5, 10]
   upside_full_prob: 0.5      # P(5년 뒤 가치 ≥ 2배) 가 이 값이면 upside 10점
   asym_points_per_doubling: 2.5   # 비대칭(상방/하방 기대) 2배마다 +2.5점(5점 기준)
   gap_points_per_10pct: 1.0  # 우리 기본 가정과 시장 내포 가정의 기저율 백분위 차이 10%p마다 1점

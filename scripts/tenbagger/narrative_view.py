@@ -13,13 +13,17 @@ datapack "narrative":
    "layers": {"sell_side"|"buy_side"|"retail"|"media": {"metrics": [[지표, 값, 추세/해석, 출처]...], "read": "한 줄 해석"}},
    "factors": [{"name","thesis","inputs":"바뀌는 가치 입력","who":{"sell":"강|중|약|-","buy":…,"retail":…},
                 "drives":"multiple|revision|both","quant":"숫자로 바꾼 것","status":"강화|유지|약화","falsifier","source"}],
-   "attention": [{"label","value","unit"}]}   # 선택 — 층별 관심 크기 막대
+   "attention": [{"label","value","unit"}],   # 선택 — 층별 관심 크기 막대
+   "lead": {"summary": "한 장 요약 첫 문단", "value_story": "기업가치 결정 논리", "premium": {"multiple","eps"}, "why_excited": "왜 열광했나",
+            "lenses": [{"lens": LENSES 중 하나, "change", "evidence", "drives", "status", "falsifier"}…],   # 여섯 개 모두
+            "products": [{"kind": "제품|서비스|기술", "name", "what", "use", "money"}…]}}   # 맨 앞 절(lead_section) — 마스터 지시 2026-10-30
 계산 연결: 멀티플 엔진(scripts/valuation/v2/multiples.py)의 회사 고유 프리미엄(decomp.firm)과 consensus.revisions의 EPS 리비전 합을 함께 싣는다.
 """
 import math
 
 DRIVES = {"multiple": "멀티플", "revision": "리비전", "both": "멀티플+리비전"}
 LAYERS = (("sell_side", "셀사이드(IB 애널리스트)"), ("buy_side", "바이사이드(기관 투자자)"), ("retail", "리테일(레딧·텔레그램·X)"), ("media", "언론·업계"))
+LENSES = ("구조적 체질 변화", "고부가 믹스 확장", "기술 혁신", "M&A", "재정정책", "CAPEX 낙수효과")   # 마스터 지시 2026-10-30 — 맨 앞 내러티브 절의 필수 렌즈
 
 
 def revision_pct(cons):
@@ -72,6 +76,40 @@ def report_section(dp, mm=None):
         blocks.append({"type": "chart", "chart": {"kind": "hbars", "title": "층별 관심 크기", "unit": "",
                                                    "rows": [{"label": a["label"], "bars": [{"name": a.get("unit", "값"), "color": "c", "value": a["value"]}]} for a in att]}})
     blocks.append({"type": "p", "text": "**읽는 법:** '멀티플' 요인은 같은 이익에 더 높은 배수를 주게 하는 이야기(지속성·위험 감소·희소성), '리비전' 요인은 추정 이익 자체를 올리는 이야기(수주·가격·이익률). "
-                                        "회사 고유 프리미엄이 큰데 리비전 근거가 약하면 이야기가 숫자보다 앞서 있다(과밀 위험). 커뮤니티·IB 의견은 사실이 아니라 시장 기대의 증거다. "
-                                        "틀: Damodaran(2017) Narrative and Numbers, Shiller(2019) Narrative Economics."})
-    return {"h2": "내러티브 — 멀티플 프리미엄과 리비전을 끌어올리는 이야기", "blocks": blocks}
+                                        "회사 고유 프리미엄이 큰데 리비전 근거가 약하면 이야기가 숫자보다 앞서 있다(과밀 위험). 커뮤니티·IB 의견은 사실이 아니라 시장 기대의 증거다."})
+    return {"h2": "내러티브 근거 — 누가 믿고 있나(셀사이드·바이사이드·리테일·언론)", "blocks": blocks}
+
+
+def lead_section(dp, mm=None):
+    """맨 앞 절 — 기업가치를 결정하고 멀티플·EPS 프리미엄을 부여하는 이야기, 왜 열광하나, 이 회사의 제품·서비스·기술(마스터 지시 2026-10-30).
+    여섯 렌즈는 해당이 없어도 '해당 없음(이유)'를 쓴다 — 빠지면 ValueError"""
+    lead = ((dp or {}).get("narrative") or {}).get("lead")
+    if not lead:
+        return None
+    have = {x.get("lens"): x for x in lead.get("lenses") or []}
+    miss = [k for k in LENSES if not (have.get(k) or {}).get("change")]
+    if miss or not lead.get("products") or not lead.get("summary"):
+        raise ValueError(f"datapack narrative.lead 미비 — 렌즈 {miss or '완비'}, products·summary 필요")
+    B = [{"type": "hl", "text": f"**기업가치를 결정하는 이야기:** {lead.get('value_story') or lead['summary']}"}]
+    prem = lead.get("premium") or {}
+    if prem:
+        B.append({"type": "ul", "items": [f"**멀티플 프리미엄:** {prem['multiple']}" if prem.get("multiple") else None, f"**EPS 프리미엄:** {prem['eps']}" if prem.get("eps") else None]})
+        B[-1]["items"] = [x for x in B[-1]["items"] if x]
+    if lead.get("why_excited"):
+        B += [{"type": "h3", "text": "투자자들은 왜 열광했나"}, {"type": "p", "text": lead["why_excited"]}]
+    B.append({"type": "h3", "text": "여섯 렌즈 — 무엇이 기업가치를 바꾸나"})
+    items = []
+    for k in LENSES:
+        x = have[k]
+        tag = " · ".join(t for t in (DRIVES.get(x.get("drives"), x.get("drives")), x.get("status")) if t)
+        items.append(f"**{k}**" + (f" ({tag})" if tag else "") + f" — {x['change']}" + (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else ""))
+    B.append({"type": "ul", "items": items})
+    B.append({"type": "h3", "text": "이 회사의 제품·서비스·기술"})
+    B.append({"type": "ul", "items": [f"**{p.get('kind', '')} — {p.get('name', '')}:** {p.get('what', '')}" + (f" 쓰는 곳: {p['use']}." if p.get("use") else "") + (f" 돈 버는 방식: {p['money']}." if p.get("money") else "")
+                                      for p in lead["products"]]})
+    return {"h2": "내러티브 — 기업가치와 멀티플·EPS 프리미엄을 결정하는 이야기", "blocks": B}
+
+
+def summary_item(dp):
+    lead = ((dp or {}).get("narrative") or {}).get("lead") or {}
+    return {"q": "기업가치를 결정하는 내러티브", "a": lead.get("summary", ""), "auto": True}

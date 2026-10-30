@@ -158,7 +158,7 @@ class TestNarrativeAndCheck(unittest.TestCase):
                             "layers": {"retail": {"metrics": [["레딧", "1", "-", "x"]], "read": "r"}}},
               "consensus": {"revisions": {"rows": [{"period": "FY2026", "metric": "EPS", "from": 16.7, "to": 18.1}]}}}
         sec = narrative_view.report_section(dp, {"decomp": {"total": 0.93, "firm": 0.59}})
-        self.assertTrue(sec["h2"].startswith("내러티브 — "))
+        self.assertTrue(sec["h2"].startswith("내러티브 근거 — "))
         self.assertIn("+8.4%", sec["blocks"][0]["text"])
         self.assertIsNone(narrative_view.report_section({}))
 

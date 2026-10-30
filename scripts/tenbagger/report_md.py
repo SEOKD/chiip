@@ -45,7 +45,7 @@ def standalone(c):
 
 
 def charts_of(d):
-    return [b["chart"] for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart"]
+    return [b["chart"] for _, b in report_html.figures(d)]   # 그림 번호 = HTML 갤러리 순서(pin 포함)
 
 
 def build(src):

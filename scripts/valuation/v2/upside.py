@@ -34,7 +34,7 @@ def block(company, base_d, mc, mcap, cfg_up, sample=None, years=5):
     out["implied_cagr"] = ic
     out["implied_pct"] = baserates.percentile(ic, start_rev, years, sample=sample) if ic is not None else (None, 0, "", "역산 불가")
     out["required"] = {}
-    for mult in (2, 10):
+    for mult in (2, 3, 5, 10):   # 리포트 배수 사다리 단계(마스터 지시 2026-10-30)
         _, rc = pie.implied_growth(base_d, mult * mcap, years, years)
         out["required"][mult] = (rc, baserates.percentile(rc, start_rev, years, sample=sample) if rc is not None else (None, 0, "", "역산 불가"))
     out["alpha"] = alpha_suggest(out, cfg_up)

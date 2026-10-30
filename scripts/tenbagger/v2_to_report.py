@@ -14,7 +14,8 @@ scripts/valuation/v2/run.py의 evaluate()를 다시 돌려(같은 시드) 다음
      같은 분기 리비전과 주가 분해, 동종 대비 멀티플 프리미엄). 밸류에이션 절 바로 앞에 넣는다
   ⑨ 별도 절 세 개(2026-10-29 마스터 지시, 재료가 있을 때만): '내러티브'(narrative_view.py — datapack narrative + 멀티플 엔진 회사 고유 프리미엄 +
      EPS 리비전), '수급 — 누가 왜 샀나'(flow.py — ohlcv.csv + FINRA 공개 API), '가격 구간 — 월·주·일 피보나치'(levels.py — ohlcv.csv + raw.anchors).
-     순서: 어닝콜 → 내러티브 → 밸류에이션 → 수급 → 가격 구간 → (모델의 시나리오 절)
+     순서: 어닝콜 → 내러티브 근거 → 밸류에이션 → 수급 → 가격 구간 → (모델의 시나리오 절)
+  ⑩ 맨 앞 절 두 개(마스터 지시 2026-10-30): ① 내러티브(narrative_view.lead_section) ② 배수 사다리(ladder.py) — 한 장 요약 맨 앞에도 같은 순서로 넣고, 모델이 쓴 번호를 다시 매긴다
 사용: py scripts/tenbagger/v2_to_report.py <entity_id> --merge outputs/tenbagger/reports/<날짜>_<티커>.json
       (merge 없이 --out <파일>이면 절만 따로 저장)
 """
@@ -29,6 +30,7 @@ ROOT = Path(__file__).resolve().parents[2]
 V2 = ROOT / "scripts" / "valuation" / "v2"
 sys.path.insert(0, str(V2))
 import dcf  # noqa: E402
+import ladder  # noqa: E402
 import montecarlo  # noqa: E402
 import run as v2run  # noqa: E402
 import scenarios  # noqa: E402
@@ -104,17 +106,19 @@ def build(entity, draws=3000):
     if u.get("implied_cagr") is not None:
         bars.append({"label": "시장 내포", "bars": [{"name": "5년 매출 CAGR %", "color": "e", "value": round(u["implied_cagr"] * 100, 1)}]})
     bars.append({"label": "우리 기본", "bars": [{"name": "5년 매출 CAGR %", "color": "c", "value": round(u["base_cagr"] * 100, 1)}]})
+    steps = ladder.steps_for(mcap * float(co.get("unit_usd", 1e9)))   # 시가총액 구간의 배수만(마스터 지시 2026-10-30)
     for mult, (rc, _) in u["required"].items():
-        if rc is not None:
+        if rc is not None and mult in steps:
             bars.append({"label": f"{mult}배 필요", "bars": [{"name": "5년 매출 CAGR %", "color": "b", "value": round(rc * 100, 1)}]})
     pct_note = []
     for name, t in (("시장 내포", u.get("implied_pct")), ("기본", u.get("base_pct"))):
         if t and t[0] is not None:
             pct_note.append(f"{name} 기저율 상위 {100 - t[0]:.0f}%(n={t[1]}, {t[2]})")
     for mult, (rc, t) in u["required"].items():
-        if t and t[0] is not None:
+        if t and t[0] is not None and mult in steps:
             pct_note.append(f"{mult}배 필요 성장 기저율 상위 {100 - t[0]:.0f}%")
-    blocks.append({"type": "chart", "chart": {"kind": "hbars", "title": "가격 내포 기대 vs 필요 성장 (5년 매출 CAGR %)", "unit": "%", "rows": bars,
+    # pin 3 = 갤러리 3번째(마스터 지시 2026-10-30 "그림 11을 그림 2~4 사이로 올려라")
+    blocks.append({"type": "chart", "chart": {"kind": "hbars", "pin": 3, "title": "가격 내포 기대 vs 필요 성장 (5년 매출 CAGR %)", "unit": "%", "rows": bars,
                    "note": " · ".join(pct_note) + " — 기저율: 같은 매출 규모 미국 상장사가 실제로 달성한 5년 CAGR 분포(SEC 재무)"}})
     bs = co["scenarios"]["base"]
     s2cs = sorted({round(bs.get("s2c") or 1.0, 2), 0.75, 1.5, 2.5})
@@ -178,7 +182,14 @@ def extra_sections(entity, r):
     import flow
     import levels
     import narrative_view
-    out = {"narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None}
+    co = v2run.load_company(entity)
+    co["market"] = v2run.resolve_market(co)
+    out = {"lead": narrative_view.lead_section(dp, r.get("_mm")), "ladder": ladder.report_section(dp, co, r),
+           "narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None, "summary": []}
+    if out["lead"]:
+        out["summary"].append(narrative_view.summary_item(dp))
+    if out["ladder"]:
+        out["summary"].append(ladder.summary_item(dp, co, r))
     for k, mod in (("flow", flow), ("levels", levels)):
         try:
             sec = mod.report_section(entity, dp)
@@ -191,7 +202,31 @@ def extra_sections(entity, r):
     return out
 
 
-EXTRA_H2 = ("내러티브 — ", "수급 — ", "가격 구간 — ")
+EXTRA_H2 = ("내러티브 — ", "내러티브 근거 — ", "수급 — ", "가격 구간 — ", "배수 사다리 — ")
+CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
+
+
+def _strip_no(s):
+    return str(s or "").lstrip(CIRCLED + " ")
+
+
+def renumber(items, key):
+    """맨 앞 자동 절·요약 다음으로 모델이 쓴 번호를 다시 매긴다 — 번호 없는 자동 절은 그대로"""
+    n = 0
+    for it in items:
+        lead = it.get("auto") or it.get(key, "").startswith(("내러티브 — ", "배수 사다리 — "))
+        if lead or str(it.get(key) or "")[:1] in CIRCLED:
+            it[key] = f"{CIRCLED[n]} {_strip_no(it[key])}"
+            n += 1
+
+
+def merge_lead(d, lead, lad, summary):
+    """내러티브 → 배수 사다리를 본문·요약 맨 앞에(마스터 지시 2026-10-30 "요약 처음과 세부 설명 처음에 … 내러티브를 먼저")"""
+    d["sections"] = [x for x in (lead, lad) if x] + d["sections"]
+    d["summary"] = summary + [s for s in d.get("summary") or [] if not s.get("auto")]
+    renumber(d["sections"], "h2")
+    renumber(d["summary"], "q")
+    return d
 
 
 def main(argv):
@@ -201,23 +236,27 @@ def main(argv):
     ap.add_argument("--merge")
     ap.add_argument("--out")
     ap.add_argument("--draws", type=int, default=3000)
+    ap.add_argument("--legacy", action="store_true", help="datapack에 narrative.lead·ladder가 없는 옛 리포트 정정용")
     a = ap.parse_args(argv)
     sec, r = build(a.entity, a.draws)
     esec = earnings_section(a.entity, r)
     xs = extra_sections(a.entity, r)
     if a.merge:
+        if not a.legacy and not (xs["lead"] and xs["ladder"]):
+            raise SystemExit("datapack에 narrative.lead와 ladder가 있어야 한다(docs/tasks/chiip-tenbagger-report.md 2번) — 옛 리포트 정정은 --legacy")
         p = Path(a.merge)
         d = json.loads(p.read_text(encoding="utf-8"))
-        d["sections"] = [s for s in d.get("sections") or [] if not s.get("h2", "").startswith(("밸류에이션 — 맥킨지", "어닝콜 변화·컨센서스") + EXTRA_H2)]
+        d["sections"] = [s for s in d.get("sections") or [] if not _strip_no(s.get("h2")).startswith(("밸류에이션 — 맥킨지", "어닝콜 변화·컨센서스") + EXTRA_H2)]
         idx = next((i for i, s in enumerate(d["sections"]) if "시나리오" in s.get("h2", "")), len(d["sections"]))
-        for x in (xs["levels"], xs["flow"], sec, xs["narrative"], esec):   # 앞에 끼워 넣으므로 역순: 어닝콜 → 내러티브 → 밸류에이션 → 수급 → 가격 구간
+        for x in (xs["levels"], xs["flow"], sec, xs["narrative"], esec):   # 앞에 끼워 넣으므로 역순: 어닝콜 → 내러티브 근거 → 밸류에이션 → 수급 → 가격 구간
             if x:
                 d["sections"].insert(idx, x)
+        merge_lead(d, xs["lead"], xs["ladder"], xs["summary"])
         v = d.setdefault("verdict", {})
         v.setdefault("alpha", None)
         p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
         print(f"[v2→리포트] {p} 에 '밸류에이션' 절 병합 (블록 {len(sec['blocks'])}개)" + (f" + '어닝콜·컨센서스·멀티플·리비전' 절(블록 {len(esec['blocks'])}개)" if esec else " — 어닝콜·컨센서스 절 재료 없음(datapack call.deltas·consensus.surprise·revisions·multiples_now)"))
-        print("  추가 절: " + " · ".join(f"{k} {'있음' if v else '재료 없음'}" for k, v in xs.items()))
+        print("  추가 절: " + " · ".join(f"{k} {'있음' if v else '재료 없음'}" for k, v in xs.items() if k != "summary"))
     if a.out or not a.merge:
         out = Path(a.out or f"{a.entity}_v2_section.json")
         out.write_text(json.dumps(sec, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -9,6 +9,7 @@ v2_to_report가 밸류에이션 절 앞에 이 절을 넣는다. 재료는 데�
   ② 실적 vs 컨센서스 — consensus.surprise(분기·지표별 실적·추정) → 서프라이즈 %
   ③ EPS·매출 리비전 — consensus.revisions(직전 콜 시점 vs 지금, 같은 분기끼리) → 분기별·합계 리비전 %, 같은 기간 주가 변화를
      'EPS 리비전 × 멀티플 변화'로 분해(주가 = 이익 × 배수 → (1+주가) = (1+EPS 리비전)(1+리레이팅))
+  ③-2 지난 12개월 EPS 리비전 추이·최근 4개 분기 주가 분해 — scripts/tenbagger/revision_view.py(재료 있으면 ③의 단일 구간 분해 그림을 대신한다, 2026-10-30)
   ④ 멀티플 프리미엄 — multiples_now(선행 P/E·EV/EBITDA·EV/매출·성장) vs peers 같은 지표의 중앙값 → 프리미엄 %, 성장 조정(배수 ÷ 성장%) 프리미엄
 
 datapack 추가 필드:
@@ -201,6 +202,9 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
         if per and mets:
             B.append({"type": "chart", "chart": {"kind": "bars", "title": "분기별 서프라이즈 (%) — 최근 4개 분기", "unit": "%", "categories": per,
                       "series": [{"name": m, "color": "cdeb"[i % 4], "values": [next((round(r["surprise"] * 100, 1) for r in sp if r["period"] == p and r["metric"] == m and r["surprise"] is not None), None) for p in per]} for i, m in enumerate(mets)]}})
+    import revision_view
+    series = revision_view.blocks(dp)   # 그림 5·8 — 지난 12개월 리비전 추이와 최근 4개 분기 분해(마스터 지시 2026-10-30)
+    B.extend(series)
     rv = cons.get("revisions")
     if rv:
         res = revisions(rv, cons.get("price_window"))
@@ -209,7 +213,7 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
                   "rows": [[r["period"], r["metric"], f"{r['from']:,.4g}" if r.get("from") is not None else "-", f"{r['to']:,.4g}" if r.get("to") is not None else "-", _pct(r["rev"])] for r in res["rows"]]
                   + [[f"**합계 {len(v['periods'])}분기**", m, f"{v['from']:,.4g}", f"{v['to']:,.4g}", f"**{_pct(v['rev'])}**"] for m, v in res["total"].items()]})
         d = res["decomp"]
-        if d:
+        if d and not series:   # 시계열 재료가 없는 옛 데이터 묶음만 단일 구간 분해
             B.append({"type": "chart", "chart": {"kind": "bars", "title": "같은 기간 주가 변화 분해 = EPS 리비전 × 멀티플 변화 (%)", "unit": "%", "categories": ["주가", "EPS 리비전", "멀티플(리레이팅)"],
                       "series": [{"name": "변화", "color": "c", "values": [round(d["price"] * 100, 1), round(d["eps"] * 100, 1), round(d["rerate"] * 100, 1)]}],
                       "note": "(1 + 주가 변화) = (1 + EPS 리비전) × (1 + 멀티플 변화). EPS 리비전은 위 표의 같은 분기 합 기준"}})
