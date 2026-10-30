@@ -3,6 +3,8 @@ async () => {
   // 발표 전 값만 쓴다: Fiscal 칸은 asOf가 발표일(earningsDate) 전날 이전일 때만(발표 뒤엔 새 가이던스로 덮어쓴다), Zacks는 history에서 발표일 전 마지막 값.
   // 기준(GAAP·조정)이 실적 줄과 다르면 est.를 붙이지 않는다 — 예외 GPM: Fiscal 매출총이익은 GAAP뿐이라 조정 GPM 줄에도 붙인다(마스터 지시 2026-10-30).
   // 이익률 est.는 같은 제공처의 분자 est. ÷ 매출 est.(OPM = 영업이익, GPM = 매출총이익). 영업이익 금액 줄은 양식에서 뺐지만 OPM 계산에 쓴다.
+  // 이익률은 표시한 매출 est.와 같은 제공처 쌍을 먼저(매출이 Zacks면 Zacks EBIT ÷ Zacks 매출), 없으면 다른 제공처 쌍(Fiscal 분자 ÷ Fiscal 매출, 계산값 포함) —
+  // 2026-10-30 STRL·EME: 분자는 Fiscal·매출은 Zacks로 각각 골라 '제공처 불일치'로 GPM·OPM est.가 빠지던 결함 수정.
   // __KEY__ = NASDAQ_SNDK 형식. 출력 pick[분기][지표] = {est, src: 'fiscal:<source>'|'zacks', asOf} | null. zacks_used=true면 Zacks 표기를 단다.
   const k = "__KEY__";
   const [fe, z] = await Promise.all([
@@ -29,9 +31,16 @@ async () => {
     const o = {};
     for (const [name, [fk, zk]] of Object.entries(lines)) o[name] = fis(d, fk) || (zk ? zack(d.reportDate, zk) : null) || fis(d, fk, true);
     const prov = v => String(v.src).split(":")[0];                                // fiscal / zacks — 이익률은 같은 제공처끼리만 나눈다
-    const ratio = (num, rv, basis) => num && rv && prov(num) === prov(rv) ? { est: num.est / rv.est, src: num.src + "÷" + rv.src, asOf: num.asOf, basis, derived: true } : null;
-    o.opm_adjusted = ratio(o.ebit_adjusted, o.revenue, "adjusted"); o.opm = ratio(o.ebit, o.revenue, "gaap");
-    o.gpm = ratio(o.gross_profit, o.revenue, "gaap");                              // Fiscal 매출총이익은 GAAP 기준 — 조정 GPM 줄에도 붙이고 기준 차이는 기록 파일에
+    const side = (p, fk, zk) => p === "zacks" ? (zk ? zack(d.reportDate, zk) : null) : (fis(d, fk) || fis(d, fk, true));
+    const ratio = (fk, zk, basis) => {
+      for (const p of (o.revenue && prov(o.revenue) === "zacks" ? ["zacks", "fiscal"] : ["fiscal", "zacks"])) {
+        const num = side(p, fk, zk), rv = side(p, "revenue", "analyst_revenue");
+        if (num && rv) return { est: num.est / rv.est, src: num.src + "÷" + rv.src, asOf: num.asOf, num: num.est, rev: rv.est, basis, derived: true };
+      }
+      return null;
+    };
+    o.opm_adjusted = ratio("ebit_adjusted", "analyst_ebit", "adjusted"); o.opm = ratio("ebit", null, "gaap");
+    o.gpm = ratio("gross_profit", null, "gaap");                                   // Fiscal 매출총이익은 GAAP 기준 — 조정 GPM 줄에도 붙이고 기준 차이는 기록 파일에
     return o;
   };
   const pick = { reported: pickFor(rep), guidance: pickFor(next) };
