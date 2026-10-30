@@ -13,7 +13,7 @@
 # fiscal = Fiscal.ai 회사 키 — 재무가 있는 것만(2026-10-30 확인: 미국·영국 11곳). 캡콤 XJPX_9697·닌텐도 XJPX_7974·미쉐 XHKG_2097은 키는 있으나 재무·주가 없음, 나머지 아시아 소비재는 키 자체가 없음 → 회사 결산 자료로 --put-q.
 # wiki = {언어: 문서 제목} 위키 조회수(Wikimedia 공식 API, robots 제한 없음) — 제목이 틀리면 수집기가 'missing'으로 기록, 주간 회차에서 고친다(1차 입력, 미검증).
 # steam = 스팀 앱 id(store.steampowered.com/api/appdetails 누적 추천 수, robots 허용) · apps = 애플 앱 순위 RSS의 개발사 이름 패턴(정규식) · terms = 브랜드 뉴스 검색어.
-# 아마존: robots.txt가 ClaudeBot을 명시적으로 막아 직접 수집 금지(2026-10-30 확인). 공식 경로 PA-API(마스터 어소시에이트 계정)·Keepa API(유료) — docs/TODO_MASTER.md.
+# 아마존: 원천에서 제외(2026-10-30 마스터 결정). robots.txt가 ClaudeBot을 명시적으로 막아 직접 수집 금지, PA-API는 폐지, 후속 Creators API는 약관이 분석 용도를 제한 — knowledge/methods/consumer_lens.md.
 # 레딧 직접 수집·틱톡·스팀 리뷰 API는 robots 차단이라 쓰지 않는다(레딧은 ApeWisdom 미국 티커 언급 수만).
 
 segments:
