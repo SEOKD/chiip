@@ -119,6 +119,49 @@ class TestPoll(unittest.TestCase):
             self.assertEqual(k.poll(only=["co-a"]), [])
 
 
+class TestPtPair(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.cache = self.root / "kr"
+        self.cache.mkdir()
+        self.fetched = []
+        cfg = {"companies": {"co-a": {"name": "에이", "code": "000001"}}}
+        self.p = [patch.object(k.common, "load_yaml", lambda p: cfg), patch.object(k.common, "ROOT", self.root), patch.object(k, "CACHE", self.cache)]
+        for x in self.p:
+            x.start()
+
+    def tearDown(self):
+        for x in self.p:
+            x.stop()
+        self.tmp.cleanup()
+
+    def test_returns_this_and_prior_quarter_saved(self):
+        for per in ("FY2026Q1", "FY2026Q2", "FY2026Q3"):
+            (self.cache / f"co-a_presentation_{per}_abc.txt").write_text("x", encoding="utf-8")
+        with patch.object(k, "company_docs", side_effect=AssertionError("이미 둘 있으면 받지 않는다")):
+            got = k.pt_pair("000001")   # 종목코드로도 찾는다
+        self.assertEqual([x["period"] for x in got], ["FY2026Q3", "FY2026Q2"])
+        self.assertTrue(got[0]["text"].endswith("FY2026Q3_abc.txt"))
+
+    def test_downloads_missing_prior_quarter(self):
+        (self.cache / "co-a_presentation_FY2026Q3_abc.txt").write_text("x", encoding="utf-8")
+        docs = [doc(3, "FY2026Q3"), doc(2, "FY2026Q2", d="2026-07-30"), doc(1, "FY2026Q1", d="2026-04-30")]
+
+        def content(d):
+            self.fetched.append(d["period"])
+            return d["url"], "본문" * 2000, b"%PDF-1.5"
+        with patch.object(k, "company_docs", lambda c: (docs, 1)), patch.object(k, "content_of", content):
+            got = k.pt_pair("co-a")
+        self.assertEqual(self.fetched, ["FY2026Q2"])
+        self.assertEqual([x["period"] for x in got], ["FY2026Q3", "FY2026Q2"])
+        self.assertIsNone(got[1]["pdf"])   # 글자가 충분한 PDF는 원본을 남기지 않는다
+
+    def test_unknown_company(self):
+        with self.assertRaises(ValueError):
+            k.pt_pair("co-z")
+
+
 class TestPulseWiring(unittest.TestCase):
     def test_classes(self):
         import pulse

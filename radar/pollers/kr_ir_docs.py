@@ -12,7 +12,8 @@ DART는 쓰지 않는다 — 키가 마스터 결정으로 비어 있고(2026-10
   원본 PDF도 남기고 local_pdf로 알린다 — 두산에너빌리티 3Q는 14쪽에서 글자가 1,293자뿐이었다. 펄스 모델이 Read로 쪽 그림을 읽는다.
   실적 자료 → src-kr-ir-docs 'IR 자료'(펄스 ⑥-2), 스크립트·Q&A → src-kr-ir-qa 'IR 질의응답'(펄스 ⑥). 처음 보는 회사는 최근 backlog_days일 자료만 알린다.
 robots.txt·1초 간격·로그인 영역 금지는 일본 수집기와 같다. 저장소에는 요약·15단어 이하 인용·링크만.
-사용: py radar/run_poll.py --only src-kr-ir-docs · 점검: py radar/pollers/kr_ir_docs.py [회사 id…] [--status]
+한국 상장사는 어닝콜·Q&A 스크립트를 공식 IR 사이트에 올리지 않는 게 보통이라(마스터 지시 2026-10-30) ①·②·③·인사이트의 기준 자료는 당기·직전 분기 PT다 — `--pt`가 두 파일을 찾아 준다.
+사용: py radar/run_poll.py --only src-kr-ir-docs · 점검: py radar/pollers/kr_ir_docs.py [회사 id…] [--status] · 당기·직전 PT: py radar/pollers/kr_ir_docs.py --pt <회사 id 또는 종목코드>
 """
 import hashlib
 import html as htmllib
@@ -36,6 +37,7 @@ CACHE = common.ROOT / "radar" / "inbox" / "kr_ir"
 STATE = "kr_ir_docs"
 PARAMS = {"hot_days": 10, "cold_min": 180, "max_fetch": 45, "fresh_days": 21, "backlog_days": 5, "thin_chars": 3000}
 IRGO_LIST = "https://m.irgo.co.kr/IR-COMP/{code}"
+PT_NAME_RE = re.compile(r"_presentation_(FY\d{4}Q\d)_")
 IRGO_ITEM_RE = re.compile(r"""<li[^>]*data-href=["']([^"']+/IR자료/(\d+)/[A-Z]+/([^"']*))["'][^>]*>(.*?)</li>""", re.S)
 IRGO_PDF_RE = re.compile(r"""href=["'](https://file\.irgo\.co\.kr/[^"']+?\.pdf)["']""", re.I)
 PDF_URL_RE = re.compile(r"""(?:https?:)?//[^"'\s<>()\\]+?\.pdf(?:\?[^"'\s<>()\\]*)?""", re.I)
@@ -236,6 +238,37 @@ def save_pdf(cid, d, raw):
     return str(path.relative_to(common.ROOT))
 
 
+def _saved_pts(cid):
+    """받아 둔 PT {기간: {period, text, pdf}} — 같은 기간이 여럿이면 나중에 받은 것"""
+    out = {}
+    for p in sorted(CACHE.glob(f"{cid}_presentation_*.txt"), key=lambda x: x.stat().st_mtime):
+        m = PT_NAME_RE.search(p.name)
+        if m:
+            pdf = p.with_suffix(".pdf")
+            out[m.group(1)] = {"period": m.group(1), "text": str(p.relative_to(common.ROOT)), "pdf": str(pdf.relative_to(common.ROOT)) if pdf.exists() else None}
+    return out
+
+
+def pt_pair(ref):
+    """당기·직전 분기 PT(최신 먼저, 최대 2개). 어느 경로로 잡힌 한국 실적이든 ①·②·③을 쓰기 전에 부른다. 둘이 안 되면 자료실에서 받는다"""
+    cos = (common.load_yaml(CFG) or {}).get("companies") or {}
+    cid = ref if ref in cos else next((k for k, c in cos.items() if c.get("code") == ref), None)
+    if not cid:
+        raise ValueError(f"{CFG}에 없는 회사: {ref}")
+    have = _saved_pts(cid)
+    if len(have) < 2:
+        docs, _ = company_docs(cos[cid])
+        pts = sorted((d for d in docs if d["kind"] == "presentation" and d["period"]), key=lambda d: d["period"], reverse=True)
+        for d in pts[:2]:
+            if d["period"] not in have:
+                url, text, raw = content_of(d)
+                save_text(cid, d, url, text)
+                if isinstance(raw, bytes) and raw[:5] == b"%PDF-" and len(text) < params()["thin_chars"]:
+                    save_pdf(cid, d, raw)
+        have = _saved_pts(cid)
+    return [have[k] for k in sorted(have, reverse=True)[:2]]
+
+
 def make_item(cid, c, d, docs):
     url, text, raw = content_of(d)
     name, code = c.get("name", cid), c.get("code", "")
@@ -345,6 +378,9 @@ def status():
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ids = [a for a in argv if not a.startswith("--")]
+    if "--pt" in argv:
+        print(json.dumps(pt_pair(ids[0]), ensure_ascii=False, indent=1))
+        return 0
     if "--status" in argv:
         for r in status():
             print(r)

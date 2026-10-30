@@ -55,6 +55,13 @@ class TestTranscriptWatch(unittest.TestCase):
         self.assertTrue(d["check"])
         self.assertEqual(d["waiting"], 2)
 
+    def test_korean_listing_is_not_waited(self):
+        st = tw.refresh(tw.common.load_state("transcripts"), NOW)
+        aaa = next(r for r in st["events"].values() if r["key"] == "NASDAQ_AAA")
+        st["events"]["XKRX_009150|q3-2026"] = {**aaa, "key": "XKRX_009150", "id": "co-semco"}
+        self.assertNotIn("XKRX_009150", [r["key"] for r in tw.pending(st, NOW)])
+        self.assertIn("XKRX_009150|q3-2026", st["events"])   # 장부에는 남긴다(실적 구간 판단)
+
     def test_put_marks_found_and_skips_already_covered(self):
         for n in (1, 2, 3):   # BBB는 콜 기준 ②·③을 이미 보냈다
             Path(self.tmp.name, f"20261029_BBB_{n}.txt").write_text("x", encoding="utf-8")

@@ -11,6 +11,8 @@
       py radar/transcript_watch.py --put <파일>      # execute_code 출력 → 새로 올라온 전문 목록(정리 대상, 우선순위 순)
       py radar/transcript_watch.py --done <key> <event> [--no-feed <이유>]   # 정리를 마친 전문(④ 인사이트 피드 파일이 있어야 완료)
       py radar/transcript_watch.py --await <key> <event>  # 보도자료로 ②를 먼저 보낸 실적 — 전문이 오면 ②·③을 콜 기준으로 다시
+한국 상장사(XKRX_)는 대기하지 않는다(마스터 지시 2026-10-30 "한국 상장회사들은 어닝콜 및 Q&A 스크립트를 공식 IR 사이트에 업로드하지 않으니") — 당기·직전 PT 경로 radar/pollers/kr_ir_docs.py.
+  장부에는 남긴다(kr_ir_docs가 실적 구간 판단에 쓴다).
 정리 범위: 보유·레이더 테마·노션 Stocks·알파 5+(tier 0·1)는 Dean's Ticker 3단(① 미발송이면 ①부터), 나머지(tier 2)는 ② 뉴팩트 한 통.
   + 어느 범위든 ④ 인사이트 피드 한 통(마스터 지시 2026-10-30 "뒤늦게 올라오면 뉴팩트 정리와 함께 인사이트 피드도") — 숫자는
   scripts/insight/call_feed.py(발표 반응 AR·β·게재까지 표류·Q&A 비교), 양식은 knowledge/methods/earnings_format.md ④. --done은 ④ 파일이 있어야 완료로 친다.
@@ -33,6 +35,7 @@ WAIT_DAYS = 10        # 발표 뒤 이 기간까지 전문을 기다린다
 CALL_LAG_H = 1        # 예정 시각 + 이 시간이 지나야 콜이 끝난 것으로 본다
 EVERY_MIN = 20        # 대기 건이 있을 때 확인 간격
 MAX_CHECK = 36        # 한 번에 확인하는 건수(execute_code 60초 안)
+PT_ONLY = ("XKRX_",)  # 전문을 기다리지 않는 시장 — 당기·직전 PT로 정리한다
 
 
 def event_key(period):
@@ -102,7 +105,8 @@ def refresh(st, now, cal=None):
 
 def pending(st, now):
     """콜이 끝났고 아직 전문이 없는 건 — 우선순위·발표일 순"""
-    ready = [r for r in st.get("events", {}).values() if r["status"] == "wait" and datetime.fromisoformat(r["utc"]) + timedelta(hours=CALL_LAG_H) <= now]
+    ready = [r for r in st.get("events", {}).values() if r["status"] == "wait" and not r["key"].startswith(PT_ONLY)
+             and datetime.fromisoformat(r["utc"]) + timedelta(hours=CALL_LAG_H) <= now]
     for r in ready:
         r.setdefault("tier", _tier(r.get("id")) if r.get("id") else 2)
     return sorted(ready, key=lambda r: (r["tier"], r["utc"]))
