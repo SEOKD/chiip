@@ -268,6 +268,20 @@ class TestRevision(unittest.TestCase):
         self.assertIn("①", report_html.chart_revision(charts[0]))
         self.assertTrue(report_md.standalone(charts[0]).startswith("<svg"))
 
+    def test_only_figure_five_explains_event_numbers(self):
+        rev = {"kind": "revision", "title": "EPS 리비전", "unit": "$", "start": "2026-01-01", "end": "2026-10-29",
+               "series": [{"name": "CY2027", "color": "b", "points": [["2026-01-01", 2.0], ["2026-03-01", 4.0]]}],
+               "events": [{"date": "2026-02-23", "mark": "①", "kind": "실적", "tag": "4Q25 실적", "pct": "+110%"},
+                          {"date": "2026-02-26", "mark": "②", "kind": "내러티브", "tag": "전환사채", "pct": "겹침"}]}
+        d = {**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": rev}, {"type": "chart", "chart": {**chart("주가")["chart"], "note": "차트 주석"}}]}]}
+        h = report_html.render(d)
+        self.assertIn("① 26-02-23 4Q25 실적 · EPS 리비전 +110%", h)
+        self.assertIn("② 26-02-26 전환사채 · 실적 창과 겹침", h)
+        self.assertNotIn("차트 주석", h)
+        self.assertEqual(report_html.event_lines(chart("주가")["chart"]), [])
+        for out in (report_notion.render(d), report_notion.render(d, charts=["charts/a.svg", "charts/b.svg"])):
+            self.assertIn("- ① 26-02-23 4Q25 실적 · EPS 리비전 +110%", out)
+
     def test_old_datapack_falls_back(self):
         self.assertEqual(rv.blocks({"id": "x", "consensus": {}}), [])
 

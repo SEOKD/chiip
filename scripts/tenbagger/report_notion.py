@@ -70,6 +70,9 @@ def render(d, github=None, charts=None, h1=False):
                     L += ["", f"**그림 {n} · {c.get('title')}**", "", f"![그림 {n}]({charts[n - 1]})"]
                 else:
                     L += ["", f"📊 그림 {n} · {c.get('title')} — 위 HTML 임베드·GitHub 리포트"]
+                lines = report_html.event_lines(c)
+                if lines:
+                    L += [""] + [f"- {x}" for x in lines]
     src = d.get("sources") or []
     if src:
         L += ["", "## 출처"] + [f"- {x}" for x in src]

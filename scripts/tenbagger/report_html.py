@@ -330,6 +330,18 @@ def figures(d):
     return out
 
 
+def event_lines(c):
+    """그림 5의 사건 번호 설명 — 본문 아래 부가 설명을 넣지 않는 규칙의 유일한 예외(마스터 지시 2026-10-30 "그림 5에만 해당"). HTML·마크다운·노션이 같은 줄을 쓴다"""
+    if c.get("kind") != "revision":
+        return []
+    out = []
+    for e in c.get("events") or []:
+        pct = str(e.get("pct") or "")
+        rev = "실적 창과 겹침" if pct == "겹침" else f"EPS 리비전 {pct}"
+        out.append(f"{e.get('mark')} {str(e.get('date'))[2:]} {e.get('tag')} · {rev}")
+    return out
+
+
 def block(b):
     k = b.get("type")
     if k == "p":
@@ -350,7 +362,8 @@ def block(b):
         fn = CHARTS.get(c.get("kind"))
         if not fn:
             return ""
-        return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}</div>'
+        legend = "".join(f'<div class="sm mut">{t(x)}</div>' for x in event_lines(c))
+        return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}{legend}</div>'
     return ""
 
 
