@@ -48,6 +48,7 @@ def extra_focus():
         s |= portfolio_ids()   # 마스터 포트폴리오(config/portfolio.yaml, 2026-10-29)
         s |= {c["id"] for c in common.defense_companies()}   # 방위 섹터 지도(config/defense.yaml, 2026-10-29 마스터 지시)
         s |= {c["id"] for c in common.consumer_companies()}   # 소비재·게임·콘텐츠IP 지도(config/consumer.yaml, 2026-10-30 마스터 지시)
+        s |= common.watch_theme_ids()   # 원자력·위성 밸류체인(config/discovery.yaml watch 테마, 2026-10-31 마스터 지시)
         p = common.ROOT / "knowledge" / "models" / "alpha" / "latest.json"
         if p.exists():
             try:

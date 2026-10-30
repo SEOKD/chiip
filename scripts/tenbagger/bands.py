@@ -36,7 +36,8 @@ EODHD = "https://eodhd.com/api/screener"
 SUB_SECTOR = {"semicap": "semis", "accelerator": "semis", "memory": "semis", "foundry": "semis", "analog": "semis", "eda_ip": "semis",
               "semis": "semis", "materials": "semis", "software": "software", "hyperscaler": "software"}
 THEME_SECTOR = {"targets_inp": "semis", "probe_test": "semis", "metrology_inspection": "semis", "munitions_energetics": "defense", "srm_missile": "defense",
-                "gan_radar_ew": "defense", "cuas_unmanned": "defense", "naval_capacity": "defense", "space_isr": "defense"}
+                "gan_radar_ew": "defense", "cuas_unmanned": "defense", "naval_capacity": "defense", "space_isr": "defense",
+                "nuclear_fuel": "nuclear", "nuclear_reactor": "nuclear", "satellite_launch": "space", "satellite_data": "space"}
 SUFFIX_MARKET = {"US": "us", "KO": "kr", "KQ": "kr", "TSE": "jp", "T": "jp", "TW": "tw", "TWO": "tw",
                  "XETRA": "eu", "F": "eu", "DE": "eu", "PA": "eu", "MI": "eu", "MC": "eu", "AS": "eu", "SW": "eu", "CO": "eu", "HE": "eu", "ST": "eu",
                  "OL": "eu", "LSE": "eu", "L": "eu"}
@@ -345,7 +346,7 @@ def _usd(x):
 def write_report(today, bands, by_band, top, rows, migrations):
     OUTD.mkdir(parents=True, exist_ok=True)
     have = sum(1 for r in rows if r["band"])
-    sec = {"semis": "반도체", "ai_hw": "AI HW", "software": "SW", "defense": "방위"}
+    sec = {"semis": "반도체", "ai_hw": "AI HW", "software": "SW", "defense": "방위", "nuclear": "원자력", "space": "위성"}
     L = [f"# Chiip Ten-bagger 시가총액 구간 {today.isoformat()}", "",
          f"유니버스 {len(rows)} · 시총 확보 {have} · 갱신 대상(없음·{cfg().get('stale_days', 7)}일 초과) {len(stale(10 ** 6, today))}", "",
          "| 구간 | 종목 수 | 반도체 | AI HW | SW | 방위 | 10배 = 목표 시총 |", "|---|---|---|---|---|---|---|"]

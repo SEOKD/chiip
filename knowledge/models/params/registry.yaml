@@ -1678,3 +1678,35 @@ params:
     data: knowledge/models/consumer/latest.json
     last_fit: null
     oos_metric: null
+- id: prm-tb-exit-evs-nuclear
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.nuclear.exit_ev_sales
+  value: 3.0
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 3.0
+    basis: 원자력 성숙기 출구 배수 — 미검증 보수적 사전값(2026-10-31 마스터 지시 원자력 섹터 추가)
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: prm-tb-exit-evs-semis와 같음
+    target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-exit-evs-space
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.space.exit_ev_sales
+  value: 3.0
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 3.0
+    basis: 위성 성숙기 출구 배수 — 미검증 보수적 사전값(2026-10-31 마스터 지시 위성 섹터 추가)
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: prm-tb-exit-evs-semis와 같음
+    target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null

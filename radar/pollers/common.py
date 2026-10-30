@@ -177,11 +177,16 @@ def discovery_entities():
     return out
 
 
+def watch_theme_ids():
+    """발굴 테마 중 watch: true인 후보 전체 — 원자력·위성 밸류체인(마스터 지시 2026-10-31)처럼 점수와 무관하게 공시·보도를 받는다"""
+    return {c["id"] for t in (load_yaml("config/discovery.yaml") or {}).get("themes") or [] if t.get("watch") for c in t.get("candidates") or []}
+
+
 def edge_watch_entries():
     """SEC 공시 수집에 더할 미국 상장 발굴 종목 — 조용한 매집형 상승 watch(knowledge/models/discovery/quiet_latest.json) + 마스터 지정 always_watch"""
     q = ROOT / "knowledge" / "models" / "discovery" / "quiet_latest.json"
     ids = set(json.loads(q.read_text(encoding="utf-8")).get("watch") or []) if q.exists() else set()
-    ids |= set(((load_yaml("config/discovery.yaml") or {}).get("quiet") or {}).get("always_watch") or [])
+    ids |= set(((load_yaml("config/discovery.yaml") or {}).get("quiet") or {}).get("always_watch") or []) | watch_theme_ids()
     out = {}
     for cid, names, code in discovery_entities():   # 발굴 후보와 구간 시드에 같은 종목이 있으면 이름을 합친다
         if cid in ids and code.endswith(".US"):

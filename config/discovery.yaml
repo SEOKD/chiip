@@ -163,7 +163,6 @@ themes:
     candidates:
       - {id: de-renk, name: Renk Group, market: eu, code: "R3NK", edge: 6, why: "전차 변속기·함정 추진 기어 — 지상·해상 양쪽 병목 부품(1차 판정)"}
       - {id: fr-exail, name: Exail Technologies, market: eu, code: "EXA", edge: 6, why: "기뢰 대응 무인 체계·관성 항법 — 해양 무인화(1차 판정)"}
-      - {id: gb-babcock, name: Babcock International, market: eu, code: "BAB", edge: 6, why: "영국 핵잠수함 정비·함정 건조 — 정비 도크·숙련 인력 캐파(1차 판정)"}
   - id: space_isr
     name: 정찰 위성·데이터
     bottleneck: "고빈도 정찰 수요 대비 위성 버스 양산·발사 슬롯이 부족"
@@ -171,6 +170,58 @@ themes:
     evidence: ["정부 위성군·데이터 계약", "발사 일정", "구독 재계약"]
     candidates:
       - {id: us-bksy, name: BlackSky Technology, market: us, code: "BKSY", edge: 5, why: "고빈도 정찰 위성 영상 — 정부 고객 중심(1차 판정)"}
+  # 원자력·위성 밸류체인(마스터 지시 2026-10-31 "CCJ, LEU, Babcock 같은 원자력 밸류체인 종목과 YSS, RKLB, PL 같은 위성 밸류체인 종목도 종목발굴 레이더 망에 포함").
+  # watch: true = 후보 전체를 레이더 종목 인식·SEC 공시·수집 관문에 연결(common.watch_theme_ids). 분석 틀 knowledge/methods/nuclear_space_lens.md. edge는 1차 판정.
+  - id: nuclear_fuel
+    name: 우라늄·변환·농축(핵연료 주기)
+    watch: true
+    bottleneck: "러시아산 농축 의존을 대체할 서방 변환·농축 캐파와 고순도 저농축 우라늄(HALEU) 공급이 부족하다 — 신규 광산·농축 설비는 인허가와 건설에 수년이 걸린다"
+    driver: "장기 계약 물량 × 실현 단가(현물·기간 가격 연동 비율) + 농축 분리작업단위(SWU) 판매"
+    evidence: ["회사 공시의 장기 계약 물량·평균 실현 단가", "미 에너지부 HALEU·농축 계약과 지급 실적", "NRC 인허가 단계", "농축 설비 증설 진행"]
+    candidates:
+      - {id: us-ccj, name: Cameco, ko: ["카메코"], market: us, code: "CCJ", edge: 8, why: "서방 최대급 우라늄 생산사 + 변환 + 웨스팅하우스 지분 — 핵연료 주기 전반 노출(1차 판정)"}
+      - {id: us-leu, name: Centrus Energy, aliases: ["Centrus Energy", "Centrus"], ko: ["센트러스"], market: us, code: "LEU", edge: 8, why: "미국 농축 연료 공급사, HALEU 생산 실적 보유 — 증설은 계약·지급 확인 필요(1차 판정)"}
+      - {id: us-uec, name: Uranium Energy, aliases: ["Uranium Energy Corp"], market: us, code: "UEC", edge: 4, why: "미국 우라늄 생산·변환 진입 — 계약 기반이 얇아 가격 민감도가 크다(1차 판정)"}
+      - {id: us-uuuu, name: Energy Fuels, aliases: ["Energy Fuels"], market: us, code: "UUUU", edge: 5, why: "미국 우라늄 + 희토류 정련 — 두 사업의 실적 기여를 나눠 볼 것(1차 판정)"}
+      - {id: us-nxe, name: NexGen Energy, aliases: ["NexGen Energy"], market: us, code: "NXE", edge: 5, why: "캐나다 대형 우라늄 광산 개발 단계 — 매출 전, 인허가가 핵심(1차 판정)"}
+  - id: nuclear_reactor
+    name: 원자로·SMR·주기기·해군 추진
+    watch: true
+    bottleneck: "압력용기 대형 단조, 원자력 등급 제조 인증, 숙련 인력이 소수 업체에 묶여 있다 — 설계 승인에서 상업 운전까지 10년 안팎이 걸린다"
+    driver: "해군 추진 조달 물량 + 신규 원자로 주기기 수주 + 기존 원전 수명 연장·서비스"
+    evidence: ["NRC 설계 승인·건설 허가", "최종 투자 결정·구속력 있는 계약", "해군 조달 계약", "주기기 수주잔고"]
+    candidates:
+      - {id: gb-babcock, name: Babcock International, market: eu, code: "BAB", edge: 6, why: "영국 핵잠수함 유지보수·건조 지원과 민수 원자력 서비스 — 방위와 겹침(1차 판정)"}
+      - {id: us-bwxt, name: BWX Technologies, aliases: ["BWX Technologies", "BWXT"], market: us, code: "BWXT", edge: 8, why: "미 해군 원자로 핵심 공급사 + 민수 원자력 부품·연료 — 방위와 겹침(1차 판정)"}
+      - {id: co-doosanenerbility, name: Doosan Enerbility, local: "두산에너빌리티", market: kr, code: "034020", edge: 7, why: "원자로 주기기 제조 + SMR 공급망 진입 — 수주 단계 확인 필요(1차 판정)"}
+      - {id: co-oklo, name: Oklo, aliases: ["Oklo Inc", "Oklo"], market: us, code: "OKLO", edge: 4, why: "소형 고속로 개발 — 매출 전, NRC 허가 단계가 가치를 가른다(1차 판정)"}
+      - {id: co-nuscale, name: NuScale Power, aliases: ["NuScale Power", "NuScale"], market: us, code: "SMR", edge: 5, why: "NRC 설계 승인을 받은 SMR — 구속력 있는 수주가 관건(1차 판정)"}
+      - {id: us-nne, name: NANO Nuclear Energy, aliases: ["NANO Nuclear Energy", "NANO Nuclear"], market: us, code: "NNE", edge: 2, why: "초소형 원자로 개발 초기 — 매출 전(1차 판정)"}
+  - id: satellite_launch
+    name: 발사체·위성 버스·우주 제조
+    watch: true
+    bottleneck: "소형·중형 발사 슬롯과 위성 버스 양산 능력이 정부 위성군 수요보다 부족하다 — 재사용·반복 발사에 성공한 업체가 적다"
+    driver: "발사 횟수 × 건당 가격 + 위성 기수 × 단가 + 우주 부품 내재화"
+    evidence: ["발사 일정·궤도 성공 기록", "수주잔고의 확정 금액 vs 옵션", "미 우주개발청 트랜치 계약", "위성 인도 일정"]
+    candidates:
+      - {id: us-rklb, name: Rocket Lab, aliases: ["Rocket Lab"], ko: ["로켓랩"], market: us, code: "RKLB", edge: 8, why: "소형 발사 + 위성 부품·버스 수직 통합 — 중형 발사체 Neutron이 다음 단계(1차 판정)"}
+      - {id: us-yss, name: York Space Systems, aliases: ["York Space Systems", "York Space"], ko: ["요크 스페이스"], market: us, code: "YSS", edge: 6, why: "정부 위성군용 위성 버스 양산 — 고객 집중을 확인할 것(1차 판정)"}
+      - {id: us-fly, name: Firefly Aerospace, aliases: ["Firefly Aerospace"], market: us, code: "FLY", edge: 5, why: "소형 발사체·달 착륙선 — 발사 신뢰성이 관건(1차 판정)"}
+      - {id: us-mda, name: MDA Space, aliases: ["MDA Space"], market: us, code: "MDA", edge: 6, why: "캐나다 위성 시스템·로봇 팔 — 위성군 양산 수주(1차 판정)"}
+      - {id: us-rdw, name: Redwire, aliases: ["Redwire"], market: us, code: "RDW", edge: 4, why: "우주 인프라 부품 — 수익성 회복 확인 필요(1차 판정)"}
+      - {id: us-lunr, name: Intuitive Machines, aliases: ["Intuitive Machines"], market: us, code: "LUNR", edge: 4, why: "달 착륙선·궤도 서비스 — 정부 계약 의존(1차 판정)"}
+  - id: satellite_data
+    name: 지구관측·위성통신 데이터
+    watch: true
+    bottleneck: "촬영 빈도와 처리 역량, 주파수 사용권이 진입 장벽 — 위성군을 유지하는 자본을 구독 매출이 감당해야 한다"
+    driver: "데이터 구독 계약 × 재계약률 + 위성통신 가입자 × 가입자당 매출"
+    evidence: ["수주잔고·재계약률", "유료 가입자·트래픽", "정부 데이터 구매 계약", "주파수·규제 승인"]
+    candidates:
+      - {id: us-pl, name: Planet Labs, aliases: ["Planet Labs"], ko: ["플래닛랩스"], market: us, code: "PL", edge: 7, why: "매일 지구 전역 촬영 위성군 — 정부·AI 데이터 계약 확대 여부(1차 판정)"}
+      - {id: us-asts, name: AST SpaceMobile, aliases: ["AST SpaceMobile"], market: us, code: "ASTS", edge: 6, why: "일반 휴대폰 직접 위성통신 — 위성군 구축 전, 통신사 계약의 구속력 확인(1차 판정)"}
+      - {id: us-irdm, name: Iridium Communications, aliases: ["Iridium Communications"], market: us, code: "IRDM", edge: 5, why: "저궤도 통신 위성군 운영 — 안정 현금흐름, 직접 통신 경쟁 노출(1차 판정)"}
+      - {id: us-vsat, name: Viasat, aliases: ["Viasat"], market: us, code: "VSAT", edge: 4, why: "위성 통신·방위 통신 — 차입과 주파수 자산 가치(1차 판정)"}
+      - {id: us-spir, name: Spire Global, aliases: ["Spire Global"], market: us, code: "SPIR", edge: 3, why: "소형 위성 데이터 — 사업 재편 후 규모 확인(1차 판정)"}
 
 code_verified: false
 

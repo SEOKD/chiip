@@ -26,3 +26,66 @@ keys:
   co-nokia: {checked: '2026-10-30', key: NYSE_NOK}       # XHEL_NOKIA → NYSE_NOK
   co-tel: {checked: '2026-10-30', key: XJPX_8035}        # Tokyo Electron(감시 목록에 코드 없음)
   co-advantest: {checked: '2026-10-30', key: XJPX_6857}
+  co-nuscale:
+    checked: '2026-10-31'
+    key: NYSE_SMR
+  co-oklo:
+    checked: '2026-10-31'
+    key: NYSE_OKLO
+  gb-babcock:
+    checked: '2026-10-31'
+    key: XLON_BAB
+  us-asts:
+    checked: '2026-10-31'
+    key: NASDAQ_ASTS
+  us-bwxt:
+    checked: '2026-10-31'
+    key: NYSE_BWXT
+  us-ccj:
+    checked: '2026-10-31'
+    key: NYSE_CCJ
+  us-fly:
+    checked: '2026-10-31'
+    key: NASDAQ_FLY
+  us-irdm:
+    checked: '2026-10-31'
+    key: NASDAQ_IRDM
+  us-leu:
+    checked: '2026-10-31'
+    key: NYSE_LEU
+  us-lunr:
+    checked: '2026-10-31'
+    key: NASDAQ_LUNR
+  us-mda:
+    checked: '2026-10-31'
+    key: NYSE_MDA
+  us-nne:
+    checked: '2026-10-31'
+    key: NASDAQ_NNE
+  us-nxe:
+    checked: '2026-10-31'
+    key: NYSE_NXE
+  us-pl:
+    checked: '2026-10-31'
+    key: NYSE_PL
+  us-rdw:
+    checked: '2026-10-31'
+    key: NYSE_RDW
+  us-rklb:
+    checked: '2026-10-31'
+    key: NASDAQ_RKLB
+  us-spir:
+    checked: '2026-10-31'
+    key: NYSE_SPIR
+  us-uec:
+    checked: '2026-10-31'
+    key: NYSE_UEC
+  us-uuuu:
+    checked: '2026-10-31'
+    key: NYSE_UUUU
+  us-vsat:
+    checked: '2026-10-31'
+    key: NASDAQ_VSAT
+  us-yss:
+    checked: '2026-10-31'
+    key: NYSE_YSS
