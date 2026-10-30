@@ -1,0 +1,109 @@
+auto: true
+id: co-vicor
+name: Vicor
+ticker: VICR
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 206.62
+  shares: 0.047628
+  net_debt: -0.5059
+  source: 가격 = Fiscal.ai company_stock_prices 2026-10-29 종가($206.62). 10/30 칸은 거래량
+    48주의 미확정 값($189.02)이라 뺐다. 주식 수 46,148,600(Fiscal.ai shares_outstanding 2026-10-19,
+    10-Q 표지 — 보통주 + Class B) · 차입 0, 리스 1.73+5.43 = $7.2M · 현금 $513.1M(9/30). 주식 수는
+    10/19, 현금·차입은 9/30 기준
+rev0: 0.644
+ic0: 0.4006
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.4
+      end: 0.035
+      decay: 0.8
+    margin:
+      m0: 0.2975
+      target: 0.3523
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.3201
+      - 0.3523
+    s2c: 1.4
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5528
+      end: 0.04
+      decay: 0.8500000000000001
+    margin:
+      m0: 0.2975
+      target: 0.3797
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.3201
+      - 0.3523
+    s2c: 1.61
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.087
+      end: 0.030000000000000002
+      decay: 0.7000000000000001
+    margin:
+      m0: 0.2975
+      target: 0.3249
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.3201
+      - 0.3523
+    s2c: 1.19
+mc:
+  sigma_growth: 0.1165
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.64, 0.648] (회사 3Q 콜(2026-10-20): 4Q 제품 매출 약 +10% QoQ(3Q 제품
+    $130.5M → 약 $143.5M) + 로열티 최소 $43M(신규 계약 없음 전제) = 4Q 약 $186.5M 이상 → FY2026 약 $640M
+    이상(Chiip 환산, 회사가 합계로 제시하지 않음). 2Q 콜의 ''FY2026 $600M 초과''에서 상향)'
+  growth: 컨센서스 1년차 32.0%, 2년차 23.5%
+  margin: 1~2년차 컨센서스 32.0%, 35.2% 고정 → 목표 35%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: 재무 재구성 증분 매출/투하자본 1.4
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 8.7%~55.3%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '규칙값이 사업을 잘못 그려 두 가지를 덮어썼다. ① 성장: Fiscal FY27 $850M(+32%)은 4Q 환산 분기 $186.5M(연
+    $746M)에서 분기 +4%대만 가정 — 회사가 말한 4Q 제품 +10%가 이어지면 FY27은 약 $900~980M(로열티 $172~250M
+    + 제품 $729M), Zacks는 $989M. 두 값 사이의 $900M(+40%)을 쓰고, 2번째 팹 덕에 감속을 0.70 → 0.80으로
+    늦췄다. ② 장기 이익률: 규칙 15%는 범용 하드웨어 기준 — 로열티가 섞이고 동종 TXN 41%·ADI 36%·MPWR 30%, 회사 목표
+    40%라 장기 수렴을 30%로 올렸다'
+  shares: '완전 희석 = 기본 0.0461486(2026-10-19) + 옵션·RSU·워런트·전환 0.0015 — 3분기 희석 가중평균 47,609천
+    주(3Q 콜 CFO·Fiscal.ai) − 기본 가중평균 46,130천 '
+notes:
+- 자동 생성(build_drivers) 2026-10-30 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 로열티 덩어리성 — 3Q $66.6M vs 기준선 $43M, 소급분 크기 비공개(회사는 답 회피)'
+- '어닝콜 위험: 초기 라이선스 2년 만기 — 2027년 말 전후 갱신, 갱신 조건 미확인'
+- '어닝콜 위험: 법률 비용이 로열티의 약 20%(성공 보수) — 로열티 순마진은 약 80%'
+evidence:
+- 'Fiscal.ai MCP 2026-10-30 22시 조회: company_profile·stock_prices(일봉·월봉)·daily_ratios·shares_outstanding·financials_standardized(분기
+  손익·재무상태·현금흐름)·segments_and_kpis·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers·company_filings'
+- '10-Q 2026-09-30(Fiscal.ai auditUrl): https://fiscal.ai/company/NasdaqGS-VICR/audit-filings/?file=https%253A%252F%252Fapi.fiscal.ai%252Fv1%252Ffiling%252F0001193125-26-431231%252Fpdf%253Fticker%253DVICR%2526exchange%253DNASDAQ&pageNumber=4'
+- '3Q 실적 보도자료: https://www.globenewswire.com/news-release/2026/10/20/3384210/0/en/vicor-corporation-reports-results-for-the-third-quarter-ended-september-30-2026.html'
+- 'Fab 부지 매입: https://www.globenewswire.com/news-release/2026/09/11/3360412/0/en/vicor-acquires-sites-for-additional-chip-fabs.html'
+- 'ITC 337-TA-1526(Hon Hai 공시): https://www.investegate.co.uk/announcement/rns/hon-hai-precision-industry-co-ltd--hhpd/statement-on-u-s-itc-section-337-investigation/9816713'
+- 'Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-VICR'
+- knowledge/narratives/companies/co-vicor.md(2026-10-28 내러티브 수집), narrative_sources
+  2026-10-30 재수집
