@@ -222,6 +222,585 @@ themes:
       - {id: us-irdm, name: Iridium Communications, aliases: ["Iridium Communications"], market: us, code: "IRDM", edge: 5, why: "저궤도 통신 위성군 운영 — 안정 현금흐름, 직접 통신 경쟁 노출(1차 판정)"}
       - {id: us-vsat, name: Viasat, aliases: ["Viasat"], market: us, code: "VSAT", edge: 4, why: "위성 통신·방위 통신 — 차입과 주파수 자산 가치(1차 판정)"}
       - {id: us-spir, name: Spire Global, aliases: ["Spire Global"], market: us, code: "SPIR", edge: 3, why: "소형 위성 데이터 — 사업 재편 후 규모 확인(1차 판정)"}
+  # >>> tradingview — radar/tv_sync.py가 만든다. 손으로 고치지 않는다(종목은 TradingView에서 고친다)
+  - id: "tv_1_us_미분류"
+    name: "TradingView 1_US 미분류"
+    source: tradingview
+    watch: true
+    sector: other
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-intel", "name": "Intel", "aliases": ["Intel"], "market": "us", "code": "INTC", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ccxi", "name": "Churchill Capital Corp XI", "aliases": ["Churchill Capital Corp XI"], "market": "us", "code": "CCXI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-sandisk", "name": "SanDisk", "aliases": ["SanDisk"], "market": "us", "code": "SNDK", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-qualcomm", "name": "Qualcomm", "aliases": ["Qualcomm"], "market": "us", "code": "QCOM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-arm", "name": "Arm", "aliases": ["Arm"], "market": "us", "code": "ARM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-amd", "name": "AMD", "aliases": ["AMD"], "market": "us", "code": "AMD", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-marvell", "name": "Marvell", "aliases": ["Marvell"], "market": "us", "code": "MRVL", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-purr", "name": "Hyperliquid Strategies, Inc", "aliases": ["Hyperliquid Strategies, Inc", "Hyperliquid Strategies"], "market": "us", "code": "PURR", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-crcl", "name": "Circle Internet Group, Inc.", "aliases": ["Circle Internet Group, Inc.", "Circle Internet Group"], "market": "us", "code": "CRCL", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-hood", "name": "Robinhood Markets, Inc.", "aliases": ["Robinhood Markets, Inc.", "Robinhood Markets"], "market": "us", "code": "HOOD", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-flnc", "name": "Fluence Energy, Inc.", "aliases": ["Fluence Energy, Inc.", "Fluence Energy"], "market": "us", "code": "FLNC", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-mksi", "name": "MKS", "aliases": ["MKS"], "market": "us", "code": "MKSI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-envx", "name": "Enovix Corporation", "aliases": ["Enovix Corporation", "Enovix"], "market": "us", "code": "ENVX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-seagate", "name": "Seagate", "aliases": ["Seagate"], "market": "us", "code": "STX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-arxs", "name": "Arxis, Inc.", "aliases": ["Arxis, Inc."], "market": "us", "code": "ARXS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-ttm", "name": "TTM Technologies", "aliases": ["TTM Technologies"], "market": "us", "code": "TTMI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-keys", "name": "Keysight Technologies Inc", "aliases": ["Keysight Technologies Inc", "Keysight Technologies"], "market": "us", "code": "KEYS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-linc", "name": "Lincoln Educational Services Corporation", "aliases": ["Lincoln Educational Services Corporation", "Lincoln Educational Services"], "market": "us", "code": "LINC", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tsm", "name": "Taiwan Semiconductor Manufacturing Co., Ltd.", "aliases": ["Taiwan Semiconductor Manufacturing Co., Ltd.", "Taiwan Semiconductor Manufacturing"], "market": "us", "code": "TSM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-broadcom", "name": "Broadcom", "aliases": ["Broadcom"], "market": "us", "code": "AVGO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-micron", "name": "Micron", "aliases": ["Micron"], "market": "us", "code": "MU", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-palantir", "name": "Palantir", "aliases": ["Palantir"], "market": "us", "code": "PLTR", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-fig", "name": "Figma, Inc.", "aliases": ["Figma, Inc."], "market": "us", "code": "FIG", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-entg", "name": "Entegris", "aliases": ["Entegris"], "market": "us", "code": "ENTG", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-nvidia", "name": "NVIDIA", "aliases": ["NVIDIA"], "market": "us", "code": "NVDA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-mair", "name": "Madison Air Solutions Corp.", "aliases": ["Madison Air Solutions Corp.", "Madison Air Solutions"], "market": "us", "code": "MAIR", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-bsp", "name": "Bending Spoons S.p.A.", "aliases": ["Bending Spoons S.p.A.", "Bending Spoons"], "market": "us", "code": "BSP", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-uti", "name": "Universal Technical Institute, Inc.", "aliases": ["Universal Technical Institute, Inc.", "Universal Technical Institute"], "market": "us", "code": "UTI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-gs", "name": "Goldman Sachs Group, Inc.", "aliases": ["Goldman Sachs Group, Inc.", "Goldman Sachs Group"], "market": "us", "code": "GS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-csco", "name": "Cisco Systems, Inc.", "aliases": ["Cisco Systems, Inc.", "Cisco Systems"], "market": "us", "code": "CSCO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tdy", "name": "Teledyne Technologies", "aliases": ["Teledyne Technologies"], "market": "us", "code": "TDY", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "other-bbda", "name": "Bombardier Inc.", "aliases": ["Bombardier Inc.", "Bombardier"], "market": "other", "code": "BBD.A", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ms", "name": "Morgan Stanley", "aliases": ["Morgan Stanley"], "market": "us", "code": "MS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ge", "name": "GE Aerospace", "aliases": ["GE Aerospace"], "market": "us", "code": "GE", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-axon", "name": "Axon Enterprise Inc", "aliases": ["Axon Enterprise Inc", "Axon Enterprise"], "market": "us", "code": "AXON", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-isrg", "name": "Intuitive Surgical, Inc.", "aliases": ["Intuitive Surgical, Inc.", "Intuitive Surgical"], "market": "us", "code": "ISRG", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tmo", "name": "Thermo Fisher Scientific Inc.", "aliases": ["Thermo Fisher Scientific Inc.", "Thermo Fisher Scientific"], "market": "us", "code": "TMO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-bac", "name": "Bank of America Corp", "aliases": ["Bank of America Corp", "Bank of America"], "market": "us", "code": "BAC", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-rcl", "name": "Royal Caribbean Group", "aliases": ["Royal Caribbean Group"], "market": "us", "code": "RCL", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-jpm", "name": "JPMorgan Chase & Co.", "aliases": ["JPMorgan Chase & Co.", "JPMorgan Chase &"], "market": "us", "code": "JPM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-axp", "name": "American Express Company", "aliases": ["American Express Company"], "market": "us", "code": "AXP", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-wfc", "name": "Wells Fargo & Company", "aliases": ["Wells Fargo & Company"], "market": "us", "code": "WFC", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-foxa", "name": "Fox Corporation", "aliases": ["Fox Corporation"], "market": "us", "code": "FOXA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-baba", "name": "Alibaba Group Holding Limited", "aliases": ["Alibaba Group Holding Limited", "Alibaba Group Holding"], "market": "us", "code": "BABA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tsla", "name": "Tesla, Inc.", "aliases": ["Tesla, Inc."], "market": "us", "code": "TSLA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-unh", "name": "UnitedHealth Group Incorporated", "aliases": ["UnitedHealth Group Incorporated", "UnitedHealth Group"], "market": "us", "code": "UNH", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-wab", "name": "Westinghouse Air Brake Technologies Corporation", "aliases": ["Westinghouse Air Brake Technologies Corporation", "Westinghouse Air Brake Technologies"], "market": "us", "code": "WAB", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-belfa", "name": "Bel Fuse", "aliases": ["Bel Fuse"], "market": "us", "code": "BELFA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-uber", "name": "Uber Technologies, Inc.", "aliases": ["Uber Technologies, Inc.", "Uber Technologies"], "market": "us", "code": "UBER", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ttwo", "name": "Take-Two Interactive Software, Inc.", "aliases": ["Take-Two Interactive Software, Inc.", "Take-Two Interactive Software"], "market": "us", "code": "TTWO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-gkos", "name": "Glaukos Corp", "aliases": ["Glaukos Corp", "Glaukos"], "market": "us", "code": "GKOS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-bx", "name": "Blackstone Inc.", "aliases": ["Blackstone Inc.", "Blackstone"], "market": "us", "code": "BX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-imax", "name": "IMAX Corporation", "aliases": ["IMAX Corporation"], "market": "us", "code": "IMAX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ccl", "name": "Carnival Corporation Ltd.", "aliases": ["Carnival Corporation Ltd.", "Carnival Corporation"], "market": "us", "code": "CCL", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ba", "name": "Boeing", "aliases": ["Boeing"], "market": "us", "code": "BA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-apple", "name": "Apple", "aliases": ["Apple"], "market": "us", "code": "AAPL", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-halo", "name": "Halozyme Therapeutics, Inc.", "aliases": ["Halozyme Therapeutics, Inc.", "Halozyme Therapeutics"], "market": "us", "code": "HALO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-uls", "name": "UL Solutions Inc.", "aliases": ["UL Solutions Inc.", "UL Solutions"], "market": "us", "code": "ULS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-caci", "name": "CACI International", "aliases": ["CACI International"], "market": "us", "code": "CACI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ma", "name": "Mastercard Incorporated", "aliases": ["Mastercard Incorporated", "Mastercard"], "market": "us", "code": "MA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-lyv", "name": "Live Nation Entertainment, Inc.", "aliases": ["Live Nation Entertainment, Inc.", "Live Nation Entertainment"], "market": "us", "code": "LYV", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-fico", "name": "Fair Isaac Corporation", "aliases": ["Fair Isaac Corporation", "Fair Isaac"], "market": "us", "code": "FICO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-hd", "name": "Home Depot, Inc.", "aliases": ["Home Depot, Inc.", "Home Depot"], "market": "us", "code": "HD", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-vktx", "name": "Viking Therapeutics, Inc.", "aliases": ["Viking Therapeutics, Inc.", "Viking Therapeutics"], "market": "us", "code": "VKTX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-cvs", "name": "CVS Health Corporation", "aliases": ["CVS Health Corporation", "CVS Health"], "market": "us", "code": "CVS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-jnj", "name": "Johnson & Johnson", "aliases": ["Johnson & Johnson"], "market": "us", "code": "JNJ", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-dis", "name": "Walt Disney Company", "aliases": ["Walt Disney Company"], "market": "us", "code": "DIS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-crm", "name": "Salesforce, Inc.", "aliases": ["Salesforce, Inc.", "Salesforce"], "market": "us", "code": "CRM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-pm", "name": "Philip Morris International Inc.", "aliases": ["Philip Morris International Inc.", "Philip Morris International"], "market": "us", "code": "PM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-mcd", "name": "McDonald's Corporation", "aliases": ["McDonald's Corporation", "McDonald's"], "market": "us", "code": "MCD", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-chwy", "name": "Chewy, Inc.", "aliases": ["Chewy, Inc."], "market": "us", "code": "CHWY", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-nflx", "name": "Netflix, Inc.", "aliases": ["Netflix, Inc.", "Netflix"], "market": "us", "code": "NFLX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tko", "name": "TKO Group Holdings, Inc.", "aliases": ["TKO Group Holdings, Inc.", "TKO Group Holdings"], "market": "us", "code": "TKO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "other-teva", "name": "Teva Pharmaceutical Industries Limited", "aliases": ["Teva Pharmaceutical Industries Limited", "Teva Pharmaceutical Industries"], "market": "other", "code": "TEVA", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-v", "name": "Visa Inc.", "aliases": ["Visa Inc."], "market": "us", "code": "V", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tdw", "name": "Tidewater Inc", "aliases": ["Tidewater Inc", "Tidewater"], "market": "us", "code": "TDW", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-xom", "name": "Exxonmobil Holdings Corporation", "aliases": ["Exxonmobil Holdings Corporation", "Exxonmobil Holdings"], "market": "us", "code": "XOM", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-cvx", "name": "Chevron Corporation", "aliases": ["Chevron Corporation", "Chevron"], "market": "us", "code": "CVX", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-pg", "name": "Procter & Gamble Company", "aliases": ["Procter & Gamble Company"], "market": "us", "code": "PG", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-abt", "name": "Abbott Laboratories", "aliases": ["Abbott Laboratories"], "market": "us", "code": "ABT", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-abbv", "name": "AbbVie, Inc.", "aliases": ["AbbVie, Inc.", "AbbVie"], "market": "us", "code": "ABBV", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ko", "name": "Coca-Cola Company", "aliases": ["Coca-Cola Company"], "market": "us", "code": "KO", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-fti", "name": "TechnipFMC plc", "aliases": ["TechnipFMC plc", "TechnipFMC"], "market": "us", "code": "FTI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-cost", "name": "Costco Wholesale Corporation", "aliases": ["Costco Wholesale Corporation", "Costco Wholesale"], "market": "us", "code": "COST", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-lin", "name": "Linde plc", "aliases": ["Linde plc"], "market": "us", "code": "LIN", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-t", "name": "AT&T Inc", "aliases": ["AT&T Inc"], "market": "us", "code": "T", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-pep", "name": "PepsiCo, Inc.", "aliases": ["PepsiCo, Inc.", "PepsiCo"], "market": "us", "code": "PEP", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-lly", "name": "Eli Lilly and Company", "aliases": ["Eli Lilly and Company"], "market": "us", "code": "LLY", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "co-mastec", "name": "MasTec", "aliases": ["MasTec"], "market": "us", "code": "MTZ", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-acn", "name": "Accenture Plc", "aliases": ["Accenture Plc", "Accenture"], "market": "us", "code": "ACN", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-ctsh", "name": "Cognizant Technology Solutions Corporation", "aliases": ["Cognizant Technology Solutions Corporation", "Cognizant Technology Solutions"], "market": "us", "code": "CTSH", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+      - {"id": "us-tmus", "name": "T-Mobile US, Inc.", "aliases": ["T-Mobile US, Inc.", "T-Mobile US"], "market": "us", "code": "TMUS", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
+  - id: "tv_1_us_hyperscaler"
+    name: "TradingView 1_US HYPERSCALER"
+    source: tradingview
+    watch: true
+    sector: software
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-oracle", "name": "Oracle", "aliases": ["Oracle"], "market": "us", "code": "ORCL", "why": "마스터 TradingView 와치리스트(1_US HYPERSCALER) — edge 미판정"}
+      - {"id": "co-amazon", "name": "Amazon", "aliases": ["Amazon"], "market": "us", "code": "AMZN", "why": "마스터 TradingView 와치리스트(1_US HYPERSCALER) — edge 미판정"}
+      - {"id": "co-microsoft", "name": "Microsoft", "aliases": ["Microsoft"], "market": "us", "code": "MSFT", "why": "마스터 TradingView 와치리스트(1_US HYPERSCALER) — edge 미판정"}
+      - {"id": "co-alphabet", "name": "Alphabet", "aliases": ["Alphabet"], "market": "us", "code": "GOOGL", "why": "마스터 TradingView 와치리스트(1_US HYPERSCALER) — edge 미판정"}
+      - {"id": "co-meta", "name": "Meta", "aliases": ["Meta"], "market": "us", "code": "META", "why": "마스터 TradingView 와치리스트(1_US HYPERSCALER) — edge 미판정"}
+  - id: "tv_1_us_neocloud"
+    name: "TradingView 1_US NEOCLOUD"
+    source: tradingview
+    watch: true
+    sector: software
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-docn", "name": "DigitalOcean", "aliases": ["DigitalOcean"], "market": "us", "code": "DOCN", "why": "마스터 TradingView 와치리스트(1_US NEOCLOUD) — edge 미판정"}
+      - {"id": "co-coreweave", "name": "CoreWeave", "aliases": ["CoreWeave"], "market": "us", "code": "CRWV", "why": "마스터 TradingView 와치리스트(1_US NEOCLOUD) — edge 미판정"}
+      - {"id": "us-nbis", "name": "Nebius Group", "aliases": ["Nebius Group"], "market": "us", "code": "NBIS", "why": "마스터 TradingView 와치리스트(1_US NEOCLOUD) — edge 미판정"}
+  - id: "tv_1_us_datacenter_developers_miner_infra"
+    name: "TradingView 1_US DATACENTER DEVELOPERS & MINER INFRA"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-hut", "name": "Hut 8 Corp.", "aliases": ["Hut 8 Corp."], "market": "us", "code": "HUT", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-apld", "name": "Applied Digital", "aliases": ["Applied Digital"], "market": "us", "code": "APLD", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-riot", "name": "Riot Platforms, Inc.", "aliases": ["Riot Platforms, Inc.", "Riot Platforms"], "market": "us", "code": "RIOT", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-corz", "name": "Core Scientific", "aliases": ["Core Scientific"], "market": "us", "code": "CORZ", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-iren", "name": "IREN", "aliases": ["IREN"], "market": "us", "code": "IREN", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-cifr", "name": "Cipher Mining", "aliases": ["Cipher Mining"], "market": "us", "code": "CIFR", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-mara", "name": "MARA Holdings, Inc.", "aliases": ["MARA Holdings, Inc.", "MARA Holdings"], "market": "us", "code": "MARA", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-wulf", "name": "TeraWulf", "aliases": ["TeraWulf"], "market": "us", "code": "WULF", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+      - {"id": "us-clsk", "name": "Cleanspark, Inc.", "aliases": ["Cleanspark, Inc.", "Cleanspark"], "market": "us", "code": "CLSK", "why": "마스터 TradingView 와치리스트(1_US DATACENTER DEVELOPERS & MINER INFRA) — edge 미판정"}
+  - id: "tv_1_us_datacenter_reits"
+    name: "TradingView 1_US DATACENTER REITS"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-irm", "name": "Iron Mountain, Inc.", "aliases": ["Iron Mountain, Inc.", "Iron Mountain"], "market": "us", "code": "IRM", "why": "마스터 TradingView 와치리스트(1_US DATACENTER REITS) — edge 미판정"}
+      - {"id": "co-equinix", "name": "Equinix", "aliases": ["Equinix"], "market": "us", "code": "EQIX", "why": "마스터 TradingView 와치리스트(1_US DATACENTER REITS) — edge 미판정"}
+      - {"id": "us-dlr", "name": "Digital Realty Trust, Inc.", "aliases": ["Digital Realty Trust, Inc.", "Digital Realty Trust"], "market": "us", "code": "DLR", "why": "마스터 TradingView 와치리스트(1_US DATACENTER REITS) — edge 미판정"}
+  - id: "tv_1_us_cdn"
+    name: "TradingView 1_US CDN"
+    source: tradingview
+    watch: true
+    sector: software
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-fsly", "name": "Fastly, Inc.", "aliases": ["Fastly, Inc.", "Fastly"], "market": "us", "code": "FSLY", "why": "마스터 TradingView 와치리스트(1_US CDN) — edge 미판정"}
+      - {"id": "us-net", "name": "Cloudflare Inc", "aliases": ["Cloudflare Inc", "Cloudflare"], "market": "us", "code": "NET", "why": "마스터 TradingView 와치리스트(1_US CDN) — edge 미판정"}
+      - {"id": "us-akam", "name": "Akamai Technologies, Inc.", "aliases": ["Akamai Technologies, Inc.", "Akamai Technologies"], "market": "us", "code": "AKAM", "why": "마스터 TradingView 와치리스트(1_US CDN) — edge 미판정"}
+      - {"id": "us-lumn", "name": "Lumen Technologies, Inc.", "aliases": ["Lumen Technologies, Inc.", "Lumen Technologies"], "market": "us", "code": "LUMN", "why": "마스터 TradingView 와치리스트(1_US CDN) — edge 미판정"}
+  - id: "tv_1_us_datacenter_epc"
+    name: "TradingView 1_US DATACENTER EPC"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-comfort", "name": "Comfort Systems USA", "aliases": ["Comfort Systems USA"], "market": "us", "code": "FIX", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-sterling", "name": "Sterling Infrastructure", "aliases": ["Sterling Infrastructure"], "market": "us", "code": "STRL", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-dycom", "name": "Dycom Industries", "aliases": ["Dycom Industries"], "market": "us", "code": "DY", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-argan", "name": "Argan", "aliases": ["Argan"], "market": "us", "code": "AGX", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "us-bdc", "name": "Belden", "aliases": ["Belden"], "market": "us", "code": "BDC", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-quanta-services", "name": "Quanta Services", "aliases": ["Quanta Services"], "market": "us", "code": "PWR", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-emcor", "name": "EMCOR", "aliases": ["EMCOR"], "market": "us", "code": "EME", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-solaris", "name": "Solaris Energy Infrastructure", "aliases": ["Solaris Energy Infrastructure"], "market": "us", "code": "SEI", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "us-gva", "name": "Granite Construction", "aliases": ["Granite Construction"], "market": "us", "code": "GVA", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-ies", "name": "IES Holdings", "aliases": ["IES Holdings"], "market": "us", "code": "IESC", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+      - {"id": "co-myr", "name": "MYR Group", "aliases": ["MYR Group"], "market": "us", "code": "MYRG", "why": "마스터 TradingView 와치리스트(1_US DATACENTER EPC) — edge 미판정"}
+  - id: "tv_1_us_electrification"
+    name: "TradingView 1_US ELECTRIFICATION"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-enchantedrock", "name": "ERock", "aliases": ["ERock"], "market": "us", "code": "EROC", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-nvent", "name": "nVent Electric", "aliases": ["nVent Electric"], "market": "us", "code": "NVT", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-eaton", "name": "Eaton", "aliases": ["Eaton"], "market": "us", "code": "ETN", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-vertiv", "name": "Vertiv", "aliases": ["Vertiv"], "market": "us", "code": "VRT", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "other-schneider", "name": "Schneider Electric Infrastructure Limited", "aliases": ["Schneider Electric Infrastructure Limited", "Schneider Electric Infrastructure"], "market": "other", "code": "SCHNEIDER", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-legrand", "name": "Legrand", "aliases": ["Legrand"], "market": "eu", "code": "LR", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-siemens", "name": "Siemens", "aliases": ["Siemens"], "market": "eu", "code": "SIE", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-abb", "name": "ABB", "aliases": ["ABB"], "market": "eu", "code": "ABBN", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-hubbell", "name": "Hubbell", "aliases": ["Hubbell"], "market": "us", "code": "HUBB", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-hitachi", "name": "Hitachi", "aliases": ["Hitachi"], "market": "jp", "code": "6501", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-powell", "name": "Powell Industries", "aliases": ["Powell Industries"], "market": "us", "code": "POWL", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-itron", "name": "Itron", "aliases": ["Itron"], "market": "us", "code": "ITRI", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+      - {"id": "co-valmont", "name": "Valmont Industries", "aliases": ["Valmont Industries"], "market": "us", "code": "VMI", "why": "마스터 TradingView 와치리스트(1_US ELECTRIFICATION) — edge 미판정"}
+  - id: "tv_1_us_nuclear"
+    name: "TradingView 1_US NUCLEAR"
+    source: tradingview
+    watch: true
+    sector: nuclear
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-cw", "name": "Curtiss-Wright", "aliases": ["Curtiss-Wright"], "market": "us", "code": "CW", "why": "마스터 TradingView 와치리스트(1_US NUCLEAR) — edge 미판정"}
+      - {"id": "us-flr", "name": "Fluor Corporation", "aliases": ["Fluor Corporation"], "market": "us", "code": "FLR", "why": "마스터 TradingView 와치리스트(1_US NUCLEAR) — edge 미판정"}
+      - {"id": "co-mirion", "name": "Mirion Technologies", "aliases": ["Mirion Technologies"], "market": "us", "code": "MIR", "why": "마스터 TradingView 와치리스트(1_US NUCLEAR) — edge 미판정"}
+  - id: "tv_1_us_utility"
+    name: "TradingView 1_US UTILITY"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-hnrg", "name": "Hallador Energy Co", "aliases": ["Hallador Energy Co"], "market": "us", "code": "HNRG", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-ora", "name": "Ormat Technologies, Inc.", "aliases": ["Ormat Technologies, Inc.", "Ormat Technologies"], "market": "us", "code": "ORA", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "co-vistra", "name": "Vistra", "aliases": ["Vistra"], "market": "us", "code": "VST", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "co-talen", "name": "Talen Energy", "aliases": ["Talen Energy"], "market": "us", "code": "TLN", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "co-nrg", "name": "NRG Energy", "aliases": ["NRG Energy"], "market": "us", "code": "NRG", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-bepc", "name": "Brookfield Renewable Holdings Corporation", "aliases": ["Brookfield Renewable Holdings Corporation", "Brookfield Renewable Holdings"], "market": "us", "code": "BEPC", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "co-constellation", "name": "Constellation Energy", "aliases": ["Constellation Energy"], "market": "us", "code": "CEG", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-etr", "name": "Entergy Corporation", "aliases": ["Entergy Corporation", "Entergy"], "market": "us", "code": "ETR", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-peg", "name": "Public Service Enterprise Group Inc", "aliases": ["Public Service Enterprise Group Inc", "Public Service Enterprise Group"], "market": "us", "code": "PEG", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-so", "name": "Southern Company", "aliases": ["Southern Company"], "market": "us", "code": "SO", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-duk", "name": "Duke Energy Corporation", "aliases": ["Duke Energy Corporation", "Duke Energy"], "market": "us", "code": "DUK", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-aep", "name": "American Electric Power", "aliases": ["American Electric Power"], "market": "us", "code": "AEP", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-ne", "name": "Noble Corporation PLC", "aliases": ["Noble Corporation PLC", "Noble Corporation"], "market": "us", "code": "NE", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+      - {"id": "us-d", "name": "Dominion Energy", "aliases": ["Dominion Energy"], "market": "us", "code": "D", "why": "마스터 TradingView 와치리스트(1_US UTILITY) — edge 미판정"}
+  - id: "tv_1_us_power_generation"
+    name: "TradingView 1_US POWER GENERATION"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-fcel", "name": "FuelCell Energy, Inc.", "aliases": ["FuelCell Energy, Inc.", "FuelCell Energy"], "market": "us", "code": "FCEL", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-bloom", "name": "Bloom Energy", "aliases": ["Bloom Energy"], "market": "us", "code": "BE", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-babcock", "name": "Babcock & Wilcox", "aliases": ["Babcock & Wilcox"], "market": "us", "code": "BW", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-generac", "name": "Generac", "aliases": ["Generac"], "market": "us", "code": "GNRC", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "us-plug", "name": "Plug Power Inc.", "aliases": ["Plug Power Inc.", "Plug Power"], "market": "us", "code": "PLUG", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-gevernova", "name": "GE Vernova", "aliases": ["GE Vernova"], "market": "us", "code": "GEV", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-caterpillar", "name": "Caterpillar", "aliases": ["Caterpillar"], "market": "us", "code": "CAT", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-cummins", "name": "Cummins", "aliases": ["Cummins"], "market": "us", "code": "CMI", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+      - {"id": "co-propetro", "name": "ProPetro Holding", "aliases": ["ProPetro Holding"], "market": "us", "code": "PUMP", "why": "마스터 TradingView 와치리스트(1_US POWER GENERATION) — edge 미판정"}
+  - id: "tv_1_us_lng_terminal_pipeline_carrier"
+    name: "TradingView 1_US LNG TERMINAL & PIPELINE & CARRIER"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-kmi", "name": "Kinder Morgan Inc", "aliases": ["Kinder Morgan Inc", "Kinder Morgan"], "market": "us", "code": "KMI", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-glng", "name": "Golar LNG Limited", "aliases": ["Golar LNG Limited", "Golar LNG"], "market": "us", "code": "GLNG", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-et", "name": "Energy Transfer LP", "aliases": ["Energy Transfer LP", "Energy Transfer"], "market": "us", "code": "ET", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-flng", "name": "FLEX LNG Ltd", "aliases": ["FLEX LNG Ltd", "FLEX LNG"], "market": "us", "code": "FLNG", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-next", "name": "NextDecade Corp.", "aliases": ["NextDecade Corp.", "NextDecade"], "market": "us", "code": "NEXT", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-sre", "name": "Sempra", "aliases": ["Sempra"], "market": "us", "code": "SRE", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-ee", "name": "Excelerate Energy, Inc.", "aliases": ["Excelerate Energy, Inc.", "Excelerate Energy"], "market": "us", "code": "EE", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-dlng", "name": "Dynagas LNG Partners LP", "aliases": ["Dynagas LNG Partners LP", "Dynagas LNG Partners"], "market": "us", "code": "DLNG", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "other-wds", "name": "Woodside Energy Group Ltd", "aliases": ["Woodside Energy Group Ltd", "Woodside Energy Group"], "market": "other", "code": "WDS", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-ccec", "name": "Capital Clean Energy Carriers Corp.", "aliases": ["Capital Clean Energy Carriers Corp.", "Capital Clean Energy Carriers"], "market": "us", "code": "CCEC", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-lng", "name": "Cheniere Energy, Inc.", "aliases": ["Cheniere Energy, Inc.", "Cheniere Energy"], "market": "us", "code": "LNG", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+      - {"id": "us-nfe", "name": "New Fortress Energy Inc.", "aliases": ["New Fortress Energy Inc.", "New Fortress Energy"], "market": "us", "code": "NFE", "why": "마스터 TradingView 와치리스트(1_US LNG TERMINAL & PIPELINE & CARRIER) — edge 미판정"}
+  - id: "tv_1_us_shipbuilders"
+    name: "TradingView 1_US SHIPBUILDERS"
+    source: tradingview
+    watch: true
+    sector: defense
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-hii", "name": "Huntington Ingalls Industries", "aliases": ["Huntington Ingalls Industries"], "market": "us", "code": "HII", "why": "마스터 TradingView 와치리스트(1_US SHIPBUILDERS) — edge 미판정"}
+  - id: "tv_1_us_optics"
+    name: "TradingView 1_US OPTICS"
+    source: tradingview
+    watch: true
+    sector: semis
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-aaoi", "name": "Applied Optoelectronics", "aliases": ["Applied Optoelectronics"], "market": "us", "code": "AAOI", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "us-axti", "name": "AXT, Inc.", "aliases": ["AXT, Inc."], "market": "us", "code": "AXTI", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "co-coherent", "name": "Coherent", "aliases": ["Coherent"], "market": "us", "code": "COHR", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "us-smtc", "name": "Semtech", "aliases": ["Semtech"], "market": "us", "code": "SMTC", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "co-lumentum", "name": "Lumentum", "aliases": ["Lumentum"], "market": "us", "code": "LITE", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "us-mtsi", "name": "MACOM Technology Solutions", "aliases": ["MACOM Technology Solutions"], "market": "us", "code": "MTSI", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "us-mxl", "name": "MaxLinear", "aliases": ["MaxLinear"], "market": "us", "code": "MXL", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "co-corning", "name": "Corning", "aliases": ["Corning"], "market": "us", "code": "GLW", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "co-fabrinet", "name": "Fabrinet", "aliases": ["Fabrinet"], "market": "us", "code": "FN", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "co-credo", "name": "Credo", "aliases": ["Credo"], "market": "us", "code": "CRDO", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+  - id: "tv_1_us_quantum"
+    name: "TradingView 1_US QUANTUM"
+    source: tradingview
+    watch: true
+    sector: semis
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-qnt", "name": "Quantinuum Inc.", "aliases": ["Quantinuum Inc.", "Quantinuum"], "market": "us", "code": "QNT", "why": "마스터 TradingView 와치리스트(1_US QUANTUM) — edge 미판정"}
+      - {"id": "us-qbts", "name": "D-Wave Quantum", "aliases": ["D-Wave Quantum"], "market": "us", "code": "QBTS", "why": "마스터 TradingView 와치리스트(1_US QUANTUM) — edge 미판정"}
+      - {"id": "us-ionq", "name": "IonQ", "aliases": ["IonQ"], "market": "us", "code": "IONQ", "why": "마스터 TradingView 와치리스트(1_US QUANTUM) — edge 미판정"}
+      - {"id": "us-laes", "name": "SEALSQ Corp.", "aliases": ["SEALSQ Corp.", "SEALSQ"], "market": "us", "code": "LAES", "why": "마스터 TradingView 와치리스트(1_US QUANTUM) — edge 미판정"}
+      - {"id": "co-ibm", "name": "IBM", "aliases": ["IBM"], "market": "us", "code": "IBM", "why": "마스터 TradingView 와치리스트(1_US QUANTUM) — edge 미판정"}
+  - id: "tv_1_us_space"
+    name: "TradingView 1_US SPACE"
+    source: tradingview
+    watch: true
+    sector: space
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-asti", "name": "Ascent Solar Technologies, Inc.", "aliases": ["Ascent Solar Technologies, Inc.", "Ascent Solar Technologies"], "market": "us", "code": "ASTI", "why": "마스터 TradingView 와치리스트(1_US SPACE) — edge 미판정"}
+      - {"id": "us-spcx", "name": "Space Exploration Technologies Corp", "aliases": ["Space Exploration Technologies Corp", "Space Exploration Technologies"], "market": "us", "code": "SPCX", "why": "마스터 TradingView 와치리스트(1_US SPACE) — edge 미판정"}
+  - id: "tv_1_us_drone"
+    name: "TradingView 1_US DRONE"
+    source: tradingview
+    watch: true
+    sector: defense
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-umac", "name": "Unusual Machines Inc.", "aliases": ["Unusual Machines Inc.", "Unusual Machines"], "market": "us", "code": "UMAC", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-onds", "name": "Ondas Holdings", "aliases": ["Ondas Holdings"], "market": "us", "code": "ONDS", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-ampx", "name": "Amprius Technologies Inc", "aliases": ["Amprius Technologies Inc", "Amprius Technologies"], "market": "us", "code": "AMPX", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-srfm", "name": "Surf Air Mobility, Inc.", "aliases": ["Surf Air Mobility, Inc.", "Surf Air Mobility"], "market": "us", "code": "SRFM", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-avex", "name": "AEVEX Corp.", "aliases": ["AEVEX Corp."], "market": "us", "code": "AVEX", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-ltrx", "name": "Lantronix, Inc.", "aliases": ["Lantronix, Inc.", "Lantronix"], "market": "us", "code": "LTRX", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-lpth", "name": "LightPath Technologies, Inc.", "aliases": ["LightPath Technologies, Inc.", "LightPath Technologies"], "market": "us", "code": "LPTH", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-avav", "name": "AeroVironment", "aliases": ["AeroVironment"], "market": "us", "code": "AVAV", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-mob", "name": "Mobilicom Ltd.", "aliases": ["Mobilicom Ltd.", "Mobilicom"], "market": "us", "code": "MOB", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-swmr", "name": "Swarmer, Inc.", "aliases": ["Swarmer, Inc.", "Swarmer"], "market": "us", "code": "SWMR", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+      - {"id": "us-msi", "name": "Motorola Solutions, Inc.", "aliases": ["Motorola Solutions, Inc.", "Motorola Solutions"], "market": "us", "code": "MSI", "why": "마스터 TradingView 와치리스트(1_US DRONE) — edge 미판정"}
+  - id: "tv_1_us_semiconductors"
+    name: "TradingView 1_US SEMICONDUCTORS"
+    source: tradingview
+    watch: true
+    sector: semis
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "us-cbrs", "name": "Cerebras Systems", "aliases": ["Cerebras Systems"], "market": "us", "code": "CBRS", "why": "마스터 TradingView 와치리스트(1_US SEMICONDUCTORS) — edge 미판정"}
+      - {"id": "co-rambus", "name": "Rambus", "aliases": ["Rambus"], "market": "us", "code": "RMBS", "why": "마스터 TradingView 와치리스트(1_US SEMICONDUCTORS) — edge 미판정"}
+      - {"id": "us-mpwr", "name": "Monolithic Power Systems", "aliases": ["Monolithic Power Systems"], "market": "us", "code": "MPWR", "why": "마스터 TradingView 와치리스트(1_US SEMICONDUCTORS) — edge 미판정"}
+  - id: "tv_1_us_semi_equipment_packaging"
+    name: "TradingView 1_US SEMI EQUIPMENT & PACKAGING"
+    source: tradingview
+    watch: true
+    sector: semis
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-amkor", "name": "Amkor", "aliases": ["Amkor"], "market": "us", "code": "AMKR", "why": "마스터 TradingView 와치리스트(1_US SEMI EQUIPMENT & PACKAGING) — edge 미판정"}
+      - {"id": "us-acmr", "name": "ACM Research", "aliases": ["ACM Research"], "market": "us", "code": "ACMR", "why": "마스터 TradingView 와치리스트(1_US SEMI EQUIPMENT & PACKAGING) — edge 미판정"}
+      - {"id": "co-teradyne", "name": "Teradyne", "aliases": ["Teradyne"], "market": "us", "code": "TER", "why": "마스터 TradingView 와치리스트(1_US SEMI EQUIPMENT & PACKAGING) — edge 미판정"}
+      - {"id": "co-ultraclean", "name": "Ultra Clean", "aliases": ["Ultra Clean"], "market": "us", "code": "UCTT", "why": "마스터 TradingView 와치리스트(1_US SEMI EQUIPMENT & PACKAGING) — edge 미판정"}
+  - id: "tv_1_us_ai_hardware_ems"
+    name: "TradingView 1_US AI HARDWARE & EMS"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-celestica", "name": "Celestica", "aliases": ["Celestica"], "market": "us", "code": "CLS", "why": "마스터 TradingView 와치리스트(1_US AI HARDWARE & EMS) — edge 미판정"}
+      - {"id": "us-flex", "name": "Flex", "aliases": ["Flex"], "market": "us", "code": "FLEX", "why": "마스터 TradingView 와치리스트(1_US AI HARDWARE & EMS) — edge 미판정"}
+      - {"id": "co-rogers", "name": "Rogers Corp", "aliases": ["Rogers Corp", "Rogers"], "market": "us", "code": "ROG", "why": "마스터 TradingView 와치리스트(1_US AI HARDWARE & EMS) — edge 미판정"}
+      - {"id": "co-vicor", "name": "Vicor", "aliases": ["Vicor"], "market": "us", "code": "VICR", "why": "마스터 TradingView 와치리스트(1_US AI HARDWARE & EMS) — edge 미판정"}
+  - id: "tv_2_korea_미분류"
+    name: "TradingView 2_Korea 미분류"
+    source: tradingview
+    watch: true
+    sector: other
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-skhynix", "name": "SK하이닉스", "aliases": ["SK하이닉스"], "market": "kr", "code": "000660", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-lotteem", "name": "롯데에너지머티리얼즈", "aliases": ["롯데에너지머티리얼즈"], "market": "kr", "code": "020150", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-samsung", "name": "삼성전자", "aliases": ["삼성전자"], "market": "kr", "code": "005930", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-simmtech", "name": "심텍", "aliases": ["심텍"], "market": "kr", "code": "222800", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-119850", "name": "GnCenergy Co., Ltd.", "aliases": ["GnCenergy Co., Ltd.", "GnCenergy"], "market": "kr", "code": "119850", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-lge", "name": "LG전자", "aliases": ["LG전자"], "market": "kr", "code": "066570", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-009540", "name": "HD Korea Shipbuilding & Offshore Engineering Co. Ltd.", "aliases": ["HD Korea Shipbuilding & Offshore Engineering Co. Ltd.", "HD Korea Shipbuilding & Offshore Engineering"], "market": "kr", "code": "009540", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-033500", "name": "Dongsung Finetec Co., Ltd.", "aliases": ["Dongsung Finetec Co., Ltd.", "Dongsung Finetec"], "market": "kr", "code": "033500", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-356860", "name": "TLB Co., Ltd.", "aliases": ["TLB Co., Ltd."], "market": "kr", "code": "356860", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-330860", "name": "Nepes Ark Corp.", "aliases": ["Nepes Ark Corp.", "Nepes Ark"], "market": "kr", "code": "330860", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-196170", "name": "Alteogen Inc.", "aliases": ["Alteogen Inc.", "Alteogen"], "market": "kr", "code": "196170", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-064350", "name": "Hyundai Rotem Co.", "aliases": ["Hyundai Rotem Co.", "Hyundai Rotem"], "market": "kr", "code": "064350", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-329180", "name": "HD Hyundai Heavy Industries Co., Ltd.", "aliases": ["HD Hyundai Heavy Industries Co., Ltd.", "HD Hyundai Heavy Industries"], "market": "kr", "code": "329180", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-007340", "name": "DN Automotive Corporation", "aliases": ["DN Automotive Corporation", "DN Automotive"], "market": "kr", "code": "007340", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-178320", "name": "Seojin System Co., Ltd", "aliases": ["Seojin System Co., Ltd", "Seojin System"], "market": "kr", "code": "178320", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-042660", "name": "Hanwha Ocean Co., Ltd.", "aliases": ["Hanwha Ocean Co., Ltd.", "Hanwha Ocean"], "market": "kr", "code": "042660", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-012330", "name": "Hyundai Mobis Co., Ltd", "aliases": ["Hyundai Mobis Co., Ltd", "Hyundai Mobis"], "market": "kr", "code": "012330", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-eotechnics", "name": "이오테크닉스", "aliases": ["이오테크닉스"], "market": "kr", "code": "039030", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-005290", "name": "Dongjin Semichem Co., Ltd", "aliases": ["Dongjin Semichem Co., Ltd", "Dongjin Semichem"], "market": "kr", "code": "005290", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-014680", "name": "Hansol Chemical Co., Ltd", "aliases": ["Hansol Chemical Co., Ltd", "Hansol Chemical"], "market": "kr", "code": "014680", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-035420", "name": "NAVER Corp.", "aliases": ["NAVER Corp."], "market": "kr", "code": "035420", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-004020", "name": "Hyundai Steel Company", "aliases": ["Hyundai Steel Company"], "market": "kr", "code": "004020", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-daeduck", "name": "대덕전자", "aliases": ["대덕전자"], "market": "kr", "code": "353200", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-078930", "name": "GS Holdings Corp.", "aliases": ["GS Holdings Corp.", "GS Holdings"], "market": "kr", "code": "078930", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-010140", "name": "Samsung Heavy Industries Co., Ltd", "aliases": ["Samsung Heavy Industries Co., Ltd", "Samsung Heavy Industries"], "market": "kr", "code": "010140", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-010130", "name": "Korea Zinc Co., Ltd.", "aliases": ["Korea Zinc Co., Ltd.", "Korea Zinc"], "market": "kr", "code": "010130", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-036540", "name": "SFA Semicon Co., Ltd.", "aliases": ["SFA Semicon Co., Ltd.", "SFA Semicon"], "market": "kr", "code": "036540", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-soulbrain", "name": "솔브레인", "aliases": ["솔브레인"], "market": "kr", "code": "357780", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-131970", "name": "Doosan Tesna Inc.", "aliases": ["Doosan Tesna Inc.", "Doosan Tesna"], "market": "kr", "code": "131970", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-005430", "name": "Korea Airport Service Co., Ltd.", "aliases": ["Korea Airport Service Co., Ltd.", "Korea Airport Service"], "market": "kr", "code": "005430", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "co-jusung", "name": "주성엔지니어링", "aliases": ["주성엔지니어링"], "market": "kr", "code": "036930", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-319660", "name": "PSK Inc", "aliases": ["PSK Inc"], "market": "kr", "code": "319660", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-131290", "name": "TSE Co., Ltd", "aliases": ["TSE Co., Ltd"], "market": "kr", "code": "131290", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-048910", "name": "Daiwon Media Co., Ltd.", "aliases": ["Daiwon Media Co., Ltd.", "Daiwon Media"], "market": "kr", "code": "048910", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+      - {"id": "kr-138080", "name": "OE Solutions Co., Ltd.", "aliases": ["OE Solutions Co., Ltd.", "OE Solutions"], "market": "kr", "code": "138080", "why": "마스터 TradingView 와치리스트(2_Korea 미분류) — edge 미판정"}
+  - id: "tv_2_korea_전력기기"
+    name: "TradingView 2_Korea 전력기기"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-hdhyundaielec", "name": "HD현대일렉트릭", "aliases": ["HD현대일렉트릭"], "market": "kr", "code": "267260", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+      - {"id": "co-hyosunghi", "name": "효성중공업", "aliases": ["효성중공업"], "market": "kr", "code": "298040", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+      - {"id": "co-sanil", "name": "산일전기", "aliases": ["산일전기"], "market": "kr", "code": "062040", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+      - {"id": "kr-033100", "name": "Cheryong Electric Co., Ltd.", "aliases": ["Cheryong Electric Co., Ltd.", "Cheryong Electric"], "market": "kr", "code": "033100", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+      - {"id": "co-lselectric", "name": "LS일렉트릭", "aliases": ["LS일렉트릭"], "market": "kr", "code": "010120", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+      - {"id": "kr-103590", "name": "Iljin Electric Co., Ltd.", "aliases": ["Iljin Electric Co., Ltd.", "Iljin Electric"], "market": "kr", "code": "103590", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+      - {"id": "co-taihan", "name": "대한전선", "aliases": ["대한전선"], "market": "kr", "code": "001440", "why": "마스터 TradingView 와치리스트(2_Korea 전력기기) — edge 미판정"}
+  - id: "tv_3_japan_미분류"
+    name: "TradingView 3_Japan 미분류"
+    source: tradingview
+    watch: true
+    sector: other
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "jp-fujitsu", "name": "Fujitsu", "aliases": ["Fujitsu"], "market": "jp", "code": "6702", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "co-ibiden", "name": "Ibiden", "aliases": ["Ibiden"], "market": "jp", "code": "4062", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "co-lasertec", "name": "Lasertec", "aliases": ["Lasertec"], "market": "jp", "code": "6920", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-5801", "name": "Furukawa Electric Co., Ltd.", "aliases": ["Furukawa Electric Co., Ltd.", "Furukawa Electric"], "market": "jp", "code": "5801", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6777", "name": "santec Holdings Corporation", "aliases": ["santec Holdings Corporation", "santec Holdings"], "market": "jp", "code": "6777", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-3436", "name": "SUMCO Corporation", "aliases": ["SUMCO Corporation"], "market": "jp", "code": "3436", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6504", "name": "Fuji Electric Co., Ltd.", "aliases": ["Fuji Electric Co., Ltd.", "Fuji Electric"], "market": "jp", "code": "6504", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-285a", "name": "Kioxia Holdings Corporation", "aliases": ["Kioxia Holdings Corporation", "Kioxia Holdings"], "market": "jp", "code": "285A", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "co-fujikura", "name": "Fujikura", "aliases": ["Fujikura"], "market": "jp", "code": "5803", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-7018", "name": "Naikai Zosen Corporation", "aliases": ["Naikai Zosen Corporation", "Naikai Zosen"], "market": "jp", "code": "7018", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6728", "name": "ULVAC, Inc.", "aliases": ["ULVAC, Inc."], "market": "jp", "code": "6728", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6361", "name": "Ebara Corporation", "aliases": ["Ebara Corporation"], "market": "jp", "code": "6361", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6376", "name": "Nikkiso Co., Ltd.", "aliases": ["Nikkiso Co., Ltd.", "Nikkiso"], "market": "jp", "code": "6376", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6752", "name": "Panasonic Holdings Corporation", "aliases": ["Panasonic Holdings Corporation", "Panasonic Holdings"], "market": "jp", "code": "6752", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8053", "name": "Sumitomo Corporation", "aliases": ["Sumitomo Corporation", "Sumitomo"], "market": "jp", "code": "8053", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-7003", "name": "Mitsui ES Holdings Co., Ltd.", "aliases": ["Mitsui ES Holdings Co., Ltd.", "Mitsui ES Holdings"], "market": "jp", "code": "7003", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6407", "name": "CKD Corporation", "aliases": ["CKD Corporation"], "market": "jp", "code": "6407", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-186a", "name": "Astroscale Holdings Inc.", "aliases": ["Astroscale Holdings Inc.", "Astroscale Holdings"], "market": "jp", "code": "186A", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-429a", "name": "Tekscend Photomask Corp.", "aliases": ["Tekscend Photomask Corp.", "Tekscend Photomask"], "market": "jp", "code": "429A", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "co-mhi", "name": "Mitsubishi Heavy Industries", "aliases": ["Mitsubishi Heavy Industries"], "market": "jp", "code": "7011", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-khi", "name": "Kawasaki Heavy Industries", "aliases": ["Kawasaki Heavy Industries"], "market": "jp", "code": "7012", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8058", "name": "Mitsubishi Corporation", "aliases": ["Mitsubishi Corporation", "Mitsubishi"], "market": "jp", "code": "8058", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8031", "name": "Mitsui & Co.,Ltd", "aliases": ["Mitsui & Co.,Ltd", "Mitsui &"], "market": "jp", "code": "8031", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8002", "name": "Marubeni Corporation", "aliases": ["Marubeni Corporation", "Marubeni"], "market": "jp", "code": "8002", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-7022", "name": "Sanoyas Holdings Corporation", "aliases": ["Sanoyas Holdings Corporation", "Sanoyas Holdings"], "market": "jp", "code": "7022", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8309", "name": "Sumitomo Mitsui Trust Group, Inc.", "aliases": ["Sumitomo Mitsui Trust Group, Inc.", "Sumitomo Mitsui Trust Group"], "market": "jp", "code": "8309", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8306", "name": "Mitsubishi UFJ Financial Group, Inc.", "aliases": ["Mitsubishi UFJ Financial Group, Inc.", "Mitsubishi UFJ Financial Group"], "market": "jp", "code": "8306", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "co-ajinomoto", "name": "Ajinomoto", "aliases": ["Ajinomoto"], "market": "jp", "code": "2802", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6517", "name": "Denyo Co., Ltd.", "aliases": ["Denyo Co., Ltd."], "market": "jp", "code": "6517", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-ihi", "name": "IHI", "aliases": ["IHI"], "market": "jp", "code": "7013", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8697", "name": "Japan Exchange Group, Inc.", "aliases": ["Japan Exchange Group, Inc.", "Japan Exchange Group"], "market": "jp", "code": "8697", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-8001", "name": "Itochu Corporation", "aliases": ["Itochu Corporation", "Itochu"], "market": "jp", "code": "8001", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-9434", "name": "SoftBank Corp.", "aliases": ["SoftBank Corp.", "SoftBank"], "market": "jp", "code": "9434", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-7532", "name": "Pan Pacific International Holdings Corporation", "aliases": ["Pan Pacific International Holdings Corporation", "Pan Pacific International Holdings"], "market": "jp", "code": "7532", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-7453", "name": "Ryohin Keikaku Co., Ltd.", "aliases": ["Ryohin Keikaku Co., Ltd.", "Ryohin Keikaku"], "market": "jp", "code": "7453", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-nintendo", "name": "Nintendo", "aliases": ["Nintendo"], "market": "jp", "code": "7974", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-sanrio", "name": "Sanrio", "aliases": ["Sanrio"], "market": "jp", "code": "8136", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-9983", "name": "Fast Retailing Co., Ltd.", "aliases": ["Fast Retailing Co., Ltd.", "Fast Retailing"], "market": "jp", "code": "9983", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-6814", "name": "Furuno Electric Co., Ltd.", "aliases": ["Furuno Electric Co., Ltd.", "Furuno Electric"], "market": "jp", "code": "6814", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-9104", "name": "Mitsui O.S.K.Lines,Ltd.", "aliases": ["Mitsui O.S.K.Lines,Ltd.", "Mitsui O.S.K.Lines"], "market": "jp", "code": "9104", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-9107", "name": "Kawasaki Kisen Kaisha, Ltd.", "aliases": ["Kawasaki Kisen Kaisha, Ltd.", "Kawasaki Kisen Kaisha"], "market": "jp", "code": "9107", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-290a", "name": "Synspective Inc.", "aliases": ["Synspective Inc.", "Synspective"], "market": "jp", "code": "290A", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-7552", "name": "Happinet Corporation", "aliases": ["Happinet Corporation", "Happinet"], "market": "jp", "code": "7552", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-asics", "name": "ASICS", "aliases": ["ASICS"], "market": "jp", "code": "7936", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-4568", "name": "Daiichi Sankyo Company, Limited", "aliases": ["Daiichi Sankyo Company, Limited", "Daiichi Sankyo Company"], "market": "jp", "code": "4568", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-9101", "name": "Nippon Yusen Kabushiki Kaisha", "aliases": ["Nippon Yusen Kabushiki Kaisha"], "market": "jp", "code": "9101", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+      - {"id": "jp-takaratomy", "name": "Takara Tomy", "aliases": ["Takara Tomy"], "market": "jp", "code": "7867", "why": "마스터 TradingView 와치리스트(3_Japan 미분류) — edge 미판정"}
+  - id: "tv_4_eu_uk_미분류"
+    name: "TradingView 4_EU & UK 미분류"
+    source: tradingview
+    watch: true
+    sector: other
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "fr-eutelsat", "name": "Eutelsat", "aliases": ["Eutelsat"], "market": "eu", "code": "ETL", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-soi", "name": "Soitec SA", "aliases": ["Soitec SA", "Soitec"], "market": "eu", "code": "SOI", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "us-stm", "name": "STMicroelectronics NV", "aliases": ["STMicroelectronics NV", "STMicroelectronics"], "market": "us", "code": "STM", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-ats", "name": "AT & S Austria Technologie & Systemtechnik Aktiengesellschaft", "aliases": ["AT & S Austria Technologie & Systemtechnik Aktiengesellschaft"], "market": "eu", "code": "ATS", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "de-rheinmetall", "name": "Rheinmetall", "aliases": ["Rheinmetall"], "market": "eu", "code": "RHM", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "co-nexans", "name": "Nexans", "aliases": ["Nexans"], "market": "eu", "code": "NEX", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "gb-bae", "name": "BAE Systems", "aliases": ["BAE Systems"], "market": "eu", "code": "BA.", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-mc", "name": "LVMH Moet Hennessy Louis Vuitton SE", "aliases": ["LVMH Moet Hennessy Louis Vuitton SE", "LVMH Moet Hennessy Louis Vuitton"], "market": "eu", "code": "MC", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "co-prysmian", "name": "Prysmian", "aliases": ["Prysmian"], "market": "eu", "code": "PRY", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-tpro", "name": "Technoprobe SpA", "aliases": ["Technoprobe SpA", "Technoprobe"], "market": "eu", "code": "TPRO", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-rpi", "name": "Raspberry PI Holdings plc", "aliases": ["Raspberry PI Holdings plc", "Raspberry PI Holdings"], "market": "eu", "code": "RPI", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-dlg", "name": "De'Longhi S.p.A.", "aliases": ["De'Longhi S.p.A.", "De'Longhi"], "market": "eu", "code": "DLG", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-rms", "name": "Hermes International SCA", "aliases": ["Hermes International SCA", "Hermes International"], "market": "eu", "code": "RMS", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-alo", "name": "Alstom SA", "aliases": ["Alstom SA", "Alstom"], "market": "eu", "code": "ALO", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-smhn", "name": "SUSS MicroTec SE", "aliases": ["SUSS MicroTec SE", "SUSS MicroTec"], "market": "eu", "code": "SMHN", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-db1", "name": "Deutsche Boerse AG", "aliases": ["Deutsche Boerse AG", "Deutsche Boerse"], "market": "eu", "code": "DB1", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "de-tkms", "name": "TKMS", "aliases": ["TKMS"], "market": "eu", "code": "TKMS", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-bfg", "name": "B.F. S.p.A.", "aliases": ["B.F. S.p.A."], "market": "eu", "code": "BFG", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-0qvj", "name": "Euronext NV", "aliases": ["Euronext NV", "Euronext"], "market": "eu", "code": "0QVJ", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "co-besi", "name": "BE Semiconductor", "aliases": ["BE Semiconductor"], "market": "eu", "code": "BESI", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "de-ohb", "name": "OHB", "aliases": ["OHB"], "market": "eu", "code": "OHB", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-ibe", "name": "Iberdrola SA", "aliases": ["Iberdrola SA", "Iberdrola"], "market": "eu", "code": "IBE", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-monc", "name": "Moncler SpA", "aliases": ["Moncler SpA", "Moncler"], "market": "eu", "code": "MONC", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-airbus", "name": "Airbus", "aliases": ["Airbus"], "market": "eu", "code": "AIR", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-ovh", "name": "OVH Groupe S.A.", "aliases": ["OVH Groupe S.A.", "OVH Groupe"], "market": "eu", "code": "OVH", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-vow3", "name": "Volkswagen AG", "aliases": ["Volkswagen AG", "Volkswagen"], "market": "eu", "code": "VOW3", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "it-fincantieri", "name": "Fincantieri", "aliases": ["Fincantieri"], "market": "eu", "code": "FCT", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+      - {"id": "eu-smin", "name": "Smiths Group Plc", "aliases": ["Smiths Group Plc", "Smiths Group"], "market": "eu", "code": "SMIN", "why": "마스터 TradingView 와치리스트(4_EU & UK 미분류) — edge 미판정"}
+  - id: "tv_4_eu_uk_power_generation"
+    name: "TradingView 4_EU & UK POWER GENERATION"
+    source: tradingview
+    watch: true
+    sector: ai_hw
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "co-siemensenergy", "name": "Siemens Energy", "aliases": ["Siemens Energy"], "market": "eu", "code": "ENR", "why": "마스터 TradingView 와치리스트(4_EU & UK POWER GENERATION) — edge 미판정"}
+      - {"id": "eu-f3c", "name": "SFC Energy AG", "aliases": ["SFC Energy AG", "SFC Energy"], "market": "eu", "code": "F3C", "why": "마스터 TradingView 와치리스트(4_EU & UK POWER GENERATION) — edge 미판정"}
+      - {"id": "co-alfalaval", "name": "Alfa Laval", "aliases": ["Alfa Laval"], "market": "eu", "code": "ALFA", "why": "마스터 TradingView 와치리스트(4_EU & UK POWER GENERATION) — edge 미판정"}
+      - {"id": "co-wartsila", "name": "Wartsila", "aliases": ["Wartsila"], "market": "eu", "code": "WRT1V", "why": "마스터 TradingView 와치리스트(4_EU & UK POWER GENERATION) — edge 미판정"}
+      - {"id": "co-rollsroyce", "name": "Rolls-Royce", "aliases": ["Rolls-Royce"], "market": "eu", "code": "RR.", "why": "마스터 TradingView 와치리스트(4_EU & UK POWER GENERATION) — edge 미판정"}
+      - {"id": "eu-cwr", "name": "Ceres Power Holdings plc", "aliases": ["Ceres Power Holdings plc", "Ceres Power Holdings"], "market": "eu", "code": "CWR", "why": "마스터 TradingView 와치리스트(4_EU & UK POWER GENERATION) — edge 미판정"}
+  - id: "tv_5_hk_미분류"
+    name: "TradingView 5_HK 미분류"
+    source: tradingview
+    watch: true
+    sector: other
+    bottleneck: "마스터 와치리스트 섹션 — 병목 미판정"
+    driver: "미판정"
+    evidence: ["공시·실적 자료"]
+    candidates:
+      - {"id": "hk-popmart", "name": "Pop Mart", "aliases": ["Pop Mart"], "market": "hk", "code": "9992", "why": "마스터 TradingView 와치리스트(5_HK 미분류) — edge 미판정"}
+      - {"id": "hk-2050", "name": "Zhejiang Sanhua Intelligent Controls Co., Ltd.", "aliases": ["Zhejiang Sanhua Intelligent Controls Co., Ltd.", "Zhejiang Sanhua Intelligent Controls"], "market": "hk", "code": "2050", "why": "마스터 TradingView 와치리스트(5_HK 미분류) — edge 미판정"}
+  # <<< tradingview
 
 code_verified: false
 

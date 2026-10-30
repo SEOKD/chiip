@@ -1,0 +1,425 @@
+tv_symbol,exchange,ticker,entity_id,name,match_method,confirmed
+AMEX:ET,AMEX,ET,us-et,Energy Transfer LP,new,false
+AMEX:UEC,AMEX,UEC,us-uec,Uranium Energy,ticker,true
+AMEX:UMAC,AMEX,UMAC,us-umac,Unusual Machines Inc.,new,false
+AMEX:UUUU,AMEX,UUUU,us-uuuu,Energy Fuels,ticker,true
+ASX:WDS,ASX,WDS,other-wds,Woodside Energy Group Ltd,new,false
+BCBA:CCJ,BCBA,CCJ,us-ccj,Cameco,ticker,true
+BME:IBE,BME,IBE,eu-ibe,Iberdrola SA,new,false
+EURONEXT:AIR,EURONEXT,AIR,eu-airbus,Airbus,ticker,true
+EURONEXT:ALO,EURONEXT,ALO,eu-alo,Alstom SA,new,false
+EURONEXT:BESI,EURONEXT,BESI,co-besi,BE Semiconductor,ticker,true
+EURONEXT:CSG,EURONEXT,CSG,cz-csg,CSG,ticker,true
+EURONEXT:ETL,EURONEXT,ETL,fr-eutelsat,Eutelsat,ticker,true
+EURONEXT:EXA,EURONEXT,EXA,fr-exail,Exail Technologies,ticker,true
+EURONEXT:EXENS,EURONEXT,EXENS,fr-exosens,Exosens,ticker,true
+EURONEXT:LR,EURONEXT,LR,co-legrand,Legrand,ticker,true
+EURONEXT:MC,EURONEXT,MC,eu-mc,LVMH Moet Hennessy Louis Vuitton SE,new,false
+EURONEXT:NEX,EURONEXT,NEX,co-nexans,Nexans,ticker,true
+EURONEXT:OVH,EURONEXT,OVH,eu-ovh,OVH Groupe S.A.,new,false
+EURONEXT:RMS,EURONEXT,RMS,eu-rms,Hermes International SCA,new,false
+EURONEXT:SOI,EURONEXT,SOI,eu-soi,Soitec SA,new,false
+EURONEXT:THEON,EURONEXT,THEON,gr-theon,Theon International,ticker,true
+HKEX:2050,HKEX,2050,hk-2050,"Zhejiang Sanhua Intelligent Controls Co., Ltd.",new,false
+HKEX:9992,HKEX,9992,hk-popmart,Pop Mart,ticker,true
+KRX:000150,KRX,000150,co-doosan,두산,ticker,true
+KRX:000660,KRX,000660,co-skhynix,SK하이닉스,ticker,true
+KRX:001440,KRX,001440,co-taihan,대한전선,ticker,true
+KRX:004020,KRX,004020,kr-004020,Hyundai Steel Company,new,false
+KRX:005290,KRX,005290,kr-005290,"Dongjin Semichem Co., Ltd",new,false
+KRX:005430,KRX,005430,kr-005430,"Korea Airport Service Co., Ltd.",new,false
+KRX:005930,KRX,005930,co-samsung,삼성전자,ticker,true
+KRX:007340,KRX,007340,kr-007340,DN Automotive Corporation,new,false
+KRX:007660,KRX,007660,co-isupetasys,이수페타시스,ticker,true
+KRX:009150,KRX,009150,co-semco,삼성전기,ticker,true
+KRX:009540,KRX,009540,kr-009540,HD Korea Shipbuilding & Offshore Engineering Co. Ltd.,new,false
+KRX:010120,KRX,010120,co-lselectric,LS일렉트릭,ticker,true
+KRX:010130,KRX,010130,kr-010130,"Korea Zinc Co., Ltd.",new,false
+KRX:010140,KRX,010140,kr-010140,"Samsung Heavy Industries Co., Ltd",new,false
+KRX:012330,KRX,012330,kr-012330,"Hyundai Mobis Co., Ltd",new,false
+KRX:014680,KRX,014680,kr-014680,"Hansol Chemical Co., Ltd",new,false
+KRX:020150,KRX,020150,co-lotteem,롯데에너지머티리얼즈,ticker,true
+KRX:033100,KRX,033100,kr-033100,"Cheryong Electric Co., Ltd.",new,false
+KRX:033500,KRX,033500,kr-033500,"Dongsung Finetec Co., Ltd.",new,false
+KRX:034020,KRX,034020,co-doosanenerbility,두산에너빌리티,ticker,true
+KRX:035420,KRX,035420,kr-035420,NAVER Corp.,new,false
+KRX:036540,KRX,036540,kr-036540,"SFA Semicon Co., Ltd.",new,false
+KRX:036930,KRX,036930,co-jusung,주성엔지니어링,ticker,true
+KRX:039030,KRX,039030,co-eotechnics,이오테크닉스,ticker,true
+KRX:042660,KRX,042660,kr-042660,"Hanwha Ocean Co., Ltd.",new,false
+KRX:048910,KRX,048910,kr-048910,"Daiwon Media Co., Ltd.",new,false
+KRX:058470,KRX,058470,co-leeno,리노공업,ticker,true
+KRX:062040,KRX,062040,co-sanil,산일전기,ticker,true
+KRX:064350,KRX,064350,kr-064350,Hyundai Rotem Co.,new,false
+KRX:066570,KRX,066570,co-lge,LG전자,ticker,true
+KRX:078930,KRX,078930,kr-078930,GS Holdings Corp.,new,false
+KRX:095340,KRX,095340,co-isc,ISC,ticker,true
+KRX:103590,KRX,103590,kr-103590,"Iljin Electric Co., Ltd.",new,false
+KRX:119850,KRX,119850,kr-119850,"GnCenergy Co., Ltd.",new,false
+KRX:131290,KRX,131290,kr-131290,"TSE Co., Ltd",new,false
+KRX:131970,KRX,131970,kr-131970,Doosan Tesna Inc.,new,false
+KRX:138080,KRX,138080,kr-138080,"OE Solutions Co., Ltd.",new,false
+KRX:178320,KRX,178320,kr-178320,"Seojin System Co., Ltd",new,false
+KRX:196170,KRX,196170,kr-196170,Alteogen Inc.,new,false
+KRX:222800,KRX,222800,co-simmtech,심텍,ticker,true
+KRX:267260,KRX,267260,co-hdhyundaielec,HD현대일렉트릭,ticker,true
+KRX:298040,KRX,298040,co-hyosunghi,효성중공업,ticker,true
+KRX:319660,KRX,319660,kr-319660,PSK Inc,new,false
+KRX:329180,KRX,329180,kr-329180,"HD Hyundai Heavy Industries Co., Ltd.",new,false
+KRX:330860,KRX,330860,kr-330860,Nepes Ark Corp.,new,false
+KRX:353200,KRX,353200,co-daeduck,대덕전자,ticker,true
+KRX:356860,KRX,356860,kr-356860,"TLB Co., Ltd.",new,false
+KRX:357780,KRX,357780,co-soulbrain,솔브레인,ticker,true
+LSE:ALFA,LSE,ALFA,co-alfalaval,Alfa Laval,ticker,true
+LSE:BA.,LSE,BA.,gb-bae,BAE Systems,ticker,true
+LSE:BAB,LSE,BAB,gb-babcock,Babcock International,ticker,true
+LSE:CHG,LSE,CHG,gb-chemring,Chemring Group,ticker,true
+LSE:CHRT,LSE,CHRT,gb-cohort,Cohort,ticker,true
+LSE:CWR,LSE,CWR,eu-cwr,Ceres Power Holdings plc,new,false
+LSE:RPI,LSE,RPI,eu-rpi,Raspberry PI Holdings plc,new,false
+LSE:RR.,LSE,RR.,co-rollsroyce,Rolls-Royce,ticker,true
+LSE:SMIN,LSE,SMIN,eu-smin,Smiths Group Plc,new,false
+LSIN:0QVJ,LSIN,0QVJ,eu-0qvj,Euronext NV,new,false
+MIL:AVIO,MIL,AVIO,it-avio,Avio,ticker,true
+MIL:BFG,MIL,BFG,eu-bfg,B.F. S.p.A.,new,false
+MIL:DLG,MIL,DLG,eu-dlg,De'Longhi S.p.A.,new,false
+MIL:FCT,MIL,FCT,it-fincantieri,Fincantieri,ticker,true
+MIL:MONC,MIL,MONC,eu-monc,Moncler SpA,new,false
+MIL:PRY,MIL,PRY,co-prysmian,Prysmian,ticker,true
+MIL:TPRO,MIL,TPRO,eu-tpro,Technoprobe SpA,new,false
+NASDAQ:AAOI,NASDAQ,AAOI,us-aaoi,Applied Optoelectronics,ticker,true
+NASDAQ:AAPL,NASDAQ,AAPL,co-apple,Apple,ticker,true
+NASDAQ:ACMR,NASDAQ,ACMR,us-acmr,ACM Research,ticker,true
+NASDAQ:AEP,NASDAQ,AEP,us-aep,American Electric Power,ticker,true
+NASDAQ:AKAM,NASDAQ,AKAM,us-akam,"Akamai Technologies, Inc.",new,false
+NASDAQ:AMD,NASDAQ,AMD,co-amd,AMD,ticker,true
+NASDAQ:AMKR,NASDAQ,AMKR,co-amkor,Amkor,ticker,true
+NASDAQ:AMZN,NASDAQ,AMZN,co-amazon,Amazon,ticker,true
+NASDAQ:APLD,NASDAQ,APLD,us-apld,Applied Digital,ticker,true
+NASDAQ:ARM,NASDAQ,ARM,co-arm,Arm,ticker,true
+NASDAQ:ARXS,NASDAQ,ARXS,us-arxs,"Arxis, Inc.",new,false
+NASDAQ:ASTI,NASDAQ,ASTI,us-asti,"Ascent Solar Technologies, Inc.",new,false
+NASDAQ:ASTS,NASDAQ,ASTS,us-asts,AST SpaceMobile,ticker,true
+NASDAQ:AVAV,NASDAQ,AVAV,us-avav,AeroVironment,ticker,true
+NASDAQ:AVGO,NASDAQ,AVGO,co-broadcom,Broadcom,ticker,true
+NASDAQ:AXON,NASDAQ,AXON,us-axon,Axon Enterprise Inc,new,false
+NASDAQ:AXTI,NASDAQ,AXTI,us-axti,"AXT, Inc.",new,false
+NASDAQ:BELFA,NASDAQ,BELFA,us-belfa,Bel Fuse,ticker,true
+NASDAQ:BSP,NASDAQ,BSP,us-bsp,Bending Spoons S.p.A.,new,false
+NASDAQ:CAMT,NASDAQ,CAMT,us-camt,Camtek,ticker,true
+NASDAQ:CBRS,NASDAQ,CBRS,us-cbrs,Cerebras Systems,ticker,true
+NASDAQ:CCEC,NASDAQ,CCEC,us-ccec,Capital Clean Energy Carriers Corp.,new,false
+NASDAQ:CCXI,NASDAQ,CCXI,us-ccxi,Churchill Capital Corp XI,ticker,true
+NASDAQ:CEG,NASDAQ,CEG,co-constellation,Constellation Energy,ticker,true
+NASDAQ:CIFR,NASDAQ,CIFR,us-cifr,Cipher Mining,ticker,true
+NASDAQ:CLSK,NASDAQ,CLSK,us-clsk,"Cleanspark, Inc.",new,false
+NASDAQ:COHU,NASDAQ,COHU,us-cohu,Cohu,ticker,true
+NASDAQ:CORZ,NASDAQ,CORZ,us-corz,Core Scientific,ticker,true
+NASDAQ:COST,NASDAQ,COST,us-cost,Costco Wholesale Corporation,new,false
+NASDAQ:CRDO,NASDAQ,CRDO,co-credo,Credo,ticker,true
+NASDAQ:CRWV,NASDAQ,CRWV,co-coreweave,CoreWeave,ticker,true
+NASDAQ:CSCO,NASDAQ,CSCO,us-csco,"Cisco Systems, Inc.",new,false
+NASDAQ:CTSH,NASDAQ,CTSH,us-ctsh,Cognizant Technology Solutions Corporation,new,false
+NASDAQ:ENTG,NASDAQ,ENTG,us-entg,Entegris,ticker,true
+NASDAQ:ENVX,NASDAQ,ENVX,us-envx,Enovix Corporation,new,false
+NASDAQ:EQIX,NASDAQ,EQIX,co-equinix,Equinix,ticker,true
+NASDAQ:FCEL,NASDAQ,FCEL,us-fcel,"FuelCell Energy, Inc.",new,false
+NASDAQ:FLEX,NASDAQ,FLEX,us-flex,Flex,ticker,true
+NASDAQ:FLNC,NASDAQ,FLNC,us-flnc,"Fluence Energy, Inc.",new,false
+NASDAQ:FLY,NASDAQ,FLY,us-fly,Firefly Aerospace,ticker,true
+NASDAQ:FORM,NASDAQ,FORM,co-formfactor,FormFactor,ticker,true
+NASDAQ:FOXA,NASDAQ,FOXA,us-foxa,Fox Corporation,new,false
+NASDAQ:FSLY,NASDAQ,FSLY,us-fsly,"Fastly, Inc.",new,false
+NASDAQ:FTAI,NASDAQ,FTAI,co-ftai,FTAI Aviation,ticker,true
+NASDAQ:GLNG,NASDAQ,GLNG,us-glng,Golar LNG Limited,new,false
+NASDAQ:GOOGL,NASDAQ,GOOGL,co-alphabet,Alphabet,ticker,true
+NASDAQ:HALO,NASDAQ,HALO,us-halo,"Halozyme Therapeutics, Inc.",new,false
+NASDAQ:HNRG,NASDAQ,HNRG,us-hnrg,Hallador Energy Co,new,false
+NASDAQ:HOOD,NASDAQ,HOOD,us-hood,"Robinhood Markets, Inc.",new,false
+NASDAQ:HUT,NASDAQ,HUT,us-hut,Hut 8 Corp.,new,false
+NASDAQ:IESC,NASDAQ,IESC,co-ies,IES Holdings,ticker,true
+NASDAQ:INIO,NASDAQ,INIO,co-innio,INNIO,ticker,true
+NASDAQ:INTC,NASDAQ,INTC,co-intel,Intel,ticker,true
+NASDAQ:IRDM,NASDAQ,IRDM,us-irdm,Iridium Communications,ticker,true
+NASDAQ:IREN,NASDAQ,IREN,us-iren,IREN,ticker,true
+NASDAQ:ISRG,NASDAQ,ISRG,us-isrg,"Intuitive Surgical, Inc.",new,false
+NASDAQ:ITRI,NASDAQ,ITRI,co-itron,Itron,ticker,true
+NASDAQ:KTOS,NASDAQ,KTOS,us-ktos,Kratos Defense & Security Solutions,ticker,true
+NASDAQ:LAES,NASDAQ,LAES,us-laes,SEALSQ Corp.,new,false
+NASDAQ:LIN,NASDAQ,LIN,us-lin,Linde plc,new,false
+NASDAQ:LINC,NASDAQ,LINC,us-linc,Lincoln Educational Services Corporation,new,false
+NASDAQ:LITE,NASDAQ,LITE,co-lumentum,Lumentum,ticker,true
+NASDAQ:LPTH,NASDAQ,LPTH,us-lpth,"LightPath Technologies, Inc.",new,false
+NASDAQ:LTRX,NASDAQ,LTRX,us-ltrx,"Lantronix, Inc.",new,false
+NASDAQ:LUMN,NASDAQ,LUMN,us-lumn,"Lumen Technologies, Inc.",new,false
+NASDAQ:LUNR,NASDAQ,LUNR,us-lunr,Intuitive Machines,ticker,true
+NASDAQ:MARA,NASDAQ,MARA,us-mara,"MARA Holdings, Inc.",new,false
+NASDAQ:META,NASDAQ,META,co-meta,Meta,ticker,true
+NASDAQ:MKSI,NASDAQ,MKSI,us-mksi,MKS,ticker,true
+NASDAQ:MOB,NASDAQ,MOB,us-mob,Mobilicom Ltd.,new,false
+NASDAQ:MPWR,NASDAQ,MPWR,us-mpwr,Monolithic Power Systems,ticker,true
+NASDAQ:MRCY,NASDAQ,MRCY,us-mrcy,Mercury Systems,ticker,true
+NASDAQ:MRVL,NASDAQ,MRVL,co-marvell,Marvell,ticker,true
+NASDAQ:MSFT,NASDAQ,MSFT,co-microsoft,Microsoft,ticker,true
+NASDAQ:MTSI,NASDAQ,MTSI,us-mtsi,MACOM Technology Solutions,ticker,true
+NASDAQ:MU,NASDAQ,MU,co-micron,Micron,ticker,true
+NASDAQ:MXL,NASDAQ,MXL,us-mxl,MaxLinear,ticker,true
+NASDAQ:MYRG,NASDAQ,MYRG,co-myr,MYR Group,ticker,true
+NASDAQ:NBIS,NASDAQ,NBIS,us-nbis,Nebius Group,ticker,true
+NASDAQ:NEXT,NASDAQ,NEXT,us-next,NextDecade Corp.,new,false
+NASDAQ:NFE,NASDAQ,NFE,us-nfe,New Fortress Energy Inc.,new,false
+NASDAQ:NFLX,NASDAQ,NFLX,us-nflx,"Netflix, Inc.",new,false
+NASDAQ:NNE,NASDAQ,NNE,us-nne,NANO Nuclear Energy,ticker,true
+NASDAQ:NVDA,NASDAQ,NVDA,co-nvidia,NVIDIA,ticker,true
+NASDAQ:NVMI,NASDAQ,NVMI,us-nvmi,Nova,ticker,true
+NASDAQ:ONDS,NASDAQ,ONDS,us-onds,Ondas Holdings,ticker,true
+NASDAQ:PEP,NASDAQ,PEP,us-pep,"PepsiCo, Inc.",new,false
+NASDAQ:PLTR,NASDAQ,PLTR,co-palantir,Palantir,ticker,true
+NASDAQ:PLUG,NASDAQ,PLUG,us-plug,Plug Power Inc.,new,false
+NASDAQ:POWL,NASDAQ,POWL,co-powell,Powell Industries,ticker,true
+NASDAQ:PURR,NASDAQ,PURR,us-purr,"Hyperliquid Strategies, Inc",new,false
+NASDAQ:QBTS,NASDAQ,QBTS,us-qbts,D-Wave Quantum,ticker,true
+NASDAQ:QCOM,NASDAQ,QCOM,co-qualcomm,Qualcomm,ticker,true
+NASDAQ:QNT,NASDAQ,QNT,us-qnt,Quantinuum Inc.,new,false
+NASDAQ:RCAT,NASDAQ,RCAT,us-rcat,Red Cat Holdings,ticker,true
+NASDAQ:RIOT,NASDAQ,RIOT,us-riot,"Riot Platforms, Inc.",new,false
+NASDAQ:RKLB,NASDAQ,RKLB,us-rklb,Rocket Lab,ticker,true
+NASDAQ:RMBS,NASDAQ,RMBS,co-rambus,Rambus,ticker,true
+NASDAQ:SMTC,NASDAQ,SMTC,us-smtc,Semtech,ticker,true
+NASDAQ:SNDK,NASDAQ,SNDK,co-sandisk,SanDisk,ticker,true
+NASDAQ:SPCX,NASDAQ,SPCX,us-spcx,Space Exploration Technologies Corp,new,false
+NASDAQ:STRL,NASDAQ,STRL,co-sterling,Sterling Infrastructure,ticker,true
+NASDAQ:STX,NASDAQ,STX,co-seagate,Seagate,ticker,true
+NASDAQ:SWMR,NASDAQ,SWMR,us-swmr,"Swarmer, Inc.",new,false
+NASDAQ:TER,NASDAQ,TER,co-teradyne,Teradyne,ticker,true
+NASDAQ:TLN,NASDAQ,TLN,co-talen,Talen Energy,ticker,true
+NASDAQ:TMUS,NASDAQ,TMUS,us-tmus,"T-Mobile US, Inc.",new,false
+NASDAQ:TSLA,NASDAQ,TSLA,us-tsla,"Tesla, Inc.",new,false
+NASDAQ:TTMI,NASDAQ,TTMI,co-ttm,TTM Technologies,ticker,true
+NASDAQ:TTWO,NASDAQ,TTWO,us-ttwo,"Take-Two Interactive Software, Inc.",new,false
+NASDAQ:UCTT,NASDAQ,UCTT,co-ultraclean,Ultra Clean,ticker,true
+NASDAQ:VICR,NASDAQ,VICR,co-vicor,Vicor,ticker,true
+NASDAQ:VKTX,NASDAQ,VKTX,us-vktx,"Viking Therapeutics, Inc.",new,false
+NASDAQ:VSAT,NASDAQ,VSAT,us-vsat,Viasat,ticker,true
+NASDAQ:WULF,NASDAQ,WULF,us-wulf,TeraWulf,ticker,true
+NSE:SCHNEIDER,NSE,SCHNEIDER,other-schneider,Schneider Electric Infrastructure Limited,new,false
+NYSE:ABBV,NYSE,ABBV,us-abbv,"AbbVie, Inc.",new,false
+NYSE:ABT,NYSE,ABT,us-abt,Abbott Laboratories,new,false
+NYSE:ACN,NYSE,ACN,us-acn,Accenture Plc,new,false
+NYSE:AGX,NYSE,AGX,co-argan,Argan,ticker,true
+NYSE:AMPX,NYSE,AMPX,us-ampx,Amprius Technologies Inc,new,false
+NYSE:AVEX,NYSE,AVEX,us-avex,AEVEX Corp.,new,false
+NYSE:AXP,NYSE,AXP,us-axp,American Express Company,new,false
+NYSE:BA,NYSE,BA,us-ba,Boeing,ticker,true
+NYSE:BABA,NYSE,BABA,us-baba,Alibaba Group Holding Limited,new,false
+NYSE:BAC,NYSE,BAC,us-bac,Bank of America Corp,new,false
+NYSE:BDC,NYSE,BDC,us-bdc,Belden,ticker,true
+NYSE:BE,NYSE,BE,co-bloom,Bloom Energy,ticker,true
+NYSE:BEPC,NYSE,BEPC,us-bepc,Brookfield Renewable Holdings Corporation,new,false
+NYSE:BKSY,NYSE,BKSY,us-bksy,BlackSky Technology,ticker,true
+NYSE:BW,NYSE,BW,co-babcock,Babcock & Wilcox,ticker,true
+NYSE:BWXT,NYSE,BWXT,us-bwxt,BWX Technologies,ticker,true
+NYSE:BX,NYSE,BX,us-bx,Blackstone Inc.,new,false
+NYSE:CACI,NYSE,CACI,co-caci,CACI International,ticker,true
+NYSE:CAT,NYSE,CAT,co-caterpillar,Caterpillar,ticker,true
+NYSE:CCL,NYSE,CCL,us-ccl,Carnival Corporation Ltd.,new,false
+NYSE:CHWY,NYSE,CHWY,us-chwy,"Chewy, Inc.",new,false
+NYSE:CLS,NYSE,CLS,co-celestica,Celestica,ticker,true
+NYSE:CMI,NYSE,CMI,co-cummins,Cummins,ticker,true
+NYSE:COHR,NYSE,COHR,co-coherent,Coherent,ticker,true
+NYSE:CRCL,NYSE,CRCL,us-crcl,"Circle Internet Group, Inc.",new,false
+NYSE:CRM,NYSE,CRM,us-crm,"Salesforce, Inc.",new,false
+NYSE:CVS,NYSE,CVS,us-cvs,CVS Health Corporation,new,false
+NYSE:CVX,NYSE,CVX,us-cvx,Chevron Corporation,new,false
+NYSE:CW,NYSE,CW,us-cw,Curtiss-Wright,ticker,true
+NYSE:D,NYSE,D,us-d,Dominion Energy,ticker,true
+NYSE:DIS,NYSE,DIS,us-dis,Walt Disney Company,new,false
+NYSE:DLNG,NYSE,DLNG,us-dlng,Dynagas LNG Partners LP,new,false
+NYSE:DLR,NYSE,DLR,us-dlr,"Digital Realty Trust, Inc.",new,false
+NYSE:DOCN,NYSE,DOCN,us-docn,DigitalOcean,ticker,true
+NYSE:DUK,NYSE,DUK,us-duk,Duke Energy Corporation,new,false
+NYSE:DY,NYSE,DY,co-dycom,Dycom Industries,ticker,true
+NYSE:EE,NYSE,EE,us-ee,"Excelerate Energy, Inc.",new,false
+NYSE:EME,NYSE,EME,co-emcor,EMCOR,ticker,true
+NYSE:EROC,NYSE,EROC,co-enchantedrock,ERock,ticker,true
+NYSE:ETN,NYSE,ETN,co-eaton,Eaton,ticker,true
+NYSE:ETR,NYSE,ETR,us-etr,Entergy Corporation,new,false
+NYSE:FICO,NYSE,FICO,us-fico,Fair Isaac Corporation,new,false
+NYSE:FIG,NYSE,FIG,us-fig,"Figma, Inc.",new,false
+NYSE:FIX,NYSE,FIX,co-comfort,Comfort Systems USA,ticker,true
+NYSE:FLNG,NYSE,FLNG,us-flng,FLEX LNG Ltd,new,false
+NYSE:FLR,NYSE,FLR,us-flr,Fluor Corporation,new,false
+NYSE:FN,NYSE,FN,co-fabrinet,Fabrinet,ticker,true
+NYSE:FTI,NYSE,FTI,us-fti,TechnipFMC plc,new,false
+NYSE:GE,NYSE,GE,us-ge,GE Aerospace,new,false
+NYSE:GEV,NYSE,GEV,co-gevernova,GE Vernova,ticker,true
+NYSE:GKOS,NYSE,GKOS,us-gkos,Glaukos Corp,new,false
+NYSE:GLW,NYSE,GLW,co-corning,Corning,ticker,true
+NYSE:GNRC,NYSE,GNRC,co-generac,Generac,ticker,true
+NYSE:GS,NYSE,GS,us-gs,"Goldman Sachs Group, Inc.",new,false
+NYSE:GVA,NYSE,GVA,us-gva,Granite Construction,ticker,true
+NYSE:HD,NYSE,HD,us-hd,"Home Depot, Inc.",new,false
+NYSE:HII,NYSE,HII,us-hii,Huntington Ingalls Industries,ticker,true
+NYSE:HUBB,NYSE,HUBB,co-hubbell,Hubbell,ticker,true
+NYSE:IBM,NYSE,IBM,co-ibm,IBM,ticker,true
+NYSE:IMAX,NYSE,IMAX,us-imax,IMAX Corporation,new,false
+NYSE:IONQ,NYSE,IONQ,us-ionq,IonQ,ticker,true
+NYSE:IRM,NYSE,IRM,us-irm,"Iron Mountain, Inc.",new,false
+NYSE:JNJ,NYSE,JNJ,us-jnj,Johnson & Johnson,new,false
+NYSE:JPM,NYSE,JPM,us-jpm,JPMorgan Chase & Co.,new,false
+NYSE:KEYS,NYSE,KEYS,us-keys,Keysight Technologies Inc,new,false
+NYSE:KMI,NYSE,KMI,us-kmi,Kinder Morgan Inc,new,false
+NYSE:KO,NYSE,KO,us-ko,Coca-Cola Company,new,false
+NYSE:KRMN,NYSE,KRMN,us-krmn,Karman Space & Defense,ticker,true
+NYSE:LEU,NYSE,LEU,us-leu,Centrus Energy,ticker,true
+NYSE:LLY,NYSE,LLY,us-lly,Eli Lilly and Company,new,false
+NYSE:LNG,NYSE,LNG,us-lng,"Cheniere Energy, Inc.",new,false
+NYSE:LYV,NYSE,LYV,us-lyv,"Live Nation Entertainment, Inc.",new,false
+NYSE:MA,NYSE,MA,us-ma,Mastercard Incorporated,new,false
+NYSE:MAIR,NYSE,MAIR,us-mair,Madison Air Solutions Corp.,new,false
+NYSE:MCD,NYSE,MCD,us-mcd,McDonald's Corporation,new,false
+NYSE:MDA,NYSE,MDA,us-mda,MDA Space,ticker,true
+NYSE:MIR,NYSE,MIR,co-mirion,Mirion Technologies,ticker,true
+NYSE:MS,NYSE,MS,us-ms,Morgan Stanley,new,false
+NYSE:MSI,NYSE,MSI,us-msi,"Motorola Solutions, Inc.",new,false
+NYSE:MTZ,NYSE,MTZ,co-mastec,MasTec,ticker,true
+NYSE:NE,NYSE,NE,us-ne,Noble Corporation PLC,new,false
+NYSE:NET,NYSE,NET,us-net,Cloudflare Inc,new,false
+NYSE:NPK,NYSE,NPK,us-npk,National Presto Industries,ticker,true
+NYSE:NRG,NYSE,NRG,co-nrg,NRG Energy,ticker,true
+NYSE:NVT,NYSE,NVT,co-nvent,nVent Electric,ticker,true
+NYSE:OKLO,NYSE,OKLO,co-oklo,Oklo,ticker,true
+NYSE:ONTO,NYSE,ONTO,us-onto,Onto Innovation,ticker,true
+NYSE:ORA,NYSE,ORA,us-ora,"Ormat Technologies, Inc.",new,false
+NYSE:ORCL,NYSE,ORCL,co-oracle,Oracle,ticker,true
+NYSE:PEG,NYSE,PEG,us-peg,Public Service Enterprise Group Inc,new,false
+NYSE:PG,NYSE,PG,us-pg,Procter & Gamble Company,new,false
+NYSE:PL,NYSE,PL,us-pl,Planet Labs,ticker,true
+NYSE:PM,NYSE,PM,us-pm,Philip Morris International Inc.,new,false
+NYSE:PUMP,NYSE,PUMP,co-propetro,ProPetro Holding,ticker,true
+NYSE:PWR,NYSE,PWR,co-quanta-services,Quanta Services,ticker,true
+NYSE:RCL,NYSE,RCL,us-rcl,Royal Caribbean Group,new,false
+NYSE:RDW,NYSE,RDW,us-rdw,Redwire,ticker,true
+NYSE:ROG,NYSE,ROG,co-rogers,Rogers Corp,ticker,true
+NYSE:SEI,NYSE,SEI,co-solaris,Solaris Energy Infrastructure,ticker,true
+NYSE:SMR,NYSE,SMR,co-nuscale,NuScale Power,ticker,true
+NYSE:SO,NYSE,SO,us-so,Southern Company,new,false
+NYSE:SPIR,NYSE,SPIR,us-spir,Spire Global,ticker,true
+NYSE:SRE,NYSE,SRE,us-sre,Sempra,new,false
+NYSE:SRFM,NYSE,SRFM,us-srfm,"Surf Air Mobility, Inc.",new,false
+NYSE:STM,NYSE,STM,us-stm,STMicroelectronics NV,new,false
+NYSE:T,NYSE,T,us-t,AT&T Inc,new,false
+NYSE:TDW,NYSE,TDW,us-tdw,Tidewater Inc,new,false
+NYSE:TDY,NYSE,TDY,us-tdy,Teledyne Technologies,ticker,true
+NYSE:TKO,NYSE,TKO,us-tko,"TKO Group Holdings, Inc.",new,false
+NYSE:TMO,NYSE,TMO,us-tmo,Thermo Fisher Scientific Inc.,new,false
+NYSE:TSM,NYSE,TSM,us-tsm,"Taiwan Semiconductor Manufacturing Co., Ltd.",new,false
+NYSE:UBER,NYSE,UBER,us-uber,"Uber Technologies, Inc.",new,false
+NYSE:ULS,NYSE,ULS,us-uls,UL Solutions Inc.,new,false
+NYSE:UNH,NYSE,UNH,us-unh,UnitedHealth Group Incorporated,new,false
+NYSE:UTI,NYSE,UTI,us-uti,"Universal Technical Institute, Inc.",new,false
+NYSE:V,NYSE,V,us-v,Visa Inc.,new,false
+NYSE:VMI,NYSE,VMI,co-valmont,Valmont Industries,ticker,true
+NYSE:VRT,NYSE,VRT,co-vertiv,Vertiv,ticker,true
+NYSE:VST,NYSE,VST,co-vistra,Vistra,ticker,true
+NYSE:WAB,NYSE,WAB,us-wab,Westinghouse Air Brake Technologies Corporation,new,false
+NYSE:WFC,NYSE,WFC,us-wfc,Wells Fargo & Company,new,false
+NYSE:XOM,NYSE,XOM,us-xom,Exxonmobil Holdings Corporation,new,false
+NYSE:YSS,NYSE,YSS,us-yss,York Space Systems,ticker,true
+OMXHEX:WRT1V,OMXHEX,WRT1V,co-wartsila,Wartsila,ticker,true
+OMXSTO:MILDEF,OMXSTO,MILDEF,se-mildef,MilDef Group,ticker,true
+OMXSTO:SAAB_B,OMXSTO,SAAB_B,se-saab,Saab,ticker,true
+OSL:KOG,OSL,KOG,no-kongsberg,Kongsberg Gruppen,ticker,true
+SIX:ABBN,SIX,ABBN,co-abb,ABB,ticker,true
+TASE:TEVA,TASE,TEVA,other-teva,Teva Pharmaceutical Industries Limited,new,false
+TPEX:3324,TPEX,3324,tw-auras,Auras Technology,ticker,true
+TPEX:6223,TPEX,6223,tw-mpi,MPI Corporation,ticker,true
+TPEX:6274,TPEX,6274,tw-tuc,Taiwan Union Technology,ticker,true
+TPEX:6510,TPEX,6510,tw-chpt,Chunghwa Precision Test,ticker,true
+TSE:186A,TSE,186A,jp-186a,Astroscale Holdings Inc.,new,false
+TSE:2802,TSE,2802,co-ajinomoto,Ajinomoto,ticker,true
+TSE:285A,TSE,285A,jp-285a,Kioxia Holdings Corporation,new,false
+TSE:290A,TSE,290A,jp-290a,Synspective Inc.,new,false
+TSE:3110,TSE,3110,co-nittobo,Nittobo,ticker,true
+TSE:3436,TSE,3436,jp-3436,SUMCO Corporation,new,false
+TSE:4062,TSE,4062,co-ibiden,Ibiden,ticker,true
+TSE:4274,TSE,4274,jp-hosoya,Hosoya Pyro-Engineering,ticker,true
+TSE:429A,TSE,429A,jp-429a,Tekscend Photomask Corp.,new,false
+TSE:4568,TSE,4568,jp-4568,"Daiichi Sankyo Company, Limited",new,false
+TSE:5016,TSE,5016,jp-jxmetals,JX Advanced Metals,ticker,true
+TSE:5631,TSE,5631,jp-jsw,Japan Steel Works,ticker,true
+TSE:5801,TSE,5801,jp-5801,"Furukawa Electric Co., Ltd.",new,false
+TSE:5802,TSE,5802,jp-sumiden,Sumitomo Electric,ticker,true
+TSE:5803,TSE,5803,co-fujikura,Fujikura,ticker,true
+TSE:6208,TSE,6208,jp-ishikawa,Ishikawa Seisakusho,ticker,true
+TSE:6278,TSE,6278,jp-uniontool,Union Tool,ticker,true
+TSE:6361,TSE,6361,jp-6361,Ebara Corporation,new,false
+TSE:6376,TSE,6376,jp-6376,"Nikkiso Co., Ltd.",new,false
+TSE:6407,TSE,6407,jp-6407,CKD Corporation,new,false
+TSE:6501,TSE,6501,co-hitachi,Hitachi,ticker,true
+TSE:6504,TSE,6504,jp-6504,"Fuji Electric Co., Ltd.",new,false
+TSE:6517,TSE,6517,jp-6517,"Denyo Co., Ltd.",new,false
+TSE:6702,TSE,6702,jp-fujitsu,Fujitsu,ticker,true
+TSE:6728,TSE,6728,jp-6728,"ULVAC, Inc.",new,false
+TSE:6752,TSE,6752,jp-6752,Panasonic Holdings Corporation,new,false
+TSE:6777,TSE,6777,jp-6777,santec Holdings Corporation,new,false
+TSE:6814,TSE,6814,jp-6814,"Furuno Electric Co., Ltd.",new,false
+TSE:6857,TSE,6857,co-advantest,Advantest,ticker,true
+TSE:6871,TSE,6871,jp-micronics,Micronics Japan,ticker,true
+TSE:6920,TSE,6920,co-lasertec,Lasertec,ticker,true
+TSE:6976,TSE,6976,jp-taiyoyuden,Taiyo Yuden,ticker,true
+TSE:6981,TSE,6981,jp-murata,Murata Manufacturing,ticker,true
+TSE:7003,TSE,7003,jp-7003,"Mitsui ES Holdings Co., Ltd.",new,false
+TSE:7011,TSE,7011,co-mhi,Mitsubishi Heavy Industries,ticker,true
+TSE:7012,TSE,7012,jp-khi,Kawasaki Heavy Industries,ticker,true
+TSE:7013,TSE,7013,jp-ihi,IHI,ticker,true
+TSE:7018,TSE,7018,jp-7018,Naikai Zosen Corporation,new,false
+TSE:7022,TSE,7022,jp-7022,Sanoyas Holdings Corporation,new,false
+TSE:7453,TSE,7453,jp-7453,"Ryohin Keikaku Co., Ltd.",new,false
+TSE:7532,TSE,7532,jp-7532,Pan Pacific International Holdings Corporation,new,false
+TSE:7552,TSE,7552,jp-7552,Happinet Corporation,new,false
+TSE:7721,TSE,7721,jp-tokyokeiki,Tokyo Keiki,ticker,true
+TSE:7867,TSE,7867,jp-takaratomy,Takara Tomy,ticker,true
+TSE:7936,TSE,7936,jp-asics,ASICS,ticker,true
+TSE:7974,TSE,7974,jp-nintendo,Nintendo,ticker,true
+TSE:8001,TSE,8001,jp-8001,Itochu Corporation,new,false
+TSE:8002,TSE,8002,jp-8002,Marubeni Corporation,new,false
+TSE:8031,TSE,8031,jp-8031,"Mitsui & Co.,Ltd",new,false
+TSE:8053,TSE,8053,jp-8053,Sumitomo Corporation,new,false
+TSE:8058,TSE,8058,jp-8058,Mitsubishi Corporation,new,false
+TSE:8136,TSE,8136,jp-sanrio,Sanrio,ticker,true
+TSE:8306,TSE,8306,jp-8306,"Mitsubishi UFJ Financial Group, Inc.",new,false
+TSE:8309,TSE,8309,jp-8309,"Sumitomo Mitsui Trust Group, Inc.",new,false
+TSE:8697,TSE,8697,jp-8697,"Japan Exchange Group, Inc.",new,false
+TSE:9101,TSE,9101,jp-9101,Nippon Yusen Kabushiki Kaisha,new,false
+TSE:9104,TSE,9104,jp-9104,"Mitsui O.S.K.Lines,Ltd.",new,false
+TSE:9107,TSE,9107,jp-9107,"Kawasaki Kisen Kaisha, Ltd.",new,false
+TSE:9434,TSE,9434,jp-9434,SoftBank Corp.,new,false
+TSE:9983,TSE,9983,jp-9983,"Fast Retailing Co., Ltd.",new,false
+TSX:BBD.A,TSX,BBD.A,other-bbda,Bombardier Inc.,new,false
+TSX:NXE,TSX,NXE,us-nxe,NexGen Energy,ticker,true
+TWSE:1802,TWSE,1802,tw-taiwanglass,Taiwan Glass,ticker,true
+TWSE:2059,TWSE,2059,tw-kingslide,King Slide,ticker,true
+TWSE:2308,TWSE,2308,co-delta,Delta Electronics,ticker,true
+TWSE:2327,TWSE,2327,tw-yageo,Yageo,ticker,true
+TWSE:2368,TWSE,2368,tw-gce,Gold Circuit Electronics,ticker,true
+TWSE:2383,TWSE,2383,co-elitematerial,Elite Material,ticker,true
+TWSE:2492,TWSE,2492,tw-walsintech,Walsin Technology,ticker,true
+TWSE:3017,TWSE,3017,tw-avc,Asia Vital Components,ticker,true
+TWSE:3533,TWSE,3533,tw-lotes,Lotes,ticker,true
+TWSE:3665,TWSE,3665,tw-bizlink,BizLink,ticker,true
+TWSE:6213,TWSE,6213,tw-iteq,ITEQ,ticker,true
+TWSE:6515,TWSE,6515,tw-winway,WinWay Technology,ticker,true
+TWSE:8021,TWSE,8021,tw-topoint,Topoint Technology,ticker,true
+VIE:ATS,VIE,ATS,eu-ats,AT & S Austria Technologie & Systemtechnik Aktiengesellschaft,new,false
+XETR:DB1,XETR,DB1,eu-db1,Deutsche Boerse AG,new,false
+XETR:ENR,XETR,ENR,co-siemensenergy,Siemens Energy,ticker,true
+XETR:F3C,XETR,F3C,eu-f3c,SFC Energy AG,new,false
+XETR:HAG,XETR,HAG,de-hensoldt,Hensoldt,ticker,true
+XETR:OHB,XETR,OHB,de-ohb,OHB,ticker,true
+XETR:R3NK,XETR,R3NK,de-renk,Renk Group,ticker,true
+XETR:RHM,XETR,RHM,de-rheinmetall,Rheinmetall,ticker,true
+XETR:SIE,XETR,SIE,co-siemens,Siemens,ticker,true
+XETR:SMHN,XETR,SMHN,eu-smhn,SUSS MicroTec SE,new,false
+XETR:TKMS,XETR,TKMS,de-tkms,TKMS,ticker,true
+XETR:VOW3,XETR,VOW3,eu-vow3,Volkswagen AG,new,false

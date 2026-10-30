@@ -32,6 +32,10 @@ def names():
     ew = yaml.safe_load((ROOT / "config" / "earnings_watch.yaml").read_text(encoding="utf-8"))
     for u in val.get("universe", []) + (ew.get("extra") or []):
         out[u["id"]] = u["name"]
+    disc = yaml.safe_load((ROOT / "config" / "discovery.yaml").read_text(encoding="utf-8")) or {}
+    for t in disc.get("themes") or []:   # 발굴 후보·TradingView 와치리스트 종목도 알파 점수 대상(2026-10-31 마스터 지시)
+        for c in t.get("candidates") or []:
+            out.setdefault(c["id"], c.get("name"))
     return out
 
 

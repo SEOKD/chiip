@@ -1710,3 +1710,19 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-tb-exit-evs-other
+  model: tenbagger.bands
+  binding: config/tenbagger.yaml#bands.sectors.other.exit_ev_sales
+  value: 2.0
+  unit: 배(EV/매출)
+  status: prior
+  prior:
+    value: 2.0
+    basis: 업종이 섞인 와치리스트 종목의 출구 배수 — 미검증 보수적 사전값(2026-10-31 마스터 지시 TradingView 연동)
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: prm-tb-exit-evs-semis와 같음
+    target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null

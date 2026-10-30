@@ -45,6 +45,7 @@ bands:
     consumer: {name: 소비재·게임·콘텐츠IP(Chiip Consumer, config/consumer.yaml), exit_ev_sales: 2.0, tam_usd: null, tam_basis: "하위 시장(완구·게임·뷰티·식음료·IP 라이선스)이 여러 개라 단일 참조 없음 — 지역 확장·침투율로 대체(knowledge/methods/consumer_lens.md)", verified: false}
     nuclear:  {name: 원자력(핵연료·원자로·서비스), exit_ev_sales: 3.0, tam_usd: null, tam_basis: "하위 시장(연료·주기기·서비스)이 달라 단일 값을 두지 않는다 — 2026-10-31 추가, 출구 배수는 미검증 사전값"}
     space:    {name: 위성(발사·위성 제조·데이터·통신), exit_ev_sales: 3.0, tam_usd: null, tam_basis: "하위 시장(발사·제조·데이터·통신)이 달라 단일 값을 두지 않는다 — 2026-10-31 추가, 출구 배수는 미검증 사전값"}
+    other:    {name: 그 밖(마스터 TradingView 와치리스트의 금융·소비·제약 등), exit_ev_sales: 2.0, tam_usd: null, tam_basis: "업종이 섞여 단일 값을 두지 않는다 — 2026-10-31 추가, 출구 배수는 미검증 사전값"}
   # 10배 산술 판정 문턱(사전값, registry prm-tb-tenx-*): 필요 매출의 참조 시장 점유·목표 시총 ÷ 유니버스 최대 시총
   verdict: {share_stretch: 0.1, share_hard: 0.3, vs_max_stretch: 1.0, vs_max_hard: 2.0}
   exit_basis: "출구 EV/매출은 성숙 업종 배수(Damodaran 미국 업종 배수 참고)보다 낮게 둔 보수적 사전값 — 원문 수치 확인·피팅 대상(knowledge/models/params/registry.yaml)"

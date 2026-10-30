@@ -1,0 +1,71 @@
+# TradingView 와치리스트 연동 — radar/tv_sync.py, docs/prompts/TRADINGVIEW_PROMPT.md
+# 마스터 지시 2026-10-31: 와치리스트 종목은 알파·텐배거 발굴 레이더에 넣고, Chiip이 찾은 종목이 와치리스트에 없으면 폴더(국가)·섹션(섹터)에 맞게 추가한다.
+# 폴더 1~6은 research로 다룬다(같은 지시). 0_Index·색상 목록·빈 목록은 동기화하지 않는다.
+source: tradingview-mcp
+verified_on: 2026-10-31
+folders:
+  1_US: {market: us, class: research}
+  2_Korea: {market: kr, class: research}
+  3_Japan: {market: jp, class: research}
+  4_EU & UK: {market: eu, class: research}
+  5_HK: {market: hk, class: research}
+  6_Taiwan: {market: tw, class: research}   # 2026-10-31 Chiip 생성 — 대만 발굴 종목의 국가 폴더가 없어서
+permissions:
+  read_watchlists: true
+  add_to_watchlists: true        # 마스터 지시 2026-10-31. Chiip이 찾은 종목 추가만
+  remove_from_watchlists: false  # 지우지 않는다
+  delete_watchlists: false
+  create_alerts: false
+# 레이더에서 뺀 항목 — 와치리스트는 그대로 둔다(지우지 않는다). 마스터가 고치면 여기서 뺀다
+skip_symbols:
+  CSE:MYR: "캐나다 Meryllion Resources — DATACENTER EPC 섹션이라 MYR Group(NASDAQ:MYRG) 오기로 보임"
+  CSE:WG: "캐나다 Westward Gold — 4_EU & UK 목록이라 다른 회사를 뜻한 오기로 보임"
+  NASDAQ:ANTHROPIC: "시세 없음(비상장)"
+rate_budget:
+  max_calls_per_run: 60
+exchange_market:
+  NASDAQ: us
+  NYSE: us
+  AMEX: us
+  KRX: kr
+  TSE: jp
+  TWSE: tw
+  TPEX: tw
+  HKEX: hk
+  TSX: other
+  ASX: other
+  NSE: other
+  BCBA: other
+  TASE: other
+  CSE: other
+# 섹션 이름(대문자) → 구간 엔진 섹터. 위에서부터 첫 일치. 없으면 other
+section_sector:
+  "NUCLEAR|원자력": nuclear
+  "SPACE|위성": space
+  "DEFENSE|DRONE|SHIPBUILDER|방위": defense
+  "SEMI|반도체|OPTICS|QUANTUM|TEST": semis
+  "HYPERSCALER|NEOCLOUD|CDN": software
+  "DATACENTER|ELECTRIFICATION|POWER|UTILITY|AI HARDWARE|LNG|전력": ai_hw
+# 발굴 테마 → 폴더 안 섹션. 없는 섹션은 만든다
+default_section: "###CHIIP PICKS"
+theme_sections:
+  mlcc: "###ELECTRONIC COMPONENTS"
+  glasscloth: "###CCL & PCB"
+  ccl_pcb: "###CCL & PCB"
+  pcbdrill: "###SEMI TEST & PCB TOOLS"
+  targets_inp: "###SEMI EQUIPMENT & PACKAGING"
+  probe_test: "###SEMI EQUIPMENT & PACKAGING"
+  metrology_inspection: "###SEMI EQUIPMENT & PACKAGING"
+  thermal_power: "###COOLING & POWER"
+  onsite_power: "###POWER GENERATION"
+  interconnect_mech: "###CONNECTORS & RACK"
+  munitions_energetics: "###DEFENSE"
+  srm_missile: "###DEFENSE"
+  gan_radar_ew: "###DEFENSE"
+  cuas_unmanned: "###DRONE"
+  naval_capacity: "###DEFENSE"
+  space_isr: "###SPACE"
+  nuclear_fuel: "###NUCLEAR"
+  nuclear_reactor: "###NUCLEAR"
+  satellite_launch: "###SPACE"
+  satellite_data: "###SPACE"

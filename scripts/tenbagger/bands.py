@@ -78,7 +78,7 @@ def universe():
             add(u["id"], u.get("name"), u.get("code"), market_of(u.get("code")), SUB_SECTOR.get(u.get("sub"), "ai_hw"), f)
     for t in _y("config/discovery.yaml").get("themes") or []:
         for c in t.get("candidates") or []:
-            add(c["id"], c.get("name"), c.get("code"), c.get("market"), THEME_SECTOR.get(t["id"], "ai_hw"), "discovery")
+            add(c["id"], c.get("name"), c.get("code"), c.get("market"), t.get("sector") or THEME_SECTOR.get(t["id"], "ai_hw"), "discovery")
     for c in _y("config/coverage.yaml").get("companies") or []:
         add(c["id"], c.get("name"), c.get("code"), c.get("market"), "ai_hw", "coverage")
     for sector, seeds in (_y("config/tenbagger_universe.yaml").get("seeds") or {}).items():   # 미국 중형 반도체·SW·AI 인프라 시드
@@ -346,7 +346,7 @@ def _usd(x):
 def write_report(today, bands, by_band, top, rows, migrations):
     OUTD.mkdir(parents=True, exist_ok=True)
     have = sum(1 for r in rows if r["band"])
-    sec = {"semis": "반도체", "ai_hw": "AI HW", "software": "SW", "defense": "방위", "nuclear": "원자력", "space": "위성"}
+    sec = {"semis": "반도체", "ai_hw": "AI HW", "software": "SW", "defense": "방위", "nuclear": "원자력", "space": "위성", "other": "기타"}
     L = [f"# Chiip Ten-bagger 시가총액 구간 {today.isoformat()}", "",
          f"유니버스 {len(rows)} · 시총 확보 {have} · 갱신 대상(없음·{cfg().get('stale_days', 7)}일 초과) {len(stale(10 ** 6, today))}", "",
          "| 구간 | 종목 수 | 반도체 | AI HW | SW | 방위 | 10배 = 목표 시총 |", "|---|---|---|---|---|---|---|"]
