@@ -100,6 +100,7 @@
 - 한국 종목 기준 자료 = 당기·직전 분기 PT(마스터 2026-10-30): kr_ir_docs.py --pt, transcript_watch.py XKRX_ 대기 제외
 - 기준 멀티플 = Fwd 1Y 이익 지표(마스터 2026-10-30): multiples.main_metric·choose_basis, forward_multiples.js, adapter --forward-multiples, 시장÷내재는 EV끼리
 - 실적 지표 주가 줄(마스터 2026-10-30): 보고 시점 기준 장중·장전·장후 ±x%, radar/markets/session.py
+- 그림 5 재개정(마스터 2026-10-30): 선 위 사건 번호만, 점선 없음, 번호별 설명은 그래프 아래
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

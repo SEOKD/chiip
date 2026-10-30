@@ -21,7 +21,7 @@ JSON 구조(필수 = *):
   · {"type":"chart","chart":{"kind":"candle","title","unit","bars":[["2026-10-28",600,609.4,581.8,606.9]...],
        "hlines":[{"y":643.4,"label":"38.2% 643","color":"e"}],"zones":[{"y0":599,"y1":602,"label":"지지","tone":"grn|red"}]}}  — 한국식 색(상승 빨강·하락 파랑)
   · {"type":"chart","chart":{"kind":"revision","title","unit","start","end","series":[{"name","color","points":[["2026-02-26",4.2]...]}],
-       "events":[{"date","kind":"실적"}]}}  — 계단선 + 실적 발표일(revision_view.py가 만든다)
+       "events":[{"date","mark":"①","kind":"실적|내러티브","tag","pct":"+110%"}]}}  — 계단선 + 선 위 사건 번호, 설명은 그래프 아래(revision_view.py가 만든다)
   · bars에 "stack": true면 쌓인 막대
   · 차트에 "pin": n이면 갤러리 n번째로 고정(그림 3 = 가격 내포 기대, 5 = EPS 리비전 추이, 8 = 주가 분해 — 마스터 지시 2026-10-30), 나머지는 절 순서대로
 금액 단위는 렌더 직후 radar/units.py money_units로 $25B·$M·$T 표기로 바꾼다(마스터 지시 2026-10-29).
@@ -34,7 +34,7 @@ import json
 import math
 import re
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import yaml
@@ -176,28 +176,28 @@ def chart_candle(c):
 
 
 def chart_revision(c):
-    """계단선 + 실적 발표일만(마스터 지시 2026-10-30 "너무 지저분하다. 그래프와 어닝 날짜만"). 가로축 글자는 실적 발표일이고 번호·변화율·추정 변경 점은 그리지 않는다"""
+    """계단선 + 선 위 사건 번호(마스터 지시 2026-10-30 "그래프에는 선 위에 이벤트를 숫자로만 표기하고(점선을 제외하고) 아래 부가 설명에는 숫자별 이벤트가 무엇인지 설명").
+    점선·변화율·추정 변경 점은 그리지 않는다. 번호는 내년 EPS 선(리비전의 기준) 위, 가까운 사건은 위로 쌓는다"""
     series = c.get("series") or []
     vals = [p[1] for s in series for p in s.get("points") or [] if p[1] is not None]
     if not vals:
         return ""
     d0, d1 = date.fromisoformat(c["start"]), date.fromisoformat(c["end"])
     span = (d1 - d0).days or 1
-    W, H, L, R, T, B = 440, 280, 34, 10, 14, 22   # 휴대폰 폭에서 글자가 읽히게 좁은 좌표계(마스터는 모바일로 본다)
+    W, H, L, R, T, B = 440, 300, 34, 10, 14, 22   # 휴대폰 폭에서 글자가 읽히게 좁은 좌표계(마스터는 모바일로 본다)
     X = lambda s: L + (date.fromisoformat(str(s)[:10]) - d0).days / span * (W - L - R)
-    lo, hi = min(0, min(vals)), max(vals) * 1.08 or 1
+    lo, hi = min(0, min(vals)), max(vals) * 1.14 or 1
     Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
     g = []
     for i in range(5):
         v = lo + (hi - lo) * i / 4
         g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(v):.1f}" y2="{Y(v):.1f}" stroke="var(--line)"/><text x="{L - 4}" y="{Y(v) + 3:.1f}" text-anchor="end">{_fmt(v)}</text>')
-    for e in c.get("events") or []:
-        if e.get("kind") != "실적":
-            continue
-        x = X(e["date"])
-        tx = min(max(x, L + 18), W - R - 18)
-        g.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{T}" y2="{H - B}" stroke="var(--c)" stroke-dasharray="3 3" opacity="0.6"/>'
-                 f'<text x="{tx:.1f}" y="{H - 6}" text-anchor="middle" style="font-size:9.5px">{t(str(e["date"])[2:10])}</text>')
+    y, m = d0.year, d0.month
+    while date(y, m, 1) <= d1:
+        if date(y, m, 1) >= d0 and m % 2 == 0:
+            x = X(date(y, m, 1).isoformat())
+            g.append(f'<text x="{x:.1f}" y="{H - 6}" text-anchor="middle" style="font-size:9.5px">{str(y)[2:]}-{m:02d}</text>')
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
     for s in series:
         col = COLORS.get(s.get("color", "c"), "var(--c)")
         pts = [p for p in s.get("points") or [] if p[1] is not None]
@@ -209,7 +209,21 @@ def chart_revision(c):
             prev = p[1]
         path.append(f"{X(c['end']):.1f},{Y(prev):.1f}")
         g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2.2" points="{" ".join(path)}"/>')
-        g.append(f'<text x="{X(c["end"]) - 2:.1f}" y="{Y(prev) - 5:.1f}" text-anchor="end" style="fill:{col};font-size:11px;font-weight:700">{_fmt(prev)}</text>')
+        g.append(f'<text x="{X(c["end"]) - 2:.1f}" y="{Y(prev) + 14:.1f}" text-anchor="end" style="fill:{col};font-size:11px;font-weight:700">{_fmt(prev)}</text>')
+    top = [p for p in series[-1].get("points") or [] if p[1] is not None]
+
+    def peak(day):
+        """사건 직후 계단까지 넘는 높이 — 번호가 세로 계단에 겹치지 않게"""
+        stop = (date.fromisoformat(day[:10]) + timedelta(days=14)).isoformat()
+        return max([p[1] for p in top if p[0] <= day][-1:] + [p[1] for p in top if day < p[0] <= stop] or [top[0][1]])
+    last_x, lift = -99.0, 0
+    for e in c.get("events") or []:
+        if not e.get("mark"):
+            continue
+        x = min(max(X(e["date"]), L + 7), W - R - 7)
+        lift = lift + 13 if x - last_x < 14 else 0
+        last_x = x
+        g.append(f'<text x="{x:.1f}" y="{max(Y(peak(str(e["date"]))) - 6 - lift, 11):.1f}" text-anchor="middle" style="fill:var(--fg);font-size:12px;font-weight:700">{t(e["mark"])}</text>')
     return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
@@ -320,10 +334,17 @@ def figures(d):
 
 
 def under_lines(c):
-    """그래프 아래 설명 — 부가 설명을 넣지 않는 규칙의 예외는 몬테카를로 해석(conclusion) 하나뿐. 마스터 지시 2026-10-30. HTML·마크다운·노션이 같은 줄을 쓴다"""
+    """그래프 아래 설명 — 부가 설명을 넣지 않는 규칙의 예외 둘뿐: 그림 5의 사건 번호(kind revision)와 몬테카를로 해석(conclusion). 마스터 지시 2026-10-30. HTML·마크다운·노션이 같은 줄을 쓴다"""
     if c.get("conclusion"):
         return c["conclusion"] if isinstance(c["conclusion"], list) else [c["conclusion"]]
-    return []
+    if c.get("kind") != "revision":
+        return []
+    out = []
+    for e in c.get("events") or []:
+        if e.get("mark"):
+            pct = str(e.get("pct") or "")
+            out.append(f"{e['mark']} {str(e.get('date'))[2:]} {e.get('tag')} · " + ("실적 창과 겹침" if pct == "겹침" else f"EPS 리비전 {pct}"))
+    return out
 
 
 def block(b):
