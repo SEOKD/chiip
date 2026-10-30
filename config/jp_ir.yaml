@@ -11,7 +11,9 @@ seeds: ["/ir/", "/ja/ir/", "/jp/ir/", "/ir/library/", "/ja/ir/library/", "/jp/ir
 # IR 자료실 상시 감시(2026-10-30 마스터 지시 "일본 기업은 실적 보도자료 뒤에 PT 자료·Q&A 스크립트를 늦게 낸다 — 공식 IR 사이트를 지속적으로"):
 # radar/pollers/jp_ir_docs.py(src-jp-ir-docs)가 회사별 doc_pages(決算説明会資料·決算短信·質疑応答 목록 페이지 — 비어 있으면 자동 탐색, 7일 보관)를 본다.
 # 실적 구간(적시공시 미러 決算·説明会 제목·새 자료·Q&A 대기 — hot_days일) 회사는 매 회차, 나머지는 cold_min분마다. 회차당 페이지 요청 max_fetch회 이하.
-# 자동 탐색이 못 찾는 곳은 doc_pages를 손으로 적는다. 자료 목록을 자바스크립트로 그리는 곳(키옥시아 E-IR 파츠 등)은 수집 불가 — 적시공시 미러로만.
+# 자동 탐색이 못 찾는 곳은 doc_pages를 손으로 적는다. 자료 목록을 자바스크립트로 그리는 곳은 수집 불가 — 적시공시 미러로만.
+# 2026-10-30 전체 첫 회차: 자료실 확보 30곳, 못 찾음 24곳. 자바스크립트 렌더링 확인 = 키옥시아(E-IR 파츠)·이비덴 短信 목록(XjStorage — 영문 ibiden.com 短信은 정적)·후지쿠라·SUMCO·다이요유덴.
+# 접속 실패 = 히타치(주소 추정 오류)·소시오넥스트(SSL 핸드셰이크)·스미토모전공(연결 끊김). 나머지는 주간 점검에서 회사 IR 페이지를 직접 보고 채운다.
 docs_params: {hot_days: 10, cold_min: 180, max_fetch: 45, discover_per_run: 4, fresh_days: 21, backlog_days: 3}
 # 도쿄증권거래소 휴장일(게재 시차 영업일 계산용 — 확인된 날짜만, 매년 갱신)
 holidays: ["2026-11-03", "2026-11-23", "2026-12-31", "2027-01-01", "2027-01-11", "2027-02-11", "2027-02-23"]
@@ -52,12 +54,12 @@ companies:
   jp-taiyoyuden: {site: "https://www.yuden.co.jp"}
   jp-kyocera: {site: "https://www.kyocera.co.jp"}
   jp-kioxia: {site: "https://www.kioxia-holdings.com", ir_pages: ["https://www.kioxia-holdings.com/ja-jp/ir.html"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
-  jp-renesas: {site: "https://www.renesas.com"}
+  jp-renesas: {site: "https://www.renesas.com", doc_pages: ["https://www.renesas.com/about/investor-relations/event/presentation"]}
   jp-socionext: {site: "https://www.socionext.com", ir_pages: ["https://www.socionext.com/jp/ir/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-rohm: {site: "https://www.rohm.co.jp"}
   co-hitachi: {site: "https://www.hitachi.co.jp", ir_pages: ["https://www.hitachi.co.jp/IR/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
-  co-melco: {site: "https://www.mitsubishielectric.co.jp"}
-  co-mhi: {site: "https://www.mhi.com", ir_pages: ["https://www.mhi.com/jp/finance/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
+  co-melco: {site: "https://www.mitsubishielectric.co.jp", doc_pages: ["https://www.mitsubishielectric.co.jp/investors/data/presentation-materials/"]}
+  co-mhi: {site: "https://www.mhi.com", ir_pages: ["https://www.mhi.com/jp/finance/"], doc_pages: ["https://www.mhi.com/jp/finance/library/result"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-fujielectric: {site: "https://www.fujielectric.co.jp"}
   jp-sakura: {site: "https://www.sakura.ad.jp", ir_pages: ["https://www.sakura.ad.jp/corporate/ir/"]}
   jp-sbg: {site: "https://group.softbank", ir_pages: ["https://group.softbank/ir/financials/annual_reports"]}

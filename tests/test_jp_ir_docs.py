@@ -38,6 +38,7 @@ class TestParse(unittest.TestCase):
         self.assertEqual(d.period_of("2025年度中間決算説明会主な質疑応答", ""), "FY2025Q2")
         self.assertEqual(d.period_of("資料", "https://x/26q1-j-speach.ashx"), "FY2026Q1")
         self.assertEqual(d.period_of("資料", "https://x/kessannsetsumei2026Q2.pdf"), "FY2026Q2")
+        self.assertEqual(d.period_of("決算短信", "https://x/J_FR_FY2026_1Q.pdf"), "FY2026Q1")   # 4분기로 잘못 읽던 형식
 
     def test_dates_and_norm(self):
         self.assertEqual(d.doc_date("決算説明会資料(2026年10月30日）", ""), date(2026, 10, 30))

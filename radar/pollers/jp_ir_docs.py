@@ -111,6 +111,10 @@ def period_of(title, url):
         if m:
             y, q = (m.group(1), m.group(2)) if m.group(1) else (m.group(3), m.group(4)) if m.group(3) else (m.group(5), m.group(6))
             return f"FY{y if len(y) == 4 else '20' + y}Q{q}"
+        m = re.search(r"FY\s?(20\d\d|\d\d)[_\-\s]?([1-4])Q(?![0-9A-Za-z])", hay, re.I)   # 어드반테스트 'J_FR_FY2026_1Q.pdf'
+        if m:
+            y = m.group(1)
+            return f"FY{y if len(y) == 4 else '20' + y}Q{m.group(2)}"
         m = re.search(r"FY\s?(20\d\d|\d\d)(?!\d)", hay, re.I)
         if m:
             y = m.group(1)
