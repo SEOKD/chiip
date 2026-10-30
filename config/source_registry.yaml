@@ -946,6 +946,23 @@
   reliability_default: 1차(회사 공식)
   enabled: true
 
+- id: src-jp-ir-docs
+  name: 일본 IR 자료실 상시 감시(決算説明会資料·決算短信·質疑応答·書き起こし) — 일본어 IR 자료실 페이지 직접
+  category: B-공시
+  module: jp_ir_docs
+  entry: poll
+  method: html
+  endpoint_doc: "config/jp_ir.yaml"
+  auth: none
+  scope: [글로벌]
+  interval_min: 10
+  run_on: local
+  language: ja
+  doc_type: IR 자료
+  terms_note: "2026-10-30 마스터 지시(일본 기업은 실적 보도자료 뒤에 PT 자료·Q&A 스크립트를 늦게 낸다 — 공식 IR 사이트를 지속적으로). 실적 구간 회사만 매 회차(10분), 나머지는 docs_params.cold_min분마다, 회차당 페이지 요청 max_fetch회 이하. robots.txt·1초 간격은 jp_ir_qa.fetch 공유. 원문 텍스트는 radar/inbox/jp_ir/(git 제외)에만"
+  reliability_default: 1차(회사 공식)
+  enabled: true
+
 - id: src-tw-disclosure
   name: 대만 원문 공시(TWSE 重大訊息) × Chiip Ten-bagger 발굴·커버리지 대만 종목
   category: B-공시

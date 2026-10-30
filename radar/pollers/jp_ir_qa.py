@@ -275,27 +275,13 @@ def poll(env=None, only=None):
             prof[cid]["ir_pages"] = cs["pages"][:4]
             meta = scan["docs"]
             first = not cs["seen"] and not cs.get("baselined")
-            new = [(u, t) for u, t in qa.items() if u not in cs["seen"]]
+            from pollers.jp_ir_docs import norm_url   # 갱신 쿼리(cvid 등)를 뺀 주소로 비교 — jp_ir_docs가 먼저 보낸 Q&A와 겹치지 않게
+            seen_n = {norm_url(u) for u in cs["seen"]}
+            new = [(u, t) for u, t in qa.items() if u not in cs["seen"] and norm_url(u) not in seen_n]
             mats_seen = cs.setdefault("materials_seen", [])
             new_mats = [u for u in scan["materials"] if u not in mats_seen]
-            pend = cs.setdefault("pending", [])
-            today = now.date()
-            if new and pend:   # 기다리던 Q&A가 올라옴 → 게재 시차 기록
-                lag = (today - datetime.fromisoformat(pend[0]["found"]).date()).days
-                prof[cid]["lag_days"] = lag
-                pend.clear()
-            for p in list(pend):
-                if today >= datetime.fromisoformat(p["due"][-1]).date():   # +7영업일까지 없음 → 지시문 B(대체 경로)
-                    pend.remove(p)
-                    nm = names.get(cid, {})
-                    label = (nm.get("ja") or [nm.get("en", cid)])[0]
-                    items.append(common.make_item(
-                        SRC, hashlib.sha1(("fallback|" + p["material"]).encode()).hexdigest()[:16], p["material"],
-                        f"{label}（{nm.get('code', '')}）決算説明会 Q&A 미게재(+{RECHECK_BDAYS[-1]}영업일) — 지시문 B 대상", common.iso(now), "IR 질의응답", "ja",
-                        "공식 IR에 Q&A 없음 — 로그미·제3자 전사·영상·보도·다른 IR 행사·주주와의 대화·자료 비교 순으로(knowledge/methods/jp_ir_qa_procedure.md B)",
-                        extra={"entities_matched": [cid], "publisher": nm.get("en", cid), "source_class": "IR 질의응답", "fallback": True, "material": p["material"]}))
-            if new_mats and not first and not new:   # 설명회 자료는 나왔는데 Q&A가 없다 → 실패로 보지 않고 +3·+7영업일 재확인
-                pend.append({"material": new_mats[0], "found": today.isoformat(), "due": [add_bdays(today, n).isoformat() for n in RECHECK_BDAYS]})
+            # Q&A 대기(+3·+7영업일)·지시문 B 항목은 jp_ir_docs.py가 맡는다(2026-10-30 — 여기 materials_seen은 자료실 목록 페이지라 기간을 알 수 없었다)
+            cs.pop("pending", None)
             cs["materials_seen"] = (mats_seen + new_mats)[-200:]
             if first:   # 기준선: 알림 없이 기록하고, 최신으로 보이는 1건만 텍스트를 받아 둔다(데이터 묶음 call 재료)
                 cs["seen"], cs["baselined"] = sorted(qa), True
@@ -313,7 +299,7 @@ def poll(env=None, only=None):
                 nm = names.get(cid, {})
                 label = (nm.get("ja") or [nm.get("en", cid)])[0]
                 items.append(common.make_item(
-                    SRC, hashlib.sha1(u.encode()).hexdigest()[:16], u, f"{label}（{nm.get('code', '')}）IR 質疑応答: {t[:80]}",
+                    SRC, hashlib.sha1(norm_url(u).encode()).hexdigest()[:16], u, f"{label}（{nm.get('code', '')}）IR 質疑応答: {t[:80]}",
                     common.iso(now), "IR 질의응답", "ja", f"글자 {len(text)} · 로컬 {path.name}",
                     extra={"entities_matched": [cid], "local_text": str(path.relative_to(common.ROOT)), "chars": len(text),
                            "publisher": nm.get("en", cid), "source_class": "IR 질의응답",
