@@ -1,9 +1,9 @@
 async () => {
-  // 실적 지표 정리(Dean's Ticker ①)의 (est. …) — 마스터 지시 2026-10-30: 1순위 Fiscal.ai 자체 추정(company_estimates), 2순위 Zacks(company_analyst_estimates history).
+  // 실적 지표 정리(Dean's Ticker ①)의 (est. …) — 마스터 지시 2026-10-30: 1순위 Fiscal.ai 자체 추정(company_estimates), 2순위 Zacks(company_analyst_estimates history) — Fiscal 칸이 없을 때만.
   // 발표 전 값만 쓴다: Fiscal 칸은 asOf가 발표일(earningsDate) 전날 이전일 때만(발표 뒤엔 새 가이던스로 덮어쓴다), Zacks는 history에서 발표일 전 마지막 값.
   // 기준(GAAP·조정)이 실적 줄과 다르면 est.를 붙이지 않는다 — 예외 GPM: Fiscal 매출총이익은 GAAP뿐이라 조정 GPM 줄에도 붙인다(마스터 지시 2026-10-30).
   // 이익률 est.는 같은 제공처의 분자 est. ÷ 매출 est.(OPM = 영업이익, GPM = 매출총이익). 영업이익 금액 줄은 양식에서 뺐지만 OPM 계산에 쓴다.
-  // 이익률은 표시한 매출 est.와 같은 제공처 쌍을 먼저(매출이 Zacks면 Zacks EBIT ÷ Zacks 매출), 없으면 다른 제공처 쌍(Fiscal 분자 ÷ Fiscal 매출, 계산값 포함) —
+  // 이익률은 표시한 매출 est.와 같은 제공처 쌍을 먼저(보통 Fiscal ÷ Fiscal, 매출이 Zacks일 때만 Zacks EBIT ÷ Zacks 매출), 없으면 다른 제공처 쌍 —
   // 2026-10-30 STRL·EME: 분자는 Fiscal·매출은 Zacks로 각각 골라 '제공처 불일치'로 GPM·OPM est.가 빠지던 결함 수정.
   // __KEY__ = NASDAQ_SNDK 형식. 출력 pick[분기][지표] = {est, src: 'fiscal:<source>'|'zacks', asOf} | null. zacks_used=true면 Zacks 표기를 단다.
   const k = "__KEY__";
@@ -21,17 +21,17 @@ async () => {
     const r = rows.sort((a, b) => String(a.asOf) < String(b.asOf) ? -1 : 1).slice(-1)[0];
     return r ? { est: r.mean, src: "zacks", asOf: r.asOf, n: r.numEstimates } : null;
   };
-  // guidance_calculated(연간 가이던스를 분기로 나눈 값)는 3순위 — Zacks가 없을 때만(2026-10-30 FTAI는 Zacks, 프리즈미안은 Zacks 없음 → Fiscal 계산값)
-  const calc = (d, key) => d && d.periodType === "Quarterly" && (d.metricsValues[key] || {}).source === "guidance_calculated";
-  const fis = (d, key, allowCalc) => { const c = d && d.metricsValues[key]; return c && c.mean != null && pre(c.asOf) && (allowCalc || !calc(d, key)) ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf, basis: c.basis, actual: c.actual } : null; };
+  // Fiscal.ai 칸은 source와 무관하게 1순위(guidance·guidance_adjusted·guidance_calculated·model·agentic_consensus) — Zacks는 Fiscal 발표 전 칸이 없을 때만
+  // (마스터 지시 2026-10-30 "여전히 Zacks에서 가져오는 경우가 많다 — Fiscal.ai 컨센서스를 1순위로". 그 전엔 분기 guidance_calculated를 Zacks 뒤로 미뤄 STRL 매출·EPS·EBITDA가 Zacks로 갔다)
+  const fis = (d, key) => { const c = d && d.metricsValues[key]; return c && c.mean != null && pre(c.asOf) ? { est: c.mean, src: "fiscal:" + c.source, asOf: c.asOf, basis: c.basis, actual: c.actual } : null; };
   const lines = { revenue: ["revenue", "analyst_revenue"], ebitda_adjusted: ["ebitda_adjusted", "analyst_ebitda"], ebit_adjusted: ["ebit_adjusted", "analyst_ebit"], ebit: ["ebit", null], eps_adjusted: ["eps_adjusted", "analyst_eps"], eps_gaap: ["eps_gaap", null],
     gross_profit: ["gross_profit", null], operating_cash_flow: ["operating_cash_flow", null], capex: ["capex", null], free_cash_flow: ["free_cash_flow", null] };
   const pickFor = d => {
     if (!d) return null;
     const o = {};
-    for (const [name, [fk, zk]] of Object.entries(lines)) o[name] = fis(d, fk) || (zk ? zack(d.reportDate, zk) : null) || fis(d, fk, true);
+    for (const [name, [fk, zk]] of Object.entries(lines)) o[name] = fis(d, fk) || (zk ? zack(d.reportDate, zk) : null);
     const prov = v => String(v.src).split(":")[0];                                // fiscal / zacks — 이익률은 같은 제공처끼리만 나눈다
-    const side = (p, fk, zk) => p === "zacks" ? (zk ? zack(d.reportDate, zk) : null) : (fis(d, fk) || fis(d, fk, true));
+    const side = (p, fk, zk) => p === "zacks" ? (zk ? zack(d.reportDate, zk) : null) : fis(d, fk);
     const ratio = (fk, zk, basis) => {
       for (const p of (o.revenue && prov(o.revenue) === "zacks" ? ["zacks", "fiscal"] : ["fiscal", "zacks"])) {
         const num = side(p, fk, zk), rv = side(p, "revenue", "analyst_revenue");

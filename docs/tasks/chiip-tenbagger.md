@@ -23,7 +23,7 @@
 ### Fiscal.ai 데이터 (마스터 지시 2026-10-30 — easyconomics 퇴역, Fiscal.ai만 MCP로)
 ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`로 불러 `execute_code`(자바스크립트, 60초·동시 6개)로 부른다 — 본보기 `scripts/fiscal/templates/*.js`(회사 키 `config/fiscal_keys.yaml`, 없으면 company_profile로 확인해 `py scripts/fiscal/adapter.py --key`), 데이터 계약 `knowledge/methods/data_fiscal.md`. 관문을 통과한 회차에서만 호출한다.
 - **시장 바탕(하루 한 번)**: Fiscal.ai `top_news`(중요도 1~2, 7일)를 그날 첫 통과 회차에 부르고 요지를 radar/state/tenbagger_market_<YYYYMMDD>.md에 저장해 재사용한다(매크로·포지셔닝 지표는 Fiscal.ai에 없다 — 쓰지 않는다).
-- **후보·알파 대상 종목마다**: `fundamentals.js`(시총·성장·이익률·추세·서프라이즈)·`consensus.js`(Zacks 컨센서스·5년 리비전·목표가·의견 + Fiscal 가이던스)·`news.js`(중요도 1~2)·`transcript_qa.js`(애널리스트 질문, 일본은 outputs/report/jp_qa/ IR Q&A)·`holders.js`(13F·내부자)·`fund_letters.js`(펀드 논지), 필요하면 company_segments_and_kpis·company_peers(세그먼트 경쟁사)·`prices.js`(일봉·월봉). 공매도 거래량은 FINRA.
+- **후보·알파 대상 종목마다**: `fundamentals.js`(시총·성장·이익률·추세·서프라이즈)·`consensus.js`(Fiscal.ai 자체 추정 컨센서스 1순위 + Zacks 5년 리비전·목표가·의견, Fiscal 칸이 빈 곳만 Zacks 컨센서스)·`news.js`(중요도 1~2)·`transcript_qa.js`(애널리스트 질문, 일본은 outputs/report/jp_qa/ IR Q&A)·`holders.js`(13F·내부자)·`fund_letters.js`(펀드 논지), 필요하면 company_segments_and_kpis·company_peers(세그먼트 경쟁사)·`prices.js`(일봉·월봉). 공매도 거래량은 FINRA.
 - 쓰는 법: 수치와 출처('Fiscal.ai <함수> YYYY-MM-DD', 원문 페이지는 auditUrl)를 적는다. Zacks 컨센서스·목표가·의견을 실을 때는 'Data provided by Zacks Investment Research, Inc., www.zacksdata.com' 표기. 회사 1차 자료와 다르면 1차 자료를 따르고 차이를 적는다. 실패하면 '미확인' — 숫자를 지어내지 않는다.
 - 데이터 취급: 저장소에는 판단에 쓴 수치·날짜·출처와 자기 말 요약만. 응답 원문·어닝콜 녹취 통째 저장 금지, 질문자 개인 이름 저장 금지(증권사명만).
 

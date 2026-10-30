@@ -193,7 +193,7 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
         B.append({"type": "table", "title": "실적 vs 컨센서스 — 최근 4개 분기 (이익 지표는 조정 기준, 발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈", "추정 출처"],
                   "rows": [[r["period"], r["metric"], f"{r['actual']:,.4g} {r.get('unit', '')}", f"{r['est']:,.4g} {r.get('unit', '')}" if r.get("est") else "-", _pct(r["surprise"]), src(r)] for r in sp],
                   "note": " · ".join(x for x in (
-                      "추정 = Fiscal.ai가 발표 전에 얼려 둔 추정(1순위) → Zacks 발표 직전 컨센서스(2순위)",
+                      "추정 = Fiscal.ai가 발표 전에 얼려 둔 추정(1순위) → Fiscal 추정이 없을 때만 Zacks 발표 직전 컨센서스",
                       f"{', '.join(gaap)}는 회사가 조정 값을 내지 않아 GAAP" if gaap else "",
                       "Data provided by Zacks Investment Research, Inc., www.zacksdata.com" if any(r.get("est_src") == "zacks" for r in sp) else "") if x)})
         per = sorted({r["period"] for r in sp if r["surprise"] is not None})
