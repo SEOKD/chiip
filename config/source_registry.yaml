@@ -776,6 +776,22 @@
   verified: true
   enabled: true
 
+- id: src-market-regime
+  name: Chiip Portfolio 시장 국면 (FRED 지수·금리·변동성·신용·달러·유가)
+  category: I-학습
+  method: csv
+  endpoint_doc: "https://fred.stlouisfed.org/graph/fredgraph.csv"
+  auth: none
+  scope: [글로벌]
+  interval_min: 1440
+  run_on: local
+  language: en
+  doc_type: 시장
+  terms_note: "FRED 공개 CSV(키 불필요, 2026-10-30 응답 확인). 계열 목록 config/market_watch.yaml"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
 - id: src-prices-free
   name: 무료 시세 (대만 TWSE STOCK_DAY_ALL·TPEx 장외 종가, KRX·Finnhub는 키 입력 후)
   category: I-학습

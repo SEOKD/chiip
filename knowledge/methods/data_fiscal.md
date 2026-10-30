@@ -47,7 +47,7 @@
 | company_peers | company_peers |
 | company_insider_buys·altdata(일부) | company_insider_transactions·holders, company_institutional_holders |
 | company_short_volume | **없음** — FINRA 공개 API(scripts/tenbagger/flow.py)로 계속 |
-| market_positioning·macro·liquidity | **없음** — 쓰지 않는다(필요하면 다른 공식 원천을 따로 승인받는다) |
+| market_positioning·macro·liquidity | **없음** — 금리·지수·변동성·신용은 FRED 공개 CSV(radar/market_regime.py, 2026-10-30 마스터 지시) |
 | company_ir_events·news | company_ir_events·company_news·top_news |
 
 ## 5. 경계

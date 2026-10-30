@@ -1,0 +1,52 @@
+# Chiip Portfolio 시장·섹터 국면 (마스터 지시 2026-10-30 "포트폴리오에 대부분 텐배거 종목이 있는 만큼 인덱스와 섹터의 센티멘츠와 펀더멘털의 변화를 감지하고
+# 이를 변화시키는 매크로·마이크로 요인(내러티브 등)을 각각 파악하라. 성장주가 시장금리 상승에 디스카운트가 큰 만큼 금리, 지정학적 요인, 공급망 리스크 등 매크로 요인의 영향도 분석하라. 오버행 리스크도 추가")
+# 엔진 radar/market_regime.py(FRED 공개 CSV, 키 불필요)·radar/overhang.py. 문턱은 사전값 — 표본이 쌓이면 등록부로 옮겨 피팅한다.
+
+series:                       # FRED 계열 id. 지수·금리·변동성·신용·달러·유가
+  sp500: {id: SP500, name: S&P 500, kind: index}
+  nasdaq: {id: NASDAQCOM, name: 나스닥 종합, kind: index}
+  ndx: {id: NASDAQ100, name: 나스닥 100, kind: index}
+  vix: {id: VIXCLS, name: VIX(S&P 500 변동성 지수), kind: level}
+  vxn: {id: VXNCLS, name: VXN(나스닥 100 변동성 지수), kind: level}
+  us2y: {id: DGS2, name: 미 2년물 금리, kind: rate}
+  us10y: {id: DGS10, name: 미 10년물 금리, kind: rate}
+  us30y: {id: DGS30, name: 미 30년물 금리, kind: rate}
+  real10y: {id: DFII10, name: 미 10년물 실질금리, kind: rate}
+  bei10y: {id: T10YIE, name: 10년 기대인플레이션, kind: rate}
+  curve: {id: T10Y2Y, name: 10년-2년 금리차, kind: rate}
+  hy: {id: BAMLH0A0HYM2, name: 하이일드 스프레드, kind: rate}
+  ig: {id: BAMLC0A0CM, name: 투자등급 스프레드, kind: rate}
+  usd: {id: DTWEXBGS, name: 달러 지수(광의), kind: index}
+  brent: {id: DCOILBRENTEU, name: 브렌트유, kind: index}
+
+alerts:                       # 넘으면 그날 '시장 국면' 항목 → Portfolio 회차를 연다(텔레그램은 모델 판단)
+  - {key: us10y, field: d5, abs: 0.25, text: "미 10년물 금리 5거래일 {v:+.0f}bp"}
+  - {key: real10y, field: d5, abs: 0.20, text: "미 10년물 실질금리 5거래일 {v:+.0f}bp"}
+  - {key: us2y, field: d5, abs: 0.25, text: "미 2년물 금리 5거래일 {v:+.0f}bp"}
+  - {key: hy, field: d20, abs: 0.50, text: "하이일드 스프레드 20거래일 {v:+.0f}bp"}
+  - {key: vix, field: last, ge: 25, text: "VIX {v:.1f}"}
+  - {key: vix, field: pct5, abs: 0.30, text: "VIX 5거래일 {v:+.0%}"}
+  - {key: ndx, field: pct20, le: -0.07, text: "나스닥 100 20거래일 {v:+.1%}"}
+  - {key: brent, field: pct5, abs: 0.10, text: "브렌트유 5거래일 {v:+.1%}"}
+
+sectors:                      # 보유 종목과 이어지는 섹터 바스켓. sub = config/portfolio.yaml의 sub
+  power_infra: {name: 전력·데이터센터 전력, keys: [NYSE_GEV, NYSE_ETN, NYSE_PWR, NYSE_VRT], sub: [power_infra]}
+  ai_compute: {name: AI 가속기·반도체, keys: [NASDAQ_NVDA, NASDAQ_AMD, NASDAQ_AVGO, NASDAQ_MRVL, NASDAQ_MU], sub: [accelerator]}
+  semicap: {name: 반도체 장비, keys: [NASDAQ_LRCX, NASDAQ_AMAT, NASDAQ_KLAC], sub: []}
+  ai_hardware: {name: AI 서버·네트워크, keys: [NYSE_ANET, NYSE_CLS, NYSE_DELL], sub: []}
+
+sector_rules:                 # 센티멘트 = 20거래일 주가 중앙값, 펀더멘털 = 30일 EPS 추정 변화 중앙값
+  sentiment_up: 0.05
+  sentiment_down: -0.05
+  fundamental_up: 0.02
+  fundamental_down: -0.02
+
+macro_news:                   # 데일리에만, 제목·링크(9개 매체 제한 그대로). 판단은 모델 몫
+  금리·연준: '"Treasury yields" OR "Federal Reserve" OR "rate cut" OR "rate hike" OR "bond market"'
+  지정학: 'Taiwan OR "export controls" OR tariffs OR "Middle East" OR sanctions'
+  공급망: '"supply chain" OR shortage OR "transformer shortage" OR "gas turbine" OR "helium" OR "rare earth"'
+  AI 투자: '"AI spending" OR hyperscaler OR "capital expenditure" OR "AI bubble"'
+
+overhang:
+  soon_days: 30               # 이 안에 풀리는 물량은 데일리 맨 앞에
+  heavy_pct: 0.05             # 발행 주식의 5% 이상이면 '큼'

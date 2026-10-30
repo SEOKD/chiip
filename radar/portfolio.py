@@ -10,6 +10,7 @@ IB 커버리지·레딧 등 투자 커뮤니티 관심도 등 다양한 채널")
   커뮤니티 관심도  ApeWisdom 공개 API(레딧·4chan 언급 수 집계 — 레딧은 robots.txt 전면 차단이라 직접 수집하지 않음)
                  + 위키백과 일간 조회수(Wikimedia REST, 하루 1회) + Hacker News(하루 1회)
   일정      config/portfolio.yaml events — 당일·전날 알림
+  시장 국면  radar/market_regime.py(지수·금리·신용·유가 FRED, 하루 1회 — 문턱을 넘으면 '시장 국면' 항목)·radar/overhang.py(물량 장부, 2026-10-30 마스터 지시)
 모델 몫(Fiscal.ai MCP, 2026-10-30 ADR-012): 실적 요약·어닝콜 스크립트·컨센서스(Zacks)·목표가·13F·내부자·펀드 레터·Fiscal 포트폴리오 대조 — 예약 작업이 '데일리'(화~토 07시 이후 첫 회차)와
 실적 공시가 잡힌 회차에 부른다. 커버리지 숫자는 --record로 남겨 전일 대비를 결정론으로 계산한다.
 출력: radar/portfolio/YYYYMMDD_HHMM.json(git 제외) · 상태 radar/state/portfolio.json
@@ -31,7 +32,9 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 from pollers import sec_filings as sec  # noqa: E402
+import market_regime  # noqa: E402
 import narrative_sources as ns  # noqa: E402
+import overhang  # noqa: E402
 
 CFG = "config/portfolio.yaml"
 OUT = common.ROOT / "radar" / "portfolio"
@@ -110,7 +113,7 @@ def fetch_sec(h, st, now, first):
         items = (r.get("items") or [""] * len(r["form"]))[i] or ""
         labels = [sec.ITEM_LABEL[x] for x in items.split(",") if x in sec.ITEM_LABEL]
         doc = r["primaryDocument"][i]
-        out.append({"kind": "공시", "ticker": h["ticker"], "form": form, "items": items, "labels": labels,
+        out.append({"kind": "공시", "ticker": h["ticker"], "form": form, "items": items, "labels": labels, "overhang": overhang.is_supply_filing(form, items),
                     "title": f"[SEC {form}{' ' + '·'.join(labels) if labels else ''}] {d.get('name', h['name'])} — {(r.get('primaryDocDescription') or [''] * len(r['form']))[i]}",
                     "url": f"https://www.sec.gov/Archives/edgar/data/{int(h['cik'])}/{acc.replace('-', '')}/{doc}",
                     "index": f"https://www.sec.gov/Archives/edgar/data/{int(h['cik'])}/{acc.replace('-', '')}/",
@@ -338,6 +341,16 @@ def run(now=None):
 
     items += due_events(today, st)
     daily = is_daily(now, st)
+    market = None
+    if now.hour >= 7 and st.get("market_day") != today.isoformat():   # 전일 종가 기준 하루 1회 — 실패하면 다음 회차가 다시 받는다
+        try:
+            market = market_regime.snapshot(hs, today)
+            if market["macro"]:
+                st["market_day"] = today.isoformat()
+                items += [{"kind": "시장 국면", "ticker": None, "title": a["text"], "url": None, "score": 7, "id": f"market|{a['key']}|{a['field']}|{today}"} for a in market["alerts"]]
+            errors += market["errors"]
+        except Exception as exc:
+            errors.append(f"시장 국면: {type(exc).__name__}")
     earnings_hit = sorted({i["ticker"] for i in items if i.get("kind") == "공시" and "2.02" in (i.get("items") or "")})
     common.save_state(STATE, st)
     cal = " · 실적 일정 갱신" if calendar_due(now) else ""   # Fiscal.ai events_calendar — 모델 몫(2026-10-30)
@@ -345,11 +358,15 @@ def run(now=None):
         return None, f"[포트폴리오] 새 자료 없음({len(hs)}종목)" + (f" · 실패 {errors}" if errors else "") + cal + (" → 일정만" if cal else " → 종료")
 
     items.sort(key=lambda i: (-i.get("score", 0), i.get("ticker") or ""))
+    if market is None and market_regime.LATEST.exists():
+        market = json.loads(market_regime.LATEST.read_text(encoding="utf-8"))
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{now:%Y%m%d_%H%M}.json"
     data = {"run_at": common.iso(now), "daily": daily, "earnings_hit": earnings_hit,
             "holdings": [{k: h.get(k) for k in ("ticker", "name", "id", "kind", "names")} for h in hs],
-            "items": items, "attention": attention, "upcoming": upcoming(today), "coverage_last": coverage_last(), "errors": errors}
+            "items": items, "attention": attention, "upcoming": upcoming(today), "coverage_last": coverage_last(), "errors": errors,
+            "market": market, "market_news": market_regime.macro_news() if daily else None, "overhang": overhang.table(hs, today),
+            "overhang_filings": [i for i in items if i.get("overhang")]}
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     st = common.load_state(STATE, {})
     st["lock"] = common.iso(now)
