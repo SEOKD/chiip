@@ -99,6 +99,7 @@
 - 텐배거 리포트 그림 5 단순화(마스터 2026-10-30): 계단선과 실적 발표일만, 사건별 변화는 그림 뒤 표로
 - 한국 종목 기준 자료 = 당기·직전 분기 PT(마스터 2026-10-30): kr_ir_docs.py --pt, transcript_watch.py XKRX_ 대기 제외
 - 기준 멀티플 = Fwd 1Y 이익 지표(마스터 2026-10-30): multiples.main_metric·choose_basis, forward_multiples.js, adapter --forward-multiples, 시장÷내재는 EV끼리
+- 실적 지표 주가 줄(마스터 2026-10-30): 보고 시점 기준 장중·장전·장후 ±x%, radar/markets/session.py
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

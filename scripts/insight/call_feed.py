@@ -165,7 +165,7 @@ def calc(data, key, ev, rec=None, now=None):
                             "ar_pct": round(s0 - beta * m0, 2) if (s0 is not None and m0 is not None) else s0}
     if not r_day:
         out["reaction"] = None
-        out["drift"] = {"days": 0, "note": "반응일 장이 아직 열리지 않았다 — 가격 줄은 ①의 After 등락(있으면)과 발표 전 20일 상승으로 쓴다"}
+        out["drift"] = {"days": 0, "note": "반응일 장이 아직 열리지 않았다 — 가격 줄은 ①의 장전·장후 등락(있으면)과 발표 전 20일 상승으로 쓴다"}
     if r_day and base:
         s, _ = _window(srets, base, r_day)
         m, _ = _window(mkt, base, r_day) if mkt else (None, 0)
