@@ -1098,11 +1098,12 @@
   ]
  },
  "multiples_now": {
-  "pe_fwd": 9.8,
+  "pe_fwd": 9.09,
   "ev_ebitda": 17.78,
   "ev_sales": 1.33,
   "growth": 0.158,
-  "note": "선행 P/E = $54.70 ÷ Fiscal.ai 자체 추정 선행 4분기 조정 EPS 5.59(1.30+1.31+1.44+1.54) — Chiip 계산. EV/EBITDA·EV/매출 = Fiscal.ai daily ratios 2026-10-29(TTM GAAP)"
+  "note": "선행 P/E = $54.70 ÷ Fiscal.ai 자체 추정 선행 4분기 조정 EPS 5.59(1.30+1.31+1.44+1.54) — Chiip 계산. EV/EBITDA·EV/매출 = Fiscal.ai daily ratios 2026-10-29(TTM GAAP)",
+  "ev_ebitda_fwd": 5.58
  },
  "peers_basis": "ttm",
  "peers_source": "Fiscal.ai company_peers(ICHR 직접 경쟁, MKSI 사업모델) + 반도체 서브시스템·부품 동종(AEIS·ENTG·KLIC) — 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM), EV/매출·EV/EBITDA = daily ratios 2026-10-29",
@@ -1117,7 +1118,11 @@
    "cash": 0.2565,
    "ev_sales": 1.47,
    "ev_ebitda": 178.6,
-   "growth": 0.091
+   "growth": 0.091,
+   "pe_fwd": 14.94,
+   "ev_ebitda_fwd": 13.5,
+   "ntm_ebit_margin": 0.0864,
+   "ntm_growth": 0.464
   },
   {
    "ticker": "MKSI",
@@ -1129,7 +1134,11 @@
    "cash": 0.611,
    "ev_sales": 4.18,
    "ev_ebitda": 17.77,
-   "growth": 0.163
+   "growth": 0.163,
+   "pe_fwd": 12.49,
+   "ev_ebitda_fwd": 11.15,
+   "ntm_ebit_margin": 0.2662,
+   "ntm_growth": 0.3469
   },
   {
    "ticker": "AEIS",
@@ -1141,7 +1150,11 @@
    "cash": 1.3965,
    "ev_sales": 4.71,
    "ev_ebitda": 28.94,
-   "growth": 0.246
+   "growth": 0.246,
+   "pe_fwd": 15.68,
+   "ev_ebitda_fwd": 14.12,
+   "ntm_ebit_margin": 0.2405,
+   "ntm_growth": 0.397
   },
   {
    "ticker": "ENTG",
@@ -1153,7 +1166,11 @@
    "cash": 0.3565,
    "ev_sales": 7.79,
    "ev_ebitda": 27.95,
-   "growth": 0.094
+   "growth": 0.094,
+   "pe_fwd": 28.22,
+   "ev_ebitda_fwd": 21.62,
+   "ntm_ebit_margin": 0.2784,
+   "ntm_growth": 0.1772
   },
   {
    "ticker": "KLIC",
@@ -1165,7 +1182,11 @@
    "cash": 0.5166,
    "ev_sales": 3.88,
    "ev_ebitda": 26.08,
-   "growth": 0.444
+   "growth": 0.444,
+   "pe_fwd": 13.12,
+   "ev_ebitda_fwd": 8.57,
+   "ntm_ebit_margin": 0.229,
+   "ntm_growth": 0.5944
   }
  ],
  "sbc_pct_rev": 0.009,
@@ -1257,6 +1278,282 @@
    {
     "date": "2026-10-29",
     "value": 1.33
+   }
+  ],
+  "pe_fwd": [
+   {
+    "date": "2023-10-31",
+    "value": 8.9
+   },
+   {
+    "date": "2023-11-30",
+    "value": 10.13
+   },
+   {
+    "date": "2023-12-29",
+    "value": 16.74
+   },
+   {
+    "date": "2024-01-31",
+    "value": 18.73
+   },
+   {
+    "date": "2024-02-29",
+    "value": 21.18
+   },
+   {
+    "date": "2024-03-28",
+    "value": 22.52
+   },
+   {
+    "date": "2024-04-30",
+    "value": 20.5
+   },
+   {
+    "date": "2024-05-31",
+    "value": 22.74
+   },
+   {
+    "date": "2024-06-28",
+    "value": 24.02
+   },
+   {
+    "date": "2024-07-31",
+    "value": 21.21
+   },
+   {
+    "date": "2024-08-30",
+    "value": 18.48
+   },
+   {
+    "date": "2024-09-30",
+    "value": 16.36
+   },
+   {
+    "date": "2024-10-31",
+    "value": 13.82
+   },
+   {
+    "date": "2024-11-29",
+    "value": 15.88
+   },
+   {
+    "date": "2024-12-31",
+    "value": 12.84
+   },
+   {
+    "date": "2025-01-31",
+    "value": 14.93
+   },
+   {
+    "date": "2025-02-28",
+    "value": 14.64
+   },
+   {
+    "date": "2025-03-31",
+    "value": 13.05
+   },
+   {
+    "date": "2025-04-30",
+    "value": 19.68
+   },
+   {
+    "date": "2025-05-30",
+    "value": 19.77
+   },
+   {
+    "date": "2025-06-30",
+    "value": 22.57
+   },
+   {
+    "date": "2025-07-31",
+    "value": 21.05
+   },
+   {
+    "date": "2025-08-29",
+    "value": 22.45
+   },
+   {
+    "date": "2025-09-30",
+    "value": 22.71
+   },
+   {
+    "date": "2025-10-31",
+    "value": 23.63
+   },
+   {
+    "date": "2025-11-28",
+    "value": 21.86
+   },
+   {
+    "date": "2025-12-31",
+    "value": 19.94
+   },
+   {
+    "date": "2026-01-30",
+    "value": 34.39
+   },
+   {
+    "date": "2026-02-27",
+    "value": 32.11
+   },
+   {
+    "date": "2026-03-31",
+    "value": 25.59
+   },
+   {
+    "date": "2026-04-30",
+    "value": 30.65
+   },
+   {
+    "date": "2026-05-29",
+    "value": 30.02
+   },
+   {
+    "date": "2026-06-30",
+    "value": 40.05
+   },
+   {
+    "date": "2026-07-31",
+    "value": 23.4
+   },
+   {
+    "date": "2026-08-31",
+    "value": 14.4
+   },
+   {
+    "date": "2026-09-30",
+    "value": 14.15
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2024-02-29",
+    "value": 10
+   },
+   {
+    "date": "2024-03-28",
+    "value": 10.55
+   },
+   {
+    "date": "2024-04-30",
+    "value": 9.72
+   },
+   {
+    "date": "2024-05-31",
+    "value": 10.78
+   },
+   {
+    "date": "2024-06-28",
+    "value": 11.32
+   },
+   {
+    "date": "2024-07-31",
+    "value": 10.18
+   },
+   {
+    "date": "2024-08-30",
+    "value": 9.04
+   },
+   {
+    "date": "2024-09-30",
+    "value": 8.45
+   },
+   {
+    "date": "2024-10-31",
+    "value": 6.98
+   },
+   {
+    "date": "2024-11-29",
+    "value": 7.83
+   },
+   {
+    "date": "2024-12-31",
+    "value": 6.75
+   },
+   {
+    "date": "2025-01-31",
+    "value": 7.68
+   },
+   {
+    "date": "2025-02-28",
+    "value": 7
+   },
+   {
+    "date": "2025-03-31",
+    "value": 6.42
+   },
+   {
+    "date": "2025-04-30",
+    "value": 7.33
+   },
+   {
+    "date": "2025-05-30",
+    "value": 7.41
+   },
+   {
+    "date": "2025-06-30",
+    "value": 8.07
+   },
+   {
+    "date": "2025-07-31",
+    "value": 8.06
+   },
+   {
+    "date": "2025-08-29",
+    "value": 8.42
+   },
+   {
+    "date": "2025-09-30",
+    "value": 8.82
+   },
+   {
+    "date": "2025-10-31",
+    "value": 9
+   },
+   {
+    "date": "2025-11-28",
+    "value": 8.56
+   },
+   {
+    "date": "2025-12-31",
+    "value": 8.11
+   },
+   {
+    "date": "2026-01-30",
+    "value": 12.65
+   },
+   {
+    "date": "2026-02-27",
+    "value": 14.04
+   },
+   {
+    "date": "2026-03-31",
+    "value": 12.61
+   },
+   {
+    "date": "2026-04-30",
+    "value": 15.22
+   },
+   {
+    "date": "2026-05-29",
+    "value": 16.99
+   },
+   {
+    "date": "2026-06-30",
+    "value": 23.19
+   },
+   {
+    "date": "2026-07-31",
+    "value": 14.18
+   },
+   {
+    "date": "2026-08-31",
+    "value": 10.22
+   },
+   {
+    "date": "2026-09-30",
+    "value": 10.15
    }
   ]
  },
@@ -1850,5 +2147,23 @@
    }
   },
   "summary": "2배는 기존 사업 안에 있고, 3배부터는 WFE 성장이 아니라 사업 구조가 바뀌어야 한다."
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 5.59269,
+   "ebitda": 403141257,
+   "ebit": 353600000,
+   "revenue": 3620562738
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
  }
 }
