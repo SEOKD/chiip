@@ -72,6 +72,25 @@ class TestLadder(unittest.TestCase):
         self.assertNotIn("주석", h)
         self.assertIn(t, report_notion.render({**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}]}]}))
 
+    def test_monte_carlo_reading(self):
+        p = {2: 0.4172, 3: 0.1646, 5: 0.0222, 10: 0.0}
+        lines = ladder.mc_reading(5000, 0.56, 0.56, 1.09, 2.13, p, [2, 3, 5, 10])
+        self.assertEqual(len(lines), 3)
+        self.assertIn("1.00이 지금 주가", lines[0])
+        self.assertIn("5,000번 중 2,800번(56%)", lines[1])
+        self.assertIn("반반", lines[1])
+        self.assertIn("0.56~2.13배", lines[1])
+        self.assertIn("2배 이상 2,086번", lines[2])
+        self.assertIn("더 많다", ladder.mc_reading(100, 0.7, 1, 1, 1, {}, [2])[1])
+        self.assertIn("뒷받침하지 못하는", ladder.mc_reading(100, 0.2, 1, 1, 1, {}, [2])[1])
+        c = {**chart("몬테카를로")["chart"], "conclusion": lines}
+        doc = {**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}, {"type": "chart", "chart": chart("다른 그림")["chart"]}]}]}
+        h = report_html.render(doc)
+        for line in lines:
+            self.assertIn(line.split(":")[0], h)
+        self.assertEqual(report_html.under_lines(chart("다른 그림")["chart"]), [])   # 이 그림에만
+        self.assertIn(lines[1], report_notion.render(doc))
+
     def test_large_cap_shows_only_two_times(self):
         dp, co, r = self._inputs(mcap=150.0)
         sec = ladder.report_section(dp, co, r)

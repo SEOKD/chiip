@@ -333,7 +333,7 @@ def figures(d):
 def under_lines(c):
     """그래프 아래 설명 — 부가 설명을 넣지 않는 규칙의 예외 둘뿐: 그림 5의 사건 번호(kind revision)와 몬테카를로 결론(conclusion). 마스터 지시 2026-10-30. HTML·마크다운·노션이 같은 줄을 쓴다"""
     if c.get("conclusion"):
-        return [c["conclusion"]]
+        return c["conclusion"] if isinstance(c["conclusion"], list) else [c["conclusion"]]
     if c.get("kind") != "revision":
         return []
     out = []
