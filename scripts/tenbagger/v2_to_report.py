@@ -101,6 +101,7 @@ def build(entity, draws=3000):
     if labels:
         blocks.append({"type": "chart", "chart": {"kind": "bars", "title": f"몬테카를로 {mc['used']:,}회 — 지금 가치/시가총액 분포 (%)", "unit": "%", "categories": labels,
                        "series": [{"name": "빈도", "color": "c", "values": pct}],
+                       "conclusion": ladder.mc_conclusion(mc["used"], u["p_h"], ladder.steps_for(mcap * float(co.get("unit_usd", 1e9)))),
                        "note": f"P10 {u['v0_p10']:.2f} · P50 {u['v0_p50']:.2f} · P90 {u['v0_p90']:.2f} · 기대 {u['v0_mean']:.2f}배 · 30% 이상 고평가 확률 {u['p_over_30pct_overvalued']:.0%} · 5년 뒤 " + " · ".join(f"≥{k:g}배 {p:.0%}" for k, p in u['p_h'].items())}})
     bars = []
     if u.get("implied_cagr") is not None:

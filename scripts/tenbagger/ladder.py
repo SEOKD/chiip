@@ -84,6 +84,18 @@ def _check_text(lad, steps):
         raise ValueError(f"datapack ladder.steps에 {miss}배의 path·outlook이 없다 — 시가총액 구간 단계 {steps} 전부 필요")
 
 
+def mc_conclusion(n, p_h, steps):
+    """몬테카를로 그림 아래 결론 한 줄 — 몇 번 돌려야 k배가 나오나(마스터 지시 2026-10-30 "부가 설명은 결론만"). 배수는 시가총액 구간 단계"""
+    parts = []
+    for k in steps:
+        hits = round((p_h.get(k) or 0) * n)
+        if hits:
+            parts.append(f"{k}배 이상 {hits:,}번(약 {n / hits:.1f}번에 1번)" if n / hits < 10 else f"{k}배 이상 {hits:,}번(약 {n / hits:.0f}번에 1번)")
+        else:
+            parts.append(f"{k}배 이상 0번")
+    return f"{n:,}번 돌리면 5년 뒤 주주가치가 지금 시가총액의 " + " · ".join(parts)
+
+
 def report_section(dp, co, r):
     lad = (dp or {}).get("ladder")
     if not lad:

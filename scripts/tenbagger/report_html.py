@@ -330,8 +330,10 @@ def figures(d):
     return out
 
 
-def event_lines(c):
-    """그림 5의 사건 번호 설명 — 본문 아래 부가 설명을 넣지 않는 규칙의 유일한 예외(마스터 지시 2026-10-30 "그림 5에만 해당"). HTML·마크다운·노션이 같은 줄을 쓴다"""
+def under_lines(c):
+    """그래프 아래 설명 — 부가 설명을 넣지 않는 규칙의 예외 둘뿐: 그림 5의 사건 번호(kind revision)와 몬테카를로 결론(conclusion). 마스터 지시 2026-10-30. HTML·마크다운·노션이 같은 줄을 쓴다"""
+    if c.get("conclusion"):
+        return [c["conclusion"]]
     if c.get("kind") != "revision":
         return []
     out = []
@@ -362,7 +364,7 @@ def block(b):
         fn = CHARTS.get(c.get("kind"))
         if not fn:
             return ""
-        legend = "".join(f'<div class="sm mut">{t(x)}</div>' for x in event_lines(c))
+        legend = "".join(f'<div class="sm mut">{t(x)}</div>' for x in under_lines(c))
         return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}{legend}</div>'
     return ""
 

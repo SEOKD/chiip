@@ -61,6 +61,17 @@ class TestLadder(unittest.TestCase):
         with self.assertRaises(ValueError):
             ladder.report_section(dp, co, r)
 
+    def test_monte_carlo_conclusion(self):
+        p = {1.5: 0.65, 2: 0.4172, 3: 0.1646, 5: 0.0222, 10: 0.0}
+        t = ladder.mc_conclusion(5000, p, [2, 3, 5, 10])
+        self.assertEqual(t, "5,000번 돌리면 5년 뒤 주주가치가 지금 시가총액의 2배 이상 2,086번(약 2.4번에 1번) · 3배 이상 823번(약 6.1번에 1번) · 5배 이상 111번(약 45번에 1번) · 10배 이상 0번")
+        self.assertNotIn("3배", ladder.mc_conclusion(5000, p, [2]))
+        c = {**chart("몬테카를로")["chart"], "conclusion": t, "note": "주석"}
+        h = report_html.render({**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}]}]})
+        self.assertIn(t, h)
+        self.assertNotIn("주석", h)
+        self.assertIn(t, report_notion.render({**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}]}]}))
+
     def test_large_cap_shows_only_two_times(self):
         dp, co, r = self._inputs(mcap=150.0)
         sec = ladder.report_section(dp, co, r)
@@ -278,7 +289,7 @@ class TestRevision(unittest.TestCase):
         self.assertIn("① 26-02-23 4Q25 실적 · EPS 리비전 +110%", h)
         self.assertIn("② 26-02-26 전환사채 · 실적 창과 겹침", h)
         self.assertNotIn("차트 주석", h)
-        self.assertEqual(report_html.event_lines(chart("주가")["chart"]), [])
+        self.assertEqual(report_html.under_lines(chart("주가")["chart"]), [])
         for out in (report_notion.render(d), report_notion.render(d, charts=["charts/a.svg", "charts/b.svg"])):
             self.assertIn("- ① 26-02-23 4Q25 실적 · EPS 리비전 +110%", out)
 
