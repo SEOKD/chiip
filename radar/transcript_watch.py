@@ -149,6 +149,13 @@ def earnings_files(r):
     return out
 
 
+def written_before_transcript(rel, prev_check):
+    """② 파일이 직전 전문 확인보다 먼저 쓰였나 — 표시(--await)를 빠뜨려도 재분석이 빠지지 않게 시각으로 가른다"""
+    if not prev_check:
+        return False
+    return datetime.fromtimestamp((common.ROOT / rel).stat().st_mtime, timezone.utc) < datetime.fromisoformat(prev_check)
+
+
 def code(now=None):
     now = now or datetime.now(timezone.utc)
     st = refresh(common.load_state(STATE, {}), now)
@@ -163,6 +170,7 @@ def put(path, now=None):
     data = json.loads(text[text.index("{"):text.rindex("}") + 1])
     st = refresh(common.load_state(STATE, {}), now)
     ev = st["events"]
+    prev_check = st.get("last_check")
     for f in data.get("found") or []:
         r = ev.get(f"{f['key']}|{f['event']}")
         if r and r["status"] == "wait":
@@ -170,8 +178,11 @@ def put(path, now=None):
             r.update({"status": "found", "found_at": now.isoformat(), "paragraphs": f.get("paragraphs"), "qa": f.get("qa"),
                       "lag_h": round((now - datetime.fromisoformat(r["utc"])).total_seconds() / 3600, 1)})
             files = earnings_files(r)
-            if 2 in files and 3 in files and not r.get("await"):   # 콜 기준 ②·③을 이미 보냈다
-                r.update({"status": "done", "done_at": now.isoformat(), "note": "이미 정리(②·③ 파일 있음)"})
+            if 2 in files and 3 in files and not r.get("await"):
+                if written_before_transcript(files[2], prev_check):   # 직전 확인 때 전문이 없었으니 그 전에 쓴 ②는 보도자료 기준 — 콜 기준으로 다시(2026-10-30 재점검)
+                    r["await"] = True
+                else:   # 콜 기준 ②·③을 이미 보냈다
+                    r.update({"status": "done", "done_at": now.isoformat(), "note": "이미 정리(②·③ 파일 있음)"})
     st["last_check"] = now.isoformat()
     st["last_errors"] = (data.get("errors") or [])[:10]
     common.save_state(STATE, st)

@@ -1,5 +1,6 @@
 """어닝콜 전문 신규 게재 감시 — 일정 누적·대기·발견·이미 정리·콜 반영 대기(마스터 지시 2026-10-30)"""
 import json
+import os
 import sys
 import tempfile
 import unittest
@@ -71,6 +72,19 @@ class TestTranscriptWatch(unittest.TestCase):
         Path(self.tmp.name, "20261030_AAA_4.txt").write_text("x", encoding="utf-8")
         self.assertEqual(tw.done("NASDAQ_AAA", "q3-2026", now=NOW), "완료")
         self.assertEqual(tw.to_summarize(self.state), [])
+
+    def test_summary_written_before_transcript_is_redone(self):
+        """표시(--await)를 빠뜨려도 직전 확인보다 먼저 쓴 ②·③은 보도자료 기준으로 보고 콜 기준으로 다시 쓴다(2026-10-30 재점검 — MTZ)"""
+        for n in (1, 2, 3):
+            f = Path(self.tmp.name, f"20261029_BBB_{n}.txt")
+            f.write_text("x", encoding="utf-8")
+            os.utime(f, (NOW.timestamp() - 7200, NOW.timestamp() - 7200))
+        self.state["last_check"] = datetime(2026, 10, 29, 23, 40, tzinfo=timezone.utc).isoformat()
+        out = Path(self.tmp.name) / "out.json"
+        out.write_text(json.dumps({"found": [{"key": "NASDAQ_BBB", "event": "q1-2027", "paragraphs": 80, "qa": True}]}), encoding="utf-8")
+        todo = tw.put(out, NOW)
+        self.assertEqual([r["key"] for r in todo], ["NASDAQ_BBB"])
+        self.assertTrue(self.state["events"]["NASDAQ_BBB|q1-2027"]["await"])
 
     def test_done_with_no_feed_reason(self):
         out = Path(self.tmp.name) / "out.json"

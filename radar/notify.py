@@ -21,12 +21,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
-from units import money_units  # noqa: E402
+from units import chiip_name, money_units  # noqa: E402
 
 OUTBOX = common.STATE / "outbox.log"
 P1_QUEUE = common.STATE / "p1_queue.jsonl"
 MAX_LEN = 3800
-BRAND = ("치입", "Chiip")   # 마스터 지시 2026-10-29: 텔레그램·GitHub 보고에는 '치입' 대신 'Chiip'으로 표기
 
 
 LABELS = [   # 텔레그램 기능 이름은 영어로(마스터 지시 2026-10-29 "Chiip 펄스를 Chiip Pulse로, 나머지도 영어로") — 긴 이름부터
@@ -44,7 +43,7 @@ LEVEL_WORD_RE = re.compile(r"(?<![\w/.=-])P[0-3](?![\w/.=-])(\s?·\s?|\s)?")   #
 
 def brand(text):
     """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
-    text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", (text or "").replace(*BRAND))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
+    text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", chiip_name(text))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
     # 회사 설명 줄의 '모델:'·'성장:'·'내러티브:' 머리말은 빼고 내용만(마스터 지시 2026-10-30)
     text = re.sub(r"(?m)^(☞\s*)?(?:비즈니스\s*)?(?:모델|성장(?:\s*동력)?|내러티브)\s*[:：]\s*", r"\1", text)
     # 펄스·포트폴리오 근거 줄 머리말('**판단**', '· 숫자 —' 등)도 빼고 내용만(마스터 지시 2026-10-30)
