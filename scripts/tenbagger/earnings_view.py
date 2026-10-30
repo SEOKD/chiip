@@ -10,7 +10,7 @@ v2_to_report가 밸류에이션 절 앞에 이 절을 넣는다. 재료는 데�
   ③ EPS·매출 리비전 — consensus.revisions(직전 콜 시점 vs 지금, 같은 분기끼리) → 분기별·합계 리비전 %, 같은 기간 주가 변화를
      'EPS 리비전 × 멀티플 변화'로 분해(주가 = 이익 × 배수 → (1+주가) = (1+EPS 리비전)(1+리레이팅))
   ③-2 지난 12개월 EPS 리비전 추이·최근 4개 분기 주가 분해 — scripts/tenbagger/revision_view.py(재료 있으면 ③의 단일 구간 분해 그림을 대신한다, 2026-10-30)
-  ④ 멀티플 프리미엄 — multiples_now(선행 P/E·EV/EBITDA·EV/매출·성장) vs peers 같은 지표의 중앙값 → 프리미엄 %, 성장 조정(배수 ÷ 성장%) 프리미엄
+  ④ 멀티플 프리미엄 — multiples_now(Fwd 1Y P/E·Fwd 1Y EV/EBITDA·성장, 없을 때만 후행 EV/EBITDA·EV/매출) vs peers 같은 지표의 중앙값 → 프리미엄 %, 성장 조정(배수 ÷ 성장%) 프리미엄
 
 datapack 추가 필드:
   "call": {..., "prev_date": "2026-07-28",
@@ -22,7 +22,7 @@ datapack 추가 필드:
   call.deltas 각 항목에 "label"(그래프에 쓸 짧은 이름, 16자 이내 — 예 "OpenAI 2GW 옵션")을 넣으면 그래프가 그 이름을 쓴다
                 "revisions": {"from_date","to_date","from_label","source","rows":[{"period":"2026Q4","metric":"EPS","from":0.18,"to":0.1768}]},
                 "price_window": {"from": 26.22, "to": 18.35}}
-  "multiples_now": {"pe_fwd","ev_ebitda","ev_sales","growth"},  peers 각 행에 같은 이름(pe_fwd·ev_ebitda·ev_sales·growth)
+  "multiples_now": {"pe_fwd","ev_ebitda_fwd","ev_ebitda","ev_sales","growth"},  peers 각 행에 같은 이름
 사용: v2_to_report.py가 자동으로 부른다. 단독: py scripts/tenbagger/earnings_view.py <entity_id>
 """
 import copy
@@ -153,19 +153,22 @@ def revisions(rv, price=None):
 
 def premiums(now, peers):
     """대상 배수 ÷ 동종 중앙값 − 1. 성장 조정 = (배수 ÷ 성장%) 끼리 비교 — 성장이 0 이하인 동종은 제외"""
-    out = []
-    for k, label in (("pe_fwd", "선행 P/E"), ("ev_ebitda", "EV/EBITDA"), ("ev_sales", "EV/매출")):
-        v = (now or {}).get(k)
-        pv = [p[k] for p in peers or [] if p.get(k) and p[k] > 0]
-        if not v or len(pv) < 2:
-            continue
-        med = statistics.median(pv)
-        g = (now or {}).get("growth")
-        adj = [p[k] / (p["growth"] * 100) for p in peers if p.get(k) and p[k] > 0 and (p.get("growth") or 0) > 0]
-        ga = (v / (g * 100) / statistics.median(adj) - 1) if g and g > 0 and len(adj) >= 2 else None
-        out.append({"metric": label, "value": v, "peer_median": med, "n": len(pv), "premium": v / med - 1,
-                    "growth_adj_premium": ga, "lo": min(pv), "hi": max(pv)})
-    return out
+    def rows(metrics):
+        out = []
+        for k, label in metrics:
+            v = (now or {}).get(k)
+            pv = [p[k] for p in peers or [] if p.get(k) and p[k] > 0]
+            if not v or len(pv) < 2:
+                continue
+            med = statistics.median(pv)
+            g = (now or {}).get("growth")
+            adj = [p[k] / (p["growth"] * 100) for p in peers if p.get(k) and p[k] > 0 and (p.get("growth") or 0) > 0]
+            ga = (v / (g * 100) / statistics.median(adj) - 1) if g and g > 0 and len(adj) >= 2 else None
+            out.append({"metric": label, "value": v, "peer_median": med, "n": len(pv), "premium": v / med - 1,
+                        "growth_adj_premium": ga, "lo": min(pv), "hi": max(pv)})
+        return out
+    # 이익 지표의 선행 배수가 기준(마스터 지시 2026-10-30) — 후행·매출 배수는 그 재료가 없을 때만
+    return rows((("pe_fwd", "Fwd 1Y P/E"), ("ev_ebitda_fwd", "Fwd 1Y EV/EBITDA"))) or rows((("ev_ebitda", "EV/EBITDA"), ("ev_sales", "EV/매출")))
 
 
 def _pct(x, nd=1):

@@ -1,9 +1,11 @@
 """Fiscal.ai 어댑터·장기 월봉 시험 (마스터 지시 2026-10-30 — easyconomics 퇴역, Fiscal.ai MCP만)"""
+import json
 import sys
 import tempfile
 import unittest
 from datetime import date, timedelta
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts" / "fiscal"))
@@ -64,6 +66,27 @@ class TestFiscalAdapter(unittest.TestCase):
 
     def test_key_cache(self):
         self.assertEqual(adapter.key_of("co-quanta-services"), "NYSE_PWR")
+
+
+class TestForwardMultiples(unittest.TestCase):
+    def test_put_forward_fills_target_peers_and_history(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp) / "knowledge" / "models" / "companies" / "co-x"
+            d.mkdir(parents=True)
+            (d / "datapack.json").write_text(json.dumps({"multiples_now": {"ev_sales": 2.0}, "peers": [{"ticker": "AAA"}, {"ticker": "BBB"}]}), encoding="utf-8")
+            out = {"as_of": "2026-10-30", "target": {"pe_fwd": 9.1, "ev_ebitda_fwd": 5.6, "src": {"pe_fwd": "fiscal"}}, "ntm": {"eps": 5.6}, "guided": {"eps": True},
+                   "peers": {"NASDAQ_AAA": {"pe_fwd": 15.0, "ev_ebitda_fwd": 12.0, "ntm": {"revenue": 120.0, "ebit": 24.0, "rev_ttm": 100.0}}},
+                   "history": [{"date": "2026-08-31", "pe_fwd": 14.4, "ev_ebitda_fwd": None}, {"date": "2026-09-30", "pe_fwd": 14.2, "ev_ebitda_fwd": 10.2}]}
+            with patch.object(adapter, "ROOT", Path(tmp)):
+                now, n, h = adapter.put_forward("co-x", out)
+            dp = json.loads((d / "datapack.json").read_text(encoding="utf-8"))
+        self.assertEqual((now["pe_fwd"], n, h), (9.1, 1, 2))
+        self.assertEqual(dp["multiples_now"], {"ev_sales": 2.0, "pe_fwd": 9.1, "ev_ebitda_fwd": 5.6})
+        self.assertEqual({k: dp["peers"][0][k] for k in ("pe_fwd", "ntm_ebit_margin", "ntm_growth")}, {"pe_fwd": 15.0, "ntm_ebit_margin": 0.2, "ntm_growth": 0.2})
+        self.assertNotIn("pe_fwd", dp["peers"][1])
+        self.assertEqual(dp["forward"]["ntm"], {"eps": 5.6})
+        self.assertEqual(len(dp["history"]["pe_fwd"]), 2)
+        self.assertEqual(dp["history"]["ev_ebitda_fwd"], [{"date": "2026-09-30", "value": 10.2}])
 
 
 if __name__ == "__main__":

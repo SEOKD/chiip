@@ -2,22 +2,61 @@
 (마스터 지시 2026-10-29 "멀티플 산정은 과거 레인지 참조를 넘어 주요 동종업계 레인지를 비교하고, 멀티플 할인이 시장 예상대로 적용됐는지
 파악하고, ROIC 등 핵심 실적 지표에 비례해 멀티플을 합리적으로 산정하라. 맥킨지 밸류에이션이나 최신 기법 논문을 참고").
 
+멀티플 기준(마스터 지시 2026-10-30 "EV/매출 말고 Fwd 1Y P/E나 Fwd 1Y EV/EBITDA 등 이익 지표로. EPS가 주요 지표면 P/E, EBITDA가 주요 지표면 EV/EBITDA"):
+  choose_basis가 회사마다 하나를 고른다 — EPS가 주요 지표면 Fwd 1Y P/E, EBITDA가 주요 지표면 Fwd 1Y EV/EBITDA. 선행 이익이 적자이거나 재료가 없을 때만 EV/매출(이유를 본문에 적는다).
+  재료: 본보기 scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples → datapack multiples_now·forward·peers·history.
+
 방법(knowledge/methods/multiples.md에 문헌·한계):
-  1) 자기 과거 레인지 — datapack history.ev_sales(날짜별) 분위.
-  2) 동종 레인지 — 같은 기준(peers_basis)의 EV/매출 25·50·75분위와 대상의 위치.
+  1) 자기 과거 레인지 — datapack history.<기준>(날짜별) 분위.
+  2) 동종 레인지 — 같은 기준의 25·50·75분위와 대상의 위치.
   3) 펀더멘털 내재 멀티플(McKinsey 가치 동인) — 회사마다 같은 WACC·계속가치 규칙(RONIC = WACC)으로 자기 성장 경로·이익률·
-     자본 회전율(매출÷투하자본 = ROIC ÷ 세후 이익률)을 자본화한 EV ÷ 매출. 동종은 '현재 수익성 유지 + 성장 감속', 대상은 v2 기본 시나리오.
+     자본 회전율(매출÷투하자본 = ROIC ÷ 세후 이익률)을 자본화한 EV. 동종은 '향후 12개월 이익률 유지 + 성장 감속', 대상은 v2 기본 시나리오.
+     시장÷내재는 EV끼리 잰다(차입이 큰 동종에서 주주가치끼리 재면 배율이 폭주한다 — 2026-10-30 UCTT 재렌더링에서 확인). 내재 멀티플 = 시장 멀티플 ÷ 그 배율.
   4) 시장 ÷ 내재 = 섹터 심리 배율(동종 중앙값) — 시장이 펀더멘털 이상으로 얹어 주는 몫.
   5) 분해(Rhodes-Kropf·Robinson·Viswanathan 2005의 정신): ln(대상 시장 배수 ÷ 동종 중앙 시장 배수)
        = ln(대상 내재 ÷ 동종 중앙 내재)  [펀더멘털 차이로 정당한 할인·프리미엄]
        + ln(섹터 심리 배율)이 대상에 똑같이 적용됐다고 볼 때의 나머지 [기업 고유 — 시장이 따로 얹은 기대 또는 할인]
   6) 합리적 멀티플 = 대상 내재 × 동종 심리 배율(중앙, 25~75분위 범위) → 가치 ÷ 시가총액.
-  7) ROIC 비례 표 — 정상 상태 EV/NOPAT = (1 − g/ROIC)/(WACC − g), EV/매출 = 그 × 세후 영업이익률.
+  7) ROIC 비례 표 — 정상 상태 EV/NOPAT = (1 − g/ROIC)/(WACC − g), EV/EBIT = 그 × (1 − 세율), EV/매출 = 그 × 세후 영업이익률.
 """
 import math
 
 import dcf
 import scenarios
+
+BASES = {"pe_fwd": "Fwd 1Y P/E", "ev_ebitda_fwd": "Fwd 1Y EV/EBITDA", "ev_sales": "EV/매출"}
+DA_SHARE = 0.5     # 선행 EBITDA에서 감가상각이 이 비중 이상이면 순이익이 설비 상각에 가려진다 → EBITDA가 주요 지표
+MIN_PEERS = 3      # 동종 배수가 이보다 적으면 그 기준으로 비교하지 않는다
+
+
+def main_metric(dp):
+    """주요 지표 → ('eps'|'ebitda', 이유). datapack main_metric이 있으면 그대로(이유는 main_metric_why).
+    규칙: 선행 EPS 적자 → EBITDA / 감가상각 비중 DA_SHARE 이상 → EBITDA / 회사가 EBITDA만 가이던스 → EBITDA / 그 밖 EPS"""
+    if dp.get("main_metric"):
+        return dp["main_metric"], dp.get("main_metric_why") or "회사가 실적의 기준으로 제시하는 지표"
+    fw = dp.get("forward") or {}
+    ntm, guided = fw.get("ntm") or {}, fw.get("guided") or {}
+    eps, ebitda, ebit = ntm.get("eps"), ntm.get("ebitda"), ntm.get("ebit")
+    if ebitda and ebitda > 0:
+        if eps is not None and eps <= 0:
+            return "ebitda", "향후 12개월 EPS가 적자라 EBITDA로 본다"
+        if ebit is not None and 1 - ebit / ebitda >= DA_SHARE:
+            return "ebitda", f"향후 12개월 EBITDA의 {1 - ebit / ebitda:.0%}가 감가상각이라 순이익이 설비 상각에 가려진다"
+        if guided.get("ebitda") and not guided.get("eps"):
+            return "ebitda", "회사가 EPS가 아니라 EBITDA로 가이던스를 낸다"
+    parts = (["회사가 EPS로 가이던스를 내고"] if guided.get("eps") else []) + ([f"향후 12개월 EBITDA 중 감가상각이 {1 - ebit / ebitda:.0%}뿐이라"] if ebitda and ebit is not None else [])
+    return "eps", (" ".join(parts) + " 순이익이 실적을 가장 잘 나타낸다") if parts else "EPS를 주요 지표로 본다"
+
+
+def choose_basis(dp):
+    """(기준 키, 이유). 주요 지표의 배수 → 다른 이익 배수 → EV/매출 순. 대상 배수와 동종 MIN_PEERS곳이 있어야 쓴다"""
+    metric, why = main_metric(dp)
+    now, peers = dp.get("multiples_now") or {}, dp.get("peers") or []
+    for k in ("pe_fwd", "ev_ebitda_fwd") if metric == "eps" else ("ev_ebitda_fwd", "pe_fwd"):
+        if (now.get(k) or 0) > 0 and sum(1 for p in peers if (p.get(k) or 0) > 0) >= MIN_PEERS:
+            return k, why
+    return "ev_sales", "선행 이익 배수를 쓸 재료가 없어 EV/매출로 본다"
+
 
 
 def pct(xs, q):
@@ -58,7 +97,7 @@ def steady_state_table(wacc, g, tax=0.21, roics=(0.10, 0.15, 0.20, 0.30, 0.50), 
     rows = []
     for r in roics:
         ev_nopat = (1 - g / r) / (wacc - g)
-        rows.append({"roic": r, "ev_nopat": ev_nopat, "ev_sales": {m: ev_nopat * m * (1 - tax) for m in margins}})
+        rows.append({"roic": r, "ev_nopat": ev_nopat, "ev_ebit": ev_nopat * (1 - tax), "ev_sales": {m: ev_nopat * m * (1 - tax) for m in margins}})
     return rows
 
 
@@ -69,24 +108,30 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     net_debt = (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
     ev = mcap + net_debt
     rev = fin.get("rev_ttm")
-    cur = ev / rev if rev else None
+    basis, why = choose_basis(dp)
+    cur = (ev / rev if rev else None) if basis == "ev_sales" else dp["multiples_now"][basis]
     peers = []
     for p in dp.get("peers") or []:
-        if not all(p.get(k) is not None for k in ("rev", "ebit_margin", "mcap", "pb", "ev_sales", "growth")):
+        if not all(p.get(k) is not None for k in ("rev", "ebit_margin", "mcap", "pb", basis, "growth")) or p[basis] <= 0:
             continue
+        if basis != "ev_sales" and p.get("ntm_ebit_margin") is not None:   # 선행 멀티플은 선행 이익률·성장으로 잰다(GAAP 후행 이익률이면 내재가 낮게 나온다)
+            p = {**p, "ebit_margin": p["ntm_ebit_margin"], "growth": p.get("ntm_growth", p["growth"])}
         roic, roic_ex, s2c, ic = peer_fundamentals(p, tax)
         w = warranted_ev_sales(p["rev"], p["growth"], p["ebit_margin"], s2c, ic, wacc, g_term, tax) if roic is not None else None
-        w = w if w and w > 0 else None   # 이익률·ROIC가 음수면 내재 멀티플을 정의할 수 없다 — 심리 배율에서 뺀다
-        peers.append({**p, "roic": roic, "roic_ex": roic_ex, "s2c": s2c, "warranted": w, "ratio": (p["ev_sales"] / w) if w else None})
-    tw = dcf.value(base_drivers)["ev"] / rev if rev else None   # 대상 내재 = v2 기본 시나리오 EV ÷ TTM 매출
+        ratio = None
+        if w and w > 0:   # 이익률·ROIC가 음수면 내재 멀티플을 정의할 수 없다 — 심리 배율에서 뺀다
+            ratio = (p["mcap"] + (p.get("debt") or 0) - (p.get("cash") or 0)) / (w * p["rev"]) if basis != "ev_sales" else p[basis] / w
+        peers.append({**p, "market": p[basis], "roic": roic, "roic_ex": roic_ex, "s2c": s2c, "warranted": p[basis] / ratio if ratio else None, "ratio": ratio})
+    ev_dcf = dcf.value(base_drivers)["ev"]
+    tw = cur / (ev / ev_dcf) if cur and ev_dcf > 0 else None   # 대상 내재 = 시장 멀티플 ÷ (시장 EV ÷ v2 기본 시나리오 EV)
     ratios = [x["ratio"] for x in peers if x["ratio"]]
-    acts, warrs = [x["ev_sales"] for x in peers], [x["warranted"] for x in peers if x["warranted"]]
+    acts, warrs = [x["market"] for x in peers], [x["warranted"] for x in peers if x["warranted"]]
     med_act, med_w, med_r = pct(acts, 0.5), pct(warrs, 0.5), pct(ratios, 0.5)
-    out = {"current": cur, "ev": ev, "rev": rev, "peers": peers, "target_warranted": tw,
+    out = {"basis": basis, "label": BASES[basis], "why": why, "tax": tax, "current": cur, "ev": ev, "rev": rev, "peers": peers, "target_warranted": tw,
            "peer_range": {"p25": pct(acts, 0.25), "p50": med_act, "p75": pct(acts, 0.75)},
            "sentiment": {"p25": pct(ratios, 0.25), "p50": med_r, "p75": pct(ratios, 0.75), "n": len(ratios)},
            "steady": steady_state_table(wacc, g_term, tax)}
-    hist = [h["value"] for h in ((dp.get("history") or {}).get("ev_sales") or []) if h.get("value")]
+    hist = [h["value"] for h in ((dp.get("history") or {}).get(basis) or []) if h.get("value")]
     if hist:
         out["history"] = {"p10": pct(hist, 0.1), "p50": pct(hist, 0.5), "p90": pct(hist, 0.9), "n": len(hist),
                           "basis": (dp.get("history") or {}).get("basis", "")}
@@ -96,7 +141,7 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
         out["decomp"] = {"total": total, "fundamental": total - firm, "firm": firm,   # 두 몫의 곱 = 전체(정확히 맞아떨어짐)
                          "fund_only": math.log(tw / med_w)}                         # 참고: 심리를 빼고 펀더멘털만 비교
         out["rational"] = {k: tw * out["sentiment"][k] for k in ("p25", "p50", "p75") if out["sentiment"][k]}
-        out["rational_value_x"] = {k: (v * rev - net_debt) / mcap for k, v in out["rational"].items()}
+        out["rational_value_x"] = {k: (ev_dcf * out["sentiment"][k] - net_debt) / mcap for k in out["rational"]}
     # 정상 상태(5년차) 멀티플을 지금으로 할인한 교차 확인 — 5년차 이익률·ROIC는 v2 기본 시나리오에서
     rows, _ = dcf.project(base_drivers)
     if len(rows) >= 6 and rows[5]["roic"] and rows[5]["roic"] > g_term:
@@ -107,7 +152,7 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
         out["forward"] = {"roic5": r5, "margin5": m5, "ev_nopat": evn, "ev_sales5": ev5 / rev5,
                           "value_x": (ev5 / (1 + wacc) ** 5 + pv_mid - net_debt) / mcap}
     if len([x for x in peers if x["warranted"]]) >= 3:
-        pts = [(x["warranted"], x["ev_sales"]) for x in peers if x["warranted"]]
+        pts = [(x["warranted"], x["market"]) for x in peers if x["warranted"]]
         n = len(pts)
         mx, my = sum(a for a, _ in pts) / n, sum(b for _, b in pts) / n
         sxx = sum((a - mx) ** 2 for a, _ in pts) or 1e-9
@@ -123,50 +168,55 @@ def report_blocks(m, unit, mcap, name="대상"):
     """리포트 절 블록 — 굵게만 쓰고 HTML은 쓰지 않는다(report_html 규칙)"""
     B = []
     f = lambda x, d=1: "-" if x is None else f"{x:.{d}f}"
-    rows = [[x["ticker"], f(x["ev_sales"]), f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}",
+    lb, earn = m["label"], m["basis"] != "ev_sales"
+    B.append({"type": "p", "text": f"**기준 멀티플은 {lb}이다.** {m['why']}."})
+    rows = [[x["ticker"], f(x["market"]), f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}",
              ("-" if x["roic"] is None else f"{x['roic']:.0%}") + " / " + ("-" if x.get("roic_ex") is None else f"{x['roic_ex']:.0%}"),
              f(x["s2c"], 2), f(x["warranted"]), f(x["ratio"], 2)] for x in m["peers"]]
     pr, s = m["peer_range"], m["sentiment"]
     rows.append(["**동종 중앙**", f(pr["p50"]), "", "", "", "", "", f(s["p50"], 2)])
     rows.append([f"**{name}**", f(m["current"]), "", "", "", "", f(m["target_warranted"]), f(m["current"] / m["target_warranted"], 2) if m.get("target_warranted") and m["target_warranted"] > 0 else "-"])
-    B.append({"type": "table", "title": "동종 레인지와 펀더멘털 내재 멀티플 (EV/매출, 최근 12개월)",
-              "headers": ["회사", "EV/매출", "성장", "영업이익률", "ROIC 영업권 포함/제외", "매출÷투하자본(영업권 제외)", "펀더멘털 내재", "시장÷내재"], "rows": rows})
-    bars = [{"label": "현재", "bars": [{"name": "EV/매출", "color": "e", "value": round(m["current"], 1)}]}]
+    B.append({"type": "table", "title": f"동종 레인지와 펀더멘털 내재 멀티플 ({lb}, {'향후 12개월 추정 기준' if earn else '최근 12개월'})",
+              "headers": ["회사", lb, "성장", "영업이익률", "ROIC 영업권 포함/제외", "매출÷투하자본(영업권 제외)", "펀더멘털 내재", "시장÷내재"], "rows": rows})
+    bars = [{"label": "현재", "bars": [{"name": lb, "color": "e", "value": round(m["current"], 1)}]}]
     if m.get("history"):
         h = m["history"]
-        bars.append({"label": f"자기 과거 중앙(10~90분위 {h['p10']:.0f}~{h['p90']:.0f})", "bars": [{"name": "EV/매출", "color": "a", "value": round(h["p50"], 1)}]})
-    bars.append({"label": f"동종 중앙(25~75분위 {pr['p25']:.0f}~{pr['p75']:.0f})", "bars": [{"name": "EV/매출", "color": "b", "value": round(pr["p50"], 1)}]})
+        bars.append({"label": f"자기 과거 중앙(10~90분위 {h['p10']:.0f}~{h['p90']:.0f})", "bars": [{"name": lb, "color": "a", "value": round(h["p50"], 1)}]})
+    bars.append({"label": f"동종 중앙(25~75분위 {pr['p25']:.0f}~{pr['p75']:.0f})", "bars": [{"name": lb, "color": "b", "value": round(pr["p50"], 1)}]})
     if m.get("target_warranted"):
-        bars.append({"label": "펀더멘털 내재(v2 기본)", "bars": [{"name": "EV/매출", "color": "c", "value": round(m["target_warranted"], 1)}]})
+        bars.append({"label": "펀더멘털 내재(v2 기본)", "bars": [{"name": lb, "color": "c", "value": round(m["target_warranted"], 1)}]})
     if m.get("rational"):
         r = m["rational"]
-        bars.append({"label": f"합리적(내재 × 섹터 심리, {r.get('p25', 0):.0f}~{r.get('p75', 0):.0f})", "bars": [{"name": "EV/매출", "color": "d", "value": round(r["p50"], 1)}]})
-    B.append({"type": "chart", "chart": {"kind": "hbars", "title": "EV/매출 — 과거·동종·펀더멘털·합리적 멀티플 (배)", "unit": "배", "rows": bars,
-              "note": "펀더멘털 내재 = 같은 WACC·계속가치 규칙으로 각 회사의 성장·이익률·자본 회전율을 자본화한 EV ÷ 매출. 섹터 심리 = 동종의 시장 ÷ 내재 배율"}})
+        bars.append({"label": f"합리적(내재 × 섹터 심리, {r.get('p25', 0):.0f}~{r.get('p75', 0):.0f})", "bars": [{"name": lb, "color": "d", "value": round(r["p50"], 1)}]})
+    B.append({"type": "chart", "chart": {"kind": "hbars", "title": f"{lb} — 과거·동종·펀더멘털·합리적 멀티플 (배)", "unit": "배", "rows": bars,
+              "note": "펀더멘털 내재 = 같은 WACC·계속가치 규칙으로 각 회사의 성장·이익률·자본 회전율을 자본화한 가치 ÷ 같은 분모. 섹터 심리 = 동종의 시장 ÷ 내재 배율"}})
     if m.get("decomp"):
         d = m["decomp"]
         pc = lambda x: f"{math.exp(x) - 1:+.0%}"
-        B.append({"type": "p", "text": f"**할인·프리미엄 분해:** {name}의 EV/매출은 동종 중앙 대비 **{pc(d['total'])}** = 동종과 같은 섹터 심리를 받는다면 펀더멘털(성장·이익률·ROIC)로 정당한 몫 {pc(d['fundamental'])} × "
+        B.append({"type": "p", "text": f"**할인·프리미엄 분해:** {name}의 {lb}는 동종 중앙 대비 **{pc(d['total'])}** = 동종과 같은 섹터 심리를 받는다면 펀더멘털(성장·이익률·ROIC)로 정당한 몫 {pc(d['fundamental'])} × "
                   f"{name}에만 얹힌 기업 고유 몫 **{pc(d['firm'])}**(두 몫을 곱하면 전체). 심리를 빼고 펀더멘털만 비교하면 동종 중앙 내재 대비 {pc(d['fund_only'])}. "
                   "기업 고유 몫이 양(+)이면 시장이 동종보다 더 큰 기대를 얹은 것(할인이 덜 됐다), 음(−)이면 더 할인한 것이다."})
     if m.get("rational_value_x"):
         rv = m["rational_value_x"]
         B.append({"type": "p", "text": f"**합리적 멀티플:** {m['rational']['p50']:.1f}배(섹터 심리 25~75분위 {m['rational'].get('p25', 0):.1f}~{m['rational'].get('p75', 0):.1f}배) → 주주가치 ÷ 시가총액 "
-                  f"**{rv['p50']:.2f}배**({rv.get('p25', 0):.2f}~{rv.get('p75', 0):.2f}배). 현재 {m['current']:.1f}배와의 차이가 시장이 동종보다 더 얹은 기대다."})
+                  f"**{rv['p50']:.2f}배**({rv.get('p25', 0):.2f}~{rv.get('p75', 0):.2f}배). 현재 {m['current']:.1f}배와의 차이는 " + ("시장이 동종보다 더 얹은 기대다." if m["current"] > m["rational"]["p50"] else "시장이 동종만큼의 기대를 주지 않는 몫이다.")})
     heavy = [x["ticker"] for x in m["peers"] if (x.get("goodwill") or 0) + (x.get("intangibles") or 0) > 0.3 * (x["mcap"] / x["pb"] if x.get("pb") else 1e9)]
     if heavy:
         B.append({"type": "p", "text": f"한계: 동종 영업이익률은 GAAP(인수 무형자산 상각 포함)이라 인수가 큰 {', '.join(heavy)}는 내재 멀티플이 낮게·심리 배율이 높게 나온다 → 합리적 멀티플이 위로 치우칠 수 있다(상각 전 이익 EBITA로 바꾸면 낮아질 가능성). 동종 성장은 최근 분기 전년 대비, 표본 {len(m['peers'])}곳 — 방향 판단용."})
     if m.get("regression") and m["regression"]["b"] > 0:
         g = m["regression"]
-        B.append({"type": "p", "text": f"동종 {g['n']}사 회귀(시장 EV/매출 = {g['a']:.1f} + {g['b']:.2f} × 펀더멘털 내재, R² {g['r2']:.2f}) — 펀더멘털로 정당화되는 멀티플. "
+        B.append({"type": "p", "text": f"동종 {g['n']}사 회귀(시장 {lb} = {g['a']:.1f} + {g['b']:.2f} × 펀더멘털 내재, R² {g['r2']:.2f}) — 펀더멘털로 정당화되는 멀티플. "
                   + (f"{name}에 대입하면 {g['implied']:.1f}배." if g.get("implied") is not None else "") + (" 표본이 작아 참고용." if g["n"] < 6 else "")})
     st = m["steady"]
     ms = list(st[0]["ev_sales"])
-    B.append({"type": "table", "title": "ROIC에 비례하는 정상 상태 멀티플 (맥킨지 가치 동인: EV/NOPAT = (1 − g/ROIC) ÷ (WACC − g))",
-              "headers": ["ROIC", "EV/NOPAT"] + [f"EV/매출 @영업이익률 {x:.0%}" for x in ms],
-              "rows": [[f"{r['roic']:.0%}", f"{r['ev_nopat']:.1f}"] + [f"{r['ev_sales'][x]:.1f}" for x in ms] for r in st]})
+    title = "ROIC에 비례하는 정상 상태 멀티플 (맥킨지 가치 동인: EV/NOPAT = (1 − g/ROIC) ÷ (WACC − g))"
+    if earn:   # NOPAT = 세후 영업이익 — 차입이 없으면 EV/NOPAT가 곧 P/E다
+        B.append({"type": "table", "title": title, "headers": ["ROIC", "EV/NOPAT", "EV/EBIT"], "rows": [[f"{r['roic']:.0%}", f"{r['ev_nopat']:.1f}", f"{r['ev_ebit']:.1f}"] for r in st]})
+    else:
+        B.append({"type": "table", "title": title, "headers": ["ROIC", "EV/NOPAT"] + [f"EV/매출 @영업이익률 {x:.0%}" for x in ms],
+                  "rows": [[f"{r['roic']:.0%}", f"{r['ev_nopat']:.1f}"] + [f"{r['ev_sales'][x]:.1f}" for x in ms] for r in st]})
     if m.get("forward"):
         fw = m["forward"]
-        B.append({"type": "p", "text": f"정상 상태 교차 확인: v2 기본 시나리오의 5년차 ROIC {fw['roic5']:.0%}·영업이익률 {fw['margin5']:.0%}이면 정상 상태 EV/NOPAT {fw['ev_nopat']:.1f}배(5년차 EV/매출 {fw['ev_sales5']:.1f}배). "
+        B.append({"type": "p", "text": f"정상 상태 교차 확인: v2 기본 시나리오의 5년차 ROIC {fw['roic5']:.0%}·영업이익률 {fw['margin5']:.0%}이면 정상 상태 EV/NOPAT {fw['ev_nopat']:.1f}배" + ("" if earn else f"(5년차 EV/매출 {fw['ev_sales5']:.1f}배)") + ". "
                   f"이를 지금으로 할인하면 주주가치 ÷ 시가총액 {fw['value_x']:.2f}배 — 고성장 기업은 현재 멀티플이 아니라 정상 상태 멀티플을 할인해 비교한다."})
     return B

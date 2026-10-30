@@ -11,6 +11,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import multiples  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[3]
 
 
@@ -87,6 +90,8 @@ def check(p):
     basis = p.get("peers_basis")
     ok_p = len(peers) >= 4 and basis in ("ttm", "ntm") and p.get("peers_source")
     add("동종사 4곳 이상·기준 표기", "통과" if ok_p else "실패", f"{len(peers)}곳 · 기준 {basis or '미표기'}")
+    mult, why = multiples.choose_basis(p)   # Fwd 1Y 이익 멀티플이 기준(마스터 지시 2026-10-30)
+    add("기준 멀티플 Fwd 1Y(이익 지표)", "통과" if mult != "ev_sales" else "경고", f"{multiples.BASES[mult]} · {why}")
     mb, rb = cons.get("margin_basis"), cons.get("rev_basis")
     sbc_ok = mb != "non_gaap" or p.get("sbc_pct_rev") is not None
     add("매출·이익률 기준 명시(SBC 처리)", "통과" if mb and rb and sbc_ok else "실패",

@@ -122,7 +122,7 @@ class TestValuationAudit(unittest.TestCase):
 
     def test_cbrs_datapack_matches_raw(self):
         r = datapack_check.check(datapack_check.load("us-cbrs"))
-        self.assertEqual(r["score"], 10.0, [c for c in r["checks"] if c["status"] != "통과"])
+        self.assertEqual([c for c in r["checks"] if c["status"] != "통과" and not c["name"].startswith("기준 멀티플")], [])   # 옛 묶음은 Fwd 1Y 재료만 경고
 
     def test_checker_catches_old_errors(self):
         p = datapack_check.load("us-cbrs")
@@ -168,6 +168,55 @@ class TestMultiples(unittest.TestCase):
         self.assertAlmostEqual(roic, 10 * 0.2 * 0.79 / 20)       # 영업권 포함 투하자본 20
         self.assertAlmostEqual(roic_ex, 10 * 0.2 * 0.79 / 5)     # 영업권·무형 제외 5
         self.assertAlmostEqual(s2c, 2.0)
+
+    def _forward_dp(self, **kw):
+        peers = [{"ticker": t, "rev": 2.0, "ebit_margin": 0.15, "mcap": 8.0, "pb": 4.0, "debt": 1.0, "cash": 0.5, "ev_sales": 4.0, "growth": 0.15, "pe_fwd": pe, "ev_ebitda_fwd": ee}
+                 for t, pe, ee in (("A", 15.0, 10.0), ("B", 20.0, 12.0), ("C", 25.0, 14.0), ("D", 30.0, 16.0))]
+        return {"profile": {"debt": 1.0, "cash": 2.0}, "financials": {"rev_ttm": 5.0}, "peers": peers, "history": {"pe_fwd": [{"date": "2026-01-30", "value": 22.0}], "ev_ebitda_fwd": [{"date": "2026-01-30", "value": 11.0}]},
+                "multiples_now": {"pe_fwd": 12.0, "ev_ebitda_fwd": 8.0, "ev_sales": 1.8}, **kw}
+
+    def test_main_metric_picks_multiple(self):
+        dp = self._forward_dp(forward={"ntm": {"eps": 5.0, "ebitda": 1.0, "ebit": 0.8}, "guided": {"eps": True}})
+        self.assertEqual(multiples.choose_basis(dp)[0], "pe_fwd")
+        heavy = self._forward_dp(forward={"ntm": {"eps": 1.0, "ebitda": 1.0, "ebit": 0.4}})          # 감가상각 60%
+        self.assertEqual(multiples.choose_basis(heavy)[0], "ev_ebitda_fwd")
+        loss = self._forward_dp(forward={"ntm": {"eps": -1.0, "ebitda": 1.0, "ebit": 0.9}})
+        self.assertEqual(multiples.choose_basis(loss)[0], "ev_ebitda_fwd")
+        guided = self._forward_dp(forward={"ntm": {"eps": 1.0, "ebitda": 1.0, "ebit": 0.9}, "guided": {"ebitda": True}})
+        self.assertEqual(multiples.choose_basis(guided)[0], "ev_ebitda_fwd")
+        self.assertEqual(multiples.choose_basis(self._forward_dp(main_metric="ebitda"))[0], "ev_ebitda_fwd")   # 묶음에 적으면 그대로
+        no_peers = self._forward_dp()
+        no_peers["peers"] = no_peers["peers"][:2]
+        self.assertEqual(multiples.choose_basis(no_peers)[0], "ev_sales")                                       # 재료가 없을 때만
+
+    def test_forward_pe_analysis_keeps_value_identity(self):
+        base = {"rev0": 5.0, "growth": [0.2] * 5, "margin": [0.2] * 5, "tax": 0.21, "s2c": 2.0, "ic0": 3.0, "wacc": 0.1, "g_term": 0.03, "net_debt": -1.0, "shares": 1.0}
+        for main, key, lb in (("eps", "pe_fwd", "Fwd 1Y P/E"), ("ebitda", "ev_ebitda_fwd", "Fwd 1Y EV/EBITDA")):
+            dp = self._forward_dp(main_metric=main)
+            m = multiples.analyze(dp, base, 12.0, 0.1, 0.03)
+            self.assertEqual((m["basis"], m["label"], m["current"]), (key, lb, dp["multiples_now"][key]))
+            self.assertEqual(m["history"]["p50"], dp["history"][key][0]["value"])
+            # 시장÷내재는 EV끼리 — 어느 배수로 보든 같다
+            ev = multiples.dcf.value(base)["ev"]
+            self.assertAlmostEqual(m["current"] / m["target_warranted"], 11.0 / ev)
+            self.assertAlmostEqual(m["rational_value_x"]["p50"], (ev * m["sentiment"]["p50"] + 1.0) / 12.0)
+            self.assertAlmostEqual(m["decomp"]["fundamental"] + m["decomp"]["firm"], m["decomp"]["total"])
+            bl = multiples.report_blocks(m, "B$", 12.0, "대상")
+            text = json.dumps(bl, ensure_ascii=False)
+            self.assertIn(f"기준 멀티플은 {lb}", text)
+            self.assertIn(f"{lb} — 과거·동종·펀더멘털·합리적 멀티플", text)
+            self.assertNotIn("EV/매출", text)
+
+    def test_levered_peer_uses_ev_ratio_and_forward_margin(self):
+        base = {"rev0": 5.0, "growth": [0.2] * 5, "margin": [0.2] * 5, "tax": 0.21, "s2c": 2.0, "ic0": 3.0, "wacc": 0.1, "g_term": 0.03, "net_debt": -1.0, "shares": 1.0}
+        dp = self._forward_dp(main_metric="eps")
+        dp["peers"][0].update({"debt": 6.0, "ntm_ebit_margin": 0.3, "ntm_growth": 0.25})   # 차입이 커도 주주가치 잔액으로 폭주하지 않는다
+        m = multiples.analyze(dp, base, 12.0, 0.1, 0.03)
+        a = next(x for x in m["peers"] if x["ticker"] == "A")
+        self.assertEqual((a["ebit_margin"], a["growth"]), (0.3, 0.25))
+        w = multiples.warranted_ev_sales(2.0, 0.25, 0.3, a["s2c"], multiples.peer_fundamentals(a)[3], 0.1, 0.03) * 2.0
+        self.assertAlmostEqual(a["ratio"], (8.0 + 5.5) / w)
+        self.assertAlmostEqual(a["warranted"], 15.0 / a["ratio"])
 
     def test_cbrs_decomposition_is_exact(self):
         import run as v2run
@@ -215,6 +264,12 @@ class TestEarningsView(unittest.TestCase):
         self.assertAlmostEqual(r["total"]["EPS"]["rev"], (0.1768 + 0.1671) / 0.34 - 1)
         d = r["decomp"]
         self.assertAlmostEqual((1 + d["eps"]) * (1 + d["rerate"]), 1 + d["price"])   # 곱 분해가 정확
+
+    def test_premiums_use_forward_earnings_first(self):
+        peers = [{"pe_fwd": 15, "ev_ebitda_fwd": 10, "ev_sales": 3}, {"pe_fwd": 25, "ev_ebitda_fwd": 14, "ev_sales": 5}]
+        pm = earnings_view.premiums({"pe_fwd": 20, "ev_ebitda_fwd": 12, "ev_sales": 4}, peers)
+        self.assertEqual([x["metric"] for x in pm], ["Fwd 1Y P/E", "Fwd 1Y EV/EBITDA"])
+        self.assertEqual([x["metric"] for x in earnings_view.premiums({"ev_sales": 4}, peers)], ["EV/매출"])   # 선행 재료가 없을 때만
 
     def test_premiums_and_surprise(self):
         pm = earnings_view.premiums({"pe_fwd": 30, "growth": 0.30},
