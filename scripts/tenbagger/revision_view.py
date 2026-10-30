@@ -1,5 +1,6 @@
 """EPS 리비전 시계열 — 텐배거 리포트 그림 5·8 (마스터 지시 2026-10-30 "그림 8의 주가 변화 분해 = EPS 리비전 × 멀티플 변화도 최근 4개 분기로 시계열을 그려라",
-"그림 5는 … 지난 12개월(캘린더) 기준 EPS 리비전 추이로 대체하라. 실적 발표 또는 내러티브 변화 때마다 EPS 리비전이 어떻게 변했는지도 표기하라")
+"그림 5는 … 지난 12개월(캘린더) 기준 EPS 리비전 추이로 대체하라. 실적 발표 또는 내러티브 변화 때마다 EPS 리비전이 어떻게 변했는지도 표기하라",
+같은 날 "그래프가 너무 지저분하다. 그냥 그래프와 함께 어닝 날짜만 표기해줘" — 그림에는 계단선과 실적 발표일만, 사건별 변화는 표로)
 
 재료: datapack consensus.eps_history(본보기 scripts/fiscal/templates/eps_history.js → scripts/fiscal/adapter.py --eps-history) +
       datapack revision_events + knowledge/models/companies/<id>/ohlcv.csv(종가).
@@ -7,7 +8,7 @@
   revision_events = [{"date": "2026-02-23", "kind": "실적"|"내러티브", "tag": "4Q25 실적", "q": "4Q25", "session": "after"|"before"|"intraday"}, …]
 계산:
   ① 캘린더 연도 EPS — 회계연도가 12월이 아니면 두 회계연도를 달 수로 가중. 연간 추정이 갱신되지 않고 분기 추정만 바뀌면 그 차이를 연간 값에 더한다.
-  ② 그림 5 — 지난 12개월 캘린더 EPS 계단선 + 사건 깃발, 사건마다 전(사건 전날까지) → 후(최대 14일, 다음 사건 전날까지) 변화.
+  ② 그림 5 — 지난 12개월 캘린더 EPS 계단선 + 실적 발표일. 표 — 사건마다 전(사건 전날까지) → 후(최대 14일, 다음 사건 전날까지) 변화.
      실적 창(발표 뒤 14일) 안의 내러티브 사건은 EPS 변화를 분리할 수 없어 '실적 창과 겹침'으로 표기한다.
   ③ 그림 8 — 실적 발표 사이 구간 4개. 구간 시작의 선행 12개월 기간을 고정해(같은 기간끼리) 리비전을 재고,
      (1 + 주가) = (1 + EPS 리비전) × (1 + 멀티플) 로 멀티플 변화를 계산한다. 시간이 지나 기간이 앞으로 굴러가는 효과는 멀티플 쪽에 남는다.
@@ -195,9 +196,6 @@ def _usd(x):
     return "-" if x is None else f"${x:,.2f}"
 
 
-CIRCLE = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
-
-
 def blocks(dp):
     """그림 5(pin 5)·그림 8(pin 8)과 표. 재료가 없으면 빈 목록 → earnings_view가 옛 단일 구간 분해를 쓴다"""
     cons = dp.get("consensus") or {}
@@ -210,25 +208,21 @@ def blocks(dp):
     start = end - timedelta(days=372)
     tr = trend(h, start, end)
     ev = [r for r in event_rows(h, dp["revision_events"], px, end) if _d(r["date"]) >= start]
-    for i, r in enumerate(ev):
-        r["mark"] = CIRCLE[i] if i < len(CIRCLE) else str(i + 1)
     colors = {end.year: "c", end.year + 1: "b"}
     ns = sorted({row[2] for k in h.values() for v in k.values() for row in v if row[2]})
     n_txt = f"EPS 추정 표본 {ns[0]}명" if ns and ns[0] == ns[-1] else (f"EPS 추정 표본 {ns[0]}~{ns[-1]}명" if ns else "")
-    B = [{"type": "chart", "chart": {"kind": "revision", "pin": 5, "title": f"지난 12개월 EPS 리비전 추이 — 캘린더 {end.year}·{end.year + 1}년 EPS 추정($/주), 사건별 표기",
+    B = [{"type": "chart", "chart": {"kind": "revision", "pin": 5, "title": f"지난 12개월 EPS 리비전 추이 — 캘린더 {end.year}·{end.year + 1}년 EPS 추정($/주), 세로선은 실적 발표일",
                                      "unit": "$", "start": start.isoformat(), "end": end.isoformat(),
                                      "series": [{"name": f"CY{y} EPS 추정", "color": colors[y], "points": [[d.isoformat(), v] for d, v in pts]} for y, pts in tr.items()],
-                                     "events": [{"date": r["date"], "mark": r["mark"], "kind": r.get("kind"), "tag": r.get("tag"),
-                                                 "pct": ("겹침" if r["overlap"] else _sign(r["rev"]))} for r in ev],
-                                     "note": f"계단선 = 조정 EPS 추정이 바뀐 날. 숫자 = 사건 전 → 후 CY{end.year + 1} EPS 변화. 파란 점선 실적, 금색 점선 내러티브. {n_txt}."}}]
+                                     "events": [{"date": r["date"], "kind": "실적"} for r in ev if r.get("kind") == "실적"]}}]
     rows = []
     for r in ev:
         a0, a1 = r["a"]
         b0, b1 = r["b"]
-        rows.append([r["mark"], r["date"][2:], r.get("kind", ""), r.get("tag", ""), f"{_usd(a0)} → {_usd(a1)}", f"{_usd(b0)} → {_usd(b1)}",
+        rows.append([r["date"][2:], r.get("kind", ""), r.get("tag", ""), f"{_usd(a0)} → {_usd(a1)}", f"{_usd(b0)} → {_usd(b1)}",
                      "실적 창과 겹침" if r["overlap"] else _sign(r["rev"], 1), _sign(r["reaction"], 1)])
     B.append({"type": "table", "title": "사건별 EPS 리비전 — 실적 발표·내러티브 변화 때 추정이 어떻게 움직였나",
-              "headers": ["#", "날짜", "구분", "사건", f"CY{end.year} EPS 전→후", f"CY{end.year + 1} EPS 전→후", "리비전", "주가 반응"], "rows": rows,
+              "headers": ["날짜", "구분", "사건", f"CY{end.year} EPS 전→후", f"CY{end.year + 1} EPS 전→후", "리비전", "주가 반응"], "rows": rows,
               "note": f"전 = 사건 전날까지, 후 = 최대 {WINDOW_DAYS}일(다음 사건 전날까지). 주가 반응 = 장후 발표는 다음 거래일, 그 밖은 그날. {n_txt}."})
     dec = decompose(h, dp["revision_events"], px)
     if dec:

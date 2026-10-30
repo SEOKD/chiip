@@ -21,7 +21,7 @@ JSON 구조(필수 = *):
   · {"type":"chart","chart":{"kind":"candle","title","unit","bars":[["2026-10-28",600,609.4,581.8,606.9]...],
        "hlines":[{"y":643.4,"label":"38.2% 643","color":"e"}],"zones":[{"y0":599,"y1":602,"label":"지지","tone":"grn|red"}]}}  — 한국식 색(상승 빨강·하락 파랑)
   · {"type":"chart","chart":{"kind":"revision","title","unit","start","end","series":[{"name","color","points":[["2026-02-26",4.2]...]}],
-       "events":[{"date","mark":"①","kind":"실적|내러티브","tag","pct":"+110%"}]}}  — 날짜 축 계단선 + 사건 깃발(revision_view.py가 만든다)
+       "events":[{"date","kind":"실적"}]}}  — 계단선 + 실적 발표일(revision_view.py가 만든다)
   · bars에 "stack": true면 쌓인 막대
   · 차트에 "pin": n이면 갤러리 n번째로 고정(그림 3 = 가격 내포 기대, 5 = EPS 리비전 추이, 8 = 주가 분해 — 마스터 지시 2026-10-30), 나머지는 절 순서대로
 금액 단위는 렌더 직후 radar/units.py money_units로 $25B·$M·$T 표기로 바꾼다(마스터 지시 2026-10-29).
@@ -176,14 +176,14 @@ def chart_candle(c):
 
 
 def chart_revision(c):
-    """날짜 축 계단선 + 사건 깃발. 사건마다 번호·변화율을 그림에 직접 쓴다(모바일은 마우스오버가 없다)"""
+    """계단선 + 실적 발표일만(마스터 지시 2026-10-30 "너무 지저분하다. 그래프와 어닝 날짜만"). 가로축 글자는 실적 발표일이고 번호·변화율·추정 변경 점은 그리지 않는다"""
     series = c.get("series") or []
     vals = [p[1] for s in series for p in s.get("points") or [] if p[1] is not None]
     if not vals:
         return ""
     d0, d1 = date.fromisoformat(c["start"]), date.fromisoformat(c["end"])
     span = (d1 - d0).days or 1
-    W, H, L, R, T, B = 440, 340, 34, 10, 70, 22   # 휴대폰 폭에서 글자가 읽히게 좁은 좌표계(마스터는 모바일로 본다)
+    W, H, L, R, T, B = 440, 280, 34, 10, 14, 22   # 휴대폰 폭에서 글자가 읽히게 좁은 좌표계(마스터는 모바일로 본다)
     X = lambda s: L + (date.fromisoformat(str(s)[:10]) - d0).days / span * (W - L - R)
     lo, hi = min(0, min(vals)), max(vals) * 1.08 or 1
     Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
@@ -191,22 +191,13 @@ def chart_revision(c):
     for i in range(5):
         v = lo + (hi - lo) * i / 4
         g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(v):.1f}" y2="{Y(v):.1f}" stroke="var(--line)"/><text x="{L - 4}" y="{Y(v) + 3:.1f}" text-anchor="end">{_fmt(v)}</text>')
-    y, m = d0.year, d0.month
-    while date(y, m, 1) <= d1:
-        if date(y, m, 1) >= d0 and m % 2 == 0:
-            x = X(date(y, m, 1).isoformat())
-            g.append(f'<text x="{x:.1f}" y="{H - 6}" text-anchor="middle" style="font-size:9.5px">{str(y)[2:]}-{m:02d}</text>')
-        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
-    for i, e in enumerate(c.get("events") or []):
+    for e in c.get("events") or []:
+        if e.get("kind") != "실적":
+            continue
         x = X(e["date"])
-        col = "var(--c)" if e.get("kind") == "실적" else "var(--e)"
-        ty = 13 + (i % 4) * 15   # 가까운 사건이 겹치지 않게 네 줄로 엇갈린다
-        pct = str(e.get("pct") or "")
-        tag = f'{e.get("mark")} {pct}' if pct not in ("", "+0%", "-0%", "0%", "-", "겹침") else str(e.get("mark"))   # 변화가 없으면 번호만 — 표에 전부 있다
-        tx = min(max(x, L + 14), W - R - 16)
-        g.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{ty + 3}" y2="{H - B}" stroke="{col}" stroke-dasharray="3 3" opacity="0.75"/>'
-                 f'<text x="{tx:.1f}" y="{ty}" text-anchor="middle" style="fill:{col};font-size:11.5px;font-weight:700">{t(tag)}'
-                 f'<title>{t(e["date"])} {t(e.get("tag"))} {t(e.get("pct"))}</title></text>')
+        tx = min(max(x, L + 18), W - R - 18)
+        g.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{T}" y2="{H - B}" stroke="var(--c)" stroke-dasharray="3 3" opacity="0.6"/>'
+                 f'<text x="{tx:.1f}" y="{H - 6}" text-anchor="middle" style="font-size:9.5px">{t(str(e["date"])[2:10])}</text>')
     for s in series:
         col = COLORS.get(s.get("color", "c"), "var(--c)")
         pts = [p for p in s.get("points") or [] if p[1] is not None]
@@ -219,8 +210,6 @@ def chart_revision(c):
         path.append(f"{X(c['end']):.1f},{Y(prev):.1f}")
         g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2.2" points="{" ".join(path)}"/>')
         g.append(f'<text x="{X(c["end"]) - 2:.1f}" y="{Y(prev) - 5:.1f}" text-anchor="end" style="fill:{col};font-size:11px;font-weight:700">{_fmt(prev)}</text>')
-        for p in pts:
-            g.append(f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="3" fill="{col}"><title>{t(s["name"])} {t(p[0])}: {_fmt(p[1])}</title></circle>')
     return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
@@ -331,17 +320,10 @@ def figures(d):
 
 
 def under_lines(c):
-    """그래프 아래 설명 — 부가 설명을 넣지 않는 규칙의 예외 둘뿐: 그림 5의 사건 번호(kind revision)와 몬테카를로 결론(conclusion). 마스터 지시 2026-10-30. HTML·마크다운·노션이 같은 줄을 쓴다"""
+    """그래프 아래 설명 — 부가 설명을 넣지 않는 규칙의 예외는 몬테카를로 해석(conclusion) 하나뿐. 마스터 지시 2026-10-30. HTML·마크다운·노션이 같은 줄을 쓴다"""
     if c.get("conclusion"):
         return c["conclusion"] if isinstance(c["conclusion"], list) else [c["conclusion"]]
-    if c.get("kind") != "revision":
-        return []
-    out = []
-    for e in c.get("events") or []:
-        pct = str(e.get("pct") or "")
-        rev = "실적 창과 겹침" if pct == "겹침" else f"EPS 리비전 {pct}"
-        out.append(f"{e.get('mark')} {str(e.get('date'))[2:]} {e.get('tag')} · {rev}")
-    return out
+    return []
 
 
 def block(b):

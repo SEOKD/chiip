@@ -295,22 +295,25 @@ class TestRevision(unittest.TestCase):
         charts = [b["chart"] for b in bl if b["type"] == "chart"]
         self.assertEqual([c["pin"] for c in charts], [5, 8])
         self.assertIn("<svg", report_html.chart_revision(charts[0]))
-        self.assertIn("①", report_html.chart_revision(charts[0]))
+        self.assertEqual(charts[0]["events"], [{"date": "2026-01-15", "kind": "실적"}, {"date": "2026-04-15", "kind": "실적"}])
+        self.assertNotIn("①", json.dumps(bl, ensure_ascii=False))
         self.assertTrue(report_md.standalone(charts[0]).startswith("<svg"))
 
-    def test_only_figure_five_explains_event_numbers(self):
+    def test_revision_chart_shows_only_line_and_earnings_dates(self):
         rev = {"kind": "revision", "title": "EPS 리비전", "unit": "$", "start": "2026-01-01", "end": "2026-10-29",
                "series": [{"name": "CY2027", "color": "b", "points": [["2026-01-01", 2.0], ["2026-03-01", 4.0]]}],
                "events": [{"date": "2026-02-23", "mark": "①", "kind": "실적", "tag": "4Q25 실적", "pct": "+110%"},
                           {"date": "2026-02-26", "mark": "②", "kind": "내러티브", "tag": "전환사채", "pct": "겹침"}]}
         d = {**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": rev}, {"type": "chart", "chart": {**chart("주가")["chart"], "note": "차트 주석"}}]}]}
         h = report_html.render(d)
-        self.assertIn("① 26-02-23 4Q25 실적 · EPS 리비전 +110%", h)
-        self.assertIn("② 26-02-26 전환사채 · 실적 창과 겹침", h)
-        self.assertNotIn("차트 주석", h)
+        self.assertIn(">26-02-23<", h)          # 실적 발표일은 표기
+        for gone in ("①", "②", "+110%", "전환사채", "26-02-26", "차트 주석"):
+            self.assertNotIn(gone, h)
+        self.assertNotIn("<circle", report_html.chart_revision(rev))   # 추정 변경 점도 그리지 않는다
+        self.assertEqual(report_html.under_lines(rev), [])   # 그래프 아래 설명 없음(몬테카를로만 예외)
         self.assertEqual(report_html.under_lines(chart("주가")["chart"]), [])
         for out in (report_notion.render(d), report_notion.render(d, charts=["charts/a.svg", "charts/b.svg"])):
-            self.assertIn("- ① 26-02-23 4Q25 실적 · EPS 리비전 +110%", out)
+            self.assertNotIn("①", out)
 
     def test_old_datapack_falls_back(self):
         self.assertEqual(rv.blocks({"id": "x", "consensus": {}}), [])
