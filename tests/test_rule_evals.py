@@ -12,6 +12,7 @@ sys.path.insert(0, str(ROOT / "radar"))
 sys.path.insert(0, str(ROOT / "scripts" / "lab"))
 import literature  # noqa: E402
 import notify  # noqa: E402
+import pulse_trigger  # noqa: E402
 import run_ledger  # noqa: E402
 import verifier_lock  # noqa: E402
 import pulse_check  # noqa: E402
@@ -114,6 +115,81 @@ class TestLedger(unittest.TestCase):
         with mock.patch.object(run_ledger, "send_row") as row, mock.patch.object(notify.common, "load_env", return_value={}), mock.patch.object(notify, "_log"):
             notify.send("가" * 9000, "P1")
         self.assertEqual(row.call_count, 1)
+
+
+class TestPulseTrigger(unittest.TestCase):
+    def setUp(self):
+        self.st = {}
+        self.patches = [mock.patch.object(pulse_trigger.common, "load_state", side_effect=lambda *a: dict(self.st)),
+                        mock.patch.object(pulse_trigger.common, "save_state", side_effect=lambda _, s: self.st.update(s)),
+                        mock.patch.object(pulse_trigger.common, "stay_awake"),
+                        mock.patch.object(pulse_trigger.run_ledger, "record")]
+        for p in self.patches:
+            p.start()
+            self.addCleanup(p.stop)
+
+    def test_no_material_never_starts_model(self):
+        with mock.patch.object(pulse_trigger.pulse, "run", return_value=(None, "→ 종료")) as gate, mock.patch.object(pulse_trigger, "launch") as launch:
+            self.assertEqual(pulse_trigger.main([]), 0)
+        launch.assert_not_called()
+        self.assertEqual(gate.call_args.kwargs, {"peek": True})
+        self.assertIn("heartbeat", self.st)
+
+    def test_runs_without_stdout_like_pyw(self):
+        with mock.patch.object(pulse_trigger.sys, "stdout", None), mock.patch.object(pulse_trigger.pulse, "run", return_value=(None, "→ 종료")):
+            self.assertEqual(pulse_trigger.main([]), 0)
+
+    def test_never_ran_alerts_once(self):
+        with mock.patch.object(pulse_trigger, "alert") as alert:
+            pulse_trigger.run()
+            pulse_trigger.run()
+        self.assertEqual(alert.call_count, 1)
+
+    def test_failures_alert_once_at_threshold(self):
+        with mock.patch.object(pulse_trigger.pulse, "run", return_value=(True, "모델 회차")), mock.patch.object(pulse_trigger, "launch", return_value=(False, {"error": "x"})), mock.patch.object(pulse_trigger, "alert") as alert:
+            for _ in range(3):
+                pulse_trigger.main([])
+        self.assertEqual(alert.call_count, 1)
+        self.assertEqual(self.st["fails"], 3)
+
+    def test_daily_cap_stops_model(self):
+        day = pulse_trigger.common.now_kst().strftime("%Y%m%d")
+        self.st["count"] = {day: pulse_trigger.cfg()["daily_model_cap"]}
+        with mock.patch.object(pulse_trigger.pulse, "run", return_value=(True, "모델 회차")), mock.patch.object(pulse_trigger, "launch") as launch, mock.patch.object(pulse_trigger, "alert") as alert:
+            pulse_trigger.main([])
+            pulse_trigger.main([])
+        launch.assert_not_called()
+        self.assertEqual(alert.call_count, 1)
+
+    def test_command_is_bounded_and_read_only_on_tradingview(self):
+        c = pulse_trigger.cfg()
+        cmd = pulse_trigger.command(c, "claude", "지시")
+        self.assertIn("dontAsk", cmd)
+        self.assertIn("--max-budget-usd", cmd)
+        self.assertNotIn("alert", " ".join(c["allowed_tools"]))
+        self.assertNotIn("mcp__claude_ai_TradingView__*", c["allowed_tools"])
+
+    def test_stale_heartbeat_alerts_once(self):
+        self.st["heartbeat"] = "2026-01-01T00:00:00+09:00"
+        with mock.patch.object(pulse_trigger, "alert") as alert:
+            pulse_trigger.run()
+            pulse_trigger.run()
+        self.assertEqual(alert.call_count, 1)
+
+
+class TestPeek(unittest.TestCase):
+    def test_peek_does_not_touch_state(self):
+        with mock.patch.object(pulse_trigger.pulse, "inbox_items", return_value=[{"source_class": "x", "title": "t"}]), mock.patch.object(pulse_trigger.pulse, "score", return_value=1), \
+                mock.patch.object(pulse_trigger.pulse, "fetch_alerts", return_value=[]), mock.patch.object(pulse_trigger.pulse, "alpha_queue", return_value=[]), \
+                mock.patch.object(pulse_trigger.common, "load_state", return_value={}), mock.patch.object(pulse_trigger.common, "save_state") as save:
+            for name in ("fetch_papers", "fetch_deals", "fetch_financing", "fetch_shorts", "fetch_new_listings", "fetch_consumer_spikes"):
+                setattr(self, name, mock.patch.object(pulse_trigger.pulse, name, return_value=[]))
+                getattr(self, name).start()
+                self.addCleanup(getattr(self, name).stop)
+            material, msg = pulse_trigger.pulse.run(peek=True)
+        self.assertTrue(material)
+        self.assertIn("모델 회차", msg)
+        save.assert_not_called()
 
 
 class TestVerifierLock(unittest.TestCase):

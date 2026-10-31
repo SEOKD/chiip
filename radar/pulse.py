@@ -407,7 +407,8 @@ def alpha_queue():
     return [x for x in q if x.get("kind") == "알파 산정"]
 
 
-def run(now=None):
+def run(now=None, peek=False):
+    """peek=True면 판정만 하고 상태·자료 파일을 건드리지 않는다(결정론 문턱, ADR-013 H2)"""
     now = now or common.now_kst()
     st = common.load_state(STATE, {})
     lock = st.get("lock")
@@ -438,9 +439,12 @@ def run(now=None):
     except Exception as exc:
         tw = {"due": False, "error": type(exc).__name__}
     if not sources and (not q or busy) and not tw.get("due"):
-        common.save_state(STATE, st)
+        if not peek:
+            common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
                       f" · 어닝콜 전문 대기 {tw.get('waiting', 0)} → 종료")
+    if peek:
+        return True, f"[펄스] 새 자료 {len(sources)}건 · 알파 산정 대기 {len(q)} · 어닝콜 전문 {'있음' if tw.get('due') else '없음'} → 모델 회차"
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",

@@ -1,0 +1,31 @@
+# 결정론 문턱 설정 (ADR-013 H2, 마스터 승인 2026-10-31)
+# 펄스는 Windows 작업 chiip-pulse-trigger가 5분마다 관문을 먼저 보고, 새 자료가 있을 때만 모델을 띄운다.
+pulse_trigger:
+  skill: chiip-pulse              # ~/.claude/scheduled-tasks/<skill>/SKILL.md 본문을 프롬프트로 쓴다
+  timeout_min: 25                 # Windows 작업 시간 상한(30분)보다 짧게
+  daily_model_cap: 120            # 하루 모델 회차 상한. 넘으면 마스터에게 한 번 알리고 멈춘다
+  max_budget_usd: 8               # 회차당 추정 비용 상한(공식 문서상 클라이언트 추정값이라 조금 넘을 수 있다)
+  fail_alert_after: 2             # 연속 실패가 이 횟수에 닿으면 알린다
+  heartbeat_stale_min: 20         # 문턱이 이만큼 안 돌면 run_hourly가 알린다
+  allowed_tools:
+    - Read
+    - Glob
+    - Grep
+    - Write
+    - Edit
+    - WebSearch
+    - WebFetch
+    - "Bash(py *)"
+    - "Bash(python *)"
+    - "Bash(git status*)"
+    - "Bash(git log*)"
+    - "Bash(git diff*)"
+    - "PowerShell(py *)"
+    - "mcp__claude_ai_Fiscal_ai__*"
+    - "mcp__claude_ai_TradingView__mcp-tv-get-symbol-data"
+    - "mcp__claude_ai_TradingView__mcp-tv-get-symbol-data-batch"
+    - "mcp__claude_ai_TradingView__mcp-tv-get-ohlcv"
+  disallowed_tools:
+    - "mcp__easyconomics__*"
+    - "Bash(git push*)"
+    - "Bash(git commit*)"
