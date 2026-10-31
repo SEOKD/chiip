@@ -229,7 +229,7 @@ def section3(dp, mm=None):
     B += [{"type": "h3", "text": "무엇이 기업가치를 바꾸나"}, {"type": "boxes", "items": lens_boxes(lead)}, {"type": "h3", "text": "내러티브 근거"}]
     firm = ((mm or {}).get("decomp") or {}).get("firm")
     total = ((mm or {}).get("decomp") or {}).get("total")
-    head = str(n.get("summary", ""))
+    head = str(n.get("summary", "")).rstrip(". ") + "."
     if total is not None and firm is not None:
         head += f" 동종 대비 멀티플 차이 {math.exp(total) * 100 - 100:+.0f}% 중 회사 고유 몫은 {math.exp(firm) * 100 - 100:+.0f}%다."
     if n.get("stage"):

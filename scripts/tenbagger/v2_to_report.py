@@ -194,6 +194,8 @@ def extra_sections(entity, r, strict=True):
     if out["pipeline"]:
         out["summary"].append(pipeline_view.summary_item(dp))
     for k, mod in (("flow", flow), ("levels", levels)):
+        if k == "flow" and dp.get("unit", "B$") != "B$":   # FINRA는 미국 종목만 — 같은 티커의 다른 종목을 받지 않게
+            continue
         try:
             sec = mod.report_section(entity, dp)
         except Exception as exc:   # 외부 조회(FINRA) 실패가 리포트 전체를 막지 않게

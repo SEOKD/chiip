@@ -44,6 +44,8 @@ def label(steps):
 
 
 def _money(v, unit):
+    if len(unit) > 2 and unit[0] == "B":   # 현지 통화(BNOK) → NOK 1.70B
+        return f"{unit[1:]} {v:,.2f}B"
     return money_units(f"{v:,.2f} {unit}" if v < 100 else f"{v:,.0f} {unit}")
 
 

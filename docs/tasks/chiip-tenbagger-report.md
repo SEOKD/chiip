@@ -26,6 +26,7 @@
 - **새 datapack 재료(없으면 `--merge`가 멈춘다):** `moat`, `multiple_view`, `guidance.next`, `consensus.ratings`, `next_event`, `terms`. 구조는 `report_layout.py` 맨 위. `consensus.ratings`는 Fiscal.ai `company_analyst_ratings`(`consensus.js` 출력 ratings)의 현재 등급 분포다 — 이 API는 3개월 창을 주지 않는다. `consensus.eps_quarters_est`에 Fiscal.ai 분기 EPS 추정을 넣는다. `next_event`는 `calendar.js`와 회사 IR로 확인한다.
 - **해자:** 공급 병목에 따른 구조적 ASP 상승 · 기술 혁신에 따른 구조적 ASP 상승 · 선제 CAPEX에 따른 Q 사이클 세 항목 모두. 숫자가 없으면 판정을 낮추고 '미확인'을 쓴다.
 - **표기:** 금융 용어는 괄호 풀이를 달지 않는다. 제품명·기술명·정책명·협회 약자는 풀이한다 — 일반 용어는 `config/report_glossary.yaml` terms, 이 회사 제품명은 datapack `terms`. 풀이 없는 약자가 있으면 `--merge`가 멈춘다. 엔·유로·파운드·원은 ¥16.3B·€300M·£20M·₩5T, 분기는 3Q26(렌더러가 바꾼다). 'DCF ÷ 시가총액'과 'n배' 가치 표기를 쓰지 않고 업사이드 %로 쓴다. 글은 짧게 쓰되 담을지·지켜볼지·담지 않을지 판단할 근거는 빼지 않는다.
+- **달러가 아닌 종목(2026-10-31 Kongsberg에서 처음 적용):** datapack `unit`("BNOK")·`currency_symbol`("NOK ")·`unit_usd`를 쓰고 금액은 현지 통화로 둔다. FINRA 수급은 미국 종목만이라 빠진다. 애널리스트 커버리지가 없으면 `consensus.ratings`를 비우고(`{}`) `eps_history`·`revision_events`가 없으면 EPS 리비전·주가 변화 분석 그림이 빠진다 — 없는 값을 채우지 않는다. 분할·합병으로 시세 원천이 보정하지 않은 가격은 ohlcv.csv에서 보정하고 머리 주석과 시나리오 글에 적는다.
 - **재발행:** 모델 글은 `<이름>_model.json`에 남는다. `--merge`를 다시 돌리면 거기서 조립하고 고친 제목·Chiip View를 살린다.
 - **예전 리포트 정정:** format 없는 옛 JSON은 `--legacy`로 예전 양식을 유지한다. 배수 사다리(`ladder`)는 새 리포트에서 쓰지 않는다.
 

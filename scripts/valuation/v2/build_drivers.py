@@ -156,7 +156,7 @@ def build(p):
 
     drivers = {
         "auto": True, "id": p["id"], "name": p["name"], "ticker": p.get("ticker"), "unit": p.get("unit", "B$"),
-        "unit_usd": 1e9 if p.get("unit", "B$") == "B$" else None, "industry": p["industry"], "region_mix": p.get("region_mix") or {"US": 1.0},
+        "unit_usd": 1e9 if p.get("unit", "B$") == "B$" else p.get("unit_usd"), "industry": p["industry"], "region_mix": p.get("region_mix") or {"US": 1.0},
         "tax": p.get("tax", 0.21), "horizon": 10, "as_of": p.get("as_of") or date.today().isoformat(),
         "market": {"date": p.get("as_of"), "price": pf["price"], "shares": round(shares, 6), "net_debt": round(net_debt, 6), "source": pf.get("source", "Fiscal.ai")},
         "rev0": round(rev0, 6), "ic0": round(ic0, 6),

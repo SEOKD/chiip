@@ -13,6 +13,7 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
   "consensus": {"ratings": {"strong_buy": 6, "buy": 0, "hold": 5, "sell": 0, "strong_sell": 0, "as_of": "2026-10-20"}}   # Fiscal.ai company_analyst_ratings
   "next_event": {"date": "2027-02-03", "tag": "4Q26 실적(예상)"}   # 어닝·오퍼링·인베스터데이 중 가장 가까운 것
   "terms": {"Triton": "CPO 광 시험 장비"}   # 이 리포트의 제품명·정책명 풀이
+  "currency_symbol": "NOK ", "unit": "BNOK", "unit_usd": 1.0e+8   # 달러가 아닌 종목만. 금액은 현지 통화로 쓴다
 JSON '판단 시나리오' 절의 scenario 차트: cases마다 {"name", "prob", "eps" 또는 "ebitda", "why", "color"} — 멀티플·주가는 엔진이 정한다.
 """
 import re
@@ -33,6 +34,11 @@ ANALYST = (("strong_buy", "Strong Buy"), ("buy", "Buy"), ("hold", "Neutral"), ("
 MODEL_SECTIONS = ("판단 시나리오", "반대 검증", "킬 조건", "셀온 조건", "체크리스트", "재발행 기록", "정정 기록")
 BANNED = ("DCF ÷ 시가총액", "주주가치 ÷ 시가총액", "배수 사다리", "컨빅션")
 SHORT_TITLES = {"콜 변화": "어닝콜 변화별 주주가치 영향", "최근 4개 분기 주가": "최근 4개 분기 주가 변화 분석", "일별 거래량": "일별 거래량 분해", "기관 자금": "기관 자금 흐름"}
+
+
+def sym(dp):
+    """표시 통화 — 달러가 아닌 종목은 datapack currency_symbol(예 'NOK ')"""
+    return (dp or {}).get("currency_symbol") or "$"
 
 
 def config():
@@ -81,7 +87,7 @@ def scenario_build(d, dp, mm, sel, shares):
                 raise SystemExit(f"시나리오 {name}: eps가 필요하다")
             k["value"] = round(m * float(k["eps"]), 2)
         k["multiple"] = round(m, 1)
-    c.update({"current": price, "unit": "$", "title": "밸류에이션 주가 시나리오"})
+    c.update({"current": price, "unit": sym(dp).strip(), "title": "밸류에이션 주가 시나리오"})
     cases = {k["name"]: k for k in c["cases"]}
     for need in ("약세", "기본", "강세"):
         if need not in cases:
@@ -89,7 +95,7 @@ def scenario_build(d, dp, mm, sel, shares):
     weighted = sum(float(k["prob"]) * k["value"] for k in c["cases"])
     return {"chart": c, "price": price, "bull": cases["강세"]["value"], "base": cases["기본"]["value"], "bear": cases["약세"]["value"], "weighted": weighted,
             "upside": weighted / price - 1, "downside": cases["약세"]["value"] / price - 1, "bull_up": cases["강세"]["value"] / price - 1,
-            "rr": reward_risk(price, cases["강세"]["value"], cases["약세"]["value"]) or 0.0, "cases": c["cases"], "metric_name": "EBITDA" if ev_metric else "EPS"}
+            "rr": reward_risk(price, cases["강세"]["value"], cases["약세"]["value"]) or 0.0, "cases": c["cases"], "metric_name": "EBITDA" if ev_metric else "EPS", "sym": sym(dp)}
 
 
 def rr_chart(s):
@@ -103,7 +109,8 @@ def rr_chart(s):
         rr = reward_risk(p, bull, bear)
         v = round(rr * 100)
         name, col = ("손익비 300% 이상", "d") if v >= 300 else (("손익비 100~300%", "c") if v >= 100 else ("손익비 100% 미만", "b"))
-        label = f"${p:,.2f} 현재" if p == price else f"${p:,.0f}"
+        cur = s.get("sym", "$")
+        label = f"{cur}{p:,.2f} 현재" if p == price else f"{cur}{p:,.0f}"
         rows.append({"label": f"{label} · 가중 {s['weighted'] / p - 1:+.0%}", "bars": [{"name": name, "color": col, "value": v}]})
     return {"kind": "hbars", "w": 480, "label_w": 170, "title": "업사이드·주가별 손익비", "unit": "%", "rows": rows}
 
@@ -117,7 +124,8 @@ def actest_chart(dp):
     cons = dp.get("consensus") or {}
     rows = cons.get("surprise") or []
     panels = []
-    for metric, name, scale in (("매출", "매출($M)", 1.0), ("EPS", "EPS($)", 1.0)):
+    tag = sym(dp).strip()
+    for metric, name, scale in (("매출", f"매출({tag}M)" if tag == "$" else f"매출({tag} M)", 1.0), ("EPS", f"EPS({tag})", 1.0)):
         past = sorted((r for r in rows if r.get("metric") == metric), key=lambda r: r["period"])[-4:]
         cats = [r["period"] for r in past]
         act = [r.get("actual") for r in past]
@@ -188,8 +196,9 @@ def dashboard(dp, s, mm, alpha, grade, mcap, unit, entity):
     prof, cons = dp["profile"], dp.get("consensus") or {}
     from_high, yr = price_stats(entity, s["price"])
     ev = mcap + (prof.get("debt") or 0) - (prof.get("cash") or 0)
-    money = lambda x: f"${x:,.2f}B" if unit == "B$" else f"{x:,.1f} {unit}"
-    tiles = [{"k": "주가", "v": f"${s['price']:,.2f}", "sub": f"고점 대비 {from_high:+.0%} · 1년 {yr:+.0%}" if from_high is not None else "미확인", "tone": "red" if (from_high or 0) < -0.3 else ""},
+    cur = sym(dp)
+    money = lambda x: f"{cur}{x:,.2f}B"
+    tiles = [{"k": "주가", "v": f"{cur}{s['price']:,.2f}", "sub": f"고점 대비 {from_high:+.0%} · 1년 {yr:+.0%}" if from_high is not None else "미확인", "tone": "red" if (from_high or 0) < -0.3 else ""},
              {"k": "시가총액", "v": money(mcap), "sub": f"EV {money(ev)}"},
              {"k": "업사이드", "v": f"{s['upside']:+.0%}", "sub": f"다운사이드 {s['downside']:+.0%} · 손익비 {s['rr'] * 100:.0f}%", "tone": "red" if s["upside"] > 0 else "blue"}]
     ra = cons.get("ratings") or {}
@@ -199,8 +208,8 @@ def dashboard(dp, s, mm, alpha, grade, mcap, unit, entity):
     tiles.append({"k": "멀티플", "v": f"{mm['label_short']} {mm['current']:.1f}배", "sub": f"동종 중앙값 {mm['peer_p50']:.1f}배"})
     g = (dp.get("guidance") or {}).get("next") or {}
     if g:
-        head = " · ".join(x for x in (f"${g['rev']:,.0f}M" if g.get("rev") is not None else "", f"${g['eps']:.2f}" if g.get("eps") is not None else "") if x)
-        vs = " · ".join(x for x in (f"${g['rev_cons']:,.0f}M" if g.get("rev_cons") is not None else "", f"${g['eps_cons']:.2f}" if g.get("eps_cons") is not None else "") if x)
+        head = " · ".join(x for x in (f"{cur}{g['rev']:,.0f}M" if g.get("rev") is not None else "", f"{cur}{g['eps']:.2f}" if g.get("eps") is not None else "") if x)
+        vs = " · ".join(x for x in (f"{cur}{g['rev_cons']:,.0f}M" if g.get("rev_cons") is not None else "", f"{cur}{g['eps_cons']:.2f}" if g.get("eps_cons") is not None else "") if x)
         tiles.append({"k": f"가이던스 {g.get('period', '')}".strip(), "v": head, "sub": f"컨센서스 {vs}" if vs else "컨센서스 미확인"})
     else:
         tiles.append({"k": "가이던스", "v": "없음", "sub": "회사가 숫자를 내지 않았다"})
@@ -294,10 +303,11 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line):
     """밸류에이션 — 계산은 엔진이 체계적으로, 글은 짧게(마스터 지시 2026-10-31)"""
     mcap = r["mcap"]
     base, bull, bear = r["scenarios"]["base"], r["scenarios"]["bull"], r["scenarios"]["bear"]
-    B = [{"type": "hl", "text": f"**확률 가중 ${s['weighted']:,.0f}, 업사이드 {s['upside']:+.0%}.** 강세 ${s['bull']:,.0f}({s['bull_up']:+.0%}), 약세 ${s['bear']:,.0f}({s['downside']:+.0%}). "
+    cur = s["sym"]
+    B = [{"type": "hl", "text": f"**확률 가중 {cur}{s['weighted']:,.0f}, 업사이드 {s['upside']:+.0%}.** 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%}), 약세 {cur}{s['bear']:,.0f}({s['downside']:+.0%}). "
                                 f"DCF 기준 업사이드는 기본 {base['v0'] - 1:+.0%}, 강세 {bull['v0'] - 1:+.0%}, 약세 {bear['v0'] - 1:+.0%}다(WACC {r['coc']['wacc']:.1%})."}]
     B.append({"type": "table", "title": "주가 시나리오", "headers": ["시나리오", "확률", "멀티플", s["metric_name"], "주가", "업사이드", "근거"],
-              "rows": [[k["name"], f"{k['prob']:.0%}", f"{k['multiple']:.1f}배", (f"${k['eps']:.2f}" if k.get("eps") is not None else f"${k['ebitda']:,.2f}B"), f"${k['value']:,.0f}", f"{k['value'] / s['price'] - 1:+.0%}", k.get("why", "")] for k in s["cases"]]})
+              "rows": [[k["name"], f"{k['prob']:.0%}", f"{k['multiple']:.1f}배", (f"{cur}{k['eps']:.2f}" if k.get("eps") is not None else f"{cur}{k['ebitda']:,.2f}B"), f"{cur}{k['value']:,.0f}", f"{k['value'] / s['price'] - 1:+.0%}", k.get("why", "")] for k in s["cases"]]})
     B.append({"type": "table", "title": f"멀티플 선정 — {sel['label']}", "headers": ["단계", "조정", "근거"], "rows": sel["rows"]})
     peers = [[x["ticker"]] + [("-" if x.get(k) is None else f"{x[k]:.1f}") for k in sel["keys"]] + [f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}", "-" if x.get("roic") is None else f"{x['roic']:.0%}"] for x in mm["peers"]]
     B.append({"type": "table", "title": "동종 레인지", "headers": ["회사"] + sel["labels"] + ["성장", "영업이익률", "ROIC"], "rows": peers + [[f"**{name}**"] + [f"{v:.1f}" for v in sel["now"]] + ["", "", ""]]})
@@ -315,12 +325,12 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line):
     return {"h2": "밸류에이션", "blocks": B}
 
 
-def flow_blocks(flow_sec, price_list):
+def flow_blocks(flow_sec, price_list, cur="$"):
     B = [b for b in (flow_sec or {}).get("blocks") or [] if b.get("type") != "chart" and not str(b.get("text", "")).startswith("**읽는 법")]
     rows = []
     for c in price_list:
         lv = c.get("levels") or {}
-        rows.append([c["title"], " · ".join(f"{t} ${v:,.2f}" for t, v in lv.get("support") or []) or "-", " · ".join(f"{t} ${v:,.2f}" for t, v in lv.get("resistance") or []) or "-"])
+        rows.append([c["title"], " · ".join(f"{t} {cur}{v:,.2f}" for t, v in lv.get("support") or []) or "-", " · ".join(f"{t} {cur}{v:,.2f}" for t, v in lv.get("resistance") or []) or "-"])
     if rows:
         B.append({"type": "table", "title": "지지선·저항선", "headers": ["봉", "지지", "저항"], "rows": rows})
     return B
@@ -360,11 +370,12 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     grade = rating(s["upside"], s["rr"], dcf_up, cfg)
     v = d.setdefault("verdict", {})
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
-    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "upside_basis": f"판단 시나리오 확률 가중 ${s['weighted']:,.0f}"})
+    cur = sym(dp)
+    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "upside_basis": f"판단 시나리오 확률 가중 {cur}{s['weighted']:,.0f}"})
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}
     d["tiles"] = dashboard(dp, s, m_short, alpha, grade, r["mcap"], r["unit"], entity)
-    upline = f"**강세 ${s['bull']:,.0f}({s['bull_up']:+.0%})까지 열려 있다.** {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 ${s['base']:,.0f}, 약세 ${s['bear']:,.0f}, 확률 가중 ${s['weighted']:,.0f}({s['upside']:+.0%}). 손익비 {s['rr'] * 100:.0f}%, DCF 기준 업사이드 {dcf_up:+.0%}."
+    upline = f"**강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})까지 열려 있다.** {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}, 확률 가중 {cur}{s['weighted']:,.0f}({s['upside']:+.0%}). 손익비 {s['rr'] * 100:.0f}%, DCF 기준 업사이드 {dcf_up:+.0%}."
     keep = [x for x in d.get("summary") or [] if not x.get("auto")]
     auto = [{"q": "기업가치를 결정하는 내러티브", "a": ((dp.get("narrative") or {}).get("lead") or {}).get("summary", ""), "auto": True},
             {"q": "밸류에이션 모델로 본 주가 상방은 어디까지인가?", "a": upline, "auto": True}]
@@ -389,11 +400,19 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + (xs["pipeline"].pop("_sources", None) or [])))
         out.append({**xs["pipeline"], "h2": "수주·파이프라인"})
     out += [moat_section(dp), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val]
-    flows = flow_blocks(xs.get("flow"), price)
+    flows = flow_blocks(xs.get("flow"), price, cur)
     if flows:
         out.append({"h2": "수급", "blocks": flows})
     out += [{**x, "h2": "체크리스트"} for x in find("체크리스트")] + find("재발행 기록", "정정 기록")
     d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}})
+
+    def zero(o):
+        if isinstance(o, dict):
+            return {k: zero(x) if k not in ("gallery", "bars") else x for k, x in o.items()}
+        if isinstance(o, list):
+            return [zero(x) for x in o]
+        return re.sub(r"(?<![\d.])-0%", "0%", o) if isinstance(o, str) else o
+    d.update({k: zero(d[k]) for k in ("tiles", "summary", "sections")})
     body = str({k: d.get(k) for k in ("verdict", "summary", "sections", "tiles")})
     left = [w for w in BANNED if w in body]
     if left:

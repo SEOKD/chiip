@@ -223,7 +223,7 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
         def cells(r):
             if r["metric"] == mg_name:
                 return f"{r['actual']:.1f}%", f"{r['est']:.1f}%" if r.get("est") is not None else "-", f"{r['surprise']:+.1f}%p" if r.get("surprise") is not None else "-"
-            amt = lambda v: f"${v:,.2f}" if r.get("unit") == "$" else f"{v:,.4g} {r.get('unit', '')}"
+            amt = lambda v: f"${v:,.2f}" if r.get("unit") == "$" else (f"{v:,.0f} {r.get('unit', '')}" if abs(v) >= 1000 else f"{v:,.4g} {r.get('unit', '')}")
             return amt(r["actual"]), amt(r["est"]) if r.get("est") else "-", _pct(r["surprise"])
         B.append({"type": "table", "title": "실적 vs 컨센서스 — 최근 4개 분기 (이익 지표는 조정 기준, 발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈"],
                   "rows": [[r["period"], r["metric"], *cells(r)] for r in shown]})

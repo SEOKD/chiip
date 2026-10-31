@@ -1,0 +1,847 @@
+{
+ "id": "no-kongsberg",
+ "name": "Kongsberg Gruppen",
+ "ticker": "KOG",
+ "as_of": "2026-10-30",
+ "unit": "BNOK",
+ "unit_usd": 100000000.0,
+ "currency_symbol": "NOK ",
+ "industry": "aerospace_defense",
+ "region_mix": {
+  "EU": 1.0
+ },
+ "tax": 0.22,
+ "main_metric": "eps",
+ "main_metric_why": "컨센서스와 멀티플 비교가 EPS 기준이고 회사는 EBITDA 가이던스를 내지 않는다",
+ "profile": {
+  "price": 355.8,
+  "shares_basic": 0.879592378,
+  "shares_date": "2026-09-30",
+  "cash": 6.365,
+  "debt": 3.477,
+  "source": "가격 = 오슬로 10/30 종가 · 주식 수·현금·차입·리스 = 3Q 재무상태표 2026-09-30"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-09-30",
+  "source": "희석 증권 미공개 — 가중평균 희석 주식이 기본과 같다"
+ },
+ "financials": {
+  "rev_ttm": 39.262,
+  "ebit_ttm": 6.483,
+  "invested_capital": 11.57,
+  "capex_ttm": 3.075,
+  "da_ttm": 1.417,
+  "sbc_ttm": 0.0,
+  "s2c": 3.39,
+  "rev_growth_ttm": 0.34,
+  "basis": "IFRS",
+  "note": "TTM = 4Q25~3Q26. 회사 발표 매출·EBIT는 50% 합작사 지분을 비례 포함해 더 크다(3Q NOK 11.3B vs 재무제표 NOK 10.84B). 투하자본 = 자기자본 14.458 + 차입·리스 3.477 − 현금 6.365"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 42.0,
+   "FY2027": 55.0,
+   "FY2028": 66.0
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.1679,
+   "FY2027": 0.1693,
+   "FY2028": 0.175
+  },
+  "margin_basis": "gaap",
+  "n_analysts": null,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 12.331,
+   "2027Q1": 11.6,
+   "2027Q2": 12.9,
+   "2027Q3": 13.8,
+   "2027Q4": 16.7
+  },
+  "quarters_act": {
+   "2026Q1": 8.94,
+   "2026Q2": 9.887,
+   "2026Q3": 10.842
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1.93,
+   "2027Q1": 1.65,
+   "2027Q2": 2.03
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "MNOK",
+    "actual": 9593,
+    "est": null,
+    "est_src": "fiscal",
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "NOK",
+    "actual": 2.68,
+    "est": null,
+    "est_src": "fiscal",
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "MNOK",
+    "actual": 8940,
+    "est": null,
+    "est_src": "fiscal",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "NOK",
+    "actual": 1.91,
+    "est": null,
+    "est_src": "fiscal",
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "MNOK",
+    "actual": 9887,
+    "est": null,
+    "est_src": "fiscal",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "NOK",
+    "actual": 1.82,
+    "est": null,
+    "est_src": "fiscal",
+    "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "MNOK",
+    "actual": 10842,
+    "est": 9887.96,
+    "est_src": "fiscal",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "NOK",
+    "actual": 1.69,
+    "est": 1.508,
+    "est_src": "fiscal",
+    "basis": null
+   }
+  ],
+  "note": "Fiscal.ai 자체 추정(company_estimates). 이 종목은 애널리스트 등급·목표가·추정 이력 커버리지가 없다",
+  "ratings": {}
+ },
+ "guidance": {
+  "rev_fy0": null,
+  "long_term": "2029년 매출 NOK 100B, 2033년 NOK 150B(2026년 6월 자본시장의 날, 2Q·3Q 콜에서 재확인). 단기 숫자 가이던스는 없다",
+  "source": "3Q 콜 2026-10-29",
+  "next": {}
+ },
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-07-13",
+  "tone": "up",
+  "tone_score": 6.0,
+  "tone_delta": 0.5,
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_3q": 11.3,
+   "ebit_margin_3q": 0.164,
+   "backlog": 174.2,
+   "book_to_bill": 2.06,
+   "ocf_3q": 4.1
+  },
+  "guidance_changes": [
+   "2027년 잔고 전환 NOK 53B로 약 NOK 9B 증가",
+   "2029·2033 장기 목표 유지"
+  ],
+  "new_topics": [
+   "Belgium NASAMS 약 NOK 10B",
+   "Gdańsk 공장 2028 상반기",
+   "Sonatech 인수 완료",
+   "Horten 45,000㎡ 입주"
+  ],
+  "dropped_topics": [],
+  "risks": [
+   "Zone 5 초기 마진 희석",
+   "유지 보상금 비용",
+   "Discovery 이전 비용"
+  ],
+  "qa_focus": [
+   "Bank of America: 일회성 이익",
+   "Nordea·Deutsche Bank: 미사일 마진",
+   "SEB: 2027 잔고 전환",
+   "Deutsche Bank: Zone 5 유럽 수주·Thales 합작"
+  ],
+  "source": "회사 3Q 콜(2026-10-29) · 2Q 콜(2026-07-13)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "수주잔고",
+    "label": "잔고 NOK 174B",
+    "prior": "NOK 158B",
+    "latest": "NOK 174.2B, book-to-bill 2.06",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "2027 잔고 전환",
+    "label": "2027 전환 53B",
+    "prior": "약 NOK 44B",
+    "latest": "NOK 53B",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO·SEB 질문"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "미사일·항공구조물 마진",
+    "label": "미사일 마진 희석",
+    "prior": "16.5%(작년 3Q)",
+    "latest": "11.6%",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "폴란드 공장",
+    "label": "Gdańsk 공장",
+    "prior": "준비 중",
+    "latest": "2028 상반기 생산 시작",
+    "driver": "growth_end",
+    "shift": 0.003,
+    "confidence": 0.5,
+    "source": "3Q 콜 CEO"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "Sonatech 인수",
+    "label": "Sonatech 수중",
+    "prior": "미완료",
+    "latest": "9월 완료",
+    "driver": "growth_end",
+    "shift": 0.002,
+    "confidence": 0.5,
+    "source": "3Q 콜 CEO"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai company_estimates·ratios 2026-10-30 + 시세 TradingView(SAAB·BA). Fwd 2Y·3Y는 연간 추정으로 근사",
+ "peers": [
+  {
+   "ticker": "RHM",
+   "key": "XTRA_RHM",
+   "rev": 10.427,
+   "ebit_margin": 0.1859,
+   "mcap": 48.165,
+   "pb": 9.69,
+   "debt": 2.978,
+   "cash": 0.255,
+   "ev_sales": 4.88,
+   "growth": 0.62,
+   "pe_fwd": 26.54,
+   "pe_fwd2": 19.9,
+   "pe_fwd3": 14.0,
+   "ntm_ebit_margin": 0.198,
+   "ntm_growth": 0.62
+  },
+  {
+   "ticker": "SAAB",
+   "key": "OM_SAAB",
+   "rev": 92.867,
+   "ebit_margin": 0.1068,
+   "mcap": 364.17,
+   "pb": 7.0,
+   "debt": 12.14,
+   "cash": 21.66,
+   "ev_sales": 3.82,
+   "growth": 0.24,
+   "pe_fwd": 38.5,
+   "pe_fwd2": 30.4,
+   "pe_fwd3": 24.2,
+   "ntm_ebit_margin": 0.108,
+   "ntm_growth": 0.24
+  },
+  {
+   "ticker": "LDO",
+   "key": "BIT_LDO",
+   "rev": 20.477,
+   "ebit_margin": 0.08,
+   "mcap": 29.905,
+   "pb": 3.09,
+   "debt": 4.513,
+   "cash": 0.986,
+   "ev_sales": 1.63,
+   "growth": 0.15,
+   "pe_fwd": 24.38,
+   "pe_fwd2": 21.5,
+   "pe_fwd3": 18.3,
+   "ntm_ebit_margin": 0.105,
+   "ntm_growth": 0.15
+  },
+  {
+   "ticker": "HO",
+   "key": "XPAR_HO",
+   "rev": 22.82,
+   "ebit_margin": 0.1015,
+   "mcap": 48.427,
+   "pb": 6.05,
+   "debt": 3.561,
+   "cash": 5.164,
+   "ev_sales": 2.05,
+   "growth": 0.082,
+   "pe_fwd": 20.86,
+   "pe_fwd2": 18.9,
+   "pe_fwd3": 16.7,
+   "ntm_ebit_margin": 0.131,
+   "ntm_growth": 0.082
+  },
+  {
+   "ticker": "HAG",
+   "key": "XTRA_HAG",
+   "rev": 2.678,
+   "ebit_margin": 0.093,
+   "mcap": 9.932,
+   "pb": 10.26,
+   "debt": 1.69,
+   "cash": 0.589,
+   "ev_sales": 4.12,
+   "growth": 0.17,
+   "pe_fwd": 54.84,
+   "pe_fwd2": 40.5,
+   "pe_fwd3": 28.7,
+   "ntm_ebit_margin": 0.148,
+   "ntm_growth": 0.17
+  },
+  {
+   "ticker": "BA",
+   "key": "XLON_BA",
+   "rev": 28.336,
+   "ebit_margin": 0.1032,
+   "mcap": 60.55,
+   "pb": 4.9,
+   "debt": 9.05,
+   "cash": 3.438,
+   "ev_sales": 2.33,
+   "growth": 0.15,
+   "pe_fwd": 23.0,
+   "pe_fwd2": 21.1,
+   "pe_fwd3": 19.0,
+   "ntm_ebit_margin": 0.121,
+   "ntm_growth": 0.15
+  }
+ ],
+ "sbc_pct_rev": 0.0,
+ "overrides": {
+  "margin_base": {
+   "target": 0.175,
+   "year_target": 3,
+   "lr": 0.17,
+   "lam": 0.35
+  },
+  "s2c": 2.5,
+  "why": "EBIT 이익률 17.5%는 FY2028 컨센서스. 장기 17%. 매출÷투하자본 2.5: TTM 3.4는 고객 선수금이 부풀린 값이라 공장 투자를 감안해 낮췄다"
+ },
+ "events": [
+  {
+   "date": "2026-10-29",
+   "tag": "3Q 실적 +13%",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [],
+ "sources": [
+  "Kongsberg 3Q26 실적 발표·콜 2026-10-29",
+  "2Q26 콜 2026-07-13",
+  "1Q26 콜"
+ ],
+ "raw": {
+  "retrieved_at": "2026-10-31T23:50:00+09:00",
+  "shares_cover_implied": 0.879592378,
+  "fiscal_profile": {
+   "companyKey": "OB_KOG",
+   "price": 355.8,
+   "market_cap": 312.959,
+   "total_cash": 6.365,
+   "total_debt": 3.477,
+   "shares_outstanding": 0.879592378,
+   "as_of": "2026-10-30",
+   "balance_date": "2026-09-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 9.593,
+    "2026Q1": 8.94,
+    "2026Q2": 9.887,
+    "2026Q3": 10.842
+   },
+   "op_income": {
+    "2025Q4": 1.642,
+    "2026Q1": 1.491,
+    "2026Q2": 1.588,
+    "2026Q3": 1.762
+   }
+  },
+  "balance_2026_09_30": {
+   "equity": 14.458,
+   "cash": 6.365,
+   "debt_current": 0.1,
+   "debt_lt": 1.0,
+   "lease_current": 0.0,
+   "lease_lt": 2.377
+  },
+  "cf_q": {
+   "ocf": [
+    8.347,
+    -0.181,
+    -1.934,
+    4.102
+   ],
+   "acq": [
+    0,
+    0,
+    -3.801,
+    -1.291
+   ]
+  },
+  "estimates_sales_m": {
+   "2026Q4": 12331,
+   "2027Q1": 11600,
+   "2027Q2": 12900,
+   "2027Q3": 13800,
+   "2027Q4": 16700,
+   "2026Q1": 8940,
+   "2026Q2": 9887,
+   "2026Q3": 10842
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 45.49,
+  "pe_fwd2": 33.7,
+  "pe_fwd3": 29.1,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 7.82,
+   "ebit": 8.2,
+   "revenue": 50.63,
+   "rev_ttm": 39.262
+  },
+  "horizons": {
+   "2": {
+    "eps": 10.55,
+    "ext": 0
+   },
+   "3": {
+    "eps": 12.2,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai"
+ },
+ "history": {},
+ "next_event": {
+  "date": "2027-02 초(예상)",
+  "tag": "4Q26 실적"
+ },
+ "terms": {
+  "NASAMS": "노르웨이·미국 공동 개발 중거리 방공 체계",
+  "NSM": "해군 타격 미사일",
+  "JSM": "F-35 내부 탑재 공대지·공대함 미사일",
+  "Protector": "원격 사격 통제 무기 스테이션",
+  "Zone 5": "저가 대량 미사일 회사, 2026년 인수",
+  "White Spike": "저가 방공 요격 미사일",
+  "Rusty Dagger": "저가 장거리 타격 미사일",
+  "FREYA": "유럽·우크라이나 장거리 탄도 요격 사업",
+  "Sonatech": "미 해군 수중 음향 공급사",
+  "Patria": "핀란드 장갑차 회사, 49.9% 지분",
+  "Horten": "노르웨이 수중 장비 공장",
+  "NATO": "북대서양조약기구",
+  "AUV": "자율 수중 무인기",
+  "FMS": "미국 정부 대외군사판매",
+  "CUAS": "대드론 체계",
+  "Discovery": "수중 로봇·소형 위성 부문",
+  "Maritime": "2026년 4월 분할한 선박 장비 부문",
+  "TRAXX": "Patria 궤도 장갑차"
+ },
+ "moat": {
+  "summary": "해자의 핵심은 캐파를 먼저 깔아 둔 것이다. 잔고가 TTM 매출의 4.4배이고 공장을 미국·호주·폴란드로 넓힌다. 반면 ASP가 구조적으로 오른다는 증거는 없다.",
+  "items": [
+   {
+    "kind": "공급 병목에 따른 구조적 ASP 상승",
+    "verdict": "약함",
+    "claim": "회사는 지금 캐파로 잔고를 소화하고 새 사업도 받을 수 있다고 했다. 병목이 없다는 뜻이라 가격 결정력의 근거가 되지 않는다. 계약 단가는 공개되지 않아 ASP 추세는 미확인이다.",
+    "evidence": "3Q 콜. Defence Systems 마진 20.6%는 물량·실행·프로젝트 믹스 효과로 설명했다.",
+    "quant": "EBIT 마진 16.4%(작년 14.8%)",
+    "falsifier": "증설 지연으로 납기가 늘고 단가가 오르면 이 판정은 올라간다."
+   },
+   {
+    "kind": "기술 혁신에 따른 구조적 ASP 상승",
+    "verdict": "보통",
+    "claim": "NASAMS는 사용국 18곳으로 중거리 방공 표준이 됐고 JSM은 F-35 탑재 선택지다. 교체가 어려운 체계지만, 이것이 단가 상승으로 이어졌는지는 공개 자료로 확인하지 못했다.",
+    "evidence": "NASAMS 18개국, JSM 6개국 선택, Belgium 약 NOK 10B는 사상 최대 NASAMS 계약.",
+    "quant": "ASP 미확인",
+    "falsifier": "유럽 경쟁 체계가 NASAMS 입찰을 가져간다."
+   },
+   {
+    "kind": "선제 CAPEX에 따른 Q 사이클",
+    "verdict": "강함",
+    "claim": "수요가 확정되기 전에 Norway 미사일 공장, Horten, 미국·호주 공장, Gdańsk를 깔았다. 그래서 물량이 먼저 늘고 2027년 잔고 전환이 NOK 53B로 커졌다.",
+    "evidence": "3Q 콜. 폴란드 2028 상반기 생산, Horten 45,000㎡ 입주, 3Q 매출 +50%.",
+    "quant": "잔고 NOK 174.2B = TTM 매출의 4.4배 · 2027년분 NOK 53B · 2028년 이후 NOK 109B · TTM CAPEX 약 NOK 3.1B",
+    "falsifier": "2027년 매출이 잔고 전환 NOK 53B 수준에 못 미친다."
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": 0.2,
+  "why": "동종 중앙값은 저성장 대형사가 끌어내린다. 매출 성장 20% 안팎인 Saab·Hensoldt·Rheinmetall 중앙값은 38.5배이고 잔고가 매출의 4.4배다"
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "reported_backlog": 174.2,
+  "backlog_label": "수주잔고",
+  "summary": "건별 진척은 공개되지 않아 잔고 전체로 잰다. 회사 집계는 50% 합작사 지분을 포함한다.",
+  "items": [
+   {
+    "name": "수주잔고 전체(9/30)",
+    "status": "확정",
+    "total": 174.2,
+    "progress": "미확인",
+    "margin": 0.164,
+    "margin_kind": "EBIT",
+    "margin_basis": "3Q 회사 기준 EBIT 마진",
+    "speed": "4Q 7%, 2027년 30%(NOK 53B), 2028년 이후 63%(NOK 109B)",
+    "blockers": [
+     "공급망·인력",
+     "신공장 램프",
+     "수출 허가"
+    ],
+    "source": "3Q 콜 2026-10-29"
+   },
+   {
+    "name": "Belgium NASAMS",
+    "status": "확정",
+    "total": 10.0,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q 계약, 사상 최대 NASAMS",
+    "blockers": [
+     "체계 통합",
+     "유도탄 공급"
+    ],
+    "source": "3Q 콜 2026-10-29",
+    "no_sum": true
+   },
+   {
+    "name": "Netherlands NASAMS 추가",
+    "status": "확정",
+    "total": 1.5,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q 계약",
+    "blockers": [
+     "체계 통합"
+    ],
+    "source": "3Q 콜 2026-10-29",
+    "no_sum": true
+   },
+   {
+    "name": "JSM 2Q 수주 3건(Germany·US·Canada)",
+    "status": "확정",
+    "total": 10.9,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2Q 계약",
+    "blockers": [
+     "미사일 공장 램프"
+    ],
+    "source": "2Q 콜 2026-07-13",
+    "no_sum": true
+   },
+   {
+    "name": "Zone 5 중기 연 매출",
+    "status": "파이프라인",
+    "total": 10.0,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "회사는 2029년 나머지 사업 수준 마진을 목표로 한다. 미국 정부 계약 위주로 양산 준비",
+    "blockers": [
+     "Fort Worth 양산 램프",
+     "유럽 생산 파트너",
+     "경쟁"
+    ],
+    "source": "2Q·3Q 콜",
+    "no_sum": true
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-10-30",
+  "stage": "컨센서스",
+  "crowding": "높음",
+  "summary": "유럽 재무장의 대표 수혜주라는 이야기는 이미 값에 들어 있다. Fwd 1Y P/E 45.5배가 묻는 것은 수요가 아니라 2029년 매출 NOK 100B까지 가는 실행과 마진이다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "3Q 콜 질문",
+      "일회성 이익·미사일 마진·2027 전환·Zone 5·Thales 합작",
+      "질문 대부분이 마진의 질과 실행"
+     ],
+     [
+      "애널리스트 등급·목표가",
+      "미확인",
+      "이 종목은 데이터 커버리지가 없다"
+     ]
+    ],
+    "read": "셀사이드의 쟁점은 수주가 아니라 Zone 5가 깎는 마진과 일회성 효과의 크기다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "주가 반응",
+      "3Q 발표일 +13%, 다음 날 +1%",
+      "분할 보정 기준 52주 고점을 넘겼다(추정)"
+     ]
+    ],
+    "read": "기관 수급 자료는 이번에 받지 못했다. 미국 13F 대상이 아니다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 사건",
+      "Belgium 계약, Gdańsk 공장, Sonatech",
+      "수주와 공장 중심"
+     ]
+    ],
+    "read": "언론은 수주를 다루고, 마진 희석은 콜 질문에서 주로 나왔다"
+   }
+  },
+  "factors": [
+   {
+    "name": "유럽 방공 재무장",
+    "thesis": "유럽이 방공을 사고 NASAMS가 표준이 됐다",
+    "inputs": "성장 지속기간",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "잔고 NOK 174.2B, book-to-bill 2.06",
+    "status": "강화",
+    "falsifier": "2027년 book-to-bill 1 미만",
+    "source": "3Q 콜 2026-10-29"
+   },
+   {
+    "name": "저가 대량 미사일",
+    "thesis": "Zone 5가 고가 NSM·JSM 위에 물량 사업을 얹는다",
+    "inputs": "새 시장",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "중기 연 매출 NOK 10B 기대, 2029년 마진 동등 목표",
+    "status": "유지",
+    "falsifier": "유럽 생산 계약이 2027년에 나오지 않는다",
+    "source": "2Q·3Q 콜"
+   },
+   {
+    "name": "방산 순수 기업 재평가",
+    "thesis": "Maritime 분할로 순수 방산·수중·우주 기업이 됐다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "Fwd 1Y P/E 45.5배, 동종 중앙값 25.5배",
+    "status": "유지",
+    "falsifier": "멀티플이 Saab 수준 아래로 내려간다",
+    "source": "Fiscal.ai 추정"
+   },
+   {
+    "name": "반대 내러티브: 이미 값이 다 들어갔다",
+    "thesis": "휴전이나 예산 지연이 오면 배수가 먼저 깎인다",
+    "inputs": "할인율·성장",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "지금 값은 FY2028 EPS의 34배",
+    "status": "강화",
+    "falsifier": "2027년 EPS 상향과 마진 유지",
+    "source": "Fiscal.ai 추정"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 '유럽이 방공과 미사일을 사고, Kongsberg가 그 표준을 쥐었다'는 것이다.** 3Q 회사 기준 매출 NOK 11.3B(+50% YoY), 수주 NOK 23.3B, 잔고 NOK 174.2B로 기록이다. 주가는 3Q 발표일에 +13%로 분할 보정 기준 52주 고점을 넘겼다. 문제는 값이다. Fwd 1Y P/E 45.5배는 2029년 매출 NOK 100B 목표까지 상당 부분 먼저 낸 값이다.",
+   "value_story": "Kongsberg는 NASAMS 방공과 NSM·JSM 미사일을 파는 방산 회사다. 2026년 4월 선박 부문을 떼어내 순수 방산·수중·우주 기업이 됐다. 수주가 몇 년치 매출을 미리 고정하므로 기업가치는 세 가지로 갈린다. 잔고를 얼마나 빨리 매출로 바꾸나, Zone 5가 깎는 마진을 얼마나 빨리 회복하나, 그리고 2029년 NOK 100B 이후 수주가 이어지나다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 45.5배로 동종 중앙값 25.5배보다 79% 높다. Saab 38.5배보다도 높다. 프리미엄이 크다.",
+    "eps": "FY2026~FY2028 컨센서스 EPS는 NOK 7.35 → 8.59 → 10.48이다. 지금 값은 FY2028 EPS의 34배다. 추정 이력이 없어 리비전 폭은 미확인이다."
+   },
+   "why_excited": "유럽 방공 수요가 커지면서 수주가 매출을 크게 앞질렀다. 6월 자본시장의 날에 2029년 NOK 100B, 2033년 NOK 150B 목표를 냈다. 3Q 매출 +50%, EBIT +66%가 그 길을 숫자로 보여 줬다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "Maritime 분할로 방산·수중·우주만 남았다. 민수 사이클이 빠지고 잔고 중심 회사가 됐다.",
+     "evidence": "2026년 4월 분할 완료. 잔고 NOK 174.2B는 TTM 매출의 4.4배.",
+     "falsifier": "방산 비중이 커진 만큼 단일 고객군 위험이 커진다."
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "Defence Systems 마진이 20.6%까지 올랐다. 다만 Zone 5가 미사일 부문 마진을 16.5%에서 11.6%로 낮췄다.",
+     "evidence": "3Q 콜. 회사는 Zone 5가 2029년 나머지 사업 수준 마진에 닿는다고 했다.",
+     "falsifier": "2028년에도 미사일 부문 마진이 14% 아래다."
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "NASAMS에 White Spike를 더하고 장거리 요격(FREYA)과 수중 자율 체계로 넓힌다.",
+     "evidence": "NASAMS 사용국 18곳, JSM 6개국, 미 정부 AUV 계약.",
+     "falsifier": "FREYA 시험이 지연되거나 경쟁 체계가 표준을 가져간다."
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "해당 없음(납기를 숫자로 공개하지 않는다). 대신 잔고 전환으로 잰다. 4Q 7%, 2027년 30%, 2028년 이후 63%다.",
+     "evidence": "3Q 콜. 2027년분은 전 분기보다 약 NOK 9B 늘었다.",
+     "falsifier": "2027년 매출이 잔고 전환 수준에 못 미친다."
+    },
+    {
+     "lens": "M&A",
+     "drives": "multiple",
+     "status": "완료",
+     "change": "Zone 5와 Sonatech를 인수했다. 두 건 합계 기업가치는 약 6B(콜 표기, 통화 미확인)다.",
+     "evidence": "3Q 인수 현금 유출 NOK 1.3B, 2Q NOK 3.8B. 유지 보상금은 앞으로 인건비로 잡힌다.",
+     "falsifier": "유지 보상금과 통합 비용이 마진 회복을 늦춘다."
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "유럽 방위 예산이 Kongsberg 수주로 내려온다. 공급 관계는 계약 공시로 확인된다.",
+     "evidence": "Belgium·Netherlands·Germany·Canada 계약.",
+     "falsifier": "예산 집행이 지연되면 계약이 뒤로 밀린다."
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(미국 의회 표결 대상이 아니다). 회사는 유럽이 2030년까지 안보 지출을 최대 €800B 늘릴 계획이라고 인용했다.",
+     "evidence": "3Q 콜 CEO. 예산 성립과 계약은 나라별로 따로 확인해야 한다.",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "휴전 뒤 예산이 줄어든다."
+    },
+    "orders": {
+     "change": "해당 없음(이 회사 매출을 직접 바꾸는 미국 행정명령을 찾지 못했다). 노르웨이의 말레이시아 수출 허가 취소는 2Q 실적에 반영됐다.",
+     "evidence": "2Q 콜.",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "laws": {
+     "change": "해당 없음(계류 법안 영향을 콜과 공시에서 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   },
+   "products": [
+    {
+     "kind": "제품",
+     "name": "NASAMS 방공",
+     "what": "중거리 지대공 방공 체계",
+     "use": "18개국 사용",
+     "money": "Defence Systems 3Q 매출 NOK 5.4B, 마진 20.6%(무기 스테이션 포함)"
+    },
+    {
+     "kind": "제품",
+     "name": "NSM·JSM 미사일",
+     "what": "대함·공대지 정밀 타격 미사일",
+     "use": "함정·F-35",
+     "money": "Missiles & Aerostructures 3Q 매출 NOK 4.0B, 마진 11.6%(Zone 5 포함)"
+    },
+    {
+     "kind": "제품",
+     "name": "Protector",
+     "what": "차량·함정용 원격 무기 스테이션",
+     "use": "육군 차량, 대드론",
+     "money": "Defence Systems에 포함"
+    },
+    {
+     "kind": "제품",
+     "name": "Zone 5",
+     "what": "White Spike·Rusty Dagger 저가 대량 미사일",
+     "use": "미국 정부, 유럽 협의 중",
+     "money": "중기 연 매출 NOK 10B 기대(회사)"
+    },
+    {
+     "kind": "제품",
+     "name": "Discovery",
+     "what": "자율 수중 무인기, 소나, 소형 위성",
+     "use": "민수·해군",
+     "money": "3Q 매출 NOK 2.0B, 조정 마진 17.5%"
+    },
+    {
+     "kind": "서비스",
+     "name": "Patria 지분",
+     "what": "핀란드 장갑차 회사 지분",
+     "use": "6x6·TRAXX",
+     "money": "3Q 지분 이익 NOK 159M, 잔고에는 미포함"
+    }
+   ]
+  }
+ }
+}

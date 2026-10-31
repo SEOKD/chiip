@@ -1,0 +1,28 @@
+{
+ "stem": "20261031_KOG",
+ "date": "2026-10-31",
+ "ticker": "KOG",
+ "company": "Kongsberg Gruppen",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/21253d9d029b/outputs/tenbagger/reports/20261031_KOG.md",
+  "html": "https://github.com/SEOKD/chiip/blob/21253d9d029b/outputs/tenbagger/reports/20261031_KOG.html",
+  "commit": "21253d9d029b214ee5865a2fbf3c859253ce6aca",
+  "at": "2026-10-31T23:51:58+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/SH1scEzbCn6McLaZDvJaeh",
+  "at": "2026-10-31T23:53:44+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/40ab5d1e099881e08392e598f0d82e29",
+  "stock_page": "https://app.notion.com/p/40ab5d1e099881fe82f8ed73a154adf8",
+  "at": "2026-10-31T23:53:44+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-31T23:53:45+09:00"
+ }
+}
