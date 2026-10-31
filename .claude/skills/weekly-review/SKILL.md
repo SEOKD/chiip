@@ -24,7 +24,11 @@ argument-hint: "[주차 YYYY-Www]"
 6. **다음 주 볼 것 4~6건**: 일정 전체가 아니라 판단을 가르는 사건만. 날짜(KST)·무엇·볼 숫자(Fiscal `company_estimates`)·의미.
 7. **이 판단이 틀릴 조건 2~3줄**.
 8. 첫 문장(headline)과 결론 3줄을 맨 마지막에 쓴다. 지수·종목 나열이 아니라 그 주의 변화 한 문장이다.
-9. `outputs/brief/<YYYY-Www>_weekly.json`(구조는 `scripts/weekly/render.py` 맨 위) → `py scripts/weekly/render.py <YYYY-Www>` → .md·.html → claude.ai 비공개 Artifact 게시, 링크를 outputs/brief/artifact_links.md에 추가.
+9. `outputs/brief/<YYYY-Www>_weekly.json`(구조는 `scripts/weekly/render.py` 맨 위) → `py scripts/weekly/render.py <YYYY-Www>` → .md·.html.
+   **발행은 한 묶음이다. 보고서를 쓰거나 다시 쓸 때마다 끝까지 한다**(마스터 지시 2026-10-31). 시작할 때 `py scripts/weekly/publish_weekly.py pending`으로 지난 미완료부터 처리한다.
+   a. Artifact 도구로 .html 게시(있으면 같은 URL 갱신) → `py scripts/weekly/publish_weekly.py artifact <주차> --url <URL>`
+   b. `py scripts/weekly/publish_weekly.py notion-body <주차>` → 제목·`<주차>_notion.md`를 노션 커넥터로 `config/notion.yaml` pages.weekly 아래 하위 페이지에 올린다. `existing_page`가 있으면 새로 만들지 말고 그 페이지를 `replace_content`로 갱신한다 → `... notion <주차> --page <URL>`(실패면 `--fail "이유"`)
+   c. `py scripts/weekly/publish_weekly.py send <주차>` — 마스터 개인 텔레그램으로 결론과 두 링크. 다시 쓴 판은 '수정판'으로 나간다. 같은 판은 두 번 보내지 않는다.
 10. **운영 기록은 보고서 밖**: `py scripts/score_*.py` 결과, 예측 원장, 기사 소재 채택, 수집 장애, 개선 제안은 `outputs/brief/<YYYY-Www>_ops.md`에 쓴다 — Proviser가 읽는다. 예측이 그 주에 판정됐으면 그때만 보고서 '이번 주 바뀐 것'에 넣는다.
 
 채널 게시는 마스터가 직접 한다. 리포트의 '채널용 텍스트'를 복사해 쓴다.

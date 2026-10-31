@@ -1,16 +1,75 @@
 import json
+import shutil
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts" / "weekly"))
 sys.path.insert(0, str(ROOT / "radar"))
+import publish_weekly  # noqa: E402
 import render  # noqa: E402
 
 
 def doc():
     return json.loads((ROOT / "outputs" / "brief" / "2026-W44_weekly.json").read_text(encoding="utf-8"))
+
+
+class TestPublish(unittest.TestCase):
+    def setUp(self):
+        self.d = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.d, True)
+        (self.d / "2026-W44_weekly.json").write_text(json.dumps({"week": "2026-W44", "week_no": 44, "period": "10/26~10/30", "headline": "제목", "bullets": ["결론"]}, ensure_ascii=False), encoding="utf-8")
+        (self.d / "2026-W44_weekly.md").write_text("# 제목줄\n\n본문\n", encoding="utf-8")
+        (self.d / "artifact_links.md").write_text("", encoding="utf-8")
+        self.p = [mock.patch.object(publish_weekly, "BRIEF", self.d), mock.patch.object(publish_weekly, "STATE", self.d / "delivery"), mock.patch.object(publish_weekly, "LEDGER", self.d / "delivery.csv"),
+                  mock.patch.object(publish_weekly, "ROOT", self.d.parent)]
+        for x in self.p:
+            x.start()
+            self.addCleanup(x.stop)
+        self.sent = []
+        fake = mock.Mock(send=lambda text, level, md=False: self.sent.append(text) or True, run_ledger=mock.Mock())
+        n = mock.patch.dict(sys.modules, {"notify": fake})
+        n.start()
+        self.addCleanup(n.stop)
+
+    def rewrite(self):
+        (self.d / "2026-W44_weekly.md").write_text("# 제목줄\n\n고친 본문\n", encoding="utf-8")
+
+    def test_send_needs_artifact_of_this_version(self):
+        with self.assertRaises(SystemExit):
+            publish_weekly.send("2026-W44")
+        publish_weekly.artifact("2026-W44", "https://claude.ai/artifact/x")
+        self.rewrite()
+        with self.assertRaises(SystemExit):
+            publish_weekly.send("2026-W44")
+
+    def test_same_version_once_and_rewrite_goes_as_revision(self):
+        publish_weekly.artifact("2026-W44", "https://claude.ai/artifact/x")
+        publish_weekly.notion("2026-W44", "https://notion/p")
+        publish_weekly.send("2026-W44")
+        self.assertIn("skipped", publish_weekly.send("2026-W44"))
+        self.assertEqual(len(self.sent), 1)
+        self.assertIn("[노션](https://notion/p)", self.sent[0])
+        self.assertNotIn("수정판", self.sent[0])
+        self.rewrite()
+        self.assertEqual(publish_weekly.pending(), [{"week": "2026-W44", "left": ["artifact", "notion", "telegram"]}])
+        publish_weekly.artifact("2026-W44", "https://claude.ai/artifact/x")
+        publish_weekly.send("2026-W44")
+        self.assertIn("수정판", self.sent[1])
+        self.assertIn("노션 게시 실패", self.sent[1])   # 노션이 이번 판이 아니면 옛 페이지를 최신처럼 알리지 않는다
+
+    def test_notion_body_keeps_page_link_for_rewrite(self):
+        publish_weekly.artifact("2026-W44", "https://claude.ai/artifact/x")
+        publish_weekly.notion("2026-W44", "https://notion/p")
+        with mock.patch.object(publish_weekly, "ROOT", self.d):
+            res = publish_weekly.notion_body("2026-W44")
+        self.assertEqual(res["existing_page"], "https://notion/p")
+        text = (self.d / "2026-W44_notion.md").read_text(encoding="utf-8")
+        self.assertTrue(text.startswith("[차트와 표 전체 보기](https://claude.ai/artifact/x)"))
+        self.assertNotIn("제목줄", text)
 
 
 class TestWeeklyReview(unittest.TestCase):
