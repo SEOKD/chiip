@@ -116,6 +116,27 @@
   },
   "surprise": [
    {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 31.736,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-06-10"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -13.718,
+    "est": null,
+    "est_src": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-06-10",
+    "note": "조정 EBITDA −12.417 − D&A 1.301. 상장 전이라 컨센서스 없음"
+   },
+   {
     "period": "2026Q2",
     "metric": "매출",
     "unit": "M$",
@@ -129,11 +150,12 @@
     "period": "2026Q2",
     "metric": "EBIT",
     "unit": "M$",
-    "actual": -19.848,
+    "actual": -15.29,
     "est": -25.0,
     "est_src": "zacks",
-    "basis": "gaap",
-    "earnings_date": "2026-08-11"
+    "basis": "adjusted",
+    "earnings_date": "2026-08-11",
+    "note": "회사 조정 EBITDA −13.982 − D&A 1.308. 조정 EBIT을 회사가 내지 않아 Chiip 계산"
    },
    {
     "period": "2026Q2",
