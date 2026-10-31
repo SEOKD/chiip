@@ -68,3 +68,6 @@ time,stem,ticker,step,status,detail
 2026-10-31T10:36:17+09:00,20261031_EROC,EROC,github,ok,https://github.com/SEOKD/chiip/blob/18c65c46b2ad/outputs/tenbagger/reports/20261031_EROC.md
 2026-10-31T10:37:28+09:00,20261031_EROC,EROC,artifact,ok,https://claude.ai/artifact/JhHWBT6VEc1NFs7RkNwp3J
 2026-10-31T10:37:28+09:00,20261031_EROC,EROC,notion,ok,https://app.notion.com/p/40ab5d1e09988118b570f31cf7dbf5e0
+2026-10-31T16:57:36+09:00,20261031_7867,7867,github,ok,(dry) outputs/tenbagger/reports/20261031_7867.md
+2026-10-31T16:57:50+09:00,20261031_7867,7867,artifact,ok,https://claude.ai/artifact/6rno9tQekYxurPkQtmN1Jh
+2026-10-31T17:11:08+09:00,20261031_7867,7867,notion,ok,https://app.notion.com/p/40ab5d1e099881ada5b8c0558723604b

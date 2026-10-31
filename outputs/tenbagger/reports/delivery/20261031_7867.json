@@ -1,0 +1,24 @@
+{
+ "stem": "20261031_7867",
+ "date": "2026-10-31",
+ "ticker": "7867",
+ "company": "Takara Tomy(타카라토미)",
+ "github": {
+  "md": "(dry) outputs/tenbagger/reports/20261031_7867.md",
+  "html": "(dry) outputs/tenbagger/reports/20261031_7867.html",
+  "commit": "dry",
+  "at": "2026-10-31T16:57:36+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/6rno9tQekYxurPkQtmN1Jh",
+  "at": "2026-10-31T16:57:50+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/40ab5d1e099881ada5b8c0558723604b",
+  "stock_page": "https://app.notion.com/p/40ab5d1e09988190a6faf4fef1615fea",
+  "at": "2026-10-31T17:11:08+09:00"
+ },
+ "telegram": null
+}
