@@ -54,6 +54,10 @@ class TestCollect(unittest.TestCase):
         dticker.collect(lambda u: post(1, "INTC 기판 부족") + post(2, "MINTCO 소식") + post(3, "인텔 실적") if u == dticker.PAGE else "", self.path, 0, NOW)
         self.assertCountEqual([p["id"] for p in dticker.about(["INTC", "인텔"], path=self.path, now=NOW)], [1, 3])
 
+    def test_agent_posts_are_not_master_opinion(self):
+        dticker.collect(lambda u: post(1, "인텔 분석\n\n※ 에이전트 결과물입니다") + post(2, "인텔 의견") if u == dticker.PAGE else "", self.path, 0, NOW)
+        self.assertEqual([p["id"] for p in dticker.about(["인텔"], path=self.path, now=NOW)], [2])
+
     def test_columns_filter(self):
         dticker.collect(lambda u: post(1, "가" * dticker.COLUMN_CHARS) + post(2, "짧은 글") if u == dticker.PAGE else "", self.path, 0, NOW)
         self.assertEqual([p["id"] for p in dticker.recent(14, True, self.path, NOW)], [1])

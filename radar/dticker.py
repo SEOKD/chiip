@@ -26,6 +26,7 @@ SOURCE_ID = "src-dticker"
 STATE = "dticker"
 BACKFILL_DAYS, MAX_PAGES = 365, 120   # 첫 수집은 1년치까지, 이후에는 지난번 글까지만
 COLUMN_CHARS = 200   # 이보다 긴 글을 칼럼(마스터 해석)으로 본다. 그 아래는 속보·표
+AGENT_MARK = "에이전트 결과물"   # 마스터가 치입 글을 올릴 때 붙이는 표시 — 마스터 의견으로 되읽으면 자기 인용이 된다
 
 
 def fetch(url):
@@ -90,7 +91,7 @@ def run():
 
 def recent(days=14, columns=False, path=None, now=None):
     start = common.iso((now or common.now_kst()) - timedelta(days=days))
-    rows = [p for p in load(path).values() if p["at"] >= start]
+    rows = [p for p in load(path).values() if p["at"] >= start and AGENT_MARK not in p["text"]]
     return sorted((p for p in rows if not columns or len(p["text"]) >= COLUMN_CHARS), key=lambda p: p["at"], reverse=True)
 
 
