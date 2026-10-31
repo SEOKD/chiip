@@ -148,17 +148,22 @@ class TestLadder(unittest.TestCase):
 class TestLeadAndMerge(unittest.TestCase):
     def lead(self):
         return {"summary": "s", "value_story": "v", "products": [{"kind": "제품", "name": "n", "what": "w"}],
-                "lenses": [{"lens": k, "change": "c", **({"lead_time": "12~18개월", "peer_lead_time": "터빈 5~7년"} if k == "실행 속도" else {})} for k in narrative_view.LENSES],
+                "lenses": [{"lens": k, "change": "c", **({"lead_time": {"now": [12, 18], "prior": [18, 24], "prior_when": "2025년", "peers": [{"name": "A", "value": [60, 84]}, {"name": "B", "value": 20}, {"name": "C", "value": "미확인"}]}} if k == "실행 속도" else {})} for k in narrative_view.LENSES],
                 "policy": {"fiscal": {"change": "예산 증액", "house": {"level": 5, "why": "세출안 통과"}, "senate": {"level": 2}},
                            "orders": {"change": "해당 없음(관련 명령 없음)"}, "laws": {"change": "법안 발의"}}}
 
     def test_speed_lens_needs_lead_time(self):
         dp = {"narrative": {"lead": self.lead()}}
         text = json.dumps(narrative_view.lead_section(dp), ensure_ascii=False)
-        self.assertIn("**납품 리드타임** 12~18개월.", text)
-        self.assertIn("경쟁 대안 터빈 5~7년.", text)
+        self.assertIn("납품 리드타임 12~18개월", text)
+        self.assertIn("피어 중앙값 46개월보다 67% 짧다(A 60~84개월 · B 20개월 · C 미확인)", text)
+        self.assertIn("2025년 18~24개월보다 29% 짧다", text)
+        c = narrative_view.speed_compare({"now": 15, "prior": "미확인", "peers": [{"name": "A", "value": "미확인"}]})
+        self.assertIsNone(c["vs_prior"])
+        self.assertIsNone(c["vs_peer"])
+        self.assertIn("이전 대비 미확인", narrative_view.speed_text({"now": 15, "prior": "미확인", "peers": []}))
         speed = next(x for x in dp["narrative"]["lead"]["lenses"] if x["lens"] == "실행 속도")
-        del speed["lead_time"]
+        del speed["lead_time"]["prior"]
         with self.assertRaises(ValueError):
             narrative_view.lead_section(dp)
         speed["change"] = "해당 없음(납품이 없는 사업)"

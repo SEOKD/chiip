@@ -15,7 +15,8 @@ datapack "narrative":
                 "drives":"multiple|revision|both","quant":"숫자로 바꾼 것","status":"강화|유지|약화","falsifier","source"}],
    "attention": [{"label","value","unit"}],   # 선택 — 층별 관심 크기 막대
    "lead": {"summary": "한 장 요약 첫 문단", "value_story": "기업가치 결정 논리", "premium": {"multiple","eps"}, "why_excited": "왜 열광했나",
-            "lenses": [{"lens": LENSES 중 하나, "change", "evidence", "drives", "status", "falsifier"}…],   # 모두. 실행 속도는 "lead_time"(회사 납품 리드타임)·"peer_lead_time"(경쟁 대안) 추가
+            "lenses": [{"lens": LENSES 중 하나, "change", "evidence", "drives", "status", "falsifier"}…],   # 모두. 실행 속도는 "lead_time" 추가:
+                                                                                  # {"unit": "개월", "now": [12, 18], "prior": [18, 24], "prior_when": "2025년", "peers": [{"name", "value"}…]} — 값은 숫자 또는 [하단, 상단], 확인 못 한 값은 "미확인"
             "products": [{"kind": "제품|서비스|기술", "name", "what", "use", "money"}…],   # 맨 앞 절(lead_section) — 마스터 지시 2026-10-30
             "policy": {"fiscal": {"change", "evidence", "drives", "status", "falsifier", "house": {"level": 0~5, "why"}, "senate": {"level": 0~5, "why"}},   # 재정정책(행정부)
                        "orders": {같은 구조},                                                                                                      # 행정명령(행정부)
@@ -64,6 +65,36 @@ def policy_items(policy):
             line += f" **의회 동의 {total}/10** — {detail}."
         line += (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else "")
         out.append(line)
+    return out
+
+
+def _mid(v):
+    """숫자 또는 [하단, 상단] → 가운데 값. '미확인'이면 None"""
+    if isinstance(v, (int, float)):
+        return float(v)
+    return sum(v) / len(v) if isinstance(v, (list, tuple)) and v else None
+
+
+def _span(v, unit):
+    return "미확인" if _mid(v) is None else (f"{v[0]:g}~{v[1]:g}{unit}" if isinstance(v, (list, tuple)) and len(v) == 2 else f"{_mid(v):g}{unit}")
+
+
+def speed_compare(lt):
+    """실행 속도 정량화(마스터 지시 2026-10-31) — 피어 중앙값 대비·회사 이전 대비 변화율. 음수 = 더 빠르다. 값이 없으면 None"""
+    now, prior = _mid(lt.get("now")), _mid(lt.get("prior"))
+    vals = sorted(m for m in (_mid(p.get("value")) for p in lt.get("peers") or []) if m is not None)
+    median = (vals[len(vals) // 2] if len(vals) % 2 else (vals[len(vals) // 2 - 1] + vals[len(vals) // 2]) / 2) if vals else None
+    return {"now": now, "peer_median": median, "vs_peer": now / median - 1 if now and median else None, "prior": prior, "vs_prior": now / prior - 1 if now and prior else None}
+
+
+def speed_text(lt):
+    unit = lt.get("unit", "개월")
+    c = speed_compare(lt)
+    word = lambda x: f"{abs(x) * 100:.0f}% {'짧다' if x < 0 else '길다'}" if x else "같다"
+    peers = " · ".join(f"{p.get('name')} {_span(p.get('value'), unit)}" for p in lt.get("peers") or [])
+    out = f" **납품 리드타임 {_span(lt.get('now'), unit)}.**"
+    out += f" 피어 중앙값 {c['peer_median']:g}{unit}보다 {word(c['vs_peer'])}({peers})." if c["vs_peer"] is not None else " 피어 비교 미확인."
+    out += f" {lt.get('prior_when', '이전')} {_span(lt.get('prior'), unit)}보다 {word(c['vs_prior'])}." if c["vs_prior"] is not None else " 이전 대비 미확인."
     return out
 
 
@@ -133,8 +164,9 @@ def lead_section(dp, mm=None, strict=True):
         raise ValueError("datapack narrative.lead.policy가 없다 — 재정정책·행정명령·연관입법(옛 리포트 정정은 --legacy)")
     miss = [k for k in LENSES if not (have.get(k) or {}).get("change") and not (k == "재정정책" and policy) and (strict or k != "실행 속도")]
     speed = have.get("실행 속도") or {}
-    if strict and not (speed.get("lead_time") or str(speed.get("change", "")).startswith("해당 없음")):
-        raise ValueError("datapack narrative.lead.lenses 실행 속도에 lead_time이 없다 — 납품 리드타임, 없으면 change에 '해당 없음(이유)'")
+    lt = speed.get("lead_time")
+    if strict and not str(speed.get("change", "")).startswith("해당 없음") and not (isinstance(lt, dict) and _mid(lt.get("now")) is not None and "prior" in lt and lt.get("peers")):
+        raise ValueError("datapack narrative.lead.lenses 실행 속도 lead_time에 now·prior·peers가 필요하다 — 확인 못 한 값은 '미확인', 납품이 없으면 change에 '해당 없음(이유)'")
     if miss or not lead.get("products") or not lead.get("summary"):
         raise ValueError(f"datapack narrative.lead 미비 — 렌즈 {miss or '완비'}, products·summary 필요")
     B = [{"type": "hl", "text": f"**기업가치를 결정하는 이야기:** {lead.get('value_story') or lead['summary']}"}]
@@ -154,7 +186,7 @@ def lead_section(dp, mm=None, strict=True):
             continue
         x = have[k]
         tag = " · ".join(t for t in (DRIVES.get(x.get("drives"), x.get("drives")), x.get("status")) if t)
-        speed_txt = "".join(f" {name} {x[key]}." for key, name in (("lead_time", "**납품 리드타임**"), ("peer_lead_time", "경쟁 대안")) if x.get(key))
+        speed_txt = speed_text(x["lead_time"]) if isinstance(x.get("lead_time"), dict) else ""
         items.append(f"**{k}**" + (f" ({tag})" if tag else "") + f" — {x['change']}" + speed_txt + (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else ""))
     B.append({"type": "ul", "items": items})
     B.append({"type": "h3", "text": "이 회사의 제품·서비스·기술"})
