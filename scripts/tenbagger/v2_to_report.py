@@ -181,14 +181,18 @@ def extra_sections(entity, r, strict=True):
     import flow
     import levels
     import narrative_view
+    import pipeline_view
     co = v2run.load_company(entity)
     co["market"] = v2run.resolve_market(co)
     out = {"lead": narrative_view.lead_section(dp, r.get("_mm"), strict), "ladder": ladder.report_section(dp, co, r, strict),
+           "pipeline": pipeline_view.report_section(dp, r, strict=False),
            "narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None, "summary": []}
     if out["lead"]:
         out["summary"].append(narrative_view.summary_item(dp))
     if out["ladder"]:
         out["summary"].append(ladder.summary_item(dp, co, r, strict))
+    if out["pipeline"]:
+        out["summary"].append(pipeline_view.summary_item(dp))
     for k, mod in (("flow", flow), ("levels", levels)):
         try:
             sec = mod.report_section(entity, dp)
@@ -201,7 +205,7 @@ def extra_sections(entity, r, strict=True):
     return out
 
 
-EXTRA_H2 = ("내러티브 — ", "내러티브 근거 — ", "수급 — ", "가격 구간 — ", "배수 사다리 — ")
+EXTRA_H2 = ("내러티브 — ", "내러티브 근거 — ", "수급 — ", "가격 구간 — ", "배수 사다리 — ", "수주·파이프라인 — ")
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
 
 
@@ -213,15 +217,16 @@ def renumber(items, key):
     """맨 앞 자동 절·요약 다음으로 모델이 쓴 번호를 다시 매긴다 — 번호 없는 자동 절은 그대로"""
     n = 0
     for it in items:
-        lead = it.get("auto") or it.get(key, "").startswith(("내러티브 — ", "배수 사다리 — "))
+        lead = it.get("auto") or it.get(key, "").startswith(("내러티브 — ", "배수 사다리 — ", "수주·파이프라인 — "))
         if lead or str(it.get(key) or "")[:1] in CIRCLED:
             it[key] = f"{CIRCLED[n]} {_strip_no(it[key])}"
             n += 1
 
 
-def merge_lead(d, lead, lad, summary):
-    """내러티브 → 배수 사다리를 본문·요약 맨 앞에(마스터 지시 2026-10-30 "요약 처음과 세부 설명 처음에 … 내러티브를 먼저")"""
-    d["sections"] = [x for x in (lead, lad) if x] + d["sections"]
+def merge_lead(d, lead, lad, summary, pipeline=None):
+    """내러티브 → 배수 사다리 → 수주·파이프라인을 본문·요약 맨 앞에(마스터 지시 2026-10-30 "요약 처음과 세부 설명 처음에 … 내러티브를 먼저")"""
+    d["sections"] = [x for x in (lead, lad, pipeline) if x] + d["sections"]
+    d["sources"] = list(dict.fromkeys((d.get("sources") or []) + ((pipeline or {}).pop("_sources", None) or [])))
     d["summary"] = summary + [s for s in d.get("summary") or [] if not s.get("auto")]
     renumber(d["sections"], "h2")
     renumber(d["summary"], "q")
@@ -241,7 +246,10 @@ def main(argv):
     esec = earnings_section(a.entity, r)
     xs = extra_sections(a.entity, r, strict=not a.legacy)
     if a.merge:
-        fw = json.loads((ROOT / "knowledge" / "models" / "companies" / a.entity / "datapack.json").read_text(encoding="utf-8")).get("forward") or {}
+        dp = json.loads((ROOT / "knowledge" / "models" / "companies" / a.entity / "datapack.json").read_text(encoding="utf-8"))
+        fw = dp.get("forward") or {}
+        if not a.legacy and "pipeline" not in dp:
+            raise SystemExit("datapack에 pipeline이 없다(docs/tasks/chiip-tenbagger-report.md 2번) — 수주가 없는 회사는 {'none': '이유'}, 옛 리포트 정정은 --legacy")
         if not a.legacy and "horizons" not in fw:
             raise SystemExit("datapack에 Fwd 1Y·2Y·3Y 멀티플이 없다 — scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples 먼저(docs/tasks/chiip-tenbagger-report.md 2번). 옛 리포트 정정은 --legacy")
         if not a.legacy and not (xs["lead"] and xs["ladder"]):
@@ -253,7 +261,7 @@ def main(argv):
         for x in (xs["levels"], xs["flow"], sec, xs["narrative"], esec):   # 앞에 끼워 넣으므로 역순: 어닝콜 → 내러티브 근거 → 밸류에이션 → 수급 → 가격 구간
             if x:
                 d["sections"].insert(idx, x)
-        merge_lead(d, xs["lead"], xs["ladder"], xs["summary"])
+        merge_lead(d, xs["lead"], xs["ladder"], xs["summary"], xs["pipeline"])
         v = d.setdefault("verdict", {})
         v.setdefault("alpha", None)
         import report_html

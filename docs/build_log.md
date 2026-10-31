@@ -114,6 +114,7 @@
 - 실적 달력 날짜 수정(마스터 지시 2026-10-31): 미국 날짜에 한국 시각을 붙이던 calendar.csv·일정 알림을 한국 날짜로, upcoming.json의 date는 현지 날짜 유지(date_kst 추가)
 - Weekly Review 발행 묶음(마스터 지시 2026-10-31): scripts/weekly/publish_weekly.py Artifact→노션→텔레그램, 마스터의 노션 Weekly 페이지 아래 주차별 게시
 - 딘스티커 읽기 전용(마스터 지시 2026-10-31): radar/dticker.py 공개 미리보기 수집, notify.private_chat 개인 대화방 외 발송 차단
+- 텐배거 리포트 수주·파이프라인 절(마스터 지시 2026-10-31): scripts/tenbagger/pipeline_view.py, datapack pipeline 의무, EROC 자료 시험
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

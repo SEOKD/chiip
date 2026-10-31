@@ -198,6 +198,14 @@ class TestLeadAndMerge(unittest.TestCase):
         with self.assertRaises(ValueError):
             narrative_view.lead_section(dp)
 
+    def test_pipeline_follows_ladder_and_carries_sources(self):
+        d = {"sections": [{"h2": "① 실적", "blocks": []}], "summary": [], "sources": ["기존"]}
+        pipe = {"h2": "수주·파이프라인 — 진척도와 남은 수익", "blocks": [], "_sources": ["10-Q"]}
+        out = v2_to_report.merge_lead(d, {"h2": "내러티브 — 이야기", "blocks": []}, {"h2": "배수 사다리 — 2배", "blocks": []}, [], pipe)
+        self.assertEqual([x["h2"][:6] for x in out["sections"]], ["① 내러티브", "② 배수 사", "③ 수주·파", "④ 실적"])
+        self.assertEqual(out["sources"], ["기존", "10-Q"])
+        self.assertNotIn("_sources", pipe)
+
     def test_narrative_and_ladder_come_first(self):
         d = {"sections": [{"h2": "① 주가", "blocks": []}, {"h2": "어닝콜 변화·컨센서스", "blocks": []}, {"h2": "② 실적", "blocks": []}],
              "summary": [{"q": "① 가격", "a": "x"}]}
