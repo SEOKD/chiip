@@ -63,7 +63,7 @@ ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-si
 .boxes{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}.bx{border:1px solid var(--line);border-radius:12px;overflow:hidden}.bx .bt{font-weight:700;padding:9px 12px;background:var(--card);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.bx .tag{font-size:12px;font-weight:600;color:var(--c)}.bx .br{display:grid;grid-template-columns:66px minmax(0,1fr);gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13.5px}.bx .bl{color:var(--mut);font-size:12px;padding-top:1px}
 .rate-buy{color:var(--b)}.rate-sell{color:var(--c)}.rate-mid{color:var(--e)}"""
 DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
-DISCLAIMER3 = "구매 등급은 업사이드·손익비 규칙이 계산한 모델 등급으로, 개인의 보유 종목·자금 사정을 반영하지 않는다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
+DISCLAIMER3 = "구매 등급·목표주가 모두 규칙이 계산한 모델 값으로, 개인의 보유 종목·자금 사정을 반영하지 않는다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 
 
 def t(s):
@@ -333,6 +333,7 @@ def chart_hbars(c):
     if not rows or not vals:
         return ""
     W, L, R = c.get("w", 700), c.get("label_w", 180), 56
+    pct = "%" if c.get("unit") == "%" else ""   # 막대 값에 % 단위를 붙인다(마스터 지시 2026-11-01)
     hi, lo = max(max(vals), 0), min(min(vals), 0)
     span = (hi - lo) * 1.12 or 1
     base = lo * 1.12   # 음수가 있으면 왼쪽 여유를 두고 0 기준선을 오른쪽으로 민다
@@ -352,8 +353,8 @@ def chart_hbars(c):
             col = COLORS.get(b.get("color", "c"), "var(--c)")
             x1, x2 = sorted((x0, X(v)))
             g.append(f'<rect x="{x1:.1f}" y="{y}" width="{max(2, x2 - x1):.1f}" height="14" rx="3" fill="{col}"><title>{t(r["label"])} {t(b["name"])}: {_fmt(b.get("value"))}{t(c.get("unit", ""))}</title></rect>'
-                     + (f'<text x="{x2 + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}</text>' if v >= 0 else
-                        f'<text x="{x1 - 4:.1f}" y="{y + 11}" text-anchor="end">{_fmt(b.get("value"))}</text>'))
+                     + (f'<text x="{x2 + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}{pct}</text>' if v >= 0 else
+                        f'<text x="{x1 - 4:.1f}" y="{y + 11}" text-anchor="end">{_fmt(b.get("value"))}{pct}</text>'))
             y += 17
         y += 14
     if lo < 0:
@@ -383,6 +384,9 @@ def chart_scenario(c):
         ev = sum((k.get("prob") or 0) * k["value"] for k in cases)
         if ev and abs(sum(k.get("prob") or 0 for k in cases) - 1) < 0.02:
             g.append(f'<text x="{L}" y="{y + 26}" style="fill:var(--fg)">확률 가중 {_fmt(ev)} ({ev / cur - 1:+.0%})</text>')
+            y += 14
+        if c.get("target"):
+            g.append(f'<line x1="{X(c["target"]):.1f}" x2="{X(c["target"]):.1f}" y1="4" y2="{y - 14}" stroke="var(--d)" stroke-width="2"/><text x="{L}" y="{y + 26}" style="fill:var(--d);font-weight:700">목표주가 {_fmt(c["target"])} ({c["target"] / cur - 1:+.0%})</text>')
             y += 14
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 

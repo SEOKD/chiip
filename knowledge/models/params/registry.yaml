@@ -2014,3 +2014,163 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-tb-pt-weight-scenario
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.weights.scenario
+  value: 0.35
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.35
+    basis: '초안 — 시나리오 확률 비중. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-weight-dcf
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.weights.dcf
+  value: 0.2
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.2
+    basis: '초안 — DCF 비중 — 마스터 지시: DCF 한 요인에 의존하지 않는다. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-weight-chart
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.weights.chart
+  value: 0.2
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.2
+    basis: '초안 — 차트 상승 여력 비중. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-weight-narrative
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.weights.narrative
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 내러티브 프리미엄 여력 비중. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-room-spread
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.narrative_room.확산
+  value: 0.6
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.6
+    basis: '초안 — 확산 단계에서 강세 멀티플 쪽으로 옮기는 몫. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-room-early
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.narrative_room.태동
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 태동 단계 — 여력은 크나 증거가 약하다. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-room-crowded
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.narrative_room.과밀
+  value: -0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.25
+    basis: '초안 — 과밀 단계. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-room-fade
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.narrative_room.소멸
+  value: -0.6
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.6
+    basis: '초안 — 소멸 단계. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-room-break
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.narrative_room.붕괴
+  value: -1.0
+  unit: 비율
+  status: prior
+  prior:
+    value: -1.0
+    basis: '초안 — 붕괴 단계. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pt-judge-cap
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.judge_cap
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 모델 판단 조정 상한. 증권사 복합 목표주가 관행을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검
+    target: 목표주가 도달률·구매 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null

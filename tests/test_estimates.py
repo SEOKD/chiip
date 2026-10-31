@@ -9,7 +9,11 @@ sys.path.insert(0, str(ROOT / "scripts" / "fiscal"))
 sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
 import earnings_view  # noqa: E402
 import estimates as es  # noqa: E402
+import report_feed  # noqa: E402
+import report_html  # noqa: E402
+import report_layout  # noqa: E402
 import source_router as sr  # noqa: E402
+import target_price as tp  # noqa: E402
 
 CFG = {"limits": {"easyconomics": {"daily_cap": 2, "cooldown_h": 24}}, "items": {"quarter_est": {"tier2": ["zacks", "easyconomics"]}, "eps_revision": {"tier2": ["zacks"]}}}
 NOW = datetime(2026, 11, 1, 9, 0)
@@ -139,6 +143,75 @@ class TestStreet(unittest.TestCase):
 
     def test_fills_when_zacks_is_empty(self):
         self.assertEqual(es.street({}, self.P, "zacks", "2026-11-01")["buy"], 7)
+
+
+class TestTargetPrice(unittest.TestCase):
+    CFG = {"weights": {"scenario": 0.35, "dcf": 0.2, "chart": 0.2, "narrative": 0.25}, "narrative_room": {"확산": 0.6, "과밀": -0.25, "컨센서스": 0.0}, "judge_cap": 0.25, "round_above": 20, "chart": {"near_high": 0.95, "min_gap": 0.01}}
+
+    def s(self):
+        cases = [{"name": "약세", "prob": 0.25, "multiple": 15, "eps": 4, "value": 60}, {"name": "기본", "prob": 0.5, "multiple": 20, "eps": 5, "value": 100}, {"name": "강세", "prob": 0.25, "multiple": 25, "eps": 6, "value": 150}]
+        return {"price": 80.0, "bear": 60, "base": 100, "bull": 150, "weighted": 102.5, "cases": cases, "sym": "$"}
+
+    def bars(self, closes):
+        return [{"date": f"2026-{1 + i // 28:02d}-{1 + i % 28:02d}", "o": c, "h": c * 1.01, "l": c * 0.99, "c": c, "v": 1000} for i, c in enumerate(closes)]
+
+    def test_target_sits_on_the_scenario_axis(self):
+        pt = tp.build(self.s(), 1.5, 0.1, "확산", None, [], 0, 1, self.CFG)
+        self.assertGreater(pt["target"], 100)
+        self.assertLess(pt["target"], 150)
+        self.assertEqual(pt["upside"], pt["target"] / 80 - 1)
+        self.assertIn("기본과 강세 사이", pt["place"])
+
+    def test_dcf_alone_does_not_set_the_target(self):
+        low = tp.build(self.s(), 0.1, 0.1, "확산", None, [], 0, 1, self.CFG)
+        self.assertGreater(low["target"], 60)   # DCF가 낮아도 약세까지 내려가지 않는다
+
+    def test_missing_chart_renormalizes(self):
+        pt = tp.build(self.s(), 1.0, 0.1, "컨센서스", None, [], 0, 1, self.CFG)
+        self.assertAlmostEqual(sum(x["weight"] for x in pt["factors"]), 1)
+        self.assertNotIn("chart", [x["key"] for x in pt["factors"]])
+
+    def test_judgment_is_capped(self):
+        a = tp.build(self.s(), 1.0, 0.1, "컨센서스", {"adj": 0.9, "why": "w"}, [], 0, 1, self.CFG)
+        self.assertEqual(a["judge"], 0.25)
+
+    def test_chart_targets_resistance_above_price(self):
+        closes = [100 + i * 0.5 for i in range(150)] + [175 - i * 0.4 for i in range(120)]
+        c = tp.chart_target(self.bars(closes), self.CFG["chart"])
+        self.assertGreater(c["price"], closes[-1])
+        self.assertIn("저항선", c["why"])
+
+    def test_chart_extends_at_new_high(self):
+        closes = [100 + i * 0.5 for i in range(270)]
+        c = tp.chart_target(self.bars(closes), self.CFG["chart"])
+        self.assertGreater(c["price"], max(closes) * 1.01)
+
+    def test_reach_falls_as_target_rises(self):
+        s = self.s()
+        self.assertGreater(tp.reach(90, s), tp.reach(100, s))
+        self.assertGreater(tp.reach(100, s), tp.reach(140, s))
+        self.assertAlmostEqual(tp.reach(100, s), 0.5)
+
+    def test_upside_bars_show_percent(self):
+        s = report_html.chart_hbars({"unit": "%", "rows": [{"label": "현재", "bars": [{"name": "a", "value": 13.6}]}]})
+        self.assertIn(">13.6%</text>", s)
+        self.assertNotIn("%</text>", report_html.chart_hbars({"unit": "배", "rows": [{"label": "현재", "bars": [{"name": "a", "value": 3.5}]}]}))
+
+    def test_dashboard_tile_passes_vendor_scrub(self):
+        s = {**self.s(), "target": 110.0, "upside": 0.375, "downside": -0.25, "rr": 3.5}
+        mm = {"label_short": "Fwd 1Y P/E", "current": 20.0, "peer_p50": 22.0}
+        for ra in ({"buy": 3}, {"buy": 3, "source": "easyconomics"}):
+            tiles = report_layout.dashboard({"profile": {"price": 80.0, "debt": 0, "cash": 0}, "consensus": {"ratings": ra}}, s, mm, 6, "Buy", 1.0, "B", "co-none")
+            report_html.scrub({"tiles": tiles})
+
+    def test_upside_chart_uses_target(self):
+        c = report_layout.upside_chart({"price": 100, "weighted": 120, "target": 110}, [])
+        self.assertEqual(c["rows"][0]["bars"][0]["value"], 10.0)
+
+    def test_text_avoids_locked_phrase(self):
+        self.assertNotIn("목표주가는", report_feed.FOOT + report_html.DISCLAIMER3)
+        pt = tp.build(self.s(), 1.5, 0.1, "확산", None, [], 0, 1, self.CFG)
+        self.assertNotIn("목표주가는", str(tp.table(pt, self.s())))
 
 
 if __name__ == "__main__":

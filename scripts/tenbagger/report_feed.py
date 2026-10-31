@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 ZACKS = "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
-FOOT = "구매 등급은 규칙이 계산한 모델 등급 · 투자 권유 아님 · 1차 판정, 미검증"
+FOOT = "구매 등급·목표주가 모두 규칙이 계산한 모델 값 · 투자 권유 아님 · 1차 판정, 미검증"
 PLAIN = re.compile(r"\*\*")
 
 
@@ -47,6 +47,8 @@ def build(d):
     out = [f"[Chiip Ten-bagger Report {date}]", "", f"**{d['company']}({d['ticker']})**", d["title"], f"기업: {d['biz']}", ""]
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     out += ["**■ 결론**", f"- 구매 등급 **{v.get('rating')}** · 알파 {alpha}/10"]
+    if v.get("target_text"):
+        out.append(f"- 목표주가 {v['target_text']} · {v.get('target_place')}")
     out.append(f"- 업사이드 {_pct(v.get('upside') or 0)} · 다운사이드 {_pct(v.get('downside') or 0)} · 손익비 {(v.get('rr') or 0):.1f}")
     out += ["", "**■ 왜 이렇게 보나**"] + [f"- {a}: {b}" if a else f"- {b}" for a, b in reasons(d)]
     out += ["", "**■ 밸류에이션**", f"- 주가 {_tile(d, '주가').get('v')} ({_tile(d, '주가').get('sub', '').split(' · ')[0]})"]
@@ -72,7 +74,7 @@ def build(d):
     if check.get("rows"):
         out += ["", "**■ 다음 확인**"] + [f"- {r[0]}: {r[1]}" for r in check["rows"][:2]]
     out.append("")
-    if "미확인" not in str(_tile(d, "구매등급").get("sub")) and _tile(d, "구매등급").get("src") != "easyconomics":
+    if "미확인" not in str(_tile(d, "구매등급").get("sub")) and not _tile(d, "구매등급").get("second"):
         out.append(ZACKS)
     out.append(FOOT)
     return "\n".join(out)

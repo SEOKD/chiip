@@ -135,9 +135,13 @@ def audit(r, c=None):
             ew = sum(float(x.get("prob") or 0) * float(x.get("value") or 0) for x in scen["cases"]) / cur
             stated = [float(m) for m in re.findall(r"확률\s*가중[^0-9]{0,15}([0-9]+(?:\.[0-9]+)?)\s*배", full)]
             if d.get("format") == 3:   # 양식 3: 본문은 배가 아니라 업사이드 %로 쓴다
-                up = (d.get("verdict") or {}).get("upside")
+                v3 = d.get("verdict") or {}
+                up = v3["weighted_upside"] if v3.get("weighted_upside") is not None else v3.get("upside")   # 2026-11-01부터 업사이드는 목표주가 기준
                 ok3 = up is not None and abs((ew - 1) - up) <= 0.01
                 add("결론", "확률 가중값 재계산", "통과" if ok3 else "실패", f"재계산 {ew - 1:+.1%} vs 표기 {up if up is None else format(up, '+.1%')}")
+                if v3.get("target") is not None:
+                    vals = [float(x.get("value") or 0) for x in scen["cases"]]
+                    add("결론", "목표주가 범위", "통과" if min(vals) <= v3["target"] <= max(vals) + 0.5 else "실패", f"목표주가 {v3['target']} · 약세 {min(vals)} · 강세 {max(vals)}")
             elif stated:   # 본문의 '확률 가중'은 DCF 몫일 수도 있다 — 하나도 안 맞으면 경고(모델이 어느 수치인지 가린다)
                 okr = any(abs(s - ew) <= c["ratio_tol"] for s in stated)
                 add("결론", "확률 가중값 재계산", "통과" if okr else "경고", f"판단 시나리오 재계산 {ew:.2f}배 vs 본문 {', '.join(f'{s:.2f}' for s in stated[:3])}배"

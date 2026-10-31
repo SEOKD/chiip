@@ -67,12 +67,20 @@ ladder:
     - {max_usd: null, steps: [2]}
 
 # 구매 등급 — 마스터 지시 2026-10-31 "Strong Buy, Buy, Neutral, Sell, Strong Sell 다섯 가지". 규칙이 고른다(scripts/tenbagger/report_layout.py rating, 등록부 prm-tb-rate-*).
-# upside = 판단 시나리오 확률 가중, rr = 강세 상승폭 ÷ 약세 하락폭, dcf_min = DCF 기본 시나리오 업사이드 하한. 개인 포지션은 읽지 않는다.
+# upside = 목표주가 업사이드(2026-11-01부터), rr = 강세 상승폭 ÷ 약세 하락폭, dcf_min = DCF 기본 시나리오 업사이드 하한. 개인 포지션은 읽지 않는다.
 rating:
   strong_buy: {upside: 0.40, rr: 3.0, dcf_min: 0.0}
   buy: {upside: 0.15, rr: 1.5, dcf_min: -0.5}
   neutral: {upside: -0.10}
   sell: {upside: -0.30}
+
+# 목표주가 — 마스터 지시 2026-11-01 "DCF 한 요인에만 의존하지 말고 차트 기법 상승 여력, 내러티브 멀티플 프리미엄 확정 여력까지"(scripts/tenbagger/target_price.py, 등록부 prm-tb-pt-*)
+target_price:
+  weights: {scenario: 0.35, dcf: 0.20, chart: 0.20, narrative: 0.25}
+  narrative_room: {태동: 0.25, 확산: 0.6, 컨센서스: 0.0, 과밀: -0.25, 소멸: -0.6, 붕괴: -1.0}   # 기본 멀티플에서 강세(+)·약세(−) 멀티플까지 옮기는 몫
+  judge_cap: 0.25      # 모델 판단 조정 상한(위치 단위)
+  round_above: 20      # 이 값 이상이면 정수로 반올림
+  chart: {near_high: 0.95, min_gap: 0.01}   # 52주 고점의 이 비율 위면 피보나치 확장, 저항선은 현재가보다 이만큼 위
 
 # 목표 멀티플 선정 — 마스터 지시 2026-10-31 "피어그룹 레인지를 참조하고 내러티브와 구조적 체질 변화를 정량적으로 반영"(scripts/valuation/v2/multiples.py select_multiple, 등록부 prm-tb-mult-*)
 multiple_select:
