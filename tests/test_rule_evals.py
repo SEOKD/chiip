@@ -161,6 +161,19 @@ class TestPulseTrigger(unittest.TestCase):
         launch.assert_not_called()
         self.assertEqual(alert.call_count, 1)
 
+    def test_exit_zero_without_gate_is_failure(self):
+        proc = mock.Mock(returncode=0, stdout=json.dumps({"permission_denials": [{"tool_name": "Bash", "tool_input": {"command": "cd x; py y"}}], "total_cost_usd": 0.6}))
+        with mock.patch.object(pulse_trigger.subprocess, "run", return_value=proc), mock.patch.object(pulse_trigger.shutil, "which", return_value="claude"), mock.patch.object(pulse_trigger, "gate_mark", return_value="같음"):
+            ok, fields = pulse_trigger.launch(pulse_trigger.cfg())
+        self.assertFalse(ok)
+        self.assertFalse(fields["ran"])
+        self.assertEqual(fields["denied"], ["Bash: cd x; py y"])
+
+    def test_gate_moved_is_success(self):
+        proc = mock.Mock(returncode=0, stdout="{}")
+        with mock.patch.object(pulse_trigger.subprocess, "run", return_value=proc), mock.patch.object(pulse_trigger.shutil, "which", return_value="claude"), mock.patch.object(pulse_trigger, "gate_mark", side_effect=["전", "후"]):
+            self.assertTrue(pulse_trigger.launch(pulse_trigger.cfg())[0])
+
     def test_command_is_bounded_and_read_only_on_tradingview(self):
         c = pulse_trigger.cfg()
         cmd = pulse_trigger.command(c, "claude", "지시")
