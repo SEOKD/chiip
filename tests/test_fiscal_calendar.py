@@ -1,4 +1,5 @@
 """어닝 캘린더 Fiscal.ai 전환 시험 (마스터 지시 2026-10-30 "어닝캘린더도 Fiscal.ai를 참조하라")"""
+import csv
 import json
 import sys
 import tempfile
@@ -68,6 +69,34 @@ class TestFiscalCalendar(unittest.TestCase):
         self.assertNotIn(("co-primoris", "2026-11-04"), out)   # 발표 다음 날 콜은 발표 행 하나로
         self.assertIn(("co-primoris", "2026-11-03"), out)
         self.assertEqual(len([e for e in out.values() if e["name"] == "ZZZZ"]), 0)
+
+    def test_us_after_close_gets_kst_date(self):
+        data = {"events": [{"q": "key", "key": "NASDAQ_AAPL", "date": "2026-11-02", "utc": "2026-11-02T22:00:00Z", "status": "confirmed",
+                            "session": "after_close", "period": "FY 2026", "roles": ["financial_results_release", "earnings_call_for_results"]}]}
+        wl = [{"id": "co-apple", "name": "Apple", "region": "US"}]
+        with mock.patch.object(ec, "fiscal_targets", return_value=({}, {"NASDAQ_AAPL": "co-apple"})):
+            e = ec.fiscal_events(wl, data)[0]
+        self.assertEqual((e["date"], e["date_kst"], e["time_kst"]), ("2026-11-02", "2026-11-03", "07:00"))
+        self.assertEqual(ec.kst_day({"date": "2026-11-04"}), "2026-11-04")
+
+    def test_us_after_close_without_time_moves_to_next_morning(self):
+        data = {"events": [{"q": "us", "ticker": "PWR", "date": "2026-11-04", "status": "confirmed", "session": "after_close", "period": "Q3 2026", "roles": ["financial_results_release"]}]}
+        e = ec.fiscal_events(WL, data)[0]
+        self.assertEqual((e["date"], e["date_kst"], e["local"]), ("2026-11-04", "2026-11-05", "아침(미국 장후)"))
+
+    def test_save_replaces_moved_auto_rows_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            cal = Path(d) / "calendar.csv"
+            cal.write_text("date,time_kst,type,entity_or_event,description,expectation_note_ref,status\n"
+                           "2026-11-02,07:00,실적발표,co-apple,Apple FY 2026 실적 발표 (Fiscal.ai 자동),note.md,\n"
+                           "2026-11-02,10:00,실적발표,co-hand,사람이 쓴 일정,,\n"
+                           "2026-10-01,07:00,실적발표,co-old,지난 일정 (Fiscal.ai 자동),,\n", encoding="utf-8")
+            ev = [{"id": "co-apple", "name": "Apple", "date": "2026-11-02", "date_kst": "2026-11-03", "time_kst": "07:00", "local": "장후", "title": "FY 2026 실적 발표", "source": "Fiscal.ai"}]
+            with mock.patch.object(ec, "CAL", cal), mock.patch.object(ec, "OUT", Path(d) / "up.json"), mock.patch.object(ec.common, "now_kst", return_value=datetime(2026, 10, 31, 15, tzinfo=ec.common.KST)):
+                ec.save(ev)
+            rows = list(csv.DictReader(cal.read_text(encoding="utf-8").splitlines()))
+        self.assertEqual([r["entity_or_event"] for r in rows], ["co-old", "co-hand", "co-apple"])
+        self.assertEqual((rows[2]["date"], rows[2]["expectation_note_ref"]), ("2026-11-03", "note.md"))
 
     def test_merge_prefers_kind_for_korea(self):
         fiscal = ec.fiscal_events(WL, DATA)

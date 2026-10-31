@@ -201,6 +201,18 @@ def _kst_hm(utc):
         return ""
 
 
+def _kst_date(utc):
+    try:
+        return datetime.fromisoformat(str(utc).replace("Z", "+00:00")).astimezone(common.KST).date().isoformat()
+    except ValueError:
+        return ""
+
+
+def kst_day(e):
+    """한국 날짜 — date는 현지 거래소 날짜라 미국 장후 발표는 하루 어긋난다(애플 11/2 장후 = 한국 11/3 07:00)"""
+    return e.get("date_kst") or e["date"]
+
+
 def fiscal_events(wl, data=None):
     """Fiscal 파일 → 이벤트 dict. 파일이 없거나 오래됐으면 None"""
     if data is None:
@@ -223,9 +235,11 @@ def fiscal_events(wl, data=None):
         title = title.strip()
         if r.get("window"):
             title += f" · 예상 창 {r['window'].get('start')}~{r['window'].get('end')}"
-        e = {"id": wid, "name": names[wid], "date": r["date"], "time_kst": _kst_hm(r["utc"]) if r.get("utc") else "",
-             "local": SESSION.get(r.get("session"), ""), "title": title, "source": "Fiscal.ai", "url": "", "status": st,
+        e = {"id": wid, "name": names[wid], "date": r["date"], "date_kst": _kst_date(r["utc"]) if r.get("utc") else "",
+             "time_kst": _kst_hm(r["utc"]) if r.get("utc") else "", "local": SESSION.get(r.get("session"), ""), "title": title, "source": "Fiscal.ai", "url": "", "status": st,
              "call_only": "financial_results_release" not in (r.get("roles") or [])}
+        if r.get("q") == "us" and not r.get("utc") and r.get("session") == "after_close":   # 시각이 없는 미국 장후 = 한국 다음 날 아침
+            e["date_kst"], e["local"] = (date.fromisoformat(r["date"]) + timedelta(days=1)).isoformat(), "아침(미국 장후)"
         ev[(wid, r["date"])] = e
     out = list(ev.values())
     rel = {}
@@ -273,22 +287,31 @@ def fetch_eodhd(start, end, wl, key):
 # ---------- 저장 ----------
 def save(events):
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps({"updated": common.iso(common.now_kst()), "events": sorted(events, key=lambda e: (e["date"], e["time_kst"]))},
+    OUT.write_text(json.dumps({"updated": common.iso(common.now_kst()), "events": sorted(events, key=lambda e: (kst_day(e), e["time_kst"]))},
                               ensure_ascii=False, indent=1), encoding="utf-8")
     with CAL.open(encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f))
         fields = list(rows[0].keys()) if rows else ["date", "time_kst", "type", "entity_or_event", "description", "expectation_note_ref", "status"]
+    before = list(rows)
+    today, last = common.now_kst().date().isoformat(), max((kst_day(e) for e in events), default="")
+    # 수집 범위 안의 자동 행은 새로 쓴다 — 일정이 옮겨 가면 옛 날짜가 남지 않게. 사람이 쓴 행과 지난 일정은 그대로
+    auto = [r for r in rows if "자동)" in r["description"] and today <= r["date"] <= last and r["type"] == "실적발표"]
+    notes = {(r["entity_or_event"], r["description"]): r["expectation_note_ref"] for r in auto if r["expectation_note_ref"]}
+    known = {(r["date"], r["entity_or_event"]) for r in auto}
+    rows = [r for r in rows if r not in auto]
     have = {(r["date"], r["type"], r["entity_or_event"]) for r in rows}
     added = 0
     for e in events:
-        k = (e["date"], "실적발표", e["id"])
+        k = (kst_day(e), "실적발표", e["id"])
         if k in have:
             continue
         have.add(k)
-        rows.append({"date": e["date"], "time_kst": e["time_kst"] or e["local"], "type": "실적발표", "entity_or_event": e["id"],
-                     "description": f"{e['name']} {e['title']} ({e['source']} 자동)", "expectation_note_ref": "", "status": "예정"})
-        added += 1
-    if added:
+        desc = f"{e['name']} {e['title']} ({e['source']} 자동)"
+        rows.append({"date": k[0], "time_kst": e["time_kst"] or e["local"], "type": "실적발표", "entity_or_event": e["id"],
+                     "description": desc, "expectation_note_ref": notes.get((e["id"], desc), ""), "status": "예정"})
+        added += (k[0], e["id"]) not in known
+    rows.sort(key=lambda r: r["date"])
+    if rows != sorted(before, key=lambda r: r["date"]):
         with CAL.open("w", encoding="utf-8", newline="") as f:
             w = csv.DictWriter(f, fieldnames=fields)
             w.writeheader()
@@ -301,7 +324,7 @@ def digest(events, days, today=None):
     today = today or common.now_kst().date()
     passed, rows = alpha.load_latest(today)
     end = today + timedelta(days=days - 1)
-    win = [e for e in events if today.isoformat() <= e["date"] <= end.isoformat()]
+    win = [e for e in events if today.isoformat() <= kst_day(e) <= end.isoformat()]
     from pollers import gate
     held = gate.portfolio_ids()   # 마스터 포트폴리오는 알파 점수와 무관하게 항상(2026-10-29)
     keep = [e for e in win if e["id"] in passed or e["id"] in held]
@@ -310,8 +333,8 @@ def digest(events, days, today=None):
         return None
     span = "오늘·내일" if days == 2 else f"{days}일"
     lines = [f"[실적 일정 · 알파 5점 이상·보유 종목] {span} {len(keep)}건"]
-    for e in sorted(keep, key=lambda e: (e["date"], e["time_kst"])):
-        d = datetime.strptime(e["date"], "%Y-%m-%d").date()
+    for e in sorted(keep, key=lambda e: (kst_day(e), e["time_kst"])):
+        d = datetime.strptime(kst_day(e), "%Y-%m-%d").date()
         when = e["time_kst"] or e["local"] or "시각 미정"
         if e.get("status") in ("추정", "예상"):
             when += f"({e['status']})"
@@ -403,7 +426,7 @@ def main(argv):
         ev = json.loads(OUT.read_text(encoding="utf-8"))["events"] if OUT.exists() else []
         print(digest(ev, a.digest) or "(기준 이상 종목의 일정 없음)")
         for e in ev:
-            print(f"  {e['date']} {e['time_kst'] or e['local']:5} {e['name']} | {e['title'][:40]} | {e['source']}")
+            print(f"  {kst_day(e)} {e['time_kst'] or e['local']:5} {e['name']} | {e['title'][:40]} | {e['source']}")
     return 0
 
 
