@@ -5,7 +5,8 @@
 datapack "pipeline":
   {"as_of": "2026-06-30", "reported_backlog": 1.7, "backlog_label": "수주잔고", "summary": "요약에 붙일 한 문장",
    "items": [{"name": "Meta El Paso 366MW", "status": "확정",        # STATUS 중 하나. 확정만 확정 합계에 넣는다(금지표: 수주·MOU → 매출)
-              "total": 0.29,                                         # 100% 도달 때 매출(리포트 단위)
+              "total": 0.29,                                         # 100% 도달 때 매출(리포트 단위). 회사가 공개하지 않으면 "미확인"
+              "no_sum": true,                                        # 선택 — 다른 항목과 겹치는 목표·캐파는 합계에서 뺀다
               "done": 0.05, 또는 "progress": 0.17, "progress_basis": "납품 62/366MW",   # 둘 다 모르면 "progress": "미확인"
               "margin": 0.25, "margin_kind": "매출총이익", "margin_basis": "2Q 장비 마진",   # 모르면 "margin": "미확인"
               "start": "2026-03", "end": "2027-06",                  # 일정을 알면 계획 대비 속도를 엔진이 잰다
@@ -80,7 +81,8 @@ def compute(dp):
         vals = [r[key] for r in rows]
         return sum(v for v in vals if v is not None), sum(v is None for v in vals)
 
-    firm, soft = [r for r in out if r.get("status") == FIRM], [r for r in out if r.get("status") != FIRM]
+    summed = [r for r in out if not r.get("no_sum")]
+    firm, soft = [r for r in summed if r.get("status") == FIRM], [r for r in summed if r.get("status") != FIRM]
     return {"as_of": as_of, "items": out, "firm": firm, "soft": soft, "total_of": total_of}
 
 
@@ -94,8 +96,8 @@ def check(pl):
         name = x.get("name") or "이름 없음"
         if x.get("status") not in STATUS:
             raise ValueError(f"pipeline {name}: status는 {STATUS} 중 하나")
-        if _num(x.get("total")) is None or not x.get("source") or not x.get("blockers"):
-            raise ValueError(f"pipeline {name}: total·source·blockers가 필요하다(방해 요인을 모르면 ['미확인'])")
+        if (_num(x.get("total")) is None and x.get("total") != UNKNOWN) or not x.get("source") or not x.get("blockers"):
+            raise ValueError(f"pipeline {name}: total·source·blockers가 필요하다(금액·방해 요인을 모르면 '미확인')")
         p = progress_of(x)
         if p is None and x.get("progress") != UNKNOWN:
             raise ValueError(f"pipeline {name}: progress 또는 done이 필요하다(모르면 '미확인')")
@@ -130,9 +132,9 @@ def _sum_row(label, rows, c, unit):
     rev, rev_unknown = c["total_of"](rows, "rev_now")
     gain, gain_unknown = c["total_of"](rows, "gain_now")
     full_gain, full_unknown = c["total_of"](rows, "gain_full")
-    total = sum(r["total"] for r in rows)
+    total, total_unknown = c["total_of"](rows, "total")
     mark = lambda v, n: f"{_money(v, unit)}(+{UNKNOWN} {n}건)" if n and v else (UNKNOWN if n else _money(v, unit))
-    return [f"**{label}**", _money(total, unit), mark(rev, rev_unknown), mark(gain, gain_unknown), mark(full_gain, full_unknown)]
+    return [f"**{label}**", mark(total, total_unknown), mark(rev, rev_unknown), mark(gain, gain_unknown), mark(full_gain, full_unknown)]
 
 
 def report_section(dp, r=None, strict=True):
@@ -144,26 +146,29 @@ def report_section(dp, r=None, strict=True):
     check(pl)
     c, unit = compute(dp), dp.get("unit", "B$")
     B = []
-    firm_total, soft_total = sum(x["total"] for x in c["firm"]), sum(x["total"] for x in c["soft"])
-    head = f"**{c['as_of']} 기준 수주 {len(c['items'])}건, 확정 {_money(firm_total, unit)}"
-    head += f", 미확정 {_money(soft_total, unit)}.**" if c["soft"] else ".**"
+    firm_total, soft_total = c["total_of"](c["firm"], "total")[0], c["total_of"](c["soft"], "total")[0]
+    head = f"**{c['as_of']} 기준 수주·파이프라인 {len(c['items'])}건, " + (f"확정 {_money(firm_total, unit)}" if c["firm"] else "건별 확정 수주 금액은 공개되지 않았다")
+    head += (f", 미확정 {_money(soft_total, unit)}.**" if c["firm"] and soft_total else ".**")
     known = [x for x in c["firm"] if x["rev_now"] is not None]
     if known:
         head += f" 진척도를 아는 확정 건의 매출 기준 진척은 {sum(x['rev_now'] for x in known) / sum(x['total'] for x in known) * 100:.0f}%다."
     backlog = _num(pl.get("reported_backlog"))
     if backlog:
         head += f" 공시 {pl.get('backlog_label', '수주잔고')}는 {_money(backlog, unit)}다."
-    head += " 미확정 건은 합계에 넣지 않았다. 수익은 항목별 마진 가정을 곱한 추정이다."
+    head += " 미확정 건은 확정 합계에 넣지 않았다. 수익은 항목별 마진 가정을 곱한 추정이다."
+    if any(x.get("no_sum") for x in c["items"]):
+        head += " 서로 겹치거나 금액을 모르는 항목은 합계에서 뺐다."
     B.append({"type": "hl", "text": head})
     B.append({"type": "table", "title": "수주·파이프라인 진척", "headers": ["항목", "상태", "진척도", "실행 속도", "방해 요인"],
               "rows": [[x["name"], x["status"], _pct(x["p"]), speed_text(x), " · ".join(x["blockers"])] for x in c["items"]]})
     B.append({"type": "table", "title": "진척도별 수익", "headers": ["항목", "마진 가정", "현 진척 매출", "현 진척 이익", "100% 매출", "100% 이익"],
               "rows": [[x["name"], f"{x.get('margin_kind', '이익')} {x['m'] * 100:.0f}%" if x["m"] is not None else UNKNOWN,
-                        _m(x["rev_now"], unit), _m(x["gain_now"], unit), _money(x["total"], unit), _m(x["gain_full"], unit)] for x in c["items"]]})
+                        _m(x["rev_now"], unit), _m(x["gain_now"], unit), _m(x["total"], unit), _m(x["gain_full"], unit)] for x in c["items"]]})
     rows = [_sum_row("확정 합계", c["firm"], c, unit)] if c["firm"] else []
     if c["soft"]:
         rows.append(_sum_row("미확정 합계", c["soft"], c, unit))
-    B.append({"type": "table", "title": "합계", "headers": ["구분", "100% 매출", "현 진척 매출", "현 진척 이익", "100% 이익"], "rows": rows})
+    if rows:
+        B.append({"type": "table", "title": "합계", "headers": ["구분", "100% 매출", "현 진척 매출", "현 진척 이익", "100% 이익"], "rows": rows})
     mcap = _num((r or {}).get("mcap"))
     gain, missing = c["total_of"](c["firm"], "gain_full")
     if mcap and gain and not missing:
@@ -175,5 +180,5 @@ def report_section(dp, r=None, strict=True):
 def summary_item(dp):
     pl = (dp or {}).get("pipeline") or {}
     c, unit = compute(dp), dp.get("unit", "B$")
-    parts = [f"{x['name']} {_pct(x['p'])}, 100% 매출 {_money(x['total'], unit)}" for x in c["items"][:3]]
+    parts = [f"{x['name']} {_pct(x['p'])}, 100% 매출 {_m(x['total'], unit)}" for x in c["items"][:3]]
     return {"q": "수주는 어디까지 왔나?", "a": " · ".join(parts) + (f". {pl['summary']}" if pl.get("summary") else ""), "auto": True}

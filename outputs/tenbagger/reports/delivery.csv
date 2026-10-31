@@ -68,3 +68,11 @@ time,stem,ticker,step,status,detail
 2026-10-31T10:36:17+09:00,20261031_EROC,EROC,github,ok,https://github.com/SEOKD/chiip/blob/18c65c46b2ad/outputs/tenbagger/reports/20261031_EROC.md
 2026-10-31T10:37:28+09:00,20261031_EROC,EROC,artifact,ok,https://claude.ai/artifact/JhHWBT6VEc1NFs7RkNwp3J
 2026-10-31T10:37:28+09:00,20261031_EROC,EROC,notion,ok,https://app.notion.com/p/40ab5d1e09988118b570f31cf7dbf5e0
+2026-10-31T16:28:11+09:00,20261031_AXTI,AXTI,github,ok,https://github.com/SEOKD/chiip/blob/0d7d55f38faf/outputs/tenbagger/reports/20261031_AXTI.md
+2026-10-31T16:28:12+09:00,20261031_AXTI,AXTI,telegram,ok,노션 포함
+2026-10-31T16:47:54+09:00,20261031_FORM,FORM,github,ok,https://github.com/SEOKD/chiip/blob/4899e7cb8a07/outputs/tenbagger/reports/20261031_FORM.md
+2026-10-31T16:48:14+09:00,20261031_FORM,FORM,artifact,ok,https://claude.ai/artifact/TodDz3RoAoK9WE79efrwPJ
+2026-10-31T16:49:22+09:00,20261031_FORM,FORM,github,ok,https://github.com/SEOKD/chiip/blob/14065342b566/outputs/tenbagger/reports/20261031_FORM.md
+2026-10-31T16:52:45+09:00,20261031_FORM,FORM,artifact,ok,https://claude.ai/artifact/TodDz3RoAoK9WE79efrwPJ
+2026-10-31T16:52:45+09:00,20261031_FORM,FORM,notion,ok,https://app.notion.com/p/40ab5d1e09988148b28ac37ebfcfb172
+2026-10-31T16:52:47+09:00,20261031_FORM,FORM,telegram,ok,노션 포함

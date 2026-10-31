@@ -71,6 +71,13 @@ class TestSection(unittest.TestCase):
         sec = pv.report_section(dp(item(), item(name="B", progress="미확인")))
         self.assertIn("미확인 1건", self.rows(sec, "합계")[0][2])
 
+    def test_undisclosed_amount_and_overlapping_target(self):
+        sec = pv.report_section(dp(item(status="파이프라인", total="미확인", progress="미확인"), item(name="목표 모델", status="파이프라인", no_sum=True)))
+        self.assertIn("건별 확정 수주 금액은 공개되지 않았다", sec["blocks"][0]["text"])
+        self.assertIn("합계에서 뺐다", sec["blocks"][0]["text"])
+        self.assertEqual(self.rows(sec, "진척도별 수익")[0][4], "미확인")
+        self.assertEqual(self.rows(sec, "합계")[0][:2], ["**미확정 합계**", "미확인"])
+
     def test_company_without_orders_has_no_section(self):
         self.assertIsNone(pv.report_section({"pipeline": {"none": "구독 소프트웨어"}}))
 

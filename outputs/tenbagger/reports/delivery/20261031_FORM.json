@@ -1,0 +1,28 @@
+{
+ "stem": "20261031_FORM",
+ "date": "2026-10-31",
+ "ticker": "FORM",
+ "company": "FormFactor",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/14065342b566/outputs/tenbagger/reports/20261031_FORM.md",
+  "html": "https://github.com/SEOKD/chiip/blob/14065342b566/outputs/tenbagger/reports/20261031_FORM.html",
+  "commit": "14065342b56697fcaa20ef0cc13deba9862d30db",
+  "at": "2026-10-31T16:49:22+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/TodDz3RoAoK9WE79efrwPJ",
+  "at": "2026-10-31T16:52:45+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/40ab5d1e09988148b28ac37ebfcfb172",
+  "stock_page": "https://app.notion.com/p/40ab5d1e0998816ea7d6d00929358e39",
+  "at": "2026-10-31T16:52:45+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-31T16:52:47+09:00"
+ }
+}
