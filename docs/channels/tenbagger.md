@@ -1,5 +1,7 @@
 # 텐배거 리포트 운영 규칙
 
+> 내러티브를 쓰기 전에 `py radar/dticker.py --about <이름>`으로 마스터가 딘스티커에 쓴 글을 본다(`docs/channels/dticker.md`).
+
 > CLAUDE.md '출력 채널'에서 옮긴 마스터 지시(2026-10-31, AAP-20261031-02). 새 지시도 여기에 적는다.
 
 - **텐배거 리포트**(2026-10-29, 2026-10-30 개정 — 주중 매시간): 회차마다 종목 1개를 차트 포함 HTML(outputs/tenbagger/reports/)로 만들고(예약 작업 chiip-tenbagger-report), **발행은 한 묶음**(2026-10-30 마스터 설계 승인 — `scripts/tenbagger/publish_tenbagger.py`): GitHub 보관(HTML·그림이 보이는 마크다운 판 `report_md.py`·데이터) → 보기 링크 = claude.ai 비공개 Artifact(같은 날 마스터 지시 "리포트 링크는 html로" — 비공개 저장소 HTML은 GitHub에서 소스로만 보임) → 노션 Stocks 하위 페이지(HTML 임베드 + 글) → 모두 기록된 뒤 텔레그램 1통(캡션 + 리포트 보기 + 노션 링크, 실패한 단계는 표시 후 다음 회차 재시도). 밸류에이션은 맥킨지·IB 방식 의무: Fiscal.ai 데이터 묶음(컨센서스·가이던스·어닝콜·동종사) → `build_drivers.py` → v2 → `v2_to_report.py --merge`. 자동 삽입 세 절(마스터 지시): **내러티브**(셀·바이사이드·리테일 다각 — 멀티플 프리미엄·리비전 경로, `narrative_view.py`) · **수급 Chiip Flow**(FINRA 공개 자료로 리테일 도매 체결 vs 기관, 이상 거래일 원인, `flow.py`) · **가격 구간**(월·주·일 피보나치 + 50·200일선·거래 범위·라운드 넘버 겹침, `levels.py` — 구간 지표일 뿐 매매 시점 권유 아님). 연구 후보이지 매수 권유 아님.

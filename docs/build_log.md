@@ -113,6 +113,7 @@
 - 하네스 2단계(마스터 승인 2026-10-31): 펄스를 Windows 작업 chiip-pulse-trigger로 전환, 앱 예약 chiip-pulse 일시 중지. 판정 2026-11-14
 - 실적 달력 날짜 수정(마스터 지시 2026-10-31): 미국 날짜에 한국 시각을 붙이던 calendar.csv·일정 알림을 한국 날짜로, upcoming.json의 date는 현지 날짜 유지(date_kst 추가)
 - Weekly Review 발행 묶음(마스터 지시 2026-10-31): scripts/weekly/publish_weekly.py Artifact→노션→텔레그램, 마스터의 노션 Weekly 페이지 아래 주차별 게시
+- 딘스티커 읽기 전용(마스터 지시 2026-10-31): radar/dticker.py 공개 미리보기 수집, notify.private_chat 개인 대화방 외 발송 차단
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

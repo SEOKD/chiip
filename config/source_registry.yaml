@@ -712,6 +712,22 @@
   enabled: true
 
 # ===== I. 부가가치 엔진 재료 (§21.14, ADR-010) — run_hourly 작업(레이더 판정·알림 아님, module 없음) =====
+- id: src-dticker
+  name: 딘스티커 Dean's Ticker 공개 채널(마스터 운영) — 읽기 전용
+  category: I-학습
+  method: scrape
+  endpoint_doc: "radar/dticker.py"
+  auth: none
+  scope: [글로벌]
+  interval_min: 30
+  run_on: local
+  language: ko
+  doc_type: SNS
+  terms_note: "2026-10-31 마스터 지시 — 공개 웹 미리보기 t.me/s/d_ticker만 GET으로 읽는다(robots.txt 없음, 같은 날 확인). 채널 발송 금지, notify.private_chat이 막는다. 마스터의 공개 견해이지 사실이 아니다."
+  reliability_default: 마스터 공개 견해
+  verified: true
+  enabled: true
+
 - id: src-literature
   name: 논문·실무 리서치 (arXiv q-fin·NBER·연준 FEDS/IFDP·다모다란·Alpha Architect)
   category: I-학습

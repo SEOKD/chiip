@@ -38,6 +38,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-pci-ids", "pci_ids", 10080),
     ("src-usaspending", "usaspending", 10080),
     # 부가가치 엔진(§21.14) — 모델 고도화 재료. 레이더 판정·알림과 무관
+    ("src-dticker", "dticker", 30),  # 딘스티커 공개 미리보기 읽기 전용 — 알림 없음
     ("verifier-lock", "verifier_lock", 1440),  # 평가기 잠금 일일 확인(ADR-013 H4)
     ("pulse-heartbeat", "pulse_trigger", 30),  # 펄스 문턱이 멈췄으면 모델 없이 알린다(ADR-013 H2)
     ("src-literature", "literature", 360),  # 논문·실무 리서치(판단은 예약 작업 chiip-model-lab)

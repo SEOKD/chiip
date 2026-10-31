@@ -1,5 +1,7 @@
 # 실적·어닝콜·IR 자료 운영 규칙
 
+> ③ 칼럼을 쓰기 전에 `py radar/dticker.py --about <이름>`으로 마스터가 딘스티커에 쓴 글을 본다(`docs/channels/dticker.md`).
+
 > CLAUDE.md '출력 채널'에서 옮긴 마스터 지시(2026-10-31, AAP-20261031-02). 새 지시도 여기에 적는다.
 
 - **실적 발표 = Dean's Ticker 3단 양식**(2026-10-29 마스터 지시): ① 지표 정리(Results·Guidance, est. 병기, 신규수주·수주잔고는 YoY·QoQ 병기(2026-10-31), 맨 끝 주가 줄 필수 = 보고 시점의 `장중·장전·장후 ±x%`, 값은 TradingView 시세 → `radar/markets/session.py --line`, 2026-10-31) ② 뉴팩트 정리(직전 분기 콜 대비 새로 나오거나 바뀐 것만 ■) ③ 칼럼 — 세 통 따로(`knowledge/methods/earnings_format.md`). 펄스가 여러 종목을 잡은 회차에도 실적 건은 묶음에서 빼서 3단으로(2026-10-30). est.는 Fiscal.ai 발표 전 추정(분기 환산값 포함, source 무관) 1순위 → Fiscal 칸이 없을 때만 Zacks(`earnings_est.js`·`surprise.js`, 컨센서스 묶음 `consensus.js`도 Fiscal 먼저), 매출·GPM·EBITDA·OPM·EPS·OCF·CAPEX·FCF에 붙이고 est.가 있는 줄엔 YoY·QoQ를 쓰지 않는다. 이익 지표는 조정 값만(없으면 줄 삭제)·'조정' 표기 없이(`EBITDA €851M`), 현금흐름은 당분기. 이익률 est.는 분자·분모를 같은 제공처 쌍으로. ① 제목과 Results 사이에 `☞ 회사 설명 1줄`(2026-10-30).

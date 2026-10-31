@@ -4,7 +4,7 @@ description: 마스터가 노션 'Insights' 페이지 아래에 쓴 인사이트
 argument-hint: "[노션 페이지 URL | 비우면 새 글·수정 글 전부]"
 ---
 
-운영 규칙: `docs/channels/notion.md`를 먼저 읽는다.
+운영 규칙: `docs/channels/notion.md`를 먼저 읽는다. 마스터가 딘스티커에 쓴 관련 글도 `py radar/dticker.py --about <이름>`으로 함께 본다(`docs/channels/dticker.md`).
 
 # insight-review — 인사이트 검토 (ADR-010 §1)
 목적: 마스터의 판단을 **같은 강도로** 검증해 더 강하게 만든다. 칭찬도 반대도 근거로만. 마스터 가설에 동조하는 쪽으로 기울지 않는다.

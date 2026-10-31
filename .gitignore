@@ -38,6 +38,7 @@ desktop.ini
 knowledge/models/focus/latest.json
 knowledge/models/focus/prepared/
 radar/literature/inbox/*
+radar/dticker/
 knowledge/models/fundamentals/us/
 knowledge/models/earnings/upcoming.json
 knowledge/models/earnings/fiscal_calendar.json

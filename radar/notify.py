@@ -117,6 +117,11 @@ def guard(text):
     return None
 
 
+def private_chat(chat):
+    """개인 대화방만 허용 — 텔레그램에서 개인은 양수 id, 채널·그룹은 음수 id다. @핸들도 거부한다(딘스티커 발송 금지, 2026-10-31)"""
+    return str(chat).strip().isdigit()
+
+
 ALERTS = "alerts"  # radar/state/alerts.json — ⭐ 버튼이 가리키는 알림 내용(노션 기록용)
 
 
@@ -149,6 +154,9 @@ def send_document(path, caption="", level="REPORT"):
     token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         _log(f"[미발송-키없음][{level}] 파일 {path.name}")
+        return False
+    if not private_chat(chat):
+        _log(f"[차단:개인 대화방 아님][{level}] 파일 {path.name}")
         return False
     import uuid
     bnd = uuid.uuid4().hex
@@ -218,6 +226,9 @@ def _send(text, level="P1", ref=None, html_mode=False, md=False):
     token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")
     if not token or not chat:
         _log(f"[미발송-키없음][{level}] {text}")
+        return False
+    if not private_chat(chat):
+        _log(f"[차단:개인 대화방 아님][{level}] (내용 생략)")
         return False
     payload = {"chat_id": chat, "text": text, "disable_web_page_preview": "true"}
     if html_mode:   # 기사 제목에 링크를 숨겨 한 줄 양식을 지킨다

@@ -4,7 +4,7 @@ description: 기자 본업용 기사 소재(§21.14 3대 산출물 ②). 매일 
 argument-hint: "[날짜 | 주제]"
 ---
 
-운영 규칙: `docs/channels/pulse.md`를 먼저 읽는다.
+운영 규칙: `docs/channels/pulse.md`를 먼저 읽는다. 마스터가 이미 딘스티커에 쓴 각도는 `py radar/dticker.py --recent 7`로 확인해 되풀이하지 않는다(`docs/channels/dticker.md`).
 
 # article-pitch — 기사 소재 (ADR-010 §7)
 ## 재료 (지난 24시간)

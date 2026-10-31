@@ -34,4 +34,4 @@ argument-hint: "[주차 YYYY-Www]"
 채널 게시는 마스터가 직접 한다. 리포트의 '채널용 텍스트'를 복사해 쓴다.
 
 
-운영 규칙: `docs/channels/weekly.md`를 먼저 읽는다.
+운영 규칙: `docs/channels/weekly.md`를 먼저 읽는다. '이번 주 바뀐 것'을 고르기 전에 `py radar/dticker.py --recent 7 --columns`로 마스터가 쓴 글을 본다(`docs/channels/dticker.md`).
