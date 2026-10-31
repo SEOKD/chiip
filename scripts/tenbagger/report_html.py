@@ -189,6 +189,30 @@ def chart_candle(c):
     return legend + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
+def chart_progress(c):
+    """수주·파이프라인 — 막대 길이 = 규모(제곱근 눈금), 칠한 몫 = 진척도, 금액을 모르면 짧은 점선 막대(마스터 지시 2026-11-01)"""
+    rows = c.get("rows") or []
+    if not rows:
+        return ""
+    W, L, R = 460, 8, 8
+    full = W - L - R
+    top = max([r["total"] for r in rows if r.get("total")] + [0]) or 1
+    g, y = [], 4
+    for r in rows:
+        tot, pct = r.get("total"), r.get("pct")
+        wid = max(full * math.sqrt(tot / top), 40) if tot else 60
+        fill = wid * min(max(pct or 0, 0), 1)
+        tag = "진척 미확인" if pct is None else f"진척 {pct * 100:.0f}%"
+        g.append(f'<text x="{L}" y="{y + 11}" style="fill:var(--fg);font-size:12px;font-weight:600">{t(r.get("label"))}</text>')
+        g.append(f'<text x="{L}" y="{y + 25}" style="font-size:10.5px">{t(r.get("size"))} · {tag} · {t(r.get("status"))}</text>')
+        dash = ' stroke-dasharray="4 3"' if not tot else ""
+        g.append(f'<rect x="{L}" y="{y + 31}" width="{wid:.1f}" height="12" rx="4" fill="var(--line)" stroke="var(--mut)" stroke-width="0.6"{dash}/>')
+        if fill > 0:
+            g.append(f'<rect x="{L}" y="{y + 31}" width="{max(fill, 3):.1f}" height="12" rx="4" fill="var(--c)"/>')
+        y += 54
+    return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>'
+
+
 def chart_actest(c):
     """분기 실적 vs 컨센서스 — 패널마다 실적·컨센서스 막대를 다른 색으로(마스터 지시 2026-10-31 "매출과 EPS 같이 그려라. actual과 estimated 바는 다른 색으로")"""
     panels = [p for p in c.get("panels") or [] if p.get("categories")]
@@ -363,7 +387,7 @@ def chart_scenario(c):
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest}
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress}
 
 
 def figures(d):
@@ -371,7 +395,7 @@ def figures(d):
     format 3(2026-10-31 양식)은 report_layout이 정한 d['gallery'] 순서 그대로"""
     if d.get("format") == 3:
         return [(None, {"type": "chart", "chart": c}) for c in d.get("gallery") or [] if CHARTS.get(c.get("kind"))]
-    figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind"))]
+    figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind")) and (b.get("chart") or {}).get("kind") != "progress"]
     pinned = sorted((f for f in figs if f[1]["chart"].get("pin")), key=lambda f: f[1]["chart"]["pin"])
     out = [f for f in figs if not f[1]["chart"].get("pin")]
     for f in pinned:
@@ -546,6 +570,7 @@ def gloss(d):
                 b["rows"] = [[g(c) for c in r] for r in b.get("rows") or []]
             elif k == "boxes":
                 for x in b.get("items") or []:
+                    x["title"] = g(x.get("title"))   # 제품명 제목도 풀이한다(마스터 지시 2026-11-01)
                     x["lines"] = [[a, g(v)] for a, v in x.get("lines") or []]
     return d
 

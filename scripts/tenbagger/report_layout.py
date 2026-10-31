@@ -6,8 +6,9 @@
 숫자·순서·그래프는 이 파일이 만든다. 모르는 절이 있으면 멈춘다 — 본론 순서가 고정이기 때문이다.
 
 datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --legacy):
-  "moat": {"summary": "한 줄", "items": [{"kind": MOAT_KINDS 중 하나, "verdict": "강함|보통|약함|해당 없음", "claim": "무엇이 해자인가",
-            "evidence": "1차 자료 숫자", "quant": "ASP·캐파·시점 숫자(선택)", "falsifier": "깨지는 조건"}…]}   # 세 종류 모두, 해당이 없으면 verdict 해당 없음 + claim에 이유
+  "moat": {"summary": "한 줄", "items": [{"kind": "이 회사의 해자 이름", "verdict": "강함|보통|약함", "claim": "무엇이 해자인가",
+            "evidence": "1차 자료 숫자", "quant": "숫자(선택)", "falsifier": "깨지는 조건"}…]}   # 회사별로 독립적으로 찾는다, 2개 이상
+  "leaders": scripts/tenbagger/leader_view.py 맨 위 — 창업자·회장·CEO 프로필과 네트워크 정량화
   "multiple_view": {"adj": -0.2, "why": "사이클·실행 할인 등 IB식 판단 한 줄"}   # 조정폭은 config/tenbagger.yaml multiple_select.judge_cap 안에서
   "guidance": {"next": {"period": "4Q26", "rev": 285, "rev_cons": 285, "eps": 0.95, "eps_cons": 1.0, "unit": "$M"}}   # 같은 기간 회사 가이던스 vs 컨센서스, 없는 지표는 뺀다
   "consensus": {"ratings": {"strong_buy": 6, "buy": 0, "hold": 5, "sell": 0, "strong_sell": 0, "as_of": "2026-10-20"}}   # Fiscal.ai company_analyst_ratings
@@ -25,10 +26,10 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import flow  # noqa: E402
+import leader_view  # noqa: E402
 import levels  # noqa: E402
 import narrative_view  # noqa: E402
 
-MOAT_KINDS = ("공급 병목에 따른 구조적 ASP 상승", "기술 혁신에 따른 구조적 ASP 상승", "선제 CAPEX에 따른 Q 사이클")
 RATINGS = ("Strong Buy", "Buy", "Neutral", "Sell", "Strong Sell")
 ANALYST = (("strong_buy", "Strong Buy"), ("buy", "Buy"), ("hold", "Neutral"), ("sell", "Sell"), ("strong_sell", "Strong Sell"))
 MODEL_SECTIONS = ("판단 시나리오", "반대 검증", "킬 조건", "셀온 조건", "체크리스트", "재발행 기록", "정정 기록")
@@ -98,21 +99,15 @@ def scenario_build(d, dp, mm, sel, shares):
             "rr": reward_risk(price, cases["강세"]["value"], cases["약세"]["value"]) or 0.0, "cases": c["cases"], "metric_name": "EBITDA" if ev_metric else "EPS", "sym": sym(dp)}
 
 
-def rr_chart(s):
-    """업사이드·주가별 손익비 — 약세와 강세 사이 가격마다 손익비, 현재가를 한 줄 끼운다"""
-    bear, bull, price = s["bear"], s["bull"], s["price"]
-    prices = [bear + (bull - bear) * i / 8 for i in range(1, 8)]
-    near = (bull - bear) / 16
-    prices = sorted([p for p in prices if abs(p - price) > near] + ([price] if bear < price < bull else []))
-    rows = []
-    for p in prices:
-        rr = reward_risk(p, bull, bear)
-        v = round(rr * 100)
-        name, col = ("손익비 300% 이상", "d") if v >= 300 else (("손익비 100~300%", "c") if v >= 100 else ("손익비 100% 미만", "b"))
-        cur = s.get("sym", "$")
-        label = f"{cur}{p:,.2f} 현재" if p == price else f"{cur}{p:,.0f}"
-        rows.append({"label": f"{label} · 가중 {s['weighted'] / p - 1:+.0%}", "bars": [{"name": name, "color": col, "value": v}]})
-    return {"kind": "hbars", "w": 480, "label_w": 170, "title": "업사이드·주가별 손익비", "unit": "%", "rows": rows}
+def upside_chart(s, zones):
+    """주가별 업사이드 — 현재가와 차트 기법 지지선마다 확률 가중 주가까지의 업사이드를 막대로(마스터 지시 2026-11-01)"""
+    cur, w = s.get("sym", "$"), s["weighted"]
+    rows = [{"label": f"현재 {cur}{s['price']:,.2f}", "bars": [{"name": "현재가", "color": "e", "value": round((w / s["price"] - 1) * 100, 1)}]}]
+    for z in zones:
+        up = (w / z["mid"] - 1) * 100
+        tag = z["srcs"][0].replace("피보 ", "") + (f" 외 {len(z['srcs']) - 1}" if len(z["srcs"]) > 1 else "")
+        rows.append({"label": f"{cur}{z['mid']:,.2f} {tag}", "bars": [{"name": "지지선", "color": "d" if up >= 0 else "b", "value": round(up, 1)}]})
+    return {"kind": "hbars", "w": 480, "label_w": 190, "title": "주가별 업사이드", "unit": "%", "rows": rows}
 
 
 def _at(rows, idx):
@@ -144,37 +139,21 @@ def actest_chart(dp):
 
 
 def price_charts(entity):
-    """일봉·주봉·월봉 — 봉마다 가장 많이 쓰는 기법 두 가지(이동평균선·피보나치 되돌림)로 지지선과 저항선을 가른다(마스터 지시 2026-10-31)"""
+    """일봉·주봉·월봉 — 이평선은 그리지 않고 차트 기법으로 찾은 지지선만 표시한다(마스터 지시 2026-11-01). 지지선 계산은 levels.supports"""
     daily = flow.load_ohlcv(entity)
     if len(daily) < 60:
-        return []
-    monthly = flow.load_monthly(entity)
-    z = levels.zones(daily, None, monthly=monthly)
-    price, sw = z["price"], z["swings"]
-    series = (("일봉", daily, 120, sw["일봉"], (50, 200), "일"), ("주봉", levels.resample(daily, "W"), 78, sw["주봉"], (20, 50), "주"),
-              ("월봉", levels.merge_monthly(monthly, daily) if monthly else levels.resample(daily, "M"), 60, sw["월봉"], (12, 24), "개월"))
+        return [], []
+    sp = levels.supports(daily, flow.load_monthly(entity))
+    price = sp["price"]
+    fmt = (lambda v: f"{v:,.2f}") if price < 1000 else (lambda v: f"{v:,.0f}")
     out = []
-    for title, bars, tail, s, mas, unit in series:
-        view = bars[-tail:]
-        lines, hl = [], []
-        for n, col in zip(mas, ("c", "e")):
-            pts = [[bars[i]["date"], sum(x["c"] for x in bars[i - n + 1:i + 1]) / n] for i in range(n - 1, len(bars))]
-            if pts:
-                lines.append({"name": f"{n}{unit}선", "color": col, "points": pts[-tail:]})
-                last = pts[-1][1]
-                hl.append({"y": last, "tag": f"{n}{unit}선", "kind": "ma"})
-        for name, v in (s.get("ret") or {}).items():
-            hl.append({"y": v, "tag": f"피보 {name}", "kind": "fib"})
-        lo, hi = min(b["l"] for b in view), max(b["h"] for b in view)
-        fmt = (lambda v: f"{v:,.2f}") if price < 100 else (lambda v: f"{v:,.0f}")
-        keep = [h for h in hl if lo * 0.9 <= h["y"] <= hi * 1.1]
-        sup = sorted((h for h in keep if h["y"] < price), key=lambda h: -h["y"])[:3]
-        res = sorted((h for h in keep if h["y"] >= price), key=lambda h: h["y"])[:3]
-        marks = [{"y": h["y"], "label": f"지지 {fmt(h['y'])}", "color": "d"} for h in sup] + [{"y": h["y"], "label": f"저항 {fmt(h['y'])}", "color": "b"} for h in res]
-        legend = [{"name": x["name"], "color": x["color"]} for x in lines] + [{"name": "지지", "color": "d"}, {"name": "저항", "color": "b"}]
-        out.append({"kind": "candle", "w": 480, "title": title, "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in view], "lines": lines, "hlines": marks, "legend": legend,
-                    "levels": {"support": [[h["tag"], h["y"]] for h in sup], "resistance": [[h["tag"], h["y"]] for h in res]}})
-    return out
+    for title, tail in (("일봉", 120), ("주봉", 78), ("월봉", 60)):
+        view = sp["bars"][title][-tail:]
+        near = [x for x in sp["frames"][title] if x["price"] >= min(b["l"] for b in view) * 0.85][:4]
+        marks = [{"y": x["price"], "label": f"{x['src'].replace(title + ' ', '').replace('피보 ', '')} {fmt(x['price'])}", "color": "d"} for x in near]
+        out.append({"kind": "candle", "w": 480, "title": title, "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in view], "hlines": marks,
+                    "levels": [[x["src"].replace(title + " ", ""), x["price"]] for x in near]})
+    return out, sp["zones"]
 
 
 def price_stats(entity, price):
@@ -220,14 +199,14 @@ def dashboard(dp, s, mm, alpha, grade, mcap, unit, entity):
 
 
 def moat_section(dp):
+    """해자는 회사별로 따로 찾는다 — 정해진 항목이 없다(마스터 지시 2026-11-01 "내가 제시한 명제를 기본 틀로 삼지 말고 기업별로 각각 독립적으로")"""
     m = dp.get("moat") or {}
-    have = {x.get("kind"): x for x in m.get("items") or []}
-    miss = [k for k in MOAT_KINDS if not (have.get(k) or {}).get("claim")]
-    if miss:
-        raise SystemExit(f"datapack moat에 {miss}가 없다 — 해당이 없으면 verdict '해당 없음'과 claim에 이유(report_layout.py 맨 위)")
+    items = [x for x in m.get("items") or [] if x.get("kind") and x.get("claim") and x.get("evidence")]
+    if len(items) < 2:
+        raise SystemExit("datapack moat.items에 이 회사의 해자 2개 이상이 필요하다(kind·claim·evidence·verdict) — report_layout.py 맨 위")
     B = [{"type": "hl", "text": m["summary"]}] if m.get("summary") else []
     B.append({"type": "boxes", "items": [{"title": x["kind"], "tag": x.get("verdict"), "lines": [["해자", x.get("claim")], ["근거", x.get("evidence")], ["숫자", x.get("quant")], ["깨지는 조건", x.get("falsifier")]]}
-                                         for x in m["items"]]})
+                                         for x in items]})
     return {"h2": "해자", "blocks": B}
 
 
@@ -245,7 +224,7 @@ def earnings_blocks(esec):
     return out + ([read] if read else [])
 
 
-def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec):
+def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None):
     """한눈에 보기 순서(마스터 지시 2026-10-31): 차트 → 실적 → EPS 리비전 → 주가 시나리오 → 손익비 → 어닝콜 → 주가 분해 → 멀티플 프리미엄 → 합리적 멀티플 → 거래량·자금 → 몬테카를로"""
     E = [b for b in (esec or {}).get("blocks") or [] if b.get("type") == "chart"]
     get = lambda blocks, key: next((dict(b["chart"]) for b in blocks if key in str((b.get("chart") or {}).get("title"))), None)
@@ -254,7 +233,7 @@ def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec):
     if rev:
         rev["title"] = "EPS 리비전"
         out.append(rev)
-    out += [s["chart"], rr_chart(s)]
+    out += [s["chart"], upside_chart(s, zones or [])]
     call = get(E, "콜 변화")
     if call:
         call["title"] = SHORT_TITLES["콜 변화"]
@@ -311,10 +290,6 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line):
     B.append({"type": "table", "title": f"멀티플 선정 — {sel['label']}", "headers": ["단계", "조정", "근거"], "rows": sel["rows"]})
     peers = [[x["ticker"]] + [("-" if x.get(k) is None else f"{x[k]:.1f}") for k in sel["keys"]] + [f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}", "-" if x.get("roic") is None else f"{x['roic']:.0%}"] for x in mm["peers"]]
     B.append({"type": "table", "title": "동종 레인지", "headers": ["회사"] + sel["labels"] + ["성장", "영업이익률", "ROIC"], "rows": peers + [[f"**{name}**"] + [f"{v:.1f}" for v in sel["now"]] + ["", "", ""]]})
-    grid = _pick(sec.get("blocks") or [], "민감도", typ="table")
-    if grid:
-        B.append({"type": "table", "title": "민감도 — DCF 업사이드(장기 이익률 × 매출÷투하자본)", "headers": grid["headers"],
-                  "rows": [[r0[0]] + [("-" if c == "-" else f"{float(c) - 1:+.0%}") for c in r0[1:]] for r0 in grid["rows"]]})
     u = r["upside"]
     tail = f"몬테카를로 중앙값 업사이드 {u['v0_p50'] - 1:+.0%}"
     if u.get("implied_cagr") is not None:
@@ -327,12 +302,9 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line):
 
 def flow_blocks(flow_sec, price_list, cur="$"):
     B = [b for b in (flow_sec or {}).get("blocks") or [] if b.get("type") != "chart" and not str(b.get("text", "")).startswith("**읽는 법")]
-    rows = []
-    for c in price_list:
-        lv = c.get("levels") or {}
-        rows.append([c["title"], " · ".join(f"{t} {cur}{v:,.2f}" for t, v in lv.get("support") or []) or "-", " · ".join(f"{t} {cur}{v:,.2f}" for t, v in lv.get("resistance") or []) or "-"])
+    rows = [[c["title"], " · ".join(f"{t} {cur}{v:,.2f}" for t, v in c.get("levels") or []) or "-"] for c in price_list]
     if rows:
-        B.append({"type": "table", "title": "지지선·저항선", "headers": ["봉", "지지", "저항"], "rows": rows})
+        B.append({"type": "table", "title": "지지선", "headers": ["봉", "지지선"], "rows": rows})
     return B
 
 
@@ -340,6 +312,7 @@ def unglossed(d, dp):
     """풀이 없는 전문 약자 — 금융 용어(plain_ok)·티커가 아니면 report_glossary.yaml 또는 datapack terms에 넣게 한다. 대문자 약자만 잡는다(제품명은 모델이 terms에 쓴다)"""
     g = yaml.safe_load((ROOT / "config" / "report_glossary.yaml").read_text(encoding="utf-8"))
     known = set(g["terms"]) | set(g.get("no_gloss") or {}) | set(g.get("plain_ok") or []) | set(dp.get("terms") or {})
+    names = " ".join(known)
     tick = {str(p.get("ticker")) for p in dp.get("peers") or []} | {str(d.get("ticker"))}
     text = []
 
@@ -354,8 +327,14 @@ def unglossed(d, dp):
         elif isinstance(o, str):
             text.append(re.sub(r"https?://\S+", "", o))
     walk({k: d.get(k) for k in ("verdict", "summary", "sections")})
-    found = set(re.findall(r"(?<![A-Za-z0-9/&.\-])[A-Z][A-Z0-9]{2,6}(?![A-Za-z0-9\-])", " ".join(text)))
-    return sorted(x for x in found if x not in known and x not in tick and not re.fullmatch(r"\d?Q\d+|FY\d+|CY\d+|[A-Z]\d+", x))
+    found = set(re.findall(r"(?<![A-Za-z0-9/&.\-])[A-Z][A-Z0-9]{1,6}(?![A-Za-z0-9\-])|(?<![A-Za-z0-9])[A-Z][a-z]?[A-Z][A-Za-z0-9]{0,6}(?![A-Za-z0-9\-])", " ".join(text)))
+    miss = {x for x in found if x not in known and x not in tick and not re.fullmatch(r"\d?Q\d+|FY\d+|CY\d+|[A-Z]\d+", x)}
+    # 제품·사업명은 대문자 약자가 아니어도 풀이가 있어야 한다(마스터 지시 2026-11-01)
+    for p in ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []:
+        for w in re.findall(r"[A-Za-z][A-Za-z0-9\-]{2,}", str(p.get("name"))):
+            if w not in names:
+                miss.add(w)
+    return sorted(miss)
 
 
 def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
@@ -383,9 +362,9 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         import pipeline_view
         auto.append(pipeline_view.summary_item(dp))
     d["summary"] = auto + keep
-    price = price_charts(entity)
+    price, zones = price_charts(entity)
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
-    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec)
+    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones)
     model = d.get("sections") or []
     find = lambda *keys: [x for x in model if x.get("h2", "").startswith(keys)]
     bear_blocks = [b for x in find("반대 검증") for b in x.get("blocks") or []]
@@ -397,9 +376,11 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     val["blocks"][1:1] = scen_text
     out = [narrative_view.section3(dp, mm), narrative_view.portfolio3(dp)]
     if xs.get("pipeline"):
+        import pipeline_view
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + (xs["pipeline"].pop("_sources", None) or [])))
-        out.append({**xs["pipeline"], "h2": "수주·파이프라인"})
-    out += [moat_section(dp), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val]
+        out.append(pipeline_view.section3(dp))
+    money = lambda x: f"{cur}{x:,.2f}B"
+    out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val]
     flows = flow_blocks(xs.get("flow"), price, cur)
     if flows:
         out.append({"h2": "수급", "blocks": flows})

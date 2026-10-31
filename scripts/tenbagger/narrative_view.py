@@ -201,11 +201,14 @@ def lens_boxes(lead):
     policy = lead.get("policy")
     out = []
     for k in LENSES:
-        if k == "재정정책" and policy:
+        if k == "재정정책" and policy:   # 세 칸을 '정책·입법 연관성' 한 항목으로(마스터 지시 2026-11-01)
+            lines = []
             for key, name in POLICY:
                 x = policy.get(key) or {}
                 total, detail = congress_score(x)
-                out.append({"title": name, "lines": [["변화", x.get("change")], ["의회 동의", f"{total}/10 — {detail}" if total is not None else ""], ["증거", x.get("evidence")], ["반증", x.get("falsifier")]]})
+                text = " ".join(str(v) for v in (x.get("change"), x.get("evidence"), f"반증: {x['falsifier']}" if x.get("falsifier") else "") if v)
+                lines.append([name.split("(")[0], text + (f" 의회 동의 {total}/10 — {detail}." if total is not None else "")])
+            out.append({"title": "정책·입법 연관성", "lines": lines})
             continue
         if k not in have:
             continue
@@ -250,7 +253,8 @@ def section3(dp, mm=None):
 def portfolio3(dp):
     """양식 3 포트폴리오 — 제품·서비스·기술을 설명 박스로(마스터 지시 2026-10-31)"""
     lead = dp["narrative"]["lead"]
-    return {"h2": "포트폴리오", "blocks": [{"type": "boxes", "items": [{"title": p.get("name"), "tag": p.get("kind"), "lines": [["무엇", p.get("what")], ["쓰는 곳", p.get("use")], ["돈 버는 방식", p.get("money")]]} for p in lead["products"]]}]}
+    rows = [[p.get("name"), p.get("kind"), p.get("what"), p.get("use"), p.get("money")] for p in lead["products"]]
+    return {"h2": "포트폴리오", "blocks": [{"type": "table", "headers": ["제품·서비스", "구분", "무엇", "쓰는 곳", "돈 버는 방식"], "rows": rows}]}   # 한 표로(마스터 지시 2026-11-01)
 
 
 def summary_item(dp):

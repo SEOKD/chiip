@@ -1,0 +1,97 @@
+{
+ "date": "11/01",
+ "summary": [
+  "신규 편입 없음",
+  "심층 검토 2곳 모두 보류",
+  "시총 확보 47/635곳, 순위는 참고용"
+ ],
+ "deep": [
+  {
+   "name": "National Presto(NPK)",
+   "theme": "탄약",
+   "stage": "보류",
+   "biz": "미 육군 40mm 탄약과 주방 소형가전을 만드는 회사",
+   "view": "방위 잔고는 시총보다 크지만 10배 경로 증거가 없다",
+   "points": [
+    [
+     "잔고",
+     "방위 $1.81B(7/5), 시총 $1.05B"
+    ],
+    [
+     "증거",
+     "방위 매출 상반기 +25%, 이익률 약 20% 정체"
+    ],
+    [
+     "다음",
+     "3Q 10-Q 11/13 전후(추정)"
+    ]
+   ]
+  },
+  {
+   "name": "Avio(AVIO)",
+   "theme": "고체 로켓 모터",
+   "stage": "보류",
+   "biz": "유럽 발사체 추진체와 미사일용 로켓 모터를 만드는 이탈리아 회사",
+   "view": "구속력 있는 미국 물량 주문을 확인하지 못했다",
+   "points": [
+    [
+     "일정",
+     "미국 공장 가동 목표 2028년 말"
+    ],
+    [
+     "다음",
+     "11월 중순 3Q 자료(일정 미확인)"
+    ]
+   ]
+  }
+ ],
+ "top": [
+  {
+   "name": "MilDef Group",
+   "score": 6.8,
+   "stage": "아이디어"
+  },
+  {
+   "name": "National Presto",
+   "score": 6.7,
+   "stage": "심층 대기"
+  }
+ ],
+ "bands": [
+  {
+   "band": "$1–10B",
+   "name": "Theon(THEON)",
+   "score": 6.28
+  },
+  {
+   "band": "$10–20B",
+   "name": "Onto(ONTO)",
+   "score": 6.88
+  }
+ ],
+ "consumer": [
+  {
+   "name": "e.l.f. Beauty(ELF)",
+   "score": 7.0,
+   "phase": "상승 사이클 진입",
+   "growth": "+36%",
+   "demand": "미확인"
+  }
+ ],
+ "quiet": [
+  {
+   "name": "National Presto(NPK)",
+   "score": 7.5,
+   "rise": 8.7,
+   "inst": 9.7,
+   "low": 9.8
+  }
+ ],
+ "watch": [
+  {
+   "name": "FormFactor(FORM)",
+   "why": "200일선 아래, 고점의 62%"
+  }
+ ],
+ "zacks": true
+}

@@ -200,6 +200,37 @@ def zones(daily, anchors=None, n=3, min_strength=2.0, monthly=None):
     return {"price": price, "swings": swings, "support": sup, "resistance": res, "at": at, "levels": lv}
 
 
+# ---------- 지지선 엔진(마스터 지시 2026-11-01 "이평선, 피보나치 등 주류 기법으로 지지선을 파악하는 구조를 엔진 아키텍처에 영구적으로") ----------
+MA_WINDOWS = {"일봉": ((50, 200), "일"), "주봉": ((20, 50), "주"), "월봉": ((12, 24), "개월")}
+
+
+def frame_supports(bars, swing, name, price):
+    """시간 단위 하나의 지지선 — 이동평균선 + 피보나치 되돌림 + 스윙 저점 중 현재가 아래"""
+    ns, unit = MA_WINDOWS[name]
+    out = []
+    for n in ns:
+        v = sma(bars, n)
+        if v:
+            out.append({"price": v, "src": f"{name} {n}{unit}선", "kind": f"ma-{name}-{n}", "w": 1.0})
+    for label, v in (swing.get("ret") or {}).items():
+        out.append({"price": v, "src": f"{name} 피보 {label}", "kind": f"fib-{name}", "w": 1.0})
+    if swing.get("low"):
+        out.append({"price": swing["low"], "src": f"{name} 스윙 저점", "kind": f"swing-{name}", "w": 1.0})
+    return sorted((x for x in out if x["price"] < price), key=lambda x: -x["price"])
+
+
+def supports(daily, monthly=None, anchors=None, n=6):
+    """일·주·월봉 지지선을 겹침 구간으로 묶는다 — {'price', 'frames': {봉: [지지선…]}, 'zones': [{'mid','lo','hi','strength','srcs'}…]}. 위에서 아래로 n개"""
+    z = zones(daily, anchors, monthly=monthly)
+    price, sw = z["price"], z["swings"]
+    bars = {"일봉": daily, "주봉": resample(daily, "W"), "월봉": merge_monthly(monthly, daily) if monthly else resample(daily, "M")}
+    frames = {k: frame_supports(b, sw[k], k, price) for k, b in bars.items()}
+    groups = cluster([x for v in frames.values() for x in v])
+    picks = sorted(groups, key=lambda g: -g["mid"])
+    return {"price": price, "bars": bars, "frames": frames,
+            "zones": [{"mid": g["mid"], "lo": g["lo"], "hi": g["hi"], "strength": g["strength"], "srcs": [x["src"] for x in g["items"]]} for g in picks[:n]]}
+
+
 # ---------- 리포트 절 ----------
 def _z(g, price):
     lo, hi = g["lo"], g["hi"]

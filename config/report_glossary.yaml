@@ -55,6 +55,10 @@ terms:
   IEEPA: 미국 국제긴급경제권한법
   CHIPS: 미국 반도체지원법
   OBBBA: 2025년 미국 세제·재정 법안
+  GPU: 그래픽 처리 장치
+  CPU: 중앙 처리 장치
+  DRAM: D램 메모리
+  NAND: 낸드 플래시 메모리
 # 괄호 풀이를 달지 않는 용어 — 마스터 지시 2026-10-31 "전문 용어 설명할 때 Fwd 1Y, P/E, P/B, EBITDA, EPS, 멀티플은 괄호 설명을 제외하라"
 # terms에 다시 넣지 않는다. 값은 모델이 글에 직접 적어도 렌더러가 지울 풀이 문구다.
 no_gloss:
@@ -119,4 +123,4 @@ no_gloss:
   계속가치: [예측 기간 이후의 가치]
   낙수효과: [대기업 투자가 아래 공급망으로 번지는 효과]
 # 풀이 없이 써도 되는 약자 — scripts/tenbagger/report_layout.py가 풀이 없는 약자를 잡을 때 뺀다. 금융 용어·일반 IT 약어
-plain_ok: [AI, NOK, MNOK, SEK, EUR, GBP, JPY, KRW, ASP, GPU, CPU, DRAM, NAND, SK, US, USD, IR, CEO, CFO, COO, CTO, PER, PBR, ETF, IPO, M&A, HBM, FY, CY, EPS, OPM, GPM, EV, EBIT, EBITA, EBITDA, DCF, WACC, ERP, ROIC, RONIC, NOPAT, CAGR, TTM, YoY, QoQ, GAAP, CAPEX, FCF, FCFF, SBC, ATM, CMF, RVOL, ATS, ATR, IB, EP, SEC, MC, OCF, CMF, EPS, NTM, LTM, Fwd, KPI, NVDA, TSMC, AMD, TOP, ROE, ROA, RSU]
+plain_ok: [AI, NOK, MNOK, SEK, EUR, GBP, JPY, KRW, ASP, SK, US, USD, IR, CEO, CFO, COO, CTO, PER, PBR, ETF, IPO, M&A, FY, CY, EPS, OPM, GPM, EV, EBIT, EBITA, EBITDA, DCF, WACC, ERP, ROIC, RONIC, NOPAT, CAGR, TTM, YoY, QoQ, GAAP, CAPEX, FCF, FCFF, SBC, ATM, CMF, RVOL, ATS, ATR, IB, EP, SEC, MC, OCF, CMF, EPS, NTM, LTM, Fwd, KPI, NVDA, TSMC, AMD, TOP, ROE, ROA, RSU]

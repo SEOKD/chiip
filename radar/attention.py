@@ -25,7 +25,8 @@ from pollers import rss  # noqa: E402
 OUT = common.ROOT / "knowledge" / "models" / "discovery"
 CSV = OUT / "attention.csv"
 LATEST = OUT / "attention_latest.json"
-INVESTOR_SOURCES = ("news_global", "seeking_alpha", "substack", "research_feeds", "x", "telegram")
+INVESTOR_SOURCES = ("news_global", "seeking_alpha", "substack", "research_feeds", "x", "telegram", "reddit_mentions", "wsb_comments", "hn", "lemmy")
+LEVEL_SOURCES = ("wiki_views", "margin_tw")   # 조회 수·잔고는 언급 수와 단위가 달라 쏠림·상한 판정에 넣지 않는다(가속은 본다)
 X_COUNTS = "https://api.x.com/2/tweets/counts/recent"   # 2026-10-29 공식 문서 docs.x.com/x-api/posts/get-count-of-recent-posts
 TG_PAGE = "https://t.me/s/{ch}"
 LOCALE = {"jp": ("ja", "JP"), "tw": ("zh-TW", "TW"), "kr": ("ko", "KR"), "us": ("en-US", "US")}
@@ -232,6 +233,12 @@ def collect():
             rows.append((today, cid, "research_feeds", research_feed_count([en, local], days)))
         rows.append((today, cid, "sellside_events", sellside_count(cid, days)))
         time.sleep(0.3)
+    if src.get("retail"):   # 레딧·X 직접 접속 없이 모으는 리테일 채널(마스터 지시 2026-11-01, radar/retail_channels.py)
+        import retail_channels
+        more, nt, snap = retail_channels.collect(cands, today, srcs["retail"])
+        retail_channels.save(snap)
+        rows += more
+        notes.append(f"리테일 {len(more)}행" + (f"({', '.join(nt)})" if nt else ""))
     return rows, notes
 
 
@@ -260,7 +267,7 @@ def summarize(all_rows, today):
     # 쏠림은 투자자 원천으로만 — 현지 언론은 Google News 상한(100건)에 자주 걸리고 투자자 관심과 다르다(2026-10-29 첫 기준선)
     for o in out.values():
         o["investor"] = sum(v["n"] for s, v in o["by_source"].items() if s in INVESTOR_SOURCES)
-        o["saturated"] = [s for s, v in o["by_source"].items() if v["n"] >= 100]
+        o["saturated"] = [s for s, v in o["by_source"].items() if v["n"] >= 100 and s not in LEVEL_SOURCES]
     inv = sorted(o["investor"] for o in out.values())
     for o in out.values():
         o["crowding_pct"] = round(100 * sum(1 for x in inv if x <= o["investor"]) / len(inv)) if inv else None

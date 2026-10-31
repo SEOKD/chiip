@@ -177,6 +177,29 @@ def report_section(dp, r=None, strict=True):
     return {"h2": "수주·파이프라인 — 진척도와 남은 수익", "blocks": B, "_sources": sorted({str(x["source"]) for x in c["items"]})}
 
 
+def section3(dp):
+    """양식 3 수주·파이프라인 — 규모·마진·진척도를 그림으로, 수익 표는 뺀다(마스터 지시 2026-11-01). 막대 길이 = 규모, 칠한 몫 = 진척도"""
+    pl = (dp or {}).get("pipeline") or {}
+    check(pl)
+    c, unit = compute(dp), dp.get("unit", "B$")
+    B = []
+    firm_total, soft_total = c["total_of"](c["firm"], "total")[0], c["total_of"](c["soft"], "total")[0]
+    head = f"**{c['as_of']} 기준 {len(c['items'])}건.** " + (f"확정 {_money(firm_total, unit)}" if c["firm"] else "건별 확정 금액은 공개되지 않았다") + (f", 미확정 {_money(soft_total, unit)}." if c["firm"] and soft_total else ".")
+    backlog = _num(pl.get("reported_backlog"))
+    if backlog:
+        head += f" 공시 {pl.get('backlog_label', '수주잔고')} {_money(backlog, unit)}."
+    if any(x.get("no_sum") for x in c["items"]):
+        head += " 서로 겹치는 항목은 합계에서 뺐다."
+    B.append({"type": "hl", "text": head})
+    rows = []
+    for x in c["items"]:
+        size = _m(x["total"], unit) + (f" · 마진 {x['m'] * 100:.0f}%" if x["m"] is not None else "")
+        rows.append({"label": x["name"], "total": x["total"], "pct": x["p"], "size": size, "status": x["status"]})
+    B.append({"type": "chart", "chart": {"kind": "progress", "title": "규모·마진·진척도", "rows": rows}})
+    B.append({"type": "table", "title": "실행 속도와 방해 요인", "headers": ["항목", "상태", "실행 속도", "방해 요인"], "rows": [[x["name"], x["status"], speed_text(x), " · ".join(x["blockers"])] for x in c["items"]]})
+    return {"h2": "수주·파이프라인", "blocks": B}
+
+
 def summary_item(dp):
     pl = (dp or {}).get("pipeline") or {}
     c, unit = compute(dp), dp.get("unit", "B$")

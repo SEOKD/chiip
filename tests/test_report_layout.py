@@ -51,10 +51,12 @@ class TestScenario(unittest.TestCase):
         with self.assertRaises(SystemExit):
             rl.scenario_build(d, {"profile": {"price": 100}}, {}, {"value": 30, "basis": "pe_fwd"}, 1.0)
 
-    def test_rr_chart_marks_current_price(self):
-        s = {"bear": 60, "bull": 160, "price": 88, "weighted": 110}
-        rows = rl.rr_chart(s)["rows"]
-        self.assertTrue(any("현재" in r["label"] for r in rows))
+    def test_upside_by_support_level(self):
+        c = rl.upside_chart({"price": 100, "weighted": 120}, [{"mid": 80, "srcs": ["주봉 피보 50%", "50주선"]}])
+        self.assertEqual(c["title"], "주가별 업사이드")
+        self.assertEqual(c["rows"][0]["bars"][0]["value"], 20.0)
+        self.assertEqual(c["rows"][1]["bars"][0]["value"], 50.0)
+        self.assertIn("외 1", c["rows"][1]["label"])
 
 
 class TestMultiple(unittest.TestCase):
@@ -134,16 +136,72 @@ class TestRender(unittest.TestCase):
         self.assertIn("50일선", s)
 
 
+class TestSupports(unittest.TestCase):
+    def bars(self, n=260):
+        return [{"date": f"2026-{1 + i // 30:02d}-{1 + i % 28:02d}", "o": 50 + i * 0.5, "h": 51 + i * 0.5, "l": 49 + i * 0.5, "c": 50 + i * 0.5, "v": 1000} for i in range(n)]
+
+    def test_supports_sit_below_price(self):
+        import levels
+        out = levels.supports(self.bars())
+        self.assertTrue(out["zones"])
+        self.assertTrue(all(z["mid"] < out["price"] for z in out["zones"]))
+        kinds = " ".join(x["src"] for v in out["frames"].values() for x in v)
+        self.assertIn("선", kinds)
+        self.assertIn("피보", kinds)
+
+
+class TestPipelineChart(unittest.TestCase):
+    def test_progress_chart_shows_unknown(self):
+        s = rh.chart_progress({"rows": [{"label": "A", "total": 2.0, "pct": 0.5, "size": "$2B", "status": "확정"}, {"label": "B", "total": None, "pct": None, "size": "미확인", "status": "파이프라인"}]})
+        self.assertIn("진척 50%", s)
+        self.assertIn("진척 미확인", s)
+        self.assertIn("stroke-dasharray", s)
+
+    def test_section_drops_profit_table(self):
+        import pipeline_view as pv
+        dp = {"unit": "B$", "pipeline": {"as_of": "2026-09-30", "items": [{"name": "A", "status": "확정", "total": 1.0, "progress": 0.5, "margin": 0.1, "margin_basis": "x", "blockers": ["y"], "source": "z"}]}}
+        sec = pv.section3(dp)
+        titles = [b.get("title") for b in sec["blocks"]]
+        self.assertNotIn("진척도별 수익", titles)
+        self.assertTrue(any(b.get("type") == "chart" for b in sec["blocks"]))
+
+
+class TestLeaders(unittest.TestCase):
+    def dp(self):
+        return {"financials": {"rev_ttm": 10.0}, "leaders": {"people": [{"name": "A", "role": "CEO", "since": "2020", "profile": "p", "business": "b", "political": "미확인", "alumni": "미확인", "social": "미확인", "source": "위임장"}],
+                                                             "value": [{"network": "정계", "link": "국방부", "strength": 4, "exposure": 5.0, "basis": "매출", "evidence": "10-K"}]}}
+
+    def test_weighted_exposure(self):
+        import leader_view as lv
+        sec = lv.report_section(self.dp(), {}, lambda x: f"${x:.1f}B")
+        t = next(b for b in sec["blocks"] if b.get("type") == "table")
+        self.assertEqual(t["rows"][0][3:5], ["$4.0B", "40%"])
+        self.assertTrue(any("입증" in str(b.get("text")) for b in sec["blocks"]))
+
+    def test_missing_field_stops(self):
+        import leader_view as lv
+        d = self.dp()
+        del d["leaders"]["people"][0]["social"]
+        with self.assertRaises(ValueError):
+            lv.report_section(d, {}, str)
+
+
 class TestAssemble(unittest.TestCase):
     def test_unknown_section_stops(self):
         with self.assertRaises(SystemExit):
             rl.assemble({"sections": [{"h2": "주가와 배수"}]}, {}, {}, {}, {}, {}, {}, None, {}, "x")
 
-    def test_moat_needs_all_three(self):
+    def test_moat_is_company_specific(self):
         with self.assertRaises(SystemExit):
-            rl.moat_section({"moat": {"items": [{"kind": rl.MOAT_KINDS[0], "claim": "x"}]}})
-        sec = rl.moat_section({"moat": {"items": [{"kind": k, "claim": "x", "verdict": "보통"} for k in rl.MOAT_KINDS]}})
+            rl.moat_section({"moat": {"items": [{"kind": "보안 인가 인력", "claim": "x", "evidence": "y"}]}})
+        sec = rl.moat_section({"moat": {"items": [{"kind": k, "claim": "x", "evidence": "y", "verdict": "보통"} for k in ("보안 인가 인력", "전환 비용")]}})
         self.assertEqual(sec["h2"], "해자")
+
+    def test_product_name_needs_gloss(self):
+        dp = {"narrative": {"lead": {"products": [{"name": "Optimus 플랫폼"}]}}}
+        d = {"ticker": "X", "verdict": {"view": "x"}, "summary": [], "sections": []}
+        self.assertEqual(rl.unglossed(d, dp), ["Optimus"])
+        self.assertEqual(rl.unglossed(d, {**dp, "terms": {"Optimus": "풀이"}}), [])
 
     def test_unglossed_abbreviation_is_caught(self):
         d = {"ticker": "X", "verdict": {"view": "XYZQ 기술과 EPS"}, "summary": [], "sections": []}
