@@ -1,0 +1,94 @@
+auto: true
+id: no-kongsberg
+name: Kongsberg Gruppen
+ticker: KOG
+unit: BNOK
+unit_usd: 100000000.0
+industry: aerospace_defense
+region_mix:
+  EU: 1.0
+tax: 0.22
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 355.8
+  shares: 0.879592
+  net_debt: -2.888
+  source: 가격 = 오슬로 10/30 종가 · 주식 수·현금·차입·리스 = 3Q 재무상태표 2026-09-30
+rev0: 42.0
+ic0: 11.57
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.3095
+      end: 0.03
+      decay: 0.608
+    margin:
+      m0: 0.1679
+      target: 0.175
+      year_target: 3
+      lr: 0.17
+      lam: 0.35
+      anchors:
+      - 0.1693
+      - 0.175
+    s2c: 2.5
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.4333
+      end: 0.034999999999999996
+      decay: 0.658
+    margin:
+      m0: 0.1679
+      target: 0.195
+      year_target: 3
+      lr: 0.17
+      lam: 0.25
+      anchors:
+      - 0.1693
+      - 0.175
+    s2c: 2.875
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.1857
+      end: 0.024999999999999998
+      decay: 0.508
+    margin:
+      m0: 0.1679
+      target: 0.155
+      year_target: 3
+      lr: 0.17
+      lam: 0.5
+      anchors:
+      - 0.1693
+      - 0.175
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0619
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 42.0
+  growth: 컨센서스 1년차 31.0%, 2년차 20.0%
+  margin: 1~2년차 컨센서스 16.9%, 17.5% 고정 → 목표 18%(3년차, 덮어쓰기) → 장기 수렴 17%
+  s2c: 재무 재구성 증분 매출/투하자본 3.39 → 덮어쓰기 2.5
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: 'EBIT 이익률 17.5%는 FY2028 컨센서스. 장기 17%. 매출÷투하자본 2.5: TTM 3.4는 고객 선수금이 부풀린
+    값이라 공장 투자를 감안해 낮췄다'
+  shares: 완전 희석 = 기본 0.879592378(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 희석 증권 미공개 —
+    가중평균 희석 주식이 기본과 같다
+notes:
+- 자동 생성(build_drivers) 2026-10-31 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: Zone 5 초기 마진 희석'
+- '어닝콜 위험: 유지 보상금 비용'
+- '어닝콜 위험: Discovery 이전 비용'
+evidence:
+- Kongsberg 3Q26 실적 발표·콜 2026-10-29
+- 2Q26 콜 2026-07-13
+- 1Q26 콜
