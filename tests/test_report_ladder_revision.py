@@ -267,7 +267,8 @@ class TestSurprise(unittest.TestCase):
         self.assertEqual([s["name"] for s in c["series"]], ["매출", "OPM", "EPS"])
         self.assertIn("매출·OPM·EPS", c["title"])
         self.assertEqual(c["series"][1]["values"], [None, None, 0.0, None])   # 10% vs 10%, 3분기는 매출·이익 추정 제공처가 달라 비교하지 않는다
-        self.assertEqual(c["series"][2]["values"], [20.0, 0.0])
+        self.assertEqual(c["series"][2]["values"], [None, None, 20.0, 0.0])
+        self.assertEqual(len(c["categories"]), 4)
         t = next(b for b in sec["blocks"] if b["type"] == "table")
         self.assertNotIn("추정 출처", t["headers"])
 
