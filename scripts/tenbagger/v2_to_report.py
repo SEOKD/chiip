@@ -276,7 +276,7 @@ def main(argv):
             d = report_layout.assemble(d, dp, co, r, r["_mm"], sel, sec, esec, xs, a.entity)
             p.write_text(json.dumps(report_html.clean_vendor(d), ensure_ascii=False, indent=1), encoding="utf-8")
             v = d["verdict"]
-            print(f"[양식 3] {p} · 구매 등급 {v['rating']} · 업사이드 {v['upside']:+.0%} · 다운사이드 {v['downside']:+.0%} · 손익비 {v['rr'] * 100:.0f}% · 선정 멀티플 {sel['value']:.1f}배")
+            print(f"[양식 3] {p} · 구매 등급 {v['rating']} · 업사이드 {v['upside']:+.0%} · 다운사이드 {v['downside']:+.0%} · 손익비 {v['rr']:.1f} · 선정 멀티플 {sel['value']:.1f}배")
             return 0
         d["sections"] = [s for s in d.get("sections") or [] if not _strip_no(s.get("h2")).startswith(("밸류에이션 — 맥킨지", "어닝콜 변화·컨센서스") + EXTRA_H2)]
         idx = next((i for i, s in enumerate(d["sections"]) if "시나리오" in s.get("h2", "")), len(d["sections"]))

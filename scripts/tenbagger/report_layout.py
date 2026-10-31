@@ -179,7 +179,7 @@ def dashboard(dp, s, mm, alpha, grade, mcap, unit, entity):
     money = lambda x: f"{cur}{x:,.2f}B"
     tiles = [{"k": "주가", "v": f"{cur}{s['price']:,.2f}", "sub": f"고점 대비 {from_high:+.0%} · 1년 {yr:+.0%}" if from_high is not None else "미확인", "tone": "red" if (from_high or 0) < -0.3 else ""},
              {"k": "시가총액", "v": money(mcap), "sub": f"EV {money(ev)}"},
-             {"k": "업사이드", "v": f"{s['upside']:+.0%}", "sub": f"다운사이드 {s['downside']:+.0%} · 손익비 {s['rr'] * 100:.0f}%", "tone": "red" if s["upside"] > 0 else "blue"}]
+             {"k": "업사이드", "v": f"{s['upside']:+.0%}", "sub": f"다운사이드 {s['downside']:+.0%} · 손익비 {s['rr']:.1f}", "tone": "red" if s["upside"] > 0 else "blue"}]
     ra = cons.get("ratings") or {}
     counts = " · ".join(f"{name} {ra.get(k, 0)}" for k, name in ANALYST)
     tiles.append({"k": "구매등급", "v": grade, "sub": f"애널리스트 {sum(ra.get(k, 0) for k, _ in ANALYST)}명: {counts}" if ra else "애널리스트 등급 미확인",
@@ -354,7 +354,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}
     d["tiles"] = dashboard(dp, s, m_short, alpha, grade, r["mcap"], r["unit"], entity)
-    upline = f"**강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})까지 열려 있다.** {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}, 확률 가중 {cur}{s['weighted']:,.0f}({s['upside']:+.0%}). 손익비 {s['rr'] * 100:.0f}%, DCF 기준 업사이드 {dcf_up:+.0%}."
+    upline = f"**강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})까지 열려 있다.** {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}, 확률 가중 {cur}{s['weighted']:,.0f}({s['upside']:+.0%}). 손익비 {s['rr']:.1f}, DCF 기준 업사이드 {dcf_up:+.0%}."
     keep = [x for x in d.get("summary") or [] if not x.get("auto")]
     auto = [{"q": "기업가치를 결정하는 내러티브", "a": ((dp.get("narrative") or {}).get("lead") or {}).get("summary", ""), "auto": True},
             {"q": "밸류에이션 모델로 본 주가 상방은 어디까지인가?", "a": upline, "auto": True}]

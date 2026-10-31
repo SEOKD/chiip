@@ -47,7 +47,7 @@ def build(d):
     out = [f"[Chiip Ten-bagger Report {date}]", "", f"**{d['company']}({d['ticker']})**", d["title"], f"기업: {d['biz']}", ""]
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     out += ["**■ 결론**", f"- 구매 등급 **{v.get('rating')}** · 알파 {alpha}/10"]
-    out.append(f"- 업사이드 {_pct(v.get('upside') or 0)} · 다운사이드 {_pct(v.get('downside') or 0)} · 손익비 {round((v.get('rr') or 0) * 100)}%")
+    out.append(f"- 업사이드 {_pct(v.get('upside') or 0)} · 다운사이드 {_pct(v.get('downside') or 0)} · 손익비 {(v.get('rr') or 0):.1f}")
     out += ["", "**■ 왜 이렇게 보나**"] + [f"- {a}: {b}" if a else f"- {b}" for a, b in reasons(d)]
     out += ["", "**■ 밸류에이션**", f"- 주가 {_tile(d, '주가').get('v')} ({_tile(d, '주가').get('sub', '').split(' · ')[0]})"]
     if cases:

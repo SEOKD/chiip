@@ -21,7 +21,7 @@ class TestFeed(unittest.TestCase):
         s = rf.build(DOC)
         order = [s.index(k) for k in ("■ 결론", "■ 왜 이렇게 보나", "■ 밸류에이션", "■ 셀온 조건", "■ 다음 확인")]
         self.assertEqual(order, sorted(order))
-        self.assertIn("업사이드 +14% · 다운사이드 −34% · 손익비 191%", s)
+        self.assertIn("업사이드 +14% · 다운사이드 −34% · 손익비 1.9", s)
         self.assertIn("- 시나리오: 약세 $56 · 기본 $94 · 강세 $140", s)
         self.assertIn("- 멀티플: 지금 23.7배 · 선정 23.9배 · 동종 중앙값 30.7배", s)
         self.assertIn("- DCF 기준 업사이드 −50%", s)

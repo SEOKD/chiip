@@ -14,3 +14,4 @@
 - **노션 Stocks 우선 리포트**(2026-10-30 마스터 지시): 텐배거 리포트는 마스터 요청 다음으로 노션 Stocks 종목 중 **현 시점 ±7일 어닝콜 스크립트 + 컨센서스**를 입력해 둔 종목부터(`scripts/tenbagger/notion_stocks.py` 색인 → `pick_report.py`). 그 페이지의 스크립트·컨센서스를 데이터 묶음에, IB 내용은 라이선스 요지로만 내러티브 셀사이드 층에(문장 복제·목표가 결론화 금지, 외부 공유 금지).
 - **멀티플 산정**(2026-10-29): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인 분해 → 합리적 멀티플(`scripts/valuation/v2/multiples.py`, `knowledge/methods/multiples.md`). **기준 멀티플은 이익 지표의 Fwd 1Y·2Y·3Y 세 분류**(2026-10-30 마스터 지시, 그림 3개 — 다음 4개 분기·5~8번째·9~12번째 분기 이익): EPS가 주요 지표면 P/E, EBITDA가 주요 지표면 EV/EBITDA(`multiples.main_metric`), Fiscal.ai 우선(`forward_multiples.js` → `adapter.py --forward-multiples`, 재료가 없으면 `v2_to_report --merge`가 멈춘다). EV/매출은 재료가 없거나 이익이 적자일 때만 이유를 적고 쓴다.
 - **발행 알림 양식**(2026-11-01 마스터 지시): `scripts/tenbagger/report_feed.py`가 고정한다. 결론 → 왜 이렇게 보나 → 밸류에이션 → 셀온 조건 → 다음 확인, 사실은 하이픈 줄 하나에 하나.
+- **손익비 표기**(2026-11-01 마스터 지시): %가 아니라 ratio로 쓴다. 상승폭 +20%·하락폭 −10%면 2.0이다. 모델이 쓰는 글과 캡션도 같다.
