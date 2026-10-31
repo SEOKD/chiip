@@ -19,6 +19,9 @@ keys:
   co-babcock:
     checked: '2026-10-30'
     key: NYSE_BW
+  co-enchantedrock:
+    checked: '2026-10-31'
+    key: NYSE_EROC
   co-ftai:
     checked: '2026-10-30'
     key: NASDAQ_FTAI

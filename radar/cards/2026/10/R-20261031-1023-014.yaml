@@ -1,0 +1,33 @@
+id: R-20261031-1023-014
+item_ids: ["src-news7-focus:61859b7fb56da8f1"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-31T09:57:07+09:00
+published_at: 2026-10-31T09:43:00+09:00
+latency_min: 14
+entities: [co-meta]
+event_type: 기타
+headline_ko: "S&P, 메타 신용 전망 하향(AI 지출 확대 배경, 보도 기준)"
+what_happened: "The Information은 S&P가 메타(Meta)의 신용 전망(outlook)을 하향 조정했다고 보도했으며, 보도 제목은 AI 지출 급증을 배경으로 꼽았다. 등급 변경 여부·조정 폭·세부 근거는 원문과 S&P 발표 확인 전이라 미확인이다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "S&P 원문(발표문)에서 전망 변경 방향·대상 등급과 등급 자체 변경 여부 확인"
+  - "보도된 AI 지출 규모(금액·연도)와 조달 방식(회사채·사모·SPV 등) 확인"
+  - "P1 사유: 하이퍼스케일러 신용 전망 하향. 금액 조건(100억 달러 이상)은 미확인 — 충족 여부 판단 보류"
+next_check: "S&P 발표 원문 및 메타 10-Q·채권 발행 공시"
+reverse: null
+policy: null

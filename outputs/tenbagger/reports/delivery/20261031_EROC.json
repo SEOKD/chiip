@@ -1,0 +1,28 @@
+{
+ "stem": "20261031_EROC",
+ "date": "2026-10-31",
+ "ticker": "EROC",
+ "company": "ERock",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/18c65c46b2ad/outputs/tenbagger/reports/20261031_EROC.md",
+  "html": "https://github.com/SEOKD/chiip/blob/18c65c46b2ad/outputs/tenbagger/reports/20261031_EROC.html",
+  "commit": "18c65c46b2adc0c1c19251c08e1b81553ae48d24",
+  "at": "2026-10-31T10:36:17+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/JhHWBT6VEc1NFs7RkNwp3J",
+  "at": "2026-10-31T10:37:28+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/40ab5d1e09988118b570f31cf7dbf5e0",
+  "stock_page": "https://app.notion.com/p/40ab5d1e09988154bb56d810bf094d81",
+  "at": "2026-10-31T10:37:28+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-31T10:02:54+09:00"
+ }
+}

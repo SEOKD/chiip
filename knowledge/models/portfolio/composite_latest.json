@@ -1,0 +1,79 @@
+{
+ "as_of": "2026-10-31",
+ "threshold": 9.5,
+ "n": 5,
+ "pass": [],
+ "top": [
+  {
+   "id": "co-ultraclean",
+   "ticker": "UCTT",
+   "name": "Ultra Clean",
+   "technical": 1.0,
+   "timing": 0.0,
+   "alpha": 9.125,
+   "reward_risk": 10.0,
+   "composite": 5.94,
+   "pass": false,
+   "why": [
+    "9.5 미만"
+   ]
+  },
+  {
+   "id": "us-axti",
+   "ticker": "AXTI",
+   "name": "AXT",
+   "technical": 3.0,
+   "timing": 0.0,
+   "alpha": 8.0,
+   "reward_risk": 7.5,
+   "composite": 5.25,
+   "pass": false,
+   "why": [
+    "9.5 미만"
+   ]
+  },
+  {
+   "id": "co-vicor",
+   "ticker": "VICR",
+   "name": "Vicor",
+   "technical": 0.0,
+   "timing": 0.0,
+   "alpha": 8.0,
+   "reward_risk": 8.75,
+   "composite": 5.03,
+   "pass": false,
+   "why": [
+    "9.5 미만"
+   ]
+  },
+  {
+   "id": "co-innio",
+   "ticker": "INIO",
+   "name": "INNIO",
+   "technical": 0.0,
+   "timing": 0.0,
+   "alpha": 9.0,
+   "reward_risk": 7.5,
+   "composite": 4.95,
+   "pass": false,
+   "why": [
+    "9.5 미만"
+   ]
+  },
+  {
+   "id": "co-ttm",
+   "ticker": "TTMI",
+   "name": "TTM Technologies",
+   "technical": 0.0,
+   "timing": 0.0,
+   "alpha": 8.875,
+   "reward_risk": 7.5,
+   "composite": 4.91,
+   "pass": false,
+   "why": [
+    "9.5 미만"
+   ]
+  }
+ ],
+ "queued": []
+}

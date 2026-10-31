@@ -10,3 +10,4 @@ date,id,ticker,html,view
 2026-10-30,co-ultraclean,UCTT,outputs/tenbagger/reports/20261030_UCTT.html,"개정 양식 재작성: EPS 리비전 +2·+64·+23·+33%인데 멀티플 +103·−22·−7·−54%, 선행 P/E 44.8배→9.1배; 배수 사다리 5년 뒤 확률 2배 42%·3배 16%·5배 2%·10배 0%; DCF 기본 1.10배, 가를 사건 2027-02 WFE·4Q 영업현금"
 2026-10-31,us-axti,AXTI,outputs/tenbagger/reports/20261031_AXTI.html,"InP 부족은 실적으로 확인(잔고 $500M+·총이익률 56%)됐지만 가격은 2028년 이후까지 산다; 최근 구간 EPS 리비전 +212%·멀티플 −65%; DCF 기본 0.58배·판단 시나리오 1.06배, 10배 닫힘(2배 조건부), 가를 사건 12/20 Tongmei 마감·2027-02 4Q 총이익률"
 2026-10-31,us-hii,HII,outputs/tenbagger/reports/20261031_HII.html,"수주는 증명됐으나 이익률은 미증명 — DCF 0.73배 vs 배수 1.14배, 2배 조건부·10배 닫힘"
+2026-10-31,co-enchantedrock,EROC,outputs/tenbagger/reports/20261031_EROC.html,"수요는 잔고로 증명, 납품·2028년분 주문·12/7 해제가 미증명 — 10배 후보가 아니라 2배 조건부 후보"
