@@ -1,6 +1,6 @@
 ---
 name: weekly-review
-description: 주간 리뷰(토요일 오전): 글로벌 증시 주간 상승률(Dean's Ticker 형식), 테제별 변화, 지표 변화, 예측 진행, 다음 주 카탈리스트, 레이더·역방향·필드 인텔 성능. outputs/brief/에 저장하고 claude.ai 비공개 Artifact로 공유.
+description: '주간 리뷰(토요일 오전): 글로벌 증시 주간 상승률(Dean''s Ticker 형식), 테제별 변화, 지표 변화, 예측 진행, 다음 주 카탈리스트, 레이더·역방향·필드 인텔 성능. outputs/brief/에 저장하고 claude.ai 비공개 Artifact로 공유.'
 argument-hint: "[주차 YYYY-Www]"
 ---
 
