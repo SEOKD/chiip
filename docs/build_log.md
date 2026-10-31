@@ -110,6 +110,7 @@
 - CLAUDE.md 분량 축소(마스터 승인 AAP-20261031-02): 출력 채널 기능별 규칙을 docs/channels/ 8개 파일로 이동, 공통 규칙과 색인만 유지
 - 하네스 설계 ADR-013(마스터 지시 2026-10-31): 조사 1회차, literature.py Eugene Yan·Latent Space·하네스 검색어 추가, 변경 관문 잡음 폭·최소 표본 반영. 구현 단계는 승인 대기
 - 하네스 1단계(마스터 승인 2026-10-31): radar/run_ledger.py 실행 장부, radar/verifier_lock.py 평가기 잠금·일일 점검, Proviser 문서 일정 표류 수정. 판정 2026-11-07
+- 하네스 2단계(마스터 승인 2026-10-31): 펄스를 Windows 작업 chiip-pulse-trigger로 전환, 앱 예약 chiip-pulse 일시 중지. 판정 2026-11-14
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

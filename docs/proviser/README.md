@@ -5,7 +5,7 @@
 ## 대상 (예약 작업 7개 — 2026-10-29 마스터 지시로 portfolio 추가)
 | taskId | 이름 | 산출물(평가 표본) |
 |---|---|---|
-| chiip-pulse | Chiip pulse (5분, 새 자료 있을 때만) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
+| chiip-pulse | Chiip pulse (5분 문턱 Windows 작업, 새 자료 있을 때만 모델. 실행 기록은 `py radar/run_ledger.py --report`, list_task_runs에는 안 나온다) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
 | chiip-article-pitch | Chiip reporter (매일 06:00) | outputs/article/pitch/ (`<날짜>.md`, `_tg.txt`, log.csv) |
 | chiip-tenbagger | Chiip ten-bagger (30분 — 매시 15·45분, 새 신호 있을 때만) + 일일 리포트 chiip-tenbagger-report(매일 23:00) | knowledge/models/tenbagger/cards/, watch.csv, judgments, 실행 요약, outputs/tenbagger/reports/(HTML·JSON·log.csv) |
 | chiip-notion-watch | Chiip Notion Tracker (07~23시 매시간) | outputs/report/notion/, Insights '치입 검토' 하위 페이지, knowledge/predictions.csv |
