@@ -183,7 +183,7 @@ def extra_sections(entity, r, strict=True):
     import narrative_view
     co = v2run.load_company(entity)
     co["market"] = v2run.resolve_market(co)
-    out = {"lead": narrative_view.lead_section(dp, r.get("_mm")), "ladder": ladder.report_section(dp, co, r, strict),
+    out = {"lead": narrative_view.lead_section(dp, r.get("_mm"), strict), "ladder": ladder.report_section(dp, co, r, strict),
            "narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None, "summary": []}
     if out["lead"]:
         out["summary"].append(narrative_view.summary_item(dp))

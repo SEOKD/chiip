@@ -148,7 +148,27 @@ class TestLadder(unittest.TestCase):
 class TestLeadAndMerge(unittest.TestCase):
     def lead(self):
         return {"summary": "s", "value_story": "v", "products": [{"kind": "제품", "name": "n", "what": "w"}],
-                "lenses": [{"lens": k, "change": "c"} for k in narrative_view.LENSES]}
+                "lenses": [{"lens": k, "change": "c"} for k in narrative_view.LENSES],
+                "policy": {"fiscal": {"change": "예산 증액", "house": {"level": 5, "why": "세출안 통과"}, "senate": {"level": 2}},
+                           "orders": {"change": "해당 없음(관련 명령 없음)"}, "laws": {"change": "법안 발의"}}}
+
+    def test_policy_three_lines_and_congress_score(self):
+        dp = {"narrative": {"lead": self.lead()}}
+        ul = next(b for b in narrative_view.lead_section(dp)["blocks"] if b.get("type") == "ul" and any("구조적" in i for i in b["items"]))
+        text = " ".join(ul["items"])
+        for w in ("재정정책(행정부)", "행정명령(행정부)", "연관입법(의회)"):
+            self.assertIn(w, text)
+        self.assertIn("의회 동의 7/10", text)
+        self.assertIn("하원 5/5(세출안 통과)", text)
+        self.assertIn("상원 2/5(한쪽 당 지지만)", text)
+        self.assertEqual(text.count("의회 동의"), 1)   # 해당 없음·연관입법에는 붙지 않는다
+        dp["narrative"]["lead"]["policy"]["fiscal"].pop("senate")
+        with self.assertRaises(ValueError):
+            narrative_view.lead_section(dp)
+        del dp["narrative"]["lead"]["policy"]
+        with self.assertRaises(ValueError):
+            narrative_view.lead_section(dp)
+        self.assertTrue(narrative_view.lead_section(dp, strict=False))
 
     def test_lead_needs_six_lenses(self):
         dp = {"narrative": {"lead": self.lead()}}
