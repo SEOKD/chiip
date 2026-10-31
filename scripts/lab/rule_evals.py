@@ -27,6 +27,7 @@ BASELINE = OUT / "rule_baseline.json"
 DATE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
 TAG = re.compile(r"<(style|script)\b.*?</\1>|<[^>]+>", re.S)
 HELD_OUT = 3   # 파일 3개 중 1개를 경로 해시로 떼어 둔다(개선을 본 표본과 평가 표본을 나눈다)
+MIN_SAMPLE, NOISE_Z = 12, 1.64   # 표본이 적으면 판정하지 않고, 잡음 범위 안의 변화는 악화로 치지 않는다(단측 95%)
 LOAD_FILES = {"chiip-pulse": ["CLAUDE.md", "docs/channels/pulse.md", "docs/tasks/chiip-pulse.md", "docs/proviser/chiip-pulse.md"],
               "chiip-portfolio": ["CLAUDE.md", "docs/channels/portfolio.md", "docs/tasks/chiip-portfolio.md", "docs/proviser/chiip-portfolio.md"],
               "chiip-tenbagger-report": ["CLAUDE.md", "docs/channels/tenbagger.md", "docs/tasks/chiip-tenbagger-report.md", "docs/proviser/chiip-tenbagger.md"]}
@@ -104,14 +105,22 @@ def rate(side):
     return side[1] / side[0] if side[0] else None
 
 
+def noise_band(a, b):
+    """두 위반율 차이의 잡음 폭 — 합친 비율의 표준오차 × NOISE_Z"""
+    p = (a[1] + b[1]) / (a[0] + b[0])
+    return NOISE_Z * (p * (1 - p) * (1 / a[0] + 1 / b[0])) ** 0.5
+
+
 def gate(rows, base):
-    """바뀐 뒤 어느 규칙이든 양쪽 표본 중 하나라도 나빠지면 불합격 — 표본 없는 구간은 비교하지 않는다"""
+    """바뀐 뒤 어느 규칙이든 양쪽 표본 중 하나라도 잡음 폭을 넘게 나빠지면 불합격 — 표본 MIN_SAMPLE건 미만은 판정하지 않는다"""
     worse = []
     for r in rows:
         b = base.get(r["id"])
         for side in ("in", "out"):
-            now, old = rate(r[side]), rate(b[side]) if b else None
-            if now is not None and old is not None and now > old:
+            if not b or r[side][0] < MIN_SAMPLE or b[side][0] < MIN_SAMPLE:
+                continue
+            now, old = rate(r[side]), rate(b[side])
+            if now - old > noise_band(r[side], b[side]):
                 worse.append((r["id"], side, old, now))
     return worse
 

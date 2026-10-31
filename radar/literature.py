@@ -27,15 +27,17 @@ FEEDS = {
     "damodaran": "https://aswathdamodaran.blogspot.com/feeds/posts/default",
     "alpha-architect": "https://alphaarchitect.com/feed/",
 }
-# 에이전트 아키텍처 트랙(마스터 지시 2026-10-31) — 2026-10-31 접속·robots.txt 확인. 금지 확인: Latent Space·Eugene Yan·Anthropic Engineering
+# 에이전트 아키텍처 트랙(마스터 지시 2026-10-31) — 2026-10-31 접속·robots.txt 확인. Anthropic Engineering은 피드가 없어 canon.yaml로 읽는다
 AGENT_FEEDS = {
     "arxiv-agent": "https://rss.arxiv.org/rss/cs.AI+cs.SE+cs.MA",
     "simon-willison": "https://simonwillison.net/atom/everything/",
     "lilian-weng": "https://lilianweng.github.io/index.xml",
     "hamel": "https://hamel.dev/index.xml",
+    "eugene-yan": "https://eugeneyan.com/rss/",
+    "latent-space": "https://www.latent.space/feed",
 }
 HN_API = "https://hn.algolia.com/api/v1/search_by_date?tags=story&numericFilters=points%3E%3D50&hitsPerPage=30&query="   # 공개 API, 제목·링크만
-HN_QUERIES = ("agent evals", "context engineering", "agent harness", "AI agent memory", "prompt instructions")
+HN_QUERIES = ("agent evals", "context engineering", "agent harness", "harness engineering", "long-running agents", "AI agent memory", "prompt instructions")
 AGENT_MIN = 4   # 이 점수 미만은 저장하지 않는다(arXiv cs 피드는 하루 수백 건)
 # 확인 실패(2026-10-28): BIS 워킹페이퍼 RSS(항목 0), ECB(SSL 인증서 오류), RePEc NEP RSS(항목 0), SSRN(공식 API·RSS 없음)
 

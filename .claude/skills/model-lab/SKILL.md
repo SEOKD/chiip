@@ -29,6 +29,8 @@ argument-hint: "[daily | weekly | 논문 URL]"
 5. 측정으로 어김이 확인된 규칙은 지시문을 강조하지 말고 코드 관문으로 옮긴다(`notify.send`, 렌더러 `scrub`, 훅).
 6. **자기 채점 금지:** `evals/rules.yaml`·`scripts/lab/rule_evals.py`·권한·보안 규칙·`CLAUDE.md`는 고도화 대상이 아니다 — 고치려면 제안서로 마스터 승인. 지시문은 더 쓰기보다 줄이는 제안을 우선한다.
 
+7. 하네스 설계(`docs/decisions/ADR-013-chiip-harness.md`)의 단계 판정·기각 조건을 같은 기준으로 갱신한다. 코딩 벤치마크 결과를 치입에 그대로 옮기지 않는다 — 공개 표본 안 성과와 떼어 둔 표본 성과를 구분해 적는다.
+
 ## weekly (일요일)
 0. **Proviser 작업 지시를 먼저**(마스터 지시 2026-10-29 — 단계적 고도화): `knowledge/models/params/queue.yaml`(`py scripts/fit/stepwise.py --status --write`가 매일 갱신)을 위에서부터 처리한다. 0단계 '데이터 확보'는 등록부 fit.data·target·method를 정의(자료가 정말 없으면 '필요 자료'로 남김), 1단계 '기존 피팅'은 아래 1~3, 2단계 '잔차 진단'의 새 파라미터 제안은 `stepwise.can_adopt_extension(model, 기존 손실, 확장 손실, 등록부, 확장 후 파라미터 수)` — 짝지은 표본 외 검정 + 누적 시도 수 본페로니 보정 + 관측 수 규칙을 모두 통과할 때만 채택. 1단계가 끝나지 않은 모델에 새 파라미터를 넣지 않는다.
 1. 데이터가 있는 제안서부터 `scripts/fit/harness.py`로 검증: `evaluate(series, fit_fn, predict_fn, prior, k, min_train)` → `adoption_decision(...)`. 검증 스크립트는 `scripts/fit/jobs/<param>.py`로 남긴다(재실행 가능해야 함).

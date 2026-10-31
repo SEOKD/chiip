@@ -30,10 +30,13 @@ class TestRules(unittest.TestCase):
         self.assertEqual((row["checked"], row["failed"]), (1, 1))
 
     def test_gate_fails_on_either_split(self):
-        row = {"id": "x", "in": [10, 1], "out": [10, 3]}
-        self.assertEqual(rule_evals.gate([row], {"x": {"in": [10, 1], "out": [10, 1]}})[0][:2], ("x", "out"))
-        self.assertEqual(rule_evals.gate([row], {"x": {"in": [10, 2], "out": [10, 3]}}), [])
-        self.assertEqual(rule_evals.gate([{"id": "x", "in": [0, 0], "out": [0, 0]}], {"x": {"in": [9, 0], "out": [9, 0]}}), [])
+        row = {"id": "x", "in": [20, 2], "out": [20, 10]}
+        self.assertEqual(rule_evals.gate([row], {"x": {"in": [20, 2], "out": [20, 2]}})[0][:2], ("x", "out"))
+        self.assertEqual(rule_evals.gate([row], {"x": {"in": [20, 2], "out": [20, 10]}}), [])
+
+    def test_gate_ignores_noise_and_small_samples(self):
+        row = {"id": "x", "in": [20, 3], "out": [5, 5]}
+        self.assertEqual(rule_evals.gate([row], {"x": {"in": [20, 2], "out": [20, 0]}}), [])
 
 
 class TestPulseCheck(unittest.TestCase):
