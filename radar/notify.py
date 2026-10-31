@@ -52,6 +52,24 @@ def tw_hk_names(text):
     return text
 
 
+CODE_RE = re.compile(r"(?<![A-Za-z0-9/.=\-])(T[0-3]|P[0-3]|S[1-5])(?![A-Za-z0-9/.=\-(（])")
+
+
+def code_gloss(text):
+    """피드에 남은 내부 코드는 한 통에서 처음 나오는 곳에 뜻을 붙인다(마스터 지시 2026-10-31, config/feed_codes.yaml)"""
+    if "codes" not in _LINES:
+        _LINES["codes"] = (common.load_yaml("config/feed_codes.yaml") or {}).get("codes") or {}
+    seen = set()
+
+    def one(m):
+        k = m.group(1)
+        if k in seen or k not in _LINES["codes"]:
+            return k
+        seen.add(k)
+        return f"{k}({_LINES['codes'][k]})"
+    return CODE_RE.sub(one, text)
+
+
 def brand(text):
     """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
     text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", chiip_name(tw_hk_names(text)))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
@@ -63,7 +81,7 @@ def brand(text):
     text = re.sub(r"(?m)^(·\s*)(?:숫자|가격|파급|반대|다음|야마|보도 확인|주장|핵심|밸류|수급|조건|참여자|직전 대비|함의|단계|점유|AI 수요|바뀐 말|질문 초점)\s*[—–-]\s*", r"\1", text)
     for ko, en in LABELS:
         text = text.replace(ko, en)
-    return money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text)))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
+    return code_gloss(money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text))))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
 
 
 LINK_RE = re.compile(r"\[([^\]\n]{1,80})\]\((https?://[^\s)]+)\)")

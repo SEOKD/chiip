@@ -43,5 +43,22 @@ class TestWeeklyReview(unittest.TestCase):
         self.assertEqual(notify.tw_hk_names("台光電·廣達"), "엘리트머티리얼즈·콴타")
 
 
+class TestFeedCodes(unittest.TestCase):
+    def test_code_gloss(self):
+        import notify
+        t = notify.brand("사유: T2 실적이면 P1이나 2차 재인용. T2 다시")
+        self.assertIn("T2(글로벌 밸류체인 기업)", t)
+        self.assertIn("P1(즉시 알림 등급)이나", t)
+        self.assertEqual(t.count("T2("), 1)
+        self.assertEqual(notify.code_gloss("S-1 T2(이미)"), "S-1 T2(이미)")
+
+    def test_line_chart_keeps_time_order(self):
+        sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+        import report_html
+        c = {"kind": "line", "title": "t", "unit": "$", "series": [{"name": "a", "color": "a", "points": [["9/4", 1], ["10/2", 2], ["10/30", 3]]}]}
+        svg = report_html.chart_line(c)
+        self.assertLess(svg.index("9/4"), svg.index("10/30"))
+
+
 if __name__ == "__main__":
     unittest.main()

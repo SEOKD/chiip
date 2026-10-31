@@ -79,7 +79,9 @@ def _fmt(v):
 def chart_line(c):
     W, H, L, R, T, B = 700, 260, 48, 14, 14, 26
     series = c.get("series") or []
-    keys = sorted({p[0] for s in series for p in s.get("points") or []})
+    keys = list(dict.fromkeys(p[0] for s in series for p in s.get("points") or []))   # '10/2'·'6/12'처럼 글자순과 시간순이 다른 라벨이 있어 입력 순서를 쓴다
+    if len(series) > 1 and all(str(k)[:4].isdigit() for k in keys):   # 시리즈마다 날짜가 다르면 ISO 날짜만 합쳐 정렬한다
+        keys = sorted(keys)
     vals = [p[1] for s in series for p in s.get("points") or [] if p[1] is not None]
     if not keys or not vals:
         return ""
