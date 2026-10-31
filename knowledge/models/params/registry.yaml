@@ -1470,6 +1470,118 @@ params:
     data: knowledge/models/earnings/call_feed/log.csv
     last_fit: null
     oos_metric: null
+- id: prm-composite-w-alpha
+  model: discovery.composite
+  binding: config/composite.yaml#weights.alpha
+  value: 0.3
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.3
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-composite-w-reward-risk
+  model: discovery.composite
+  binding: config/composite.yaml#weights.reward_risk
+  value: 0.3
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.3
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-composite-w-technical
+  model: discovery.composite
+  binding: config/composite.yaml#weights.technical
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-composite-w-timing
+  model: discovery.composite
+  binding: config/composite.yaml#weights.timing
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-composite-threshold
+  model: discovery.composite
+  binding: config/composite.yaml#threshold
+  value: 9.5
+  unit: 점
+  status: prior
+  prior:
+    value: 9.5
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-composite-full-alpha
+  model: discovery.composite
+  binding: config/composite.yaml#full_marks.alpha
+  value: 8.0
+  unit: 점
+  status: prior
+  prior:
+    value: 8.0
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-composite-full-reward-risk
+  model: discovery.composite
+  binding: config/composite.yaml#full_marks.reward_risk
+  value: 8.0
+  unit: 점
+  status: prior
+  prior:
+    value: 8.0
+    basis: 종합 9.5 연구 명단 — 알파·손익비·기술적·시의성 합성
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-10-31 마스터 지시, 문턱 9.5는 마스터 지정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
 - id: prm-consumer-w-growth
   model: discovery.consumer
   binding: config/consumer.yaml#weights.growth

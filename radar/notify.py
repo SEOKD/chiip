@@ -141,6 +141,8 @@ def send_document(path, caption="", level="REPORT"):
 
 
 def send(text, level="P1", ref=None, html_mode=False, md=False):
+    if level == "PORTFOLIO":   # Chiip View 항목의 '기업:' 줄도 다른 항목처럼 하이픈으로 시작한다(마스터 지시 2026-10-31)
+        text = re.sub(r"(?m)^기업:", "- 기업:", text)
     if level == "PULSE" and not html_mode:   # 기술·세그먼트·제품·정책·프로젝트 이름을 처음 나오는 곳에서 풀이(마스터 지시 2026-10-31)
         text = pulse_gloss.apply(text)
     text = brand(text)

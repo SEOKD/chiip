@@ -52,6 +52,13 @@
       - 그다음 `py scripts/tenbagger/report_html.py <json>` → 렌더 확인(차트 수 = svg 수) → 텔레그램 `notify.send_document(<html>, '[Chiip Ten-bagger Report MM/DD · Revised] 회사(티커) — 정정 n건: 한 줄', 'REPORT')` → `py scripts/publish_report.py <html> <json> …`(같은 파일 갱신). 수정이 없으면 다시 보내지 않는다.
    f. 같은 감점이 3건 중 2건 이상에서 나오면 chiip-tenbagger 보강 지시(docs/proviser/chiip-tenbagger.md)로 올린다 — 내일 리포트부터 같은 오류가 나오지 않게(이 단계의 학습 고리).
 
+6-4. **글 점검 — 맞춤법·오타·가독성**(2026-10-31 마스터 지시 "에이전트 결과물이 맞춤법과 오타가 없는지도 점검하고, 가독성을 떨어뜨리는 요인이 있다면 이를 개선하도록 해라"): 표본(1번)의 기능별 산출물과 당일 리포트를 대상으로 한다.
+   a. `py scripts/proviser/text_lint.py <파일>...` — 같은 낱말 연속·문장부호 중복·깨진 글자·조사 앞 공백·긴 문장·긴 문단·숫자 과밀을 뽑는다. 후보일 뿐이므로 모델이 하나씩 판단한다.
+   b. 모델 점검: 스크립트가 못 보는 맞춤법(되/돼, 안/않, 띄어쓰기, 외래어 표기), 오타, 존댓말·문체 혼용, 내부 코드 노출, 처음 나오는 전문 용어의 풀이 누락(리포트·Pulse 규칙), 한 문장에 든 생각이 둘 이상인 문장, 결론이 뒤에 묻힌 문단, 표로 쓸 내용을 문장으로 쓴 곳을 본다.
+   c. 고친다: 당일 리포트는 6-3 e 절차(JSON 수정 → 렌더 → 정정 기록)로, 다른 기능의 기록 파일은 뜻을 바꾸지 말고 그 파일만 고친다. 숫자·판단·인용은 바꾸지 않는다. 이미 텔레그램으로 나간 글은 다시 보내지 않는다 — 뜻이 틀어진 오류만 정정 한 줄을 보낸다.
+   d. 반복되면 뿌리를 고친다: 같은 유형이 두 번 나오면 그 기능의 docs/proviser/<taskId>.md에 지시를 넣고, 표기 문제면 `radar/notify.py`·렌더러 규칙으로 올린다.
+   e. 기능별 건수(오타·맞춤법·가독성)와 대표 수정 전 → 후를 일일 리포트에 남기고, 품질 채점의 가독성 축에 반영한다.
+
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
 8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
 9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만 — **예외: 6-3의 당일 텐배거 리포트 3건과 그 종목 datapack은 고칠 수 있다. 다른 날짜 리포트·다른 기능 산출물은 그대로**), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현, **파라미터 값을 직접 바꾸기·매일 피팅·채택**(값 변경은 Model Lab 일요일 채택 관문만 — 프로바이저가 고칠 수 있는 것은 등록부의 fit 정의·proposed 항목·제안서·queue), 마스터 고정값(`fixed_by_master: true`) 변경.

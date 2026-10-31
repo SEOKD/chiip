@@ -47,6 +47,8 @@
    - **오버행 리스크**(같은 날 지시): overhang.rows(종목·종류·날짜·발행 주식 대비 %·20일 평균 거래량의 며칠치)를 본다. overhang_filings(증권신고서·424B·Form 144·13D·8-K 3.02)와 overhang.unchecked 종목은 공시·증권신고서에서 물량을 확인해 `py radar/overhang.py --put <티커> kind=<락업|전환사채|ATM|워런트|재매도 등록|Form 144|대주주 매각> date=<해제·전환 가능일> shares_m=<백만 주> amount_m=<백만$> strike=<전환가> note="…" source=<URL>`로 장부에 넣는다. 수량을 못 찾으면 note에 '수량 미확인'. 재무 부담이 아니라 **주식 공급**이 기준이고, 희석과 유통 물량 증가를 구분한다.
    - 스팩(kind: spac): 투표 결과·환매율·합병 완료 8-K(2.01·5.01·5.03, 회사명 변경)가 나오면 config/portfolio.yaml의 그 종목 ticker를 새 티커(AGLT)·name을 새 회사명으로 고치고(cik 그대로, names에 옛 이름 유지), 텔레그램에 '보유 종목 티커 변경'을 적는다. 보유 구성 자체(추가·삭제)는 마스터가 알려줄 때만 바꾼다.
 
+   - **종합 9.5 연구 명단**(마스터 지시 2026-10-31 "알파 및 손익비 점수가 매우 높다고 분석되는 종목이 있다면 … 텐배거 리포트·레이더에만 국한하지 않고 기술적 관점과 시의성 요인도 넣어 종합 평가해 10점 만점에 9.5점인 종목만 제시하라"): 데일리 회차마다 ① 알파 5.0 이상 종목과 TradingView 스크리너(`mcp-tv-run-screener`, 시가총액 $1B 이상, 프리셋 relative_strength·new_highs·breakout_with_volume, 시장 america·japan 등 각 30종목)를 모으고 `mcp-tv-get-symbol-data-batch`로 close·SMA50·SMA200·RSI·relative_volume_10d_calc·Perf.1M·Perf.3M·price_52_week_high·average_volume_30d_calc를 받는다 ② 기술적 점수가 높을 만한 종목만 시의성을 확인한다 — 30일 안 확인 사건(knowledge/calendar.csv·실적 일정), 7일 안 새 1차 자료, 30일 EPS 추정 변화, 섹터 판정(knowledge/models/portfolio/sector_latest.json). 확인 못 한 칸은 비운다(0점) ③ radar/state/composite_in.json에 쓰고(구조는 `scripts/discovery/composite.py` 맨 위) `py scripts/discovery/composite.py` ④ 통과 종목이 있을 때만 데일리 맨 아래에 `🎯 종합 9.5 연구 명단` 절로 `composite.line` 줄 + 근거 2줄(무엇이 시의성인가, 킬 조건) + `연구 후보이지 매수 권유 아님`을 싣는다. 없으면 절을 쓰지 않고 기록 파일에만 남긴다. **금지:** '추천'·'담아라'·비중·진입 시점·금액, config/portfolio_positions.local.yaml 읽기. 치입은 투자자문 자격이 없다 — 점수와 근거만 낸다. 알파가 없는 종목은 통과할 수 없고, 기술적 8 이상이면 스크립트가 v2 대기열에 올린다.
+
 4. 기록:
    - outputs/invest/portfolio/<YYYYMMDD>.md에 회차별로 덧붙인다(시각·종목·자료·판정·근거 URL).
    - outputs/invest/portfolio/tickers/<티커>.md는 종목별 팔로업 장부다 — 맨 위 '현재 상태'(최근 실적·가이던스·다음 일정·컨센서스 요약·열린 질문)를 고쳐 쓰고, 아래 '타임라인'에 날짜순으로 한 줄씩 쌓는다. 처음이면 만든다(CBRS는 outputs/invest/short/20261029_CBRS.md의 숏 리포트 검증을 '현재 상태'의 열린 질문으로 옮겨 시작한다).
@@ -60,6 +62,7 @@
      `[Chiip Portfolio HH:MM]` (데일리면 `[Chiip Portfolio Daily MM/DD]`)
      종목마다(새 것이 있는 종목만) `■ 티커 회사명 — 한 줄 요지` / `- 무엇: 숫자(1차 출처)` / `- 기대 대비: 컨센서스·가이던스 대비` / `- 의미: 인과 한 줄(확정/미확인)` / `- 다음 확인: 사건(날짜)` / `- 원문: URL`.
      데일리에는 종목 블록 앞에 `■ 시장 국면`(지수·금리·변동성 한 줄씩, 지금 국면 판단 한 문장) · `■ 섹터`(섹터마다 `이름 — 라벨 · 20일 주가 x% · EPS 추정 x%`) · `■ 왜 바뀌었나`(`매크로:`·`마이크로:` 각 한두 줄) · `■ 보유 종목 영향`(종목마다 금리·지정학·공급망 중 걸리는 것만, 숫자와 함께) · `■ 오버행`(30일 안 해제 먼저, `티커 종류 날짜 · 발행 주식의 x% · 거래량 x일치`)을 넣는다. 끝에 종목별 한 줄 표: `티커 $가격(1일 %) · 목표가 평균 x(변화) · 의견 매수/보유/매도 · 공매도 x% · 관심도(레딧 순위·언급) · 다음 일정`.
+     `■ 오늘의 Chiip 판단`의 종목마다 `티커 회사명 — 판단 한 줄` / `- 기업: 사업 1줄`(하이픈 필수, 2026-10-31 마스터 지시 — 발송 때 `notify.send`도 맞춘다) / `- 근거:` / `- 다른 해석:` / `- 컨빅션: x/10 · 반증:`(확신도·고중저 금지, `insight_calc.py conviction`) / `- 다음 확인:`.
      `■ 일정` — 오늘·내일·14일 안 확정 일정.
      맨 끝 `1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님`.
 
