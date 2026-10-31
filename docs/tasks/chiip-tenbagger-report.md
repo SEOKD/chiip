@@ -1,5 +1,7 @@
 # 예약 작업: chiip-tenbagger-report (2026-10-29 마스터 지시로 등록)
 
+운영 규칙: `docs/channels/tenbagger.md`를 먼저 읽는다. 노션 단계는 `docs/channels/notion.md`도 읽는다.
+
 - 이름: Chiip ten-bagger 일일 리포트 (텐배거 종목 1개, HTML + 차트)
 - 일정(cron, 로컬 시각): `0 * * * 1-5` — 주중(월~금) 매시간(마스터 지시 2026-10-30 "주말을 제외한 주중에 매시간마다 전달", 이전 하루 3건. 앱 분산 지연 몇 분)
 - 권한 모드: 자동(Auto)

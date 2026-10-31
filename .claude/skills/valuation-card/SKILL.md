@@ -4,6 +4,8 @@ description: 종목 밸류에이션 카드(invest 모드). 계산 엔진(scripts
 argument-hint: "[기업 id] (예: co-skhynix)"
 ---
 
+운영 규칙: `docs/channels/tenbagger.md`를 먼저 읽는다.
+
 # valuation-card — 밸류에이션 카드 (docs/valuation/framework.md, ADR-008)
 **invest 모드 경계**: `D:\local-only`와 F2~F4 필드 인텔 사용 금지, `public_corroborated: true` 주장과 F1만. 출력 하단 `공개 자료 기반 분석이며 투자 권유가 아님`. **목표주가·매수/매도 의견 금지** — "시나리오 가치 범위·시장 내포 기대"로 쓴다. 개인 맞춤 투자 조언 금지.
 

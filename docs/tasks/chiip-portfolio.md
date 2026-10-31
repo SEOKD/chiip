@@ -1,5 +1,7 @@
 # 예약 작업: chiip-portfolio (2026-10-29 마스터 지시로 등록)
 
+운영 규칙: `docs/channels/portfolio.md`를 먼저 읽는다. 실적·어닝콜 건이 있으면 `docs/channels/earnings.md`도 읽는다.
+
 - 이름: Chiip Portfolio (마스터 보유 종목 팔로업)
 - 일정(cron, 로컬 시각): `35 * * * *` — 매시 35분. 앱이 켜져 있을 때 실행(꺼져 있으면 다음 실행 때)
 - 권한 모드: 자동(Auto)

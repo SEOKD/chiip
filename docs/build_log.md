@@ -107,6 +107,7 @@
 - TradingView 양방향 동기화(마스터 2026-10-31): radar/tv_sync.py, config/tradingview.yaml, tradingview_symbols.csv, 스킬 tv-sync, 예약 작업 chiip-tv-sync
 - 실적 지표 주가 줄 필수화(마스터 2026-10-31): TradingView 시세 → radar/markets/session.py --line
 - Laboratory 에이전트 트랙(마스터 2026-10-31): evals/rules.yaml·scripts/lab/rule_evals.py 규칙 측정, radar/pulse_check.py 건별 점검, 펄스 출처 링크 발송 관문, literature.py 에이전트 수집, 제안 AAP-20261031-01~03
+- CLAUDE.md 분량 축소(마스터 승인 AAP-20261031-02): 출력 채널 기능별 규칙을 docs/channels/ 8개 파일로 이동, 공통 규칙과 색인만 유지
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

@@ -27,9 +27,9 @@ BASELINE = OUT / "rule_baseline.json"
 DATE = re.compile(r"(20\d{2})(\d{2})(\d{2})")
 TAG = re.compile(r"<(style|script)\b.*?</\1>|<[^>]+>", re.S)
 HELD_OUT = 3   # 파일 3개 중 1개를 경로 해시로 떼어 둔다(개선을 본 표본과 평가 표본을 나눈다)
-LOAD_FILES = {"chiip-pulse": ["CLAUDE.md", "docs/tasks/chiip-pulse.md", "docs/proviser/chiip-pulse.md"],
-              "chiip-portfolio": ["CLAUDE.md", "docs/tasks/chiip-portfolio.md", "docs/proviser/chiip-portfolio.md"],
-              "chiip-tenbagger-report": ["CLAUDE.md", "docs/tasks/chiip-tenbagger-report.md", "docs/proviser/chiip-tenbagger.md"]}
+LOAD_FILES = {"chiip-pulse": ["CLAUDE.md", "docs/channels/pulse.md", "docs/tasks/chiip-pulse.md", "docs/proviser/chiip-pulse.md"],
+              "chiip-portfolio": ["CLAUDE.md", "docs/channels/portfolio.md", "docs/tasks/chiip-portfolio.md", "docs/proviser/chiip-portfolio.md"],
+              "chiip-tenbagger-report": ["CLAUDE.md", "docs/channels/tenbagger.md", "docs/tasks/chiip-tenbagger-report.md", "docs/proviser/chiip-tenbagger.md"]}
 IMPERATIVE = re.compile(r"금지|하지 않는다|쓰지 않는다|않는다|해야|반드시|필수|만 쓴다|넣지|빼고|뺀다")
 
 

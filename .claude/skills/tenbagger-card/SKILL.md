@@ -4,6 +4,8 @@ description: 텐배거(10배) 후보 발굴·카드·가상 추적(§21.14 3대 
 argument-hint: "[발굴 | 카드 <회사> | 점검]"
 ---
 
+운영 규칙: `docs/channels/discovery.md`를 먼저 읽는다.
+
 # tenbagger-card — 텐배거 후보 (ADR-010 §5, config/tenbagger.yaml)
 ## 발굴 (주 1회)
 - 경로 A 병목(치입 엣지): 최근 `bottleneck-scan`·페어북·카드·학회에서 해소가 필요한 병목 → 해결 기술 → 그 기술의 **작은 공급사**(시가총액 구간 `universe.market_cap`). 양산 엔지니어 관점으로 "정말 그 회사 기술이 병목을 푸나"를 먼저 검증(금지표: 신기술 발표→경쟁우위, 샘플 출하→양산 성공).

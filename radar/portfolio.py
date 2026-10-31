@@ -164,7 +164,7 @@ def fetch_news(h, st, first, days=2):
         for it in items:
             pub = (it.get("publisher") or "").strip()
             if allow is not None and pub.lower() not in allow:
-                continue    # 기사 = 9개 매체만(CLAUDE.md 수집 범위)
+                continue    # 기사 = 9개 매체만(docs/channels/pulse.md 수집 범위)
             k = kind
             if kind == "IB 커버리지" and not terms_re.search(it["title"]):
                 continue    # 검색어가 본문에만 걸린 시황·추천 글은 버린다(제목에 목표가·상향·하향·개시가 있어야)

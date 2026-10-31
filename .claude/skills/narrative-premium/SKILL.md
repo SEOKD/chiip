@@ -4,6 +4,8 @@ description: 알파 레이더로 텐배거(알파) 후보를 평가할 때, 그 
 argument-hint: "<entity_id> [<entity_id> ...]"
 ---
 
+운영 규칙: `docs/channels/tenbagger.md`를 먼저 읽는다.
+
 # narrative-premium — 멀티플 프리미엄의 내러티브 (Damodaran '이야기 → 숫자', Shiller 내러티브 경제학)
 목적: "왜 시장은 이 회사(섹터)에 이 멀티플을 주는가 / 무엇이 바뀌면 멀티플이 바뀌나"를 근거와 함께 적는다. 커뮤니티·IB 의견은 **사실이 아니라 시장 기대의 증거**다.
 

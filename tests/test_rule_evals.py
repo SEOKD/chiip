@@ -1,4 +1,5 @@
 """규칙 준수 측정기·펄스 건별 점검·발송 관문·에이전트 수집 트랙"""
+import re
 import sys
 import tempfile
 import unittest
@@ -54,6 +55,18 @@ class TestPulseCheck(unittest.TestCase):
             self.assertIn("출처 링크 없음", log.call_args[0][0])
             notify.send(text, "P1")
             self.assertNotIn("차단", log.call_args[0][0])
+
+
+class TestInstructionSize(unittest.TestCase):
+    def test_claude_md_stays_common_only(self):
+        text = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+        self.assertLess(text.count("\n"), 200)
+        self.assertLess(len(text), 12000)
+
+    def test_index_points_to_real_files(self):
+        text = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
+        names = set(re.findall(r"docs/channels/(\w+)\.md", text))
+        self.assertEqual(names, {p.stem for p in (ROOT / "docs" / "channels").glob("*.md")})
 
 
 class TestAgentTrack(unittest.TestCase):

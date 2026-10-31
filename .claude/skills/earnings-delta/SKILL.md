@@ -4,6 +4,8 @@ description: 실적 발표·어닝콜·IR 자료를 비교 기준(직전 분기 
 argument-hint: "[기업 id] [분기 예: 2026Q3]"
 ---
 
+운영 규칙: `docs/channels/earnings.md`를 먼저 읽는다.
+
 # earnings-delta — 실적·콜 변화 분석
 
 ## 입력

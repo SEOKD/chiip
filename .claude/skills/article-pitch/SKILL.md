@@ -4,6 +4,8 @@ description: 기자 본업용 기사 소재(§21.14 3대 산출물 ②). 매일 
 argument-hint: "[날짜 | 주제]"
 ---
 
+운영 규칙: `docs/channels/pulse.md`를 먼저 읽는다.
+
 # article-pitch — 기사 소재 (ADR-010 §7)
 ## 재료 (지난 24시간)
 - `radar/cards/` P0~P2 카드, `radar/reverse/signals/` 수렴·S3 이상, 정책·학회 항목, SEC 공시·실적, 포커스 점수 급변, `insight-review` 결과, `model-lab` 노트(산업 데이터 논문).

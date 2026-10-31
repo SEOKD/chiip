@@ -4,6 +4,8 @@ description: 마스터가 노션 Insights·Informations·Stocks에 새로 올리
 argument-hint: "<insights|informations|stocks> <page_id> [inbox 텍스트 경로]"
 ---
 
+운영 규칙: `docs/channels/notion.md`를 먼저 읽는다.
+
 # notion-intake — 노션 올림 즉시 처리
 입력: 역할, 노션 페이지 id, (있으면) `radar/notion/inbox/<id>.md` — 감시기가 뽑은 본문·첨부(xlsx 표) 텍스트. 없으면 노션 커넥터로 fetch(첨부는 notion-get-file-download-urls로 받아 표준 라이브러리로 읽기).
 마스터는 요청을 따로 쓰지 않는다 — **페이지에 담긴 의도를 읽고 마스터가 다음에 물을 질문에 먼저 답한다.** 마스터 가설이 적혀 있으면 같은 강도로 반대 검증한다.
