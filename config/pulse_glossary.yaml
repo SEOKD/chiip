@@ -1,0 +1,135 @@
+# Pulse 용어 풀이 — 마스터 지시 2026-10-31 "Pulse에서도 전문 용어를 풀어 설명하라. 특히 기술명, 세그먼트명, 제품명, 정책 용어, 프로젝트 명 등을 풀어 설명하라. 금융 용어는 풀어 설명하지 않아도 된다."
+# radar/pulse_gloss.py가 Pulse 발송 직전 처음 나오는 곳에 '용어(풀이)'로 넣는다. 바로 뒤에 괄호가 있으면 건드리지 않는다.
+# 풀이는 휴대폰 한 줄을 넘기지 않게 짧게. 뜻이 둘 이상인 이름은 회사명을 붙여 등록한다(예 Hyperion — 메타 캠퍼스와 ERock 공장이 다르다).
+# 금융 용어는 넣지 않는다. 사전에 없는 말은 모델이 글에 직접 괄호로 풀고, 다시 나올 말이면 여기에 한 줄 추가한다.
+technology:
+  HBM: 고대역폭 메모리
+  HBM4: 6세대 고대역폭 메모리
+  CoWoS: TSMC의 칩 2.5D 패키징
+  GAA: 게이트올어라운드 트랜지스터
+  EUV: 극자외선 노광
+  High-NA: 고개구수 노광
+  TSV: 실리콘 관통 전극
+  ALD: 원자층 증착
+  PVD: 물리기상증착
+  CVD: 화학기상증착
+  WFE: 웨이퍼 팹 장비
+  ABF: 패키지 기판용 절연 필름
+  FC-BGA: 플립칩 패키지 기판
+  MLCC: 적층 세라믹 콘덴서
+  MLB: 고다층 기판
+  CXL: 메모리 확장 연결 규격
+  CPO: 광소자를 칩 옆에 붙인 광 패키징
+  LPO: 신호처리칩을 뺀 저전력 광 모듈
+  VPD: 칩 아래에서 전기를 넣는 수직 전력 공급
+  HVDC: 고압 직류 송전
+  UPS: 무정전 전원장치
+  BESS: 전력 저장 장치
+  PDU: 랙 전력 분배 장치
+  CDU: 액체 냉각 분배 장치
+  SiC: 실리콘카바이드 전력 반도체
+  GaN: 질화갈륨 전력 반도체
+  ASIC: 특정 용도 전용 칩
+  TPU: 구글 자체 AI 칩
+  NPU: AI 연산 전용 칩
+  EDA: 반도체 설계 소프트웨어
+  SMR: 소형 모듈 원자로
+  HALEU: 고농축 저농축우라늄(차세대 원자로 연료)
+  LEO: 저궤도
+  SAR: 합성개구레이더 위성
+segment:
+  Mission Technologies: 국방 IT·무인 시스템 부문
+product:
+  RockBlock: ERock의 모듈형 천연가스 발전기
+  Tomahawk: 브로드컴 데이터센터 스위치 칩
+  Jericho: 브로드컴 데이터센터 간 연결 칩
+policy:
+  CHIPS Act: 미국 반도체 지원법
+  NDAA: 미국 국방수권법
+  IDIQ: 수량·시기를 정하지 않은 상한 계약
+  LRIP: 초도 양산
+  FRP: 전력화 양산
+  DSCA: 미국 국방안보협력국
+  LOA: 정부 간 판매 계약
+  FMS: 미국 정부 경유 무기 수출
+  BIS: 미국 상무부 수출통제국
+  ECCN: 수출통제 품목 분류 번호
+  Entity List: 미국 수출통제 대상 명단
+  Section 232: 안보를 이유로 한 미국 관세
+  Section 301: 불공정 무역 대응 미국 관세
+  FERC: 미국 연방에너지규제위원회
+  PJM: 미국 동부 전력망 운영 기구
+  ERCOT: 텍사스 전력망 운영 기구
+  NRC: 미국 원자력규제위원회
+  FCC: 미국 연방통신위원회
+  FAA: 미국 연방항공청
+project:
+  Stargate: 오픈AI·오라클·소프트뱅크 AI 데이터센터 사업
+  Project Rainier: AWS·앤트로픽 AI 데이터센터
+  Meta Hyperion: 메타 루이지애나 AI 캠퍼스
+  xAI Colossus: xAI 멤피스 슈퍼컴퓨터
+  Golden Dome: 미국 미사일 방어 구상
+# --check가 후보에서 빼는 약자 — 금융 용어(풀지 않는다)와 흔한 표기
+skip:
+  - EPS
+  - EBITDA
+  - EBITA
+  - EBIT
+  - OPM
+  - GPM
+  - FCF
+  - OCF
+  - CAPEX
+  - DCF
+  - CAGR
+  - YOY
+  - QOQ
+  - TTM
+  - ATM
+  - IPO
+  - CB
+  - PT
+  - IR
+  - SEC
+  - AI
+  - GPU
+  - CPU
+  - DRAM
+  - NAND
+  - PCB
+  - US
+  - USD
+  - KRW
+  - JPY
+  - CEO
+  - CFO
+  - IB
+  - GW
+  - MW
+  - KW
+  - KWH
+  - MWH
+  - NM
+  - FY
+  - Q&A
+  - M&A
+  - 8-K
+  - 10-Q
+  - 10-K
+  - 13F
+  - S-1
+  - 424B4
+  - Fwd
+  - YoY
+  - QoQ
+  - PER
+  - PBR
+  - ROE
+  - ROIC
+  - EV
+  - NT
+  - NYSE
+  - NASDAQ
+  - TWSE
+  - KOSPI
+  - KOSDAQ

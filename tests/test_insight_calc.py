@@ -28,6 +28,11 @@ class TestInsightCalc(unittest.TestCase):
         self.assertEqual(ic.breakeven(1142, 273)["years_undiscounted"], 4.18)
         self.assertAlmostEqual(ic.breakeven(571, 273, 0.10)["years_discounted"], 2.47, places=1)
 
+    def test_conviction_ten_points(self):
+        self.assertEqual(ic.conviction(4, 2, 0, 2)["conviction"], 10)
+        self.assertEqual(ic.conviction(2, 1, 3, 1)["conviction"], 4)   # 미검증 고리가 많아도 0 아래로 내려가지 않는다
+        self.assertEqual([ic.conviction_points(x) for x in (9, 8, 5, 4)], [2, 2, 1, 0])
+
     def test_score_and_diffusion(self):
         s = ic.score(3, 1, 2, 1)
         self.assertTrue(s["lead_with_view"] and s["prediction_required"])

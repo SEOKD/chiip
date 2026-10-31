@@ -24,6 +24,16 @@ class TestAlertFormat(unittest.TestCase):
         notify._LINES.clear()
         notify._LINES.update(self._saved)
 
+    def test_pulse_gloss(self):
+        import pulse_gloss
+        t = pulse_gloss.apply("Stargate와 HBM4(이미 풀이), HBM 증설. HBM 재고. EPS는 그대로 https://x.com/HBM")
+        self.assertIn("Stargate(오픈AI·오라클·소프트뱅크 AI 데이터센터 사업)", t)
+        self.assertIn("HBM4(이미 풀이)", t)
+        self.assertEqual(t.count("HBM(고대역폭 메모리)"), 1)
+        self.assertIn("https://x.com/HBM", t)
+        self.assertNotIn("EPS(", t)
+        self.assertEqual(pulse_gloss.unknown("Alphabet(GOOGL) EPS·CapEx·XPU 공급, HBM 증설, BIS(미국 상무부) ZZQ(뜻)"), ["XPU"])
+
     def test_three_paragraphs(self):
         msg = notify.format_item("P1", ITEM, points=["a", "b", "c", "d"], profile=["모델", "성장", "내러티브"])
         head, prof, pts = msg.split("\n\n")

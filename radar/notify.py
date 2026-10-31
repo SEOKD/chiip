@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
+import pulse_gloss  # noqa: E402
 from units import chiip_name, money_units  # noqa: E402
 
 OUTBOX = common.STATE / "outbox.log"
@@ -34,7 +35,7 @@ LABELS = [   # 텔레그램 기능 이름은 영어로(마스터 지시 2026-10-
     ("Chiip 기사 소재", "Chiip Article Pitch"), ("Chiip 인사이트 검토", "Chiip Insight Review"), ("Chiip 알파 레이더", "Chiip Alpha Radar"),
     ("Chiip 발굴", "Chiip Ten-bagger Discovery"), ("Chiip 포트폴리오", "Chiip Portfolio"), ("Chiip 텐배거", "Chiip Ten-bagger"), ("Chiip 펄스", "Chiip Pulse"),
     ("Chiip 포커스", "Chiip Focus"), ("Chiip 알림", "Chiip Alerts"), ("Chiip 판단", "Chiip View"), ("Chiip 프로바이저", "Chiip Proviser"),
-    ("· 늦은 보고", "· Late"), ("· 개정판", "· Revised"), (" 정정]", " Correction]")]
+    ("· 늦은 보고", "· Late"), ("· 개정판", "· Revised"), (" 정정]", " Correction]"), ("확신도", "컨빅션")]
 LEVEL_TAG_RE = re.compile(r"\[P[0-3](?:[-·][^\]]{0,12})?\]\s?")   # 내부 등급 코드 — 마스터에게 드러내지 않는다(2026-10-29 지시)
 
 
@@ -140,6 +141,8 @@ def send_document(path, caption="", level="REPORT"):
 
 
 def send(text, level="P1", ref=None, html_mode=False, md=False):
+    if level == "PULSE" and not html_mode:   # 기술·세그먼트·제품·정책·프로젝트 이름을 처음 나오는 곳에서 풀이(마스터 지시 2026-10-31)
+        text = pulse_gloss.apply(text)
     text = brand(text)
     if md:   # 펄스·포트폴리오 양식 — **굵게**·[이름](주소) → HTML
         text, html_mode = md_to_html(text), True

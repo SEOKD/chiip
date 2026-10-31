@@ -7,7 +7,8 @@
   py scripts/insight/insight_calc.py bridge --delta-cf 300 --years 4 --rate 0.10 --mcap 20000      # 현금흐름 현재가치 방식
   py scripts/insight/insight_calc.py priced --stock -4.0 --market 0.5 --beta 1.6 --implied 3.0
   py scripts/insight/insight_calc.py breakeven --cost 1142 --annual 273 [--rate 0.10]
-  py scripts/insight/insight_calc.py score --novelty 3 --materiality 1 --mispricing 2 --confidence 1
+  py scripts/insight/insight_calc.py conviction --source 4 --corroboration 1 --open-links 1 --numbers 2
+  py scripts/insight/insight_calc.py score --novelty 3 --materiality 1 --mispricing 2 --conviction 8
   py scripts/insight/insight_calc.py baserate seo
   py scripts/insight/insight_calc.py diffusion --link --afterhours --filing     # 반영 지연 조건 표시
 """
@@ -98,8 +99,21 @@ def diffusion(flags, priced_label=None):
     return {"conditions": [h[0] for h in hits], "sources": [h[1] for h in hits], "points": pts}
 
 
+def conviction(source, corroboration, open_links, numbers):
+    """컨빅션 10점(마스터 지시 2026-10-31 "상·중·하로 정량화하지 말고 10점 만점으로 기준을 잡아라") = 근거 등급(0~4) + 독립 확인(0~2) + 인과 사슬(0~2) + 정량(0~2).
+    source 4 1차 서류 원문 확인 · 3 회사 공식 발표만 · 2 주요 매체 보도 · 1 단일 2차 보도·커뮤니티 · 0 출처 불명
+    corroboration = 서로 다른 원출처 수(재인용 제외), open_links = 아직 검증 못 한 금지표 고리 수, numbers 2 밸류 다리까지 계산 · 1 규모만 · 0 없음"""
+    pts = {"source": min(source, 4), "corroboration": min(corroboration, 2), "chain": max(2 - open_links, 0), "numbers": min(numbers, 2)}
+    return {"conviction": sum(pts.values()), "points": pts}
+
+
+def conviction_points(c10):
+    """컨빅션 10점 → 인사이트 점수의 컨빅션 몫(0~2)"""
+    return 2 if c10 >= 8 else 1 if c10 >= 5 else 0
+
+
 def score(novelty, materiality_pts, mispricing, confidence):
-    """인사이트 점수 = 새로움(0~3) + 중요도(0~3) + 가격 오류 가능성(0~2) + 확신도(0~2). 7 이상이면 '치입 판단'을 맨 위에"""
+    """인사이트 점수 = 새로움(0~3) + 중요도(0~3) + 가격 오류 가능성(0~2) + 컨빅션 몫(0~2, conviction_points). 7 이상이면 '치입 판단'을 맨 위에"""
     s = min(novelty, 3) + min(materiality_pts, 3) + min(mispricing, 2) + min(confidence, 2)
     return {"score": s, "lead_with_view": s >= 7, "fact_only": s < 4, "prediction_required": s >= 7}
 
@@ -140,8 +154,15 @@ def main(argv):
     e.add_argument("--annual", type=float, required=True)
     e.add_argument("--rate", type=float)
     s = sp.add_parser("score")
-    for k in ("novelty", "materiality", "mispricing", "confidence"):
+    for k in ("novelty", "materiality", "mispricing"):
         s.add_argument(f"--{k}", type=float, required=True)
+    s.add_argument("--conviction", type=float, help="컨빅션 10점")
+    s.add_argument("--confidence", type=float, help="옛 호출 — 컨빅션 몫 0~2를 직접")
+    c = sp.add_parser("conviction")
+    c.add_argument("--source", type=int, required=True)
+    c.add_argument("--corroboration", type=int, required=True)
+    c.add_argument("--open-links", type=int, required=True)
+    c.add_argument("--numbers", type=int, required=True)
     r = sp.add_parser("baserate")
     r.add_argument("key")
     d = sp.add_parser("diffusion")
@@ -158,7 +179,9 @@ def main(argv):
     elif a.cmd == "breakeven":
         out = breakeven(a.cost, a.annual, a.rate)
     elif a.cmd == "score":
-        out = score(a.novelty, a.materiality, a.mispricing, a.confidence)
+        out = score(a.novelty, a.materiality, a.mispricing, conviction_points(a.conviction) if a.conviction is not None else a.confidence or 0)
+    elif a.cmd == "conviction":
+        out = conviction(a.source, a.corroboration, a.open_links, a.numbers)
     elif a.cmd == "baserate":
         out = baserate(a.key)
     else:
