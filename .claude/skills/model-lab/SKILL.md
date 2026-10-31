@@ -23,11 +23,11 @@ argument-hint: "[daily | weekly | 논문 URL]"
 ## agent (매일, 마스터 지시 2026-10-31) — 에이전트 아키텍처 고도화
 밸류에이션 모델과 별개로 치입 자신의 구조(지시문·맥락·평가·메모리·오케스트레이션)를 고친다.
 1. `py radar/literature.py --show --track agent` + `knowledge/models/lab/agent/canon.yaml`(전공 서적·실무 자료, 공식 문서처럼 피드가 없는 곳). 하루 1편까지. 커뮤니티는 입구일 뿐이다 — 근거는 글이 가리키는 원문으로 확인한다. robots.txt가 막은 곳은 자동 수집하지 않는다.
-2. `py scripts/lab/rule_evals.py --write` — 실제 산출물로 규칙별 위반율. 고칠 곳은 논문이 아니라 **측정에서 나온다.** 위반이 없으면 넘어간다(억지로 고치지 않는다).
+2. `py scripts/lab/rule_evals.py --write` — 실제 산출물로 규칙별 위반율. `py radar/run_ledger.py --report`로 어떤 지시문 버전이 어떤 산출물을 냈는지와 빈 회차율을 본다. 고칠 곳은 논문이 아니라 **측정에서 나온다.** 위반이 없으면 넘어간다(억지로 고치지 않는다).
 3. 제안서 `knowledge/models/lab/agent/proposals/AAP-YYYYMMDD-NN.md`: 파일 단위 변경 / 예측(어느 측정값이 언제까지 얼마로 바뀌나) / 깨질 위험 / 근거·외적 타당성(프리프린트·모델·표본 차이) / 판정일.
 4. 채택 관문: 변경 뒤 `py scripts/lab/rule_evals.py --gate`가 본 표본·떼어 둔 표본 모두 악화 없음. 기각도 제안서에 남긴다. 표본 12건 미만이면 판정하지 않는다.
 5. 측정으로 어김이 확인된 규칙은 지시문을 강조하지 말고 코드 관문으로 옮긴다(`notify.send`, 렌더러 `scrub`, 훅).
-6. **자기 채점 금지:** `evals/rules.yaml`·`scripts/lab/rule_evals.py`·권한·보안 규칙·`CLAUDE.md`는 고도화 대상이 아니다 — 고치려면 제안서로 마스터 승인. 지시문은 더 쓰기보다 줄이는 제안을 우선한다.
+6. **자기 채점 금지:** `evals/verifier.lock`이 지키는 평가기 파일·권한·보안 규칙·`CLAUDE.md`는 고도화 대상이 아니다(`py radar/verifier_lock.py --check`, 어긋나면 회차를 멈추고 알린다) — 고치려면 제안서로 마스터 승인. 지시문은 더 쓰기보다 줄이는 제안을 우선한다.
 
 7. 하네스 설계(`docs/decisions/ADR-013-chiip-harness.md`)의 단계 판정·기각 조건을 같은 기준으로 갱신한다. 코딩 벤치마크 결과를 치입에 그대로 옮기지 않는다 — 공개 표본 안 성과와 떼어 둔 표본 성과를 구분해 적는다.
 

@@ -1,4 +1,5 @@
 """규칙 준수 측정기·펄스 건별 점검·발송 관문·에이전트 수집 트랙"""
+import json
 import re
 import sys
 import tempfile
@@ -11,6 +12,8 @@ sys.path.insert(0, str(ROOT / "radar"))
 sys.path.insert(0, str(ROOT / "scripts" / "lab"))
 import literature  # noqa: E402
 import notify  # noqa: E402
+import run_ledger  # noqa: E402
+import verifier_lock  # noqa: E402
 import pulse_check  # noqa: E402
 import rule_evals  # noqa: E402
 
@@ -70,6 +73,63 @@ class TestInstructionSize(unittest.TestCase):
         text = (ROOT / "CLAUDE.md").read_text(encoding="utf-8")
         names = set(re.findall(r"docs/channels/(\w+)\.md", text))
         self.assertEqual(names, {p.stem for p in (ROOT / "docs" / "channels").glob("*.md")})
+
+
+class TestLedger(unittest.TestCase):
+    def repo(self, d):
+        root = Path(d)
+        (root / ".git").mkdir()
+        (root / ".git" / "HEAD").write_text("ref: refs/heads/main\n", encoding="utf-8")
+        (root / ".git" / "packed-refs").write_text("abcdef1234567 refs/heads/main\n", encoding="utf-8")
+        (root / "CLAUDE.md").write_text("규칙", encoding="utf-8")
+        return root
+
+    def test_row_links_commit_instructions_and_no_body(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(run_ledger, "ENABLED", True):
+            root = self.repo(d)
+            run_ledger.record("send", "chiip-pulse", root=root, text_sha=run_ledger.text_sha("본문"), ok=True)
+            row = run_ledger.rows(root=root)[0]
+        self.assertEqual(row["commit"], "abcdef1234")
+        self.assertTrue(row["instructions"])
+        self.assertNotIn("본문", str(row))
+
+    def test_report_links_files_and_counts_empty_gates(self):
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(run_ledger, "ENABLED", True):
+            root = self.repo(d)
+            run_ledger.record("gate", "chiip-pulse", root=root, outcome="종료")
+            run_ledger.record("gate", "chiip-pulse", root=root, outcome="진행")
+            run_ledger.record("send", "chiip-pulse", root=root, text_sha=run_ledger.text_sha("보낸 글\n"))
+            out = root / "outputs" / "article" / "sources"
+            out.mkdir(parents=True)
+            (out / "1_tg.txt").write_text("보낸 글", encoding="utf-8")
+            (out / "2_tg.txt").write_text("안 보낸 글", encoding="utf-8")
+            res = run_ledger.report(root=root)
+        self.assertEqual((res["tg_files"], res["tg_linked"], res["empty_gate_rate"]), (2, 1, 0.5))
+
+    def test_ledger_failure_does_not_break_send(self):
+        with mock.patch.object(run_ledger, "ENABLED", True), mock.patch.object(run_ledger, "git_commit", side_effect=OSError):
+            run_ledger.record("send", "x")
+
+    def test_split_message_is_one_row(self):
+        with mock.patch.object(run_ledger, "send_row") as row, mock.patch.object(notify.common, "load_env", return_value={}), mock.patch.object(notify, "_log"):
+            notify.send("가" * 9000, "P1")
+        self.assertEqual(row.call_count, 1)
+
+
+class TestVerifierLock(unittest.TestCase):
+    def test_repository_matches_lock(self):
+        self.assertEqual(verifier_lock.check(), [])
+
+    def test_detects_change(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            for f in verifier_lock.FILES:
+                (root / f).parent.mkdir(parents=True, exist_ok=True)
+                (root / f).write_bytes(b"a\r\n")
+            (root / "evals" / "verifier.lock").write_text(json.dumps(verifier_lock.digest(root)), encoding="utf-8")
+            self.assertEqual(verifier_lock.check(root), [])
+            (root / "evals" / "rules.yaml").write_bytes(b"b\n")
+            self.assertEqual(verifier_lock.check(root), ["evals/rules.yaml"])
 
 
 class TestAgentTrack(unittest.TestCase):

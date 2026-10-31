@@ -38,6 +38,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-pci-ids", "pci_ids", 10080),
     ("src-usaspending", "usaspending", 10080),
     # 부가가치 엔진(§21.14) — 모델 고도화 재료. 레이더 판정·알림과 무관
+    ("verifier-lock", "verifier_lock", 1440),  # 평가기 잠금 일일 확인(ADR-013 H4)
     ("src-literature", "literature", 360),  # 논문·실무 리서치(판단은 예약 작업 chiip-model-lab)
     ("src-sec-xbrl", "markets.sec_xbrl", 10080),  # 미국 상장·ADR 재무 이력(주 1회)
     ("src-prices-free", "markets.prices_free", 720),  # 무료 시세(TWSE·TPEx, KRX·Finnhub는 키 입력 후)

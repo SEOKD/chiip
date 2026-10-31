@@ -25,6 +25,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common, rss, sec_earnings_all as sea  # noqa: E402
 from pollers.press_wire import NON_EN_RE  # noqa: E402
+import run_ledger  # noqa: E402
 
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
@@ -491,6 +492,7 @@ def main(argv):
         return 0
     _, msg = run()
     print(msg)
+    run_ledger.record("gate", "chiip-pulse", outcome="종료" if msg.rstrip().endswith("종료") else "진행")
     return 0
 
 

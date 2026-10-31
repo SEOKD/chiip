@@ -171,6 +171,7 @@ def send(src, caption="", dry=False, resend=False):
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
         sent = bool(notify.send(text, "REPORT"))
+        notify.run_ledger.record("publish", "chiip-tenbagger-report", output=st["stem"], ok=sent)
     st["telegram"] = {"sent": tg.get("sent") or sent, "notion_ok": ok and sent, "at": now()}
     save(src, st)
     log(st["stem"], st["ticker"], "telegram", "ok" if sent else "fail", "노션 포함" if ok else "노션 실패 표시")

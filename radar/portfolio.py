@@ -33,6 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 from pollers import sec_filings as sec  # noqa: E402
 import market_regime  # noqa: E402
+import run_ledger  # noqa: E402
 import narrative_sources as ns  # noqa: E402
 import overhang  # noqa: E402
 
@@ -475,6 +476,7 @@ def main(argv):
         return 0
     _, msg = run()
     print(msg)
+    run_ledger.record("gate", "chiip-portfolio", outcome="종료" if msg.rstrip().endswith("종료") else "진행")
     return 0
 
 

@@ -5,11 +5,11 @@
 ## 대상 (예약 작업 7개 — 2026-10-29 마스터 지시로 portfolio 추가)
 | taskId | 이름 | 산출물(평가 표본) |
 |---|---|---|
-| chiip-pulse | Chiip pulse (30분) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
-| chiip-article-pitch | Chiip reporter (평일 06:00) | outputs/article/pitch/ (`<날짜>.md`, `_tg.txt`, log.csv) |
+| chiip-pulse | Chiip pulse (5분, 새 자료 있을 때만) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
+| chiip-article-pitch | Chiip reporter (매일 06:00) | outputs/article/pitch/ (`<날짜>.md`, `_tg.txt`, log.csv) |
 | chiip-tenbagger | Chiip ten-bagger (30분 — 매시 15·45분, 새 신호 있을 때만) + 일일 리포트 chiip-tenbagger-report(매일 23:00) | knowledge/models/tenbagger/cards/, watch.csv, judgments, 실행 요약, outputs/tenbagger/reports/(HTML·JSON·log.csv) |
-| chiip-notion-watch | Chiip Notion Tracker (매시간) | outputs/report/notion/, Insights '치입 검토' 하위 페이지, knowledge/predictions.csv |
-| chiip-model-lab | Chiip Model Laboratory (매일 18:00) | knowledge/models/lab/notes/, proposals/, outputs/report/lab/ |
+| chiip-notion-watch | Chiip Notion Tracker (07~23시 매시간) | outputs/report/notion/, Insights '치입 검토' 하위 페이지, knowledge/predictions.csv |
+| chiip-model-lab | Chiip Model Laboratory (매일 21:00) | knowledge/models/lab/notes/, proposals/, outputs/report/lab/ |
 | chiip-weekly-review | Chiip Weekly Review (토 07:00) | outputs/brief/YYYY-Www_weekly.md |
 | chiip-portfolio | Chiip Portfolio (매시 35분, 새 자료 있을 때만 + 화~토 데일리) — 2026-10-29 마스터 지시로 7번째 추가 | outputs/invest/portfolio/ (`<날짜>.md`, `_tg.txt`, tickers/), knowledge/models/portfolio/coverage.csv, radar/portfolio/ |
 실행 기록은 예약 작업 실행 목록(list_task_runs)의 요약으로 보완한다. 표본이 없으면 작업지시서 자체를 평가한다('사전 평가').
@@ -102,7 +102,7 @@
 ## 당일 텐배거 리포트 3건 점검·수정 (마스터 지시 2026-10-29 — 기존 기능에 더한 것)
 > "그날 하루 적은 3건의 텐배거 리포트 내용에 틀린 게 없는지 다시 점검하고, 분석이 올바른 과정으로 진행됐고 결론이 합리적으로 산출됐는지 모두 정량적으로 평가해 수정하고 보완할 부분이 있다면 수정하라. 당일 이외 리포트는 건들지 마라."
 
-- 대상: 그날 outputs/tenbagger/reports/log.csv의 가장 최근 3건(07·13·22시 회차). 다른 날짜는 열지도 고치지도 않는다. 그래서 Proviser는 23:00에 돈다.
+- 대상: 그날 outputs/tenbagger/reports/log.csv의 가장 최근 3건(주중 매시간 회차 중). 다른 날짜는 열지도 고치지도 않는다. 그래서 Proviser는 23:00에 돈다.
 - 점수(리포트마다, 소수 첫째 자리) = 0.6 × 루브릭(사실·과정·결론·정량·반증 각 0.0~2.0) + 0.4 × 자동 점검(`scripts/proviser/report_audit.py`, 13개 — 사실 4·과정 4·결론 5).
 - 수정: 사실·계산·단위 오류, 빠진 의무 절, 숫자와 맞지 않는 결론만. 리포트 끝 '정정 기록' 절에 전 → 후·이유·근거를 남기고 다시 렌더·발송('· Revised')·게시. 같은 감점이 2건 이상이면 chiip-tenbagger 보강 지시로 올린다.
 - 첫 실행(2026-10-29, 자동 점검): CBRS 6.5 · INIO 8.5 · PWR 10.0. 오전 두 건은 나중에 의무화된 절(내러티브·수급·피보나치)과 $B 표기가 없다(그날 23:00 회차가 보완 대상으로 다룬다).

@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 import pulse_check  # noqa: E402
 import pulse_gloss  # noqa: E402
+import run_ledger  # noqa: E402
 from units import chiip_name, money_units  # noqa: E402
 
 OUTBOX = common.STATE / "outbox.log"
@@ -170,6 +171,12 @@ def send_document(path, caption="", level="REPORT"):
 
 
 def send(text, level="P1", ref=None, html_mode=False, md=False):
+    ok = _send(text, level, ref, html_mode, md)
+    run_ledger.send_row(text, level, ok)
+    return ok
+
+
+def _send(text, level="P1", ref=None, html_mode=False, md=False):
     raw_text = text
     if level == "PORTFOLIO":   # Chiip View 항목의 '기업:' 줄도 다른 항목처럼 하이픈으로 시작한다(마스터 지시 2026-10-31)
         text = re.sub(r"(?m)^기업:", "- 기업:", text)
@@ -205,7 +212,7 @@ def send(text, level="P1", ref=None, html_mode=False, md=False):
                 cur = f"{cur}\n{para}" if cur else para
         if cur:
             parts.append(cur)
-        oks = [send(p + f"\n({i}/{len(parts)})", level, ref if i == 1 else None, html_mode) for i, p in enumerate(parts, 1)]
+        oks = [_send(p + f"\n({i}/{len(parts)})", level, ref if i == 1 else None, html_mode) for i, p in enumerate(parts, 1)]
         return all(oks)
     env = common.load_env()
     token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")

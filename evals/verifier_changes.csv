@@ -1,0 +1,2 @@
+date,files,reason
+2026-10-31,evals/rules.yaml scripts/lab/rule_evals.py radar/pulse_check.py radar/verifier_lock.py,ADR-013 1단계 최초 잠금(마스터 승인 2026-10-31)
