@@ -95,6 +95,7 @@ NASDAQ:AKAM,NASDAQ,AKAM,us-akam,"Akamai Technologies, Inc.",new,false
 NASDAQ:AMD,NASDAQ,AMD,co-amd,AMD,ticker,true
 NASDAQ:AMKR,NASDAQ,AMKR,co-amkor,Amkor,ticker,true
 NASDAQ:AMZN,NASDAQ,AMZN,co-amazon,Amazon,ticker,true
+NASDAQ:ANT,NASDAQ,ANT,us-ant,Anthropic PBC,new,false
 NASDAQ:APLD,NASDAQ,APLD,us-apld,Applied Digital,ticker,true
 NASDAQ:ARM,NASDAQ,ARM,co-arm,Arm,ticker,true
 NASDAQ:ARXS,NASDAQ,ARXS,us-arxs,"Arxis, Inc.",new,false

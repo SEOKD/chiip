@@ -11,7 +11,7 @@ master_themes: ["OCP 2026", "해양시추"]   # Stocks 안의 테마 페이지 �
 # 레이더 테마(마스터 지시 2026-10-28 "데이터센터 전력 관련주도 레이더 망에"): 이 목록의 종목은 포커스 점수와 무관하게
 # 뉴스(9개 매체)·공시·보도자료를 추적하고 알파 점수·핵심 루프 대상이 된다(radar/pollers/gate.py extra_focus)
 radar_themes:
-  dc_power: [co-gevernova, co-bloom, co-innio, co-siemensenergy, co-caterpillar, co-cummins, co-wartsila, co-rollsroyce, co-mhi, co-doosanenerbility, co-oklo, co-nuscale,
+  dc_power: [us-d, us-ida, us-por, us-gva, us-wec, co-gevernova, co-bloom, co-innio, co-siemensenergy, co-caterpillar, co-cummins, co-wartsila, co-rollsroyce, co-mhi, co-doosanenerbility, co-oklo, co-nuscale,
              co-vistra, co-constellation, co-talen, co-nrg, co-nextera, co-enchantedrock, co-voltagrid, co-solaris, co-liberty, co-generac, co-crusoe, co-ftai, co-propetro, co-atlasenergy, co-babcock,
              co-eaton, co-hubbell, co-nvent, co-powell, co-siemens, co-schneider, co-abb, co-legrand, co-hitachi, co-melco, co-hdhyundaielec, co-lselectric, co-hyosunghi, co-sanil, co-vertiv,
              co-prysmian, co-nexans, co-nkt, co-taihan, co-lscorp, co-valmont, co-plpc,
@@ -24,6 +24,49 @@ extra:
   - {id: us-ccxi, name: Churchill Capital Corp XI, code: CCXI.US, region: US, sub: robotics, aliases: ["Churchill Capital Corp XI", "Agility Robotics"]}
   # 웨이퍼 스케일 AI 가속기 — 2026-05 Nasdaq 상장, 감시 목록 누락(Culper 숏 리포트 2026-10-28 놓침) 뒤 추가
   - {id: us-cbrs, name: Cerebras Systems, code: CBRS.US, region: US, sub: accelerator, aliases: ["Cerebras", "CBRS"]}
+  # 30분 펄스 알파 산정 (2026-10-29)
+  - {id: us-carr, name: Carrier Global, code: CARR.US, region: US, sub: cooling, aliases: ["Carrier Global", "Carrier"]}
+  - {id: us-algm, name: Allegro MicroSystems, code: ALGM.US, region: US, sub: semis, aliases: ["Allegro MicroSystems", "ALGM"]}
+  - {id: us-ida, name: IDACORP, code: IDA.US, region: US, sub: power_infra, aliases: ["IDACORP", "Idaho Power"]}
+  - {id: us-por, name: Portland General Electric, code: POR.US, region: US, sub: power_infra, aliases: ["Portland General Electric", "PGE"]}
+  - {id: us-mpwr, name: Monolithic Power Systems, code: MPWR.US, region: US, sub: semis, aliases: ["Monolithic Power Systems", "Monolithic Power"]}
+  - {id: us-osis, name: OSI Systems, code: OSIS.US, region: US, sub: components, aliases: ["OSI Systems"]}
+  - {id: us-fslr, name: First Solar, code: FSLR.US, region: US, sub: power_infra, aliases: ["First Solar"]}
+  - {id: us-bdc, name: Belden, code: BDC.US, region: US, sub: networking, aliases: ["Belden"]}
+  - {id: us-acmr, name: ACM Research, code: ACMR.US, region: US, sub: semicap, aliases: ["ACM Research", "ACMR"]}
+  - {id: us-atom, name: Atomera, code: ATOM.US, region: US, sub: semis, aliases: ["Atomera"]}
+  - {id: us-ftnt, name: Fortinet, code: FTNT.US, region: US, sub: networking, aliases: ["Fortinet", "FTNT"]}
+  - {id: us-bhe, name: Benchmark Electronics, code: BHE.US, region: US, sub: ems, aliases: ["Benchmark Electronics", "BHE"]}
+  - {id: us-pi, name: Impinj, code: PI.US, region: US, sub: semis, aliases: ["Impinj"]}
+  - {id: us-oled, name: Universal Display, code: OLED.US, region: US, sub: materials, aliases: ["Universal Display", "UDC"]}
+  - {id: us-plxs, name: Plexus, code: PLXS.US, region: US, sub: ems, aliases: ["Plexus", "PLXS"]}
+  - {id: us-lfus, name: Littelfuse, code: LFUS.US, region: US, sub: power_infra, aliases: ["Littelfuse", "LFUS"]}
+  - {id: us-avtr, name: Avantor, code: AVTR.US, region: US, sub: materials, aliases: ["Avantor", "AVTR"]}
+  - {id: us-orn, name: Orion Group Holdings, code: ORN.US, region: US, sub: power_infra, aliases: ["Orion Group Holdings", "ORN"]}
+  - {id: us-extr, name: Extreme Networks, code: EXTR.US, region: US, sub: networking, aliases: ["Extreme Networks", "EXTR"]}
+  - {id: us-ni, name: NiSource, code: NI.US, region: US, sub: power_infra, aliases: ["NiSource"]}
+  - {id: us-lii, name: Lennox International, code: LII.US, region: US, sub: cooling, aliases: ["Lennox International", "Lennox"]}
+  - {id: us-oge, name: OGE Energy, code: OGE.US, region: US, sub: power_infra, aliases: ["OGE Energy", "OG&E"]}
+  - {id: us-flex, name: Flex, code: FLEX.US, region: US, sub: power_infra, aliases: ["Flex Ltd", "Flex", "Axiom"]}
+  - {id: us-fele, name: Franklin Electric, code: FELE.US, region: US, sub: power_infra, aliases: ["Franklin Electric"]}
+  - {id: us-aep, name: American Electric Power, code: AEP.US, region: US, sub: power_infra, aliases: ["American Electric Power", "AEP"]}
+  - {id: us-d, name: Dominion Energy, code: D.US, region: US, sub: power_infra, aliases: ["Dominion Energy"]}
+  - {id: us-txnm, name: TXNM Energy, code: TXNM.US, region: US, sub: power_infra, aliases: ["TXNM Energy"]}
+  - {id: us-enph, name: Enphase Energy, code: ENPH.US, region: US, sub: power_infra, aliases: ["Enphase", "ENPH"]}
+  - {id: us-cts, name: CTS Corp, code: CTS.US, region: US, sub: components, aliases: ["CTS Corporation"]}
+  - {id: us-cms, name: CMS Energy, code: CMS.US, region: US, sub: power_infra, aliases: ["CMS Energy", "Consumers Energy"]}
+  - {id: us-cnp, name: CenterPoint Energy, code: CNP.US, region: US, sub: power_infra, aliases: ["CenterPoint Energy", "CenterPoint"]}
+  - {id: us-logi, name: Logitech, code: LOGI.US, region: US, sub: devices, aliases: ["Logitech"]}
+  - {id: us-fe, name: FirstEnergy, code: FE.US, region: US, sub: power_infra, aliases: ["FirstEnergy", "FE"]}
+  - {id: us-nov, name: NOV Inc., code: NOV.US, region: US, sub: power_infra, aliases: ["NOV Inc.", "National Oilwell Varco"]}
+  - {id: us-nano, name: Forge Nano, code: NANO.US, region: US, sub: semicap, aliases: ["Forge Nano", "Forge Nano Holdings"]}
+  - {id: us-nxt, name: Nextpower, code: NXT.US, region: US, sub: power_infra, aliases: ["Nextpower", "Nextracker"]}
+  - {id: us-whd, name: Cactus Inc., code: WHD.US, region: US, sub: power_infra, aliases: ["Cactus, Inc.", "Cactus Wellhead"]}
+  - {id: us-mvis, name: MicroVision, code: MVIS.US, region: US, sub: devices, aliases: ["MicroVision", "MVIS"]}
+  - {id: us-belfa, name: Bel Fuse, code: BELFA.US, region: US, sub: components, aliases: ["Bel Fuse", "BELFB"]}
+  - {id: us-cohu, name: Cohu, code: COHU.US, region: US, sub: semicap, aliases: ["Cohu", "COHU"]}
+  - {id: us-gva, name: Granite Construction, code: GVA.US, region: US, sub: power_infra, aliases: ["Granite Construction", "GVA"]}
+  - {id: us-wec, name: WEC Energy Group, code: WEC.US, region: US, sub: power_infra, aliases: ["WEC Energy", "We Energies"]}
   # 한국
   - {id: co-samsungsds, name: 삼성SDS, kind_name: 삼성에스디에스, code: 018260.KO, region: KR, sub: software, aliases: ["삼성SDS", "삼성에스디에스", "Samsung SDS"]}
   - {id: co-lgcns, name: LG CNS, kind_name: LG씨엔에스, code: 064400.KO, region: KR, sub: software, aliases: ["LG CNS", "LG씨엔에스"]}

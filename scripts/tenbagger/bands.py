@@ -384,7 +384,7 @@ def write_report(today, bands, by_band, top, rows, migrations):
 
 def resolve_id(arg, uni=None):
     """id 또는 티커(KTOS·7012·RHM·BA.L) → 유니버스 id. 같은 회사가 여러 목록에 있으면 먼저 등록된 id(감시 목록 우선).
-    맨 티커가 여러 시장에 겹치면(BA = Boeing·BAE) 미국 상장을 먼저 — 다른 시장은 BA.L처럼 easyconomics 티커로"""
+    맨 티커가 여러 시장에 겹치면(BA = Boeing·BAE) 미국 상장을 먼저 — 다른 시장은 BA.L처럼 거래소 접미 티커로"""
     uni = universe() if uni is None else uni
     if arg in uni:
         return arg

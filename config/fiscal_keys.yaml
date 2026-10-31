@@ -7,6 +7,12 @@
 # 신에츠·무라타·TDK·HOYA·르네사스·후지쿠라·키옥시아·히타치·미쓰비시전기·미쓰비시중공업·NEC·후지쓰·소프트뱅크G)도 Fiscal 추정·Zacks·주가가 모두 '아직 없음' — est. 불가.
 # Fiscal의 일본 재무·추정은 미국 상장 기업(도요타·소니·MUFG 등)만. 재확인은 scripts/fiscal/templates/jp_est_check.js.
 keys:
+  co-advantest:
+    checked: '2026-10-30'
+    key: XJPX_6857
+  co-ase:
+    checked: '2026-10-30'
+    key: NYSE_ASX
   co-atlasenergy:
     checked: '2026-10-30'
     key: NYSE_AESI
@@ -16,37 +22,94 @@ keys:
   co-ftai:
     checked: '2026-10-30'
     key: NASDAQ_FTAI
-  co-propetro:
+  co-nokia:
     checked: '2026-10-30'
-    key: NYSE_PUMP
-  co-quanta-services: {checked: '2026-10-30', key: NYSE_PWR, terminal_url: 'https://fiscal.ai/company/NYSE-PWR'}
-  co-tsmc: {checked: '2026-10-30', key: NYSE_TSM}        # XTAI_2330 → NYSE_TSM
-  co-ase: {checked: '2026-10-30', key: NYSE_ASX}         # XTAI_3711 → NYSE_ASX
-  co-sap: {checked: '2026-10-30', key: NYSE_SAP}         # XETR_SAP → NYSE_SAP
-  co-nokia: {checked: '2026-10-30', key: NYSE_NOK}       # XHEL_NOKIA → NYSE_NOK
-  co-tel: {checked: '2026-10-30', key: XJPX_8035}        # Tokyo Electron(감시 목록에 코드 없음)
-  co-advantest: {checked: '2026-10-30', key: XJPX_6857}
+    key: NYSE_NOK
   co-nuscale:
     checked: '2026-10-31'
     key: NYSE_SMR
   co-oklo:
     checked: '2026-10-31'
     key: NYSE_OKLO
+  co-propetro:
+    checked: '2026-10-30'
+    key: NYSE_PUMP
+  co-quanta-services:
+    checked: '2026-10-30'
+    key: NYSE_PWR
+    terminal_url: https://fiscal.ai/company/NYSE-PWR
+  co-sap:
+    checked: '2026-10-30'
+    key: NYSE_SAP
+  co-tel:
+    checked: '2026-10-30'
+    key: XJPX_8035
+  co-tsmc:
+    checked: '2026-10-30'
+    key: NYSE_TSM
+  co-ttm:
+    checked: '2026-10-30'
+    key: NASDAQ_TTMI
+    terminal_url: https://fiscal.ai/company/NasdaqGS-TTMI
+  co-ultraclean:
+    checked: '2026-10-30'
+    key: NASDAQ_UCTT
+    terminal_url: https://fiscal.ai/company/NasdaqGS-UCTT
+  co-vicor:
+    checked: '2026-10-30'
+    key: NASDAQ_VICR
+    terminal_url: https://fiscal.ai/company/NasdaqGS-VICR
+  de-renk:
+    checked: '2026-10-31'
+    key: XTRA_R3NK
+    terminal_url: https://fiscal.ai/company/XTRA-R3NK
+  de-rheinmetall:
+    checked: '2026-10-31'
+    key: XTRA_RHM
   gb-babcock:
     checked: '2026-10-31'
     key: XLON_BAB
+  it-avio:
+    checked: '2026-10-30'
+    key: BIT_AVIO
+    terminal_url: https://fiscal.ai/company/BIT-AVIO
+  no-kongsberg:
+    checked: '2026-10-30'
+    key: OB_KOG
   us-asts:
     checked: '2026-10-31'
     key: NASDAQ_ASTS
+  us-atom:
+    checked: '2026-10-31'
+    key: NASDAQ_ATOM
+  us-axti:
+    checked: '2026-10-31'
+    key: NASDAQ_AXTI
   us-bwxt:
     checked: '2026-10-31'
     key: NYSE_BWXT
+  us-carr:
+    checked: '2026-10-30'
+    key: NYSE_CARR
+    terminal_url: https://fiscal.ai/company/NYSE-CARR
   us-ccj:
     checked: '2026-10-31'
     key: NYSE_CCJ
+  us-drs:
+    checked: '2026-10-30'
+    key: NASDAQ_DRS
+    terminal_url: https://fiscal.ai/company/NasdaqGS-DRS
   us-fly:
     checked: '2026-10-31'
     key: NASDAQ_FLY
+  us-gsat:
+    checked: '2026-10-31'
+    key: NASDAQ_GSAT
+    terminal_url: https://fiscal.ai/company/NasdaqGS-GSAT
+  us-hii:
+    checked: '2026-10-31'
+    key: NYSE_HII
+    terminal_url: https://fiscal.ai/company/NYSE-HII
   us-irdm:
     checked: '2026-10-31'
     key: NASDAQ_IRDM

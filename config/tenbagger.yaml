@@ -73,8 +73,8 @@ paths:
 
 # 정량 요인 — 사전값(prior). 근거는 2차 보도 기준이며 원문 확인 전(model-lab이 원문 확인 후 갱신)
 factors:
-  fcf_yield:      {weight: 0.25, direction: high, basis: "Yartseva(2025, Birmingham City Univ. 워킹페이퍼, 2009~2024 NYSE·Nasdaq 464개 멀티배거) — FCF 수익률이 가장 강한 예측 변수라는 2차 보도. 원문 확인 대기"}
-  book_to_market: {weight: 0.15, direction: high, basis: "같은 연구 2차 보도(장부가 대비 낮은 가격) + Fama-French 가치 요인. 원문 확인 대기"}
+  fcf_yield:      {weight: 0.25, direction: high, basis: "Yartseva(2025-02, CAFE WP 33, Birmingham City Univ.) 원문 확인 2026-10-29: 464개 멀티배거(2009~2024 10배+, NYSE·Nasdaq, 2000~2024 패널) 안에서 FCF/P와 B/M이 계수 최대·강한 유의, 성장 변수는 비유의. 단 표본이 승자만이라(결과 조건부) '10배가 될 확률' 근거는 아님 — 가중치는 사전값 유지, 피팅으로 검증"}
+  book_to_market: {weight: 0.15, direction: high, basis: "Yartseva(2025-02, CAFE WP 33) 원문 확인 2026-10-30: B/M=총자본÷시총, 멀티배거 3분위 연 초과수익 저 12.8%·중 14.5%·고 34.7%(규모·수익성·투자 통제 후 유지), 패널 회귀에서 FCF/P와 함께 계수 최대·강한 유의. 승자만의 표본이라 10배 확률 근거 아님 — 가중치 사전값 유지, 피팅으로 검증"}
   size:           {weight: 0.15, direction: low,  basis: "소형주일수록 10배 경로의 산술적 여지 — 기준 연구별로 정의 다름. 원문 확인 대기"}
   quality:        {weight: 0.15, direction: high, basis: "총이익률·ROIC 수준·개선(수익성 요인 문헌). 원문 확인 대기"}
   growth_accel:   {weight: 0.15, direction: high, basis: "매출 성장 가속 — 실무 문헌(100-bagger류). 학술 근거 약함, 피팅으로 검증"}

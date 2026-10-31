@@ -73,7 +73,7 @@ themes:
       - {id: tw-mpi, name: MPI Corporation, local: "旺矽", market: tw, code: "6223", edge: 6, why: "프로브 카드·프로버"}
       - {id: tw-chpt, name: Chunghwa Precision Test, local: "中華精測", market: tw, code: "6510", edge: 6, why: "프로브 카드"}
       # 2026-10-29 19:45 추가 — 신호: ASE 3Q26 6-K 테스트 장비 CAPEX 10.67억$ ≈ 테스트 매출의 129%(Chiip 계산). ASE→두 회사 공급 관계는 미확인.
-      - {id: co-isc, name: ISC, local: "아이에스시", market: kr, code: "095340", edge: 6, why: "실리콘 러버 테스트 소켓 — 최근 4분기 매출 2,202억 원(+26%)·영업이익률 27%(easyconomics/DART 2026-10-29), 시총 구간 확인 필요"}
+      - {id: co-isc, name: ISC, local: "아이에스시", market: kr, code: "095340", edge: 6, why: "실리콘 러버 테스트 소켓 — 최근 4분기 매출 2,202억 원(+26%)·영업이익률 27%(easyconomics/DART 2026-10-29), 3Q26 AI 매출 626억 원(전사의 87%, +46%, 회사 IR 요약), 시총 3.29조 원(2026-10-30 종가)"}
       - {id: co-leeno, name: Leeno Industrial, local: "리노공업", market: kr, code: "058470", edge: 5, why: "포고핀·테스트 소켓 — 매출 3,725억 원(+34%)·영업이익률 48%(easyconomics/DART 2026-10-29), 시총 상한(2조 원) 초과 가능성 — 미확인"}
   - id: thermal_power
     name: 액체 냉각·전력 공급
@@ -91,6 +91,7 @@ themes:
     evidence: ["캐터필러 3Q26 8-K Ex.99.1: Power Generation 매출 34.21억$(+30%), '주로 데이터센터' 대형 왕복동 엔진 — 증설 언급 없음", "INNIO 수주잔고·B/B(감시 카드 TB-20261029-INIO)"]
     candidates:
       - {id: co-innio, name: INNIO N.V., local: "INNIO (Jenbacher)", market: us, code: "INIO", edge: 6, why: "왕복동 가스엔진 — 텐배거 감시 중(TB-20261029-INIO), 10배 경로는 캐파 3배 필요"}
+      - {id: co-ftai, name: FTAI Aviation, aliases: ["FTAI Aviation", "FTAI Aviation Ltd."], market: us, code: "FTAI", edge: 5, why: "CFM56 항공 엔진 코어를 25MW 가스터빈(Mod-1)으로 개조 — 신규 터빈 리드타임을 우회하는 공급 추가(3Q26 EX-99.1: 시험 통과·100기+ 2027~28 인도 계약), 양산 인도 전이라 '시험→양산' 미검증, 시총 $20.1B(B2) — 2026-10-30 등재"}
   - id: metrology_inspection
     name: 공정 제어·계측·검사(첨단 로직·HBM·첨단 패키징)
     bottleneck: "GAA·후면 전력·하이브리드 본딩·HBM 적층은 단계마다 막 두께·형상·결함을 더 자주 재야 수율이 나온다 — 공정 제어 집약도(웨이퍼당 계측 단계)가 노드·적층 수보다 빨리 는다(양산 엔지니어 관점: 측정 못 하면 램프가 멈춘다)"
@@ -232,6 +233,7 @@ themes:
     driver: "미판정"
     evidence: ["공시·실적 자료"]
     candidates:
+      - {"id": "us-ant", "name": "Anthropic PBC", "aliases": ["Anthropic PBC"], "market": "us", "code": "ANT", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
       - {"id": "co-intel", "name": "Intel", "aliases": ["Intel"], "market": "us", "code": "INTC", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
       - {"id": "us-ccxi", "name": "Churchill Capital Corp XI", "aliases": ["Churchill Capital Corp XI"], "market": "us", "code": "CCXI", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
       - {"id": "co-sandisk", "name": "SanDisk", "aliases": ["SanDisk"], "market": "us", "code": "SNDK", "why": "마스터 TradingView 와치리스트(1_US 미분류) — edge 미판정"}
@@ -528,8 +530,8 @@ themes:
     driver: "미판정"
     evidence: ["공시·실적 자료"]
     candidates:
-      - {"id": "us-aaoi", "name": "Applied Optoelectronics", "aliases": ["Applied Optoelectronics"], "market": "us", "code": "AAOI", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
       - {"id": "us-axti", "name": "AXT, Inc.", "aliases": ["AXT, Inc."], "market": "us", "code": "AXTI", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
+      - {"id": "us-aaoi", "name": "Applied Optoelectronics", "aliases": ["Applied Optoelectronics"], "market": "us", "code": "AAOI", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
       - {"id": "co-coherent", "name": "Coherent", "aliases": ["Coherent"], "market": "us", "code": "COHR", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
       - {"id": "us-smtc", "name": "Semtech", "aliases": ["Semtech"], "market": "us", "code": "SMTC", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}
       - {"id": "co-lumentum", "name": "Lumentum", "aliases": ["Lumentum"], "market": "us", "code": "LITE", "why": "마스터 TradingView 와치리스트(1_US OPTICS) — edge 미판정"}

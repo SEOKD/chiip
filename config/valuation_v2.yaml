@@ -16,6 +16,7 @@ regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model
     as_of: "2026-01"
     semiconductor:   {beta: 1.52, equity_weight: 0.9747}
     semicap:         {beta: 1.40, equity_weight: 0.9536}
+    aerospace_defense: {beta: 0.95, equity_weight: 0.8653}   # Damodaran Aerospace/Defense 베타 0.95·D/E 15.56%(2026-10-31 조회)
     software:        {beta: 1.28, equity_weight: 0.9472}
     software_internet: {beta: 1.69, equity_weight: 0.8905}
     computers:       {beta: 1.35, equity_weight: 0.9558}
