@@ -42,9 +42,19 @@ LEVEL_TAG_RE = re.compile(r"\[P[0-3](?:[-·][^\]]{0,12})?\]\s?")   # 내부 등�
 LEVEL_WORD_RE = re.compile(r"(?<![\w/.=-])P[0-3](?![\w/.=-])(\s?·\s?|\s)?")   # 문장 속 'P0 · '·'P1 ' 등
 
 
+def tw_hk_names(text):
+    """대만·홍콩 회사의 한자 이름 → 한국어 표기(마스터 지시 2026-10-31, config/tw_hk_names.yaml)"""
+    if "tw_hk" not in _LINES:
+        d = (common.load_yaml("config/tw_hk_names.yaml") or {}).get("names") or {}
+        _LINES["tw_hk"] = sorted(d.items(), key=lambda x: -len(x[0]))
+    for zh, ko in _LINES["tw_hk"]:
+        text = text.replace(zh, ko)
+    return text
+
+
 def brand(text):
     """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
-    text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", chiip_name(text))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
+    text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", chiip_name(tw_hk_names(text)))   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
     # 회사 설명 줄의 '모델:'·'성장:'·'내러티브:' 머리말은 빼고 내용만(마스터 지시 2026-10-30)
     text = re.sub(r"(?m)^(☞\s*)?(?:비즈니스\s*)?(?:모델|성장(?:\s*동력)?|내러티브)\s*[:：]\s*", r"\1", text)
     # 펄스·포트폴리오 근거 줄 머리말('**판단**', '· 숫자 —' 등)도 빼고 내용만(마스터 지시 2026-10-30)

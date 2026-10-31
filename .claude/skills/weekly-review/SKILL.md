@@ -4,53 +4,27 @@ description: 주간 리뷰(토요일 오전): 글로벌 증시 주간 상승률(
 argument-hint: "[주차 YYYY-Www]"
 ---
 
-# weekly-review — 주간 리뷰 (§7.2)
-## 입력
-- 지난 7일 카드·주장(novelty 신규·수정), 테제 파일 판단 변경 이력
-- `py scripts/score_radar.py`, `score_reverse.py`, `score_field_intel.py`, `score_predictions.py` 결과
-- `knowledge/models/indicators.csv`, `mirror_monthly.csv` 변화
-- 다음 주 `knowledge/calendar.csv`
-- **주간 상승률 데이터**: `knowledge/models/weekly_movers/YYYY-Www.csv` (`radar/markets/weekly_movers.py`가 토요일 06~09시에 EODHD 스크리너로 만든 결정론적 데이터. 열: region, rank, pct_change, name_en, ticker, exchange, currency, market_cap_usd, sector, industry, last_day, as_of). 등락률은 최근 5거래일 기준 — 휴장일이 낀 주는 그 사실을 한 줄 적는다. `radar/state/weekly_movers.json`의 `missing`에 있는 지역은 "데이터 미수집"
+# weekly-review — 주간 리뷰 (2026-10-31 재설계)
 
-## 글로벌 증시 주간 상승률 절 — 마스터 채널 'Dean's Ticker'(https://t.me/d_ticker, 마스터 소유) 형식
-```
-NN주차 글로벌 증시 주간 상승률
+마스터 평가: 가독성·품질·구성 모두 3/10 이하. 진단은 '시장 보고서가 아니라 운영 장부'였다. 독자의 질문은 하나다 — **이번 주 무엇이 바뀌었고 다음 주 무엇을 보나.** 휴대폰으로 3분 안에 끝나야 한다.
 
-US (https://t.me/d_ticker)
-+23%｜지스케일러｜사이버보안
-…(20개)
+## 규칙 (마스터 지시 2026-10-31)
+- 데이터는 Fiscal.ai를 쓴다. 등락률 검증, 섹터 온도, 컨센서스·가이던스, 실적 일정 모두. Fiscal에 없는 스크리닝과 아시아 등락률만 TradingView.
+- 판정할 수 없는 항목은 보고서에서 뺀다. 빈칸·'미확인'·'평가 불가'를 쓰지 않는다.
+- 본론만 쓴다. 작업 과정에서 생긴 일(원천 장애, 파일 상태, 재계산, 지시 번호)은 쓰지 않는다.
+- 대만·홍콩 회사는 한국어 표기로 쓴다.
+- 구성은 `scripts/weekly/render.py`가 고정한다. 모델은 글만 쓴다. 관문(`config/weekly_review.yaml`)을 넘으면 렌더가 멈추므로 글을 고친다.
 
-US(<$10B) (https://t.me/d_ticker)
-…(10개)
+## 절차
+1. **주간 상승률**: `config/weekly_movers.yaml` tradingview 설정대로 `mcp-tv-run-screener`를 지역별로 `sort_by: "change|1W"`로 돌린다. 개수는 US 20, US(<$10B)·Europe·Japan·Korea·Taiwan·Hong Kong 각 10. 미국·유럽 상위 종목은 Fiscal.ai `company_stock_prices`로 직전 금요일 종가 대비를 대조한다(유럽 키는 XCSE_·XOSL_·XSTO_·XLON_·XETR_·XPAR_·XSWX_). 우선주·같은 회사 중복 상장·해외 주식 코드는 뺀다. 사업을 확인하지 못한 종목은 찾아보고, 그래도 모르면 뺀다.
+2. 행마다 `{region, rank, pct_change, name_ko, desc_ko, theme, ticker, as_of}`를 JSON 목록으로 쓰고 `py radar/markets/weekly_movers.py --put <파일> <YYYY-Www>`. name_ko는 한국 통용 표기, desc_ko는 2~10자 사업, theme은 바이오·의료 / 반도체·부품 / 사이버보안·SW / 전력·에너지 / 방산·우주 / 금융·서비스 / 소비재 / 산업·소재 중 하나.
+3. **글로벌 지수**: S&P 500, 나스닥 100, 필라델피아 반도체, 러셀 2000, 유로 스톡스 50, FTSE 100, 닛케이 225, 코스피, 코스닥, 항셍 — `mcp-tv-get-symbol-data-batch`의 `change|1W`.
+4. **이번 주 바뀐 것 3~4건**: 그 주 P0 카드·실적·공시에서 판단을 바꾸는 것만 고른다. 사실을 1차 자료로 대조한 뒤 건마다 무엇이·왜 중요한가·유리·불리·다음 확인을 한두 문장으로 쓴다. '왜 올랐나'는 1차 자료가 있을 때만 쓴다(금지표: 주가 급등 → 펀더멘털 변화).
+5. **섹터 온도**: `knowledge/models/portfolio/sector_latest.json`(Fiscal.ai) 3~6행, 읽기는 한 구절.
+6. **다음 주 볼 것 4~6건**: 일정 전체가 아니라 판단을 가르는 사건만. 날짜(KST)·무엇·볼 숫자(Fiscal `company_estimates`)·의미.
+7. **이 판단이 틀릴 조건 2~3줄**.
+8. 첫 문장(headline)과 결론 3줄을 맨 마지막에 쓴다. 지수·종목 나열이 아니라 그 주의 변화 한 문장이다.
+9. `outputs/brief/<YYYY-Www>_weekly.json`(구조는 `scripts/weekly/render.py` 맨 위) → `py scripts/weekly/render.py <YYYY-Www>` → .md·.html → claude.ai 비공개 Artifact 게시, 링크를 outputs/brief/artifact_links.md에 추가.
+10. **운영 기록은 보고서 밖**: `py scripts/score_*.py` 결과, 예측 원장, 기사 소재 채택, 수집 장애, 개선 제안은 `outputs/brief/<YYYY-Www>_ops.md`에 쓴다 — Proviser가 읽는다. 예측이 그 주에 판정됐으면 그때만 보고서 '이번 주 바뀐 것'에 넣는다.
 
-Europe (https://t.me/d_ticker)
-…(10개)
-
-Japan (https://t.me/d_ticker)
-…(10개)
-
-Korea (https://t.me/d_ticker)
-…(10개)
-```
-- 줄 형식: `+NN%｜한글 회사명｜한글 업종 짧게`. 구분자는 전각 세로선 `｜`. 등락률은 반올림 정수, `+` 부호.
-- 개수: US 20, US(<$10B) 10, Europe·Japan·Korea 각 10. 시가총액 기준선은 수집기 설정(`config/weekly_movers.yaml`)을 따른다.
-- 회사명은 한국에서 통용되는 한글 표기(예: Zscaler → 지스케일러, Check Point → 체크포인트). 업종은 '사이버보안', '고객관리 SW', '위탁임상(CRO)'처럼 2~10자로 사업 핵심을 쓴다. 확신 없는 표기는 영문 그대로 둔다.
-- **숫자는 데이터 파일 값만 쓴다.** 파일이 없거나 지역이 비면 그 지역에 "데이터 미수집 — 미확인"이라고 쓴다. 웹 검색으로 등락률을 채우지 않는다(종목 수십 개의 주간 수치를 검색으로 맞추는 것은 오류가 크다).
-- 이 절 아래에 반도체·AI 하드웨어·소프트웨어 종목만 골라 "치입 관점 한 줄"(왜 올랐나 — 원인 사건을 특정할 수 있을 때만, 못 하면 '원인 미확인')을 붙인다. "주가 급등 → 펀더멘털 변화" 연결 금지.
-- 채널 게시는 마스터가 직접 한다(P15). 위 블록은 그대로 복사해 붙일 수 있게 코드 블록으로도 한 번 더 둔다.
-
-## 형식
-```
-[모드: brief / 범위: YYYY-Www / 기준시각: …]
-■ 이번 주 한 문장
-■ 글로벌 증시 주간 상승률 (Dean's Ticker 형식) + 반도체·AI 종목 한 줄
-■ 섹터 밸류에이션 (`py scripts/valuation/engine.py --digest evening` + 하위 섹터별 NTM P/E 중앙값·리비전·반영도 주간 변화, 내러티브 단계 변화)
-■ 테제별 변화 (강화·약화·무관, 근거 id)
-■ 지표·거울 데이터
-■ 예측 원장 (만기 도래·판정)
-■ 다음 주 카탈리스트 (event-preview 필요 목록)
-■ 시스템 성능 (탐지 지연·누락·장애·경보 정밀도)
-■ 개선 제안 (원천·키워드·규칙 — 마스터 승인 대상)
-```
-## 저장·공유
-`outputs/brief/YYYY-Www_weekly.md` + claude.ai 비공개 Artifact(로컬 전용 정보 제외, 필드 인텔은 source_class 집계만).
+채널 게시는 마스터가 직접 한다. 리포트의 '채널용 텍스트'를 복사해 쓴다.

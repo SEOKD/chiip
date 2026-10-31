@@ -1,0 +1,46 @@
+# Chiip Weekly Review 구성·품질 관문 — 2026-10-31 재설계(마스터 평가: 가독성·품질·구성 모두 3/10 이하)
+# 진단: 시장 보고서가 아니라 운영 장부였다. 독자의 질문 "이번 주 무엇이 바뀌었고 다음 주 무엇을 보나"보다 예측 장부·시스템 성능·개선 제안이 길었다.
+# 원칙: 읽는 사람은 휴대폰으로 3분 안에 끝낸다. 본론만 쓴다. 판정할 수 없는 항목은 싣지 않는다. 작업 과정은 쓰지 않는다.
+# 계산: scripts/weekly/render.py — 이 파일의 제한을 넘으면 렌더가 멈춘다.
+sections: [이번 주 결론, 글로벌 지수, 글로벌 증시 주간 상승률, 이번 주 상승 업종, 이번 주 바뀐 것, 섹터 온도, 다음 주 볼 것, 이 판단이 틀릴 조건]
+regions:
+  - {key: US, title: "US", count: 20}
+  - {key: US_SMALL, title: "US(<$10B)", count: 10}
+  - {key: EU, title: "Europe", count: 10}
+  - {key: JP, title: "Japan", count: 10}
+  - {key: KR, title: "Korea", count: 10}
+  - {key: TW, title: "Taiwan", count: 10}
+  - {key: HK, title: "Hong Kong", count: 10}
+limits:
+  headline: 60
+  bullet: 90
+  bullets: [3, 3]
+  changes: [3, 4]
+  change_field: 120
+  sectors: [3, 6]
+  next: [4, 6]
+  next_field: 60
+  risks: [2, 3]
+  risk: 90
+  prose_chars: 3500       # 상승률 목록을 뺀 본문 전체
+banned:                   # 작업 과정·판정 불가·내부 표기 — 보고서에 쓰지 않는다
+  - 미확인
+  - 판정 불가
+  - 평가 불가
+  - 산출 불가
+  - 판정 대기
+  - 데이터 미수집
+  - 보류
+  - 수집
+  - 갱신 중단
+  - 재계산
+  - 대체값
+  - 회차
+  - 기록 파일
+  - 스크립트
+  - local-only
+  - 보강 적용
+  - '\.(csv|py|yaml|md|json)\b'
+  - '`'
+  - '\b[DPRX]-20\d{6}'
+  - '[一-鿿]'     # 대만·홍콩 회사도 한국어로 쓴다

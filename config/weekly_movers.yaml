@@ -3,7 +3,19 @@
 # 출력: knowledge/models/weekly_movers/YYYY-Www.csv  — 토요일 06:00~09:00 KST 사이 1회(위클리 리뷰 09:13 전)
 # 등락률: EODHD 스크리너 refund_5d_p(최근 5거래일). 휴장일이 낀 주는 금요일→금요일과 다를 수 있음(파일에 표시)
 
-provider: eodhd
+provider: tradingview     # 2026-10-31 — Weekly Review 모델이 TradingView 스크리너로 뽑고 radar/markets/weekly_movers.py --put 으로 저장. 아래 EODHD 설정은 키가 들어올 때만 쓴다
+tradingview:
+  sort_by: "change|1W"    # 금요일 대 금요일. Perf.W는 기준일이 달라 쓰지 않는다
+  # market_cap_basic은 현지 통화다
+  regions:
+    - {key: US, market: america, min: 10000000000, exchange: [NYSE, NASDAQ, AMEX]}
+    - {key: US_SMALL, market: america, min: 1000000000, max: 10000000000, exchange: [NYSE, NASDAQ, AMEX]}
+    - {key: JP, market: japan, min: 150000000000}
+    - {key: KR, market: korea, min: 280000000000}
+    - {key: TW, market: taiwan, min: 30000000000}
+    - {key: HK, market: hongkong, min: 7800000000}
+    # 유럽은 나라별로 뽑아 합친다. 영국 LSE는 0으로 시작하는 해외 주식 코드를 빼고, 독일은 XETR만
+    - {key: EU, market: [uk, germany, france, switzerland, sweden, denmark, norway, netherlands, italy, spain], min: 900000000, min_sek_dkk_nok: 9000000000}
 link: "https://t.me/d_ticker"
 fetch_limit: 100          # 거래소별로 5일 상승률 상위 몇 개를 받아 거를지(최대 500)
 min_avg_volume_200d: 50000 # 거래량 하한(주) — 거래 거의 없는 종목 제외

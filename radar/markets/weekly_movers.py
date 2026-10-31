@@ -22,7 +22,7 @@ CONFIG = "config/weekly_movers.yaml"
 OUT_DIR = common.ROOT / "knowledge" / "models" / "weekly_movers"
 API = "https://eodhd.com/api"
 COLS = ["region", "rank", "pct_change", "name_en", "ticker", "exchange", "currency", "market_cap_usd",
-        "sector", "industry", "last_day", "as_of"]
+        "sector", "industry", "last_day", "as_of", "name_ko", "desc_ko", "theme"]
 
 
 def _key():
@@ -132,8 +132,20 @@ def collect(force=False):
     return len(rows_out), len(rows_out)
 
 
-def run():  # run_hourly 진입점
-    return collect()
+def put(src, wid=None):
+    """Weekly Review 모델이 TradingView 스크리너(change|1W)로 뽑아 쓴 JSON → 주차 CSV(2026-10-31 재설계, 지시서 .claude/skills/weekly-review)"""
+    rows = json.loads(Path(src).read_text(encoding="utf-8"))
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    path = OUT_DIR / f"{wid or week_id()}.csv"
+    with path.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=COLS, lineterminator="\n", extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    return path, len(rows)
+
+
+def run():  # run_hourly 진입점 — provider가 eodhd일 때만 스스로 수집한다
+    return collect() if (common.load_yaml(CONFIG) or {}).get("provider") == "eodhd" else (0, 0)
 
 
 def list_exchanges():
@@ -147,5 +159,8 @@ if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
     if "--exchanges" in sys.argv:
         list_exchanges()
+    elif "--put" in sys.argv:
+        i = sys.argv.index("--put")
+        print(put(sys.argv[i + 1], sys.argv[i + 2] if len(sys.argv) > i + 2 else None))
     else:
         print(collect(force="--force" in sys.argv))
