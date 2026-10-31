@@ -15,7 +15,7 @@ datapack "narrative":
                 "drives":"multiple|revision|both","quant":"숫자로 바꾼 것","status":"강화|유지|약화","falsifier","source"}],
    "attention": [{"label","value","unit"}],   # 선택 — 층별 관심 크기 막대
    "lead": {"summary": "한 장 요약 첫 문단", "value_story": "기업가치 결정 논리", "premium": {"multiple","eps"}, "why_excited": "왜 열광했나",
-            "lenses": [{"lens": LENSES 중 하나, "change", "evidence", "drives", "status", "falsifier"}…],   # 여섯 개 모두
+            "lenses": [{"lens": LENSES 중 하나, "change", "evidence", "drives", "status", "falsifier"}…],   # 모두. 실행 속도는 "lead_time"(회사 납품 리드타임)·"peer_lead_time"(경쟁 대안) 추가
             "products": [{"kind": "제품|서비스|기술", "name", "what", "use", "money"}…],   # 맨 앞 절(lead_section) — 마스터 지시 2026-10-30
             "policy": {"fiscal": {"change", "evidence", "drives", "status", "falsifier", "house": {"level": 0~5, "why"}, "senate": {"level": 0~5, "why"}},   # 재정정책(행정부)
                        "orders": {같은 구조},                                                                                                      # 행정명령(행정부)
@@ -28,7 +28,7 @@ import math
 
 DRIVES = {"multiple": "멀티플", "revision": "리비전", "both": "멀티플+리비전"}
 LAYERS = (("sell_side", "셀사이드(IB 애널리스트)"), ("buy_side", "바이사이드(기관 투자자)"), ("retail", "리테일(레딧·텔레그램·X)"), ("media", "언론·업계"))
-LENSES = ("구조적 체질 변화", "고부가 믹스 확장", "기술 혁신", "M&A", "재정정책", "CAPEX 낙수효과")   # 마스터 지시 2026-10-30 — 맨 앞 내러티브 절의 필수 렌즈
+LENSES = ("구조적 체질 변화", "고부가 믹스 확장", "기술 혁신", "실행 속도", "M&A", "재정정책", "CAPEX 낙수효과")   # 마스터 지시 2026-10-30 — 맨 앞 내러티브 절의 필수 렌즈. 실행 속도 = 납품 리드타임(2026-10-31)
 
 
 POLICY = (("fiscal", "재정정책(행정부)"), ("orders", "행정명령(행정부)"), ("laws", "연관입법(의회)"))
@@ -131,7 +131,10 @@ def lead_section(dp, mm=None, strict=True):
     policy = lead.get("policy")
     if strict and not policy:
         raise ValueError("datapack narrative.lead.policy가 없다 — 재정정책·행정명령·연관입법(옛 리포트 정정은 --legacy)")
-    miss = [k for k in LENSES if not (have.get(k) or {}).get("change") and not (k == "재정정책" and policy)]
+    miss = [k for k in LENSES if not (have.get(k) or {}).get("change") and not (k == "재정정책" and policy) and (strict or k != "실행 속도")]
+    speed = have.get("실행 속도") or {}
+    if strict and not (speed.get("lead_time") or str(speed.get("change", "")).startswith("해당 없음")):
+        raise ValueError("datapack narrative.lead.lenses 실행 속도에 lead_time이 없다 — 납품 리드타임, 없으면 change에 '해당 없음(이유)'")
     if miss or not lead.get("products") or not lead.get("summary"):
         raise ValueError(f"datapack narrative.lead 미비 — 렌즈 {miss or '완비'}, products·summary 필요")
     B = [{"type": "hl", "text": f"**기업가치를 결정하는 이야기:** {lead.get('value_story') or lead['summary']}"}]
@@ -147,9 +150,12 @@ def lead_section(dp, mm=None, strict=True):
         if k == "재정정책" and policy:
             items += policy_items(policy)
             continue
+        if k not in have:   # 옛 리포트 정정(--legacy)
+            continue
         x = have[k]
         tag = " · ".join(t for t in (DRIVES.get(x.get("drives"), x.get("drives")), x.get("status")) if t)
-        items.append(f"**{k}**" + (f" ({tag})" if tag else "") + f" — {x['change']}" + (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else ""))
+        speed_txt = "".join(f" {name} {x[key]}." for key, name in (("lead_time", "**납품 리드타임**"), ("peer_lead_time", "경쟁 대안")) if x.get(key))
+        items.append(f"**{k}**" + (f" ({tag})" if tag else "") + f" — {x['change']}" + speed_txt + (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else ""))
     B.append({"type": "ul", "items": items})
     B.append({"type": "h3", "text": "이 회사의 제품·서비스·기술"})
     B.append({"type": "ul", "items": [f"**{p.get('kind', '')} — {p.get('name', '')}:** {p.get('what', '')}" + (f" 쓰는 곳: {p['use']}." if p.get("use") else "") + (f" 돈 버는 방식: {p['money']}." if p.get("money") else "")
