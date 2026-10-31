@@ -1,0 +1,104 @@
+auto: true
+id: co-ttm
+name: TTM Technologies
+ticker: TTMI
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 87.63
+  shares: 0.107696
+  net_debt: 0.8704
+  source: 가격 = Fiscal.ai company_stock_prices 2026-10-29 종가 · 주식 수 105,375,520(Fiscal.ai
+    shares_outstanding 2026-10-23, 10-Q 표지) · 차입 = 10-Q 2026-09-28 유동성 장기차입 184.0
+    + 장기차입 1,459.9 + 리스 102.8 = 1,746.7백만$ · 현금 = 876.3백만$(9/28 — 3분기 인수 대금 $369M
+    지급 후, 차입 순증 $679M 반영). 주식 수는 10/23, 현금·차입은 9/28 기준(그 사이 자금 조달 공시 미확인)
+rev0: 4.48
+ic0: 2.9128
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.4788
+      end: 0.035
+      decay: 0.304
+    margin:
+      m0: 0.1321
+      target: 0.1832
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.1763
+      - 0.1832
+    s2c: 1.31
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5067
+      end: 0.04
+      decay: 0.354
+    margin:
+      m0: 0.1321
+      target: 0.2087
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.1763
+      - 0.1832
+    s2c: 1.506
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.4509
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.1321
+      target: 0.1577
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.1763
+      - 0.1832
+    s2c: 1.113
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [4.47, 4.49] (회사 3Q 실적 보도자료·콜(2026-10-22, Fiscal.ai ir_events_transcript
+    q3-2026): FY2026 매출 가이던스 $4.47B → $4.49B 상향, 4Q 매출 약 $1.43B·조정 EPS 약 $1.80(Fiscal.ai
+    guidance 칸))'
+  growth: 컨센서스 1년차 47.9%, 2년차 17.0%
+  margin: 1~2년차 컨센서스 17.6%, 18.3% 고정 → 목표 18%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 1.31
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 45.1%~50.7%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  shares: 완전 희석 = 기본 0.105376(2026-10-23) + 옵션·RSU·워런트·전환 0.0023 — 3분기 희석 가중평균 주식
+    107.7백만(Fiscal.ai 표준화 손익, 2Q 콜 CFO '약 107.7백만
+notes:
+- 자동 생성(build_drivers) 2026-10-30 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: N+M 프로그램 일정 — 3분기 약 $124M(2Q 콜 시사 약 $200M)·4분기 약 $210M(시사 약 $400M), 고객
+  프로젝트 일정 탓이라는 회사 설명은 미검증'
+- '어닝콜 위험: 부채 기반 연쇄 인수 — 순차입 2Q $0.57B → 3Q $0.87B, Ophir $0.65B 추가 예정, 이자 분기 +$20M'
+- '어닝콜 위험: 소재 리드타임 12~24주 이상(CCL·T-glass)'
+evidence:
+- 'Fiscal.ai MCP 2026-10-30 13시 조회: company_profile·stock_prices(일봉·월봉)·daily_ratios·shares_outstanding·financials_standardized(분기
+  손익·재무상태·현금흐름, 원문 auditUrl)·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers'
+- '10-Q 2026-09-28 재무상태표(Fiscal.ai auditUrl): https://fiscal.ai/company/NasdaqGS-TTMI/audit-filings/?file=https%253A%252F%252Fapi.fiscal.ai%252Fv1%252Ffiling%252F0001193125-26-435875%252Fpdf%253Fticker%253DTTMI%2526exchange%253DNASDAQ&pageNumber=4'
+- '3Q 실적 보도자료: https://www.globenewswire.com/news-release/2026/10/22/3386129/0/en/ttm-technologies-inc-reports-third-quarter-2026-results.html'
+- 'Ophir Optics 인수: https://www.globenewswire.com/news-release/2026/10/19/3383408/0/en/ttm-technologies-inc-agrees-to-acquire-mks-inc-s-ophir-optics-business-adding-advanced-infrared-optics-capabilities.html'
+- '자사주 매입: https://www.globenewswire.com/news-release/2026/10/27/3389746/0/en/ttm-announces-completion-of-existing-2025-share-repurchase-program-and-authorization-of-new-100-million-program.html'
+- 'Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-TTMI'
+- knowledge/narratives/companies/co-ttm.md(2026-10-28 내러티브 수집)

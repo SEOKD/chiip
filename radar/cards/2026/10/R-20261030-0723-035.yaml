@@ -1,0 +1,36 @@
+# 영향 판정 카드 — 1차 판정(radar-triage). 영향(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0723-035
+item_ids:
+  - src-news7-focus:c303ea2c59e9600e
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-30T07:08:03+09:00
+published_at: 2026-10-30T06:52:36+09:00
+latency_min: 15
+entities:
+  - co-amazon
+event_type: 실적
+headline_ko: "Amazon 3분기 실적 시장 기대 하회(CNBC 보도 제목 기준)"
+what_happened: "CNBC 보도 제목 기준으로 Amazon의 3분기 실적이 시장 기대에 못 미쳤다는 내용이다. 매출·AWS·설비투자 수치는 제목만으로 확인되지 않았고, 같은 사건의 Bloomberg 제목은 설비투자(spending) 급증을 언급한다(원문 미확인)."
+primary_source_confirmed: false
+novelty: "미확인 — 1차 실적 자료 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "Nasdaq-100 선물 하락·Amazon 급락 보도(제목 기준, 미확인 수치)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Amazon 3분기 실적 발표·10-Q에서 매출·AWS 성장·영업이익·설비투자(CAPEX) 수치와 컨센서스 대비 차이 확인"
+  - "설비투자 급증 폭이 AI 인프라 CAPEX 100억 달러 이상 기준(하이퍼스케일러)에 해당하는지 — 금액 확인 전까지 미확인"
+  - "같은 사건 기사(Bloomberg 22:00 UTC 등)는 재인용으로 P3 처리 — 1차 자료 확인 시 정정"
+next_check: "Amazon 실적 발표 자료·10-Q에서 CAPEX 수치와 AWS 성장률 확인"
+reverse: null
+policy: null

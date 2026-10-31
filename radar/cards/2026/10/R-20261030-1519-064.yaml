@@ -1,0 +1,33 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안, impact-card 전)
+id: R-20261030-1519-064
+item_ids: ["src-news7-focus:7b5eb0a846e88d8d"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T14:25:57+09:00"
+published_at: "2026-10-30T05:02:44+00:00"
+latency_min: 23
+entities: [co-nvidia]
+event_type: 기타
+headline_ko: "엔비디아, Nscale의 Anthropic 데이터센터에 수십억 달러 규모 신용 보증 검토(보도)"
+what_happened: "Seeking Alpha 색인에 따르면 엔비디아가 Nscale의 Anthropic 데이터센터 사업에 대한 수십억 달러(billions) 규모 신용 보증(credit guarantee)을 검토 중이라는 보도(report)가 있다. 원보도 매체·정확한 금액·조건·확정 여부는 제목만으로 미확인."
+primary_source_confirmed: false
+novelty: "미확인 — 원보도와 엔비디아·Nscale 공시·보도자료 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "원보도 매체·취재 출처와 '검토 중(weighs)'의 확정 단계 — 체결 여부 미확인"
+  - "보증 금액('billions')의 정확한 규모와 기간 — 100억 달러 기준 충족 여부"
+  - "보증 대상 데이터센터의 Anthropic 계약 구조(임차·용량 계약) 확인"
+  - "엔비디아 분기 보고서·Nscale 발표 등 1차 출처 대기"
+next_check: "엔비디아 10-Q·Nscale 보도자료·원보도 원문에서 보증 금액·상대방·단계 확인"

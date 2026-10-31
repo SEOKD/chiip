@@ -1,0 +1,43 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안). 영향 판정은 impact-card가 완성한다.
+id: R-20261030-0923-044
+item_ids:
+  - src-news7-focus:ac4b5331687b1842
+event_cluster: null
+first_seen_source: src-news7-focus:ac4b5331687b1842
+detected_at: 2026-10-30T09:07:02+09:00
+published_at: 2026-10-29T23:29:52+00:00
+latency_min: 37
+entities:
+  - co-alphabet
+event_type: 실적
+headline_ko: "알파벳 매출 미스 — AI 자본지출 우려 재점화 (로이터 제목 기준)"
+what_happened: "로이터는 알파벳의 매출 미스 이후 미국 증시가 하락했고, 이것이 AI 자본지출(CAPEX) 우려를 다시 키웠다고 보도했다. 매출 금액·세그먼트·CAPEX 수치는 기사 제목만 확인했다."
+primary_source_confirmed: false
+novelty: "하이퍼스케일러 매출 미스와 AI CAPEX 연결 — 제목 기준 확인, 본문 미확인"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-alphabet
+    driver: 시점
+    line_item: "AI 데이터센터 CAPEX 집행 속도에 대한 시장 기대"
+    direction: 불명
+    magnitude: 불명
+    timing: "2026년 3분기 실적 발표 직후"
+    rationale: "실적 원문 전까지 CAPEX 금액·가이던스 변화를 알 수 없어 방향 판단 불가. 시장 우려가 재점화됐다는 사실만 보도 기준."
+second_order: []
+market_context:
+  price_reaction: "로이터 기준 미국 증시 하락 (수치 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "(가설) 하이퍼스케일러 CAPEX 우려가 칩·인프라 밸류체인의 주가 민감도를 키우는지 — 1차 실적 원문 대조 전 가설"
+field_intel_check: 해당없음
+article_angle: "알파벳 매출 미스 뒤 AI CAPEX 질문 — 실적 원문 확인 후"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "매출 미스 폭과 기대 대비 차이 (컨센서스 대비 수치)"
+  - "CAPEX 가이던스 변화 여부와 금액"
+  - "시장 하락 폭과 원인 귀속(실적 vs 거시)"
+next_check: "알파벳 3분기 실적 보도자료·실적 콜 원문, Fiscal.ai 컨센서스 대조"
+reverse: null
+policy: null

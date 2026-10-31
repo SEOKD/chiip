@@ -1,0 +1,32 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안, impact-card 전)
+# 주의: id 061~063은 chiip_ids.py로 발급하지 않고 060 다음 번호로 부여함 — 커밋 전 중복 확인 필요
+id: R-20261030-1517-062
+item_ids: ["src-jp-ir-docs:e03af4b9932ab886"]
+event_cluster: null
+first_seen_source: src-jp-ir-docs
+detected_at: "2026-10-30T14:53:20+09:00"
+published_at: "2026-10-28"          # 문서 날짜(결산단신 표지). 공시 시각 미확인
+latency_min: null
+entities: [co-advantest]
+event_type: 실적
+headline_ko: "어드밴테스트 2027년 3월期 2Q 결산단신 공시(1차 원문)"
+what_happened: "아드반테스트가 2027년 3월期 2Q(중간기) IFRS 연결 결산단신을 2026-10-28자로 공시했다(1차 원문 확보). 표의 열 구조가 깨져 있어 매출·이익 수치는 아직 확정하지 않았다."
+primary_source_confirmed: true
+novelty: "미확인 — 직전 분기 대비 수치 비교 미수행"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "매출·영업이익 전년 대비 증감과 SoC·메모리 테스터 부문 분리 수치"
+  - "결산설명회 자료 보관 여부와 통기 가이던스"
+next_check: "단신 표 수치 재확인, 결산설명회 자료 수집"

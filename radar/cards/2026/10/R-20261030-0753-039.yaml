@@ -1,0 +1,41 @@
+id: R-20261030-0753-039
+item_ids: ["src-bi-direct:9475da39cb929040"]
+event_cluster: null
+first_seen_source: src-bi-direct
+detected_at: "2026-10-30T07:51:52+09:00"
+published_at: "2026-10-30T07:40:10+09:00"   # 원문 2026-10-29T22:40:10Z 를 KST로 환산
+latency_min: 11
+entities: [co-amazon]
+event_type: 증설·CAPEX
+headline_ko: "아마존 CEO, 2027년 AI 인프라 지출 '의미 있게' 상향 (보도 기준 2,200억 달러 이상)"
+what_happened: "아마존 CEO가 2027년 AI 인프라 지출이 '의미 있게' 더 많아질 것이라고 말했다는 Business Insider 보도(2026-10-29 현지 22:40 게시). 보도는 2027년 지출을 2,200억 달러 이상, 잉여현금흐름 감소를 함께 전했다."
+primary_source_confirmed: false
+novelty: "knowledge/claims 대조 — 2027년 아마존 CAPEX 수치 미등록(신규). 단, 1차 출처 미확인."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-amazon (CAPEX 주체)
+    driver: 물량
+    line_item: "AI 인프라 CAPEX(2027)"
+    direction: 상향
+    magnitude: 불명
+    timing: "2027년"
+    rationale: "지출 증가 발언은 확인됐으나 T0(메모리·HBM) 공급 물량으로 이어지는지는 공급 관계·주문 확인 전 미확인"
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "아마존 실적 발표·콜 원문에서 2027년 AI 인프라 CAPEX 문구·수치 확인 (BI는 2차 보도)"
+  - "잉여현금흐름 하락 폭과 원인(CAPEX 외 요인 포함 여부)"
+  - "아마존 AI 칩·메모리 공급사 배분 — 공급 관계·주문 확인 전 T0 연결은 가설"
+  - "같은 날 Bloomberg 팟캐스트(src-bbg-direct 등)는 재인용으로 P3 처리 — 1차 자료 확인 후 대표 건 교체 여부"
+next_check: "아마존 IR 실적 발표 자료·10-Q의 CAPEX 항목"
+reverse: null
+policy: null

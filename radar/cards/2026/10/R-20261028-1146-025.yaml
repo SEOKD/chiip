@@ -1,0 +1,41 @@
+# 영향 판정 카드 — 1차 판정(미검증). impact-card가 영향 블록을 채운다.
+id: R-20261028-1146-025
+item_ids:
+  - "src-gnews-t0-ko:ceec299bffa57969"
+  - "src-gnews-t0-ko:e8428ef95586afec"
+  - "src-gnews-t0-ko:fb4c2d4de71f03fc"
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: "2026-10-28T11:46:10+09:00"
+published_at: "2026-10-28T08:51:00+09:00"   # 원 시각 2026-10-27T23:51:00+00:00
+latency_min: 175
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 3분기 영업이익 83조3338억 원, 전년 대비 632% 증가 (언론 보도)"
+what_happened: "이코노미스트는 SK하이닉스 3분기 영업이익이 83조3338억 원으로 전년 대비 632% 늘었다고 보도했다. 회사 잠정실적 공시·보도자료는 이 기사들에서 확인되지 않으며, 매출·영업이익률·사업부별 내용은 확인되지 않는다."
+primary_source_confirmed: false
+novelty: "미확인 — 같은 날 기사 3건이 동일 수치를 보도. knowledge/claims 전체 검색은 미실시(Bash 권한 거부). 확인한 2026-10-27 주장 3건(C-20261027-001·002·004)에는 실적 수치 없음."
+linked_claims:
+  - "C-20261027-001"
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1           # 원래 P0 후보(T0 실적) → 1차 출처 대기로 P1. 국내 언론 기사라 텔레그램 대상 아님(alert_rules telegram_filter)
+verification: 1차판정
+open_questions:
+  - "회사 잠정실적 공시(DART)·IR 보도자료로 영업이익 수치 대조(1차 출처 대기)"
+  - "매출·영업이익률·사업부 세부 내용 확인"
+  - "'632%↑'의 분모(전년 동기 영업이익) 확인 — 기사 표현을 그대로 쓰지 않음"
+  - "기사 발행 시각(10/28 08:51 KST)과 회사 공시 시각의 선후 확인"
+  - "같은 날 주가 급등 보도(뉴스1·2news)의 원인 — 실적 동인 연결은 미확인"
+next_check: "DART 연결 잠정실적 공시 및 SK하이닉스 IR 자료 대조"
+reverse: null
+policy: null

@@ -1,0 +1,37 @@
+# 영향 판정 카드 — 1차 판정 초안 (radar-triage). 영향 블록은 impact-card가 채운다.
+id: R-20261029-1453-024
+item_ids:
+  - src-news7-focus:ab56faa945c1a88d
+event_cluster: null
+first_seen_source: src-news7-focus (CNBC, Google News 색인)
+detected_at: "2026-10-29T14:53:06+09:00"
+published_at: "2026-10-29T00:57:00+00:00"
+latency_min: null
+entities:
+  - co-samsung
+event_type: 실적
+headline_ko: "삼성전자 3분기 이익, 시장 예상 부합 — AI 메모리 수요 증가 언급 (CNBC 보도)"
+what_happened: "CNBC는 삼성전자의 3분기 이익이 시장 예상과 대체로 맞았다고 보도했고, 배경으로 AI 메모리 칩 수요 증가를 들었다. 헤드라인 기준이며 본문·수치는 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 1차 실적 발표(DART·IR) 수치와 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처(삼성전자 실적 발표 보도자료·DART 분기보고서) 확인 — 영업이익·매출 수치, 컨센서스 대비 차이"
+  - "부문별(DS: 메모리·파운드리 / MX·네트워크 / SDC·Harman) 실적 동인: HBM·서버 DRAM 가격·물량 언급 여부"
+  - "AI 메모리 수요 언급의 구체성(HBM 판매·고객 인증·가이던스) — 정량 근거인지 수사인지"
+  - "4분기 가이던스와 메모리 가격 전망 문구"
+next_check: "삼성전자 IR 실적 발표 자료 및 컨퍼런스콜 원문 대조"
+reverse: null
+policy: null

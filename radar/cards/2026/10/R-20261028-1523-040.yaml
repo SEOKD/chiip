@@ -1,0 +1,39 @@
+# 영향 판정 카드 — 1차 판정(radar-triage 초안). 영향 판정은 impact-card가 채운다.
+id: R-20261028-1523-040
+item_ids:
+  - src-news7-focus:4c04600ec0d2641c
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-28T14:51:42+09:00
+published_at: 2026-10-22T16:37:51+09:00   # 원문 UTC 2026-10-22T07:37:51Z
+latency_min: 8534                         # detected_at - published_at (탐지 지연, 신규성 아님)
+entities:
+  - co-semco
+  - co-nvidia
+event_type: M&A                           # 타법인 출자 성격. 'report says' 보도
+headline_ko: "삼성전기, 테슬라·엔비디아 투자 28억 달러 유치 보도"
+what_happened: "로이터는 보도(report says)를 인용해 삼성전기가 테슬라와 엔비디아로부터 28억 달러 규모의 칩 관련 투자를 받는다고 전했다. 회사 공시·보도자료는 확인되지 않았다."
+primary_source_confirmed: false
+novelty:                                  # 미확인: 기존 claims에 동일 주장 없음 확인. 국내 원보도와의 관계 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1                           # P0 후보(대형 투자·증설 연관)이나 1차 출처 대기로 P1
+verification: 1차판정
+open_questions:
+  - "1차 출처 대기: 삼성전기 공시(DART 타법인주식및출자증권취득 등)·회사 보도자료 확인 전까지 P0 보류."
+  - "금액·투자자·조건(지분율·전환 조건·사용처 증설 여부)이 보도 원문에서 어디까지 확정인지 미확인."
+  - "보도 원출처 확인: pair-semco-lginnotek-fcbga-aiaccel의 SIG-20261028-0006(삼성전기 출자설, 원출처 국내 보도)과 동일 사건이면 독립 확인 아님(origin_id 기록)."
+  - "탐지 지연 약 6일(원문 10-22, 탐지 10-28): 신규 공개인지 기존 보도 재수집인지 확인."
+  - "FC-BGA·AI 기판 캐파(fab_capacity) 연결 여부: 투자 목적이 기판 증설인지 미확인."
+next_check: "삼성전기 DART 공시 목록(사건 발생일 전후) 및 회사 IR·뉴스룸 확인"
+reverse: null
+policy: null

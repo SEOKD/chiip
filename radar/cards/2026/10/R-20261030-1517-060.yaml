@@ -1,0 +1,31 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안, impact-card 전)
+id: R-20261030-1517-060
+item_ids: ["src-jp-ir-docs:3fd879de38d58e3e"]
+event_cluster: null
+first_seen_source: src-jp-ir-docs
+detected_at: "2026-10-30T14:57:01+09:00"
+published_at: "2026-10-27"          # 문서 날짜(결산단신 표지). 공시 시각 미확인
+latency_min: null
+entities: [co-shinetsu]
+event_type: 실적
+headline_ko: "신에쓰화학 2027년 3월期 2Q 결산단신 공시(1차 원문)"
+what_happened: "신에쓰화학공업이 2027년 3월期 2Q(4~9월, 일본 기준 연결) 결산단신을 2026-10-27자로 발행했다(IR 자료실 1차 원문 확보). 원문 표의 열이 깨져 매출·이익 수치는 아직 확정하지 않았다."
+primary_source_confirmed: true
+novelty: "미확인 — 전 분기 대비 수치 비교 미수행"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "매출·영업이익의 전년 대비 증감과 반도체 소재(웨이퍼·포토레지스트) 부문 분리 수치"
+  - "결산설명회 자료 보관 여부와 가이던스 변경 유무"
+next_check: "단신 표 수치 재확인, 결산설명회 자료 수집"

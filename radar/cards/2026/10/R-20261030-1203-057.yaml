@@ -1,0 +1,42 @@
+# 영향 판정 카드 — 1차 분류(radar-triage) 초안. 영향 판정(impact-card) 전
+id: R-20261030-1203-057
+item_ids: ["src-gnews-t0-en:12f05e7ef7334974"]
+event_cluster: null
+first_seen_source: src-gnews-t0-en (WSJ 경유 Google News 색인)
+detected_at: 2026-10-30T11:46:29+09:00
+published_at: 2026-10-29T14:01:00+09:00
+latency_min: 1305
+entities: ["co-samsung"]
+event_type: 실적
+headline_ko: "WSJ 보도: 삼성전자 칩 부문 이익 또 다시 분기 최고 기록 (1차 출처 대기)"
+what_happened: "WSJ가 삼성전자 칩 사업 이익이 또 다시 기록적인 분기를 냈다고 보도했다(제목 기준, 본문 미확인). 매출·영업이익·부문별 수치와 회사 공식 발표 일치 여부는 확인 전이다."
+primary_source_confirmed: false
+novelty: "보도 제목 기준 신규 실적 보도로 보이나 수치 비교 불가 (본문·1차 자료 미확인)"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-samsung
+    driver: 가격
+    line_item: "DS 부문 영업이익 (미확인)"
+    direction: 불명
+    magnitude:
+    timing: "2026 3분기 실적 (보도 기준)"
+    rationale: "제목만으로 부문·원인 특정 불가. 메모리 가격 기여 여부 미확인"
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "삼성전자 IR 실적 자료(1차 출처)의 매출·영업이익·DS 부문 수치"
+  - "WSJ 보도와 회사 발표 수치 일치 여부"
+  - "메모리 가격 vs 물량 중 이익 증가 동인"
+  - "시장 컨센서스 대비 서프라이즈 방향"
+next_check: "삼성전자 공식 실적 발표 자료 확인 후 impact-card로 1차 영향 판정"
+reverse: null
+policy: null

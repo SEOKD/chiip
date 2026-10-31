@@ -1,0 +1,36 @@
+# 영향 판정 카드 — 1차 판정(radar-triage). 영향(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0723-034
+item_ids:
+  - src-sec-filings:0001193125-26-438017
+event_cluster: null
+first_seen_source: src-sec-filings
+detected_at: 2026-10-30T06:31:38+09:00
+published_at: 2026-10-30T06:08:00+09:00
+latency_min: 24
+entities:
+  - co-meta
+event_type: 기타
+headline_ko: "Meta 8-K 공시 — 중요 계약(1.01)·증권 보유자 권리 변경(3.03)·정관 변경(5.03)"
+what_happened: "Meta Platforms가 SEC에 8-K를 제출했고 공시 항목은 1.01(중요 계약 체결), 3.03(증권 보유자 권리의 중요 변경), 5.03(정관 변경), 9.01(첨부)이다. 계약 상대방·조달 금액·증권 종류는 원문 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 원문 본문 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "8-K 본문에서 계약 상대방·금액·증권 종류(우선주 등)·조건 확인. 항목 구성상 자금 조달 또는 AI 인프라 계약 가능성 — 가설"
+  - "AI 밸류체인 자금 조달 10억 달러 이상 기준 충족 여부 — 금액 확인 전까지 미확인"
+  - "직전 보도(마스터 지시 예시 포함)의 Meta 유상증자·엔비디아 참여 여부와 이번 공시의 관계 대조"
+next_check: "Meta 8-K 원문(SEC EDGAR) 본문과 첨부(9.01) 확인 → 조달 규모·참여자 기재"
+reverse: null
+policy: null

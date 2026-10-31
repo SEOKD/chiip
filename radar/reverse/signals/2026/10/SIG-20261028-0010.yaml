@@ -1,0 +1,22 @@
+id: SIG-20261028-0010
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-09 (TWSE 월매출, 2026-10 공개)
+layer: L3
+source_id: src-twse-monthly
+url: https://mopsfin.twse.com.tw/opendata/t187ap05_L.csv
+language: zh
+origin_id: null
+mentioned_entity: co-doosan
+match_type: 실명
+counterparty: 台光電(2383)·聯茂(6213)·金像電(2368)·健鼎(3044)·智邦(2345)
+pair_id: pair-isupetasys-doosan-lotteem-mlb-chain
+signal_type: 무역거울
+strength: S2
+gist_ko: '대만 CCL·PCB·스위치 2026-09 월매출 YoY: 台光電 +168.9%, 聯茂 +110.7% (CCL), 金像電 +55.5%(MoM −10.2%), 健鼎 +53.5% (PCB), 智邦 +66.1% (스위치). 고급 CCL 쪽 증가가 가장 가파르다.'
+original_excerpt: 2383 台光電 21,532,230 / 6213 聯茂 5,824,212 / 2368 金像電 9,319,805 (천 TWD, 2026-09)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: ① 대만 CCL사 점유율 확대(두산엔 경쟁 심화)일 수 있음 ② 고객 구성이 달라 국내 체인과 동조화 미검증 ③ 단월 데이터, 기저효과.
+convergence_score_after: 4
+status: 대기
+resolved: null

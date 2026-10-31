@@ -2,9 +2,9 @@
  "date": "2026-10-30",
  "reports": [
   {
-   "id": "co-innio",
-   "ticker": "INIO",
-   "json": "outputs\\tenbagger\\reports\\20261030_INIO.json",
+   "id": "co-ttm",
+   "ticker": "TTMI",
+   "json": "outputs\\tenbagger\\reports\\20261030_TTMI.json",
    "auto": 9.6,
    "checks": [
     {
@@ -17,7 +17,7 @@
      "axis": "사실",
      "name": "현재값 = 원자료",
      "status": "통과",
-     "detail": "배수 기준 시나리오(현재 = 1.0)"
+     "detail": "차트 현재값 87.63 vs 가격 87.63 · 시총 9.23"
     },
     {
      "axis": "사실",
@@ -41,7 +41,7 @@
      "axis": "과정",
      "name": "차트 ≥ 3·렌더 일치",
      "status": "통과",
-     "detail": "차트 17 · svg 17"
+     "detail": "차트 19 · svg 19"
     },
     {
      "axis": "과정",
@@ -52,8 +52,8 @@
     {
      "axis": "과정",
      "name": "프로바이저 보강 표시",
-     "status": "경고",
-     "detail": "출처 끝 '보강 적용: D-…' 없음"
+     "status": "통과",
+     "detail": "있음"
     },
     {
      "axis": "결론",
@@ -64,14 +64,14 @@
     {
      "axis": "결론",
      "name": "확률 가중값 재계산",
-     "status": "통과",
-     "detail": "판단 시나리오 재계산 1.26배 vs 본문 0.90, 1.26, 1.03배"
+     "status": "경고",
+     "detail": "재계산 1.19배 · 본문에 '확률 가중 x배' 수치 없음"
     },
     {
      "axis": "결론",
      "name": "v2와 차이 설명",
      "status": "통과",
-     "detail": "판단 1.26배 vs v2 0.78배 — 설명 있음"
+     "detail": "판단 1.19배 vs v2 1.04배"
     },
     {
      "axis": "결론",
@@ -88,9 +88,9 @@
    ]
   },
   {
-   "id": "us-cbrs",
-   "ticker": "CBRS",
-   "json": "outputs\\tenbagger\\reports\\20261030_CBRS.json",
+   "id": "co-vicor",
+   "ticker": "VICR",
+   "json": "outputs\\tenbagger\\reports\\20261030_VICR.json",
    "auto": 9.6,
    "checks": [
     {
@@ -103,7 +103,7 @@
      "axis": "사실",
      "name": "현재값 = 원자료",
      "status": "통과",
-     "detail": "배수 기준 시나리오(현재 = 1.0)"
+     "detail": "차트 현재값 206.62 vs 가격 206.62 · 시총 9.54"
     },
     {
      "axis": "사실",
@@ -127,13 +127,99 @@
      "axis": "과정",
      "name": "차트 ≥ 3·렌더 일치",
      "status": "통과",
-     "detail": "차트 13 · svg 13"
+     "detail": "차트 18 · svg 18"
     },
     {
      "axis": "과정",
      "name": "출처 ≥ 3·1차 출처",
      "status": "통과",
-     "detail": "출처 9 · 1차 1"
+     "detail": "출처 13 · 1차 1"
+    },
+    {
+     "axis": "과정",
+     "name": "프로바이저 보강 표시",
+     "status": "통과",
+     "detail": "있음"
+    },
+    {
+     "axis": "결론",
+     "name": "시나리오 확률 합 = 1",
+     "status": "통과",
+     "detail": "합 1.000"
+    },
+    {
+     "axis": "결론",
+     "name": "확률 가중값 재계산",
+     "status": "경고",
+     "detail": "재계산 1.06배 · 본문에 '확률 가중 x배' 수치 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "v2와 차이 설명",
+     "status": "통과",
+     "detail": "판단 1.06배 vs v2 0.53배 — 설명 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "킬 조건 2~4 + 날짜",
+     "status": "통과",
+     "detail": "킬 조건 4개 · 날짜 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "처방 표현 없음·면책",
+     "status": "통과",
+     "detail": "이상 없음"
+    }
+   ]
+  },
+  {
+   "id": "co-ultraclean",
+   "ticker": "UCTT",
+   "json": "outputs\\tenbagger\\reports\\20261030_UCTT.json",
+   "auto": 9.2,
+   "checks": [
+    {
+     "axis": "사실",
+     "name": "데이터 검증 10/10",
+     "status": "통과",
+     "detail": "datapack_check 10.0/10"
+    },
+    {
+     "axis": "사실",
+     "name": "현재값 = 원자료",
+     "status": "통과",
+     "detail": "차트 현재값 54.7 vs 가격 54.7 · 시총 2.62"
+    },
+    {
+     "axis": "사실",
+     "name": "원자료 조회일 = 리포트 날짜",
+     "status": "통과",
+     "detail": "조회 2026-10-30 · 리포트 2026-10-30"
+    },
+    {
+     "axis": "사실",
+     "name": "금액 단위 $B·$M",
+     "status": "통과",
+     "detail": "남은 표기 없음"
+    },
+    {
+     "axis": "과정",
+     "name": "의무 절",
+     "status": "통과",
+     "detail": "모두 있음"
+    },
+    {
+     "axis": "과정",
+     "name": "차트 ≥ 3·렌더 일치",
+     "status": "통과",
+     "detail": "차트 20 · svg 20"
+    },
+    {
+     "axis": "과정",
+     "name": "출처 ≥ 3·1차 출처",
+     "status": "통과",
+     "detail": "출처 9 · 1차 3"
     },
     {
      "axis": "과정",
@@ -151,13 +237,13 @@
      "axis": "결론",
      "name": "확률 가중값 재계산",
      "status": "통과",
-     "detail": "판단 시나리오 재계산 1.29배 vs 본문 0.37, 1.28, 0.37배"
+     "detail": "판단 시나리오 재계산 1.27배 vs 본문 1.22, 1.22, 1.27배"
     },
     {
      "axis": "결론",
      "name": "v2와 차이 설명",
-     "status": "통과",
-     "detail": "판단 1.29배 vs v2 0.29배 — 설명 있음"
+     "status": "경고",
+     "detail": "v2 배수 또는 판단 시나리오를 찾지 못함"
     },
     {
      "axis": "결론",

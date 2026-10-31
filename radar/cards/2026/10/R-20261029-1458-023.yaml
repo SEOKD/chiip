@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1458-023
+item_ids:
+  - src-news7-focus:65b547e32d943515
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T14:53:06+09:00
+published_at: 2026-10-28T16:00:01+00:00
+latency_min: 833
+entities:
+  - co-alphabet
+event_type: 증설·CAPEX
+headline_ko: "Alphabet, 2026 CAPEX 유지·2027 대폭 증가 시사"
+what_happened: "CNBC 보도(2차 출처)에 따르면 Alphabet은 2026년 CAPEX를 기존 수준으로 유지하고 2027년에는 '유의미한 증가'를 예고했다. 같은 기사 제목은 주가가 10% 하락했다고 전한다(원인 특정 전 단계)."
+primary_source_confirmed: false
+novelty: "미확인 — 1차 출처(Alphabet 실적 발표·어닝콜) 대기. 직전 가이던스 대비 2027 증가폭 미확인"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "CNBC 제목 기준 주가 10% 하락 보도 — 원인과 실적 동인 연결은 미확인"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "2027 CAPEX '유의미한 증가'의 구체 규모는? (Alphabet 실적 발표 자료 확인)"
+  - "2026 CAPEX 유지는 공급 제약(전력·칩 가용성)에서 온 것인가, 수요 판단인가?"
+  - "주가 하락의 원인이 CAPEX인지 다른 지표(클라우드 성장·마진)인지 분리 필요"
+next_check: "Alphabet 실적 발표 자료의 CAPEX 문구와 컨센서스 대조"
+reverse: null
+policy: null

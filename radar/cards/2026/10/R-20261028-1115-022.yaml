@@ -1,0 +1,36 @@
+# 영향 판정 카드 — 1차 판정(미검증). impact-card가 영향 블록을 채운다.
+id: R-20261028-1115-022
+item_ids:
+  - "src-gnews-t0-ko:b37ef0e217947517"
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: "2026-10-28T11:11:11+09:00"
+published_at: "2026-10-28T08:34:53+09:00"   # 원 시각 2026-10-27T23:34:53+00:00
+latency_min: 156
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 3분기 영업이익 83조 원 돌파…6분기 연속 최대 실적 (언론 보도)"
+what_happened: "MBC 뉴스는 SK하이닉스 3분기 영업이익이 83조 원을 넘었고 6분기 연속 최대 실적이라고 보도했다. 공시 또는 회사 보도자료 원문은 이 배치에서 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 1차 출처 대조 전. knowledge/claims에서 동일 수치 주장 검색 결과 없음."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인   # 보도에 시간외 급등 언급 있으나 1차 확인 전
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1           # 원래 P0 후보(실적) → 1차 출처 대기로 P1
+verification: 1차판정
+open_questions:
+  - "DART 잠정실적 공시 또는 회사 보도자료로 83조 원·6분기 연속 최대 실적 확인"
+  - "보도 간 수치 일치 여부(영업이익률 80% 분석 기사 포함)"
+  - "컨센서스 대비 서프라이즈 여부 — 미확인"
+next_check: "DART 잠정실적 원문 대조 후 earnings-delta로 실적 동인(물량·가격·믹스) 분해"
+reverse: null
+policy: null

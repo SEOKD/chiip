@@ -1,0 +1,34 @@
+id: R-20261030-0627-030
+item_ids:
+  - src-news7-focus:6ab34cc696089fc8
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T06:15:54+09:00"
+published_at: "2026-10-30T05:35:33+09:00"
+latency_min: 40
+entities:
+  - co-amazon
+event_type: 실적
+headline_ko: "Amazon AWS 매출 39% 성장, 클라우드 경쟁사도 가속 (CNBC 보도)"
+what_happened: "CNBC 헤드라인에 따르면 Amazon AWS 매출이 39% 성장했고 클라우드 경쟁사도 성장이 가속됐다. 1차 출처(Amazon 실적 발표) 확인 전이며 본문은 미확인이다."
+primary_source_confirmed: false
+novelty: "헤드라인 기준 AWS 성장률 수치. 이전 분기 대비 변화와 CAPEX 연결은 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Amazon 실적 발표 원문으로 AWS 매출·영업이익·CAPEX 수치 대조"
+  - "경쟁사(MSFT·GOOG) 클라우드 성장 동시 발표 여부 확인"
+next_check: "Amazon 10-Q·실적 보도자료 공개 후 AWS 수치와 CAPEX 가이던스 대조"
+reverse: null
+policy: null

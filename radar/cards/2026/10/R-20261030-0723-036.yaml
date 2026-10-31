@@ -1,0 +1,36 @@
+# 영향 판정 카드 — 1차 판정(radar-triage). 영향(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0723-036
+item_ids:
+  - src-news7-focus:f43450972dc46b36
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-30T07:04:16+09:00
+published_at: 2026-10-29T20:00:02+09:00
+latency_min: 664
+entities:
+  - co-alphabet
+event_type: 실적
+headline_ko: "Alphabet 3분기 실적 미스 — 검색 광고에 AI 잠식 첫 징후 우려(CNBC 제목 기준)"
+what_happened: "CNBC 보도 제목 기준으로 Alphabet의 3분기 실적이 시장 기대에 못 미쳤고, 검색 부문에서 AI가 수익을 잠식하는 첫 신호라는 해석이 나왔다. 같은 날 WSJ·Bloomberg는 Alphabet 시가총액이 약 $500B 줄었다고 제목에서 전했다(주가 반응, 실적 수치와 별개로 확인 필요)."
+primary_source_confirmed: false
+novelty: "미확인 — 1차 실적 자료 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "시가총액 약 $500B 감소(WSJ·Bloomberg 제목 기준, 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Alphabet 3분기 실적 발표·10-Q에서 검색·클라우드·TPU/AI 인프라 CAPEX 수치와 컨센서스 대비 차이 확인"
+  - "기사 발행 시각(10-29 11:00 UTC)이 실적 발표 시각과 맞지 않음 — 원문 시각 확인 후 latency_min 정정"
+  - "시가총액 하락이 실적 동인인지 시장 전반 요인인지 분리 — 원인 사건 특정 필요"
+next_check: "Alphabet 실적 발표 자료에서 검색 매출 성장률·CAPEX 가이던스 확인"
+reverse: null
+policy: null

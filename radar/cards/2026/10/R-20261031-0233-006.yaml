@@ -1,0 +1,39 @@
+id: R-20261031-0233-006
+item_ids:
+  - src-news7-focus:b7caade186aff8a5
+  - src-bbg-direct:4c7b0adf98cc8d56
+  - src-bbg-direct:68847d521c5305eb
+  - src-news7-focus:e4bfd299808b52be
+  - src-news7-focus:d8d5a407c0325fcb
+  - src-news7-focus:d0e8cf5c657914b0
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-31T02:04:36+09:00
+published_at: 2026-10-30T12:23:21+09:00
+latency_min: 821
+entities:
+  - co-amazon
+event_type: 실적
+headline_ko: "아마존 3분기 실적, AI 힘입어 예상 상회 — capex 상회 보도 (1차 미확인)"
+what_happened: "Reuters는 아마존이 예상을 웃도는 실적을 냈고 AI가 도움이 됐다고 보도했다(2026-10-30). Bloomberg 요약에 따르면 자본지출(capex)은 예상보다 높았고 전자상거래 성장률은 3년 내 가장 느렸으나, 수치는 1차 자료 확인 전이다."
+primary_source_confirmed: false
+novelty: "신규 (knowledge/claims 검색에서 동일 주장 없음)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "보도상 하락 (CNBC·Bloomberg 시황 기사, 폭 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "아마존 실적 발표 원문의 연간 capex 가이던스 금액과 직전 대비 변화는? (100억 달러 이상 여부 확인)"
+  - "AWS 매출 성장률과 AI 관련 수주잔고 수치는?"
+  - "예상치(컨센서스) 대비 실제 capex·AWS 수치 차이는?"
+  - "AI 인프라 칩·서버 공급사(T0 연결 후보)에 대한 발주·조달 언급이 있었는가?"
+next_check: "아마존 IR 실적 발표문·10-Q와 컨퍼런스콜 전문 확인"

@@ -1,0 +1,40 @@
+# 영향 판정 카드 — radar-triage 1차판정 (영향 판정은 impact-card가 채움)
+id: R-20261028-1234-029
+item_ids:
+  - src-gnews-t0-en:ed01c05738e99057
+  - src-gnews-t0-en:b1debb00367717c3
+  - src-gnews-t0-en:d8ee80acce7bb9c0
+  - src-gnews-t0-en:fc39e1970d2e19c7
+event_cluster: null
+first_seen_source: src-gnews-t0-en:ed01c05738e99057
+detected_at: "2026-10-28T12:31:11+09:00"
+published_at: "2026-10-28T10:25:00+09:00 (원문 01:25 UTC, The Derrick)"
+latency_min: 126
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 Q3 2026 실적·주주환원 보도 집중 (제목 기준, 1차 출처 대기)"
+what_happened: "해외 매체 4건이 10-28 KST 10:25~12:10 사이 SK하이닉스 Q3 2026 실적을 보도했고, 제목 기준으로 분기 매출 100조 원 상회와 '예상치 상회'(beats)가 공통 언급됐다. 회사 공시·IR 자료는 아직 확인하지 않았으며 위 수치는 모두 기사 제목 기준이다."
+primary_source_confirmed: false
+novelty: "미확인 — 실적 수치 대조(기존 가이던스 claim)는 impact-card 단계에서 수행"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 공시(DART)·IR 실적 자료로 매출·영업이익·영업이익률 대조 (제목의 '80% margin'은 정의 미확인)"
+  - "'beats forecasts'의 기준 컨센서스 출처·시점 확인"
+  - "주주환원 규모 '$45B' 표기의 기준(환율·기간·구성) 확인 — 같은 45B 표기가 Solidigm 미국 팹 보도(b35b84f4)에도 등장, 혼동 여부 점검"
+  - "'Q3 2026 slides'가 회사 IR 자료인지 확인"
+next_check: "SK하이닉스 IR 실적 자료·DART 분기 공시 확인 (1차 출처 대기)"
+reverse: null
+policy: null

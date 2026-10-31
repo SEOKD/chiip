@@ -1,0 +1,38 @@
+# 영향 판정 카드 — 1차 분류(radar-triage) 초안. 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261028-2227-048
+item_ids:
+  - src-news7-focus:e835842cf135a525   # Seeking Alpha 기사, 2026-10-28 11:32 UTC
+event_cluster: "GE Vernova 2026년 3분기 실적 발표 및 Trench 인수 (2026-10-28)"
+first_seen_source: src-news7-focus
+detected_at: 2026-10-28T22:27:05+09:00
+published_at: 2026-10-28T20:32:14+09:00   # 원 시간 2026-10-28 11:32:14 UTC
+latency_min: 115
+entities:
+  - co-gevernova
+# [철회 대기] 분류 결과 P2로 하향 — 카드 불필요. 삭제 필요(Bash 권한 거부로 직접 삭제 못 함).
+event_type: M&A
+headline_ko: "GE Vernova, 그리드 장비사 Trench 90억 달러 인수 발표 + 매출 전망 재상향 (언론 보도, 1차 출처 대기)"
+what_happened: "Seeking Alpha 제목 기준으로 GE Vernova가 그리드 장비사 Trench를 90억 달러에 인수하기로 했고 매출 전망을 다시 올렸다고 보도됐다. 인수 계약 조건·완료 시점과 상향된 전망의 수치·기준은 본문과 1차 출처(8-K 첨부 보도자료·인수 공시)에서 아직 확인하지 않았다."
+primary_source_confirmed: false   # 같은 날 8-K 2.02 제출은 확인됨(R-20261028-2122-047). 인수 건은 1차 확인 전
+novelty: "신규 — 기존 카드·knowledge에서 Trench 인수 기록 없음(grep 확인). GE Vernova 실적 동인은 R-20261028-2122-047(8-K 메타)과 같은 사건으로 묶음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명             # 미반영|일부|대부분|불명
+edge_angle: ""
+field_intel_check: 해당없음   # 이 세션에서 local-only 미조회
+article_angle: ""
+alert_level: P2              # 2차 보도(SA)이므로 P1에서 한 단계 하향. 실적 동인은 R-20261028-2122-047(8-K, P1)에 이미 등록
+verification: 1차판정         # 1차판정|검증완료
+open_questions:
+  - "Trench 인수의 1차 출처(8-K 첨부 보도자료 또는 인수 발표) 확인: 금액 90억 달러의 구성·대금 방식·완료 조건"
+  - "매출 전망 상향의 수치·기준(기존 대비 폭·기간)과 실적 본문 수치(R-20261028-2122-047 next_check와 연결)"
+  - "그리드 장비 확보가 데이터센터 전력 수요(가스터빈·전력 인프라 병목)와 연결되는지 여부 — 가설, 미검증"
+  - "Trench 인수의 반독점·승인 조건과 시점 — 미확인"
+next_check: "GE Vernova 8-K 첨부 보도자료·인수 공시 열람 후 금액·매출 전망 수치 기입"
+reverse: null                # §11.12
+policy: null                 # §13.7

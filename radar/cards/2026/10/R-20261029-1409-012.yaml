@@ -1,0 +1,45 @@
+# 영향 판정 카드 — Vertiv 3분기 실적·전망 상향 보도 (Seeking Alpha 집계, 1차 출처 대기)
+id: R-20261029-1409-012
+item_ids:
+  - src-news7-focus:9bd7fd1717a3b5c3
+  - src-news7-focus:be32df81acdac718
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T14:09:07+09:00
+published_at: 2026-10-28T21:01:34+09:00   # 가장 빠른 기사 기준 (원 시간 2026-10-28 12:01:34 UTC)
+latency_min: 1028
+entities: [co-vertiv]
+event_type: 실적
+headline_ko: "Vertiv 3분기 실적·전망 상향 보도, 주가 급등 (Seeking Alpha 집계, 1차 출처 대기)"
+what_happened: "Seeking Alpha는 Vertiv 주가가 AI 데이터센터 수요를 이유로 한 전망(outlook) 상향 이후 급등했다고 보도했다(제목 기준, 2026-10-28). 같은 매체의 후속 기사는 Vertiv가 3분기 실적 호조와 가이던스 상향을 발표했고 주가가 16% 올랐다고 전했다(제목 기준)."
+primary_source_confirmed: false
+novelty: "미확인 — radar/cards/2026/10 안에 Vertiv 건 없음. 매출·EPS·가이던스 수치는 제목·스니펫에 없음."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-vertiv
+    driver: 불명
+    line_item: "매출·가이던스 (3분기 실적 및 전망)"
+    direction: 상향
+    magnitude:               # 방향만 제목 기준. 크기 미확인
+    timing: "2026년 3분기 실적 및 향후 전망"
+    rationale: "방향(상향)만 제목 기준. 상향 폭·데이터센터 수요 비중·물량/가격 동인은 미확인. 영향 판정은 impact-card가 완성."
+second_order: []   # 공급관계 경로 미구축 — 추정하지 않음
+market_context:
+  price_reaction: "주가 급등 보도(제목 기준 16%, 시세 원천 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "(가설) 상향 이유가 데이터센터 전력·냉각 수요라면 레이더 테마 '데이터센터 전력' 종목군 전반의 실적 기대에 연결될 수 있다. 근거 1건(동일 매체 제목), 반대 근거 미검토. 검증 전 가설."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Vertiv 보도자료(IR) 원문으로 3분기 매출·EPS·연간 가이던스 수치 확인 (현재 원천은 SA 제목·스니펫)"
+  - "상향 폭과 '데이터센터 수요' 비중 — 수주잔고·주문 지표 확인"
+  - "컨센서스 대비 서프라이즈 여부 미확인"
+  - "주가 16% 상승의 원인이 실적인지 가이던스인지 분리 필요 (주가 급등 → 펀더멘털 금지표)"
+next_check: "Vertiv IR 보도자료·실적 콜 원문 대조 후 impact-card 실행"
+# 선택 블록
+reverse: null
+policy: null

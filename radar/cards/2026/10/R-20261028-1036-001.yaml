@@ -1,0 +1,37 @@
+# 영향 판정 카드 — 1차 판정 초안 (radar-triage). id는 임시 발급: scripts/chiip_ids.py 재실행 후 교체 필요
+id: R-20261028-1036-001
+item_ids:
+  - "src-gnews-t0-ko:f74034f8c731fb8d"
+event_cluster: null
+first_seen_source: "src-gnews-t0-ko (Google News RSS, Chosunbiz 보도; 원 컨콜 자료 아님)"
+detected_at: "2026-10-28T10:36:11+09:00"
+published_at: "2026-10-28T01:00:00+00:00 (KST 10:00)"
+latency_min: 36
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "[컨콜] SK하이닉스 '신규 팹 건설이 공급 과잉 의미하지 않아…투자 탄력 운영'"
+what_happened: "Chosunbiz 보도에 따르면 SK하이닉스 컨퍼런스콜에서 신규 팹 건설이 공급 과잉을 뜻하지 않으며 투자는 탄력적으로 운영한다는 취지의 발언이 나왔다. 발언 원문, 투자 규모·시점, 실적 수치는 본 기사에 없어 1차 출처 확인 전까지 미확인이다."
+primary_source_confirmed: false
+novelty: "기존 knowledge/claims 키워드 검색(신규 팹·공급 과잉·컨콜) 기준 동일 발언 미발견. 1차 확인 전 판단 보류."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "SK하이닉스 IR 실적 자료·컨콜 녹취(1차 출처)에서 발언 원문 대조"
+  - "'신규 팹 건설'의 위치·투자 규모·가동 시점이 공시·회사 발표에 있는지 (발언만으로 증설 확정 아님)"
+  - "'공급 과잉 아님' 발언이 가이던스 변경인지, 기존 입장의 재확인인지"
+  - "실적 수치 서프라이즈 여부 (본 기사에 수치 없음)"
+next_check: "SK하이닉스 IR 공지·실적 자료 확보 후 P0(가이던스·CAPEX 변경) 해당 여부 재판정"
+reverse: null
+policy: null

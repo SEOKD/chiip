@@ -1,0 +1,36 @@
+id: R-20261028-1002-016
+item_ids:
+  - src-gnews-t0-ko:0dea5f6b6e3e1bce
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: 2026-10-28T10:01:10+09:00
+published_at: 2026-10-28T09:30:42+09:00
+latency_min: 31
+entities:
+  - co-skhynix
+event_type: 가이던스
+headline_ko: "SK하이닉스 3분기 실적 컨퍼런스콜 — 내년 D램 성장률·공급 부족 기간 전망 발언 (언론 보도 기준)"
+what_happened: "SK하이닉스 3분기 실적 컨퍼런스콜에서 내년 D램 성장률과 공급 부족 기간에 대한 전망 발언이 있었다고 서울경제TV가 헤드라인으로 보도했다(본문 미확인). 같은 콜을 다룬 타 매체는 '2029년까지 완판'(머니투데이·뉴스핌), '2030년까지 공급 부족'(서울경제TV)으로 기간을 다르게 옮겨 발언 원문 확인 전까지 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 (직전 콜 발언과 비교 전)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "컨콜 녹취·IR 자료 원문으로 '내년 D램 20%'와 '2029년 vs 2030년' 기간 표기 확인"
+  - "4분기 D램 출하량 증가율(20% 중반 보도)과 내년 성장률이 서로 다른 기간·기준인지 확인"
+  - "'빅테크 클라우드 매출 최대 80% 성장' 발언의 기준(전년비·분기비·매출 기준) 확인"
+  - "가이던스 여부 판정: 정량 전망인지 정성 발언인지 구분"
+next_check: "SK하이닉스 IR 실적 자료·컨콜 녹취 원문 확인 → earnings-delta로 직전 콜과 대조"
+reverse: null
+policy: null

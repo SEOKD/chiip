@@ -1,0 +1,22 @@
+id: SIG-20261028-0001
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-10-26 (미 동부, EDGAR 접수일)
+layer: L1
+source_id: src-edgar-fts
+url: https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm
+language: en
+origin_id: null
+mentioned_entity: co-samsung
+match_type: 실명
+counterparty: Anthropic, PBC (CIK 0002130357)
+pair_id: null
+signal_type: 공시언급
+strength: S2
+gist_ko: 앤트로픽 S-1(공개 등록서류) 본문에 "Samsung Electronics" 문자열이 나온다(EDGAR 전문검색 적중). 문맥(공급사·투자자·위험 요인·시장 언급)은 원문 미확인 — SEC가 자동 요청을 차단해 본문을 읽지 못함. 2차 보도(亜州日報·緯來新聞)는 S-1 위험 요인이 HBM 3사·TSMC 공급 부족을 언급했다고 전한다(2차 보도, 미검증).
+original_excerpt: '(원문 미열람) 2차 보도 제목: 「HBM・TSMCの供給不足が最大のリスク… アントロピックが示した3つの経営リスク」(亜州日報, 2026-10-27)'
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: '① 위험 요인의 일반적 공급 집중 서술(특정 계약 아님) ② 투자자(전략적 투자 보도 있음) 명단 언급 ③ 단순 시장 언급. 공급 관계·물량을 확인해 주지 않는다(금지표: 고객 투자 확대 → 특정 공급사 매출). 원문 문맥 확인 시 S0~S4 재판정.'
+convergence_score_after: 0
+status: 대기
+resolved: null

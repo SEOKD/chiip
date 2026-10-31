@@ -1,0 +1,41 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증). 영향 필드는 impact-card가 채운다.
+id: R-20261028-0931-013
+item_ids:
+  - src-gnews-t0-ko:8bf0d9179f5ff3cc   # 머니투데이, 2026-10-27 23:54:41 UTC (= 2026-10-28 08:54:41 KST)
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: 2026-10-28T09:26:11+09:00
+published_at: 2026-10-28T08:54:41+09:00
+latency_min: 32
+entities:
+  - co-skhynix
+event_type: 수주·공급계약
+headline_ko: "SK하이닉스 LTA 14곳 체결, 2027~2028년 생산량 50% 이상 보도 (1차 출처 대기)"
+what_happened: "머니투데이 제목은 SK하이닉스가 14곳과 장기공급계약(LTA)을 체결했고 2027~2028년 생산량의 50% 이상이 해당된다고 전했다. 고객명·제품 범위·물량·금액·계약 기간은 이번 배치의 제목 정보로는 확인되지 않았고, 회사 공식 발표도 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "기존 주장 C-20261027-003(약 10개 고객과 LTA 확정, 2026Q2 기준, 물량·기간 미공개)과 고객 수·기간·비중 수치가 다르다. 동일 사건의 갱신인지 별개 계약인지 1차 출처 대조 전까지 판단 불가 — 수치 상충 가능성 있음."
+linked_claims:
+  - C-20261027-003
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명             # 미반영|일부|대부분|불명
+edge_angle: ""
+field_intel_check: 해당없음   # 로컬만: 취재로 이미 파악|상충|공개 확인|무관
+article_angle: ""
+alert_level: P1               # 기본 P0(대형 공급계약) → 1차 출처 아님 → P1 (alert_rules 보정 규칙)
+verification: 1차판정         # 1차판정|검증완료
+open_questions:
+  - "1차 출처: 회사 보도자료·DART 단일판매·공급계약 공시 여부 — 확인되면 P0로 재판정"
+  - "14곳 vs 기존 약 10곳: 기존 주장과 같은 계약의 갱신인지 추가 계약인지"
+  - "'2027~2028년 생산량 50% 이상'의 분모(전체 생산량 기준인지 HBM 등 제품 한정인지)와 기준 — 제목만 확인"
+  - "계약 금액·선급금·가격 조건 유무: 물량 확정과 가격 확정을 분리해 확인"
+  - "계약 상대 고객 유형(전략 고객 여부)과 제품 범위(HBM·범용 DRAM·NAND)"
+  - "주가 반응·컨센서스 미확인"
+next_check: "SK하이닉스 3분기 실적 콜·IR 자료의 LTA 설명, DART 공시 (계약 고객 수·기간·제품 범위)"
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

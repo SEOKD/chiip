@@ -1,0 +1,38 @@
+id: R-20261028-1036-019
+item_ids:
+  - src-gnews-t0-ko:68601a40a908b8e2
+event_cluster: null
+first_seen_source: src-gnews-t0-ko (뉴스핌)
+detected_at: 2026-10-28T10:36:11+09:00
+published_at: 2026-10-28T10:16:00+09:00
+latency_min: 20
+entities:
+  - co-skhynix
+event_type: 제품·기술발표
+headline_ko: "SK하이닉스 컨콜 — HBM 적층 단수 하향, 주문이 공급 2배 상회 영향 발언 (언론 보도 기준)"
+what_happened: "뉴스핌은 SK하이닉스가 3분기 콜에서 HBM 적층(stack) 단수를 낮춘 영향을 설명하며 주문이 공급의 2배를 웃돈다고 말했다고 제목으로 보도했다(2026-10-28 10:16 KST). 단수 하향의 목적(수율·공급량 확대·사양 변경 중 무엇인지), 제품 세대, 기존 HBM4 로드맵과의 관계는 본문·원문 미확인이다."
+primary_source_confirmed: false
+novelty: "신규 — 기존 카드·claims에 적층 단수 하향 언급 없음. 다만 C-20261027-001(HBM4 출하 시점)·C-20261027-002(HBM4 램프)와 제품 세대·단수 정의를 맞춘 뒤 비교해야 판정 가능."
+linked_claims:
+  - C-20261027-001
+  - C-20261027-002
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "'적층 단수 하향'의 세대(HBM3E·HBM4 등), 기존 단수, 변경 사유를 원문으로 확인"
+  - "'주문이 공급 2배 상회'의 분모·기간(HBM 전체 또는 특정 제품)과 발언 맥락 확인"
+  - "C-20261027-001·002의 falsifier에 해당하는지 판정"
+  - "단수 하향이 수율 신호인지 수요 대응인지 구분 (양산 엔지니어 관점 가설, 검증 대상)"
+next_check: "SK하이닉스 3분기 IR 자료·컨콜 녹취 원문 확인 → C-20261027-001·002 next_check와 함께 대조"
+reverse: null
+policy: null

@@ -1,0 +1,22 @@
+id: SIG-20261028-0007
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: '2026-10-27T00:01:00+00:00'
+layer: L9
+source_id: src-foreign-press
+url: https://news.google.com/rss (鏡週刊 Mirror Media)
+language: zh
+origin_id: null
+mentioned_entity: co-doosan
+match_type: 실명
+counterparty: 金居(Co-Tech, 대만 동박)
+pair_id: pair-isupetasys-doosan-lotteem-mlb-chain
+signal_type: 현지언론
+strength: S1
+gist_ko: 대만 주간지가 고급 CCL 출하와 대만 동박사 金居의 위상을 다루며 두산전자를 언급(제목 기준). 본문 미열람 — 金居가 두산에 HVLP 동박을 공급한다는 서술인지 확인 필요.
+original_excerpt: 「PCB大潮／高階CCL出貨要看它！來自韓國的一只花籃　揭金居銅箔王者地位」(鏡週刊, 2026-10-27)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: ① 제목만 확인(본문 미열람)이므로 S1 ② 만약 金居 → 두산 동박 공급이라면 페어 체인의 롯데에너지머티리얼즈 쪽에는 대체(반대) 신호 ③ 투자 매체 성격의 종목 기사로 업계 통념 정리일 수 있음.
+convergence_score_after: 4
+status: 대기
+resolved: null

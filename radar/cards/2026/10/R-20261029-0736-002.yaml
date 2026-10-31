@@ -1,0 +1,35 @@
+id: R-20261029-0736-002
+item_ids:
+  - "src-policy-us-fed:686ffadf523216c7"
+event_cluster: null
+first_seen_source: src-policy-us-fed
+detected_at: "2026-10-29T07:36:26+09:00"
+published_at: "2026-10-28T20:09:27+00:00"
+latency_min: 147
+entities: []
+event_type: 규제·정책
+headline_ko: "미국, 로봇·산업기계 및 부품 수입 조정 포고(Section 232) 서명 — 팩트시트 공개"
+what_happened: "백악관 팩트시트에 따르면 대통령이 Section 232(1962년 무역확장법)에 근거한 포고(Proclamation)에 서명해 로봇·산업기계 및 그 부품·부속품의 미국 수입을 조정한다고 발표했다. 단계는 서명·발표이며, 발효일·세율·대상 HTS 코드 범위는 포고문 원문과 부속서를 확인하기 전까지 미확인이다."
+primary_source_confirmed: true
+novelty: "미확인 — 기존 232조 조치(반도체·장비 관련)와의 중복·신규 범위 여부 대조 필요. 포고문 부속서에 반도체 제조장비(ALD 등)가 포함되는지 확인 전까지 T0 노출은 불명"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "포고문 원문과 부속서 확인: 대상 HTS 코드에 반도체 제조장비(증착·식각 등)·산업기계 부품이 포함되는지"
+  - "발효일·관세율·면제·국가별 차등 조건 확인 (단계: 서명 → 시행 여부 분리)"
+  - "팩트시트 본문에 나온 'ALD' 키워드의 문맥 확인 (키워드 매칭 근거)"
+  - "포함 확인되면 P0(반도체 관세 발동) 재판정 — 한국 T0(co-samsung, co-skhynix) 수입 노출 확인"
+next_check: "federalregister.gov·whitehouse.gov에서 포고문 전문과 부속서 확인 후 impact-card로 영향 판정"
+reverse: null
+policy: null

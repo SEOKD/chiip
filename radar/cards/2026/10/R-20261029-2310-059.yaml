@@ -1,0 +1,32 @@
+id: R-20261029-2310-059
+item_ids: ["src-news7-focus:382befd63ba725da"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T23:07:24+09:00
+published_at: 2026-10-29T13:41:18+00:00
+latency_min: 26
+entities: ["co-sterling", "co-quanta-services"]
+event_type: 실적
+headline_ko: "Sterling Infrastructure 2026 Q3 실적 발표 자료 (Seeking Alpha 색인)"
+what_happened: "Sterling Infrastructure(STRL)가 2026년 3분기 실적 발표 자료(earnings call presentation)를 공개했다. 발표 자료 제목만 확인했고 본문 수치·가이던스는 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "수치·가이던스 미확인. 제목·색인 항목만 확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 보유 종목 PWR(Quanta Services)의 related(경쟁사)로 등록된 기업. 데이터센터 기초·토목 시공 수주 흐름을 보는 비교 지표가 될 수 있으나 본문 확인 전이라 가설."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 IR 발표 자료 원문: 수주잔고·가이던스 변경 여부"
+  - "데이터센터 관련 매출·수주 비중"
+next_check: "Sterling IR 실적 발표 자료와 어닝콜 원문"
+reverse: null
+policy: null

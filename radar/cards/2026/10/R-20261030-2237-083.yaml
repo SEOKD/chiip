@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar/cards/2026/10/R-20261030-2237-083.yaml (triage 초안, 영향 판정 전)
+id: R-20261030-2237-083
+item_ids:
+  - "src-jp-ir-qa:545889d4aa5b9a28"
+event_cluster: null
+first_seen_source: "src-jp-ir-qa (東京エレクトロン IR 질의응답 트랜스크립트, 2027년 3월期 2Q 決算説明会)"
+detected_at: "2026-10-30T22:04:20+09:00"
+published_at: "2026-10-30 (결산설명회 날짜. 공개 시각 미확인 — 자료 헤더 기준)"
+latency_min: "미확인"
+entities:
+  - co-tel
+event_type: 실적
+headline_ko: "도쿄일렉트론, 2027년 3월期 2Q(2026년 7~9월) 결산설명회 질의응답 전문 공개"
+what_happened: "도쿄일렉트론(TEL)이 2026-10-30 2027년 3월期 2분기(2026년 7~9월) 결산설명회 질의응답 트랜스크립트를 IR 자료실에 게시했다(1차 출처: 회사 IR 사이트, 발언자 川本 弘 CFO·河合 利樹 CEO로 자료 헤더에 명시). 본문(약 4만 2천 자)은 triage 단계에서 검토하지 않았다."
+primary_source_confirmed: true
+novelty: "미확인 — 본문 미검토. 직전 분기(2026년 3월期 4Q) 콜과의 차이는 earnings-delta로 확인 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "본문 검토 전: 수주·출하·가이던스 변경 여부, 메모리·로직 투자 언급, 한국 고객(SK하이닉스·삼성) 관련 발언은 미확인"
+  - "published_at 실제 공개 시각 확인 (IR 자료실 게시 시각 vs 결산 발표 시각)"
+  - "같은 자료가 46b4c5d0d34d8cb3 항목으로도 중복 수집됨 — 원본 1건만 카드화"
+next_check: "earnings-delta로 본문과 직전 분기 콜 대비 신규성 판정 → impact-card로 1차 영향 판정 (한국 장비·공정 고객 노출 확인)"
+reverse: null
+policy: null

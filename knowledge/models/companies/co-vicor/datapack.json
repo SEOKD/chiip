@@ -1,0 +1,1036 @@
+{
+ "id": "co-vicor",
+ "name": "Vicor",
+ "ticker": "VICR",
+ "as_of": "2026-10-30",
+ "unit": "B$",
+ "industry": "semiconductor",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.21,
+ "profile": {
+  "price": 206.62,
+  "shares_basic": 0.0461486,
+  "shares_date": "2026-10-19",
+  "cash": 0.5131,
+  "debt": 0.0072,
+  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-29 종가($206.62). 10/30 칸은 거래량 48주의 미확정 값($189.02)이라 뺐다. 주식 수 46,148,600(Fiscal.ai shares_outstanding 2026-10-19, 10-Q 표지 — 보통주 + Class B) · 차입 0, 리스 1.73+5.43 = $7.2M · 현금 $513.1M(9/30). 주식 수는 10/19, 현금·차입은 9/30 기준"
+ },
+ "dilution": {
+  "potential_total": 0.001479,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-10-19",
+  "source": "3분기 희석 가중평균 47,609천 주(3Q 콜 CFO·Fiscal.ai) − 기본 가중평균 46,130천 주 = 약 1.48백만 주(자사주법 기준 옵션). SEC XBRL 반희석 증권 미조회"
+ },
+ "financials": {
+  "rev_ttm": 0.5607,
+  "ebit_ttm": 0.1396,
+  "invested_capital": 0.4006,
+  "capex_ttm": 0.0452,
+  "da_ttm": 0.0215,
+  "sbc_ttm": 0.0177,
+  "s2c": 1.4,
+  "rev_growth_ttm": 0.27,
+  "basis": "GAAP",
+  "note": "TTM = Fiscal.ai 표준화 분기 손익 4Q25~3Q26 매출 107.26+112.97+143.35+197.11 = $560.7M, 영업이익 15.69+16.88+34.88+72.15 = $139.6M. CAPEX 5.54+12.39+11.17+16.14, 감가 5.17+5.34+5.42+5.53, SBC 4.37+3.85+4.18+5.34. 투하자본 = 자기자본 906.6 + 리스 7.2 − 현금 513.1. 주의: 3Q 영업현금은 콜 기준 $69.7M, Fiscal 표준화 값은 $50.2M(기타 투자활동 $19.5M 분류 차이로 추정 — 콜 값을 쓴다). 3분기 로열티 $66.6M에는 소급분이 섞여 있어 TTM 이익률이 부풀려져 있다"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.648,
+   "FY2027": 0.85,
+   "FY2028": 1.05
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.2975,
+   "FY2027": 0.3201,
+   "FY2028": 0.3523
+  },
+  "margin_basis": "gaap",
+  "rev_low": {
+   "FY2027": 0.7,
+   "FY2028": 0.76
+  },
+  "rev_high": {
+   "FY2027": 1.0,
+   "FY2028": 1.35
+  },
+  "n_analysts": 5,
+  "quarters_est": {
+   "2026Q4": 0.1946,
+   "2027Q1": 0.2,
+   "2027Q2": 0.208,
+   "2027Q3": 0.218,
+   "2027Q4": 0.224
+  },
+  "quarters_act": {
+   "2025Q4": 0.1073,
+   "2026Q1": 0.113,
+   "2026Q2": 0.1434,
+   "2026Q3": 0.1971
+  },
+  "note": "매출 = Fiscal.ai 자체 추정(company_estimates, agentic consensus 2026-10-21) FY26 $648M·FY27 $850M·FY28 $1,050M(범위 $700M~1.0B·$760M~1.35B). EBIT = Fiscal 모델값 192.8·272.1·369.9백만$ ÷ 매출. VICR은 조정 실적을 내지 않아 GAAP 기준(Fiscal primaryEpsBasis = gaap). Zacks 대조: 매출 FY26 $641.9M·FY27 $988.7M·FY28 $1,255M, EBIT FY26 $187.6M·FY27 $378.1M, EPS 3.94·6.555·8.595(2명). FY27 매출에서 Fiscal이 Zacks보다 14% 낮다 — 판단 절에서 다룬다. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 107.264,
+    "est": 111.4,
+    "est_src": "zacks",
+    "est_asof": "2025-12-23",
+    "basis": "gaap",
+    "earnings_date": "2026-02-19"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.01,
+    "est": 0.38,
+    "est_src": "zacks",
+    "est_asof": "2025-12-18",
+    "basis": "gaap",
+    "earnings_date": "2026-02-19"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 112.969,
+    "est": 112.9,
+    "est_src": "zacks",
+    "est_asof": "2026-02-23",
+    "basis": "gaap",
+    "earnings_date": "2026-04-21"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.44,
+    "est": 0.39,
+    "est_src": "zacks",
+    "est_asof": "2026-02-20",
+    "basis": "gaap",
+    "earnings_date": "2026-04-21"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 143.352,
+    "est": 138.7,
+    "est_src": "zacks",
+    "est_asof": "2026-06-24",
+    "basis": "gaap",
+    "earnings_date": "2026-07-21"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.04,
+    "est": 0.62,
+    "est_src": "zacks",
+    "est_asof": "2026-06-24",
+    "basis": "gaap",
+    "earnings_date": "2026-07-21"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 197.114,
+    "est": 187.2,
+    "est_src": "zacks",
+    "est_asof": "2026-10-02",
+    "basis": "gaap",
+    "earnings_date": "2026-10-20"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.33,
+    "est": 1.5045,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-15",
+    "basis": "gaap",
+    "earnings_date": "2026-10-20"
+   }
+  ],
+  "surprise_note": "3Q 매출의 Fiscal 추정 칸은 $121.5M(7/21 guidance)인데 그 뒤 회사가 두 번 상향(9/21 QoQ 20% 초과, 10/1 30% 초과)해 낡은 값 — Zacks 10/2 값으로 대체했다. 3Q EPS는 Fiscal 1.50 / Zacks 1.385 / FactSet 1.37(보도자료 요약). 4Q25·2Q26 EPS 상회는 세금 환입(세전 이익 대비 -142%·-28%) 영향이 크다.",
+  "revisions": {
+   "from_date": "2026-07-23",
+   "to_date": "2026-10-22",
+   "from_label": "2Q 콜(7/21) 직후 Zacks",
+   "source": "Fiscal.ai analyst_estimates history(Zacks) — 같은 기간끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "매출(백만$)",
+     "from": 191.0,
+     "to": 188.45
+    },
+    {
+     "period": "FY2026",
+     "metric": "매출(백만$)",
+     "from": 603.0,
+     "to": 641.9
+    },
+    {
+     "period": "FY2027",
+     "metric": "매출(백만$)",
+     "from": 999.05,
+     "to": 988.7
+    },
+    {
+     "period": "FY2028",
+     "metric": "매출(백만$)",
+     "from": 1221.5,
+     "to": 1255.15
+    },
+    {
+     "period": "FY2026",
+     "metric": "EPS",
+     "from": 3.12,
+     "to": 3.94
+    },
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": 6.345,
+     "to": 6.555
+    },
+    {
+     "period": "FY2028",
+     "metric": "EPS",
+     "from": 8.15,
+     "to": 8.595
+    }
+   ]
+  },
+  "price_window": {
+   "from": 230.99,
+   "to": 206.62,
+   "note": "리비전 구간과 같은 기간: 7/20 종가(2Q 콜 전날) → 10/29 종가"
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.64,
+   0.648
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "q4_product_growth_qoq": 0.1,
+  "q4_royalty_min_m": 43,
+  "long_term": "연례 주총·2Q 콜: 매출 $2.5B·총이익률 70%·영업이익률 40%(기간 미제시, 기존 $1B·65%를 대체). 이번 목표는 2번째 팹이 있어야 가능(CEO)",
+  "source": "회사 3Q 콜(2026-10-20): 4Q 제품 매출 약 +10% QoQ(3Q 제품 $130.5M → 약 $143.5M) + 로열티 최소 $43M(신규 계약 없음 전제) = 4Q 약 $186.5M 이상 → FY2026 약 $640M 이상(Chiip 환산, 회사가 합계로 제시하지 않음). 2Q 콜의 'FY2026 $600M 초과'에서 상향"
+ },
+ "call": {
+  "date": "2026-10-20",
+  "prev_date": "2026-07-21",
+  "tone": "up",
+  "tone_score": 7.0,
+  "tone_delta": 0.5,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_3q_m": 197.1,
+   "rev_growth_3q": 0.785,
+   "product_rev_3q_m": 130.5,
+   "royalty_3q_m": 66.6,
+   "royalty_baseline_m": 43,
+   "gm_3q": 0.683,
+   "product_gm_3q_est": 0.522,
+   "op_margin_gaap_3q": 0.366,
+   "legal_3q_m": 16.1,
+   "backlog_m": 406,
+   "bookings_first2w_q4_m": 100,
+   "ate_rev_annual_m": 100,
+   "cash_m": 513.1,
+   "ocf_3q_m": 69.7,
+   "capex_3q_m": 16.1,
+   "capex_committed_m": 48.6
+  },
+  "guidance_changes": [
+   "FY2026 '$600M 초과' → 4Q 제품 +10% + 로열티 최소 $43M(환산 FY $640M 이상)",
+   "로열티를 비반복이 아니라 반복 매출로 보라는 경영진 표현 변화 — 단, 소급분 규모는 공개하지 않음"
+  ],
+  "new_topics": [
+   "첫 순수 VPD 라이선스 — 주요 AI OEM, Stage 2 단가",
+   "하이퍼스케일러 2곳이 ITC 조사 개시 전 포괄 라이선스 문의(Stage 2·3 단가 제시)",
+   "ITC 337-TA-1526 개시(Foxconn 계열) → 제한적 수입금지 요청, 로열티 단가가 월 약 5%씩 오름",
+   "Fab-2(메리맥 33만 제곱피트 건물)·Fab-3(후크셋 부지) 매입, 합산 생산능력 약 5배 이상 언급, Fab-2 첫 장비 2027년 2분기",
+   "4분기 첫 2주 수주 $100M — 선도 고객의 2세대 VPD 대량 주문 포함",
+   "ATE(메모리·ASIC 시험장비) 고객 연 $100M 초과, 비AI 고객 CEO가 캐파 예약 요청"
+  ],
+  "dropped_topics": [
+   "2Q 콜의 '$2.5B·70%·40%' 목표는 이번 콜에서 재언급 없음",
+   "2세대 VPD의 선도 고객 밖 설계 수주 시점 — 'conversations are still early'로 후퇴",
+   "Fab-1 캐파 상한 $1.5B 수치 재확인 없음(TBD)"
+  ],
+  "analyst_focus": [
+   "Needham — 소급 로열티 규모, Fab-2 가동 시점, 2세대 VPD의 선도 고객 밖 채택",
+   "Roth Capital — Fab-1 가동률 가시성, 5배의 뜻(면적·생산량·매출), Fab-2·3 투자비",
+   "Craig-Hallum — 4Q 매출 산수, 2년 만기 라이선스 갱신, Stage 2·3 뜻, 3Q 소급 성격",
+   "DMB Capital — 전력 밀도와 칩 성능(Cerebras), ASP, IVR 진행"
+  ],
+  "risks": [
+   "로열티 덩어리성 — 3Q $66.6M vs 기준선 $43M, 소급분 크기 비공개(회사는 답 회피)",
+   "초기 라이선스 2년 만기 — 2027년 말 전후 갱신, 갱신 조건 미확인",
+   "법률 비용이 로열티의 약 20%(성공 보수) — 로열티 순마진은 약 80%",
+   "Fab-2·3 투자비 미공개(다음 콜 공개 가능)",
+   "Fab-1 캐파 제약이 2027년 2분기 전까지 제품 매출 성장의 상한",
+   "고객 집중도 — 10-Q 미확인(선도 고객 1곳 의존 정황, 회사가 이름을 밝히지 않음)"
+  ],
+  "source": "Fiscal.ai company_ir_events_transcript q3-2026(2026-10-20)·q2-2026(2026-07-21) — 요지만 자기 말로(라이선스 자료). 톤: 가이던스 상향·로열티 기준선 제시로 상향",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "FY2026 매출 기준",
+    "label": "FY26 매출 $640M+",
+    "prior": "FY26 $600M 초과",
+    "latest": "4Q 제품 +10% + 로열티 최소 $43M → FY 약 $640M 이상(환산)",
+    "driver": "rev0",
+    "shift": 0.04,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "로열티 기준선",
+    "label": "로열티 기준선 $43M",
+    "prior": "2Q 로열티 $30.4M, 신규 계약 없다는 보수적 전제",
+    "latest": "분기 최소 $43M(연환산 $172M), 회사가 반복 매출로 재정의",
+    "driver": "margin_target",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO·CEO"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "첫 순수 VPD 라이선스",
+    "label": "VPD 라이선스 Stage 2",
+    "prior": "NBM 중심 라이선스",
+    "latest": "주요 AI OEM Stage 2, 4분기 초 추가 구매주문",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "3Q 콜 Davies·CEO"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "ITC 337-TA-1526",
+    "label": "ITC 조사 개시",
+    "prior": "2027년 최종 판정 전 신규 계약 없다고 가정",
+    "latest": "Foxconn 대상 조사 개시, 수입금지 요청, Stage 3 단가 월 +5% 수준",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.3,
+    "source": "3Q 콜·Hon Hai 공시(2026-10-12)"
+   },
+   {
+    "id": "F5",
+    "kind": "업데이트",
+    "item": "제품 총이익률",
+    "label": "제품 GPM 52%",
+    "prior": "2Q 약 46.7%(설비 이전 비용)",
+    "latest": "3Q 약 52.2%(로열티 총이익률 100% 가정한 Chiip 추정)",
+    "driver": "margin_m0",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO·10-Q"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "2세대 VPD 대량 주문",
+    "label": "4Q 첫 2주 수주 $100M",
+    "prior": "2세대 개발 완료·데모 준비",
+    "latest": "4Q 첫 2주 $100M, 선도 고객 2세대 대량 주문 포함",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "3Q 콜 Davies"
+   },
+   {
+    "id": "F7",
+    "kind": "부정",
+    "item": "소급 로열티",
+    "label": "소급분 약 $24M",
+    "prior": "로열티에 소급·일회성 없음 전제 없음",
+    "latest": "3Q $66.6M − 기준선 $43M = 약 $23.6M이 기준선 위(비반복 일부, 크기 비공개)",
+    "driver": "margin_m0",
+    "shift": -0.04,
+    "confidence": 0.8,
+    "source": "3Q Q&A(Needham·Craig-Hallum)"
+   },
+   {
+    "id": "F8",
+    "kind": "부정",
+    "item": "법률 비용",
+    "label": "법률비 로열티의 20%",
+    "prior": "2Q 약 $5M",
+    "latest": "3Q $16.1M, 근시일 로열티의 약 20%",
+    "driver": "margin_target",
+    "shift": -0.01,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F9",
+    "kind": "부정",
+    "item": "Fab-2·3 투자",
+    "label": "Fab-2·3 부지 매입",
+    "prior": "Fab-1 내 증설",
+    "latest": "뉴햄프셔 2곳 매입, 투자비 미공개, 2027년 2분기 첫 장비",
+    "driver": "s2c",
+    "shift": -0.2,
+    "confidence": 0.8,
+    "source": "3Q 콜·2026-09-11 보도자료"
+   },
+   {
+    "id": "F10",
+    "kind": "반복",
+    "item": "장기 목표",
+    "label": "매출 $2.5B 목표",
+    "prior": "$2.5B·70%·40%",
+    "latest": "이번 콜 재언급 없음(캐파 5배로 간접)",
+    "driver": "growth_end",
+    "shift": 0.0,
+    "confidence": 0.5,
+    "source": "2Q 콜"
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 39.4,
+  "ev_ebitda": 56.06,
+  "ev_sales": 16.1,
+  "growth": 0.27,
+  "note": "선행 P/E = $206.62 ÷ Fiscal.ai 선행 4분기 GAAP EPS 5.24(1.22+1.27+1.33+1.42) — Chiip 계산. Zacks 기준 5.655면 36.5배. EV/EBITDA·EV/매출 = Fiscal.ai daily ratios 2026-10-29(TTM)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai company_peers(MPWR·AEIS 직접 경쟁, TXN·ADI 사업 모델, BELFA 업종) + VRT(AI 전력 비교 — Chiip 추가). Delta·Murata·Infineon은 Fiscal 재무·추정 없음으로 제외. 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM), EV/매출·EV/EBITDA·P/B = daily ratios 2026-10-29. debt·cash는 EV − 시총으로 역산한 순차입(근사). pe_fwd = 10/29 종가 ÷ 선행 4분기 EPS(조정, TXN은 GAAP). BELFA는 선행 EPS가 비정상적으로 낮아 비움",
+ "peers": [
+  {
+   "ticker": "MPWR",
+   "rev": 3.738,
+   "ebit_margin": 0.295,
+   "mcap": 58.49,
+   "pb": 15.67,
+   "debt": 0.0,
+   "cash": 1.09,
+   "ev_sales": 15.35,
+   "ev_ebitda": 52.06,
+   "pe_fwd": 27.6,
+   "growth": 0.405
+  },
+  {
+   "ticker": "ADI",
+   "rev": 13.882,
+   "ebit_margin": 0.355,
+   "mcap": 209.95,
+   "pb": 6.26,
+   "debt": 6.8,
+   "cash": 0.0,
+   "ev_sales": 15.61,
+   "ev_ebitda": 31.39,
+   "pe_fwd": 26.0,
+   "growth": 0.336
+  },
+  {
+   "ticker": "TXN",
+   "rev": 20.766,
+   "ebit_margin": 0.408,
+   "mcap": 285.96,
+   "pb": 14.91,
+   "debt": 5.4,
+   "cash": 0.0,
+   "ev_sales": 14.03,
+   "ev_ebitda": 27.16,
+   "pe_fwd": 27.3,
+   "growth": 0.203
+  },
+  {
+   "ticker": "AEIS",
+   "rev": 2.038,
+   "ebit_margin": 0.132,
+   "mcap": 9.6,
+   "pb": 6.59,
+   "debt": 0.0,
+   "cash": 0.0,
+   "ev_sales": 4.71,
+   "ev_ebitda": 28.94,
+   "pe_fwd": 16.7,
+   "growth": 0.246
+  },
+  {
+   "ticker": "VRT",
+   "rev": 13.117,
+   "ebit_margin": 0.201,
+   "mcap": 94.69,
+   "pb": 17.21,
+   "debt": 0.0,
+   "cash": 0.44,
+   "ev_sales": 7.19,
+   "ev_ebitda": 30.79,
+   "pe_fwd": 26.7,
+   "growth": 0.353
+  },
+  {
+   "ticker": "BELFA",
+   "rev": 0.786,
+   "ebit_margin": 0.162,
+   "mcap": 2.7,
+   "pb": 2.9,
+   "debt": 0.0,
+   "cash": 0.19,
+   "ev_sales": 3.2,
+   "ev_ebitda": 16.25,
+   "growth": 0.21
+  }
+ ],
+ "history": {
+  "basis": "Fiscal.ai daily ratio_ev_to_sales(월말 표본)",
+  "ev_sales": [
+   {
+    "date": "2023-07-31",
+    "value": 9.41
+   },
+   {
+    "date": "2023-10-31",
+    "value": 3.6
+   },
+   {
+    "date": "2023-12-29",
+    "value": 4.26
+   },
+   {
+    "date": "2024-03-28",
+    "value": 3.62
+   },
+   {
+    "date": "2024-06-28",
+    "value": 3.19
+   },
+   {
+    "date": "2024-09-30",
+    "value": 4.61
+   },
+   {
+    "date": "2024-12-31",
+    "value": 5.33
+   },
+   {
+    "date": "2025-03-31",
+    "value": 4.95
+   },
+   {
+    "date": "2025-06-30",
+    "value": 4.02
+   },
+   {
+    "date": "2025-09-30",
+    "value": 4.71
+   },
+   {
+    "date": "2025-10-31",
+    "value": 9.32
+   },
+   {
+    "date": "2025-11-28",
+    "value": 9.17
+   },
+   {
+    "date": "2025-12-31",
+    "value": 10.08
+   },
+   {
+    "date": "2026-01-30",
+    "value": 14.89
+   },
+   {
+    "date": "2026-02-27",
+    "value": 19.31
+   },
+   {
+    "date": "2026-03-31",
+    "value": 14.71
+   },
+   {
+    "date": "2026-04-30",
+    "value": 25.18
+   },
+   {
+    "date": "2026-05-29",
+    "value": 31.51
+   },
+   {
+    "date": "2026-06-30",
+    "value": 32.88
+   },
+   {
+    "date": "2026-07-31",
+    "value": 17.56
+   },
+   {
+    "date": "2026-08-31",
+    "value": 15.81
+   },
+   {
+    "date": "2026-09-30",
+    "value": 22.87
+   },
+   {
+    "date": "2026-10-29",
+    "value": 16.1
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-07-21",
+   "tag": "2Q 실적·콜(장전)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-11",
+   "tag": "뉴햄프셔 Fab-2·3 부지 매입 발표(GlobeNewswire)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-09-17",
+   "tag": "AI 라이선스 계약 관련 급등(TIKR 제목, 1차 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-09-21",
+   "tag": "3Q 성장 가이던스 상향(QoQ 10% → 20% 초과)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-09-22",
+   "tag": "전날 장후 3Q 가이던스 상향 반응(QoQ 20% 초과)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-01",
+   "tag": "3Q 성장 가이던스 재상향(QoQ 30% 초과)·Needham 목표가 $350",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-02",
+   "tag": "CEO 2만 주 추가 장내 매도(10/1 2만 주 포함 약 $12.5M)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-12",
+   "tag": "ITC 337-TA-1526 조사 관련 Hon Hai 공시",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-20",
+   "tag": "3Q 실적·콜(장전) — 매출 상회·EPS 하회",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-26",
+   "tag": "반등 +11%(Seeking Alpha 제목, 원인 본문 미확인)",
+   "kind": "sector"
+  }
+ ],
+ "sources": [
+  "Fiscal.ai MCP 2026-10-30 22시 조회: company_profile·stock_prices(일봉·월봉)·daily_ratios·shares_outstanding·financials_standardized(분기 손익·재무상태·현금흐름)·segments_and_kpis·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers·company_filings",
+  "10-Q 2026-09-30(Fiscal.ai auditUrl): https://fiscal.ai/company/NasdaqGS-VICR/audit-filings/?file=https%253A%252F%252Fapi.fiscal.ai%252Fv1%252Ffiling%252F0001193125-26-431231%252Fpdf%253Fticker%253DVICR%2526exchange%253DNASDAQ&pageNumber=4",
+  "3Q 실적 보도자료: https://www.globenewswire.com/news-release/2026/10/20/3384210/0/en/vicor-corporation-reports-results-for-the-third-quarter-ended-september-30-2026.html",
+  "Fab 부지 매입: https://www.globenewswire.com/news-release/2026/09/11/3360412/0/en/vicor-acquires-sites-for-additional-chip-fabs.html",
+  "ITC 337-TA-1526(Hon Hai 공시): https://www.investegate.co.uk/announcement/rns/hon-hai-precision-industry-co-ltd--hhpd/statement-on-u-s-itc-section-337-investigation/9816713",
+  "Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-VICR",
+  "knowledge/narratives/companies/co-vicor.md(2026-10-28 내러티브 수집), narrative_sources 2026-10-30 재수집"
+ ],
+ "raw": {
+  "retrieved_at": "2026-10-30T22:20:00+09:00",
+  "shares_cover_implied": 0.0461486,
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_VICR",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqGS-VICR",
+   "price": 206.62,
+   "market_cap": 9.5352,
+   "total_cash": 0.5131,
+   "total_debt": 0.0072,
+   "shares_outstanding": 0.0461486,
+   "ev_sales": 16.1,
+   "ev_ebitda": 56.06,
+   "as_of": "2026-10-29",
+   "balance_date": "2026-09-30",
+   "note": "시총 = daily calculated_market_cap 2026-10-29(9,535,223,732$). 10/30 칸 $8.72B는 미확정 봉 기준이라 쓰지 않음. 현금·리스 = 표준화 재무상태표 2026-09-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.10726,
+    "2026Q1": 0.11297,
+    "2026Q2": 0.14335,
+    "2026Q3": 0.19711
+   },
+   "op_income": {
+    "2025Q4": 0.01569,
+    "2026Q1": 0.01688,
+    "2026Q2": 0.03488,
+    "2026Q3": 0.07215
+   },
+   "gross_profit": {
+    "2025Q4": 0.05942,
+    "2026Q1": 0.06237,
+    "2026Q2": 0.08312,
+    "2026Q3": 0.13468
+   },
+   "royalty": {
+    "2025Q4": 0.01454,
+    "2026Q1": 0.01497,
+    "2026Q2": 0.03043,
+    "2026Q3": 0.06661
+   },
+   "ocf_call": {
+    "2026Q2": 0.034,
+    "2026Q3": 0.0697
+   }
+  },
+  "balance_2026_09_30": {
+   "cash": 0.51314,
+   "st_investments": 0.0,
+   "debt_current": 0.0,
+   "debt_lt": 0.0,
+   "lease_current": 0.00173,
+   "lease_lt": 0.00543,
+   "equity": 0.90658,
+   "inventory": 0.11092,
+   "receivables": 0.12249,
+   "total_assets": 0.98162,
+   "shares": 0.0461486,
+   "note": "Fiscal.ai 표준화 재무상태표(10-Q 2026-10-26 제출)"
+  },
+  "estimates_sales_m": {
+   "2025Q4_act": 107.26,
+   "2026Q1_act": 112.97,
+   "2026Q2_act": 143.35,
+   "2026Q3_act": 197.11,
+   "2026Q4": 194.57,
+   "2027Q1": 200.0,
+   "2027Q2": 208.0,
+   "2027Q3": 218.0,
+   "2027Q4": 224.0,
+   "2028Q1": 239.25,
+   "2028Q2": 272.33,
+   "2028Q3": 287.73,
+   "2028Q4": 250.69
+  },
+  "estimates_eps_gaap": {
+   "2026Q4": 1.22,
+   "2027Q1": 1.27,
+   "2027Q2": 1.33,
+   "2027Q3": 1.42,
+   "2027Q4": 1.47,
+   "FY2026": 4.03,
+   "FY2027": 5.49,
+   "FY2028": 7.15
+  },
+  "zacks": {
+   "FY2026_rev": 0.6419,
+   "FY2026_ebit": 0.18755,
+   "FY2027_rev": 0.9887,
+   "FY2027_ebit": 0.37805,
+   "FY2028_rev": 1.25515,
+   "FY2026_eps": 3.94,
+   "FY2027_eps": 6.555,
+   "FY2028_eps": 8.595,
+   "n_rev": 2,
+   "rev_asOf": "2026-10-22",
+   "ebit_asOf": "2026-10-21",
+   "price_target": {
+    "mean": 372.6,
+    "median": 360,
+    "low": 303,
+    "high": 450,
+    "n": 5,
+    "asOf": "2026-10-23"
+   },
+   "rating": {
+    "strongBuy": 4,
+    "buy": 1,
+    "hold": 0,
+    "sell": 0,
+    "n": 5,
+    "asOf": "2026-10-02"
+   },
+   "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "segments_m": {
+   "advanced": {
+    "2025Q3": 65.51,
+    "2025Q4": 62.63,
+    "2026Q1": 64.92,
+    "2026Q2": 94.16,
+    "2026Q3": 138.86
+   },
+   "brick": {
+    "2025Q3": 44.92,
+    "2025Q4": 44.63,
+    "2026Q1": 48.05,
+    "2026Q2": 49.19,
+    "2026Q3": 58.25
+   },
+   "backlog": {
+    "2025Q3": 152.81,
+    "2025Q4": 176.94,
+    "2026Q1": 300.62,
+    "2026Q2": 379.74,
+    "2026Q3": 406.04
+   }
+  },
+  "holders_13f_2026Q2": {
+   "holders": 473,
+   "shares_m": 20.48,
+   "net_change_m": 0.56,
+   "increased": 150,
+   "decreased": 118,
+   "new_positions": 0,
+   "top_buyers": [
+    "T. Rowe Price +0.48M",
+    "Driehaus +0.31M",
+    "JPMorgan +0.26M",
+    "Jane Street +0.21M",
+    "Vanguard +0.12M"
+   ],
+   "top_sellers": [
+    "BlackRock -0.42M",
+    "Herald -0.14M",
+    "AWM -0.14M",
+    "FMR -0.13M"
+   ]
+  },
+  "insider": {
+   "open_market_buys": 0,
+   "open_market_sells": 178,
+   "recent": "CEO Vinciarelli 10/1·10/2 각 2만 주 약 $12.5M 장내 매도, Davies 매월 약 3천 주(옵션 행사 후 매도), 이사 일부 매도. 장내 매수 0건"
+  },
+  "sec": {},
+  "source": "Fiscal.ai MCP — 위 sources"
+ },
+ "narrative": {
+  "as_of": "2026-10-30",
+  "stage": "확산",
+  "crowding": "중간(커뮤니티 강세 쏠림, 대형 IB 커버리지 얇음)",
+  "summary": "'전력 부품사가 전력 IP 라이선서로' — 로열티가 소급분을 빼고 분기 $43M까지 올라와 이야기가 숫자가 됐지만, 주가는 고점 $380에서 46% 빠졌고 시장은 소급분·IVR·캐파 제약을 먼저 넣었다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견(Zacks)",
+      "5명 — 강력 매수 4·매수 1·보유 0·매도 0",
+      "의견은 일방 강세, 표본이 작다",
+      "Fiscal.ai analyst_ratings — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+     ],
+     [
+      "목표가 평균·범위(Zacks)",
+      "$372.6 ($303~$450, 5명)",
+      "10/29 종가 대비 평균 +80% — IB 기대의 증거(Chiip 목표가 아님)",
+      "같은 곳, 2026-10-23"
+     ],
+     [
+      "EPS 추정 변화(Zacks)",
+      "FY2027 6.345 → 6.705(10/21) → 6.555(10/22)",
+      "콜 다음 날 소폭 하향 — 소급분을 뺀 기준선 반영",
+      "Fiscal.ai analyst_estimates history"
+     ],
+     [
+      "3Q 콜 질문 증권사",
+      "Needham·Roth·Craig-Hallum·DMB Capital",
+      "초점 = 소급분 크기·라이선스 갱신·Fab-2·3 투자비. 대형 IB 없음",
+      "Fiscal.ai ir_events_transcript(q3-2026)"
+     ]
+    ],
+    "read": "커버리지는 얇고 일방 강세다 — 대형 IB 개시가 멀티플 사건이 될 수 있지만 지금은 질문이 '이 로열티가 얼마나 지속되나'로 모인다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 기관(2026Q2)",
+      "473곳 · 순 +0.56백만 주 · 증가 150·감소 118",
+      "T. Rowe·Driehaus·JPMorgan 증가, BlackRock·FMR 감소",
+      "Fiscal.ai institutional_holders 2026Q2(45일 지연)"
+     ],
+     [
+      "펀드 레터(2023Q3~2026Q2)",
+      "최근 강세 3(Polen·John Hancock 비중 2.87%·Kathmandu) · 과거 약세 3(Hunterbrook 러시아 부품·Bear Cave 숏 리포트 인용·Carillon 매도)",
+      "강세는 AI 전력, 과거 약세는 고객·평판",
+      "Fiscal.ai company_fund_letters"
+     ],
+     [
+      "내부자 장내 거래",
+      "누적 매수 0·매도 178 — CEO 10/1~2 4만 주 약 $12.5M",
+      "가격 $310대에서 매도, 지금은 그보다 33% 낮다. 대주주 CEO의 분산 매도일 수 있어 단정 불가",
+      "Fiscal.ai insider_transactions"
+     ]
+    ],
+    "read": "성장 펀드는 들어왔지만 내부자 매수는 없다 — 13F는 고점 전 분기 값이라 7~10월 하락의 주체는 아직 모른다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧(ApeWisdom)",
+      "상위 목록 밖",
+      "언급 적음 — 리테일 쏠림 신호 없음",
+      "radar/portfolio.py fetch_ape 2026-10-30"
+     ],
+     [
+      "커뮤니티 기사 제목(45일)",
+      "13건 — SA 강세 장문 4편·Zacks 'Bull of the Day'",
+      "독립 약세 장문 0건",
+      "knowledge/narratives/evidence/co-vicor.json 2026-10-30"
+     ]
+    ],
+    "read": "레딧은 조용하고 SA·Zacks 쪽 강세만 일방적이다 — 쏠림은 얇은 커뮤니티 층에 있다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "업종 기사",
+      "'AI 전력주 1주일 7~13% 하락'(Fool 10/28) vs GE Vernova 수주 급증(Barron's 10/28)",
+      "업종 숫자는 강한데 배수만 흔들린다",
+      "narrative_sources 2026-10-30"
+     ]
+    ],
+    "read": "VICR 낙폭은 개별 뉴스보다 AI 전력 업종 배수 조정과 함께 움직였다(정황)"
+   }
+  },
+  "factors": [
+   {
+    "name": "VPD 특허 로열티의 반복화",
+    "thesis": "부품사가 IP 라이선서가 되어 원가 없는 매출이 이익률을 끌어올린다",
+    "inputs": "이익률·ROIC",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "로열티 $14.5M(4Q25) → $66.6M(3Q26), 기준선 $43M = 연 $172M, 법률비 약 20% 차감 시 순 약 $138M",
+    "status": "강화",
+    "falsifier": "4Q 로열티가 $43M 미만이거나 2027년 초 라이선스 갱신 지연",
+    "source": "3Q 콜·Fiscal KPI"
+   },
+   {
+    "name": "2세대 VPD 다고객 채택",
+    "thesis": "전류 밀도 3→5 A/mm²로 경쟁 VR·IVR 한계를 넘어 선도 고객 밖으로 확산",
+    "inputs": "성장·점유율",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "4Q 첫 2주 수주 $100M, Advanced 매출 +112% YoY, 수주잔고 $406M",
+    "status": "진행",
+    "falsifier": "2027년 상반기까지 선도 고객 밖 설계 수주 언급 없음",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "Fab-2·3 캐파 선택권",
+    "thesis": "부지·건물을 먼저 확보해 수요 확인 뒤 장비를 넣는다",
+    "inputs": "성장 상한·재투자",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "합산 약 5배 이상 언급, Fab-2 첫 장비 2027년 2분기, 투자비 미공개",
+    "status": "진행",
+    "falsifier": "2027년 2분기 장비 반입 지연 또는 투자비가 영업현금을 크게 초과",
+    "source": "3Q 콜·보도자료"
+   },
+   {
+    "name": "ITC 수입금지 압박",
+    "thesis": "337-TA-1526 진행과 단가 상승표가 후발 라이선시를 앞당긴다",
+    "inputs": "로열티 성장·기간",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "조사 개시 후 단가 월 약 5% 상승(회사 설명), 하이퍼스케일러 2곳 문의",
+    "status": "진행",
+    "falsifier": "ITC 예비 판정이 비침해 또는 특허 무효",
+    "source": "3Q 콜·Hon Hai 공시"
+   },
+   {
+    "name": "IVR·경쟁 대체(약세)",
+    "thesis": "온다이 IVR과 MPWR·Infineon 등 VR 진영이 1.8V 구조로 추격해 VPD 필요 면적이 줄어든다",
+    "inputs": "성장 기간·위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "회사 주장 IVR 삽입 손실 10~15%·전류 이득 2.5 vs VPD 40배 — 회사 수치, 제3자 검증 없음",
+    "status": "미확인",
+    "falsifier": "하이퍼스케일러가 Vicor 없이 IVR 구조를 양산 채택",
+    "source": "3Q Q&A(DMB Capital)"
+   },
+   {
+    "name": "로열티 덩어리성·갱신 절벽(약세)",
+    "thesis": "소급분이 빠지고 2년 계약이 2027년 말 재협상되면 기준선이 흔들린다",
+    "inputs": "이익의 질",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "3Q 기준선 위 약 $23.6M, 3Q 로열티가 매출의 34%·영업이익의 약 75%(순액 기준 Chiip 추정)",
+    "status": "확산",
+    "falsifier": "2027년 상반기 로열티 분기 $50M 이상 유지",
+    "source": "3Q Q&A(Needham·Craig-Hallum)"
+   },
+   {
+    "name": "AI 전력 배수 압축(약세)",
+    "thesis": "AI 투자 지속성 의심이 고배수 전력주를 먼저 누른다",
+    "inputs": "배수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "EV/매출 6/30 32.9배 → 10/29 16.1배(−51%), 같은 기간 FY27 EPS 추정(Zacks) 소폭 상승",
+    "status": "확산",
+    "falsifier": "EV/매출이 동종 MPWR 15배 위에서 안정되고 AI 전력주 동반 반등",
+    "source": "Fiscal.ai daily ratios·Zacks"
+   }
+  ]
+ },
+ "overrides": {
+  "growth_base": {
+   "start": 0.4,
+   "end": 0.035,
+   "decay": 0.8
+  },
+  "margin_base": {
+   "lr": 0.3
+  },
+  "why": "규칙값이 사업을 잘못 그려 두 가지를 덮어썼다. ① 성장: Fiscal FY27 $850M(+32%)은 4Q 환산 분기 $186.5M(연 $746M)에서 분기 +4%대만 가정 — 회사가 말한 4Q 제품 +10%가 이어지면 FY27은 약 $900~980M(로열티 $172~250M + 제품 $729M), Zacks는 $989M. 두 값 사이의 $900M(+40%)을 쓰고, 2번째 팹 덕에 감속을 0.70 → 0.80으로 늦췄다. ② 장기 이익률: 규칙 15%는 범용 하드웨어 기준 — 로열티가 섞이고 동종 TXN 41%·ADI 36%·MPWR 30%, 회사 목표 40%라 장기 수렴을 30%로 올렸다"
+ }
+}

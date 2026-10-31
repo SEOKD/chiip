@@ -1,0 +1,36 @@
+id: R-20261028-1413-038
+item_ids:
+  - "src-gnews-t0-ko:d722dff4d2ce6b85"
+  - "src-gnews-t0-ko:df39d15ea92d5185"
+event_cluster: null
+first_seen_source: "src-gnews-t0-ko (데일리안 컨콜 기사, 2026-10-28 14:00 KST)"
+detected_at: "2026-10-28T14:06:11+09:00"
+published_at: "2026-10-28T14:00:00+09:00"
+latency_min: 6
+entities: [co-semco]
+event_type: 증설·CAPEX
+headline_ko: "삼성전기 '올해 설비투자, 당초 전망보다 증가 예상' (컨콜 보도)"
+what_happened: "데일리안은 삼성전기 실적 컨퍼런스콜에서 올해 설비투자가 당초 전망보다 늘어날 것이라는 발언이 나왔다고 보도했다. 증액 규모와 투자 대상(MLCC·기판 등)은 제목 기준으로 확인되지 않는다."
+primary_source_confirmed: false
+novelty: "미확인 — 설비투자 상향 방향만 확인. 당초 전망치, 증액 규모, 투자 대상 미확인. 컨콜 원자료 필요."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "컨퍼런스콜 자료(IR 발표문·녹취)로 설비투자 상향 발언 원문 확인(1차 출처)"
+  - "당초 전망치와 상향 폭(금액 기준) — 보도에 없음"
+  - "투자 대상(MLCC·FC-BGA 기판·광모듈)과 가동 시점 — 증설인지 기존 라인 투자인지 구분 필요"
+  - "뉴스핌 보도의 '내년 AI용 고용량 MLCC 수요 8배' 발언은 동일 컨콜 출처 — 원문·기준(출하량인지 금액인지) 확인 전 가이던스로 쓰지 않음"
+next_check: "IR 자료의 설비투자 계획 수치 확인 후 증설·CAPEX 카드로 승격 여부 결정"
+reverse: null
+policy: null

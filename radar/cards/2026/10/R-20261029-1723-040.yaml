@@ -1,0 +1,33 @@
+id: R-20261029-1723-040
+item_ids:
+  - src-news7-focus:cc03eae2969d6d9e
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha, Google News 색인)
+detected_at: 2026-10-29T17:15:07+09:00
+published_at: 2026-10-29T01:19:03+09:00
+latency_min: 956
+entities: [co-gevernova]
+event_type: 실적
+headline_ko: "GE Vernova 2026년 3분기 실적 발표 자료(어닝콜 프레젠테이션) 공개"
+what_happened: "GE Vernova의 2026년 3분기 실적 발표 자료가 2026-10-28(미국 시간)에 공개된 것으로 Seeking Alpha 색인에 나타났다. 제목만 확인했으며 매출·수주·가이던스 수치는 미확인이다."
+primary_source_confirmed: false
+novelty:
+linked_claims: []
+linked_theses: []
+first_order:
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 보도자료·실적 발표 자료 원문 확인(1차 출처 대기)"
+  - "가스터빈·그리드 수주 잔고와 주문 변화(전년·직전 분기 대비)"
+  - "데이터센터 전력 수요 관련 언급과 가이던스 변경 여부"
+  - "포트폴리오 관련 기록: config/portfolio.yaml의 INNIO related(GE Vernova) — 보유 종목 연관 사건으로 P1 상향"
+next_check: "GE Vernova 투자자 관계(IR) 보도자료·실적 발표 자료 원문, 10-Q 제출 여부"

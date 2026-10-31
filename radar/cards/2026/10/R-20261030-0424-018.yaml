@@ -1,0 +1,31 @@
+id: R-20261030-0424-018
+item_ids: [src-news7-focus:91c078ed24e7e374]
+event_cluster: null
+first_seen_source: Bloomberg.com (src-news7-focus, Google News 색인)
+detected_at: 2026-10-30T04:15:13+09:00
+published_at: 2026-10-29T17:26:05+00:00
+latency_min: 109
+entities: [co-microsoft]
+event_type: 기타
+headline_ko: "마이크로소프트, AI 투자 자금으로 채권 시장 활용 검토"
+what_happened: "블룸버그 영상 기사 헤드라인 기준, AI 지출이 늘면서 마이크로소프트가 채권 시장을 조달 수단으로 쓴다는 보도가 나왔다(본문 미확인). 같은 날 블룸버그 기사 헤드라인은 마이크로소프트가 $25B 규모 채권 발행을 검토한다고 전했다('eyes' — 확정 아님)."
+primary_source_confirmed: false
+novelty: "미확인 — 발행 공고 여부·기존 조달 계획 대비 비교 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "발행 공고·최종 발행 금액·조건(만기·금리·신용등급)이 확정됐는지 1차 출처 확인"
+  - "조달 자금 용도(데이터센터 CAPEX 대비 비중) 확인 — 설비 발주 경로로 이어지는지"
+  - "1차 출처 대기 (P1 보정: 검토 단계 보도)"
+next_check: "마이크로소프트 채권 발행 공고·최종 조건 확인"

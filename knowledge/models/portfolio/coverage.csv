@@ -1,0 +1,14 @@
+date,ticker,price,target_mean,target_low,target_high,buy,hold,sell,rec,short_pct,fwd_pe,next_earnings,source
+2026-10-29,MRVL,251.65,345.86,229.95,450,45,4,0,strong_buy,3.28,34.34,미확인,easyconomics
+2026-10-29,PWR,606.89,787.8,483.18,960,28,5,1,strong_buy,2.64,30.44,2026-10-29,easyconomics
+2026-10-29,INIO,18.35,32.8,22,42,8,2,0,buy,21.18,22.21,미확인,easyconomics
+2026-10-29,EROC,9.00,22.33,18,28,9,0,0,strong_buy,23.8,17.73,미확인,easyconomics_finra_short_qty_over_shares_out
+2026-10-29,CCXI,10.25,,,,,,,,7.98,,없음_스팩,easyconomics
+2026-10-30,EROC,8.97,22.14,18,28,7,1,0,strong_buy,,,2026-11-12,Fiscal.ai
+2026-10-30,INIO,17.52,35.6,22,41,8,3,0,buy,,,2027-02-23_추정,Fiscal.ai
+2026-10-30,PWR,635.18,795.57,684,960,24,4,0,strong_buy,,32.45,2027-02-18_추정,Fiscal.ai
+2026-10-30,CBRS,115.16,267,149,330,10,1,0,strong_buy,,,2026-11-12,Fiscal.ai
+2026-10-31,EROC,8.35,22.14,18,28,7,1,0,strong_buy,,,2026-11-12,Fiscal.ai
+2026-10-31,INIO,16.30,34.6,22,42,8,3,0,buy,,,2027-02-23_추정,Fiscal.ai
+2026-10-31,PWR,620.73,795.57,684,960,24,4,0,strong_buy,,29.39,2027-02-18_추정,Fiscal.ai
+2026-10-31,CBRS,109.18,267,149,330,10,1,0,strong_buy,,,2026-11-12,Fiscal.ai

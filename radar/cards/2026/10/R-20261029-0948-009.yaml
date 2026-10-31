@@ -1,0 +1,34 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (영향 미판정, impact-card 대기)
+id: R-20261029-0948-009
+item_ids: ["src-news7-focus:1abb99647cfbdb9c"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T09:48:03+09:00
+published_at: 2026-10-28T02:40:40+09:00
+latency_min: 1867
+entities: [co-wartsila]
+event_type: 실적
+headline_ko: "Wärtsilä, 2026년 3분기 실적 발표 자료(어닝콜 프레젠테이션) — Seeking Alpha 색인"
+what_happened: "Wärtsilä Oyj Abp의 2026년 3분기 실적 발표 자료(Earnings Call Presentation)가 2026-10-27에 공개된 것으로 Seeking Alpha 색인(제목 기준)에 나타난다. 실적 수치·가이던스는 본문 미확인이다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "원 IR 자료(회사 IR 페이지·Nasdaq Helsinki 공시) 확인 — SA 재게시는 1차 출처가 아님"
+  - "데이터센터 발전 설비 수요 언급 여부(레이더 테마 dc_power 연결) 확인"
+  - "기사 24시간 신선도 초과(31시간) — 텔레그램 알림 제외, 브리프 대기열"
+next_check: "원 IR 자료 확보 후 impact-card 대상 여부 결정"
+reverse: null
+policy: null

@@ -1,0 +1,34 @@
+id: R-20261028-1412-036
+item_ids:
+  - "src-gnews-t0-ko:e6e096a92c076b97"
+event_cluster: null
+first_seen_source: "src-gnews-t0-ko (연합인포맥스, 2026-10-27 15:52 KST)"
+detected_at: "2026-10-28T14:06:12+09:00"
+published_at: "2026-10-27T15:52:52+09:00"
+latency_min: 1334
+entities: [co-lginnotek]
+event_type: 잠정실적
+headline_ko: "LG이노텍 3Q 영업이익 948억원, 컨센서스 하회·전년 대비 반토막 (언론 보도 기준)"
+what_happened: "연합인포맥스 보도에 따르면 LG이노텍 3분기 영업이익은 948억원으로 컨센서스를 밑돌았고 전년 동기 대비 절반 수준이라고 전해졌다. 1차 출처(DART 잠정실적 공시·회사 IR 자료)는 이 배치에서 확인하지 못했다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 매출·사업부별 내역, 전년 수치 원자료, 컨센서스 원자료 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: "컨센서스 하회(보도 기준, 수치 미확인)"
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "DART 잠정실적 공시 또는 IR 자료로 영업이익·매출 원수치 확인(1차 출처)"
+  - "하락 동인이 카메라모듈·기판소재 중 어느 사업부인지(보도에 없음)"
+  - "컨센서스 수치와 출처(증권사 추정 평균 시점)"
+next_check: "DART 잠정실적 공시 확인 후 사업부별 동인 분해"
+reverse: null
+policy: null

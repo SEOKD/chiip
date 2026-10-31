@@ -1,0 +1,32 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안, impact-card 전)
+# 주의: id 061~063은 chiip_ids.py로 발급하지 않고 060 다음 번호로 부여함 — 커밋 전 중복 확인 필요
+id: R-20261030-1517-063
+item_ids: ["src-jp-ir-docs:636176044f79ad1a"]
+event_cluster: null
+first_seen_source: src-jp-ir-docs
+detected_at: "2026-10-30T14:59:43+09:00"
+published_at: "2026-10-30"          # 문서 날짜(2026년 10월 30일). 공개 시각 미확인
+latency_min: null
+entities: [jp-murata]
+event_type: 실적
+headline_ko: "무라타제작소 2027년 3월期 2Q 결산단신 공개(1차 원문)"
+what_happened: "무라타제작소가 2027년 3월期 2Q(중간기) IFRS 연결 결산단신을 2026-10-30자로 공개했다(1차 원문). 원문 표 기준 매출 1조 907억 엔(전년 동기 대비 +20.8%), 영업이익 2,459억 엔(+48.9%, 표에서 계산한 값으로 대조 필요)."
+primary_source_confirmed: true
+novelty: "미확인 — 설명회 자료·MLCC 투자 계획과 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "AI 수요 대응 MLCC 증설 금액·시점(같은 날 Bloomberg 보도와 대조, 설명회 자료)"
+  - "AI 서버 관련 매출 비중과 가이던스 변경 유무"
+next_check: "설명회 자료(c46e7706 PT) 수치 확인 후 Bloomberg 보도 대조"

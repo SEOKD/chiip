@@ -1,0 +1,32 @@
+id: R-20261030-0533-020
+item_ids: ["src-sec-filings:0001018724-26-000038", "src-bbg-direct:d8af4a6a7939d681"]
+event_cluster: null
+first_seen_source: src-sec-filings
+detected_at: 2026-10-30T05:31:36+09:00
+published_at: 2026-10-30T05:05:27+09:00
+latency_min: 26
+entities: [co-amazon]
+event_type: 실적
+headline_ko: "Amazon, 실적 발표 8-K 제출(Item 2.02) — 지출 급증 보도"
+what_happened: "Amazon이 2026-10-29(미 동부, KST 10-30 05:05)에 SEC 8-K(Item 2.02 실적 발표)를 제출했다. Bloomberg 오디오 헤드라인은 '실적 상회, 지출 급증'이나 매출·CAPEX 금액은 원문 미열람으로 미확인이다."
+primary_source_confirmed: true
+novelty: "미확인(CAPEX 금액 대조 전)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "8-K 첨부 자료에서 AWS 매출·분기 CAPEX 금액 확인(Bloomberg '지출 급증'의 실제 규모)"
+  - "AI 인프라 CAPEX 증가분의 공급사(칩·메모리·전력) 배분 확인"
+next_check: "Amazon 분기 CAPEX 수치와 어닝콜 발언 확인"
+reverse: null
+policy: null

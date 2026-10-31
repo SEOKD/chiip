@@ -1,0 +1,35 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-20261030-1835-072
+item_ids:
+  - "src-news7-focus:cc417c23c026d47c"
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T18:19:31+09:00"
+published_at: "2026-10-30T08:19:14+00:00"
+latency_min: 60
+entities:
+  - co-nvidia
+event_type: 기타
+headline_ko: "인도 AI 인프라 기업, 엔비디아 차세대 칩 구매 위해 $3B 부채 조달 추진(보도)"
+what_happened: "CNBC는 인도 AI 인프라 기업이 엔비디아 차세대 칩 구매 자금으로 30억 달러 규모 부채를 조달하려 한다고 보도했다(reportedly). 회사명·대주·조건은 제목 기준으로 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "보도 기준 신규 — knowledge/claims 대조 미실시"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사명과 조달 주체(사모·대출 기관) 확인"
+  - "대출 확정 여부와 조건(금리·만기·담보)"
+  - "엔비디아 칩 주문 확정 여부 — 자금 조달 보도만으로 물량 확정 아님"
+  - "1차 출처: 회사 발표 또는 대출 계약 보도 대기"
+next_check: "회사 발표·대출 계약 체결 보도 확인"

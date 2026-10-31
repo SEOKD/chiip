@@ -1,0 +1,35 @@
+id: R-20261028-1036-017
+item_ids:
+  - src-gnews-t0-ko:72d8f1693e98aa5c
+event_cluster: null
+first_seen_source: src-gnews-t0-ko (연합인포맥스)
+detected_at: 2026-10-28T10:36:11+09:00
+published_at: 2026-10-28T09:18:59+09:00
+latency_min: 77
+entities:
+  - co-skhynix
+event_type: 가격
+headline_ko: "SK하이닉스 3분기 D램 ASP 20%후반대 상승 보도 (언론 보도 기준, 1차 출처 대기)"
+what_happened: "연합인포맥스는 SK하이닉스가 3분기 D램 ASP(평균판매단가) 상승률을 20%후반대로 밝혔다고 제목으로 보도했다(2026-10-28 09:18 KST). 분모(전분기비·전년비), 제품 범위(D램 전체 또는 HBM 제외), 발언 맥락은 본문과 1차 자료로 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "신규 — knowledge/claims와 기존 카드(R-20261028-0831-005·1002-016)에 ASP 수치 없음. 다만 분기 실적 본문에 이미 포함된 수치일 가능성은 1차 자료 확인 전 판단 불가."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인 (컨센서스 ASP 수치 없음 → 서프라이즈 판정 불가)
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "ASP 상승률의 분모·기준(전분기비 또는 전년비, D램 전체 또는 HBM 제외)과 원문 발언 맥락 확인"
+  - "직전 분기 ASP 상승률 또는 컨센서스와 비교해 서프라이즈 여부 판정 (비교 불가 시 미확인 유지)"
+  - "뉴스룸 보도자료 본문·IR 자료에 ASP 수치가 있는지 확인 → R-20261028-0831-005에 보완 여부 판단"
+next_check: "SK하이닉스 3분기 IR 자료·컨콜 녹취에서 ASP 발언 원문 확인 → earnings-delta로 직전 콜과 대조"
+reverse: null
+policy: null

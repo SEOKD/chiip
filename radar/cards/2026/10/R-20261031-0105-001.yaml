@@ -1,0 +1,37 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage). 영향 블록은 impact-card가 채운다.
+id: R-20261031-0105-001
+item_ids:
+  - src-news7-focus:c4329f938d4d8a95
+event_cluster: null
+first_seen_source: src-news7-focus (The Information, Google News 색인)
+detected_at: 2026-10-31T00:51:06+09:00
+published_at: 2026-10-30T15:42:00+00:00
+latency_min: 9
+entities:
+  - co-amazon
+event_type: 금융
+headline_ko: "아마존, 최대 800억 달러 규모 공급사 금융 대출 공개 보도 (The Information)"
+what_happened: "The Information은 아마존이 최대 800억 달러(up to $80B) 규모의 신규 공급사 금융(supplier financing) 대출을 공개했다고 보도했다. 대출 상대방·조건·용도(AI 인프라 공급사 해당 여부)는 제목에 없어 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "아마존 공급사 금융 한도 신규(원문 확인 전). 이전 자료와의 비교 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처 대기: 아마존 8-K·10-Q·보도자료에서 금액·기간·조건 확인"
+  - "대출 대상이 AI 칩·데이터센터 공급사인지(AI 밸류체인 해당 여부) 확인"
+  - "'Discloses'가 공시 기반인지, The Information 단독 취재인지 확인"
+  - "100억 달러 이상 기준 충족: 금액 $80B 'up to' 상한 — 실제 인출액 미확인"
+next_check: "아마존 IR·SEC 제출 문서와 The Information 원문에서 대상·조건 대조"
+reverse: null
+policy: null

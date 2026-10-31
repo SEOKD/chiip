@@ -1,0 +1,43 @@
+# 영향 판정 카드 — radar/cards/2026/10/R-20261030-1849-075.yaml (1차 판정, 미검증)
+id: R-20261030-1849-075
+item_ids: ["src-jp-ir-qa:49f4abbca09f8364"]
+event_cluster: null
+first_seen_source: src-jp-ir-qa
+detected_at: "2026-10-30T18:49:07+09:00"
+published_at: "2026-10-30T10:00:00+09:00"   # 결산설명회 개최 시각(10:00 JST), 질의응답 PDF 취득 18:49
+latency_min: 0
+entities: [co-ibiden]
+event_type: 증설·CAPEX
+headline_ko: "이비덴, 가와마 사업장 추가 투자 1,500억 엔·2030년 목표 유지(IR 질의응답)"
+what_happened: "이비덴은 2027년 3월期 2분기 결산설명회(2026-10-30)에서 가와마(河間) 사업장에 약 1,500억 엔 추가 투자를 발표했고, 가동은 2029년도 후반, 실적 기여는 2030년도 이후로 설명했다. 2030년도 매출 1조 엔·영업이익 3,000억 엔 목표에는 이 추가 투자분을 넣지 않았다고 밝혔다."
+primary_source_confirmed: true   # 회사 IR 자료(ibiden.co.jp QA PDF) 본문 확인
+novelty: "추가 투자 규모·가동 시점은 회사 질의응답에서 처음 확인. 이전 분기 발언과의 대조는 미수행(비교 불가 항목 있음)."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-ibiden
+    driver: 물량
+    line_item: "FC-BGA 생산 능력(캐파)"
+    direction: 상향
+    magnitude: 중
+    timing: "2029년도 후반 가동 개시, 실적 기여 2030년도 이후"
+    rationale: "추가 투자 1,500억 엔(회사 설명). 물량·매출 환산은 미확인"
+second_order:
+  - "AI 기판 공급 3사 체제 — 질의응답에서 한국 메이커가 AI 최선단 분야에 가세한다고 언급(기업명 미특정, 가설: 국내 기판사 경쟁 변수)"
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "(가설) 회사가 '대체 기술 없음·수요 측 억제'를 말하며 기판 병목을 강조. 시장이 이미 이 병목을 가격에 넣었는지는 미확인. 1차 판정, 미검증."
+field_intel_check: 해당없음
+article_angle: "이비덴 1,500억 엔 추가 투자와 목표 유지 — 기판 공급 부족 장기화에 대한 회사 발언"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "한국 메이커 명칭·진입 시점 미확인"
+  - "기존 중기 계획 대비 CAPEX 변화 — 이전 자료와 대조 필요"
+  - "2030 목표 상향 조건 수치 미확인(회사는 올해 중 중기 재검토 예고)"
+  - "주가 반응·컨센서스 미확인"
+next_check: "이비덴 중기 업적 전망 재발표(회사 예고, 올해 중) · 한국 기판사 AI 기판 진입 1차 발표"
+reverse: null
+policy: null

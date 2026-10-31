@@ -1,0 +1,97 @@
+id,component,score,reason,evidence
+us-mpwr,upside,7,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $1,202M(QoQ +22.6%·YoY +63.1%), 엔터프라이즈 데이터 $507M(YoY +165%), 4Q 가이던스 $1,315~1,385M(중간 $1,350M) = Zacks 4Q 컨센서스 $1,217M 대비 +11%; 캐파 $6B→2H27 $8B→$10B, 800V용 GaN 샘플",https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20260930xexx991.htm
+us-mpwr,gap,5,"1차 판정(미검증): 근거 약함 — 4Q 가이던스 중간값이 Zacks 3Q27 컨센서스($1,365M)에 근접(약 3분기 앞당김)이나 현재 주가·시총·시간외 반응 미확인",https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20260930xexx991.htm
+us-mpwr,bottleneck,7,"1차 판정(미검증): 데이터센터 전압 조정기·800V 전력 구조 전환 = AI 랙 전력 밀도 병목의 해결 부품, 광모듈·스위치 전원 Communications +42.5% QoQ",https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20260930xexx991.htm
+us-mpwr,asymmetry,4,"1차 판정(미검증): 유통주식 가치 $24.7B(직전 연차 기준) 이상의 대형주 — 10배 경로 산술상 어려움, 하방은 실적 확인으로 제한",https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20260930xexx991.htm
+us-osis,upside,4,"1차 판정(미검증): EX-99.1 확인 — FY27 1Q 매출 $403M(YoY +5%), 비GAAP EPS $1.66(+17%), 수주잔고 $2.1B·B/B 1.4, FY27 매출 가이던스 유지·EPS 상향",https://www.sec.gov/Archives/edgar/data/1039065/000110465926120184/tm2626560d2_ex99-1.htm
+us-osis,gap,4,1차 판정(미검증): 근거 약함 — 컨센서스·주가 미확인,https://www.sec.gov/Archives/edgar/data/1039065/000110465926120184/tm2626560d2_ex99-1.htm
+us-osis,bottleneck,2,"1차 판정(미검증): 보안 검색·헬스케어 중심, 광전자·수탁생산 부문의 AI 병목 연결 미확인",https://www.sec.gov/Archives/edgar/data/1039065/000110465926120184/tm2626560d2_ex99-1.htm
+us-osis,asymmetry,4,"1차 판정(미검증): 유통주식 가치 $4.0B 중형, AI 내러티브 부재",https://www.sec.gov/Archives/edgar/data/1039065/000110465926120184/tm2626560d2_ex99-1.htm
+us-fslr,upside,4,"1차 판정(미검증): 수치 미확인(8-K 첨부 미열람) — 태양광 모듈, AI 데이터센터 전력 수요는 간접 연결",https://www.sec.gov/Archives/edgar/data/1274494/000127449426000211/
+us-fslr,gap,4,1차 판정(미검증): 수치 미확인 — 5점 상한 규칙,https://www.sec.gov/Archives/edgar/data/1274494/000127449426000211/
+us-fslr,bottleneck,3,1차 판정(미검증): 데이터센터 전력 공급원 중 하나이나 직접 병목 해소 부품 아님,https://www.sec.gov/Archives/edgar/data/1274494/000127449426000211/
+us-fslr,asymmetry,3,"1차 판정(미검증): 유통주식 가치 $17.7B 대형, 정책 의존",https://www.sec.gov/Archives/edgar/data/1274494/000127449426000211/
+us-atom,upside,6,"1차 판정(미검증): 근거 약함 — 시총 $129M·TTM 매출 $0.22M(Fiscal.ai 2026-10-29), MST 라이선스가 양산 로열티로 전환되면 배수 상방은 크지만 매출 기반이 사실상 없음",https://www.prnewswire.com/news-releases/atomera-provides-third-quarter-2026-results-302924164.html
+us-atom,gap,4,"1차 판정(미검증): 근거 약함 — 주가 $3.31로 200일선 $5.51·52주 고점 $12.11 대비 크게 하락, 커버리지 1명(목표가 평균 $10, Zacks) — 기대가 낮지만 반복된 상용화 지연이 할인 이유라 오판 근거 미확인",https://fiscal.ai/company/NasdaqCM-ATOM
+us-atom,bottleneck,4,"1차 판정(미검증): 근거 약함 — 미세화·GaN 전력 소재는 병목 경로에 들 수 있으나 고객 양산 채택(제조·고객·사업 축) 공개 증거 없음",https://www.prnewswire.com/news-releases/atomera-provides-third-quarter-2026-results-302924164.html
+us-atom,asymmetry,4,"1차 판정(미검증): 근거 약함 — 영업손실이 매출의 100배 이상(TTM 영업이익률 -110배)으로 증자 희석 위험이 상방을 상쇄",https://fiscal.ai/company/NasdaqCM-ATOM
+co-solaris,upside,6,"1차 판정(미검증): 900MW·15년 발전 계약 8-K(2026-10-29) — Fiscal.ai 기준 TTM 매출 $762M(YoY +71%), 향후 4분기 컨센서스 $1.55B(약 2배, Zacks), 영업이익률 24%; 시총 $4.55B에서 10배는 데이터센터 전력 점유 가정 과도",https://fiscal.ai/company/NYSE-SEI
+co-solaris,gap,4,"1차 판정(미검증): 5일 +18%(종가 $69.12)로 계약 일부 반영, 목표가 평균 $98.7·17명 커버리지(Zacks) — 이미 IB가 미는 데이터센터 현장 발전 내러티브라 크라우딩",https://fiscal.ai/company/NYSE-SEI
+co-solaris,bottleneck,7,"1차 판정(미검증): 데이터센터 전력 연결 대기(그리드 병목)를 현장 발전으로 우회하는 공급사 — 병목 결속 위치는 맞음, 다만 터빈 조달·계약 상대방 신용은 미확인",https://fiscal.ai/company/NYSE-SEI
+co-solaris,asymmetry,5,"1차 판정(미검증): 15년 장기 계약이 하방을 일부 받치나 EV/매출 9.2배로 밸류 부담, 계약 단가·자본비용 조건 미확인",https://fiscal.ai/company/NYSE-SEI
+us-vlto,upside,3,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $1,509M(YoY +7.5%, 코어 +5.1%), 조정 OPM 25.6%(+170bp), 조정 EPS $1.18(+19%); 수처리 북미 두 자릿수 성장에 디지털 인프라 투자 언급이나 비중 미공개",https://www.sec.gov/Archives/edgar/data/1967680/000196768026000047/vlto-20261029xex991.htm
+us-vlto,gap,3,"1차 판정(미검증): 근거 약함 — 성숙 계측·수질 사업, 컨센서스·주가 반응 미확인",https://www.sec.gov/Archives/edgar/data/1967680/000196768026000047/vlto-20261029xex991.htm
+us-vlto,bottleneck,2,"1차 판정(미검증): 데이터센터 냉각수 처리는 주변 수요일 뿐 AI 병목 해결 부품 아님",https://www.sec.gov/Archives/edgar/data/1967680/000196768026000047/vlto-20261029xex991.htm
+us-vlto,asymmetry,2,"1차 판정(미검증): 유통주식 가치 $25.7B 대형주 — 10배 경로 산술상 어려움",https://www.sec.gov/Archives/edgar/data/1967680/000196768026000047/vlto-20261029xex991.htm
+us-fet,upside,4,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $237M(QoQ +5%), 수주 $244M(B/B 103%), 조정 EPS $1.51(+30%), FY26 매출 가이던스 $900~920M로 상향",https://www.sec.gov/Archives/edgar/data/1401257/000140125726000069/exhibit991-fetearningsrele.htm
+us-fet,gap,3,"1차 판정(미검증): 근거 약함 — 컨센서스·주가 반응 미확인",https://www.sec.gov/Archives/edgar/data/1401257/000140125726000069/exhibit991-fetearningsrele.htm
+us-fet,bottleneck,1,"1차 판정(미검증): 유전 장비 — AI 밸류체인 병목과 연결 근거 없음(SIC 3533 분류만 전력·인프라)",https://www.sec.gov/Archives/edgar/data/1401257/000140125726000069/exhibit991-fetearningsrele.htm
+us-fet,asymmetry,4,"1차 판정(미검증): 유통주식 가치 $230M 소형주·순레버리지 0.9배이나 AI 연결이 없어 비대칭 근거 약함",https://www.sec.gov/Archives/edgar/data/1401257/000140125726000069/exhibit991-fetearningsrele.htm
+us-invx,upside,3,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $265M(QoQ +8%·YoY +10%), 순이익 $26M, 조정 EBITDA $55M(21%), FCF $32M, 현금 $189M·은행 차입 없음, 해저 웰헤드 $30M+ 수주; 육상·해저 유정 장비 회사로 AI 밸류체인 수요(시스템 출하×콘텐츠)로 환산 불가 SA L1",https://www.sec.gov/Archives/edgar/data/1042893/000119312526437829/invx-ex99_1.htm
+us-invx,gap,4,"1차 판정(미검증): 근거 약함 — 컨센서스·주가 반응 미확인, 성장률 한 자릿수~10%로 가격 내포 기대와의 차이를 말할 숫자 없음",https://www.sec.gov/Archives/edgar/data/1042893/000119312526437829/invx-ex99_1.htm
+us-invx,bottleneck,1,"1차 판정(미검증): SIC 3533(유전 기계)이 '전력·인프라'로 잘못 분류된 건 — 데이터센터 전력·AI 하드웨어 결속 병목 노출 없음 SA L2",https://www.sec.gov/Archives/edgar/data/1042893/000119312526437829/invx-ex99_1.htm
+us-invx,asymmetry,3,"1차 판정(미검증): 유통주식 가치 약 $600M 소형주이나 카탈리스트는 유가·해저 수주 사이클(치입 엣지 밖)",https://www.sec.gov/Archives/edgar/data/1042893/000119312526437829/invx-ex99_1.htm
+us-ilmn,upside,3,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $1.13B(YoY +4.2%), GAAP OPM 27.0%, GAAP EPS $1.43, FY26 매출 가이던스 $4.64~4.66B로 상향(직전 $4.60~4.64B)·EPS $5.40~5.45; 유전체 분석 장비 회사로 AI 하드웨어 수요 환산 불가 SA L1",https://www.sec.gov/Archives/edgar/data/1110803/000111080326000202/q326earningsrelease.htm
+us-ilmn,gap,4,"1차 판정(미검증): 근거 약함 — 가이던스 상향 폭 약 +0.6%(중간값)로 작고 주가 반응·컨센서스 미확인",https://www.sec.gov/Archives/edgar/data/1110803/000111080326000202/q326earningsrelease.htm
+us-ilmn,bottleneck,1,"1차 판정(미검증): SIC 3826(분석 장비)이 'AI·반도체'로 분류된 건 — 'AI로 생물학 이해' 문구는 수요 측 내러티브일 뿐 AI 하드웨어 결속 병목 노출 없음 SA L2",https://www.sec.gov/Archives/edgar/data/1110803/000111080326000202/q326earningsrelease.htm
+us-ilmn,asymmetry,2,"1차 판정(미검증): 유통주식 가치 약 $9.2B·커버리지 넓은 대형 헬스케어, 중국 신뢰불가기업 목록 리스크",https://www.sec.gov/Archives/edgar/data/1110803/000111080326000202/q326earningsrelease.htm
+us-eix,upside,3,"1차 판정(미검증): EX-99.1 확인 — 3Q 코어 EPS $1.92(전년 $2.34, 2025 GRC 소급분 기저), GAAP $1.88; 2026 코어 EPS 가이던스 $5.90~6.20 재확인, 2025~30 코어 EPS 연 5~7%·요율 기반 연 ~7% — 규제 수익률 상한",https://www.sec.gov/Archives/edgar/data/92103/000082705226000072/eix-2026x0930exx991.htm
+us-eix,gap,3,"1차 판정(미검증): 가이던스 재확인뿐, 부하 증가 언급은 '고객 주도 부하 증가 대비 투자' 일반론 — 컨센서스 대비 새 정보 없음, 산불 책임 개혁이 주 변수",https://www.sec.gov/Archives/edgar/data/92103/000082705226000072/eix-2026x0930exx991.htm
+us-eix,bottleneck,2,"1차 판정(미검증): 캘리포니아 배전 유틸리티 — 데이터센터 전력 병목의 직접 해결 공급사 아님, 산불 리스크가 할인 요인",https://www.sec.gov/Archives/edgar/data/92103/000082705226000072/eix-2026x0930exx991.htm
+us-eix,asymmetry,2,"1차 판정(미검증): 유통주식 가치 약 $19.8B 규제 유틸리티 — 10배 경로 산술상 불가, 산불 책임이 하방 꼬리",https://www.sec.gov/Archives/edgar/data/92103/000082705226000072/eix-2026x0930exx991.htm
+co-mastec,upside,4,"1차 판정(미검증): EX-99.1 확인(06:04 회차) — 송배전 잔고 +74%, FY26 EPS 가이던스가 Zacks 컨센 $9.27 대비 −1.7%(파이프라인 마진 부진)",https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/
+co-mastec,gap,4,"1차 판정(미검증): 데이터센터 대형 부하 공사 수혜는 IB가 이미 미는 전력 인프라 내러티브(크라우딩), 이월분 2027 반영 여부는 콜 확인 전",https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/
+co-mastec,bottleneck,5,"1차 판정(미검증): 송배전 시공 인력·캐파 = 전력망 연결 병목의 해결 수단이나 경쟁 시공사 다수(PWR 등) — 독점력 약함",https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/
+co-mastec,asymmetry,3,"1차 판정(미검증): 대형 시공사(시총 미확인, $10B 이상 추정) — 10배 경로 어려움, 파이프라인 마진이 하방",https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/
+co-intel,upside,5,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $16.5B(YoY +21%), DCAI $7.3B(YoY +78%), 파운드리 $6.7B(+58%), Non-GAAP GPM 44.1%·OPM 19.6%·EPS $0.52; Xeon 공급 부족이 제약. 시스템 출하×콘텐츠로 환산 불가 SA L1",https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm
+co-intel,gap,4,"1차 판정(미검증): 4Q 가이던스 중간 $15.5B·Non-GAAP EPS $0.25 = Zacks 4Q 컨센서스 $16.8B·$0.42 대비 −8%·−40%, PC 둔화 1H27까지; $23B 증자 완료(희석). 주가 반응·시총 미확인 → 근거 약함 SA L5",https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm
+co-intel,bottleneck,5,"1차 판정(미검증): CPU(Xeon) 공급이 병목인 쪽이나 자체 캐파 해소 중이고 파운드리 외부 고객 매출 연결 미확인 SA L2",https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm
+co-intel,asymmetry,2,"1차 판정(미검증): 초대형주·커버리지 포화, 다음 카탈리스트 4Q 실적(2027-01 말 예상)",https://www.sec.gov/Archives/edgar/data/50863/000005086326000188/q326earningsrelease.htm
+co-kla,upside,6,"1차 판정(미검증): EX-99.1 확인 — FQ1 매출 $4.14B(QoQ +13%·YoY +29%), Non-GAAP EPS $1.22, FCF $1.34B; FQ2 가이던스 $4.7B±0.2B·Non-GAAP GPM 62.5%·EPS $1.44. 공정 제어 집약도 상승(선단 로직·HBM·첨단 패키징) SA L1",https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/exhibit991earningsrelease0.htm
+co-kla,gap,4,"1차 판정(미검증): FQ2 가이던스 중간 $4.7B·EPS $1.44 = Zacks 컨센서스 $4.43B·$1.34 대비 +6%·+8%(약 1분기 앞당김)이나 공정 제어 수혜는 통념·과밀, 주가 반응·멀티플 미확인 → 근거 약함 SA L5",https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/exhibit991earningsrelease0.htm
+co-kla,bottleneck,7,"1차 판정(미검증): 선단·HBM·첨단 패키징 수율 관리 = 결속 병목 보유, 점유율 과반 SA L2·L3",https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/exhibit991earningsrelease0.htm
+co-kla,asymmetry,2,"1차 판정(미검증): 대형주·커버리지 포화, 다음 카탈리스트 FQ2 실적(2027-01 말 예상)",https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/exhibit991earningsrelease0.htm
+co-sandisk,upside,5,"1차 판정(미검증): 8-K 실적(Chiip 3단 발송분) — FQ1'27 매출 $11.03B(est. $10.68B), 데이터센터 $4.80B(QoQ +61%), GPM 85.1%, FQ2 가이던스 $12.2~12.6B(est. $12.04B); 시총 $191.5B에서 10배는 산술상 불가",https://www.sec.gov/Archives/edgar/data/2023554/000162828026068243/sndk-20261029.htm
+co-sandisk,gap,4,"1차 판정(미검증): 종가 $1,330(10/29)로 52주 고점 $2,335 대비 −43%·200일선 근처, 목표가 평균 $2,125·25명(Zacks) — 사이클 정점 우려 할인이 이유일 수 있어 오판 근거 미확인",https://fiscal.ai/company/NasdaqGS-SNDK
+co-sandisk,bottleneck,6,"1차 판정(미검증): AI 추론 스토리지(eSSD) 수요 결속 위치는 맞으나 NAND는 증설 대응 가능한 사이클 품목 — 결속 지속성 미확인",https://www.sec.gov/Archives/edgar/data/2023554/000162828026068243/sndk-20261029.htm
+co-sandisk,asymmetry,3,"1차 판정(미검증): GPM 85%는 사이클 정점권 — 하방(가격 반락) 비대칭이 상방보다 큼, EV/매출 6.4배",https://fiscal.ai/company/NasdaqGS-SNDK
+co-amazon,upside,3,"1차 판정(미검증): 8-K 실적(Chiip 3단 발송분) — 3Q 매출 $201.9B(YoY +12%), AWS $46.0B(YoY +39%)·AWS 영업이익 $17.8B, CAPEX $77.3B·FCF −$34.8B; 시총 $2.64T 초대형",https://www.sec.gov/Archives/edgar/data/1018724/000101872426000038/amzn-20261029.htm
+co-amazon,gap,3,"1차 판정(미검증): 종가 $243.79(10/29, 5일 −2.6%), 목표가 평균 $330·57명(Zacks) — AWS 가속은 컨센서스 커버리지 최다 종목이라 미반영 근거 약함",https://fiscal.ai/company/NasdaqGS-AMZN
+co-amazon,bottleneck,4,"1차 판정(미검증): AI 수요의 구매자(CAPEX 지출 주체)이지 병목 해결 공급사 아님 — Trainium 자체 칩은 일부",https://www.sec.gov/Archives/edgar/data/1018724/000101872426000038/amzn-20261029.htm
+co-amazon,asymmetry,2,"1차 판정(미검증): 시총 $2.64T — 10배 경로 산술상 불가, FCF 적자 전환으로 자본 부담",https://fiscal.ai/company/NasdaqGS-AMZN
+co-ftai,upside,5,"1차 판정(미검증): EX-99.1 확인 — 3Q 조정 EBITDA $348.3M(QoQ +14.8%), 항공 부품 매출 $910M(YoY +76%)·EBITDA 마진 31%, 2026·2027 EBITDA 가이던스 유지(상향 아님), Power 100기+ 2027~28 인도 계약(Mod-1 25MW, 단가·매출 미확인), ASR $500M",https://www.sec.gov/Archives/edgar/data/1590364/000159036426000092/ftai9302026earningsrelease.htm
+co-ftai,gap,5,"1차 판정(미검증): 근거 약함 — 종가 $196.01(5거래일 +24%)이나 52주 고점 $310 대비 −37%·200일선 $232 아래, 2027 매출 컨센서스 $5.5B·EBITDA $2.3B(Zacks)는 가이던스 유지와 같은 방향 — 새 갭 미확인",https://www.sec.gov/Archives/edgar/data/1590364/000159036426000092/ftai9302026earningsrelease.htm
+co-ftai,bottleneck,6,"1차 판정(미검증): 데이터센터 현장 가스 발전 병목 — Mod-1 25MW 피크·23MW 기저 시험 통과, 복합 사이클 추가 +9MW(2H27 시험), 첫 인도 2027 — 양산·고객 인증 전(금지표 '샘플 출하 → 양산 성공')",https://www.sec.gov/Archives/edgar/data/1590364/000159036426000092/ftai9302026earningsrelease.htm
+co-ftai,asymmetry,4,"1차 판정(미검증): 시총 $20.1B(B2) — 10배는 $200B로 산술상 어려움, 하방은 항공 부품 현금흐름으로 일부 제한, 내러티브: 미작성",https://www.sec.gov/Archives/edgar/data/1590364/000159036426000092/ftai9302026earningsrelease.htm
+co-meta,upside,3,"1차 판정(미검증): 8-K(1.01·3.03·5.03) = 증자 마감·클래스 C 정관 효력 2027-01-19 — 실적 동인 변화 아님, 2027 매출 컨센서스 $303B(Zacks)",https://www.sec.gov/Archives/edgar/data/1326801/000119312526438017/d183592d8k.htm
+co-meta,gap,4,"1차 판정(미검증): 종가 $624.52(5거래일 −3.7%)·200일선 근처, 목표가 평균 $858(56명, Zacks) — 커버리지 포화, 새 갭 미확인",https://www.sec.gov/Archives/edgar/data/1326801/000119312526438017/d183592d8k.htm
+co-meta,bottleneck,3,"1차 판정(미검증): AI 인프라 수요자(구매자)이지 병목 공급사가 아님 — 칩 3사 증자 참여는 순환 파이낸싱 정황(매출 연결 미확인)",https://www.sec.gov/Archives/edgar/data/1326801/000119312526438017/d183592d8k.htm
+co-meta,asymmetry,1,"1차 판정(미검증): 시총 $1.6T(B11) — 10배 경로 없음",https://www.sec.gov/Archives/edgar/data/1326801/000119312526438017/d183592d8k.htm
+co-propetro,upside,6,"1차 판정(미검증): EX-99.1 확인 — 3Q 매출 $355M(QoQ +16%, Fiscal 추정 $322M 대비 +10%), 조정 EBITDA $60M(추정 $50M 대비 +19%), PROPWR 계약 510MW(Targa 230MW 포함)·2028년 초 500MW+ 배치 목표, PROPWR EBITDA 분기 $8M; 컨버터블 $690M·Cat 금융 $172M로 용량 증설 SA L1·L7(-1)",https://www.sec.gov/Archives/edgar/data/1680247/000168024726000122/exhibit991-earningsrelea.htm
+co-propetro,gap,5,"1차 판정(미검증): 근거 약함 — 시총 $967M·EV/매출 0.92·주가 $7.87(52주 저점 $7.22 부근, 200일선 $12.6 아래)로 기대는 낮으나 하락 원인(컨버터블 희석·프랙 업황) 미특정 SA L5",https://fiscal.ai/company/NYSE-PUMP
+co-propetro,bottleneck,6,"1차 판정(미검증): 데이터센터 계통 연계 지연 → 비하인드더미터 가스 발전이 현재 결속 병목, 하이퍼스케일러 현장 운영 실적 보유; 다만 이동식 가스 발전은 VoltaGrid·Solaris·Liberty 등 경쟁 과밀 SA L2",https://www.sec.gov/Archives/edgar/data/1680247/000168024726000122/exhibit991-earningsrelea.htm
+co-propetro,asymmetry,6,"1차 판정(미검증): 시총 $1B 미만, 애널리스트 14명, 카탈리스트 = 추가 데이터센터 계약(수백 MW 협상 중)·1H27 프랙 계약 갱신 가격; 협상은 매출 확정 아님(금지표 협력→매출) SA L4",https://www.sec.gov/Archives/edgar/data/1680247/000168024726000122/exhibit991-earningsrelea.htm
+co-tel,upside,3,"1차 판정(미검증): 결산단신 확인 — 2Q 매출 9,350억 엔(QoQ +27.7%)·OPM 31.6%, 통기 3조 7,000억(+51.4%)·영업이익 1조 1,690억 엔, 하반기 매출 상반기 대비 +22% — 초대형주라 10배 상방은 구조적으로 제한",outputs/article/earnings/20261030_8035_1.txt
+co-tel,gap,5,"1차 판정(미검증): 근거 약함 — 상반기 영업이익 7/30 예상 대비 +10.6%, WFE CY27 $210B+ 제시, 그러나 Fiscal.ai 일본 커버리지 없어 시총·컨센서스·주가 반응 미확인",outputs/article/earnings/20261030_8035_2.txt
+co-tel,bottleneck,7,"1차 판정(미검증): EUV 코터·디벨로퍼 사실상 독점 + DRAM 마스크 식각·로직 콘택트 CVD POR 신규, 극저온 식각 양산 — 결속 병목 보유",outputs/article/earnings/20261030_8035_2.txt
+co-tel,asymmetry,2,"1차 판정(미검증): 일본 시총 상위·커버리지 최다 — 발견 여지 낮음",outputs/article/earnings/20261030_8035_1.txt
+co-lasertec,upside,5,"1차 판정(미검증): 결산단신 확인 — 1Q 매출 404억 엔(YoY −25.5%)·OPM 39.1%, 통기 매출 2,900억·영업이익 1,250억 엔 유지, 수주 전망 3,000~4,000억 → 4,000~5,000억 엔 상향(중간값 사상 최대) — 수주는 매출 선행이나 1Q 실적은 약함",outputs/article/earnings/20261030_6920_1.txt
+co-lasertec,gap,5,"1차 판정(미검증): 근거 약함 — 수주 상향(High-NA·ACTIS A200HiT)은 새 정보지만 시총·컨센서스·주가 반응 미확인(Fiscal.ai 일본 커버리지 없음), 1Q 약세와 상쇄",outputs/article/earnings/20261030_6920_2.txt
+co-lasertec,bottleneck,8,"1차 판정(미검증): EUV 마스크 액틴 검사 사실상 독점, High-NA 도입 구체화로 결속 병목 강화",outputs/article/earnings/20261030_6920_2.txt
+co-lasertec,asymmetry,4,"1차 판정(미검증): 공매도·변동성 큰 중대형주, 분기 수주 비공개로 정보 비대칭은 있으나 커버리지 충분",outputs/article/earnings/20261030_6920_1.txt
+co-melco,upside,5,"1차 판정(미검증): 短信·PT 확인 — 2Q 매출 1조 6,284억 엔(+15%)·조정 OPM 12.4%, FY 조정영업이익 6,200억→7,100억 엔, 반도체·디바이스 2Q 수주 1,275억 엔(YoY +79%)·FA 수주 3,056억 엔(+54%); 하반기 내포 OPM 10.7%로 보수적이나 초대형 복합기업이라 10배 상방은 제한 SA L1",https://www.mitsubishielectric.co.jp/ja/pr/2026/pdf/1030_co1-2.pdf
+co-melco,gap,4,"1차 판정(미검증): 근거 약함 — 주가·시총·컨센서스 미확인(Fiscal.ai 일본 커버리지 없음), IFIS 제목은 세전 기준 예상 상회지만 수치 미확인 SA L5",https://www.mitsubishielectric.co.jp/ja/pr/2026/pdf/1030_co1-2.pdf
+co-melco,bottleneck,6,"1차 판정(미검증): AI 데이터센터용 통신 광 디바이스·UPS·전력 설비에 노출되나 반도체·디바이스는 매출의 약 5%, 광 비중·점유율 미공개 SA L2",https://www.mitsubishielectric.co.jp/ja/pr/2026/pdf/1030_co1-2.pdf
+co-melco,asymmetry,3,"1차 판정(미검증): 발행주식 21억 주 대형주, 자사주 상한 2,000억 엔·사업 재편이 카탈리스트이나 발견 여지는 낮음",https://www.mitsubishielectric.co.jp/ja/pr/2026/pdf/1030_co1-1.pdf
+co-nvent,upside,4,"1차 판정(미검증): EX-99.1 — FY 매출 $5.78~5.81B(+48~49%, Maverick 포함) · 시총 약 $22B — 10배는 $220B로 매출 규모상 경로 약함, 2배 내외 경로만",https://www.sec.gov/Archives/edgar/data/1720635/000162828026068391/q32026nvtpressrelease.htm
+co-nvent,gap,5,1차 판정(미검증): 4Q 유기 QoQ 약 −10% 내포 vs 수주 사상 최대(금액 미확인) · 10월 초 대비 −19~−23% — 보수성인지 수요 공백인지 22:00 콜 전 미확정,https://www.sec.gov/Archives/edgar/data/1720635/000162828026068391/q32026nvtpressrelease.htm
+co-nvent,bottleneck,6,"1차 판정(미검증): 액체냉각·전력 분배 병목 위치이나 Vertiv·Eaton·Schneider 등 대체 공급 다수, 결속 약함",https://www.sec.gov/Archives/edgar/data/1720635/000162828026068391/q32026nvtpressrelease.htm
+co-nvent,asymmetry,5,"1차 판정(미검증): 4Q 내포 둔화와 GAAP GPM 하락(35.8% vs 37.4%) 양방향, 콜의 수주액·잔고가 카탈리스트",https://www.sec.gov/Archives/edgar/data/1720635/000162828026068391/q32026nvtpressrelease.htm
+us-d,upside,3,"1차 판정(미검증): EX-99 확인 — 3Q 매출 $5,617M(YoY +24%), 영업 EPS $1.28(전년 $1.06), 2026 영업 EPS 가이던스 $3.45~3.69 상단 절반·장기 성장 가이던스 유지; 시총 $58.0B 규제 유틸리티라 요금 기반 성장이 상방을 제한",https://www.sec.gov/Archives/edgar/data/715957/000119312526439883/d-ex99.htm
+us-d,gap,4,"1차 판정(미검증): 근거 약함 — 주가 $66·목표가 평균 $69.6(Zacks, 17명), 52주 범위 $57.08~71.69 안; 진행 중인 NextEra 합병 조건·승인 단계 미확인이라 내포 기대 판정 불가",https://fiscal.ai/company/NYSE-D
+us-d,bottleneck,5,"1차 판정(미검증): 근거 약함 — 라우던 카운티 데이터센터 집중 수요를 보도자료가 위험요인 문구로 언급, 계약 GW·CAPEX는 EX-99에서 미확인(후반부 미열람); 전력 연결 병목의 수혜 위치이나 해결 공급사는 아님",https://www.sec.gov/Archives/edgar/data/715957/000119312526439883/d-ex99.htm
+us-d,asymmetry,1,1차 판정(미검증): 시총 $58.0B·커버리지 17명·합병 진행 중 — 작은 규모·낮은 커버리지 요건 불충족,https://fiscal.ai/company/NYSE-D
+us-txnm,upside,1,"1차 판정(미검증): EX-99 확인 — Blackstone Infrastructure 주당 $61.25 현금 인수 진행, 주가 $59.39 대비 상방이 약 3.1%로 고정; 3Q 매출 $733M·ongoing EPS $1.62는 가격을 움직이지 않음",https://www.sec.gov/Archives/edgar/data/1108426/000110842626000068/ex99110302026earningsrelea.htm
+us-txnm,gap,1,1차 판정(미검증): 가격이 인수가에 묶임 — 남은 스프레드는 NMPRC 승인 위험 값이지 실적 기대 차이가 아님,https://fiscal.ai/company/NYSE-TXNM
+us-txnm,bottleneck,3,"1차 판정(미검증): 근거 약함 — 뉴멕시코·텍사스 규제 유틸리티, 345kV 송전선 $595M CCN 신청 외 데이터센터 계약 수치 없음",https://www.sec.gov/Archives/edgar/data/1108426/000110842626000068/ex99110302026earningsrelea.htm
+us-txnm,asymmetry,2,1차 판정(미검증): 시총 $6.1B·커버리지 6명이나 카탈리스트는 NMPRC 청문(2027-01-19~02-01)·종결(2027년 상반기 전망)의 이진 결과이고 상방이 인수가로 막힘,https://www.sec.gov/Archives/edgar/data/1108426/000110842626000068/ex99110302026earningsrelea.htm

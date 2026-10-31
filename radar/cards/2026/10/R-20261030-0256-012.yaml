@@ -1,0 +1,36 @@
+id: R-20261030-0256-012
+item_ids:
+  - src-bbg-direct:3d23c4d9dff2dc86
+event_cluster: null
+first_seen_source: src-bbg-direct
+detected_at: "2026-10-30T02:55:02+09:00"
+published_at: "2026-10-30T02:29:20+09:00"
+latency_min: 26
+entities:
+  - co-microsoft
+  - co-alphabet
+event_type: 기타
+headline_ko: "Microsoft, 250억 달러 규모 채권 발행 검토(보도)"
+what_happened: "Bloomberg 방송 요약에 따르면 Microsoft가 250억 달러 규모 채권(debt offering) 발행을 검토 중이라고 보도됐다. 같은 방송에서 Alphabet의 매출 미스가 AI 우려를 재점화했다고 전했다."
+primary_source_confirmed: false
+novelty: "Microsoft 채권 발행 검토 보도(확정 아님). 발행 규모·조건·용도 미확인"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "AI 인프라 CAPEX의 자금 조달 경로가 회사채로 넓어지는지 확인하는 선행 지표(가설)"
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Microsoft 공시(8-K·채권 발행 공고)로 발행 확정 여부·규모·용도 확인"
+  - "발행 자금의 용도(데이터센터 CAPEX 여부) 확인"
+  - "Alphabet 실적 미스 원문(회사 발표) 대조"
+next_check: "Microsoft 채권 발행 공고 또는 SEC 제출 서류"
+reverse: null
+policy: null

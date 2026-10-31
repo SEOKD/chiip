@@ -1,0 +1,63 @@
+id: R-20261028-0941-014
+item_ids:
+  - "src-newsroom-skhynix-ko:928469f722b5c3c6"
+  - "src-newsroom-skhynix-en:11d62ec2d422be98"
+  - "src-gnews-t0-ko:fefb8306b1d9d38e"
+  - "src-gnews-t0-ko:df64fe6440ad5fbd"
+  - "src-gnews-t0-ko:ed68e00461d62944"
+  - "src-gnews-t0-ko:fb35fef12602acd3"
+  - "src-gnews-t0-ko:ff40633c69efa7af"
+event_cluster: null
+first_seen_source: "src-gnews-t0-ko:fefb8306b1d9d38e (연합인포맥스, 2026-10-27T23:29:11Z 게시 메타)"
+detected_at: "2026-10-28T09:26:11+09:00"
+published_at: "2026-10-28T09:31:21+09:00"   # 뉴스룸 보도자료 게시 메타. 기사 최초 시각(08:29 KST)보다 늦어 불일치 — open_questions 참고
+latency_min: "미산정 (게시 시각 불일치)"
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 2026년 3분기 경영실적 발표 (회사 뉴스룸 보도자료)"
+what_happened: "SK하이닉스 공식 뉴스룸에 '2026년 3분기 경영실적 발표' 보도자료가 게시됐다(목록 메타 기준, 본문 미열람). 언론 제목은 영업이익 83.3조원이 시장 예상치를 상회했고 추가 주주환원 60조원(올해 총 100조원)을 계획했다고 전하며, 수치는 헤드라인 기준이라 1차 본문 대조 전이다."
+primary_source_confirmed: false   # 출처 유형은 1차(회사 뉴스룸). 본문·DART 공시 미열람이라 false
+novelty: "신규 — 3분기 실적 수치와 추가 주주환원 계획은 knowledge/claims에 없다. 기존 claim(C-20261027-001·002)은 HBM4 기대치이며 이번 실적 발표가 next_check로 지정돼 있다."
+linked_claims:
+  - C-20261027-001
+  - C-20261027-002
+linked_theses: []
+first_order:
+  - company: co-skhynix
+    driver: 가격   # 헤드라인만으로는 물량·가격·믹스 분해 불가. 영업이익 수준이 큰 만큼 가격·믹스 기여 가능성이 높다는 가설이며 미확인
+    line_item: 영업이익
+    direction: 상향   # 근거: 언론 헤드라인 '예상치 상회'(연합인포맥스·Investing.com). 컨센서스 수치 미확인
+    magnitude: 불명   # 매출 대비 비중·전년 대비 증감·컨센서스 대비 괴리(%)를 본문에서 못 구해 소/중/대 기준을 적용할 수 없음
+    timing: 2026년 3분기 실적(확정치는 본문·DART 대조 후)
+    rationale: "영업이익 83.3조원은 헤드라인 수치(1차 본문 미대조). 직전 분기·전년 동기 수치와 매출 미확인이라 증감률 산출 불가. 단위(연결/별도)·분모도 미확인."
+  - company: co-skhynix
+    driver: 점유율   # 주주환원은 실적 동인이 아님. 현금흐름 배분 항목이라 별도 행으로 기록
+    line_item: 주주환원(현금 배분)
+    direction: 상향
+    magnitude: 불명   # 60조·100조의 구성(배당/자사주)·기간·시행 단계(발표/이사회 결의/집행) 미확인
+    timing: 불명
+    rationale: "'60조 추가, 올해 총 100조'는 한국경제 속보 제목 기준. 발표와 지급·소각은 다른 단계이므로 집행 확인 전에는 계획으로만 취급. 영업 실적과 분리."
+second_order: []   # supply_relations.csv가 비어 있음(헤더만) — 공급관계 미구축. 경로를 추정하지 않음
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인 (헤드라인은 '예상치 상회'만 전함. 컨센서스 수치 없음)
+  priced_in: 불명
+edge_angle: "(가설) 이익 수준과 주주환원 규모는 헤드라인에서 확인되지만, 치입이 볼 지점은 HBM4 램프(C-20261027-002 가이던스)가 3분기 실적에 얼마나 반영됐는지와 CAPEX 대비 환원 비중이다. 환원 확대가 증설 속도 둔화 신호인지는 CAPEX 수치 확인 전엔 판단 불가. 근거: C-20261027-002 next_check, 양산 엔지니어 관점."
+field_intel_check: 해당없음
+article_angle: "SK하이닉스, 3분기 '예상치 상회'에 60조 추가 환원 — 이익의 질(HBM4·믹스)과 투자 여력 사이 균형이 관건 (본문·콜 확인 후 확정)"
+alert_level: P0
+verification: 1차판정
+open_questions:
+  - "뉴스룸 보도자료 본문에서 영업이익·매출·HBM4 출하 비중·고객 수·CAPEX·주주환원 수치를 확인해야 한다."
+  - "DART 잠정실적 공시(1차 법정 공시)가 있는지, 있다면 공시 시각과 본문을 대조해야 한다."
+  - "뉴스룸 게시 시각(09:31 KST)이 최초 기사 시각(08:29 KST)보다 늦다. 게시 메타 오류인지, 공시가 먼저 나갔는지 확인해야 한다."
+  - "'60조원 추가 주주환원'과 '올해 총 100조원'의 구성(배당·자사주 소각 등)과 기간을 1차 자료로 확인해야 한다."
+  - "시장 반응·컨센서스 대비 수치는 미확인이다."
+  - "공급관계 미구축: supply_relations.csv가 비어 있어 2차 영향(장비·소재·고객 경로)을 산출하지 못했다."
+  - "published_at 점검: 뉴스룸 KO 00:31Z=09:31 KST, 기사 최초 23:29Z=08:29 KST로 카드 기재와 일치. 뉴스룸 게시 메타가 실제 공개 시각인지는 미확인(DART 시각과 대조)."
+  - "HBM4 램프 가이던스(C-20261027-002) 이행 여부는 본문·콜 자료 전까지 판정 보류. 현재 근거는 claim 반증 조건에 해당하는 내용이 없다는 것뿐, 지지 증거는 아님."
+  - "금지표 점검: '예상치 상회→펀더멘털 개선 지속', '환원 발표→지급'으로 연결하지 말 것. 주가 반응 미확인이므로 '시장이 간과' 표현 금지."
+next_check: "뉴스룸 보도자료 본문 및 DART 잠정실적 공시 대조, 3분기 콜 자료에서 HBM4 램프 언급 확인 (C-20261027-002 next_check)"
+reverse: null
+policy: null

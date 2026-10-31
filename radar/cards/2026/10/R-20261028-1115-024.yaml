@@ -1,0 +1,38 @@
+# 영향 판정 카드 — 1차 판정(미검증). impact-card가 영향 블록을 채운다.
+id: R-20261028-1115-024
+item_ids:
+  - "src-gnews-t0-ko:c60a8d79edc26d4f"
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: "2026-10-28T11:11:13+09:00"
+published_at: "2026-10-27T15:07:00+09:00"   # 원 시각 2026-10-27T06:07:00+00:00
+latency_min: 1204
+entities:
+  - co-doosan
+event_type: 증설·CAPEX
+headline_ko: "두산 전북 김제 AI 전자소재 공장 증설 4천억 원 규모 (언론 보도)"
+what_happened: "YTN은 두산이 전북 김제에 AI 전자소재 공장을 증설하며 규모가 4천억 원이라고 보도했다. 공시·회사 보도자료, 착공·협약 여부는 이 기사에서 확인되지 않는다."
+primary_source_confirmed: false
+novelty: "미확인 — knowledge/claims에서 김제 증설 주장 검색 결과 없음."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1           # 원래 P0 후보(대규모 증설) → 1차 출처 대기로 P1
+verification: 1차판정
+open_questions:
+  - "회사 공시 또는 보도자료로 4천억 원·증설 내용 확인(1차 출처 대기)"
+  - "'AI 전자소재'의 제품 범위(예: CCL 등) 확인 — 기사 표현만으로 제품 단정 금지"
+  - "투자 기간·설비 규모·가동 시점 미확인"
+  - "착공·협약·인허가 단계 미확인 — 지방 안건 보도는 투자 확정이 아님"
+  - "매경 보도의 '두산·원익 등 7700억' 묶음 투자와 4천억 항목의 관계 확인"
+next_check: "DART·두산 IR 공시 대조, 전북도 협약·착공 여부 확인"
+reverse: null
+policy: null

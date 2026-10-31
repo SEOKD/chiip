@@ -1,0 +1,38 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (영향 판정은 impact-card가 채움)
+id: R-20261029-1607-033
+item_ids:
+  - src-jp-disclosure:b9c5452a6fdfb871   # 공시 미러(결산 단신 적시공시, 제목)
+  - src-jp-disclosure:9c745ab70bf792ad   # 2차 기사(결산 속보, 재인용 후보)
+event_cluster: null
+first_seen_source: src-jp-disclosure (TDnet 적시공시 미러, 일본 경제신문 회사정보 페이지)
+detected_at: 2026-10-29T16:01:25+09:00
+published_at: 2026-10-29T15:20:00+09:00
+latency_min: 41
+entities:
+  - co-ibiden
+event_type: 실적
+headline_ko: "이비덴, 2027년 3월기 2분기 연결 결산 단신 공개(일본 기준)"
+what_happened: "이비덴(4062)이 2026-10-29 2027년 3월기 2분기 연결 결산 단신(일본 기준)을 적시공시했다(공시 본문은 미확인, 제목 기준). 2차 기사는 순이익 전년 대비 74.8% 증가를 전하나 본문·기준(누계/분기)은 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 전년 2분기 대비 증가율의 분모·기간 맞추기 전까지 비교 불가"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "2차 기사(株探, 미검증): 대引け 직전 일시 4% 하락 — 원인 특정 없음"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "1차 판정, 미검증 — 가설: FC-BGA·패키지 기판 경쟁사의 2분기 증익이 기판 수급·가격 환경의 거울 신호인지 확인 필요(근거 부족)."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "결산 단신 원문 대조: 매출·영업이익·순이익 수치와 기준(누계/분기)"
+  - "순이익 74.8% 증가의 분모(전년 동기) 단위 확인"
+  - "연간 실적·배당 예상 상향 폭 — 1차 공시 대조 대기"
+  - "컨센서스 대비 — 미확인"
+next_check: "TDnet 원문(이비덴 2027.3 2Q 결산 단신) 열람 후 수치 확정"
+reverse: null
+policy: null

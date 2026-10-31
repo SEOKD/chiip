@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar/cards/2026/10/R-20261031-0814-013.yaml (1차 판정, 미검증)
+id: R-20261031-0814-013
+item_ids:
+  - src-news7-focus:ea642490501afe36
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha, Google News 색인)
+detected_at: 2026-10-31T07:56:51+09:00
+published_at: 2026-10-31T07:31:12+09:00   # 2026-10-30T22:31:12+00:00 원 시각
+latency_min: 26
+entities:
+  - co-microsoft
+event_type: 실적
+headline_ko: "마이크로소프트: Azure 성장률 48%, 그래도 용량 부족 (Seeking Alpha 기사 제목)"
+what_happened: "Seeking Alpha 기사 제목 기준으로 Azure 성장률 48%가 언급되었고, 기사는 여전히 용량(capacity)이 부족하다고 짚는다. 실적 발표문 원문과 수치의 기간·정의는 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "MSFT 실적 발표문(보도자료·IR 자료)에서 Azure 성장률 48%가 확인되는가, 분기·정의는 무엇인가"
+  - "용량 부족 언급이 회사 발언인지 기사 분석인지 구분 필요 — SA 기사는 분석이며 1차 출처 아님"
+  - "AI 인프라 CAPEX 금액·계획 변경 여부 (금액이 나오면 AI 밸류체인 기준 재판정)"
+next_check: "MSFT 실적 발표문·어닝콜 원문에서 Azure 성장률과 capacity 발언 확인"
+reverse: null
+policy: null

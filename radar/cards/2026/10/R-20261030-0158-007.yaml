@@ -1,0 +1,34 @@
+id: R-20261030-0158-007
+item_ids: ["src-news7-focus:ea7f2540906e839a"]
+event_cluster: null
+first_seen_source: "src-news7-focus"
+detected_at: "2026-10-30T01:42:31+09:00"
+published_at: "2026-10-30T01:11:41+09:00"
+latency_min: 31
+entities: ["co-nvidia", "Cohere(비상장·미등록)"]
+event_type: "기타"
+headline_ko: "엔비디아 투자 AI 기업 Cohere, 약 $5B 펀딩 라운드 마무리 단계(보도)"
+what_happened: "Seeking Alpha 기사 제목 기준으로 Nvidia가 투자한 AI 기업 Cohere가 약 $5B 규모 펀딩 라운드를 마무리 단계로 보도됐다. 최종 조건·참여자·기업가치는 원문과 1차 출처에서 미확인."
+primary_source_confirmed: false
+novelty: "검색상 knowledge/ 기존 주장 없음 — 신규 가능성(미확인)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처 확인: Cohere 발표 또는 Bloomberg·Reuters 원보도의 금액·기업가치·참여자"
+  - "'closes in on'은 확정 전 단계 — 클로징 발표 시점 확인"
+  - "Nvidia 지분 규모와 칩 공급 계약 연결 여부(투자→구매 흐름) 미확인"
+  - "P1 사유: AI 밸류체인 기업 자금 조달 10억 달러 이상(CLAUDE.md 판정 기준). T0 직접 연결 약함 — 1차 출처 대기"
+next_check: "Cohere 회사 발표 또는 원보도 본문(공개 부분)"
+reverse: null
+policy: null

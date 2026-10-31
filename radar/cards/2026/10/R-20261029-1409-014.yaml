@@ -1,0 +1,44 @@
+# 영향 판정 카드 — Oracle CAPEX 상한·양(+)의 잉여현금흐름 전망 보도, 주가 급등 (The Information, 1차 출처 대기)
+id: R-20261029-1409-014
+item_ids:
+  - src-news7-focus:b0e3f5d4947cc73e
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T14:09:07+09:00
+published_at: 2026-10-29T06:42:00+09:00   # 원 시간 2026-10-28 21:42:00 UTC
+latency_min: 447
+entities: [co-oracle]
+event_type: 증설·CAPEX
+headline_ko: "Oracle CAPEX 상한 설정·양(+)의 잉여현금흐름 전망 보도, 주가 10% 이상 상승 (The Information, 1차 출처 대기)"
+what_happened: "The Information은 Oracle이 CAPEX를 상한으로 묶고 양(+)의 잉여현금흐름을 전망한다고 보도했다(제목 기준, 2026-10-28 미국 시각). 같은 제목에 주가가 10% 넘게 올랐다고 적혀 있으며, 상한 금액·기간·조건은 제목에 없어 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — radar/cards/2026/10 안에 Oracle CAPEX 건 없음. 상한 금액·기간·대상 사업(OCI 등)은 미확인."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-oracle
+    driver: 불명
+    line_item: "CAPEX (상한) · 잉여현금흐름"
+    direction: 불명
+    magnitude:               # 상한 금액 미확인
+    timing: "향후 회계연도 (기간 미확인)"
+    rationale: "CAPEX 상한이 AI 인프라 발주를 줄이는 쪽인지, 효율화 후 집행을 유지하는 쪽인지 제목만으로 구분 불가 — 방향 불명. 주가 상승이 CAPEX 상한 때문인지는 원인 사건 분리 전이라 단정하지 않음(금표: 주가 급등 → 펀더멘털 변화)."
+second_order: []   # 공급관계 경로 미구축 — 추정하지 않음
+market_context:
+  price_reaction: "주가 10% 이상 상승 보도(제목 기준, 시세 원천 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "(가설) 하이퍼스케일러의 CAPEX 상한이 AI 인프라 집행 속도를 낮추는 신호라면 AI 칩·서버 공급사의 발주 가시성에 영향을 줄 수 있다. 근거: 제목 1건. 반대 근거: 효율화 목적의 상한일 수 있음. 검증 전 가설."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Oracle 공식 공시·실적 콜 원문에서 CAPEX 상한 금액·기간·대상 확인 (현재 원천은 The Information 제목)"
+  - "잉여현금흐름 전망의 수치·기준 기간 확인"
+  - "주가 10% 상승의 원인 사건 분리 — CAPEX 상한 외 다른 발표 동시 존재 여부"
+  - "Oracle은 master_stocks(config/earnings_watch.yaml) 포함이며 보유 종목(config/portfolio.yaml)은 아님 — 원문 확인 후 등급 재검토"
+next_check: "Oracle 공시·실적 콜 원문 대조 후 impact-card 실행"
+# 선택 블록
+reverse: null
+policy: null

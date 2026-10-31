@@ -1,0 +1,42 @@
+id: R-20261029-2130-053
+item_ids:
+  - src-news7-focus:58ad2e11f9f8f9e6
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha 색인, 원보도 미상)
+detected_at: 2026-10-29T21:27:21+09:00
+published_at: 2026-10-29T21:16:47+09:00
+latency_min: 11
+entities:
+  - co-microsoft
+event_type: 기타
+headline_ko: "마이크로소프트, 다중 트랜치 회사채 발행 추진"
+what_happened: "마이크로소프트가 다중 트랜치(multi-part) 회사채 발행으로 부채 시장에서 자금을 조달할 계획이라는 보도다. 발행 규모·만기·금리 조건은 기사 스니펫에서 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 원보도(Bloomberg 등) 및 회사 발행 공고 대조 전. 신규 금융 조달인지, 기존 조달 재보도인지 미확정."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-microsoft
+    driver: 시점
+    line_item: "AI 데이터센터 CAPEX 재원(부채 조달 비중)"
+    direction: 불명
+    magnitude: 불명
+    timing: "발행 공고 시점(미확인)"
+    rationale: "발행 규모 미확인이라 CAPEX 재원 구조에 미치는 영향을 판정할 수 없음. 금액이 확인되면 10억 달러 기준 충족 여부 판정."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "발행 규모(달러)·트랜치 구성·만기·금리는 얼마인가? (1차 출처: 발행 공고·424B 서류 대기)"
+  - "이 자금이 AI 데이터센터 CAPEX 재원인지, 일반 목적인지 회사 발언으로 확인되는가?"
+  - "원보도가 Bloomberg·WSJ 중 어디인가, 후속 보도가 새 사실을 더하는가?"
+next_check: "마이크로소프트 발행 공고·SEC 424B 서류, 발행 규모 확인 시 ai_financing 기준(10억 달러) 충족 여부 재판정"
+reverse: null
+policy: null

@@ -112,3 +112,116 @@ date,id,source,key,value
 2026-10-30,us-cava,news,CAVA restaurant,5
 2026-10-30,gb-gaw,wiki,"en:Warhammer 40,000",12288
 2026-10-30,gb-gaw,news,Warhammer,97
+2026-10-30,jp-takaratomy,wiki,en:Beyblade,4451
+2026-10-30,jp-takaratomy,wiki,ja:ベイブレード,1272
+2026-10-30,jp-takaratomy,wiki,en2:Tomica,57
+2026-10-30,jp-takaratomy,apple,best_rank,
+2026-10-30,jp-takaratomy,news,Beyblade X,38
+2026-10-30,jp-takaratomy,news,ベイブレードX,12
+2026-10-30,jp-sanrio,wiki,en:Hello Kitty,13192
+2026-10-30,jp-sanrio,wiki,ja:ハローキティ,3284
+2026-10-30,jp-sanrio,wiki,en2:Cinnamoroll,3351
+2026-10-30,jp-sanrio,wiki,en3:Kuromi,6321
+2026-10-30,jp-sanrio,apple,best_rank,
+2026-10-30,jp-sanrio,news,Sanrio,52
+2026-10-30,jp-sanrio,news,Kuromi,40
+2026-10-30,jp-bandainamco,wiki,en:Gundam,9560
+2026-10-30,jp-bandainamco,wiki,en2:Tamagotchi,5860
+2026-10-30,jp-bandainamco,wiki,ja:機動戦士ガンダム,7762
+2026-10-30,jp-bandainamco,apple,best_rank,
+2026-10-30,jp-bandainamco,news,Gunpla,31
+2026-10-30,jp-bandainamco,news,Tamagotchi,49
+2026-10-30,jp-capcom,wiki,en:Monster Hunter,6088
+2026-10-30,jp-capcom,wiki,en2:Resident Evil,48896
+2026-10-30,jp-capcom,steam,2246340,203736
+2026-10-30,jp-capcom,steam,1364780,51363
+2026-10-30,jp-capcom,apple,best_rank,
+2026-10-30,jp-capcom,news,Monster Hunter Wilds,19
+2026-10-30,jp-capcom,news,Resident Evil,41
+2026-10-30,jp-nintendo,wiki,en:Nintendo Switch 2,21062
+2026-10-30,jp-nintendo,wiki,ja:Nintendo Switch 2,2965
+2026-10-30,jp-nintendo,apple,best_rank,
+2026-10-30,jp-nintendo,news,Switch 2,100
+2026-10-30,jp-konami,wiki,en:Yu-Gi-Oh!,8235
+2026-10-30,jp-konami,wiki,en2:eFootball,0
+2026-10-30,jp-konami,steam,1665460,1203
+2026-10-30,jp-konami,apple,best_rank,
+2026-10-30,jp-konami,news,Yu-Gi-Oh!,59
+2026-10-30,jp-konami,news,eFootball,27
+2026-10-30,jp-squareenix,wiki,en:Final Fantasy,12878
+2026-10-30,jp-squareenix,wiki,en2:Dragon Quest,5906
+2026-10-30,jp-squareenix,apple,best_rank,
+2026-10-30,jp-squareenix,news,Final Fantasy,100
+2026-10-30,jp-squareenix,news,Dragon Quest,87
+2026-10-30,jp-toei-anim,wiki,en:One Piece,29401
+2026-10-30,jp-toei-anim,wiki,en2:Dragon Ball,14139
+2026-10-30,jp-toei-anim,news,One Piece,100
+2026-10-30,jp-toei-anim,news,Dragon Ball,100
+2026-10-30,jp-kadokawa,wiki,en:Elden Ring,22472
+2026-10-30,jp-kadokawa,wiki,en2:FromSoftware,11904
+2026-10-30,jp-kadokawa,steam,1245620,835029
+2026-10-30,jp-kadokawa,news,FromSoftware,15
+2026-10-30,jp-kadokawa,news,Elden Ring,42
+2026-10-30,jp-asics,wiki,en:Asics,4245
+2026-10-30,jp-asics,wiki,en2:Onitsuka Tiger,4606
+2026-10-30,jp-asics,news,Onitsuka Tiger,8
+2026-10-30,jp-asics,news,ASICS,67
+2026-10-30,kr-samyang,wiki,en:Buldak,1527
+2026-10-30,kr-samyang,wiki,ko:불닭볶음면,262
+2026-10-30,kr-samyang,news,Buldak,14
+2026-10-30,kr-samyang,news,불닭볶음면,9
+2026-10-30,kr-apr,news,medicube,3
+2026-10-30,kr-apr,news,메디큐브,26
+2026-10-30,kr-silicon2,news,Silicon2,0
+2026-10-30,kr-silicon2,news,실리콘투,9
+2026-10-30,kr-hybe,wiki,en:BTS,31719
+2026-10-30,kr-hybe,wiki,en2:Hybe Corporation,1804
+2026-10-30,kr-hybe,apple,best_rank,
+2026-10-30,kr-hybe,news,BTS,100
+2026-10-30,kr-hybe,news,HYBE,28
+2026-10-30,kr-krafton,wiki,en:PUBG: Battlegrounds,5996
+2026-10-30,kr-krafton,wiki,en2:Inzoi,6
+2026-10-30,kr-krafton,steam,578080,1768565
+2026-10-30,kr-krafton,steam,2456740,30604
+2026-10-30,kr-krafton,apple,best_rank,
+2026-10-30,kr-krafton,news,PUBG,100
+2026-10-30,kr-krafton,news,inZOI,1
+2026-10-30,kr-shiftup,wiki,en:Stellar Blade,4715
+2026-10-30,kr-shiftup,wiki,en2:Goddess of Victory: Nikke,3265
+2026-10-30,kr-shiftup,apple,best_rank,
+2026-10-30,kr-shiftup,news,Stellar Blade,4
+2026-10-30,kr-shiftup,news,NIKKE,6
+2026-10-30,hk-popmart,wiki,en:Labubu,6626
+2026-10-30,hk-popmart,wiki,en2:Pop Mart,1980
+2026-10-30,hk-popmart,apple,best_rank,
+2026-10-30,hk-popmart,news,Labubu,22
+2026-10-30,hk-popmart,news,Pop Mart,22
+2026-10-30,hk-laopu,news,Laopu Gold,1
+2026-10-30,hk-laopu,news,老铺黄金,14
+2026-10-30,hk-mixue,wiki,en:Mixue Ice Cream & Tea,3392
+2026-10-30,hk-mixue,news,Mixue,3
+2026-10-30,us-elf,news,e.l.f. Cosmetics,9
+2026-10-30,us-celh,wiki,en:Celsius Holdings,2125
+2026-10-30,us-celh,news,Celsius energy drink,6
+2026-10-30,us-onon,news,On Running,49
+2026-10-30,us-onon,news,On Cloud shoes,2
+2026-10-30,us-deck,wiki,en:Hoka One One,139
+2026-10-30,us-deck,news,Hoka shoes,44
+2026-10-30,us-deck,news,UGG,50
+2026-10-30,us-rblx,wiki,en:Roblox,77062
+2026-10-30,us-rblx,apple,best_rank,
+2026-10-30,us-rblx,news,Roblox,100
+2026-10-30,us-duol,wiki,en:Duolingo,5755
+2026-10-30,us-duol,apple,best_rank,77
+2026-10-30,us-duol,news,Duolingo,68
+2026-10-30,us-fnko,wiki,en:Funko,1700
+2026-10-30,us-fnko,news,Funko Pop,29
+2026-10-30,us-mat,wiki,en:Barbie,7110
+2026-10-30,us-mat,wiki,en2:Hot Wheels,3643
+2026-10-30,us-mat,news,Mattel,31
+2026-10-30,us-mat,news,Hot Wheels,47
+2026-10-30,us-bros,wiki,en:Dutch Bros,26
+2026-10-30,us-bros,news,Dutch Bros,100
+2026-10-30,us-cava,news,CAVA restaurant,5
+2026-10-30,gb-gaw,wiki,"en:Warhammer 40,000",12288
+2026-10-30,gb-gaw,news,Warhammer,100

@@ -1,0 +1,33 @@
+id: R-20261029-1454-018
+item_ids: ["src-news7-focus:20e13d04e55c8af2"]
+event_cluster: null
+first_seen_source: src-news7-focus (Google News RSS 경유, Seeking Alpha 기사)
+detected_at: "2026-10-29T14:53:34+09:00"
+published_at: "2026-10-28T22:30:59+09:00"
+latency_min: 983
+entities: ["co-amphenol"]
+event_type: 실적
+headline_ko: "Amphenol, 3분기 매출 급증 · 가이던스 컨센서스 상회 (Seeking Alpha 제목 기준)"
+what_happened: "Seeking Alpha 기사 제목에 따르면 Amphenol은 3분기 매출이 크게 늘었고 가이던스가 컨센서스를 웃돌았다. 회사 보도자료의 매출·EPS·가이던스 수치는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 기존 claims 이름 대조 일치 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "제목상 주가 상승('jumps') — 폭 미확인"
+  consensus_relation: "가이던스가 컨센서스 상회라고 제목에 명시 — 기준 수치 미확인"
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Amphenol 3분기 보도자료로 매출·EPS·가이던스 수치와 컨센서스 대비 폭 확인"
+  - "AI 데이터센터 관련 매출 비중(고속 커넥터 등) 확인 — AI 밸류체인 연결은 이 수치로만 판단"
+  - "983분 지연 — 배치 적재 지연 원인 점검 (detected_at 기준)"
+next_check: "Amphenol 3분기 실적 보도자료 (IR)"
+reverse: null
+policy: null

@@ -1,0 +1,32 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안, impact-card 전)
+# 주의: id 061~063은 chiip_ids.py로 발급하지 않고 060 다음 번호로 부여함 — 커밋 전 중복 확인 필요
+id: R-20261030-1517-061
+item_ids: ["src-jp-ir-docs:4d2e732ce1105bed"]
+event_cluster: null
+first_seen_source: src-jp-ir-docs
+detected_at: "2026-10-30T14:53:24+09:00"
+published_at: "2026-10-30"          # 문서 날짜. 공개 시각 미확인
+latency_min: null
+entities: [co-ibiden]
+event_type: 실적
+headline_ko: "이비덴 2026년도 2Q 결산설명회 자료 공개(직전 Q1 자료와 비교 가능)"
+what_happened: "이비덴이 2026년도 2Q 결산설명회 자료(2026-10-30)를 공개했다(1차 원문). 직전 Q1 자료가 함께 보관돼 있어 분기 비교가 가능하나, 수치는 아직 대조하지 않았다."
+primary_source_confirmed: true
+novelty: "미확인 — Q1 PT와 수치 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "매출·영업이익과 하반기 가이던스 수치(슬라이드 텍스트 추출 미완)"
+  - "FC-BGA 부문 매출·가동률과 AI 가속기 관련 언급"
+next_check: "PT 수치 추출 후 Q1 PT와 대조"

@@ -1,0 +1,41 @@
+id: R-20261028-0847-007
+item_ids:
+  - src-twse-monthly:2026-09
+event_cluster: null
+first_seen_source: src-twse-monthly (mopsfin.twse.com.tw opendata t187ap05_L)
+detected_at: 2026-10-28T00:01:46+09:00
+published_at: 2026-10 (2026-09 월매출)
+latency_min: null
+entities: [co-samsung, co-skhynix, co-semco, co-lginnotek, co-isupetasys, co-doosan, co-lotteem]
+event_type: 기타
+headline_ko: "거울: 대만 9월 월매출 — CCL 급증(台光電 +169%·聯茂 +111% YoY), 기판·PCB +45~65%, 광학 부진"
+what_happened: "TWSE 공개 월매출(2026-09, 천 TWD) 기준 CCL(台光電 +168.9%, 聯茂 +110.7%), ABF 기판(欣興 +64.7%, 南電 +57.8%, 景碩 +44.5%), PCB(金像電 +55.5%, 健鼎 +53.5%), 패키징(ASE +45.5%), 서버(緯穎 +100.0%, 廣達 +76.7%), MLCC(國巨 +46.1%, 華新科 +53.9%)가 전년 대비 크게 늘었다. 광학(大立光 −7.3%, 玉晶光 +0.5%)만 정체했다."
+primary_source_confirmed: true
+novelty: "장부 첫 월(직전 월·3개월 데이터 없음) — 추세 비교 불가, YoY만 사용."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설(두 해석 병기): ① AI 서버·네트워크 소재 수요 전반 호조 → 두산 전자BG·삼성전기·이수페타시스도 같은 사이클 ② 대만사 점유율 확대 → 한국사엔 경쟁 심화. 광학 정체는 LG이노텍 카메라모듈 쪽 수요 약세 가설과 방향 일치(정황)."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P2
+verification: 1차판정
+open_questions:
+  - "환율(TWD/USD) 효과를 뺀 실질 증가율"
+  - "다음 달(10월 매출, 11-10 전후)로 MoM 추세 확인 — 이례 판정 기준: YoY 변화폭 ±30%p"
+  - "indicators.csv의 ind-tw-monthly-rev 갱신(이번 실행에서는 미실행)"
+next_check: "2026-11-10 전후 대만 10월 월매출"
+reverse:
+  pair_id: null
+  signals: [SIG-20261028-0009, SIG-20261028-0010, SIG-20261028-0011]
+  layers: [L3]
+  strongest: S2
+  convergence: "페어별 판정은 R-20261028-0847-006(삼성전기 기판) 참조"
+  official_status: 해당없음
+  confirm_questions: []
+policy: null

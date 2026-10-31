@@ -1,0 +1,35 @@
+id: R-20261028-1001-015
+item_ids:
+  - src-gnews-t0-ko:09e0d32c537a7275
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: 2026-10-28T10:01:10+09:00
+published_at: 2026-10-28T08:37:25+09:00
+latency_min: 83
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 2026년 3분기 실적 발표 (매출 104조 6천억원, 영업이익 83조 3천억원 — 언론 보도 수치)"
+what_happened: "SK하이닉스가 2026년 3분기 실적을 발표했다고 연합뉴스가 속보로 보도했다(매출·영업이익은 보도 수치). 연결·잠정 여부, 보고 기준, 전 분기 대비 증감은 1차 출처 확인 전까지 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 (직전 분기 실적과 비교 전)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처(DART 공시·IR 실적 자료) 확보 후 매출·영업이익 수치 대조"
+  - "직전 분기·전년 동기 대비 증감과 컨센서스 대비 차이"
+  - "사업부(DRAM·NAND·HBM) 별 매출 구성 확인"
+next_check: "DART 실적 공시 및 IR 실적 자료 원문 확인 → earnings-delta로 비교"
+reverse: null
+policy: null

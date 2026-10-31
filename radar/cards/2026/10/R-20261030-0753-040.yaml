@@ -1,0 +1,41 @@
+id: R-20261030-0753-040
+item_ids: ["src-news7-focus:0b7a0d7d97d8128d"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T07:41:01+09:00"
+published_at: "2026-10-30T05:34:58+09:00"   # 원문 2026-10-29T20:34:58Z 를 KST로 환산
+latency_min: 126
+entities: [co-intel]
+event_type: 실적
+headline_ko: "인텔 실적 후 'PC 의존 지속' 평가 (Benchmark 애널리스트, CNBC 보도)"
+what_happened: "CNBC는 인텔 실적이 회사가 여전히 PC에 의존하고 있음을 보여준다는 Benchmark의 Cody Acree 평가를 전했다(2026-10-29 현지 게시, 제목 기준). 실적 수치·가이던스·AI 매출은 이 항목에서 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 인텔 실적 수치는 본문 미확인, knowledge/claims 대조 전"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-intel
+    driver: 가격
+    line_item: "실적 결과(매출·이익·가이던스)"
+    direction: 불명
+    magnitude: 불명
+    timing: "2026-Q3 실적 기준"
+    rationale: "실적 방향 미확인. Bloomberg 제목(실적 미달·주가 급락)은 팟캐스트 제목만 확인되어 수치 근거로 쓰지 않는다"
+second_order: []
+market_context:
+  price_reaction: "주가 급락 제목(Bloomberg 팟캐스트, 미확인 수치)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "인텔 실적 보도자료·8-K에서 매출·EPS·가이던스 확인 (T2 실적, 1차 출처 대기)"
+  - "PC 의존 평가의 근거 수치와 AI·파운드리 부문 비중"
+  - "T0와의 연결: 파운드리 경쟁(Intel Foundry)·PC DRAM 수요 경로 — 공급 관계 미확인, 가설"
+  - "Bloomberg 'Outlook Misses'·'Plunges' 팟캐스트 3건(src-bbg-direct)은 같은 사건 재인용 P3"
+next_check: "인텔 IR 실적 보도자료·실적 콜 전문"
+reverse: null
+policy: null

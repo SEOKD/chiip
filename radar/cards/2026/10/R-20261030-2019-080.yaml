@@ -1,0 +1,31 @@
+id: R-20261030-2019-080
+item_ids: ["src-news7-focus:256bebf9a850a8ca"]
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha 색인, Google News 경유)
+detected_at: "2026-10-30T20:01:44+09:00"
+published_at: "2026-10-30T18:45:30+09:00"
+latency_min: 76
+entities: [us-hii]
+event_type: 실적
+headline_ko: "HII, 2026년 3분기 실적 발표 자료(어닝콜 프레젠테이션) 공개"
+what_happened: "Seeking Alpha 색인 제목 기준으로 Huntington Ingalls Industries(HII)의 2026년 3분기 실적 결과와 어닝콜 프레젠테이션이 2026-10-30에 공개된 것으로 확인된다. 매출·이익·수주잔고·가이던스의 내용은 본문 미확인이다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "HII IR 보도자료 및 실적 발표 원문(1차 출처 대기)"
+  - "매출·이익·수주잔고·가이던스 변경 여부: 미확인"
+  - "함정 건조(항모·잠수함) 인도·수주 일정 변화 여부"
+next_check: "HII 투자자 관계(IR) 페이지의 3분기 보도자료·콜 자료 확인"

@@ -1,0 +1,36 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-20261030-2330-087
+item_ids:
+  - src-news7-focus:53c7fa9d500b8908
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-30T23:08:08+09:00
+published_at: 2026-10-30T14:00:04+00:00
+latency_min: 8
+entities:
+  - co-gevernova
+event_type: M&A
+headline_ko: "GE Vernova 대형 전력망 거래 — 공급망 수직 통합 신호 (칼럼, 거래 내용 미확인)"
+what_happened: "블룸버그 칼럼은 GE Vernova의 '대형 전력망 거래'를 공급망 인수 새 시대의 신호로 다룬다. 거래 상대·금액·조건은 본 항목에 없어 미확인."
+primary_source_confirmed: false
+novelty: "미확인 — config/company_lines.yaml에 2026-10-30 Trench 인수 보도자료 기록이 있으나 이 카드에서 원문 대조하지 않았다."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "거래 상대·인수 대상의 사업과 금액·조건은? (회사 보도자료·공시로 확인)"
+  - "칼럼의 '대형 전력망 거래'가 config/company_lines.yaml의 Trench 인수 건과 같은 건인지?"
+  - "인수 대상이 GE Vernova의 전력망 장비 공급 병목을 줄이는지 (가설 — 공급 관계 확인 필요)"
+next_check: "GE Vernova 보도자료·인수 계약 공시(1차 출처) 확인 후 P1 유지 여부 재판정"
+reverse: null
+policy: null

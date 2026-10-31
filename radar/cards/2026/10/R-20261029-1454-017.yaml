@@ -1,0 +1,33 @@
+id: R-20261029-1454-017
+item_ids: ["src-news7-focus:0562f94e4bbe3061"]
+event_cluster: null
+first_seen_source: src-news7-focus (Google News RSS 경유, Seeking Alpha 기사)
+detected_at: "2026-10-29T14:52:35+09:00"
+published_at: "2026-10-29T14:11:21+09:00"
+latency_min: 41
+entities: ["co-kla"]
+event_type: 가이던스
+headline_ko: "KLA, 12월 분기 매출 47억 달러 전망 · 2027년 웨이퍼 장비 시장 2,000억 달러 초과 전망 (Seeking Alpha 제목 기준)"
+what_happened: "Seeking Alpha 기사 제목에 따르면 KLA는 12월 분기 매출을 47억 달러(4.7B)로 전망했고, 2027년 웨이퍼 장비 시장이 2,000억 달러를 넘을 것으로 내다봤다. 회사 보도자료 원문과 전망 범위·EPS는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 기존 claims 이름 대조 일치 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "KLA 실적 보도자료로 12월 분기 매출 가이던스 범위·EPS 확인"
+  - "2027년 웨이퍼 장비 시장 2,000억 달러 전망이 KLA 자체 추정인지 외부 추정인지 확인"
+  - "T0 고객 장비 투자(메모리·파운드리)와의 연결 확인 — 장비 발주 ≠ 공급 증가 (금지표)"
+next_check: "KLA 분기 실적 보도자료·컨퍼런스콜 전문"
+reverse: null
+policy: null

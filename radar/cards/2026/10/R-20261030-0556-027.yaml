@@ -1,0 +1,34 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage). 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0556-027
+item_ids: [src-news7-focus:1bd4f9bde0d6228d]
+event_cluster: null
+first_seen_source: src-news7-focus:1bd4f9bde0d6228d
+detected_at: 2026-10-30T05:43:47+09:00
+published_at: 2026-10-30T05:24:00+09:00
+latency_min: 20
+entities: [co-sandisk]
+event_type: 실적
+headline_ko: "샌디스크 이익 급증 — AI 수요가 낸드 가격 상승 견인(WSJ)"
+what_happened: "WSJ는 샌디스크의 이익이 급증했고 AI 수요가 가격 상승을 이끌었다고 보도했다(헤드라인 기준). 매출·이익·가격 상승률 수치는 이 항목에서 확인되지 않았다(미확인)."
+primary_source_confirmed: false
+novelty: "신규 — 2026년 3분기 샌디스크 실적 보도"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "샌디스크 IR 보도자료 원문에서 매출·이익·ASP(가격) 변화율 대조 필요"
+  - "낸드 가격 상승이 국내 낸드 공급사(T0 메모리)의 가격·믹스에 주는 영향 확인 필요"
+  - "AI 수요 설명이 기업 자체 가이던스인지 기자 해석인지 구분 필요"
+next_check: "샌디스크 실적 보도자료 및 어닝콜 가격·공급 코멘트"
+reverse: null
+policy: null

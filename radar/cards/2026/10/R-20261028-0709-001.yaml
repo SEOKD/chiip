@@ -1,0 +1,38 @@
+id: R-20261028-0709-001
+item_ids:
+  - src-gnews-t0-en:849dfba81a109eb9
+event_cluster: null
+first_seen_source: src-gnews-t0-en (Google News RSS, SBS 뉴스 원 기사 2차 집계)
+detected_at: 2026-10-28T07:07:59+09:00
+published_at: 2026-10-28T06:19:18+09:00   # 원 보도 2026-10-27T21:19:18+00:00 (UTC)
+latency_min: 48
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 3분기 실적·주주환원 계획 당일 발표 예정(2차 보도)"
+what_happened: "SBS 뉴스(영문 제목 기준 집계)는 SK하이닉스가 3분기 실적과 주주환원 계획을 2026-10-28 발표한다고 보도했다. 회사 IR 공시·보도자료 원문은 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "실적 발표 일정 자체는 knowledge/calendar.csv에 2차 보도 기준으로 이미 기록됨. 결과 수치는 미확인으로 신규성 판단 보류."
+linked_claims:
+  - C-20261027-001   # HBM4 출하 시점 — falsifier: 3분기 콜에서 정정 여부
+  - C-20261027-002   # HBM4 비중·램프 진척 — 3분기 실적 언급 확인 대상
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처: 회사 IR 공시·실적 보도자료의 매출·영업이익(잠정/확정) 수치는 무엇인가"
+  - "HBM4 출하 비중·고객 수 언급이 C-20261027-001/002의 falsifier에 해당하는가"
+  - "주주환원 계획의 구체 금액·방식은 무엇인가 (보도 제목만으로는 미확인)"
+  - "P0 후보 여부: 1차 출처 확인 시 실적 공시이므로 P0로 재판정 필요"
+next_check: "2026-10-28 SK하이닉스 3분기 실적 IR 자료·DART 공시 원문 — HBM4 언급과 주주환원안 대조"
+reverse: null
+policy: null

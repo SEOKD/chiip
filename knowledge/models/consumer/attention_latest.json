@@ -1,6 +1,6 @@
 {
  "date": "2026-10-30",
- "as_of": "2026-10-30T15:33:08+09:00",
+ "as_of": "2026-10-30T15:38:36+09:00",
  "rows": {
   "jp-takaratomy": {
    "name": "Takara Tomy",
@@ -26,12 +26,12 @@
    "apple": [],
    "news": {
     "Beyblade X": {
-     "n7": 26,
+     "n7": 38,
      "accel": null,
      "saturated": false
     },
     "ベイブレードX": {
-     "n7": 16,
+     "n7": 12,
      "accel": null,
      "saturated": false
     }
@@ -68,12 +68,12 @@
    "apple": [],
    "news": {
     "Sanrio": {
-     "n7": 100,
+     "n7": 52,
      "accel": null,
-     "saturated": true
+     "saturated": false
     },
     "Kuromi": {
-     "n7": 20,
+     "n7": 40,
      "accel": null,
      "saturated": false
     }
@@ -105,12 +105,12 @@
    "apple": [],
    "news": {
     "Gunpla": {
-     "n7": 33,
+     "n7": 31,
      "accel": null,
      "saturated": false
     },
     "Tamagotchi": {
-     "n7": 32,
+     "n7": 49,
      "accel": null,
      "saturated": false
     }
@@ -218,7 +218,7 @@
      "saturated": false
     },
     "eFootball": {
-     "n7": 34,
+     "n7": 27,
      "accel": null,
      "saturated": false
     }
@@ -250,7 +250,7 @@
      "saturated": true
     },
     "Dragon Quest": {
-     "n7": 89,
+     "n7": 87,
      "accel": null,
      "saturated": false
     }
@@ -277,9 +277,9 @@
    "apple": [],
    "news": {
     "One Piece": {
-     "n7": 87,
+     "n7": 100,
      "accel": null,
-     "saturated": false
+     "saturated": true
     },
     "Dragon Ball": {
      "n7": 100,
@@ -315,7 +315,7 @@
    "apple": [],
    "news": {
     "FromSoftware": {
-     "n7": 16,
+     "n7": 15,
      "accel": null,
      "saturated": false
     },
@@ -352,7 +352,7 @@
      "saturated": false
     },
     "ASICS": {
-     "n7": 66,
+     "n7": 67,
      "accel": null,
      "saturated": false
     }
@@ -384,7 +384,7 @@
      "saturated": false
     },
     "불닭볶음면": {
-     "n7": 11,
+     "n7": 9,
      "accel": null,
      "saturated": false
     }
@@ -458,7 +458,7 @@
      "saturated": true
     },
     "HYBE": {
-     "n7": 29,
+     "n7": 28,
      "accel": null,
      "saturated": false
     }
@@ -565,7 +565,7 @@
      "saturated": false
     },
     "Pop Mart": {
-     "n7": 34,
+     "n7": 22,
      "accel": null,
      "saturated": false
     }
@@ -662,7 +662,7 @@
    "apple": [],
    "news": {
     "On Running": {
-     "n7": 50,
+     "n7": 49,
      "accel": null,
      "saturated": false
     },
@@ -694,7 +694,7 @@
      "saturated": false
     },
     "UGG": {
-     "n7": 49,
+     "n7": 50,
      "accel": null,
      "saturated": false
     }
@@ -743,10 +743,10 @@
      "app": "Duolingo: Learn Languages"
     },
     {
-     "country": "kr",
+     "country": "jp",
      "feed": "top-free",
-     "rank": 27,
-     "app": "듀오링고(Duolingo): 언어 학습"
+     "rank": 86,
+     "app": "Duolingo：英語、韓国語、中国語を学ぼう"
     }
    ],
    "news": {
@@ -773,7 +773,7 @@
    "apple": [],
    "news": {
     "Funko Pop": {
-     "n7": 44,
+     "n7": 29,
      "accel": null,
      "saturated": false
     }
@@ -800,12 +800,12 @@
    "apple": [],
    "news": {
     "Mattel": {
-     "n7": 54,
+     "n7": 31,
      "accel": null,
      "saturated": false
     },
     "Hot Wheels": {
-     "n7": 75,
+     "n7": 47,
      "accel": null,
      "saturated": false
     }
@@ -865,9 +865,9 @@
    "apple": [],
    "news": {
     "Warhammer": {
-     "n7": 97,
+     "n7": 100,
      "accel": null,
-     "saturated": false
+     "saturated": true
     }
    },
    "missing": [],

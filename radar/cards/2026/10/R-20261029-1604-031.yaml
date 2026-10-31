@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1604-031
+item_ids:
+  - src-jp-disclosure:8fda5df1480f1e5f
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-29T16:01:33+09:00
+published_at: 2026-10-29T06:30:00+00:00
+latency_min: 31
+entities:
+  - jp-fujielectric
+event_type: 실적
+headline_ko: "Fuji Electric, 今期 경상이익 6% 상향·최고 이익 전망·배당 증배 (보도 기준)"
+what_happened: "株探 보도(2차 출처)에 따르면 Fuji Electric은 今期 경상이익 전망을 6% 상향하고 최고 이익 전망을 올렸으며, 미정이던 배당을 40엔 증배했다. 같은 날 2분기 순이익은 58.2% 증가로 함께 보도됐다."
+primary_source_confirmed: false
+novelty: "미확인 — 결산 단신 원문 대기. 상향 동인은 보도에 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "결산 단신에서 전망 상향 수치와 2분기 누계 실적 확인"
+  - "상향 동인이 전력 변환·파워 반도체 수요인지 환율인지 분리"
+  - "데이터센터·AI 전력 수요 언급 여부와 부품별 매출 확인"
+next_check: "Fuji Electric 결산 단신 원문 확인"
+reverse: null
+policy: null

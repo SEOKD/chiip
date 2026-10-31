@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1604-032
+item_ids:
+  - src-jp-disclosure:9119897b995187e6
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-29T16:01:25+09:00
+published_at: 2026-10-29T06:20:00+00:00
+latency_min: 41
+entities:
+  - co-ibiden
+event_type: 증설·CAPEX
+headline_ko: "Ibiden, 고기능 IC 패키지 기판 향 설비투자(고정자산 취득) 공시"
+what_happened: "적시공시 미러(日本経済新聞 会社情報DIGITAL)에 따르면 Ibiden은 2026년 10월 29일자로 '고기능 IC 패키지 기판 향 설비투자(고정자산의 취득)' 공시를 냈다. 투자 금액·설치 시점·생산 능력은 공시 본문에서 확인하지 않았다."
+primary_source_confirmed: true
+novelty: "미확인 — 투자 금액·능력·가동 시점 대기. 직전 공시 대비 증설 규모 비교 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "투자 금액·설치 장소·가동 시점·용도(AI 가속기용 기판 여부) 확인. 금액 미확인이라 P0 판단 보류"
+  - "건설·장비 반입·수율·출하 확인 전에는 공급 증가로 쓰지 않음 (금지표: 투자 발표 → 공급 증가)"
+  - "같은 날 발표된 실적 상향(R-20261029-1604-027)과 연결 — 투자가 가이던스에 반영됐는지"
+next_check: "Ibiden 설비투자 공시 본문에서 금액·완공 시점 확인"
+reverse: null
+policy: null

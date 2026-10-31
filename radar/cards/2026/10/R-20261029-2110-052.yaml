@@ -1,0 +1,35 @@
+id: R-20261029-2110-052
+item_ids:
+  - src-news7-focus:3e3bc457ece10599
+event_cluster: null
+first_seen_source: src-news7-focus (Bloomberg, Google News 색인)
+detected_at: 2026-10-29T21:07:36+09:00
+published_at: 2026-10-29T20:47:22+09:00
+latency_min: 0
+entities:
+  - co-microsoft
+event_type: 기타
+headline_ko: "마이크로소프트, 2017년 이후 첫 미국 하이그레이드 회사채 발행 착수 (Bloomberg 헤드라인)"
+what_happened: "Bloomberg 헤드라인 기준으로 Microsoft가 2017년 이후 처음으로 미국 하이그레이드 회사채 매각에 나섰다는 보도가 나왔다. 발행 규모·만기·용도는 본문 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 같은 발행의 1차 공시(채권 발행 공고·424B) 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "발행 규모 — AI 밸류체인 기업 자금 조달 10억 달러 이상 기준 충족 여부 미확인"
+  - "용도(AI 데이터센터 CAPEX 조달인지, 일반 운전자금·차환인지) 미확인"
+  - "발행 공고·최종 조건 공시로 1차 확인"
+next_check: "SEC 발행 공시(424B)와 Bloomberg 후속 보도의 금액·만기·용도 대조, 같은 주 CAPEX 보류 보도와의 관계"
+reverse: null
+policy: null

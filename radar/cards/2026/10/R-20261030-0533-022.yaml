@@ -1,0 +1,32 @@
+id: R-20261030-0533-022
+item_ids: ["src-sec-filings:0001628280-26-068243"]
+event_cluster: null
+first_seen_source: src-sec-filings
+detected_at: 2026-10-30T05:31:27+09:00
+published_at: 2026-10-30T05:13:53+09:00
+latency_min: 17
+entities: [co-sandisk]
+event_type: 실적
+headline_ko: "Sandisk, 실적 8-K 제출(Item 2.02·8.01)"
+what_happened: "Sandisk이 2026-10-29(미 동부, KST 10-30 05:13)에 SEC 8-K(Item 2.02 실적 발표, Item 8.01 기타)를 제출했다. 매출·가이던스 수치와 8.01 내용은 원문 미열람으로 미확인이다."
+primary_source_confirmed: true
+novelty: "미확인(수치 대조 전)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "NAND 가격·출하 수치와 가이던스 확인(국내 NAND 비교 가능 단위인지)"
+  - "Item 8.01 공시 내용 확인"
+next_check: "8-K 첨부 보도자료 열람"
+reverse: null
+policy: null

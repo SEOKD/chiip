@@ -1,0 +1,36 @@
+id: R-20261028-0709-003
+item_ids:
+  - src-gnews-t0-ko:bd501141ba02a8ad
+event_cluster: null
+first_seen_source: src-gnews-t0-ko (Google News RSS, 전민일보 원 기사 2차 집계)
+detected_at: 2026-10-28T07:07:57+09:00
+published_at: 2026-10-27T18:00:00+09:00   # 원 보도 2026-10-27T09:00:00+00:00 (UTC)
+latency_min: 787
+entities:
+  - co-doosan
+event_type: 증설·CAPEX
+headline_ko: "두산 김제 3992억 원 재투자, AI 전자소재 생산 확대(2차 보도)"
+what_happened: "전민일보는 2026-10-27 두산이 김제 사업장에 3992억 원을 재투자해 AI 전자소재 생산을 늘린다고 보도했다. 투자 주체(전자BG·지주), 집행 기간, 공시 여부는 보도문만으로 확인되지 않는다."
+primary_source_confirmed: false
+novelty: "재투자 금액·사업장은 보도 기준 신규. 기존 knowledge/entities/companies/co-doosan.md에 김제 증설 기록 여부 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처: DART 신규시설투자·유형자산취득 공시가 있는가 (금액·기간·투자 주체 확인)"
+  - "3992억 원이 전자BG 증설인지, 기존 설비 재투자·유지보수인지 구분 필요"
+  - "AI 전자소재의 제품 세대·고객(CCL 등 AI 가속기·네트워크 기판 소재)과 연결되는지"
+  - "P0 후보 여부: 1차 공시가 신규시설투자 패턴이면 P0로 재판정 (config/alert_rules.yaml deterministic_p0)"
+next_check: "DART 두산 공시 목록에서 신규시설투자 여부·금액·기간 확인"
+reverse: null
+policy: null

@@ -1,0 +1,44 @@
+# 영향 판정 카드 — Alphabet CAPEX 범위 유지·제3자 TPU 시스템 판매 확대 (Seeking Alpha 집계, 1차 출처 대기)
+id: R-20261029-1409-013
+item_ids:
+  - src-news7-focus:b0861f316c842747
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T14:08:50+09:00
+published_at: 2026-10-29T10:20:54+09:00   # 원 시간 2026-10-29 01:20:54 UTC
+latency_min: 228
+entities: [co-alphabet]
+event_type: 증설·CAPEX
+headline_ko: "Alphabet 2026 CAPEX 범위 1,950~2,050억 달러 유지, 제3자 컴퓨트·TPU 시스템 판매 확대 (Seeking Alpha 집계, 1차 출처 대기)"
+what_happened: "Seeking Alpha는 Alphabet이 2026년 CAPEX 범위 1,950억~2,050억 달러(195B~205B)를 유지했고, 제3자 컴퓨트와 TPU 시스템 판매를 늘리고 있다고 보도했다(제목 기준, 2026-10-29). 범위가 유지됐으므로 CAPEX 상향 사건은 아니다."
+primary_source_confirmed: false
+novelty: "미확인 — radar/cards/2026/10 안에 Alphabet CAPEX·TPU 건 없음. 'TPU 시스템 판매'의 규모·고객은 제목에 없음."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-alphabet
+    driver: 불명
+    line_item: "CAPEX (2026 범위, 불변) · TPU 시스템 판매 (제3자)"
+    direction: 중립
+    magnitude:               # CAPEX 범위 불변 → 무시. TPU 판매 확대 규모 미확인
+    timing: "2026년 (CAPEX 범위) · 램프 중 (TPU 판매)"
+    rationale: "CAPEX는 범위 유지(중립). 제3자 TPU 시스템 판매 확대는 칩 수요처 구조 변화 가능성이나 규모·고객·물량 미확인. 공급사(HBM·패키징 등)로의 전파는 공급관계 미구축 상태라 추정하지 않음."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "(가설) 하이퍼스케일러가 자체 칩을 제3자에 파는 방향이면, 칩 수요가 GPU 중심에서 ASIC 시스템으로 옮겨가는지가 공급 체인 배분의 관전 포인트다. 근거: 제목 1건. 반대 근거: 판매 규모가 작을 수 있음. 검증 전 가설."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Alphabet 실적 자료(IR) 원문에서 CAPEX 범위와 '제3자 컴퓨트·TPU 시스템 판매' 문구 확인"
+  - "TPU 시스템 판매의 규모·고객·물량 — 수치 없이는 판정 불가"
+  - "CAPEX 범위 불변의 컨센서스 대비 위치 미확인"
+  - "보도 시점(2026-10-29 KST 10:20, 원 UTC 01:20)과 실적 발표일의 대응 확인"
+next_check: "Alphabet IR 실적 자료 원문 대조 후 impact-card 실행"
+# 선택 블록
+reverse: null
+policy: null

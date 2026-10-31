@@ -1,0 +1,45 @@
+# 영향 판정 카드 — 1차 판정, 미검증 (radar-triage 자동 초안)
+id: R-20261029-2211-055
+item_ids:
+  - src-news7-focus:66b2431c5c1a9dc6
+event_cluster: null
+first_seen_source: src-news7-focus (WSJ, Google News RSS 색인)
+detected_at: "2026-10-29T22:09:26+09:00"
+published_at: "2026-10-29T11:01:00+00:00"
+latency_min: 128
+entities:
+  - co-caterpillar
+  - co-enchantedrock   # config/portfolio.yaml holdings — related: Caterpillar
+  - co-innio           # config/portfolio.yaml holdings — related: Caterpillar
+event_type: 실적
+headline_ko: "Caterpillar 3분기 매출 증가, 월가 기대엔 미달 (WSJ 제목)"
+what_happened: "WSJ 제목 기준 Caterpillar 매출이 늘었으나 시장이 기대한 수준에는 못 미쳤다는 보도다. 같은 날 Reuters 제목은 분기 이익이 전망을 웃돌았고 연간 성장 전망은 변동 없다고 전했다(재인용 P3로 묶음). 본문·회사 보도자료는 미확인."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 직전 분기 가이던스 대비 변화 여부 확인 필요"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-caterpillar
+    driver: 물량
+    line_item: "데이터센터용 가스터빈·대형 발전 엔진 매출 구성 (미확인)"
+    direction: 불명
+    magnitude: 불명
+    timing: "3분기(보고 시점 2026-10-28~29 추정, 1차 출처 확인 필요)"
+    rationale: "제목만으로 매출 항목 구성을 알 수 없음. 보유 ERock·INNIO의 관련 경쟁·고객 축(발전 장비 수요)에 간접 노출"
+second_order: []
+market_context:
+  price_reaction: "보도상 주가 하락(Reuters 제목). 수치 미확인"
+  consensus_relation: "미확인 — '월가 기대 미달' 표현은 보도 해석이며 컨센서스 수치 아님"
+  priced_in: 불명
+edge_angle: "가설: 데이터센터 발전 장비 수요가 실적 본체에서 얼마나 차지하는지 확인해야 보유 종목(ERock·INNIO) 관련 파급을 판단할 수 있음"
+field_intel_check: 해당없음
+article_angle: "보류 — 1차 출처(Caterpillar 3분기 보도자료·콜) 확인 후 판단"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Caterpillar 3분기 보도자료: 매출·이익 실제 수치와 시장 전망(컨센서스) 대비 차이"
+  - "연간 성장 전망 유지 여부와 이전 가이던스 대비 변경 내역"
+  - "데이터센터 발전(Power & Energy) 부문 매출 증가율"
+next_check: "Caterpillar 3분기 보도자료·어닝콜 자료 확인(1차 출처 대기)"
+reverse: null
+policy: null

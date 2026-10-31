@@ -1,0 +1,22 @@
+id: SIG-20261028-0008
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: '2026-10-26T09:00:00+00:00'
+layer: L9
+source_id: src-foreign-press
+url: https://news.google.com/rss (經濟日報)
+language: zh
+origin_id: null
+mentioned_entity: co-samsung
+match_type: 실명
+counterparty: 旺矽(MPI, 6223)
+pair_id: null
+signal_type: 현지언론
+strength: S2
+gist_ko: '經濟日報: TSMC와 같은 프로브 스테이션(探針台) 공급사를 삼성도 채택한다는 전언, 대만 旺矽이 공급망에 포함(제목 기준, "傳" = 전언).'
+original_excerpt: 「追隨台積、傳三星探針台採相同供應商 台廠旺矽入列」(經濟日報, 2026-10-26)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: '① "傳"(전언) — 회사 확인 없음 ② 본문 미열람: 메모리·파운드리 어느 사업부·어떤 장비(웨이퍼 프로버·엔지니어링 스테이션)인지 불명 ③ 평가용 소량 도입일 수 있음 ④ 삼성 매출 영향은 미미, 장비 공급망 관점 신호.'
+convergence_score_after: 0
+status: 대기
+resolved: null

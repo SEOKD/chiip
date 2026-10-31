@@ -1,0 +1,42 @@
+id: R-20261031-0628-012
+item_ids:
+  - "src-jp-disclosure:d0138aa5ca2e4438"
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: "2026-10-31T06:26:36+09:00"
+published_at: "2026-10-30T10:16:00+00:00"
+latency_min: 670
+entities:
+  - jp-kioxia
+event_type: 가이던스
+headline_ko: "키옥시아, PTS 급락…10~12월기 최종이익 예상 전분기 대비 소폭 증가"
+what_happened: "株探(카부타탄) 보도 기준으로 키옥시아는 PTS(시간외 거래)에서 급락했고, 10~12월기 최종이익 예상은 전분기 대비 소폭 증가(微増)로 나왔다. 절대 금액·결산 자료 원문은 이 항목에서 확인하지 못했다."
+primary_source_confirmed: false
+novelty: "미확인 — knowledge/claims에 키옥시아 가이던스 항목 없음 (확인 범위: config·claims 키워드 검색)"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: 키옥시아(jp-kioxia)
+    driver: 가격
+    line_item: "NAND 플래시 업황 참고(실적 동인은 가격·믹스)"
+    direction: 불명
+    magnitude: 소
+    timing: "10~12월기(2027년 3월기 3Q)"
+    rationale: "최종이익 예상은 '소폭 증가'라는 표현만 있어 절대 수치 미확인. 1차 결산 자료 확인 전 방향 판정 보류"
+second_order: []
+market_context:
+  price_reaction: "PTS 급락(헤드라인 기준, 폭·원인 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 키옥시아 가이던스 방향이 NAND 가격 흐름의 선행 신호일 수 있음 — 1차 확인 전 주장 아님"
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "키옥시아 결산 단신(決算短信)의 10~12월기 최종이익 예상 수치와 전분기 대비 변화율은?"
+  - "PTS 급락의 폭과 원인 사건은? (주가 반응 원인 미특정)"
+  - "NAND 가격 흐름 등 T0 메모리 사업과 연결되는 가이던스 동인은?"
+next_check: "키옥시아 IR 공식 결산 자료 확인 (jp_ir.yaml 경로 미확인 상태 — 일본 IR 대체 경로 B 절차 적용)"
+reverse: null
+policy: null

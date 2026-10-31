@@ -1,0 +1,33 @@
+id: R-20261029-2310-058
+item_ids: ["src-bbg-direct:0dc6ae2d96f2f68e"]
+event_cluster: null
+first_seen_source: src-bbg-direct
+detected_at: 2026-10-29T23:10:05+09:00
+published_at: 2026-10-29T13:54:05+00:00
+latency_min: 16
+entities: ["co-caterpillar", "co-enchantedrock", "co-innio"]
+event_type: 실적
+headline_ko: "Caterpillar 실적 소폭 상회에도 주가 급락 — AI 인프라 우려 동반 (Bloomberg 영상 요약)"
+what_happened: "Bloomberg 영상 요약에 따르면 Caterpillar는 예상을 소폭 웃도는 실적을 발표했고 주가는 급락했다. 보도는 AI 인프라 붐에 대한 투자자 우려를 함께 언급했다."
+primary_source_confirmed: false
+novelty: "수치·가이던스 미확인. 제목·영상 요약만 확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "급락 보도 있음(폭·원인 1차 확인 전)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 데이터센터 발전 설비(가스 엔진·발전기) 수요 기대가 가격에 얼마나 들어 있는지 확인 필요. 보유 종목 INNIO·EROC의 related(경쟁사)라는 점이 연결 고리."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Caterpillar 1차 실적 보도자료·가이던스 변경 여부"
+  - "AI·데이터센터 관련 매출 비중과 수주 언급"
+  - "주가 하락 폭과 원인이 실적 자체인지 AI 우려인지"
+next_check: "Caterpillar 분기 실적 보도자료(IR)와 어닝콜 원문"
+reverse: null
+policy: null

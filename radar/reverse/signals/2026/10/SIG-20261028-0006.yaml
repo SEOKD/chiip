@@ -1,0 +1,22 @@
+id: SIG-20261028-0006
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-10-25~27 (UTC)
+layer: L9
+source_id: src-foreign-press
+url: https://news.google.com/rss (TechNews·經濟日報·自由時報·LINE TODAY·富途 등)
+language: zh
+origin_id: null
+mentioned_entity: co-semco
+match_type: 실명
+counterparty: NVIDIA·Tesla (보도상), 欣興(Unimicron)·揖斐電(Ibiden) 경쟁사
+pair_id: pair-semco-lginnotek-fcbga-aiaccel
+signal_type: 현지언론
+strength: S2
+gist_ko: '대만 매체: 엔비디아가 기판·첨단 테스트 캐파를 2028년까지 선점하고 欣興·揖斐電·삼성전기와 3년 내 AI 기판 캐파 2.5배 확대를 추진. 테슬라가 기판 공급 확보를 위해 출자. 별도로 "테슬라·엔비디아가 삼성전기 기판 설비에 3.7조 원 투자" 시장 전언 — 원출처는 매일경제(2026-10-22)이고, 삼성전기는 9월 세종 4.27조 원 투자 계획을 공시한 바 있다(검색 결과 기준, 1차 공시 미확인).'
+original_excerpt: 「載板太缺了！ 輝達攜手欣興、揖斐電、三星電機未來3年載板產能提升2.5倍」(自由時報, 2026-10-27) / 「市場傳聞：特斯拉和英偉達將向三星電機芯片基板設施投資3.7萬億韓元」(富途牛牛, 2026-10-26)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: ① 3.7조 원은 한국 매체 1건 기반, 엔비디아 측 금액 미공개 ② 대만 보도의 "2.5배"가 欣興 경영진 발언인지 기자 해석인지 원문 미확인 ③ 캐파 선점 = 주문·물량 확정 아님 ④ LG이노텍은 같은 기사군에 나오지 않으며 감익 전망 보도(Chosunbiz 일문판)만 있음 — 페어의 LG이노텍 쪽에는 반대·부재 신호.
+convergence_score_after: 6
+status: 수렴경보
+resolved: null

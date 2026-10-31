@@ -1,0 +1,37 @@
+# 영향 판정 카드 — 1차 분류(radar-triage) 초안. 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261029-1719-039
+item_ids:
+  - src-news7-focus:51c5687aa38054c3
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T17:15:07+09:00
+published_at: 2026-10-28T17:01:16+00:00
+latency_min: 914
+entities:
+  - us-flex
+event_type: 실적
+headline_ko: "Flex, 2027 회계연도 2분기 실적 발표 자료 공개"
+what_happened: "Flex Ltd.(NASDAQ:FLEX)의 2027 회계연도 2분기 실적 발표 자료(Earnings Call Presentation)가 2026-10-28자로 공개된 것이 Seeking Alpha 제목·날짜로 확인된다. 매출·이익·가이던스 수치는 본문 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 수치 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+biz: "전자제품 위탁 설계·제조(EMS) — 데이터센터 전력·랙 인프라 제조 포함 (일반 사업 지식, 미검증)"
+open_questions:
+  - "회사 보도자료(IR)에서 매출·영업이익·가이던스 변경 여부를 1차 확인할 것"
+  - "AI 데이터센터 인프라(전력·랙) 매출 비중과 직전 분기 대비 변화 확인"
+  - "Seeking Alpha 자료는 2차 보도이므로 원출처 확인 전 수치 인용 금지"
+next_check: "Flex 공식 IR 보도자료·실적 발표 자료에서 수치 대조 후 earnings-delta 적용"
+reverse: null
+policy: null

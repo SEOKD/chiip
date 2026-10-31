@@ -1,0 +1,41 @@
+# 영향 판정 카드 — 1차 분류 초안(radar-triage). 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0054-004
+item_ids:
+  - src-news7-focus:b9533213110dcb61
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha, Google News 색인)
+detected_at: 2026-10-30T00:39:36+09:00
+published_at: 2026-10-29T15:04:35+00:00
+latency_min: 35
+entities:
+  - co-microsoft
+event_type: 증설·CAPEX
+headline_ko: "마이크로소프트 CAPEX $39.4B 부담 — Azure 우위의 대가 (SA 칼럼)"
+what_happened: "Seeking Alpha 칼럼은 마이크로소프트의 CAPEX를 $39.4B로 제시하고 Azure 지배력의 비용으로 해석했다. 기간(분기·연간)과 집계 범위는 기사 제목만으로 확인되지 않아 1차 출처(MSFT 실적 보도자료·10-Q)를 대기한다."
+primary_source_confirmed: false
+novelty: "미확인 — 칼럼이 인용한 수치의 원출처 대조 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "$39.4B의 기간(분기 또는 연간)과 포함 범위(임차·금융리스 포함 여부) — 1차 출처 확인"
+  - "전년 대비 증가율과 AI 서버 비중 — 실적 자료 확인"
+  - "칼럼 본문의 원출처(실적 자료 인용 여부) — 본문 미확인"
+next_check: "MSFT 실적 보도자료·어닝콜 CAPEX 문구 대조"
+reverse: null
+policy: null
+biz: "Azure 클라우드·소프트웨어·AI 서비스를 운영하는 빅테크"
+points:
+  - "SA 칼럼 제목: CAPEX $39.4B를 Azure 지배력의 비용으로 해석(1차 미확인)"
+  - "기간·범위 미확인이라 전분기·전년 비교 불가"
+profile: []

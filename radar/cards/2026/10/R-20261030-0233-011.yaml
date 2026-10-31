@@ -1,0 +1,43 @@
+id: R-20261030-0233-011
+item_ids:
+  - "src-bbg-direct:829009504c6da53d"
+event_cluster: null
+first_seen_source: src-bbg-direct
+detected_at: "2026-10-30T02:32:59+09:00"
+published_at: "2026-10-30T02:23:46+09:00"
+latency_min: 9
+entities:
+  - co-microsoft
+event_type: 기타
+headline_ko: "Microsoft, 약 10년 만의 첫 미국 투자등급 회사채 추진 (Bloomberg 보도, 1차 출처 대기)"
+what_happened: "Bloomberg는 Microsoft가 약 10년 만의 첫 미국 투자등급(IG) 회사채 발행으로 최소 $25B 조달을 추진한다고 'people familiar' 인용으로 보도했다. 발행 공고·조건·용도는 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "AI 설비투자와 관련된 대형 외부 자금 조달 신호. 기존 claims와의 비교는 미수행."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-microsoft
+    driver: 시점
+    line_item: "자금 조달 규모·구조 (회사채)"
+    direction: 불명
+    magnitude: 불명
+    timing: "발행 공고 시점 미확인"
+    rationale: "보도 단계(추진)이며 확정 발행이 아니다. 조달 규모가 CAPEX 확대와 연결되는지 미확인."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "발행 공고(SEC 등록·424B 프로스펙터스 또는 보도자료)로 최종 규모·만기·금리 확인"
+  - "조달 용도(AI 데이터센터 CAPEX 여부) 확인"
+  - "보도의 원출처(people familiar) 독립 확인 — 같은 사건 재인용 여부 점검"
+  - "한국 공급사(메모리·기판·전력 기기) 연결 여부는 T0 연결 없음 — 확인 전 연결 금지"
+next_check: "Microsoft 발행 공고·SEC 제출 서류 확인 (1차 출처 도착 시 P1 유지 여부 재판정)"
+reverse: null
+policy: null

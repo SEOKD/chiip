@@ -1,0 +1,102 @@
+auto: true
+id: co-ultraclean
+name: Ultra Clean Holdings
+ticker: UCTT
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 54.7
+  shares: 0.0489
+  net_debt: 0.3701
+  source: 가격 = Fiscal.ai company_stock_prices 2026-10-29 종가 · 주식 수 47,960,159(Fiscal.ai
+    shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25
+    장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜
+    CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)
+rev0: 2.7676
+ic0: 1.3525
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.355
+      end: 0.035
+      decay: 0.516
+    margin:
+      m0: 0.0722
+      target: 0.1
+      year_target: 3
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.1069
+    s2c: 2.2
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5176
+      end: 0.04
+      decay: 0.5660000000000001
+    margin:
+      m0: 0.0722
+      target: 0.12
+      year_target: 3
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.1069
+    s2c: 2.53
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.1562
+      end: 0.030000000000000002
+      decay: 0.41600000000000004
+    margin:
+      m0: 0.0722
+      target: 0.08
+      year_target: 3
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.1069
+    s2c: 1.87
+mc:
+  sigma_growth: 0.0903
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [2.7376, 2.7976] (회사 3Q 실적 보도자료·콜(2026-10-27, Fiscal.ai ir_events
+    q3-2026): 4Q 매출 $800~860M·EPS $1.11~1.35 → FY2026 = 1~3Q 실적 1,937.6 + 4Q 가이던스)'
+  growth: 컨센서스 1년차 35.5%, 2년차 20.0%
+  margin: 1년차 컨센서스 10.7% 고정 → 목표 10%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: 재무 재구성 증분 매출/투하자본 1.8 → 덮어쓰기 2.2
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 15.6%~51.8%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '목표 영업이익률 10%(SBC 차감 후, 3년차)·장기 수렴 10%: 회사 목표 ''매출 $4B에서 총이익률 20%·비GAAP
+    영업이익률 약 10%'' + $5B 단계의 추가 가동률 효과를 SBC 0.9%와 상쇄로 봄(Zacks FY27 11.6% − SBC = 10.7%보다
+    낮게) — 동종 MKSI 16%·AEIS 13%보다 낮은 위탁 생산형 구조라 그 이상은 가정하지 않는다 / 매출÷투하자본 2.2: TTM 1.8은
+    재고 선매입($723M)이 부풀린 값, 증분 기준 CAPEX는 매출 증가분의 약 5%이나 재고·매출채권이 증분 매출의 약 40%를 묶는다 →
+    2.2(보수)'
+  shares: 완전 희석 = 기본 0.04796(2026-10-21) + 옵션·RSU·워런트·전환 0.0009 — 4Q 가이던스 희석 주식 약
+    48.9백만 주(3Q 콜 CFO) − 표지 기본 주식 47.96백만 = 약 0.
+notes:
+- 자동 생성(build_drivers) 2026-10-30 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 상위 2고객 61% 집중'
+- '어닝콜 위험: 재고 $723M(+$93M QoQ)·영업현금흐름 3분기 연속 마이너스'
+- '어닝콜 위험: MFC 부족 1~2분기 지속(경영진)'
+evidence:
+- 'Fiscal.ai MCP 2026-10-30 07시 조회: company_profile·stock_prices(일봉·월봉)·daily_ratios·shares_outstanding·financials_standardized(분기
+  손익·재무상태·현금흐름, 원문 auditUrl)·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers'
+- '10-Q 2026-09-25 원문: https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm'
+- '3Q 실적 보도자료: https://www.prnewswire.com/news-releases/ultra-clean-reports-third-quarter-2026-financial-results-302921159.html'
+- 'Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-UCTT'
+- knowledge/narratives/companies/co-ultraclean.md(2026-10-28 내러티브 수집)

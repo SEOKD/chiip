@@ -1,0 +1,43 @@
+# 영향 판정 카드 — radar/cards/2026/10/R-20261031-0146-002.yaml (1차 판정, 미검증)
+id: R-20261031-0146-002
+item_ids:
+  - src-bbg-direct:58a613cb3620ba39
+event_cluster: null
+first_seen_source: src-bbg-direct
+detected_at: 2026-10-31T01:45:37+09:00
+published_at: 2026-10-30T16:36:14+00:00
+latency_min:
+entities:
+  - co-amazon
+event_type: 기타
+headline_ko: "아마존, AI 인프라 투자 재원으로 공급사 금융 시설 최대 $80B 차입 설정(보도)"
+what_happened: "Bloomberg는 아마존이 하드웨어 구매 대금을 담보로 최대 $80B을 빌릴 수 있는 공급사 금융(supplier financing) 약정을 설정했다고 보도했다. 보도는 AI 투자 재원 확보와 재무 유연성 보전을 목적으로 제시한다."
+primary_source_confirmed: false
+novelty: 아마존 공급사 금융 규모·구조의 첫 보도(이전 자료와 비교 필요)
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-amazon
+    driver: 시점
+    line_item: "AI 인프라 CAPEX 재원 조달 방식(부채성 금융)"
+    direction: 불명
+    magnitude: 불명
+    timing: "약정 체결 시점·인출 일정 미확인"
+    rationale: "구매 대금 금융이 CAPEX 규모를 늘리는지, 지급 시점만 늦추는지 미확인"
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처(아마존 10-Q·10-K 주석 또는 계약 공시)에서 약정 한도·만기·금리·참여 금융사 확인"
+  - "담보 대상 하드웨어 공급사(칩·서버·네트워크)와 한국 기업 연결 여부"
+  - "기존 CAPEX·현금흐름 대비 규모 — 확정 증설인지 자금 구조 변경인지"
+next_check: "아마존 다음 공시(10-Q 주석 또는 8-K)에서 공급사 금융 잔액·조건 확인"
+reverse: null
+policy: null

@@ -1,0 +1,37 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (영향 판정은 impact-card가 채움)
+id: R-20261029-1608-034
+item_ids:
+  - src-jp-disclosure:d8929e3788876efc   # 2차 기사(株探, 설비투자·상향 보도)
+event_cluster: null
+first_seen_source: src-jp-disclosure (2차 기사: 株探 — 설비투자 보도)
+detected_at: 2026-10-29T16:01:29+09:00
+published_at: 2026-10-29T15:32:00+09:00
+latency_min: 29
+entities:
+  - co-ibiden
+event_type: 증설·CAPEX
+headline_ko: "이비덴, 고기능 IC 패키지 기판 향 설비투자 실시 보도(주가 일시 4% 하락)"
+what_happened: "2차 기사(株探, 본문 미확인)는 이비덴이 고기능 IC 패키지 기판 향 설비투자를 실시한다고 전했고, 같은 기사에서 今期業績·配当予想 상향을 언급했다. 투자 금액·능력·공장·가동 시점은 1차 공시 전이라 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 설비투자 계획은 기존 발표 여부 대조 전까지 비교 불가"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "2차 기사(株探, 미검증): 대引け 직전 일시 4% 하락 — 설비투자 보도와의 인과는 미확인"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "1차 판정, 미검증 — 가설: 경쟁 기판사의 고기능 IC 패키지 기판 증설이면 한국 FC-BGA 업체의 점유·가격 경쟁 변수로 작동할 수 있음(규모 확인 전 판단 금지)."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 공시(설비투자 결정 안내) 원문: 금액·능력·공장·가동 시점 — P0 후보이므로 최우선 확인"
+  - "기존 증설 계획과의 차이(새 증설인지 기존 계획의 확정인지)"
+  - "今期業績·配当予想 상향 폭 — 결산 단신 원문과 대조"
+  - "주가 하락 원인 — 미확인(설비투자 보도와 인과 단정 금지)"
+next_check: "TDnet 설비투자 공시 원문과 IR 자료에서 투자 금액·능력·시점 확인"
+reverse: null
+policy: null

@@ -1,0 +1,33 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (영향 미판정, impact-card 대기)
+id: R-20261029-0948-006
+item_ids: ["src-sec-filings:0001031296-26-000142"]
+event_cluster: null
+first_seen_source: src-sec-filings
+detected_at: 2026-10-29T09:47:23+09:00
+published_at: 2026-10-28T05:31:41+09:00
+latency_min: 1696
+entities: [us-fe]
+event_type: 실적
+headline_ko: "FirstEnergy, 실적·IR 자료 8-K(항목 2.02·7.01) 제출"
+what_happened: "FirstEnergy가 2026-10-27(UTC 20:31) SEC 8-K 항목 2.02(영업실적)·7.01(Reg FD 공시)을 제출했다. 공시 본문과 첨부 IR 자료는 아직 읽지 않아 내용은 미확인이다."
+primary_source_confirmed: true
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "8-K 본문·IR 자료의 전력 수요(데이터센터 부하) 전망 확인"
+  - "CAPEX 변경 여부 확인"
+next_check: "본문 읽기 후 impact-card 대상 여부 결정"
+reverse: null
+policy: null

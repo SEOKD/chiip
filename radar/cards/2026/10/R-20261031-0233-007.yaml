@@ -1,0 +1,34 @@
+id: R-20261031-0233-007
+item_ids:
+  - src-news7-focus:f00349481212355b
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-31T01:58:57+09:00
+published_at: 2026-10-31T01:36:14+09:00
+latency_min: 23
+entities:
+  - co-amazon
+event_type: 기타
+headline_ko: "아마존, $80B 공급사 대출 시설로 AI 투자 자금 조달 보도 (1차 미확인)"
+what_happened: "Bloomberg.com은 아마존이 $80B 규모 공급사 대출 시설(supplier loan facility)을 활용해 AI 투자 자금을 조달한다고 보도했다(2026-10-30, 제목 기준). 조건·참여 공급사·기간·상환 구조는 배치에 없어 미확인이다."
+primary_source_confirmed: false
+novelty: "신규 (knowledge/claims 검색에서 동일 주장 없음)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "공급사 대출 시설의 공식 계약·공시 여부와 금액 $80B의 산정 방식은?"
+  - "참여 공급사(칩·서버·전력·데이터센터 부품)와 각 공급사의 노출 규모는?"
+  - "대출 조건(금리·만기·보증 주체)과 아마존 재무제표상 처리 방식은?"
+  - "동일 구조가 다른 하이퍼스케일러로 확산되는지?"
+next_check: "아마존 SEC 공시(8-K·10-Q)와 공급사 측 공시 확인"

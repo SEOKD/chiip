@@ -1,0 +1,33 @@
+id: R-20261030-1059-050
+item_ids: [src-news7-focus:2bad9df469bdaabb]
+event_cluster: null
+first_seen_source: src-news7-focus (CNBC — Google News 색인)
+detected_at: 2026-10-30T10:47:55+09:00
+published_at: 2026-10-30T09:38:00+09:00
+latency_min: 69
+entities: [co-microsoft]
+event_type: 기타
+headline_ko: "마이크로소프트, AI 인프라 확대 위해 $25B 부채 조달 계획(CNBC 보도)"
+what_happened: "CNBC는 마이크로소프트가 AI 인프라 확대를 위해 $25B 규모의 부채를 조달할 계획이라고 보도했다(제목·요약 기준). 발행 형태(회사채·사모·SPV)·만기·금리·발행 시점은 요약에 없어 미확인이며, 회사 공시는 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "AI 인프라 CAPEX용 대형 부채 조달 — 하이퍼스케일러 금융 규모 $10B 이상 기준 충족(판정 근거). 회사 발표 전 보도 단계."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+article_angle: ""
+field_intel_check: 해당없음
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "발행 형태·만기·금리·발행 시점(공시 또는 발행 공고 전까지 계획 단계)"
+  - "자금 용도 — 데이터센터 CAPEX 대비 비중, 임대(리스) 대체 여부"
+  - "SEC 8-K·발행 설명서(prospectus supplement) 등 1차 출처 확인"
+next_check: "SEC EDGAR 8-K·발행 설명서, 회사 IR 발표"
+reverse: null
+policy: null

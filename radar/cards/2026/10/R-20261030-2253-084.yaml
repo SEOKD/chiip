@@ -1,0 +1,35 @@
+id: R-20261030-2253-084
+item_ids:
+  - src-news7-focus:d5ded8a3f36c4435
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha, Google News 색인)
+detected_at: 2026-10-30T22:36:43+09:00
+published_at: 2026-10-30T13:24:38+00:00 (KST 22:24)
+latency_min: 12
+entities:
+  - co-apple
+event_type: M&A
+headline_ko: "애플, 에이전틱 플랫폼 Ascension Labs 인수 보도 (헤드라인 기준)"
+what_happened: "Seeking Alpha 헤드라인(2026-10-30 13:24 UTC)은 Apple이 agentic platform Ascension Labs를 인수했다고 전한다. 거래 규모·조건·완료 여부와 회사 공식 발표는 본문 미확인."
+primary_source_confirmed: false
+novelty: "미확인 — 기존 claims·카드에 Ascension Labs 언급 없음(검색 확인)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "애플 뉴스룸·SEC 8-K 등 1차 출처에서 인수 발표 여부·금액·완료 시점 확인"
+  - "Ascension Labs 측 발표 및 인수 범위(소프트웨어 중심 여부) 확인"
+  - "T0 연결 — 소프트웨어 인수가 T0 부품(카메라모듈·기판) 수요에 닿는지 근거 없음, 연결 약함으로 봄"
+next_check: "애플 1차 발표 또는 SEC 제출 자료 확인 후 novelty·영향 재판정"
+reverse: null
+policy: null

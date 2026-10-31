@@ -1,0 +1,33 @@
+id: R-20261030-1059-049
+item_ids: [src-jp-disclosure:fc31656a51057890]
+event_cluster: null
+first_seen_source: src-jp-disclosure (株探 — 일본 정보망 미러)
+detected_at: 2026-10-30T10:57:31+09:00
+published_at: 2026-10-29T15:32:00+09:00
+latency_min: 1165
+entities: [co-ibiden(4062)]
+event_type: 가이던스
+headline_ko: "이비덴, 今期 업적·배당 예상 상향 + 고기능 IC 패키지 기판 설비투자 계획(株探 보도)"
+what_happened: "株探 헤드라인에 따르면 이비덴은 今期(당기) 업적과 배당 예상을 상향했고, 고기능 IC 패키지 기판 설비투자 실시를 알렸다. 상향 폭·설비투자 금액·생산능력·가동 시점은 헤드라인에 없어 미확인이며, 같은 헤드라인 기준 장 마감 직전 일시 -4% 하락했다(원인 미확인)."
+primary_source_confirmed: false
+novelty: "가이던스 상향과 기판 CAPEX는 공시 원문 확인 전 보도 기준 신규. 주가는 상향 발표에도 하락 — 반응 원인 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "장 막판 일시 -4%(헤드라인 기준, 원인 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+article_angle: ""
+field_intel_check: 해당없음
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "TDnet 적시공시 원문: 매출·영업이익·EPS 상향 전후 수치(보도 기준으로 P0 후보 — 1차 출처 대기)"
+  - "고기능 IC 패키지 기판 설비투자 금액·증설 능력·가동 시점과 대상 제품(AI 가속기용 여부)"
+  - "주가 -4%의 원인(실적 외 요인, 설비투자 부담 등)"
+next_check: "이비덴 결산 설명 자료·설비투자 공시(TDnet), 주요 고객 공급 계약 공지"
+reverse: null
+policy: null

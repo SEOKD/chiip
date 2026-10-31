@@ -1,0 +1,43 @@
+# 영향 판정 카드 — 1차 분류 초안(radar-triage). 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261030-1955-077
+item_ids:
+  - src-bbg-direct:7dd7a43ef24aec61
+event_cluster: null
+first_seen_source: src-bbg-direct
+detected_at: 2026-10-30T19:53:50+09:00
+published_at: 2026-10-30T10:30:09+00:00
+latency_min: 84
+entities:
+  - co-amazon
+event_type: 실적
+headline_ko: "Amazon, 예상보다 큰 자본지출 — 기술주 하락 우려 보도(Bloomberg)"
+what_happened: "Bloomberg 보도에 따르면 Amazon이 예상보다 많은 자본지출(CAPEX)을 보고했고, 핵심 e-커머스 성장률은 3년 만에 가장 낮았다. 자본지출 금액과 가이던스는 1차 출처(Amazon 실적 발표·10-Q)에서 미확인."
+primary_source_confirmed: false
+novelty: "Amazon 실적 발표 원문 대조 전. 자본지출 컨센서스 대비 차이 수치 미확인."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-amazon
+    driver: 물량
+    line_item: "AI 인프라 자본지출(CAPEX)"
+    direction: 불명
+    magnitude: 불명
+    timing: "2026-10-29 실적 발표 기준(보도 2026-10-30)"
+    rationale: "CAPEX 상회가 AI 인프라 수요 신호일 가능성(가설). 금액·칩 구매 비중 미확인이라 방향 판정 보류."
+second_order: []
+market_context:
+  price_reaction: "미확인 (장전 기사 '하락 예상'만 확인, 실제 반응 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 하이퍼스케일러 CAPEX 상회가 AI 칩·인프라 공급사 주문으로 이어지는지, 주가만 흔드는 시황인지 — 공급사 주문 확인 전 판단 보류."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Amazon 실적 발표·10-Q의 CAPEX 금액과 전년·가이던스 대비 차이"
+  - "CAPEX 증가분 중 칩 구매와 데이터센터 건설 비중"
+  - "AI 칩·인프라 공급사 주문·계약으로 이어지는지 확인"
+next_check: "Amazon 1차 실적 자료 수치 확보 후 P1 유지 여부 재판정 (1차 출처 대기)."
+reverse: null
+policy: null

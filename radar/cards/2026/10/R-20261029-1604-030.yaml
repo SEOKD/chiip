@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1604-030
+item_ids:
+  - src-jp-disclosure:8dc5981975edf0e4
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-29T16:01:31+09:00
+published_at: 2026-10-29T00:00:00+00:00
+latency_min: 421
+entities:
+  - jp-renesas
+event_type: 실적
+headline_ko: "Renesas, 업적 예상 변경 적시공시 (2026-10-29)"
+what_happened: "적시공시 미러(日本経済新聞 会社情報DIGITAL)에 따르면 Renesas는 2026년 10월 29일자 '業績予想に関するお知らせ'(업적 예상 변경) 공시를 냈다. 변경 방향과 수치는 공시 본문에서 확인하지 않았고, 제목과 공시일만 확인했다."
+primary_source_confirmed: true
+novelty: "미확인 — 공시 본문 수치 대기. 직전 전망 대비 변경 폭 확인 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "時事 보도 기준 다음 날 3일 만에 반락 (원인 특정 전 단계)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "공시 본문에서 매출·이익 예상 수치와 변경 폭 확인"
+  - "時事 보도의 '今期売上収益予想 最大27.0%増'·'DC向け好調' 문구가 공시 본문과 일치하는지"
+  - "3분기 누계 세전이익 770,186백만 엔(보도 표기)을 결산 자료와 대조"
+next_check: "Renesas 공시 본문 수치 확인"
+reverse: null
+policy: null

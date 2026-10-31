@@ -1,0 +1,39 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (영향 판정은 impact-card가 채움)
+id: R-20261028-1522-039
+item_ids:
+  - src-news7-focus:21a380a0c715f446
+event_cluster: null
+first_seen_source: src-news7-focus (The Information, 원 발행 2026-10-27 23:59 UTC)
+detected_at: 2026-10-28T14:51:44+09:00
+published_at: 2026-10-28T08:59:00+09:00   # 원 발행 2026-10-27T23:59:00+00:00 (KST 환산)
+latency_min: 352
+entities:
+  - co-nvidia
+  - OpenAI (미등록)
+  - Google (미등록, 자체 AI 칩 제공 측)
+event_type: 기타
+headline_ko: "OpenAI, Nvidia 장기 고객 — Google AI 칩 구매 계획 보도 (The Information)"
+what_happened: "The Information 제목 기준으로, OpenAI가 Google의 AI 칩 구매를 계획 중이라고 보도됐다. 본문·회사 발표·계약 규모·물량·시점은 아직 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목·스니펫만 확인, knowledge/claims 대조 미실시"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처 대기: OpenAI·Google 공식 발표 또는 계약 공시 여부 (보도 원문 본문 미확인)"
+  - "물량·계약 규모·시점: 보도에 있는지, 계획 단계인지 확인"
+  - "HBM 영향 방향: Google TPU 쪽 HBM 공급사 구성과 Nvidia GPU 대비 HBM 탑재량 차이 — 방향 불명"
+  - "중복 확인: Bloomberg 2026-10-28 01:19 UTC 동일 주제 보도(재인용 P3 처리) — 독립 취재 여부 불명"
+next_check: "OpenAI·Google 공식 블로그·보도자료, Nvidia 고객 공지, 후속 보도에서 계약 확인"
+reverse: null
+policy: null

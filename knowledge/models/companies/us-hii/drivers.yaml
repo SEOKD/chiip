@@ -1,0 +1,99 @@
+auto: true
+id: us-hii
+name: Huntington Ingalls Industries
+ticker: HII
+unit: B$
+unit_usd: 1000000000.0
+industry: aerospace_defense
+region_mix:
+  US: 1.0
+tax: 0.2
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 316.97
+  shares: 0.039806
+  net_debt: 2.542
+  source: 가격 = Fiscal.ai 일봉 10/30 시가 없는 마지막 값 $316.97(월봉 종가) · 주식 수 39,406,060(10-Q
+    표지 2026-10-23) · 현금·차입 = 10-Q 2026-09-30, 차입 = 장기차입 2,704 + 리스 225백만$
+rev0: 13.58
+ic0: 8.034
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0677
+      end: 0.035
+      decay: 0.88
+    margin:
+      m0: 0.0603
+      target: 0.08
+      year_target: 6
+      lr: 0.08
+      lam: 0.35
+      anchors:
+      - 0.0662
+      - 0.0703
+    s2c: 1.684
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.0972
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.0603
+      target: 0.1
+      year_target: 6
+      lr: 0.08
+      lam: 0.25
+      anchors:
+      - 0.0662
+      - 0.0703
+    s2c: 1.937
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.0457
+      end: 0.030000000000000002
+      decay: 0.78
+    margin:
+      m0: 0.0603
+      target: 0.06
+      year_target: 6
+      lr: 0.08
+      lam: 0.5
+      anchors:
+      - 0.0662
+      - 0.0703
+    s2c: 1.431
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [13.38, 13.78] (회사 3Q 실적 보도자료·콜(2026-10-29): 조선 $10.5~10.7B +
+    MT $3.0~3.2B − 부문 간 제거 약 $0.12B(3Q 연환산, Chiip 계산))'
+  growth: 컨센서스 1년차 6.8%, 2년차 5.2%
+  margin: 1~2년차 컨센서스 6.6%, 7.0% 고정 → 목표 8%(6년차, 덮어쓰기) → 장기 수렴 8%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.684
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 4.6%~9.7%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '목표 영업이익률 8.0%(6년차): 경영진의 조선 9~10% 목표는 구계약이 사라지는 2030년 전후의 값이고 2019년
+    이후 달성 이력이 없어 하단보다 1%p 낮춘 뒤 MT 6%와 가중했다. 컨센서스 FY2028 7.0%까지는 그대로 둔다 · 성장: 감속 계수를
+    규칙값 0.51에서 0.88로 올렸다. 규칙값이면 5년 매출 CAGR이 4.8%로 회사 중기 가이던스 약 6%와 잔고(조선 매출 약 90%를
+    2030년까지 확보)보다 낮기 때문이다'
+  shares: '완전 희석 = 기본 0.039406(2026-10-23) + 옵션·RSU·워런트·전환 0.0004 — 10-Q 주석: 희석 계산에서
+    제외한 RPSR 0.3백만·RSR 0.1백만 주(2026-09-30)'
+notes:
+- 자동 생성(build_drivers) 2026-10-31 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 처리량 연초 대비 9%로 목표 15%에 미달(Ingalls 인력 회복 지연)'
+- '어닝콜 위험: 뉴포트뉴스 3Q 총 유리 조정 $210M·불리 조정 $138M — 평소보다 큼'
+- '어닝콜 위험: Ingalls 수상함 이익률 저하(6.7%)'
+evidence:
+- 10-Q 2026-09-30(SEC)
+- 8-K EX-99.1 2026-10-29
+- 10-K FY2025(SEC)
+- 3Q·2Q 어닝콜

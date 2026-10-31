@@ -1,0 +1,43 @@
+# 영향 판정 카드 — 1차 분류 초안(radar-triage). 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0054-003
+item_ids:
+  - src-news7-focus:ef222d17492ad526
+  - src-news7-focus:ed57791ce0bd3d97
+event_cluster: null
+first_seen_source: src-news7-focus (CNBC, Google News 색인)
+detected_at: 2026-10-30T00:41:55+09:00
+published_at: 2026-10-29T11:01:34+00:00
+latency_min: 280
+entities:
+  - co-alphabet
+event_type: 실적
+headline_ko: "알파벳 3분기 실적 후 주가 하락 — 지출 증가가 투자자 우려"
+what_happened: "CNBC는 알파벳 3분기 실적 발표 후 주가가 하락했고 지출(투자) 확대가 우려 요인이었다고 보도했다. 1차 출처(알파벳 실적 보도자료·10-Q)는 아직 대조하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 실적 수치·CAPEX 금액은 기사 제목에 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "보도상 하락(폭·기준일 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "알파벳 3분기 CAPEX 금액·전년 대비 증가율 — 1차 출처 확인 필요"
+  - "클라우드·검색 매출 성장률과 CAPEX 대비 수익 연결 — 실적 자료 확인"
+  - "Business Insider 'Burning cash' 기사(동일 사건, 후행) — 재인용 P3 처리"
+next_check: "알파벳 3분기 실적 보도자료·어닝콜 CAPEX 가이던스 확인"
+reverse: null
+policy: null
+biz: "검색·유튜브 광고와 구글 클라우드·AI 모델을 운영하는 빅테크"
+points:
+  - "CNBC 보도: 3분기 실적 후 주가 하락, 지출 확대가 우려 요인(1차 미확인)"
+  - "Bloomberg 시황 기사도 알파벳을 당일 주가 변동 종목으로 다룸"
+  - "CAPEX 금액·기간은 확인 전이라 비교 불가"
+profile: []

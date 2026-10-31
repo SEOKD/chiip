@@ -1,0 +1,35 @@
+id: R-20261028-2123-042
+item_ids:
+  - src-gnews-t0-en:e148fbad3eb12296
+event_cluster: null
+first_seen_source: src-gnews-t0-en
+detected_at: "2026-10-28T21:21:11+09:00"
+published_at: "2026-10-28T20:26:56+09:00 (원 시각 2026-10-28T11:26:56+00:00)"
+latency_min: 54
+entities: [co-skhynix, co-micron, co-nvidia]
+event_type: 실적
+headline_ko: "SK하이닉스 실적 발표 후 반도체 주가 주목 보도 (1차 출처 대기)"
+what_happened: "Seeking Alpha 기사 제목 기준으로, SK하이닉스 실적 발표 이후 반도체 주가가 주목받고 Micron·Nvidia가 퀀트 상위 목록에 올랐다는 보도다. 실적 수치·가이던스·HBM 비중은 본문과 1차 출처에서 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미판정 — 실적 수치 확인 전. 기존 claims C-20261027-001~005(2분기 맥락 HBM4·LTA 주장)와 3분기 변화 비교 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "SK하이닉스 3분기 실적 1차 출처(IR 보도자료·공시) 확인: 매출·영업이익·HBM 비중·가이던스·CAPEX"
+  - "T0 실적은 P0 규정 대상. 1차 출처로 확인되면 P0 상향 여부 재판정"
+  - "같은 사건 재인용 3건(Bloomberg 11:56 UTC, SA 12:00 UTC 등) 중 최초 1건만 P1 처리. 나머지는 P3 재인용"
+  - "시장 반응·컨센서스 비교 미확인 — 주가 급등 원인을 실적 동인으로 연결하기 전에 확인"
+next_check: "SK하이닉스 IR 보도자료 및 DART 분기보고서 접수 여부 확인"
+reverse: null
+policy: null

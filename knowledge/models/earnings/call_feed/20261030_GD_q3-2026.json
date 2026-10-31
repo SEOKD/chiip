@@ -1,0 +1,57 @@
+{
+ "key": "NYSE_GD",
+ "event": "q3-2026",
+ "ticker": "GD",
+ "release_utc": "2026-10-30T13:00:00+00:00",
+ "transcript_found_utc": "2026-10-30T16:30:29.786066+00:00",
+ "transcript_lag_h": 3.5,
+ "market_heard_live": true,
+ "market_proxy": "미국 대형주 6종 동일가중(Fiscal에 지수 없음 — 근사)",
+ "peers": [
+  "NYSE_LMT",
+  "NYSE_NOC",
+  "NYSE_RTX"
+ ],
+ "release_session": "pre_or_intraday",
+ "reaction_day": null,
+ "base_day": "2026-10-29",
+ "runup_20d": {
+  "from": "2026-10-01",
+  "to": "2026-10-29",
+  "days": 20,
+  "stock_pct": 11.45,
+  "market_pct": -5.12,
+  "ar_pct": 12.99
+ },
+ "reaction": null,
+ "drift": {
+  "days": 0,
+  "note": "반응일 장이 아직 열리지 않았다 — 가격 줄은 ①의 장전·장후 등락(있으면)과 발표 전 20일 상승으로 쓴다"
+ },
+ "qa": {
+  "now": {
+   "questions": 21,
+   "firms": 11,
+   "answer_words_avg": 146,
+   "prepared_words": 2557,
+   "qa_found": true
+  },
+  "prev": {
+   "questions": 27,
+   "firms": 11,
+   "answer_words_avg": 98,
+   "prepared_words": 2652,
+   "qa_found": true
+  },
+  "short_or_refuse": [],
+  "note": "짧은 답·회피 표현은 후보일 뿐 — 원문 맥락을 읽고 '답변 회피'인지 판정(같은 질문을 다른 경영진이 이어서 답했을 수 있다)",
+  "answer_len_change_pct": 49.0
+ },
+ "cif_hints": {
+  "novelty": "0~2(3 없음 — 콜은 생중계로 이미 공개): 2 = 보도자료에 없던 콜 전용 숫자·가이던스 색채이고 영어권·국내 보도에 아직 없음 / 1 = 콜 전용이지만 이미 보도 또는 정성 변화 / 0 = 보도자료 반복",
+  "priced": "reaction.ar_pct를 insight_calc.py priced --stock <ar> --market 0 --beta 1 --implied <밸류 다리 %>로 — 반응일은 보도자료와 콜이 섞인 값",
+  "diffusion": "callqa(Q&A 변화·회피) + link·complex·smallcap 해당 시 insight_calc.py diffusion",
+  "baserate": "earnings_drift · call_qa_content · call_nonanswer (config/insight/base_rates.yaml)"
+ },
+ "computed_at": "2026-10-30T16:32:13.732971+00:00"
+}

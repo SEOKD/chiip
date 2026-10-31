@@ -1,0 +1,60 @@
+id: R-20261028-0847-006
+item_ids:
+  - src-foreign-press:e18cb72a22d6e800
+  - src-foreign-press:d7895b3ed30fbb7a
+  - src-twse-monthly:2026-09:3037
+event_cluster: null
+first_seen_source: src-foreign-press (Google News RSS 번체·간체·일본어) + src-twse-monthly
+detected_at: 2026-10-28T08:47:00+09:00
+published_at: 2026-10-25T15:16:41+00:00   # 대만 첫 보도(LINE TODAY 재게시) 기준, UTC
+latency_min: null
+entities: [co-semco, co-lginnotek, co-nvidia]
+event_type: 기타
+headline_ko: "역방향 수렴경보(정황): 삼성전기 AI 기판 — 대만 보도(L9 S2) + 대만 기판 월매출(L3 S2)"
+what_happened: "대만 매체가 엔비디아의 기판 캐파 선점(2028년까지)과 欣興·揖斐電·삼성전기와의 3년 2.5배 증설, 테슬라·엔비디아의 삼성전기 기판 설비 3.7조 원 투자설(원출처 매일경제 2026-10-22)을 보도했다. 같은 시기 대만 ABF 기판 3사 9월 매출이 전년 대비 +44~65%로 나왔다. 두 흔적은 1차 출처(삼성전기·엔비디아 공식 발표)로 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "중간 — 3.7조 원 투자설은 10-22 국내 보도가 원출처라 언어 차익 없음. 대만 측 '2.5배' 증설 수치와 9월 대만 기판 월매출은 이번 수집에서 새로 들어온 흔적."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-semco
+    driver: 물량
+    line_item: "패키지솔루션(FC-BGA) 매출"
+    direction: 불명
+    magnitude: 중
+    timing: "보도상 양산 2028년 이후(출처 간 상충)"
+    rationale: "고객 출자형 전용 라인이면 물량 가시성은 높아지나, 출자 조건(가격·물량 약정)은 미공개. 투자 발표 → 공급 증가는 금지표 연결이므로 건설·장비 반입·가동 단계 확인 전 방향 판정 보류."
+second_order:
+  - entity: co-lginnotek
+    driver: 점유율
+    line_item: "FC-BGA"
+    direction: 불명
+    magnitude: 소
+    timing: ""
+    rationale: "같은 기사군에 LG이노텍은 등장하지 않고 감익 전망 보도만 있음 — 페어의 LG이노텍 쪽은 부재 신호. 부재는 사실이 아님."
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 대만 기판사 매출 급증이 한국 기판사 수혜인지 대만 점유율 상승인지가 갈림길. 삼성전기 3분기 실적(패키지솔루션 AI 서버 비중)과 대조 필요."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처: 삼성전기 세종 투자 공시(9월)의 금액·기간과 '고객 출자' 조건이 공시·IR에 있는가"
+  - "엔비디아 측 공식 발표에 삼성전기 실명·금액이 있는가(있으면 L1 S4 → P0 재판정)"
+  - "대만 '2.5배'가 欣興 경영진 발언 원문인지 기자 해석인지"
+next_check: "삼성전기 3분기 실적 발표·콜(패키지솔루션), 엔비디아 공식 자료의 기판 공급사 서술"
+reverse:
+  pair_id: pair-semco-lginnotek-fcbga-aiaccel
+  signals: [SIG-20261028-0006, SIG-20261028-0009]
+  layers: [L9, L3]
+  strongest: S2
+  convergence: "수렴경보(독립 S2 2건, 2개 레이어, 점수 6) — 정황. 두 신호 모두 같은 AI 기판 수요 사이클을 반영해 완전 독립은 아님"
+  official_status: 미확인
+  confirm_questions:
+    - "기판 업계 영업 담당: 엔비디아 출자형 라인의 가격·물량 약정 형태는?"
+    - "삼성전기 IR: 세종 라인 고객 구성과 양산 시점(2026 vs 2028 상충)?"
+    - "대만 기판사 애널리스트: 9월 매출 증가분 중 AI GPU 기판 비중과 신규 고객 여부?"
+policy: null

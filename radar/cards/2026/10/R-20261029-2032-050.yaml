@@ -1,0 +1,35 @@
+# 영향 판정 카드 — 1차 분류(radar-triage) 초안. 영향(first_order 등)은 impact-card가 채운다.
+id: R-20261029-2032-050
+item_ids: ["src-news7-focus:f882b12225d6d095"]
+event_cluster: null
+first_seen_source: "src-news7-focus (Google News 색인 경유, 원 매체 CNBC)"
+detected_at: 2026-10-29T20:27:57+09:00
+published_at: 2026-10-29T20:02:33+09:00
+latency_min: 25
+entities: ["co-marvell", "co-lumentum"]
+event_type: M&A
+headline_ko: "Marvell, Lumentum 인수 고위 협상 보도(보고서 인용, 미확인)"
+what_happened: "CNBC가 보도 'Marvell in advanced talks to buy Lumentum: Report'로 인수 협상 진행을 전했다. 원 보도 주체와 거래 조건·규모는 본문 미확인이며 회사 발표·공시는 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "Marvell은 마스터 보유 종목(co-marvell) — 보유 종목 M&A 사건. Lumentum은 감시 기업. 동일 사건의 기존 카드 없음(당일 검색 기준)."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "미판정 — 인수 대상이 광 모듈·레이저(AI 데이터센터 광 인터커넥트)라면 Marvell의 AI 네트워킹 수직 결합 여부가 쟁점. 가설, 근거 없음."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Marvell·Lumentum 공식 발표(보도자료·8-K) 여부 — 1차 출처 대기"
+  - "인수 대가·규모·구조(현금·주식)와 협상 단계 — 본문 확인 필요"
+  - "원 보도 주체(보도 인용원) 확인, 다른 매체(Bloomberg·WSJ) 교차 확인"
+  - "Lumentum 제품 포트폴리오와 Marvell 광 DSP 사업 겹침 — 규제·독점 심사 쟁점 가능성"
+next_check: "Marvell·Lumentum IR·SEC 8-K 공개 여부와 후속 보도의 새 사실(참여자·조건)"
+reverse: null
+policy: null

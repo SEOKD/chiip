@@ -1,0 +1,36 @@
+# 영향 판정 카드 — 1차 판정 초안 (radar-triage). 영향 블록은 impact-card가 채운다.
+id: R-20261029-1452-025
+item_ids:
+  - src-news7-focus:8d743f5feaf20cbd
+event_cluster: null
+first_seen_source: src-news7-focus (Reuters 단독, Google News 색인)
+detected_at: "2026-10-29T14:52:35+09:00"
+published_at: "2026-10-28T20:41:13+00:00"
+latency_min: null
+entities:
+  - co-nvidia
+event_type: 규제·정책
+headline_ko: "[로이터 단독] 미 법무부, 엔비디아의 허깅페이스 인수 조사 중 — 익명 소식통"
+what_happened: "로이터는 익명 소식통을 인용해 미국 법무부(DOJ)가 엔비디아의 허깅페이스(Hugging Face) 인수를 조사 중이라고 단독 보도했다. 공식 확인, 조사 범위·절차·인수 조건은 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 법무부·엔비디아·허깅페이스 공식 문서 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처 확인: DOJ 공식 발표·엔비디아·허깅페이스 공시나 답변 — 1차 출처 대기"
+  - "인수 시점·금액·형태(완료 여부)와 DOJ 조사가 HSR 심사인지 반독점 조사인지"
+  - "T0 연결: 엔비디아 AI 소프트웨어·플랫폼 확장이 HBM·기판 수요 경로에 영향을 주는가 — 현재 직접 연결 없음, 가설 아님"
+next_check: "DOJ 보도자료·연방 법원 기록·엔비디아 8-K 여부 확인"
+reverse: null
+policy: null

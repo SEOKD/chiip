@@ -1,0 +1,22 @@
+id: SIG-20261028-0004
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-10-26~27 (UTC, 다수 재인용)
+layer: L9
+source_id: src-foreign-press
+url: https://news.google.com/rss (cnBeta·新浪·鳳凰網·BigGo·自由財經 등)
+language: zh
+origin_id: null
+mentioned_entity: co-skhynix
+match_type: 실명
+counterparty: Alibaba·Tencent·ByteDance (보도상)
+pair_id: null
+signal_type: 현지언론
+strength: S2
+gist_ko: 중국 대형 CSP(알리바바·텐센트·바이트댄스)가 삼성전자·SK하이닉스와 최장 10년(2035년까지) 서버 DRAM 장기공급계약을 협의 중이라는 보도. 원출처는 매일경제 단독(2026-10-27)으로 보이며 중화권·일본 매체가 재인용.
+original_excerpt: 「消息称主要中系CSP与三星电子、SK海力士洽谈服务器内存长期供应合同」(凤凰网科技, 2026-10-27) / 「【独自】焦る中国ビッグテック「DRAMの長期契約を結ぼう」」(매일경제 일문판)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: '① 협의·요청 단계(금지표: 협력·MOU → 매출 확보) ② 한국 매체 단독 1건의 재인용 ③ 미국 수출통제상 고성능 메모리 대중 판매 제약 여부 미확인 ④ 동시기 "CXMT가 국내 주문 우선·해외 주문 거절" 보도와 맞물린 협상용 신호일 수 있음.'
+convergence_score_after: 0
+status: 대기
+resolved: null

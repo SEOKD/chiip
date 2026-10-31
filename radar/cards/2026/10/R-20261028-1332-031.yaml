@@ -1,0 +1,43 @@
+id: R-20261028-1332-031
+item_ids:
+  - "src-gnews-t0-ko:24bb6df2ae3bf6d5"
+  - "src-gnews-t0-ko:32913cef51074284"
+  - "src-gnews-t0-ko:85b3a279d3fbae44"
+  - "src-gnews-t0-ko:58b2175dc065bf1b"
+  - "src-gnews-t0-ko:66b76524fb5d63dd"
+  - "src-gnews-t0-ko:60543dd4e0197896"
+  - "src-gnews-t0-ko:3a37cb7bc6da8315"
+event_cluster: "삼성전기 2026년 3분기 실적 보도 (2026-10-28)"
+first_seen_source: src-gnews-t0-ko
+detected_at: "2026-10-28T13:31:12+09:00"
+published_at: "2026-10-28T12:06:52+09:00"
+latency_min: 84
+entities:
+  - co-semco
+event_type: 실적
+headline_ko: "삼성전기 3분기 영업이익 6,910억 원…전년 대비 165%↑ (기사 제목 기준)"
+what_happened: "삼성전기가 2026년 3분기 영업이익 6,910억 원을 발표했다고 ebn이 2026-10-28 12:06 KST '[속보]'로 보도했다. 전년 대비 165% 증가와 분기 최대 실적, 매출 3조 7,633억 원이 같은 날 여러 매체의 제목에 공통으로 나왔으나 회사 공시·보도자료 원문은 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "신규 — radar/cards/2026/10 및 knowledge/claims에 삼성전기 3분기 실적 항목 없음(2026-10-28 검색 확인). 전년·전분기 대비 기준과 컨센서스 대비 수치는 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인 (머니투데이 제목의 '시장 기대 넘고' 표현만 있음)
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "[1차 출처 대기] T0 실적(P0 기본 등급)을 기사 기준으로 P1에 둠. 삼성전기 IR 자료·DART 잠정실적 공시 원문으로 영업이익·매출 수치 확인 필요."
+  - "매출 3조 7,633억 원·전년비 165%는 기사 제목 기준. 전년 동기·전분기 대비 기준 일치 여부 미확인이라 비교 불가 상태."
+  - "'시장 기대 넘고'(머니투데이 제목)의 컨센서스 수치와 출처 미확인. 컨센서스 대비 판단 보류."
+  - "사업 동인: 중앙이코노미 제목 'AI 반도체 부품이 실적 견인', 서울파이낸스 제목 'AIDC·전장용 제품 공급 확대'. 사업부별 수치 원문 확인 필요."
+  - "같은 날 Chosunbiz 컨콜 기사 3건(FCBGA 가격 협의·실리콘 커패시터·휴머노이드 양산)은 별도 항목(P2)으로 분리. 이 카드는 실적 수치만 다룸."
+next_check: "삼성전기 3분기 IR 자료·컨퍼런스콜 스크립트, DART 잠정실적 공시 확보 → earnings-delta로 직전 분기·컨센서스 대조."
+reverse: null
+policy: null

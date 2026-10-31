@@ -1,0 +1,42 @@
+id: R-20261030-1113-053
+item_ids:
+  - src-jp-disclosure:b140f4f01fefd26d
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-30T11:11:17+09:00
+published_at: 2026-10-30T05:00:00+09:00   # 日刊工業新聞 보도 2026-10-29 20:00 UTC 환산
+latency_min: 371
+entities:
+  - co-ibiden
+event_type: 증설·CAPEX
+headline_ko: "이비덴, 1,510억 엔 추가 투자 — 가와마 사업장 IC 패키지 증산 (2차 매체 보도)"
+what_happened: "일간공업신문이 이비덴가 가와마(河間) 사업장의 IC 패키지 증산을 위해 1,510억 엔을 추가 투자한다고 보도했다. 1차 출처(적시공시·회사 IR 자료)는 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "2026-10-29 판정 메모의 '추가 설비투자 금액 미확인' 항목에 대한 금액 후보. 기존 2026~28년도 5,000억 엔 증설과의 관계는 미확인."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-ibiden
+    driver: 물량
+    line_item: "IC 패키지(기판) 생산능력"
+    direction: 상향
+    magnitude: 미확인
+    timing: "가동 시점 미확인 (2026-10-29 판정 메모 기준 기존 증설은 2027년도 가동 예정)"
+    rationale: "증산 보도 기준의 추정. 금액은 보도 수치이며 1차 확인 전."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처: 이비덴 적시공시 또는 IR 보도자료에서 금액·기간·가동 시점 확인"
+  - "기존 증설 계획(2026~28년도 5,000억 엔)에 포함되는지, 별도 추가인지"
+  - "증산 제품의 고객(AI 가속기 계열 여부)과 공급 계약 존재 여부 — 미확인"
+next_check: "이비덴 IR 페이지 적시공시(TDnet 직접 수집 금지 — 회사 IR PDF 경유) 및 실적 발표 자료의 설비투자 계획"
+reverse: null
+policy: null

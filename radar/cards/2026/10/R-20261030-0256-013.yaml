@@ -1,0 +1,35 @@
+id: R-20261030-0256-013
+item_ids:
+  - src-news7-focus:a601503e1643fb1c
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T02:41:46+09:00"
+published_at: "2026-10-30T01:36:22+09:00"
+latency_min: 65
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 기록적 실적·기록적 자본환원, 여전히 저평가(SA 분석)"
+what_happened: "Seeking Alpha 분석 기사가 SK하이닉스의 기록적 실적과 기록적 자본환원을 다루며 주가가 여전히 싸다고 주장한다. 기사 본문 수치는 확인하지 않았다(제목 기준)."
+primary_source_confirmed: false
+novelty: "2차 분석 기사. 실적 수치·자본환원 규모는 1차 공시 대조 전 미확인"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "기록 실적과 주가 밸류의 괴리가 HBM 가격 기대에 얼마나 묶여 있는지 확인(가설)"
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "SK하이닉스 3분기 실적 공시·컨퍼런스콜 원문으로 실적·자본환원 수치 대조"
+  - "기사 표기 NASDAQ:SKHY가 한국 상장(000660)과 같은 종목인지 확인"
+  - "분석 기사의 '저평가' 주장이 쓴 밸류 가정(멀티플·추정치) 확인"
+next_check: "SK하이닉스 IR 실적 자료와 자본환원(배당·자사주) 공시"
+reverse: null
+policy: null

@@ -1,0 +1,34 @@
+id: R-20261029-1454-020
+item_ids: ["src-news7-focus:118d868a7422d7fb"]
+event_cluster: null
+first_seen_source: src-news7-focus (Google News RSS 경유, CNBC 기사)
+detected_at: "2026-10-29T14:53:40+09:00"
+published_at: "2026-10-28T06:45:16+09:00"
+latency_min: 1928
+entities: ["co-nxp"]
+event_type: 실적
+headline_ko: "NXP 주가 하락 — 매출·이익 상회에도 (CNBC 제목 기준)"
+what_happened: "CNBC 기사 제목에 따르면 NXP는 매출과 이익이 예상을 웃돌았지만 주가는 하락했다. 실적 수치와 가이던스는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 기존 claims 이름 대조 일치 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "제목상 주가 하락 — 폭 미확인"
+  consensus_relation: "매출·이익 상회라고 제목에 명시 — 기준 수치 미확인"
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "NXP 실적 보도자료로 상회 폭과 가이던스 방향 확인"
+  - "주가 하락 원인 특정 필요 — 가이던스·마진 등 실적 동인과 연결 전에는 펀더멘털 변화로 쓰지 않음 (금지표)"
+  - "AI 밸류체인 연결 약함(아날로그·차량 중심 추정) — 노출 비중 확인 후 감시 우선순위 재검토"
+  - "게재 후 약 32시간 경과 — 배치 지연 점검"
+next_check: "NXP 분기 실적 보도자료·컨퍼런스콜"
+reverse: null
+policy: null

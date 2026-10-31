@@ -1,0 +1,40 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증). 영향 필드는 impact-card가 채운다.
+id: R-20261028-0931-012
+item_ids:
+  - src-gnews-t0-ko:7061a17bfc82171a   # 지디넷코리아, 2026-10-27 23:30:13 UTC (= 2026-10-28 08:30:13 KST) — 같은 사건 최초 보도
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: 2026-10-28T09:26:11+09:00
+published_at: 2026-10-28T08:30:13+09:00
+latency_min: 56
+entities:
+  - co-skhynix
+event_type: 실적              # 언론 보도 기준. 잠정실적(DART) 여부 미확인
+headline_ko: "SK하이닉스 3분기 매출 약 104조·영업이익 약 83조 보도 (1차 출처 대기)"
+what_happened: "국내 언론 다수가 SK하이닉스 3분기 매출 약 104조원, 영업이익 약 83.3조원(영업이익률 약 80%)을 보도했다. 같은 보도들은 분기배당 주당 2만원과 주주환원 100조원 추진을 전했으나, 회사 공시(DART)·보도자료 원문은 이번 배치에 없어 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "수치의 신규성은 1차 출처 확인 전 판단 불가. 기존 knowledge 주장 중 3분기 실적 수치는 확인되지 않음(검색 결과 없음). 주주환원 100조원은 '추진' 표현으로 보도됨 — 확정 아님."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명             # 미반영|일부|대부분|불명
+edge_angle: ""
+field_intel_check: 해당없음   # 로컬만: 취재로 이미 파악|상충|공개 확인|무관
+article_angle: ""
+alert_level: P1               # 기본 P0(실적) → 1차 출처 아님 → P1 (alert_rules 보정 규칙)
+verification: 1차판정         # 1차판정|검증완료
+open_questions:
+  - "1차 출처: SK하이닉스 DART 잠정실적 공시·IR 보도자료 확인 — 확인되면 P0로 재판정 (config/alert_rules.yaml deterministic_p0)"
+  - "매출·영업이익 수치의 기준(연결 여부·잠정 여부)과 전 분기 대비 증감 — 보도문만으로 확인 불가"
+  - "주주환원 100조원: '추진' 표현의 기간·구성(배당·자사주·키옥시아 수익 환원 포함 여부) 확인"
+  - "분기배당 주당 2만원의 기준일·지급 시점"
+  - "시장 기대(컨센서스) 대비 서프라이즈 여부 — 컨센서스 미확인"
+  - "영업이익률 수치 간 차이(79.7%·약 80%): 보도별 산식 확인 필요"
+next_check: "SK하이닉스 IR 실적발표 자료·실적 콜 자료, DART 잠정실적 공시"
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

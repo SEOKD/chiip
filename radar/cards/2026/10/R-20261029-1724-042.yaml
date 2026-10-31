@@ -1,0 +1,36 @@
+id: R-20261029-1724-042
+item_ids:
+  - "src-news7-focus:db111f93a68407d1"
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-29T17:15:07+09:00"
+published_at: "2026-10-28T15:59:54+00:00"
+latency_min: 976
+entities:
+  - co-gevernova
+  - co-innio          # 보유 종목 INNIO의 related(경쟁사)로 등록됨 (config/portfolio.yaml)
+event_type: 실적
+headline_ko: "GE Vernova 2026년 3분기 실적 콜 트랜스크립트 게재 (보유 INNIO 관련 경쟁사)"
+what_happened: "GE Vernova의 2026년 3분기 실적 발표 후 어닝콜 트랜스크립트가 Seeking Alpha에 게재됐다(제목 기준 확인). 실적 수치와 가이던스 변경 여부는 본문·1차 출처(GE Vernova 보도자료·8-K)에서 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 본문 미확인. 가이던스 변경이 있었는지 1차 출처 대기"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "GE Vernova 3분기 매출·수주·가이던스 변경 여부(1차 출처 대기: 보도자료·8-K)"
+  - "가이던스가 바뀌었다면 가스터빈·그리드 수요 변화가 INNIO(Jenbacher 가스엔진)의 경쟁 구도에 어떤 영향을 주는지 — 가설, 미검증"
+  - "Seeking Alpha 트랜스크립트는 2차 출처 — 원문 대조 필요"
+next_check: "GE Vernova IR 보도자료·SEC 8-K에서 가이던스 문구 확인, 트랜스크립트 본문과 대조"
+reverse: null
+policy: null

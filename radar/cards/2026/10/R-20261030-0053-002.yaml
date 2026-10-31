@@ -1,0 +1,42 @@
+id: R-20261030-0053-002
+item_ids:
+  - src-bbg-direct:caaca23ef2514240
+event_cluster: null
+first_seen_source: src-bbg-direct (Bloomberg)
+detected_at: 2026-10-30T00:52:35+09:00
+published_at: 2026-10-30T00:45:47+09:00
+latency_min: 7
+entities:
+  - co-alphabet
+event_type: 증설·CAPEX
+headline_ko: "알파벳, 제출 서류상 AI 관련 위험 1조 달러 초과 (보도)"
+what_happened: "Bloomberg는 알파벳(Alphabet) 제출 서류를 인용해 AI 관련 위험 규모가 1조 달러를 넘는다고 보도했다(제목 기준). 서류 원문의 항목 정의·기간·분모는 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 직전 분기 서류와 항목·금액 비교 필요. 보도 제목만으로는 신규성 판정 불가."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-alphabet
+    driver: 물량
+    line_item: "AI 인프라 CAPEX·약정 (서류상 항목 정의 미확인)"
+    direction: 불명
+    magnitude: 불명
+    timing: "미확인 — 서류 원문 확인 후 판단"
+    rationale: "AI 관련 약정·위험 규모는 인프라 물량 신호일 수 있으나, 약정 항목 정의·기간이 확인되지 않아 칩·인프라 공급사 물량으로 연결하지 않는다."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 빅테크 AI 약정 규모가 공급사 수주 가시성으로 바뀌는지, 아니면 부채·위험 항목으로만 남는지 구분하는 것이 관건. 원문 확인 전 가설."
+field_intel_check: 해당없음
+article_angle: "미확인 — 원문 확인 후 판단"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "알파벳 제출 서류(10-Q 등) 원문에서 AI 관련 약정·위험 항목의 정의와 금액 확인"
+  - "직전 분기 대비 증가분과 기간 구조(장기 약정 vs 단기) 확인"
+  - "구매 약정 중 한국 기업 공급사(메모리·패키징 등) 연결 여부"
+next_check: "알파벳 제출 서류 원문 → 직전 분기 비교 → 칩·인프라 공급사 수주 연결"
+reverse: null
+policy: null

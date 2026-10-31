@@ -1,0 +1,33 @@
+id: R-20261030-1130-055
+item_ids: ["src-news7-focus:33ffa14844fa6124"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-30T11:17:27+09:00
+published_at: 2026-10-30T01:34:00+00:00
+latency_min: 43
+entities: [co-nvidia]
+event_type: 기타
+headline_ko: "인도 AI 기업, 엔비디아 칩 주문 대금 조달 30억 달러 추진(Bloomberg 보도)"
+what_happened: "Bloomberg 보도에 따르면 인도 AI 기업이 엔비디아 칩 주문에 쓸 30억 달러($3B) 규모 자금 조달을 추진 중이다. 조달 구조·참여 금융사·조건은 이번 수집에서 확인하지 않았다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "조달 주체·구조(대출·채권·지분)와 규모 확정 여부 — 회사 발표·금융 서류 대기"
+  - "엔비디아 칩 주문의 공급 계약 여부·물량·인도 일정(주문이 실제 수주로 확정되는지)"
+  - "참여 금융사와 조건, 엔비디아 자체 참여 여부"
+next_check: "Bloomberg 후속 보도, 인도 AI 기업 공시·발표, 금융사 발표"
+reverse: null
+policy: null

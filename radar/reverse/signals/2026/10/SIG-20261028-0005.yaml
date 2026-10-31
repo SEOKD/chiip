@@ -1,0 +1,22 @@
+id: SIG-20261028-0005
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-10-26~27 (UTC, 다수 재인용)
+layer: L9
+source_id: src-foreign-press
+url: https://news.google.com/rss (cnBeta·新浪·鳳凰網·BigGo·自由財經 등)
+language: zh
+origin_id: SIG-20261028-0004
+mentioned_entity: co-samsung
+match_type: 실명
+counterparty: Alibaba·Tencent·ByteDance (보도상)
+pair_id: null
+signal_type: 현지언론
+strength: S2
+gist_ko: SIG-0004와 같은 보도의 삼성전자 측 기록.
+original_excerpt: 「阿里、腾讯、字节据称寻求与三星、SK海力士签订最长至2035年的DRAM供应协议」(BlockBeats, 2026-10-26)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: SIG-0004와 동일 원출처 — 독립 확인 아님.
+convergence_score_after: 0
+status: 대기
+resolved: null

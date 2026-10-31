@@ -1,0 +1,39 @@
+# 영향 판정 카드 — 1차 판정(미검증). impact-card가 영향 블록을 채운다.
+id: R-20261028-1146-026
+item_ids:
+  - "src-gnews-t0-ko:dfe159d28400f89d"
+  - "src-gnews-t0-ko:dc3a831e499cb700"
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: "2026-10-28T11:46:10+09:00"
+published_at: "2026-10-28T11:18:00+09:00"   # 원 시각 2026-10-28T02:18:00+00:00 (뉴스핌)
+latency_min: 28
+entities:
+  - co-skhynix
+event_type: 수주·공급계약
+headline_ko: "SK하이닉스 컨퍼런스콜 보도: 2029년까지 메모리 '완판'·장기계약 절반 이상 (언론 보도)"
+what_happened: "뉴스핌은 SK하이닉스 컨퍼런스콜 요약에서 2029년까지 메모리가 '완판'(판매 완료)됐다고 보도했다. 매일경제는 80% 이익률과 장기계약 절반 이상을 보도했으나, 고객·계약 금액·기간·가격 조건은 이 기사들에서 확인되지 않는다."
+primary_source_confirmed: false
+novelty: "미확인 — knowledge/claims 장기계약 주장 검색은 미실시(Bash 권한 거부). 확인한 2026-10-27 주장 3건에는 해당 내용 없음."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1           # 원래 P0 후보(대형 공급계약성 발언) → 1차 출처 대기로 P1. 국내 언론 기사라 텔레그램 대상 아님
+verification: 1차판정
+open_questions:
+  - "회사 공식 발표·컨콜 녹취록·분기보고서에서 '완판'·'장기계약' 표현 확인(1차 출처 대기)"
+  - "'80% 이익률'의 정의(영업이익률 여부)와 분모 확인 — 현재 비교 불가"
+  - "'절반 이상'의 분모(연간 물량·생산능력 등) 확인"
+  - "장기계약의 고객 구성·기간·가격 조건(고정/연동) 미확인"
+  - "계약 체결 여부(협약 수준인지 확정 계약인지) 미확인"
+next_check: "컨콜 녹취록 및 분기보고서의 장기공급계약 항목 대조"
+reverse: null
+policy: null

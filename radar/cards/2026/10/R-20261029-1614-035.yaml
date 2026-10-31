@@ -1,0 +1,36 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-20261029-1614-035
+item_ids:
+  - "src-news7-focus:127e2457e6420357"
+event_cluster: null
+first_seen_source: "Seeking Alpha (Google News 색인)"
+detected_at: "2026-10-29T16:12:20+09:00"
+published_at: "2026-10-29T06:55:00+00:00"
+latency_min: 17
+entities: ["Anthropic"]
+event_type: 기타
+headline_ko: "Anthropic IPO 준비 보도 (SA 롤업 기사 제목 기준)"
+what_happened: "Seeking Alpha 시장 롤업 기사 제목은 Anthropic IPO가 '대기 중(On Tap)'이라고 전한다. 본문·S-1·F-1 등 1차 서류는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 기존 claims에 Anthropic 상장 건이 있는지 대조 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+biz: "프런티어 AI 모델(Claude) 개발사"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "S-1·F-1 등 상장 서류 원문 존재·제출일 확인 (SEC EDGAR, 1차 출처 대기)"
+  - "서류 내 공급사(칩·클라우드) 언급과 감시 기업 연결 여부"
+next_check: "SEC EDGAR에서 Anthropic 등록 서류 확인 후 claim-intake 승격 여부 판단"
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

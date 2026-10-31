@@ -1,0 +1,37 @@
+# 영향 판정 카드 — radar-triage 1차판정 (영향 판정은 impact-card가 채움)
+id: R-20261028-1235-030
+item_ids:
+  - src-gnews-t0-en:b35b84f4dbedc395
+event_cluster: null
+first_seen_source: src-gnews-t0-en:b35b84f4dbedc395
+detected_at: "2026-10-28T12:31:11+09:00"
+published_at: "2026-10-28T11:58:00+09:00 (원문 02:58 UTC, digitimes)"
+latency_min: 33
+entities:
+  - co-skhynix
+event_type: 증설·CAPEX
+headline_ko: "Solidigm 미국 NAND 팹 US$45B 투자, 중국 장비 업그레이드 미 정부 승인과 연계 보도 (제목 기준, 1차 출처 대기)"
+what_happened: "디지타임스(digitimes)가 10-28 KST 11:58에 Solidigm의 US$45B 규모 미국 NAND 팹을 워싱턴의 중국 장비 업그레이드 승인과 연계해 보도했다. 회사 보도자료와 미 정부 문서는 아직 확인하지 않았으며, 투자 단계(발표·계약·착공)와 승인 범위는 미확인이다."
+primary_source_confirmed: false
+novelty: "신규 가능성 — knowledge/claims에 Solidigm 미국 팹 관련 항목 없음(키워드 대조 기준), 1차 확인 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "투자 단계 구분: 발표인지, 계약·착공·인허가인지"
+  - "'워싱턴 승인'의 대상과 법적 근거 (중국 공장 장비 업그레이드 — 수출통제 관련 여부, 승인 문서 원문)"
+  - "US$45B 표기가 주주환원 보도(R-20261028-1234-029 원천 ed01c05)와 같은 금액인지 점검"
+  - "투자 기간·설비 규모(웨이퍼 캐파)·양산 시점 미확인"
+next_check: "SK하이닉스·Solidigm 공식 보도자료 및 미 정부 문서(승인) 원문 확인 — 미 정부 문서 확인 시 fedreg-watch·rule-impact 연계 검토"
+reverse: null
+policy: null

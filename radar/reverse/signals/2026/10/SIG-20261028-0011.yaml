@@ -1,0 +1,22 @@
+id: SIG-20261028-0011
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-09 (TWSE 월매출, 2026-10 공개)
+layer: L3
+source_id: src-twse-monthly
+url: https://mopsfin.twse.com.tw/opendata/t187ap05_L.csv
+language: zh
+origin_id: null
+mentioned_entity: co-skhynix
+match_type: 실명
+counterparty: 日月光投控(3711)·台積電(2330)·廣達(2382)·緯穎(6669)
+pair_id: pair-skhynix-aiaccel-hbm
+signal_type: 무역거울
+strength: S1
+gist_ko: '2026-09 YoY: ASE +45.5%, TSMC +54.6%(MoM −0.6%), 廣達 +76.7%(MoM −23.3%), 緯穎 +100.0%. AI 서버·패키징 수요는 강하나 HBM 공급사를 특정하지 못한다.'
+original_excerpt: 3711 日月光投控 88,130,084 / 2330 台積電 511,857,399 (천 TWD, 2026-09)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: '페어 파일의 반대 가설 그대로: 패키징·서버 매출 증가는 HBM 공급사와 무관한 CoWoS·서버 증설 효과일 수 있음 → 특정성이 낮아 S2가 아닌 S1로 둔다.'
+convergence_score_after: 4
+status: 대기
+resolved: null

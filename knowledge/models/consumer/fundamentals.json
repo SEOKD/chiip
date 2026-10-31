@@ -1829,6 +1829,15 @@
     "revenue": 22033.0,
     "operating_profit": 7465.0,
     "src": "https://kabutan.jp/stock/finance?code=4816"
+   },
+   {
+    "period": "2026-09-30",
+    "revenue": 24578.0,
+    "gross_profit": 13250.0,
+    "operating_profit": 7695.0,
+    "inventory": 14187.0,
+    "overseas_share": 0.647,
+    "src": "https://corp.toei-anim.co.jp/ja/ir/news/auto_20261030561116/pdfFile.pdf"
    }
   ]
  },

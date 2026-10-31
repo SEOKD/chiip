@@ -1,0 +1,37 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (영향 판정은 impact-card가 채운다)
+id: R-20261030-1036-047
+item_ids:
+  - "src-jp-disclosure:e6a9547447fa7072"
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: "2026-10-30T10:36:15+09:00"
+published_at: "2026-10-30T09:01:03+09:00"
+latency_min: 95
+entities:
+  - co-ibiden
+  - co-intel
+event_type: 가이던스
+headline_ko: "이비덴 매도 호가 우세, 인텔 시간외 급락(4Q 전망 등 반영)"
+what_happened: "기사 제목 기준으로 이비덴(4062)은 매도 호가(売り気配) 상태로 보도됐고, 인텔 주가는 시간외 거래에서 급락했다고 전해졌다. 기사는 인텔의 4분기 전망(4Q 見通し) 등을 하락 원인으로 꼽았다(1차 출처 미확인)."
+primary_source_confirmed: false
+novelty: "1차 출처 확인 전. 인텔 4분기 가이던스의 구체 수치는 기사 스니펫에 없음."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "인텔 시간외 급락(낙폭 수치 미확인), 이비덴 매도 호가(주가 반응 수치 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "인텔 3분기 실적 발표 보도자료·4분기 가이던스 원문 확인(1차 출처 대기)"
+  - "시간외 낙폭과 이유가 가이던스 자체인지 다른 요인인지 확인"
+  - "이비덴의 인텔 매출 비중·기판 주문 영향 여부 미확인 — 기판 수요 연결은 가설"
+next_check: "인텔 IR 실적 자료와 정규장 개장 후 주가 반응, 이비덴 적시공시 여부"
+reverse: null
+policy: null

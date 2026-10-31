@@ -1,0 +1,38 @@
+# 영향 판정 카드 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13)
+id: R-20261030-1718-071
+item_ids:
+  - src-bi-direct:d72dce28c801b87c
+event_cluster: null
+first_seen_source: src-bi-direct
+detected_at: "2026-10-30T17:18:27+09:00"
+published_at: "2026-10-30T08:11:01Z"
+latency_min: null
+entities:
+  - co-alphabet
+  - co-microsoft
+  - co-amazon
+event_type: 증설·CAPEX
+headline_ko: "AI 하이퍼스케일러 CAPEX 합산 약 $828B 전망 (Business Insider 집계)"
+what_happened: "Amazon·Alphabet·Meta·Microsoft·SpaceX가 Q3 CAPEX를 늘렸고 2027년에도 둔화 신호가 없다고 Business Insider가 보도했다. 연간 $828B 합계는 매체 집계 추정이며 각사 공시 대조 전이다."
+primary_source_confirmed: false
+novelty: "개별 분기 CAPEX는 각사 실적 발표로 이미 공개된 수치의 집계. 연간 합산액은 매체 추정. knowledge/claims에 동일 수치 없음(검색 0건)."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "각사 Q3 10-Q·실적 발표의 CAPEX 원수치와 대조(1차 출처 대기)"
+  - "$828B 합산의 범위·회계연도 기준 확인(매체 집계 방식 미공개)"
+  - "국내 T0(메모리·장비·패키징) 귀속 경로 미확인 — 공급 관계 연결 전에는 영향 판정 보류"
+next_check: "각사 IR·10-Q에서 2026년 CAPEX 가이던스 원문 확인, 이후 impact-card로 1차 영향 판정"
+reverse: null
+policy: null

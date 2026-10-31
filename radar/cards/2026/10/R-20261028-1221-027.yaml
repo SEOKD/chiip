@@ -1,0 +1,45 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (영향 필드는 impact-card 대기)
+id: R-20261028-1221-027
+item_ids:
+  - "src-gnews-t0-ko:040b58e0dd039ca2"   # edaily, 2026-10-28T03:00:29Z (가장 빠른 보도)
+  - "src-gnews-t0-ko:01b09989a89a1e99"   # 데일리안 03:05Z (재인용)
+  - "src-gnews-t0-ko:194705e53e7ea7de"   # 아이뉴스24 03:06Z (재인용)
+  - "src-gnews-t0-ko:1e9a83b97367e8c4"   # 이투데이 03:11Z (재인용)
+  - "src-gnews-t0-ko:261ec726ca177d83"   # 머니투데이 03:02Z (재인용)
+  - "src-gnews-t0-ko:2763dbc5db6f19ba"   # 데일리안 03:08Z (AI·전장 표현, 재인용)
+  - "src-gnews-t0-ko:315e0021c5498d29"   # 한국경제 03:06Z ('주목 e공시' 제목, 재인용)
+  - "src-gnews-t0-ko:400ee160f1b37370"   # 뉴스1 03:01Z (재인용)
+  - "src-gnews-t0-ko:30008214a8b862db"   # 뉴스핌 03:06Z (AI 서버 MLCC·기판 표현, 재인용)
+event_cluster: null
+first_seen_source: "src-gnews-t0-ko:040b58e0dd039ca2 (edaily.co.kr, 2026-10-28T03:00:29Z)"
+detected_at: "2026-10-28T12:21:11+09:00"
+published_at: "2026-10-28T12:00:29+09:00"
+latency_min: 20
+entities:
+  - co-semco
+event_type: 실적
+headline_ko: "삼성전기 2026년 3분기 영업이익 약 6,909억 원, 전년 대비 약 165% 증가 (언론 보도, 1차 출처 대기)"
+what_happened: "언론 보도에 따르면 삼성전기의 2026년 3분기 영업이익은 약 6,909억 원(일부 매체 6,910억 원)으로 전년 대비 약 165~166% 증가했다. 매체별 수치가 엇갈리고 DART 공시·회사 보도자료 원문은 이번 배치에 없어 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "신규 — 기존 카드(R-20261028-0847-006, 0918-010)는 삼성전기 3분기 실적 수치를 다루지 않으며, knowledge/claims에도 3분기 실적 수치 없음. 단 '대만 기판 수혜' 수렴 경보의 next_check(삼성전기 3분기 실적)가 이 사건과 연결된다."
+linked_claims: []
+linked_theses: []
+first_order: []              # impact-card가 채움
+second_order: []
+market_context:
+  price_reaction: "미확인 (재경일보 특징주 기사 보도: 장중 9%대 강세, 131만 원대 — 시각 10:21 KST, 실적 기사보다 앞섬. 원인 사건 미특정)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""               # impact-card 단계
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1              # P0 후보(T0 실적) → 1차 출처 아님 → P1 (alert_rules 보정 규칙)
+verification: 1차판정
+open_questions:
+  - "DART 잠정·확정 실적 공시 원문으로 영업이익 정확 수치 확정(6,909억 vs 6,910억 원), 매출, 전년 동기 기준(연결/별도) 확인 — 확인 전 '165%' 수치 비교 불가"
+  - "한국경제 '[주목 e공시]' 제목은 공시 존재를 시사. 공시 시각 확인 필요: 특징주 기사(10:21 KST)가 실적 기사(12:00 KST)보다 앞서므로 실적 최초 공개 시각을 재산정해야 함"
+  - "사업부별 기여(패키지솔루션 기판 / 컴포넌트 MLCC / 광학) 및 AI 서버 비중 — 'AI 서버용 MLCC·반도체 기판', 'AI·전장용 제품 공급 확대' 표현의 실제 수치 확인"
+  - "주가 9%대 강세의 원인이 실적인지 다른 사건인지 특정 필요 (펀더멘털 연결 전 금지)"
+next_check: "DART 삼성전기 3분기 실적 공시 원문 ingest 후 P1 검증 → 수치 확정 시 P0 재판정 여부 검토 (1차 출처 확보가 선행)"
+reverse: null                # §11.12
+policy: null                 # §13.7

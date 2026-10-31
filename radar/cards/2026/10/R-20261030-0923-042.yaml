@@ -1,0 +1,43 @@
+# 영향 판정 카드 — 1차 판정 (radar-triage 초안). 영향 판정은 impact-card가 완성한다.
+id: R-20261030-0923-042
+item_ids:
+  - src-bbg-direct:78335250d11b6f25
+event_cluster: null
+first_seen_source: src-bbg-direct
+detected_at: 2026-10-30T09:22:15+09:00
+published_at: 2026-10-30T08:59:53+09:00
+latency_min: 22
+entities:
+  - co-nvidia
+event_type: 기타
+headline_ko: "엔비디아, Nscale 데이터센터 신용보증 협의 (블룸버그 단독)"
+what_happened: "블룸버그는 익명 소식통을 인용해 엔비디아가 앤트로픽이 사용할 예정인 Nscale 데이터센터 시설에 신용보증을 제공하는 방안을 협의 중이라고 보도했다. 보증 규모·조건·확정 여부는 보도에 없다."
+primary_source_confirmed: false
+novelty: "AI 데이터센터 자금 조달에 칩 공급사(엔비디아)의 신용보증이 끼는 구조 — 기존 카드 없음"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-nvidia
+    driver: 물량
+    line_item: "AI 데이터센터 시설 착공·가동 시점 (보증 실행 시)"
+    direction: 불명
+    magnitude: 불명
+    timing: "협상 단계 — 확정 시점 미확인"
+    rationale: "보증이 실행되면 해당 시설의 건설·장비 도입 일정에 영향 가능(가설). 보증 조건·규모 미확인이라 매출 방향은 판단 불가."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "(가설) 칩 공급사의 신용보증이 AI 인프라 자금 조달의 일부가 되면, 칩 매출 외 금융 익스포저가 늘어나는 구조 — 1차 확인 전 가설"
+field_intel_check: 해당없음
+article_angle: "엔비디아의 AI 인프라 보증 — 칩 공급사가 금융 주체로 들어가는가 (1차 확인 후)"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "보증 규모·기간·조건은 무엇인가 (1차 출처 대기)"
+  - "엔비디아 공시 또는 Nscale·앤트로픽 발표가 있는가"
+  - "보도 시점 기준 협상 단계는 어디인가 (확정 여부)"
+next_check: "엔비디아 8-K·IR 공지, Nscale 보도자료, 블룸버그 후속 기사"
+reverse: null
+policy: null

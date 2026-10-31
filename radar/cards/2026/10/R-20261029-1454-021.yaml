@@ -1,0 +1,33 @@
+id: R-20261029-1454-021
+item_ids: ["src-news7-focus:14ba068256379ce0"]
+event_cluster: null
+first_seen_source: src-news7-focus (Google News RSS 경유, Seeking Alpha 기사)
+detected_at: "2026-10-29T14:52:42+09:00"
+published_at: "2026-10-29T09:21:14+09:00"
+latency_min: 331
+entities: ["us-pi"]
+event_type: 가이던스
+headline_ko: "Impinj, 4분기 매출 1억 400만~1억 700만 달러 전망 — M800 수요로 후공정 캐파 증설 (Seeking Alpha 제목 기준)"
+what_happened: "Seeking Alpha 기사 제목에 따르면 Impinj는 2026년 4분기 매출을 1억 400만~1억 700만 달러로 전망했고, M800 수요가 후공정(back-end) 캐파 증설을 이끈다고 전한다. 회사 보도자료 원문은 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 기존 claims 이름 대조 일치 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "M800 제품 정체와 AI 밸류체인(고객·패키징) 연결 확인 — 키워드 'M8'은 제품명 부분 일치"
+  - "후공정 캐파 증설 주체(자체 또는 외주) 확인"
+  - "AI 연결이 약하면 감시·알림 우선순위 재평가 (config/earnings_watch.yaml us-pi)"
+next_check: "Impinj 3분기 실적 보도자료·가이던스 원문"
+reverse: null
+policy: null

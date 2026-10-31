@@ -1,0 +1,36 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-20261029-1614-036
+item_ids:
+  - "src-news7-focus:ec32596d43865c3f"
+event_cluster: null
+first_seen_source: "The Information (Google News 색인)"
+detected_at: "2026-10-29T16:13:01+09:00"
+published_at: "2026-10-28T22:11:00+00:00"
+latency_min: 542
+entities: ["Alphabet"]
+event_type: 기타
+headline_ko: "Alphabet, ATM 프로그램으로 124억 달러 주식 매도 보도"
+what_happened: "The Information 기사 제목은 Alphabet이 ATM(시장가 매도) 프로그램으로 124억 달러 규모의 주식을 팔았다고 전한다. 매도 기간·누적 여부와 1차 공시(10-Q·8-K·424B) 확인 전이다."
+primary_source_confirmed: false
+novelty: "미확인 — 기존 공시 재인용 여부 대조 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+biz: "검색·광고·클라우드·AI 모델(Gemini)·자체 AI 칩(TPU) 개발 복합 기업"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "ATM 매도가 기간·누적 금액·사용 목적(AI 설비투자 재원 여부) 공시 확인 (SEC 10-Q·8-K, 1차 출처 대기)"
+  - "이미 공시된 프로그램의 집행 보고인지, 신규 발행인지 구분"
+next_check: "Alphabet 최근 10-Q·8-K의 ATM 항목 대조 후 자금 조달 claim 승격 여부 판단"
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

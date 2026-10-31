@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1604-029
+item_ids:
+  - src-jp-disclosure:8a10ce986511bec9
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-29T16:01:31+09:00
+published_at: 2026-10-28T20:00:00+00:00
+latency_min: 661
+entities:
+  - co-hitachi
+event_type: 실적
+headline_ko: "Hitachi, 通期 당기익 14% 증가 방향 상향 — SI·반도체 장비 호조 (보도 기준)"
+what_happened: "日刊工業新聞 보도(2차 출처)에 따르면 Hitachi는 通期 이익 전망을 상향했고, 보도는 SI(시스템 통합)·반도체 장비 수요 활황을 이유로 꼽았다. 같은 건을 다룬 MONOist는 2분기 사상 최고와 연간 전망 재상향을 전했다."
+primary_source_confirmed: false
+novelty: "미확인 — 결산 자료 대기. 반도체 관련 부문 비중 미확인"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "결산 자료에서 반도체 장비 관련 부문 매출·이익 비중 확인"
+  - "'반도체 장비' 언급이 장비 자회사 실적인지 확인"
+  - "T0 연결 없음 — 데이터센터 전력 수요와의 연결은 별도 확인"
+next_check: "Hitachi 결산 자료에서 부문별 수치 확인"
+reverse: null
+policy: null

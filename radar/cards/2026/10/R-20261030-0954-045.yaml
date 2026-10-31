@@ -1,0 +1,40 @@
+id: R-20261030-0954-045
+item_ids:
+  - src-news7-focus:06cb4e5ff329eacc
+event_cluster: null
+first_seen_source: src-news7-focus (CNBC 보도, Google News 색인)
+detected_at: 2026-10-30T09:48:59+09:00
+published_at: 2026-10-30T09:38:00+09:00
+latency_min: 11
+entities:
+  - co-microsoft
+event_type: 기타
+headline_ko: "Microsoft, AI 인프라 증설 위해 $25B 부채 조달 계획 (CNBC 보도)"
+what_happened: "CNBC 보도에 따르면 Microsoft가 AI 인프라 증설(buildout)을 위해 $25B 규모의 부채 조달을 계획 중이다. 조달 조건·발행 시점·최종 확정 여부는 헤드라인만으로 확인되지 않는다."
+primary_source_confirmed: false
+novelty: "미확인 — 이전 claim과의 비교 전"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-microsoft
+    driver: 시점
+    line_item: "AI 인프라 CAPEX 재원(부채 조달)"
+    direction: 불명
+    magnitude: 중
+    timing: "발행 확정 전까지 미확인"
+    rationale: "조달 규모($25B)는 하이퍼스케일러 AI CAPEX 재원 신호. 매출·물량 연결은 미확인."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "하이퍼스케일러 자금 조달 확대가 AI 밸류체인 수요 가시성을 바꾸는지 — 가설, 검증 전"
+field_intel_check: 해당없음
+article_angle: "AI 인프라 자금이 주식에서 부채로 옮겨가는가 — 1차 출처 확인 후"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Microsoft 공시 또는 채권 발행 서류(1차 출처)로 금액·만기·조건 확인"
+  - "조달 자금의 용도(데이터센터 CAPEX 여부) 확인"
+  - "동종(Amazon·Meta·Alphabet) 자금 조달과 비교 — 같은 기간 조달 흐름 여부"
+next_check: "Microsoft 채권 발행 공시·Bloomberg·WSJ 후속 보도"

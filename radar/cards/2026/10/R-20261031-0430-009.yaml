@@ -1,0 +1,43 @@
+# 영향 판정 카드 — 1차 판정, 미검증 (radar-triage 초안, impact-card가 영향 항목을 채운다)
+id: R-20261031-0430-009
+item_ids:
+  - "src-news7-focus:5e0f7a2cb3652dd2"
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-31T04:04:24+09:00"
+published_at: "2026-10-30T18:30:08+00:00"
+latency_min: 34
+entities:
+  - co-nvent
+event_type: 가이던스
+headline_ko: "nVent, 2026년 매출 성장률 가이던스 48%~49%로 상향 · 조정 EPS $5.36~$5.39"
+what_happened: "nVent가 2026년 매출 성장률 가이던스를 48%~49%로, 조정 EPS 가이던스를 $5.36~$5.39로 올렸다고 Seeking Alpha가 보도했다. 상향 동인으로 데이터센터 수요와 Maverick Power가 꼽혔다(보도 기준, 1차 출처 미확인)."
+primary_source_confirmed: false
+novelty: "직전 가이던스 수치는 이 항목에 없어 상향 폭 미확인 — 비교 불가"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: co-nvent
+    driver: 물량
+    line_item: "매출 성장률 가이던스·조정 EPS 가이던스"
+    direction: 상향
+    magnitude:
+    timing: "2026 회계연도 가이던스(3분기 실적 발표 시점)"
+    rationale: "데이터센터 수요 증가가 상향 동인으로 보도됨(1차 출처 대기). 이익 영향 크기는 직전 가이던스 대비 수치 확인 전까지 불명."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 보도자료 원문으로 가이던스 수치와 직전 가이던스 대비 변화 확인"
+  - "Maverick Power 편입이 실적에 얼마나 기여하는지(인수 여부·시점) 확인"
+  - "데이터센터 매출 비중과 이 사업이 전력 테마 종목 분류에 해당하는지 확인"
+next_check: "nVent 3분기 보도자료·IR 실적 자료에서 가이던스 표와 Maverick Power 항목 대조"
+reverse: null
+policy: null

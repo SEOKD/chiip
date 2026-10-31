@@ -1,0 +1,33 @@
+id: R-20261029-1414-015
+item_ids: ["src-news7-focus:59894926b3fec9f5"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T14:08:29+09:00
+published_at: 2026-10-28T20:56:27+09:00
+latency_min: 1032
+entities: [co-skhynix]
+event_type: 실적
+headline_ko: "SK하이닉스 이익 급증 — Bloomberg 영상 프리뷰 헤드라인 (1차 출처 대기)"
+what_happened: "Bloomberg 영상 기사 제목은 'SK Hynix Profits Surge'이다. 본문·수치를 확인하지 못했다. 실적 발표(SK하이닉스 공시·IR 자료) 여부와 수치는 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — 본문·공시 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - SK하이닉스 3분기 실적 발표(공시·IR 자료)가 실제로 나왔는지, 수치(매출·영업이익·HBM 비중)는 무엇인지
+  - 제목의 'Profits Surge'가 확정 실적인지, 프리뷰·전망인지
+  - 전년·전분기 대비 비교 단위(원화/달러, 연결 기준)
+next_check: "SK하이닉스 IR·DART 공시에서 3분기 실적 원문 확인 → 확인되면 P0(실적) 승격 검토"
+reverse: null
+policy: null

@@ -1,0 +1,41 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (영향 필드는 impact-card 대기)
+id: R-20261028-1410-034
+item_ids:
+  - "src-gnews-t0-ko:940d7bc9b46dfc69"   # 대표 (데일리안 [컨콜], 13:47 KST, 필리핀 신공장 발언 최초 보도)
+  - "src-gnews-t0-ko:aedd27ac19f035be"   # 같은 컨콜 (Chosunbiz, 14:02 KST, 설비투자 상회 문구 — 이 카드에 병합 보류 중)
+event_cluster: "삼성전기 2026년 3분기 컨퍼런스콜 — 증설·설비투자 발언 (2026-10-28)"
+first_seen_source: "src-gnews-t0-ko:940d7bc9b46dfc69 (데일리안, 2026-10-28T04:47:00Z)"
+detected_at: "2026-10-28T14:06:11+09:00"
+published_at: "2026-10-28T13:47:00+09:00"
+latency_min: 19
+entities:
+  - co-semco
+event_type: 증설·CAPEX
+headline_ko: "삼성전기 컨콜: 필리핀 신공장 내년 MLCC 양산 발언, 올해 설비투자 당초 전망 상회 보도 (언론 보도, 1차 출처 대기)"
+what_happened: "데일리안은 삼성전기가 3분기 컨퍼런스콜에서 필리핀 신공장이 내년 MLCC 양산에 들어가며 최선단 고부가 제품 중심이라고 밝혔다고 보도했다. Chosunbiz는 같은 컨콜에서 올해 설비투자가 당초 전망을 웃돌고 AI 부품 증설을 확대한다고 보도했으나, 투자 금액·규모·양산 개시 시점은 원문 미확인이다."
+primary_source_confirmed: false
+novelty: "신규 — radar/cards/2026/10 전체 grep에 '필리핀'·'설비투자' 없음. 기존 카드 R-20261028-1221-027(3분기 실적 수치)·R-20261028-1331-032(장기공급계약·AI 기판 발언)와 별개 사건. knowledge/claims에도 '필리핀'·'설비투자'·'휴머노이드' 없음(grep 확인). claim-intake 단계에서 재확인."
+linked_claims: []
+linked_theses: []
+first_order: []              # impact-card가 채움
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""               # impact-card 단계
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1              # 대규모 증설·CAPEX(P0 기준) 후보 → 1차 출처 아님 → P1 (alert_rules 보정 규칙)
+verification: 1차판정
+open_questions:
+  - "[1차 출처 대기] 삼성전기 3분기 IR 자료·컨퍼런스콜 스크립트에서 필리핀 신공장의 위치·투자액·가동 개시 시점·양산 품목 원문 확인"
+  - "[1차 출처 대기] Chosunbiz의 '올해 설비투자 당초 전망 상회'(aedd27ac)가 전사 CAPEX인지 AI 부품 한정인지, 금액·전년 대비 기준 확인 — 현재 수치 없음, 비교 불가"
+  - "투자 방향 상충 가능성: 뉴스핌 보도(src-gnews-t0-ko:c8b358c4, 'AI 기판 추가 공급 요청 지속…향후 투자 시점·규모 신중 판단')는 신규 투자에 신중한 표현. 대상(전사 CAPEX vs AI 기판 신규 투자)이 달라 보이나 원문 대조 전 단정 금지"
+  - "'최선단 고부가 제품'의 제품 세대·공정·용량 기준 미확인"
+  - "내년 양산 = 2027년 가동 개시인지, 2027년 말 램프 완료인지 미확인. 램프 일정·가동률·수율 없이는 판매 가능 생산량으로 환산 불가(금지표: 명목 캐파 → 판매 가능 생산량)"
+  - "DART 신규시설투자 공시 여부 확인. 공시가 있으면 금액 기준으로 P0 재판정 검토"
+  - "기존 증설 계획(이전 분기 콜·가이던스)과의 중복·추가 여부 — earnings-delta로 대조 필요"
+next_check: "삼성전기 3분기 IR 자료·컨콜 스크립트·DART 신규시설투자 공시 확보 → earnings-delta로 직전 콜 대조 → impact-card로 CAPEX 규모·램프 판정"
+reverse: null                # §11.12
+policy: null                 # §13.7

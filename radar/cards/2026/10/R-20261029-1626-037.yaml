@@ -1,0 +1,39 @@
+id: R-20261029-1626-037
+item_ids:
+  - "src-jp-disclosure:6cd74afaa95e2183"
+  - "src-jp-disclosure:e59ee7b6792b6803"
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: "2026-10-29T16:26:14+09:00"
+published_at: "2026-10-29T15:20:00+09:00"
+latency_min: 66
+entities:
+  - co-ibiden
+event_type: 실적
+headline_ko: "이비덴, 今期 経常利益 6% 상향·最高益 예상 상향 (株探 보도)"
+what_happened: "株探 보도 기준으로 이비덴(Ibiden, 4062)이 今期 経常利益 예상을 6% 상향 수정하고 最高益 예상을 올렸으며 期末配当을 10円으로 수정했다. 같은 날 후속 보도는 高機能 IC パッケージ基板向け 設備投資 실시를 함께 전했으나 금액·시기는 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "가이던스 상향 자체는 새 사실(1차 결산 자료 확인 전). 設備投資 내용은 후속 기사 기준이며 이전 claim과 비교 불가 상태."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: IC 패키지 기판(FC-BGA) 경쟁사의 이익 상향과 증설 신호가 SEMCO·LG이노텍 FC-BGA 페어의 경쟁 구도에 영향을 줄 수 있음. 근거·반대 근거 미검토."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+biz: "IC 패키지 기판(FC-BGA 등)·전자 부품 제조"
+verification: 1차판정
+open_questions:
+  - "1차 출처(TDnet 결산短信·회사 IR) 확인 전: 상향 수치의 기준(연결·단독, 기간)과 변경 전 수치 미확인"
+  - "상향 사유(환율·일회성 손익·제품 믹스 중 무엇인지) 미확인"
+  - "設備投資 금액·능력(캐파)·가동 시기 미확인 — 증설·CAPEX 여부 판단 보류"
+  - "컨센서스 대비 상향 폭 미확인"
+  - "SEMCO·LG이노텍 FC-BGA 페어에 대한 2차 영향 미판정(impact-card 대상)"
+next_check: "이비덴 결산短信·설비투자 공시 원문 확인, 설비투자 금액·시기 확인"
+reverse: null
+policy: null

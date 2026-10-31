@@ -1,0 +1,22 @@
+id: SIG-20261028-0003
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-10-26~27 (UTC, 다수 재인용)
+layer: L9
+source_id: src-foreign-press
+url: https://news.google.com/rss (鉅亨網·cnBeta·新浪·驅動之家 등 15건 이상)
+language: zh
+origin_id: null
+mentioned_entity: co-skhynix
+match_type: 실명
+counterparty: NVIDIA (보도상)
+pair_id: pair-skhynix-aiaccel-hbm
+signal_type: 현지언론
+strength: S2
+gist_ko: 대만·중국 매체가 "한국 언론 보도"를 인용해 삼성전자·SK하이닉스가 2027년 2분기 8단 HBM4를 양산해 엔비디아(Rubin Ultra 대비용)에 공급한다고 재보도. 일부는 12단 HBM4 문제가 지속돼 8단 공급을 늘린다고 씀.
+original_excerpt: 「韓媒：三星電子與SK海力士2027年第二季量產8層HBM4供應輝達」(鉅亨網, 2026-10-27) / 「因12层堆叠HBM4问题持续…增加8层堆叠产品供应量」(搜狐, 2026-10-27)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: ① 전부 한국 언론 1건의 재인용(독립 아님, 언어 차익 없음) ② "12단 문제"는 원 보도의 해석일 수 있고 회사 확인 없음 ③ 고객 제품 로드맵(사양 조정) 변경이 원인일 수 있음 — 공급사 수율 문제와 구분 불가 ④ SK하이닉스 C-20261027-001(HBM4 양산 출하)과 세대·단수 구분 필요.
+convergence_score_after: 4
+status: 대기
+resolved: null

@@ -1,0 +1,22 @@
+id: SIG-20261028-0002
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-10-26 (미 동부, EDGAR 접수일)
+layer: L1
+source_id: src-edgar-fts
+url: https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm
+language: en
+origin_id: SIG-20261028-0001
+mentioned_entity: co-skhynix
+match_type: 실명
+counterparty: Anthropic, PBC (CIK 0002130357)
+pair_id: null
+signal_type: 공시언급
+strength: S2
+gist_ko: 같은 S-1 본문에 "Hynix" 적중. 문맥 원문 미확인(SEC 차단). 2차 보도(緯來新聞)는 "HBM 3대 업체도 거명"이라고 전함(미검증).
+original_excerpt: '(원문 미열람) 2차 보도 제목: 「台積電成Anthropic上市風險 HBM三巨頭也被點名」(緯來新聞網, 2026-10-27)'
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: SIG-0001과 동일 원문 — 독립 확인 아님. 위험 요인의 공급 집중 일반 서술일 가능성이 가장 높다. 원문 확인 전 공급 관계로 읽지 않는다.
+convergence_score_after: 0
+status: 대기
+resolved: null

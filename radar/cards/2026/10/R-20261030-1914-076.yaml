@@ -1,0 +1,36 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-20261030-1914-076
+item_ids: [src-jp-disclosure:7d7c16b857008753]
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-30T19:11:25+09:00
+published_at: 2026-10-30T18:45:00+09:00   # 원 시간대 UTC 09:45
+latency_min: 26
+entities: [jp-kioxia]
+event_type: 실적
+headline_ko: "키옥시아, 2027년 3월기 2분기(중간기) 결산 — 상반기 최종 '37배 증익'"
+what_happened: "키옥시아의 2027년 3월기 중간기(4~9월) 결산 단신(適時開示) 제목이 일본 공시 미러에서 확인된다. 헤드라인은 상반기 순이익 2,197.8억 엔, 상반기 최종 '37배 증익', 7~9월 '33배 증익'을 전하나 본문 수치는 미확인이다."
+primary_source_confirmed: false
+novelty: "신규 — 2027년 3월기 2분기 결산 (직전 분기 대비 비교는 본문 확인 후)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "공시 본문(決算短信) 확인: 상반기 순이익·매출·영업이익과 2분기 증익률 검증 — 현재 수치는 헤드라인 기준"
+  - "기간·정의 충돌: 日経 '純利益15倍の1兆3600億円 10〜12月' vs 상반기 순이익 2,197.8억 엔 — 어느 기간·지표인지 확인 전 비교 불가"
+  - "가이던스(2027년 3월기 통기 예상) 상향·하향 여부 미확인"
+  - "증익 동인 분해(NAND 가격 vs 출하 물량·원가) 미확인"
+  - "삼성·SK하이닉스 NAND 사업과의 직접 비교는 단위·기간·제품 세대를 맞춘 뒤에만"
+next_check: "키옥시아 IR 자료실 決算説明会資料·質疑応答 및 적시공시 원문 확인, 발표 후 +3영업일 재확인"
+reverse: null
+policy: null

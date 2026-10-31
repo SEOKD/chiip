@@ -1,5 +1,5 @@
 # 단계적 파라미터 작업 지시 — scripts/fit/stepwise.py --status --write(Chiip proviser 매일 갱신, Model Lab 일요일 피팅이 위에서부터 처리)
-as_of: '2026-10-29'
+as_of: '2026-10-30'
 orders:
 - model: focus.score
   stage: 1
@@ -13,6 +13,17 @@ orders:
   fitted: 0
   trials: 1
   priority: 4.0
+- model: valuation.cycle_band
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-val-mem-pb-roe-slope'
+  systems:
+  - chiip-portfolio
+  quality: 8.0
+  params: 1
+  fitted: 0
+  trials: 1
+  priority: 2.0
 - model: valuation.reverse_dcf
   stage: 1
   stage_name: 기존 피팅
@@ -20,22 +31,22 @@ orders:
     prm-val-tpe-semicap, prm-val-tpe-substrate 외'
   systems:
   - chiip-portfolio
-  quality: 7.0
+  quality: 8.0
   params: 21
   fitted: 0
   trials: 1
-  priority: 3.0
-- model: valuation.cycle_band
-  stage: 0
-  stage_name: 데이터 확보
-  action: '피팅 자료 정의·수집(fit.data): prm-val-mem-pb-roe-slope'
+  priority: 2.0
+- model: lab.proposal_gate
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-lab-shrink-postpub, prm-lab-shrink-oos'
   systems:
-  - chiip-portfolio
-  quality: 7.0
-  params: 1
+  - chiip-model-lab
+  quality: 8.1
+  params: 3
   fitted: 0
   trials: 1
-  priority: 2.0
+  priority: 1.9
 - model: alpha.score
   stage: 1
   stage_name: 기존 피팅
@@ -44,18 +55,79 @@ orders:
   systems:
   - chiip-pulse
   - chiip-tenbagger
-  quality: 8.1
+  quality: 9.0
   params: 5
   fitted: 0
   trials: 1
-  priority: 1.9
-- model: lab.proposal_gate
+  priority: 1.0
+- model: discovery.consumer
   stage: 1
   stage_name: 기존 피팅
-  action: '하네스로 피팅·채택 관문: prm-lab-shrink-postpub, prm-lab-shrink-oos'
+  action: '하네스로 피팅·채택 관문: prm-consumer-w-growth, prm-consumer-w-accel, prm-consumer-w-persistence,
+    prm-consumer-w-margin, prm-consumer-w-sell-through 외'
+  systems: []
+  quality: null
+  params: 15
+  fitted: 0
+  trials: 1
+  priority: 1.0
+- model: fit.adoption_gate
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-fit-min-oos-events'
+  systems: []
+  quality: null
+  params: 1
+  fitted: 0
+  trials: 1
+  priority: 1.0
+- model: insight.call_feed
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-callfeed-beta-window, prm-callfeed-runup-window, prm-callfeed-short-answer'
+  systems: []
+  quality: null
+  params: 3
+  fitted: 0
+  trials: 1
+  priority: 1.0
+- model: signal.revision
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-sig-revision-halflife'
   systems:
-  - chiip-model-lab
-  quality: 9.0
+  - chiip-pulse
+  quality: 9.1
+  params: 1
+  fitted: 0
+  trials: 1
+  priority: 1.0
+- model: tenbagger.bands
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-tb-exit-evs-semis, prm-tb-tenx-share-hard'
+  systems: []
+  quality: null
+  params: 5
+  fitted: 0
+  trials: 1
+  priority: 1.0
+- model: tenbagger.flow
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-flow-rvol-min, prm-flow-cmf-n'
+  systems: []
+  quality: null
+  params: 4
+  fitted: 0
+  trials: 1
+  priority: 1.0
+- model: tenbagger.levels
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-lv-zz-floor'
+  systems: []
+  quality: null
   params: 3
   fitted: 0
   trials: 1
@@ -67,7 +139,7 @@ orders:
     prm-tb-w-quality, prm-tb-w-growth_accel 외'
   systems:
   - chiip-tenbagger
-  quality: 9.5
+  quality: 9.0
   params: 6
   fitted: 0
   trials: 1
@@ -79,7 +151,7 @@ orders:
     prm-v2-up-upside-full-prob, prm-v2-up-asym-points-per-doubling 외'
   systems:
   - chiip-tenbagger
-  quality: 9.5
+  quality: 9.0
   params: 18
   fitted: 0
   trials: 1
@@ -90,7 +162,7 @@ orders:
   action: '하네스로 피팅·채택 관문: prm-v2-hiddendebt-int-multiple'
   systems:
   - chiip-tenbagger
-  quality: 9.5
+  quality: 9.0
   params: 1
   fitted: 0
   trials: 1
@@ -102,29 +174,40 @@ orders:
     prm-v2-dec-neutral-excess, prm-v2-dec-neutral-p-beat'
   systems:
   - chiip-tenbagger
-  quality: 9.5
+  quality: 9.0
   params: 7
   fitted: 2
   trials: 1
   priority: 1.0
-- model: signal.revision
-  stage: 0
-  stage_name: 데이터 확보
-  action: '피팅 자료 정의·수집(fit.data): prm-sig-revision-halflife'
-  systems:
-  - chiip-pulse
-  quality: 8.1
+- model: valuation.v2.net_debt
+  stage: 1
+  stage_name: 기존 피팅
+  action: '하네스로 피팅·채택 관문: prm-v2-uncommenced-lease-pvfactor'
+  systems: []
+  quality: null
   params: 1
   fitted: 0
   trials: 1
-  priority: 0.9
+  priority: 1.0
+- model: discovery.quiet
+  stage: 0
+  stage_name: 데이터 확보
+  action: '피팅 자료 정의·수집(fit.data): prm-quiet-w-trend, prm-quiet-w-accumulation, prm-quiet-w-neglect,
+    prm-quiet-w-fundamental, prm-quiet-w-edge'
+  systems:
+  - chiip-tenbagger
+  quality: 9.0
+  params: 5
+  fitted: 0
+  trials: 1
+  priority: 0.0
 - model: valuation.wacc
   stage: 0
   stage_name: 데이터 확보
   action: '피팅 자료 정의·수집(fit.data): prm-val-erp-us'
   systems:
   - chiip-tenbagger
-  quality: 9.5
+  quality: 9.0
   params: 1
   fitted: 0
   trials: 1

@@ -1,0 +1,35 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (2026-10-30). 영향 블록은 impact-card가 채운다.
+id: R-20261030-1613-066
+item_ids:
+  - src-jp-disclosure:0a254386e65de2eb
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-30T16:09:55+09:00
+published_at: 2026-10-30T15:30:00+09:00
+latency_min: 40
+entities:
+  - co-tel
+event_type: 실적
+headline_ko: "도쿄일렉트론, 2027년 3월기 2분기(중간기) 결산 단신 공시 — 본문 미확인"
+what_happened: "도쿄일렉트론(8035)이 2027년 3월기 2분기(중간기) 결산 단신(일본 기준·연결)을 2026-10-30 적시공시로 냈다. 수치와 가이던스는 본문을 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "결산 단신 본문의 매출·영업이익·가이던스 수치 확인 (헤드라인 '今期経常 +87%·2期ぶり最高益', '配当 523円'은 기사 기준 미확인)"
+  - "장비 수주·출하 구조 중 포토 트랙(코터·디벨로퍼) 비중 확인"
+next_check: "TDnet·회사 IR의 2027년 3월기 2Q 결산 단신 원문과 수치 대조"
+reverse: null
+policy: null

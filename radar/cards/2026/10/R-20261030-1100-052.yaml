@@ -1,0 +1,33 @@
+id: R-20261030-1100-052
+item_ids: [src-news7-focus:7ec336eea37aa34d]
+event_cluster: null
+first_seen_source: src-news7-focus (Reuters — Google News 색인)
+detected_at: 2026-10-30T10:45:57+09:00
+published_at: 2026-10-29T15:33:00+09:00
+latency_min: 1153
+entities: [no-kongsberg]
+event_type: 수주·공급계약
+headline_ko: "콩스버그, 3분기 수주 급증 — 미사일·방공 수요 강세(Reuters 보도)"
+what_happened: "Reuters는 콩스버그(Kongsberg Gruppen)의 3분기 수주가 미사일·방공(air defence) 수요 강세로 급증했다고 보도했다. 수주 금액·통화 환산·프레임워크 계약 포함 여부·인도 시점은 요약에 없어 미확인이며, 회사 분기 발표 원문은 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "분기 수주 집계 — 전 분기 대비 변화 수치는 원문 확인 전 비교 불가. 방위 수주 판정 상향 대상(CLAUDE.md 방위 섹터)."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+article_angle: ""
+field_intel_check: 해당없음
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "3분기 수주 금액(NOK)·전년 동기 대비 — 분기 보도자료 원문 대조"
+  - "프레임워크 계약 vs 개별 발주(call-off) 구분 — 발주 확정액(obligated)은 별도 확인"
+  - "수주 → 매출 전환 시점(인도 일정)과 생산 능력(미사일 증설) 여부"
+next_check: "콩스버그 3분기 실적 보도자료·수주 공시(Oslo Børs)"
+reverse: null
+policy: null

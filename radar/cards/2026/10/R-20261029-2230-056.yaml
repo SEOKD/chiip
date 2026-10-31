@@ -1,0 +1,37 @@
+id: R-20261029-2230-056
+item_ids:
+  - src-news7-focus:89df5431addc7420
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha 경유, Google News 색인)
+detected_at: 2026-10-29T22:27:24+09:00
+published_at: 2026-10-29T13:13:51+00:00
+latency_min: 14
+entities:
+  - co-marvell
+  - co-lumentum
+event_type: M&A
+headline_ko: "Marvell–Lumentum 거래: 애널리스트들 전략적 논리는 인정, 가격·통합 리스크 지적"
+what_happened: "Seeking Alpha 기사 제목 기준으로 Marvell(MRVL)과 Lumentum 사이 거래가 보도되었고, 애널리스트들이 전략적 논리는 인정하나 가격과 통합 리스크를 지적했다. 거래 조건·규모·종결 시점은 본문 미확인."
+primary_source_confirmed: false
+novelty: "미확인 — knowledge/claims/에 Lumentum 관련 주장 없음(확인 완료). 거래 자체가 공식 발표인지 보도 단계인지 1차 출처 미확인."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처(Marvell·Lumentum 보도자료, 8-K, 인수 발표문) 확인 — 현재 Seeking Alpha 제목만 존재"
+  - "거래 형태(현금·주식 비율), 가격(EV·프리미엄), 종결 조건·규제 심사 일정"
+  - "Lumentum의 AI 광 트랜시버용 레이저·EML 사업이 Marvell 데이터센터 광 DSP 포트폴리오와 어떻게 겹치는지"
+  - "Bloomberg 등 선행 보도 존재 여부 — 있다면 최초 보도 시점과 대조"
+next_check: "Marvell IR·SEC EDGAR에서 8-K/보도자료 검색, Lumentum IR 동시 공지 확인"
+reverse: null
+policy: null

@@ -1,0 +1,37 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (영향 판정은 impact-card가 채움)
+id: R-20261029-2031-049
+item_ids:
+  - src-news7-focus:69357465d56bce26
+  - src-bbg-direct:8b4dc6d6f4c77e6d
+event_cluster: null
+first_seen_source: src-news7-focus:69357465d56bce26
+detected_at: 2026-10-29T20:27:57+09:00
+published_at: 2026-10-29T11:09:59+00:00
+latency_min: 18
+entities:
+  - co-alphabet
+event_type: 실적
+headline_ko: "알파벳 실적 미스 보도에 미국 증시 선물 하락 (Bloomberg)"
+what_happened: "Bloomberg 보도(원문 URL: src-bbg-direct:8b4dc6d6f4c77e6d)는 알파벳 실적이 기대에 못 미쳐 미국 증시 선물이 하락했다고 전했다. 1차 실적 자료(매출 수치·클라우드 매출·CAPEX 가이던스)는 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 실적 수치와 컨센서스 대비 차이를 1차 자료로 확인해야 신규성 판단 가능"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "선물 하락 보도(보도 기준). 종가·개별 주가 반응 미확인"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설(미검증): 알파벳 매출 성장 둔화가 AI CAPEX 회수 우려를 키워 AI 인프라 밸류체인 심리에 영향을 주는지. 1차 실적 확인 전에는 가설로만 둔다."
+field_intel_check: 해당없음
+article_angle: "보류 — 1차 실적 자료 확인 후 판단"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "알파벳 Q3 실적 원문(매출·클라우드 매출·영업이익·CAPEX 가이던스)과 컨센서스 대비 차이"
+  - "Bloomberg 원문과 Google News 색인 기사 중복 여부(동일 사건 2건 확인됨)"
+  - "Bloomberg 헤드라인의 '실적 미스'가 매출 기준인지 주당순이익 기준인지"
+next_check: "알파벳 IR 실적 보도자료·실적 발표 자료 원문 대조, CAPEX 가이던스 변화 확인"
+reverse: null
+policy: null

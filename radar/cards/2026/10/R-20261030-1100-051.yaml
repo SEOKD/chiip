@@ -1,0 +1,33 @@
+id: R-20261030-1100-051
+item_ids: [src-news7-focus:9e2fbd3a9566c711]
+event_cluster: null
+first_seen_source: src-news7-focus (Reuters — 원출처 The Information)
+detected_at: 2026-10-30T10:53:53+09:00
+published_at: 2026-10-30T10:26:00+09:00
+latency_min: 27
+entities: [co-nvidia, nscale(감시 목록 외), anthropic(프런티어 AI 랩)]
+event_type: 기타
+headline_ko: "엔비디아, Nscale의 Anthropic 계약에 신용 지원 제공 협상(The Information 보도, Reuters 재보도)"
+what_happened: "The Information 보도를 Reuters가 전하며, 엔비디아가 Nscale이 Anthropic과 맺은 계약에 신용 지원(credit support)을 제공하는 방안을 협상 중이라고 한다. 지원 규모·형태(보증·신용 공여)·계약 금액·용량은 요약에 없어 미확인."
+primary_source_confirmed: false
+novelty: "협상 단계 보도. 엔비디아의 AI 인프라 금융 참여는 보도 기준 신규. 원출처는 The Information 1건(Reuters는 재보도이므로 독립 확인 아님, origin 동일)."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+article_angle: ""
+field_intel_check: 해당없음
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "신용 지원의 형태와 규모(보증·신용장·지분 연계 여부)"
+  - "Nscale–Anthropic 계약 금액·용량·기간 — 엔비디아 지원이 결정되는 조건"
+  - "엔비디아·Nscale·Anthropic 중 누가 공식 확인하는지(1차 출처 대기)"
+next_check: "엔비디아 8-K·Nscale 공지·Anthropic 발표, The Information 후속 보도"
+reverse: null
+policy: null

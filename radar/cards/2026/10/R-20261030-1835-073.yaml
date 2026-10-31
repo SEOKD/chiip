@@ -1,0 +1,36 @@
+# 영향 판정 카드 양식 — radar/cards/YYYY/MM/<id>.yaml (BUILD_PROMPT §5.13, §11.12, §13.7)
+id: R-20261030-1835-073
+item_ids:
+  - "src-news7-focus:d9cbaa3303de33d5"
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T18:23:17+09:00"
+published_at: "2026-10-30T08:27:22+00:00"
+latency_min: 56
+entities:
+  - co-amazon
+  - co-intel
+event_type: 실적
+headline_ko: "실적 발표 후 장전 거래 — 아마존 약 -7%, 인텔 약 -25%"
+what_happened: "CNBC는 실적 발표 이후 장전(premarket) 거래에서 아마존이 약 7%, 인텔이 약 25% 하락했다고 보도했다. 실적 수치와 가이던스 내용은 제목 기준으로 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 실적 수치는 1차 출처 확인 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "장전 낙폭만 확인(정규장 종가 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "아마존·인텔 실적 보도자료·8-K의 매출·이익·가이던스 수치"
+  - "인텔 낙폭의 원인이 실적인지 가이던스·파운드리 언급인지"
+  - "정규장 종가 기준 낙폭"
+  - "1차 출처: 각사 IR 발표 자료 대기"
+next_check: "각사 IR 실적 자료와 컨센서스 대비 수치 확인"

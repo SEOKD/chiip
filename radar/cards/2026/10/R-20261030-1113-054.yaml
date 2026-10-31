@@ -1,0 +1,42 @@
+id: R-20261030-1113-054
+item_ids:
+  - src-jp-disclosure:aa28623947fb8ac4
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-30T11:11:26+09:00
+published_at: 2026-10-30T05:00:00+09:00   # 日刊工業新聞 보도 2026-10-29 20:00 UTC 환산
+latency_min: 371
+entities:
+  - jp-renesas
+event_type: 실적
+headline_ko: "르네사스 통기 전망 매출 26% 증 — DC용 제품 견인 (2차 매체 보도)"
+what_happened: "일간공업신문이 르네사스의 통기(연간) 매출 전망이 26% 증가하며 데이터센터(DC)용 제품이 이를 이끈다고 보도했다. 전년 대비 기준 연도와 절대 금액, 결산 원문은 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "통기 전망 상향 여부·기준 수치 미확인. 기존 가이던스와 비교 불가."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: jp-renesas
+    driver: 물량
+    line_item: "DC용 제품 매출"
+    direction: 상향
+    magnitude: 미확인
+    timing: "통기(2026년 연간) 기준 — 분기 구분 미확인"
+    rationale: "헤드라인 보도 기준. DC 비중 등 세부 수치는 미확인."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처: 르네사스 결산 短信·실적 발표 자료에서 통기 매출·영업이익 전망과 상향 폭 확인"
+  - "26% 증가의 기준(전년 실적 또는 이전 전망)과 DC 매출 절대액"
+  - "컨센서스 대비 차이 — 미확인"
+next_check: "르네사스 IR 실적 자료(회사 PDF)와 결산 설명 질의응답(IR Q&A)에서 DC 비중·가이던스 변경분"
+reverse: null
+policy: null

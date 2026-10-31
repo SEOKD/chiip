@@ -1,0 +1,35 @@
+# 영향 판정 카드 — 1차 분류(radar-triage) 초안. 영향 판정(first_order 등)은 impact-card가 채운다.
+id: R-20261030-0108-005
+item_ids: ["src-bbg-direct:637fde8ed7a77576"]
+event_cluster: null
+first_seen_source: "src-bbg-direct (Bloomberg 피드, 영상 기사)"
+detected_at: "2026-10-30T01:06:57+09:00"
+published_at: "2026-10-30T01:02:38+09:00"   # 원본 2026-10-29T16:02:38+00:00
+latency_min: 4
+entities: [co-marvell, co-lumentum, co-nvidia]
+event_type: M&A
+headline_ko: "마벨, 엔비디아 투자 기업 루멘텀 인수 협상 보도(블룸버그 영상)"
+what_happened: "블룸버그 영상 보도(제목·요약 기준)는 마벨 테크놀로지가 데이터센터 광학 부품사 루멘텀 홀딩스 인수를 협상 중이라고 전한다. 소식통에 따르면 거래가 다음 주 마무리될 수 있다. 공식 발표·공시는 확인하지 못했다."
+primary_source_confirmed: false
+novelty: "신규 — knowledge/claims에 루멘텀 관련 주장 없음(grep 확인)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명             # 미반영|일부|대부분|불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "마벨·루멘텀의 공식 보도자료 또는 8-K 여부 (1차 출처 대기)"
+  - "거래 가격·조건·구조 (보도 없음, 미확인)"
+  - "엔비디아 투자 지분 규모와 시점 (보도는 '엔비디아 지원'만 언급, 미확인)"
+  - "주가 반응·컨센서스 (미확인)"
+next_check: "마벨·루멘텀 IR 공시·보도자료, 블룸버그 후속 기사(참여자·조건 변경 여부)"
+reverse: null
+policy: null

@@ -1,0 +1,35 @@
+id: R-20261031-0431-010
+item_ids:
+  - src-news7-focus:f68da1121a70d799
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-31T04:03:09+09:00
+published_at: 2026-10-30T18:47:32+00:00
+latency_min: 16
+entities:
+  - us-amba
+event_type: M&A
+headline_ko: "Ambarella, 한 입찰자와 독점 협상 중이라는 보도 (1차 출처 대기)"
+what_happened: "Seeking Alpha가 '보고서(report)'를 인용해 Ambarella(AMBA)가 단일 입찰자와 독점 협상(exclusive talks) 중이라고 전했다. 원출처 매체·매각 주체·가격·조건은 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "감시 기업의 M&A 협상 단계 보도. 기존 claims에 동일 내용 없음(미확인)."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "미확인. 매각 주체가 확인되기 전에는 기업 가치 판단을 보류한다."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "원출처 보도 매체(Reuters·Bloomberg 등 여부)와 원문 날짜 확인"
+  - "입찰자 정체·매각 구조(전체 매각 vs 사업부 매각)·기대 가격 확인"
+  - "Ambarella 공시(8-K) 또는 회사 발표로 협상 사실 확인 여부"
+next_check: "Ambarella SEC 공시·보도자료, 원출처 매체 후속 보도"
+reverse: null
+policy: null

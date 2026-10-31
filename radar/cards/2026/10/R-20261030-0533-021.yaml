@@ -1,0 +1,32 @@
+id: R-20261030-0533-021
+item_ids: ["src-sec-filings:0001628280-26-068202"]
+event_cluster: null
+first_seen_source: src-sec-filings
+detected_at: 2026-10-30T05:31:47+09:00
+published_at: 2026-10-30T05:01:11+09:00
+latency_min: 30
+entities: [us-mpwr]
+event_type: 실적
+headline_ko: "Monolithic Power Systems, 실적 8-K 및 임원 변동 공시(Item 2.02·5.02)"
+what_happened: "Monolithic Power Systems가 2026-10-29(미 동부, KST 10-30 05:01)에 SEC 8-K(Item 2.02 실적 발표, Item 5.02 임원 변동)를 제출했다. 매출·가이던스 수치와 임원 변동 내용은 원문 미열람으로 미확인이다."
+primary_source_confirmed: true
+novelty: "미확인(수치·임원 변동 내용 대조 전)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "AI 서버 전원 IC 매출 비중과 가이던스 확인"
+  - "Item 5.02 임원 변동 대상·사유 확인"
+next_check: "8-K 첨부 보도자료 열람"
+reverse: null
+policy: null

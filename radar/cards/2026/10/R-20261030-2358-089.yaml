@@ -1,0 +1,33 @@
+id: R-20261030-2358-089
+item_ids:
+  - src-kr-ir-docs:527e7a4d9a4b2d36
+event_cluster: null
+first_seen_source: src-kr-ir-docs (IRGO 미러, 회사 IR 자료 삼성전기 2026.10.28 실적)
+detected_at: 2026-10-30T23:36:26+09:00
+published_at: 2026-10-28 (IR 자료 표지일)
+latency_min: 미상 (발표일 기준 약 2일 뒤 탐지)
+entities:
+  - co-semco
+event_type: 실적
+headline_ko: "삼성전기 2026년 3분기 실적 — 매출 37,633억원(YoY +30%), 영업이익 6,910억원 (회사 자료)"
+what_happened: "삼성전기는 2026년 3분기 매출 37,633억원(YoY +30%, QoQ +9%), 영업이익 6,910억원(영업이익률 18.4%, YoY +165%)을 발표했다(회사 IR 자료, 2026-10-28). 컴포넌트 사업부 매출 18,830억원(YoY +36%)은 AI 데이터센터용 제품 믹스 개선이 동인으로 제시됐고, 패키지 9,390억원(YoY +58%), 광학 9,413억원(YoY +3%)이다."
+primary_source_confirmed: true
+novelty: "기존 카드 없음(매출 37,633 검색 0건). 회사 IR 원자료 신규 확보. 직전 분기(2Q26) 대비는 IR 자료 prev_text와 대조 필요."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P0
+verification: 1차판정
+open_questions:
+  - "QoQ 영업이익 증가율: 자료 표기 41%와 수치 역산 57%(6,910/4,404) 불일치 — 원자료 표 재확인"
+  - "광학 사업 QoQ -9% 감소 원인 — 미확인"
+  - "컨센서스 대비 서프라이즈 — 미확인"
+next_check: "삼성전기 사업보고서·컨퍼런스콜, 광학·패키지 사업부 세부 자료"

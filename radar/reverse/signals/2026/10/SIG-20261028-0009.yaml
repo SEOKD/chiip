@@ -1,0 +1,22 @@
+id: SIG-20261028-0009
+detected_at: '2026-10-28T08:50:00+09:00'
+published_at: 2026-09 (TWSE 월매출, 2026-10 공개)
+layer: L3
+source_id: src-twse-monthly
+url: https://mopsfin.twse.com.tw/opendata/t187ap05_L.csv
+language: zh
+origin_id: null
+mentioned_entity: co-semco
+match_type: 실명
+counterparty: 欣興(3037)·景碩(3189)·南電(8046)
+pair_id: pair-semco-lginnotek-fcbga-aiaccel
+signal_type: 무역거울
+strength: S2
+gist_ko: '대만 ABF 기판 3사 2026-09 월매출 YoY: 欣興 +64.7%(MoM +5.1%), 景碩 +44.5%(+7.7%), 南電 +57.8%(+4.4%). 단위 천 대만달러. 직전 월 데이터가 장부에 없어 추세 비교는 불가.'
+original_excerpt: 3037 欣興 18,650,679 / 3189 景碩 5,181,276 / 8046 南電 5,585,816 (천 TWD, 2026-09)
+insider_like: false
+euphemism_resolution: null
+alternative_explanation: '두 해석을 함께 둔다: ① AI 기판 수요 전반 호조 → 한국 기판사도 수혜 ② 대만사 점유율 상승(한국사엔 부정). 환율(TWD) 효과·기저효과 미분리. 동일 수요 사이클이라 L9 보도와 완전 독립은 아님.'
+convergence_score_after: 6
+status: 수렴경보
+resolved: null

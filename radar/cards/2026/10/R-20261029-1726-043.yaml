@@ -1,0 +1,37 @@
+id: R-20261029-1726-043
+item_ids:
+  - src-jp-disclosure:f6fbf94bd7589e63
+  - src-jp-disclosure:c3bb092df8b8e34d
+event_cluster: null
+first_seen_source: src-jp-disclosure (株探 — Ibiden 今期経常 6% 上方修正 기사, 2026-10-29 06:20 UTC)
+detected_at: 2026-10-29T17:26:58+09:00
+published_at: 2026-10-29T06:20:00+00:00
+latency_min:
+entities:
+  - co-ibiden
+event_type: 실적
+headline_ko: "이비덴, 今期 경상이익 6% 상향·최고익 예상 상향(매체 보도 기준)"
+what_happened: "2026-10-29 일본 매체(株探)가 이비덴의 今期 경상이익 6% 상향과 최고익 예상 상향, 期末配当 10円 수정을 보도했다. 같은 날 時事通信은 중간연결 순이익 74.8% 증가(385億7400万円)를 보도했다. 두 건 모두 회사 공시(決算短信)가 아니라 매체 보도이며, 1차 출처 확인 전이다."
+primary_source_confirmed: false
+novelty: "미확인 — 직전 가이던스·컨센서스와 비교 자료 미수집. 상향 폭(6%)의 분모는 今期 経常利益 기준 보도 수치로만 확인"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "TDnet 決算短信(회사 1차 공시)에서 今期 経常利益·純利益 상향 수치와 분기 실적 원문 확인 필요"
+  - "상향의 동인(FC-BGA 기판 물량·가격·믹스 중 무엇인지) — 決算説明資料·어닝콜 확인 필요"
+  - "2026-10-29 時事 보도(중간 순이익 74.8%)와 株探 보도(今期 상향)가 같은 공시인지 확인 — 같은 사건으로 묶음"
+  - "국내 FC-BGA 경쟁 축(pair-semco-lginnotek-fcbga-aiaccel) 연결은 영향 카드 단계에서 판정. 연결 없이 T0 영향으로 쓰지 않음"
+next_check: "Ibiden IR 공시(TDnet 決算短信)·決算説明資料 원문 확인"
+reverse: null
+policy: null

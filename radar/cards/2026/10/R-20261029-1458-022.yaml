@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1458-022
+item_ids:
+  - src-news7-focus:524f062d2cf48166
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-29T14:52:35+09:00
+published_at: 2026-10-28T23:58:00+00:00
+latency_min: 354
+entities:
+  - co-microsoft
+event_type: 증설·CAPEX
+headline_ko: "Microsoft, AI 용량 지연으로 CAPEX 전망 하향 보도"
+what_happened: "Business Insider 보도(2차 출처)에 따르면 Microsoft가 AI 용량 지연을 이유로 CAPEX 전망을 낮췄다. 하향 금액·기간·적용 범위는 보도 제목만으로 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 1차 출처(MSFT 실적 발표·공시) 대기. 직전 CAPEX 가이던스 대비 차이 확인 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "CAPEX 하향 금액과 기간(FY 기준)은 얼마인가? (MSFT 실적 발표 자료 확인)"
+  - "용량 지연의 원인(전력·데이터센터 건설·칩 공급)은 무엇인가? 지연이 메모리·가속기 수요 시점에 주는 영향은?"
+  - "하향이 AI 랩(OpenAI 등) 계약 변경과 연결되는가?"
+next_check: "MSFT 실적 발표 자료·어닝콜 원문에서 CAPEX 가이던스 문구 대조"
+reverse: null
+policy: null

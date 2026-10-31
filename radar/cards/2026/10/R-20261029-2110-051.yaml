@@ -1,0 +1,36 @@
+id: R-20261029-2110-051
+item_ids:
+  - src-news7-focus:3a42fae0c850a701
+event_cluster: null
+first_seen_source: src-news7-focus (CNBC, Google News 색인)
+detected_at: 2026-10-29T21:07:36+09:00
+published_at: 2026-10-29T20:30:01+09:00
+latency_min: 0
+entities:
+  - co-alphabet
+  - co-microsoft
+event_type: 증설·CAPEX
+headline_ko: "구글·마이크로소프트, AI 인프라 CAPEX 전망 상향 보류 (CNBC 헤드라인)"
+what_happened: "CNBC 헤드라인 기준으로 Google과 Microsoft가 AI 인프라 CAPEX 전망 상향을 미뤘다는 보도가 나왔다. 본문과 금액·기간은 확인하지 못했다."
+primary_source_confirmed: false
+novelty: "미확인 — 기존 claims에 같은 CAPEX 전망 변화가 있는지 대조 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Alphabet·Microsoft 실적 자료(10-Q·어닝콜)에서 CAPEX 가이던스 원문 확인 — 상향 보류인지, 하향인지"
+  - "CAPEX 금액 규모 — AI 밸류체인 P1 임계(100억 달러 이상) 충족 여부 미확인"
+  - "HBM·서버 메모리 수요에 미치는 시점 (분기 단위 CAPEX 집행 일정)"
+next_check: "두 회사 실적 자료의 CAPEX 가이던스 문장 대조, 이후 Bloomberg·Reuters 후속 보도"
+reverse: null
+policy: null

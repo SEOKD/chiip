@@ -1,0 +1,65 @@
+{
+ "updated": "2026-10-30T23:11:32+09:00",
+ "pages": [
+  {
+   "page_id": "3feb5d1e099880f68937caab099e6eff",
+   "title": "CACI인터내셔널 CACI",
+   "company": "CACI인터내셔널",
+   "ticker": "CACI",
+   "has_transcript": false,
+   "has_consensus": true,
+   "has_ib": true,
+   "call_date": null,
+   "date_basis": null,
+   "call_marks": 1,
+   "speakers": 0,
+   "last_edited": "2026-10-28",
+   "checked_at": "2026-10-30"
+  },
+  {
+   "page_id": "3f8b5d1e0998804dbff9daebff5b382b",
+   "title": "코히어런트 COHR",
+   "company": "코히어런트",
+   "ticker": "COHR",
+   "has_transcript": false,
+   "has_consensus": false,
+   "has_ib": false,
+   "call_date": null,
+   "date_basis": null,
+   "call_marks": 0,
+   "speakers": 0,
+   "last_edited": "2026-10-28",
+   "checked_at": "2026-10-30"
+  },
+  {
+   "page_id": "409b5d1e099881ccb896d0362fae6c30",
+   "title": "티티엠테크놀로지스 TTMI",
+   "company": "티티엠테크놀로지스",
+   "ticker": "TTMI",
+   "has_transcript": false,
+   "has_consensus": false,
+   "has_ib": false,
+   "call_date": null,
+   "date_basis": null,
+   "call_marks": 0,
+   "speakers": 0,
+   "last_edited": "2026-10-30T04:23:32.593Z",
+   "checked_at": "2026-10-30"
+  },
+  {
+   "page_id": "409b5d1e099881caa1abcb88dc8e495d",
+   "title": "바이코 VICR",
+   "company": "바이코",
+   "ticker": "VICR",
+   "has_transcript": false,
+   "has_consensus": false,
+   "has_ib": false,
+   "call_date": null,
+   "date_basis": null,
+   "call_marks": 0,
+   "speakers": 0,
+   "last_edited": "2026-10-30",
+   "checked_at": "2026-10-30"
+  }
+ ]
+}

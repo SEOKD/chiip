@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (영향 판정은 impact-card가 완성)
+id: R-20261031-0616-011
+item_ids:
+  - src-news7-focus:cfd099695d91a140
+event_cluster: null
+first_seen_source: src-news7-focus (Google News 색인, Seeking Alpha 기사)
+detected_at: 2026-10-31T05:49:22+09:00
+published_at: 2026-10-30T20:35:11+00:00 (2026-10-31 05:35 KST)
+latency_min: 14
+entities:
+  - co-intel
+event_type: 가이던스
+headline_ko: "인텔 주가 29% 급락 — 약한 4분기(Q4) 가이던스 (Seeking Alpha 제목 기준, 미확인)"
+what_happened: "Seeking Alpha 제목에 따르면 인텔 주가가 하루 29% 하락했고 원인으로 약한 4분기 가이던스가 지목됐다. 가이던스 수치·매출·이익률·CAPEX는 원문에서 확인하지 못했다."
+primary_source_confirmed: false
+novelty: "미확인 — 기존 claims에 인텔 가이던스 항목 없음(검색 확인). 실적 발표 원문과 대조 전."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "-29% (Seeking Alpha 제목 기준, 미확인)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "인텔 IR 보도자료·8-K에서 Q4 가이던스 수치(매출·EPS·GM) 확인 필요 — 1차 출처 대기"
+  - "가이던스가 파운드리(IFS) 외부 고객 수주·공정 일정 변경과 연결되는지"
+  - "컨센서스 대비 차이 — 미확인"
+next_check: "인텔 Q3 실적 보도자료·실적 발표 콜 스크립트(Q4 가이던스 항목)"
+reverse: null
+policy: null

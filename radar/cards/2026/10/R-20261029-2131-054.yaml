@@ -1,0 +1,43 @@
+id: R-20261029-2131-054
+item_ids:
+  - src-news7-focus:e6873578b17561ea
+event_cluster: null
+first_seen_source: src-news7-focus (Seeking Alpha 색인, 원보도 아님 — 기고 분석)
+detected_at: 2026-10-29T21:27:21+09:00
+published_at: 2026-10-29T21:10:03+09:00
+latency_min: 17
+entities:
+  - co-skhynix
+event_type: 실적
+headline_ko: "SK하이닉스 3분기: 공급 제약 지속 전망, 매출 감소는 주가에 반영됐다는 기고"
+what_happened: "Seeking Alpha 기고 글이 SK하이닉스 3분기 실적을 해석하며 공급 제약이 쉽게 풀리지 않을 것이라고 주장하고, 매출 감소가 주가에 이미 반영됐다고 본다. 기사 스니펫에는 실적 수치가 없어 어떤 수치를 근거로 했는지 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 기고 해석이며 3분기 실적 수치 자체는 본 항목에서 확인되지 않음. 회사 3분기 실적 발표(1차) 및 기존 claim(C-20261027-001 등)과 대조 전."
+linked_claims:
+  - C-20261027-001
+linked_theses: []
+first_order:
+  - entity: co-skhynix
+    driver: 물량
+    line_item: "3분기 매출·공급 제약(HBM 등 제품 믹스 미확인)"
+    direction: 불명
+    magnitude: 불명
+    timing: "3분기 (확정 수치 대기)"
+    rationale: "기고는 공급 제약 지속과 매출 감소를 말하지만 수치 없음. 1차 실적 발표의 출하·매출·가이던스와 대조 전에는 방향을 정할 수 없음."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: "미확인 — 기고가 '매출 감소가 주가에 반영됐다'고 주장하나 컨센서스 수치 미확인"
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "SK하이닉스 3분기 실적 발표(1차 출처)의 매출·영업이익·HBM 출하·가이던스는 무엇인가? 기고의 '매출 감소'가 전년 대비인지 전분기 대비인지 확인 필요."
+  - "'공급 제약이 쉽게 풀리지 않는다'는 회사 가이던스·발언에 근거하는가, 기고자의 추정인가?"
+  - "C-20261027-001의 HBM4 출하 시점 확인 결과와 어긋나는가?"
+next_check: "SK하이닉스 3분기 실적 발표문·IR 자료 및 DART 분기보고서 대조 — 확인 전까지 P1 유지, 1차 출처 대기"
+reverse: null
+policy: null

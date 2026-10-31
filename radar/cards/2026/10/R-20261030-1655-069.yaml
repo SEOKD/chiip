@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (2026-10-30). 영향 블록은 impact-card가 채운다.
+id: R-20261030-1655-069
+item_ids:
+  - src-jp-disclosure:7e0348b6adc88e72
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-30T16:52:49+09:00
+published_at: 2026-10-30T16:43:05+09:00
+latency_min: 10
+entities:
+  - jp-tdk
+event_type: 가이던스
+headline_ko: "TDK, 27년 3월기 연결 업적 예상 상향 (IFRS, 時事通信 보도) — 1차 출처 대기"
+what_happened: "시사통신(時事通信)은 TDK(6762)가 2027년 3월기 연결 업적 예상을 IFRS 기준으로 상향 수정했다고 보도했다. 보도 본문에 수정 금액·사유·부문별 내역은 없고, 제목 기준으로만 확인된다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 공시(업적 예상 수정) 원문에서 상향 폭·매출·영업이익 구분과 사유 확인"
+  - "상향 동인이 수동부품(MLCC·인덕터 등)·센서·2차전지 중 어느 사업인지 확인 — AI 서버 전원 부품 수요가 근거인지 미확인"
+  - "같은 날 Yahoo·DZH 등 재인용 기사 중 수치가 다른 것이 있는지 대조 (수치 미확인)"
+next_check: "TDnet·TDK IR의 업적 예상 수정 공시 원문과 2Q 결산 자료(FY2026Q2) 대조. jp_ir_docs 수집분 도착 여부 확인"
+reverse: null
+policy: null

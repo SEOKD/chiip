@@ -1,0 +1,119 @@
+auto: false
+id: us-axti
+name: AXT, Inc.
+ticker: AXTI
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 51.72
+  shares: 0.0661
+  net_debt: -0.752218
+  source: 가격 = 2026-10-30 정규장 종가 $51.72(TradingView 시세 확정 — Fiscal.ai 10/30 일봉은 장중
+    미완성 $51.91·거래량 64) · 주식 수 65,573,212(Fiscal.ai shares_outstanding 2026-08-03,
+    2Q 10-Q 표지 — 3Q 10-Q 미제출) · 현금 = 9/30 현금 526.7 + 단기투자 27.3 + 장기투자(예금·채권) 272.0
+    = 825.9백만$(회사가 '현금·현금성·투자'로 묶어 보고, 3Q 콜 CFO $825.9M와 일치) · 차입 = 9/30 단기차입 72.5
+    + 리스 1.2 = 73.7백만$(Fiscal.ai 표준화 재무상태표, 3Q 8-K 보도자료)
+rev0: 0.2379
+ic0: 0.230606
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 1.2278
+      end: 0.035
+      decay: 0.334
+    margin:
+      m0: 0.3394
+      target: 0.4
+      year_target: 4
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - 0.4963
+      - 0.4968
+    s2c: 1.2
+  bull:
+    prob: 0.2
+    growth:
+      start: 1.9424
+      end: 0.04
+      decay: 0.384
+    margin:
+      m0: 0.3394
+      target: 0.4787
+      year_target: 4
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - 0.4963
+      - 0.4968
+    s2c: 1.38
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.5973
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.3394
+      target: 0.3213
+      year_target: 4
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - 0.42
+      - 0.36
+    s2c: 1.02
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.2379, 0.2379] (회사 3Q 실적 보도자료·콜(2026-10-29, Fiscal.ai ir_events
+    q3-2026): 4Q 매출 약 $90M(허가 보유·불요분)·비GAAP EPS $0.57~0.59 → FY2026 = 1~3Q 실적 147.9
+    + 4Q 약 90 = 약 $237.9M)'
+  growth: 컨센서스 1년차 122.8%, 2년차 43.4%
+  margin: 1~2년차 컨센서스 49.6%, 49.7% 고정 → 목표 40%(4년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.741 → 덮어쓰기 1.2
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 59.7%~194.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '목표 영업이익률 40%(SBC 차감 후, 4년차)·장기 수렴 20%: 지금 이익률(3Q 비GAAP 40.2%, 컨센서스 FY27~28
+    51%)은 InP 공급 부족·가격 상승이 만든 것이다. CEO가 중국 신규 진입 다수를 인정했고 회사 스스로 2027년 캐파를 다시 2배로
+    늘린다 — 부족이 풀리면 가격이 먼저 내려간다. 과거 사이클 정점 이익률은 10%대였고 광부품 동종 TTM 이익률은 10~18%다. 그래서
+    컨센서스 51%는 1~2년차 앵커로만 쓰고 4년차 40%·장기 20%로 낮춘다(추정) / 매출÷투하자본 1.2: TTM 0.74(재고 $104M·현금성
+    제외 투하자본 $231M), 2027년 CAPEX 약 $100M(2Q 콜 애널리스트 질문에 회사가 계획 유지 확인)과 Tongmei 조달 최대
+    $945M이 InP·원재료 증설에 쓰인다 — 증분 매출 1달러에 투하자본 약 0.8달러(추정, 선수금이 일부 상쇄)'
+  shares: 완전 희석 = 기본 0.065573(2026-08-03) + 옵션·RSU·워런트·전환 0.0005 — 4Q 가이던스 희석 주식 약
+    66.1백만 주(3Q 콜 CFO) − 표지 기본 주식 65.573백만 = 약 0
+  minority: Tongmei 외부 지분 약 14.5%(AXT 85.5%) × 이번 사모 단가로 역산한 투자 전 가치 약 $2.43B = $0.352B(Chiip
+    계산·추정). 장부상 비지배지분 $69.5M보다 크다. 사모(최대 $545M) 마감 전이라 미반영 — 마감 시 현금 +$0.545B·외부 지분
+    몫 +$0.545B(같은 단가)로 가치 중립, 연 8% 상환권은 부채 성격
+  bear_margin: 약세 1~2년차 이익률 42%·36%(손으로) — 컨센서스 앵커 49.6%를 그대로 두면 약세에서도 부족 국면 가격이 유지된다.
+    약세 = 2027년 중국 신규 진입·증설로 가격 하락(자체추론)
+notes:
+- 자동 생성(build_drivers) 2026-10-31 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 생산 전량 중국 — 중국 상무부 수출 허가 시점이 출하를 좌우(4Q 가이던스는 허가 보유·불요분만)'
+- '어닝콜 위험: 중국 신규 진입 다수(CEO 인정)·증설 → 2027~28 공급 과잉 우려'
+- '어닝콜 위험: Tongmei 외부 지분 약 26.6%(최대 투자 시)·연 8% 상환권(3년 내 적격 IPO 실패 시)'
+- '손으로 고침(2026-10-31): minority 0.352·약세 이익률 앵커 — auto=false로 재생성 방지. 자동판 비교는 drivers.auto.yaml'
+evidence:
+- 'Fiscal.ai MCP 2026-10-31 02~03시 조회: company_profile·stock_prices·daily_ratios·shares_outstanding·financials_standardized(분기
+  손익·재무상태·현금흐름)·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers'
+- 'TradingView MCP 2026-10-31: NASDAQ:AXTI 일봉·월봉(실제 고가·저가), symbol_data(10/30 종가),
+  forecasts(셀사이드 4Q 추정), news 헤드라인'
+- '3Q 실적 8-K(보도자료) 원문: https://www.sec.gov/Archives/edgar/data/1051627/000143774926033941/ex_1013304.htm'
+- 'Tongmei 사모 8-K 요약(2026-10-28): https://www.stocktitan.net/sec-filings/AXTI/8-k-axt-inc-reports-material-event-401e257448f8.html'
+- 'Tongmei 사모 보도: https://semiconductor-today.com/news_items/2026/oct/axt-281026.shtml'
+- '3Q 콜 시장 반응(2차 자료): https://www.investing.com/news/transcripts/earnings-call-transcript-axt-tops-q3-2026-estimates-but-shares-fall-93CH-4985374'
+- 'Tongmei 홍콩 전환(2차 자료): https://longbridge.com/news/292080357'
+- 'Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-AXTI'
+minority: 0.352

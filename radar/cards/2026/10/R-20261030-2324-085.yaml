@@ -1,0 +1,37 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (영향 판정은 impact-card가 채움)
+id: R-20261030-2324-085
+item_ids:
+  - src-news7-focus:c6cc0cf39407b463
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T23:06:40+09:00"
+published_at: "2026-10-30T13:37:40+00:00"
+latency_min: 0
+entities:
+  - co-intel
+  - co-amazon
+event_type: 실적
+headline_ko: "인텔·아마존 실적 실망에 나스닥 급락 (Business Insider 보도)"
+what_happened: "Business Insider는 인텔과 아마존의 실적이 실망스러워 나스닥이 급락했다고 보도했다(2026-10-30). 매출·이익·가이던스 수치는 제목 기준으로 확인하지 못했다."
+primary_source_confirmed: false
+novelty:
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "인텔·아마존 공식 실적 보도자료·8-K의 매출·EPS·가이던스 수치는 무엇인가 (1차 출처 대기)"
+  - "인텔 측 AI 가속기·파운드리 관련 항목이 실적 동인으로 나왔는가"
+  - "아마존 측 CAPEX·AWS 성장률 변화가 있었는가"
+next_check: "인텔·아마존 IR 보도자료와 실적 발표 자료 확인 후 실적 동인 연결"
+reverse: null
+policy: null

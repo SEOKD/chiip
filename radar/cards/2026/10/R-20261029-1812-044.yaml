@@ -1,0 +1,43 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (verification: 1차판정, 미검증)
+id: R-20261029-1812-044
+item_ids:
+  - src-tw-disclosure:680b030560530c28
+event_cluster: null
+first_seen_source: src-tw-disclosure
+detected_at: 2026-10-29T18:09:47+09:00
+published_at: 2026-10-28T17:25:42+08:00
+latency_min: null
+entities:
+  - tw-emc
+event_type: 기타
+headline_ko: "台光電(2383), 聯貸 신용한도 NT$35B 이사회 승인 — AI 고속 CCL 증설 재원 후보"
+what_happened: "台光電는 2026-10-28 이사회에서 臺灣銀行 주관 은행단과 聯合授信(신용한도 NT$35B, 5년, 한도 20% 범위 내 조정 가능)을 체결하기로 결정했다고 TWSE 중대한 공시(重大訊息)로 밝혔다. 한도는 신용 공여 한도이며 실제 인출 금액·목적은 공시에 없다."
+primary_source_confirmed: true
+novelty: "신규 자금 조달 결정(1차 공시). 직전 공시와 비교 대상 없음 — 기존 자금 조달 구조와의 비교는 미확인."
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: tw-emc
+    driver: 시점
+    line_item: "자금 조달 여력(신용 한도)"
+    direction: 중립
+    magnitude: 소
+    timing: "5년 한도, 첫 인출일 기준. 인출 시점 미확인"
+    rationale: "한도 개설 자체는 매출·이익 동인이 아님. 같은 날 공시된 설비 투자 예산(NT$98.6B, 별도 항목)과 연결될 때 의미가 생김 — 연결 여부는 미확인."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 같은 날 공시된 CAPEX 예산(NT$98.6B)과 함께 보면 AI 서버용 고속 CCL 증설 자금 확보로 읽힐 수 있음. 반대 해석: 운전자본·차환용 일상 한도일 가능성."
+field_intel_check: 해당없음
+article_angle: "AI 고속 CCL 공급사의 자금 조달 확대 — 증설 계획과 한 묶음으로 확인 후 보도"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "인출 예정 금액과 목적(증설 vs 운전자본)은 무엇인가 — 공시 본문 전문 확인 필요"
+  - "USD 환산 약 $1.1B는 환율 가정(약 31 TWD/USD) 기준 — 환율 미검증"
+  - "같은 날 공시된 CAPEX 예산 NT$98.6B(src-tw-disclosure:f7a615f0779cae5e)와의 연결 확인"
+next_check: "台光電 연결 CAPEX 집행·인출 공시, 2026 Q3 실적 콜의 증설 일정"
+reverse: null
+policy: null

@@ -1,0 +1,36 @@
+id: R-20261030-0256-014
+item_ids:
+  - src-news7-focus:e1759b546f162858
+  - src-news7-focus:a73999f11f83dfb0
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T02:48:56+09:00"
+published_at: "2026-10-30T02:39:48+09:00"
+latency_min: 9
+entities:
+  - us-carr
+event_type: 가이던스
+headline_ko: "Carrier, 2026년 조정 EPS 가이던스 $2.85–$2.90 제시·데이터센터 수주잔고 $8.5B 초과"
+what_happened: "Carrier의 3분기 실적 콜(Seeking Alpha 전문 항목)과 헤드라인 기사가 2026년 조정 EPS 가이던스 $2.85–$2.90과 데이터센터 수주잔고(backlog) $8.5B 초과를 전한다. 전문과 1차 보도자료는 확인하지 않았다(제목·헤드라인 기준)."
+primary_source_confirmed: false
+novelty: "가이던스 수치와 데이터센터 backlog 수치(2차 헤드라인 기준). 직전 분기 가이던스 대비 변화는 미확인"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "데이터센터 공조(냉각) 수주가 전사 이익 가이던스에서 차지하는 비중(가설)"
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "Carrier 3분기 보도자료로 가이던스 수치 대조(직전 가이던스 대비 상향·하향)"
+  - "데이터센터 backlog $8.5B의 정의(주문 기준·매출 인식 시점) 확인"
+  - "데이터센터 관련 매출 비중과 칠러 제품 믹스 확인"
+next_check: "Carrier 3분기 보도자료·10-Q 공시"
+reverse: null
+policy: null

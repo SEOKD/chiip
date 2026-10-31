@@ -1,0 +1,33 @@
+id: R-20261029-1454-019
+item_ids: ["src-news7-focus:2488571a37bd5635"]
+event_cluster: null
+first_seen_source: src-news7-focus (Google News RSS 경유, Reuters 기사)
+detected_at: "2026-10-29T14:53:06+09:00"
+published_at: "2026-10-29T05:06:00+09:00"
+latency_min: 587
+entities: ["co-alphabet"]
+event_type: 실적
+headline_ko: "알파벳 주가 하락 — 검색 부진으로 매출 미스·현금 소진 악화 (Reuters 제목 기준)"
+what_happened: "Reuters 기사 제목에 따르면 알파벳은 검색 부진으로 매출이 예상을 밑돌았고 현금 소진(cash burn)이 나빠졌다. 실적 보도자료의 수치(매출·설비투자 CAPEX 포함)는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 제목만 확인. 기존 claims 이름 대조 일치 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "제목상 주가 하락('sinks') — 폭 미확인"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "AI 인프라 CAPEX 금액·증가폭 확인 — 하이퍼스케일러 CAPEX 100억 달러 이상 기준 해당 여부 판단"
+  - "현금 소진 악화의 원인이 CAPEX인지 운전자본인지 보고서 대조로 확인"
+  - "같은 날 Microsoft 실적은 본 배치에 독립 기사 없음 — 별도 수집 필요"
+next_check: "Alphabet 3분기 실적 보도자료·10-Q"
+reverse: null
+policy: null

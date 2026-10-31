@@ -1,0 +1,30 @@
+id: R-20261030-0327-015
+item_ids: ["src-news7-focus:d467e219324215d0"]
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-30T03:16:49+09:00
+published_at: 2026-10-29T18:02:10+00:00
+latency_min: 15
+entities: [co-microsoft]
+event_type: 기타
+headline_ko: "마이크로소프트, $25B 미국 회사채 발행 예정 (로이터·소식통)"
+what_happened: "로이터는 소식통을 인용해 마이크로소프트가 미국 채권 시장에서 $25B 규모 회사채를 발행할 예정이라고 보도했다. 발행 조건·시점은 보도에 확인되지 않았다."
+primary_source_confirmed: false
+novelty: "신규 — knowledge/claims에 동일 건 없음(회사채 키워드 검색 기준)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: AI 인프라 지출을 채권으로 조달하는 흐름의 한 사례. 조달 규모가 CAPEX 지속성 신호인지는 미확인."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 공시·발행 공고(규모·만기·금리) 확인 — 1차 출처 대기"
+  - "같은 날 블룸버그가 알파벳 실적 미스와 함께 보도 — 발행 시점 연관 여부 미확인"
+next_check: "마이크로소프트 채권 발행 공시·가격 결정 보도"

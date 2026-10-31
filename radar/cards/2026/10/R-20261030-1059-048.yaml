@@ -1,0 +1,33 @@
+id: R-20261030-1059-048
+item_ids: [src-bbg-direct:6c7b92ca15d9d45a]
+event_cluster: null
+first_seen_source: src-bbg-direct (Bloomberg)
+detected_at: 2026-10-30T10:58:08+09:00
+published_at: 2026-10-30T10:34:10+09:00
+latency_min: 24
+entities: ["am-intelligence(감시 목록 외, 인도 AI 인프라)", co-nvidia]
+event_type: 기타
+headline_ko: "인도 AI 인프라 기업 AM Intelligence, 엔비디아 차세대 칩 구매 자금 최대 $3B 조달 추진(Bloomberg 보도)"
+what_happened: "Bloomberg는 인도 AI 인프라 기업 AM Intelligence가 이전에 발표한 엔비디아 차세대 칩 구매 자금을 마련하려고 최대 $3B 조달을 추진 중이라고 '사정에 밝은 사람들'을 인용해 보도했다. 조달 방식(대출·지분·SPV)·참여 금융사·조건은 요약에 없어 미확인."
+primary_source_confirmed: false
+novelty: "칩 구매 계약 자체는 기발표 건, 대규모 자금 조달 시도는 보도 기준 신규. 자금 규모 $3B는 AI 밸류체인 10억 달러 이상 기준 충족(판정 근거)."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+article_angle: ""
+field_intel_check: 해당없음
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "조달 방식과 확정 여부(발행·대출 주선 공고 전까지 시도 단계)"
+  - "AM Intelligence의 엔비디아 칩 주문 규모·인도 일정"
+  - "사정에 밝은 사람들 원출처 재확인 — 공시·보도자료 대조"
+next_check: "AM Intelligence 보도자료·금융 주선사 발표·엔비디아 고객 공지"
+reverse: null
+policy: null

@@ -1,0 +1,37 @@
+id: R-20261028-1036-018
+item_ids:
+  - src-gnews-t0-ko:695b6ec02663810e
+event_cluster: null
+first_seen_source: src-gnews-t0-ko (Chosunbiz)
+detected_at: 2026-10-28T10:36:11+09:00
+published_at: 2026-10-28T09:55:00+09:00
+latency_min: 41
+entities:
+  - co-skhynix
+event_type: 증설·CAPEX
+headline_ko: "SK하이닉스 컨콜 — 수요 예상 밑돌면 투자·양산 조정, 신규 팹 클린룸 단계적 개방 발언 (언론 보도 기준, 조건부)"
+what_happened: "Chosunbiz는 SK하이닉스가 3분기 콜에서 수요가 예상을 밑돌면 투자와 양산을 조정하겠다고 했고 신규 팹 클린룸을 단계적으로 개방한다고 밝혔다고 제목으로 보도했다(2026-10-28 09:55 KST). 발언이 조건부 시나리오인지 실행 계획인지, 기존 일정(용인 1기 클린룸 2027년 초 오픈) 대비 변경인지는 본문·원문 미확인이다."
+primary_source_confirmed: false
+novelty: "부분 신규 — C-20261027-005는 P&T7·M17 등을 '수요·투자 효율에 따라 단계적으로 진행'으로 이미 기록했다. 이번 발언은 그 문구의 구체화이며, 용인 1기 2027년 초 오픈 일정 변경 여부가 판정 대상."
+linked_claims:
+  - C-20261027-005
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "'수요 예상 밑돌면 투자·양산 조정'이 조건부 시나리오인지 실행 계획인지 원문으로 확인"
+  - "'신규 팹 클린룸 단계적 개방'의 대상 팹(용인 1기·P&T7·M17 등)과 개방 시점을 확인하고 C-20261027-005의 2027년 초 일정과 대조"
+  - "용인 1기 클린룸 일정 변경이 확인되면 C-20261027-005 falsifier 해당 여부 판정"
+  - "지자체 고시·장비 반입 등 건설 진척 보도와 교차 확인"
+next_check: "SK하이닉스 3분기 IR 자료·컨콜 녹취에서 클린룸·투자 조정 발언 원문 확인, 용인 클러스터 건설·장비 반입 보도 대조"
+reverse: null
+policy: null

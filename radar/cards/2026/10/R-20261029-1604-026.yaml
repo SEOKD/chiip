@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1604-026
+item_ids:
+  - src-jp-disclosure:52c9ec84fa8f4bf5
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-29T16:01:31+09:00
+published_at: 2026-10-28T09:11:23+00:00
+latency_min: 1310
+entities:
+  - jp-socionext
+event_type: 실적
+headline_ko: "Socionext, 2027.3기 순이익 전망 20% 증가 방향 상향 (엔저 배경 — 보도 기준)"
+what_happened: "日本経済新聞 보도(2차 출처)에 따르면 Socionext는 2027년 3월기 순이익 전망을 20% 증가 방향으로 상향했고, 보도는 엔저를 배경으로 꼽았다. 같은 날 2분기 실적은 경상이익 19.8% 감소로 보도돼 기간별 방향이 엇갈린다."
+primary_source_confirmed: false
+novelty: "미확인 — 직전 회사 전망 수치와 상향 폭 대조 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 결산 단신에서 순이익 전망 상향 수치와 전제 환율 확인"
+  - "상향 동인이 환율 환산인지 영업 개선인지 분리 (2분기 감익과 대조)"
+  - "AI·데이터센터 관련 고객 수요 언급 여부"
+next_check: "Socionext 결산 단신 원문 확인"
+reverse: null
+policy: null

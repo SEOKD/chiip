@@ -1,0 +1,40 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증). 영향 필드는 impact-card가 채운다.
+id: R-20261028-0926-011
+item_ids:
+  - src-gnews-t0-ko:2e04d86e18249749   # 빅데이터뉴스, 2026-10-27 23:55:37 UTC (= 2026-10-28 08:55:37 KST)
+event_cluster: null
+first_seen_source: src-gnews-t0-ko
+detected_at: 2026-10-28T09:26:10+09:00
+published_at: 2026-10-28T08:55:37+09:00
+latency_min: 30
+entities:
+  - co-samsung
+event_type: 증설·CAPEX
+headline_ko: "삼성전자 미국 테일러 2공장 첫삽 내달 예정 보도 (1차 출처 대기)"
+what_happened: "빅데이터뉴스는 2026-10-28 삼성전자가 미국 테일러 2공장 첫삽(착공)을 다음 달(2026년 11월)에 진행한다고 보도했다. 같은 기사는 현지 인재·지역사회에 315억 원을 쓴다고 전했으나, 투자 금액·가동 시점·공정 단계는 보도문에 없고 회사 공식 발표는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "기존 knowledge(co-samsung.md)에 테일러 2공장 착공 일정 기록 없음 — 미국 거점 언급만 있음. 기존 카드와 중복 없음. 잠정 신규이며 1차 출처 확인 후 확정."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명             # 미반영|일부|대부분|불명
+edge_angle: ""
+field_intel_check: 해당없음   # 로컬만: 취재로 이미 파악|상충|공개 확인|무관
+article_angle: ""
+alert_level: P1               # 기본 P0(증설·CAPEX 착공) → 1차 출처 아님 → P1 (alert_rules 보정 규칙)
+verification: 1차판정         # 1차판정|검증완료
+open_questions:
+  - "1차 출처: 삼성전자 보도자료·DART 신규시설투자 공시 여부 — 확인되면 P0로 재판정 (config/alert_rules.yaml deterministic_p0)"
+  - "'내달 첫삽'의 정확한 날짜, 투자 금액·기간·가동 목표 — 보도문에 없음"
+  - "315억 원의 성격: 지역사회·인재 지원금인지 투자액 일부인지 기사 문구만으로 구분 불가"
+  - "착공 ≠ 가동 ≠ 매출: 램프 일정·고객(파운드리 수주) 연결 미확인 — 수주·램프 확인 전 영향 단정 금지"
+  - "기존 테일러 투자 계획(공시 이력)과 신규성 대조 필요"
+  - "주가 반응·컨센서스 미확인"
+next_check: "삼성전자 뉴스룸·IR 보도자료 및 DART 공시 (착공 전후)"
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

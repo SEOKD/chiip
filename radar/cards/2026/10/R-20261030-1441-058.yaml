@@ -1,0 +1,40 @@
+id: R-20261030-1441-058
+item_ids: [src-jp-disclosure:7fd54138299ac46a]
+event_cluster: null
+first_seen_source: src-jp-disclosure (日本経済新聞 기업정보 미러, 적시공시 제목)
+detected_at: 2026-10-30T14:40:29+09:00
+published_at: 2026-10-30T14:00:00+09:00
+latency_min: 40
+entities: [jp-murata]
+event_type: 가이던스
+headline_ko: 村田製作所(무라타제작소), 2027년 3월기 통기 연결 업적 예상 수정 공시
+what_happened: "무라타제작소(6981)가 2026-10-30 적시공시로 2027년 3월기 통기 연결 업적 예상 수정을 발표했다(제목 확인, 수치 본문 미확인). 시사 보도(時事)는 통기 영업이익 상향·상반기 영업이익 +49%로 전했다(재인용, 독립 확인 아님)."
+primary_source_confirmed: false
+novelty: "미확인 — 직전 가이던스 수치와 대조 전"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: jp-murata
+    driver: 불명
+    line_item: "통기 연결 영업이익 예상"
+    direction: 상향
+    magnitude: 불명
+    timing: "2027년 3월기 (통기)"
+    rationale: "방향은 시사 보도 기준(추정). 상향 사유·규모는 공시 본문 대조 전까지 미확인."
+second_order: []
+market_context:
+  price_reaction: "미확인 — 시사 보도: 후장 하락폭 축소(미검증)"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 상향 사유가 AI 서버용 MLCC 수요인지 확인되면 AI 부품 밸류체인 신호. 공시 본문 전 판단 보류."
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "공시 본문: 통기 매출·영업이익·순이익 수정 전후 수치와 환율 가정"
+  - "상향 사유 (수요·환율·비용 중 무엇인지)"
+  - "직전 분기 콜 가이던스 대비 변화"
+next_check: "TDnet 원문 및 村田 決算説明会資料(같은 날 공시) 대조"
+reverse: null
+policy: null

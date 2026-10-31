@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 1차 초안 (영향 판정은 impact-card가 채움)
+id: R-20261030-2324-086
+item_ids:
+  - src-news7-focus:53c7fa9d500b8908
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: "2026-10-30T23:08:08+09:00"
+published_at: "2026-10-30T14:00:04+00:00"
+latency_min: 0
+entities:
+  - co-gevernova
+event_type: M&A
+headline_ko: "GE 버노바의 대형 그리드 거래, 공급망 인수 흐름의 신호 (Bloomberg 뉴스레터)"
+what_happened: "Bloomberg 뉴스레터는 GE 버노바의 대형 그리드 거래를 공급망 인수(수직 통합) 새 흐름의 신호로 해석했다(2026-10-30). 거래 상대·형태(인수·계약)·규모는 원문 기준으로 확인하지 못했다."
+primary_source_confirmed: false
+novelty:
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "그리드 거래가 인수(M&A)인가 계약인가, 상대 기업과 규모는 무엇인가 (1차 출처 대기)"
+  - "인수 대상이 전력 기기 공급망(변압기·개폐기 등)의 어느 단계인가"
+  - "AI 데이터센터 전력 수요와의 연결을 회사 발표가 뒷받침하는가"
+next_check: "GE 버노바 보도자료·8-K에서 거래 형태·상대·금액 확인 후 M&A 조건 판정"
+reverse: null
+policy: null

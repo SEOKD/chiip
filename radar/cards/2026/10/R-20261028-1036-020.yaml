@@ -1,0 +1,37 @@
+id: R-20261028-1036-020
+item_ids:
+  - src-gnews-t0-ko:b5311cab80011439
+event_cluster: null
+first_seen_source: src-gnews-t0-ko (뉴스비전e)
+detected_at: 2026-10-28T10:36:10+09:00
+published_at: 2026-10-28T10:06:48+09:00
+latency_min: 29
+entities:
+  - co-samsung
+event_type: 수주·공급계약
+headline_ko: "미·중 빅테크, 삼성전자 메모리 10년 계약 추진 보도 (언론 보도 기준, 1차 출처 대기)"
+what_happened: "뉴스비전e는 미국·중국 빅테크 기업들이 삼성전자 메모리 확보를 위해 '10년 계약'을 추진한다고 제목으로 보도했다(2026-10-28 10:06 KST). 계약 상대방·제품·물량·가격 조건과 체결 여부는 본문과 1차 출처로 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "신규 — knowledge/claims와 기존 카드(R-20261028-*)에서 삼성전자 장기 메모리 계약('10년') 기록 없음. R-20261028-0831-005의 장기공급계약(LTA)은 SK하이닉스 건이다."
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "계약 주체(미국·중국 빅테크 중 어느 기업, 실명 공개 여부)와 대상 제품(DRAM·NAND·HBM)을 원문으로 확인"
+  - "'추진' 단계인지 체결인지 확인 — 회사 공시·보도자료 또는 로이터·블룸버그 원문 대조"
+  - "'10년'이 공급 계약 기간인지, 투자·선급금 구조가 섞였는지 확인"
+  - "금액·물량 규모·가격 조건은 확인 전 미확인 — 비교 불가 상태 유지"
+  - "중국 기업 포함 여부가 보도에 있는지 확인 (수출통제 관련 판단은 마스터 확인 대상)"
+next_check: "DART 단일판매·공급계약 공시(deterministic_p0 패턴 '단일판매ㆍ공급계약') 및 삼성전자 뉴스룸 확인 — 공시 확인 시 P0 재판정"
+reverse: null
+policy: null

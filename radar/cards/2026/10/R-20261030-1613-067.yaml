@@ -1,0 +1,35 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (2026-10-30). 영향 블록은 impact-card가 채운다.
+id: R-20261030-1613-067
+item_ids:
+  - src-jp-disclosure:2c055957062b30a1
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-30T16:09:55+09:00
+published_at: 2026-10-30T15:45:00+09:00
+latency_min: 25
+entities:
+  - co-lasertec
+event_type: 실적
+headline_ko: "레이저텍, 2027년 6월기 1분기 결산 단신 공시 — 본문 미확인"
+what_happened: "레이저텍(6920)이 2027년 6월기 1분기 결산 단신(일본 기준·연결)을 2026-10-30 적시공시로 냈다. 수치와 가이던스는 본문을 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "결산 단신 본문의 매출·수주·이익·가이던스 수치와 전기 대비 변화 확인"
+  - "EUV 마스크 검사 장비 출하·수주 언급 여부와 고객 구성 확인"
+next_check: "TDnet·회사 IR의 2027년 6월기 1Q 결산 단신 원문과 수치 대조"
+reverse: null
+policy: null

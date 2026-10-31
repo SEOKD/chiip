@@ -1,0 +1,36 @@
+# 영향 판정 카드 — radar-triage 초안 (1차 판정, 미검증)
+id: R-20261029-1604-028
+item_ids:
+  - src-jp-disclosure:67ca9dd5784d8ae4
+event_cluster: null
+first_seen_source: src-jp-disclosure
+detected_at: 2026-10-29T16:01:21+09:00
+published_at: 2026-10-28T11:36:53+00:00
+latency_min: 1165
+entities:
+  - co-advantest
+event_type: 실적
+headline_ko: "Advantest, 今期 업적 예상 상향 — AI 반도체 수요 (보도 기준)"
+what_happened: "時事通信 보도(2차 출처)에 따르면 Advantest는 今期 업적 예상을 상향했고, 보도는 AI 반도체 수요 확대를 이유로 꼽았다. 매출·이익 상향 폭과 분기 실적은 본문에서 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 회사 결산 자료 대기. 직전 전망 대비 상향 폭 확인 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: "Reuters 제목 기준 결산 호재로 닛케이 소폭 상승 보도 — 원인 특정은 미확인"
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "회사 결산 자료에서 매출·영업이익 상향 폭과 전제 확인"
+  - "상향 동인이 SoC·HBM 테스트 수요인지 분리 (메모리 테스트 비중 확인)"
+  - "Fisco의 '再び上方修正' 표현이 직전 상향(1분기)과 어떻게 다른지 대조"
+next_check: "Advantest 결산 자료 원문 확인"
+reverse: null
+policy: null

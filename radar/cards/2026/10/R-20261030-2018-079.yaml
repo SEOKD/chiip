@@ -1,0 +1,31 @@
+id: R-20261030-2018-079
+item_ids: ["src-jp-disclosure:5188178cf875f8fe"]
+event_cluster: null
+first_seen_source: src-jp-disclosure (Yahoo!ファイナンス 경유 時事通信 보도, Google News 색인)
+detected_at: "2026-10-30T20:16:06+09:00"
+published_at: "2026-10-30T19:51:22+09:00"
+latency_min: 25
+entities: [jp-tdk]
+event_type: 가이던스
+headline_ko: "TDK, 今期業績予想 상향 수정 — HDD 부품 성장 요인 제시"
+what_happened: "시사통신(時事通信) 보도 제목 기준으로 TDK가 今期(당기) 업적 예상을 상향 수정한 것으로 확인된다. 보도는 상향 요인으로 HDD 부품 성장을 들었으며, 수정 폭·매출·이익 수치와 TDnet 적시공시 원문은 본문 미확인이다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "TDnet 적시공시 원문: 상향 전후 수치와 수정 사유(1차 출처 대기)"
+  - "HDD 부품의 매출 비중과 상향 폭"
+  - "직전 가이던스·컨센서스 대비 차이: 미확인"
+next_check: "TDK IR 보도자료 및 TDnet 적시공시 원문 확인"

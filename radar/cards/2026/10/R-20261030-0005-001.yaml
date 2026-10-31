@@ -1,0 +1,35 @@
+id: R-20261030-0005-001
+item_ids:
+  - "src-defense-newsroom-gn:4e8e2f8000942ef3"
+event_cluster: null
+first_seen_source: src-defense-newsroom-gn
+detected_at: "2026-10-30T00:04:19+09:00"
+published_at: "2026-10-29T20:28:03+09:00"
+latency_min: 216
+entities:
+  - gr-theon
+event_type: M&A
+headline_ko: "THEON, MERIO 인수 완료 및 신규 주문 배정 발표"
+what_happened: "THEON International은 필요한 승인을 받은 뒤 MERIO 인수를 완료했다고 보도자료로 발표했다(제목 기준). 같은 발표에서 신규 주문이 이미 배정됐다고 밝혔으나 주문 금액·물량·인도 일정은 제목에 없어 미확인이다."
+primary_source_confirmed: false
+novelty: "신규 — 인수 완료와 주문 배정의 첫 발표. 인수 협상 단계 보도는 별도로 확인 필요"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "MERIO 인수 대금·사업 규모(매출·인도 일정) — 보도자료 본문 확인 필요"
+  - "배정된 신규 주문의 발주처·금액·물량 — 개별 발주 금액 확인 전에는 매출 확정으로 쓰지 않음"
+  - "THEON이 감시 목록(valuation universe)에 있는지 — 있다면 M&A 완료 건의 상향 근거 재확인"
+next_check: "THEON 보도자료 본문과 회사 공시 대조(인수 금액·주문 규모)"
+reverse: null
+policy: null

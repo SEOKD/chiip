@@ -1,0 +1,43 @@
+id: R-20261030-1540-065
+item_ids:
+  - "src-jp-disclosure:a958a607bdc5425c"
+  - "src-jp-disclosure:02b4c7302d7d4006"
+event_cluster: null
+first_seen_source: src-jp-disclosure (Yahoo!ファイナンス 決算速報, 2026-10-30 06:00:35 UTC)
+detected_at: 2026-10-30T15:36:20+09:00
+published_at: 2026-10-30T15:00:35+09:00
+latency_min: 35
+entities:
+  - jp-sumiden
+event_type: 실적
+headline_ko: "스미토모전공, 27년 3월기 2분기 순이익 62.7% 증가·통기 상향 보도"
+what_happened: "住友電工의 27년 3월기 2분기 순이익이 전년 대비 62.7% 증가했다고 결산 속보가 전했다(1차 결산 자료 미확인). Reuters는 같은 날 통기 순이익 상향 수정과 데이터센터 향 수요 호조를 보도했다."
+primary_source_confirmed: false
+novelty: "미확인 — 직전 분기 가이던스·컨센서스 대비 비교 자료 없음"
+linked_claims: []
+linked_theses: []
+first_order:
+  - entity: jp-sumiden
+    driver: 미확인
+    line_item: "순이익·데이터센터 향 매출 (보도 제목 기준, 항목별 분해 미확인)"
+    direction: 상향
+    magnitude: 미확인
+    timing: "27년 3월기 (통기 상향 보도)"
+    rationale: "Reuters 제목은 데이터센터 향 호조를 상향 원인으로 제시. 결산 단신 확인 전에는 가설."
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: "가설: 데이터센터 향 광·전선 수요가 상향의 원인이라면 AI 인프라 배선 수요가 실적에 들어오는 사례. 1차 자료로 대조하기 전에는 주장 아님."
+field_intel_check: 해당없음
+article_angle: "보류 — 결산 단신에서 상향 폭과 DC 매출 비중을 확인한 뒤 판단"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "결산 단신(決算短信)에서 통기 순이익 상향 폭과 이전 가이던스 대비 변화 확인"
+  - "데이터센터 관련 매출 비중과 광 부품 대 전선 실적 분해 확인"
+  - "Reuters 제목의 데이터센터 호조 문구를 1차 자료로 대조"
+next_check: "jp-sumiden IR 페이지(결산 단신·설명 자료) 확인 — 1차 출처 대기 (alert_rules P0 후보 → P1 보정)"
+reverse: null
+policy: null

@@ -1,0 +1,42 @@
+# 영향 판정 카드 — radar-triage 1차 판정 (impact-card 전 단계)
+id: R-20261030-0754-041
+item_ids:
+  - "src-news7-focus:e1da055728f28500"
+event_cluster: null
+first_seen_source: "The Information (Google News 색인)"
+detected_at: "2026-10-30T07:48:08+09:00"
+published_at: "2026-10-29T22:40:00+00:00"
+latency_min: 8
+entities: ["co-nvidia", "Anthropic"]
+event_type: 기타
+headline_ko: "엔비디아, 클라우드 사업자의 $45B 앤트로픽 계약에 신용 보강 협의 (보도)"
+what_happened: "The Information 보도(제목 기준, 2026-10-29)는 엔비디아가 클라우드 사업자의 $45B 규모 앤트로픽 계약에 수십억 달러(billions) 규모 신용 보강(credit support)을 제공하는 방안을 협의 중이라고 전한다. 계약 조건·보강 형태·서명 여부와 엔비디아·클라우드 사업자의 공식 발표는 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "신규 — 기존 카드 R-20261029-1614-035(앤트로픽 IPO 롤업 제목)와 다른 사건. knowledge/claims에 동일 건 없음(Anthropic 검색 기준)"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+biz: "AI 가속기(GPU)·네트워킹·소프트웨어 판매 팹리스"
+points:
+  - "The Information 보도: 엔비디아, $45B 앤트로픽 계약에 수십억 달러 신용 보강 협의(미확인)"
+  - "계약 당사자·보강 형태·금액 확정 여부 미확인, 공식 발표 없음"
+  - "칩 공급사의 신용 보강은 고객의 조달 여력을 넓히는 구조 — 해석은 가설"
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "엔비디아·클라우드 사업자의 공식 발표·8-K 또는 계약 서류 확인 (1차 출처 대기)"
+  - "신용 보강의 형태(보증·대출·리스 등)와 금액 확정 여부"
+  - "클라우드 사업자 식별과 $45B 계약의 기간·물량 구조"
+  - "보도 원문 전문 확인(제목·요약만 확인함)"
+next_check: "엔비디아 IR·SEC EDGAR 8-K, 클라우드 사업자 공시에서 신용 보강 문구 확인 후 claim-intake 승격 여부 판단"
+# 선택 블록
+reverse: null                # §11.12
+policy: null                 # §13.7

@@ -1,0 +1,36 @@
+id: R-20261030-0229-010
+item_ids:
+  - "src-news7-focus:f671e0f5fd108e6b"
+event_cluster: null
+first_seen_source: "src-news7-focus"
+detected_at: "2026-10-30T02:18:18+09:00"
+published_at: "2026-10-29T16:28:26+00:00"
+latency_min: 50
+entities:
+  - co-quanta-services
+event_type: 실적
+headline_ko: "Quanta Services(PWR) 2026년 3분기 실적 콜 트랜스크립트 게시"
+what_happened: "Quanta Services가 2026년 3분기 실적 콜을 진행했다는 사실이 Seeking Alpha 트랜스크립트 제목으로 확인된다(실적 발표 일정은 config/portfolio.yaml 기록). 매출·수주·가이던스 변경 내용은 본문 미확인이다."
+primary_source_confirmed: false
+novelty: 미확인
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "1차 출처 확인: 회사 3분기 실적 보도자료·8-K(EDGAR)로 수치 대조"
+  - "매출·수주잔고·가이던스 변경 여부(트랜스크립트 본문 필요)"
+  - "Seeking Alpha 트랜스크립트는 2차 전재 — 콜 원문과 대조 필요"
+  - "knowledge/claims 기존 Q3 주장과 중복 여부 미확인"
+next_check: "회사 IR 보도자료·8-K 확보 후 earnings-delta로 비교 기준 대조"
+reverse: null
+policy: null

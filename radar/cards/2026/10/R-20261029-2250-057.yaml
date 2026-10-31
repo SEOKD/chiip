@@ -1,0 +1,36 @@
+# 영향 판정 카드 — 1차 분류(radar-triage) 초안. 영향 판정(impact-card)은 아직 비어 있음.
+id: R-20261029-2250-057
+item_ids:
+  - src-news7-focus:2acc6862eebe7881
+event_cluster: null
+first_seen_source: The Information (Google News 색인 경유)
+detected_at: 2026-10-29T22:48:14+09:00
+published_at: 2026-10-29T13:35:00+00:00
+latency_min: null
+entities:
+  - co-microsoft
+event_type: 기타
+headline_ko: "마이크로소프트, 250억 달러 규모 채권 발행 추진 보도"
+what_happened: "The Information 보도 제목 기준으로 마이크로소프트가 250억 달러 규모 채권 매각을 추진한다는 내용이다. 본문과 발행 공시(8-K·424B 등)는 아직 확인하지 않았다."
+primary_source_confirmed: false
+novelty: "미확인 — 채권 발행 조건·기간·용도는 본문 확인 전"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "발행 공시·최종 조건(금액·만기·금리)과 발행 시점 확인 — 보도 단계는 '추진'이며 확정 아님"
+  - "조달 용도가 AI 데이터센터 CAPEX인지 확인(보도 본문)"
+  - "AI 인프라 공급사(칩·전력·장비) 계약과의 연결 여부"
+next_check: "마이크로소프트 IR·SEC 공시(채권 발행 공고) 및 후속 보도에서 금액·조건 확인"
+reverse: null
+policy: null

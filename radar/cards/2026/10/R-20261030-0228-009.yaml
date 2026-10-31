@@ -1,0 +1,37 @@
+id: R-20261030-0228-009
+item_ids:
+  - "src-news7-focus:1f33961af065ea96"
+event_cluster: null
+first_seen_source: src-news7-focus
+detected_at: 2026-10-30T02:12:36+09:00
+published_at: 2026-10-29T15:45:41+00:00
+latency_min: 87
+entities:
+  - co-nvidia
+  - "Cohere (미등록 — 캐나다 AI 모델 기업)"
+event_type: 기타
+headline_ko: "캐나다 정부·엔비디아, Cohere 투자 라운드 참여 — 기업가치 200억 달러 이상(보도)"
+what_happened: "Bloomberg.com 제목(Google News 색인, 2026-10-29 UTC)에 따르면 캐나다와 엔비디아가 Cohere의 라운드에 참여했고 기업가치는 200억 달러 이상이다. 라운드 규모·지분율·참여 조건은 스니펫에 없어 미확인이다."
+primary_source_confirmed: false
+novelty: "미확인 — knowledge/claims에 Cohere 자금 조달 주장 없음"
+linked_claims: []
+linked_theses: []
+first_order: []
+second_order: []
+market_context:
+  price_reaction: 미확인
+  consensus_relation: 미확인
+  priced_in: 불명
+edge_angle: ""
+field_intel_check: 해당없음
+article_angle: ""
+alert_level: P1
+verification: 1차판정
+open_questions:
+  - "라운드 총액과 확정 여부(Cohere 공식 발표 또는 보도자료 확인 필요)"
+  - "엔비디아 투자 금액·지분·전략적 계약 동반 여부"
+  - "캐나다 정부 참여 형태(지분 투자인지 조달·계약인지)"
+  - "다른 투자자 명단과 밸류에이션 산정 근거"
+next_check: "Cohere·엔비디아·캐나다 정부의 공식 발표 및 Bloomberg 원문 대조. 1차 출처 확인 전까지 '1차 판정, 미검증'."
+reverse: null
+policy: null

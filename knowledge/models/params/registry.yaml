@@ -437,8 +437,8 @@ params:
   status: prior
   prior:
     value: 0.25
-    basis: Yartseva(2025, Birmingham City Univ. 워킹페이퍼, 2009~2024 NYSE·Nasdaq 464개 멀티배거) — FCF 수익률이 가장 강한 예측 변수라는 2차 보도. 원문 확인 대기
-    source: null
+    basis: Yartseva(2025-02, CAFE WP 33) 원문 확인 2026-10-29 — 464개 멀티배거(2009~2024 10배+, NYSE·Nasdaq, 2000~2024 연간 패널 11,600관측) 동적 패널에서 FCF/P·B/M이 계수 최대·강한 유의, 성장 변수 비유의. 2차 보도의 'FCF 단독 최강'은 과장(B/M과 공동). 한계 — 승자만의 표본(결과 조건부 선택)이라 10배 달성 확률의 근거가 아니고, 미국 전 업종·2009 저점 출발 구간. 값 0.25 유지(축소 전 사전값, 피팅 대상)
+    source: https://www.open-access.bcu.ac.uk/16180/
   fit:
     method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
     target: 10배 달성·기준지수 초과
@@ -453,8 +453,8 @@ params:
   status: prior
   prior:
     value: 0.15
-    basis: 같은 연구 2차 보도(장부가 대비 낮은 가격) + Fama-French 가치 요인. 원문 확인 대기
-    source: null
+    basis: Yartseva(2025-02, CAFE WP 33) 원문 확인 2026-10-30 — B/M = 총자본 ÷ 시가총액. 멀티배거 표본 3분위 정렬에서 연 초과수익 저 12.8%·중 14.5%·고 34.7%(S&P 500 대비), 규모·수익성·투자 통제 후에도 유지. 정태·동태 패널에서 B/M·FCF/P가 절대 계수 최대·양(+)·강한 유의(표 수치는 이미지라 계수·t값 미추출). 한계 — fcf_yield와 같음(승자만의 결과 조건부 표본, 미국 전 업종). 값 0.15 유지(FCF/P와 같은 강도라는 근거는 일요일 검증 때 반대 증거로 기록, 매일 변경 금지)
+    source: https://www.open-access.bcu.ac.uk/16180/
   fit:
     method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
     target: 10배 달성·기준지수 초과
@@ -553,8 +553,8 @@ params:
     source: null
   fit:
     method: 사이클 전체 구간 OLS + 축소
-    target: null
-    data: null
+    target: '메모리 3사 분기말 P/B(종속) vs 후행 4분기 ROE(독립) 기울기 — 손실 RMSE, 한 사이클을 통째로 빼는 leave-one-cycle-out, 표본 외 관측 ≥ 20(2개 파라미터 × 10)'
+    data: 'Micron·SK하이닉스·삼성전자 — Fiscal.ai company_daily_ratios(P/B)·재무 표준화(ROE) 분기 시계열, 한국 2사는 DART 보조. 수집은 Model Lab 일요일 회차, 기록 knowledge/models/fundamentals/'
     last_fit: null
     oos_metric: null
 - id: prm-sig-revision-halflife
@@ -569,8 +569,8 @@ params:
     source: null
   fit:
     method: walk-forward 회귀
-    target: null
-    data: null
+    target: 'EPS 리비전 사건 뒤 h거래일 업종 초과수익 ~ exp(-ln2·h/halflife) 비선형 적합 — 손실 MSE, 분기별 walk-forward, 표본 외 관측 ≥ 20. 사건 표본은 연속 수익률이라 prm-fit-min-oos-events 비대상'
+    data: '감시 종목 eps_history.js(Fiscal.ai 추정 이력)의 리비전 사건 + knowledge/models/companies/*/ohlcv.csv 일봉. 업종 벤치마크는 동종 바스켓(call_feed.js 시장 근사와 같은 방식)'
     last_fit: null
     oos_metric: null
 - id: prm-alpha-w-upside
@@ -1062,7 +1062,7 @@ params:
   status: proposed
   prior:
     value: 0.58
-    basis: 수익률 예측 변수(요인·이상현상)의 논문 효과는 공개 뒤 약 58% 약해진다 — 사전값 = 논문 효과 × (1 − 0.58). McLean & Pontiff(2016, JF 71(1)) 97개 예측 변수. 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기
+    basis: 수익률 예측 변수(요인·이상현상)의 논문 효과는 공개 뒤 약 58% 약해진다 — 사전값 = 논문 효과 × (1 − 0.58). McLean & Pontiff(2016, JF 71(1)) 97개 예측 변수. 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기(게재본 미확인). 2013 워킹페이퍼(SSRN 2156623, 82개 특성) 본문 확인 2026-10-30 — 공개 후 감쇠 약 35%로 다름
     source: https://doi.org/10.1111/jofi.12365
   fit:
     method: 치입 제안서의 논문 효과 vs 표본 외 실현 효과 비율 누적(제안서 10건 이상 후)
@@ -1078,7 +1078,7 @@ params:
   status: proposed
   prior:
     value: 0.26
-    basis: 공개 전 표본 밖 구간 감쇠 약 26%(통계적 편향 몫) — 차익거래 경로가 없는 실물·회계 효과(투자 축소·부도율 등)에는 이 값만 적용. McLean & Pontiff(2016). 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기
+    basis: 공개 전 표본 밖 구간 감쇠 약 26%(통계적 편향 몫) — 차익거래 경로가 없는 실물·회계 효과(투자 축소·부도율 등)에는 이 값만 적용. McLean & Pontiff(2016). 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기(게재본 미확인). 2013 워킹페이퍼(SSRN 2156623, 82개 특성) 본문 확인 2026-10-30 — 통계적 편향 상한 약 10%로 다름
     source: https://doi.org/10.1111/jofi.12365
   fit:
     method: prm-lab-shrink-postpub와 같음
@@ -1094,7 +1094,7 @@ params:
   status: proposed
   prior:
     value: 3.0
-    basis: 다중검정 보정 — 새 요인은 t ≥ 3.0, 미달이면 제안서에 '탐색적' 표시. Harvey, Liu & Zhu(2016, RFS 29(1)); Hou·Xue·Zhang(2020)도 t>3 기준(20261028 노트). 프로바이저 D-20261029-01
+    basis: 다중검정 보정 — 새 요인은 t ≥ 3.0, 미달이면 제안서에 '탐색적' 표시. Harvey, Liu & Zhu(2016, RFS 29(1)); Hou·Xue·Zhang(NBER WP 23394 초록 확인 2026-10-30 — 447개 이상현상 중 NYSE 경계·가치가중에서 64%가 5% 수준 비유의, t 3 기준이면 85% 비유의 — RFS 33(5) 게재본 수치는 다를 수 있음). 프로바이저 D-20261029-01
     source: https://doi.org/10.1093/rfs/hhv059
   fit:
     method: 고정 관문(피팅 안 함)
@@ -1116,6 +1116,38 @@ params:
     method: 표시 여부 → 이후 4분기 '자금 조달 사건(증자·전환·신용 강등)·설비투자 축소' 로지스틱, 문턱 1.5·2.0·3.0 비교(walk-forward)
     target: 이후 4분기 자금 조달 스트레스 사건
     data: 커버리지 종목 분기 이자비용·부채 이력(easyconomics 재무제표) — 데이터 병목
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-uncommenced-lease-pvfactor
+  model: valuation.v2.net_debt
+  binding: null
+  value: 0.75
+  unit: 배(미개시 리스 약정 명목 → 현재가치 근사)
+  status: proposed
+  prior:
+    value: 0.75
+    basis: 서명했지만 아직 개시되지 않은 리스 약정(ASC 842상 대차대조표 미인식, 10-K 리스 주석 공개)을 부채 유사 항목으로 순부채에 더할 때의 현재가치 근사 계수. Van Nieuwerburgh(2026-10, NBER WP 35865) 각주 6의 저자 근사(추정·피팅 아님) — 아마존 제외 하이퍼스케일러 합산 레버리지 D/(D+BE) 20% → 48%, 부채/EBITDA 0.7 → 2.6. 실증 효과 크기 아님(출판 편향 축소 비대상), 워킹페이퍼 1편 → 탐색적. MLP-20261030-01
+    source: https://www.nber.org/papers/w35865
+  fit:
+    method: 피팅 안 함(회계 근사) — 대신 검증 — 커버리지 기업 공개 약정 일정(연도별 지급액)을 할인율(Kd)로 직접 할인한 값 ÷ 명목 합계를 계산해 0.75와 비교, 차이가 ±0.10 넘으면 사전값 교체 제안
+    target: 미개시 리스 약정의 실제 현재가치 비율
+    data: 10-K 리스 주석(미개시 약정 금액·개시 시점·기간) — Fiscal.ai 재무제표 필드 존재 여부 미확인(데이터 병목)
+    last_fit: null
+    oos_metric: null
+- id: prm-fit-min-oos-events
+  model: fit.adoption_gate
+  binding: null
+  value: 25
+  unit: 기대 사건 수(회)
+  status: proposed
+  prior:
+    value: 25
+    basis: 이진 희귀 사건 목표는 표본 외 관측 수가 아니라 기대 사건 수 = min(Σ기존 확률, Σ확장 확률)로 비교 허용을 판단. Coelho(2026-10, arXiv 2610.40366) — 좁은 구간의 기대 예외 25회 미만인 모든 설계에서 DM 오류가 명목의 2배 초과(두꺼운 꼬리는 63회까지), 본문 확인. 치입 시뮬레이션 scripts/fit/jobs/rare_event_gate.py — 사건 0회면 nested_test·adoption_decision이 과소 예측 모델을 100% 오채택. 동료 심사 전 1편 → 탐색적, 브리어 적용은 외삽. MLP-20261030-02
+    source: https://arxiv.org/abs/2610.40366
+  fit:
+    method: 피팅 안 함(고정 관문) — 대신 검증 — rare_event_gate.py로 오채택률·검정력 측정 후 관문 반영은 마스터 승인
+    target: 오채택률 ≤ 5% + 검정력 유지
+    data: 시뮬레이션
     last_fit: null
     oos_metric: null
 - id: prm-tb-exit-evs-semis
