@@ -62,7 +62,7 @@ def check(p):
     add("TTM 영업이익 = 4분기 합", "통과" if len(op4) == 4 and _near(fin.get("ebit_ttm"), sum(op4.values()), 0.005) else "실패",
         f"{fin.get('ebit_ttm')} vs {sum(op4.values()):.4f}")
     if bs:
-        ic = bs.get("equity", 0) + bs.get("debt_current", 0) + bs.get("debt_lt", 0) + bs.get("lease_current", 0) + bs.get("lease_lt", 0) - bs.get("cash", 0) - bs.get("st_investments", 0)
+        ic = bs.get("equity", 0) + bs.get("debt_current", 0) + bs.get("debt_lt", 0) + bs.get("lease_current", 0) + bs.get("lease_lt", 0) - bs.get("cash", 0) - bs.get("st_investments", 0) + bs.get("customer_deposits", 0)
         add("투하자본 = 재무상태표", "통과" if _near(fin.get("invested_capital"), ic, 0.02) else "실패", f"{fin.get('invested_capital')} vs 자기자본+차입+리스−현금 {ic:.3f}")
     else:
         add("투하자본 = 재무상태표", "실패", "재무상태표 원자료 없음")

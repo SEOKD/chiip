@@ -82,6 +82,12 @@ class TestLadder(unittest.TestCase):
         self.assertEqual(c["margin_name"], "EBITDA Margin")
         self.assertIsNone(c["rows"][0]["eps_cagr5"])   # 기준 EPS 적자면 CAGR을 쓰지 않는다
         self.assertIn("기준 적자", ladder.summary_item(dp, co, r)["a"])
+        dp["ladder"]["base"]["cagr_from"] = {"eps": 0.5, "year": 1, "label": "FY2027"}
+        c = ladder.compute(dp, co, r)
+        self.assertAlmostEqual(c["rows"][0]["eps_cagr5"], (c["rows"][0]["eps"] / 0.5) ** 0.25 - 1)
+        sec = ladder.report_section(dp, co, r)
+        self.assertIn("−$0.20", sec["blocks"][1]["rows"][0])
+        self.assertIn("FY2027 $0.50에서 잰다", sec["blocks"][0]["text"])
 
     def test_margin_is_required_unless_legacy(self):
         dp, co, r = self._inputs()

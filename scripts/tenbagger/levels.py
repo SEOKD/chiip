@@ -203,7 +203,8 @@ def zones(daily, anchors=None, n=3, min_strength=2.0, monthly=None):
 # ---------- 리포트 절 ----------
 def _z(g, price):
     lo, hi = g["lo"], g["hi"]
-    rng = f"${lo:,.0f}" if abs(hi - lo) < 0.5 else f"${lo:,.0f}~{hi:,.0f}"
+    nd = 2 if price < 100 else 0   # 저가주는 $11과 $11.5를 가르기 위해 소수 둘째 자리까지(2026-10-31 EROC)
+    rng = f"${lo:,.{nd}f}" if abs(hi - lo) < 0.5 * 10 ** -nd else f"${lo:,.{nd}f}~{hi:,.{nd}f}"
     srcs = sorted({x["src"] for x in g["items"]})
     return [rng, f"{(g['mid'] / price - 1) * 100:+.1f}%", f"{g['strength']:.1f}", " · ".join(srcs)]
 
@@ -212,7 +213,7 @@ def candle_chart(bars, title, sw, zs, price, tail):
     b = bars[-tail:]
     lo_v = min(x["l"] for x in b)
     hi_v = max(x["h"] for x in b)
-    hl = [{"y": v, "label": f"{k} {v:,.0f}", "color": "e"} for k, v in sw["ret"].items() if lo_v * 0.9 <= v <= hi_v * 1.1]
+    hl = [{"y": v, "label": f"{k} {v:,.2f}" if v < 100 else f"{k} {v:,.0f}", "color": "e"} for k, v in sw["ret"].items() if lo_v * 0.9 <= v <= hi_v * 1.1]
     zn = [{"y0": g["lo"] * 0.999, "y1": g["hi"] * 1.001, "label": "지지" if g["mid"] < price else "저항", "tone": "grn" if g["mid"] < price else "red"}
           for g in zs if lo_v * 0.9 <= g["mid"] <= hi_v * 1.1]
     return {"type": "chart", "chart": {"kind": "candle", "title": title, "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in b],

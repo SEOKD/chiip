@@ -9,7 +9,8 @@ datapack "ladder":
   {"exit": {"pe": 15, "net_margin": 0.075, "opm": 0.10, "basis": "왜 이 가정인가"}
            또는 {"ev_ebitda": 12, "ebitda_margin": 0.35, "net_margin": 0.12, "basis": …} 또는 {"ev_sales": 5, "net_margin": …, "opm": …, "basis": …},
                                                                      # opm·ebitda_margin·ebita_margin 중 하나 + net_margin 필수. shares(선택) = 출구 주식 수(희석 반영)
-   "base": {"eps": 3.2, "opm": 0.06, "basis": "TTM 조정"},           # 선택 — 없으면 EPS는 최근 4개 분기 consensus.surprise 합, OPM은 기본 시나리오 m0
+   "base": {"eps": 3.2, "opm": 0.06, "basis": "TTM 조정",            # 선택 — 없으면 EPS는 최근 4개 분기 consensus.surprise 합, OPM은 기본 시나리오 m0
+            "cagr_from": {"eps": 0.49, "year": 1, "label": "FY2027 컨센서스"}},   # 선택 — 기준 EPS가 적자면 첫 흑자 해(기준연도 + year)에서 남은 기간으로 EPS CAGR을 잰다
    "market": {"name": "WFE", "size": 235, "basis": "…"},          # 선택 — 필요 매출의 점유율(단위는 리포트 단위)
    "refs": [{"label": "FY2027 추정", "value": 3.75}, …],           # 선택 — 그래프의 기준 막대
    "steps": {"2": {"verdict": "열림|조건부|닫힘", "path": "어떻게 성장해야 하나", "outlook": "펀더멘털 전망", "exit": {…}}, …},   # 시가총액 구간의 단계 전부. exit(선택) = 이 단계만 다른 출구 가정
@@ -68,7 +69,9 @@ def _margin(ex):
 def _eps(v, unit):
     if v is None:
         return "미확인"
-    return f"${v:,.2f}" if "$" in unit else f"{v:,.0f}" + ("원" if "원" in unit else "엔" if "엔" in unit else "")
+    if "$" in unit:
+        return f"−${-v:,.2f}" if v < 0 else f"${v:,.2f}"
+    return f"{v:,.0f}" + ("원" if "원" in unit else "엔" if "엔" in unit else "")
 
 
 def base_eps(dp):
@@ -105,6 +108,8 @@ def compute(dp, co, r, strict=True):
     shares = co["market"].get("shares")
     mkt = lad.get("market") or {}
     eps0 = base_eps(dp)
+    start = (lad.get("base") or {}).get("cagr_from") or {}
+    e_base, e_year = (start.get("eps"), start.get("year", 0)) if eps0 is not None and eps0 <= 0 and start.get("eps") else (eps0, 0)
     texts = lad.get("steps") or {}
     rows = []
     for k in steps_for(mcap * float(co.get("unit_usd", 1e9))):
@@ -120,7 +125,7 @@ def compute(dp, co, r, strict=True):
         rows.append({"k": k, "target": target, "profit": profit, "rev": need, "vs_rev0": need / rev0,
                      "cagr5": _cagr(need, rev0, 5), "cagr10": _cagr(need, rev0, 10),
                      "margin": margin, "margin_name": name, "eps": eps,
-                     "eps_cagr5": _cagr(eps, eps0, 5) if eps and eps0 else None, "eps_cagr10": _cagr(eps, eps0, 10) if eps and eps0 else None,
+                     "eps_cagr5": _cagr(eps, e_base, 5 - e_year) if eps and e_base else None, "eps_cagr10": _cagr(eps, e_base, 10 - e_year) if eps and e_base else None,
                      "share": need / mkt["size"] if mkt.get("size") else None,
                      "dcf_cagr": rc, "pctile": (pct or (None,))[0], "n": (pct or (None, 0))[1],
                      "prob": (u.get("p_h") or {}).get(k)})
@@ -129,7 +134,7 @@ def compute(dp, co, r, strict=True):
     if margin0 is None and key == "opm":
         margin0 = (((co.get("scenarios") or {}).get("base") or {}).get("margin") or {}).get("m0")
     return {"rows": rows, "steps": [x["k"] for x in rows], "mcap": mcap, "rev0": rev0, "unit": r["unit"], "exit": ex0, "market": mkt,
-            "eps0": eps0, "margin0": margin0, "margin_name": dict(MARGINS)[key]}
+            "eps0": eps0, "margin0": margin0, "margin_name": dict(MARGINS)[key], "eps_from": start if e_year else None}
 
 
 def _check_text(lad, steps):
@@ -188,7 +193,8 @@ def report_section(dp, co, r, strict=True):
     m0 = _margin(ex)[2]
     assume = "·".join(x for x in (head_multiple, f"{c['margin_name']} {m0:.1%}" if m0 is not None else "", f"순이익률 {ex['net_margin']:.1%}" if ex.get("net_margin") else "") if x)
     B = [{"type": "hl", "text": f"**시가총액 {_money(c['mcap'], unit)} → {label(c['steps'])}까지 본다.** 시가총액이 커질수록 볼 배수를 줄인다($30B 미만 10배, $30B~$100B 5배, $100B 이상 2배까지). "
-                                f"숫자는 {assume} 기준이다. {basis}".strip()}]
+                                f"숫자는 {assume} 기준이다. {basis}".strip()
+                                + (f" 기준 EPS가 적자라 EPS CAGR은 {c['eps_from'].get('label', '첫 흑자 해')} {_eps(c['eps_from']['eps'], unit)}에서 잰다." if c.get("eps_from") else "")}]
     # 필요 조건 표(마스터 지시 2026-10-31 "매출 규모 및 CAGR뿐 아니라 OPM(또는 EBITDA Margin), EPS 규모 및 CAGR까지")
     need_rows = [["**지금**", _money(c["mcap"], unit), _money(c["rev0"], unit), "-", _pct(c["margin0"]) if c["margin0"] is not None else "미확인", _eps(c["eps0"], unit), "-"]]
     for x in c["rows"]:

@@ -9,7 +9,7 @@ datapack.json (금액은 unit 하나로 통일 — 보통 B$, 비율은 소수):
 { "id","name","ticker","as_of","unit":"B$",
   "industry": "semiconductor|semicap|software|software_internet|computers|electronics|electrical_equipment|telecom_equipment|power_utility",
   "region_mix": {"US":1.0}, "tax": 0.21,
-  "profile":   {"price", "shares_basic", "shares_date", "cash", "debt"(리스 포함), "source"},
+  "profile":   {"price", "shares_basic", "shares_date", "cash", "debt"(리스 포함), "customer_deposits"(선택 — 현금에 든 고객 선수금 몫, 현금 제외 순운전자본의 음수), "source"},
   "dilution":  {"potential_total" 또는 "options","rsu","warrants","converts_shares", "date"(= shares_date), "source"}   # shares_basic과 같은 단위
   "financials":{"rev_ttm", "ebit_ttm", "invested_capital", "capex_ttm", "da_ttm", "sbc_ttm", "s2c"},
   "consensus": {"rev": {"FY2026": x, "FY2027": y, ...}, "ebit_margin": {"FY2026": m, ...}, "rev_basis": "core|gaap", "margin_basis": "gaap|non_gaap",
@@ -151,7 +151,7 @@ def build(p):
     pot = dl["potential_total"] if dl.get("potential_total") is not None else sum(dl.get(k) or 0 for k in ("options", "rsu", "warrants", "converts_shares"))
     shares = pf["shares_basic"] + pot
     prov["shares"] = f"완전 희석 = 기본 {pf['shares_basic']}({pf.get('shares_date', '날짜 미기재')}) + 옵션·RSU·워런트·전환 {pot:.4f}" + (f" — {dl['source'][:60]}" if dl.get("source") else "")
-    net_debt = (pf.get("debt") or 0) - (pf.get("cash") or 0)
+    net_debt = (pf.get("debt") or 0) - (pf.get("cash") or 0) + (pf.get("customer_deposits") or 0)   # 납품으로 소진될 고객 선수금은 순현금에서 뺀다(2026-10-31 EROC)
     ic0 = fin.get("invested_capital") or max(0.1, rev0 / s2c)
 
     drivers = {
