@@ -151,11 +151,11 @@ def message(st, caption):
     return "\n".join(x for x in lines if x is not None)
 
 
-def send(src, caption="", dry=False, resend=False):
+def send(src, caption="", dry=False, resend=False, reissue=False):
     st = load(src)
     if not st or not (st.get("github") or {}).get("md"):
         raise SystemExit("GitHub 게시 기록 없음 — 텔레그램을 보내지 않는다")
-    tg = {} if resend else (st.get("telegram") or {})   # resend = 발행 경로가 바뀐 리포트를 새 링크로 다시 보낼 때
+    tg = {} if resend or reissue else (st.get("telegram") or {})   # resend = 발행 경로가 바뀐 리포트를 새 링크로 다시 보낼 때
     ok = (st.get("notion") or {}).get("status") == "ok"
     if tg.get("sent") and tg.get("notion_ok"):
         return {"skipped": "이미 GitHub·노션 링크와 함께 발송함"}
@@ -165,7 +165,7 @@ def send(src, caption="", dry=False, resend=False):
         text = f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']}) 노션 게시 완료\n🗂 {st['notion']['page']}"
     else:
         cap = Path(caption).read_text(encoding="utf-8") if caption and Path(caption).exists() else (caption or f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']})")
-        text = message(st, cap)
+        text = ("[수정판 — 어닝콜 전문 반영]\n" if reissue else "") + message(st, cap)
     sent = True
     if not dry:
         sys.path.insert(0, str(ROOT / "radar"))
@@ -203,6 +203,7 @@ def main(argv):
     ap.add_argument("--caption", default="")
     ap.add_argument("--dry", action="store_true", help="GitHub 게시·텔레그램 없이 흐름만")
     ap.add_argument("--resend", action="store_true", help="이미 보낸 리포트를 새 링크로 다시 보낸다")
+    ap.add_argument("--reissue", action="store_true", help="어닝콜 전문을 반영한 수정판을 보낸다(report_refresh.py)")
     a = ap.parse_args(argv)
     if a.cmd == "pending":
         r = pending()
@@ -219,7 +220,7 @@ def main(argv):
             ap.error("--page 또는 --fail")
         r = notion(a.json, a.page, a.fail, a.stock_page)
     else:
-        r = send(a.json, a.caption, a.dry, a.resend)
+        r = send(a.json, a.caption, a.dry, a.resend, a.reissue)
     print(json.dumps(r, ensure_ascii=False, indent=1))
     return 0
 

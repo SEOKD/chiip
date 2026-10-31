@@ -3,7 +3,7 @@
 운영 규칙: `docs/channels/tenbagger.md`를 먼저 읽는다. 노션 단계는 `docs/channels/notion.md`도 읽는다.
 
 - 이름: Chiip ten-bagger 일일 리포트 (텐배거 종목 1개, HTML + 차트)
-- 일정(cron, 로컬 시각): `0 * * * 1-5` — 주중(월~금) 매시간(마스터 지시 2026-10-30 "주말을 제외한 주중에 매시간마다 전달", 이전 하루 3건. 앱 분산 지연 몇 분)
+- 일정(cron, 로컬 시각): `0 6,13,20 * * *` — 주말 포함 매일 06·13·20시(마스터 지시 2026-10-31 "주중, 주말 모두 포함해 아침 6시, 오후 1시, 오후 8시에 각각 제공". 앱 분산 지연 몇 분)
 - 권한 모드: 자동(Auto)
 - 산출물: outputs/tenbagger/reports/<YYYYMMDD>_<티커>.json(내용) → .html(렌더러가 그림) + 텔레그램 파일 발송
 - Chiip ten-bagger 기능의 일부(새 기능 아님) — 프로바이저는 chiip-tenbagger 평가에 함께 넣는다
@@ -19,6 +19,12 @@
 배경(마스터 지시 2026-10-29): "Chiip ten-bagger도 텐배거 종목에 대한 리포트를 작성하고 그래프로 시각화도 해 체계적인 자료를 html 파일로 남겨라. 오후 11시마다 하루에 하나씩." → (2026-10-29 개정) "텐배거 리포트는 오전 7시 1건, 오후 1시 1건, 오후 10시 1건으로 하루 총 3건. 리포트에 밸류에이션 방법론만 담겼는데, 이 종목의 멀티플 프리미엄을 부여하고 펀더멘털 리비전을 위로 이끄는 내러티브 요인을 IB·월가 바이사이드·셀사이드부터 레딧·X 리테일까지 다각도로 파악하라. 수급은 단순 볼륨을 넘어 볼륨 변화가 왜 생겼는지, 리테일과 기관 중 어디서 발생하는지 정량적으로. 주가는 월봉·주봉·일봉 피보나치로 저항·지지 구간을 표기해 진입 시점을 직관적으로 — 다수 투자자가 쓰는 기법으로." 그리고 "단위는 250억$가 아니라 $25B, million은 M, trillion은 T." 본보기는 마스터가 준 '토큰값 변곡점 3사' 리포트 형식: 한 장 요약(질문-답) → 핵심 숫자 타일 → 주제별 절(차트·표·근거·반대 근거) → 결론·체크리스트(시점·무엇·의미) → 출처. 한 회차는 30분 안에 끝낸다.
 
 0. **노션 Stocks 색인 갱신**(마스터 지시 2026-10-30 "내 노션 Stocks의 티커 중 최신(현 시점 ±7일) 어닝콜 스크립트와 컨센서스를 입력해 놓은 종목부터 분석하라. IB 리포트 내용이 있으면 참조하라"): 노션 커넥터로 Stocks 페이지(config/notion.yaml pages.stocks) 아래에서 최근 8일 안에 편집된 종목 페이지(제목 '회사명 티커')를 찾아, 페이지마다 본문을 `radar/inbox/notion_stocks/<page_id>.md`에 저장하고 `py scripts/tenbagger/notion_stocks.py --classify <파일> --page-id <id> --title "<제목>" --edited <편집일>`. 노션을 읽지 못하면 색인을 그대로 두고 1번으로 간다.
+0-1. **어닝콜 전문 반영 재발행**(마스터 지시 2026-10-31 "어닝콜 스크립트가 아직 안 나온 종목이면 나중에 업데이트됐을 때 리포트에 이를 반영해 다시 발행"): 회차 시작 때 `py scripts/tenbagger/report_refresh.py --due`. 나온 건은 회차당 1건을 새 리포트보다 먼저 처리한다.
+   a. `py scripts/tenbagger/report_refresh.py --start <stem>` — 기존 Artifact·노션 주소를 받는다.
+   b. Fiscal.ai 전문(`company_ir_events_transcript`)으로 datapack `call`·`consensus`·`pipeline`을 고치고 `datapack_check` → `build_drivers` → `v2_to_report.py <id> --merge <그 리포트 json>`(옛 양식이면 빠진 재료를 채우거나 `--legacy`) → `report_html.py`.
+   c. 콜로 판단이 달라졌으면 Chiip View·요약·시나리오를 고친다. 맨 끝 절 '재발행 기록 — 어닝콜 전문 반영'에 무엇이 바뀌었는지 전 → 후로 적는다. 달라진 게 없어도 그렇게 적는다.
+   d. 6번 발행을 같은 주소로 한다: `prepare` → Artifact 같은 URL → 노션 같은 페이지 갱신 → `publish_tenbagger.py send <json> --caption <캡션> --reissue`(머리에 '수정판'이 붙는다).
+   e. `py scripts/tenbagger/report_refresh.py --done <stem> <event> "<바뀐 것 한 줄>"`. 그다음 1번으로 간다.
 1. 종목 고르기: `py scripts/tenbagger/pick_report.py` → JSON(id·name·ticker·reason). id가 null이면 "오늘 리포트 대상 없음"만 기록하고 끝낸다(텔레그램 없음). 회차마다 다른 종목이다 — 앞 회차가 `--done`으로 기록한 종목은 30일 규칙으로 자동 제외되고, 후보가 바닥나면 스크립트가 알파 5.0 미만 산정 종목, 그다음 7일 지난 종목을 고른다.
 
 2-0. **노션 Stocks 단계로 고른 종목**(pick 결과 reason이 '노션 Stocks', notion_page 있음): 그 페이지를 다시 읽어 ① 어닝콜 스크립트 → datapack `call`(이번 콜) — 트랜스크립트처럼 요지만 자기 말로, 인용은 15단어 이하, `call.source`에 '마스터 노션 Stocks(편집일)' ② 컨센서스 → datapack `consensus`(매출·EPS·가이던스 대비) — Fiscal.ai(Zacks) 값과 대조해 다르면 둘 다 적고 차이를 '데이터 검증'에 남긴다(마스터 입력이 더 최신이면 그것을 쓰되 출처 표기) ③ IB 내용이 있으면 narrative.layers.sell_side에 'IB 요지(마스터 노션, 라이선스)'로 자기 말 요약 — 문장 복제 금지, IB 목표가는 '기대의 증거'로만(결론·업사이드 계산에 쓰지 않는다), 리포트 출처에 '라이선스 자료 요지 포함 — 외부 공유 금지'. 직전 콜은 Fiscal.ai `transcript_qa.js`·company_earnings_summary(직전 이벤트) 또는 노션 이전 내용으로 call.deltas를 만든다.

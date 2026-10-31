@@ -1,4 +1,4 @@
-"""오늘 텐배거 리포트 종목 고르기 (예약 작업 chiip-tenbagger-report, 주중 매시간 — 2026-10-30 마스터 지시, 이전 하루 3건)
+"""오늘 텐배거 리포트 종목 고르기 (예약 작업 chiip-tenbagger-report, 매일 06·13·20시 — 2026-10-31 마스터 지시, 이전 하루 3건)
 같은 날 앞 회차가 --done으로 기록한 종목은 30일 규칙으로 빠지므로 회차마다 다른 종목이 나온다.
 
 우선순위(같은 종목은 30일 안에 다시 쓰지 않는다 — outputs/tenbagger/reports/log.csv):
@@ -7,7 +7,7 @@
   2. 텐배거 추적 목록 watch.csv의 진행 중 후보 중 리포트가 없는 것
   3. 알파 잠재력 최신 점수(knowledge/models/alpha/latest.json) 5.0 이상, 점수 높은 순
   4. 마스터 보유 종목(config/portfolio.yaml) 중 오래 안 쓴 것
-  5. 후보가 바닥나면(주중 매시간은 주 120건) 알파 5.0 미만 산정 종목, 그다음 알파 5.0 이상 중 7일 지난 종목
+  5. 후보가 바닥나면(주 21건) 알파 5.0 미만 산정 종목, 그다음 알파 5.0 이상 중 7일 지난 종목
 사용: py scripts/tenbagger/pick_report.py            → JSON 한 줄(id·name·ticker·reason)
       py scripts/tenbagger/pick_report.py --done <id> <ticker> <html 경로> <치입 판단 한 줄>   → log.csv에 기록, 대기열에서 제거
 """
