@@ -1,0 +1,97 @@
+auto: true
+id: co-coherent
+name: Coherent
+ticker: COHR
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.19
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 210.32
+  shares: 0.202202
+  net_debt: 1.55142
+  source: 가격 = 10/30 종가 · 주식 수 = FY2026 10-K 표지 기준 2026-08-10 · 현금·단기투자 = 2026-06-30
+    재무상태표 · 차입 $3.22B + 리스 $0.32B. 회사는 콜에서 현금 $2.59B라고 말했다 — 표준화 재무상태표보다 $0.60B 많고
+    차이의 구성은 미확인이라 낮은 값을 썼다
+rev0: 10.73
+ic0: 12.78962
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.2954
+      end: 0.035
+      decay: 0.501
+    margin:
+      m0: 0.2271
+      target: 0.265
+      year_target: 3
+      lr: 0.27
+      lam: 0.35
+      anchors:
+      - 0.2582
+      - 0.2691
+    s2c: 1.2
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5377
+      end: 0.04
+      decay: 0.551
+    margin:
+      m0: 0.2271
+      target: 0.286
+      year_target: 3
+      lr: 0.27
+      lam: 0.25
+      anchors:
+      - 0.2582
+      - 0.2691
+    s2c: 1.38
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.0718
+      end: 0.030000000000000002
+      decay: 0.401
+    margin:
+      m0: 0.2271
+      target: 0.244
+      year_target: 3
+      lr: 0.27
+      lam: 0.5
+      anchors:
+      - 0.2582
+      - 0.2691
+    s2c: 1.02
+mc:
+  sigma_growth: 0.1165
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 10.73
+  growth: 컨센서스 1년차 29.5%, 2년차 16.5%
+  margin: 1~2년차 컨센서스 25.8%, 26.9% 고정 → 목표 26%(3년차, 덮어쓰기) → 장기 수렴 27%
+  s2c: 재무 재구성 증분 매출/투하자본 0.56 → 덮어쓰기 1.2
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 7.2%~53.8%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '목표 영업이익률 26.5%: FY2029 컨센서스 조정 EBIT 29.5%에서 SBC 2.6%와 여유 0.4%p를 뺐다(인수
+    무형 상각은 비현금이라 빼지 않는다). 매출÷투하자본 1.2: TTM 0.56은 영업권·무형 $7.3B가 든 값이고, FY2027~28 컨센서스
+    증분 매출 $6.8B ÷ CAPEX $5.0B 기준 약 1.4에 운전자본을 더해 낮췄다'
+  shares: 완전 희석 = 기본 0.195832246(2026-08-10) + 옵션·RSU·워런트·전환 0.0064 — FQ4 희석 가중평균
+    2억 220만 주 − 기본 1억 9,583만 주. 잠재 증권 표는 10-K 미대조(추정
+notes:
+- 자동 생성(build_drivers) 2026-10-31 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: FY2027 CAPEX 컨센서스 $2.6B, FCF 약 −$0.8B'
+- '어닝콜 위험: 총이익률 가이던스 중간값 40.5%로 개선 폭 작음'
+- '어닝콜 위험: InP 다음으로 아이솔레이터·광섬유 공급 제약'
+evidence:
+- Coherent FY2026 4Q 실적 보도자료 https://www.barchart.com/story/news/3812550/coherent-corp-reports-fourth-quarter-and-full-year-fiscal-2026-results
+- FY2027 1Q 실적 일정 https://finviz.com/news/402637/coherent-corp-announces-timing-of-fy2027-first-quarter-earnings-release
+- NVIDIA 투자 보도 https://siliconangle.com/2026/03/02/nvidia-invests-4b-co-packaged-optics-suppliers-lumentum-coherent/
