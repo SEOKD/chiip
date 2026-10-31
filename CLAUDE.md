@@ -145,7 +145,7 @@
 | Fiscal.ai 데이터 상세 | `docs/channels/data.md` |
 
 - **실시간 전달 = 텔레그램 개인 봇.** 아침·저녁 브리프는 중단(2026-10-28 마스터 지시). 공개 채널에는 올리지 않는다.
-- **노션 쓰기 경계:** 마스터가 쓴 본문은 고치지 않는다. 쓰기는 Stocks 아래 텐배거 리포트, Insights 글 아래 '치입 검토' 하위 페이지, ⭐ 인텔 아카이브, 허브 아래 Chiip Weekly Review뿐이다.
+- **노션 쓰기 경계:** 마스터가 쓴 본문은 고치지 않는다. 쓰기는 Stocks 아래 텐배거 리포트, Insights 글 아래 '치입 검토' 하위 페이지, ⭐ 인텔 아카이브, Weekly 페이지 아래 주차별 리뷰뿐이다.
 - **데이터 원천 = Fiscal.ai(MCP).** easyconomics는 퇴역, 호출 금지. Zacks 수치를 보여 줄 때마다 'Data provided by Zacks Investment Research, Inc., www.zacksdata.com' 표기(텐배거 리포트 본문은 제공처 이름을 쓰지 않는다). fiscal.ai 링크는 응답의 auditUrl·terminalUrl만.
 - **기업 설명 1줄**(2026-10-29 마스터 지시): 어떤 기능이든 종목 정보·소식·밸류 판단을 전할 때 종목명 아래 `기업: 어떤 사업을 하는 회사인지 1줄`(config/company_lines.yaml, 없으면 10-K·회사 개요를 자기 말로 — 모르면 미확인). 실시간 알림은 1줄 대신 3줄 — `docs/channels/pulse.md` '실시간 알림 양식'.
 - **보고 표기 = Chiip**(2026-10-29 마스터 지시): 텔레그램 봇·GitHub에 보고할 때는 '치입' 대신 'Chiip', 기능 이름도 영어(Chiip Pulse·Portfolio·Ten-bagger Report·Discovery 등, `notify.LABELS`). `radar/notify.py` `brand()`가 발송 직전 일괄 변환, 리포트 HTML·게시 제목도 변환.

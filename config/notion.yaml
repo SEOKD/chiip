@@ -11,9 +11,9 @@ pages:
   stocks:            # Stocks — 마스터의 종목·테마 커버리지(제목 '회사명 티커' 또는 테마명)
     id: "407b5d1e-0998-803d-a81a-d5570164959f"
     role: "마스터 관심 종목 = 어닝 캘린더·알파 점수 대상에 항상 포함(config/earnings_watch.yaml master_stocks). 테마 페이지(OCP 2026, 해양시추 등)는 내러티브 재료"
-  weekly:            # 허브 아래 'Chiip Weekly Review' — 주차별 하위 페이지(2026-10-31 마스터 지시). 치입이 만든 페이지라 쓰기 허용
-    id: "40ab5d1e-0998-81f9-ad57-c31c6093ce96"
-    role: "Weekly Review 보관. 다시 쓴 판은 같은 하위 페이지를 갱신한다(scripts/weekly/publish_weekly.py)"
+  weekly:            # Weekly — 마스터가 만든 최상위 페이지(2026-10-31 지시 "Notion의 Weekly 페이지에도 올리도록"). 주차별 하위 페이지만 쓴다
+    id: "40ab5d1e-0998-8006-888c-e3cd38d5664c"
+    role: "Weekly Review 보관. 치입은 주차별 하위 페이지만 만들고, 다시 쓴 판은 같은 하위 페이지를 갱신한다(scripts/weekly/publish_weekly.py)"
   consensus_intake:  # Informations 아래 DB — 치입이 요청 종목을 올리고 마스터가 컨센서스·한국 어닝콜을 수동 입력(2026-10-28)
     database: "f0328861-6c3d-487e-83ca-f7663862e5ed"
     data_source: "624bceda-dfe3-42ea-86c5-0da11403fd59"

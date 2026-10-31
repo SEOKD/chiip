@@ -1,5 +1,5 @@
-"""Weekly Review 발행 — Artifact → 노션 → 텔레그램을 한 묶음으로 (마스터 지시 2026-10-31 "Weekly 다시 썼으면 텔레그램 봇에
-공유해줘야지. 노션에도 공유하는 논리 구조를 엔진 아키텍처에 넣어라")
+"""Weekly Review 발행 — Artifact → 노션 Weekly 페이지 → 텔레그램을 한 묶음으로 (마스터 지시 2026-10-31 "Weekly 다시 썼으면 텔레그램 봇에
+공유해줘야지", "Weekly Report를 작성한 뒤 텔레그램 봇에 공유할 때 Notion의 Weekly 페이지에도 올리도록 해라")
 
 순서(텔레그램은 마지막 한 번 — 링크가 모두 기록된 뒤):
   1. (모델) Artifact 도구로 <주차>_weekly.html 게시 → artifact <주차> --url <URL>  (이미 있으면 같은 URL로 갱신)
