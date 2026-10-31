@@ -1,0 +1,100 @@
+auto: true
+id: co-rambus
+name: Rambus
+ticker: RMBS
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.18
+  Asia: 0.82
+tax: 0.16
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 84.65
+  shares: 0.10824
+  net_debt: -0.75669
+  source: 가격 = 10/30 종가 · 주식 수·현금·리스 = 3Q 10-Q 2026-09-30. 현금 $110.5M + 유가증권 $666.4M,
+    차입 0, 리스 $20.2M https://www.sec.gov/Archives/edgar/data/917273/000119312526431941/rmbs-20260930.htm
+rev0: 0.835863
+ic0: 0.661041
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.175
+      end: 0.035
+      decay: 0.76
+    margin:
+      m0: 0.38
+      target: 0.3791
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.3854
+      - 0.3791
+    s2c: 2.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2323
+      end: 0.034999999999999996
+      decay: 0.81
+    margin:
+      m0: 0.38
+      target: 0.3991
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.3854
+      - 0.3791
+    s2c: 2.3
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.0408
+      end: 0.024999999999999998
+      decay: 0.66
+    margin:
+      m0: 0.38
+      target: 0.3591
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.3854
+      - 0.3791
+    s2c: 1.7
+mc:
+  sigma_growth: 0.0479
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.832863, 0.838863] (3Q 실적·콜 2026-10-26: 4Q 매출 $227~233M + 1~3Q
+    실적 $605.9M)'
+  growth: 컨센서스 1년차 14.9%, 2년차 9.9%
+  margin: 1~2년차 컨센서스 38.5%, 37.9% 고정 → 목표 38%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: 재무 재구성 증분 매출/투하자본 1.2 → 덮어쓰기 2.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 4.1%~23.2%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '매출÷투하자본 2.0: TTM 1.2는 영업권 $287M이 포함된 값이다. 영업권을 빼면 2.1이고, 팹리스라 증분 매출에
+    재고만 늘어난다. 성장: 두 컨센서스가 FY2027 +14.9%·+20.2%, FY2028 +9.9%·+18.5%로 갈려 평균 +17.5%·+14.2%로
+    쓴다(4Q 가이던스 YoY +21%). 장기 이익률 30%: 규칙값 15%는 공장을 가진 회사 기준이다. 원가가 거의 없는 로열티가 매출의
+    3분의 1 이상이고 SBC 차감 후 영업이익률이 38%라 15% 수렴은 사업과 맞지 않는다'
+  shares: 완전 희석 = 기본 0.107095985(2026-09-30) + 옵션·RSU·워런트·전환 0.0011 — 3Q 희석 효과 114만
+    주(가중평균 희석 1억 878.8만 주 − 기본). 4Q 가이던스 희석 1억 900
+notes:
+- 자동 생성(build_drivers) 2026-11-01 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: MRDIMM 램프가 RCD보다 완만'
+- '어닝콜 위험: 제품 총이익률 60.4%로 범위 하단 — 공급망 원가'
+- '어닝콜 위험: 모듈당 용량 축소(디스태킹)'
+evidence:
+- Rambus 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/917273/000119312526431941/rmbs-20260930.htm
+- Rambus 3Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/917273/000119312526431918/rmbs-20261026.htm
+- Rambus FY2025 10-K https://www.sec.gov/Archives/edgar/data/917273/000119312526057101/rmbs-20251231.htm
+- Rambus 2026 위임장 https://www.sec.gov/Archives/edgar/data/917273/000119312526096458/d931659ddef14a.htm
