@@ -54,13 +54,13 @@ class TestPortfolioHyphen(unittest.TestCase):
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
         seen = {}
-        orig = notify.brand
+        orig, guard = notify.brand, notify.guard
         notify.brand = lambda t: seen.setdefault("t", t)
         notify.guard = lambda t: "stop"
         try:
             notify.send("EROC ERock\n기업: 발전기", "PORTFOLIO")
         finally:
-            notify.brand = orig
+            notify.brand, notify.guard = orig, guard
         self.assertIn("- 기업: 발전기", seen["t"])
 
 
