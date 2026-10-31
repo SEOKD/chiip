@@ -1,6 +1,7 @@
 # 결정론 문턱 설정 (ADR-013 H2, 마스터 승인 2026-10-31)
-# 펄스는 Windows 작업 chiip-pulse-trigger가 5분마다 관문을 먼저 보고, 새 자료가 있을 때만 모델을 띄운다.
+# 2026-10-31 마스터 지시 "항상 활성화되도록 설정하라"로 앱 예약 chiip-pulse로 되돌렸다. Windows 작업 chiip-pulse-trigger는 꺼 둔다.
 pulse_trigger:
+  enabled: false                  # 앱 예약과 함께 돌면 잠금에 걸린 회차가 실패로 잡힌다. 켤 때는 앱 예약을 끈다
   skill: chiip-pulse              # ~/.claude/scheduled-tasks/<skill>/SKILL.md 본문을 프롬프트로 쓴다
   timeout_min: 25                 # Windows 작업 시간 상한(30분)보다 짧게
   daily_model_cap: 120            # 하루 모델 회차 상한. 넘으면 마스터에게 한 번 알리고 멈춘다

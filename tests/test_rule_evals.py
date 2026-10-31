@@ -120,7 +120,9 @@ class TestLedger(unittest.TestCase):
 class TestPulseTrigger(unittest.TestCase):
     def setUp(self):
         self.st = {}
-        self.patches = [mock.patch.object(pulse_trigger.common, "load_state", side_effect=lambda *a: dict(self.st)),
+        on = {**pulse_trigger.cfg(), "enabled": True}
+        self.patches = [mock.patch.object(pulse_trigger, "cfg", return_value=on),
+                        mock.patch.object(pulse_trigger.common, "load_state", side_effect=lambda *a: dict(self.st)),
                         mock.patch.object(pulse_trigger.common, "save_state", side_effect=lambda _, s: self.st.update(s)),
                         mock.patch.object(pulse_trigger.common, "stay_awake"),
                         mock.patch.object(pulse_trigger.run_ledger, "record")]
@@ -134,6 +136,13 @@ class TestPulseTrigger(unittest.TestCase):
         launch.assert_not_called()
         self.assertEqual(gate.call_args.kwargs, {"peek": True})
         self.assertIn("heartbeat", self.st)
+
+    def test_disabled_never_starts_model_or_alerts(self):
+        with mock.patch.object(pulse_trigger, "cfg", return_value={"enabled": False}), mock.patch.object(pulse_trigger.pulse, "run") as gate, mock.patch.object(pulse_trigger, "alert") as alert:
+            self.assertEqual(pulse_trigger.main([]), 0)
+            pulse_trigger.run()
+        gate.assert_not_called()
+        alert.assert_not_called()
 
     def test_runs_without_stdout_like_pyw(self):
         with mock.patch.object(pulse_trigger.sys, "stdout", None), mock.patch.object(pulse_trigger.pulse, "run", return_value=(None, "→ 종료")):

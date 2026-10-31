@@ -93,6 +93,8 @@ def main(argv):
     if sys.stdout:   # 작업 스케줄러의 pyw에는 표준 출력이 없다
         sys.stdout.reconfigure(encoding="utf-8")
     c, st = cfg(), common.load_state(STATE, {})
+    if not c.get("enabled"):
+        return 0
     now = common.now_kst()
     st["heartbeat"] = common.iso(now)
     material, msg = pulse.run(peek=True)
@@ -127,6 +129,8 @@ def main(argv):
 def run():
     """run_hourly용 — 문턱이 멈췄으면 모델 없이 알린다"""
     c, st = cfg(), common.load_state(STATE, {})
+    if not c.get("enabled"):
+        return 0, []
     last = st.get("heartbeat") or ""
     now = common.now_kst()
     stale = not last or datetime.fromisoformat(last) < now - timedelta(minutes=c["heartbeat_stale_min"])

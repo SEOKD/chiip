@@ -116,6 +116,7 @@
 - 딘스티커 읽기 전용(마스터 지시 2026-10-31): radar/dticker.py 공개 미리보기 수집, notify.private_chat 개인 대화방 외 발송 차단
 - 텐배거 리포트 수주·파이프라인 절(마스터 지시 2026-10-31): scripts/tenbagger/pipeline_view.py, datapack pipeline 의무, EROC 자료 시험
 - Chiip Analysis 일정·재발행(마스터 지시 2026-10-31): 매일 06·13·20시, scripts/tenbagger/report_refresh.py 어닝콜 전문 반영 재발행
+- 펄스 앱 예약 복귀(마스터 지시 2026-10-31 '항상 활성화'): Windows 문턱 끔, ADR-013 2단계 되돌림
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`
