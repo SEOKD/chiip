@@ -1,0 +1,12 @@
+# 에이전트 트랙 고정 읽을거리 — 피드가 없는 곳(전공 서적·공식 문서). 마스터 지시 2026-10-31
+# 서적은 합법적으로 읽을 수 있는 부분(공개 장·저자 글)만, 원문 복제 금지, 자기 말 요약만. read: 확인한 날짜(없으면 미독)
+books:
+  - {title: "AI Engineering", author: "Chip Huyen", year: 2025, topic: "평가 주도 개발·에이전트·맥락", read: null}
+  - {title: "Designing Machine Learning Systems", author: "Chip Huyen", year: 2022, topic: "운영 중 모델의 감시·재학습", read: null}
+  - {title: "Site Reliability Engineering", author: "Beyer 외(Google)", year: 2016, topic: "오류 예산·사후 분석 — 운영 지표로 변경 속도를 조절", read: null}
+  - {title: "Artificial Intelligence: A Modern Approach", author: "Russell·Norvig", year: 2020, topic: "에이전트 구조·계획·불확실성 아래 의사결정", read: null}
+docs:
+  - {title: "Claude Code 메모리 문서", url: "https://code.claude.com/docs/en/memory", topic: "지시문 분량·경로별 규칙·훅", read: 2026-10-31}
+  - {title: "Claude Code best practices", url: "https://code.claude.com/docs/en/best-practices", topic: "강조 대신 훅으로", read: 2026-10-31}
+  - {title: "Effective context engineering for AI agents", url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", topic: "맥락 최소화·필요할 때 읽기", read: 2026-10-31}
+  - {title: "AI Evals: Everything You Need to Know", url: "https://hamel.dev/blog/posts/evals-faq/", topic: "오류 분석·코드 평가 우선", read: 2026-10-31}

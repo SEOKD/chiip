@@ -1,0 +1,162 @@
+{
+ "pulse-link": {
+  "in": [
+   21,
+   1
+  ],
+  "out": [
+   9,
+   0
+  ]
+ },
+ "pulse-company-line": {
+  "in": [
+   21,
+   0
+  ],
+  "out": [
+   9,
+   0
+  ]
+ },
+ "pulse-judgment-len": {
+  "in": [
+   21,
+   0
+  ],
+  "out": [
+   9,
+   1
+  ]
+ },
+ "pulse-evidence-len": {
+  "in": [
+   21,
+   6
+  ],
+  "out": [
+   9,
+   2
+  ]
+ },
+ "pulse-evidence-numbers": {
+  "in": [
+   21,
+   16
+  ],
+  "out": [
+   9,
+   7
+  ]
+ },
+ "pulse-evidence-count": {
+  "in": [
+   21,
+   0
+  ],
+  "out": [
+   9,
+   1
+  ]
+ },
+ "tg-conviction-word": {
+  "in": [
+   0,
+   0
+  ],
+  "out": [
+   0,
+   0
+  ]
+ },
+ "tg-internal-number": {
+  "in": [
+   25,
+   0
+  ],
+  "out": [
+   13,
+   0
+  ]
+ },
+ "tg-money-unit": {
+  "in": [
+   25,
+   0
+  ],
+  "out": [
+   13,
+   0
+  ]
+ },
+ "tg-chiip-name": {
+  "in": [
+   25,
+   0
+  ],
+  "out": [
+   13,
+   0
+  ]
+ },
+ "tg-no-advice": {
+  "in": [
+   50,
+   0
+  ],
+  "out": [
+   25,
+   0
+  ]
+ },
+ "invest-disclaimer": {
+  "in": [
+   4,
+   0
+  ],
+  "out": [
+   4,
+   0
+  ]
+ },
+ "report-no-vendor": {
+  "in": [
+   2,
+   0
+  ],
+  "out": [
+   4,
+   0
+  ]
+ },
+ "report-not-advice": {
+  "in": [
+   9,
+   0
+  ],
+  "out": [
+   10,
+   0
+  ]
+ },
+ "report-no-target-price": {
+  "in": [
+   9,
+   0
+  ],
+  "out": [
+   10,
+   0
+  ]
+ },
+ "report-no-citation": {
+  "in": [
+   2,
+   0
+  ],
+  "out": [
+   4,
+   0
+  ]
+ }
+}

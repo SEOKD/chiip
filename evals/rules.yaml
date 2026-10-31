@@ -1,0 +1,151 @@
+# 규칙 준수 측정표 (마스터 지시 2026-10-31 Chiip Laboratory) — 실제 산출물을 코드로 채점한다.
+# 규칙을 지시문에 더 쓰는 것보다 지켜졌는지 재는 쪽이 먼저다. 판단이 필요한 규칙은 여기 넣지 않는다(프로바이저 모델 몫).
+# forbid: 패턴이 나오면 위반 / require: 패턴이 없으면 위반 / check: radar/pulse_check.py의 건별 점검 / since: 규칙이 생긴 날(그 전 산출물은 채점하지 않는다)
+# brand: true면 텔레그램 발송 직전 변환(notify.brand)을 거친 글로 채점한다 — 기록 파일이 아니라 마스터가 받는 글이 기준이다.
+# pass·fail 예시는 규칙 자체의 시험이다(rule_evals.py --self-test). 이 파일은 Lab·Proviser가 고치지 않는다 — 마스터 승인으로만.
+tg: &tg ["outputs/article/sources/*_tg.txt", "outputs/invest/portfolio/*_tg.txt", "outputs/invest/short/*_tg.txt", "outputs/article/pitch/*_tg.txt"]
+pulse: &pulse ["outputs/article/sources/*_tg.txt"]
+rules:
+  - id: pulse-link
+    rule: 펄스 판단 건마다 1차 출처 링크(없으면 '출처 미확인')
+    source: docs/tasks/chiip-pulse.md 3단계(2026-10-29·30 마스터 지시)
+    scope: *pulse
+    since: "2026-10-30"
+    brand: true
+    check: link
+    pass: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단 문장**\n· 근거 $3\n[8-K](https://sec.gov/a)"]
+    fail: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단**\n· 근거"]
+  - id: pulse-company-line
+    rule: 펄스 판단 건마다 머리줄 다음에 사업 1줄
+    source: docs/tasks/chiip-pulse.md 3단계(2026-10-29·30 마스터 지시)
+    scope: *pulse
+    since: "2026-10-30"
+    brand: true
+    check: company
+    pass: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단 문장**\n· 근거 $3\n[8-K](https://sec.gov/a)"]
+    fail: ["⚡ ① 넷앱(NTAP)｜실적\n**판단**\n· 근거\n[a](https://a.b)"]
+  - id: pulse-judgment-len
+    rule: 판단 문장 60자 이내
+    source: docs/tasks/chiip-pulse.md 3단계(2026-10-29·30 마스터 지시)
+    scope: *pulse
+    since: "2026-10-30"
+    brand: true
+    check: judgment
+    pass: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단 문장**\n· 근거 $3\n[8-K](https://sec.gov/a)"]
+    fail: ["⚡ ① 넷앱｜실적\n회사\n**가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가**\n[a](https://a.b)"]
+  - id: pulse-evidence-len
+    rule: 근거 줄 55자 이내
+    source: docs/tasks/chiip-pulse.md 3단계(2026-10-29·30 마스터 지시)
+    scope: *pulse
+    since: "2026-10-30"
+    brand: true
+    check: evidence
+    pass: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단 문장**\n· 근거 $3\n[8-K](https://sec.gov/a)"]
+    fail: ["⚡ ① 넷앱｜실적\n회사\n· 가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가가\n[a](https://a.b)"]
+  - id: pulse-evidence-numbers
+    rule: 근거 줄당 숫자 2개까지
+    source: docs/tasks/chiip-pulse.md 3단계(2026-10-29·30 마스터 지시)
+    scope: *pulse
+    since: "2026-10-30"
+    brand: true
+    check: numbers
+    pass: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단 문장**\n· 근거 $3\n[8-K](https://sec.gov/a)"]
+    fail: ["⚡ ① 넷앱｜실적\n회사\n· 1 2 3\n[a](https://a.b)"]
+  - id: pulse-evidence-count
+    rule: 근거 5줄까지
+    source: docs/tasks/chiip-pulse.md 3단계(2026-10-29·30 마스터 지시)
+    scope: *pulse
+    since: "2026-10-30"
+    brand: true
+    check: count
+    pass: ["⚡ ① 넷앱(NTAP)｜실적\n스토리지 회사\n**판단 문장**\n· 근거 $3\n[8-K](https://sec.gov/a)"]
+    fail: ["⚡ ① 넷앱｜실적\n회사\n· a\n· b\n· c\n· d\n· e\n· f\n[a](https://a.b)"]
+  - id: tg-conviction-word
+    rule: 텔레그램에 '확신도'·상중하를 쓰지 않고 컨빅션 x/10으로 쓴다
+    source: 2026-10-31 마스터 지시
+    scope: *tg
+    since: "2026-11-01"
+    brand: true
+    forbid: '확신도|컨빅션\s*[:：]?\s*(상|중|하)(?![가-힣])'
+    pass: ["컨빅션 7/10"]
+    fail: ["확신도 상", "컨빅션: 중"]
+  - id: tg-internal-number
+    rule: 텔레그램에 지시 번호·예측 번호를 드러내지 않는다
+    source: 2026-10-29 마스터 지시(상시 원칙 P-20261029-03)
+    scope: *tg
+    since: "2026-10-30"
+    brand: true
+    forbid: '\b[DXRP]-2026\d{4}-\d{2}\b|보강 적용'
+    pass: ["판단은 그대로다"]
+    fail: ["예측 등록 P-20261029-07"]
+  - id: tg-money-unit
+    rule: 달러는 $25B·$340M 표기, 억 달러·백만 달러 금지
+    source: 2026-10-29 마스터 지시
+    scope: *tg
+    since: "2026-10-30"
+    brand: true
+    forbid: '\d\s*(억|백만|십억|조)\s*(달러|\$)'
+    pass: ["$25B 계약", "2조 원"]
+    fail: ["250억 달러 계약"]
+  - id: tg-chiip-name
+    rule: 텔레그램 표기는 치입이 아니라 Chiip
+    source: 2026-10-29 마스터 지시
+    scope: *tg
+    since: "2026-10-30"
+    brand: true
+    forbid: '치입'
+    pass: ["Chiip Pulse"]
+    fail: ["치입 펄스"]
+  - id: tg-no-advice
+    rule: 매매·비중·금액 지시를 하지 않는다
+    source: CLAUDE.md 사명 — 투자자문 자격 없음
+    scope: *tg
+    since: "2026-10-28"
+    brand: true
+    forbid: '(매수|매도)\s*(추천|권유합니다|하세요|하라)|사라[.!]|팔아라|비중을?\s*(늘리|줄이|확대하|축소하)(세요|라)|목표주가는'
+    pass: ["매수 권유 아님", "연구 후보다"]
+    fail: ["지금 매수하세요", "비중을 늘리세요"]
+  - id: invest-disclaimer
+    rule: invest 출력 하단에 공개 자료·투자 권유 아님 표시
+    source: CLAUDE.md 컴플라이언스
+    scope: ["outputs/invest/portfolio/20*.md", "outputs/invest/portfolio/*_tg.txt"]
+    since: "2026-10-30"
+    require: '투자 권유가 아님'
+    pass: ["공개 자료 기반 분석이며 투자 권유가 아님"]
+    fail: ["오늘의 판단"]
+  - id: report-no-vendor
+    rule: 텐배거 리포트에 데이터 제공처 이름을 남기지 않는다
+    source: 2026-10-30 마스터 지시
+    scope: ["outputs/tenbagger/reports/*.html"]
+    since: "2026-10-31"
+    html: true
+    forbid: 'Zacks|Fiscal\.ai'
+    pass: ["애널리스트 추정"]
+    fail: ["Zacks 컨센서스"]
+  - id: report-not-advice
+    rule: 텐배거 리포트에 연구 후보이지 매수 권유 아님을 표시
+    source: CLAUDE.md 사명
+    scope: ["outputs/tenbagger/reports/*.html"]
+    since: "2026-10-29"
+    html: true
+    require: '매수 권유(가)? 아(님|닙니다|니다)'
+    pass: ["연구 후보이지 매수 권유 아님", "연구 후보이지 매수 권유가 아닙니다"]
+    fail: ["좋은 회사다"]
+  - id: report-no-target-price
+    rule: 리포트에 목표주가·투자의견을 쓰지 않는다
+    source: CLAUDE.md 출력 모드 report
+    scope: ["outputs/tenbagger/reports/*.html"]
+    since: "2026-10-29"
+    html: true
+    forbid: '목표주가는|투자의견\s*[:：]?\s*(매수|매도|중립)'
+    pass: ["배수 사다리"]
+    fail: ["목표주가는 $50"]
+  - id: report-no-citation
+    rule: 텐배거 리포트에 논문 표기(저자 연도)를 남기지 않는다
+    source: 2026-10-30 마스터 지시
+    scope: ["outputs/tenbagger/reports/*.html"]
+    since: "2026-10-31"
+    html: true
+    forbid: '\b[A-Z][a-z]+(?: (?:&|and|et al\.?) ?[A-Z]?[a-z.]*)? ?\((?:19|20)\d{2}\)'
+    pass: ["2026년 매출"]
+    fail: ["Fama & French (1993)", "Hou (2020)"]

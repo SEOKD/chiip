@@ -1,0 +1,17 @@
+date,rule,checked,failed
+2026-10-31,pulse-link,30,1
+2026-10-31,pulse-company-line,30,0
+2026-10-31,pulse-judgment-len,30,1
+2026-10-31,pulse-evidence-len,30,8
+2026-10-31,pulse-evidence-numbers,30,23
+2026-10-31,pulse-evidence-count,30,1
+2026-10-31,tg-conviction-word,0,0
+2026-10-31,tg-internal-number,38,0
+2026-10-31,tg-money-unit,38,0
+2026-10-31,tg-chiip-name,38,0
+2026-10-31,tg-no-advice,75,0
+2026-10-31,invest-disclaimer,8,0
+2026-10-31,report-no-vendor,6,0
+2026-10-31,report-not-advice,19,0
+2026-10-31,report-no-target-price,19,0
+2026-10-31,report-no-citation,6,0

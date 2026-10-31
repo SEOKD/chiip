@@ -106,6 +106,7 @@
 - 원자력·위성 정부 원천(마스터 2026-10-31): src-nuclear-nrc·src-nuclear-doe·src-space-gov-gn, 펄스 ☢·🛰 분류, 판정 상향, rss.py exclude_regex 결함 수정
 - TradingView 양방향 동기화(마스터 2026-10-31): radar/tv_sync.py, config/tradingview.yaml, tradingview_symbols.csv, 스킬 tv-sync, 예약 작업 chiip-tv-sync
 - 실적 지표 주가 줄 필수화(마스터 2026-10-31): TradingView 시세 → radar/markets/session.py --line
+- Laboratory 에이전트 트랙(마스터 2026-10-31): evals/rules.yaml·scripts/lab/rule_evals.py 규칙 측정, radar/pulse_check.py 건별 점검, 펄스 출처 링크 발송 관문, literature.py 에이전트 수집, 제안 AAP-20261031-01~03
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`

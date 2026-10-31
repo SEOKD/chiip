@@ -20,6 +20,15 @@ argument-hint: "[daily | weekly | 논문 URL]"
 5. '원문 확인 대기' 사전값(예: `config/tenbagger.yaml` factors basis)을 하루 1건씩 원문으로 확인해 basis·source를 갱신. 값을 바꾸면 config·등록부·`changelog.csv`를 함께.
 6. 공개 수치 사전값: 다모다란 월간 내재 ERP 등은 날짜·URL과 함께 `prm-val-erp-us` 등에 기록.
 
+## agent (매일, 마스터 지시 2026-10-31) — 에이전트 아키텍처 고도화
+밸류에이션 모델과 별개로 치입 자신의 구조(지시문·맥락·평가·메모리·오케스트레이션)를 고친다.
+1. `py radar/literature.py --show --track agent` + `knowledge/models/lab/agent/canon.yaml`(전공 서적·실무 자료, 공식 문서처럼 피드가 없는 곳). 하루 1편까지. 커뮤니티는 입구일 뿐이다 — 근거는 글이 가리키는 원문으로 확인한다. robots.txt가 막은 곳은 자동 수집하지 않는다.
+2. `py scripts/lab/rule_evals.py --write` — 실제 산출물로 규칙별 위반율. 고칠 곳은 논문이 아니라 **측정에서 나온다.** 위반이 없으면 넘어간다(억지로 고치지 않는다).
+3. 제안서 `knowledge/models/lab/agent/proposals/AAP-YYYYMMDD-NN.md`: 파일 단위 변경 / 예측(어느 측정값이 언제까지 얼마로 바뀌나) / 깨질 위험 / 근거·외적 타당성(프리프린트·모델·표본 차이) / 판정일.
+4. 채택 관문: 변경 뒤 `py scripts/lab/rule_evals.py --gate`가 본 표본·떼어 둔 표본 모두 악화 없음. 기각도 제안서에 남긴다. 표본 12건 미만이면 판정하지 않는다.
+5. 측정으로 어김이 확인된 규칙은 지시문을 강조하지 말고 코드 관문으로 옮긴다(`notify.send`, 렌더러 `scrub`, 훅).
+6. **자기 채점 금지:** `evals/rules.yaml`·`scripts/lab/rule_evals.py`·권한·보안 규칙·`CLAUDE.md`는 고도화 대상이 아니다 — 고치려면 제안서로 마스터 승인. 지시문은 더 쓰기보다 줄이는 제안을 우선한다.
+
 ## weekly (일요일)
 0. **Proviser 작업 지시를 먼저**(마스터 지시 2026-10-29 — 단계적 고도화): `knowledge/models/params/queue.yaml`(`py scripts/fit/stepwise.py --status --write`가 매일 갱신)을 위에서부터 처리한다. 0단계 '데이터 확보'는 등록부 fit.data·target·method를 정의(자료가 정말 없으면 '필요 자료'로 남김), 1단계 '기존 피팅'은 아래 1~3, 2단계 '잔차 진단'의 새 파라미터 제안은 `stepwise.can_adopt_extension(model, 기존 손실, 확장 손실, 등록부, 확장 후 파라미터 수)` — 짝지은 표본 외 검정 + 누적 시도 수 본페로니 보정 + 관측 수 규칙을 모두 통과할 때만 채택. 1단계가 끝나지 않은 모델에 새 파라미터를 넣지 않는다.
 1. 데이터가 있는 제안서부터 `scripts/fit/harness.py`로 검증: `evaluate(series, fit_fn, predict_fn, prior, k, min_train)` → `adoption_decision(...)`. 검증 스크립트는 `scripts/fit/jobs/<param>.py`로 남긴다(재실행 가능해야 함).

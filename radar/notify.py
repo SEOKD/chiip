@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
+import pulse_check  # noqa: E402
 import pulse_gloss  # noqa: E402
 from units import chiip_name, money_units  # noqa: E402
 
@@ -169,6 +170,7 @@ def send_document(path, caption="", level="REPORT"):
 
 
 def send(text, level="P1", ref=None, html_mode=False, md=False):
+    raw_text = text
     if level == "PORTFOLIO":   # Chiip View 항목의 '기업:' 줄도 다른 항목처럼 하이픈으로 시작한다(마스터 지시 2026-10-31)
         text = re.sub(r"(?m)^기업:", "- 기업:", text)
     if level == "PULSE" and not html_mode:   # 기술·세그먼트·제품·정책·프로젝트 이름을 처음 나오는 곳에서 풀이(마스터 지시 2026-10-31)
@@ -180,6 +182,12 @@ def send(text, level="P1", ref=None, html_mode=False, md=False):
     if reason:
         _log(f"[차단:{reason}] (내용 생략)")
         return False
+    if level == "PULSE" and md:   # 판단 건에 1차 출처가 없으면 보내지 않는다 — 실제 산출물 측정에서 어긴 규칙을 관문으로(Chiip Laboratory 2026-10-31)
+        missing = pulse_check.unlinked(raw_text)
+        if missing:
+            _log(f"[차단:출처 링크 없음] {' / '.join(m[:40] for m in missing)}")
+            print(f"[발송 안 함] 출처 링크가 없는 판단 건: {' / '.join(missing)} — 링크를 넣거나 '출처 미확인'을 적고 다시 보낸다", file=sys.stderr)
+            return False
     if len(text) > MAX_LEN:   # 2026-10-29: 숏 리포트·파이낸싱이 붙은 펄스가 3,800자를 넘으면 뒷부분이 잘렸다 → 문단 단위로 나눠 보낸다
         lim = MAX_LEN - 20   # '(i/n)' 꼬리를 붙여도 한도 안 — 넘으면 다시 나뉘며 끝없이 재귀한다
         parts, cur = [], ""
