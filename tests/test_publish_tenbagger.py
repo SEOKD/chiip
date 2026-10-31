@@ -91,7 +91,7 @@ class TestDeliveryGate(unittest.TestCase):
         pt.artifact(self.src, url="https://claude.ai/code/artifact/abc")
         pt.notion(self.src, page="https://app.notion.com/p/xyz")
         s = pt.send(self.src, "요약", dry=True)
-        self.assertIn("📄 리포트 보기: https://claude.ai/code/artifact/abc", s["text"])
+        self.assertIn("📄 [리포트 보기](https://claude.ai/code/artifact/abc)", s["text"])
         self.assertIn("skipped", pt.send(self.src, dry=True))
         self.assertTrue(pt.send(self.src, "요약", dry=True, resend=True)["sent"])   # 경로가 바뀐 리포트는 다시 보낼 수 있다
         self.assertIn("https://app.notion.com/p/xyz", s["text"])

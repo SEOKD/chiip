@@ -145,9 +145,9 @@ def notion(src, page=None, fail=None, stock=None):
 
 def message(st, caption):
     gh, nt, ar = st["github"]["md"], st.get("notion") or {}, st.get("artifact") or {}
-    view = f"📄 리포트 보기: {ar['url']}" if ar.get("status") == "ok" else f"📄 리포트(GitHub, HTML 보기 링크 게시 실패): {gh}"
+    view = f"📄 [리포트 보기]({ar['url']})" if ar.get("status") == "ok" else f"📄 [리포트(GitHub, HTML 보기 링크 게시 실패)]({gh})"
     lines = [caption.strip(), "", view]
-    lines.append(f"🗂 노션: {nt['page']}" if nt.get("status") == "ok" else "🗂 노션 게시 실패 — 다음 회차에 다시 올립니다")
+    lines.append(f"🗂 [노션]({nt['page']})" if nt.get("status") == "ok" else "🗂 노션 게시 실패 — 다음 회차에 다시 올립니다")
     return "\n".join(x for x in lines if x is not None)
 
 
@@ -165,12 +165,16 @@ def send(src, caption="", dry=False, resend=False, reissue=False):
         text = f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']}) 노션 게시 완료\n🗂 {st['notion']['page']}"
     else:
         cap = Path(caption).read_text(encoding="utf-8") if caption and Path(caption).exists() else (caption or f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']})")
+        rep = json.loads(Path(src).read_text(encoding="utf-8")) if Path(src).exists() else {}
+        if rep.get("format") == 3:   # 양식 3은 피드를 엔진이 만든다(마스터 지시 2026-11-01)
+            import report_feed
+            cap = report_feed.build(rep)
         text = ("[수정판 — 어닝콜 전문 반영]\n" if reissue else "") + message(st, cap)
     sent = True
     if not dry:
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
-        sent = bool(notify.send(text, "REPORT"))
+        sent = bool(notify.send(text, "REPORT", md=True))
         notify.run_ledger.record("publish", "chiip-tenbagger-report", output=st["stem"], ok=sent)
     st["telegram"] = {"sent": tg.get("sent") or sent, "notion_ok": ok and sent, "at": now()}
     save(src, st)
