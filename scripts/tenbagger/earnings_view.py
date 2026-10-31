@@ -108,6 +108,16 @@ def surprises(rows, n=4):
     return sorted([r for r in out if str(r.get("period") or "") in keep], key=lambda r: (str(r.get("period") or ""), r.get("metric", "")))
 
 
+def last_quarters(periods, n=4):
+    """'2026Q2' → 그 분기까지 연속된 n개 분기 — 실적이나 컨센서스가 없는 분기도 축에 남긴다(마스터 지시 2026-10-31)"""
+    y, q = (int(x) for x in max(periods).split("Q"))
+    out = []
+    for _ in range(n):
+        out.append(f"{y}Q{q}")
+        y, q = (y - 1, 4) if q == 1 else (y, q - 1)
+    return out[::-1]
+
+
 def margin_surprises(sp):
     """이익률 서프라이즈(%p) — EBIT → OPM, 회사가 EBITA를 주요 지표로 쓰면 EBITA Margin(마스터 지시 2026-10-30). 추정은 같은 제공처 쌍(매출·이익)으로"""
     name, num = ("EBITA Margin", "EBITA") if any(r["metric"] == "EBITA" for r in sp) else ("OPM", "EBIT")
@@ -218,6 +228,7 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
         B.append({"type": "table", "title": "실적 vs 컨센서스 — 최근 4개 분기 (이익 지표는 조정 기준, 발표 직전 추정)", "headers": ["분기", "지표", "실적", "컨센서스", "서프라이즈"],
                   "rows": [[r["period"], r["metric"], *cells(r)] for r in shown]})
         per = sorted({r["period"] for r in shown if r["surprise"] is not None})
+        per = last_quarters(per) if per else per
         pick = lambda p, m: next((round(r["surprise"] * (1 if m == mg_name else 100), 1) for r in shown if r["period"] == p and r["metric"] == m and r["surprise"] is not None), None)
         series_sp = [{"name": m, "color": c, "values": [pick(p, m) for p in per]} for m, c in zip(order, "ced")]
         series_sp = [s for s in series_sp if any(v is not None for v in s["values"])]
