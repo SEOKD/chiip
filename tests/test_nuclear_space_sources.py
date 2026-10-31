@@ -40,6 +40,15 @@ class TestSources(unittest.TestCase):
         self.assertIsNone(inc.search("DOE Announces Grid Resilience Funding"))
 
 
+class TestXCitedSource(unittest.TestCase):
+    def test_registered_as_news_index_only(self):
+        src = registry()["src-x-cited-gn"]
+        self.assertTrue(src["enabled"])
+        self.assertEqual((src["method"], src["doc_type"], src["auth"]), ("rss", "SNS", "none"))
+        self.assertTrue(all("on X" in q["q"] for q in src["feed_queries"]))
+        self.assertFalse(registry()["src-research-x"].get("enabled"))
+
+
 class TestRssExcludeAfterFailedFeed(unittest.TestCase):
     def test_exclude_regex_survives_a_failed_feed(self):   # except … as exc가 정규식 변수를 지우던 결함(2026-10-31)
         src = {"id": "src-x", "feed_urls": ["https://a", "https://b"], "exclude_regex": "Job", "language": "en", "doc_type": "규제·정책"}

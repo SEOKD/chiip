@@ -1104,6 +1104,31 @@
   verified: true
   enabled: true
 
+- id: src-x-cited-gn
+  name: X 글을 인용한 기사 제목 — Google News 색인(유료 X API 대체, X 피드 자체가 아니다)
+  category: L-커뮤니티
+  module: rss
+  method: rss
+  feed_queries:
+    - {q: "(\"posted on X\" OR \"said on X\" OR \"wrote on X\" OR \"post on X\") (Nvidia OR AMD OR TSMC OR Broadcom OR Micron OR \"SK Hynix\" OR Samsung) when:2d", hl: en-US, gl: US}
+    - {q: "(\"posted on X\" OR \"said on X\" OR \"wrote on X\" OR \"post on X\") (OpenAI OR Anthropic OR xAI OR \"data center\" OR \"AI chip\") when:2d", hl: en-US, gl: US}
+    - {q: "(\"posted on X\" OR \"said on X\" OR \"wrote on X\" OR \"post on X\") (Musk OR Altman OR \"Jensen Huang\" OR Nadella OR Zuckerberg OR Amodei) (chip OR AI OR compute OR \"data center\") when:2d", hl: en-US, gl: US}
+    - {q: "(\"posted on X\" OR \"said on X\" OR \"wrote on X\" OR \"post on X\") (Lutnick OR Bessent OR \"export controls\" OR tariffs) (chip OR semiconductor OR AI) when:2d", hl: en-US, gl: US}
+  include_regex: '\bon X\b|\bX post|\bposted\b|\btweet|social media'
+  exclude_regex: 'NFL|NBA|MLB|NHL|Premier League|Grammy|Oscar|celebrity|Taylor Swift|horoscope|Galaxy|iPhone|Snapdragon|smartphone'
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: SNS
+  terms_note: "2026-10-31 마스터 지시 — X API 비용을 내지 않는다. X·구글 검색 자동 수집은 약관·robots.txt로 금지라 Google News RSS의 기사 제목·링크만 받는다. 언론이 다룬 글만 잡히고 늦다. 커뮤니티 신호(S1·S2)이지 주장이 아니다 — 원문 발언은 기사·1차 출처로 확인한다."
+  reliability_default: 2차(언론 인용)
+  verified: true
+  enabled: true
+
 - id: src-defense-gov-gn
   name: 각국 국방 조달·예산(미 국방부 일일 계약·DSCA·NATO/EU·독일·프랑스·이탈리아·스페인·일본) — Google News 도메인 제한
   category: L-해외정부
