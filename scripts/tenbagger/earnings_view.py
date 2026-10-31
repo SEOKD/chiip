@@ -129,7 +129,8 @@ def margin_surprises(sp):
         if r["metric"] != num or not v or not v.get("actual"):
             continue
         act = r["actual"] / v["actual"] * 100
-        est = r["est"] / v["est"] * 100 if r.get("est") and v.get("est") and fam(r) == fam(v) else None
+        den = v["est"] if fam(r) == fam(v) else (v.get("pair") or {}).get(fam(r))   # 매출 추정을 보완했으면 원래 짝을 쓴다(2026-11-01)
+        est = r["est"] / den * 100 if r.get("est") and den else None
         out.append({"period": r["period"], "metric": name, "actual": act, "est": est, "surprise": act - est if est is not None else None})
     return name, out
 

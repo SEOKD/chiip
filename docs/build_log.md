@@ -120,3 +120,4 @@
 
 ## 마스터 할 일
 `docs/TODO_MASTER.md`
+- 데이터 우선순위(ADR-014, 마스터 2026-11-01): Fiscal.ai 1순위, Zacks·Easyconomics 2순위. `config/data_sources.yaml`, `scripts/fiscal/source_router.py`(번갈아 쓰기·호출 상한), `scripts/fiscal/estimates.py`(발표 전 추정 저장·보완), `snapshots.csv` 첫 저장 28종목 120줄(일본·대만·한국·OKLO 7종목은 Fiscal 데이터 없음). 시험 tests/test_estimates.py

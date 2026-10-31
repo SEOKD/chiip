@@ -32,7 +32,7 @@ FY{연도} Guidance
 ```
 - **제목과 Results 사이에 `☞ 회사 설명 1줄`**(마스터 지시 2026-10-30 "제목과 당기 실적 사이에 어떤 기업인지 1줄 설명, 아이콘은 ☞"). `config/company_lines.yaml` 1줄을 그대로 쓰고, 없으면 10-K·회사 개요를 자기 말로 한 줄(모르면 미확인 — 지어내지 않는다). ①에만 붙인다. 앞뒤로 빈 줄.
 - 지표는 그 회사의 실적을 가르는 것만(반도체 장비: 수주·수주잔고·지역별 매출, 메모리: 비트 출하·ASP, 클라우드: 클라우드 성장률·RPO 등). 순서: 매출 → 핵심 사업 지표 → 이익률 → EPS → 현금흐름·설비투자.
-- **est. 출처 순위(마스터 지시 2026-10-30 "Fiscal.ai 1순위, Zacks 2순위")** — 본보기 `scripts/fiscal/templates/earnings_est.js`가 지표마다 고른다.
+- **est. 출처 순위(마스터 지시 2026-10-30 "Fiscal.ai 1순위, Zacks 2순위", 2026-11-01 Easyconomics를 2순위에 추가)** — 본보기 `scripts/fiscal/templates/earnings_est.js`가 지표마다 고르고, 출력을 파일로 저장해 `py scripts/fiscal/estimates.py --pick <파일> [--ec <company_profile 응답>] [--first easyconomics]`로 저장한 Fiscal 추정과 2순위 보완을 거친다.
   1. **Fiscal.ai 자체 추정** `company_estimates`(가이던스·모델·Agentic Consensus — 애널리스트 설문이 아니다). 발표한 분기에는 Fiscal이 발표 전에 얼려 둔 추정이 남는다. **asOf가 발표일 전날 이전인 칸이면 source와 무관하게 1순위**(guidance·guidance_adjusted·guidance_calculated·model·agentic_consensus — 마스터 지시 2026-10-30 "여전히 Zacks에서 가져오는 경우가 많다, Fiscal.ai 컨센서스를 1순위로"). `guidance_calculated`(연간 가이던스를 분기로 나눈 값)도 Fiscal 값이므로 Zacks보다 앞선다 — 같은 날 앞서 이 칸을 Zacks 뒤로 미뤘다가 STRL 매출·EPS·EBITDA가 Zacks로 간 것을 고쳤다. 실제와 차이가 큰 환산값이면 기록 파일에 Zacks 값을 대조로 적는다.
   2. **Zacks 컨센서스** — Fiscal 발표 전 칸이 없는 지표만(주로 회사가 조정 EBIT·EBITDA를 내지만 Fiscal 칸이 빈 경우). `company_analyst_estimates({history:true})`에서 그 분기의 발표일 전 마지막 값(asOf < 발표일). 발표 뒤 남은 행(애널리스트 1명·asOf 없음)은 쓰지 않는다. 영업이익은 Zacks EBIT.
   3. 둘 다 없으면 괄호를 뺀다(회사 자료의 시장 기대 언급은 출처를 기록 파일에). 지어내지 않는다.

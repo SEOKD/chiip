@@ -72,7 +72,7 @@ def build(d):
     if check.get("rows"):
         out += ["", "**■ 다음 확인**"] + [f"- {r[0]}: {r[1]}" for r in check["rows"][:2]]
     out.append("")
-    if "미확인" not in str(_tile(d, "구매등급").get("sub")):
+    if "미확인" not in str(_tile(d, "구매등급").get("sub")) and _tile(d, "구매등급").get("src") != "easyconomics":
         out.append(ZACKS)
     out.append(FOOT)
     return "\n".join(out)

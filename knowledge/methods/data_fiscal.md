@@ -1,7 +1,7 @@
 # 데이터 원천 = Fiscal.ai (MCP) — 엔진 데이터 계약
 
 > 마스터 지시(2026-10-30): "Chiip Pulse·Portfolio·Ten-bagger·Reporter·Analysis·Notion Tracker·Model Laboratory·Proviser·Weekly Review는 앞으로 Easyconomics를 쓰지 말고 Fiscal.ai만 MCP로 연결해 써라. 7가지 기능을 모두 쓰도록 하라. 지금부터 시스템 엔진 아키텍처에 전부 반영하라." → ADR-012.
-> easyconomics MCP는 **퇴역** — 어떤 기능도 부르지 않는다(과거 산출물의 'easyconomics' 출처 표기는 기록으로 둔다).
+> 2026-11-01 개정: Fiscal.ai 1순위, Zacks·Easyconomics 2순위(`docs/channels/data.md`, `config/data_sources.yaml`, ADR-014). Fiscal.ai 칸이 빌 때만 2순위를 쓴다.
 
 ## 1. 호출 방식
 - 도구: `mcp__…__execute_code`(자바스크립트 `async () => { … }`, 네트워크 격리 샌드박스 60초, 동시 6개) + `mcp__…__api_docs`(함수 시그니처 — 기억이 아니라 여기서 확인). ToolSearch로 `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`.

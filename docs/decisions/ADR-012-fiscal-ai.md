@@ -1,6 +1,6 @@
 # ADR-012 데이터 원천을 easyconomics에서 Fiscal.ai(MCP)로 바꾼다
 
-- 날짜: 2026-10-30 · 결정: 마스터 지시 · 상태: 채택
+- 날짜: 2026-10-30 · 결정: 마스터 지시 · 상태: 채택, 'easyconomics 호출 금지'는 ADR-014로 대체
 - 지시: "Chiip Pulse, Chiip Portfolio, Chiip Ten-bagger, Chiip Reporter, Chiip Analysis, Chiip Notion Tracker, Chiip Model Laboratory, Chiip Proviser, Chiip Weekly Review는 이제 앞으로 Easyconomics를 쓰지 말고 Fiscal.ai만 MCP로 연결해 써라. 7가지 기능(뉴스·컨센서스/추정치·재무/세그먼트·IR/어닝콜·수급/지분·펀드 레터·기타)을 모두 쓰도록 하라. 지금부터 시스템 엔진 아키텍처에 이를 전부 반영하라."
 
 ## 결정

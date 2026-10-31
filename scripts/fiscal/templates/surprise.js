@@ -3,7 +3,7 @@ async () => {
   // Non-GAAP(adj.) 값으로, 분기별 서프라이즈는 최근 4개 분기 시계열로").
   // 실적: Fiscal company_estimates의 filed actual — EPS는 eps_adjusted(회사가 조정 EPS를 내지 않으면 GAAP, basis로 표시), 조정 EBIT·EBITDA는 회사가 낼 때만.
   // 추정: 1순위 Fiscal이 발표 전에 얼려 둔 추정(asOf < 발표일, source 무관 — 마스터 지시 2026-10-30 'Fiscal.ai 1순위'), 2순위 Zacks history의 발표일 전 마지막 값(같은 기준) — Fiscal 칸이 없을 때만.
-  // __KEY__ = NASDAQ_SNDK 형식. 출력 rows를 datapack consensus.surprise에 그대로 넣는다. zacks_used면 Zacks 표기.
+  // __KEY__ = NASDAQ_SNDK 형식. 출력 파일 → `py scripts/fiscal/estimates.py --surprise <id> <파일>`이 저장해 둔 Fiscal 추정과 Easyconomics로 빈칸을 보완해 datapack consensus.surprise에 넣는다(2026-11-01). zacks_used면 Zacks 표기.
   const k = "__KEY__";
   const [fe, z] = await Promise.all([
     codemode.company_estimates({ companyKey: k }),
@@ -27,7 +27,7 @@ async () => {
       if (!c || c.actual == null) continue;
       if (key !== "revenue" && c.basis !== "adjusted") continue;   // 조정 값을 내지 않는 이익 지표는 뺀다(GAAP으로 채우지 않는다)
       const e = fis(d, key, ed) || zack(d.reportDate, ed, zk);
-      rows.push({ period, metric: name, unit, actual: Math.round(c.actual / div * 1000) / 1000, est: e ? Math.round(e.est / div * 1000) / 1000 : null,
+      rows.push({ period, report_date: d.reportDate, metric: name, unit, actual: Math.round(c.actual / div * 1000) / 1000, est: e ? Math.round(e.est / div * 1000) / 1000 : null,
         est_src: e ? e.src : null, est_asof: e ? e.asOf : null, basis: c.basis || null, earnings_date: ed });
     }
   }

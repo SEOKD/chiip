@@ -45,6 +45,8 @@ async () => {
   };
   const pick = { reported: pickFor(rep), guidance: pickFor(next) };
   const zacks_used = Object.values(pick).some(p => p && Object.values(p).some(v => v && v.src === "zacks"));
-  console.log(JSON.stringify({ key: k, earningsDate: ed, reported: rep && rep.reportDate, guidance_period: next && next.reportDate, primaryEpsBasis: fe.primaryEpsBasis, pick, zacks_used,
+  // 출력 파일 → `py scripts/fiscal/estimates.py --pick <파일>`이 저장해 둔 Fiscal 추정과 Easyconomics로 reported 빈칸을 보완한다(2026-11-01)
+  const act = rep ? Object.fromEntries(["revenue", "eps_adjusted", "ebit_adjusted", "ebitda_adjusted"].flatMap(m => { const c = rep.metricsValues[m]; return c ? [[m, c.actual], [m + "_basis", c.basis]] : []; })) : {};
+  console.log(JSON.stringify({ key: k, earningsDate: ed, reported: rep && rep.reportDate, period: rep ? `${rep.calendarYear}Q${rep.calendarQuarter}` : null, reported_actual: act, guidance_period: next && next.reportDate, primaryEpsBasis: fe.primaryEpsBasis, pick, zacks_used,
     attribution: zacks_used ? "Data provided by Zacks Investment Research, Inc., www.zacksdata.com" : null }));
 }

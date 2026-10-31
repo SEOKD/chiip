@@ -22,7 +22,7 @@
 - 신규 후보는 **하루 최대 2개**(watch.csv의 오늘 등록 행 수로 확인). pulse가 오늘 이미 알파를 산정한 종목은 다시 산정하지 않는다.
 - 요일 일: ③ 알파 전 종목 재산정은 **토요일(KST) 첫 회차만**, ④ 월간 점검은 **그 달 첫 토요일 첫 회차만**, ⑤ 발굴 전체 선별(Discovery)은 **일요일(KST) 첫 회차만** — 오늘 이미 했는지는 judgments 파일·outputs/discovery/<오늘>.md·radar/state/tenbagger_last.txt로 확인한다.
 
-### Fiscal.ai 데이터 (마스터 지시 2026-10-30 — easyconomics 퇴역, Fiscal.ai만 MCP로)
+### Fiscal.ai 데이터 (1순위. 빈칸은 Zacks·Easyconomics 2순위, docs/channels/data.md)
 ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`로 불러 `execute_code`(자바스크립트, 60초·동시 6개)로 부른다 — 본보기 `scripts/fiscal/templates/*.js`(회사 키 `config/fiscal_keys.yaml`, 없으면 company_profile로 확인해 `py scripts/fiscal/adapter.py --key`), 데이터 계약 `knowledge/methods/data_fiscal.md`. 관문을 통과한 회차에서만 호출한다.
 - **시장 바탕(하루 한 번)**: Fiscal.ai `top_news`(중요도 1~2, 7일)를 그날 첫 통과 회차에 부르고 요지를 radar/state/tenbagger_market_<YYYYMMDD>.md에 저장해 재사용한다(매크로·포지셔닝 지표는 Fiscal.ai에 없다 — 쓰지 않는다).
 - **후보·알파 대상 종목마다**: `fundamentals.js`(시총·성장·이익률·추세·서프라이즈)·`consensus.js`(Fiscal.ai 자체 추정 컨센서스 1순위 + Zacks 5년 리비전·목표가·의견, Fiscal 칸이 빈 곳만 Zacks 컨센서스)·`news.js`(중요도 1~2)·`transcript_qa.js`(애널리스트 질문, 일본은 outputs/report/jp_qa/ IR Q&A)·`holders.js`(13F·내부자)·`fund_letters.js`(펀드 논지), 필요하면 company_segments_and_kpis·company_peers(세그먼트 경쟁사)·`prices.js`(일봉·월봉). 공매도 거래량은 FINRA.
