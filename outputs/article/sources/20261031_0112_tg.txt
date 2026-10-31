@@ -1,0 +1,25 @@
+[Chiip Pulse 01:12]
+
+🛰 ① AST SpaceMobile(ASTS)｜FCC, 위성직접통신용 25MHz 경매안 의결 · 위성통신·규칙안
+
+일반 휴대폰과 직접 연결되는 위성통신망 구축
+
+**주파수는 공짜가 아니라 경매다 — 입찰 상한이 없어 자금력이 큰 쪽이 유리**
+
+인사이트 5/10 · 확신도 중(FCC 배포안 기준, 최종본 미확인) · 보도됨, 입찰 환산은 Chiip 계산 · 기저율 미확인
+
+· 10MHz 전국 입찰 환산 $3.0B~$8.5B = ASTS 시총 $12.3B의 24~69%
+· 환산 단가 $0.90(SpaceX–EchoStar)~$2.53(AWS-3 경매)/MHz-인구
+· 주가 1개월 −28%, 이번 의결과의 연결은 미확인
+· 다른 해석: 통신사와 함께 입찰하면 부담 분산 → 의견서(공고 후 60일)
+· NTIA 연구(2027년 7월 시한)가 20MHz 위성 사용 여부를 가른다
+
+[FCC 배포안](https://docs.fcc.gov/public/attachments/DOC-425709A1.pdf) · [표결 보도](https://www.satellitetoday.com/government-military/2026/10/29/fcc-looks-to-update-direct-to-device-rules-and-auction-more-spectrum/)
+
+─────────
+
+간단히
+· General Matter(비상장) NRC 신청 수리 — Centrus(LEU) 경쟁은 2029년 이후, 심사 완료 2028년 4월로 회사 희망 12개월보다 늦다
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · 알파 레이더
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

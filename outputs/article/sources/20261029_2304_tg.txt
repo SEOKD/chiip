@@ -1,0 +1,23 @@
+[Chiip Pulse 23:04]
+
+💰 ① Anthropic 연계 텍사스 캠퍼스｜150억$ 대출 재매각 보류
+Nexus Data Centers가 짓는 Anthropic 전용 데이터센터(텍사스 허버드)
+
+**판단** AI 데이터센터 자금줄의 병목이 금리가 아니라 전력 인허가로 옮겨간 신호
+인사이트 6/10 · 확신도 중(단일 보도, 1차 서류 미확인) · 보도됨, 직전 대비 변화는 Chiip 대조 · 기저율 미확인
+
+· 조건 — 브리지 140억$+리볼버 ≈150억$, 은행이 일부 채권·대출로 넘기려던 계획 연기
+· 참여자 — 주관 Morgan Stanley(7월 보도), Google이 리스 4건·PPA 보증·지분 약 20%
+· 직전 대비 — 7월엔 "가을에 채권으로 차환" → 주 정부의 신규 프로젝트 보류로 연기
+· 함의 — 은행 장부에 대출이 남아 다음 캠퍼스 여력 축소, 칩·전력 장비 발주 연결은 미확인
+· 다음 — 보류 주체·조건(텍사스 규제 문서), Google 3Q 10-Q 보증 공시
+
+[보도](https://www.bloomberg.com/news/articles/2026-10-28/banks-shelve-bond-sale-for-anthropic-tied-texas-data-center) · [7월 구조](https://octus.com/resources/articles/anthropic-linked-nexus-data-centers-lining-up-roughly-15b-in-bridge-financing-from-banks/)
+
+─────────
+
+간단히
+· L3Harris(LHX)·HII(HII)·Textron(TXT) 3Q 실적 — 이미 알림, 3단 양식은 다음 회차
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · 알파 레이더
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

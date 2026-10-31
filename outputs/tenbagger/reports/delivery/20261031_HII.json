@@ -1,0 +1,28 @@
+{
+ "stem": "20261031_HII",
+ "date": "2026-10-31",
+ "ticker": "HII",
+ "company": "Huntington Ingalls Industries",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/34de9308d30d/outputs/tenbagger/reports/20261031_HII.md",
+  "html": "https://github.com/SEOKD/chiip/blob/34de9308d30d/outputs/tenbagger/reports/20261031_HII.html",
+  "commit": "34de9308d30d37d95b3132cf54af98bb264ee7bf",
+  "at": "2026-10-31T05:36:01+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/Bz6RTiPpVr5aGdPKU1rcSP",
+  "at": "2026-10-31T05:36:17+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/409b5d1e09988110ac96ea4c65dc31a6",
+  "stock_page": "https://app.notion.com/p/409b5d1e0998812980f0f9dd917cbca1",
+  "at": "2026-10-31T05:38:12+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-31T05:38:13+09:00"
+ }
+}

@@ -1,0 +1,29 @@
+[Chiip Pulse 06:59]
+
+💰 ① King Slide(2059)｜신공장 예산 NT$197억·전환사채 NT$100억
+
+서버 슬라이드 레일 세계 선두권 제조사, 고마진 랙 부품 (川湖)
+
+**두 달 만에 증설 규모가 약 2배 — 조달도 무이자 전환사채로 구체화**
+
+인사이트 6/10 · 확신도 중(1차 공시, 범위 차이 미확인) · 1차 공시, 검색 범위 내 보도 없음 · 기저율 미확인
+
+· 예산 NT$197억 = 시총의 2.1% · TTM 매출의 77%, 8월 콜 약 NT$100억
+· 금요일 장 마감 후 공시, 종가 NT$9,650(-2.3%)는 공시 전, PER 54배
+· 공장 공사 NT$117억 · 8월 '캐파 2배' 언급, 판매 물량·고객 계약 미확인
+· 장비 포함으로 범위만 넓어졌을 수도 → 공사 NT$117억은 8월 총액도 웃돎, 3Q 콜로 확인
+· 전환사채 전액 전환 시 시총의 1.1%(전환가 미정) → 11/2 첫 반응, 발행 조건 공시
+
+[TWSE 공시 원문](https://openapi.twse.com.tw/v1/opendata/t187ap04_L) · [8월 콜 보도](https://uanalyze.com.tw/articles/3983152984)
+
+─────────
+
+간단히
+· Alphabet(GOOGL) 골든 돔 참여 협의 보도 — 금액·역할 미공개, 실적 동인 변화 미확인
+  구글 검색·유튜브·클라우드 지주회사
+  [Bloomberg 색인](https://news.google.com/rss/articles/CBMitgFBVV95cUxNMlZwUE4wRzJXbjlYVEpYNHgwTVEwSEhfNnJUWF9zeXBjbE9odkJHS0JENVFqT2lvcjdOS3ViZzRVczZzYjlqcC1nOS04cm5FTFdfb2xLZm9ETkthd2NwVWlNX09Ea0dYXzBsd1pIY0RWbEdvVUhlRk9mekFJZ2NDVTVURHZYenBVM3k4SEVNTnJWSkdQalZjRVkxZC1Gby1Xbi1WeGcyTThMZVMwYlI5RnZhM1lSdw?oc=5)
+· Delta(2308) 3Q 실적 초청 설명회 4건 예정(11/18 싱가포르 · 12/1 타이베이 · 12/2 도쿄 · 12/9 유럽) — 개최 후 확인
+  서버·데이터센터 전원 공급 장치와 열관리·전력 인프라 세계 1위권
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · 알파 레이더
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

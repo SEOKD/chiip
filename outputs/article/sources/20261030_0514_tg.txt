@@ -1,0 +1,25 @@
+[Chiip Pulse 05:14]
+
+🚀 ① Monolithic Power(MPWR)｜알파 5.8 · 구간 미확인 — 실적 8-K
+데이터센터·차량용 전력 관리 반도체(전압 조정기) 회사
+
+**4Q 가이던스가 컨센서스를 약 3분기 앞당겼다 — AI 전력 병목 수혜 확인**
+인사이트 6/10 · 확신도 중(1차 서류, 주가 미확인) · 기저율: 알파 5 이상은 희귀 사건 — Bessembinder 2018
+
+· 3Q 매출 $1,202M(YoY +63%), 엔터프라이즈 데이터 $507M(YoY +165%)
+· 4Q 가이던스 중간 $1,350M vs Zacks 컨센서스 $1,217M(+11%)
+· 캐파 $6B → 2H27 $8B → $10B, 800V용 GaN 샘플 시작
+· 일회성 재고 확보 수요일 수도 → 1Q27 가이던스(2월) QoQ 유지 여부로 가름
+· 반증: 4Q 매출 $1,315M 미만 · 다음: 4Q 실적(2027-02 초)
+
+[EX-99.1 원문](https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20260930xexx991.htm)
+
+─────────
+
+간단히
+· OSI Systems(OSIS) FY27 1Q — 수주잔고 $2.1B 최대, AI 연결 약함(알파 3.6)
+· First Solar(FSLR) 3Q — AI 밸류체인 간접, 알파 3.6
+
+그 외 새 건 없음: 속보 판단 · 숏 리포트 · 미보도 원문 · AI 파이낸싱 · Defense
+Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

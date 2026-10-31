@@ -1,0 +1,28 @@
+{
+ "stem": "20261030_VICR",
+ "date": "2026-10-30",
+ "ticker": "VICR",
+ "company": "Vicor",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/19cf59dccd13/outputs/tenbagger/reports/20261030_VICR.md",
+  "html": "https://github.com/SEOKD/chiip/blob/19cf59dccd13/outputs/tenbagger/reports/20261030_VICR.html",
+  "commit": "19cf59dccd13a8c02259ad5f2fc8b56da23cfa1a",
+  "at": "2026-10-30T22:23:41+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/Ad3BnVGULTWznNrkCKFono",
+  "at": "2026-10-30T22:24:34+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/409b5d1e09988183a68dea6b57191f12",
+  "stock_page": "https://app.notion.com/p/409b5d1e099881caa1abcb88dc8e495d",
+  "at": "2026-10-30T22:24:34+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-30T22:24:35+09:00"
+ }
+}

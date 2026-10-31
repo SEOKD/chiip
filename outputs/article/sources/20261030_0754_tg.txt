@@ -1,0 +1,20 @@
+[Chiip Pulse 07:54]
+
+⚡ ① NVIDIA(NVDA)｜Anthropic $45B 클라우드 계약에 신용 보강 협의
+
+AI 가속기(GPU)·네트워킹·CUDA — AI 데이터센터 핵심 공급사
+
+**엔비디아가 칩 판매처의 임대 계약 신용까지 떠안는 구조 — 판매 확대이자 우발 부채 확대**
+
+인사이트 6/10 · 확신도 낮음(협의 단계, 단일 매체 보도) · 새로움: 보증이 특정 계약에 붙는 첫 보도 · 기저율 미확인
+
+· $45B·6년 = 연 $7.5B, 대상은 Nscale 웨스트버지니아 460MW 계약 추정(미확인)
+· 7월 네오클라우드 신용 보강 프로그램의 연장선, 일부 거래는 보류된 바 있음
+· Vera Rubin 칩 수요 선확보, HBM 공급사 매출 연결은 미확인
+· 다른 해석: 상장 전 Nscale 자금 조달용 보강 → 가를 자료: NVDA 10-Q 보증 잔액(11월 말)
+· Nscale IPO 서류·NVDA 3Q 실적(11월)의 보증·공급 의무 공시
+
+[보도(The Information)](https://news.google.com/rss/articles/CBMixAFBVV95cUxOdmhuRzVaOG9xaEQ5U1VOcWNNLVN4YUZ0NUpfVnM3Qy1KakJVMWxDbW1heDFWNkxOR2dJbnR5NnJNb1dSb1RaTnUxTkZlQzU3b0l4SGFuR1RMVXY1dmlhTzJTVzd2VmstYWhyX0pyeGEwUTdKM1FtVGZQenBCdE5fSE9zZm8wOGNxUEQ3WmVrSi1ZSlZyX3A3cWRlTkRhMThMSjVEYnhuTGt6RE5janN1NkFUVjgxV3dVVklCcm1JUWlkRVpf?oc=5) · [Nscale 계약 보도](https://theenergymag.com/news/market-news/anthropic-secures-460-mw-at-nscale-campus-in-45-billion-deal-report)
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · AI 파이낸싱 · 알파 레이더
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

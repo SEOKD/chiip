@@ -1,0 +1,28 @@
+{
+ "stem": "20261030_UCTT",
+ "date": "2026-10-30",
+ "ticker": "UCTT",
+ "company": "Ultra Clean Holdings, Inc.",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/4a8efcbfb463/outputs/tenbagger/reports/20261030_UCTT.md",
+  "html": "https://github.com/SEOKD/chiip/blob/4a8efcbfb463/outputs/tenbagger/reports/20261030_UCTT.html",
+  "commit": "4a8efcbfb463d826efad772790eeae126e337286",
+  "at": "2026-10-31T00:15:21+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/TuBr3xod9p5NitRaNdKvQ8",
+  "at": "2026-10-31T00:11:21+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/408b5d1e0998818c8255fb0d614247ca",
+  "stock_page": "https://app.notion.com/p/408b5d1e0998811cbcbbc81e2b11b18c",
+  "at": "2026-10-30T23:14:46+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-30T23:29:10+09:00"
+ }
+}

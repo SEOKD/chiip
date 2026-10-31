@@ -1,0 +1,296 @@
+<title>3Q26 반영도와 국내 해외 신호</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=Noto+Serif+KR:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column (research note), wide tables scroll inside their own frame; copper accent = interconnect metal */
+:root{
+  --bg:#f6f6f8; --surface:#ffffff; --ink:#1d1f2a; --muted:#5d6172; --line:#dcdde5;
+  --accent:#a8572a; --accent-soft:#f3e6dc;
+  --hi:#b23b3b; --mid:#a07a12; --lo:#2f7a55;
+  --f-display:"Noto Serif KR","Nanum Myeongjo",Georgia,serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#14151b; --surface:#1c1e26; --ink:#e7e8ee; --muted:#a2a6b6; --line:#2f323d;
+  --accent:#e09a6a; --accent-soft:#3a2a20; --hi:#e07a7a; --mid:#d6b048; --lo:#6cc79a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#14151b; --surface:#1c1e26; --ink:#e7e8ee; --muted:#a2a6b6; --line:#2f323d;
+  --accent:#e09a6a; --accent-soft:#3a2a20; --hi:#e07a7a; --mid:#d6b048; --lo:#6cc79a; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.65}
+.wrap{max-width:860px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:36px}
+.mode{font-family:var(--f-mono);font-size:12px;color:var(--muted);letter-spacing:.02em;word-break:keep-all}
+h1{font-family:var(--f-display);font-size:clamp(24px,5vw,34px);line-height:1.3;margin:6px 0 0;text-wrap:balance}
+h2{font-family:var(--f-display);font-size:21px;margin:0 0 12px;text-wrap:balance;display:flex;gap:10px;align-items:baseline}
+h2 .no{font-family:var(--f-mono);font-size:13px;color:var(--accent)}
+h3{font-size:16px;margin:22px 0 8px}
+p,li{max-width:68ch}
+.lede{display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:16px 18px}
+.lede ol{margin:0;padding-left:20px;display:grid;gap:8px}
+.status{font-size:13px;color:var(--muted)}
+.pill{display:inline-block;font-family:var(--f-mono);font-size:11px;padding:1px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.pill.s3{border-color:var(--accent);color:var(--accent)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line)}
+th{font-weight:600;font-size:12px;color:var(--muted);background:var(--bg);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dn{color:var(--hi)} .up{color:var(--lo)}
+.signals{display:grid;gap:12px}
+.sig{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;min-width:0}
+.sig .top{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.sig .who{font-weight:600}
+.sig .why{font-size:13.5px;color:var(--muted)}
+.sig .kr{font-size:12px;color:var(--muted)}
+.meter{display:flex;align-items:center;gap:8px;min-width:120px}
+.bar{flex:1;height:8px;border-radius:4px;background:var(--line);overflow:hidden;min-width:70px}
+.bar i{display:block;height:100%;border-radius:4px}
+.score{font-family:var(--f-mono);font-weight:500;width:1.6em;text-align:right}
+.note{font-size:13px;color:var(--muted)}
+.box{background:var(--accent-soft);border-radius:6px;padding:14px 16px;display:grid;gap:6px}
+.box ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.src{font-size:12.5px;display:grid;gap:4px;padding-left:18px;margin:0}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+footer{font-size:12px;color:var(--muted);display:grid;gap:4px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="mode">[모드: report + invest / 범위: 국내 기업 해외 신호 · 학회 · 미국 AI 밸류체인 12종목 3Q26 / 기준시각: 2026-10-30 KST · 주가 10-29 미국 종가]</div>
+  <h1>3Q26 실적은 얼마나 주가에 들어갔나, 그리고 국내 기업의 해외 흔적</h1>
+  <p class="status">Chiip 리서치 노트 · 종료 상태: <b>조건부 판단</b> · red-team 미검토</p>
+</header>
+
+<section class="lede">
+  <h2 style="margin:0"><span class="no">결론</span></h2>
+  <ol>
+    <li><b>국내 언론이 덜 다룬 해외 흔적 중 가장 무거운 것은 두 가지다.</b>
+      <ul>
+        <li>Anthropic S-1(10-26)이 SK하이닉스·삼성전자·마이크론을 핵심 HBM 공급사로 적고 공급 부족을 위험 요인으로 들었다.</li>
+        <li>TTMI·Amkor 콜에서 한국 관련 숫자가 나왔다. TTMI는 CCL·T-glass 품귀와 N+M 판가 약 4배, Amkor는 광주 증설로 한국 면적 +40%를 말했다.</li>
+      </ul>
+    </li>
+    <li><b>미국 AI 하드웨어는 6월 고점 대비 35~60% 낮은 곳에서 실적을 냈다.</b> 장비(LRCX·FORM·TER)는 좋은 실적에도 매도돼 반영도가 높다(8~9점). 기판·스토리지(TTMI·WDC)는 추정치가 크게 올랐는데도 주가가 내려 반영도가 낮다(3~4점).</li>
+    <li><b>TTMI가 가장 큰 괴리다.</b> 2027년 가이던스가 발표 전 컨센서스보다 매출 +18%, EPS +16% 높은데 주가는 하루 −27.7%였다.
+      <ul>
+        <li>같은 날 섹터도 함께 빠졌고, 이를 빼면 개별 하락분은 −15~20%로 추정한다.</li>
+        <li>하락 이유로 읽히는 것은 세 가지다. 데이터센터 매출 가이던스 미달, N+M 기판 램프 지연, Ophir를 $650M 현금으로 인수한 것이다.</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2><span class="no">①</span>국내 AI 밸류체인 — 해외에서 먼저·따로 나온 흔적</h2>
+  <div class="signals">
+    <article class="sig">
+      <div class="top"><span class="pill s3">L1 상대방 공시 · S3 잠정</span><span class="who">SK하이닉스 · 삼성전자</span></div>
+      <div><b>Anthropic S-1(2026-10-26):</b> SK hynix·Samsung Electronics·Micron을 핵심 HBM 공급사로 적고, 공급 부족을 핵심 위험 요인으로 들었다. 해외 2차 보도에 따르면 충족을 "보장할 수 없다"는 취지다.</div>
+      <div class="why">프런티어 AI 기업의 상장 서류에 한국 2사가 실명으로 들어간 사례다. 위험 요인 서술일 뿐 공급 계약 공개가 아니다. 원문 문맥은 미확인이다.</div>
+      <div class="kr">국내 보도: 미확인</div>
+    </article>
+    <article class="sig">
+      <div class="top"><span class="pill s3">L1 상대방 콜 · S3</span><span class="who">Amkor Technology Korea(광주)</span></div>
+      <div><b>Amkor 3분기 콜(10-26):</b></div>
+      <ul>
+        <li>광주 2개 동을 착공했다. 2028년에 <b>한국 면적이 2025년 대비 +40%</b>가 된다.</li>
+        <li>엔비디아와 한국 캐파용 $1.3B 계약을 맺었다.</li>
+        <li>선급금 계약 고객은 12곳으로, 총 약 $3B(애널리스트 질문 기준)이다.</li>
+      </ul>
+      <div class="why">한국 후공정 장비·소재 생태계에 직접적인 투자 신호다. 2027년 CAPEX 수치는 2월 콜에서 나온다.</div>
+      <div class="kr">국내 보도: 엔비디아 발표는 보도됨 · 콜 수치는 미확인</div>
+    </article>
+    <article class="sig">
+      <div class="top"><span class="pill">L1 상대방 콜 · S2</span><span class="who">두산(전자BG) · 이수페타시스</span></div>
+      <div><b>TTMI 3분기 콜(10-22):</b></div>
+      <ul>
+        <li>CCL 업체들이 고사양 소재로 옮겨 가면서 저사양 소재가 빠듯하다.</li>
+        <li>N+M 비대칭 기판의 판가는 기존 구조의 약 4배다. 비중이 커지면 2027년 마진이 200bp 이상 오른다.</li>
+        <li>N+M 전용 캐파에 $400M을 추가 투자한다.</li>
+      </ul>
+      <div class="why">두산 CCL에는 판가·믹스 상향 근거다. 이수페타시스에는 미국 경쟁사가 고부가 AI 기판 캐파를 공격적으로 늘린다는 경쟁 신호다.</div>
+      <div class="kr">국내 보도: 미확인</div>
+    </article>
+    <article class="sig">
+      <div class="top"><span class="pill">L1 상대방 IR·증권사 · S2</span><span class="who">SK하이닉스(HBM4 후공정 투자 속도)</span></div>
+      <div><b>ASMPT 2분기 실적 해설(화타이증권):</b> 긍정 요인은 실리콘포토닉스·중국, <b>부정 요인은 "한국과 HBM4"</b>였다. TCB 수주가 매출로 바뀌는 기간이 약 6~9개월로 길어졌다.</div>
+      <div class="why">HBM4 TC 본더 발주가 늦어지고 있다는 상대방 쪽 흔적이다. 한미반도체 등 국내 TCB 공급사 해석과 같이 봐야 한다. ASMPT 3분기 실적으로 확인할 것.</div>
+      <div class="kr">국내 보도: 미확인</div>
+    </article>
+    <article class="sig">
+      <div class="top"><span class="pill">L9 대만 언론 · S2</span><span class="who">삼성전자(테스트)</span></div>
+      <div><b>經濟日報:</b> 삼성이 TSMC와 같은 프로브 스테이션 공급사(旺矽 MPI 포함)를 채택한다는 전언이다. 치입 레이더 SIG-20261028-0008이며, 이번 재검색에서는 원문을 다시 찾지 못했다.</div>
+      <div class="why">삼성 파운드리 테스트 공급망이 TSMC 표준 쪽으로 옮겨 간다는 정황이다.</div>
+      <div class="kr">국내 보도: 미확인</div>
+    </article>
+    <article class="sig">
+      <div class="top"><span class="pill">L9 대만 언론·증권사 · S2</span><span class="who">삼성전기 · LG이노텍</span></div>
+      <div><b>대만 쪽 해석:</b></div>
+      <ul>
+        <li>엔비디아가 欣興과 캐파 예약 계약을 맺었다. 2027년 2분기부터 늘려 2028년 중반에 풀가동한다.</li>
+        <li>대만 증권사는 ABF가 2027년 22%, 2028년 29% 공급 부족이라고 추정한다.</li>
+        <li>엔비디아·AMD가 ABF 장기계약을 2028년까지 늘렸다는 설이 있다(미확인).</li>
+        <li>삼성전기 GlaSSEM(유리 코어 기판 합작사) 지분은 삼성전기 66%, 동우화인켐 34%다.</li>
+      </ul>
+      <div class="why">기판 수급이 2027~28년에 빡빡하다는 시각이다. 대만사 점유율 상승으로도 읽혀 한국사에는 양면적이다.</div>
+      <div class="kr">국내 보도: 엔비디아×삼성전기는 보도됨 · 대만 추정치는 미확인</div>
+    </article>
+    <article class="sig">
+      <div class="top"><span class="pill">L3 거울(대만 9월 월매출) · S2</span><span class="who">삼성전기 · 두산</span></div>
+      <div>기판: 欣興 <span class="num up">+64.7%</span> · 南電 <span class="num up">+57.8%</span> · 景碩 <span class="num up">+44.5%</span>. CCL: 台光電 <span class="num up">+168.9%</span> · 聯茂 <span class="num up">+110.7%</span>(모두 YoY).</div>
+      <div class="why">삼성전기 패키지솔루션과 두산 CCL 실적의 선행 거울이다. 10월 월매출은 11-10 전후에 나온다.</div>
+    </article>
+  </div>
+  <p class="note">국내에서도 이미 크게 보도돼 제외한 것: 엔비디아 GTC 베를린 삼성전기 세종·부산 전용 라인, OCP 2026 CXL 전시, 중국 CSP 장기 DRAM 계약 협의, SK하이닉스 8단 HBM4 공급설.<br>접근 한계: X는 로그인·유료 API가 필요해 본문을 보지 못했다. Reddit은 웹 검색으로 관련 스레드를 찾지 못했다(치입 RSS 수집기가 상시 경로). 유료 뉴스레터 본문은 읽지 않았다.</p>
+</section>
+
+<section>
+  <h2><span class="no">②</span>학회·논문</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>학회</th><th>일정</th><th>국내 기업 관련</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr><td><b>IEDM 2026</b></td><td class="num">12-12~16</td><td>SK하이닉스 기조연설(Yunik Son, Device Technology Solution 부사장). 서울시립대 논문 2편에 삼성·SK하이닉스가 공저자로 참여했다. 주제는 3D NAND와 AlBN/HZO 강유전체 메모리다.</td><td>전체 프로그램을 읽지 못함. 팁시트는 11월 공개 예정 → 논문 번호 미확인</td></tr>
+      <tr><td><b>ISSCC 2027</b></td><td class="num">2027-02-14~18</td><td>사전 프로그램 미공개(통상 11월)</td><td>공개 즉시 추적</td></tr>
+      <tr><td>OCP 2026</td><td class="num">10-12~15</td><td>SK하이닉스 2세대 256GB CXL 3.2. 삼성은 파트너와 분리형 CXL 메모리 아키텍처를 발표했고 AMD와 메모리 확장을 시연했다.</td><td>국내 보도됨</td></tr>
+      <tr><td>VLSI 2026</td><td class="num">6월</td><td>삼성 16단 VS-DRAM, SK하이닉스 4F² VG DRAM(레이트 뉴스). <b>경쟁 신호:</b> SAIMEMORY·인텔·PSMC의 3D 고대역폭 DRAM(via-in-one TSV).</td><td>HBM 대안 구조가 학회에 나왔다. 양산 병목은 미확인</td></tr>
+      <tr><td>ISSCC 2026</td><td class="num">2월</td><td>삼성 HBM4(1c DRAM + SF4 베이스 다이), SK하이닉스 LPDDR6 14.4Gbps</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">엔지니어 관점: 강유전체 메모리와 3D NAND 공저 논문은 탐색 단계 성격이 강하다. 기사 가치는 SK 기조연설 메시지가 더 크다. 12월 현장에서 필드 인텔로 확인할 대상이다.</p>
+</section>
+
+<section>
+  <h2><span class="no">③</span>3Q26 — 2Q 대비 무엇이 바뀌었나</h2>
+
+  <h3>TTMI · 고다층 PCB·RF 부품(데이터센터·네트워크 + 방위·항공)</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>항목</th><th>2Q 콜(08-05)</th><th>3Q 콜(10-22)</th></tr></thead>
+    <tbody>
+      <tr><td>매출</td><td class="num">$1.00B</td><td><span class="num">$1.20B</span> (+60% YoY) · 컨센서스 $1.13B 상회</td></tr>
+      <tr><td>조정 EPS</td><td class="num">$0.99</td><td><span class="num">$1.46</span> · 컨센서스 $1.25</td></tr>
+      <tr><td>조정 EBITDA 마진</td><td class="num">16.6%</td><td class="num">20.1%</td></tr>
+      <tr><td>데이터센터·네트워크</td><td>매출 40%. 3Q 49% 가이드</td><td>매출 41% (+115% YoY) · <b class="dn">가이드 대비 약 10% 미달</b></td></tr>
+      <tr><td>N+M 기판</td><td>3Q 약 $200M 예고(애널리스트 기억)</td><td>데이터센터·네트워크의 약 30%(≈$120M) · <b class="dn">램프 지연</b></td></tr>
+      <tr><td>수주</td><td>수주/매출 비율 1.49 · 방위·항공 수주잔고 $1.7B</td><td>수주/매출 비율 <b>2.1</b> · 방위·항공 수주잔고 $2.0B · 2027년 방위·항공 65% 가시성</td></tr>
+      <tr><td>가이던스</td><td>2026년 최소 $4B</td><td>4Q $1.42~1.44B · <b>2027년 $6.5~6.75B / EPS $8.10~8.90</b> (발표 전 컨센서스 $5.60B / $7.35)</td></tr>
+      <tr><td>자본 배분</td><td>인수 2건(&lt;$220M)</td><td>Ophir $650M 전액 현금 · N+M $400M 추가 · 이자 분기 약 $20M 증가</td></tr>
+      <tr><td>주가</td><td></td><td><span class="num dn">1일 −27.7%</span> · 6월 고점 대비 −60% · 선행 PER 13.9배 → 10.2배</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>AMKR · 반도체 후공정(패키징·테스트), 한국 광주·송도가 핵심 거점</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>항목</th><th>2Q 콜(07-27)</th><th>3Q 콜(10-26)</th></tr></thead>
+    <tbody>
+      <tr><td>매출</td><td class="num">$1.90B</td><td><span class="num">$1.99B</span> · 컨센서스 $2.02B 소폭 미달</td></tr>
+      <tr><td>매출총이익률</td><td class="num">16.8%</td><td><span class="num">18.3%</span> · 가이드 18.5~19.5% 하단 미달</td></tr>
+      <tr><td>컴퓨팅</td><td>+20% QoQ · 3Q 약 +30% 예고</td><td>+25%(공급 제약) · 4Q low double digit, YoY +50% 이상</td></tr>
+      <tr><td>신규</td><td>HDFO CPU 램프 · TSMC 10년 계약</td><td>하이퍼스케일러 HDFO CPU 추가 · 4Q에 2.5D 2개 프로그램</td></tr>
+      <tr><td>캐파</td><td>애리조나 1단계 약정 완료 · 광주 부지 확장</td><td>엔비디아 $1.3B · <b>한국 +40%</b> · 애리조나 2단계 · 고객 12곳 선급금</td></tr>
+      <tr><td>가이던스</td><td>3Q $1.95~2.05B</td><td>4Q $1.9~2.0B (컨센서스 $2.04B) · 2026 CAPEX 약 $2.5B · 2027 증액</td></tr>
+      <tr><td>주가</td><td></td><td><span class="num up">1일 +8.5%</span> · 6월 고점 대비 −56% · 2027 EPS 추정 −5%</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>나머지 10종목</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>종목</th><th>3Q vs 컨센서스</th><th>2Q 대비 바뀐 점</th><th>다음 분기</th><th>1일 반응</th></tr></thead>
+    <tbody>
+      <tr><td><b>CLS</b> 데이터센터 하드웨어 위탁생산</td><td>$5.83B(+83%) · EPS $3.30 · 가이던스 상단 초과</td><td>성장 +62% → +83% · 이익률 8.2% → 8.5%</td><td>2027 가속 재확인(수치 미확인)</td><td class="num up">+11.9%</td></tr>
+      <tr><td><b>APH</b> 커넥터·케이블</td><td>$10.23B vs 가이던스 $9.3~9.4B · EPS $0.80 vs $0.73</td><td>$8.76B → $10.23B · $4B 자사주 매입</td><td>미확인</td><td class="num up">+3.5%</td></tr>
+      <tr><td><b>GLW</b> 광섬유·특수유리</td><td>코어 $5.08B(가이던스 상회) · 광통신 +44%</td><td>2Q 미달(−18%) → 회복</td><td>추정 $5.19B → $5.23B</td><td class="num dn">−1.1%</td></tr>
+      <tr><td><b>VRT</b> 전력·냉각</td><td>$4.31B vs $3.76B · EPS $2.21 vs $1.82</td><td>성장 +24% → +61% · 수주 +100% 이상</td><td>연간 $14.65B+로 상향</td><td class="num up">+16.5%</td></tr>
+      <tr><td><b>TER</b> 테스트 장비</td><td>$1.31B vs $1.27B · EPS $2.29 vs $2.04</td><td>QoQ −2%</td><td>추정 $1.27B → $1.26B</td><td class="num dn">−3.2%</td></tr>
+      <tr><td><b>FORM</b> 프로브 카드</td><td>$280.5M vs $270.6M</td><td>+8.6% QoQ · 4분기 연속 최고</td><td>$275~295M · EPS $0.86~1.04</td><td class="num dn">−11.6%</td></tr>
+      <tr><td><b>LRCX</b> 식각·증착</td><td>$8.22B vs $8.14B · 영업이익률 40%</td><td>$6.72B → $8.22B</td><td>추정 $8.50B → $8.61B</td><td class="num dn">−11.8%</td></tr>
+      <tr><td><b>KLAC</b> 검사·계측</td><td>$4.14B vs $4.05B</td><td>$3.66B → $4.14B</td><td>$4.5~4.9B (+6% vs 컨센서스)</td><td class="num up">+5.5%</td></tr>
+      <tr><td><b>STX</b> HDD</td><td>$4.23B · 가이던스 상단 초과</td><td>$3.63B → $4.23B</td><td>추정 $4.52B → $4.76B</td><td class="num up">+4.5%</td></tr>
+      <tr><td><b>WDC</b> HDD</td><td>$4.38B vs $4.16B · EPS $4.64 vs $4.09</td><td>2Q 실망 → 반대</td><td><b>$5.10B(+18%) · EPS +27%</b></td><td class="num dn">−3.0%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">컨센서스는 발표 전일 Zacks 평균이다. APH·KLAC는 주식분할이 반영된 것으로 추정한다(미확인). 섹터 맥락: 대부분 6월 중하순에 고점을 찍었다. 7월 초 필라델피아 반도체지수가 이틀 −11.4% 빠졌다(밸류에이션 리셋·헤지펀드 매도·중국 AI 경쟁 우려). 10-22에는 TTMI·LRCX·CLS·GLW·VRT가 동반 하락했다.</p>
+</section>
+
+<section>
+  <h2><span class="no">④</span>주가 반영도 (10 = 이미 다 반영)</h2>
+  <p class="note">치입 판단이며 계산식 점수가 아니다. 근거는 네 가지다. ① 서프라이즈 대비 반응 ② 6월 고점 대비 위치·연초 대비 ③ 선행 PER과 변화 ④ 추정치 리비전 방향.</p>
+  <div class="tbl"><table id="scores">
+    <thead><tr><th>종목</th><th>반영도</th><th>선행 PER</th><th>연초 대비</th><th>고점 대비</th><th>근거</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="note">선행 PER = 10-29 종가 ÷ Zacks 컨센서스 EPS(괄호 안 회계연도). 리비전 전 값이 섞여 있다.</p>
+
+  <div class="box">
+    <b>반대 검증</b>
+    <ul>
+      <li>TTMI·WDC의 낮은 반영도는 '시장이 틀렸다'가 아닐 수 있다. 피크 이익에 낮은 멀티플을 주는 것은 사이클 업종의 정상 가격 결정이다.</li>
+      <li>TTMI의 2027년 숫자는 N+M 램프 실행에 달려 있다. 3분기 미달이 그 첫 반증이다.</li>
+      <li>반응을 1~3거래일로 측정했다. 섹터가 함께 움직인 날은 개별 반응이 과장된다.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="no">다음</span>반증 조건 · 확인할 일</h2>
+  <ul>
+    <li>TTMI: 4Q 데이터센터·네트워크 $700M과 N+M 비중 약 30% 달성 여부(2027년 2월 콜).</li>
+    <li>AMKR: 2027 CAPEX와 선급금 계약 추가. 4Q 컴퓨팅이 low double digit 성장에 못 미치면 하향한다.</li>
+    <li>WDC·STX: 다음 분기 가이던스 달성과 HDD 가격.</li>
+    <li>국내 연결: ASMPT 3분기(한국 HBM4 TCB), 어드밴테스트 10-28 결산 Q&amp;A, 대만 10월 월매출(11-10 전후), IEDM 팁시트·ISSCC 2027 사전 프로그램(11월).</li>
+  </ul>
+  <h3>확인 못 한 것</h3>
+  <ul>
+    <li>Anthropic S-1 원문 문맥: SEC가 연락처 없는 자동 요청을 막는다(403). <code>SEC_USER_AGENT</code> 설정이 필요하다.</li>
+    <li>IEDM 2026 국내 기업 논문 번호, CLS 컨센서스, APH·GLW 4Q 가이던스 수치.</li>
+    <li>국내 보도 여부는 주요 매체 검색 수준으로만 확인했다.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="no">출처</span></h2>
+  <ul class="src">
+    <li><a href="https://nvidianews.nvidia.com/news/nvidia-and-supply-chain-partners-expand-capacity-to-accelerate-ai-infrastructure-buildout">NVIDIA — Supply chain partners expand capacity (10-21)</a></li>
+    <li><a href="https://cryptobriefing.com/anthropic-ipo-filing-tsmc-hbm-reliance/">Crypto Briefing — Anthropic IPO filing·HBM</a> · <a href="https://www.sammyfans.com/2026/10/26/anthropic-samsung-sk-hynix-micron-hbm-ipo-filing/">Sammy Fans</a></li>
+    <li><a href="https://m.samsungsem.com/kr/newsroom/news/view.do?id=10613">삼성전기 보도자료 10-21</a></li>
+    <li><a href="https://finance.technews.tw/2026/10/26/unimicron-jensen-huang-capacity-rush-jan-shan-jie-new-pcb-game/">TechNews — 欣興 캐파 경쟁</a> · <a href="https://money.udn.com/money/amp/story/5607/9650547">經濟日報 — ABF 수급</a></li>
+    <li><a href="https://m.gelonghui.com/live/2582932">格隆汇 — ASMPT 2Q 해설</a></li>
+    <li><a href="https://www.koreatimes.co.kr/business/companies/20261016/sk-hynix-showcases-next-generation-ai-memory-technologies-beyond-hbm">Korea Times — SK hynix OCP</a> · <a href="https://semiconductor.samsung.com/news-events/tech-blog/ocp-global-summit-2026-scaling-innovation-for-the-ai-era/">Samsung — OCP 2026</a></li>
+    <li><a href="https://ieee-iedm.org/press-kit">IEDM press kit</a> · <a href="https://research.uos.ac.kr/node/8904">서울시립대 IEDM 채택</a> · <a href="https://www.vlsisymposium.org/wp-content/uploads/2026/04/2026-VLSI-Technical-Tipsheet-REVISED-FINAL-NO-IMAGES-4.24.26.docx">VLSI 2026 팁시트</a></li>
+    <li><a href="https://www.itiger.com/news/2650134873">AI 하드웨어 매도 = 밸류에이션 리셋(Stifel)</a> · <a href="https://axios.com/2026/07/19/ai-chips-stocks-china">Axios</a></li>
+    <li><a href="https://www.globenewswire.com/news-release/2026/10/22/3386129/0/en/ttm-technologies-inc-reports-third-quarter-2026-results.html">TTM 3Q26</a> · <a href="https://www.globenewswire.com/news-release/2026/10/19/3383408/0/en/ttm-technologies-inc-agrees-to-acquire-mks-inc-s-ophir-optics-business-adding-advanced-infrared-optics-capabilities.html">Ophir 인수</a> · <a href="https://www.barchart.com/story/news/8461502/amkor-nasdaqamkr-misses-q3-analysts-revenue-estimates">Amkor 3Q26</a></li>
+  </ul>
+</section>
+
+<footer>
+  <div>컨센서스·추정치: Data provided by Zacks Investment Research, Inc., <a href="https://www.zacksdata.com">www.zacksdata.com</a></div>
+  <div>실적·주가·트랜스크립트: Fiscal.ai(트랜스크립트는 자기 말 요약)</div>
+  <div><b>공개 자료 기반 분석이며 투자 권유가 아님.</b></div>
+</footer>
+</div>
+
+<script>
+const rows=[
+ ["FORM",9,"25.6배(FY27)","+75%","−39%","실적 상회·가이던스 상향에도 −11.6%"],
+ ["LRCX",8,"21.4배(FY28)","+49%","−41%","소폭 상회에 −11.8%(섹터 동반 포함)"],
+ ["TER",8,"25.9배(FY27)","+53%","−39%","상회했지만 QoQ 역성장·4Q 추정 하향"],
+ ["APH",8,"24.7배(FY27)","+22%","−7%","가이던스 +9% 초과에 +3.5%, 고점 근처"],
+ ["GLW",7,"28.9배(FY27)","+47%","−50%","2Q 실망에서 회복, 반응 무덤덤, 높은 멀티플"],
+ ["VRT",6,"27.4배(FY27)","+52%","−35%","대폭 상회에 +16.5%, 추정 리비전 전"],
+ ["KLAC",6,"25.2배(FY28)","+38%","−45%","가이던스 +6%에 +5.5%"],
+ ["STX",6,"11.8배(FY28)","+154%","−36%","상단 초과에 +4.5%, 사이클 멀티플"],
+ ["AMKR",5,"15.9배(FY27)","+4%","−56%","단기 미달에도 +8.5%, 구조적 계약 재반영 중"],
+ ["CLS",4,"미확인","−2%","−39%","+83% 성장에 +11.9%, 연초 대비 마이너스"],
+ ["WDC",4,"9.6배(FY28)","+130%","−47%","가이던스 +18~27%에 −3.0%, 피크 이익 취급"],
+ ["TTMI",3,"10.2배(FY27)","+27%","−60%","2027 가이던스 +16~18%에 −27.7%"]
+];
+const tb=document.querySelector("#scores tbody");
+const col=s=>s>=8?"var(--hi)":s>=5?"var(--mid)":"var(--lo)";
+for(const [t,s,pe,ytd,hi,why] of rows){
+  const tr=document.createElement("tr");
+  tr.innerHTML=`<td><b>${t}</b></td><td><div class="meter"><span class="score">${s}</span><span class="bar"><i style="width:${s*10}%;background:${col(s)}"></i></span></div></td><td class="num">${pe}</td><td class="num">${ytd}</td><td class="num">${hi}</td><td>${why}</td>`;
+  tb.appendChild(tr);
+}
+</script>

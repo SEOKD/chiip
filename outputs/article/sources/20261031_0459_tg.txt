@@ -1,0 +1,20 @@
+[Chiip Pulse 04:59]
+
+⚡ ① Ambarella(AMBA)｜NXP와 독점 협상 소문, 공시 없음
+
+저전력 엣지 AI 시스템온칩과 소프트웨어 설계
+
+**주가가 첫 소문 전보다 낮다 — 거래 확률을 낮게 보거나 단독 가치가 내려갔다**
+
+인사이트 5/10 · 확신도 저(Betaville 알림 전언, 1차 미확인) · 입찰자 이름이 새로움 · 기저율 미확인
+
+· 시총 $2.79B, $95~105 입찰설이면 $4.2B~$4.6B, 프리미엄 50~66%
+· 10/30 $63.12(−2.3%), 첫 소문 전 7/29 $69.19보다 −8.8%
+· 시너지: NXP 차량·산업용 칩에 비전 AI 칩을 더해 엣지 AI 내재화(추정)
+· NXP는 10/27 콜에서 자사주 매입 가속 강조, 소문이 틀렸을 수 있음 → 8-K로 가린다
+· 8-K·공동 발표 여부, 회계 3Q 실적(11월 말 전후, 일정 미확인)
+
+[SEC 공시 목록](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1280263&type=8-K) · [보도](https://www.tradingview.com/news/seekingalpha:7e3b38558094b:0-ambarella-in-exclusive-talks-with-nxp-semiconductors-report/)
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · AI 파이낸싱 · 알파 레이더
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

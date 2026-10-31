@@ -1,0 +1,21 @@
+{
+ "stem": "20261031_AXTI",
+ "date": "2026-10-31",
+ "ticker": "AXTI",
+ "company": "AXT, Inc.",
+ "github": {},
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/BSaBFi2bLkhPm6Ejteg663",
+  "at": "2026-10-31T03:23:00+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/409b5d1e0998814b9f61dcc05088c070",
+  "stock_page": "https://app.notion.com/p/409b5d1e09988165aafacde949faf80a",
+  "at": "2026-10-31T03:40:00+09:00",
+  "note": "클라우드 세션이 노션 커넥터로 게시 — HTML 임베드 없이 본문 요약 + 리포트 보기 링크. prepare 후 _notion.md 전체 본문·HTML 임베드로 교체 가능"
+ },
+ "telegram": null,
+ "note": "클라우드 세션 수동 회차(2026-10-31) — Artifact·노션 완료. 남은 것: prepare(GitHub) → send(텔레그램)"
+}

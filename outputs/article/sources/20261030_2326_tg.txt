@@ -1,0 +1,23 @@
+[Chiip Pulse 23:26]
+
+⚡ ① GE Vernova(GEV)｜Trench Group $9B 인수
+
+가스터빈·풍력·전력망 장비 제조사
+
+**병목 부품 내재화 — 가격은 싸지만 경쟁사 공급 유지가 변수**
+
+인사이트 6/10 · 확신도 중(보도자료 확인, 공급 조건 미확인) · 10/28 발표, 오늘 Bloomberg는 재해석 · 기저율: 현금·차입 인수라 주식 교환의 음(−) 반응 해당 없음
+
+· $9B = 시총 3.8%, 2028 매출 $1.9B·EBITDA 마진 36% 기준 13배(시너지 전)
+· GEV 자체 2028 EV/EBITDA 20.8배, 배수 차이 $5.3B(시총 2.3%, 배수 유지 가정). 실적과 같은 날 −1.9%라 분리 불가
+· 시너지: 변압기·계통 사업에 부싱·계기용 변압기 내재화, 납기 단축과 765kV 제품 결합 (추정)
+· 부품 중립성 훼손 → 경쟁 변압기사 이탈 vs 공급 유지 → 단순 확장. 中 TBEA 등 장기 계약 유지 여부로 가른다. 한국 3사 거래는 미확인
+· 규제 승인 조건(종결 2027년 말), 자금 조달 세부(현금·차입 절반씩)
+
+[보도자료](https://gevernova.com/news/press-releases/ge-vernova-acquire-trench-group) · [10-Q](https://www.sec.gov/Archives/edgar/data/0001996810/000199681026000163/gev-20260930.htm) · [中 공급 계약](https://transformer-technology.com/trench-group-signs-global-supply-deal-with-jshp-transformer/)
+
+─────────
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · AI 파이낸싱 · 알파 레이더
+Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

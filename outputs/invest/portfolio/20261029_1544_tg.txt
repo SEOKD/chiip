@@ -1,0 +1,16 @@
+﻿[치입 포트폴리오 15:44]
+■ INIO INNIO N.V. — 실적 상회 후 목표가 하향 2건 추가(밸류에이션 사유)
+기업: Jenbacher·Waukesha 가스 엔진 발전 설비 제조와 엔진 애프터서비스 — 데이터센터 자가발전 수요 포함
+- 무엇: Goldman Sachs 목표가 하향(제목상 사유 '추정치 상향', 새 목표가 미확인) · BNP Paribas Exane 목표가 $35로 하향(사유 '밸류에이션') — Investing.com 제목, 등급 변경 피드와 대조되지 않음
+- 기대 대비: 실적 후 목표가 움직임 4건 중 3건 하향(JPM·GS·BNP), 1건 상향(MS $42). BNP $35는 목표가 평균 $32.80보다 높고 현재가 $18.35보다 91% 위
+- 의미: 이익 추정은 올리고(GS 제목, 미대조) 적용 멀티플은 낮추는 흐름(추론, 미확인). 다른 해석: INIO만의 디레이팅인지, 가스엔진·전력 장비 피어 전체의 멀티플 하락인지 — 가를 자료: 피어 목표가 조정 여부·내일 데일리의 목표가 평균 변화
+- 다음 확인: GS 새 목표가 숫자 · 내일 데일리 컨센서스(10/30)
+- 원문: https://news.google.com/rss/articles/CBMiwgFBVV95cUxNMUNxeVBuMEJnRnQ2aC01c1BQZG1WbldJSVVpVVRMUFUwNTlzVm5QaTlFMkxZeFdXckNGeWprSU9ZRjRWcFEtSTAxTk9ZUkJGZmE2TE9iV2J2dzMzM0tTNVVjdkFnY1Y2RjB3SUlBT2JBMVBIUjc5SE84bVJCb2RDYUI2RElCQmN5VFp5RnZiNkQxVnFVRTJ2X0dXRE1FSWt0N0xIN1JrdGJDWkNzUXBQa0ZHcUxtbFd4eHZCWkhqaGlzQQ?oc=5
+
+■ 일정 (이미 발송 — 13:44·14:44)
+- 오늘 PWR 3분기 실적, 콜 KST 22:00
+- 오늘 밤 CCXI 환매 청구 마감 KST 10/30 06:00 · 11/2 임시주총 KST 23:00
+- 11/12 CBRS 3분기 실적(KST 11/13 07:00) · 11/9~10 CBRS 락업 마지막 해제(추정)
+
+보강 적용: P-20261029-01 · X-20261029-02·03·04·05
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

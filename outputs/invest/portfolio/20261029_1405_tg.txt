@@ -1,0 +1,10 @@
+[치입 포트폴리오 P0 · 늦은 보고] MRVL — Lumentum 인수 협상 보도
+- 무엇: Bloomberg 10/29 07:55 KST "합의 근접"(익명 취재원), The Information "협상 중". 1차 출처(8-K·보도자료) 없음, 조건 미공개.
+- 숫자(10/28 종가): MRVL 시총 2,262억$·선행 PER 34.3 / LITE 828억$·선행 PER 25.6·EV/매출 26.8배.
+- 주식 교환 가정: 프리미엄 0·20·30% → 기존 MRVL 주주 지분 73·70·68%, 선행 EPS +9·+4·+1%. EPS 손익분기 프리미엄 약 34%(LITE PER이 더 낮아서). 시간외 LITE +15~17%로 여유 축소.
+- 의미: DSP(MRVL)+InP 레이저·OCS(LITE) 풀스택 — 브로드컴식 수직 통합. 위험: 중국 SAMR 승인, 모듈 고객과 채널 충돌, 고가 인수.
+- 서류 정황(가설): MRVL 10/22 리볼버 15억→30억$ 증액(8-K 10/23).
+- 다음 확인: 공식 발표·조건, HSR·SAMR, MRVL FQ3 실적(12월 초 예상).
+- 원문: https://www.bloomberg.com/news/articles/2026-10-28/marvell-is-said-to-near-deal-for-lumentum-in-ai-related-megadeal
+보고 누락 원인(판정 기준이 한국 기업 중심 → P2)은 고쳤습니다. 상세: outputs/invest/portfolio/20261029_MRVL_LITE_flash.md
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님

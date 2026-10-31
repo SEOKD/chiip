@@ -1,0 +1,28 @@
+{
+ "stem": "20261030_TTMI",
+ "date": "2026-10-30",
+ "ticker": "TTMI",
+ "company": "TTM Technologies",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/7f8901cb1257/outputs/tenbagger/reports/20261030_TTMI.md",
+  "html": "https://github.com/SEOKD/chiip/blob/7f8901cb1257/outputs/tenbagger/reports/20261030_TTMI.html",
+  "commit": "7f8901cb1257122d67a425e2873f37d6170e2d68",
+  "at": "2026-10-30T23:27:45+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/QR9e2JxDWXkPgjjyDDLPGW",
+  "at": "2026-10-30T23:29:07+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://app.notion.com/p/409b5d1e0998815fa23fe1a17afd820c",
+  "stock_page": "https://app.notion.com/p/409b5d1e099881ccb896d0362fae6c30",
+  "at": "2026-10-30T13:24:21+09:00"
+ },
+ "telegram": {
+  "sent": true,
+  "notion_ok": true,
+  "at": "2026-10-30T23:29:08+09:00"
+ }
+}

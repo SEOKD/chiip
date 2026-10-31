@@ -1,0 +1,22 @@
+[Chiip Pulse 01:09]
+
+⚡ ① Amazon(AMZN)｜공급사 금융 담보 대출 최대 $80B 신규
+
+AWS 클라우드·이커머스·광고 회사
+
+**CAPEX 일부가 부채로 옮겨 가며, 회사 FCF로는 상환 부담이 안 보이는 구조**
+
+인사이트 6/10 · 확신도 높음(1차 서류) · 보도됨, 19:27 보고 때 놓친 문구 · 기저율: 서류 문장 변화는 당일 반응이 작음(Lazy Prices 2020)
+
+· 2027년 1Q~2028년 3Q 인출, 변동금리, 건별 5년 만기, 구매 자산 담보
+· 한도 $80B = 시총의 3.0%·장기부채 $173.1B의 46%, 직전 10-Q에 없던 문구
+· 원금 상환은 재무활동 → 회사 FCF에 안 잡힘, 구매 시 CAPEX 계상은 미확인
+· 대주·공급사·금리 미기재, 공급사 매출 연결 미확인
+· 다른 해석: 자금 압박 아닌 공급사의 판매 금융 → 금리·대주 공개(2월 10-K)
+
+[10-Q 원문](https://www.sec.gov/Archives/edgar/data/1018724/000101872426000040/amzn-20260930.htm) · [보도](https://news.google.com/rss/articles/CBMinAFBVV95cUxPbV9xdkJ3MkJYSWowMDlLUEtfRldlTUtIR3ZCQlN1REFzb2cxUWdCZldlTzhpQUNISjFsdVZYaHBMVWVhSkJ4N3MyYTUxTFFSTzdLcnMzSTk0QW0waDc2NzZVWm4wejcxNkNhMG9scUpvMkl4ei1TUG9CNFJkbkdmS0xkLXVTRUdfTTlFanBFWUcxajFQZ2U5WUxLTU0?oc=5)
+
+─────────
+
+그 외 새 건 없음: 숏 리포트 · 미보도 원문 · 알파 레이더
+1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님
