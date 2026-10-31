@@ -80,7 +80,7 @@ class TestFiscalCalendar(unittest.TestCase):
         self.assertEqual(ec.kst_day({"date": "2026-11-04"}), "2026-11-04")
 
     def test_us_after_close_without_time_moves_to_next_morning(self):
-        data = {"events": [{"q": "us", "ticker": "PWR", "date": "2026-11-04", "status": "confirmed", "session": "after_close", "period": "Q3 2026", "roles": ["financial_results_release"]}]}
+        data = {"events": [{"q": "us", "ticker": "PRIM", "date": "2026-11-04", "status": "confirmed", "session": "after_close", "period": "Q3 2026", "roles": ["financial_results_release"]}]}
         e = ec.fiscal_events(WL, data)[0]
         self.assertEqual((e["date"], e["date_kst"], e["local"]), ("2026-11-04", "2026-11-05", "아침(미국 장후)"))
 
