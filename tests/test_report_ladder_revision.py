@@ -39,10 +39,10 @@ class TestLadder(unittest.TestCase):
         self.assertEqual(ladder.steps_for(3e12), [2])
 
     def _inputs(self, mcap=2.0):
-        co = {"rev0": 2.0, "unit_usd": 1e9, "market": {"net_debt": 0.3}}
+        co = {"rev0": 2.0, "unit_usd": 1e9, "market": {"net_debt": 0.3, "shares": 0.1}}
         r = {"mcap": mcap, "unit": "B$", "upside": {"p_h": {2: 0.4, 3: 0.2, 5: 0.05, 10: 0.0}, "required": {2: (0.2, (60.0, 100, "")), 3: (0.3, (90.0, 100, "")), 5: (0.5, (98.0, 100, "")), 10: (0.7, (100.0, 100, ""))}}}
         steps = {str(k): {"path": "p", "outlook": "o", "verdict": "v"} for k in (2, 3, 5, 10)}
-        dp = {"ladder": {"exit": {"pe": 20, "net_margin": 0.1}, "market": {"name": "M", "size": 100}, "steps": steps}}
+        dp = {"ladder": {"exit": {"pe": 20, "net_margin": 0.1, "opm": 0.14}, "base": {"eps": 0.5, "opm": 0.08}, "market": {"name": "M", "size": 100}, "steps": steps}}
         return dp, co, r
 
     def test_required_revenue(self):
@@ -54,6 +54,46 @@ class TestLadder(unittest.TestCase):
         self.assertAlmostEqual(x["rev"], 2.0)
         self.assertAlmostEqual(c["rows"][3]["rev"], 10.0)
         self.assertAlmostEqual(c["rows"][1]["share"], 0.03)
+
+    def test_required_margin_and_eps(self):
+        dp, co, r = self._inputs()
+        c = ladder.compute(dp, co, r)
+        x = c["rows"][0]
+        self.assertAlmostEqual(x["margin"], 0.14)
+        self.assertAlmostEqual(x["eps"], 2.0)   # 필요 순이익 0.2 ÷ 주식 0.1
+        self.assertAlmostEqual(x["eps_cagr5"], 4 ** 0.2 - 1)
+        self.assertEqual((c["eps0"], c["margin0"], c["margin_name"]), (0.5, 0.08, "OPM"))
+        sec = ladder.report_section(dp, co, r)
+        need = next(b for b in sec["blocks"] if b.get("type") == "table")
+        self.assertEqual(need["headers"], ["배수", "목표 시가총액", "필요 매출", "매출 CAGR 5년 / 10년", "OPM", "필요 EPS", "EPS CAGR 5년 / 10년"])
+        self.assertEqual(need["rows"][0][:1] + need["rows"][0][4:6], ["**지금**", "8.0%", "$0.50"])
+        self.assertEqual(need["rows"][1][4:6], ["14.0%", "$2.00"])
+        self.assertTrue(any("**필요 조건:** 매출 $2.00B" in i for b in sec["blocks"] if b.get("type") == "ul" for i in b["items"]))
+        self.assertIn("EPS $2.00", ladder.summary_item(dp, co, r)["a"])
+
+    def test_ebitda_exit_and_step_override(self):
+        dp, co, r = self._inputs()
+        dp["ladder"]["exit"] = {"ev_ebitda": 10, "ebitda_margin": 0.3, "net_margin": 0.1}
+        dp["ladder"]["base"] = {"eps": -0.2, "ebitda_margin": 0.2}
+        dp["ladder"]["steps"]["10"]["exit"] = {"ebitda_margin": 0.4}
+        c = ladder.compute(dp, co, r)
+        self.assertAlmostEqual(c["rows"][0]["rev"], (4.0 + 0.3) / 10 / 0.3)
+        self.assertAlmostEqual(c["rows"][3]["rev"], (20.0 + 0.3) / 10 / 0.4)
+        self.assertEqual(c["margin_name"], "EBITDA Margin")
+        self.assertIsNone(c["rows"][0]["eps_cagr5"])   # 기준 EPS 적자면 CAGR을 쓰지 않는다
+        self.assertIn("기준 적자", ladder.summary_item(dp, co, r)["a"])
+
+    def test_margin_is_required_unless_legacy(self):
+        dp, co, r = self._inputs()
+        del dp["ladder"]["exit"]["opm"]
+        with self.assertRaises(ValueError):
+            ladder.report_section(dp, co, r)
+        self.assertIn("OPM 미확인", ladder.summary_item(dp, co, r, strict=False)["a"])
+
+    def test_base_eps_from_last_four_quarters(self):
+        rows = [{"period": f"2026Q{i}", "metric": "EPS", "actual": 1.0} for i in (1, 2, 3)] + [{"period": "2025Q4", "metric": "EPS", "actual": 2.0}, {"period": "2025Q3", "metric": "EPS", "actual": 9.0}]
+        self.assertEqual(ladder.base_eps({"consensus": {"surprise": rows}}), 5.0)
+        self.assertIsNone(ladder.base_eps({"consensus": {"surprise": rows[:3]}}))
 
     def test_section_needs_every_step(self):
         dp, co, r = self._inputs()
@@ -106,7 +146,9 @@ class TestLeadAndMerge(unittest.TestCase):
 
     def test_lead_needs_six_lenses(self):
         dp = {"narrative": {"lead": self.lead()}}
-        self.assertTrue(narrative_view.lead_section(dp)["h2"].startswith("내러티브 — "))
+        sec = narrative_view.lead_section(dp)
+        self.assertTrue(sec["h2"].startswith("내러티브 — "))
+        self.assertIn("무엇이 기업가치를 바꾸나", [b.get("text") for b in sec["blocks"]])
         dp["narrative"]["lead"]["lenses"].pop()
         with self.assertRaises(ValueError):
             narrative_view.lead_section(dp)
@@ -178,12 +220,12 @@ class TestScrub(unittest.TestCase):
         self.assertIn("업사이드 +20%", h)
 
     def test_gloss_once_and_keeps_urls_and_existing(self):
-        d = {**BASE, "verdict": {"view": "EPS가 올랐다. EPS는 또 올랐다. WFE(장비 투자)와 EV/매출을 본다."},
+        d = {**BASE, "verdict": {"view": "CAGR이 올랐다. CAGR은 또 올랐다. WFE(장비 투자)와 EV/매출을 본다."},
              "summary": [{"q": "q", "a": "CY2027 추정과 CY2028 추정. SEMI 자료 https://x.com/EPS/WFE"}],
              "sections": [{"h2": "s", "blocks": [{"type": "table", "headers": ["a"], "rows": [["DCF 1.1배"]]}]}]}
         h = report_html.render(d)
-        self.assertEqual(h.count("EPS(주당순이익)"), 1)
-        self.assertIn("EPS는 또", h)
+        self.assertEqual(h.count("CAGR(연평균 성장률)"), 1)
+        self.assertIn("CAGR은 또", h)
         self.assertIn("WFE(장비 투자)", h)
         self.assertIn("EV/매출(기업가치 ÷ 매출)", h)
         self.assertIn("CY2027(캘린더 2027년)", h)
@@ -191,6 +233,14 @@ class TestScrub(unittest.TestCase):
         self.assertIn("SEMI(국제반도체장비재료협회)", h)
         self.assertIn("https://x.com/EPS/WFE", h)
         self.assertIn("DCF(현금흐름 할인 평가) 1.1배", h)
+
+
+    def test_no_gloss_terms(self):
+        d = {**BASE, "summary": [{"q": "q", "a": "Fwd 1Y P/E와 P/B, EBITDA(상각전영업이익), EPS, 멀티플(배수), EV/EBITDA, EBIT, 멀티플(−54%)"}], "sections": []}
+        h = report_html.render(d)
+        self.assertIn("Fwd 1Y P/E와 P/B, EBITDA, EPS, 멀티플, EV/EBITDA(기업가치 ÷ 상각전영업이익)", h)
+        self.assertIn("EBIT(이자·세금 차감 전 이익)", h)
+        self.assertIn("멀티플(−54%)", h)
 
 
 class TestSurprise(unittest.TestCase):

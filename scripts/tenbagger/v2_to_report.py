@@ -174,7 +174,7 @@ def earnings_section(entity, r):
     return earnings_view.report_section(json.loads(dp_path.read_text(encoding="utf-8")), co, r["mcap"], r["coc"]["wacc"], r["g_term"], r["unit"])
 
 
-def extra_sections(entity, r):
+def extra_sections(entity, r, strict=True):
     """⑨ 내러티브·수급·가격 구간 — 재료가 없으면 None(그 절만 빠진다)"""
     dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
     dp = json.loads(dp_path.read_text(encoding="utf-8")) if dp_path.exists() else {}
@@ -183,12 +183,12 @@ def extra_sections(entity, r):
     import narrative_view
     co = v2run.load_company(entity)
     co["market"] = v2run.resolve_market(co)
-    out = {"lead": narrative_view.lead_section(dp, r.get("_mm")), "ladder": ladder.report_section(dp, co, r),
+    out = {"lead": narrative_view.lead_section(dp, r.get("_mm")), "ladder": ladder.report_section(dp, co, r, strict),
            "narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None, "summary": []}
     if out["lead"]:
         out["summary"].append(narrative_view.summary_item(dp))
     if out["ladder"]:
-        out["summary"].append(ladder.summary_item(dp, co, r))
+        out["summary"].append(ladder.summary_item(dp, co, r, strict))
     for k, mod in (("flow", flow), ("levels", levels)):
         try:
             sec = mod.report_section(entity, dp)
@@ -239,7 +239,7 @@ def main(argv):
     a = ap.parse_args(argv)
     sec, r = build(a.entity, a.draws)
     esec = earnings_section(a.entity, r)
-    xs = extra_sections(a.entity, r)
+    xs = extra_sections(a.entity, r, strict=not a.legacy)
     if a.merge:
         fw = json.loads((ROOT / "knowledge" / "models" / "companies" / a.entity / "datapack.json").read_text(encoding="utf-8")).get("forward") or {}
         if not a.legacy and "horizons" not in fw:

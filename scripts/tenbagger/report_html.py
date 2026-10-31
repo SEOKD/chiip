@@ -429,7 +429,7 @@ def _strip_vendor(x):
 
 
 def _glossary():
-    return yaml.safe_load((ROOT / "config" / "report_glossary.yaml").read_text(encoding="utf-8"))["terms"]
+    return yaml.safe_load((ROOT / "config" / "report_glossary.yaml").read_text(encoding="utf-8"))
 
 
 _YEAR = re.compile(r"(?<![A-Za-z0-9])(CY|FY)(20\d\d)(?![A-Za-z0-9(（])")
@@ -465,11 +465,14 @@ def gloss_text(s, terms, pat, seen):
 
 def gloss(d):
     """읽는 순서대로(Chiip View → 요약 → 본문 글·표) 용어를 처음 나오는 곳에서 풀이한다. 숫자 타일·차트 글자는 건드리지 않는다"""
-    terms = _glossary()
+    glossary = _glossary()
+    terms = glossary["terms"]
     names = sorted(terms, key=len, reverse=True)
+    plain = glossary.get("no_gloss") or {}   # 마스터 지시 2026-10-31 — 이 용어는 괄호 풀이를 달지 않는다. 모델이 직접 적은 풀이도 지운다
+    drop = re.compile("|".join(rf"(?<={re.escape(t)})[(（](?:{'|'.join(re.escape(w) for w in ws)})[)）]" for t, ws in plain.items())) if plain else None
     pat = re.compile(r"(?<![A-Za-z0-9/.\-])(?:" + "|".join(re.escape(x) for x in names) + r")(?![A-Za-z0-9/\-])")
     seen = set()
-    g = lambda x: gloss_text(x, terms, pat, seen) if isinstance(x, str) else x
+    g = lambda x: gloss_text(drop.sub("", x) if drop else x, terms, pat, seen) if isinstance(x, str) else x
     if d.get("verdict"):
         d["verdict"]["view"] = g(d["verdict"].get("view"))
     for s in d.get("summary") or []:

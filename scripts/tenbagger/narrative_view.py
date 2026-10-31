@@ -97,7 +97,7 @@ def lead_section(dp, mm=None):
         B[-1]["items"] = [x for x in B[-1]["items"] if x]
     if lead.get("why_excited"):
         B += [{"type": "h3", "text": "투자자들은 왜 열광했나"}, {"type": "p", "text": lead["why_excited"]}]
-    B.append({"type": "h3", "text": "여섯 렌즈 — 무엇이 기업가치를 바꾸나"})
+    B.append({"type": "h3", "text": "무엇이 기업가치를 바꾸나"})   # 앞의 '여섯 렌즈'는 뺀다(마스터 지시 2026-10-31)
     items = []
     for k in LENSES:
         x = have[k]
