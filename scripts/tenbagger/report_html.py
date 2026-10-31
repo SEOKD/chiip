@@ -41,7 +41,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "radar"))
-from units import chiip_name, money_units  # noqa: E402
+from units import chiip_name, fx_units, money_units  # noqa: E402
 
 COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
@@ -57,8 +57,13 @@ table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{bord
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
 ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px;overflow-wrap:anywhere}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
-.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}"""
+.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}
+.dash{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}.dash>div{background:var(--card);border-radius:10px;padding:9px 11px;min-width:0}.dash .k{font-size:11.5px;color:var(--mut)}.dash .v{font-size:18px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.dash .s{font-size:11.5px;color:var(--mut);line-height:1.4;margin-top:2px;overflow-wrap:anywhere}
+@media (max-width:640px){.dash{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.boxes{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}.bx{border:1px solid var(--line);border-radius:12px;overflow:hidden}.bx .bt{font-weight:700;padding:9px 12px;background:var(--card);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.bx .tag{font-size:12px;font-weight:600;color:var(--c)}.bx .br{display:grid;grid-template-columns:66px minmax(0,1fr);gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13.5px}.bx .bl{color:var(--mut);font-size:12px;padding-top:1px}
+.rate-buy{color:var(--b)}.rate-sell{color:var(--c)}.rate-mid{color:var(--e)}"""
 DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
+DISCLAIMER3 = "구매 등급은 업사이드·손익비 규칙이 계산한 모델 등급으로, 개인의 보유 종목·자금 사정을 반영하지 않는다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 
 
 def t(s):
@@ -147,7 +152,7 @@ def chart_candle(c):
     bars = [b for b in c.get("bars") or [] if len(b) >= 5 and None not in b[1:5]]
     if not bars:
         return ""
-    W, H, L, R, T, B = 700, 300, 52, 96, 12, 26
+    W, H, L, R, T, B = c.get("w", 700), 300, 40 if c.get("w") else 52, 86 if c.get("w") else 96, 12, 26
     lo = min(min(b[3] for b in bars), *[h["y"] for h in c.get("hlines") or []] or [math.inf], *[z["y0"] for z in c.get("zones") or []] or [math.inf])
     hi = max(max(b[2] for b in bars), *[h["y"] for h in c.get("hlines") or []] or [-math.inf], *[z["y1"] for z in c.get("zones") or []] or [-math.inf])
     pad = (hi - lo) * 0.04 or 1
@@ -161,6 +166,12 @@ def chart_candle(c):
     for z in c.get("zones") or []:
         col = "var(--d)" if z.get("tone") == "grn" else "var(--b)"
         g.append(f'<rect x="{L}" y="{Y(z["y1"]):.1f}" width="{W - L - R}" height="{max(Y(z["y0"]) - Y(z["y1"]), 2):.1f}" fill="{col}" opacity="0.16"><title>{t(z.get("label"))} {_fmt(z["y0"])}~{_fmt(z["y1"])}</title></rect>')
+    for ln in c.get("lines") or []:   # 이동평균선(마스터 지시 2026-10-31)
+        col = COLORS.get(ln.get("color", "a"), "var(--a)")
+        at = {str(b[0]): i for i, b in enumerate(bars)}
+        pts = [(at[str(d)], v) for d, v in ln.get("points") or [] if str(d) in at and v is not None and lo <= v <= hi]
+        if len(pts) > 1:
+            g.append(f'<polyline fill="none" stroke="{col}" stroke-width="1.6" points="{" ".join(f"{L + i * gw + gw / 2:.1f},{Y(v):.1f}" for i, v in pts)}"/>')
     for h in c.get("hlines") or []:
         col = COLORS.get(h.get("color", "e"), "var(--e)")
         g.append(f'<line x1="{L}" x2="{W - R}" y1="{Y(h["y"]):.1f}" y2="{Y(h["y"]):.1f}" stroke="{col}" stroke-dasharray="4 3"/>'
@@ -174,7 +185,37 @@ def chart_candle(c):
                  f'<title>{t(d)} 시 {_fmt(o)} 고 {_fmt(hh)} 저 {_fmt(ll)} 종 {_fmt(cl)}</title></rect>')
         if i % step == 0:
             g.append(f'<text x="{x:.1f}" y="{H - 8}" text-anchor="middle" style="font-size:9.5px">{t(str(d)[2:])}</text>')
-    return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+    legend = _legend(c["legend"]) if c.get("legend") else ""
+    return legend + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
+def chart_actest(c):
+    """분기 실적 vs 컨센서스 — 패널마다 실적·컨센서스 막대를 다른 색으로(마스터 지시 2026-10-31 "매출과 EPS 같이 그려라. actual과 estimated 바는 다른 색으로")"""
+    panels = [p for p in c.get("panels") or [] if p.get("categories")]
+    if not panels:
+        return ""
+    W, PH, L, gap = 460, 170, 34, 34
+    g, y0 = [], 16
+    for p in panels:
+        cats, act, est = p["categories"], p.get("actual") or [], p.get("est") or []
+        vals = [v for v in act + est if v is not None]
+        hi = max(vals + [0]) * 1.18 or 1
+        Y = lambda v: y0 + (hi - v) / hi * (PH - 26)
+        gw = (W - L - 10) / len(cats)
+        g.append(f'<text x="{L}" y="{y0 - 5}" style="fill:var(--fg);font-size:12px;font-weight:700">{t(p.get("name"))}</text><line x1="{L}" x2="{W - 10}" y1="{Y(0):.1f}" y2="{Y(0):.1f}" stroke="var(--line)"/>')
+        for i, cat in enumerate(cats):
+            x = L + i * gw + gw * 0.12
+            bw = gw * 0.36
+            for j, (v, col) in enumerate(((act[i] if i < len(act) else None, "var(--c)"), (est[i] if i < len(est) else None, "var(--e)"))):
+                if v is None:
+                    continue
+                xb = x + j * (bw + 2)
+                g.append(f'<rect x="{xb:.1f}" y="{Y(v):.1f}" width="{bw:.1f}" height="{max(Y(0) - Y(v), 1):.1f}" rx="2" fill="{col}"><title>{t(cat)} {"실적" if j == 0 else "컨센서스"} {_fmt(v)}</title></rect>')
+                if j == 0 or (i < len(act) and act[i] is None):
+                    g.append(f'<text x="{xb + bw / 2:.1f}" y="{Y(v) - 3:.1f}" text-anchor="middle" style="font-size:9px">{_fmt(v)}</text>')
+            g.append(f'<text x="{x + gw * 0.38:.1f}" y="{Y(0) + 12:.1f}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
+        y0 += PH + gap - 14
+    return _legend([{"name": "실적", "color": "c"}, {"name": "컨센서스", "color": "e"}]) + f'<svg viewBox="0 0 {W} {y0 - 10}">{"".join(g)}</svg>'
 
 
 def chart_revision(c):
@@ -307,7 +348,7 @@ def chart_scenario(c):
     g, y = [], 10
     for k in cases:
         col = COLORS.get(k.get("color", "c"), "var(--c)")
-        mult = f" ({k['value'] / cur:.1f}배)" if cur else ""
+        mult = f" ({k['value'] / cur - 1:+.0%})" if cur else ""
         prob = f" · 확률 {k['prob'] * 100:.0f}%" if k.get("prob") is not None else ""
         g.append(f'<text x="{L - 6}" y="{y + 12}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(k["name"])}</text>'
                  f'<rect x="{L}" y="{y}" width="{max(2, X(k["value"]) - L):.1f}" height="16" rx="3" fill="{col}"><title>{t(k["name"])}: {_fmt(k["value"])}{t(c.get("unit", ""))}{mult}{prob} — {t(k.get("why", ""))}</title></rect>'
@@ -317,16 +358,19 @@ def chart_scenario(c):
         g.append(f'<line x1="{X(cur):.1f}" x2="{X(cur):.1f}" y1="4" y2="{y}" stroke="var(--fg)" stroke-dasharray="4 3"/><text x="{X(cur) + 4:.1f}" y="{y + 12}">현재 {_fmt(cur)}</text>')
         ev = sum((k.get("prob") or 0) * k["value"] for k in cases)
         if ev and abs(sum(k.get("prob") or 0 for k in cases) - 1) < 0.02:
-            g.append(f'<text x="{L}" y="{y + 26}" style="fill:var(--fg)">확률 가중 {_fmt(ev)} ({ev / cur:.2f}배)</text>')
+            g.append(f'<text x="{L}" y="{y + 26}" style="fill:var(--fg)">확률 가중 {_fmt(ev)} ({ev / cur - 1:+.0%})</text>')
             y += 14
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision}
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest}
 
 
 def figures(d):
-    """그림 번호 순서 [(절, 블록)…] — pin이 있는 차트를 그 번호에 꽂고 나머지는 절 순서대로. HTML 갤러리·마크다운·노션이 같은 번호를 쓴다"""
+    """그림 번호 순서 [(절, 블록)…] — pin이 있는 차트를 그 번호에 꽂고 나머지는 절 순서대로. HTML 갤러리·마크다운·노션이 같은 번호를 쓴다.
+    format 3(2026-10-31 양식)은 report_layout이 정한 d['gallery'] 순서 그대로"""
+    if d.get("format") == 3:
+        return [(None, {"type": "chart", "chart": c}) for c in d.get("gallery") or [] if CHARTS.get(c.get("kind"))]
     figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind"))]
     pinned = sorted((f for f in figs if f[1]["chart"].get("pin")), key=lambda f: f[1]["chart"]["pin"])
     out = [f for f in figs if not f[1]["chart"].get("pin")]
@@ -364,6 +408,13 @@ def block(b):
         rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
         cap = f"<b>{t(b['title'])}</b>" if b.get("title") else ""
         return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
+    if k == "boxes":   # 음영이 다른 설명 박스(마스터 지시 2026-10-31 "하이픈으로 풀이하지 말고 음영이 다른 설명박스 안에")
+        out = []
+        for x in b.get("items") or []:
+            tag = f'<span class="tag">{t(x["tag"])}</span>' if x.get("tag") else ""
+            rows = "".join(f'<div class="br"><div class="bl">{t(a)}</div><div>{t(v)}</div></div>' for a, v in x.get("lines") or [] if v)
+            out.append(f'<div class="bx"><div class="bt"><span>{t(x.get("title"))}</span>{tag}</div>{rows}</div>')
+        return '<div class="boxes">' + "".join(out) + "</div>"
     if k == "chart":
         c = b.get("chart") or {}
         fn = CHARTS.get(c.get("kind"))
@@ -438,6 +489,17 @@ _YEAR = re.compile(r"(?<![A-Za-z0-9])(CY|FY)(20\d\d)(?![A-Za-z0-9(（])")
 _URL = re.compile(r"(https?://\S+)")
 
 
+_Q4 = re.compile(r"(?<![0-9A-Za-z_/.\-])20(\d\d)Q([1-4])(?![0-9A-Za-z])")
+_Q2 = re.compile(r"(?<![0-9A-Za-z_/.\-])(\d\d)Q([1-4])(?![0-9A-Za-z])")
+
+
+def quarter_text(x):
+    """2026Q3·26Q3 → 3Q26(마스터 지시 2026-10-31). 주소는 건드리지 않는다"""
+    if not isinstance(x, str) or "Q" not in x:
+        return x
+    return "".join(p if _URL.fullmatch(p) else _Q2.sub(r"\2Q\1", _Q4.sub(r"\2Q\1", p)) for p in _URL.split(x))
+
+
 def gloss_text(s, terms, pat, seen):
     """처음 나온 용어 뒤에 (풀이). 바로 뒤에 괄호가 있으면 이미 풀이된 것으로 본다. 주소는 건드리지 않는다"""
     def one(m):
@@ -453,22 +515,16 @@ def gloss_text(s, terms, pat, seen):
         seen.add(w)
         return f"{w}({terms[w]})"
 
-    def year(m):
-        key = m.group(1)
-        if key in seen:
-            return m.group(0)
-        seen.add(key)
-        return f"{m.group(0)}({'캘린더' if key == 'CY' else '회계연도'} {m.group(2)}년)"
     out = []
     for part in _URL.split(s):
-        out.append(part if _URL.fullmatch(part) else _YEAR.sub(year, pat.sub(one, part)))
+        out.append(part if _URL.fullmatch(part) else pat.sub(one, part))
     return "".join(out)
 
 
 def gloss(d):
     """읽는 순서대로(Chiip View → 요약 → 본문 글·표) 용어를 처음 나오는 곳에서 풀이한다. 숫자 타일·차트 글자는 건드리지 않는다"""
     glossary = _glossary()
-    terms = glossary["terms"]
+    terms = {**glossary["terms"], **(d.get("terms") or {})}   # d['terms'] = 이 리포트의 제품명·정책명 풀이(datapack terms)
     names = sorted(terms, key=len, reverse=True)
     plain = glossary.get("no_gloss") or {}   # 마스터 지시 2026-10-31 — 이 용어는 괄호 풀이를 달지 않는다. 모델이 직접 적은 풀이도 지운다
     drop = re.compile("|".join(rf"(?<={re.escape(t)})[(（](?:{'|'.join(re.escape(w) for w in ws)})[)）]" for t, ws in plain.items())) if plain else None
@@ -488,6 +544,9 @@ def gloss(d):
                 b["items"] = [g(i) for i in b.get("items") or []]
             elif k == "table":
                 b["rows"] = [[g(c) for c in r] for r in b.get("rows") or []]
+            elif k == "boxes":
+                for x in b.get("items") or []:
+                    x["lines"] = [[a, g(v)] for a, v in x.get("lines") or []]
     return d
 
 
@@ -501,7 +560,7 @@ def scrub(d):
     """참고 문헌·데이터 제공처·읽는 법 문단을 지우고 용어를 풀이한다. 괄호 밖에 인용이나 제공처가 남으면 ValueError — 모델이 문장을 고쳐야 한다"""
     d = {**d, "sources": [x for x in d.get("sources") or [] if not REF_CITE.search(str(x)) and not NOT_SOURCE.search(str(x))]}
     d.pop("lead", None)
-    d = _walk(_walk(d, _scrub_text), _strip_vendor)
+    d = _walk(_walk(_walk(d, _scrub_text), _strip_vendor), quarter_text)
     for s in d.get("sections") or []:
         s["blocks"] = [b for b in s.get("blocks") or [] if not (b.get("type") in ("p", "hl") and str(b.get("text")).startswith(("**읽는 법", "리비전 출처")))]
     body = json.dumps(d, ensure_ascii=False)
@@ -524,11 +583,36 @@ def upside(d):
     return ew / float(sc["current"]) - 1, f"판단 시나리오 확률 가중 · {sc.get('title', '')}"
 
 
+def render3(d):
+    """2026-10-31 양식 — 제목 → Chiip View → 대시보드 → 한 장 요약 → 한눈에 보기(그림 번호 없음) → 본론. 순서는 report_layout이 정한다"""
+    v = d.get("verdict") or {}
+    parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
+             f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
+             f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
+             f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}</p>']
+    parts.append(f'<div class="verdict"><b>Chiip View</b><br>{t(v.get("view"))}</div>')
+    if d.get("tiles"):
+        parts.append('<div class="dash">' + "".join(
+            f'<div><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="s">{t(x.get("sub"))}</div></div>' for x in d["tiles"]) + "</div>")
+    if d.get("summary"):
+        parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
+    figs = figures(d)
+    if figs:
+        parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "</div>")
+    for s in d.get("sections") or []:
+        parts.append(f"<h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []))
+    src = "; ".join(t(x) for x in d.get("sources") or [])
+    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER3}</div></div></body></html>')
+    return money_units(fx_units(chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))))
+
+
 def render(d):
     for key in ("title", "date", "ticker", "company", "biz"):
         if not d.get(key):
             raise ValueError(f"필수 항목 없음: {key}")
     d = scrub(json.loads(plain(json.dumps(d, ensure_ascii=False))))
+    if d.get("format") == 3:
+        return render3(d)
     v = d.get("verdict") or {}
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
@@ -564,7 +648,7 @@ def render(d):
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
     out = chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
-    return money_units(out)   # $25B·$M·$T 표기(마스터 지시 2026-10-29)
+    return money_units(fx_units(out))   # $25B·$M·$T 표기(마스터 지시 2026-10-29), ¥·€·£ 표기(2026-10-31)
 
 
 def artifact_html(d):

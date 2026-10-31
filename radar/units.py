@@ -59,6 +59,37 @@ def _compound_value(m):
     return sum(v * mul for v, mul in vals) if vals else None
 
 
+# 텐배거 리포트 통화 표기(마스터 지시 2026-10-31 "엔은 ¥로 표기하라. 예를 들어 163억 엔은 ¥16.3B로 표기하라. €와 £ 등 다른 통화단위도 마찬가지다")
+# 리포트 전용이다 — 텔레그램 발송(notify.brand)은 지금처럼 억 엔·조 원을 쓴다.
+FX = (("대만달러", "NT$"), ("대만 달러", "NT$"), ("홍콩달러", "HK$"), ("홍콩 달러", "HK$"), ("엔화", "¥"), ("엔", "¥"), ("유로", "€"), ("파운드", "£"), ("위안", "CN¥"), ("원", "₩"))
+_FX_RE = "|".join(k for k, _ in FX)
+_FX_END = r"(?![가-힣])|(?=(?:으로|을|를|이|은|는|의|에|과|와|도|로|만|씩|대|선|규모|수준)(?![가-힣]))"
+
+
+def _fx_str(sym, v):
+    lim, suf = _suffix(v)
+    return f"{sym}{_fmt(abs(v) / lim)}{suf}"
+
+
+def fx_units(text):
+    """163억 엔 → ¥16.3B · 1조 2,000억 원 → ₩1.2T · 3억 유로 → €300M · 100~120억 엔 → ¥10~12B. 큰 단위(조·억·천만·백만·만)가 붙은 금액만 바꾼다"""
+    if not text or not any(k in text for k in ("억", "조", "만")):
+        return text
+    syms = dict(FX)
+
+    def rng(m):
+        mul = _MUL[m.group("u2")]
+        a, b = _f(m.group("a")) * (_MUL[m.group("u1")] if m.group("u1") else mul), _f(m.group("b")) * mul
+        lim, suf = _suffix(max(abs(a), abs(b)))
+        return f"{m.group('sign') or ''}{syms[m.group('c')]}{_fmt(a / lim)}~{_fmt(b / lim)}{suf}"
+
+    def comp(m):
+        v = _compound_value(m)
+        return m.group(0) if v is None else f"{m.group('sign') or ''}{_fx_str(syms[m.group('c')], v)}"
+    s = re.sub(rf"(?P<sign>[−-]?)(?P<a>{_NUM})\s*(?P<u1>{_UNIT_RE})?\s*[~–-]\s*(?P<b>{_NUM})\s*(?P<u2>{_UNIT_RE})\s*(?P<c>{_FX_RE})(?:{_FX_END})", rng, text)
+    return re.sub(rf"(?P<sign>[−-]?)(?=\d){_COMPOUND}(?P<c>{_FX_RE})(?:{_FX_END})", comp, s)
+
+
 def money_units(text):
     if not text or not any(k in text for k in ("억", "조", "만", "M$", "B$", "T$", "달러", "불")):
         return text

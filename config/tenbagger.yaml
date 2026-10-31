@@ -66,6 +66,25 @@ ladder:
     - {max_usd: 1.0e+11, steps: [2, 3, 5]}
     - {max_usd: null, steps: [2]}
 
+# 구매 등급 — 마스터 지시 2026-10-31 "Strong Buy, Buy, Neutral, Sell, Strong Sell 다섯 가지". 규칙이 고른다(scripts/tenbagger/report_layout.py rating, 등록부 prm-tb-rate-*).
+# upside = 판단 시나리오 확률 가중, rr = 강세 상승폭 ÷ 약세 하락폭, dcf_min = DCF 기본 시나리오 업사이드 하한. 개인 포지션은 읽지 않는다.
+rating:
+  strong_buy: {upside: 0.40, rr: 3.0, dcf_min: 0.0}
+  buy: {upside: 0.15, rr: 1.5, dcf_min: -0.5}
+  neutral: {upside: -0.10}
+  sell: {upside: -0.30}
+
+# 목표 멀티플 선정 — 마스터 지시 2026-10-31 "피어그룹 레인지를 참조하고 내러티브와 구조적 체질 변화를 정량적으로 반영"(scripts/valuation/v2/multiples.py select_multiple, 등록부 prm-tb-mult-*)
+multiple_select:
+  fund_weight: 0.5     # 합리적 멀티플과 동종 중앙값 차이 중 인정하는 몫
+  fund_cap: 0.2
+  moat_points: {강함: 0.04, 보통: 0.015, 약함: -0.015, 해당 없음: 0.0}
+  moat_cap: 0.12
+  stage: {태동: 0.0, 확산: 0.05, 컨센서스: 0.0, 과밀: -0.05, 소멸: -0.1, 붕괴: -0.2}
+  judge_cap: 0.3       # 사이클·실행 판단 조정 상한
+  over_peer: 0.15      # 동종 최고값을 넘을 수 있는 폭
+  spread: {bear: -0.25, base: 0.0, bull: 0.25}
+
 # 발굴 경로
 paths:
   bottleneck: "병목(bottleneck-scan) → 해결 기술 → 그 기술을 가진 작은 공급사 — 치입 엣지(양산 관점·역방향 레이더)"

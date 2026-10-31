@@ -4,10 +4,10 @@
  "ticker": "FORM",
  "company": "FormFactor",
  "github": {
-  "md": "https://github.com/SEOKD/chiip/blob/14065342b566/outputs/tenbagger/reports/20261031_FORM.md",
-  "html": "https://github.com/SEOKD/chiip/blob/14065342b566/outputs/tenbagger/reports/20261031_FORM.html",
-  "commit": "14065342b56697fcaa20ef0cc13deba9862d30db",
-  "at": "2026-10-31T16:49:22+09:00"
+  "md": "https://github.com/SEOKD/chiip/blob/5afcccce70a2/outputs/tenbagger/reports/20261031_FORM.md",
+  "html": "https://github.com/SEOKD/chiip/blob/5afcccce70a2/outputs/tenbagger/reports/20261031_FORM.html",
+  "commit": "5afcccce70a260736d89d34613378a3715f2a558",
+  "at": "2026-10-31T23:36:56+09:00"
  },
  "artifact": {
   "status": "ok",
@@ -23,6 +23,6 @@
  "telegram": {
   "sent": true,
   "notion_ok": true,
-  "at": "2026-10-31T16:52:47+09:00"
+  "at": "2026-10-31T23:28:55+09:00"
  }
 }

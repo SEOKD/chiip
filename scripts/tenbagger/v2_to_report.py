@@ -184,7 +184,7 @@ def extra_sections(entity, r, strict=True):
     import pipeline_view
     co = v2run.load_company(entity)
     co["market"] = v2run.resolve_market(co)
-    out = {"lead": narrative_view.lead_section(dp, r.get("_mm"), strict), "ladder": ladder.report_section(dp, co, r, strict),
+    out = {"lead": narrative_view.lead_section(dp, r.get("_mm"), strict), "ladder": ladder.report_section(dp, co, r, strict) if not strict else None,
            "pipeline": pipeline_view.report_section(dp, r, strict=False),
            "narrative": narrative_view.report_section(dp, r.get("_mm")), "flow": None, "levels": None, "summary": []}
     if out["lead"]:
@@ -252,10 +252,30 @@ def main(argv):
             raise SystemExit("datapack에 pipeline이 없다(docs/tasks/chiip-tenbagger-report.md 2번) — 수주가 없는 회사는 {'none': '이유'}, 옛 리포트 정정은 --legacy")
         if not a.legacy and "horizons" not in fw:
             raise SystemExit("datapack에 Fwd 1Y·2Y·3Y 멀티플이 없다 — scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples 먼저(docs/tasks/chiip-tenbagger-report.md 2번). 옛 리포트 정정은 --legacy")
-        if not a.legacy and not (xs["lead"] and xs["ladder"]):
-            raise SystemExit("datapack에 narrative.lead와 ladder가 있어야 한다(docs/tasks/chiip-tenbagger-report.md 2번) — 옛 리포트 정정은 --legacy")
+        if not a.legacy and not xs["lead"]:
+            raise SystemExit("datapack에 narrative.lead가 있어야 한다(docs/tasks/chiip-tenbagger-report.md 2번) — 옛 리포트 정정은 --legacy")
         p = Path(a.merge)
         d = json.loads(p.read_text(encoding="utf-8"))
+        if not a.legacy:   # 양식 3(마스터 지시 2026-10-31): 순서·그래프·대시보드는 report_layout이 정한다
+            import multiples
+            import report_html
+            import report_layout
+            src = p.with_name(p.stem + "_model.json")
+            if d.get("format") == 3:   # 재발행·정정: 모델 글에서 다시 조립하되 고친 제목·Chiip View는 살린다
+                if not src.exists():
+                    raise SystemExit(f"{src.name}이 없다 — 이미 조립한 리포트는 모델 글이 있어야 다시 만든다")
+                m = json.loads(src.read_text(encoding="utf-8"))
+                m["title"] = d.get("title", m.get("title"))
+                m.setdefault("verdict", {})["view"] = (d.get("verdict") or {}).get("view", m["verdict"].get("view"))
+                d = m
+            src.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+            co = v2run.load_company(a.entity)
+            sel = multiples.select_multiple(r["_mm"], dp, report_layout.config()["multiple_select"])
+            d = report_layout.assemble(d, dp, co, r, r["_mm"], sel, sec, esec, xs, a.entity)
+            p.write_text(json.dumps(report_html.clean_vendor(d), ensure_ascii=False, indent=1), encoding="utf-8")
+            v = d["verdict"]
+            print(f"[양식 3] {p} · 구매 등급 {v['rating']} · 업사이드 {v['upside']:+.0%} · 다운사이드 {v['downside']:+.0%} · 손익비 {v['rr'] * 100:.0f}% · 선정 멀티플 {sel['value']:.1f}배")
+            return 0
         d["sections"] = [s for s in d.get("sections") or [] if not _strip_no(s.get("h2")).startswith(("밸류에이션 — 맥킨지", "어닝콜 변화·컨센서스") + EXTRA_H2)]
         idx = next((i for i, s in enumerate(d["sections"]) if "시나리오" in s.get("h2", "")), len(d["sections"]))
         for x in (xs["levels"], xs["flow"], sec, xs["narrative"], esec):   # 앞에 끼워 넣으므로 역순: 어닝콜 → 내러티브 근거 → 밸류에이션 → 수급 → 가격 구간

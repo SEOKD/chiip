@@ -195,6 +195,64 @@ def lead_section(dp, mm=None, strict=True):
     return {"h2": "내러티브 — 기업가치와 멀티플·EPS 프리미엄을 결정하는 이야기", "blocks": B}
 
 
+def lens_boxes(lead):
+    """무엇이 기업가치를 바꾸나 — 소제목은 렌즈 이름만, 설명은 음영 박스(마스터 지시 2026-10-31)"""
+    have = {x.get("lens"): x for x in lead.get("lenses") or []}
+    policy = lead.get("policy")
+    out = []
+    for k in LENSES:
+        if k == "재정정책" and policy:
+            for key, name in POLICY:
+                x = policy.get(key) or {}
+                total, detail = congress_score(x)
+                out.append({"title": name, "lines": [["변화", x.get("change")], ["의회 동의", f"{total}/10 — {detail}" if total is not None else ""], ["증거", x.get("evidence")], ["반증", x.get("falsifier")]]})
+            continue
+        if k not in have:
+            continue
+        x = have[k]
+        change = str(x.get("change", "")) + (speed_text(x["lead_time"]) if isinstance(x.get("lead_time"), dict) else "")
+        out.append({"title": k, "lines": [["변화", change], ["증거", x.get("evidence")], ["반증", x.get("falsifier")]]})
+    return out
+
+
+def section3(dp, mm=None):
+    """양식 3 내러티브 — 기업가치 이야기·프리미엄·왜 열광했나·무엇이 기업가치를 바꾸나 + 내러티브 근거. 리테일 해석은 뺀다(마스터 지시 2026-10-31)"""
+    lead_section(dp, mm, True)   # 재료 검사
+    n = dp["narrative"]
+    lead = n["lead"]
+    B = [{"type": "hl", "text": f"**기업가치를 결정하는 이야기:** {lead.get('value_story') or lead['summary']}"}]
+    prem = lead.get("premium") or {}
+    if prem:
+        B.append({"type": "boxes", "items": [{"title": "멀티플·EPS 프리미엄", "lines": [["멀티플", prem.get("multiple")], ["EPS", prem.get("eps")]]}]})
+    if lead.get("why_excited"):
+        B += [{"type": "h3", "text": "투자자들은 왜 열광했나"}, {"type": "p", "text": lead["why_excited"]}]
+    B += [{"type": "h3", "text": "무엇이 기업가치를 바꾸나"}, {"type": "boxes", "items": lens_boxes(lead)}, {"type": "h3", "text": "내러티브 근거"}]
+    firm = ((mm or {}).get("decomp") or {}).get("firm")
+    total = ((mm or {}).get("decomp") or {}).get("total")
+    head = str(n.get("summary", ""))
+    if total is not None and firm is not None:
+        head += f" 동종 대비 멀티플 차이 {math.exp(total) * 100 - 100:+.0f}% 중 회사 고유 몫은 {math.exp(firm) * 100 - 100:+.0f}%다."
+    if n.get("stage"):
+        head += f" 단계는 {n['stage']}" + (f", 쏠림은 {n['crowding']}" if n.get("crowding") else "") + "이다."
+    B.append({"type": "hl", "text": head})
+    B.append({"type": "boxes", "items": [{"title": f.get("name"), "tag": f.get("status"), "lines": [["논리", f.get("thesis")], ["숫자", f.get("quant")], ["반증", f.get("falsifier")]]} for f in n.get("factors") or []]})
+    for key, label in LAYERS:
+        lay = (n.get("layers") or {}).get(key)
+        if key == "retail" or not lay:
+            continue
+        if lay.get("metrics"):
+            B.append({"type": "table", "title": label, "headers": ["지표", "값", "해석"], "rows": [m[:3] for m in lay["metrics"]]})
+        if lay.get("read"):
+            B.append({"type": "p", "text": lay["read"]})
+    return {"h2": "내러티브", "blocks": B}
+
+
+def portfolio3(dp):
+    """양식 3 포트폴리오 — 제품·서비스·기술을 설명 박스로(마스터 지시 2026-10-31)"""
+    lead = dp["narrative"]["lead"]
+    return {"h2": "포트폴리오", "blocks": [{"type": "boxes", "items": [{"title": p.get("name"), "tag": p.get("kind"), "lines": [["무엇", p.get("what")], ["쓰는 곳", p.get("use")], ["돈 버는 방식", p.get("money")]]} for p in lead["products"]]}]}
+
+
 def summary_item(dp):
     lead = ((dp or {}).get("narrative") or {}).get("lead") or {}
     return {"q": "기업가치를 결정하는 내러티브", "a": lead.get("summary", ""), "auto": True}

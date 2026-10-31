@@ -62,6 +62,8 @@ def _blocks(d):
     for s in d.get("sections") or []:
         for b in s.get("blocks") or []:
             yield s, b
+    for ch in d.get("gallery") or []:   # 양식 3: 그래프는 한눈에 보기에 따로 있다
+        yield {}, {"type": "chart", "chart": ch}
 
 
 def audit(r, c=None):
@@ -132,7 +134,11 @@ def audit(r, c=None):
         if cur:
             ew = sum(float(x.get("prob") or 0) * float(x.get("value") or 0) for x in scen["cases"]) / cur
             stated = [float(m) for m in re.findall(r"확률\s*가중[^0-9]{0,15}([0-9]+(?:\.[0-9]+)?)\s*배", full)]
-            if stated:   # 본문의 '확률 가중'은 DCF 몫일 수도 있다 — 하나도 안 맞으면 경고(모델이 어느 수치인지 가린다)
+            if d.get("format") == 3:   # 양식 3: 본문은 배가 아니라 업사이드 %로 쓴다
+                up = (d.get("verdict") or {}).get("upside")
+                ok3 = up is not None and abs((ew - 1) - up) <= 0.01
+                add("결론", "확률 가중값 재계산", "통과" if ok3 else "실패", f"재계산 {ew - 1:+.1%} vs 표기 {up if up is None else format(up, '+.1%')}")
+            elif stated:   # 본문의 '확률 가중'은 DCF 몫일 수도 있다 — 하나도 안 맞으면 경고(모델이 어느 수치인지 가린다)
                 okr = any(abs(s - ew) <= c["ratio_tol"] for s in stated)
                 add("결론", "확률 가중값 재계산", "통과" if okr else "경고", f"판단 시나리오 재계산 {ew:.2f}배 vs 본문 {', '.join(f'{s:.2f}' for s in stated[:3])}배"
                     + ("" if okr else " — 판단 시나리오의 가중값이 본문에 없거나 다름"))
@@ -145,7 +151,9 @@ def audit(r, c=None):
         add("결론", "확률 가중값 재계산", "실패", "판단 시나리오 없음")
     view = str((d.get("verdict") or {}).get("view") or "")
     v2m = re.search(r"(?:v2|DCF)[^0-9]{0,20}([0-9]+(?:\.[0-9]+)?)\s*배", full)
-    if scen and cur and v2m:
+    if d.get("format") == 3:   # 양식 3: 시나리오와 DCF 업사이드를 밸류에이션 절 첫 줄에 나란히 쓴다
+        add("결론", "v2와 차이 설명", "통과" if "DCF 기준 업사이드" in full else "실패", "시나리오·DCF 업사이드 병기")
+    elif scen and cur and v2m:
         ew = sum(float(x.get("prob") or 0) * float(x.get("value") or 0) for x in scen["cases"]) / cur
         v2v = float(v2m.group(1))
         far = v2v > 0 and abs(ew / v2v - 1) > 0.3
@@ -153,14 +161,17 @@ def audit(r, c=None):
         add("결론", "v2와 차이 설명", "통과" if (not far or expl) else "실패", f"판단 {ew:.2f}배 vs v2 {v2v:.2f}배" + (" — 설명 있음" if far and expl else ""))
     else:
         add("결론", "v2와 차이 설명", "경고" if view else "실패", "v2 배수 또는 판단 시나리오를 찾지 못함")
-    kill = next((s for s in d.get("sections") or [] if "킬" in s.get("h2", "")), None)
+    kill = next((s for s in d.get("sections") or [] if re.search("킬|셀온", s.get("h2", ""))), None)
     n_kill, dated = 0, False
-    if kill:   # 킬 조건은 목록(ul) 또는 첫 표의 행으로 적는다
+    if kill:   # 킬 조건은 목록(ul) 또는 첫 표의 행으로, 양식 3은 '셀온 조건' 박스의 줄로 적는다
+        box = next((x for b in kill.get("blocks") or [] if b.get("type") == "boxes" for x in b.get("items") or [] if x.get("title") == "셀온 조건"), None)
         first = next((b for b in kill.get("blocks") or [] if b.get("type") in ("ul", "table")), None)
-        if first:
+        if box:
+            n_kill = len(box.get("lines") or [])
+        elif first:
             n_kill = len(first.get("items") or first.get("rows") or [])
     for s in d.get("sections") or []:
-        if re.search(r"킬|체크리스트", s.get("h2", "")) and re.search(r"\d{1,2}/\d{1,2}|\d{4}-\d{2}|\d+월|분기|Q[1-4]", _text(s)):
+        if re.search(r"킬|셀온|체크리스트", s.get("h2", "")) and re.search(r"\d{1,2}/\d{1,2}|\d{4}-\d{2}|\d+월|분기|Q[1-4]", _text(s)):
             dated = True
     add("결론", "킬 조건 2~4 + 날짜", "통과" if 2 <= n_kill <= 6 and dated else ("경고" if n_kill else "실패"), f"킬 조건 {n_kill}개 · 날짜 {'있음' if dated else '없음'}")
     bad = PRESCRIPTIVE.findall(full)

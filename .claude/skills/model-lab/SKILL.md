@@ -32,6 +32,7 @@ argument-hint: "[daily | weekly | 논문 URL]"
 7. 하네스 설계(`docs/decisions/ADR-013-chiip-harness.md`)의 단계 판정·기각 조건을 같은 기준으로 갱신한다. 코딩 벤치마크 결과를 치입에 그대로 옮기지 않는다 — 공개 표본 안 성과와 떼어 둔 표본 성과를 구분해 적는다.
 
 ## weekly (일요일)
+- **밸류에이션 모델 주간 갱신(마스터 지시 2026-10-31):** 매주 최신 논문·기술 자료·IB 리서치 하우스 공개 자료(라이선스 원문은 자기 말 요약만)를 조사해 `scripts/valuation/v2/`와 `config/tenbagger.yaml` rating·multiple_select를 어떻게 바꿀지 제안서를 쓴다. 지난주 리포트의 선정 멀티플·구매 등급을 실제 주가와 대조한다. 바꾸는 값은 아래 1~3번 표본 외 절차를 거친다. 바꿀 것이 없으면 그렇게 적는다.
 0. **Proviser 작업 지시를 먼저**(마스터 지시 2026-10-29 — 단계적 고도화): `knowledge/models/params/queue.yaml`(`py scripts/fit/stepwise.py --status --write`가 매일 갱신)을 위에서부터 처리한다. 0단계 '데이터 확보'는 등록부 fit.data·target·method를 정의(자료가 정말 없으면 '필요 자료'로 남김), 1단계 '기존 피팅'은 아래 1~3, 2단계 '잔차 진단'의 새 파라미터 제안은 `stepwise.can_adopt_extension(model, 기존 손실, 확장 손실, 등록부, 확장 후 파라미터 수)` — 짝지은 표본 외 검정 + 누적 시도 수 본페로니 보정 + 관측 수 규칙을 모두 통과할 때만 채택. 1단계가 끝나지 않은 모델에 새 파라미터를 넣지 않는다.
 1. 데이터가 있는 제안서부터 `scripts/fit/harness.py`로 검증: `evaluate(series, fit_fn, predict_fn, prior, k, min_train)` → `adoption_decision(...)`. 검증 스크립트는 `scripts/fit/jobs/<param>.py`로 남긴다(재실행 가능해야 함).
 2. 통과: 등록부 value·status·fit 블록 갱신 + binding 위치 config를 Edit + `registry.py --check` 일치 확인 + `changelog.csv` 한 행. 상대 변화 20% 이상(`registry.needs_approval`)이면 config는 그대로 두고 `status: fitted` + `docs/TODO_MASTER.md`에 승인 요청.

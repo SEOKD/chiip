@@ -190,6 +190,38 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     return out
 
 
+def select_multiple(m, dp, cfg):
+    """IB식 목표 멀티플 선정(마스터 지시 2026-10-31 "피어그룹 레인지를 참조하고 해당 종목의 내러티브와 구조적 기업 체질 변화 등을 정량적으로 반영해 합리적인 수준으로").
+    동종 중앙값에서 출발 → 펀더멘털 프리미엄(합리적 멀티플과의 차이, 절반만 인정) → 해자 → 내러티브 단계 → 사이클·실행 판단 → 동종 레인지 안으로.
+    상수는 config/tenbagger.yaml multiple_select(등록부 prm-tb-mult-*). 판단 조정은 모델이 이유와 함께 datapack multiple_view에 쓴다"""
+    views = m.get("horizons") or []
+    v = next((h for h in views if h["h"] == 1), None)
+    if not v:
+        raise ValueError("Fwd 1Y 멀티플 재료가 없다")
+    acts = [x[v["key"]] for x in m["peers"] if (x.get(v["key"]) or 0) > 0]
+    p50, low, high = v["peer_range"]["p50"], min(acts), max(acts)
+    clip = lambda x, c: max(-c, min(c, x))
+    pct = lambda x: f"{x:+.0%}"
+    rational = (v.get("rational") or {}).get("p50")
+    fund = clip((rational / p50 - 1) * cfg["fund_weight"], cfg["fund_cap"]) if rational else 0.0
+    items = (dp.get("moat") or {}).get("items") or []
+    moat = clip(sum(cfg["moat_points"].get(x.get("verdict"), 0) for x in items), cfg["moat_cap"])
+    n = dp.get("narrative") or {}
+    narr = cfg["stage"].get(n.get("stage"), 0.0)
+    mv = dp.get("multiple_view") or {}
+    judge = clip(float(mv.get("adj") or 0), cfg["judge_cap"])
+    raw = p50 * (1 + fund + moat + narr + judge)
+    value = max(low, min(high * (1 + cfg["over_peer"]), raw))
+    rows = [["동종 중앙값", f"{p50:.1f}배", f"범위 {low:.1f}~{high:.1f}배, {len(acts)}곳"],
+            ["펀더멘털", pct(fund), f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정" if rational else "재료 없음"],
+            ["해자", pct(moat), " · ".join(f"{str(x.get('kind')).split('에 따른')[0]} {x.get('verdict')}" for x in items) or "재료 없음"],
+            ["내러티브", pct(narr), f"단계 {n.get('stage') or '미확인'}"],
+            ["사이클·실행 판단", pct(judge), str(mv.get("why") or "조정 없음")],
+            ["**선정**", f"**{value:.1f}배**", f"지금 {v['current']:.1f}배"]]
+    keys, labels = [h["key"] for h in views], [h["label"] for h in views]
+    return {"basis": m["basis"], "key": v["key"], "label": v["label"], "value": value, "peer_p50": p50, "rows": rows, "keys": keys, "labels": labels, "now": [h["current"] for h in views]}
+
+
 def report_blocks(m, unit, mcap, name="대상"):
     """리포트 절 블록 — 굵게만 쓰고 HTML은 쓰지 않는다(report_html 규칙)"""
     B = []

@@ -1062,7 +1062,7 @@ params:
   status: proposed
   prior:
     value: 0.58
-    basis: 수익률 예측 변수(요인·이상현상)의 논문 효과는 공개 뒤 약 58% 약해진다 — 사전값 = 논문 효과 × (1 − 0.58). McLean & Pontiff(2016, JF 71(1)) 97개 예측 변수. 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기(게재본 미확인). 2013 워킹페이퍼(SSRN 2156623, 82개 특성) 본문 확인 2026-10-30 — 공개 후 감쇠 약 35%로 다름
+    basis: 수익률 예측 변수(요인·이상현상)의 논문 효과는 공개 뒤 약 58% 약해진다 — 사전값 = 논문 효과 × (1 − 0.58). McLean & Pontiff(2016, JF 71(1)) 97개 예측 변수. 프로바이저 D-20261029-01. 게재본 초록 확인 2026-10-31(대학 페이지 전재본 https://sf.cufe.edu.cn/info/1198/6543.htm, Wiley 원본 대조는 못함) — 공개 후 58%, 공개로 알게 된 거래 몫 32%(58%−26%). 2013 워킹페이퍼(SSRN 2156623, 82개 특성)의 약 35%는 표본이 다른 이전 판
     source: https://doi.org/10.1111/jofi.12365
   fit:
     method: 치입 제안서의 논문 효과 vs 표본 외 실현 효과 비율 누적(제안서 10건 이상 후)
@@ -1078,7 +1078,7 @@ params:
   status: proposed
   prior:
     value: 0.26
-    basis: 공개 전 표본 밖 구간 감쇠 약 26%(통계적 편향 몫) — 차익거래 경로가 없는 실물·회계 효과(투자 축소·부도율 등)에는 이 값만 적용. McLean & Pontiff(2016). 프로바이저 D-20261029-01. 수치는 지시서 인용 — 원문 확인 대기(게재본 미확인). 2013 워킹페이퍼(SSRN 2156623, 82개 특성) 본문 확인 2026-10-30 — 통계적 편향 상한 약 10%로 다름
+    basis: 공개 전 표본 밖 구간 감쇠 약 26%(데이터 마이닝 효과의 상한) — 차익거래 경로가 없는 실물·회계 효과(투자 축소·부도율 등)에는 이 값만 적용. 상한이라 이 값으로 깎으면 보수적이다. McLean & Pontiff(2016). 프로바이저 D-20261029-01. 게재본 초록 확인 2026-10-31(대학 페이지 전재본 https://sf.cufe.edu.cn/info/1198/6543.htm, Wiley 원본 대조는 못함). 2013 워킹페이퍼(SSRN 2156623, 82개 특성)의 약 10%는 표본이 다른 이전 판
     source: https://doi.org/10.1111/jofi.12365
   fit:
     method: prm-lab-shrink-postpub와 같음
@@ -1867,6 +1867,150 @@ params:
   fit:
     method: prm-tb-exit-evs-semis와 같음
     target: 10배 달성 시점 EV/매출
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-sb-up
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.strong_buy.upside
+  value: 0.4
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.4
+    basis: '초안 — 증권사 등급 관행(강력 매수 = 30~40% 이상)을 참고한 사전값'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-sb-rr
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.strong_buy.rr
+  value: 3.0
+  unit: 배
+  status: prior
+  prior:
+    value: 3.0
+    basis: '초안 — 손익비 3 대 1 관행'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-buy-up
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.buy.upside
+  value: 0.15
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.15
+    basis: '초안 — 증권사 매수 등급 15% 관행'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-buy-rr
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.buy.rr
+  value: 1.5
+  unit: 배
+  status: prior
+  prior:
+    value: 1.5
+    basis: '초안'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-neutral
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.neutral.upside
+  value: -0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.1
+    basis: '초안 — 증권사 중립 등급 ±10~15% 관행'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-sell
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.sell.upside
+  value: -0.3
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.3
+    basis: '초안'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-fund
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#multiple_select.fund_weight
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: '초안 — 펀더멘털 차이의 절반만 인정(회귀 수축)'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-spread-bear
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#multiple_select.spread.bear
+  value: -0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.25
+    basis: '초안 — 동종 25~75분위 폭을 참고'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-spread-bull
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#multiple_select.spread.bull
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 동종 25~75분위 폭을 참고'
+    source: null
+  fit:
+    method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
+    target: 등급별 초과수익
     data: null
     last_fit: null
     oos_metric: null

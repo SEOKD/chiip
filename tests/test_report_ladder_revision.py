@@ -243,7 +243,7 @@ class TestScrub(unittest.TestCase):
             for w in ("Fiscal", "Zacks", "zacksdata", "읽는 법", "보강 적용", "MCP", "트랜스크립트"):
                 self.assertNotIn(w, out)
         h = report_html.render(d)
-        self.assertIn("컨센서스(시장 평균 추정) $5.85", h)
+        self.assertIn("컨센서스 $5.85", h)
         self.assertIn("컨센서스 CY2027", h)
         self.assertNotIn("모델 추정", h)
         self.assertNotIn("애널리스트 추정", h)
@@ -277,22 +277,18 @@ class TestScrub(unittest.TestCase):
              "summary": [{"q": "q", "a": "CY2027 추정과 CY2028 추정. SEMI 자료 https://x.com/EPS/WFE"}],
              "sections": [{"h2": "s", "blocks": [{"type": "table", "headers": ["a"], "rows": [["DCF 1.1배"]]}]}]}
         h = report_html.render(d)
-        self.assertEqual(h.count("CAGR(연평균 성장률)"), 1)
-        self.assertIn("CAGR은 또", h)
+        self.assertNotIn("CAGR(", h)   # 금융 용어는 풀이하지 않는다(마스터 지시 2026-10-31)
         self.assertIn("WFE(장비 투자)", h)
-        self.assertIn("EV/매출(기업가치 ÷ 매출)", h)
-        self.assertIn("CY2027(캘린더 2027년)", h)
-        self.assertIn("CY2028 추정", h)
+        self.assertNotIn("CY2027(", h)
         self.assertIn("SEMI(국제반도체장비재료협회)", h)
         self.assertIn("https://x.com/EPS/WFE", h)
-        self.assertIn("DCF(현금흐름 할인 평가) 1.1배", h)
+        self.assertIn("DCF 1.1배", h)
 
 
     def test_no_gloss_terms(self):
         d = {**BASE, "summary": [{"q": "q", "a": "Fwd 1Y P/E와 P/B, EBITDA(상각전영업이익), EPS, 멀티플(배수), EV/EBITDA, EBIT, 멀티플(−54%)"}], "sections": []}
         h = report_html.render(d)
-        self.assertIn("Fwd 1Y P/E와 P/B, EBITDA, EPS, 멀티플, EV/EBITDA(기업가치 ÷ 상각전영업이익)", h)
-        self.assertIn("EBIT(이자·세금 차감 전 이익)", h)
+        self.assertIn("Fwd 1Y P/E와 P/B, EBITDA, EPS, 멀티플, EV/EBITDA, EBIT", h)
         self.assertIn("멀티플(−54%)", h)
 
 

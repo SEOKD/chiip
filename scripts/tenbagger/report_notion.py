@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import report_html  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "radar"))
-from units import chiip_name, money_units  # noqa: E402
+from units import chiip_name, fx_units, money_units  # noqa: E402
 
 
 def cell(x):
@@ -42,14 +42,28 @@ def render(d, github=None, charts=None, h1=False):
     L += [f"> {d.get('date')} · {d.get('company')}({d.get('ticker')}) · 기업: {d.get('biz')}", ""]
     if github:
         L += [f"**그래프 포함 리포트:** [GitHub에서 보기]({github})", ""]
-    L += ["## Chiip View", f"**{badges}**" if badges else "", "", str(v.get("view") or "")]
+    v3 = d.get("format") == 3
+    L += ["## Chiip View"] + ([] if v3 else [f"**{badges}**" if badges else ""]) + ["", str(v.get("view") or "")]
+    if v3 and d.get("tiles"):
+        L += ["", "## 대시보드", table(["항목", "값", "설명"], [[t.get("k"), t.get("v"), t.get("sub")] for t in d["tiles"]])]
     if d.get("summary"):
         L += ["", "## 한 장 요약"] + [f"- **{s.get('q')}** {s.get('a')}" for s in d["summary"]]
-    if d.get("tiles"):
+    if d.get("tiles") and not v3:
         L += ["", "## 핵심 숫자", table(["항목", "값", "설명"], [[t.get("k"), t.get("v"), t.get("sub")] for t in d["tiles"]])]
     order = report_html.figures(d)
     num = {id(b): i for i, (_, b) in enumerate(order, 1)}   # 그림 번호 = HTML 갤러리 순서(pin 포함)
-    if order and not charts:
+    if v3:
+        L += ["", "## 한눈에 보기"]
+        for i, (_, b) in enumerate(order, 1):
+            c = b["chart"]
+            if charts and i <= len(charts) and charts[i - 1]:
+                L += ["", f"**{c.get('title')}**", "", f"![{c.get('title')}]({charts[i - 1]})"]
+            else:
+                L += [f"- {c.get('title')}"]
+            lines = report_html.under_lines(c)
+            if lines and charts:
+                L += [""] + lines
+    elif order and not charts:
         L += ["", "## 그래프(위 HTML 임베드·GitHub 리포트에서 보기)"] + [f"{i}. {b['chart'].get('title')}" for i, (_, b) in enumerate(order, 1)]
     for s in d.get("sections") or []:
         L += ["", f"## {s.get('h2')}"]
@@ -63,6 +77,9 @@ def render(d, github=None, charts=None, h1=False):
                 L += [""] + [f"- {i}" for i in b.get("items") or []]
             elif k == "table":
                 L += ["", f"**{b['title']}**" if b.get("title") else "", table(b.get("headers") or [], b.get("rows") or [])]
+            elif k == "boxes":
+                for x in b.get("items") or []:
+                    L += ["", f"> **{x.get('title')}**" + (f" · {x['tag']}" if x.get("tag") else "")] + [f"> **{a}:** {w}" for a, w in x.get("lines") or [] if w]
             elif k == "chart" and id(b) in num:
                 n = num[id(b)]
                 c = b["chart"]
@@ -76,10 +93,10 @@ def render(d, github=None, charts=None, h1=False):
     src = d.get("sources") or []
     if src:
         L += ["", "## 출처"] + [f"- {x}" for x in src]
-    L += ["", f"_{report_html.DISCLAIMER}_"]
+    L += ["", f"_{report_html.DISCLAIMER3 if v3 else report_html.DISCLAIMER}_"]
     text = "\n".join(x for x in L if x is not None)
     text = chiip_name(text.replace("치입 판단", "Chiip View"))
-    out = money_units(re.sub(r"\n{3,}", "\n\n", text))
+    out = money_units(fx_units(re.sub(r"\n{3,}", "\n\n", text)))
     # 노션·GitHub 마크다운은 $...$를 수식으로 읽는다 — 금액의 $는 \$로(2026-10-30 INIO·CBRS 업로드)
     return re.sub(r"(?<!\\)\$", r"\\$", out)
 
