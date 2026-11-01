@@ -47,7 +47,7 @@ COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.65;font-size:15px}.w{max-width:820px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.8;font-size:16px}.w{max-width:820px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1{font-size:21px;margin:0 0 4px;line-height:1.35}h2{font-size:18px;margin:30px 0 8px;padding-top:10px;border-top:2px solid var(--fg)}h3{font-size:15.5px;margin:18px 0 6px}
 .lead{color:var(--mut);font-size:13.5px;margin:0 0 12px}.card{background:var(--card);border-radius:12px;padding:12px 14px;margin:12px 0}.hl{background:var(--hl);border-radius:12px;padding:12px 14px;margin:12px 0}
 .ans{display:grid;grid-template-columns:1fr;gap:8px}.ans div{background:var(--card);border-radius:10px;padding:10px 12px}.ans b.q{display:block;font-size:12.5px;color:var(--mut)}
@@ -57,7 +57,7 @@ table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{bord
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
 ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px;overflow-wrap:anywhere}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
-.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}
+section{margin-top:34px}p{margin:10px 0}details{margin:10px 0}summary{cursor:pointer;color:var(--mut);font-size:13.5px;padding:6px 0}.toc{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 4px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;border-bottom:1px solid var(--line)}.toc a{font-size:12.5px;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}
 .dash{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}.dash>div{background:var(--card);border-radius:10px;padding:9px 11px;min-width:0}.dash .k{font-size:11.5px;color:var(--mut)}.dash .v{font-size:18px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.dash .s{font-size:11.5px;color:var(--mut);line-height:1.4;margin-top:2px;overflow-wrap:anywhere}
 @media (max-width:640px){.dash{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .boxes{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}.bx{border:1px solid var(--line);border-radius:12px;overflow:hidden}.bx .bt{font-weight:700;padding:9px 12px;background:var(--card);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.bx .tag{font-size:12px;font-weight:600;color:var(--c)}.bx .br{display:grid;grid-template-columns:66px minmax(0,1fr);gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13.5px}.bx .bl{color:var(--mut);font-size:12px;padding-top:1px}
@@ -421,10 +421,19 @@ def under_lines(c):
     return out
 
 
+def short_paras(text, limit=170):
+    """긴 문단은 두 문장씩 나눈다 — 벽처럼 쌓인 글을 줄인다(마스터 지시 2026-11-01)"""
+    text = str(text or "")
+    if len(text) <= limit or text.startswith("**"):
+        return [text]
+    parts = re.split(r"(?<=[.!?])\s+", text)
+    return [" ".join(parts[i:i + 2]) for i in range(0, len(parts), 2)]
+
+
 def block(b):
     k = b.get("type")
     if k == "p":
-        return f"<p>{t(b.get('text'))}</p>"
+        return "".join(f"<p>{t(x)}</p>" for x in short_paras(b.get("text")))
     if k == "h3":
         return f"<h3>{t(b.get('text'))}</h3>"
     if k == "hl":
@@ -435,7 +444,10 @@ def block(b):
         head = "".join(f"<th>{t(h)}</th>" for h in b.get("headers") or [])
         rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
         cap = f"<b>{t(b['title'])}</b>" if b.get("title") else ""
-        return f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
+        table = f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
+        if len(b.get("rows") or []) > 6:   # 긴 표는 접어 둔다 — 읽는 흐름을 끊지 않게
+            return f'<details><summary>{t(b.get("title") or "표")} 펼치기 ({len(b["rows"])}행)</summary>{table}</details>'
+        return table
     if k == "boxes":   # 음영이 다른 설명 박스(마스터 지시 2026-10-31 "하이픈으로 풀이하지 말고 음영이 다른 설명박스 안에")
         out = []
         for x in b.get("items") or []:
@@ -628,8 +640,10 @@ def render3(d):
     figs = figures(d)
     if figs:
         parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "</div>")
-    for s in d.get("sections") or []:
-        parts.append(f"<h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []))
+    names = [str(s.get("h2")) for s in d.get("sections") or []]
+    parts.append('<nav class="toc">' + "".join(f'<a href="#s{i}">{t(n)}</a>' for i, n in enumerate(names)) + "</nav>")
+    for i, s in enumerate(d.get("sections") or []):
+        parts.append(f"<section id=\"s{i}\"><h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []) + "</section>")
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER3}</div></div></body></html>')
     return money_units(fx_units(chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))))

@@ -101,15 +101,34 @@ def scenario_build(d, dp, mm, sel, shares):
             "rr": reward_risk(price, cases["강세"]["value"], cases["약세"]["value"]) or 0.0, "cases": c["cases"], "metric_name": "EBITDA" if ev_metric else "EPS", "sym": sym(dp)}
 
 
+FRAME = {"일봉": "일봉", "주봉": "주봉", "월봉": "월봉"}
+
+
+def plain_level(src):
+    """'주봉 피보 61.8%' → '주봉 피보나치 61.8% 되돌림 지지선', '일봉 200일선' → '200일 이동평균선 지지선'(마스터 지시 2026-11-01 "차트 기법상 무엇을 나타내는지 풀어 설명")"""
+    s = str(src)
+    m = re.search(r"피보\s*([\d.]+%)", s)
+    frame = next((f for f in FRAME if s.startswith(f)), "")
+    if m:
+        return f"{frame} 피보나치 {m.group(1)} 되돌림 지지선".strip()
+    m = re.search(r"(\d+)(일|주|개월|월)선", s)
+    if m:
+        unit = {"일": "일", "주": "주", "개월": "개월", "월": "개월"}[m.group(2)]
+        return f"{m.group(1)}{unit} 이동평균선 지지선"
+    if "스윙 저점" in s:
+        return f"{frame} 직전 저점 지지선".strip()
+    return s
+
+
 def upside_chart(s, zones):
     """주가별 업사이드 — 현재가와 차트 기법 지지선마다 목표주가까지의 업사이드를 막대로(마스터 지시 2026-11-01)"""
     cur, w = s.get("sym", "$"), s.get("target") or s["weighted"]
     rows = [{"label": f"현재 {cur}{s['price']:,.2f}", "bars": [{"name": "현재가", "color": "e", "value": round((w / s["price"] - 1) * 100, 1)}]}]
     for z in zones:
         up = (w / z["mid"] - 1) * 100
-        tag = z["srcs"][0].replace("피보 ", "") + (f" 외 {len(z['srcs']) - 1}" if len(z["srcs"]) > 1 else "")
+        tag = plain_level(z["srcs"][0]) + (f" 외 {len(z['srcs']) - 1}" if len(z["srcs"]) > 1 else "")
         rows.append({"label": f"{cur}{z['mid']:,.2f} {tag}", "bars": [{"name": "지지선", "color": "d" if up >= 0 else "b", "value": round(up, 1)}]})
-    return {"kind": "hbars", "w": 480, "label_w": 190, "title": "주가별 업사이드", "unit": "%", "rows": rows}
+    return {"kind": "hbars", "w": 640, "label_w": 330, "title": "주가별 업사이드", "unit": "%", "rows": rows}
 
 
 def _at(rows, idx):
@@ -137,6 +156,10 @@ def actest_chart(dp):
             act.append(None)
             est.append(round(v * scale, 3))
         panels.append({"name": name, "categories": cats, "actual": act, "est": est})
+    # EPS 칸을 매출과 같은 분기로 맞춘다(마스터 지시 2026-11-01 "매출은 당기 전후 3개 분기의 실적·컨센서스가 있는데 EPS도 동일하게")
+    base, other = panels[0]["categories"], panels[1]
+    both = sorted(set(base) | set(other["categories"]))[:7] if len(base) < 7 else base
+    panels = [{**p, "actual": [dict(zip(p["categories"], p["actual"])).get(c) for c in both], "est": [dict(zip(p["categories"], p["est"])).get(c) for c in both], "categories": both} for p in panels]
     return {"kind": "actest", "title": "분기 매출·EPS 실적과 컨센서스", "panels": panels}
 
 
@@ -152,9 +175,9 @@ def price_charts(entity):
     for title, tail in (("일봉", 120), ("주봉", 78), ("월봉", 60)):
         view = sp["bars"][title][-tail:]
         near = [x for x in sp["frames"][title] if x["price"] >= min(b["l"] for b in view) * 0.85][:4]
-        marks = [{"y": x["price"], "label": f"{x['src'].replace(title + ' ', '').replace('피보 ', '')} {fmt(x['price'])}", "color": "d"} for x in near]
+        marks = [{"y": x["price"], "label": f"{plain_level(x['src']).replace(title + ' ', '').replace(' 지지선', '')} {fmt(x['price'])}", "color": "d"} for x in near]
         out.append({"kind": "candle", "w": 480, "title": title, "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in view], "hlines": marks,
-                    "levels": [[x["src"].replace(title + " ", ""), x["price"]] for x in near]})
+                    "levels": [[plain_level(x["src"]), x["price"]] for x in near]})
     return out, sp["zones"]
 
 
@@ -219,7 +242,7 @@ def _pick(blocks, *prefix, typ=None):
 def earnings_blocks(esec):
     """어닝콜 변화 — 표와 해석만, 그래프는 한눈에 보기로"""
     B = (esec or {}).get("blocks") or []
-    out = [b for b in (_pick(B, "직전 콜 대비", typ="table"), _pick(B, "실적 vs 컨센서스", typ="table"), _pick(B, "사건별 EPS 리비전", typ="table"), _pick(B, "컨센서스 리비전", typ="table")) if b]
+    out = [b for b in (_pick(B, "직전 콜 대비", typ="table"), _pick(B, "사건별 EPS 리비전", typ="table")) if b]   # 실적 vs 컨센서스는 한눈에 보기 그림으로만(마스터 지시 2026-11-01)
     for b in out:
         b["title"] = str(b["title"]).split(" — ")[0].split(" (")[0]
     read = next((b for b in B if b.get("type") == "p" and str(b.get("text")).startswith("**해석:**")), None)
@@ -287,9 +310,9 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line, pt):
     cur = s["sym"]
     B = [{"type": "hl", "text": f"**목표주가 {cur}{pt['target']:,.0f}, 업사이드 {s['upside']:+.0%}.** 자리는 {pt['place']}이고 도달 확률은 약 {pt['reach']:.0%}다. 기본 {cur}{s['base']:,.0f}, 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%}), 약세 {cur}{s['bear']:,.0f}({s['downside']:+.0%}). "
                                 f"DCF 기준 업사이드는 기본 {base['v0'] - 1:+.0%}, 강세 {bull['v0'] - 1:+.0%}, 약세 {bear['v0'] - 1:+.0%}다(WACC {r['coc']['wacc']:.1%})."}]
-    B.append(target_price.table(pt, s))
-    B.append({"type": "table", "title": "주가 시나리오", "headers": ["시나리오", "확률", "멀티플", s["metric_name"], "주가", "업사이드", "근거"],
-              "rows": [[k["name"], f"{k['prob']:.0%}", f"{k['multiple']:.1f}배", (f"{cur}{k['eps']:.2f}" if k.get("eps") is not None else f"{cur}{k['ebitda']:,.2f}B"), f"{cur}{k['value']:,.0f}", f"{k['value'] / s['price'] - 1:+.0%}", k.get("why", "")] for k in s["cases"]]})
+    B.append({"type": "chart", "chart": target_price.chart(pt, s)})
+    B.append({"type": "boxes", "items": [{"title": f"{k['name']} {cur}{k['value']:,.0f} ({k['value'] / s['price'] - 1:+.0%})", "tag": f"확률 {k['prob']:.0%}",
+                                          "lines": [["가정", f"{k['multiple']:.1f}배 × {s['metric_name']} " + (f"{cur}{k['eps']:.2f}" if k.get("eps") is not None else f"{cur}{k['ebitda']:,.2f}B")], ["근거", k.get("why", "")]]} for k in s["cases"]]})
     B.append({"type": "table", "title": f"멀티플 선정 — {sel['label']}", "headers": ["단계", "조정", "근거"], "rows": sel["rows"]})
     peers = [[x["ticker"]] + [("-" if x.get(k) is None else f"{x[k]:.1f}") for k in sel["keys"]] + [f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}", "-" if x.get("roic") is None else f"{x['roic']:.0%}"] for x in mm["peers"]]
     B.append({"type": "table", "title": "동종 레인지", "headers": ["회사"] + sel["labels"] + ["성장", "영업이익률", "ROIC"], "rows": peers + [[f"**{name}**"] + [f"{v:.1f}" for v in sel["now"]] + ["", "", ""]]})
@@ -390,9 +413,10 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         out.append(pipeline_view.section3(dp))
     money = lambda x: f"{cur}{x:,.2f}B"
     out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val]
-    flows = flow_blocks(xs.get("flow"), price, cur)
-    if flows:
-        out.append({"h2": "수급", "blocks": flows})
+    d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
+    market = narrative_view.market_section(dp)   # 셀사이드·바이사이드·언론은 체크리스트 바로 앞(마스터 지시 2026-11-01)
+    if market:
+        out.append(market)
     out += [{**x, "h2": "체크리스트"} for x in find("체크리스트")] + find("재발행 기록", "정정 기록")
     d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}})
 

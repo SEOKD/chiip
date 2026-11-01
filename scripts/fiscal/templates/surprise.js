@@ -25,7 +25,7 @@ async () => {
     for (const [name, key, zk, div, unit] of lines) {
       const c = d.metricsValues[key];
       if (!c || c.actual == null) continue;
-      if (key !== "revenue" && c.basis !== "adjusted") continue;   // 조정 값을 내지 않는 이익 지표는 뺀다(GAAP으로 채우지 않는다)
+      if (key !== "revenue" && key !== "eps_adjusted" && c.basis !== "adjusted") continue;   // 조정 EBIT·EBITDA는 조정 값만. EPS는 회사가 조정 값을 내지 않으면 GAAP으로 남기고 basis로 표시한다(2026-11-01 GE Vernova)
       const e = fis(d, key, ed) || zack(d.reportDate, ed, zk);
       rows.push({ period, report_date: d.reportDate, metric: name, unit, actual: Math.round(c.actual / div * 1000) / 1000, est: e ? Math.round(e.est / div * 1000) / 1000 : null,
         est_src: e ? e.src : null, est_asof: e ? e.asOf : null, basis: c.basis || null, earnings_date: ed });

@@ -99,3 +99,12 @@ def table(pt, s):
         rows.append(["애널리스트 평균(참고)", "-", f"{cur}{pt['street']:,.0f}", "-", "가중하지 않는 대조값"])
     rows.append(["**목표주가**", "", f"**{cur}{pt['target']:,.0f}**", f"**{pt['tilt']:+.2f}**", pt["place"]])
     return {"type": "table", "title": "목표주가 산정", "headers": ["요인", "비중", "가리키는 주가", "위치(−1 약세 · 0 기본 · +1 강세)", "근거"], "rows": rows}
+
+
+def chart(pt, s):
+    """요인별로 가리키는 주가와 목표주가를 그림으로 — 표를 읽지 않아도 어느 요인이 끌어올리고 내리는지 보이게(마스터 지시 2026-11-01)"""
+    cur = s["sym"]
+    rows = [{"label": f"{x['name']} ({x['weight']:.0%})", "bars": [{"name": "요인", "color": "d" if x["price"] >= pt["target"] else "b", "value": round(x["price"], 1)}]} for x in pt["factors"]]
+    rows.append({"label": "목표주가", "bars": [{"name": "목표주가", "color": "c", "value": pt["target"]}]})
+    rows.append({"label": "현재 주가", "bars": [{"name": "현재", "color": "e", "value": s["price"]}]})
+    return {"kind": "hbars", "w": 640, "label_w": 230, "title": f"목표주가 산정 — {pt['place']}, 도달 확률 약 {pt['reach']:.0%}", "unit": cur.strip(), "rows": rows}

@@ -239,15 +239,21 @@ def section3(dp, mm=None):
         head += f" 단계는 {n['stage']}" + (f", 쏠림은 {n['crowding']}" if n.get("crowding") else "") + "이다."
     B.append({"type": "hl", "text": head})
     B.append({"type": "boxes", "items": [{"title": f.get("name"), "tag": f.get("status"), "lines": [["논리", f.get("thesis")], ["숫자", f.get("quant")], ["반증", f.get("falsifier")]]} for f in n.get("factors") or []]})
+    return {"h2": "내러티브", "blocks": B}
+
+
+def market_section(dp):
+    """셀사이드·바이사이드·언론 평가 — 체크리스트 바로 앞에 둔다(마스터 지시 2026-11-01)"""
+    B = []
     for key, label in LAYERS:
-        lay = (n.get("layers") or {}).get(key)
+        lay = ((dp.get("narrative") or {}).get("layers") or {}).get(key)
         if key == "retail" or not lay:
             continue
-        if lay.get("metrics"):
-            B.append({"type": "table", "title": label, "headers": ["지표", "값", "해석"], "rows": [m[:3] for m in lay["metrics"]]})
+        lines = [[m[0], f"{m[1]} — {m[2]}" if len(m) > 2 and m[2] else m[1]] for m in lay.get("metrics") or []]
         if lay.get("read"):
-            B.append({"type": "p", "text": lay["read"]})
-    return {"h2": "내러티브", "blocks": B}
+            lines.insert(0, ["한 줄", lay["read"]])
+        B.append({"title": label, "lines": lines})
+    return {"h2": "시장 평가", "blocks": [{"type": "boxes", "items": B}]} if B else None
 
 
 def portfolio3(dp):

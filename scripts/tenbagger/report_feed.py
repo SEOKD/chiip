@@ -41,7 +41,7 @@ def reasons(d):
 
 def build(d):
     v, val = d.get("verdict") or {}, _sec(d, "밸류에이션")
-    money = "NOK " if "NOK" in str(_tile(d, "주가").get("v")) else "$"
+    money = re.match(r"[^\d]*", str(_tile(d, "주가").get("v"))).group() or "$"   # 달러가 아닌 종목은 주가 칸의 통화 표기를 따른다
     cases = {k["name"]: k for c in d.get("gallery") or [] if c.get("kind") == "scenario" for k in c.get("cases") or []}
     date = str(d["date"])[5:].replace("-", "/")
     out = [f"[Chiip Ten-bagger Report {date}]", "", f"**{d['company']}({d['ticker']})**", d["title"], f"기업: {d['biz']}", ""]
@@ -63,9 +63,8 @@ def build(d):
     m = re.search(r"DCF 기준 업사이드는 기본 ([+\-−]?\d+%)", hl)
     if m:
         out.append(f"- DCF 기준 업사이드 {m.group(1).replace('-', '−')}")
-    sup = _table(_sec(d, "수급"), "지지선").get("rows") or []
-    if sup and sup[0][1] != "-":
-        out.append(f"- 일봉 지지선: {sup[0][1].split(' · ')[0]}")
+    if d.get("support"):
+        out.append(f"- 가까운 지지선: {d['support']}")
     bear = _sec(d, "약세 논리")
     sell = next((x for b in bear.get("blocks") or [] if b.get("type") == "boxes" for x in b.get("items") or [] if x.get("title") == "셀온 조건"), {})
     if sell.get("lines"):
@@ -74,7 +73,7 @@ def build(d):
     if check.get("rows"):
         out += ["", "**■ 다음 확인**"] + [f"- {r[0]}: {r[1]}" for r in check["rows"][:2]]
     out.append("")
-    if "미확인" not in str(_tile(d, "구매등급").get("sub")) and not _tile(d, "구매등급").get("second"):
+    if money == "$" and "미확인" not in str(_tile(d, "구매등급").get("sub")) and not _tile(d, "구매등급").get("second"):   # 한국 등 달러가 아닌 종목은 Zacks 수치를 쓰지 않는다
         out.append(ZACKS)
     out.append(FOOT)
     return "\n".join(out)
