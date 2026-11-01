@@ -1030,7 +1030,7 @@
     },
     {
      "type": "p",
-     "text": "기준 멀티플이 Fwd 1Y라 EBITDA도 같은 기간을 쓴다. 조정 EBITDA 기준이다. 12개월 뒤 시장이 다음 해 이익을 본다면 Fwd 2Y EBITDA 약 $1.33B(컨센서스) × 14.2배로 주당 약 $23이다."
+     "text": "기준 멀티플이 Fwd 1Y라 EBITDA도 같은 기간을 쓴다. 조정 EBITDA 기준이다. 12개월 뒤 시장이 다음 해 이익을 본다면 4Q27~3Q28 매출 추정 $5.93B에 FY2027 마진 22.5%를 곱한 약 $1.33B × 14.2배로 주당 약 $23이다."
     },
     {
      "type": "p",
@@ -1285,7 +1285,7 @@
         ],
         [
          "3Q 콜 질문 증권사",
-         "Morgan Stanley, Goldman Sachs, RBC, JP Morgan, Bank of America, Baird, Citigroup, BNP Paribas — 초점: 수주 지속, $/kW, 서비스 마진, 슬롯 신용, 주 규제"
+         "Morgan Stanley, Goldman Sachs, RBC, Bank of America, Baird, Citigroup 등 8곳 — 초점: 수주 지속, $/kW, 서비스 마진, 슬롯 신용, 주 규제"
         ]
        ]
       },
@@ -3941,10 +3941,8 @@
   "Citi": "미국 Citigroup",
   "RBC": "캐나다 Royal Bank",
   "FCF": "잉여현금흐름",
-  "BNP": "프랑스 은행 BNP Paribas",
   "GE": "미국 General Electric",
-  "INNIO": "이 리포트의 회사",
-  "JP": "J.P. Morgan",
+  "INNIO": "이 회사",
   "MWh": "메가와트시"
  }
 }
