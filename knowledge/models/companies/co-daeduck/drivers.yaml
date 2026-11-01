@@ -1,0 +1,93 @@
+auto: true
+id: co-daeduck
+name: 대덕전자
+ticker: '353200'
+unit: BKRW
+unit_usd: 743000.0
+industry: electronics
+region_mix:
+  KR: 1.0
+tax: 0.22
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 119400
+  shares: 0.049808
+  net_debt: -268.83
+  source: 가격·시가총액 = TradingView 10/30. 주식 수 = 시가총액 ÷ 가격. 네이버 인용 기사 종가는 116,400원으로
+    다르다. 차입 = 2Q 값. 현금 = 2026년 말 증권사 추정(현금 ₩77B + 단기금융 ₩200B), 반기 실측 미확인
+rev0: 1612.748
+ic0: 707.97
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.2879
+      end: 0.03
+      decay: 0.7
+    margin:
+      m0: 0.178
+      target: 0.2
+      year_target: 2
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.2
+    s2c: 1.4
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.4031
+      end: 0.034999999999999996
+      decay: 0.75
+    margin:
+      m0: 0.178
+      target: 0.22
+      year_target: 2
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.2
+    s2c: 1.61
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.1728
+      end: 0.024999999999999998
+      decay: 0.6
+    margin:
+      m0: 0.178
+      target: 0.18
+      year_target: 2
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.2
+    s2c: 1.19
+mc:
+  sigma_growth: 0.0576
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 1612.748
+  growth: 컨센서스 1년차 28.8%
+  margin: 1년차 컨센서스 20.0% 고정 → 목표 20%(2년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 2.09 → 덮어쓰기 1.4
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: 장기 이익률 15%는 기판 사이클 평균을 감안한 값이다. 매출÷투하자본 1.4는 FY2025 자기자본의 1.5배인 ₩1.325T
+    투자를 반영했다
+  shares: 완전 희석 = 기본 0.049808(2026-10-30) + 옵션·RSU·워런트·전환 0.0000 — 희석 증권 미확인 — DART는
+    robots.txt로 막혀 사업보고서를 대조하지 못했다
+notes:
+- 자동 생성(build_drivers) 2026-11-01 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 영업외 손실 약 ₩21.9B, 원인 미확인'
+- '어닝콜 위험: 패키지기판 +1% QoQ로 정체'
+- '어닝콜 위험: 증설 재원에 외부 차입 포함'
+evidence:
+- 대덕전자 2026년 2분기 경영실적(IRGO) https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AXZAQKY869UZ6FTNS6GEEK_HQUFQYVYF2202683163740.pdf
+- 디일렉 3Q 실적 https://www.thelec.kr/news/articleView.html?idxno=64624
+- 디지털투데이 3Q 잠정실적 https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=711448
+- 디일렉 ₩615B 투자 https://www.thelec.kr/news/articleView.html?idxno=64153

@@ -1,0 +1,927 @@
+{
+ "id": "co-daeduck",
+ "name": "대덕전자",
+ "ticker": "353200",
+ "as_of": "2026-10-30",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 743000.0,
+ "industry": "electronics",
+ "region_mix": {
+  "KR": 1.0
+ },
+ "tax": 0.22,
+ "main_metric": "eps",
+ "main_metric_why": "증권사가 EPS × P/E로 값을 매기고 회사가 EBITDA 가이던스를 내지 않는다",
+ "profile": {
+  "price": 119400,
+  "shares_basic": 0.049808,
+  "shares_date": "2026-10-30",
+  "cash": 277.0,
+  "debt": 8.17,
+  "source": "가격·시가총액 = TradingView 10/30. 주식 수 = 시가총액 ÷ 가격. 네이버 인용 기사 종가는 116,400원으로 다르다. 차입 = 2Q 값. 현금 = 2026년 말 증권사 추정(현금 ₩77B + 단기금융 ₩200B), 반기 실측 미확인"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-10-30",
+  "source": "희석 증권 미확인 — DART는 robots.txt로 막혀 사업보고서를 대조하지 못했다"
+ },
+ "financials": {
+  "rev_ttm": 1483.292,
+  "ebit_ttm": 238.5,
+  "invested_capital": 707.97,
+  "capex_ttm": 67.14,
+  "da_ttm": 85.0,
+  "sbc_ttm": 0.0,
+  "s2c": 2.09,
+  "rev_growth_ttm": 0.555,
+  "basis": "K-IFRS 연결",
+  "note": "TTM = 4Q25~3Q26. 3Q는 잠정치. 설비투자는 FY2025 값이고 2026년 집행액은 미공시. 감가상각은 2Q EBITDA와 영업이익 차이 연환산 근사"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 1612.748,
+   "FY2027": 2077.1
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.178,
+   "FY2027": 0.2
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 9,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 447.344
+  },
+  "quarters_act": {
+   "2026Q1": 346.314,
+   "2026Q2": 400.975,
+   "2026Q3": 418.115
+  },
+  "eps_quarters_est": {
+   "2026Q4": 815
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 3179,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 290,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 497,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 3463,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 513,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 883,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 4010,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 703,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 1120,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 4181,
+    "est": 4298,
+    "est_src": "증권사 공개 추정",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 879,
+    "est": 766,
+    "est_src": "증권사 공개 추정",
+    "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 1056,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   }
+  ],
+  "ratings": {
+   "strong_buy": 9,
+   "buy": 0,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-01"
+  },
+  "target_mean": 196111,
+  "note": "FY2026 매출 = 1~3Q 실적 + 4Q 컨센서스. 4Q 컨센서스 EPS 815원은 FY2026 EPS 4,654원과 맞지 않아 낡은 값으로 본다. FY2027 매출·영업이익은 키움(10/12)·iM(10/19) 공개 추정. 3Q 매출 추정은 키움·iM·교보 평균, 영업이익 766억 원은 iM 기사에서 역산한 컨센서스"
+ },
+ "guidance": {
+  "rev_fy0": null,
+  "long_term": "숫자 가이던스 없음. 3Q 자료에 4Q 정성 전망만 있다",
+  "source": "미제공 — 회사가 숫자 가이던스를 내지 않는다",
+  "next": {}
+ },
+ "call": {
+  "date": "2026-10-30",
+  "prev_date": "2026-08-03",
+  "tone": "up",
+  "tone_delta": 0.5,
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_3q": 418.1,
+   "opm_3q": 0.21,
+   "pkg_3q": 346.3,
+   "mlb_3q": 71.8
+  },
+  "new_topics": [
+   "AI용 대면적 FC-BGA 양산 시작",
+   "연내 세 번째 대형 투자 ₩615B"
+  ],
+  "dropped_topics": [],
+  "risks": [
+   "영업외 손실 약 ₩21.9B, 원인 미확인",
+   "패키지기판 +1% QoQ로 정체",
+   "증설 재원에 외부 차입 포함"
+  ],
+  "qa_focus": [],
+  "source": "10/30 잠정실적 공시 보도와 2Q 경영실적 자료 대조. 3Q 콜 전문 없음. 기관 설명회는 11/4",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "영업이익률",
+    "label": "OPM 21%",
+    "prior": "17.5%(2Q)",
+    "latest": "21.0%(3Q)",
+    "driver": "margin_m0",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "3Q 잠정실적"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "MLB 매출",
+    "label": "MLB +25% QoQ",
+    "prior": "₩57.5B",
+    "latest": "₩71.8B",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "3Q 잠정실적"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "패키지기판 매출",
+    "label": "기판 +1% QoQ",
+    "prior": "+18% QoQ(2Q)",
+    "latest": "+1% QoQ(3Q)",
+    "driver": "growth_start",
+    "shift": -0.03,
+    "confidence": 1.0,
+    "source": "3Q 잠정실적"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "연내 세 번째 시설투자",
+    "label": "₩615B 추가 투자",
+    "prior": "₩710B",
+    "latest": "₩1.325T",
+    "driver": "s2c",
+    "shift": -0.2,
+    "confidence": 0.8,
+    "source": "10/22 공시 보도"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "AI용 대면적 FC-BGA",
+    "label": "대면적 양산",
+    "prior": "개발 대응",
+    "latest": "양산 시작",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "3Q 보도"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 2026-11-01. Fwd 1Y는 진행 중인 회계연도 추정(대덕 FY2026 추정, Ibiden FY3/27 추정)으로 맞춘 근사. 다음 해 EPS는 동종사 칸이 없어 비교하지 않는다",
+ "peers": [
+  {
+   "ticker": "심텍",
+   "key": "222800",
+   "rev": 1703.13,
+   "ebit_margin": 0.0417,
+   "mcap": 4427.6,
+   "pb": 7.19,
+   "debt": 795.57,
+   "cash": 91.06,
+   "ev_sales": 3.01,
+   "growth": 0.3408,
+   "pe_fwd": 22.2,
+   "ntm_ebit_margin": 0.0417,
+   "ntm_growth": 0.223
+  },
+  {
+   "ticker": "이수페타시스",
+   "key": "007660",
+   "rev": 1314.29,
+   "ebit_margin": 0.1981,
+   "mcap": 6181.06,
+   "pb": 7.19,
+   "debt": 274.96,
+   "cash": 234.14,
+   "ev_sales": 4.73,
+   "growth": 0.4187,
+   "pe_fwd": 22.3,
+   "ntm_ebit_margin": 0.1981,
+   "ntm_growth": 0.257
+  },
+  {
+   "ticker": "코리아써키트",
+   "key": "007810",
+   "rev": 1650.87,
+   "ebit_margin": 0.0576,
+   "mcap": 1678.88,
+   "pb": 3.78,
+   "debt": 371.49,
+   "cash": 184.66,
+   "ev_sales": 1.13,
+   "growth": 0.2116,
+   "pe_fwd": 17.1,
+   "ntm_ebit_margin": 0.0576,
+   "ntm_growth": 0.083
+  },
+  {
+   "ticker": "삼성전기",
+   "key": "009150",
+   "rev": 13331.74,
+   "ebit_margin": 0.1239,
+   "mcap": 88125.9,
+   "pb": null,
+   "debt": 0,
+   "cash": 0,
+   "ev_sales": 6.61,
+   "growth": 0.2226,
+   "pe_fwd": 53.4,
+   "ntm_ebit_margin": 0.1239,
+   "ntm_growth": 0.086
+  },
+  {
+   "ticker": "Ibiden",
+   "key": "4062.T",
+   "rev": 483.26,
+   "ebit_margin": 0.1796,
+   "mcap": 4731.81,
+   "pb": 7.84,
+   "debt": 162.09,
+   "cash": 420.49,
+   "ev_sales": 9.26,
+   "growth": 0.2607,
+   "pe_fwd": 53.3,
+   "ntm_ebit_margin": 0.1796,
+   "ntm_growth": 0.144
+  },
+  {
+   "ticker": "Unimicron",
+   "key": "3037.TW",
+   "rev": 167.68,
+   "ebit_margin": 0.1326,
+   "mcap": 1593.83,
+   "pb": 9.14,
+   "debt": 50.02,
+   "cash": 159.87,
+   "ev_sales": 8.85,
+   "growth": 0.3315,
+   "pe_fwd": 43.1,
+   "ntm_ebit_margin": 0.1326,
+   "ntm_growth": 0.132
+  },
+  {
+   "ticker": "Kinsus",
+   "key": "3189.TW",
+   "rev": 48.95,
+   "ebit_margin": 0.137,
+   "mcap": 491.08,
+   "pb": null,
+   "debt": 0,
+   "cash": 0,
+   "ev_sales": 10.03,
+   "growth": 0.3381,
+   "pe_fwd": 75.0,
+   "ntm_ebit_margin": 0.137,
+   "ntm_growth": 0.108
+  },
+  {
+   "ticker": "Nan Ya PCB",
+   "key": "8046.TW",
+   "rev": 46.88,
+   "ebit_margin": 0.1245,
+   "mcap": 768.94,
+   "pb": 15.61,
+   "debt": 1.11,
+   "cash": 10.55,
+   "ev_sales": 16.2,
+   "growth": 0.3356,
+   "pe_fwd": 64.7,
+   "ntm_ebit_margin": 0.1245,
+   "ntm_growth": 0.275
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-10-30",
+   "tag": "3Q 잠정실적. 장중 업종 −9.33%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "₩615B 시설투자 공시",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-20",
+   "tag": "₩497B 시설투자 공시",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-05-11",
+   "tag": "₩213B 시설투자 공시",
+   "kind": "8-K"
+  }
+ ],
+ "sources": [
+  "대덕전자 2026년 2분기 경영실적(IRGO) https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AXZAQKY869UZ6FTNS6GEEK_HQUFQYVYF2202683163740.pdf",
+  "디일렉 3Q 실적 https://www.thelec.kr/news/articleView.html?idxno=64624",
+  "디지털투데이 3Q 잠정실적 https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=711448",
+  "디일렉 ₩615B 투자 https://www.thelec.kr/news/articleView.html?idxno=64153"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-01T13:30:00+09:00",
+  "shares_cover_implied": 0.049808,
+  "fiscal_profile": {
+   "companyKey": "TradingView KRX:353200 — Fiscal.ai 미제공",
+   "price": 119400,
+   "market_cap": 5947.111,
+   "total_cash": 277.0,
+   "total_debt": 8.17,
+   "as_of": "2026-10-30",
+   "balance_date": "2026-06-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 317.888,
+    "2026Q1": 346.314,
+    "2026Q2": 400.975,
+    "2026Q3": 418.115
+   },
+   "op_income": {
+    "2025Q4": 29.0,
+    "2026Q1": 51.3,
+    "2026Q2": 70.3,
+    "2026Q3": 87.9
+   }
+  },
+  "balance_2026_06_30": {
+   "equity": 976.8,
+   "cash": 77.0,
+   "st_investments": 200.0,
+   "debt_current": 8.17,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0,
+   "total_assets": 1367.8,
+   "liabilities": 390.9
+  },
+  "estimates_sales_m": {
+   "2026Q1": 346314,
+   "2026Q2": 400975,
+   "2026Q3": 418115,
+   "2026Q4": 447344
+  },
+  "tv_consensus_fy2026": {
+   "rev": 1620.811,
+   "eps": 4653.67
+  },
+  "close_conflict": "TradingView 119,400 vs 네이버 인용 기사 116,400(−15.77%). 시가·고가·저가·거래량은 같다",
+  "source_coverage": "Fiscal.ai 미제공. Easyconomics는 한국 종목 지원 중단 응답, Zacks 미제공"
+ },
+ "multiples_now": {
+  "pe_fwd": 25.66,
+  "pe_fwd2": 18.28,
+  "pe_fwd3": 12.84,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 4653.67,
+   "ebit": 288.0,
+   "revenue": 1612.7,
+   "rev_ttm": 1483.292
+  },
+  "horizons": {
+   "2": {
+    "eps": 6530,
+    "ext": 0
+   },
+   "3": {
+    "eps": 9300,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "tradingview"
+  },
+  "source": "TradingView·증권사 공개 추정. FY2028 EPS는 iM 영업이익 ₩600B에서 모델 추정"
+ },
+ "history": {},
+ "overrides": {
+  "margin_base": {
+   "target": 0.2,
+   "year_target": 2,
+   "lr": 0.15,
+   "lam": 0.35
+  },
+  "s2c": 1.4,
+  "why": "장기 이익률 15%는 기판 사이클 평균을 감안한 값이다. 매출÷투하자본 1.4는 FY2025 자기자본의 1.5배인 ₩1.325T 투자를 반영했다"
+ },
+ "multiple_view": {
+  "adj": -0.3,
+  "why": "동종 중앙값은 대만·일본 ABF 회사가 끌어올린다. 한국 상장 기판사는 17~22배이고, 증설로 감가상각이 3배가 되며 사이클이 깊다"
+ },
+ "next_event": {
+  "date": "2026-11-04",
+  "tag": "3Q 기관투자자 설명회"
+ },
+ "terms": {
+  "FC-BGA": "서버·네트워크 칩용 대면적 고성능 패키지 기판",
+  "FC-CSP": "모바일·메모리 칩용 소형 패키지 기판",
+  "CSP": "칩 크기 패키지 기판",
+  "MLB": "다층 인쇄회로기판",
+  "LTA": "장기공급계약",
+  "BT 기판": "메모리·모바일에 쓰는 BT 수지 기판",
+  "ABF": "절연 필름 기반 고성능 칩 기판",
+  "뉴프렉스": "연성회로기판 회사, 안산 공장 매각",
+  "SoCAMM": "저전력 서버 메모리 모듈",
+  "CXL": "서버 메모리 확장 연결 규격",
+  "K-IFRS": "한국 채택 국제회계기준",
+  "AP": "모바일 중앙처리칩",
+  "BGA": "볼 격자 배열 패키지",
+  "PCB": "인쇄회로기판",
+  "SSD": "낸드 기반 저장장치",
+  "GDDR7": "그래픽 메모리 7세대",
+  "LPDDR5": "저전력 D램 5세대",
+  "KAIST": "한국과학기술원"
+ },
+ "moat": {
+  "summary": "해자는 고객 인증과 항공·군용 MLB다. 규모는 일본·대만 선두보다 작고 증설 경쟁이 시작됐다.",
+  "items": [
+   {
+    "kind": "고성능 기판 고객 인증",
+    "verdict": "보통",
+    "claim": "AI용 대면적 FC-BGA는 고객 인증을 통과해야 양산에 들어간다. 회사가 3Q에 양산을 시작했다.",
+    "evidence": "3Q FC-BGA 비중 22%, 약 ₩92B. 고객명·점유율은 미확인",
+    "quant": "가동률 2분기 말 90% 초반(키움, 라인 구분 없음)",
+    "falsifier": "대면적 제품이 2027년 상반기에도 매출 비중을 못 늘린다"
+   },
+   {
+    "kind": "항공·군용 MLB 인증",
+    "verdict": "보통",
+    "claim": "항공과 군용은 인증 기간이 길고 교체가 드물어 이익률이 높다.",
+    "evidence": "2Q MLB 매출 중 항공 32%, 네트워크 30%, 군용 22%, AI 2%",
+    "quant": "3Q MLB ₩71.8B, +69% YoY",
+    "falsifier": "캐파 증설 뒤 AI 비중이 늘어도 이익률이 내려간다"
+   },
+   {
+    "kind": "고객 자금 증설",
+    "verdict": "약함",
+    "claim": "고객 선급금으로 증설하면 수요와 재원이 함께 확보된다. 아직 계약이 확인되지 않았다.",
+    "evidence": "10/22 공시 재원은 보유 자금과 외부 차입이다. 선급금은 언론·증권사 서술이고 금액은 미확인",
+    "quant": "미확인",
+    "falsifier": "연내 LTA 공시가 없고 차입이 늘어난다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-01",
+  "summary": "전문경영인과 오너 지주사 체제다. 고객 연결을 문서로 확인한 것은 없다.",
+  "people": [
+   {
+    "name": "신영환",
+    "role": "대덕전자 대표이사",
+    "since": "2020",
+    "profile": "삼성전기 출신 전문경영인",
+    "business": "삼성전기 경력. 그 밖의 이력 미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "비즈워치 2026-06-01, 회사 2Q 자료"
+   },
+   {
+    "name": "김영재",
+    "role": "지주사 ㈜대덕 대표",
+    "since": "2004",
+    "profile": "서울대 공업화학, KAIST 석사. 1983년 입사, 2004년 사장. 2020년 분할 뒤 지주사 대표",
+    "business": "지주사 ㈜대덕을 통해 대덕전자를 지배. 2026년 3월 대덕전자 이사회 자리를 넘겼다",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "비즈워치 2026-06-01"
+   },
+   {
+    "name": "김정식",
+    "role": "창업주(작고)",
+    "since": "1972",
+    "profile": "1972년 회사 설립, 2000년 대표 퇴임",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "해동과학문화재단 설립",
+    "source": "비즈워치 2026-06-01"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "대표의 삼성전기 경력",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "고객별 매출이 공개되지 않아 노출 금액을 잡지 못했다",
+    "evidence": "비즈워치 2026-06-01"
+   },
+   {
+    "network": "비즈니스",
+    "link": "지주사 ㈜대덕 계열 지배 구조",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "계열 거래액 미확인",
+    "evidence": "비즈워치 2026-06-01"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-10-30",
+  "backlog_label": "수주잔고",
+  "summary": "회사는 수주잔고를 공개하지 않는다. 확인되는 것은 투자 공시와 협의 중인 LTA뿐이다.",
+  "items": [
+   {
+    "name": "복수 빅테크 LTA",
+    "status": "협상",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "iM은 4분기 안 마무리 계획으로 썼다",
+    "blockers": [
+     "체결 미확인",
+     "선급금 금액 미공개"
+    ],
+    "source": "디일렉 10/22, 스마트투데이 10/19"
+   },
+   {
+    "name": "전사 연 매출 캐파 증설",
+    "status": "파이프라인",
+    "total": 550.0,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-05",
+    "end": "2028-12",
+    "speed": "₩1.6T(2026) → ₩2.1~2.2T(2028), iM 추정",
+    "blockers": [
+     "장비 반입",
+     "고객 인증",
+     "증설 경쟁"
+    ],
+    "source": "스마트투데이 10/19"
+   },
+   {
+    "name": "MLB 캐파 연 ₩300B",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q부터 가동. 안산 약 ₩50B 투입, 2분기 완료",
+    "blockers": [
+     "AI 비중 2%(2Q)"
+    ],
+    "source": "디일렉 3Q, 스마트투데이 10/19"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-01",
+  "stage": "컨센서스",
+  "crowding": "식는 중",
+  "summary": "AI 기판 부족과 메모리 기판 값 인상이 이야기의 축이다. 3Q에 이익은 확인됐고, 쟁점은 ₩1.3T 증설이 계약으로 채워지느냐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "9명 전원 매수",
+      "쏠림이 크다",
+      "공개 집계 11/1"
+     ],
+     [
+      "목표가 평균",
+      "₩196,111",
+      "현재가 대비 +64%. 기대의 증거다",
+      "공개 집계 11/1"
+     ],
+     [
+      "목표가 일부",
+      "iM ₩190,000, 키움 ₩240,000",
+      "실적 전 값이다. 실적 뒤 변경은 미확인",
+      "스마트투데이 10/12·10/19"
+     ]
+    ],
+    "read": "컨센서스 매수가 이미 완성됐다. 3Q 뒤 목표가 변화는 11/2부터 나온다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관·외국인 수급",
+      "미확인",
+      "한국 종목 공개 자료를 받지 못했다",
+      "-"
+     ]
+    ],
+    "read": "바이사이드 층은 미확인이다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧·X",
+      "미수집",
+      "한국 종목이라 집계 대상이 아니다",
+      "-"
+     ]
+    ],
+    "read": "리테일 층은 미수집이다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 보도",
+      "₩1.325T 투자, 기판 값 인상",
+      "증설이 주제가 됐다",
+      "디일렉·한국경제"
+     ]
+    ],
+    "read": "언론 관심은 실적보다 증설로 옮겨 갔다"
+   }
+  },
+  "factors": [
+   {
+    "name": "메모리 기판 값 인상",
+    "thesis": "메모리 호황이 기판 값으로 번진다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "강",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "10% 인상 시 연 ₩24.7B 증익(iM)",
+    "status": "강화",
+    "falsifier": "4Q에 인상이 확인되지 않는다",
+    "source": "스마트투데이 10/19"
+   },
+   {
+    "name": "AI 대면적 FC-BGA",
+    "thesis": "AI 서버가 대면적 기판 수요를 키운다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "3Q FC-BGA 약 ₩92B, 2Q와 같은 수준",
+    "status": "유지",
+    "falsifier": "2027년 상반기까지 FC-BGA 매출이 늘지 않는다",
+    "source": "3Q 잠정실적"
+   },
+   {
+    "name": "MLB 캐파 2배",
+    "thesis": "AI·항공 수요를 캐파로 받는다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "3Q 증가분 ₩17.1B 중 MLB가 ₩14.3B",
+    "status": "강화",
+    "falsifier": "4Q MLB가 ₩70B 아래로 내려간다",
+    "source": "3Q 잠정실적"
+   },
+   {
+    "name": "반대: 증설 과잉",
+    "thesis": "모든 회사가 증설하면 값이 먼저 꺾인다",
+    "inputs": "이익률·재투자",
+    "who": {
+     "sell": "약",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "투자 ₩1.325T는 FY2025 자기자본의 148%, 감가상각 ₩84.6B → ₩253.4B(키움, 10/22 공시 전)",
+    "status": "강화",
+    "falsifier": "LTA로 선급금과 물량이 확정된다",
+    "source": "10/22 공시, 스마트투데이 10/12"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 'AI와 메모리 호황이 기판 부족을 부른다'는 것이다.** 3Q 영업이익률 21%가 숫자로 보여 줬다. 그러나 올해 투자 공시 ₩1.325T는 FY2025 자기자본의 1.5배이고 LTA 체결은 아직 확인되지 않았다. 지금 값은 FY2027 EPS 6,530원(iM)의 18.3배다.",
+   "value_story": "대덕전자는 패키지 기판과 MLB를 만든다. 기업가치는 세 가지로 갈린다. 기판 값 인상이 이어지나, 증설분이 계약으로 채워지나, 감가상각 3배를 이익이 이기느냐다.",
+   "premium": {
+    "multiple": "FY2026 추정 P/E 25.7배로 한국 동종 17~22배보다 높고 대만·일본 43~75배보다 낮다.",
+    "eps": "FY2026 추정 4,654원에서 FY2027 추정 6,530원으로 +40%다. 리비전 이력은 미확인이다."
+   },
+   "why_excited": "주가가 2025년 10월 3만 원대에서 2026년 6월 장중 198,000원까지 올랐다. 영업이익이 FY2025 ₩49.1B에서 1~3Q ₩209.4B로 뛰었기 때문이다. 이후 7월 말 74,500원, 10월 161,000원, 10/30 119,400원으로 크게 흔들렸다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "메모리 기판 회사에서 FC-BGA·MLB 비중이 큰 회사로 옮겨 간다.",
+     "evidence": "3Q 비중 FC-CSP 43%, FC-BGA 22%, CSP 18%, MLB 17%",
+     "drives": "both",
+     "status": "진행 중",
+     "falsifier": "메모리 호황이 꺾이면 이익률이 FY2023~24 수준으로 돌아간다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "매출은 +4.3% QoQ인데 영업이익은 +25%다.",
+     "evidence": "3Q OPM 21.0%, 2Q 17.5%",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "OPM이 2개 분기 연속 18% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "AI용 대면적 FC-BGA 양산을 시작했다.",
+     "evidence": "디일렉 3Q 보도. 고객·물량 미확인",
+     "drives": "multiple",
+     "status": "초기",
+     "falsifier": "대면적 수율 문제나 인증 지연"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(납기를 숫자로 공개하지 않는다). 대신 증설 속도로 잰다. 안산 MLB 증설은 ₩50B 투입으로 2분기에 끝났다.",
+     "evidence": "디일렉 3Q",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "2027년 2분기 FC-BGA 증설 지연"
+    },
+    {
+     "lens": "M&A",
+     "change": "뉴프렉스 안산 공장을 ₩52.8B에 인수했다.",
+     "evidence": "디일렉 10/22",
+     "drives": "revision",
+     "status": "완료 여부 미확인",
+     "falsifier": "공장 전환이 늦어진다"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "AI 투자가 기판 수요로 내려온다. 대덕의 고객별 매출은 미확인이다.",
+     "evidence": "금지표상 고객 투자가 곧 공급사 매출은 아니다. 3Q FC-BGA는 2Q와 비슷했다",
+     "drives": "revision",
+     "status": "미확인",
+     "falsifier": "LTA 체결이 없다"
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "FC-CSP",
+     "what": "모바일 AP, 차량 레이더, SSD 컨트롤러, GDDR7·DDR5용 기판",
+     "use": "메모리·모바일·차량",
+     "money": "3Q 비중 43%, 약 ₩180B"
+    },
+    {
+     "kind": "제품",
+     "name": "FC-BGA",
+     "what": "자율주행, 광모듈, 네트워크, 컨트롤러용 대면적 기판",
+     "use": "데이터센터·차량",
+     "money": "3Q 비중 22%, 약 ₩92B"
+    },
+    {
+     "kind": "제품",
+     "name": "CSP",
+     "what": "NAND, LPDDR5, SoCAMM, CXL용 기판",
+     "use": "메모리",
+     "money": "3Q 비중 18%, 약 ₩75B"
+    },
+    {
+     "kind": "제품",
+     "name": "MLB",
+     "what": "AI 서버, 네트워크, 군용, 항공, 반도체 검사기용 고다층 기판",
+     "use": "서버·항공·방산",
+     "money": "3Q ₩71.8B, 비중 17%"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(미국 재정 사업과 연결된 회사 자료를 찾지 못했다. 미국 생산 거점도 확인되지 않는다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "orders": {
+     "change": "해당 없음(특정 행정명령이 매출을 바꿨다는 회사 자료를 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "laws": {
+     "change": "해당 없음(대덕전자 매출을 직접 바꾸는 법안을 찾지 못했다. 한국 세액공제 수혜액은 미확인이다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   }
+  }
+ }
+}
