@@ -149,7 +149,7 @@ def inbox_items(since):
                 it = json.loads(f.read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 continue
-            if (it.get("detected_at") or "") <= since:
+            if (it.get("saved_at") or it.get("detected_at") or "") <= since:   # 저장 시각으로 본다 — detected_at은 수집 시작 쪽이라 회차가 먼저 지나가면 사라진다
                 continue
             if is_financing(it, fin, pubs):
                 out.append(dict(it, source_class="파이낸싱"))
@@ -451,6 +451,12 @@ def run(now=None, peek=False):
     for it in sources:
         it["score"] = score(it, it["source_class"])
     sources.sort(key=lambda x: -x["score"])
+    import ir_ledger   # 당기 전문·Q&A는 처리 기록이 남을 때까지 다시 싣는다(2026-11-01 마스터 지시)
+    if not peek:
+        ir_ledger.track(sources, now)
+    waiting = [dict(d["item"]) for d in ir_ledger.due(now)]
+    urls = {w.get("url") for w in waiting}
+    sources = waiting + [s for s in sources if s.get("url") not in urls]
     q = alpha_queue()
     busy = queue_busy(now)
     st["watermark"] = common.iso(now)
@@ -475,6 +481,7 @@ def run(now=None, peek=False):
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
             "transcripts": tw, "tg_other": st.pop("tg_other", [])}
+    ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{now.strftime('%Y%m%d_%H%M')}.json"
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

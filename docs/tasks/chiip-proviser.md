@@ -75,6 +75,8 @@
    g. 관문: 텔레그램(8번) 전에 `py radar/channel_scout.py --check`. 종료 코드가 1이면 6-5를 끝낸 뒤 보낸다. 끝낼 수 없으면 텔레그램에 '채널 탐색 미완료'와 이유를 쓴다. 기록 없이 지나간 회차는 다음 날 `run_hourly`가 장부에 '미완료'로 적는다.
    h. 일일 리포트와 텔레그램에 '데이터 채널' 한 줄(후보·판단·승인 대기·새 인용값 수)을 쓴다. 채널 지도와 `use_in_est` 변경은 마스터 승인 뒤에만 한다.
 
+6-6. **IR 누락 점검(매 회차, 2026-11-01 마스터 지시).** `py radar/ir_ledger.py --overdue`(24시간 넘게 처리 기록이 없는 전문·Q&A)와 `py radar/pollers/jp_ir_audit.py`(자료실 미발견·기간 판독 실패)를 보고, 원인을 일일 리포트에 쓴다. 저장은 됐는데 Pulse에 실리지 않은 건이 있으면 회귀로 다룬다.
+
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
 8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
 9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만 — **예외: 6-3의 당일 텐배거 리포트 3건과 그 종목 datapack은 고칠 수 있다. 다른 날짜 리포트·다른 기능 산출물은 그대로**), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현, **파라미터 값을 직접 바꾸기·매일 피팅·채택**(값 변경은 Model Lab 일요일 채택 관문만 — 프로바이저가 고칠 수 있는 것은 등록부의 fit 정의·proposed 항목·제안서·queue), 마스터 고정값(`fixed_by_master: true`) 변경.

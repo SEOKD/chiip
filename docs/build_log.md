@@ -130,3 +130,4 @@
 - 데이터 채널 탐색(ADR-014 개정, 마스터 2026-11-01): `radar/channel_scout.py`, `config/data_channels.yaml`, `knowledge/models/channels/scout.csv`, run_hourly `proviser-channels`, Proviser 6-5 전면 개정. 시험 tests/test_channel_scout.py
 - 노션 자료실(마스터 2026-11-01): `radar/notion_library.py`, `config/notion_library.yaml`, `knowledge/notion/`. 첨부 색인·PDF·xlsx 추출·요지(원문 겹침 거절)·회사별 찾기, 리포트 조립 관문, 전 기능 지시문 연결. 시험 tests/test_notion_library.py
 - 공개 텔레그램 채널 수집(마스터 2026-11-01): `radar/pollers/tg_channels.py`, `config/tg_channels.yaml`, `docs/channels/telegram.md`, Pulse `fetch_telegram`·1-0a. 13곳 등록, aethersemiresearch는 미리보기 꺼짐. 시험 tests/test_tg_channels.py
+- Pulse 누락 수정·일본 IR 재구축(마스터 2026-11-01, 도쿄일렉트론 FY27Q2 전문): 인박스 기준을 saved_at으로(최근 6일 IR 질의응답 114·공시 42·방위 44건이 회차와 어긋남), `jp_ir_qa.current`로 과거 자료 쏟아짐 차단, `radar/ir_ledger.py` 처리 장부, `radar/pollers/jp_ir_audit.py` 커버리지 표

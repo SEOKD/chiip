@@ -368,6 +368,7 @@ def save_new_items(items):
         day = INBOX / now_kst().strftime("%Y%m%d")
         day.mkdir(parents=True, exist_ok=True)
         safe = re.sub(r"[^A-Za-z0-9_.-]", "_", it["item_id"])[:120]
+        it["saved_at"] = iso(now_kst())   # 소비자의 기준 시각 — 느린 수집기는 탐지와 저장 사이가 수십 분이다(2026-11-01 도쿄일렉트론 전문 누락)
         (day / f"{safe}.json").write_text(json.dumps(it, ensure_ascii=False, indent=1), encoding="utf-8")
         new.append(it)
     # 오래된 seen 정리(최근 2만 건 유지)

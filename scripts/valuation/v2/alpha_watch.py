@@ -82,7 +82,7 @@ def recent_items(since, now):
                 it = json.loads(f.read_text(encoding="utf-8"))
             except ValueError:
                 continue
-            t = _ts(it.get("detected_at"))
+            t = _ts(it.get("saved_at") or it.get("detected_at"))   # 저장 시각 기준(2026-11-01 Pulse와 같은 누락)
             if t and t > since and it.get("doc_type") in EVENT_TYPES:
                 out.append(it)
     return out

@@ -229,6 +229,26 @@ def save_text(cid, url, text):
     return path
 
 
+def current(new, qa, today, fresh_days, period_of, doc_date, unknown_max=3):
+    """새로 보인 문서 중 이번 실적 것만. 날짜가 있으면 fresh_days일 안, 없으면 페이지의 최신 기간(몇 건뿐이면 기간이 달라도 둔다 — 회사마다 연도 표기가 섞인다).
+    둘 다 없으면 PDF·로그미 문서가 몇 건일 때만 믿는다. 안내 페이지는 문서가 아니다. 내년 넘는 기간은 잘못 읽은 값으로 본다(도쿄일렉트론 FY2058)"""
+    limit = str(today.year + 1)
+    periods = [p for p in (period_of(t, u) for u, t in qa.items()) if p and p[2:6] <= limit]
+    latest = max(periods, default=None)
+    out, unknown = set(), []
+    for u, t in new:
+        d, p = doc_date(t, u), period_of(t, u)
+        if d:
+            if (today - d).days <= fresh_days:
+                out.add(u)
+        elif p:
+            if p[2:6] <= limit and (p == latest or len(new) <= 2):
+                out.add(u)
+        elif re.search(r"\.pdf(\?|$)|logmi", u, re.I):
+            unknown.append(u)
+    return out | (set(unknown) if len(unknown) <= unknown_max else set())
+
+
 def poll(env=None, only=None):
     cfg = common.load_yaml("config/jp_ir.yaml") or {}
     names = {c["id"]: c for c in (common.load_yaml("config/jp_watch.yaml") or {}).get("companies") or []}
@@ -275,7 +295,7 @@ def poll(env=None, only=None):
             prof[cid]["ir_pages"] = cs["pages"][:4]
             meta = scan["docs"]
             first = not cs["seen"] and not cs.get("baselined")
-            from pollers.jp_ir_docs import norm_url   # 갱신 쿼리(cvid 등)를 뺀 주소로 비교 — jp_ir_docs가 먼저 보낸 Q&A와 겹치지 않게
+            from pollers.jp_ir_docs import norm_url, period_of, doc_date, params   # 갱신 쿼리(cvid 등)를 뺀 주소로 비교 — jp_ir_docs가 먼저 보낸 Q&A와 겹치지 않게
             seen_n = {norm_url(u) for u in cs["seen"]}
             new = [(u, t) for u, t in qa.items() if u not in cs["seen"] and norm_url(u) not in seen_n]
             mats_seen = cs.setdefault("materials_seen", [])
@@ -293,7 +313,11 @@ def poll(env=None, only=None):
                     except Exception:
                         pass
                 continue
+            fresh = current(new, qa, now.date(), params()["fresh_days"], period_of, doc_date)
+            cs["seen"] += [u for u, _ in new if u not in fresh]   # 새로 찾은 페이지의 과거 자료 — 기록만 한다(2026-10-30 도쿄일렉트론 42건·미쓰비시중공업 70건)
             for u, t in new:
+                if u not in fresh:
+                    continue
                 text = to_text(u, fetch(u, 40))
                 path = save_text(cid, u, text)
                 nm = names.get(cid, {})

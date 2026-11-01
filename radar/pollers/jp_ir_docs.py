@@ -287,7 +287,7 @@ def poll(env=None, only=None, force=False):
                     if (first_page and not recent) or (not first_page and not is_fresh(d, latest, today, p["fresh_days"])):
                         continue   # 기준선·과거 아카이브 — 알리지 않는다(2026-10-30 h28~h31 옛 Q&A 재수집 문제)
                     if d["kind"] in QA_KINDS and d["key"] in qa_seen:
-                        continue   # jp_ir_qa가 이미 보낸 Q&A
+                        continue   # jp_ir_qa가 이미 보낸 Q&A — 처리 여부는 radar/ir_ledger.py가 지킨다
                     items.append(_item(cid, d, docs, label, code, en))
                     cs["last_new"] = common.iso(now)
                     _expect(cs, d, docs, today, holidays, st, cid)

@@ -39,6 +39,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-usaspending", "usaspending", 10080),
     # 부가가치 엔진(§21.14) — 모델 고도화 재료. 레이더 판정·알림과 무관
     ("src-dticker", "dticker", 30),  # 딘스티커 공개 미리보기 읽기 전용 — 알림 없음
+    ("jp-ir-audit", "pollers.jp_ir_audit", 1440),  # 일본 IR 자료실·전문·Q&A 커버리지 표(모델 없음, 마스터 지시 2026-11-01)
     ("proviser-channels", "channel_scout", 60),  # Proviser 회차의 채널 탐색 누락을 장부에 적는다(모델 없음, 마스터 지시 2026-11-01)
     ("verifier-lock", "verifier_lock", 1440),  # 평가기 잠금 일일 확인(ADR-013 H4)
     ("pulse-heartbeat", "pulse_trigger", 30),  # 펄스 문턱이 멈췄으면 모델 없이 알린다(ADR-013 H2)
