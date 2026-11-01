@@ -23,10 +23,11 @@ async () => {
     const ed = d.earningsDate ? String(d.earningsDate).slice(0, 10) : null;
     const period = `${d.calendarYear}Q${d.calendarQuarter}`;
     for (const [name, key, zk, div, unit] of lines) {
-      const c = d.metricsValues[key];
+      const adj = d.metricsValues[key];
+      const c = key === "eps_adjusted" && (!adj || adj.actual == null) ? d.metricsValues.eps_gaap : adj;   // 조정 EPS가 없는 회사는 GAAP EPS — 그림이 비지 않게(2026-11-02, SDRL)
       if (!c || c.actual == null) continue;
       if (key !== "revenue" && key !== "eps_adjusted" && c.basis !== "adjusted") continue;   // 조정 EBIT·EBITDA는 조정 값만. EPS는 회사가 조정 값을 내지 않으면 GAAP으로 남기고 basis로 표시한다(2026-11-01 GE Vernova)
-      const e = fis(d, key, ed) || zack(d.reportDate, ed, zk);
+      const e = fis(d, key, ed) || (c !== adj && fis(d, "eps_gaap", ed)) || zack(d.reportDate, ed, zk);
       rows.push({ period, report_date: d.reportDate, metric: name, unit, actual: Math.round(c.actual / div * 1000) / 1000, est: e ? Math.round(e.est / div * 1000) / 1000 : null,
         est_src: e ? e.src : null, est_asof: e ? e.asOf : null, basis: c.basis || null, earnings_date: ed });
     }
