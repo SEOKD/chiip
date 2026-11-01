@@ -1265,3 +1265,19 @@
   terms_note: "2026-11-01 마스터 지시 — 공개 웹 미리보기 t.me/s/<채널>만 GET(robots.txt 없음, 같은 날 확인). 봇·API·로그인 없음. 본문은 git 제외 폴더에만"
   reliability_default: S1·S2 커뮤니티 신호
   verified: true
+- id: src-tw-hk-ir
+  name: 대만·홍콩 IR 문서(공식 자료실 + StockAnalysis 공개 전사)
+  category: I-학습
+  method: scrape
+  module: tw_hk_ir
+  endpoint_doc: "radar/pollers/tw_hk_ir.py"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  run_on: local
+  enabled: true
+  language: en
+  doc_type: IR 자료
+  terms_note: "2026-11-01 마스터 지시 — 회사 공식 IR 페이지와 StockAnalysis 공개 페이지만, robots 매회 확인, 요청 간격 1초, 유료 구역 안 열림. 본문은 git 제외 폴더"
+  reliability_default: 공식 A·B, 비공식 C
+  verified: true

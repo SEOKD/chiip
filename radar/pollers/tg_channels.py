@@ -67,10 +67,11 @@ def og_text(page):
 
 
 def fill_unsupported(handle, posts, get, pause=0.5, limit=30):
-    """목록에 '텔레그램에서 보라'고만 나오는 글의 본문을 채운다. 새 글부터"""
-    todo = [p for p in sorted(posts.values(), key=lambda x: -x["id"]) if p.get("unsupported") and not p["text"]][:limit]
+    """목록에 본문이 없는 글을 글별 공개 페이지로 채운다. 새 글부터. 거기도 없으면 no_text로 두고 다시 묻지 않는다"""
+    todo = [p for p in sorted(posts.values(), key=lambda x: -x["id"]) if not p["text"] and not p.get("image") and not p.get("no_text")][:limit]
     for p in todo:
         p["text"] = og_text(get(p["url"]))
+        p["no_text"] = not p["text"]
         time.sleep(pause)
     return len(todo)
 
@@ -152,7 +153,10 @@ def collect(handle, get=fetch, pause=1.0, now=None):
             break
         for p in page:
             if p["id"] in posts:
-                p["seen"] = posts[p["id"]].get("seen") or p["seen"]
+                old = posts[p["id"]]
+                p["seen"] = old.get("seen") or p["seen"]
+                if not p["text"]:   # 글별 페이지에서 채운 본문을 빈 목록으로 덮지 않는다
+                    p["text"], p["no_text"] = old.get("text", ""), old.get("no_text", False)
             else:
                 new += 1
             posts[p["id"]] = p
@@ -207,12 +211,13 @@ def score(now=None):
     fresh = 2.0 if age <= 10 else 1.5 if age <= 20 else 1.0 if age <= 60 else 0.0
     cut = common.iso(now - timedelta(days=7))
     week = [p for r in rows.values() for p in r.values() if p["at"] >= cut]
-    body = sum(1 for p in week if p["text"] or p.get("image")) / max(len(week), 1)   # 사진은 주소를 쥐고 있으면 필요할 때 읽을 수 있다
+    body = sum(1 for p in week if p["text"] or p.get("image") or p.get("no_text")) / max(len(week), 1)   # 사진은 주소를 쥐고 있으면 필요할 때 읽을 수 있다
     cut2 = common.iso(now - timedelta(hours=24))
     mark = common.load_state("pulse", {}).get("tg_start") or cut2
-    recent = [p for r in rows.values() for p in r.values() if p.get("seen", "") >= max(cut2, mark) and (p["text"] or p.get("image"))]   # 첫 수집이 거슬러 받은 과거 글은 빼고 Pulse가 받기 시작한 뒤의 글만
+    lag = common.iso(now - timedelta(minutes=15))   # 다음 Pulse 회차를 기다리는 글은 아직 판정하지 않는다
+    recent = [p for r in rows.values() for p in r.values() if max(cut2, mark) <= p.get("seen", "") < lag and (p["text"] or p.get("image"))]   # 첫 수집이 거슬러 받은 과거 글은 빼고 Pulse가 받기 시작한 뒤의 글만
     sent = "".join(open(f, encoding="utf-8").read() for f in sorted(glob.glob(str(common.ROOT / "radar" / "pulse" / "*.json")))[-60:])
-    fed = sum(1 for p in recent if p["url"] in sent) / max(len(recent), 1)
+    fed = sum(1 for p in recent if p["url"] in sent) / len(recent) if recent else 1   # 새 글이 없는 시간대는 감점하지 않는다
     axes = {"채널": round(2 * live / len(rows), 1), "신선도": fresh, "본문": round(2 * body, 1), "오류": 2.0 if not st.get("fails") else 1.0, "Pulse 전달": round(2 * fed, 1)}
     return round(sum(axes.values()), 1), axes, {"수집 후 분": round(age, 1), "7일 글": len(week), "글자 없음(사진 포함)": sum(1 for p in week if not p["text"]), "사진 주소도 없음": sum(1 for p in week if not p["text"] and not p.get("image")), "24시간 새 글": len(recent)}
 

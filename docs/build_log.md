@@ -133,3 +133,4 @@
 - Pulse 누락 수정·일본 IR 재구축(마스터 2026-11-01, 도쿄일렉트론 FY27Q2 전문): 인박스 기준을 saved_at으로(최근 6일 IR 질의응답 114·공시 42·방위 44건이 회차와 어긋남), `jp_ir_qa.current`로 과거 자료 쏟아짐 차단, `radar/ir_ledger.py` 처리 장부, `radar/pollers/jp_ir_audit.py` 커버리지 표
 - 텔레그램 점검(마스터 2026-11-01): run_poll 순차 실행 때문에 수집이 29분 밀린 것을 확인, Pulse 관문이 먼저 읽도록 수정, 거슬러 읽는 쪽 수 확대, Badonions 추가(14곳). 링크드인은 robots 전체 금지·로그인으로 자동 수집하지 않고 마스터가 노션에 옮긴 글만 쓴다
 - 일본 IR 접근 경로 전수 점검(마스터 2026-11-01): 넓은 탐색 `deep_pages`, 히타치 자료실·소시오넥스트 TLS 보정, E-IR·Xj-Storage는 robots 금지, IR Pocket은 2차 이용 금지 표시라 읽지 않음. 경로표 `knowledge/models/earnings/jp_ir_routes.csv`
+- 리테일·커뮤니티 대체 경로와 대만·홍콩 IR(마스터 2026-11-01): Arctic Shift 레딧 제목 수, Substack 16곳, 유통사 직접 수집 제외 근거 기록. `radar/pollers/tw_hk_ir.py`, `config/tw_hk_ir.yaml`

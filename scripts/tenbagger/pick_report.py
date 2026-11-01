@@ -3,6 +3,7 @@
 
 우선순위(같은 종목은 30일 안에 다시 쓰지 않는다 — outputs/tenbagger/reports/log.csv):
   1. 마스터 요청 대기열 knowledge/models/tenbagger/report_queue.txt (한 줄에 티커 또는 id, 먼저 쓴 것부터)
+     수동 지시는 '키 | new 또는 reissue | 메모'로 쓰고 30일 규칙을 넘는다. reissue의 메모는 기존 리포트 이름이다(2026-11-02 마스터 지시, docs/channels/tenbagger.md)
   1-2. 마스터 노션 Stocks — 오늘 ±7일 어닝콜 스크립트 + 컨센서스가 입력된 종목(콜 날짜가 가까운 순, 그 콜 이후 리포트가 없으면 30일 안이라도 다시 쓴다 — 2026-10-30 마스터 지시)
   2. 텐배거 추적 목록 watch.csv의 진행 중 후보 중 리포트가 없는 것
   3. 알파 잠재력 최신 점수(knowledge/models/alpha/latest.json) 5.0 이상, 점수 높은 순
@@ -70,16 +71,23 @@ def notion_pick(today, uni):
     return None
 
 
+def queue_lines():
+    if not QUEUE.exists():
+        return []
+    rows = [[x.strip() for x in line.split("|")] + ["", ""] for line in QUEUE.read_text(encoding="utf-8").splitlines() if line.strip()]
+    return [{"key": r[0], "mode": r[1], "note": r[2]} for r in rows]
+
+
 def pick(today=None):
     today = today or date.today()
     done = recent(today)
     uni = _universe()
-    if QUEUE.exists():
-        for line in QUEUE.read_text(encoding="utf-8").splitlines():
-            key = line.strip()
-            if key and key not in done:
-                hit = uni.get(key) or next((u for u in uni.values() if (u.get("ticker") or "").upper() == key.upper()), None)
-                return {**(hit or {"id": key, "name": key, "ticker": key}), "reason": "마스터 요청 대기열"}
+    for q in queue_lines():
+        key = q["key"]
+        if q["mode"] or key not in done:
+            hit = uni.get(key) or next((u for u in uni.values() if (u.get("ticker") or "").upper() == key.upper()), None)
+            base = hit or {"id": f"us-{key.lower()}" if key.isalpha() and q["mode"] else key, "name": key, "ticker": key}
+            return {**base, "reason": "마스터 요청 대기열", **({"mode": q["mode"], "note": q["note"]} if q["mode"] else {})}
     hit = notion_pick(today, uni)
     if hit:
         return hit
@@ -128,7 +136,7 @@ def done(eid, ticker, html_path, view, today=None):
             w.writeheader()
         w.writerow({"date": (today or date.today()).isoformat(), "id": eid, "ticker": ticker, "html": html_path, "view": view})
     if QUEUE.exists():
-        keep = [l for l in QUEUE.read_text(encoding="utf-8").splitlines() if l.strip() and l.strip() not in (eid, ticker)]
+        keep = [l for l in QUEUE.read_text(encoding="utf-8").splitlines() if l.strip() and l.split("|")[0].strip() not in (eid, ticker)]
         QUEUE.write_text("\n".join(keep) + ("\n" if keep else ""), encoding="utf-8")
 
 

@@ -10,7 +10,6 @@ import csv
 import hashlib
 import re
 import sys
-from datetime import timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -140,7 +139,6 @@ def poll(env=None):
             except Exception as exc:
                 errors.append(f"{cid}: {fn.__name__} {type(exc).__name__}")
         cs["baselined"] = True
-    common.save_state(STATE, st)
     st["errors"] = errors
     common.save_state(STATE, st)
     return items
