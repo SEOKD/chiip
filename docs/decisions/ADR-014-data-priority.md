@@ -29,3 +29,8 @@
 - 지시: "Chiip Proviser에 기업 재무 컨센서스 데이터를 가져오는 채널을 확장하는 방안을 작동할 때마다 고민하라. 다른 데이터 파이프라인도 확보해라. Investing.com와 CNBC 등 아티클에 인용된 VisibleAlpha, LSEG, FactSet 컨센서스를 가져와라."
 - 결정: Proviser 6-5 단계와 기사 인용 장부(`scripts/fiscal/cited.py`)를 둔다. 인용값은 출처 없이 저장하지 않고, 재인용은 origin_id로 묶으며, 제공사별 값은 평균 내지 않는다. est. 순위에는 넣지 않는다(`use_in_est: false`, 마스터 결정 대기).
 - 제약: CNBC robots.txt는 Claude 계열 수집기를 금지하고 Reuters·MarketWatch·Barron's는 전체 금지다. 직접 열지 않으므로 수집량은 검색 결과에 보이는 값으로 제한된다. CNBC가 Claude-SearchBot도 막아 인용값이 적을 수 있다.
+
+## 개정 2026-11-01 — 데이터 파이프라인 채널 탐색을 엔진에 넣는다
+- 지시: "Proviser는 작동할 때마다 데이터 파이프라인 채널을 찾도록 해라. 이 구조를 엔진에 넣어놔라."
+- 결정: 컨센서스에 한정된 검토를 전 분야 탐색으로 넓힌다. 장부 `knowledge/models/channels/scout.csv`는 코드가 검사한다: 약관·robots 결과 필수, 금지 채널 채택 제안 불가, 유료·키·로그인 채널은 승인 대기 또는 기각만.
+- 강제: Proviser 텔레그램 전 `--check`로 막고, 그래도 빠진 회차는 `run_hourly`의 `proviser-channels` 작업이 모델 없이 '미완료'(회차는 돌았으나 기록 없음) 또는 '미실행'(회차 없음)으로 적는다.

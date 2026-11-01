@@ -14,7 +14,7 @@ channels:
   - {name: Zacks, status: active, route: "Fiscal.ai MCP company_analyst_estimates", checked: "2026-11-01"}
   - {name: Easyconomics·yfinance 출처, status: active, route: "MCP earnings_summary_dates·company_profile", checked: "2026-11-01"}
   - {name: TradingView 예측, status: candidate, route: "MCP mcp-tv-get-forecasts", checked: "2026-11-01", note: "다음 분기·다음 해 EPS·매출, 의견 분포, 목표가. 응답에 원제공사 표시가 없다. 발표 전 값을 쌓아 Fiscal·Zacks와 대조해 볼 후보"}
-  - {name: 기사 인용 검색, status: snippet, route: "WebSearch 결과 요약만. 기사 사이트를 열지 않는다", checked: "2026-11-01", note: "CNBC가 Claude-SearchBot도 막아 검색 결과가 비어 있을 수 있다"}
+  - {name: 기사 인용 검색, status: snippet, route: "WebSearch 결과 요약만. 기사 사이트를 열지 않는다", checked: "2026-11-01", note: "CNBC가 Claude-SearchBot도 막아 검색 결과가 비어 있을 수 있다. 2026-11-01 AMD 시험에서 LSEG·FactSet·Visible Alpha 값을 찾지 못했고, Chartmill·Benzinga·Hudson Labs 값은 원제공사 불명이라 저장하지 않았다"}
   - {name: Fiscal.ai 뉴스, status: candidate, route: "MCP news.js 본문 요약에서 LSEG·FactSet·Visible Alpha 언급 찾기", checked: "2026-11-01"}
   - {name: CNBC, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt가 ClaudeBot·Claude-User·Claude-SearchBot을 금지(Allow는 /select/뿐)"}
   - {name: Investing.com, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt는 Claude를 따로 막지 않으나 저장소 기록상 약관이 자동 수집 금지 — 약관 원문 확인 전까지"}

@@ -5,7 +5,6 @@
 사용: py scripts/fiscal/cited.py --add <json 파일>                     # [{ticker, period, metric, value, unit, basis, vendor, outlet, url, published, route}]
       py scripts/fiscal/cited.py --show <티커> <기간> [--before YYYY-MM-DD]   # 발표 전 값만 보려면 --before 발표일
       py scripts/fiscal/cited.py --review                               # Proviser 회차 시작: 수집 대기 종목·채널 재확인
-      py scripts/fiscal/cited.py --log <채널> <판단> <근거>              # 채널 검토 기록
 """
 import argparse
 import csv
@@ -21,9 +20,7 @@ from pollers import common  # noqa: E402
 import estimates  # noqa: E402
 
 STORE = ROOT / "knowledge" / "models" / "estimates" / "cited.csv"
-REVIEW = ROOT / "knowledge" / "models" / "estimates" / "channel_review.csv"
 FIELDS = ["id", "saved", "ticker", "period", "metric", "value", "unit", "basis", "vendor", "outlet", "url", "published", "route", "origin_id"]
-REVIEW_FIELDS = ["date", "channel", "decision", "evidence"]
 NEED = ("ticker", "period", "metric", "value", "unit", "basis", "vendor", "outlet", "url", "published", "route")
 
 
@@ -136,20 +133,6 @@ def review(today=None):
     old = stale(cfg["channels"], today, cfg["recheck_days"])
     if old:
         print("약관·robots 재확인 필요: " + " · ".join(old))
-    logged = read(REVIEW)
-    if logged:
-        last = logged[-1]
-        print(f"직전 검토: {last['date']} {last['channel']} → {last['decision']}")
-
-
-def log(channel, decision, evidence, path=REVIEW, today=None):
-    head = not path.exists()
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=REVIEW_FIELDS)
-        if head:
-            w.writeheader()
-        w.writerow({"date": today or common.now_kst().date().isoformat(), "channel": channel, "decision": decision, "evidence": evidence})
 
 
 def main(argv):
@@ -159,7 +142,6 @@ def main(argv):
     ap.add_argument("--show", nargs=2, metavar=("TICKER", "PERIOD"))
     ap.add_argument("--before")
     ap.add_argument("--review", action="store_true")
-    ap.add_argument("--log", nargs=3, metavar=("CHANNEL", "DECISION", "EVIDENCE"))
     a = ap.parse_args(argv)
     if a.add:
         n, again, bad = add(a.add)
@@ -172,10 +154,6 @@ def main(argv):
         return 0
     if a.review:
         review()
-        return 0
-    if a.log:
-        log(*a.log)
-        print("[채널 검토] 기록")
         return 0
     print(__doc__)
     return 1

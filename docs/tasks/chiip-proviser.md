@@ -63,13 +63,15 @@
    d. 반복되면 뿌리를 고친다: 같은 유형이 두 번 나오면 그 기능의 docs/proviser/<taskId>.md에 지시를 넣고, 표기 문제면 `radar/notify.py`·렌더러 규칙으로 올린다.
    e. 기능별 건수(오타·맞춤법·가독성)와 대표 수정 전 → 후를 일일 리포트에 남기고, 품질 채점의 가독성 축에 반영한다.
 
-6-5. **컨센서스 채널 확장(매 회차)**(마스터 지시 2026-11-01 "기업 재무 컨센서스 데이터를 가져오는 채널을 확장하는 방안을 작동할 때마다 고민하라. Investing.com와 CNBC 등 아티클에 인용된 VisibleAlpha, LSEG, FactSet 컨센서스를 가져와라"). 지도는 `config/consensus_channels.yaml`.
-   a. `py scripts/fiscal/cited.py --review` — 찾아볼 종목·검토 후보·재확인 대상을 받는다.
-   b. 수집: 찾아볼 종목마다 WebSearch(mode standard)로 `<회사> <분기> earnings consensus LSEG FactSet Visible Alpha`를 찾는다. **검색 결과에 보이는 값만 쓰고, status가 blocked인 사이트(CNBC·Investing.com·Reuters·MarketWatch·Barron's·Seeking Alpha)는 열지 않는다.** 로그인·유료벽 우회와 기사 본문 복제는 하지 않는다. 그 밖의 매체는 robots.txt와 약관을 확인한 뒤에만 연다. Fiscal.ai 뉴스 요약에 인용된 값도 같은 방식으로 쓴다.
-   c. 저장: 찾은 값을 `[{ticker, period, metric, value, unit, basis, vendor, outlet, url, published, route}]` JSON으로 쓰고 `py scripts/fiscal/cited.py --add <파일>`. 제공사·매체·주소·게재 시각·기간·기준이 없으면 저장하지 않는다. 기준을 모르면 basis '미표기'. 값을 지어내지 않고, 찾지 못하면 빈칸으로 둔다.
-   d. 쓰임: 기사 인용값은 대조값이다. `use_in_est: false`인 동안 est. 비교와 서프라이즈 계산에 넣지 않는다. 발표 전 값만 보려면 `--show <티커> <기간> --before <발표일>`. 제공사별 값은 평균 내지 않는다. 재인용은 독립 확인이 아니다.
-   e. 검토: 후보 채널 하나를 골라 비용·약관·커버리지·정확도·원출처 독립성을 보고 `py scripts/fiscal/cited.py --log <채널> <판단> <근거>`. 판단은 '채택 제안·보류·기각' 중 하나다. 채널 지도와 `use_in_est` 변경은 마스터 승인 뒤에만 한다. 억지로 제안하지 않는다.
-   f. 일일 리포트와 텔레그램에 '컨센서스 채널' 한 줄(새 인용값 수·제공사·채택 제안)을 쓴다.
+6-5. **데이터 파이프라인 채널 탐색(필수, 건너뛰면 그 회차는 미완료)**(마스터 지시 2026-11-01 "Proviser는 작동할 때마다 데이터 파이프라인 채널을 찾도록 해라. 이 구조를 엔진에 넣어놔라", "기업 재무 컨센서스 데이터를 가져오는 채널을 확장하는 방안을 작동할 때마다 고민하라. Investing.com와 CNBC 등 아티클에 인용된 VisibleAlpha, LSEG, FactSet 컨센서스를 가져와라").
+   a. `py radar/channel_scout.py --review` — 오늘 분야·이미 본 채널·승인 대기·지난 누락을 받는다. 지난 누락이 있으면 일일 리포트에 쓴다.
+   b. 탐색(전 분야): 오늘 분야를 중심으로 새 데이터 채널 1개 이상을 찾는다. 이미 본 채널을 되풀이하지 않는다. 후보마다 robots.txt와 약관을 실제로 확인한다. 확인하지 못했으면 '미확인'으로 쓰고 채택 제안하지 않는다. 시험 호출은 공개·무료이고 약관이 허용할 때만 한다.
+   c. 경계: 새 유료 서비스·키 발급·로그인이 필요한 채널은 '승인 대기'로만 기록하고 가입·연결하지 않는다. 약관이나 robots가 금지한 채널은 기각한다. 자동 연결은 하지 않는다 — 채택 제안도 마스터 승인 뒤에 연결한다.
+   d. 기록: 후보마다 `[{channel, area, access, robots, terms, needs, decision, reason, url}]` JSON을 쓰고 `py radar/channel_scout.py --add <파일>`. decision은 채택 제안·보류·기각·승인 대기다. 찾지 못했으면 `{channel: "없음", decision: "없음", reason: "찾아본 범위"}`를 쓴다. 후보를 억지로 만들지 않는다.
+   e. 컨센서스 인용값(매 회차): `py scripts/fiscal/cited.py --review`로 찾아볼 종목과 후보를 받아 종목마다 WebSearch(mode standard)로 `<회사> <분기> earnings consensus LSEG FactSet Visible Alpha`를 찾는다. **검색 결과에 보이는 값만 쓰고, `config/consensus_channels.yaml`에서 status가 blocked인 사이트는 열지 않는다.** 로그인·유료벽 우회와 기사 본문 복제는 하지 않는다. 찾은 값은 `[{ticker, period, metric, value, unit, basis, vendor, outlet, url, published, route}]` JSON으로 `py scripts/fiscal/cited.py --add <파일>`. 제공사·매체·주소·게재 시각·기간·기준이 없으면 저장하지 않고, 기준을 모르면 basis '미표기'. 값을 지어내지 않는다.
+   f. 쓰임: 기사 인용값은 대조값이다. `use_in_est: false`인 동안 est. 비교와 서프라이즈 계산에 넣지 않는다. 발표 전 값만 보려면 `--show <티커> <기간> --before <발표일>`. 제공사별 값은 평균 내지 않는다. 재인용은 독립 확인이 아니다.
+   g. 관문: 텔레그램(8번) 전에 `py radar/channel_scout.py --check`. 종료 코드가 1이면 6-5를 끝낸 뒤 보낸다. 끝낼 수 없으면 텔레그램에 '채널 탐색 미완료'와 이유를 쓴다. 기록 없이 지나간 회차는 다음 날 `run_hourly`가 장부에 '미완료'로 적는다.
+   h. 일일 리포트와 텔레그램에 '데이터 채널' 한 줄(후보·판단·승인 대기·새 인용값 수)을 쓴다. 채널 지도와 `use_in_est` 변경은 마스터 승인 뒤에만 한다.
 
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
 8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.

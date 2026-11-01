@@ -127,3 +127,4 @@
 - Ten-bagger 주기(마스터 2026-11-01): 주중 30분(`chiip-tenbagger`), 토·일 08시 15분 1회(신규 `chiip-tenbagger-weekend`). 예약 프롬프트의 easyconomics 금지 문구도 ADR-014에 맞게 고쳤다(chiip-tenbagger, chiip-tenbagger-report)
 - Chiip Analysis 2순위 세 채널(ADR-014 개정, 마스터 2026-11-01): Easyconomics·Zacks·yfinance를 모두 호출하고 사용량이 적은 채널부터 채운다. yfinance는 Easyconomics 경유만, 직접 호출은 Yahoo robots 금지로 하지 않는다
 - 컨센서스 채널 확장(ADR-014 개정, 마스터 2026-11-01): Proviser 6-5, `config/consensus_channels.yaml`, `scripts/fiscal/cited.py`(기사 인용 장부·재인용 묶음·발표 전 값·채널 검토 기록). 인용값은 est.에 넣지 않는다. 시험 tests/test_cited.py
+- 데이터 채널 탐색(ADR-014 개정, 마스터 2026-11-01): `radar/channel_scout.py`, `config/data_channels.yaml`, `knowledge/models/channels/scout.csv`, run_hourly `proviser-channels`, Proviser 6-5 전면 개정. 시험 tests/test_channel_scout.py

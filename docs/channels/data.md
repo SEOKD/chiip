@@ -15,7 +15,8 @@
 > CLAUDE.md '출력 채널'에서 옮긴 마스터 지시(2026-10-31, AAP-20261031-02). 새 지시도 여기에 적는다.
 
 - **데이터 원천 = Fiscal.ai(MCP)**(2026-10-30 마스터 지시 "Pulse·Portfolio·Ten-bagger·Reporter·Analysis·Notion Tracker·Model Laboratory·Proviser·Weekly Review는 Easyconomics를 쓰지 말고 Fiscal.ai만 — 7가지 기능 모두", ADR-012): easyconomics MCP는 **퇴역**(호출 금지). 뉴스(종목·톱뉴스·중요도 1~5)·컨센서스(Zacks 평균·분산·5년 리비전·목표가·의견 + Fiscal 자체 추정·가이던스 출처)·재무/세그먼트/일별 배수/일봉·IR/트랜스크립트(Q&A·화자)/실적 일정·13F/내부자·펀드 레터·피어/Fiscal 포트폴리오(읽기 전용)를 `execute_code` 본보기 `scripts/fiscal/templates/*.js`로 받고 `scripts/fiscal/adapter.py`로 엔진 파일에 넣는다(데이터 계약 `knowledge/methods/data_fiscal.md`, 회사 키 `config/fiscal_keys.yaml`). **Zacks 수치를 보여 줄 때마다 'Data provided by Zacks Investment Research, Inc., www.zacksdata.com' 표기.** 일봉에 고가·저가가 없어 근사 표기, 공매도 거래량은 FINRA, 매크로는 FRED 공개 자료(Portfolio 시장 국면), 포지셔닝은 쓰지 않는다. fiscal.ai 링크는 응답의 auditUrl·terminalUrl만(손으로 만들지 않는다).
-- **컨센서스 채널 확장**(2026-11-01 마스터 지시): Chiip Proviser가 매 회차 `config/consensus_channels.yaml`을 보고 기사 인용값을 모으고 후보 채널 하나를 검토한다(`docs/tasks/chiip-proviser.md` 6-5, `scripts/fiscal/cited.py`).
+- **데이터 채널 탐색**(2026-11-01 마스터 지시 "Proviser는 작동할 때마다 데이터 파이프라인 채널을 찾도록 해라"): Chiip Proviser가 매 회차 전 분야(`config/data_channels.yaml`)에서 새 채널을 찾아 약관·robots.txt 결과, 판단, 사유를 `knowledge/models/channels/scout.csv`에 남긴다(`radar/channel_scout.py`, `docs/tasks/chiip-proviser.md` 6-5). 기록이 없으면 `run_hourly`가 그 회차를 '미완료'로 적는다. 유료·키·로그인 채널은 승인 대기로만 둔다.
+- **컨센서스 채널 확장**(2026-11-01 마스터 지시): 같은 단계에서 `config/consensus_channels.yaml`을 보고 기사 인용값을 모은다(`scripts/fiscal/cited.py`).
   - 기사 인용값은 `knowledge/models/estimates/cited.csv`에 제공사·매체·주소·게재 시각·기간·기준과 함께 쌓는다. 제공사 직접 데이터가 아니고 est. 비교에 넣지 않는다. 순위와 표기 문구는 마스터 결정 대기.
   - CNBC·Reuters·MarketWatch·Barron's·Seeking Alpha는 robots.txt가, Investing.com은 저장소 기록상 약관이 막아 직접 열지 않는다. 검색 결과에 보이는 값만 쓴다.
   - TradingView `mcp-tv-get-forecasts`는 후보 채널이다. 응답에 원제공사 표시가 없다.
