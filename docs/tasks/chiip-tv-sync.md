@@ -16,6 +16,8 @@
 4. 대만 등 폴더가 없는 시장의 종목이 나오면 `config/tradingview.yaml` folders를 보고 판단한다. 새 폴더가 필요하면 만들지 말고 보고한다.
 5. 변화가 있을 때만 텔레그램 1통(`notify.send(본문, 'PULSE')`): 와치리스트 → 레이더 신규 N개, Chiip → 와치리스트 추가(폴더·섹션별 종목), 확인 필요 항목. 변화가 없으면 보내지 않는다.
 
+6. **일본 컨센서스**(마스터 지시 2026-11-02): `py radar/jp_consensus.py --targets`의 `batches`마다 `mcp-tv-get-symbol-data-batch`(symbols, columns 그대로)를 **한 메시지에 하나씩** 부르고 출력을 파일로 저장 → `py radar/jp_consensus.py --put <파일...>`. 발표가 가까운 종목만 나오고 일요일은 전 종목이다. 알림은 보내지 않는다.
+
 ## 금지
 - `remove-from-watchlist`·`delete-watchlist`·알림 생성·수정 도구를 부르지 않는다. 마스터가 건별로 지시할 때만 쓴다.
 - `get-active-watchlist`는 활성 목록을 바꿀 수 있어 쓰지 않는다.

@@ -17,6 +17,10 @@ limits:
 # 2026-11-01 마스터 지시 "Chiip Analysis 1순위 Fiscal.ai, 2순위 Easyconomics·Zacks·yfinance. 세 가지를 모두, 균형 있게"
 # tier2가 둘 이상이면 지금까지 덜 쓴 채널부터 쓰고(radar/state/data_sources.json served), 그 채널에 빈칸이 남으면 다른 채널이 채운다. 하나면 그 채널만 낼 수 있는 항목이다.
 items:
+  jp_est:
+    name: 일본 상장사 분기 컨센서스(매출·EPS)
+    tier2: [tradingview]
+    tradingview: radar/jp_consensus.py — Fiscal.ai·Zacks·Easyconomics에 일본 추정이 없다(2026-11-02 확인, knowledge/methods/jp_consensus_routes.md)
   quarter_est:
     name: 지난 분기 발표 전 추정(매출·EPS)
     fiscal: knowledge/models/estimates/snapshots.csv(매일 저장) → company_estimates

@@ -137,3 +137,4 @@
 - 리포트 수동 지시(마스터 2026-11-02): 대기열 `키 | new·reissue | 메모`, 신규 6건·재발행 9건 발행. 조정 EPS 없는 회사의 분기 EPS를 GAAP로 대체. 텔레그램 점수 9.9.
 - 2026-11-02: 노션 리포트 덮어쓰기(마스터 지시). 종목당 리포트 페이지 하나, 날짜가 달라도 기존 페이지를 덮는다. `publish_tenbagger.py`가 다른 페이지를 막고 `notion_log.csv`는 종목당 한 줄. 타카라토미 옛 페이지 휴지통, 세레브라스 제목 정정.
 - 2026-11-02: Pulse 재인용을 원보도로 바꾸는 radar/origin.py, 엔진 조립 양식 radar/pulse_feed.py, 일본 어닝콜 전사 대상 관리 radar/jp_tv_docs.py(TradingView 문서, 20분 3종목). 대량 호출로 TradingView 1분 정지·하루 정지 경고.
+- 2026-11-02: 일본 컨센서스(마스터 지시). Fiscal·Zacks 없음 확인, TradingView 종목 칸으로 66곳 중 매출 65곳·EPS 49곳 확보. radar/jp_consensus.py, 경로 표 knowledge/methods/jp_consensus_routes.md, Laboratory 주간 점검.
