@@ -1201,7 +1201,7 @@
      ],
      [
       "3Q 콜 질문 증권사",
-      "Morgan Stanley, Goldman Sachs, RBC, JP Morgan, Bank of America, Baird, Citigroup, BNP Paribas",
+      "Morgan Stanley, Goldman Sachs, RBC, JPMorgan, Bank of America, Baird, Citigroup, BNP파리바",
       "초점: 수주 지속, $/kW, 서비스 마진, 슬롯 신용, 주 규제",
       "3Q 트랜스크립트"
      ]
@@ -1604,10 +1604,8 @@
   "Citi": "미국 Citigroup",
   "RBC": "캐나다 Royal Bank",
   "FCF": "잉여현금흐름",
-  "BNP": "프랑스 은행 BNP Paribas",
   "GE": "미국 General Electric",
-  "INNIO": "이 리포트의 회사",
-  "JP": "J.P. Morgan",
+  "INNIO": "이 회사",
   "MWh": "메가와트시"
  },
  "pipeline": {
