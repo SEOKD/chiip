@@ -129,7 +129,7 @@ class TestLevels(unittest.TestCase):
 
     def test_pwr_zones(self):
         """2026-10-29 수기 검증값 — 저항 643~650, 지지 625(200일선·월봉 23.6%·일봉 50%)"""
-        daily = flow.load_ohlcv("co-quanta-services")
+        daily = [x for x in flow.load_ohlcv("co-quanta-services") if x["date"] <= "2026-10-29"]   # 수기 검증 시점으로 고정 — 시세가 갱신돼도 같은 표본
         z = levels.zones(daily, {"low": {"date": "2022-01-24", "price": 93.91}, "high": {"date": "2026-05-06", "price": 788.75}})
         r0, s0 = z["resistance"][0], z["support"][0]
         self.assertTrue(640 < r0["lo"] < 646 and 645 < r0["hi"] < 652)

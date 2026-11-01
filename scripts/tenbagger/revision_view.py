@@ -182,6 +182,8 @@ def decompose(h, events, px, n=4):
         if not p0 or not p1 or not e0 or e1 is None:
             continue
         price, rev = p1 / p0 - 1, e1 / e0 - 1
+        if e0 <= 0 or abs(rev) > 1:   # 적자→흑자 전환기의 선행 EPS는 0 근처라 비율이 뜻을 잃는다(2026-11-02 CBRS)
+            continue
         n0, n1 = ntm_fixed(h, s, s), ntm_fixed(h, t, t)
         out.append({"label": f"{earn[i].get('q') or earn[i]['tag']} 후", "from": d0, "to": d1, "p0": p0, "p1": p1, "price": price, "rev": rev,
                     "rerate": (1 + price) / (1 + rev) - 1, "pe0": p0 / n0 if n0 else None, "pe1": p1 / n1 if n1 else None})

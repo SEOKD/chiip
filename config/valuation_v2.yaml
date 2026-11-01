@@ -24,6 +24,7 @@ regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model
     electrical_equipment: {beta: 1.25, equity_weight: 0.8928}
     telecom_equipment: {beta: 0.92, equity_weight: 0.9156}
     power_utility:   {beta: 0.48, equity_weight: 0.5742}
+    offshore_drilling: {beta: 1.40, equity_weight: 0.81}   # 표에 업종 값이 없어 SDRL 시장 베타 1.40·자기 자본 구조 0.81을 쓴다(2026-11-02 SDRL)
 
 fred_series:                 # regime.py가 매일 받는 FRED 계열(키 불필요 CSV)
   ust10y: DGS10

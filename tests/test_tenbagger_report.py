@@ -250,7 +250,8 @@ class TestMultiples(unittest.TestCase):
         d = m["decomp"]
         self.assertAlmostEqual(d["fundamental"] + d["firm"], d["total"])   # 두 몫의 곱 = 전체
         self.assertTrue(all(x["warranted"] is None or x["warranted"] > 0 for x in m["peers"]))   # 음수 내재 멀티플은 버린다
-        self.assertGreater(m["history"]["p50"], m["current"])              # 상장 이후 멀티플이 식었다
+        if "history" in m:   # EV/매출 이력은 예전 양식 데이터 묶음에만 있다
+            self.assertGreater(m["history"]["p50"], m["current"])              # 상장 이후 멀티플이 식었다
 
 
 import earnings_view  # noqa: E402
