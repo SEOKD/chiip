@@ -63,6 +63,14 @@
    d. 반복되면 뿌리를 고친다: 같은 유형이 두 번 나오면 그 기능의 docs/proviser/<taskId>.md에 지시를 넣고, 표기 문제면 `radar/notify.py`·렌더러 규칙으로 올린다.
    e. 기능별 건수(오타·맞춤법·가독성)와 대표 수정 전 → 후를 일일 리포트에 남기고, 품질 채점의 가독성 축에 반영한다.
 
+6-5. **컨센서스 채널 확장(매 회차)**(마스터 지시 2026-11-01 "기업 재무 컨센서스 데이터를 가져오는 채널을 확장하는 방안을 작동할 때마다 고민하라. Investing.com와 CNBC 등 아티클에 인용된 VisibleAlpha, LSEG, FactSet 컨센서스를 가져와라"). 지도는 `config/consensus_channels.yaml`.
+   a. `py scripts/fiscal/cited.py --review` — 찾아볼 종목·검토 후보·재확인 대상을 받는다.
+   b. 수집: 찾아볼 종목마다 WebSearch(mode standard)로 `<회사> <분기> earnings consensus LSEG FactSet Visible Alpha`를 찾는다. **검색 결과에 보이는 값만 쓰고, status가 blocked인 사이트(CNBC·Investing.com·Reuters·MarketWatch·Barron's·Seeking Alpha)는 열지 않는다.** 로그인·유료벽 우회와 기사 본문 복제는 하지 않는다. 그 밖의 매체는 robots.txt와 약관을 확인한 뒤에만 연다. Fiscal.ai 뉴스 요약에 인용된 값도 같은 방식으로 쓴다.
+   c. 저장: 찾은 값을 `[{ticker, period, metric, value, unit, basis, vendor, outlet, url, published, route}]` JSON으로 쓰고 `py scripts/fiscal/cited.py --add <파일>`. 제공사·매체·주소·게재 시각·기간·기준이 없으면 저장하지 않는다. 기준을 모르면 basis '미표기'. 값을 지어내지 않고, 찾지 못하면 빈칸으로 둔다.
+   d. 쓰임: 기사 인용값은 대조값이다. `use_in_est: false`인 동안 est. 비교와 서프라이즈 계산에 넣지 않는다. 발표 전 값만 보려면 `--show <티커> <기간> --before <발표일>`. 제공사별 값은 평균 내지 않는다. 재인용은 독립 확인이 아니다.
+   e. 검토: 후보 채널 하나를 골라 비용·약관·커버리지·정확도·원출처 독립성을 보고 `py scripts/fiscal/cited.py --log <채널> <판단> <근거>`. 판단은 '채택 제안·보류·기각' 중 하나다. 채널 지도와 `use_in_est` 변경은 마스터 승인 뒤에만 한다. 억지로 제안하지 않는다.
+   f. 일일 리포트와 텔레그램에 '컨센서스 채널' 한 줄(새 인용값 수·제공사·채택 제안)을 쓴다.
+
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
 8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
 9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만 — **예외: 6-3의 당일 텐배거 리포트 3건과 그 종목 datapack은 고칠 수 있다. 다른 날짜 리포트·다른 기능 산출물은 그대로**), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현, **파라미터 값을 직접 바꾸기·매일 피팅·채택**(값 변경은 Model Lab 일요일 채택 관문만 — 프로바이저가 고칠 수 있는 것은 등록부의 fit 정의·proposed 항목·제안서·queue), 마스터 고정값(`fixed_by_master: true`) 변경.

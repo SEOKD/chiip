@@ -24,3 +24,8 @@
 - 결정: 리포트마다 세 채널을 모두 호출하고, 누적 사용량이 적은 채널부터 빈칸을 채운다. 번갈아 쓰기를 사용량 균형으로 바꾼다.
 - 제약: yfinance는 Easyconomics MCP가 내주는 출처 자료만 쓴다. 직접 호출은 Yahoo robots.txt 금지이고 브라우저 위장 라이브러리를 거쳐 차단을 넘는 일이라 하지 않는다. 호출 수는 Easyconomics 상한에 묶인다.
 - 한계: Easyconomics 두 경로의 추정이 거의 같아 실질 원출처는 둘일 수 있다. 균형은 경로 기준이지 독립성 기준이 아니다.
+
+## 개정 2026-11-01 — 컨센서스 채널 확장
+- 지시: "Chiip Proviser에 기업 재무 컨센서스 데이터를 가져오는 채널을 확장하는 방안을 작동할 때마다 고민하라. 다른 데이터 파이프라인도 확보해라. Investing.com와 CNBC 등 아티클에 인용된 VisibleAlpha, LSEG, FactSet 컨센서스를 가져와라."
+- 결정: Proviser 6-5 단계와 기사 인용 장부(`scripts/fiscal/cited.py`)를 둔다. 인용값은 출처 없이 저장하지 않고, 재인용은 origin_id로 묶으며, 제공사별 값은 평균 내지 않는다. est. 순위에는 넣지 않는다(`use_in_est: false`, 마스터 결정 대기).
+- 제약: CNBC robots.txt는 Claude 계열 수집기를 금지하고 Reuters·MarketWatch·Barron's는 전체 금지다. 직접 열지 않으므로 수집량은 검색 결과에 보이는 값으로 제한된다. CNBC가 Claude-SearchBot도 막아 인용값이 적을 수 있다.

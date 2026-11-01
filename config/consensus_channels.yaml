@@ -1,0 +1,23 @@
+# 컨센서스 채널 지도 (마스터 지시 2026-11-01 "Chiip Proviser에 기업 재무 컨센서스 데이터를 가져오는 채널을 확장하는 방안을 작동할 때마다 고민하라.
+# Investing.com와 CNBC 등 아티클에 인용된 VisibleAlpha, LSEG, FactSet 컨센서스를 가져와라") → scripts/fiscal/cited.py, docs/tasks/chiip-proviser.md 6-5, ADR-014
+# 기사 인용값은 제공사 직접 데이터가 아니다. 저장은 하되 est. 비교에는 쓰지 않는다(use_in_est). 순위와 표기 문구는 마스터가 정한다.
+use_in_est: false
+recheck_days: 30      # 약관·robots 확인이 이보다 오래되면 --review가 다시 보라고 알린다
+queue_size: 5         # Proviser 한 회차에 찾아볼 종목 수
+vendors: [Visible Alpha, LSEG, FactSet, Bloomberg, S&P Capital IQ, TradingView(제공사 미표시)]
+metrics: [매출, EPS, EBIT, EBITDA, 영업이익, 총이익률, 데이터센터 매출]
+basis: [GAAP, 조정, 미표기]
+
+# status: active 사용 중 · snippet 검색 결과 요약만 · candidate 시험 대상 · blocked 접속하지 않음
+channels:
+  - {name: Fiscal.ai 추정, status: active, route: "MCP company_estimates + snapshots.csv", checked: "2026-11-01"}
+  - {name: Zacks, status: active, route: "Fiscal.ai MCP company_analyst_estimates", checked: "2026-11-01"}
+  - {name: Easyconomics·yfinance 출처, status: active, route: "MCP earnings_summary_dates·company_profile", checked: "2026-11-01"}
+  - {name: TradingView 예측, status: candidate, route: "MCP mcp-tv-get-forecasts", checked: "2026-11-01", note: "다음 분기·다음 해 EPS·매출, 의견 분포, 목표가. 응답에 원제공사 표시가 없다. 발표 전 값을 쌓아 Fiscal·Zacks와 대조해 볼 후보"}
+  - {name: 기사 인용 검색, status: snippet, route: "WebSearch 결과 요약만. 기사 사이트를 열지 않는다", checked: "2026-11-01", note: "CNBC가 Claude-SearchBot도 막아 검색 결과가 비어 있을 수 있다"}
+  - {name: Fiscal.ai 뉴스, status: candidate, route: "MCP news.js 본문 요약에서 LSEG·FactSet·Visible Alpha 언급 찾기", checked: "2026-11-01"}
+  - {name: CNBC, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt가 ClaudeBot·Claude-User·Claude-SearchBot을 금지(Allow는 /select/뿐)"}
+  - {name: Investing.com, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt는 Claude를 따로 막지 않으나 저장소 기록상 약관이 자동 수집 금지 — 약관 원문 확인 전까지"}
+  - {name: Reuters, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt 전체 금지(/plus/ 제외)"}
+  - {name: MarketWatch·Barron's, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt 전체 금지"}
+  - {name: Seeking Alpha, status: blocked, route: "직접 접속 없음", checked: "2026-11-01", note: "robots.txt가 ClaudeBot·Claude-User 금지"}
