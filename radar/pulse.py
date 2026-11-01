@@ -30,7 +30,7 @@ import run_ledger  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
-TOP = {"속보 판단": 3, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"속보 판단": 3, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
@@ -43,7 +43,7 @@ CLASSES = [("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa")),   # 일본 IR 
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"속보 판단": 8, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -407,6 +407,27 @@ def alpha_queue():
     return [x for x in q if x.get("kind") == "알파 산정"]
 
 
+def fetch_telegram(st):
+    """공개 텔레그램 채널(마스터 지시 2026-11-01). 걸린 글은 원본으로, 나머지는 st['tg_other']에 모아 회차가 열릴 때 넘긴다"""
+    from pollers import tg_channels as tg
+    now = common.iso(common.now_kst())
+    mark = st.get("tg_mark")
+    st["tg_mark"] = now
+    if not mark:   # 처음 켤 때는 지금 이후 글만
+        return []
+    cfg, out, other = tg.config(), [], st.setdefault("tg_other", [])
+    for r in tg.dedupe(tg.since(mark)):
+        text = r["text"]
+        if not tg.relevant(r, cfg, TECH_RE):
+            if text:
+                other.append({"channel": r["channel"], "at": r["at"][:16], "text": text[:100], "url": r["url"]})
+            continue
+        out.append({"source_id": f"src-tg-{r['channel']}", "source_class": "텔레그램", "url": r["url"], "title": text.split(chr(10))[0][:120], "published_at": r["at"], "detected_at": r.get("seen"),
+                    "snippet": text[:600], "entities_matched": common.match_entities(text), "publisher": r["channel"], "also": r.get("also"), "forwarded_from": r.get("forwarded_from"), "link": r.get("link")})
+    st["tg_other"] = other[-150:]
+    return out
+
+
 def run(now=None, peek=False):
     """peek=True면 판정만 하고 상태·자료 파일을 건드리지 않는다(결정론 문턱, ADR-013 H2)"""
     now = now or common.now_kst()
@@ -422,7 +443,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("소비재", fetch_consumer_spikes)):
+    for key, fn in (("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("소비재", fetch_consumer_spikes)):
         try:
             sources += fn(st)
         except Exception as exc:
@@ -448,12 +469,12 @@ def run(now=None, peek=False):
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",
-            "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike")   # IR 자료·Q&A·소비재 필드(2026-10-30)
+            "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike")   # IR 자료·Q&A·소비재 필드(2026-10-30)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw}
+            "transcripts": tw, "tg_other": st.pop("tg_other", [])}
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{now.strftime('%Y%m%d_%H%M')}.json"
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

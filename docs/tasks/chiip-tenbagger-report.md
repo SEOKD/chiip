@@ -10,6 +10,8 @@
 
 ## 지시문
 
+공개 텔레그램 채널(2026-11-01 마스터 지시): 고른 종목마다 `py radar/pollers/tg_channels.py --about <이름 티커>`를 돌려 내러티브·리테일 재료로 참조한다. 채널 글은 시장 반응의 증거이고 사실이 아니다(`docs/channels/telegram.md`).
+
 **노션 자료 참조(필수, 마스터 지시 2026-11-01):** `docs/channels/notion.md` '노션 자료실'대로 한다. 고른 종목마다 `py radar/notion_library.py --need <id>`를 돌려 나온 PDF·xlsx 요지와 `notion-search <회사명>`의 게시글을 읽고 내러티브·시나리오·반대 검증에 반영한다. 요지 없는 자료가 남아 있으면 `v2_to_report --merge`가 멈춘다. IB 전망치는 시장 기대의 증거로만 쓰고 목표가를 결론으로 삼지 않는다.
 
 

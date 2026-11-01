@@ -1249,3 +1249,19 @@
   reliability_default: 1차(회사 공식)
   verified: true
   enabled: true
+- id: src-tg-channels
+  name: 공개 텔레그램 채널 13곳(config/tg_channels.yaml) — 읽기 전용
+  category: I-학습
+  method: scrape
+  module: tg_channels
+  endpoint_doc: "radar/pollers/tg_channels.py"
+  auth: none
+  scope: [글로벌]
+  interval_min: 5
+  run_on: local
+  enabled: true
+  language: ko
+  doc_type: SNS
+  terms_note: "2026-11-01 마스터 지시 — 공개 웹 미리보기 t.me/s/<채널>만 GET(robots.txt 없음, 같은 날 확인). 봇·API·로그인 없음. 본문은 git 제외 폴더에만"
+  reliability_default: S1·S2 커뮤니티 신호
+  verified: true
