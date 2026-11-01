@@ -1,31 +1,105 @@
-# GE Vernova(GEV) 밸류에이션 v2 동인 — 2026-10-28 3Q 실적 직후 작성(알파 감지 첫 처리). 금액 단위 10억 달러
+auto: true
 id: co-gevernova
 name: GE Vernova
 ticker: GEV
-unit: "B$"
-unit_usd: 1000000000
+unit: B$
+unit_usd: 1000000000.0
 industry: electrical_equipment
-region_mix: {US: 0.6, EU: 0.4}
-tax: 0.20
+region_mix:
+  US: 0.6
+  EU: 0.4
+tax: 0.21
 horizon: 10
-as_of: 2026-10-28
-market: {date: 2026-10-28, price: 895.08, shares: 0.2663, net_debt: -9.0, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 3.72 − 현금 12.72(보도자료상 3Q 말 현금 16.8)"}
-rev0: 47.0          # 2026 매출 가이던스 46.5~47.5(3Q 보도자료에서 45.5~46.5에서 상향) 중간값
-ic0: 2.4            # 3Q 10-Q 자기자본 11.38 + 총차입 3.72 − 현금 12.72 — 고객 선수금(계약부채)이 운전자본을 조달해 투하자본이 작다(조달 측 근사)
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 857.87
+  shares: 0.267677
+  net_debt: 3.247
+  source: 가격 = 10/30 종가. 주식 수·현금·차입·리스 = 3Q 10-Q 2026-09-30. 현금 $16.764B(제한 현금 $0.4B
+    포함), 장기 차입 $2.795B, 운영 리스 $852M. 계약부채 $45.7B가 현금보다 커서 무제한 현금 $16.364B 전액을 고객 선수금
+    몫으로 잡았다 https://www.sec.gov/Archives/edgar/data/1996810/000199681026000163/gev-20260930.htm
+rev0: 47.0
+ic0: 15.785  # 자기자본+차입+리스−현금 −0.579 + 순차입에 넣은 고객 선수금 16.364. 선수금을 부채처럼 뺐으니 투하자본에도 더해 ROIC·EP를 맞춘다
 scenarios:
-  # 기본: 잔고(1,970억 달러, 4분기 2,000억+ 예상) 전환으로 2027 +16%, 가스 장비 가격·전력 부문 마진 확대
-  base: {prob: 0.50, growth: {start: 0.16, end: 0.04, decay: 0.80}, margin: {m0: 0.12, target: 0.18, year_target: 3, lr: 0.15, lam: 0.25}, s2c: 5.0}
-  # 강세: 가스터빈 슬롯 가격 상승 지속·전기화 고성장, 풍력 적자 축소
-  bull: {prob: 0.25, growth: {start: 0.20, end: 0.045, decay: 0.82}, margin: {m0: 0.125, target: 0.21, year_target: 3, lr: 0.17, lam: 0.20}, s2c: 6.0}
-  # 약세: AI 데이터센터 투자 둔화로 슬롯 예약(SRA)의 수주 전환 지연·가격 정체, 풍력 손실 확대
-  bear: {prob: 0.25, growth: {start: 0.08, end: 0.03, decay: 0.60}, margin: {m0: 0.115, target: 0.14, year_target: 3, lr: 0.11, lam: 0.40}, s2c: 3.5}
-mc: {sigma_growth: 0.03, sigma_margin: 0.015, sigma_s2c: 0.20, sigma_wacc: 0.005}
+  base:
+    prob: 0.5
+    growth:
+      start: 0.15
+      end: 0.04
+      decay: 0.88
+    margin:
+      m0: 0.086
+      target: 0.159
+      year_target: 3
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - 0.144
+      - 0.159
+    s2c: 6.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2234
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.086
+      target: 0.1955
+      year_target: 3
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - 0.144
+      - 0.159
+    s2c: 6.9
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.0532
+      end: 0.030000000000000002
+      decay: 0.78
+    margin:
+      m0: 0.086
+      target: 0.1225
+      year_target: 3
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - 0.144
+      - 0.159
+    s2c: 5.1
+mc:
+  sigma_growth: 0.0426
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [46.5, 47.5] (3Q 보도자료 2026-10-28: 매출 $46.5~47.5B, 조정 EBITDA 마진
+    13.5~14.5%, FCF $16~17B. 2Q 기준 $45.5~46.5B·12~14%·$11.5~12.5B https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm)'
+  growth: 컨센서스 1년차 14.9%, 2년차 13.0%
+  margin: 1~2년차 컨센서스 14.4%, 15.9% 고정 → 목표 16%(3년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: 재무 재구성 증분 매출/투하자본 6.0 → 덮어쓰기 6.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 5.3%~22.3%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: 투하자본이 음수라 규칙의 자본회전율을 쓸 수 없어 매출÷증분 자본 6.0을 쓴다. 고객 선금이 증설을 대므로 높지만 선금이
+    끝까지 이어지지 않으므로 더 높이지 않았다. 성장 15%·감쇠 0.88은 컨센서스 FY2027 +14.9%·FY2028 +13.0%·FY2030
+    $79B에 맞췄다. 장기 이익률 20%는 컨센서스 2030 EPS $53이 뜻하는 약 21%보다 조금 낮다. 2028 EBITDA 추정 $12B의
+    EBIT 이익률은 약 16.5%다
+  shares: '완전 희석 = 기본 0.264677066(2026-09-30) + 옵션·RSU·워런트·전환 0.0030 — 3Q 10-Q 주석
+    18: 희석 효과 300만 주(기본 266M·희석 268M 반올림). 반희석 증권 없음'
 notes:
-  - "3Q26(2026-10-28): 수주 293억 달러(유기 +96%), 매출 126억(+27%), 조정 EBITDA 마진 15.4%, FCF 54억, 잔고 1,970억(분기 +200억). 2026 가이던스 상향: 매출 465~475억, 조정 EBITDA 마진 13.5~14.5%, FCF 160~170억(기존 115~125억)"
-  - "전력 부문: 수주 218억(+178%), 마진 21.4%. 가스 장비 잔고 64GW + 슬롯 예약 58GW = 122GW(연말 130GW+ 예상), 분기 출하 5GW"
-  - "마진 출발점: 3Q 영업이익률 11.0%(10-Q), 조정 EBITDA 가이던스에서 감가상각 약 2%p를 뺀 EBITA 약 12%로 근사(근거 약함)"
-  - "컨센서스 미입력(노션 요청 목록에 없음 — 필요 시 추가). yfinance 선행 P/E 35.5배·52주 고점 1,196달러 대비 약 25% 하락"
-  - "재투자 효율 5.0: 선수금 구조로 증분 투하자본이 작다(9개월 영업현금흐름 167억 — SEC 10-Q). 판단 — 근거 약함"
+- 자동 생성(build_drivers) 2026-11-01 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 2027 분기 신규 계약이 2026 하반기 수준'
+- '어닝콜 위험: 4Q kW당 가격이 3Q보다 낮음(제품 구성)'
+- '어닝콜 위험: 북해 해상풍력 실행 1년 남음'
 evidence:
-  - "SEC 8-K 2026-10-28 보도자료 https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm"
-  - "SEC 10-Q 2026-10-28 XBRL CIK 1996810"
+- GE Vernova 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1996810/000199681026000163/gev-20260930.htm
+- GE Vernova 3Q26 실적 보도자료 https://www.sec.gov/Archives/edgar/data/1996810/000199681026000162/gevpressrelease3q26.htm
+- GE Vernova FY2025 10-K https://www.sec.gov/Archives/edgar/data/1996810/000199681026000015/gev-20251231.htm
+- GE Vernova 2026 위임장 https://www.sec.gov/Archives/edgar/data/1996810/000199681026000049/gev-20260402.htm
+- CFO 교체 8-K https://www.sec.gov/Archives/edgar/data/1996810/000199681026000153/gev-20260825.htm
+- BNEF 가스터빈 제조 용량 전망(2차 자료) https://oenergetice.cz/en/technology/gas-turbine-queue-lengthens-as-manufacturing-capacity-set-to-rise-significantly-by-2030
+- Wood Mackenzie 가스터빈 가격·납기 https://www.woodmac.com/press-releases/gas-turbine-prices-soar-195-as-market-faces-supply-demand-crisis
+- Bernstein 콘퍼런스 CEO 발언 보도 https://streetinsider.com/Investing/GE+Vernova+shares+fall+after+CEO+expresses+caution+on+data+centers/26555560.html
