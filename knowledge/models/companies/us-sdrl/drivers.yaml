@@ -1,0 +1,104 @@
+auto: true
+id: us-sdrl
+name: Seadrill
+ticker: SDRL
+unit: B$
+unit_usd: 1000000000.0
+industry: offshore_drilling
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 52.57
+  shares: 0.06503
+  net_debt: 0.394
+  source: '가격 = 10/30 종가. 주식 = 2Q 10-Q: 발행 62,541,443주에서 소각 대기 자사주 511,078주를 뺀 62,030,365주(3Q
+    자사주 매입은 미확인). 현금 $337M + 제한 현금 $23M. 차입 = 장부 장기 차입 $737M + 리스 $17M. 원금은 2034 채권
+    $700M + 전환사채 $50M https://www.sec.gov/Archives/edgar/data/1737706/000173770626000026/sdrl-20260630.htm'
+rev0: 1.575
+ic0: 3.258
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.067
+      end: 0.035
+      decay: 0.85
+    margin:
+      m0: 0.09
+      target: 0.2
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.137
+      - 0.163
+    s2c: 2.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1746
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.09
+      target: 0.2365
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.137
+      - 0.163
+    s2c: 2.875
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.0476
+      end: 0.030000000000000002
+      decay: 0.75
+    margin:
+      m0: 0.09
+      target: 0.1635
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.137
+      - 0.163
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0556
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [1.55, 1.6] (2Q 콜 2026-08-10: 영업수익 $1.5~1.55B(대납 비용 수익 $50M 제외,
+    여기 표기는 더한 값), EBITDA $420~450M, CAPEX $200~240M. 1Q 기준 $1.43~1.48B·$370~420M)'
+  growth: 컨센서스 1년차 6.7%, 2년차 6.0%
+  margin: 1~2년차 컨센서스 13.7%, 16.3% 고정 → 목표 20%(3년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -4.8%~17.5%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 시추선은 이미 있고 신조 계획이 없어 매출 성장에 새 자본이 거의 들지 않는다. 규칙의 매출 ÷ 투하자본 0.5는 선단을 새로
+    사는 값이라 2.5로 둔다. 장기 이익률 20%는 FY2028 EBIT 이익률 16.3%에 일당 상승을 더한 값이고 사이클 평균으로 낮춘다
+  shares: '완전 희석 = 기본 0.062030365(2026-06-30) + 옵션·RSU·워런트·전환 0.0030 — 2Q 10-Q 주석
+    4: 희석 효과 300만 주(기본 62M·희석 65M 반올림). $50M 전환사채는 $1'
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: Sevan Louisiana 하반기 가시성 낮음'
+- '어닝콜 위험: 하반기 수리·정비비 집중'
+- '어닝콜 위험: 미국 멕시코만 연내 드릴십 공백'
+evidence:
+- Seadrill 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/1737706/000173770626000026/sdrl-20260630.htm
+- Seadrill FY2025 10-K https://www.sec.gov/Archives/edgar/data/1737706/000173770626000010/sdrl-20251231.htm
+- Seadrill 2026 위임장 https://www.sec.gov/Archives/edgar/data/1737706/000114036126015486/ny20062826x1_def14a.htm
+- CEO 교체 8-K https://www.sec.gov/Archives/edgar/data/1737706/000119312526113974/d28707d8k.htm
+- Elliott 13D/A No.9 https://www.sec.gov/Archives/edgar/data/1737706/000091957426006770/xslSCHEDULE_13D_X02/primary_doc.xml
+- Offshore Magazine 계약 보도 https://www.offshore-mag.com/rigs/news/55411692/seadrill-seadrill-secures-drilling-contracts-and-extensions-across-us-gulf-southeast-asia-and-angola
+- Seatrade SFL 판결 보도 https://www.seatrade-maritime.com/offshore/seadrill-loses-55m-appeal-over-hercules-rig-redelivery
+- Noble 3Q26 보도자료 https://www.sec.gov/Archives/edgar/data/0001895262/000189526226000147/exhibit991-q32026pressrele.htm
+- Transocean 합병 진행 공시 https://www.sec.gov/Archives/edgar/data/0001451505/000110465926115872/tm269762d12_defa14a.htm
+- 공법 119-21 https://www.congress.gov/bill/119th-congress/house-bill/1
