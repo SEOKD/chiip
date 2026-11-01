@@ -1581,7 +1581,9 @@
   "HD건설기계": "한국 건설기계 회사",
   "ER Holdings": "ERock의 운영 지주회사",
   "GE Vernova": "미국 전력 장비 회사",
-  "GE": "General Electric"
+  "GE": "General Electric",
+  "HD": "",
+  "ER": ""
  },
  "leaders": {
   "as_of": "2026-11-02",
