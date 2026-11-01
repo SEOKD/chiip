@@ -1,0 +1,1000 @@
+{
+ "id": "co-doosan",
+ "name": "두산",
+ "ticker": "000150",
+ "as_of": "2026-10-30",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 690000.0,
+ "industry": "electronics",
+ "region_mix": {
+  "KR": 1.0
+ },
+ "tax": 0.22,
+ "main_metric": "eps",
+ "main_metric_why": "연결 매출에 지분 30%대 자회사가 섞여 EV 기준 배수가 왜곡된다. 주당 지배순이익으로 비교하고 지분가치는 SOTP로 따로 검산한다",
+ "profile": {
+  "price": 891000,
+  "shares_basic": 0.0136049,
+  "shares_date": "2026-10-30",
+  "cash": 1686.5,
+  "debt": 2900.0,
+  "source": "가격 = TradingView 10/30. 주식 수 = 보통주 발행 14,237,400주 − 자사주 632,500주(TradingView 유통 13,604,900주와 일치). DCF 범위는 자체사업이라 현금은 별도 6월 말 ₩1.6865T(허프포스트), 차입은 추정: NICE 3월 말 별도 총차입금/EBITDA 4.7배 × 약 ₩620B. 별도 순차입금 원자료는 미확인"
+ },
+ "dilution": {
+  "potential_total": 0.0006325,
+  "date": "2026-10-30",
+  "source": "소각에서 뺀 RSU 재원 보통주 632,500주(9/17 공시 보도). 우선주 4,277,407주는 시장가치 약 ₩770B를 소수지분 항목에 넣었다"
+ },
+ "financials": {
+  "rev_ttm": 2497.5,
+  "ebit_ttm": 657.8,
+  "invested_capital": 1800.0,
+  "capex_ttm": 400.0,
+  "da_ttm": 120.0,
+  "sbc_ttm": 0.0,
+  "s2c": 1.8,
+  "rev_growth_ttm": 0.5,
+  "basis": "자체사업(전자BG·DDI·두타몰). 연결이 아니다",
+  "note": "1Q26·2Q26은 공시 보도. 3Q25·4Q25는 전자BG 역산값에 비전자 소액을 더한 근사. 투하자본·설비투자·감가상각은 자체사업 값이 공개되지 않아 추정"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 3200.0,
+   "FY2027": 4150.0,
+   "FY2028": 5750.0
+  },
+  "rev_basis": "core",
+  "ebit_margin": {
+   "FY2026": 0.27,
+   "FY2027": 0.3,
+   "FY2028": 0.31
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 12,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q3": 5300.5,
+   "2026Q4": 5947.9
+  },
+  "quarters_act": {
+   "2026Q1": 5060.3,
+   "2026Q2": 5586.1
+  },
+  "eps_quarters_est": {
+   "2026Q3": 8611,
+   "2026Q4": 7907
+  },
+  "surprise": [
+   {
+    "period": "2025Q3",
+    "metric": "매출",
+    "unit": "백만 원",
+    "actual": 4452400,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q3",
+    "metric": "EBIT",
+    "unit": "백만 원",
+    "actual": 234600,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2025Q3",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 6742,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "백만 원",
+    "actual": 5686700,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "백만 원",
+    "actual": 275200,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": -8271,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "백만 원",
+    "actual": 5060300,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "백만 원",
+    "actual": 340800,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 2181,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "백만 원",
+    "actual": 5586100,
+    "est": 5517400,
+    "est_src": "시장 컨센서스 보도",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "백만 원",
+    "actual": 488400,
+    "est": 457200,
+    "est_src": "시장 컨센서스 보도",
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 19658,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   }
+  ],
+  "ratings": {
+   "strong_buy": 9,
+   "buy": 2,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-02"
+  },
+  "target_mean": 2229167,
+  "note": "consensus.rev·ebit_margin은 DCF 범위인 자체사업 값이다. FY2026 = 회사 목표 약 ₩3.2T, FY2027·28 = 메리츠 전자BG ₩3.71T·₩5.29T + 비전자 약 ₩0.45T, 이익률은 치입 추정. quarters_est·surprise는 연결. 3Q 연결 매출 추정은 TradingView ₩5.30T, 대신 ₩5.51T로 다르다. 3Q25·4Q25·FY 영업이익은 대신 증가율에서 역산"
+ },
+ "guidance": {
+  "rev_fy0": [
+   3200.0,
+   3200.0
+  ],
+  "long_term": "하반기 전자BG 매출 약 ₩1.5T, 광모듈용 CCL 연 약 ₩300B",
+  "source": "2Q 실적 보도의 자체사업 매출 목표 약 ₩3.2T, 대신 10/19 인용",
+  "next": {}
+ },
+ "call": {
+  "date": "2026-07-27",
+  "prev_date": "2026-04-29",
+  "tone": "up",
+  "tone_delta": 0.3,
+  "guidance_direction": "raise",
+  "kpis": {
+   "own_rev_2q": 765.2,
+   "own_op_2q": 212.0,
+   "own_opm_2q": 0.277,
+   "cons_op_2q": 488.4
+  },
+  "new_topics": [
+   "광모듈용 CCL 연 매출 전망 ₩200B대 → ₩300B대",
+   "국내·중국 CCL ₩968.4B 증설",
+   "SK실트론 70.61% 인수 계약"
+  ],
+  "dropped_topics": [],
+  "risks": [
+   "제품 단가는 전년과 비슷하고 물량만 20~30% 증가",
+   "증평·김천 가동률 100% 초과로 2028년 전까지 캐파 제약",
+   "별도 차입 확대"
+  ],
+  "qa_focus": [],
+  "source": "한국 상장사는 콜 전문이 공개되지 않는다. 7/27 2Q 잠정실적 보도와 대신·하나·메리츠 인용 보도를 대조했다. 회사 PT는 DART robots 차단으로 대조하지 못했다",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "광모듈용 CCL 연 매출 전망",
+    "label": "광모듈 ₩300B",
+    "prior": "약 ₩200B대",
+    "latest": "약 ₩300B대",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "하나 9/28, 대신 10/19"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "자체사업 영업이익률",
+    "label": "OPM 27.7%",
+    "prior": "26.7%(1Q)",
+    "latest": "27.7%(2Q)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "1Q·2Q 잠정실적 보도"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "CCL 증설 결의",
+    "label": "₩968B 증설",
+    "prior": "태국 약 ₩180B",
+    "latest": "국내 ₩421B + 창수 ₩547B 추가",
+    "driver": "s2c",
+    "shift": -0.2,
+    "confidence": 1.0,
+    "source": "9/17 공시 보도"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "제품 단가",
+    "label": "단가 인상 없음",
+    "prior": "미확인",
+    "latest": "전년과 비슷, 물량 +20~30%",
+    "driver": "margin_target",
+    "shift": -0.01,
+    "confidence": 0.8,
+    "source": "대신 10/19"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 2026-11-02. P/E는 진행 회계연도 추정. 두산 값도 같은 기준이고 2Q 일회성이 든 FY2026 EPS를 쓴다. 금액은 각 현지 통화(B)",
+ "peers": [
+  {
+   "ticker": "Elite Material",
+   "key": "2383.TW",
+   "rev": 166.15,
+   "ebit_margin": 0.2617,
+   "mcap": 1675.15,
+   "pb": 22.8,
+   "debt": 44.9,
+   "cash": 29.68,
+   "ev_sales": 10.17,
+   "growth": 0.8904,
+   "pe_fwd": 36.1,
+   "ntm_ebit_margin": 0.2617,
+   "ntm_growth": 0.26
+  },
+  {
+   "ticker": "ITEQ",
+   "key": "6213.TW",
+   "rev": 37.31,
+   "ebit_margin": 0.088,
+   "mcap": 249.79,
+   "pb": 11.05,
+   "debt": 6.11,
+   "cash": 4.01,
+   "ev_sales": 6.75,
+   "growth": 0.163,
+   "pe_fwd": 37.9,
+   "ntm_ebit_margin": 0.088,
+   "ntm_growth": 0.407
+  },
+  {
+   "ticker": "TUC",
+   "key": "6274.TW",
+   "rev": 51.43,
+   "ebit_margin": 0.2342,
+   "mcap": 378.82,
+   "pb": null,
+   "debt": 0,
+   "cash": 0,
+   "ev_sales": 7.37,
+   "growth": 0.8684,
+   "pe_fwd": 31.2,
+   "ntm_ebit_margin": 0.2342,
+   "ntm_growth": 0.223
+  },
+  {
+   "ticker": "Shengyi",
+   "key": "600183.SS",
+   "rev": 41.03,
+   "ebit_margin": 0.2221,
+   "mcap": 211.32,
+   "pb": 8.66,
+   "debt": 13.27,
+   "cash": 9.38,
+   "ev_sales": 5.25,
+   "growth": 0.5624,
+   "pe_fwd": 25.6,
+   "ntm_ebit_margin": 0.2221,
+   "ntm_growth": 0.14
+  },
+  {
+   "ticker": "Kingboard Laminates",
+   "key": "1888.HK",
+   "rev": 25.72,
+   "ebit_margin": 0.2107,
+   "mcap": 109.29,
+   "pb": 5.96,
+   "debt": 8.21,
+   "cash": 4.6,
+   "ev_sales": 4.39,
+   "growth": 0.3194,
+   "pe_fwd": 12.3,
+   "ntm_ebit_margin": 0.2107,
+   "ntm_growth": 0.404
+  },
+  {
+   "ticker": "이수페타시스",
+   "key": "007660",
+   "rev": 1314.29,
+   "ebit_margin": 0.1981,
+   "mcap": 6181.06,
+   "pb": 7.19,
+   "debt": 274.96,
+   "cash": 234.14,
+   "ev_sales": 4.73,
+   "growth": 0.4187,
+   "pe_fwd": 22.3,
+   "ntm_ebit_margin": 0.1981,
+   "ntm_growth": 0.257
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-10-30",
+   "tag": "두산에너빌리티 체코 시공 협상 종료 여파, 두산 −7.3%",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "한수원, 두코바니 시공계약 협상 종료 발표",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "−13.5%, 공시 없음. 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-09-17",
+   "tag": "₩968.4B 증설·자사주 소각 결의",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-31",
+   "tag": "SK실트론 70.61% 인수 계약, +30%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-27",
+   "tag": "2Q 잠정실적",
+   "kind": "earnings"
+  }
+ ],
+ "sources": [
+  "대신 인용 더파워 10/19 https://www.thepowernews.co.kr/view.php?ud=20261019141142714de3f0aa1be_7",
+  "메리츠 인용 이투데이 10/1 https://www.etoday.co.kr/news/view/2631199",
+  "하나 인용 이코노믹리뷰 9/28 https://www.econovill.com/news/articleView.html?idxno=751977",
+  "한국신용평가 ㈜두산 평가 2026-06-30 https://m.kisrating.com/fileDown.do?menuCd=R8&gubun=2&fileName=rs20260630-52.pdf"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-02T01:40:00+09:00",
+  "shares_cover_implied": 0.0142374,
+  "fiscal_profile": {
+   "companyKey": "TradingView KRX:000150 — Fiscal.ai 미제공",
+   "price": 891000,
+   "market_cap": 12685.5,
+   "total_cash": 1686.5,
+   "total_debt": 2900.0,
+   "as_of": "2026-10-30",
+   "balance_date": "2026-06-30"
+  },
+  "consolidated": {
+   "cash": 5353.1,
+   "debt": 10810.2,
+   "equity": 13907.6,
+   "goodwill": 5676.6,
+   "rev_ttm": 20785.4,
+   "op_ttm": 1274.6,
+   "ebitda_ttm": 2128.1,
+   "fcf_ttm": 61.0,
+   "net_income_ttm": 367.8,
+   "capex_ttm": 1075.0,
+   "mcap_with_pref_tv": 13456.5
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q3": 470.0,
+    "2025Q4": 560.0,
+    "2026Q1": 702.3,
+    "2026Q2": 765.2
+   },
+   "op_income": {
+    "2025Q3": 110.0,
+    "2025Q4": 148.0,
+    "2026Q1": 187.8,
+    "2026Q2": 212.0
+   }
+  },
+  "balance_2026_06_30": {
+   "equity": 1200.0,
+   "cash": 1686.5,
+   "st_investments": 0,
+   "debt_current": 2286.5,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0,
+   "note": "별도 현금만 실측. 차입과 자기자본의 자체사업 귀속분은 추정"
+  },
+  "stakes": {
+   "enerbility": {
+    "mcap": 35097.5,
+    "pct": 0.3039,
+    "value": 10667
+   },
+   "robotics": {
+    "mcap": 3526.2,
+    "pct": 0.5,
+    "value": 1763
+   },
+   "sum": 12430,
+   "discount": 0.38,
+   "after_discount": 7707,
+   "note": "지분율은 공시 요약 사이트와 DS 보도. 두산테스나·두산퓨얼셀 직접 보유분은 미확인이라 뺐다. PRS로 로보틱스 1,170만 주를 담보 잡혔다"
+  },
+  "pref_value": 770.0,
+  "estimates_sales_m": {
+   "2026Q1": 702300,
+   "2026Q2": 765200,
+   "2026Q3": 788000,
+   "2026Q4": 944500
+  },
+  "tv_consensus_fy2026": {
+   "rev": 21895.0,
+   "eps": 36462
+  },
+  "naver_est_eps": 27260,
+  "source_coverage": "Fiscal.ai 미제공. Easyconomics는 한국 종목 지원 중단 응답(earnings_summary_dates 빈 응답), Zacks 미제공. 노션 두산 컨센서스·어닝콜 페이지는 비어 있다",
+  "estimates_note": "자체사업. 1·2Q 실적, 3Q는 대신 영업이익 ₩211.9B ÷ OPM 26.9%, 4Q는 연 목표 ₩3.2T의 나머지"
+ },
+ "multiples_now": {
+  "pe_fwd": 24.44,
+  "pe_fwd2": 17.13,
+  "pe_fwd3": 11.42,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 36462,
+   "ebit": 1865.0,
+   "revenue": 21895.0,
+   "rev_ttm": 20785.4
+  },
+  "horizons": {
+   "2": {
+    "eps": 52000,
+    "ext": 0
+   },
+   "3": {
+    "eps": 78000,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "tradingview"
+  },
+  "source": "FY2026 = TradingView 컨센서스. FY2027·28 EPS는 공개 추정을 찾지 못해 치입 추정: 일회성 뺀 FY2026 약 27,000원 + 전자BG 증익 세후"
+ },
+ "history": {},
+ "overrides": {
+  "margin_base": {
+   "target": 0.22,
+   "year_target": 4,
+   "lr": 0.18,
+   "lam": 0.35
+  },
+  "s2c": 1.8,
+  "why": "장기 이익률 22%는 CCL 동종 20~26%에 맞췄다. 지금 30%대 초입은 공급 부족 구간의 값이다. 매출÷투하자본 1.8은 투자 ₩1.15T로 연 매출 캐파 약 ₩2.6T를 더하는 계획을 낮춰 잡았다"
+ },
+ "multiple_view": {
+  "adj": -0.3,
+  "why": "동종 중앙값은 순수 CCL 회사 값이다. 두산은 지주 구조라 대신도 NAV에 38% 할인을 걸었고, FY2026 EPS에는 2Q 일회성이 들어 있다"
+ },
+ "next_event": {
+  "date": "2026-11-09",
+  "tag": "3Q26 실적(예상)"
+ },
+ "terms": {
+  "CCL": "동박적층판, 회로기판의 기초 소재",
+  "전자BG": "두산의 CCL 사업부",
+  "BG": "비즈니스 그룹, 사업부",
+  "DDI": "두산디지털이노베이션, IT 서비스 사업",
+  "두타몰": "두산의 동대문 패션몰",
+  "T-글래스": "저열팽창 유리섬유 천",
+  "M8": "저손실 CCL 등급",
+  "M9": "M8 다음 저손실 CCL 등급",
+  "M10": "M9 다음 CCL 등급",
+  "PRS": "주가수익스와프, 지분 담보 자금 조달",
+  "NAV": "순자산가치",
+  "SOTP": "사업별 가치 합산",
+  "RSU": "양도제한 조건부 주식",
+  "SPA": "주식매매계약",
+  "PPG": "유리섬유에 수지를 입힌 절연층",
+  "SiC": "실리콘 카바이드 전력 반도체 소재",
+  "두코바니": "체코 신규 원전 부지",
+  "베라 루빈": "엔비디아 차세대 AI 가속기 플랫폼",
+  "루빈": "엔비디아 차세대 AI 가속기",
+  "블랙웰": "엔비디아 현행 AI 가속기 플랫폼",
+  "컴퓨트 트레이": "GPU가 들어가는 서버 보드 묶음",
+  "창수": "중국 장쑤성 도시, 두산 CCL 법인 소재지",
+  "CSP": "클라우드 서비스 사업자",
+  "DART": "금융감독원 전자공시",
+  "DS": "DS투자증권",
+  "KPMG": "회계법인",
+  "MBA": "경영학 석사",
+  "NICE": "NICE신용평가"
+ },
+ "moat": {
+  "summary": "해자는 엔비디아 인증과 얇은 절연층 기술이다. 다만 루빈 세대의 독점은 다툼이 있고, 핵심 소재 T-글래스는 남의 손에 있다.",
+  "items": [
+   {
+    "kind": "엔비디아 인증 지위",
+    "verdict": "보통",
+    "claim": "블랙웰 컴퓨트 트레이용 CCL을 사실상 단독으로 공급했고 베라 루빈 공급망에도 들어갔다.",
+    "evidence": "메리츠 3Q 북미 엔비디아향 ₩277.3B 추정, 2026년 ₩1.11T 전망. 씨티는 루빈용 유일 인증이라 썼고, 궈밍치 메모는 M10 시험에 공급사 2곳이 추가됐다고 썼다. 양쪽이 충돌한다",
+    "quant": "분기 엔비디아향이 자체사업 매출의 약 36%(3Q 추정 ÷ 2Q 실적 기준)",
+    "falsifier": "루빈 램프에서 Elite Material이나 TUC가 컴퓨트 트레이 물량을 나눠 가진다"
+   },
+   {
+    "kind": "얇은 절연층 기술",
+    "verdict": "보통",
+    "claim": "유기 필러를 넣어 절연 두께를 18㎛에서 13㎛로 줄였다.",
+    "evidence": "전자BG 사장 인터뷰 보도. '13㎛는 두산만 가능'은 회사 쪽 말이고 고객·경쟁사 확인은 없다",
+    "quant": "18㎛ → 13㎛",
+    "falsifier": "대만 업체가 같은 두께로 고객 인증을 받는다"
+   },
+   {
+    "kind": "풀가동 캐파",
+    "verdict": "보통",
+    "claim": "공급이 모자라 가동률이 100%를 넘고, 다음 증설분은 2028년에 나온다. 그때까지는 수요가 넘친다.",
+    "evidence": "증평 122%, 김천 106%. 투자 ₩968.4B 가동은 2028년 하반기부터",
+    "quant": "연 매출 캐파 ₩2.8T(2026) → ₩5.4T(2028), 하나 추정",
+    "falsifier": "Elite Material·중국 업체의 증설이 먼저 가동돼 2027년에 공급이 풀린다"
+   },
+   {
+    "kind": "T-글래스 조달",
+    "verdict": "약함",
+    "claim": "고급 CCL의 핵심 원단은 Nittobo가 세계 약 90%를 쥔다. 두산도 부족을 인정했다.",
+    "evidence": "전자BG 사장 9/11 인터뷰, 닛토보 점유율 보도. 두산의 장기 공급 계약 물량은 미확인",
+    "quant": "리드타임 약 2년(딘스티커 10/6)",
+    "falsifier": "해당 없음 — 조달 물량이 공시되면 판정을 올린다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "오너 경영 지주사다. 엔비디아와의 관계는 공급 계약이 핵심이고 오너 연결이 만든 매출은 입증되지 않는다.",
+  "people": [
+   {
+    "name": "박정원",
+    "role": "두산그룹 회장",
+    "since": "2016",
+    "profile": "1962년생. 고려대 경영학과, 보스턴대 MBA. 1985년 입사, 2012~2016년 ㈜두산 회장, 2016년 3월 그룹 회장",
+    "business": "최대주주. 본인 7.87%, 특수관계인 포함 약 41%. 2020년 위기 때 비주력 사업을 팔았다",
+    "political": "미확인",
+    "alumni": "고려대·대일고. 사업 연결은 미확인",
+    "social": "미확인",
+    "source": "고려대 경영대 소개, 시대 2016-07, etfshopping 지분 요약"
+   },
+   {
+    "name": "박두병",
+    "role": "초대 회장(작고)",
+    "since": "미확인",
+    "profile": "박정원 회장의 조부",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "시대 2016-07"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "엔비디아향 CCL 공급 관계",
+    "strength": 2,
+    "exposure": 1110.0,
+    "basis": "메리츠 2026년 엔비디아향 매출 전망. 공급 계약이지 인맥이 아니다",
+    "evidence": "이투데이 10/1, 로이터 6/8 제목"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-10-30",
+  "backlog_label": "수주잔고",
+  "summary": "회사는 수주잔고를 공개하지 않는다. 확인되는 것은 투자 결의와 SK실트론 계약이고, 고객 물량은 증권사 추정이다.",
+  "items": [
+   {
+    "name": "SK실트론 70.61% 인수",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": 0.1,
+    "progress_basis": "계약금 10% 지급, 종결 2027-01-31 예정",
+    "margin": "미확인",
+    "start": "2026-07",
+    "end": "2027-01",
+    "blockers": [
+     "잔여 29.39% 협상",
+     "인수금융 ₩2.5T",
+     "언아웃"
+    ],
+    "source": "허프포스트 8/3, 비즈워치 8/4, 더파워 10/19"
+   },
+   {
+    "name": "엔비디아향 CCL 연간",
+    "status": "파이프라인",
+    "total": 1110.0,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q 추정 ₩277.3B, +34.7% QoQ",
+    "blockers": [
+     "루빈 일정",
+     "T-글래스",
+     "2차 공급사"
+    ],
+    "source": "메리츠 인용 이투데이 10/1"
+   },
+   {
+    "name": "광모듈용 CCL 연간",
+    "status": "파이프라인",
+    "total": 300.0,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": 0.25,
+    "margin_kind": "영업이익",
+    "margin_basis": "대신 20~30%대 서술의 중간",
+    "speed": "3Q 추정 ₩105.9B, 2Q의 2배 이상",
+    "blockers": [
+     "1.6T 전환 시점"
+    ],
+    "source": "대신 10/19, 메리츠 10/1"
+   },
+   {
+    "name": "CCL 증설 국내·창수 ₩968.4B",
+    "status": "파이프라인",
+    "total": 2600.0,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-09",
+    "end": "2028-12",
+    "speed": "연 매출 캐파 ₩2.8T → ₩5.4T(2028), 하나 추정. 태국 포함",
+    "blockers": [
+     "가동 2028년 하반기",
+     "금융 차입",
+     "중국 공장 규제 위험"
+    ],
+    "source": "9/17 공시 보도, 하나 9/28"
+   },
+   {
+    "name": "태국 신공장 약 ₩180B",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2028년 하반기 양산 목표",
+    "blockers": [
+     "고객 인증"
+    ],
+    "source": "머니투데이 6/4 계열 보도"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-02",
+  "stage": "컨센서스",
+  "crowding": "식는 중",
+  "summary": "AI 서버 CCL 병목을 쥔 회사라는 이야기다. 증권사 12곳 중 11곳이 매수이지만 주가는 6월 고점의 36% 수준이다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "매수 11, 중립 1",
+      "매도 없음",
+      "공개 집계 11/2"
+     ],
+     [
+      "목표가 평균",
+      "₩2,229,167",
+      "현재가 대비 +150%. 기대의 증거다",
+      "공개 집계 11/2"
+     ],
+     [
+      "목표가 일부",
+      "대신 ₩1.97M, 메리츠 ₩2.40M, 하나 ₩2.42M",
+      "모두 SOTP. 대신 NAV 할인 38%",
+      "더파워·이투데이·이코노믹리뷰"
+     ]
+    ],
+    "read": "목표가와 주가의 거리가 벌어졌다. 숫자 전망보다 지분가치 가정이 주가를 끌어 내린 쪽이다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "외국인 소진율",
+      "21.35%",
+      "10/30 기준",
+      "네이버 인용 중앙이코노미뉴스"
+     ],
+     [
+      "드러켄밀러 면담",
+      "9/22 보도",
+      "면담 사실만 있다. 지분 취득은 미확인",
+      "한국경제 9/20"
+     ]
+    ],
+    "read": "기관 순매수 자료는 받지 못했다. 바이사이드 층은 대부분 미확인이다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧·X",
+      "미수집",
+      "한국 종목이라 집계 대상이 아니다",
+      "-"
+     ]
+    ],
+    "read": "공개 텔레그램에서는 CCL 수출 시계열과 목표가 변동이 주로 돈다. 시장 반응의 증거일 뿐이다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 보도",
+      "SK실트론 인수, ₩968.4B 증설, 체코 협상 종료",
+      "CCL보다 자회사 뉴스가 주가를 흔든다",
+      "10월 보도"
+     ]
+    ],
+    "read": "10/15 −13.5%는 공시 없이 나왔고 보도도 원인을 특정하지 못했다"
+   }
+  },
+  "factors": [
+   {
+    "name": "엔비디아 CCL 병목",
+    "thesis": "AI 서버 고급 CCL은 물량이 모자라 두산이 다 판다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "엔비디아향 2026년 ₩1.11T, 2025년 ₩652.5B(메리츠)",
+    "status": "유지",
+    "falsifier": "3Q 전자BG 매출이 ₩700B 미만이거나 엔비디아향이 QoQ 감소",
+    "source": "이투데이 10/1"
+   },
+   {
+    "name": "광모듈 CCL 2번째 성장축",
+    "thesis": "800G·1.6T 광트랜시버가 새 매출을 만든다",
+    "inputs": "성장·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "연 전망 ₩200B대 → ₩300B대, OPM 10% → 20~30%대",
+    "status": "강화",
+    "falsifier": "연 매출 ₩300B 미달",
+    "source": "하나 9/28, 대신 10/19"
+   },
+   {
+    "name": "지주 할인 축소",
+    "thesis": "소각과 사업 재편으로 NAV 할인이 줄어든다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "대신 할인 38%. 소각 후 발행주식 1,851만 주",
+    "status": "유지",
+    "falsifier": "두산에너빌리티 지분 매각·PRS 추가로 지분가치가 줄어든다",
+    "source": "더파워 10/19, 9/17 공시 보도"
+   },
+   {
+    "name": "반도체 소재 회사 전환",
+    "thesis": "CCL·웨이퍼·테스트를 묶어 AI 반도체 회사로 재평가된다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "-",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "SK실트론 EBITDA ₩600B 이상(DS, 2025년 기준)",
+    "status": "유지",
+    "falsifier": "인수 종결 뒤 차입이 늘고 시너지 숫자가 없다",
+    "source": "서울경제 2025-12, 허프포스트 8/3"
+   },
+   {
+    "name": "반대: 값은 CCL이 아니라 자회사가 흔든다",
+    "thesis": "시가총액의 대부분이 상장 자회사 지분가치라 원전 뉴스에 끌려간다",
+    "inputs": "위험",
+    "who": {
+     "sell": "약",
+     "buy": "-",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "두 상장 자회사 지분 시가 약 ₩12.4T, 우선주 포함 시가총액 약 ₩13.5T",
+    "status": "강화",
+    "falsifier": "자회사 주가가 빠지는 날 두산이 덜 빠진다",
+    "source": "TradingView 10/30"
+   },
+   {
+    "name": "반대: 2차 공급사 진입",
+    "thesis": "루빈 세대에서 대만 업체가 물량을 가져간다",
+    "inputs": "성장·이익률",
+    "who": {
+     "sell": "약",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "Elite Material TTM 매출 +89% YoY, TUC +87% YoY",
+    "status": "강화",
+    "falsifier": "메리츠 ₩277.3B를 넘는 3Q 엔비디아향이 확인된다",
+    "source": "TradingView 11/2, Digitimes·궈밍치 메모 보도"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 'AI 서버 CCL 병목을 쥔 회사'다.** 숫자는 그 이야기를 지지한다. 2Q 자체사업 영업이익 ₩212B, OPM 27.7%, 공장 가동률 100% 초과다. 그러나 주가는 6월 고점 대비 −64%이고, 지금 값은 7/30 저점 900,000원 아래다. 이유는 CCL이 아니라 **지분가치와 차입**에서 나왔다.",
+   "value_story": "두산의 값은 세 덩어리다. 전자BG가 버는 돈, 두산에너빌리티·두산로보틱스 지분, 그리고 SK실트론을 사며 늘어나는 차입이다. 상장 지분 시가가 우선주 포함 시가총액의 92%라 전자BG에 붙은 값이 작다. 할인을 얼마나 거느냐가 답을 가른다.",
+   "premium": {
+    "multiple": "FY2026 추정 P/E 24.4배로 CCL 동종 중앙값 25.6배보다 조금 낮다. 다만 FY2026 EPS에 2Q 일회성이 들어 있어 일회성을 뺀 약 27,260원 기준으로는 32.7배다.",
+    "eps": "FY2026 컨센서스 범위 27,260~36,462원, 치입 추정 FY2027 52,000원이다. 공개 FY2027 EPS 컨센서스는 찾지 못했고 리비전 이력은 미확인이다."
+   },
+   "why_excited": "주가는 2025년 9월 53만 원대에서 2026년 6월 1일 장중 248.9만 원까지 4.7배 올랐다. 전자BG 영업이익이 2025년 ₩485B로 뛰었고 엔비디아 공급망 지위가 알려졌다. 이후 6월 2일 −12.9%, 7/31 실트론 계약일 +30%, 10/15 −13.5%로 크게 흔들렸다. 식은 이유는 실적 악화가 아니다. 대규모 차입 인수, 체코 협상 종료, 고점 부담이 겹쳤다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "중공업 지주에서 CCL·웨이퍼·테스트를 가진 반도체 소재 회사로 옮겨 간다.",
+     "evidence": "SK실트론 70.61% ₩2.3T, 100% 기준 최대 ₩3.3T",
+     "drives": "multiple",
+     "status": "진행 중",
+     "falsifier": "종결 뒤에도 시장이 지주 할인을 그대로 둔다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "AI 가속기·광모듈용 CCL 비중이 늘어 이익률이 오른다. 단가가 아니라 믹스와 물량 효과다.",
+     "evidence": "자체사업 OPM 26.7% → 27.7%. 대신은 단가 변화가 작다고 봤다",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "3Q OPM 27% 미만"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "절연층을 13㎛로 줄이고 M9급을 개발했다.",
+     "evidence": "전자BG 인터뷰, 하나 9/28. 고객 인증 물량은 미확인",
+     "drives": "both",
+     "status": "초기",
+     "falsifier": "M10 공급사에서 빠진다"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(납기를 숫자로 공개하지 않는다). 대신 증설 속도로 잰다. 4Q 네트워크 캐파 +25%, 큰 증설은 2028년 하반기다.",
+     "evidence": "하나 9/28, 9/17 공시 보도",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "4Q 신규 라인 양산이 늦어진다"
+    },
+    {
+     "lens": "M&A",
+     "change": "SK실트론을 삼정KPMG 평가 하단 ₩2.3T에 샀다. EBITDA 초과분 공유 언아웃이 붙었다.",
+     "evidence": "비즈워치 8/4. 2027~2034년 초과분의 40% × 70.61%",
+     "drives": "both",
+     "status": "계약 완료, 종결 대기",
+     "falsifier": "순차입 ₩2.6T를 떠안은 뒤 웨이퍼 업황이 꺾인다"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "빅테크 AI 투자가 엔비디아 서버를 거쳐 CCL로 내려온다. 두산은 이 고리가 가장 또렷한 편이다.",
+     "evidence": "엔비디아향 ₩1.11T 전망은 증권사 추정이고 회사는 고객별 매출을 공시하지 않는다",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "북미 CSP CAPEX 삭감"
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "AI 가속기용 CCL",
+     "what": "GPU 서버 보드의 기초 소재",
+     "use": "엔비디아 블랙웰·베라 루빈",
+     "money": "3Q 엔비디아향 추정 ₩277.3B"
+    },
+    {
+     "kind": "제품",
+     "name": "네트워크·광모듈용 CCL",
+     "what": "스위치와 광트랜시버 기판 소재",
+     "use": "800G·1.6T",
+     "money": "광모듈 3Q 추정 ₩105.9B, 연 약 ₩300B"
+    },
+    {
+     "kind": "서비스",
+     "name": "상장 자회사 지분",
+     "what": "두산에너빌리티(가스터빈·원전), 두산로보틱스",
+     "use": "지분가치",
+     "money": "시가 약 ₩12.4T"
+    },
+    {
+     "kind": "기술",
+     "name": "SK실트론(인수 대기)",
+     "what": "실리콘 웨이퍼, SiC 웨이퍼",
+     "use": "메모리·전력 반도체",
+     "money": "EBITDA 연 ₩600B 이상(DS, 2025년 기준)"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(두산 CCL 매출과 연결된 미국 재정 사업을 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "orders": {
+     "change": "해당 없음(두산을 직접 겨냥한 행정명령을 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "laws": {
+     "change": "해당 없음(개정 상법의 자사주 소각 규정 외에 매출을 바꾸는 법안을 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   }
+  }
+ }
+}

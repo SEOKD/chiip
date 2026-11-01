@@ -1,0 +1,99 @@
+id: co-doosan
+name: 두산
+ticker: '000150'
+unit: BKRW
+unit_usd: 690000.0
+industry: electronics
+region_mix:
+  KR: 1.0
+tax: 0.22
+horizon: 10
+as_of: '2026-10-30'
+# 손으로 고침: 자체사업 DCF + 상장 지분 시가(에너빌리티·로보틱스 ₩12,430B)에 NAV 할인 38%. 우선주 시가 ₩770B는 소수지분으로 뺀다
+nonop: 7707.0
+minority: 770.0
+market:
+  date: '2026-10-30'
+  price: 891000
+  shares: 0.014237
+  net_debt: 1213.5
+  source: '가격 = TradingView 10/30. 주식 수 = 보통주 발행 14,237,400주 − 자사주 632,500주(TradingView
+    유통 13,604,900주와 일치). DCF 범위는 자체사업이라 현금은 별도 6월 말 ₩1.6865T(허프포스트), 차입은 추정: NICE
+    3월 말 별도 총차입금/EBITDA 4.7배 × 약 ₩620B. 별도 순차입금 원자료는 미확인'
+rev0: 3200.0
+ic0: 1800.0
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.2969
+      end: 0.03
+      decay: 0.9
+    margin:
+      m0: 0.27
+      target: 0.22
+      year_target: 4
+      lr: 0.18
+      lam: 0.35
+      anchors:
+      - 0.3
+      - 0.31
+    s2c: 1.8
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.4156
+      end: 0.034999999999999996
+      decay: 0.9
+    margin:
+      m0: 0.27
+      target: 0.24
+      year_target: 4
+      lr: 0.18
+      lam: 0.25
+      anchors:
+      - 0.3
+      - 0.31
+    s2c: 2.07
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.1781
+      end: 0.024999999999999998
+      decay: 0.8
+    margin:
+      m0: 0.27
+      target: 0.2
+      year_target: 4
+      lr: 0.18
+      lam: 0.5
+      anchors:
+      - 0.3
+      - 0.31
+    s2c: 1.53
+mc:
+  sigma_growth: 0.0594
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [3200.0, 3200.0] (2Q 실적 보도의 자체사업 매출 목표 약 ₩3.2T, 대신 10/19 인용)
+  growth: 컨센서스 1년차 29.7%, 2년차 38.6%
+  margin: 1~2년차 컨센서스 30.0%, 31.0% 고정 → 목표 22%(4년차, 덮어쓰기) → 장기 수렴 18%
+  s2c: 재무 재구성 증분 매출/투하자본 1.8 → 덮어쓰기 1.8
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: 장기 이익률 22%는 CCL 동종 20~26%에 맞췄다. 지금 30%대 초입은 공급 부족 구간의 값이다. 매출÷투하자본 1.8은
+    투자 ₩1.15T로 연 매출 캐파 약 ₩2.6T를 더하는 계획을 낮춰 잡았다
+  shares: 완전 희석 = 기본 0.0136049(2026-10-30) + 옵션·RSU·워런트·전환 0.0006 — 소각에서 뺀 RSU 재원
+    보통주 632,500주(9/17 공시 보도). 우선주 4,277,407주는 시장가치
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 제품 단가는 전년과 비슷하고 물량만 20~30% 증가'
+- '어닝콜 위험: 증평·김천 가동률 100% 초과로 2028년 전까지 캐파 제약'
+- '어닝콜 위험: 별도 차입 확대'
+evidence:
+- 대신 인용 더파워 10/19 https://www.thepowernews.co.kr/view.php?ud=20261019141142714de3f0aa1be_7
+- 메리츠 인용 이투데이 10/1 https://www.etoday.co.kr/news/view/2631199
+- 하나 인용 이코노믹리뷰 9/28 https://www.econovill.com/news/articleView.html?idxno=751977
+- 한국신용평가 ㈜두산 평가 2026-06-30 https://m.kisrating.com/fileDown.do?menuCd=R8&gubun=2&fileName=rs20260630-52.pdf
