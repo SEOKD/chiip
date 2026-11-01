@@ -156,7 +156,7 @@ def remember_alert(item, level, what=None, impact=None, card_id=None):
     st[ref] = {"item_id": item["item_id"], "level": level, "title": item.get("title", ""), "url": item.get("url", ""),
                "what": what, "impact": impact, "card": card_id, "doc_type": item.get("doc_type"),
                "entities": item.get("entities_matched", []), "published_at": item.get("published_at"),
-               "publisher": item.get("publisher") or publisher(item), "source_id": item.get("source_id"),
+               "publisher": item.get("publisher") or publisher(item), "source_id": item.get("source_id"), "relay": item.get("relay"),
                "sent_at": common.iso(common.now_kst())}
     if len(st) > 3000:
         st = dict(list(st.items())[-3000:])
@@ -492,6 +492,9 @@ def format_item(level, item, what=None, impact=None, card_id=None, biz=None, poi
     url = item.get("url") or ""
     art = f'<a href="{html.escape(url, quote=True)}">{title}</a>' if url else title
     parts = [f"{html.escape(stock_label(item.get('entities_matched')))}｜{art}｜{alert_time(item)}"]
+    if item.get("relay"):   # 재인용 경로(2026-11-02 마스터 지시, radar/origin.py)
+        import origin
+        parts[0] += "\n" + origin.line({k: html.escape(v, quote=True) if isinstance(v, str) else v for k, v in item["relay"].items()})
     prof = company_profile(item.get("entities_matched"), profile, biz)
     if prof:
         parts.append("☞ " + html.escape(profile_line(prof), quote=False))

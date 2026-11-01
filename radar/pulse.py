@@ -356,7 +356,7 @@ def fetch_alerts(st, since=None):
         out.append({"source_id": "src-alerts", "source_class": "속보 판단", "url": a.get("url"), "title": a.get("title"),
                     "published_at": a.get("published_at"), "detected_at": a.get("sent_at"), "language": "en",
                     "entities_matched": a.get("entities") or [], "snippet": f"{a.get('level')} · {a.get('what') or ''}"[:300],
-                    "alert_ref": ref, "level": a.get("level")})
+                    "alert_ref": ref, "level": a.get("level"), "relay": a.get("relay")})
     out.sort(key=lambda x: (x["level"] != "P0", x["detected_at"] or ""), reverse=False)
     p0 = [x for x in out if x["level"] == "P0"]
     p1 = sorted([x for x in out if x["level"] == "P1"], key=lambda x: x["detected_at"] or "", reverse=True)
@@ -481,9 +481,10 @@ def run(now=None, peek=False):
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",
-            "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike")   # IR 자료·Q&A·소비재 필드(2026-10-30)
+            "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike", "relay")   # IR 자료·Q&A·소비재 필드(2026-10-30)
+    import origin   # 재인용 기사는 원보도로 바꿔 모델에 넘긴다(2026-11-02 마스터 지시)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
-            "sources": [{k: s.get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
+            "sources": [{k: origin.apply(s, now).get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
             "transcripts": tw, "tg_other": st.pop("tg_other", [])}

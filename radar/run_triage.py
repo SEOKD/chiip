@@ -18,6 +18,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common, gate  # noqa: E402
 import notify  # noqa: E402
+import origin  # noqa: E402
 import promote  # noqa: E402
 
 BATCH = common.STATE / "triage_batch.json"
@@ -165,6 +166,8 @@ def main(argv=None):
                 if new and RANK[new] > RANK[lvl]:
                     lvl, r["reason"] = new, f"{why_up} (모델 {r['level']}: {r.get('reason', '')})"
                     r["what"] = f"[{why_up}] {r.get('what') or it['title']}"
+            if lvl in ("P0", "P1"):   # 재인용 기사는 원보도로(2026-11-02 마스터 지시)
+                it = origin.apply(it)
             if lvl in ("P0", "P1") and not why_up:   # 규칙 상향 건은 서명으로 이미 중복을 막는다
                 if lvl == "P1" and promote.noise(it):   # 콜 녹취 전재·영상·브리핑·시세 페이지 — 새 사실 아님(2026-10-29). P0는 내리지 않는다
                     lvl, r["reason"] = "P2", f"잡음 하향(모델 {r['level']}): {r.get('reason', '')}"

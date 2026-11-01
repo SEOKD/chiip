@@ -1,0 +1,78 @@
+"""Pulse 텔레그램 양식 (마스터 지시 2026-11-02 "텔레그램 봇으로 피드 제공할 때 Report는 가독성 있게 글을 구성했는데 Pulse는 여전히 가독성이 낮다")
+
+Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴다. 읽는 순서: 머리줄 → 기업 → ■ 결론 → ■ 근거 → ■ 반대 → ■ 다음 확인 → 출처.
+입력(outputs/article/sources/<YYYYMMDD_HHMM>_feed.json):
+  {"time": "16:24", "items": [{"icon": "⚡", "name": "Alphabet", "code": "GOOGL", "event": "사건 한 줄", "biz": "사업 1줄",
+     "view": "판단 한 문장", "insight": 7, "conviction": 8, "basis": "1차 서류", "why": ["근거 줄"], "against": "다른 해석 → 가를 자료",
+     "next": "다음 확인", "links": [["8-K 원문", "https://..."]]}],
+   "brief": [{"name": "삼성전자", "code": "005930", "line": "결론 한 마디", "link": ["보도", "https://..."]}],
+   "empty": ["미보도 원문"], "zacks": false}
+사용: py radar/pulse_feed.py <json>   → 같은 이름 _tg.txt(끝의 _feed를 뗀다)를 쓰고 양식 점검 결과를 출력
+잠금 평가기 pulse_check.py가 그대로 재도록 판단은 **굵게**, 근거·반대·다음 확인은 · 줄로 쓴다.
+"""
+import json
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import pulse_check  # noqa: E402
+
+CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩"
+RULE = "─────────"
+FOOT = "1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님"
+ZACKS = "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+MAX_WHY = 3
+MAX_BASIS = 20
+
+
+def links(rows):
+    return " · ".join(f"[{a}]({b})" for a, b in rows or []) or "출처 미확인"
+
+
+def block(n, x):
+    head = f"**{x['icon']} {CIRCLED[n]} {x['name']}({x['code']})｜{x['event']}**" if x.get("code") else f"**{x['icon']} {CIRCLED[n]} {x['name']}｜{x['event']}**"
+    score = f"인사이트 {x['insight']}/10 · 컨빅션 {x['conviction']}/10" + (f" · {x['basis'][:MAX_BASIS]}" if x.get("basis") else "")
+    parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**\n{score}", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
+    if x.get("against"):
+        parts.append(f"**■ 반대**\n· {x['against']}")
+    if x.get("next"):
+        parts.append(f"**■ 다음 확인**\n· {x['next']}")
+    parts.append(links(x.get("links")))
+    return "\n\n".join(parts)
+
+
+def brief_line(b):
+    who = f"{b['name']}({b['code']})" if b.get("code") else b["name"]
+    tail = f" [{b['link'][0]}]({b['link'][1]})" if b.get("link") else ""
+    return f"· {who} — {b['line']}{tail}"
+
+
+def build(d):
+    rows = sorted(d.get("items") or [], key=lambda x: -x["insight"])
+    out = [f"[Chiip Pulse {d['time']}]"]
+    for n, x in enumerate(rows):
+        out.append(block(n, x))
+        if n < len(rows) - 1:
+            out.append(RULE)
+    if d.get("brief"):
+        out += ([RULE] if rows else []) + ["**■ 간단히**\n" + "\n".join(brief_line(b) for b in d["brief"])]
+    foot = ([f"그 외 새 건 없음: {' · '.join(d['empty'])}"] if d.get("empty") else []) + ([ZACKS] if d.get("zacks") else []) + [FOOT]
+    out.append("\n".join(foot))
+    return "\n\n".join(out)
+
+
+def main(argv):
+    sys.stdout.reconfigure(encoding="utf-8")
+    src = Path(argv[0])
+    text = build(json.loads(src.read_text(encoding="utf-8")))
+    out = src.with_name(src.stem.removesuffix("_feed") + "_tg.txt")
+    out.write_text(text, encoding="utf-8")
+    print(out)
+    rows = pulse_check.check(text)
+    for name, head, detail in rows:
+        print(f"{name}: {head[:40]} — {detail[:50]}")
+    return 1 if any(r[0] == "link" for r in rows) else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
