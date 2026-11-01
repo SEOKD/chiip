@@ -1,0 +1,1036 @@
+{
+ "id": "jp-takaratomy",
+ "name": "Takara Tomy",
+ "ticker": "7867",
+ "as_of": "2026-10-30",
+ "unit": "BJPY",
+ "unit_usd": 6349206.349206349,
+ "currency_symbol": "¥",
+ "industry": "electronics",
+ "region_mix": {
+  "JP": 1.0
+ },
+ "tax": 0.306,
+ "main_metric": "eps",
+ "main_metric_why": "회사가 순이익·EPS 가이던스를 내고 총환원 성향 50%로 주주환원을 정한다. 감가상각은 EBITDA의 약 4분의 1이다",
+ "profile": {
+  "price": 4922,
+  "shares_basic": 0.086164934,
+  "shares_date": "2026-06-30",
+  "cash": 38.628,
+  "debt": 5.798,
+  "source": "가격 = 도쿄 10/30 종가 · 주식 수 = 자사주 제외 유통 주식(시세 원천) · 현금·차입(리스 포함) = 2026-06-30 재무상태표"
+ },
+ "dilution": {
+  "potential_total": 3e-05,
+  "date": "2026-06-30",
+  "source": "TTM 희석 EPS ¥140.03 vs 기본 ¥140.08 차이로 역산한 근사. 주식보상 잔고 원문은 미확인"
+ },
+ "financials": {
+  "rev_ttm": 275.023,
+  "ebit_ttm": 25.162,
+  "invested_capital": 76.14,
+  "capex_ttm": 7.644,
+  "da_ttm": 9.49,
+  "sbc_ttm": 0.0,
+  "s2c": 3.61,
+  "rev_growth_ttm": 0.077,
+  "basis": "J-GAAP",
+  "note": "TTM = 2Q FY26~1Q FY27. CAPEX는 FY26 값(유형 ¥5.572B + 무형 ¥2.072B). D&A는 TTM EBITDA − 영업이익(영업권 상각 포함 근사), FY26 현금흐름표 감가상각은 ¥7.758B. FY26 3·4Q 영업이익은 9개월 누계 약 ¥21.5B 기준 근사"
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 300.0
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2027": 0.1
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 3,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2027Q2": 85.953,
+   "2027Q3": 84.96,
+   "2027Q4": 65.04
+  },
+  "quarters_act": {
+   "2026Q4": 61.817,
+   "2027Q1": 64.047
+  },
+  "eps_quarters_est": {
+   "2027Q2": 94.41,
+   "2027Q3": 51.0,
+   "2027Q4": 39.2
+  },
+  "surprise": [
+   {
+    "period": "2026Q2",
+    "report_date": "2025-09-30",
+    "metric": "매출",
+    "unit": "¥M",
+    "actual": 68405,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2025-11-11"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2025-09-30",
+    "metric": "EBIT",
+    "unit": "¥M",
+    "actual": 7134,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2025-11-11"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2025-09-30",
+    "metric": "EPS",
+    "unit": "¥",
+    "actual": 53.26,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2025-11-11"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "¥M",
+    "actual": 80754,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-10"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "¥M",
+    "actual": 9800,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-10"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "¥",
+    "actual": 16.0,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-10"
+   },
+   {
+    "period": "2026Q4",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "¥M",
+    "actual": 61817,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2026Q4",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "¥M",
+    "actual": 2716,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2026Q4",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "¥",
+    "actual": 24.09,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2027Q1",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "¥M",
+    "actual": 64047,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-04"
+   },
+   {
+    "period": "2027Q1",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "¥M",
+    "actual": 5512,
+    "est": 3910,
+    "est_src": "시장 컨센서스(보도 인용)",
+    "est_asof": "2026-08-04",
+    "basis": "gaap",
+    "earnings_date": "2026-08-04"
+   },
+   {
+    "period": "2027Q1",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "¥",
+    "actual": 46.68,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-04"
+   }
+  ],
+  "revisions": {
+   "from_date": "2026-05-12",
+   "to_date": "2026-10-30",
+   "from_label": "5/12 첫 FY27 가이던스",
+   "source": "회사 가이던스(컨센서스 이력 없음)",
+   "rows": [
+    {
+     "period": "2027Q4",
+     "metric": "EPS",
+     "from": 207.26,
+     "to": 231.29
+    }
+   ]
+  },
+  "price_window": {
+   "from": 2648,
+   "to": 4922
+  },
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 2,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-02"
+  },
+  "street_public": {
+   "as_of": "2026-11-02",
+   "analysts": 3,
+   "target_mean": 4203,
+   "source": "TradingView 공개 집계"
+  },
+  "note": "FY27 칸은 회사 가이던스다. 컨센서스 EPS ¥239·매출 ¥296B(3명, 상향 반영 여부 미확인). 2Q는 상반기 가이던스 − 1Q, 3·4Q는 하반기 내포를 전년 분기 비중으로 나눈 치입 근사. Fiscal.ai 키 없음, Zacks 없음, Easyconomics 실적 도구는 미국 전용, yfinance 선행 EPS ¥215.35는 상향 전 값으로 판단"
+ },
+ "guidance": {
+  "rev_fy0": [
+   300.0,
+   300.0
+  ],
+  "ebit_margin_fy0": 0.1,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "2030년 3월기 매출 ¥300B·영업이익률 10% 이상·ROE 11% 이상(자료마다 10%)·PBR 3배·총환원 성향 50%(2024-05 발표)",
+  "source": "회사 업적 예상 수정 2026-10-29 15:30 공시(보도 전재 원문)",
+  "next": {
+   "period": "FY27",
+   "rev": 300,
+   "rev_cons": 296,
+   "eps": 231.29,
+   "eps_cons": 239.08,
+   "unit": "¥B"
+  }
+ },
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-08-04",
+  "tone": "up",
+  "tone_score": 6.0,
+  "tone_delta": 0.5,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_1h_guide": 150.0,
+   "op_1h_guide": 16.3,
+   "rev_fy_guide": 300.0,
+   "op_fy_guide": 30.0,
+   "tariff_refund_1q": 1.0
+  },
+  "guidance_changes": [
+   "상반기 영업이익 ¥11.5B → ¥16.3B",
+   "통기 영업이익 ¥26B → ¥30B",
+   "통기 순이익 ¥18B → ¥20B"
+  ],
+  "new_topics": [
+   "Kidults 매출 추가 신장",
+   "키디랜드 인기 캐릭터",
+   "TOMICA BRAND STORE 확대",
+   "1Q 관세 환급 약 ¥1.0B"
+  ],
+  "dropped_topics": [],
+  "risks": [
+   "관세 환급 일회성",
+   "미국 ERP 출하 지연",
+   "하반기 수요 미반영"
+  ],
+  "qa_focus": [],
+  "source": "어닝콜 미공개 — 회사 업적 예상 수정 2026-10-29, 1Q 결산 2026-08-04(보도). 톤은 가이던스 방향으로만",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "FY27 매출 가이던스",
+    "label": "매출 ¥300B",
+    "prior": "¥285B",
+    "latest": "¥300B",
+    "driver": "rev0",
+    "shift": 15.0,
+    "confidence": 0.8,
+    "source": "2026-10-29 공시"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "FY27 영업이익률 가이던스",
+    "label": "OPM 10.0%",
+    "prior": "9.1%",
+    "latest": "10.0%",
+    "driver": "margin_m0",
+    "shift": 0.0088,
+    "confidence": 0.8,
+    "source": "2026-10-29 공시"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "관세 환급은 일회성",
+    "label": "관세 환급 일회성",
+    "prior": "없음",
+    "latest": "1Q 약 ¥1.0B",
+    "driver": "margin_m0",
+    "shift": -0.0033,
+    "confidence": 1.0,
+    "source": "1Q 결산 보도"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "아시아 베이블레이드 X·토미카",
+    "label": "아시아 재가속",
+    "prior": "FY26 아시아 매출 −1.1%",
+    "latest": "상반기 호조(회사 표현)",
+    "driver": "growth_end",
+    "shift": 0.002,
+    "confidence": 0.5,
+    "source": "2026-10-29 공시"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 2026-10-30 종가·TTM·다음 회계연도 EPS 컨센서스. 금액은 각사 현지 통화. Fwd 2Y·3Y 공개 추정 없음",
+ "peers": [
+  {
+   "ticker": "Bandai Namco",
+   "key": "TSE:7832",
+   "rev": 1376.31,
+   "ebit_margin": 0.1501,
+   "mcap": 3991.9,
+   "pb": 4.63,
+   "debt": 30.2,
+   "cash": 390.9,
+   "ev_sales": 2.64,
+   "growth": 0.091,
+   "pe_fwd": 24.82,
+   "ntm_ebit_margin": 0.1501,
+   "ntm_growth": 0.056
+  },
+  {
+   "ticker": "Sanrio",
+   "key": "TSE:8136",
+   "rev": 203.03,
+   "ebit_margin": 0.3945,
+   "mcap": 1590.7,
+   "pb": 9.76,
+   "debt": 12.6,
+   "cash": 136.1,
+   "ev_sales": 7.23,
+   "growth": 0.276,
+   "pe_fwd": 23.09,
+   "ntm_ebit_margin": 0.3945,
+   "ntm_growth": 0.158
+  },
+  {
+   "ticker": "Hasbro",
+   "key": "NASDAQ:HAS",
+   "rev": 5.18,
+   "ebit_margin": 0.3074,
+   "mcap": 16.66,
+   "pb": 31.05,
+   "debt": 3.85,
+   "cash": 1.43,
+   "ev_sales": 3.68,
+   "growth": 0.188,
+   "pe_fwd": 16.74,
+   "ntm_ebit_margin": 0.3074,
+   "ntm_growth": 0.0
+  },
+  {
+   "ticker": "Happinet",
+   "key": "TSE:7552",
+   "rev": 448.41,
+   "ebit_margin": 0.0349,
+   "mcap": 280.96,
+   "pb": 4.38,
+   "debt": 0.0,
+   "cash": 41.83,
+   "ev_sales": 0.53,
+   "growth": 0.186,
+   "pe_fwd": 15.85,
+   "ntm_ebit_margin": 0.0349,
+   "ntm_growth": 0.108
+  },
+  {
+   "ticker": "Mattel",
+   "key": "NASDAQ:MAT",
+   "rev": 5.49,
+   "ebit_margin": 0.0868,
+   "mcap": 4.41,
+   "pb": 2.08,
+   "debt": 2.75,
+   "cash": 0.52,
+   "ev_sales": 1.21,
+   "growth": 0.029,
+   "pe_fwd": 11.92,
+   "ntm_ebit_margin": 0.0868,
+   "ntm_growth": 0.034
+  },
+  {
+   "ticker": "Spin Master",
+   "key": "TSX:TOY",
+   "rev": 2.94,
+   "ebit_margin": 0.0943,
+   "mcap": 2.05,
+   "pb": 1.22,
+   "debt": 0.5,
+   "cash": 0.07,
+   "ev_sales": 0.84,
+   "growth": -0.016,
+   "pe_fwd": 10.28,
+   "ntm_ebit_margin": 0.0943,
+   "ntm_growth": 0.018
+  }
+ ],
+ "sbc_pct_rev": 0.0,
+ "overrides": {
+  "growth_base": {
+   "start": 0.05,
+   "end": 0.02,
+   "decay": 0.7
+  },
+  "margin_base": {
+   "target": 0.105,
+   "year_target": 3,
+   "lr": 0.095,
+   "lam": 0.35
+  },
+  "s2c": 3.0,
+  "why": "FY28 이후 공개 컨센서스가 없다. 성장 5%는 FY24~FY26 CAGR 13.9%와 일본 아동 인구 감소 사이의 보수 가정. 이익률 10.5%는 회사 목표 10% 이상과 환급 뺀 FY27 9.7%를 잇는다. 매출÷투하자본 3.0은 TTM 3.6에서 순현금 축소·금형 투자를 감안해 낮췄다. 무위험금리는 엔화 현금흐름에 맞춰 일본 10년 2.76%, 베타는 업종표에 완구가 없어 electronics 값을 대용했다"
+ },
+ "events": [
+  {
+   "date": "2025-11-12",
+   "tag": "2Q 실적 다음 날 −7.6%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-02-10",
+   "tag": "3Q 실적, 영업권 감손 ¥4.86B",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-13",
+   "tag": "FY26 실적·FY27 첫 가이던스 +6.2%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-27",
+   "tag": "SBI증권 Buy 상향",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-08-05",
+   "tag": "1Q 호실적에도 가이던스 유지 −8.0%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-10",
+   "tag": "SBI증권 목표가 ¥3,540 → ¥4,400",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-08-26",
+   "tag": "도카이도쿄 목표가 ¥3,990 → ¥4,210",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-09-11",
+   "tag": "SMBC닛코 목표가 상향",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "상반기·통기 상향 +11.7%",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [],
+ "sources": [
+  "회사 업적 예상 수정 2026-10-29 공시",
+  "1Q FY27 결산 보도 2026-08-04(gamebiz)",
+  "FY26 유가증권보고서 텍스트",
+  "중장기 경영전략 2030"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-02T05:20:00+09:00",
+  "shares_cover_implied": 0.086164934,
+  "fiscal_profile": {
+   "companyKey": "없음 — TradingView TSE:7867",
+   "price": 4922,
+   "market_cap": 424.104,
+   "total_cash": 38.628,
+   "total_debt": 5.798,
+   "shares_outstanding": 0.086164934,
+   "as_of": "2026-10-30",
+   "balance_date": "2026-06-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2026Q2": 68.405,
+    "2026Q3": 80.754,
+    "2026Q4": 61.817,
+    "2027Q1": 64.047
+   },
+   "op_income": {
+    "2026Q2": 7.134,
+    "2026Q3": 9.8,
+    "2026Q4": 2.716,
+    "2027Q1": 5.512
+   }
+  },
+  "balance_2026_06_30": {
+   "equity": 108.97,
+   "cash": 38.628,
+   "debt_current": 3.374,
+   "debt_lt": 2.424,
+   "lease_current": 0.0,
+   "lease_lt": 0.0,
+   "note": "차입 합계에 리스 포함(시세 원천 합산). 총자산 160.449, 부채 51.474, 영업권 4.802"
+  },
+  "estimates_sales_m": {
+   "2027Q1": 64047,
+   "2027Q2": 85953,
+   "2027Q3": 84960,
+   "2027Q4": 65040
+  },
+  "fy": {
+   "rev": {
+    "FY22": 165.448,
+    "FY23": 187.297,
+    "FY24": 208.326,
+    "FY25": 250.235,
+    "FY26": 270.455
+   }
+  },
+  "securities_report_fy26": {
+   "source": "FY26 유가증권보고서 텍스트(edinetdb.jp 공개 페이지, 2026-06-24 제출)",
+   "segments_mjpy": {
+    "Japan": [
+     226228,
+     28308
+    ],
+    "Americas": [
+     30446,
+     576
+    ],
+    "Europe": [
+     7797,
+     -319
+    ],
+    "Oceania": [
+     2862,
+     182
+    ],
+    "Asia": [
+     67519,
+     2133
+    ],
+    "elim": [
+     -64399,
+     -6634
+    ]
+   },
+   "goodwill_impairment": "TOMY International 영업권 감손 ¥4.862B, 3Q 특별손실",
+   "cf": {
+    "ocf": 20.053,
+    "icf": -8.054,
+    "fcf": -18.251,
+    "buyback": 7.517,
+    "dividends": 6.077
+   },
+   "rd": 6.723,
+   "contracts": {
+    "Hasbro": "1983-11-01~2026-12-31, 판매권 범위는 요약과 연혁이 달라 미확인",
+    "Disney": "2026-04-01~2027-03-31",
+    "Pokemon": "허락 기간 2027-03-31까지",
+    "OLC": "2022-08-02~2027-08-01"
+   },
+   "checklist": "구매 약정·제한 현금·10% 초과 고객·정부 지원: 읽은 범위 본문에 기재 없음. 사업 위험에 고객 집중은 없다. 주석 전문은 미대조",
+   "holders": "Master Trust 12.45%, 司不動産 7.43%, Custody 3.74%, 2026-03-31"
+  },
+  "rf_local": {
+   "JP10Y": 0.02758,
+   "as_of": "2026-10-30"
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 21.28,
+  "pe_fwd2": 18.79,
+  "pe_fwd3": 17.39,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 231.29,
+   "ebit": 30.0,
+   "revenue": 300.0,
+   "rev_ttm": 275.023
+  },
+  "horizons": {
+   "2": {
+    "eps": 262,
+    "ext": 0
+   },
+   "3": {
+    "eps": 283,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "guidance"
+  },
+  "source": "FY27 = 회사 가이던스 EPS ¥231.29(컨센서스 ¥239). FY28·FY29 공개 추정이 없어 치입 추정: 기본 시나리오 경로"
+ },
+ "history": {},
+ "next_event": {
+  "date": "2026-11-10",
+  "tag": "2Q FY27 상반기 실적(예정일, 회사 공지 미대조)"
+ },
+ "terms": {
+  "베이블레이드 X": "금속 팽이 배틀 완구 4세대",
+  "토미카": "다이캐스트 미니카 브랜드",
+  "토미카 프리미엄": "어른 수집가용 고급 토미카",
+  "프라레일": "철도 완구",
+  "리카짱": "인형 브랜드",
+  "듀얼 마스터즈": "자사 트레이딩 카드 게임",
+  "키디랜드": "캐릭터 잡화 소매 체인",
+  "타카라토미아츠": "캡슐 토이 자회사",
+  "가챠": "캡슐 토이 자판기",
+  "TOMICA BRAND STORE": "토미카 직영점",
+  "Kidults": "장난감을 사는 어른 수집가",
+  "TOMY International": "미국·유럽 완구 자회사",
+  "ERP": "전사 자원 관리 시스템",
+  "CAPE": "미국 세관의 관세 환급 신청 시스템",
+  "IEEPA": "미국 국제긴급경제권한법",
+  "오모카도 점": "하라주쿠 키디랜드 새 매장",
+  "TCG": "트레이딩 카드 게임",
+  "포켓몬 메자스타": "포켓몬 아케이드 게임기",
+  "Lorcana": "디즈니 트레이딩 카드 게임",
+  "J-GAAP": "일본 회계 기준",
+  "Roblox": "미국 온라인 게임 플랫폼",
+  "BJPY": "십억 엔",
+  "CSO": "최고 전략 책임자",
+  "DZH": "일본 금융 정보 회사",
+  "FISCO": "일본 금융 정보 회사",
+  "JPX": "일본거래소그룹",
+  "SBI": "일본 증권 그룹",
+  "SMBC": "일본 미쓰이스미토모 금융 그룹",
+  "TOMY": "타카라토미 영문 회사명"
+ },
+ "moat": {
+  "summary": "경쟁을 막는 것은 일본 안의 장수 브랜드와 판매망이다. 해외와 라이선스는 해자가 아직 얇다. 일본 부문이 영업이익 대부분을 낸다.",
+  "items": [
+   {
+    "kind": "일본 장수 브랜드와 판매망",
+    "verdict": "강함",
+    "claim": "토미카·프라레일·리카짱은 수십 년째 세대를 넘겨 팔린다. 부모가 쓰던 브랜드를 다시 사고, 어른 수집 시장으로 번졌다.",
+    "evidence": "FY26 일본 부문 매출 ¥226.2B, 영업이익 ¥28.3B로 부문 이익률 12.5%다. 아메리카즈는 1.9%, 아시아는 3.2%다. 부문 매출에는 내부 거래가 들어 있다.",
+    "quant": "일본 영업이익 ¥28.3B = 전사 ¥24.2B보다 크다(전사 비용 차감 전)",
+    "falsifier": "일본 부문 이익률이 두 해 연속 10% 아래로 내려간다."
+   },
+   {
+    "kind": "베이블레이드 대회 생태계",
+    "verdict": "보통",
+    "claim": "팽이는 경기 규칙과 대회가 있어 부품을 계속 산다. 세계 대회와 Roblox 게임이 수요를 이어 준다. 다만 세대마다 붐과 소멸을 반복했다.",
+    "evidence": "3세대 Burst는 회사 아시아 법인 기준 세계 약 1.7억 개, 시장 기준 매출 ¥250B 이상이다. X의 Roblox 게임은 누적 방문 1억을 넘겼다. X 매출은 공시되지 않아 미확인이다.",
+    "quant": "Burst 약 1.7억 개 · X 매출 미확인",
+    "falsifier": "회사가 베이블레이드 X 판매 감소를 두 분기 연속 밝힌다."
+   },
+   {
+    "kind": "판권 운영 능력",
+    "verdict": "보통",
+    "claim": "포켓몬·디즈니·트랜스포머 같은 남의 IP를 상품으로 빠르게 바꾼다. 그러나 권리는 남의 것이고 기간이 짧아 가격 결정력이 제한된다.",
+    "evidence": "유가증권보고서 기준 포켓몬·디즈니 계약은 2027-03-31까지, Hasbro 계약은 2026-12-31까지다. 갱신 여부와 조건은 미확인이다.",
+    "quant": "라이선스 매출 비중 미확인",
+    "falsifier": "주요 판권 하나가 경쟁사로 넘어간다."
+   },
+   {
+    "kind": "자체 소매·캡슐 판매 접점",
+    "verdict": "보통",
+    "claim": "키디랜드와 가챠는 도매상을 거치지 않고 인기 캐릭터 수요를 바로 받는다. 이번 상향의 첫 번째 이유도 키디랜드였다.",
+    "evidence": "회사는 상향 이유 첫머리에 키디랜드 인기 캐릭터 상품을 적었다. 2026년 4월 하라주쿠 오모카도 점을 열었고, 가챠는 북미 대형 식료품점·영화관으로 넓혔다.",
+    "quant": "키디랜드·가챠 매출 금액 미확인",
+    "falsifier": "캐릭터 붐이 식어 키디랜드 매출이 전년보다 줄어든다."
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "반다이남코·산리오는 자체 IP와 15~39% 이익률이 받치는 배수다. 타카라토미는 이익률 10%에 남의 판권이 섞이고 세대 교체마다 이익이 흔들렸다. 5/12에는 12.8배였다"
+ },
+ "pipeline": {
+  "none": "완구는 계절 재고를 만들어 파는 사업이라 수주잔고가 없다. 회사는 신상품별 매출 계획을 공개하지 않는다"
+ },
+ "narrative": {
+  "as_of": "2026-11-02",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "시장은 '일본 아이 장난감 회사'를 '어른 수집가와 아시아로 커지는 IP 회사'로 다시 값을 매기고 있다. 쟁점은 이 변화가 구조인지 캐릭터 붐인지다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "커버리지",
+      "3명: Buy 2, Neutral 1",
+      "표본이 작다"
+     ],
+     [
+      "공개 목표가 평균",
+      "¥4,203(지금 값보다 15% 낮음)",
+      "상향 전 값이 섞였을 가능성이 크다. 기대의 증거이지 결론이 아니다"
+     ],
+     [
+      "5월 뒤 의견",
+      "SBI증권 Buy 상향·¥4,400, 도카이도쿄 ¥4,210, SMBC닛코 상향",
+      "방향은 모두 위"
+     ],
+     [
+      "상향 전 기대",
+      "영업이익 약 ¥27B(FISCO)",
+      "새 가이던스 ¥30B가 11% 높다"
+     ]
+    ],
+    "read": "셀사이드는 추천 쪽이지만 목표가가 주가를 따라가지 못했다. 11/10 뒤 목표가 수정이 다음 재료다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "주주 구성",
+      "신탁 계정 12.45%·3.74%, 司不動産 7.43%",
+      "2026-03-31 기준. 신탁 계정 뒤 실제 보유자는 미확인"
+     ],
+     [
+      "거래량",
+      "10/30 267만 주, 최근 290거래일 평균 59만 주의 4.5배",
+      "거래량 증가의 주체는 미확인(미국 공매도 자료 대상 아님)"
+     ]
+    ],
+    "read": "일본 종목이라 미국 13F와 체결 회사별 자료가 없다. 기관·개인 구분은 할 수 없다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "상향 보도",
+      "Reuters·DZH·FISCO, Kidults 중심",
+      "캐릭터와 어른 수요가 제목에 올랐다"
+     ]
+    ],
+    "read": "언론은 어른 수요를 내세웠지만 회사는 금액을 공개하지 않았다"
+   }
+  },
+  "factors": [
+   {
+    "name": "Kidults 전환",
+    "thesis": "어른 수집가가 아동 인구 감소를 메운다",
+    "inputs": "성장 지속기간·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "회사 비중 미공개. 상향 이유 첫 줄",
+    "status": "강화",
+    "falsifier": "일본 부문 성장률이 FY24~FY26 평균 아래로 내려간다",
+    "source": "2026-10-29 공시"
+   },
+   {
+    "name": "아시아 베이블레이드·토미카",
+    "thesis": "일본 밖에서 두 브랜드가 커진다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "FY26 아시아 매출 ¥67.5B(−1.1%), 이익 ¥2.1B(−20%)",
+    "status": "강화",
+    "falsifier": "11/10 아시아 매출이 전년보다 낮다",
+    "source": "FY26 유가증권보고서, 2026-10-29 공시"
+   },
+   {
+    "name": "캐릭터 붐과 소비",
+    "thesis": "치이카와·포켓몬 30주년·오시카츠가 국내 소비를 끈다",
+    "inputs": "단기 매출",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "키디랜드·가챠 금액 미공개",
+    "status": "유지",
+    "falsifier": "키디랜드 매출 감소",
+    "source": "SBI증권·도카이도쿄 보도 요지"
+   },
+   {
+    "name": "반대 내러티브: 히트가 끝나면 값도 끝난다",
+    "thesis": "2025년 2월 ¥5,119에서 2026년 5월 ¥2,496까지 −51%. 값은 이미 일본 IP 회사 수준이다",
+    "inputs": "할인율·성장",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "Fwd 1Y P/E 21.3배, 5월 12일 12.8배",
+    "status": "강화",
+    "falsifier": "FY28 가이던스 영업이익 ¥32B 이상",
+    "source": "시세·공시"
+   }
+  ],
+  "lead": {
+   "summary": "**타카라토미의 값은 '아이 장난감 회사'에서 '전 연령·전 지역 IP 놀이 회사'로 바뀌느냐로 정해진다.** 10/29 상향으로 FY27 가이던스가 매출 ¥300B·영업이익 ¥30B가 됐다. 회사가 2024년에 내건 2030년 3월기 목표다. 3년 앞당긴 숫자를 시장이 샀다. 주가는 5/12 ¥2,648에서 10/30 ¥4,922로 +86%다. EPS 가이던스 상향은 +11.6%이고 나머지는 멀티플이다.",
+   "value_story": "일본 부문이 돈을 벌고 해외는 아직 이익이 얇다. FY26 일본 영업이익 ¥28.3B에 아시아 ¥2.1B, 아메리카즈 ¥0.6B다. 기업가치는 세 가지로 갈린다. 일본의 어른 수요가 구조인가, 아시아·북미가 일본 수준 이익률에 다가가나, 베이블레이드 X가 끝난 뒤에도 이익이 버티나다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 21.3배로 동종 중앙값 16.3배보다 31% 높다. 일본 IP 회사 반다이남코 24.8배·산리오 23.1배에 가깝고 Hasbro 16.7배·Mattel 11.9배와는 멀다. 5/12에는 가이던스 EPS 기준 12.8배였다.",
+    "eps": "FY27 EPS 가이던스는 ¥207.26 → ¥231.29로 +11.6%다. 컨센서스는 ¥239다. FY26 EPS ¥131은 영업권 감손 ¥4.86B로 눌린 값이라 FY27 증가율 +76%의 상당 부분은 기저 효과다."
+   },
+   "why_excited": "1Q 뒤에는 오히려 식었다. 영업이익 ¥5.5B로 컨센서스 ¥3.9B를 넘었는데 가이던스를 두어 8/5 주가가 −8.0%였다. 그 뒤 증권사 목표가 상향이 이어졌고, 10/29 상향이 FISCO가 전한 시장 기대 약 ¥27B를 ¥3B 넘었다. 10/30 +11.7%, 거래량은 평균의 4.5배였다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "아동에서 전 연령으로, 일본에서 아시아로 넓힌다. 회사 전략의 두 축이다.",
+     "evidence": "회사는 상향 이유로 Kidults를 맨 앞에 적었다. Kidults 비중은 공시되지 않아 미확인이다.",
+     "falsifier": "Kidults 없이도 설명되는 일회성 캐릭터 매출로 드러난다."
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "영업이익률 FY26 9.0% → FY27 가이던스 10.0%다. 환급 약 ¥1.0B를 빼면 9.7%다.",
+     "evidence": "1Q 매출총이익률은 39.3%→42.3%로 올랐다(시세 원천 재무).",
+     "falsifier": "하반기 이익률이 전년 하반기 8.8% 아래다."
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "multiple",
+     "status": "해당 낮음",
+     "change": "완구는 기술보다 IP와 유통이 값을 정한다. Roblox 게임으로 베이블레이드를 디지털과 잇는 시도가 있다.",
+     "evidence": "베이블레이드 X Roblox 게임 누적 방문 1억 초과. FY26 연구개발비 ¥6.7B.",
+     "falsifier": "디지털 연동이 실물 판매로 이어지지 않는다."
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "미확인",
+     "change": "해당 없음(계절 재고 생산이라 납품 리드타임을 공시하지 않아 피어와 비교할 수 없다). 다만 1Q 미국 ERP 장애로 출하가 늦어졌다. 금액은 미공개다.",
+     "evidence": "1Q 결산 보도. 2Q 내포 매출 +25.6%에 지연 물량이 섞였는지는 미확인이다.",
+     "falsifier": "11/10 미국 매출이 회복하지 않는다."
+    },
+    {
+     "lens": "M&A",
+     "drives": "multiple",
+     "status": "대기",
+     "change": "회사는 성장 투자 ¥40~50B를 쓰겠다고 했다. 진행 중인 건은 공시되지 않았다. FY26에는 미국 자회사 영업권 ¥4.86B를 감손했다.",
+     "evidence": "유가증권보고서. ",
+     "falsifier": "대형 인수로 순현금 ¥32.8B를 넘어 차입한다."
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "",
+     "status": "",
+     "change": "해당 없음(설비투자 사이클과 무관한 소비재다).",
+     "evidence": "",
+     "falsifier": ""
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(회사 매출을 바꾸는 재정 지출이 없다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "orders": {
+     "change": "해당 없음(지금 작동하는 것은 행정명령이 아니라 판결 뒤 세관 환급 절차다). 미국 대법원이 2026-02-20 IEEPA 관세를 무효로 했고 세관은 4월부터 CAPE로 환급을 받는다.",
+     "evidence": "회사는 1Q에 환급 약 ¥1.0B를 영업이익에 잡았다. 이 환급이 IEEPA 관세분인지는 회사가 밝히지 않아 추정이다. 대체 관세 영향도 미확인이다.",
+     "drives": "revision",
+     "status": "일회성",
+     "falsifier": "2Q에도 환급이 더 잡혀 이익 질이 낮아진다."
+    },
+    "laws": {
+     "change": "해당 없음(회사 공시와 보도에서 연관 법안을 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   },
+   "products": [
+    {
+     "kind": "제품",
+     "name": "토미카·프라레일",
+     "what": "미니카·철도 완구",
+     "use": "아동, 토미카 프리미엄은 어른",
+     "money": "브랜드별 매출 미공개"
+    },
+    {
+     "kind": "제품",
+     "name": "베이블레이드 X",
+     "what": "금속 팽이 배틀 완구",
+     "use": "일본·아시아 직판, 북미·유럽은 Hasbro 판매",
+     "money": "미공개, 전 세대 Burst는 시장 기준 ¥250B 이상"
+    },
+    {
+     "kind": "제품",
+     "name": "듀얼 마스터즈·TCG",
+     "what": "카드 게임, Lorcana 일본 판매 포함",
+     "use": "어린이·어른",
+     "money": "미공개"
+    },
+    {
+     "kind": "서비스",
+     "name": "키디랜드",
+     "what": "캐릭터 잡화 소매",
+     "use": "국내·방일객",
+     "money": "미공개"
+    },
+    {
+     "kind": "제품",
+     "name": "가챠·타카라토미아츠",
+     "what": "캡슐 토이",
+     "use": "일본, 북미 식료품점·영화관 확대",
+     "money": "미공개"
+    },
+    {
+     "kind": "제품",
+     "name": "포켓몬 메자스타",
+     "what": "포켓몬 아케이드 게임기와 라이선스 상품",
+     "use": "아동",
+     "money": "미공개"
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "경영은 회사 안에서 자란 CEO가 맡는다. 미국 자회사를 직접 경험한 점이 해외 전략과 닿는다. 정계·동문 연결은 공개 자료에서 찾지 못했다.",
+  "people": [
+   {
+    "name": "도미야마 아키오",
+    "role": "대표이사 사장 CEO",
+    "since": "2025-04",
+    "profile": "2010년 입사. 2017년 TOMY International 주재, 2018년 같은 회사 CSO. 2020년 사업 총괄, 2023년 부사장, 2024년 사장 COO를 거쳐 2025년 CEO가 됐다. 지분 862천 주.",
+    "business": "외부 이사회 연결 미확인",
+    "political": "공개 기록 미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "FY26 유가증권보고서 임원 현황(집계 사이트 경유)"
+   },
+   {
+    "name": "고지마 가즈히로",
+    "role": "대표이사 회장(2026-06 총회 뒤 현직 여부 미확인)",
+    "since": "2025-04",
+    "profile": "미쓰비시상사 출신. 2009년 사외이사로 왔고 CFO·사장 COO·CEO를 거쳤다. 2026년 6월 총회 안건 명단에는 없다.",
+    "business": "미쓰비시상사 경력",
+    "political": "공개 기록 미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "FY26 유가증권보고서 임원 현황(집계 사이트 경유)"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "도미야마 CEO — TOMY International 주재·CSO 경력. 아메리카즈 매출에 닿는다",
+    "strength": 4,
+    "exposure": 30.446,
+    "basis": "FY26 아메리카즈 부문 매출",
+    "evidence": "유가증권보고서 세그먼트·임원 현황"
+   },
+   {
+    "network": "비즈니스",
+    "link": "고지마 회장 — 미쓰비시상사 경력. 사업 연결 증거 없음",
+    "strength": 1,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "임원 현황"
+   },
+   {
+    "network": "정계",
+    "link": "공개 자료에서 찾지 못했다",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "없음"
+   },
+   {
+    "network": "동문",
+    "link": "공개 자료에서 찾지 못했다",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "없음"
+   }
+  ]
+ }
+}

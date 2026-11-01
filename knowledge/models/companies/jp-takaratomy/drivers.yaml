@@ -1,0 +1,88 @@
+id: jp-takaratomy
+name: Takara Tomy
+ticker: '7867'
+unit: BJPY
+unit_usd: 6349206.349206349
+industry: electronics
+region_mix:
+  JP: 1.0
+tax: 0.306
+rf_local: 0.02758
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 4922
+  shares: 0.086195
+  net_debt: -32.83
+  source: 가격 = 도쿄 10/30 종가 · 주식 수 = 자사주 제외 유통 주식(시세 원천) · 현금·차입(리스 포함) = 2026-06-30
+    재무상태표
+rev0: 300.0
+ic0: 76.14
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.05
+      end: 0.02
+      decay: 0.7
+    margin:
+      m0: 0.1
+      target: 0.105
+      year_target: 3
+      lr: 0.095
+      lam: 0.35
+    s2c: 3.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1
+      end: 0.025
+      decay: 0.75
+    margin:
+      m0: 0.1
+      target: 0.13
+      year_target: 3
+      lr: 0.095
+      lam: 0.25
+    s2c: 3.45
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0
+      end: 0.015
+      decay: 0.6
+    margin:
+      m0: 0.1
+      target: 0.085
+      year_target: 3
+      lr: 0.095
+      lam: 0.5
+    s2c: 2.55
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [300.0, 300.0] (회사 업적 예상 수정 2026-10-29 15:30 공시(보도 전재 원문))
+  growth: 컨센서스 없음 — 기본 10% 가정(약함)
+  margin: 출발 10% → 목표 10%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: 재무 재구성 증분 매출/투하자본 3.61 → 덮어쓰기 3.0
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: FY28 이후 공개 컨센서스가 없다. 성장 5%는 FY24~FY26 CAGR 13.9%와 일본 아동 인구 감소 사이의 보수
+    가정. 이익률 10.5%는 회사 목표 10% 이상과 환급 뺀 FY27 9.7%를 잇는다. 매출÷투하자본 3.0은 TTM 3.6에서 순현금 축소·금형
+    투자를 감안해 낮췄다
+  shares: 완전 희석 = 기본 0.086164934(2026-06-30) + 옵션·RSU·워런트·전환 0.0000 — TTM 희석 EPS ¥140.03
+    vs 기본 ¥140.08 차이로 역산한 근사. 주식보상 잔고 원문은 미확인
+notes:
+- 손으로 고침 2026-11-02: 자동판 약세 성장 6%가 기본 5%보다 높아 약세 0%·강세 10%로, 어닝콜 미공개라 톤 규칙 대신 확률 25·50·25로 둠
+- '어닝콜 위험: 관세 환급 일회성'
+- '어닝콜 위험: 미국 ERP 출하 지연'
+- '어닝콜 위험: 하반기 수요 미반영'
+evidence:
+- 회사 업적 예상 수정 2026-10-29 공시
+- 1Q FY27 결산 보도 2026-08-04(gamebiz)
+- FY26 유가증권보고서 텍스트
+- 중장기 경영전략 2030
