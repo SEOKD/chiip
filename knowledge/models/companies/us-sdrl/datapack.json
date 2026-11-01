@@ -851,11 +851,11 @@
   "경제적 가동률": "계약 일당 대비 실제로 받은 일당 비율",
   "대납 비용 수익": "고객 대신 쓴 비용을 돌려받아 잡는 수익",
   "FID": "유전 개발 최종 투자 결정",
-  "EOG": "미국 석유·가스 생산 회사 EOG Resources",
+  "EOG": "미국 석유·가스 생산 회사",
   "UTI": "Patterson-UTI, 미국 육상 시추 회사 이름의 일부"
  },
  "moat": {
-  "summary": "해자는 약하다. 있는 것은 공급 비탄력과 실행 기록이고 둘 다 사이클에 기대며, 고객 Petrobras가 34%다.",
+  "summary": "해자는 강하지 않다. 있는 것은 공급 비탄력과 실행 기록이고 둘 다 사이클에 기대며, 고객 Petrobras가 34%다.",
   "items": [
    {
     "kind": "신조 없는 시추선 공급",
@@ -1131,6 +1131,12 @@
       "최상위 드릴십 일당 $400K 중반~$500K",
       "동종 확인",
       "Noble 보도자료"
+     ],
+     [
+      "Transocean 10월 수주",
+      "Proteus 일 약 $464K·Conqueror 일 약 $500K",
+      "수주액 ÷ 일수, 고객 비공개. West Carina $477K와 같은 구간",
+      "Transocean 발표, 마스터 노션 정리"
      ]
     ],
     "read": "업계지는 일당 상승을 확인하고 있다"
@@ -1240,7 +1246,7 @@
      "kind": "제품",
      "name": "시추 선단",
      "what": "소유 15척. 드릴십 10척, 반잠수식 4척, 잭업 1척. 전부 2007년 이후 인도",
-     "use": "West Aquarius·Phoenix 2척은 정지 중",
+     "use": "소유 15척 중 3척 정지. West Aquarius·Phoenix 재가동비는 척당 $100M 이상",
      "money": "장부가 $2.93B, 척당 약 $195M"
     }
    ],
@@ -1420,7 +1426,8 @@
    "contractual_obligations": "FY2025 10-K: 12개월 내 만기 없음, 원금 $625M, 불확실 세무 $22M. 구매 약정 금액 공시 없음",
    "restricted_cash_m": 23,
    "customers_over_10pct_2q26": "Petrobras 34%, Sonadrill 18%, Walter Oil & Gas 10%",
-   "government_support": "정부 지원·전략 계약 공시 없음"
+   "government_support": "정부 지원·전략 계약 공시 없음",
+   "master_notion": "노션 Stocks 해양시추(2026-10-28): 적치 3기, 핵심 확인은 가동일수 증가의 현금 회수. IB 원문 아님"
   },
   "zacks": {
    "rev": {
