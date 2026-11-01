@@ -1,0 +1,26 @@
+id,market,route,pages,docs,note,unofficial
+co-tsmc,tw,자료실 미확인,https://investor.tsmc.com/chinese/quarterly-results,0,HTTPError,StockAnalysis 2026Q3
+co-unimicron,tw,자료실 미확인,,0,robots 금지,
+co-ase,tw,자료실 미확인,,0,HTTPError403,StockAnalysis 2026Q3
+co-delta,tw,회사 자료실,https://www.deltaww.com/en-US/investors/analyst-meeting,2,,StockAnalysis 2025Q4
+co-elitematerial,tw,회사 자료실,https://www.emctw.com/en-global/presentation_materials/index,12,,
+co-quanta,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2025Q2
+co-wiwynn,tw,회사 자료실,https://www.wiwynn.com/investors/;https://www.wiwynn.com/investors,36,,
+co-accton,tw,자료실 미확인,,0,문서 링크 없음,
+tw-yageo,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2025Q4
+tw-walsintech,tw,자료실 미확인,,0,URLError,
+tw-taiwanglass,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-tuc,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-iteq,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-gce,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-topoint,tw,자료실 미확인,,0,문서 링크 없음,
+tw-winway,tw,자료실 미확인,,0,문서 링크 없음,
+tw-mpi,tw,회사 자료실,https://www.mpi-corporation.com/investors-relationship/shareholder-services/,8,,
+tw-chpt,tw,자료실 미확인,,0,문서 링크 없음,
+tw-avc,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2026Q2
+tw-auras,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-bizlink,tw,자료실 미확인,,0,문서 링크 없음,StockAnalysis 2026Q2
+tw-lotes,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-kingslide,tw,자료실 미확인,,0,URLError,
+hk-popmart,hk,자료실 미확인,,0,문서 링크 없음,
+hk-2050,hk,회사 자료실,https://www.zjshc.com/investor/hkstock.html,3,,

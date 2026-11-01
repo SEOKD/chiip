@@ -151,8 +151,8 @@ def discover():
     for cid, c in (config().get("companies") or {}).items():
         cs = st["companies"].setdefault(cid, {"seen": []})
         site = c["site"].rstrip("/")
-        starts = list(c.get("ir_pages") or []) or [site + p for p in ("/investors/", "/investor/", "/ir/", "/en/investors/", "/zh-TW/investors/")]
-        pages, note = list(c.get("doc_pages") or []), ""
+        starts = list(c.get("ir_pages") or []) + [site + p for p in ("/investors/", "/investor/", "/ir/", "/en/investors/", "/zh-TW/investors/", "/")]
+        pages, note = list(c.get("doc_pages") or cs.get("doc_pages") or []), ""
         if not pages:
             try:
                 pages = deep(starts, c)
@@ -166,18 +166,37 @@ def discover():
                 count += len(scan(qa._text(qa.fetch(pg)), pg, c))
             except Exception as exc:
                 note = type(exc).__name__
-        rows.append({"id": cid, "market": c["market"], "route": "회사 자료실" if count else "자료실 미확인", "pages": ";".join(pages), "docs": count, "note": note})
-        print(cid, rows[-1]["route"], count, pages[:1], note, flush=True)
+        rows.append({"id": cid, "market": c["market"], "route": "회사 자료실" if count else "자료실 미확인", "pages": ";".join(pages), "docs": count, "note": note or (reach(site) if not count else ""), "unofficial": latest_transcript(c)})
+        print(cid, rows[-1]["route"], count, rows[-1]["note"], rows[-1]["unofficial"], flush=True)
         common.save_state(STATE, st)
     ROUTES.parent.mkdir(parents=True, exist_ok=True)
     with ROUTES.open("w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=["id", "market", "route", "pages", "docs", "note"])
+        w = csv.DictWriter(f, fieldnames=["id", "market", "route", "pages", "docs", "note", "unofficial"])
         w.writeheader()
         w.writerows(rows)
     return rows
 
 
-def deep(starts, c, budget=20):
+def reach(site):
+    """자료실을 못 찾은 이유 — 우회하지 않고 기록만 한다"""
+    try:
+        h = qa._text(qa.fetch(site + "/"))
+        return "화면이 스크립트로 그려짐" if len(qa.links(h, site)) < 5 else "문서 링크 없음"
+    except PermissionError:
+        return "robots 금지"
+    except Exception as exc:
+        return type(exc).__name__ + str(getattr(exc, "code", ""))
+
+
+def latest_transcript(c):
+    try:
+        links = transcript_links(qa._text(qa.fetch(f"https://stockanalysis.com/quote/{ {'tw': 'tpe', 'hk': 'hkg'}[c['market']] }/{str(c['code']).zfill(4)}/transcripts/")))
+        return f"StockAnalysis {links[-1][3]}Q{links[-1][2]}" if links else ""
+    except Exception:
+        return ""
+
+
+def deep(starts, c, budget=30):
     """IR 경로 안을 훑어 문서 링크가 가장 많은 페이지를 고른다"""
     queue, seen, scored, n = list(starts), set(), {}, 0
     while queue and n < budget:
