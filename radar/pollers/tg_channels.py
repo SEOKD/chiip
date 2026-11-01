@@ -6,6 +6,8 @@
 사용: py radar/pollers/tg_channels.py --status
       py radar/pollers/tg_channels.py --recent 24 [--channel marketfeed]   # 최근 N시간
       py radar/pollers/tg_channels.py --about GE Vernova GEV              # 이름이 나온 글
+      py radar/pollers/tg_channels.py --score                             # 수집 점수 10점
+      py radar/pollers/tg_channels.py --image <주소>                      # 사진 글을 내려받아 모델이 읽는다
 """
 import argparse
 import html
@@ -46,11 +48,77 @@ def parse(page, seen=""):
         m = re.search(r'js-message_text[^>]*>(.*?)</div>', b, re.S)
         raw = m.group(1) if m else ""
         text = html.unescape(re.sub(r"<[^>]+>", "", re.sub(r"<br\s*/?>", "\n", raw))).strip()
+        extra = [html.unescape(x).strip() for x in re.findall(r'(?:link_preview_title|link_preview_description|document_title)[^>]*>([^<]+)', b)]
+        if not text and extra:   # 글 없이 링크·첨부만 올린 글
+            text = " · ".join(dict.fromkeys(extra))
+        img = re.search(r"message_photo_wrap[^>]*background-image:url\('([^']+)'\)", b)
         fwd = re.search(r'forwarded_from_name[^>]*>(?:<span[^>]*>)?([^<]+)', b)
         link = next((u for u in re.findall(r'href="(https?://[^"]+)"', raw) if "t.me/" not in u), "")
         out.append({"id": int(post.group(2)), "channel": post.group(1), "at": common.iso(datetime.fromisoformat(ts.group(1)).astimezone(common.KST)), "text": text, "url": f"https://t.me/{post.group(1)}/{post.group(2)}",
-                    "forwarded_from": html.unescape(fwd.group(1)).strip() if fwd else "", "link": html.unescape(link), "media": "photo_wrap" in b or "document_wrap" in b, "seen": seen})
+                    "forwarded_from": html.unescape(fwd.group(1)).strip() if fwd else "", "link": html.unescape(link), "media": "photo_wrap" in b or "document_wrap" in b, "seen": seen,
+                    "image": img.group(1) if img else "", "unsupported": "message_media_not_supported" in b})
     return out
+
+
+def og_text(page):
+    """글 하나의 공개 페이지에서 본문 — 목록 미리보기가 지원하지 않는 형식이나 목록이 꺼진 채널도 여기서 읽힌다"""
+    m = re.search(r'<meta property="og:description" content="(.*?)">', page, re.S)
+    return html.unescape(m.group(1)).strip() if m else ""
+
+
+def fill_unsupported(handle, posts, get, pause=0.5, limit=30):
+    """목록에 '텔레그램에서 보라'고만 나오는 글의 본문을 채운다. 새 글부터"""
+    todo = [p for p in sorted(posts.values(), key=lambda x: -x["id"]) if p.get("unsupported") and not p["text"]][:limit]
+    for p in todo:
+        p["text"] = og_text(get(p["url"]))
+        time.sleep(pause)
+    return len(todo)
+
+
+def read_post(handle, pid, base, get, seen):
+    """글 번호 하나 → 글. 없는 번호는 채널 소개가 나온다"""
+    url = f"https://t.me/{handle}/{pid}"
+    page = get(url)
+    text = og_text(page)
+    if not text or text == base:
+        return None
+    ts = re.search(r'<time[^>]*datetime="([^"]+)"', page) or re.search(r'<time[^>]*datetime="([^"]+)"', get(url + "?embed=1"))   # 공개 페이지에 시각이 없으면 임베드에서
+    at = common.iso(datetime.fromisoformat(ts.group(1)).astimezone(common.KST)) if ts else seen
+    return {"id": pid, "channel": handle, "at": at, "text": text, "url": url, "forwarded_from": "", "link": "", "media": False, "seen": seen, "image": "", "unsupported": False}
+
+
+def latest_id(handle, base, get, pause=0.3, top=200000):
+    """목록이 꺼진 채널의 마지막 글 번호를 찾는다"""
+    alive = lambda i: any(og_text(get(f"https://t.me/{handle}/{j}")) not in ("", base) for j in range(i, i + 4))
+    low, high = 1, 1024
+    while high < top and alive(high):
+        low, high = high, high * 2
+        time.sleep(pause)
+    while high - low > 3:
+        mid = (low + high) // 2
+        low, high = (mid, high) if alive(mid) else (low, mid)
+        time.sleep(pause)
+    return low + 3
+
+
+def collect_by_id(handle, get=fetch, pause=0.5, now=None, tail=30, misses=8, step=40):
+    """글 번호를 차례로 읽는다 — 웹 목록이 꺼진 공개 채널. 처음에는 최근 tail개만 기준선으로 받는다"""
+    now = now or common.now_kst()
+    posts = load(handle)
+    base = og_text(get(f"https://t.me/{handle}"))
+    first = not posts
+    start = max(1, latest_id(handle, base, get) - tail) if first else max(posts) + 1
+    new, miss, i = 0, 0, start
+    while miss < misses and i < start + (tail + misses if first else step):
+        p = read_post(handle, i, base, get, BASELINE if first else common.iso(now))
+        miss = 0 if p else miss + 1
+        if p:
+            posts[i] = p
+            new += 1
+        i += 1
+        time.sleep(pause)
+    save(handle, posts)
+    return new
 
 
 def path_of(handle):
@@ -93,6 +161,7 @@ def collect(handle, get=fetch, pause=1.0, now=None):
             break
         url = f"https://t.me/s/{handle}?before={low}"
         time.sleep(pause)
+    fill_unsupported(handle, posts, get)
     save(handle, posts)
     return new
 
@@ -103,7 +172,7 @@ def poll(env=None):
     fails, closed, total = [], [], 0
     for c in config()["channels"]:
         try:
-            n = collect(c["handle"])
+            n = collect_by_id(c["handle"]) if c.get("mode") == "by_id" else collect(c["handle"])
             if n is None:
                 closed.append(c["handle"])
             else:
@@ -125,6 +194,36 @@ def poll_if_stale(now=None):
         return False
     poll()
     return True
+
+
+def score(now=None):
+    """수집 점수 10점 — 채널·신선도·본문·오류·Pulse 전달 각 2점. Proviser가 매일 본다"""
+    import glob
+    now = now or common.now_kst()
+    cfg, st = config(), common.load_state(STATE, {})
+    rows = {c["handle"]: load(c["handle"]) for c in cfg["channels"]}
+    live = sum(1 for r in rows.values() if r)
+    age = (now - datetime.fromisoformat(st["at"])).total_seconds() / 60 if st.get("at") else 1e9
+    fresh = 2.0 if age <= 10 else 1.5 if age <= 20 else 1.0 if age <= 60 else 0.0
+    cut = common.iso(now - timedelta(days=7))
+    week = [p for r in rows.values() for p in r.values() if p["at"] >= cut]
+    body = sum(1 for p in week if p["text"] or p.get("image")) / max(len(week), 1)   # 사진은 주소를 쥐고 있으면 필요할 때 읽을 수 있다
+    cut2 = common.iso(now - timedelta(hours=24))
+    mark = common.load_state("pulse", {}).get("tg_start") or cut2
+    recent = [p for r in rows.values() for p in r.values() if p.get("seen", "") >= max(cut2, mark) and (p["text"] or p.get("image"))]   # 첫 수집이 거슬러 받은 과거 글은 빼고 Pulse가 받기 시작한 뒤의 글만
+    sent = "".join(open(f, encoding="utf-8").read() for f in sorted(glob.glob(str(common.ROOT / "radar" / "pulse" / "*.json")))[-60:])
+    fed = sum(1 for p in recent if p["url"] in sent) / max(len(recent), 1)
+    axes = {"채널": round(2 * live / len(rows), 1), "신선도": fresh, "본문": round(2 * body, 1), "오류": 2.0 if not st.get("fails") else 1.0, "Pulse 전달": round(2 * fed, 1)}
+    return round(sum(axes.values()), 1), axes, {"수집 후 분": round(age, 1), "7일 글": len(week), "글자 없음(사진 포함)": sum(1 for p in week if not p["text"]), "사진 주소도 없음": sum(1 for p in week if not p["text"] and not p.get("image")), "24시간 새 글": len(recent)}
+
+
+def save_image(url):
+    """사진만 있는 글을 모델이 볼 수 있게 내려받는다 — 판단에 필요한 건만"""
+    d = DIR / "images"
+    d.mkdir(parents=True, exist_ok=True)
+    p = d / (re.sub(r"\W+", "", url)[-40:] + ".jpg")
+    p.write_bytes(common.http_get(url, timeout=25))
+    return p
 
 
 def since(mark):
@@ -184,8 +283,14 @@ def main(argv):
     ap.add_argument("--channel")
     ap.add_argument("--about", nargs="+")
     ap.add_argument("--top", type=int, default=20)
+    ap.add_argument("--score", action="store_true")
+    ap.add_argument("--image")
     a = ap.parse_args(argv)
-    if a.about:
+    if a.image:
+        print(save_image(a.image))
+    elif a.score:
+        print(score())
+    elif a.about:
         print(show(about(a.about)[:a.top]) or "해당 글 없음")
     elif a.recent:
         print(show(recent(a.recent, a.channel)[:a.top]) or "해당 글 없음")

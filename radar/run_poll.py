@@ -164,6 +164,22 @@ def deterministic_p0(items):
     return sent
 
 
+def start_tg_keeper():
+    """공개 텔레그램 채널을 4분마다 읽는 보조 스레드 — 느린 수집기가 20분 넘게 돌아도 끊기지 않게(2026-11-01 점수 점검)"""
+    import threading
+    import time
+    from pollers import tg_channels as tg
+
+    def loop():
+        while True:
+            try:
+                tg.poll_if_stale()
+            except Exception as exc:
+                common.record_health(tg.SOURCE_ID, False, f"{type(exc).__name__}: {exc}")
+            time.sleep(240)
+    threading.Thread(target=loop, daemon=True).start()
+
+
 def main(argv=None):
     common.stay_awake()
     ap = argparse.ArgumentParser()
@@ -176,6 +192,7 @@ def main(argv=None):
     if not acquire_lock():
         print("다른 폴링이 실행 중 — 건너뜀")
         return 0
+    start_tg_keeper()
     try:
         env = common.load_env()
         try:  # 텔레그램 '⭐ 노션 기록' 버튼·답장 메모 처리 → 노션 인텔 아카이브(§21.13)

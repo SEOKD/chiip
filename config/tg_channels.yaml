@@ -7,7 +7,7 @@ channels:
   - {handle: kwusa}
   - {handle: insidertracking}
   - {handle: bornlupin}
-  - {handle: aethersemiresearch, always: true}   # 2026-11-01 확인: 웹 미리보기가 꺼져 있어 읽지 못한다. 로그인·개인 계정은 쓰지 않는다
+  - {handle: aethersemiresearch, always: true, mode: by_id}   # 웹 목록이 꺼져 있어 글별 공개 페이지를 번호로 읽는다(로그인 없음)
   - {handle: clawnewssummary}
   - {handle: easobi_ai}
   - {handle: ked_epic_ai, always: true}

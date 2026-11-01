@@ -83,7 +83,30 @@ def brand(text):
     text = re.sub(r"(?m)^(·\s*)(?:숫자|가격|파급|반대|다음|야마|보도 확인|주장|핵심|밸류|수급|조건|참여자|직전 대비|함의|단계|점유|AI 수요|바뀐 말|질문 초점)\s*[—–-]\s*", r"\1", text)
     for ko, en in LABELS:
         text = text.replace(ko, en)
-    return code_gloss(money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text))))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
+    return readable(code_gloss(money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text)))))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
+
+
+LONG_PARA = 180    # 이보다 긴 문단은 문장 경계에서 나눈다
+
+
+def readable(text):
+    """문단 띄어쓰기를 코드로 맞춘다(마스터 지시 2026-11-01 "텔레그램 피드 내용은 문단 띄어쓰기 등을 통해 가독성 있게"). 긴 문단은 두 문장씩 나누고, 목록 앞뒤와 머리줄 뒤에 빈 줄을 둔다"""
+    out = []
+    for para in re.split(r"\n\s*\n", text or ""):
+        lines = para.split("\n")
+        if len(lines) == 1 and len(para) > LONG_PARA and not para.lstrip().startswith(("·", "-", "■", "•", "http")):
+            parts = re.split(r"(?<=[.!?。])\s+", para)
+            out += [" ".join(parts[i:i + 2]) for i in range(0, len(parts), 2)]
+            continue
+        cur = []
+        for ln in lines:
+            bullet = ln.lstrip().startswith(("·", "- ", "• "))
+            if cur and bullet != cur[-1].lstrip().startswith(("·", "- ", "• ")) and not re.match(r"\s*\*\*■|\s*■|\s*▶", cur[-1]):   # 글과 목록 사이를 띄운다. 절 제목 바로 아래 목록은 붙인다
+                out.append("\n".join(cur))
+                cur = []
+            cur.append(ln)
+        out.append("\n".join(cur))
+    return "\n\n".join(x for x in out if x.strip())
 
 
 LINK_RE = re.compile(r"\[([^\]\n]{1,80})\]\((https?://[^\s)]+)\)")

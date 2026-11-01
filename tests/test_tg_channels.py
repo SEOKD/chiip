@@ -69,6 +69,32 @@ class TestChannels(unittest.TestCase):
             self.assertTrue(tg.poll_if_stale(now))
             p.assert_called_once()
 
+    def test_unsupported_post_is_filled_from_its_page(self):
+        posts = {1: {"id": 1, "text": "", "unsupported": True, "url": "u"}}
+        tg.fill_unsupported("c", posts, lambda u: '<meta property="og:description" content="본문 &amp; 줄">', pause=0)
+        self.assertEqual(posts[1]["text"], "본문 & 줄")
+
+    def test_link_only_post_uses_preview_title(self):
+        page = '''<div class="tgme_widget_message_wrap"><div data-post="c/5"><div class="link_preview_title" dir="auto">제목입니다</div><time datetime="2026-11-01T09:00:00+00:00"></time></div></div>'''
+        self.assertEqual(tg.parse(page)[0]["text"], "제목입니다")
+
+    def test_missing_post_returns_none(self):
+        self.assertIsNone(tg.read_post("c", 9, "소개", lambda u: '<meta property="og:description" content="소개">', "S"))
+
+    def test_by_id_reads_new_posts_only(self):
+        store = {7: {"id": 7, "text": "옛 글"}}
+        page = lambda u: '<meta property="og:description" content="%s">' % ("소개" if not u.endswith(("/8", "/9")) else "새 글")
+        with mock.patch.object(tg, "load", lambda h: dict(store)), mock.patch.object(tg, "save", lambda h, p: store.update(p)):
+            self.assertEqual(tg.collect_by_id("c", get=page, pause=0, misses=3), 2)
+        self.assertEqual(sorted(store), [7, 8, 9])
+
+    def test_feed_paragraphs(self):
+        import notify
+        long = " ".join(["첫 문장은 충분히 길게 씁니다 매출이 늘었고 이익도 늘었습니다."] * 6)
+        self.assertGreater(notify.readable(long).count("\n\n"), 1)
+        self.assertEqual(notify.readable("요약 문장\n· 하나\n· 둘"), "요약 문장\n\n· 하나\n· 둘")
+        self.assertEqual(notify.readable("**■ 결론**\n- 하나\n- 둘"), "**■ 결론**\n- 하나\n- 둘")
+
     def test_config_has_all_channels(self):
         self.assertEqual(len(tg.config()["channels"]), 14)
 

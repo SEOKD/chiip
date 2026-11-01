@@ -415,19 +415,23 @@ def fetch_telegram(st):
     now = common.iso(common.now_kst())
     mark = st.get("tg_mark")
     st["tg_mark"] = now
+    st.setdefault("tg_start", mark or now)
     if not mark:   # 처음 켤 때는 지금 이후 글만
         return []
     cfg, out, other = tg.config(), [], st.setdefault("tg_other", [])
     for r in tg.dedupe(tg.since(mark)):
         text = r["text"]
         if not tg.relevant(r, cfg, TECH_RE):
-            if text:
-                other.append({"channel": r["channel"], "at": r["at"][:16], "text": text[:100], "url": r["url"]})
+            if text or r.get("image"):
+                other.append({"channel": r["channel"], "at": r["at"][:16], "text": text[:100] or "[사진]", "url": r["url"], "image": r.get("image") or ""})
             continue
         out.append({"source_id": f"src-tg-{r['channel']}", "source_class": "텔레그램", "url": r["url"], "title": text.split(chr(10))[0][:120], "published_at": r["at"], "detected_at": r.get("seen"),
                     "snippet": text[:600], "entities_matched": common.match_entities(text), "publisher": r["channel"], "also": r.get("also"), "forwarded_from": r.get("forwarded_from"), "link": r.get("link")})
+    out.sort(key=lambda x: -len(x["entities_matched"]))
+    for x in out[TOP["텔레그램"]:]:   # 회차 상한을 넘은 글도 버리지 않고 목록으로 넘긴다
+        other.append({"channel": x["publisher"], "at": x["published_at"][:16], "text": x["snippet"][:100], "url": x["url"]})
     st["tg_other"] = other[-150:]
-    return out
+    return out[:TOP["텔레그램"]]
 
 
 def run(now=None, peek=False):
