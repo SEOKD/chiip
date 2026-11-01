@@ -1,0 +1,1044 @@
+{
+ "id": "co-isc",
+ "name": "ISC",
+ "ticker": "095340",
+ "as_of": "2026-10-30",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 750000.0,
+ "industry": "semiconductor",
+ "region_mix": {
+  "KR": 1.0
+ },
+ "tax": 0.2,
+ "main_metric": "eps",
+ "main_metric_why": "증권사가 EPS × P/E로 값을 매기고 회사 가이던스는 매출·영업이익이다",
+ "profile": {
+  "price": 155800,
+  "shares_basic": 0.0211425,
+  "shares_date": "2026-10-30",
+  "cash": 360.39,
+  "debt": 1.4,
+  "source": "가격 = TradingView 10/30 종가. 주식 수 21,142,493주 = TradingView 발행 주식 수. 사업보고서 발행 21,197,058주 − 자기주식 732,866주 + 교환사채 대상 678,259주와 맞는다. TradingView 시가총액 ₩3.188T는 교환 전 20,464,192주 기준이라 쓰지 않는다. 현금·차입 = 2Q 말"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-10-30",
+  "source": "2025 사업보고서의 잠재 주식 678,259주는 교환사채 ₩20B 몫이고 4/1 교환청구 공시 뒤 2Q 차입이 ₩21.2B → ₩1.4B로 줄어 소멸로 본다. 주식매수선택권은 읽은 범위에 없어 미확인"
+ },
+ "financials": {
+  "rev_ttm": 285.306,
+  "ebit_ttm": 88.712,
+  "invested_capital": 224.08,
+  "capex_ttm": 12.4,
+  "da_ttm": 10.7,
+  "sbc_ttm": 0.0,
+  "s2c": 1.27,
+  "rev_growth_ttm": 0.525,
+  "basis": "K-IFRS 연결",
+  "note": "TTM = 4Q25~3Q26. 3Q는 잠정치. 4Q25 영업이익 = FY2025 ₩60.05B − 9M25. 설비투자·감가상각은 2Q까지 TTM"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 307.916,
+   "FY2027": 405.0,
+   "FY2028": 490.0
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.325,
+   "FY2027": 0.341,
+   "FY2028": 0.351
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 8,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 94.94
+  },
+  "quarters_act": {
+   "2026Q1": 68.272,
+   "2026Q2": 72.929,
+   "2026Q3": 71.775
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1333
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 723,
+    "est": 668,
+    "est_src": "잠정실적 공시 시점 예상치",
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 219,
+    "est": 183,
+    "est_src": "잠정실적 공시 시점 예상치",
+    "basis": null
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 1037,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 683,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 236,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 972,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 729,
+    "est": 730,
+    "est_src": "하나 6/24 추정",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 213,
+    "est": 219,
+    "est_src": "하나 6/24 추정",
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 912,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 718,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 218,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 704,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   }
+  ],
+  "ratings": {
+   "strong_buy": 8,
+   "buy": 0,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-01"
+  },
+  "note": "FY2026 매출 = 1~3Q 실적 + 4Q 컨센서스 ₩94.9B. TradingView FY2026 ₩311.2B는 회사 가이던스 상단 ₩310B를 넘어 3Q 전 값으로 본다. FY2027·28은 3Q 전 공개 추정(7/28 집계). 3Q 시장 전망치 숫자는 찾지 못했다. 회사와 보도는 '하회'라고만 쓴다"
+ },
+ "guidance": {
+  "rev_fy0": [
+   300.0,
+   310.0
+  ],
+  "ebit_margin_fy0": 0.328,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "2026 매출 ₩300~310B, 영업이익 ₩95~105B. 2027 매출 2026 대비 최소 +30%. 기준 환율 ₩1,300",
+  "source": "10/27 공정공시 2건과 3Q 콜 요약(IRGO)",
+  "next": {
+   "period": "4Q26",
+   "rev": 920,
+   "rev_cons": 949,
+   "unit": "억 원"
+  }
+ },
+ "call": {
+  "date": "2026-10-27",
+  "prev_date": "2026-07-27",
+  "tone": "flat",
+  "tone_delta": 0.0,
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_3q": 71.8,
+   "opm_3q": 0.304,
+   "ai_rev_3q": 62.6,
+   "ai_dc_3q": 53.0
+  },
+  "new_topics": [
+   "분기 가이던스 공시 시작",
+   "2027 최소 +30%",
+   "모듈형 소켓 WiDER-Max",
+   "CPO 2027 매출 ₩20~30B",
+   "중국 메모리 양산 소켓 4Q 공급"
+  ],
+  "dropped_topics": [
+   "ISC Link-edge 언급 없음",
+   "주주환원 계획 언급 없음"
+  ],
+  "risks": [
+   "환율 영향 숫자가 안 맞는다(−₩5B vs 환산 시 ₩23.6B)",
+   "고객 이탈 루머를 회사가 직접 언급",
+   "순이익 −23% QoQ, 원인 미확인"
+  ],
+  "qa_focus": [],
+  "source": "회사 IR 브리핑 '3Q 실적발표 컨퍼런스콜 주요 내용 요약'(IRGO 2026-10-27). 전문이 아니라 회사 요약이고 발언 증권사는 나오지 않는다",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "AI 매출",
+    "label": "AI 매출 ₩62.6B",
+    "prior": "₩59.1B(2Q)",
+    "latest": "₩62.6B(3Q), 매출의 87%",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "3Q 콜 요약"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "CAPA",
+    "label": "2027 CAPA 300만",
+    "prior": "2026 200만, 2027 270만",
+    "latest": "2026 245만, 2027 300만",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "2Q·3Q IR 요약"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "2027 성장 전망",
+    "label": "2027 +30% 이상",
+    "prior": "숫자 없음",
+    "latest": "2026 대비 최소 +30%",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "3Q 콜 요약"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "분기 가이던스",
+    "label": "4Q OPM 36%",
+    "prior": "없음",
+    "latest": "4Q 매출 ₩92B, 영업이익 ₩33.3B(중앙값)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "10/27 공정공시"
+   },
+   {
+    "id": "F5",
+    "kind": "업데이트",
+    "item": "모바일 점유율",
+    "label": "모바일 40%",
+    "prior": "20%",
+    "latest": "북미 고객 양산 테스트 40%, 2027 상반기 물량 확보",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "3Q 콜 요약"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "CPO 매출",
+    "label": "CPO ₩20~30B",
+    "prior": "숫자 없음",
+    "latest": "2027 연 ₩20~30B",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "3Q 콜 요약"
+   },
+   {
+    "id": "F7",
+    "kind": "부정",
+    "item": "3Q 이익률",
+    "label": "OPM 30.4%",
+    "prior": "2Q 자료의 3Q 35~40%",
+    "latest": "30.4%",
+    "driver": "margin_m0",
+    "shift": -0.02,
+    "confidence": 1.0,
+    "source": "2Q·3Q IR 요약"
+   },
+   {
+    "id": "F8",
+    "kind": "부정",
+    "item": "소켓 후공정 병목",
+    "label": "₩11B 이월",
+    "prior": "일회성 비용이 쟁점",
+    "latest": "수주를 다 못 내 ₩11B가 10월로 밀렸다",
+    "driver": "growth_start",
+    "shift": -0.005,
+    "confidence": 1.0,
+    "source": "3Q 콜 요약"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 2026-11-02. 금액은 각사 통화(십억). Fwd 1Y는 진행 회계연도 추정으로 맞춘 근사. Yokowo·Enplas는 소켓 비중이 작아, Cohu는 적자라 뺐다",
+ "peers": [
+  {
+   "ticker": "리노공업",
+   "key": "058470",
+   "rev": 424.56,
+   "ebit_margin": 0.4933,
+   "mcap": 4257.74,
+   "pb": 5.48,
+   "debt": 0.21,
+   "cash": 426.81,
+   "ev_sales": 9.02,
+   "growth": 0.2368,
+   "pe_fwd": 23.44,
+   "ntm_ebit_margin": 0.4933,
+   "ntm_growth": 0.036
+  },
+  {
+   "ticker": "티에스이",
+   "key": "131290",
+   "rev": 567.7,
+   "ebit_margin": 0.2202,
+   "mcap": 2394.39,
+   "pb": 5.18,
+   "debt": 53.42,
+   "cash": 126.71,
+   "ev_sales": 4.28,
+   "growth": 0.3698,
+   "pe_fwd": 16.42,
+   "ntm_ebit_margin": 0.2202,
+   "ntm_growth": 0.2456
+  },
+  {
+   "ticker": "Micronics Japan",
+   "key": "6871.T",
+   "rev": 86.26,
+   "ebit_margin": 0.2844,
+   "mcap": 435.39,
+   "pb": 4.81,
+   "debt": 6.44,
+   "cash": 20.05,
+   "ev_sales": 4.89,
+   "growth": 0.3781,
+   "pe_fwd": 18.39,
+   "ntm_ebit_margin": 0.2844,
+   "ntm_growth": 0.2248
+  },
+  {
+   "ticker": "Yamaichi",
+   "key": "6941.T",
+   "rev": 57.94,
+   "ebit_margin": 0.2363,
+   "mcap": 134.03,
+   "pb": 2.75,
+   "debt": 5.62,
+   "cash": 16.91,
+   "ev_sales": 2.12,
+   "growth": 0.2924,
+   "pe_fwd": 12.06,
+   "ntm_ebit_margin": 0.2363,
+   "ntm_growth": 0.1845
+  },
+  {
+   "ticker": "Technoprobe",
+   "key": "TPRO.MI",
+   "rev": 0.767,
+   "ebit_margin": 0.3035,
+   "mcap": 15.51,
+   "pb": 11.16,
+   "debt": 0.03,
+   "cash": 0.705,
+   "ev_sales": 19.36,
+   "growth": 0.2207,
+   "pe_fwd": 45.06,
+   "ntm_ebit_margin": 0.3035,
+   "ntm_growth": 0.4303
+  },
+  {
+   "ticker": "윈웨이",
+   "key": "6515.TW",
+   "rev": 10.54,
+   "ebit_margin": 0.2356,
+   "mcap": 166.37,
+   "pb": 19.15,
+   "debt": 1.57,
+   "cash": 6.88,
+   "ev_sales": 15.28,
+   "growth": 0.4462,
+   "pe_fwd": 47.65,
+   "ntm_ebit_margin": 0.2356,
+   "ntm_growth": 0.5003
+  },
+  {
+   "ticker": "FormFactor",
+   "key": "FORM",
+   "rev": 0.98,
+   "ebit_margin": 0.2119,
+   "mcap": 6.84,
+   "pb": 5.79,
+   "debt": 0.028,
+   "cash": 0.396,
+   "ev_sales": 6.6,
+   "growth": 0.2908,
+   "pe_fwd": 26.15,
+   "ntm_ebit_margin": 0.2119,
+   "ntm_growth": 0.0693
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-10-27",
+   "tag": "3Q 잠정실적·4Q 가이던스",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-28",
+   "tag": "베트남 법인 증자 공시 설명",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-27",
+   "tag": "2Q 잠정실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-04-27",
+   "tag": "1Q 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-04-01",
+   "tag": "교환청구권 행사 공시",
+   "kind": "8-K"
+  }
+ ],
+ "sources": [
+  "ISC 3Q 콜 요약(IRGO) https://m.irgo.co.kr/IR-COMP/095340",
+  "ISC 2025 사업보고서(KIND) https://kind.krx.co.kr/external/2026/03/18/000082/20260318000201/11011.htm"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-02T06:40:00+09:00",
+  "shares_cover_implied": 0.0211425,
+  "fiscal_profile": {
+   "companyKey": "TradingView KRX:095340 — Fiscal.ai 미제공",
+   "price": 155800,
+   "market_cap": 3294.002,
+   "total_cash": 360.39,
+   "total_debt": 1.4,
+   "as_of": "2026-10-30",
+   "balance_date": "2026-06-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 72.33,
+    "2026Q1": 68.272,
+    "2026Q2": 72.929,
+    "2026Q3": 71.775
+   },
+   "op_income": {
+    "2025Q4": 21.93,
+    "2026Q1": 23.6,
+    "2026Q2": 21.34,
+    "2026Q3": 21.842
+   }
+  },
+  "balance_2026_06_30": {
+   "equity": 583.07,
+   "cash": 360.39,
+   "st_investments": 0,
+   "debt_current": 1.4,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0
+  },
+  "estimates_sales_m": {
+   "2026Q1": 68272,
+   "2026Q2": 72929,
+   "2026Q3": 71775,
+   "2026Q4": 94940
+  },
+  "tv_consensus_fy2026": {
+   "rev": 311.194,
+   "eps": 4058.1
+  },
+  "tv_market_cap_stale": 3188.321,
+  "annual_report_checks": {
+   "contractual_obligations": "'중요한 영향을 미치는 계약 없음'. 구매 약정은 읽은 범위에 없음, 뒷부분 41,281자 미독",
+   "restricted": "단기금융상품 ₩2.26B 담보(요약 기준)",
+   "customers_10pct": "A사 ₩35.1B, B사 ₩32.9B(요약 기준, 2024 B사 ₩2.6B)",
+   "gov_support": "정부보조금 누계 ₩221M(요약 기준)",
+   "litigation": "(주)한화 공사대금 ₩7.4B 1심"
+  },
+  "source_coverage": "Fiscal.ai 코스닥 미제공. Easyconomics 'KR tickers are no longer supported'. Zacks 미제공. DART는 robots 차단이라 KIND 사업보고서로 대조"
+ },
+ "multiples_now": {
+  "pe_fwd": 38.39,
+  "pe_fwd2": 28.22,
+  "pe_fwd3": 22.88,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 4058.1,
+   "ebit": 100.0,
+   "revenue": 307.9,
+   "rev_ttm": 285.306
+  },
+  "horizons": {
+   "2": {
+    "eps": 5520,
+    "ext": 0
+   },
+   "3": {
+    "eps": 6810,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "tradingview"
+  },
+  "source": "FY2026 EPS 4,058원 = TradingView. FY2027 5,520원·FY2028 6,810원 = 7/28 공개 집계, 3Q 뒤 갱신 미확인"
+ },
+ "history": {},
+ "multiple_view": {
+  "adj": 0.15,
+  "why": "2027년 성장은 회사 하한 +30%로 리노공업 +18%(DS 추정)보다 높다. 동종 표의 성장은 TTM 대비라 ISC(+8%)와 바로 맞댈 수 없다. LTA 미공시와 3Q 미달로 상단은 쓰지 않는다"
+ },
+ "next_event": {
+  "date": "2026-11-16",
+  "tag": "3Q 분기보고서 제출 기한(예상)"
+ },
+ "terms": {
+  "LTA": "장기공급계약",
+  "ASP": "평균 판매 단가",
+  "HBM4E": "6세대 고대역폭 메모리 개량판",
+  "SOCAMM2": "서버용 저전력 메모리 모듈 2세대",
+  "ASIC": "특정 고객용 맞춤 AI 칩",
+  "CPO": "광 부품을 칩 패키지에 함께 넣는 기술",
+  "SoC": "시스템 온 칩",
+  "MCU": "제어용 소형 칩",
+  "WiDER-Max": "ISC의 모듈형 테스트 소켓",
+  "ISC Link-edge": "서버랙 고속 연결 검증용 소켓",
+  "SLT": "칩을 실제 시스템처럼 돌려 보는 최종 테스트",
+  "AP": "모바일 중앙처리칩",
+  "NDA": "비밀유지계약",
+  "FAB1": "베트남 1공장",
+  "FAB2": "베트남 2공장",
+  "AI DC": "AI 데이터센터",
+  "K-IFRS": "한국 채택 국제회계기준",
+  "NV링크": "엔비디아 칩 간 연결 규격",
+  "ATK": "ISC가 양수한 사업 부문, 세부 내용 미확인",
+  "CAPA": "생산능력",
+  "DART": "금융감독원 전자공시시스템",
+  "DC": "데이터센터",
+  "IBK": "IBK투자증권",
+  "ISC": "이 리포트의 회사, 아이에스시",
+  "KIND": "한국거래소 공시 사이트",
+  "MTN": "머니투데이방송",
+  "PE": "사모펀드",
+  "SKC": "SK그룹 소재 회사, ISC 최대주주",
+  "DS": "DS투자증권"
+ },
+ "moat": {
+  "summary": "해자는 고객별 소켓 인증과 실리콘 러버 양산 경험이다. 수치로 확인되는 것은 이익률이 아니라 점유율 주장이고, 그 주장은 회사 말이다.",
+  "items": [
+   {
+    "kind": "양산 소켓 인증과 교체 비용",
+    "verdict": "보통",
+    "claim": "소켓은 칩별로 설계하고 테스터에 맞춰 인증을 받는다. 양산에 한 번 들어가면 그 칩 세대 안에서는 바꾸기 어렵다.",
+    "evidence": "회사는 북미 CPU 고객 내 100%, 북미 모바일 고객 양산 테스트 20% → 40%를 밝혔다. 모두 회사 설명이고 독립 확인은 없다",
+    "quant": "특허 등록 471건, 연구개발비 매출의 6%",
+    "falsifier": "차세대 칩에서 점유율이 내려간다. 세대가 바뀌면 인증을 새로 받기 때문이다"
+   },
+   {
+    "kind": "실리콘 러버 양산 규모",
+    "verdict": "보통",
+    "claim": "고속·미세 피치 칩은 신호 경로가 짧은 러버 소켓이 유리하다. 회사는 연 245만 개를 만들고 2029년 최대 500만 개로 늘린다.",
+    "evidence": "3Q 기준 CAPA 245만 개, 가동률 100%. 리노공업도 2026년 말 공장 이전으로 생산능력을 2배 이상 늘린다",
+    "quant": "OPM 30.4%, 리노공업 49.3%, 윈웨이 23.6%",
+    "falsifier": "경쟁사 증설 뒤 ASP가 내려간다. 리노공업의 이익률 격차는 ISC 해자가 더 강하다는 근거가 아니다"
+   },
+   {
+    "kind": "LTA 구조",
+    "verdict": "약함",
+    "claim": "가격 하한, 최소 주문 수량, 선수금이 붙으면 사이클 충격이 줄어든다. 7개사와 맺었다고 회사가 밝혔다.",
+    "evidence": "고객명과 금액은 NDA로 비공개다. 규모를 숫자로 잴 수 없다",
+    "quant": "미확인",
+    "falsifier": "3Q 분기보고서 선수금이 늘지 않는다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "SKC가 48.5%를 쥔 계열사다. 창업자는 2021년 경영권을 넘겼다. 대표 경력은 공개 자료에서 찾지 못했다.",
+  "people": [
+   {
+    "name": "김정렬",
+    "role": "대표이사",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "2023년 SKC 인수 때 김종우 SK엔펄스 대표와 공동 대표로 보도됐다",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "아시아경제 2023-10-04, 2025 사업보고서 표지"
+   },
+   {
+    "name": "유지한",
+    "role": "대표이사(사업보고서 표지 기준)",
+    "since": "2025",
+    "profile": "미확인",
+    "business": "2025.3 사내이사 선임. 2026.3 주총 변동 표가 깨져 사임 여부를 판독하지 못했다",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "2025 사업보고서"
+   },
+   {
+    "name": "정영배",
+    "role": "창업자",
+    "since": "미확인",
+    "profile": "2021년 헬리오스PE에 경영권 지분을 매각했다",
+    "business": "매각 뒤 공동 경영. 현재 지분과 직책은 미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "2021년 성남상공회의소 회장 선출",
+    "source": "서울신문 2021-03-10, 딜사이트"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "최대주주 SKC 48.5%, SK 계열",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "A사·B사 실명이 없어 계열 관련 매출을 잴 수 없다. 2023년 인수 때 삼성·하이닉스 사이 고심 보도가 있었다",
+    "evidence": "2025 사업보고서, MTN 2023-07-10"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-10-30",
+  "backlog_label": "수주잔고",
+  "summary": "회사는 수주잔고를 공개하지 않는다. 확인되는 것은 이월 ₩11B와 CAPA 일정, 금액 없는 LTA다.",
+  "items": [
+   {
+    "name": "3Q 이월 매출",
+    "status": "확정",
+    "total": 11.0,
+    "progress": 1.0,
+    "margin": "미확인",
+    "start": "2026-10",
+    "end": "2026-10",
+    "speed": "회사는 10월 전액 반영이라고 밝혔다",
+    "blockers": [
+     "소켓 후공정 병목(해소했다고 회사가 설명)"
+    ],
+    "source": "3Q 콜 요약"
+   },
+   {
+    "name": "LTA 7개사",
+    "status": "협상",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "체결했다고 밝혔지만 NDA로 고객명·금액 비공개. 조건은 가격 하한·최소 주문 수량·선수금",
+    "blockers": [
+     "금액 미공개",
+     "공시 없음"
+    ],
+    "source": "2Q IR 요약"
+   },
+   {
+    "name": "글로벌 고객 3년 LTA",
+    "status": "협상",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "메모리·비메모리 포함 협의 중",
+    "blockers": [
+     "체결 미확인",
+     "고객 이탈 루머"
+    ],
+    "source": "3Q 콜 요약"
+   },
+   {
+    "name": "CAPA 245만 → 500만 개",
+    "status": "파이프라인",
+    "total": 100.0,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-10",
+    "end": "2029-12",
+    "speed": "FAB1 10월, FAB2 2Q27, 송도 1Q28 가동",
+    "blockers": [
+     "소켓 후공정 병목",
+     "고객 양산 일정"
+    ],
+    "source": "2Q·3Q IR 요약. 금액은 2027 상반기까지 최대치"
+   },
+   {
+    "name": "CPO 소켓",
+    "status": "파이프라인",
+    "total": 25.0,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2027-01",
+    "end": "2027-12",
+    "speed": "2027년 연 ₩20~30B 전망",
+    "blockers": [
+     "CPO 양산 시점"
+    ],
+    "source": "3Q 콜 요약"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-02",
+  "stage": "컨센서스",
+  "crowding": "식는 중",
+  "summary": "AI 칩이 늘수록 소켓 소모가 늘고, 값도 오른다는 이야기다. 3Q에 수요가 아니라 공급이 막혔다는 점이 확인됐다. 쟁점은 2027년 +30%를 CAPA로 낼 수 있느냐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "8명 전원 매수",
+      "쏠림이 크다",
+      "공개 집계 11/1"
+     ],
+     [
+      "최신 목표가",
+      "하나 ₩250,000(유지)",
+      "현재가 대비 +60%. 기대의 증거다",
+      "핀포인트뉴스 11/1"
+     ],
+     [
+      "목표가 흐름",
+      "5월 ₩300,000 안팎 → 7월 ₩200,000~250,000",
+      "2Q 뒤 이미 한 번 내렸다",
+      "7/28 공개 집계"
+     ],
+     [
+      "3Q 리뷰 제목",
+      "삼성 '여전히 공급이 관건', IBK '잠시 늦춘 걸음'",
+      "네 곳 모두 매수 유지. 본문은 못 읽었다",
+      "IRGO 10/27~28"
+     ]
+    ],
+    "read": "아쉬운 분기를 이연으로 해석하는 쪽으로 모였다. 3Q 뒤 FY2027 추정 변화는 미확인이다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "최대주주",
+      "SKC 48.5%",
+      "유통 물량이 절반 수준이다",
+      "2025 사업보고서"
+     ],
+     [
+      "기관·외국인 수급",
+      "미확인",
+      "한국 종목 공개 자료를 받지 못했다",
+      "-"
+     ],
+     [
+      "액티브 ETF 편입",
+      "9월 보도 1건",
+      "숫자는 유료 기사라 미확인이다",
+      "한국경제 제목"
+     ]
+    ],
+    "read": "바이사이드 층은 거의 미확인이다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧·X",
+      "미수집",
+      "한국 종목이라 집계 대상이 아니다",
+      "-"
+     ],
+     [
+      "공개 텔레그램",
+      "해당 글 없음",
+      "수집 채널에 ISC 글이 없었다",
+      "11/2"
+     ]
+    ],
+    "read": "리테일 층은 미수집이다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 보도",
+      "공장 부족, 4Q 최대 실적",
+      "언론은 회사 설명을 그대로 전했다",
+      "한국경제 10/27"
+     ]
+    ],
+    "read": "언론은 이월을 공급 문제로 받아들였다"
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 칩 다변화",
+    "thesis": "GPU에서 CPU, ASIC으로 소켓 고객이 넓어진다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "AI DC 3Q ₩53.0B, 분기 첫 ₩50B 돌파",
+    "status": "강화",
+    "falsifier": "4Q AI DC가 ₩53.0B 아래로 내려간다",
+    "source": "3Q 콜 요약"
+   },
+   {
+    "name": "소켓 값 인상",
+    "thesis": "메모리 호황과 공급 부족이 ASP를 올린다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "강",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "메모리 비중 15%. 추가 인상분은 1Q27 매출에 반영",
+    "status": "강화",
+    "falsifier": "1Q27 OPM이 4Q 가이던스 중앙값 36%를 밑돈다",
+    "source": "3Q 콜 요약"
+   },
+   {
+    "name": "모바일 점유율 2배",
+    "thesis": "2나노 AP 양산 테스트 물량을 넓힌다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "20% → 40%, 2027 상반기 물량 확보",
+    "status": "강화",
+    "falsifier": "2027 상반기 모바일 매출이 전년 대비 줄어든다",
+    "source": "3Q 콜 요약"
+   },
+   {
+    "name": "LTA로 사이클 완화",
+    "thesis": "가격 하한과 선수금이 멀티플을 지킨다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "금액 미확인. 2027 LTA 매출 50% 이상 전망(삼성, 7월 집계)",
+    "status": "유지",
+    "falsifier": "3Q 분기보고서 선수금이 늘지 않고 글로벌 고객 LTA가 안 나온다",
+    "source": "2Q IR 요약, 7/28 집계"
+   },
+   {
+    "name": "반대: 점유율 이탈",
+    "thesis": "경쟁사가 핵심 고객 물량을 가져간다",
+    "inputs": "성장·멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "회사가 콜에서 직접 루머를 언급했다. 숫자는 미확인",
+    "status": "유지",
+    "falsifier": "해당 고객과 3년 LTA가 체결된다",
+    "source": "3Q 콜 요약"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 'AI 칩이 늘수록 소켓이 모자란다'는 것이다.** 3Q에 그 말이 맞았지만 매출로는 나오지 못했다. 소켓 후공정이 막혀 ₩11B가 10월로 밀렸고 OPM은 30.4%였다. 지금 값은 FY2027 EPS 5,520원의 28배다.",
+   "value_story": "ISC는 칩을 출하 전에 검사할 때 쓰는 실리콘 러버 소켓을 만든다. 기업가치는 세 가지로 갈린다. CAPA가 수주를 따라가나, ASP 인상이 환율을 이기나, 핵심 고객 점유율이 유지되나다.",
+   "premium": {
+    "multiple": "FY2026 추정 P/E 38.4배로 리노공업 23.4배보다 높고 윈웨이 47.7배보다 낮다. 리노공업 OPM은 49%다.",
+    "eps": "FY2026 추정 4,058원에서 FY2027 추정 5,520원으로 +36%다. 둘 다 3Q 전 추정이고 리비전 이력은 미확인이다."
+   },
+   "why_excited": "주가는 2025년 10월 8만 원 안팎에서 2026년 4월 장중 292,500원까지 올랐다. AI 매출 비중이 2025년 68%에서 3Q 87%로 뛰었기 때문이다. 이후 목표가가 내려갔고 10/30 종가는 155,800원으로 장중 고점보다 47% 낮다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "메모리 소켓 회사에서 비메모리 AI 소켓 회사로 옮겼다.",
+     "evidence": "3Q 비메모리 85%, 메모리 15%. AI 매출 비중 87%",
+     "drives": "both",
+     "status": "진행 중",
+     "falsifier": "AI 매출 비중이 80% 아래로 내려간다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "CPU, ASIC, HBM4E, SOCAMM2로 품목이 넓어졌다.",
+     "evidence": "AI DC ₩53.0B. AI 메모리 연간 누적 ₩20B 전망",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "4Q OPM이 가이던스 하단 32.5%를 밑돈다"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "모듈형 소켓 WiDER-Max로 북미 ASIC 고객 초도 양산 수주를 받았다.",
+     "evidence": "3Q 콜 요약. 물량은 미확인",
+     "drives": "multiple",
+     "status": "초기",
+     "falsifier": "2027년 ASIC 매출이 숫자로 나오지 않는다"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(납기를 숫자로 공개하지 않는다). 대신 증설로 잰다. 2Q에 2027년 270만 개라던 CAPA를 300만 개로 올렸다.",
+     "evidence": "FAB1 10월, FAB2 2Q27, 송도 1Q28",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "FAB2가 2Q27을 넘긴다"
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(2026년 인수 공시를 찾지 못했다). 최대주주 SKC 지분만 45.0%에서 48.5%로 늘었다.",
+     "evidence": "2025 사업보고서",
+     "drives": "multiple",
+     "status": "완료",
+     "falsifier": "SKC 지분 매각이나 합병 추진"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "AI 칩 투자가 소켓 수요로 내려온다. 고객 두 곳이 매출의 각각 15%대다.",
+     "evidence": "2025년 A사 ₩35.1B, B사 ₩32.9B. 실명 없음",
+     "drives": "revision",
+     "status": "확인",
+     "falsifier": "A사나 B사 매출이 줄어든다"
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "테스트 소켓",
+     "what": "칩과 테스터를 잇는 실리콘 러버 소모품",
+     "use": "GPU·CPU·ASIC·AP·메모리",
+     "money": "2025년 매출의 75%, ₩165.9B"
+    },
+    {
+     "kind": "제품",
+     "name": "테스트 부품·상품",
+     "what": "소켓 주변 부품과 장비",
+     "use": "테스트 공정",
+     "money": "2025년 매출의 23%, ₩51.6B"
+    },
+    {
+     "kind": "제품",
+     "name": "AI DC 소켓",
+     "what": "데이터센터 칩 양산·시스템 테스트 소켓",
+     "use": "CPU·ASIC·GPU",
+     "money": "3Q ₩53.0B"
+    },
+    {
+     "kind": "사업",
+     "name": "모바일 소켓",
+     "what": "2나노 플래그십 AP 양산 테스트",
+     "use": "북미 스마트폰 고객",
+     "money": "2025년 매출의 22%, 3Q 미확인"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(미국 재정 사업과 연결된 회사 자료를 찾지 못했다. 생산 거점은 한국·베트남이다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "orders": {
+     "change": "해당 없음(특정 행정명령이 매출을 바꿨다는 회사 자료를 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "laws": {
+     "change": "해당 없음(ISC 매출을 직접 바꾸는 법안을 찾지 못했다. 중국 메모리 공급의 수출통제 해당 여부는 미확인이다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   }
+  }
+ },
+ "overrides": {
+  "margin_base": {
+   "target": 0.3,
+   "year_target": 2,
+   "lr": 0.22,
+   "lam": 0.35
+  },
+  "s2c": 1.0,
+  "why": "장기 이익률 22%는 FY2023 7.6%~FY2026 33%의 사이클 평균을 감안했다. 매출÷투하자본 1.0은 최대 ₩100B로 CAPA 55만 개를 늘리는 증설 계획을 반영했다"
+ }
+}

@@ -1,0 +1,95 @@
+auto: true
+id: co-isc
+name: ISC
+ticker: 095340
+unit: BKRW
+unit_usd: 750000.0
+industry: semiconductor
+region_mix:
+  KR: 1.0
+tax: 0.2
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 155800
+  shares: 0.021143
+  net_debt: -358.99
+  source: 가격 = TradingView 10/30 종가. 주식 수 21,142,493주 = TradingView 발행 주식 수. 사업보고서
+    발행 21,197,058주 − 자기주식 732,866주 + 교환사채 대상 678,259주와 맞는다. TradingView 시가총액 ₩3.188T는
+    교환 전 20,464,192주 기준이라 쓰지 않는다. 현금·차입 = 2Q 말
+rev0: 305.0
+ic0: 224.08
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.3279
+      end: 0.03
+      decay: 0.604
+    margin:
+      m0: 0.328
+      target: 0.3
+      year_target: 3
+      lr: 0.22
+      lam: 0.35
+      anchors:
+      - 0.341
+      - 0.351
+    s2c: 1.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.459
+      end: 0.034999999999999996
+      decay: 0.654
+    margin:
+      m0: 0.328
+      target: 0.32
+      year_target: 3
+      lr: 0.22
+      lam: 0.25
+      anchors:
+      - 0.341
+      - 0.351
+    s2c: 1.15
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.1967
+      end: 0.024999999999999998
+      decay: 0.504
+    margin:
+      m0: 0.328
+      target: 0.28
+      year_target: 3
+      lr: 0.22
+      lam: 0.5
+      anchors:
+      - 0.341
+      - 0.351
+    s2c: 0.85
+mc:
+  sigma_growth: 0.0656
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [300.0, 310.0] (10/27 공정공시 2건과 3Q 콜 요약(IRGO))
+  growth: 컨센서스 1년차 32.8%, 2년차 21.0%
+  margin: 1~2년차 컨센서스 34.1%, 35.1% 고정 → 목표 30%(3년차, 덮어쓰기) → 장기 수렴 22%
+  s2c: 재무 재구성 증분 매출/투하자본 1.27 → 덮어쓰기 1.0
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '어닝콜 톤 ''flat'' 규칙 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 장기 이익률 22%는 FY2023 7.6%~FY2026 33%의 사이클 평균을 감안했다. 매출÷투하자본 1.0은 최대 ₩100B로
+    CAPA 55만 개를 늘리는 증설 계획을 반영했다
+  shares: 완전 희석 = 기본 0.0211425(2026-10-30) + 옵션·RSU·워런트·전환 0.0000 — 2025 사업보고서의 잠재
+    주식 678,259주는 교환사채 ₩20B 몫이고 4/1 교환청구 공시 뒤 2Q 차
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 환율 영향 숫자가 안 맞는다(−₩5B vs 환산 시 ₩23.6B)'
+- '어닝콜 위험: 고객 이탈 루머를 회사가 직접 언급'
+- '어닝콜 위험: 순이익 −23% QoQ, 원인 미확인'
+evidence:
+- ISC 3Q 콜 요약(IRGO) https://m.irgo.co.kr/IR-COMP/095340
+- ISC 2025 사업보고서(KIND) https://kind.krx.co.kr/external/2026/03/18/000082/20260318000201/11011.htm
