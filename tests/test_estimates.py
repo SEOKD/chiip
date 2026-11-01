@@ -27,7 +27,7 @@ def row(metric="매출", est=100.0, src="zacks", actual=110.0, basis="gaap"):
     return {"period": "2026Q3", "report_date": "2026-09-30", "metric": metric, "actual": actual, "est": est, "est_src": src, "basis": basis, "earnings_date": "2026-10-28"}
 
 
-EC = {"2026Q3": {"sales_actual": 110.5, "sales_estimate": 102.0, "eps_actual": 1.04, "eps_estimate": 0.86}}
+EC = [{"period": "2026Q3", "sales_actual": 110.5, "sales_estimate": 102.0, "eps_actual": 1.04, "eps_estimate": 0.86}]
 
 
 class TestRouter(unittest.TestCase):
@@ -127,6 +127,55 @@ class TestFill(unittest.TestCase):
         self.assertFalse(out["zacks_used"])
 
 
+class TestThreeChannels(unittest.TestCase):
+    YF = [{"period": "2026Q3", "sales_actual": 110.4, "sales_estimate": 103.0, "eps_actual": 1.04, "eps_estimate": 0.87}]
+    DATES = {"entries": [{"date": "2026-10-28", "eps_estimate": "$0.86", "eps_actual": "$1.04", "revenue_estimate": "$102.00M", "revenue_actual": "$110.50M"},
+                         {"date": "2026-02-04", "eps_estimate": "$0.35", "eps_actual": "$0.46", "revenue_estimate": "$0.29", "revenue_actual": "+30.57%"}]}
+
+    def test_dates_response_is_matched_by_release_day(self):
+        rows = es.channel_rows(self.DATES)
+        self.assertEqual(rows[0]["sales_estimate"], 102.0)
+        self.assertEqual(es.ec_value(row(), rows), 102.0)
+
+    def test_broken_cells_are_dropped(self):
+        rows = es.channel_rows(self.DATES)
+        self.assertIsNone(rows[1]["sales_estimate"])
+        self.assertIsNone(rows[1]["sales_actual"])
+        self.assertEqual(rows[1]["eps_estimate"], 0.35)
+
+    def test_three_channels_share_the_work(self):
+        tally = {}
+        rows = [row() for _ in range(6)]
+        es.fill_rows(rows, "K", [], es.channel_rows(self.DATES), yf=self.YF, tally=tally)
+        self.assertEqual(tally, {"easyconomics": 2, "zacks": 2, "yfinance": 2})
+
+    def test_least_used_goes_first(self):
+        tally = {"easyconomics": 5, "zacks": 5, "yfinance": 1}
+        r = row()
+        es.fill_rows([r], "K", [], EC, yf=self.YF, tally=tally)
+        self.assertEqual(r["est_src"], "yfinance")
+
+    def test_one_channel_fills_for_the_others(self):
+        r = row(est=None, src=None)
+        tally = {"yfinance": 0, "easyconomics": 9}
+        es.fill_rows([r], "K", [], EC, tally=tally)
+        self.assertEqual(r["est_src"], "easyconomics")   # 덜 쓴 yfinance에 값이 없으면 있는 채널로
+
+    def test_margin_rows_do_not_skew_balance(self):
+        tally = {}
+        es.fill_rows([row("EBIT", 20.0, actual=30.0, basis="adjusted")], "K", [], EC, yf=self.YF, tally=tally)
+        self.assertEqual(tally, {})
+
+    def test_router_prefers_least_served(self):
+        cfg = {"via": {"yfinance": "easyconomics"}, "limits": CFG["limits"], "items": {"q": {"tier2": ["easyconomics", "zacks", "yfinance"]}}}
+        self.assertEqual(sr.order("q", {"served": {"q": {"easyconomics": 3, "zacks": 3}}}, cfg, NOW)[0], "yfinance")
+
+    def test_yfinance_shares_easyconomics_limit(self):
+        cfg = {"via": {"yfinance": "easyconomics"}, "limits": CFG["limits"], "items": {"q": {"tier2": ["yfinance", "zacks"]}}}
+        st = {"sources": {"easyconomics": {"day": "2026-11-01", "calls": 2}}}
+        self.assertEqual(sr.order("q", st, cfg, NOW), ["zacks", "yfinance"])
+
+
 class TestStreet(unittest.TestCase):
     P = {"data": {"analyst_total": 11, "analyst_buy": 7, "analyst_hold": 4, "analyst_sell": 0, "target_price": 152.2, "target_price_high": 200, "target_price_low": 110}}
     Z = {"strong_buy": 6, "buy": 1, "hold": 5, "sell": 0, "strong_sell": 0, "as_of": "2026-10-20"}
@@ -138,8 +187,8 @@ class TestStreet(unittest.TestCase):
         self.assertNotIn("source", s)
 
     def test_easyconomics_turn(self):
-        s = es.street(self.Z, self.P, "easyconomics", "2026-11-01")
-        self.assertEqual((s["buy"], s["strong_buy"], s["source"]), (7, 0, "easyconomics"))
+        s = es.street(self.Z, self.P, "yfinance", "2026-11-01")
+        self.assertEqual((s["buy"], s["strong_buy"], s["source"]), (7, 0, "yfinance"))
 
     def test_fills_when_zacks_is_empty(self):
         self.assertEqual(es.street({}, self.P, "zacks", "2026-11-01")["buy"], 7)
@@ -200,7 +249,7 @@ class TestTargetPrice(unittest.TestCase):
     def test_dashboard_tile_passes_vendor_scrub(self):
         s = {**self.s(), "target": 110.0, "upside": 0.375, "downside": -0.25, "rr": 3.5}
         mm = {"label_short": "Fwd 1Y P/E", "current": 20.0, "peer_p50": 22.0}
-        for ra in ({"buy": 3}, {"buy": 3, "source": "easyconomics"}):
+        for ra in ({"buy": 3}, {"buy": 3, "source": "yfinance"}):
             tiles = report_layout.dashboard({"profile": {"price": 80.0, "debt": 0, "cash": 0}, "consensus": {"ratings": ra}}, s, mm, 6, "Buy", 1.0, "B", "co-none")
             report_html.scrub({"tiles": tiles})
 

@@ -3,26 +3,32 @@
 # Zacks는 별도 연결이 아니라 Fiscal.ai MCP의 company_analyst_estimates·company_analyst_ratings다. Easyconomics는 별도 MCP(mcp__easyconomics__*).
 # 2순위는 Fiscal.ai 칸이 비었을 때만 쓴다. Fiscal.ai 값이 있으면 2순위를 부르지 않는다.
 tier1: fiscal
-tier2: [zacks, easyconomics]
+tier2: [easyconomics, zacks, yfinance]
+
+# yfinance 직접 호출 금지: finance.yahoo.com robots.txt가 ClaudeBot·anthropic-ai를 전면 금지하고 query1 API는 모든 봇을 금지한다. 라이브러리는 브라우저 위장(curl_cffi)으로 그 차단을 넘는다.
+# 그래서 Easyconomics MCP가 내주는 yfinance 출처 자료를 채널로 쓴다. 호출 수는 Easyconomics에 묶인다.
+via: {yfinance: easyconomics}
 
 limits:
   easyconomics:
     daily_cap: 100     # 실제 한도 미확인 — 보수적으로 잡은 값, 한도를 알게 되면 고친다
     cooldown_h: 24     # 호출 제한 응답을 받으면 이 시간 동안 Zacks로만
 
-# tier2가 둘이면 회차마다 번갈아 쓰고, 첫 채널에 빈칸이 남으면 다른 채널이 채운다. 하나면 그 채널만 낼 수 있는 항목이다.
+# 2026-11-01 마스터 지시 "Chiip Analysis 1순위 Fiscal.ai, 2순위 Easyconomics·Zacks·yfinance. 세 가지를 모두, 균형 있게"
+# tier2가 둘 이상이면 지금까지 덜 쓴 채널부터 쓰고(radar/state/data_sources.json served), 그 채널에 빈칸이 남으면 다른 채널이 채운다. 하나면 그 채널만 낼 수 있는 항목이다.
 items:
   quarter_est:
     name: 지난 분기 발표 전 추정(매출·EPS)
     fiscal: knowledge/models/estimates/snapshots.csv(매일 저장) → company_estimates
-    tier2: [zacks, easyconomics]
+    tier2: [easyconomics, zacks, yfinance]
+    easyconomics: earnings_summary_dates의 eps_estimate·revenue_estimate(발표일 기준, 깨진 칸 있음)
     zacks: surprise.js 안의 company_analyst_estimates history
-    easyconomics: company_profile의 earnings_history(출처 표시 yfinance, 8개 분기)
+    yfinance: Easyconomics company_profile의 earnings_history(응답 출처 표시 yfinance, 8개 분기)
   street_ratings:
     name: 애널리스트 의견 분포·목표가
-    tier2: [zacks, easyconomics]
+    tier2: [zacks, yfinance]
     zacks: consensus.js 안의 company_analyst_ratings
-    easyconomics: company_profile의 analyst_buy·hold·sell·total, target_price(강력 매수·강력 매도 구분 없음)
+    yfinance: Easyconomics company_profile의 analyst_buy·hold·sell·total, target_price(강력 매수·강력 매도 구분 없음)
   margin_est:
     name: 지난 분기 조정 EBIT·EBITDA 추정
     fiscal: knowledge/models/estimates/snapshots.csv → company_estimates

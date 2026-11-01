@@ -18,3 +18,9 @@
 - Easyconomics `company_profile`의 추정·목표가는 출처 표시가 yfinance다. Zacks와 정의가 다를 수 있어 10% 넘는 차이는 출력에 표시한다.
 - 지난 분기 저장값은 복구할 수 없다. 효과는 다음 분기 발표부터 나온다.
 - 예약 작업의 앱 권한에 Easyconomics 도구가 허용돼 있는지는 첫 실행에서 확인해야 한다.
+
+## 개정 2026-11-01 — Chiip Analysis 2순위 세 채널
+- 지시: "Chiip Analysis에서 데이터 가져오기 1순위는 Fiscal.ai, 2순위는 Easyconomics, Zacks, yfinance다. 2순위에서 한 가지 방법만 쓰지 말고 세 가지 방법을 모두 써라. 2순위 세 가지 방법 모두 균형 있게 사용하라."
+- 결정: 리포트마다 세 채널을 모두 호출하고, 누적 사용량이 적은 채널부터 빈칸을 채운다. 번갈아 쓰기를 사용량 균형으로 바꾼다.
+- 제약: yfinance는 Easyconomics MCP가 내주는 출처 자료만 쓴다. 직접 호출은 Yahoo robots.txt 금지이고 브라우저 위장 라이브러리를 거쳐 차단을 넘는 일이라 하지 않는다. 호출 수는 Easyconomics 상한에 묶인다.
+- 한계: Easyconomics 두 경로의 추정이 거의 같아 실질 원출처는 둘일 수 있다. 균형은 경로 기준이지 독립성 기준이 아니다.

@@ -185,7 +185,7 @@ def dashboard(dp, s, mm, alpha, grade, mcap, unit, entity):
     ra = cons.get("ratings") or {}
     counts = " · ".join(f"{name} {ra.get(k, 0)}" for k, name in ANALYST)
     tiles.append({"k": "구매등급", "v": grade, "sub": f"애널리스트 {sum(ra.get(k, 0) for k, _ in ANALYST)}명: {counts}" if ra else "애널리스트 등급 미확인",
-                  "tone": "red" if "Buy" in grade else ("blue" if "Sell" in grade else ""), "second": ra.get("source") == "easyconomics"})
+                  "tone": "red" if "Buy" in grade else ("blue" if "Sell" in grade else ""), "second": ra.get("source") in ("easyconomics", "yfinance")})
     tiles.append({"k": "멀티플", "v": f"{mm['label_short']} {mm['current']:.1f}배", "sub": f"동종 중앙값 {mm['peer_p50']:.1f}배"})
     g = (dp.get("guidance") or {}).get("next") or {}
     if g:
