@@ -124,3 +124,4 @@
 - 텐배거 리포트 목표주가(마스터 2026-11-01): `scripts/tenbagger/target_price.py`, 업사이드·구매 등급·주가별 업사이드 기준 교체, 막대 % 표기, 대시보드·피드·밸류에이션 표, Proviser 범위 점검, 등록부 prm-tb-pt-*. RMBS 건식 시험 목표주가 $91(+8%, 기존 확률 가중 +14%), 등급 Neutral 유지. 평가기 규칙은 마스터 승인으로 report-no-personal-order로 개정·재잠금
 - Pulse 주기(마스터 2026-11-01): 주중 5분(`chiip-pulse`), 주말 1시간(신규 `chiip-pulse-weekend`). 같은 지시문 `docs/tasks/chiip-pulse.md`를 읽는다
 - Portfolio 주기(마스터 2026-11-01): 주중 6시간 간격 01·07·13·19시 35분(`chiip-portfolio`), 주말 07시 35분(신규 `chiip-portfolio-weekend`)
+- Ten-bagger 주기(마스터 2026-11-01): 주중 30분(`chiip-tenbagger`), 토·일 08시 15분 1회(신규 `chiip-tenbagger-weekend`). 예약 프롬프트의 easyconomics 금지 문구도 ADR-014에 맞게 고쳤다(chiip-tenbagger, chiip-tenbagger-report)

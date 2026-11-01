@@ -2,7 +2,7 @@
 
 운영 규칙: `docs/channels/discovery.md`를 먼저 읽는다.
 
-- 일정(cron, 로컬 시각): `15,45 * * * *` — 30분마다(pulse는 5분마다라 겹칠 수 있다 — 각자 잠금으로 처리), 새 병목 신호가 있을 때만 깊게
+- 일정(cron, 로컬 시각): 주중 `chiip-tenbagger` `15,45 * * * 1-5` 30분마다(pulse와 겹칠 수 있다 — 각자 잠금으로 처리), 새 병목 신호가 있을 때만 깊게. 주말 `chiip-tenbagger-weekend` `15 8 * * 0,6` — 토요일 알파 재산정 1회, 일요일 발굴 전체 선별 1회(2026-11-01 마스터 지시)
 - 권한 모드: 자동(Auto)
 - 2026-10-29 마스터 지시: "Chiip Discovery 발굴 엔진은 Chiip Ten-bagger 기능에 집어 넣어라" — 발굴 엔진(테마 지도·관심도·IB식 선별·위원회 메모·커버리지 편입)은 이 기능의 **발굴 단계**다. 별도 예약 작업을 두지 않는다.
 - 같은 기능의 일일 리포트는 `docs/tasks/chiip-tenbagger-report.md`(Chiip Analysis, 매일 23:00).
@@ -16,11 +16,11 @@
 환경: PowerShell에서 py·git이 "인식되지 않는다"고 나오면 명령 앞에 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User');` 를 붙인다. 출력이 깨지면 `$env:PYTHONIOENCODING='utf-8'`.
 
 ### 30분 실행 규칙 (마스터 지시 2026-10-29 "Chiip ten-bagger도 30분마다 작동하게")
-매시 15·45분에 돈다(chiip-pulse는 5분마다 — 2026-10-30부터 겹칠 수 있으니 pulse 파일은 읽기만). 한 회차는 20분 안에 끝낸다.
-- 관문: radar/state/tenbagger_last.txt(없으면 지난 24시간 기준)의 시각 이후 새 병목 신호가 있는지 파일 수정 시각으로 확인한다 — radar/cards/ 새 카드, knowledge/pairs/·knowledge/narratives/ 변경, outputs/article/sources/ 새 원본(pulse), radar/pulse/ 새 파일, knowledge/models/alpha/judgments/ 오늘 파일의 새 5점 이상, **outputs/report/jp_qa/ 새 일본 IR Q&A 분석, knowledge/models/discovery/attention_latest.json의 관심 가속 2.0 이상 종목, radar/pulse/ 파일의 '방위' 원본(각국 국방 조달·방위 기업 수주 — 2026-10-29 방위 섹터 추가), knowledge/models/consumer/latest.json의 국면 전환·attention_latest.json 급가속(소비재 — 2026-10-30)**. 하나도 없고 아래 요일 일도 없으면 시각만 기록하고 바로 끝낸다(텔레그램 없음).
-- 끝날 때마다 radar/state/tenbagger_last.txt에 현재 시각(KST ISO)을 쓴다.
+주중 매시 15·45분에 돈다(chiip-pulse는 주중 5분마다 — 2026-10-30부터 겹칠 수 있으니 pulse 파일은 읽기만). 한 회차는 20분 안에 끝낸다.
+- 관문: radar/state/tenbagger_last.txt(없으면 지난 24시간 기준)의 시각 이후 새 병목 신호가 있는지 파일 수정 시각으로 확인한다 — radar/cards/ 새 카드, knowledge/pairs/·knowledge/narratives/ 변경, outputs/article/sources/ 새 원본(pulse), radar/pulse/ 새 파일, knowledge/models/alpha/judgments/ 오늘 파일의 새 5점 이상, **outputs/report/jp_qa/ 새 일본 IR Q&A 분석, knowledge/models/discovery/attention_latest.json의 관심 가속 2.0 이상 종목, radar/pulse/ 파일의 '방위' 원본(각국 국방 조달·방위 기업 수주 — 2026-10-29 방위 섹터 추가), knowledge/models/consumer/latest.json의 국면 전환·attention_latest.json 급가속(소비재 — 2026-10-30)**. 하나도 없으면 시각만 기록하고 바로 끝낸다(텔레그램 없음).
+- 주중 회차가 끝날 때마다 radar/state/tenbagger_last.txt에 현재 시각(KST ISO)을 쓴다. 주말 회차는 쓰지 않는다 — 주말에 쌓인 신호를 월요일 첫 회차가 본다.
 - 신규 후보는 **하루 최대 2개**(watch.csv의 오늘 등록 행 수로 확인). pulse가 오늘 이미 알파를 산정한 종목은 다시 산정하지 않는다.
-- 요일 일: ③ 알파 전 종목 재산정은 **토요일(KST) 첫 회차만**, ④ 월간 점검은 **그 달 첫 토요일 첫 회차만**, ⑤ 발굴 전체 선별(Discovery)은 **일요일(KST) 첫 회차만** — 오늘 이미 했는지는 judgments 파일·outputs/discovery/<오늘>.md·radar/state/tenbagger_last.txt로 확인한다.
+- 주말 일(2026-11-01 마스터 지시 "토요일에는 알파 재산정 1번만, 일요일은 발굴 전체 선별 1번만"): `chiip-tenbagger-weekend` 회차가 토요일(KST) ③ 알파 전 종목 재산정 1회와 그 달 첫 토요일 ④ 월간 점검, 일요일(KST) ⑤ 발굴 전체 선별(Discovery) 1회만 한다. 주말에는 30분 관문과 1번 신호 기반 발굴을 하지 않는다. 오늘 이미 했는지는 judgments 파일·outputs/discovery/<오늘>.md로 확인한다.
 
 ### Fiscal.ai 데이터 (1순위. 빈칸은 Zacks·Easyconomics 2순위, docs/channels/data.md)
 ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code`로 불러 `execute_code`(자바스크립트, 60초·동시 6개)로 부른다 — 본보기 `scripts/fiscal/templates/*.js`(회사 키 `config/fiscal_keys.yaml`, 없으면 company_profile로 확인해 `py scripts/fiscal/adapter.py --key`), 데이터 계약 `knowledge/methods/data_fiscal.md`. 관문을 통과한 회차에서만 호출한다.
@@ -36,9 +36,9 @@ ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056
 1. 발굴(신호 기반, 매 통과 회차): 새 병목 신호에서 해소가 필요한 병목 → 해결 기술 → 그 기술을 가진 공급사를 찾는다(작을수록 10배 산술이 쉽지만 구간을 가리지 않는다 — 구간을 함께 적는다). 양산 엔지니어 관점으로 그 기술이 정말 병목을 푸는지 먼저 검증한다. 찾은 공급사는 **발굴 엔진의 테마 지도(config/discovery.yaml)에 후보로 올린다**(테마·병목·함량 동인·edge 0~10·근거 한 줄, 일본·대만·한국·유럽 포함, 현지명 local). 방위는 defense_lens §7의 병목(탄약·에너제틱, 고체 로켓 모터, GaN 레이더·전자전, 대드론·무인기, 조선 캐파, 정찰 위성)과 펄스 '방위' 원본(국방부 계약·DSCA·유럽 조달 승인)을 신호로 쓴다 — 금지 연결(프레임워크 ≠ 발주, 예산 ≠ 계약)을 지킨다. 새 종목이 config/defense.yaml에 없으면 지도에도 추가한다(부문·제품 대분류·biz 1줄). 근거가 약하면 0개(억지로 채우지 않음).
    **조용한 매집형 상승도 신호다**(마스터 지시 2026-10-29 "FormFactor·Nova 같은 엣지 중소형 — 수급·관심은 제한적이지만 기관 자금이 들어오며 조용히 꾸준히 오르는 종목"): 실적 상회(EPS 서프라이즈)가 3분기 이상 이어지는데 관심(radar/attention.py)이 낮은 엣지 종목이 감시 밖이면 같은 기준(병목 → 해결 기술)으로 확인해 후보로 올린다. 이름이 일반어(Nova·Box 등)면 `aliases`에 정식 회사명을 함께 적는다 — 레이더 종목 인식이 일반어만으로는 잡지 않는다.
 2. 카드: 위원회 메모를 통과해 커버리지에 편입되거나(⑤) 신호가 아주 강한 후보마다 knowledge/models/tenbagger/cards/TB-YYYYMMDD-NN.md(템플릿 _template.md): 10배 경로 숫자, 가격 내포 기대, 정량 요인, 시장 바탕, red-team 반대 검증, 킬 조건, 카탈리스트, 부가가치 원천. knowledge/models/tenbagger/watch.csv에 행 추가(등록일 공개 시세·출처). prediction-log로 중간 예측 1개 이상(owner 치입, origin 카드 id).
-3. (토요일 첫 회차만) 알파 점수 주간 재산정(스킬 '알파 점수' 절): 대상 = config/earnings_watch.yaml의 valuation universe + extra + master_stocks + watch.csv 추적 종목 + **config/coverage.yaml 커버리지 종목**. Notion 커넥터로 마스터 노션 Stocks 페이지(config/notion.yaml pages.stocks.id)의 하위 페이지를 읽어 새 종목이 있으면 earnings_watch.yaml extra·master_stocks에 추가. 지난 주 이후 바뀐 종목만 knowledge/models/alpha/judgments/<오늘>.csv에 쓰고 `py scripts/alpha/score.py --finalize`. 근거가 약하면 4~6점과 '근거 약함'.
-4. (그 달 첫 토요일 첫 회차만) watch.csv 전체 점검: 킬 조건 충족 → status 종료·close_reason(행 삭제 금지), 미확인 가격 채우기. 평일 회차에는 새 신호가 걸린 추적 종목의 킬 조건만 점검한다.
-5. (일요일 첫 회차만) **발굴 전체 선별(Chiip Ten-bagger Discovery)** — 방법 knowledge/methods/discovery_ib_process.md:
+3. (토요일 주말 회차만) 알파 점수 주간 재산정(스킬 '알파 점수' 절): 대상 = config/earnings_watch.yaml의 valuation universe + extra + master_stocks + watch.csv 추적 종목 + **config/coverage.yaml 커버리지 종목**. Notion 커넥터로 마스터 노션 Stocks 페이지(config/notion.yaml pages.stocks.id)의 하위 페이지를 읽어 새 종목이 있으면 earnings_watch.yaml extra·master_stocks에 추가. 지난 주 이후 바뀐 종목만 knowledge/models/alpha/judgments/<오늘>.csv에 쓰고 `py scripts/alpha/score.py --finalize`. 근거가 약하면 4~6점과 '근거 약함'.
+4. (그 달 첫 토요일 주말 회차만) watch.csv 전체 점검: 킬 조건 충족 → status 종료·close_reason(행 삭제 금지), 미확인 가격 채우기. 평일 회차에는 새 신호가 걸린 추적 종목의 킬 조건만 점검한다.
+5. (일요일 주말 회차만) **발굴 전체 선별(Chiip Ten-bagger Discovery)** — 방법 knowledge/methods/discovery_ib_process.md:
    a. 관심도 최신화: `py radar/attention.py`(오늘 이미 돌았으면 건너뜀).
    b. 펀더멘털·시가총액(구간 엔진과 공용): `py scripts/tenbagger/bands.py --stale 40`이 내놓는 'id 티커 시장' 목록(시총이 없거나 7일 지난 종목 — 커버리지·발굴 후보·방위 먼저)마다 Fiscal.ai `fundamentals.js`(회사 키)를 부르고, 출력 JSON을 radar/state/profile_tmp.json에 저장한 뒤 `py scripts/fiscal/adapter.py --fund <id> radar/state/profile_tmp.json`(USD가 아니면 이어서 `py scripts/tenbagger/bands.py --put <id> radar/state/profile_tmp.json`(필드 추출·ECB 환율 USD 환산은 스크립트가 한다 — 숫자를 손으로 옮기지 않는다). 조회 실패·회사가 다르면(인수·상장 폐지·티커 변경) code를 고치거나 config/tenbagger_universe.yaml에서 지우고 실행 요약에 남긴다.
    b2. 유니버스 넓히기: 구간 B1($1–10B)에서 반도체·소프트웨어·방위 중 종목이 10개 미만인 섹터가 있으면 Fiscal.ai company_peers(세그먼트 단위 경쟁사)로 그 섹터 시드의 동종사를 찾아 config/tenbagger_universe.yaml seeds에 추가한다(한 회차 10개 이하, 미국 상장, 티커·회사명만). EODHD_API_KEY가 들어오면 bands.py가 스크리너로 자동으로 넓히므로 이 단계는 건너뛴다.
