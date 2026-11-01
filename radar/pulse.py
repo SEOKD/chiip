@@ -410,6 +410,8 @@ def alpha_queue():
 def fetch_telegram(st):
     """공개 텔레그램 채널(마스터 지시 2026-11-01). 걸린 글은 원본으로, 나머지는 st['tg_other']에 모아 회차가 열릴 때 넘긴다"""
     from pollers import tg_channels as tg
+    if "unittest" not in sys.modules:   # 시험이 실제 채널을 읽지 않게 한다
+        tg.poll_if_stale()
     now = common.iso(common.now_kst())
     mark = st.get("tg_mark")
     st["tg_mark"] = now

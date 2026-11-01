@@ -12,6 +12,7 @@ aliases:                # 영문 파일 이름과 맞추는 이름
 classes:
   - {name: IB 리포트, match: ["IB Report", "IB 리포트"], license: true}
   - {name: 채널체크, match: ["Channel Check", "채널체크", "채널 체크"]}
+  - {name: 링크드인 메모, match: ["LinkedIn", "링크드인"]}   # 마스터가 옮겨 둔 글만. 자동 수집하지 않는다(docs/channels/notion.md)
 # 새 첨부를 찾을 때 읽는 페이지. Stocks 종목 페이지와 Informations 하위 페이지는 notion-fetch로 돌며 --sync에 넣는다
 roots:
   - {name: IB Report, id: "40bb5d1e-0998-8064-ba1e-fd1d57bb67e3"}

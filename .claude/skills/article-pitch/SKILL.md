@@ -49,3 +49,5 @@ argument-hint: "[날짜 | 주제]"
 노션 자료 참조(필수, 2026-11-01 마스터 지시): 후보 종목마다 `docs/channels/notion.md` '노션 자료실'대로 `py radar/notion_library.py --need <회사>`의 PDF·xlsx 요지와 `notion-search` 게시글을 참조한다. IB 리포트 내용은 취재 단서이고 기사 문장으로 옮기지 않는다.
 
 공개 텔레그램 채널(2026-11-01 마스터 지시): `py radar/pollers/tg_channels.py --recent 24`와 `--about <이름>`을 단서로 쓴다. 채널 글은 취재 단서이고 1차 확인 전에는 기사 근거가 아니다(`docs/channels/telegram.md`).
+
+링크드인(2026-11-01 마스터 지시): 자동 수집하지 않는다. 마스터가 노션 Informations 'LinkedIn' 페이지에 옮겨 둔 글만 `notion-search`로 읽어 단서로 쓰고, 작성자 이름은 쓰지 않는다(`docs/channels/notion.md`).

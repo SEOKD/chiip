@@ -1250,7 +1250,7 @@
   verified: true
   enabled: true
 - id: src-tg-channels
-  name: 공개 텔레그램 채널 13곳(config/tg_channels.yaml) — 읽기 전용
+  name: 공개 텔레그램 채널 14곳(config/tg_channels.yaml) — 읽기 전용
   category: I-학습
   method: scrape
   module: tg_channels

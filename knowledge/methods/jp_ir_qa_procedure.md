@@ -47,4 +47,4 @@
 - 새 자료 판정: 이번 실적 문서만 알린다(`jp_ir_qa.current`). 새로 찾은 페이지의 과거 자료는 기록만 한다.
 - 처리 장부: 전문·Q&A는 `radar/ir_ledger.py`에 올라가 분석이나 제외 사유가 남을 때까지 3시간마다 다시 Pulse에 실린다.
 - 경로: 실적 구간 회사는 `jp_ir_docs`가 10분마다, 전 회사는 `jp_ir_qa`가 6시간마다 본다. 두 수집기가 같은 문서를 겹치지 않게 `seen`을 공유한다.
-- 커버리지: `radar/pollers/jp_ir_audit.py`가 하루 한 번 `knowledge/models/earnings/jp_ir_coverage.csv`를 쓴다. Proviser가 미발견·판독 실패를 본다.
+- 커버리지: `radar/pollers/jp_ir_audit.py`가 주 1회 실제 페이지를 읽어 `knowledge/models/earnings/jp_ir_coverage.csv`를 쓴다. Proviser가 미발견·판독 실패를 본다.

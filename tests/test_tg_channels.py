@@ -37,9 +37,9 @@ class TestChannels(unittest.TestCase):
         store = {}
         with mock.patch.object(tg, "load", lambda h: dict(store)), mock.patch.object(tg, "save", lambda h, p: store.update(p)):
             self.assertEqual(tg.collect("merITz_tech", get=lambda u: PAGE, pause=0), 2)
-            first = store[19281]["seen"]
+            self.assertEqual(store[19281]["seen"], tg.BASELINE)   # 처음 읽은 채널의 지난 글은 Pulse에 새 글로 가지 않는다
             self.assertEqual(tg.collect("merITz_tech", get=lambda u: PAGE, pause=0), 0)
-            self.assertEqual(store[19281]["seen"], first)
+            self.assertEqual(store[19281]["seen"], tg.BASELINE)
 
     def test_relevance(self):
         base = {"channel": "marketfeed"}
@@ -56,8 +56,21 @@ class TestChannels(unittest.TestCase):
         self.assertEqual(len(rows), 2)
         self.assertEqual(rows[0]["also"], ["b"])
 
+    def test_recent_poll_is_not_repeated(self):
+        now = tg.common.now_kst()
+        with mock.patch.object(tg, "poll") as p, mock.patch.object(tg.common, "load_state", lambda n, d=None: {"at": tg.common.iso(now)}):
+            self.assertFalse(tg.poll_if_stale(now))
+            p.assert_not_called()
+
+    def test_stale_collection_reads_again(self):
+        now = tg.common.now_kst()
+        old = tg.common.iso(now - tg.timedelta(minutes=30))
+        with mock.patch.object(tg, "poll") as p, mock.patch.object(tg.common, "load_state", lambda n, d=None: {"at": old}):
+            self.assertTrue(tg.poll_if_stale(now))
+            p.assert_called_once()
+
     def test_config_has_all_channels(self):
-        self.assertEqual(len(tg.config()["channels"]), 13)
+        self.assertEqual(len(tg.config()["channels"]), 14)
 
 
 if __name__ == "__main__":

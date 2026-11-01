@@ -89,7 +89,7 @@ def write(rows):
 
 
 def run():
-    """run_hourly용 — 하루 한 번 실제 페이지로 표를 갱신한다"""
+    """run_hourly용 — 주 1회 실제 페이지로 표를 갱신한다"""
     return len(live()), 0
 
 

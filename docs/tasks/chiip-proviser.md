@@ -75,7 +75,7 @@
    g. 관문: 텔레그램(8번) 전에 `py radar/channel_scout.py --check`. 종료 코드가 1이면 6-5를 끝낸 뒤 보낸다. 끝낼 수 없으면 텔레그램에 '채널 탐색 미완료'와 이유를 쓴다. 기록 없이 지나간 회차는 다음 날 `run_hourly`가 장부에 '미완료'로 적는다.
    h. 일일 리포트와 텔레그램에 '데이터 채널' 한 줄(후보·판단·승인 대기·새 인용값 수)을 쓴다. 채널 지도와 `use_in_est` 변경은 마스터 승인 뒤에만 한다.
 
-6-6. **IR 누락 점검(매 회차, 2026-11-01 마스터 지시).** `py radar/ir_ledger.py --overdue`(24시간 넘게 처리 기록이 없는 전문·Q&A)와 `py radar/pollers/jp_ir_audit.py`(자료실 미발견·기간 판독 실패)를 보고, 원인을 일일 리포트에 쓴다. 저장은 됐는데 Pulse에 실리지 않은 건이 있으면 회귀로 다룬다.
+6-6. **IR 누락 점검(매 회차, 2026-11-01 마스터 지시).** `py radar/ir_ledger.py --overdue`(24시간 넘게 처리 기록이 없는 전문·Q&A)와 `knowledge/models/earnings/jp_ir_coverage.csv`(자료실 미발견·기간 판독 실패)를 보고, 원인을 일일 리포트에 쓴다. 저장은 됐는데 Pulse에 실리지 않은 건이 있으면 회귀로 다룬다.
 
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
 8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.

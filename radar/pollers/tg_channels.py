@@ -22,7 +22,9 @@ from pollers import common  # noqa: E402
 DIR = common.ROOT / "radar" / "inbox" / "tg_channels"
 SOURCE_ID = "src-tg-channels"
 STATE = "tg_channels"
-MAX_PAGES = 3      # 한 번에 거슬러 읽는 쪽 수(쪽당 약 20개)
+MAX_PAGES = 15     # 지난번 글에 닿으면 멈춘다 — PC가 꺼졌던 뒤에도 빠진 글이 없게 넉넉히(쪽당 약 20개)
+FRESH_S = 120      # 이보다 최근에 읽었으면 다시 읽지 않는다
+BASELINE = "2000-01-01T00:00:00+09:00"
 BACKFILL_DAYS = 7  # 처음 수집 때 거슬러 올라가는 기간
 
 
@@ -75,7 +77,7 @@ def collect(handle, get=fetch, pause=1.0, now=None):
     url = f"https://t.me/s/{handle}"
     cutoff = common.iso(now - timedelta(days=BACKFILL_DAYS))
     for i in range(MAX_PAGES):
-        page = parse(get(url), common.iso(now))
+        page = parse(get(url), common.iso(now) if known else BASELINE)   # 처음 읽는 채널의 지난 글은 새 글이 아니다
         if not page:
             if i == 0:
                 return None
@@ -113,6 +115,16 @@ def poll(env=None):
     common.save_state(STATE, st)
     common.record_health(SOURCE_ID, not fails or len(fails) < len(config()["channels"]), "; ".join(fails) or None)
     return []
+
+
+def poll_if_stale(now=None):
+    """Pulse 관문이 부른다. run_poll은 순차 실행이라 느린 수집기가 돌면 20분 넘게 밀린다(2026-11-01 점검)"""
+    now = now or common.now_kst()
+    at = common.load_state(STATE, {}).get("at")
+    if at and (now - datetime.fromisoformat(at)).total_seconds() < FRESH_S:
+        return False
+    poll()
+    return True
 
 
 def since(mark):
