@@ -1,0 +1,101 @@
+auto: true
+id: co-dell
+name: Dell Technologies
+ticker: DELL
+unit: B$
+unit_usd: 1000000000.0
+industry: computers
+region_mix:
+  US: 0.56
+  EU: 0.44
+tax: 0.19
+horizon: 10
+as_of: '2026-11-02'
+market:
+  date: '2026-11-02'
+  price: 424.3
+  shares: 0.642813
+  net_debt: 23.702
+  source: 가격 = 2026-10-30 종가. 주식 수 = 10-Q 표지(2026-09-01) 635,812,750주. 현금·차입 = 2026-07-31
+    10-Q, 리스 $805M 포함. 차입 중 DFS 부채 $9.6B는 금융채권 $20.4B의 조달이다. 9/15 선순위채 $5.0B 발행은 분기
+    뒤라 반영하지 않았다
+rev0: 192.0
+ic0: 22.285
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.25
+      end: 0.035
+      decay: 0.3
+    margin:
+      m0: 0.1025
+      target: 0.0898
+      year_target: 3
+      lr: 0.095
+      lam: 0.35
+      anchors:
+      - 0.0962
+      - 0.0898
+    s2c: 6.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5625
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.1025
+      target: 0.1098
+      year_target: 3
+      lr: 0.095
+      lam: 0.25
+      anchors:
+      - 0.0962
+      - 0.0898
+    s2c: 6.9
+  bear:
+    prob: 0.2
+    growth:
+      start: -0.0043
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.1025
+      target: 0.0698
+      year_target: 3
+      lr: 0.095
+      lam: 0.5
+      anchors:
+      - 0.0962
+      - 0.0898
+    s2c: 5.1
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [192.0, 192.0] (2026-09-01 2Q FY27 8-K EX-99.1 — FY27 매출 $192.0B(직전
+    $167.0B), AI 서버 $74.0B(직전 $60.0B), 조정 EPS $25.50(직전 $17.90), GAAP EPS $24.37.
+    3Q 매출 $49.0B·조정 EPS $6.50. 이익률은 영업이익 가이던스 환산)
+  growth: 컨센서스 1년차 32.8%, 2년차 11.8%
+  margin: 1~2년차 컨센서스 9.6%, 9.0% 고정 → 목표 9%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 6.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -0.4%~56.2%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: FY28 매출 추정이 $230.9B~$255.0B로 벌어져 1년차 성장 규칙값 32.8%는 위쪽 값만 쓴다. 두 추정의 가운데
+    약 25%를 쓴다. 장기 EBIT 이익률 규칙값 15%는 비GAAP 추정 대비 하드웨어 동종(HPE 6.2%·HPQ 5.5%·SMCI 7.1%)을
+    크게 넘어 9.5%로 둔다. 비GAAP FY27 11.45%에서 메모리 효과가 빠지고 스토리지·규모 효과가 남는 몫이다
+  shares: 완전 희석 = 기본 0.63581275(2026-09-01) + 옵션·RSU·워런트·전환 0.0070 — 10-Q 2Q 주당이익
+    계산의 희석 효과 700만 주. 2026-01-30 기준 발행 가능 주식 2,200만
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
+- '어닝콜 위험: DRAM·NAND 공급 제약과 가격'
+- '어닝콜 위험: 하반기 PC 수량 감소'
+- '어닝콜 위험: 금융채권 급증과 신용 구성'
+evidence:
+- Dell 2Q FY27 10-Q https://www.sec.gov/Archives/edgar/data/1571996/000157199626000046/dell-20260731.htm
+- Dell FY2026 10-K https://www.sec.gov/Archives/edgar/data/1571996/000157199626000008/dell-20260130.htm
+- Dell 2Q FY27 보도자료 https://www.sec.gov/Archives/edgar/data/1571996/000157199626000039/exhibit991earnings8kq2fy27.htm
+- Dell 2026 위임장 https://www.sec.gov/Archives/edgar/data/1571996/000119312526226734/d132444ddef14a.htm
