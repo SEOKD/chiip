@@ -1,0 +1,108 @@
+auto: true
+id: co-oracle
+name: Oracle
+ticker: ORCL
+unit: B$
+unit_usd: 1000000000.0
+industry: software_internet
+region_mix:
+  US: 1.0
+tax: 0.17
+horizon: 10
+as_of: '2026-11-02'
+market:
+  date: '2026-11-02'
+  price: 130.67
+  shares: 3.140936
+  net_debt: 143.429
+  source: 가격 = 2026-10-30 종가. 주식 수 = 10-Q 표지 3,023,736,000주(2026-09-07). 현금 = 현금 36.369
+    + 유가증권 0.708(제한 현금 약 $2.6B는 선급비용 쪽이라 제외). 차입 = 사채·차입 125.337 + 운용리스 34.621 + 금융리스
+    9.185. 고객 선수금 = 1Q FY27 금융요소 선수금 11.363(납품으로 소진)
+rev0: 90.0
+ic0: 210.625
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.378
+      end: 0.035
+      decay: 0.85
+    margin:
+      m0: 0.3535
+      target: 0.34
+      year_target: 4
+      lr: 0.32
+      lam: 0.3
+      anchors:
+      - 0.3403
+      - 0.33
+      - 0.35
+    s2c: 0.45
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.5333
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.3535
+      target: 0.36
+      year_target: 4
+      lr: 0.32
+      lam: 0.25
+      anchors:
+      - 0.3403
+      - 0.33
+      - 0.35
+    s2c: 0.517
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.2
+      end: 0.030000000000000002
+      decay: 0.75
+    margin:
+      m0: 0.3535
+      target: 0.32
+      year_target: 4
+      lr: 0.32
+      lam: 0.5
+      anchors:
+      - 0.3403
+      - 0.33
+      - 0.35
+    s2c: 0.383
+mc:
+  sigma_growth: 0.0833
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [90.0, 90.0] (Investor Day 8-K 2026-10-28(FY27 매출 최소 $90B·EPS
+    $8.10 재확인) · FY27 1Q 콜 2026-09-10. 2Q FY27 매출은 +30~34% 중간값을 전년 $16.058B에 곱한 값)
+  growth: 컨센서스 1년차 37.8%, 2년차 25.0%
+  margin: 1~3년차 컨센서스 34.0%, 33.0%, 35.0% 고정 → 목표 34%(4년차, 덮어쓰기) → 장기 수렴 32%
+  s2c: 재무 재구성 증분 매출/투하자본 0.5 → 덮어쓰기 0.45
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 20.0%~53.3%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: '매출÷투하자본 0.45: 1GW 예시는 CAPEX 약 $37B에 매출 약 $16B(0.43, Morgan Stanley 요지)이고
+    TTM은 0.34다. 앱·DB 증분이 조금 높여 0.45로 둔다. 장기 GAAP 영업이익률 34%: 회사 비GAAP 목표 40%에서 SBC
+    약 5%와 1GW 예시 영업이익률 약 34%를 대조했다. SBC는 TTM 6.7%지만 매출이 빠르게 늘어 5%로 잡는다 / 성장 감쇠 0.85:
+    규칙은 FY29까지만 보아 FY30 매출이 $182B에 그친다. 회사 목표 $225B와 컨센서스 $224B는 RPO 36개월 전환 약 50%로
+    뒷받침되므로 FY30 약 $210B(컨센서스보다 약 6% 낮게)가 되도록 감쇠를 잡는다'
+  shares: 완전 희석 = 기본 3.023736(2026-09-07) + 옵션·RSU·워런트·전환 0.1172 — RSU 8,100만 주·옵션
+    2,100만 주(그중 행사가 $49 근처 기득 500만 주만 내가격, 나머지 $
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
+- '어닝콜 위험: 총이익률 65.2% → 60.0%'
+- '어닝콜 위험: 약정 리스 $288B'
+- '어닝콜 위험: 구매 약정 $34.2B'
+evidence:
+- 'Fiscal.ai MCP 2026-11-02: 시세·재무·추정·의견·콜 전문·13F·펀드 레터. Data provided by Zacks Investment
+  Research, Inc., www.zacksdata.com'
+- '10-Q 2026-08-31: https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm'
+- '10-K 2026-05-31: https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm'
+- 'Investor Day 8-K: https://www.sec.gov/Archives/edgar/data/0001341439/000119312526435853/d75538dex991.htm'
+- '2026 위임장: https://www.sec.gov/Archives/edgar/data/1341439/000119312526402816/orcl-20260925.htm'
+- 'CNBC 10/8 OpenAI 매출 보도: https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html'
+- Citi 플래시·TD Cowen 모델 요지(마스터 노션, 라이선스)
