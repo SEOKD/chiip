@@ -47,9 +47,15 @@ def table():
     return [row(cid, c, d.get(cid) or {}, (q.get("companies") or {}).get(cid) or {}, prof.get(cid) or {}, year=common.now_kst().year) for cid, c in cfg.items()]
 
 
+def starts(c, q):
+    """깊은 탐색의 출발점 — 수집기가 찾은 IR 페이지, 없으면 대표 경로"""
+    out = list(c.get("ir_pages") or []) + list(q.get("pages") or [])
+    return out or [c["site"].rstrip("/") + p for p in ("/ir/", "/jp/ir/", "/ja/ir/")]
+
+
 def live_row(cid, c, d, q, prof, budget=25, year=None):
     """실제 페이지를 읽어 판정한다. 찾은 자료실은 pages로 돌려준다"""
-    pages = c.get("doc_pages") or d.get("doc_pages") or docs.discover_doc_pages(c, q.get("pages") or [], budget=budget)
+    pages = c.get("doc_pages") or d.get("doc_pages") or docs.discover_doc_pages(c, q.get("pages") or [], budget=budget) or docs.deep_pages(starts(c, q))
     found = []
     for pg in pages or []:
         try:

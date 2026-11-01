@@ -186,6 +186,42 @@ def discover_doc_pages(c, ir_pages, budget=8):
     return list(keys.values())[:3]
 
 
+def deep_pages(starts, budget=40, keep=3):
+    """이름표를 믿지 않고 IR 경로 안을 넓게 훑는다 — 최근 결산 자료 링크가 많은 페이지를 고른다(2026-11-01, 자료실 미발견 26곳 중 23곳이 IR 첫 페이지까지는 닿았다).
+    회사 안의 같은 호스트만, 시작 주소의 경로 아래만 따라간다. robots·요청 간격은 jp_ir_qa.fetch를 따른다"""
+    today = common.now_kst().date()
+    queue, seen, scored, n = list(dict.fromkeys(starts)), set(), {}, 0
+    roots = [(urllib.parse.urlparse(u).netloc, urllib.parse.urlparse(u).path.rsplit("/", 1)[0] if "." in urllib.parse.urlparse(u).path.rsplit("/", 1)[-1] else urllib.parse.urlparse(u).path.rstrip("/")) for u in queue]
+    while queue and n < budget:
+        url = queue.pop(0)
+        key = norm_url(url)
+        if key in seen:
+            continue
+        seen.add(key)
+        try:
+            h = jp_ir_qa._text(jp_ir_qa.fetch(url))
+            n += 1
+        except Exception:
+            continue
+        rows = [d for d in scan_docs(h, url) if d["kind"] != "video"]
+        recent = [d for d in rows if ((today - date.fromisoformat(d["date"])).days <= 400 if d["date"] else str(today.year - 1) <= (d["period"] or "FY0")[2:6] <= str(today.year + 1))]
+        if recent:
+            scored[url] = sum(1 + 3 * (d["kind"] in ("presentation", "transcript", "qa")) for d in recent)
+        next_links = []
+        for href, inner in jp_ir_qa.LINK_RE.findall(h):
+            u = urllib.parse.urljoin(url, htmllib.unescape(href.strip())).split("#")[0]
+            p = urllib.parse.urlparse(u)
+            if p.scheme not in ("http", "https") or DOC_RE.search(u) or jp_ir_qa.ENGLISH_PATH_RE.search(p.path) or norm_url(u) in seen:
+                continue
+            if not any(p.netloc == net and p.path.startswith(base) for net, base in roots):
+                continue
+            hay = _z(f"{common.strip_tags(inner)} {urllib.parse.unquote(u)}")
+            good = bool(re.search(r"決算|説明会|ライブラリ|資料|library|presentation|result|financial|briefing|material|kessan|event", hay, re.I))
+            next_links.append((not good, u))
+        queue = [u for bad, u in sorted(next_links, key=lambda x: x[0]) if not bad] + queue + [u for bad, u in next_links if bad]
+    return sorted(scored, key=lambda u: -scored[u])[:keep]
+
+
 def hot_ids(st, now, hot_days):
     """실적 구간 회사 — 적시공시 미러의 決算·説明会·業績 제목, 최근 새 자료, Q&A 대기"""
     hot = set()

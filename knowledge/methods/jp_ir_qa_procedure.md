@@ -48,3 +48,12 @@
 - 처리 장부: 전문·Q&A는 `radar/ir_ledger.py`에 올라가 분석이나 제외 사유가 남을 때까지 3시간마다 다시 Pulse에 실린다.
 - 경로: 실적 구간 회사는 `jp_ir_docs`가 10분마다, 전 회사는 `jp_ir_qa`가 6시간마다 본다. 두 수집기가 같은 문서를 겹치지 않게 `seen`을 공유한다.
 - 커버리지: `radar/pollers/jp_ir_audit.py`가 주 1회 실제 페이지를 읽어 `knowledge/models/earnings/jp_ir_coverage.csv`를 쓴다. Proviser가 미발견·판독 실패를 본다.
+
+## 회사별 접근 경로 (2026-11-01 전 회사 실점검)
+- 표: `knowledge/models/earnings/jp_ir_routes.csv`(자료실을 못 찾던 26곳), 주간 커버리지 `jp_ir_coverage.csv`.
+- 공식 IR 페이지가 자료 목록을 스크립트로 그리는 회사가 많다. 공급사별 규칙이 다르다.
+  - E-IR(`ssl4.eir-parts.net`)·Xj-Storage: robots.txt 전체 금지. 읽지 않는다.
+  - IR Pocket(`xml.irpocket.com`): robots.txt는 없지만 데이터 파일에 2차 이용 금지 표시가 있다. 읽지 않는다.
+  - 닌텐도: 회사 사이트 robots 금지.
+- 이 회사들의 대체 경로: 적시공시 제목으로 자료 게재를 감지하고, 로그미에서 C등급 전사를 찾고, 마스터가 노션에 올린 PDF를 `radar/notion_library.py`로 읽는다. 본문 없이 제목만 있으면 '자료 게재 확인, 본문 미확보'로 쓴다.
+- 브라우저로 페이지를 렌더링해 읽는 방식은 쓰지 않는다. 쓰려면 마스터가 공급사 이용 조건을 정한 뒤 결정한다.

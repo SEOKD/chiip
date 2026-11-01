@@ -16,10 +16,13 @@ import hashlib
 import html as htmllib
 import re
 import shutil
+import ssl
 import subprocess
 import sys
 import time
+import urllib.error
 import urllib.parse
+import urllib.request
 import urllib.robotparser
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -131,8 +134,16 @@ def fetch(url, timeout=20):
     if not allowed(url):
         raise PermissionError(f"robots.txt 차단: {url}")
     time.sleep(1.0)
-    raw = common.http_get(url, timeout=timeout, headers={"User-Agent": UA, "Accept-Language": "ja"})
-    return raw
+    try:
+        return common.http_get(url, timeout=timeout, headers={"User-Agent": UA, "Accept-Language": "ja"})
+    except urllib.error.URLError as exc:
+        if "HANDSHAKE_FAILURE" not in str(exc):
+            raise
+    ctx = ssl.create_default_context()   # 옛 암호 조합만 받는 서버(소시오넥스트) — 인증서 검증은 그대로 둔다
+    ctx.set_ciphers("DEFAULT@SECLEVEL=1")
+    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept-Language": "ja"})
+    with urllib.request.urlopen(req, timeout=timeout, context=ctx) as r:
+        return r.read()
 
 
 def _text(raw):
