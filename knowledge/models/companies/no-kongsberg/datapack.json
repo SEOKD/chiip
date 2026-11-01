@@ -73,83 +73,114 @@
   "surprise": [
    {
     "period": "2025Q4",
+    "report_date": "2025-12-31",
     "metric": "매출",
     "unit": "MNOK",
     "actual": 9593,
     "est": null,
-    "est_src": "fiscal",
-    "basis": "gaap"
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-05"
    },
    {
     "period": "2025Q4",
+    "report_date": "2025-12-31",
     "metric": "EPS",
     "unit": "NOK",
     "actual": 2.68,
     "est": null,
-    "est_src": "fiscal",
-    "basis": null
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-05"
    },
    {
     "period": "2026Q1",
+    "report_date": "2026-03-31",
     "metric": "매출",
     "unit": "MNOK",
     "actual": 8940,
     "est": null,
-    "est_src": "fiscal",
-    "basis": "gaap"
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-05"
    },
    {
     "period": "2026Q1",
+    "report_date": "2026-03-31",
     "metric": "EPS",
     "unit": "NOK",
     "actual": 1.91,
     "est": null,
-    "est_src": "fiscal",
-    "basis": null
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-05"
    },
    {
     "period": "2026Q2",
+    "report_date": "2026-06-30",
     "metric": "매출",
     "unit": "MNOK",
     "actual": 9887,
     "est": null,
-    "est_src": "fiscal",
-    "basis": "gaap"
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-12"
    },
    {
     "period": "2026Q2",
+    "report_date": "2026-06-30",
     "metric": "EPS",
     "unit": "NOK",
     "actual": 1.82,
     "est": null,
-    "est_src": "fiscal",
-    "basis": null
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-12"
    },
    {
     "period": "2026Q3",
+    "report_date": "2026-09-30",
     "metric": "매출",
     "unit": "MNOK",
     "actual": 10842,
-    "est": 9887.96,
-    "est_src": "fiscal",
-    "basis": "gaap"
+    "est": 9887.959,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-25",
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
    },
    {
     "period": "2026Q3",
+    "report_date": "2026-09-30",
     "metric": "EPS",
     "unit": "NOK",
     "actual": 1.69,
     "est": 1.508,
-    "est_src": "fiscal",
-    "basis": null
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-25",
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
    }
   ],
-  "note": "Fiscal.ai 자체 추정(company_estimates). 이 종목은 애널리스트 등급·목표가·추정 이력 커버리지가 없다",
-  "ratings": {}
+  "note": "Fiscal.ai 자체 추정(company_estimates). 등급 분포·추정 이력 커버리지 없음. Easyconomics 3Q 발표 전 추정은 EPS NOK 1.66·매출 NOK 10.44B, yfinance 선행 EPS NOK 11.55(Fwd P/E 30.8배)로 Fiscal 추정(FY2027 NOK 8.59)과 다르다",
+  "ratings": {},
+  "street_public": {
+   "as_of": "2026-10-30",
+   "analysts": 11,
+   "consensus": "Buy",
+   "target_mean": 403.0,
+   "source": "stockanalysis.com 공개 페이지"
+  }
  },
  "guidance": {
   "rev_fy0": null,
-  "long_term": "2029년 매출 NOK 100B, 2033년 NOK 150B(2026년 6월 자본시장의 날, 2Q·3Q 콜에서 재확인). 단기 숫자 가이던스는 없다",
+  "long_term": "2029년 매출 NOK 100B, 2033년 NOK 150B, 영업이익률 16% 이상(2026-06-10 자본시장의 날, 2Q·3Q 콜에서 재확인). 연간 숫자 가이던스는 없다",
   "source": "3Q 콜 2026-10-29",
   "next": {}
  },
@@ -381,10 +412,13 @@
  "sources": [
   "Kongsberg 3Q26 실적 발표·콜 2026-10-29",
   "2Q26 콜 2026-07-13",
-  "1Q26 콜"
+  "1Q26 콜",
+  "Kongsberg Annual Report 2025",
+  "Kongsberg 이사회·경영진 페이지 2026-11-02 조회",
+  "Kongsberg·Raytheon Kuwait NASAMS 공시 2026-06-30"
  ],
  "raw": {
-  "retrieved_at": "2026-10-31T23:50:00+09:00",
+  "retrieved_at": "2026-11-02T05:30:00+09:00",
   "shares_cover_implied": 0.879592378,
   "fiscal_profile": {
    "companyKey": "OB_KOG",
@@ -441,6 +475,36 @@
    "2026Q1": 8940,
    "2026Q2": 9887,
    "2026Q3": 10842
+  },
+  "annual_report_2025": {
+   "source": "Annual Report 2025 (2026-03-23) p.17·18·106·109·110·164",
+   "state_owner": "노르웨이 정부 50.004%, 무역·산업·수산부 관할",
+   "foreign_holders": 0.2541,
+   "top10_holders": 0.646,
+   "rev_geo_2025_mnok": {
+    "Norway": 8894,
+    "Europe": 9527,
+    "NorthAmerica": 9880,
+    "SouthAmerica": 117,
+    "Asia": 1780,
+    "Australia": 1260,
+    "Africa": 105,
+    "total": 31562
+   },
+   "rev_geo_2024_mnok": {
+    "Norway": 5989,
+    "Europe": 6784,
+    "NorthAmerica": 8794,
+    "SouthAmerica": 197,
+    "Asia": 1525,
+    "Australia": 1356,
+    "Africa": 4,
+    "total": 24648
+   },
+   "employee_share_programme_2025": "1,038,364주를 25% 할인으로 8,915명에게 매각. 주식 수의 약 0.12%",
+   "demerger_value_share": "Maritime 분할 몫 24%(주석 30)",
+   "revenue_recognition": "고정가 계약이 많고 대부분 진행률 인식, 주로 cost-to-cost(주석 7)",
+   "not_checked": "구매 약정·제한 현금·10% 초과 고객·정부 지원 주석은 이번 회차에 찾지 못했다"
   }
  },
  "multiples_now": {
@@ -478,8 +542,8 @@
  },
  "history": {},
  "next_event": {
-  "date": "2027-02 초(예상)",
-  "tag": "4Q26 실적"
+  "date": "2027-02-11",
+  "tag": "4Q26 실적(회사 일정 확정)"
  },
  "terms": {
   "NASAMS": "노르웨이·미국 공동 개발 중거리 방공 체계",
@@ -499,33 +563,38 @@
   "CUAS": "대드론 체계",
   "Discovery": "수중 로봇·소형 위성 부문",
   "Maritime": "2026년 4월 분할한 선박 장비 부문",
-  "TRAXX": "Patria 궤도 장갑차"
+  "TRAXX": "Patria 궤도 장갑차",
+  "KSAT": "Kongsberg 위성 지상국 회사",
+  "NanoAvionics": "소형 위성 제조사",
+  "Thales": "프랑스 방산 전자 회사",
+  "DNB": "노르웨이 최대 은행 계열 증권사",
+  "SB1": "노르웨이 SpareBank 1 계열 증권사"
  },
  "moat": {
-  "summary": "해자의 핵심은 캐파를 먼저 깔아 둔 것이다. 잔고가 TTM 매출의 4.4배이고 공장을 미국·호주·폴란드로 넓힌다. 반면 ASP가 구조적으로 오른다는 증거는 없다.",
+  "summary": "경쟁을 막는 것은 방공 체계의 표준 지위와 F-35 탑재 자격이다. 공장을 먼저 깐 것도 납기 우위를 만든다. 단가가 오른다는 증거는 아직 없다.",
   "items": [
    {
-    "kind": "공급 병목에 따른 구조적 ASP 상승",
-    "verdict": "약함",
-    "claim": "회사는 지금 캐파로 잔고를 소화하고 새 사업도 받을 수 있다고 했다. 병목이 없다는 뜻이라 가격 결정력의 근거가 되지 않는다. 계약 단가는 공개되지 않아 ASP 추세는 미확인이다.",
-    "evidence": "3Q 콜. Defence Systems 마진 20.6%는 물량·실행·프로젝트 믹스 효과로 설명했다.",
-    "quant": "EBIT 마진 16.4%(작년 14.8%)",
-    "falsifier": "증설 지연으로 납기가 늘고 단가가 오르면 이 판정은 올라간다."
-   },
-   {
-    "kind": "기술 혁신에 따른 구조적 ASP 상승",
-    "verdict": "보통",
-    "claim": "NASAMS는 사용국 18곳으로 중거리 방공 표준이 됐고 JSM은 F-35 탑재 선택지다. 교체가 어려운 체계지만, 이것이 단가 상승으로 이어졌는지는 공개 자료로 확인하지 못했다.",
-    "evidence": "NASAMS 18개국, JSM 6개국 선택, Belgium 약 NOK 10B는 사상 최대 NASAMS 계약.",
-    "quant": "ASP 미확인",
-    "falsifier": "유럽 경쟁 체계가 NASAMS 입찰을 가져간다."
-   },
-   {
-    "kind": "선제 CAPEX에 따른 Q 사이클",
+    "kind": "NASAMS 사용국 표준",
     "verdict": "강함",
-    "claim": "수요가 확정되기 전에 Norway 미사일 공장, Horten, 미국·호주 공장, Gdańsk를 깔았다. 그래서 물량이 먼저 늘고 2027년 잔고 전환이 NOK 53B로 커졌다.",
-    "evidence": "3Q 콜. 폴란드 2028 상반기 생산, Horten 45,000㎡ 입주, 3Q 매출 +50%.",
-    "quant": "잔고 NOK 174.2B = TTM 매출의 4.4배 · 2027년분 NOK 53B · 2028년 이후 NOK 109B · TTM CAPEX 약 NOK 3.1B",
+    "claim": "사용국이 18곳으로 늘면서 같은 체계를 쓰는 나라끼리 훈련·정비·유도탄을 나눠 쓴다. 한 번 도입하면 바꾸기 어렵고 후속 주문이 이어진다.",
+    "evidence": "3Q에 Belgium이 18번째 사용국이 됐고 Netherlands가 추가 주문을 냈다. Kuwait는 미국 FMS 경로로 계약했다.",
+    "quant": "사용국 18곳 · Belgium 약 NOK 10B는 사상 최대 NASAMS 계약 · Kuwait 약 $400M",
+    "falsifier": "유럽 경쟁 체계가 NATO 입찰에서 NASAMS를 연달아 이긴다."
+   },
+   {
+    "kind": "F-35 탑재 미사일 자격",
+    "verdict": "강함",
+    "claim": "JSM은 F-35 내부 무장창에 들어가는 미사일이다. 항공기 통합과 시험에 오랜 시간이 들어 뒤따라오는 회사가 단기간에 대체하기 어렵다.",
+    "evidence": "Canada가 6번째 선택국이 됐다. 2Q 수주에 Germany·US·Canada JSM 3건 합계 NOK 10.9B가 있다.",
+    "quant": "선택국 6곳 · 2Q 수주 NOK 10.9B",
+    "falsifier": "경쟁 미사일이 F-35 내부 무장 통합을 끝내고 JSM 사용국이 넘어간다."
+   },
+   {
+    "kind": "선제 공장 투자",
+    "verdict": "보통",
+    "claim": "수요가 확정되기 전에 Norway 미사일 공장, Horten, 미국·호주 공장, Gdańsk를 깔았다. 그래서 물량이 먼저 늘었다. 다만 회사가 캐파가 충분하다고 말한 것은 공급이 희소하지 않다는 뜻이기도 해서 가격 결정력으로 잇지 않는다.",
+    "evidence": "3Q 콜. Gdańsk 2028 상반기 생산, Horten 45,000㎡ 입주. EBIT 마진 16.4%(작년 14.8%). 계약 단가는 공개되지 않아 ASP 추세는 미확인이다.",
+    "quant": "잔고 = TTM 매출의 4.4배 · 2027년분 NOK 53B · TTM CAPEX 약 NOK 3.1B",
     "falsifier": "2027년 매출이 잔고 전환 NOK 53B 수준에 못 미친다."
    }
   ]
@@ -584,6 +653,20 @@
     "no_sum": true
    },
    {
+    "name": "Kuwait NASAMS(Raytheon 경유)",
+    "status": "확정",
+    "total": 4.0,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2026-06-30 계약 약 $400M(NOK 환산은 회사 금액이 아닌 근사). 2Q 수주에는 없었고 3Q 수주 포함 여부는 미확인",
+    "blockers": [
+     "미국 FMS 절차",
+     "중동 정세"
+    ],
+    "source": "회사 공시 2026-06-30, 2Q CEO 글",
+    "no_sum": true
+   },
+   {
     "name": "JSM 2Q 수주 3건(Germany·US·Canada)",
     "status": "확정",
     "total": 10.9,
@@ -614,10 +697,10 @@
   ]
  },
  "narrative": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-02",
   "stage": "컨센서스",
   "crowding": "높음",
-  "summary": "유럽 재무장의 대표 수혜주라는 이야기는 이미 값에 들어 있다. Fwd 1Y P/E 45.5배가 묻는 것은 수요가 아니라 2029년 매출 NOK 100B까지 가는 실행과 마진이다",
+  "summary": "유럽 재무장의 대표 수혜주라는 이야기는 이미 값에 들어 있다. 쟁점은 수요가 아니라 2029년 매출 NOK 100B까지 가는 실행과 마진이다",
   "layers": {
    "sell_side": {
     "metrics": [
@@ -627,12 +710,22 @@
       "질문 대부분이 마진의 질과 실행"
      ],
      [
-      "애널리스트 등급·목표가",
-      "미확인",
-      "이 종목은 데이터 커버리지가 없다"
+      "공개 집계(10/30)",
+      "애널리스트 11명, 합의 Buy, 평균 목표가 NOK 403",
+      "지금 가격보다 13% 높다. 기대의 증거이지 결론이 아니다"
+     ],
+     [
+      "3Q 뒤 목표가 변경",
+      "Nordea·SB1 Markets NOK 425, DNB Carnegie NOK 420",
+      "모두 상향이고 Buy 유지다"
+     ],
+     [
+      "EPS 추정 간격",
+      "FY2027 NOK 8.59와 다른 집계 NOK 11.55",
+      "Fwd P/E가 45.5배인지 30배대인지 집계마다 다르다"
      ]
     ],
-    "read": "셀사이드의 쟁점은 수주가 아니라 Zone 5가 깎는 마진과 일회성 효과의 크기다"
+    "read": "셀사이드는 3Q 뒤 목표가를 올렸다. 쟁점은 수주가 아니라 Zone 5가 깎는 마진과 일회성 효과의 크기다"
    },
    "buy_side": {
     "metrics": [
@@ -640,9 +733,14 @@
       "주가 반응",
       "3Q 발표일 +13%, 다음 날 +1%",
       "분할 보정 기준 52주 고점을 넘겼다(추정)"
+     ],
+     [
+      "주주 구성",
+      "노르웨이 정부 50.004%, 외국인 25.4%, 상위 10곳 64.6%",
+      "2025년 말 기준. 유동 주식은 절반 아래다"
      ]
     ],
-    "read": "기관 수급 자료는 이번에 받지 못했다. 미국 13F 대상이 아니다"
+    "read": "기관별 매매 자료는 받지 못했다. 미국 13F 대상이 아니다. 정부 지분이 절반이라 유동 물량이 작아 배수가 움직일 때 폭이 커질 수 있다(추정)"
    },
    "media": {
     "metrics": [
@@ -696,10 +794,10 @@
      "retail": "-"
     },
     "drives": "multiple",
-    "quant": "Fwd 1Y P/E 45.5배, 동종 중앙값 25.5배",
+    "quant": "Fwd 1Y P/E 45.5배, 동종 중앙값 25.5배. 다른 집계로는 30.8배",
     "status": "유지",
     "falsifier": "멀티플이 Saab 수준 아래로 내려간다",
-    "source": "Fiscal.ai 추정"
+    "source": "컨센서스 범위"
    },
    {
     "name": "반대 내러티브: 이미 값이 다 들어갔다",
@@ -714,24 +812,24 @@
     "quant": "지금 값은 FY2028 EPS의 34배",
     "status": "강화",
     "falsifier": "2027년 EPS 상향과 마진 유지",
-    "source": "Fiscal.ai 추정"
+    "source": "컨센서스"
    }
   ],
   "lead": {
    "summary": "**시장이 산 이야기는 '유럽이 방공과 미사일을 사고, Kongsberg가 그 표준을 쥐었다'는 것이다.** 3Q 회사 기준 매출 NOK 11.3B(+50% YoY), 수주 NOK 23.3B, 잔고 NOK 174.2B로 기록이다. 주가는 3Q 발표일에 +13%로 분할 보정 기준 52주 고점을 넘겼다. 문제는 값이다. Fwd 1Y P/E 45.5배는 2029년 매출 NOK 100B 목표까지 상당 부분 먼저 낸 값이다.",
    "value_story": "Kongsberg는 NASAMS 방공과 NSM·JSM 미사일을 파는 방산 회사다. 2026년 4월 선박 부문을 떼어내 순수 방산·수중·우주 기업이 됐다. 수주가 몇 년치 매출을 미리 고정하므로 기업가치는 세 가지로 갈린다. 잔고를 얼마나 빨리 매출로 바꾸나, Zone 5가 깎는 마진을 얼마나 빨리 회복하나, 그리고 2029년 NOK 100B 이후 수주가 이어지나다.",
    "premium": {
-    "multiple": "Fwd 1Y P/E 45.5배로 동종 중앙값 25.5배보다 79% 높다. Saab 38.5배보다도 높다. 프리미엄이 크다.",
-    "eps": "FY2026~FY2028 컨센서스 EPS는 NOK 7.35 → 8.59 → 10.48이다. 지금 값은 FY2028 EPS의 34배다. 추정 이력이 없어 리비전 폭은 미확인이다."
+    "multiple": "Fwd 1Y P/E 45.5배로 동종 중앙값 25.5배보다 79% 높다. Saab 38.5배보다도 높다. 다만 다른 집계의 선행 EPS NOK 11.55를 쓰면 30.8배다. 프리미엄이 크다는 판단은 같지만 폭은 집계에 따라 다르다.",
+    "eps": "FY2026~FY2028 컨센서스 EPS는 NOK 7.35 → 8.59 → 10.48이다. 지금 값은 FY2028 EPS의 34배다. 추정 이력이 없어 리비전 폭은 미확인이다. 3Q 뒤 증권사 목표가 상향이 간접 증거다."
    },
-   "why_excited": "유럽 방공 수요가 커지면서 수주가 매출을 크게 앞질렀다. 6월 자본시장의 날에 2029년 NOK 100B, 2033년 NOK 150B 목표를 냈다. 3Q 매출 +50%, EBIT +66%가 그 길을 숫자로 보여 줬다.",
+   "why_excited": "유럽 방공 수요가 커지면서 수주가 매출을 크게 앞질렀다. 6월 자본시장의 날에 2029년 NOK 100B, 2033년 NOK 150B, 영업이익률 16% 이상을 냈다. 3Q 매출 +50%, EBIT +66%가 그 길을 숫자로 보여 줬다.",
    "lenses": [
     {
      "lens": "구조적 체질 변화",
      "drives": "both",
      "status": "진행 중",
      "change": "Maritime 분할로 방산·수중·우주만 남았다. 민수 사이클이 빠지고 잔고 중심 회사가 됐다.",
-     "evidence": "2026년 4월 분할 완료. 잔고 NOK 174.2B는 TTM 매출의 4.4배.",
+     "evidence": "2026년 4월 분할 완료. 분할 몫은 그룹 가치의 24%. 잔고 NOK 174.2B는 TTM 매출의 4.4배.",
      "falsifier": "방산 비중이 커진 만큼 단일 고객군 위험이 커진다."
     },
     {
@@ -754,7 +852,7 @@
      "lens": "실행 속도",
      "drives": "revision",
      "status": "진행 중",
-     "change": "해당 없음(납기를 숫자로 공개하지 않는다). 대신 잔고 전환으로 잰다. 4Q 7%, 2027년 30%, 2028년 이후 63%다.",
+     "change": "해당 없음(납기를 숫자로 공개하지 않아 피어와 비교할 수 없다). 대신 잔고 전환으로 잰다. 4Q 7%, 2027년 30%, 2028년 이후 63%다.",
      "evidence": "3Q 콜. 2027년분은 전 분기보다 약 NOK 9B 늘었다.",
      "falsifier": "2027년 매출이 잔고 전환 수준에 못 미친다."
     },
@@ -771,7 +869,7 @@
      "drives": "revision",
      "status": "진행 중",
      "change": "유럽 방위 예산이 Kongsberg 수주로 내려온다. 공급 관계는 계약 공시로 확인된다.",
-     "evidence": "Belgium·Netherlands·Germany·Canada 계약.",
+     "evidence": "Belgium·Netherlands·Germany·Canada 계약. 2025년 매출은 Norway 28%, 유럽 30%, 북미 31%다.",
      "falsifier": "예산 집행이 지연되면 계약이 뒤로 밀린다."
     }
    ],
@@ -843,5 +941,59 @@
     }
    ]
   }
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "최대 주주가 정부이자 큰 고객이다. 연결은 문서로 확인되지만 수주를 만들었다는 증거는 없다. 1814년 설립 회사라 창업자는 없다.",
+  "people": [
+   {
+    "name": "Eirik Lie",
+    "role": "사장·CEO",
+    "since": "2026-04",
+    "profile": "1990년 입사해 방산 부문에서만 일했다. 소프트웨어 개발에서 시작해 2017년 Defence Systems 대표, 이후 Defence & Aerospace 대표를 거쳤다. 10년 재임한 Geir Håøy에 이어 분할 완료일에 CEO가 됐다.",
+    "business": "KSAT·NanoAvionics 의장, Patria 이사를 지냈다. 현직 여부는 회사 소개 날짜가 달라 미확인이다.",
+    "political": "공직 이력 미확인. 해군 사관 후보 학교를 다녔다.",
+    "alumni": "Kongsberg 공대 컴퓨터 공학. 동문 연결은 미확인이다.",
+    "social": "미확인",
+    "source": "회사 경영진 소개 2023 판, 회사 경영진 페이지 2026-11-02"
+   },
+   {
+    "name": "Eivind Reiten",
+    "role": "이사회 의장",
+    "since": "2017",
+    "profile": "Norsk Hydro에서 23년 일했고 마지막 9년은 CEO였다. Telenor·Norske Skog 의장도 지냈다.",
+    "business": "Stena Group·Anaxo Capital 자문 이사회 의장, Globeleq 이사(회사 소개 기준, 날짜 미표기).",
+    "political": "노르웨이 석유·에너지부 장관 이력이 있다. 임기는 이번 회차에 1차 자료로 확인하지 못했다.",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "회사 이사회 페이지 2026-11-02, Store norske leksikon"
+   }
+  ],
+  "value": [
+   {
+    "network": "정계",
+    "link": "노르웨이 정부 — 지분 50.004%(무역·산업·수산부)이자 Norway 매출의 대부분을 낸다",
+    "strength": 5,
+    "exposure": 8.894,
+    "basis": "2025년 Norway 매출. 국방부 몫은 따로 공개된 값을 찾지 못했다",
+    "evidence": "Annual Report 2025 p.17·109"
+   },
+   {
+    "network": "비즈니스",
+    "link": "Lie CEO — Patria 이사 경력. Kongsberg가 49.9% 지분 보유",
+    "strength": 2,
+    "exposure": 0.159,
+    "basis": "3Q 지분 이익. 매출이 아니고 잔고에도 없다",
+    "evidence": "회사 소개, 3Q 콜"
+   },
+   {
+    "network": "동문",
+    "link": "공개 자료에서 사업과 닿는 동문 연결을 찾지 못했다",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "없음"
+   }
+  ]
  }
 }

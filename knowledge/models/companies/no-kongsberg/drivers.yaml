@@ -84,7 +84,7 @@ provenance:
   shares: 완전 희석 = 기본 0.879592378(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 희석 증권 미공개 —
     가중평균 희석 주식이 기본과 같다
 notes:
-- 자동 생성(build_drivers) 2026-10-31 — 데이터 묶음 2026-10-30
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
 - '어닝콜 위험: Zone 5 초기 마진 희석'
 - '어닝콜 위험: 유지 보상금 비용'
 - '어닝콜 위험: Discovery 이전 비용'
@@ -92,3 +92,6 @@ evidence:
 - Kongsberg 3Q26 실적 발표·콜 2026-10-29
 - 2Q26 콜 2026-07-13
 - 1Q26 콜
+- Kongsberg Annual Report 2025
+- Kongsberg 이사회·경영진 페이지 2026-11-02 조회
+- Kongsberg·Raytheon Kuwait NASAMS 공시 2026-06-30
