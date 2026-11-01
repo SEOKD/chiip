@@ -2,7 +2,7 @@
  "id": "co-ultraclean",
  "name": "Ultra Clean Holdings",
  "ticker": "UCTT",
- "as_of": "2026-10-30",
+ "as_of": "2026-11-02",
  "unit": "B$",
  "industry": "semicap",
  "region_mix": {
@@ -10,12 +10,12 @@
  },
  "tax": 0.21,
  "profile": {
-  "price": 54.7,
+  "price": 49.71,
   "shares_basic": 0.04796,
   "shares_date": "2026-10-21",
   "cash": 0.44,
   "debt": 0.8101,
-  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-29 종가 · 주식 수 47,960,159(Fiscal.ai shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25 장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜 CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)"
+  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-30 종가 · 주식 수 47,960,159(Fiscal.ai shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25 장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜 CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)"
  },
  "dilution": {
   "potential_total": 0.00094,
@@ -244,8 +244,8 @@
   },
   "price_window": {
    "from": 89.17,
-   "to": 54.7,
-   "note": "리비전 구간과 같은 기간: 8/3 종가 → 10/29 종가"
+   "to": 49.71,
+   "note": "리비전 구간과 같은 기간: 8/3 종가 → 10/30 종가"
   },
   "eps_history": {
    "basis": "adjusted",
@@ -925,6 +925,25 @@
      1
     ]
    ]
+  },
+  "ratings": {
+   "strong_buy": 5,
+   "buy": 1,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-10-21",
+   "source": "fiscal",
+   "target_mean": 110.29,
+   "target_high": 150,
+   "target_low": 80
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1.3,
+   "2027Q1": 1.31,
+   "2027Q2": 1.44,
+   "2027Q3": 1.54,
+   "2027Q4": 1.56
   }
  },
  "guidance": {
@@ -944,7 +963,15 @@
   ],
   "q4_diluted_shares_m": 48.9,
   "long_term": "매출 $4B에서 총이익률 20%(비GAAP 영업이익률 약 10%) — 2Q·3Q 콜 반복",
-  "source": "회사 3Q 실적 보도자료·콜(2026-10-27, Fiscal.ai ir_events q3-2026): 4Q 매출 $800~860M·EPS $1.11~1.35 → FY2026 = 1~3Q 실적 1,937.6 + 4Q 가이던스"
+  "source": "회사 3Q 실적 보도자료·콜(2026-10-27, Fiscal.ai ir_events q3-2026): 4Q 매출 $800~860M·EPS $1.11~1.35 → FY2026 = 1~3Q 실적 1,937.6 + 4Q 가이던스",
+  "next": {
+   "period": "4Q26",
+   "rev": 830,
+   "rev_cons": 850.6,
+   "eps": 1.23,
+   "eps_cons": 1.3,
+   "unit": "$M"
+  }
  },
  "call": {
   "date": "2026-10-27",
@@ -1098,12 +1125,16 @@
   ]
  },
  "multiples_now": {
-  "pe_fwd": 9.09,
+  "pe_fwd": 8.89,
   "ev_ebitda": 17.78,
   "ev_sales": 1.33,
   "growth": 0.158,
-  "note": "선행 P/E = $54.70 ÷ Fiscal.ai 자체 추정 선행 4분기 조정 EPS 5.59(1.30+1.31+1.44+1.54) — Chiip 계산. EV/EBITDA·EV/매출 = Fiscal.ai daily ratios 2026-10-29(TTM GAAP)",
-  "ev_ebitda_fwd": 5.58
+  "note": "선행 P/E = $49.71 ÷ 선행 4분기 조정 EPS 5.59. Fiscal.ai Forward 배수 2026-10-30. Fwd 2Y·3Y는 2026-10-30 재계산",
+  "ev_ebitda_fwd": 5.48,
+  "pe_fwd2": 7.2,
+  "ev_ebitda_fwd2": 4.1,
+  "pe_fwd3": 5.58,
+  "ev_ebitda_fwd3": 3.25
  },
  "peers_basis": "ttm",
  "peers_source": "Fiscal.ai company_peers(ICHR 직접 경쟁, MKSI 사업모델) + 반도체 서브시스템·부품 동종(AEIS·ENTG·KLIC) — 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM), EV/매출·EV/EBITDA = daily ratios 2026-10-29",
@@ -1112,81 +1143,101 @@
    "ticker": "ICHR",
    "rev": 1.0138,
    "ebit_margin": -0.0237,
-   "mcap": 1.5892,
-   "pb": 1.84,
+   "mcap": 1.457,
+   "pb": 1.69,
    "debt": 0.1541,
    "cash": 0.2565,
    "ev_sales": 1.47,
    "ev_ebitda": 178.6,
    "growth": 0.091,
-   "pe_fwd": 14.94,
-   "ev_ebitda_fwd": 13.5,
+   "pe_fwd": 14.73,
+   "ev_ebitda_fwd": 13.31,
    "ntm_ebit_margin": 0.0864,
-   "ntm_growth": 0.464
+   "ntm_growth": 0.464,
+   "pe_fwd2": 11.64,
+   "ev_ebitda_fwd2": 10.75,
+   "pe_fwd3": 11.02,
+   "ev_ebitda_fwd3": 10.01
   },
   {
    "ticker": "MKSI",
    "rev": 4.347,
    "ebit_margin": 0.1567,
-   "mcap": 14.6169,
-   "pb": 4.89,
+   "mcap": 13.6615,
+   "pb": 4.57,
    "debt": 4.186,
    "cash": 0.611,
    "ev_sales": 4.18,
    "ev_ebitda": 17.77,
    "growth": 0.163,
-   "pe_fwd": 12.49,
-   "ev_ebitda_fwd": 11.15,
+   "pe_fwd": 12.51,
+   "ev_ebitda_fwd": 11.16,
    "ntm_ebit_margin": 0.2662,
-   "ntm_growth": 0.3469
+   "ntm_growth": 0.3469,
+   "pe_fwd2": 10.87,
+   "ev_ebitda_fwd2": 9.87,
+   "pe_fwd3": 9.87,
+   "ev_ebitda_fwd3": 8.95
   },
   {
    "ticker": "AEIS",
    "rev": 2.0378,
    "ebit_margin": 0.1321,
-   "mcap": 9.6021,
-   "pb": 6.5,
+   "mcap": 8.8936,
+   "pb": 6.02,
    "debt": 1.377,
    "cash": 1.3965,
    "ev_sales": 4.71,
    "ev_ebitda": 28.94,
    "growth": 0.246,
-   "pe_fwd": 15.68,
-   "ev_ebitda_fwd": 14.12,
+   "pe_fwd": 15.5,
+   "ev_ebitda_fwd": 13.96,
    "ntm_ebit_margin": 0.2405,
-   "ntm_growth": 0.397
+   "ntm_growth": 0.397,
+   "pe_fwd2": 13.39,
+   "ev_ebitda_fwd2": 11.58,
+   "pe_fwd3": 10.76,
+   "ev_ebitda_fwd3": 8.94
   },
   {
    "ticker": "ENTG",
    "rev": 3.5247,
    "ebit_margin": 0.1821,
-   "mcap": 24.448,
-   "pb": 5.64,
+   "mcap": 23.5908,
+   "pb": 5.44,
    "debt": 3.361,
    "cash": 0.3565,
    "ev_sales": 7.79,
    "ev_ebitda": 27.95,
    "growth": 0.094,
-   "pe_fwd": 28.22,
-   "ev_ebitda_fwd": 21.62,
+   "pe_fwd": 28.12,
+   "ev_ebitda_fwd": 21.55,
    "ntm_ebit_margin": 0.2784,
-   "ntm_growth": 0.1772
+   "ntm_growth": 0.1772,
+   "pe_fwd2": 24.68,
+   "ev_ebitda_fwd2": 19.63,
+   "pe_fwd3": 21.03,
+   "ev_ebitda_fwd3": 17.23
   },
   {
    "ticker": "KLIC",
    "rev": 0.9502,
    "ebit_margin": 0.1321,
-   "mcap": 4.1696,
-   "pb": 4.57,
+   "mcap": 3.8834,
+   "pb": 4.26,
    "debt": 0.0381,
    "cash": 0.5166,
    "ev_sales": 3.88,
    "ev_ebitda": 26.08,
    "growth": 0.444,
-   "pe_fwd": 13.12,
-   "ev_ebitda_fwd": 8.57,
+   "pe_fwd": 12.97,
+   "ev_ebitda_fwd": 8.46,
    "ntm_ebit_margin": 0.229,
-   "ntm_growth": 0.5944
+   "ntm_growth": 0.5944,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 9.26,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 10.69
   }
  ],
  "sbc_pct_rev": 0.009,
@@ -1582,6 +1633,11 @@
    "date": "2026-10-28",
    "tag": "3Q 실적 다음 날(10/27 장후 발표) · Needham 목표가 $80 하향",
    "kind": "earnings"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "장비·AI 반도체 동반 하락(ICHR −8.3%·AMAT −7.5%·MU −5.3%), 회사 공시 없음, 업종 원인 미확인",
+   "kind": "sector"
   }
  ],
  "sources": [
@@ -1592,16 +1648,17 @@
   "knowledge/narratives/companies/co-ultraclean.md(2026-10-28 내러티브 수집)",
   "10-K 2025: https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm",
   "전환사채 8-K 2026-03-03: https://www.sec.gov/Archives/edgar/data/1275014/000095010326003139/dp242585_8k.htm",
-  "ATM 8-K 2026-08-14: https://www.sec.gov/Archives/edgar/data/1275014/000095010326012379/dp251729_8k.htm"
+  "ATM 8-K 2026-08-14: https://www.sec.gov/Archives/edgar/data/1275014/000095010326012379/dp251729_8k.htm",
+  "2026-11-02 재발행: Fiscal.ai 시세·Forward 배수·추정·의견(10/30), Easyconomics earnings_summary_dates·company_profile, SEC 10-Q·10-K·DEF 14A·8-K 원문. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
  ],
  "raw": {
-  "retrieved_at": "2026-10-30T07:20:00+09:00",
+  "retrieved_at": "2026-11-02T13:30:00+09:00",
   "shares_cover_implied": 0.04796,
   "fiscal_profile": {
    "companyKey": "NASDAQ_UCTT",
    "terminalUrl": "https://fiscal.ai/company/NasdaqGS-UCTT",
-   "price": 54.7,
-   "market_cap": 2.6234,
+   "price": 49.71,
+   "market_cap": 2.3841,
    "total_cash": 0.2709,
    "total_debt": 0.8101,
    "shares_outstanding": 0.04796,
@@ -1749,13 +1806,21 @@
    "lam": 0.388,
    "amat": 0.223,
    "source": "10-Q 2026-09-25"
+  },
+  "filing_check_2026_11_02": {
+   "commitments": "재고 구매 약정 $1,111.0M(2026-09-25, 10-Q). 2025-12-26은 재고·유형자산 $443.6M(10-K)",
+   "restricted_cash": "10-Q·10-K 본문에 'restricted cash' 문구 없음(검색 0건)",
+   "customers_10pct": "Lam 38.8%·AMAT 22.3%(3Q26). 2025년 Lam 37.0%, 상위 2곳 58.7%",
+   "gov": "전략 계약·CHIPS 지원 공시 없음. 2025년 정부 보조금 $2.2M(기타수익). 신규 회계 기준 언급뿐",
+   "backlog": "10-K: 중요한 수주잔고가 없고 최소 구매 약정이 있는 장기 주문도 대체로 없다. 고객 예측은 구속력이 없다",
+   "source": "10-Q https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm · 10-K https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm"
   }
  },
  "narrative": {
-  "as_of": "2026-10-30",
-  "stage": "태동",
+  "as_of": "2026-11-02",
+  "stage": "소멸",
   "crowding": "낮음",
-  "summary": "'2027~28 WFE 증설 사이클의 서브시스템 아웃소싱 수혜'는 실적으로 확인되는데(3Q 매출 +49%), 주가는 6/30 고점 대비 −62% — 시장은 증설 대가(재고·증자)와 장비주 디레이팅을 먼저 가격에 넣었다",
+  "summary": "'2027~28 WFE 증설 사이클의 서브시스템 아웃소싱 수혜'는 실적으로 확인되는데(3Q 매출 +49%), 주가는 6/30 고점 대비 −65% — 시장은 증설 대가(재고·증자)와 장비주 디레이팅을 먼저 가격에 넣었다",
   "layers": {
    "sell_side": {
     "metrics": [
@@ -1767,13 +1832,13 @@
      ],
      [
       "목표가 평균·범위(Zacks)",
-      "$113.1 ($80~$150, 7명)",
-      "10/29 종가 $54.70 대비 평균 +107% — IB 기대의 증거(Chiip 목표가 아님), 범위가 약 2배로 분산 큼",
+      "$110.3 ($80~$150, 7명)",
+      "10/30 종가 $49.71 대비 평균 +122% — IB 기대의 증거(Chiip 목표가 아님), 범위가 약 2배로 분산 큼",
       "같은 곳"
      ],
      [
       "3Q 콜 질문 증권사",
-      "UBS·Needham·TD Cowen·Oppenheimer·Craig-Hallum",
+      "UBS·Needham·TD코웬·Oppenheimer·Craig-Hallum",
       "질문 초점 = 증설의 대가(장기 약정)·MFC 부족·공급망 차질",
       "Fiscal.ai ir_events_transcript(q3-2026)"
      ],
@@ -1796,7 +1861,7 @@
      ],
      [
       "펀드 레터(2026Q2~Q3)",
-      "RAM Smid 비중 축소(강세 유지)·Next Century 전량 매도(약세)·Nomura Small Cap 보유(고확신)·Liontrust 청산(목표 도달)",
+      "RAM 스미드 펀드 비중 축소(강세 유지)·Next Century 전량 매도(약세)·Nomura Small Cap 보유(고확신)·Liontrust 청산(목표 도달)",
       "바이사이드는 '사이클 초기'에 동의하면서도 3분기에 차익·장비주 이탈",
       "Fiscal.ai company_fund_letters"
      ],
@@ -1805,6 +1870,12 @@
       "매수 4·매도 33",
       "6~7월 전임 CFO·CAO 장내 매도, 8월 이후는 세금 원천징수만",
       "Fiscal.ai insider_transactions"
+     ],
+     [
+      "13F 2026Q3 공개 진행",
+      "83곳만 공개(11/14 마감)",
+      "아직 판단 불가",
+      "Fiscal.ai institutional_holders"
      ]
     ],
     "read": "바이사이드는 고점에서 줄였다 — 지금은 다시 살 근거(현금 전환)를 기다리는 단계"
@@ -1822,6 +1893,12 @@
       "1건",
       "Substack 0·HN 0 — 리테일 무관심",
       "knowledge/narratives/companies/co-ultraclean.md(10/28)"
+     ],
+     [
+      "공개 텔레그램 채널·딘스티커",
+      "해당 글 없음(11/2)",
+      "관심 없음",
+      "radar/pollers/tg_channels.py·radar/dticker.py"
      ]
     ],
     "read": "리테일 관심이 거의 없다 — 가격은 기관·셀사이드가 정한다"
@@ -1894,9 +1971,9 @@
      "retail": "약"
     },
     "drives": "multiple",
-    "quant": "EV/매출 6/30 3.21배 → 10/29 1.33배(−59%), 같은 기간 선행 매출 추정은 상향",
+    "quant": "Fwd 1Y P/E 2/23 44.8배 → 10/30 8.9배, 같은 기간 선행 EPS 추정은 상향",
     "status": "확산",
-    "falsifier": "장비 업종 배수 회복과 함께 UCTT EV/매출 2배 회복",
+    "falsifier": "장비 업종 배수 회복과 함께 UCTT Fwd 1Y P/E 12배 회복",
     "source": "Fiscal.ai daily ratios·co-ultraclean.md"
    },
    {
@@ -1916,10 +1993,10 @@
    }
   ],
   "lead": {
-   "summary": "UCTT의 기업가치는 **WFE(반도체 장비 투자) × 점유 약 2% × 이익률** 세 숫자로 정해진다. 주가는 1/2 $27.32에서 6/30 $142.59로 5.2배 올랐다. AI 투자가 WFE를 2026년 약 $155B에서 2027년 $200B 초과로 끌어올리고, 상승기에 장비사가 넘기는 외주와 총이익률 20% 목표가 겹치면 이익이 매출보다 빨리 는다는 이야기였다. 지금은 **멀티플 프리미엄이 사라졌다.** EPS 추정은 계속 올랐는데(CY2027 $2.05 → $6.63, 표본 1명) 주가는 고점 대비 −62%다. 시장의 질문이 '얼마나 오르나'에서 '이 사이클이 얼마나 오래가고, 증설 비용을 누가 대나'로 바뀌었다.",
+   "summary": "UCTT의 기업가치는 **WFE(반도체 장비 투자) × 점유 약 2% × 이익률** 세 숫자로 정해진다. 주가는 1/2 $27.32에서 6/30 $142.59로 5.2배 올랐다. AI 투자가 WFE를 2026년 약 $155B에서 2027년 $200B 초과로 끌어올리고, 상승기에 장비사가 넘기는 외주와 총이익률 20% 목표가 겹치면 이익이 매출보다 빨리 는다는 이야기였다. 지금은 **멀티플 프리미엄이 사라졌다.** EPS 추정은 계속 올랐는데(CY2027 $2.05 → $6.63, 표본 1명) 주가는 고점 대비 −65%다. 시장의 질문이 '얼마나 오르나'에서 '이 사이클이 얼마나 오래가고, 증설 비용을 누가 대나'로 바뀌었다.",
    "value_story": "매출 = WFE × 점유 약 2%(회사 환산 $5B ÷ $250B). 이익 = 매출 × 이익률이고, 총이익률은 3Q 17.3%에서 매출 $4B 시 20%가 목표다. 멀티플은 사이클이 몇 년 가느냐에 대한 시장의 판단이다. UCTT는 고객 설계대로 만드는 비중이 커서 기술 희소성 프리미엄이 작다. 그래서 배수는 업종 사이클과 함께 움직이고, EPS는 가동률과 함께 움직인다.",
    "premium": {
-    "multiple": "지금은 프리미엄이 아니라 할인이다. EV/매출 1.33배는 6/30 3.21배에서 −59%이고, 동종 ICHR 1.47배보다 낮으며 MKSI 4.18배의 3분의 1이다. 고점의 프리미엄은 'WFE 다년 사이클 + 외주 확대'가 만들었고, 7월 이후 장비 업종 디레이팅과 증설 자금 조달이 지웠다.",
+    "multiple": "지금은 프리미엄이 아니라 할인이다. Fwd 1Y P/E 8.9배는 동종 중앙값 14.7배보다 40% 낮고, 2/23의 44.8배에서 내려왔다. 고점의 프리미엄은 'WFE 다년 사이클 + 외주 확대'가 만들었고, 7월 이후 장비 업종 디레이팅과 증설 자금 조달이 지웠다.",
     "eps": "EPS에는 기대가 남아 있다. CY2027 EPS 컨센서스 $6.63은 1년 전 $2.05의 3.2배이고, 추정 범위 하단 $5.85와는 13% 벌어져 있다. 일부는 사업이 아니라 재무 구조에서 왔다. 분기 이자비용이 $9.9M에서 $1.5M로 줄어 연 약 $34M, 세후 주당 약 $0.55가 더해졌다(Chiip 계산)."
    },
    "why_excited": "열광의 정점은 6월이었다. 첫째, 규모가 커졌다. 회사가 인용한 고객의 2026년 WFE 전망은 4월 $140~145B였고, 10월 Lam은 2026년 약 $155B, 2027년 $200B 초과를 제시했다. 둘째, 레버리지다. 회사는 매출 $4B에서 총이익률 20%를 목표로 말했고, 상승기에 고객이 서브시스템을 외주로 넘긴다고 설명했다. 셋째, 가시성이다. 2Q 콜에서 경영진은 고객이 예측 기간을 늘려 주고 있다고 말했다. 넷째, 리비전이다. CY2027 EPS 추정이 2월에 2배가 됐고 8월에 다시 34% 올랐다. 식은 이유도 같은 곳에 있다. 7월에 장비 업종이 AI 트레이드 재평가로 급락했고, 8/14 ATM 등록, 10/5 UBS의 증설 사유 목표가 하향, 10/21 Lam 전망 실망이 이어졌다.",
@@ -1949,20 +2026,20 @@
      "falsifier": "2028년까지 NPX 프로그램의 양산 매출이 확인되지 않으면 기술 프리미엄의 근거가 없다."
     },
     {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "측정 불가",
+     "change": "해당 없음(주문→인도 기간을 회사도 피어도 공개하지 않는다). 10-K는 주문 대부분을 같은 분기 안에 받아 처리하고 의미 있는 수주잔고가 없다고 적었다. 대신 물량 속도를 본다. 분기 매출은 2Q $644.9M → 3Q $759.0M → 4Q 가이던스 $800~860M이다.",
+     "evidence": "병목은 UCTT 조립이 아니라 부품이다. 경영진은 MFC 부족이 1~2분기 더 간다고 말했고, 10-K는 공급사 납기가 고객 납기보다 길 수 있다고 적었다.",
+     "falsifier": "MFC 부족이 풀린 뒤에도 4Q 매출이 $800M에 못 미친다"
+    },
+    {
      "lens": "M&A",
      "drives": "multiple",
      "status": "성장 동력 아님",
-     "change": "M&A는 지금 성장 동력이 아니다. 2018년 Quantum Global(세정 서비스), 2020년 말 합의한 Ham-Let(밸브·피팅), 2023년 HIS Innovations(서브팹)로 사업을 넓혔지만, 2025년 2분기에 Fluid Solutions $77.6M·Services $73.5M, 합계 $151.1M의 영업권을 상각했다. 3Q 콜까지 새 인수 계획은 나오지 않았다.",
+     "change": "M&A는 지금 성장 동력이 아니다. 2018년 Quantum Global(세정 서비스), 2020년 말 합의한 Ham-Let(밸브·피팅), 2023년 HIS 이노베이션스(서브팹)로 사업을 넓혔지만, 2025년 2분기에 Fluid Solutions $77.6M·Services $73.5M, 합계 $151.1M의 영업권을 상각했다. 3Q 콜까지 새 인수 계획은 나오지 않았다.",
      "evidence": "10-K 2025 영업권 주석. 남은 영업권 $114.2M. 2025년 순손실의 주된 원인이 이 상각이다.",
      "falsifier": "자체 IP가 있는 부품·계측 회사를 합리적 가격에 사면 긍정으로 바뀐다. 증자 자금으로 하는 대형 인수는 반대 방향이다."
-    },
-    {
-     "lens": "재정정책",
-     "drives": "revision",
-     "status": "시행 중·일몰 임박",
-     "change": "미국 세액공제가 고객의 투자 일정을 앞당기는 간접 효과다. UCTT가 직접 받는 혜택이 아니다. 첨단 제조 세액공제(48D)는 2025년 이후 가동 자산에 35%로 올랐고, 2026년 12월 31일까지 착공해야 받는다. 2026년 1월 232조 관세는 좁은 범위의 첨단 로직 칩이 대상이었고 제조 장비에는 즉시 관세를 매기지 않았다.",
-     "evidence": "회사는 서비스 매출이 미국 신규 팹 가동에 따라 2027~28년에 커진다고 설명했다. SEMI가 48D 연장을 요청 중이나 입법은 확인되지 않았다.",
-     "falsifier": "연장 없이 일몰되면 2027년 이후 미국 착공이 줄 수 있다. 광범위 관세가 장비까지 확대되면 해외 매출 75.9%(2025)인 UCTT에 불리하다."
     },
     {
      "lens": "CAPEX 낙수효과",
@@ -2009,7 +2086,38 @@
      "use": "식각·ALD·PVD·리소그래피·계측",
      "money": "첫 공급사 자격을 얻으면 양산 때 점유와 이익률이 오른다. 아직 매출로 확인되지 않았다"
     }
-   ]
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(UCTT에 직접 닿는 재정 지출이 없다). CHIPS 보조금은 고객 팹에 가고, 회사가 공시한 정부 보조금은 2025년 $2.2M뿐이다.",
+     "evidence": "10-Q·10-K에 전략 계약이나 CHIPS 지원 공시가 없다.",
+     "drives": "revision",
+     "status": "간접",
+     "falsifier": "미국 팹 보조금 지급이 끊겨 착공이 밀린다"
+    },
+    "orders": {
+     "change": "2026년 1월 232조 조치는 좁은 범위의 첨단 로직 칩이 대상이었고 장비에는 즉시 관세를 매기지 않았다. 그 뒤 변화는 확인하지 못했다.",
+     "evidence": "법무법인 해설 기준이다. UCTT 2025년 해외 매출은 75.9%다.",
+     "drives": "multiple",
+     "status": "2026년 2월 이후 미확인",
+     "falsifier": "광범위 관세가 장비·부품까지 넓어진다",
+     "house": {
+      "level": 1,
+      "why": "대통령 조치라 표결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "대통령 조치라 표결 없음"
+     }
+    },
+    "laws": {
+     "change": "48D 세액공제는 2025년 법으로 35%가 됐지만 2026년 12월 31일 뒤 착공분은 받지 못한다. 연장안 BASIC Act(H.R. 3204)와 상원 SEMI Investment Act가 있고, 통과는 확인되지 않았다.",
+     "evidence": "SEMI는 8월에도 연장을 요청 중이었다. Crapo·Wyden 상원의원이 연장 지지를 밝혔다. 간접 효과라 고객 착공 일정으로만 닿는다.",
+     "drives": "revision",
+     "status": "일몰 임박",
+     "falsifier": "연장 없이 일몰되고 2027년 미국 착공 계획이 줄어든다"
+    }
+   }
   }
  },
  "revision_events": [
@@ -2089,6 +2197,12 @@
    "tag": "3Q26 실적·ATM 220만 주 공개",
    "q": "3Q26",
    "session": "after"
+  },
+  {
+   "date": "2026-10-30",
+   "kind": "내러티브",
+   "tag": "장비주 동반 −6~−8%(회사 공시 없음)",
+   "session": "intraday"
   }
  ],
  "ladder": {
@@ -2154,7 +2268,20 @@
    "eps": 5.59269,
    "ebitda": 403141257,
    "ebit": 353600000,
-   "revenue": 3620562738
+   "revenue": 3620562738,
+   "rev_ttm": 2444300000
+  },
+  "horizons": {
+   "2": {
+    "eps": 6.89995,
+    "ebitda": 494907825,
+    "ext": 0
+   },
+   "3": {
+    "eps": 8.910489145299145,
+    "ebitda": 623793539.4761412,
+    "ext": 3
+   }
   },
   "guided": {
    "eps": true,
@@ -2165,5 +2292,190 @@
    "ev_ebitda_fwd": "fiscal"
   },
   "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "next_event": {
+  "date": "2027-03-01",
+  "tag": "4Q26 실적(예상일, 전년 발표는 2/23)"
+ },
+ "moat": {
+  "summary": "고객 승인과 규모가 신규 진입은 막지만, 총이익률 17%가 말하듯 가격 결정력으로 이어지지 않는다",
+  "items": [
+   {
+    "kind": "장비사 승인 라인",
+    "verdict": "보통",
+    "claim": "Lam·AMAT 장비에 들어가는 가스 계통은 고객 승인을 받은 설계·공정으로 만들어 쉽게 바꾸지 못한다.",
+    "evidence": "3Q 매출의 61.1%가 두 고객이다. 다만 10-K는 고객 내재화와 Ichor·Fujikin·Foxsemicon·VDL ETG·Jabil·Celestica를 경쟁으로 적었고, 고객을 위해 개발한 IP는 대체로 고객 소유다.",
+    "quant": "3Q 제품 총이익률 15.6%",
+    "falsifier": "상위 고객이 물량을 이원화하거나 내재화해 어느 한쪽 비중이 5%p 이상 준다"
+   },
+   {
+    "kind": "세정·분석 서비스 현장망",
+    "verdict": "보통",
+    "claim": "팹 가까이에 인증된 세정·코팅·오염 분석 설비를 두어야 해서 지역 밀착이 진입 장벽이다.",
+    "evidence": "서비스는 3Q 매출 $77.1M으로 10%지만 총이익률이 제품의 약 2배다. 미국 신규 팹 가동이 2027~28년 수요로 이어진다는 건 회사 설명이고 계약은 공시되지 않았다.",
+    "quant": "3Q 서비스 총이익률 28.8%",
+    "falsifier": "서비스 총이익률이 25% 아래로 내려가거나 미국 신규 팹 인증이 경쟁사로 간다"
+   },
+   {
+    "kind": "규모와 상승기 캐파",
+    "verdict": "약함",
+    "claim": "상승기에 물량을 받아낼 캐파가 곧 점유율이다. 다만 고객 약정 없이 지은 캐파라 사이클이 꺾이면 해자가 아니라 고정비다.",
+    "evidence": "회사는 2027년 상반기 연 $4B 캐파를 제시했다. 동종 Ichor TTM 매출은 $1.0B다. 재고 구매 약정 $1,111M은 구속력 없는 고객 예측을 근거로 잡혀 있다.",
+    "quant": "TTM 매출 $2.44B vs Ichor $1.01B",
+    "falsifier": "경쟁사 증설이 겹쳐 매출 $850M 분기에도 총이익률이 17%를 밑돈다"
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": -0.2,
+  "why": "영업이익률이 동종의 3분의 1 수준이고 영업현금이 3분기 연속 음수이며 EPS 표본이 얇아 동종 중앙값에서 할인을 유지한다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "terms": {
+  "NPX": "차세대 공정 부품을 고객과 함께 개발·시험하는 UCT 센터 프로그램",
+  "MFC": "질량유량제어기, 공정 가스 유량을 재는 핵심 부품",
+  "UCT 3.0": "램프 준비·NPX·디지털 전환을 묶은 경영진의 사업 계획",
+  "ALD": "원자층 증착",
+  "PVD": "물리 기상 증착",
+  "GAA": "게이트 올 어라운드 트랜지스터",
+  "HBM": "고대역폭 메모리",
+  "WFE": "웨이퍼 팹 장비 투자",
+  "ATM": "시장가 분할 증자",
+  "build-to-spec": "고객 사양을 받아 설계부터 맡는 방식",
+  "UCT": "Ultra Clean의 회사 약칭",
+  "CHIPS": "미국 반도체 지원법",
+  "BASIC Act": "48D 세액공제 연장 법안(H.R. 3204)",
+  "SEMI Investment Act": "반도체 장비·소재 공급망까지 세액공제를 넓히는 상원 법안",
+  "BASIC": "BASIC Act, 48D 세액공제 연장 법안",
+  "CAO": "최고회계책임자",
+  "Fluid Solutions": "UCT 유체 부품 사업부",
+  "MBA": "경영학 석사",
+  "UC": "캘리포니아대",
+  "VDL ETG": "네덜란드 장비 위탁 생산사",
+  "VDL": "네덜란드 장비 위탁 생산사",
+  "ETG": "VDL ETG, 네덜란드 장비 위탁 생산사",
+  "Fluid": "UCT 유체 부품 사업부 이름",
+  "Solutions": "UCT 유체 부품 사업부 이름",
+  "AKT": "AMAT의 디스플레이 장비 사업",
+  "Applied Films": "AMAT이 2006년 인수한 코팅 장비 회사",
+  "HIS": "서브팹 회사",
+  "RAM": "미국 자산운용사",
+  "TD": "캐나다계 증권사",
+  "HMT": "하드디스크 부품 회사"
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "CEO는 2대 고객 AMAT 출신이고 의장도 AMAT 임원을 지냈다. 두 사람 모두 AMAT이 2006년 사들인 Applied Films 출신이다. 연결이 수주를 만들었다는 증거는 없다.",
+  "people": [
+   {
+    "name": "James Xiao",
+    "role": "CEO",
+    "since": "2025-09",
+    "profile": "55세. AMAT에서 19년 일했고 마지막은 ALD 제품군 총괄 부사장이었다. 2006년 Applied Films 인수로 합류했고 그 전에는 중국 법인 대표였다.",
+    "business": "AMAT ALD 제품군을 맡았던 경력이 2대 고객과 직접 닿는다. 위임장은 고객·업계·정부 네트워크를 선임 사유로 적었다. 다른 상장사 이사직은 확인하지 못했다.",
+    "political": "공개 기록상 공직·정치 활동 미확인",
+    "alumni": "대련이공대 응용물리, 인디애나대 켈리 MBA",
+    "social": "미확인",
+    "source": "2026 위임장"
+   },
+   {
+    "name": "Thomas T. Edman",
+    "role": "독립 의장",
+    "since": "2026-05(이사 2015)",
+    "profile": "63세. TTM Technologies CEO(2014~2025년 9월)를 지냈다. 그 전 AMAT에서 AKT 디스플레이 사업 총괄과 사업개발 부사장을 맡았고, Applied Films CEO였다.",
+    "business": "Jabil·Materion 이사(2026년 1월부터), TTM 이사(2004년부터), 전자 제조 협회(Global Electronics Association) 명예 의장. Jabil은 10-K가 적은 서브시스템 경쟁사다.",
+    "political": "공개 기록상 공직·정치 활동 미확인",
+    "alumni": "예일대 동아시아학, 와튼 MBA",
+    "social": "미확인",
+    "source": "2026 위임장"
+   },
+   {
+    "name": "Clarence L. Granger",
+    "role": "이사(전 CEO·전 의장)",
+    "since": "2002",
+    "profile": "77세. 12년간 CEO를 지냈고 2025년 3~9월 임시 CEO로 돌아왔다. 2026년 5월 의장에서 물러났다. 창업자가 아니고, 창업자는 공개 자료에서 현 경영진에 없다.",
+    "business": "Seagate·HMT 테크놀로지 경영진 출신",
+    "political": "미확인",
+    "alumni": "UC 버클리·스탠퍼드 산업공학",
+    "social": "미확인",
+    "source": "2026 위임장, 8-K 2026-05-26"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Xiao — AMAT ALD 제품군 총괄 출신, AMAT은 2대 고객",
+    "strength": 4,
+    "exposure": 0.545,
+    "basis": "TTM 매출 $2.44B × 3Q AMAT 비중 22.3%",
+    "evidence": "2026 위임장, 10-Q"
+   },
+   {
+    "network": "비즈니스",
+    "link": "Edman — AMAT 부사장·Applied Films CEO 출신, Xiao와 같은 회사 경력",
+    "strength": 3,
+    "exposure": 0.545,
+    "basis": "TTM 매출 $2.44B × 3Q AMAT 비중 22.3%. 위와 같은 매출이라 합산하지 않는다",
+    "evidence": "2026 위임장"
+   },
+   {
+    "network": "비즈니스",
+    "link": "Edman — Jabil 이사 겸임. Jabil은 경쟁사 명단에 있어 판로보다 이해상충 점검 대상",
+    "strength": 3,
+    "exposure": 0.0,
+    "basis": "연결이 닿는 UCTT 매출 없음",
+    "evidence": "2026 위임장, 10-K 경쟁 절"
+   },
+   {
+    "network": "정계",
+    "link": "로비·공직 연결 미확인",
+    "strength": 0,
+    "exposure": 0.0,
+    "basis": "공개 기록에서 찾지 못함",
+    "evidence": "2026 위임장"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-10-27",
+  "backlog_label": "수주잔고",
+  "summary": "회사는 의미 있는 수주잔고가 없다고 공시한다. 건별 확정 수주가 없어 캐파와 신규 프로그램으로 잰다.",
+  "items": [
+   {
+    "name": "연 $4B 캐파",
+    "status": "파이프라인",
+    "total": 4.0,
+    "no_sum": true,
+    "progress": 0.76,
+    "progress_basis": "3Q 매출 연환산 $3.04B ÷ $4B",
+    "margin": 0.2,
+    "margin_kind": "매출총이익",
+    "margin_basis": "회사 목표",
+    "end": "2027-06",
+    "speed": "1H27 목표, 이후 $5B 이상 단계적",
+    "blockers": [
+     "고객 장기 약정 없음",
+     "재고 구매 약정 $1,111M",
+     "ATM 희석"
+    ],
+    "source": "3Q 콜·10-Q"
+   },
+   {
+    "name": "신규 프로그램 8건",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "회사 설명으로 2~3년 뒤 다음 노드에서 상용화",
+    "blockers": [
+     "고객 노드 일정",
+     "고객 소유 IP"
+    ],
+    "source": "3Q 콜"
+   }
+  ]
  }
 }

@@ -9,13 +9,13 @@ region_mix:
   US: 1.0
 tax: 0.21
 horizon: 10
-as_of: '2026-10-30'
+as_of: '2026-11-02'
 market:
-  date: '2026-10-30'
-  price: 54.7
+  date: '2026-11-02'
+  price: 49.71
   shares: 0.0489
   net_debt: 0.3701
-  source: 가격 = Fiscal.ai company_stock_prices 2026-10-29 종가 · 주식 수 47,960,159(Fiscal.ai
+  source: 가격 = Fiscal.ai company_stock_prices 2026-10-30 종가 · 주식 수 47,960,159(Fiscal.ai
     shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25
     장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜
     CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)
@@ -88,7 +88,7 @@ provenance:
   shares: 완전 희석 = 기본 0.04796(2026-10-21) + 옵션·RSU·워런트·전환 0.0009 — 4Q 가이던스 희석 주식 약
     48.9백만 주(3Q 콜 CFO) − 표지 기본 주식 47.96백만 = 약 0.
 notes:
-- 자동 생성(build_drivers) 2026-10-30 — 데이터 묶음 2026-10-30
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
 - '어닝콜 위험: 상위 2고객 61% 집중'
 - '어닝콜 위험: 재고 $723M(+$93M QoQ)·영업현금흐름 3분기 연속 마이너스'
 - '어닝콜 위험: MFC 부족 1~2분기 지속(경영진)'
@@ -100,3 +100,9 @@ evidence:
 - '3Q 실적 보도자료: https://www.prnewswire.com/news-releases/ultra-clean-reports-third-quarter-2026-financial-results-302921159.html'
 - 'Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-UCTT'
 - knowledge/narratives/companies/co-ultraclean.md(2026-10-28 내러티브 수집)
+- '10-K 2025: https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm'
+- '전환사채 8-K 2026-03-03: https://www.sec.gov/Archives/edgar/data/1275014/000095010326003139/dp242585_8k.htm'
+- 'ATM 8-K 2026-08-14: https://www.sec.gov/Archives/edgar/data/1275014/000095010326012379/dp251729_8k.htm'
+- '2026-11-02 재발행: Fiscal.ai 시세·Forward 배수·추정·의견(10/30), Easyconomics earnings_summary_dates·company_profile,
+  SEC 10-Q·10-K·DEF 14A·8-K 원문. Data provided by Zacks Investment Research, Inc.,
+  www.zacksdata.com'
