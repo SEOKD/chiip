@@ -8898,8 +8898,8 @@
   "DC": "직류",
   "GE": "미국 General Electric",
   "JPM": "J.P. Morgan",
-  "McDonough": "신임 CFO Claire McDonough",
-  "RBC": "캐나다 은행 RBC",
+  "McDonough": "Rivian 출신 CFO 내정자",
+  "RBC": "캐나다 Royal Bank",
   "UPS": "무정전 전원장치"
  },
  "moat": {
@@ -8916,7 +8916,7 @@
    {
     "kind": "대형 터빈 3사 과점과 납기 순번",
     "verdict": "강함",
-    "claim": "대형 터빈은 GE Vernova·Siemens Energy·Mitsubishi가 나눠 갖고, 2030년 물량이 대부분 팔렸다.",
+    "claim": "대형 터빈은 이 회사와 Siemens Energy·Mitsubishi가 나눠 갖고, 2030년 물량이 대부분 팔렸다.",
     "evidence": "BNEF 추정 3사 제조 용량 약 66%(2차 자료). 회사는 2032년 슬롯도 팔았다고 밝혔다",
     "quant": "계약 122GW ÷ 연 생산 20GW = 약 6.1년 치. 2026 가스 수주 가격은 2025 대비 약 +50%",
     "falsifier": "업계 용량이 BNEF 전망대로 67GW → 102GW로 늘고 가스 수주 가격이 전년 대비 내려간다"
