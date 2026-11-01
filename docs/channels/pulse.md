@@ -13,3 +13,4 @@
 - **일본 정보망**(2026-10-29): `config/jp_watch.yaml` 45개사 적시공시 미러·일본 매체를 10분마다(`radar/pollers/jp_disclosure.py`, TDnet 직접 수집 안 함).
 - **알파 점수의 내러티브 판단 = SemiAnalysis 렌즈**(마스터 지시 2026-10-28 '100% 답습', `knowledge/narratives/lens_semianalysis.md`): 바텀업 공급망 숫자·결속 병목과 이동·TCO 승자·서류 검증·통념 반박·코디자인·경제성 회의 + 크라우딩(SA가 이미 민 논지는 gap −1). 공개 자료만, 유료 본문 금지.
 - **실적 일정 = 알파 잠재력 5.0 이상 종목 + 보유 종목**(`config/alpha.yaml`, '텐배거 가능성' 10점 = 1000%가 아니라 그만큼 큰 알파). 매일 07~09시 텔레그램 1통(월요일은 7일치). 원천은 Fiscal.ai events_calendar(2026-10-30 마스터 지시 "어닝캘린더도 Fiscal.ai를 참조하라") + 한국은 KIND IR일정(Fiscal에 코스닥 없음)(`radar/markets/earnings_calendar.py`).
+- **주기**(2026-11-01 마스터 지시 "Chiip Pulse의 주기를 주중에만 5분, 주말에는 1시간으로"): 한국 시각 기준 월~금 `chiip-pulse` 5분, 토·일 `chiip-pulse-weekend` 1시간. 앱 예약 하나는 cron 하나만 받아 둘로 나눴다. 두 예약 모두 항상 켜 둔다.
