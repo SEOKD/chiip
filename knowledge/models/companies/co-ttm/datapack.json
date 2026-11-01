@@ -2,18 +2,20 @@
  "id": "co-ttm",
  "name": "TTM Technologies",
  "ticker": "TTMI",
- "as_of": "2026-10-30",
+ "as_of": "2026-11-02",
  "unit": "B$",
  "industry": "electronics",
- "region_mix": {"US": 1.0},
+ "region_mix": {
+  "US": 1.0
+ },
  "tax": 0.21,
  "profile": {
-  "price": 87.63,
-  "shares_basic": 0.105376,
-  "shares_date": "2026-10-23",
-  "cash": 0.8763,
-  "debt": 1.7467,
-  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-29 종가 · 주식 수 105,375,520(Fiscal.ai shares_outstanding 2026-10-23, 10-Q 표지) · 차입 = 10-Q 2026-09-28 유동성 장기차입 184.0 + 장기차입 1,459.9 + 리스 102.8 = 1,746.7백만$ · 현금 = 876.3백만$(9/28 — 3분기 인수 대금 $369M 지급 후, 차입 순증 $679M 반영). 주식 수는 10/23, 현금·차입은 9/28 기준(그 사이 자금 조달 공시 미확인)"
+  "price": 82.94,
+  "shares_basic": 0.104176,
+  "shares_date": "2026-10-27",
+  "cash": 0.7763,
+  "debt": 2.8467,
+  "source": "가격 = 2026-10-30 종가. 주식 수 = 10-Q 표지 105,375,520주(10/23) − 10/26~27 자사주 매입 약 120만 주(10-Q Liquidity). 현금·차입 = 10-Q 9/28 현금 $876.3M·차입 $1,643.9M·리스 $102.8M에 후속 사건을 더한 추정: 9/30 Epiq 인수 약 $1,100M을 Incremental Term Loan A $300M·B $800M으로 조달, 10월 자사주 $100M 현금 지급. 회전한도 상환액은 미공시이나 순차입에는 영향이 없다. 수수료와 4Q 현금흐름은 반영하지 않았다. Ophir $650M(2027년 2분기 종결 예정)은 넣지 않았다"
  },
  "dilution": {
   "potential_total": 0.00232,
@@ -21,49 +23,268 @@
   "rsu": null,
   "warrants": null,
   "converts_shares": 0.0,
-  "date": "2026-10-23",
-  "source": "3분기 희석 가중평균 주식 107.7백만(Fiscal.ai 표준화 손익, 2Q 콜 CFO '약 107.7백만 주' 가이던스와 일치) − 표지 기본 주식 105.38백만 = 약 2.32백만 주(옵션·RSU 추정). SEC XBRL 반희석 증권 미조회"
+  "date": "2026-10-27",
+  "source": "3분기 희석 가중평균 주식 107.7백만(Fiscal.ai 표준화 손익, 2Q 콜 CFO '약 107.7백만 주' 가이던스와 일치) − 표지 기본 주식 105.38백만 = 약 2.32백만 주(옵션·RSU 추정). SEC XBRL 반희석 증권 미조회 · 10/26~27 자사주 약 120만 주 매입은 기본 주식 수에서 뺐다. 2027 가이던스의 희석 주식 108.1M은 매입 전(10/22) 값이다"
  },
  "financials": {
   "rev_ttm": 3.8283,
   "ebit_ttm": 0.4245,
-  "invested_capital": 2.9128,
+  "invested_capital": 4.0128,
   "capex_ttm": 0.321,
   "da_ttm": 0.1597,
   "sbc_ttm": 0.0739,
   "s2c": 1.31,
   "rev_growth_ttm": 0.376,
   "basis": "GAAP",
-  "note": "TTM = Fiscal.ai 표준화 분기 손익 4Q25~3Q26 매출 774.3+846.0+1,004.1+1,203.9백만$. GAAP 영업이익 TTM 424.5백만$(Fiscal.ai 4분기 합 이익률 11.09% × 매출 — 1~3Q 72.4·109.1·162.3, 4Q25 역산 80.7). 조정 EBIT TTM 553.6(98.2+108.0+138.4+209.0)·조정 EBITDA TTM 668.2(126.2+132.9+166.8+242.3). CAPEX 69.4+106.8+62.4+82.4(설비 매각 14.7 별도), 감가상각 37.4+38.5+40.3+43.5, SBC 12.1+24.4+13.3+24.1. 투하자본 = 자기자본 2,042.4 + 차입·리스 1,746.7 − 현금 876.3"
+  "note": "TTM = Fiscal.ai 표준화 분기 손익 4Q25~3Q26 매출 774.3+846.0+1,004.1+1,203.9백만$. GAAP 영업이익 TTM 424.5백만$(Fiscal.ai 4분기 합 이익률 11.09% × 매출 — 1~3Q 72.4·109.1·162.3, 4Q25 역산 80.7). 조정 EBIT TTM 553.6(98.2+108.0+138.4+209.0)·조정 EBITDA TTM 668.2(126.2+132.9+166.8+242.3). CAPEX 69.4+106.8+62.4+82.4(설비 매각 14.7 별도), 감가상각 37.4+38.5+40.3+43.5, SBC 12.1+24.4+13.3+24.1. 투하자본 = 자기자본 2,042.4 + 차입·리스 1,746.7 − 현금 876.3 · 투하자본은 Epiq·자사주를 반영한 프로포마: 자기자본 1,942.4(9/28 2,042.4 − 자사주 100) + 차입·리스 2,846.7 − 현금 776.3. TTM 이익에는 Epiq가 없어 ROIC는 일시 낮아진다"
  },
  "consensus": {
-  "rev": {"FY2026": 4.4839, "FY2027": 6.625, "FY2028": 7.75},
+  "rev": {
+   "FY2026": 4.4839,
+   "FY2027": 6.625,
+   "FY2028": 7.75
+  },
   "rev_basis": "gaap",
-  "ebit_margin": {"FY2026": 0.1511, "FY2027": 0.1953, "FY2028": 0.2022},
+  "ebit_margin": {
+   "FY2026": 0.1511,
+   "FY2027": 0.1953,
+   "FY2028": 0.2022
+  },
   "margin_basis": "non_gaap",
-  "rev_low": {"FY2027": 6.5, "FY2028": 6.6},
-  "rev_high": {"FY2027": 6.75, "FY2028": 9.0},
+  "rev_low": {
+   "FY2027": 6.5,
+   "FY2028": 6.6
+  },
+  "rev_high": {
+   "FY2027": 6.75,
+   "FY2028": 9.0
+  },
   "n_analysts": 6,
-  "quarters_est": {"2026Q4": 1.43, "2027Q1": 1.526, "2027Q2": 1.654, "2027Q3": 1.8105, "2027Q4": 1.6345},
-  "quarters_act": {"2025Q4": 0.7743, "2026Q1": 0.846, "2026Q2": 1.0041, "2026Q3": 1.2039},
+  "quarters_est": {
+   "2026Q4": 1.43,
+   "2027Q1": 1.526,
+   "2027Q2": 1.654,
+   "2027Q3": 1.8105,
+   "2027Q4": 1.6345
+  },
+  "quarters_act": {
+   "2025Q4": 0.7743,
+   "2026Q1": 0.846,
+   "2026Q2": 1.0041,
+   "2026Q3": 1.2039
+  },
   "note": "매출·조정 EBIT = Fiscal.ai 자체 추정(company_estimates 2026-10-30 조회): FY2026 = 회사 가이던스(1~3Q 실적 3,054.0 + 4Q 가이던스 1,430), FY2027 = 회사 예비 가이던스 $6.5~6.75B 중간값(완료 인수 약 $0.5B 포함·Ophir 제외), FY2028 = Fiscal agentic consensus(범위 $6.6~9.0B). 조정 EBIT 677.3·1,294·1,567백만$ ÷ 매출. Zacks 대조: FY26 매출 4.489·FY27 6.631·FY28 7.451B$(2명), EPS 5.00·8.61·10.11(2~3명). 애널리스트 6명(의견 기준). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
   "surprise": [
-   {"period": "2025Q4", "metric": "매출", "unit": "M$", "actual": 774.32, "est": 752.213, "est_src": "zacks", "est_asof": "2025-10-31", "basis": "gaap", "earnings_date": "2026-02-04"},
-   {"period": "2025Q4", "metric": "EPS", "unit": "$", "actual": 0.7, "est": 0.683, "est_src": "zacks", "est_asof": "2025-11-03", "basis": "adjusted", "earnings_date": "2026-02-04"},
-   {"period": "2025Q4", "metric": "EBIT", "unit": "M$", "actual": 98.237, "est": 90.55, "est_src": "zacks", "est_asof": "2026-01-23", "basis": "adjusted", "earnings_date": "2026-02-04"},
-   {"period": "2025Q4", "metric": "EBITDA", "unit": "M$", "actual": 126.2, "est": 118.805, "est_src": "zacks", "est_asof": "2025-10-30", "basis": "adjusted", "earnings_date": "2026-02-04"},
-   {"period": "2026Q1", "metric": "매출", "unit": "M$", "actual": 845.976, "est": 782.915, "est_src": "zacks", "est_asof": "2026-02-06", "basis": "gaap", "earnings_date": "2026-04-29"},
-   {"period": "2026Q1", "metric": "EPS", "unit": "$", "actual": 0.75, "est": 0.66, "est_src": "zacks", "est_asof": "2026-02-09", "basis": "adjusted", "earnings_date": "2026-04-29"},
-   {"period": "2026Q1", "metric": "EBIT", "unit": "M$", "actual": 108.016, "est": 90.8, "est_src": "zacks", "est_asof": "2026-02-06", "basis": "adjusted", "earnings_date": "2026-04-29"},
-   {"period": "2026Q1", "metric": "EBITDA", "unit": "M$", "actual": 132.9, "est": 118.785, "est_src": "zacks", "est_asof": "2026-02-05", "basis": "adjusted", "earnings_date": "2026-04-29"},
-   {"period": "2026Q2", "metric": "매출", "unit": "M$", "actual": 1004.054, "est": 964.55, "est_src": "zacks", "est_asof": "2026-05-21", "basis": "gaap", "earnings_date": "2026-08-06"},
-   {"period": "2026Q2", "metric": "EPS", "unit": "$", "actual": 0.99, "est": 0.915, "est_src": "zacks", "est_asof": "2026-07-13", "basis": "adjusted", "earnings_date": "2026-08-06"},
-   {"period": "2026Q2", "metric": "EBIT", "unit": "M$", "actual": 138.445, "est": 119.7, "est_src": "zacks", "est_asof": "2026-07-10", "basis": "adjusted", "earnings_date": "2026-08-06"},
-   {"period": "2026Q2", "metric": "EBITDA", "unit": "M$", "actual": 166.8, "est": 156.645, "est_src": "zacks", "est_asof": "2026-07-10", "basis": "adjusted", "earnings_date": "2026-08-06"},
-   {"period": "2026Q3", "metric": "매출", "unit": "M$", "actual": 1203.855, "est": 1120, "est_src": "fiscal:guidance", "est_asof": "2026-08-06", "basis": "gaap", "earnings_date": "2026-10-22"},
-   {"period": "2026Q3", "metric": "EPS", "unit": "$", "actual": 1.46, "est": 1.24, "est_src": "fiscal:guidance", "est_asof": "2026-08-06", "basis": "adjusted", "earnings_date": "2026-10-22"},
-   {"period": "2026Q3", "metric": "EBIT", "unit": "M$", "actual": 208.996, "est": 176.605, "est_src": "fiscal:guidance_calculated", "est_asof": "2026-05-27", "basis": "adjusted", "earnings_date": "2026-10-22"},
-   {"period": "2026Q3", "metric": "EBITDA", "unit": "M$", "actual": 242.307, "est": 215.415, "est_src": "fiscal:agentic_consensus", "est_asof": "2026-10-20", "basis": "adjusted", "earnings_date": "2026-10-22"}
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-29",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 774.32,
+    "est": 752.898,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-04",
+    "pair": {
+     "zacks": 752.213
+    }
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-29",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.7,
+    "est": 0.683,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-02-04",
+    "pair": {
+     "zacks": 0.683
+    }
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-29",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 98.237,
+    "est": 90.55,
+    "est_src": "zacks",
+    "est_asof": "2026-01-23",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-04"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-29",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 126.2,
+    "est": 118.805,
+    "est_src": "zacks",
+    "est_asof": "2025-10-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-04"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 845.976,
+    "est": 789.839,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-29",
+    "pair": {
+     "zacks": 782.915
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.75,
+    "est": 0.67,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29",
+    "pair": {
+     "zacks": 0.66
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 108.016,
+    "est": 90.8,
+    "est_src": "zacks",
+    "est_asof": "2026-02-06",
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 132.9,
+    "est": 118.785,
+    "est_src": "zacks",
+    "est_asof": "2026-02-05",
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-29",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 1004.054,
+    "est": 962.04,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-06",
+    "pair": {
+     "zacks": 964.55
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-29",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.99,
+    "est": 0.89,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06",
+    "pair": {
+     "zacks": 0.915
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-29",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 138.445,
+    "est": 119.7,
+    "est_src": "zacks",
+    "est_asof": "2026-07-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-29",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 166.8,
+    "est": 156.645,
+    "est_src": "zacks",
+    "est_asof": "2026-07-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-28",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 1203.855,
+    "est": 1120,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-08-06",
+    "basis": "gaap",
+    "earnings_date": "2026-10-22"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-28",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.46,
+    "est": 1.24,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-08-06",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-22"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-28",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 208.996,
+    "est": 176.605,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-05-27",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-22"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-28",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 242.307,
+    "est": 215.415,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-20",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-22"
+   }
   ],
   "revisions": {
    "from_date": "2026-08-07",
@@ -71,28 +292,470 @@
    "from_label": "2Q 실적 직후(8/7~8/12) Zacks",
    "source": "Fiscal.ai analyst_estimates history(Zacks) — 같은 분기·연도끼리, 직전 값은 2Q 콜(8/5) 직후 첫 갱신. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
-    {"period": "2026Q4", "metric": "EPS", "from": 1.725, "to": 1.785},
-    {"period": "2027Q1", "metric": "EPS", "from": 1.48, "to": 1.875},
-    {"period": "2027Q2", "metric": "EPS", "from": 1.5, "to": 2.06},
-    {"period": "FY2027", "metric": "EPS", "from": 6.0567, "to": 8.6067},
-    {"period": "2026Q4", "metric": "매출(백만$)", "from": 1405.9, "to": 1434.8},
-    {"period": "2027Q1", "metric": "매출(백만$)", "from": 1319.1, "to": 1507.8},
-    {"period": "2027Q2", "metric": "매출(백만$)", "from": 1307.7, "to": 1599.9},
-    {"period": "FY2027", "metric": "매출(백만$)", "from": 5459.7, "to": 6630.8}
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 1.725,
+     "to": 1.785
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 1.48,
+     "to": 1.875
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 1.5,
+     "to": 2.06
+    },
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": 6.0567,
+     "to": 8.6067
+    },
+    {
+     "period": "2026Q4",
+     "metric": "매출(백만$)",
+     "from": 1405.9,
+     "to": 1434.8
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출(백만$)",
+     "from": 1319.1,
+     "to": 1507.8
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출(백만$)",
+     "from": 1307.7,
+     "to": 1599.9
+    },
+    {
+     "period": "FY2027",
+     "metric": "매출(백만$)",
+     "from": 5459.7,
+     "to": 6630.8
+    }
    ]
   },
-  "price_window": {"from": 136.35, "to": 87.63, "note": "리비전 구간과 같은 기간: 8/6 종가(2Q 실적 다음 날) → 10/29 종가"}
+  "price_window": {
+   "from": 136.35,
+   "to": 82.94,
+   "note": "리비전 구간과 같은 기간: 8/6 종가(2Q 실적 다음 날) → 10/30 종가"
+  },
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": "2026-10-29T09:07:20.000Z",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    [
+     "A",
+     "2026-12-28",
+     "2025-11-03",
+     2.8633,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2025-12-03",
+     2.8733,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2025-12-23",
+     2.87,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-01-16",
+     2.9733,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-01-23",
+     3.09,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-02-09",
+     3.24,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-04-20",
+     3.25,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-05-05",
+     3.6,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-05-21",
+     3.74,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-05-28",
+     3.78,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-05-29",
+     4.1267,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-07-13",
+     4.09,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-08-07",
+     4.3967,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-08-12",
+     4.8167,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-10-14",
+     4.7933,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-10-16",
+     4.7733,
+     3
+    ],
+    [
+     "A",
+     "2026-12-28",
+     "2026-10-28",
+     5.0033,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2025-08-05",
+     2.74,
+     1
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2025-10-13",
+     2.81,
+     1
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2025-11-03",
+     3.03,
+     1
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2025-12-03",
+     3.11,
+     1
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-01-23",
+     4.78,
+     1
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-02-06",
+     4.83,
+     2
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-02-09",
+     4.6367,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-04-20",
+     4.72,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-05-05",
+     5.1767,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-05-21",
+     5.3967,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-05-28",
+     5.43,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-05-29",
+     5.5333,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-08-07",
+     6.0567,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-08-12",
+     6.9,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-10-14",
+     7.3433,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-10-15",
+     7.3533,
+     3
+    ],
+    [
+     "A",
+     "2028-01-03",
+     "2026-10-28",
+     8.6067,
+     3
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-05-05",
+     5.72,
+     1
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-05-21",
+     6.37,
+     1
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-05-28",
+     6.475,
+     2
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-07-10",
+     6.59,
+     2
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-08-12",
+     7.87,
+     2
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-10-15",
+     8.085,
+     2
+    ],
+    [
+     "A",
+     "2029-01-01",
+     "2026-10-28",
+     10.11,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-28",
+     "2026-01-15",
+     0.735,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-28",
+     "2026-05-29",
+     1.3,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-28",
+     "2026-08-12",
+     1.725,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-28",
+     "2026-10-16",
+     1.695,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-28",
+     "2026-10-28",
+     1.785,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-29",
+     "2026-05-28",
+     1.26,
+     1
+    ],
+    [
+     "Q",
+     "2027-03-29",
+     "2026-08-12",
+     1.48,
+     1
+    ],
+    [
+     "Q",
+     "2027-03-29",
+     "2026-10-28",
+     1.875,
+     2
+    ]
+   ]
+  },
+  "ratings": {
+   "strong_buy": 4,
+   "buy": 1,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-10-06",
+   "target_mean": 179.83,
+   "target_high": 250,
+   "target_low": 136
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1.8,
+   "2027Q1": 1.66,
+   "2027Q2": 1.95,
+   "2027Q3": 2.55,
+   "2027Q4": 2.35,
+   "2028Q1": 2.15,
+   "2028Q2": 2.51,
+   "2028Q3": 3.25
+  }
  },
  "guidance": {
-  "rev_fy0": [4.47, 4.49],
+  "rev_fy0": [
+   4.47,
+   4.49
+  ],
   "rev_basis": "gaap",
   "margin_basis": "non_gaap",
-  "q4_rev": [1.43, 1.43],
-  "q4_eps": [1.8, 1.8],
-  "fy2027_rev": [6.5, 6.75],
-  "fy2027_eps": [8.1, 8.9],
-  "long_term": "2Q 콜: 2027·2028년 유기 매출 성장 15~20% → 3Q 콜: 2027 예비 가이던스 매출 $6.5~6.75B·조정 EPS $8.10~8.90(완료 인수 약 $0.5B 포함, Ophir 제외), 유기 성장 '20% 이상'",
-  "source": "회사 3Q 실적 보도자료·콜(2026-10-22, Fiscal.ai ir_events_transcript q3-2026): FY2026 매출 가이던스 $4.47B → $4.49B 상향, 4Q 매출 약 $1.43B·조정 EPS 약 $1.80(Fiscal.ai guidance 칸)"
+  "q4_rev": [
+   1.42,
+   1.44
+  ],
+  "q4_eps": [
+   1.77,
+   1.83
+  ],
+  "fy2027_rev": [
+   6.5,
+   6.75
+  ],
+  "fy2027_eps": [
+   8.1,
+   8.9
+  ],
+  "long_term": "2Q 콜: 2027·2028 유기 매출 성장 15~20%, FY2026 매출 약 $4.4B → 3Q 콜: FY2026 매출 $4.47~4.49B, 2027 예비 매출 $6.5~6.75B·조정 EPS $8.10~8.90(희석 108.1M주, 완료 인수 약 $0.5B 포함, Ophir 제외), 유기 성장 '20% 이상'",
+  "source": "회사 3Q 실적 보도자료·콜(2026-10-22) CFO 발언: 4Q 매출 $1.42~1.44B·조정 EPS $1.77~1.83, FY2026 매출 $4.47~4.49B·EPS $4.97~5.03. 2Q 콜의 FY2026 약 $4.4B에서 상향",
+  "eps_fy0": [
+   4.97,
+   5.03
+  ],
+  "next": {
+   "period": "4Q26",
+   "rev": 1430,
+   "rev_cons": 1434.8,
+   "eps": 1.8,
+   "eps_cons": 1.785,
+   "unit": "$M"
+  }
  },
  "call": {
   "date": "2026-10-22",
@@ -119,18 +782,20 @@
    "capex_commit_2025_29_b": 1.6
   },
   "guidance_changes": [
-   "FY2026 매출 $4.47B → $4.49B, 4Q 매출 약 $1.43B(데이터센터·네트워킹 비중 약 49%)",
-   "FY2027 예비 가이던스 첫 제시: 매출 $6.5~6.75B·조정 EPS $8.10~8.90 — 2Q 콜의 '2027 유기 성장 15~20%'보다 높다(완료 인수 약 $0.5B 포함)"
+   "FY2026 매출 약 $4.4B → $4.47~4.49B, 조정 EPS '$5 근접' → $4.97~5.03, 4Q 매출 $1.42~1.44B(데이터센터·네트워킹 비중 약 49%)",
+   "FY2027 예비 가이던스 첫 제시: 매출 $6.5~6.75B·조정 EPS $8.10~8.90 — 2Q 콜의 '2027 유기 성장 15~20%'보다 높다(완료 인수 약 $0.5B 포함, Ophir 제외)"
   ],
   "new_topics": [
-   "Ophir Optics(MKS) $650M 전액 현금 인수 — 2027년 2분기 종결 예정, 2027 조정 EBITDA 약 10배, 종결 시 순레버리지 2배 미만",
-   "N+M용 아시아 캐파 $400M 추가(2028년 완전 가동) — 기존 2025~29년 $1.2B 위에",
+   "Epiq Solutions $1.1B 인수 9/30 종결 — 2027 EPS 소폭 희석, 2028 증가 예상(회사). 시너지 반영 2027 EBITDA 17.4배",
+   "Ophir Optics(MKS) $650M 전액 현금 인수 — 2027년 2분기 종결 예정, 2027 조정 EBITDA 약 10배, 2027 수주 85% 확보(CEO), 종결 시 순레버리지 2배 미만 목표",
+   "N+M용 캐파 $400M 추가(4Q26~2028 초, 2028년 매출 대상) — 기존 2025~29년 $1.2B 위에",
    "A&D 수주잔고 $2.0B(사상 최대, BtB 1.6) · 2027 A&D 매출 약 65% 가시성",
-   "전체 BtB 2.1·90일 수주잔고 $1.3B(+111% YoY)",
-   "인수 차입으로 이자비용 분기 약 $20M 증가(CFO)"
+   "전체 BtB 2.1(상업 2.5·A&D 1.6)·90일 수주잔고 $1.3B(+111% YoY, 취소 가능)",
+   "인수 차입으로 이자비용 분기 약 $20M 증가 — 4Q 이자 가이던스 $33.9M(3Q $12.1M)",
+   "CFO '큰 인수는 당분간 끝, 레버리지 축소에 집중'"
   ],
   "dropped_topics": [
-   "2Q 콜의 'N+M 하반기 약 $600M(3Q 1/3·4Q 2/3)' 구체 금액 — 3Q 콜에선 '데이터센터·네트워킹의 약 30%'라는 비중으로만 답함"
+   "2Q 콜의 N+M 달러 금액(3Q 약 $200M·4Q 약 $400M) — 3Q 콜에서는 '데이터센터의 약 30%'라는 비중으로 답했고, '200 약간 위, 400 약간 아래'라는 말과 비중 계산이 맞지 않는다"
   ],
   "analyst_focus": [
    "Fox Advisors — N+M 수율·고객 확산, 인수 자금 조달과 추가 M&A",
@@ -140,169 +805,1579 @@
    "Needham — 2027 가이던스의 성장 원천(N+M vs A&D), 인수 후 A&D의 비PCB 비중"
   ],
   "risks": [
-   "N+M 프로그램 일정 — 3분기 약 $124M(2Q 콜 시사 약 $200M)·4분기 약 $210M(시사 약 $400M), 고객 프로젝트 일정 탓이라는 회사 설명은 미검증",
-   "부채 기반 연쇄 인수 — 순차입 2Q $0.57B → 3Q $0.87B, Ophir $0.65B 추가 예정, 이자 분기 +$20M",
-   "소재 리드타임 12~24주 이상(CCL·T-glass)",
+   "N+M 프로그램 일정 — 3개 중 1개 지연. 3Q 약 $154M(실제 데이터센터·네트워킹 매출 $498.0M × 31%)·4Q 약 $210~224M, 2Q 콜 시사 합계 약 $600M보다 37~39% 낮다. 고객 일정 탓이라는 회사 설명은 미검증이고 CEO는 고객이 복수 공급사를 쓴다고 말했다",
+   "부채 — 순차입 2Q $0.57B → 3Q $0.87B → Epiq·자사주 뒤 약 $2.07B(추정), Ophir $0.65B 추가 예정, 이자 분기 +$20M",
+   "소재 리드타임 12~24주 이상(CCL·T-glass), 가격 인상은 고객 전가 중",
    "페낭 공장 손익분기 4분기 목표(지연 이력)",
-   "고객 집중도 — 대형 데이터센터 고객 비중 미확인(10-Q 확인 필요)"
+   "고객 집중 — 3Q 한 고객 약 20%, 9개월 두 고객 27%, 2025 상위 5개 44%",
+   "비미국 매출 비중 3Q 63%, 현금 $241.1M이 해외(주로 중국) 보유"
   ],
-  "source": "Fiscal.ai company_ir_events_transcript q3-2026(2026-10-22)·q2-2026(2026-08-05) — 요지만 자기 말로(라이선스 자료). 톤: 가이던스 상향·2027 첫 제시로 상향이지만 핵심 제품(N+M) 일정 지연으로 delta 0",
+  "source": "회사 어닝콜 전문 q3-2026(2026-10-22)·q2-2026(2026-08-05) — 요지만 자기 말로(라이선스 자료). 10-Q 2026-09-28로 N+M·순차입 수치 대조",
   "deltas": [
-   {"id": "F1", "kind": "업데이트", "item": "FY2026 매출 가이던스", "label": "FY26 매출 가이던스 상향", "prior": "$4.47B(2Q 콜)", "latest": "$4.49B, 4Q 약 $1.43B", "driver": "rev0", "shift": 0.004, "confidence": 0.8, "source": "3Q 콜 CFO"},
-   {"id": "F2", "kind": "업데이트", "item": "2027 유기 성장", "label": "2027 유기 성장 가속", "prior": "2027·28 유기 15~20%", "latest": "2027 매출 $6.5~6.75B, 유기 '20% 이상'", "driver": "growth_start", "shift": 0.05, "confidence": 0.8, "source": "3Q 콜 CEO·CFO"},
-   {"id": "F3", "kind": "신규", "item": "완료 인수 매출 편입", "label": "인수 매출 약 $0.5B", "prior": "인수 기여 5% 미만 언급", "latest": "2027 가이던스에 약 $0.5B 포함", "driver": "growth_start", "shift": 0.11, "confidence": 1.0, "source": "3Q 콜 CEO(Needham 질문)"},
-   {"id": "F4", "kind": "부정", "item": "인수 차입", "label": "인수 차입 +$0.3B", "prior": "순차입 $0.57B(6/29)", "latest": "순차입 $0.87B(9/28), 이자 분기 +$20M", "driver": "net_debt", "shift": 0.301, "confidence": 1.0, "source": "10-Q 2026-09-28·3Q 콜 CFO"},
-   {"id": "F5", "kind": "부정", "item": "N+M 램프 지연", "label": "N+M 일정 지연", "prior": "하반기 N+M 약 $600M", "latest": "3Q 약 $124M·4Q 약 $210M, 3Q 데이터센터 가이던스 약 −10%", "driver": "rev0", "shift": -0.012, "confidence": 1.0, "source": "3Q Q&A(Truist·Stifel)"},
-   {"id": "F6", "kind": "업데이트", "item": "이익률", "label": "조정 EBITDA 20.1%", "prior": "2Q 조정 EBITDA 16.6%·GPM 21.9%", "latest": "3Q 조정 EBITDA 20.1%·GPM 24.8%", "driver": "margin_m0", "shift": 0.02, "confidence": 1.0, "source": "3Q 콜 CFO(일부 3분기 당겨짐 언급 — 절반만 반영)"},
-   {"id": "F7", "kind": "신규", "item": "수주잔고", "label": "A&D 잔고 $2.0B", "prior": "A&D 잔고 $1.7B·BtB 1.3, 90일 $0.90B", "latest": "A&D $2.0B·BtB 1.6, 전체 BtB 2.1, 90일 $1.3B", "driver": "growth_decay", "shift": 0.02, "confidence": 0.5, "source": "3Q 콜 CFO"},
-   {"id": "F8", "kind": "신규", "item": "N+M 증설", "label": "N+M 증설 $400M", "prior": "2025~29 증설 $1.2B", "latest": "$400M 추가(N+M 전용, 2028 완전 가동)", "driver": "s2c", "shift": -0.1, "confidence": 0.8, "source": "3Q Q&A(Stifel)"},
-   {"id": "F9", "kind": "반복", "item": "N+M 믹스·마진", "label": "N+M 믹스 50%", "prior": "N+M 마진이 평균 이상", "latest": "데이터센터의 30% → 내년 50%, 총이익률 평균보다 크게 높음", "driver": "margin_target", "shift": 0.01, "confidence": 0.5, "source": "3Q Q&A(Fox·B. Riley)"}
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "FY2026 매출 가이던스",
+    "label": "FY26 가이던스 상향",
+    "prior": "약 $4.4B(2Q 콜)",
+    "latest": "$4.47~4.49B, 4Q $1.42~1.44B",
+    "driver": "rev0",
+    "shift": 0.018,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "2027 유기 성장",
+    "label": "2027 유기 성장 가속",
+    "prior": "2027·28 유기 15~20%",
+    "latest": "2027 매출 $6.5~6.75B, 유기 '20% 이상'",
+    "driver": "growth_start",
+    "shift": 0.05,
+    "confidence": 0.8,
+    "source": "3Q 콜 CEO·CFO"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "완료 인수 매출 편입",
+    "label": "인수 매출 약 $0.5B",
+    "prior": "인수 기여 5% 미만 언급",
+    "latest": "2027 가이던스에 약 $0.5B 포함",
+    "driver": "growth_start",
+    "shift": 0.11,
+    "confidence": 1.0,
+    "source": "3Q 콜 CEO(Needham 질문)"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "인수 차입",
+    "label": "Epiq 인수 차입",
+    "prior": "순차입 $0.57B(6/29)",
+    "latest": "약 $2.07B(Epiq $1.1B·자사주 $0.1B 뒤, 추정), 이자 분기 +$20M",
+    "driver": "net_debt",
+    "shift": 1.5,
+    "confidence": 1.0,
+    "source": "10-Q Note 7·13·Liquidity, 3Q 콜 CFO"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "N+M 램프 지연",
+    "label": "N+M 일정 지연",
+    "prior": "하반기 N+M 약 $600M",
+    "latest": "3Q 약 $154M·4Q 약 $210~224M, 3Q 데이터센터 가이던스 약 −10%",
+    "driver": "rev0",
+    "shift": -0.012,
+    "confidence": 1.0,
+    "source": "3Q Q&A(Truist·Stifel)"
+   },
+   {
+    "id": "F6",
+    "kind": "업데이트",
+    "item": "이익률",
+    "label": "조정 EBITDA 20.1%",
+    "prior": "2Q 조정 EBITDA 16.6%",
+    "latest": "3Q 조정 EBITDA 20.1%, 2027 +200bp 이상 시사",
+    "driver": "margin_m0",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "3Q 콜 CFO(일부 3분기 당겨짐 언급 — 절반만 반영)"
+   },
+   {
+    "id": "F7",
+    "kind": "신규",
+    "item": "수주잔고",
+    "label": "A&D 잔고 $2.0B",
+    "prior": "A&D 잔고 $1.7B·BtB 1.3, 90일 $0.90B",
+    "latest": "A&D $2.0B·BtB 1.6, 전체 BtB 2.1, 90일 $1.3B",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F8",
+    "kind": "신규",
+    "item": "N+M 증설",
+    "label": "N+M 증설 $400M",
+    "prior": "2025~29 증설 약 $1.2B",
+    "latest": "$400M 추가(N+M 전용, 2028 매출 대상), 고객 약정 답변 없음",
+    "driver": "s2c",
+    "shift": -0.1,
+    "confidence": 0.8,
+    "source": "3Q Q&A(Stifel)"
+   },
+   {
+    "id": "F9",
+    "kind": "반복",
+    "item": "N+M 믹스·마진",
+    "label": "N+M 믹스 50%",
+    "prior": "N+M 마진이 평균 이상",
+    "latest": "데이터센터의 30% → 내년 50%, 총이익률 평균보다 크게 높음",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "3Q Q&A(Fox·B. Riley)"
+   }
   ]
  },
  "multiples_now": {
-  "pe_fwd": 11.0,
-  "ev_ebitda": 17.29,
-  "ev_sales": 2.64,
+  "pe_fwd": 10.43,
+  "ev_ebitda": 16.0,
+  "ev_sales": 2.8,
   "growth": 0.376,
-  "note": "선행 P/E = $87.63 ÷ Fiscal.ai 자체 추정 선행 4분기 조정 EPS 7.95(1.80+1.66+1.95+2.55) — Chiip 계산. EV/EBITDA·EV/매출 = Fiscal.ai daily ratios 2026-10-29(TTM)"
+  "note": "EV/EBITDA·EV/매출(TTM) = Epiq·자사주 반영 프로포마 EV 약 $10.7B(시총 $8.64B + 순차입 $2.07B) ÷ TTM 조정 EBITDA $668M·매출 $3.83B, Chiip 계산. Fwd 멀티플은 원자료 값",
+  "ev_ebitda_fwd": 7.39,
+  "pe_fwd2": 8.09,
+  "ev_ebitda_fwd2": 6.01,
+  "pe_fwd3": 6.32,
+  "ev_ebitda_fwd3": 5.02
  },
  "peers_basis": "ttm",
  "peers_source": "Fiscal.ai company_peers(SANM·PLXS 직접 경쟁, JBL·FLEX·CLS 사업모델, APH 업종 — 중국 PCB 동종 3사는 Fiscal 시총 없음으로 제외) — 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM, GAAP EBIT), EV/매출·EV/EBITDA·P/B = daily ratios 2026-10-29. debt·cash는 EV − 시총으로 역산한 순차입(근사)",
  "peers": [
-  {"ticker": "SANM", "rev": 12.763, "ebit_margin": 0.0415, "mcap": 9.276, "pb": 3.58, "debt": 0.327, "cash": 0.0, "ev_sales": 0.75, "ev_ebitda": 13.82, "growth": 0.586},
-  {"ticker": "PLXS", "rev": 4.965, "ebit_margin": 0.0531, "mcap": 5.765, "pb": 3.66, "debt": 0.003, "cash": 0.0, "ev_sales": 1.16, "ev_ebitda": 16.92, "growth": 0.231},
-  {"ticker": "JBL", "rev": 35.954, "ebit_margin": 0.0474, "mcap": 29.633, "pb": 18.37, "debt": 2.286, "cash": 0.0, "ev_sales": 0.89, "ev_ebitda": 13.38, "growth": 0.206},
-  {"ticker": "FLEX", "rev": 30.954, "ebit_margin": 0.0506, "mcap": 34.38, "pb": 5.92, "debt": 2.9, "cash": 0.0, "ev_sales": 1.2, "ev_ebitda": 17.52, "growth": 0.175},
-  {"ticker": "CLS", "rev": 18.23, "ebit_margin": 0.0825, "mcap": null, "pb": 16.97, "debt": null, "cash": null, "ev_sales": 1.79, "ev_ebitda": 19.28, "growth": 0.616},
-  {"ticker": "APH", "rev": 33.047, "ebit_margin": 0.2772, "mcap": 202.407, "pb": 11.82, "debt": 12.72, "cash": 0.0, "ev_sales": 6.51, "ev_ebitda": 20.33, "growth": 0.576}
+  {
+   "ticker": "SANM",
+   "rev": 12.763,
+   "ebit_margin": 0.0415,
+   "mcap": 9.276,
+   "pb": 3.58,
+   "debt": 0.327,
+   "cash": 0.0,
+   "ev_sales": 0.75,
+   "ev_ebitda": 13.82,
+   "growth": 0.586,
+   "pe_fwd": 12.59,
+   "ev_ebitda_fwd": 9.61,
+   "pe_fwd2": 11.19,
+   "ev_ebitda_fwd2": 8.28,
+   "pe_fwd3": 10.06,
+   "ev_ebitda_fwd3": 7.7,
+   "ntm_ebit_margin": 0.07,
+   "ntm_growth": 0.2066
+  },
+  {
+   "ticker": "PLXS",
+   "rev": 4.965,
+   "ebit_margin": 0.0531,
+   "mcap": 5.765,
+   "pb": 3.66,
+   "debt": 0.003,
+   "cash": 0.0,
+   "ev_sales": 1.16,
+   "ev_ebitda": 16.92,
+   "growth": 0.231,
+   "pe_fwd": 19.17,
+   "ev_ebitda_fwd": 12.05,
+   "pe_fwd2": 16.44,
+   "ev_ebitda_fwd2": 10.84,
+   "pe_fwd3": 14.75,
+   "ev_ebitda_fwd3": 10.04,
+   "ntm_ebit_margin": 0.0607,
+   "ntm_growth": 0.165
+  },
+  {
+   "ticker": "JBL",
+   "rev": 35.954,
+   "ebit_margin": 0.0474,
+   "mcap": 29.633,
+   "pb": 18.37,
+   "debt": 2.286,
+   "cash": 0.0,
+   "ev_sales": 0.89,
+   "ev_ebitda": 13.38,
+   "growth": 0.206,
+   "pe_fwd": 15.54,
+   "ev_ebitda_fwd": 8.96,
+   "pe_fwd2": 12.12,
+   "ev_ebitda_fwd2": 7.61,
+   "pe_fwd3": 10.33,
+   "ev_ebitda_fwd3": 6.88,
+   "ntm_ebit_margin": 0.0599,
+   "ntm_growth": 0.2377
+  },
+  {
+   "ticker": "FLEX",
+   "rev": 30.954,
+   "ebit_margin": 0.0506,
+   "mcap": 34.38,
+   "pb": 5.92,
+   "debt": 2.9,
+   "cash": 0.0,
+   "ev_sales": 1.2,
+   "ev_ebitda": 17.52,
+   "growth": 0.175,
+   "pe_fwd": 13.68,
+   "ev_ebitda_fwd": 10.74,
+   "pe_fwd2": 10.2,
+   "ev_ebitda_fwd2": 8.56,
+   "pe_fwd3": 8.08,
+   "ev_ebitda_fwd3": 7.15,
+   "ntm_ebit_margin": 0.0822,
+   "ntm_growth": 0.3013
+  },
+  {
+   "ticker": "CLS",
+   "rev": 18.23,
+   "ebit_margin": 0.0825,
+   "mcap": null,
+   "pb": 16.97,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 1.79,
+   "ev_ebitda": 19.28,
+   "growth": 0.616,
+   "pe_fwd": 14.02,
+   "ev_ebitda_fwd": 8.67,
+   "pe_fwd2": 9.4,
+   "ev_ebitda_fwd2": 5.91,
+   "pe_fwd3": 6.85,
+   "ev_ebitda_fwd3": 4.37,
+   "ntm_ebit_margin": 0.0893,
+   "ntm_growth": 0.9344
+  },
+  {
+   "ticker": "APH",
+   "rev": 33.047,
+   "ebit_margin": 0.2772,
+   "mcap": 202.407,
+   "pb": 11.82,
+   "debt": 12.72,
+   "cash": 0.0,
+   "ev_sales": 6.51,
+   "ev_ebitda": 20.33,
+   "growth": 0.576,
+   "pe_fwd": 22.4,
+   "ev_ebitda_fwd": 13.75,
+   "pe_fwd2": 19.49,
+   "ev_ebitda_fwd2": 12.53,
+   "pe_fwd3": 16.93,
+   "ev_ebitda_fwd3": 11.16,
+   "ntm_ebit_margin": 0.302,
+   "ntm_growth": 0.3466
+  }
  ],
  "sbc_pct_rev": 0.019,
  "history": {
   "basis": "Fiscal.ai daily ratio_ev_to_sales(월말 표본)",
   "ev_sales": [
-   {"date": "2025-03-31", "value": 1.06}, {"date": "2025-04-30", "value": 1.04}, {"date": "2025-05-30", "value": 1.44}, {"date": "2025-06-30", "value": 1.8},
-   {"date": "2025-07-31", "value": 2.05}, {"date": "2025-08-29", "value": 1.95}, {"date": "2025-09-30", "value": 2.32}, {"date": "2025-10-31", "value": 2.68},
-   {"date": "2025-11-28", "value": 2.79}, {"date": "2025-12-31", "value": 2.63}, {"date": "2026-01-30", "value": 3.67}, {"date": "2026-02-27", "value": 3.88},
-   {"date": "2026-03-31", "value": 3.46}, {"date": "2026-04-30", "value": 5.49}, {"date": "2026-05-29", "value": 6.01}, {"date": "2026-06-30", "value": 6.0},
-   {"date": "2026-07-31", "value": 3.77}, {"date": "2026-08-31", "value": 3.88}, {"date": "2026-09-30", "value": 3.61}, {"date": "2026-10-29", "value": 2.64}
+   {
+    "date": "2025-03-31",
+    "value": 1.06
+   },
+   {
+    "date": "2025-04-30",
+    "value": 1.04
+   },
+   {
+    "date": "2025-05-30",
+    "value": 1.44
+   },
+   {
+    "date": "2025-06-30",
+    "value": 1.8
+   },
+   {
+    "date": "2025-07-31",
+    "value": 2.05
+   },
+   {
+    "date": "2025-08-29",
+    "value": 1.95
+   },
+   {
+    "date": "2025-09-30",
+    "value": 2.32
+   },
+   {
+    "date": "2025-10-31",
+    "value": 2.68
+   },
+   {
+    "date": "2025-11-28",
+    "value": 2.79
+   },
+   {
+    "date": "2025-12-31",
+    "value": 2.63
+   },
+   {
+    "date": "2026-01-30",
+    "value": 3.67
+   },
+   {
+    "date": "2026-02-27",
+    "value": 3.88
+   },
+   {
+    "date": "2026-03-31",
+    "value": 3.46
+   },
+   {
+    "date": "2026-04-30",
+    "value": 5.49
+   },
+   {
+    "date": "2026-05-29",
+    "value": 6.01
+   },
+   {
+    "date": "2026-06-30",
+    "value": 6.0
+   },
+   {
+    "date": "2026-07-31",
+    "value": 3.77
+   },
+   {
+    "date": "2026-08-31",
+    "value": 3.88
+   },
+   {
+    "date": "2026-09-30",
+    "value": 3.61
+   },
+   {
+    "date": "2026-10-29",
+    "value": 2.64
+   }
+  ],
+  "pe_fwd": [
+   {
+    "date": "2023-10-31",
+    "value": 8.7
+   },
+   {
+    "date": "2023-11-30",
+    "value": 10.38
+   },
+   {
+    "date": "2023-12-29",
+    "value": 10.93
+   },
+   {
+    "date": "2024-01-31",
+    "value": 9.4
+   },
+   {
+    "date": "2024-02-29",
+    "value": 10.12
+   },
+   {
+    "date": "2024-03-28",
+    "value": 10.67
+   },
+   {
+    "date": "2024-04-30",
+    "value": 9.41
+   },
+   {
+    "date": "2024-05-31",
+    "value": 12
+   },
+   {
+    "date": "2024-06-28",
+    "value": 12.54
+   },
+   {
+    "date": "2024-07-31",
+    "value": 11.38
+   },
+   {
+    "date": "2024-08-30",
+    "value": 11.96
+   },
+   {
+    "date": "2024-09-30",
+    "value": 10.57
+   },
+   {
+    "date": "2024-10-31",
+    "value": 13
+   },
+   {
+    "date": "2024-11-29",
+    "value": 13.08
+   },
+   {
+    "date": "2024-12-31",
+    "value": 12.56
+   },
+   {
+    "date": "2025-01-31",
+    "value": 12.58
+   },
+   {
+    "date": "2025-02-28",
+    "value": 11.84
+   },
+   {
+    "date": "2025-03-31",
+    "value": 9.66
+   },
+   {
+    "date": "2025-04-30",
+    "value": 9.47
+   },
+   {
+    "date": "2025-05-30",
+    "value": 13.76
+   },
+   {
+    "date": "2025-06-30",
+    "value": 17.96
+   },
+   {
+    "date": "2025-07-31",
+    "value": 20.78
+   },
+   {
+    "date": "2025-08-29",
+    "value": 18.02
+   },
+   {
+    "date": "2025-09-30",
+    "value": 22.77
+   },
+   {
+    "date": "2025-10-31",
+    "value": 24.74
+   },
+   {
+    "date": "2025-11-28",
+    "value": 25.31
+   },
+   {
+    "date": "2025-12-31",
+    "value": 24.01
+   },
+   {
+    "date": "2026-01-30",
+    "value": 33.57
+   },
+   {
+    "date": "2026-02-27",
+    "value": 33.25
+   },
+   {
+    "date": "2026-03-31",
+    "value": 28.78
+   },
+   {
+    "date": "2026-04-30",
+    "value": 46.06
+   },
+   {
+    "date": "2026-05-29",
+    "value": 37.36
+   },
+   {
+    "date": "2026-06-30",
+    "value": 37.4
+   },
+   {
+    "date": "2026-07-31",
+    "value": 23.11
+   },
+   {
+    "date": "2026-08-31",
+    "value": 19.97
+   },
+   {
+    "date": "2026-09-30",
+    "value": 19.8
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2024-02-29",
+    "value": 6.59
+   },
+   {
+    "date": "2024-03-28",
+    "value": 6.85
+   },
+   {
+    "date": "2024-04-30",
+    "value": 6.48
+   },
+   {
+    "date": "2024-05-31",
+    "value": 7.58
+   },
+   {
+    "date": "2024-06-28",
+    "value": 7.84
+   },
+   {
+    "date": "2024-07-31",
+    "value": 7.62
+   },
+   {
+    "date": "2024-08-30",
+    "value": 7.63
+   },
+   {
+    "date": "2024-09-30",
+    "value": 6.98
+   },
+   {
+    "date": "2024-10-31",
+    "value": 7.72
+   },
+   {
+    "date": "2024-11-29",
+    "value": 8.22
+   },
+   {
+    "date": "2024-12-31",
+    "value": 8.02
+   },
+   {
+    "date": "2025-01-31",
+    "value": 8.1
+   },
+   {
+    "date": "2025-02-28",
+    "value": 7.53
+   },
+   {
+    "date": "2025-03-31",
+    "value": 6.34
+   },
+   {
+    "date": "2025-04-30",
+    "value": 6.23
+   },
+   {
+    "date": "2025-05-30",
+    "value": 8.83
+   },
+   {
+    "date": "2025-06-30",
+    "value": 11.32
+   },
+   {
+    "date": "2025-07-31",
+    "value": 12.57
+   },
+   {
+    "date": "2025-08-29",
+    "value": 11.72
+   },
+   {
+    "date": "2025-09-30",
+    "value": 14.63
+   },
+   {
+    "date": "2025-10-31",
+    "value": 15.78
+   },
+   {
+    "date": "2025-11-28",
+    "value": 16.33
+   },
+   {
+    "date": "2025-12-31",
+    "value": 15.79
+   },
+   {
+    "date": "2026-01-30",
+    "value": 21.06
+   },
+   {
+    "date": "2026-02-27",
+    "value": 21.06
+   },
+   {
+    "date": "2026-03-31",
+    "value": 18.77
+   },
+   {
+    "date": "2026-04-30",
+    "value": 25.49
+   },
+   {
+    "date": "2026-05-29",
+    "value": 24.72
+   },
+   {
+    "date": "2026-06-30",
+    "value": 25.35
+   },
+   {
+    "date": "2026-07-31",
+    "value": 15.95
+   },
+   {
+    "date": "2026-08-31",
+    "value": 14.76
+   },
+   {
+    "date": "2026-09-30",
+    "value": 15.08
+   }
   ]
  },
  "events": [
-  {"date": "2026-06-26", "tag": "거래량 1,724만 주(평소 약 7배) — 원인 미확인(6월 마지막 금요일, 지수 재편일과 겹침 — 확인 전)", "kind": "sector"},
-  {"date": "2026-08-06", "tag": "2Q 실적 다음 날(8/5 장후 발표)", "kind": "earnings"},
-  {"date": "2026-08-25", "tag": "CEO 장내 매수 1만 주·이사 5천 주(Fiscal.ai insider)", "kind": "8-K"},
-  {"date": "2026-10-12", "tag": "아시아 AI 캐파 $400M 추가 투자 보도(TradingView 10/12, co-ttm.md)", "kind": "sector"},
-  {"date": "2026-10-19", "tag": "Ophir Optics $650M 인수 발표(GlobeNewswire)", "kind": "8-K"},
-  {"date": "2026-10-22", "tag": "3Q 실적 당일(장전 발표) −27.7% · 거래량 1,740만 주 — 데이터센터 가이던스 미달·N+M 지연", "kind": "earnings"},
-  {"date": "2026-10-23", "tag": "Truist 목표가 $231→$170 · Needham $175→$150 · Stifel 하향(모두 Buy 유지, 제목 기준)", "kind": "rating"},
-  {"date": "2026-10-27", "tag": "$100M 자사주 매입 신규 승인(GlobeNewswire)", "kind": "8-K"},
-  {"date": "2026-10-28", "tag": "CEO 장내 매수 5천 주·이사 1만 주(Fiscal.ai insider)", "kind": "8-K"}
+  {
+   "date": "2026-06-26",
+   "tag": "거래량 1,724만 주(평소 약 7배) — 원인 미확인(6월 마지막 금요일, 지수 재편일과 겹침 — 확인 전)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "2Q 실적 다음 날(8/5 장후 발표)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-18",
+   "tag": "Epiq $1.1B 인수 8-K(8/17) 다음 날 −10.8%, 8/19 −7.4%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-08-25",
+   "tag": "CEO 장내 매수 1만 주·이사 5천 주(Fiscal.ai insider)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-09-30",
+   "tag": "Epiq 인수 종결, Term Loan $1.1B 조달",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-12",
+   "tag": "아시아 AI 캐파 $400M 추가 투자 보도(TradingView 10/12, co-ttm.md)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-19",
+   "tag": "Ophir Optics $650M 인수 발표(GlobeNewswire)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "3Q 실적 당일(장전 발표) −27.7% · 거래량 1,740만 주 — 데이터센터 가이던스 미달·N+M 지연",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-23",
+   "tag": "Truist 목표가 $231→$170 · Needham $175→$150 · Stifel 하향(모두 Buy 유지, 제목 기준)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-10-27",
+   "tag": "$100M 자사주 매입 완료(10/26~27 약 120만 주)·신규 $100M 승인",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "CEO 장내 매수 5천 주·이사 1만 주(Fiscal.ai insider)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "−5.4% — 회사 사건 없음, 원인 미확인",
+   "kind": "sector"
+  }
  ],
  "sources": [
-  "Fiscal.ai MCP 2026-10-30 13시 조회: company_profile·stock_prices(일봉·월봉)·daily_ratios·shares_outstanding·financials_standardized(분기 손익·재무상태·현금흐름, 원문 auditUrl)·company_estimates(Fiscal 자체 추정)·analyst_estimates·analyst_ratings(Zacks — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events·ir_events_transcript(q3-2026·q2-2026)·institutional_holders(2026Q2)·insider_transactions·fund_letters·company_news·company_peers",
-  "10-Q 2026-09-28 재무상태표(Fiscal.ai auditUrl): https://fiscal.ai/company/NasdaqGS-TTMI/audit-filings/?file=https%253A%252F%252Fapi.fiscal.ai%252Fv1%252Ffiling%252F0001193125-26-435875%252Fpdf%253Fticker%253DTTMI%2526exchange%253DNASDAQ&pageNumber=4",
   "3Q 실적 보도자료: https://www.globenewswire.com/news-release/2026/10/22/3386129/0/en/ttm-technologies-inc-reports-third-quarter-2026-results.html",
   "Ophir Optics 인수: https://www.globenewswire.com/news-release/2026/10/19/3383408/0/en/ttm-technologies-inc-agrees-to-acquire-mks-inc-s-ophir-optics-business-adding-advanced-infrared-optics-capabilities.html",
   "자사주 매입: https://www.globenewswire.com/news-release/2026/10/27/3389746/0/en/ttm-announces-completion-of-existing-2025-share-repurchase-program-and-authorization-of-new-100-million-program.html",
-  "Fiscal.ai 회사 페이지: https://fiscal.ai/company/NasdaqGS-TTMI",
-  "knowledge/narratives/companies/co-ttm.md(2026-10-28 내러티브 수집)"
+  "knowledge/narratives/companies/co-ttm.md(2026-10-28 내러티브 수집)",
+  "10-Q 2026-09-28 https://www.sec.gov/Archives/edgar/data/1116942/000119312526435875/ttmi-20260928.htm",
+  "10-K 2025 https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm",
+  "2026 위임장 https://www.sec.gov/Archives/edgar/data/1116942/000119312526115993/ttmi-20260319.htm"
  ],
  "raw": {
-  "retrieved_at": "2026-10-30T13:20:00+09:00",
+  "retrieved_at": "2026-11-02T04:10:00+09:00",
   "shares_cover_implied": 0.105376,
   "fiscal_profile": {
    "companyKey": "NASDAQ_TTMI",
    "terminalUrl": "https://fiscal.ai/company/NasdaqGS-TTMI",
-   "price": 87.63,
-   "market_cap": 9.2341,
+   "price": 82.94,
+   "market_cap": 8.7398,
    "total_cash": 0.8763,
    "total_debt": 1.7467,
    "shares_outstanding": 0.105376,
-   "ev_sales": 2.64,
-   "ev_ebitda": 17.29,
-   "as_of": "2026-10-29",
+   "ev_sales": 2.52,
+   "ev_ebitda": 16.47,
+   "as_of": "2026-10-30",
    "balance_date": "2026-09-28",
-   "note": "시총 = daily calculated_market_cap 2026-10-29(9,234,056,818$). 현금·차입 = 표준화 재무상태표 2026-09-28(유동성 장기차입 184.0 + 장기차입 1,459.9 + 리스 102.8)"
+   "note": "시총 = 10/30 종가 × 10-Q 표지 주식(외부 프로필 8,739,846,144$와 일치). 현금·차입 = 9/28. ev 값은 프로필 값(Epiq 전 재무상태표 기준)"
   },
   "quarters_gaap": {
-   "rev": {"2025Q4": 0.7743, "2026Q1": 0.846, "2026Q2": 1.0041, "2026Q3": 1.2039},
-   "op_income": {"2025Q4": 0.0807, "2026Q1": 0.0724, "2026Q2": 0.1091, "2026Q3": 0.1623},
-   "gross_profit": {"2025Q4": 0.1659, "2026Q1": 0.1812, "2026Q2": 0.2119, "2026Q3": 0.2919},
-   "ocf": {"2025Q4": 0.0629, "2026Q1": 0.0217, "2026Q2": 0.0964, "2026Q3": 0.1547},
+   "rev": {
+    "2025Q4": 0.7743,
+    "2026Q1": 0.846,
+    "2026Q2": 1.0041,
+    "2026Q3": 1.2039
+   },
+   "op_income": {
+    "2025Q4": 0.0807,
+    "2026Q1": 0.0724,
+    "2026Q2": 0.1091,
+    "2026Q3": 0.1623
+   },
+   "gross_profit": {
+    "2025Q4": 0.1659,
+    "2026Q1": 0.1812,
+    "2026Q2": 0.2119,
+    "2026Q3": 0.2919
+   },
+   "ocf": {
+    "2025Q4": 0.0629,
+    "2026Q1": 0.0217,
+    "2026Q2": 0.0964,
+    "2026Q3": 0.1547
+   },
    "note": "4Q25 영업이익은 Fiscal.ai 4분기 합 이익률(11.09%)에서 역산"
   },
-  "balance_2026_09_28": {
-   "cash": 0.8763, "st_investments": 0.0, "debt_current": 0.184, "debt_lt": 1.4599, "lease_current": 0.0, "lease_lt": 0.1028,
-   "equity": 2.0424, "goodwill": 0.8727, "intangibles": 0.2383, "inventory": 0.3254, "receivables": 1.6299, "total_assets": 5.5629, "shares": 0.105375,
-   "note": "Fiscal.ai 표준화 재무상태표(10-Q 2026-10-28 제출). 매출채권 1,629.9 = 매출채권 836.4 + 기타 채권(계약자산 추정) 793.6"
+  "prior_quarter_balance_0629": {
+   "cash": 0.5079,
+   "debt_current": 0.004,
+   "debt_lt": 0.9695,
+   "lease": 0.1045,
+   "goodwill": 0.6701,
+   "intangibles": 0.1365
   },
-  "prior_quarter_balance_0629": {"cash": 0.5079, "debt_current": 0.004, "debt_lt": 0.9695, "lease": 0.1045, "goodwill": 0.6701, "intangibles": 0.1365},
   "estimates_sales_m": {
-   "2025Q4_act": 774.3, "2026Q1_act": 846.0, "2026Q2_act": 1004.1, "2026Q3_act": 1203.9,
-   "2026Q4": 1430.0, "2027Q1": 1526.0, "2027Q2": 1654.0, "2027Q3": 1810.5, "2027Q4": 1634.5,
-   "2028Q1": 1799.8, "2028Q2": 1938.9, "2028Q3": 2112.1, "2028Q4": 1899.2
+   "2025Q4_act": 774.3,
+   "2026Q1_act": 846.0,
+   "2026Q2_act": 1004.1,
+   "2026Q3_act": 1203.9,
+   "2026Q4": 1430.0,
+   "2027Q1": 1526.0,
+   "2027Q2": 1654.0,
+   "2027Q3": 1810.5,
+   "2027Q4": 1634.5,
+   "2028Q1": 1799.8,
+   "2028Q2": 1938.9,
+   "2028Q3": 2112.1,
+   "2028Q4": 1899.2
   },
-  "estimates_eps_adj": {"2026Q4": 1.8, "2027Q1": 1.66, "2027Q2": 1.95, "2027Q3": 2.55, "2027Q4": 2.35, "FY2026": 5.0, "FY2027": 8.5, "FY2028": 10.9},
+  "estimates_eps_adj": {
+   "2026Q4": 1.8,
+   "2027Q1": 1.66,
+   "2027Q2": 1.95,
+   "2027Q3": 2.55,
+   "2027Q4": 2.35,
+   "FY2026": 5.0,
+   "FY2027": 8.5,
+   "FY2028": 10.9
+  },
   "zacks": {
-   "FY2026_rev": 4.4887, "FY2026_ebit": 0.7186, "FY2027_rev": 6.6308, "FY2027_ebit": 1.1956, "FY2028_rev": 7.4509,
-   "FY2026_eps": 5.0033, "FY2027_eps": 8.6067, "FY2028_eps": 10.11,
-   "n_rev": 2, "rev_asOf": "2026-10-26", "ebit_asOf": "2026-10-23",
-   "price_target": {"mean": 179.83, "median": 167.5, "low": 136, "high": 250, "n": 6, "asOf": "2026-10-27"},
-   "rating": {"strongBuy": 4, "buy": 1, "hold": 1, "sell": 0, "n": 6, "asOf": "2026-10-06"},
+   "FY2026_rev": 4.4887,
+   "FY2026_ebit": 0.7186,
+   "FY2027_rev": 6.6308,
+   "FY2027_ebit": 1.1956,
+   "FY2028_rev": 7.4509,
+   "FY2026_eps": 5.0033,
+   "FY2027_eps": 8.6067,
+   "FY2028_eps": 10.11,
+   "n_rev": 2,
+   "rev_asOf": "2026-10-26",
+   "ebit_asOf": "2026-10-23",
+   "price_target": {
+    "mean": 179.83,
+    "median": 167.5,
+    "low": 136,
+    "high": 250,
+    "n": 6,
+    "asOf": "2026-10-27"
+   },
+   "rating": {
+    "strongBuy": 4,
+    "buy": 1,
+    "hold": 1,
+    "sell": 0,
+    "n": 6,
+    "asOf": "2026-10-06"
+   },
    "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
   },
   "holders_13f_2026Q2": {
-   "holders": 597, "shares_m": 90.76, "net_change_m": -4.77, "increased": 203, "decreased": 187, "new_positions": 0,
-   "top_buyers": ["Jane Street +1.92M", "Capital World +1.37M", "Wellington +0.87M", "T. Rowe Price +0.79M", "Whale Rock +0.72M"]
+   "holders": 597,
+   "shares_m": 90.76,
+   "net_change_m": -4.77,
+   "increased": 203,
+   "decreased": 187,
+   "new_positions": 0,
+   "top_buyers": [
+    "Jane Street +1.92M",
+    "Capital World +1.37M",
+    "Wellington +0.87M",
+    "T. Rowe Price +0.79M",
+    "Whale Rock +0.72M"
+   ]
   },
-  "insider": {"open_market_buys": 6, "open_market_sells": 78, "recent": "2026-08-24·25 이사·CEO 장내 매수, 2026-10-28 CEO 5천 주·이사 1만 주 장내 매수(실적 급락 후). 6~8월 임원 일부 장내 매도"},
-  "sec": {},
-  "source": "Fiscal.ai MCP — 위 sources"
+  "insider": {
+   "open_market_buys": 6,
+   "open_market_sells": 78,
+   "recent": "2026-08-24·25 이사·CEO 장내 매수, 2026-10-28 CEO 5천 주·이사 1만 주 장내 매수(실적 급락 후). 6~8월 임원 일부 장내 매도"
+  },
+  "sec": {
+   "customers": "3Q 한 고객 약 20%, 9개월 두 고객 27%(2025 두 고객 23%, 상위 5개 44%)",
+   "purchase_commitments": "10-K: 표준품 발주는 취소 가능, 구매 의무 부담은 크지 않다고 적음. 금액 표 없음. 10-Q: 금리 합계 $422.0M 외 큰 변동 없음",
+   "restricted_cash": "10-Q 본문에 제한 현금 언급 없음. 현금 $241.1M이 해외 자회사(주로 중국) 보유",
+   "government": "DIBC 3년 지원 계약, 2025 현금 $20.4M 수령(설비분 $17.8M)",
+   "rpo": "$463.5M(55% 12개월)",
+   "non_us_sales": "3Q 63%, 9개월 59%",
+   "rcf_available": "$733.9M(9/28)",
+   "buyback": "10/26~27 약 120만 주 $100.0M"
+  },
+  "source": "Fiscal.ai MCP — 위 sources",
+  "balance_2026_10_27": {
+   "cash": 0.7763,
+   "st_investments": 0.0,
+   "debt_current": 0.184,
+   "debt_lt": 2.5599,
+   "lease_current": 0.0,
+   "lease_lt": 0.1028,
+   "equity": 1.9424,
+   "note": "프로포마(추정): 9/28 값 + 9/30 Term Loan A $300M·B $800M(Epiq $1.1B로 현금 중립) − 10월 자사주 $100M. 10-Q Note 7·13·Liquidity. 수수료 미반영"
+  },
+  "qbalance_2026_09_28": {
+   "cash": 0.8763,
+   "st_investments": 0.0,
+   "debt_current": 0.184,
+   "debt_lt": 1.4599,
+   "lease_current": 0.0,
+   "lease_lt": 0.1028,
+   "equity": 2.0424,
+   "goodwill": 0.8727,
+   "intangibles": 0.2383,
+   "inventory": 0.3254,
+   "receivables": 1.6299,
+   "total_assets": 5.5629,
+   "shares": 0.105375,
+   "note": "Fiscal.ai 표준화 재무상태표(10-Q 2026-10-28 제출). 매출채권 1,629.9 = 매출채권 836.4 + 기타 채권(계약자산 추정) 793.6"
+  },
+  "yfinance_street": {
+   "buy": 6,
+   "hold": 0,
+   "sell": 0,
+   "target_mean": 171.5,
+   "target_high": 236,
+   "target_low": 100,
+   "as_of": "2026-11-02"
+  }
  },
  "narrative": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-02",
   "stage": "컨센서스",
   "crowding": "중간",
-  "summary": "'AI 데이터센터 고다층(N+M) PCB + 국방 수주잔고'는 숫자로 올라왔는데(FY27 EPS 추정 +42%), 주가는 8/6 이후 −36% — 시장은 핵심 신제품 일정 지연과 부채 기반 인수를 먼저 가격에 넣었다",
+  "summary": "'AI 고다층 PCB + 국방 잔고'는 숫자로 올라왔다(FY27 EPS 추정 +42%). 주가는 8/6 뒤 −39%다. 시장은 N+M 일정과 $1.75B 차입 인수를 먼저 가격에 넣었다",
   "layers": {
    "sell_side": {
     "metrics": [
-     ["애널리스트 의견(Zacks)", "6명 — 강력 매수 4·매수 1·보유 1·매도 0", "의견은 강세, 실적 후 등급 하향 0건", "Fiscal.ai analyst_ratings — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"],
-     ["목표가 평균·범위(Zacks)", "$179.8 ($136~$250, 6명)", "10/29 종가 $87.63 대비 평균 +105% — IB 기대의 증거(Chiip 목표가 아님), 최저 목표가도 +55%", "같은 곳"],
-     ["실적 후 목표가 조정", "Truist $231→$170 · Needham $175→$150 · Stifel 하향(10/23)", "추정은 올리고 목표가는 내림 = 배수 압축", "Fiscal.ai company_news·co-ttm.md"],
-     ["3Q 콜 질문 증권사", "Fox Advisors·Truist·B. Riley·Stifel·Needham", "질문 초점 = N+M 일정·4분기 회복의 성격·인수 차입·소재 수급", "Fiscal.ai ir_events_transcript(q3-2026)"]
+     [
+      "애널리스트 의견",
+      "6명 — Strong Buy 4·Buy 1·Neutral 1",
+      "다른 채널은 Buy 6명, 표본이 적다. 실적 후 등급 하향 0건",
+      "10/06 기준"
+     ],
+     [
+      "목표가 평균·범위",
+      "$179.8 ($136~$250, 6명)",
+      "10/30 종가 $82.94 대비 평균 +117%, 최저 목표가도 +64% — 시장 기대의 증거이지 Chiip 목표주가가 아니다",
+      "10/27 기준"
+     ],
+     [
+      "실적 후 목표가 조정",
+      "Truist $231→$170 · Needham $175→$150 · Stifel 하향(10/23)",
+      "추정은 올리고 목표가는 내림 = 배수 압축",
+      "회사별 공개 기사"
+     ],
+     [
+      "3Q 콜 질문 증권사",
+      "Fox Advisors·Truist·B. Riley·Stifel·Needham",
+      "질문 초점 = N+M 일정·4분기 회복의 성격·인수 차입·소재 수급",
+      "3Q 콜"
+     ]
     ],
     "read": "셀사이드는 이익 추정을 크게 올렸지만 목표가는 내렸다 — 'N+M 일정'이 확인될 때까지 배수를 주지 않는다"
    },
    "buy_side": {
     "metrics": [
-     ["13F 기관(2026Q2)", "597곳 · 순 −4.77백만 주 · 증가 203·감소 187", "고점(6/22) 분기에 기관 순매도, 상위 매수는 Jane Street·Capital World·Wellington", "Fiscal.ai institutional_holders 2026Q2(45일 지연)"],
-     ["펀드 레터(2025Q3~2026Q2)", "6개 펀드 — 강세 5(Voya·Invesco Discovery·Technology Innovators 신규·Nomura 비중 축소), 약세 2(Longleaf·Fidelity Small Cap Value — 리서치만, 미보유)", "강세 쪽은 AI+국방 교차, 약세 쪽은 '내재가치 초과·품질 대비 비쌈'(2분기 고점 기준)", "Fiscal.ai company_fund_letters"],
-     ["내부자 장내 거래", "누적 매수 6·매도 78 — 최근 CEO 10/28 5천 주·이사 1만 주 매수", "실적 급락 직후 경영진 매수", "Fiscal.ai insider_transactions"]
+     [
+      "13F 기관(2026Q2)",
+      "598곳 · 순 −4.77M주 · 증가 203·감소 188",
+      "고점 분기에 기관 순매도, 3Q 13F는 11월 중순 공개",
+      "2026Q2, 45일 지연"
+     ],
+     [
+      "펀드 레터(2025Q3~2026Q2)",
+      "6개 펀드 — 강세 5(Voya·Invesco Discovery·Technology Innovators 신규·Nomura 비중 축소), 약세 2(Longleaf·Fidelity Small Cap Value — 리서치만, 미보유)",
+      "강세 쪽은 AI+국방 교차, 약세 쪽은 '내재가치 초과·품질 대비 비쌈'(2분기 고점 기준)",
+      "공개 펀드 레터"
+     ],
+     [
+      "내부자 장내 거래",
+      "매수 6·매도 78(누적) — 10/28 CEO 5천 주·이사 1만 주, 8/24~25 CEO 1만 주·의장 5천 주",
+      "6~8월 임원 장내 매도 뒤 8·10월 경영진 매수",
+      "Form 4"
+     ]
     ],
-    "read": "바이사이드 약세 논리는 '가격'이었다 — 6월 EV/매출 6배에서 지금 2.6배로 그 논리의 근거가 상당 부분 사라졌다"
+    "read": "약세 펀드의 논리는 '가격'이었다. Fwd 1Y P/E가 6월 37배에서 10배로 내려와 그 논리는 약해졌고, 이제 쟁점은 부채다"
    },
    "retail": {
     "metrics": [
-     ["레딧(ApeWisdom)", "미수집", "이번 회차 조회하지 않음", "—"],
-     ["커뮤니티 기사 제목(45일)", "10건", "SA 강세 장문 2편 vs Fool 급락 기사 2편 — 맞섬", "knowledge/narratives/companies/co-ttm.md(10/28)"]
+     [
+      "레딧 언급",
+      "24시간 1건, 순위 212위",
+      "리테일 관심이 거의 없다",
+      "ApeWisdom 11/2"
+     ],
+     [
+      "공매도 잔고",
+      "유통주식의 6.6%, 2.0일",
+      "높지 않다",
+      "11/2 프로필"
+     ],
+     [
+      "커뮤니티 기사 제목(45일)",
+      "10건",
+      "강세 장문과 급락 기사가 맞선다",
+      "co-ttm.md(10/28)"
+     ]
     ],
-    "read": "리테일은 급락 기사와 '피크는 2년 뒤' 강세 글이 맞선다 — 쏠림 중간"
+    "read": "리테일 쏠림은 낮다. 지금 주가를 움직이는 쪽은 기관이다"
    },
    "media": {
     "metrics": [
-     ["업종 기사", "Celestica 강세 장문·'AI 인프라 수혜 5종목'(10/23~28)", "AI 보드·스위치 수요는 강세 서사 유지", "co-ttm.md 섹터 표"]
+     [
+      "업종 기사",
+      "Celestica 강세 장문·'AI 인프라 수혜 5종목'(10/23~28)",
+      "AI 보드·스위치 수요는 강세 서사 유지",
+      "업종 기사 제목"
+     ]
     ],
     "read": "업종 서사는 살아 있고, TTMI 개별 서사만 '일정·부채'로 꺾였다"
    }
   },
   "factors": [
-   {"name": "AI 데이터센터 N+M 고다층 PCB 콘텐츠", "thesis": "비대칭 N+M 보드가 데이터센터·네트워킹 매출의 30% → 50%로, ASP가 원가보다 빨리 오른다", "inputs": "성장·이익률", "who": {"sell": "강", "buy": "강", "retail": "중"}, "drives": "both", "quant": "3Q 데이터센터·네트워킹 +115% YoY, 4Q 비중 약 49%, N+M 4Q 약 $210M", "status": "지연", "falsifier": "4Q 실적(2027-02)에서 데이터센터·네트워킹 매출이 4Q 가이던스(약 $700M)를 10% 이상 밑돎", "source": "3Q 콜"},
-   {"name": "국방 수주잔고(A&D $2.0B)", "thesis": "Golden Dome·SPY-6 등 다년 프로그램이 경기와 무관한 바닥을 준다", "inputs": "위험(할인율)", "who": {"sell": "중", "buy": "중", "retail": "약"}, "drives": "multiple", "quant": "A&D 매출 34%, 잔고 $2.0B(전년 $1.5B), 2027 A&D 매출 약 65% 가시성", "status": "강화", "falsifier": "A&D BtB 1.0 미만 2분기 연속", "source": "3Q 콜"},
-   {"name": "이익률 레버리지", "thesis": "믹스(N+M·A&D)와 가격 조정으로 조정 EBITDA 20%대가 유지된다", "inputs": "이익률", "who": {"sell": "강", "buy": "중", "retail": "-"}, "drives": "revision", "quant": "조정 EBITDA 2Q 16.6% → 3Q 20.1%, FY27 조정 EBIT 이익률 추정 19.5%(Fiscal)", "status": "강화", "falsifier": "2027 1Q 조정 EBITDA 이익률 18% 미만", "source": "3Q 콜·Fiscal.ai estimates"},
-   {"name": "N+M 일정 지연·고객 집중(약세)", "thesis": "소수 대형 고객 프로그램이 밀리면 데이터센터 매출이 분기마다 흔들린다 — '일정'이 '수요'일 수 있다", "inputs": "성장 시점·위험", "who": {"sell": "강", "buy": "강", "retail": "중"}, "drives": "multiple", "quant": "N+M 하반기 약 $334M vs 2Q 콜 시사 약 $600M(−44%), 3Q 데이터센터 가이던스 약 −10%", "status": "확산", "falsifier": "4Q에 N+M 비중이 데이터센터의 30%를 넘고 2027 1Q 가이던스가 컨센서스($1.51B) 이상", "source": "3Q Q&A(Truist·Stifel)"},
-   {"name": "부채 기반 연쇄 인수(약세)", "thesis": "PCB 회사가 차입으로 광학·처리 사업을 사서 이익의 질과 ROIC를 희석한다", "inputs": "재투자 효율·위험", "who": {"sell": "중", "buy": "강", "retail": "약"}, "drives": "multiple", "quant": "순차입 $0.57B → $0.87B(1분기), Ophir $0.65B 추가 예정, 영업권+무형 $1.11B(자기자본의 54%)", "status": "확산", "falsifier": "Ophir 종결 후 순레버리지 1.5배 미만·자사주 매입 집행", "source": "10-Q·3Q 콜"},
-   {"name": "AI 하드웨어 배수 압축(약세)", "thesis": "AI 투자 지속성 의심이 보드·부품 업종 배수를 누른다", "inputs": "배수", "who": {"sell": "중", "buy": "강", "retail": "중"}, "drives": "multiple", "quant": "EV/매출 6/30 6.0배 → 10/29 2.64배(−56%), 같은 기간 FY27 매출 추정 +21%", "status": "확산", "falsifier": "EV/매출 4배 회복(업종 배수 회복과 함께)", "source": "Fiscal.ai daily ratios"}
+   {
+    "name": "AI 데이터센터 N+M 고다층 PCB 콘텐츠",
+    "thesis": "비대칭 N+M 보드가 데이터센터·네트워킹 매출의 30% → 50%로, ASP가 원가보다 빨리 오른다",
+    "inputs": "성장·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "3Q 데이터센터·네트워킹 +115% YoY, 4Q 비중 약 49%, N+M 4Q 약 $210M",
+    "status": "지연",
+    "falsifier": "4Q 실적(2027-02)에서 데이터센터·네트워킹 매출이 4Q 가이던스(약 $700M)를 10% 이상 밑돎",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "국방 수주잔고(A&D $2.0B)",
+    "thesis": "Golden Dome·SPY-6 등 다년 프로그램이 경기와 무관한 바닥을 준다",
+    "inputs": "위험(할인율)",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "A&D 매출 34%, 잔고 $2.0B(전년 $1.5B), 2027 A&D 매출 약 65% 가시성",
+    "status": "강화",
+    "falsifier": "A&D BtB 1.0 미만 2분기 연속",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "이익률 레버리지",
+    "thesis": "믹스(N+M·A&D)와 가격 조정으로 조정 EBITDA 20%대가 유지된다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "조정 EBITDA 2Q 16.6% → 3Q 20.1%, FY27 조정 EBIT 이익률 추정 19.5%(Fiscal)",
+    "status": "강화",
+    "falsifier": "2027 1Q 조정 EBITDA 이익률 18% 미만",
+    "source": "3Q 콜·estimates"
+   },
+   {
+    "name": "N+M 일정 지연·고객 집중(약세)",
+    "thesis": "소수 대형 고객 프로그램이 밀리면 데이터센터 매출이 분기마다 흔들린다 — '일정'이 '수요'일 수 있다",
+    "inputs": "성장 시점·위험",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "N+M 하반기 약 $364~378M vs 2Q 콜 시사 약 $600M(−37~−39%), 3Q 데이터센터 가이던스 약 −10%",
+    "status": "확산",
+    "falsifier": "4Q에 N+M 비중이 데이터센터의 30%를 넘고 2027 1Q 가이던스가 컨센서스($1.51B) 이상",
+    "source": "3Q 콜 Q&A"
+   },
+   {
+    "name": "부채 기반 연쇄 인수(약세)",
+    "thesis": "PCB 회사가 차입으로 광학·처리 사업을 사서 이익의 질과 ROIC를 희석한다",
+    "inputs": "재투자 효율·위험",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "순차입 $0.57B → 약 $2.07B(1개 분기, 추정), Ophir $0.65B 추가 예정, 4Q 이자 $33.9M(3Q $12.1M)",
+    "status": "확산",
+    "falsifier": "Ophir 종결 시 순차입 ÷ LTM 조정 EBITDA 2배 미만 달성, 2027 FCF가 $330M 이상",
+    "source": "10-Q·3Q 콜"
+   },
+   {
+    "name": "AI 하드웨어 배수 압축(약세)",
+    "thesis": "AI 투자 지속성 의심이 보드·부품 업종 배수를 누른다",
+    "inputs": "배수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "Fwd 1Y P/E 6/30 37.4배 → 10/30 10.4배, 같은 기간 FY27 EPS 추정 +56%",
+    "status": "확산",
+    "falsifier": "Fwd 1Y P/E가 동종 중앙값 15배대 회복",
+    "source": "daily ratios"
+   }
+  ],
+  "lead": {
+   "summary": "TTMI의 값은 **N+M 보드의 램프 × 국방 잔고 − 부채 이자** 세 가지로 정해진다. 3Q 매출 $1.20B(+60%), 조정 EBITDA 20.1%, 2027 EPS 가이던스 $8.10~8.90까지 숫자는 올랐다. 주가는 고점 대비 −63%, Fwd 1Y P/E 10.4배로 동종 중앙값 15.5배보다 33% 낮다. 멀티플을 깎은 이유는 **일정과 부채**다. N+M 프로그램 3개 중 1개가 밀렸고, Epiq 인수 뒤 순차입은 약 $2.07B(추정)로 2Q의 3.6배다.",
+   "value_story": "매출의 성장축은 데이터센터·네트워킹(3Q $498M, +115%)이고, 그중 N+M이 약 30%에서 2027년 50%로 간다. N+M 총이익률은 전사 평균보다 크게 높아 믹스가 곧 이익률이다. 바닥은 A&D다(3Q $404.5M, 잔고 $2.0B). 멀티플은 이 성장이 몇 년 가느냐와 차입 인수가 ROIC를 깎느냐로 정해진다. EPS는 EBITDA에서 분기 이자 약 $34M을 뺀 값이라 부채가 곧바로 닿는다.",
+   "premium": {
+    "multiple": "지금은 프리미엄이 아니라 할인이다. Fwd 1Y P/E 10.4배는 6/30 37.4배에서 −72%이고 동종 중앙값 15.5배보다 33% 낮다. 6월의 프리미엄은 'AI 보드 희소성 + 국방'이 만들었고, 8/17 Epiq 차입 인수와 10/22 N+M 지연이 지웠다.",
+    "eps": "EPS 추정은 강하다. FY2027 추정이 8/7 $6.06에서 10/28 $8.61로 +42%다. 같은 기간 주가는 −39%라 P/E가 22.5배에서 9.6배로 −57%다. 다만 이 추정은 Ophir를 빼고 있고 표본은 2~3명이다."
+   },
+   "why_excited": "열광의 정점은 6월이었다. 첫째, 콘텐츠다. N+M은 기존 구조보다 보드 가치를 약 4배 올린다고 회사는 말한다. 둘째, 희소성이다. AI 서버·스위치 고다층 보드와 국방 인증을 함께 가진 미국 상장사가 드물다. 셋째, 이익률이다. 5월 Investor Day에서 EBITDA 목표가 16~18%로 올랐는데 3Q에 20.1%가 나왔다. 식은 이유도 같은 곳에 있다. 7월 하락은 AI 하드웨어 업종 약세와 겹쳤고 회사 고유 원인은 확인하지 못했다. 이어 8/17 Epiq 발표 뒤 이틀에 −17%, 10/22 N+M 지연으로 하루 −27.7%였다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "데이터센터·네트워킹 PCB(N+M 포함)",
+     "what": "AI 가속기 서버와 스위치에 들어가는 저손실 고다층 보드다. N+M은 층수가 다른 두 판을 맞붙여 신호와 전력 경로를 나눈다",
+     "use": "AI 칩 회사·대형 클라우드·네트워크 장비사",
+     "money": "3Q $498.0M, +115%. 프로그램 단위로 팔고 소재 인상분을 전가한다"
+    },
+    {
+     "kind": "제품",
+     "name": "A&D PCB·RF 부품·모듈",
+     "what": "국방용 보드, 고주파 부품, 빔포밍 네트워크, 다중 칩 모듈이다",
+     "use": "레이더, 미사일, 위성, 전자전",
+     "money": "A&D 매출의 약 절반. 3Q A&D 합계 $404.5M, 장기 프로그램"
+    },
+    {
+     "kind": "제품",
+     "name": "임무 시스템",
+     "what": "해상 감시 레이더 APS-143·APS-153, IFF, MOSAIC 소형 레이더, 항공기 통신 체계다",
+     "use": "미군과 동맹국",
+     "money": "설계부터 맡는 장기 계약. 잔여 이행의무 $463.5M"
+    },
+    {
+     "kind": "제품",
+     "name": "Epiq 소프트웨어 무선",
+     "what": "신호 정보·전자전용 소프트웨어 정의 무선과 내방사선 우주 컴퓨팅이다",
+     "use": "신호 정보, 전자전, 우주",
+     "money": "9/30 인수. 2027 시너지 반영 EBITDA의 17.4배에 샀고 매출은 미공시다"
+    },
+    {
+     "kind": "제품",
+     "name": "일반 PCB",
+     "what": "의료·산업·계측·자동차용 보드다",
+     "use": "AI 칩 테스트 장비, 의료기기, 자동차",
+     "money": "3Q 의료·산업·계측 $213.3M(+97%), 자동차 $88.0M(+11%)"
+    },
+    {
+     "kind": "기술",
+     "name": "Ophir 적외선·레이저 광학(인수 예정)",
+     "what": "열화상 렌즈와 레이저 광학 부품이다",
+     "use": "무인기·대무인기 탐지, 산업용 레이저",
+     "money": "$650M, 2027 EBITDA 약 10배. 2027년 2분기 종결 예정"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "보드 제조사에서 방산 전자 플랫폼으로 옮기는 중이다. CEO가 2025년 9월 Teledyne에서 왔고 13개월 동안 STG, Epiq, Ophir 등 약 $2.1B를 썼다. 재무 구조도 바뀌었다. 순차입이 1개 분기 만에 약 3.6배가 됐다.",
+     "evidence": "10-Q Note 13. 2026 상반기 STG $369.1M, 9/30 Epiq $1.1B, 10/19 Ophir $650M 계약.",
+     "falsifier": "인수 자산의 이익률이 전사를 못 넘거나 2027 ROIC가 낮아지면 체질 변화가 아니라 차입 확대다."
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "revision",
+     "status": "강화",
+     "change": "N+M이 데이터센터의 약 30%에서 2027년 50%로 간다. CFO는 N+M 총이익률이 전사 평균보다 크게 높고 2027 EBITDA 이익률이 200bp 이상 오른다고 말했다.",
+     "evidence": "3Q 조정 EBITDA 20.1%(2Q 16.6%). CEO는 일부 물량이 3Q로 당겨졌다고 했다.",
+     "falsifier": "1Q27 조정 EBITDA 이익률 18% 미만"
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "multiple",
+     "status": "유지",
+     "change": "AI 서버의 전력·신호 병목을 보드에서 푸는 제품이 N+M이다. 다음은 Eau Claire 혁신센터의 MSAP·SAP, 내장 수동소자, 광학 내장이다.",
+     "evidence": "CEO 설명과 3Q 콜. 연구개발비는 3Q $9.5M으로 매출의 1% 미만이다.",
+     "falsifier": "차세대 플랫폼에서 보드 층수·면적이 줄거나 다른 인터커넥트가 대체한다."
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "유지",
+     "change": "주문에서 납품까지의 회사 공시 값은 없다. 콜에서 확인되는 값은 CCL·T-glass 소재 리드타임 12~24주 이상이고 이 값을 표에 적었다. 증설은 기존 부지 방식이라 $400M이 약 15개월에 끝난다.",
+     "evidence": "3Q 콜 B. Riley 질문. 동종의 같은 기준 값은 찾지 못했다.",
+     "falsifier": "소재 부족이 매출 지연 사유로 공시된다.",
+     "lead_time": {
+      "unit": "주",
+      "now": [
+       12,
+       24
+      ],
+      "prior": "미확인",
+      "prior_when": "-",
+      "peers": [
+       {
+        "name": "Sanmina",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "drives": "multiple",
+     "status": "논쟁 중",
+     "change": "시장이 가장 싫어하는 지점이다. Epiq는 시너지 반영 2027 EBITDA의 17.4배로 비쌌고 2027 EPS를 희석한다. Ophir는 약 10배로 낫다. CFO는 큰 인수는 당분간 끝이라고 말했다.",
+     "evidence": "8-K와 보도, 3Q 콜. 영업권·무형자산 $1.11B(9/28)는 Epiq 전 값이다.",
+     "falsifier": "CFO 발언 뒤 추가 대형 인수가 나오면 멀티플 할인이 굳는다."
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "both",
+     "status": "강화",
+     "change": "돈은 하이퍼스케일러 → AI 칩·네트워크 회사 → EMS → TTMI로 내려온다. 3Q 한 고객이 매출의 약 20%를 차지할 만큼 몰렸다. 고객 이름은 공시하지 않아 경로는 미확인이다.",
+     "evidence": "10-Q 고객 집중 주석. 전체 BtB 2.1, 상업 2.5, 90일 잔고 $1.3B.",
+     "falsifier": "하이퍼스케일러 CAPEX 가이던스 하향, 90일 잔고 감소."
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "FY2027 Golden Dome 요청 약 $17.5B 중 98%가 재정조정 법안에 달렸다. 군수품 재고 복구 약 $90B도 요청돼 있다. 회사는 3Q에 Golden Dome 수주를 언급했으나 금액은 없다.",
+     "evidence": "예산 요청, 하원 군사위 NDAA 수정안 보도. 본회의 통과는 찾지 못했다.",
+     "drives": "revision",
+     "status": "요청 단계",
+     "falsifier": "재정조정 법안이 무산되거나 임시예산이 새 사업을 막는다.",
+     "house": {
+      "level": 4,
+      "why": "하원 군사위 NDAA 수정안 확인, 본회의는 미확인"
+     },
+     "senate": {
+      "level": 1,
+      "why": "상원 단계는 확인하지 못했다, 미확인"
+     }
+    },
+    "orders": {
+     "change": "2025년 1월 행정명령이 Golden Dome을 시작했고 2025년 재정조정법이 약 $25B를 줬다.",
+     "evidence": "2025 재정조정법 세출 반영.",
+     "drives": "revision",
+     "status": "시행 중",
+     "falsifier": "사업 축소나 자금 재배정.",
+     "house": {
+      "level": 5,
+      "why": "2025 재정조정법 세출 반영"
+     },
+     "senate": {
+      "level": 5,
+      "why": "2025 재정조정법 세출 반영"
+     }
+    },
+    "laws": {
+     "change": "10 U.S.C. § 4873이 2027-01-01부터 중국·러시아·이란·북한산 대상 PCB의 국방 조달을 막는다. 2026-07-02 사전 공고만 나왔고 최종 규칙은 찾지 못했다. 면제 조항이 있다.",
+     "evidence": "FY2021 NDAA 841조, FY2022 851조. 공고는 모든 하청 단계 전달을 예상한다.",
+     "drives": "both",
+     "status": "시행 임박·규칙 미완",
+     "falsifier": "규칙이 늦어지거나 면제가 넓어진다. TTMI 중국 공장이 국방 물량을 만들지 못하는 점은 원래 전제다."
+    }
+   }
+  }
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 7.95479,
+   "ebitda": 1378993000,
+   "ebit": 1154871194,
+   "revenue": 6420508352,
+   "rev_ttm": 3828205000
+  },
+  "horizons": {
+   "2": {
+    "eps": 10.256979999999999,
+    "ebitda": 1695638578,
+    "ext": 0
+   },
+   "3": {
+    "eps": 13.133921529411765,
+    "ebitda": 2030729770.5521474,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "main_metric": "eps",
+ "main_metric_why": "회사가 조정 EPS를 가이던스로 내고 2027 예비 가이던스도 EPS로 제시한다. 인수 차입 이자가 EPS에 먼저 닿아 EBITDA보다 부채 영향을 잘 드러낸다",
+ "multiple_view": {
+  "adj": -0.15,
+  "why": "Epiq 뒤 순차입이 TTM 조정 EBITDA의 약 3.1배이고 Ophir가 더해진다. 3Q 한 고객이 매출의 약 20%이며 핵심 N+M 프로그램 하나가 밀렸다. 동종 EMS는 순차입이 작아 같은 배수를 주기 어렵다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "next_event": {
+  "date": "2027-02-03",
+  "tag": "4Q26 실적(예상, 전년 2/4 기준. 날짜 미공지)"
+ },
+ "revision_events": [
+  {
+   "date": "2025-10-29",
+   "kind": "실적",
+   "tag": "3Q25 실적",
+   "q": "3Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-01-13",
+   "kind": "내러티브",
+   "tag": "1/13 +19.7% 급등, 원인 미확인",
+   "session": "intraday"
+  },
+  {
+   "date": "2026-02-04",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-04-29",
+   "kind": "실적",
+   "tag": "1Q26 실적 후 +15%",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-27",
+   "kind": "내러티브",
+   "tag": "Investor Day, 이익률 목표 상향",
+   "session": "intraday"
+  },
+  {
+   "date": "2026-08-05",
+   "kind": "실적",
+   "tag": "2Q26 실적, N+M 하반기 약 $600M 시사",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-17",
+   "kind": "내러티브",
+   "tag": "Epiq $1.1B 차입 인수 발표",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-13",
+   "kind": "내러티브",
+   "tag": "N+M 캐파 $400M 추가 8-K",
+   "session": "intraday"
+  },
+  {
+   "date": "2026-10-19",
+   "kind": "내러티브",
+   "tag": "Ophir $650M 인수 발표",
+   "session": "intraday"
+  },
+  {
+   "date": "2026-10-22",
+   "kind": "실적",
+   "tag": "3Q26 실적, N+M 지연으로 −27.7%",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "moat": {
+  "summary": "가장 단단한 곳은 국방 쪽 자격이고, 데이터센터 N+M은 공정 노하우라 특허로 막히지 않는다. 시장이 값을 매기는 해자는 N+M인데 더 강한 해자는 A&D다.",
+  "items": [
+   {
+    "kind": "미국 국방 보안 자격",
+    "verdict": "강함",
+    "claim": "기밀·제한 프로그램을 하려면 보안 체계와 수출 통제 준수가 먼저다. 회사는 제한 프로그램이 경쟁사가 밀어내기 매우 어렵다고 말한다.",
+    "evidence": "이사회에 정부 보안위원회를 두고 국방방첩보안국(DCSA)과 맺은 SBR을 정관으로 유지한다. CMMC 레벨 2 인증을 받았다(2026 위임장). 잔고 $2.0B는 전년 약 $1.5B에서 늘었다.",
+    "quant": "3Q A&D 매출 $404.5M(+21%), BtB 1.6",
+    "falsifier": "A&D BtB 1.0 미만이 2분기 이어지거나, 미국 군수품 목록 완화로 해외 생산 제한이 풀린다"
+   },
+   {
+    "kind": "N+M 고다층 공정 노하우",
+    "verdict": "보통",
+    "claim": "AI 서버·스위치의 비대칭 고다층 보드를 수율 있게 만드는 능력이다. CEO는 기존 구조 대비 가치가 약 4배라고 말했다.",
+    "evidence": "3개 주요 프로그램 중 2개가 순항이고 5~10개로 늘린다고 했다. 그러나 10-K는 제조 공정 기술이 대체로 지식재산 보호를 받지 못한다고 적었고, CEO도 고객이 항상 복수 공급사를 쓴다고 말했다.",
+    "quant": "3Q N+M 약 $154M, 데이터센터의 약 31%",
+    "falsifier": "대만·중국 PCB사가 같은 프로그램 인증을 받아 N+M 비중이 2027년 50%에 못 미친다"
+   },
+   {
+    "kind": "기존 부지 증설 속도",
+    "verdict": "보통",
+    "claim": "기존 공장 옆 건물에 장비를 넣는 방식이라 수요를 따라가는 시간이 짧고 위험이 작다.",
+    "evidence": "$400M 증설이 4Q26에 시작해 2028년 초에 끝난다. 2026 CAPEX $410~430M. 다만 고객 약정이 있느냐는 질문에 금액 답변은 없었다.",
+    "quant": "2025~29 증설 합계 약 $1.6B",
+    "falsifier": "증설 뒤 가동률 하락이나 고객 약정 부재가 드러난다"
+   },
+   {
+    "kind": "미국 내 Ultra-HDI 공장",
+    "verdict": "보통",
+    "claim": "미국 안의 초고밀도 PCB 양산 능력은 국방 공급망 국산화 수요와 맞닿아 있다.",
+    "evidence": "Syracuse 공장은 건물 완공, 장비 설치 중으로 2026년 하반기 양산 예정이었다(10-K). 2025년 DIBC 지원금 현금 $20.4M을 받았다. 2027-01-01부터 중국산 등 PCB의 국방 조달 금지가 시행된다.",
+    "quant": "미확인",
+    "falsifier": "최종 규칙에서 면제가 넓어지거나 양산이 2027년으로 밀린다"
+   },
+   {
+    "kind": "보드에서 시스템으로의 상향",
+    "verdict": "약함",
+    "claim": "RF 모듈, 레이더, Epiq 무선, Ophir 광학을 묶어 탐지 시스템을 파는 전략이다.",
+    "evidence": "A&D의 약 절반이 이미 상위 제품이다. 그러나 Epiq·Ophir 결합 제품은 아직 매출로 확인되지 않았고 시너지 숫자도 회사 추정이다.",
+    "quant": "두 인수 합계 $1.75B",
+    "falsifier": "2027년까지 결합 제품 수주가 공시되지 않는다"
+   }
   ]
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "창업자 경영 회사가 아니다. 회장과 CEO가 모두 Teledyne 출신이고 전략도 Teledyne식 방산 전자 인수에 가깝다. 연결이 매출을 만들었다는 증거는 없다.",
+  "people": [
+   {
+    "name": "Edwin Roks",
+    "role": "사장·CEO·이사",
+    "since": "2025-09",
+    "profile": "Teledyne CEO(2024-01~2025-04), 그 전 Teledyne 디지털 이미징 부문 대표. 네덜란드 Twente 대학 전자·반도체 물리 박사. 취임 뒤 Epiq·Ophir 등 인수 $1.75B를 주도했고 8/25 1만 주, 10/28 5천 주를 장내 매수했다",
+    "business": "Teledyne에서 이미징·방산 전자 사업을 이끌었다",
+    "political": "미확인",
+    "alumni": "Twente 대학, Eindhoven 공대",
+    "social": "미확인",
+    "source": "2026 위임장, Form 4"
+   },
+   {
+    "name": "Rex D. Geveden",
+    "role": "이사회 의장(사외)",
+    "since": "2018-05(의장 2021)",
+    "profile": "BWX Technologies 사장·CEO. 그 전 Teledyne 부사장, NASA 고위 행정직(Associate Administrator)으로 17년 근무. 8/24 5천 주 장내 매수",
+    "business": "BWXT(원자력·해군 추진)와 Teledyne 경력",
+    "political": "NASA 고위직 공직 이력. 선거자금·로비 기록은 확인하지 않았다(미확인)",
+    "alumni": "Murray State 대학",
+    "social": "미확인",
+    "source": "2026 위임장, Form 4"
+   },
+   {
+    "name": "Wajid Ali",
+    "role": "사외이사",
+    "since": "2024-05",
+    "profile": "Lumentum CFO. 그 전 Synaptics CFO, Teledyne 재무. 10/28 1만 주 장내 매수",
+    "business": "Lumentum 광부품 사업과 AI 광통신 공급망",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "2026 위임장, Form 4"
+   }
+  ],
+  "value": [
+   {
+    "network": "정계",
+    "link": "DCSA와 맺은 SBR과 이사회 정부 보안위원회. 정치 인맥이 아니라 문서로 확인되는 제도 연결이다",
+    "strength": 5,
+    "exposure": 1.618,
+    "basis": "3Q A&D 매출 $404.5M 연환산",
+    "evidence": "2026 위임장"
+   },
+   {
+    "network": "비즈니스",
+    "link": "회장·CEO·이사 3명의 Teledyne 경력. 거래 금액은 공시에서 확인하지 못했다",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "특수관계 거래 금액 미확인",
+    "evidence": "2026 위임장"
+   },
+   {
+    "network": "비즈니스",
+    "link": "이사 Ali의 Lumentum 재직. TTM의 Lumentum 거래는 확인하지 못했다",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "거래 미공시",
+    "evidence": "2026 위임장"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-09-28",
+  "reported_backlog": 2.0,
+  "backlog_label": "A&D 수주잔고",
+  "summary": "확정으로 셀 수 있는 것은 A&D 잔고 $2.0B다. 프로그램별 금액은 공개되지 않아 진척도는 미확인이고, N+M은 수주가 아니라 프로그램 램프로 읽어야 한다.",
+  "items": [
+   {
+    "name": "A&D 프로그램 잔고(SPY-6·APS-143·Golden Dome·제한 프로그램)",
+    "status": "확정",
+    "total": 2.0,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q BtB 1.6, 2027 A&D 매출의 약 65% 가시성",
+    "blockers": [
+     "미국 예산 지연",
+     "소재 리드타임"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "90일 수주잔고",
+    "status": "조건부",
+    "total": 1.3,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "전년 $610M 대비 +111%. 회사는 취소될 수 있다고 적었다",
+    "blockers": [
+     "고객 취소·일정 변경"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "장기 계약 잔여 이행의무",
+    "status": "확정",
+    "total": 0.4635,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "55%를 12개월 안에 인식. 2025년 말 $415.1M에서 증가. A&D 잔고와 겹친다",
+    "blockers": [
+     "개발 계약 일정"
+    ],
+    "source": "10-Q 매출 주석"
+   },
+   {
+    "name": "N+M 프로그램 3개",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q 약 $154M, 4Q 약 $210~224M, 2027 데이터센터의 약 50%. 지연된 1개는 4Q 하반기 램프, 1Q27 양산",
+    "blockers": [
+     "고객 프로그램 일정",
+     "복수 공급사",
+     "CCL·T-glass 수급"
+    ],
+    "source": "3Q 콜, 10-Q"
+   },
+   {
+    "name": "Ophir Optics 인수 뒤 2027 물량",
+    "status": "조건부",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "end": "2027-06",
+    "speed": "CEO: 2027 수주 85% 이상 확보. 2027년 2분기 종결 예정",
+    "blockers": [
+     "규제 승인",
+     "분할 인수 통합"
+    ],
+    "source": "3Q 콜, 10-Q Note 13"
+   }
+  ]
+ },
+ "terms": {
+  "N+M": "서로 다른 층수를 맞붙인 비대칭 고다층 PCB",
+  "PCB": "인쇄회로기판",
+  "HDI": "고밀도 배선 기판",
+  "Ultra-HDI": "초고밀도 배선 기판",
+  "CCL": "동박적층판, PCB 원판",
+  "T-glass": "저열팽창 유리섬유",
+  "Epiq": "소프트웨어 무선 장비 회사",
+  "Epiq Solutions": "소프트웨어 무선 장비 회사",
+  "Ophir": "MKS의 적외선·레이저 광학 사업",
+  "Ophir Optics": "MKS의 적외선·레이저 광학 사업",
+  "MKS": "미국 공정 장비·광학 회사",
+  "STG": "스위스 PCB 회사 Swiss Technology Group",
+  "Swiss Technology Group": "스위스 PCB 회사",
+  "ILFA": "독일 PCB 회사",
+  "Merlin": "영국 PCB 지주회사",
+  "SPY-6": "미 해군 함정 레이더",
+  "APS-143": "해상 감시 레이더",
+  "APS-153": "다중 모드 해상 감시 레이더",
+  "Golden Dome": "미국 본토 미사일 방어 구상",
+  "MOSAIC": "TTM 소형 레이더 브랜드",
+  "IFF": "피아식별 장치",
+  "RF": "무선 주파수",
+  "A&D": "항공우주·방위",
+  "BtB": "수주 ÷ 매출",
+  "DCSA": "미국 국방방첩보안국",
+  "SBR": "외국 지분 관리 이사회 결의",
+  "SSA": "외국 지분 관리 특별 보안 협정",
+  "CMMC": "미 국방 공급망 사이버 보안 인증",
+  "ITAR": "미국 국제무기거래규정",
+  "DIBC": "미 국방 산업기반 컨소시엄",
+  "ANPR": "규칙 제정 사전 공고",
+  "DFARS": "미 국방 조달 규정",
+  "NDAA": "미국 국방수권법",
+  "Syracuse": "뉴욕주 도시",
+  "Penang": "말레이시아 페낭",
+  "Eau Claire": "위스콘신주 도시",
+  "Chippewa Falls": "위스콘신주 도시",
+  "MSAP": "세미 애디티브 미세 회로 공정",
+  "SAP": "세미 애디티브 회로 공정",
+  "Teledyne": "미국 계측·방산 전자 회사",
+  "BWX Technologies": "미국 원자력·해군 추진 회사",
+  "BWXT": "미국 원자력·해군 추진 회사",
+  "NASA": "미국 항공우주국",
+  "Lumentum": "미국 광부품 회사",
+  "Synaptics": "미국 반도체 회사",
+  "MKS Inc.": "미국 공정 장비·광학 회사",
+  "EMS": "전자제품 위탁 생산",
+  "OEM": "완제품 제조사",
+  "Veritas Capital": "미국 사모펀드",
+  "Celestica": "캐나다 전자제품 위탁 생산사",
+  "Longleaf": "미국 가치주 운용사",
+  "Voya": "미국 자산운용사",
+  "Invesco": "미국 자산운용사",
+  "Nomura": "일본 금융그룹",
+  "Fidelity": "미국 자산운용사",
+  "Truist": "미국 은행",
+  "Needham": "미국 투자은행",
+  "Stifel": "미국 투자은행",
+  "B. Riley": "미국 증권사",
+  "Fox Advisors": "미국 리서치사",
+  "Jane Street": "미국 트레이딩사",
+  "Capital World": "미국 자산운용사",
+  "Wellington": "미국 자산운용사",
+  "T. Rowe Price": "미국 자산운용사",
+  "Whale Rock": "미국 기술주 헤지펀드",
+  "Golden": "미국 본토 미사일 방어 구상 이름",
+  "BWX": "미국 원자력·해군 추진 회사 이름",
+  "RCF": "회전한도 대출",
+  "TMT": "기술·미디어·통신"
  }
 }
