@@ -59,7 +59,7 @@ def live_row(cid, c, d, q, prof, budget=25, year=None):
     found = []
     for pg in pages or []:
         try:
-            found += docs.scan_docs(jp_ir_qa._text(jp_ir_qa.fetch(pg)), pg)
+            found += docs.scan_docs(jp_ir_qa._text(jp_ir_qa.fetch(pg)), pg, c)
         except Exception:
             continue
     return row(cid, c, d, q, prof, pages=pages or [], docs_found=found, year=year), pages or []

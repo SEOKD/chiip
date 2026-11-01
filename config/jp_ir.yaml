@@ -14,6 +14,7 @@ seeds: ["/ir/", "/ja/ir/", "/jp/ir/", "/ir/library/", "/ja/ir/library/", "/jp/ir
 # 자동 탐색이 못 찾는 곳은 doc_pages를 손으로 적는다. 자료 목록을 자바스크립트로 그리는 곳은 수집 불가 — 적시공시 미러로만.
 # 2026-10-30 전체 첫 회차: 자료실 확보 30곳, 못 찾음 24곳. 자바스크립트 렌더링 확인 = 키옥시아(E-IR 파츠)·이비덴 短信 목록(XjStorage — 영문 ibiden.com 短信은 정적)·후지쿠라·SUMCO·다이요유덴.
 # 접속 실패 = 히타치(주소 추정 오류)·소시오넥스트(SSL 핸드셰이크)·스미토모전공(연결 끊김). 나머지는 주간 점검에서 회사 IR 페이지를 직접 보고 채운다.
+# 회사별 프로필(2026-11-01 마스터 지시 "일본 상장회사별로 IR 사이트에 올려놓은 방식이 다르다"): doc_pages 자료실 · langs 읽을 언어(기본 일본어, 영문만 내는 회사는 [ja, en]) · kinds 그 회사 문서 이름(공통 규칙보다 먼저, 정규식) · access 목록 공급사(E-IR·Xj-Storage·IR Pocket이면 자동으로 못 읽는다).
 # 2026-11-01 전 회사 실점검: 회사별 경로는 knowledge/models/earnings/jp_ir_routes.csv. E-IR(ssl4.eir-parts.net)·Xj-Storage는 robots.txt 전체 금지, IR Pocket(xml.irpocket.com)은 데이터 파일에 2차 이용 금지 표시가 있어 읽지 않는다.
 docs_params: {hot_days: 10, cold_min: 180, max_fetch: 45, discover_per_run: 4, fresh_days: 21, backlog_days: 3}
 # 도쿄증권거래소 휴장일(게재 시차 영업일 계산용 — 확인된 날짜만, 매년 갱신)
@@ -54,7 +55,7 @@ companies:
   jp-tdk: {site: "https://www.tdk.com"}
   jp-taiyoyuden: {site: "https://www.yuden.co.jp"}
   jp-kyocera: {site: "https://www.kyocera.co.jp"}
-  jp-kioxia: {site: "https://www.kioxia-holdings.com", ir_pages: ["https://www.kioxia-holdings.com/ja-jp/ir.html"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
+  jp-kioxia: {site: "https://www.kioxia-holdings.com", ir_pages: ["https://www.kioxia-holdings.com/ja-jp/ir.html"], langs: [ja, en], kinds: {qa: "Q&A Summary", transcript: "with Script"}, doc_pages: ["https://www.kioxia-holdings.com/en-jp/ir/library/presentation/archive.html"], access: "E-IR"}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-renesas: {site: "https://www.renesas.com", doc_pages: ["https://www.renesas.com/about/investor-relations/event/presentation"]}
   jp-socionext: {site: "https://www.socionext.com", ir_pages: ["https://www.socionext.com/jp/ir/"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-rohm: {site: "https://www.rohm.co.jp"}

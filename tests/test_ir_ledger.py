@@ -89,6 +89,23 @@ class TestCurrentDocs(unittest.TestCase):
         self.assertEqual(len(self.run_it(new[:2])), 2)
 
 
+class TestCompanyProfile(unittest.TestCase):
+    PAGE = '''<a href="/en/ir/q2-qa.pdf">Q&amp;A Summary for the Earnings Call for the Second Quarter of Fiscal Year 2026 (PDF)</a>
+<a href="/en/ir/q2-results.pdf">Second Quarter of FY2026 Financial Results (with Script) (PDF)</a>'''
+
+    def test_english_documents_need_the_profile(self):
+        self.assertEqual(jp_ir_docs.scan_docs(self.PAGE, "https://k.example/en/ir/"), [])
+
+    def test_kioxia_style_names_are_read(self):
+        c = {"langs": ["ja", "en"], "kinds": {"qa": "Q&A Summary", "transcript": "with Script"}}
+        rows = jp_ir_docs.scan_docs(self.PAGE, "https://k.example/en/ir/", c)
+        self.assertEqual([(r["kind"], r["period"]) for r in rows], [("qa", "FY2026Q2"), ("transcript", "FY2026Q2")])
+
+    def test_custom_names_come_first(self):
+        self.assertEqual(jp_ir_docs.kind_of("Conference Memo", "https://x/a.pdf", {"qa": "Conference Memo"}), "qa")
+        self.assertIsNone(jp_ir_docs.kind_of("Conference Memo", "https://x/a.pdf"))
+
+
 class TestSavedAt(unittest.TestCase):
     def test_pulse_reads_saved_time(self):
         src = (ROOT / "radar" / "pulse.py").read_text(encoding="utf-8")

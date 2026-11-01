@@ -39,7 +39,7 @@ STATE = "jp_ir_docs"
 PARAMS = {"hot_days": 10, "cold_min": 180, "max_fetch": 45, "discover_per_run": 4, "fresh_days": 21, "backlog_days": 3}
 VIDEO_RE = re.compile(r"動画|音声|配信|オンデマンド|webcast|audio|youtube\.com|youtu\.be|\.mp4|/video/", re.I)
 KINDS = [  # 앞에서부터 — 'Q&A 書き起こし'는 전문, '動画配信(Q&A)'은 영상
-    ("transcript", re.compile(r"書き起こし|書起こし|全文|スクリプト|transcript", re.I)),
+    ("transcript", re.compile(r"書き起こし|書起こし|全文|スクリプト|transcript|with script|\bscript\b", re.I)),
     ("qa", jp_ir_qa.QA_RE),
     ("presentation", re.compile(r"決算説明会資料|説明会資料|決算説明資料|決算概要資料|プレゼンテーション資料|presentation|speach|speech|kessann?setsumei|setsumeikai", re.I)),
     ("tanshin", re.compile(r"決算短信|tanshin|-fls\b|_fls\b", re.I)),
@@ -71,9 +71,12 @@ def _z(s):
     return unicodedata.normalize("NFKC", s or "")
 
 
-def kind_of(title, url):
-    """앵커+주소 → kind 또는 None. 영상은 'video'(기록만)"""
+def kind_of(title, url, custom=None):
+    """앵커+주소 → kind 또는 None. 영상은 'video'(기록만). custom은 회사 프로필의 kinds — 회사마다 문서 이름이 달라 공통 규칙보다 먼저 본다"""
     hay = _z(f"{title} {urllib.parse.unquote(url)}")
+    for k, rx in (custom or {}).items():
+        if re.search(rx, hay, re.I):
+            return k
     if EXCLUDE_RE.search(title or "") or jp_ir_qa.QA_EXCLUDE_RE.search(hay):
         return None
     if VIDEO_RE.search(hay):
@@ -97,9 +100,15 @@ def doc_date(title, url):
     return None
 
 
+ORDINAL = {"first": 1, "1st": 1, "second": 2, "2nd": 2, "third": 3, "3rd": 3, "fourth": 4, "4th": 4}
+
+
 def period_of(title, url):
     """결산 기간 → 'FY2026Q2'(일본 '年度' 기준 — 2027年3月期 = 2026年度). 못 읽으면 None"""
     for hay in (_z(title), urllib.parse.unquote(url)):
+        m = re.search(r"(first|second|third|fourth|1st|2nd|3rd|4th)\s+quarter\s+of\s+(?:the\s+)?(?:fiscal\s+year|FY)\s*(20\d\d)", hay, re.I)   # 키옥시아 영문 표기
+        if m:
+            return f"FY{m.group(2)}Q{ORDINAL[m.group(1).lower()]}"
         m = re.search(r"(20\d\d)年\s*(\d{1,2})月期\s*(?:第\s*([1-4])\s*四半期|(中間|上期|上半期)|(決算|通期|期末))", hay)
         if m:
             y = int(m.group(1)) - (1 if int(m.group(2)) <= 6 else 0)
@@ -122,16 +131,17 @@ def period_of(title, url):
     return None
 
 
-def scan_docs(html_text, base):
-    """자료실 페이지 → [{url, key, title, kind, date, period}] (페이지 순서 그대로, 같은 key는 처음 것만)"""
+def scan_docs(html_text, base, c=None):
+    """자료실 페이지 → [{url, key, title, kind, date, period}] (페이지 순서 그대로, 같은 key는 처음 것만). c는 회사 프로필(langs·kinds)"""
     out, seen = [], set()
+    english, custom = "en" in ((c or {}).get("langs") or []), (c or {}).get("kinds")
     for href, inner in jp_ir_qa.LINK_RE.findall(html_text or ""):
         url = urllib.parse.urljoin(base, htmllib.unescape(href.strip())).split("#")[0]
         url = urllib.parse.quote(url, safe=":/?&=%~+,;@!$'()*")   # 무라타 '1030ｂ'처럼 전각 글자가 든 주소 — 그대로면 요청이 깨진다
-        if urllib.parse.urlparse(url).scheme not in ("http", "https") or jp_ir_qa.ENGLISH_PATH_RE.search(urllib.parse.urlparse(url).path):
+        if urllib.parse.urlparse(url).scheme not in ("http", "https") or (not english and jp_ir_qa.ENGLISH_PATH_RE.search(urllib.parse.urlparse(url).path)):
             continue
         title = re.sub(r"\s+", " ", htmllib.unescape(common.strip_tags(inner))).strip()
-        k = kind_of(title, url)
+        k = kind_of(title, url, custom)
         if not k:
             continue
         if k != "video" and not DOC_RE.search(f"{url} {title}") and not (k in QA_KINDS and not re.search(r"/(index\.html?)?$", url)):
@@ -303,7 +313,7 @@ def poll(env=None, only=None, force=False):
             all_docs = []
             for pg in pages or []:
                 try:
-                    docs = scan_docs(jp_ir_qa._text(jp_ir_qa.fetch(pg)), pg)
+                    docs = scan_docs(jp_ir_qa._text(jp_ir_qa.fetch(pg)), pg, c)
                     fetches += 1
                 except Exception:
                     continue
