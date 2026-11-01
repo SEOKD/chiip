@@ -1,0 +1,28 @@
+# 대만·홍콩 IR 프로필 (마스터 지시 2026-11-01) → radar/pollers/tw_hk_ir.py, knowledge/methods/tw_hk_ir_qa_procedure.md
+# 회사마다 doc_pages(자료실)·ir_pages(탐색 시작)·kinds(그 회사 문서 이름, 정규식)를 적는다. 자료실이 비면 --discover가 찾는다.
+companies:
+  co-tsmc: {name: TSMC, market: tw, code: "2330", site: "https://investor.tsmc.com", doc_pages: ["https://investor.tsmc.com/chinese/quarterly-results"], kinds: {transcript: "Transcript|法說會紀錄|Management Report"}}
+  co-unimicron: {name: Unimicron, market: tw, code: "3037", site: "https://www.unimicron.com"}
+  co-ase: {name: ASE, market: tw, code: "3711", site: "https://ase.aseglobal.com"}
+  co-delta: {name: Delta Electronics, market: tw, code: "2308", site: "https://www.deltaww.com", ir_pages: ["https://www.deltaww.com/en-US/investors/"]}
+  co-elitematerial: {name: Elite Material, market: tw, code: "2383", site: "https://www.emctw.com"}
+  co-quanta: {name: Quanta Computer, market: tw, code: "2382", site: "https://www.quantatw.com", ir_pages: ["https://www.quantatw.com/Quanta/chinese/investment/presentation.aspx"]}
+  co-wiwynn: {name: Wiwynn, market: tw, code: "6669", site: "https://www.wiwynn.com", ir_pages: ["https://www.wiwynn.com/investors/"]}
+  co-accton: {name: Accton, market: tw, code: "2345", site: "https://www.accton.com"}
+  tw-yageo: {name: Yageo, market: tw, code: "2327", site: "https://www.yageo.com", ir_pages: ["https://www.yageo.com/en/Investor"]}
+  tw-walsintech: {name: Walsin Technology, market: tw, code: "2492", site: "https://www.passivecomponent.com"}
+  tw-taiwanglass: {name: Taiwan Glass, market: tw, code: "1802", site: "https://www.taiwanglass.com"}
+  tw-tuc: {name: Taiwan Union Technology, market: tw, code: "6274", site: "https://www.tuc.com.tw"}
+  tw-iteq: {name: ITEQ, market: tw, code: "6213", site: "https://www.iteq.com.tw"}
+  tw-gce: {name: Gold Circuit Electronics, market: tw, code: "2368", site: "https://www.gce.com.tw"}
+  tw-topoint: {name: Topoint Technology, market: tw, code: "8021", site: "https://www.topoint.tw"}
+  tw-winway: {name: WinWay Technology, market: tw, code: "6515", site: "https://www.winwayglobal.com"}
+  tw-mpi: {name: MPI Corporation, market: tw, code: "6223", site: "https://www.mpi-corporation.com"}
+  tw-chpt: {name: Chunghwa Precision Test, market: tw, code: "6510", site: "https://www.chpt.com"}
+  tw-avc: {name: Asia Vital Components, market: tw, code: "3017", site: "https://www.avc.co"}
+  tw-auras: {name: Auras Technology, market: tw, code: "3324", site: "https://www.auras.com.tw"}
+  tw-bizlink: {name: BizLink, market: tw, code: "3665", site: "https://www.bizlinktech.com"}
+  tw-lotes: {name: Lotes, market: tw, code: "3533", site: "https://www.lotes.cc"}
+  tw-kingslide: {name: King Slide, market: tw, code: "2059", site: "https://www.kingslide.com"}
+  hk-popmart: {name: Pop Mart, market: hk, code: "9992", site: "https://www.popmart.com"}
+  hk-2050: {name: Zhejiang Sanhua, market: hk, code: "2050", site: "https://www.zjshc.com"}

@@ -59,3 +59,9 @@
 - 중문 원문은 보존하고 한국어 번역 병기(번역은 증거가 아님). 원문 전체를 노션·저장소에 복제하지 않는다(요지·15단어 이하 인용·링크).
 - 출력: `outputs/report/tw_qa/<YYYYMMDD>_<코드>.md`·`outputs/report/hk_qa/<YYYYMMDD>_<코드>.md` — 일본과 같은 7항목(숫자·AI 수요·톤·바뀐 말·질문 초점·피한 질문·밸류 다리), 줄마다 등급.
 - IR 프로필은 노션 '아시아 IR 프로필'(구 '일본 IR 프로필', `config/notion.yaml jp_ir_profile`)에 시장별 행으로 동기화.
+
+## 수집 파이프라인 (2026-11-01 마스터 지시 "일본처럼 회사의 공식 IR 사이트에서 Q&A Summary와 Earning Calls Script를 찾는 파이프라인을 구성해라. 비공식 채널도 찾아와라")
+- 공식: `radar/pollers/tw_hk_ir.py`가 `config/tw_hk_ir.yaml` 회사 프로필의 자료실을 60분마다 읽는다. 일본과 같은 문서 판별에 중문 규칙과 회사별 `kinds`를 더한다. 찾은 경로는 `knowledge/models/earnings/tw_hk_ir_routes.csv`.
+- 비공식: StockAnalysis 공개 전사 목록에서 새 분기를 찾아 C등급으로 싣는다. 가이던스·수치 확정에 쓰지 않는다.
+- 처리: 전문·Q&A는 `source_class` 'IR 질의응답'으로 Pulse에 실리고 `radar/ir_ledger.py`가 처리될 때까지 다시 싣는다.
+- MOPS·HKEXnews는 지금처럼 모델이 건별로 연다. 자동 반복 수집하지 않는다.

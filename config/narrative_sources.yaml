@@ -14,6 +14,12 @@ auto:                        # 자동 수집(결정론)
     - {id: mbi-deepdives, name: MBI Deep Dives, feed: "https://www.mbi-deepdives.com/feed", focus: 기업 분석}
     - {id: techfund, name: Tech Fund, feed: "https://www.techinvestments.io/feed", focus: 기술주}
     - {id: uncoveralpha, name: UncoverAlpha, feed: "https://www.uncoveralpha.com/feed", focus: AI·클라우드}
+    - {id: import-ai, name: Import AI, feed: "https://importai.substack.com/feed", focus: AI 연구}
+    - {id: interconnects, name: Interconnects, feed: "https://www.interconnects.ai/feed", focus: AI 모델}
+    - {id: stratechery, name: Stratechery, feed: "https://stratechery.com/feed", focus: 기술 전략}
+    - {id: the-diff, name: The Diff, feed: "https://www.thediff.co/feed", focus: 금융·기술}
+    - {id: asianometry, name: Asianometry, feed: "https://asianometry.substack.com/feed", focus: 반도체 역사·아시아}
+    - {id: exponential-view, name: Exponential View, feed: "https://www.exponentialview.co/feed", focus: AI 경제}
   hacker_news: {api: "https://hn.algolia.com/api/v1/search", note: "공개 검색 API — 기술 내러티브"}
   community_headlines:       # 사이트 직접 접속 금지(robots) → Google News 색인의 제목·링크만
     sites: [seekingalpha.com, fool.com, benzinga.com, marketbeat.com, barrons.com, investors.com, investopedia.com, tipranks.com, zacks.com]

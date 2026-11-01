@@ -27,6 +27,8 @@ def fake(url):
         return json.dumps([{"股票代號": "2330", "融資今日餘額": "1,234"}])
     if "trends.google" in url:
         return RSS
+    if "arctic-shift" in url:
+        return json.dumps({"data": [{"title": "Nvidia earnings"}]})
     if "kalshi" in url:
         return json.dumps({"events": [{"title": "Fed cut in December?", "category": "Economics", "markets": [{"yes_ask_dollars": "0.40", "yes_sub_title": "Cut"}]}, {"title": "Fed Cup winner", "category": "Sports", "markets": []}, {"title": "Jaime's AIr", "category": "Economics", "markets": []}]})
     raise ValueError(url)

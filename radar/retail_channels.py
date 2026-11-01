@@ -88,6 +88,25 @@ def lemmy_count(name, days=7, fetch=None, now=None):
         return None
 
 
+ARCTIC = "https://arctic-shift.photon-reddit.com/api/posts/search"
+
+
+def arctic_titles(subs, days=7, fetch=None, now=None, limit=100):
+    """레딧 보관소 Arctic Shift에서 게시판별 최근 글 제목을 한 번씩 받는다 — 회사별 검색은 시간 초과가 나서 내려받아 여기서 센다. 제목은 세는 데만 쓰고 저장하지 않는다(2026-11-01 마스터 지시, 레딧 직접 접속 없음)"""
+    after = ((now or datetime.now(timezone.utc)) - timedelta(days=days)).strftime("%Y-%m-%d")
+    out = []
+    for sub in subs:
+        d = _json(f"{ARCTIC}?{urllib.parse.urlencode({'subreddit': sub, 'after': after, 'limit': limit, 'sort': 'desc', 'fields': 'title'})}", fetch)
+        out += [str(x.get("title") or "") for x in d.get("data") or []]
+        time.sleep(1)
+    return out
+
+
+def title_hits(titles, name, tick=None):
+    pats = [re.compile(rf"(?<![A-Za-z]){re.escape(x)}(?![A-Za-z])", re.I) for x in (name, tick) if x and len(x) >= 3]
+    return sum(1 for t in titles if any(p.search(t) for p in pats))
+
+
 def twse_margin(fetch=None):
     """{종목코드: 신용 매수 잔고(천 주)} — TWSE 공식, 개인 빚투의 대리 지표"""
     out = {}
@@ -151,7 +170,8 @@ def collect(cands, today, cfg=None, fetch=None, pause=0.15):
     ape, e1 = _safe(ape_all, fetch)
     wsb, e2 = _safe(tradestie_all, fetch)
     margin, e3 = _safe(twse_margin, fetch)
-    notes += [e for e in (e1, e2, e3) if e]
+    titles, e6 = _safe(arctic_titles, cfg.get("arctic_subs") or ["wallstreetbets", "stocks", "investing", "semiconductors", "SkincareAddiction", "gaming"], 7, fetch)
+    notes += [e for e in (e1, e2, e3, e6) if e]
     wsb_n, wsb_sent = wsb or ({}, {})
     rows = []
     for cid, c in cands.items():
@@ -166,6 +186,8 @@ def collect(cands, today, cfg=None, fetch=None, pause=0.15):
             rows.append((today, cid, "wiki_views", wiki_views(c.get("wiki") or name, fetch=fetch)))
             rows.append((today, cid, "hn", hn_count(short_name(name), fetch=fetch)))
             rows.append((today, cid, "lemmy", lemmy_count(short_name(name), fetch=fetch)))
+            if titles:
+                rows.append((today, cid, "reddit_titles", title_hits(titles, short_name(name), tick)))
         if pause:
             time.sleep(pause)
     hot, e4 = _safe(trends, cfg.get("trend_geos") or ["US", "KR", "JP", "TW"], fetch)

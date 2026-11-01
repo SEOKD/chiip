@@ -11,3 +11,9 @@
 - **리테일 채널**(2026-11-01 마스터 지시 "레딧, X에 직접 접속하지 말고 우회 방법을 찾아라"): `radar/retail_channels.py`가 하루 1회 `radar/attention.py` 안에서 돈다. 종목별 ApeWisdom·Tradestie 레딧 집계, Wikimedia 조회, Hacker News, Lemmy, TWSE 신용잔고, 시장별 Google Trends 급상승·Kalshi. 수만 저장한다. robots 금지·ClaudeBot 금지·차단 사이트(네이버 토론, 에펨코리아, 디시, PTT, Xueqiu 등)와 스크래퍼 재판매는 쓰지 않는다. Stocktwits는 약관 확인 전 보류.
 - **Discovery 피드 양식**(2026-11-01 마스터 지시): `scripts/discovery/feed.py`가 고정한다. 결론부터, 절 제목 ■, 회사 ▶, 사실은 하이픈 줄 하나에 하나.
 - **주기**(2026-11-01 마스터 지시 "주중에는 30분마다 유지하고, 토요일에는 알파 재산정 1번만, 일요일은 발굴 전체 선별 1번만"): 월~금 `chiip-tenbagger` 30분마다, 토·일 `chiip-tenbagger-weekend` 08시 15분 1회. 한국 시각 기준이다. 그 달 첫 토요일의 월간 점검은 토요일 회차에 함께 한다.
+- **리테일·커뮤니티 대체 경로**(2026-11-01 마스터 지시 "MCP 및 API 연결에 돈을 지불해야 한다면 우회 경로를 찾아라", "레딧과 X, Substack에서 정보를 수집할 때도 우회 방법을 찾아라"). 공개·무료이고 약관과 robots가 허용하는 경로만 쓴다.
+  - 소비재는 Pulse(소비재 분류)·Ten-bagger(일요일 전체 선별, `config/consumer.yaml` 30개사)·Analysis 모두 대상이다.
+  - 쓰는 것: Wikipedia 조회수, Steam 추천 수, 애플 앱 순위, Google Trends, 브랜드 뉴스, HN, ApeWisdom, Arctic Shift(레딧 글 제목 수, 제목 저장 안 함), Substack 공개 RSS 16곳.
+  - 쓰지 않는 것: Amazon(robots가 ClaudeBot·Claude-User 금지), Walmart·Target(약관이 자동 수집 금지), Sephora·Etsy·올리브영·라쿠텐 웹(403), 레딧 RSS(robots 금지), Nitter(X를 긁는 우회 서비스), 키 없는 Bluesky 검색(403).
+  - X는 언론 인용 제목과 공개 텔레그램 채널로 간접 파악한다.
+  - 무료 키가 있으면 넓힐 수 있는 공식 경로: Rakuten Ichiba Ranking API, Best Buy Products API, 네이버 데이터랩 쇼핑인사이트. 가입은 마스터 몫이다(`docs/TODO_MASTER.md`).
