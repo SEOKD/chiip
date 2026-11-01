@@ -1,0 +1,20 @@
+# 노션 자료실 (마스터 지시 2026-11-01) → radar/notion_library.py, docs/channels/notion.md
+kinds: [pdf, xlsx]
+stale_h: 6              # 색인이 이보다 오래되면 --need가 갱신을 요구한다
+digest_max_chars: 3000  # 요지 분량 상한
+max_shared_words: 12    # 원문과 이만큼 이어서 겹치면 요지를 거절한다
+default_class: 일반 자료
+blocked_classes: [채널체크]   # 필드 인텔일 수 있어 어떤 기능에도 내주지 않는다(CLAUDE.md 경계)
+aliases:                # 영문 파일 이름과 맞추는 이름
+  co-skhynix: [SK Hynix, SKHynix]
+  co-samsung: [Samsung Electronics]
+# 페이지 제목으로 분류한다. 라이선스 = 저장소에 원문을 두지 않고 요지만 둔다
+classes:
+  - {name: IB 리포트, match: ["IB Report", "IB 리포트"], license: true}
+  - {name: 채널체크, match: ["Channel Check", "채널체크", "채널 체크"]}
+# 새 첨부를 찾을 때 읽는 페이지. Stocks 종목 페이지와 Informations 하위 페이지는 notion-fetch로 돌며 --sync에 넣는다
+roots:
+  - {name: IB Report, id: "40bb5d1e-0998-8064-ba1e-fd1d57bb67e3"}
+  - {name: Informations, id: "407b5d1e-0998-803a-8359-e41e621d673c"}
+  - {name: Stocks, id: "407b5d1e-0998-803d-a81a-d5570164959f"}
+  - {name: Insights, id: "407b5d1e-0998-800a-99aa-c6f8581276ba"}

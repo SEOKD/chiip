@@ -271,6 +271,13 @@ def main(argv):
                 m.setdefault("verdict", {})["view"] = (d.get("verdict") or {}).get("view", m["verdict"].get("view"))
                 d = m
             src.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+            sys.path.insert(0, str(ROOT / "radar"))
+            import notion_library as nlib
+            lib_rows, lib_cfg = nlib.read(), nlib.config()
+            left = nlib.unread(lib_rows, a.entity, lib_cfg)
+            if left:
+                raise SystemExit("노션 자료의 요지가 없다(마스터 지시 2026-11-01) — py radar/notion_library.py --need " + a.entity + " 뒤 요지를 쓴다: " + ", ".join(r["name"] for r in left))
+            d["sources"] = list(dict.fromkeys((d.get("sources") or []) + nlib.citations(lib_rows, a.entity, lib_cfg)))
             co = v2run.load_company(a.entity)
             sel = multiples.select_multiple(r["_mm"], dp, report_layout.config()["multiple_select"])
             d = report_layout.assemble(d, dp, co, r, r["_mm"], sel, sec, esec, xs, a.entity)

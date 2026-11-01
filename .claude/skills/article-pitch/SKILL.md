@@ -45,3 +45,5 @@ argument-hint: "[날짜 | 주제]"
 
 ## 금지
 - 텔레그램에 필드 인텔·엠바고·취재원 단서. 확인 안 된 단정("단독 확인" 등). 정황을 사실처럼 쓰기.
+
+노션 자료 참조(필수, 2026-11-01 마스터 지시): 후보 종목마다 `docs/channels/notion.md` '노션 자료실'대로 `py radar/notion_library.py --need <회사>`의 PDF·xlsx 요지와 `notion-search` 게시글을 참조한다. IB 리포트 내용은 취재 단서이고 기사 문장으로 옮기지 않는다.

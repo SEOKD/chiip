@@ -146,6 +146,7 @@
 | Fiscal.ai 데이터 상세 | `docs/channels/data.md` |
 
 - **실시간 전달 = 텔레그램 개인 봇.** 아침·저녁 브리프는 중단(2026-10-28 마스터 지시). 공개 채널에는 올리지 않는다.
+- **노션 자료 참조**(2026-11-01 마스터 지시): 모든 기능은 판단 전에 노션의 PDF·xlsx·게시글을 참조한다(`radar/notion_library.py`, `docs/channels/notion.md`). IB 원문은 커밋하지 않고 요지만, 채널체크는 쓰지 않는다.
 - **노션 쓰기 경계:** 마스터가 쓴 본문은 고치지 않는다. 쓰기는 Stocks 아래 텐배거 리포트, Insights 글 아래 '치입 검토' 하위 페이지, ⭐ 인텔 아카이브, Weekly 페이지 아래 주차별 리뷰뿐이다.
 - **데이터 원천 = Fiscal.ai 1순위, Easyconomics·Zacks·yfinance 2순위**(2026-11-01 마스터 지시, `config/data_sources.yaml`, ADR-014). 2순위는 Fiscal.ai 칸이 빌 때 쓰고 `scripts/fiscal/source_router.py`가 사용량을 맞춘다. yfinance는 Easyconomics MCP가 내주는 자료만 쓴다(직접 호출 금지). Zacks 수치를 보여 줄 때마다 'Data provided by Zacks Investment Research, Inc., www.zacksdata.com' 표기(텐배거 리포트 본문은 제공처 이름을 쓰지 않는다). fiscal.ai 링크는 응답의 auditUrl·terminalUrl만.
 - **기업 설명 1줄**(2026-10-29 마스터 지시): 어떤 기능이든 종목 정보·소식·밸류 판단을 전할 때 종목명 아래 `기업: 어떤 사업을 하는 회사인지 1줄`(config/company_lines.yaml, 없으면 10-K·회사 개요를 자기 말로 — 모르면 미확인). 실시간 알림은 1줄 대신 3줄 — `docs/channels/pulse.md` '실시간 알림 양식'.

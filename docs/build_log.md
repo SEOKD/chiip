@@ -128,3 +128,4 @@
 - Chiip Analysis 2순위 세 채널(ADR-014 개정, 마스터 2026-11-01): Easyconomics·Zacks·yfinance를 모두 호출하고 사용량이 적은 채널부터 채운다. yfinance는 Easyconomics 경유만, 직접 호출은 Yahoo robots 금지로 하지 않는다
 - 컨센서스 채널 확장(ADR-014 개정, 마스터 2026-11-01): Proviser 6-5, `config/consensus_channels.yaml`, `scripts/fiscal/cited.py`(기사 인용 장부·재인용 묶음·발표 전 값·채널 검토 기록). 인용값은 est.에 넣지 않는다. 시험 tests/test_cited.py
 - 데이터 채널 탐색(ADR-014 개정, 마스터 2026-11-01): `radar/channel_scout.py`, `config/data_channels.yaml`, `knowledge/models/channels/scout.csv`, run_hourly `proviser-channels`, Proviser 6-5 전면 개정. 시험 tests/test_channel_scout.py
+- 노션 자료실(마스터 2026-11-01): `radar/notion_library.py`, `config/notion_library.yaml`, `knowledge/notion/`. 첨부 색인·PDF·xlsx 추출·요지(원문 겹침 거절)·회사별 찾기, 리포트 조립 관문, 전 기능 지시문 연결. 시험 tests/test_notion_library.py

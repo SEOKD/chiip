@@ -35,3 +35,5 @@ argument-hint: "[주차 YYYY-Www]"
 
 
 운영 규칙: `docs/channels/weekly.md`를 먼저 읽는다. '이번 주 바뀐 것'을 고르기 전에 `py radar/dticker.py --recent 7 --columns`로 마스터가 쓴 글을 본다(`docs/channels/dticker.md`).
+
+노션 자료 참조(2026-11-01 마스터 지시): '이번 주 바뀐 것' 종목은 `py radar/notion_library.py --need <회사>`의 요지와 게시글을 참조한다.
