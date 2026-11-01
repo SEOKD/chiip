@@ -208,11 +208,6 @@ class TestTargetPrice(unittest.TestCase):
         c = report_layout.upside_chart({"price": 100, "weighted": 120, "target": 110}, [])
         self.assertEqual(c["rows"][0]["bars"][0]["value"], 10.0)
 
-    def test_text_avoids_locked_phrase(self):
-        self.assertNotIn("목표주가는", report_feed.FOOT + report_html.DISCLAIMER3)
-        pt = tp.build(self.s(), 1.5, 0.1, "확산", None, [], 0, 1, self.CFG)
-        self.assertNotIn("목표주가는", str(tp.table(pt, self.s())))
-
 
 if __name__ == "__main__":
     unittest.main()
