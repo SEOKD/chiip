@@ -7,6 +7,7 @@ github 링크를 제공해야지 … 노션에도 결과물이 Github와 동시�
   2. (모델) Artifact 도구로 <이름>_artifact.html을 claude.ai 비공개 페이지로 게시 → artifact <json> --url <URL>
      (마스터 지시 2026-10-30 "리포트 링크는 html로" — 비공개 저장소 HTML은 GitHub에서 소스로만 보여서, 모바일에서 그대로 보이는 HTML 링크)
   3. (모델) 노션 커넥터로 HTML 임베드 + 본문을 종목 페이지 아래 하위 페이지로 → notion <json> --page <URL>  (실패면 --fail "<이유>")
+     종목당 리포트 페이지는 하나다. 이미 있으면 날짜가 달라도 덮어쓴다(마스터 지시 2026-11-02). 다른 페이지를 내려면 옛 페이지를 휴지통으로 옮기고 --replaced
   4. send <json> --caption <파일>         GitHub 게시 기록이 없으면 보내지 않는다. 보기 링크 = Artifact(없으면 GitHub 마크다운 + '보기 링크 게시 실패'),
                                        노션이 성공이면 캡션 + 리포트 보기 + 노션 링크,
                                        노션이 실패·미기록이면 '노션 게시 실패 — 다음 회차 재시도'를 붙여 보내고 상태를 notion_pending으로 남긴다.
@@ -68,13 +69,28 @@ def log(stem, ticker, step, status, detail=""):
         w.writerow([now(), stem, ticker, step, status, detail[:300]])
 
 
-def existing_notion(date_, ticker):
-    """같은 날 같은 종목 하위 페이지가 이미 있으면 그 URL(정정은 새로 만들지 않고 갱신)"""
+def notion_rows():
     if not NOTION_LOG.exists():
-        return None
-    with NOTION_LOG.open(encoding="utf-8") as f:
-        rows = [r for r in csv.DictReader(f) if r.get("date") == date_ and (r.get("ticker") or "").upper() == ticker.upper()]
+        return []
+    with NOTION_LOG.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def existing_notion(ticker):
+    """그 종목의 노션 리포트 페이지 — 날짜가 달라도 새로 만들지 않고 덮어쓴다(마스터 지시 2026-11-02 "새로 업데이트한 리포트는 노션에 저장할 때
+    기존 링크를 덮어라. 덮으면 기존 링크는 사라지도록 하라")"""
+    rows = [r for r in notion_rows() if (r.get("ticker") or "").upper() == ticker.upper()]
     return (rows[-1].get("report_page"), rows[-1].get("stock_page")) if rows else None
+
+
+def remember_notion(st, page, stock):
+    """종목당 한 줄만 둔다. 이력은 delivery.csv에 남는다"""
+    rows = [r for r in notion_rows() if (r.get("ticker") or "").upper() != str(st["ticker"]).upper()]
+    rows.append({"date": st["date"], "id": "", "ticker": st["ticker"], "stock_page": stock or "", "report_page": page})
+    with NOTION_LOG.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=["date", "id", "ticker", "stock_page", "report_page"])
+        w.writeheader()
+        w.writerows(rows)
 
 
 def prepare(src, extra=(), title=None, dry=False):
@@ -96,7 +112,7 @@ def prepare(src, extra=(), title=None, dry=False):
     art.write_text(report_html.artifact_html(d), encoding="utf-8")
     body = src.with_name(src.stem + "_notion.md")
     body.write_text(report_notion.render(d, gh_md), encoding="utf-8")
-    old = existing_notion(str(d.get("date")), str(d.get("ticker")))
+    old = existing_notion(str(d.get("ticker")))
     st = load(src) or {}
     st.update({"stem": src.stem, "date": d.get("date"), "ticker": d.get("ticker"), "company": d.get("company"),
                "github": {"md": gh_md, "html": gh_html, "commit": commit, "at": now()},
@@ -121,20 +137,17 @@ def artifact(src, url=None, fail=None):
     return st["artifact"]
 
 
-def notion(src, page=None, fail=None, stock=None):
+def notion(src, page=None, fail=None, stock=None, replaced=False):
     st = load(src)
     if not st or not (st.get("github") or {}).get("md"):
         raise SystemExit("prepare 먼저(GitHub 게시 기록 없음)")
     if page:
-        st["notion"] = {"status": "ok", "page": page, "stock_page": stock, "at": now()}
+        old = existing_notion(str(st["ticker"]))
+        if old and old[0].split("?")[0] != page.split("?")[0] and not replaced:
+            raise SystemExit(f"이 종목의 노션 리포트가 이미 있다: {old[0]} — 그 페이지를 덮어쓰거나, 휴지통으로 옮긴 뒤 --replaced")
+        st["notion"] = {"status": "ok", "page": page, "stock_page": stock or (old[1] if old else None), "at": now()}
         log(st["stem"], st["ticker"], "notion", "ok", page)
-        if not existing_notion(str(st["date"]), str(st["ticker"])):
-            new = not NOTION_LOG.exists()
-            with NOTION_LOG.open("a", encoding="utf-8", newline="") as f:
-                w = csv.writer(f)
-                if new:
-                    w.writerow(["date", "id", "ticker", "stock_page", "report_page"])
-                w.writerow([st["date"], "", st["ticker"], stock or "", page])
+        remember_notion(st, page, st["notion"]["stock_page"])
     else:
         n = (st.get("notion") or {}).get("tries", 0) + 1
         st["notion"] = {"status": "fail", "error": (fail or "")[:300], "tries": n, "at": now()}
@@ -204,6 +217,7 @@ def main(argv):
     ap.add_argument("--url", help="Artifact 보기 링크(claude.ai)")
     ap.add_argument("--stock-page")
     ap.add_argument("--fail")
+    ap.add_argument("--replaced", action="store_true", help="이전 노션 리포트 페이지를 휴지통으로 옮겼다")
     ap.add_argument("--caption", default="")
     ap.add_argument("--dry", action="store_true", help="GitHub 게시·텔레그램 없이 흐름만")
     ap.add_argument("--resend", action="store_true", help="이미 보낸 리포트를 새 링크로 다시 보낸다")
@@ -222,7 +236,7 @@ def main(argv):
     elif a.cmd == "notion":
         if not a.page and not a.fail:
             ap.error("--page 또는 --fail")
-        r = notion(a.json, a.page, a.fail, a.stock_page)
+        r = notion(a.json, a.page, a.fail, a.stock_page, a.replaced)
     else:
         r = send(a.json, a.caption, a.dry, a.resend, a.reissue)
     print(json.dumps(r, ensure_ascii=False, indent=1))

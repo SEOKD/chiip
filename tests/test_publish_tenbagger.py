@@ -95,7 +95,36 @@ class TestDeliveryGate(unittest.TestCase):
         self.assertIn("skipped", pt.send(self.src, dry=True))
         self.assertTrue(pt.send(self.src, "요약", dry=True, resend=True)["sent"])   # 경로가 바뀐 리포트는 다시 보낼 수 있다
         self.assertIn("https://app.notion.com/p/xyz", s["text"])
-        self.assertEqual(pt.existing_notion("2026-10-30", "TST")[0], "https://app.notion.com/p/xyz")
+        self.assertEqual(pt.existing_notion("TST")[0], "https://app.notion.com/p/xyz")
+
+    def later_report(self):
+        """같은 종목의 다음 날짜 리포트"""
+        src = self.src.with_name("20261102_TST.json")
+        src.write_text(json.dumps({**DOC, "date": "2026-11-02"}, ensure_ascii=False), encoding="utf-8")
+        src.with_suffix(".html").write_text("<html></html>", encoding="utf-8")
+        return src
+
+    def test_new_date_overwrites_existing_page(self):
+        pt.prepare(self.src, dry=True)
+        pt.notion(self.src, page="https://app.notion.com/p/old", stock="https://app.notion.com/p/st")
+        later = self.later_report()
+        r = pt.prepare(later, dry=True)
+        self.assertEqual((r["notion_existing_page"], r["notion_stock_page"]), ("https://app.notion.com/p/old", "https://app.notion.com/p/st"))
+        pt.notion(later, page="https://app.notion.com/p/old?pvs=204")
+        self.assertEqual(len(pt.notion_rows()), 1)
+        self.assertEqual(pt.notion_rows()[0]["date"], "2026-11-02")
+        self.assertEqual(pt.notion_rows()[0]["stock_page"], "https://app.notion.com/p/st")
+
+    def test_second_page_refused_until_old_removed(self):
+        pt.prepare(self.src, dry=True)
+        pt.notion(self.src, page="https://app.notion.com/p/old")
+        later = self.later_report()
+        pt.prepare(later, dry=True)
+        with self.assertRaises(SystemExit):
+            pt.notion(later, page="https://app.notion.com/p/new")
+        self.assertEqual(pt.existing_notion("TST")[0], "https://app.notion.com/p/old")
+        pt.notion(later, page="https://app.notion.com/p/new", replaced=True)
+        self.assertEqual([r["report_page"] for r in pt.notion_rows()], ["https://app.notion.com/p/new"])
 
 
 if __name__ == "__main__":
