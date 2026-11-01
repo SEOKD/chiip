@@ -10,75 +10,75 @@ region_mix:
   EU: 0.4
 tax: 0.25
 horizon: 10
-as_of: '2026-10-28'
+as_of: '2026-10-30'
 market:
-  date: '2026-10-28'
-  price: 18.35
+  date: '2026-10-30'
+  price: 16.3
   shares: 0.7517
   net_debt: 1.6216
-  source: 가격 = Fiscal.ai company_stock_prices 2026-10-28 종가(10/29 봉은 거래량 100주로 미확정이라
-    쓰지 않음) · 주식 수 750,000,000(Fiscal.ai shares_outstanding 2026-09-30·10-26) · 현금·차입
-    = Fiscal.ai 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$)
+  source: 가격 = 2026-10-30 종가(Fiscal.ai·Easyconomics 일치) · 주식 수 750,000,000(10-Q 2026-09-30)
+    · 현금·차입 = 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$). Easyconomics(yfinance)
+    총차입 $2.95B는 운용리스 $98M 등을 더한 값이라 차이가 난다
 rev0: 3.95
 ic0: 1.9678
 scenarios:
   base:
     prob: 0.5
     growth:
-      start: 0.3072
+      start: 0.3393
       end: 0.035
-      decay: 0.7
+      decay: 0.385
     margin:
-      m0: 0.1223
+      m0: 0.1273
       target: 0.19
       year_target: 4
       lr: 0.17
       lam: 0.35
       anchors:
-      - 0.1726
+      - 0.1782
     s2c: 3.0
   bull:
     prob: 0.3
     growth:
-      start: 0.4301
+      start: 0.3631
       end: 0.04
-      decay: 0.75
+      decay: 0.435
     margin:
-      m0: 0.1223
-      target: 0.2152
+      m0: 0.1273
+      target: 0.2155
       year_target: 4
       lr: 0.17
       lam: 0.25
       anchors:
-      - 0.1726
+      - 0.1782
     s2c: 3.45
   bear:
     prob: 0.2
     growth:
-      start: 0.1843
+      start: 0.3216
       end: 0.030000000000000002
-      decay: 0.6
+      decay: 0.3
     margin:
-      m0: 0.1223
-      target: 0.1648
+      m0: 0.1273
+      target: 0.1646
       year_target: 4
       lr: 0.17
       lam: 0.5
       anchors:
-      - 0.1726
+      - 0.1782
     s2c: 2.55
 mc:
-  sigma_growth: 0.0614
+  sigma_growth: 0.03
   sigma_margin: 0.02
   sigma_s2c: 0.2
   sigma_wacc: 0.005
 provenance:
-  rev0: '회사 가이던스 중간값 [3.9, 4.0] (회사 3Q 실적 보도자료·콜(2026-10-27, Fiscal.ai ir_events:
-    press_release·transcript q3-2026) — FY2026 매출 3.9~4.0B$ 상향)'
-  growth: 컨센서스 1년차 30.7%
-  margin: 1년차 컨센서스 17.3% 고정 → 목표 19%(4년차, 덮어쓰기) → 장기 수렴 17%
+  rev0: '회사 가이던스 중간값 [3.9, 4.0] (3Q 보도자료·콜 2026-10-27: FY26 매출 $3.9~4.0B, 조정 EBITDA
+    $780~800M. 4Q 매출 = FY 가이던스 − 9개월 $2,774.2M = $1,126~1,226M(중간값 $1,176M))'
+  growth: 컨센서스 1년차 33.9%, 2년차 15.2%
+  margin: 1년차 컨센서스 17.8% 고정 → 목표 19%(4년차, 덮어쓰기) → 장기 수렴 17%
   s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.786 → 덮어쓰기 3.0
-  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 32.2%~36.3%
   probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
   overrides: '목표 조정 EBITA 이익률 19%(4년차): 장비 마진 3Q 17.1% 도달 + 서비스(마진 32%) 비중이 2030년대
     확대 — 동종 CAT 22%·Wärtsilä 14%·CMI 12% 사이, 장기 17%로 수렴 / 매출÷투하자본 3.0: TTM 1.9는 인수
@@ -86,10 +86,10 @@ provenance:
     291백만$ ÷ 매출 증가 1.28B$) → 증분 3~5, 보수적으로 3 / SBC 0.2%: 3Q SBC 2.7백만$ ÷ 매출 1,168'
   shares: 완전 희석 = 기본 0.75(2026-09-30) + 옵션·RSU·워런트·전환 0.0017 — SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarn
 notes:
-- 자동 생성(build_drivers) 2026-10-30 — 데이터 묶음 2026-10-28
-- '어닝콜 위험: 증설 실행(3.5→10GW+)'
-- '어닝콜 위험: 데이터센터 고객 집중(2025 최대 고객 41%)'
-- '어닝콜 위험: 텍사스 등 인허가'
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 증설 실행(3.5 → 10GW 초과)'
+- '어닝콜 위험: 데이터센터 고객 집중(9개월 상위 5개 고객 매출 54%)'
+- '어닝콜 위험: 텍사스 인허가(프로젝트 1건 1주 지연 뒤 해소)'
 evidence:
 - easyconomics company_profile·financial_statements(분기 손익)·financials_summary(연간)·earnings_summary
   2026-10-27·2026-07-28·company_price_history (조회 2026-10-29 KST)
@@ -101,3 +101,5 @@ evidence:
 - Fiscal.ai MCP 2026-10-30 — 표준화 재무(공시 원문 auditUrl)·Zacks 컨센서스·목표가(Data provided by
   Zacks Investment Research, Inc., www.zacksdata.com)·뉴스(10/22 620MW 후속 수주, 10/27
   3Q 실적)·3Q 콜 Q&A 질문 증권사 8곳
+- '2026-11-02 재발행: EDGAR 10-Q(2026-10-27)·424B4(2026-06-04) 본문, Fiscal.ai·Zacks·Easyconomics(yfinance)
+  2026-10-30 기준, 노션 Stocks 이니오 INIO(공장 지도·공매도 잔고), JPM GE Vernova 노트 요지(라이선스, 업종 맥락만)'
