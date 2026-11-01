@@ -2,7 +2,7 @@
  "id": "us-hii",
  "name": "Huntington Ingalls Industries",
  "ticker": "HII",
- "as_of": "2026-10-30",
+ "as_of": "2026-11-02",
  "unit": "B$",
  "industry": "aerospace_defense",
  "region_mix": {
@@ -12,12 +12,12 @@
  "main_metric": "eps",
  "main_metric_why": "회사가 실적을 희석 EPS와 잉여현금흐름으로 보고하고, 향후 12개월 EBITDA 중 감가상각이 26%뿐이라 순이익이 실적을 가장 잘 나타낸다",
  "profile": {
-  "price": 316.97,
+  "price": 316.88,
   "shares_basic": 0.039406,
   "shares_date": "2026-10-23",
   "cash": 0.387,
   "debt": 2.929,
-  "source": "가격 = Fiscal.ai 일봉 10/30 시가 없는 마지막 값 $316.97(월봉 종가) · 주식 수 39,406,060(10-Q 표지 2026-10-23) · 현금·차입 = 10-Q 2026-09-30, 차입 = 장기차입 2,704 + 리스 225백만$"
+  "source": "가격 = Fiscal.ai 일봉 10/30 확정 종가 $316.88(10-31 판 $316.97은 미확정 행) · 주식 수 39,406,060(10-Q 표지 2026-10-23) · 현금·차입 = 10-Q 2026-09-30, 차입 = 장기차입 2,704 + 리스 225백만$"
  },
  "dilution": {
   "potential_total": 0.0004,
@@ -43,16 +43,16 @@
   },
   "rev_basis": "gaap",
   "ebit_margin": {
-   "FY2026": 0.0603,
+   "FY2026": 0.0638,
    "FY2027": 0.0662,
    "FY2028": 0.0703
   },
   "margin_basis": "gaap",
   "rev_low": {
-   "FY2027": 14.2
+   "FY2027": 13.8
   },
   "rev_high": {
-   "FY2027": 14.9
+   "FY2027": 15.15
   },
   "n_analysts": 13,
   "quarters_est": {
@@ -70,7 +70,7 @@
   "note": "매출·EBIT = Fiscal.ai 자체 추정(company_estimates 2026-10-30, 3Q 실적 반영). FY2026 EBIT 이익률은 1~3Q 실적 611 + 4Q 추정 209 = 820 ÷ 13,600(연간 칸 867은 분기 합과 달라 쓰지 않음). 범위(FY27)는 Chiip 근사. 의견·목표가 13명 Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
   "revisions": {
    "from_date": "2026-07-23",
-   "to_date": "2026-10-27",
+   "to_date": "2026-10-30",
    "from_label": "2Q 실적 직전",
    "source": "Fiscal.ai analyst_estimates history(Zacks) — 같은 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
@@ -78,164 +78,204 @@
      "period": "2026Q4",
      "metric": "EPS",
      "from": 5.0319,
-     "to": 5.134
+     "to": 5.2182
     },
     {
      "period": "2027Q1",
      "metric": "EPS",
      "from": 4.3568,
-     "to": 4.4425
+     "to": 4.4106
     },
     {
      "period": "2027Q2",
      "metric": "EPS",
      "from": 4.7216,
-     "to": 5.3386
+     "to": 5.2182
     },
     {
      "period": "2027Q3",
      "metric": "EPS",
      "from": 5.0334,
-     "to": 5.2991
+     "to": 5.2839
     },
     {
      "period": "2027Q4",
      "metric": "EPS",
      "from": 5.4231,
-     "to": 5.751
+     "to": 5.7363
     }
-   ]
+   ],
+   "note": "10/30 기준 2027Q1·Q2 표본 4명. 2026Q4와 2027Q2가 같은 $5.2182, 2026Q3 직전값과 2027Q1이 같은 $4.4106인데 최고·최저가 달라 그대로 쓴다"
   },
   "price_window": {
    "from": 280.4,
-   "to": 316.97,
+   "to": 316.88,
    "note": "리비전 구간과 같은 기간: 2Q 실적 전날 7/29 종가 → 10/30"
   },
   "surprise": [
    {
     "period": "2025Q4",
+    "report_date": "2025-12-31",
     "metric": "매출",
     "unit": "M$",
     "actual": 3476,
-    "est": 3056.446,
-    "est_src": "zacks",
+    "est": 3088.844,
+    "est_src": "yfinance",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-02-05"
+    "earnings_date": "2026-02-05",
+    "pair": {
+     "zacks": 3056.446
+    }
    },
    {
     "period": "2025Q4",
+    "report_date": "2025-12-31",
     "metric": "EPS",
     "unit": "$",
     "actual": 4.04,
-    "est": 3.723,
-    "est_src": "zacks",
+    "est": 3.77,
+    "est_src": "yfinance",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-02-05"
+    "earnings_date": "2026-02-05",
+    "pair": {
+     "zacks": 3.723
+    }
    },
    {
     "period": "2025Q4",
+    "report_date": "2025-12-31",
     "metric": "EBIT",
     "unit": "M$",
-    "actual": 172,
+    "actual": 195,
     "est": 162.711,
     "est_src": "zacks",
-    "basis": "gaap",
+    "est_asof": "2026-01-21",
+    "basis": "adjusted",
     "earnings_date": "2026-02-05"
    },
    {
     "period": "2026Q1",
+    "report_date": "2026-03-31",
     "metric": "매출",
     "unit": "M$",
     "actual": 3099,
     "est": 3017.446,
     "est_src": "zacks",
+    "est_asof": "2026-04-16",
     "basis": "gaap",
     "earnings_date": "2026-05-05"
    },
    {
     "period": "2026Q1",
+    "report_date": "2026-03-31",
     "metric": "EPS",
     "unit": "$",
     "actual": 3.79,
-    "est": 3.697,
-    "est_src": "zacks",
+    "est": 3.699,
+    "est_src": "yfinance",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-05-05"
+    "earnings_date": "2026-05-05",
+    "pair": {
+     "zacks": 3.697
+    }
    },
    {
     "period": "2026Q1",
+    "report_date": "2026-03-31",
     "metric": "EBIT",
     "unit": "M$",
-    "actual": 155,
+    "actual": 172,
     "est": 148.743,
     "est_src": "zacks",
-    "basis": "gaap",
+    "est_asof": "2026-04-15",
+    "basis": "adjusted",
     "earnings_date": "2026-05-05"
    },
    {
     "period": "2026Q2",
+    "report_date": "2026-06-30",
     "metric": "매출",
     "unit": "M$",
     "actual": 3418,
-    "est": 3143.25,
-    "est_src": "zacks",
+    "est": 3150.0,
+    "est_src": "easyconomics",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-07-30"
+    "earnings_date": "2026-07-30",
+    "pair": {
+     "zacks": 3143.25
+    }
    },
    {
     "period": "2026Q2",
+    "report_date": "2026-06-30",
     "metric": "EPS",
     "unit": "$",
     "actual": 5.27,
-    "est": 3.802,
-    "est_src": "zacks",
+    "est": 3.79,
+    "est_src": "easyconomics",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-07-30"
+    "earnings_date": "2026-07-30",
+    "pair": {
+     "zacks": 3.802
+    }
    },
    {
     "period": "2026Q2",
+    "report_date": "2026-06-30",
     "metric": "EBIT",
     "unit": "M$",
-    "actual": 210,
+    "actual": 224,
     "est": 160.622,
     "est_src": "zacks",
-    "basis": "gaap",
+    "est_asof": "2026-07-23",
+    "basis": "adjusted",
     "earnings_date": "2026-07-30"
    },
    {
     "period": "2026Q3",
+    "report_date": "2026-09-30",
     "metric": "매출",
     "unit": "M$",
     "actual": 3537,
     "est": 3351.493,
     "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-22",
     "basis": "gaap",
     "earnings_date": "2026-10-29"
    },
    {
     "period": "2026Q3",
+    "report_date": "2026-09-30",
     "metric": "EPS",
     "unit": "$",
     "actual": 5.48,
     "est": 4.265,
     "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-22",
     "basis": "gaap",
     "earnings_date": "2026-10-29"
    },
    {
     "period": "2026Q3",
+    "report_date": "2026-09-30",
     "metric": "EBIT",
     "unit": "M$",
-    "actual": 246,
-    "est": 168.141,
-    "est_src": "fiscal:guidance_calculated",
-    "basis": "gaap",
+    "actual": 262,
+    "est": 194.487,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-22",
+    "basis": "adjusted",
     "earnings_date": "2026-10-29"
    }
   ],
   "eps_history": {
    "basis": "adjusted",
-   "updated_at": "2026-10-30T09:15:31.000Z",
+   "updated_at": "2026-10-31T09:12:25.000Z",
    "source": "Fiscal.ai company_analyst_estimates history(Zacks) — 2025-08 이후 행만. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
     [
@@ -874,8 +914,76 @@
      "2026-10-27",
      5.751,
      5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-10-30",
+     5.2182,
+     8
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-10-30",
+     18.599,
+     9
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-10-30",
+     4.4106,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-10-30",
+     5.2182,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-10-30",
+     5.2839,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-10-30",
+     5.7363,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-30",
+     20.883,
+     10
     ]
    ]
+  },
+  "ratings": {
+   "strong_buy": 6,
+   "buy": 0,
+   "hold": 7,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-10-30",
+   "target_mean": 343.92,
+   "target_high": 441,
+   "target_low": 230,
+   "source": "Fiscal.ai company_analyst_ratings(Zacks) 13명, 목표가 2026-10-30. Easyconomics(yfinance) 대조: 15명 매수 9·보유 6, 평균 $357.55, $281~417. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "eps_quarters_est": {
+   "2026Q4": 4.92,
+   "2027Q1": 4.7,
+   "2027Q2": 5.05,
+   "2027Q3": 5.26,
+   "2027Q4": 5.51
   }
  },
  "guidance": {
@@ -910,7 +1018,17 @@
   "capex_fy26": 0.5,
   "tax": 0.17,
   "long_term": "조선 영업이익률 9~10%(3Q 콜 CEO) · 중기 매출 CAGR 6%(3Q 콜, 연말 갱신 예고)",
-  "source": "회사 3Q 실적 보도자료·콜(2026-10-29): 조선 $10.5~10.7B + MT $3.0~3.2B − 부문 간 제거 약 $0.12B(3Q 연환산, Chiip 계산)"
+  "source": "회사 3Q 실적 보도자료·콜(2026-10-29): 조선 $10.5~10.7B + MT $3.0~3.2B − 부문 간 제거 약 $0.12B(3Q 연환산, Chiip 계산)",
+  "next": {
+   "period": "FY2026",
+   "rev": 13580,
+   "rev_cons": 13600,
+   "unit": "$M"
+  },
+  "fcf_4q_implied": [
+   0.682,
+   0.782
+  ]
  },
  "call": {
   "date": "2026-10-29",
@@ -941,7 +1059,7 @@
    "2026~27 합산 FCF $1.2~1.3B 유지"
   ],
   "new_topics": [
-   "3Q 수주 $32.4B(VCS Block VI·Columbia Build 2·CVN 82 장납기), CVN 75 RCOH $5.1B는 4Q 인식",
+   "3Q 수주 $32.4B(버지니아 블록 6·컬럼비아 빌드 2·CVN 82 장납기), CVN 75 RCOH $5.1B는 4Q 인식",
    "조선 매출의 약 90%를 2030년까지 확보",
    "MUSV Romulus 10척·Lionfish 후속·STINGRAI $2.2B",
    "무인 사업 연 매출 $200M 초과·MT 평균 이상 이익률",
@@ -955,7 +1073,7 @@
    "Citi — 6% CAGR이 낮은 것 아닌가·이익률 경로",
    "Goldman Sachs — 뉴포트뉴스 실제 이익률과 EAC",
    "J.P. Morgan — 2027 FCF 다리·호위함 일정",
-   "TD Cowen — 처리량 15% 미달의 경제적 영향",
+   "Cowen — 처리량 15% 미달의 경제적 영향",
    "Bank of America — 무인 사업 비중·새 조선소 난이도",
    "Wolfe — 수상함 부진·트럼프급 전함 존속"
   ],
@@ -1072,14 +1190,14 @@
    "growth": 0.0973,
    "goodwill": 20.849,
    "intangibles": 1.231,
-   "pe_fwd": 20.78,
-   "ev_ebitda_fwd": 14.14,
-   "pe_fwd2": 19.42,
-   "ev_ebitda_fwd2": 13.48,
-   "pe_fwd3": 17.75,
-   "ev_ebitda_fwd3": 12.5,
-   "ntm_ebit_margin": 0.1086,
-   "ntm_growth": 0.0337
+   "pe_fwd": 20.37,
+   "ev_ebitda_fwd": 14.21,
+   "pe_fwd2": 18.31,
+   "ev_ebitda_fwd2": 13.12,
+   "pe_fwd3": 16.76,
+   "ev_ebitda_fwd3": 12.14,
+   "ntm_ebit_margin": 0.1076,
+   "ntm_growth": 0.0511
   },
   {
    "ticker": "LMT",
@@ -1094,12 +1212,12 @@
    "growth": 0.0786,
    "goodwill": 11.299,
    "intangibles": 1.737,
-   "pe_fwd": 19.8,
-   "ev_ebitda_fwd": 15.46,
+   "pe_fwd": 19.79,
+   "ev_ebitda_fwd": 15.45,
    "pe_fwd2": 18.12,
-   "ev_ebitda_fwd2": 14.14,
-   "pe_fwd3": 16.73,
-   "ev_ebitda_fwd3": 13.18,
+   "ev_ebitda_fwd2": 14.13,
+   "pe_fwd3": 16.72,
+   "ev_ebitda_fwd3": 13.17,
    "ntm_ebit_margin": 0.1066,
    "ntm_growth": 0.0932
   },
@@ -1116,12 +1234,12 @@
    "growth": 0.0651,
    "goodwill": 17.44,
    "intangibles": null,
-   "pe_fwd": 18.67,
-   "ev_ebitda_fwd": 12.9,
+   "pe_fwd": 18.63,
+   "ev_ebitda_fwd": 12.88,
    "pe_fwd2": null,
-   "ev_ebitda_fwd2": 11.78,
+   "ev_ebitda_fwd2": 11.77,
    "pe_fwd3": null,
-   "ev_ebitda_fwd3": 11.17,
+   "ev_ebitda_fwd3": 11.15,
    "ntm_ebit_margin": 0.1118,
    "ntm_growth": 0.0641
   },
@@ -1138,11 +1256,11 @@
    "growth": 0.0733,
    "goodwill": 19.999,
    "intangibles": 6.389,
-   "pe_fwd": 22.67,
+   "pe_fwd": 22.68,
    "ev_ebitda_fwd": 14.21,
-   "pe_fwd2": 18.84,
+   "pe_fwd2": 18.85,
    "ev_ebitda_fwd2": 13.23,
-   "pe_fwd3": 16.98,
+   "pe_fwd3": 16.99,
    "ev_ebitda_fwd3": 12.14,
    "ntm_ebit_margin": 0.155,
    "ntm_growth": 0.0657
@@ -1160,12 +1278,12 @@
    "growth": 0.0341,
    "goodwill": 7.663,
    "intangibles": 0.943,
-   "pe_fwd": 11.68,
-   "ev_ebitda_fwd": 10.07,
-   "pe_fwd2": 10.29,
-   "ev_ebitda_fwd2": 9.46,
-   "pe_fwd3": 9.6,
-   "ev_ebitda_fwd3": 9.08,
+   "pe_fwd": 11.71,
+   "ev_ebitda_fwd": 10.09,
+   "pe_fwd2": 10.32,
+   "ev_ebitda_fwd2": 9.48,
+   "pe_fwd3": 9.62,
+   "ev_ebitda_fwd3": 9.1,
    "ntm_ebit_margin": 0.1232,
    "ntm_growth": 0.043
   },
@@ -1182,12 +1300,12 @@
    "growth": 0.2267,
    "goodwill": 0.494922,
    "intangibles": 0.311773,
-   "pe_fwd": 25.9,
-   "ev_ebitda_fwd": 22.98,
-   "pe_fwd2": 22.29,
-   "ev_ebitda_fwd2": 19.52,
-   "pe_fwd3": 19.87,
-   "ev_ebitda_fwd3": 17.52,
+   "pe_fwd": 25.98,
+   "ev_ebitda_fwd": 23.04,
+   "pe_fwd2": 22.35,
+   "ev_ebitda_fwd2": 19.57,
+   "pe_fwd3": 19.94,
+   "ev_ebitda_fwd3": 17.56,
    "ntm_ebit_margin": 0.1402,
    "ntm_growth": 0.1691
   }
@@ -1235,6 +1353,11 @@
   {
    "date": "2026-10-29",
    "tag": "3Q26 실적 발표",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "3Q 실적 다음 날",
    "kind": "earnings"
   }
  ],
@@ -1577,26 +1700,27 @@
   ]
  },
  "sources": [
-  "10-Q 2026-09-30(SEC)",
-  "8-K EX-99.1 2026-10-29",
-  "10-K FY2025(SEC)",
+  "10-K FY2025 https://www.sec.gov/Archives/edgar/data/1501585/000150158526000006/hii-20251231.htm",
+  "10-Q 2026-09-30 https://www.sec.gov/Archives/edgar/data/1501585/000150158526000056/hii-20260930.htm",
+  "2026 위임장 https://www.sec.gov/Archives/edgar/data/1501585/000150158526000014/hii-20260320.htm",
+  "8-K EX-99.1 2026-10-29 https://www.sec.gov/Archives/edgar/data/1501585/000150158526000054/hii2026q3earningsrelease.htm",
   "3Q·2Q 어닝콜"
  ],
  "raw": {
-  "retrieved_at": "2026-10-31T05:30:00+09:00",
+  "retrieved_at": "2026-11-02T04:50:00+09:00",
   "shares_cover_implied": 0.039406,
   "fiscal_profile": {
    "companyKey": "NYSE_HII",
    "terminalUrl": "https://fiscal.ai/company/NYSE-HII",
-   "price": 316.97,
-   "market_cap": 12.4905,
+   "price": 316.88,
+   "market_cap": 12.487,
    "total_cash": 0.387,
    "total_debt": 2.929,
    "shares_outstanding": 0.039406,
    "ev_sales": 1.11105,
    "as_of": "2026-10-30",
    "balance_date": "2026-09-30",
-   "note": "시총 = daily calculated_market_cap 2026-10-30(12,490,538,838$)"
+   "note": "시총 = 확정 종가 × 표지 주식 수. yfinance 시총 $12.487B 대조"
   },
   "quarters_gaap": {
    "rev": {
@@ -1654,6 +1778,61 @@
   },
   "sec": {
    "antidilutive_2026_09_30": 0.0004
+  },
+  "easyconomics_yf_2026_11_02": {
+   "price": 316.88,
+   "market_cap": 12.487,
+   "target_mean": 357.55,
+   "target_low": 281,
+   "target_high": 417,
+   "buy": 9,
+   "hold": 6,
+   "sell": 0,
+   "total": 15,
+   "forward_eps": 20.67,
+   "short_pct_float": 0.0458,
+   "beta": 0.21,
+   "source": "Easyconomics company_profile(yfinance 출처)"
+  },
+  "edgar_check_2026_11_02": {
+   "purchase_obligations": {
+    "fy2025": 7.063,
+    "fy2024": 5.794,
+    "due_next_year_fy2025": 3.442,
+    "source": "10-K FY2025·FY2024 MD&A Contractual Obligations"
+   },
+   "restricted_cash": "10-K·10-Q 본문에 제한 현금 항목 없음(2026-11-02 검색)",
+   "customers_10pct": "미국 정부가 사실상 전부(substantially all). 고객별 10% 표 대신 정부 의존으로 공시",
+   "gov_support": "10-K: 2025 법의 함정·해양산업기반 의무 예산 $29B 초과, 해양산업기반 $1.5B. 10-Q: 설비투자 보조금 수령 9개월 $7M",
+   "backlog": {
+    "funded": 37.905,
+    "unfunded": 48.276,
+    "funded_ye25": 31.985,
+    "unfunded_ye25": 21.154,
+    "nn_unfunded": 42.151,
+    "nn_total": 60.752
+   },
+   "contract_mix_3q_m": {
+    "fixed_price_incentive": 1764,
+    "cost_type": 1572,
+    "firm_fixed": 168,
+    "tm": 33
+   },
+   "irs": {
+    "refund": 0.134,
+    "tax_expense_cut": 0.041,
+    "utb_cut": 0.069,
+    "period": "4Q26",
+    "source": "10-Q 주석 세금"
+   },
+   "other": [
+    "뉴포트뉴스 용접 절차 미준수 조사 진행 중",
+    "해군 엔지니어 채용 담합 집단소송 항소심 뒤 재개",
+    "코로나 보험 소송 2026-04 하급심 패소, 항소",
+    "단체협약 12건·직원 45%, Ingalls 5건 2031-03 만료",
+    "신용 한도 $1.7B, 미사용"
+   ],
+   "fcf_9m": -0.182
   }
  },
  "multiples_now": {
@@ -1696,7 +1875,7 @@
   "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
  },
  "narrative": {
-  "as_of": "2026-10-31",
+  "as_of": "2026-11-02",
   "stage": "컨센서스",
   "crowding": "낮음 — 고점 때의 쏠림은 풀렸다(Fwd 1Y P/E 26.1배 → 15.9배, 13F 순감소, 리테일 언급 없음)",
   "summary": "'세계 유일의 항공모함 조선소 + 해군 재건 예산'이라는 이야기는 시장이 다 안다. 지금 가격을 가르는 쟁점은 수주가 아니라 이익률이 6%대에서 9~10%로 가느냐다.",
@@ -1711,20 +1890,20 @@
      ],
      [
       "목표가 평균·범위",
-      "$342 ($230~441)",
-      "최저와 최고가 약 2배 벌어졌다. 지금 주가 대비 평균 +8%",
+      "$344 ($230~441)",
+      "다른 집계는 15명, 평균 $358($281~417)이다. 지금 주가 대비 +9~13%",
       "컨센서스"
      ],
      [
       "FY2027 EPS 컨센서스",
-      "$20.52~$20.83",
-      "2Q 실적 전 대비 소폭 상향. 3Q 발표 후 갱신은 아직 덜 들어왔다",
+      "$20.52~$20.88",
+      "3Q 뒤 4Q26은 올랐고 표본은 일부 분기 4명뿐이다",
       "컨센서스"
      ],
      [
       "3Q 콜 질문 초점",
       "처리량·이익률 경로·현금흐름",
-      "Melius·Citi·Goldman·JPM·Wells·TD Cowen·BofA·Wolfe",
+      "Melius·Citi·Goldman·J.P. Morgan·Wells·Cowen·BofA·Wolfe",
       "3Q 콜 Q&A"
      ]
     ],
@@ -1740,7 +1919,7 @@
      ],
      [
       "큰 변화",
-      "FMR −499천 주, First Trust +355천 주",
+      "피델리티 −499천 주, First Trust +355천 주",
       "대형 액티브가 줄이고 지수·테마 쪽이 늘렸다(자체 해석)",
       "13F 집계"
      ],
@@ -1761,6 +1940,12 @@
       "+0.01",
       "뚜렷한 매집도 이탈도 아니다",
       "이 리포트 수급 절"
+     ],
+     [
+      "공매도 잔고",
+      "유통주식의 4.6%",
+      "낮은 수준",
+      "시세 자료"
      ]
     ],
     "read": "기관은 이야기를 믿지만 이익률 실현을 확인할 때까지 비중을 늘리지 않는다."
@@ -1805,8 +1990,8 @@
      [
       "2026-10",
       "연속 예산 결의안 12/11까지",
-      "신규 착수와 증산에 제약",
-      "10-Q·업계 보도"
+      "상원안은 전함 $1B 예외를 거부했다",
+      "업계 보도"
      ]
     ],
     "read": "언론의 초점은 '배를 더 짓는다'에 있고, 이익률 질문은 실적 콜에서만 나온다."
@@ -1838,7 +2023,7 @@
      "retail": "-"
     },
     "drives": "both",
-    "quant": "장기 영업이익률 8% → 10%이면 DCF가 시가총액의 0.73배 → 0.98배(Chiip 계산)",
+    "quant": "경영진 정상 수준은 Ingalls 저7%대·Newport News 약 6%. 새 계약 비중은 2027년 말 50~55%",
     "status": "유지",
     "falsifier": "FY2027 조선 이익률 가이던스 중간값 6.5% 미만",
     "source": "3Q 콜"
@@ -1890,7 +2075,7 @@
    },
    {
     "name": "반대 내러티브: 잔고는 현금이 아니다",
-    "thesis": "잔고 절반은 2030년 이후 매출이고, 3Q 서프라이즈는 일회성 정산이며, EPS의 약 22%는 비현금 연금 수익이다.",
+    "thesis": "잔고 절반은 2030년 이후 매출이고, 3Q 서프라이즈는 일회성 정산이며, EPS의 약 23%는 비현금 연금 수익이다.",
     "inputs": "장기 영업이익률·이익의 질",
     "who": {
      "sell": "중",
@@ -1898,7 +2083,7 @@
      "retail": "-"
     },
     "drives": "multiple",
-    "quant": "3Q EPS $5.48 중 EAC 효과 $1.52. 제외하면 $3.96으로 컨센서스 $4.27 미달",
+    "quant": "3Q EPS $5.48 중 EAC 효과 $1.52. 제외하면 $3.96으로 컨센서스 $4.27~$4.41 미달. 올해 잔고 증가분의 82%는 미자금",
     "status": "강화",
     "falsifier": "EAC 정산 없이 조선 이익률 7% 이상이 두 분기 연속 나온다",
     "source": "10-Q"
@@ -1908,8 +2093,8 @@
    "summary": "HII의 기업가치는 **잔고가 매출로 바뀌는 속도(처리량) × 그 매출의 이익률**로 정해진다. 2025년 말~2026년 초 시장은 '유일한 항공모함 조선소에 해군 재건 예산이 몰린다'는 이야기에 Fwd 1Y P/E 26.1배를 줬다. 잔고는 이야기대로 $53.1B → $86.2B로 늘었다. 그런데 주가는 3/2 고점 $453.73 대비 **−30%** 이고 배수는 15.9배다. 시장의 질문이 '수주가 얼마나 늘까'에서 '구계약을 언제 벗어나 이익률 6%대를 9~10%로 올리나'로 바뀌었기 때문이다.",
    "value_story": "미 해군이 사실상 유일한 고객이고 가격은 계약으로 정해진다. 그래서 가치는 수요가 아니라 실행에서 갈린다. 인력을 얼마나 뽑아 숙련시키고, 그 인력으로 배를 얼마나 빨리 짓고, 값을 정한 시점의 원가 가정이 맞았는가다. 조선 이익률이 1%p 오르면 영업이익이 약 $0.11B 늘고, 이는 FY2026 조선 매출 약 $10.6B 기준 영업이익의 약 13%다(Chiip 계산).",
    "premium": {
-    "multiple": "Fwd 1Y P/E 15.9배는 동종 6곳 중앙값 20.3배보다 약 22% 낮다. 2025년 말의 프리미엄은 사라졌다. 고객 한 곳, 구계약 이익률, 비현금 연금 수익을 시장이 할인하고 있다.",
-    "eps": "FY2027 EPS 컨센서스 $20.52~$20.83, FY2028 $22.69~$24.05. 3Q 발표 후 갱신이 아직 덜 들어와 추정이 낡았다. 다만 3Q 초과분이 대부분 일회성 정산이라 EPS 리비전의 폭은 FY2027 이익률 가이던스가 정한다."
+    "multiple": "Fwd 1Y P/E 15.9배는 동종 6곳 중앙값 20.1배보다 약 21% 낮다. 2025년 말의 프리미엄은 사라졌다. 고객 한 곳, 구계약 이익률, 비현금 연금 수익을 시장이 할인하고 있다.",
+    "eps": "FY2027 EPS 컨센서스 $20.52~$20.88, FY2028 $22.69~$24.05. 3Q 초과분이 대부분 일회성 정산이고 4Q에는 세금 효과 약 $1.04도 들어온다. 그래서 EPS 리비전의 폭은 FY2027 이익률 가이던스가 정한다."
    },
    "why_excited": "세 사건이 3주 사이에 겹쳤다. 2025년 12월 19일 해군이 새 호위함 FF(X)에 Ingalls를 고르고, 12월 22일 트럼프급 전함과 Golden Fleet이 발표되고, 2026년 1월 7일 대통령이 FY2027 국방 예산 $1.5T를 제안했다. 주가는 12월 초 약 $312에서 3/2 $453.73까지 올랐다. 식은 이유도 분명하다. 1Q 영업이익률이 5.0%로 내려가고 잉여현금흐름이 −$461M였고(5/5 −10.2%), 예산은 성립이 늦어져 지금도 CR로 굴러간다. 9월 말 $257까지의 하락은 원인을 확인하지 못했다.",
    "lenses": [
@@ -1938,6 +2123,14 @@
      "falsifier": "Romulus 실증 지연 또는 해군 무인 예산 축소"
     },
     {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "미달",
+     "change": "해당 없음(주문→인도 개월 수를 잴 수 없다 — 함종마다 건조 기간이 다르고 피어 기준값이 공개되지 않는다). 대신 일정을 본다. CVN 79 인도는 2025년 7월에서 2027년으로, CVN 80은 2029-09에서 2030-07로 밀렸다. 2025년 해군 검토는 버지니아급이 계약 일정보다 2년 이상 늦다고 봤다.",
+     "evidence": "회사는 2026·27 마일스톤이 일정대로라고 했다. 처리량은 연초 대비 +9%로 15% 목표에 못 미치고, 분산 조선은 +30%를 넘길 전망이다.",
+     "falsifier": "SSN 800·LPD 30 연내 인도가 빠진다"
+    },
+    {
      "lens": "M&A",
      "change": "해당 없음 — 이번 구간의 내러티브 동인이 아니다",
      "evidence": "2026년 들어 큰 인수가 없다. 현금은 설비투자와 배당으로 간다. MT의 바탕이 된 과거 인수의 영업권·무형자산 $3.28B가 투하자본의 약 41%이고, 이것이 ROIC를 낮춘다",
@@ -1946,17 +2139,9 @@
      "falsifier": "대형 인수 발표"
     },
     {
-     "lens": "재정정책",
-     "change": "해군 함정 건조 예산 확대",
-     "evidence": "FY2027 요청 $65.8B(재량 $60.2B + 의무 $5.6B). 단계: 대통령 요청(4/3) → 하원 국방수권법 통과 → 상원 군사위 통과, 본회의 미완 → 하원 세출위 승인 → 상원 세출위 미착수. 지금은 CR로 12/11까지 운영된다. 요청은 성립이 아니고, 성립은 계약이 아니다",
-     "drives": "멀티플",
-     "status": "진행 중",
-     "falsifier": "12/11 이후에도 CR이 이어져 신규 착수가 막힌다"
-    },
-    {
      "lens": "CAPEX 낙수효과",
      "change": "해당 없음 — 민간 AI CAPEX와 무관, 정부 조선 투자가 대신한다",
-     "evidence": "매출은 사실상 전부 미국 정부다. 대신 회사 자체 CAPEX가 $500M로 늘어난다. 유지 투자 매출의 1.0~1.5%, 재량 투자 2.5~3.0%(10-Q). 조선 능력 확대용 지출이 잉여현금흐름을 누른다",
+     "evidence": "매출은 사실상 전부 미국 정부다. 대신 회사 자체 CAPEX가 $500M로 늘어난다. 유지 투자 매출의 1.0~1.5%, 재량 투자 2.5~3.0%(10-Q). 조선 능력 확대용 지출이 잉여현금흐름을 누른다. 정부 보조금 수령은 9개월 $7M으로 작다",
      "drives": "-",
      "status": "해당 없음",
      "falsifier": "재량 CAPEX가 정부 지원으로 대체"
@@ -2005,7 +2190,46 @@
      "use": "해군 무인 전력",
      "money": "연 매출 $200M 초과, 초기 단계"
     }
-   ]
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "FY2027 함정 건조 요청 $65.8B(재량 $60.2B + 의무 $5.6B). 하원 세출위는 $1.07T 국방안에 함정 $56.7B·21척을 넣었다(HII 뉴스 요약 기준). 지금은 CR(P.L. 119-103)로 12/11까지 운영된다.",
+     "evidence": "요청은 성립이 아니고 성립은 계약이 아니다. 상원 CR안은 전함 $1B 예외를 거부했다. 나머지 예외 조항은 확인하지 못했다.",
+     "drives": "multiple",
+     "status": "세출 미성립",
+     "falsifier": "12/11 이후에도 CR이 이어져 신규 착수가 막힌다",
+     "house": {
+      "level": 4,
+      "why": "세출위 34대 27 통과, 본회의 통과는 미확인"
+     },
+     "senate": {
+      "level": 3,
+      "why": "세출위 국방안 미확인. 군사위 S. 4784는 18대 9 통과"
+     }
+    },
+    "orders": {
+     "change": "EO 14372(2026-01-07)는 실적이 부진한 방산업체의 자사주 매입·배당과 임원 보수를 제한하도록 국방부에 지시했다. HII가 대상인지는 확인하지 못했다. 회사는 10월 배당을 올렸고 2025년 자사주 매입은 없었다.",
+     "evidence": "백악관 설명 자료, 법무법인 해설. 시행 범위는 해설마다 다르다.",
+     "drives": "multiple",
+     "status": "시행 세칙 미확인",
+     "falsifier": "국방부 부진 업체 명단에 HII가 오른다",
+     "house": {
+      "level": 1,
+      "why": "행정명령이라 표결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "행정명령이라 표결 없음"
+     }
+    },
+    "laws": {
+     "change": "국방수권법 H.R. 8800은 7/22 하원을 216대 212로 통과했다. 상원 S. 4784는 7/14 토론 종결 표결이 50대 46으로 실패했고 연말 회기로 넘어갔다. SHIPS for America Act(H.R. 3151·S. 1541)는 핵심 조항이 하원 본회의에 오르지 못했다.",
+     "evidence": "2차 추적 자료와 위원회 보도 기준이다. 2025년 법은 함정·해양산업기반에 의무 예산 $29B 초과를 넣었다(10-K).",
+     "drives": "multiple",
+     "status": "연말 협상",
+     "falsifier": "연말까지 국방수권법이 성립하지 않는다"
+    }
+   }
   }
  },
  "ladder": {
@@ -2056,5 +2280,371 @@
    }
   },
   "summary": "2배는 처리량과 이익률이 함께 목표에 닿아야 열리고, 3배부터는 조선소의 물리적 상한에 막힌다."
+ },
+ "next_event": {
+  "date": "2027-02-04",
+  "tag": "4Q26 실적·FY2027 가이던스(예상일)"
+ },
+ "multiple_view": {
+  "adj": -0.2,
+  "why": "자기 3년 중앙값이 15.9배이고 EPS의 약 23%가 비현금 연금 수익이며 고객이 한 곳이고 구계약이 2027년 말까지 절반 가까이 남아 동종 대비 할인을 유지한다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "terms": {
+  "EAC": "완성 시 총원가 추정, 바뀌면 누적 손익을 정산한다",
+  "RCOH": "항공모함 중간 핵연료 교체·전면 개수",
+  "MT": "Mission Technologies, HII의 국방 기술 부문",
+  "Mission Technologies": "HII의 국방 기술·무인 체계 부문",
+  "Newport News": "버지니아주 뉴포트뉴스 조선소, 항공모함·핵잠수함 건조",
+  "Ingalls": "미시시피주 파스카굴라 조선소, 상륙함·구축함 건조",
+  "CVN": "핵추진 항공모함 함종 기호",
+  "CVN 75": "항공모함 해리 S. 트루먼",
+  "CVN 79": "항공모함 존 F. 케네디",
+  "CVN 80": "항공모함 엔터프라이즈",
+  "CVN 81": "항공모함 도리스 밀러",
+  "CVN 82": "다음 포드급 항공모함",
+  "SSN 800": "버지니아급 잠수함 아칸소",
+  "LPD 30": "상륙수송함 해리스버그",
+  "LHA 8": "강습상륙함 부건빌",
+  "DDG 129": "구축함 제러마이아 덴턴",
+  "LPD": "상륙수송함",
+  "LHA": "강습상륙함",
+  "LHD": "강습상륙함(웰덱 탑재형)",
+  "DDG": "유도미사일 구축함",
+  "FF(X)": "미 해군 새 호위함 사업",
+  "BBG(X)": "트럼프급 전함 사업",
+  "Golden Fleet": "트럼프 행정부의 해군 재건 구상",
+  "MUSV": "중형 무인 수상정",
+  "Romulus": "HII 무인 수상정",
+  "Lionfish": "HII 소형 무인 잠수정",
+  "STINGRAI": "미 남부사령부용 정보·감시 사업",
+  "SOUTHCOM": "미 남부사령부",
+  "CR": "연속 예산 결의안, 전년 수준으로 임시 집행",
+  "NDAA": "국방수권법",
+  "IDIQ": "상한만 정한 무기한 납품 계약",
+  "H.R. 8800": "하원 FY2027 국방수권법안",
+  "S. 4784": "상원 FY2027 국방수권법안",
+  "H.R. 3151": "SHIPS for America Act 하원안",
+  "S. 1541": "SHIPS for America Act 상원안",
+  "SHIPS for America Act": "미국 상선·조선 재건 법안",
+  "EO 14372": "방산업체 자사주 매입·배당 제한 행정명령",
+  "FAS": "재무회계 기준",
+  "CAS": "정부 원가회계 기준",
+  "FAS/CAS": "재무회계와 정부 원가회계의 연금 차이",
+  "AAG": "항공모함 착함 제동 장치",
+  "AWE": "항공모함 무기 승강기",
+  "HD Hyundai": "한국 조선 그룹",
+  "Minotaur": "미 해군 감시 데이터 연결 체계",
+  "Business Roundtable": "미국 대기업 CEO 협의체",
+  "Aerospace Industries Association": "미국 항공우주·방위산업 협회",
+  "Surface Navy Association": "미 해군 수상함 단체",
+  "Naval Submarine League": "미 해군 잠수함 단체",
+  "Battelle": "미국 비영리 연구 기관",
+  "Centrus": "미국 우라늄 농축 회사",
+  "Entergy": "미국 전력 회사",
+  "MINACT": "미국 경영 컨설팅 회사",
+  "HIIPAC": "HII 임직원 정치활동위원회",
+  "RPSR": "성과 조건부 주식 보상",
+  "RSR": "양도 제한 주식 보상",
+  "AUKUS": "미국·영국·호주 안보 협력",
+  "BBG": "전함 함종 기호",
+  "EO": "행정명령",
+  "FF": "호위함 함종 기호",
+  "IRS": "미 국세청",
+  "SHIPS": "미국 상선·조선 재건 법안 약칭",
+  "SSN": "공격 핵잠수함 함종 기호"
+ },
+ "moat": {
+  "summary": "항공모함 독점과 핵잠수함 복점은 진입을 막지만, 고객이 한 곳이라 해자가 가격 결정력으로 이어지지 않는다",
+  "items": [
+   {
+    "kind": "항공모함 건조·핵연료 교체 독점",
+    "verdict": "강함",
+    "claim": "미 해군 핵추진 항공모함을 건조·핵연료 교체·퇴역 처리할 수 있는 회사는 HII뿐이다.",
+    "evidence": "10-K가 유일하다고 적었다. 다만 정부 조선소로 핵연료 교체를 옮기는 안을 해군이 주기적으로 재검토한다고도 적었다.",
+    "quant": "뉴포트뉴스 잔고 $60.8B, CVN 75 RCOH $5.1B는 4Q 인식",
+    "falsifier": "정부 조선소가 핵연료 교체 능력에 실제 투자를 시작한다"
+   },
+   {
+    "kind": "핵잠수함 복점과 원자력 인증",
+    "verdict": "강함",
+    "claim": "핵잠수함을 지을 수 있는 곳은 GD Electric Boat와 HII 둘이고, 대체 조선소를 키우려면 원자력 인증과 숙련 인력에 오랜 시간이 든다.",
+    "evidence": "3Q에 버지니아 블록 6·컬럼비아 빌드 2를 함께 수주했다. 건별 금액은 공개하지 않았다.",
+    "quant": "3Q 수주 $32.4B, 뉴포트뉴스 미자금 잔고 $42.2B",
+    "falsifier": "해군이 제3 조선소에 핵잠수함 모듈 이상의 일을 계약한다"
+   },
+   {
+    "kind": "대형 상륙함 단독 공급",
+    "verdict": "보통",
+    "claim": "대형 상륙함을 짓는 곳은 지금 Ingalls뿐이다.",
+    "evidence": "10-K는 단독 공급이라고 적으면서, 앞으로 단독 공급 함종도 경쟁이 될 수 있다고 경고한다. 구축함은 Bath Iron Works와 둘이고 소형 조선소가 들어오고 있다.",
+    "quant": "Ingalls 잔고 $18.9B, 이 가운데 자금 배정 $16.7B",
+    "falsifier": "상륙함 경쟁 입찰 공고"
+   },
+   {
+    "kind": "숙련 인력과 노사 안정",
+    "verdict": "보통",
+    "claim": "조선소 인력은 뽑아도 바로 생산성이 되지 않아 기존 인력 자체가 진입 장벽이다.",
+    "evidence": "직원 약 46,000명, 45%가 단체협약 대상이고 Ingalls 협약은 2031년 3월까지다. 파업 없는 기간은 10-K 기준 뉴포트뉴스 26년, Ingalls 18년 이상이다. 같은 인력이 병목이기도 하다.",
+    "quant": "2025년 약 8,000명, 2026년 6,000명 채용, 처리량 +9%",
+    "falsifier": "2027년 처리량 증가율이 10% 아래로 내려간다"
+   },
+   {
+    "kind": "가격 결정력",
+    "verdict": "약함",
+    "claim": "독점 공급자이지만 구매자도 사실상 한 곳이라 값을 정하는 힘은 제한된다.",
+    "evidence": "3Q 매출의 49.9%가 고정가 인센티브, 44.4%가 원가 보상 계약이다. 고정가 인센티브는 비용 분담 한도를 넘으면 사실상 확정 가격이 된다. 전사 영업이익률은 동종 10~12%의 절반 수준이다.",
+    "quant": "TTM 영업이익률 5.8%(GAAP)",
+    "falsifier": "새 계약의 첫 정산에서 조선 이익률 9%가 확인된다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "이사회가 해군 원자력·해군 입법·남부사령부 출신으로 채워져 고객과의 연결이 촘촘하다. 다만 연결이 수주를 만들었다는 증거는 없다.",
+  "people": [
+   {
+    "name": "Christopher D. Kastner",
+    "role": "사장·CEO",
+    "since": "2022",
+    "profile": "62세. 2021년 COO, 2016년 CFO를 거쳤다. Northrop Grumman 조선 부문의 재무·계약 담당 출신이다.",
+    "business": "New York Life 이사, Business Roundtable 교육·인력 위원장, Aerospace Industries Association 회원, 방위산업 윤리 협의체 의장.",
+    "political": "공직 이력 미확인. 공개 기록상 직접 정치 활동은 확인하지 못했다.",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "2026 위임장"
+   },
+   {
+    "name": "Kirkland H. Donald",
+    "role": "이사회 의장",
+    "since": "2020",
+    "profile": "72세. 퇴역 해군 제독. 37년 복무, 마지막 보직은 2004~2012년 해군 원자력 추진 프로그램 국장이다.",
+    "business": "Entergy·Centrus 이사, Battelle 이사, Rolls-Royce North America 사외이사.",
+    "political": "해군 원자력 추진 프로그램 전 국장. 항공모함·핵잠수함 원자로의 감독 조직이다. 퇴역 뒤 Naval Submarine League 이사.",
+    "alumni": "해군 원자력 경력. 학교는 위임장에 없어 미확인이다.",
+    "social": "Naval Submarine League 이사(공개 직함)",
+    "source": "2026 위임장"
+   },
+   {
+    "name": "C. Michael Petters",
+    "role": "이사(전 CEO)",
+    "since": "2026-10",
+    "profile": "2011~2022년 CEO, 2023년 1월 퇴임. 2026-10-19 이사로 복귀했고 이사회는 12명이 됐다.",
+    "business": "Northrop Grumman 조선·뉴포트뉴스 대표 출신.",
+    "political": "미확인",
+    "alumni": "핵잠수함 Bancroft 승조 경력",
+    "social": "미확인",
+    "source": "8-K 2026-10-20"
+   }
+  ],
+  "value": [
+   {
+    "network": "정계",
+    "link": "Donald 의장 — 해군 원자력 추진 프로그램 전 국장",
+    "strength": 4,
+    "exposure": 5.42,
+    "basis": "뉴포트뉴스 2026년 9개월 매출",
+    "evidence": "2026 위임장, 10-Q"
+   },
+   {
+    "network": "정계",
+    "link": "Faller 이사 — 전 남부사령관, 전 해군 입법 담당. 회사는 남부사령부를 지원하는 STINGRAI를 수주",
+    "strength": 3,
+    "exposure": 2.2,
+    "basis": "STINGRAI 상한. 집행액이 아니다",
+    "evidence": "2026 위임장, 3Q 콜"
+   },
+   {
+    "network": "정계",
+    "link": "회사 로비 — 1Q26 약 $1.7M, 쟁점은 컬럼비아·구축함·호위함·AUKUS",
+    "strength": 3,
+    "exposure": 13.53,
+    "basis": "TTM 매출, 사실상 전부 미국 정부",
+    "evidence": "로비 공시 집계"
+   },
+   {
+    "network": "비즈니스",
+    "link": "Kastner — Business Roundtable 교육·인력 위원장",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "인력 정책 연결이고 매출로 환산할 수 없다",
+    "evidence": "2026 위임장"
+   },
+   {
+    "network": "동문",
+    "link": "Collins 이사 — 미시시피 방위군 전 사령관, 미시시피대 동문회 전 회장. Ingalls 소재지 연결",
+    "strength": 2,
+    "exposure": 2.45,
+    "basis": "Ingalls 2026년 9개월 매출",
+    "evidence": "2026 위임장"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "reported_backlog": 86.2,
+  "backlog_label": "수주잔고",
+  "summary": "잔고 $86.2B의 56%인 $48.3B가 아직 자금 미배정이고, 올해 잔고 증가분의 82%가 여기서 나왔다. 건별 금액은 대부분 공개되지 않았다.",
+  "items": [
+   {
+    "name": "수주잔고 전체(9/30)",
+    "status": "확정",
+    "total": 86.2,
+    "progress": "미확인",
+    "margin": 0.065,
+    "margin_kind": "영업이익",
+    "margin_basis": "경영진 정상 수준 Newport News 약 6%·Ingalls 저7%대",
+    "start": "2026-09",
+    "end": "2030-12",
+    "speed": "10-Q: 2027년까지 약 20%, 2029년까지 추가 30%, 나머지는 그 뒤",
+    "blockers": [
+     "숙련 인력",
+     "미자금 잔고 $48.3B의 예산 배정"
+    ],
+    "source": "10-Q 2026-09-30"
+   },
+   {
+    "name": "CVN 75 RCOH",
+    "status": "확정",
+    "total": 5.1,
+    "done": 0.0,
+    "progress_basis": "2026년 4분기 잔고 인식, 함정 입거 시작",
+    "margin": "미확인",
+    "start": "2026-10",
+    "speed": "완료 시점 미확인",
+    "blockers": [
+     "뉴포트뉴스 도크·인력"
+    ],
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "name": "버지니아 블록 6·컬럼비아 빌드 2",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "3Q 수주 $32.4B의 대부분. 잔고 전체에 포함",
+    "blockers": [
+     "잠수함 처리량",
+     "공급망"
+    ],
+    "source": "3Q 실적 보도자료·콜"
+   },
+   {
+    "name": "CVN 79 케네디",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "end": "2027-12",
+    "speed": "예비 인수 시험 완료, 최종 인도 2027년",
+    "blockers": [
+     "AAG 인증",
+     "AWE 마무리"
+    ],
+    "source": "3Q 콜, USNI"
+   },
+   {
+    "name": "CVN 80·81, CVN 82 장납기 자재",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "CVN 80 인도 2029-09에서 2030-07로 변경",
+    "blockers": [
+     "자재 납기",
+     "공급망"
+    ],
+    "source": "3Q 콜, 해군 예산 문서 보도"
+   },
+   {
+    "name": "LPD 30·LHA 8·DDG 129 인도",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "LPD 30 연내, LHA 8·DDG 129 2027년",
+    "blockers": [
+     "Ingalls 인력 회복"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "Romulus 무인 수상정 10척",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "향후 2년 인도 예정",
+    "blockers": [
+     "실증"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "STINGRAI",
+    "status": "프레임워크",
+    "total": 2.2,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-07",
+    "speed": "IDIQ 상한, 실제 발주액 미확인",
+    "blockers": [
+     "개별 발주"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "공군 AI 계약",
+    "status": "조건부",
+    "total": 0.332,
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "5년, 상한 여부 미확인",
+    "blockers": [
+     "개별 발주"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "FF(X) 호위함",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "설계 주관 계약 뒤 건조 계약은 2027년 대상",
+    "blockers": [
+     "FY2027 세출",
+     "CR 연장"
+    ],
+    "source": "10-Q, 3Q 콜"
+   },
+   {
+    "name": "트럼프급 전함 BBG(X)",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "초기 자금 $1B 요청, 건조사 미정",
+    "blockers": [
+     "상원 군사위 삭감",
+     "상원 CR안의 예외 거부",
+     "의회 구성 변화"
+    ],
+    "source": "업계 보도, 3Q 콜 질문"
+   }
+  ]
  }
 }
