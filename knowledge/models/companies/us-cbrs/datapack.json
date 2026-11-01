@@ -2,7 +2,7 @@
  "id": "us-cbrs",
  "name": "Cerebras Systems",
  "ticker": "CBRS",
- "as_of": "2026-10-28",
+ "as_of": "2026-11-02",
  "unit": "B$",
  "industry": "semiconductor",
  "region_mix": {
@@ -10,12 +10,12 @@
  },
  "tax": 0.21,
  "profile": {
-  "price": 112.56,
+  "price": 109.18,
   "shares_basic": 0.228204,
   "shares_date": "2026-06-30",
   "cash": 7.9215,
-  "debt": 0.751,
-  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-28 종가(10/29 봉은 거래량 100주로 미확정이라 쓰지 않음) · 주식 수 = 기본 228,203,927(2026-06-30)·표지 237,564,041(2026-08-05, Fiscal.ai shares_outstanding) · 현금 = 현금 6,742.2 + 투자 1,179.4백만$ · 차입 = 장기 182.2 + 리스 568.8백만$(Fiscal.ai 공시 원문)"
+  "debt": 1.487,
+  "source": "가격 = 2026-10-30 종가 · 주식 수 = 기본 228,203,927(2026-06-30)·표지 237,564,041(2026-08-05) · 현금 = 현금 6,742.2 + 투자 1,179.4백만$(제한 현금 684.7 제외) · 차입 = OpenAI 운전자금 대출 유동 736.0 + 장기 182.2 + 영업리스 568.8백만$. 2026-11-02 10-Q 재대조: 10/30 묶음이 유동 대출 736.0을 빠뜨렸던 것을 복구"
  },
  "dilution": {
   "potential_total": 0.076011,
@@ -29,23 +29,24 @@
  "financials": {
   "rev_ttm": 0.6807,
   "ebit_ttm": -0.5524,
-  "invested_capital": 1.984,
+  "invested_capital": 2.719,
   "capex_1h": 0.5489,
   "da_1h": 0.0426,
   "sbc_1h": 0.3866,
   "rev_growth_ttm": 0.743,
   "basis": "GAAP",
-  "note": "TTM = 2025Q3~2026Q2 4개 분기 합(매출 135.7+171.4+193.4+180.1백만$, 영업이익 −26.5−33.7−15.0−477.2백만$). 2Q26 영업손실에 상장 관련 SBC 3.77억$ 포함. 투하자본 = 자기자본 9.155 + 차입 0.918 + 리스 0.568 − 현금·단기투자 7.922(영업 접근 — 운전자본 0.459 + 유형자산 1.515 + 기타 장기자산 0.991 − 기타 장기부채 0.245 — 과 일치). 현금흐름표는 2025년 하반기 분기 값이 비어 있어 설비투자·감가상각·SBC는 1H26만 · 2026-10-30 Fiscal.ai 재대조: 투하자본 = 자기자본 9,155 + 장기 차입 182 + 리스 568 − 현금·투자 7,921백만$(이전 묶음의 유동 차입 736 제외)"
+  "note": "TTM = 2025Q3~2026Q2 4개 분기 합(매출 135.7+171.4+193.4+180.1백만$, 영업이익 −26.5−33.7−15.0−477.2백만$). 2Q26 영업손실에 상장 관련 SBC 3.77억$ 포함. 투하자본 = 자기자본 9.155 + 차입 0.918 + 리스 0.568 − 현금·단기투자 7.922(영업 접근 — 운전자본 0.459 + 유형자산 1.515 + 기타 장기자산 0.991 − 기타 장기부채 0.245 — 과 일치). 현금흐름표는 2025년 하반기 분기 값이 비어 있어 설비투자·감가상각·SBC는 1H26만 · 2026-10-30 Fiscal.ai 재대조: 투하자본 = 자기자본 9,155 + 장기 차입 182 + 리스 568 − 현금·투자 7,921백만$(이전 묶음의 유동 차입 736 제외) · 2026-11-02 10-Q 대차대조표 재대조: 유동 'Working capital loan' 736.0이 실재한다. 투하자본 = 자기자본 9,155 + 대출 918 + 리스 568 − 현금·투자 7,922 = 2,719백만$"
  },
  "consensus": {
   "rev": {
-   "FY2026": 0.8857,
-   "FY2027": 2.755
+   "FY2026": 0.8853,
+   "FY2027": 2.9264,
+   "FY2028": 6.755
   },
   "rev_basis": "core",
   "ebit_margin": {
    "FY2026": -0.18,
-   "FY2027": 0.025
+   "FY2027": 0.115
   },
   "margin_basis": "non_gaap",
   "n_analysts": 4,
@@ -61,7 +62,643 @@
    "2026Q1": 0.1913,
    "2026Q2": 0.2099
   },
-  "note": "매출 = easyconomics 분기 컨센서스·실적 합(코어 기준 — 회사 '코어 매출'. 2Q26 GAAP 1.801 vs 코어 2.099, 차이는 비현금 차감 항목으로 추정·미확인). FY2026 이익률 = 회사 코어 영업이익률 가이던스 중간(−18%) — 컨센서스 영업이익 미제공. FY2027 = EPS 컨센서스 합 1.279$ × 희석 주식 0.3042 = 순이익 0.389 − 이자수익(현금 7.922 × 4%) 0.317, 세금 0(이월결손금) → 영업이익 0.072 ÷ 매출 2.914 = 2.5%(EPS 실적치가 GAAP과 달라 비GAAP 기준으로 봄) · 2026-10-30 Zacks(Fiscal.ai): FY2026 코어 매출 = 실적 2분기 + 3·4Q 추정, FY2027 = 분기 합(연간 2.926과 일치), 애널리스트 2~4명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  "note": "매출 = 코어 기준 컨센서스(회사 가이던스 기준). FY2026 = 실적 2개 분기 + 3·4Q 추정. 하단은 Fiscal.ai 자체 추정(GAAP, 신뢰 낮음): FY2026 0.783, FY2027 2.4, FY2028 5.0. EBIT 이익률 FY2027 = Zacks EBIT 0.336 ÷ 2.926(2명). EPS FY2028 $6.15(2명, 8/13), Fiscal GAAP $3.91(−8.27~26.35, 신뢰 낮음). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": "2026-10-22T09:02:25.000Z",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    [
+     "Q",
+     "2026-03-31",
+     null,
+     -0.14,
+     1
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     null,
+     -0.37,
+     2
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-06-25",
+     -0.21,
+     2
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     null,
+     -0.435,
+     2
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-06-25",
+     -0.35,
+     2
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-06-26",
+     -0.31667,
+     3
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-08-14",
+     -0.16333,
+     3
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-08-17",
+     -0.13333,
+     3
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     null,
+     -0.455,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-06-25",
+     -0.365,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-08-14",
+     -0.2,
+     3
+    ],
+    [
+     "A",
+     "2026-12-31",
+     null,
+     -1.2,
+     2
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-06-10",
+     -1.1425,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-06-25",
+     -0.98,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-06-26",
+     -0.885,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-14",
+     -0.6025,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-17",
+     -0.52,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     null,
+     -0.175,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-06-25",
+     -0.185,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-08-14",
+     -0.075,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-10-20",
+     -0.093333,
+     3
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     null,
+     -0.06,
+     1
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-06-25",
+     -0.03,
+     1
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-08-14",
+     0.12,
+     2
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     null,
+     0.35,
+     2
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-06-24",
+     0.355,
+     2
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-08-13",
+     0.365,
+     2
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-08-14",
+     0.44,
+     2
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     null,
+     0.63,
+     2
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-06-24",
+     0.64,
+     2
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-08-13",
+     0.7,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     null,
+     0.88,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-06-10",
+     0.915,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-06-24",
+     0.9225,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-06-25",
+     0.96,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-13",
+     0.9975,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-14",
+     1.1225,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-17",
+     1.235,
+     4
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     null,
+     0.96,
+     1
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     "2026-06-24",
+     1,
+     1
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     "2026-08-13",
+     1.04,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     null,
+     1.28,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     "2026-06-24",
+     1.33,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     "2026-08-13",
+     1.39,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     null,
+     1.69,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     "2026-06-24",
+     1.75,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     "2026-08-13",
+     1.85,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     null,
+     2.11,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     "2026-06-24",
+     2.18,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     "2026-08-13",
+     2.34,
+     1
+    ],
+    [
+     "A",
+     "2028-12-31",
+     null,
+     5.735,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-06-24",
+     5.865,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-08-13",
+     6.15,
+     2
+    ]
+   ]
+  },
+  "rev_low": {
+   "FY2027": 2.4,
+   "FY2028": 5.0
+  },
+  "rev_high": {
+   "FY2027": 3.146,
+   "FY2028": 6.812
+  },
+  "eps": {
+   "FY2026": -0.52,
+   "FY2027": 1.235,
+   "FY2028": 6.15
+  },
+  "eps_low": {
+   "FY2027": 1.0,
+   "FY2028": 3.91
+  },
+  "eps_high": {
+   "FY2027": 1.5,
+   "FY2028": 6.62
+  },
+  "eps_quarters_est": {
+   "2026Q3": -0.133,
+   "2026Q4": -0.2,
+   "2027Q1": -0.093,
+   "2027Q2": 0.12,
+   "2027Q3": 0.44,
+   "2027Q4": 0.7
+  },
+  "eps_quarters_note": "매출·EPS 분기 추정은 대부분 8/14~8/17 고정값이고 애널리스트 2~3명이다. 10월 사건을 담지 않았다",
+  "revisions": {
+   "from_date": "2026-08-11",
+   "to_date": "2026-10-30",
+   "from_label": "직전 콜 직전",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": 0.96,
+     "to": 1.235
+    },
+    {
+     "period": "FY2028",
+     "metric": "EPS",
+     "from": 5.865,
+     "to": 6.15
+    },
+    {
+     "period": "FY2027",
+     "metric": "매출",
+     "from": 2.774,
+     "to": 2.926
+    }
+   ]
+  },
+  "price_window": {
+   "from": 234.76,
+   "to": 109.18,
+   "note": "2Q 실적 전날 8/11 종가 → 10/30 종가"
+  },
+  "ratings": {
+   "strong_buy": 9,
+   "buy": 1,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-10-02",
+   "target_mean": 267,
+   "target_high": 330,
+   "target_low": 149
+  },
+  "targets": {
+   "mean": 267,
+   "median": 290,
+   "high": 330,
+   "low": 149,
+   "n": 11,
+   "as_of": "2026-10-21"
+  },
+  "surprise": [
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 135.714,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": null
+   },
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.416,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": null
+   },
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -15.123,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": null
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 171.443,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-31"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.232,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-31"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -17.755,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-03-31"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 191.348,
+    "est": 181.202,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "core",
+    "earnings_date": "2026-06-23",
+    "pair": {
+     "zacks": 180.695
+    },
+    "gaap_actual": 193.406
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.0395,
+    "est": -0.1636,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-06-23",
+    "gaap_actual": -0.22
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -3.511,
+    "est": -31.665,
+    "est_src": "zacks",
+    "est_asof": "2026-06-09",
+    "basis": "adjusted",
+    "earnings_date": "2026-06-23"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 12.731,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-06-23"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 209.869,
+    "est": 190.583,
+    "est_src": "yfinance",
+    "est_asof": "2026-06-26",
+    "basis": "core",
+    "earnings_date": "2026-08-12",
+    "gaap_actual": 180.11
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.0458,
+    "est": -0.1718,
+    "est_src": "yfinance",
+    "est_asof": "2026-06-25",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-12",
+    "gaap_actual": -2.98
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -33.613,
+    "est": -60.315,
+    "est_src": "zacks",
+    "est_asof": "2026-06-25",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-12"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -53.07,
+    "est": -22.09,
+    "est_src": "zacks",
+    "est_asof": "2026-06-25",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-12"
+   }
+  ],
+  "surprise_note": "매출·EPS는 추정과 같은 코어·조정 기준(2Q26 GAAP 매출 $180.1M은 고객 워런트 상각 차감·전가 비용 포함이라 추정과 기준이 다르다). 2025년 분기는 상장 전이라 추정이 없다"
  },
  "guidance": {
   "rev_fy0": [
@@ -73,7 +710,14 @@
   "margin_basis": "non_gaap",
   "next_year": "2027 코어 매출 2026의 3배 초과(숫자 미제시)",
   "long_term": "코어 총마진 2027년 이후 60% 이상 목표",
-  "source": "회사 2Q26 실적 보도자료·콜(2026-08-12, Fiscal.ai ir_events q2-2026) — FY2026 코어 매출 0.88~0.89B$(상향), 코어 영업이익률 −19~−17%, 3Q 코어 매출 0.214~0.216B$"
+  "source": "회사 2Q26 콜·보도자료(2026-08-12) — FY2026 코어 매출 $880~890M(직전 $855~865M), 코어 총마진 41~43%(직전 38~41%), 코어 영업이익률 −19~−17%(직전 −32~−28%), 3Q 코어 매출 $214~216M, 코어 총마진 38~40%, 코어 영업이익률 −25~−23%",
+  "next": {
+   "period": "3Q26",
+   "rev": 215,
+   "rev_cons": 215.8,
+   "unit": "$M"
+  },
+  "ebit_margin_q3": -0.24
  },
  "call": {
   "date": "2026-08-12",
@@ -85,34 +729,154 @@
    "core_gross_margin_2q": 0.406,
    "dc_capacity_mw": 600,
    "liquidity_b": 8.6,
-   "revolver_b": 0.85
+   "revolver_b": 0.85,
+   "core_rev_m": 209.9,
+   "core_rev_prev_m": 191.3,
+   "core_cloud_m": 127.7,
+   "core_cloud_prev_m": 79.8,
+   "core_hw_m": 82.1,
+   "core_hw_prev_m": 111.6,
+   "core_gm_prev": 0.465,
+   "core_cloud_gm": 0.418,
+   "core_cloud_gm_prev": 0.529,
+   "core_hw_gm": 0.388,
+   "core_hw_gm_prev": 0.42,
+   "core_op_margin": -0.16,
+   "rent_back_drag": 0.05,
+   "deals_over_30m": 6
   },
   "guidance_changes": [
-   "FY2026 코어 매출 가이던스 상향",
+   "FY26 코어 매출 $855~865M → $880~890M",
+   "FY26 코어 총마진 38~41% → 41~43%",
+   "FY26 코어 영업이익률 −32~−28% → −19~−17%",
    "3Q 코어 총마진 38~40%를 저점으로 제시",
-   "2027 코어 매출 3배 초과"
+   "2027 코어 매출 3배 초과 첫 언급"
   ],
   "new_topics": [
-   "AMD Helios·AWS Trainium 분리형 추론(프리필/디코드)",
-   "CS-4 공개·CS-5 2027 하반기",
-   "AWS Bedrock 2027 1분기"
+   "AMD Helios 결합 분리형 추론, 처리량 5배 주장, 4Q 배치",
+   "데이터센터 600MW 이상 확보",
+   "GPT-5.6 Sol 서빙",
+   "CS-4 공개, CS-5 2027 하반기",
+   "18개월 처리량 20배 목표",
+   "CrowdStrike 인라인 보안",
+   "하이퍼스케일러 추가 협의, 2027 중반 첫 매출 기대"
   ],
   "analyst_focus": [
-   "UBS",
-   "TD Cowen",
-   "Barclays",
-   "Needham",
-   "Morgan Stanley",
-   "Mizuho"
+   "UBS — 고객 집중, 2027 생산 능력",
+   "TD Cowen — AWS 경제성, AMD 시장 진입",
+   "Barclays — AMD 매출 귀속, Trainium 자체 호스팅",
+   "Needham — 잔고 위 추가 매출인가, 처리량 20배가 분리형을 대체하나",
+   "Morgan Stanley — 분리형 상용화 시점, NVIDIA 설치 기반 호환",
+   "Mizuho — 2027 램프, 네오클라우드"
   ],
   "risks": [
-   "OpenAI·AWS 고객 집중",
+   "고객 집중, OpenAI·MBZUAI 2Q 66%",
    "데이터센터 확보·구축 지연",
-   "임차 시스템으로 인한 총마진 하락(3Q 저점)",
-   "웨이퍼 현장 수명·교체 CAPEX(숏 리포트 논점)",
-   "락업 해제(11/10 전후)"
+   "임차 시스템으로 3Q 총마진 저점",
+   "웨이퍼 수명·교체 투자(공개 숏 논점)",
+   "11/9~10 전후 락업 종료"
   ],
-  "source": "easyconomics earnings_summary 2026-08-12 + 실적 변화 레이더(톤 7.4, 직전 6.3, 가이던스 상향)"
+  "source": "회사 2Q26 콜 전문·보도자료(2026-08-12), 직전 1Q26 콜(2026-06-23) — 요지만 자기 말로",
+  "prev_date": "2026-06-23",
+  "tone": "up",
+  "dropped_topics": [
+   "1Q 콜의 하드웨어 코어 마진 low 30s 정상화 문구가 2Q에는 나오지 않았다(2Q 38.8%)",
+   "1Q 콜의 이스라엘·UAE·호주·인도 데이터센터 초기 협의가 2Q 지역 목록에서 빠졌다"
+  ],
+  "qa_focus": [
+   "UBS — 고객 집중, 2027 생산 능력",
+   "TD Cowen — AWS 경제성, AMD 시장 진입",
+   "Barclays — AMD 매출 귀속, Trainium 자체 호스팅",
+   "Needham — 잔고 위 추가 매출인가, 처리량 20배가 분리형을 대체하나",
+   "Morgan Stanley — 분리형 상용화 시점, NVIDIA 설치 기반 호환",
+   "Mizuho — 2027 램프, 네오클라우드"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "label": "FY26 매출 상향",
+    "item": "FY26 코어 매출 가이던스 중간값 상향",
+    "prior": "$860M",
+    "latest": "$885M",
+    "driver": "rev0",
+    "shift": 0.025,
+    "confidence": 0.8,
+    "source": "2Q 콜 CFO"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "label": "FY26 이익률 상향",
+    "item": "FY26 코어 영업이익률 가이던스 상향",
+    "prior": "−30%",
+    "latest": "−18%",
+    "driver": "margin_m0",
+    "shift": 0.12,
+    "confidence": 0.8,
+    "source": "2Q 콜 CFO"
+   },
+   {
+    "id": "D3",
+    "kind": "신규",
+    "label": "2027 매출 3배",
+    "item": "2027 코어 매출 3배 초과를 처음 언급. 컨센서스는 이미 3.3배다",
+    "prior": "언급 없음",
+    "latest": "3배 초과",
+    "driver": "growth_start",
+    "shift": 0.1,
+    "confidence": 0.8,
+    "source": "2Q 콜 CEO·CFO"
+   },
+   {
+    "id": "D4",
+    "kind": "신규",
+    "label": "데이터센터 600MW",
+    "item": "2027년 말까지 쓸 600MW 이상 확보, 파이프라인은 GW 단위",
+    "prior": "수치 없음",
+    "latest": "600MW+",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "2Q 콜 CEO"
+   },
+   {
+    "id": "D5",
+    "kind": "신규",
+    "label": "분리형 처리량 5배",
+    "item": "AMD Helios 결합으로 시스템당 토큰 5배 주장, 4Q 배치",
+    "prior": "AWS만",
+    "latest": "AWS·AMD",
+    "driver": "margin_target",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "2Q 콜 CEO"
+   },
+   {
+    "id": "D6",
+    "kind": "부정",
+    "label": "3Q 총마진 저점",
+    "item": "임차 시스템 비용으로 코어 총마진 46.5% → 40.6%, 3Q 38~40%",
+    "prior": "46.5%",
+    "latest": "38~40%",
+    "driver": "margin_lr",
+    "shift": -0.01,
+    "confidence": 0.8,
+    "source": "2Q 콜 CFO"
+   },
+   {
+    "id": "D7",
+    "kind": "부정",
+    "label": "하드웨어 매출 감소",
+    "item": "코어 하드웨어 $111.6M → $82.1M, 고객 데이터센터 지연이 겹쳤다",
+    "prior": "$111.6M",
+    "latest": "$82.1M",
+    "driver": "s2c",
+    "shift": -0.05,
+    "confidence": 0.8,
+    "source": "2Q 콜 CFO"
+   }
+  ]
  },
  "peers_basis": "ttm",
  "peers": [
@@ -127,7 +891,15 @@
    "ev_sales": 16.84,
    "growth": 0.8338,
    "goodwill": 21.125,
-   "intangibles": 2.998
+   "intangibles": 2.998,
+   "pe_fwd": 16.42,
+   "ev_ebitda_fwd": 12.81,
+   "pe_fwd2": 10.35,
+   "ev_ebitda_fwd2": 8.6,
+   "pe_fwd3": 7.97,
+   "ev_ebitda_fwd3": 6.71,
+   "ntm_ebit_margin": 0.6353,
+   "ntm_growth": 0.8869
   },
   {
    "ticker": "AMD",
@@ -140,7 +912,15 @@
    "ev_sales": 22.45,
    "growth": 0.3954,
    "goodwill": 25.47,
-   "intangibles": 15.635
+   "intangibles": 15.635,
+   "pe_fwd": 47.49,
+   "ev_ebitda_fwd": 42.86,
+   "pe_fwd2": 26.33,
+   "ev_ebitda_fwd2": 24.04,
+   "pe_fwd3": 18.73,
+   "ev_ebitda_fwd3": 17.09,
+   "ntm_ebit_margin": 0.3064,
+   "ntm_growth": 0.5909
   },
   {
    "ticker": "AVGO",
@@ -153,7 +933,15 @@
    "ev_sales": 18.9,
    "growth": 0.4869,
    "goodwill": 97.801,
-   "intangibles": 26.325
+   "intangibles": 26.325,
+   "pe_fwd": 18.74,
+   "ev_ebitda_fwd": 16.81,
+   "pe_fwd2": 11.81,
+   "ev_ebitda_fwd2": 10.66,
+   "pe_fwd3": 7.64,
+   "ev_ebitda_fwd3": 6.92,
+   "ntm_ebit_margin": 0.6613,
+   "ntm_growth": 0.7656
   },
   {
    "ticker": "MRVL",
@@ -166,7 +954,15 @@
    "ev_sales": 21.36,
    "growth": 0.3062,
    "goodwill": 13.874,
-   "intangibles": 2.347
+   "intangibles": 2.347,
+   "pe_fwd": 35.64,
+   "ev_ebitda_fwd": 32.94,
+   "pe_fwd2": 24.67,
+   "ev_ebitda_fwd2": 22.69,
+   "pe_fwd3": 17.96,
+   "ev_ebitda_fwd3": 16.39,
+   "ntm_ebit_margin": 0.3919,
+   "ntm_growth": 0.6262
   },
   {
    "ticker": "CRWV",
@@ -179,7 +975,15 @@
    "ev_sales": 10.68,
    "growth": 1.1528,
    "goodwill": 1.101,
-   "intangibles": 0.245
+   "intangibles": 0.245,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 7.72,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 4.91,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 3.32,
+   "ntm_ebit_margin": 0.106,
+   "ntm_growth": 1.5557
   }
  ],
  "peers_source": "Fiscal.ai 표준화 분기 재무(최근 4분기 합, 성장 = TTM ÷ 직전 TTM)·daily ratios(시총·EV/매출, 2026-10-29)",
@@ -192,21 +996,25 @@
    "lam": 0.35
   },
   "s2c": 1.0,
-  "why": "목표 영업이익률 22%(GAAP, SBC 포함): AI 가속기 동종 AMD 17%·MRVL 17%와 회사 장기 코어 총마진 60%+ 목표 사이 — 클라우드 감가상각 부담 반영 / 매출÷투하자본 1.0: 자체 클라우드 장비 보유형(1H26 설비투자 5.49억$ > 매출 3.74억$, 최대 고객이 데이터센터 투자 일부 보전) — 램프 초기 TTM 값은 대표성 없음 / SBC 6%: 비GAAP 이익률(가이던스·EPS 컨센서스)을 GAAP으로 맞추는 차감 — 상장 전 1Q26 5.0%, 상장 후 RSU 정상 수준 미확인"
+  "why": "목표 영업이익률 22%(GAAP, SBC 포함): AI 가속기 동종 AMD 17%·MRVL 17%와 회사 장기 코어 총마진 60%+ 목표 사이 — 클라우드 감가상각 부담 반영 / 매출÷투하자본 1.0: 자체 클라우드 장비 보유형(1H26 설비투자 5.49억$ > 매출 3.74억$, 최대 고객이 데이터센터 투자 일부 보전) — 램프 초기 TTM 값은 대표성 없음 / SBC 6%: 비GAAP 이익률(가이던스·EPS 컨센서스)을 GAAP으로 맞추는 차감 — 상장 전 1Q26 5.0%, 상장 후 RSU 정상 수준 미확인 / 2026-11-02: 2027~28 설비투자 추정 합 약 \\(신뢰 낮음)를 그대로 쓰면 s2c 0.42~0.59이고 기본 EV가 음수가 된다. 고객의 데이터센터 비용 보전이 미반영이라 1.0을 유지하고 민감도를 본문에 적는다"
  },
  "sources": [
   "easyconomics company_profile·financial_statements(분기 손익·재무상태·현금흐름)·earnings_summary 2026-08-12·company_peers (조회 2026-10-29 17:20 KST)",
   "SEC XBRL companyfacts CIK 2021728(희석 증권·SBC, 조회 2026-10-29)",
   "SEC 10-Q 2026-08-12 · 424B4 2026-05-14",
   "outputs/invest/short/20261029_CBRS.md",
-  "Fiscal.ai MCP 2026-10-30 — 공시 원문 재무(auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·13F 2Q26(394개 기관)·뉴스(10/27 Oracle OCI 제휴, 10/28 Culper 숏 포지션 공시)"
+  "Fiscal.ai MCP 2026-10-30 — 공시 원문 재무(auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·13F 2Q26(394개 기관)·뉴스(10/27 Oracle OCI 제휴, 10/28 Culper 숏 포지션 공시)",
+  "SEC 10-Q 2026-06-30 https://www.sec.gov/Archives/edgar/data/2021728/000162828026056357/cbrs-20260630.htm",
+  "SEC 424B4 2026-05-14 https://www.sec.gov/Archives/edgar/data/0002021728/000162828026035214/cerebras-424b4.htm",
+  "Fiscal.ai MCP 2026-11-02 — 시세·추정·13F·Form 4·펀드 레터·2Q·1Q 콜 전문. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "2차 보도(OpenAI Ultrafast): Trefis 10/5, KuCoin 10/5, CryptoBriefing 10/2 — 원 보도(CNBC·SemiAnalysis)는 직접 확인하지 못함"
  ],
  "raw": {
-  "retrieved_at": "2026-10-30T01:00:00+09:00",
+  "retrieved_at": "2026-11-02T04:00:00+09:00",
   "easyconomics_profile": {
-   "price": 112.56,
-   "market_cap": 26.74,
-   "enterprise_value": 20.306,
+   "price": 109.18,
+   "market_cap": 25.937,
+   "enterprise_value": 19.503,
    "shares_outstanding_yf": 0.112247,
    "total_cash": 7.9215,
    "total_debt": 1.4871,
@@ -235,13 +1043,13 @@
   "balance_2026_06_30": {
    "cash": 6.742,
    "st_investments": 1.179,
-   "debt_current": 0.0,
+   "debt_current": 0.736,
    "debt_lt": 0.182,
    "lease_current": 0.088,
    "lease_lt": 0.48,
    "equity": 9.155,
    "shares": 0.228204,
-   "note": "Fiscal.ai 공시 원문(as-reported) 2026-06-30 — 유동 차입 항목 없음(이전 묶음의 유동 차입 736백만$는 원문에서 확인되지 않아 제외), 제한 현금 684.7은 현금에서 뺌"
+   "note": "10-Q 2026-06-30 대차대조표 원문 — 유동 Working capital loan 736,036천$, 장기 182,2백만$(OpenAI 약 $1.0B 대출, 비현금 상계 86.3백만$), 제한 현금 684.7은 현금에서 뺌"
   },
   "cashflow_1h26": {
    "capex": 0.5489,
@@ -253,10 +1061,10 @@
    "2026Q2_act": 209.869,
    "2026Q3": 215.82,
    "2026Q4": 268.636,
-   "2027Q1": 383.486,
-   "2027Q2": 531.345,
-   "2027Q3": 784.755,
-   "2027Q4": 1055.46
+   "2027Q1": 402.722,
+   "2027Q2": 567.003,
+   "2027Q3": 821.971,
+   "2027Q4": 1121.942
   },
   "estimates_eps": {
    "2027Q1": -0.0762,
@@ -287,7 +1095,8 @@
    "2026-09-15": 184.03,
    "2026-09-30": 177.65,
    "2026-10-15": 142.17,
-   "2026-10-28": 112.56
+   "2026-10-28": 112.56,
+   "2026-10-30": 109.18
   },
   "peer_goodwill_sec": {
    "NVDA": {
@@ -365,13 +1174,13 @@
   "fiscal_profile": {
    "companyKey": "NASDAQ_CBRS",
    "terminalUrl": "https://fiscal.ai/company/NasdaqGS-CBRS",
-   "price": 112.56,
-   "market_cap": 26.7402,
+   "price": 109.18,
+   "market_cap": 26.0513,
    "total_cash": 7.9215,
-   "total_debt": 0.751,
+   "total_debt": 1.487,
    "shares_outstanding": 0.237564,
    "ev_sales": 31.8,
-   "as_of": "2026-10-28"
+   "as_of": "2026-10-30"
   },
   "zacks": {
    "FY2026_rev": 0.8853,
@@ -393,7 +1202,53 @@
    },
    "asOf": "2026-10-21",
    "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
-   "note": "분기 실적(act)은 코어 매출(회사 가이던스 기준)로 둔다 — GAAP 분기 매출은 quarters_gaap"
+   "note": "분기 실적(act)은 코어 매출(회사 가이던스 기준)로 둔다 — GAAP 분기 매출은 quarters_gaap",
+   "FY2028_rev": 6.755,
+   "FY2028_eps": 6.15
+  },
+  "sec_10q_20260630": {
+   "customers": {
+    "Customer A(MBZUAI)": [
+     0.34,
+     0.49
+    ],
+    "Customer B(OpenAI)": [
+     0.32,
+     0.2
+    ],
+    "Customer C": [
+     0.1,
+     null
+    ],
+    "Customer D(G42)": [
+     null,
+     0.1
+    ],
+    "basis": "2Q·1H 매출 비중"
+   },
+   "openai_rev_2q": 0.0568,
+   "openai_rev_1h": 0.0744,
+   "warrant_amort_1h": 0.0463,
+   "customer_warrants": 1.1284,
+   "rpo_schedule": {
+    "24m_to_2028_06": 0.22,
+    "25_48m": 0.43
+   },
+   "restricted_cash": 0.6847,
+   "purchase_commitments_over_1y": 0.0103,
+   "leases": {
+    "fixed": 0.6903,
+    "not_commenced_2q": 1.5,
+    "3q_signed": 0.7534
+   },
+   "warranty": {
+    "open": 0.009368,
+    "add": 0.00843,
+    "used": 0.005751,
+    "close": 0.012047
+   },
+   "lockup_release_shares_m": 171.1,
+   "material_weakness": true
   }
  },
  "history": {
@@ -423,93 +1278,119 @@
     "date": "2026-10-28",
     "value": 31.8
    }
-  ]
+  ],
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
  },
  "narrative": {
-  "as_of": "2026-10-29",
-  "stage": "확산",
-  "crowding": "중간",
-  "summary": "'웨이퍼 한 장 AI 칩 = 가장 빠른 추론' 이야기가 상장 프리미엄을 만들었고, 숏 리포트(수명)가 그 프리미엄의 지속성을 공격하는 중",
+  "as_of": "2026-11-02",
+  "stage": "소멸",
+  "crowding": "낮음",
+  "summary": "'가장 빠른 추론은 Cerebras뿐' 이야기가 상장 프리미엄을 만들었고, 10월에 최대 고객의 선택과 공개 숏이 그 이야기를 흔들었다. EPS 추정은 그대로인데 주가만 반토막이 났다",
   "layers": {
    "sell_side": {
     "metrics": [
      [
-      "애널리스트 의견(Zacks)",
+      "애널리스트 의견",
       "11명 — 강력 매수 9·매수 1·보유 1·매도 0",
-      "상장 주관사 중심의 강세 합의",
-      "Fiscal.ai analyst_ratings — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+      "상장 주관사 중심 강세 합의, 의견 기준일 10/2",
+      "company_analyst_ratings"
      ],
      [
-      "목표가 평균·범위(Zacks)",
-      "$267 (중앙 $290, $149~$330, 11명)",
-      "10/28 종가 $112.56 대비 평균 +137% — IB 기대의 증거(Chiip 목표가 아님)",
+      "목표가 평균·범위",
+      "$267(중앙 $290, $149~$330)",
+      "10/30 종가 대비 평균 +145%. 주가를 따라가지 못한 값이다",
       "같은 곳"
+     ],
+     [
+      "10월 목표가 조정",
+      "TD Cowen 10/19 하향",
+      "하향 폭은 확인하지 못했다",
+      "언론 색인"
      ],
      [
       "2Q 콜 질문 증권사",
       "UBS, TD Cowen, Barclays, Needham, Morgan Stanley, Mizuho",
-      "질문 초점 = OpenAI 램프·코어 마진·CAPEX",
-      "Fiscal.ai ir_events_transcript(q2-2026) 화자 목록"
+      "고객 집중·분리형 경제성·AWS·램프",
+      "2Q 콜"
      ]
     ],
-    "read": "상장 주관·커버리지 증권사가 대부분 — 추론 속도·OpenAI 계약을 성장 근거로 본다"
+    "read": "목표가와 주가의 차이가 두 배를 넘는다. 11/12 실적 뒤 하향이 몰릴 수 있다. EPS 추정이 8월에 멈춰 있어 강세 합의는 10월 사건을 아직 담지 않았다"
    },
    "buy_side": {
     "metrics": [
      [
-      "13F 기관 보유(2Q26, 첫 공시)",
-      "394개 기관 · 8,680만 주(표지 주식의 약 37%)",
-      "상위: Eclipse 5.0%·Fidelity 3.7%·Altimeter 3.2%·Coatue 3.1%·Capital World 1.7% — 벤처·성장주 펀드 중심",
-      "Fiscal.ai institutional_holders 2026Q2"
+      "13F 기관 보유(2Q26)",
+      "395곳 · 8,680만 주",
+      "Eclipse 5.0%·Fidelity 3.7%·Altimeter 3.2%·Coatue 3.1%",
+      "institutional_holders 2026Q2"
      ],
      [
-      "펀드 레터 언급",
-      "0건",
-      "헤지펀드 레터 논지 아직 없음",
-      "Fiscal.ai company_fund_letters"
+      "펀드 레터",
+      "3Q 신규 편입 5건, 약세 언급 1건",
+      "Liontrust 계열이 상장 뒤 조정에서 신규 편입했다고 적었다",
+      "company_fund_letters"
+     ],
+     [
+      "내부자 장내 거래",
+      "매도 26건 · 매수 0건",
+      "CFO 9/29 $6.6M, CTO 10/27 $6.9M",
+      "Form 4"
      ],
      [
       "공매도 비중(유통 주식)",
       "17.7%",
-      "약세 베팅의 크기",
-      "같은 곳"
+      "기준일 미확인",
+      "공개 시세"
      ]
     ],
-    "read": "락업 해제(11/10 전후 약 22%) 전후로 기관 손바뀜이 가격을 정한다"
+    "read": "9월 말 13F 대부분이 11/16 전후에 공개된다. 벤처·성장 펀드가 언제 파느냐가 수급을 정한다"
    },
    "retail": {
     "metrics": [
      [
-      "레딧 언급 순위(ApeWisdom)",
-      "37위 · 24시간 언급 12건(하루 전 3건, 101위)",
-      "숏 리포트 뒤 리테일 관심 급증",
-      "apewisdom.io 2026-10-29 23:52"
+      "레딧 언급 순위",
+      "708위 · 24시간 1건(하루 전 2건)",
+      "숏 리포트 직후 37위에서 식었다",
+      "apewisdom.io 2026-11-02"
      ],
      [
-      "텔레그램 공개 채널 언급",
-      "미집계(관심도 후보 밖)",
+      "텔레그램 공개 채널",
+      "해당 글 없음",
       "-",
-      "radar/attention.py"
+      "공개 채널 수집"
      ],
      [
       "X 언급 수",
-      "미수집(X 키 입력 전)",
+      "미수집",
       "-",
       "-"
      ]
     ],
-    "read": "리테일 관심은 숏 리포트 사건에 반응한 단기 급증 — 지속 여부는 미확인"
+    "read": "리테일 관심은 사건 때만 튀고 바로 식었다. 쏠림은 낮다"
    },
    "media": {
     "metrics": [
      [
+      "최대 고객 이슈",
+      "10/2 전후",
+      "GPT-6.1 Sol Ultrafast의 NVIDIA 서빙 보도",
+      "언론 색인"
+     ],
+     [
       "숏 리포트",
-      "Culper Research 2026-10-28",
-      "웨이퍼 수명·교체 CAPEX 공격",
-      "리포트 요약(원문 재배포 금지)"
+      "Culper 2026-10-28",
+      "웨이퍼 수명 공격",
+      "자기 말 요약"
+     ],
+     [
+      "공학 쪽 독립 글",
+      "Irrational Analysis 10/28",
+      "일부 맞고 일부 틀리다는 제목",
+      "Substack"
      ]
     ],
-    "read": "언론 관심의 중심이 성장에서 '수명·현금 소진'으로 이동"
+    "read": "언론 관심이 성장에서 '최대 고객이 떠나나'와 수명으로 옮겨 갔다"
    }
   },
   "factors": [
@@ -523,10 +1404,10 @@
      "retail": "중"
     },
     "drives": "multiple",
-    "quant": "EV/매출 40.8배 중 기업 고유 몫 +66%(멀티플 엔진)",
-    "status": "유지",
-    "falsifier": "고객이 GPU·다른 ASIC으로 추론을 옮기는 계약 공시",
-    "source": "리포트 멀티플 절"
+    "quant": "Fwd 1Y P/E 88.4배, 2Y 17.8배",
+    "status": "약화",
+    "falsifier": "OpenAI 최신 모델 최고속 등급이 Cerebras로 돌아온다는 확인이면 이 약화가 풀린다",
+    "source": "멀티플 절"
    },
    {
     "name": "OpenAI 대형 계약",
@@ -538,10 +1419,10 @@
      "retail": "약"
     },
     "drives": "revision",
-    "quant": "수주잔고 254억$ = EV의 1.25배(EV는 잔고의 0.8배)",
+    "quant": "RPO $25.4B, 완전 희석 EV $26.8B의 약 0.95배",
     "status": "유지",
-    "falsifier": "OpenAI 약정 이행 지연·축소",
-    "source": "10-Q(리포트 ② 절)"
+    "falsifier": "RPO 감소 또는 납기 지연 공시",
+    "source": "10-Q"
    },
    {
     "name": "웨이퍼 수명·교체 CAPEX(약세)",
@@ -553,10 +1434,10 @@
      "retail": "강"
     },
     "drives": "multiple",
-    "quant": "수명 2.1~4.2년(할인 없음)이 OpenAI 계약 손익분기",
-    "status": "강화",
+    "quant": "손익분기 수명 2.1~4.2년(공개 숏 입력 기준)",
+    "status": "유지",
     "falsifier": "10-Q 내용연수 유지·손상 없음(11/12)",
-    "source": "Culper 요약·리포트 ③ 절"
+    "source": "공개 숏 요약, 10-Q 보증"
    },
    {
     "name": "Oracle OCI 제휴(고객 다변화)",
@@ -571,8 +1452,542 @@
     "quant": "계약 규모 미공개(미확인)",
     "status": "태동",
     "falsifier": "OCI 매출 기여가 4Q26·1Q27 공시에 안 보임",
-    "source": "Fiscal.ai company_news 2026-10-27(중요도 3)"
+    "source": "2026-10-27 회사 보도자료"
+   },
+   {
+    "name": "OpenAI 최고속 등급 이전(약세)",
+    "thesis": "가장 빠른 등급이 NVIDIA로 갔다면 속도 독점 이야기가 깨진다",
+    "inputs": "성장·가격 결정력",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "주간 −19.5%, 8/11 이후 주가 −53.5%, FY27 EPS 추정 +29%",
+    "status": "강화",
+    "falsifier": "OpenAI가 Cerebras 물량 확대를 공시하거나 RPO가 늘어난다",
+    "source": "10/2 전후 보도, 원 보도는 직접 확인하지 못함"
+   }
+  ],
+  "lead": {
+   "summary": "Cerebras는 웨이퍼 한 장을 통째로 칩으로 만들어 추론을 가장 빠르게 한다는 이야기로 상장했다. 공모가 $185, 첫날 종가 $311, 10/30 $109다. 8/11 이후 주가는 −53.5%인데 FY27 EPS 추정은 +29%다. 숫자가 아니라 이야기가 깨졌다.",
+   "value_story": "주가는 2028년 EPS × 멀티플이다. EPS는 RPO $25.4B가 일정대로 데이터센터에 깔리는지, 임차 시스템이 빠지며 총마진이 60%로 가는지가 정한다. 멀티플은 '대체 불가능한 속도'인지 '또 하나의 가속기 임대업'인지가 정한다.",
+   "premium": {
+    "multiple": "Fwd 1Y(2027년) P/E 88.4배는 동종 중앙값 27.2배의 3배가 넘는다. Fwd 2Y(2028년)는 17.8배로 동종 Fwd 2Y 중앙값 약 18배와 비슷하다. 시장은 2028년 숫자에 프리미엄을 주지 않는다.",
+    "eps": "2026년 1·2Q 모두 매출·EPS가 컨센서스를 넘었다. FY27 EPS는 8/11 $0.96에서 $1.235로 올랐다. 다만 추정 대부분이 8월에 고정돼 있고 애널리스트가 2~4명이다."
+   },
+   "why_excited": "OpenAI $20B 이상 계약, 상장 첫날 +68%, GPU 대비 15배라는 숫자가 겹쳤다. 희소한 비 NVIDIA 추론 종목이었다. 식은 이유는 세 가지다. 실적마다 마진 가이던스가 실망을 줬고(첫 실적 다음 날 −19.6%, 둘째 −11.8%), 9/30 락업 일부 해제와 임원 매도가 겹쳤고, 10/2 전후 OpenAI의 최고속 등급이 NVIDIA로 갔다는 보도가 결정타였다.",
+   "products": [
+    {
+     "kind": "서비스",
+     "name": "추론 클라우드",
+     "what": "자체 시스템을 임차 데이터센터에 깔아 토큰을 판다",
+     "use": "OpenAI, 코딩·에이전트 스타트업, 기업",
+     "money": "2Q 코어 $127.7M, +287%. 코어 마진 41.8%"
+    },
+    {
+     "kind": "제품",
+     "name": "CS-3·CS-4 시스템",
+     "what": "웨이퍼 칩 기반 랙 시스템을 고객 시설에 판매",
+     "use": "G42·MBZUAI, 연구소, 정부",
+     "money": "2Q 코어 $82.1M, +17%. 코어 마진 38.8%"
+    },
+    {
+     "kind": "기술",
+     "name": "WSE 웨이퍼 스케일 엔진",
+     "what": "웨이퍼 전체를 한 칩으로 쓰고 SRAM을 칩 안에 둔다. TSMC 5nm",
+     "use": "디코드(토큰 생성) 구간",
+     "money": "시스템 원가 미공개"
+    },
+    {
+     "kind": "기술",
+     "name": "분리형 추론",
+     "what": "프리필은 GPU·Trainium, 디코드는 WSE가 맡는 구성",
+     "use": "AWS, AMD Helios",
+     "money": "매출 미확인, 회사는 토큰 5배 주장"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "하드웨어 판매에서 클라우드로 옮겼다. 코어 클라우드 비중은 2Q 61%다. 대신 자본 집약적이 됐다",
+     "evidence": "1H 설비투자 $549M > GAAP 매출 $374M",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "설비투자 ÷ 매출이 2027년에도 1배를 넘는다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "빠른 토큰에 프리미엄이 붙는다는 주장이다. 코어 총마진 목표 60% 이상. 지금은 임차 시스템으로 2Q 40.6%, 3Q 38~40%다",
+     "evidence": "2Q 콜",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "4Q 코어 총마진이 반등하지 않는다"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "CS-4는 같은 WSE-3 실리콘을 클럭을 올려 3장 묶었다. 새 공정이 아니다. CS-5는 2027 하반기 목표다",
+     "evidence": "회사 보도자료, 2Q 콜",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "CS-5 지연 또는 NVIDIA SRAM 계열 추론 칩의 독립 측정 우위"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "회사가 공개한 납품 지표는 OpenAI 계약에서 첫 생산 투입까지 35일이다. 시범 규모이지 전체 납기가 아니다. 750MW 납기는 공개되지 않았고 동종 비교는 불가능하다",
+     "evidence": "1Q 콜",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "미네소타 40MW가 2027년 2분기를 넘긴다",
+     "lead_time": {
+      "unit": "일",
+      "now": 35,
+      "prior": "미확인",
+      "prior_when": "-",
+      "peers": [
+       {
+        "name": "CoreWeave",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(큰 인수가 없다. 자금은 데이터센터와 시스템에 쓴다)",
+     "evidence": "10-Q",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "대형 인수 발표"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "AI 데이터센터 투자의 수혜지만 공급사보다 임대 사업자 위치에 가깝다. 고객 투자 → 이 회사 매출은 RPO 안의 OpenAI만 확인된다",
+     "evidence": "10-Q Note 3",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "AWS 물량이 RPO에 잡히지 않는다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "OBBBA 설비 즉시 상각은 자체 보유 설비가 많은 이 회사에 현금세 이연 효과가 있다. 지금은 적자라 당장 효과는 작다",
+     "evidence": "2025년 7월 제정 법률",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "법 개정",
+     "house": {
+      "level": 5,
+      "why": "OBBBA 본회의 통과"
+     },
+     "senate": {
+      "level": 5,
+      "why": "OBBBA 본회의 통과"
+     }
+    },
+    "orders": {
+     "change": "수출 통제가 UAE 고객 매출을 좌우한다. 10-Q는 수출 허가를 보장하지 못한다고 적었다. 2026-01-14 Section 232 포고문은 미국 내 100MW 초과 데이터센터 용도를 면제한다. 재검토 결과는 미확인이다",
+     "evidence": "10-Q 위험 요인, 포고문 해설",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "UAE 허가 지연이나 면제 축소",
+     "house": {
+      "level": 1,
+      "why": "이 조치를 입법한 법안 확인 안 됨"
+     },
+     "senate": {
+      "level": 1,
+      "why": "이 조치를 입법한 법안 확인 안 됨"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사 매출에 직접 닿는 입법을 확인하지 못했다. GAIN AI Act·Chip Security Act 진행은 미확인)",
+     "evidence": "",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": ""
+    }
+   }
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 88.4,
+  "ev_ebitda_fwd": null,
+  "pe_fwd2": 17.75,
+  "ev_ebitda_fwd2": null,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": null
+ },
+ "forward": {
+  "as_of": "2026-10-30",
+  "ntm": {
+   "eps": 1.235,
+   "ebitda": 1249890000,
+   "ebit": 336085000,
+   "revenue": 2926393000,
+   "rev_ttm": 680673000
+  },
+  "horizons": {
+   "2": {
+    "eps": 6.15,
+    "ebitda": null,
+    "ext": 0
+   },
+   "3": {
+    "eps": null,
+    "ebitda": null,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "street",
+   "ev_ebitda_fwd": null
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. CBRS 과거 레인지는 상장 후 표본이 짧아 비움. Data provided by Zacks Investment Research, Inc., www.zacksdata.com · 2026-11-02 CBRS는 다음 4개 분기 EPS가 적자라 Fwd 1Y = FY2027 $1.235, Fwd 2Y = FY2028 $6.15(코어·Street)로 다시 계산. Fiscal 비율 116.53·EV/EBITDA 18.66은 분모 기간을 확인하지 못해 쓰지 않음"
+ },
+ "main_metric": "eps",
+ "main_metric_why": "EBITDA는 자체 보유 클라우드의 감가상각을 빼고 잰다. 이 회사 논쟁의 핵심이 웨이퍼 수명과 감가상각이라 EBITDA로 보면 쟁점이 사라진다. 그래서 EPS로 보고, 다음 4개 분기 EPS가 적자라 Fwd 1Y는 2027년, Fwd 2Y는 2028년 달력연도 컨센서스 EPS를 쓴다",
+ "next_event": {
+  "date": "2026-11-12",
+  "tag": "3Q26 실적(장 마감 후, 확정). 락업 종료는 그 전 11/9~10 전후"
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "최대 고객이 가장 빠른 등급을 다른 칩에 맡겼다는 보도가 부정되지 않았고 고객 두 곳이 2Q 매출의 66%다. 클라우드 설비투자가 매출보다 커서 이익의 질도 동종보다 낮다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "events": [
+  {
+   "date": "2026-06-23",
+   "tag": "1Q26 첫 실적, 다음 날 −19.6%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-12",
+   "tag": "2Q26 실적·FY26 상향, 다음 날 −11.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-30",
+   "tag": "실적 연동 락업 일부 해제, 임원 매도 계획 신고 보도"
+  },
+  {
+   "date": "2026-10-02",
+   "tag": "OpenAI 최고속 등급이 NVIDIA GPU로 간다는 보도, Altman은 '가까운 파트너' 언급"
+  },
+  {
+   "date": "2026-10-19",
+   "tag": "TD Cowen 목표가 하향",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-10-27",
+   "tag": "Oracle OCI 제휴 발표, 당일 +10.1%"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "Culper 숏 포지션 공개, 당일 −5.7%"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "법무법인 투자자 조사 공고"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-06-23",
+   "kind": "실적",
+   "tag": "1Q26 첫 실적",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-12",
+   "kind": "실적",
+   "tag": "2Q26 실적, FY26 상향",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-02",
+   "kind": "내러티브",
+   "tag": "최고속 등급 NVIDIA 이전 보도"
+  },
+  {
+   "date": "2026-10-28",
+   "kind": "내러티브",
+   "tag": "Culper 숏 공개"
+  }
+ ],
+ "moat": {
+  "summary": "해자는 칩 자체보다 '속도 + 공급망 우회 + 계약'의 묶음이다. 속도 해자가 가장 중요한데 최대 고객의 선택이 그것을 시험하고 있다.",
+  "items": [
+   {
+    "kind": "웨이퍼 스케일 SRAM 구조의 디코드 속도",
+    "verdict": "보통",
+    "claim": "칩 안의 SRAM이 메모리 대역폭 병목을 없애 토큰 생성이 GPU보다 빠르다. 회사는 GPU 대비 15배, GPT-5.6 Sol 10배를 주장한다.",
+    "evidence": "OpenAI가 8월 GPT-5.6 Sol Ultrafast를 Cerebras로 서빙했다는 보도가 있다. 그러나 10월 GPT-6.1 Sol Ultrafast는 NVIDIA GPU로 간다는 보도가 나왔다. OpenAI·회사의 확인이나 부인은 찾지 못했다.",
+    "quant": "CS-4 메모리 대역폭 129.6PB/s, CS-3의 6배(회사 수치)",
+    "falsifier": "NVIDIA가 같은 모델을 같은 속도로 낸다는 독립 측정 또는 OpenAI의 물량 축소"
+   },
+   {
+    "kind": "HBM·CoWoS·3nm를 쓰지 않는 공급망",
+    "verdict": "보통",
+    "claim": "업계 공통 병목을 비켜 가 5nm 웨이퍼만 확보하면 늘릴 수 있다.",
+    "evidence": "2Q 콜에서 2026년 말 제조 능력 10배 초과, 2027년 추가 3~4배 계약을 말했다. 그러나 10-Q는 부품·제조 대부분이 생산 능력 보장 없는 발주 방식이고 단일 공급원이 있다고 적었다.",
+    "quant": "1년 초과 구매 약정 $10.3M뿐",
+    "falsifier": "TSMC 5nm 배정 축소나 Flex·Sanmina 조립 지연"
+   },
+   {
+    "kind": "OpenAI 계약과 지분 결속",
+    "verdict": "보통",
+    "claim": "750MW 약정, $1.0B 운전자금 대출, 3,345만 주 워런트가 양쪽을 묶는다.",
+    "evidence": "RPO $25.4B. 다만 10-Q상 기간은 3~4년, 최대 5년이고 대부분이 한 고객이다. 약정은 용량 구매이지 특정 모델 전담이 아니다.",
+    "quant": "워런트 중 1,003만 주를 7월 행사",
+    "falsifier": "납기 지연으로 계약 해지 조항 발동이나 잔고 감소"
+   },
+   {
+    "kind": "프런티어 모델 서빙 소프트웨어",
+    "verdict": "약함",
+    "claim": "비공개 대형 모델을 서빙하며 쌓은 운영 역량이다. 회사는 계약 뒤 35일 만에 생산 투입했다고 말한다.",
+    "evidence": "회사 주장 중심이다. GPU의 소프트웨어 생태계와 비교한 독립 자료는 확인하지 못했다.",
+    "quant": "미확인",
+    "falsifier": "새 모델 서빙이 GPU보다 몇 달씩 늦는다"
+   },
+   {
+    "kind": "데이터센터 확보 속도",
+    "verdict": "약함",
+    "claim": "추론은 GW급 단일 부지가 필요 없어 작은 부지를 빨리 모을 수 있다.",
+    "evidence": "모두 임차다. 고정 리스 $690M에 미개시 $1.5B, 3Q 추가 $753M. 경쟁사도 같은 시장에서 부지를 찾는다.",
+    "quant": "확보 600MW+ vs 약정 750MW·옵션 합계 2.0GW",
+    "falsifier": "미네소타 40MW 등 개별 부지가 2027년 일정을 놓친다"
    }
   ]
+ },
+ "pipeline": {
+  "as_of": "2026-06-30",
+  "reported_backlog": 25.4,
+  "backlog_label": "잔여 이행의무(RPO)",
+  "summary": "확정은 RPO $25.4B이고 대부분 OpenAI다. AWS·AMD·Oracle은 금액이 없고 RPO에 들어 있지 않다.",
+  "items": [
+   {
+    "name": "OpenAI 약정 750MW 포함 RPO",
+    "status": "확정",
+    "total": 25.4,
+    "done": 0.0744,
+    "progress_basis": "OpenAI 1H26 인식 매출 $74.4M",
+    "margin": "미확인",
+    "start": "2026-02",
+    "speed": "RPO의 22%가 2028년 6월까지, 43%가 그다음 24개월, 나머지는 그 뒤",
+    "blockers": [
+     "데이터센터 준공",
+     "웨이퍼 수명",
+     "OpenAI 작업 배정"
+    ],
+    "source": "10-Q Note 3"
+   },
+   {
+    "name": "OpenAI 옵션 1.25GW",
+    "status": "조건부",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "end": "2030-12",
+    "speed": "2030년 말까지 분할 행사, 합계 최대 2.0GW",
+    "blockers": [
+     "OpenAI 행사 결정",
+     "모델별 칩 선택"
+    ],
+    "source": "10-Q Note 3"
+   },
+   {
+    "name": "AWS Bedrock(Trainium 결합)",
+    "status": "프레임워크",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2027년 1분기 제공 목표. RPO에 없고 워런트 270만 주는 지급액 조건",
+    "blockers": [
+     "AWS 데이터센터 배치",
+     "수요 불확실"
+    ],
+    "source": "2Q 콜, 10-Q Note 12"
+   },
+   {
+    "name": "AMD Helios 분리형 추론",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "4Q 배치 목표, 회사는 구매자가 있다고 말했다",
+    "blockers": [
+     "Helios 일정",
+     "실제 처리량 5배 입증"
+    ],
+    "source": "2Q 콜"
+   },
+   {
+    "name": "Oracle OCI 추론",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2027년 제공 계획, 금액 미공개",
+    "blockers": [
+     "배치 방식 미공개"
+    ],
+    "source": "2026-10-27 회사 보도자료"
+   },
+   {
+    "name": "하드웨어 대형 후보",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "회사는 후기 단계 수억 달러 규모라고 말했다",
+    "blockers": [
+     "고객 데이터센터 일정"
+    ],
+    "source": "2Q 콜 CFO"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "창업자 경영 회사다. Feldman이 회장·CEO이고 공동 창업자 Lie가 CTO다. 벤처 이사들이 초기부터 이사회에 있다. 연결이 매출을 만들었다는 증거는 없다.",
+  "people": [
+   {
+    "name": "Andrew D. Feldman",
+    "role": "공동 창업자·회장·CEO",
+    "since": "2016-04",
+    "profile": "56세. Stanford MBA·BA. SeaMicro CEO(2007~12), AMD 인수 뒤 AMD 부사장. Riverstone Networks 재직 건으로 2007년 12월 회계 통제 회피 1건 유죄 인정, 2008년 SEC와 합의. 투자설명서에 공시된 사실이다",
+    "business": "SeaMicro·AMD 인맥이 초기 팀의 뿌리다. AMD는 지금 Helios 결합 파트너다",
+    "political": "미확인",
+    "alumni": "Stanford",
+    "social": "미확인",
+    "source": "424B4(2026-05-14)"
+   },
+   {
+    "name": "Sean Lie",
+    "role": "공동 창업자·CTO",
+    "since": "2016(CTO 2022-04)",
+    "profile": "AMD 데이터센터 서버 수석 아키텍트, SeaMicro IO 패브릭 리드. 10/27 60,000주 약 $6.9M 장내 매도",
+    "business": "AMD·SeaMicro 경력",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "424B4, Form 4"
+   },
+   {
+    "name": "Eric Vishria",
+    "role": "선임 사외이사, Benchmark 파트너",
+    "since": "2016-05",
+    "profile": "초기 투자자 측 이사. 감사위원",
+    "business": "Benchmark 포트폴리오",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "회사 IR 이사회 페이지"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "AMD 경력 인맥과 AMD Helios 결합. 금액 미공개이고 인맥이 제휴를 만들었다는 증거는 없다",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "금액 미공개",
+    "evidence": "424B4, 2Q 콜"
+   },
+   {
+    "network": "비즈니스",
+    "link": "OpenAI 지분 결속. 워런트 3,345만 주와 대출 $1.0B는 문서로 확인되는 계약 연결이다",
+    "strength": 5,
+    "exposure": 0.2272,
+    "basis": "OpenAI 2Q 매출 $56.8M 연환산",
+    "evidence": "10-Q Note 3·12"
+   },
+   {
+    "network": "정계",
+    "link": "UAE 고객(G42·MBZUAI)의 미국 수출 허가 의존. 경영진의 정치적 연결은 공개 기록으로 확인하지 못했다",
+    "strength": 1,
+    "exposure": 0.183,
+    "basis": "MBZUAI 1H 비중 49% × 1H GAAP 매출 $0.37B",
+    "evidence": "10-Q 위험 요인"
+   }
+  ]
+ },
+ "terms": {
+  "WSE": "Cerebras 웨이퍼 한 장 크기 칩",
+  "WSE-3": "Cerebras 3세대 웨이퍼 칩",
+  "WSE-3T": "CS-4용 고클럭 웨이퍼 칩",
+  "CS-3": "Cerebras 3세대 시스템",
+  "CS-4": "Cerebras 4세대 시스템, 웨이퍼 3장",
+  "CS-5": "Cerebras 차기 시스템",
+  "Ultrafast": "OpenAI 모델의 최고속 서비스 등급",
+  "GPT-5.6 Sol": "OpenAI 대형 모델",
+  "GPT-6.1 Sol": "OpenAI 최신 대형 모델",
+  "Helios": "AMD 랙 단위 AI 플랫폼",
+  "Trainium": "AWS 자체 AI 칩",
+  "Bedrock": "AWS 모델 API 서비스",
+  "OCI": "Oracle 클라우드 인프라",
+  "SRAM": "칩 안의 고속 메모리",
+  "HBM": "GPU 옆에 쌓는 고대역폭 메모리",
+  "CoWoS": "TSMC 첨단 패키징",
+  "TSMC": "대만 파운드리",
+  "RPO": "잔여 이행의무, 확정 주문 잔액",
+  "MBZUAI": "UAE 인공지능 대학",
+  "G42": "UAE AI 지주회사",
+  "MRA": "OpenAI와 맺은 기본 공급 계약",
+  "OBBBA": "2025년 7월 제정 재정조정법",
+  "Section 232": "미국 무역확장법 안보 관세 조항",
+  "GAIN AI Act": "미국 AI 칩 수출 제한 법안",
+  "Chip Security Act": "미국 칩 위치 확인 법안",
+  "Flex": "미국 전자제품 위탁 생산사",
+  "Sanmina": "미국 전자제품 위탁 생산사",
+  "Culper Research": "미국 공매도 리서치사",
+  "SeaMicro": "AMD가 인수한 서버 회사",
+  "Riverstone Networks": "미국 네트워크 장비 회사",
+  "Benchmark": "미국 벤처캐피털",
+  "Eclipse": "미국 벤처캐피털",
+  "Paricon": "미국 커넥터 부품사",
+  "Zone Frontier": "미국 데이터센터 개발사",
+  "Altimeter": "미국 성장주 펀드",
+  "Coatue": "미국 기술주 헤지펀드",
+  "Liontrust": "영국 자산운용사",
+  "Atreides": "미국 헤지펀드",
+  "CrowdStrike": "미국 보안 소프트웨어 회사",
+  "Figma": "미국 디자인 소프트웨어 회사",
+  "Cognition": "미국 AI 코딩 회사",
+  "NVIDIA": "미국 AI 반도체 회사",
+  "AWS": "아마존 클라우드",
+  "IPO": "기업공개",
+  "ASIC": "특정 용도 전용 칩",
+  "GPU": "그래픽 처리 장치, AI 연산 주력 칩",
+  "SemiAnalysis": "미국 반도체 리서치사",
+  "MW": "메가와트",
+  "GW": "기가와트",
+  "TDDB": "절연막 파괴 수명 시험",
+  "Citi": "미국 투자은행",
+  "TD Cowen": "미국 투자은행",
+  "BA": "학사",
+  "MBA": "경영학 석사",
+  "GAIN": "미국 AI 칩 수출 제한 법안 이름",
+  "IO": "입출력",
+  "TD": "캐나다 금융그룹 약칭",
+  "UAE": "아랍에미리트"
  }
 }
