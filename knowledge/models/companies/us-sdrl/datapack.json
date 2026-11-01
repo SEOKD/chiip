@@ -105,6 +105,54 @@
     "est_asof": "2026-07-01",
     "basis": "adjusted",
     "earnings_date": "2026-08-10"
+   },
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.17,
+    "est": 0.26,
+    "est_src": "zacks",
+    "est_asof": "2025-08-12",
+    "basis": "gaap",
+    "earnings_date": "2025-11-05"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.16,
+    "est": 0.07,
+    "est_src": "zacks",
+    "est_asof": "2025-11-12",
+    "basis": "gaap",
+    "earnings_date": "2026-02-25"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.11,
+    "est": -0.1,
+    "est_src": "zacks",
+    "est_asof": "2026-03-03",
+    "basis": "gaap",
+    "earnings_date": "2026-05-11"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.47,
+    "est": 0.29,
+    "est_src": "zacks",
+    "est_asof": "2026-07-02",
+    "basis": "gaap",
+    "earnings_date": "2026-08-07"
    }
   ],
   "rev": {
