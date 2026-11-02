@@ -1,0 +1,28 @@
+{
+ "stem": "20261102_TH",
+ "date": "2026-11-02",
+ "ticker": "TH",
+ "company": "Target Hospitality",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/2f76c6a41b7b/outputs/tenbagger/reports/20261102_TH.md",
+  "html": "https://github.com/SEOKD/chiip/blob/2f76c6a41b7b/outputs/tenbagger/reports/20261102_TH.html",
+  "commit": "2f76c6a41b7bdabcfbb22f7a8fd44fa1c4907e7d",
+  "at": "2026-11-02T14:08:38+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/KCNAR78y2yuKHK8auwSSm4",
+  "at": "2026-11-02T14:08:44+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://www.notion.so/40cb5d1e09988175b2c4cd165d2c9bff",
+  "stock_page": "https://www.notion.so/40cb5d1e0998815996c1e7a9af23f829",
+  "at": "2026-11-02T14:15:19+09:00"
+ },
+ "telegram": {
+  "sent": false,
+  "notion_ok": false,
+  "at": "2026-11-02T14:15:19+09:00"
+ }
+}
