@@ -4,7 +4,7 @@
 # 2026-10-30 마스터가 알려준 수량·평균 매입가는 개인 금융 정보라 저장소에 두지 않는다 → config/portfolio_positions.local.yaml(git 제외, 이 PC에만). 평가손익(사실)만 계산한다. 치입은 투자자문이 아니다 — 추가 매수·매도 시점·비중은 제시하지 않고, 사실·지표·일정만.
 # status: 보유 / 관심(와치리스트 — 팔로업은 같게, 손익 없음) / 종료
 # 실체 확인: SEC EDGAR 회사 검색·submissions(cik), easyconomics 회사 개요 (2026-10-29)
-updated: 2026-10-30   # 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS · CCXI·MRVL 종료
+updated: 2026-11-03   # 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
 holdings:
   - id: co-enchantedrock
     ticker: EROC
@@ -38,9 +38,8 @@ holdings:
     sub: robotics
     related: ["Figure AI", "Optimus", "Apptronik", "Boston Dynamics", "Unitree", "GXO"]
     kind: spac                              # 스팩 — 합병 대상 Agility Robotics(휴머노이드), 합병 후 티커 AGLT·회사명 Agility Robotics, Inc.
-    since: 2026-10-29
-    ended: 2026-10-30
-    status: 종료
+    since: 2026-11-03                       # 2026-10-30 종료 후 마스터 지시로 와치리스트 재등록
+    status: 관심
   - id: co-marvell
     ticker: MRVL
     name: Marvell Technology
@@ -75,12 +74,35 @@ holdings:
     related: ["Etched", "Groq", "SambaNova", "G42", "MBZUAI", "Paricon"]
     since: 2026-10-29
     status: 관심
+  - id: us-lscc
+    ticker: LSCC
+    name: Lattice Semiconductor
+    cik: 855658
+    exchange: Nasdaq
+    names: ["Lattice Semiconductor"]
+    wiki: Lattice_Semiconductor
+    sub: fpga
+    related: ["Altera", "AMD", "Xilinx", "Microchip", "Achronix", "Efinix"]
+    since: 2026-11-03
+    status: 관심
+  - id: us-aeis
+    ticker: AEIS
+    name: Advanced Energy Industries
+    cik: 927003
+    exchange: Nasdaq
+    names: ["Advanced Energy Industries", "Advanced Energy"]
+    wiki: Advanced_Energy
+    sub: equipment
+    related: ["MKS Instruments", "Delta Electronics", "Vicor", "Monolithic Power", "Comet", "XP Power"]
+    since: 2026-11-03
+    status: 관심
 
 # 날짜가 확정된 일정(1차 출처 있는 것만). 관문이 D-1·당일에 알린다. 치입이 실적일·IR 행사·투표일을 확인하면 여기에 추가한다.
 # time은 현지 시각과 KST를 함께. confirmed: false는 추정(알림에 '미확정' 표시).
 events:
   - {date: 2026-10-29, ticker: CCXI, what: "환매 청구 마감 — 10/29 17:00 ET (KST 10/30 06:00 — 한국 기준 오늘 밤), DWAC로 Continental에 주식 인도", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109058/ea0297114-07.htm", confirmed: true}
   - {date: 2026-11-02, ticker: CCXI, what: "임시주총(합병 승인 투표) 09:00 ET (KST 11/2 23:00)", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109077/ea0308496-8k425_church11.htm", confirmed: true}
+  - {date: 2026-11-05, ticker: CCXI, what: "합병 후 AGLT·AGLTW Nasdaq 거래 시작 예정(회사 예상, 상장 조건 충족 전제)", source: "https://www.sec.gov/Archives/edgar/data/2074973/000121390026115034/ea0310517-8k425_church11.htm", confirmed: false}
   - {"date": "2026-10-29", "ticker": "PWR", "what": "3분기 실적 발표 장 시작 전·콜 09:00 ET (KST 10/29 22:00)", "source": "https://investors.quantaservices.com/news-events/press-releases/detail/406/quanta-services-announces-third-quarter-2026-earnings-release-webcast-schedule", "confirmed": true}
   - {"date": "2026-12-07", "ticker": "EROC", "what": "IPO 보호예수 해제(424B4 2026-06-09 + 180일 = 12/6 일요일 → 첫 거래일 12/7) — 기존 주주 Class A 약 2,027만 주, Class B 1억 7,123만 주·Class M 5,707만 유닛 교환 조건 미확인", "source": "https://www.sec.gov/Archives/edgar/data/2110029/000119312526265898/d12401d424b4.htm", "confirmed": true}
   - {"date": "2026-11-09", "ticker": "CBRS", "what": "IPO 보호예수 마지막 해제(424B4 2026-05-13: 3분기 실적 후 둘째 거래일과 180일 중 이른 날 — 실적 11/12이면 둘째 거래일 11/16, 180일 11/9가 먼저) — 남은 약 3,100만 주+옵션 2,150만 주", "source": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035214/cerebras-424b4.htm", "confirmed": true}
