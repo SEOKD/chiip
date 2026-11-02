@@ -53,7 +53,7 @@ class TestScenario(unittest.TestCase):
 
     def test_gallery_order_is_fixed(self):
         """마스터 지시 2026-11-02 — 이 순서를 바꾸려면 마스터 지시가 있어야 한다"""
-        self.assertEqual(rl.GALLERY, ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "공급 병목", "생산능력", "CAPEX", "어닝콜 변화",
+        self.assertEqual(rl.GALLERY, ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "고객 믹스", "공급 병목", "생산능력", "CAPEX", "어닝콜 변화",
                                       "멀티플 프리미엄", "합리적 멀티플", "일별 거래량", "기관 자금", "몬테카를로"))
 
     def test_gallery_follows_the_order(self):

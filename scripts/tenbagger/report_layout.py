@@ -1,6 +1,6 @@
 """텐배거 리포트 양식 3 (마스터 지시 2026-10-31 — 구매 등급·대시보드·한눈에 보기·본론 순서 개편)
 
-순서: 제목 → Chiip View → 대시보드 → 한 장 요약 → 한눈에 보기(그림 번호 없음) → 내러티브 → 포트폴리오 → 수주·파이프라인 → 마진 구조 → 공급망 병목 → 생산능력 → 해자 →
+순서: 제목 → Chiip View → 대시보드 → 한 장 요약 → 한눈에 보기(그림 번호 없음) → 내러티브 → 포트폴리오 → 고객 → 수주·파이프라인 → 마진 구조 → 공급망 병목 → 생산능력 → 해자 →
       약세 논리 및 셀온 조건 → 어닝콜 변화 → 밸류에이션 → 수급 → 체크리스트.
 모델은 JSON에 title·subtitle·date·ticker·company·biz·verdict(view·alpha)·summary·sections(판단 시나리오·반대 검증·킬 조건(또는 셀온 조건)·체크리스트)만 쓴다.
 숫자·순서·그래프는 이 파일이 만든다. 모르는 절이 있으면 멈춘다 — 본론 순서가 고정이기 때문이다.
@@ -11,6 +11,7 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
   "leaders": scripts/tenbagger/leader_view.py 맨 위 — 창업자·회장·CEO 프로필과 네트워크 정량화
   "margin": scripts/tenbagger/margin_view.py 맨 위 — GPM·OPM 비용 요인과 핵심 제품·서비스 BOM 분해
   "supply": scripts/tenbagger/supply_view.py 맨 위 — 부품 공급망 업체와 공급 병목 10점
+  "customers": scripts/tenbagger/customer_view.py 맨 위 — 고객사와 고객별 매출 믹스 추정
   "capacity": scripts/tenbagger/capacity_view.py 맨 위 — 현재 생산능력, 확충 계획, CAPEX와 매출 대비
   "multiple_view": {"adj": -0.2, "why": "사이클·실행 할인 등 IB식 판단 한 줄"}   # 조정폭은 config/tenbagger.yaml multiple_select.judge_cap 안에서
   "target_view": {"adj": 0.1, "why": "요인에 안 잡히는 판단 한 줄"}   # 선택. 목표주가 위치 조정, target_price.judge_cap 안에서
@@ -30,6 +31,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import capacity_view  # noqa: E402
+import customer_view  # noqa: E402
 import flow  # noqa: E402
 import leader_view  # noqa: E402
 import levels  # noqa: E402
@@ -43,7 +45,7 @@ ANALYST = (("strong_buy", "Strong Buy"), ("buy", "Buy"), ("hold", "Neutral"), ("
 MODEL_SECTIONS = ("판단 시나리오", "반대 검증", "킬 조건", "셀온 조건", "체크리스트", "재발행 기록", "정정 기록")
 BANNED = ("DCF ÷ 시가총액", "주주가치 ÷ 시가총액", "배수 사다리", "컨빅션")
 # 한눈에 보기 순서 — 모든 리포트가 이 순서 하나만 쓴다(마스터 지시 2026-10-31, 2026-11-02 "이 구조를 엔진 아키텍처에 영구적으로 설계하라", tests/test_report_layout.py가 고정)
-GALLERY = ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "공급 병목", "생산능력", "CAPEX", "어닝콜 변화",
+GALLERY = ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "고객 믹스", "공급 병목", "생산능력", "CAPEX", "어닝콜 변화",
            "멀티플 프리미엄", "합리적 멀티플", "일별 거래량", "기관 자금", "몬테카를로")
 SHORT_TITLES = {"콜 변화": "어닝콜 변화별 주주가치 영향", "최근 4개 분기 주가": "최근 4개 분기 주가 변화 분석", "일별 거래량": "일별 거래량 분해", "기관 자금": "기관 자금 흐름"}
 
@@ -258,12 +260,12 @@ def earnings_blocks(esec):
     return out + ([read] if read else [])
 
 
-def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None, capacity=(None, None)):
+def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None, capacity=(None, None), customers=None):
     """한눈에 보기 — 그림을 모은 뒤 GALLERY 순서로 낸다. 순서를 바꾸려면 GALLERY만 고친다"""
     E = [b for b in (esec or {}).get("blocks") or [] if b.get("type") == "chart"]
     get = lambda blocks, key: next((dict(b["chart"]) for b in blocks if key in str((b.get("chart") or {}).get("title"))), None)
     parts = {c["title"]: c for c in price}
-    parts.update({"실적": actest, "시나리오": s["chart"], "주가별 업사이드": upside_chart(s, zones or []), "포트폴리오": portfolio, "공급 병목": supply, "생산능력": capacity[0], "CAPEX": capacity[1], "합리적 멀티플": ev_chart})
+    parts.update({"실적": actest, "시나리오": s["chart"], "주가별 업사이드": upside_chart(s, zones or []), "포트폴리오": portfolio, "고객 믹스": customers, "공급 병목": supply, "생산능력": capacity[0], "CAPEX": capacity[1], "합리적 멀티플": ev_chart})
     rev = next((dict(b["chart"]) for b in E if b["chart"].get("kind") == "revision"), None)
     if rev:
         rev["title"] = "EPS 리비전"
@@ -375,7 +377,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     for s0 in d.get("sections") or []:
         if not s0.get("h2", "").startswith(MODEL_SECTIONS):
             raise SystemExit(f"양식 3 본론에 없는 절: {s0.get('h2')} — 쓸 수 있는 절은 {MODEL_SECTIONS}. 내용은 datapack narrative·moat로 옮긴다")
-    margin_sec, supply_sec, capacity_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp)   # 재료가 없으면 여기서 멈춘다
+    margin_sec, supply_sec, capacity_sec, customer_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp), customer_view.section(dp)   # 재료가 없으면 여기서 멈춘다
     shares = r["mcap"] / float(dp["profile"]["price"])
     s = scenario_build(d, dp, mm, sel, shares)
     dcf_up = r["scenarios"]["base"]["v0"] - 1
@@ -401,13 +403,15 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if xs.get("pipeline"):
         import pipeline_view
         auto.append(pipeline_view.summary_item(dp))
+    if customer_sec:
+        auto.append(customer_view.summary_item(dp))
     auto.append(supply_view.summary_item(dp))
     if capacity_sec:
         auto.append(capacity_view.summary_item(dp))
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
-    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, narrative_view.portfolio_chart(dp), supply_view.chart(dp), capacity_view.charts(dp))
+    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, narrative_view.portfolio_chart(dp), supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp))
     model = d.get("sections") or []
     find = lambda *keys: [x for x in model if x.get("h2", "").startswith(keys)]
     bear_blocks = [b for x in find("반대 검증") for b in x.get("blocks") or []]
@@ -418,6 +422,9 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     val = valuation_section(s, sel, mm, r, co, sec, co.get("name", d.get("company")), (sec.get("blocks") or [{}])[-1].get("text") if (sec.get("blocks") or [{}])[-1].get("type") == "hl" else None, pt)
     val["blocks"][1:1] = scen_text
     out = [narrative_view.section3(dp, mm), narrative_view.portfolio3(dp)]
+    if customer_sec:
+        d["sources"] = list(dict.fromkeys((d.get("sources") or []) + customer_sec.pop("_sources")))
+        out.append(customer_sec)
     if xs.get("pipeline"):
         import pipeline_view
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + (xs["pipeline"].pop("_sources", None) or [])))
