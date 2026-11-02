@@ -41,6 +41,9 @@ class TestScan(unittest.TestCase):
                     "git diff > /dev/null", "git config --get core.hooksPath", "git stash list", "git restore --staged radar/pulse.py", "git push origin main", 'echo "rm radar/pulse.py"'):
             self.assertEqual(scan(cmd), [], cmd)
 
+    def test_angle_bracket_in_commit_message_passes(self):
+        self.assertEqual(scan('git log; echo "a <b@c.com>" 2>/dev/null; ls'), [])
+
     def test_bash_style_windows_path(self):
         self.assertTrue(scan("rm /" + str(ROOT / "radar/pulse.py").replace("\\", "/").replace(":", "", 1)))
 

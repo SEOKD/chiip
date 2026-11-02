@@ -90,6 +90,8 @@ def rel(path):
 def hits(token, cwd):
     """대상 토큰이 건드리는 보호 경로(파일, 또는 코드를 품은 폴더)"""
     out = []
+    if not unquote(token):   # 따옴표만 남은 토큰(문자열 안의 >)은 대상이 아니다
+        return out
     p = full(token, cwd)
     for name in (glob.glob(p, recursive=True) if re.search(r"[*?\[]", unquote(token)) else [p]):
         try:
