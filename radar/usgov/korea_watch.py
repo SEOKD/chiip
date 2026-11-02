@@ -43,7 +43,7 @@ def edgar(cfg, today):
     for names in cfg["companies"].values():
         for name in names:
             q = urllib.parse.urlencode({"q": f'"{name}"', "forms": cfg["edgar_forms"], "startdt": start, "enddt": today.isoformat()})
-            for h in json.loads(fetch(f"https://efts.sec.gov/LATEST/search-index?{q}"))["hits"]["hits"][:10]:
+            for h in (json.loads(fetch(f"https://efts.sec.gov/LATEST/search-index?{q}")).get("hits") or {}).get("hits", [])[:10]:
                 s = h["_source"]
                 rows.append({"type": "SEC", "match": name, "form": s.get("form"), "filer": (s.get("display_names") or [""])[0], "date": s.get("file_date"), "id": h["_id"]})
     return rows

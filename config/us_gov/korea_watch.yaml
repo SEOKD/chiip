@@ -8,7 +8,7 @@ companies:
   co-hyundai: ["Hyundai Motor", "Hanwha", "HD Hyundai", "Doosan", "POSCO", "Korea Zinc"]
 adr_form_filers: ["KB Financial", "Shinhan Financial", "Woori Financial", "POSCO Holdings", "KT Corporation", "SK Telecom", "KEPCO", "LG Display", "Coupang"]
 
-edgar_forms: "8-K,6-K,20-F,10-K,10-Q,S-1,F-1,SC 13D,SC TO-T,DEFM14A"
+edgar_forms: "8-K,6-K,20-F,10-K,10-Q,S-1,F-1"
 days: 14
 lda_years: 2       # LDA_API_KEY가 없으면 건너뛴다
 
