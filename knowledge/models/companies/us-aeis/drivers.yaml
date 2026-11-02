@@ -1,0 +1,123 @@
+auto: false
+id: us-aeis
+name: Advanced Energy
+ticker: AEIS
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.16
+horizon: 10
+as_of: '2026-11-02'
+market:
+  date: '2026-11-02'
+  price: 217.19
+  shares: 0.04145
+  net_debt: -0.0326
+  source: 가격 = 11/2 종가(3Q 실적은 장 마감 뒤 발표, 시간외 +9.1%). 주식 = TradingView 발행 주식 4,005만
+    주. 현금·차입 = 3Q 실적 보도자료 9월 말(차입은 전환사채 장부가)
+rev0: 2.5165
+ic0: 1.5581
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+    - 0.224
+    - 0.159
+    - 0.12
+    - 0.09
+    - 0.07
+    - 0.06
+    - 0.05
+    - 0.045
+    - 0.04
+    - 0.04
+    margin:
+      m0: 0.205
+      target: 0.21
+      year_target: 3
+      lr: 0.19
+      lam: 0.35
+      anchors:
+      - 0.221
+      - 0.233
+    s2c: 1.8
+  bull:
+    prob: 0.25
+    growth:
+    - 0.32
+    - 0.22
+    - 0.16
+    - 0.12
+    - 0.09
+    - 0.07
+    - 0.06
+    - 0.05
+    - 0.04
+    - 0.04
+    margin:
+      m0: 0.205
+      target: 0.23
+      year_target: 3
+      lr: 0.19
+      lam: 0.25
+      anchors:
+      - 0.221
+      - 0.233
+    s2c: 2.07
+  bear:
+    prob: 0.25
+    growth:
+    - 0.08
+    - -0.06
+    - 0.06
+    - 0.07
+    - 0.06
+    - 0.05
+    - 0.04
+    - 0.035
+    - 0.03
+    - 0.03
+    margin:
+      m0: 0.205
+      target: 0.15
+      year_target: 3
+      lr: 0.19
+      lam: 0.5
+      anchors:
+      - 0.221
+      - 0.233
+    s2c: 1.53
+mc:
+  sigma_growth: 0.0448
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [2.4915, 2.5415] (3Q 실적 보도자료 2026-11-02: 4Q 매출 $735M ± $25M,
+    비GAAP EPS $3.90 ± $0.30 + 1~3Q 실적 $1,781.5M)'
+  growth: 컨센서스 1년차 22.4%, 2년차 15.9%
+  margin: 1~2년차 컨센서스 22.1%, 23.3% 고정 → 목표 21%(3년차, 덮어쓰기) → 장기 수렴 19%
+  s2c: 재무 재구성 증분 매출/투하자본 1.46 → 덮어쓰기 1.8
+  range: '손으로 고침: 강세 = 2027 +32%(데이터센터 2차 고객·태국 가동이 겹친다), 약세 = 2027 +8%·2028 −6%(반도체
+    장비 사이클 하강과 데이터센터 프로그램 상실, 2023년형 조정). 약세 목표 이익률 15%'
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '성장: 2027 컨센서스 +22%, 2028 +16%에서 장기 4%로 식힌다. 이익률: 비GAAP EBIT 이익률 2028
+    약 26%에서 SBC·인수 무형자산 상각(매출의 약 4~5%)을 빼 3년차 GAAP 21%, 장기 19%. 반도체 장비 사이클 하강기에는 2023년처럼
+    10%대 초반까지 내려갔다. 매출÷투하자본 1.8: TTM 1.46은 현금 제외 투하자본 기준이고, 태국·멕시코 공장은 CAPEX 대비 매출
+    능력이 커 증분은 더 높게 본다'
+  shares: 완전 희석 = 기본 0.0400504(2026-11-02) + 옵션·RSU·워런트·전환 0.0014 — 3Q 비GAAP 희석 주식
+    4,100만 주 − 기본 약 3,960만 주(추정). 전환사채의 주식 전환분은 주
+notes:
+- 자동 생성(build_drivers) 2026-11-03 — 데이터 묶음 2026-11-02
+- '어닝콜 위험: 부품 공급 제약'
+- '어닝콜 위험: 재고 $411M(연초) → $646M'
+- '어닝콜 위험: 3Q 영업현금흐름 $65M로 비GAAP 순이익의 약 45%'
+evidence:
+- Advanced Energy 3Q26 실적 보도자료(BusinessWire 2026-11-02)
+- Advanced Energy 2Q26 실적 보도자료·콜(2026-08-03, 요지만 자기 말로)
+- Advanced Energy 11월 IR 자료(마스터 첨부 분석에서 인용)
+- Advanced Energy 3.2~3.6kW M-CRPS 출시 보도자료(BusinessWire 2026-10)
+- Fiscal.ai 추정·Forward 배수(2026-11-02). Data provided by Zacks Investment Research,
+  Inc., www.zacksdata.com

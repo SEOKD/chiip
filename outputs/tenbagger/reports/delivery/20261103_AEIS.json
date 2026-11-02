@@ -1,0 +1,28 @@
+{
+ "stem": "20261103_AEIS",
+ "date": "2026-11-03",
+ "ticker": "AEIS",
+ "company": "Advanced Energy",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/ebe18bf66298/outputs/tenbagger/reports/20261103_AEIS.md",
+  "html": "https://github.com/SEOKD/chiip/blob/ebe18bf66298/outputs/tenbagger/reports/20261103_AEIS.html",
+  "commit": "ebe18bf66298d6caaebd7b34142870cd465720ff",
+  "at": "2026-11-03T08:45:55+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/XSfs4qGvyjWfhLtgmwwect",
+  "at": "2026-11-03T08:45:55+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "40cb5d1e-0998-81af-9d1a-e8e91c95637a",
+  "stock_page": "40cb5d1e-0998-8112-a1a9-c1ae353673ea",
+  "at": "2026-11-03T08:48:05+09:00"
+ },
+ "telegram": {
+  "sent": false,
+  "notion_ok": false,
+  "at": "2026-11-03T08:48:11+09:00"
+ }
+}
