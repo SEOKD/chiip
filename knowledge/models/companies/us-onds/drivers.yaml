@@ -1,0 +1,131 @@
+auto: false
+id: us-onds
+name: Ondas
+ticker: ONDS
+unit: B$
+unit_usd: 1000000000.0
+industry: autonomy_defense
+region_mix:
+  US: 0.6
+  IL: 0.25
+  UK: 0.15
+tax: 0.21
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 6.32
+  shares: 0.632303
+  net_debt: -0.938904
+  source: '가격 = 10/30 종가. 주식 = TradingView 발행 주식 5억 8,230만 주(2Q 10-Q 표지 8/11 5억 7,055만
+    주). 현금은 2026 3Q 말 추정이다: 6월 말 현금·단기 투자 $1,393M − DZYNE 현금 대가 $200M − Cyberhawk
+    약 $119M(대가 $125M의 95%) − 3Q 영업 현금 유출 약 $90M(2Q −$86M). 차입 $41M은 6월 말(리스 포함)'
+rev0: 0.5375
+ic0: 1.25
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+    - 0.946
+    - 0.332
+    - 0.355
+    - 0.239
+    - 0.17
+    - 0.12
+    - 0.09
+    - 0.07
+    - 0.05
+    - 0.035
+    margin:
+      m0: -0.644
+      target: 0.15
+      year_target: 5
+      lr: 0.12
+      lam: 0.35
+      anchors:
+      - -0.208
+      - 0.07
+    s2c: 1.8
+  bull:
+    prob: 0.25
+    growth:
+    - 1.1
+    - 0.45
+    - 0.4
+    - 0.28
+    - 0.2
+    - 0.14
+    - 0.1
+    - 0.07
+    - 0.05
+    - 0.04
+    margin:
+      m0: -0.644
+      target: 0.23
+      year_target: 5
+      lr: 0.12
+      lam: 0.25
+      anchors:
+      - -0.208
+      - 0.07
+    s2c: 2.07
+  bear:
+    prob: 0.3
+    growth:
+    - 0.7
+    - 0.2
+    - 0.2
+    - 0.15
+    - 0.1
+    - 0.08
+    - 0.06
+    - 0.05
+    - 0.04
+    - 0.03
+    margin:
+      m0: -0.644
+      target: 0.1
+      year_target: 5
+      lr: 0.12
+      lam: 0.5
+      anchors:
+      - -0.208
+      - 0.07
+    s2c: 1.53
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.525, 0.55] (2Q 콜(8/13) 2026 매출 $525~550M. 7/6 DZYNE 보도자료 '최소
+    $525M'(직전 목표 '최소 $390M'). Cyberhawk 제외)
+  growth: 컨센서스 1년차 94.6%, 2년차 33.2%
+  margin: 1~2년차 컨센서스 -20.8%, 7.0% 고정 → 목표 15%(5년차, 덮어쓰기) → 장기 수렴 12%
+  s2c: 재무 재구성 증분 매출/투하자본 1.8 → 덮어쓰기 1.8
+  range: '손으로 고침: 강세 = 2027 +110%(6/30 이후 주문 $270M+이 2027에 반영)·이후 컨센서스보다 빠름, 약세 =
+    2027 +70%(DZYNE·ULTRA 인도 지연)·이후 15~20%. 약세 목표 이익률 10%'
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: '성장: 2027~2030 컨센서스 경로(+95%·+33%·+35%·+24%)를 그대로 쓰고 2031년부터 3.5%로 식힌다.
+    2027 +95%의 절반가량은 DZYNE 연간 반영이다. 이익률: 컨센서스 GAAP EBIT은 2027 −21%·2028 약 7%(EPS 역산)라
+    5년차 15%(인수 무형자산 상각 뒤)를 목표로, 장기 12%. DZYNE이 말한 EBITDA률 20%대 중반에서 상각·SBC를 빼면 10%대
+    중반이다. 매출÷투하자본 1.8: 이미 치른 인수 대가는 출발 투하자본(영업권 포함 약 $1.25B)에 들어 있고, 앞으로의 증분 성장은 위탁
+    생산 비중이 큰 드론 하드웨어·소프트웨어라 방산 하드웨어 동종(영업권 제외 약 1.5~2.5배) 수준으로 둔다. 추가 인수는 넣지 않았다'
+  shares: '완전 희석 = 기본 0.582303(2026-10-30) + 옵션·RSU·워런트·전환 0.0500 — 추정 5,000만 주: DZYNE
+    주식 대가 약 8,500만 주 중 아직 발행되지 않은 몫(인수 뒤 DZYN'
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 조정 EBITDA 적자 확대(1Q −$10.9M → 2Q −$50.6M)'
+- '어닝콜 위험: SBC $69M(분기 매출의 82%)'
+- '어닝콜 위험: 인수 통합·주식 희석'
+evidence:
+- Ondas 7/6 DZYNE 인수 보도자료(Stock Titan 게재)
+- Ondas 10/1 주문 보도자료·10/28 FEMA 대드론 보도자료(ACCESS Newswire)
+- Ondas 2026 2Q 10-Q https://www.sec.gov/Archives/edgar/data/0001646188/000119312526349288/onds-20260630.htm
+- Sentrycs·Mistral·Omnisys 거래 조건 요약(Panabee, SEC 8-K 기반)
+- World View 인수 완료(MarketScreener·S&P Capital IQ)
+- Cyberhawk 인수(Yahoo Finance 2026-06-18)
+- Ondas M&A 정리(ZeroHedge, 24/7 Wall St 2026-05-18)
+- Damodaran 국가위험 프리미엄 2026-01-05 https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/ctryprem.html
+- 공법 119-21 https://www.congress.gov/bill/119th-congress/house-bill/1
+- Ondas 2Q26 어닝콜(2026-08-13, 요지만 자기 말로)

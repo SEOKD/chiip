@@ -93,8 +93,9 @@ def speed_text(lt):
     word = lambda x: f"{abs(x) * 100:.0f}% {'짧다' if x < 0 else '길다'}" if x else "같다"
     peers = " · ".join(f"{p.get('name')} {_span(p.get('value'), unit)}" for p in lt.get("peers") or [])
     out = f" **납품 리드타임 {_span(lt.get('now'), unit)}.**"
-    out += f" 피어 중앙값 {c['peer_median']:g}{unit}보다 {word(c['vs_peer'])}({peers})." if c["vs_peer"] is not None else " 피어 비교 미확인."
-    out += f" {lt.get('prior_when', '이전')} {_span(lt.get('prior'), unit)}보다 {word(c['vs_prior'])}." if c["vs_prior"] is not None else " 이전 대비 미확인."
+    josa = lambda x: "보다 " if x else "과 "   # '보다 같다'가 되지 않게(2026-11-02 ONDS)
+    out += f" 피어 중앙값 {c['peer_median']:g}{unit}{josa(c['vs_peer'])}{word(c['vs_peer'])}({peers})." if c["vs_peer"] is not None else " 피어 비교 미확인."
+    out += f" {lt.get('prior_when', '이전')} {_span(lt.get('prior'), unit)}{josa(c['vs_prior'])}{word(c['vs_prior'])}." if c["vs_prior"] is not None else " 이전 대비 미확인."
     return out
 
 
@@ -233,7 +234,7 @@ def section3(dp, mm=None):
     firm = ((mm or {}).get("decomp") or {}).get("firm")
     total = ((mm or {}).get("decomp") or {}).get("total")
     head = str(n.get("summary", "")).rstrip(". ") + "."
-    if total is not None and firm is not None:
+    if total is not None and firm is not None and abs(firm) < math.log(3):   # 심리 배율이 폭주한 분해(동종 이익률 0 근처)는 쓰지 않는다(2026-11-02 ONDS)
         head += f" 동종 대비 멀티플 차이 {math.exp(total) * 100 - 100:+.0f}% 중 회사 고유 몫은 {math.exp(firm) * 100 - 100:+.0f}%다."
     if n.get("stage"):
         head += f" 단계는 {n['stage']}" + (f", 쏠림은 {n['crowding']}" if n.get("crowding") else "") + "이다."

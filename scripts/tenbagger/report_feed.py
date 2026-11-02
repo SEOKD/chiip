@@ -14,6 +14,11 @@ FOOT = "구매 등급·목표주가 모두 규칙이 계산한 모델 값 · 투
 PLAIN = re.compile(r"\*\*")
 
 
+
+def px(v):
+    """주가 표기 — $20 미만은 소수 둘째 자리($6처럼 뭉개지지 않게, 2026-11-02 ONDS)"""
+    return f"{v:,.2f}" if abs(v) < 20 else f"{v:,.0f}"
+
 def _sec(d, name):
     return next((s for s in d.get("sections") or [] if str(s.get("h2", "")).startswith(name)), {})
 
@@ -53,7 +58,7 @@ def build(d):
     out += ["", "**■ 왜 이렇게 보나**"] + [f"- {a}: {b}" if a else f"- {b}" for a, b in reasons(d)]
     out += ["", "**■ 밸류에이션**", f"- 주가 {_tile(d, '주가').get('v')} ({_tile(d, '주가').get('sub', '').split(' · ')[0]})"]
     if cases:
-        out.append("- 시나리오: " + " · ".join(f"{n} {money}{cases[n]['value']:,.0f}" for n in ("약세", "기본", "강세") if n in cases))
+        out.append("- 시나리오: " + " · ".join(f"{n} {money}{px(cases[n]['value'])}" for n in ("약세", "기본", "강세") if n in cases))
     rows = {r[0]: r for r in _table(val, "멀티플 선정").get("rows") or []}
     sel = rows.get("**선정**")
     now = _tile(d, "멀티플")

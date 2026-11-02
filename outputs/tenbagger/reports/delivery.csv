@@ -88,3 +88,9 @@ time,stem,ticker,step,status,detail
 2026-11-02T14:08:44+09:00,20261102_TH,TH,artifact,ok,https://claude.ai/artifact/KCNAR78y2yuKHK8auwSSm4
 2026-11-02T14:15:19+09:00,20261102_TH,TH,notion,ok,https://www.notion.so/40cb5d1e09988175b2c4cd165d2c9bff
 2026-11-02T14:15:19+09:00,20261102_TH,TH,telegram,fail,노션 포함
+2026-11-02T21:04:11+09:00,20261102_ONDS,ONDS,github,ok,https://github.com/SEOKD/chiip/blob/c98d79ed86c1/outputs/tenbagger/reports/20261102_ONDS.md
+2026-11-02T21:04:18+09:00,20261102_ONDS,ONDS,artifact,ok,https://claude.ai/artifact/KayVFtxe7U6W7qMAsyi2hH
+2026-11-02T21:06:14+09:00,20261102_ONDS,ONDS,github,ok,https://github.com/SEOKD/chiip/blob/25fec6199eb5/outputs/tenbagger/reports/20261102_ONDS.md
+2026-11-02T21:07:11+09:00,20261102_ONDS,ONDS,github,ok,https://github.com/SEOKD/chiip/blob/399da563ab8e/outputs/tenbagger/reports/20261102_ONDS.md
+2026-11-02T21:09:30+09:00,20261102_ONDS,ONDS,notion,ok,https://app.notion.com/p/40cb5d1e099881b4bbf4e54c62c6fdc4
+2026-11-02T21:09:35+09:00,20261102_ONDS,ONDS,telegram,fail,노션 포함

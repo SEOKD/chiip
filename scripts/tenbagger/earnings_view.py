@@ -179,7 +179,7 @@ def premiums(now, peers):
                         "growth_adj_premium": ga, "lo": min(pv), "hi": max(pv)})
         return out
     # 이익 지표의 선행 배수가 기준(마스터 지시 2026-10-30) — 후행·매출 배수는 그 재료가 없을 때만
-    return (rows(tuple((f"pe_fwd{h}".rstrip("1"), f"Fwd {h}Y P/E") for h in (1, 2, 3)) + tuple((f"ev_ebitda_fwd{h}".rstrip("1"), f"Fwd {h}Y EV/EBITDA") for h in (1, 2, 3)))
+    return (rows(tuple((f"pe_fwd{h}".rstrip("1"), f"Fwd {h}Y P/E") for h in (1, 2, 3)) + tuple((f"ev_ebitda_fwd{h}".rstrip("1"), f"Fwd {h}Y EV/EBITDA") for h in (1, 2, 3)) + (("ev_sales_fwd", "Fwd 1Y EV/매출"),))
             or rows((("ev_ebitda", "EV/EBITDA"), ("ev_sales", "EV/매출"))))
 
 

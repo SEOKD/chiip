@@ -39,6 +39,11 @@ BANNED = ("DCF ÷ 시가총액", "주주가치 ÷ 시가총액", "배수 사다�
 SHORT_TITLES = {"콜 변화": "어닝콜 변화별 주주가치 영향", "최근 4개 분기 주가": "최근 4개 분기 주가 변화 분석", "일별 거래량": "일별 거래량 분해", "기관 자금": "기관 자금 흐름"}
 
 
+
+def px(v):
+    """주가 표기 — $20 미만은 소수 둘째 자리($6처럼 뭉개지지 않게, 2026-11-02 ONDS)"""
+    return f"{v:,.2f}" if abs(v) < 20 else f"{v:,.0f}"
+
 def sym(dp):
     """표시 통화 — 달러가 아닌 종목은 datapack currency_symbol(예 'NOK ')"""
     return (dp or {}).get("currency_symbol") or "$"
@@ -78,13 +83,15 @@ def scenario_build(d, dp, mm, sel, shares):
         raise SystemExit("판단 시나리오 확률 합이 1이 아니다")
     spread = config()["multiple_select"]["spread"]
     ev_metric = sel["basis"] != "pe_fwd"
+    sales = sel["basis"].startswith("ev_sales")   # 선행 이익이 적자인 회사는 EV/매출 — cases에 rev(B$, 다음 4개 분기 매출)를 쓴다
     for k in c["cases"]:
         name = k["name"]
         m = sel["value"] * (1 + spread[{"약세": "bear", "강세": "bull"}.get(name, "base")])
         if ev_metric:
-            if k.get("ebitda") is None:
-                raise SystemExit(f"시나리오 {name}: 주요 지표가 EBITDA라 ebitda가 필요하다")
-            k["value"] = round((m * float(k["ebitda"]) - net_debt) / shares, 2)
+            need = "rev" if sales else "ebitda"
+            if k.get(need) is None:
+                raise SystemExit(f"시나리오 {name}: 기준 멀티플이 {sel['label']}라 {need}가 필요하다")
+            k["value"] = round((m * float(k[need]) - net_debt) / shares, 2)
         else:
             if k.get("eps") is None:
                 raise SystemExit(f"시나리오 {name}: eps가 필요하다")
@@ -98,7 +105,7 @@ def scenario_build(d, dp, mm, sel, shares):
     weighted = sum(float(k["prob"]) * k["value"] for k in c["cases"])
     return {"chart": c, "price": price, "bull": cases["강세"]["value"], "base": cases["기본"]["value"], "bear": cases["약세"]["value"], "weighted": weighted,
             "upside": weighted / price - 1, "downside": cases["약세"]["value"] / price - 1, "bull_up": cases["강세"]["value"] / price - 1,
-            "rr": reward_risk(price, cases["강세"]["value"], cases["약세"]["value"]) or 0.0, "cases": c["cases"], "metric_name": "EBITDA" if ev_metric else "EPS", "sym": sym(dp)}
+            "rr": reward_risk(price, cases["강세"]["value"], cases["약세"]["value"]) or 0.0, "cases": c["cases"], "metric_name": ("매출" if sales else "EBITDA") if ev_metric else "EPS", "sym": sym(dp)}
 
 
 FRAME = {"일봉": "일봉", "주봉": "주봉", "월봉": "월봉"}
@@ -204,7 +211,7 @@ def dashboard(dp, s, mm, alpha, grade, mcap, unit, entity):
     money = lambda x: f"{cur}{x:,.2f}B"
     tiles = [{"k": "주가", "v": f"{cur}{s['price']:,.2f}", "sub": f"고점 대비 {from_high:+.0%} · 1년 {yr:+.0%}" if from_high is not None else "미확인", "tone": "red" if (from_high or 0) < -0.3 else ""},
              {"k": "시가총액", "v": money(mcap), "sub": f"EV {money(ev)}"},
-             {"k": "업사이드", "v": f"{s['upside']:+.0%}", "sub": f"목표주가 {cur}{s['target']:,.0f} · 다운사이드 {s['downside']:+.0%} · 손익비 {s['rr']:.1f}", "tone": "red" if s["upside"] > 0 else "blue"}]
+             {"k": "업사이드", "v": f"{s['upside']:+.0%}", "sub": f"목표주가 {cur}{px(s['target'])} · 다운사이드 {s['downside']:+.0%} · 손익비 {s['rr']:.1f}", "tone": "red" if s["upside"] > 0 else "blue"}]
     ra = cons.get("ratings") or {}
     counts = " · ".join(f"{name} {ra.get(k, 0)}" for k, name in ANALYST)
     tiles.append({"k": "구매등급", "v": grade, "sub": f"애널리스트 {sum(ra.get(k, 0) for k, _ in ANALYST)}명: {counts}" if ra else "애널리스트 등급 미확인",
@@ -269,7 +276,7 @@ def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None):
         out.append(dec)
     prem = get(E, "멀티플 프리미엄")
     if prem:
-        want = "EV/EBITDA" if mm["basis"] != "pe_fwd" else "P/E"
+        want = "P/E" if mm["basis"] == "pe_fwd" else "EV/매출" if mm["basis"].startswith("ev_sales") else "EV/EBITDA"
         idx = [i for i, c in enumerate(prem["categories"]) if want in c]
         series = [{**x, "values": [x["values"][i] for i in idx]} for x in prem["series"]]
         prem.update({"title": "멀티플 프리미엄", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
@@ -308,11 +315,11 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line, pt):
     mcap = r["mcap"]
     base, bull, bear = r["scenarios"]["base"], r["scenarios"]["bull"], r["scenarios"]["bear"]
     cur = s["sym"]
-    B = [{"type": "hl", "text": f"**목표주가 {cur}{pt['target']:,.0f}, 업사이드 {s['upside']:+.0%}.** 자리는 {pt['place']}이고 도달 확률은 약 {pt['reach']:.0%}다. 기본 {cur}{s['base']:,.0f}, 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%}), 약세 {cur}{s['bear']:,.0f}({s['downside']:+.0%}). "
+    B = [{"type": "hl", "text": f"**목표주가 {cur}{px(pt['target'])}, 업사이드 {s['upside']:+.0%}.** 자리는 {pt['place']}이고 도달 확률은 약 {pt['reach']:.0%}다. 기본 {cur}{px(s['base'])}, 강세 {cur}{px(s['bull'])}({s['bull_up']:+.0%}), 약세 {cur}{px(s['bear'])}({s['downside']:+.0%}). "
                                 f"DCF 기준 업사이드는 기본 {base['v0'] - 1:+.0%}, 강세 {bull['v0'] - 1:+.0%}, 약세 {bear['v0'] - 1:+.0%}다(WACC {r['coc']['wacc']:.1%})."}]
     B.append({"type": "chart", "chart": target_price.chart(pt, s)})
-    B.append({"type": "boxes", "items": [{"title": f"{k['name']} {cur}{k['value']:,.0f} ({k['value'] / s['price'] - 1:+.0%})", "tag": f"확률 {k['prob']:.0%}",
-                                          "lines": [["가정", f"{k['multiple']:.1f}배 × {s['metric_name']} " + (f"{cur}{k['eps']:.2f}" if k.get("eps") is not None else f"{cur}{k['ebitda']:,.2f}B")], ["근거", k.get("why", "")]]} for k in s["cases"]]})
+    B.append({"type": "boxes", "items": [{"title": f"{k['name']} {cur}{px(k['value'])} ({k['value'] / s['price'] - 1:+.0%})", "tag": f"확률 {k['prob']:.0%}",
+                                          "lines": [["가정", f"{k['multiple']:.1f}배 × {s['metric_name']} " + (f"{cur}{k['eps']:.2f}" if k.get("eps") is not None else f"{cur}{k['rev'] if k.get('ebitda') is None else k['ebitda']:,.2f}B")], ["근거", k.get("why", "")]]} for k in s["cases"]]})
     B.append({"type": "table", "title": f"멀티플 선정 — {sel['label']}", "headers": ["단계", "조정", "근거"], "rows": sel["rows"]})
     peers = [[x["ticker"]] + [("-" if x.get(k) is None else f"{x[k]:.1f}") for k in sel["keys"]] + [f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}", "-" if x.get("roic") is None else f"{x['roic']:.0%}"] for x in mm["peers"]]
     B.append({"type": "table", "title": "동종 레인지", "headers": ["회사"] + sel["labels"] + ["성장", "영업이익률", "ROIC"], "rows": peers + [[f"**{name}**"] + [f"{v:.1f}" for v in sel["now"]] + ["", "", ""]]})
@@ -381,12 +388,12 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     v = d.setdefault("verdict", {})
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     cur = sym(dp)
-    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4), "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
-              "weighted_upside": round(s["weighted_up"], 4), "upside_basis": f"목표주가 {cur}{pt['target']:,.0f}"})
+    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4), "target": pt["target"], "target_text": f"{cur}{px(pt['target'])}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
+              "weighted_upside": round(s["weighted_up"], 4), "upside_basis": f"목표주가 {cur}{px(pt['target'])}"})
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}
     d["tiles"] = dashboard(dp, s, m_short, alpha, grade, r["mcap"], r["unit"], entity)
-    upline = f"**목표주가 {cur}{pt['target']:,.0f}({s['upside']:+.0%}), {pt['place']}다.** 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})는 {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}. 손익비 {s['rr']:.1f}, DCF 기준 업사이드 {dcf_up:+.0%}."
+    upline = f"**목표주가 {cur}{px(pt['target'])}({s['upside']:+.0%}), {pt['place']}다.** 강세 {cur}{px(s['bull'])}({s['bull_up']:+.0%})는 {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{px(s['base'])}, 약세 {cur}{px(s['bear'])}. 손익비 {s['rr']:.1f}, DCF 기준 업사이드 {dcf_up:+.0%}."
     keep = [x for x in d.get("summary") or [] if not x.get("auto")]
     auto = [{"q": "기업가치를 결정하는 내러티브", "a": ((dp.get("narrative") or {}).get("lead") or {}).get("summary", ""), "auto": True},
             {"q": "밸류에이션 모델로 본 주가 상방은 어디까지인가?", "a": upline, "auto": True}]

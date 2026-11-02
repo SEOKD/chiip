@@ -10,6 +10,11 @@ import levels
 CASE = {"약세": "bear", "강세": "bull"}
 
 
+
+def px(v):
+    """주가 표기 — $20 미만은 소수 둘째 자리($6처럼 뭉개지지 않게, 2026-11-02 ONDS)"""
+    return f"{v:,.2f}" if abs(v) < 20 else f"{v:,.0f}"
+
 def chart_target(daily, cfg):
     """주류 기법의 저항선으로 12개월 상승 여력을 잰다. 상승 추세면 둘째 저항선, 하락 추세면 첫째, 그 사이면 둘의 평균. 재료가 모자라면 None"""
     if len(daily) < 200:
@@ -42,7 +47,7 @@ def narrative_price(s, stage, room, net_debt, shares):
     m0 = cases["기본"]["multiple"]
     m = m0 + abs(share) * (cases["강세" if share >= 0 else "약세"]["multiple"] - m0)
     k = cases["기본"]
-    return k["eps"] * m if k.get("eps") is not None else (m * k["ebitda"] - net_debt) / shares
+    return k["eps"] * m if k.get("eps") is not None else (m * (k["ebitda"] if k.get("ebitda") is not None else k["rev"]) - net_debt) / shares
 
 
 def signal(p, s):
@@ -92,12 +97,12 @@ def build(s, dcf_ratio, ke, stage, view, daily, net_debt, shares, cfg, street=No
 def table(pt, s):
     """밸류에이션 절의 산정 표"""
     cur = s["sym"]
-    rows = [[x["name"], f"{x['weight']:.0%}", f"{cur}{x['price']:,.0f}", f"{x['signal']:+.2f}", x["why"]] for x in pt["factors"]]
+    rows = [[x["name"], f"{x['weight']:.0%}", f"{cur}{px(x['price'])}", f"{x['signal']:+.2f}", x["why"]] for x in pt["factors"]]
     if pt["judge"]:
         rows.append(["판단 조정", "-", "-", f"{pt['judge']:+.2f}", str(pt.get("why") or "")])
     if pt.get("street"):
-        rows.append(["애널리스트 평균(참고)", "-", f"{cur}{pt['street']:,.0f}", "-", "가중하지 않는 대조값"])
-    rows.append(["**목표주가**", "", f"**{cur}{pt['target']:,.0f}**", f"**{pt['tilt']:+.2f}**", pt["place"]])
+        rows.append(["애널리스트 평균(참고)", "-", f"{cur}{px(pt['street'])}", "-", "가중하지 않는 대조값"])
+    rows.append(["**목표주가**", "", f"**{cur}{px(pt['target'])}**", f"**{pt['tilt']:+.2f}**", pt["place"]])
     return {"type": "table", "title": "목표주가 산정", "headers": ["요인", "비중", "가리키는 주가", "위치(−1 약세 · 0 기본 · +1 강세)", "근거"], "rows": rows}
 
 

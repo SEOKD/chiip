@@ -445,7 +445,7 @@ def block(b):
         rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
         cap = f"<b>{t(b['title'])}</b>" if b.get("title") else ""
         table = f'<div class="card tw">{cap}<table><tr>{head}</tr>{rows}</table></div>'
-        if len(b.get("rows") or []) > 6:   # 긴 표는 접어 둔다 — 읽는 흐름을 끊지 않게
+        if len(b.get("rows") or []) > 6 and not b.get("open"):   # 긴 표는 접어 둔다 — 읽는 흐름을 끊지 않게(open: true면 펼친 채로, 2026-11-02 ONDS 인수 시너지 표)
             return f'<details><summary>{t(b.get("title") or "표")} 펼치기 ({len(b["rows"])}행)</summary>{table}</details>'
         return table
     if k == "boxes":   # 음영이 다른 설명 박스(마스터 지시 2026-10-31 "하이픈으로 풀이하지 말고 음영이 다른 설명박스 안에")

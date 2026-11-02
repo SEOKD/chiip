@@ -26,7 +26,7 @@ import math
 import dcf
 import scenarios
 
-BASES = {"pe_fwd": "Fwd 1Y P/E", "ev_ebitda_fwd": "Fwd 1Y EV/EBITDA", "ev_sales": "EV/매출"}
+BASES = {"pe_fwd": "Fwd 1Y P/E", "ev_ebitda_fwd": "Fwd 1Y EV/EBITDA", "ev_sales_fwd": "Fwd 1Y EV/매출", "ev_sales": "EV/매출"}
 HORIZONS = ((1, "Fwd 1Y"), (2, "Fwd 2Y"), (3, "Fwd 3Y"))
 DA_SHARE = 0.5     # 선행 EBITDA에서 감가상각이 이 비중 이상이면 순이익이 설비 상각에 가려진다 → EBITDA가 주요 지표
 MIN_PEERS = 3      # 동종 배수가 이보다 적으면 그 기준으로 비교하지 않는다
@@ -79,6 +79,9 @@ def choose_basis(dp):
     for k in ("pe_fwd", "ev_ebitda_fwd") if metric == "eps" else ("ev_ebitda_fwd", "pe_fwd"):
         if (now.get(k) or 0) > 0 and sum(1 for p in peers if (p.get(k) or 0) > 0) >= MIN_PEERS:
             return k, why
+    # 선행 EBITDA·EPS가 모두 적자면 Fwd 1Y EV/매출(다음 4개 분기 매출 기준) — 이익 배수는 분모가 음수라 정의되지 않는다(2026-11-02 Ondas)
+    if (now.get("ev_sales_fwd") or 0) > 0 and sum(1 for p in peers if (p.get("ev_sales_fwd") or 0) > 0) >= MIN_PEERS:
+        return "ev_sales_fwd", "다음 4개 분기 EBITDA·EPS 추정이 적자라 이익 배수를 정의할 수 없어 Fwd 1Y EV/매출로 본다"
     return "ev_sales", "선행 이익 배수를 쓸 재료가 없어 EV/매출로 본다"
 
 
@@ -203,7 +206,8 @@ def select_multiple(m, dp, cfg):
     clip = lambda x, c: max(-c, min(c, x))
     pct = lambda x: f"{x:+.0%}"
     rational = (v.get("rational") or {}).get("p50")
-    fund = clip((rational / p50 - 1) * cfg["fund_weight"], cfg["fund_cap"]) if rational else 0.0
+    wild = bool(rational) and not (1 / 3 <= rational / p50 <= 3)   # 동종 GAAP 이익률이 0 근처면 심리 배율이 폭주한다(2026-11-02 ONDS EV/매출 36.6배) — 펀더멘털 몫을 인정하지 않는다
+    fund = clip((rational / p50 - 1) * cfg["fund_weight"], cfg["fund_cap"]) if rational and not wild else 0.0
     items = (dp.get("moat") or {}).get("items") or []
     moat = clip(sum(cfg["moat_points"].get(x.get("verdict"), 0) for x in items), cfg["moat_cap"])
     n = dp.get("narrative") or {}
@@ -213,7 +217,7 @@ def select_multiple(m, dp, cfg):
     raw = p50 * (1 + fund + moat + narr + judge)
     value = max(low, min(high * (1 + cfg["over_peer"]), raw))
     rows = [["동종 중앙값", f"{p50:.1f}배", f"범위 {low:.1f}~{high:.1f}배, {len(acts)}곳"],
-            ["펀더멘털", pct(fund), f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정" if rational else "재료 없음"],
+            ["펀더멘털", pct(fund), (f"합리적 멀티플 {rational:.1f}배가 동종 중앙의 1/3~3배 밖이라 인정하지 않음(동종 이익률이 0 근처라 심리 배율이 폭주)" if wild else f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정") if rational else "재료 없음"],
             ["해자", pct(moat), " · ".join(f"{str(x.get('kind')).split('에 따른')[0]} {x.get('verdict')}" for x in items) or "재료 없음"],
             ["내러티브", pct(narr), f"단계 {n.get('stage') or '미확인'}"],
             ["사이클·실행 판단", pct(judge), str(mv.get("why") or "조정 없음")],
@@ -226,7 +230,7 @@ def report_blocks(m, unit, mcap, name="대상"):
     """리포트 절 블록 — 굵게만 쓰고 HTML은 쓰지 않는다(report_html 규칙)"""
     B = []
     f = lambda x, d=1: "-" if x is None else f"{x:.{d}f}"
-    lb, earn = m["label"], m["basis"] != "ev_sales"
+    lb, earn = m["label"], not m["basis"].startswith("ev_sales")
     views = m.get("horizons") or []
     names = " · ".join(v["label"] for v in views) or lb
     extra = f" Fwd 1Y는 다음 4개 분기, Fwd 2Y는 5~8번째, Fwd 3Y는 9~12번째 분기 이익 기준이다." if views else ""

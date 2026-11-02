@@ -96,6 +96,11 @@ def put_forward(cid, out):
     for k in ("pe_fwd", "ev_ebitda_fwd"):
         now[k] = t.get(k)
     now.update(later_multiples(t, out.get("ntm"), out.get("horizons")))
+    q0, pf = out.get("ntm") or {}, dp.get("profile") or {}
+    if q0.get("revenue") and pf.get("price") and pf.get("shares_basic"):   # Fwd 1Y EV/매출 — 선행 이익이 적자인 회사의 기준(2026-11-02)
+        unit = 1e9 if dp.get("unit", "B$") == "B$" else 1e6
+        ev = (pf["price"] * pf["shares_basic"] + (pf.get("debt") or 0) - (pf.get("cash") or 0)) * unit
+        now["ev_sales_fwd"] = round(ev / q0["revenue"], 2) if ev > 0 else None
     dp["forward"] = {"as_of": out.get("as_of"), "ntm": out.get("ntm") or {}, "horizons": out.get("horizons") or {}, "guided": out.get("guided") or {}, "src": t.get("src") or {}, "source": out.get("source")}
     by_ticker = {k.split("_", 1)[-1]: v for k, v in (out.get("peers") or {}).items()}
     n = 0
@@ -105,6 +110,8 @@ def put_forward(cid, out):
             row.update({"pe_fwd": v.get("pe_fwd"), "ev_ebitda_fwd": v.get("ev_ebitda_fwd")})
             row.update(later_multiples(v, v.get("ntm"), v.get("horizons")))
             q = v.get("ntm") or {}
+            if q.get("revenue") and q.get("rev_ttm") and row.get("ev_sales"):   # TTM EV/매출을 다음 4개 분기 매출로 옮긴다
+                row["ev_sales_fwd"] = round(row["ev_sales"] * q["rev_ttm"] / q["revenue"], 2)
             if q.get("revenue") and q.get("ebit") is not None:
                 row["ntm_ebit_margin"] = round(q["ebit"] / q["revenue"], 4)
                 if q.get("rev_ttm"):
