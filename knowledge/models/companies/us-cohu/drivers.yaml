@@ -1,0 +1,105 @@
+auto: true
+id: us-cohu
+name: Cohu
+ticker: COHU
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.17
+horizon: 10
+as_of: '2026-11-03'
+market:
+  date: '2026-11-03'
+  price: 48.37
+  shares: 0.050446
+  net_debt: -0.1681
+  source: 가격 = 11/2 종가. 주식 = 3Q 10-Q 표지(10/20). 현금 = 현금 $272.3M + 단기투자 $235.6M(3Q
+    말). 차입 = 2031 전환사채 원금 $287.5M + Kita 대출·Cohu GmbH 건설 대출·말레이시아 한도 약 $22.3M + 장기
+    리스 $30.0M. 전환사채는 원금 현금 상환이라 전액 차입으로 둔다
+rev0: 0.625
+ic0: 0.6151
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.3112
+      end: 0.035
+      decay: 0.538
+    margin:
+      m0: 0.064
+      target: 0.19
+      year_target: 3
+      lr: 0.25
+      lam: 0.35
+      anchors:
+      - 0.179
+      - 0.192
+    s2c: 2.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.7518
+      end: 0.04
+      decay: 0.5880000000000001
+    margin:
+      m0: 0.064
+      target: 0.254
+      year_target: 3
+      lr: 0.25
+      lam: 0.25
+      anchors:
+      - 0.179
+      - 0.192
+    s2c: 2.3
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.073
+      end: 0.030000000000000002
+      decay: 0.43800000000000006
+    margin:
+      m0: 0.064
+      target: 0.126
+      year_target: 3
+      lr: 0.25
+      lam: 0.5
+      anchors:
+      - 0.179
+      - 0.192
+    s2c: 1.7
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.618, 0.632] (3Q 콜 2026-10-28: 4Q 매출 $178M ±$7M, GM 약 44%,
+    영업비용 약 $57M. FY2026 = 9M 실적 $447.1M + 4Q 범위, 회사 표현 전년 대비 약 +38%. 조정 EBIT 이익률은
+    9M 조정 EBIT $43.7M + 4Q 산출 $21.3M ÷ $625M)'
+  growth: 컨센서스 1년차 31.1%, 2년차 18.4%
+  margin: 1~2년차 컨센서스 17.9%, 19.2% 고정 → 목표 19%(3년차, 덮어쓰기) → 장기 수렴 25%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.926 → 덮어쓰기 2.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -7.3%~75.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 자산이 가벼운 장비사라 TTM 매출÷투하자본은 0.93이지만 현금·영업권 왜곡이 있고 CapEx는 매출의 2%다. 한계 자본
+    효율은 2.0으로 둔다. 장기 EBIT 이익률은 회사 2027 틀의 조정 약 21%에서 SBC 약 3%를 뺀 19%로 둔다. 사이클 산업이라
+    그 이상은 Investor Day 전까지 쓰지 않는다.
+  shares: 완전 희석 = 기본 0.047346(2026-10-20) + 옵션·RSU·워런트·전환 0.0031 — 3Q 희석 주식 54.366M
+    − 기본 47.410M = 6.956M에서 전환사채 몫을 뺀 약 1.5M을 R
+notes:
+- 자동 생성(build_drivers) 2026-11-03 — 데이터 묶음 2026-11-03
+- '어닝콜 위험: 특수 반도체·부품 리드타임과 투입 원가 상승'
+- '어닝콜 위험: 공급사가 3배 증설을 따라와야 한다'
+- '어닝콜 위험: 경쟁사가 다른 디바이스 패밀리를 통째로 쥐고 있다'
+evidence:
+- Cohu 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/21535/000143774926033843/cohu20260926_10q.htm
+- Cohu 3Q26 보도자료 https://www.sec.gov/Archives/edgar/data/21535/000143774926033788/ex_1031381.htm
+- Cohu FY2025 10-K https://www.sec.gov/Archives/edgar/data/21535/000143774926004339/cohu20251227_10k.htm
+- Cohu 3Q 콜 2026-10-28, 2Q 콜 2026-07-30(요지만)
+- Cohu Eclipse 투자자 자료 https://ir.cohu.com/static-files/8bb1fbfd-89c9-4881-8258-0ed8af140dc1
+- Cohu Eclipse 발표 2025-09-18 https://www.businesswire.com/news/home/20250918911382/en/Cohu-Eclipse-Platform-Chosen-for-Testing-Next-Generation-AI-Computing-Devices
+- Hon Precision 점유율 추정 https://m.sgpjbg.com/hyshuju/12e33c6d820562bee06e236a31541023.html
+- MarketBeat 10/15 https://www.marketbeat.com/instant-alerts/price-cohu-nasdaq-cohu-stock-falls-88-time-to-sell-2026-10-15/
+- Müller 프로필 https://fintool.com/app/research/companies/COHU/people/luis-mller
