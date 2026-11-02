@@ -2222,3 +2222,323 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-sc-w-capacity
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.capacity
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 캐파 여유 가중치. 공급 위험을 공급 시장 복잡성으로 잰 구매 포트폴리오 틀에서 가장 직접적인 병목 요인이라 크게 둠'
+    source: https://hbr.org/1983/09/purchasing-must-become-supply-management
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-w-sources
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.sources
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 복수 공급원 가중치. 단일 공급원이 공급 위험의 핵심이라는 구매 포트폴리오 틀'
+    source: https://hbr.org/1983/09/purchasing-must-become-supply-management
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-w-lead
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.lead
+  value: 0.15
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.15
+    basis: '초안 — 리드타임 가중치. 현재 리드타임 ÷ 평시로 공급 긴장을 재는 초안'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-w-requal
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.requal
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 재인증 기간 가중치. 복구 시간(time-to-recover) 개념을 재인증 기간으로 옮긴 초안'
+    source: https://dsl.mit.edu/biblio/superstorms-factory-fires-managing-unpredictable-supply-chain-disruptions
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-w-concentration
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.concentration
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 공급 집중 가중치. 시장 집중도를 1위 점유율로 단순화한 초안'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-w-secured
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.secured
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 물량 확보 가중치. 장기계약·선급금·내재화로 물량을 묶는 정도. 초안'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-w-region
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weights.region
+  value: 0.05
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.05
+    basis: '초안 — 지역 분산 가중치. 한 지역 집중은 동시 차질 위험이라는 초안'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-weakest
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weakest_weight
+  value: 0.6
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.6
+    basis: '초안 — 가장 약한 필수 품목의 몫. 한 품목이 막히면 출하가 멈춘다는 제약 이론 논리'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-min-factors
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.min_factors
+  value: 4
+  unit: 개
+  status: prior
+  prior:
+    value: 4
+    basis: '초안 — 품목 점수를 내는 최소 요인 수'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-weak
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.weak
+  value: 6.0
+  unit: 점
+  status: prior
+  prior:
+    value: 6.0
+    basis: '초안 — 병목 품목 경계'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-shock
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#margin.shock
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 항목 비교용 가격 변화 폭'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-rev-step
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#margin.rev_step
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 영업 레버리지 재는 매출 변화 폭'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-big-move
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#margin.big_move
+  value: 0.005
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.005
+    basis: '초안 — 마진 민감 품목 경계'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-capacity
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.capacity
+  value: {부족: 1, 빠듯: 4, 균형: 7, 여유: 10}
+  unit: 점수표
+  status: prior
+  prior:
+    value: {부족: 1, 빠듯: 4, 균형: 7, 여유: 10}
+    basis: '초안 — 캐파 여유 점수표'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-sources
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.sources
+  value: {1: 1, 2: 5, 3: 8, 4: 10}
+  unit: 점수표
+  status: prior
+  prior:
+    value: {1: 1, 2: 5, 3: 8, 4: 10}
+    basis: '초안 — 인증 공급사 수 점수표'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-secured
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.secured
+  value: {내재화: 10, 선급금: 9, 장기계약: 8, 복수구매: 6, 현물: 3}
+  unit: 점수표
+  status: prior
+  prior:
+    value: {내재화: 10, 선급금: 9, 장기계약: 8, 복수구매: 6, 현물: 3}
+    basis: '초안 — 물량 확보 방식 점수표'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-lead
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.lead
+  value: {best: 1.0, worst: 3.0}
+  unit: 배
+  status: prior
+  prior:
+    value: {best: 1.0, worst: 3.0}
+    basis: '초안 — 리드타임 지금 ÷ 평시 눈금'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-requal
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.requal
+  value: {best: 3, worst: 24}
+  unit: 개월
+  status: prior
+  prior:
+    value: {best: 3, worst: 24}
+    basis: '초안 — 재인증 기간 눈금'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-concentration
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.concentration
+  value: {best: 0.3, worst: 0.9}
+  unit: 비율
+  status: prior
+  prior:
+    value: {best: 0.3, worst: 0.9}
+    basis: '초안 — 1위 점유율 눈금'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sc-scale-region
+  model: tenbagger.report
+  binding: config/supply_bottleneck.yaml#supply.region
+  value: {best: 0.4, worst: 0.95}
+  unit: 비율
+  status: prior
+  prior:
+    value: {best: 0.4, worst: 0.95}
+    basis: '초안 — 한 지역 집중도 눈금'
+    source: null
+  fit:
+    method: 공급 차질 사건(가이던스 하향·납기 지연·출하 지연 공시)과 점수를 표본 외로 대조
+    target: 12개월 안 공급 차질 공시 발생률
+    data: null
+    last_fit: null
+    oos_metric: null

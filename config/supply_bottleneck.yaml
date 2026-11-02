@@ -1,0 +1,22 @@
+# 마진 구조·공급망 병목 — 마스터 지시 2026-11-02 "GPM과 OPM 등 마진을 결정하는 비용 요인, 핵심 제품 및 서비스 BOM 분해와 각각의 마진 영향력,
+# 부품 공급망 신뢰성을 10점 만점에 정량화하라. 신뢰성은 공급병목 관점에서 파악하라". 엔진 scripts/tenbagger/margin_view.py·supply_view.py
+# 값의 출처·상태는 knowledge/models/params/registry.yaml(prm-sc-*)
+margin:
+  shock: 0.10        # 비용 항목 가격 변화 폭(모든 항목을 같은 폭으로 재서 영향력을 비교한다)
+  rev_step: 0.10     # 영업 레버리지를 재는 매출 변화 폭
+  big_move: 0.005    # 항목 가격 +shock에 OPM이 이만큼 이상 움직이면 마진 민감 품목
+
+supply:
+  # 점수가 높을수록 공급 병목이 적다(신뢰성이 높다). 요인마다 1~10점
+  weights: {capacity: 0.25, sources: 0.25, lead: 0.15, requal: 0.10, concentration: 0.10, secured: 0.10, region: 0.05}
+  weakest_weight: 0.6   # 가장 약한 필수 품목의 몫. 한 품목이 막히면 출하가 멈추므로 평균보다 크게 둔다. 나머지는 원가 가중 평균
+  min_factors: 4        # 요인을 이만큼 채운 품목만 점수를 낸다
+  weak: 6.0             # 이 점수 미만이면 병목 품목
+  capacity: {부족: 1, 빠듯: 4, 균형: 7, 여유: 10}     # 품목 전체의 공급 여력
+  sources: {1: 1, 2: 5, 3: 8, 4: 10}                  # 이 회사가 인증한 공급사 수(4곳 이상은 4)
+  secured: {내재화: 10, 선급금: 9, 장기계약: 8, 복수구매: 6, 현물: 3}   # 물량을 묶어 둔 방식
+  lead: {best: 1.0, worst: 3.0}            # 리드타임 지금 ÷ 평시
+  requal: {best: 3, worst: 24}             # 다른 공급사 재인증에 걸리는 개월
+  concentration: {best: 0.3, worst: 0.9}   # 품목 세계 1위 공급사 점유율
+  region: {best: 0.4, worst: 0.95}         # 한 지역 생산 집중도
+  grades: [[8, 병목 낮음], [6, 관리 가능], [4, 병목 주의], [0, 병목 심각]]

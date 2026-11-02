@@ -1,6 +1,6 @@
 """텐배거 리포트 양식 3 (마스터 지시 2026-10-31 — 구매 등급·대시보드·한눈에 보기·본론 순서 개편)
 
-순서: 제목 → Chiip View → 대시보드 → 한 장 요약 → 한눈에 보기(그림 번호 없음) → 내러티브 → 포트폴리오 → 수주·파이프라인 → 해자 →
+순서: 제목 → Chiip View → 대시보드 → 한 장 요약 → 한눈에 보기(그림 번호 없음) → 내러티브 → 포트폴리오 → 수주·파이프라인 → 마진 구조 → 공급망 병목 → 해자 →
       약세 논리 및 셀온 조건 → 어닝콜 변화 → 밸류에이션 → 수급 → 체크리스트.
 모델은 JSON에 title·subtitle·date·ticker·company·biz·verdict(view·alpha)·summary·sections(판단 시나리오·반대 검증·킬 조건(또는 셀온 조건)·체크리스트)만 쓴다.
 숫자·순서·그래프는 이 파일이 만든다. 모르는 절이 있으면 멈춘다 — 본론 순서가 고정이기 때문이다.
@@ -9,6 +9,8 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
   "moat": {"summary": "한 줄", "items": [{"kind": "이 회사의 해자 이름", "verdict": "강함|보통|약함", "claim": "무엇이 해자인가",
             "evidence": "1차 자료 숫자", "quant": "숫자(선택)", "falsifier": "깨지는 조건"}…]}   # 회사별로 독립적으로 찾는다, 2개 이상
   "leaders": scripts/tenbagger/leader_view.py 맨 위 — 창업자·회장·CEO 프로필과 네트워크 정량화
+  "margin": scripts/tenbagger/margin_view.py 맨 위 — GPM·OPM 비용 요인과 핵심 제품·서비스 BOM 분해
+  "supply": scripts/tenbagger/supply_view.py 맨 위 — 부품 공급망 업체와 공급 병목 10점
   "multiple_view": {"adj": -0.2, "why": "사이클·실행 할인 등 IB식 판단 한 줄"}   # 조정폭은 config/tenbagger.yaml multiple_select.judge_cap 안에서
   "target_view": {"adj": 0.1, "why": "요인에 안 잡히는 판단 한 줄"}   # 선택. 목표주가 위치 조정, target_price.judge_cap 안에서
   "guidance": {"next": {"period": "4Q26", "rev": 285, "rev_cons": 285, "eps": 0.95, "eps_cons": 1.0, "unit": "$M"}}   # 같은 기간 회사 가이던스 vs 컨센서스, 없는 지표는 뺀다
@@ -29,7 +31,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import flow  # noqa: E402
 import leader_view  # noqa: E402
 import levels  # noqa: E402
+import margin_view  # noqa: E402
 import narrative_view  # noqa: E402
+import supply_view  # noqa: E402
 import target_price  # noqa: E402
 
 RATINGS = ("Strong Buy", "Buy", "Neutral", "Sell", "Strong Sell")
@@ -368,6 +372,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     for s0 in d.get("sections") or []:
         if not s0.get("h2", "").startswith(MODEL_SECTIONS):
             raise SystemExit(f"양식 3 본론에 없는 절: {s0.get('h2')} — 쓸 수 있는 절은 {MODEL_SECTIONS}. 내용은 datapack narrative·moat로 옮긴다")
+    margin_sec, supply_sec = margin_view.section(dp), supply_view.section(dp)   # 재료가 없으면 여기서 멈춘다
     shares = r["mcap"] / float(dp["profile"]["price"])
     s = scenario_build(d, dp, mm, sel, shares)
     dcf_up = r["scenarios"]["base"]["v0"] - 1
@@ -393,6 +398,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if xs.get("pipeline"):
         import pipeline_view
         auto.append(pipeline_view.summary_item(dp))
+    auto.append(supply_view.summary_item(dp))
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
@@ -411,6 +417,10 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         import pipeline_view
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + (xs["pipeline"].pop("_sources", None) or [])))
         out.append(pipeline_view.section3(dp))
+    for part in (margin_sec, supply_sec):
+        if part:
+            d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))
+            out.append(part)
     money = lambda x: f"{cur}{x:,.2f}B"
     out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val]
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
