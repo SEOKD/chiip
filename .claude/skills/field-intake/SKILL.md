@@ -38,6 +38,7 @@ argument-hint: "[메모 또는 F4 포인터]"
 8. **검사**: `py scripts/validate_field_index.py` 와 `py scripts/scan_sealed.py --staged`.
 
 ## 전환 처리
+- **노션 Exclusive Source**: 페이지 전체가 마스터 지정 F1이다(2026-11-02). 이 스킬 대신 `radar/exclusive_leads.py --add`로 올린다(`docs/channels/notion.md`).
 - **F2 → F1**: 해제 시각이 지나면 `f1_converted_at` 기록 후 `source-ingest`로 공개 원천 등록.
 - **F3 → F1**: 마스터 기사 보도 후 `f1_converted_at` 기록. 이때부터 invest·public 모드 사용 가능.
 - **공개 확인**: 공시·회사 발표·타 매체로 확인되면 `publicly_confirmed_at`, `confirm_source_id`, `lead_days`(입력일→확인일), `outcome: confirmed`.

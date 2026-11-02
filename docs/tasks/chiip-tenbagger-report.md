@@ -105,7 +105,7 @@
    e. **회차 시작 때 먼저**: `py scripts/tenbagger/publish_tenbagger.py pending` — Artifact·노션 미완료·텔레그램 미발송 리포트가 있으면 b2(Artifact)·c(노션)·d(send — 이미 보낸 리포트면 '노션 게시 완료' 한 줄만 간다)부터 마친다.
 7. 기록: `py scripts/tenbagger/pick_report.py --done <id> <티커> <html 경로> "<치입 판단 한 줄>"`. 처음 다루는 후보면 knowledge/models/tenbagger/watch.csv에 등록일 가격과 함께 한 행 추가(tenbagger-card 규칙), 측정 가능한 예측 1개를 knowledge/predictions.csv에(owner 치입, origin 리포트 파일). 기업 사업 설명이 config/company_lines.yaml에 없으면 한 줄 추가.
 
-금지: D:\local-only 읽기, 필드 인텔·채널체크 사용, 로그인·유료벽 우회, robots.txt가 막은 사이트 접속, 원문·트랜스크립트 전체 복제, '사라/팔아라/보유하라' 문장·비중 지시, 규칙 밖의 등급 변경, 공개 채널 게시, 확인 안 된 단정. 구매 등급과 시나리오 주가는 엔진 계산값만 쓴다.
+금지: D:\local-only 읽기, 필드 인텔·채널체크 사용(노션 Exclusive Source 단서는 `docs/channels/notion.md`대로), 로그인·유료벽 우회, robots.txt가 막은 사이트 접속, 원문·트랜스크립트 전체 복제, '사라/팔아라/보유하라' 문장·비중 지시, 규칙 밖의 등급 변경, 공개 채널 게시, 확인 안 된 단정. 구매 등급과 시나리오 주가는 엔진 계산값만 쓴다.
 git 커밋·푸시는 하지 않는다(예외: publish_tenbagger.py·publish_report.py가 claude/reports 브랜치에 리포트 파일만 올리는 것). main은 마스터 세션에서 일괄 커밋한다.
 
 ## 프로바이저 보강

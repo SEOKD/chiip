@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = ROOT / "knowledge" / "field_intel_index.csv"
+LOCAL = ROOT / "knowledge" / "exclusive" / "index.csv"   # Exclusive Source 단서, git 제외(2026-11-02)
 COLUMNS = ["fi_id", "entered_at", "disclosure_class", "source_class", "reliability", "entities", "topics",
            "linked_theses", "corroboration", "embargo_until", "f1_converted_at", "publicly_confirmed_at",
            "confirm_source_id", "lead_days", "outcome"]
@@ -31,6 +32,9 @@ def main():
         if reader.fieldnames != COLUMNS:
             errors.append(f"열 이름이 규격과 다름: {reader.fieldnames}")
         rows = list(reader)
+    if LOCAL.exists():
+        with LOCAL.open(encoding="utf-8", newline="") as f:
+            rows += list(csv.DictReader(f))
     seen = set()
     for n, row in enumerate(rows, 2):
         fid = row.get("fi_id", "")

@@ -45,11 +45,22 @@ def new_content(tool, ti):
 
 
 def field_index():
-    f = ROOT / "knowledge" / "field_intel_index.csv"
-    if not f.exists():
-        return {}
-    with f.open(encoding="utf-8", newline="") as fh:
-        return {r["fi_id"]: r for r in csv.DictReader(fh)}
+    out = {}
+    for f in (ROOT / "knowledge" / "field_intel_index.csv", ROOT / "knowledge" / "exclusive" / "index.csv"):   # 뒤쪽은 git 제외(2026-11-02)
+        if f.exists():
+            with f.open(encoding="utf-8", newline="") as fh:
+                out.update({r["fi_id"]: r for r in csv.DictReader(fh)})
+    return out
+
+
+def insider_leads():
+    """Exclusive Source 단서 중 내부자 출처(F1이어도 invest·public·텐배거 리포트 금지, 2026-11-02)"""
+    try:
+        import yaml
+        d = yaml.safe_load((ROOT / "knowledge" / "exclusive" / "leads.yaml").read_text(encoding="utf-8")) or {}
+    except Exception:
+        return set()
+    return {x["id"] for x in d.get("leads") or [] if x.get("insider_like")}
 
 
 def private_claims():
@@ -108,6 +119,8 @@ def pre(tool, ti):
             row = idx.get(fid)
             if not row:
                 continue
+            if r.startswith(("outputs/invest/", "outputs/public/", "outputs/tenbagger/")) and fid in insider_leads():
+                block(f"{fid}는 내부자 출처 단서라 invest·public·텐배거 리포트에 쓸 수 없습니다.")
             if row["disclosure_class"] == "F2" and row.get("embargo_until"):
                 try:
                     until = datetime.fromisoformat(row["embargo_until"])

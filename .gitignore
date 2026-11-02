@@ -51,5 +51,7 @@ knowledge/narratives/evidence/
 radar/notion/inbox/*
 radar/pulse/
 radar/portfolio/
+# Exclusive Source 단서 장부·색인 — 이 PC에만(2026-11-02 마스터 지시 "로컬에만 둬")
+knowledge/exclusive/
 # 마스터 포지션(개인 금융 정보) — 이 PC에만
 config/portfolio_positions.local.yaml

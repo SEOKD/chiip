@@ -476,7 +476,12 @@ def run(now=None, peek=False):
         jp = jp_tv_docs.status(now)
     except Exception as exc:
         jp = {"due": False, "error": type(exc).__name__}
-    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due"):
+    try:   # Exclusive Source 단서의 공개 근거 후보(2026-11-02 마스터 지시)
+        import exclusive_leads
+        ex = exclusive_leads.status(now)
+    except Exception as exc:
+        ex = {"due": False, "error": type(exc).__name__}
+    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
@@ -492,8 +497,10 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "tg_other": st.pop("tg_other", [])}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "tg_other": st.pop("tg_other", [])}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
+    if ex.get("due"):
+        exclusive_leads.offered(now)
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{now.strftime('%Y%m%d_%H%M')}.json"
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

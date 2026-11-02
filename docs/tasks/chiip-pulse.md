@@ -41,6 +41,7 @@
    d2. **④ 인사이트 피드 — c·d 어느 범위든 ②(·③) 다음에 한 통**(마스터 지시 2026-10-30 "뒤늦게 올라오면 뉴팩트 정리와 함께 인사이트 피드도"). 목록의 `feed.code`(= `py scripts/insight/call_feed.py code <키> <이벤트>`) 출력을 execute_code → 파일 → `py scripts/insight/call_feed.py calc <파일> <키> <이벤트>`로 반응일 AR·β·발표 전 상승·표류·Q&A 비교를 받고, CIF 7단계(콜용 조정 — 새로움 최대 2, `insight_calc.py diffusion --callqa`, 기저율 `call_qa_content`·`call_nonanswer`·`earnings_drift`)로 판단해 `knowledge/methods/earnings_format.md` ④ 양식으로 `feed.file`에 쓰고 `notify.send(본문, 'PULSE', md=True)`. 인사이트 4 미만이면 짧은 형식, 7 이상이면 예측 등록. 보낸 뒤 `py scripts/insight/call_feed.py log <키> <이벤트> --score … --view … --conf …`.
    e. 보낸 뒤 `py radar/transcript_watch.py --done <key> <event>` — ④ 파일이 없으면 '미완료'로 돌려준다(못 쓰는 사유가 있으면 `--no-feed <이유>`). 이 건들은 묶음 메시지에 넣지 않는다(실적 건과 같은 규칙 — 따로 보낸다). 전사는 라이선스 자료 — 요지만 자기 말로, 인용 15단어 이하.
    g. **일본 전사**(마스터 지시 2026-11-02, `radar/jp_tv_docs.py`): 펄스 파일의 `jp_transcripts.check` 종목마다 `mcp-tv-get-documents`(symbol, category `transcripts`, start_date = 그 종목 date, limit 3)를 **한 메시지에 하나씩** 부른다. 병렬 호출과 목록 밖 종목 조회를 하지 않는다(2026-11-02 대량 호출로 TradingView가 1분 정지하고 하루 정지를 경고했다). 출력을 `{"TSE:코드": 출력}` 파일로 저장 → `py radar/jp_tv_docs.py --put <파일>`. `jp_transcripts.found`나 그 출력의 건은 `mcp-tv-get-document-view`로 `summary` 보기를 먼저 읽고(하나씩), 필요할 때만 `transcript` 보기를 읽는다. Q&A가 따로 있으면(`qa` true) 그것부터. 직전 ②·③ 파일과 대조해 **보도자료·단신에 없던 것만** ② 뉴팩트로 보낸다. 출처 등급은 C(제3자 전사)이고 수치 확정은 A·B 자료로 한다. 끝나면 `py radar/jp_tv_docs.py --done <id>`.
+   h. **Exclusive Source 추가 조사**(마스터 지시 2026-11-02, `docs/channels/notion.md`): 펄스 파일의 `exclusive.items`(최대 5건)마다 제목·링크가 단서의 확인 질문에 답하는지 본다. 열 수 있는 기사만 열고 `py radar/exclusive_leads.py --judge <FI> <url> <지지|상충|맥락|무관> "<자기 말 메모>"`로 판정한다. 재인용은 지지로 세되 메모에 원출처를 쓴다. 출력에 `[Chiip Exclusive]` 줄이 있으면 `notify.send(본문, 'PULSE')`로 보낸다. 맥락·무관은 보내지 않는다. 메모에 취재원 표현을 쓰지 않는다. 다음 회차까지 끌지 말고 이번 회차 안에 끝낸다.
    f. 실적 발표 건을 보도자료로 먼저 보내고 콜 전문을 기다리는 경우(1-0의 '콜 반영 갱신 대기')는 `py radar/transcript_watch.py --await <회사 키> <q분기-연도>`로 표시해 둔다.
 
 1. ① 미보도 원문 — 최대 3건, 어디에도 보도되지 않은 것만.
@@ -181,7 +182,7 @@
 
 4. 끝에 반드시 `py radar/pulse.py --end`(잠금 해제).
 
-금지: D:\local-only 읽기, 필드 인텔·채널체크 사용, 로그인·유료벽 우회, robots.txt가 막은 사이트 접속, 원문 전체 복제(제목·요지·링크만), 이미 보도된 내용을 기사 소재로 보내기, '매수하라/팔아라'·목표주가·금액 지시(치입은 투자자문 아님 — 지표·확률로만), 공개 채널 게시, 확인 안 된 단정(헤드라인·커뮤니티 글은 사실이 아니다).
+금지: D:\local-only 읽기, 필드 인텔·채널체크 사용(노션 Exclusive Source 단서는 `docs/channels/notion.md`대로), 로그인·유료벽 우회, robots.txt가 막은 사이트 접속, 원문 전체 복제(제목·요지·링크만), 이미 보도된 내용을 기사 소재로 보내기, '매수하라/팔아라'·목표주가·금액 지시(치입은 투자자문 아님 — 지표·확률로만), 공개 채널 게시, 확인 안 된 단정(헤드라인·커뮤니티 글은 사실이 아니다).
 git 커밋·푸시는 하지 않는다. 마스터 세션에서 일괄 커밋한다.
 
 ## 프로바이저 보강 (Chiip proviser 관리 — 마스터 지시 2026-10-29)

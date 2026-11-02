@@ -41,6 +41,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-dticker", "dticker", 30),  # 딘스티커 공개 미리보기 읽기 전용 — 알림 없음
     ("jp-ir-audit", "pollers.jp_ir_audit", 10080),  # 일본 IR 자료실·전문·Q&A 커버리지 표, 주 1회(전 사이트를 읽어 약 10분, 모델 없음, 마스터 지시 2026-11-01)
     ("jp-tv-docs", "jp_tv_docs", 60),  # 일본 어닝콜 전사 확인 대상 갱신(TradingView 호출은 펄스 회차의 모델이 3종목씩, 2026-11-02 마스터 지시)
+    ("exclusive-leads", "exclusive_leads", 360),  # 노션 Exclusive Source 단서의 공개 근거 후보(모델 없음, 판정은 펄스 회차, 2026-11-02 마스터 지시)
     ("proviser-channels", "channel_scout", 60),  # Proviser 회차의 채널 탐색 누락을 장부에 적는다(모델 없음, 마스터 지시 2026-11-01)
     ("verifier-lock", "verifier_lock", 1440),  # 평가기 잠금 일일 확인(ADR-013 H4)
     ("pulse-heartbeat", "pulse_trigger", 30),  # 펄스 문턱이 멈췄으면 모델 없이 알린다(ADR-013 H2)

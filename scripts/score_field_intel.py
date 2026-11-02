@@ -8,7 +8,7 @@ from score_common import pct, read_csv
 
 
 def main(argv):
-    rows = read_csv("knowledge/field_intel_index.csv")
+    rows = read_csv("knowledge/field_intel_index.csv") + read_csv("knowledge/exclusive/index.csv")   # Exclusive Source 단서는 git 제외 파일(2026-11-02)
     by = defaultdict(lambda: {"n": 0, "confirmed": 0, "refuted": 0, "lead": []})
     for r in rows:
         k = r["source_class"]

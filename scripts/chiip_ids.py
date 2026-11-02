@@ -64,7 +64,7 @@ def next_id(kind, day=None, hhmm=None):
         n = max_seq(rf"EV-{day}-(\d{{3}})", names_under("radar/events"))
         return f"EV-{day}-{n + 1:03d}"
     if kind == "field":
-        n = max_seq(r"FI-(\d{4})", file_text("knowledge/field_intel_index.csv"))
+        n = max_seq(r"FI-(\d{4})", file_text("knowledge/field_intel_index.csv", "knowledge/exclusive/index.csv"))
         return f"FI-{n + 1:04d}"
     raise SystemExit(f"알 수 없는 종류: {kind}")
 

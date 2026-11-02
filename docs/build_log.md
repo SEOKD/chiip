@@ -139,3 +139,4 @@
 - 2026-11-02: Pulse 재인용을 원보도로 바꾸는 radar/origin.py, 엔진 조립 양식 radar/pulse_feed.py, 일본 어닝콜 전사 대상 관리 radar/jp_tv_docs.py(TradingView 문서, 20분 3종목). 대량 호출로 TradingView 1분 정지·하루 정지 경고.
 - 2026-11-02: 일본 컨센서스(마스터 지시). Fiscal·Zacks 없음 확인, TradingView 종목 칸으로 66곳 중 매출 65곳·EPS 49곳 확보. radar/jp_consensus.py, 경로 표 knowledge/methods/jp_consensus_routes.md, Laboratory 주간 점검.
 - 2026-11-02: Portfolio Buy Call(마스터 지시). scripts/discovery/buy_call.py가 리포트 규칙 등급을 현재가로 다시 재서 Buy 이상·알파 6.0 이상을 데일리에 싣는다. 종합 명단 손익비를 리포트 값으로, 스크리너 종목 id 연결, 동인 대기열 41→32건. 예약 작업 재등록은 권한 거부로 미완(TODO 21-32).
+- 2026-11-02: 노션 Exclusive Source F1 지정(마스터 지시). radar/exclusive_leads.py로 8건을 FI-0001~0008에 올리고(장부·색인은 knowledge/exclusive/, git 제외, 마스터 지시 '로컬에만 둬'), --need 연결, 6시간 공개 근거 수집, 펄스 판정, 내부자 출처 3건 invest·public·텐배거 리포트 차단.
