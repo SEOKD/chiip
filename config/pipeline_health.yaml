@@ -10,11 +10,13 @@ routed: [fiscal, zacks, easyconomics, tradingview]   # 데이터 채널 — 장�
 # 모델이 없는 수집기를 다시 돌릴 때 쓸 모듈. 없는 채널은 정해진 회차를 기다린다
 jobs:
   trade-ppi: trade_ppi
+  trade-hs: trade_hs
   exclusive-leads: exclusive_leads
   tg-channels: tg_channels
 
 files:
   - {id: trade-ppi, path: knowledge/models/trade_ppi/latest.json, max_age_h: 30}
+  - {id: trade-hs, path: knowledge/models/trade_ppi/surge.json, max_age_h: 30}
   - {id: fiscal, path: knowledge/models/estimates/snapshots.csv, max_age_h: 36}
 
 # 키를 쓰지 않기로 결정한 원천은 문제로 세지 않는다(마스터 결정이 바뀌면 뺀다)
