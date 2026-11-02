@@ -13,6 +13,7 @@
 사용: py scripts/discovery/composite.py [--in 파일] [--no-queue]
 """
 import argparse
+import csv
 import json
 import sys
 from pathlib import Path
@@ -27,6 +28,22 @@ TAILWIND = "이익 상향과 주가 동행"
 
 def cfg():
     return yaml.safe_load((ROOT / "config" / "composite.yaml").read_text(encoding="utf-8"))
+
+
+def tv_ids(path=ROOT / "config" / "tradingview_symbols.csv"):
+    """{티커: 감시 id} — TradingView 스크리너로 온 종목을 감시 목록에 잇는다"""
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8", newline="") as f:
+        return {r["ticker"]: r["entity_id"] for r in csv.DictReader(f) if r.get("entity_id")}
+
+
+def resolve_id(row, ids):
+    """행의 id. 없으면 TradingView 대응표, 그것도 없으면 미국 종목은 us-<티커>(pick_report.py와 같은 규칙)"""
+    if row.get("id"):
+        return row["id"]
+    t = str(row.get("ticker") or "").split(":")[-1]
+    return ids.get(t) or (f"us-{t.lower()}" if t.isalpha() else None)
 
 
 def alpha_rows():
@@ -68,13 +85,15 @@ def timing(x, c):
     return float(pts)
 
 
-def score(row, alpha, c):
-    """한 종목 점수와 탈락 이유. alpha = 알파 행 또는 None"""
+def score(row, alpha, c, report=None):
+    """한 종목 점수와 탈락 이유. alpha = 알파 행 또는 None, report = 리포트 행(손익비는 리포트 값이 먼저)"""
     w, full = c["weights"], c["full_marks"]
     tv = row.get("tv") or {}
     tech, tim = technical(tv, c), timing(row.get("timing"), c)
     al = min(10.0, alpha["total"] / full["alpha"] * 10) if alpha else None
     rr = min(10.0, (alpha.get("components") or {}).get("asymmetry", 0) / full["reward_risk"] * 10) if alpha else None
+    if alpha and report and report.get("rr") is not None:
+        rr = max(0.0, min(10.0, report["rr"] / full["rr_ratio"] * 10))
     out = {"id": row.get("id"), "ticker": row.get("ticker"), "name": row.get("name"), "technical": tech, "timing": tim, "alpha": al, "reward_risk": rr, "composite": None, "pass": False, "why": []}
     if alpha is None:
         out["why"].append("알파 미산정")
@@ -98,15 +117,20 @@ def line(x):
 
 def run(data, c=None, queue=True):
     c = c or cfg()
-    alphas = alpha_rows()
-    rows = [score(r, alphas.get(r.get("id")), c) for r in data.get("rows") or []]
+    alphas, ids = alpha_rows(), tv_ids()
+    import buy_call
+    reps = buy_call.reports()
+    rows = []
+    for r in data.get("rows") or []:
+        r = {**r, "id": resolve_id(r, ids)}
+        rows.append(score(r, alphas.get(r["id"]), c, reps.get(r["id"])))
     rows.sort(key=lambda x: -(x["composite"] or 0))
     wait = [x for x in rows if x["alpha"] is None and x["technical"] >= c["gates"]["min_technical_for_queue"] and x["id"]][: c["gates"]["queue_per_run"]]
     if queue and wait:
         sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
         import alpha_watch
         for x in wait:
-            alpha_watch.enqueue(x["id"], x["name"], "종합 명단 — 기술적 점수 높음, 알파 미산정", "composite")
+            alpha_watch.enqueue(x["id"], x["name"], "종합 명단 — 기술적 점수 높음, 알파 미산정", "알파 산정")
     return {"as_of": data.get("as_of"), "threshold": c["threshold"], "n": len(rows), "pass": [x for x in rows if x["pass"]], "top": rows[:10], "queued": [x["id"] for x in wait]}
 
 

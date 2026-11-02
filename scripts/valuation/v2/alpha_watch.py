@@ -132,6 +132,15 @@ def enqueue(eid, name, reason, kind):
     return True
 
 
+def prune(c, today):
+    """동인이 이미 새 '작성'·'갱신' 건을 대기열에서 뺀다(리포트 회차가 동인을 먼저 쓴 경우, 2026-11-02 41건 적체). (남은 수, 뺀 수)"""
+    q = load_queue()
+    keep = [x for x in q if x["kind"] not in ("작성", "갱신") or needs_update(x["id"], [], c, today)]
+    if len(keep) != len(q):
+        QUEUE.write_text(json.dumps(keep, ensure_ascii=False, indent=1), encoding="utf-8")
+    return len(keep), len(q) - len(keep)
+
+
 def needs_update(eid, reasons, c, today):
     """(작성 필요 종류 또는 None). 동인 없음 → '작성', 오래됨·실적 뒤 → '갱신'"""
     p = drivers_path(eid)
@@ -196,6 +205,7 @@ def run(send=True, now=None):
     c_all = cfg()
     c = c_all["alpha_watch"]
     now = now or common.now_kst()
+    prune(c, now.date())
     st = common.load_state(STATE, {})
     passed, rows = alpha.load_latest(now.date())
     alerts = common.load_state("alerts", {})

@@ -19,6 +19,7 @@ EURONEXT:NEX,EURONEXT,NEX,co-nexans,Nexans,ticker,true
 EURONEXT:OVH,EURONEXT,OVH,eu-ovh,OVH Groupe S.A.,new,false
 EURONEXT:RMS,EURONEXT,RMS,eu-rms,Hermes International SCA,new,false
 EURONEXT:SOI,EURONEXT,SOI,eu-soi,Soitec SA,new,false
+EURONEXT:SU,EURONEXT,SU,co-schneider,Schneider Electric,ticker,true
 EURONEXT:THEON,EURONEXT,THEON,gr-theon,Theon International,ticker,true
 HKEX:2050,HKEX,2050,hk-2050,"Zhejiang Sanhua Intelligent Controls Co., Ltd.",new,false
 HKEX:9992,HKEX,9992,hk-popmart,Pop Mart,ticker,true
@@ -174,6 +175,7 @@ NASDAQ:NNE,NASDAQ,NNE,us-nne,NANO Nuclear Energy,ticker,true
 NASDAQ:NVDA,NASDAQ,NVDA,co-nvidia,NVIDIA,ticker,true
 NASDAQ:NVMI,NASDAQ,NVMI,us-nvmi,Nova,ticker,true
 NASDAQ:ONDS,NASDAQ,ONDS,us-onds,Ondas Holdings,ticker,true
+NASDAQ:PENG,NASDAQ,PENG,us-peng,Penguin Solutions Incorporation,new,false
 NASDAQ:PEP,NASDAQ,PEP,us-pep,"PepsiCo, Inc.",new,false
 NASDAQ:PLTR,NASDAQ,PLTR,co-palantir,Palantir,ticker,true
 NASDAQ:PLUG,NASDAQ,PLUG,us-plug,Plug Power Inc.,new,false
@@ -193,6 +195,7 @@ NASDAQ:STRL,NASDAQ,STRL,co-sterling,Sterling Infrastructure,ticker,true
 NASDAQ:STX,NASDAQ,STX,co-seagate,Seagate,ticker,true
 NASDAQ:SWMR,NASDAQ,SWMR,us-swmr,"Swarmer, Inc.",new,false
 NASDAQ:TER,NASDAQ,TER,co-teradyne,Teradyne,ticker,true
+NASDAQ:TH,NASDAQ,TH,us-th,Target Hospitality Corp.,new,false
 NASDAQ:TLN,NASDAQ,TLN,co-talen,Talen Energy,ticker,true
 NASDAQ:TMUS,NASDAQ,TMUS,us-tmus,"T-Mobile US, Inc.",new,false
 NASDAQ:TSLA,NASDAQ,TSLA,us-tsla,"Tesla, Inc.",new,false
@@ -218,18 +221,22 @@ NYSE:BDC,NYSE,BDC,us-bdc,Belden,ticker,true
 NYSE:BE,NYSE,BE,co-bloom,Bloom Energy,ticker,true
 NYSE:BEPC,NYSE,BEPC,us-bepc,Brookfield Renewable Holdings Corporation,new,false
 NYSE:BKSY,NYSE,BKSY,us-bksy,BlackSky Technology,ticker,true
+NYSE:BMI,NYSE,BMI,us-bmi,"Badger Meter, Inc.",new,false
 NYSE:BW,NYSE,BW,co-babcock,Babcock & Wilcox,ticker,true
 NYSE:BWXT,NYSE,BWXT,us-bwxt,BWX Technologies,ticker,true
 NYSE:BX,NYSE,BX,us-bx,Blackstone Inc.,new,false
 NYSE:CACI,NYSE,CACI,co-caci,CACI International,ticker,true
+NYSE:CARR,NYSE,CARR,us-carr,Carrier Global,ticker,true
 NYSE:CAT,NYSE,CAT,co-caterpillar,Caterpillar,ticker,true
 NYSE:CCL,NYSE,CCL,us-ccl,Carnival Corporation Ltd.,new,false
+NYSE:CHD,NYSE,CHD,us-chd,"Church & Dwight Co., Inc.",new,false
 NYSE:CHWY,NYSE,CHWY,us-chwy,"Chewy, Inc.",new,false
 NYSE:CLS,NYSE,CLS,co-celestica,Celestica,ticker,true
 NYSE:CMI,NYSE,CMI,co-cummins,Cummins,ticker,true
 NYSE:COHR,NYSE,COHR,co-coherent,Coherent,ticker,true
 NYSE:CRCL,NYSE,CRCL,us-crcl,"Circle Internet Group, Inc.",new,false
 NYSE:CRM,NYSE,CRM,us-crm,"Salesforce, Inc.",new,false
+NYSE:CVEO,NYSE,CVEO,us-cveo,Civeo Corp,new,false
 NYSE:CVS,NYSE,CVS,us-cvs,CVS Health Corporation,new,false
 NYSE:CVX,NYSE,CVX,us-cvx,Chevron Corporation,new,false
 NYSE:CW,NYSE,CW,us-cw,Curtiss-Wright,ticker,true
@@ -250,6 +257,7 @@ NYSE:FIG,NYSE,FIG,us-fig,"Figma, Inc.",new,false
 NYSE:FIX,NYSE,FIX,co-comfort,Comfort Systems USA,ticker,true
 NYSE:FLNG,NYSE,FLNG,us-flng,FLEX LNG Ltd,new,false
 NYSE:FLR,NYSE,FLR,us-flr,Fluor Corporation,new,false
+NYSE:FLS,NYSE,FLS,us-fls,Flowserve Corporation,new,false
 NYSE:FN,NYSE,FN,co-fabrinet,Fabrinet,ticker,true
 NYSE:FTI,NYSE,FTI,us-fti,TechnipFMC plc,new,false
 NYSE:GE,NYSE,GE,us-ge,GE Aerospace,new,false
@@ -266,6 +274,7 @@ NYSE:IBM,NYSE,IBM,co-ibm,IBM,ticker,true
 NYSE:IMAX,NYSE,IMAX,us-imax,IMAX Corporation,new,false
 NYSE:IONQ,NYSE,IONQ,us-ionq,IonQ,ticker,true
 NYSE:IRM,NYSE,IRM,us-irm,"Iron Mountain, Inc.",new,false
+NYSE:JCI,NYSE,JCI,co-jci,Johnson Controls,ticker,true
 NYSE:JNJ,NYSE,JNJ,us-jnj,Johnson & Johnson,new,false
 NYSE:JPM,NYSE,JPM,us-jpm,JPMorgan Chase & Co.,new,false
 NYSE:KEYS,NYSE,KEYS,us-keys,Keysight Technologies Inc,new,false
@@ -295,6 +304,7 @@ NYSE:ORA,NYSE,ORA,us-ora,"Ormat Technologies, Inc.",new,false
 NYSE:ORCL,NYSE,ORCL,co-oracle,Oracle,ticker,true
 NYSE:PEG,NYSE,PEG,us-peg,Public Service Enterprise Group Inc,new,false
 NYSE:PG,NYSE,PG,us-pg,Procter & Gamble Company,new,false
+NYSE:PH,NYSE,PH,us-ph,Parker-Hannifin Corporation,new,false
 NYSE:PL,NYSE,PL,us-pl,Planet Labs,ticker,true
 NYSE:PM,NYSE,PM,us-pm,Philip Morris International Inc.,new,false
 NYSE:PUMP,NYSE,PUMP,co-propetro,ProPetro Holding,ticker,true
@@ -315,6 +325,7 @@ NYSE:TDY,NYSE,TDY,us-tdy,Teledyne Technologies,ticker,true
 NYSE:TKO,NYSE,TKO,us-tko,"TKO Group Holdings, Inc.",new,false
 NYSE:TMO,NYSE,TMO,us-tmo,Thermo Fisher Scientific Inc.,new,false
 NYSE:TSM,NYSE,TSM,us-tsm,"Taiwan Semiconductor Manufacturing Co., Ltd.",new,false
+NYSE:TT,NYSE,TT,us-tt,Trane Technologies plc,new,false
 NYSE:UBER,NYSE,UBER,us-uber,"Uber Technologies, Inc.",new,false
 NYSE:ULS,NYSE,ULS,us-uls,UL Solutions Inc.,new,false
 NYSE:UNH,NYSE,UNH,us-unh,UnitedHealth Group Incorporated,new,false
@@ -326,12 +337,15 @@ NYSE:VST,NYSE,VST,co-vistra,Vistra,ticker,true
 NYSE:WAB,NYSE,WAB,us-wab,Westinghouse Air Brake Technologies Corporation,new,false
 NYSE:WFC,NYSE,WFC,us-wfc,Wells Fargo & Company,new,false
 NYSE:XOM,NYSE,XOM,us-xom,Exxonmobil Holdings Corporation,new,false
+NYSE:XYL,NYSE,XYL,us-xyl,Xylem Inc.,new,false
 NYSE:YSS,NYSE,YSS,us-yss,York Space Systems,ticker,true
+OMXHEX:BITTI,OMXHEX,BITTI,eu-bitti,Bittium Corporation,new,false
 OMXHEX:WRT1V,OMXHEX,WRT1V,co-wartsila,Wartsila,ticker,true
 OMXSTO:MILDEF,OMXSTO,MILDEF,se-mildef,MilDef Group,ticker,true
 OMXSTO:SAAB_B,OMXSTO,SAAB_B,se-saab,Saab,ticker,true
 OSL:KOG,OSL,KOG,no-kongsberg,Kongsberg Gruppen,ticker,true
 SIX:ABBN,SIX,ABBN,co-abb,ABB,ticker,true
+SIX:LAND,SIX,LAND,eu-land,Landis+Gyr Group AG,new,false
 TASE:TEVA,TASE,TEVA,other-teva,Teva Pharmaceutical Industries Limited,new,false
 TPEX:3324,TPEX,3324,tw-auras,Auras Technology,ticker,true
 TPEX:6223,TPEX,6223,tw-mpi,MPI Corporation,ticker,true
@@ -355,6 +369,7 @@ TSE:5803,TSE,5803,co-fujikura,Fujikura,ticker,true
 TSE:6208,TSE,6208,jp-ishikawa,Ishikawa Seisakusho,ticker,true
 TSE:6278,TSE,6278,jp-uniontool,Union Tool,ticker,true
 TSE:6361,TSE,6361,jp-6361,Ebara Corporation,new,false
+TSE:6367,TSE,6367,jp-6367,"DAIKIN INDUSTRIES, LTD.",new,false
 TSE:6376,TSE,6376,jp-6376,"Nikkiso Co., Ltd.",new,false
 TSE:6407,TSE,6407,jp-6407,CKD Corporation,new,false
 TSE:6501,TSE,6501,co-hitachi,Hitachi,ticker,true
@@ -424,3 +439,5 @@ XETR:SIE,XETR,SIE,co-siemens,Siemens,ticker,true
 XETR:SMHN,XETR,SMHN,eu-smhn,SUSS MicroTec SE,new,false
 XETR:TKMS,XETR,TKMS,de-tkms,TKMS,ticker,true
 XETR:VOW3,XETR,VOW3,eu-vow3,Volkswagen AG,new,false
+NYSE:DELL,NYSE,DELL,co-dell,Dell Technologies,new,false
+NYSE:SDRL,NYSE,SDRL,us-sdrl,Seadrill,new,false

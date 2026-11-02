@@ -381,7 +381,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     v = d.setdefault("verdict", {})
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     cur = sym(dp)
-    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
+    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4), "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
               "weighted_upside": round(s["weighted_up"], 4), "upside_basis": f"목표주가 {cur}{pt['target']:,.0f}"})
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}

@@ -1470,6 +1470,54 @@ params:
     data: knowledge/models/earnings/call_feed/log.csv
     last_fit: null
     oos_metric: null
+- id: prm-composite-full-rr-ratio
+  model: discovery.composite
+  binding: config/composite.yaml#full_marks.rr_ratio
+  value: 3.0
+  unit: 배
+  status: prior
+  prior:
+    value: 3.0
+    basis: 리포트 손익비를 10점으로 환산하는 기준 — Strong Buy 손익비 문턱과 같게
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-11-02 마스터 지시 Portfolio Buy Call 구조 수정)
+  fit:
+    method: 통과 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/composite_latest.json
+    last_fit: null
+    oos_metric: null
+- id: prm-buycall-alpha-min
+  model: discovery.buy_call
+  binding: config/composite.yaml#buy_call.alpha_min
+  value: 6.0
+  unit: 점
+  status: prior
+  prior:
+    value: 6.0
+    basis: Portfolio Buy Call 알파 문턱 — 2026-11-02 산정 136종목 중 상위 약 10%
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-11-02 마스터 지시 Portfolio Buy Call 구조 수정)
+  fit:
+    method: 진입 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/buy_call_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-buycall-report-days
+  model: discovery.buy_call
+  binding: config/composite.yaml#buy_call.report_days
+  value: 45
+  unit: 일
+  status: prior
+  prior:
+    value: 45
+    basis: 리포트 유효 기간 — 재작성 금지 30일 규칙 + 여유
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-11-02 마스터 지시 Portfolio Buy Call 구조 수정)
+  fit:
+    method: 진입 종목의 이후 3·6개월 초과수익(walk-forward, 월 단위)
+    target: 이후 6개월 초과수익
+    data: knowledge/models/portfolio/buy_call_log.csv
+    last_fit: null
+    oos_metric: null
 - id: prm-composite-w-alpha
   model: discovery.composite
   binding: config/composite.yaml#weights.alpha
