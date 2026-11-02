@@ -1,0 +1,466 @@
+{
+ "as_of": "2026-11-03",
+ "source": "OpenStreetMap",
+ "buildings": [
+  {
+   "osm": "way/1159821903",
+   "name": "P2",
+   "building": "industrial",
+   "area_m2": 56860,
+   "center": [
+    33.7781,
+    -112.1579
+   ]
+  },
+  {
+   "osm": "way/1502340564",
+   "name": "AP1",
+   "building": "construction",
+   "area_m2": 56679,
+   "center": [
+    33.77604,
+    -112.16699
+   ]
+  },
+  {
+   "osm": "way/1502293706",
+   "name": "P4",
+   "building": "construction",
+   "area_m2": 56676,
+   "center": [
+    33.77853,
+    -112.16459
+   ]
+  },
+  {
+   "osm": "way/1159788412",
+   "name": "P1",
+   "building": "industrial",
+   "area_m2": 56066,
+   "center": [
+    33.77623,
+    -112.15789
+   ]
+  },
+  {
+   "osm": "way/1426799140",
+   "name": "P3",
+   "building": "construction",
+   "area_m2": 53845,
+   "center": [
+    33.77847,
+    -112.16083
+   ]
+  },
+  {
+   "osm": "way/1159803557",
+   "name": "WRC",
+   "building": "yes",
+   "area_m2": 26175,
+   "center": [
+    33.77675,
+    -112.15359
+   ]
+  },
+  {
+   "osm": "way/1426797051",
+   "name": null,
+   "building": "construction",
+   "area_m2": 19653,
+   "center": [
+    33.7755,
+    -112.16252
+   ]
+  },
+  {
+   "osm": "way/1159788411",
+   "name": "Gown Building A",
+   "building": "office",
+   "area_m2": 12271,
+   "center": [
+    33.77588,
+    -112.16065
+   ]
+  },
+  {
+   "osm": "way/1502340565",
+   "name": "Gown Building B",
+   "building": "construction",
+   "area_m2": 12255,
+   "center": [
+    33.77589,
+    -112.16455
+   ]
+  },
+  {
+   "osm": "way/1159821904",
+   "name": "CUP",
+   "building": "industrial",
+   "area_m2": 8090,
+   "center": [
+    33.77522,
+    -112.15526
+   ]
+  },
+  {
+   "osm": "way/1159803558",
+   "name": "ELE",
+   "building": "service",
+   "area_m2": 6743,
+   "center": [
+    33.77508,
+    -112.15344
+   ]
+  },
+  {
+   "osm": "way/1477348845",
+   "name": "CUP",
+   "building": "industrial",
+   "area_m2": 5815,
+   "center": [
+    33.77807,
+    -112.15534
+   ]
+  },
+  {
+   "osm": "way/1477348842",
+   "name": "Lorry",
+   "building": "industrial",
+   "area_m2": 3772,
+   "center": [
+    33.77796,
+    -112.1561
+   ]
+  },
+  {
+   "osm": "way/1159821905",
+   "name": "Lorry A",
+   "building": "industrial",
+   "area_m2": 3747,
+   "center": [
+    33.77543,
+    -112.15609
+   ]
+  },
+  {
+   "osm": "way/1502293709",
+   "name": "ELE",
+   "building": "service",
+   "area_m2": 2943,
+   "center": [
+    33.77795,
+    -112.15495
+   ]
+  },
+  {
+   "osm": "way/1159821906",
+   "name": "Lorry B",
+   "building": "industrial",
+   "area_m2": 2878,
+   "center": [
+    33.77626,
+    -112.1561
+   ]
+  },
+  {
+   "osm": "way/1537529931",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 1454,
+   "center": [
+    33.77685,
+    -112.15996
+   ]
+  },
+  {
+   "osm": "way/1234285987",
+   "name": "BSGS",
+   "building": "industrial",
+   "area_m2": 1206,
+   "center": [
+    33.77629,
+    -112.15485
+   ]
+  },
+  {
+   "osm": "way/1426572855",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 912,
+   "center": [
+    33.77704,
+    -112.15674
+   ]
+  },
+  {
+   "osm": "way/1487555872",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 750,
+   "center": [
+    33.77704,
+    -112.15718
+   ]
+  },
+  {
+   "osm": "way/1426572853",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 741,
+   "center": [
+    33.77704,
+    -112.15917
+   ]
+  },
+  {
+   "osm": "way/1502340567",
+   "name": null,
+   "building": "construction",
+   "area_m2": 659,
+   "center": [
+    33.77587,
+    -112.16566
+   ]
+  },
+  {
+   "osm": "way/1477348841",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 567,
+   "center": [
+    33.7783,
+    -112.15641
+   ]
+  },
+  {
+   "osm": "way/1347196479",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 560,
+   "center": [
+    33.77577,
+    -112.15638
+   ]
+  },
+  {
+   "osm": "way/1234285984",
+   "name": "BSGS",
+   "building": "industrial",
+   "area_m2": 532,
+   "center": [
+    33.77627,
+    -112.15545
+   ]
+  },
+  {
+   "osm": "way/1234285991",
+   "name": null,
+   "building": "yes",
+   "area_m2": 519,
+   "center": [
+    33.77427,
+    -112.16626
+   ]
+  },
+  {
+   "osm": "way/1347196477",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 496,
+   "center": [
+    33.77589,
+    -112.15948
+   ]
+  },
+  {
+   "osm": "way/1537529932",
+   "name": null,
+   "building": "yes",
+   "area_m2": 470,
+   "center": [
+    33.77678,
+    -112.16147
+   ]
+  },
+  {
+   "osm": "way/1234285985",
+   "name": "BSGS",
+   "building": "industrial",
+   "area_m2": 466,
+   "center": [
+    33.77661,
+    -112.15544
+   ]
+  },
+  {
+   "osm": "way/1426572854",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 464,
+   "center": [
+    33.77704,
+    -112.15842
+   ]
+  },
+  {
+   "osm": "way/1502340566",
+   "name": null,
+   "building": "construction",
+   "area_m2": 456,
+   "center": [
+    33.77588,
+    -112.16339
+   ]
+  },
+  {
+   "osm": "way/1498666288",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 392,
+   "center": [
+    33.77588,
+    -112.16167
+   ]
+  },
+  {
+   "osm": "way/1477348844",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 379,
+   "center": [
+    33.77832,
+    -112.15579
+   ]
+  },
+  {
+   "osm": "way/1347196480",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 378,
+   "center": [
+    33.7758,
+    -112.15577
+   ]
+  },
+  {
+   "osm": "way/1234285986",
+   "name": "BSGS",
+   "building": "industrial",
+   "area_m2": 358,
+   "center": [
+    33.77669,
+    -112.15491
+   ]
+  },
+  {
+   "osm": "way/1426572861",
+   "name": null,
+   "building": "yes",
+   "area_m2": 315,
+   "center": [
+    33.77685,
+    -112.1609
+   ]
+  },
+  {
+   "osm": "way/1317057059",
+   "name": null,
+   "building": "industrial",
+   "area_m2": 259,
+   "center": [
+    33.77345,
+    -112.17454
+   ]
+  },
+  {
+   "osm": "way/1239002649",
+   "name": null,
+   "building": "yes",
+   "area_m2": 186,
+   "center": [
+    33.77358,
+    -112.17493
+   ]
+  },
+  {
+   "osm": "way/1477348843",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 160,
+   "center": [
+    33.77851,
+    -112.15612
+   ]
+  },
+  {
+   "osm": "way/1234285993",
+   "name": null,
+   "building": "roof",
+   "area_m2": 155,
+   "center": [
+    33.77379,
+    -112.17455
+   ]
+  },
+  {
+   "osm": "way/1347196478",
+   "name": null,
+   "building": "bridge",
+   "area_m2": 150,
+   "center": [
+    33.77596,
+    -112.15611
+   ]
+  },
+  {
+   "osm": "way/1426572859",
+   "name": null,
+   "building": "security_booth",
+   "area_m2": 116,
+   "center": [
+    33.77698,
+    -112.1613
+   ]
+  },
+  {
+   "osm": "way/1477358240",
+   "name": "TSMC Fab 21 Guard House 1",
+   "building": "gatehouse",
+   "area_m2": 65,
+   "center": [
+    33.77224,
+    -112.16085
+   ]
+  },
+  {
+   "osm": "way/1426797044",
+   "name": "TSMC Fab 21 Gatehouse 2",
+   "building": "gatehouse",
+   "area_m2": 61,
+   "center": [
+    33.77221,
+    -112.15239
+   ]
+  },
+  {
+   "osm": "way/1426797068",
+   "name": "TSMC Fab 21 Gatehouse 3",
+   "building": "gatehouse",
+   "area_m2": 41,
+   "center": [
+    33.77466,
+    -112.15227
+   ]
+  },
+  {
+   "osm": "way/1234285994",
+   "name": null,
+   "building": "roof",
+   "area_m2": 39,
+   "center": [
+    33.77375,
+    -112.17495
+   ]
+  }
+ ]
+}

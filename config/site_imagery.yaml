@@ -1,0 +1,40 @@
+# 생산시설 위성 판독 — radar/site_imagery.py · scripts/tenbagger/site_view.py (마스터 지시 2026-11-03)
+# 시설 목록은 knowledge/models/sites/<회사 id>.yaml. 상수는 knowledge/models/params/registry.yaml prm-sat-*
+kinds: [팹, 패키징, 공장, 데이터센터]   # 이 밖의 시설은 등록하지 않는다. 군사 시설·기지는 받지 않는다
+
+collect:
+  stac: https://planetarycomputer.microsoft.com/api/stac/v1/search
+  data: https://planetarycomputer.microsoft.com/api/data/v1
+  overpass: https://overpass-api.de/api/interpreter
+  offsets_months: [0, 3, 6, 12, 24]   # 지금부터 이만큼 전 시점의 영상을 받는다
+  window_days: 60        # 시점마다 맑은 영상을 찾는 기간
+  scene_cloud_max: 30    # 장면 전체 구름 상한(%)
+  candidates: 6          # 시점마다 시험할 장면 수
+  site_cloud_max: 0.1    # 시설 범위 구름·그림자 상한
+  max_px: 512            # 시설 범위 영상 한 변
+  footprint_max_age_days: 30   # 건물 윤곽 재조회 간격(Overpass 정기 사용 한도를 지킨다)
+  pause_s: 0.5
+  overpass_pause_s: 30   # 호출 거절 때 쉬는 시간(사용 지침)
+
+change:
+  threshold: 0.15        # 픽셀 변화 판정(NDVI·NDBI 변화 벡터 길이)
+  active_share: 0.05     # 최근 6개월 변화 비율이 이 값 이상이면 공사 활동으로 본다
+
+# 영상에서 보이는 외관 공정. 장비 반입·수율은 영상으로 알 수 없다
+stages:
+  빈 터: 0.0
+  부지 정지: 0.1
+  기초·골조: 0.35
+  외장 완료: 0.65
+  주변 설비 완료: 0.85
+  가동 흔적: 1.0
+
+estimate:
+  band_single: 0.4       # 비교 시설이 하나일 때 면적당 캐파 위아래 범위
+  stage_stale_days: 120  # 최신 영상보다 판독이 이만큼 오래되면 다시 판독한다
+  max_age_days: 45       # 수집본이 이보다 오래되면 리포트가 멈춘다
+  chart_sites: 3         # 리포트에 넣는 시설 수
+
+credit:
+  sentinel: Contains modified Copernicus Sentinel data {year}
+  osm: © OpenStreetMap contributors

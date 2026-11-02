@@ -1,0 +1,143 @@
+{
+ "site": "site-tsmc-arizona",
+ "as_of": "2026-11-03",
+ "bbox": [
+  33.76801688825009,
+  -112.17080730075286,
+  33.785983111749914,
+  -112.14919269924714
+ ],
+ "px": 200,
+ "images": [
+  {
+   "date": "2024-10-28",
+   "scene": "S2A_MSIL2A_20241028T181451_R084_T12SUC_20241028T214349",
+   "cloud": 0.0,
+   "res_m": 10,
+   "path": "radar/state/sites/site-tsmc-arizona/33.777_-112.160_1.000/2024-10-28.png"
+  },
+  {
+   "date": "2025-11-02",
+   "scene": "S2C_MSIL2A_20251102T181531_R084_T12SUC_20251102T205520",
+   "cloud": 0.0,
+   "res_m": 10,
+   "path": "radar/state/sites/site-tsmc-arizona/33.777_-112.160_1.000/2025-11-02.png"
+  },
+  {
+   "date": "2026-05-03",
+   "scene": "S2A_MSIL2A_20260503T181801_R084_T12SUC_20260504T043454",
+   "cloud": 0.0,
+   "res_m": 10,
+   "path": "radar/state/sites/site-tsmc-arizona/33.777_-112.160_1.000/2026-05-03.png"
+  },
+  {
+   "date": "2026-07-30",
+   "scene": "S2C_MSIL2A_20260730T180921_R084_T12SUC_20260730T231210",
+   "cloud": 0.0,
+   "res_m": 10,
+   "path": "radar/state/sites/site-tsmc-arizona/33.777_-112.160_1.000/2026-07-30.png"
+  },
+  {
+   "date": "2026-10-23",
+   "scene": "S2B_MSIL2A_20261023T181419_R084_T12SUC_20261023T214959",
+   "cloud": 0.0,
+   "res_m": 10,
+   "path": "radar/state/sites/site-tsmc-arizona/33.777_-112.160_1.000/2026-10-23.png"
+  }
+ ],
+ "aerial": [
+  {
+   "date": "2023-06-16",
+   "scene": "az_m_3311215_se_12_030_20230616_20240119",
+   "res_m": 0.3,
+   "path": "radar/state/sites/site-tsmc-arizona/33.777_-112.160_1.000/2023-06-16.naip.png"
+  }
+ ],
+ "units": {
+  "P1": {
+   "series": [
+    {
+     "date": "2025-11-02",
+     "changed": 0.039
+    },
+    {
+     "date": "2026-05-03",
+     "changed": 0.061
+    },
+    {
+     "date": "2026-07-30",
+     "changed": 0.054
+    },
+    {
+     "date": "2026-10-23",
+     "changed": 0.04
+    }
+   ],
+   "recent": 0.03101503759398496
+  },
+  "P2": {
+   "series": [
+    {
+     "date": "2025-11-02",
+     "changed": 0.111
+    },
+    {
+     "date": "2026-05-03",
+     "changed": 0.095
+    },
+    {
+     "date": "2026-07-30",
+     "changed": 0.071
+    },
+    {
+     "date": "2026-10-23",
+     "changed": 0.128
+    }
+   ],
+   "recent": 0.04757085020242915
+  },
+  "P3": {
+   "series": [
+    {
+     "date": "2025-11-02",
+     "changed": 0.058
+    },
+    {
+     "date": "2026-05-03",
+     "changed": 0.102
+    },
+    {
+     "date": "2026-07-30",
+     "changed": 0.068
+    },
+    {
+     "date": "2026-10-23",
+     "changed": 0.11
+    }
+   ],
+   "recent": 0.12527472527472527
+  },
+  "P4": {
+   "series": [
+    {
+     "date": "2025-11-02",
+     "changed": 0.01
+    },
+    {
+     "date": "2026-05-03",
+     "changed": 0.015
+    },
+    {
+     "date": "2026-07-30",
+     "changed": 0.054
+    },
+    {
+     "date": "2026-10-23",
+     "changed": 0.216
+    }
+   ],
+   "recent": 0.1995841995841996
+  }
+ },
+ "footprint_error": null
+}

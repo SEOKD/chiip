@@ -12,7 +12,7 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
   "margin": scripts/tenbagger/margin_view.py 맨 위 — GPM·OPM 비용 요인과 핵심 제품·서비스 BOM 분해
   "supply": scripts/tenbagger/supply_view.py 맨 위 — 부품 공급망 업체와 공급 병목 10점
   "customers": scripts/tenbagger/customer_view.py 맨 위 — 고객사와 고객별 매출 믹스 추정
-  "capacity": scripts/tenbagger/capacity_view.py 맨 위 — 현재 생산능력, 확충 계획, CAPEX와 매출 대비
+  "capacity": scripts/tenbagger/capacity_view.py 맨 위 — 현재 생산능력, 확충 계획, CAPEX와 매출 대비. 시설 위성 판독은 scripts/tenbagger/site_view.py 맨 위
   "multiple_view": {"adj": -0.2, "why": "사이클·실행 할인 등 IB식 판단 한 줄"}   # 조정폭은 config/tenbagger.yaml multiple_select.judge_cap 안에서
   "target_view": {"adj": 0.1, "why": "요인에 안 잡히는 판단 한 줄"}   # 선택. 목표주가 위치 조정, target_price.judge_cap 안에서
   "guidance": {"next": {"period": "4Q26", "rev": 285, "rev_cons": 285, "eps": 0.95, "eps_cons": 1.0, "unit": "$M"}}   # 같은 기간 회사 가이던스 vs 컨센서스, 없는 지표는 뺀다
@@ -31,6 +31,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import capacity_view  # noqa: E402
+import site_view  # noqa: E402
 import customer_view  # noqa: E402
 import flow  # noqa: E402
 import input_view  # noqa: E402
@@ -46,7 +47,7 @@ ANALYST = (("strong_buy", "Strong Buy"), ("buy", "Buy"), ("hold", "Neutral"), ("
 MODEL_SECTIONS = ("판단 시나리오", "반대 검증", "킬 조건", "셀온 조건", "체크리스트", "재발행 기록", "정정 기록")
 BANNED = ("DCF ÷ 시가총액", "주주가치 ÷ 시가총액", "배수 사다리", "컨빅션")
 # 한눈에 보기 순서 — 모든 리포트가 이 순서 하나만 쓴다(마스터 지시 2026-10-31, 2026-11-02 "이 구조를 엔진 아키텍처에 영구적으로 설계하라", tests/test_report_layout.py가 고정)
-GALLERY = ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "고객 믹스", "공급 병목", "생산능력", "CAPEX", "어닝콜 변화",
+GALLERY = ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "고객 믹스", "공급 병목", "생산능력", "CAPEX", "위성 판독", "어닝콜 변화",
            "멀티플 프리미엄", "합리적 멀티플", "일별 거래량", "기관 자금", "몬테카를로")
 SHORT_TITLES = {"콜 변화": "어닝콜 변화별 주주가치 영향", "최근 4개 분기 주가": "최근 4개 분기 주가 변화 분석", "일별 거래량": "일별 거래량 분해", "기관 자금": "기관 자금 흐름"}
 
@@ -261,12 +262,12 @@ def earnings_blocks(esec):
     return out + ([read] if read else [])
 
 
-def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None, capacity=(None, None), customers=None):
+def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None, capacity=(None, None), customers=None, site=None):
     """한눈에 보기 — 그림을 모은 뒤 GALLERY 순서로 낸다. 순서를 바꾸려면 GALLERY만 고친다"""
     E = [b for b in (esec or {}).get("blocks") or [] if b.get("type") == "chart"]
     get = lambda blocks, key: next((dict(b["chart"]) for b in blocks if key in str((b.get("chart") or {}).get("title"))), None)
     parts = {c["title"]: c for c in price}
-    parts.update({"실적": actest, "시나리오": s["chart"], "주가별 업사이드": upside_chart(s, zones or []), "포트폴리오": portfolio, "고객 믹스": customers, "공급 병목": supply, "생산능력": capacity[0], "CAPEX": capacity[1], "합리적 멀티플": ev_chart})
+    parts.update({"실적": actest, "시나리오": s["chart"], "주가별 업사이드": upside_chart(s, zones or []), "포트폴리오": portfolio, "고객 믹스": customers, "공급 병목": supply, "위성 판독": site, "생산능력": capacity[0], "CAPEX": capacity[1], "합리적 멀티플": ev_chart})
     rev = next((dict(b["chart"]) for b in E if b["chart"].get("kind") == "revision"), None)
     if rev:
         rev["title"] = "EPS 리비전"
@@ -413,7 +414,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
-    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, narrative_view.portfolio_chart(dp), supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp))
+    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, narrative_view.portfolio_chart(dp), supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp), site_view.chart(dp))
     model = d.get("sections") or []
     find = lambda *keys: [x for x in model if x.get("h2", "").startswith(keys)]
     bear_blocks = [b for x in find("반대 검증") for b in x.get("blocks") or []]

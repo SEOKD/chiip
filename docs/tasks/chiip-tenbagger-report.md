@@ -120,3 +120,9 @@ git 커밋·푸시는 하지 않는다(예외: publish_tenbagger.py·publish_rep
 **데이터 채널 장애(마스터 지시 2026-11-02):** Fiscal.ai·Zacks·Easyconomics·TradingView 호출이 오류를 내면 `py radar/self_heal.py --report <fiscal|zacks|easyconomics|tradingview> "오류 내용"`을 남기고 `docs/channels/data.md` 순서대로 다음 채널을 쓴다. 키나 토큰 값은 적지 않는다.
 
 **HS 급등 품목(2026-11-02 마스터 지시):** `py radar/trade_hs.py --surge`(급등 품목), `--series <hs>`(시계열), `--company <회사 id>`(이 회사 BOM 품목과 겹치는 급등)를 필요할 때 본다. 수출입 급등은 단서이고 금지표대로 특정 기업 매출로 바로 잇지 않는다. 금액 증가는 가격과 물량을 나누지 않은 값이다.
+
+**시설 위성 판독(2026-11-03 마스터 지시):** 소유 공장·데이터센터가 있는 회사는 `capacity.sites`에 시설 id를 쓴다. 소유 시설이 없으면 `capacity.sites_none`에 이유를 쓴다. 등록 절차:
+1. 10-K 설비 항목·회사 발표로 시설을 찾아 `knowledge/models/sites/<회사 id>.yaml`에 쓴다(구조는 `scripts/tenbagger/site_view.py` 맨 위). 소유·임차를 구분하고 위치 근거를 적는다.
+2. `py radar/site_imagery.py --site <id>`로 영상·건물 윤곽을 받는다. 건물 이름이 없으면 `--grid <id> [날짜]` 영상을 보고 `--measure <id> <날짜> x,y x,y…`로 윤곽을 재서 `polygon`으로 쓴다.
+3. 처음과 최신 영상을 직접 보고 호기마다 `stage_seen`·`seen_on`·`seen_note`를 쓴다. 보이지 않는 것은 쓰지 않는다. 10m 영상에서 안 보이면 낮은 단계로 쓴다.
+4. 캐파가 공시된 호기는 `capacity`에 출처와 함께 쓴다. 공시가 없는 호기는 비워 두면 엔진이 면적 비교로 추정한다. 비교 시설이 없으면 같은 class의 공시 시설을 등록부에 더한다.

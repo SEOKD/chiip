@@ -2542,3 +2542,115 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-sat-band
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#estimate.band_single
+  value: 0.4
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.4
+    basis: '초안 — 비교 시설이 하나일 때 면적당 캐파 위아래 범위. 같은 종류 시설도 세대·공정 믹스로 밀도가 달라 넓게 둠'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 공시 캐파가 나온 시설을 숨기고 면적 추정과 대조
+    target: 표본 외 상대 오차
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sat-change
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#change.threshold
+  value: 0.15
+  unit: 지수 거리
+  status: prior
+  prior:
+    value: 0.15
+    basis: '초안 — NDVI·NDBI 변화 벡터 길이 문턱. 변화 벡터 분석을 건물 지표에 적용한 초안'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 착공·완공 날짜가 공개된 시설의 변화 시점과 대조
+    target: 착공 탐지 정밀도
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sat-active
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#change.active_share
+  value: 0.05
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.05
+    basis: '초안 — 최근 6개월 변화 픽셀 비율이 이 값 이상이면 공사 활동으로 표시. 가동 시설 P1의 값(약 3%) 위로 둠'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 가동 시설과 공사 시설의 변화 비율 분포 비교
+    target: 공사 활동 판별 정확도
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sat-stage-base
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#stages.부지 정지
+  value: 0.1
+  unit: 진척률
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 부지 정지 단계의 외관 진척 초안'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 회사가 밝힌 착공·완공 일정과 비교
+    target: 일정 대비 오차
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sat-stage-frame
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#stages.기초·골조
+  value: 0.35
+  unit: 진척률
+  status: prior
+  prior:
+    value: 0.35
+    basis: '초안 — 기초·골조 단계의 외관 진척 초안'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 회사가 밝힌 착공·완공 일정과 비교
+    target: 일정 대비 오차
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sat-stage-shell
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#stages.외장 완료
+  value: 0.65
+  unit: 진척률
+  status: prior
+  prior:
+    value: 0.65
+    basis: '초안 — 외장 완료 단계의 외관 진척 초안'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 회사가 밝힌 착공·완공 일정과 비교
+    target: 일정 대비 오차
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-sat-stage-site
+  model: tenbagger.report
+  binding: config/site_imagery.yaml#stages.주변 설비 완료
+  value: 0.85
+  unit: 진척률
+  status: prior
+  prior:
+    value: 0.85
+    basis: '초안 — 주변 설비 완료 단계의 외관 진척 초안'
+    source: https://doi.org/10.1016/0034-4257(94)90144-9
+  fit:
+    method: 회사가 밝힌 착공·완공 일정과 비교
+    target: 일정 대비 오차
+    data: null
+    last_fit: null
+    oos_metric: null

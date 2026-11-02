@@ -11,6 +11,7 @@ routed: [fiscal, zacks, easyconomics, tradingview]   # 데이터 채널 — 장�
 jobs:
   trade-ppi: trade_ppi
   trade-hs: trade_hs
+  site-imagery: site_imagery
   exclusive-leads: exclusive_leads
   tg-channels: tg_channels
 

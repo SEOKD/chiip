@@ -21,6 +21,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ladder import _money  # noqa: E402
+import site_view  # noqa: E402
 
 UNKNOWN = "미확인"
 STAGES = ("발표", "인허가", "착공", "장비 반입", "가동", "양산")
@@ -76,6 +77,7 @@ def check(cap):
     for y in years:
         if _num(y.get("capex")) is None or not _num(y.get("rev")) or y.get("kind") not in KINDS:
             raise ValueError(f"capacity.capex {y.get('period')}: capex·rev·kind({KINDS})가 필요하다")
+    site_view.check(cap)
 
 
 def _cap(v, unit):
@@ -97,6 +99,8 @@ def section(dp):
         if c["now"]:
             head += f" 다 가동하면 지금보다 {c['add_all'] / c['now']:+.0%}, 착공 이상만이면 {c['add_firm'] / c['now']:+.0%}다."
     head += f" {last['period']} CAPEX는 {_money(last['capex'], money)}로 매출의 {last['pct']:.1%}다."
+    if c["now"] is None and site_view.headline(dp, unit):
+        head += " " + site_view.headline(dp, unit)
     if cap.get("summary"):
         head += " " + str(cap["summary"])
     B = [{"type": "hl", "text": head}]
@@ -114,7 +118,8 @@ def section(dp):
         B.append({"type": "p", "text": "공개된 증설 계획은 확인되지 않았다."})
     B.append({"type": "table", "title": "CAPEX와 매출 대비", "headers": ["기간", "CAPEX", "매출", "매출 대비", "구분"],
               "rows": [[y["period"], _money(y["capex"], money), _money(y["rev"], money), f"{y['pct']:.1%}", y["kind"]] for y in c["years"]]})
-    return {"h2": "생산능력", "blocks": B, "_sources": sorted({str(cap["current"]["source"])} | {str(p["source"]) for p in cap["plans"]})}
+    B.extend(site_view.blocks(dp))
+    return {"h2": "생산능력", "blocks": B, "_sources": sorted({str(cap["current"]["source"])} | {str(p["source"]) for p in cap["plans"]} | set(site_view.sources(dp)))}
 
 
 def charts(dp):

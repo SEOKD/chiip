@@ -438,7 +438,29 @@ def chart_scenario(c):
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "portfolio": chart_portfolio}
+def chart_satellite(c):
+    """시설 위성 영상 — 처음과 최신을 나란히(마스터 지시 2026-11-03). 영상은 렌더 때 파일에서 읽어 svg 안에 넣는다. 출처 표기는 약관이 요구한다"""
+    import site_view
+    W, gap, side, g, y = 480, 12, 234, [], 0
+    for p in c.get("panels") or []:
+        uris = [(site_view.image_uri(i["path"]), i["date"]) for i in p.get("images") or []]
+        uris = [u for u in uris if u[0]]
+        if not uris:
+            continue
+        y += 16
+        g.append(f'<text x="0" y="{y}" style="fill:var(--fg);font-size:13px;font-weight:700">{t(p.get("name"))}</text>')
+        y += 6
+        for i, (uri, date) in enumerate(uris[:2]):
+            x = i * (side + gap)
+            g.append(f'<image x="{x}" y="{y}" width="{side}" height="{side}" href="{uri}"/>')
+            g.append(f'<text x="{x}" y="{y + side + 14}" style="fill:var(--mut);font-size:11.5px">{t(date)}</text>')
+        y += side + 30
+        g.append(f'<text x="0" y="{y}" style="fill:var(--mut);font-size:10px">{t(p.get("credit"))}</text>')
+        y += 12
+    return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>' if g else ""
+
+
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "portfolio": chart_portfolio, "satellite": chart_satellite}
 
 
 def figures(d):

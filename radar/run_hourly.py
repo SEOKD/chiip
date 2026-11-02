@@ -44,6 +44,7 @@ JOBS = [  # (job id, module, interval_min)
     ("self-heal", "self_heal", 60),  # 수집 채널 이상 탐지·재시도(모델 없음, 2026-11-02 마스터 지시)
     ("trade-ppi", "trade_ppi", 1440),
     ("trade-hs", "trade_hs", 1440),  # HS 시계열·급등 품목(모델 없음, 2026-11-02 마스터 지시)  # 6개국 무역·PPI 세부 항목(모델 없음, 2026-11-02 마스터 지시)
+    ("site-imagery", "site_imagery", 10080),  # 생산시설 위성 영상·변화 측정, 주 1회(모델 없음, 2026-11-03 마스터 지시)
     ("exclusive-leads", "exclusive_leads", 360),  # 노션 Exclusive Source 단서의 공개 근거 후보(모델 없음, 판정은 펄스 회차, 2026-11-02 마스터 지시)
     ("proviser-channels", "channel_scout", 60),  # Proviser 회차의 채널 탐색 누락을 장부에 적는다(모델 없음, 마스터 지시 2026-11-01)
     ("verifier-lock", "verifier_lock", 1440),  # 평가기 잠금 일일 확인(ADR-013 H4)

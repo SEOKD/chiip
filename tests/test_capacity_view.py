@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
 import capacity_view as cv  # noqa: E402
 
-CAP = {"as_of": "2026-09-30", "unit": "MW/년", "summary": "증설이 병목이다.",
+CAP = {"as_of": "2026-09-30", "unit": "MW/년", "summary": "증설이 병목이다.", "sites_none": "임차 시설뿐이다",
        "current": {"nameplate": 1000, "utilization": 0.8, "basis": "공시", "source": "10-K"},
        "plans": [{"name": "A 공장", "add": 500, "stage": "착공", "online": "2027-06", "capex": 1.0, "blocker": "변압기", "source": "s1"},
                  {"name": "B 공장", "add": 300, "stage": "발표", "online": "미확인", "capex": "미확인", "blocker": "인허가", "source": "s2"},
