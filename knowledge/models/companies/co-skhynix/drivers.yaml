@@ -1,0 +1,98 @@
+auto: true
+id: co-skhynix
+name: SK하이닉스
+ticker: '000660'
+unit: BKRW
+unit_usd: 743000.0
+industry: semiconductor
+region_mix:
+  KR: 1.0
+tax: 0.24
+horizon: 10
+as_of: '2026-11-02'
+market:
+  date: '2026-11-02'
+  price: 1484000
+  shares: 0.705173
+  net_debt: -87144.0
+  source: 가격 = TradingView 11/2 13:12 장중. 주식 수 705,173,324주 = 3Q 배당 공시(6-K 10/28)
+    총액 ₩14.1035T ÷ 주당 ₩20,000, 곧 자사주 25,318,968주 제외 값. 현금 = 9/30 ₩114.5T − 10/1~21
+    자사주 취득 ₩9.03T(6-K 10/26). 주식 수와 시점을 맞췄다. 차입 = 9/30 이자부 부채 ₩15.8T + 6/30 리스 ₩2.5T.
+    3Q 배당 ₩14.1T와 새 자사주 ₩20T는 아직 현금에서 빼지 않았다
+rev0: 360426.5
+ic0: 211856.0
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.6669
+      end: 0.03
+      decay: 0.1
+    margin:
+      m0: 0.808
+      target: 0.42
+      year_target: 5
+      lr: 0.42
+      lam: 0.35
+      anchors:
+      - 0.828
+      - 0.774
+    s2c: 1.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.9039
+      end: 0.034999999999999996
+      decay: 0.15000000000000002
+    margin:
+      m0: 0.808
+      target: 0.44
+      year_target: 5
+      lr: 0.42
+      lam: 0.25
+      anchors:
+      - 0.828
+      - 0.774
+    s2c: 1.15
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.3736
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.808
+      target: 0.4
+      year_target: 5
+      lr: 0.42
+      lam: 0.5
+      anchors:
+      - 0.828
+      - 0.774
+    s2c: 0.85
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 360426.5
+  growth: 컨센서스 1년차 66.7%, 2년차 15.1%
+  margin: 1~2년차 컨센서스 82.8%, 77.4% 고정 → 목표 42%(5년차, 덮어쓰기) → 장기 수렴 42%
+  s2c: 재무 재구성 증분 매출/투하자본 1.27 → 덮어쓰기 1.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 37.4%~90.4%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: 매출은 FY2028 컨센서스 부근에서 정체한다고 둔다. 컨센서스 FY2029는 표본 2명이고 이미 감소다. 장기 이익률 42%는
+    2017~2025년 평균 약 26%에 HBM·LTA 몫을 더한 판단이다. 2023년 영업적자가 있어 지금 80%를 영구값으로 쓰지 않는다.
+    매출÷투하자본 1.0은 2027 CAPEX 대폭 증가를 반영했다
+  shares: 완전 희석 = 기본 0.705173324(2026-10-28) + 옵션·RSU·워런트·전환 0.0000 — F-1/A에서 교환사채
+    몫은 현금 상환·교환 진행 뒤 잔액을 확인하지 못했다. 새 자사주 ₩20T 중 ₩10
+notes:
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
+- '어닝콜 위험: 순이익 −57.7% QoQ(투자자산 평가손 ₩22.9T, 환손실 ₩11.6T)'
+- '어닝콜 위험: 낸드 비트 감소와 ASP 상승률 둔화'
+- '어닝콜 위험: PC·모바일 출하 감소를 회사가 인정'
+evidence:
+- '3Q 잠정실적 6-K 2026-10-28: https://www.sec.gov/Archives/edgar/data/2120882/000119312526434994/d162547d6k.htm'
+- '주주환원 계획 6-K 2026-10-28: https://www.sec.gov/Archives/edgar/data/2120882/000119312526435008/d236990d6k.htm'
+- 'F-1/A 2026-07-06: https://www.sec.gov/Archives/edgar/data/2120882/000119312526295501/d32785df1a.htm'

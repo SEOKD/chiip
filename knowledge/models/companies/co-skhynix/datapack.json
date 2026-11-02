@@ -1,0 +1,1283 @@
+{
+ "id": "co-skhynix",
+ "name": "SK하이닉스",
+ "ticker": "000660",
+ "as_of": "2026-11-02",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 743000.0,
+ "industry": "semiconductor",
+ "region_mix": {
+  "KR": 1.0
+ },
+ "tax": 0.24,
+ "main_metric": "eps",
+ "main_metric_why": "증권사 다수가 EPS × P/E로 값을 매긴다. 다만 EPS는 투자자산 평가손익으로 크게 흔들려 3Q는 영업이익으로 함께 읽는다",
+ "profile": {
+  "price": 1484000,
+  "shares_basic": 0.705173324,
+  "shares_date": "2026-10-28",
+  "cash": 105470.0,
+  "debt": 18326.0,
+  "source": "가격 = TradingView 11/2 13:12 장중. 주식 수 705,173,324주 = 3Q 배당 공시(6-K 10/28) 총액 ₩14.1035T ÷ 주당 ₩20,000, 곧 자사주 25,318,968주 제외 값. 현금 = 9/30 ₩114.5T − 10/1~21 자사주 취득 ₩9.03T(6-K 10/26). 주식 수와 시점을 맞췄다. 차입 = 9/30 이자부 부채 ₩15.8T + 6/30 리스 ₩2.5T. 3Q 배당 ₩14.1T와 새 자사주 ₩20T는 아직 현금에서 빼지 않았다"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-10-28",
+  "source": "F-1/A에서 교환사채 몫은 현금 상환·교환 진행 뒤 잔액을 확인하지 못했다. 새 자사주 ₩20T 중 ₩10T는 임직원 보상용이라 소각되지 않는다. 약 746만 주(₩1,341,000 기준), 주식 수의 1.1%"
+ },
+ "financials": {
+  "rev_ttm": 269337.2,
+  "ebit_ttm": 200656.3,
+  "invested_capital": 211856.0,
+  "capex_ttm": 35232.0,
+  "da_ttm": 15630.0,
+  "sbc_ttm": 0.0,
+  "s2c": 1.27,
+  "rev_growth_ttm": 2.203,
+  "basis": "K-IFRS 연결",
+  "note": "TTM = 4Q25~3Q26. 3Q는 잠정치. CAPEX는 3Q 현금흐름표 전이라 3Q25~2Q26 합. 감가상각 3Q ₩4.3T는 콜"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 360426.5,
+   "FY2027": 600779.0,
+   "FY2028": 691790.0
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.808,
+   "FY2027": 0.828,
+   "FY2028": 0.774
+  },
+  "margin_basis": "gaap",
+  "rev_low": {
+   "FY2027": 495095.0
+  },
+  "rev_high": {
+   "FY2027": 686219.0
+  },
+  "n_analysts": 8,
+  "revisions_90d": {
+   "eps": 0.242
+  },
+  "quarters_est": {
+   "2026Q4": 123916.0
+  },
+  "quarters_act": {
+   "2026Q1": 52576.3,
+   "2026Q2": 79318.7,
+   "2026Q3": 104615.5
+  },
+  "eps_quarters_est": {
+   "2026Q4": 110786
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "조 원",
+    "actual": 32.827,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "조 원",
+    "actual": 19.17,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 21557,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "조 원",
+    "actual": 52.576,
+    "est": 50.279,
+    "est_src": "easyconomics·yfinance $33.95B, 분기 환율 환산",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "조 원",
+    "actual": 37.61,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 56670,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "조 원",
+    "actual": 79.319,
+    "est": 80.63,
+    "est_src": "easyconomics·yfinance $55.71B, 분기 환율 환산",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "조 원",
+    "actual": 60.543,
+    "est": null,
+    "est_src": null,
+    "basis": null
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 131478,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "조 원",
+    "actual": 104.615,
+    "est": 94.43,
+    "est_src": "easyconomics·yfinance $71.35B, 분기 환율 환산",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "조 원",
+    "actual": 83.334,
+    "est": 76.964,
+    "est_src": "FnGuide 10/19 보도",
+    "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 55500,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 37,
+   "buy": 4,
+   "hold": 2,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-02"
+  },
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": "2026-10-30",
+   "source": "ADR 애널리스트 추정 이력($/ADS)을 ₩1,345·ADS 10개 = 1주로 고정 환산. ADR 상장 뒤 값만 있다",
+   "rows": [
+    [
+     "A",
+     "2026-12-31",
+     "2026-07-27",
+     285947,
+     2
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-07",
+     342706,
+     8
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-09-14",
+     345463,
+     8
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-10-28",
+     347400,
+     8
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-10-30",
+     340070,
+     8
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-07-27",
+     413184,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-07",
+     436587,
+     8
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-09-15",
+     439290,
+     8
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-28",
+     439802,
+     8
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-29",
+     484630,
+     8
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-30",
+     513064,
+     8
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-07-27",
+     502896,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-08-07",
+     485451,
+     6
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-09-11",
+     502774,
+     6
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-10-29",
+     572123,
+     6
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-10-30",
+     599991,
+     6
+    ]
+   ]
+  },
+  "revisions": {
+   "from_date": "2026-07-27",
+   "to_date": "2026-10-30",
+   "from_label": "2Q 실적 직전",
+   "source": "ADR 애널리스트 추정 이력, 같은 연도끼리, ₩1,345 고정 환산",
+   "rows": [
+    {
+     "period": "2026",
+     "metric": "EPS",
+     "from": 285947,
+     "to": 340070
+    },
+    {
+     "period": "2027",
+     "metric": "EPS",
+     "from": 413184,
+     "to": 513064
+    },
+    {
+     "period": "2028",
+     "metric": "EPS",
+     "from": 502896,
+     "to": 599991
+    }
+   ]
+  },
+  "price_window": {
+   "from": 1550000,
+   "to": 1484000,
+   "note": "7/28 종가 → 11/2 장중"
+  },
+  "note": "FY2026 = 1~3Q 실적 + 4Q 컨센서스($92.1B, ₩1,345 환산 ₩123.9T). FY2027·28 매출·EBIT = ADR 컨센서스 달러값을 환산. FY2028 이익률은 3Q 전 시장 집계 ₩507.2T ÷ ₩655.5T. 분기 EPS 추정은 원화 집계 ₩110,786. 3Q 후 FY2027 EPS 범위 ₩472,729~₩527,796(IB 두 곳). 표본 8명"
+ },
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "매출 가이던스는 없다. 4Q DRAM 비트 +20%대 중반 QoQ, 낸드 비트 +한 자릿수 중반 QoQ. 2027 달성 가능 수요 DRAM +20%대 중반·낸드 +10%대 후반. 2026 CAPEX ₩40T대 후반, 2027 '크게 증가'",
+  "source": "3Q 콜 2026-10-28",
+  "next": {}
+ },
+ "call": {
+  "date": "2026-10-28",
+  "prev_date": "2026-07-29",
+  "tone": "up",
+  "tone_delta": 0.5,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_3q": 104615,
+   "op_3q": 83334,
+   "opm_3q": 0.797,
+   "ebitda_margin_3q": 0.84,
+   "net_cash": 98700,
+   "lta_customers": 14
+  },
+  "new_topics": [
+   "DRAM·HBM 2029년까지 사실상 완판(협의 물량 포함)",
+   "LTA 14곳·27~28 캐파 50% 이상·보증금",
+   "HBM4 4Q에 HBM3E 역전",
+   "주주환원 ₩100T",
+   "스택 축소 질문에 다이당 용량 상향으로 상쇄 설명",
+   "KV 캐시 티어링·HBF"
+  ],
+  "dropped_topics": [
+   "솔리다임 IPO 검토 중단",
+   "2Q 콜의 분기 비트 표현 대신 연간 달성 가능 수요로 답변"
+  ],
+  "risks": [
+   "순이익 −57.7% QoQ(투자자산 평가손 ₩22.9T, 환손실 ₩11.6T)",
+   "낸드 비트 감소와 ASP 상승률 둔화",
+   "PC·모바일 출하 감소를 회사가 인정",
+   "2027 CAPEX 대폭 증가",
+   "AI 투자 속도 조절 질문이 첫 질문"
+  ],
+  "qa_focus": [
+   "Citi: AI 수익화와 투자 지속",
+   "메리츠: 배당·자사주 배분",
+   "골드만삭스: LTA 의미",
+   "BofA: 과잉 증설 대응",
+   "제이피모건: HBM4·커스텀",
+   "SK증권: 스택 축소",
+   "미래에셋: 4F²",
+   "NH: KV 캐시"
+  ],
+  "source": "SK하이닉스 3Q 콜 전문(2026-10-28)·2Q 콜 요약(2026-07-29)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "LTA",
+    "label": "LTA 14곳",
+    "prior": "약 10곳",
+    "latest": "14곳, 27~28 캐파 50% 이상, 5년 기준, 보증금 포함",
+    "driver": "growth_decay",
+    "shift": -0.02,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "완판 기간",
+    "label": "2029 완판",
+    "prior": "언급 없음",
+    "latest": "DRAM·HBM 2029년까지 사실상 완판, 협의 물량 포함",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "HBM 수익성",
+    "label": "HBM 가격 협상",
+    "prior": "협상 중",
+    "latest": "2027 물량·가격 타결, 일반 DRAM과 수익성 격차 축소",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "2027 CAPEX",
+    "label": "CAPEX 대폭 증가",
+    "prior": "2026 ₩40T대 후반",
+    "latest": "2027 크게 증가, IB 추정 ₩61T",
+    "driver": "s2c",
+    "shift": -0.05,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "낸드 가격",
+    "label": "낸드 ASP 둔화",
+    "prior": "ASP +50%대 중반",
+    "latest": "ASP +20%대 중반, 비트 소폭 감소",
+    "driver": "growth_start",
+    "shift": -0.02,
+    "confidence": 1.0,
+    "source": "2Q·3Q 콜"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "HBM 스택",
+    "label": "스택 축소",
+    "prior": "언급 없음",
+    "latest": "일부 고객 사양 조정 인정, 12단→8단도 다이당 용량으로 상쇄",
+    "driver": "growth_start",
+    "shift": -0.01,
+    "confidence": 0.3,
+    "source": "3Q 콜"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 11/2. 미국 두 곳 Fwd 1Y P/E = ADR·미국 상장 Street 값, 삼성전자·키옥시아·난야는 다음 분기 EPS 추정 × 4(NTM 근사). 환율 ₩1,345/$, ₩9/¥, ₩43.5/NT$ 근사",
+ "peers": [
+  {
+   "ticker": "마이크론",
+   "key": "MU",
+   "rev": 179138,
+   "ebit_margin": 0.75,
+   "mcap": 1346365,
+   "pb": 7.23,
+   "debt": 6966,
+   "cash": 58455,
+   "ev_sales": 7.2,
+   "growth": 1.09,
+   "pe_fwd": 4.83,
+   "pe_fwd2": 4.17,
+   "ev_ebitda_fwd": 3.6,
+   "ntm_ebit_margin": 0.75,
+   "ntm_growth": 1.09
+  },
+  {
+   "ticker": "샌디스크",
+   "key": "SNDK",
+   "rev": 38966,
+   "ebit_margin": 0.727,
+   "mcap": 223721,
+   "pb": 9.14,
+   "debt": 270,
+   "cash": 7002,
+   "ev_sales": 5.56,
+   "growth": 0.72,
+   "pe_fwd": 5.04,
+   "pe_fwd2": 4.51,
+   "ev_ebitda_fwd": 4.3,
+   "ntm_ebit_margin": 0.727,
+   "ntm_growth": 0.72
+  },
+  {
+   "ticker": "삼성전자",
+   "key": "005930",
+   "rev": 594463,
+   "ebit_margin": 0.461,
+   "mcap": 1432076,
+   "pb": 3.0,
+   "debt": 20000,
+   "cash": 150000,
+   "ev_sales": 2.19,
+   "growth": 0.216,
+   "pe_fwd": 3.57,
+   "ntm_ebit_margin": 0.461,
+   "ntm_growth": 0.216
+  },
+  {
+   "ticker": "키옥시아",
+   "key": "285A",
+   "rev": 52143,
+   "ebit_margin": 0.698,
+   "mcap": 199566,
+   "pb": 6.26,
+   "debt": 7225,
+   "cash": 12576,
+   "ev_sales": 3.72,
+   "growth": 0.75,
+   "pe_fwd": 2.87,
+   "ntm_ebit_margin": 0.698,
+   "ntm_growth": 0.75
+  },
+  {
+   "ticker": "난야테크놀로지",
+   "key": "2408",
+   "rev": 7852,
+   "ebit_margin": 0.575,
+   "mcap": 68083,
+   "pb": 4.93,
+   "debt": 987,
+   "cash": 9466,
+   "ev_sales": 7.59,
+   "growth": 1.27,
+   "pe_fwd": 4.15,
+   "ntm_ebit_margin": 0.575,
+   "ntm_growth": 1.27
+  }
+ ],
+ "multiples_now": {
+  "pe_fwd": 2.97,
+  "pe_fwd2": 2.47,
+  "pe_fwd3": 3.08,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-11-02",
+  "ntm": {
+   "eps": 499506,
+   "ebit": 481315,
+   "revenue": 564651,
+   "rev_ttm": 269337.2
+  },
+  "horizons": {
+   "2": {
+    "eps": 600475,
+    "ext": 0
+   },
+   "3": {
+    "eps": 481221,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "adr_consensus"
+  },
+  "source": "ADR 분기 EPS 컨센서스를 ₩1,345·ADS 10개 = 1주로 환산. Fwd 3Y는 4Q28 + FY2029 × 0.75이고 FY2029는 표본 2명"
+ },
+ "history": {},
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "LTA가 하방을 막는지 금액이 공개되지 않았고 2027 CAPEX가 크게 늘어 할증을 주지 않는다. 다만 HBM 가격 타결과 순현금은 동종보다 낫기에 할인도 하지 않는다"
+ },
+ "next_event": {
+  "date": "2027-01-28",
+  "tag": "4Q26 실적(TradingView 예상일)"
+ },
+ "terms": {
+  "ADR": "미국 주식예탁증서",
+  "ADS": "ADR 한 단위",
+  "CSP": "대형 클라우드 사업자",
+  "GTC": "엔비디아 개발자 행사",
+  "PC": "개인용 컴퓨터",
+  "SSD": "낸드 저장 장치",
+  "LTA": "장기 공급 계약",
+  "HBM": "AI 가속기 옆에 쌓는 고대역폭 메모리",
+  "HBM4": "6세대 고대역폭 메모리",
+  "HBM3E": "5세대 고대역폭 메모리",
+  "HBM4E": "HBM4 다음 세대 고대역폭 메모리",
+  "DDR5": "서버·PC용 범용 DRAM 규격",
+  "LPDDR5": "저전력 DRAM 규격",
+  "SOCAMM": "서버용 저전력 메모리 모듈",
+  "M15X": "청주 신규 DRAM·HBM 팹",
+  "M17": "청주 신규 낸드 거점",
+  "Y1-1": "용인 1기 첫 팹",
+  "P&T7": "청주 패키징 공장",
+  "KV": "AI 추론의 중간 계산값",
+  "HBF": "낸드 기반 고대역폭 메모리",
+  "eSSD": "기업용 SSD",
+  "4F²": "셀 면적을 줄인 차세대 DRAM 구조",
+  "3D DRAM": "셀을 수직으로 쌓는 DRAM",
+  "VEU": "미국 수출통제 포괄 허가",
+  "CMM-Hybrid": "CXL 기반 메모리·SSD 혼합 제품",
+  "SALT-KV": "KV 저장 위치를 고르는 소프트웨어",
+  "1c": "10나노급 6세대 DRAM 공정",
+  "Solidigm": "SK하이닉스 미국 낸드 자회사"
+ },
+ "moat": {
+  "summary": "해자는 HBM 양산 경험과 자금력이다. 점유율은 내려가는 중이고 LTA의 가격 하단은 공개되지 않았다.",
+  "items": [
+   {
+    "kind": "HBM 양산 수율과 세대 선점",
+    "verdict": "보통",
+    "claim": "12단 적층과 후공정 전체 수율을 먼저 끌어올린 경험이 물량을 만든다",
+    "evidence": "회사는 HBM4가 계획 수율을 넘어 목표를 올렸다고 밝혔다. 숫자는 없다. 외부 추정 HBM 비트 점유율은 2025년 59% → 2026년 50%다",
+    "quant": "고객 요청 물량이 공급 가능량의 2배 이상",
+    "falsifier": "HBM4E에서 삼성전자가 첫 공급사가 되거나 2027년 점유율이 45% 아래로 내려간다"
+   },
+   {
+    "kind": "장기 계약과 보증금",
+    "verdict": "보통",
+    "claim": "5년 LTA가 물량을 묶고 보증금이 취소를 막는다",
+    "evidence": "14곳, 2027~28년 캐파의 50% 이상. 다만 가격은 합의된 범위 안에서 시장을 따라간다고 설명했고 보증금 액수는 없다",
+    "quant": "캐파 50% 이상",
+    "falsifier": "3Q 분기보고서에 계약부채가 늘지 않거나 고객이 물량을 재협상한다"
+   },
+   {
+    "kind": "자금력과 증설 선택권",
+    "verdict": "강함",
+    "claim": "순현금으로 호황에 증설하고 불황에 버틸 수 있다",
+    "evidence": "9/30 순현금 ₩98.7T, 부채비율 5%. 건물을 먼저 짓고 클린룸은 단계적으로 연다",
+    "quant": "연 CAPEX ₩40T대 후반의 약 2년 치",
+    "falsifier": "2027 CAPEX와 환원 합계가 영업현금흐름을 넘는다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-02",
+  "summary": "연결이 닿는 매출의 핵심은 최대 고객 23.9%다. 연결이 그 매출을 만들었다고 볼 근거는 없다.",
+  "people": [
+   {
+    "name": "최태원",
+    "role": "SK그룹 회장",
+    "since": "미확인",
+    "profile": "최대주주 SK스퀘어(20.07%) 위의 SK 지주 체계를 이끈다",
+    "business": "2026년 3월 GTC, 6월 서울 회동에서 엔비디아 CEO와 공개 접촉",
+    "political": "9월 코리아소사이어티 갈라 참석. 정치 성향은 쓰지 않는다",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "F-1/A, 언론 보도 2026-03·06·09"
+   },
+   {
+    "name": "곽노정",
+    "role": "대표이사 사장",
+    "since": "미확인",
+    "profile": "3Q 콜에서 솔리다임 IPO 중단을 직접 설명했다",
+    "business": "6월 엔비디아 CEO 회동 배석",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q 콜, 언론 보도 2026-06"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "엔비디아로 추정되는 최대 고객",
+    "strength": 3,
+    "exposure": 39862,
+    "basis": "F-1/A 최대 고객 2025년 23.9%, 1Q26 14.8%. 고객명 공시는 없고 TTM에 1Q 비중을 곱했다",
+    "evidence": "F-1/A, 공개 회동 보도"
+   },
+   {
+    "network": "정계",
+    "link": "미국 인디애나 보조금",
+    "strength": 4,
+    "exposure": 616,
+    "basis": "조건부 직접 보조 최대 $458M, ₩1,345 환산. 마일스톤 조건",
+    "evidence": "F-1/A, 2024-12 상무부 발표"
+   },
+   {
+    "network": "동문",
+    "link": "공개 자료 없음",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "미확인"
+   },
+   {
+    "network": "사모임",
+    "link": "공개 자료 없음",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "미확인"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-10-28",
+  "backlog_label": "LTA 잔고",
+  "summary": "회사는 수주잔고 금액을 공개하지 않는다. 확인되는 것은 LTA 고객 수·캐파 비중과 증설 일정이다. 금지표대로 LTA는 매출 확정이 아니다.",
+  "items": [
+   {
+    "name": "2027 HBM 물량·가격 타결",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2027-01",
+    "end": "2027-12",
+    "speed": "주요 고객과 협상을 끝냈다고 3Q 콜에서 밝혔다",
+    "blockers": [
+     "스택 축소",
+     "고객의 HBM 사양 조정"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "LTA 14개 고객",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2027-01",
+    "end": "2031-12",
+    "speed": "분기 사이 약 10곳 → 14곳. 2027~28 캐파의 50% 이상",
+    "blockers": [
+     "가격은 합의 범위 안 변동",
+     "보증금 액수 비공개",
+     "고객 자금 조달"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "M15X 램프",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "연말 풀캐파 목표. 설계 캐파 8.5만 장은 IB 추정",
+    "blockers": [
+     "후공정 인력·장비"
+    ],
+    "source": "3Q 콜, IB 요지"
+   },
+   {
+    "name": "용인 1기 Y1-1",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2Q27 가동은 IB 추정. 회사는 클린룸을 단계적으로 연다고 했다",
+    "blockers": [
+     "수요 확인에 따른 장비 반입 조절"
+    ],
+    "source": "3Q 콜, IB 요지"
+   },
+   {
+    "name": "인디애나 패키징",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-01",
+    "end": "2028-12",
+    "speed": "약 ₩5.9T, 첫 클린룸 2H28 목표",
+    "blockers": [
+     "재지정 소송",
+     "보조금 마일스톤"
+    ],
+    "source": "F-1/A"
+   },
+   {
+    "name": "솔리다임 미국 낸드 신공장",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "₩60T 보도에 회사는 확정된 바 없다고 공시. 한 달 안에 다시 공시",
+    "blockers": [
+     "IPO 자금 조달 중단",
+     "낸드 ASP 둔화"
+    ],
+    "source": "6-K 10/29"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-10-28",
+   "tag": "3Q 실적·주주환원 ₩100T",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "메모리 동반 하락",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "솔리다임 IPO 검토 중단 공시",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-19",
+   "tag": "연중 저점권 ₩1.25M대",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-19",
+   "tag": "₩40T 자사주 결의",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-29",
+   "tag": "2Q 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-07-13",
+   "tag": "−15.4% 일 낙폭, ADR 상장 뒤 차익실현",
+   "kind": "sector"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-29",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-04-23",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-07-10",
+   "kind": "내러티브",
+   "tag": "나스닥 ADR 상장",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-29",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-08-19",
+   "kind": "내러티브",
+   "tag": "₩40T 자사주 결의",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-28",
+   "kind": "실적",
+   "tag": "3Q26 실적·환원 ₩100T",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "narrative": {
+  "as_of": "2026-11-02",
+  "stage": "컨센서스",
+  "crowding": "셀사이드는 쏠렸고 가격은 믿지 않는다",
+  "summary": "메모리가 더 이상 순환주가 아니라는 이야기를 셀사이드는 믿고 주가는 믿지 않는다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "투자의견",
+      "43명 중 Buy 계열 41",
+      "매도 0",
+      "TradingView 11/2"
+     ],
+     [
+      "평균 목표주가",
+      "₩3,250,762",
+      "현재가의 2.2배",
+      "TradingView 11/2"
+     ],
+     [
+      "IB 요지(마스터 노션, 라이선스)",
+      "Citi ₩3,000,000, 제이피모건 ₩2,900,000",
+      "제이피모건 상향, FY27~28 EPS +15~21%",
+      "10/28 리뷰"
+     ]
+    ],
+    "read": "목표가는 시장 기대의 증거일 뿐이다. 7배 P/E나 합산가치는 모두 업황이 길다는 가정에서 나온다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "ADR 프리미엄",
+      "+42.6%",
+      "같은 주식인데 나스닥이 코스피보다 비싸다",
+      "easyconomics 11/2"
+     ],
+     [
+      "13F 보유 기관",
+      "210곳",
+      "ADR 기준",
+      "9/30"
+     ],
+     [
+      "고점 대비",
+      "−50%",
+      "6월 ₩2,987,000 → ₩1,484,000",
+      "TradingView"
+     ]
+    ],
+    "read": "달러 자금은 비싸게 사고 한국 시장은 싸게 판다. 어느 쪽이 맞는지는 전환 경로가 가른다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧 SKHY",
+      "상위 집계 없음",
+      "MU 17위·SNDK 12위",
+      "ApeWisdom 11/2"
+     ],
+     [
+      "공개 텔레그램",
+      "해당 글 없음",
+      "수집 채널 기준",
+      "11/2"
+     ],
+     [
+      "딘스티커",
+      "3Q 뉴팩트 정리",
+      "마스터 채널",
+      "10/28"
+     ]
+    ],
+    "read": "리테일 관심은 미국에서 MU·SNDK로 잡히고 SKHY는 순위에 없다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "피크아웃 보도",
+      "7월 이후 지속",
+      "메모리 가격 부담·고객 저항",
+      "국내외 보도"
+     ],
+     [
+      "루빈 메모리 축소 보도",
+      "일자 미확인",
+      "랙당 55TB → 28TB 공급망 보도",
+      "2차 보도"
+     ]
+    ],
+    "read": "언론의 질문은 3Q 숫자가 아니라 언제 꺾이느냐다"
+   }
+  },
+  "factors": [
+   {
+    "name": "LTA가 사이클을 바꾼다",
+    "thesis": "5년 계약과 보증금이 하락기를 막는다",
+    "inputs": "성장·위험",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "27~28 캐파 50% 이상, 14곳",
+    "status": "강화",
+    "falsifier": "분기보고서 계약부채가 작거나 LTA 재협상 보도",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "HBM 가격 상승",
+    "thesis": "HBM4 값이 올라 일반 DRAM과 수익성 차이가 준다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "HBM OPM 70%대 후반 추정(IB), 일반 DRAM 80%대 중반",
+    "status": "강화",
+    "falsifier": "1H27 HBM 이익률이 하락",
+    "source": "3Q 콜, IB 요지"
+   },
+   {
+    "name": "주주환원",
+    "thesis": "FCF 50% 이상 환원이 주가 하단이 된다",
+    "inputs": "자본 배분",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "FY26 ₩100T, 시가총액의 9.6%",
+    "status": "강화",
+    "falsifier": "2027 CAPEX로 환원이 줄어든다",
+    "source": "6-K 10/28"
+   },
+   {
+    "name": "ADR 프리미엄 해소",
+    "thesis": "나스닥 값이 맞다면 코스피가 따라 올라간다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "+42.6%, 패리티 ₩2,114,508",
+    "status": "유지",
+    "falsifier": "프리미엄이 ADR 하락으로 해소된다",
+    "source": "easyconomics 11/2"
+   },
+   {
+    "name": "반대: 2027년 피크",
+    "thesis": "수요 파괴·증설·AI 자금이 겹쳐 1H27에 가격이 꺾인다",
+    "inputs": "성장·이익률",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "Fwd 1Y P/E 3배가 곧 이익 감소 가정이다",
+    "status": "유지",
+    "falsifier": "1Q27 고정거래가격 상승과 HBM 2028 협상 상향",
+    "source": "주가, 3Q 콜 질문"
+   }
+  ],
+  "lead": {
+   "summary": "기업가치는 지금 이익이 아니라 이 이익이 몇 년 가느냐로 정해진다. 3Q OPM 80%는 확인됐다. 시장은 그래도 Fwd 1Y P/E 3배를 준다.",
+   "value_story": "분기 영업이익 ₩83.3T면 연 ₩333T이고, 시가총액은 ₩1,046T다. 이 이익이 3년 남짓 이어지면 시가총액을 채운다. 시장은 그만큼 오래가지 않는다고 본다. 회사는 LTA·완판·환원으로 그 반대를 말한다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 3.0배로 마이크론 4.8배, 샌디스크 5.0배보다 낮다. 같은 추정으로 ADR은 4.2배다.",
+    "eps": "FY2027 EPS 컨센서스는 7월 ₩413,000에서 10월 ₩513,000으로 +24%다(₩1,345 고정 환산). 리비전은 올랐는데 주가는 내렸다."
+   },
+   "why_excited": "메모리가 AI의 병목이라는 이야기로 주가는 2025년 10월 ₩428,000에서 2026년 6월 ₩2,987,000까지 7배가 됐다. 7월 ADR 상장 뒤 피크아웃 우려가 번졌고, 10월에는 AI 투자 속도와 HBM 사양 축소 우려까지 겹쳐 장중 고점 대비 −50%가 됐다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "일반 시장가 판매에서 5년 LTA로 일부 이동한다. 캐파 50% 이상을 묶었다.",
+     "evidence": "14곳, 보증금. 금액과 가격 하단은 비공개다",
+     "drives": "multiple",
+     "status": "진행 중",
+     "falsifier": "다음 하락기에 LTA 가격이 재협상된다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "HBM4가 4Q에 HBM3E를 넘고 서버 DDR5 출하가 +40% 이상이었다.",
+     "evidence": "3Q 콜",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "HBM 비트 성장 30% 미달"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "회사는 6F²를 끝까지 쓰고 4F²·3D DRAM은 뒤로 미룬다. 낸드는 321단 비중을 50%로 올린다.",
+     "evidence": "3Q 콜. 경쟁사의 신구조 도입 시점은 미확인",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "경쟁사가 4F² 양산을 먼저 공시"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(납품 리드타임을 공개하지 않아 피어와 비교할 수 없다). 대신 M15X 연말 풀캐파 목표로 잰다.",
+     "evidence": "3Q 콜",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "4Q DRAM 비트가 +20%대 중반을 밑돈다"
+    },
+    {
+     "lens": "M&A",
+     "change": "솔리다임 IPO를 접었고 ₩60T 미국 공장 보도는 미확정이다. 대형 M&A 준비설이 있다(독점 단서 FI-0005, 공개 미확인).",
+     "evidence": "6-K 10/22·10/29. 키옥시아 간접 지분 차익은 특별배당으로 돌린다",
+     "drives": "both",
+     "status": "미확인",
+     "falsifier": "확정 공시"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "고객 CAPEX가 메모리로 오고, 회사 CAPEX는 장비사로 간다. 회사는 2027 글로벌 CSP CAPEX +60% 이상 추정을 인용했다.",
+     "evidence": "3Q 콜. 인용 수치는 외부 조사기관 값이고 회사 공급 몫은 미확인",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "빅테크 2027 CAPEX 가이던스 하향"
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "HBM",
+     "what": "GPU 옆에 쌓는 AI용 메모리",
+     "use": "AI 가속기",
+     "money": "매출 비중 비공개, FY26 HBM 비트 +30% 목표"
+    },
+    {
+     "kind": "제품",
+     "name": "서버 DRAM(DDR5)·저전력 모듈",
+     "what": "데이터센터 서버 메모리",
+     "use": "AI·일반 서버",
+     "money": "DRAM 매출 3Q ₩78.0T(IB 추정), ASP +20%대 후반"
+    },
+    {
+     "kind": "제품",
+     "name": "낸드·eSSD",
+     "what": "데이터 저장 칩과 기업용 SSD",
+     "use": "AI 추론 캐시, 데이터센터 저장",
+     "money": "낸드 매출 3Q ₩25.8T(IB 추정)"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "미국 CHIPS 직접 보조 최대 $458M과 대출 최대 $570M이 조건부로 걸려 있다.",
+     "evidence": "F-1/A. 인디애나 2H28 목표, 마일스톤 지급",
+     "drives": "revision",
+     "status": "조건부",
+     "falsifier": "지급 조건 미충족",
+     "house": {
+      "level": 5,
+      "why": "2022 CHIPS법 본회의 통과"
+     },
+     "senate": {
+      "level": 5,
+      "why": "2022 CHIPS법 본회의 통과"
+     }
+    },
+    "orders": {
+     "change": "2026년 1월 232조 포고령은 일부 첨단 칩 25%이고 데이터센터 등 용도 면제가 있다. 메모리 별도 관세는 이번 조사에서 확인하지 못했다.",
+     "evidence": "2026-01-14 포고령 해설",
+     "drives": "multiple",
+     "status": "미확인",
+     "falsifier": "메모리 포함 품목 관세 공표",
+     "house": {
+      "level": 1,
+      "why": "포고령이라 의결이 없다"
+     },
+     "senate": {
+      "level": 1,
+      "why": "포고령이라 의결이 없다"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(이번 회차에 미국 입법 진행 건을 확인하지 못했다. 한국 반도체특별법 단계도 미확인이다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   }
+  }
+ },
+ "overrides": {
+  "growth_base": {
+   "start": 0.6669,
+   "end": 0.03,
+   "decay": 0.1
+  },
+  "margin_base": {
+   "target": 0.42,
+   "year_target": 5,
+   "lr": 0.42,
+   "lam": 0.35
+  },
+  "s2c": 1.0,
+  "why": "매출은 FY2028 컨센서스 부근에서 정체한다고 둔다. 컨센서스 FY2029는 표본 2명이고 이미 감소다. 장기 이익률 42%는 2017~2025년 평균 약 26%에 HBM·LTA 몫을 더한 판단이다. 2023년 영업적자가 있어 지금 80%를 영구값으로 쓰지 않는다. 매출÷투하자본 1.0은 2027 CAPEX 대폭 증가를 반영했다"
+ },
+ "sources": [
+  "3Q 잠정실적 6-K 2026-10-28: https://www.sec.gov/Archives/edgar/data/2120882/000119312526434994/d162547d6k.htm",
+  "주주환원 계획 6-K 2026-10-28: https://www.sec.gov/Archives/edgar/data/2120882/000119312526435008/d236990d6k.htm",
+  "F-1/A 2026-07-06: https://www.sec.gov/Archives/edgar/data/2120882/000119312526295501/d32785df1a.htm"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-02T13:15:00+09:00",
+  "shares_cover_implied": 0.705173324,
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_SKHY(ADR). 보통주 시세 = TradingView KRX:000660",
+   "price": 1484000,
+   "market_cap": 1046477.2,
+   "total_cash": 105470.0,
+   "total_debt": 18326.0,
+   "as_of": "2026-11-02",
+   "balance_date": "2026-09-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 32826.7,
+    "2026Q1": 52576.3,
+    "2026Q2": 79318.7,
+    "2026Q3": 104615.5
+   },
+   "op_income": {
+    "2025Q4": 19169.6,
+    "2026Q1": 37610.3,
+    "2026Q2": 60542.6,
+    "2026Q3": 83333.8
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1": 52576300.0,
+   "2026Q2": 79318700.0,
+   "2026Q3": 104615500.0,
+   "2026Q4": 123916000.0
+  },
+  "balance_2026_09_30": {
+   "equity": 299000.0,
+   "cash": 105470.0,
+   "st_investments": 0,
+   "debt_current": 15800.0,
+   "debt_lt": 0,
+   "lease_current": 526.0,
+   "lease_lt": 2000.0,
+   "note": "콜 값에 10월 자사주 ₩9.03T를 반영. 자기자본은 6/30 ₩262.7T + 3Q 순이익 ₩39.8T + ADR 증자 약 ₩36T − 자사주 약 ₩40T 추정이고 콜의 부채비율 5%와 맞는다. 잠정치"
+  },
+  "adr": {
+   "premium_pct": 42.58,
+   "adr_usd": 157.23,
+   "fx": 1344.85,
+   "parity_krw": 2114508,
+   "local_krw": 1483000,
+   "ratio": "ADS 10개 = 1주",
+   "as_of": "2026-11-02T13:11"
+  },
+  "buyback": {
+   "aug_oct": {
+    "shares": 23693272,
+    "amount": 40004339063500,
+    "avg": 1688426,
+    "october_amount": 9030996192500
+   },
+   "new": {
+    "shares": 14920000,
+    "amount": 20007720000000,
+    "window": "2026-10-29~2027-01-28"
+   },
+   "treasury_before": 25318968
+  },
+  "customers": {
+   "largest_2025": 0.239,
+   "top2_1q26": [
+    0.148,
+    0.124
+   ]
+  },
+  "sec_checks": {
+   "form": "SK하이닉스는 20-F·6-K 제출사다. 연차보고서는 아직 없어 F-1/A(2026-07-06)를 봤다",
+   "contract_commitments": "F-1/A 주석 29 참조 문구만 확인, 구매 약정 금액은 3Q 분기보고서로 재확인 필요",
+   "restricted_cash": "확인 못 함",
+   "customers_10pct": "2025 최대 고객 23.9%, 1Q26 두 고객 14.8%·12.4%",
+   "government": "CHIPS 직접 보조 최대 $458M, 대출 최대 $570M 조건부. 2025-08 VEU 철회 발표, 이후 라이선스 상태 미확인"
+  },
+  "source_coverage": "Fiscal.ai(ADR 재무·추정, 3Q 추정은 실적 전 값), Zacks(ADR EPS 이력), Easyconomics(ADR 프리미엄·실적 일자), yfinance 출처 profile(현금·차입·추정), TradingView(보통주 시세·의견·분기 EPS 추정)"
+ }
+}
