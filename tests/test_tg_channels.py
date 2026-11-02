@@ -96,7 +96,7 @@ class TestChannels(unittest.TestCase):
         self.assertEqual(notify.readable("**■ 결론**\n- 하나\n- 둘"), "**■ 결론**\n- 하나\n- 둘")
 
     def test_config_has_all_channels(self):
-        self.assertEqual(len(tg.config()["channels"]), 14)
+        self.assertEqual(len(tg.config()["channels"]), 16)
 
 
 if __name__ == "__main__":
