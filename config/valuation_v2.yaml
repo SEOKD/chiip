@@ -12,6 +12,8 @@ regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model
     JP: 0.0091
     EU: 0.0000               # 독일·네덜란드(Aaa) 기준. 회원국별 차이는 매출 지역 가중 시 별도
     UK: 0.0078
+    AU: 0.0000               # 호주(Aaa) — Damodaran 2026-01 등급 기준 추가 프리미엄 없음(2026-11-02 CVEO)
+    CA: 0.0000               # 캐나다(Aaa)
   industry:                  # Damodaran 업종 자본비용(미국, 2026-01): 부채 포함 베타·자기자본 비중
     as_of: "2026-01"
     semiconductor:   {beta: 1.52, equity_weight: 0.9747}
@@ -25,6 +27,7 @@ regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model
     telecom_equipment: {beta: 0.92, equity_weight: 0.9156}
     power_utility:   {beta: 0.48, equity_weight: 0.5742}
     offshore_drilling: {beta: 1.40, equity_weight: 0.81}   # 표에 업종 값이 없어 SDRL 시장 베타 1.40·자기 자본 구조 0.81을 쓴다(2026-11-02 SDRL)
+    workforce_lodging: {beta: 1.02, equity_weight: 0.72}   # 원격지 작업자 숙소·호스피탈리티(2026-11-02 CVEO): Damodaran 2026-01 미국 Hotel/Gaming(베타 1.08, D/E 39.75%)과 Oilfield Svcs/Equip.(0.95, 37.36%) 평균
 
 fred_series:                 # regime.py가 매일 받는 FRED 계열(키 불필요 CSV)
   ust10y: DGS10

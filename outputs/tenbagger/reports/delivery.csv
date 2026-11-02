@@ -76,3 +76,9 @@ time,stem,ticker,step,status,detail
 2026-10-31T16:52:45+09:00,20261031_FORM,FORM,artifact,ok,https://claude.ai/artifact/TodDz3RoAoK9WE79efrwPJ
 2026-10-31T16:52:45+09:00,20261031_FORM,FORM,notion,ok,https://app.notion.com/p/40ab5d1e09988148b28ac37ebfcfb172
 2026-10-31T16:52:47+09:00,20261031_FORM,FORM,telegram,ok,노션 포함
+2026-11-02T13:53:49+09:00,20261102_CVEO,CVEO,github,ok,https://github.com/SEOKD/chiip/blob/fb3e86e0a940/outputs/tenbagger/reports/20261102_CVEO.md
+2026-11-02T13:53:58+09:00,20261102_CVEO,CVEO,artifact,ok,https://claude.ai/artifact/WTGZuRFHAY3BgMpmDu9Wmw
+2026-11-02T13:55:56+09:00,20261102_CVEO,CVEO,notion,ok,https://www.notion.so/40cb5d1e099881569542cd36adb5f030
+2026-11-02T13:55:59+09:00,20261102_CVEO,CVEO,notion,ok,https://www.notion.so/40cb5d1e099881569542cd36adb5f030
+2026-11-02T13:56:19+09:00,20261102_CVEO,CVEO,telegram,ok,노션 포함
+2026-11-02T13:56:24+09:00,20261102_CVEO,CVEO,telegram,fail,노션 포함

@@ -1,0 +1,28 @@
+{
+ "stem": "20261102_CVEO",
+ "date": "2026-11-02",
+ "ticker": "CVEO",
+ "company": "Civeo",
+ "github": {
+  "md": "https://github.com/SEOKD/chiip/blob/fb3e86e0a940/outputs/tenbagger/reports/20261102_CVEO.md",
+  "html": "https://github.com/SEOKD/chiip/blob/fb3e86e0a940/outputs/tenbagger/reports/20261102_CVEO.html",
+  "commit": "fb3e86e0a9407074b3812fba30f6a85d046cf67c",
+  "at": "2026-11-02T13:53:49+09:00"
+ },
+ "artifact": {
+  "status": "ok",
+  "url": "https://claude.ai/artifact/WTGZuRFHAY3BgMpmDu9Wmw",
+  "at": "2026-11-02T13:53:58+09:00"
+ },
+ "notion": {
+  "status": "ok",
+  "page": "https://www.notion.so/40cb5d1e099881569542cd36adb5f030",
+  "stock_page": "https://www.notion.so/40cb5d1e099881f2a0c6d74edfca5d41",
+  "at": "2026-11-02T13:55:59+09:00"
+ },
+ "telegram": {
+  "sent": false,
+  "notion_ok": false,
+  "at": "2026-11-02T13:56:24+09:00"
+ }
+}

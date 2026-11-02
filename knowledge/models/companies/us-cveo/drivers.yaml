@@ -1,0 +1,108 @@
+auto: false
+id: us-cveo
+name: Civeo
+ticker: CVEO
+unit: B$
+unit_usd: 1000000000.0
+industry: workforce_lodging
+region_mix:
+  AU: 0.68
+  CA: 0.32
+tax: 0.27
+horizon: 10
+as_of: '2026-10-30'
+market:
+  date: '2026-10-30'
+  price: 35.97
+  shares: 0.010377
+  net_debt: 0.205238
+  source: 가격 = 10/30 종가. 주식 = 3Q 10-Q 표지 10,336,859주(2026-10-26). 현금 $24.3M(9/30 재무상태표).
+    차입 = 원금 $217.5M(회사 발표, 2031 전환사채 $115M + 리볼버) + 리스 $12.0M. 회사 기준 순차입 $196.0M,
+    순레버리지 2.1배
+rev0: 0.715
+ic0: 0.349477
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.05
+      end: 0.03
+      decay: 0.8
+    margin:
+      m0: 0.0333
+      target: 0.07
+      year_target: 5
+      lr: 0.07
+      lam: 0.35
+      anchors:
+      - 0.0409
+      - 0.0549
+    s2c: 3.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1
+      end: 0.035
+      decay: 0.85
+    margin:
+      m0: 0.0333
+      target: 0.09
+      year_target: 5
+      lr: 0.07
+      lam: 0.25
+      anchors:
+      - 0.0409
+      - 0.0549
+    s2c: 3.45
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.01
+      end: 0.025
+      decay: 0.6
+    margin:
+      m0: 0.0333
+      target: 0.05
+      year_target: 5
+      lr: 0.07
+      lam: 0.5
+      anchors:
+      - 0.0409
+      - 0.0549
+    s2c: 2.55
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.71, 0.72] (3Q 실적 보도자료·콜 2026-10-29~30: 매출 $710~720M(종전 $675~700M),
+    조정 EBITDA $89~92M(종전 $85~90M), CAPEX $30~35M(종전 $25~30M). 4Q 암시 매출 $164~174M,
+    EBITDA $13~16M)'
+  growth: 컨센서스 1년차 3.2%, 2년차 6.4%
+  margin: 1~2년차 컨센서스 4.1%, 5.5% 고정 → 목표 7%(5년차, 덮어쓰기) → 장기 수렴 7%
+  s2c: 재무 재구성 증분 매출/투하자본 3.0 → 덮어쓰기 3.0
+  range: '손으로 고침(2026-11-02): 컨센서스 최저·최고 FY2027 −0.7%~+3.3%는 3Q 상향 전 값이고 기본 5%보다 좁아
+    강세가 기본보다 낮게 나왔다. 강세 1년차 +10% = 모바일 2,700실 × 365일 × 가동 80% × 1박 약 $100 ≈ 연 $79M(추정)이
+    2027~2028에 들어오는 경로. 약세 −1% = 호주 빌리지 약세 지속, 캐나다 추가 수주 없음'
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '성장 5%: 컨센서스 FY2027 +3.2%는 3Q 상향 전 값이다. 캐나다 로지 점유율 상승, 모바일 700실, 호주 통합
+    서비스 A$500M 연환산 목표(지금 약 A$416M)가 겹친다. 장기 EBIT 이익률 7%: EBITDA 이익률 약 15%에서 감가상각 약
+    8%를 뺀 값이다. 감가상각은 분기 $20.0M(3Q25) → $15.7M(3Q26)으로 줄고 있다. 규칙의 장기 수렴 15%는 이 업종에
+    높아 7%로 둔다. 매출÷투하자본 3.0: 쉬는 객실을 다시 쓰는 성장이라 새 자본이 적게 든다'
+  shares: 완전 희석 = 기본 0.010336859(2026-10-26) + 옵션·RSU·워런트·전환 0.0000 — 3Q 희석 가중평균 1,038만
+    주 − 기말 기본 1,034만 주 ≈ 4만 주. 2031 전환사채 $115M
+notes:
+- build_drivers 자동 생성 뒤 강세·약세 성장만 손으로 고쳤다(auto false — 다시 돌리면 drivers.auto.yaml로 나간다)
+- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- '어닝콜 위험: 호주 자체 빌리지 점유율이 석탄 가격 대비 약하고 2027 상반기까지 이어짐'
+- '어닝콜 위험: 4Q는 턴어라운드 앞당김과 동원비 약 $1M로 3Q보다 낮다'
+- '어닝콜 위험: 첫 700실 계약 가격은 지나간 시장 수준'
+evidence:
+- Civeo 3Q26 실적 보도자료 https://www.businesswire.com/ (2026-10-29) · TradingView 뉴스 'Civeo
+  Reports Third Quarter 2026 Results'
+- Civeo 2026 위임장 https://www.sec.gov/Archives/edgar/data/1590584/000159058426000035/cveo-20260413.htm
+- Civeo 서부 캐나다 6년 갱신 보도자료 2026-07-01 https://secure.businesswire.com/news/home/20260701568409/en/Civeo-Awarded-Six-Year-Western-Canada-Contract-Renewal
+- Civeo 온타리오 교정부 계약 2026-02-04 https://www.businesswire.com/news/home/20260204409382/en
+- Damodaran 업종 베타 2026-01 https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/Betas.html
+- Civeo 3Q26·2Q26 어닝콜(요지만 자기 말로)
