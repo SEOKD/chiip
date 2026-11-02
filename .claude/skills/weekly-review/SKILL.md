@@ -37,3 +37,5 @@ argument-hint: "[주차 YYYY-Www]"
 운영 규칙: `docs/channels/weekly.md`를 먼저 읽는다. '이번 주 바뀐 것'을 고르기 전에 `py radar/dticker.py --recent 7 --columns`로 마스터가 쓴 글을 본다(`docs/channels/dticker.md`).
 
 노션 자료 참조(2026-11-01 마스터 지시): '이번 주 바뀐 것' 종목은 `py radar/notion_library.py --need <회사>`의 요지와 게시글을 참조한다.
+
+**무역·PPI(마스터 지시 2026-11-02):** 그 주 새 수치가 판단을 바꿀 때 쓴다. 필요할 때 `py radar/trade_ppi.py --status`(또는 `--need <회사 id>`)로 7개 지역 세부 지표를 본다. PPI 전년비·수입처 변화가 판단을 바꿀 때만 쓰고, 나열하지 않는다. 별표는 업종 대용 지수다. 값이 없으면 '미확인'이다.

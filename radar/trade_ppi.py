@@ -6,12 +6,16 @@
 사용: py radar/trade_ppi.py --run · --status · --need <회사 id>   (run_hourly가 하루 1회 돈다)
 """
 import argparse
+import csv
+import io
 import json
 import re
 import sys
 import time
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -33,6 +37,7 @@ ONS = "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/{cdid}
 HMRC = "https://api.uktradeinfo.com"
 BLS = "https://api.bls.gov/publicAPI/{v}/timeseries/data/"
 CENSUS = "https://api.census.gov/data/timeseries/intltrade/imports/hs"
+HK_CACHE = {}
 
 
 def config():
@@ -137,6 +142,111 @@ def trade_census(hs, start, key):
     return {r[head.index("time")]: float(r[head.index("GEN_VAL_MO")]) for r in rows[1:]}
 
 
+def ppi_ecos(item, start, key):
+    """한국은행 ECOS 404Y014(생산자물가 기본분류) 월별"""
+    a, b = start.replace("-", ""), f"{date.today().year}12"
+    doc = json.loads(get(f"https://ecos.bok.or.kr/api/StatisticSearch/{key}/json/kr/1/80/404Y014/M/{a}/{b}/{item}"))
+    return {f"{r['TIME'][:4]}-{r['TIME'][4:6]}": float(r["DATA_VALUE"]) for r in doc["StatisticSearch"]["row"]}
+
+
+def dataset_url(nid, want=""):
+    """data.gov.tw 데이터셋의 현재 내려받기 주소 — 주소가 바뀌어도 따라간다"""
+    dist = json.loads(get(f"https://data.gov.tw/api/v2/rest/dataset/{nid}"))["result"]["distribution"]
+    return next(d["resourceDownloadUrl"] for d in dist if want in str(d.get("resourceFormat")))
+
+
+def tw_ppi_table(text):
+    """주계총처 생산자물가 기본분류 XML → {품목명: {YYYY-MM: 지수}}"""
+    out = {}
+    for o in ET.fromstring(text):
+        d = {c.tag: c.text for c in o}
+        if d.get("TYPE") == "原始值" and d.get("FREQ") == "M" and d.get("Item_VALUE"):
+            p = d["TIME_PERIOD"]
+            out.setdefault(d["Item"].split("(指數")[0], {})[f"{p[:4]}-{p[5:7]}"] = float(d["Item_VALUE"])
+    return out
+
+
+def tw_trade_table(text):
+    """재정부 28573 CSV → {(방향, HS류, 나라): {YYYY-MM: 천 달러}}. 첫 칸은 민국 연월(115년 9월)"""
+    rows = list(csv.reader(io.StringIO(text.lstrip("﻿"))))
+    head, out = rows[0], {}
+    for r in rows[1:]:
+        when = re.fullmatch(r"(\d+)年\s*(\d+)月", r[0].strip()) if r else None   # 연간 합계 행은 건너뛴다
+        if not when:
+            continue
+        ym = f"{int(when[1]) + 1911}-{int(when[2]):02d}"
+        for h, v in zip(head[1:], r[1:]):
+            m = re.fullmatch(r"(.+?)/ (進口|出口)/ (\d+)\..*", h)
+            if m and v.strip().replace(",", "").replace(".", "").isdigit():
+                out.setdefault((m[2], m[3], m[1]), {})[ym] = float(v.replace(",", ""))
+    return out
+
+
+def hk_table(table, sv, key_field=None, key=None):
+    """홍콩 C&SD 표 API → {YYYY-MM: 값}"""
+    rows = HK_CACHE.get(table)
+    if rows is None:
+        rows = HK_CACHE[table] = json.loads(get(f"https://www.censtatd.gov.hk/api/get.php?id={table}&lang=en&full_series=1", timeout=90))["dataSet"]
+    return {f"{r['period'][:4]}-{r['period'][4:6]}": float(r["figure"]) for r in rows
+            if r.get("sv") == sv and "%" not in str(r.get("svDesc")) and r.get("freq") in ("M", "Q") and isinstance(r.get("figure"), (int, float)) and (key_field is None or str(r.get(key_field)) == key)}
+
+
+def estat_tables(app, today):
+    """올해·작년 '品別国別表 輸入' 표 번호 — 해마다 번호가 바뀌어 이름으로 찾는다"""
+    out = {}
+    for y in (today.year, today.year - 1):
+        q = urllib.parse.quote("品別国別表 輸入")
+        doc = json.loads(get(f"https://api.e-stat.go.jp/rest/3.0/app/json/getStatsList?appId={app}&statsCode=00350300&searchWord={q}&surveyYears={y}&limit=60&lang=J"))
+        tb = doc["GET_STATS_LIST"]["DATALIST_INF"].get("TABLE_INF") or []
+        hit = [t for t in (tb if isinstance(tb, list) else [tb]) if str(t.get("STATISTICS_NAME", "")).startswith("貿易統計_全国分 品別国別表 輸入")]
+        if hit:
+            out[y] = hit[0]["@id"]
+    return out
+
+
+def estat_meta(app, table):
+    m = json.loads(get(f"https://api.e-stat.go.jp/rest/3.0/app/json/getMetaInfo?appId={app}&statsDataId={table}&lang=J"))["GET_META_INFO"]["METADATA_INF"]["CLASS_INF"]["CLASS_OBJ"]
+    cl = {c["@id"]: (c["CLASS"] if isinstance(c["CLASS"], list) else [c["CLASS"]]) for c in m}
+    months = {c["@code"]: int(c["@name"].split("月")[0]) for c in cl["cat02"] if re.fullmatch(r"\d+月_金額", c["@name"])}
+    return {"codes": [c["@code"] for c in cl["cat01"]], "months": months, "area": {c["@code"]: c["@name"].split("_", 1)[-1] for c in cl["area"]}}
+
+
+def trade_estat(app, hs, tables, metas):
+    """일본 수입 → ({YYYY-MM: 천 엔}, {나라: {YYYY-MM: 천 엔}})"""
+    total, parts = {}, {}
+    for y, table in tables.items():
+        meta = metas.setdefault(table, estat_meta(app, table))
+        codes = [c for c in meta["codes"] if c.startswith(hs)]
+        if not codes:
+            continue
+        doc = json.loads(get(f"https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId={app}&statsDataId={table}&lang=J&cdCat01={','.join(codes[:100])}&cdCat02={','.join(meta['months'])}&metaGetFlg=N&cntGetFlg=N", timeout=90))
+        rows = doc["GET_STATS_DATA"]["STATISTICAL_DATA"].get("DATA_INF", {}).get("VALUE") or []
+        for r in rows if isinstance(rows, list) else [rows]:
+            try:
+                v = float(r["$"])
+            except ValueError:
+                continue
+            k = f"{y}-{meta['months'][r['@cat02']]:02d}"
+            total[k] = total.get(k, 0.0) + v
+            if v:   # 아직 나오지 않은 달은 0으로 온다
+                s = parts.setdefault(meta["area"].get(r["@area"], r["@area"]), {})
+                s[k] = s.get(k, 0.0) + v
+    return {k: v for k, v in total.items() if v}, parts
+
+
+def shares(parts):
+    """나라별 최근 합과 몫 — 0인 나라는 뺀다"""
+    months = sorted({p for v in parts.values() for p in v})[-WINDOW:]   # 나라마다 마지막 달이 달라도 같은 달로 잰다
+    out = {}
+    for c, v in parts.items():
+        now = sum(v.get(p, 0.0) for p in months)
+        prev = sum(v.get(f"{int(p[:4]) - 1}{p[4:]}", 0.0) for p in months)
+        if now:
+            out[c] = {"period": months[-1], "value": now, "yoy": now / prev - 1 if prev else None}
+    total = sum(m["value"] for m in out.values())
+    return {c: {**m, "share": m["value"] / total} for c, m in sorted(out.items(), key=lambda kv: -kv[1]["value"])[:8]}
+
+
 def ppi_metric(series):
     """최신 달과 전년 같은 달 대비 변화"""
     if not series:
@@ -172,9 +282,12 @@ def collect(cfg, today, env):
 
     bls = sorted({v["ppi"]["us"] for v in cfg["inputs"].values() if v["ppi"].get("us")})
     us = attempt("bls", lambda: ppi_bls(bls, today, env.get("BLS_API_KEY"))) or {}
-    census = env.get(cfg["sources"]["us"]["trade"].get("key", ""))
-    if not census:
-        gaps.append("us trade: CENSUS_API_KEY 없음")
+    census, ecos, estat = env.get("CENSUS_API_KEY"), env.get("ECOS_API_KEY"), env.get("ESTAT_APP_ID")
+    gaps += [f"{name} 키 없음" for name, v in (("CENSUS_API_KEY", census), ("ECOS_API_KEY", ecos), ("ESTAT_APP_ID", estat)) if not v]
+    tw_ppi = attempt("tw ppi", lambda: tw_ppi_table(get(dataset_url(cfg["taiwan"]["ppi_dataset"]), timeout=90))) or {}
+    tw_trade = attempt("tw trade", lambda: tw_trade_table(get(dataset_url(cfg["taiwan"]["trade_dataset"]), timeout=90))) or {}
+    tables = (attempt("e-stat 표", lambda: estat_tables(estat, today)) or {}) if estat else {}
+    metas = {}
     for k, v in cfg["inputs"].items():
         p, o = v["ppi"], out[k]
         o["ppi"]["us"] = ppi_metric(us.get(p.get("us")))
@@ -196,6 +309,20 @@ def collect(cfg, today, env):
         o["trade"]["uk"] = trade_metric(attempt(f"hmrc {k}", lambda: trade_hmrc(v["hs"], start)) or {})
         if census:
             o["trade"]["us"] = trade_metric(attempt(f"census {k}", lambda: trade_census(v["hs"], start, census)) or {})
+        if ecos and p.get("kr"):
+            o["ppi"]["kr"] = ppi_metric(attempt(f"ecos {k}", lambda: ppi_ecos(p["kr"], start, ecos)))
+        if p.get("tw"):
+            o["ppi"]["tw"] = ppi_metric(tw_ppi.get(p["tw"]))
+        if p.get("hk"):
+            o["ppi"]["hk"] = ppi_metric(attempt(f"c&sd ppi {k}", lambda: hk_table("520-62001", "PPI", "IND", p["hk"])))
+        if v.get("sitc"):
+            o["trade"]["hk"] = trade_metric(attempt(f"c&sd trade {k}", lambda: hk_table("410-50031", "VAL_IM", "COMMD", v["sitc"])) or {})
+        if v.get("tw_section"):
+            ex = {c: x for (flow, sec, c), x in tw_trade.items() if flow == "出口" and sec == v["tw_section"]}
+            o["trade"]["tw"] = {"partners": shares(ex), "unit": "USD thousand", "flow": "수출", "scope": f"HS {v['tw_section']}류"}
+        if tables:
+            total, parts = attempt(f"e-stat {k}", lambda: trade_estat(estat, v["hs"], tables, metas)) or ({}, {})
+            o["trade"]["jp"] = {**(trade_metric(total) or {}), "partners": shares(parts), "unit": "JPY thousand"}
     return out, gaps, errors
 
 

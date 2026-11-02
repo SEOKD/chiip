@@ -116,3 +116,5 @@ git 커밋·푸시는 하지 않는다(예외: publish_tenbagger.py·publish_rep
 
 ## 프로바이저 보강
 매 회차 시작 전에 `docs/proviser/chiip-tenbagger.md`의 '상시 원칙'과 '현재 보강 지시'를 읽고 적용한다(이 리포트는 Chiip ten-bagger 기능의 일부). 리포트 '출처' 끝에 `보강 적용: D-…`를 적는다.
+
+**데이터 채널 장애(마스터 지시 2026-11-02):** Fiscal.ai·Zacks·Easyconomics·TradingView 호출이 오류를 내면 `py radar/self_heal.py --report <fiscal|zacks|easyconomics|tradingview> "오류 내용"`을 남기고 `docs/channels/data.md` 순서대로 다음 채널을 쓴다. 키나 토큰 값은 적지 않는다.

@@ -2,7 +2,7 @@
 
 BOM 항목·공급 품목에 "input": "<config/trade_ppi.yaml inputs 키>"를 쓰면 radar/trade_ppi.py가 모은 값을 붙인다.
 - 마진 구조: 품목별 PPI 전년비와 EU 수입처, 지난 1년 물가를 판매가 전가 뒤 원가에 반영한 OPM 압력
-- 공급망 병목: EU 수입처 집중(세계 공급 집중의 근사, 세 곳 이상 잡힐 때만)
+- 공급망 병목: EU·일본 수입처(세계 공급 집중의 근사)
 - 밸류에이션: OPM 압력 한 줄. 동인을 자동으로 바꾸지 않는다 — 크면 모델이 datapack overrides에 이유와 함께 반영한다
 """
 import json
@@ -77,14 +77,20 @@ def margin_blocks(dp, data=None):
     items = {b["input"]: b["item"] for p in dp["margin"]["products"] for b in p["bom"] if b.get("input") in inputs}
     if not items:
         return []
-    B = [{"type": "table", "title": f"BOM 투입 물가 — PPI 전년비, {data.get('as_of')} 수집", "headers": ["항목", "미국", "일본", "EU", "EU 1위 수입처"],
-          "rows": [[name, _yoy(inputs[k], "us"), _yoy(inputs[k], "jp"), _yoy(inputs[k], "eu"), _top(inputs[k])] for k, name in items.items()]}]
+    B = [{"type": "table", "title": f"BOM 투입 물가 — PPI 전년비, {data.get('as_of')} 수집", "headers": ["항목", "미국", "일본", "한국", "대만"],
+          "rows": [[name, _yoy(inputs[k], "us"), _yoy(inputs[k], "jp"), _yoy(inputs[k], "kr"), _yoy(inputs[k], "tw")] for k, name in items.items()]}]
     text = "별표는 품목보다 넓은 업종 지수다."
     drag, cover = pressure(dp, data)
     if drag is not None:
         text += f" 지난 1년 투입 물가를 판매가 전가 뒤 원가에 그대로 넣으면 OPM은 {drag * 100:+.2f}%p 움직인다(매출원가의 {cover * 100:.0f}% 기준)."
     B.append({"type": "p", "text": text})
     return B
+
+
+def _route(v, kind):
+    """대만 수출처·일본 수입처 상위 2곳"""
+    rows = sorted(((v.get("trade") or {}).get(kind) or {}).get("partners", {}).items(), key=lambda kv: -kv[1]["value"])[:2]
+    return " · ".join(f"{c} {m['share'] * 100:.0f}%" for c, m in rows) or UNKNOWN
 
 
 def supply_blocks(dp, data=None):
@@ -94,8 +100,8 @@ def supply_blocks(dp, data=None):
     for x in (dp.get("supply") or {}).get("links") or []:
         v = inputs.get(x.get("input"))
         if v and sources(v):
-            rows.append([x["item"], " · ".join(f"{c} {m['share'] * 100:.0f}%" for c, m in sources(v)[:3]), _pct(sources(v)[0][1].get("yoy"))])
-    return [{"type": "table", "title": "EU 수입 통계로 본 공급 지역", "headers": ["품목", "수입처 상위 3곳", "1위 수입액 전년비"], "rows": rows}] if rows else []
+            rows.append([x["item"], " · ".join(f"{c} {m['share'] * 100:.0f}%" for c, m in sources(v)[:3]), _route(v, "jp"), _pct(sources(v)[0][1].get("yoy"))])
+    return [{"type": "table", "title": "무역 통계로 본 공급 지역", "headers": ["품목", "EU 수입처", "일본 수입처", "EU 1위 전년비"], "rows": rows}] if rows else []
 
 
 def valuation_line(dp, data=None):

@@ -40,6 +40,24 @@ class TestParsers(unittest.TestCase):
         with mock.patch.object(tp, "get", return_value=body):
             self.assertEqual(tp.ppi_ons("EW74"), {"2026-09": 264.3, "2025-09": 200.0})
 
+    def test_taiwan_ppi_xml(self):
+        xml = '<DataSet><Obs><Item>(3)銅(指數基期：民國110年=100)</Item><TIME_PERIOD>2026M09</TIME_PERIOD><FREQ>M</FREQ><TYPE>原始值</TYPE><Item_VALUE>150.5</Item_VALUE></Obs><Obs><Item>(3)銅(指數基期：民國110年=100)</Item><TIME_PERIOD>2026M09</TIME_PERIOD><FREQ>M</FREQ><TYPE>年增率(%)</TYPE><Item_VALUE>9.9</Item_VALUE></Obs></DataSet>'
+        self.assertEqual(tp.tw_ppi_table(xml), {"(3)銅": {"2026-09": 150.5}})
+
+    def test_taiwan_trade_csv_skips_year_rows(self):
+        text = '\ufeff"國家別","美國/ 出口/ 總計(千美元)","美國/ 出口/ 16.機械及電機設備(千美元)"\n"115年",1,2\n"115年 9月",10,7\n\n'
+        self.assertEqual(tp.tw_trade_table(text), {("出口", "16", "美國"): {"2026-09": 7.0}})
+
+    def test_hong_kong_index_not_year_change(self):
+        rows = [{"sv": "PPI", "svDesc": "Index", "freq": "Q", "period": "202606", "IND": "a", "figure": 170.3}, {"sv": "PPI", "svDesc": "Year-on-year % change", "freq": "Q", "period": "202606", "IND": "a", "figure": 24.6}]
+        with mock.patch.dict(tp.HK_CACHE, {"t": rows}):
+            self.assertEqual(tp.hk_table("t", "PPI", "IND", "a"), {"2026-06": 170.3})
+
+    def test_shares_use_same_months_for_every_country(self):
+        got = tp.shares({"TW": {"2026-07": 8.0, "2026-08": 8.0, "2026-09": 8.0}, "MT": {"2026-01": 99.0}})
+        self.assertEqual(list(got), ["TW"])
+        self.assertEqual(got["TW"]["share"], 1.0)
+
     def test_start_month(self):
         self.assertEqual(tp.start_month(date(2026, 11, 2), 30), "2024-05")
 
@@ -74,7 +92,7 @@ class TestRun(unittest.TestCase):
 
     def test_config_marks_every_country(self):
         cfg = tp.config()
-        self.assertEqual(set(cfg["sources"]), {"us", "eu", "uk", "jp", "kr", "tw"})
+        self.assertEqual(set(cfg["sources"]), {"us", "eu", "uk", "jp", "kr", "tw", "hk"})
         for v in cfg["sources"].values():
             self.assertEqual(set(v), {"trade", "ppi"})
 
@@ -96,8 +114,8 @@ class TestReport(unittest.TestCase):
 
     def test_blocks_show_proxy_mark_and_source(self):
         text = str(iv.margin_blocks(tagged(), DATA))
-        self.assertIn("+6.0%*", text)
-        self.assertIn("TW 90%", text)
+        self.assertIn("-2.0%*", text)
+        self.assertIn("+4.0%", text)
         self.assertIn("OPM은", text)
 
     def test_supply_table(self):

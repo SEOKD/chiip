@@ -25,6 +25,9 @@ def config():
 def available(src, st, cfg, now):
     """호출 상한·제한 대기에 걸리지 않았으면 True. 상한이 없는 채널은 항상 True"""
     src = (cfg.get("via") or {}).get(src, src)
+    until = common.load_state("channel_down", {}).get(src)   # radar/self_heal.py가 장애 채널을 잠시 건너뛴다
+    if until and datetime.fromisoformat(until) > now:
+        return False
     lim = (cfg.get("limits") or {}).get(src)
     if not lim:
         return True

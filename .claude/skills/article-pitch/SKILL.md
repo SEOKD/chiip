@@ -51,3 +51,5 @@ argument-hint: "[날짜 | 주제]"
 공개 텔레그램 채널(2026-11-01 마스터 지시): `py radar/pollers/tg_channels.py --recent 24`와 `--about <이름>`을 단서로 쓴다. 채널 글은 취재 단서이고 1차 확인 전에는 기사 근거가 아니다(`docs/channels/telegram.md`).
 
 링크드인(2026-11-01 마스터 지시): 자동 수집하지 않는다. 마스터가 노션 Informations 'LinkedIn' 페이지에 옮겨 둔 글만 `notion-search`로 읽어 단서로 쓰고, 작성자 이름은 쓰지 않는다(`docs/channels/notion.md`).
+
+**무역·PPI(마스터 지시 2026-11-02):** 기사 소재의 경제적 의미를 수치로 뒷받침할 때 쓴다. 공식 통계이므로 출처 기관을 적는다. 필요할 때 `py radar/trade_ppi.py --status`(또는 `--need <회사 id>`)로 7개 지역 세부 지표를 본다. PPI 전년비·수입처 변화가 판단을 바꿀 때만 쓰고, 나열하지 않는다. 별표는 업종 대용 지수다. 값이 없으면 '미확인'이다.

@@ -140,6 +140,7 @@
 - 2026-11-02: 일본 컨센서스(마스터 지시). Fiscal·Zacks 없음 확인, TradingView 종목 칸으로 66곳 중 매출 65곳·EPS 49곳 확보. radar/jp_consensus.py, 경로 표 knowledge/methods/jp_consensus_routes.md, Laboratory 주간 점검.
 - 2026-11-02: Portfolio Buy Call(마스터 지시). scripts/discovery/buy_call.py가 리포트 규칙 등급을 현재가로 다시 재서 Buy 이상·알파 6.0 이상을 데일리에 싣는다. 종합 명단 손익비를 리포트 값으로, 스크리너 종목 id 연결, 동인 대기열 41→32건. 예약 작업 재등록은 권한 거부로 미완(TODO 21-32).
 - 2026-11-02: 노션 Exclusive Source F1 지정(마스터 지시). radar/exclusive_leads.py로 8건을 FI-0001~0008에 올리고(장부·색인은 knowledge/exclusive/, git 제외, 마스터 지시 '로컬에만 둬'), --need 연결, 6시간 공개 근거 수집, 펄스 판정, 내부자 출처 3건 invest·public·텐배거 리포트 차단.
+- 2026-11-02: 무역·PPI 키 저장, 일본·한국·대만·홍콩 수집기 추가, radar/self_heal.py 수집 채널 자가 복구, 노션 덮어쓰기 규칙 강화, Ten-bagger·Analysis·Reporter·Weekly 지표 연결(마스터 지시).
 - 2026-11-02: 무역·PPI 세부 항목 파이프라인(마스터 지시). radar/trade_ppi.py, config/trade_ppi.yaml, scripts/tenbagger/input_view.py. 미국·EU·영국·일본 PPI와 EU·영국 무역이 작동, 미국 무역은 키 대기, 일본 무역과 한국·대만은 경로 미확인.
 - 2026-11-02: 리포트 고객 절(마스터 지시). scripts/tenbagger/customer_view.py가 고객별 매출 몫·집중도를 계산하고 고객 믹스 그림을 포트폴리오 다음에 넣는다.
 - 2026-11-02: 리포트 생산능력 절(마스터 지시). scripts/tenbagger/capacity_view.py가 현재 캐파·확충 계획·CAPEX와 매출 대비를 계산하고 그림 2개를 공급 병목 다음에 넣는다.

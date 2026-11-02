@@ -1,0 +1,21 @@
+# 수집 채널 자가 복구 — radar/self_heal.py (마스터 지시 2026-11-02). 새 수집 채널을 만들면 여기에 넣는다
+error_count: 3          # 연속 오류가 이만큼이면 문제로 본다
+max_retries: 3          # 자동 재시도 횟수(1·2·4·8시간 간격) 뒤 모델 복구로 넘긴다
+telegram_min_score: 7.0 # tg_channels.score 10점 기준
+report_keep_h: 12       # 모델이 보고한 장애를 유지하는 시간(같은 시간에 다시 보고하면 연장)
+route_hold_h: 3         # rate·network 장애 채널을 source_router가 건너뛰는 시간
+
+routed: [fiscal, zacks, easyconomics, tradingview]   # 데이터 채널 — 장애 때 다음 순위로 넘어간다
+
+# 모델이 없는 수집기를 다시 돌릴 때 쓸 모듈. 없는 채널은 정해진 회차를 기다린다
+jobs:
+  trade-ppi: trade_ppi
+  exclusive-leads: exclusive_leads
+  tg-channels: tg_channels
+
+files:
+  - {id: trade-ppi, path: knowledge/models/trade_ppi/latest.json, max_age_h: 30}
+  - {id: fiscal, path: knowledge/models/estimates/snapshots.csv, max_age_h: 36}
+
+# 키를 쓰지 않기로 결정한 원천은 문제로 세지 않는다(마스터 결정이 바뀌면 뺀다)
+ignore: [src-valuation, src-weekly-movers]   # EODHD는 무료 조합을 먼저 쓰기로 보류(2026-10-28 마스터 결정)
