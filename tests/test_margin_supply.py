@@ -204,6 +204,13 @@ class TestReport(unittest.TestCase):
         self.assertIn("가장 약한 고리는 메모리", head)
         self.assertIn("SK하이닉스", str(sec["blocks"]))
 
+    def test_bottleneck_chart_lives_in_gallery_only(self):
+        self.assertFalse([b for b in sv.section(DP)["blocks"] if b.get("type") == "chart"])
+        c = sv.chart(DP)
+        self.assertEqual(c["rows"][0]["label"], "공급망 신뢰성")
+        self.assertEqual(c["rows"][1]["label"], "메모리")
+        self.assertIsNone(sv.chart({"supply": {"none": "x"}}))
+
     def test_summary_item(self):
         s = sv.summary_item(DP)
         self.assertEqual(s["auto"], True)

@@ -40,6 +40,9 @@ RATINGS = ("Strong Buy", "Buy", "Neutral", "Sell", "Strong Sell")
 ANALYST = (("strong_buy", "Strong Buy"), ("buy", "Buy"), ("hold", "Neutral"), ("sell", "Sell"), ("strong_sell", "Strong Sell"))
 MODEL_SECTIONS = ("판단 시나리오", "반대 검증", "킬 조건", "셀온 조건", "체크리스트", "재발행 기록", "정정 기록")
 BANNED = ("DCF ÷ 시가총액", "주주가치 ÷ 시가총액", "배수 사다리", "컨빅션")
+# 한눈에 보기 순서 — 모든 리포트가 이 순서 하나만 쓴다(마스터 지시 2026-10-31, 2026-11-02 "이 구조를 엔진 아키텍처에 영구적으로 설계하라", tests/test_report_layout.py가 고정)
+GALLERY = ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "공급 병목", "어닝콜 변화",
+           "멀티플 프리미엄", "합리적 멀티플", "일별 거래량", "기관 자금", "몬테카를로")
 SHORT_TITLES = {"콜 변화": "어닝콜 변화별 주주가치 영향", "최근 4개 분기 주가": "최근 4개 분기 주가 변화 분석", "일별 거래량": "일별 거래량 분해", "기관 자금": "기관 자금 흐름"}
 
 
@@ -253,46 +256,44 @@ def earnings_blocks(esec):
     return out + ([read] if read else [])
 
 
-def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None):
-    """한눈에 보기 순서(마스터 지시 2026-10-31): 차트 → 실적 → EPS 리비전 → 주가 시나리오 → 손익비 → 어닝콜 → 주가 분해 → 멀티플 프리미엄 → 합리적 멀티플 → 거래량·자금 → 몬테카를로"""
+def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None):
+    """한눈에 보기 — 그림을 모은 뒤 GALLERY 순서로 낸다. 순서를 바꾸려면 GALLERY만 고친다"""
     E = [b for b in (esec or {}).get("blocks") or [] if b.get("type") == "chart"]
     get = lambda blocks, key: next((dict(b["chart"]) for b in blocks if key in str((b.get("chart") or {}).get("title"))), None)
-    out = list(price) + [actest]
+    parts = {c["title"]: c for c in price}
+    parts.update({"실적": actest, "시나리오": s["chart"], "주가별 업사이드": upside_chart(s, zones or []), "포트폴리오": portfolio, "공급 병목": supply, "합리적 멀티플": ev_chart})
     rev = next((dict(b["chart"]) for b in E if b["chart"].get("kind") == "revision"), None)
     if rev:
         rev["title"] = "EPS 리비전"
-        out.append(rev)
-    out += [s["chart"], upside_chart(s, zones or [])]
+        parts["EPS 리비전"] = rev
     call = get(E, "콜 변화")
     if call:
         call["title"] = SHORT_TITLES["콜 변화"]
-        out.append(call)
+        parts["어닝콜 변화"] = call
     dec = get(E, "최근 4개 분기 주가")
     if dec:
         dec["title"] = SHORT_TITLES["최근 4개 분기 주가"]
-        out.append(dec)
+        parts["주가 변화 분석"] = dec
     prem = get(E, "멀티플 프리미엄")
     if prem:
         want = "EV/EBITDA" if mm["basis"] != "pe_fwd" else "P/E"
         idx = [i for i, c in enumerate(prem["categories"]) if want in c]
         series = [{**x, "values": [x["values"][i] for i in idx]} for x in prem["series"]]
         prem.update({"title": "멀티플 프리미엄", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
-        out.append(prem)
-    if ev_chart:
-        out.append(ev_chart)
+        parts["멀티플 프리미엄"] = prem
     F = [b for b in (flow_sec or {}).get("blocks") or [] if b.get("type") == "chart"]
     for key, name in (("일별 거래량", SHORT_TITLES["일별 거래량"]), ("기관 자금", SHORT_TITLES["기관 자금"])):
         c = get(F, key)
         if c:
             c["title"] = name
-            out.append(c)
+            parts[key] = c
     mc = get(sec.get("blocks") or [], "몬테카를로")
     if mc:
         mc["title"] = "몬테카를로"
         mc["categories"] = [f"{(float(x) - 1) * 100:+.0f}%" for x in mc["categories"]]
         mc["conclusion"] = [x for x in mc.get("conclusion") or [] if x.startswith("해석")]
-        out.append(mc)
-    return [c for c in out if c]
+        parts["몬테카를로"] = mc
+    return [parts[k] for k in GALLERY if parts.get(k)]
 
 
 def rational_chart(view):
@@ -402,7 +403,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
-    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones)
+    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, narrative_view.portfolio_chart(dp), supply_view.chart(dp))
     model = d.get("sections") or []
     find = lambda *keys: [x for x in model if x.get("h2", "").startswith(keys)]
     bear_blocks = [b for x in find("반대 검증") for b in x.get("blocks") or []]

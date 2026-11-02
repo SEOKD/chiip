@@ -263,6 +263,14 @@ def portfolio3(dp):
     return {"h2": "포트폴리오", "blocks": [{"type": "table", "headers": ["제품·서비스", "구분", "무엇", "쓰는 곳", "돈 버는 방식"], "rows": rows}]}   # 한 표로(마스터 지시 2026-11-01)
 
 
+def portfolio_chart(dp):
+    """한눈에 보기 '제품·서비스 포트폴리오' 그림(마스터 지시 2026-11-02). 매출 몫은 lead.products rev_share, 없으면 이름이 같은 margin.products"""
+    share = {p.get("name"): p.get("rev_share") for p in (dp.get("margin") or {}).get("products") or []}
+    rows = [{"name": p.get("name"), "tag": p.get("kind"), "what": p.get("what"), "use": p.get("use"), "money": p.get("money"), "share": p.get("rev_share", share.get(p.get("name")))}
+            for p in ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []]
+    return {"kind": "portfolio", "title": "제품·서비스 포트폴리오", "rows": rows} if rows else None
+
+
 def summary_item(dp):
     lead = ((dp or {}).get("narrative") or {}).get("lead") or {}
     return {"q": "기업가치를 결정하는 내러티브", "a": lead.get("summary", ""), "auto": True}

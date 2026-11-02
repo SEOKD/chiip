@@ -146,8 +146,6 @@ def section(dp):
     if sp.get("summary"):
         head += " " + str(sp["summary"])
     B = [{"type": "hl", "text": head}]
-    B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "품목별 공급 병목 점수(10점, 낮을수록 병목)", "unit": "점",
-                                         "rows": [{"label": r["item"], "bars": [{"name": "병목 점수", "color": "b" if r["score"] < c["cfg"]["weak"] else "d", "value": round(r["score"], 1)}]} for r in c["rows"]]}})
     shock = f"{cfg['margin']['shock'] * 100:+.0f}%"
     B.append({"type": "table", "title": f"병목과 마진 — 품목 가격 {shock} 시 OPM", "headers": ["품목", "점수", "판정", "구분", "OPM"],
               "rows": [[r["item"] + ("(필수)" if r.get("critical") else ""), f"{r['score']:.1f}", r["grade"], tier(r, c["cfg"], big), UNKNOWN if r["opm_move"] is None else f"{r['opm_move'] * 100:+.2f}%p"] for r in c["rows"]]})
@@ -156,6 +154,17 @@ def section(dp):
               "rows": [[x["item"], s["name"] + (f"({s['role']})" if s.get("role") else ""), f"{s['share'] * 100:.0f}%" if _num(s.get("share")) is not None else UNKNOWN, s["status"]] for x in sp["links"] for s in x["suppliers"]]})
     src = {str(x["source"]) for x in sp["links"]} | {str(s["source"]) for x in sp["links"] for s in x["suppliers"]}
     return {"h2": "공급망 병목", "blocks": B, "_sources": sorted(src)}
+
+
+def chart(dp):
+    """한눈에 보기 공급 병목 그래프 — 공급망 신뢰성과 품목별 점수(마스터 지시 2026-11-02). 그래프는 절이 아니라 한눈에 보기에만 둔다"""
+    sp = (dp or {}).get("supply") or {}
+    if not sp or sp.get("none"):
+        return None
+    c = compute(dp)
+    rows = [{"label": "공급망 신뢰성", "bars": [{"name": "공급망 신뢰성", "color": "e", "value": round(c["score"], 1)}]}]
+    rows += [{"label": r["item"], "bars": [{"name": "병목 품목" if r["score"] < c["cfg"]["weak"] else "품목", "color": "b" if r["score"] < c["cfg"]["weak"] else "d", "value": round(r["score"], 1)}]} for r in c["rows"]]
+    return {"kind": "hbars", "w": 480, "label_w": 150, "title": "공급 병목(10점, 낮을수록 병목)", "unit": "점", "rows": rows}
 
 
 def summary_item(dp):

@@ -140,5 +140,6 @@
 - 2026-11-02: 일본 컨센서스(마스터 지시). Fiscal·Zacks 없음 확인, TradingView 종목 칸으로 66곳 중 매출 65곳·EPS 49곳 확보. radar/jp_consensus.py, 경로 표 knowledge/methods/jp_consensus_routes.md, Laboratory 주간 점검.
 - 2026-11-02: Portfolio Buy Call(마스터 지시). scripts/discovery/buy_call.py가 리포트 규칙 등급을 현재가로 다시 재서 Buy 이상·알파 6.0 이상을 데일리에 싣는다. 종합 명단 손익비를 리포트 값으로, 스크리너 종목 id 연결, 동인 대기열 41→32건. 예약 작업 재등록은 권한 거부로 미완(TODO 21-32).
 - 2026-11-02: 노션 Exclusive Source F1 지정(마스터 지시). radar/exclusive_leads.py로 8건을 FI-0001~0008에 올리고(장부·색인은 knowledge/exclusive/, git 제외, 마스터 지시 '로컬에만 둬'), --need 연결, 6시간 공개 근거 수집, 펄스 판정, 내부자 출처 3건 invest·public·텐배거 리포트 차단.
+- 2026-11-02: 한눈에 보기 순서 고정(마스터 지시). report_layout GALLERY 하나로 순서를 정하고 포트폴리오 그림·공급 병목 그래프를 넣었다. 주가 변화 분석은 실적 다음으로 옮겼다.
 - 2026-11-02: 리포트 마진 구조·공급망 병목(마스터 지시). scripts/tenbagger/margin_view.py가 GPM·OPM 비용 요인과 BOM 항목별 마진 민감도를, supply_view.py가 공급사 표와 공급 병목 10점을 계산한다. 상수 config/supply_bottleneck.yaml, 등록부 prm-sc-*.
 - 2026-11-02: 코드 삭제 가드(마스터 지시 "삭제 시도 하지마라"). .claude/hooks/code_guard.py가 삭제·이동·덮어쓰기 명령, 코드 삭제 커밋, 파일 비우기, 위험한 git 명령을 거부한다. 코드를 크게 줄이는 저장만 승인 창을 띄운다. 명령 전후로 새로 사라진 추적 코드는 HEAD 내용으로 복구한다.

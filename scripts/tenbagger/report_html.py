@@ -213,6 +213,53 @@ def chart_progress(c):
     return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>'
 
 
+def wrap_units(s, width):
+    """한글 1칸, 영문·숫자 0.55칸으로 재서 줄을 나눈다 — SVG 글자는 스스로 줄바꿈하지 않는다"""
+    lines, cur, used = [], "", 0.0
+    for ch in str(s or ""):
+        w = 1.0 if ord(ch) > 0x2E7F else 0.55
+        if used + w > width and cur:
+            lines.append(cur.strip())
+            cur, used = "", 0.0
+        cur += ch
+        used += w
+    return lines + ([cur.strip()] if cur.strip() else [])
+
+
+def chart_portfolio(c):
+    """제품·서비스 포트폴리오 — 무엇을 어디에 팔아 어떻게 버는지 카드로(마스터 지시 2026-11-02). 휴대폰에서 글자가 줄지 않게 폭을 좁게 잡는다. 매출 몫을 알면 막대를 그린다"""
+    rows = c.get("rows") or []
+    if not rows:
+        return ""
+    W, pad, wide, step = 340, 12, 25, 17
+    g, y = [], 2
+    for r in rows:
+        top = y
+        names = wrap_units(r.get("name"), wide - 4)
+        y += 18
+        for i, line in enumerate(names):
+            g.append(f'<text x="{pad}" y="{y + i * step}" style="fill:var(--fg);font-size:13px;font-weight:700">{t(line)}</text>')
+        g.append(f'<text x="{W - pad}" y="{y}" text-anchor="end" style="fill:var(--c);font-size:11.5px;font-weight:600">{t(r.get("tag"))}</text>')
+        y += (len(names) - 1) * step + 6
+        share = r.get("share")
+        if isinstance(share, (int, float)):
+            full = W - 2 * pad - 60
+            g.append(f'<rect x="{pad}" y="{y}" width="{full}" height="8" rx="4" fill="var(--line)"/><rect x="{pad}" y="{y}" width="{max(full * min(share, 1), 3):.1f}" height="8" rx="4" fill="var(--c)"/>')
+            g.append(f'<text x="{W - pad}" y="{y + 8}" text-anchor="end" style="font-size:11.5px">매출 {share * 100:.0f}%</text>')
+            y += 14
+        for label, key, color in ((None, "what", "var(--fg)"), ("쓰는 곳", "use", "var(--mut)"), ("수익", "money", "var(--mut)")):
+            if not r.get(key):
+                continue
+            text = f"{label} · {r[key]}" if label else r[key]
+            for line in wrap_units(text, wide):
+                y += step
+                g.append(f'<text x="{pad}" y="{y}" style="fill:{color};font-size:12px">{t(line)}</text>')
+        y += 12
+        g.insert(0, f'<rect x="1" y="{top}" width="{W - 2}" height="{y - top}" rx="10" fill="none" stroke="var(--line)"/>')
+        y += 8
+    return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>'
+
+
 def chart_actest(c):
     """분기 실적 vs 컨센서스 — 패널마다 실적·컨센서스 막대를 다른 색으로(마스터 지시 2026-10-31 "매출과 EPS 같이 그려라. actual과 estimated 바는 다른 색으로")"""
     panels = [p for p in c.get("panels") or [] if p.get("categories")]
@@ -391,7 +438,7 @@ def chart_scenario(c):
     return f'<svg viewBox="0 0 {W} {y + 18}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress}
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "portfolio": chart_portfolio}
 
 
 def figures(d):

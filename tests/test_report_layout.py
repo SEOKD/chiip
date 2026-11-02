@@ -51,6 +51,42 @@ class TestScenario(unittest.TestCase):
         with self.assertRaises(SystemExit):
             rl.scenario_build(d, {"profile": {"price": 100}}, {}, {"value": 30, "basis": "pe_fwd"}, 1.0)
 
+    def test_gallery_order_is_fixed(self):
+        """마스터 지시 2026-11-02 — 이 순서를 바꾸려면 마스터 지시가 있어야 한다"""
+        self.assertEqual(rl.GALLERY, ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "공급 병목", "어닝콜 변화",
+                                      "멀티플 프리미엄", "합리적 멀티플", "일별 거래량", "기관 자금", "몬테카를로"))
+
+    def test_gallery_follows_the_order(self):
+        chart = lambda title, kind="bars": {"type": "chart", "chart": {"kind": kind, "title": title, "categories": ["P/E"], "series": [{"name": "x", "values": [1]}]}}
+        esec = {"blocks": [chart("콜 변화"), chart("최근 4개 분기 주가"), chart("x", "revision")]}
+        s = {"chart": {"kind": "scenario", "title": "밸류에이션 주가 시나리오"}, "price": 100, "weighted": 120}
+        got = rl.gallery([{"title": "일봉"}], {"title": "분기 매출·EPS 실적과 컨센서스"}, None, s, esec, {"basis": "pe_fwd"}, None, {}, [], {"title": "제품·서비스 포트폴리오"}, {"title": "공급 병목(10점, 낮을수록 병목)"})
+        self.assertEqual([c["title"] for c in got], ["일봉", "분기 매출·EPS 실적과 컨센서스", "최근 4개 분기 주가 변화 분석", "EPS 리비전", "밸류에이션 주가 시나리오", "주가별 업사이드",
+                                                     "제품·서비스 포트폴리오", "공급 병목(10점, 낮을수록 병목)", "어닝콜 변화별 주주가치 영향"])
+
+    def test_gallery_skips_missing_charts(self):
+        s = {"chart": {"kind": "scenario", "title": "t"}, "price": 100, "weighted": 120}
+        self.assertEqual(len(rl.gallery([], {"title": "a"}, None, s, None, {"basis": "pe_fwd"}, None, {}, [])), 3)
+
+    def test_portfolio_chart(self):
+        import narrative_view as nv
+        import report_html
+        dp = {"narrative": {"lead": {"products": [{"name": "서버", "kind": "제품", "what": "가속기 서버 조립" * 8, "use": "클라우드", "money": "대당 판매"}, {"name": "유지보수", "kind": "서비스", "what": "현장 지원", "rev_share": 0.1}]}},
+              "margin": {"products": [{"name": "서버", "rev_share": 0.6}]}}
+        c = nv.portfolio_chart(dp)
+        self.assertEqual([r["share"] for r in c["rows"]], [0.6, 0.1])
+        svg = report_html.CHARTS["portfolio"](c)
+        self.assertIn("매출 60%", svg)
+        self.assertIn("쓰는 곳 · 클라우드", svg)
+        self.assertIsNone(nv.portfolio_chart({}))
+
+    def test_wrap_keeps_every_character(self):
+        import report_html
+        text = "한글 English 혼합 문장 " * 6
+        lines = report_html.wrap_units(text, 20)
+        self.assertGreater(len(lines), 1)
+        self.assertEqual("".join(lines).replace(" ", ""), text.replace(" ", ""))
+
     def test_upside_by_support_level(self):
         c = rl.upside_chart({"price": 100, "weighted": 120}, [{"mid": 80, "srcs": ["주봉 피보 50%", "50주선"]}])
         self.assertEqual(c["title"], "주가별 업사이드")
