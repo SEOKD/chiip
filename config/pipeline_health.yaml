@@ -12,6 +12,7 @@ jobs:
   trade-ppi: trade_ppi
   trade-hs: trade_hs
   site-imagery: site_imagery
+  korea-watch: korea_watch
   exclusive-leads: exclusive_leads
   tg-channels: tg_channels
 
