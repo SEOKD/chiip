@@ -126,3 +126,5 @@ git 커밋·푸시는 하지 않는다(예외: publish_tenbagger.py·publish_rep
 2. `py radar/site_imagery.py --site <id>`로 영상·건물 윤곽을 받는다. 건물 이름이 없으면 `--grid <id> [날짜]` 영상을 보고 `--measure <id> <날짜> x,y x,y…`로 윤곽을 재서 `polygon`으로 쓴다.
 3. 처음과 최신 영상을 직접 보고 호기마다 `stage_seen`·`seen_on`·`seen_note`를 쓴다. 보이지 않는 것은 쓰지 않는다. 10m 영상에서 안 보이면 낮은 단계로 쓴다.
 4. 캐파가 공시된 호기는 `capacity`에 출처와 함께 쓴다. 공시가 없는 호기는 비워 두면 엔진이 면적 비교로 추정한다. 비교 시설이 없으면 같은 class의 공시 시설을 등록부에 더한다.
+
+**로비 내역(2026-11-03 마스터 지시):** 종목마다 `py radar/usgov/lobby_watch.py <회사 id> "<공시상 회사명>" [자회사·별칭]`을 돌리고 `knowledge/models/lobby/<회사 id>.json`을 읽어, 경영진 또는 약세 논리에 쓸 내용이 있을 때만 쓴다. verdict가 '미확인'이면 로비가 없다고 쓰지 않는다. SEC 검색 결과와 언론 제목은 단서이므로 원문을 확인한다.

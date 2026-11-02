@@ -1,0 +1,51 @@
+{
+ "company": "co-vicor",
+ "names": [
+  "Vicor Corporation"
+ ],
+ "as_of": "2026-11-03",
+ "lda": {
+  "status": "키 없음",
+  "rows": []
+ },
+ "sec": {
+  "status": "ok",
+  "rows": [
+   {
+    "form": "DEF 14A",
+    "filer": "STEM, INC.  (STEM)  (CIK 0001758766)",
+    "date": "2023-04-21",
+    "id": "0001758766-23-000064:stem-20230420.htm"
+   },
+   {
+    "form": "10-K",
+    "filer": "SRS LABS INC  (CIK 0001016470)",
+    "date": "2006-03-24",
+    "id": "0001104659-06-018956:a06-1950_110k.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "Mirion Technologies, Inc.  (MIR)  (CIK 0001809987)",
+    "date": "2026-04-01",
+    "id": "0001628280-26-022786:mir-20260401.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "STEM, INC.  (STEM)  (CIK 0001758766)",
+    "date": "2024-04-19",
+    "id": "0001758766-24-000069:stem-20240419.htm"
+   },
+   {
+    "form": "10-K",
+    "filer": "Mirion Technologies, Inc.  (MIR)  (CIK 0001809987)",
+    "date": "2022-02-28",
+    "id": "0001628280-22-004286:mir-20211231.htm"
+   }
+  ]
+ },
+ "news": {
+  "status": "ok",
+  "rows": []
+ },
+ "verdict": "미확인"
+}
