@@ -20,3 +20,4 @@
   - 기사 인용값은 `knowledge/models/estimates/cited.csv`에 제공사·매체·주소·게재 시각·기간·기준과 함께 쌓는다. 제공사 직접 데이터가 아니고 est. 비교에 넣지 않는다. 순위와 표기 문구는 마스터 결정 대기.
   - CNBC·Reuters·MarketWatch·Barron's·Seeking Alpha는 robots.txt가, Investing.com은 저장소 기록상 약관이 막아 직접 열지 않는다. 검색 결과에 보이는 값만 쓴다.
   - TradingView `mcp-tv-get-forecasts`는 후보 채널이다. 응답에 원제공사 표시가 없다.
+- **무역·PPI 세부 항목**(2026-11-02 마스터 지시 "BOM과 공급망 파악, 밸류에이션 계산할 때 미국, 대만, 유럽연합, 영국, 일본, 한국의 무역 지표의 세부항목 데이터와 생산자물가지수(PPI)의 세부항목 데이터를 가져오도록"): `radar/trade_ppi.py`가 `config/trade_ppi.yaml`의 품목을 하루 1회 공식 API에서 받아 `knowledge/models/trade_ppi/latest.json`에 쓴다(모델 없음). 작동: 미국 PPI(BLS), EU PPI·무역(Eurostat·Comext), 영국 PPI·무역(ONS 시리즈·HMRC), 일본 PPI(일본은행). 키 대기: 미국 무역(`CENSUS_API_KEY`). 미작동: 일본 무역, 한국 무역·PPI, 대만 무역·PPI — 공식 요청 형식을 확인하기 전에는 코드를 쓰지 않고 `gaps`에 남긴다. EU의 나라별 수입(대만·한국·일본 등)이 그동안 거울 지표다. PPI는 나라마다 분류가 달라 합치지 않고 전년비로 나란히 쓴다. 품목보다 넓은 업종 지수는 `proxy`로 표시한다. Eurostat의 비EU 데이터는 상업적 재사용 제한이 있어 공개 산출물에는 쓰지 않는다. Census를 켜면 비보증 문구를 표기한다.

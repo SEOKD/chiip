@@ -33,6 +33,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import capacity_view  # noqa: E402
 import customer_view  # noqa: E402
 import flow  # noqa: E402
+import input_view  # noqa: E402
 import leader_view  # noqa: E402
 import levels  # noqa: E402
 import margin_view  # noqa: E402
@@ -377,6 +378,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     for s0 in d.get("sections") or []:
         if not s0.get("h2", "").startswith(MODEL_SECTIONS):
             raise SystemExit(f"양식 3 본론에 없는 절: {s0.get('h2')} — 쓸 수 있는 절은 {MODEL_SECTIONS}. 내용은 datapack narrative·moat로 옮긴다")
+    input_view.check(dp)
     margin_sec, supply_sec, capacity_sec, customer_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp), customer_view.section(dp)   # 재료가 없으면 여기서 멈춘다
     shares = r["mcap"] / float(dp["profile"]["price"])
     s = scenario_build(d, dp, mm, sel, shares)
@@ -421,6 +423,9 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     scen_text = [b for x in find("판단 시나리오") for b in x.get("blocks") or [] if b.get("type") != "chart"]
     val = valuation_section(s, sel, mm, r, co, sec, co.get("name", d.get("company")), (sec.get("blocks") or [{}])[-1].get("text") if (sec.get("blocks") or [{}])[-1].get("type") == "hl" else None, pt)
     val["blocks"][1:1] = scen_text
+    pressure_line = input_view.valuation_line(dp)
+    if pressure_line:
+        val["blocks"].append(pressure_line)
     out = [narrative_view.section3(dp, mm), narrative_view.portfolio3(dp)]
     if customer_sec:
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + customer_sec.pop("_sources")))
@@ -429,6 +434,9 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         import pipeline_view
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + (xs["pipeline"].pop("_sources", None) or [])))
         out.append(pipeline_view.section3(dp))
+    margin_sec["blocks"] += input_view.margin_blocks(dp)
+    if supply_sec:
+        supply_sec["blocks"] += input_view.supply_blocks(dp)
     for part in (margin_sec, supply_sec, capacity_sec):
         if part:
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))
