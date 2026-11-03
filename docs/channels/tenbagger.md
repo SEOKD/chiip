@@ -32,3 +32,4 @@
 - **거시 지표 싱크로율·비용 다리**(2026-11-03 마스터 지시): '거시 지표 싱크로율' 절(`scripts/tenbagger/sync_view.py` — 무역·PPI·수출 지표와 매출·영업이익 상관, 내포 매출 vs 가이던스·컨센서스)과 '마진 구조' 절 맨 앞 매출 → 매출총이익 → 영업이익 폭포·비용 강도(`scripts/tenbagger/cost_bridge_view.py`). 재료는 `quarters_hist`(`scripts/tenbagger/quarters.py`), PPI·무역 월 시계열은 `knowledge/models/trade_ppi/history.json`.
 - **P·Q 사이클**(2026-11-03 마스터 지시): 'P·Q 사이클' 절(`scripts/tenbagger/pq_view.py`) — 매출 = 가격 × 물량 로그 분해, 국면·강도·구조성, AR(2) 투영으로 전환까지 남은 분기. 거시 지표 싱크로율 절 다음, 밸류에이션 앞.
 - **매수 위치(일봉)·글자 크기**(2026-11-03 마스터 지시): 업사이드는 일봉 기준만 — '매수 위치(일봉)' 절(`scripts/tenbagger/entry_view.py`)이 일봉 지지·저항 구간마다 목표주가·첫 저항까지 업사이드, 다음 지지까지 하방, 손익비, 현재 위치(ATR 배수)를 낸다. 목표주가의 차트 요인도 일봉 스윙으로 바꿨다. 리포트 HTML 글자 크기는 화면 폭에 따라 커진다(`report_html.py` CSS, 모바일 본문 15px 이상).
+- **SPAC 리포트**(2026-11-03 마스터 지시): 스팩 종목은 합병 위임장·8-K 중심의 SPAC 경로(`scripts/tenbagger/spac_report.py`) — 현금 다리·지분 구성·희석 사다리·보호예수·EV vs 공정성 의견 범위·경영진 전망 내포 주가·현금 버팀. 목표주가·등급 없음.
