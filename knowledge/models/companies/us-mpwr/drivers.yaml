@@ -1,0 +1,107 @@
+auto: true
+id: us-mpwr
+name: Monolithic Power Systems
+ticker: MPWR
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  CN: 0.553
+  TW: 0.197
+  KR: 0.091
+  SEA: 0.053
+  EU: 0.041
+  US: 0.035
+  JP: 0.03
+tax: 0.15
+horizon: 10
+as_of: '2026-11-03'
+market:
+  date: '2026-11-03'
+  price: 1243.95
+  shares: 0.0492
+  net_debt: -1.0912
+  source: 가격 = 11/2 종가. 주식 = 3Q26 실적 자료 재무상태표 발행주식 48.792M(9/30). 현금 = 현금·단기투자 $1,091.2M(9/30).
+    차입 없음. 3Q 자사주 매입 $453.4M으로 현금이 6월 말 $1,413.8M에서 줄었다
+rev0: 4.337
+ic0: 2.6425
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.4849
+      end: 0.03
+      decay: 0.467
+    margin:
+      m0: 0.309
+      target: 0.34
+      year_target: 3
+      lr: 0.29
+      lam: 0.35
+      anchors:
+      - 0.341
+      - 0.356
+    s2c: 2.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.7293
+      end: 0.034999999999999996
+      decay: 0.517
+    margin:
+      m0: 0.309
+      target: 0.3635
+      year_target: 3
+      lr: 0.29
+      lam: 0.25
+      anchors:
+      - 0.341
+      - 0.356
+    s2c: 2.3
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.222
+      end: 0.024999999999999998
+      decay: 0.367
+    margin:
+      m0: 0.309
+      target: 0.3165
+      year_target: 3
+      lr: 0.29
+      lam: 0.5
+      anchors:
+      - 0.341
+      - 0.356
+    s2c: 1.7
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [4.302, 4.372] (3Q 실적 자료 2026-10-29: 4Q26 매출 $1,315~1,385M, 비GAAP
+    GM 55.5~56.1%, 비GAAP 영업비용 $216.8~220.8M. FY2026 = 9M 실적 $2,987.2M + 4Q 가이던스(자체
+    합산))'
+  growth: 컨센서스 1년차 48.5%, 2년차 24.2%
+  margin: 1~2년차 컨센서스 34.1%, 35.6% 고정 → 목표 34%(3년차, 덮어쓰기) → 장기 수렴 29%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.415 → 덮어쓰기 2.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 22.2%~72.9%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 규칙의 장기 수렴 15%는 팹리스 전력 반도체에 맞지 않는다. 3Q 비GAAP OPM 38.6%에서 SBC 약 7.4%를 빼면
+    약 31%이고, 동종 TXN 41%·ADI 36%(GAAP)다. 3년차 목표는 컨센서스 비GAAP 41.5%에서 SBC를 뺀 약 34%, 장기는
+    경쟁·가격 하락을 감안해 29%로 둔다. 투하자본에 이연법인세자산 $1.18B가 들어 있어 평균 효율이 낮게 잡히므로, 팹리스(CAPEX 매출의
+    6~7%)의 한계 자본 효율은 2.0으로 둔다
+  shares: '완전 희석 = 기본 0.048792(2026-09-30) + 옵션·RSU·워런트·전환 0.0004 — 3Q 실적 자료: 9/30
+    완전 희석 주식 49.2M − 발행주식 48.792M = 약 0.41M(RSU·P'
+notes:
+- 자동 생성(build_drivers) 2026-11-03 — 데이터 묶음 2026-11-03
+- '어닝콜 위험: 스토리지·컴퓨팅 3Q 전분기 대비 −3.8%, 노트북은 메모리 공급 제약'
+- '어닝콜 위험: 파운드리 웨이퍼 가격 상승 — 일부만 고객과 나눈다'
+- '어닝콜 위험: FY2025 매출의 55%가 중국(10-K 지역별)'
+evidence:
+- MPS 3Q26 실적 자료(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20260930xexx991.htm
+- MPS CFO 선임 8-K https://www.sec.gov/Archives/edgar/data/1280452/000162828026068202/mpwr-20261027.htm
+- MPS 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/1280452/000162828026053275/mpwr-20260630.htm
+- MPS FY2025 10-K https://www.sec.gov/Archives/edgar/data/1280452/000143774926006113/mpwr20251231_10k.htm
+- MPS 3Q 콜 2026-10-29, 2Q 콜 2026-07-30(요지만)
