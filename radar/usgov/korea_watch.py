@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pollers import common  # noqa: E402
 
 OUT = common.ROOT / "knowledge" / "models" / "korea_watch" / "latest.json"
-UA = {"User-Agent": "Mozilla/5.0 (compatible; Chiip research; fhteo1101@gmail.com)"}
+UA = {"User-Agent": common.UA}
 LINK = re.compile(r'<a\b[^>]*href="([^"]+)"[^>]*>(.*?)</a>', re.I | re.S)
 DOC = re.compile(r"\.pdf|minutes|agenda|board-?material", re.I)
 

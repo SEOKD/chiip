@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from pollers import common  # noqa: E402
 
 OUT = common.ROOT / "knowledge" / "models" / "lobby"
-UA = {"User-Agent": "Chiip research fhteo1101@gmail.com"}
+UA = {"User-Agent": common.UA}
 FORMS = "DEF 14A,10-K,8-K,20-F"
 
 

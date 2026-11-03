@@ -223,6 +223,27 @@ themes:
       - {id: us-irdm, name: Iridium Communications, aliases: ["Iridium Communications"], market: us, code: "IRDM", edge: 5, why: "저궤도 통신 위성군 운영 — 안정 현금흐름, 직접 통신 경쟁 노출(1차 판정)"}
       - {id: us-vsat, name: Viasat, aliases: ["Viasat"], market: us, code: "VSAT", edge: 4, why: "위성 통신·방위 통신 — 차입과 주파수 자산 가치(1차 판정)"}
       - {id: us-spir, name: Spire Global, aliases: ["Spire Global"], market: us, code: "SPIR", edge: 3, why: "소형 위성 데이터 — 사업 재편 후 규모 확인(1차 판정)"}
+  # 산업 부품(마스터 지시 2026-11-03). RBC는 RBC Capital과 섞이지 않게 'RBC Bearings'로만 인식한다
+  - id: industrial_components
+    name: 산업 정밀 부품·특수 소재
+    watch: true
+    sector: industrial
+    bottleneck: "항공·방위·전력 설비의 인증 부품은 공급사 교체에 시간이 걸린다 — 증산기에 납기와 가격 결정력이 소수 업체로 모이는지가 관건(1차 판정)"
+    driver: "최종 설비 출하 × 대당 부품 함량 + 설치 기반의 교체 수요"
+    evidence: ["수주잔고·납기", "애프터마켓 매출 비중", "가격 인상과 영업이익률", "증설·장기 공급 계약"]
+    candidates:
+      - {id: us-rbc, name: RBC Bearings, aliases: ["RBC Bearings"], market: us, code: "RBC", edge: 7, why: "항공·방위·산업용 정밀 베어링 — 인증 부품의 교체 수요와 가격 결정력 확인(1차 판정)"}
+      - {id: us-tkr, name: Timken, aliases: ["Timken Company", "Timken"], market: us, code: "TKR", edge: 5, why: "산업용 베어링·동력 전달 — 경기 민감도와 믹스 개선 확인(1차 판정)"}
+      - {id: us-rrx, name: Regal Rexnord, aliases: ["Regal Rexnord"], market: us, code: "RRX", edge: 5, why: "모터·동력 전달 — 데이터센터 공조·전력 관련 수주 확인(1차 판정)"}
+      - {id: us-wwd, name: Woodward, aliases: ["Woodward, Inc.", "Woodward Inc"], market: us, code: "WWD", edge: 6, why: "항공 엔진·가스터빈 연료 제어 — 애프터마켓과 발전용 가스 수요 확인(1차 판정)"}
+      - {id: us-itt, name: ITT Inc., aliases: ["ITT Inc."], market: us, code: "ITT", edge: 5, why: "펌프·커넥터·마찰재 — 사업 믹스와 인수 효과 확인(1차 판정)"}
+      - {id: us-npo, name: Enpro, aliases: ["Enpro Inc.", "Enpro"], market: us, code: "NPO", edge: 6, why: "반도체 장비용 부품·실링 — 반도체 비중과 공정 소모품 수요 확인(1차 판정)"}
+      - {id: us-cw, name: Curtiss-Wright, aliases: ["Curtiss-Wright"], market: us, code: "CW", edge: 6, why: "방위·원자력 정밀 부품 — 수주잔고와 원자력 노출 확인(1차 판정)"}
+      - {id: us-hwm, name: Howmet Aerospace, aliases: ["Howmet Aerospace", "Howmet"], market: us, code: "HWM", edge: 7, why: "항공 엔진 터빈 블레이드·체결재 — 엔진 증산과 교체 수요 확인(1차 판정)"}
+      - {id: us-ati, name: ATI Inc., aliases: ["ATI Inc.", "Allegheny Technologies"], market: us, code: "ATI", edge: 6, why: "항공·방위용 특수 합금 — 장기 계약 가격과 증설 확인(1차 판정)"}
+      - {id: us-crs, name: Carpenter Technology, aliases: ["Carpenter Technology"], market: us, code: "CRS", edge: 6, why: "항공용 특수 합금 — 공급 부족 지속과 가격 확인(1차 판정)"}
+      - {id: us-ndsn, name: Nordson, aliases: ["Nordson"], market: us, code: "NDSN", edge: 5, why: "정밀 도포·계량 장비 — 전자·패키징 수요 확인(1차 판정)"}
+      - {id: us-iex, name: IDEX, aliases: ["IDEX Corporation"], market: us, code: "IEX", edge: 4, why: "유체 제어·정밀 부품 — 소량 고마진 부품의 수요 회복 확인(1차 판정)"}
   # >>> tradingview — radar/tv_sync.py가 만든다. 손으로 고치지 않는다(종목은 TradingView에서 고친다)
   - id: "tv_1_us_미분류"
     name: "TradingView 1_US 미분류"
