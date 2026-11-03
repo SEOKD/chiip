@@ -460,7 +460,37 @@ def chart_satellite(c):
     return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>' if g else ""
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "portfolio": chart_portfolio, "satellite": chart_satellite}
+def chart_waterfall(c):
+    """폭포 — total은 0부터 막대, cost는 앞 막대 끝에서 내려간다(2026-11-03 매출 → 매출총이익 → 영업이익)"""
+    steps = c.get("steps") or []
+    if not steps:
+        return ""
+    W, H, L, B, T = c.get("w", 700), 260, 40, 44, 18
+    level, bars = 0.0, []
+    for s in steps:
+        v = s.get("value") or 0
+        if s.get("kind") == "total":
+            bars.append((s["label"], 0.0, v, "total"))
+            level = v
+        else:
+            bars.append((s["label"], level, level + v, "cost"))
+            level += v
+    lo, hi = min(0.0, min(min(a, b) for _, a, b, _ in bars)), max(max(a, b) for _, a, b, _ in bars) * 1.1 or 1
+    Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
+    gw = (W - L - 10) / len(bars)
+    g = [f'<line x1="{L}" x2="{W - 10}" y1="{Y(0):.1f}" y2="{Y(0):.1f}" stroke="var(--line)"/>']
+    for i, (lab, a, b, kind) in enumerate(bars):
+        x = L + i * gw + 4
+        y1, y2 = sorted((Y(a), Y(b)))
+        col = "var(--c)" if kind == "total" else "var(--b)"
+        val = b - a
+        g.append(f'<rect x="{x:.1f}" y="{y1:.1f}" width="{gw - 8:.1f}" height="{max(y2 - y1, 1):.1f}" rx="2" fill="{col}"><title>{t(lab)}: {_fmt(val)}</title></rect>')
+        g.append(f'<text x="{x + (gw - 8) / 2:.1f}" y="{y1 - 3:.1f}" text-anchor="middle" style="font-size:10px">{_fmt(val)}</text>')
+        g.append(f'<text x="{x + (gw - 8) / 2:.1f}" y="{H - 26 + (i % 2) * 12}" text-anchor="middle" style="font-size:9.5px">{t(lab)}</text>')
+    return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall}
 
 
 def figures(d):

@@ -25,6 +25,7 @@ from pollers import common  # noqa: E402
 
 CONFIG = common.ROOT / "config" / "trade_ppi.yaml"
 LATEST = common.ROOT / "knowledge" / "models" / "trade_ppi" / "latest.json"
+HISTORY = common.ROOT / "knowledge" / "models" / "trade_ppi" / "history.json"   # 월별 원 시계열 — 거시 지표 싱크로율(scripts/tenbagger/sync_view.py, 2026-11-03)
 UA = "Chiip research fhteo1101@gmail.com"
 HISTORY_MONTHS = 30
 PAUSE = 0.4
@@ -288,41 +289,45 @@ def collect(cfg, today, env):
     tw_trade = attempt("tw trade", lambda: tw_trade_table(get(dataset_url(cfg["taiwan"]["trade_dataset"]), timeout=90))) or {}
     tables = (attempt("e-stat 표", lambda: estat_tables(estat, today)) or {}) if estat else {}
     metas = {}
+    hist = {k: {"ppi": {}, "trade": {}} for k in cfg["inputs"]}
     for k, v in cfg["inputs"].items():
         p, o = v["ppi"], out[k]
-        o["ppi"]["us"] = ppi_metric(us.get(p.get("us")))
+        pm = lambda c, s: (hist[k]["ppi"].__setitem__(c, s) if s else None) or ppi_metric(s)
+        tm = lambda c, s: (hist[k]["trade"].__setitem__(c, s) if s else None) or trade_metric(s or {})
+        o["ppi"]["us"] = pm("us", us.get(p.get("us")))
         if p.get("uk"):
-            o["ppi"]["uk"] = ppi_metric(attempt(f"ons {k}", lambda: ppi_ons(p["uk"])))
+            o["ppi"]["uk"] = pm("uk", attempt(f"ons {k}", lambda: ppi_ons(p["uk"])))
         if p.get("jp"):
-            o["ppi"]["jp"] = ppi_metric(attempt(f"boj {k}", lambda: ppi_boj(p["jp"], start)))
+            o["ppi"]["jp"] = pm("jp", attempt(f"boj {k}", lambda: ppi_boj(p["jp"], start)))
             time.sleep(PAUSE)
         if p.get("eu"):
-            o["ppi"]["eu"] = ppi_metric(attempt(f"eurostat {k}", lambda: ppi_eurostat(p["eu"], start)))
+            o["ppi"]["eu"] = pm("eu", attempt(f"eurostat {k}", lambda: ppi_eurostat(p["eu"], start)))
         parts = {}
         for c in cfg["partners"]:
-            m = trade_metric(attempt(f"comext {k} {c}", lambda: trade_comext(v["hs"], c, start)) or {})
+            m = tm(f"eu:{c}", attempt(f"comext {k} {c}", lambda: trade_comext(v["hs"], c, start)))
             if m:
                 parts[c] = m
             time.sleep(PAUSE)
         total = sum(m["value"] for m in parts.values())
         o["trade"]["eu"] = {"partners": {c: {**m, "share": m["value"] / total if total else None} for c, m in parts.items()}, "unit": "EUR"}
-        o["trade"]["uk"] = trade_metric(attempt(f"hmrc {k}", lambda: trade_hmrc(v["hs"], start)) or {})
+        o["trade"]["uk"] = tm("uk", attempt(f"hmrc {k}", lambda: trade_hmrc(v["hs"], start)))
         if census:
-            o["trade"]["us"] = trade_metric(attempt(f"census {k}", lambda: trade_census(v["hs"], start, census)) or {})
+            o["trade"]["us"] = tm("us", attempt(f"census {k}", lambda: trade_census(v["hs"], start, census)))
         if ecos and p.get("kr"):
-            o["ppi"]["kr"] = ppi_metric(attempt(f"ecos {k}", lambda: ppi_ecos(p["kr"], start, ecos)))
+            o["ppi"]["kr"] = pm("kr", attempt(f"ecos {k}", lambda: ppi_ecos(p["kr"], start, ecos)))
         if p.get("tw"):
-            o["ppi"]["tw"] = ppi_metric(tw_ppi.get(p["tw"]))
+            o["ppi"]["tw"] = pm("tw", tw_ppi.get(p["tw"]))
         if p.get("hk"):
-            o["ppi"]["hk"] = ppi_metric(attempt(f"c&sd ppi {k}", lambda: hk_table("520-62001", "PPI", "IND", p["hk"])))
+            o["ppi"]["hk"] = pm("hk", attempt(f"c&sd ppi {k}", lambda: hk_table("520-62001", "PPI", "IND", p["hk"])))
         if v.get("sitc"):
-            o["trade"]["hk"] = trade_metric(attempt(f"c&sd trade {k}", lambda: hk_table("410-50031", "VAL_IM", "COMMD", v["sitc"])) or {})
+            o["trade"]["hk"] = tm("hk", attempt(f"c&sd trade {k}", lambda: hk_table("410-50031", "VAL_IM", "COMMD", v["sitc"])))
         if v.get("tw_section"):
             ex = {c: x for (flow, sec, c), x in tw_trade.items() if flow == "出口" and sec == v["tw_section"]}
             o["trade"]["tw"] = {"partners": shares(ex), "unit": "USD thousand", "flow": "수출", "scope": f"HS {v['tw_section']}류"}
         if tables:
             total, parts = attempt(f"e-stat {k}", lambda: trade_estat(estat, v["hs"], tables, metas)) or ({}, {})
-            o["trade"]["jp"] = {**(trade_metric(total) or {}), "partners": shares(parts), "unit": "JPY thousand"}
+            o["trade"]["jp"] = {**(tm("jp", total) or {}), "partners": shares(parts), "unit": "JPY thousand"}
+    collect.hist = hist
     return out, gaps, errors
 
 
@@ -335,6 +340,7 @@ def run(today=None):
         raise RuntimeError("PPI를 하나도 받지 못했다: " + "; ".join(errors[:3]))
     LATEST.parent.mkdir(parents=True, exist_ok=True)
     LATEST.write_text(json.dumps({"as_of": today.isoformat(), "inputs": inputs, "gaps": gaps, "errors": errors}, ensure_ascii=False, indent=1), encoding="utf-8")
+    HISTORY.write_text(json.dumps({"as_of": today.isoformat(), "inputs": getattr(collect, "hist", {})}, ensure_ascii=False), encoding="utf-8")
     return f"입력 {len(inputs)}개, PPI {filled}칸, 공백 {len(gaps)}건, 오류 {len(errors)}건"
 
 
