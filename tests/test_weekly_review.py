@@ -14,7 +14,10 @@ import render  # noqa: E402
 
 
 def doc():
-    return json.loads((ROOT / "outputs" / "brief" / "2026-W44_weekly.json").read_text(encoding="utf-8"))
+    d = json.loads((ROOT / "outputs" / "brief" / "2026-W44_weekly.json").read_text(encoding="utf-8"))
+    d.setdefault("leadtime", {"read": "병목이 HBM에서 변압기로", "components": [{"name": n, "now": a, "prev": b, "normal": c, "evidence": "콜"} for n, a, b, c in
+                                  (("HBM", 52, 48, 16), ("CoWoS", 40, 44, 12), ("변압기", 120, 110, 30), ("광 모듈", 26, 20, 10))]})   # W44 이후 필수(2026-11-04)
+    return d
 
 
 class TestPublish(unittest.TestCase):
@@ -121,3 +124,13 @@ class TestFeedCodes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestLeadtime(unittest.TestCase):
+    def test_model(self):
+        m = render.leadtime_model(doc()["leadtime"])
+        self.assertEqual(m["tight"]["name"], "변압기")
+        self.assertEqual(m["moving"]["name"], "변압기")
+        self.assertEqual(m["easing"]["name"], "CoWoS")
+        self.assertGreater(m["index"], m["prev_index"])
+

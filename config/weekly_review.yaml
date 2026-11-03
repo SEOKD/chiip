@@ -18,6 +18,7 @@ limits:
   changes: [3, 4]
   change_field: 120
   sectors: [3, 6]
+  leadtime: [4, 12]   # AI 하드웨어 부품 리드타임(2026-11-04)
   next: [4, 6]
   next_field: 60
   risks: [2, 3]
