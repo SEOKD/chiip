@@ -31,7 +31,7 @@ def links(rows):
 
 def block(n, x):
     head = f"**{x['icon']} {CIRCLED[n]} {x['name']} {x['code']}｜{x['event']}**" if x.get("code") else f"**{x['icon']} {CIRCLED[n]} {x['name']}｜{x['event']}**"
-    score = f"인사이트 {x['insight']}/10 · 컨빅션 {x['conviction']}/10" + (f" · {x['basis'][:MAX_BASIS]}" if x.get("basis") else "")
+    score = f"인사이트 {x['insight']}/10" +(f" · {x['basis'][:MAX_BASIS]}" if x.get("basis") else "")
     parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
     if x.get("against"):
         parts.append(f"**■ 반대**\n· {x['against']}")

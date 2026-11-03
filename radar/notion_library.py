@@ -30,6 +30,7 @@ from pollers import common  # noqa: E402
 STORE = common.ROOT / "knowledge" / "notion" / "library.csv"
 DIGESTS = common.ROOT / "knowledge" / "notion" / "digests"
 CACHE = common.ROOT / "radar" / "inbox" / "notion_files"
+IMG = CACHE / "images"
 FIELDS = ["id", "name", "kind", "cls", "page", "broker", "doc_date", "entities", "related", "status", "chars", "added", "reference"]
 FILE_RE = re.compile(r"notion-file-block://([0-9a-f-]{36})/[0-9a-f-]{36}\?[^\s\"'<>\\]*?name=([^\s\"'<>&\\]+)")
 XNS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
@@ -121,6 +122,29 @@ def pdf_text(path):
     return out.read_text(encoding="utf-8", errors="replace") if out.exists() else ""
 
 
+def pdf_images(path, fid, min_px=200, max_n=40):
+    """PDF 속 그림(차트·표)을 IMG/<id>/에 PNG로 — 아이콘 같은 작은 그림은 뺀다(PyMuPDF, 2026-11-04 마스터 승인). 라이선스 자료라 커밋하지 않는다"""
+    try:
+        import pymupdf
+    except ImportError:
+        return 0
+    out, n = IMG / fid, 0
+    with pymupdf.open(str(path)) as doc:
+        for pno, page in enumerate(doc, 1):
+            for img in page.get_images(full=True):
+                if n >= max_n:
+                    return n
+                pix = pymupdf.Pixmap(doc, img[0])
+                if pix.width < min_px or pix.height < min_px:
+                    continue
+                if pix.n - pix.alpha > 3:
+                    pix = pymupdf.Pixmap(pymupdf.csRGB, pix)
+                out.mkdir(parents=True, exist_ok=True)
+                pix.save(str(out / f"p{pno:03d}_{img[0]}.png"))
+                n += 1
+    return n
+
+
 def xlsx_text(path, max_rows=2000):
     """표준 라이브러리로 시트를 탭 구분 글로 — 새 패키지를 쓰지 않는다"""
     with zipfile.ZipFile(path) as z:
@@ -157,6 +181,8 @@ def put(data, rows, cos):
                 with urllib.request.urlopen(f["url"], timeout=60) as r:
                     p.write_bytes(r.read())
                 text = pdf_text(p) if row["kind"] == "pdf" else xlsx_text(p)
+                if row["kind"] == "pdf":
+                    pdf_images(p, row["id"])
             if len(text.strip()) < 50:
                 raise ValueError("글자를 뽑지 못했다")
             (CACHE / f"{row['id']}.txt").write_text(text, encoding="utf-8")
@@ -225,6 +251,17 @@ def pull(token, rows, cfg, cos, today, limit=40):
                 d, f = put({"files": [{"reference": f"notion-file-block://{bid}/00000000-0000-0000-0000-000000000000?name=x", "url": url}]}, [row], cos)   # put이 블록 id로 행을 찾는다
                 done += d
                 failed += f
+            elif row["kind"] == "pdf" and row["status"] in ("text", "digest") and not (IMG / bid).exists() and done + len(failed) < limit and url:
+                try:   # 이미지 도구 전에 읽은 PDF — 그림만 다시 뽑는다
+                    with tempfile.TemporaryDirectory() as tmp:
+                        p = Path(tmp) / "doc.pdf"
+                        with urllib.request.urlopen(url, timeout=60) as r:
+                            p.write_bytes(r.read())
+                        pdf_images(p, bid)
+                    (IMG / bid).mkdir(parents=True, exist_ok=True)   # 그림이 없는 PDF도 다시 받지 않게 표시
+                    done += 1
+                except Exception as exc:
+                    failed.append(f"{name}: 그림 {type(exc).__name__}")
     return new, done, failed
 
 
