@@ -1,0 +1,46 @@
+{
+ "id": "us-ccxi",
+ "name": "Churchill Capital Corp XI (Agility Robotics)",
+ "ticker": "CCXI",
+ "kind": "spac",
+ "unit": "B$",
+ "as_of": "2026-11-03T23:40+09:00",
+ "spac": {
+  "as_of": "2026-11-02",
+  "price": 9.29,
+  "trust_per_share": 10.287364,
+  "target": "Agility Robotics",
+  "new_ticker": "AGLT",
+  "status": "주총 가결·종결 전",
+  "redemption": {"shares": 25.451804, "pct": 0.615},
+  "cash": {"trust_left": 0.1641, "pipe": 0.201025, "other": 0.100, "fees": 0.0461, "target_cash": 0.0147, "debt": 0.0},
+  "shares": {"Agility 기존 주주": 192.788796, "PIPE": 20.1025, "공개 주주(환매 후)": 15.948196, "스폰서": 14.3},
+  "warrants": [{"name": "공개·사모 워런트", "count": 4.19, "strike": 11.5}],
+  "earnout": [],
+  "lockups": [{"date": "2027-05-03", "who": "스폰서·Agility 기존 주주(락업 대상, 상한)", "shares": 207.088796}],
+  "fairness": {"low": 1.7, "base": 4.54, "high": 7.3, "by": "Ocean Tomo"},
+  "projections": [],
+  "burn": 0.172
+ },
+ "notes": {
+  "price": "2026-11-02 종가 $9.29(전일 $8.15, +14.0%). 52주 $8.00~$19.69. 11/3 미국 장 시작 전 조회.",
+  "cash": "8-K 2026-11-02 Item 8.01: 총조달 약 $465.1M(거래비용 전) = 신탁 $164.1M + PIPE $201.0M + 7월 SAFE $100M(이미 수령). 거래비용 $46.1M은 424B3 순현금 표 추정치. target_cash $14.7M은 2026-06-30 현금(장기 제한 현금 $7.1M 제외). 7~10월 영업현금 유출(1H26 속도면 약 $57M, 추정)은 차감하지 않았다 — 순현금은 상한 쪽이다.",
+  "shares": "424B3 지분표(교환비율 9.295, 2026-06-30 기준) Agility 주주 192,788,796주, 스폰서 14,300,000주(창업자 13.8M + 사모 0.5M), PIPE 20,102,500주($10.00). 공개 주주 41.4M − 환매 25,451,804 = 15,948,196. 기본 합계 약 243.1M주(자체추론). Agility 옵션은 표에서 빠져 있다 — 총 대가 $2.5B ÷ $10.16 − 192.8M ≈ 53M주가 옵션·SAFE 전환 몫(추정). 종결 8-K로 확정 필요.",
+  "earnout": "424B3에서 언아웃 조항을 찾지 못했다(검색어 earnout 0건).",
+  "lockup": "등록권 계약·정관: 종결일부터 180일. 종결 11/4 예정 기준 2027-05-03(추정). 대상 주식 수는 락업 계약 서명자 기준이라 상한으로 적었다.",
+  "burn": "1H26 영업현금흐름 −$86.2M × 2 = 연 $172M(추정). FY25 −$99.8M. Digit 5 양산 CAPEX 미포함.",
+  "fairness": "Ocean Tomo 2026-06-22 이사회 제시: 4개 시나리오 평균 EV Baseline $4.54B·S2 $3.85B·S3 $3.59B·S4 $3.09B, 전체 범위 $1.7B~$7.3B, 주당 내포 가치 $11.39~$16.69.",
+  "sponsor_cost": "스폰서 총 투자 $5.025M(사모 유닛 $5.0M + 창업자 주식 $25K) — 14.3M주.",
+  "unit_economics": "424B3 Unaudited Prospective Unit Economics: RaaS 월 $8,500, 배치비 약 $25,000, 수명 5년, BOM 출시 시 약 $150K → 연 1,000대에서 약 $75K → 연 10,000대에서 약 $30K. 로봇당 5년 누적 매출 RaaS 약 $500K·판매형 약 $400K.",
+  "deployment": "Ocean Tomo: 배치 일정(위험 조정) 2030년까지 누적 약 7,000대, 조정 전 파이프라인 약 28,000대. 배치 일정은 토트(tote) 운반 기능만 반영."
+ },
+ "raw": {
+  "yfinance_profile": {"price": 9.29, "prev_close": 8.15, "market_cap_reported": 517452992, "shares_outstanding_reported": 41900000, "total_cash": 1252516, "analyst_total": 0, "short_pct_float": 0.0798, "institution_ownership": 0.686, "fifty_day_avg": 11.94, "fetched": "2026-11-03T23:35+09:00"},
+  "fiscal_ai": "회사 키 없음(NASDAQ_CCXI·NASDAQ_AGLT 'Company not found', 2026-11-03 20:00 회차 확인)",
+  "easyconomics_earnings_dates": []
+ },
+ "sources": [
+  {"what": "424B3 합병 위임장(2026-10-13)", "url": "https://www.sec.gov/Archives/edgar/data/2074973/000121390026109058/ea0297114-07.htm"},
+  {"what": "8-K 주총 결과·환매(2026-11-02)", "url": "https://www.sec.gov/Archives/edgar/data/2074973/000121390026115034/ea0310517-8k425_church11.htm"}
+ ]
+}
