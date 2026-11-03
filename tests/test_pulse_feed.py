@@ -49,7 +49,7 @@ class TestBuild(unittest.TestCase):
     def test_brief_is_one_line_each(self):
         t = pulse_feed.build({"time": "16:24", "items": [], "brief": [{"name": "삼성전기", "code": "009150", "line": "판가 증거는 아직 없음", "link": ["보도", "https://x.example/a"]}],
                               "empty": ["숏 리포트"]})
-        self.assertIn("· 삼성전기(009150) — 판가 증거는 아직 없음 [보도](https://x.example/a)", t)
+        self.assertIn("· 삼성전기 009150 — 판가 증거는 아직 없음 [보도](https://x.example/a)", t)
         self.assertIn("그 외 새 건 없음: 숏 리포트", t)
 
     def test_readable_keeps_section_with_its_list(self):
