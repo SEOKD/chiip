@@ -42,6 +42,7 @@ JOBS = [  # (job id, module, interval_min)
     ("jp-ir-audit", "pollers.jp_ir_audit", 10080),  # 일본 IR 자료실·전문·Q&A 커버리지 표, 주 1회(전 사이트를 읽어 약 10분, 모델 없음, 마스터 지시 2026-11-01)
     ("jp-tv-docs", "jp_tv_docs", 60),  # 일본 어닝콜 전사 확인 대상 갱신(TradingView 호출은 펄스 회차의 모델이 3종목씩, 2026-11-02 마스터 지시)
     ("self-heal", "self_heal", 60),  # 수집 채널 이상 탐지·재시도(모델 없음, 2026-11-02 마스터 지시)
+    ("notion-library", "notion_library", 30),  # 노션 첨부 색인·본문 추출, NOTION_TOKEN 경로(모델 없음, 2026-11-04 마스터 지시)
     ("trade-ppi", "trade_ppi", 1440),
     ("trade-hs", "trade_hs", 1440),  # HS 시계열·급등 품목(모델 없음, 2026-11-02 마스터 지시)  # 6개국 무역·PPI 세부 항목(모델 없음, 2026-11-02 마스터 지시)
     ("korea-watch", "korea_watch", 360),  # 한국 기업 미국 활동·해외 M&A 단서(모델 없음, 2026-11-03 마스터 지시)
