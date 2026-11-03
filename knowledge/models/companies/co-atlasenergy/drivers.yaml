@@ -1,0 +1,102 @@
+auto: true
+id: co-atlasenergy
+name: Atlas Energy Solutions
+ticker: AESI
+unit: B$
+unit_usd: 1000000000.0
+industry: oilfield_services
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-04'
+market:
+  date: '2026-11-04'
+  price: 8.23
+  shares: 0.125006
+  net_debt: 0.9632
+  source: 가격 = 11/2 종가. 주식 = 3Q26 보도자료 기본 가중평균 125.006M. 현금·차입 = 9/30 재무상태표(유동 $44.7M
+    + 장기 $940.8M). 10/22 브리지 대출 인출 뒤 10/23 현금 $152.2M은 raw에 따로 적었다
+rev0: 1.11
+ic0: 2.0398
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.2027
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: -0.098
+      target: 0.15
+      year_target: 3
+      lr: 0.14
+      lam: 0.35
+      anchors:
+      - 0.018
+      - 0.048
+    s2c: 0.6
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.4865
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: -0.098
+      target: 0.223
+      year_target: 3
+      lr: 0.14
+      lam: 0.25
+      anchors:
+      - 0.018
+      - 0.048
+    s2c: 0.69
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.018
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: -0.098
+      target: 0.077
+      year_target: 3
+      lr: 0.14
+      lam: 0.5
+      anchors:
+      - 0.018
+      - 0.048
+    s2c: 0.51
+mc:
+  sigma_growth: 0.1171
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [1.1, 1.12] (3Q 보도자료 2026-11-02: 4Q26 조정 EBITDA $40~50M, 모든 사업
+    전분기 대비 개선. 매출 가이던스는 없어 rev_fy0는 9M 실적 $826.5M + 4Q 컨센서스 범위로 잡았다)'
+  growth: 컨센서스 1년차 20.3%, 2년차 27.3%
+  margin: 1~2년차 컨센서스 1.8%, 4.8% 고정 → 목표 15%(3년차, 덮어쓰기) → 장기 수렴 14%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.527 → 덮어쓰기 0.6
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 1.8%~48.6%
+  probs: '데이터 묶음 지정 {''bear'': 0.35, ''base'': 0.45, ''bull'': 0.2}'
+  overrides: 규칙의 자본 효율은 모래 사업 기준이다. 전력은 MW당 사업비 $1.5~2.5M(2Q 콜)이고 Socorro는 사업비 $190M에
+    연 FCF $55M이라 매출 대비 투하자본이 무겁다(0.6). 장기 EBIT 이익률은 컨센서스 FY2028 EBITDA 이익률 30.6%에서
+    감가상각(매출의 약 15%)을 뺀 15%로 둔다
+  shares: '완전 희석 = 기본 0.125006(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 2031 전환사채 $450M(전환가
+    $14.51, 31.0M주 상당)은 11/2 종가 $8.23보다 76% '
+notes:
+- 자동 생성(build_drivers) 2026-11-04 — 데이터 묶음 2026-11-04
+- '어닝콜 위험: 9/30 현금 $22.3M, 순차입 약 $963M'
+- '어닝콜 위험: 3Q 순손실 $45.1M, 조정 EBITDA 이익률 11%'
+- '어닝콜 위험: 브리지 만기 180일(+184일 연장), 6개월 뒤 금리 0.5%p 상승'
+evidence:
+- Atlas 3Q26 실적 보도자료(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1984060/000119312526443818/aesi-ex99_1.htm
+- Atlas 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/1984060/000119312526333424/aesi-20260630.htm
+- Atlas FY2025 10-K https://www.sec.gov/Archives/edgar/data/1984060/000119312526067145/aesi-20251231.htm
+- 브리지 대출 8-K(2026-10-22) https://www.sec.gov/Archives/edgar/data/1984060/000110465926117979/tm2628081d1_8k.htm
+- 비용보전 계약 보도자료(2026-09-25) https://www.sec.gov/Archives/edgar/data/1984060/000119312526401582/aesi-ex99_1.htm
+- 발전기·BoP 구매 계약 8-K(2026-09-24) https://www.sec.gov/Archives/edgar/data/1984060/000119312526401172/aesi-20260918.htm
+- 텍사스 재설립 예비 위임장(2026-10-26) https://www.sec.gov/Archives/edgar/data/1984060/000114036126040775/ny20082737x1_pre14a.htm
+- Atlas 2Q 콜 2026-08-04(요지만)
