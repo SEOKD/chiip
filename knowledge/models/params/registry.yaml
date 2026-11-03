@@ -1931,7 +1931,7 @@ params:
   fit:
     method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
     target: 등급별 초과수익
-    data: null
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
 - id: prm-tb-rate-sb-rr
@@ -1947,7 +1947,7 @@ params:
   fit:
     method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
     target: 등급별 초과수익
-    data: null
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
 - id: prm-tb-rate-buy-up
@@ -1963,7 +1963,7 @@ params:
   fit:
     method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
     target: 등급별 초과수익
-    data: null
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
 - id: prm-tb-rate-buy-rr
@@ -1979,7 +1979,7 @@ params:
   fit:
     method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
     target: 등급별 초과수익
-    data: null
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
 - id: prm-tb-rate-neutral
@@ -1995,7 +1995,7 @@ params:
   fit:
     method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
     target: 등급별 초과수익
-    data: null
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
 - id: prm-tb-rate-sell
@@ -2011,7 +2011,7 @@ params:
   fit:
     method: 리포트 등급·선정 멀티플 뒤 12개월 초과수익으로 표본 외 점검
     target: 등급별 초과수익
-    data: null
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
 - id: prm-tb-mult-fund
@@ -2780,5 +2780,133 @@ params:
     method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
     target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
     data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-sb-dcf
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
+  value: 0.0
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.0
+    basis: 'Strong Buy는 DCF 기본 시나리오가 현재가 아래가 아닐 때만 — 목표주가가 멀티플·차트에만 기대지 않게 하는 교차 확인'
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-buy-dcf
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#rating.buy.dcf_min
+  value: -0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.5
+    basis: 'Buy는 DCF 기본 업사이드 −50% 이상 — 성장주 DCF가 낮게 나오는 점을 감안한 느슨한 하한'
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-horizon
+  model: tenbagger.report
+  binding: config/tenbagger_rating_lab.yaml#horizon_months
+  value: 12
+  unit: 개월
+  status: prior
+  prior:
+    value: 12
+    basis: '목표주가·등급 기간 — 증권사 목표주가 관행 12개월'
+    source: Bradshaw, Brown & Huang (2013) RAST 18(4) — 애널리스트 12개월 목표주가 적중률 연구
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-hyst
+  model: tenbagger.report
+  binding: config/tenbagger_rating_lab.yaml#hysteresis.band
+  value: 0.02
+  unit: 비율(업사이드 %p)
+  status: proposed
+  prior:
+    value: 0.02
+    basis: '경계 ±2%p 안에서는 같은 종목 직전 등급 유지 — 모델 오차보다 작은 차이로 등급이 뒤집히는 것을 막는다(2026-11-02 PWR −10.11% → Sell)'
+    source: 치입 운영 가정 — 증권사 등급 변경 빈도·번복 문헌(Barber et al. 2001 JF 56(2) 등급 변경 비용) 참고, 값은 미확인
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-volz-strongbuy
+  model: tenbagger.report
+  binding: config/tenbagger_rating_lab.yaml#vol_scaled.strong_buy
+  value: 1.0
+  unit: z(업사이드 ÷ 연 변동성)
+  status: proposed
+  prior:
+    value: 1.0
+    basis: '운영 경계(업사이드)를 연 변동성 40%에서 환산 — 변동성이 큰 종목은 같은 업사이드라도 등급을 낮춘다'
+    source: Grinold & Kahn (2000) Active Portfolio Management — 정보비율(IC×변동성) 관점; 값은 치입 환산
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-volz-buy
+  model: tenbagger.report
+  binding: config/tenbagger_rating_lab.yaml#vol_scaled.buy
+  value: 0.375
+  unit: z(업사이드 ÷ 연 변동성)
+  status: proposed
+  prior:
+    value: 0.375
+    basis: '운영 경계(업사이드)를 연 변동성 40%에서 환산 — 변동성이 큰 종목은 같은 업사이드라도 등급을 낮춘다'
+    source: Grinold & Kahn (2000) Active Portfolio Management — 정보비율(IC×변동성) 관점; 값은 치입 환산
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-volz-neutral
+  model: tenbagger.report
+  binding: config/tenbagger_rating_lab.yaml#vol_scaled.neutral
+  value: -0.25
+  unit: z(업사이드 ÷ 연 변동성)
+  status: proposed
+  prior:
+    value: -0.25
+    basis: '운영 경계(업사이드)를 연 변동성 40%에서 환산 — 변동성이 큰 종목은 같은 업사이드라도 등급을 낮춘다'
+    source: Grinold & Kahn (2000) Active Portfolio Management — 정보비율(IC×변동성) 관점; 값은 치입 환산
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-rate-volz-sell
+  model: tenbagger.report
+  binding: config/tenbagger_rating_lab.yaml#vol_scaled.sell
+  value: -0.75
+  unit: z(업사이드 ÷ 연 변동성)
+  status: proposed
+  prior:
+    value: -0.75
+    basis: '운영 경계(업사이드)를 연 변동성 40%에서 환산 — 변동성이 큰 종목은 같은 업사이드라도 등급을 낮춘다'
+    source: Grinold & Kahn (2000) Active Portfolio Management — 정보비율(IC×변동성) 관점; 값은 치입 환산
+  fit:
+    method: 등급 뒤 3·6·12개월 시장 대비 초과수익 — 운영 등급 vs 그림자 등급 짝지은 표본 외 비교(scripts/tenbagger/rating_ledger.py fit)
+    target: 등급 순서와 초과수익의 순위 상관
+    data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null

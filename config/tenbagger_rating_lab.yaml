@@ -1,0 +1,14 @@
+# 구매 등급 고도화 후보 (마스터 지시 2026-11-04 "평가 등급을 매길 때도 평가 체계가 고도화됐는지 점검")
+# 운영 등급은 config/tenbagger.yaml rating이 정한다. 여기 후보는 꺼져 있고, scripts/tenbagger/rating_ledger.py가 그림자 등급으로만 계산해
+# 운영 등급과 표본 외 성과를 비교한다. 채택은 등록부 design 규칙(한 번에 1개, 중첩 표본 외 검정, 30건 이상)을 통과할 때만 — 상대 변화 20% 이상은 마스터 승인.
+horizon_months: 12          # 목표주가·등급의 기간(prm-tb-rate-horizon) — 성과 판정 기준일
+hysteresis:                 # prm-tb-rate-hyst (proposed): 경계 ±band 안이면 같은 종목 직전 등급 유지
+  enabled: false
+  band: 0.02
+vol_scaled:                 # prm-tb-rate-volz-* (proposed): 업사이드 ÷ 연 변동성(z)으로 등급 — 지금 경계를 σ 40%에서 환산한 값
+  enabled: false
+  strong_buy: 1.0
+  buy: 0.375
+  neutral: -0.25
+  sell: -0.75
+  window: 252               # 일봉 수익률 창(거래일)
