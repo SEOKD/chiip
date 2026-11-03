@@ -31,7 +31,7 @@ OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -46,7 +46,7 @@ CLASSES = [("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -359,6 +359,61 @@ def select(sources):
     return picked + extra[:max(room, 0)]
 
 
+def earnings_universe():
+    """실적 즉시 보고 대상 미국 티커 → 회사 id(2026-11-03 마스터 지시 "레이더 망 종목과 TradingView 와치리스트 종목 중 어닝이 나오면 즉시 보고").
+    감시 목록·발굴 watch 테마(TradingView 동기화 테마 포함)·소비재·조용한 상승·보유·와치리스트·TradingView 심볼 표"""
+    import csv
+    u = dict(sea.watch_tickers())
+    for e in common.edge_watch_entries():
+        code = e.get("code") or ""
+        if code.endswith(".US"):
+            u.setdefault(code[:-3].upper(), e["id"])
+    for h in (common.load_yaml("config/portfolio.yaml") or {}).get("holdings") or []:
+        if h.get("status") in ("보유", "관심") and h.get("ticker"):
+            u.setdefault(h["ticker"].upper(), h["id"])
+    f = common.ROOT / "config" / "tradingview_symbols.csv"
+    if f.exists():
+        for r in csv.reader(f.read_text(encoding="utf-8").splitlines()):
+            if len(r) >= 4 and r[1] in ("NASDAQ", "NYSE", "AMEX", "NYSEARCA", "NYSEAMERICAN") and r[2]:
+                u.setdefault(r[2].upper(), r[3])
+    return u
+
+
+def fetch_earnings(st, days=1):
+    """레이더·와치리스트 종목의 8-K Item 2.02(실적)를 회차마다 SEC 전문 검색으로 찾는다 — 실적은 펄스 회차에서 바로 Dean's Ticker 3단으로"""
+    from pollers import sec_filings as sec
+    uni = earnings_universe()
+    today = common.now_kst().date()
+    first = "earn_seen" not in st   # 처음 켤 때는 이미 나온 실적을 다시 보내지 않는다
+    seen, out = set(st.get("earn_seen", [])), []
+    for adsh, s in sea.fetch_hits(today - timedelta(days=days), today):
+        if first and adsh:
+            seen.add(adsh)
+            continue
+        if not adsh or adsh in seen or "2.02" not in (s.get("items") or []):
+            continue
+        hit = None
+        for name in s.get("display_names") or []:
+            m = sea.NAME_RE.match(name)
+            if m:
+                for tk in re.split(r"[ ,]+", m.group(2)):
+                    if tk.upper() in uni:
+                        hit = (tk.upper(), m.group(1), m.group(3))
+                        break
+            if hit:
+                break
+        if not hit:
+            continue
+        seen.add(adsh)
+        tk, name, cik = hit
+        folder = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/"
+        out.append({"source_id": "src-sec-earnings-now", "source_class": "실적", "url": folder, "title": f"[SEC 8-K 2.02 실적] {name} ({tk})",
+                    "published_at": s.get("file_date"), "detected_at": common.iso(common.now_kst()), "language": "en", "ticker": tk,
+                    "entities_matched": [uni[tk]], "snippet": f"8-K {','.join(s.get('items') or [])} · 실적 보도자료는 색인의 Ex.99.1", "sec_items": ",".join(s.get("items") or [])})
+    st["earn_seen"] = sorted(seen)[-3000:]
+    return out
+
+
 def fetch_alerts(st, since=None):
     """속보 판단(2026-10-29 마스터 지시 "단순 정보 전달이 아니라 밸류 판단과 인사이트가 핵심"): 실시간 레이더가 지난 회차 이후 보낸
     P0·P1(radar/state/alerts.json) 중 아직 판단하지 않은 것 — 펄스가 인사이트 판단 틀(knowledge/methods/insight_framework.md)로 깊게 본다.
@@ -466,7 +521,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("소비재", fetch_consumer_spikes)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("소비재", fetch_consumer_spikes)):
         try:
             sources += fn(st)
         except Exception as exc:
