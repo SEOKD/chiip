@@ -238,7 +238,6 @@ themes:
       - {id: us-wwd, name: Woodward, aliases: ["Woodward, Inc.", "Woodward Inc"], market: us, code: "WWD", edge: 6, why: "항공 엔진·가스터빈 연료 제어 — 애프터마켓과 발전용 가스 수요 확인(1차 판정)"}
       - {id: us-itt, name: ITT Inc., aliases: ["ITT Inc."], market: us, code: "ITT", edge: 5, why: "펌프·커넥터·마찰재 — 사업 믹스와 인수 효과 확인(1차 판정)"}
       - {id: us-npo, name: Enpro, aliases: ["Enpro Inc.", "Enpro"], market: us, code: "NPO", edge: 6, why: "반도체 장비용 부품·실링 — 반도체 비중과 공정 소모품 수요 확인(1차 판정)"}
-      - {id: us-cw, name: Curtiss-Wright, aliases: ["Curtiss-Wright"], market: us, code: "CW", edge: 6, why: "방위·원자력 정밀 부품 — 수주잔고와 원자력 노출 확인(1차 판정)"}
       - {id: us-hwm, name: Howmet Aerospace, aliases: ["Howmet Aerospace", "Howmet"], market: us, code: "HWM", edge: 7, why: "항공 엔진 터빈 블레이드·체결재 — 엔진 증산과 교체 수요 확인(1차 판정)"}
       - {id: us-ati, name: ATI Inc., aliases: ["ATI Inc.", "Allegheny Technologies"], market: us, code: "ATI", edge: 6, why: "항공·방위용 특수 합금 — 장기 계약 가격과 증설 확인(1차 판정)"}
       - {id: us-crs, name: Carpenter Technology, aliases: ["Carpenter Technology"], market: us, code: "CRS", edge: 6, why: "항공용 특수 합금 — 공급 부족 지속과 가격 확인(1차 판정)"}

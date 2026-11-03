@@ -1,7 +1,7 @@
 """텐배거 리포트 양식 3 (마스터 지시 2026-10-31 — 구매 등급·대시보드·한눈에 보기·본론 순서 개편)
 
 순서: 제목 → Chiip View → 대시보드 → 한 장 요약 → 한눈에 보기(그림 번호 없음) → 내러티브 → 포트폴리오 → 고객 → 수주·파이프라인 → 마진 구조 → 공급망 병목 → 생산능력 → 해자 →
-      약세 논리 및 셀온 조건 → 어닝콜 변화 → 밸류에이션 → 수급 → 체크리스트.
+      약세 논리 및 셀온 조건 → 어닝콜 변화 → 밸류에이션 → 애널리스트 토론 → 수급 → 체크리스트.
 모델은 JSON에 title·subtitle·date·ticker·company·biz·verdict(view·alpha)·summary·sections(판단 시나리오·반대 검증·킬 조건(또는 셀온 조건)·체크리스트)만 쓴다.
 숫자·순서·그래프는 이 파일이 만든다. 모르는 절이 있으면 멈춘다 — 본론 순서가 고정이기 때문이다.
 
@@ -12,6 +12,7 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
   "margin": scripts/tenbagger/margin_view.py 맨 위 — GPM·OPM 비용 요인과 핵심 제품·서비스 BOM 분해
   "supply": scripts/tenbagger/supply_view.py 맨 위 — 부품 공급망 업체와 공급 병목 10점
   "customers": scripts/tenbagger/customer_view.py 맨 위 — 고객사와 고객별 매출 믹스 추정
+  "debate": scripts/tenbagger/debate_view.py 맨 위 — 등급별 가상 애널리스트 5인 토론, 규칙 등급에서 debate.max_shift 단계까지 조율
   "capacity": scripts/tenbagger/capacity_view.py 맨 위 — 현재 생산능력, 확충 계획, CAPEX와 매출 대비. 시설 위성 판독은 scripts/tenbagger/site_view.py 맨 위
   "multiple_view": {"adj": -0.2, "why": "사이클·실행 할인 등 IB식 판단 한 줄"}   # 조정폭은 config/tenbagger.yaml multiple_select.judge_cap 안에서
   "target_view": {"adj": 0.1, "why": "요인에 안 잡히는 판단 한 줄"}   # 선택. 목표주가 위치 조정, target_price.judge_cap 안에서
@@ -33,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import capacity_view  # noqa: E402
 import site_view  # noqa: E402
 import customer_view  # noqa: E402
+import debate_view  # noqa: E402
 import flow  # noqa: E402
 import input_view  # noqa: E402
 import leader_view  # noqa: E402
@@ -390,11 +392,11 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
                             (prof.get("debt") or 0) - (prof.get("cash") or 0), shares, cfg["target_price"], ((dp.get("consensus") or {}).get("ratings") or {}).get("target_mean"))
     s.update({"weighted_up": s["upside"], "target": pt["target"], "upside": pt["upside"]})
     s["chart"].update({"target": pt["target"]})
-    grade = rating(s["upside"], s["rr"], dcf_up, cfg)
+    grade, deb = debate_view.decide(dp, rating(s["upside"], s["rr"], dcf_up, cfg))   # 규칙 등급 → 가상 애널리스트 5인 토론으로 조율(2026-11-03 마스터 지시)
     v = d.setdefault("verdict", {})
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     cur = sym(dp)
-    v.update({"rating": grade, "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4), "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
+    v.update({"rating": grade, "rule_rating": deb["rule"], "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4), "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
               "weighted_upside": round(s["weighted_up"], 4), "upside_basis": f"목표주가 {cur}{pt['target']:,.0f}"})
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}
@@ -443,7 +445,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))
             out.append(part)
     money = lambda x: f"{cur}{x:,.2f}B"
-    out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val]
+    out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}, val, debate_view.section(dp, deb)]
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
     market = narrative_view.market_section(dp)   # 셀사이드·바이사이드·언론은 체크리스트 바로 앞(마스터 지시 2026-11-01)
     if market:

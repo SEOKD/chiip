@@ -30,7 +30,10 @@ import run_ledger  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
-TOP = {"속보 판단": 3, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
+TOP = {"속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
+EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
 PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 — 6시간마다면 충분
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
@@ -342,6 +345,20 @@ def fetch_new_listings(st, days=3):
     return out
 
 
+def is_earnings(x):
+    """실적 발표 건 — 8-K 2.02 또는 제목·요약의 실적 문구"""
+    return "2.02" in str(x.get("sec_items") or "") or bool(EARNINGS_RE.search(f"{x.get('title') or ''} {x.get('snippet') or ''}"))
+
+
+def select(sources):
+    """유형별 상한대로 고르고, 상한에 밀린 실적 발표 건은 회차 실적 합계가 EARNINGS_MAX가 될 때까지 더한다"""
+    picked = [s for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]]
+    room = EARNINGS_MAX - sum(1 for s in picked if is_earnings(s))
+    ids = {id(s) for s in picked}
+    extra = [s for s in sources if id(s) not in ids and s["source_class"] in TOP and is_earnings(s)]
+    return picked + extra[:max(room, 0)]
+
+
 def fetch_alerts(st, since=None):
     """속보 판단(2026-10-29 마스터 지시 "단순 정보 전달이 아니라 밸류 판단과 인사이트가 핵심"): 실시간 레이더가 지난 회차 이후 보낸
     P0·P1(radar/state/alerts.json) 중 아직 판단하지 않은 것 — 펄스가 인사이트 판단 틀(knowledge/methods/insight_framework.md)로 깊게 본다.
@@ -499,10 +516,10 @@ def run(now=None, peek=False):
             "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike", "relay")   # IR 자료·Q&A·소비재 필드(2026-10-30)
     import origin   # 재인용 기사는 원보도로 바꿔 모델에 넘긴다(2026-11-02 마스터 지시)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
-            "sources": [{k: origin.apply(s, now).get(k) for k in keep} for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]],
+            "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in select(sources)],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "tg_other": st.pop("tg_other", [])}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if ex.get("due"):
         exclusive_leads.offered(now)
