@@ -3,11 +3,12 @@
 입력: config/discovery.yaml(테마·후보·edge·가중치) · knowledge/models/discovery/attention_latest.json(radar/attention.py)
       · knowledge/models/discovery/fundamentals.json(주간 회차에 모델이 Fiscal.ai fundamentals.js → scripts/fiscal/adapter.py --fund로 채움:
         {id: {"as_of","mcap_usd","rev_growth","op_margin","ev_sales","n_analysts","source"}}) · config/coverage.yaml
-단계: ① 아이디어(테마 지도 전부) → ② 선별(점수 ≥ 6.0, edge ≥ 6, 펀더멘털 확보) → ③ 심층 대기열(선별 통과·미커버 상위 3) →
+단계: ① 아이디어(테마 지도 전부) → ② 선별(점수 ≥ 6.0, edge ≥ 6, 펀더멘털 확보) → ③ 심층 대기열(선별 통과·미커버 상위 DEEP_MAX) →
       ④ 위원회 메모(모델이 템플릿으로 작성) → ⑤ 커버리지 편입(--promote) — 편입되면 원문 팔로업·실적·텐배거 리포트 대기열에 자동 연결.
 출력: outputs/discovery/<YYYYMMDD>.md(순위·구성 점수·단계·빠진 자료). 점수는 판단 보조 — 매수 권유 아님.
 사용: py scripts/discovery/screen.py            · py scripts/discovery/screen.py --promote <id> [--stage focus|bench] [--memo <경로>]
 """
+DEEP_MAX = 6   # 심층 대기열 — 2026-11-04 발굴 적극성 상향(3 → 6). 선별 관문은 그대로
 import json
 import sys
 from datetime import date
@@ -98,7 +99,7 @@ def run(today=None):
             rows.append({"id": c["id"], "name": c["name"], "market": c.get("market"), "code": c.get("code"), "theme": t["name"], "score": s,
                          "comp": comp, "missing": missing, "stage": stage, "why": c.get("why", "")})
     rows.sort(key=lambda r: -(r["score"] or 0))
-    deep = [r for r in rows if r["stage"] == "② 선별 통과"][:3]
+    deep = [r for r in rows if r["stage"] == "② 선별 통과"][:DEEP_MAX]
     for r in deep:
         r["stage"] = "③ 심층 대기열"
     OUTD.mkdir(parents=True, exist_ok=True)

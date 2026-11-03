@@ -18,3 +18,4 @@
   - 쓰지 않는 것: Amazon(robots가 ClaudeBot·Claude-User 금지), Walmart·Target(약관이 자동 수집 금지), Sephora·Etsy·올리브영·라쿠텐 웹(403), 레딧 RSS(robots 금지), Nitter(X를 긁는 우회 서비스), 키 없는 Bluesky 검색(403).
   - X는 언론 인용 제목과 공개 텔레그램 채널로 간접 파악한다.
   - 무료 키가 있으면 넓힐 수 있는 공식 경로: Rakuten Ichiba Ranking API, Best Buy Products API, 네이버 데이터랩 쇼핑인사이트. 가입은 마스터 몫이다(`docs/TODO_MASTER.md`).
+- **발굴 적극성 9점**(2026-11-04 마스터 지시): 찾는 폭과 횟수만 넓힌다 — 신규 후보 하루 2→5개, 심층 대기열 3→6, 테마 지도 점검 회차당 3→6개, 동종사 확장 10→20개, 실적 상회·HS 급등·IB 추정 상향·조용한 상승·와치리스트 원천을 매 회차 훑는다(`docs/tasks/chiip-tenbagger.md` 0-A). 선별 관문과 발송 기준은 그대로라 과잉 공유는 늘지 않는다.
