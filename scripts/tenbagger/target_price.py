@@ -2,7 +2,7 @@
 그것으로, 기본과 강세 사이에 도달할 확률이 높아 보이면 그 사이로. DCF 한 요인에만 의존하지 말고 차트 기법 상승 여력, 내러티브 멀티플 프리미엄 확정 여력까지 반영")
 
 약세~기본~강세 축에서 요인별로 가리키는 주가를 재고, 가중 평균한 기울기(tilt, −1~+1)만큼 기본에서 옮긴다. 0이면 기본, +1이면 강세, −1이면 약세다.
-요인: 시나리오 확률 가중 · DCF 12개월 뒤 값 · 차트(200일선·52주 고점·피보나치 되돌림과 확장) · 내러티브 프리미엄 여력. 재료가 없는 요인은 빼고 나머지 비중을 다시 맞춘다.
+요인: 시나리오 확률 가중 · DCF 12개월 뒤 값 · 차트(일봉만 — 200일선·일봉 스윙 고점·피보나치 되돌림과 확장) · 내러티브 프리미엄 여력. 재료가 없는 요인은 빼고 나머지 비중을 다시 맞춘다.
 상수는 config/tenbagger.yaml target_price(등록부 prm-tb-pt-*). 판단 조정은 모델이 이유와 함께 datapack target_view {"adj": 0.1, "why": "..."}에 쓴다.
 """
 import levels
@@ -16,9 +16,9 @@ def chart_target(daily, cfg):
         return None
     price = daily[-1]["c"]
     ma50, ma200 = levels.sma(daily, 50), levels.sma(daily, 200)
-    sw = levels.dominant(levels.resample(daily, "W"), "주봉")
+    sw = levels.dominant(daily, "일봉")   # 일봉만(2026-11-03 마스터 지시)
     ret, _ = levels.fib(sw["low"], sw["high"], sw["up"])
-    res = [(ma200, "200일선"), (sw["high"], "52주 고점")] + [(v, f"피보나치 되돌림 {k}") for k, v in ret.items()]
+    res = [(ma200, "200일선"), (sw["high"], "일봉 스윙 고점")] + [(v, f"피보나치 되돌림 {k}") for k, v in ret.items()]
     if price >= sw["high"] * cfg["near_high"]:   # 신고가 부근에는 위쪽 저항이 없어 확장 비율을 쓴다
         res += [(sw["low"] + e * (sw["high"] - sw["low"]), f"피보나치 확장 {e * 100:.1f}%") for e in levels.FIB_EXT]
     above = sorted((x for x in res if x[0] > price * (1 + cfg["min_gap"])), key=lambda x: x[0])

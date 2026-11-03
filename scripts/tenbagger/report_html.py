@@ -61,7 +61,13 @@ section{margin-top:34px}p{margin:10px 0}details{margin:10px 0}summary{cursor:poi
 .dash{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}.dash>div{background:var(--card);border-radius:10px;padding:9px 11px;min-width:0}.dash .k{font-size:11.5px;color:var(--mut)}.dash .v{font-size:18px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.dash .s{font-size:11.5px;color:var(--mut);line-height:1.4;margin-top:2px;overflow-wrap:anywhere}
 @media (max-width:640px){.dash{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .boxes{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}.bx{border:1px solid var(--line);border-radius:12px;overflow:hidden}.bx .bt{font-weight:700;padding:9px 12px;background:var(--card);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.bx .tag{font-size:12px;font-weight:600;color:var(--c)}.bx .br{display:grid;grid-template-columns:66px minmax(0,1fr);gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13.5px}.bx .bl{color:var(--mut);font-size:12px;padding-top:1px}
-.rate-buy{color:var(--b)}.rate-sell{color:var(--c)}.rate-mid{color:var(--e)}"""
+.rate-buy{color:var(--b)}.rate-sell{color:var(--c)}.rate-mid{color:var(--e)}
+/* PC·모바일 글자 크기(2026-11-03 마스터 지시) — 화면 폭에 따라 커지고, 휴대폰에서도 본문 15px·보조 12px 아래로 내려가지 않는다 */
+body{font-size:clamp(15px,0.85rem + 0.35vw,17.5px);line-height:1.75}.w{max-width:880px}
+h1{font-size:clamp(20px,1.05rem + 1vw,28px)}h2{font-size:clamp(17px,0.95rem + 0.6vw,22px)}h3{font-size:clamp(15px,0.9rem + 0.3vw,18px)}
+.lead,.dash .s,.dash .k,.ans b.q,summary,.toc a,.bx .bl{font-size:clamp(12px,0.7rem + 0.2vw,13.5px)}
+table{font-size:clamp(12.5px,0.74rem + 0.22vw,14.5px)}.dash .v{font-size:clamp(16px,0.9rem + 0.5vw,20px)}.bx .br{font-size:clamp(13px,0.78rem + 0.2vw,15px)}
+svg text{font-size:11px}@media (max-width:640px){svg text{font-size:15px}th,td{padding:6px 4px}}"""
 DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 DISCLAIMER3 = "구매 등급·목표주가 모두 규칙이 계산한 모델 값으로, 개인의 보유 종목·자금 사정을 반영하지 않는다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 
