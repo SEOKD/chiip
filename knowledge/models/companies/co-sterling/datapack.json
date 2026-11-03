@@ -180,7 +180,7 @@
   "eps_history": {
    "basis": "adjusted",
    "updated_at": "2026-10-31T09:07:24.000Z",
-   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com — asOf 2025-09 이후, 같은 날 중복 일부 생략",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com — asOf 2025-09 이후, 같은 날 중복 일부 생략 · 10/30 행은 3Q 콜 뒤 모델 집계(FY2026은 회사 가이던스 중간값, 표본 다름)",
    "rows": [
     [
      "Q",
@@ -951,6 +951,48 @@
      "2026-10-08",
      25.803,
      9
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-10-30",
+     21.83,
+     10
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-30",
+     27.7,
+     10
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-10-30",
+     4.86,
+     10
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-10-30",
+     5.89,
+     10
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-10-30",
+     7.28,
+     10
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-10-30",
+     8.75,
+     10
     ]
    ]
   },
