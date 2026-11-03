@@ -1,0 +1,41 @@
+# 2026 미국 중간선거 자본시장 반응 관측 — 마스터 지시 2026-11-03. 엔진 radar/markets/midterm.py, 지시문 docs/tasks/chiip-midterm-2026.md
+# 관측: 미 동부시간 2026-11-03(선거일, 0일)~11-13(8일) 9거래일. 2026-11-14(토, KST)부터 중단.
+event_day: "2026-11-03"
+window_end: "2026-11-13"
+stop_kst: "2026-11-14"
+estimation: {start: "2026-08-03", end: "2026-10-30"}   # 정상 수익률 추정 구간(선거 전 약 60거래일, 선거 직전 이틀은 뺀다)
+benchmark: "AMEX:SPY"
+
+# FRED 공개 CSV(키 불필요) — 금리·스프레드·신용·환·원자재·변동성
+fred:
+  DGS2: 미국 2년
+  DGS10: 미국 10년
+  DGS30: 미국 30년
+  T10Y2Y: 2s10s
+  T10Y3M: 10년-3개월
+  T10YIE: 10년 기대인플레(BEI)
+  DFII10: 10년 실질금리
+  BAMLH0A0HYM2: 하이일드 OAS
+  BAMLC0A0CM: 투자등급 OAS
+  BAMLH0A3HYC: CCC 이하 OAS
+  DTWEXBGS: 달러지수(광의)
+  DEXJPUS: 엔/달러
+  DEXKOUS: 원/달러
+  DEXMXUS: 페소/달러
+  DEXCHUS: 위안/달러
+  DCOILWTICO: WTI
+  DHHNGSP: 천연가스(헨리허브)
+  VIXCLS: VIX
+
+# TradingView 심볼(모델이 mcp-tv-get-ohlcv로 일봉을 받아 --put). group은 표 묶음
+symbols:
+  index: ["AMEX:SPY", "NASDAQ:QQQ", "AMEX:DIA", "AMEX:IWM", "AMEX:RSP"]
+  sector: ["AMEX:XLK", "AMEX:XLF", "AMEX:XLE", "AMEX:XLV", "AMEX:XLI", "AMEX:XLY", "AMEX:XLP", "AMEX:XLU", "AMEX:XLB", "AMEX:XLRE", "AMEX:XLC"]
+  industry: ["NASDAQ:SMH", "AMEX:ITA", "AMEX:XBI", "AMEX:IHI", "AMEX:KRE", "AMEX:KBE", "NASDAQ:ICLN", "AMEX:TAN", "AMEX:URA", "AMEX:XOP", "AMEX:PAVE", "AMEX:XHB", "AMEX:IGV", "AMEX:CIBR", "AMEX:JETS", "AMEX:XRT", "AMEX:GDX", "AMEX:COPX", "NASDAQ:GRID"]
+  factor: ["AMEX:MTUM", "AMEX:QUAL", "AMEX:USMV", "AMEX:VLUE", "AMEX:SPHB", "AMEX:IWF", "AMEX:IWD"]
+  rates_fx_cmdty: ["NASDAQ:TLT", "AMEX:IEF", "AMEX:SHY", "AMEX:HYG", "AMEX:LQD", "AMEX:TIP", "AMEX:UUP", "AMEX:FXY", "AMEX:GLD", "AMEX:SLV", "AMEX:CPER", "AMEX:USO", "AMEX:UNG", "AMEX:DBA", "CBOE:VIX"]
+
+# 스마트 머니 점수(섹터·업종 ETF) — 가중치는 사전값(미검증)
+smart_money:
+  weights: {car: 0.35, abvol_up: 0.25, cmf: 0.25, rel_strength: 0.15}
+  cmf_window: 10
