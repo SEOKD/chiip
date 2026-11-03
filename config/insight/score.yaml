@@ -1,0 +1,12 @@
+# 인사이트(알파) 점수 상수 (scripts/insight/insight_calc.py) — 2026-11-04 마스터 지시 "점수 체계가 고도화돼 있는지 점검"
+# 값의 출처·피팅 상태는 knowledge/models/params/registry.yaml(prm-insight-*). 바꾸면 등록부와 changelog.csv도 같이.
+# 피팅 자료: knowledge/models/insight/score_ledger.csv (scripts/insight/score_ledger.py)
+params:
+  cap_novelty: 3           # 새로움 상한
+  cap_materiality: 3       # 중요도 상한
+  cap_mispricing: 2        # 가격 오류 가능성 상한
+  cap_conviction: 2        # 컨빅션 몫 상한
+  materiality_cuts: [10, 3, 1]   # 시총·매출·EV 대비 % — 이상이면 3·2·1점
+  conviction_cuts: [8, 5]        # 컨빅션 10점 → 몫 2·1
+  lead_threshold: 7        # 이 점수 이상이면 판단을 맨 위에, 예측 등록
+  fact_threshold: 4        # 미만이면 사실만

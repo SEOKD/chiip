@@ -19,19 +19,29 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+_P = {}
+
+
+def P():
+    """점수 상수 — config/insight/score.yaml(등록부 prm-insight-*)"""
+    if not _P:
+        import yaml
+        _P.update(yaml.safe_load((ROOT / "config" / "insight" / "score.yaml").read_text(encoding="utf-8"))["params"])
+    return _P
 
 
 def materiality(amount, mcap=None, revenue=None, ev=None):
     """사건 금액의 상대 크기와 등급(10%+ 매우 큼 · 3~10 큼 · 1~3 중간 · 1 미만 작음), 점수 0~3"""
     ratios = {k: round(amount / v * 100, 2) for k, v in (("mcap", mcap), ("revenue", revenue), ("ev", ev)) if v}
     top = max(ratios.values()) if ratios else None
+    c3, c2, c1 = P()["materiality_cuts"]
     if top is None:
         grade, pts = "정성 — 분모 없음", 1
-    elif top >= 10:
+    elif top >= c3:
         grade, pts = "매우 큼", 3
-    elif top >= 3:
+    elif top >= c2:
         grade, pts = "큼", 2
-    elif top >= 1:
+    elif top >= c1:
         grade, pts = "중간", 1
     else:
         grade, pts = "작음", 0
@@ -109,13 +119,15 @@ def conviction(source, corroboration, open_links, numbers):
 
 def conviction_points(c10):
     """컨빅션 10점 → 인사이트 점수의 컨빅션 몫(0~2)"""
-    return 2 if c10 >= 8 else 1 if c10 >= 5 else 0
+    hi, mid = P()["conviction_cuts"]
+    return 2 if c10 >= hi else 1 if c10 >= mid else 0
 
 
 def score(novelty, materiality_pts, mispricing, confidence):
     """인사이트 점수 = 새로움(0~3) + 중요도(0~3) + 가격 오류 가능성(0~2) + 컨빅션 몫(0~2, conviction_points). 7 이상이면 '치입 판단'을 맨 위에"""
-    s = min(novelty, 3) + min(materiality_pts, 3) + min(mispricing, 2) + min(confidence, 2)
-    return {"score": s, "lead_with_view": s >= 7, "fact_only": s < 4, "prediction_required": s >= 7}
+    p = P()
+    s = min(novelty, p["cap_novelty"]) + min(materiality_pts, p["cap_materiality"]) + min(mispricing, p["cap_mispricing"]) + min(confidence, p["cap_conviction"])
+    return {"score": s, "lead_with_view": s >= p["lead_threshold"], "fact_only": s < p["fact_threshold"], "prediction_required": s >= p["lead_threshold"]}
 
 
 def baserate(key):

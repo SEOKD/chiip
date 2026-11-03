@@ -469,8 +469,8 @@ params:
   status: prior
   prior:
     value: 0.15
-    basis: 소형주일수록 10배 경로의 산술적 여지 — 기준 연구별로 정의 다름. 원문 확인 대기
-    source: null
+    basis: Asness·Frazzini·Israel·Moskowitz·Pedersen(2018, JFE 129(3)) 게재본 본문 수치 확인 2026-11-03(표 1~4 본문 서술) — 미국 1926-07~2012-12 SMB 월 0.23%(t 2.27), 양 끝 10분위 차 0.55%(t 2.32)이고 2~12월 SMB 0.04%로 1월이 전부. 시장·시차·HML·UMD 통제 알파 0.14%(t 1.23, 1957~2012) → QMJ 추가 시 0.49%(t 4.89, R² 15→37%). 품질 5분위 안 규모 차 평균(SMBQ) 0.42%(t 3.18), 1월 제외 품질 통제 0.38%(t 3.62). 가장 정크인 5분위에서는 규모 차 0.23% 비유의. 해외 23개 선진시장 SMB 0.13%(t 0.91, 1986~2012). 출판 편향 축소(×0.42) 시 QMJ 통제 알파 약 0.21%/월. 한계 — 평균 수익률 효과이지 10배 달성 확률의 근거가 아니고, 한국·대만은 표본(MSCI World 선진 23개국) 밖, 소형 정크에는 규모 프리미엄이 없다. 단독 SMB는 t 3.0 미달(탐색적), 품질 통제 후만 통과. 값 0.15 유지(피팅 대상), 규모×품질 상호작용은 1단계 피팅 뒤에만 검토
+    source: https://research-api.cbs.dk/ws/files/57307999/lasse_heje_pedersen_et_al_size_matters_if_you_control_your_junk_publishersversion.pdf
   fit:
     method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
     target: 10배 달성·기준지수 초과
@@ -485,8 +485,8 @@ params:
   status: prior
   prior:
     value: 0.15
-    basis: 총이익률·ROIC 수준·개선(수익성 요인 문헌). 원문 확인 대기
-    source: null
+    basis: Asness·Frazzini·Pedersen(2019, RAST 24(1)) 게재본 표 4 확인 2026-11-02 — 미국 1957~2016 QMJ 초과수익 월 0.29%(t 3.62), 4요인 알파 0.60%(t 9.95), 수익성 0.25%(t 3.69), 안전성 0.23%(t 2.44), 성장 0.17%(t 2.46). 세계 1989~2016 QMJ 0.38%(t 3.33). 양수 23/24개국, 한국·대만은 표본 밖. Novy-Marx(2010 NBER w15940, 2013 JFE 108(1), 초고 기준) 미국 1963~2009 총이익/자산 슬로프 0.67(t 5.06), 가치가중 5분위 스프레드 월 0.33%(t 2.63), 3요인 알파 0.55%(t 4.75), 대형주 0.29%(t 2.05). 0.58 축소 시 QMJ 월 약 0.12%. 안전성·성장·총이익 스프레드는 초과수익 기준 t 3.0 미달이고 알파 기준에서만 통과. 한계 — 평균 수익률 효과이지 10배 달성 확률 근거가 아니고, QMJ는 음의 규모 노출이라 소형 점수와 반대로 움직인다. 현재 코드(scripts/tenbagger/bands.py)는 영업이익률 단일 값이라 근거의 측정치와 다르다. 값 0.15 유지(피팅 대상), 측정치 교체는 대기 후보(노트 20261102)
+    source: https://doi.org/10.1007/s11142-018-9470-2
   fit:
     method: 가상 추적 성과(1·3년 초과수익) 로지스틱 회귀 → 사전값 쪽 축소
     target: 10배 달성·기준지수 초과
@@ -2652,5 +2652,133 @@ params:
     method: 회사가 밝힌 착공·완공 일정과 비교
     target: 일정 대비 오차
     data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-cap-novelty
+  model: insight.score
+  binding: config/insight/score.yaml#params.cap_novelty
+  value: 3
+  unit: 점
+  status: prior
+  prior:
+    value: 3
+    basis: 새로움 배점 상한 — 시장이 아직 모르는 정보가 알파의 첫 원천
+    source: Tetlock, Saar-Tsechansky & Macskassy (2008) JF 63(3) — 새 정보만 수익률을 예측, 재탕 뉴스는 반응 작음
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-cap-materiality
+  model: insight.score
+  binding: config/insight/score.yaml#params.cap_materiality
+  value: 3
+  unit: 점
+  status: prior
+  prior:
+    value: 3
+    basis: 중요도 배점 상한 — 금액 크기가 가격 영향의 상한을 정한다
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-cap-mispricing
+  model: insight.score
+  binding: config/insight/score.yaml#params.cap_mispricing
+  value: 2
+  unit: 점
+  status: prior
+  prior:
+    value: 2
+    basis: 가격 오류 가능성(반영 지연 조건) 배점 상한
+    source: Hong, Lim & Stein (2000) JF 55(1); Cohen & Frazzini (2008) JF 63(4) — 정보 확산 지연
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-cap-conviction
+  model: insight.score
+  binding: config/insight/score.yaml#params.cap_conviction
+  value: 2
+  unit: 점
+  status: prior
+  prior:
+    value: 2
+    basis: 컨빅션 몫 상한 — 근거가 약하면 점수를 깎는 안전판
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-materiality-cuts
+  model: insight.score
+  binding: config/insight/score.yaml#params.materiality_cuts
+  value: [10, 3, 1]
+  unit: "% (시총·매출·EV 대비)"
+  status: prior
+  prior:
+    value: [10, 3, 1]
+    basis: 사건 금액 비율 경계 3·2·1점
+    source: 치입 운영 가정 — 회계 중요성 관행(세전이익 5%·매출 0.5~1%)을 시총 기준으로 옮긴 근사, SEC SAB 99 참고
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-conviction-cuts
+  model: insight.score
+  binding: config/insight/score.yaml#params.conviction_cuts
+  value: [8, 5]
+  unit: 점(10점 중)
+  status: prior
+  prior:
+    value: [8, 5]
+    basis: 컨빅션 10점 → 몫 2·1 경계
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-lead-threshold
+  model: insight.score
+  binding: config/insight/score.yaml#params.lead_threshold
+  value: 7
+  unit: 점
+  status: prior
+  prior:
+    value: 7
+    basis: 판단을 맨 위에 쓰고 예측을 등록하는 경계
+    source: 치입 운영 가정 — 2026-10-29 판단 틀
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-fact-threshold
+  model: insight.score
+  binding: config/insight/score.yaml#params.fact_threshold
+  value: 4
+  unit: 점
+  status: prior
+  prior:
+    value: 4
+    basis: 미만이면 사실만 전한다
+    source: 치입 운영 가정 — 2026-10-29 판단 틀
+  fit:
+    method: 점수 구간별 사건 후 |AR| 단조성(스피어만) · 경계값 격자 탐색, 중첩 표본 외
+    target: Pulse 건 발송 후 1·5거래일 비정상 수익률 절댓값과 방향 적중
+    data: knowledge/models/insight/score_ledger.csv
     last_fit: null
     oos_metric: null
