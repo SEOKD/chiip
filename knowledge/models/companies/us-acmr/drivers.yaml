@@ -1,0 +1,107 @@
+auto: true
+id: us-acmr
+name: ACM Research
+ticker: ACMR
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.11
+horizon: 10
+as_of: '2026-11-03'
+market:
+  date: '2026-11-03'
+  price: 44.15
+  shares: 0.073549
+  net_debt: -1.1114
+  source: 가격 = 11/2 종가. 주식 = 2Q 10-Q 표지(8/4, A주 64.66M + B주 4.99M). 현금 = 현금 $990.6M(제한
+    현금 $21.4M 포함) + 단기 정기예금 $470.1M(6/30). 차입 = 단기차입 $107.2M + 유동성 장기차입 $40.8M + 장기차입
+    $3.5M + 리스 $197.8M. 순현금 약 $1.11B 중 미국 현금은 $314M이고 나머지는 중국·홍콩에 있다
+rev0: 1.15
+ic0: 1.2937
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.2348
+      end: 0.035
+      decay: 0.812
+    margin:
+      m0: 0.167
+      target: 0.17
+      year_target: 3
+      lr: 0.16
+      lam: 0.35
+      anchors:
+      - 0.163
+      - 0.17
+    s2c: 1.2
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4348
+      end: 0.04
+      decay: 0.8620000000000001
+    margin:
+      m0: 0.167
+      target: 0.19
+      year_target: 3
+      lr: 0.16
+      lam: 0.25
+      anchors:
+      - 0.163
+      - 0.17
+    s2c: 1.38
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0435
+      end: 0.030000000000000002
+      decay: 0.7120000000000001
+    margin:
+      m0: 0.167
+      target: 0.15
+      year_target: 3
+      lr: 0.16
+      lam: 0.5
+      anchors:
+      - 0.163
+      - 0.17
+    s2c: 1.02
+mc:
+  sigma_growth: 0.0978
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [1.125, 1.175] (2Q 콜 2026-08-07: FY2026 매출 $1.125~1.175B(1Q의
+    $1.08~1.175B에서 하단 상향, 전년 대비 +25~30%). 출하 성장 > 매출 성장. CAPEX 약 $175M)'
+  growth: 컨센서스 1년차 23.5%, 2년차 19.7%
+  margin: 1~2년차 컨센서스 16.3%, 17.0% 고정 → 목표 17%(3년차, 덮어쓰기) → 장기 수렴 16%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.802 → 덮어쓰기 1.2
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 4.3%~43.5%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: 재고 $783M·매출채권 $605M으로 운전자본이 무겁고 TTM 영업현금이 적자다. 한계 자본 효율은 1.2로 낮춘다. 장기
+    EBIT 이익률은 조정 약 19%에서 SBC 2.5%를 뺀 약 17%, 중국 경쟁(Naura)과 엔티티 리스트 부품 대체 비용을 감안해 장기
+    수렴 16%로 둔다
+  shares: 완전 희석 = 기본 0.069649(2026-08-04) + 옵션·RSU·워런트·전환 0.0039 — 2Q26 희석 가중평균 71.8M
+    − 기본 67.9M = 3.9M을 옵션·RSU 희석으로 잡았다(10-Q 손
+  minority: ACM 상하이 소수지분 26.8% — ACMR 시가 기준 (시가총액 $3.08B − 미국 현금 $0.31B) ÷ 0.732 ×
+    0.268 ≈ $1.0B를 주주가치에서 뺀다(장부 $0.545B)
+notes:
+- 자동 생성(build_drivers) 2026-11-03 — 데이터 묶음 2026-11-03
+- '어닝콜 위험: 세정 매출 전년 대비 −14%'
+- '어닝콜 위험: 2Q 영업현금 −$6.4M, 재고 $783M'
+- '어닝콜 위험: GM 46.0%(전년 48.5%)'
+evidence:
+- ACM Research 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/1680062/000162828026054832/acmr-20260630.htm
+- ACM Research FY2025 10-K https://www.sec.gov/Archives/edgar/data/1680062/000162828026013231/acmr-20251231.htm
+- 3Q26 잠정 매출 보도자료(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1680062/000162828026067734/a1028_acmrq32026prelimreva.htm
+- ACM 상하이 수주잔고(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1680062/000162828026063896/acmr-acmshbacklogdata_9302.htm
+- ACM Research 2Q 콜 2026-08-07, 1Q 콜 2026-05-07(요지만)
+- ACMS H주 상장 계획 공고 2026-04-17 https://pdf.dfcfw.com/pdf/H2_AN202604171821291265_1.pdf
+- ACMS H주 이사회 승인 보도 https://m.sohu.com/a/1028019085_115377
+- Kerrisdale Capital 펀드 레터 2Q26(요지)
+- GuruFocus 10/5 하락 https://www.gurufocus.com/news/9110379/acm-research-acmr-shares-drop-nearly-9-after-recent-rally-on-october-5-2026
+minority: 1.0
