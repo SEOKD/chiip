@@ -1,6 +1,6 @@
 """Pulse 텔레그램 양식 (마스터 지시 2026-11-02 "텔레그램 봇으로 피드 제공할 때 Report는 가독성 있게 글을 구성했는데 Pulse는 여전히 가독성이 낮다")
 
-Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴다. 읽는 순서: 머리줄 → 기업 → ■ 결론 → ■ 근거 → ■ 반대 → ■ 다음 확인 → 출처.
+Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴다. 읽는 순서: 머리줄 → 기업 → ■ 결론 → ■ 근거 → ■ 반대 → ■ 다음 확인 → 출처 → ■ 정량(인사이트·컨빅션, 2026-11-03).
 입력(outputs/article/sources/<YYYYMMDD_HHMM>_feed.json):
   {"time": "16:24", "items": [{"icon": "⚡", "name": "Alphabet", "code": "GOOGL", "event": "사건 한 줄", "biz": "사업 1줄",
      "view": "판단 한 문장", "insight": 7, "conviction": 8, "basis": "1차 서류", "why": ["근거 줄"], "against": "다른 해석 → 가를 자료",
@@ -32,12 +32,13 @@ def links(rows):
 def block(n, x):
     head = f"**{x['icon']} {CIRCLED[n]} {x['name']}({x['code']})｜{x['event']}**" if x.get("code") else f"**{x['icon']} {CIRCLED[n]} {x['name']}｜{x['event']}**"
     score = f"인사이트 {x['insight']}/10 · 컨빅션 {x['conviction']}/10" + (f" · {x['basis'][:MAX_BASIS]}" if x.get("basis") else "")
-    parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**\n{score}", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
+    parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
     if x.get("against"):
         parts.append(f"**■ 반대**\n· {x['against']}")
     if x.get("next"):
         parts.append(f"**■ 다음 확인**\n· {x['next']}")
     parts.append(links(x.get("links")))
+    parts.append(f"**■ 정량**\n{score}")   # 정량 지표는 건의 맨 아래(2026-11-03 마스터 지시)
     return "\n\n".join(parts)
 
 
