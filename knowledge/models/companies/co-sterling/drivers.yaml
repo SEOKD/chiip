@@ -1,0 +1,104 @@
+auto: true
+id: co-sterling
+name: Sterling Infrastructure
+ticker: STRL
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.245
+horizon: 10
+as_of: '2026-11-03'
+market:
+  date: '2026-11-03'
+  price: 335.45
+  shares: 0.030963
+  net_debt: -0.0511
+  source: 가격 = 11/2 종가. 주식 = 3Q 10-Q 표지 30,502,537주(10/27). 현금 = 3Q 말 $216.9M, 이 중
+    $200.1M은 연결 공동도급(JV) 현금이고 회사가 바로 쓸 수 있는 현금은 $16.8M이다. 차입 = 리볼버 $95.0M + 기타 $0.1M
+    + 리스 $70.5M
+rev0: 4.68
+ic0: 1.5038
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.3034
+      end: 0.035
+      decay: 0.48
+    margin:
+      m0: 0.188
+      target: 0.16
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.1764
+      - 0.1771
+    s2c: 3.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4957
+      end: 0.04
+      decay: 0.53
+    margin:
+      m0: 0.188
+      target: 0.18
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.1764
+      - 0.1771
+    s2c: 3.45
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1325
+      end: 0.030000000000000002
+      decay: 0.38
+    margin:
+      m0: 0.188
+      target: 0.14
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.1764
+      - 0.1771
+    s2c: 2.55
+mc:
+  sigma_growth: 0.0908
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [4.63, 4.73] (3Q 실적 보도자료 2026-10-28(SEC 8-K Ex.99.1): FY2026
+    매출 $4.63~4.73B, 조정 EPS $21.70~21.96, 조정 EBITDA $970~981M. 조정 EBIT 이익률은 컨센서스 조정
+    EBIT $961M ÷ $4,680M)'
+  growth: 컨센서스 1년차 30.3%, 2년차 16.4%
+  margin: 1~2년차 컨센서스 17.6%, 17.7% 고정 → 목표 16%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.868 → 덮어쓰기 3.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 13.2%~49.6%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: 시공 회사라 TTM 매출÷투하자본이 2.9이고 CAPEX는 매출의 3%대다. 한계 자본 효율은 3.0으로 둔다. 장기 EBIT
+    이익률은 조정 19~20%에서 SBC·상각 1.7%를 빼고, 이익률이 낮은 전기 공사(CEC) 비중 확대와 시공 사이클을 반영해 16%로 둔다.
+    2023년 이전 회사 이익률은 10% 안팎이었다.
+  shares: 완전 희석 = 기본 0.030503(2026-10-27) + 옵션·RSU·워런트·전환 0.0005 — 3Q 희석 가중 주식 31.071M
+    − 기본 30.609M = 0.462M(RSU·PSU). 전환사채·워런트
+notes:
+- 자동 생성(build_drivers) 2026-11-03 — 데이터 묶음 2026-11-03
+- '어닝콜 위험: 4Q 날씨·휴일 계절성'
+- '어닝콜 위험: CEC 비중 확대로 이익률 희석'
+- '어닝콜 위험: 비핵심 사업 정리(2027 말까지 CEC 이익률 −160bp)'
+evidence:
+- label: 3Q26 실적 보도자료(SEC 8-K Ex.99.1)
+  url: https://www.sec.gov/Archives/edgar/data/874238/000087423826000122/a20261028ex991earningsrele.htm
+- label: 3Q26 10-Q
+  url: https://www.sec.gov/Archives/edgar/data/874238/000087423826000125/strl-20260930.htm
+- label: 2025 10-K
+  url: https://www.sec.gov/Archives/edgar/data/874238/000087423826000024/strl-20251231.htm
+- label: Fiscal.ai 회사 페이지
+  url: https://fiscal.ai/company/NasdaqGS-STRL
