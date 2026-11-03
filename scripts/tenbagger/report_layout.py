@@ -13,6 +13,7 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
   "supply": scripts/tenbagger/supply_view.py 맨 위 — 부품 공급망 업체와 공급 병목 10점
   "customers": scripts/tenbagger/customer_view.py 맨 위 — 고객사와 고객별 매출 믹스 추정
   "sync": scripts/tenbagger/sync_view.py 맨 위 — 무역·PPI·수출 지표와 매출·영업이익 싱크로율, 가이던스·컨센서스 비교
+  "ma": scripts/tenbagger/ma_view.py 맨 위 — 인수 시너지 램프·가치 vs 웃돈·EPS 효과, 없으면 {"none": "이유"}
   "pq": scripts/tenbagger/pq_view.py 맨 위 — 매출의 가격·물량 분해, P·Q 사이클 국면·강도·전환 분기
   "quarters_hist": scripts/tenbagger/quarters.py — 분기 손익 20개(싱크로율·매출→GP 비용 다리)
   "debate": scripts/tenbagger/debate_view.py 맨 위 — 등급별 가상 애널리스트 5인 토론, 규칙 등급에서 debate.max_shift 단계까지 조율
@@ -42,6 +43,7 @@ import cost_bridge_view  # noqa: E402
 import sync_view  # noqa: E402
 import pq_view  # noqa: E402
 import entry_view  # noqa: E402
+import ma_view  # noqa: E402
 import flow  # noqa: E402
 import input_view  # noqa: E402
 import leader_view  # noqa: E402
@@ -453,6 +455,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))
             out.append(part)
     money = lambda x: f"{cur}{x:,.2f}B"
+    out += [x for x in [ma_view.section(dp)] if x]   # M&A 시너지(2026-11-03 마스터 지시)
     out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}] + [x for x in [sync_view.section(dp), pq_view.section(dp)] if x] + [val] + [x for x in [entry_view.section(flow.load_ohlcv(entity), pt["target"])] if x] + [debate_view.section(dp, deb)]   # 매수 위치(일봉, 2026-11-03)   # 거시 지표 싱크로율(2026-11-03 마스터 지시)
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
     market = narrative_view.market_section(dp)   # 셀사이드·바이사이드·언론은 체크리스트 바로 앞(마스터 지시 2026-11-01)
