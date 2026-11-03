@@ -32,3 +32,10 @@ class TestEarnings(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestGlossTicker(unittest.TestCase):
+    def test_ticker_in_parens_not_glossed(self):
+        import pulse_gloss
+        self.assertEqual(pulse_gloss.apply("엔프로 3Q26 실적 (NPO)"), "엔프로 3Q26 실적 (NPO)")
+        self.assertIn("NPO(", pulse_gloss.apply("NPO 채택"))

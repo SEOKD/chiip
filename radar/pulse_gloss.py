@@ -34,6 +34,8 @@ def apply(text):
 
     def one(m):
         w = m.group(0)
+        if m.string[m.start() - 1:m.start()] in ("(", "（") and m.string[m.end():m.end() + 1] in (")", "）"):
+            return w   # '(NPO)'처럼 괄호 안 티커는 풀지 않는다(2026-11-03 마스터 지시 — 엔프로 NPO를 근접 패키지 광학으로 풀었다)
         if w in seen:
             return w
         seen.add(w)
