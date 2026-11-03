@@ -54,7 +54,7 @@ def margins(p):
     opex = sum(float(p.get(k) or 0) for k in ("rd", "sga", "other"))
     gross = rev - float(p["cogs"])
     return {"period": p.get("period"), "rev": rev, "gpm": gross / rev, "rd": float(p.get("rd") or 0) / rev, "sga": float(p.get("sga") or 0) / rev,
-            "other": float(p.get("other") or 0) / rev, "opm": (gross - opex) / rev}
+            "other": float(p.get("other") or 0) / rev, "opm": (gross - opex) / rev, "cogs_pct": float(p["cogs"]) / rev}
 
 
 def gpm_after(g, share, shock, passed):
@@ -176,11 +176,20 @@ def section(dp):
     B = [{"type": "hl", "text": head}]
     B.append({"type": "table", "title": f"GPM에서 OPM까지({mg.get('basis', 'GAAP')})", "headers": ["기간", "GPM", "연구개발", "판관비", "기타", "OPM"],
               "rows": [[p["period"], _pct(p["gpm"]), _pct(p["rd"]), _pct(p["sga"]), _pct(p["other"]), _pct(p["opm"])] for p in c["periods"]]})
+    B.append({"type": "chart", "chart": {"kind": "line", "title": "GPM·OPM 추이", "unit": "%",   # 시각물 보강(2026-11-03 마스터 지시)
+                                         "series": [{"name": "GPM", "color": "c", "points": [[p["period"], round(p["gpm"] * 100, 1)] for p in c["periods"]]},
+                                                    {"name": "OPM", "color": "a", "points": [[p["period"], round(p["opm"] * 100, 1)] for p in c["periods"]]}]}})
+    B.append({"type": "chart", "chart": {"kind": "bars", "stack": True, "title": "매출 100의 쓰임(기간별)", "unit": "%", "categories": [p["period"] for p in c["periods"]],
+                                         "series": [{"name": n, "color": col, "values": [round(max(p[k], 0) * 100, 1) for p in c["periods"]]} for k, n, col in
+                                                    (("cogs_pct", "매출원가", "b"), ("rd", "연구개발", "e"), ("sga", "판관비", "d"), ("other", "기타", "c"), ("opm", "영업이익", "a"))]}})
     costs = sorted(mg["costs"], key=lambda k: -k["pct_rev"])
     rows = []
     for x in costs:
         prior = _num(x.get("prior_pct"))
         rows.append([x["name"], _pct(x["pct_rev"]), UNKNOWN if prior is None else _pt(x["pct_rev"] - prior), UNKNOWN if _num(x.get("fixed")) is None else _pct(x["fixed"], 0), _pt(-x["pct_rev"] * c["shock"], 2)])
+    B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "비용 요인별 매출 대비 비중과 1년 변화", "unit": "%",
+                                         "rows": [{"label": x["name"], "bars": [{"name": "매출 대비", "color": "b", "value": round(x["pct_rev"] * 100, 1)}]
+                                                  + ([{"name": "변화(%p)", "color": "d" if x["pct_rev"] <= _num(x.get("prior_pct")) else "c", "value": round((x["pct_rev"] - _num(x.get("prior_pct"))) * 100, 1)}] if _num(x.get("prior_pct")) is not None else [])} for x in costs[:8]]}})
     B.append({"type": "table", "title": f"마진을 결정하는 비용 요인 — 비용 {tag} 시 OPM", "headers": ["비용", "매출 대비", "변화", "고정비", "OPM"], "rows": rows})
     B.append({"type": "table", "title": "비용을 움직이는 요인", "headers": ["비용", "요인"], "rows": [[f"{x['name']}({x['stage']})", f"{x['driver']} · 근거 {x['basis']}"] for x in costs]})
     B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"BOM 항목 가격 {tag} 시 OPM 변화", "unit": "%p",
@@ -189,6 +198,8 @@ def section(dp):
         items = sorted((r for r in c["items"] if r["product"] == p["name"]), key=lambda r: -(r["mid"] or 0))
         known = sum(r["mid"] or 0 for r in items)
         rest = [["미분해", _pct(max(1 - known, 0), 0), "-", "-", "-"]] if known < 1 - TIE else []
+        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"{p['name']} BOM 원가 몫과 가격 +{c['shock'] * 100:.0f}% 시 OPM", "unit": "%",
+                                             "rows": [{"label": r["item"], "bars": [{"name": "원가 몫", "color": "e", "value": round((r["mid"] or 0) * 100, 1)}, {"name": "OPM 변화(%p)", "color": "b", "value": round((r["opm_move"] or 0) * 100, 2)}]} for r in items if r["mid"] is not None]}})
         B.append({"type": "table", "title": f"{p['name']} BOM — 매출의 {_pct(p['rev_share'], 0)}, GPM {_pct(p['gpm'], 0)}({p['gpm_basis']}), 항목 가격 {tag} 시",
                   "headers": ["항목", "원가 몫", "전가", "제품 GPM", "OPM"],
                   "rows": [[r["item"], _share_text(r), UNKNOWN if r["passed"] is None else _pct(r["passed"], 0), _pt(r["gpm_move"]), _pt(r["opm_move"], 2)] for r in items] + rest})
