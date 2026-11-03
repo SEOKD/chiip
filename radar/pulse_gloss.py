@@ -36,6 +36,12 @@ def apply(text):
         w = m.group(0)
         if m.string[m.start() - 1:m.start()] in ("(", "（") and m.string[m.end():m.end() + 1] in (")", "）"):
             return w   # '(NPO)'처럼 괄호 안 티커는 풀지 않는다(2026-11-03 마스터 지시 — 엔프로 NPO를 근접 패키지 광학으로 풀었다)
+        line_end = m.string.find("\n", m.end())
+        rest = m.string[m.end():len(m.string) if line_end < 0 else line_end]
+        if rest.strip() == "" or rest.startswith("｜") or rest.startswith("**｜"):
+            head = m.string[m.string.rfind("\n", 0, m.start()) + 1:m.start()]
+            if re.search(r"(실적|정리|칼럼|피드|[①-⑩]\s?\S.*)\s$", head):
+                return w   # 제목 끝·머리줄의 괄호 없는 티커(2026-11-03 '이튼 3Q26 실적 ETN')
         if w in seen:
             return w
         seen.add(w)

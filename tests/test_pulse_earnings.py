@@ -39,3 +39,10 @@ class TestGlossTicker(unittest.TestCase):
         import pulse_gloss
         self.assertEqual(pulse_gloss.apply("엔프로 3Q26 실적 (NPO)"), "엔프로 3Q26 실적 (NPO)")
         self.assertIn("NPO(", pulse_gloss.apply("NPO 채택"))
+
+
+class TestBareTicker(unittest.TestCase):
+    def test_bare_ticker_in_title_not_glossed(self):
+        import pulse_gloss
+        self.assertEqual(pulse_gloss.apply("엔프로 3Q26 실적 NPO\n\n본문"), "엔프로 3Q26 실적 NPO\n\n본문")
+        self.assertEqual(pulse_gloss.apply("**⚡ ① 엔프로 NPO｜3Q 상회**"), "**⚡ ① 엔프로 NPO｜3Q 상회**")
