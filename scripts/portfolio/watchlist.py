@@ -104,6 +104,7 @@ def streak(st, key, iid, today, hit):
 def decide(holdings, mt, c, st, today):
     watch = {h["id"]: h for h in holdings if h.get("status") == "관심"}
     held = {h["id"] for h in holdings if h.get("status") in ("보유", "관심")}
+    held |= {h["id"] for h in holdings if h.get("status") == "종료" and h.get("added_by") != "chiip"}   # 마스터가 뺀 종목은 자동으로 다시 넣지 않는다(2026-11-05 AEIS 제외 지시)
     adds, drops, k = [], [], cuts(mt, c)
     for iid, h in watch.items():
         why = failing(mt.get(iid, {}), c, k)

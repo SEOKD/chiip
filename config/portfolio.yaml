@@ -4,7 +4,7 @@
 # 2026-10-30 마스터가 알려준 수량·평균 매입가는 개인 금융 정보라 저장소에 두지 않는다 → config/portfolio_positions.local.yaml(git 제외, 이 PC에만). 평가손익(사실)만 계산한다. 치입은 투자자문이 아니다 — 추가 매수·매도 시점·비중은 제시하지 않고, 사실·지표·일정만.
 # status: 보유 / 관심(와치리스트 — 팔로업은 같게, 손익 없음) / 종료
 # 실체 확인: SEC EDGAR 회사 검색·submissions(cik), easyconomics 회사 개요 (2026-10-29)
-updated: 2026-11-03   # 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
+updated: 2026-11-05   # 2026-11-05 AEIS 와치리스트 제외 · 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
 holdings:
   - id: co-enchantedrock
     ticker: EROC
@@ -95,7 +95,8 @@ holdings:
     sub: equipment
     related: ["MKS Instruments", "Delta Electronics", "Vicor", "Monolithic Power", "Comet", "XP Power"]
     since: 2026-11-03
-    status: 관심
+    ended: 2026-11-05   # 마스터 지시 "AEIS는 포트폴리오 와치리스트 항목에서 제외하라"
+    status: 종료
 
 # 날짜가 확정된 일정(1차 출처 있는 것만). 관문이 D-1·당일에 알린다. 치입이 실적일·IR 행사·투표일을 확인하면 여기에 추가한다.
 # time은 현지 시각과 KST를 함께. confirmed: false는 추정(알림에 '미확정' 표시).
