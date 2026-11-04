@@ -56,6 +56,13 @@ def gate_mark():
     return common.load_state(pulse.STATE, {}).get("watermark")
 
 
+def busy(now=None):
+    """다른 펄스 회차(앱 예약 chiip-pulse)가 잠금을 쥐고 있나 — 그 회차가 자료를 소비하므로 이쪽은 양보한다"""
+    lock = common.load_state(pulse.STATE, {}).get("lock")
+    now = now or common.now_kst()
+    return bool(lock) and datetime.fromisoformat(lock) > now - timedelta(minutes=pulse.LOCK_MIN)
+
+
 def denial(d):
     """거부된 호출 — 도구와 명령 앞부분. 허용 목록을 고칠 근거다"""
     return f"{d.get('tool_name', '?')}: {str((d.get('tool_input') or {}).get('command', ''))[:80]}"
@@ -75,10 +82,11 @@ def launch(c):
         return False, {"error": "시간 초과", "seconds": round(time.time() - start)}
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     ran = gate_mark() != before   # 종료 코드만으로는 모른다 — 권한 거부로 아무 일도 안 하고 정상 종료한 회차가 있었다
-    ok = proc.returncode == 0 and not out.get("is_error") and ran
+    yielded = not ran and busy()  # 앱 예약 회차가 먼저 잠금을 잡아 관문이 '진행 중 → 종료'로 비켜선 경우 — 실패가 아니다(2026-11-05 06:52·07:26 오경보)
+    ok = proc.returncode == 0 and not out.get("is_error") and (ran or yielded)
     usage = out.get("usage") or {}
     denied = [denial(d) for d in out.get("permission_denials") or []]
-    return ok, {"seconds": round(time.time() - start), "cost_usd": out.get("total_cost_usd"), "turns": out.get("num_turns"), "ran": ran, "denied": denied[:8],
+    return ok, {"seconds": round(time.time() - start), "cost_usd": out.get("total_cost_usd"), "turns": out.get("num_turns"), "ran": ran, "yielded": yielded, "denied": denied[:8],
                 "models": sorted(out.get("modelUsage") or {}),
                 "input_tokens": usage.get("input_tokens"), "output_tokens": usage.get("output_tokens"),
                 "error": None if ok else f"종료 코드 {proc.returncode}" + ("" if ran else " · 관문 미실행")}
@@ -123,6 +131,9 @@ def main(argv):
         common.save_state(STATE, st)
         return 0
     if not urgent(c, now):   # 급하지 않은 자료는 앱 예약 회차 몫 — 장부도 남기지 않는다(빈 회차 비용 0)
+        common.save_state(STATE, st)
+        return 0
+    if busy(now):   # 앱 예약 회차가 지금 돌고 있다 — 같은 자료를 두 번 띄우지 않는다
         common.save_state(STATE, st)
         return 0
     day = now.strftime("%Y%m%d")
