@@ -74,7 +74,7 @@ class TestDeliveryGate(unittest.TestCase):
         self.assertTrue(s1["sent"])
         self.assertFalse(s1["notion_ok"])
         self.assertIn("노션 게시 실패", s1["text"])
-        self.assertIn("HTML 보기 링크 게시 실패", s1["text"])   # Artifact가 없으면 GitHub 마크다운으로 대신
+        self.assertIn("📄 [리포트 보기(md)](", s1["text"])   # Artifact 없이도 GitHub 마크다운(2026-11-04)
         self.assertEqual(len(pt.pending()), 1)
         pt.notion(self.src, page="https://app.notion.com/p/abc")
         pt.artifact(self.src, url="https://claude.ai/code/artifact/q")
@@ -91,7 +91,8 @@ class TestDeliveryGate(unittest.TestCase):
         pt.artifact(self.src, url="https://claude.ai/code/artifact/abc")
         pt.notion(self.src, page="https://app.notion.com/p/xyz")
         s = pt.send(self.src, "요약", dry=True)
-        self.assertIn("📄 [리포트 보기](https://claude.ai/code/artifact/abc)", s["text"])
+        self.assertIn("📄 [리포트 보기(md)](", s["text"])   # 보기 링크 = GitHub 마크다운(2026-11-04)
+        self.assertNotIn("claude.ai/code/artifact", s["text"])
         self.assertIn("skipped", pt.send(self.src, dry=True))
         self.assertTrue(pt.send(self.src, "요약", dry=True, resend=True)["sent"])   # 경로가 바뀐 리포트는 다시 보낼 수 있다
         self.assertIn("https://app.notion.com/p/xyz", s["text"])

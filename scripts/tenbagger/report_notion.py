@@ -41,7 +41,7 @@ def render(d, github=None, charts=None, h1=False):
     L = [f"# {title(d)}", ""] if h1 else []
     L += [f"> {d.get('date')} · {d.get('company')}({d.get('ticker')}) · 기업: {d.get('biz')}", ""]
     if github:
-        L += [f"**그래프 포함 리포트:** [GitHub에서 보기]({github})", ""]
+        L += [f"**그래프 포함 리포트(마크다운):** [GitHub에서 보기]({github})", ""]
     v3 = d.get("format") == 3
     L += ["## Chiip View"] + ([] if v3 else [f"**{badges}**" if badges else ""]) + ["", str(v.get("view") or "")]
     if v3 and d.get("tiles"):
@@ -64,7 +64,7 @@ def render(d, github=None, charts=None, h1=False):
             if lines and charts:
                 L += [""] + lines
     elif order and not charts:
-        L += ["", "## 그래프(위 HTML 임베드·GitHub 리포트에서 보기)"] + [f"{i}. {b['chart'].get('title')}" for i, (_, b) in enumerate(order, 1)]
+        L += ["", "## 그래프(GitHub 마크다운 리포트에서 보기)"] + [f"{i}. {b['chart'].get('title')}" for i, (_, b) in enumerate(order, 1)]
     for s in d.get("sections") or []:
         L += ["", f"## {s.get('h2')}"]
         for b in s.get("blocks") or []:
@@ -86,7 +86,7 @@ def render(d, github=None, charts=None, h1=False):
                 if charts and n <= len(charts) and charts[n - 1]:   # GitHub 판: 그림을 그 자리에(2026-10-30 마스터 지시 "github 링크로 결과물을 볼 수 있어야")
                     L += ["", f"**그림 {n} · {c.get('title')}**", "", f"![그림 {n}]({charts[n - 1]})"]
                 else:
-                    L += ["", f"📊 그림 {n} · {c.get('title')} — 위 HTML 임베드·GitHub 리포트"]
+                    L += ["", f"📊 그림 {n} · {c.get('title')} — GitHub 마크다운 리포트"]
                 lines = report_html.under_lines(c)
                 if lines:
                     L += [""] + [f"- {x}" for x in lines]

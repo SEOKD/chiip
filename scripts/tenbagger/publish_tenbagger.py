@@ -163,7 +163,7 @@ def notion(src, page=None, fail=None, stock=None, replaced=False):
 
 def message(st, caption):
     gh, nt, ar = st["github"]["md"], st.get("notion") or {}, st.get("artifact") or {}
-    view = f"📄 [리포트 보기]({ar['url']})" if ar.get("status") == "ok" else f"📄 [리포트(GitHub, HTML 보기 링크 게시 실패)]({gh})"
+    view = f"📄 [리포트 보기(md)]({gh})"   # 보기 링크 = GitHub 마크다운(마스터 지시 2026-11-04 "html 말고 md로") — Artifact HTML 링크는 쓰지 않는다
     lines = [caption.strip(), "", view]
     lines.append(f"🗂 [노션]({nt['page']})" if nt.get("status") == "ok" else "🗂 노션 게시 실패 — 다음 회차에 다시 올립니다")
     return "\n".join(x for x in lines if x is not None)
@@ -205,7 +205,7 @@ def pending():
     for p in sorted(STATE.glob("*.json")) if STATE.exists() else []:
         st = json.loads(p.read_text(encoding="utf-8"))
         tg = st.get("telegram") or {}
-        if (st.get("notion") or {}).get("status") != "ok" or (st.get("artifact") or {}).get("status") != "ok" or not tg.get("sent") or not tg.get("notion_ok"):
+        if (st.get("notion") or {}).get("status") != "ok" or not tg.get("sent") or not tg.get("notion_ok"):   # Artifact는 더 기다리지 않는다(2026-11-04 md 링크)
             out.append({"stem": st["stem"], "ticker": st.get("ticker"), "notion": (st.get("notion") or {}).get("status"),
                         "artifact": (st.get("artifact") or {}).get("status"), "telegram": bool(tg.get("sent")), "json": rel(REP / (st["stem"] + ".json"))})
     return out

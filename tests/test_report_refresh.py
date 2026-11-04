@@ -116,7 +116,7 @@ class TestPublish(unittest.TestCase):
             self.assertIn("skipped", pt.send("x.json", "캡션", dry=True))
             res = pt.send("x.json", "캡션", dry=True, reissue=True)
         self.assertTrue(res["text"].startswith("[수정판"))
-        self.assertIn("https://a", res["text"])
+        self.assertIn("https://g", res["text"])   # 보기 링크 = GitHub 마크다운(2026-11-04)
 
 
 if __name__ == "__main__":
