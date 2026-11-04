@@ -4046,3 +4046,99 @@ params:
     data: knowledge/models/proviser/feed_readability.csv
     last_fit: null
     oos_metric: null
+- id: prm-conf-first-author
+  model: radar.conf_track
+  binding: config/conference_pipeline.yaml#weights.first_author
+  value: 1.0
+  unit: 점
+  status: prior
+  prior:
+    value: 1.0
+    basis: 3사가 제1저자 소속이면 주도 연구
+    source: 치입 사전값(ADR-015) — 백테스트 전
+  fit:
+    method: 학회 후보 점수와 기사 소재 채택·국내 보도 여부 로지스틱(분기)
+    target: 기사 소재 채택률
+    data: knowledge/models/conferences/counts.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-conf-numbers
+  model: radar.conf_track
+  binding: config/conference_pipeline.yaml#weights.numbers
+  value: 1.5
+  unit: 점
+  status: prior
+  prior:
+    value: 1.5
+    basis: 사양 숫자는 기사 비교표의 재료
+    source: 치입 사전값(ADR-015) — 백테스트 전
+  fit:
+    method: 학회 후보 점수와 기사 소재 채택·국내 보도 여부 로지스틱(분기)
+    target: 기사 소재 채택률
+    data: knowledge/models/conferences/counts.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-conf-rival-same-topic
+  model: radar.conf_track
+  binding: config/conference_pipeline.yaml#weights.rival_same_topic
+  value: 2.0
+  unit: 점
+  status: prior
+  prior:
+    value: 2.0
+    basis: 같은 학회 같은 주제의 경쟁사 논문 — 정면 비교가 기사 각도 중 가장 강함
+    source: 치입 사전값(ADR-015) — 백테스트 전
+  fit:
+    method: 학회 후보 점수와 기사 소재 채택·국내 보도 여부 로지스틱(분기)
+    target: 기사 소재 채택률
+    data: knowledge/models/conferences/counts.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-conf-partner
+  model: radar.conf_track
+  binding: config/conference_pipeline.yaml#weights.partner
+  value: 1.5
+  unit: 점
+  status: prior
+  prior:
+    value: 1.5
+    basis: 고객·장비사 공저 — 역방향 레이더 흔적(정황)
+    source: 치입 사전값(ADR-015) — 백테스트 전
+  fit:
+    method: 학회 후보 점수와 기사 소재 채택·국내 보도 여부 로지스틱(분기)
+    target: 기사 소재 채택률
+    data: knowledge/models/conferences/counts.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-conf-new-topic
+  model: radar.conf_track
+  binding: config/conference_pipeline.yaml#weights.new_topic
+  value: 1.0
+  unit: 점
+  status: prior
+  prior:
+    value: 1.0
+    basis: 전년 없던 주제 = 신규성
+    source: 치입 사전값(ADR-015) — 백테스트 전
+  fit:
+    method: 학회 후보 점수와 기사 소재 채택·국내 보도 여부 로지스틱(분기)
+    target: 기사 소재 채택률
+    data: knowledge/models/conferences/counts.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-conf-silence-ratio
+  model: radar.conf_track
+  binding: config/conference_pipeline.yaml#silence_ratio
+  value: 0.5
+  unit: 점
+  status: prior
+  prior:
+    value: 0.5
+    basis: 전년 최소 대비 절반 이하면 침묵 신호
+    source: 치입 사전값(ADR-015) — 백테스트 전
+  fit:
+    method: 학회 후보 점수와 기사 소재 채택·국내 보도 여부 로지스틱(분기)
+    target: 기사 소재 채택률
+    data: knowledge/models/conferences/counts.csv
+    last_fit: null
+    oos_metric: null
