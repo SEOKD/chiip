@@ -21,3 +21,10 @@
   state_agencies: [경제개발공사(IEDC), 환경관리청(IDEM), 공공요금 규제위원회(IURC)]
   meeting_platforms: []
   watch_radius_km: 30
+- site_id: us-solidigm-marcy
+  company: co-skhynix
+  description: Solidigm(SK하이닉스 미국 자회사) 뉴욕주 Marcy NAND 팹 2개 계획(약 $45B, 장기 최대 약 $100B — 회사 발표 아닌 Reuters 보도 기준, 2026-11-03 미 상무부 다롄 장비 허가 보류로 지연·대체 부지 검토)
+  jurisdictions: {state: NY, county: Oneida County, city: Town of Marcy, school_district: "", appraisal_district: "", utilities: []}
+  state_agencies: [경제개발청(ESD), 환경보전부(DEC), 뉴욕전력공사(NYPA)]
+  meeting_platforms: []      # 미확인 — townofmarcy.org 403, oneidacountyida.org SSL 오류(2026-11-04). 부지 개발기관 mvedge.org·ESD·주지사실 보도자료는 korea_watch(mode news)가 본다
+  watch_radius_km: 30

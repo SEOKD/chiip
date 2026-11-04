@@ -45,7 +45,7 @@ JOBS = [  # (job id, module, interval_min)
     ("notion-library", "notion_library", 30),  # 노션 첨부 색인·본문 추출, NOTION_TOKEN 경로(모델 없음, 2026-11-04 마스터 지시)
     ("trade-ppi", "trade_ppi", 1440),
     ("trade-hs", "trade_hs", 1440),  # HS 시계열·급등 품목(모델 없음, 2026-11-02 마스터 지시)  # 6개국 무역·PPI 세부 항목(모델 없음, 2026-11-02 마스터 지시)
-    ("korea-watch", "korea_watch", 360),  # 한국 기업 미국 활동·해외 M&A 단서(모델 없음, 2026-11-03 마스터 지시)
+    ("korea-watch", "korea_watch", 60),  # 한국 기업 미국 활동·해외 M&A 단서(모델 없음, 2026-11-03 마스터 지시) — 360→60분, 일치 항목은 inbox로(2026-11-04)
     ("site-imagery", "site_imagery", 10080),  # 생산시설 위성 영상·변화 측정, 주 1회(모델 없음, 2026-11-03 마스터 지시)
     ("exclusive-leads", "exclusive_leads", 360),  # 노션 Exclusive Source 단서의 공개 근거 후보(모델 없음, 판정은 펄스 회차, 2026-11-02 마스터 지시)
     ("proviser-channels", "channel_scout", 60),  # Proviser 회차의 채널 탐색 누락을 장부에 적는다(모델 없음, 마스터 지시 2026-11-01)
@@ -75,7 +75,7 @@ def main(argv):
         try:
             res = importlib.import_module(mod).run()
             print(jid, res)
-            if jid in ("src-fedreg", "src-legistar") and res[1]:  # 레이더 inbox에 새 항목을 넣는 작업
+            if jid in ("src-fedreg", "src-legistar", "korea-watch") and res[1]:  # 레이더 inbox에 새 항목을 넣는 작업
                 new_radar = True
         except RuntimeError as exc:
             common.record_health(jid, False, exc)

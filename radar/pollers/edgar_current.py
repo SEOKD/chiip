@@ -10,7 +10,7 @@ from . import common
 from .sec_filings import _ua
 
 URL = "https://www.sec.gov/cgi-bin/browse-edgar"
-FORMS = ("8-K", "6-K", "10-Q", "10-K", "20-F", "S-1", "424B5", "SC 13D")
+FORMS = ("8-K", "6-K", "10-Q", "10-K", "20-F", "S-1", "424B5", "SC 13D", "SCHEDULE 13D")
 STATE = "edgar_current"
 CIK_RE = re.compile(r"\((\d{6,10})\)")
 

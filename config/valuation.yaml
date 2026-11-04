@@ -39,7 +39,7 @@ subsectors:
 universe:
   # T0 (한국)
   - {id: co-samsung, name: 삼성전자, code: 005930.KO, region: KR, sub: conglomerate}
-  - {id: co-skhynix, name: SK하이닉스, code: 000660.KO, region: KR, sub: memory}
+  - {id: co-skhynix, name: SK하이닉스, code: 000660.KO, region: KR, sub: memory, sec_ticker: SKHY}   # Nasdaq ADR(CIK 2120882) — 6-K 감시(2026-11-04 마스터 지시)
   - {id: co-semco, name: 삼성전기, code: 009150.KO, region: KR, sub: components}
   - {id: co-lginnotek, name: LG이노텍, code: 011070.KO, region: KR, sub: components}
   - {id: co-doosan, name: 두산, code: 000150.KO, region: KR, sub: conglomerate}

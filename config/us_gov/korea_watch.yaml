@@ -19,12 +19,25 @@ pages:
   - {id: ny-ongoved, juris: 뉴욕 오논다가 카운티, url: "https://ongoved.com/upcoming-meetings/"}
   - {id: oh-tca, juris: 오하이오주, url: "https://development.ohio.gov/about-us/boards-commissions/tca"}
   - {id: oh-newalbany, juris: 오하이오 뉴올버니시, url: "https://newalbanyohio.org/boards-commissions/city-council-business/"}
-page_terms: ["SK hynix", "Solidigm", "Samsung", "Intel", "semiconductor", "Project ", "NAND", "fab", "Green CHIPS"]
+  # 2026-11-04 마스터 지시(SK하이닉스 뉴욕 Marcy·인디애나 거점, Pulse 시의성) — robots 허용 확인. 막혀서 넣지 않은 곳: townofmarcy.org(403), westlafayette.in.gov(403), oneidacountyida.org(SSL 오류), tippecanoe.in.gov(robots Disallow)
+  - {id: ny-mvedge, juris: 뉴욕 모호크밸리(Marcy 부지 개발기관), url: "https://mvedge.org/", mode: news}
+  - {id: ny-esd-press, juris: 뉴욕주 경제개발청, url: "https://esd.ny.gov/esd-media-center/press-releases", mode: news}
+  - {id: ny-governor, juris: 뉴욕주지사실, url: "https://www.governor.ny.gov/news", mode: news}
+  - {id: in-iedc, juris: 인디애나주 경제개발공사, url: "https://iedc.in.gov/events/news", mode: news}
+page_terms: ["SK hynix", "Solidigm", "Samsung", "Intel", "semiconductor", "Project ", "NAND", "fab", "Green CHIPS", "Marcy", "Dalian", "Oneida", "West Lafayette", "Hynix"]
+
+# 보도자료 목록(mode: news) 전용 좁은 감시어 — 넓은 말(semiconductor·fab·AI)은 메뉴까지 잡는다(2026-11-04 첫 실행)
+news_terms: ["SK hynix", "Hynix", "Solidigm", "Samsung", "Marcy", "Dalian", "Oneida", "West Lafayette", "NAND", "Micron"]
 
 # 언론 제목만(Google News RSS). 본문을 저장하지 않는다
 news:
   - '"SK hynix" Intel Ohio fab'
   - 'Solidigm New York fab'
+  - 'Solidigm Marcy'
+  - 'SK hynix Dalian license'
+  - 'SK hynix West Lafayette'
+  - 'Marcy Nanocenter'
+  - 'SK하이닉스 다롄 허가'
   - '삼성전자 인수합병 해외'
   - 'SK하이닉스 인수 해외 기업 투자'
   - 'Samsung Electronics acquisition talks'

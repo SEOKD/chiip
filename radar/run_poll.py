@@ -111,23 +111,39 @@ def fast_lane(items):
     import origin
     import promote
     from pollers import gate
-    sent, go_list = [], []
+    sent, go_list, notes = [], [], []
     for it in items:
         try:
-            if not gate.is_fresh(it, "alert") or promote.noise(it) or not notify.telegram_allowed(it)[0]:
+            if not gate.is_fresh(it, "alert"):
+                notes.append((it, "오래됨"))
+                continue
+            if promote.noise(it):
+                notes.append((it, "잡음 제목"))
+                continue
+            ok, why_media = notify.telegram_allowed(it)
+            if not ok:
+                notes.append((it, why_media or "매체 제한"))
                 continue
             why = promote.check(it)
             if not why:
+                notes.append((it, "규칙 없음"))
                 continue
             lvl = promote.level_for(it, why)
             it = origin.apply(it)   # 재인용 기사는 원보도로(2026-11-02 마스터 지시)
-            if promote.duplicate_of(it):
+            dup = promote.duplicate_of(it)
+            if dup:
+                notes.append((it, f"이미 보낸 사건: {str(dup)[:40]}"))
                 continue
-            go, _, _ = promote.event_gate(it, lvl)
+            go, _, reason = promote.event_gate(it, lvl)
             if go:
                 go_list.append((it, lvl, why))
+                notes.append((it, f"발송 대상 {lvl}: {why}"))
+            else:
+                notes.append((it, f"사건 관문: {reason}"))
         except Exception as exc:   # 빠른 길이 실패해도 수집·판정은 계속
+            notes.append((it, f"오류 {type(exc).__name__}: {exc}"))
             print(f"빠른 길 오류 {it.get('item_id')}: {type(exc).__name__}: {exc}")
+    fast_log(notes)
     extra = enrich([it for it, _, _ in go_list]) if go_list else {}
     for it, lvl, why in go_list:
         try:
@@ -144,6 +160,55 @@ def fast_lane(items):
         st["ids"] = (st["ids"] + sent)[-1000:]
         common.save_state("rule_fast", st)
     return sent
+
+
+FAST_SEEN = "fast_lane"
+SWEEP_H = 6
+
+
+def fast_log(notes):
+    """빠른 길 판정 사유(radar/state/fast_lane.log) + 본 id 기록(안전망 sweep이 다시 넣지 않게) — 2026-11-04 SK하이닉스 Reuters 단독 4시간 지연 점검:
+    04:26 사본이 판정에 닿은 흔적이 없어 원인을 못 가렸다. 다음 누락은 이 기록으로 가린다"""
+    if not notes:
+        return
+    now = common.iso(common.now_kst())
+    try:
+        with (common.STATE / "fast_lane.log").open("a", encoding="utf-8") as f:
+            for it, why in notes:
+                f.write(f"{now}\t{it.get('item_id')}\t{why}\t{str(it.get('title', ''))[:80]}\n")
+    except OSError:
+        pass
+    st = common.load_state(FAST_SEEN, {"ids": []})
+    st["ids"] = (st["ids"] + [it.get("item_id") for it, _ in notes if it.get("item_id")])[-5000:]
+    common.save_state(FAST_SEEN, st)
+
+
+def fast_sweep(exclude=(), hours=SWEEP_H):
+    """안전망: 최근 hours 안에 inbox에 저장됐는데 빠른 길 판정 기록이 없는 항목(수집 회차가 판정 전에 멈췄거나 다른 수집기가 넣은 것)을 다시 넣는다.
+    처음 켤 때는 지금 있는 항목을 기준선으로만 기록한다(과거 항목을 한꺼번에 보내지 않게)"""
+    from datetime import datetime, timedelta
+    first = not (common.STATE / f"{FAST_SEEN}.json").exists()
+    st = common.load_state(FAST_SEEN, {"ids": []})
+    now = common.now_kst()
+    cut = now - timedelta(hours=hours)
+    found = []
+    for day in {now.strftime("%Y%m%d"), (now - timedelta(days=1)).strftime("%Y%m%d")}:
+        d = common.INBOX / day
+        if not d.is_dir():
+            continue
+        for f in d.glob("*.json"):
+            try:
+                it = json.loads(f.read_text(encoding="utf-8"))
+                at = datetime.fromisoformat(it.get("saved_at") or it.get("detected_at"))
+            except (OSError, ValueError, TypeError, AttributeError):
+                continue
+            if at >= cut and it.get("item_id"):
+                found.append(it)
+    if first:
+        common.save_state(FAST_SEEN, {"ids": [it["item_id"] for it in found][-5000:]})
+        return []
+    seen = set(st.get("ids") or []) | set(exclude)
+    return [it for it in found if it["item_id"] not in seen]
 
 
 FAST_SCHEMA = {"type": "object", "properties": {"results": {"type": "array", "items": {"type": "object", "properties": {
@@ -278,6 +343,10 @@ def main(argv=None):
             fast = fast_lane(new_total)
             if fast:
                 print(f"규칙 빠른 길 발송 {len(fast)}건")
+        late = fast_sweep(exclude={it["item_id"] for it in new_total})
+        if late:   # 판정에 닿지 못한 최근 항목(2026-11-04 안전망)
+            fast = fast_lane(late)
+            print(f"빠른 길 안전망 {len(late)}건 재판정 · 발송 {len(fast)}건")
         notify.flush_p1()
         prune_inbox()
         if new_total and not args.no_triage:

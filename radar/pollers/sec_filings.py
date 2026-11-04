@@ -13,7 +13,7 @@ from . import common, gate
 SOURCE_ID = "src-sec-filings"
 SUB = "https://data.sec.gov/submissions/CIK{cik:0>10}.json"
 LOOKUP = "https://efts.sec.gov/LATEST/search-index"
-FORMS = {"8-K", "8-K/A", "10-Q", "10-K", "6-K", "20-F", "S-1", "DEF 14A", "SC 13D", "425"}
+FORMS = {"8-K", "8-K/A", "10-Q", "10-K", "6-K", "6-K/A", "20-F", "S-1", "DEF 14A", "SC 13D", "SCHEDULE 13D", "425"}   # SCHEDULE 13D = EDGAR 새 서식명(2026-11-04 점검: SK하이닉스 13D 누락)
 ITEM_LABEL = {"2.02": "실적", "1.01": "중요 계약", "1.02": "계약 해지", "2.01": "인수·처분", "2.05": "구조조정",
               "2.06": "손상", "5.02": "임원 변동", "7.01": "IR 자료", "8.01": "기타 중요 사항", "3.02": "증권 발행"}
 DOC_TYPE = {"8-K": "공시", "10-Q": "실적", "10-K": "실적", "6-K": "공시", "20-F": "실적"}
