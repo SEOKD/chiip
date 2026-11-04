@@ -5,6 +5,7 @@
 ## 회차
 - `chiip-midterm-2026`: 화~토 07:10 KST(전날 미국 장 마감분). 11/4~11/14.
 - `chiip-midterm-2026-night`: 11/4 14:00 KST 1회(개표 중 선물·아시아 반응).
+- `chiip-midterm-intraday`(마스터 지시 2026-11-04): 미국 정규장(KST 23:30~06:00) 3분마다. `midterm.py --session`이 장외면 끝, 장중이면 TradingView 배치 1회 → `--tick`이 수급 국면(유입·유출 상위 3, 위험 선호 톤, SPY 구간, VIX)을 직전과 비교해 바뀐 것만 텔레그램으로. 10분 안에 여러 번 바뀌어도 매번 보낸다. 임계값 `config/midterm2026.yaml` tick.
 - 매 회차 첫 단계: `py radar/markets/midterm.py --status`가 '관측 종료'면 아무것도 하지 않고 끝낸다.
 
 ## 절차

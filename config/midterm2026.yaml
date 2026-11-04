@@ -31,11 +31,21 @@ fred:
 symbols:
   index: ["AMEX:SPY", "NASDAQ:QQQ", "AMEX:DIA", "AMEX:IWM", "AMEX:RSP"]
   sector: ["AMEX:XLK", "AMEX:XLF", "AMEX:XLE", "AMEX:XLV", "AMEX:XLI", "AMEX:XLY", "AMEX:XLP", "AMEX:XLU", "AMEX:XLB", "AMEX:XLRE", "AMEX:XLC"]
-  industry: ["NASDAQ:SMH", "AMEX:ITA", "AMEX:XBI", "AMEX:IHI", "AMEX:KRE", "AMEX:KBE", "NASDAQ:ICLN", "AMEX:TAN", "AMEX:URA", "AMEX:XOP", "AMEX:PAVE", "AMEX:XHB", "AMEX:IGV", "AMEX:CIBR", "AMEX:JETS", "AMEX:XRT", "AMEX:GDX", "AMEX:COPX", "NASDAQ:GRID"]
+  industry: ["NASDAQ:SMH", "AMEX:ITA", "AMEX:XBI", "AMEX:IHI", "AMEX:KRE", "AMEX:KBE", "NASDAQ:ICLN", "AMEX:TAN", "AMEX:URA", "AMEX:XOP", "AMEX:PAVE", "AMEX:XHB", "AMEX:IGV", "NASDAQ:CIBR", "AMEX:JETS", "AMEX:XRT", "AMEX:GDX", "AMEX:COPX", "NASDAQ:GRID"]
   factor: ["AMEX:MTUM", "AMEX:QUAL", "AMEX:USMV", "AMEX:VLUE", "AMEX:SPHB", "AMEX:IWF", "AMEX:IWD"]
-  rates_fx_cmdty: ["NASDAQ:TLT", "AMEX:IEF", "AMEX:SHY", "AMEX:HYG", "AMEX:LQD", "AMEX:TIP", "AMEX:UUP", "AMEX:FXY", "AMEX:GLD", "AMEX:SLV", "AMEX:CPER", "AMEX:USO", "AMEX:UNG", "AMEX:DBA", "CBOE:VIX"]
+  rates_fx_cmdty: ["NASDAQ:TLT", "NASDAQ:IEF", "NASDAQ:SHY", "AMEX:HYG", "AMEX:LQD", "AMEX:TIP", "AMEX:UUP", "AMEX:FXY", "AMEX:GLD", "AMEX:SLV", "AMEX:CPER", "AMEX:USO", "AMEX:UNG", "AMEX:DBA", "CBOE:VIX"]
 
 # 스마트 머니 점수(섹터·업종 ETF) — 가중치는 사전값(미검증)
 smart_money:
   weights: {car: 0.35, abvol_up: 0.25, cmf: 0.25, rel_strength: 0.15}
   cmf_window: 10
+
+# 장중 수급 국면 감시(마스터 지시 2026-11-04: 개장 중 수급이 바뀔 때마다 즉시, 10분 안에 여러 번이어도) — midterm.py --tick
+# 흐름 = (등락 − β·SPY 등락) × 상대 거래량(10일, 상한 rv_cap). 사전값(미검증)
+tick:
+  tone: ["AMEX:SPHB", "AMEX:USMV", "AMEX:HYG", "AMEX:LQD", "NASDAQ:TLT", "AMEX:UUP", "CBOE:VIX", "NASDAQ:QQQ", "AMEX:IWM"]
+  rv_cap: 3.0
+  hyst: 0.15        # 상위·하위 3 진입이 밀려난 종목보다 이 %p 이상 커야 변화
+  spy_band: 0.5     # SPY 등락 0.5% 구간을 넘을 때
+  tone_dead: 0.10   # 위험 선호 톤 부호 판정 무감대(%p)
+  vix_jump: 5.0     # 직전 관측 대비 VIX 등락률 변화(%p)

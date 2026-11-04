@@ -13,7 +13,7 @@ import io
 import json
 import math
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -155,9 +155,97 @@ def active(today=None):
     return today < date.fromisoformat(cfg()["stop_kst"]) or (today == date.fromisoformat(cfg()["stop_kst"]) and common.now_kst().hour < 12)
 
 
+def tick_symbols(c=None):
+    c = c or cfg()
+    t = c["tick"]
+    return [c["benchmark"]] + c["symbols"]["sector"] + c["symbols"]["industry"] + t["tone"]
+
+
+def session_open(now=None):
+    """미국 정규장(09:30~16:00 ET) 여부. 관측 기간 11/4~11/13은 표준시(UTC-5)라 KST 23:30~06:00"""
+    now = now or common.now_kst()
+    et = now - timedelta(hours=14)
+    mins = et.hour * 60 + et.minute
+    c = cfg()
+    return et.weekday() < 5 and c["event_day"] < et.date().isoformat() <= c["window_end"] and 570 <= mins < 960
+
+
+def regime(quotes, c=None):
+    """장중 수급 국면: β 조정 초과 등락 × 상대 거래량 → 유입·유출 상위 3, 위험 선호 톤, 시장 구간"""
+    c = c or cfg()
+    t = c["tick"]
+    beta = {}
+    lj = DIR / "latest.json"
+    if lj.exists():
+        beta = {k: v["beta"] for k, v in json.loads(lj.read_text(encoding="utf-8")).get("study", {}).items()}
+    spy = quotes.get(c["benchmark"], {}).get("change") or 0.0
+    flow = {}
+    for s in c["symbols"]["sector"] + c["symbols"]["industry"]:
+        q = quotes.get(s)
+        if not q or q.get("change") is None:
+            continue
+        ex = q["change"] - beta.get(s, 1.0) * spy
+        rv = q.get("relative_volume_10d_calc") or 1.0
+        flow[s] = round(ex * min(max(rv, 0.3), t["rv_cap"]), 3)
+    rank = sorted(flow, key=lambda k: -flow[k])
+    ch = lambda s: (quotes.get(s) or {}).get("change") or 0.0
+    tone = ch("AMEX:SPHB") - ch("AMEX:USMV") + ch("AMEX:HYG") - ch("AMEX:LQD")
+    band = t["spy_band"]
+    return {"top": rank[:3], "bottom": rank[-3:][::-1], "flow": flow, "spy": round(spy, 2),
+            "spy_zone": max(-3, min(3, int(spy / band))) if band else 0,
+            "tone": round(tone, 2), "tone_sign": 1 if tone > t["tone_dead"] else -1 if tone < -t["tone_dead"] else 0,
+            "vix": ch("CBOE:VIX"), "tlt": ch("NASDAQ:TLT"), "uup": ch("AMEX:UUP")}
+
+
+def diff(prev, cur, c=None):
+    """바뀐 것만. 상위·하위 진입은 밀려난 종목보다 hyst 이상 클 때만(잡음 방지)"""
+    t = (c or cfg())["tick"]
+    if not prev:
+        return ["개장 첫 관측"]
+    out = []
+    for side, sign in (("top", 1), ("bottom", -1)):
+        new = [s for s in cur[side] if s not in prev[side]]
+        gone = [s for s in prev[side] if s not in cur[side]]
+        if new and gone:
+            worst = min(sign * cur["flow"].get(g, 0) for g in gone)
+            new = [s for s in new if sign * cur["flow"][s] - worst >= t["hyst"]]
+            if new:
+                out.append(f"{'유입' if sign > 0 else '유출'} 상위 진입 {', '.join(new)} / 이탈 {', '.join(gone)}")
+    if cur["tone_sign"] != prev["tone_sign"]:
+        out.append(f"위험 선호 톤 {prev['tone_sign']:+d}→{cur['tone_sign']:+d} (고베타−저변동+HY−IG {cur['tone']:+.2f}%p)")
+    if cur["spy_zone"] != prev["spy_zone"]:
+        out.append(f"SPY 구간 이동 {prev['spy']:+.2f}%→{cur['spy']:+.2f}%")
+    if abs(cur["vix"] - prev.get("vix", 0)) >= t["vix_jump"]:
+        out.append(f"VIX {prev.get('vix', 0):+.1f}%→{cur['vix']:+.1f}%")
+    return out
+
+
+def tick(path):
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    cur = regime(raw.get("data", raw))
+    sf = DIR / "tick_state.json"
+    prev = json.loads(sf.read_text(encoding="utf-8")) if sf.exists() else None
+    if prev and prev.get("day") != (common.now_kst() - timedelta(hours=14)).date().isoformat():
+        prev = None
+    cur["day"] = (common.now_kst() - timedelta(hours=14)).date().isoformat()
+    cur["at"] = common.iso(common.now_kst())
+    ch = diff(prev, cur)
+    DIR.mkdir(parents=True, exist_ok=True)
+    sf.write_text(json.dumps(cur, ensure_ascii=False), encoding="utf-8")
+    with (DIR / "tick_log.csv").open("a", encoding="utf-8", newline="") as f:
+        csv.writer(f).writerow([cur["at"], cur["spy"], cur["tone"], "|".join(cur["top"]), "|".join(cur["bottom"]), "; ".join(ch)])
+    return {"changed": bool(ch), "changes": ch, "prev": prev and {k: prev[k] for k in ("at", "top", "bottom", "spy", "tone")}, "now": cur}
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if "--status" in argv:
+    if "--session" in argv:
+        print("장중" if session_open() and active() else "장외")
+    elif "--tick-symbols" in argv:
+        print(json.dumps(tick_symbols()))
+    elif "--tick" in argv:
+        print(json.dumps(tick(argv[argv.index("--tick") + 1]), ensure_ascii=False))
+    elif "--status" in argv:
         print("관측 중" if active() else "관측 종료(2026-11-14부터 중단)")
     elif "--fred" in argv:
         print(fred())

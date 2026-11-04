@@ -43,5 +43,18 @@ class TestStudy(unittest.TestCase):
         self.assertAlmostEqual(m["VIXCLS"]["chg"], -0.1)
 
 
+    def test_tick_reports_only_changes(self):
+        import json, tempfile
+        mt.DIR = Path(tempfile.mkdtemp())
+        q = {s: {"change": 0.1, "relative_volume_10d_calc": 1} for s in mt.tick_symbols()}
+        q["AMEX:XLV"]["change"] = 1.5
+        f = mt.DIR / "q.json"
+        f.write_text(json.dumps({"data": q}))
+        self.assertEqual(mt.tick(f)["changes"], ["개장 첫 관측"])
+        self.assertFalse(mt.tick(f)["changed"])
+        q["AMEX:XLV"]["change"], q["AMEX:XLE"]["change"] = -1.5, 1.2
+        f.write_text(json.dumps({"data": q}))
+        self.assertTrue(mt.tick(f)["changed"])
+
 if __name__ == "__main__":
     unittest.main()
