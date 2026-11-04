@@ -2830,6 +2830,134 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-watchlist-add-alpha-min
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#add.alpha_min
+  value: 6.0
+  unit: 점
+  status: prior
+  prior:
+    value: 6.0
+    basis: 편입 알파 하한 — Buy Call 기준과 같다
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-add-composite-pct
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#add.composite_pct
+  value: 0.75
+  unit: 분위
+  status: prior
+  prior:
+    value: 0.75
+    basis: 편입 종합 점수 상위 25%
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-add-confirm-days
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#add.confirm_days
+  value: 2
+  unit: 일
+  status: prior
+  prior:
+    value: 2
+    basis: 편입 연속 충족 일수
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-remove-alpha-pct
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#remove.alpha_pct
+  value: 0.5
+  unit: 분위
+  status: prior
+  prior:
+    value: 0.5
+    basis: 제외 — 알파 중앙값 아래(종합과 둘 다)
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-remove-composite-pct
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#remove.composite_pct
+  value: 0.5
+  unit: 분위
+  status: prior
+  prior:
+    value: 0.5
+    basis: 제외 — 종합 중앙값 아래(알파와 둘 다)
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-remove-confirm-days
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#remove.confirm_days
+  value: 3
+  unit: 일
+  status: prior
+  prior:
+    value: 3
+    basis: 제외 연속 미달 일수
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-cap-max-auto
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#cap.max_auto
+  value: 8
+  unit: 종목
+  status: prior
+  prior:
+    value: 8
+    basis: 자동 편입 상한
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-watchlist-cap-replace-margin
+  model: portfolio.watchlist
+  binding: config/watchlist.yaml#cap.replace_margin
+  value: 1.0
+  unit: 점
+  status: prior
+  prior:
+    value: 1.0
+    basis: 상한일 때 교체 차이
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
+  fit:
+    method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
+    target: watchlist_log.csv 행별 20거래일 AR
+    data: knowledge/models/portfolio/watchlist_log.csv
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min

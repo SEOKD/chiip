@@ -131,7 +131,7 @@ def run(data, c=None, queue=True):
         import alpha_watch
         for x in wait:
             alpha_watch.enqueue(x["id"], x["name"], "종합 명단 — 기술적 점수 높음, 알파 미산정", "알파 산정")
-    return {"as_of": data.get("as_of"), "threshold": c["threshold"], "n": len(rows), "pass": [x for x in rows if x["pass"]], "top": rows[:10], "queued": [x["id"] for x in wait]}
+    return {"as_of": data.get("as_of"), "threshold": c["threshold"], "n": len(rows), "pass": [x for x in rows if x["pass"]], "top": rows[:10], "rows": rows, "queued": [x["id"] for x in wait]}
 
 
 def main(argv):
