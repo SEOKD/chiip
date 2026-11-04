@@ -1,0 +1,124 @@
+auto: false
+id: us-uls
+name: UL Solutions
+ticker: ULS
+unit: B$
+unit_usd: 1000000000.0
+industry: testing_certification
+region_mix:
+  US: 0.75
+  EU: 0.25
+tax: 0.26
+horizon: 10
+as_of: '2026-11-03'
+market:
+  date: '2026-11-03'
+  price: 80.4
+  shares: 0.2039
+  net_debt: 0.359
+  source: 가격 = 11/3 종가(3Q 실적일 +7.0%). 주식 = 시가총액 $16.23B ÷ 가격(클래스 A+B 약 2.02억 주, 3Q
+    기본 가중평균 2.02억 주와 같다). 차입 $689M = 10/30 회사 공시(E&E 인수·DQS 매각 반영). 현금 약 $0.33B는 9월
+    말 $1,016M − E&E 대금 $686M 추정(DQS 매각 대금 $117M은 회전 차입 상환에 썼다)
+rev0: 3.272
+ic0: 1.488
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+    - 0.1
+    - 0.065
+    - 0.06
+    - 0.055
+    - 0.05
+    - 0.05
+    - 0.045
+    - 0.04
+    - 0.04
+    - 0.04
+    margin:
+      m0: 0.188
+      target: 0.21
+      year_target: 3
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - 0.197
+      - 0.206
+    s2c: 1.5
+  bull:
+    prob: 0.25
+    growth:
+    - 0.12
+    - 0.09
+    - 0.08
+    - 0.07
+    - 0.06
+    - 0.055
+    - 0.05
+    - 0.045
+    - 0.04
+    - 0.04
+    margin:
+      m0: 0.188
+      target: 0.23
+      year_target: 3
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - 0.197
+      - 0.206
+    s2c: 1.725
+  bear:
+    prob: 0.25
+    growth:
+    - 0.07
+    - 0.04
+    - 0.04
+    - 0.04
+    - 0.035
+    - 0.035
+    - 0.03
+    - 0.03
+    - 0.03
+    - 0.03
+    margin:
+      m0: 0.188
+      target: 0.19
+      year_target: 3
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - 0.197
+      - 0.206
+    s2c: 1.275
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [3.257, 3.287] (3Q 보도자료 2026-11-03. 달러 매출 가이던스는 없어 1~3Q $2,397M
+    + 4Q 약 $0.86~0.89B(E&E 약 $50M 포함)로 근사)
+  growth: 컨센서스 1년차 10.5%, 2년차 6.5%
+  margin: 1~2년차 컨센서스 19.7%, 20.6% 고정 → 목표 21%(3년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: 재무 재구성 증분 매출/투하자본 2.14 → 덮어쓰기 1.5
+  range: '손으로 고침: 강세 = 2027 +12%(E&E 포함, 유기 7%대 유지), 약세 = 2027 +7%(E&E 포함, 유기 2~3%
+    — 소비재·중국 시험 둔화). 약세 목표 이익률 19%'
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '성장: 2027 컨센서스 +10%(E&E 편입 약 5%p 포함), 2028 +6.5%에서 장기 4%로 식힌다. 이익률: 조정
+    EBIT 이익률 2028 약 23%에서 SBC(매출의 약 2.3%)를 빼 3년차 21%, 장기 20%. 매출÷투하자본 1.5: 시험소는 CAPEX가
+    매출의 8.5%로 무겁고 인수가 성장의 일부다'
+  shares: 완전 희석 = 기본 0.2019(2026-11-03) + 옵션·RSU·워런트·전환 0.0020 — 3Q 희석 가중평균 2.04억
+    주 − 기본 2.02억 주(3Q 보도자료)
+notes:
+- 자동 생성(build_drivers) 2026-11-04 — 데이터 묶음 2026-11-03
+- '어닝콜 위험: 소프트웨어 부문 이익률 18.9%(전년 29.7%)'
+- '어닝콜 위험: 자문(Advisory) 부문 정체 — 미국 재생에너지·상업용 부동산'
+- '어닝콜 위험: 통합 비용'
+evidence:
+- UL Solutions 3Q26 실적 보도자료(BusinessWire 2026-11-03)
+- UL Solutions 3Q26 어닝콜(2026-11-03, 요지만 자기 말로)
+- Eurofins E&E 매각 완료 보도(dpa-AFX·Reuters 2026-10-01)
+- StockStory 3Q 주가 반응 기사(2026-11-03)
+- Fiscal.ai 추정·Forward 배수(2026-11-03). Data provided by Zacks Investment Research,
+  Inc., www.zacksdata.com

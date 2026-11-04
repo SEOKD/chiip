@@ -30,6 +30,7 @@ regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model
     offshore_drilling: {beta: 1.40, equity_weight: 0.81}   # 표에 업종 값이 없어 SDRL 시장 베타 1.40·자기 자본 구조 0.81을 쓴다(2026-11-02 SDRL)
     autonomy_defense: {beta: 1.12, equity_weight: 0.99}   # 드론·대드론·자율 방산(2026-11-02 ONDS): Damodaran 2026-01 미국 Aerospace/Defense 0.95와 Software(System & Application) 1.28 평균, 자기자본 비중은 회사 자본 구조(차입 $41M ÷ 시가총액 $3.7B)
     workforce_lodging: {beta: 1.02, equity_weight: 0.72}   # 원격지 작업자 숙소·호스피탈리티(2026-11-02 CVEO): Damodaran 2026-01 미국 Hotel/Gaming(베타 1.08, D/E 39.75%)과 Oilfield Svcs/Equip.(0.95, 37.36%) 평균
+    testing_certification: {beta: 0.95, equity_weight: 0.96}   # 시험·인증(TIC, 2026-11-04 ULS): Damodaran 2026-01 Business & Consumer Services 수준 베타 약 0.95(표 재조회 필요, 추정), 자기자본 비중은 회사 자본 구조(차입 $0.69B ÷ 시가총액 $16.2B)
 
 fred_series:                 # regime.py가 매일 받는 FRED 계열(키 불필요 CSV)
   ust10y: DGS10

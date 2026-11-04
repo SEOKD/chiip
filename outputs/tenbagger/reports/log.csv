@@ -17,3 +17,4 @@ date,id,ticker,html,view
 2026-11-02,us-onds,ONDS,outputs/tenbagger/reports/20261102_ONDS.html,"인수 14건 매출 시너지는 확인, 비용 시너지 없음 — 대가 $1.83B 본전엔 2029 EBITDA $320M 필요, Neutral $5.70"
 2026-11-03,us-aeis,AEIS,outputs/tenbagger/reports/20261103_AEIS.html,"Buy — 서버향 전력 종목 중 이익 상향과 배수 하락이 가장 크게 벌어졌다, 목표주가 $289(+33%)"
 2026-11-04,eu-schneider,SU,outputs/tenbagger/reports/20261104_SU.html,"Neutral — 본업 호조, PTC 대가가 자본비용 아래. 목표주가 €251(+5%)"
+2026-11-04,us-uls,ULS,outputs/tenbagger/reports/20261104_ULS.html,"Sell — TIC 동종 대비 50% 프리미엄, 목표주가 $58(−28%)"
