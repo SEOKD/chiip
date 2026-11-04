@@ -32,7 +32,7 @@ MAX_LEN = 3800
 
 
 LABELS = [   # 텔레그램 기능 이름은 영어로(마스터 지시 2026-10-29 "Chiip 펄스를 Chiip Pulse로, 나머지도 영어로") — 긴 이름부터
-    ("Chiip 포트폴리오 데일리", "Chiip Portfolio Daily"), ("Chiip 텐배거 리포트", "Chiip Ten-bagger Report"), ("Chiip 리포트 게시", "Chiip Report"),
+    ("Chiip 포트폴리오 데일리", "Chiip Portfolio Daily"), ("Chiip 텐배거 리포트", "Chiip Analysis"), ("Chiip 리포트 게시", "Chiip Report"),
     ("Chiip 뉴스 요약", "Chiip News Digest"), ("Chiip 숏 리포트", "Chiip Short Report"), ("Chiip 실적 일정", "Chiip Earnings Calendar"),
     ("Chiip 기사 소재", "Chiip Article Pitch"), ("Chiip 인사이트 검토", "Chiip Insight Review"), ("Chiip 알파 레이더", "Chiip Alpha Radar"),
     ("Chiip 발굴", "Chiip Ten-bagger Discovery"), ("Chiip 포트폴리오", "Chiip Portfolio"), ("Chiip 텐배거", "Chiip Ten-bagger"), ("Chiip 펄스", "Chiip Pulse"),

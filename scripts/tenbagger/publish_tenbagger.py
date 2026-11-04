@@ -180,9 +180,9 @@ def send(src, caption="", dry=False, resend=False, reissue=False):
     if tg.get("sent"):   # 앞서 노션 없이 보낸 리포트 — 노션이 이제 올라갔으면 한 줄만
         if not ok:
             return {"skipped": "노션 아직 실패 — 재시도 후 다시"}
-        text = f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']}) 노션 게시 완료\n🗂 {st['notion']['page']}"
+        text = f"[Chiip Analysis] {st['company']}({st['ticker']}) 노션 게시 완료\n🗂 {st['notion']['page']}"
     else:
-        cap = Path(caption).read_text(encoding="utf-8") if caption and Path(caption).exists() else (caption or f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']})")
+        cap = Path(caption).read_text(encoding="utf-8") if caption and Path(caption).exists() else (caption or f"[Chiip Analysis] {st['company']}({st['ticker']})")
         rep = json.loads(Path(src).read_text(encoding="utf-8")) if Path(src).exists() else {}
         if rep.get("format") == 3 and rep.get("kind") != "spac":   # 양식 3은 피드를 엔진이 만든다(마스터 지시 2026-11-01). 스팩 리포트는 등급·목표주가가 없어 캡션으로
             import report_feed

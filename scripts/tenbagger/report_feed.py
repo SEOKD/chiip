@@ -44,7 +44,7 @@ def build(d):
     money = re.match(r"[^\d]*", str(_tile(d, "주가").get("v"))).group() or "$"   # 달러가 아닌 종목은 주가 칸의 통화 표기를 따른다
     cases = {k["name"]: k for c in d.get("gallery") or [] if c.get("kind") == "scenario" for k in c.get("cases") or []}
     date = str(d["date"])[5:].replace("-", "/")
-    out = [f"[Chiip Ten-bagger Report {date}]", "", f"**{d['company']}({d['ticker']})**", d["title"], f"기업: {d['biz']}", ""]
+    out = [f"[Chiip Analysis {date}]", "", f"**{d['company']}({d['ticker']})**", d["title"], f"기업: {d['biz']}", ""]
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     out += ["**■ 결론**", f"- 구매 등급 **{v.get('rating')}** · 알파 {alpha}/10"]
     if v.get("target_text"):
