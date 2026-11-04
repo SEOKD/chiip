@@ -1,0 +1,104 @@
+auto: true
+id: co-propetro
+name: ProPetro Holding
+ticker: PUMP
+unit: B$
+unit_usd: 1000000000.0
+industry: oilfield_services
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-04'
+market:
+  date: '2026-11-04'
+  price: 7.18
+  shares: 0.124962
+  net_debt: 0.1624
+  source: 가격 = 11/3 종가. 주식 = 3Q26 10-Q 표지 122,862,337주(10/23). 현금·차입 = 9/30 재무상태표(현금
+    $728.9M, 차입 = 장기 $808.7M + 유동 $31.2M + 리스 $51.4M). 차입에는 2031 전환사채 $690M과 캐터필러
+    장비 대출 $171.8M이 들어 있다
+rev0: 1.285
+ic0: 1.1387
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.1518
+      end: 0.035
+      decay: 0.742
+    margin:
+      m0: 0.001
+      target: 0.08
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.034
+      - 0.067
+    s2c: 0.7
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.284
+      end: 0.04
+      decay: 0.792
+    margin:
+      m0: 0.001
+      target: 0.113
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.034
+      - 0.067
+    s2c: 0.805
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.035
+      end: 0.030000000000000002
+      decay: 0.642
+    margin:
+      m0: 0.001
+      target: 0.047
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.034
+      - 0.067
+    s2c: 0.595
+mc:
+  sigma_growth: 0.0623
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [1.25, 1.32] (3Q 보도자료 2026-10-28: 2026 CAPEX(발생) $525~575M(완결
+    $125~145M, PROPWR $400~430M), 4Q 프랙 함대 약 13개 유지·연말 계절 둔화, PROPWR 연말 250~275MW
+    배치·2028년 초 500MW 이상. 매출·EBITDA 숫자 가이던스는 없어 rev_fy0는 9M 실적 $931.9M + 4Q 컨센서스 범위로
+    잡았다)'
+  growth: 컨센서스 1년차 15.2%, 2년차 12.2%
+  margin: 1~2년차 컨센서스 3.4%, 6.7% 고정 → 목표 8%(3년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.073 → 덮어쓰기 0.7
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 3.5%~28.4%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: 규칙의 자본 효율(TTM 매출 ÷ 투하자본 1.07)은 프랙 사업 기준이다. PROPWR은 MW당 사업비 $1.4~1.5M에
+    회수 4~6년이라 매출 대비 투하자본이 무겁다(전력만 보면 0.4 안팎, 자체 추정). 2026~2027 CAPEX의 대부분이 전력이라 0.7로
+    둔다. 장기 EBIT 이익률은 FY2028 EBITDA 이익률 23.5%에서 감가상각(매출의 약 15%)을 뺀 8%로 둔다
+  shares: '완전 희석 = 기본 0.122862(2026-10-23) + 옵션·RSU·워런트·전환 0.0021 — 3Q26 10-Q: 희석
+    가중주식 154.7M − 기본 122.8M = 31.9M 중 29.78M은 전환사채'
+notes:
+- 자동 생성(build_drivers) 2026-11-04 — 데이터 묶음 2026-11-04
+- '어닝콜 위험: 데이터센터 장기 계약 지연 — 리스크 배분·손해배상 조건 협상'
+- '어닝콜 위험: 재가동 비용이 예상보다 컸다(마진 압박이 4Q까지)'
+- '어닝콜 위험: ExxonMobil 자회사 XTO 2개 함대 계약이 2026년 말 만료, 갱신 예상 안 함(FY2025 10-K)'
+evidence:
+- ProPetro 3Q26 실적 보도자료(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1680247/000168024726000122/exhibit991-earningsrelea.htm
+- ProPetro 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1680247/000168024726000126/pump-20260930.htm
+- ProPetro FY2025 10-K https://www.sec.gov/Archives/edgar/data/1680247/000168024726000028/pump-20251231.htm
+- Targa 230MW 계약 8-K(2026-09-22) https://www.sec.gov/Archives/edgar/data/1680247/000168024726000112/pump-20260922.htm
+- CAO 사임 8-K(2026-09-21) https://www.sec.gov/Archives/edgar/data/1680247/000168024726000110/pump-20260916.htm
+- 사외이사 선임 8-K(2026-10-19) https://www.sec.gov/Archives/edgar/data/1680247/000168024726000116/pump-20261015.htm
+- ProPetro 3Q 콜 2026-10-28·2Q 콜 2026-07-29(요지만)
