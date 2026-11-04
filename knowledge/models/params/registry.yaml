@@ -3742,6 +3742,54 @@ params:
     data: knowledge/models/portfolio/sector_alloc.json 이력
     last_fit: null
     oos_metric: null
+- id: prm-tb-pl-band
+  model: tenbagger.price_levels
+  binding: config/tenbagger.yaml#price_levels.band
+  value: 0.12
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.12
+    basis: 밸류 경계와 기술 지지·저항 합류 폭
+    source: 치입 운영 가정(2026-11-04 마스터 지시)
+  fit:
+    method: 신호 가격 도달 뒤 20거래일 수익(Buy 신호 > Sell 신호) 표본 외 점검
+    target: 신호 도달 후 수익
+    data: knowledge/models/tenbagger/tv_alerts.json
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pl-change-min
+  model: tenbagger.price_levels
+  binding: config/tenbagger.yaml#price_levels.change_min
+  value: 0.02
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.02
+    basis: 신호 가격 변경 시 알림 교체 문턱
+    source: 치입 운영 가정(2026-11-04 마스터 지시)
+  fit:
+    method: 신호 가격 도달 뒤 20거래일 수익(Buy 신호 > Sell 신호) 표본 외 점검
+    target: 신호 도달 후 수익
+    data: knowledge/models/tenbagger/tv_alerts.json
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-pl-refresh-days
+  model: tenbagger.price_levels
+  binding: config/tenbagger.yaml#price_levels.refresh_days
+  value: 25
+  unit: 일
+  status: prior
+  prior:
+    value: 25
+    basis: 알림 재생성 주기(만료 30일 전)
+    source: 치입 운영 가정(2026-11-04 마스터 지시)
+  fit:
+    method: 신호 가격 도달 뒤 20거래일 수익(Buy 신호 > Sell 신호) 표본 외 점검
+    target: 신호 도달 후 수익
+    data: knowledge/models/tenbagger/tv_alerts.json
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min

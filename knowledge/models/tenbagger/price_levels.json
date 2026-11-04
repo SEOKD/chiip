@@ -1,0 +1,1498 @@
+{
+ "as_of": "2026-11-04T22:02:01+09:00",
+ "note": "Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다",
+ "levels": {
+  "CBRS": {
+   "price": 97.82,
+   "grade": "Sell",
+   "report": "2026-11-02",
+   "target": 91.0,
+   "val_buy": 79.13,
+   "val_strong_buy": 42.58,
+   "val_sell": 101.11,
+   "buy": {
+    "price": 79.13,
+    "basis": "밸류 Buy 경계",
+    "note": "근처 기술 지지 없음 — 밸류 경계"
+   },
+   "sell": {
+    "price": 101.11,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 80.48,
+    "월 피벗 S2": 51.77,
+    "월 피벗 R1": 161.59,
+    "월 피벗 R2": 213.99,
+    "50일선": 165.07,
+    "52주 고점": 386.34,
+    "52주 저점": 95.03
+   },
+   "symbol": "NASDAQ:CBRS"
+  },
+  "INIO": {
+   "price": 18.31,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 15.4,
+   "val_buy": 13.39,
+   "val_strong_buy": 10.92,
+   "val_sell": 17.11,
+   "buy": {
+    "price": 13.39,
+    "basis": "밸류 Buy 경계",
+    "note": "근처 기술 지지 없음 — 밸류 경계"
+   },
+   "sell": {
+    "price": 18.89,
+    "basis": "50일선",
+    "note": "현재가가 이미 밸류 Sell 구간 — 추가 상승 시 저항"
+   },
+   "tech": {
+    "월 피벗 S1": 13.45,
+    "월 피벗 S2": 10.6,
+    "월 피벗 R1": 20.28,
+    "월 피벗 R2": 24.26,
+    "50일선": 18.89,
+    "52주 고점": 42.95,
+    "52주 저점": 14.58
+   },
+   "symbol": "NASDAQ:INIO"
+  },
+  "PWR": {
+   "price": 657,
+   "grade": "Sell",
+   "report": "2026-11-02",
+   "target": 558.0,
+   "val_buy": 485.22,
+   "val_strong_buy": 347.61,
+   "val_sell": 620.0,
+   "buy": {
+    "price": 428.2,
+    "basis": "월 피벗 S2",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 719.6,
+    "basis": "월 피벗 R1",
+    "note": "현재가가 이미 밸류 Sell 구간 — 추가 상승 시 저항"
+   },
+   "tech": {
+    "월 피벗 S1": 524.46,
+    "월 피벗 S2": 428.2,
+    "월 피벗 R1": 719.6,
+    "월 피벗 R2": 818.48,
+    "50일선": 633.29,
+    "200일선": 628.05,
+    "52주 고점": 788.75,
+    "52주 저점": 408.36
+   },
+   "symbol": "NYSE:PWR"
+  },
+  "UCTT": {
+   "price": 48.02,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 65.0,
+   "val_buy": 56.52,
+   "val_strong_buy": 46.43,
+   "val_sell": 72.22,
+   "buy": {
+    "price": 46.43,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 73.07,
+    "basis": "월 피벗 R1",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 35.16,
+    "월 피벗 S2": 20.6,
+    "월 피벗 R1": 73.07,
+    "월 피벗 R2": 96.42,
+    "50일선": 65.52,
+    "200일선": 74.62,
+    "52주 고점": 144.22,
+    "52주 저점": 21.49
+   },
+   "symbol": "NASDAQ:UCTT"
+  },
+  "TTMI": {
+   "price": 81.63,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 109.0,
+   "val_buy": 94.78,
+   "val_strong_buy": 77.86,
+   "val_sell": 121.11,
+   "buy": {
+    "price": 77.86,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 123.31,
+    "basis": "월 피벗 R1",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 57.14,
+    "월 피벗 S2": 31.34,
+    "월 피벗 R1": 123.31,
+    "월 피벗 R2": 163.68,
+    "50일선": 112.1,
+    "200일선": 127.97,
+    "52주 고점": 223.83,
+    "52주 저점": 55.44
+   },
+   "symbol": "NASDAQ:TTMI"
+  },
+  "VICR": {
+   "price": 179.01,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 199.0,
+   "val_buy": 173.04,
+   "val_strong_buy": 110.83,
+   "val_sell": 221.11,
+   "buy": {
+    "price": 173.04,
+    "basis": "밸류 Buy 경계",
+    "note": "근처 기술 지지 없음 — 밸류 경계"
+   },
+   "sell": {
+    "price": 223.9,
+    "basis": "50일선",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 129.45,
+    "월 피벗 S2": 67.82,
+    "월 피벗 R1": 291.86,
+    "월 피벗 R2": 392.64,
+    "50일선": 223.9,
+    "200일선": 227.66,
+    "52주 고점": 382.65,
+    "52주 저점": 80.29
+   },
+   "symbol": "NASDAQ:VICR"
+  },
+  "HII": {
+   "price": 316.93,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 337.0,
+   "val_buy": 293.04,
+   "val_strong_buy": 231.32,
+   "val_sell": 374.44,
+   "buy": {
+    "price": 278.79,
+    "basis": "50일선",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 374.44,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 272.24,
+    "월 피벗 S2": 227.6,
+    "월 피벗 R1": 344.64,
+    "월 피벗 R2": 372.39,
+    "50일선": 278.79,
+    "200일선": 334.58,
+    "52주 고점": 460,
+    "52주 저점": 255.36
+   },
+   "symbol": "NYSE:HII"
+  },
+  "EROC": {
+   "price": 8.96,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 12.0,
+   "val_buy": 10.43,
+   "val_strong_buy": 7.51,
+   "val_sell": 13.33,
+   "buy": {
+    "price": 7.51,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 13.33,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 5.87,
+    "월 피벗 S2": 3.39,
+    "월 피벗 R1": 12.61,
+    "월 피벗 R2": 16.87,
+    "50일선": 11.31,
+    "52주 고점": 20.7,
+    "52주 저점": 7.62
+   },
+   "symbol": "NYSE:EROC"
+  },
+  "FORM": {
+   "price": 96.79,
+   "grade": "Buy",
+   "report": "2026-10-31",
+   "target": 112.15218899999999,
+   "val_buy": 97.52,
+   "val_strong_buy": 60.4,
+   "val_sell": 124.61,
+   "buy": {
+    "price": 60.4,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 130.96,
+    "basis": "월 피벗 R1",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 64.31,
+    "월 피벗 S2": 41.1,
+    "월 피벗 R1": 130.96,
+    "월 피벗 R2": 174.4,
+    "50일선": 115.48,
+    "200일선": 114.22,
+    "52주 고점": 160.27,
+    "52주 저점": 47.33
+   },
+   "symbol": "NASDAQ:FORM"
+  },
+  "KOG": {
+   "price": 349.4,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 351.0,
+   "val_buy": 305.22,
+   "val_strong_buy": 156.55,
+   "val_sell": 390.0,
+   "buy": {
+    "price": 305.22,
+    "basis": "밸류 Buy 경계",
+    "note": "근처 기술 지지 없음 — 밸류 경계"
+   },
+   "sell": {
+    "price": 401.73,
+    "basis": "월 피벗 R2",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 309.87,
+    "월 피벗 S2": 263.93,
+    "월 피벗 R1": 378.77,
+    "월 피벗 R2": 401.73,
+    "50일선": 313.38,
+    "200일선": 310.31,
+    "52주 고점": 365.4,
+    "52주 저점": 188.81
+   },
+   "symbol": "OSL:KOG"
+  },
+  "RMBS": {
+   "price": 88.18,
+   "grade": "Neutral",
+   "report": "2026-11-01",
+   "target": 96.16240000000002,
+   "val_buy": 83.62,
+   "val_strong_buy": 42.33,
+   "val_sell": 106.85,
+   "buy": {
+    "price": 77.89,
+    "basis": "52주 저점",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 107.83,
+    "basis": "200일선",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 72.86,
+    "월 피벗 S2": 61.06,
+    "월 피벗 R1": 105.71,
+    "월 피벗 R2": 126.76,
+    "50일선": 93.7,
+    "200일선": 107.83,
+    "52주 고점": 174.1,
+    "52주 저점": 77.89
+   },
+   "symbol": "NASDAQ:RMBS"
+  },
+  "353200": {
+   "price": 99500,
+   "grade": "Buy",
+   "report": "2026-11-01",
+   "target": 161215.0,
+   "val_buy": 140187,
+   "val_strong_buy": 84774,
+   "val_sell": 179128,
+   "buy": {
+    "price": 84774,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 198000,
+    "basis": "52주 고점",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 102133,
+    "월 피벗 S2": 84867,
+    "월 피벗 R1": 148833,
+    "월 피벗 R2": 178267,
+    "50일선": 119694,
+    "200일선": 105677,
+    "52주 고점": 198000,
+    "52주 저점": 40550
+   },
+   "symbol": "KRX:353200"
+  },
+  "GEV": {
+   "price": 918.2,
+   "grade": "Neutral",
+   "report": "2026-11-01",
+   "target": 909.0,
+   "val_buy": 790.43,
+   "val_strong_buy": 566.19,
+   "val_sell": 1010,
+   "buy": {
+    "price": 751.93,
+    "basis": "월 피벗 S1",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 1010,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 751.93,
+    "월 피벗 S2": 645.99,
+    "월 피벗 R1": 1008,
+    "월 피벗 R2": 1159,
+    "50일선": 932.64,
+    "200일선": 946.92,
+    "52주 고점": 1196,
+    "52주 저점": 530.16
+   },
+   "symbol": "NYSE:GEV"
+  },
+  "000150": {
+   "price": 871000,
+   "grade": "Strong Buy",
+   "report": "2026-11-02",
+   "target": 1330034.0,
+   "val_buy": 1156551,
+   "val_strong_buy": 950024,
+   "val_sell": 1477816,
+   "buy": {
+    "price": null,
+    "basis": "없음",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 1477816,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 672333,
+    "월 피벗 S2": 453667,
+    "월 피벗 R1": 1300333,
+    "월 피벗 R2": 1709667,
+    "50일선": 1190800,
+    "200일선": 1255575,
+    "52주 고점": 2489000,
+    "52주 저점": 734000
+   },
+   "symbol": "KRX:000150"
+  },
+  "SDRL": {
+   "price": 46.32,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 56.0,
+   "val_buy": 48.7,
+   "val_strong_buy": 36.27,
+   "val_sell": 62.22,
+   "buy": {
+    "price": 45.93,
+    "basis": "월 피벗 S1",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 62.22,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 45.93,
+    "월 피벗 S2": 39.3,
+    "월 피벗 R1": 56.91,
+    "월 피벗 R2": 61.26,
+    "50일선": 47.8,
+    "200일선": 45.2,
+    "52주 고점": 55.47,
+    "52주 저점": 28.1
+   },
+   "symbol": "NYSE:SDRL"
+  },
+  "CACI": {
+   "price": 680.1,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 800.0,
+   "val_buy": 695.65,
+   "val_strong_buy": 533.74,
+   "val_sell": 888.89,
+   "buy": {
+    "price": 626.3,
+    "basis": "50일선",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 888.89,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 604.19,
+    "월 피벗 S2": 532.76,
+    "월 피벗 R1": 718.1,
+    "월 피벗 R2": 760.58,
+    "50일선": 626.3,
+    "200일선": 569.18,
+    "52주 고점": 694.01,
+    "52주 저점": 434.7
+   },
+   "symbol": "NYSE:CACI"
+  },
+  "DELL": {
+   "price": 408.4,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 411.0,
+   "val_buy": 357.39,
+   "val_strong_buy": 293.57,
+   "val_sell": 456.67,
+   "buy": {
+    "price": 334.08,
+    "basis": "200일선",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 456.67,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 359.85,
+    "월 피벗 S2": 295.39,
+    "월 피벗 R1": 541.91,
+    "월 피벗 R2": 659.51,
+    "50일선": 512.41,
+    "200일선": 334.08,
+    "52주 고점": 595.51,
+    "52주 저점": 110.22
+   },
+   "symbol": "NYSE:DELL"
+  },
+  "7867": {
+   "price": 4796,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 5449.0,
+   "val_buy": 4659,
+   "val_strong_buy": 3892,
+   "val_sell": 6054,
+   "buy": {
+    "price": 4353,
+    "basis": "월 피벗 S1",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 6054,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 4353,
+    "월 피벗 S2": 3784,
+    "월 피벗 R1": 5213,
+    "월 피벗 R2": 5504,
+    "50일선": 4103,
+    "200일선": 3252,
+    "52주 고점": 4995,
+    "52주 저점": 2496
+   },
+   "symbol": "TSE:7867"
+  },
+  "ORCL": {
+   "price": 126.19,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 168.0,
+   "val_buy": 146.09,
+   "val_strong_buy": 74.48,
+   "val_sell": 186.67,
+   "buy": {
+    "price": 119.46,
+    "basis": "월 피벗 S1",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 186.67,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 119.46,
+    "월 피벗 S2": 108.25,
+    "월 피벗 R1": 145.18,
+    "월 피벗 R2": 159.69,
+    "50일선": 140.93,
+    "200일선": 156.29,
+    "52주 고점": 252.4,
+    "52주 저점": 114.5
+   },
+   "symbol": "NYSE:ORCL"
+  },
+  "095340": {
+   "price": 162500,
+   "grade": "Neutral",
+   "report": "2026-11-02",
+   "target": 146529.0,
+   "val_buy": 115292,
+   "val_strong_buy": 57646,
+   "val_sell": 162810,
+   "buy": {
+    "price": 115292,
+    "basis": "밸류 Buy 경계",
+    "note": "근처 기술 지지 없음 — 밸류 경계"
+   },
+   "sell": {
+    "price": 177726,
+    "basis": "50일선",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 121733,
+    "월 피벗 S2": 87667,
+    "월 피벗 R1": 207433,
+    "월 피벗 R2": 259067,
+    "50일선": 177726,
+    "200일선": 183398,
+    "52주 고점": 292500,
+    "52주 저점": 72900
+   },
+   "symbol": "KRX:095340"
+  },
+  "000660": {
+   "price": 1396000,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 2084111.0,
+   "val_buy": 1695298,
+   "val_strong_buy": 1388391,
+   "val_sell": 2315679,
+   "buy": {
+    "price": 1388391,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 2315679,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 1107667,
+    "월 피벗 S2": 797333,
+    "월 피벗 R1": 1791667,
+    "월 피벗 R2": 2165333,
+    "50일선": 1611120,
+    "200일선": 1502885,
+    "52주 고점": 2987000,
+    "52주 저점": 501000
+   },
+   "symbol": "KRX:000660"
+  },
+  "AMKR": {
+   "price": 37.62,
+   "grade": "Buy",
+   "report": "2026-11-02",
+   "target": 50.0,
+   "val_buy": 43.48,
+   "val_strong_buy": 35.71,
+   "val_sell": 55.56,
+   "buy": {
+    "price": 35.71,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 57.16,
+    "basis": "200일선",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 31.73,
+    "월 피벗 S2": 23.95,
+    "월 피벗 R1": 51.92,
+    "월 피벗 R2": 64.33,
+    "50일선": 47.5,
+    "200일선": 57.16,
+    "52주 고점": 96.68,
+    "52주 저점": 29.76
+   },
+   "symbol": "NASDAQ:AMKR"
+  },
+  "COHU": {
+   "price": 50.03,
+   "grade": "Buy",
+   "report": "2026-11-03",
+   "target": 60.0,
+   "val_buy": 52.17,
+   "val_strong_buy": 42.86,
+   "val_sell": 66.67,
+   "buy": {
+    "price": 47.32,
+    "basis": "200일선",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 69.24,
+    "basis": "월 피벗 R1",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 38.81,
+    "월 피벗 S2": 26.84,
+    "월 피벗 R1": 69.24,
+    "월 피벗 R2": 87.7,
+    "50일선": 56.83,
+    "200일선": 47.32,
+    "52주 고점": 75.72,
+    "52주 저점": 21.1
+   },
+   "symbol": "NASDAQ:COHU"
+  },
+  "STRL": {
+   "price": 361.15,
+   "grade": "Strong Buy",
+   "report": "2026-11-03",
+   "target": 504.0,
+   "val_buy": 438.26,
+   "val_strong_buy": 360.0,
+   "val_sell": 560.0,
+   "buy": {
+    "price": 360.0,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 560.0,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 264.96,
+    "월 피벗 S2": 184.0,
+    "월 피벗 R1": 500.88,
+    "월 피벗 R2": 655.85,
+    "50일선": 466.2,
+    "200일선": 551.98,
+    "52주 고점": 1006,
+    "52주 저점": 281.58
+   },
+   "symbol": "NASDAQ:STRL"
+  },
+  "ACMR": {
+   "price": 45.33,
+   "grade": "Buy",
+   "report": "2026-11-03",
+   "target": 53.0,
+   "val_buy": 46.09,
+   "val_strong_buy": 37.86,
+   "val_sell": 58.89,
+   "buy": {
+    "price": 37.86,
+    "basis": "밸류 Strong Buy 경계",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 58.89,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 30.63,
+    "월 피벗 S2": 15.78,
+    "월 피벗 R1": 73.26,
+    "월 피벗 R2": 101.04,
+    "50일선": 67.14,
+    "200일선": 68.51,
+    "52주 고점": 127.19,
+    "52주 저점": 28.46
+   },
+   "symbol": "NASDAQ:ACMR"
+  },
+  "MPWR": {
+   "price": 1328.3,
+   "grade": "Neutral",
+   "report": "2026-11-03",
+   "target": 1017.0,
+   "val_buy": 884.35,
+   "val_strong_buy": 479.79,
+   "val_sell": 1130,
+   "buy": {
+    "price": 833.18,
+    "basis": "52주 저점",
+    "note": "밸류 Buy 경계와 기술 지지 합류"
+   },
+   "sell": {
+    "price": 1427,
+    "basis": "월 피벗 R1",
+    "note": "현재가가 이미 밸류 Sell 구간 — 추가 상승 시 저항"
+   },
+   "tech": {
+    "월 피벗 S1": 1062,
+    "월 피벗 S2": 911.54,
+    "월 피벗 R1": 1427,
+    "월 피벗 R2": 1642,
+    "50일선": 1274,
+    "200일선": 1319,
+    "52주 고점": 1714,
+    "52주 저점": 833.18
+   },
+   "symbol": "NASDAQ:MPWR"
+  },
+  "AESI": {
+   "price": 8.14,
+   "grade": "Neutral",
+   "report": "2026-11-04",
+   "target": 9.3,
+   "val_buy": 4.26,
+   "val_strong_buy": 2.13,
+   "val_sell": 10.33,
+   "buy": {
+    "price": 4.26,
+    "basis": "밸류 Buy 경계",
+    "note": "근처 기술 지지 없음 — 밸류 경계"
+   },
+   "sell": {
+    "price": 10.33,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 7.41,
+    "월 피벗 S2": 5.59,
+    "월 피벗 R1": 12.08,
+    "월 피벗 R2": 14.93,
+    "50일선": 11.69,
+    "200일선": 13.41,
+    "52주 고점": 20.13,
+    "52주 저점": 7.53
+   },
+   "symbol": "NYSE:AESI"
+  },
+  "CLS": {
+   "price": 259.94,
+   "grade": "Buy",
+   "report": "2026-11-04",
+   "target": 321.0,
+   "val_buy": 279.13,
+   "val_strong_buy": 229.29,
+   "val_sell": 356.67,
+   "buy": {
+    "price": 244.51,
+    "basis": "52주 저점",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 357.42,
+    "basis": "월 피벗 R1",
+    "note": "밸류 Sell 경계와 기술 저항 합류"
+   },
+   "tech": {
+    "월 피벗 S1": 209.94,
+    "월 피벗 S2": 154.35,
+    "월 피벗 R1": 357.42,
+    "월 피벗 R2": 449.31,
+    "50일선": 322.91,
+    "200일선": 331.68,
+    "52주 고점": 474.03,
+    "52주 저점": 244.51
+   },
+   "symbol": "NYSE:CLS"
+  },
+  "PUMP": {
+   "price": 7.18,
+   "grade": "Neutral",
+   "report": "2026-11-04",
+   "target": 14.6,
+   "val_buy": 12.7,
+   "val_strong_buy": 10.43,
+   "val_sell": 16.22,
+   "buy": {
+    "price": 6.93,
+    "basis": "52주 저점",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 16.22,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 6.54,
+    "월 피벗 S2": 5.35,
+    "월 피벗 R1": 9.39,
+    "월 피벗 R2": 11.04,
+    "50일선": 9.43,
+    "200일선": 12.56,
+    "52주 고점": 18.5,
+    "52주 저점": 6.93
+   },
+   "symbol": "NYSE:PUMP"
+  },
+  "MYRG": {
+   "price": 291.59,
+   "grade": "Neutral",
+   "report": "2026-11-04",
+   "target": 349.0,
+   "val_buy": 303.48,
+   "val_strong_buy": 249.29,
+   "val_sell": 387.78,
+   "buy": {
+    "price": 288.56,
+    "basis": "50일선",
+    "note": "현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지"
+   },
+   "sell": {
+    "price": 387.78,
+    "basis": "밸류 Sell 경계",
+    "note": "근처 기술 저항 없음 — 밸류 경계"
+   },
+   "tech": {
+    "월 피벗 S1": 241.14,
+    "월 피벗 S2": 199.65,
+    "월 피벗 R1": 326.87,
+    "월 피벗 R2": 371.12,
+    "50일선": 288.56,
+    "200일선": 335.94,
+    "52주 고점": 503.57,
+    "52주 저점": 199.31
+   },
+   "symbol": "NASDAQ:MYRG"
+  }
+ },
+ "plan": {
+  "create": [
+   {
+    "ticker": "CBRS",
+    "side": "buy",
+    "symbol": "NASDAQ:CBRS",
+    "price": 79.13,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 CBRS $79.13",
+    "message": "[Chiip] CBRS Buy 신호 가격 도달 $79.13 — 근거: 밸류 Buy 경계 · 근처 기술 지지 없음 — 밸류 경계 · 밸류 Buy 경계 $79.13 / Strong Buy $42.58 / Sell 경계 $101.11 · 리포트 2026-11-02 목표가 $91.00(등급 Sell). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "CBRS",
+    "side": "sell",
+    "symbol": "NASDAQ:CBRS",
+    "price": 101.11,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 CBRS $101.11",
+    "message": "[Chiip] CBRS Sell 신호 가격 도달 $101.11 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $79.13 / Strong Buy $42.58 / Sell 경계 $101.11 · 리포트 2026-11-02 목표가 $91.00(등급 Sell). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "INIO",
+    "side": "buy",
+    "symbol": "NASDAQ:INIO",
+    "price": 13.39,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 INIO $13.39",
+    "message": "[Chiip] INIO Buy 신호 가격 도달 $13.39 — 근거: 밸류 Buy 경계 · 근처 기술 지지 없음 — 밸류 경계 · 밸류 Buy 경계 $13.39 / Strong Buy $10.92 / Sell 경계 $17.11 · 리포트 2026-11-02 목표가 $15.40(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "INIO",
+    "side": "sell",
+    "symbol": "NASDAQ:INIO",
+    "price": 18.89,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 INIO $18.89",
+    "message": "[Chiip] INIO Sell 신호 가격 도달 $18.89 — 근거: 50일선 · 현재가가 이미 밸류 Sell 구간 — 추가 상승 시 저항 · 밸류 Buy 경계 $13.39 / Strong Buy $10.92 / Sell 경계 $17.11 · 리포트 2026-11-02 목표가 $15.40(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "PWR",
+    "side": "buy",
+    "symbol": "NYSE:PWR",
+    "price": 428.2,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 PWR $428.2",
+    "message": "[Chiip] PWR Buy 신호 가격 도달 $428.2 — 근거: 월 피벗 S2 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 $485.22 / Strong Buy $347.61 / Sell 경계 $620.0 · 리포트 2026-11-02 목표가 $558.00(등급 Sell). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "PWR",
+    "side": "sell",
+    "symbol": "NYSE:PWR",
+    "price": 719.6,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 PWR $719.6",
+    "message": "[Chiip] PWR Sell 신호 가격 도달 $719.6 — 근거: 월 피벗 R1 · 현재가가 이미 밸류 Sell 구간 — 추가 상승 시 저항 · 밸류 Buy 경계 $485.22 / Strong Buy $347.61 / Sell 경계 $620.0 · 리포트 2026-11-02 목표가 $558.00(등급 Sell). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "UCTT",
+    "side": "buy",
+    "symbol": "NASDAQ:UCTT",
+    "price": 46.43,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 UCTT $46.43",
+    "message": "[Chiip] UCTT Buy 신호 가격 도달 $46.43 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $56.52 / Strong Buy $46.43 / Sell 경계 $72.22 · 리포트 2026-11-02 목표가 $65.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "UCTT",
+    "side": "sell",
+    "symbol": "NASDAQ:UCTT",
+    "price": 73.07,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 UCTT $73.07",
+    "message": "[Chiip] UCTT Sell 신호 가격 도달 $73.07 — 근거: 월 피벗 R1 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $56.52 / Strong Buy $46.43 / Sell 경계 $72.22 · 리포트 2026-11-02 목표가 $65.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "TTMI",
+    "side": "buy",
+    "symbol": "NASDAQ:TTMI",
+    "price": 77.86,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 TTMI $77.86",
+    "message": "[Chiip] TTMI Buy 신호 가격 도달 $77.86 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $94.78 / Strong Buy $77.86 / Sell 경계 $121.11 · 리포트 2026-11-02 목표가 $109.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "TTMI",
+    "side": "sell",
+    "symbol": "NASDAQ:TTMI",
+    "price": 123.31,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 TTMI $123.31",
+    "message": "[Chiip] TTMI Sell 신호 가격 도달 $123.31 — 근거: 월 피벗 R1 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $94.78 / Strong Buy $77.86 / Sell 경계 $121.11 · 리포트 2026-11-02 목표가 $109.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "VICR",
+    "side": "buy",
+    "symbol": "NASDAQ:VICR",
+    "price": 173.04,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 VICR $173.04",
+    "message": "[Chiip] VICR Buy 신호 가격 도달 $173.04 — 근거: 밸류 Buy 경계 · 근처 기술 지지 없음 — 밸류 경계 · 밸류 Buy 경계 $173.04 / Strong Buy $110.83 / Sell 경계 $221.11 · 리포트 2026-11-02 목표가 $199.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "VICR",
+    "side": "sell",
+    "symbol": "NASDAQ:VICR",
+    "price": 223.9,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 VICR $223.9",
+    "message": "[Chiip] VICR Sell 신호 가격 도달 $223.9 — 근거: 50일선 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $173.04 / Strong Buy $110.83 / Sell 경계 $221.11 · 리포트 2026-11-02 목표가 $199.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "HII",
+    "side": "buy",
+    "symbol": "NYSE:HII",
+    "price": 278.79,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 HII $278.79",
+    "message": "[Chiip] HII Buy 신호 가격 도달 $278.79 — 근거: 50일선 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 $293.04 / Strong Buy $231.32 / Sell 경계 $374.44 · 리포트 2026-11-02 목표가 $337.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "HII",
+    "side": "sell",
+    "symbol": "NYSE:HII",
+    "price": 374.44,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 HII $374.44",
+    "message": "[Chiip] HII Sell 신호 가격 도달 $374.44 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $293.04 / Strong Buy $231.32 / Sell 경계 $374.44 · 리포트 2026-11-02 목표가 $337.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "EROC",
+    "side": "buy",
+    "symbol": "NYSE:EROC",
+    "price": 7.51,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 EROC $7.51",
+    "message": "[Chiip] EROC Buy 신호 가격 도달 $7.51 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $10.43 / Strong Buy $7.51 / Sell 경계 $13.33 · 리포트 2026-11-02 목표가 $12.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "EROC",
+    "side": "sell",
+    "symbol": "NYSE:EROC",
+    "price": 13.33,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 EROC $13.33",
+    "message": "[Chiip] EROC Sell 신호 가격 도달 $13.33 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $10.43 / Strong Buy $7.51 / Sell 경계 $13.33 · 리포트 2026-11-02 목표가 $12.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "FORM",
+    "side": "buy",
+    "symbol": "NASDAQ:FORM",
+    "price": 60.4,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 FORM $60.4",
+    "message": "[Chiip] FORM Buy 신호 가격 도달 $60.4 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $97.52 / Strong Buy $60.4 / Sell 경계 $124.61 · 리포트 2026-10-31 목표가 $112.15(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "FORM",
+    "side": "sell",
+    "symbol": "NASDAQ:FORM",
+    "price": 130.96,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 FORM $130.96",
+    "message": "[Chiip] FORM Sell 신호 가격 도달 $130.96 — 근거: 월 피벗 R1 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $97.52 / Strong Buy $60.4 / Sell 경계 $124.61 · 리포트 2026-10-31 목표가 $112.15(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "KOG",
+    "side": "buy",
+    "symbol": "OSL:KOG",
+    "price": 305.22,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 KOG 305.22",
+    "message": "[Chiip] KOG Buy 신호 가격 도달 305.22 — 근거: 밸류 Buy 경계 · 근처 기술 지지 없음 — 밸류 경계 · 밸류 Buy 경계 305.22 / Strong Buy 156.55 / Sell 경계 390.0 · 리포트 2026-11-02 목표가 351.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "KOG",
+    "side": "sell",
+    "symbol": "OSL:KOG",
+    "price": 401.73,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 KOG 401.73",
+    "message": "[Chiip] KOG Sell 신호 가격 도달 401.73 — 근거: 월 피벗 R2 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 305.22 / Strong Buy 156.55 / Sell 경계 390.0 · 리포트 2026-11-02 목표가 351.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "RMBS",
+    "side": "buy",
+    "symbol": "NASDAQ:RMBS",
+    "price": 77.89,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 RMBS $77.89",
+    "message": "[Chiip] RMBS Buy 신호 가격 도달 $77.89 — 근거: 52주 저점 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 $83.62 / Strong Buy $42.33 / Sell 경계 $106.85 · 리포트 2026-11-01 목표가 $96.16(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "RMBS",
+    "side": "sell",
+    "symbol": "NASDAQ:RMBS",
+    "price": 107.83,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 RMBS $107.83",
+    "message": "[Chiip] RMBS Sell 신호 가격 도달 $107.83 — 근거: 200일선 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $83.62 / Strong Buy $42.33 / Sell 경계 $106.85 · 리포트 2026-11-01 목표가 $96.16(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "353200",
+    "side": "buy",
+    "symbol": "KRX:353200",
+    "price": 84774,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 353200 84,774",
+    "message": "[Chiip] 353200 Buy 신호 가격 도달 84,774 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 140,187 / Strong Buy 84,774 / Sell 경계 179,128 · 리포트 2026-11-01 목표가 161,215.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "353200",
+    "side": "sell",
+    "symbol": "KRX:353200",
+    "price": 198000,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 353200 198,000",
+    "message": "[Chiip] 353200 Sell 신호 가격 도달 198,000 — 근거: 52주 고점 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 140,187 / Strong Buy 84,774 / Sell 경계 179,128 · 리포트 2026-11-01 목표가 161,215.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "GEV",
+    "side": "buy",
+    "symbol": "NYSE:GEV",
+    "price": 751.93,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 GEV $751.93",
+    "message": "[Chiip] GEV Buy 신호 가격 도달 $751.93 — 근거: 월 피벗 S1 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 $790.43 / Strong Buy $566.19 / Sell 경계 $1,010 · 리포트 2026-11-01 목표가 $909.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "GEV",
+    "side": "sell",
+    "symbol": "NYSE:GEV",
+    "price": 1010,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 GEV $1,010",
+    "message": "[Chiip] GEV Sell 신호 가격 도달 $1,010 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $790.43 / Strong Buy $566.19 / Sell 경계 $1,010 · 리포트 2026-11-01 목표가 $909.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "000150",
+    "side": "sell",
+    "symbol": "KRX:000150",
+    "price": 1477816,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 000150 1,477,816",
+    "message": "[Chiip] 000150 Sell 신호 가격 도달 1,477,816 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 1,156,551 / Strong Buy 950,024 / Sell 경계 1,477,816 · 리포트 2026-11-02 목표가 1,330,034.00(등급 Strong Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "SDRL",
+    "side": "buy",
+    "symbol": "NYSE:SDRL",
+    "price": 45.93,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 SDRL $45.93",
+    "message": "[Chiip] SDRL Buy 신호 가격 도달 $45.93 — 근거: 월 피벗 S1 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $48.7 / Strong Buy $36.27 / Sell 경계 $62.22 · 리포트 2026-11-02 목표가 $56.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "SDRL",
+    "side": "sell",
+    "symbol": "NYSE:SDRL",
+    "price": 62.22,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 SDRL $62.22",
+    "message": "[Chiip] SDRL Sell 신호 가격 도달 $62.22 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $48.7 / Strong Buy $36.27 / Sell 경계 $62.22 · 리포트 2026-11-02 목표가 $56.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "CACI",
+    "side": "buy",
+    "symbol": "NYSE:CACI",
+    "price": 626.3,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 CACI $626.3",
+    "message": "[Chiip] CACI Buy 신호 가격 도달 $626.3 — 근거: 50일선 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $695.65 / Strong Buy $533.74 / Sell 경계 $888.89 · 리포트 2026-11-02 목표가 $800.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "CACI",
+    "side": "sell",
+    "symbol": "NYSE:CACI",
+    "price": 888.89,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 CACI $888.89",
+    "message": "[Chiip] CACI Sell 신호 가격 도달 $888.89 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $695.65 / Strong Buy $533.74 / Sell 경계 $888.89 · 리포트 2026-11-02 목표가 $800.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "DELL",
+    "side": "buy",
+    "symbol": "NYSE:DELL",
+    "price": 334.08,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 DELL $334.08",
+    "message": "[Chiip] DELL Buy 신호 가격 도달 $334.08 — 근거: 200일선 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 $357.39 / Strong Buy $293.57 / Sell 경계 $456.67 · 리포트 2026-11-02 목표가 $411.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "DELL",
+    "side": "sell",
+    "symbol": "NYSE:DELL",
+    "price": 456.67,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 DELL $456.67",
+    "message": "[Chiip] DELL Sell 신호 가격 도달 $456.67 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $357.39 / Strong Buy $293.57 / Sell 경계 $456.67 · 리포트 2026-11-02 목표가 $411.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "7867",
+    "side": "buy",
+    "symbol": "TSE:7867",
+    "price": 4353,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 7867 4,353",
+    "message": "[Chiip] 7867 Buy 신호 가격 도달 4,353 — 근거: 월 피벗 S1 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 4,659 / Strong Buy 3,892 / Sell 경계 6,054 · 리포트 2026-11-02 목표가 5,449.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "7867",
+    "side": "sell",
+    "symbol": "TSE:7867",
+    "price": 6054,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 7867 6,054",
+    "message": "[Chiip] 7867 Sell 신호 가격 도달 6,054 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 4,659 / Strong Buy 3,892 / Sell 경계 6,054 · 리포트 2026-11-02 목표가 5,449.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "ORCL",
+    "side": "buy",
+    "symbol": "NYSE:ORCL",
+    "price": 119.46,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 ORCL $119.46",
+    "message": "[Chiip] ORCL Buy 신호 가격 도달 $119.46 — 근거: 월 피벗 S1 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $146.09 / Strong Buy $74.48 / Sell 경계 $186.67 · 리포트 2026-11-02 목표가 $168.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "ORCL",
+    "side": "sell",
+    "symbol": "NYSE:ORCL",
+    "price": 186.67,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 ORCL $186.67",
+    "message": "[Chiip] ORCL Sell 신호 가격 도달 $186.67 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $146.09 / Strong Buy $74.48 / Sell 경계 $186.67 · 리포트 2026-11-02 목표가 $168.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "095340",
+    "side": "buy",
+    "symbol": "KRX:095340",
+    "price": 115292,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 095340 115,292",
+    "message": "[Chiip] 095340 Buy 신호 가격 도달 115,292 — 근거: 밸류 Buy 경계 · 근처 기술 지지 없음 — 밸류 경계 · 밸류 Buy 경계 115,292 / Strong Buy 57,646 / Sell 경계 162,810 · 리포트 2026-11-02 목표가 146,529.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "095340",
+    "side": "sell",
+    "symbol": "KRX:095340",
+    "price": 177726,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 095340 177,726",
+    "message": "[Chiip] 095340 Sell 신호 가격 도달 177,726 — 근거: 50일선 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 115,292 / Strong Buy 57,646 / Sell 경계 162,810 · 리포트 2026-11-02 목표가 146,529.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "000660",
+    "side": "buy",
+    "symbol": "KRX:000660",
+    "price": 1388391,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 000660 1,388,391",
+    "message": "[Chiip] 000660 Buy 신호 가격 도달 1,388,391 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 1,695,298 / Strong Buy 1,388,391 / Sell 경계 2,315,679 · 리포트 2026-11-02 목표가 2,084,111.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "000660",
+    "side": "sell",
+    "symbol": "KRX:000660",
+    "price": 2315679,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 000660 2,315,679",
+    "message": "[Chiip] 000660 Sell 신호 가격 도달 2,315,679 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 1,695,298 / Strong Buy 1,388,391 / Sell 경계 2,315,679 · 리포트 2026-11-02 목표가 2,084,111.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "AMKR",
+    "side": "buy",
+    "symbol": "NASDAQ:AMKR",
+    "price": 35.71,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 AMKR $35.71",
+    "message": "[Chiip] AMKR Buy 신호 가격 도달 $35.71 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $43.48 / Strong Buy $35.71 / Sell 경계 $55.56 · 리포트 2026-11-02 목표가 $50.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "AMKR",
+    "side": "sell",
+    "symbol": "NASDAQ:AMKR",
+    "price": 57.16,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 AMKR $57.16",
+    "message": "[Chiip] AMKR Sell 신호 가격 도달 $57.16 — 근거: 200일선 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $43.48 / Strong Buy $35.71 / Sell 경계 $55.56 · 리포트 2026-11-02 목표가 $50.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "COHU",
+    "side": "buy",
+    "symbol": "NASDAQ:COHU",
+    "price": 47.32,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 COHU $47.32",
+    "message": "[Chiip] COHU Buy 신호 가격 도달 $47.32 — 근거: 200일선 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $52.17 / Strong Buy $42.86 / Sell 경계 $66.67 · 리포트 2026-11-03 목표가 $60.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "COHU",
+    "side": "sell",
+    "symbol": "NASDAQ:COHU",
+    "price": 69.24,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 COHU $69.24",
+    "message": "[Chiip] COHU Sell 신호 가격 도달 $69.24 — 근거: 월 피벗 R1 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $52.17 / Strong Buy $42.86 / Sell 경계 $66.67 · 리포트 2026-11-03 목표가 $60.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "STRL",
+    "side": "buy",
+    "symbol": "NASDAQ:STRL",
+    "price": 360.0,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 STRL $360.0",
+    "message": "[Chiip] STRL Buy 신호 가격 도달 $360.0 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $438.26 / Strong Buy $360.0 / Sell 경계 $560.0 · 리포트 2026-11-03 목표가 $504.00(등급 Strong Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "STRL",
+    "side": "sell",
+    "symbol": "NASDAQ:STRL",
+    "price": 560.0,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 STRL $560.0",
+    "message": "[Chiip] STRL Sell 신호 가격 도달 $560.0 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $438.26 / Strong Buy $360.0 / Sell 경계 $560.0 · 리포트 2026-11-03 목표가 $504.00(등급 Strong Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "ACMR",
+    "side": "buy",
+    "symbol": "NASDAQ:ACMR",
+    "price": 37.86,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 ACMR $37.86",
+    "message": "[Chiip] ACMR Buy 신호 가격 도달 $37.86 — 근거: 밸류 Strong Buy 경계 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $46.09 / Strong Buy $37.86 / Sell 경계 $58.89 · 리포트 2026-11-03 목표가 $53.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "ACMR",
+    "side": "sell",
+    "symbol": "NASDAQ:ACMR",
+    "price": 58.89,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 ACMR $58.89",
+    "message": "[Chiip] ACMR Sell 신호 가격 도달 $58.89 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $46.09 / Strong Buy $37.86 / Sell 경계 $58.89 · 리포트 2026-11-03 목표가 $53.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "MPWR",
+    "side": "buy",
+    "symbol": "NASDAQ:MPWR",
+    "price": 833.18,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 MPWR $833.18",
+    "message": "[Chiip] MPWR Buy 신호 가격 도달 $833.18 — 근거: 52주 저점 · 밸류 Buy 경계와 기술 지지 합류 · 밸류 Buy 경계 $884.35 / Strong Buy $479.79 / Sell 경계 $1,130 · 리포트 2026-11-03 목표가 $1,017.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "MPWR",
+    "side": "sell",
+    "symbol": "NASDAQ:MPWR",
+    "price": 1427,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 MPWR $1,427",
+    "message": "[Chiip] MPWR Sell 신호 가격 도달 $1,427 — 근거: 월 피벗 R1 · 현재가가 이미 밸류 Sell 구간 — 추가 상승 시 저항 · 밸류 Buy 경계 $884.35 / Strong Buy $479.79 / Sell 경계 $1,130 · 리포트 2026-11-03 목표가 $1,017.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "AESI",
+    "side": "buy",
+    "symbol": "NYSE:AESI",
+    "price": 4.26,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 AESI $4.26",
+    "message": "[Chiip] AESI Buy 신호 가격 도달 $4.26 — 근거: 밸류 Buy 경계 · 근처 기술 지지 없음 — 밸류 경계 · 밸류 Buy 경계 $4.26 / Strong Buy $2.13 / Sell 경계 $10.33 · 리포트 2026-11-04 목표가 $9.30(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "AESI",
+    "side": "sell",
+    "symbol": "NYSE:AESI",
+    "price": 10.33,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 AESI $10.33",
+    "message": "[Chiip] AESI Sell 신호 가격 도달 $10.33 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $4.26 / Strong Buy $2.13 / Sell 경계 $10.33 · 리포트 2026-11-04 목표가 $9.30(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "CLS",
+    "side": "buy",
+    "symbol": "NYSE:CLS",
+    "price": 244.51,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 CLS $244.51",
+    "message": "[Chiip] CLS Buy 신호 가격 도달 $244.51 — 근거: 52주 저점 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $279.13 / Strong Buy $229.29 / Sell 경계 $356.67 · 리포트 2026-11-04 목표가 $321.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "CLS",
+    "side": "sell",
+    "symbol": "NYSE:CLS",
+    "price": 357.42,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 CLS $357.42",
+    "message": "[Chiip] CLS Sell 신호 가격 도달 $357.42 — 근거: 월 피벗 R1 · 밸류 Sell 경계와 기술 저항 합류 · 밸류 Buy 경계 $279.13 / Strong Buy $229.29 / Sell 경계 $356.67 · 리포트 2026-11-04 목표가 $321.00(등급 Buy). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "PUMP",
+    "side": "buy",
+    "symbol": "NYSE:PUMP",
+    "price": 6.93,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 PUMP $6.93",
+    "message": "[Chiip] PUMP Buy 신호 가격 도달 $6.93 — 근거: 52주 저점 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $12.7 / Strong Buy $10.43 / Sell 경계 $16.22 · 리포트 2026-11-04 목표가 $14.60(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "PUMP",
+    "side": "sell",
+    "symbol": "NYSE:PUMP",
+    "price": 16.22,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 PUMP $16.22",
+    "message": "[Chiip] PUMP Sell 신호 가격 도달 $16.22 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $12.7 / Strong Buy $10.43 / Sell 경계 $16.22 · 리포트 2026-11-04 목표가 $14.60(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "MYRG",
+    "side": "buy",
+    "symbol": "NASDAQ:MYRG",
+    "price": 288.56,
+    "condition": "cross_down",
+    "resolution": "1D",
+    "name": "Chiip Buy 신호 MYRG $288.56",
+    "message": "[Chiip] MYRG Buy 신호 가격 도달 $288.56 — 근거: 50일선 · 현재가가 이미 밸류 Buy 구간 — 추가 하락 시 지지 · 밸류 Buy 경계 $303.48 / Strong Buy $249.29 / Sell 경계 $387.78 · 리포트 2026-11-04 목표가 $349.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   },
+   {
+    "ticker": "MYRG",
+    "side": "sell",
+    "symbol": "NASDAQ:MYRG",
+    "price": 387.78,
+    "condition": "cross_up",
+    "resolution": "1D",
+    "name": "Chiip Sell 신호 MYRG $387.78",
+    "message": "[Chiip] MYRG Sell 신호 가격 도달 $387.78 — 근거: 밸류 Sell 경계 · 근처 기술 저항 없음 — 밸류 경계 · 밸류 Buy 경계 $303.48 / Strong Buy $249.29 / Sell 경계 $387.78 · 리포트 2026-11-04 목표가 $349.00(등급 Neutral). Chiip 연구 지표 — 매매 지시가 아니며 최종 판단과 책임은 마스터에게 있다"
+   }
+  ],
+  "stop": []
+ }
+}

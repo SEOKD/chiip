@@ -38,3 +38,4 @@
 
 - **보기 링크·노션 본문 = 마크다운**(2026-11-04 마스터 지시 "Analysis 링크 제공할 때 html 말고 md로 제공하라. 노션 안에도 html 말고 md로"): 텔레그램 보기 링크는 GitHub 마크다운(`github_md`), 노션은 HTML 임베드 없이 _notion.md 본문만. Artifact 게시는 하지 않는다.
 - **반복 매출·수주 프리미엄**(2026-11-04 마스터 지시): `scripts/valuation/v2/multiples.py` `recurring_premium`(반복 비중 − 동종 × 유지율 × 반복 단계까지 시간 할인, ±15%)·`backlog_premium`(전환 속도 ±5% + 가시성 — 잔고 커버리지·book-to-bill·RPO 12개월·RPO/ACV 성장 vs 매출, 취소·고객 집중 감점, ±8%). 해자와 합쳐 상한 25%. 상수 `config/tenbagger.yaml` multiple_select, 등록부 prm-tb-mult-*.
+- **신호 가격 → TradingView 알림**(2026-11-04 마스터 지시): `scripts/tenbagger/price_levels.py` — 밸류 경계(리포트 등급 규칙과 같은 식: Buy·Strong Buy·Sell 경계 가격)와 기술 지지·저항(월 피벗·50/200일선·52주 고저)의 합류로 Buy·Sell 신호 가격 → TradingView 가격 알림(일봉, 30일 만료·25일마다 갱신, 2% 이상 바뀌면 교체). 기록 `knowledge/models/tenbagger/tv_alerts.json`. 최종 판단·책임은 마스터.

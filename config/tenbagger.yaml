@@ -76,6 +76,12 @@ rating:
   neutral: {upside: -0.10}
   sell: {upside: -0.30}
 
+# Analysis 신호 가격 → TradingView 알림(scripts/tenbagger/price_levels.py, 마스터 지시 2026-11-04) — 등록부 prm-tb-pl-*, 사전값
+price_levels:
+  band: 0.12          # 밸류 경계에서 이 폭 안의 기술 지지·저항만 '합류'로 본다
+  change_min: 0.02    # 신호 가격이 2% 이상 바뀌어야 알림을 다시 만든다(잦은 교체 방지)
+  refresh_days: 25    # TradingView 알림 기본 만료 30일 — 이보다 오래되면 같은 가격이어도 다시 만든다
+
 # 목표주가 — 마스터 지시 2026-11-01 "DCF 한 요인에만 의존하지 말고 차트 기법 상승 여력, 내러티브 멀티플 프리미엄 확정 여력까지"(scripts/tenbagger/target_price.py, 등록부 prm-tb-pt-*)
 target_price:
   weights: {scenario: 0.35, dcf: 0.20, chart: 0.20, narrative: 0.25}
