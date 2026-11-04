@@ -1,0 +1,255 @@
+# TradingView 와치리스트 섹션 재분배 규칙(radar/tv_sections.py, 마스터 지시 2026-11-04). 분류 근거 = TradingView 업종(2026-11-04 조회) + Chiip 테마
+# moves: 종목 → 섹션(이 이름의 섹션이 없으면 new_sections에 있어야 한다). merge: 옛 섹션 → 합칠 섹션. 종목은 지우지 않는다.
+1_US:
+  merge:
+    SEMICONDUCTORS: SEMICONDUCTOR        # 같은 뜻의 섹션 두 개
+  new_sections: [AEROSPACE, ENERGY & OIL SERVICES, SOFTWARE & INTERNET, FINANCIALS, HEALTHCARE, CONSUMER & MEDIA, TELECOM, MATERIALS, COMMERCIAL SERVICES, ROBOTICS]
+  moves:
+    # ── 'ALL'·'CHIIP PICKS'에 있던 종목(섹션 없음) ──
+    NASDAQ:MRVL: SEMICONDUCTOR
+    NASDAQ:MU: SEMICONDUCTOR
+    NASDAQ:NVDA: SEMICONDUCTOR
+    NASDAQ:AVGO: SEMICONDUCTOR
+    NASDAQ:ICHR: SEMI EQUIPMENT & PARTS, OSAT       # 반도체 장비 유체 부품
+    NASDAQ:FORM: SEMI EQUIPMENT & PARTS, OSAT       # 프로브 카드
+    NASDAQ:MKSI: SEMI EQUIPMENT & PARTS, OSAT
+    NASDAQ:TTMI: AI HARDWARE & EMS & DATACENTER PARTS
+    NASDAQ:BELFA: AI HARDWARE & EMS & DATACENTER PARTS
+    NASDAQ:STX: AI HARDWARE & EMS & DATACENTER PARTS   # 스토리지
+    NASDAQ:CSCO: AI HARDWARE & EMS & DATACENTER PARTS  # 네트워크 장비
+    NYSE:KEYS: AI HARDWARE & EMS & DATACENTER PARTS    # 전자 계측
+    NYSE:MTZ: DATACENTER EPC
+    NYSE:RRX: ELECTRIFICATION
+    NASDAQ:FLNC: ELECTRIFICATION                       # 에너지 저장
+    NASDAQ:ENVX: ELECTRIFICATION                       # 배터리
+    NYSE:HII: DEFENSE
+    NASDAQ:AXON: DEFENSE
+    NASDAQ:ARXS: DEFENSE
+    NYSE:GE: AEROSPACE
+    NYSE:BA: AEROSPACE
+    NYSE:HWM: AEROSPACE
+    NYSE:TDY: AEROSPACE
+    NYSE:ATI: AEROSPACE                                # 항공용 특수 합금
+    NYSE:CRS: AEROSPACE
+    NASDAQ:WWD: AEROSPACE
+    TSX:BBD.A: AEROSPACE
+    NYSE:RBC: INDUSTRIAL COMPONENTS
+    NYSE:TKR: INDUSTRIAL COMPONENTS
+    NYSE:ITT: INDUSTRIAL COMPONENTS
+    NASDAQ:NDSN: INDUSTRIAL COMPONENTS
+    NYSE:IEX: INDUSTRIAL COMPONENTS
+    NYSE:WAB: INDUSTRIAL COMPONENTS
+    NYSE:MAIR: INDUSTRIAL COMPONENTS
+    NYSE:XOM: ENERGY & OIL SERVICES
+    NYSE:CVX: ENERGY & OIL SERVICES
+    NYSE:AESI: ENERGY & OIL SERVICES
+    NYSE:FTI: ENERGY & OIL SERVICES
+    NYSE:TDW: ENERGY & OIL SERVICES
+    NASDAQ:PLTR: SOFTWARE & INTERNET
+    NASDAQ:BSP: SOFTWARE & INTERNET
+    NASDAQ:NFLX: SOFTWARE & INTERNET
+    NYSE:ACN: SOFTWARE & INTERNET
+    NASDAQ:CTSH: SOFTWARE & INTERNET
+    NYSE:CRM: SOFTWARE & INTERNET
+    NYSE:FIG: SOFTWARE & INTERNET
+    NASDAQ:ANT: SOFTWARE & INTERNET
+    NASDAQ:TTWO: SOFTWARE & INTERNET
+    NYSE:FICO: SOFTWARE & INTERNET
+    NYSE:BABA: SOFTWARE & INTERNET
+    NYSE:UBER: SOFTWARE & INTERNET
+    NASDAQ:HOOD: FINANCIALS
+    NYSE:MA: FINANCIALS
+    NYSE:V: FINANCIALS
+    NYSE:AXP: FINANCIALS
+    NYSE:JPM: FINANCIALS
+    NYSE:BAC: FINANCIALS
+    NYSE:WFC: FINANCIALS
+    NYSE:MS: FINANCIALS
+    NYSE:GS: FINANCIALS
+    NYSE:BX: FINANCIALS
+    NYSE:CRCL: FINANCIALS                              # 스테이블코인 발행사
+    NYSE:CVS: HEALTHCARE
+    NYSE:UNH: HEALTHCARE
+    NYSE:GKOS: HEALTHCARE
+    NYSE:ABBV: HEALTHCARE
+    NASDAQ:IDXX: HEALTHCARE
+    NYSE:TMO: HEALTHCARE
+    NYSE:ABT: HEALTHCARE
+    NYSE:LLY: HEALTHCARE
+    NASDAQ:ISRG: HEALTHCARE
+    NYSE:JNJ: HEALTHCARE
+    NASDAQ:VKTX: HEALTHCARE
+    NASDAQ:HALO: HEALTHCARE
+    TASE:TEVA: HEALTHCARE
+    NASDAQ:COST: CONSUMER & MEDIA
+    NYSE:MCD: CONSUMER & MEDIA
+    NYSE:KO: CONSUMER & MEDIA
+    NASDAQ:PEP: CONSUMER & MEDIA
+    NYSE:CHD: CONSUMER & MEDIA
+    NYSE:PG: CONSUMER & MEDIA
+    NYSE:PM: CONSUMER & MEDIA
+    NYSE:CHWY: CONSUMER & MEDIA
+    NYSE:HD: CONSUMER & MEDIA
+    NYSE:DIS: CONSUMER & MEDIA
+    NYSE:LYV: CONSUMER & MEDIA
+    NYSE:IMAX: CONSUMER & MEDIA
+    NYSE:TKO: CONSUMER & MEDIA
+    NYSE:RCL: CONSUMER & MEDIA
+    NYSE:CCL: CONSUMER & MEDIA
+    NASDAQ:FOXA: CONSUMER & MEDIA
+    NASDAQ:TSLA: CONSUMER & MEDIA
+    NASDAQ:AAPL: CONSUMER & MEDIA                      # 소비자 전자
+    NASDAQ:TH: COMMERCIAL SERVICES                     # 인력 숙소(데이터센터·현장 공사 수요)
+    NYSE:CVEO: COMMERCIAL SERVICES                     # 인력 숙소
+    NYSE:ULS: COMMERCIAL SERVICES                      # 시험·인증
+    NASDAQ:LINC: COMMERCIAL SERVICES                   # 기술 교육
+    NYSE:UTI: COMMERCIAL SERVICES                      # 기술 교육
+    NASDAQ:TMUS: TELECOM
+    NYSE:T: TELECOM
+    NASDAQ:LIN: MATERIALS
+    NASDAQ:CCXI: ROBOTICS                              # 스팩 — 합병 대상 Agility Robotics(휴머노이드)
+    # ── 잘못된 섹션에 있던 종목 ──
+    NYSE:NE: ENERGY & OIL SERVICES                     # Noble — 해양 시추(UTILITY에 있었다)
+    NYSE:MSI: DEFENSE                                  # Motorola Solutions — 공공안전 통신(DRONE에 있었다)
+    NYSE:SRFM: AEROSPACE                               # Surf Air Mobility — 지역 항공(DRONE에 있었다)
+    # NASDAQ:PURR — 업종 '금융 복합'만 확인, 사업 미확인 → 옮기지 않는다(섹션 없음 자리에 남는다)
+2_Korea:
+  new_sections: [반도체, 반도체 장비, 반도체 소재, PCB·기판, 광통신, 조선, 방산, 자동차·부품, 소재·철강, 지주·산업재, 인터넷·콘텐츠, 바이오, 소비재·가전]
+  moves:
+    KRX:000660: 반도체
+    KRX:000660/FX_IDC:USDKRW: 반도체
+    KRX:005930: 반도체
+    KRX:005930/FX_IDC:USDKRW: 반도체
+    KRX:009150: 반도체                 # 삼성전기 — MLCC·기판
+    KRX:036930: 반도체 장비             # 주성엔지니어링
+    KRX:039030: 반도체 장비             # 이오테크닉스
+    KRX:319660: 반도체 장비             # PSK
+    KRX:005290: 반도체 소재             # 동진쎄미켐
+    KRX:014680: 반도체 소재             # 한솔케미칼
+    KRX:357780: 반도체 소재             # 솔브레인
+    KRX:131290: 반도체 테스트           # 티에스이(프로브카드)
+    KRX:131970: 반도체 테스트           # 두산테스나
+    KRX:330860: 반도체 테스트           # 네패스아크
+    KRX:036540: 반도체 테스트           # SFA반도체(후공정)
+    KRX:007660: PCB·기판                # 이수페타시스
+    KRX:222800: PCB·기판                # 심텍
+    KRX:353200: PCB·기판                # 대덕전자
+    KRX:356860: PCB·기판                # 티엘비
+    KRX:138080: 광통신                  # 오이솔루션
+    KRX:042660: 조선                    # 한화오션
+    KRX:009540: 조선                    # HD한국조선해양
+    KRX:010140: 조선                    # 삼성중공업
+    KRX:329180: 조선                    # HD현대중공업
+    KRX:033500: 조선                    # 동성화인텍(LNG선 보냉재)
+    KRX:064350: 방산                    # 현대로템
+    KRX:012330: 자동차·부품             # 현대모비스
+    KRX:007340: 자동차·부품             # DN오토모티브
+    KRX:004020: 소재·철강               # 현대제철
+    KRX:010130: 소재·철강               # 고려아연
+    KRX:020150: 소재·철강               # 롯데에너지머티리얼즈(동박)
+    KRX:119850: 전력기기                # 지엔씨에너지(비상 발전기)
+    KRX:178320: 전력기기                # 서진시스템(ESS 함체·통신 장비)
+    KRX:000150: 지주·산업재             # 두산
+    KRX:267270: 지주·산업재             # HD건설기계
+    KRX:078930: 지주·산업재             # GS
+    KRX:005430: 지주·산업재             # 한국공항
+    KRX:035420: 인터넷·콘텐츠           # NAVER
+    KRX:048910: 인터넷·콘텐츠           # 대원미디어
+    KRX:196170: 바이오                  # 알테오젠
+    KRX:066570: 소비재·가전             # LG전자
+3_Japan:
+  new_sections: [SEMICONDUCTOR & MATERIALS, SEMI EQUIPMENT, ELECTRIC WIRE & OPTICAL, POWER & INDUSTRIAL MACHINERY, SHIPBUILDING, SPACE, SHIPPING, TRADING HOUSES, FINANCIALS, CONSUMER & IP, TELECOM & IT, HEALTHCARE]
+  moves:
+    TSE:285A: SEMICONDUCTOR & MATERIALS    # 키오시아
+    TSE:429A: SEMICONDUCTOR & MATERIALS    # 텍센드 포토마스크
+    TSE:3436: SEMICONDUCTOR & MATERIALS    # SUMCO(웨이퍼)
+    TSE:5016: SEMICONDUCTOR & MATERIALS    # JX금속(스퍼터링 타깃)
+    TSE:3110: SEMICONDUCTOR & MATERIALS    # 닛토보(유리섬유 — 기판용 T글라스)
+    TSE:4062: ELECTRONIC COMPONENTS        # 이비덴(패키지 기판)
+    TSE:6920: SEMI EQUIPMENT               # 레이저텍
+    TSE:6728: SEMI EQUIPMENT               # 알박
+    TSE:6361: SEMI EQUIPMENT               # 에바라(CMP·펌프)
+    TSE:6407: SEMI EQUIPMENT               # CKD(유체 부품)
+    TSE:5803: ELECTRIC WIRE & OPTICAL      # 후지쿠라
+    TSE:5801: ELECTRIC WIRE & OPTICAL      # 후루카와전기
+    TSE:5802: ELECTRIC WIRE & OPTICAL      # 스미토모전기
+    TSE:6777: ELECTRIC WIRE & OPTICAL      # 산텍(광부품)
+    TSE:6501: POWER & INDUSTRIAL MACHINERY # 히타치
+    TSE:6504: POWER & INDUSTRIAL MACHINERY # 후지전기
+    TSE:6517: POWER & INDUSTRIAL MACHINERY # 덴요(발전기)
+    TSE:6367: POWER & INDUSTRIAL MACHINERY # 다이킨(냉각)
+    TSE:6376: POWER & INDUSTRIAL MACHINERY # 닛키소(LNG 펌프)
+    TSE:6752: POWER & INDUSTRIAL MACHINERY # 파나소닉(배터리·전자)
+    TSE:7003: SHIPBUILDING                 # 미쓰이E&S
+    TSE:7018: SHIPBUILDING                 # 나이카이조선
+    TSE:7022: SHIPBUILDING                 # 사노야스
+    TSE:6814: DEFENSE                      # 후루노전기(해양 전자)
+    TSE:186A: SPACE                        # 아스트로스케일
+    TSE:290A: SPACE                        # 신스펙티브
+    TSE:9101: SHIPPING
+    TSE:9104: SHIPPING
+    TSE:9107: SHIPPING
+    TSE:8001: TRADING HOUSES
+    TSE:8002: TRADING HOUSES
+    TSE:8031: TRADING HOUSES
+    TSE:8053: TRADING HOUSES
+    TSE:8058: TRADING HOUSES
+    TSE:8306: FINANCIALS
+    TSE:8309: FINANCIALS
+    TSE:8697: FINANCIALS
+    TSE:7974: CONSUMER & IP                # 닌텐도
+    TSE:7867: CONSUMER & IP                # 타카라토미
+    TSE:8136: CONSUMER & IP                # 산리오
+    TSE:7552: CONSUMER & IP                # 해피넷
+    TSE:7936: CONSUMER & IP                # 아식스
+    TSE:9983: CONSUMER & IP                # 패스트리테일링
+    TSE:7453: CONSUMER & IP                # 료힌케이카쿠
+    TSE:7532: CONSUMER & IP                # 팬퍼시픽(돈키호테)
+    TSE:2802: CONSUMER & IP                # 아지노모토(ABF 필름 겸)
+    TSE:9434: TELECOM & IT                 # 소프트뱅크
+    TSE:6702: TELECOM & IT                 # 후지쓰
+    TSE:4568: HEALTHCARE                   # 다이이치산쿄
+4_EU & UK:
+  new_sections: [SEMICONDUCTOR & EQUIPMENT, ELECTRIC CABLE & GRID, SPACE & SATELLITE, SHIPBUILDING & NAVAL, AEROSPACE & RAIL, LUXURY & CONSUMER, EXCHANGES & SERVICES, UTILITY & ENERGY, OTHERS]
+  moves:
+    EURONEXT:SOI: SEMICONDUCTOR & EQUIPMENT     # Soitec(SOI 웨이퍼)
+    NYSE:STM: SEMICONDUCTOR & EQUIPMENT
+    MIL:TPRO: SEMICONDUCTOR & EQUIPMENT         # Technoprobe(프로브카드)
+    EURONEXT:BESI: SEMICONDUCTOR & EQUIPMENT    # 하이브리드 본딩
+    XETR:SMHN: SEMICONDUCTOR & EQUIPMENT        # SUSS MicroTec
+    VIE:ATS: SEMICONDUCTOR & EQUIPMENT          # AT&S(패키지 기판)
+    EURONEXT:EXENS: SEMICONDUCTOR & EQUIPMENT   # Exosens(광검출기)
+    LSE:RPI: SEMICONDUCTOR & EQUIPMENT          # Raspberry Pi
+    MIL:PRY: ELECTRIC CABLE & GRID              # Prysmian
+    EURONEXT:NEX: ELECTRIC CABLE & GRID         # Nexans
+    EURONEXT:LR: ELECTRIC CABLE & GRID          # Legrand
+    SIX:LAND: ELECTRIC CABLE & GRID             # Landis+Gyr(스마트 계량)
+    LSE:SMIN: ELECTRIC CABLE & GRID             # Smiths Group
+    XETR:RHM: DEFENSE
+    LSE:BA.: DEFENSE
+    XETR:HAG: DEFENSE                           # Hensoldt
+    EURONEXT:CSG: DEFENSE                       # Czechoslovak Group
+    EURONEXT:THEON: DEFENSE                     # 야간 투시경
+    EURONEXT:EXA: DEFENSE                       # Exail(해양 무인체)
+    OMXSTO:MILDEF: DEFENSE                      # 군용 견고형 컴퓨터
+    LSE:BAB: SHIPBUILDING & NAVAL               # Babcock
+    XETR:TKMS: SHIPBUILDING & NAVAL             # TKMS(잠수함)
+    MIL:FCT: SHIPBUILDING & NAVAL               # Fincantieri
+    EURONEXT:ETL: SPACE & SATELLITE             # Eutelsat
+    XETR:OHB: SPACE & SATELLITE
+    MIL:AVIO: SPACE & SATELLITE                 # 발사체
+    EURONEXT:AIR: AEROSPACE & RAIL
+    EURONEXT:ALO: AEROSPACE & RAIL              # Alstom
+    EURONEXT:MC: LUXURY & CONSUMER
+    EURONEXT:RMS: LUXURY & CONSUMER
+    MIL:MONC: LUXURY & CONSUMER
+    MIL:DLG: LUXURY & CONSUMER                  # De'Longhi
+    XETR:VOW3: LUXURY & CONSUMER                # 폭스바겐(소비재·자동차)
+    MIL:BFG: LUXURY & CONSUMER                  # B.F.(농식품)
+    XETR:DB1: EXCHANGES & SERVICES
+    LSIN:0QVJ: EXCHANGES & SERVICES             # Euronext
+    EURONEXT:ERF: EXCHANGES & SERVICES          # Eurofins(시험·검사)
+    EURONEXT:OVH: EXCHANGES & SERVICES          # OVHcloud(클라우드)
+    BME:IBE: UTILITY & ENERGY                   # Iberdrola
+    NYMEX:HO1!: UTILITY & ENERGY                # 난방유 선물
+    CSE:WG: OTHERS                              # Westward Gold(금 탐사)
