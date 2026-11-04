@@ -913,7 +913,7 @@
   "n_analysts": null
  },
  "jp-takaratomy": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1028,7 +1028,7 @@
   ]
  },
  "jp-sanrio": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1143,7 +1143,7 @@
   ]
  },
  "jp-bandainamco": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1258,7 +1258,7 @@
   ]
  },
  "jp-capcom": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1373,7 +1373,7 @@
   ]
  },
  "jp-nintendo": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1488,7 +1488,7 @@
   ]
  },
  "jp-konami": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1603,7 +1603,7 @@
   ]
  },
  "jp-squareenix": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1718,15 +1718,10 @@
   ]
  },
  "jp-toei-anim": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
-   {
-    "period": "2021-09-30",
-    "revenue": 16553.0,
-    "src": "https://kabutan.jp/stock/finance?code=4816"
-   },
    {
     "period": "2021-12-31",
     "revenue": 12782.0,
@@ -1785,7 +1780,6 @@
    {
     "period": "2024-09-30",
     "revenue": 25905.0,
-    "operating_profit": 10309.0,
     "src": "https://kabutan.jp/stock/finance?code=4816"
    },
    {
@@ -1842,7 +1836,7 @@
   ]
  },
  "jp-kadokawa": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -1957,7 +1951,7 @@
   ]
  },
  "jp-asics": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-01",
   "source": "株探 무료 표(백만 엔) + 회사 결산 자료",
   "currency": "JPY",
   "q": [
@@ -2070,5 +2064,115 @@
     "src": "https://kabutan.jp/stock/finance?code=7936"
    }
   ]
+ },
+ "kr-apr": {
+  "source": "회사 결산 자료",
+  "q": [
+   {
+    "period": "2026-09-30",
+    "revenue": 773100000000.0,
+    "gross_profit": 594700000000.0,
+    "operating_profit": 160600000000.0,
+    "overseas_share": 0.94,
+    "src": "https://sateconomy.co.kr/news/view/1065614982839185"
+   }
+  ],
+  "as_of": "2026-11-02",
+  "currency": null
+ },
+ "us-sn": {
+  "as_of": "2026-11-04",
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_SN",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-12-31",
+    "revenue": 1377499000,
+    "gross_profit": 622895000,
+    "inventory": 699740000,
+    "earnings_date": "2024-02-15"
+   },
+   {
+    "period": "2024-03-31",
+    "revenue": 1066228000,
+    "gross_profit": 526617000,
+    "inventory": 750032000,
+    "earnings_date": "2024-05-10"
+   },
+   {
+    "period": "2024-06-30",
+    "revenue": 1248658000,
+    "gross_profit": 600899000,
+    "inventory": 840545000,
+    "earnings_date": "2024-08-08"
+   },
+   {
+    "period": "2024-09-30",
+    "revenue": 1426566000,
+    "gross_profit": 695007000,
+    "inventory": 1076246000,
+    "earnings_date": "2024-10-31"
+   },
+   {
+    "period": "2024-12-31",
+    "revenue": 1787187000,
+    "gross_profit": 839468000,
+    "inventory": 899989000,
+    "earnings_date": "2025-02-14"
+   },
+   {
+    "period": "2025-03-31",
+    "revenue": 1222638000,
+    "gross_profit": 603226000,
+    "inventory": 973198000,
+    "earnings_date": "2025-05-09"
+   },
+   {
+    "period": "2025-06-30",
+    "revenue": 1444876000,
+    "gross_profit": 708167000,
+    "inventory": 1052711000,
+    "earnings_date": "2025-08-07"
+   },
+   {
+    "period": "2025-09-30",
+    "revenue": 1630240000,
+    "gross_profit": 817469000,
+    "inventory": 1158345000,
+    "earnings_date": "2025-11-06"
+   },
+   {
+    "period": "2025-12-31",
+    "revenue": 2101434000,
+    "gross_profit": 1007628000,
+    "inventory": 1002205000,
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2026-03-31",
+    "revenue": 1412806000,
+    "gross_profit": 694968000,
+    "inventory": 1034582000,
+    "earnings_date": "2026-05-06"
+   },
+   {
+    "period": "2026-06-30",
+    "revenue": 1765476000,
+    "gross_profit": 860337000,
+    "inventory": 1143597000,
+    "earnings_date": "2026-08-05"
+   },
+   {
+    "period": "2026-09-30",
+    "revenue": 1976427000,
+    "gross_profit": 1170011000,
+    "inventory": 1428175000,
+    "earnings_date": "2026-11-04"
+   }
+  ],
+  "mcap": 31104804731,
+  "ev_sales": 4.34524,
+  "n_analysts": 13
  }
 }

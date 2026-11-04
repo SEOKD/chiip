@@ -27,12 +27,17 @@ DIR = ROOT / "knowledge" / "models" / "consumer"
 FUND = DIR / "fundamentals.json"
 LATEST = DIR / "latest.json"
 OUTD = ROOT / "outputs" / "discovery"
-PHASE_KO = {"structural": "구조적 성장", "upcycle": "상승 사이클 진입", "late": "사이클 후반 경고", "neutral": "중립", "nodata": "자료 부족"}
+PHASE_KO = {"structural": "구조적 성장", "compounder": "복리 성장", "upcycle": "상승 사이클 진입", "late": "사이클 후반 경고", "neutral": "중립", "nodata": "자료 부족"}
 
 
 def _y(p):
     f = ROOT / p
     return (yaml.safe_load(f.read_text(encoding="utf-8")) or {}) if f.exists() else {}
+
+
+def all_companies(cfg):
+    """지도 + 자동 지도(scripts/discovery/consumer_screen.py가 채우는 config/consumer_auto.yaml, 2026-11-04)"""
+    return (cfg.get("companies") or []) + (_y("config/consumer_auto.yaml").get("companies") or [])
 
 
 def _j(p):
@@ -67,6 +72,13 @@ def metrics(q):
             break
         run += 1
     m["persistence"] = run
+    cmin = (_y("config/consumer.yaml").get("phase") or {}).get("compounder", {}).get("min_growth", 0.12)
+    run12 = 0
+    for y in reversed(ys):
+        if y < cmin:
+            break
+        run12 += 1
+    m["persistence12"] = run12   # 복리 성장 국면 판정용(2026-11-04)
 
     def ttm_margin(end, field):
         rows = q[max(0, end - step + 1):end + 1]
@@ -104,7 +116,7 @@ def evaluate(cfg=None, fund=None, demand=None, retail=None, prev=None):
     prev = (_j(LATEST).get("rows") or {}) if prev is None else prev
     ph, w = cfg.get("phase") or {}, cfg.get("weights") or {}
     rows = []
-    for co in cfg.get("companies") or []:
+    for co in all_companies(cfg):
         f = fund.get(co["id"]) or {}
         m = metrics(f.get("q") or [])
         rows.append({"id": co["id"], "name": co["name"], "market": co["market"], "code": co["code"], "segment": co.get("segment"),
@@ -136,13 +148,15 @@ def evaluate(cfg=None, fund=None, demand=None, retail=None, prev=None):
             r["phase"] = "structural"
         elif (r.get("accel") or 0) >= ph.get("upcycle", {}).get("accel_pp", 0.10) and r["growth"] > 0:
             r["phase"] = "upcycle"
+        elif r.get("persistence12", 0) >= ph.get("compounder", {}).get("min_periods", 4) and r.get("gm_change") is not None                 and r["gm_change"] >= ph.get("compounder", {}).get("min_gm_change", 0.0):
+            r["phase"] = "compounder"   # 꾸준한 두 자릿수 + 마진 확대(SharkNinja형, 2026-11-04)
         else:
             r["phase"] = "neutral"
         r["runway"] = comp["runway"] is not None and comp["runway"] >= 6.0
         was = (prev.get(r["id"]) or {}).get("phase")
         r["transition"] = f"{PHASE_KO.get(was, was)} → {PHASE_KO[r['phase']]}" if was and was != r["phase"] else None
     wmin = ph.get("watch_min", 6.0)
-    watch = [r["id"] for r in rows if r["phase"] != "late" and ((r["score"] or 0) >= wmin or r["phase"] in ("structural", "upcycle"))]
+    watch = [r["id"] for r in rows if r["phase"] != "late" and ((r["score"] or 0) >= wmin or r["phase"] in ("structural", "upcycle", "compounder"))]
     return sorted(rows, key=lambda r: -(r["score"] or 0)), watch
 
 
@@ -234,7 +248,7 @@ def kabutan(ids=None):
     import urllib.request
     cfg, fund, done = _y("config/consumer.yaml"), _j(FUND), []
     ua = (cfg.get("attention") or {}).get("user_agent") or "Chiip research"
-    for co in cfg.get("companies") or []:
+    for co in all_companies(cfg):
         if co.get("market") != "jp" or (ids and co["id"] not in ids):
             continue
         url = f"https://kabutan.jp/stock/finance?code={co['code']}"
@@ -260,7 +274,7 @@ def kabutan(ids=None):
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     cfg = _y("config/consumer.yaml")
-    by = {c["id"]: c for c in cfg.get("companies") or []}
+    by = {c["id"]: c for c in all_companies(cfg)}
     if argv[:1] == ["--stale"]:
         days, fund = int(argv[1]) if len(argv) > 1 else 7, _j(FUND)
         for cid, c in by.items():

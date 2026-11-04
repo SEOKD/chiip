@@ -24,6 +24,8 @@ segments:
   food_bev: 식음료(K-푸드·기능성 음료·외식)
   apparel: 스포츠·패션 브랜드
   platform: 소비자 앱·플랫폼
+  household_durables: 소형 가전·생활 내구재(SharkNinja형 — 제품 혁신 주기·해외 확장, 2026-11-04 추가)
+  retail: 성장 소매(전문점·온라인 소매)
 
 companies:
   # 일본
@@ -82,6 +84,10 @@ companies:
   - {id: hk-mixue, name: Mixue Group, local: "蜜雪冰城", market: hk, code: "2097", segment: food_bev,
      wiki: {en: "Mixue Ice Cream & Tea"}, terms: ["Mixue"], why: "초저가 음료 프랜차이즈 해외 점포 확장"}
   # 미국·유럽
+  - {id: us-sn, name: SharkNinja, market: us, code: SN, fiscal: NYSE_SN, segment: household_durables, aliases: ["SharkNinja", "Shark", "Ninja"],
+     why: "소형 가전 제품 혁신 주기(신제품 비중)·북미 밖 확장 — 마스터 지시 2026-11-04 기준 사례"}
+  - {id: us-yeti, name: YETI Holdings, market: us, code: YETI, fiscal: NYSE_YETI, segment: household_durables, aliases: ["YETI"],
+     why: "프리미엄 아웃도어·생활 용품 브랜드 — 해외·신규 카테고리 확장(2026-11-04 추가)"}
   - {id: us-elf, name: e.l.f. Beauty, market: us, code: ELF, fiscal: NYSE_ELF, segment: beauty, aliases: ["e.l.f. Beauty"],
      terms: ["e.l.f. Cosmetics"], why: "저가 프리미엄 뷰티 점유율 확대 — 리테일러 진열 확대·국제화"}
   - {id: us-celh, name: Celsius Holdings, market: us, code: CELH, fiscal: NASDAQ_CELH, segment: food_bev, aliases: ["Celsius Holdings"],
@@ -107,6 +113,7 @@ companies:
 
 # 국면 판정(사전값 — knowledge/models/params/registry.yaml prm-consumer-*). 분기 매출 YoY 기준, 반기 결산 회사는 반기 YoY
 phase:
+  compounder: {min_growth: 0.12, min_periods: 4, min_gm_change: 0.0}   # 복리 성장(2026-11-04): 4개 기간 연속 +12% 이상 + 매출총이익률 유지·개선 — SharkNinja형(+20%는 못 넘지만 꾸준한 두 자릿수·마진 확대)
   structural: {min_growth: 0.20, min_periods: 4, max_gm_drop: 0.02}   # 4개 기간 연속 +20% 이상 + 매출총이익률 하락 2%p 이내 → '구조적 성장'
   upcycle: {accel_pp: 0.10}                        # 최근 YoY − 직전 4개 기간 평균 YoY ≥ +10%p → '상승 사이클 진입'
   late: {crowding_pct: 90, inv_gap_pp: 0.15}       # 쏠림 상위 10% + 성장 감속 + (재고 증가율 − 매출 증가율) ≥ 15%p → '사이클 후반 경고'
@@ -131,3 +138,22 @@ attention:
   apple_countries: [us, jp, kr]
   apple_feeds: [top-free, top-paid]
   user_agent: "Chiip research fhteo1101@gmail.com"   # Wikimedia API 정책: 연락처가 든 UA
+
+# 지도 밖 신규 발굴 스크린(scripts/discovery/consumer_screen.py, 2026-11-04 마스터 지시) — 일요일 Discovery 회차에 TradingView 스크리너로
+screen:
+  min_growth: 0.12        # 매출 TTM 성장 하한
+  max_growth: 1.50        # 이보다 크면 인수 합병으로 부푼 숫자일 가능성이 커 뺀다(JBS +334% 등)
+  min_gm: 0.30            # 매출총이익률 하한(가격 결정력 — 원자재 가공·저마진 소매 제외)
+  min_mcap: 1000000000
+  max_mcap: 100000000000
+  max_new: 5              # 한 회차 신규 편입 상한
+  max_auto: 30            # 자동 지도 상한
+  industry_map:           # TradingView 업종 → 지도 부문(없으면 제외 — 자동차·원자재 등)
+    household_durables: ["Electronics/Appliances", "Home Furnishings", "Household/Personal Care Durables", "Tools & Hardware"]
+    beauty: ["Household/Personal Care", "Cosmetics"]
+    food_bev: ["Beverages: Non-Alcoholic", "Food: Specialty/Candy", "Restaurants", "Food: Major Diversified"]
+    apparel: ["Apparel/Footwear", "Apparel/Footwear Retail", "Recreational Products"]
+    platform: ["Internet Retail", "Internet Software"]
+    content_ip: ["Movies/Entertainment"]
+    games: ["Casinos/Gaming"]
+    retail: ["Specialty Stores", "Discount Stores"]
