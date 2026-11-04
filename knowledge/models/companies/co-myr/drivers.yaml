@@ -1,0 +1,103 @@
+auto: true
+id: co-myr
+name: MYR Group
+ticker: MYRG
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.95
+  CA: 0.05
+tax: 0.27
+horizon: 10
+as_of: '2026-11-04'
+market:
+  date: '2026-11-04'
+  price: 291.59
+  shares: 0.015712
+  net_debt: 0.25509
+  source: 가격 = 11/3 종가. 주식 = 3Q26 10-Q 표지 15,570,008주(10/23). 현금 = 9/30 $26.0M. 차입
+    = 총차입 $215.8M(신용공여·기간대출·장비 어음) + 운용·금융 리스 약 $65.3M
+rev0: 4.59
+ic0: 1.0737
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.1615
+      end: 0.035
+      decay: 0.789
+    margin:
+      m0: 0.0638
+      target: 0.07
+      year_target: 3
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - 0.0644
+      - 0.0645
+    s2c: 3.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.39
+      end: 0.04
+      decay: 0.8390000000000001
+    margin:
+      m0: 0.0638
+      target: 0.09
+      year_target: 3
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - 0.0644
+      - 0.0645
+    s2c: 4.025
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0632
+      end: 0.030000000000000002
+      decay: 0.6890000000000001
+    margin:
+      m0: 0.0638
+      target: 0.05
+      year_target: 3
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - 0.0644
+      - 0.0645
+    s2c: 2.975
+mc:
+  sigma_growth: 0.0817
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [4.54, 4.64] (회사는 2026 매출 숫자를 주지 않았다. 9M 실적 $3.341B + 4Q 컨센서스
+    범위 $1.20~1.30B로 잡았다. 2027: C&I 매출 +18~22%, T&D +10~13%, 전체 +15~18%(3Q 콜 2026-10-28).
+    부문 영업이익률 C&I 6~9% 상단, T&D 8~11% 중간. CAPEX 2026 매출의 약 3%, 2027 3%대 초중반)'
+  growth: 컨센서스 1년차 16.2%, 2년차 13.5%
+  margin: 1~2년차 컨센서스 6.4%, 6.5% 고정 → 목표 7%(3년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 4.019 → 덮어쓰기 3.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 6.3%~39.0%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 규칙의 장기 이익률 수렴값(15%)은 전기장비 제조사 기준이다. MYR은 시공사라 부문 영업이익률 가이던스(C&I 6~9%
+    상단, T&D 8~11% 중간)에서 본사 비용(매출의 약 2.5%)을 빼면 연결 약 7%가 상한이다. 자본 효율은 TTM 4.0이지만 고정가
+    비중 확대·고객 지급 조건으로 운전자본이 무거워져(3Q FCF \) 3.5로 둔다
+  shares: '완전 희석 = 기본 0.015570008(2026-10-23) + 옵션·RSU·워런트·전환 0.0001 — 3Q26 10-Q:
+    희석 가중주식 15,721K − 기본 15,579K = 142K(RSU·PSU) — 3Q'
+notes:
+- 자동 생성(build_drivers) 2026-11-04 — 데이터 묶음 2026-11-04
+- '어닝콜 위험: 마진에 프로젝트 종료 정산·생산성 호조가 들어 있다(3Q 추정 변경 효과 영업이익 $5.3M, 9M $20.9M)'
+- '어닝콜 위험: 3Q FCF $9M(1년 전 $65M), 9M 영업현금흐름 $134M(1년 전 $212M)'
+- '어닝콜 위험: 고정가 계약 비중 확대 — 원가 초과 위험을 회사가 진다'
+evidence:
+- MYR Group 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/700923/000070092326000052/myrg-20260930.htm
+- MYR Group 3Q26 실적 보도자료(8-K) https://www.sec.gov/Archives/edgar/data/700923/000070092326000051/myrg-20261028.htm
+- MYR Group FY2025 10-K https://www.sec.gov/Archives/edgar/data/700923/000070092326000007/myrg-20251231.htm
+- MYR Group 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/700923/000070092326000042/myrg-20260630.htm
+- Valley 인수 발표 8-K(2026-05-27) https://www.sec.gov/Archives/edgar/data/700923/000070092326000033/myrg-20260527.htm
+- 신용공여 개정 8-K(2026-09-08) https://www.sec.gov/Archives/edgar/data/700923/000070092326000047/myrg-20260908.htm
+- MYR Group 3Q 콜 2026-10-28·2Q 콜 2026-07-29(요지만)
