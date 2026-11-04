@@ -45,3 +45,12 @@ ledger:
   half_spread_bps: 10        # 스프레드 반(소형·중형 성장주 근사)
   eta: 0.5                   # 제곱근 충격 계수(Almgren–Chriss 실무)
   nav_usd: 1000000           # 충격 계산용 명목 규모(가상)
+# ── 4단계 성과 귀속·학습(scripts/pm/attribution.py, 마스터 지시 2026-11-04 "4단계 진행") ──
+attribution:
+  min_days_factor: 20        # 팩터 귀속 최소 관측일
+  ic_horizon: 20             # 실현 IC 수익 기간(거래일)
+  min_days: 126              # 재보정 제안 최소 장부 일수(약 6개월, 설계 3절)
+  dsr_min: 0.95              # 수축 샤프 기준(Bailey & López de Prado 2014)
+  min_ic_dates: 60           # 실현 IC 날짜 수 하한
+  ic_prior_weight: 60        # IC 축소: 사전값에 주는 관측 수 상당 가중
+  trials_extra: 2            # 2단계에서 버린 설정 수(ERC 사전·총 변동성 그리놀드) — DSR 시도 수에 더한다

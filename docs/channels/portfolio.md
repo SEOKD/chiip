@@ -11,3 +11,4 @@
 - **모델 포트폴리오 위험 지표 1단계**(2026-11-04 마스터 지시): `scripts/pm/risk.py`(설정 `config/pm.yaml`, 등록부 prm-pm-*) — EWMA·레드와·울프 공분산, 시장 β·테마 노출, 기준선 4종(동일·역변동성·ERC·HRP), 변동성 목표·낙폭 제어 승수·CVaR·이벤트 창. 연구용 가상 지표이고 매매·비중 지시가 아니다. 2단계(기대수익 합성·블랙-리터만)는 승인 후.
 - **모델 포트폴리오 구성 2단계**(2026-11-04): `scripts/pm/construct.py` — 확률 가중 수익·그리놀드 알파·컨빅션 기대값 합성(부호 충돌이면 0), CAPM 사전 블랙-리터만(Ω는 컨빅션), 분수 켈리 상한 제약 평균-분산, 1단계 오버레이 적용. 출력 knowledge/models/pm/construct.json.
 - **가상 장부 3단계**(2026-11-04): `scripts/pm/ledger.py` — 구성·오버레이·HRP·SPY 장부, 무거래 구간·부분 조정·스프레드+제곱근 충격 비용. 기록 knowledge/models/pm/book.json·book_log.csv(시작 2026-11-03).
+- **성과 귀속·학습 4단계**(2026-11-04): `scripts/pm/attribution.py` — 성과·정보 비율, 팩터 귀속(테마 베타 제외 알파), 브린슨(구성 vs HRP), 실현 IC, 전이 계수, 수축 샤프·MinTRL, IC 재보정 제안 관문(126일·DSR 0.95·HRP 초과). 출력 attribution.json, 제안 recal_proposal.json.

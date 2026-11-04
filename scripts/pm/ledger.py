@@ -45,6 +45,7 @@ def mark(book, series, days, rf):
     out = []
     for d in days:
         w = book["w"]
+        book.setdefault("_snap", []).append([d, dict(w)])   # 그날 시작 비중 — 4단계 귀속이 읽는다
         cash = 1 - sum(w.values())
         r = sum(x * series.get(s, {}).get(d, 0.0) for s, x in w.items()) + cash * rf / 252
         grown = {s: x * (1 + series.get(s, {}).get(d, 0.0)) for s, x in w.items()}
@@ -100,6 +101,10 @@ def run(today=None):
         to, co = rebalance(bk, target, c, sig, adv)
         bk["rebal"] = last_px
         rows.append([last_px, name, round(bk["nav"], 6), "", round(to, 4), round(co, 6)])
+    with (DIR / "weights_log.jsonl").open("a", encoding="utf-8") as f:   # 일별 시작 비중(4단계 브린슨 귀속 재료)
+        for name, bk in st["books"].items():
+            for d, w in bk.pop("_snap", []):
+                f.write(json.dumps({"date": d, "book": name, "w": w}, ensure_ascii=False) + "\n")
     st["as_of"] = datetime.now(KST).isoformat(timespec="seconds")
     st["note"] = "연구용 가상 포트폴리오 장부 — 매매·비중 지시가 아님"
     DIR.mkdir(parents=True, exist_ok=True)

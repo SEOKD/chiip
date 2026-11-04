@@ -1,0 +1,20 @@
+{
+ "as_of": "2026-11-04T20:40:30+09:00",
+ "books": {},
+ "note": "연구용 가상 장부 성적표 — 매매·비중 지시가 아님",
+ "brinson_vs_hrp": null,
+ "ic": {
+  "n_dates": 0,
+  "ic_mean": null
+ },
+ "transfer_coef": -0.199,
+ "recal_gate": {
+  "days": 0,
+  "need_days": 126,
+  "dsr": null,
+  "need_dsr": 0.95,
+  "beats_hrp": null,
+  "ic_dates": 0,
+  "verdict": "판정 보류 — 표본·검정 미달"
+ }
+}

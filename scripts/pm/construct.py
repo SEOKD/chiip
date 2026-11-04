@@ -230,6 +230,13 @@ def run():
            "conflicts": [s for s, r in rows.items() if r.get("conflict")], "no_view": [s for s in names if s not in [names[i] for i in views]],
            "note": "연구용 가상 포트폴리오 지표 — 매매·비중 지시가 아님"}
     (DIR / "construct.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    day = max(px[n][-1][0] for n in names)   # 점수 이력(4단계 실현 IC 재료) — 같은 시세일은 한 줄
+    hist = DIR / "score_hist.jsonl"
+    seen = {json.loads(l)["date"] for l in hist.read_text(encoding="utf-8").splitlines() if l.strip()} if hist.exists() else set()
+    if day not in seen:
+        with hist.open("a", encoding="utf-8") as f:
+            f.write(json.dumps({"date": day, "mu": {s: r["mu"] for s, r in rows.items() if r["mu"] is not None},
+                                "mu_bl": {s: r["mu_bl"] for s, r in rows.items()}}, ensure_ascii=False) + "\n")
     return out
 
 

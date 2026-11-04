@@ -3278,6 +3278,70 @@ params:
     data: knowledge/models/pm/book_log.csv
     last_fit: null
     oos_metric: null
+- id: prm-pm-attribution-min-days
+  model: pm.attribution
+  binding: config/pm.yaml#attribution.min_days
+  value: 126
+  unit: 일
+  status: prior
+  prior:
+    value: 126
+    basis: 재보정 제안 최소 장부 일수(약 6개월)
+    source: 설계 3절 과적합 방지 원칙
+  fit:
+    method: 고정(검정 관문 — 피팅 대상 아님)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-attribution-dsr-min
+  model: pm.attribution
+  binding: config/pm.yaml#attribution.dsr_min
+  value: 0.95
+  unit: 확률
+  status: prior
+  prior:
+    value: 0.95
+    basis: 수축 샤프 기준
+    source: Bailey & López de Prado(2014) J. Portfolio Management 40(5)
+  fit:
+    method: 고정(검정 관문 — 피팅 대상 아님)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-attribution-ic-horizon
+  model: pm.attribution
+  binding: config/pm.yaml#attribution.ic_horizon
+  value: 20
+  unit: 거래일
+  status: prior
+  prior:
+    value: 20
+    basis: 실현 IC 수익 기간
+    source: Grinold & Kahn(1999) 실무
+  fit:
+    method: 고정(검정 관문 — 피팅 대상 아님)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-attribution-ic-prior-weight
+  model: pm.attribution
+  binding: config/pm.yaml#attribution.ic_prior_weight
+  value: 60
+  unit: 관측 상당
+  status: prior
+  prior:
+    value: 60
+    basis: IC 축소 가중
+    source: 경험적 베이즈 축소 관행
+  fit:
+    method: 고정(검정 관문 — 피팅 대상 아님)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
