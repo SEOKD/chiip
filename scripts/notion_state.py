@@ -77,6 +77,35 @@ def mark(pid, edited, report="", st=None):
         save(st)
 
 
+def _lines(text):
+    """비교 단위 = 줄(공백 정리, 2자 미만·구분선 제외) → 짧은 해시. 상태에는 해시만 둔다(본문을 남기지 않는다)"""
+    import hashlib
+    out = {}
+    for ln in str(text).splitlines():
+        s = " ".join(ln.split()).strip("-*#> ")
+        if len(s) >= 2:
+            out.setdefault(hashlib.sha1(s.encode("utf-8")).hexdigest()[:12], ln)
+    return out
+
+
+def fresh(pid, text, st=None):
+    """Informations 새 정보만(마스터 지시 2026-11-04 "새 정보가 들어오면 새 정보만 — 이전에 올린 정보를 다시 다룰 필요가 없다").
+    → (새 줄 목록, 이전 기록 있음 여부). 이전 기록이 없으면(처음 보는 페이지·기능 도입 전 페이지) 전부 새 줄로 돌려준다"""
+    st = st or load()
+    seen = set((st["pages"].get(_key(pid)) or {}).get("seen_lines") or [])
+    return [ln for h, ln in _lines(text).items() if h not in seen], bool(seen)
+
+
+def remember(pid, text, st=None):
+    """처리한 본문의 줄 해시를 기억한다(다음 수정 때 새 줄만 고르게)"""
+    own = st is None
+    st = st or load()
+    r = st["pages"].setdefault(_key(pid), {"role": "", "title": ""})
+    r["seen_lines"] = sorted(set(r.get("seen_lines") or []) | set(_lines(text)))
+    if own:
+        save(st)
+
+
 def baseline(role, pid, title, edited=None, st=None):
     own = st is None
     st = st or load()
@@ -98,6 +127,14 @@ def main(argv):
     elif cmd == "baseline":
         baseline(argv[1], argv[2], argv[3], argv[4] if len(argv) > 4 else None)
         print("baseline")
+    elif cmd == "fresh":   # fresh <page_id> <본문 파일> → 새 줄만 출력(없으면 'NONE')
+        new, had = fresh(argv[1], Path(argv[2]).read_text(encoding="utf-8"))
+        print("\n".join(new) if new else "NONE")
+        if not had:
+            print("(이전 기록 없음 — 직전 상세 보고서와 겹치는 내용은 빼고 다룬다)", file=sys.stderr)
+    elif cmd == "remember":   # remember <page_id> <본문 파일>
+        remember(argv[1], Path(argv[2]).read_text(encoding="utf-8"))
+        print("remembered")
     elif cmd == "list":
         for k, v in load()["pages"].items():
             print(k, v.get("role"), v.get("title"), "처리:", v.get("processed_edit"), "기준선" if v.get("baseline") else "")

@@ -273,8 +273,22 @@ def worker():
                 return 0
             LOCK.write_text(json.dumps({"pid": os.getpid(), "at": common.iso(common.now_kst()), "job": job["page_id"]}),
                             encoding="utf-8")
+            body = None
+            if str(job["role"]).lower() == "informations" and job.get("inbox") and Path(job["inbox"]).exists():
+                # 새 정보만(마스터 지시 2026-11-04): 이전에 처리한 줄은 빼고 새 줄만 넘긴다. 새 줄이 없으면 보내지 않는다
+                body = Path(job["inbox"]).read_text(encoding="utf-8")
+                new, _ = notion_state.fresh(job["page_id"], body)
+                if not new:
+                    notion_state.mark(job["page_id"], job.get("edited"), "새 정보 없음")
+                    _save_queue(_load_queue()[1:])
+                    continue
+                nf = Path(job["inbox"]).with_suffix(".new.md")
+                nf.write_text("# 이번에 새로 들어온 줄만(이전 내용은 다루지 않는다 — 참고만)\n\n" + "\n".join(new), encoding="utf-8")
+                job = {**job, "inbox": str(nf)}
             try:
                 run_job(job, tok)
+                if body is not None:
+                    notion_state.remember(job["page_id"], body)
                 _jobs_today(1)
                 tg = tg_path(job)
                 if tg.exists():
