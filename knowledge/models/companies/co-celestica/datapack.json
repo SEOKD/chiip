@@ -1,0 +1,2230 @@
+{
+ "id": "co-celestica",
+ "name": "Celestica",
+ "ticker": "CLS",
+ "as_of": "2026-11-04",
+ "unit": "B$",
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_CLS",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2021-12-31",
+    "rev": 1512100000,
+    "cogs": 1370000000,
+    "gp": 142100000,
+    "sga": 65500000,
+    "rd": 10600000,
+    "da": 8700000,
+    "other": 7400000,
+    "op": 49900000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 1566900000,
+    "cogs": 1434400000,
+    "gp": 132500000,
+    "sga": 65700000,
+    "rd": 11400000,
+    "da": 10000000,
+    "other": 4800000,
+    "op": 40600000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 1717200000,
+    "cogs": 1567300000,
+    "gp": 149900000,
+    "sga": 71000000,
+    "rd": 8800000,
+    "da": 9900000,
+    "other": -2500000,
+    "op": 62700000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 1923300000,
+    "cogs": 1755600000,
+    "gp": 167700000,
+    "sga": 66100000,
+    "rd": 11600000,
+    "da": 10000000,
+    "other": 1600000,
+    "op": 78400000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 2042600000,
+    "cogs": 1843000000,
+    "gp": 199600000,
+    "sga": 77100000,
+    "rd": 14500000,
+    "da": 10200000,
+    "other": 2800000,
+    "op": 81600000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 1837800000,
+    "cogs": 1680500000,
+    "gp": 157300000,
+    "sga": 74700000,
+    "rd": 12100000,
+    "da": 10000000,
+    "other": 4600000,
+    "op": 55900000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 1939400000,
+    "cogs": 1758100000,
+    "gp": 181300000,
+    "sga": 70700000,
+    "rd": 14300000,
+    "da": 9900000,
+    "other": 3500000,
+    "op": 82900000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 2043300000,
+    "cogs": 1851000000,
+    "gp": 192300000,
+    "sga": 72700000,
+    "rd": 16900000,
+    "da": 9900000,
+    "other": 2500000,
+    "op": 90300000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 2140500000,
+    "cogs": 1917300000,
+    "gp": 223200000,
+    "sga": 85100000,
+    "rd": 17600000,
+    "da": 9800000,
+    "other": 1500000,
+    "op": 109200000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 2208900000,
+    "cogs": 1986800000,
+    "gp": 222100000,
+    "sga": 64800000,
+    "rd": 16500000,
+    "da": 10200000,
+    "other": 4800000,
+    "op": 125800000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 2391900000,
+    "cogs": 2138100000,
+    "gp": 253800000,
+    "sga": 79300000,
+    "rd": 19400000,
+    "da": 10700000,
+    "other": 11500000,
+    "op": 132900000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 2499500000,
+    "cogs": 2238900000,
+    "gp": 260600000,
+    "sga": 91800000,
+    "rd": 18700000,
+    "da": 11100000,
+    "other": 1000000,
+    "op": 138000000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 2545700000,
+    "cogs": 2248500000,
+    "gp": 297200000,
+    "sga": 57600000,
+    "rd": 23400000,
+    "da": 11500000,
+    "other": 2100000,
+    "op": 202600000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 2648600000,
+    "cogs": 2374700000,
+    "gp": 273900000,
+    "sga": 112500000,
+    "rd": 17600000,
+    "da": 11100000,
+    "other": 3900000,
+    "op": 128800000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 2893400000,
+    "cogs": 2522400000,
+    "gp": 371000000,
+    "sga": 38900000,
+    "rd": 34000000,
+    "da": 11100000,
+    "other": 14500000,
+    "op": 272500000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 3194000000,
+    "cogs": 2777900000,
+    "gp": 416100000,
+    "sga": 38400000,
+    "rd": 36400000,
+    "da": 11400000,
+    "other": 4900000,
+    "op": 325000000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 3654900000,
+    "cogs": 3221800000,
+    "gp": 433100000,
+    "sga": 70100000,
+    "rd": 30200000,
+    "da": 12000000,
+    "other": 6400000,
+    "op": 314400000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 4047000000,
+    "cogs": 3609800000,
+    "gp": 437200000,
+    "sga": 117400000,
+    "rd": 41200000,
+    "da": 10900000,
+    "other": -4400000,
+    "op": 272100000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 4698600000,
+    "cogs": 4121100000,
+    "gp": 577500000,
+    "sga": 58100000,
+    "rd": 46300000,
+    "da": 11900000,
+    "other": 2900000,
+    "op": 458300000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 5829700000,
+    "cogs": 5188900000,
+    "gp": 640800000,
+    "sga": 118200000,
+    "rd": 51200000,
+    "da": 10500000,
+    "other": 900000,
+    "op": 460000000
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 13.72,
+  "ev_ebitda_fwd": 8.47,
+  "pe_fwd2": 9.2,
+  "ev_ebitda_fwd2": 5.77,
+  "pe_fwd3": 6.7,
+  "ev_ebitda_fwd3": 4.27
+ },
+ "forward": {
+  "as_of": "2026-11-03",
+  "ntm": {
+   "eps": 18.94314,
+   "ebitda": 3354137667,
+   "ebit": 3150708447,
+   "revenue": 35263677381,
+   "rev_ttm": 18230200000
+  },
+  "horizons": {
+   "2": {
+    "eps": 28.25669,
+    "ebitda": 4923615441,
+    "ext": 0
+   },
+   "3": {
+    "eps": 38.78852744186047,
+    "ebitda": 6650448278.664192,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. CLS 추정 변경 이력 없음(커버리지 없음) — 과거 레인지 비움."
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "consensus": {
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 3654.9,
+    "est": 3483.97,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-01-28"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.89,
+    "est": 1.759,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-28"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 282.3,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-28"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 4047,
+    "est": 4045.168,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-27"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.16,
+    "est": 2.078,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-27"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 325.2,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-27"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 4698.6,
+    "est": 4390.0,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-27"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.54,
+    "est": 2.3,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-27"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 386.3,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-27"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 5829.7,
+    "est": 5400,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-07-28",
+    "basis": "gaap",
+    "earnings_date": "2026-10-26"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 3.3,
+    "est": 2.98,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-07-28",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-26"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 496.1,
+    "est": 453.6,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-07-28",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-26"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 25,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-04",
+   "source": "yfinance",
+   "target_mean": 461.43,
+   "target_high": 535,
+   "target_low": 385
+  },
+  "rev": {
+   "FY2026": 21.0003,
+   "FY2027": 40.0,
+   "FY2028": 54.0
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "ebit_margin": {
+   "FY2026": 0.0841,
+   "FY2027": 0.09,
+   "FY2028": 0.0926
+  },
+  "rev_low": {
+   "FY2027": 36.364,
+   "FY2028": 43.0
+  },
+  "rev_high": {
+   "FY2027": 50.702,
+   "FY2028": 64.0
+  },
+  "n_analysts": 25,
+  "revisions_90d": {
+   "rev": 0.21
+  },
+  "quarters_est": {
+   "2026Q4": 6.425,
+   "2027Q1": 8.3223,
+   "2027Q2": 9.4071,
+   "2027Q3": 11.1093,
+   "2027Q4": 11.1613,
+   "2028Q1": 12.3418,
+   "2028Q2": 13.0671,
+   "2028Q3": 14.5968,
+   "2028Q4": 13.9943
+  },
+  "quarters_act": {
+   "2025Q4": 3.6549,
+   "2026Q1": 4.047,
+   "2026Q2": 4.6986,
+   "2026Q3": 5.8297
+  },
+  "eps_quarters_est": {
+   "2026Q4": 3.47,
+   "2027Q1": 4.42,
+   "2027Q2": 5.05,
+   "2027Q3": 6.01,
+   "2027Q4": 6.03
+  },
+  "eps_year": {
+   "FY2026": [
+    11.55,
+    11.07,
+    13.01
+   ],
+   "FY2027": [
+    21.5,
+    14.7,
+    47.02
+   ],
+   "FY2028": [
+    30.0,
+    21.0,
+    37.0
+   ]
+  },
+  "target_mean": 461.43,
+  "target_low": 385,
+  "target_high": 535,
+  "price_window": {
+   "from": 318.24,
+   "to": 259.94,
+   "note": "2Q 실적 콜 7/27 종가 → 11/3 종가"
+  },
+  "note": "Fiscal 자체 추정(가이던스 계산·agentic consensus) 1순위. CLS는 Zacks 커버리지가 없어 리비전 이력·분기 컨센서스 이력이 없다. 의견 분포·목표가는 yfinance(Easyconomics company_profile, 25명). revisions_90d.rev는 2Q 콜 때 2027 매출 약 $33B(Barclays 질문의 '약 $13B 증가' 기준, 추정) → $40B로 계산한 추정치"
+ },
+ "industry": "electronics",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.21,
+ "main_metric": "eps",
+ "main_metric_why": "회사가 조정 EPS와 조정 영업이익률로 가이던스를 내고, 감가상각이 선행 EBITDA의 6% 안팎이라 P/E가 기준이다",
+ "profile": {
+  "price": 259.94,
+  "shares_basic": 0.126112,
+  "shares_date": "2026-10-21",
+  "cash": 3.9613,
+  "debt": 1.0311,
+  "source": "가격 = 11/3 종가. 주식 = 3Q 10-Q 표지 126,111,808주(10/21). 현금 = 9/30 $3,961.3M. 차입 = 신용 한도 차입과 금융 리스 $818.8M + 운용 리스 $212.3M(10-Q 6번 주석)"
+ },
+ "dilution": {
+  "potential_total": 0.0013,
+  "options": 0,
+  "rsu": 0.0013,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-10-21",
+  "source": "3Q 희석 효과 1.3M주(SBC 보상 주식, 10-Q 16번 주석 Q3 가중평균). 전환사채·워런트 없음. 날짜는 표지 주식 수와 맞춰 10/21로 둔다"
+ },
+ "financials": {
+  "rev_ttm": 18.2302,
+  "ebit_ttm": 1.5048,
+  "invested_capital": 3.2838,
+  "capex_ttm": 0.8621,
+  "da_ttm": 0.1848,
+  "sbc_ttm": 0.0841,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26. 매출 3,654.9+4,047.0+4,698.6+5,829.7. 영업이익 314.4+272.1+458.3+460.0. CAPEX 94.7+229.5+263.8+274.1. 투하자본 = 자기자본 6.214 + 차입·리스 1.0311 − 현금 3.9613"
+ },
+ "sbc_pct_rev": 0.005,
+ "sbc_why": "조정 이익률은 SBC를 뺀 값이다. TTM SBC $84.1M ÷ 매출 $18.23B = 0.46%를 다시 차감한다",
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai 표준 재무제표(최근 4개 분기)·calculated_market_cap(11/3)·Forward 배수. 동종 = 북미 상장 EMS·ODM 5곳(Jabil·Flex·Sanmina·Fabrinet·Plexus)",
+ "peers": [
+  {
+   "ticker": "JBL",
+   "key": "NYSE_JBL",
+   "rev": 35.954,
+   "ebit_margin": 0.0474,
+   "mcap": 27.9782,
+   "pb": 17.3,
+   "debt": 3.379,
+   "cash": 1.739,
+   "ev_sales": 0.82,
+   "growth": 0.206,
+   "goodwill": 1.225,
+   "intangibles": 0.603,
+   "pe_fwd": 15.48,
+   "ev_ebitda_fwd": 8.93,
+   "pe_fwd2": 12.07,
+   "ev_ebitda_fwd2": 7.59,
+   "pe_fwd3": 10.29,
+   "ev_ebitda_fwd3": 6.86,
+   "ntm_ebit_margin": 0.0599,
+   "ntm_growth": 0.2377
+  },
+  {
+   "ticker": "FLEX",
+   "key": "NASDAQ_FLEX",
+   "rev": 30.954,
+   "ebit_margin": 0.0506,
+   "mcap": 32.5495,
+   "pb": 5.61,
+   "debt": 5.213,
+   "cash": 3.083,
+   "ev_sales": 1.12,
+   "growth": 0.175,
+   "goodwill": 1.843,
+   "intangibles": 0.701,
+   "pe_fwd": 13.94,
+   "ev_ebitda_fwd": 10.92,
+   "pe_fwd2": 10.39,
+   "ev_ebitda_fwd2": 8.71,
+   "pe_fwd3": 8.24,
+   "ev_ebitda_fwd3": 7.27,
+   "ntm_ebit_margin": 0.0822,
+   "ntm_growth": 0.3013
+  },
+  {
+   "ticker": "SANM",
+   "key": "NASDAQ_SANM",
+   "rev": 12.7634,
+   "ebit_margin": 0.0415,
+   "mcap": 8.8162,
+   "pb": 3.19,
+   "debt": 2.1723,
+   "cash": 1.8449,
+   "ev_sales": 0.72,
+   "growth": 0.586,
+   "goodwill": 0.1219,
+   "intangibles": 0.0,
+   "pe_fwd": 12.95,
+   "ev_ebitda_fwd": 10.37,
+   "pe_fwd2": 10.79,
+   "ev_ebitda_fwd2": 8.83,
+   "pe_fwd3": 9.99,
+   "ev_ebitda_fwd3": 8.14,
+   "ntm_ebit_margin": 0.0689,
+   "ntm_growth": 0.2066
+  },
+  {
+   "ticker": "FN",
+   "key": "NYSE_FN",
+   "rev": 5.1374,
+   "ebit_margin": 0.1002,
+   "mcap": 12.9772,
+   "pb": 5.16,
+   "debt": 0.0747,
+   "cash": 0.7558,
+   "ev_sales": 2.39,
+   "growth": 0.43,
+   "goodwill": 0.0,
+   "intangibles": 0.0023,
+   "pe_fwd": 18.79,
+   "ev_ebitda_fwd": 15.58,
+   "pe_fwd2": 15.91,
+   "ev_ebitda_fwd2": 13.21,
+   "pe_fwd3": 13.89,
+   "ev_ebitda_fwd3": 11.56,
+   "ntm_ebit_margin": 0.1092,
+   "ntm_growth": 0.348
+  },
+  {
+   "ticker": "PLXS",
+   "key": "NASDAQ_PLXS",
+   "rev": 4.965,
+   "ebit_margin": 0.0531,
+   "mcap": 5.7776,
+   "pb": 3.67,
+   "debt": 0.2608,
+   "cash": 0.2812,
+   "ev_sales": 1.16,
+   "growth": 0.231,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "pe_fwd": 19.98,
+   "ev_ebitda_fwd": 12.57,
+   "pe_fwd2": 17.14,
+   "ev_ebitda_fwd2": 11.31,
+   "pe_fwd3": 15.37,
+   "ev_ebitda_fwd3": 10.47,
+   "ntm_ebit_margin": 0.0607,
+   "ntm_growth": 0.165
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.25,
+  "base": 0.5,
+  "bull": 0.25
+ },
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "성장은 동종보다 훨씬 빠르지만 상위 3개 고객이 매출의 66%이고 2027년 현금을 순사용한다. 두 요인이 상쇄된다고 보고 판단 조정은 0으로 둔다"
+ },
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "next_event": {
+  "date": "2027-01-27",
+  "tag": "4Q26 실적(날짜 미공시 — 전년 1/28 발표 기준 추정). 4Q 가이던스 매출 $6.275~6.575B·조정 EPS $3.37~3.57 달성 여부"
+ },
+ "guidance": {
+  "rev_fy0": [
+   20.85,
+   21.15
+  ],
+  "ebit_margin_fy0": 0.084,
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "source": "3Q 콜·보도자료 2026-10-26/27: 4Q26 매출 $6.275~6.575B, 조정 EPS $3.37~3.57. 9M 실적 $14.575B에 더해 FY2026 약 $20.85~21.15B",
+  "next": {
+   "period": "4Q26",
+   "rev": 6425,
+   "eps": 3.47,
+   "unit": "$M",
+   "note": "회사 가이던스 중간값. 발표 뒤 분기 컨센서스는 확인하지 못했다(미확인)"
+  },
+  "long_term": {
+   "2027": "매출 $40B(+90%), 조정 영업이익률 9%(+60bp), CAPEX $1.5~2.0B, 조정 세율 약 21%, 운전자본 투자로 현금 순사용",
+   "source": "3Q 콜·분석가의 날 2026-10-27"
+  }
+ },
+ "call": {
+  "date": "2026-10-27",
+  "prev_date": "2026-07-27",
+  "tone": "up",
+  "tone_score": 7.6,
+  "tone_delta": 0.4,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_m": 5829.7,
+   "adj_eps": 3.3,
+   "adj_ebit_m": 496.1,
+   "adj_roic": 0.647,
+   "hps_rev_m": 2300,
+   "top3_share": [
+    0.35,
+    0.17,
+    0.14
+   ],
+   "inventory_m": 4509.7,
+   "cash_m": 3961.3,
+   "gross_debt_m": 736,
+   "cash_cycle_days": 42,
+   "ocf_m": 389.7,
+   "capex_m": 274.1
+  },
+  "guidance_changes": [
+   "4Q26 매출 $6.275~6.575B·조정 EPS $3.37~3.57 첫 제시",
+   "2026 매출 약 $21B로 $0.5B 상향, FCF 전망은 운전자본 투자로 하향",
+   "2027 매출 $40B(+90%), 조정 영업이익률 9%, CAPEX $1.5~2.0B 첫 제시(2Q 콜 'CAPEX $1.5B 잠정')",
+   "2027년 현금 순사용 예고"
+  ],
+  "new_topics": [
+   "8월 유상증자 1,113만 주(주당 $310, 순 $3.39B) — 운전자본·CAPEX 용도",
+   "TSX 자사주 매입(NCIB) 최대 313만 주(유통 주식의 2.5%), 11/3~2027-11-02",
+   "CFO 교체: Mandeep Chawla → Group President, Todd Ankenmann CFO(10/1)",
+   "1.6T 수주 10개 = 스케일업 4·스케일아웃 6",
+   "2027 R&D $300M 이상, 엔지니어 1,600명 → 2,000명",
+   "컴퓨트 성장 동인은 TPU 기회와 OpenAI 프로그램, 둘 다 2027 하반기 쏠림"
+  ],
+  "dropped_topics": [
+   "2Q 콜의 '2026 FCF를 $5~6억에서 올린다'는 3Q에 운전자본 투자로 FCF 하향으로 바뀌었다"
+  ],
+  "risks": [
+   "상위 3개 고객이 3Q 매출의 66%(35%·17%·14%)",
+   "재고 $4.51B(6월 $3.40B, 12월 $2.19B), 원재료가 $3.54B",
+   "2027 현금 순사용 — 매출 증가 약 $19B를 운전자본으로 받친다",
+   "3Q에 매출채권 매각 $700.8M가 새로 생겼다(2Q 0)",
+   "부품 리드타임 52주 초과 품목, 공급 제약을 가이던스에 반영했다고 회사가 밝힘"
+  ],
+  "qa_focus": [
+   "UBS: 2027 $40B의 수요·공급 위험",
+   "Scotiabank: R&D·엔지니어 증원",
+   "JPMorgan: 2027 현금 순사용 범위·현금 회전일",
+   "BNP Paribas: 액체 냉각·통합 광학이 마진에 주는 영향",
+   "Susquehanna: 1.6T 광 모듈 플러거블 비중, 컴퓨트 성장 동인",
+   "TD Cowen: 하반기 쏠림 때 마진",
+   "Bernstein: OpenAI 스케일업 설계의 확장",
+   "Goldman Sachs: 2027 CAPEX와 ROIC 균형",
+   "Stifel: 2028 가시성",
+   "BMO: 2027 스케일업 프로그램 구성",
+   "Wolfe: 대형 신규 고객 퍼널"
+  ],
+  "answer": "현금 쟁점(JPMorgan)에 CFO는 2027 순현금 사용의 범위를 숫자로 주지 않았다. 2026 매출 $21B로 올리면서 FCF를 다시 잡았고, 2027은 증가 매출을 받칠 투자의 해라고만 답했다. 수요 쟁점(UBS)에는 $40B에 부품·램프·실행 위험을 반영했고 90% 성장에 높은 확신이 있다고 답했다",
+  "source": "3Q 콜·분석가의 날(2026-10-27) 전문 요지 + 3Q 10-Q(2026-10-26). 직전 콜 2Q(2026-07-27) 요지",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "2027 매출 가이던스",
+    "label": "2027 매출 $40B",
+    "prior": "2026(65%)보다 빠른 성장, 약 $33B(추정)",
+    "latest": "$40B(+90%)",
+    "driver": "growth_start",
+    "shift": 0.2,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "2027 조정 영업이익률",
+    "label": "2027 OPM 9%",
+    "prior": "추가 확대(숫자 없음)",
+    "latest": "9%(+60bp), 매출총이익률 11%대 초반",
+    "driver": "margin_target",
+    "shift": 0.005,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "2027 CAPEX",
+    "label": "2027 CAPEX $1.5~2B",
+    "prior": "$1.5B 잠정",
+    "latest": "$1.5~2.0B(수주 프로그램 한정)",
+    "driver": "s2c",
+    "shift": -0.5,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "현금흐름",
+    "label": "2027 현금 순사용",
+    "prior": "2026 FCF $5~6억에서 상향",
+    "latest": "2026 FCF 하향, 2027 순현금 사용",
+    "driver": "s2c",
+    "shift": -0.5,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "유상증자",
+    "label": "증자 $3.39B",
+    "prior": "순차입 $204M(6/30)",
+    "latest": "순현금 약 $2.9B(9/30, 리스 포함 차입 기준)",
+    "driver": "net_debt",
+    "shift": -3.39,
+    "confidence": 1.0,
+    "source": "8/7 8-K"
+   },
+   {
+    "id": "F6",
+    "kind": "반복",
+    "item": "OpenAI 맞춤 칩 랙",
+    "label": "OpenAI 랙 2H27",
+    "prior": "2027 양산, 수십억 달러",
+    "latest": "2027 하반기 쏠림, 위탁 방식(소재 매출 제외)",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F7",
+    "kind": "반복",
+    "item": "통합 광학 스위치",
+    "label": "CPO 스위치 2H27",
+    "prior": "2027 상반기 샘플, 하반기 양산",
+    "latest": "하이퍼스케일러 수주 확인, 일정 유지",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F8",
+    "kind": "부정",
+    "item": "고객 집중",
+    "label": "상위 3사 66%",
+    "prior": "63%(2Q)",
+    "latest": "66%(35%·17%·14%)",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "3Q 10-Q"
+   }
+  ]
+ },
+ "raw": {
+  "retrieved_at": "2026-11-04T10:05:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NYSE_CLS",
+   "price": 259.94,
+   "market_cap": 32.7784,
+   "total_cash": 3.9613,
+   "total_debt": 1.0311,
+   "shares_outstanding": 0.126112,
+   "as_of": "2026-11-03",
+   "balance_date": "2026-09-30",
+   "note": "calculated_market_cap 11/3 $32,778.4M ÷ 종가 $259.94 = 126.1M주(10-Q 표지 126,111,808주와 같다). Fiscal 차입 $818.8M(신용 한도+금융 리스)에 운용 리스 $212.3M을 더해 $1,031.1M(yfinance total_debt와 같다). terminalUrl https://fiscal.ai/company/TSX-CLS"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 3.6549,
+    "2026Q1": 4.047,
+    "2026Q2": 4.6986,
+    "2026Q3": 5.8297
+   },
+   "op_income": {
+    "2025Q4": 0.3144,
+    "2026Q1": 0.2721,
+    "2026Q2": 0.4583,
+    "2026Q3": 0.46
+   }
+  },
+  "balance_2026_09_30": {
+   "equity": 6.214,
+   "debt_current": 0.0166,
+   "debt_lt": 0.7145,
+   "lease_current": 0.0709,
+   "lease_lt": 0.2294,
+   "cash": 3.9613,
+   "inventory": 4.5097,
+   "sold_ar": 0.7008,
+   "note": "차입 = 신용 한도 $731.1M(유동 $16.6M = Fiscal 유동 $27.3M − 금융 리스 유동 $10.7M). 리스 = 운용 $60.2M+$152.1M, 금융 $10.7M+$77.3M(10-Q 6번 주석). 콜의 총차입 $736M은 신용 한도 차입 기준",
+   "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+  },
+  "cash_flow": {
+   "ocf": {
+    "2025Q4": 0.2506,
+    "2026Q1": 0.3563,
+    "2026Q2": 0.4109,
+    "2026Q3": 0.3897
+   },
+   "capex": {
+    "2025Q4": 0.0947,
+    "2026Q1": 0.2295,
+    "2026Q2": 0.2638,
+    "2026Q3": 0.2741
+   },
+   "da": {
+    "2025Q4": 0.0527,
+    "2026Q1": 0.0396,
+    "2026Q2": 0.044,
+    "2026Q3": 0.0485
+   },
+   "sbc": {
+    "2025Q4": 0.013,
+    "2026Q1": 0.0305,
+    "2026Q2": 0.0193,
+    "2026Q3": 0.0213
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1": 4047.0,
+   "2026Q2": 4698.6,
+   "2026Q3": 5829.7,
+   "2026Q4": 6425.0,
+   "2027Q1": 8322.3,
+   "2027Q2": 9407.1,
+   "2027Q3": 11109.3,
+   "2027Q4": 11161.3,
+   "2028Q1": 12341.8,
+   "2028Q2": 13067.1,
+   "2028Q3": 14596.8,
+   "2028Q4": 13994.3
+  },
+  "sec": {
+   "10q": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm",
+   "offering_8k": "https://www.sec.gov/Archives/edgar/data/1030894/000110465926092676/tm2621135d2_8k.htm",
+   "results_8k": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm",
+   "analyst_day_8k": "https://www.sec.gov/Archives/edgar/data/1030894/000110465926118978/tm2628147d1_8k.htm",
+   "cfo_8k": "https://www.sec.gov/Archives/edgar/data/1030894/000110465926107079/tm2625204d1_8k.htm",
+   "ncib_8k": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000054/cls-20261030.htm",
+   "checks": "R-20261031-01: ① 구매 약정 — 10-Q에 계약상 약정 표 없음(10-K 항목, FY2026 10-K에서 확인 필요, 미확인) ② 제한 현금 — 10-Q 언급 없음 ③ 10% 초과 고객 3곳 35%·17%·14%(전년 30%·15%·14%) ④ 정부 지원·전략 계약 — 10-Q에 없음. 매출채권 매각 프로그램 $700.8M 신규"
+  },
+  "estimates_note": "2026Q1~Q3는 실적, 나머지는 Fiscal.ai 추정 평균(가이던스 계산·agentic consensus). 범위: 4Q26 $6,275~6,575M, FY2027 $36,364~50,702M, FY2028 $43,000~64,000M",
+  "shares_cover_implied": 0.126112
+ },
+ "terms": {
+  "CCS": "연결·클라우드 솔루션 부문(데이터센터 네트워킹·컴퓨트·스토리지)",
+  "ATS": "첨단 기술 솔루션 부문(항공·방위·산업·반도체 장비·헬스테크)",
+  "HPS": "Celestica 자체 설계 하드웨어 플랫폼 사업(설계까지 맡는 제품)",
+  "ODM": "설계와 생산을 함께 맡는 위탁 제조",
+  "JDM": "고객과 공동 설계하는 제조",
+  "EMS": "전자제품 위탁 생산",
+  "CPO": "광학 엔진을 스위치 칩 옆에 붙인 통합 광학",
+  "ASIC": "특정 용도 맞춤형 반도체",
+  "TPU": "구글의 AI 가속 칩",
+  "XPU": "GPU·TPU 등 AI 가속기 통칭",
+  "UALink": "AI 가속기끼리 묶는 연결 규격",
+  "SerDes": "고속 직렬 신호 송수신 회로",
+  "NCIB": "캐나다 정규 자사주 매입 제도",
+  "Tomahawk 6": "Broadcom의 102.4Tbps 이더넷 스위치 칩",
+  "Helios": "AMD의 랙 규모 AI 플랫폼",
+  "Jalapeño": "OpenAI가 Broadcom과 만든 맞춤 AI 칩",
+  "DS6000": "Celestica의 Tomahawk 6 기반 스위치 제품군",
+  "DS6010": "AMD Helios용 스케일업 스위치",
+  "DS6005": "Celestica의 통합 광학 스위치",
+  "1.6T": "포트당 1.6테라비트 네트워크 세대",
+  "800G": "포트당 800기가비트 네트워크 세대",
+  "WFE": "웨이퍼 팹 장비",
+  "TRS": "주가에 연동한 총수익스와프(보상 주식 헤지)",
+  "PWB": "인쇄 배선 기판(PCB)",
+  "NCNR": "취소·반품 불가 주문",
+  "ROIC": "투하자본이익률",
+  "CCL": "캐나다 포장재 회사 CCL Industries",
+  "GE": "미국 General Electric",
+  "SSD": "플래시 저장 장치",
+  "PCB": "인쇄회로기판",
+  "PPI": "생산자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "EU": "유럽연합",
+  "JP": "일본",
+  "KR": "한국",
+  "TW": "대만",
+  "CN": "중국",
+  "TSX": "토론토 증권거래소",
+  "JPMorgan": "미국 투자은행 JP모건"
+ },
+ "moat": {
+  "summary": "해자는 설계부터 대량 생산까지 한 회사가 하는 구조(HPS)와, 그 구조로 먼저 따낸 1.6T 스위치 프로그램, 그리고 장기 리드타임 부품을 먼저 확보한 공급 계약이다. 고객 3곳 집중과 이중 공급 관행이 해자를 깎는다",
+  "items": [
+   {
+    "kind": "설계+양산 통합(HPS·JDM)",
+    "verdict": "보통",
+    "claim": "하이퍼스케일러가 스위치·랙을 설계 단계부터 맡기고, 같은 회사가 양산 수율 문제를 일찍 푼다. 설계만 하는 회사와 생산만 하는 회사 사이 자리를 차지한다",
+    "evidence": "3Q 콜: 엔지니어 1,600명 → 2,000명, 2027 R&D $300M 이상. 2Q 콜: 첫 수주 뒤 이중 공급으로 옮겨 간 물량을 고객이 다시 맡기는 사례",
+    "quant": "3Q HPS 매출 $2.3B(+70%), 매출의 약 39%",
+    "falsifier": "HPS 매출 증가율이 회사 전체 증가율보다 두 분기 연속 낮다"
+   },
+   {
+    "kind": "이더넷 스위치 선행 수주(1.6T·스케일업)",
+    "verdict": "보통",
+    "claim": "1.6T 세대 프로그램 10개(스케일업 4·스케일아웃 6)와 AMD Helios 스케일업 스위치를 먼저 따냈다",
+    "evidence": "3Q 콜(CFO 답변), AMD DS6010 발표, Bernstein 업종 자료가 AI 백엔드 스위칭 공급자로 분류",
+    "quant": "1.6T 프로그램 10개, 하이퍼스케일러 통합 광학 스위치 수주 1건",
+    "falsifier": "1.6T 램프에서 이중 공급사 몫이 늘어 네트워킹 증가율이 업계 증가율보다 낮다"
+   },
+   {
+    "kind": "장기 리드타임 부품 선확보",
+    "verdict": "약함",
+    "claim": "리드타임 52주를 넘는 실리콘·메모리·PCB를 고객 취소 불가 주문과 공급 계약으로 먼저 잡아 두었다. 공급이 막힐 때 물량을 옮겨 받는 근거가 된다",
+    "evidence": "2Q 콜 2026-07-27: 고객의 취소 불가 실리콘 주문, 메모리·PWB 공급 계약",
+    "quant": "재고 $4.51B(원재료 $3.54B), 연초 대비 +$2.32B",
+    "falsifier": "공급이 풀려 리드타임이 26주 아래로 내려온다 — 이 해자는 공급 부족 때만 작동한다"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "10% 넘는 고객 3곳이 3Q 매출의 66%(35%·17%·14%)다. 1년 전 59%(30%·15%·14%)보다 더 쏠렸다. 회사는 이름을 공개하지 않는다. OpenAI·AMD는 프로그램 상대로 회사가 밝혔지만 매출 몫은 없다",
+  "items": [
+   {
+    "name": "10% 초과 고객 1(이름 미공개)",
+    "alias": "10-Q 10% 초과 고객 첫째",
+    "share": 0.35,
+    "prior": 0.3,
+    "basis": "공시",
+    "buys": "AI 컴퓨트·네트워킹(CCS)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm",
+    "why": "업계 자료는 구글 TPU 관련 매출이 큰 회사로 분류한다 — 고객 이름은 가설"
+   },
+   {
+    "name": "10% 초과 고객 2(이름 미공개)",
+    "alias": "10-Q 10% 초과 고객 둘째",
+    "share": 0.17,
+    "prior": 0.15,
+    "basis": "공시",
+    "buys": "네트워킹(CCS)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm",
+    "why": "1년 전 15%"
+   },
+   {
+    "name": "10% 초과 고객 3(이름 미공개)",
+    "alias": "10-Q 10% 초과 고객 셋째",
+    "share": 0.14,
+    "prior": 0.14,
+    "basis": "공시",
+    "buys": "네트워킹(CCS)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm",
+    "why": "1년 전 14%"
+   },
+   {
+    "name": "OpenAI(맞춤 칩 랙 프로그램)",
+    "share": "미확인",
+    "basis": "공시",
+    "buys": "Jalapeño 랙(위탁 방식, 소재 매출 제외)",
+    "source": "3Q 콜·분석가의 날 2026-10-27",
+    "why": "2027 하반기 램프. 매출 몫은 회사가 밝히지 않았다",
+    "prior": "미확인"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q 매출원가는 매출의 89.0%로 1년 전 87.0%보다 2.0%p 높다. 그래도 조정 영업이익률은 8.5%로 올랐다. 차이는 판관비다 — 3Q25 판관비($38.4M)는 주가 급등기의 TRS 평가이익이 비용을 줄였다(10-Q가 TRS를 쓴다고 밝힘, 영향 크기는 추정)",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 3.194,
+    "cogs": 2.7779,
+    "rd": 0.0364,
+    "sga": 0.0384,
+    "other": 0.0163
+   },
+   {
+    "period": "3Q26",
+    "rev": 5.8297,
+    "cogs": 5.1889,
+    "rd": 0.0512,
+    "sga": 0.1182,
+    "other": 0.0114
+   }
+  ],
+  "costs": [
+   {
+    "name": "부품·소재(실리콘·메모리·PCB·광)",
+    "stage": "매출원가",
+    "pct_rev": 0.78,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "실리콘 포함 여부(네트워킹 포함·컴퓨트 위탁 제외), 메모리·PCB 단가",
+    "basis": "추정",
+    "source": "2Q 콜: 네트워킹은 실리콘을 매출에 넣고 컴퓨트는 대부분 넣지 않는다",
+    "input": "memory"
+   },
+   {
+    "name": "제조 인건비·공장 간접비",
+    "stage": "매출원가",
+    "pct_rev": 0.065,
+    "prior_pct": "미확인",
+    "fixed": 0.5,
+    "driver": "태국·멕시코·미국 공장 인력, 가동률",
+    "basis": "추정",
+    "source": "2Q 콜: 의도적 고가동, 공장 생산성 두 자릿수 개선"
+   },
+   {
+    "name": "감가상각",
+    "stage": "매출원가",
+    "pct_rev": 0.0083,
+    "prior_pct": 0.0126,
+    "fixed": 1.0,
+    "driver": "CAPEX 증가(TTM $862M)",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   },
+   {
+    "name": "재고 평가 손실",
+    "stage": "매출원가",
+    "pct_rev": 0.0032,
+    "prior_pct": 0.0064,
+    "fixed": 0.0,
+    "driver": "구형 프로그램 재고",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   },
+   {
+    "name": "기타 매출원가",
+    "stage": "매출원가",
+    "pct_rev": 0.0336,
+    "prior_pct": "미확인",
+    "fixed": 0.5,
+    "driver": "물류·관세 등 미분해",
+    "basis": "추정",
+    "source": "공시 매출원가와의 차이"
+   },
+   {
+    "name": "연구개발비",
+    "stage": "연구개발",
+    "pct_rev": 0.0088,
+    "prior_pct": 0.0114,
+    "fixed": 0.8,
+    "driver": "엔지니어 1,600명 → 2,000명, 2027 R&D $300M 이상",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   },
+   {
+    "name": "판매관리비(TRS 평가손익 포함)",
+    "stage": "판관비",
+    "pct_rev": 0.0203,
+    "prior_pct": 0.012,
+    "fixed": 0.7,
+    "driver": "인력, SBC, 주가 연동 TRS 평가손익",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   },
+   {
+    "name": "무형자산 상각·기타 영업비용",
+    "stage": "기타",
+    "pct_rev": 0.002,
+    "prior_pct": 0.0051,
+    "fixed": 1.0,
+    "driver": "인수 무형자산 상각, 구조조정",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "네트워킹 스위치(HPS 포함)",
+    "rev_share": 0.56,
+    "gpm": 0.12,
+    "gpm_basis": "부문별 매출총이익 미공개. 회사는 네트워킹이 마진에 유리하다고만 밝혀 회사 평균 11.0%보다 약간 높게 둔 추정",
+    "bom": [
+     {
+      "item": "스위치 실리콘(Broadcom Tomahawk 등)",
+      "share": [
+       0.4,
+       0.55
+      ],
+      "basis": "추정",
+      "source": "2Q 콜: 네트워킹 매출에 실리콘이 들어간다",
+      "pass_through": "미확인",
+      "why": "스위치 원가의 가장 큰 몫",
+      "input": "semicap"
+     },
+     {
+      "item": "광·구리 인터커넥트·커넥터",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "3Q 콜·분석가의 날 2026-10-27: 1.6T에서 구리 거리 제약, 광 비중 증가",
+      "pass_through": "미확인",
+      "why": "1.6T에서 몫이 커진다"
+     },
+     {
+      "item": "고다층 PCB",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "2Q 콜 2026-07-27: PWB 공급 계약",
+      "pass_through": "미확인",
+      "why": "400G SerDes로 기판 손실 예산이 빡빡해진다",
+      "input": "pcb"
+     },
+     {
+      "item": "메모리·CPU 모듈",
+      "share": [
+       0.03,
+       0.08
+      ],
+      "basis": "추정",
+      "source": "2Q 콜 2026-07-27: 메모리 공급 계약",
+      "pass_through": "미확인",
+      "why": "스위치 제어부",
+      "input": "memory"
+     }
+    ]
+   },
+   {
+    "name": "AI 컴퓨트·스토리지",
+    "rev_share": 0.267,
+    "gpm": 0.09,
+    "gpm_basis": "부문별 미공개. 위탁 방식(실리콘 제외)이라 매출은 작고 이익률 차이는 미확인 — 회사 평균보다 낮게 둔 추정",
+    "bom": [
+     {
+      "item": "메모리·스토리지",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "2Q 콜 2026-07-27: 메모리 공급 계약, 스토리지 수요 강세",
+      "pass_through": "미확인",
+      "why": "실리콘을 빼면 가장 큰 원가",
+      "input": "memory"
+     },
+     {
+      "item": "보드·PCB 부품",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "2Q 콜 2026-07-27",
+      "pass_through": "미확인",
+      "why": "맞춤 칩 보드",
+      "input": "pcb"
+     },
+     {
+      "item": "랙·기구·액체 냉각",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "3Q 콜·분석가의 날 2026-10-27: 랙 단위 통합",
+      "pass_through": "미확인",
+      "why": "랙 통합 범위가 넓어진다"
+     }
+    ]
+   },
+   {
+    "name": "ATS(항공·산업·반도체 장비)",
+    "rev_share": 0.17,
+    "gpm": 0.1,
+    "gpm_basis": "3Q ATS 부문 이익률 6.6%에서 판관비를 되돌린 추정",
+    "bom": [
+     {
+      "item": "전자 부품",
+      "share": [
+       0.4,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "3Q 콜·분석가의 날 2026-10-27",
+      "pass_through": "미확인",
+      "why": "장비 제어 보드"
+     },
+     {
+      "item": "정밀 가공 금속·소재",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "3Q 콜·분석가의 날 2026-10-27: 반도체 장비 사업 성장",
+      "pass_through": "미확인",
+      "why": "장비 모듈 기구"
+     },
+     {
+      "item": "조립·검사 인력",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "3Q 콜·분석가의 날 2026-10-27",
+      "pass_through": "미확인",
+      "why": "소량 다품종"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-03",
+  "summary": "약한 고리는 스위치 실리콘이다. Broadcom 한 곳 설계에 묶이고 리드타임이 52주를 넘는다. 메모리·PCB는 공급 계약으로 막았지만 상대와 물량은 공개되지 않았다",
+  "links": [
+   {
+    "item": "스위치 실리콘(Broadcom Tomahawk 등)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Broadcom",
+      "role": "스위치 칩(Tomahawk 6 — DS6000 제품군)",
+      "status": "회사 발표",
+      "source": "3Q 콜·분석가의 날 2026-10-27"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "부족",
+    "capacity_basis": "2Q 콜 2026-07-27: 일부 부품 리드타임 52주를 크게 넘는다",
+    "lead_weeks": 52,
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "대만(TSMC 생산, 업계 구조 — 추정)",
+    "secured": "장기계약",
+    "why": "고객이 장기 리드타임 실리콘을 취소 불가로 주문했다(2Q 콜). 설계가 Broadcom 칩에 묶여 다른 공급사로 바꿀 수 없다",
+    "input": "semicap",
+    "relief": "미확인",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "item": "메모리·스토리지",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개(공급 계약 상대 미공시)",
+      "role": "DRAM·SSD",
+      "status": "추정",
+      "source": "2Q 콜 2026-07-27"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "2Q 콜 2026-07-27: 확보가 어려운 부품이라 공급 계약을 맺었다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국·미국·대만(업계 구조 — 추정)",
+    "secured": "장기계약",
+    "why": "메모리 가격 급등기에 원가 전가 조건은 미공개",
+    "input": "memory",
+    "relief": "미확인",
+    "source": "2Q 콜 2026-07-27"
+   },
+   {
+    "item": "고다층 PCB",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개(PWB 공급 계약 상대 미공시)",
+      "role": "고다층 기판",
+      "status": "추정",
+      "source": "2Q 콜 2026-07-27"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "2Q 콜 2026-07-27: PWB 공급 계약",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "대만·중국·태국(업계 구조 — 추정)",
+    "secured": "장기계약",
+    "why": "400G SerDes 세대에서 기판 소재 요구가 오른다(3Q 콜)",
+    "input": "pcb",
+    "relief": "미확인",
+    "source": "2Q 콜 2026-07-27"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-03",
+  "unit": "거점(면적·라인 미공시)",
+  "summary": "회사는 명목 캐파와 가동률을 숫자로 내지 않는다. 2026 CAPEX 약 $1.0B, 2027 $1.5~2.0B는 이미 수주한 프로그램용이라고 밝혔다. 증설은 태국 캠퍼스, 텍사스 리처드슨·포트워스, 일본, 말레이시아다",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "2Q 콜 2026-07-27: 공장을 의도적으로 높은 가동률로 운영",
+   "source": "2Q 콜 2026-07-27"
+  },
+  "plans": [
+   {
+    "name": "텍사스 포트워스 신규 공장",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2026-06",
+    "capex": "미확인",
+    "blocker": "2027 추가 라인 반입",
+    "source": "2Q 콜 2026-07-27"
+   },
+   {
+    "name": "텍사스 리처드슨 확장",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "인력",
+    "source": "2Q 콜 2026-07-27"
+   },
+   {
+    "name": "태국 플래그십 캠퍼스 증설",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2027-12",
+    "capex": "미확인",
+    "blocker": "장비·인력·전력",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "일본·말레이시아 표적 투자",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "고객 일정",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY25",
+    "capex": 0.2012,
+    "rev": 12.3909,
+    "kind": "실적"
+   },
+   {
+    "period": "9M26",
+    "capex": 0.7674,
+    "rev": 14.5753,
+    "kind": "실적"
+   },
+   {
+    "period": "FY26",
+    "capex": 1.0,
+    "rev": 21.0,
+    "kind": "가이던스"
+   },
+   {
+    "period": "FY27",
+    "capex": 1.75,
+    "rev": 40.0,
+    "kind": "가이던스"
+   }
+  ],
+  "sites_none": "미등록 — 태국·텍사스·일본·말레이시아 시설 좌표와 호기 자료를 아직 등록하지 않았다(임차·소유 구분 미확인)"
+ },
+ "pipeline": {
+  "as_of": "2026-10-27",
+  "summary": "회사는 수주 잔고를 내지 않는다. 확인된 것은 프로그램 수주와 2027 매출 가이던스 $40B다. 금지표대로 수주한 프로그램을 매출 확정으로 읽지 않는다",
+  "items": [
+   {
+    "name": "1.6T 스위치 프로그램 10개",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "2026 하반기 램프 시작, 2027 본격(회사)",
+    "margin": "미확인",
+    "start": "2026-07",
+    "end": "미확인",
+    "speed": "수주→양산 미확인",
+    "blockers": [
+     "부품 공급",
+     "고객 램프 일정"
+    ],
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "OpenAI 맞춤 칩 랙(Jalapeño)",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "2026 샘플, 2027 하반기 양산(위탁 방식)",
+    "margin": "미확인",
+    "start": "2026-10",
+    "end": "2028-12",
+    "speed": "샘플→양산 약 1년",
+    "blockers": [
+     "고객 데이터센터 일정",
+     "실리콘 공급"
+    ],
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "AMD Helios 스케일업 스위치(DS6010)",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "2026 말 샘플, 2027 상반기 램프(2Q 콜)",
+    "margin": "미확인",
+    "start": "2026-12",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "Helios 랙 채택 속도"
+    ],
+    "source": "2Q 콜 2026-07-27"
+   },
+   {
+    "name": "하이퍼스케일러 통합 광학 스위치",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "2027 상반기 샘플, 하반기 양산",
+    "margin": "미확인",
+    "start": "2027-01",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "통합 광학 수율"
+    ],
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "신규·기존 고객 대형 추진 건",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "회사: 사상 최고 수준의 퍼널, 대부분 기존 고객",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "선별 수주"
+    ],
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-04",
+  "summary": "Rob Mionis가 CEO이고, 10/1부터 Todd Ankenmann이 CFO, 전 CFO Mandeep Chawla가 신설 Group President다. 정치·사모임 연결은 공개 자료로 확인하지 못했다(로비 공시 조회는 키가 없어 미확인)",
+  "people": [
+   {
+    "name": "Rob Mionis",
+    "role": "사장·CEO",
+    "since": "미확인",
+    "profile": "3Q 콜·분석가의 날 발표를 이끈 경영진",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "Todd Ankenmann",
+    "role": "CFO",
+    "since": "2026-10",
+    "profile": "2018년 입사, 10/1 CFO 취임(8-K)",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000110465926107079/tm2625204d1_8k.htm"
+   },
+   {
+    "name": "Mandeep Chawla",
+    "role": "Group President, Global Markets(전 CFO)",
+    "since": "2026-10",
+    "profile": "2010년 입사, 2017~2026 CFO, 이전 GE 근무(8-K)",
+    "business": "CCL Industries 이사(8-K)",
+    "political": "미확인",
+    "alumni": "퀸스대 재무 석사·맥마스터대(8-K)",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000110465926107079/tm2625204d1_8k.htm"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Chawla의 CCL Industries 이사직",
+    "strength": 1,
+    "exposure": 0.0,
+    "basis": "포장재 회사로 Celestica 매출과 맞물리는 근거가 없다",
+    "evidence": "9/11 8-K"
+   }
+  ]
+ },
+ "sync": {
+  "why": "매출은 하이퍼스케일러 장비 구매를 따라가고, 원가는 PCB·메모리 가격을 따른다. 미국 PCB·반도체 PPI가 매출·영업이익과 같이 움직이는지 본다",
+  "indicators": [
+   {
+    "label": "미국 PCB PPI",
+    "source": "ppi",
+    "input": "pcb",
+    "country": "us",
+    "why": "보드·스위치 원가"
+   },
+   {
+    "label": "미국 반도체 PPI",
+    "source": "ppi",
+    "input": "memory",
+    "country": "us",
+    "why": "실리콘·메모리 원가 대용"
+   },
+   {
+    "label": "일본 통신장비(HS 8517) 수입",
+    "source": "hs",
+    "reporter": "jp",
+    "flow": "import",
+    "hs": "8517",
+    "why": "회사가 일본으로 스위칭 생산을 옮겨 일본 쪽 흐름이 생긴다(참고)"
+   }
+  ]
+ },
+ "ma": {
+  "none": "3Q 10-Q 기준 최근 3년 안 중요 인수 공시가 없다. 성장은 자체 투자(CAPEX·R&D)다"
+ },
+ "pq": {
+  "none": "회사는 출하량·ASP를 공시하지 않는다. 네트워킹은 실리콘 포함, 컴퓨트는 위탁(실리콘 제외)이라 매출 단가가 섞여 업종 PPI로 가격을 나누면 왜곡된다"
+ },
+ "events": [
+  {
+   "date": "2026-04-28",
+   "tag": "1Q26 실적 다음 날 −14.4%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-06-02",
+   "tag": "52주 최고 근처($472)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-07-16",
+   "tag": "−9.2%(원인 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-07-28",
+   "tag": "2Q26 실적·2027 성장 가속 예고",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "유상증자 가격 결정($310) −15.3%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-09-11",
+   "tag": "CFO 교체 발표",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "AI 인프라 업종 하락(−2.5%, 업종 자료 해석)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-27",
+   "tag": "3Q26 실적·분석가의 날 +12.1%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "실적 다음 날 +8.4%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "자사주 매입(NCIB) 승인 공시",
+   "kind": "8-K"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-28",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-04-27",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-27",
+   "kind": "실적",
+   "tag": "2Q26 실적·2027 가속 예고",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-05",
+   "kind": "내러티브",
+   "tag": "유상증자 $3.45B"
+  },
+  {
+   "date": "2026-10-26",
+   "kind": "실적",
+   "tag": "3Q26 실적·2027 $40B",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "narrative": {
+  "as_of": "2026-11-04",
+  "stage": "컨센서스",
+  "crowding": "중간",
+  "summary": "AI 데이터센터 스위치·랙을 설계까지 맡는 위탁 제조사라는 이야기다. 주가는 6/2 $472에서 11/3 $259.94로 −45%다. 같은 기간 회사는 2027 매출을 $40B로 올렸다. 이익 추정은 올랐는데 배수가 줄었다 — 증자, 2027 현금 순사용, 고객 3곳 66% 집중이 할인의 이유다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "Buy 25 · Hold 0 · Sell 0",
+      "전원 매수",
+      "yfinance(11/4)"
+     ],
+     [
+      "목표가 평균",
+      "$461(범위 $385~535)",
+      "현재가 대비 +78%",
+      "yfinance"
+     ],
+     [
+      "확신 목록 대형사",
+      "EPS +8%, 목표가 −9%",
+      "이익↑·배수↓",
+      "IB 노트 요지(마스터 노션)"
+     ]
+    ],
+    "read": "셀사이드는 만장일치 매수지만 목표가는 이익보다 덜 올렸다 — 배수 상향은 기대하지 않는다는 뜻이다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "68.2%",
+      "미확인",
+      "yfinance"
+     ],
+     [
+      "8월 증자 소화",
+      "$3.45B(주당 $310)",
+      "발표일 −15.3%",
+      "8-K"
+     ],
+     [
+      "13F",
+      "미수집",
+      "3Q 13F 11월 중순",
+      "—"
+     ]
+    ],
+    "read": "$3.45B 증자를 하루 만에 소화했다. 수요는 있었지만 가격은 $310으로 눌렸다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "공매도 비율",
+      "유통 주식의 3.35%",
+      "공매도 회전 1.9일",
+      "yfinance"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "0건",
+      "미수집 아님(검색 결과 없음)",
+      "tg_channels"
+     ]
+    ],
+    "read": "리테일이 끈 주식이 아니다. 공매도도 작다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "분석가의 날·OpenAI 랙",
+      "—",
+      "언론 제목"
+     ]
+    ],
+    "read": "AI 인프라 업종 하락 기사 안에서 함께 다뤄진다"
+   }
+  },
+  "factors": [
+   {
+    "name": "이더넷 스케일업·1.6T 스위치",
+    "thesis": "AI 가속기를 묶는 스케일업 망이 이더넷으로 바뀌며 화이트박스 스위치 공급자가 커진다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "1.6T 프로그램 10개(스케일업 4), 회사 인용 스케일업 이더넷 시장 2030년 $55B",
+    "status": "강화",
+    "falsifier": "2027 네트워킹 증가율이 업계 AI 백엔드 스위칭 증가율보다 낮다",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "맞춤 AI 칩 랙(TPU·OpenAI)",
+    "thesis": "하이퍼스케일러 맞춤 칩이 늘수록 랙 단위 통합을 맡는 회사가 커진다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2026 컴퓨트·스토리지 $5.6B(+170%), OpenAI·TPU 2027 하반기",
+    "status": "강화",
+    "falsifier": "OpenAI 램프가 2028년으로 밀린다",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "설계 역량 = 마진",
+    "thesis": "설계까지 맡아 EMS보다 높은 마진을 받는다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "조정 영업이익률 2027 9%(Jabil 4.7%·Flex 5.1% GAAP TTM)",
+    "status": "유지",
+    "falsifier": "2027 분기 조정 영업이익률이 8.4% 아래",
+    "source": "3Q 콜·분석가의 날 2026-10-27"
+   },
+   {
+    "name": "반대: 현금 전환",
+    "thesis": "이익은 늘지만 운전자본이 현금을 먹는다. 2027 순현금 사용, 재고 $4.5B, 매출채권 매각 시작",
+    "inputs": "현금흐름",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "TTM FCF $545M vs 조정 순이익 약 $1.2B(조정 EPS 4분기 합 $9.89 × 희석 주식, 추정), 재고 연초 대비 +$2.3B",
+    "status": "강화",
+    "falsifier": "4Q26 현금 회전일 45일 이하 유지와 FCF 양(+)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   },
+   {
+    "name": "반대: 고객 집중·이중 공급",
+    "thesis": "고객 3곳 66%, 첫 수주 뒤 두 번째 공급사가 물량을 나눈다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "상위 3사 35%·17%·14%",
+    "status": "유지",
+    "falsifier": "4번째 10% 고객 등장",
+    "source": "https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm"
+   }
+  ],
+  "lead": {
+   "summary": "Celestica는 하이퍼스케일러의 AI 데이터센터에 들어가는 이더넷 스위치와 맞춤 칩 랙을 설계부터 생산까지 맡는 캐나다 회사다. 2027 매출을 $40B(+90%)로 제시했는데 주가는 6월 고점보다 45% 낮다. 주가를 정하는 것은 수요가 아니라 그 매출이 현금으로 바뀌는가와 고객 3곳 집중이다",
+   "value_story": "Fwd 1Y P/E 13.7배로 동종 5곳 중앙값 15.5배보다 낮다. 2027 가이던스 EPS $21.50으로는 12.1배다. 시장은 성장률 90%를 EMS 배수로 사고 있다. 할인의 근거는 셋 — 2027 현금 순사용, 상위 3사 66%, 8월 증자(주식 약 +9.7%). 이 셋 중 현금이 먼저 풀리면 배수가 오르고, 고객 한 곳이 흔들리면 이익 자체가 빠진다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 13.7배, 동종 중앙값 15.5배보다 약 11% 낮다. Fabrinet(18.8배)·Plexus(20.0배)보다 싸고 Flex(13.9배)·Sanmina(13.0배)와 비슷하다",
+    "eps": "2027 매출은 2Q 콜 때 약 $33B(추정)에서 $40B로 올랐다. 분기 EPS 컨센서스 이력은 확인하지 못했다(미확인)"
+   },
+   "why_excited": "2025년 $78에서 2026년 6월 $472까지 올랐다. 800G 스위치와 구글 TPU 랙이 '위탁 제조사가 AI 인프라 회사가 된다'는 이야기를 만들었다. 식은 이유는 8월 증자(−15%), 10월 AI 인프라 업종 하락, 그리고 3Q 콜의 2027 현금 순사용이다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "네트워킹 스위치(HPS 포함)",
+     "what": "이더넷 스위치·스케일업 스위치",
+     "use": "AI 데이터센터 백엔드 망",
+     "money": "대당 판매가(실리콘 포함)"
+    },
+    {
+     "kind": "서비스",
+     "name": "AI 컴퓨트·스토리지",
+     "what": "맞춤 칩 서버·랙 조립·검증",
+     "use": "하이퍼스케일러 AI 학습·추론",
+     "money": "랙당 위탁 제조비(실리콘 대부분 제외)"
+    },
+    {
+     "kind": "서비스",
+     "name": "ATS(항공·산업·반도체 장비)",
+     "what": "장비 모듈·보드 위탁 제조",
+     "use": "반도체 장비·항공·헬스테크",
+     "money": "프로그램별 제조비"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "CCS가 매출의 80%를 넘고 설계까지 맡는 HPS가 매출의 약 39%다. EMS에서 ODM 쪽으로 옮겨 갔다",
+     "evidence": "3Q 콜(HPS $2.3B), 2Q 콜(CCS 81%)",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "HPS 비중이 35% 아래로 내려간다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "2027 조정 영업이익률 9%(+60bp) 가이던스. 네트워킹·HPS가 마진에 유리하고 컴퓨트 위탁은 매출을 덜 키운다",
+     "evidence": "3Q 콜·분석가의 날 2026-10-27",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "2027 분기 조정 영업이익률이 8.4% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "Tomahawk 6 기반 액체 냉각 스위치, AMD Helios 스케일업 스위치, 통합 광학 스위치(DS6005) — 하이퍼스케일러 통합 광학 수주",
+     "evidence": "3Q 콜·분석가의 날 2026-10-27",
+     "drives": "both",
+     "status": "강화",
+     "falsifier": "통합 광학 양산이 2028년으로 밀린다"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "샘플에서 양산까지 회사 일정 기준 약 9~12개월이다(OpenAI 랙 2026 4분기 샘플 → 2027 하반기 양산, Helios 스위치 2026 말 샘플 → 2027 상반기 램프). 이전 세대 값과 피어 값은 같은 기준 자료가 없다",
+     "evidence": "3Q 콜·분석가의 날 2026-10-27",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "샘플→양산이 18개월을 넘는다",
+     "lead_time": {
+      "unit": "개월",
+      "basis": "샘플→양산(회사 일정)",
+      "now": [
+       9,
+       12
+      ],
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Jabil",
+        "value": "미확인"
+       },
+       {
+        "name": "Flex",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 중요 인수 공시 없음, 자체 투자로 성장)",
+     "evidence": "3Q 10-Q",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "대형 인수 발표"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "하이퍼스케일러·AI 연구소 설비투자가 스위치·랙 주문으로 온다. 고객 투자 발표를 이 회사 매출로 바로 옮기지 않는다 — 확인된 것은 프로그램 수주와 회사 가이던스다",
+     "evidence": "3Q 콜·분석가의 날 2026-10-27, 업계 자료(라이선스 요지)",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "상위 고객 1곳이 2027 설비투자를 줄인다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(보조금·세액공제 수령 공시 없음)",
+     "evidence": "3Q 10-Q",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "미국 내 생산 보조금 수령 공시"
+    },
+    "orders": {
+     "change": "관세: 회사는 부품·제품 관세 비용을 대부분 고객에게서 회수한다고 가정한다(10-Q 전망 가정). 수출 통제·AI 관련 조치를 위험으로 적었다",
+     "evidence": "3Q 10-Q 전망 가정",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "관세 회수가 막혀 매출총이익률이 50bp 넘게 하락",
+     "house": {
+      "level": 1,
+      "why": "Celestica 관련 하원 의결 기록을 찾지 못했다"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 직접 겨냥한 연방 법안을 찾지 못했다. 로비 공시는 키가 없어 미확인)",
+     "evidence": "로비 조회 미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "AI 데이터센터 장비 수입 규제 법안"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "정하윤",
+    "house": "가상 리서치 하우스 한빛증권",
+    "thesis": "2027 가이던스 EPS $21.50에 12배다. 90% 성장을 EMS 배수로 산다",
+    "evidence": [
+     "2027 매출 $40B, 조정 영업이익률 9%",
+     "Fwd 1Y P/E 13.7배 vs 동종 15.5배",
+     "순현금 약 $2.9B"
+    ],
+    "falsifier": "4Q 매출이 가이던스 하단 $6.275B 아래"
+   },
+   {
+    "seat": "Buy",
+    "name": "오세린",
+    "house": "가상 리서치 하우스 청해캐피털",
+    "thesis": "1.6T·스케일업 수주가 2027~2028 매출을 받친다. 현금은 램프가 끝나면 돌아온다",
+    "evidence": [
+     "1.6T 프로그램 10개",
+     "OpenAI·AMD 랙 2027",
+     "9월 분기 현금 회전일 42일"
+    ],
+    "falsifier": "2027 상반기 현금 회전일 55일 초과"
+   },
+   {
+    "seat": "Neutral",
+    "name": "문태경",
+    "house": "가상 리서치 하우스 동해리서치",
+    "thesis": "이익은 오르지만 현금이 안 따라오고 고객 3곳이 66%다. 할인은 이유가 있다",
+    "evidence": [
+     "2027 현금 순사용",
+     "재고 $4.51B",
+     "상위 3사 35%·17%·14%"
+    ],
+    "falsifier": "2027 FCF가 양(+)으로 돌아선다"
+   },
+   {
+    "seat": "Sell",
+    "name": "권도희",
+    "house": "가상 리서치 하우스 서해자산",
+    "thesis": "공급 부족이 끝나면 선확보 재고가 부담이 되고 이중 공급사가 가격을 깎는다",
+    "evidence": [
+     "원재료 재고 $3.54B",
+     "매출채권 매각 $700.8M 신규",
+     "8월 증자 약 +9.7% 주식"
+    ],
+    "falsifier": "2027 매출총이익률 11%대 유지"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "백준호",
+    "house": "가상 리서치 하우스 북해증권",
+    "thesis": "고객 1곳이 35%다. 그 고객이 설비투자를 줄이면 이익이 바로 빠진다",
+    "evidence": [
+     "10% 초과 고객 1이 35%",
+     "2027 하반기 쏠림",
+     "AI 인프라 업종 10월 하락"
+    ],
+    "falsifier": "4번째 10% 고객 등장"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "2027 가이던스 EPS $21.50에 지금 주가는 12.1배다. 동종 중앙값 15.5배까지만 가도 $333이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "1.6T 10개와 OpenAI·AMD 랙이 2027 매출의 근거다. 순현금 약 $2.9B라 현금 순사용을 견딘다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "TTM FCF는 $545M인데 조정 이익은 그 두 배를 넘는다. 2027은 순사용이다. 시장은 그 차이를 깎고 있다"
+     },
+     {
+      "seat": "Sell",
+      "text": "원재료 재고가 $3.54B로 연초의 두 배다. 공급이 풀리면 이 재고의 가격이 먼저 떨어진다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "고객 한 곳이 35%다. 이 집중은 1년 전 30%보다 더 커졌다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "$21.50은 가이던스 범위 $14.70~47.02의 가운데가 아니다. 하단이면 17.7배로 할인이 아니다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "재고는 고객의 취소 불가 주문과 짝을 이룬다(2Q 콜). 가격 위험의 상당 부분은 고객 몫이다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "1위 고객 몫이 커진 것은 그 고객 램프 때문이고, 2·3위도 15%·14%에서 17%·14%로 유지됐다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "취소 불가 주문은 실리콘만 덮는다. 메모리·PCB 공급 계약의 가격 조건은 공개되지 않았다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "현금만이 아니다. 매출채권 매각 $700.8M이 3Q에 처음 생겼다 — 현금 회전일 42일은 그만큼 꾸민 값이다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "매출채권 매각을 빼도 현금 회전일은 대략 50일대로 1년 전 65일보다 짧다(추정)"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "그 추정은 맞을 수 있지만 2027 순사용 범위를 회사가 숫자로 주지 않았다. 그게 할인의 핵심이다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "매출총이익률은 2026 내내 11%대였고 회사는 2027도 11%대 초반을 말했다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "동종 중앙값 15.5배는 Fabrinet·Plexus가 끌어올린 값이다. Jabil·Flex·Sanmina는 13~15배다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "2027 하반기에 OpenAI·TPU가 몰린다. 상반기 숫자가 약하면 가이던스 신뢰가 먼저 흔들린다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "배수 하단 논리는 남는다. 다만 하반기 쏠림을 인정해 한 단계 내린다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "현금 순사용 범위가 나오기 전까지 Buy를 유지한다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "2027 순사용 범위와 4Q 현금 회전일을 확인할 때까지 가운데에 둔다"
+     },
+     {
+      "seat": "Sell",
+      "text": "재고 가격 위험은 남지만 마진 가이던스를 깰 증거는 아직 없다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "고객 집중 위험은 그대로라 Sell 쪽에 남는다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "2027 가이던스 대비 배수가 동종보다 낮다는 반박은 살아남았다. 현금 순사용 범위가 숫자로 없다는 반박도 살아남아 강한 쪽으로 가지 못했다",
+   "dissent": "Sell 자리: 고객 1곳 35%와 2027 하반기 쏠림은 가이던스 한 번 놓치면 배수와 이익이 함께 빠지는 구조다"
+  }
+ },
+ "sources": [
+  "Celestica 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm",
+  "3Q26 실적 8-K(2026-10-26) https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm",
+  "분석가의 날 자료 8-K(2026-10-27) https://www.sec.gov/Archives/edgar/data/1030894/000110465926118978/tm2628147d1_8k.htm",
+  "유상증자 8-K(2026-08-07) https://www.sec.gov/Archives/edgar/data/1030894/000110465926092676/tm2621135d2_8k.htm",
+  "CFO 교체 8-K(2026-09-11) https://www.sec.gov/Archives/edgar/data/1030894/000110465926107079/tm2625204d1_8k.htm",
+  "자사주 매입 8-K(2026-10-30) https://www.sec.gov/Archives/edgar/data/1030894/000103089426000054/cls-20261030.htm",
+  "Celestica 3Q 콜·분석가의 날 2026-10-27, 2Q 콜 2026-07-27(요지만)",
+  "라이선스 자료 요지 포함(IB 업종·확신 목록 노트, 마스터 노션) — 외부 공유 금지"
+ ],
+ "narrative_sources_note": "narrative_sources: 애널리스트 의견 변경 제목 21건, 커뮤니티·업종 제목은 걸러냄. 텔레그램 공개 채널 해당 글 없음. 로비 LDA 키 없음(미확인)",
+ "overrides": {
+  "s2c": 3.5,
+  "margin_base": {
+   "target": 0.09,
+   "lr": 0.09
+  },
+  "why": "규칙의 장기 이익률 15%는 위탁 제조사에 맞지 않는다 — 회사 2027 조정 영업이익률 가이던스가 9%이고 동종 TTM GAAP은 4~10%다. 장기도 9%로 둔다. 자본 효율은 TTM 5.55가 과거 저투자 기간 값이라 높다. 2027 매출 증가 약 $19B에 CAPEX $1.5~2B와 운전자본 투자(현금 순사용)가 붙어 증분 매출 ÷ 증분 자본을 약 3.5로 둔다(추정)"
+ }
+}

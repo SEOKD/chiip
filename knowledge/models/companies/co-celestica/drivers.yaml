@@ -1,0 +1,102 @@
+auto: true
+id: co-celestica
+name: Celestica
+ticker: CLS
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-04'
+market:
+  date: '2026-11-04'
+  price: 259.94
+  shares: 0.127412
+  net_debt: -2.9302
+  source: 가격 = 11/3 종가. 주식 = 3Q 10-Q 표지 126,111,808주(10/21). 현금 = 9/30 $3,961.3M.
+    차입 = 신용 한도 차입과 금융 리스 $818.8M + 운용 리스 $212.3M(10-Q 6번 주석)
+rev0: 21.0
+ic0: 3.2838
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.9048
+      end: 0.035
+      decay: 0.362
+    margin:
+      m0: 0.079
+      target: 0.09
+      year_target: 3
+      lr: 0.09
+      lam: 0.35
+      anchors:
+      - 0.085
+      - 0.0876
+    s2c: 3.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 1.4144
+      end: 0.04
+      decay: 0.412
+    margin:
+      m0: 0.079
+      target: 0.11
+      year_target: 3
+      lr: 0.09
+      lam: 0.25
+      anchors:
+      - 0.085
+      - 0.0876
+    s2c: 4.025
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.7316
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.079
+      target: 0.07
+      year_target: 3
+      lr: 0.09
+      lam: 0.5
+      anchors:
+      - 0.085
+      - 0.0876
+    s2c: 2.975
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [20.85, 21.15] (3Q 콜·보도자료 2026-10-26/27: 4Q26 매출 $6.275~6.575B,
+    조정 EPS $3.37~3.57. 9M 실적 $14.575B에 더해 FY2026 약 $20.85~21.15B)'
+  growth: 컨센서스 1년차 90.5%, 2년차 35.0%
+  margin: 1~2년차 컨센서스 8.5%, 8.8% 고정 → 목표 9%(3년차, 덮어쓰기) → 장기 수렴 9%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 5.552 → 덮어쓰기 3.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 73.2%~141.4%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 규칙의 장기 이익률 15%는 위탁 제조사에 맞지 않는다 — 회사 2027 조정 영업이익률 가이던스가 9%이고 동종 TTM GAAP은
+    4~10%다. 장기도 9%로 둔다. 자본 효율은 TTM 5.55가 과거 저투자 기간 값이라 높다. 2027 매출 증가 약 $19B에 CAPEX
+    $1.5~2B와 운전자본 투자(현금 순사용)가 붙어 증분 매출 ÷ 증분 자본을 약 3.5로 둔다(추정)
+  shares: 완전 희석 = 기본 0.126112(2026-10-21) + 옵션·RSU·워런트·전환 0.0013 — 3Q 희석 효과 1.3M주(SBC
+    보상 주식, 10-Q 16번 주석 Q3 가중평균). 전환사채·워런트 없음.
+notes:
+- 자동 생성(build_drivers) 2026-11-04 — 데이터 묶음 2026-11-04
+- '어닝콜 위험: 상위 3개 고객이 3Q 매출의 66%(35%·17%·14%)'
+- '어닝콜 위험: 재고 $4.51B(6월 $3.40B, 12월 $2.19B), 원재료가 $3.54B'
+- '어닝콜 위험: 2027 현금 순사용 — 매출 증가 약 $19B를 운전자본으로 받친다'
+evidence:
+- Celestica 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1030894/000103089426000050/cls-20260930.htm
+- 3Q26 실적 8-K(2026-10-26) https://www.sec.gov/Archives/edgar/data/1030894/000103089426000049/cls-20261026.htm
+- 분석가의 날 자료 8-K(2026-10-27) https://www.sec.gov/Archives/edgar/data/1030894/000110465926118978/tm2628147d1_8k.htm
+- 유상증자 8-K(2026-08-07) https://www.sec.gov/Archives/edgar/data/1030894/000110465926092676/tm2621135d2_8k.htm
+- CFO 교체 8-K(2026-09-11) https://www.sec.gov/Archives/edgar/data/1030894/000110465926107079/tm2625204d1_8k.htm
+- 자사주 매입 8-K(2026-10-30) https://www.sec.gov/Archives/edgar/data/1030894/000103089426000054/cls-20261030.htm
+- Celestica 3Q 콜·분석가의 날 2026-10-27, 2Q 콜 2026-07-27(요지만)
+- 라이선스 자료 요지 포함(IB 업종·확신 목록 노트, 마스터 노션) — 외부 공유 금지
