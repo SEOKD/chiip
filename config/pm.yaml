@@ -22,3 +22,18 @@ overlay:
   event_haircut: 0.7         # 실적·보호예수 이벤트 창의 비중 승수
   event_window: {실적: [-3, 1], 보호예수: [-5, 3], 기타: [-1, 1]}   # 이벤트일 기준 영업일 아님(달력일)
   cvar_q: 0.95
+# ── 2단계 구성(scripts/pm/construct.py, 마스터 지시 2026-11-04 "2단계 진행") ──
+expected:
+  scenario_probs: [0.25, 0.50, 0.25]   # 약세·기본(목표)·강세 — v2 시나리오 기본 확률과 같음
+  ic: 0.05                   # 정보 계수 사전값(Grinold & Kahn 실무 통상 0.02~0.10)
+  weights: {pwr: 0.3333, grinold: 0.3333, conv: 0.3334}   # 세 식 가중 — 없는 식은 빼고 다시 나눔
+  k_kelly: 0.25              # 분수 켈리 — config/valuation_v2.yaml kelly_fraction과 같다
+  rf: 0.04                   # 1년 무위험 수익(근사)
+bl:
+  lambda: 2.5                # 위험 회피 — 위험 정책
+  tau: 0.05                  # He & Litterman 1999
+  mrp: 0.05                  # 시장 위험 프리미엄(연) — CAPM 사전 Π = β × mrp. Damodaran 내재 ERP 4~5%대 관행
+  view_conf: 0.3             # 컨빅션이 없는 견해의 신뢰(0~1)
+opt:
+  kappa: 0.002               # 회전 벌점(설계 단계 3에서 비용 장부로 점검)
+  step: 0.05

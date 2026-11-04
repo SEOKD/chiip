@@ -3086,6 +3086,134 @@ params:
     data: knowledge/models/pm/
     last_fit: null
     oos_metric: null
+- id: prm-pm-expected-ic
+  model: pm.construct
+  binding: config/pm.yaml#expected.ic
+  value: 0.05
+  unit: 상관
+  status: prior
+  prior:
+    value: 0.05
+    basis: 정보 계수 사전값
+    source: Grinold & Kahn(1999) Active Portfolio Management
+  fit:
+    method: 실현 IC(점수 vs 다음 20거래일 잔차 수익) 12개월 이동, 축소 추정
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-expected-k-kelly
+  model: pm.construct
+  binding: config/pm.yaml#expected.k_kelly
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: 분수 켈리 상한
+    source: MacLean, Thorp & Ziemba(2011)
+  fit:
+    method: 고정(위험 정책)
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-expected-rf
+  model: pm.construct
+  binding: config/pm.yaml#expected.rf
+  value: 0.04
+  unit: 연
+  status: prior
+  prior:
+    value: 0.04
+    basis: 무위험 수익 근사
+    source: 미 국채 1년 근사
+  fit:
+    method: FRED DGS1로 갱신
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-bl-lambda
+  model: pm.construct
+  binding: config/pm.yaml#bl.lambda
+  value: 2.5
+  unit: 배
+  status: prior
+  prior:
+    value: 2.5
+    basis: 위험 회피 계수 — 위험 정책
+    source: Black & Litterman(1992) 관행
+  fit:
+    method: 고정(위험 정책)
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-bl-tau
+  model: pm.construct
+  binding: config/pm.yaml#bl.tau
+  value: 0.05
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.05
+    basis: BL 사전 불확실성
+    source: He & Litterman(1999)
+  fit:
+    method: 고정
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-bl-mrp
+  model: pm.construct
+  binding: config/pm.yaml#bl.mrp
+  value: 0.05
+  unit: 연
+  status: prior
+  prior:
+    value: 0.05
+    basis: 시장 위험 프리미엄(CAPM 사전)
+    source: Damodaran 내재 ERP 관행 4~5%
+  fit:
+    method: 월 1회 내재 ERP 확인
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-bl-view-conf
+  model: pm.construct
+  binding: config/pm.yaml#bl.view_conf
+  value: 0.3
+  unit: 0~1
+  status: prior
+  prior:
+    value: 0.3
+    basis: 컨빅션 없는 견해 신뢰
+    source: Idzorek(2005) 확신도 → Ω
+  fit:
+    method: 컨빅션 보정식 채택 후 연동
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-opt-kappa
+  model: pm.construct
+  binding: config/pm.yaml#opt.kappa
+  value: 0.002
+  unit: 수익/회전
+  status: prior
+  prior:
+    value: 0.002
+    basis: 회전 벌점
+    source: Gârleanu & Pedersen(2013)
+  fit:
+    method: 3단계 비용 장부로 점검
+    target: 모델 포트폴리오 일간 수익
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
