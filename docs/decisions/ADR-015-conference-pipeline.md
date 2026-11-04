@@ -1,6 +1,6 @@
 # ADR-015 학회 참여 추적 파이프라인(삼성·SK·LG)
 
-- 날짜: 2026-11-05 · 결정: 마스터 지시 · 상태: **설계안(마스터 승인 대기)** — 승인 전에는 수집 코드를 만들지 않는다
+- 날짜: 2026-11-05 · 결정: 마스터 지시 · 상태: 1차 구현(2026-11-05 마스터 "설계안대로 일단 구현하라")
 - 지시: "이 학회들의 자료와 세미나 프로그램을 보고 삼성, SK, LG 관계자가 참석하거나 논문을 게재한 사례를 모두 찾는 파이프라인을 설계하라. 체계적인 접근법을 접목해야 한다. 기사 소재 발굴 등에 써라. 삼성전자, SK하이닉스가 참여하는 학회가 더 있는지도 추가 리스트업하라."
 - 학회 정본: `config/conferences.yaml`(마스터 목록 + 추가분 `added: true`). 기존 스킬 `conference-tracker`는 이 파이프라인의 '판단' 단계로 흡수한다.
 
@@ -100,3 +100,19 @@
 - 기업 비공개 포럼(예: 파운드리 고객 전용 세션), 회원 전용 워크숍(SISC 일부)은 수집하지 않는다.
 - 학회별 프로그램 형식이 제각각이다. 파서는 학회마다 작게 만들고 실패하면 경보를 보낸다(자동 복구 `self_heal` 대상).
 - 추가 학회 목록의 개최월은 공식 사이트로 확인하기 전에는 비워 둔다(1단계에서 채운다).
+
+## 1차 구현 2026-11-05
+- `radar/conf_track.py`가 2~6단계를 구현했다. 학회별 OpenAlex source id(`config/conferences.yaml` `openalex:`)로 해마다 전 논문을 받아 소속을 매칭하고, 추적표와 집계를 쓴다.
+  - 소속 사전: `config/conference_orgs.yaml`
+  - 채점 상수: `config/conference_pipeline.yaml`(등록부 `prm-conf-*`)
+  - 산출: `knowledge/entities/conferences/<cf>_<연도>_tracker.md`, `knowledge/models/conferences/counts.csv`
+- 대상은 1차 15곳 중 출판본이 OpenAlex에 있는 10곳이다: ISSCC·IEDM·VLSI·Hot Chips·A-SSCC·ECTC·IMW·IRPS·OFC·ISOCC. 2023~2025년을 받았다.
+- 키 없이 OpenAlex cursor 페이징은 막혀 있다. page 번호 방식으로 받는다(1만 편 한도).
+- **한계**
+  - OpenAlex 소속 데이터가 빠진 논문은 놓친다. 예: Hot Chips 2025는 0편으로 잡혔지만 실제 발표가 없었다는 뜻이 아니다.
+  - 정답지 대조(7단계 백테스트)는 공식 프로그램 파서가 생긴 뒤 한다.
+  - 출판본이 늦게 올라오므로 '프로그램 공개 시점' 선행성은 아직 없다.
+- **남은 것**
+  - 공식 프로그램 파서: ISSCC·IEDM·VLSI 우선.
+  - 출판본이 없는 학회(FMS·SPIE AL·ITF·OCP·SEMICON Korea·KCS)는 뉴스룸·프로그램으로 본다.
+  - `article-pitch` 입력 연결, 예약 실행, 1단계 일정 채우기.

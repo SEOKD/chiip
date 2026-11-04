@@ -1,0 +1,32 @@
+# 학회 소속 매칭 사전 — ADR-015 3단계. radar/conf_track.py가 읽는다
+# match: 소속 문자열(OpenAlex 기관명·원 소속 문자열)에 들어 있으면 그 단위로 본다(대소문자 무시). 위에서부터 먼저 맞는 것
+# 신뢰도: 기관명(institutions.display_name) 일치 = A, 원 소속 문자열만 일치 = B
+groups:
+  samsung:
+    - {unit: SAIT(종합기술원), match: ["Samsung Advanced Institute of Technology", "SAIT"]}
+    - {unit: Samsung Research, match: ["Samsung Research"]}
+    - {unit: 삼성전기, match: ["Samsung Electro-Mechanics", "Samsung Electro Mechanics"]}
+    - {unit: 삼성디스플레이, match: ["Samsung Display"]}
+    - {unit: 삼성SDI, match: ["Samsung SDI"]}
+    - {unit: 삼성전자 파운드리, match: ["Samsung Foundry"]}
+    - {unit: 삼성전자 메모리, match: ["Memory Business", "Memory Division"]}
+    - {unit: 삼성전자 System LSI, match: ["System LSI"]}
+    - {unit: 삼성전자, match: ["Samsung Electronics", "Samsung Semiconductor", "Samsung Austin", "Samsung (South Korea)"]}
+  sk:
+    - {unit: SK하이닉스, match: ["SK hynix", "SK Hynix", "Hynix"]}
+    - {unit: SK실트론, match: ["SK Siltron"]}
+    - {unit: SK키파운드리, match: ["SK keyfoundry", "Key Foundry"]}
+    - {unit: SK텔레콤, match: ["SK Telecom"]}
+    - {unit: SK 기타, match: ["SK Inc", "SK Materials", "SK specialty", "SK Specialty", "SK Group"]}
+  lg:
+    - {unit: LG이노텍, match: ["LG Innotek"]}
+    - {unit: LG디스플레이, match: ["LG Display"]}
+    - {unit: LG화학, match: ["LG Chem"]}
+    - {unit: LG AI연구원, match: ["LG AI Research"]}
+    - {unit: LG전자, match: ["LG Electronics"]}
+# 반도체 무관 계열사·동음 기관 — 맞으면 그 저자 소속은 버린다
+exclude: ["Samsung Medical Center", "Samsung Hospital", "Samsung Seoul Hospital", "Samsung Changwon Hospital", "Samsung Heavy", "Samsung Life", "Samsung Biologics", "Samsung C&T", "Kangbuk Samsung", "Samsung Fire"]
+# 경쟁사 — 같은 학회에 같은 주제가 있으면 '정면 비교' 신호
+rivals: [Micron, TSMC, Taiwan Semiconductor, Intel, CXMT, ChangXin, YMTC, Yangtze Memory, Kioxia, Western Digital, SanDisk, Nanya, Winbond, SMIC, GlobalFoundries, Rapidus, Sony, NVIDIA, AMD, Qualcomm, Apple, Broadcom, MediaTek, IBM]
+# 공저 상대가 이 목록이면 '고객·장비사 공저' 신호(정황 — 공급 관계 확정 아님)
+partners: [NVIDIA, Google, Microsoft, Meta, Amazon, AMD, Apple, Qualcomm, Broadcom, OpenAI, Tesla, ASML, Applied Materials, Lam Research, Tokyo Electron, KLA, imec, IBM, Hewlett Packard, Dell, Cisco, Marvell]

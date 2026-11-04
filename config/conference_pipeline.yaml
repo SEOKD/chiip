@@ -1,0 +1,11 @@
+# 학회 추적 채점 상수 — ADR-015 5단계, radar/conf_track.py. 모두 사전값(백테스트로 피팅 전), 등록부 prm-conf-*
+weights:
+  first_author: 1.0       # 3사가 제1저자 소속
+  numbers: 1.5            # 제목에 사양 숫자(Gb·Gbps·층·nm·pJ/b)
+  rival_same_topic: 2.0   # 같은 학회·같은 주제에 경쟁사 논문
+  partner: 1.5            # 고객·장비사 공저(정황)
+  new_topic: 1.0          # 직전 연도들에 없던 주제
+silence_min_prev: 3       # 직전 연도들 최소 편수가 이 이상일 때만 침묵을 본다
+silence_ratio: 0.5        # 올해 편수 ≤ 직전 최소 × 이 값이면 침묵 신호
+tracker_top: 25           # 추적표에 싣는 상위 편수
+pitch_min_score: 4.0      # article-pitch 후보로 넘기는 점수

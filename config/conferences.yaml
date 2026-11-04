@@ -2,27 +2,28 @@
 # tier: 1 = 삼성·SK·LG 발표가 매년 많고 기사 가치가 큼(우선 구현) / 2 = 분야 핵심 / 3 = 보조·기초
 # src: program(공식 프로그램) · xplore(IEEE Xplore 메타데이터, 키 필요) · dblp · openalex · spie · press(기업 뉴스룸)
 # month: 마스터 목록에 적힌 것만. 나머지는 1단계(공식 사이트 확인)에서 채운다 — 추정으로 채우지 않는다
+# openalex: OpenAlex 출판본 source id(2026-11-05 검색 확인) — 있으면 radar/conf_track.py가 해마다 전 논문을 받아 소속을 매칭한다
 # added: true = 마스터 목록 밖에서 치입이 추가한 학회(삼성·SK·LG 참여 근거를 1단계에서 확인)
 fields: [circuits, device, process, litho, memory, packaging, thermal, reliability, test, eda, arch, interconnect, photonics, power, rf, sensor, materials, metrology, security, ai, industry, korea]
 
 conferences:
   # ── 3대 학회
-  - {id: cf-isscc, name: ISSCC, field: circuits, month: 2, tier: 1, src: [program, xplore]}
-  - {id: cf-iedm, name: IEDM, field: device, month: 12, tier: 1, src: [program, xplore]}
-  - {id: cf-vlsi, name: VLSI Symposium, field: [device, circuits], month: 6, tier: 1, src: [program, xplore]}
+  - {id: cf-isscc, name: ISSCC, field: circuits, month: 2, tier: 1, src: [program, xplore], openalex: [S4210210374]}
+  - {id: cf-iedm, name: IEDM, field: device, month: 12, tier: 1, src: [program, xplore], openalex: [S4210168112]}
+  - {id: cf-vlsi, name: VLSI Symposium, field: [device, circuits], month: 6, tier: 1, src: [program, xplore], openalex: [S4306421008, S4363605407]}
   # ── 회로·아키텍처
-  - {id: cf-hotchips, name: Hot Chips, field: arch, month: 8, tier: 1, src: [program]}
+  - {id: cf-hotchips, name: Hot Chips, field: arch, month: 8, tier: 1, src: [program], openalex: [S4306418629]}
   - {id: cf-dac, name: DAC, field: eda, tier: 2, src: [program, dblp]}
   - {id: cf-cicc, name: CICC, field: circuits, tier: 2, src: [program, xplore]}
   - {id: cf-esserc, name: ESSERC, field: [circuits, device], tier: 2, src: [program, xplore]}
-  - {id: cf-asscc, name: A-SSCC, field: circuits, tier: 1, src: [program, xplore]}
+  - {id: cf-asscc, name: A-SSCC, field: circuits, tier: 1, src: [program, xplore], openalex: [S4363608516]}
   - {id: cf-isca, name: ISCA, field: arch, tier: 1, src: [dblp, program]}
   - {id: cf-micro, name: MICRO, field: arch, tier: 1, src: [dblp, program]}
   - {id: cf-hpca, name: HPCA, field: arch, tier: 1, src: [dblp, program]}
   - {id: cf-socc, name: IEEE SOCC (ISS), field: circuits, tier: 3, src: [program, xplore]}
   - {id: cf-iccad, name: ICCAD, field: eda, tier: 2, src: [dblp]}
   # ── 패키징·인터커넥트
-  - {id: cf-ectc, name: ECTC, field: packaging, month: [5, 6], tier: 1, src: [program, xplore]}
+  - {id: cf-ectc, name: ECTC, field: packaging, month: [5, 6], tier: 1, src: [program, xplore], openalex: [S4363608088]}
   - {id: cf-iitc, name: IITC, field: interconnect, tier: 2, src: [program, xplore]}
   - {id: cf-imaps, name: IMAPS Symposium, field: packaging, tier: 2, src: [program]}
   - {id: cf-eptc, name: EPTC, field: packaging, month: 12, tier: 2, src: [program, xplore]}
@@ -30,13 +31,13 @@ conferences:
   - {id: cf-estc, name: ESTC, field: packaging, tier: 3, src: [program, xplore]}
   # ── 노광·전공정·메모리·신뢰성
   - {id: cf-spie-al, name: SPIE Advanced Lithography + Patterning, field: litho, month: 2, tier: 1, src: [program, spie]}
-  - {id: cf-imw, name: IMW, field: memory, tier: 1, src: [program, xplore]}
+  - {id: cf-imw, name: IMW, field: memory, tier: 1, src: [program, xplore], openalex: [S7407087540]}
   - {id: cf-fms, name: FMS (Future of Memory and Storage), field: memory, tier: 1, src: [program, press]}
-  - {id: cf-irps, name: IRPS, field: reliability, tier: 1, src: [program, xplore]}
+  - {id: cf-irps, name: IRPS, field: reliability, tier: 1, src: [program, xplore], openalex: [S4210238090]}
   - {id: cf-asmc, name: ASMC, field: process, tier: 2, src: [program, xplore]}
   - {id: cf-ispsd, name: ISPSD, field: power, tier: 2, src: [program, xplore]}
   - {id: cf-itc, name: ITC (International Test Conference), field: test, tier: 2, src: [program, xplore]}
-  - {id: cf-ofc, name: OFC, field: photonics, tier: 1, src: [program]}
+  - {id: cf-ofc, name: OFC, field: photonics, tier: 1, src: [program], openalex: [S4306420648]}
   # ── 국내
   - {id: cf-kcs, name: 한국반도체학술대회(KCS), field: korea, month: [1, 2], tier: 1, src: [program]}
   - {id: cf-ismp, name: ISMP (KMEPS), field: [korea, packaging], tier: 2, src: [program]}
@@ -197,7 +198,7 @@ conferences:
   - {id: cf-ald, name: ALD / ALE Conference (AVS 단독), field: process, tier: 2, src: [program], added: true}
   - {id: cf-icmat, name: ICMAT (싱가포르 MRS), field: materials, tier: 3, src: [program], added: true}
   # 국내 국제학회·전시
-  - {id: cf-isocc, name: ISOCC (국제 SoC 설계 학회, 한국), field: [korea, circuits], tier: 1, src: [program, xplore], added: true}
+  - {id: cf-isocc, name: ISOCC (국제 SoC 설계 학회, 한국), field: [korea, circuits], tier: 1, src: [program, xplore], added: true, openalex: [S4306420065]}
   - {id: cf-itc-cscc, name: ITC-CSCC, field: [korea, circuits], tier: 3, src: [program], added: true}
   - {id: cf-iceic, name: ICEIC (대한전자공학회 국제), field: korea, tier: 3, src: [program, xplore], added: true}
   - {id: cf-semicon-kr, name: SEMICON Korea 부대 포럼, field: korea, month: [1, 2], tier: 1, src: [program, press], added: true, note: cf-semicon에서 한국만 따로 추적}

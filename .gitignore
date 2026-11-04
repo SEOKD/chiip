@@ -55,3 +55,4 @@ radar/portfolio/
 knowledge/exclusive/
 # 마스터 포지션(개인 금융 정보) — 이 PC에만
 config/portfolio_positions.local.yaml
+radar/conferences/cache/
