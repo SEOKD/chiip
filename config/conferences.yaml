@@ -1,0 +1,224 @@
+# 학회 등록부 — ADR-015 학회 참여 추적 파이프라인(삼성·SK·LG). 설계안, 마스터 승인 대기
+# tier: 1 = 삼성·SK·LG 발표가 매년 많고 기사 가치가 큼(우선 구현) / 2 = 분야 핵심 / 3 = 보조·기초
+# src: program(공식 프로그램) · xplore(IEEE Xplore 메타데이터, 키 필요) · dblp · openalex · spie · press(기업 뉴스룸)
+# month: 마스터 목록에 적힌 것만. 나머지는 1단계(공식 사이트 확인)에서 채운다 — 추정으로 채우지 않는다
+# added: true = 마스터 목록 밖에서 치입이 추가한 학회(삼성·SK·LG 참여 근거를 1단계에서 확인)
+fields: [circuits, device, process, litho, memory, packaging, thermal, reliability, test, eda, arch, interconnect, photonics, power, rf, sensor, materials, metrology, security, ai, industry, korea]
+
+conferences:
+  # ── 3대 학회
+  - {id: cf-isscc, name: ISSCC, field: circuits, month: 2, tier: 1, src: [program, xplore]}
+  - {id: cf-iedm, name: IEDM, field: device, month: 12, tier: 1, src: [program, xplore]}
+  - {id: cf-vlsi, name: VLSI Symposium, field: [device, circuits], month: 6, tier: 1, src: [program, xplore]}
+  # ── 회로·아키텍처
+  - {id: cf-hotchips, name: Hot Chips, field: arch, month: 8, tier: 1, src: [program]}
+  - {id: cf-dac, name: DAC, field: eda, tier: 2, src: [program, dblp]}
+  - {id: cf-cicc, name: CICC, field: circuits, tier: 2, src: [program, xplore]}
+  - {id: cf-esserc, name: ESSERC, field: [circuits, device], tier: 2, src: [program, xplore]}
+  - {id: cf-asscc, name: A-SSCC, field: circuits, tier: 1, src: [program, xplore]}
+  - {id: cf-isca, name: ISCA, field: arch, tier: 1, src: [dblp, program]}
+  - {id: cf-micro, name: MICRO, field: arch, tier: 1, src: [dblp, program]}
+  - {id: cf-hpca, name: HPCA, field: arch, tier: 1, src: [dblp, program]}
+  - {id: cf-socc, name: IEEE SOCC (ISS), field: circuits, tier: 3, src: [program, xplore]}
+  - {id: cf-iccad, name: ICCAD, field: eda, tier: 2, src: [dblp]}
+  # ── 패키징·인터커넥트
+  - {id: cf-ectc, name: ECTC, field: packaging, month: [5, 6], tier: 1, src: [program, xplore]}
+  - {id: cf-iitc, name: IITC, field: interconnect, tier: 2, src: [program, xplore]}
+  - {id: cf-imaps, name: IMAPS Symposium, field: packaging, tier: 2, src: [program]}
+  - {id: cf-eptc, name: EPTC, field: packaging, month: 12, tier: 2, src: [program, xplore]}
+  - {id: cf-icep, name: ICEP (Japan), field: packaging, tier: 2, src: [program, xplore]}
+  - {id: cf-estc, name: ESTC, field: packaging, tier: 3, src: [program, xplore]}
+  # ── 노광·전공정·메모리·신뢰성
+  - {id: cf-spie-al, name: SPIE Advanced Lithography + Patterning, field: litho, month: 2, tier: 1, src: [program, spie]}
+  - {id: cf-imw, name: IMW, field: memory, tier: 1, src: [program, xplore]}
+  - {id: cf-fms, name: FMS (Future of Memory and Storage), field: memory, tier: 1, src: [program, press]}
+  - {id: cf-irps, name: IRPS, field: reliability, tier: 1, src: [program, xplore]}
+  - {id: cf-asmc, name: ASMC, field: process, tier: 2, src: [program, xplore]}
+  - {id: cf-ispsd, name: ISPSD, field: power, tier: 2, src: [program, xplore]}
+  - {id: cf-itc, name: ITC (International Test Conference), field: test, tier: 2, src: [program, xplore]}
+  - {id: cf-ofc, name: OFC, field: photonics, tier: 1, src: [program]}
+  # ── 국내
+  - {id: cf-kcs, name: 한국반도체학술대회(KCS), field: korea, month: [1, 2], tier: 1, src: [program]}
+  - {id: cf-ismp, name: ISMP (KMEPS), field: [korea, packaging], tier: 2, src: [program]}
+  - {id: cf-ieie, name: 대한전자공학회 학술대회, field: korea, tier: 2, src: [program]}
+  - {id: cf-ksdt, name: 반도체디스플레이기술학회, field: korea, tier: 3, src: [program]}
+  - {id: cf-kieeme, name: 한국전기전자재료학회, field: [korea, materials], tier: 3, src: [program]}
+  - {id: cf-kvs, name: 한국진공학회, field: [korea, process], tier: 2, src: [program]}
+  - {id: cf-kr-materials, name: 한국세라믹·재료·표면공학·화상학회, field: [korea, materials], tier: 3, src: [program]}
+  # ── 단위 공정
+  - {id: cf-avs, name: AVS Symposium (ALD/ALE 포함), field: process, tier: 2, src: [program]}
+  - {id: cf-icpt, name: ICPT (CMP), field: process, tier: 2, src: [program]}
+  - {id: cf-spcc, name: SPCC, field: process, tier: 3, src: [program]}
+  - {id: cf-dps, name: DPS (Dry Process), field: process, tier: 2, src: [program]}
+  - {id: cf-ssdm, name: SSDM, field: device, tier: 2, src: [program]}
+  # ── 포토마스크
+  - {id: cf-spie-pm, name: SPIE Photomask Technology + EUV Lithography, field: litho, month: [9, 10], tier: 2, src: [program, spie]}
+  - {id: cf-bacus, name: BACUS, field: litho, tier: 3, src: [spie]}
+  - {id: cf-pmj, name: Photomask Japan, field: litho, month: 4, tier: 2, src: [program, spie]}
+  - {id: cf-euvl, name: EUVL Workshop, field: litho, tier: 2, src: [program]}
+  # ── 패키징·열·신뢰성 추가
+  - {id: cf-itherm, name: ITherm, field: thermal, tier: 2, src: [program, xplore]}
+  - {id: cf-3dic, name: IEEE 3DIC, field: packaging, tier: 2, src: [program, xplore]}
+  - {id: cf-istfa, name: ISTFA, field: reliability, tier: 3, src: [program]}
+  - {id: cf-impact, name: IMPACT (Taiwan), field: packaging, month: 10, tier: 2, src: [program, xplore]}
+  - {id: cf-empc, name: EMPC, field: packaging, tier: 3, src: [program, xplore]}
+  # ── 화합물·RF·센서
+  - {id: cf-ims, name: IEEE IMS, field: rf, tier: 2, src: [program, xplore]}
+  - {id: cf-rfic, name: RFIC Symposium, field: rf, tier: 2, src: [program, xplore]}
+  - {id: cf-icscrm, name: ICSCRM, field: power, tier: 3, src: [program]}
+  - {id: cf-iwn, name: IWN / ICNS, field: power, tier: 3, src: [program]}
+  - {id: cf-iisw, name: IISW (격년), field: sensor, tier: 1, src: [program]}
+  - {id: cf-mems, name: IEEE MEMS / Transducers, field: sensor, tier: 3, src: [program, xplore]}
+  # ── 인터커넥트·AI 인프라·FPGA
+  - {id: cf-hoti, name: Hot Interconnects, field: interconnect, tier: 2, src: [program, xplore]}
+  - {id: cf-fpga, name: ACM FPGA, field: arch, tier: 3, src: [dblp]}
+  - {id: cf-date, name: DATE, field: eda, tier: 2, src: [dblp]}
+  - {id: cf-aspdac, name: ASP-DAC, field: eda, tier: 2, src: [dblp]}
+  - {id: cf-sc, name: SC (Supercomputing), field: ai, tier: 2, src: [program, press]}
+  # ── 산업·표준
+  - {id: cf-semicon, name: SEMICON (Korea·West·Taiwan·Japan·China·Europa) STS, field: industry, tier: 1, src: [program, press]}
+  - {id: cf-ocp, name: OCP Global Summit, field: industry, tier: 1, src: [program, press]}
+  - {id: cf-jedec, name: JEDEC Mobile & Memory Forum, field: memory, tier: 2, src: [program]}
+  # ── 국내 추가
+  - {id: cf-kr-soc, name: SoC 학술대회, field: [korea, circuits], tier: 2, src: [program]}
+  - {id: cf-kr-crystal, name: 한국결정성장학회, field: [korea, materials], tier: 3, src: [program]}
+  - {id: cf-kr-optics, name: 한국광학회, field: [korea, photonics], tier: 3, src: [program]}
+  - {id: cf-kr-metal-poly, name: 대한금속·재료학회 / 한국고분자학회, field: [korea, materials], tier: 3, src: [program]}
+  - {id: cf-kr-reliab, name: 한국신뢰성학회 / 한국비파괴검사학회, field: [korea, reliability], tier: 3, src: [program]}
+  # ── 소재·계측
+  - {id: cf-ecs, name: ECS Meeting (PRiME 포함), field: materials, tier: 2, src: [program]}
+  - {id: cf-mrs, name: MRS Spring/Fall, field: materials, tier: 2, src: [program]}
+  - {id: cf-fcmn, name: FCMN, field: metrology, tier: 3, src: [program]}
+  - {id: cf-icps, name: EXMATEC / ICPS, field: materials, tier: 3, src: [program]}
+  # ── 세부 공정
+  - {id: cf-iit, name: IIT (Ion Implantation), field: process, tier: 3, src: [program, xplore]}
+  - {id: cf-eipbn, name: EIPBN, field: litho, tier: 3, src: [program]}
+  - {id: cf-mne, name: MNE, field: litho, tier: 3, src: [program]}
+  - {id: cf-mnc, name: MNC (JSAP), field: litho, tier: 3, src: [program]}
+  - {id: cf-gec, name: GEC (APS), field: process, tier: 3, src: [program]}
+  - {id: cf-rtp, name: RTP, field: process, tier: 3, src: [program]}
+  # ── 시뮬레이션·신뢰성·보안
+  - {id: cf-sispad, name: SISPAD, field: device, tier: 2, src: [program, xplore]}
+  - {id: cf-epeps, name: EPEPS, field: packaging, tier: 2, src: [program, xplore]}
+  - {id: cf-nsrec, name: NSREC / RADECS, field: reliability, tier: 3, src: [program]}
+  - {id: cf-eosesd, name: EOS/ESD Symposium, field: reliability, tier: 3, src: [program]}
+  - {id: cf-ches, name: CHES, field: security, tier: 3, src: [dblp]}
+  - {id: cf-vts, name: ITC-Asia / VTS / ETS, field: test, tier: 3, src: [program, xplore]}
+  # ── 광·양자·전력전자
+  - {id: cf-ipc, name: IEEE IPC / Group IV Photonics, field: photonics, tier: 2, src: [program, xplore]}
+  - {id: cf-cleo, name: CLEO, field: photonics, tier: 3, src: [program]}
+  - {id: cf-qce, name: IEEE QCE, field: device, tier: 3, src: [program]}
+  - {id: cf-apec, name: APEC / ECCE, field: power, tier: 2, src: [program, xplore]}
+  # ── 지역 회로·중국·대만
+  - {id: cf-cass-regional, name: MWSCAS / NEWCAS / LASCAS, field: circuits, tier: 3, src: [xplore]}
+  - {id: cf-iscas, name: ISCAS, field: circuits, tier: 2, src: [program, xplore]}
+  - {id: cf-vlsidat, name: VLSI-DAT (Hsinchu), field: circuits, tier: 2, src: [program, xplore]}
+  - {id: cf-cstic, name: CSTIC, field: process, tier: 2, src: [program]}
+  - {id: cf-icsict, name: ICSICT, field: device, tier: 3, src: [program, xplore]}
+  # ── 국내 엔지니어링
+  - {id: cf-kr-mech, name: 한국정밀공학회 / 대한기계학회, field: [korea, thermal], tier: 3, src: [program]}
+  - {id: cf-kr-mfg, name: 한국생산제조학회, field: korea, tier: 3, src: [program]}
+  - {id: cf-kr-sensor, name: 한국센서학회, field: [korea, sensor], tier: 3, src: [program]}
+  - {id: cf-kr-magnet, name: 한국자기학회, field: [korea, memory], tier: 3, src: [program]}
+  - {id: cf-kr-misc, name: 한국산학기술학회 / 한국정보통신학회 / 대한전기학회, field: korea, tier: 3, src: [program]}
+  # ── 계면·화합물 IC·공정 통합
+  - {id: cf-sisc, name: SISC, field: device, month: 12, tier: 3, src: [program], note: 회원 전용 부분은 수집 안 함}
+  - {id: cf-bcicts, name: BCICTS, field: rf, tier: 3, src: [program, xplore]}
+  - {id: cf-edtm, name: EDTM, field: device, tier: 2, src: [program, xplore]}
+  - {id: cf-s3s, name: S3S, field: device, tier: 3, src: [program, xplore]}
+  - {id: cf-drc, name: DRC / EMC, field: device, month: 6, tier: 3, src: [program, xplore]}
+  - {id: cf-ipfa, name: IPFA, field: reliability, tier: 3, src: [program, xplore]}
+  # ── SI/PI·WLP·프로브
+  - {id: cf-designcon, name: DesignCon, field: interconnect, month: [1, 2], tier: 2, src: [program]}
+  - {id: cf-wlps, name: WLPS (SMTA), field: packaging, month: 2, tier: 3, src: [program]}
+  - {id: cf-swtest, name: SWTest / SWTest Asia, field: test, tier: 2, src: [program]}
+  - {id: cf-chiplet, name: Chiplet Summit, field: packaging, tier: 2, src: [program, press]}
+  - {id: cf-pcim, name: PCIM Europe, field: power, tier: 3, src: [program]}
+  # ── 보안·방위
+  - {id: cf-host, name: IEEE HOST, field: security, tier: 3, src: [program, xplore]}
+  - {id: cf-gomac, name: GOMACTech, field: security, tier: 3, src: [program]}
+  - {id: cf-icmts, name: ICMTS, field: test, tier: 3, src: [program, xplore]}
+  # ── EDA 세부·아키텍처·컴파일러
+  - {id: cf-ispd, name: ISPD, field: eda, tier: 3, src: [dblp]}
+  - {id: cf-islped, name: ISLPED, field: circuits, tier: 2, src: [dblp, xplore]}
+  - {id: cf-asplos, name: ASPLOS / CGO, field: arch, tier: 2, src: [dblp]}
+  - {id: cf-async, name: ASYNC, field: circuits, tier: 3, src: [xplore]}
+  - {id: cf-fccm, name: FCCM, field: arch, tier: 3, src: [dblp]}
+  - {id: cf-vlsid, name: VLSID (India), field: circuits, month: 1, tier: 3, src: [program]}
+  # ── 기업 유저 컨퍼런스
+  - {id: cf-eda-users, name: SNUG / CDNLive / User2User, field: eda, tier: 2, src: [program, press]}
+  - {id: cf-voice, name: Advantest VOICE, field: test, tier: 3, src: [program]}
+  # ── 연구기관·파운드리 심포지엄
+  - {id: cf-itf, name: ITF World (imec), field: process, month: 5, tier: 1, src: [program, press]}
+  - {id: cf-foundry-sym, name: TSMC Technology Symposium / Intel Foundry Direct Connect / Samsung Foundry Forum, field: industry, tier: 1, src: [press]}
+  - {id: cf-leti, name: CEA-Leti Innovation Days, field: process, tier: 2, src: [program, press]}
+  # ── 오염·계측·박막
+  - {id: cf-ucpss, name: UCPSS / SPWCC, field: process, tier: 3, src: [program]}
+  - {id: cf-apc, name: APC Conference, field: process, tier: 3, src: [program]}
+  - {id: cf-iest, name: IEST ESTECH, field: process, tier: 3, src: [program]}
+  - {id: cf-icmctf, name: ICTF / ICMCTF, field: materials, tier: 3, src: [program]}
+  - {id: cf-sims, name: SIMS, field: metrology, tier: 3, src: [program]}
+  - {id: cf-iccvd, name: ICCVD, field: process, tier: 3, src: [program]}
+  - {id: cf-iwjt, name: IWJT, field: device, tier: 3, src: [program, xplore]}
+  # ── 자성·비휘발·뉴로모픽
+  - {id: cf-intermag, name: Intermag / MMM, field: memory, tier: 2, src: [program, xplore]}
+  - {id: cf-nvsmw, name: NVSMW / FMS 기술 트랙, field: memory, tier: 2, src: [program]}
+  - {id: cf-aicas, name: ICONS / AICAS, field: ai, tier: 2, src: [program, xplore]}
+  # ── 화합물 양산·광통신
+  - {id: cf-csmantech, name: CS MANTECH, field: process, tier: 3, src: [program]}
+  - {id: cf-iscs, name: ISCS / IPRM, field: device, tier: 3, src: [program]}
+  - {id: cf-iwgo, name: IWGO (산화갈륨), field: power, tier: 3, src: [program]}
+  - {id: cf-ecoc, name: ECOC, field: photonics, tier: 2, src: [program]}
+  # ── 지역 회로·테스트·어셈블리
+  - {id: cf-glsvlsi, name: GLSVLSI, field: circuits, tier: 3, src: [dblp]}
+  - {id: cf-patmos, name: PATMOS, field: eda, tier: 3, src: [dblp]}
+  - {id: cf-ats, name: IEEE ATS, field: test, tier: 3, src: [xplore]}
+  - {id: cf-fpl, name: SPL / FPL, field: arch, tier: 3, src: [dblp]}
+  - {id: cf-smta, name: SMTA International, field: packaging, tier: 3, src: [program]}
+
+  # ════ 치입 추가분 — 마스터 목록 밖, 삼성·SK·LG 참여 가능성이 높은 곳(1단계에서 참여 근거 확인)
+  # 메모리·AI 시스템
+  - {id: cf-memcon, name: MemCon, field: memory, tier: 1, src: [program, press], added: true}
+  - {id: cf-cxl, name: CXL DevCon / CXL Consortium 행사, field: memory, tier: 2, src: [program, press], added: true}
+  - {id: cf-gtc, name: NVIDIA GTC (전시·세션), field: ai, tier: 1, src: [program, press], added: true, note: HBM·메모리 전시·세션 발표}
+  - {id: cf-computex, name: COMPUTEX, field: industry, tier: 2, src: [press], added: true}
+  - {id: cf-aihw, name: AI Hardware & Edge AI Summit, field: ai, tier: 2, src: [program], added: true}
+  - {id: cf-isc, name: ISC High Performance, field: ai, tier: 3, src: [program], added: true}
+  - {id: cf-mlsys, name: MLSys, field: ai, tier: 2, src: [dblp], added: true}
+  - {id: cf-ml-top, name: NeurIPS / ICML / ICLR / CVPR, field: ai, tier: 2, src: [dblp, openalex], added: true, note: SAIT·Samsung Research·SK hynix AiM·LG AI Research 저자}
+  - {id: cf-ocp-apac, name: OCP APAC·Korea Tech Day, field: industry, tier: 2, src: [program, press], added: true}
+  # 소자·공정·신뢰성 보강
+  - {id: cf-vlsi-tsa, name: VLSI-TSA (Hsinchu), field: device, tier: 2, src: [program, xplore], added: true}
+  - {id: cf-snw, name: Silicon Nanoelectronics Workshop (VLSI 동시), field: device, tier: 3, src: [program], added: true}
+  - {id: cf-irw, name: IEEE IIRW (Integrated Reliability Workshop), field: reliability, tier: 3, src: [program, xplore], added: true}
+  - {id: cf-esref, name: ESREF, field: reliability, tier: 3, src: [program], added: true}
+  - {id: cf-isqed, name: ISQED, field: eda, tier: 3, src: [xplore], added: true}
+  - {id: cf-iwaps, name: IWAPS (중국 노광·패터닝), field: litho, tier: 3, src: [program], added: true}
+  - {id: cf-ald, name: ALD / ALE Conference (AVS 단독), field: process, tier: 2, src: [program], added: true}
+  - {id: cf-icmat, name: ICMAT (싱가포르 MRS), field: materials, tier: 3, src: [program], added: true}
+  # 국내 국제학회·전시
+  - {id: cf-isocc, name: ISOCC (국제 SoC 설계 학회, 한국), field: [korea, circuits], tier: 1, src: [program, xplore], added: true}
+  - {id: cf-itc-cscc, name: ITC-CSCC, field: [korea, circuits], tier: 3, src: [program], added: true}
+  - {id: cf-iceic, name: ICEIC (대한전자공학회 국제), field: korea, tier: 3, src: [program, xplore], added: true}
+  - {id: cf-semicon-kr, name: SEMICON Korea 부대 포럼, field: korea, month: [1, 2], tier: 1, src: [program, press], added: true, note: cf-semicon에서 한국만 따로 추적}
+  - {id: cf-nanokorea, name: 나노코리아, field: korea, tier: 3, src: [program], added: true}
+  - {id: cf-kpca, name: KPCA Show (국제PCB·반도체패키징산업전), field: [korea, packaging], tier: 2, src: [program, press], added: true, note: LG이노텍·삼성전기 기판}
+  - {id: cf-kr-ai-chip, name: AI 반도체 포럼·K-AI 반도체 행사, field: [korea, ai], tier: 2, src: [press], added: true}
+  # 디스플레이·기판·부품(LG·삼성 계열)
+  - {id: cf-sid, name: SID Display Week, field: device, tier: 2, src: [program], added: true, note: LG디스플레이·삼성디스플레이}
+  - {id: cf-imid, name: IMID (한국정보디스플레이학회), field: [korea, device], tier: 2, src: [program], added: true}
+  - {id: cf-idw, name: IDW (일본), field: device, tier: 3, src: [program], added: true}
+  - {id: cf-apex, name: IPC APEX EXPO, field: packaging, tier: 3, src: [program], added: true}
+  - {id: cf-photonics-west, name: SPIE Photonics West, field: photonics, tier: 3, src: [program, spie], added: true}
+  - {id: cf-ces, name: CES (기술 세션), field: industry, month: 1, tier: 2, src: [press], added: true, note: 기존 knowledge/entities/conferences/cf-ces-2027.md}
+  # 기업 주최 행사(1차 채널 — 학회는 아니지만 발표 무대)
+  - {id: cf-samsung-own, name: Samsung Memory Tech Day / SAFE Forum / Samsung AI Forum / Samsung Tech Day, field: industry, tier: 1, src: [press], added: true}
+  - {id: cf-sk-own, name: SK AI Summit / SK hynix 기술 행사, field: industry, tier: 1, src: [press], added: true}
+  - {id: cf-lg-own, name: LG AI Research 행사 / LG Innotek 기술 공개 행사, field: industry, tier: 2, src: [press], added: true}
+
+# 학회는 아니지만 같은 파이프라인으로 보는 저널(소속 매칭·주제 분류 동일)
+journals:
+  - {id: jr-jssc, name: IEEE JSSC, src: [xplore, openalex]}
+  - {id: jr-ted, name: IEEE TED / EDL, src: [xplore, openalex]}
+  - {id: jr-tcpmt, name: IEEE TCPMT (패키징), src: [xplore, openalex]}
+  - {id: jr-natelec, name: Nature Electronics, src: [openalex]}
