@@ -37,3 +37,11 @@ bl:
 opt:
   kappa: 0.002               # 회전 벌점(설계 단계 3에서 비용 장부로 점검)
   step: 0.05
+# ── 3단계 가상 장부(scripts/pm/ledger.py, 마스터 지시 2026-11-04 "3단계 진행") ──
+ledger:
+  band: 0.20                 # 무거래 구간 — 목표 비중의 ±20% 안이면 거래하지 않음(Gârleanu & Pedersen 2013)
+  band_abs: 0.005            # 목표가 작을 때의 절대 하한(비중 0.5%p)
+  speed: 0.5                 # 목표 쪽 부분 조정 속도 a
+  half_spread_bps: 10        # 스프레드 반(소형·중형 성장주 근사)
+  eta: 0.5                   # 제곱근 충격 계수(Almgren–Chriss 실무)
+  nav_usd: 1000000           # 충격 계산용 명목 규모(가상)

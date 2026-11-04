@@ -3214,6 +3214,70 @@ params:
     data: knowledge/models/pm/
     last_fit: null
     oos_metric: null
+- id: prm-pm-ledger-band
+  model: pm.ledger
+  binding: config/pm.yaml#ledger.band
+  value: 0.2
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.2
+    basis: 무거래 구간
+    source: Gârleanu & Pedersen(2013) J. Finance 68(6)
+  fit:
+    method: 회전율·비용 차감 성과 표본 외
+    target: 가상 장부 비용 차감 수익
+    data: knowledge/models/pm/book_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-ledger-speed
+  model: pm.ledger
+  binding: config/pm.yaml#ledger.speed
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: 목표 쪽 부분 조정 속도
+    source: Gârleanu & Pedersen(2013)
+  fit:
+    method: 같음
+    target: 가상 장부 비용 차감 수익
+    data: knowledge/models/pm/book_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-ledger-half-spread-bps
+  model: pm.ledger
+  binding: config/pm.yaml#ledger.half_spread_bps
+  value: 10
+  unit: bp
+  status: prior
+  prior:
+    value: 10
+    basis: 스프레드 반 근사
+    source: 실무 근사(소·중형 성장주)
+  fit:
+    method: 체결 스프레드 자료가 생기면 갱신
+    target: 가상 장부 비용 차감 수익
+    data: knowledge/models/pm/book_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-ledger-eta
+  model: pm.ledger
+  binding: config/pm.yaml#ledger.eta
+  value: 0.5
+  unit: 계수
+  status: prior
+  prior:
+    value: 0.5
+    basis: 제곱근 시장 충격
+    source: Almgren & Chriss(2000) J. Risk 3(2) · 실무
+  fit:
+    method: 고정
+    target: 가상 장부 비용 차감 수익
+    data: knowledge/models/pm/book_log.csv
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
