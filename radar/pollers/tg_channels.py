@@ -55,9 +55,17 @@ def parse(page, seen=""):
         fwd = re.search(r'forwarded_from_name[^>]*>(?:<span[^>]*>)?([^<]+)', b)
         link = next((u for u in re.findall(r'href="(https?://[^"]+)"', raw) if "t.me/" not in u), "")
         out.append({"id": int(post.group(2)), "channel": post.group(1), "at": common.iso(datetime.fromisoformat(ts.group(1)).astimezone(common.KST)), "text": text, "url": f"https://t.me/{post.group(1)}/{post.group(2)}",
-                    "forwarded_from": html.unescape(fwd.group(1)).strip() if fwd else "", "link": html.unescape(link), "media": "photo_wrap" in b or "document_wrap" in b, "seen": seen,
+                    "forwarded_from": fwd_name(b, fwd), "link": html.unescape(link), "media": "photo_wrap" in b or "document_wrap" in b, "seen": seen,
                     "image": img.group(1) if img else "", "unsupported": "message_media_not_supported" in b})
     return out
+
+
+def fwd_name(b, fwd=None):
+    """전달 글의 원 채널 이름. 원 작성자가 이름을 숨긴 전달은 '(이름 숨김)' — 재인용 판정(origin_id)에서 독립 출처로 세지 않게(2026-11-04 점검)"""
+    fwd = fwd or re.search(r'forwarded_from_name[^>]*>(?:<span[^>]*>)?([^<]+)', b)
+    if fwd and html.unescape(fwd.group(1)).strip():
+        return html.unescape(fwd.group(1)).strip()
+    return "(이름 숨김)" if "tgme_widget_message_forwarded_from" in b else ""
 
 
 def og_text(page):
@@ -83,9 +91,12 @@ def read_post(handle, pid, base, get, seen):
     text = og_text(page)
     if not text or text == base:
         return None
-    ts = re.search(r'<time[^>]*datetime="([^"]+)"', page) or re.search(r'<time[^>]*datetime="([^"]+)"', get(url + "?embed=1"))   # 공개 페이지에 시각이 없으면 임베드에서
+    emb = get(url + "?embed=1")   # 시각·전달 출처·사진은 임베드에 있다(2026-11-04 점검: 번호 읽기 채널의 전달 출처가 비어 있었다)
+    ts = re.search(r'<time[^>]*datetime="([^"]+)"', page) or re.search(r'<time[^>]*datetime="([^"]+)"', emb)
     at = common.iso(datetime.fromisoformat(ts.group(1)).astimezone(common.KST)) if ts else seen
-    return {"id": pid, "channel": handle, "at": at, "text": text, "url": url, "forwarded_from": "", "link": "", "media": False, "seen": seen, "image": "", "unsupported": False}
+    img = re.search(r"message_photo_wrap[^>]*background-image:url\('([^']+)'\)", emb)
+    return {"id": pid, "channel": handle, "at": at, "text": text, "url": url, "forwarded_from": fwd_name(emb), "link": "", "media": "photo_wrap" in emb or "document_wrap" in emb, "seen": seen,
+            "image": img.group(1) if img else "", "unsupported": "message_media_not_supported" in emb}
 
 
 def latest_id(handle, base, get, pause=0.3, top=200000):
@@ -216,7 +227,7 @@ def score(now=None):
     mark = common.load_state("pulse", {}).get("tg_start") or cut2
     lag = common.iso(now - timedelta(minutes=15))   # 다음 Pulse 회차를 기다리는 글은 아직 판정하지 않는다
     recent = [p for r in rows.values() for p in r.values() if max(cut2, mark) <= p.get("seen", "") < lag and (p["text"] or p.get("image"))]   # 첫 수집이 거슬러 받은 과거 글은 빼고 Pulse가 받기 시작한 뒤의 글만
-    sent = "".join(open(f, encoding="utf-8").read() for f in sorted(glob.glob(str(common.ROOT / "radar" / "pulse" / "*.json")))[-60:])
+    sent = "".join(open(f, encoding="utf-8").read() for f in sorted(glob.glob(str(common.ROOT / "radar" / "pulse" / "*.json")))[-300:])   # 24시간 창을 덮는다(주중 10분 회차면 하루 144개, 60개는 7시간뿐이었다)
     fed = sum(1 for p in recent if p["url"] in sent) / len(recent) if recent else 1   # 새 글이 없는 시간대는 감점하지 않는다
     axes = {"채널": round(2 * live / len(rows), 1), "신선도": fresh, "본문": round(2 * body, 1), "오류": 2.0 if not st.get("fails") else 1.0, "Pulse 전달": round(2 * fed, 1)}
     return round(sum(axes.values()), 1), axes, {"수집 후 분": round(age, 1), "7일 글": len(week), "글자 없음(사진 포함)": sum(1 for p in week if not p["text"]), "사진 주소도 없음": sum(1 for p in week if not p["text"] and not p.get("image")), "24시간 새 글": len(recent)}
