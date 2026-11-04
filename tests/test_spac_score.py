@@ -32,6 +32,11 @@ class T(unittest.TestCase):
         lock = {**BASE, "lockups": [{"date": "2000-01-01", "shares": 60}]}
         self.assertLess(ss.score(lock, "S5", True, C)["factors"]["overhang"], ss.score(BASE, "S5", True, C)["factors"]["overhang"])
 
+    def test_base_rate_line(self):
+        line = ss.score(BASE, "S5", True, C)["base_rate"]
+        self.assertIn("10배", line)
+        self.assertIn("생존 편향", line)
+
     def test_value_log_scale(self):
         cheap = {**BASE, "projections": [{"rev": 1.0}], "peer_ev_rev": 4.0}
         r = ss.score(cheap, "S5", True, C)

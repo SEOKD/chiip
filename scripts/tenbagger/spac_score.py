@@ -111,7 +111,16 @@ def score(s, stage, theme_ok, c=None, today=None):
     if kills:
         val = min(val or 0.0, c["kill_cap"])
     return {"score": val, "factors": {k: round(v, 1) for k, v in f.items()}, "missing": [k for k in c["weights"]["pre_vote"] if k not in f],
-            "numbers": nums, "notes": notes, "kills": kills, "stage": stage, "candidate": bool(val is not None and val >= c["candidate_min"] and not kills and theme_ok)}
+            "numbers": nums, "notes": notes, "kills": kills, "stage": stage, "base_rate": base_rate_line(c), "candidate": bool(val is not None and val >= c["candidate_min"] and not kills and theme_ok)}
+
+
+def base_rate_line(c):
+    """스팩 종결 뒤 기저율 한 줄(4단계 표본, config/spac.yaml score.base_rate) — 점수와 함께 읽게"""
+    b = c.get("base_rate") or {}
+    if not b:
+        return None
+    return (f"스팩 종결 뒤 기저율(2021~2025 표본 {b['n']}건, 생존 편향으로 낙관 쪽): 24개월 수익 중앙값 {b['r24m_median']:+.0%}, "
+            f"−50% 이하 {b['lt_minus50_24m']:.0%}, 2배 도달 {b['ge2x_24m']:.0%}, 3배 {b['ge3x_24m']:.0%}, 10배 {b['ge10x_24m']:.0%}")
 
 
 def ledger():

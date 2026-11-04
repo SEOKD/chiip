@@ -1,0 +1,510 @@
+cik,name,tickers,close_date,url,theme,theme_hits,key,r6m,r12m,r24m,max24m,now_x,px_status
+1822791,Clene Inc.,"CLNN,CLNNW",2021-01-05,https://www.sec.gov/Archives/edgar/data/1822791/000121390021000487/,,0,,0.373,-0.433,-0.869,2.22,0.026,ok
+1757932,"Romeo Power, Inc.",,2021-01-05,https://www.sec.gov/Archives/edgar/data/1757932/000110465921001031/,,,,,,,,,
+1779020,"Danimer Scientific, Inc.","DNMR,DNMRW",2021-01-05,https://www.sec.gov/Archives/edgar/data/1779020/000121390021000468/,,,,,,,,,시세 없음
+1768012,"Golden Nugget Online Gaming, Inc.",,2021-01-05,https://www.sec.gov/Archives/edgar/data/1768012/000110465921001022/,,,,,,,,,
+1793659,"Rush Street Interactive, Inc.",RSI,2021-01-05,https://www.sec.gov/Archives/edgar/data/1793659/000119312521002054/,,0,,-0.45,-0.223,-0.815,1.24,0.619,ok
+836937,UPD HOLDING CORP.,UPDC,2021-01-07,https://www.sec.gov/Archives/edgar/data/836937/000121465921000270/,,,,,,,,,시세 없음
+1725872,"BM Technologies, Inc.","BMTX,BMTX-WT",2021-01-08,https://www.sec.gov/Archives/edgar/data/1725872/000121390021001260/,,,,,,,,,시세 없음
+1801170,"CLOVER HEALTH INVESTMENTS, CORP. /DE",CLOV,2021-01-12,https://www.sec.gov/Archives/edgar/data/1801170/000119312521007348/,,0,,-0.406,-0.774,-0.915,1.52,0.293,ok
+1721386,Landsea Homes Corp,"LSEA,LSEAW",2021-01-13,https://www.sec.gov/Archives/edgar/data/1721386/000173112221000062/,,,,,,,,,시세 없음
+1774155,BTRS Holdings Inc.,,2021-01-14,https://www.sec.gov/Archives/edgar/data/1774155/000114036121001212/,,,,,,,,,
+1783398,UWM Holdings Corp,"UWMC,UWMC-WT",2021-01-22,https://www.sec.gov/Archives/edgar/data/1783398/000119312521014912/,,0,,-0.325,-0.534,-0.616,1,0.14,ok
+1773751,"Hims & Hers Health, Inc.",HIMS,2021-01-26,https://www.sec.gov/Archives/edgar/data/1773751/000119312521017838/,,0,,-0.441,-0.684,-0.483,1.67,1.777,ok
+1744494,"ADVENT TECHNOLOGIES HOLDINGS, INC.","ADN,ADNWW",2021-02-09,https://www.sec.gov/Archives/edgar/data/1744494/000114036121003946/,,0,,-0.489,-0.764,-0.885,1,0,ok
+1800347,"E2open Parent Holdings, Inc.","ETWO,ETWO-WT",2021-02-10,https://www.sec.gov/Archives/edgar/data/1800347/000110465921019902/,,0,,0.11,-0.029,-0.331,1.45,0.342,ok
+1816736,"Gemini Therapeutics, Inc. /DE",IRON,2021-02-11,https://www.sec.gov/Archives/edgar/data/1816736/000121390021008478/,,0,,-0.675,-0.864,-0.81,1.41,0.637,ok
+1819035,"Metromile, Inc.",,2021-02-11,https://www.sec.gov/Archives/edgar/data/1819035/000121390021008472/,,,,,,,,,
+1819663,"VININGS HOLDINGS, INC.",,2021-02-12,https://www.sec.gov/Archives/edgar/data/1819663/000168316821000511/,,,,,,,,,
+1804176,"Butterfly Network, Inc.","BFLY,BFLY-WT",2021-02-16,https://www.sec.gov/Archives/edgar/data/1804176/000110465921023964/,,0,,-0.548,-0.75,-0.888,1.21,0.29,ok
+1803914,"PLBY Group, Inc.",PLBY,2021-02-16,https://www.sec.gov/Archives/edgar/data/1803914/000110465921024317/,,0,,0.726,0.072,-0.812,4.37,0.097,ok
+1817760,"SmartKem, Inc.",SMTK,2021-02-24,https://www.sec.gov/Archives/edgar/data/1817760/000110465921027574/,,0,,-0.3,-0.752,-0.871,1.52,0,ok
+1777393,"ChargePoint Holdings, Inc.",CHPT,2021-03-01,https://www.sec.gov/Archives/edgar/data/1777393/000119312521063743/,,0,,-0.295,-0.518,-0.632,1.19,0.018,ok
+1807707,"AppHarvest, Inc.",,2021-03-02,https://www.sec.gov/Archives/edgar/data/1807707/000110465921030448/,,,,,,,,,
+1811856,"View, Inc.",,2021-03-12,https://www.sec.gov/Archives/edgar/data/1811856/000119312521079857/,,,,,,,,,
+1816581,Colonnade Acquisition Corp.,"OUST,OUST-WT,OUST-WTA",2021-03-15,https://www.sec.gov/Archives/edgar/data/1816581/000119312521080038/,,0,,-0.313,-0.73,-0.92,1.29,0.29,ok
+1789029,"Aeva Technologies, Inc.","AEVA,AEVA-WT",2021-03-18,https://www.sec.gov/Archives/edgar/data/1789029/000119312521085979/,,0,,-0.265,-0.659,-0.889,1.1,0.141,ok
+1830033,"PureCycle Technologies, Inc.","PCT,PCTTU,PCTTW",2021-03-22,https://www.sec.gov/Archives/edgar/data/1830033/000110465921039237/,,0,,-0.607,-0.729,-0.822,1.01,0.102,ok
+1836875,Nuvve Holding Corp.,"NVVE,NVVEW",2021-03-25,https://www.sec.gov/Archives/edgar/data/1836875/000121390021017736/,전력·에너지 인프라,6,,0.115,-0.258,-0.949,1.57,0,ok
+1789760,"Arrival Vault US, Inc.",,2021-03-29,https://www.sec.gov/Archives/edgar/data/1789760/000119312521097571/,,,,,,,,,
+1818355,Foley Trasimene Acquisition II,,2021-03-30,https://www.sec.gov/Archives/edgar/data/1818355/000119312521100484/,,,,,,,,,
+1704720,"Cannae Holdings, Inc.",CNNE,2021-03-30,https://www.sec.gov/Archives/edgar/data/1704720/000119312521100588/,,0,,-0.206,-0.362,-0.505,1.07,0.448,ok
+1001171,BROADWAY FINANCIAL CORP \DE\,BYFC,2021-04-05,https://www.sec.gov/Archives/edgar/data/1001171/000114036121011567/,,0,,0.43,-0.328,-0.562,1.71,0.62,ok
+1799611,Collective Growth Corp,,2021-04-07,https://www.sec.gov/Archives/edgar/data/1799611/000119312521108884/,,,,,,,,,
+1763731,Replay Acquisition LLC,,2021-04-07,https://www.sec.gov/Archives/edgar/data/1763731/000119312521108986/,,,,,,,,,
+1780312,"AST SpaceMobile, Inc.","ASTS,ASTSW",2021-04-12,https://www.sec.gov/Archives/edgar/data/1780312/000149315221008574/,우주·위성,30,,0.038,0.034,-0.549,1.44,3.867,ok
+1815495,Northern Genesis Acquisition Corp.,,2021-05-06,https://www.sec.gov/Archives/edgar/data/1815495/000121390021024936/,,,,,,,,,
+1818093,Beauty Health Co,SKIN,2021-05-10,https://www.sec.gov/Archives/edgar/data/1818093/000119312521156433/,,0,,1.357,-0.09,-0.167,2.4,0.042,ok
+1802749,"Lightning eMotors, Inc.",ZEVY,2021-05-12,https://www.sec.gov/Archives/edgar/data/1802749/000119312521159335/,,,,,,,,,시세 없음
+1502557,"CX Network Group, Inc.",KPEA,2021-05-18,https://www.sec.gov/Archives/edgar/data/1502557/000121390021027681/,,,,,,,,,시세 없음
+1823945,BLUE OWL CAPITAL INC.,OWL,2021-05-21,https://www.sec.gov/Archives/edgar/data/1823945/000119312521169371/,,0,,0.396,0.007,-0.127,1.54,0.909,ok
+1818874,"SoFi Technologies, Inc.",SOFI,2021-06-04,https://www.sec.gov/Archives/edgar/data/1818874/000162828021011688/,,0,,-0.211,-0.665,-0.633,1.15,0.818,ok
+1819574,Original Bark Co,"BARK,BARK-WT",2021-06-07,https://www.sec.gov/Archives/edgar/data/1819574/000119312521184524/,,0,,-0.62,-0.855,-0.906,1.07,0.035,ok
+1800682,"Cano Health, Inc.",,2021-06-09,https://www.sec.gov/Archives/edgar/data/1800682/000119312521186694/,,,,,,,,,
+1808805,"Nautilus Biotechnology, Inc.",NAUT,2021-06-10,https://www.sec.gov/Archives/edgar/data/1808805/000162828021011892/,AI·반도체,4,,-0.508,-0.705,-0.675,1,0.213,ok
+1826000,"Latch, Inc.",LTCH,2021-06-10,https://www.sec.gov/Archives/edgar/data/1826000/000119312521187247/,,,,,,,,,시세 없음
+1839839,"Janus International Group, Inc.",JBI,2021-06-11,https://www.sec.gov/Archives/edgar/data/1839839/000119312521188980/,,0,,-0.115,-0.292,-0.318,1.1,0.328,ok
+1813914,Deerfield Healthcare Technology Acquisitions Corp.,"CMAX,CMAXW",2021-06-14,https://www.sec.gov/Archives/edgar/data/1813914/000110465921080874/,,,,,,,,,시세 없음
+1770141,"UpHealth, Inc.",UPHL,2021-06-15,https://www.sec.gov/Archives/edgar/data/1770141/000119312521191296/,,,,,,,,,시세 없음
+1816431,Quantum-Si Inc,"QSI,QSIAW",2021-06-15,https://www.sec.gov/Archives/edgar/data/1816431/000110465921081560/,양자,85,,-0.3,-0.636,-0.814,1.58,0.157,ok
+1841925,"indie Semiconductor, Inc.",INDI,2021-06-16,https://www.sec.gov/Archives/edgar/data/1841925/000121390021032758/,,0,,0.233,-0.291,0.071,1.73,0.168,ok
+1820630,Proterra Inc,,2021-06-17,https://www.sec.gov/Archives/edgar/data/1820630/000162828021012482/,,,,,,,,,
+1774675,Skillsoft Corp.,"SKIL,SKILW",2021-06-17,https://www.sec.gov/Archives/edgar/data/1774675/000110465921082707/,,0,,0.042,-0.555,-0.856,1.34,0.024,ok
+1804591,23andMe Holding Co.,ME,2021-06-21,https://www.sec.gov/Archives/edgar/data/1804591/000119312521194255/,,,,,,,,,시세 없음
+1779474,"WM TECHNOLOGY, INC.","MAPS,MAPSW",2021-06-22,https://www.sec.gov/Archives/edgar/data/1779474/000114036121021785/,,,,,,,,,시세 없음
+1815849,"ATI Physical Therapy, Inc.","ATIP,ATIPW",2021-06-23,https://www.sec.gov/Archives/edgar/data/1815849/000119312521197388/,,,,,,,,,시세 없음
+1803901,"Talkspace, Inc.","TALK,TALKW",2021-06-23,https://www.sec.gov/Archives/edgar/data/1803901/000119312521197353/,,0,,-0.789,-0.812,-0.863,1,0.571,ok
+1723648,"LiveVox Holdings, Inc.",,2021-06-24,https://www.sec.gov/Archives/edgar/data/1723648/000119312521198809/,,,,,,,,,
+1832459,Thoma Bravo Advantage,,2021-06-28,https://www.sec.gov/Archives/edgar/data/1832459/000119312521202203/,,,,,,,,,
+1828805,"Aeluma, Inc.",ALMU,2021-06-28,https://www.sec.gov/Archives/edgar/data/1828805/000121390021034503/,,0,,0.975,0.295,3.05,5.49,3.69,ok
+1777835,Perella Weinberg Partners,PWP,2021-06-30,https://www.sec.gov/Archives/edgar/data/1777835/000119312521204696/,,0,,-0.017,-0.547,-0.349,1.13,1.117,ok
+1784168,"Electric Last Mile Solutions, Inc.",ELMSQ,2021-06-30,https://www.sec.gov/Archives/edgar/data/1784168/000121390021035067/,,,,,,,,,시세 없음
+1826889,Forest Road Acquisition Corp.,"BODI,BODYW",2021-07-01,https://www.sec.gov/Archives/edgar/data/1826889/000119312521206543/,,0,,-0.766,-0.884,-0.959,1.06,0.008,ok
+1811764,POINT Biopharma Global Inc.,,2021-07-01,https://www.sec.gov/Archives/edgar/data/1811764/000110465921087795/,,,,,,,,,
+1814329,Holicity Inc.,,2021-07-01,https://www.sec.gov/Archives/edgar/data/1814329/000119312521205288/,,,,,,,,,
+1802457,"Origin Materials, Inc.","ORGN,ORGNW",2021-07-01,https://www.sec.gov/Archives/edgar/data/1802457/000119312521206309/,,,,,,,,,시세 없음
+1845815,Payoneer Global Inc.,"PAYO,PAYOW",2021-07-01,https://www.sec.gov/Archives/edgar/data/1845815/000121390021035350/,,0,,-0.291,-0.604,-0.527,1.07,0.713,ok
+1821160,Guild Holdings Co,GHLD,2021-07-02,https://www.sec.gov/Archives/edgar/data/1821160/000182116021000027/,,,,,,,,,시세 없음
+1777921,Apex Technology Acquisition Corp,"AVPT,AVPTW",2021-07-07,https://www.sec.gov/Archives/edgar/data/1777921/000119312521209872/,,0,,-0.397,-0.56,-0.486,1.05,1.465,ok
+1821159,EVgo Inc,"EVGO,EVGOW",2021-07-08,https://www.sec.gov/Archives/edgar/data/1821159/000110465921090210/,,0,,-0.236,-0.47,-0.648,1.54,0.148,ok
+1816233,"Sharecare, Inc.","SHCR,SHCRW",2021-07-08,https://www.sec.gov/Archives/edgar/data/1816233/000121390021036180/,,,,,,,,,시세 없음
+1809104,"Alight Group, Inc.",ALIT,2021-07-09,https://www.sec.gov/Archives/edgar/data/1809104/000119312521211067/,,0,,0.085,-0.227,0.057,1.41,0.065,ok
+1844224,FREYR Battery,,2021-07-13,https://www.sec.gov/Archives/edgar/data/1844224/000110465921091727/,,,,,,,,,
+1821850,Sunlight Financial Holdings Inc.,,2021-07-15,https://www.sec.gov/Archives/edgar/data/1821850/000110465921092678/,,,,,,,,,
+1819516,Wheels Up Experience Inc.,"UP,WSUPW",2021-07-19,https://www.sec.gov/Archives/edgar/data/1819516/000162828021014018/,,0,,-0.609,-0.789,-0.979,1.01,0.002,ok
+1828318,Enovix Corp,ENVX,2021-07-19,https://www.sec.gov/Archives/edgar/data/1828318/000119312521218701/,AI·반도체,21,,0.028,-0.398,0.135,1.93,0.159,ok
+1822492,Hillman Solutions Corp.,HLMN,2021-07-20,https://www.sec.gov/Archives/edgar/data/1822492/000110465921094006/,,0,,-0.244,-0.207,-0.222,1.1,0.687,ok
+1816613,Markforged Holding Corp,"MKFG,MKFG-WT",2021-07-20,https://www.sec.gov/Archives/edgar/data/1816613/000110465921094003/,,,,,,,,,시세 없음
+1822928,Holley Inc.,"HLLY,HLLY-WT",2021-07-21,https://www.sec.gov/Archives/edgar/data/1822928/000119312521220722/,,0,,0.349,0.265,-0.361,1.48,0.276,ok
+1816708,"Owlet, Inc.","OWLT,OWLTW",2021-07-21,https://www.sec.gov/Archives/edgar/data/1816708/000114036121025216/,,0,,-0.752,-0.734,-0.956,1.29,0.038,ok
+1716583,Hyzon Motors Inc.,"HYZN,HYZNW",2021-07-22,https://www.sec.gov/Archives/edgar/data/1716583/000119312521221839/,,,,,,,,,시세 없음
+1805521,FARADAY FUTURE INTELLIGENT ELECTRIC INC.,"FFIE,FFIEW",2021-07-22,https://www.sec.gov/Archives/edgar/data/1805521/000121390021038096/,,,,,,,,,시세 없음
+1805385,"Evolv Technologies Holdings, Inc.","EVLV,EVLVW",2021-07-22,https://www.sec.gov/Archives/edgar/data/1805385/000110465921094890/,,0,,-0.603,-0.7,-0.314,1.21,0.526,ok
+1752828,Celularity Inc,"CELU,CELUW",2021-07-22,https://www.sec.gov/Archives/edgar/data/1752828/000121390021038102/,,0,,-0.582,-0.638,-0.948,1.36,0.009,ok
+1691936,"STRYVE FOODS, INC.","SNAX,SNAXW",2021-07-26,https://www.sec.gov/Archives/edgar/data/1691936/000149315221017760/,,,,,,,,,시세 없음
+1818502,OppFi Inc.,"OPFI,OPFI-WT",2021-07-26,https://www.sec.gov/Archives/edgar/data/1818502/000119312521224403/,,0,,-0.589,-0.733,-0.814,1,0.538,ok
+1824734,"Berkshire Grey, Inc.",,2021-07-27,https://www.sec.gov/Archives/edgar/data/1824734/000121390021038894/,,,,,,,,,
+1819394,"Matterport, Inc./DE",MTTR,2021-07-28,https://www.sec.gov/Archives/edgar/data/1819394/000119312521227538/,,,,,,,,,시세 없음
+1824403,"Reservoir Media, Inc.","RSVR,RSVRW",2021-07-28,https://www.sec.gov/Archives/edgar/data/1824403/000110465921097058/,,0,,-0.337,-0.283,-0.425,1.06,1.037,ok
+1760689,"Microvast Holdings, Inc.","MVST,MVSTW",2021-07-28,https://www.sec.gov/Archives/edgar/data/1760689/000121390021039093/,전력·에너지 인프라,9,,-0.37,-0.684,-0.663,1.61,0.072,ok
+1818331,Sema4 Holdings Corp.,"WGS,WGSWW",2021-07-28,https://www.sec.gov/Archives/edgar/data/1818331/000162828021014760/,,0,,-0.727,-0.856,-0.98,1.09,0.186,ok
+876883,Stagwell Inc,STGW,2021-08-02,https://www.sec.gov/Archives/edgar/data/876883/000110465921098992/,,0,,0.378,0.266,0.172,1.96,1.985,ok
+1722438,"Doma Holdings, Inc.","DOMA,DOMAW",2021-08-03,https://www.sec.gov/Archives/edgar/data/1722438/000162828021015371/,,,,,,,,,시세 없음
+1794905,"Cyxtera Technologies, Inc.",,2021-08-04,https://www.sec.gov/Archives/edgar/data/1794905/000119312521236394/,,,,,,,,,
+1818201,CCC Intelligent Solutions Holdings Inc.,CCCS,2021-08-05,https://www.sec.gov/Archives/edgar/data/1818201/000119312521237930/,,0,,0.113,0.122,0.187,1.48,0.865,ok
+1828105,Hippo Holdings Inc.,"HIPO,HIPO-WT",2021-08-05,https://www.sec.gov/Archives/edgar/data/1828105/000119312521237966/,,0,,-0.762,-0.893,-0.937,1,0.176,ok
+1826018,"ROVER GROUP, INC.",,2021-08-05,https://www.sec.gov/Archives/edgar/data/1826018/000156459021041713/,,,,,,,,,
+1816816,Ardagh MP USA Inc.,,2021-08-10,https://www.sec.gov/Archives/edgar/data/1816816/000110465921102919/,,,,,,,,,
+1144546,"FICAAR, INC",HWTR,2021-08-11,https://www.sec.gov/Archives/edgar/data/1144546/000168316821003410/,,,,,,,,,시세 없음
+1407573,PhoneBrasil International Inc,,2021-08-12,https://www.sec.gov/Archives/edgar/data/1407573/000121390021042115/,,,,,,,,,
+1816048,Software Acquisition Group Inc. II,,2021-08-13,https://www.sec.gov/Archives/edgar/data/1816048/000119312521246267/,,,,,,,,,
+1819133,"Tango Therapeutics, Inc.",TNGX,2021-08-13,https://www.sec.gov/Archives/edgar/data/1819133/000119312521246234/,,0,,-0.055,-0.454,-0.307,1.75,2.401,ok
+1788841,"Helbiz, Inc.","MCOM,MCOMW",2021-08-13,https://www.sec.gov/Archives/edgar/data/1788841/000107997321000755/,,,,,,,,,시세 없음
+1819848,"Joby Aviation, Inc.","JOBY,JOBY-WT",2021-08-16,https://www.sec.gov/Archives/edgar/data/1819848/000119312521247915/,,0,,-0.523,-0.39,-0.296,1.28,0.486,ok
+1852117,Rockley Photonics Holdings Ltd,,2021-08-17,https://www.sec.gov/Archives/edgar/data/1852117/000119312521248159/,,,,,,,,,
+1824893,"Surrozen, Inc./DE","SRZN,SRZNW",2021-08-17,https://www.sec.gov/Archives/edgar/data/1824893/000119312521249342/,,0,,-0.603,-0.651,-0.929,1.49,0.249,ok
+1781162,Momentus Inc.,"MNTS,MNTSW",2021-08-18,https://www.sec.gov/Archives/edgar/data/1781162/000121390021043676/,방산,13,,-0.697,-0.762,-0.97,1.39,0,ok
+1515139,CurrencyWorks Inc.,MWRK,2021-08-18,https://www.sec.gov/Archives/edgar/data/1515139/000149315221020513/,,,,,,,,,시세 없음
+1823882,Airspan Networks Holdings Inc.,MIMOQ,2021-08-19,https://www.sec.gov/Archives/edgar/data/1823882/000182912621008369/,,,,,,,,,시세 없음
+1816017,"Spire Global, Inc.",SPIR,2021-08-20,https://www.sec.gov/Archives/edgar/data/1816017/000119312521252886/,,0,,-0.727,-0.848,-0.932,2.04,0.122,ok
+1820143,RMG Acquisition Corp. II,,2021-08-23,https://www.sec.gov/Archives/edgar/data/1820143/000119312521254133/,,,,,,,,,
+1818644,CF Finance Acquisition Corp. III,"LIDR,LIDRW",2021-08-23,https://www.sec.gov/Archives/edgar/data/1818644/000119312521253301/,AI·반도체,12,,-0.672,-0.804,-0.969,1.22,0.004,ok
+1790625,"AgileThought, Inc.",AGILQ,2021-08-26,https://www.sec.gov/Archives/edgar/data/1790625/000121390021045081/,,,,,,,,,시세 없음
+1819493,"Xos, Inc.","XOS,XOSWW",2021-08-26,https://www.sec.gov/Archives/edgar/data/1819493/000121390021045049/,AI·반도체,6,,-0.633,-0.727,-0.956,1.35,0.015,ok
+1818382,"Humacyte, Inc.","HUMA,HUMAW",2021-08-30,https://www.sec.gov/Archives/edgar/data/1818382/000110465921110678/,,0,,-0.557,-0.705,-0.712,1.28,0.034,ok
+1837014,"SmartRent, Inc.",SMRT,2021-08-30,https://www.sec.gov/Archives/edgar/data/1837014/000119312521260632/,AI·반도체,3,,-0.487,-0.738,-0.728,1.13,0.11,ok
+1828522,"eFFECTOR Therapeutics, Inc.","EFTR,EFTRW",2021-08-31,https://www.sec.gov/Archives/edgar/data/1828522/000119312521262060/,,,,,,,,,시세 없음
+1819989,Cipher Mining Inc.,"CIFR,CIFRW",2021-08-31,https://www.sec.gov/Archives/edgar/data/1819989/000119312521260900/,,0,,-0.729,-0.813,-0.721,1.35,0.641,ok
+1819994,"Rocket Lab USA, Inc.",RKLB,2021-08-31,https://www.sec.gov/Archives/edgar/data/1819994/000119312521262190/,우주·위성,79,,-0.098,-0.452,-0.368,2.07,5.404,ok
+1819584,Volta Inc.,,2021-09-01,https://www.sec.gov/Archives/edgar/data/1819584/000121390021046178/,,,,,,,,,
+1777946,"IronNet, Inc.",,2021-09-01,https://www.sec.gov/Archives/edgar/data/1777946/000119312521263381/,,,,,,,,,
+1825024,Offerpad Solutions Inc.,"OPAD,OPADW",2021-09-07,https://www.sec.gov/Archives/edgar/data/1825024/000119312521266682/,,0,,,,,1,0.61,ok
+1837412,"SomaLogic, Inc.",,2021-09-08,https://www.sec.gov/Archives/edgar/data/1837412/000121390021047053/,,,,,,,,,
+1799850,"Renovacor, Inc.",,2021-09-09,https://www.sec.gov/Archives/edgar/data/1799850/000119312521268932/,,,,,,,,,
+1819810,Redwire Corp,"RDW,RDW-WT",2021-09-10,https://www.sec.gov/Archives/edgar/data/1819810/000110465921114349/,,,,,,,,,
+1817944,"Clarus Therapeutics Holdings, Inc.",,2021-09-15,https://www.sec.gov/Archives/edgar/data/1817944/000121390021048214/,,,,,,,,,
+1798562,TMC the metals Co Inc.,"TMC,TMCWW",2021-09-15,https://www.sec.gov/Archives/edgar/data/1798562/000121390021048261/,,,,,,,,,
+1753539,BlackSky Technology Inc.,"BKSY,BKSY-WT",2021-09-15,https://www.sec.gov/Archives/edgar/data/1753539/000119312521273369/,,,,,,,,,
+1787412,"WB Burgers Asia, Inc.","WBBA,WBBAD",2021-09-16,https://www.sec.gov/Archives/edgar/data/1787412/000159991621000211/,,,,,,,,,
+1830214,"Ginkgo Bioworks Holdings, Inc.","DNA,DNA-WT",2021-09-20,https://www.sec.gov/Archives/edgar/data/1830214/000119312521277420/,,,,,,,,,
+1823766,Archaea Energy Inc.,,2021-09-21,https://www.sec.gov/Archives/edgar/data/1823766/000121390021049102/,,,,,,,,,
+1824502,Archer Aviation Inc.,"ACHR,ACHR-WT",2021-09-22,https://www.sec.gov/Archives/edgar/data/1824502/000110465921118389/,,,,,,,,,
+1812173,Vicarious Surgical Inc.,"RBOT,RBOT-WT",2021-09-23,https://www.sec.gov/Archives/edgar/data/1812173/000121390021049537/,,,,,,,,,
+1819404,Nerdy Inc.,NRDY,2021-09-24,https://www.sec.gov/Archives/edgar/data/1819404/000119312521282190/,,,,,,,,,
+1807846,Fusion Acquisition Corp.,"ML,ML-WT",2021-09-28,https://www.sec.gov/Archives/edgar/data/1807846/000121390021050379/,,,,,,,,,
+1788028,Amplitude Healthcare Acquisition Corp,"JSPR,JSPRW",2021-09-29,https://www.sec.gov/Archives/edgar/data/1788028/000121390021050592/,,,,,,,,,
+1826681,Sarcos Technology & Robotics Corp,"PDYN,PDYNW",2021-09-30,https://www.sec.gov/Archives/edgar/data/1826681/000156459021049662/,,,,,,,,,
+1832352,CA Healthcare Acquisition Corp.,,2021-10-04,https://www.sec.gov/Archives/edgar/data/1832352/000110465921122551/,,,,,,,,,
+1824920,"IonQ, Inc.","IONQ,IONQ-WT",2021-10-04,https://www.sec.gov/Archives/edgar/data/1824920/000119312521290624/,,,,,,,,,
+1766146,Union Acquisition Corp. II,,2021-10-05,https://www.sec.gov/Archives/edgar/data/1766146/000121390021051405/,,,,,,,,,
+1784851,"Shapeways Holdings, Inc.",SHPWQ,2021-10-05,https://www.sec.gov/Archives/edgar/data/1784851/000110465921123193/,,,,,,,,,
+1825079,"Velo3D, Inc.","VLD,VLD-WT",2021-10-05,https://www.sec.gov/Archives/edgar/data/1825079/000162828021019670/,,,,,,,,,
+1855457,"KORE Group Holdings, Inc.","KORE,KORGW",2021-10-06,https://www.sec.gov/Archives/edgar/data/1855457/000119312521293152/,,,,,,,,,
+1866633,"Consensus Cloud Solutions, Inc.",CCSI,2021-10-08,https://www.sec.gov/Archives/edgar/data/1866633/000119312521294817/,,,,,,,,,
+1819113,"Science 37 Holdings, Inc.",,2021-10-13,https://www.sec.gov/Archives/edgar/data/1819113/000110465921125878/,,,,,,,,,
+1816696,"Industrial Tech Acquisitions, Inc.",,2021-10-13,https://www.sec.gov/Archives/edgar/data/1816696/000121390021052666/,,,,,,,,,
+1819438,"ESS Tech, Inc.","GWH,GWH-WT",2021-10-15,https://www.sec.gov/Archives/edgar/data/1819438/000119312521300138/,,,,,,,,,
+1820302,"Bakkt Holdings, Inc.","BKKT,BKKT-WT",2021-10-21,https://www.sec.gov/Archives/edgar/data/1820302/000119312521303985/,,,,,,,,,
+1836967,ALKURI GLOBAL ACQUISITION CORP.,,2021-10-22,https://www.sec.gov/Archives/edgar/data/1836967/000110465921128695/,,,,,,,,,
+1830180,"ENJOY TECHNOLOGY, INC./DE",,2021-10-22,https://www.sec.gov/Archives/edgar/data/1830180/000119312521304222/,,,,,,,,,
+1856031,Vivid Seats Inc.,"SEAT,SEATW",2021-10-22,https://www.sec.gov/Archives/edgar/data/1856031/000119312521305506/,,,,,,,,,
+1821769,Navitas Semiconductor Corp,NVTS,2021-10-25,https://www.sec.gov/Archives/edgar/data/1821769/000119312521306726/,,,,,,,,,
+1809987,"Mirion Technologies, Inc.",MIR,2021-10-25,https://www.sec.gov/Archives/edgar/data/1809987/000119312521305946/,,,,,,,,,
+1813756,WeWork Inc.,,2021-10-26,https://www.sec.gov/Archives/edgar/data/1813756/000119312521308162/,,,,,,,,,
+1832487,Laffin Acquisition Corp.,GUER,2021-10-27,https://www.sec.gov/Archives/edgar/data/1832487/000121390021054809/,,,,,,,,,
+1126115,"LZG INTERNATIONAL, INC.",,2021-10-28,https://www.sec.gov/Archives/edgar/data/1126115/000155479521000369/,,,,,,,,,
+1833214,"SAB Biotherapeutics, Inc.","SABS,SABSW",2021-10-28,https://www.sec.gov/Archives/edgar/data/1833214/000149315221026649/,,,,,,,,,
+1865631,NEXTNAV INC.,"NN,NNAVW,NXNVW",2021-10-28,https://www.sec.gov/Archives/edgar/data/1865631/000121390021055141/,,,,,,,,,
+1820201,Redbox Entertainment Inc.,,2021-10-28,https://www.sec.gov/Archives/edgar/data/1820201/000110465921131160/,,,,,,,,,
+1832415,"Better Therapeutics, Inc.",,2021-11-03,https://www.sec.gov/Archives/edgar/data/1832415/000119312521318651/,,,,,,,,,
+1673481,Lottery.com Inc.,"LTRY,LTRYW",2021-11-04,https://www.sec.gov/Archives/edgar/data/1673481/000121390021056782/,,,,,,,,,
+1828108,"Aurora Innovation, Inc.","AUR,AUROW",2021-11-04,https://www.sec.gov/Archives/edgar/data/1828108/000119312521319524/,,,,,,,,,
+1861449,"Bird Global, Inc.",BRDSQ,2021-11-09,https://www.sec.gov/Archives/edgar/data/1861449/000119312521324663/,,,,,,,,,
+1880319,"Perimeter Solutions, SA","PRM,PRMFF",2021-11-10,https://www.sec.gov/Archives/edgar/data/1880319/000119312521326234/,,,,,,,,,
+1822359,DocGo Inc.,DCGO,2021-11-12,https://www.sec.gov/Archives/edgar/data/1822359/000121390021058683/,,,,,,,,,
+1846069,"Nextdoor Holdings, Inc.",KIND,2021-11-12,https://www.sec.gov/Archives/edgar/data/1846069/000162828021023197/,,,,,,,,,
+1827980,"Embark Technology, Inc.",,2021-11-17,https://www.sec.gov/Archives/edgar/data/1827980/000110465921140635/,,,,,,,,,
+1799191,"Oncology Institute, Inc.","TOI,TOIIW",2021-11-18,https://www.sec.gov/Archives/edgar/data/1799191/000110465921141302/,,,,,,,,,
+1864448,Wejo Group Ltd,,2021-11-24,https://www.sec.gov/Archives/edgar/data/1864448/000110465921143665/,,,,,,,,,
+1840780,Local Bounti Corporation/DE,"LOCL,LOCLW",2021-11-24,https://www.sec.gov/Archives/edgar/data/1840780/000119312521340458/,,,,,,,,,
+1823340,Altimeter Growth Corp.,,2021-12-01,https://www.sec.gov/Archives/edgar/data/1823340/000119312521345316/,,,,,,,,,
+1828957,Codere Online U.S. Corp.,,2021-12-03,https://www.sec.gov/Archives/edgar/data/1828957/000182912621015613/,,,,,,,,,
+1790665,Greenrose Holding Co Inc.,,2021-12-03,https://www.sec.gov/Archives/edgar/data/1790665/000121390021063191/,,,,,,,,,
+1835378,Innovid Corp.,"CTV,CTV-WT",2021-12-06,https://www.sec.gov/Archives/edgar/data/1835378/000162828021024586/,,,,,,,,,
+1840776,"Hagerty, Inc.","HGTY,HGTPW",2021-12-08,https://www.sec.gov/Archives/edgar/data/1840776/000110465921147678/,,,,,,,,,
+1835567,"Pear Therapeutics, Inc.",,2021-12-08,https://www.sec.gov/Archives/edgar/data/1835567/000119312521350485/,,,,,,,,,
+1866175,Crescent Energy Co,CRGY,2021-12-08,https://www.sec.gov/Archives/edgar/data/1866175/000119312521350544/,,,,,,,,,
+1874944,"Vacasa, Inc.",VCSA,2021-12-09,https://www.sec.gov/Archives/edgar/data/1874944/000110465921148190/,,,,,,,,,
+1828972,"BuzzFeed, Inc.","BZFD,BZFDW",2021-12-09,https://www.sec.gov/Archives/edgar/data/1828972/000110465921148188/,,,,,,,,,
+1836833,Planet Labs PBC,"PL,PL-WT",2021-12-13,https://www.sec.gov/Archives/edgar/data/1836833/000119312521355383/,,,,,,,,,
+1836981,"BigBear.ai Holdings, Inc.","BBAI,BBAI-WT",2021-12-13,https://www.sec.gov/Archives/edgar/data/1836981/000119312521355558/,,,,,,,,,
+1844862,"Solid Power, Inc.","SLDP,SLDPW",2021-12-13,https://www.sec.gov/Archives/edgar/data/1844862/000110465921148821/,,,,,,,,,
+1828723,"Altus Power, Inc.",AMPS,2021-12-14,https://www.sec.gov/Archives/edgar/data/1828723/000119312521355702/,,,,,,,,,
+1827075,CVENT HOLDING CORP.,,2021-12-14,https://www.sec.gov/Archives/edgar/data/1827075/000119312521356938/,,,,,,,,,
+1828672,"Boxed, Inc.",,2021-12-14,https://www.sec.gov/Archives/edgar/data/1828672/000110465921149546/,,,,,,,,,
+1811530,"Next Meats Holdings, Inc.",NXMH,2021-12-16,https://www.sec.gov/Archives/edgar/data/1811530/000159991621000304/,,,,,,,,,
+1843762,"EQRx, Inc.",,2021-12-20,https://www.sec.gov/Archives/edgar/data/1843762/000121390021066430/,,,,,,,,,
+1840572,Bowlero Corp.,BOWL,2021-12-21,https://www.sec.gov/Archives/edgar/data/1840572/000121390021066733/,,,,,,,,,
+1833769,"Hyperfine, Inc.",HYPR,2021-12-28,https://www.sec.gov/Archives/edgar/data/1833769/000110465921153941/,,,,,,,,,
+1838672,"AdTheorent Holding Company, Inc.",,2021-12-29,https://www.sec.gov/Archives/edgar/data/1838672/000119312521369113/,,,,,,,,,
+1823144,"CompoSecure, Inc.","CMPO,CMPOW",2021-12-29,https://www.sec.gov/Archives/edgar/data/1823144/000110465921154308/,,,,,,,,,
+1822711,"PARDES BIOSCIENCES, INC.",,2021-12-30,https://www.sec.gov/Archives/edgar/data/1822711/000119312521370677/,,,,,,,,,
+1836176,Fathom Digital Manufacturing,,2021-12-30,https://www.sec.gov/Archives/edgar/data/1836176/000119312521370706/,,,,,,,,,
+1843388,"Virgin Orbit Holdings, Inc.",,2022-01-05,https://www.sec.gov/Archives/edgar/data/1843388/000121390022000703/,,,,,,,,,
+1840292,"Heliogen, Inc.","HLGN,HLGNW",2022-01-06,https://www.sec.gov/Archives/edgar/data/1840292/000121390022000981/,,,,,,,,,시세 없음
+1841408,Dave Inc./DE,"DAVE,DAVEW",2022-01-11,https://www.sec.gov/Archives/edgar/data/1841408/000119312522006854/,,,,,,,,,
+1810560,"REVELATION BIOSCIENCES, INC.","REVB,REVBW",2022-01-14,https://www.sec.gov/Archives/edgar/data/1810560/000121390022002152/,,,,,,,,,
+1805087,"GELESIS HOLDINGS, INC.",GLSHQ,2022-01-20,https://www.sec.gov/Archives/edgar/data/1805087/000110465922006034/,,,,,,,,,
+1819395,"Sonder Holdings, Inc.","SOND,SONDW",2022-01-24,https://www.sec.gov/Archives/edgar/data/1819395/000162828022001184/,,,,,,,,,시세 없음
+1839341,"Core Scientific, Inc./tx","CORZ,CORZR,CORZW,CORZZ",2022-01-24,https://www.sec.gov/Archives/edgar/data/1839341/000119312522016157/,,,,,,,,,
+1828049,CF Acquisition Corp. V,,2022-01-25,https://www.sec.gov/Archives/edgar/data/1828049/000119312522017157/,,,,,,,,,
+1823587,Sky Harbour Group Corp,"SKYH,SKYH-WT",2022-01-31,https://www.sec.gov/Archives/edgar/data/1823587/000143774922001987/,,,,,,,,,
+1805833,"System1, Inc.","SST,SST-WT",2022-02-02,https://www.sec.gov/Archives/edgar/data/1805833/000119312522025942/,,,,,,,,,
+1822691,"GreenLight Biosciences Holdings, PBC",,2022-02-07,https://www.sec.gov/Archives/edgar/data/1822691/000119312522029805/,,,,,,,,,
+1832351,"Fast Radius, Inc.",,2022-02-10,https://www.sec.gov/Archives/edgar/data/1832351/000119312522034631/,,,,,,,,,
+1891101,BRC Inc.,BRCC,2022-02-10,https://www.sec.gov/Archives/edgar/data/1891101/000110465922019525/,,0,,-0.346,-0.552,-0.75,2.12,0.062,ok
+1785592,"Leafly Holdings, Inc. /DE","LFLY,LFLYW",2022-02-10,https://www.sec.gov/Archives/edgar/data/1785592/000121390022006492/,,,,,,,,,
+1836707,SILVERBOX ENGAGED MERGER CORP I,,2022-02-11,https://www.sec.gov/Archives/edgar/data/1836707/000110465922020668/,,,,,,,,,
+1498233,"Cepton, Inc.","CPTN,CPTNW",2022-02-11,https://www.sec.gov/Archives/edgar/data/1498233/000121390022006572/,,,,,,,,,
+1820566,Thayer Ventures Acquisition Corp,"ISPO,ISPOW",2022-02-14,https://www.sec.gov/Archives/edgar/data/1820566/000119312522042172/,,,,,,,,,
+1828536,"Energy Vault Holdings, Inc.",NRGV,2022-02-14,https://www.sec.gov/Archives/edgar/data/1828536/000110465922023106/,,0,,-0.391,-0.593,-0.797,2.3,0.338,ok
+1794621,"Quanergy Systems, Inc.",,2022-02-14,https://www.sec.gov/Archives/edgar/data/1794621/000119312522039201/,,,,,,,,,
+1839412,QualTek Services Inc.,,2022-02-16,https://www.sec.gov/Archives/edgar/data/1839412/000110465922024331/,,,,,,,,,
+1692787,Kinetik Holdings Inc.,KNTK,2022-02-28,https://www.sec.gov/Archives/edgar/data/1692787/000119312522058156/,,,,,,,,,
+1838359,"Rigetti Computing, Inc.","RGTI,RGTIW",2022-03-07,https://www.sec.gov/Archives/edgar/data/1838359/000119312522067932/,,,,,,,,,
+1822935,Healthcare Capital Corp/DE,,2022-03-08,https://www.sec.gov/Archives/edgar/data/1822935/000121390022010971/,,,,,,,,,
+1831236,Bridgetown 2 Holdings Ltd,,2022-03-17,https://www.sec.gov/Archives/edgar/data/1831236/000119312522078427/,,,,,,,,,
+1838527,Spartan Acquisition Corp. III,,2022-03-22,https://www.sec.gov/Archives/edgar/data/1838527/000119312522081611/,,,,,,,,,
+1827821,"Forge Global Holdings, Inc.",FRGE,2022-03-25,https://www.sec.gov/Archives/edgar/data/1827821/000110465922038152/,,,,,,,,,
+1835512,Tailwind Two Acquisition Corp.,"LLAP,LLAPW",2022-03-28,https://www.sec.gov/Archives/edgar/data/1835512/000119312522086032/,,,,,,,,,시세 없음
+22701,"Pineapple Holdings, Inc.",PEGY,2022-03-29,https://www.sec.gov/Archives/edgar/data/22701/000089710122000345/,,,,,,,,,
+1836190,Queen's Gambit Growth Capital,,2022-03-31,https://www.sec.gov/Archives/edgar/data/1836190/000119312522091996/,,,,,,,,,
+1540615,"PUGET TECHNOLOGIES, INC.",PUGE,2022-03-31,https://www.sec.gov/Archives/edgar/data/1540615/000157570522000242/,,,,,,,,,
+1884697,"Starry Group Holdings, Inc.",,2022-04-01,https://www.sec.gov/Archives/edgar/data/1884697/000119312522093852/,,,,,,,,,
+1826333,Poema Global Holdings Corp.,,2022-04-04,https://www.sec.gov/Archives/edgar/data/1826333/000110465922042296/,,,,,,,,,
+1821586,MoonLake Immunotherapeutics,MLTX,2022-04-11,https://www.sec.gov/Archives/edgar/data/1821586/000121390022019217/,,,,,,,,,
+1840856,Archimedes Tech Spac Partners Co,"SOUN,SOUNW",2022-05-02,https://www.sec.gov/Archives/edgar/data/1840856/000121390022023274/,,0,,-0.753,-0.787,-0.589,1.37,0.38,ok
+1822966,NUSCALE POWER Corp,"SMR,SMR-WT",2022-05-05,https://www.sec.gov/Archives/edgar/data/1822966/000110465922056493/,,,,,,,,,
+1823652,"Eve Holding, Inc.","EVEX,EVEX-WT",2022-05-13,https://www.sec.gov/Archives/edgar/data/1823652/000119312522150258/,,,,,,,,,
+1821318,OTR Acquisition Corp.,,2022-05-24,https://www.sec.gov/Archives/edgar/data/1821318/000110465922064268/,,,,,,,,,
+1907685,"Comera Life Sciences Holdings, Inc.",CMRA,2022-05-25,https://www.sec.gov/Archives/edgar/data/1907685/000119312522159833/,,,,,,,,,
+1802450,"MSP Recovery, Inc.","LIFW,LIFWW,LIFWZ",2022-05-27,https://www.sec.gov/Archives/edgar/data/1802450/000119312522162422/,,,,,,,,,시세 없음
+1819253,biote Corp.,BTMD,2022-06-02,https://www.sec.gov/Archives/edgar/data/1819253/000119312522166249/,,,,,,,,,
+1820872,"Global Business Travel Group, Inc.",GBTG,2022-06-03,https://www.sec.gov/Archives/edgar/data/1820872/000110465922068074/,,,,,,,,,
+1792941,"Allure Worldwide, Inc.",GNVR,2022-06-09,https://www.sec.gov/Archives/edgar/data/1792941/000147793222004262/,,,,,,,,,
+1823383,Globis Acquisition Corp.,,2022-06-10,https://www.sec.gov/Archives/edgar/data/1823383/000149315222016381/,,,,,,,,,
+1837240,Symbotic Inc.,SYM,2022-06-13,https://www.sec.gov/Archives/edgar/data/1837240/000119312522172211/,,0,,0.047,3.312,2.158,5.69,3.376,ok
+1903870,Forafric Global PLC,"AFRI,AFRIW",2022-06-15,https://www.sec.gov/Archives/edgar/data/1903870/000149315222016864/,,,,,,,,,
+1854270,"Senti Biosciences, Inc.\",SNTI,2022-06-15,https://www.sec.gov/Archives/edgar/data/1854270/000119312522174498/,,,,,,,,,
+1479681,"Nutex Health, Inc.",NUTX,2022-06-16,https://www.sec.gov/Archives/edgar/data/1479681/000160706222000426/,,,,,,,,,
+1801602,"SpringBig Holdings, Inc.","SBIG,SBIGW",2022-06-21,https://www.sec.gov/Archives/edgar/data/1801602/000114036122023538/,,,,,,,,,시세 없음
+1429764,Blink Charging Co.,BLNK,2022-06-21,https://www.sec.gov/Archives/edgar/data/1429764/000149315222017292/,,,,,,,,,
+1841761,"Grove Collaborative Holdings, Inc.","GROV,GROVW",2022-06-23,https://www.sec.gov/Archives/edgar/data/1841761/000119312522180310/,,,,,,,,,
+1847127,"Gores Guggenheim, Inc.",,2022-06-27,https://www.sec.gov/Archives/edgar/data/1847127/000119312522182018/,,,,,,,,,
+1839434,EJF Acquisition Corp.,,2022-06-28,https://www.sec.gov/Archives/edgar/data/1839434/000114036122024209/,,,,,,,,,
+1909152,Kalera Public Ltd Co,KALRQ,2022-07-05,https://www.sec.gov/Archives/edgar/data/1909152/000162828022018407/,,,,,,,,,
+1062128,"Artemis Therapeutics, Inc.",MNKA,2022-07-05,https://www.sec.gov/Archives/edgar/data/1062128/000117891322002584/,,,,,,,,,시세 없음
+926282,ADTRAN INC,ADTN,2022-07-08,https://www.sec.gov/Archives/edgar/data/926282/000119312522190213/,,,,,,,,,
+1850270,PROKIDNEY CORP.,PROK,2022-07-15,https://www.sec.gov/Archives/edgar/data/1850270/000119312522195148/,,,,,,,,,
+1821169,"Global SPAC Partners Co,",,2022-07-18,https://www.sec.gov/Archives/edgar/data/1821169/000121390022039974/,,,,,,,,,
+1828852,"Mondee Holdings, Inc.",MOND,2022-07-20,https://www.sec.gov/Archives/edgar/data/1828852/000110465922080993/,,,,,,,,,
+1839360,FaZe Holdings Inc.,,2022-07-22,https://www.sec.gov/Archives/edgar/data/1839360/000119312522200145/,,,,,,,,,
+1842279,OPAL Fuels Inc.,OPAL,2022-07-27,https://www.sec.gov/Archives/edgar/data/1842279/000121390022042020/,,0,,-0.293,-0.252,-0.593,1.15,0.146,ok
+1898496,"Getty Images Holdings, Inc.",GETY,2022-07-28,https://www.sec.gov/Archives/edgar/data/1898496/000110465922083743/,,,,,,,,,
+1823466,"FiscalNote Holdings, Inc.","NOTE,NOTE-WT",2022-08-02,https://www.sec.gov/Archives/edgar/data/1823466/000119312522210160/,,,,,,,,,
+1814140,"Apexigen, Inc.",,2022-08-04,https://www.sec.gov/Archives/edgar/data/1814140/000119312522212570/,,,,,,,,,
+1891791,"TRANS GLOBAL GROUP, INC.",TGGI,2022-08-08,https://www.sec.gov/Archives/edgar/data/1891791/000182912622015459/,,,,,,,,,
+1823575,"ZeroFox Holdings, Inc.",,2022-08-09,https://www.sec.gov/Archives/edgar/data/1823575/000119312522216315/,,,,,,,,,
+1821742,"DPCM Capital, Inc.",,2022-08-10,https://www.sec.gov/Archives/edgar/data/1821742/000119312522217403/,,,,,,,,,
+1907982,D-Wave Quantum Inc.,"QBTS,QBTS-WT",2022-08-11,https://www.sec.gov/Archives/edgar/data/1907982/000119312522217611/,양자,85,,-0.905,-0.866,-0.924,1,0.88,ok
+1842356,Wag! Group Co.,"PET,PETWW",2022-08-15,https://www.sec.gov/Archives/edgar/data/1842356/000110465922091417/,,,,,,,,,
+1862068,"Rubicon Technologies, Inc.","RBTC,RBTCW",2022-08-19,https://www.sec.gov/Archives/edgar/data/1862068/000182912622016045/,,,,,,,,,
+1850266,"Akili, Inc.",,2022-08-23,https://www.sec.gov/Archives/edgar/data/1850266/000119312522227561/,,,,,,,,,
+1841800,"Nogin, Inc.",,2022-09-01,https://www.sec.gov/Archives/edgar/data/1841800/000119312522236634/,,,,,,,,,
+1849820,"Nauticus Robotics, Inc.","KITT,KITTW",2022-09-15,https://www.sec.gov/Archives/edgar/data/1849820/000121390022056286/,,,,,,,,,
+1899287,"Amprius Technologies, Inc.","AMPX,AMPX-WT",2022-09-16,https://www.sec.gov/Archives/edgar/data/1899287/000119312522246477/,AI·반도체,39,,-0.461,-0.481,-0.895,1.56,1.073,ok
+1812360,FOXO TECHNOLOGIES INC.,"FOXO,FOXOW",2022-09-21,https://www.sec.gov/Archives/edgar/data/1812360/000121390022057723/,,,,,,,,,
+1841209,MicroCloud Hologram Inc.,"HOLO,HOLOW",2022-09-22,https://www.sec.gov/Archives/edgar/data/1841209/000182912622017079/,,,,,,,,,
+1830081,Rumble Inc.,"RUM,RUMBW",2022-09-22,https://www.sec.gov/Archives/edgar/data/1830081/000121390022058065/,,,,,,,,,
+1822145,Presto Automation Inc.,"PRST,PRSTW",2022-09-27,https://www.sec.gov/Archives/edgar/data/1822145/000121390022059478/,,,,,,,,,시세 없음
+1826553,Silver Crest Acquisition Corp,,2022-09-29,https://www.sec.gov/Archives/edgar/data/1826553/000110465922103782/,,,,,,,,,
+1898795,"LiveWire Group, Inc.","LVWR,LVWR-WT",2022-09-30,https://www.sec.gov/Archives/edgar/data/1898795/000119312522255710/,,,,,,,,,
+1854963,"SHF Holdings, Inc.","SHFS,SHFSW",2022-10-04,https://www.sec.gov/Archives/edgar/data/1854963/000149315222027592/,,,,,,,,,
+1652362,"Infrastructure & Energy Alternatives, Inc.",,2022-10-07,https://www.sec.gov/Archives/edgar/data/1652362/000110465922107168/,,,,,,,,,
+1847986,Dragonfly Energy Holdings Corp.,"DFLI,DFLIW",2022-10-11,https://www.sec.gov/Archives/edgar/data/1847986/000110465922107212/,,,,,,,,,
+894627,VAALCO ENERGY INC /DE/,EGY,2022-10-14,https://www.sec.gov/Archives/edgar/data/894627/000114036122037165/,,0,,-0.184,-0.161,0.119,1.39,1.037,ok
+1838544,BOA Acquisition Corp.,,2022-10-27,https://www.sec.gov/Archives/edgar/data/1838544/000119312522271114/,,,,,,,,,
+1864891,Endurance Acquisition Corp.,,2022-10-27,https://www.sec.gov/Archives/edgar/data/1864891/000110465922112062/,,,,,,,,,
+1928446,"Granite Ridge Resources, Inc.",GRNT,2022-10-28,https://www.sec.gov/Archives/edgar/data/1928446/000110465922112452/,,,,,,,,,
+1830531,Provident Acquisition Corp.,,2022-10-28,https://www.sec.gov/Archives/edgar/data/1830531/000110465922112478/,,,,,,,,,
+1870144,"Cardio Diagnostics Holdings, Inc.","CDIO,CDIOW",2022-10-31,https://www.sec.gov/Archives/edgar/data/1870144/000107997322001382/,,,,,,,,,
+1759186,"Coeptis Therapeutics Holdings, Inc.","COEP,COEPW",2022-11-03,https://www.sec.gov/Archives/edgar/data/1759186/000168316822007257/,,,,,,,,,
+1831868,SeaStar Medical Holding Corp,"ICU,ICUCW",2022-11-04,https://www.sec.gov/Archives/edgar/data/1831868/000119312522277072/,,0,,-0.703,-0.887,-0.985,1,0.001,ok
+1846253,"OmniAb, Inc.","OABI,OABIW",2022-11-07,https://www.sec.gov/Archives/edgar/data/1846253/000119312522279194/,,,,,,,,,
+1834645,"Peak Bio, Inc.","PKBO,PKBOW",2022-11-07,https://www.sec.gov/Archives/edgar/data/1834645/000119312522279204/,,,,,,,,,
+1760683,East Stone Acquisition Corp,,2022-11-15,https://www.sec.gov/Archives/edgar/data/1760683/000121390022072648/,,,,,,,,,
+1820190,Scilex Holding Company/DE,"SCLX,SCLXW",2022-11-17,https://www.sec.gov/Archives/edgar/data/1820190/000119312522287783/,,,,,,,,,
+1769624,AGBA Group Holding Ltd.,"AGBA,AGBAW",2022-11-18,https://www.sec.gov/Archives/edgar/data/1769624/000121390022073874/,,,,,,,,,시세 없음
+1828326,Frazier Lifesciences Acquisition Corp,,2022-11-23,https://www.sec.gov/Archives/edgar/data/1828326/000119312522292061/,,,,,,,,,
+1847846,EUDA Health Holdings Ltd,"EUDA,EUDAW",2022-11-23,https://www.sec.gov/Archives/edgar/data/1847846/000149315222033558/,,,,,,,,,
+1820144,Grindr Inc.,"GRND,GRND-WT",2022-11-23,https://www.sec.gov/Archives/edgar/data/1820144/000114036122042994/,,,,,,,,,
+1821075,"Appreciate Holdings, Inc.",SFRT,2022-12-05,https://www.sec.gov/Archives/edgar/data/1821075/000121390022077649/,,,,,,,,,
+1648365,"TINGO, INC.",TMNA,2022-12-05,https://www.sec.gov/Archives/edgar/data/1648365/000110465922124518/,,,,,,,,,시세 없음
+1813658,"Tempo Automation Holdings, Inc.",TMPOQ,2022-12-06,https://www.sec.gov/Archives/edgar/data/1813658/000110465922124887/,,,,,,,,,
+854800,"MICT, Inc.",TIOG,2022-12-06,https://www.sec.gov/Archives/edgar/data/854800/000121390022077988/,,,,,,,,,
+1859007,"ZyVersa Therapeutics, Inc.",ZVSA,2022-12-13,https://www.sec.gov/Archives/edgar/data/1859007/000149315222035258/,,,,,,,,,
+1934064,"ProSomnus, Inc.",,2022-12-13,https://www.sec.gov/Archives/edgar/data/1934064/000110465922126408/,,,,,,,,,
+1839608,"Getaround, Inc","GETR,GETRW",2022-12-14,https://www.sec.gov/Archives/edgar/data/1839608/000119312522304902/,,,,,,,,,시세 없음
+1800392,MicroAlgo Inc.,"MLGO,VENAF",2022-12-16,https://www.sec.gov/Archives/edgar/data/1800392/000182912622020336/,,,,,,,,,
+1818787,Primavera Capital Acquisition Corp.,,2022-12-20,https://www.sec.gov/Archives/edgar/data/1818787/000119312522309191/,,,,,,,,,
+1837160,COVA Acquisition Corp.,,2022-12-21,https://www.sec.gov/Archives/edgar/data/1837160/000110465922129098/,,,,,,,,,
+1929589,MariaDB plc,MRDB,2022-12-22,https://www.sec.gov/Archives/edgar/data/1929589/000119312522311179/,,,,,,,,,
+847942,STRATEGIC ACQUISITIONS INC /NV/,STQN,2022-12-23,https://www.sec.gov/Archives/edgar/data/847942/000149315222036399/,,,,,,,,,
+1538495,"Earth Science Tech, Inc.","ETST,UNOV",2022-12-30,https://www.sec.gov/Archives/edgar/data/1538495/000149315222036860/,,,,,,,,,시세 없음
+1678848,BITMIS CORP.,BIMT,2022-12-30,https://www.sec.gov/Archives/edgar/data/1678848/000121390022084079/,,,,,,,,,
+1825437,LIGHTJUMP ACQUISITION CORP,,2023-01-06,https://www.sec.gov/Archives/edgar/data/1825437/000121390023001451/,,,,,,,,,
+1838615,"Alvarium Tiedemann Holdings, Inc.",ALTI,2023-01-09,https://www.sec.gov/Archives/edgar/data/1838615/000119312523004775/,,,,,,,,,
+1586495,Leet Technology Inc.,LTES,2023-01-18,https://www.sec.gov/Archives/edgar/data/1586495/000168316823000213/,,,,,,,,,
+1853314,Gesher I Acquisition Corp.,,2023-01-25,https://www.sec.gov/Archives/edgar/data/1853314/000110465923006598/,,,,,,,,,
+1263364,Joway Health Industries Group Inc,COPR,2023-01-27,https://www.sec.gov/Archives/edgar/data/1263364/000121390023005558/,,,,,,,,,시세 없음
+1941536,"Bridger Aerospace Group Holdings, Inc.","BAER,BAERW",2023-01-27,https://www.sec.gov/Archives/edgar/data/1941536/000119312523016927/,,,,,,,,,
+1814114,"Orchestra BioMed Holdings, Inc.",OBIO,2023-01-31,https://www.sec.gov/Archives/edgar/data/1814114/000121390023006448/,,,,,,,,,
+1113313,ARVANA INC,AVNI,2023-02-03,https://www.sec.gov/Archives/edgar/data/1113313/000160706223000065/,,,,,,,,,
+1814215,"Nuburu, Inc.","BURU,BURUW",2023-02-06,https://www.sec.gov/Archives/edgar/data/1814215/000119312523025555/,,0,,-0.913,-0.983,-0.999,1,0,ok
+1855631,AERWINS Technologies Inc.,"AWIN,AWINW",2023-02-09,https://www.sec.gov/Archives/edgar/data/1855631/000119312523030266/,,,,,,,,,
+1843724,"LanzaTech Global, Inc.","LNZA,LNZAW",2023-02-13,https://www.sec.gov/Archives/edgar/data/1843724/000162828023003310/,,,,,,,,,
+1839132,Movella Holdings Inc.,MVLA,2023-02-13,https://www.sec.gov/Archives/edgar/data/1839132/000119312523035948/,,,,,,,,,
+1823584,ALLIANCE ENTERTAINMENT HOLDING CORP,"AENT,AENTW",2023-02-13,https://www.sec.gov/Archives/edgar/data/1823584/000110465923019800/,,0,,-0.444,-0.458,0.329,2.81,1.208,ok
+1844452,"Intuitive Machines, Inc.","LUNR,LUNRW",2023-02-14,https://www.sec.gov/Archives/edgar/data/1844452/000121390023011495/,,,,,,,,,
+1883814,"Southland Holdings, Inc.","SLND,SLND-WT",2023-02-14,https://www.sec.gov/Archives/edgar/data/1883814/000182912623001536/,,,,,,,,,
+1869974,"Ocean Biomedical, Inc./DE","OCEA,OCEAW",2023-02-15,https://www.sec.gov/Archives/edgar/data/1869974/000149315223005097/,,,,,,,,,
+1841425,"Verde Clean Fuels, Inc.","VGAS,VGASW",2023-02-21,https://www.sec.gov/Archives/edgar/data/1841425/000121390023013297/,,0,,-0.619,-0.595,-0.66,1.32,0.087,ok
+1848959,Decarbonization Plus Acquisition Corp IV,,2023-02-27,https://www.sec.gov/Archives/edgar/data/1848959/000119312523049537/,,,,,,,,,
+1845991,Lionheart III Corp,,2023-03-13,https://www.sec.gov/Archives/edgar/data/1845991/000119312523069163/,,,,,,,,,
+1820875,"KINS Technology Group, Inc.","CXAI,CXAIW",2023-03-15,https://www.sec.gov/Archives/edgar/data/1820875/000110465923032375/,,,,,,,,,
+1839185,Summit Healthcare Acquisition Corp.,,2023-03-16,https://www.sec.gov/Archives/edgar/data/1839185/000110465923033374/,,,,,,,,,
+1529113,INPIXON,XTIA,2023-03-20,https://www.sec.gov/Archives/edgar/data/1529113/000121390023021477/,,,,,,,,,
+1826669,ELK CREEK RESOURCES CORP.,,2023-03-22,https://www.sec.gov/Archives/edgar/data/1826669/000121390023022086/,,,,,,,,,
+1855644,Zura Bio Ltd,"ZURA,ZURAW",2023-03-24,https://www.sec.gov/Archives/edgar/data/1855644/000110465923036697/,,,,,,,,,
+1826671,"Near Intelligence, Inc.",,2023-03-28,https://www.sec.gov/Archives/edgar/data/1826671/000121390023023757/,,,,,,,,,
+1874259,Maxpro Capital Acquisition Corp.,,2023-03-30,https://www.sec.gov/Archives/edgar/data/1874259/000110465923038774/,,,,,,,,,
+1855751,Parsec Capital Acquisitions Corp.,,2023-03-31,https://www.sec.gov/Archives/edgar/data/1855751/000149315223010010/,,,,,,,,,
+1830188,"United Homes Group, Inc.","UHG,UHGWW",2023-04-05,https://www.sec.gov/Archives/edgar/data/1830188/000110465923042257/,,0,,-0.526,-0.424,-0.777,1.38,0.102,ok
+1853084,Blue Safari Group Acquisition Corp,,2023-04-13,https://www.sec.gov/Archives/edgar/data/1853084/000110465923045089/,,,,,,,,,
+1841338,"CIIG Capital Partners II, Inc.",,2023-05-01,https://www.sec.gov/Archives/edgar/data/1841338/000119312523128099/,,,,,,,,,
+1857855,Finnovate Acquisition Corp.,"FNVT,FNVTU,FNVTW",2023-05-12,https://www.sec.gov/Archives/edgar/data/1857855/000149315223016701/,,,,,,,,,
+1855447,Roth CH Acquisition IV Co.,TYGO,2023-05-30,https://www.sec.gov/Archives/edgar/data/1855447/000121390023044099/,,,,,,,,,
+1845437,NET Power Inc.,"NPWR,NPWR-WT",2023-06-14,https://www.sec.gov/Archives/edgar/data/1845437/000121390023048958/,,,,,,,,,
+1884516,ROC Energy Acquisition Corp.,DTI,2023-06-27,https://www.sec.gov/Archives/edgar/data/1884516/000119312523175331/,,0,,-0.171,0.427,-0.263,1.62,0.379,ok
+1852940,GoGreen Investments Corp,,2023-07-06,https://www.sec.gov/Archives/edgar/data/1852940/000121390023055010/,,,,,,,,,
+1814287,"Abacus Life, Inc.","ABL,ABLLL,ABLLW",2023-07-06,https://www.sec.gov/Archives/edgar/data/1814287/000119312523182812/,,,,,,,,,
+1901799,Bitcoin Depot Inc.,"BTM,BTMWW",2023-07-07,https://www.sec.gov/Archives/edgar/data/1901799/000119312523183847/,,,,,,,,,
+1842939,ALPHA HEALTHCARE ACQUISITION CORP III,"CTCX,CTCXW",2023-07-20,https://www.sec.gov/Archives/edgar/data/1842939/000119312523190559/,,,,,,,,,
+1838987,"Complete Solaria, Inc.","CSLR,CSLRW",2023-07-24,https://www.sec.gov/Archives/edgar/data/1838987/000119312523192359/,AI·반도체,5,,-0.75,-0.696,-0.658,1,0.047,ok
+1847064,"PSQ Holdings, Inc.","PSQH,PSQH-WT",2023-07-25,https://www.sec.gov/Archives/edgar/data/1847064/000121390023059643/,,,,,,,,,
+1837607,"AEON Biopharma, Inc.",AEON,2023-07-27,https://www.sec.gov/Archives/edgar/data/1837607/000110465923084851/,,,,,,,,,
+1832483,Serve Robotics Inc. /DE/,SERV,2023-08-04,https://www.sec.gov/Archives/edgar/data/1832483/000121390023063662/,,,,,,,,,
+1827871,"Electriq Power Holdings, Inc.",ELIQQ,2023-08-04,https://www.sec.gov/Archives/edgar/data/1827871/000119312523203886/,,,,,,,,,시세 없음
+1964979,"ALLURION TECHNOLOGIES, INC.","ALUR,ALUR-WT",2023-08-07,https://www.sec.gov/Archives/edgar/data/1964979/000119312523205104/,,,,,,,,,
+1851908,Black Spade Acquisition Co,,2023-08-14,https://www.sec.gov/Archives/edgar/data/1851908/000119312523212387/,,,,,,,,,
+1861622,Jet.AI Inc.,"JTAI,JTAIW,JTAIZ",2023-08-14,https://www.sec.gov/Archives/edgar/data/1861622/000149315223028481/,,,,,,,,,
+1826667,"TriSalus Life Sciences, Inc.","TLSI,TLSIW",2023-08-16,https://www.sec.gov/Archives/edgar/data/1826667/000110465923092586/,,,,,,,,,
+1835856,Better Home & Finance Holding Co,"BETR,BETRW",2023-08-28,https://www.sec.gov/Archives/edgar/data/1835856/000162828023030682/,,0,,-0.5,-0.68,-0.569,1,0.375,ok
+1295514,"MDWerks, Inc.",MDWK,2023-08-31,https://www.sec.gov/Archives/edgar/data/1295514/000149315223031217/,,,,,,,,,
+1906133,FG Merger Corp.,ICCT,2023-08-31,https://www.sec.gov/Archives/edgar/data/1906133/000147793223006571/,,,,,,,,,
+1833498,"Spectral AI, Inc.","MDAI,MDAIW",2023-09-15,https://www.sec.gov/Archives/edgar/data/1833498/000121390023077038/,,,,,,,,,
+1855485,"First Light Acquisition Group, Inc.","CLDI,CLDI-WT",2023-09-19,https://www.sec.gov/Archives/edgar/data/1855485/000119312523237077/,,0,,-0.807,-0.967,-0.996,1.2,0,ok
+1856589,M3-Brigade Acquisition III Corp.,,2023-09-21,https://www.sec.gov/Archives/edgar/data/1856589/000121390023078351/,,,,,,,,,
+1868640,Roadzen Inc.,"RDZN,RDZNW",2023-09-26,https://www.sec.gov/Archives/edgar/data/1868640/000119312523242523/,,,,,,,,,
+1839998,"American Oncology Network, Inc.","AONC,AONCW",2023-09-26,https://www.sec.gov/Archives/edgar/data/1839998/000110465923103884/,,,,,,,,,
+1896212,CONDUIT PHARMACEUTICALS INC.,"CDT,CDTTW",2023-09-29,https://www.sec.gov/Archives/edgar/data/1896212/000149315223034700/,,,,,,,,,
+1844417,"Estrella Immunopharma, Inc.","ESLA,ESLAW",2023-10-05,https://www.sec.gov/Archives/edgar/data/1844417/000101376223002216/,,0,,-0.601,-0.598,-0.554,1,0.155,ok
+1840877,"Envoy Medical, Inc.","COCH,COCHW",2023-10-05,https://www.sec.gov/Archives/edgar/data/1840877/000101376223002246/,,,,,,,,,
+1845459,"NKGen Biotech, Inc.","NKGN,NKGNW",2023-10-05,https://www.sec.gov/Archives/edgar/data/1845459/000110465923107256/,,,,,,,,,
+1815086,Bridgetown Holdings Ltd,,2023-10-12,https://www.sec.gov/Archives/edgar/data/1815086/000119312523255006/,,,,,,,,,
+1937987,"Falcon's Beyond Global, Inc.","FBYD,FBYDW",2023-10-12,https://www.sec.gov/Archives/edgar/data/1937987/000101376223003583/,,,,,,,,,
+1869141,Athena Consumer Acquisition Corp.,,2023-10-19,https://www.sec.gov/Archives/edgar/data/1869141/000101376223005147/,,,,,,,,,
+1844149,Spectaire Holdings Inc.,"SPEC,SPECW",2023-10-27,https://www.sec.gov/Archives/edgar/data/1844149/000101376223007283/,,,,,,,,,시세 없음
+1124105,"GYRE THERAPEUTICS, INC.",GYRE,2023-10-30,https://www.sec.gov/Archives/edgar/data/1124105/000114036123050292/,,,,,,,,,
+1980845,enGene Holdings Inc.,"ENGN,ENGNW",2023-10-31,https://www.sec.gov/Archives/edgar/data/1980845/000119312523267243/,,,,,,,,,
+1874495,Forbion European Acquisition Corp.,,2023-11-02,https://www.sec.gov/Archives/edgar/data/1874495/000119312523268401/,,,,,,,,,
+1703647,"Frequency Therapeutics, Inc.",KRRO,2023-11-06,https://www.sec.gov/Archives/edgar/data/1703647/000119312523270898/,,,,,,,,,
+1843656,Royalty Management Holding Corp,"RMCO,RMCOW",2023-11-06,https://www.sec.gov/Archives/edgar/data/1843656/000147793223008092/,,0,,-0.911,-0.889,-0.794,1,0.225,ok
+1854583,"Collective Audience, Inc.",CAUD,2023-11-08,https://www.sec.gov/Archives/edgar/data/1854583/000121390023084420/,,,,,,,,,
+1853044,"Aeries Technology, Inc.","AERT,AERTW",2023-11-13,https://www.sec.gov/Archives/edgar/data/1853044/000182912623007330/,,,,,,,,,
+1849380,OneMedNet Corp,"ONMD,ONMDW",2023-11-13,https://www.sec.gov/Archives/edgar/data/1849380/000149315223040642/,,,,,,,,,
+1866816,"SYNTEC OPTICS HOLDINGS, INC.","OPTX,OPTXW",2023-11-14,https://www.sec.gov/Archives/edgar/data/1866816/000149315223041322/,우주·위성,8,,-0.378,-0.703,-0.707,1.76,1.02,ok
+1842556,HNR Acquisition Corp.,"HNRA,HNRA-WT",2023-11-21,https://www.sec.gov/Archives/edgar/data/1842556/000121390023089273/,,,,,,,,,
+1964789,Hut 8 Corp.,HUT,2023-12-01,https://www.sec.gov/Archives/edgar/data/1964789/000110465923122902/,,,,,,,,,
+1839530,"XBP Europe Holdings, Inc.","XBP,XBPEW",2023-12-05,https://www.sec.gov/Archives/edgar/data/1839530/000121390023093176/,,,,,,,,,
+1853070,"Volato Group, Inc.","SOAR,SOAR-WT",2023-12-07,https://www.sec.gov/Archives/edgar/data/1853070/000114036123056679/,,0,,-0.874,-0.953,-0.992,1.24,0.002,ok
+1848898,African Agriculture Holdings Inc.,"AAGR,AAGRW",2023-12-12,https://www.sec.gov/Archives/edgar/data/1848898/000121390023095140/,,,,,,,,,
+1882198,Athena Technology Acquisition Corp. II,"ATEK,ATEK-UN,ATEK-WT",2023-12-14,https://www.sec.gov/Archives/edgar/data/1882198/000121390023095519/,,,,,,,,,
+1922858,"ECD Automotive Design, Inc.","ECDA,ECDAW",2023-12-18,https://www.sec.gov/Archives/edgar/data/1922858/000121390023096585/,,,,,,,,,
+1404644,Neurogene Inc.,NGNE,2023-12-19,https://www.sec.gov/Archives/edgar/data/1404644/000119312523298152/,,0,,1.054,0.462,0.325,4.74,1.766,ok
+1826011,"Banzai International, Inc.","BNZI,BNZIW",2023-12-20,https://www.sec.gov/Archives/edgar/data/1826011/000119312523300033/,,,,,,,,,
+1863990,"Infrared Cameras Holdings, Inc.","MSAI,MSAIW",2023-12-21,https://www.sec.gov/Archives/edgar/data/1863990/000110465923128275/,,,,,,,,,
+1883984,"Alternus Clean Energy, Inc.","ALCE,ACLEW",2023-12-22,https://www.sec.gov/Archives/edgar/data/1883984/000110465923128865/,,,,,,,,,
+1825473,Prospector Capital Corp.,,2023-12-28,https://www.sec.gov/Archives/edgar/data/1825473/000121390023099248/,,,,,,,,,
+1817232,Global Gas Corp,"HGAS,HGASW",2023-12-28,https://www.sec.gov/Archives/edgar/data/1817232/000121390023099273/,,,,,,,,,시세 없음
+1842566,"Airship AI Holdings, Inc.","AISP,AISPW",2023-12-28,https://www.sec.gov/Archives/edgar/data/1842566/000165495423016064/,,,,,,,,,
+1855467,Chavant Capital Acquisition Corp.,"MOBX,MOBXW",2023-12-28,https://www.sec.gov/Archives/edgar/data/1855467/000110465923130104/,,,,,,,,,
+1592782,Nukkleus Inc.,,2023-12-29,https://www.sec.gov/Archives/edgar/data/1592782/000121390023099910/,,,,,,,,,
+1787518,Nukkleus Inc.,"NUKK,NUKKW",2024-01-02,https://www.sec.gov/Archives/edgar/data/1787518/000121390024000318/,,,,,,,,,
+1843973,FLYEXCLUSIVE INC.,"FLYX,FLYX-WT",2024-01-03,https://www.sec.gov/Archives/edgar/data/1843973/000119312524001570/,,0,,-0.289,-0.45,-0.454,3.42,0.165,ok
+1854275,"Zoomcar Holdings, Inc.","ZCAR,ZCARW",2024-01-04,https://www.sec.gov/Archives/edgar/data/1854275/000121390024001242/,,,,,,,,,
+1852633,"Pinstripes Holdings, Inc.","PNST,PNST-WT",2024-01-05,https://www.sec.gov/Archives/edgar/data/1852633/000110465924001803/,,,,,,,,,
+1897245,HWH International Inc.,HWH,2024-01-12,https://www.sec.gov/Archives/edgar/data/1897245/000149315224002250/,,,,,,,,,
+1930021,New Horizon Aircraft Ltd.,"HOVR,HOVRW",2024-01-19,https://www.sec.gov/Archives/edgar/data/1930021/000121390024004932/,,0,,-0.704,-0.527,0.313,2.15,0.654,ok
+1849475,Newcourt Acquisition Corp,,2024-01-31,https://www.sec.gov/Archives/edgar/data/1849475/000110465924008879/,,,,,,,,,
+1857086,"TruGolf Holdings, Inc.",TRUG,2024-02-06,https://www.sec.gov/Archives/edgar/data/1857086/000149315224005145/,,,,,,,,,
+1881551,Solidion Technology Inc.,STI,2024-02-08,https://www.sec.gov/Archives/edgar/data/1881551/000121390024011711/,,,,,,,,,
+1830795,Quantum FinTech Acquisition Corp,,2024-02-13,https://www.sec.gov/Archives/edgar/data/1830795/000121390024013349/,,,,,,,,,
+1852973,Borealis Foods Inc.,"BRLS,BRLSW",2024-02-13,https://www.sec.gov/Archives/edgar/data/1852973/000121390024013332/,,,,,,,,,
+1860871,Semper Paratus Acquisition Corp,"TVGN,TVGNW",2024-02-14,https://www.sec.gov/Archives/edgar/data/1860871/000149315224006751/,,0,,-0.841,-0.639,-0.934,2.22,0.026,ok
+1831481,Sable Offshore Corp.,"SOC,SOC-WT",2024-02-14,https://www.sec.gov/Archives/edgar/data/1831481/000119312524036506/,,,,,,,,,
+1856948,Chenghe Acquisition Co.,,2024-02-15,https://www.sec.gov/Archives/edgar/data/1856948/000110465924024566/,,,,,,,,,
+1870404,"CERO THERAPEUTICS HOLDINGS, INC.","CERO,CEROW",2024-02-15,https://www.sec.gov/Archives/edgar/data/1870404/000121390024014197/,,,,,,,,,
+1963088,"AtlasClear Holdings, Inc.","ATCH,ATCHW",2024-02-15,https://www.sec.gov/Archives/edgar/data/1963088/000110465924024588/,,,,,,,,,
+1883788,"DIH HOLDING US, INC.","DHAI,DHAIW",2024-02-20,https://www.sec.gov/Archives/edgar/data/1883788/000149315224007083/,,,,,,,,,시세 없음
+1841024,L Catterton Asia Acquisition Corp,,2024-02-22,https://www.sec.gov/Archives/edgar/data/1841024/000110465924026598/,,,,,,,,,
+1829322,Sizzle Acquisition Corp.,,2024-03-04,https://www.sec.gov/Archives/edgar/data/1829322/000121390024019580/,,,,,,,,,
+1844505,"QT IMAGING HOLDINGS, INC.","QTI,QTIWW",2024-03-08,https://www.sec.gov/Archives/edgar/data/1844505/000119312524063762/,,,,,,,,,
+1947861,Nature's Miracle Holding Inc.,"NMHI,NMHIW",2024-03-15,https://www.sec.gov/Archives/edgar/data/1947861/000121390024023074/,,,,,,,,,
+1838163,Brand Engagement Network Inc.,"BNAI,BNAIW",2024-03-20,https://www.sec.gov/Archives/edgar/data/1838163/000149315224010698/,,,,,,,,,
+1855474,Montana Technologies Corp.,"AIRJ,AIRJW",2024-03-20,https://www.sec.gov/Archives/edgar/data/1855474/000121390024024441/,,0,,-0.503,-0.375,-0.729,1.73,0.219,ok
+1865506,Zeo Energy Corp.,"ZEO,ZEOWW",2024-03-20,https://www.sec.gov/Archives/edgar/data/1865506/000121390024024166/,,,,,,,,,
+1879373,GRAPHJET TECHNOLOGY,GTI,2024-03-20,https://www.sec.gov/Archives/edgar/data/1879373/000149315224010687/,,,,,,,,,
+1953984,"Binah Capital Group, Inc.","BCG,BCGWW",2024-03-21,https://www.sec.gov/Archives/edgar/data/1953984/000110465924037410/,,,,,,,,,
+1845368,HCM Acquisition Corp,,2024-03-26,https://www.sec.gov/Archives/edgar/data/1845368/000114036124015362/,,,,,,,,,
+1661998,Q32 Bio Inc.,QTTB,2024-03-27,https://www.sec.gov/Archives/edgar/data/1661998/000119312524077930/,,0,,1.808,-0.898,-0.688,3.13,0.544,ok
+1824884,Edoc Acquisition Corp.,,2024-03-28,https://www.sec.gov/Archives/edgar/data/1824884/000149315224011793/,,,,,,,,,
+1849635,Trump Media & Technology Group Corp.,"DJT,DJTWW",2024-04-01,https://www.sec.gov/Archives/edgar/data/1849635/000114036124016719/,,,,,,,,,
+1851961,"GCT Semiconductor Holding, Inc.","GCTS,GCTS-WT",2024-04-01,https://www.sec.gov/Archives/edgar/data/1851961/000110465924041823/,,,,,,,,,
+1708599,"AgeX Therapeutics, Inc.",SER,2024-04-01,https://www.sec.gov/Archives/edgar/data/1708599/000149315224012530/,,,,,,,,,
+1835972,"iLearningEngines, Inc.","AILE,AILEW",2024-04-22,https://www.sec.gov/Archives/edgar/data/1835972/000121390024034984/,,,,,,,,,시세 없음
+790051,CARLISLE COMPANIES INC,CSL,2024-05-01,https://www.sec.gov/Archives/edgar/data/790051/000079005124000087/,,,,,,,,,
+1879297,LAMF Global Ventures Corp. I,,2024-05-07,https://www.sec.gov/Archives/edgar/data/1879297/000121390024040496/,,,,,,,,,
+1823000,CONX Corp.,"CNXX,CNXXW",2024-05-07,https://www.sec.gov/Archives/edgar/data/1823000/000110465924058132/,,,,,,,,,
+1849056,Oklo Inc.,OKLO,2024-05-13,https://www.sec.gov/Archives/edgar/data/1849056/000110465924060634/,,,,,,,,,
+2006191,Lionsgate Studios Corp.,LION,2024-05-14,https://www.sec.gov/Archives/edgar/data/2006191/000119312524137722/,로봇·자율,12,,-0.286,-0.325,0.231,1.26,1.227,ok
+1912582,"Thunder Power Holdings, Inc.",AIEV,2024-06-27,https://www.sec.gov/Archives/edgar/data/1912582/000121390024056731/,,,,,,,,,
+1907223,"ANEW Medical, Inc.","WENA,WENAW",2024-06-27,https://www.sec.gov/Archives/edgar/data/1907223/000121390024056719/,,,,,,,,,
+1864531,"VSEE HEALTH, INC.","VSEE,VSEEW",2024-06-28,https://www.sec.gov/Archives/edgar/data/1864531/000110465924076308/,,,,,,,,,
+1878074,Blue World Acquisition Corp,,2024-07-08,https://www.sec.gov/Archives/edgar/data/1878074/000121390024059668/,,,,,,,,,
+1831979,Stardust Power Inc.,"SDST,SDSTW",2024-07-12,https://www.sec.gov/Archives/edgar/data/1831979/000149315224027127/,,0,,-0.647,-0.944,-0.977,3.21,0,ok
+1895249,"ConnectM Technology Solutions, Inc.",CNTM,2024-07-18,https://www.sec.gov/Archives/edgar/data/1895249/000110465924080823/,,,,,,,,,
+1882963,AIB Acquisition Corp,,2024-07-24,https://www.sec.gov/Archives/edgar/data/1882963/000101376224000715/,,,,,,,,,
+1847241,Project Energy Reimagined Acquisition Corp.,,2024-07-30,https://www.sec.gov/Archives/edgar/data/1847241/000101376224002249/,,,,,,,,,
+1936702,Cetus Capital Acquisition Corp.,,2024-07-31,https://www.sec.gov/Archives/edgar/data/1936702/000149315224029774/,,,,,,,,,
+2006986,"Adagio Medical Holdings, Inc.",ADGM,2024-08-06,https://www.sec.gov/Archives/edgar/data/2006986/000114036124035942/,,,,,,,,,
+1852736,Tristar Acquisition I Corp.,,2024-08-08,https://www.sec.gov/Archives/edgar/data/1852736/000121390024066694/,,,,,,,,,
+1851484,"CITIUS ONCOLOGY, INC.",CTOR,2024-08-16,https://www.sec.gov/Archives/edgar/data/1851484/000121390024070335/,,,,,,,,,
+1841125,"Bolt Projects Holdings, Inc.","BSLK,BSLKW",2024-08-19,https://www.sec.gov/Archives/edgar/data/1841125/000121390024070809/,,0,,-0.882,0.776,,2.86,0.001,ok
+1835416,Moringa Acquisition Corp,,2024-08-21,https://www.sec.gov/Archives/edgar/data/1835416/000121390024071449/,,,,,,,,,
+2022416,Silexion Therapeutics Corp,"SLXN,SLXNW",2024-08-21,https://www.sec.gov/Archives/edgar/data/2022416/000121390024071491/,,,,,,,,,
+907654,"Oruka Therapeutics, Inc.","ABIO,ORKA",2024-09-05,https://www.sec.gov/Archives/edgar/data/907654/000121390024076184/,,,,,,,,,
+1862935,Currenc Group Inc.,"CURR,IFIN",2024-09-06,https://www.sec.gov/Archives/edgar/data/1862935/000149315224035327/,,,,,,,,,
+1930313,SBC Medical Group Holdings Inc,"SBC,SBCWW",2024-09-20,https://www.sec.gov/Archives/edgar/data/1930313/000121390024080668/,,0,,-0.318,-0.229,-0.143,1.73,0.94,ok
+1840317,VEEA INC.,"PLMI,VEEA,PLMIU,PLMIW,VEEAW",2024-09-24,https://www.sec.gov/Archives/edgar/data/1840317/000121390024081217/,,,,,,,,,
+2013807,Foxx Development Holdings Inc.,"FOXX,FOXXW",2024-10-02,https://www.sec.gov/Archives/edgar/data/2013807/000121390024084719/,,,,,,,,,
+2001557,"Innventure, Inc.","INV,INVLW",2024-10-09,https://www.sec.gov/Archives/edgar/data/2001557/000114036124043179/,,,,,,,,,
+41719,Magnera Corp,GLT,2024-11-05,https://www.sec.gov/Archives/edgar/data/41719/000110465924114009/,,,,,,,,,시세 없음
+1900520,"Lomond Therapeutics Holdings, Inc.",,2024-11-07,https://www.sec.gov/Archives/edgar/data/1900520/000121390024095442/,,,,,,,,,
+1854480,DevvStream Corp.,"DEVS,FIAC,FIACU",2024-11-13,https://www.sec.gov/Archives/edgar/data/1854480/000114036124046512/,,,,,,,,,
+2000640,Damon Inc.,DMN,2024-11-18,https://www.sec.gov/Archives/edgar/data/2000640/000121390024099365/,,,,,,,,,
+1893219,"Abpro Holdings, Inc.","ABP,ACAB,ABPWW,ACABU,ACABW",2024-11-26,https://www.sec.gov/Archives/edgar/data/1893219/000121390024102382/,,,,,,,,,
+1843993,"Thunder Bridge Capital Partners IV, Inc.","THCP,THCPU,THCPW",2024-12-10,https://www.sec.gov/Archives/edgar/data/1843993/000121390024107527/,,,,,,,,,시세 없음
+2028336,NEW ERA HELIUM INC.,"NEHC,NEHCW",2024-12-12,https://www.sec.gov/Archives/edgar/data/2028336/000110465924128000/,,,,,,,,,
+1845123,"AleAnna, Inc.","ANNA,IVCP,ANNAW,IVCPU,IVCPW",2024-12-19,https://www.sec.gov/Archives/edgar/data/1845123/000121390024110260/,,,,,,,,,
+1862463,"ALPHA MODUS HOLDINGS, INC.","AMOD,AMODW,INAQU,INAQW",2024-12-19,https://www.sec.gov/Archives/edgar/data/1862463/000149315224050829/,,,,,,,,,
+2028293,"Rain Enhancement Technologies Holdco, Inc.",RAIN,2025-01-07,https://www.sec.gov/Archives/edgar/data/2028293/000121390025001708/,,0,,-0.238,-0.419,,1.63,0.11,ok
+1994624,ScanTech AI Systems Inc.,STAI,2025-01-08,https://www.sec.gov/Archives/edgar/data/1994624/000110465925002113/,,,,,,,,,
+1868269,Chenghe Acquisition I Co.,"LATG,LATGF,LATGU",2025-01-15,https://www.sec.gov/Archives/edgar/data/1868269/000110465925003788/,,,,,,,,,
+1871638,"Blaize Holdings, Inc.","BRKH,BRKHU,BRKHW",2025-01-17,https://www.sec.gov/Archives/edgar/data/1871638/000119312525008517/,,,,,,,,,
+1847607,RF Acquisition Corp.,"RFAC,RFACR,RFACU,RFACW",2025-02-14,https://www.sec.gov/Archives/edgar/data/1847607/000110465925014276/,,,,,,,,,시세 없음
+1889123,"Fold Holdings, Inc.","FLDD,FLDDU,FLDDW",2025-02-14,https://www.sec.gov/Archives/edgar/data/1889123/000121390025014354/,,,,,,,,,
+1938571,"ADAPTIN BIO, INC.",,2025-02-18,https://www.sec.gov/Archives/edgar/data/1938571/000121390025014630/,,,,,,,,,
+1840425,"OSR Holdings, Inc.","BLAC,BLACR,BLACU,BLACW",2025-02-21,https://www.sec.gov/Archives/edgar/data/1840425/000121390025016100/,,,,,,,,,
+1847345,"Aspire Biopharma Holdings, Inc.","PWUP,PWUPU,PWUPW",2025-02-21,https://www.sec.gov/Archives/edgar/data/1847345/000149315225007898/,,,,,,,,,
+314489,FIRST BUSEY CORP /NV/,BUSE,2025-03-03,https://www.sec.gov/Archives/edgar/data/314489/000110465925019504/,,0,,0.022,0.067,,1.31,1.202,ok
+1880343,"Fresh Vine Wine, Inc.",VINE,2025-03-10,https://www.sec.gov/Archives/edgar/data/1880343/000155479525000054/,,,,,,,,,
+1970622,"USA Rare Earth, Inc.","IPXX,USAR,IPXXU,IPXXW,USARW",2025-03-19,https://www.sec.gov/Archives/edgar/data/1970622/000121390025025163/,,,,,,,,,
+1713863,"Rafael Holdings, Inc.",RFL,2025-03-26,https://www.sec.gov/Archives/edgar/data/1713863/000101376225002413/,,,,,,,,,
+2022308,"Classover Holdings, Inc.","KIDZ,KIDZW",2025-04-10,https://www.sec.gov/Archives/edgar/data/2022308/000192998025000257/,전력·에너지 인프라,11,,-0.478,-0.976,,3.8,0.002,ok
+1965052,Marblegate Capital Corp,,2025-04-11,https://www.sec.gov/Archives/edgar/data/1965052/000119312525079142/,,,,,,,,,
+1912461,SK Growth Opportunities Corp,"SKGR,SKGRU,SKGRW",2025-04-14,https://www.sec.gov/Archives/edgar/data/1912461/000121390025031274/,,,,,,,,,
+1798749,"Jade Biosciences, Inc.",AVTE,2025-05-01,https://www.sec.gov/Archives/edgar/data/1798749/000119312525110004/,,,,,,,,,
+1971387,"Liminatus Pharma, Inc.","LIMN,LIMNW",2025-05-06,https://www.sec.gov/Archives/edgar/data/1971387/000110465925045127/,,,,,,,,,
+1956055,Bukit Jalil Global Acquisition 1 Ltd.,"BUJA,BUJAR,BUJAU,BUJAW",2025-05-12,https://www.sec.gov/Archives/edgar/data/1956055/000192998025000412/,,,,,,,,,시세 없음
+2025065,Black Spade Acquisition II Co,"BSII,BSIIU,BSIIW",2025-06-05,https://www.sec.gov/Archives/edgar/data/2025065/000110465925056485/,,,,,,,,,
+1842937,Red Rock Acquisition Corp.,"HCVI,HCVIU,HCVIW",2025-06-05,https://www.sec.gov/Archives/edgar/data/1842937/000121390025051570/,,,,,,,,,
+2019793,"XCF Global, Inc.",SAFX,2025-06-12,https://www.sec.gov/Archives/edgar/data/2019793/000114036125022325/,,,,,,,,,
+1253689,GLYCOMIMETICS INC,GLYC,2025-06-18,https://www.sec.gov/Archives/edgar/data/1253689/000110465925060714/,,,,,,,,,시세 없음
+2033770,"CID Holdco, Inc.",DAIC,2025-06-26,https://www.sec.gov/Archives/edgar/data/2033770/000121390025057972/,,,,,,,,,
+1866001,JVSPAC Acquisition Corp.,"JVSA,JVSAR,JVSAU",2025-07-09,https://www.sec.gov/Archives/edgar/data/1866001/000121390025062164/,,,,,,,,,
+1818605,Distoken Acquisition Corp,,2025-07-15,https://www.sec.gov/Archives/edgar/data/1818605/000164117225019753/,,,,,,,,,
+2038439,"VisionWave Holdings, Inc.",VWAV,2025-07-15,https://www.sec.gov/Archives/edgar/data/2038439/000173112225000977/,,,,,,,,,
+2051380,GrabAGun Digital Holdings Inc.,"PEW,PEW-WT",2025-07-18,https://www.sec.gov/Archives/edgar/data/2051380/000121390025065768/,,0,,-0.681,-0.756,,1,0.213,ok
+1859807,"Profusa, Inc.","NVAC,PFSA,NVACR,NVACW",2025-07-18,https://www.sec.gov/Archives/edgar/data/1859807/000121390025065686/,,,,,,,,,
+1918080,"Deep Isolation Nuclear, Inc.",,2025-07-28,https://www.sec.gov/Archives/edgar/data/1918080/000121390025068196/,,,,,,,,,
+1869105,"BridgeBio Oncology Therapeutics, Inc.",HLXB,2025-08-13,https://www.sec.gov/Archives/edgar/data/1869105/000121390025075190/,,,,,,,,,
+1108134,Beacon Financial Corp,BHLB,2025-09-02,https://www.sec.gov/Archives/edgar/data/1108134/000110465925086043/,,,,,,,,,
+1755953,"Gryphon Digital Mining, Inc.",GRYP,2025-09-03,https://www.sec.gov/Archives/edgar/data/1755953/000121390025083726/,,,,,,,,,시세 없음
+1918102,"DEEP FISSION, INC.",,2025-09-11,https://www.sec.gov/Archives/edgar/data/1918102/000121390025086894/,,,,,,,,,
+1865200,"Angel Studios, Inc.","ANGX,PORT,PORTU,PORTW",2025-09-16,https://www.sec.gov/Archives/edgar/data/1865200/000110465925090427/,,,,,,,,,
+1913577,"Semnur Pharmaceuticals, Inc.","SMNR,DNQAF,DNQUF,DNQWF",2025-09-26,https://www.sec.gov/Archives/edgar/data/1913577/000119312525220455/,,,,,,,,,
+1853138,"Kodiak AI, Inc.","AACT,AACT-UN,AACT-WT",2025-09-30,https://www.sec.gov/Archives/edgar/data/1853138/000119312525225299/,,,,,,,,,
+1938569,Palomino Laboratories Inc.,,2025-10-06,https://www.sec.gov/Archives/edgar/data/1938569/000149315225016939/,,,,,,,,,
+1901203,CN Healthy Food Tech Group Corp.,"IROH,IROHR,IROHU,IROHW",2025-10-06,https://www.sec.gov/Archives/edgar/data/1901203/000121390025096652/,,0,,0,,,1,1,ok
+2067627,Terra Innovatum Global N.V.,NKLR,2025-10-16,https://www.sec.gov/Archives/edgar/data/2067627/000121390025099636/,,,,,,,,,
+2033383,Fusemachines Inc.,FUSE,2025-10-29,https://www.sec.gov/Archives/edgar/data/2033383/000149315225019927/,,,,,,,,,
+2019804,Terrestrial Energy Inc. /DE/,"HOND,HONDU,HONDW",2025-11-03,https://www.sec.gov/Archives/edgar/data/2019804/000121390025105304/,,,,,,,,,
+1567892,Mallinckrodt plc,,2025-11-10,https://www.sec.gov/Archives/edgar/data/1567892/000110465925109241/,,,,,,,,,
+2051820,Mount Logan Capital Inc.,MLCI,2025-11-24,https://www.sec.gov/Archives/edgar/data/2051820/000205182025000150/,,0,,-0.581,,,1.13,0.465,ok
+1106838,"Sonnet BioTherapeutics Holdings, Inc.",SONN,2025-12-03,https://www.sec.gov/Archives/edgar/data/1106838/000149315225025884/,,,,,,,,,
+2076163,"ProCap Financial, Inc.",,2025-12-11,https://www.sec.gov/Archives/edgar/data/2076163/000121390025120791/,,,,,,,,,
+2070457,"Twenty One Capital, Inc.",XXI,2025-12-12,https://www.sec.gov/Archives/edgar/data/2070457/000121390025121293/,,,,,,,,,
+1937891,AMC Robotics Corp,"AMCI,ATMV,ATMVR,ATMVU",2025-12-16,https://www.sec.gov/Archives/edgar/data/1937891/000149315225027820/,,,,,,,,,
+2044112,Uinta Infrastructure Group Corp.,,2025-12-19,https://www.sec.gov/Archives/edgar/data/2044112/000121390025123435/,,,,,,,,,
+2068385,"SharonAI Holdings, Inc.",,2025-12-22,https://www.sec.gov/Archives/edgar/data/2068385/000182912625010236/,,,,,,,,,

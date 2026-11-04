@@ -23,3 +23,13 @@ score:
   weights:
     pre_vote:   {floor: 0.20, dilution: 0.25, edge: 0.15, value: 0.25, overhang: 0.10, attention: 0.05}   # 주총 전(S2~S4) — 바닥·희석·가치 중심
     post_close: {dilution: 0.10, edge: 0.30, value: 0.30, overhang: 0.25, attention: 0.05}              # 종결 뒤(S5~) — 바닥 없음, 사업·가치·오버행 중심
+  # 4단계 기저율(scripts/tenbagger/spac_history.py rates → knowledge/models/spac/base_rates.json, 2026-11-04 표본) — 리포트·Pulse가 '스팩 종결 뒤 기저율'로 같이 쓴다
+  # 표본: 2021~2025 종결 509건 중 시세 99건(2021년 62건 쏠림), 시세 없음 51건(상장폐지 추정 — 생존 편향으로 아래 숫자는 낙관 쪽)
+  base_rate:
+    n: 99
+    r24m_median: -0.688       # 종결 뒤 24개월 수익 중앙값
+    lt_minus50_24m: 0.681     # 24개월 −50% 이하 비율
+    ge2x_24m: 0.182           # 24개월 안 종결가 대비 2배 도달 비율
+    ge3x_24m: 0.081
+    ge10x_24m: 0.0            # 10배 도달 0/99
+    theme_match: {n: 17, r24m_median: -0.728, ge3x_24m: 0.059}   # Chiip 테마 일치 스팩도 더 낫지 않았다(표본 작음)
