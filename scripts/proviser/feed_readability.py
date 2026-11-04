@@ -1,7 +1,7 @@
 """텔레그램 피드 가독성 채점·개선 장부 (마스터 지시 2026-11-04 "텔레그램 피드를 적을 때 가독성 있게 쓰도록 보고 양식을 지속 개선하도록 해라")
 
 발송된 글 전체(radar/state/sent/<YYYYMMDD>.jsonl, notify.send가 남긴다)를 기능(level)별로 모아 휴대폰에서 읽히는 정도를 0~10으로 잰다.
-결정론 지표만 쓴다(감점식, 상수 config/feed_readability.yaml). 모델은 점수가 가장 낮은 지표 하나를 골라 양식 규칙을 고친다(Proviser 6-6).
+결정론 지표만 쓴다(감점식, 상수 config/feed_readability.yaml). 모델은 점수가 가장 낮은 지표 하나를 골라 양식 규칙을 고친다(Proviser 6-8).
   첫 줄: 결론이 첫 줄에 있는가(첫 줄 길이 ≤ first_line_max자, 숫자·고유명 포함)
   덩어리: 빈 줄 없는 연속 줄 수 ≤ block_max, 한 줄 ≤ line_max자, 한 문장 숫자 ≤ numbers_max
   잡음: 내부 코드(T0·P1·S3 등)·영문 약어 풀이 없음·'미확인' 남발·같은 링크 반복
