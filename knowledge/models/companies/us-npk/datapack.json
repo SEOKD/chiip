@@ -1,0 +1,2301 @@
+{
+ "id": "us-npk",
+ "name": "National Presto Industries",
+ "ticker": "NPK",
+ "as_of": "2026-11-05",
+ "unit": "B$",
+ "industry": "aerospace_defense",
+ "region_mix": {
+  "US": 1.0
+ },
+ "region_why": "매출은 주로 북미(10-Q 4번 주석). 방산은 미 국방부·국방부 프라임 계약사가 고객",
+ "tax": 0.22,
+ "main_metric": "eps",
+ "main_metric_why": "회사는 조정 지표를 내지 않고 GAAP 순이익·EPS만 공시한다. 감가상각은 영업이익의 약 8%로 작아 EPS가 주요 지표",
+ "profile": {
+  "price": 149.58,
+  "shares_basic": 0.007136067,
+  "shares_date": "2026-08-14",
+  "cash": 0.016291,
+  "debt": 0.009179,
+  "source": "가격 = 11/4 종가. 주식 = 2Q 10-Q 표지 7,136,067주(8/14 기준). 현금 = 7/5 현금 $15.8M + 시장성 증권 $0.5M. 차입 = 리스 부채 $9.2M(신용 한도 잔액 0, 7/5)"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "options": 0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-08-14",
+  "source": "회사는 기본·희석 EPS가 같다(10-Q 3번 주석). 미가득 제한주는 배당권이 있어 가중 주식 수에 이미 포함된다(3Q 가중 7,168,000주). 옵션·워런트·전환증권 없음"
+ },
+ "financials": {
+  "rev_ttm": 0.573526,
+  "ebit_ttm": 0.070909,
+  "invested_capital": 0.404159,
+  "capex_ttm": 0.00703,
+  "da_ttm": 0.0057,
+  "sbc_ttm": 0.001,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26. 매출 163.973+118.649+146.596+144.308. 영업이익 18.663+8.032+19.414+24.8(3Q는 10-Q 전이라 추정 — 순이익 $19.977M ÷ (1−22%) − 영업외 수익 약 $0.8M). TTM 영업이익에 관세 환급 $9.8M(2Q $2.245M·3Q $7.553M)과 설비 매각 이익 $1.7M이 들어 있어 반복 영업이익은 약 $59.4M(10.4%). CAPEX·D&A는 3Q25~2Q26(3Q26 현금흐름 미공시). SBC는 제한주 보상으로 작고 공시 숫자가 없어 추정"
+ },
+ "sbc_pct_rev": 0.002,
+ "sbc_why": "GAAP 이익을 그대로 쓴다. 제한주 보상은 매출의 0.2% 안팎(추정)이라 따로 빼지 않는다",
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai 표준 재무제표(최근 4개 분기)·calculated_market_cap(11/4)·Forward 배수. 동종 = 사업 구성(방산 탄약 84%·소비자 제품 16%)에 맞춘 6사: 방산 GD(탄약 사업 OTS)·OLN(Winchester 탄약)·DCO·CW, 소비자 HBB(소형 가전)·RGR(총기·소비자). 무인기·방산 전자 성장주(KTOS·MRCY)는 성장 구조가 달라 뺐다",
+ "peers": [
+  {
+   "ticker": "GD",
+   "key": "NYSE_GD",
+   "rev": 56.52,
+   "ebit_margin": 0.1037,
+   "mcap": 98.6235,
+   "pb": 3.61,
+   "debt": 7.016,
+   "cash": 4.388,
+   "ev_sales": 1.79,
+   "growth": 0.0973,
+   "goodwill": 20.849,
+   "intangibles": 1.231,
+   "pe_fwd": 19.96,
+   "ev_ebitda_fwd": 13.93,
+   "pe_fwd2": 17.95,
+   "ev_ebitda_fwd2": 12.86,
+   "pe_fwd3": 16.43,
+   "ev_ebitda_fwd3": 11.9,
+   "ntm_ebit_margin": 0.106,
+   "ntm_growth": 0.0511
+  },
+  {
+   "ticker": "OLN",
+   "key": "NYSE_OLN",
+   "rev": 6.7377,
+   "ebit_margin": -0.0192,
+   "mcap": 2.0611,
+   "pb": 1.2,
+   "debt": 3.0131,
+   "cash": 0.2148,
+   "ev_sales": 0.72,
+   "growth": -0.0073,
+   "goodwill": 1.4276,
+   "intangibles": 0.1464,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 9.66,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 7.62,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 7.13,
+   "ntm_ebit_margin": 0.0252,
+   "ntm_growth": 0.0241
+  },
+  {
+   "ticker": "DCO",
+   "key": "NYSE_DCO",
+   "rev": 0.865069,
+   "ebit_margin": -0.0166,
+   "mcap": 2.3571,
+   "pb": 3.41,
+   "debt": 0.276425,
+   "cash": 0.039804,
+   "ev_sales": 3.0,
+   "growth": 0.0924,
+   "goodwill": 0.2446,
+   "intangibles": 0.124475,
+   "pe_fwd": 31.54,
+   "ev_ebitda_fwd": 18.76,
+   "pe_fwd2": 25.93,
+   "ev_ebitda_fwd2": 16.46,
+   "pe_fwd3": 21.83,
+   "ev_ebitda_fwd3": 14.79,
+   "ntm_ebit_margin": 0.1239,
+   "ntm_growth": 0.0525
+  },
+  {
+   "ticker": "CW",
+   "key": "NYSE_CW",
+   "rev": 3.653846,
+   "ebit_margin": 0.1878,
+   "mcap": 16.5396,
+   "pb": 5.97,
+   "debt": 0.957387,
+   "cash": 0.477149,
+   "ev_sales": 4.66,
+   "growth": 0.1054,
+   "goodwill": 1.686728,
+   "intangibles": 0.501027,
+   "pe_fwd": 28.15,
+   "ev_ebitda_fwd": 19.01,
+   "pe_fwd2": 25.28,
+   "ev_ebitda_fwd2": 17.47,
+   "pe_fwd3": 21.97,
+   "ev_ebitda_fwd3": 15.44,
+   "ntm_ebit_margin": 0.1937,
+   "ntm_growth": 0.0817
+  },
+  {
+   "ticker": "HBB",
+   "key": "NYSE_HBB",
+   "rev": 0.617788,
+   "ebit_margin": 0.1263,
+   "mcap": 0.462551,
+   "pb": 2.1,
+   "debt": 0.025,
+   "cash": 0.092539,
+   "ev_sales": 0.64,
+   "growth": 0.0171,
+   "goodwill": 0.007099,
+   "intangibles": 0.0,
+   "pe_fwd": 15.31,
+   "ev_ebitda_fwd": 7.91,
+   "pe_fwd2": 15.15,
+   "ev_ebitda_fwd2": 7.26,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null,
+   "ntm_ebit_margin": 0.0629,
+   "ntm_growth": 0.0215
+  },
+  {
+   "ticker": "RGR",
+   "key": "NYSE_RGR",
+   "rev": 0.598102,
+   "ebit_margin": 0.0252,
+   "mcap": 0.814891,
+   "pb": 2.78,
+   "debt": 0.0,
+   "cash": 0.101393,
+   "ev_sales": 1.19,
+   "growth": 0.106,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "pe_fwd": 23.09,
+   "ev_ebitda_fwd": 13.29,
+   "pe_fwd2": 20.64,
+   "ev_ebitda_fwd2": 10.91,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null,
+   "ntm_ebit_margin": 0.0565,
+   "ntm_growth": 0.0603
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.25,
+  "base": 0.5,
+  "bull": 0.25
+ },
+ "multiple_view": {
+  "adj": -0.05,
+  "why": "방산 매출은 사실상 미 육군 40mm 체계 계약 하나에 기대고, 남은 FY26 발주 1년분이 확정되지 않았다. 애널리스트 1명·어닝콜 없음으로 정보 할인이 있고, 지배 주주 25.6%(의결권 신탁)로 행동주의가 물러났다"
+ },
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "next_event": {
+  "date": "2026-11-13",
+  "tag": "3Q26 10-Q 제출 기한(보도자료는 10/30에 나옴) — 세그먼트 이익·방산 백로그·재고·신용 한도 갱신 확인"
+ },
+ "guidance": {
+  "source": "회사는 매출·이익 가이던스를 내지 않는다(보도자료·10-K·10-Q 전망 수치 없음)",
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "next": {
+   "period": "4Q26",
+   "rev": null,
+   "eps": null,
+   "unit": "$M",
+   "note": "회사 가이던스 없음. 4Q26 컨센서스는 매출 $184.9M·EPS $2.51(애널리스트 추정 표본 1명 + 모델 추정, 3Q 발표 전 10/16 기준)"
+  }
+ },
+ "terms": {
+  "AMTEC": "NPK의 방산 자회사 — 미 육군 40mm 탄약 체계 단독 프라임 계약사",
+  "40mm": "유탄발사기용 40밀리미터 탄약(훈련탄·전술탄)",
+  "LAP": "탄약을 장전·조립·포장하는 최종 공정(Load, Assemble and Pack)",
+  "IDIQ": "수량·시기를 정하지 않고 상한만 둔 미 정부 계약(발주가 와야 매출)",
+  "M918E2": "미 육군 40mm 고속 훈련탄 신형 모델",
+  "TP-DNT": "주·야간·열상 장비로 탄착이 보이는 훈련탄(Target Practice Day/Night/Thermal)",
+  "DOD": "미 국방부",
+  "IEEPA": "국제비상경제권한법 — 2025년 관세의 근거 법, 2026년 2월 대법원이 위법 판단",
+  "CIT": "미 국제무역법원",
+  "LIFO": "후입선출 재고 평가 — 최근 원가가 먼저 매출원가로 간다",
+  "PFAS": "과불화화합물 — 환경 규제 대상 화학물질",
+  "Rely FX": "NPK Safety 부문의 상업용 소화기 제품군",
+  "Rely": "NPK Safety 부문 브랜드(경보기·소화기)",
+  "Spectra": "NPK의 아칸소 탄약 장전·조립 공장(Spectra Technologies)",
+  "Amron": "NPK의 위스콘신 중구경 탄피 공장",
+  "Tech Ord": "NPK의 사우스다코타 기폭관·에너지 물질 공장",
+  "Woodlawn": "NPK의 텍사스 정밀 금속 부품 공장(2022 인수)",
+  "OTS": "General Dynamics의 탄약·무기 사업부(Ordnance and Tactical Systems)",
+  "GD": "미국 방산 대기업 General Dynamics",
+  "OLN": "Winchester 탄약을 가진 미국 화학 회사 Olin",
+  "DCO": "미국 항공·방산 부품사 Ducommun",
+  "CW": "미국 방산·산업 부품사 Curtiss-Wright",
+  "FY26": "회사 회계연도 2026(12월 결산)",
+  "13D": "5% 넘게 보유한 주주가 경영 관여 의사와 함께 내는 지분 공시",
+  "PPI": "생산자물가지수",
+  "Section 122": "무역적자 대응 150일 한시 관세 조항(무역법 122조)",
+  "Section 301": "불공정 무역 대응 관세 조항(무역법 301조)",
+  "BlackRock": "미국 자산운용사 블랙록",
+  "Albion River": "미국 투자회사 — 2025년 12월 NPK 지분 5% 초과 공시 뒤 2026년 6월 4%로 축소",
+  "B/B": "수주 ÷ 매출(book-to-bill)",
+  "ACV": "연간 계약 가치",
+  "DNT": "주·야간·열상(Day/Night/Thermal)",
+  "EU": "유럽연합",
+  "FX": "Rely 소화기 제품군 이름",
+  "Housewares": "NPK 가정용 소형 가전 부문",
+  "KR": "한국",
+  "MY": "말레이시아",
+  "RPO": "잔여 이행 의무(계약 잔고)",
+  "Safety": "NPK 안전 제품 부문(경보기·소화기)",
+  "HBB": "미국 소형 가전 회사 Hamilton Beach Brands",
+  "RGR": "미국 총기 제조사 Sturm, Ruger",
+  "Presto": "NPK 가정용 소형 가전 브랜드",
+  "CAR": "누적 초과수익률(시장 대비)",
+  "ETF": "상장지수펀드"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-05T06:20:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NYSE_NPK",
+   "price": 149.58,
+   "market_cap": 1.067413,
+   "total_cash": 0.016291,
+   "total_debt": 0.009179,
+   "shares_outstanding": 0.007136067,
+   "as_of": "2026-11-04",
+   "balance_date": "2026-07-05",
+   "note": "Fiscal.ai calculated_market_cap 11/4 $1,064.99M(주식 약 7.12M 기준). 가격은 11/4 종가 $149.58(yfinance via Easyconomics), 시가총액 = 가격 × 10-Q 표지 주식 7,136,067. 현금·차입 = 7/5 재무상태표(Fiscal 표준 재무, 10-Q 대조)",
+   "auditUrl": "https://fiscal.ai/company/NYSE-NPK"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.163973,
+    "2026Q1": 0.118649,
+    "2026Q2": 0.146596,
+    "2026Q3": 0.144308
+   },
+   "op_income": {
+    "2025Q4": 0.018663,
+    "2026Q1": 0.008032,
+    "2026Q2": 0.019414,
+    "2026Q3": 0.0248
+   },
+   "note": "3Q26 영업이익은 10-Q 전 추정(보도자료 순이익 기준). 3Q26 매출은 보도자료 공시"
+  },
+  "balance_2026_07_05": {
+   "equity": 0.411271,
+   "debt_current": 0.0,
+   "debt_lt": 0.0,
+   "lease_current": 0.000488,
+   "lease_lt": 0.008691,
+   "cash": 0.015792,
+   "st_investments": 0.000499,
+   "inventory": 0.326549,
+   "wip": 0.277739,
+   "receivables": 0.053422,
+   "payables": 0.042832,
+   "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm"
+  },
+  "cash_flow": {
+   "ocf_6m26": 0.044144,
+   "ocf_6m25": 0.001542,
+   "ocf_fy25": -0.009137,
+   "ocf_fy24": -0.053426,
+   "capex_fy25": 0.027034,
+   "capex_6m26": 0.005449,
+   "capex_6m25": 0.025449,
+   "dividends_6m26": 0.007164,
+   "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm · https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+  },
+  "estimates_sales_m": {
+   "2026Q1": 118.649,
+   "2026Q2": 146.596,
+   "2026Q3": 144.308,
+   "2026Q4": 184.858,
+   "2027Q1": 130.807,
+   "2027Q2": 152.409,
+   "2027Q3": 149.561,
+   "2027Q4": 197.223,
+   "2028Q1": 141.656,
+   "2028Q2": 160.921,
+   "2028Q3": 157.237,
+   "2028Q4": 208.187
+  },
+  "estimates_note": "2026Q1~Q3는 실적, 나머지는 Fiscal.ai 자체 추정 평균(agentic consensus, 신뢰도 low, 10/16 기준 — 3Q 발표 전). Zacks 커버리지 없음",
+  "sec": {
+   "10q": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm",
+   "10k": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+   "results_8k_3q": "https://www.sec.gov/Archives/edgar/data/80172/000143774926034432/ex_1036451.htm",
+   "results_8k_2q": "https://www.sec.gov/Archives/edgar/data/80172/000143774926025460/ex_997628.htm",
+   "results_8k_1q": "https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm",
+   "agm_8k": "https://www.sec.gov/Archives/edgar/data/80172/000143774926018109/ex_966603.htm",
+   "proxy": "https://www.sec.gov/Archives/edgar/data/80172/000143774926012242/npk20260403_def14a.htm",
+   "13d_a": "https://www.sec.gov/Archives/edgar/data/80172/000149315226028722/0001493152-26-028722-index.htm",
+   "checks": "R-20261031-01: ① 구매 약정 — 10-K·10-Q에 계약상 약정 표 없음(소규모 보고 회사), 정부 지정 하도급 의존을 위험으로 적음 ② 제한 현금 — 언급 없음(미확인) ③ 10% 초과 고객 — 2025년 없음, 2024 Amazon 10%·2023 11%. 방산은 DOD·프라임 계약사가 고객(이름별 몫 미공시) ④ 정부 계약 — 40mm 4차 5년 체계 계약(FY22~26, 수주 $965M·상한 $1.413B), M918E2 IDIQ(수주 $256M·상한 $818.9M), 백로그 $1.810B(7/5)"
+  },
+  "shares_cover_implied": 0.007136067
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.594411,
+   "FY2027": 0.63,
+   "FY2028": 0.668
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.1044,
+   "FY2027": 0.1078,
+   "FY2028": 0.1088
+  },
+  "rev_low": {
+   "FY2026": 0.555,
+   "FY2027": 0.56,
+   "FY2028": 0.56
+  },
+  "rev_high": {
+   "FY2026": 0.618,
+   "FY2027": 0.7,
+   "FY2028": 0.765
+  },
+  "n_analysts": 1,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 0.184858,
+   "2027Q1": 0.130807,
+   "2027Q2": 0.152409,
+   "2027Q3": 0.149561,
+   "2027Q4": 0.197223,
+   "2028Q1": 0.141656,
+   "2028Q2": 0.160921,
+   "2028Q3": 0.157237,
+   "2028Q4": 0.208187
+  },
+  "quarters_act": {
+   "2025Q4": 0.163973,
+   "2026Q1": 0.118649,
+   "2026Q2": 0.146596,
+   "2026Q3": 0.144308
+  },
+  "eps_quarters_est": {
+   "2026Q4": 2.51,
+   "2027Q1": 1.51,
+   "2027Q2": 1.83,
+   "2027Q3": 1.78,
+   "2027Q4": 2.49
+  },
+  "eps_year": {
+   "FY2026": [
+    7.01,
+    5.9,
+    8.09
+   ],
+   "FY2027": [
+    7.6,
+    5.5,
+    9.82
+   ],
+   "FY2028": [
+    8.11,
+    5.28,
+    10.98
+   ]
+  },
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 0,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-04",
+   "source": "yfinance(Easyconomics)·Fiscal.ai 의견 분포(Zacks) 동일",
+   "target_mean": 162,
+   "target_high": 162,
+   "target_low": 162
+  },
+  "target_mean": 162,
+  "target_low": 162,
+  "target_high": 162,
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 163.973,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-03"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.1,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-03"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-04-05",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 118.649,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-01"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-04-05",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.93,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-01"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-07-05",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 146.596,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-31"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-07-05",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.21,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-31"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-10-04",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 144.308,
+    "est": 134.897,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-16",
+    "basis": "gaap",
+    "earnings_date": "2026-10-30"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-10-04",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.79,
+    "est": 1.359,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-16",
+    "basis": "gaap",
+    "earnings_date": "2026-10-30"
+   }
+  ],
+  "price_window": {
+   "from": 121.42,
+   "to": 149.58,
+   "note": "2Q 실적 발표일 7/31 종가 → 11/4 종가"
+  },
+  "note": "Fiscal.ai 자체 추정(agentic consensus, 신뢰도 low, 10/16 기준)이 1순위. Zacks 컨센서스 없음(커버리지 없음). 의견 1명 Hold·목표가 $162(yfinance). FY2026 매출은 1~3Q 실적 + 4Q 추정 합 — 3Q 발표 전 평균 $585M보다 높다. FY2026 EPS 범위 상단 $8.09도 9M 실적 $5.93 + 4Q 추정 $2.51 = $8.44보다 낮아 추정이 낡았다. 2025Q4~2026Q2 발표 전 추정은 저장된 값이 없다(미확인)"
+ },
+ "call": {
+  "date": "2026-10-30",
+  "prev_date": "2026-07-31",
+  "tone": "flat",
+  "tone_score": null,
+  "tone_delta": null,
+  "guidance_direction": "none",
+  "kpis": {
+   "rev_m": 144.308,
+   "eps": 2.79,
+   "net_income_m": 19.977,
+   "defense_rev_growth": 0.313,
+   "defense_oe_growth": 0.618,
+   "housewares_oe_m": 8.1,
+   "tariff_refund_m": 7.553,
+   "backlog_m_jul5": 1810.149
+  },
+  "guidance_changes": [
+   "가이던스 없음(회사는 전망 숫자를 내지 않는다)"
+  ],
+  "new_topics": [
+   "3Q에 관세 환급 $7.553M 인식 — Housewares 영업이익 $8.1M의 대부분(2Q 10-Q가 예고)",
+   "방산 이익 증가 이유에 '더 유리한 믹스와 운영 효율'이 처음 붙었다(2Q는 물량만)",
+   "Safety 매출 +88.9%(규모는 작다)"
+  ],
+  "dropped_topics": [
+   "2Q의 '관세로 소매 주문 시기가 바뀌고 소비 수요가 눌렸다'는 설명이 3Q에는 없다"
+  ],
+  "risks": [
+   "방산 매출의 대부분이 미 육군 40mm 체계 계약 — FY26 발주 1년분 미확정(상한 $1.413B 중 수주 $965M)",
+   "고정가 계약 — 원가 연동은 강철·알루미늄·아연뿐(10-K)",
+   "40mm 대부분을 장전·조립하는 정부 시설이 1Q에 2주 멈췄다(1Q 보도자료)",
+   "재고 $326.5M(그중 재공품 $277.7M) — 매출 1년치의 57%",
+   "관세 환급 소송이 아직 항소 중(10-Q)"
+  ],
+  "qa_focus": [],
+  "answer": "회사 답변 없음 — 어닝콜·질의응답을 하지 않는다. 보도자료의 사장 발언만 있다",
+  "source": "3Q 보도자료(2026-10-30, 8-K 11/2) https://www.sec.gov/Archives/edgar/data/80172/000143774926034432/ex_1036451.htm · 2Q 보도자료(2026-07-31) · 2Q 10-Q(2026-08-14)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "방산 매출 증가율",
+    "label": "방산 +31%",
+    "prior": "2Q +27.2%",
+    "latest": "3Q +31.3%(+$29M)",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 1.0,
+    "source": "3Q 보도자료"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "방산 이익률",
+    "label": "방산 믹스·효율",
+    "prior": "2Q 영업이익 +33.5%(물량)",
+    "latest": "3Q 영업이익 +61.8%(믹스·효율 추가)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "3Q 보도자료"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "관세 환급",
+    "label": "관세 환급 $7.6M",
+    "prior": "2Q $2.245M 인식, 이후 $7.553M 수령 예고",
+    "latest": "3Q $7.553M 인식 — 일회성",
+    "driver": "margin_m0",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "2Q 10-Q 14번 주석·3Q 보도자료"
+   },
+   {
+    "id": "F4",
+    "kind": "반복",
+    "item": "방산 백로그",
+    "label": "백로그 $1.81B",
+    "prior": "12/31 $1.748B",
+    "latest": "7/5 $1.810B(18~48개월 이행)",
+    "driver": "growth_end",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "2Q 10-Q 2번 주석"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "Housewares 수요",
+    "label": "가전 매출 −2%",
+    "prior": "2Q −6.2%(관세 가격 인상)",
+    "latest": "3Q −2.1%",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "3Q 보도자료"
+   }
+  ],
+  "tone_note": "어닝콜·실적 레이더가 없어 규칙 기준(가이던스 변화 없음 = flat)을 쓴다. 보도자료 제목은 '매출·이익 증가'"
+ },
+ "customers": {
+  "as_of": "2026-10-04",
+  "period": "3Q26",
+  "summary": "3Q 매출의 약 84%가 방산($121.6M, 계산)이고 고객은 미 국방부와 국방부 프라임 계약사다. 회사는 방산 고객별 몫을 공시하지 않는다. Housewares는 미국·캐나다 소매점에 직접 팔고, 2025년 10% 넘는 고객은 없었다(2024 Amazon 10%)",
+  "items": [
+   {
+    "name": "미 육군·국방부(40mm 체계 계약 직접)",
+    "alias": "10-K 'DOD'",
+    "share": [
+     0.6,
+     0.75
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "40mm 훈련탄·전술탄(체계 계약·M918E2 IDIQ)",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+    "why": "AMTEC이 40mm 체계 단독 프라임. 방산 매출 84% 중 프라임 계약사 부품 몫을 빼고 둔 범위 — 고객별 몫 미공시"
+   },
+   {
+    "name": "국방부 프라임 계약사(이름 미공시)",
+    "alias": "10-K 'DOD prime contractors'",
+    "share": [
+     0.09,
+     0.24
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "탄피·신관·기폭관·금속 부품·LAP 용역",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+    "why": "Amron·Tech Ord·Woodlawn의 고객 — 방산 84%에서 위 범위를 뺀 나머지"
+   },
+   {
+    "name": "소매 유통(Housewares·Safety)",
+    "alias": "10-K 소매점·독립 유통사",
+    "share": 0.157,
+    "prior": 0.198,
+    "basis": "공시",
+    "buys": "Presto 소형 가전·Rely 경보기·소화기",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926034432/ex_1036451.htm",
+    "why": "3Q Housewares 약 $22.0M + Safety $0.6M(계산) ÷ $144.3M. 1년 전 3Q 약 19.8%"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-07-05",
+  "basis": "GAAP",
+  "summary": "2Q 매출총이익률은 19.5%로 1년 전 15.4%보다 4.1%p 높다. 방산 매출총이익률 19.6%(1년 전 19.2%), Housewares는 관세 환급 $2.245M이 매출원가를 줄여 $4.7M(1년 전 $0.5M)이다. 판관비는 매출의 5.9%로 낮고, 영업이익률은 13.2%다",
+  "periods": [
+   {
+    "period": "2Q25",
+    "rev": 0.120449,
+    "cogs": 0.101903,
+    "rd": 0.0,
+    "sga": 0.00937,
+    "other": 0.00308
+   },
+   {
+    "period": "2Q26",
+    "rev": 0.146596,
+    "cogs": 0.118049,
+    "rd": 0.0,
+    "sga": 0.008672,
+    "other": 0.000461
+   }
+  ],
+  "costs": [
+   {
+    "name": "방산 소재(강철·알루미늄·아연·구리 합금)",
+    "stage": "매출원가",
+    "pct_rev": 0.22,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "금속 단가 — 2017·2022 계약은 강철·알루미늄·아연만 단가 연동",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "방산 에너지 물질·하도급(추진제·정부 지정 하도급·LAP)",
+    "stage": "매출원가",
+    "pct_rev": 0.2,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "정부 지정 하도급 단가, 정부 시설 LAP 가동",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "방산 직접 인건비·공장 간접비",
+    "stage": "매출원가",
+    "pct_rev": 0.25,
+    "prior_pct": "미확인",
+    "fixed": 0.5,
+    "driver": "5개 공장 인력·흡수율(1Q 정부 시설 정지로 흡수 감소)",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm"
+   },
+   {
+    "name": "Housewares 완제품 매입(중국 위탁 생산)",
+    "stage": "매출원가",
+    "pct_rev": 0.1,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "위탁사 단가·환율",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "관세(환급 차감 뒤)",
+    "stage": "매출원가",
+    "pct_rev": 0.005,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "IEEPA 환급(2Q $2.245M 차감)·Section 301 10~12.5%",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm"
+   },
+   {
+    "name": "기타 매출원가(물류·창고)",
+    "stage": "매출원가",
+    "pct_rev": 0.0303,
+    "prior_pct": "미확인",
+    "fixed": 0.3,
+    "driver": "미시시피 새 물류창고 가동 초기 비용(2Q 약 $0.45M)",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.0592,
+    "prior_pct": 0.0778,
+    "fixed": 0.7,
+    "driver": "본사 인력·영업 8명",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm"
+   },
+   {
+    "name": "무형자산 상각",
+    "stage": "기타",
+    "pct_rev": 0.0031,
+    "prior_pct": 0.0031,
+    "fixed": 1.0,
+    "driver": "인수 무형자산",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "방산(40mm 탄약·탄피·신관·에너지 물질)",
+    "rev_share": 0.84,
+    "gpm": 0.196,
+    "gpm_basis": "2Q 10-Q 세그먼트: 매출 $126.96M·매출총이익 $24.94M. FY25 19%",
+    "bom": [
+     {
+      "item": "금속 부품·탄피 소재(강철·알루미늄·아연)",
+      "share": [
+       0.25,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+      "pass_through": "미확인",
+      "why": "탄체·탄피·신관 금속 · 전가: 부분(강철·알루미늄·아연 단가 연동 조항)"
+     },
+     {
+      "item": "추진제·에너지 물질(정부 지정 하도급)",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+      "pass_through": "미확인",
+      "why": "정부가 지정한 하도급을 써야 한다(10-K)"
+     },
+     {
+      "item": "장전·조립·포장(LAP)·직접 인건비",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm",
+      "pass_through": 0.0,
+      "why": "대부분을 정부 시설이 LAP하고 Spectra도 일부 맡는다"
+     }
+    ]
+   },
+   {
+    "name": "Housewares(Presto 소형 가전)",
+    "rev_share": 0.15,
+    "gpm": 0.12,
+    "gpm_basis": "FY25 8%(관세), 2Q26 관세 환급 포함 약 24%, 1Q26 적자 — 환급을 뺀 평상 수준을 10~15%로 둔 추정",
+    "bom": [
+     {
+      "item": "중국 위탁 생산 완제품",
+      "share": [
+       0.7,
+       0.85
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+      "pass_through": "미확인",
+      "why": "대부분 중국 소수 위탁사에서 주문서로 산다 · 전가: 부분(소매가 인상, 2Q 판매량 감소)"
+     },
+     {
+      "item": "관세",
+      "share": [
+       0.05,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm",
+      "pass_through": "미확인",
+      "why": "IEEPA 위법 판결 뒤 환급, Section 301 새 관세 · 전가: 부분"
+     },
+     {
+      "item": "물류·창고",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm",
+      "pass_through": "미확인",
+      "why": "미시시피 새 창고 가동 초기"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-05",
+  "summary": "약한 고리는 정부 쪽이다. 40mm 탄약 대부분을 장전·조립하는 곳이 정부 시설이고(1Q에 2주 정지), 핵심 부품·용역 일부는 정부가 지정한 하도급을 써야 한다(10-K). 금속은 복수 구매가 가능하다. Housewares는 중국 위탁사 소수에 주문서로 산다",
+  "links": [
+   {
+    "item": "40mm 최종 장전·조립(정부 시설 LAP)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "정부 소유 탄약 시설(이름 미공시)",
+      "role": "40mm 대부분 LAP",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "추정 — 1Q 보도자료: 그 시설의 2주 정지만으로 방산 흡수율이 떨어졌다(대체 LAP 여력 미공시)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "장기계약",
+    "why": "회사가 통제하지 못하는 정부 시설이 출하 속도를 정한다. 물량 확보는 정부가 체계 계약으로 정한다(장기계약으로 분류)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm"
+   },
+   {
+    "item": "추진제·에너지 물질(정부 지정 하도급)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "정부 지정 하도급(이름 미공시)",
+      "role": "핵심 부품·용역",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "10-K 위험 요인: 정부 지정 하도급의 성과를 회사가 책임진다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "장기계약",
+    "why": "하도급 불이행이 계약 이행 위험",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "item": "금속 부품·탄피 소재(강철·알루미늄·아연)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(복수)",
+      "role": "강철·알루미늄·아연",
+      "status": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "범용 금속, 단가 연동 조항",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국 내 조달(추정)",
+    "secured": "복수구매",
+    "why": "가격 위험은 연동 조항으로 일부 넘긴다",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "item": "중국 위탁 생산 완제품",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "중국 위탁 생산사 소수(이름 미공시)",
+      "role": "소형 가전 완제품",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "주문서 구매",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 0.9,
+    "region": "중국(10-K: 대부분)",
+    "secured": "현물",
+    "why": "5월 주총: 전부 옮기지 않고 신제품만 다른 나라에서 생산",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926018109/ex_966603.htm"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-05",
+  "unit": "공장 면적(제곱피트) — 생산 단위 캐파 미공시",
+  "summary": "방산 공장 5곳(재닌스빌 131,000·이스트캠든 384,000·안티고 212,000·클리어레이크 124,000·마셜 77,000제곱피트, 모두 소유)이다. 명목 캐파·가동률은 공시하지 않는다. CAPEX는 2025년 $27.0M(매출의 5.4%, 미시시피 물류창고 포함)에서 2026년 상반기 $5.4M으로 줄었다",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "10-K 설비 항목은 면적만 적는다",
+   "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+  },
+  "plans": [
+   {
+    "name": "미시시피 네틀턴 물류창고(Housewares)",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2026-01",
+    "capex": "미확인",
+    "blocker": "가동 초기 출하 차질(1Q)",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY24",
+    "capex": 0.007531,
+    "rev": 0.388228,
+    "kind": "실적"
+   },
+   {
+    "period": "FY25",
+    "capex": 0.027034,
+    "rev": 0.503524,
+    "kind": "실적"
+   },
+   {
+    "period": "6M26",
+    "capex": 0.005449,
+    "rev": 0.265245,
+    "kind": "실적"
+   }
+  ],
+  "sites_none": "미등록 — 방산 공장 5곳(소유) 좌표·호기 자료를 아직 등록하지 않았다(민간 소유 공장, 정부 소유 탄약창은 등록하지 않는다)"
+ },
+ "pipeline": {
+  "as_of": "2026-07-05",
+  "summary": "방산 백로그는 7/5 $1.810B(12/31 $1.748B, 1년 전 말 $1.086B)로 TTM 방산 매출의 약 3.8배다. 18~48개월에 걸쳐 이행한다. 큰 두 건은 40mm 4차 5년 체계 계약과 M918E2 훈련탄 IDIQ다. 남은 FY26 발주 1년분은 확정 전이다",
+  "items": [
+   {
+    "name": "40mm 4차 5년 체계 계약(FY22~26)",
+    "status": "확정",
+    "total": 0.965,
+    "progress": "미확인",
+    "progress_basis": "수주 $965M(FY22~25분), 납품 2024~2030",
+    "margin": "미확인",
+    "start": "2024-01",
+    "end": "2030-12",
+    "speed": "수주→납품 최장 6년",
+    "blockers": [
+     "정부 시설 LAP 가동",
+     "정부 지정 하도급"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "40mm 체계 계약 FY26 발주분(상한 잔여)",
+    "status": "프레임워크",
+    "total": 0.448,
+    "progress": 0.0,
+    "progress_basis": "상한 $1.413B − 수주 $965M = 최대 $448M(계산). 발주가 와야 매출",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "FY26 국방 예산·발주",
+     "중간선거 뒤 예산 협상"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "M918E2 TP-DNT 훈련탄 IDIQ(5년)",
+    "status": "확정",
+    "total": 0.256,
+    "progress": "미확인",
+    "progress_basis": "수주 $256M, 납품 2025~2027. 상한 $818.9M(미발주분은 미확정)",
+    "margin": "미확인",
+    "start": "2025-01",
+    "end": "2027-12",
+    "speed": "수주→납품 약 1~3년",
+    "blockers": [
+     "육군 추가 발주"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "방산 백로그 전체(7/5)",
+    "status": "확정",
+    "total": 1.810149,
+    "progress": "미확인",
+    "progress_basis": "18~48개월 이행(10-Q). 건별 진척 미공시 — 위 두 건 포함",
+    "margin": "미확인",
+    "start": "2026-07",
+    "end": "2030-07",
+    "speed": "백로그 ÷ 월 방산 매출 약 45개월(계산)",
+    "blockers": [
+     "정부 시설 LAP",
+     "고정가 원가"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 45,
+  "peer_conversion_months": null,
+  "coverage_next_fy": null,
+  "book_to_bill": 1.27,
+  "rpo_12m_share": null,
+  "rpo_growth": 0.61,
+  "revenue_growth": 0.25,
+  "cancel_rate": null,
+  "top_customer_share": 0.7,
+  "source": "백로그 $1.810B ÷ (TTM 방산 매출 약 $481M ÷ 12) = 약 45개월(계산). B/B = 1H26 수주(백로그 증가 $62M + 방산 매출 약 $226M) ÷ 방산 매출 = 약 1.27(계산). RPO 성장 = 백로그 12/24 $1.086B → 12/25 $1.748B +61%. 최대 고객 = 미 육군(추정)"
+ },
+ "moat": {
+  "summary": "해자는 40mm 탄약을 신관·기폭관·금속 부품·탄피·최종 장전까지 한 회사 안에서 만드는 수직 계열과, 2017·2022년 연속 단독 프라임으로 쌓은 육군 자격이다. 고정가 계약과 정부 시설 의존, 발주 1년 단위 확정이 해자를 깎는다",
+  "items": [
+   {
+    "kind": "40mm 수직 계열(신관·기폭관·금속·탄피·LAP)",
+    "verdict": "보통",
+    "claim": "40mm 한 발을 이루는 부품 대부분을 자회사 5곳이 만든다",
+    "evidence": "10-K·10-Q 4번 주석",
+    "quant": "방산 공장 5곳, 2005·2010 복수 프라임 → 2017·2022 단독 프라임",
+    "falsifier": "다음 5년 체계 계약에서 복수 프라임으로 돌아간다"
+   },
+   {
+    "kind": "육군 단독 프라임 자격·납품 이력",
+    "verdict": "보통",
+    "claim": "20년 넘게 40mm 체계를 납품해 육군 로트 승인 이력이 쌓였다",
+    "evidence": "10-K: 1·2차 $671M·$566M 납품, 3차 $539.6M, 4차 수주 $965M",
+    "quant": "백로그 $1.810B = TTM 방산 매출 약 3.8배",
+    "falsifier": "경쟁사가 40mm 체계 입찰에서 몫을 따낸다"
+   },
+   {
+    "kind": "에너지 물질(아지드화납 등) 자체 생산",
+    "verdict": "미확인",
+    "claim": "기폭관·아지드화납을 자체 생산해 외부 조달 병목을 줄인다",
+    "evidence": "10-K Tech Ord 설명",
+    "quant": "미확인(국내 공급원 수 미공시)",
+    "falsifier": "에너지 물질 외부 조달 의존이 공시된다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-05",
+  "summary": "Maryjo Cohen이 1994년부터 CEO, 2002년부터 이사회 의장이다. 의결권 신탁 포함 25.6%를 지배한다. 경영진은 5명이고 COO Douglas Frederick, CFO David Peuse다. 행동주의 Albion River는 2025년 12월 13D를 냈다가 2026년 5~6월 장내 매도로 4.01%까지 줄였다. 정계·사모임 연결은 공개 자료로 확인하지 못했다",
+  "people": [
+   {
+    "name": "Maryjo Cohen",
+    "role": "이사회 의장·사장·CEO",
+    "since": "1994",
+    "profile": "1976년 입사, 1989 사장·1994 CEO·2002 의장. 25.6% 보유(의결권 신탁 1,669,664주 포함)",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926012242/npk20260403_def14a.htm"
+   },
+   {
+    "name": "Douglas J. Frederick",
+    "role": "COO·부사장·총무·법무 책임자",
+    "since": "미확인",
+    "profile": "10-K 임원 명단",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "David J. Peuse",
+    "role": "CFO·재무 책임자",
+    "since": "미확인",
+    "profile": "보도자료 연락 창구",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Cohen 가문 의결권 신탁(25.6%)",
+    "strength": 3,
+    "exposure": 0.0,
+    "basis": "지배 구조 연결이며 매출을 만드는 연결이 아니다",
+    "evidence": "https://www.sec.gov/Archives/edgar/data/80172/000143774926012242/npk20260403_def14a.htm"
+   }
+  ]
+ },
+ "sync": {
+  "none": "방산 매출은 미 육군 발주와 정부 시설 LAP 일정을 따르고, 무역·PPI 지표는 그 경로를 재지 못한다. 금속 원가는 단가 연동 조항으로 일부 넘긴다"
+ },
+ "ma": {
+  "none": "최근 3년 안 중요 인수 없음 — Woodlawn(2022-10-26)은 4년 전. 2025년 OneEvent 일부 자산 매각"
+ },
+ "pq": {
+  "none": "회사는 출하량·단가를 공시하지 않는다. 방산은 고정가 계약이라 가격 사이클이 아니라 발주 물량을 따른다"
+ },
+ "events": [
+  {
+   "date": "2026-05-01",
+   "tag": "1Q26 실적(방산 +23%, 가전 적자) — 다음 거래일 −6.4%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-20",
+   "tag": "주총 — 정관 사전 통지 강화, 행동주의 Albion River 장내 매도 시작",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-05-21",
+   "tag": "−10.2%(주총 다음 날, Albion River 매도 기간)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-07-31",
+   "tag": "2Q26 실적(방산 +27%, EPS $2.21) — 다음 거래일 +11.1%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-18",
+   "tag": "거래량 32만 주(분기 선물·옵션 동시 만기일, 원인 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "3Q26 실적(방산 +31%, EPS $2.79·관세 환급 포함) — −2.6%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-03",
+   "tag": "미국 중간선거 — 방산주 약세 보도",
+   "kind": "sector"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-03-03",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-01",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-31",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-30",
+   "kind": "실적",
+   "tag": "3Q26 실적",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "2Q26 10-Q https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm",
+  "FY2025 10-K https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm",
+  "3Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926034432/ex_1036451.htm",
+  "2Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926025460/ex_997628.htm",
+  "1Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm",
+  "주총 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926018109/ex_966603.htm",
+  "위임장 https://www.sec.gov/Archives/edgar/data/80172/000143774926012242/npk20260403_def14a.htm",
+  "Albion River 13D/A https://www.sec.gov/Archives/edgar/data/80172/000149315226028722/0001493152-26-028722-index.htm",
+  "Fiscal.ai NYSE_NPK https://fiscal.ai/company/NYSE-NPK"
+ ],
+ "overrides": {
+  "margin_base": {
+   "target": 0.115,
+   "lr": 0.1
+  },
+  "why": "TTM 영업이익률 12.4%에는 관세 환급 $9.8M·설비 매각 이익 $1.7M이 들어 있다. 반복 영업이익률 약 10.4%에서 방산 믹스 개선으로 11.5%까지를 장기값으로 둔다(방산 매출총이익률 19~20%, 판관비 6%)"
+ },
+ "multiples_now": {
+  "pe_fwd": 19.62,
+  "ev_ebitda_fwd": 14.85,
+  "pe_fwd2": 18.78,
+  "ev_ebitda_fwd2": 13.68,
+  "pe_fwd3": 17.7,
+  "ev_ebitda_fwd3": 12.93
+ },
+ "forward": {
+  "as_of": "2026-11-04",
+  "ntm": {
+   "eps": 7.622,
+   "ebitda": 71400000.0,
+   "ebit": 65360000.0,
+   "revenue": 617600000.0,
+   "rev_ttm": 573526000.0
+  },
+  "horizons": {
+   "2": {
+    "eps": 7.963,
+    "ebitda": 77500000.0,
+    "ext": 0
+   },
+   "3": {
+    "eps": 8.45,
+    "ebitda": 82000000.0,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com | NPK: 3Q26 실적(10/30)이 Fiscal 추정에 아직 반영되지 않아 다음 4개 분기를 4Q26~3Q27 추정 합으로 다시 잡았다(EPS 2.506+1.507+1.826+1.783). EBITDA = EBIT 추정 + D&A 약 $6M. Fwd 3Y는 4Q28만 추정, 나머지 3개 분기 연장"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_NPK",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-10-04",
+    "rev": 90901000,
+    "cogs": 71780000,
+    "gp": 19121000,
+    "sga": 6624000,
+    "rd": null,
+    "da": 356000,
+    "other": null,
+    "op": 12141000
+   },
+   {
+    "period": "2015-12-31",
+    "rev": 133419000,
+    "cogs": 104275000,
+    "gp": 29000000,
+    "sga": 5443000,
+    "rd": null,
+    "da": 1535000,
+    "other": -144000,
+    "op": 22166000
+   },
+   {
+    "period": "2016-04-03",
+    "rev": 65942000,
+    "cogs": 49894000,
+    "gp": 16048000,
+    "sga": 5827000,
+    "rd": null,
+    "da": 568000,
+    "other": null,
+    "op": 9653000
+   },
+   {
+    "period": "2016-07-03",
+    "rev": 69516000,
+    "cogs": 52349000,
+    "gp": 17167000,
+    "sga": 5614000,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 11553000
+   },
+   {
+    "period": "2016-10-02",
+    "rev": 74533000,
+    "cogs": 57439000,
+    "gp": 17094000,
+    "sga": 5666000,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 11428000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 131914000,
+    "cogs": 96561000,
+    "gp": 35353000,
+    "sga": 5322000,
+    "rd": null,
+    "da": 153000,
+    "other": 0,
+    "op": 29878000
+   },
+   {
+    "period": "2017-04-02",
+    "rev": 72854000,
+    "cogs": 52728000,
+    "gp": 20126000,
+    "sga": 5760000,
+    "rd": null,
+    "da": 367000,
+    "other": null,
+    "op": 13999000
+   },
+   {
+    "period": "2017-07-02",
+    "rev": 74561000,
+    "cogs": 57001000,
+    "gp": 17560000,
+    "sga": 5418000,
+    "rd": null,
+    "da": 5000,
+    "other": null,
+    "op": 12137000
+   },
+   {
+    "period": "2017-10-01",
+    "rev": 70614000,
+    "cogs": 51722000,
+    "gp": 18892000,
+    "sga": 5729000,
+    "rd": null,
+    "da": 1479000,
+    "other": null,
+    "op": 11684000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 115604000,
+    "cogs": 84948000,
+    "gp": 30656000,
+    "sga": 5993000,
+    "rd": null,
+    "da": 779000,
+    "other": 0,
+    "op": 23884000
+   },
+   {
+    "period": "2018-04-01",
+    "rev": 76826000,
+    "cogs": 56549000,
+    "gp": 20277000,
+    "sga": 6151000,
+    "rd": null,
+    "da": 745000,
+    "other": null,
+    "op": 13381000
+   },
+   {
+    "period": "2018-07-01",
+    "rev": 79227000,
+    "cogs": 59782000,
+    "gp": 19445000,
+    "sga": 5631000,
+    "rd": null,
+    "da": 1416000,
+    "other": null,
+    "op": 12398000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 81653000,
+    "cogs": 65956000,
+    "gp": 15697000,
+    "sga": 5829000,
+    "rd": null,
+    "da": 5000,
+    "other": 3021000,
+    "op": 6842000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 85611000,
+    "cogs": 65147000,
+    "gp": 20464000,
+    "sga": 5675000,
+    "rd": null,
+    "da": 1000,
+    "other": -5549000,
+    "op": 15281000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 63850000,
+    "cogs": 51358000,
+    "gp": 12492000,
+    "sga": 6444000,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 6048000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 71745000,
+    "cogs": 57069000,
+    "gp": 14676000,
+    "sga": 6039000,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 8637000
+   },
+   {
+    "period": "2019-09-29",
+    "rev": 78006000,
+    "cogs": 54159000,
+    "gp": 23847000,
+    "sga": 6609000,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 17238000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 94909000,
+    "cogs": 73999000,
+    "gp": 20910000,
+    "sga": 6370000,
+    "rd": null,
+    "da": 83000,
+    "other": 0,
+    "op": 14457000
+   },
+   {
+    "period": "2020-03-29",
+    "rev": 65636000,
+    "cogs": 49519000,
+    "gp": 16117000,
+    "sga": 6794000,
+    "rd": null,
+    "da": 60000,
+    "other": null,
+    "op": 9263000
+   },
+   {
+    "period": "2020-06-28",
+    "rev": 87132000,
+    "cogs": 65389000,
+    "gp": 21743000,
+    "sga": 6360000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 15329000
+   },
+   {
+    "period": "2020-09-27",
+    "rev": 93937000,
+    "cogs": 73219000,
+    "gp": 20718000,
+    "sga": 6212000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 14452000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 105922000,
+    "cogs": 79578000,
+    "gp": 26344000,
+    "sga": 9139000,
+    "rd": null,
+    "da": 53000,
+    "other": 0,
+    "op": 17152000
+   },
+   {
+    "period": "2021-04-04",
+    "rev": 81027000,
+    "cogs": 62666000,
+    "gp": 18361000,
+    "sga": 7364000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 10943000
+   },
+   {
+    "period": "2021-07-04",
+    "rev": 87118000,
+    "cogs": 69443000,
+    "gp": 17675000,
+    "sga": 6291000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 11330000
+   },
+   {
+    "period": "2021-10-03",
+    "rev": 87225000,
+    "cogs": 75995000,
+    "gp": 11230000,
+    "sga": 6541000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 4635000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 100407000,
+    "cogs": 83277000,
+    "gp": 17130000,
+    "sga": 13957000,
+    "rd": null,
+    "da": 52000,
+    "other": 0,
+    "op": 3121000
+   },
+   {
+    "period": "2022-04-03",
+    "rev": 60754000,
+    "cogs": 51043000,
+    "gp": 9711000,
+    "sga": 6570000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 3087000
+   },
+   {
+    "period": "2022-07-03",
+    "rev": 77138000,
+    "cogs": 62100000,
+    "gp": 15038000,
+    "sga": 7125000,
+    "rd": null,
+    "da": 54000,
+    "other": null,
+    "op": 7859000
+   },
+   {
+    "period": "2022-10-02",
+    "rev": 69683000,
+    "cogs": 52621000,
+    "gp": 17062000,
+    "sga": 6486000,
+    "rd": null,
+    "da": 78000,
+    "other": null,
+    "op": 10498000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 114048000,
+    "cogs": 100734000,
+    "gp": 13314000,
+    "sga": 6940000,
+    "rd": null,
+    "da": 396000,
+    "other": 5295000,
+    "op": 683000
+   },
+   {
+    "period": "2023-04-02",
+    "rev": 80409000,
+    "cogs": 62389000,
+    "gp": 18020000,
+    "sga": 8221000,
+    "rd": null,
+    "da": 379000,
+    "other": null,
+    "op": 9420000
+   },
+   {
+    "period": "2023-07-02",
+    "rev": 78946000,
+    "cogs": 65566000,
+    "gp": 13380000,
+    "sga": 7679000,
+    "rd": null,
+    "da": 451000,
+    "other": null,
+    "op": 5250000
+   },
+   {
+    "period": "2023-10-01",
+    "rev": 83141000,
+    "cogs": 67742000,
+    "gp": 15399000,
+    "sga": 7904000,
+    "rd": null,
+    "da": 427000,
+    "other": null,
+    "op": 7068000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 98416000,
+    "cogs": 77763000,
+    "gp": 20653000,
+    "sga": 6980000,
+    "rd": null,
+    "da": 378000,
+    "other": 0,
+    "op": 13295000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 76653000,
+    "cogs": 62800000,
+    "gp": 13853000,
+    "sga": 7197000,
+    "rd": null,
+    "da": 379000,
+    "other": null,
+    "op": 6277000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 85060000,
+    "cogs": 70361000,
+    "gp": 14699000,
+    "sga": 7959000,
+    "rd": null,
+    "da": 379000,
+    "other": null,
+    "op": 6361000
+   },
+   {
+    "period": "2024-09-29",
+    "rev": 91823000,
+    "cogs": 74600000,
+    "gp": 17223000,
+    "sga": 7621000,
+    "rd": null,
+    "da": 379000,
+    "other": null,
+    "op": 9223000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 134692000,
+    "cogs": 101901000,
+    "gp": 32791000,
+    "sga": 9061000,
+    "rd": null,
+    "da": 378000,
+    "other": 0,
+    "op": 23352000
+   },
+   {
+    "period": "2025-03-30",
+    "rev": 103639000,
+    "cogs": 85528000,
+    "gp": 18111000,
+    "sga": 8662000,
+    "rd": null,
+    "da": 379000,
+    "other": null,
+    "op": 9070000
+   },
+   {
+    "period": "2025-06-29",
+    "rev": 120449000,
+    "cogs": 101903000,
+    "gp": 18546000,
+    "sga": 9370000,
+    "rd": null,
+    "da": 379000,
+    "other": 2701000,
+    "op": 6096000
+   },
+   {
+    "period": "2025-09-28",
+    "rev": 115463000,
+    "cogs": 99451000,
+    "gp": 16012000,
+    "sga": 9221000,
+    "rd": null,
+    "da": 379000,
+    "other": null,
+    "op": 6412000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 163973000,
+    "cogs": 136317000,
+    "gp": 27656000,
+    "sga": 8615000,
+    "rd": null,
+    "da": 378000,
+    "other": 0,
+    "op": 18663000
+   },
+   {
+    "period": "2026-04-05",
+    "rev": 118649000,
+    "cogs": 101171000,
+    "gp": 17478000,
+    "sga": 10740000,
+    "rd": null,
+    "da": 413000,
+    "other": 1707000,
+    "op": 8032000
+   },
+   {
+    "period": "2026-07-05",
+    "rev": 146596000,
+    "cogs": 118049000,
+    "gp": 28547000,
+    "sga": 8672000,
+    "rd": null,
+    "da": 461000,
+    "other": 0,
+    "op": 19414000
+   }
+  ]
+ },
+ "midterm": {
+  "score": -0.2,
+  "note": "midterm_impact.py 2026-11-05: 국방 예산 채널 −1.0 × 노출 1.0, 업종 ETF(ITA) 선거 뒤 CAR +0.7%(t 0.61), 상원 D 확정·하원 D 미확정"
+ },
+ "narrative": {
+  "as_of": "2026-11-05",
+  "stage": "확산",
+  "crowding": "낮음",
+  "summary": "미 육군 40mm 탄약을 혼자 맡는 방산 회사가 가전 회사의 껍데기를 쓰고 있다는 이야기다. 방산이 3Q 매출의 84%, 백로그 $1.81B가 TTM 방산 매출의 약 3.8배다. 주가는 1년 전 $108.93에서 $149.58로 +37%, 애널리스트는 1명뿐이다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "Hold 1",
+      "애널리스트 1명",
+      "yfinance(11/4)"
+     ],
+     [
+      "목표가",
+      "$162",
+      "현재가 대비 +8%",
+      "yfinance"
+     ],
+     [
+      "3Q 추정 대비",
+      "EPS $2.79 vs $1.36",
+      "추정이 실적을 못 따라감",
+      "10/16 추정"
+     ]
+    ],
+    "read": "셀사이드 커버리지가 사실상 없다. 실적이 추정을 크게 넘어도 리비전을 알릴 사람이 없다 — 정보 할인의 원천"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "66.8%",
+      "",
+      "yfinance"
+     ],
+     [
+      "BlackRock",
+      "11.6%",
+      "최대 기관",
+      "위임장(2026-04)"
+     ],
+     [
+      "Albion River",
+      "5.1% → 4.01%",
+      "5~6월 약 10만 8천 주 장내 매도($132~143)",
+      "13D/A(2026-06-15)"
+     ],
+     [
+      "지배 주주",
+      "Cohen 25.6%",
+      "의결권 신탁 포함",
+      "위임장"
+     ]
+    ],
+    "read": "행동주의 펀드가 들어왔다가 5~6월 $132~143에 팔고 나갔다. 회사는 같은 주총에서 정관의 사전 통지 요건을 강화했다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "공매도 비율",
+      "유통 주식의 6.9%",
+      "",
+      "yfinance"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "0건",
+      "",
+      "tg_channels 11/5"
+     ]
+    ],
+    "read": "리테일 관심은 거의 없다. 공매도는 유통 주식의 7% 가까이로 작지 않다(유통 주식이 지배 주주 몫만큼 작다)"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "중간선거 뒤 방산주 약세",
+      "업종 기사",
+      "Barron's·IBD·Seeking Alpha 제목"
+     ]
+    ],
+    "read": "회사 이름이 나오는 기사는 실적 예고·이동평균 돌파 같은 자동 기사뿐이다"
+   }
+  },
+  "factors": [
+   {
+    "name": "40mm 단독 프라임·백로그 3.8년",
+    "thesis": "육군 40mm 체계를 혼자 맡아 백로그가 매출 3~4년치로 쌓였다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "백로그 12/23 $564M → 12/25 $1.748B → 7/26 $1.810B",
+    "status": "강화",
+    "falsifier": "백로그가 두 분기 연속 줄고 FY26 발주가 나오지 않는다",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   },
+   {
+    "name": "방산 이익률 개선(믹스·효율)",
+    "thesis": "물량이 늘며 고정비 흡수가 좋아지고 믹스가 유리해진다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "3Q 방산 영업이익 +61.8% vs 매출 +31.3%",
+    "status": "강화",
+    "falsifier": "방산 매출총이익률이 두 분기 연속 18% 아래",
+    "source": "3Q 보도자료"
+   },
+   {
+    "name": "관세 환급(일회성)",
+    "thesis": "IEEPA 관세 위법 판결로 낸 관세를 돌려받아 가전 이익이 반짝 좋아졌다",
+    "inputs": "이익",
+    "who": {
+     "sell": "약",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2Q $2.245M + 3Q $7.553M = TTM 영업이익의 약 14%",
+    "status": "소멸",
+    "falsifier": "추가 환급이 반복된다(항소 결과)",
+    "source": "2Q 10-Q 14번 주석"
+   },
+   {
+    "name": "반대: 지배 구조·정보 할인",
+    "thesis": "지배 주주 25.6%, 어닝콜·가이던스 없음, 애널리스트 1명이라 배수가 동종보다 낮게 머문다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "Fwd 1Y P/E 19.6배 vs 동종 중앙 23.1배",
+    "status": "유지",
+    "falsifier": "회사가 어닝콜·가이던스를 시작하거나 커버리지가 3명 이상으로 는다",
+    "source": "위임장·13D/A"
+   },
+   {
+    "name": "반대: 중간선거 뒤 국방 예산",
+    "thesis": "민주당 의회가 국방 세출 증가 속도를 늦추면 탄약 발주가 밀린다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "중간선거 영향 −0.2/10(국방 예산 채널 −1.0, 업종 반응 t 0.61)",
+    "status": "정황",
+    "falsifier": "FY27 국방 세출에서 탄약 조달이 늘어 의결된다",
+    "source": "midterm_impact 11/5"
+   },
+   {
+    "name": "반대: 가전 사업의 관세 꼬리",
+    "thesis": "가전은 중국 생산이라 관세가 바뀔 때마다 이익이 흔들린다",
+    "inputs": "이익",
+    "who": {
+     "sell": "약",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "FY25 가전 매출총이익률 8%(2024 25%)",
+    "status": "유지",
+    "falsifier": "환급 없이 가전 매출총이익률 15% 회복",
+    "source": "https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm"
+   }
+  ],
+  "lead": {
+   "summary": "National Presto(NPK)는 Presto 가전 회사로 알려졌지만 3Q 매출의 84%가 방산이다. 자회사 AMTEC이 미 육군 40mm 탄약 체계를 혼자 맡고, 신관·기폭관·탄피·장전까지 계열사가 만든다. 백로그 $1.81B는 TTM 방산 매출의 약 3.8배다. 3Q EPS $2.79는 직전 추정 $1.36의 두 배지만 관세 환급(일회성)을 빼면 약 $1.97이다",
+   "value_story": "Fwd 1Y P/E 19.6배로 동종 5곳 중앙값 23.1배보다 약 15% 낮다. 다음 4개 분기 EPS 컨센서스 $7.62는 일회성을 뺀 TTM EPS 약 $6.77보다 +13% 높다. 배수를 정하는 것은 40mm 백로그가 매출로 바뀌는 속도와, FY26 발주 1년분(최대 $448M)이 확정되는지다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 19.6배, 동종 5곳 중앙값 23.1배(HBB 15.3·GD 20.0·RGR 23.1·CW 28.2·DCO 31.5)보다 약 15% 낮다. 탄약 사업이 있는 GD(20.0배)와 비슷하다",
+    "eps": "3Q EPS $2.79는 10/16 추정 $1.36을 크게 넘었다. 연간 추정(FY26 EPS $7.01, 범위 $5.90~8.09)은 3Q 전 값이라 9M 실적 $5.93 + 4Q 추정 $2.51 = $8.44가 이미 범위 상단 위다. 다만 TTM 영업이익의 약 14%가 관세 환급이다"
+   },
+   "why_excited": "2024년 10월 $72에서 2026년 11월 $150까지 올랐다. 방산 백로그가 2023년 말 $564M에서 2025년 말 $1.748B로 세 배가 됐고, 2025년 방산 매출이 +43%였다. 식었던 구간은 1Q 가전 적자(창고 가동 차질)와 5~6월 행동주의 펀드 매도다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "방산(40mm 탄약·탄피·신관·에너지 물질)",
+     "what": "40mm 훈련탄·전술탄, 중구경 탄피, 신관·기폭관",
+     "use": "미 육군·국방부·프라임 계약사",
+     "money": "고정가 계약 납품"
+    },
+    {
+     "kind": "제품",
+     "name": "Housewares(Presto 소형 가전)",
+     "what": "압력솥·통조림 솥·튀김기·그리들",
+     "use": "미국·캐나다 소매점",
+     "money": "중국 위탁 생산 제품 판매"
+    },
+    {
+     "kind": "제품",
+     "name": "Safety(Rely 경보기·소화기)",
+     "what": "연기·일산화탄소 경보기, Rely FX 소화기",
+     "use": "가정·상업·군용",
+     "money": "제품 판매(초기 단계, 적자)"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "방산이 매출의 81%(FY25)에서 84%(3Q26)로 늘었다. 가전 회사가 아니라 탄약 회사다",
+     "evidence": "10-K 세그먼트, 3Q 보도자료",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "방산 매출이 두 분기 연속 전년보다 줄어든다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "3Q 방산 영업이익 +61.8%로 매출 +31.3%의 두 배 — 회사가 '더 유리한 믹스와 효율'을 처음 이유로 들었다",
+     "evidence": "3Q 보도자료",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "방산 매출총이익률이 18% 아래로 내려간다"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "주·야간·열상 장비로 탄착이 보이는 M918E2 TP-DNT 훈련탄 IDIQ(수주 $256M, 상한 $818.9M). Safety는 PFAS 없는 거품 소화기",
+     "evidence": "10-K, 1Q 보도자료",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "M918E2 추가 발주가 2027년에 없다"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "백로그를 18~48개월에 걸쳐 매출로 바꾼다. 백로그 ÷ 월 방산 매출로 약 45개월이다. 회사 이전 값과 피어 값은 같은 기준 자료가 없다",
+     "evidence": "2Q 10-Q 2번 주석",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "백로그 증가가 멈췄는데 방산 매출 증가율이 20% 아래로 떨어진다",
+     "lead_time": {
+      "unit": "개월",
+      "basis": "백로그 이행 기간(회사 공시)",
+      "now": [
+       18,
+       48
+      ],
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "GD",
+        "value": "미확인"
+       },
+       {
+        "name": "OLN",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 중요 인수 없음, Woodlawn 2022년)",
+     "evidence": "10-K",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "탄약 관련 인수 발표"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "국방부 탄약 조달이 40mm 발주로 온다. 예산 발표를 이 회사 매출로 바로 옮기지 않는다 — 확인된 것은 계약 수주액과 백로그다",
+     "evidence": "10-K 계약 표",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "FY26 발주분이 상한 잔여 $448M보다 크게 작게 나온다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "국방 세출·탄약 조달 — 40mm 발주는 세출과 육군 조달 계획에 달렸다. FY27 세출 단계는 확인하지 못했다",
+     "evidence": "10-K(계약은 세출·조달 규정에 달렸다)",
+     "drives": "revision",
+     "status": "정황",
+     "falsifier": "FY27 국방 세출에서 탄약 조달 삭감 의결",
+     "house": {
+      "level": 1,
+      "why": "FY27 국방 세출 하원 의결 기록을 확인하지 못했다(법안 번호 미확인)"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "관세: 대법원이 2/20 IEEPA 관세를 위법 판단, 환급 진행(항소 중). Section 122 10% 관세는 7/25 만료, 뒤이어 Section 301 10~12.5% 관세",
+     "evidence": "2Q 10-Q 14번 주석",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "환급 항소에서 정부 승소 또는 가전 대상 새 관세",
+     "house": {
+      "level": 0,
+      "why": "관세는 행정부 단독 조치 — 의회 동의 절차 없음"
+     },
+     "senate": {
+      "level": 0,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 직접 겨냥한 연방 법안을 찾지 못했다. 로비 공시는 키가 없어 미확인)",
+     "evidence": "lobby_watch 11/5 미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "탄약 국내 생산 의무화 법안 의결"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "한서준",
+    "house": "가상 리서치 하우스 한빛증권",
+    "thesis": "탄약 독점 회사가 Fwd 1Y P/E 19.6배로 동종 중앙 23.1배보다 15% 싸고, 이익은 추정보다 빨리 오른다",
+    "evidence": [
+     "백로그 $1.810B = TTM 방산 매출 3.7배",
+     "3Q 방산 매출 +31.3%·영업이익 +61.8%",
+     "순현금 $7M, 차입 0"
+    ],
+    "falsifier": "FY26 40mm 발주가 2027년 상반기까지 없다"
+   },
+   {
+    "seat": "Buy",
+    "name": "윤다인",
+    "house": "가상 리서치 하우스 청해캐피털",
+    "thesis": "추정이 실적을 못 따라간다. 리비전만으로 배수가 유지돼도 주가가 오른다",
+    "evidence": [
+     "3Q EPS $2.79 vs 추정 $1.36",
+     "FY26 추정 상단 $8.09 < 실적 경로 $8.44"
+    ],
+    "falsifier": "4Q EPS가 $2.0 아래"
+   },
+   {
+    "seat": "Neutral",
+    "name": "강도현",
+    "house": "가상 리서치 하우스 동해리서치",
+    "thesis": "일회성을 빼면 싸지 않다. 관세 환급이 TTM 영업이익의 14%다",
+    "evidence": [
+     "관세 환급 $9.8M",
+     "일회성 제외 TTM EPS 약 $6.77 → 22.1배",
+     "목표가 $162(1명)"
+    ],
+    "falsifier": "환급 없이 분기 EPS $2.2 이상이 두 번 나온다"
+   },
+   {
+    "seat": "Sell",
+    "name": "문지호",
+    "house": "가상 리서치 하우스 서해자산",
+    "thesis": "계약 하나·고객 하나다. FY26 발주가 체계 계약의 마지막 해다",
+    "evidence": [
+     "4차 체계 계약 상한 $1.413B 중 수주 $965M",
+     "고정가 — 단가 연동은 강철·알루미늄·아연만"
+    ],
+    "falsifier": "5차 5년 체계 계약 단독 수주"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "배하율",
+    "house": "가상 리서치 하우스 북해증권",
+    "thesis": "재고 $326.5M(매출 57%)이 현금을 묶고, 정부 시설이 멈추면 출하가 선다",
+    "evidence": [
+     "재공품 $277.7M",
+     "1Q 정부 LAP 시설 2주 정지",
+     "2024·2025 영업현금흐름 −$53.4M·−$9.1M"
+    ],
+    "falsifier": "2026 연간 영업현금흐름이 순이익을 넘는다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "다음 4개 분기 EPS $7.62에 19.6배다. 동종 중앙 23.1배까지만 가도 $176이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "3Q EPS가 추정의 두 배였는데 커버리지가 1명이라 리비전이 늦게 붙는다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "관세 환급 $7.553M을 빼면 3Q EPS는 약 $1.97이다. 일회성 제외 TTM EPS $6.77에 22배다"
+     },
+     {
+      "seat": "Sell",
+      "text": "남은 것은 FY26 발주 1년분, 최대 $448M이다. 그다음 5년 계약은 아직 입찰 전이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "2024년 영업현금흐름 −$53.4M, 2025년 −$9.1M이다. 이익이 재고로 들어갔다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "동종 중앙 23.1배에는 GAAP 이익이 적자인 DCO(31.5배)가 들어 있다. 탄약 비교 대상 GD는 20.0배다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "상반기 영업현금흐름은 $44.1M으로 돌아섰고 신용 한도 $23.6M을 다 갚았다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "2017·2022 두 번 연속 단독 프라임이다. 수직 계열을 대신할 경쟁사가 공시된 적 없다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "3Q 추정 $1.36은 표본 1명과 모델 추정이다. 그 '서프라이즈'를 시장이 −2.5%로 받았다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "목표가 $162는 1명이고 업사이드 +8%다. 그마저 Hold다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "환급을 빼도 3Q 방산 영업이익은 +61.8%다. 일회성은 가전에만 있다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "맞다, 그래서 Sell이 아니다. 하지만 FY27 EPS 추정 $7.60은 FY26 실적 경로 $8.44보다 낮다 — 일회성이 빠지기 때문이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "백로그 이행 기간이 최장 48개월이다. 연 매출로 바꾸면 성장률은 백로그보다 훨씬 완만하다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "재고는 고정가 계약의 재공품이고 해지되더라도 작업분과 이익을 돌려받는 조항이 있다(10-K)"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "중간선거 뒤 민주당 의회다. 국방 세출 증가 속도가 늦어지면 FY26 발주 규모부터 줄 수 있다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "배수 격차는 남지만 비교 대상을 GD로 좁히면 차이가 작다. 한 단계 내린다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "리비전 경로는 살아 있다. Buy를 지킨다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "일회성을 뺀 배수와 FY26 발주 확인 전까지 가운데에 둔다"
+     },
+     {
+      "seat": "Sell",
+      "text": "단독 프라임 이력은 인정한다. 다음 계약 전까지 가운데로 옮긴다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "상반기 현금 회복은 인정하지만 2025년 전체는 음수였다. 한 단계 올린다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "방산 이익이 실적으로 뛰었다는 반박은 살아남았다. 그러나 TTM 이익의 약 14%가 관세 환급이고, 탄약 비교 대상 GD와 배수가 비슷하다는 반박도 살아남았다. FY26 발주 확인 전에는 규칙 등급에서 옮길 근거가 부족하다",
+   "dissent": "Buy 자리: 커버리지 1명이라 추정이 실적을 따라가는 것만으로 다음 4개 분기 EPS가 오른다"
+  }
+ }
+}

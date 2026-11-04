@@ -1,0 +1,101 @@
+auto: true
+id: us-npk
+name: National Presto Industries
+ticker: NPK
+unit: B$
+unit_usd: 1000000000.0
+industry: aerospace_defense
+region_mix:
+  US: 1.0
+tax: 0.22
+horizon: 10
+as_of: '2026-11-05'
+market:
+  date: '2026-11-05'
+  price: 149.58
+  shares: 0.007136
+  net_debt: -0.007112
+  source: 가격 = 11/4 종가. 주식 = 2Q 10-Q 표지 7,136,067주(8/14 기준). 현금 = 7/5 현금 $15.8M +
+    시장성 증권 $0.5M. 차입 = 리스 부채 $9.2M(신용 한도 잔액 0, 7/5)
+rev0: 0.594411
+ic0: 0.404159
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0599
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.1044
+      target: 0.115
+      year_target: 3
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.1078
+      - 0.1088
+    s2c: 1.419
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0397
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.1044
+      target: 0.135
+      year_target: 3
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.1078
+      - 0.1088
+    s2c: 1.632
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.0663
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.1044
+      target: 0.095
+      year_target: 3
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.1078
+      - 0.1088
+    s2c: 1.206
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 0.594411
+  growth: 컨센서스 1년차 6.0%, 2년차 6.0%
+  margin: 1~2년차 컨센서스 10.8%, 10.9% 고정 → 목표 12%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.419
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -6.6%~4.0%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: TTM 영업이익률 12.4%에는 관세 환급 $9.8M·설비 매각 이익 $1.7M이 들어 있다. 반복 영업이익률 약 10.4%에서
+    방산 믹스 개선으로 11.5%까지를 장기값으로 둔다(방산 매출총이익률 19~20%, 판관비 6%)
+  shares: '완전 희석 = 기본 0.007136067(2026-08-14) + 옵션·RSU·워런트·전환 0.0000 — 회사는 기본·희석 EPS가
+    같다(10-Q 3번 주석). 미가득 제한주는 배당권이 있어 가중 주식 수에 이미 '
+notes:
+- 자동 생성(build_drivers) 2026-11-05 — 데이터 묶음 2026-11-05
+- '어닝콜 위험: 방산 매출의 대부분이 미 육군 40mm 체계 계약 — FY26 발주 1년분 미확정(상한 $1.413B 중 수주 $965M)'
+- '어닝콜 위험: 고정가 계약 — 원가 연동은 강철·알루미늄·아연뿐(10-K)'
+- '어닝콜 위험: 40mm 대부분을 장전·조립하는 정부 시설이 1Q에 2주 멈췄다(1Q 보도자료)'
+evidence:
+- 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/80172/000143774926027999/npk20260615_10q.htm
+- FY2025 10-K https://www.sec.gov/Archives/edgar/data/80172/000143774926008214/npk20251231_10k.htm
+- 3Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926034432/ex_1036451.htm
+- 2Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926025460/ex_997628.htm
+- 1Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926014873/ex_956204.htm
+- 주총 8-K https://www.sec.gov/Archives/edgar/data/80172/000143774926018109/ex_966603.htm
+- 위임장 https://www.sec.gov/Archives/edgar/data/80172/000143774926012242/npk20260403_def14a.htm
+- Albion River 13D/A https://www.sec.gov/Archives/edgar/data/80172/000149315226028722/0001493152-26-028722-index.htm
+- Fiscal.ai NYSE_NPK https://fiscal.ai/company/NYSE-NPK
