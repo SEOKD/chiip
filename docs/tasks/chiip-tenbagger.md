@@ -26,6 +26,10 @@
 - 신규 후보는 **하루 최대 5개**(watch.csv의 오늘 등록 행 수로 확인, 2026-11-04 적극성 6→9점 상향으로 2개에서 늘림 — 선별 관문은 그대로). pulse가 오늘 이미 알파를 산정한 종목은 다시 산정하지 않는다.
 - 주말 일(2026-11-01 마스터 지시 "토요일에는 알파 재산정 1번만, 일요일은 발굴 전체 선별 1번만"): `chiip-tenbagger-weekend` 회차가 토요일(KST) ③ 알파 전 종목 재산정 1회와 그 달 첫 토요일 ④ 월간 점검, 일요일(KST) ⑤ 발굴 전체 선별(Discovery) 1회만 한다. 주말에는 30분 관문과 1번 신호 기반 발굴을 하지 않는다. 오늘 이미 했는지는 judgments 파일·outputs/discovery/<오늘>.md로 확인한다.
 
+### 2026 중간선거 영향(2026-11-04)
+- **2026 중간선거 이후 영향 점수**(마스터 지시 2026-11-04 "주가가 오르는 영향일수록 +, 반대면 −, −10~+10"): `py scripts/policy/midterm_impact.py <회사 id>` — 정책 채널(분점 정부 시나리오, `config/midterm2026.yaml` policy_channels) × 회사 노출 × 미국 비중 + 업종 ETF의 선거일 이후 실제 반응(t값). 쓸 때는 `중간선거 영향 +x.x/10 — 가장 큰 채널(이유) · 업종 반응(ETF CAR %, t)` 한 줄과 '정책 0단계(선거 결과) 가설' 표시를 붙인다. 노출이 표와 다르면(예: 미국 정부 매출 비중이 큰 회사) datapack `midterm`(`exposure`·`sub`·`etf`·근거)으로 고친다. 하원이 AP로 확정되면 config outcome을 고치고 다시 잰다.
+  카드에는 위 한 줄을 넣고, 점수가 ±3 이상이면 킬 조건·촉매에 그 정책 일정을 적는다.
+
 ### SPAC 발굴(마스터 지시 2026-11-04 SPAC 3단계, 설계 `knowledge/methods/spac_discovery_design.md`)
 - 장부: `radar/pollers/spac_watch.py`(단계)·`spac_theme.py`(테마)가 30분마다 채운다. 회차마다 `py scripts/tenbagger/spac_score.py --needs`의 목록(테마가 맞은 확정 계약 이후 스팩 중 datapack 없는 것)에서 **최대 2건**을 골라 거래 서류(장부 url 폴더의 S-4·F-4·424B3·8-K EX-99.1, 환매·종결 8-K)로 `knowledge/models/companies/spac-<티커 소문자>/datapack.json`을 만든다 — `{"id","name","ticker","spac":{…}}`, spac 칸은 `scripts/tenbagger/spac_report.py` 맨 위 구조와 같고 `edge`(0~10, Chiip 렌즈: 병목·해결 기술·양산성·고객 채택)와 `flags`(계약 해지·최소 현금 미달·재매각 대량 등록)를 더한다. 모르는 칸은 비운다(지어내지 않는다). 주가는 TradingView 한 번에 하나씩.
 - `py scripts/tenbagger/spac_score.py --all` → `knowledge/models/spac/scores.csv`·`candidates.json`. 비대칭 점수 6.0 이상·킬 없음·테마 일치는 연구 후보로 watch.csv에 등록(사유 'SPAC 비대칭 x.x·단계'), 카드·리포트는 tenbagger-report 1-S(SPAC 리포트 경로). 신규 후보 하루 상한(5개)에 함께 센다. 매수 권유 아님 — 목표주가·등급 없음. 카드·리포트에는 `base_rate` 줄(2021~2025 종결 스팩 24개월 중앙값 −69%, 10배 0/99 — 생존 편향으로 낙관 쪽)을 반드시 함께 쓴다.

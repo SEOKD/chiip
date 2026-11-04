@@ -3790,6 +3790,54 @@ params:
     data: knowledge/models/tenbagger/tv_alerts.json
     last_fit: null
     oos_metric: null
+- id: prm-mid-w-policy
+  model: policy.midterm_impact
+  binding: config/midterm2026.yaml#impact.w_policy
+  value: 0.6
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.6
+    basis: 정책 가설 대 실제 반응 가중
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 사건 연구 CAR(MacKinlay 1997 J. Econ. Lit.)
+  fit:
+    method: 점수와 이후 20·60거래일 종목 초과수익의 순위 상관(11/14 관측 종료 뒤 1회 점검)
+    target: 종목 초과수익
+    data: knowledge/models/midterm2026/impact.json
+    last_fit: null
+    oos_metric: null
+- id: prm-mid-reaction-per-t
+  model: policy.midterm_impact
+  binding: config/midterm2026.yaml#impact.reaction_per_t
+  value: 1.5
+  unit: 점/t
+  status: prior
+  prior:
+    value: 1.5
+    basis: 업종 ETF CAR t값당 반응 점수
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 사건 연구 CAR(MacKinlay 1997 J. Econ. Lit.)
+  fit:
+    method: 점수와 이후 20·60거래일 종목 초과수익의 순위 상관(11/14 관측 종료 뒤 1회 점검)
+    target: 종목 초과수익
+    data: knowledge/models/midterm2026/impact.json
+    last_fit: null
+    oos_metric: null
+- id: prm-mid-reaction-cap
+  model: policy.midterm_impact
+  binding: config/midterm2026.yaml#impact.reaction_cap
+  value: 5
+  unit: 점
+  status: prior
+  prior:
+    value: 5
+    basis: 반응 점수 상한
+    source: 치입 운영 가정(2026-11-04 마스터 지시) — 사건 연구 CAR(MacKinlay 1997 J. Econ. Lit.)
+  fit:
+    method: 점수와 이후 20·60거래일 종목 초과수익의 순위 상관(11/14 관측 종료 뒤 1회 점검)
+    target: 종목 초과수익
+    data: knowledge/models/midterm2026/impact.json
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min

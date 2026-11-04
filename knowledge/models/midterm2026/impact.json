@@ -1,0 +1,764 @@
+{
+ "scenario": "split(상원 D called · 하원 D unconfirmed)",
+ "rows": [
+  {
+   "id": "co-enchantedrock",
+   "ticker": "EROC",
+   "sub": "power_infra",
+   "score": 1.7,
+   "policy": 1.4,
+   "reaction": 2.17,
+   "etf": "NASDAQ:GRID",
+   "etf_car": 0.0159,
+   "etf_t": 1.45,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "infra_grid",
+     "exposure": 1.0,
+     "points": 0.5,
+     "why": "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"
+    },
+    {
+     "channel": "clean_energy_credit",
+     "exposure": 0.3,
+     "points": 0.9,
+     "why": "IRA 청정에너지 세액공제 축소 입법 위험 하락"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-gevernova",
+   "ticker": "GEV",
+   "sub": "power_infra",
+   "score": 1.7,
+   "policy": 1.4,
+   "reaction": 2.17,
+   "etf": "NASDAQ:GRID",
+   "etf_car": 0.0159,
+   "etf_t": 1.45,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "infra_grid",
+     "exposure": 1.0,
+     "points": 0.5,
+     "why": "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"
+    },
+    {
+     "channel": "clean_energy_credit",
+     "exposure": 0.3,
+     "points": 0.9,
+     "why": "IRA 청정에너지 세액공제 축소 입법 위험 하락"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-quanta-services",
+   "ticker": "PWR",
+   "sub": "power_infra",
+   "score": 1.7,
+   "policy": 1.4,
+   "reaction": 2.17,
+   "etf": "NASDAQ:GRID",
+   "etf_car": 0.0159,
+   "etf_t": 1.45,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "infra_grid",
+     "exposure": 1.0,
+     "points": 0.5,
+     "why": "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"
+    },
+    {
+     "channel": "clean_energy_credit",
+     "exposure": 0.3,
+     "points": 0.9,
+     "why": "IRA 청정에너지 세액공제 축소 입법 위험 하락"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-sterling",
+   "ticker": "STRL",
+   "sub": "power_infra",
+   "score": 1.7,
+   "policy": 1.4,
+   "reaction": 2.17,
+   "etf": "NASDAQ:GRID",
+   "etf_car": 0.0159,
+   "etf_t": 1.45,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "infra_grid",
+     "exposure": 1.0,
+     "points": 0.5,
+     "why": "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"
+    },
+    {
+     "channel": "clean_energy_credit",
+     "exposure": 0.3,
+     "points": 0.9,
+     "why": "IRA 청정에너지 세액공제 축소 입법 위험 하락"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-myr",
+   "ticker": "MYRG",
+   "sub": "power_infra",
+   "score": 1.7,
+   "policy": 1.4,
+   "reaction": 2.17,
+   "etf": "NASDAQ:GRID",
+   "etf_car": 0.0159,
+   "etf_t": 1.45,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "infra_grid",
+     "exposure": 1.0,
+     "points": 0.5,
+     "why": "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"
+    },
+    {
+     "channel": "clean_energy_credit",
+     "exposure": 0.3,
+     "points": 0.9,
+     "why": "IRA 청정에너지 세액공제 축소 입법 위험 하락"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-innio",
+   "ticker": "INIO",
+   "sub": "power_infra",
+   "score": 1.7,
+   "policy": 1.4,
+   "reaction": 2.17,
+   "etf": "NASDAQ:GRID",
+   "etf_car": 0.0159,
+   "etf_t": 1.45,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "infra_grid",
+     "exposure": 1.0,
+     "points": 0.5,
+     "why": "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"
+    },
+    {
+     "channel": "clean_energy_credit",
+     "exposure": 0.3,
+     "points": 0.9,
+     "why": "IRA 청정에너지 세액공제 축소 입법 위험 하락"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-aeis",
+   "ticker": "AEIS",
+   "sub": "equipment",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-acmr",
+   "ticker": "ACMR",
+   "sub": "semicap",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-rambus",
+   "ticker": "RMBS",
+   "sub": "semis",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-mpwr",
+   "ticker": "MPWR",
+   "sub": "semis",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-ultraclean",
+   "ticker": "UCTT",
+   "sub": "semicap",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-cohu",
+   "ticker": "COHU",
+   "sub": "semicap",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-formfactor",
+   "ticker": "FORM",
+   "sub": "semicap",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-vicor",
+   "ticker": "VICR",
+   "sub": "semis",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-amkor",
+   "ticker": "AMKR",
+   "sub": "semis",
+   "score": 1.5,
+   "policy": 1.6,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 1.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-celestica",
+   "ticker": "CLS",
+   "sub": "electronics",
+   "score": 1.3,
+   "policy": 1.4,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "tariff_codify",
+     "exposure": 0.8,
+     "points": 0.8,
+     "why": "관세의 입법 고착화 가능성 하락 — 수입 의존 기업 소폭 유리(행정 관세는 그대로)"
+    },
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.3,
+     "points": 0.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-ttm",
+   "ticker": "TTMI",
+   "sub": "electronics",
+   "score": 1.3,
+   "policy": 1.4,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "tariff_codify",
+     "exposure": 0.8,
+     "points": 0.8,
+     "why": "관세의 입법 고착화 가능성 하락 — 수입 의존 기업 소폭 유리(행정 관세는 그대로)"
+    },
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.3,
+     "points": 0.6,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-cbrs",
+   "ticker": "CBRS",
+   "sub": "accelerator",
+   "score": 1.1,
+   "policy": 1.0,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.5,
+     "points": 1.0,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-skhynix",
+   "ticker": "000660",
+   "sub": "memory",
+   "score": 1.1,
+   "policy": 1.0,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 0.5,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 1.0,
+     "points": 1.0,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-lscc",
+   "ticker": "LSCC",
+   "sub": "fpga",
+   "score": 1.1,
+   "policy": 1.0,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.5,
+     "points": 1.0,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-isc",
+   "ticker": "095340",
+   "sub": "semicap",
+   "score": 1.0,
+   "policy": 0.8,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 0.5,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.8,
+     "points": 0.8,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-daeduck",
+   "ticker": "353200",
+   "sub": "substrate",
+   "score": 0.9,
+   "policy": 0.75,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 0.5,
+   "channels": [
+    {
+     "channel": "chips_subsidy",
+     "exposure": 0.5,
+     "points": 0.5,
+     "why": "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"
+    },
+    {
+     "channel": "tariff_codify",
+     "exposure": 0.5,
+     "points": 0.25,
+     "why": "관세의 입법 고착화 가능성 하락 — 수입 의존 기업 소폭 유리(행정 관세는 그대로)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-dell",
+   "ticker": "DELL",
+   "sub": "server",
+   "score": 0.8,
+   "policy": 0.5,
+   "reaction": 1.23,
+   "etf": "NASDAQ:SMH",
+   "etf_car": 0.0135,
+   "etf_t": 0.82,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "tariff_codify",
+     "exposure": 0.5,
+     "points": 0.5,
+     "why": "관세의 입법 고착화 가능성 하락 — 수입 의존 기업 소폭 유리(행정 관세는 그대로)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "no-kongsberg",
+   "ticker": "KOG",
+   "sub": "defense",
+   "score": 0.1,
+   "policy": -0.5,
+   "reaction": 0.92,
+   "etf": "AMEX:ITA",
+   "etf_car": 0.0068,
+   "etf_t": 0.61,
+   "us_factor": 0.5,
+   "channels": [
+    {
+     "channel": "defense_budget",
+     "exposure": 1.0,
+     "points": -0.5,
+     "why": "국방 예산 증가 속도 둔화 가능(민주 의회 세출)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-oracle",
+   "ticker": "ORCL",
+   "sub": "hyperscaler",
+   "score": 0.0,
+   "policy": 0,
+   "reaction": 0.01,
+   "etf": "AMEX:IGV",
+   "etf_car": 0.0001,
+   "etf_t": 0.01,
+   "us_factor": 1.0,
+   "channels": [],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-ccxi",
+   "ticker": "CCXI",
+   "sub": "robotics",
+   "score": 0,
+   "policy": 0,
+   "reaction": null,
+   "etf": null,
+   "etf_car": null,
+   "etf_t": null,
+   "us_factor": 1.0,
+   "channels": [],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-doosan",
+   "ticker": "000150",
+   "sub": "conglomerate",
+   "score": 0,
+   "policy": 0,
+   "reaction": null,
+   "etf": null,
+   "etf_car": null,
+   "etf_t": null,
+   "us_factor": 0.5,
+   "channels": [],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-caci",
+   "ticker": "CACI",
+   "sub": "defense",
+   "score": -0.2,
+   "policy": -1.0,
+   "reaction": 0.92,
+   "etf": "AMEX:ITA",
+   "etf_car": 0.0068,
+   "etf_t": 0.61,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "defense_budget",
+     "exposure": 1.0,
+     "points": -1.0,
+     "why": "국방 예산 증가 속도 둔화 가능(민주 의회 세출)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-hii",
+   "ticker": "HII",
+   "sub": "defense",
+   "score": -0.2,
+   "policy": -1.0,
+   "reaction": 0.92,
+   "etf": "AMEX:ITA",
+   "etf_car": 0.0068,
+   "etf_t": 0.61,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "defense_budget",
+     "exposure": 1.0,
+     "points": -1.0,
+     "why": "국방 예산 증가 속도 둔화 가능(민주 의회 세출)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "jp-takaratomy",
+   "ticker": "7867",
+   "sub": "consumer",
+   "score": -0.6,
+   "policy": 0.35,
+   "reaction": -1.93,
+   "etf": "AMEX:XLY",
+   "etf_car": -0.0096,
+   "etf_t": -1.29,
+   "us_factor": 0.5,
+   "channels": [
+    {
+     "channel": "tariff_codify",
+     "exposure": 0.7,
+     "points": 0.35,
+     "why": "관세의 입법 고착화 가능성 하락 — 수입 의존 기업 소폭 유리(행정 관세는 그대로)"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-atlasenergy",
+   "ticker": "AESI",
+   "sub": "oilfield",
+   "score": -1.0,
+   "policy": -1.0,
+   "reaction": -0.99,
+   "etf": "AMEX:XOP",
+   "etf_car": -0.0109,
+   "etf_t": -0.66,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "fossil_permitting",
+     "exposure": 1.0,
+     "points": -1.0,
+     "why": "화석연료 인허가 확대 입법 동력 약화"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "us-sdrl",
+   "ticker": "SDRL",
+   "sub": "oilfield",
+   "score": -1.0,
+   "policy": -1.0,
+   "reaction": -0.99,
+   "etf": "AMEX:XOP",
+   "etf_car": -0.0109,
+   "etf_t": -0.66,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "fossil_permitting",
+     "exposure": 1.0,
+     "points": -1.0,
+     "why": "화석연료 인허가 확대 입법 동력 약화"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  },
+  {
+   "id": "co-propetro",
+   "ticker": "PUMP",
+   "sub": "oilfield",
+   "score": -1.0,
+   "policy": -1.0,
+   "reaction": -0.99,
+   "etf": "AMEX:XOP",
+   "etf_car": -0.0109,
+   "etf_t": -0.66,
+   "us_factor": 1.0,
+   "channels": [
+    {
+     "channel": "fossil_permitting",
+     "exposure": 1.0,
+     "points": -1.0,
+     "why": "화석연료 인허가 확대 입법 동력 약화"
+    }
+   ],
+   "scenario": "split(상원 D called · 하원 D unconfirmed)",
+   "note": "정책 0단계(선거 결과) 가설 + 업종 실제 반응 — 매매 지시가 아님"
+  }
+ ]
+}

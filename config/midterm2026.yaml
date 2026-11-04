@@ -49,3 +49,89 @@ tick:
   spy_band: 0.5     # SPY 등락 0.5% 구간을 넘을 때
   tone_dead: 0.10   # 위험 선호 톤 부호 판정 무감대(%p)
   vix_jump: 5.0     # 직전 관측 대비 VIX 등락률 변화(%p)
+
+# ── 중간선거 이후 종목 영향 점수(scripts/policy/midterm_impact.py, 마스터 지시 2026-11-04 "Analysis·Pulse·Ten-bagger에 2026 미국 중간선거 이후 영향 —
+#    주가가 오르는 영향일수록 +, 반대면 −, −10~+10으로 정량화") — 등록부 prm-mid-*, 모두 사전값(가설)
+outcome:                 # 1차 발표(AP 등)로만 바꾼다. 미확정이면 unconfirmed
+  senate: {party: D, status: called, source: "AP via PBS 2026-11-04"}
+  house: {party: D, status: unconfirmed, source: "AP 미콜 — 주요 방송 예상 민주 우세"}
+  scenario: split          # 분점 정부(공화 대통령·민주 의회) — 하원이 확정되면 확정
+policy_channels:          # 분점 정부 시나리오에서 채널별 주가 방향 점수(±10 척도의 기여, 노출 1.0 기준). 근거는 정책 단계 0(선거 결과)뿐이라 '가설'
+  chips_subsidy: {score: 2, why: "CHIPS 보조금·세액공제 폐지 입법 위험 하락(민주 의회)"}
+  clean_energy_credit: {score: 3, why: "IRA 청정에너지 세액공제 축소 입법 위험 하락"}
+  nuclear_bipartisan: {score: 1, why: "원자력 지원은 양당 — 소폭 유리"}
+  defense_budget: {score: -1, why: "국방 예산 증가 속도 둔화 가능(민주 의회 세출)"}
+  drug_pricing: {score: -2, why: "약가 인하 입법 압력 상승"}
+  aca_subsidy: {score: 1, why: "ACA 보조금 연장 가능성 — 병원·보험 일부 유리"}
+  bank_dereg: {score: -1, why: "금융 규제 완화 입법 동력 약화"}
+  fossil_permitting: {score: -1, why: "화석연료 인허가 확대 입법 동력 약화"}
+  tariff_codify: {score: 1, why: "관세의 입법 고착화 가능성 하락 — 수입 의존 기업 소폭 유리(행정 관세는 그대로)"}
+  infra_grid: {score: 0.5, why: "전력망·인프라 투자는 양당 — 인허가 개혁은 지연 가능"}
+exposure_by_sub:          # 회사 하위 업종(portfolio·alpha·consumer의 sub/segment) → 채널 노출(0~1)
+  memory: {chips_subsidy: 1.0}
+  accelerator: {chips_subsidy: 0.5}
+  semis: {chips_subsidy: 0.8}
+  semicap: {chips_subsidy: 0.8}
+  foundry: {chips_subsidy: 1.0}
+  substrate: {chips_subsidy: 0.5, tariff_codify: 0.5}
+  power_infra: {infra_grid: 1.0, clean_energy_credit: 0.3}
+  nuclear: {nuclear_bipartisan: 1.0, clean_energy_credit: 0.3}
+  defense: {defense_budget: 1.0}
+  space: {defense_budget: 0.5}
+  pharma: {drug_pricing: 1.0}
+  healthcare: {aca_subsidy: 1.0}
+  bank: {bank_dereg: 1.0}
+  oil_gas: {fossil_permitting: 1.0}
+  solar: {clean_energy_credit: 1.0}
+  consumer: {tariff_codify: 0.7}
+  household_durables: {tariff_codify: 1.0}
+  apparel: {tariff_codify: 1.0}
+  ems: {tariff_codify: 0.8}
+  server: {tariff_codify: 0.5}
+  fpga: {chips_subsidy: 0.5}
+  equipment: {chips_subsidy: 0.8}
+  electronics: {tariff_codify: 0.8, chips_subsidy: 0.3}
+  oilfield: {fossil_permitting: 1.0}
+  hyperscaler: {}
+  software: {}
+industry_to_sub:          # datapack industry → 하위 업종(회사가 위 지도에 없을 때)
+  semiconductor: semis
+  semicap: semicap
+  electrical_equipment: power_infra
+  aerospace_defense: defense
+  electronics: electronics
+  computers: server
+  software_internet: software
+  oilfield_services: oilfield
+  offshore_drilling: oilfield
+etf_by_sub:               # 실현 반응(선거일 이후 CAR)을 볼 업종 ETF
+  memory: NASDAQ:SMH
+  accelerator: NASDAQ:SMH
+  semis: NASDAQ:SMH
+  semicap: NASDAQ:SMH
+  foundry: NASDAQ:SMH
+  substrate: NASDAQ:SMH
+  power_infra: NASDAQ:GRID
+  nuclear: AMEX:URA
+  defense: AMEX:ITA
+  space: AMEX:ITA
+  pharma: AMEX:XLV
+  healthcare: AMEX:XLV
+  bank: AMEX:KRE
+  oil_gas: AMEX:XOP
+  solar: AMEX:TAN
+  consumer: AMEX:XLY
+  household_durables: AMEX:XHB
+  apparel: AMEX:XLY
+  software: AMEX:IGV
+  ems: NASDAQ:SMH
+  server: NASDAQ:SMH
+  fpga: NASDAQ:SMH
+  equipment: NASDAQ:SMH
+  electronics: NASDAQ:SMH
+  oilfield: AMEX:XOP
+  hyperscaler: AMEX:IGV
+impact:
+  w_policy: 0.6           # 최종 = w_policy·정책 점수 + (1 − w_policy)·반응 점수
+  reaction_per_t: 1.5     # 업종 ETF CAR t값 1당 반응 점수
+  reaction_cap: 5
