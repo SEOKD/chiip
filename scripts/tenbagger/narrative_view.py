@@ -256,11 +256,61 @@ def market_section(dp):
     return {"h2": "시장 평가", "blocks": [{"type": "boxes", "items": B}]} if B else None
 
 
+SEASONAL_CV = 0.05   # 분기 계절 지수의 표준편차가 이보다 크면 계절성 있음 → 전년 대비, 아니면 전 분기 대비(2026-11-04)
+
+
+def seasonal(dp):
+    """분기 매출 ÷ 4분기 중심 이동평균의 분기별 평균이 흩어진 정도로 계절성을 본다. 8분기 미만이면 계절성 있음으로(보수적 — 전년 대비)"""
+    q = [r["rev"] for r in sorted((dp.get("quarters_hist") or {}).get("q") or [], key=lambda r: r["period"]) if r.get("rev")]
+    if len(q) < 8:
+        return True
+    idx = {}
+    for i in range(2, len(q) - 2):
+        ma = (q[i - 2] / 2 + q[i - 1] + q[i] + q[i + 1] + q[i + 2] / 2) / 4
+        idx.setdefault(i % 4, []).append(q[i] / ma)
+    means = [sum(v) / len(v) for v in idx.values() if v]
+    m = sum(means) / len(means)
+    return (sum((x - m) ** 2 for x in means) / len(means)) ** 0.5 > SEASONAL_CV
+
+
+def mix(dp):
+    """제품·서비스 이름 → (현재 비중, 비교 비중, 기준). 세그먼트 분기 매출(segments_hist)이 있으면 계산, 없으면 모델이 쓴 rev_share·rev_share_prev"""
+    yoy = seasonal(dp)
+    basis = "전년 대비" if yoy else "전 분기 대비"
+    out = {}
+    segs = (dp.get("segments_hist") or {}).get("segments") or {}
+    if segs:
+        by = {n: {r["period"][:7]: r["rev"] for r in rows if r.get("rev")} for n, rows in segs.items()}
+        periods = sorted({p for v in by.values() for p in v})
+        if len(periods) >= (5 if yoy else 2):
+            now, prev = periods[-1], periods[-5 if yoy else -2]
+            tn, tp = sum(v.get(now, 0) for v in by.values()), sum(v.get(prev, 0) for v in by.values())
+            for n, v in by.items():
+                if tn and tp and now in v:
+                    out[n] = (v[now] / tn, v.get(prev, 0) / tp if prev in v else None, basis, now)
+    for p in ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []:
+        if p.get("name") not in out and p.get("rev_share") is not None:
+            out[p["name"]] = (float(p["rev_share"]), None if p.get("rev_share_prev") is None else float(p["rev_share_prev"]), p.get("mix_basis") or basis, p.get("mix_period") or "")
+    return out
+
+
 def portfolio3(dp):
-    """양식 3 포트폴리오 — 제품·서비스·기술을 설명 박스로(마스터 지시 2026-10-31)"""
+    """양식 3 포트폴리오 — 제품·서비스·기술을 설명 박스로(마스터 지시 2026-10-31). Mix 비중과 Mix 변화(전년 대비, 계절성이 없으면 전 분기 대비)를 함께(2026-11-04)"""
     lead = dp["narrative"]["lead"]
-    rows = [[p.get("name"), p.get("kind"), p.get("what"), p.get("use"), p.get("money")] for p in lead["products"]]
-    return {"h2": "포트폴리오", "blocks": [{"type": "table", "headers": ["제품·서비스", "구분", "무엇", "쓰는 곳", "돈 버는 방식"], "rows": rows}]}   # 한 표로(마스터 지시 2026-11-01)
+    mx = mix(dp)
+    pct = lambda x: "미확인" if x is None else f"{x:.0%}"
+    rows = []
+    for p in lead["products"]:
+        m = mx.get(p.get("name"))
+        chg = "미확인" if not m or m[1] is None else f"{(m[0] - m[1]) * 100:+.1f}%p"
+        rows.append([p.get("name"), p.get("kind"), p.get("what"), p.get("use"), p.get("money"), pct(m[0] if m else None), chg])
+    basis = next((m[2] for m in mx.values()), "전년 대비" if seasonal(dp) else "전 분기 대비")
+    blocks = [{"type": "table", "headers": ["제품·서비스", "구분", "무엇", "쓰는 곳", "돈 버는 방식", "Mix", f"Mix 변화({basis})"], "rows": rows}]   # 한 표로(마스터 지시 2026-11-01)
+    moved = sorted(((n, m[0] - m[1]) for n, m in mx.items() if m[1] is not None), key=lambda x: -abs(x[1]))
+    if moved:
+        n, d = moved[0]
+        blocks.append({"type": "p", "text": f"**Mix 변화가 가장 큰 쪽은 {n}({d * 100:+.1f}%p, {basis}).** 계절성 판정: 분기 매출 계절 지수 기준 {'있음 → 전년 같은 분기와 비교' if basis == '전년 대비' else '없음 → 직전 분기와 비교'}."})
+    return {"h2": "포트폴리오", "blocks": blocks}
 
 
 def portfolio_chart(dp):

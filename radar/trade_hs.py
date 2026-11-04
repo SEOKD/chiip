@@ -3,7 +3,7 @@
 공식 공개 통계만 쓴다. 다른 서비스의 데이터·내부 구조는 쓰지 않는다. 품목별 현재 지표는 radar/trade_ppi.py, 이 파일은 전 품목 시계열이다.
 - 미국 Census: 호출 한 번에 HS 6단위 전 품목. 관심 품목 목록도 여기서 만든다
 - EU Comext: 관심 장(config hs_scan.chapters)의 HS 6단위를 묶어 조회, EU 역외 합계
-- 일본 e-Stat: 관심 장의 수입, 나라별
+- 일본 e-Stat: 관심 장의 수입·수출, 나라별(수출은 2026-11-04 추가)
 - 대만·홍콩: 공개된 분류 단위(HS 류, SITC 대분류)
 저장 radar/state/trade_hs.sqlite(git 제외). 급등 결과 knowledge/models/trade_ppi/surge.json. 값은 원 단위 그대로 두고 나라끼리 더하지 않는다.
 사용: py radar/trade_hs.py --run · --status · --surge [n] · --series <hs> · --company <회사 id>
@@ -122,14 +122,15 @@ def collect(c, cfg, today, env, errors):
             got += store(c, [("eu", flow, WORLD, h, p, v, "EUR") for h, p, v in rows])
             time.sleep(PAUSE)
     app = env.get("ESTAT_APP_ID")
-    tables = (guard("e-stat 표", lambda: tp.estat_tables(app, today)) or {}) if app else {}
     metas = {}
-    for hs in cfg["chapters"] if tables else []:
-        res = guard(f"e-stat {hs}", lambda: tp.trade_estat(app, hs, tables, metas))
-        if res:
-            got += store(c, [("jp", "import", WORLD, hs, p, v, "JPY thousand") for p, v in res[0].items()])
-            got += store(c, [("jp", "import", a, hs, p, v, "JPY thousand") for a, s in res[1].items() for p, v in s.items()])
-        time.sleep(PAUSE)
+    for jflow, flow in (("輸入", "import"), ("輸出", "export")):   # 수출 추가(2026-11-04 점검: 일본 수출 0건 — 장비·소재 수출 선행 지표가 비어 있었다)
+        tables = (guard(f"e-stat 표 {jflow}", lambda: tp.estat_tables(app, today, jflow)) or {}) if app else {}
+        for hs in cfg["chapters"] if tables else []:
+            res = guard(f"e-stat {jflow} {hs}", lambda: tp.trade_estat(app, hs, tables, metas))
+            if res:
+                got += store(c, [("jp", flow, WORLD, hs, p, v, "JPY thousand") for p, v in res[0].items()])
+                got += store(c, [("jp", flow, a, hs, p, v, "JPY thousand") for a, s in res[1].items() for p, v in s.items()])
+            time.sleep(PAUSE)
     conf = tp.config()["taiwan"]
     table = guard("tw trade", lambda: tp.tw_trade_table(tp.get(tp.dataset_url(conf["trade_dataset"]), timeout=90))) or {}
     got += store(c, [("tw", {"出口": "export", "進口": "import"}[f], a, f"HS류{s}", p, v, "USD thousand") for (f, s, a), series in table.items() for p, v in series.items() if p >= start])

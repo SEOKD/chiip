@@ -128,8 +128,10 @@ def trade_hmrc(hs, start):
     ids = [c["CommodityId"] for c in odata("Commodity", f"Hs6Code eq '{hs}'")]
     if not ids:
         return {}
-    who = " or ".join(f"CommodityId eq {i}" for i in ids[:20])
-    rows = odata("OTS", f"MonthId ge {start.replace('-', '')} and FlowTypeId ne 2 and FlowTypeId ne 4 and ({who})")
+    rows = []
+    for n in range(0, len(ids), 10):   # 필터 노드 100개 제한 — 10개씩 나눠 묻는다(경유 271019는 CN8 36개)
+        who = " or ".join(f"CommodityId eq {i}" for i in ids[n:n + 10])
+        rows += odata("OTS", f"MonthId ge {start.replace('-', '')} and FlowTypeId ne 2 and FlowTypeId ne 4 and ({who})")
     out = {}
     for r in rows:
         k = f"{str(r['MonthId'])[:4]}-{str(r['MonthId'])[4:6]}"
@@ -192,14 +194,14 @@ def hk_table(table, sv, key_field=None, key=None):
             if r.get("sv") == sv and "%" not in str(r.get("svDesc")) and r.get("freq") in ("M", "Q") and isinstance(r.get("figure"), (int, float)) and (key_field is None or str(r.get(key_field)) == key)}
 
 
-def estat_tables(app, today):
-    """올해·작년 '品別国別表 輸入' 표 번호 — 해마다 번호가 바뀌어 이름으로 찾는다"""
+def estat_tables(app, today, flow="輸入"):
+    """올해·작년 '品別国別表 輸入(또는 輸出)' 표 번호 — 해마다 번호가 바뀌어 이름으로 찾는다. 輸出은 2026-11-04 추가(일본 수출이 비어 있었다)"""
     out = {}
     for y in (today.year, today.year - 1):
-        q = urllib.parse.quote("品別国別表 輸入")
+        q = urllib.parse.quote(f"品別国別表 {flow}")
         doc = json.loads(get(f"https://api.e-stat.go.jp/rest/3.0/app/json/getStatsList?appId={app}&statsCode=00350300&searchWord={q}&surveyYears={y}&limit=60&lang=J"))
         tb = doc["GET_STATS_LIST"]["DATALIST_INF"].get("TABLE_INF") or []
-        hit = [t for t in (tb if isinstance(tb, list) else [tb]) if str(t.get("STATISTICS_NAME", "")).startswith("貿易統計_全国分 品別国別表 輸入")]
+        hit = [t for t in (tb if isinstance(tb, list) else [tb]) if str(t.get("STATISTICS_NAME", "")).startswith(f"貿易統計_全国分 品別国別表 {flow}")]
         if hit:
             out[y] = hit[0]["@id"]
     return out
@@ -213,7 +215,7 @@ def estat_meta(app, table):
 
 
 def trade_estat(app, hs, tables, metas):
-    """일본 수입 → ({YYYY-MM: 천 엔}, {나라: {YYYY-MM: 천 엔}})"""
+    """일본 수입(또는 수출 — tables가 輸出 표면) → ({YYYY-MM: 천 엔}, {나라: {YYYY-MM: 천 엔}})"""
     total, parts = {}, {}
     for y, table in tables.items():
         meta = metas.setdefault(table, estat_meta(app, table))
