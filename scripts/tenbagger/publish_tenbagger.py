@@ -12,6 +12,7 @@ github 링크를 제공해야지 … 노션에도 결과물이 Github와 동시�
                                        노션이 성공이면 캡션 + 리포트 보기 + 노션 링크,
                                        노션이 실패·미기록이면 '노션 게시 실패 — 다음 회차 재시도'를 붙여 보내고 상태를 notion_pending으로 남긴다.
                                        이미 보낸 리포트의 노션이 나중에 성공하면 send가 '노션 게시 완료' 한 줄만 따로 보낸다.
+  notion-text <json>                    노션 본문(html 링크 한 줄)을 출력 — 노션에는 이것만 올린다(2026-11-04)
   pending                               노션 미완료·텔레그램 미발송 리포트 목록(다음 회차 시작 때 먼저 처리)
 기록: outputs/tenbagger/reports/delivery.csv(time,stem,ticker,step,status,detail)
 """
@@ -146,6 +147,8 @@ def notion(src, page=None, fail=None, stock=None, replaced=False):
     st = load(src)
     if not st or not (st.get("github") or {}).get("md"):
         raise SystemExit("prepare 먼저(GitHub 게시 기록 없음)")
+    if page and not html_link(st):
+        raise SystemExit("노션에는 html 링크만 올린다 — artifact <json> --url 먼저(2026-11-04)")
     if page:
         old = existing_notion(str(st["ticker"]))
         if old and old[0].split("?")[0] != page.split("?")[0] and not replaced:
@@ -161,10 +164,25 @@ def notion(src, page=None, fail=None, stock=None, replaced=False):
     return st["notion"]
 
 
+def html_link(st):
+    """html 보기 링크 = claude.ai 비공개 Artifact(휴대폰에서 바로 보인다). 비공개 저장소 HTML은 소스로만 보여서 쓰지 않는다"""
+    ar = st.get("artifact") or {}
+    return ar.get("url") if ar.get("status") == "ok" else None
+
+
+def notion_text(st):
+    """노션 리포트 페이지 본문 = html 링크 한 줄(마스터 지시 2026-11-04 "Notion에는 html 링크만 업로드")"""
+    hv = html_link(st)
+    if not hv:
+        raise SystemExit("Artifact(html) 링크가 없다 — artifact <json> --url 먼저")
+    return f"📄 [리포트 보기(html)]({hv})"
+
+
 def message(st, caption):
     gh, nt, ar = st["github"]["md"], st.get("notion") or {}, st.get("artifact") or {}
-    view = f"📄 [리포트 보기(md)]({gh})"   # 보기 링크 = GitHub 마크다운(마스터 지시 2026-11-04 "html 말고 md로") — Artifact HTML 링크는 쓰지 않는다
-    lines = [caption.strip(), "", view]
+    view = f"📄 [리포트 보기(md)]({gh})"   # 마스터 지시 2026-11-04 "md 파일과 함께 html도 올려줘" — md + html 둘 다
+    hv = html_link(st)
+    lines = [caption.strip(), "", view] + ([f"🌐 [리포트 보기(html)]({hv})"] if hv else ["🌐 html 보기 링크 게시 실패 — 다음 회차에 다시 올립니다"])
     lines.append(f"🗂 [노션]({nt['page']})" if nt.get("status") == "ok" else "🗂 노션 게시 실패 — 다음 회차에 다시 올립니다")
     return "\n".join(x for x in lines if x is not None)
 
@@ -214,7 +232,7 @@ def pending():
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["prepare", "artifact", "notion", "send", "pending"])
+    ap.add_argument("cmd", choices=["prepare", "artifact", "notion", "notion-text", "send", "pending"])
     ap.add_argument("json", nargs="?")
     ap.add_argument("--extra", nargs="*", default=[])
     ap.add_argument("--title")
@@ -238,6 +256,9 @@ def main(argv):
         if not a.url and not a.fail:
             ap.error("--url 또는 --fail")
         r = artifact(a.json, a.url, a.fail)
+    elif a.cmd == "notion-text":
+        print(notion_text(load(a.json) or {}))
+        return 0
     elif a.cmd == "notion":
         if not a.page and not a.fail:
             ap.error("--page 또는 --fail")

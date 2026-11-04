@@ -75,9 +75,13 @@ class TestDeliveryGate(unittest.TestCase):
         self.assertFalse(s1["notion_ok"])
         self.assertIn("노션 게시 실패", s1["text"])
         self.assertIn("📄 [리포트 보기(md)](", s1["text"])   # Artifact 없이도 GitHub 마크다운(2026-11-04)
+        self.assertIn("html 보기 링크 게시 실패", s1["text"])
         self.assertEqual(len(pt.pending()), 1)
-        pt.notion(self.src, page="https://app.notion.com/p/abc")
+        with self.assertRaises(SystemExit):   # 노션에는 html 링크만 — Artifact 먼저(2026-11-04)
+            pt.notion(self.src, page="https://app.notion.com/p/abc")
         pt.artifact(self.src, url="https://claude.ai/code/artifact/q")
+        self.assertEqual(pt.notion_text(pt.load(self.src)), "📄 [리포트 보기(html)](https://claude.ai/code/artifact/q)")
+        pt.notion(self.src, page="https://app.notion.com/p/abc")
         s2 = pt.send(self.src, dry=True)
         self.assertIn("노션 게시 완료", s2["text"])
         self.assertEqual(pt.pending(), [])
@@ -91,8 +95,8 @@ class TestDeliveryGate(unittest.TestCase):
         pt.artifact(self.src, url="https://claude.ai/code/artifact/abc")
         pt.notion(self.src, page="https://app.notion.com/p/xyz")
         s = pt.send(self.src, "요약", dry=True)
-        self.assertIn("📄 [리포트 보기(md)](", s["text"])   # 보기 링크 = GitHub 마크다운(2026-11-04)
-        self.assertNotIn("claude.ai/code/artifact", s["text"])
+        self.assertIn("📄 [리포트 보기(md)](", s["text"])   # md + html 둘 다(2026-11-04 마스터 지시)
+        self.assertIn("🌐 [리포트 보기(html)](https://claude.ai/code/artifact/abc)", s["text"])
         self.assertIn("skipped", pt.send(self.src, dry=True))
         self.assertTrue(pt.send(self.src, "요약", dry=True, resend=True)["sent"])   # 경로가 바뀐 리포트는 다시 보낼 수 있다
         self.assertIn("https://app.notion.com/p/xyz", s["text"])
@@ -107,9 +111,11 @@ class TestDeliveryGate(unittest.TestCase):
 
     def test_new_date_overwrites_existing_page(self):
         pt.prepare(self.src, dry=True)
+        pt.artifact(self.src, url="https://claude.ai/code/artifact/a")
         pt.notion(self.src, page="https://app.notion.com/p/old", stock="https://app.notion.com/p/st")
         later = self.later_report()
         r = pt.prepare(later, dry=True)
+        pt.artifact(later, url="https://claude.ai/code/artifact/a")
         self.assertEqual((r["notion_existing_page"], r["notion_stock_page"]), ("https://app.notion.com/p/old", "https://app.notion.com/p/st"))
         pt.notion(later, page="https://app.notion.com/p/old?pvs=204")
         self.assertEqual(len(pt.notion_rows()), 1)
@@ -118,9 +124,11 @@ class TestDeliveryGate(unittest.TestCase):
 
     def test_second_page_refused_until_old_removed(self):
         pt.prepare(self.src, dry=True)
+        pt.artifact(self.src, url="https://claude.ai/code/artifact/a")
         pt.notion(self.src, page="https://app.notion.com/p/old")
         later = self.later_report()
         pt.prepare(later, dry=True)
+        pt.artifact(later, url="https://claude.ai/code/artifact/a")
         with self.assertRaises(SystemExit):
             pt.notion(later, page="https://app.notion.com/p/new")
         self.assertEqual(pt.existing_notion("TST")[0], "https://app.notion.com/p/old")
