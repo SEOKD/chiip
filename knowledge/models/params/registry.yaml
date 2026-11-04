@@ -3966,3 +3966,51 @@ params:
     data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
+- id: prm-pq-hp-lambda
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#hp_lambda
+  value: 1600
+  unit: 평활 상수
+  status: prior
+  prior:
+    value: 1600
+    basis: 분기 자료 HP 필터 표준값 — 추세를 정상(mid-cycle) 수준으로 본다
+    source: Hodrick & Prescott (1997) J. Money Credit Banking; Ravn & Uhlig (2002) Rev. Econ. Stat.
+  fit:
+    method: 갭 부호가 이후 4분기 매출총이익 증가율 방향을 맞히는 비율(λ 400·1600·6400 비교, 표본 외)
+    target: 이후 4분기 GP 증가율
+    data: knowledge/models/companies/*/datapack.json quarters_hist
+    last_fit: null
+    oos_metric: null
+- id: prm-pq-p-dropthrough
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#p_dropthrough
+  value: 1.0
+  unit: 비율
+  status: prior
+  prior:
+    value: 1.0
+    basis: 순수 가격 인상은 원가가 그대로라 전액 매출총이익 — 원가 전가형이면 과대
+    source: IB 가격·물량·믹스 브리지 관행(price-volume-mix bridge)
+  fit:
+    method: 분기 ΔGP를 가격 효과·물량 효과로 회귀해 가격 계수 추정(표본 외)
+    target: 분기 GP 변화
+    data: knowledge/models/companies/*/datapack.json quarters_hist
+    last_fit: null
+    oos_metric: null
+- id: prm-pq-q-margin-cap
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#q_margin_cap
+  value: 2.0
+  unit: 정상 GPM 배수
+  status: prior
+  prior:
+    value: 2.0
+    basis: 물량 증분 마진은 고정비 흡수로 두 배를 넘기지 않는다(하한은 GPM 1.0배로 고정)
+    source: 영업 레버리지(operating leverage) — Lev (1974) J. Financial Quant. Analysis
+  fit:
+    method: 회사별 ΔGP÷ΔRev 회귀 기울기 분포로 상하한 점검
+    target: 증분 마진
+    data: knowledge/models/companies/*/datapack.json quarters_hist
+    last_fit: null
+    oos_metric: null

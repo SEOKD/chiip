@@ -114,6 +114,9 @@ def chart_line(c):
     for i, k in enumerate(keys):
         if i % step == 0 or i == len(keys) - 1:
             g.append(f'<text x="{X(k):.1f}" y="{H - 6}" text-anchor="middle">{t(k)}</text>')
+    if c.get("now") in keys:   # 현재 위치 세로선(P·Q 사이클 10년 차트, 2026-11-04)
+        g.append(f'<line x1="{X(c["now"]):.1f}" x2="{X(c["now"]):.1f}" y1="{T}" y2="{H - B}" stroke="var(--fg)" stroke-dasharray="4 3"/>'
+                 f'<text x="{X(c["now"]) - 4:.1f}" y="{T + 10}" text-anchor="end" style="fill:var(--fg);font-weight:700">현재</text>')
     for s in series:
         col = COLORS.get(s.get("color", "c"), "var(--c)")
         pts = [p for p in s.get("points") or [] if p[1] is not None]

@@ -38,6 +38,39 @@ class TestPQ(unittest.TestCase):
         c, a1, a2 = pv.ar2(y)
         self.assertAlmostEqual(pv.period(a1, a2), 8, delta=0.2)
 
+    def test_hp_keeps_linear_trend(self):
+        y = [0.1 * i for i in range(30)]
+        for a, b in zip(pv.hp(y, 1600), y):
+            self.assertAlmostEqual(a, b, places=6)
+
+    def test_long_cycle_position_premium(self):
+        d = dp(44)
+        lc = pv.long_cycle(d, d["pq"])
+        self.assertTrue(lc["enough"])
+        self.assertIn(lc["type"], ("P형", "Q형"))
+        self.assertIn(lc["clock_p"], ("회복", "확장", "둔화", "수축"))
+        for x in lc["pts"]:
+            self.assertTrue(-1 <= x["prem_p"] <= 1 and -1 <= x["prem_q"] <= 1)
+        self.assertEqual(len(lc["proj"]), 8)
+        s = pv.section(d)
+        self.assertTrue(any(b.get("chart", {}).get("now") for b in s["blocks"] if b["type"] == "chart"))
+
+    def test_premium_signs(self):
+        c = {"premium_cap": 1.0, "p_dropthrough": 1.0}
+        p, q = pv.premiums(0.1, -0.1, 0.4, 0.5, c)
+        self.assertGreater(p, 0)
+        self.assertLess(q, 0)
+        self.assertEqual(pv.premiums(2, 0, 0.1, 0.1, c)[0], 1.0)   # ±100%에서 자른다
+
+    def test_fred_proxy_when_none(self):
+        d = dp(44)
+        asp = d["pq"]["price"]["series"]
+        cache = {"PCU334413334413": {f"{k[:5]}{int(k[5:7]) - m:02d}": v for k, v in asp.items() for m in range(3)}}
+        d2 = {"quarters_hist": d["quarters_hist"], "industry": "semiconductor", "pq": {"none": "ASP 비공시"}}
+        s = pv.section(d2, fred_cache=cache)
+        self.assertIn("대용", s["blocks"][-1]["text"])
+        self.assertIn("ASP 비공시", s["blocks"][-1]["text"])
+
     def test_none_and_missing(self):
         self.assertIsNone(pv.section({"pq": {"none": "단일 계약 매출"}}))
         with self.assertRaises(SystemExit):

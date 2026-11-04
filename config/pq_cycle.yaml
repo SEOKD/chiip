@@ -1,0 +1,20 @@
+# P·Q 사이클 10년 위치·프리미엄 (마스터 지시 2026-11-04 "Analysis에 기업의 사이클이 P인지 Q인지 … 과거 10개 년도 차트 … P사이클 프리미엄과
+# Q사이클 프리미엄이 각각 몇 %(−100~+100%)이며 앞으로 어떻게 변할 것인지") — 엔진 scripts/tenbagger/pq_view.py, 등록부 prm-pq-*
+hp_lambda: 1600          # 분기 HP 필터 평활 상수(Hodrick·Prescott 1997, Ravn·Uhlig 2002) — 추세 = 정상(mid-cycle) 수준
+p_dropthrough: 1.0       # 추세 위 가격 1%가 매출총이익으로 떨어지는 몫(순수 가격 인상은 원가가 그대로라 1.0)
+q_margin_floor: 1.0      # 물량 증분 마진 하한 = GPM 정상치 × 이 값
+q_margin_cap: 2.0        # 물량 증분 마진 상한 = GPM 정상치 × 이 값(고정비 흡수), 그리고 100% 이하
+premium_cap: 1.0         # 프리미엄 ±100%에서 자른다
+min_ttm_points: 20       # 10년 분석에 필요한 TTM 점 수(분기 23개 이상) — 모자라면 표본 부족 표시
+quarters_fetch: 44       # quarters.js가 받는 분기 수(10년 + 전년 비교 4분기)
+
+# 회사 판매가(ASP)·출하량 공시가 없을 때 쓰는 업종 PPI 대용(FRED 공개 CSV, 키 불필요). 회사 판매가가 아니라 업종 가격이다.
+# datapack pq.price {"source":"fred","series":…}이 있으면 그것이 먼저다. id는 FRED에서 2026-11-04 존재·갱신을 확인했다.
+fred_by_industry:
+  semiconductor: {series: PCU334413334413, label: "미국 PPI 반도체·관련 소자"}
+  semicap: {series: PCU333242333242, label: "미국 PPI 반도체 제조 장비"}
+  electrical_equipment: {series: PCU335311335311, label: "미국 PPI 변압기·배전 기기"}
+  electronics: {series: PCU334412334412, label: "미국 PPI 인쇄회로기판"}
+  computers: {series: PCU334111334111, label: "미국 PPI 컴퓨터"}
+  oilfield_services: {series: PCU213112213112, label: "미국 PPI 석유·가스 지원 서비스"}
+  offshore_drilling: {series: PCU213111213111, label: "미국 PPI 석유·가스정 시추"}
