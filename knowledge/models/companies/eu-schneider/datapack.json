@@ -1,0 +1,1159 @@
+{
+ "id": "eu-schneider",
+ "name": "Schneider Electric",
+ "ticker": "SU",
+ "as_of": "2026-11-03",
+ "unit": "B€",
+ "currency_symbol": "€",
+ "unit_usd": 1125000000.0,
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "US": 0.4,
+  "EU": 0.6
+ },
+ "tax": 0.24,
+ "main_metric": "eps",
+ "main_metric_why": "회사가 조정 EBITA·조정 EPS로 실적을 설명하고 애널리스트도 P/E로 값을 매긴다. 순차입이 시가총액의 약 6%라 EV와 시가총액 차이가 작다",
+ "profile": {
+  "price": 239.75,
+  "shares_basic": 0.58881,
+  "shares_date": "2026-11-03",
+  "cash": 16.518,
+  "debt": 25.39,
+  "source": "가격 = 파리 11/3 종가. 주식 = TradingView 발행 주식 5억 8,881만 주(10월 신주 약 2,500만 주 포함 추정 — 증자 €6.0B ÷ 주당 €240). 현금·차입 = 6월 말 재무상태표(현금 €4.52B, 차입 €19.39B)에 10월 유상증자 €6.0B와 회사채 €6.0B를 더했다. 둘 다 PTC 인수 대금용으로 2027년 마감까지 보유"
+ },
+ "dilution": {
+  "potential_total": 0.004,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-11-03",
+  "source": "1H26 희석 가중평균 5억 6,930만 주와 기본 주식 차이 약 400만 주(추정). 성과주식"
+ },
+ "financials": {
+  "rev_ttm": 42.042,
+  "ebit_ttm": 7.65,
+  "invested_capital": 39.61,
+  "capex_ttm": 1.053,
+  "da_ttm": 1.69,
+  "sbc_ttm": 0.3,
+  "s2c": 1.06,
+  "rev_growth_ttm_yoy": 0.11,
+  "basis": "adjusted",
+  "note": "TTM = 2H25+1H26(반기 보고 회사). 매출 20.816+21.226. 조정 EBITA 4.010+4.093 = 8.103에서 인수 무형자산 상각 약 €0.45B(추정)를 뺀 EBIT 약 €7.65B. CAPEX 0.553+0.500. 감가상각 0.844+0.846(무형자산 상각 포함). SBC €0.3B는 추정. 투하자본 = 6월 말 자기자본 24.736 + 차입 19.39 − 현금 4.518(10월 증자·회사채는 현금과 상계돼 변화 없음)"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 45.35,
+   "FY2027": 50.1,
+   "FY2028": 54.1
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.195,
+   "FY2027": 0.206,
+   "FY2028": 0.212
+  },
+  "margin_basis": "non_gaap",
+  "eps": {
+   "FY2026": 10.3,
+   "FY2027": 11.34,
+   "FY2028": 12.7
+  },
+  "n_analysts": 27,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 12.664,
+   "2027Q1": 11.95,
+   "2027Q2": 11.95,
+   "2027Q3": 13.094,
+   "2027Q4": 13.106
+  },
+  "quarters_act": {
+   "2026Q1": 10.613,
+   "2026Q2": 10.613,
+   "2026Q3": 11.46
+  },
+  "eps_quarters_est": {
+   "2026Q4": 2.755,
+   "2027Q1": 2.61,
+   "2027Q2": 2.61,
+   "2027Q3": 3.066
+  },
+  "ratings": {
+   "strong_buy": 18,
+   "buy": 5,
+   "hold": 4,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-03"
+  },
+  "targets": {
+   "mean": 325.77,
+   "high": 370,
+   "low": 249.95,
+   "n": 27,
+   "as_of": "2026-11-03"
+  },
+  "note": "매출·EPS·조정 EBITA = Fiscal.ai 자체 추정(company_estimates, PTC·증자 반영 전 단독 기준으로 본다). 반기 보고라 분기 값은 반기를 반씩 나눈 값이다(1Q·2Q 실적 각 €10.613B = 1H 21.226 ÷ 2). 3Q 매출은 회사 발표 €11.46B. 이 종목은 미국 컨센서스 집계 커버리지가 없어 추정 이력·서프라이즈를 쓰지 않는다. 의견·목표가 = TradingView 집계 27명(매수 18·비중 확대 5·보유 4)",
+  "surprise": [],
+  "revisions": {
+   "from_date": "2026-07-30",
+   "to_date": "2026-10-16",
+   "from_label": "1H 실적",
+   "source": "회사 가이던스 변화(추정 이력 없음)",
+   "rows": [
+    {
+     "period": "FY2026",
+     "metric": "유기 매출 성장(가이던스)",
+     "from": 11.5,
+     "to": 13.0
+    },
+    {
+     "period": "FY2026",
+     "metric": "조정 EBITA 유기 성장(가이던스)",
+     "from": 16.5,
+     "to": 19.5
+    }
+   ]
+  },
+  "price_window": {
+   "from": 303.0,
+   "to": 239.75,
+   "note": "PTC 발표 전 거래일 10/2 종가 → 11/3 종가"
+  },
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": null,
+   "source": "커버리지 없음",
+   "rows": []
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   44.6,
+   45.4
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "ebit_margin_fy0": 0.198,
+  "long_term": "2026 유기 매출 +12~14%, 조정 EBITA 유기 +18~21%, 조정 EBITA 이익률 약 19.7~19.9%(10/16 상향, 2월 최초 매출 +7~10%). 자사주 €2.5~3.5B(2030년까지, 2027~2028 중단)",
+  "source": "3Q 매출 발표·콜 2026-10-16. FY2025 매출 €40.152B × (1+12~14%) − 환율 €0.3~0.4B",
+  "next": {
+   "period": "FY2026",
+   "rev": 45000,
+   "rev_cons": 45350,
+   "unit": "€M"
+  }
+ },
+ "call": {
+  "date": "2026-10-16",
+  "prev_date": "2026-07-30",
+  "tone": "up",
+  "tone_score": 6.5,
+  "tone_delta": 0.5,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_3q_b": 11.46,
+   "organic_3q": 0.169,
+   "em_organic_3q": 0.188,
+   "ia_organic_3q": 0.081,
+   "products_organic": 0.17,
+   "systems_organic": 0.22,
+   "software_services_organic": 0.07,
+   "na_organic": 0.2,
+   "china_ea_organic": 0.26,
+   "europe_em_organic": 0.09,
+   "dc_networks_share_2025": 0.3,
+   "dc_orders": "3개 분기 중 3번 세 자릿수 성장(4개 분기 중)"
+  },
+  "guidance_changes": [
+   "2026 유기 매출 +10~13% → +12~14%",
+   "조정 EBITA 유기 +14~19% → +18~21%",
+   "조정 EBITA 이익률 +100~120bp, 약 19.7~19.9%",
+   "4Q 성장 국가에 중국 추가(미국·인도와 함께)"
+  ],
+  "new_topics": [
+   "PTC $22.6B 인수(10/5 발표)",
+   "Cognite 인수",
+   "자사주 2027~2028 중단",
+   "Vienne 공장 폐쇄·Eure 이전 €150M",
+   "3Q 가격 인상 효과 = 상반기 전체와 같은 금액"
+  ],
+  "dropped_topics": [],
+  "risks": [
+   "중동 분쟁의 4Q 실행 위험",
+   "메모리·반도체·구리 원가 상승",
+   "주거용 수요 약세",
+   "산업 자동화 공정 부문 부진"
+  ],
+  "qa_focus": [
+   "UBS: 데이터센터 주문→매출 전환과 캐파",
+   "Redburn·Oxcap: 중국 데이터센터 고객 집중",
+   "BofA: 2027 가격 인상 여지",
+   "Bernstein: 프리패브 비중·이익률",
+   "Morgan Stanley: 하이퍼스케일러·네오클라우드 노출",
+   "Oddo: 4Q 성장 둔화 함의"
+  ],
+  "source": "회사 3Q 콜(2026-10-16, 요지만 자기 말로)·PTC 인수 발표(10/5)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "2026 매출 가이던스",
+    "label": "유기 매출 +12~14%로 상향",
+    "prior": "+10~13%(7/30)",
+    "latest": "+12~14%(10/16)",
+    "driver": "rev0",
+    "shift": 0.015,
+    "confidence": 1.0,
+    "source": "3Q 발표"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "조정 EBITA 이익률",
+    "label": "이익률 19.7~19.9%",
+    "prior": "유기 +14~19% 이익 성장",
+    "latest": "유기 +18~21%, 이익률 +100~120bp",
+    "driver": "margin_m0",
+    "shift": 0.005,
+    "confidence": 1.0,
+    "source": "3Q 발표"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "데이터센터 주문",
+    "label": "주문 세 자릿수 성장 지속",
+    "prior": "2개 분기 세 자릿수",
+    "latest": "4개 분기 중 3번 세 자릿수, 2027~2028 가시성",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "가격",
+    "label": "3Q 가격 효과 = 1H 전체",
+    "prior": "1월·4월 가격 인상",
+    "latest": "3Q 가격 기여가 상반기 전체와 같은 금액",
+    "driver": "margin_target",
+    "shift": 0.003,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "PTC 인수",
+    "label": "PTC $22.6B·신주 €6B",
+    "prior": "자사주 매입 지속",
+    "latest": "PTC 인수, 증자 €6.0B(주당 €240), 차입 €16~17B, 2027~2028 자사주 중단",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 1.0,
+    "source": "10/5 발표·10/19 증자"
+   }
+  ]
+ },
+ "peers_basis": "ntm",
+ "peers_source": "TradingView 2026-11-03(시가총액·EV·PBR·TTM 매출·영업이익률·차입·영업권, 각 사 통화), Fiscal.ai Forward 배수(다음 4개 분기 추정). 전력·자동화 동종 ABB·Siemens·Eaton·Legrand, 데이터센터 전력 Vertiv, 전기 부품 Hubbell. ABB 매출은 스위스 프랑 환산값. 현금 = 시가총액 + 차입 − EV",
+ "peers": [
+  {
+   "ticker": "ABBN",
+   "key": "XSWX_ABBN",
+   "rev": 29.494,
+   "ebit_margin": 0.18,
+   "mcap": 128.21,
+   "pb": 9.46,
+   "ev_sales": 4.42,
+   "growth": 0.116,
+   "debt": 7.072,
+   "cash": 4.847,
+   "goodwill": 8.147,
+   "pe_fwd": 26.89,
+   "ev_ebitda_fwd": 17,
+   "pe_fwd2": 24.26,
+   "ev_ebitda_fwd2": 15.24,
+   "pe_fwd3": 21.59,
+   "ev_ebitda_fwd3": 13.98,
+   "ev_sales_fwd": 3.96,
+   "ntm_ebit_margin": 0.2143,
+   "ntm_growth": 0.116
+  },
+  {
+   "ticker": "SIE",
+   "key": "XETR_SIE",
+   "rev": 81.116,
+   "ebit_margin": 0.125,
+   "mcap": 206.08,
+   "pb": 3.01,
+   "ev_sales": 3.11,
+   "growth": 0.06,
+   "debt": 49.924,
+   "cash": 4.032,
+   "goodwill": 41.488,
+   "pe_fwd": 22.48,
+   "ev_ebitda_fwd": 17.2,
+   "pe_fwd2": 20.84,
+   "ev_ebitda_fwd2": 15.53,
+   "pe_fwd3": 18.7,
+   "ev_ebitda_fwd3": 14.6,
+   "ev_sales_fwd": 2.93,
+   "ntm_ebit_margin": 0.133,
+   "ntm_growth": 0.0601
+  },
+  {
+   "ticker": "ETN",
+   "key": "NYSE_ETN",
+   "rev": 31.984,
+   "ebit_margin": 0.186,
+   "mcap": 152.14,
+   "pb": 7.8,
+   "ev_sales": 5.39,
+   "growth": 0.13,
+   "debt": 20.922,
+   "cash": 0.771,
+   "goodwill": 20.298,
+   "pe_fwd": 23.81,
+   "ev_ebitda_fwd": 19.23,
+   "pe_fwd2": 21.1,
+   "ev_ebitda_fwd2": 16.07,
+   "pe_fwd3": 18.11,
+   "ev_ebitda_fwd3": 13.9,
+   "ev_sales_fwd": 4.77,
+   "ntm_ebit_margin": 0.1964,
+   "ntm_growth": 0.1298
+  },
+  {
+   "ticker": "LR",
+   "key": "XPAR_LR",
+   "rev": 10.107,
+   "ebit_margin": 0.21,
+   "mcap": 34.76,
+   "pb": 4.68,
+   "ev_sales": 4.01,
+   "growth": 0.153,
+   "debt": 7.724,
+   "cash": 1.933,
+   "goodwill": 8.699,
+   "pe_fwd": 23.89,
+   "ev_ebitda_fwd": 15.73,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 13.88,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 12.76,
+   "ev_sales_fwd": 3.48,
+   "ntm_ebit_margin": 0.207,
+   "ntm_growth": 0.1527
+  },
+  {
+   "ticker": "VRT",
+   "key": "NYSE_VRT",
+   "rev": 13.117,
+   "ebit_margin": 0.209,
+   "mcap": 90.86,
+   "pb": 16.51,
+   "ev_sales": 6.89,
+   "growth": 0.423,
+   "debt": 3.357,
+   "cash": 3.782,
+   "goodwill": 2.28,
+   "pe_fwd": 25.59,
+   "ev_ebitda_fwd": 17.81,
+   "pe_fwd2": 20.69,
+   "ev_ebitda_fwd2": 14.58,
+   "pe_fwd3": 16.42,
+   "ev_ebitda_fwd3": 11.61,
+   "ev_sales_fwd": 4.84,
+   "ntm_ebit_margin": 0.2498,
+   "ntm_growth": 0.4229
+  },
+  {
+   "ticker": "HUBB",
+   "key": "NYSE_HUBB",
+   "rev": 6.594,
+   "ebit_margin": 0.208,
+   "mcap": 23.74,
+   "pb": 5.78,
+   "ev_sales": 4.35,
+   "growth": 0.148,
+   "debt": 5.307,
+   "cash": 0.343,
+   "goodwill": 4.368,
+   "pe_fwd": 20.07,
+   "ev_ebitda_fwd": 15.06,
+   "pe_fwd2": 17.99,
+   "ev_ebitda_fwd2": 13.96,
+   "pe_fwd3": 16.62,
+   "ev_ebitda_fwd3": 13.13,
+   "ev_sales_fwd": 3.79,
+   "ntm_ebit_margin": 0.2318,
+   "ntm_growth": 0.148
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.25,
+  "base": 0.5,
+  "bull": 0.25
+ },
+ "overrides": {
+  "growth_base": {
+   "start": 0.105,
+   "end": 0.035,
+   "decay": 0.3
+  },
+  "margin_base": {
+   "target": 0.2,
+   "year_target": 3,
+   "lr": 0.19,
+   "lam": 0.35
+  },
+  "s2c": 1.4,
+  "why": "성장: 2027 컨센서스 +10.5%, 2028 +8%에서 장기 3.5%로 식힌다. PTC는 넣지 않았다(2027년 3분기 마감 예정, 인수 대가 ≈ 순현금 유출로 보고 별도 표에서 정량화). 이익률: 조정 EBITA 이익률 2028 컨센서스 21.2%에서 인수 무형자산 상각(매출의 약 1%)을 빼 3년차 20%, 장기 19%. 매출÷투하자본 1.4: TTM 1.06은 영업권 €25.7B 포함, 증분 성장은 데이터센터 전력·냉각 증설이라 더 높게 본다"
+ },
+ "sbc_pct_rev": 0.007,
+ "events": [
+  {
+   "date": "2026-10-22",
+   "tag": "−5.4%, 원인 미확인",
+   "kind": "market"
+  },
+  {
+   "date": "2026-10-20",
+   "tag": "증자 €6.0B(주당 €240) 다음 날 −3.3%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-16",
+   "tag": "3Q 매출·가이던스 상향 −1.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-05",
+   "tag": "PTC $22.6B 인수 발표 −10.0%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-09-14",
+   "tag": "−6.5%, 원인 미확인",
+   "kind": "market"
+  },
+  {
+   "date": "2026-08-12",
+   "tag": "종가 최고 €311",
+   "kind": "market"
+  },
+  {
+   "date": "2026-07-30",
+   "tag": "1H 실적·가이던스 상향 +10.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-04-08",
+   "tag": "+9.7%, 원인 미확인",
+   "kind": "market"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-04-30",
+   "kind": "실적",
+   "tag": "1Q26 매출",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-07-30",
+   "kind": "실적",
+   "tag": "1H26 실적, +10.8%",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-05",
+   "kind": "내러티브",
+   "tag": "PTC 인수, −10.0%",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-16",
+   "kind": "실적",
+   "tag": "3Q26 매출, −1.8%",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "next_event": {
+  "date": "2027-02 중순(예상)",
+  "tag": "FY2026 실적·2027 가이던스"
+ },
+ "terms": {
+  "EBITA": "인수 무형자산 상각 전 영업이익",
+  "EM": "에너지 관리 부문",
+  "IA": "산업 자동화 부문",
+  "AVEVA": "Schneider의 산업용 소프트웨어 자회사",
+  "ETAP": "Schneider의 전력 설계 소프트웨어",
+  "RIB": "Schneider의 건설 소프트웨어",
+  "PTC": "미국 제품 설계·수명주기 관리(PLM·CAD) 소프트웨어 회사",
+  "Cognite": "노르웨이 산업 데이터 소프트웨어 회사",
+  "Motivair": "Schneider가 인수한 액체 냉각 회사",
+  "Foxconn": "대만 전자제품 위탁 생산 회사 폭스콘",
+  "UPS": "무정전 전원 장치",
+  "PLM": "제품 수명주기 관리 소프트웨어",
+  "CAD": "컴퓨터 설계 소프트웨어",
+  "PPA": "인수 가격 배분(무형자산 상각)",
+  "ABB": "스위스 전력·자동화 회사",
+  "Siemens": "독일 산업·전력 회사",
+  "Eaton": "미국 전력 관리 회사",
+  "Legrand": "프랑스 전기 부품 회사",
+  "Vertiv": "데이터센터 전력·냉각 회사",
+  "Hubbell": "미국 전기 부품 회사",
+  "ABBN": "ABB 종목 코드",
+  "SIE": "Siemens 종목 코드",
+  "ETN": "Eaton 종목 코드",
+  "LR": "Legrand 종목 코드",
+  "VRT": "Vertiv 종목 코드",
+  "HUBB": "Hubbell 종목 코드",
+  "CEO": "최고경영자",
+  "CFO": "최고재무책임자",
+  "EPS": "주당순이익",
+  "EBIT": "영업이익",
+  "EBITDA": "상각 전 영업이익",
+  "TTM": "최근 4개 분기",
+  "NTM": "다음 4개 분기",
+  "YoY": "전년 대비",
+  "QoQ": "전 분기 대비",
+  "CAPEX": "설비 투자",
+  "SBC": "주식 보상 비용",
+  "AI": "인공지능",
+  "GPU": "그래픽 처리 장치(AI 가속기)",
+  "IR": "투자자 관계",
+  "Fwd": "다음 4개 분기 추정 기준",
+  "P/E": "주가 ÷ 주당순이익",
+  "WACC": "가중평균 자본비용",
+  "ROIC": "투하자본이익률",
+  "FY2027E": "2027 회계연도 추정",
+  "Omniverse": "엔비디아의 3D 시뮬레이션 플랫폼",
+  "DSX": "엔비디아의 AI 데이터센터 설계 청사진",
+  "Nscale": "영국 AI 클라우드 회사",
+  "NVIDIA": "엔비디아",
+  "EU": "유럽연합",
+  "US": "미국",
+  "Foresight": "Schneider의 전력·건물 관리 디지털 플랫폼",
+  "Eure": "프랑스 노르망디 지역",
+  "Vienne": "프랑스 이제르 지역 도시",
+  "HPE": "휴렛팩커드 엔터프라이즈",
+  "ADNOC": "아부다비 국영 석유 회사",
+  "MoU": "양해각서",
+  "HVDC": "고압 직류",
+  "IRA": "미국 인플레이션 감축법",
+  "CHIPS": "미국 반도체지원법",
+  "Alibaba": "중국 알리바바",
+  "Tencent": "중국 텐센트",
+  "Shelly": "불가리아 스마트홈 기기 회사",
+  "RBC": "캐나다 RBC 캐피털 마켓(증권사)"
+ },
+ "moat": {
+  "summary": "해자는 '데이터센터 전력 체인 전체를 한 회사가 설계·공급한다'는 것이다. 중·저압 배전반·UPS·액체 냉각·건물 관리 소프트웨어를 하이퍼스케일러와 함께 설계(공동 설계)하고, 프리패브(공장 조립) 모듈로 현장 시공 시간을 줄인다. 약점은 같은 체인을 가진 Eaton·Vertiv·ABB와의 경쟁, 그리고 소프트웨어 사업의 낮은 성장이다.",
+  "items": [
+   {
+    "kind": "데이터센터 전력·냉각 풀스택",
+    "verdict": "강함",
+    "claim": "배전·UPS·액체 냉각(Motivair)·관리 소프트웨어를 묶어 하이퍼스케일러·코로케이션과 공동 설계한다. 프리패브 모듈로 납기와 현장 인력 부족을 푼다.",
+    "evidence": "3Q 콜: 데이터센터 주문 4개 분기 중 3번 세 자릿수 성장, 북미 에너지 관리 +20%, 프리패브가 4개 분기 연속 성장 선도. 2025년 데이터센터·네트워크 매출 비중 30%",
+    "quant": "에너지 관리 3Q €9.62B(유기 +18.8%)",
+    "falsifier": "2027년 데이터센터 주문이 감소로 돌아서거나 Vertiv·Eaton이 프리패브 대형 계약을 가져간다"
+   },
+   {
+    "kind": "가격 결정력",
+    "verdict": "강함",
+    "claim": "구리·은·메모리 원가 상승을 가격으로 넘긴다. 1월·4월 두 차례 인상에 추가 조치까지 시장이 받아들였다.",
+    "evidence": "3Q 가격 기여가 상반기 전체와 같은 금액(CFO). 조정 EBITA 이익률 가이던스 +100~120bp",
+    "quant": "2026 조정 EBITA 이익률 약 19.7~19.9%",
+    "falsifier": "2027년 가격 인상이 물량 감소로 이어지거나 이익률이 19% 아래로 내려간다"
+   },
+   {
+    "kind": "산업 소프트웨어(AVEVA·ETAP·RIB, PTC 예정)",
+    "verdict": "보통",
+    "claim": "설계(PTC)·운영(AVEVA)·에너지 관리를 잇는 산업 소프트웨어 플랫폼을 만들려 한다.",
+    "evidence": "3Q 에너지 관리 소프트웨어 유기 한 자릿수 중반 성장, 소프트웨어·서비스 +7%. PTC 2026 회계연도 매출 $2.72B(전년 수준), 2027E +4%",
+    "quant": "인수 후 소프트웨어·서비스 매출 비중 약 24%(회사 설명)",
+    "falsifier": "PTC 마감 뒤 2년 안에 매출 시너지(€0.8B 목표)가 숫자로 나오지 않는다"
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": -0.05,
+  "why": "PTC 인수로 2027~2028 차입이 늘고 자사주가 멈춘다. 인수 대가가 PTC 이익 대비 비싸(조정 EBIT의 약 19배) 자본 효율이 떨어진다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "leaders": {
+  "as_of": "2026-11-03",
+  "summary": "CEO Olivier Blum이 2024년 11월 취임했다. 30년 넘게 Schneider에서 일한 내부 출신으로 에너지 관리 부문을 이끌었다. 취임 2년 만에 회사 역사상 가장 큰 인수(PTC)를 결정했다.",
+  "people": [
+   {
+    "name": "Olivier Blum",
+    "role": "CEO",
+    "since": "2024",
+    "profile": "Schneider 내부 출신, 에너지 관리 부문장 출신",
+    "business": "다른 상장사 이사 겸직 미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "회사 IR"
+   },
+   {
+    "name": "Nathan Fast",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "Jean-Pascal Tricoire",
+    "role": "이사회 의장",
+    "since": "미확인",
+    "profile": "전 CEO",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "회사 IR"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "하이퍼스케일러·AI 기업과의 공동 설계 관계 — CEO가 최대 데이터센터 고객과 직접 접촉(3Q 콜)",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "고객별 매출 미공시",
+    "evidence": "3Q 콜"
+   },
+   {
+    "network": "비즈니스",
+    "link": "엔비디아와 AI 데이터센터 설계 협력(Omniverse DSX, 10월 발표)",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "협력 매출 미공시",
+    "evidence": "10/26 보도자료"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-10-16",
+  "summary": "회사는 수주잔고 금액을 공시하지 않는다. 데이터센터 주문이 4개 분기 중 3번 세 자릿수로 늘었고 회사는 2027~2028 가시성이 높아졌다고 말했다.",
+  "items": [
+   {
+    "name": "FY2026 매출 가이던스",
+    "status": "조건부",
+    "total": 45.0,
+    "progress": "미확인",
+    "margin": 0.198,
+    "margin_basis": "조정 EBITA 이익률(가이던스 중간값)",
+    "start": "2026-01",
+    "end": "2026-12",
+    "speed": "4Q 매출 약 €12.3~12.7B 필요",
+    "blockers": [
+     "중동 분쟁의 4Q 실행 위험"
+    ],
+    "source": "3Q 발표"
+   },
+   {
+    "name": "데이터센터 주문 잔고",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026",
+    "end": "2028",
+    "speed": "주문 세 자릿수 성장 → 2027~2028 매출(회사 설명)",
+    "blockers": [
+     "캐파 증설",
+     "고객 투자 시점"
+    ],
+    "source": "3Q 콜",
+    "no_sum": true
+   },
+   {
+    "name": "PTC 인수",
+    "status": "조건부",
+    "total": 2.4,
+    "progress": "미확인",
+    "margin": 0.4,
+    "margin_basis": "PTC 조정 EBITA 이익률(회사 설명)",
+    "start": "2027-3Q",
+    "end": "미확인",
+    "speed": "2027년 3분기까지 마감 예정, 연 매출 약 €2.4B 편입",
+    "blockers": [
+     "PTC 주주 승인",
+     "각국 규제 승인"
+    ],
+    "source": "10/5 인수 발표",
+    "no_sum": true
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-03",
+  "stage": "컨센서스",
+  "crowding": "중",
+  "summary": "'전력 인프라·데이터센터 전기화의 대표 수혜주'라는 이야기는 2026년 3월 €229에서 8월 €311까지 주가를 36% 올렸다. 10/5 PTC 인수 발표로 하루 −10%, 증자 뒤 11/3 €240으로 발표 전보다 −21%다. 시장은 '하드웨어 성장주가 저성장 소프트웨어를 비싸게 산다'로 이야기를 바꿔 읽었다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "27명 — 매수 18·비중 확대 5·보유 4",
+      "매도 없음",
+      "TradingView 집계"
+     ],
+     [
+      "목표가 평균·범위",
+      "€325.77 (€250~€370)",
+      "11/3 종가 대비 +36%",
+      "TradingView 집계"
+     ],
+     [
+      "RBC",
+      "Outperform 유지, 목표 €320",
+      "인수 뒤 −25% 하락에도 유지, 데이터센터 성장 희석·AI 소프트웨어 위험 지적",
+      "dpa-AFX 보도"
+     ]
+    ],
+    "read": "목표가는 대부분 인수 전 수준이고, 인수 효과를 반영한 하향은 아직 적다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "증자 수요",
+      "€6.0B 신주 북 초과 청약",
+      "주당 €240 아래 주문은 배정 위험이라는 주관사 안내",
+      "Reuters 보도"
+     ],
+     [
+      "회사채",
+      "€6.0B, 평균 만기 8.2년·쿠폰 약 4.3%",
+      "인수 대금용",
+      "Reuters 보도"
+     ]
+    ],
+    "read": "기관은 €240에서 신주를 받았다. 지금 주가가 그 가격 부근이다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "주가",
+      "고점 €311(8/12) → €240(11/3)",
+      "PTC 발표 뒤 −21%",
+      "TradingView"
+     ]
+    ],
+    "read": "개인 쏠림 지표는 확인하지 못했다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도",
+      "'역사상 최대 인수', 'AI 데이터센터 전력 수혜'",
+      "인수와 데이터센터 기사가 함께 나온다",
+      "AFP·Reuters·Barron's"
+     ]
+    ],
+    "read": "언론은 데이터센터 성장과 인수 부담을 같은 무게로 다룬다"
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 데이터센터 전력·냉각",
+    "thesis": "하이퍼스케일러·중국 AI 투자로 배전·UPS·냉각 수요가 커진다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "데이터센터 주문 세 자릿수 성장(4개 분기 중 3번), 중국·동아시아 +26%, 북미 +20%",
+    "status": "강화",
+    "falsifier": "2027 상반기 데이터센터 주문 감소",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "전기화·가격 결정력",
+    "thesis": "구리·메모리 원가를 가격으로 넘기며 이익률을 올린다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "조정 EBITA 이익률 +100~120bp, 3Q 가격 효과 = 1H 전체",
+    "status": "강화",
+    "falsifier": "2027 이익률 정체",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "산업 소프트웨어 플랫폼(PTC)",
+    "thesis": "설계에서 운영까지 잇는 소프트웨어로 반복 매출을 키운다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "PTC $22.6B, 비용 시너지 €250M(3년차), 매출 시너지 €800M",
+    "status": "약화",
+    "falsifier": "마감 전 PTC 성장이 회복돼 2027E +4%를 넘는다",
+    "source": "10/5 발표"
+   },
+   {
+    "name": "반대 내러티브: 비싼 인수와 희석",
+    "thesis": "저성장 소프트웨어를 이익의 약 19배에 사며 신주·차입으로 자본 효율을 낮춘다",
+    "inputs": "멀티플·주식 수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "신주 약 2,500만 주(+4.4%), 순차입 약 €8.9B → 마감 시 약 €19B(추정), 자사주 2년 중단",
+    "status": "강화",
+    "falsifier": "2027 EPS 컨센서스가 증자 뒤에도 내려가지 않는다",
+    "source": "10/5·10/19 발표"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 'Schneider가 AI 데이터센터 전력·냉각의 대표 공급사'라는 것이다.** 3Q는 그 이야기를 다시 확인했다. 매출 €11.46B(유기 +16.9%), 에너지 관리 +18.8%, 데이터센터 주문 세 자릿수 성장, 연간 가이던스 두 번째 상향이다. 그런데 주가는 10/5 PTC 인수 발표 뒤 −21%다. 시장은 하드웨어 성장주가 성장 낮은 소프트웨어를 비싸게 사는 데 할인을 붙였다. 값은 데이터센터 성장이 2027~2028 이어지느냐와 PTC 대가가 자본비용을 버느냐로 갈린다.",
+   "value_story": "Schneider는 에너지 관리(배전·UPS·냉각·건물, 3Q 매출의 84%)와 산업 자동화(16%)를 판다. 데이터센터·네트워크가 2025년 매출의 30%였고 올해 더 커진다. 기업가치는 세 숫자로 갈린다. 데이터센터 주문이 매출로 바뀌는 속도, 가격 인상으로 지키는 이익률(2026 약 19.8%), 그리고 €20B짜리 PTC가 3년 뒤 얼마를 벌어 오느냐다.",
+   "premium": {
+    "multiple": "Fwd P/E 약 22배로 동종 중앙값 약 24배보다 조금 낮다. 인수 전(10/2 €303)에는 약 28배로 동종 위였다. 인수 발표가 프리미엄을 없앴다.",
+    "eps": "FY2026 EPS 추정은 €10.3, FY2027 €11.3(+10%)이다. PTC는 회사 설명으로 첫 해 조정 EPS를 한 자릿수 초반 % 늘린다(인수 가격 배분 전)."
+   },
+   "why_excited": "AI 데이터센터 투자가 전력 장비로 번지며 2025~2026년 전력 인프라 종목이 함께 올랐다. Schneider는 데이터센터 비중이 큰 유럽 대형주라 그 흐름의 대표가 됐다. 식은 이유는 확정적이다 — 10/5 PTC 인수 발표일 −10%, 10/20 증자 다음 날 −3.3%다.",
+   "products": [
+    {
+     "kind": "부문",
+     "name": "에너지 관리",
+     "what": "중·저압 배전, UPS, 액체 냉각, 건물·전력 관리 소프트웨어",
+     "use": "데이터센터·건물·인프라·산업",
+     "money": "3Q €9.62B"
+    },
+    {
+     "kind": "부문",
+     "name": "산업 자동화",
+     "what": "공장 자동화 장비, AVEVA 산업 소프트웨어",
+     "use": "제조·공정 산업",
+     "money": "3Q €1.85B"
+    },
+    {
+     "kind": "인수 예정",
+     "name": "PTC",
+     "what": "제품 설계(CAD)·수명주기 관리(PLM) 소프트웨어",
+     "use": "제조사 설계 부서",
+     "money": "2026 회계연도 매출 $2.72B, 조정 EBIT $1.25B"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "건물·산업 전기 부품 회사에서 데이터센터 전력·냉각 회사로 무게가 옮겨 갔다. 데이터센터·네트워크 비중 2025년 30%, 올해 더 높아진다.",
+     "evidence": "3Q 콜",
+     "falsifier": "데이터센터 주문이 2027년 감소한다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "프리패브 모듈과 액체 냉각처럼 값이 큰 시스템이 늘고, 가격 인상으로 이익률이 오른다.",
+     "evidence": "시스템 유기 +22%, 조정 EBITA 이익률 +100~120bp",
+     "falsifier": "2027 이익률이 정체한다"
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "AI 데이터센터를 공장에서 모듈로 조립하는 프리패브 설계와 엔비디아 디지털 트윈 설계를 내놨다.",
+     "evidence": "10월 모듈형 AI 데이터센터 설계 발표, Omniverse DSX 실증(Nscale)",
+     "falsifier": "경쟁사가 같은 설계를 더 싸게 낸다"
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "주문이 매출이 되는 데 대략 1~2년이 걸린다(회사가 2027~2028 가시성을 말함, 추정). 캐파는 북미·인도·이탈리아·중국 냉각 공장과 폭스콘 협력으로 늘린다.",
+     "evidence": "3Q 콜",
+     "falsifier": "캐파 부족으로 납기가 늘어난다",
+     "lead_time": {
+      "unit": "개월",
+      "now": [
+       12,
+       24
+      ],
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Vertiv",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "PTC를 $22.6B(EV $23.7B)에 현금으로 산다. 대가는 PTC 2026 조정 EBIT의 약 19배, 비용 시너지를 넣어도 약 15배다. 회사 설명으로 첫 해 조정 EPS 한 자릿수 초반 증가(인수 가격 배분 전). 아래 'PTC 인수 정량화' 표 참조.",
+     "evidence": "10/5 발표, 10/19 증자 €6.0B, 10/27 회사채 €6.0B",
+     "falsifier": "규제·주주 승인 실패, 또는 마감 3년 뒤 PTC 세후 이익이 대가의 7%에 못 미친다"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "하이퍼스케일러·중국 AI 투자와 전력망 투자가 배전·냉각 주문이 된다.",
+     "evidence": "북미 +20%, 중국·동아시아 +26%(데이터센터·반도체)",
+     "falsifier": "2027 하이퍼스케일러 CAPEX 증가율이 한 자릿수로 꺾인다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "미국 CHIPS 법·인프라 법의 공장·전력망 투자가 배전 수요를 늘린다.",
+     "evidence": "CHIPS 법(2022)",
+     "drives": "revision",
+     "status": "시행",
+     "falsifier": "보조금 공장 투자가 미뤄진다",
+     "house": {
+      "level": 5,
+      "why": "CHIPS 법 하원 통과(2022)"
+     },
+     "senate": {
+      "level": 5,
+      "why": "CHIPS 법 상원 통과(2022)"
+     }
+    },
+    "orders": {
+     "change": "미국 관세가 수입 부품 원가를 올린다. 회사는 가격 인상으로 넘기고 있다.",
+     "evidence": "3Q 콜(1월·4월 가격 인상)",
+     "drives": "revision",
+     "status": "시행",
+     "falsifier": "관세 원가를 가격으로 못 넘긴다",
+     "house": {
+      "level": 0,
+      "why": "행정 조치 — 의회 절차 없음"
+     },
+     "senate": {
+      "level": 0,
+      "why": "행정 조치 — 의회 절차 없음"
+     }
+    },
+    "laws": {
+     "change": "PTC 인수는 미국·EU 등 경쟁 당국 승인이 필요하다.",
+     "evidence": "10/5 발표",
+     "drives": "multiple",
+     "status": "심사",
+     "falsifier": "승인 조건으로 사업 매각이 붙는다"
+    }
+   }
+  }
+ },
+ "sources": [
+  "Schneider Electric 3Q26 매출 발표·콜(2026-10-16, 요지만 자기 말로)",
+  "Schneider Electric PTC 인수 발표(2026-10-05, TheTechCapital 정리)",
+  "Schneider Electric 유상증자 €6.0B(2026-10-19)·회사채 €6.0B(2026-10-27) 보도(Reuters·dpa-AFX)",
+  "Schneider Electric 1H26 재무제표(Fiscal.ai 표준화)",
+  "Fiscal.ai 추정·Forward 배수(2026-11-03)"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-04T10:00:00+09:00",
+  "shares_cover_implied": 0.58881,
+  "fiscal_profile": {
+   "companyKey": "XPAR_SU",
+   "price": 239.75,
+   "market_cap": 141.167,
+   "total_cash": 16.518,
+   "total_debt": 25.39,
+   "shares_outstanding": 0.58881,
+   "as_of": "2026-11-03",
+   "balance_date": "2026-06-30(+10월 증자·회사채)"
+  },
+  "quarters_gaap": {
+   "note": "반기 보고 회사 — 반기 값을 반씩 나눈 값. EBIT = 조정 EBITA − 인수 무형자산 상각 추정 반기 €0.225B",
+   "rev": {
+    "2025Q3": 10.408,
+    "2025Q4": 10.408,
+    "2026Q1": 10.613,
+    "2026Q2": 10.613
+   },
+   "op_income": {
+    "2025Q3": 1.8925,
+    "2025Q4": 1.8925,
+    "2026Q1": 1.934,
+    "2026Q2": 1.934
+   }
+  },
+  "halves": {
+   "rev": {
+    "1H25": 19.336,
+    "2H25": 20.816,
+    "1H26": 21.226
+   },
+   "adj_ebita": {
+    "1H25": 3.51,
+    "2H25": 4.01,
+    "1H26": 4.093
+   },
+   "adj_eps": {
+    "1H25": 3.97,
+    "2H25": 3.95,
+    "1H26": 4.79
+   },
+   "ocf": {
+    "1H25": 1.191,
+    "2H25": 4.94,
+    "1H26": 2.3
+   },
+   "capex": {
+    "1H25": 0.519,
+    "2H25": 0.553,
+    "1H26": 0.5
+   }
+  },
+  "q3_2026": {
+   "rev": 11.46,
+   "em": 9.62,
+   "ia": 1.85,
+   "organic": 0.169,
+   "reported": 0.179
+  },
+  "balance_2026_06_30": {
+   "equity": 24.736,
+   "cash": 4.518,
+   "st_investments": 0.0,
+   "debt_current": 5.524,
+   "debt_lt": 13.866,
+   "lease_current": 0.0,
+   "lease_lt": 0.0,
+   "goodwill": 25.653,
+   "intangibles": 5.738,
+   "inventory": 6.254,
+   "oct_equity_raise": 6.0,
+   "oct_bond": 6.0
+  },
+  "estimates_sales_m": {
+   "2026Q1": 10613,
+   "2026Q2": 10613,
+   "2026Q3": 11460,
+   "2026Q4": 12664,
+   "2027Q1": 11950,
+   "2027Q2": 11950,
+   "2027Q3": 13094,
+   "2027Q4": 13106,
+   "2028Q1": 13440,
+   "2028Q2": 13468,
+   "2028Q3": 13580,
+   "2028Q4": 13612
+  },
+  "ptc": {
+   "price_per_share_usd": 205,
+   "premium": 0.423,
+   "equity_value_usd_b": 22.6,
+   "ev_usd_b": 23.7,
+   "rev_2025_eur_b": 2.4,
+   "adj_ebita_margin": 0.4,
+   "fy2026_rev_usd_b": 2.72,
+   "fy2026_adj_ebit_usd_b": 1.254,
+   "fy2027e_rev_usd_b": 2.84,
+   "fy2027e_adj_ebit_usd_b": 1.315,
+   "fy2028e_adj_ebit_usd_b": 1.458,
+   "cost_synergy_eur_m": 250,
+   "revenue_synergy_eur_m": 800,
+   "equity_funding_eur_b": [
+    5,
+    6
+   ],
+   "debt_funding_eur_b": [
+    16,
+    17
+   ],
+   "close": "2027-3Q까지",
+   "eps": "첫 해 조정 EPS 한 자릿수 초반 증가(PPA 전)",
+   "source": "10/5 발표(TheTechCapital 정리), PTC 추정은 Fiscal.ai"
+  },
+  "tv": {
+   "mcap": 141.8,
+   "ev": 156.75,
+   "pt_mean": 325.77,
+   "pt_range": [
+    249.95,
+    370
+   ],
+   "ratings": {
+    "buy": 18,
+    "overweight": 5,
+    "hold": 4
+   }
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 22.34,
+  "ev_ebitda_fwd": 13.3,
+  "pe_fwd2": 19.25,
+  "ev_ebitda_fwd2": 12.04,
+  "pe_fwd3": 17.81,
+  "ev_ebitda_fwd3": 11.33,
+  "ev_sales_fwd": 0.0
+ },
+ "forward": {
+  "as_of": "2026-11-03",
+  "ntm": {
+   "eps": 10.729999999999999,
+   "ebitda": 11273095664,
+   "ebit": 9550069506,
+   "revenue": 48024000000,
+   "rev_ttm": 42042000000
+  },
+  "horizons": {
+   "2": {
+    "eps": 12.45003,
+    "ebitda": 12448205868,
+    "ext": 0
+   },
+   "3": {
+    "eps": 13.459157037037038,
+    "ebitda": 13227855560.933683,
+    "ext": 2
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정."
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ }
+}
