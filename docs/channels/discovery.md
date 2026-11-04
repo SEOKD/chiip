@@ -19,3 +19,5 @@
   - X는 언론 인용 제목과 공개 텔레그램 채널로 간접 파악한다.
   - 무료 키가 있으면 넓힐 수 있는 공식 경로: Rakuten Ichiba Ranking API, Best Buy Products API, 네이버 데이터랩 쇼핑인사이트. 가입은 마스터 몫이다(`docs/TODO_MASTER.md`).
 - **발굴 적극성 9점**(2026-11-04 마스터 지시): 찾는 폭과 횟수만 넓힌다 — 신규 후보 하루 2→5개, 심층 대기열 3→6, 테마 지도 점검 회차당 3→6개, 동종사 확장 10→20개, 실적 상회·HS 급등·IB 추정 상향·조용한 상승·와치리스트 원천을 매 회차 훑는다(`docs/tasks/chiip-tenbagger.md` 0-A). 선별 관문과 발송 기준은 그대로라 과잉 공유는 늘지 않는다.
+
+- **SPAC 감지 1단계**(2026-11-04 마스터 지시, 설계 `knowledge/methods/spac_discovery_design.md`): `radar/pollers/spac_watch.py`가 30분마다 SEC 전문 검색(SIC 6770)으로 스팩 서류를 받아 생애 단계(S0 상장·S2 확정 계약·S3 등록·S4 주총·S5 종결)를 매기고, 계약 뒤 SIC가 바뀐 S2~S4 스팩은 3시간마다 자체 제출 목록으로 따라간다. 장부 `knowledge/models/spac/registry.csv`·`transitions.csv`. 알림·테마 판정은 2단계.

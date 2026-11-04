@@ -24,6 +24,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-edgar-fts", "edgar_fts", 120),
     ("src-twse-monthly", "twse_monthly", 1440),
     ("src-press-wire", "pollers.press_wire", 30),  # PR Newswire·Business Wire (저녁 브리프 '글로벌 공식 발표')
+    ("src-spac-watch", "pollers.spac_watch", 30),  # SPAC 감지·생애 단계 장부(SIC 6770 EDGAR 검색 + S2~S4 후속 추적, 2026-11-04 마스터 지시 1단계)
     ("src-weekly-movers", "markets.weekly_movers", 30),  # EODHD 주간 상승률 — 모듈이 토 06~09시·주 1회만 실제 실행
     ("src-valuation", "markets.valuation_data", 30),  # 밸류에이션 수집·계산 — 모듈이 05~06시·15:45~17시에만 실제 실행
     # 5단계 v1

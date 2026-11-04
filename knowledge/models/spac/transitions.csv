@@ -1,0 +1,346 @@
+seen,cik,name,tickers,from,to,form,filed,url
+2026-11-04,2121703,FortuneX Acquisition Corp,FXAC,,S0,S-1/A,2026-05-08,https://www.sec.gov/Archives/edgar/data/2121703/000182912626004810/
+2026-11-04,2094919,Tribeca Strategic Acquisition Corp.,BID,,S0,S-1/A,2026-05-08,https://www.sec.gov/Archives/edgar/data/2094919/000121390026053696/
+2026-11-04,2094076,Starlink AI Acquisition Corp,OTAI,,S0,424B4,2026-05-08,https://www.sec.gov/Archives/edgar/data/2094076/000149315226021885/
+2026-11-04,1906364,FG Merger II Corp.,"FGMC,FGMCR,FGMCU",,S3,S-4/A,2026-05-08,https://www.sec.gov/Archives/edgar/data/1906364/000110465926057907/
+2026-11-04,2085210,Mango Financial Group Ltd,,,S3,F-4/A,2026-05-08,https://www.sec.gov/Archives/edgar/data/2085210/000149315226021996/
+2026-11-04,2090441,Iron Dome Acquisition I Corp.,IDAC,,S0,S-1/A,2026-05-11,https://www.sec.gov/Archives/edgar/data/2090441/000121390026054599/
+2026-11-04,2099095,Patriot Acquisition Corp./CI,,,S0,S-1/A,2026-05-11,https://www.sec.gov/Archives/edgar/data/2099095/000121390026054455/
+2026-11-04,2111038,DISCIPLINED GROWTH ACQUISITION Corp,DGAC,,S0,S-1/A,2026-05-11,https://www.sec.gov/Archives/edgar/data/2111038/000118518526001772/
+2026-11-04,1850059,Flag Ship Acquisition Corp,"FSHP,FSHPR,FSHPU",,S2,425,2026-05-11,https://www.sec.gov/Archives/edgar/data/1850059/000182912626004889/
+2026-11-04,2028201,Columbus Acquisition Corp/Cayman Islands,"COLA,COLAR,COLAU",,S2,8-K,2026-05-11,https://www.sec.gov/Archives/edgar/data/2028201/000121390026054549/
+2026-11-04,2034268,"Cantor Equity Partners III, Inc.",CAEP,,S2,8-K,2026-05-11,https://www.sec.gov/Archives/edgar/data/2034268/000121390026054575/
+2026-11-04,2051985,Iron Horse Acquisition II Corp.,"IRHO,IRHOR,IRHOU",,S2,8-K,2026-05-11,https://www.sec.gov/Archives/edgar/data/2051985/000121390026054266/
+2026-11-04,2081515,Berto Acquisition Corp. II,GUAC,,S0,S-1/A,2026-05-12,https://www.sec.gov/Archives/edgar/data/2081515/000182912626005001/
+2026-11-04,2111762,GSR V Acquisition Corp.,GSRV,,S0,S-1/A,2026-05-12,https://www.sec.gov/Archives/edgar/data/2111762/000121390026054867/
+2026-11-04,2085795,APEIRON ACQUISITION VEHICLE I,APN,,S0,S-1/A,2026-05-12,https://www.sec.gov/Archives/edgar/data/2085795/000121390026054683/
+2026-11-04,2079180,Parataxis Holdings Inc.,,,S2,425,2026-05-12,https://www.sec.gov/Archives/edgar/data/2079180/000110465926059396/
+2026-11-04,2015947,SilverBox Corp IV,"SBXD,SBXD-UN,SBXD-WT",,S2,8-K,2026-05-12,https://www.sec.gov/Archives/edgar/data/2015947/000110465926059390/
+2026-11-04,2118032,Research Alliance Corp III,RACC,,S0,S-1/A,2026-05-13,https://www.sec.gov/Archives/edgar/data/2118032/000119312526220331/
+2026-11-04,1816937,BOXABL Inc.,,,S2,425,2026-05-13,https://www.sec.gov/Archives/edgar/data/1816937/000110465926060395/
+2026-11-04,2016072,M3-Brigade Acquisition V Corp.,"MBAV,MBAVU,MBAVW",,S4,DEFM14A,2026-05-13,https://www.sec.gov/Archives/edgar/data/2016072/000121390026055964/
+2026-11-04,1906364,FG Merger II Corp.,"FGMC,FGMCR,FGMCU",S3,S4,DEFM14A,2026-05-13,https://www.sec.gov/Archives/edgar/data/1906364/000110465926059599/
+2026-11-04,2112457,Amanat Acquisition Corp.,AMAN,,S0,S-1/A,2026-05-14,https://www.sec.gov/Archives/edgar/data/2112457/000121390026056558/
+2026-11-04,2085932,Energy Transition Special Opportunities,ETSS,,S0,S-1/A,2026-05-14,https://www.sec.gov/Archives/edgar/data/2085932/000121390026056174/
+2026-11-04,2095443,Breeze Acquisition Corp. II,BREZ,,S0,424B4,2026-05-14,https://www.sec.gov/Archives/edgar/data/2095443/000121390026056033/
+2026-11-04,2027708,"Cantor Equity Partners I, Inc.",CEPO,,S2,425,2026-05-14,https://www.sec.gov/Archives/edgar/data/2027708/000121390026056840/
+2026-11-04,2113060,IQM Finland Oy,,,S2,425,2026-05-14,https://www.sec.gov/Archives/edgar/data/2113060/000121390026056724/
+2026-11-04,1834032,Constellation Acquisition Corp I,"CSTAF,CSTUF,CSTWF",,S2,425,2026-05-14,https://www.sec.gov/Archives/edgar/data/1834032/000121390026056713/
+2026-11-04,2052161,Real Asset Acquisition Corp.,"RAAQ,RAAQU,RAAQW",,S2,425,2026-05-14,https://www.sec.gov/Archives/edgar/data/2052161/000121390026056652/
+2026-11-04,1834526,GP-Act III Acquisition Corp.,"GPAT,GPATU,GPATW",,S2,425,2026-05-14,https://www.sec.gov/Archives/edgar/data/1834526/000121390026056070/
+2026-11-04,2051985,Iron Horse Acquisition II Corp.,"IRHO,IRHOR,IRHOU",S2,S3,S-4,2026-05-14,https://www.sec.gov/Archives/edgar/data/2051985/000121390026056865/
+2026-11-04,2029492,Mountain Lake Acquisition Corp.,"MLAC,MLACR,MLACU",,S4,DEFM14A,2026-05-14,https://www.sec.gov/Archives/edgar/data/2029492/000110465926061335/
+2026-11-04,1834526,GP-Act III Acquisition Corp.,"GPAT,GPATU,GPATW",S2,S4,8-K,2026-05-14,https://www.sec.gov/Archives/edgar/data/1834526/000121390026056065/
+2026-11-04,2034268,"Cantor Equity Partners III, Inc.",CAEP,S2,S4,8-K,2026-05-14,https://www.sec.gov/Archives/edgar/data/2034268/000121390026056192/
+2026-11-04,2129056,Jones Ventures INTL Acquisition1 Corp,,,S0,S-1,2026-05-15,https://www.sec.gov/Archives/edgar/data/2129056/000121390026057072/
+2026-11-04,2047455,Quartzsea Acquisition Corp,"QSEA,QSEAR,QSEAU",,S2,425,2026-05-15,https://www.sec.gov/Archives/edgar/data/2047455/000182912626005260/
+2026-11-04,2080023,Viking Acquisition Corp I,"VACI,VACI-UN,VACI-WT",,S2,425,2026-05-15,https://www.sec.gov/Archives/edgar/data/2080023/000121390026057893/
+2026-11-04,2030663,Sizzle Acquisition Corp. II,"SZZL,SZZLR,SZZLU",,S2,425,2026-05-15,https://www.sec.gov/Archives/edgar/data/2030663/000121390026057503/
+2026-11-04,1915328,Israel Acquisitions Corp,"ISLUF,ISLWF,ISRLF",,S2,425,2026-05-15,https://www.sec.gov/Archives/edgar/data/1915328/000110465926062469/
+2026-11-04,2094076,Starlink AI Acquisition Corp,OTAI,S0,S2,8-K,2026-05-15,https://www.sec.gov/Archives/edgar/data/2094076/000149315226023650/
+2026-11-04,2032528,Roman DBDR Acquisition Corp. II,"DRDB,DRDBU,DRDBW",,S2,8-K,2026-05-15,https://www.sec.gov/Archives/edgar/data/2032528/000110465926062518/
+2026-11-04,2002038,Legato Merger Corp. III,"LEGT,LEGT-UN,LEGT-WT",,S4,DEFM14A,2026-05-15,https://www.sec.gov/Archives/edgar/data/2002038/000182912626005295/
+2026-11-04,2082526,Aeon Acquisition I Corp.,AESP,,S0,S-1/A,2026-05-18,https://www.sec.gov/Archives/edgar/data/2082526/000149315226024251/
+2026-11-04,2068454,"CSLM Digital Asset Acquisition Corp III, Ltd","KOYN,KOYNU,KOYNW",,S2,425,2026-05-18,https://www.sec.gov/Archives/edgar/data/2068454/000182912626005416/
+2026-11-04,2094712,ARC Group Securities Acquisition I,,,S0,S-1/A,2026-05-19,https://www.sec.gov/Archives/edgar/data/2094712/000149315226024278/
+2026-11-04,2100704,East West Ave Acquisition Corp.,EWAV,,S0,S-1/A,2026-05-19,https://www.sec.gov/Archives/edgar/data/2100704/000149315226024274/
+2026-11-04,2105274,"InterPrivate Investment Partners V, Inc.",IPV,,S0,S-1/A,2026-05-19,https://www.sec.gov/Archives/edgar/data/2105274/000121390026059138/
+2026-11-04,2128739,JAB Acquisition Corp I,,,S0,S-1,2026-05-19,https://www.sec.gov/Archives/edgar/data/2128739/000121390026059104/
+2026-11-04,2090787,Oceanhawk Acquisition Corp.,OHAC,,S0,S-1/A,2026-05-19,https://www.sec.gov/Archives/edgar/data/2090787/000121390026058915/
+2026-11-04,1997389,Innovative Digital Investors Acquisition Corp.,,,S0,S-1/A,2026-05-19,https://www.sec.gov/Archives/edgar/data/1997389/000110465926063967/
+2026-11-04,1969475,Bayview Acquisition Corp,"BAYA,BAYAR,BAYAU",,S2,425,2026-05-19,https://www.sec.gov/Archives/edgar/data/1969475/000149315226024448/
+2026-11-04,2030482,"Plum Acquisition Corp, IV","PLMK,PLMKU,PLMKW",,S2,425,2026-05-19,https://www.sec.gov/Archives/edgar/data/2030482/000121390026058616/
+2026-11-04,2088295,Bleichroeder Acquisition Corp. II,"BBCQ,BBCQU,BBCQW",,S2,425,2026-05-19,https://www.sec.gov/Archives/edgar/data/2088295/000121390026058601/
+2026-11-04,2085932,Energy Transition Special Opportunities,ETSS,S0,S2,8-K,2026-05-19,https://www.sec.gov/Archives/edgar/data/2085932/000121390026059124/
+2026-11-04,2131853,FutureCorp Space Acquisition 1,"FTRA,FTRA-UN",,S0,S-1,2026-05-20,https://www.sec.gov/Archives/edgar/data/2131853/000121390026059156/
+2026-11-04,2034269,"Cantor Equity Partners II, Inc.",CEPT,,S2,425,2026-05-20,https://www.sec.gov/Archives/edgar/data/2034269/000095010326007551/
+2026-11-04,2086775,BTECH Corp,BTECH,,S0,S-1,2026-05-21,https://www.sec.gov/Archives/edgar/data/2086775/000182912626005549/
+2026-11-04,2093524,Aperture AC,APUR,,S0,424B4,2026-05-21,https://www.sec.gov/Archives/edgar/data/2093524/000121390026060082/
+2026-11-04,1926314,Ocean Capital Acquisition Corp,,,S0,S-1/A,2026-05-22,https://www.sec.gov/Archives/edgar/data/1926314/000149315226024926/
+2026-11-04,2087965,"Cantor Equity Partners VII, Inc.",CAES,,S0,S-1,2026-05-22,https://www.sec.gov/Archives/edgar/data/2087965/000121390026060659/
+2026-11-04,2123475,Snow Rothschild Acquisition Corp.,"ISNR,ISNRU",,S0,S-1,2026-05-22,https://www.sec.gov/Archives/edgar/data/2123475/000121390026060334/
+2026-11-04,2125551,Alpex Acquisition Corp,,,S0,S-1/A,2026-05-22,https://www.sec.gov/Archives/edgar/data/2125551/000121390026060264/
+2026-11-04,2101393,AmperCap Acquisition Co,APMC,,S0,S-1/A,2026-05-22,https://www.sec.gov/Archives/edgar/data/2101393/000118518526002068/
+2026-11-04,2088626,Peace Acquisition Corp.,PECE,,S0,424B4,2026-05-22,https://www.sec.gov/Archives/edgar/data/2088626/000149315226024922/
+2026-11-04,2024203,Cayson Acquisition Corp,"CAPN,CAPNR,CAPNU",,S2,425,2026-05-22,https://www.sec.gov/Archives/edgar/data/2024203/000149315226024904/
+2026-11-04,2098707,BurTech Acquisition Corp II,BRKH,,S0,424B4,2026-05-26,https://www.sec.gov/Archives/edgar/data/2098707/000121390026060733/
+2026-11-04,2057030,Axiom Intelligence Acquisition Corp 1,"AXIN,AXINR,AXINU",,S2,425,2026-05-26,https://www.sec.gov/Archives/edgar/data/2057030/000121390026061060/
+2026-11-04,2094265,Mountain Lake Acquisition Corp. II,"MLAA,MLAAU,MLAAW",,S2,425,2026-05-26,https://www.sec.gov/Archives/edgar/data/2094265/000121390026060738/
+2026-11-04,2049248,Lakeshore Acquisition III Corp.,"LCCC,LCCCR,LCCCU",,S2,8-K,2026-05-26,https://www.sec.gov/Archives/edgar/data/2049248/000192998026000235/
+2026-11-04,2119292,Bleichroeder Acquisition France Merger Sub 2,,,S3,F-4,2026-05-26,https://www.sec.gov/Archives/edgar/data/2119292/000121390026061033/
+2026-11-04,2116105,Futurewave Acquisition Corp,FWAC,,S0,S-1/A,2026-05-27,https://www.sec.gov/Archives/edgar/data/2116105/000182912626005680/
+2026-11-04,2043699,NewHold Investment Corp. III,"NHIC,NHICU,NHICW",,S2,425,2026-05-27,https://www.sec.gov/Archives/edgar/data/2043699/000121390026061271/
+2026-11-04,1926599,Translational Development Acquisition Corp.,"TDAC,TDACU,TDACW",,S2,425,2026-05-27,https://www.sec.gov/Archives/edgar/data/1926599/000110465926066602/
+2026-11-04,2090787,Oceanhawk Acquisition Corp.,OHAC,S0,S2,8-K,2026-05-27,https://www.sec.gov/Archives/edgar/data/2090787/000121390026061493/
+2026-11-04,2104943,Embed Financial Group Holdings,,,S3,F-4,2026-05-27,https://www.sec.gov/Archives/edgar/data/2104943/000121390026061585/
+2026-11-04,2102771,Keystone Acquisition Corp.,KEYY,,S0,S-1/A,2026-05-28,https://www.sec.gov/Archives/edgar/data/2102771/000121390026062203/
+2026-11-04,2101470,Wilco 63 Corp,WLCO,,S0,S-1,2026-05-29,https://www.sec.gov/Archives/edgar/data/2101470/000121390026062973/
+2026-11-04,2104177,Long Table Growth Corp.,LTGR,,S0,S-1/A,2026-05-29,https://www.sec.gov/Archives/edgar/data/2104177/000121390026062817/
+2026-11-04,2075109,"Matternet, Inc.",,,S5,8-K,2026-05-29,https://www.sec.gov/Archives/edgar/data/2075109/000121390026062961/
+2026-11-04,2009183,Titan Acquisition Corp.,"TACH,TACHU,TACHW",,S2,425,2026-06-01,https://www.sec.gov/Archives/edgar/data/2009183/000182912626005925/
+2026-11-04,2079013,Hall Chadwick Acquisition Corp,"HCAC,HCACR,HCACU",,S2,425,2026-06-01,https://www.sec.gov/Archives/edgar/data/2079013/000182912626005897/
+2026-11-04,2081300,SPACSphere Acquisition Corp.,"SSAC,SSACR,SSACU,SSACW",,S2,425,2026-06-01,https://www.sec.gov/Archives/edgar/data/2081300/000182912626005876/
+2026-11-04,1854463,WinVest Acquisition Corp.,"WINV,WINVR,WINVU,WINVW",,S2,425,2026-06-01,https://www.sec.gov/Archives/edgar/data/1854463/000149315226026561/
+2026-11-04,2086438,"Gores Holdings XI, Inc.",GHXI,,S0,S-1,2026-06-03,https://www.sec.gov/Archives/edgar/data/2086438/000119312526255548/
+2026-11-04,2100835,NYB Holdings Ltd,NYB,,S3,F-4/A,2026-06-03,https://www.sec.gov/Archives/edgar/data/2100835/000182912626005976/
+2026-11-04,1969475,Bayview Acquisition Corp,"BAYA,BAYAR,BAYAU",S2,S4,8-K,2026-06-03,https://www.sec.gov/Archives/edgar/data/1969475/000149315226027128/
+2026-11-04,2115659,Watu Metals Acquisition Corp,,,S0,S-1,2026-06-04,https://www.sec.gov/Archives/edgar/data/2115659/000182912626006023/
+2026-11-04,2134552,US Elemental Inc.,,,S2,425,2026-06-04,https://www.sec.gov/Archives/edgar/data/2134552/000121390026065313/
+2026-11-04,1875655,AEI CapForce II Investment Corp,,,S0,S-1/A,2026-06-05,https://www.sec.gov/Archives/edgar/data/1875655/000149315226027440/
+2026-11-04,2104879,RMG ML Sports Holdings,,,S0,S-1/A,2026-06-05,https://www.sec.gov/Archives/edgar/data/2104879/000121390026065429/
+2026-11-04,2130386,Yorkville International Capital Corp.,YICC,,S0,S-1/A,2026-06-05,https://www.sec.gov/Archives/edgar/data/2130386/000110465926070647/
+2026-11-04,2027708,"Cantor Equity Partners I, Inc.",CEPO,S2,S4,DEFM14A,2026-06-05,https://www.sec.gov/Archives/edgar/data/2027708/000121390026065889/
+2026-11-04,2034269,"Cantor Equity Partners II, Inc.",CEPT,S2,S4,DEFM14A,2026-06-05,https://www.sec.gov/Archives/edgar/data/2034269/000121390026065822/
+2026-11-04,2052161,Real Asset Acquisition Corp.,"RAAQ,RAAQU,RAAQW",S2,S4,DEFM14A,2026-06-05,https://www.sec.gov/Archives/edgar/data/2052161/000119312526259964/
+2026-11-04,2114463,AParadise II Acquisition Corp.,APBD,,S0,S-1,2026-06-08,https://www.sec.gov/Archives/edgar/data/2114463/000121390026066301/
+2026-11-04,2126043,Cartesian Growth Corp IV,,,S0,S-1,2026-06-08,https://www.sec.gov/Archives/edgar/data/2126043/000118518526002415/
+2026-11-04,2048948,New Providence Acquisition Corp. III/Cayman,"NPAC,NPACU,NPACW",,S2,425,2026-06-08,https://www.sec.gov/Archives/edgar/data/2048948/000121390026066335/
+2026-11-04,2102041,Inflection Point Acquisition Corp. VI,"IPFX,IPFXU,IPFXW",,S2,425,2026-06-08,https://www.sec.gov/Archives/edgar/data/2102041/000121390026066032/
+2026-11-04,2096755,Texas Ventures Acquisition IV Corp,TVIV,,S0,S-1/A,2026-06-09,https://www.sec.gov/Archives/edgar/data/2096755/000121390026066790/
+2026-11-04,2085177,QuasarEdge Acquisition Corp,"QRED,QRED-RI,QRED-UN",,S2,425,2026-06-09,https://www.sec.gov/Archives/edgar/data/2085177/000182912626006241/
+2026-11-04,2012318,Inflection Point Acquisition Corp. III,"IPCX,IPCXR,IPCXU",,S2,425,2026-06-09,https://www.sec.gov/Archives/edgar/data/2012318/000121390026066515/
+2026-11-04,2097702,GOWell Energy Technology,GOW,,S3,F-4/A,2026-06-09,https://www.sec.gov/Archives/edgar/data/2097702/000121390026066477/
+2026-11-04,2111009,American Ventures Acquisition Corp. I,,,S0,S-1,2026-06-10,https://www.sec.gov/Archives/edgar/data/2111009/000121390026066994/
+2026-11-04,2002038,Legato Merger Corp. III,"LEGT,LEGT-UN,LEGT-WT",S4,S5,8-K,2026-06-10,https://www.sec.gov/Archives/edgar/data/2002038/000182912626006250/
+2026-11-04,2122392,Pelican Acquisition II Corp,,,S0,S-1,2026-06-11,https://www.sec.gov/Archives/edgar/data/2122392/000182912626006339/
+2026-11-04,1884046,Spark I Acquisition Corp,"SPKL,SPKLU,SPKLW",,S2,425,2026-06-11,https://www.sec.gov/Archives/edgar/data/1884046/000110465926072662/
+2026-11-04,2045473,Copley Acquisition Corp,"COPL,COPL-UN,COPL-WT",,S2,8-K,2026-06-11,https://www.sec.gov/Archives/edgar/data/2045473/000182912626006336/
+2026-11-04,2116230,Southern Cross Acquisition I Corp.,,,S0,S-1,2026-06-12,https://www.sec.gov/Archives/edgar/data/2116230/000192998026000257/
+2026-11-04,2125567,Samos Energy Acquisition Corp,,,S0,S-1,2026-06-12,https://www.sec.gov/Archives/edgar/data/2125567/000121390026068402/
+2026-11-04,2128115,Ares Acquisition Corp III,,,S0,S-1,2026-06-12,https://www.sec.gov/Archives/edgar/data/2128115/000110465926073478/
+2026-11-04,1897463,Graf Global Corp.,"GRAF,GRAF-UN,GRAF-WT",,S2,425,2026-06-12,https://www.sec.gov/Archives/edgar/data/1897463/000110465926073538/
+2026-11-04,2113481,Osprey Acquisition Corp. III,,,S0,S-1,2026-06-15,https://www.sec.gov/Archives/edgar/data/2113481/000121390026068811/
+2026-11-04,2133836,Bridge III Acquisition Ltd,BDDD,,S0,S-1/A,2026-06-15,https://www.sec.gov/Archives/edgar/data/2133836/000121390026068607/
+2026-11-04,2109823,Leader's Advantage Acquisition Corp.,,,S0,S-1,2026-06-15,https://www.sec.gov/Archives/edgar/data/2109823/000121390026068419/
+2026-11-04,2135163,Albatross Acquisition Corp,,,S0,S-1,2026-06-17,https://www.sec.gov/Archives/edgar/data/2135163/000182912626006553/
+2026-11-04,2085659,Silicon Valley Acquisition Corp.,"SVAQ,SVAQU,SVAQW",,S2,425,2026-06-17,https://www.sec.gov/Archives/edgar/data/2085659/000121390026069741/
+2026-11-04,1850059,Flag Ship Acquisition Corp,"FSHP,FSHPR,FSHPU",S2,S4,8-K,2026-06-17,https://www.sec.gov/Archives/edgar/data/1850059/000182912626006621/
+2026-11-04,2137679,OceanLight Acquisition Corp,,,S0,S-1/A,2026-06-18,https://www.sec.gov/Archives/edgar/data/2137679/000182912626006632/
+2026-11-04,2128045,Bleichroeder Acquisition Corp. III,,,S0,S-1,2026-06-18,https://www.sec.gov/Archives/edgar/data/2128045/000121390026070217/
+2026-11-04,1894057,Papaya Growth Opportunity Corp. I,,,S2,425,2026-06-18,https://www.sec.gov/Archives/edgar/data/1894057/000110465926075883/
+2026-11-04,1926599,Translational Development Acquisition Corp.,"TDAC,TDACU,TDACW",S2,S4,8-K,2026-06-18,https://www.sec.gov/Archives/edgar/data/1926599/000110465926075471/
+2026-11-04,2028516,Archimedes Tech SPAC Partners II Co.,"ATII,ATIIU,ATIIW",,S2,425,2026-06-23,https://www.sec.gov/Archives/edgar/data/2028516/000110465926076805/
+2026-11-04,2139246,Viking Acquisition Corp. II,VII,,S0,S-1/A,2026-06-24,https://www.sec.gov/Archives/edgar/data/2139246/000121390026071585/
+2026-11-04,2074973,Churchill Capital Corp XI,"CCXI,CCXIU,CCXIW",,S2,425,2026-06-24,https://www.sec.gov/Archives/edgar/data/2074973/000121390026071290/
+2026-11-04,2047455,Quartzsea Acquisition Corp,"QSEA,QSEAR,QSEAU",S2,S4,8-K,2026-06-24,https://www.sec.gov/Archives/edgar/data/2047455/000182912626006786/
+2026-11-04,1903464,Aimfinity Investment Corp. I,,,S2,425,2026-06-25,https://www.sec.gov/Archives/edgar/data/1903464/000121390026072052/
+2026-11-04,2023676,Launch Two Acquisition Corp.,"LPBB,LPBBU,LPBBW",,S2,425,2026-06-25,https://www.sec.gov/Archives/edgar/data/2023676/000121390026071782/
+2026-11-04,2080019,GigCapital8 Corp.,"GIW,GIWWR,GIWWU",,S2,425,2026-06-25,https://www.sec.gov/Archives/edgar/data/2080019/000119312526281729/
+2026-11-04,2101833,ATII Holdings Inc.,NANO,,S2,425,2026-06-25,https://www.sec.gov/Archives/edgar/data/2101833/000110465926077836/
+2026-11-04,2110119,AMR Resources Acquisition Corp.,,,S0,S-1,2026-06-26,https://www.sec.gov/Archives/edgar/data/2110119/000121390026072712/
+2026-11-04,2123471,Columbus Circle Capital Corp III,CCCT,,S0,S-1/A,2026-06-26,https://www.sec.gov/Archives/edgar/data/2123471/000118518526002689/
+2026-11-04,2088805,Columbus Circle Capital Corp II,"CMII,CMIIU,CMIIW",,S2,425,2026-06-26,https://www.sec.gov/Archives/edgar/data/2088805/000121390026072732/
+2026-11-04,1897463,Graf Global Corp.,"GRAF,GRAF-UN,GRAF-WT",S2,S4,8-K,2026-06-26,https://www.sec.gov/Archives/edgar/data/1897463/000110465926078336/
+2026-11-04,2136530,Meridian3 Industrials Acquisition Corp,MIAC,,S0,S-1/A,2026-06-29,https://www.sec.gov/Archives/edgar/data/2136530/000110465926078781/
+2026-11-04,2112446,JATT II Acquisition Corp.,JATT,,S2,425,2026-06-29,https://www.sec.gov/Archives/edgar/data/2112446/000119312526288377/
+2026-11-04,2059654,Blue Acquisition Corp/Cayman,"BACC,BACCR,BACCU",,S2,425,2026-06-30,https://www.sec.gov/Archives/edgar/data/2059654/000118518526002725/
+2026-11-04,2129659,Freedom Metals Acquisition Corp.,FDMM,,S0,S-1/A,2026-07-01,https://www.sec.gov/Archives/edgar/data/2129659/000121390026074033/
+2026-11-04,2128462,Three Lions Acquisition Corp.,,,S0,S-1,2026-07-01,https://www.sec.gov/Archives/edgar/data/2128462/000119312526290930/
+2026-11-04,2109869,D. Boral ARC Merger Corp,,,S3,S-4,2026-07-01,https://www.sec.gov/Archives/edgar/data/2109869/000182912626007124/
+2026-11-04,1720025,Allegro Merger Corp.,,,S4,DEFM14A,2026-07-01,https://www.sec.gov/Archives/edgar/data/1720025/000121390026074267/
+2026-11-04,2105318,Gold Mountain Acquisition Corp.,,,S0,S-1,2026-07-02,https://www.sec.gov/Archives/edgar/data/2105318/000149315226031978/
+2026-11-04,2106436,Mercator Acquisition Corp.,MRCO,,S0,S-1/A,2026-07-02,https://www.sec.gov/Archives/edgar/data/2106436/000121390026074947/
+2026-11-04,2131350,B&R Technology Merger Corp.,,,S0,S-1,2026-07-02,https://www.sec.gov/Archives/edgar/data/2131350/000119312526294964/
+2026-11-04,2026767,Calisa Acquisition Corp,"ALIS,ALISR,ALISU",,S3,S-4/A,2026-07-02,https://www.sec.gov/Archives/edgar/data/2026767/000149315226031763/
+2026-11-04,1141964,PUBLIC CO MANAGEMENT CORP,PCMC,,S2,425,2026-07-06,https://www.sec.gov/Archives/edgar/data/1141964/000121465926008229/
+2026-11-04,2036973,UY Scuti Acquisition Corp.,"UYSC,UYSCR,UYSCU",,S2,425,2026-07-06,https://www.sec.gov/Archives/edgar/data/2036973/000118518526002812/
+2026-11-04,2087035,AfterNext Acquisition I Corp.,,,S0,S-1/A,2026-07-08,https://www.sec.gov/Archives/edgar/data/2087035/000149315226032427/
+2026-11-04,2104391,Catalyst Acquisition Corp.,,,S0,S-1,2026-07-08,https://www.sec.gov/Archives/edgar/data/2104391/000121390026076132/
+2026-11-04,2137777,Research Alliance Corp IV,RACD,,S0,S-1/A,2026-07-08,https://www.sec.gov/Archives/edgar/data/2137777/000119312526298633/
+2026-11-04,1978528,Quetta Acquisition Corp,"QETA,QETAR,QETAU",,S2,425,2026-07-08,https://www.sec.gov/Archives/edgar/data/1978528/000149315226032497/
+2026-11-04,1979005,"Aimei Health Technology Co., Ltd.","AFJK,AFJKR,AFJKU",,S2,8-K,2026-07-08,https://www.sec.gov/Archives/edgar/data/1979005/000149315226032541/
+2026-11-04,2012318,Inflection Point Acquisition Corp. III,"IPCX,IPCXR,IPCXU",S2,S4,DEFM14A,2026-07-08,https://www.sec.gov/Archives/edgar/data/2012318/000121390026076450/
+2026-11-04,2034269,"Cantor Equity Partners II, Inc.",CEPT,S4,S5,8-K,2026-07-08,https://www.sec.gov/Archives/edgar/data/2034269/000121390026076435/
+2026-11-04,2052161,Real Asset Acquisition Corp.,"RAAQ,RAAQU,RAAQW",S4,S5,8-K,2026-07-08,https://www.sec.gov/Archives/edgar/data/2052161/000121390026076453/
+2026-11-04,2133239,Southern Cross Acquisition II Corp.,,,S0,S-1,2026-07-09,https://www.sec.gov/Archives/edgar/data/2133239/000192998026000317/
+2026-11-04,2080216,BOA Acquisition Corp. II,,,S0,S-1/A,2026-07-09,https://www.sec.gov/Archives/edgar/data/2080216/000119312526299584/
+2026-11-04,2091712,RF Acquisition Corp III,"RFAM,RFAMR,RFAMU",,S2,425,2026-07-09,https://www.sec.gov/Archives/edgar/data/2091712/000182912626007473/
+2026-11-04,2133136,Market Technology Acquisition Corp,MTAK,,S0,S-1/A,2026-07-10,https://www.sec.gov/Archives/edgar/data/2133136/000121390026076891/
+2026-11-04,2136360,Material Resource Acquisition Corp.,,,S0,S-1,2026-07-13,https://www.sec.gov/Archives/edgar/data/2136360/000213636026000003/
+2026-11-04,2020385,Tavia Acquisition Corp.,"TAVI,TAVIR,TAVIU",,S2,425,2026-07-13,https://www.sec.gov/Archives/edgar/data/2020385/000121390026077648/
+2026-11-04,1845550,Plum Acquisition Corp. III,"PLMJF,PLMUF,PLMWF",,S2,425,2026-07-13,https://www.sec.gov/Archives/edgar/data/1845550/000121390026077375/
+2026-11-04,2136449,Crestone Strategic Capital Acquisition Corp,CSCM,,S0,S-1/A,2026-07-14,https://www.sec.gov/Archives/edgar/data/2136449/000149315226033152/
+2026-11-04,2086549,Phalanx Acquisition Corp I,,,S0,S-1,2026-07-16,https://www.sec.gov/Archives/edgar/data/2086549/000121390026078705/
+2026-11-04,2030482,"Plum Acquisition Corp, IV","PLMK,PLMKU,PLMKW",S2,S4,8-K,2026-07-16,https://www.sec.gov/Archives/edgar/data/2030482/000121390026078728/
+2026-11-04,2028355,Inflection Point Acquisition Corp. V,"IPEX,IPEXR,IPEXU",,S2,425,2026-07-17,https://www.sec.gov/Archives/edgar/data/2028355/000121390026079198/
+2026-11-04,1936255,Four Leaf Acquisition Corp,,,S2,8-K,2026-07-17,https://www.sec.gov/Archives/edgar/data/1936255/000121390026078905/
+2026-11-04,2137965,TCGX Acquisition Corp.,,,S0,S-1,2026-07-20,https://www.sec.gov/Archives/edgar/data/2137965/000119312526308950/
+2026-11-04,1851909,Compass Digital Acquisition Corp.,"CDAQF,CDAUF,CDAWF",,S2,425,2026-07-20,https://www.sec.gov/Archives/edgar/data/1851909/000149315226033936/
+2026-11-04,2028614,Drugs Made In America Acquisition Corp.,"DMAA,DMAAR,DMAAU",,S2,425,2026-07-20,https://www.sec.gov/Archives/edgar/data/2028614/000121390026079686/
+2026-11-04,2015955,Lionheart Holdings,"CUB,CUBWU,CUBWW",,S2,425,2026-07-20,https://www.sec.gov/Archives/edgar/data/2015955/000121390026079656/
+2026-11-04,1851909,Compass Digital Acquisition Corp.,"CDAQF,CDAUF,CDAWF",S2,S4,8-K,2026-07-20,https://www.sec.gov/Archives/edgar/data/1851909/000149315226033934/
+2026-11-04,2094710,ARC Group Securities Acquisition II,,,S0,S-1/A,2026-07-21,https://www.sec.gov/Archives/edgar/data/2094710/000149315226034055/
+2026-11-04,2076561,Pine Tree Acquisition Corp.,,,S0,S-1/A,2026-07-21,https://www.sec.gov/Archives/edgar/data/2076561/000147793226004429/
+2026-11-04,2123955,Pinnacle Acquisition Corp,,,S0,S-1,2026-07-22,https://www.sec.gov/Archives/edgar/data/2123955/000121390026080433/
+2026-11-04,2079253,Apex Treasury Corp,"APXT,APXTU,APXTW",,S2,425,2026-07-22,https://www.sec.gov/Archives/edgar/data/2079253/000121390026080202/
+2026-11-04,2102713,Kensington Capital Acquisition Corp. VI,"KCA-UN,KCAC-UN,KCAC-WT",,S2,425,2026-07-22,https://www.sec.gov/Archives/edgar/data/2102713/000119312526311391/
+2026-11-04,1906364,BOXABL Inc.,"FGMC,FGMCR,FGMCU",S4,S5,8-K,2026-07-23,https://www.sec.gov/Archives/edgar/data/1906364/000149315226034441/
+2026-11-04,1936255,Four Leaf Acquisition Corp,,S2,S4,8-K,2026-07-23,https://www.sec.gov/Archives/edgar/data/1936255/000121390026080879/
+2026-11-04,2098410,Bluerock Acquisition Corp. II,,,S0,S-1,2026-07-24,https://www.sec.gov/Archives/edgar/data/2098410/000110465926086682/
+2026-11-04,1998781,IB Acquisition Corp.,"IBAC,IBACR",,S3,S-4,2026-07-24,https://www.sec.gov/Archives/edgar/data/1998781/000149315226034626/
+2026-11-04,2134856,Karman Line Acquisition Corp.,,,S0,S-1,2026-07-27,https://www.sec.gov/Archives/edgar/data/2134856/000182912626007847/
+2026-11-04,2118032,Research Alliance Corp III,RACC,S0,S2,425,2026-07-27,https://www.sec.gov/Archives/edgar/data/2118032/000119312526316960/
+2026-11-04,1889112,Cartesian Growth Corp II,"REEUF,REEWF,RENEF",,S2,425,2026-07-27,https://www.sec.gov/Archives/edgar/data/1889112/000110465926086865/
+2026-11-04,2100835,NYB Holdings Ltd,NYB,S3,S4,424B3,2026-07-27,https://www.sec.gov/Archives/edgar/data/2100835/000182912626007878/
+2026-11-04,2095476,Dune Acquisition Corp III,,,S0,S-1/A,2026-07-28,https://www.sec.gov/Archives/edgar/data/2095476/000121390026081909/
+2026-11-04,2076192,Westin Acquisition Corp,"WSTN,WSTNR,WSTNU",,S2,425,2026-07-29,https://www.sec.gov/Archives/edgar/data/2076192/000121390026082414/
+2026-11-04,2130219,Hall Chadwick Acquisition Corp II,HCAX,,S0,S-1/A,2026-07-30,https://www.sec.gov/Archives/edgar/data/2130219/000182912626008117/
+2026-11-04,2025608,Soulpower Acquisition Corp.,"SOUL,SOUL-RI,SOUL-UN",,S2,425,2026-07-30,https://www.sec.gov/Archives/edgar/data/2025608/000149315226035496/
+2026-11-04,2049248,Lakeshore Acquisition III Corp.,"LCCC,LCCCR,LCCCU",S2,S4,8-K,2026-07-30,https://www.sec.gov/Archives/edgar/data/2049248/000192998026000405/
+2026-11-04,2114229,Churchill Capital Corp XIII,XIII,,S0,424B4,2026-07-31,https://www.sec.gov/Archives/edgar/data/2114229/000121390026083832/
+2026-11-04,2041208,Plum III Merger Corp.,,,S2,425,2026-07-31,https://www.sec.gov/Archives/edgar/data/2041208/000121390026084123/
+2026-11-04,2044009,Armada Acquisition Corp. II,"XRPN,XRPNU,XRPNW",,S2,8-K,2026-07-31,https://www.sec.gov/Archives/edgar/data/2044009/000119312526328607/
+2026-11-04,2115818,1776 Acquisition Corp,,,S0,S-1,2026-08-03,https://www.sec.gov/Archives/edgar/data/2115818/000121390026084648/
+2026-11-04,1918414,Newbridge Acquisition Ltd,"NBRG,NBRGR,NBRGU",,S2,425,2026-08-03,https://www.sec.gov/Archives/edgar/data/1918414/000121390026084686/
+2026-11-04,2081532,Bluerock Acquisition Corp.,"BLRK,BLRKU,BLRKW",,S2,425,2026-08-03,https://www.sec.gov/Archives/edgar/data/2081532/000121390026084286/
+2026-11-04,2067592,McKinley Acquisition Corp,"MKLY,MKLYR,MKLYU",,S2,425,2026-08-03,https://www.sec.gov/Archives/edgar/data/2067592/000121390026084277/
+2026-11-04,1889112,Cartesian Growth Corp II,"REEUF,REEWF,RENEF",S2,S4,8-K,2026-08-04,https://www.sec.gov/Archives/edgar/data/1889112/000110465926090343/
+2026-11-04,2123380,Gravity Acquisition Corp.,,,S0,S-1,2026-08-05,https://www.sec.gov/Archives/edgar/data/2123380/000118518526003277/
+2026-11-04,2100704,East West Ave Acquisition Corp.,EWAV,S0,S2,8-K,2026-08-05,https://www.sec.gov/Archives/edgar/data/2100704/000149315226036082/
+2026-11-04,2119292,Bleichroeder Acquisition France Merger Sub 2,PSQL,S3,S4,424B3,2026-08-05,https://www.sec.gov/Archives/edgar/data/2119292/000121390026085694/
+2026-11-04,2140030,"Thunder Bridge Capital Partners V, Ltd.",TBCV,,S0,S-1/A,2026-08-06,https://www.sec.gov/Archives/edgar/data/2140030/000121390026085876/
+2026-11-04,2147219,Rainier Acquisition Corp,,,S0,S-1,2026-08-06,https://www.sec.gov/Archives/edgar/data/2147219/000110465926092088/
+2026-11-04,2137965,TCGX Acquisition Corp.,,S0,S2,8-K,2026-08-06,https://www.sec.gov/Archives/edgar/data/2137965/000119312526338268/
+2026-11-04,2088295,Bleichroeder Acquisition Corp. II,"BBCQ,BBCQU,BBCQW",S2,S4,DEFM14A,2026-08-06,https://www.sec.gov/Archives/edgar/data/2088295/000121390026085816/
+2026-11-04,2108121,Ionetix Corp / DE /,,,S0,S-1,2026-08-07,https://www.sec.gov/Archives/edgar/data/2108121/000121390026086823/
+2026-11-04,2143156,Lucens Capital Acquisition Corp I,,,S0,S-1,2026-08-07,https://www.sec.gov/Archives/edgar/data/2143156/000121390026086320/
+2026-11-04,2088286,Danneskjold & Galt Acquisition Co,,,S0,S-1,2026-08-07,https://www.sec.gov/Archives/edgar/data/2088286/000118518526003333/
+2026-11-04,2108164,"Pono Capital Four, Inc.","PONO,PONOR,PONOU",,S2,425,2026-08-07,https://www.sec.gov/Archives/edgar/data/2108164/000121390026086668/
+2026-11-04,2145659,JATT III Acquisition Corp,,,S0,S-1,2026-08-10,https://www.sec.gov/Archives/edgar/data/2145659/000121390026086864/
+2026-11-04,2043699,NewHold Investment Corp. III,"NHIC,NHICU,NHICW",S2,S4,DEFM14A,2026-08-10,https://www.sec.gov/Archives/edgar/data/2043699/000114036126032067/
+2026-11-04,2133719,NorthStrive Acquisition Corp I.,,,S0,S-1/A,2026-08-11,https://www.sec.gov/Archives/edgar/data/2133719/000121390026087889/
+2026-11-04,2097702,GOWell Energy Technology,GOW,S3,S4,424B3,2026-08-11,https://www.sec.gov/Archives/edgar/data/2097702/000121390026087850/
+2026-11-04,2145409,GX Acquisition Corp. III/Cayman,,,S0,S-1/A,2026-08-12,https://www.sec.gov/Archives/edgar/data/2145409/000118518526003452/
+2026-11-04,2067592,McKinley Acquisition Corp,"MKLY,MKLYR,MKLYU",S2,S3,S-4,2026-08-12,https://www.sec.gov/Archives/edgar/data/2067592/000121390026088352/
+2026-11-04,2081300,SPACSphere Acquisition Corp.,"SSAC,SSACR,SSACU,SSACW",S2,S3,S-4,2026-08-12,https://www.sec.gov/Archives/edgar/data/2081300/000119312526347101/
+2026-11-04,2028355,Inflection Point Acquisition Corp. V,"IPEX,IPEXR,IPEXU",S2,S4,DEFM14A,2026-08-12,https://www.sec.gov/Archives/edgar/data/2028355/000121390026087896/
+2026-11-04,2149218,"Mobilewalla Holdco, Inc.",,,S2,425,2026-08-13,https://www.sec.gov/Archives/edgar/data/2149218/000119312526347541/
+2026-11-04,2012807,RF Acquisition Corp II,"RFAI,RFAIR,RFAIU",,S2,425,2026-08-14,https://www.sec.gov/Archives/edgar/data/2012807/000182912626008823/
+2026-11-04,2012807,RF Acquisition Corp II,"RFAI,RFAIR,RFAIU",S2,S4,8-K,2026-08-14,https://www.sec.gov/Archives/edgar/data/2012807/000182912626008821/
+2026-11-04,2028027,Newbury Street II Acquisition Corp,"NTWO,NTWOU,NTWOW",,S2,425,2026-08-18,https://www.sec.gov/Archives/edgar/data/2028027/000121390026091322/
+2026-11-04,2134856,Karman Line Acquisition Corp.,XTER,S0,S2,8-K,2026-08-19,https://www.sec.gov/Archives/edgar/data/2134856/000182912626009070/
+2026-11-04,2028201,Columbus Acquisition Corp/Cayman Islands,"COLA,COLAR,COLAU",S2,S4,DEFM14A,2026-08-19,https://www.sec.gov/Archives/edgar/data/2028201/000121390026091739/
+2026-11-04,2073516,ARC Group Acquisition II Corp.,,,S0,S-1,2026-08-20,https://www.sec.gov/Archives/edgar/data/2073516/000149315226039519/
+2026-11-04,2016221,Melar Acquisition Corp. I/Cayman,"MACI,MACIU,MACIW",,S3,S-4,2026-08-21,https://www.sec.gov/Archives/edgar/data/2016221/000121390026092711/
+2026-11-04,2115191,Live Oak Acquisition Corp. VI,,,S0,S-1,2026-08-24,https://www.sec.gov/Archives/edgar/data/2115191/000121390026093129/
+2026-11-04,2146310,Inflection Point Acquisition Corp. VIII,,,S0,S-1/A,2026-08-24,https://www.sec.gov/Archives/edgar/data/2146310/000121390026093109/
+2026-11-04,2118032,Research Alliance Corp III,RACC,S2,S3,S-4,2026-08-24,https://www.sec.gov/Archives/edgar/data/2118032/000119312526363800/
+2026-11-04,2111838,Haymaker Acquisition Corp V,,,S0,S-1,2026-08-25,https://www.sec.gov/Archives/edgar/data/2111838/000119312526363922/
+2026-11-04,2128045,Bleichroeder Acquisition Corp. III,BCCQ,S0,S2,425,2026-08-25,https://www.sec.gov/Archives/edgar/data/2128045/000121390026093231/
+2026-11-04,1853047,Hudson Acquisition I Corp.,,,S4,DEFM14A,2026-08-25,https://www.sec.gov/Archives/edgar/data/1853047/000109690626001289/
+2026-11-04,2059165,STARRY SEA ACQUISITION CORP,"SSEA,SSEAR,SSEAU",,S2,425,2026-08-26,https://www.sec.gov/Archives/edgar/data/2059165/000182912626009352/
+2026-11-04,2070887,Crown Reserve Acquisition Corp. I,"CRAC,CRACR,CRACU,CRACW",,S2,425,2026-08-26,https://www.sec.gov/Archives/edgar/data/2070887/000121390026094005/
+2026-11-04,2087087,Black Spade Acquisition III Co,"BIII,BIII-UN,BIII-WT",,S2,425,2026-08-27,https://www.sec.gov/Archives/edgar/data/2087087/000110465926102032/
+2026-11-04,2044009,Armada Acquisition Corp. II,"XRPN,XRPNU,XRPNW",S2,S4,DEFM14A,2026-08-27,https://www.sec.gov/Archives/edgar/data/2044009/000119312526371516/
+2026-11-04,2088295,Bleichroeder Acquisition Corp. II,"BBCQ,BBCQU,BBCQW",S4,S5,8-K,2026-08-27,https://www.sec.gov/Archives/edgar/data/2088295/000121390026094397/
+2026-11-04,2148436,Southport Acquisition Corp. II,,,S0,S-1/A,2026-08-28,https://www.sec.gov/Archives/edgar/data/2148436/000118518526003758/
+2026-11-04,1858939,Giant Oak Acquisition Corp,,,S0,S-1/A,2026-08-28,https://www.sec.gov/Archives/edgar/data/1858939/000110465926103090/
+2026-11-04,2089787,RainRock Acquisition Corp.,,,S0,S-1,2026-09-01,https://www.sec.gov/Archives/edgar/data/2089787/000121390026095969/
+2026-11-04,2052547,EGH Acquisition Corp.,"EGHA,EGHAR,EGHAU",,S2,425,2026-09-02,https://www.sec.gov/Archives/edgar/data/2052547/000110465926104743/
+2026-11-04,2065661,Plutonian Acquisition Corp. II,"PLUN,PLUN-RI,PLUN-UN",,S2,425,2026-09-03,https://www.sec.gov/Archives/edgar/data/2065661/000147793226005399/
+2026-11-04,2035016,Ribbon Acquisition Corp.,"RIBB,RIBBR,RIBBU",,S2,425,2026-09-03,https://www.sec.gov/Archives/edgar/data/2035016/000121390026096911/
+2026-11-04,2033991,Texas Ventures Acquisition III Corp,"TVA,TVACU,TVACW",,S2,425,2026-09-03,https://www.sec.gov/Archives/edgar/data/2033991/000110465926104926/
+2026-11-04,2124478,SMART KREATE GROUP Ltd,,,S3,F-4,2026-09-03,https://www.sec.gov/Archives/edgar/data/2124478/000149315226041291/
+2026-11-04,2148245,New Iceland Arctic Acquisition Corp.,,,S0,S-1,2026-09-04,https://www.sec.gov/Archives/edgar/data/2148245/000118518526003850/
+2026-11-04,2081468,Meshflow Acquisition Corp,"MESH,MESHU,MESHW",,S2,425,2026-09-08,https://www.sec.gov/Archives/edgar/data/2081468/000121390026097903/
+2026-11-04,2054876,NMP Acquisition Corp.,"NMP,NMPAR,NMPAU",,S2,425,2026-09-08,https://www.sec.gov/Archives/edgar/data/2054876/000121390026097872/
+2026-11-04,2131072,Harbour Island Acquisition Corp. I,,,S0,S-1,2026-09-09,https://www.sec.gov/Archives/edgar/data/2131072/000121390026098404/
+2026-11-04,2133939,Football Manager SPAC Inc.,,,S0,S-1,2026-09-09,https://www.sec.gov/Archives/edgar/data/2133939/000110465926106403/
+2026-11-04,1938570,"Blue Laser Fusion, Inc.",,,S5,8-K,2026-09-09,https://www.sec.gov/Archives/edgar/data/1938570/000119312526385826/
+2026-11-04,2131124,Elevation Acquisition Group Inc.,,,S0,S-1,2026-09-10,https://www.sec.gov/Archives/edgar/data/2131124/000175392626001740/
+2026-11-04,2141983,Allarity Acquisition Corp.,,,S0,S-1,2026-09-10,https://www.sec.gov/Archives/edgar/data/2141983/000149315226042104/
+2026-11-04,2142699,FutureCore Acquisition Corp,,,S0,S-1,2026-09-11,https://www.sec.gov/Archives/edgar/data/2142699/000182912626010047/
+2026-11-04,2024460,ChampionsGate Acquisition Corp,"CHPG,CHPGR,CHPGU",,S2,425,2026-09-11,https://www.sec.gov/Archives/edgar/data/2024460/000121390026099017/
+2026-11-04,2093524,Aperture AC,APUR,S0,S2,425,2026-09-11,https://www.sec.gov/Archives/edgar/data/2093524/000121390026098973/
+2026-11-04,2026767,Calisa Acquisition Corp,"ALIS,ALISR,ALISU",S3,S4,424B3,2026-09-11,https://www.sec.gov/Archives/edgar/data/2026767/000149315226042390/
+2026-11-04,2035016,Ribbon Acquisition Corp.,"RIBB,RIBBR,RIBBU",S2,S4,8-K,2026-09-11,https://www.sec.gov/Archives/edgar/data/2035016/000121390026099253/
+2026-11-04,2143067,Eaglesky Acquisition Corp,,,S0,S-1/A,2026-09-14,https://www.sec.gov/Archives/edgar/data/2143067/000118518526003965/
+2026-11-04,2131303,SPACCircle Acquisition Corp.,,,S0,S-1,2026-09-15,https://www.sec.gov/Archives/edgar/data/2131303/000118518526004030/
+2026-11-04,2143038,Oceanhawk Acquisition II Corp.,,,S0,S-1,2026-09-15,https://www.sec.gov/Archives/edgar/data/2143038/000118518526004010/
+2026-11-04,2001557,"Innventure, Inc.","INV,INVLW",,S2,8-K,2026-09-15,https://www.sec.gov/Archives/edgar/data/2001557/000200155726000171/
+2026-11-04,2147457,Lower Cross Acquisitions Corp,,,S0,S-1,2026-09-16,https://www.sec.gov/Archives/edgar/data/2147457/000118518526004071/
+2026-11-04,2111542,ACP Holdings Acquisition Corp.,"ACGC,ACGCU,ACGCW",,S2,425,2026-09-16,https://www.sec.gov/Archives/edgar/data/2111542/000121390026100370/
+2026-11-04,1854463,WinVest Acquisition Corp.,"WINV,WINVR,WINVU,WINVW",S2,S4,8-K,2026-09-18,https://www.sec.gov/Archives/edgar/data/1854463/000149315226043273/
+2026-11-04,2121703,FortuneX Acquisition Corp,FXAC,S0,S2,425,2026-09-22,https://www.sec.gov/Archives/edgar/data/2121703/000182912626010319/
+2026-11-04,2024203,Cayson Acquisition Corp,"CAPN,CAPNR,CAPNU",S2,S4,8-K,2026-09-23,https://www.sec.gov/Archives/edgar/data/2024203/000149315226043931/
+2026-11-04,2153598,Frazier Life Sciences Acquisition Corp. II,,,S0,S-1,2026-09-24,https://www.sec.gov/Archives/edgar/data/2153598/000119312526399703/
+2026-11-04,2028516,Archimedes Tech SPAC Partners II Co.,"ATII,ATIIU,ATIIW",S2,S4,DEFM14A,2026-09-24,https://www.sec.gov/Archives/edgar/data/2028516/000110465926110234/
+2026-11-04,2087446,Proem Acquisition Corp. I,"PAAC,PAACU,PAACW",,S2,425,2026-09-28,https://www.sec.gov/Archives/edgar/data/2087446/000121390026103792/
+2026-11-04,1852207,Bold Eagle Acquisition Corp.,"BEAG,BEAGR,BEAGU",,S2,425,2026-09-28,https://www.sec.gov/Archives/edgar/data/1852207/000121390026103760/
+2026-11-04,2085659,Silicon Valley Acquisition Corp.,"SVAQ,SVAQU,SVAQW",S2,S3,S-4,2026-09-28,https://www.sec.gov/Archives/edgar/data/2085659/000121390026104040/
+2026-11-04,2028355,Inflection Point Acquisition Corp. V,"IPEX,IPEXR,IPEXU",S4,S5,8-K,2026-09-28,https://www.sec.gov/Archives/edgar/data/2028355/000121390026103669/
+2026-11-04,2116517,MNBS Acquisition Corp.,,,S0,S-1,2026-09-29,https://www.sec.gov/Archives/edgar/data/2116517/000118518526004380/
+2026-11-04,2116105,Futurewave Acquisition Corp,FWAC,S0,S2,425,2026-09-29,https://www.sec.gov/Archives/edgar/data/2116105/000182912626010509/
+2026-11-04,2042460,Harvard Ave Acquisition Corp,"HAVA,HAVAR,HAVAU",,S2,425,2026-09-29,https://www.sec.gov/Archives/edgar/data/2042460/000121390026104699/
+2026-11-04,2140589,Laris Growth Acquisition Corp.,LARS,,S0,S-1/A,2026-09-30,https://www.sec.gov/Archives/edgar/data/2140589/000121390026105340/
+2026-11-04,2142627,BHAV Acquisition Corp II,,,S0,S-1,2026-09-30,https://www.sec.gov/Archives/edgar/data/2142627/000121390026104979/
+2026-11-04,2137679,OceanLight Acquisition Corp,OCLT,S0,S2,425,2026-09-30,https://www.sec.gov/Archives/edgar/data/2137679/000182912626010595/
+2026-11-04,2143060,Essential Minerals Acquisition Corp,,,S0,S-1/A,2026-10-01,https://www.sec.gov/Archives/edgar/data/2143060/000118518526004457/
+2026-11-04,2139831,Arca Nova Acquisition Corp,,,S0,S-1,2026-10-02,https://www.sec.gov/Archives/edgar/data/2139831/000121390026106185/
+2026-11-04,1865248,Piermont Valley Acquisition Corp,"CMCAF,CMCUF,CMCWF",,S2,425,2026-10-02,https://www.sec.gov/Archives/edgar/data/1865248/000147793226006022/
+2026-11-04,2014982,SIM Acquisition Corp. I,"SIMA,SIMAU,SIMAW",,S2,425,2026-10-05,https://www.sec.gov/Archives/edgar/data/2014982/000121390026106666/
+2026-11-04,2151808,TANG CAPITAL ACQUISITION CORP.,,,S0,S-1,2026-10-06,https://www.sec.gov/Archives/edgar/data/2151808/000119312526415765/
+2026-11-04,2024459,Charlton Aria Acquisition Corp,"CHAR,CHARR,CHARU",,S2,425,2026-10-07,https://www.sec.gov/Archives/edgar/data/2024459/000121390026107415/
+2026-11-04,2028201,Columbus Acquisition Corp/Cayman Islands,"COLA,COLAR,COLAU",S4,S5,8-K,2026-10-07,https://www.sec.gov/Archives/edgar/data/2028201/000121390026107578/
+2026-11-04,2154056,Calm Seas Acquisition Corp.,CSEA,,S0,S-1/A,2026-10-08,https://www.sec.gov/Archives/edgar/data/2154056/000119312526417752/
+2026-11-04,2040381,Pioneer Acquisition I Corp,"PACH,PACHU,PACHW",,S2,425,2026-10-08,https://www.sec.gov/Archives/edgar/data/2040381/000182912626010911/
+2026-11-04,2033991,Texas Ventures Acquisition III Corp,"TVA,TVACU,TVACW",S2,S3,S-4,2026-10-09,https://www.sec.gov/Archives/edgar/data/2033991/000119312526418671/
+2026-11-04,1946021,Horizon Space Acquisition I Corp.,"HSPOF,HSPUF,HSPWF",,S2,425,2026-10-13,https://www.sec.gov/Archives/edgar/data/1946021/000192998026000543/
+2026-11-04,2070900,Quantumsphere Acquisition Corp,"QUMS,QUMSR,QUMSU",,S2,425,2026-10-13,https://www.sec.gov/Archives/edgar/data/2070900/000182912626011073/
+2026-11-04,1978528,Quetta Acquisition Corp,"QETA,QETAR,QETAU",S2,S4,8-K,2026-10-13,https://www.sec.gov/Archives/edgar/data/1978528/000149315226046641/
+2026-11-04,2138170,Spring Valley Acquisition Corp. V,,,S0,S-1/A,2026-10-14,https://www.sec.gov/Archives/edgar/data/2138170/000121390026109177/
+2026-11-04,2069238,Pyrophyte Acquisition Corp. II,"PAII,PAII-UN,PAII-WT",,S2,425,2026-10-15,https://www.sec.gov/Archives/edgar/data/2069238/000121390026109601/
+2026-11-04,2153598,Frazier Life Sciences Acquisition Corp. II,FLSC,S0,S2,8-K,2026-10-15,https://www.sec.gov/Archives/edgar/data/2153598/000119312526422919/
+2026-11-04,2149916,TCGX Acquisition Corp. II,TCXB,,S0,424B4,2026-10-16,https://www.sec.gov/Archives/edgar/data/2149916/000119312526424217/
+2026-11-04,2149916,TCGX Acquisition Corp. II,TCXB,S0,S2,8-K,2026-10-19,https://www.sec.gov/Archives/edgar/data/2149916/000119312526425355/
+2026-11-04,1903392,ClimateRock,CLRCF,,S2,425,2026-10-20,https://www.sec.gov/Archives/edgar/data/1903392/000121390026110876/
+2026-11-04,2134856,Xterax Corp II,XTER,S2,S4,8-K,2026-10-20,https://www.sec.gov/Archives/edgar/data/2134856/000182912626011343/
+2026-11-04,2033991,Texas Ventures Acquisition III Corp,"TVA,TVACU,TVACW",S3,S4,8-K,2026-10-20,https://www.sec.gov/Archives/edgar/data/2033991/000110465926116990/
+2026-11-04,2085485,APEX Tech Acquisition Inc.,"TRAD,TRAD-RI,TRAD-UN",,S2,425,2026-10-21,https://www.sec.gov/Archives/edgar/data/2085485/000149315226047838/
+2026-11-04,2059165,STARRY SEA ACQUISITION CORP,"SSEA,SSEAR,SSEAU",S2,S4,8-K,2026-10-21,https://www.sec.gov/Archives/edgar/data/2059165/000182912626011369/
+2026-11-04,2029976,K&F GROWTH ACQUISITION CORP. II,"KFII,KFIIR,KFIIU",,S2,425,2026-10-22,https://www.sec.gov/Archives/edgar/data/2029976/000121390026111520/
+2026-11-04,2024459,Charlton Aria Acquisition Corp,"CHAR,CHARR,CHARU",S2,S4,8-K,2026-10-22,https://www.sec.gov/Archives/edgar/data/2024459/000121390026111715/
+2026-11-04,2145371,"IPFX Pubco, Inc.",,,S3,S-4/A,2026-10-23,https://www.sec.gov/Archives/edgar/data/2145371/000121390026111830/
+2026-11-04,2059654,Blue Acquisition Corp/Cayman,"BACC,BACCR,BACCU",S2,S4,DEFM14A,2026-10-23,https://www.sec.gov/Archives/edgar/data/2059654/000118518526004976/
+2026-11-04,2045931,"Aimei Health Technology II Co., Ltd.",,,S0,S-1/A,2026-10-26,https://www.sec.gov/Archives/edgar/data/2045931/000192998026000558/
+2026-11-04,2112457,Amanat Acquisition Corp.,AMAN,S0,S2,425,2026-10-26,https://www.sec.gov/Archives/edgar/data/2112457/000121390026112239/
+2026-11-04,2098712,GigCapital9 Corp.,"GIX,GIXXR,GIXXU",,S2,425,2026-10-26,https://www.sec.gov/Archives/edgar/data/2098712/000119312526431191/
+2026-11-04,1141964,PUBLIC CO MANAGEMENT CORP,PCMC,S2,S3,S-4,2026-10-26,https://www.sec.gov/Archives/edgar/data/1141964/000121465926013177/
+2026-11-04,1912165,Heroic Empire Acquisition Ltd,,,S0,S-1,2026-10-27,https://www.sec.gov/Archives/edgar/data/1912165/000149315226048656/
+2026-11-04,2152549,Redwoods Acquisition Corp II,,,S0,S-1,2026-10-29,https://www.sec.gov/Archives/edgar/data/2152549/000147793226006519/
+2026-11-04,2145371,"IPFX Pubco, Inc.",,S3,S4,424B3,2026-10-29,https://www.sec.gov/Archives/edgar/data/2145371/000121390026113410/
+2026-11-04,1903392,ClimateRock,CLRCF,S2,S4,8-K,2026-10-29,https://www.sec.gov/Archives/edgar/data/1903392/000121390026113900/
+2026-11-04,2147831,UCSB Acquisition Corp.,,,S0,S-1,2026-10-30,https://www.sec.gov/Archives/edgar/data/2147831/000121390026114455/
+2026-11-04,2149780,"Quantum Space, LLC",,,S2,425,2026-10-30,https://www.sec.gov/Archives/edgar/data/2149780/000121390026114522/
+2026-11-04,2090452,FG Imperii Acquisition Corp.,"FGII,FGIIU,FGIIW",,S2,425,2026-11-02,https://www.sec.gov/Archives/edgar/data/2090452/000121390026114943/
+2026-11-04,2133719,NorthStrive Acquisition Corp I.,"NSAI,NSAIU",S0,S2,425,2026-11-02,https://www.sec.gov/Archives/edgar/data/2133719/000121390026114917/
+2026-11-04,2043508,Lake Superior Acquisition Corp,"LKSP,LKSPR,LKSPU",,S2,8-K,2026-11-04,https://www.sec.gov/Archives/edgar/data/2043508/000147793226006625/
+2026-11-04,2142627,BHAV Acquisition Corp II,BHAI,S0,S2,8-K,2026-11-02,https://www.sec.gov/Archives/edgar/data/2142627/000121390026114623/
+2026-11-04,2109869,Exascale Labs Holdings Inc.,"XLAB,XLABW",S3,S4,424B3,2026-07-07,https://www.sec.gov/Archives/edgar/data/2109869/000182912626007331/
+2026-11-04,2109869,Exascale Labs Holdings Inc.,"XLAB,XLABW",S4,S5,8-K,2026-09-02,https://www.sec.gov/Archives/edgar/data/2109869/000182912626009632/
+2026-11-04,1998781,IB Acquisition Corp.,"IBAC,IBACR",S3,S4,8-K,2026-09-30,https://www.sec.gov/Archives/edgar/data/1998781/000149315226044947/
+2026-11-04,2016221,Melar Acquisition Corp. I/Cayman,"MACI,MACIU,MACIW",S3,S4,424B3,2026-10-02,https://www.sec.gov/Archives/edgar/data/2016221/000121390026106542/
+2026-11-04,2101833,"Forge Nano Holdings, Inc.",NANO,S2,S3,S-4/A,2026-07-24,https://www.sec.gov/Archives/edgar/data/2101833/000110465926086700/
+2026-11-04,2101833,"Forge Nano Holdings, Inc.",NANO,S3,S4,424B3,2026-09-24,https://www.sec.gov/Archives/edgar/data/2101833/000110465926110231/
+2026-11-04,2101833,"Forge Nano Holdings, Inc.",NANO,S4,S5,8-K,2026-10-27,https://www.sec.gov/Archives/edgar/data/2101833/000110465926119178/
+2026-11-04,1816937,BOXABL Corp.,,S2,S4,DEFM14A,2026-05-13,https://www.sec.gov/Archives/edgar/data/1816937/000110465926059602/
+2026-11-04,2087087,Black Spade Acquisition III Co,"BIII,BIII-UN,BIII-WT",S2,S3,F-4,2026-10-15,https://www.sec.gov/Archives/edgar/data/2087087/000121390026109899/
+2026-11-04,1852207,Bold Eagle Acquisition Corp.,"BEAG,BEAGR,BEAGU",S2,S4,8-K,2026-10-26,https://www.sec.gov/Archives/edgar/data/1852207/000121390026112559/
+2026-11-04,2074973,Churchill Capital Corp XI,"CCXI,CCXIU,CCXIW",S2,S3,S-4,2026-09-04,https://www.sec.gov/Archives/edgar/data/2074973/000121390026097764/
+2026-11-04,2074973,Churchill Capital Corp XI,"CCXI,CCXIU,CCXIW",S3,S4,424B3,2026-10-13,https://www.sec.gov/Archives/edgar/data/2074973/000121390026109058/
+2026-11-04,2088805,Inflection Point Acquisition Corp. VII,"CMII,CMIIU,CMIIW",S2,S4,8-K,2026-08-26,https://www.sec.gov/Archives/edgar/data/2088805/000121390026093821/
+2026-11-04,2079013,Hall Chadwick Acquisition Corp,"HCAC,HCACR,HCACU",S2,S3,S-4,2026-10-01,https://www.sec.gov/Archives/edgar/data/2079013/000182912626010648/
+2026-11-04,2113060,IQM Quantum Computers Oyj,IQMX,S2,S3,F-4,2026-05-14,https://www.sec.gov/Archives/edgar/data/2113060/000119312526222654/
+2026-11-04,2113060,IQM Quantum Computers Oyj,IQMX,S3,S4,424B3,2026-06-05,https://www.sec.gov/Archives/edgar/data/2113060/000119312526259957/
+2026-11-04,2102041,Inflection Point Acquisition Corp. VI,"IPFX,IPFXU,IPFXW",S2,S3,S-4/A,2026-10-23,https://www.sec.gov/Archives/edgar/data/2102041/000121390026111830/
+2026-11-04,2102041,Inflection Point Acquisition Corp. VI,"IPFX,IPFXU,IPFXW",S3,S4,424B3,2026-10-29,https://www.sec.gov/Archives/edgar/data/2102041/000121390026113410/
+2026-11-04,2102713,Kensington Capital Acquisition Corp. VI,"KCA-UN,KCAC-UN,KCAC-WT",S2,S3,S-4,2026-09-18,https://www.sec.gov/Archives/edgar/data/2102713/000119312526394814/
+2026-11-04,2023676,Launch Two Acquisition Corp.,"LPBB,LPBBU,LPBBW",S2,S3,S-4,2026-09-11,https://www.sec.gov/Archives/edgar/data/2023676/000121390026099372/
+2026-11-04,2023676,Launch Two Acquisition Corp.,"LPBB,LPBBU,LPBBW",S3,S4,8-K,2026-10-09,https://www.sec.gov/Archives/edgar/data/2023676/000121390026108504/
+2026-11-04,2149218,"Mobilewalla Holdco, Inc.",,S2,S3,S-4/A,2026-10-16,https://www.sec.gov/Archives/edgar/data/2149218/000119312526424301/
+2026-11-04,2028027,Newbury Street II Acquisition Corp,"NTWO,NTWOU,NTWOW",S2,S4,8-K,2026-11-03,https://www.sec.gov/Archives/edgar/data/2028027/000118518526005146/
+2026-11-04,2079180,Parataxis Holdings Inc.,,S2,S3,S-4/A,2026-05-14,https://www.sec.gov/Archives/edgar/data/2079180/000110465926060958/
+2026-11-04,1884046,Spark I Acquisition Corp,"SPKL,SPKLU,SPKLW",S2,S4,8-K,2026-09-29,https://www.sec.gov/Archives/edgar/data/1884046/000110465926111988/
+2026-11-04,2134552,US Elemental Inc.,ULIT,S2,S3,S-4/A,2026-06-26,https://www.sec.gov/Archives/edgar/data/2134552/000121390026072698/
+2026-11-04,2080023,"NorthStar Earth & Space Enterprises, Inc.","VACI,VACI-UN,VACI-WT",S2,S3,F-4,2026-06-25,https://www.sec.gov/Archives/edgar/data/2080023/000121390026071664/
+2026-11-04,2080023,"NorthStar Earth & Space Enterprises, Inc.","VACI,VACI-UN,VACI-WT",S3,S4,424B3,2026-08-12,https://www.sec.gov/Archives/edgar/data/2080023/000121390026088471/
