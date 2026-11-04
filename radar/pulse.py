@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -47,7 +47,7 @@ CLASSES = [("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -323,6 +323,43 @@ def fetch_shorts(st, days=2):
     return out
 
 
+def fetch_spac(st):
+    """테마가 맞은 스팩의 생애 단계 전환(마스터 지시 2026-11-04 SPAC 2단계) — radar/pollers/spac_watch.py(단계)·spac_theme.py(테마)의 결과.
+    transitions.csv는 덧붙이기만 하므로 처리한 줄 수를 st["spac_idx"]에 둔다. 테마 판정 전인 줄에서 멈춰 다음 회차에 다시 본다.
+    처음 켤 때는 지금까지의 줄을 '본 것'으로 친다(과거 수백 건을 한꺼번에 보내지 않게)"""
+    import csv
+    d = common.ROOT / "knowledge" / "models" / "spac"
+    if not (d / "transitions.csv").exists():
+        return []
+    with (d / "transitions.csv").open(encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    if "spac_idx" not in st:
+        st["spac_idx"] = len(rows)
+        return []
+    themes = {}
+    if (d / "themes.csv").exists():
+        with (d / "themes.csv").open(encoding="utf-8", newline="") as f:
+            themes = {r["cik"]: r for r in csv.DictReader(f)}
+    stages = set((common.load_yaml("config/spac.yaml") or {}).get("alert_stages") or [])
+    label = {"S2": "확정 계약", "S3": "등록", "S4": "주총", "S5": "종결"}
+    out, i = [], st["spac_idx"]
+    while i < len(rows):
+        r = rows[i]
+        if r["to"] in stages and r["cik"] not in themes:
+            break   # 테마 판정 대기
+        th = themes.get(r["cik"]) or {}
+        old = (r.get("filed") or "") < (common.now_kst().date() - timedelta(days=7)).isoformat()   # 후속 추적이 늦게 찾은 옛 서류는 알리지 않는다
+        if r["to"] in stages and th.get("theme") and not old:
+            tk = (r["tickers"] or "").split(",")[0]
+            out.append({"source_id": "src-spac", "source_class": "SPAC", "url": r["url"],
+                        "title": f"[SPAC {label.get(r['to'], r['to'])}] {r['name']}" + (f" {tk}" if tk else "") + f" — {th.get('target') or '피인수 기업 미확인'} · {th['theme']}",
+                        "published_at": r["filed"], "detected_at": common.iso(common.now_kst()), "language": "en", "ticker": tk, "entities_matched": [],
+                        "snippet": f"{r['from'] or '신규'}→{r['to']} · {r['form']} · 테마 어휘 {th.get('terms', '')} ({th.get('hits')}회) · 거래 서류 {th.get('doc', '')}"})
+        i += 1
+    st["spac_idx"] = i
+    return out
+
+
 def fetch_new_listings(st, days=3):
     """신규 상장(424B4·S-1) 중 AI·반도체·데이터센터 전력 업종(SIC)·감시 목록 밖 — Cerebras(2026-05 상장)가 감시 목록에 없던 구멍 보완"""
     today = common.now_kst().date()
@@ -522,7 +559,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("소비재", fetch_consumer_spikes)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes)):
         try:
             sources += fn(st)
         except Exception as exc:

@@ -1,0 +1,15 @@
+# SPAC 테마 판정·알림 (radar/pollers/spac_theme.py, 마스터 지시 2026-11-04 2단계, 설계 knowledge/methods/spac_discovery_design.md 2절)
+# 피인수 기업 사업 문구를 Chiip 테마 어휘와 대조한다. 정규식 단어(대소문자 무시). 사전값 — 오탐·누락은 themes.csv로 점검해 고친다
+themes:
+  AI·반도체: ['semiconductor', 'chip(?:s|set|maker)?', '\bGPU', 'AI infrastructure', 'artificial intelligence', 'machine learning', 'data cent(?:er|re)s?', 'photonic', 'optical interconnect', 'silicon', 'wafer', 'inference', 'accelerator', 'HBM', 'memory chip', 'compute capacity', 'AI chips?']
+  전력·에너지 인프라: ['power generation', 'power grid', 'electric grid', 'nuclear', 'small modular reactor', '\bSMR', 'fusion', 'energy storage', 'battery', 'microgrid', 'natural gas', 'turbine', 'transmission', 'uranium', 'geothermal', 'electrification']
+  우주·위성: ['space (?:company|economy|infrastructure|station|industry|technolog\w*|systems?|domain|launch)', 'in-space', 'spaceport', 'satellite', 'launch vehicle', 'low Earth orbit', 'orbital', 'lunar', 'spacecraft']   # 맨 'space'는 사무 공간·여유 공간에 걸린다(2026-11-04 오탐)
+  로봇·자율: ['robot(?:s|ics)?', 'humanoid', 'autonomous', 'drone', 'eVTOL', 'industrial automation']
+  양자: ['quantum']
+  방산: ['defense', 'defence', 'missile', 'munition', 'national security', 'Department of War', 'Department of Defense']
+min_hits: 3            # 한 테마 단어가 서류 본문에서 이만큼 이상 나와야 일치
+min_terms: 2           # 서로 다른 어휘가 이만큼 이상(한 단어 반복만으로는 일치로 보지 않는다)
+single_term: {양자: 8, 로봇·자율: 8}   # 어휘가 사실상 한 단어인 테마 — 그 단어가 이만큼 이상 나오면 한 단어로도 일치(CCXI 휴머노이드 'robot' 10회, 2026-11-04)
+max_chars: 80000       # 서류당 읽는 글자 수(첫 부분 — 거래 개요·피인수 기업 소개가 앞에 있다)
+max_docs: 2            # 거래 서류 중 읽을 문서 수(EX-99.1 보도자료 우선, 다음 본문)
+alert_stages: [S2, S3, S4, S5]   # Pulse 알림 단계(상장 S0은 테마 판정 대상 아님 — 목표 업종 문구만 있어 오탐이 크다)

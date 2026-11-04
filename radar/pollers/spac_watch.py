@@ -206,6 +206,15 @@ def run(days=2, today=None):
                 w.writerow(["seen", "cik", "name", "tickers", "from", "to", "form", "filed", "url"])
             w.writerows(trans)
     common.save_state("spac_watch", {"adsh": sorted(seen)[-20000:]})
+    if trans:   # 새 전환은 바로 테마 판정 — Pulse(fetch_spac)가 판정 전 줄에서 기다리지 않게
+        try:
+            from . import spac_theme
+        except ImportError:
+            import spac_theme
+        try:
+            spac_theme.run(limit=20)
+        except Exception as e:
+            errors.append(f"테마 판정: {type(e).__name__}")
     common.record_health("src-spac-watch", len(errors) < len(QUERIES), "; ".join(errors) or None)
     return {"filings": n, "transitions": len(trans), "spacs": len(reg), "errors": errors,
             "by_stage": {LABEL[k]: sum(1 for r in reg.values() if r["stage"] == k) for k in ("S0", "S2", "S3", "S4", "S5")}}
