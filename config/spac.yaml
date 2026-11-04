@@ -13,3 +13,13 @@ single_term: {양자: 8, 로봇·자율: 8}   # 어휘가 사실상 한 단어�
 max_chars: 80000       # 서류당 읽는 글자 수(첫 부분 — 거래 개요·피인수 기업 소개가 앞에 있다)
 max_docs: 2            # 거래 서류 중 읽을 문서 수(EX-99.1 보도자료 우선, 다음 본문)
 alert_stages: [S2, S3, S4, S5]   # Pulse 알림 단계(상장 S0은 테마 판정 대상 아님 — 목표 업종 문구만 있어 오탐이 크다)
+# ── 3단계 비대칭 점수(scripts/tenbagger/spac_score.py, 마스터 지시 2026-11-04 "3단계 진행") — 등록부 prm-spac-*, 모두 사전값 ──
+score:
+  floor_premium_max: 0.03     # 신탁가 대비 프리미엄이 이 이하면 '바닥 인정'(주총 전 환매권)
+  projection_haircut: 0.5     # 스팩 경영진 전망 할인(전망 과대 경향 — Dambra, Even-Tov & George 2021; Kiesel 등 2023)
+  overhang_days: 180          # 이 기간 안 보호예수 해제를 오버행으로 센다
+  candidate_min: 6.0          # Ten-bagger 연구 후보 문턱
+  kill_cap: 2.0               # 킬 조건이 있으면 점수 상한
+  weights:
+    pre_vote:   {floor: 0.20, dilution: 0.25, edge: 0.15, value: 0.25, overhang: 0.10, attention: 0.05}   # 주총 전(S2~S4) — 바닥·희석·가치 중심
+    post_close: {dilution: 0.10, edge: 0.30, value: 0.30, overhang: 0.25, attention: 0.05}              # 종결 뒤(S5~) — 바닥 없음, 사업·가치·오버행 중심

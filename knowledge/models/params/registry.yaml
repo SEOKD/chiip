@@ -533,7 +533,7 @@ params:
   status: proposed
   prior:
     value: null
-    basis: 다모다란 월간 내재 ERP(공개) — 값 미입력, model-lab이 출처·날짜와 함께 등록
+    basis: 다모다란 월간 내재 ERP(공개) — 값 미입력, model-lab이 출처·날짜와 함께 등록. 2026-11-04 확인 — prm-v2-erp(valuation.v2)가 같은 값을 config/valuation_v2.yaml에 묶어 관리하는 중복 항목. 값은 그쪽만 갱신한다(정리는 마스터 몫)
     source: null
   fit:
     method: 월 1회 공개값 갱신
@@ -657,18 +657,18 @@ params:
 - id: prm-v2-erp
   model: valuation.v2
   binding: config/valuation_v2.yaml#regime_priors.erp.value
-  value: 0.042
+  value: 0.0441
   unit: 비율
   status: prior
   prior:
-    value: 0.042
-    basis: Damodaran 월간 내재 ERP 2026-10-01(TTM·조정 배당) — 피팅하지 않고 월 1회 공개값으로 갱신
-    source: null
+    value: 0.0441
+    basis: Damodaran 월간 내재 ERP 2026-11-01 = 4.41%(TTM·조정 배당, 무위험 미 국채 5.29%). 다른 산정 3.39~5.81%(정규화 이익 3.39·순현금 3.43·TTM 현금 3.79·10년 평균 CF 5.81). 전월 4.20%. 피팅하지 않고 월 1회 공개값으로 갱신 — 2026-11-04 원문 확인
+    source: https://pages.stern.nyu.edu/~adamodar/New_Home_Page/home.htm
   fit:
     method: 월 1회 공개값 갱신
     target: null
     data: null
-    last_fit: null
+    last_fit: 2026-11-04
     oos_metric: null
 - id: prm-v2-fade-narrow
   model: valuation.v2
@@ -3452,6 +3452,86 @@ params:
     method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
     target: 실적일 AR·이후 표류
     data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-score-floor-premium-max
+  model: spac.score
+  binding: config/spac.yaml#score.floor_premium_max
+  value: 0.03
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.03
+    basis: 주총 전 바닥 인정 프리미엄 상한
+    source: 스팩 환매권 구조(Gahng, Ritter & Zhang 2023 RFS)
+  fit:
+    method: 4단계 과거 표본(2021~2025 종결 스팩)의 단계별 이후 수익으로 표본 외 점검
+    target: 스팩 단계 진입 후 6·12개월 수익
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-score-projection-haircut
+  model: spac.score
+  binding: config/spac.yaml#score.projection_haircut
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: 스팩 경영진 전망 할인
+    source: Dambra, Even-Tov & George(2021); Kiesel 등(2023)
+  fit:
+    method: 4단계 과거 표본(2021~2025 종결 스팩)의 단계별 이후 수익으로 표본 외 점검
+    target: 스팩 단계 진입 후 6·12개월 수익
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-score-overhang-days
+  model: spac.score
+  binding: config/spac.yaml#score.overhang_days
+  value: 180
+  unit: 일
+  status: prior
+  prior:
+    value: 180
+    basis: 오버행 창
+    source: IPO·스팩 보호예수 관행 180일
+  fit:
+    method: 4단계 과거 표본(2021~2025 종결 스팩)의 단계별 이후 수익으로 표본 외 점검
+    target: 스팩 단계 진입 후 6·12개월 수익
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-score-candidate-min
+  model: spac.score
+  binding: config/spac.yaml#score.candidate_min
+  value: 6.0
+  unit: 점
+  status: prior
+  prior:
+    value: 6.0
+    basis: Ten-bagger 연구 후보 문턱
+    source: 치입 운영 가정
+  fit:
+    method: 4단계 과거 표본(2021~2025 종결 스팩)의 단계별 이후 수익으로 표본 외 점검
+    target: 스팩 단계 진입 후 6·12개월 수익
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-score-kill-cap
+  model: spac.score
+  binding: config/spac.yaml#score.kill_cap
+  value: 2.0
+  unit: 점
+  status: prior
+  prior:
+    value: 2.0
+    basis: 킬 조건 점수 상한
+    source: 치입 운영 가정
+  fit:
+    method: 4단계 과거 표본(2021~2025 종결 스팩)의 단계별 이후 수익으로 표본 외 점검
+    target: 스팩 단계 진입 후 6·12개월 수익
+    data: knowledge/models/spac/
     last_fit: null
     oos_metric: null
 - id: prm-tb-rate-sb-dcf

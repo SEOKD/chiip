@@ -22,3 +22,4 @@
 
 - **SPAC 감지 1단계**(2026-11-04 마스터 지시, 설계 `knowledge/methods/spac_discovery_design.md`): `radar/pollers/spac_watch.py`가 30분마다 SEC 전문 검색(SIC 6770)으로 스팩 서류를 받아 생애 단계(S0 상장·S2 확정 계약·S3 등록·S4 주총·S5 종결)를 매기고, 계약 뒤 SIC가 바뀐 S2~S4 스팩은 3시간마다 자체 제출 목록으로 따라간다. 장부 `knowledge/models/spac/registry.csv`·`transitions.csv`. 알림·테마 판정은 2단계.
 - **SPAC 2단계**(2026-11-04): `radar/pollers/spac_theme.py`가 확정 계약 이후 스팩의 거래 서류로 피인수 기업 테마를 판정(`config/spac.yaml` 어휘, 결과 `knowledge/models/spac/themes.csv`)하고, `radar/pulse.py fetch_spac`이 테마가 맞은 단계 전환만 Pulse 원본 'SPAC'(🧩)으로 넘긴다.
+- **SPAC 3단계**(2026-11-04): `scripts/tenbagger/spac_score.py` — 바닥(환매 전만)·희석(주당 순현금)·사업 엣지·가치(할인 전망 EV/매출 vs 동종, 없으면 공정성 의견)·오버행·관심 6요인, 주총 전/종결 뒤 가중 따로, 킬 조건 상한. 6.0 이상·테마 일치는 Ten-bagger 연구 후보(`candidates.json`), datapack은 회차당 2건씩 서류로 채운다.
