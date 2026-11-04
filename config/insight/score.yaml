@@ -8,5 +8,9 @@ params:
   cap_conviction: 2        # 컨빅션 몫 상한
   materiality_cuts: [10, 3, 1]   # 시총·매출·EV 대비 % — 이상이면 3·2·1점
   conviction_cuts: [8, 5]        # 컨빅션 10점 → 몫 2·1
-  lead_threshold: 7        # 이 점수 이상이면 판단을 맨 위에, 예측 등록
+  # 2026-11-04 재설계(마스터 승인 "설계안대로 진행"): 인사이트 = 해석 품질, 컨빅션 = 방향 적중 확률. 옛 항목(cap_*·cuts)은 옛 호출용으로 남긴다
+  interp_caps: {chain: 3, bridge: 2, priced: 2, nonobvious: 2, falsifier: 1}   # 합 10
+  conviction_prior: [0.50, 0.80]   # 보정 전 원점수 0→50%, 10→80%(사전값 — 방향 예측 기저율 근처에서 시작, 과신 방지)
+  calib_min_oos: 30                # 보정식 채택: 표본 외 이 건수 이상 + 브라이어 점수가 사전 사상보다 낮을 때만
+  lead_threshold: 7       # 이 점수 이상이면 판단을 맨 위에, 예측 등록
   fact_threshold: 4        # 미만이면 사실만

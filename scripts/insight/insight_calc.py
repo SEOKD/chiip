@@ -130,6 +130,50 @@ def score(novelty, materiality_pts, mispricing, confidence):
     return {"score": s, "lead_with_view": s >= p["lead_threshold"], "fact_only": s < p["fact_threshold"], "prediction_required": s >= p["lead_threshold"]}
 
 
+def interp(chain, bridge_pts, priced_pts, nonobvious, falsifier):
+    """인사이트 10점 = 해석 품질(마스터 지시 2026-11-04 "인사이트는 해당 정보를 얼마나 잘 해석했는지를 정량화").
+    정보의 크기(중요도)는 넣지 않는다 — 그것은 보낼지 말지의 관문(materiality)이다.
+      chain      인과 사슬: 사건→실적 동인→실적→가치 중 근거와 함께 이은 고리 수(0~3)
+      bridge     정량 다리: 2 EPS·가치 영향까지 계산 · 1 규모만 · 0 없음
+      priced     가격 반영 판정: 2 컨센서스·주가 반응 대비 반영 정도를 숫자로 판정 · 1 정성 판정 · 0 없음
+      nonobvious 비자명성: 2 헤드라인에 없는 2차 효과·반대 해석을 근거와 함께 · 1 근거 없이 언급 · 0 없음
+      falsifier  반증 조건·다음 확인 사건을 적었나 0~1"""
+    p = P()["interp_caps"]
+    pts = {"chain": min(chain, p["chain"]), "bridge": min(bridge_pts, p["bridge"]), "priced": min(priced_pts, p["priced"]),
+           "nonobvious": min(nonobvious, p["nonobvious"]), "falsifier": min(falsifier, p["falsifier"])}
+    s = sum(pts.values())
+    q = P()
+    return {"insight": s, "points": pts, "lead_with_view": s >= q["lead_threshold"], "fact_only": s < q["fact_threshold"], "prediction_required": s >= q["lead_threshold"]}
+
+
+def _sigmoid(x):
+    return 1 / (1 + math.exp(-x))
+
+
+def calibration():
+    """채택된 보정식(score_ledger.py calibrate --adopt가 표본 외 관문을 넘겼을 때만 쓴다). 없으면 None"""
+    f = ROOT / "knowledge" / "models" / "insight" / "calibration.json"
+    return json.loads(f.read_text(encoding="utf-8")) if f.exists() else None
+
+
+def conviction2(open_links, source, corroboration, expertise, model):
+    """컨빅션 = 이 해석이 시장 방향(5거래일 초과수익의 부호)과 맞을 확률 × 10(마스터 지시 2026-11-04 "확신도는 사고 논리·정보 기반 전문 지식·
+    고도화된 모델링을 종합했을 때 해석이 시장 방향성과 일치하는 정도에 비례해야"). 5.0 = 동전 던지기, 그 아래는 쓰지 않는다(방향을 뒤집어야 할 판단).
+    원점수 10 = 논리(3 − 미검증 금지표 고리, 0~3) + 증거(출처 0~2 + 독립 확인 0~1) + 전문성(0~2: 분야 모듈·양산 공정 관점 적용)
+             + 모델(0~2: 1 밸류 다리·모델 계산 · 2 표본 외 검증된 모델로 계산).
+    확률: 보정식이 채택돼 있으면 시그모이드(a + b·원점수), 아니면 사전 선형 사상 p_floor~p_ceil('보정 전')"""
+    pts = {"logic": max(3 - open_links, 0), "evidence": min(source, 2) + min(corroboration, 1), "expertise": min(expertise, 2), "model": min(model, 2)}
+    raw = sum(pts.values())
+    cal = calibration()
+    if cal:
+        p, status = _sigmoid(cal["a"] + cal["b"] * raw), f"보정({cal.get('n', '?')}건)"
+    else:
+        lo, hi = P()["conviction_prior"]
+        p, status = lo + (hi - lo) * raw / 10, "보정 전"
+    p = max(0.5, min(p, 0.99))
+    return {"conviction": round(10 * p, 1), "p_hit": round(p, 3), "raw": raw, "points": pts, "status": status}
+
+
 def baserate(key):
     import yaml
     d = yaml.safe_load((ROOT / "config" / "insight" / "base_rates.yaml").read_text(encoding="utf-8"))
@@ -175,6 +219,15 @@ def main(argv):
     c.add_argument("--corroboration", type=int, required=True)
     c.add_argument("--open-links", type=int, required=True)
     c.add_argument("--numbers", type=int, required=True)
+    i = sp.add_parser("insight")   # 2026-11-04 재설계 — 해석 품질
+    for k in ("chain", "bridge", "priced", "nonobvious", "falsifier"):
+        i.add_argument(f"--{k}", type=float, required=True)
+    v = sp.add_parser("conviction2")   # 2026-11-04 재설계 — 방향 적중 확률
+    v.add_argument("--open-links", type=int, required=True)
+    v.add_argument("--source", type=int, required=True)
+    v.add_argument("--corroboration", type=int, required=True)
+    v.add_argument("--expertise", type=int, required=True)
+    v.add_argument("--model", type=int, required=True)
     r = sp.add_parser("baserate")
     r.add_argument("key")
     d = sp.add_parser("diffusion")
@@ -194,6 +247,10 @@ def main(argv):
         out = score(a.novelty, a.materiality, a.mispricing, conviction_points(a.conviction) if a.conviction is not None else a.confidence or 0)
     elif a.cmd == "conviction":
         out = conviction(a.source, a.corroboration, a.open_links, a.numbers)
+    elif a.cmd == "insight":
+        out = interp(a.chain, a.bridge, a.priced, a.nonobvious, a.falsifier)
+    elif a.cmd == "conviction2":
+        out = conviction2(a.open_links, a.source, a.corroboration, a.expertise, a.model)
     elif a.cmd == "baserate":
         out = baserate(a.key)
     else:

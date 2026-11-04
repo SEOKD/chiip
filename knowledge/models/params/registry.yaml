@@ -2782,6 +2782,54 @@ params:
     data: knowledge/models/insight/score_ledger.csv
     last_fit: null
     oos_metric: null
+- id: prm-insight-interp-caps
+  model: insight.interp
+  binding: config/insight/score.yaml#params.interp_caps
+  value: {chain: 3, bridge: 2, priced: 2, nonobvious: 2, falsifier: 1}
+  unit: 점(합 10)
+  status: prior
+  prior:
+    value: {chain: 3, bridge: 2, priced: 2, nonobvious: 2, falsifier: 1}
+    basis: 인사이트 = 해석 품질(2026-11-04 마스터 재정의) — 인과 사슬에 가장 큰 몫, 반증은 있음/없음
+    source: 치입 운영 가정 — 문헌 값 미확인
+  fit:
+    method: 항목별 점수와 발송 후 5거래일 방향 적중·|AR|의 단조성, 중첩 표본 외
+    target: Pulse 건 발송 후 5거래일 비정상 수익률
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-conviction-prior
+  model: insight.conviction
+  binding: config/insight/score.yaml#params.conviction_prior
+  value: [0.50, 0.80]
+  unit: 방향 적중 확률(원점수 0·10)
+  status: prior
+  prior:
+    value: [0.50, 0.80]
+    basis: 보정 전 사상 — 동전 던지기에서 시작해 최고 80%로 묶어 과신을 막는다(전문가 예측의 과신 경향)
+    source: Tetlock(2005) Expert Political Judgment; Brier(1950) Monthly Weather Review 78(1) — 확률 예측의 보정 평가
+  fit:
+    method: 원점수 → 적중 로지스틱(능형 벌점), 시간순 앞 70% 적합·뒤 30% 표본 외 브라이어 비교(score_ledger.py calibrate)
+    target: 방향을 낸 Pulse 건(dir≠0)의 5거래일 AR 부호 적중
+    data: knowledge/models/insight/score_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insight-calib-min-oos
+  model: insight.conviction
+  binding: config/insight/score.yaml#params.calib_min_oos
+  value: 30
+  unit: 건
+  status: prior
+  prior:
+    value: 30
+    basis: 등록부 adoption.min_oos_n과 같은 값
+    source: 치입 운영 가정
+  fit:
+    method: 고정(채택 관문)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
