@@ -1,0 +1,19 @@
+# 텔레그램 피드 가독성 채점 상수(마스터 지시 2026-11-04 "가독성 있게 쓰도록 보고 양식을 지속 개선") — scripts/proviser/feed_readability.py, 등록부 prm-feedread-*
+# 모두 사전값(휴대폰 한 화면 ≈ 18줄·줄당 40자 기준). 감점 = Σ 가중 × 지표(0~1), 점수 = 10 − 감점
+first_line_max: 60     # 첫 줄(결론) 최대 글자
+block_max: 6           # 빈 줄 없이 이어지는 최대 줄 수
+line_max: 90           # 한 줄 최대 글자(링크 제외)
+numbers_max: 6         # 한 문장 최대 숫자 개수
+unknown_max: 2         # '미확인' 허용 개수
+chars_max: 1500        # 글 전체 권장 최대 글자
+weights: {첫 줄 결론: 2.0, 덩어리: 1.5, 긴 줄: 1.5, 숫자 과밀: 1.5, 내부 코드: 1.0, 미확인 남발: 1.0, 링크 반복: 0.5, 길이: 1.0}
+functions:             # notify level → 기능 이름
+  PULSE: Pulse
+  P0: Pulse
+  P1: Pulse
+  PORTFOLIO: Portfolio
+  REPORT: Analysis
+  NOTION: Notion
+  OPS: Ops
+  ARTICLE: Reporter
+  PROVISER: Proviser

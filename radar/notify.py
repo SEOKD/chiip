@@ -204,6 +204,14 @@ def send_document(path, caption="", level="REPORT"):
 def send(text, level="P1", ref=None, html_mode=False, md=False):
     ok = _send(text, level, ref, html_mode, md)
     run_ledger.send_row(text, level, ok)
+    if ok:   # 피드 가독성 채점·양식 개선용 보관(마스터 지시 2026-11-04 "가독성 있게 쓰도록 보고 양식을 지속 개선") — git 제외
+        try:
+            d = common.STATE / "sent"
+            d.mkdir(parents=True, exist_ok=True)
+            with (d / f"{common.now_kst():%Y%m%d}.jsonl").open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"at": common.iso(common.now_kst()), "level": level, "text": brand(text)}, ensure_ascii=False) + "\n")
+        except Exception:
+            pass
     return ok
 
 

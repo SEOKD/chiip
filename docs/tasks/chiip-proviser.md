@@ -81,6 +81,13 @@
 
 6-6. **IR 누락 점검(매 회차, 2026-11-01 마스터 지시).** `py radar/ir_ledger.py --overdue`(24시간 넘게 처리 기록이 없는 전문·Q&A)와 `knowledge/models/earnings/jp_ir_coverage.csv`(자료실 미발견·기간 판독 실패)를 보고, 원인을 일일 리포트에 쓴다. 저장은 됐는데 Pulse에 실리지 않은 건이 있으면 회귀로 다룬다.
 
+6-6. **텔레그램 피드 양식 개선**(2026-11-04 마스터 지시 "텔레그램 피드를 적을 때 가독성 있게 쓰도록 보고 양식을 지속 개선하도록 해라"):
+   a. `py scripts/proviser/feed_readability.py` — 오늘 실제로 보낸 글 전체(radar/state/sent/)를 기능별 0~10으로 잰다(첫 줄 결론·덩어리·긴 줄·숫자 과밀·내부 코드·미확인 남발·링크 반복·길이). 기록은 knowledge/models/proviser/feed_readability.csv.
+   b. 기능마다 최악 예시 3건을 직접 읽고, 휴대폰 첫 화면에서 '무엇이·왜 중요한가·다음 확인'이 3초 안에 보이는지 모델이 판단한다. 점수가 놓친 문제(용어 풀이 없음, 순서가 뒤집힌 문단, 같은 말 반복)도 적는다.
+   c. 기능마다 하루 **양식 규칙 한 가지**만 고친다 — 가장 약한 지표나 b에서 찾은 문제. 해당 기능 양식 문서(`docs/channels/<기능>.md` 양식 절, 실적은 `knowledge/methods/earnings_format.md`)에 규칙을 한 줄로 넣고 같은 파일 끝 '양식 개선 기록'에 `날짜 · 문제 · 바꾼 규칙 · 전/후 점수 예상`을 남긴다. 발송 코드(`radar/notify.py`)·관문(`radar/pulse_check.py` 등 잠긴 평가 파일)은 고치지 않는다.
+   d. 7일 뒤 같은 지표가 오르지 않았거나 다른 지표가 0.5점 넘게 떨어졌으면 그 규칙을 되돌리고 기록에 '철회'를 적는다(억지로 늘리지 않는다).
+   e. 마스터가 피드 가독성을 지적하면 그 지적이 최우선이다 — 같은 날 c로 반영하고, 기록에 '마스터 지적'을 표시한다.
+   f. 일일 리포트에 기능별 점수(전일 대비)·바꾼 규칙 한 줄을 남긴다. 8.5 미만 기능이 있으면 그 기능을 다음 날 최우선으로 본다.
 7. 각 기능은 작업지시서의 '프로바이저 보강' 절에 따라 매 회차 docs/proviser/<taskId>.md를 먼저 읽는다 — 이 파일(상시 원칙 + 현재 보강 지시)이 작업지시서의 보강 지시다. 예약 작업을 직접 고치거나 새로 만들지 않는다.
 8. 텔레그램 1통(레벨 'PROVISER'): docs/proviser/<YYYYMMDD>_tg.txt를 먼저 쓰고 `py -c "import sys; sys.path.insert(0,'radar'); import notify; notify.send(open(r'<파일>',encoding='utf-8').read(), 'PROVISER')"`. 형식: `[Chiip Proviser YYYY-MM-DD] pulse x.x(±d.d) · reporter x.x(±d.d) · ten-bagger x.x(±d.d) · Notion x.x(±d.d) · Model Lab x.x(±d.d) · Weekly x.x(±d.d) · Portfolio x.x(±d.d)`(모두 소수 첫째 자리) / `7개 7일 평균 x.x(전주 대비 ±d.d) · 하락 n개 → 복구 지시 n · 새 지시 m · 상시 원칙 승격 k · 교차 전파 j` / `파라미터: 데이터 확보 a · 피팅 대기 b · 잔차 진단 c · 새 제안 k(근거 논문 1줄)` / `리포트 3건: 티커 x.x · 티커 x.x · 티커 x.x · 정정 n건(가장 큰 정정 한 줄)` / 오늘의 지렛대 요인 1줄. 지시 본문은 보내지 않는다.
 9. 금지: D:\local-only 읽기, 필드 인텔·채널체크 내용 인용, 유료 본문·IB 리포트 문장 복제, 기능 산출물 수정·삭제(평가만 — **예외: 6-3의 당일 텐배거 리포트 3건과 그 종목 datapack은 고칠 수 있다. 다른 날짜 리포트·다른 기능 산출물은 그대로**), 예약 작업 생성·수정, 새 기능·새 스크립트 만들기, 공개 채널 게시, 목표주가·매수/매도 표현, **파라미터 값을 직접 바꾸기·매일 피팅·채택**(값 변경은 Model Lab 일요일 채택 관문만 — 프로바이저가 고칠 수 있는 것은 등록부의 fit 정의·proposed 항목·제안서·queue), 마스터 고정값(`fixed_by_master: true`) 변경.
