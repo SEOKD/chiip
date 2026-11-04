@@ -1,0 +1,301 @@
+{
+ "as_of": "2026-11-04T20:21:01+09:00",
+ "universe": [
+  "NYSE:EROC",
+  "NASDAQ:INIO",
+  "NYSE:PWR",
+  "NASDAQ:CBRS",
+  "NASDAQ:LSCC",
+  "NASDAQ:AEIS"
+ ],
+ "short_history": [
+  {
+   "symbol": "NASDAQ:CCXI",
+   "days": 0
+  }
+ ],
+ "exposures": {
+  "NYSE:EROC": {
+   "beta": 5.73,
+   "themes": {
+    "AI 반도체": 1.61,
+    "전력 인프라": 3.05,
+    "원자력·우주": 0.87,
+    "방산": 0.69
+   }
+  },
+  "NASDAQ:INIO": {
+   "beta": 4.92,
+   "themes": {
+    "AI 반도체": 1.3,
+    "전력 인프라": 2.76,
+    "원자력·우주": 0.8,
+    "방산": 0.93
+   }
+  },
+  "NYSE:PWR": {
+   "beta": 2.25,
+   "themes": {
+    "AI 반도체": 0.75,
+    "전력 인프라": 1.67,
+    "원자력·우주": 0.11,
+    "방산": 0.68
+   }
+  },
+  "NASDAQ:CBRS": {
+   "beta": 4.26,
+   "themes": {
+    "AI 반도체": 1.43,
+    "전력 인프라": 1.68,
+    "원자력·우주": 0.64,
+    "방산": -0.45
+   }
+  },
+  "NASDAQ:LSCC": {
+   "beta": 3.72,
+   "themes": {
+    "AI 반도체": 1.43,
+    "전력 인프라": 2.04,
+    "원자력·우주": 0.19,
+    "방산": 0.19
+   }
+  },
+  "NASDAQ:AEIS": {
+   "beta": 3.84,
+   "themes": {
+    "AI 반도체": 1.75,
+    "전력 인프라": 2.64,
+    "원자력·우주": 0.39,
+    "방산": 0.28
+   }
+  }
+ },
+ "events": [
+  {
+   "ticker": "CCXI",
+   "date": "2026-11-05",
+   "kind": "기타",
+   "haircut": 0.7,
+   "what": "합병 후 AGLT·AGLTW Nasdaq 거래 시작 예정(회사 예상, 상장 조건 충족 전제)"
+  }
+ ],
+ "note": "연구용 가상 포트폴리오 지표 — 매매·비중 지시가 아님",
+ "days": 85,
+ "from": "2026-07-07",
+ "to": "2026-11-03",
+ "shrink_delta": 0.063,
+ "vol_ann": {
+  "NYSE:EROC": 1.094,
+  "NASDAQ:INIO": 0.916,
+  "NYSE:PWR": 0.534,
+  "NASDAQ:CBRS": 0.976,
+  "NASDAQ:LSCC": 0.686,
+  "NASDAQ:AEIS": 0.719
+ },
+ "corr": {
+  "NYSE:EROC": {
+   "NYSE:EROC": 1.0,
+   "NASDAQ:INIO": 0.7,
+   "NYSE:PWR": 0.55,
+   "NASDAQ:CBRS": 0.46,
+   "NASDAQ:LSCC": 0.62,
+   "NASDAQ:AEIS": 0.64
+  },
+  "NASDAQ:INIO": {
+   "NYSE:EROC": 0.7,
+   "NASDAQ:INIO": 1.0,
+   "NYSE:PWR": 0.59,
+   "NASDAQ:CBRS": 0.37,
+   "NASDAQ:LSCC": 0.64,
+   "NASDAQ:AEIS": 0.68
+  },
+  "NYSE:PWR": {
+   "NYSE:EROC": 0.55,
+   "NASDAQ:INIO": 0.59,
+   "NYSE:PWR": 1.0,
+   "NASDAQ:CBRS": 0.44,
+   "NASDAQ:LSCC": 0.61,
+   "NASDAQ:AEIS": 0.66
+  },
+  "NASDAQ:CBRS": {
+   "NYSE:EROC": 0.46,
+   "NASDAQ:INIO": 0.37,
+   "NYSE:PWR": 0.44,
+   "NASDAQ:CBRS": 1.0,
+   "NASDAQ:LSCC": 0.47,
+   "NASDAQ:AEIS": 0.5
+  },
+  "NASDAQ:LSCC": {
+   "NYSE:EROC": 0.62,
+   "NASDAQ:INIO": 0.64,
+   "NYSE:PWR": 0.61,
+   "NASDAQ:CBRS": 0.47,
+   "NASDAQ:LSCC": 1.0,
+   "NASDAQ:AEIS": 0.79
+  },
+  "NASDAQ:AEIS": {
+   "NYSE:EROC": 0.64,
+   "NASDAQ:INIO": 0.68,
+   "NYSE:PWR": 0.66,
+   "NASDAQ:CBRS": 0.5,
+   "NASDAQ:LSCC": 0.79,
+   "NASDAQ:AEIS": 1.0
+  }
+ },
+ "baselines": {
+  "동일 가중": {
+   "weights": {
+    "NYSE:EROC": 0.1667,
+    "NASDAQ:INIO": 0.1667,
+    "NYSE:PWR": 0.1667,
+    "NASDAQ:CBRS": 0.1667,
+    "NASDAQ:LSCC": 0.1667,
+    "NASDAQ:AEIS": 0.1667
+   },
+   "risk_contrib": {
+    "NYSE:EROC": 0.234,
+    "NASDAQ:INIO": 0.191,
+    "NYSE:PWR": 0.102,
+    "NASDAQ:CBRS": 0.17,
+    "NASDAQ:LSCC": 0.144,
+    "NASDAQ:AEIS": 0.157
+   },
+   "vol_ann": 0.6607,
+   "cvar_1d": 0.0959,
+   "max_dd": 0.411,
+   "dd_now": 0.3514,
+   "beta": 4.12,
+   "themes": {
+    "AI 반도체": 1.38,
+    "전력 인프라": 2.31,
+    "원자력·우주": 0.5,
+    "방산": 0.39
+   },
+   "vol_target_scale": 0.303,
+   "dd_control_scale": 0.0,
+   "over_w_max": [
+    "NYSE:EROC",
+    "NASDAQ:INIO",
+    "NYSE:PWR",
+    "NASDAQ:CBRS",
+    "NASDAQ:LSCC",
+    "NASDAQ:AEIS"
+   ]
+  },
+  "역변동성": {
+   "weights": {
+    "NYSE:EROC": 0.1179,
+    "NASDAQ:INIO": 0.1408,
+    "NYSE:PWR": 0.2415,
+    "NASDAQ:CBRS": 0.1322,
+    "NASDAQ:LSCC": 0.1881,
+    "NASDAQ:AEIS": 0.1794
+   },
+   "risk_contrib": {
+    "NYSE:EROC": 0.169,
+    "NASDAQ:INIO": 0.169,
+    "NYSE:PWR": 0.165,
+    "NASDAQ:CBRS": 0.138,
+    "NASDAQ:LSCC": 0.176,
+    "NASDAQ:AEIS": 0.182
+   },
+   "vol_ann": 0.6252,
+   "cvar_1d": 0.0908,
+   "max_dd": 0.3833,
+   "dd_now": 0.3137,
+   "beta": 3.86,
+   "themes": {
+    "AI 반도체": 1.33,
+    "전력 인프라": 2.23,
+    "원자력·우주": 0.43,
+    "방산": 0.4
+   },
+   "vol_target_scale": 0.32,
+   "dd_control_scale": 0.0,
+   "over_w_max": [
+    "NYSE:EROC",
+    "NASDAQ:INIO",
+    "NYSE:PWR",
+    "NASDAQ:CBRS",
+    "NASDAQ:LSCC",
+    "NASDAQ:AEIS"
+   ]
+  },
+  "위험 기여 균등": {
+   "weights": {
+    "NYSE:EROC": 0.1164,
+    "NASDAQ:INIO": 0.1395,
+    "NYSE:PWR": 0.2448,
+    "NASDAQ:CBRS": 0.1543,
+    "NASDAQ:LSCC": 0.1793,
+    "NASDAQ:AEIS": 0.1657
+   },
+   "risk_contrib": {
+    "NYSE:EROC": 0.167,
+    "NASDAQ:INIO": 0.167,
+    "NYSE:PWR": 0.167,
+    "NASDAQ:CBRS": 0.167,
+    "NASDAQ:LSCC": 0.167,
+    "NASDAQ:AEIS": 0.167
+   },
+   "vol_ann": 0.6251,
+   "cvar_1d": 0.0905,
+   "max_dd": 0.3877,
+   "dd_now": 0.3216,
+   "beta": 3.86,
+   "themes": {
+    "AI 반도체": 1.32,
+    "전력 인프라": 2.21,
+    "원자력·우주": 0.44,
+    "방산": 0.39
+   },
+   "vol_target_scale": 0.32,
+   "dd_control_scale": 0.0,
+   "over_w_max": [
+    "NYSE:EROC",
+    "NASDAQ:INIO",
+    "NYSE:PWR",
+    "NASDAQ:CBRS",
+    "NASDAQ:LSCC",
+    "NASDAQ:AEIS"
+   ]
+  },
+  "HRP": {
+   "weights": {
+    "NYSE:EROC": 0.1096,
+    "NASDAQ:INIO": 0.0932,
+    "NYSE:PWR": 0.2913,
+    "NASDAQ:CBRS": 0.0872,
+    "NASDAQ:LSCC": 0.1664,
+    "NASDAQ:AEIS": 0.2522
+   },
+   "risk_contrib": {
+    "NYSE:EROC": 0.159,
+    "NASDAQ:INIO": 0.112,
+    "NYSE:PWR": 0.209,
+    "NASDAQ:CBRS": 0.089,
+    "NASDAQ:LSCC": 0.161,
+    "NASDAQ:AEIS": 0.27
+   },
+   "vol_ann": 0.6093,
+   "cvar_1d": 0.0879,
+   "max_dd": 0.3655,
+   "dd_now": 0.2875,
+   "beta": 3.7,
+   "themes": {
+    "AI 반도체": 1.32,
+    "전력 인프라": 2.23,
+    "원자력·우주": 0.39,
+    "방산": 0.42
+   },
+   "vol_target_scale": 0.328,
+   "dd_control_scale": 0.0,
+   "over_w_max": [
+    "NYSE:EROC",
+    "NYSE:PWR",
+    "NASDAQ:LSCC",
+    "NASDAQ:AEIS"
+   ]
+  }
+ }
+}

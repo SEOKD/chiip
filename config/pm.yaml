@@ -1,0 +1,24 @@
+# 모델 포트폴리오 위험 엔진 1단계 (마스터 지시 2026-11-04 "1단계부터 구현", 설계 knowledge/methods/portfolio_management_design.md)
+# 연구용 가상 포트폴리오 지표 — 마스터 계좌의 매매·비중 지시가 아니다. 등록부 prm-pm-*. 위험 정책 상수는 피팅하지 않는다(설계 3절).
+universe:
+  status: [보유, 관심]       # config/portfolio.yaml holdings 중
+  market: AMEX:SPY
+  themes:                    # Chiip 테마 팩터(ETF 수익의 SPY 잔차에 대한 종목 잔차의 β)
+    AI 반도체: NASDAQ:SMH
+    전력 인프라: NASDAQ:GRID
+    원자력·우주: AMEX:URA
+    방산: AMEX:ITA
+risk:
+  window: 252                # 일간 수익률 최대 길이
+  min_days: 40               # 이보다 짧은 종목은 빼고 '이력 부족'으로 표시(IPO 종목)
+  halflife: 63               # EWMA 반감기(일) — RiskMetrics 관행
+  shrink: ledoit_wolf        # 축소 강도는 해석해(자동)
+  annualize: 252
+overlay:
+  sigma_target: 0.20         # 연 변동성 목표 — 위험 정책
+  dd_max: 0.25               # 허용 최대 낙폭 — 위험 정책
+  w_max: 0.10                # 단일 종목 상한(2단계 구성에서 쓴다. 1단계는 위반 표시만)
+  theme_max: 0.35            # 테마(군집) 상한
+  event_haircut: 0.7         # 실적·보호예수 이벤트 창의 비중 승수
+  event_window: {실적: [-3, 1], 보호예수: [-5, 3], 기타: [-1, 1]}   # 이벤트일 기준 영업일 아님(달력일)
+  cvar_q: 0.95

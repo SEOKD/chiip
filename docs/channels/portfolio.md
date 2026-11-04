@@ -7,3 +7,5 @@
 - **종합 9.5 연구 명단**(2026-10-31 마스터 지시, `scripts/discovery/composite.py`, `config/composite.yaml`): 텐배거 레이더 밖 종목까지 알파 30%·손익비 30%·기술적 20%·시의성 20%로 10점 평가해 9.5 이상만 Portfolio 데일리에 싣는다. 없으면 싣지 않는다. 지표·연구 후보이지 추천이 아니다 — 마스터 포지션을 읽지 않고 비중·시점·금액을 내지 않는다.
 
 - **와치리스트 자동 편입·제외**(2026-11-04 마스터 지시): `scripts/portfolio/watchlist.py`가 알파·종합 점수(분위)·Buy Call로 관심 종목을 넣고 뺀다(규칙 `config/watchlist.yaml`, 등록부 prm-watchlist-*, 기록 `knowledge/models/portfolio/watchlist_log.csv`). 보유는 마스터 몫. 제외는 지우지 않고 status: 종료.
+
+- **모델 포트폴리오 위험 지표 1단계**(2026-11-04 마스터 지시): `scripts/pm/risk.py`(설정 `config/pm.yaml`, 등록부 prm-pm-*) — EWMA·레드와·울프 공분산, 시장 β·테마 노출, 기준선 4종(동일·역변동성·ERC·HRP), 변동성 목표·낙폭 제어 승수·CVaR·이벤트 창. 연구용 가상 지표이고 매매·비중 지시가 아니다. 2단계(기대수익 합성·블랙-리터만)는 승인 후.

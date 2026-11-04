@@ -2958,6 +2958,134 @@ params:
     data: knowledge/models/portfolio/watchlist_log.csv
     last_fit: null
     oos_metric: null
+- id: prm-pm-risk-halflife
+  model: pm.risk
+  binding: config/pm.yaml#risk.halflife
+  value: 63
+  unit: 일
+  status: prior
+  prior:
+    value: 63
+    basis: EWMA 반감기
+    source: J.P. Morgan/Reuters(1996) RiskMetrics Technical Document
+  fit:
+    method: 표본 외 공분산 예측 오차(다음 21일 실현 공분산 대비)
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-risk-min-days
+  model: pm.risk
+  binding: config/pm.yaml#risk.min_days
+  value: 40
+  unit: 일
+  status: prior
+  prior:
+    value: 40
+    basis: 공분산에 넣을 최소 이력(IPO 종목 제외 기준)
+    source: 치입 운영 가정
+  fit:
+    method: 고정
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-overlay-sigma-target
+  model: pm.risk
+  binding: config/pm.yaml#overlay.sigma_target
+  value: 0.2
+  unit: 연 변동성
+  status: prior
+  prior:
+    value: 0.2
+    basis: 변동성 목표 — 위험 정책
+    source: Moreira & Muir(2017) J. Finance 72(4)
+  fit:
+    method: 고정(위험 정책, 피팅하지 않음)
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-overlay-dd-max
+  model: pm.risk
+  binding: config/pm.yaml#overlay.dd_max
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: 허용 최대 낙폭 — 위험 정책
+    source: Grossman & Zhou(1993) Mathematical Finance 3(3)
+  fit:
+    method: 고정(위험 정책)
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-overlay-w-max
+  model: pm.risk
+  binding: config/pm.yaml#overlay.w_max
+  value: 0.1
+  unit: 비중
+  status: prior
+  prior:
+    value: 0.1
+    basis: 단일 종목 상한(2단계 구성)
+    source: 집중 펀드 실무
+  fit:
+    method: 고정(위험 정책)
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-overlay-theme-max
+  model: pm.risk
+  binding: config/pm.yaml#overlay.theme_max
+  value: 0.35
+  unit: 비중
+  status: prior
+  prior:
+    value: 0.35
+    basis: 테마 군집 상한
+    source: López de Prado(2016) HRP 군집 · 실무
+  fit:
+    method: 고정(위험 정책)
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-overlay-event-haircut
+  model: pm.risk
+  binding: config/pm.yaml#overlay.event_haircut
+  value: 0.7
+  unit: 승수
+  status: prior
+  prior:
+    value: 0.7
+    basis: 실적·보호예수 창 비중 승수
+    source: 치입 운영 가정 — 실적일 분산 비율로 점검 예정
+  fit:
+    method: 과거 실적일 |수익| 분포 대비 평일 분산 비율
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
+- id: prm-pm-overlay-cvar-q
+  model: pm.risk
+  binding: config/pm.yaml#overlay.cvar_q
+  value: 0.95
+  unit: 분위
+  status: prior
+  prior:
+    value: 0.95
+    basis: CVaR 분위
+    source: 실무 관행
+  fit:
+    method: 고정
+    target: 모델 포트폴리오 일간 수익·실현 변동성
+    data: knowledge/models/pm/
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
