@@ -1,0 +1,104 @@
+auto: true
+id: co-credo
+name: Credo
+ticker: CRDO
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.53
+  TW: 0.47
+tax: 0.12
+horizon: 10
+as_of: '2026-11-04'
+market:
+  date: '2026-11-04'
+  price: 150.91
+  shares: 0.200868
+  net_debt: -0.7436
+  source: 가격 = 11/3 종가. 주식 = 1Q FY27 10-Q 재무상태표 발행 주식 187,768천 주(8/1, 표지 8/25 187,951,918주).
+    현금 = 현금 $466.9M + 단기투자 $297.4M. 차입 없음 — 비유동 운용 리스 $20.7M만 차입으로 둔다
+rev0: 2.535
+ic0: 1.9849
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.6963
+      end: 0.035
+      decay: 0.51
+    margin:
+      m0: 0.342
+      target: 0.32
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.31
+      - 0.302
+    s2c: 2.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 1.0513
+      end: 0.04
+      decay: 0.56
+    margin:
+      m0: 0.342
+      target: 0.34
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.31
+      - 0.302
+    s2c: 2.875
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.3018
+      end: 0.030000000000000002
+      decay: 0.41000000000000003
+    margin:
+      m0: 0.342
+      target: 0.3
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.31
+      - 0.302
+    s2c: 2.125
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [2.47, 2.6] (1Q FY27 콜·보도자료 2026-09-01: FY27 매출 +85% 이상(FY26
+    $1.335B 기준 $2.47B 이상, 상단 $2.60B는 컨센서스 범위에 맞춘 추정), 조정 매출총이익률 FY26 수준(68.1%), 조정
+    영업비용 전년 대비 약 +55%. 조정 영업이익률 약 49%는 이 값으로 계산한 추정(1Q 48.2%))'
+  growth: 컨센서스 1년차 69.6%, 2년차 37.2%
+  margin: 1~2년차 컨센서스 31.0%, 30.2% 고정 → 목표 32%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.802 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 30.2%~105.1%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: 규칙의 장기 이익률 15%는 팹리스 연결 칩 회사에 맞지 않는다 — 조정 영업이익률 1Q 48.2%, FY29 컨센서스 45%에서
+    SBC(매출의 14.8%)를 빼면 약 30%다. 동종 Broadcom GAAP 48%, Astera Labs 26%, Lumentum 23%.
+    장기 30%로 둔다. 자본 효율은 TTM 0.80이 DustPhotonics 영업권 $0.9B를 포함해 낮다. 팹리스라 증분 투자는 운전자본·연구
+    장비가 대부분이어서 증분 매출 ÷ 증분 자본을 2.5로 둔다(추정, 인수 제외)
+  shares: '완전 희석 = 기본 0.187768(2026-08-01) + 옵션·RSU·워런트·전환 0.0131 — 10-Q 8번 주석(8/1):
+    RSU 8.3M·PSU 3.1M·옵션 1.7M(행사가 평균 $2.34). Du'
+notes:
+- 자동 생성(build_drivers) 2026-11-04 — 데이터 묶음 2026-11-04
+- '어닝콜 위험: 최종 고객 4곳이 1Q 매출의 84%(33%·28%·13%·10%)'
+- '어닝콜 위험: PO 판매 — 고객이 짧은 통보로 주문을 바꿀 수 있다(10-K)'
+- '어닝콜 위험: SBC가 1Q 매출의 18.4%($88.0M, 1년 전 $35.5M)'
+evidence:
+- Credo 1Q FY27 10-Q(2026-09-02) https://www.sec.gov/Archives/edgar/data/1807794/000162828026060111/crdo-20260801.htm
+- 1Q FY27 실적 보도자료 8-K(2026-09-01) https://www.sec.gov/Archives/edgar/data/1807794/000162828026059795/credoq12027ex-991.htm
+- FY2026 10-K(2026-06-15) https://www.sec.gov/Archives/edgar/data/1807794/000162828026043303/crdo-20260502.htm
+- DustPhotonics 인수 발표 8-K(2026-04-13) https://www.sec.gov/Archives/edgar/data/1807794/000162828026024892/april20268-kex991.htm
+- Credo 1Q FY27 콜(2026-09-01)·4Q FY26 콜(2026-06-01) 요지
+- Form 4 경영진 매도(2026-09~10)
+- Credo 보도자료 2026-10-12(1.6T ZF ALC)·10-13(OmniConnect Weaver·SRMO)
