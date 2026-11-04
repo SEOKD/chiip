@@ -141,6 +141,10 @@ CAPEX 관점에서 흥미로운 점은 … 칩플레이션 영향이라고 봐�
 - 트랜스크립트는 라이선스 자료 — 요지만 자기 말로, 인용 15단어 이하. Zacks 수치를 쓰면 맨 아래 Zacks 표기. 금액 `$25B`·`$340M`.
 - 보낸 뒤 `py scripts/insight/call_feed.py log <키> <이벤트> --score <점수> --view 상향|하향|중립 --conf 고|중|저` (→ `knowledge/models/earnings/call_feed/log.csv` — 반응일 AR·표류와 함께 쌓아 월간 성적표·파라미터 피팅에 쓴다). 그다음 `transcript_watch.py --done` — ④ 파일이 없으면 완료로 치지 않는다(못 쓰는 사유는 `--no-feed <이유>`).
 
+## ⑤ 실적 반응 합리성 (마스터 지시 2026-11-04)
+
+절차·양식은 `knowledge/methods/reaction_rationality.md`. 정량(기대 반응 모델 잔차 → Q)과 전문가 패널 델파이(5명·2라운드·레드팀)를 6:4로 합쳐 10점. 정규장 반응이 확정된 뒤 한 통.
+
 ## 기록
 - 세 파일(④가 있으면 네 파일)과 함께 판단 근거(CIF 7단계·출처 링크·조회 시각, ④는 call_feed 계산 파일 경로)는 `outputs/article/sources/<YYYYMMDD>.md`에 남긴다. 텔레그램 세 통에는 링크·내부 코드를 넣지 않는다.
 - 같은 실적을 다시 보내지 않는다(outputs/article/earnings/에 같은 티커·분기 파일이 있으면 '갱신'일 때만).

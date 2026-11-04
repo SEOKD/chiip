@@ -1,0 +1,22 @@
+# 실적 반응 합리성 엔진 상수 (scripts/insight/reaction.py, 마스터 지시 2026-11-04) — 등록부 prm-reaction-*. 모두 사전값(미검증)
+prior:
+  sigma_event: 6.0     # 과거 이력이 없을 때 실적일 |AR| 크기(%) — 미국 중소형 성장주 실적일 평균 이동 근사, β로 보정
+  eps_scale: 8.0       # EPS 서프라이즈 1σ(%) 사전값
+  rev_scale: 2.0       # 매출 서프라이즈 1σ(%) 사전값
+  guide_scale: 2.0     # 가이던스 변화(연간 중간값 vs 컨센서스, %) 1σ 사전값
+  erc_eps: 0.25        # σ_e 단위 반응 / z — EPS
+  erc_rev: 0.35        # 매출(EPS보다 질 높은 신호로 보는 실무·문헌 경향)
+  erc_guide: 0.50      # 가이던스(가장 큼 — Anilowski, Feng & Skinner 2007)
+min_hist: 4            # 종목 이력으로 σ·ERC를 추정할 최소 분기 수
+ridge_n0: 6            # ERC 축소 강도(사전값에 주는 관측 수 상당)
+kappa_drift: 0.3       # 발표 전 20일 초과 상승의 선반영 계수
+w_market: 0.5          # 경쟁사 수익이 있을 때 시장·경쟁사 가중
+resid_floor: 0.6       # 잔차 σ 하한(σ_e 배수) — 이력이 작을 때 과신 방지
+low_power_pp: 6.0      # 잔차 1σ(%p)가 이보다 크면 '판별력 낮음' 표시
+limits:
+  vol_ann: 0.80        # 이보다 변동성이 크면 차익 위험 큼 표시
+  adv_usd: 5000000     # 30일 평균 거래대금 하한
+panel:
+  weak_iqr: 3.0        # 마지막 라운드 사분위 범위가 이보다 크면 '합의 약함'
+  redteam_cap: 1.5     # 레드팀 조정 상한(±점)
+w_quant: 0.6           # 최종 = 정량 60% + 패널 40%

@@ -1,0 +1,2 @@
+date,ticker,session,expected_ar,actual_ar,resid_z,kind,quant,panel,score,low_power,drift5,drift20
+2026-11-03,NYSE_ULS,pre,3.3,7.18,0.57,합리적,9.6,7.0,8.6,True,,

@@ -3342,6 +3342,118 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-reaction-prior-erc-eps
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#prior.erc_eps
+  value: 0.25
+  unit: σ_e/z
+  status: prior
+  prior:
+    value: 0.25
+    basis: EPS 이익 반응 계수 사전값
+    source: Ball & Brown(1968); Kothari(2001) J. Accounting & Economics 31
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-reaction-prior-erc-rev
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#prior.erc_rev
+  value: 0.35
+  unit: σ_e/z
+  status: prior
+  prior:
+    value: 0.35
+    basis: 매출 반응 계수 사전값
+    source: 매출 서프라이즈의 정보력 실무·문헌 경향(Jegadeesh & Livnat 2006)
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-reaction-prior-erc-guide
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#prior.erc_guide
+  value: 0.5
+  unit: σ_e/z
+  status: prior
+  prior:
+    value: 0.5
+    basis: 가이던스 반응 계수 사전값
+    source: Anilowski, Feng & Skinner(2007) J. Accounting & Economics 44
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-reaction-prior-sigma-event
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#prior.sigma_event
+  value: 6.0
+  unit: "%"
+  status: prior
+  prior:
+    value: 6.0
+    basis: 이력 없는 종목의 실적일 |AR| 사전값
+    source: 미국 중소형 성장주 실적일 평균 이동 근사 — 치입 운영 가정
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-reaction-kappa-drift
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#kappa_drift
+  value: 0.3
+  unit: 계수
+  status: prior
+  prior:
+    value: 0.3
+    basis: 발표 전 20일 초과 상승의 선반영 계수
+    source: 치입 운영 가정 — 선반영(expectation run-up) 개념
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-reaction-ridge-n0
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#ridge_n0
+  value: 6
+  unit: 관측 상당
+  status: prior
+  prior:
+    value: 6
+    basis: ERC 축소 강도
+    source: 경험적 베이즈 축소 관행
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-reaction-w-quant
+  model: insight.reaction
+  binding: config/insight/reaction.yaml#w_quant
+  value: 0.6
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.6
+    basis: 정량 대 패널 가중
+    source: 치입 운영 가정 — 패널은 모델 연기라 정량에 더 큰 비중
+  fit:
+    method: reaction_log.csv의 실제 AR로 ERC 표본 외 적합 · 점수 구간별 5·20거래일 표류 부호(과소반응 → 같은 방향 표류, 과잉반응 → 되돌림) 검정
+    target: 실적일 AR·이후 표류
+    data: knowledge/models/earnings/reaction_log.csv
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min
