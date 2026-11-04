@@ -59,6 +59,42 @@ def interval(src):
     return common.interval_for(tier)
 
 
+def fast_interval(when=None):
+    """빠른 원천(보도자료 와이어·EDGAR 최신 목록) 간격 — 미국 발표가 몰리는 창은 2분, 그 밖 5분(config/alert_rules.yaml fast_feeds)"""
+    when = when or common.now_kst()
+    cfg = (common.load_yaml("config/alert_rules.yaml") or {}).get("fast_feeds", {})
+    hhmm = when.strftime("%H:%M")
+    for a, b in cfg.get("hot_windows", []):
+        if (a <= hhmm < b) if a < b else (hhmm >= a or hhmm < b):
+            return cfg.get("hot_min", 2)
+    return cfg.get("base_min", 5)
+
+
+def fast_feeds():
+    """보도자료(30분 배치에서 이관)·EDGAR 최신 목록을 먼저 본다(마스터 지시 2026-11-04 시의성 개선 ②③).
+    EDGAR에 감시 종목 서류가 뜨면 그 회차에 sec_filings를 바로 돌린다(hot)"""
+    new, hot, every = [], set(), fast_interval()
+    if common.is_due("src-press-wire", every):
+        try:
+            from pollers import press_wire
+            print("src-press-wire", press_wire.run())
+        except Exception as exc:
+            common.record_health("src-press-wire", False, f"{type(exc).__name__}: {exc}")
+        finally:
+            common.mark_run("src-press-wire")
+    if common.is_due("src-edgar-current", every):
+        try:
+            from pollers import edgar_current
+            if edgar_current.run():
+                hot.add("src-sec-filings")
+                print("src-edgar-current: 감시 종목 새 서류 → sec_filings 즉시")
+        except Exception as exc:
+            common.record_health("src-edgar-current", False, f"{type(exc).__name__}: {exc}")
+        finally:
+            common.mark_run("src-edgar-current")
+    return new, hot
+
+
 def run_source(src, env):
     mod = src["module"]
     if mod == "rss":
@@ -207,11 +243,13 @@ def main(argv=None):
             notion_watch.run()
         except Exception as exc:
             common.record_health("src-notion-watch", False, f"{type(exc).__name__}: {exc}")
-        new_total = []
+        new_total, hot = [], set()
+        if not args.only:
+            new_total, hot = fast_feeds()
         for src in registry():
             if args.only and src["id"] != args.only:
                 continue
-            if not args.force and not common.is_due(src["id"], interval(src)):
+            if not args.force and src["id"] not in hot and not common.is_due(src["id"], interval(src)):
                 continue
             try:
                 items = run_source(src, env)

@@ -35,8 +35,8 @@ class TestCommon(unittest.TestCase):
     def test_interval_for(self):
         tz = common.KST
         self.assertEqual(common.interval_for("T0", datetime(2026, 10, 27, 10, 0, tzinfo=tz)), 5)   # 화요일 장중
-        self.assertEqual(common.interval_for("T0", datetime(2026, 10, 27, 2, 0, tzinfo=tz)), 30)   # 새벽
-        self.assertEqual(common.interval_for("T0", datetime(2026, 10, 31, 10, 0, tzinfo=tz)), 60)  # 토요일
+        self.assertEqual(common.interval_for("T0", datetime(2026, 10, 27, 2, 0, tzinfo=tz)), 5)   # 새벽 = 미국 장중(2026-11-04 마스터 지시)
+        self.assertEqual(common.interval_for("T0", datetime(2026, 10, 31, 10, 0, tzinfo=tz)), 15)  # 토요일
 
 
 class TestRss(unittest.TestCase):

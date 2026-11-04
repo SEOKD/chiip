@@ -30,6 +30,7 @@ import run_ledger  # noqa: E402
 OUT = common.ROOT / "radar" / "pulse"
 STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
+LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
 TOP = {"실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
@@ -564,6 +565,8 @@ def run(now=None, peek=False):
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
                       f" · 어닝콜 전문 대기 {tw.get('waiting', 0)} → 종료")
     if peek:
+        global LAST_PEEK
+        LAST_PEEK = sources   # 긴급 문턱(pulse_trigger urgent)이 점수·게재 시각을 본다
         return True, f"[펄스] 새 자료 {len(sources)}건 · 알파 산정 대기 {len(q)} · 어닝콜 전문 {'있음' if tw.get('due') else '없음'} → 모델 회차"
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()

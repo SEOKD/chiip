@@ -33,11 +33,18 @@ priority_keywords:
 # 폴링 간격(분) — 티어 × 시간대(KST). run_poll.py가 사용
 schedule:
   weekday:
+    # 2026-11-04 마스터 지시 "시의성 3/10 → 실시간급": 미국 프리마켓·정규장·시간외(KST 20~08시)가 30분이던 것을 5분으로
     - {from: "08:00", to: "16:00", T0: 5, T2: 60}
-    - {from: "16:00", to: "23:00", T0: 10, T2: 60}
-    - {from: "23:00", to: "08:00", T0: 30, T2: 60}
+    - {from: "16:00", to: "20:00", T0: 10, T2: 60}
+    - {from: "20:00", to: "08:00", T0: 5, T2: 30}
   weekend:
-    - {from: "00:00", to: "24:00", T0: 60, T2: 180}
+    - {from: "00:00", to: "24:00", T0: 15, T2: 60}
+
+# 빠른 원천(radar/run_poll.py fast_feeds) — 보도자료 와이어·EDGAR 최신 목록. 미국 발표가 몰리는 창(ET 06~10시·16~19시)은 2분
+fast_feeds:
+  hot_windows: [["20:00", "24:00"], ["05:00", "08:00"]]
+  hot_min: 2
+  base_min: 5
   boost_on_calendar_days: 0.5     # calendar.csv에 해당 기업 일정이 있는 날은 간격 × 0.5
 
 # 비용 상한

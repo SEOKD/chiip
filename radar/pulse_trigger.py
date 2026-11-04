@@ -84,6 +84,23 @@ def launch(c):
                 "error": None if ok else f"종료 코드 {proc.returncode}" + ("" if ran else " · 관문 미실행")}
 
 
+def urgent(c, now=None):
+    """긴급 문턱(마스터 지시 2026-11-04 "실시간급 속도") — 앱 예약(10분)을 기다리지 않고 바로 띄울 만한 1차 원본이 있나.
+    유형·점수·게재 후 경과가 config/harness.yaml pulse_trigger.urgent를 모두 넘을 때만. 없으면 앱 예약 회차가 평소대로 잡는다"""
+    u = c.get("urgent") or {}
+    if not u.get("enabled"):
+        return True   # 긴급 모드가 아니면 예전처럼 새 자료면 띄운다
+    now = now or common.now_kst()
+    for s in pulse.LAST_PEEK:
+        try:
+            age = (now - datetime.fromisoformat(s.get("published_at") or s.get("detected_at"))).total_seconds() / 60
+        except (TypeError, ValueError):
+            continue
+        if s.get("source_class") in u["classes"] and s.get("score", 0) >= u["min_score"] and age <= u["max_age_min"]:
+            return True
+    return False
+
+
 def alert(text):
     notify.send(f"[Chiip Pulse 문턱] {text}", "SYSTEM")
 
@@ -103,6 +120,9 @@ def main(argv):
         return 0
     if not material:
         run_ledger.record("gate", "chiip-pulse", outcome="종료", via="trigger")
+        common.save_state(STATE, st)
+        return 0
+    if not urgent(c, now):   # 급하지 않은 자료는 앱 예약 회차 몫 — 장부도 남기지 않는다(빈 회차 비용 0)
         common.save_state(STATE, st)
         return 0
     day = now.strftime("%Y%m%d")

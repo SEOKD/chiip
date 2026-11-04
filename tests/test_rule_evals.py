@@ -120,7 +120,7 @@ class TestLedger(unittest.TestCase):
 class TestPulseTrigger(unittest.TestCase):
     def setUp(self):
         self.st = {}
-        on = {**pulse_trigger.cfg(), "enabled": True}
+        on = {**pulse_trigger.cfg(), "enabled": True, "urgent": {"enabled": False}}   # 상한·실패 규칙만 본다(긴급 문턱은 test_timeliness)
         self.patches = [mock.patch.object(pulse_trigger, "cfg", return_value=on),
                         mock.patch.object(pulse_trigger.common, "load_state", side_effect=lambda *a: dict(self.st)),
                         mock.patch.object(pulse_trigger.common, "save_state", side_effect=lambda _, s: self.st.update(s)),
