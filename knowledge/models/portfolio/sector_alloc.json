@@ -1,0 +1,342 @@
+{
+ "as_of": "2026-11-04T21:57:36+09:00",
+ "data_as_of": "2026-11-04T21:57:36+09:00",
+ "regime": [
+  "rates_down"
+ ],
+ "cov_days": 63,
+ "shrink_delta": 0.198,
+ "note": "연구용 모델 섹터 배분 지표 — 매매·비중 지시가 아님",
+ "sectors": [
+  {
+   "sector": "에너지",
+   "etf": "AMEX:XLE",
+   "bench": 0.0382,
+   "model": 0.1325,
+   "active": 0.0943,
+   "z": {
+    "trend": 1.53,
+    "value": -1.24,
+    "alpha": 2.04
+   },
+   "contrib": {
+    "trend": 0.0177,
+    "value": -0.0086,
+    "alpha": 0.0237
+   },
+   "mu": 0.0328,
+   "prior": -0.035,
+   "posterior": 0.005,
+   "vol": 0.232,
+   "raw": {
+    "mcap_b": 1414.8,
+    "n": 4,
+    "mom_12_1": 0.4157,
+    "mom_6_1": 0.1182,
+    "above200": 1.0,
+    "evs_pct_3y": 0.7962,
+    "rev30": 0.1265
+   }
+  },
+  {
+   "sector": "헬스케어",
+   "etf": "AMEX:XLV",
+   "bench": 0.0775,
+   "model": 0.1469,
+   "active": 0.0694,
+   "z": {
+    "trend": 1.15,
+    "value": -0.43,
+    "alpha": 0.07
+   },
+   "contrib": {
+    "trend": 0.01,
+    "value": -0.0022,
+    "alpha": 0.0006
+   },
+   "mu": 0.0083,
+   "prior": 0.0055,
+   "posterior": 0.0046,
+   "vol": 0.173,
+   "raw": {
+    "mcap_b": 2874.1,
+    "n": 4,
+    "mom_12_1": 0.2721,
+    "mom_6_1": 0.1805,
+    "above200": 1.0,
+    "evs_pct_3y": 0.69,
+    "rev30": 0.0181
+   }
+  },
+  {
+   "sector": "부동산",
+   "etf": "AMEX:XLRE",
+   "bench": 0.0132,
+   "model": 0.0753,
+   "active": 0.062,
+   "z": {
+    "trend": -0.06,
+    "value": 0.29,
+    "alpha": 0.03
+   },
+   "contrib": {
+    "trend": -0.0005,
+    "value": 0.0013,
+    "alpha": 0.0003
+   },
+   "mu": 0.0011,
+   "prior": 0.0139,
+   "posterior": 0.0039,
+   "vol": 0.153,
+   "raw": {
+    "mcap_b": 491.2,
+    "n": 4,
+    "mom_12_1": 0.1269,
+    "mom_6_1": -0.0196,
+    "above200": 0.7519,
+    "evs_pct_3y": 0.5964,
+    "rev30": -0.0002
+   }
+  },
+  {
+   "sector": "소재",
+   "etf": "AMEX:XLB",
+   "bench": 0.0065,
+   "model": 0.0072,
+   "active": 0.0006,
+   "z": {
+    "trend": -0.03,
+    "value": -0.84,
+    "alpha": -0.46
+   },
+   "contrib": {
+    "trend": -0.0002,
+    "value": -0.004,
+    "alpha": -0.0036
+   },
+   "mu": -0.0077,
+   "prior": 0.0139,
+   "posterior": 0.0003,
+   "vol": 0.157,
+   "raw": {
+    "mcap_b": 241.6,
+    "n": 3,
+    "mom_12_1": 0.058,
+    "mom_6_1": 0.02,
+    "above200": 1.0,
+    "evs_pct_3y": 0.7446,
+    "rev30": -0.0108
+   }
+  },
+  {
+   "sector": "필수소비재",
+   "etf": "AMEX:XLP",
+   "bench": 0.061,
+   "model": 0.0586,
+   "active": -0.0024,
+   "z": {
+    "trend": -0.23,
+    "value": -0.91,
+    "alpha": -0.26
+   },
+   "contrib": {
+    "trend": -0.0021,
+    "value": -0.0051,
+    "alpha": -0.0025
+   },
+   "mu": -0.0097,
+   "prior": -0.0211,
+   "posterior": -0.0149,
+   "vol": 0.188,
+   "raw": {
+    "mcap_b": 2261.5,
+    "n": 4,
+    "mom_12_1": 0.0682,
+    "mom_6_1": -0.0764,
+    "above200": 1.0,
+    "evs_pct_3y": 0.7527,
+    "rev30": 0.0
+   }
+  },
+  {
+   "sector": "유틸리티",
+   "etf": "AMEX:XLU",
+   "bench": 0.0104,
+   "model": 0.0,
+   "active": -0.0104,
+   "z": {
+    "trend": -1.36,
+    "value": -0.42,
+    "alpha": -0.13
+   },
+   "contrib": {
+    "trend": -0.0112,
+    "value": -0.0021,
+    "alpha": -0.001
+   },
+   "mu": -0.0144,
+   "prior": 0.002,
+   "posterior": -0.0049,
+   "vol": 0.165,
+   "raw": {
+    "mcap_b": 386.1,
+    "n": 3,
+    "mom_12_1": -0.0587,
+    "mom_6_1": -0.1176,
+    "above200": 0.2575,
+    "evs_pct_3y": 0.6891,
+    "rev30": -0.0007
+   }
+  },
+  {
+   "sector": "기술",
+   "etf": "AMEX:XLK",
+   "bench": 0.4154,
+   "model": 0.4,
+   "active": -0.0154,
+   "z": {
+    "trend": 0.56,
+    "value": 1.61,
+    "alpha": -0.11
+   },
+   "contrib": {
+    "trend": 0.0072,
+    "value": 0.0125,
+    "alpha": -0.0014
+   },
+   "mu": 0.0183,
+   "prior": 0.099,
+   "posterior": 0.0612,
+   "vol": 0.259,
+   "raw": {
+    "mcap_b": 15400.0,
+    "n": 4,
+    "mom_12_1": 0.1476,
+    "mom_6_1": 0.1545,
+    "above200": 0.8973,
+    "evs_pct_3y": 0.4224,
+    "rev30": 0.0086
+   }
+  },
+  {
+   "sector": "커뮤니케이션",
+   "etf": "AMEX:XLC",
+   "bench": 0.1494,
+   "model": 0.1286,
+   "active": -0.0208,
+   "z": {
+    "trend": -0.5,
+    "value": 1.49,
+    "alpha": -0.29
+   },
+   "contrib": {
+    "trend": -0.0045,
+    "value": 0.0081,
+    "alpha": -0.0027
+   },
+   "mu": 0.0009,
+   "prior": 0.0403,
+   "posterior": 0.0172,
+   "vol": 0.181,
+   "raw": {
+    "mcap_b": 5540.2,
+    "n": 4,
+    "mom_12_1": 0.1648,
+    "mom_6_1": -0.0329,
+    "above200": 0.0362,
+    "evs_pct_3y": 0.4377,
+    "rev30": -0.0018
+   }
+  },
+  {
+   "sector": "산업재",
+   "etf": "AMEX:XLI",
+   "bench": 0.0275,
+   "model": 0.0,
+   "active": -0.0275,
+   "z": {
+    "trend": -0.24,
+    "value": 1.15,
+    "alpha": 0.1
+   },
+   "contrib": {
+    "trend": -0.0018,
+    "value": 0.0053,
+    "alpha": 0.0007
+   },
+   "mu": 0.0042,
+   "prior": 0.0372,
+   "posterior": 0.0119,
+   "vol": 0.152,
+   "raw": {
+    "mcap_b": 1017.9,
+    "n": 4,
+    "mom_12_1": 0.1012,
+    "mom_6_1": -0.0024,
+    "above200": 0.5884,
+    "evs_pct_3y": 0.4828,
+    "rev30": 0.0196
+   }
+  },
+  {
+   "sector": "금융",
+   "etf": "AMEX:XLF",
+   "bench": 0.0708,
+   "model": 0.0119,
+   "active": -0.0589,
+   "z": {
+    "trend": 0.1,
+    "value": -0.13,
+    "alpha": -0.25
+   },
+   "contrib": {
+    "trend": 0.0007,
+    "value": -0.0006,
+    "alpha": -0.0018
+   },
+   "mu": -0.0017,
+   "prior": 0.0197,
+   "posterior": 0.004,
+   "vol": 0.148,
+   "raw": {
+    "mcap_b": 2625.6,
+    "n": 4,
+    "mom_12_1": 0.0593,
+    "mom_6_1": 0.1099,
+    "above200": 0.8675,
+    "evs_pct_3y": 0.6511,
+    "rev30": 0.0091
+   }
+  },
+  {
+   "sector": "경기소비재",
+   "etf": "AMEX:XLY",
+   "bench": 0.1301,
+   "model": 0.0392,
+   "active": -0.0909,
+   "z": {
+    "trend": -0.93,
+    "value": -0.58,
+    "alpha": -0.44
+   },
+   "contrib": {
+    "trend": -0.0077,
+    "value": -0.0029,
+    "alpha": -0.0037
+   },
+   "mu": -0.0143,
+   "prior": 0.0478,
+   "posterior": 0.0124,
+   "vol": 0.166,
+   "raw": {
+    "mcap_b": 4822.8,
+    "n": 4,
+    "mom_12_1": -0.0547,
+    "mom_6_1": -0.0713,
+    "above200": 0.6529,
+    "evs_pct_3y": 0.7095,
+    "rev30": -0.01
+   }
+  }
+ ]
+}

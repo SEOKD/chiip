@@ -3646,6 +3646,102 @@ params:
     data: knowledge/models/tenbagger/rating_ledger.csv
     last_fit: null
     oos_metric: null
+- id: prm-sec-lenses-trend-ic
+  model: pm.sector_alloc
+  binding: config/sector_alloc.yaml#lenses.trend.ic
+  value: 0.05
+  unit: 상관
+  status: prior
+  prior:
+    value: 0.05
+    basis: 추세 렌즈 IC 사전값
+    source: Moskowitz, Ooi & Pedersen(2012) JFE 104; Moskowitz & Grinblatt(1999) JF 54
+  fit:
+    method: 렌즈 z와 다음 21·63거래일 섹터 ETF 초과수익의 순위 상관(실현 IC), 중첩 표본 외 — 위험 정책 상수는 고정
+    target: 섹터 ETF 초과수익(SPY 대비)
+    data: knowledge/models/portfolio/sector_alloc.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-sec-lenses-value-ic
+  model: pm.sector_alloc
+  binding: config/sector_alloc.yaml#lenses.value.ic
+  value: 0.03
+  unit: 상관
+  status: prior
+  prior:
+    value: 0.03
+    basis: 가치 렌즈 IC 사전값
+    source: Asness, Moskowitz & Pedersen(2013) JF 68
+  fit:
+    method: 렌즈 z와 다음 21·63거래일 섹터 ETF 초과수익의 순위 상관(실현 IC), 중첩 표본 외 — 위험 정책 상수는 고정
+    target: 섹터 ETF 초과수익(SPY 대비)
+    data: knowledge/models/portfolio/sector_alloc.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-sec-lenses-alpha-ic
+  model: pm.sector_alloc
+  binding: config/sector_alloc.yaml#lenses.alpha.ic
+  value: 0.05
+  unit: 상관
+  status: prior
+  prior:
+    value: 0.05
+    basis: 알파(추정 수정·국면) 렌즈 IC 사전값
+    source: Chan, Jegadeesh & Lakonishok(1996) JF 51
+  fit:
+    method: 렌즈 z와 다음 21·63거래일 섹터 ETF 초과수익의 순위 상관(실현 IC), 중첩 표본 외 — 위험 정책 상수는 고정
+    target: 섹터 ETF 초과수익(SPY 대비)
+    data: knowledge/models/portfolio/sector_alloc.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-sec-allocation-active-max
+  model: pm.sector_alloc
+  binding: config/sector_alloc.yaml#allocation.active_max
+  value: 0.1
+  unit: 비중
+  status: prior
+  prior:
+    value: 0.1
+    basis: 섹터 벤치마크 대비 최대 편차 — 위험 정책
+    source: IB 섹터 배분 실무(±5~10%p)
+  fit:
+    method: 렌즈 z와 다음 21·63거래일 섹터 ETF 초과수익의 순위 상관(실현 IC), 중첩 표본 외 — 위험 정책 상수는 고정
+    target: 섹터 ETF 초과수익(SPY 대비)
+    data: knowledge/models/portfolio/sector_alloc.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-sec-allocation-view-conf
+  model: pm.sector_alloc
+  binding: config/sector_alloc.yaml#allocation.view_conf
+  value: 0.4
+  unit: 0~1
+  status: prior
+  prior:
+    value: 0.4
+    basis: 섹터 견해 신뢰
+    source: Idzorek(2005)
+  fit:
+    method: 렌즈 z와 다음 21·63거래일 섹터 ETF 초과수익의 순위 상관(실현 IC), 중첩 표본 외 — 위험 정책 상수는 고정
+    target: 섹터 ETF 초과수익(SPY 대비)
+    data: knowledge/models/portfolio/sector_alloc.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-sec-allocation-lambda
+  model: pm.sector_alloc
+  binding: config/sector_alloc.yaml#allocation.lambda
+  value: 2.5
+  unit: 배
+  status: prior
+  prior:
+    value: 2.5
+    basis: 위험 회피 — 위험 정책
+    source: Black & Litterman(1992) 관행
+  fit:
+    method: 렌즈 z와 다음 21·63거래일 섹터 ETF 초과수익의 순위 상관(실현 IC), 중첩 표본 외 — 위험 정책 상수는 고정
+    target: 섹터 ETF 초과수익(SPY 대비)
+    data: knowledge/models/portfolio/sector_alloc.json 이력
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min

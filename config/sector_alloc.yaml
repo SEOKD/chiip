@@ -1,0 +1,47 @@
+# Portfolio 섹터 배분 판단 체계 (scripts/pm/sector_alloc.py, 마스터 지시 2026-11-04 "섹터별 역학 관계를 파악해 현 시장 상황과 미래 전망을 고려해
+# 추세추종·가치평가·알파 관점에서 어떤 섹터가 수익률이 높고 섹터별 몇 % 비중으로 노출해야 수익률을 극대화할지 — 월스트리트 IB 방법론")
+# 연구용 모델 배분 지표다 — 마스터 계좌의 매매·비중 지시가 아니다. 등록부 prm-sec-*. 모든 값은 사전값.
+sectors:          # GICS 11개. etf = 공분산·추세 보조(TradingView 일봉), keys = Fiscal.ai 대형주 바스켓(시총 가중 — 벤치마크 비중 근사)
+  기술:        {etf: AMEX:XLK, keys: [NASDAQ_AAPL, NASDAQ_MSFT, NASDAQ_NVDA, NASDAQ_AVGO]}
+  커뮤니케이션: {etf: AMEX:XLC, keys: [NASDAQ_GOOGL, NASDAQ_META, NASDAQ_NFLX, NYSE_DIS]}
+  경기소비재:  {etf: AMEX:XLY, keys: [NASDAQ_AMZN, NASDAQ_TSLA, NYSE_HD, NYSE_MCD]}
+  필수소비재:  {etf: AMEX:XLP, keys: [NASDAQ_COST, NYSE_WMT, NYSE_PG, NYSE_KO]}
+  헬스케어:    {etf: AMEX:XLV, keys: [NYSE_LLY, NYSE_JNJ, NYSE_UNH, NYSE_ABBV]}
+  금융:        {etf: AMEX:XLF, keys: [NYSE_JPM, NYSE_V, NYSE_MA, NYSE_BAC]}
+  산업재:      {etf: AMEX:XLI, keys: [NYSE_GE, NYSE_CAT, NYSE_RTX, NYSE_UBER]}
+  에너지:      {etf: AMEX:XLE, keys: [NYSE_XOM, NYSE_CVX, NYSE_COP, NYSE_EOG]}
+  소재:        {etf: AMEX:XLB, keys: [NASDAQ_LIN, NYSE_SHW, NYSE_APD, NYSE_ECL]}
+  유틸리티:    {etf: AMEX:XLU, keys: [NYSE_NEE, NYSE_SO, NYSE_DUK, NASDAQ_CEG]}
+  부동산:      {etf: AMEX:XLRE, keys: [NYSE_PLD, NASDAQ_EQIX, NYSE_AMT, NYSE_WELL]}
+
+lenses:           # 기대 초과수익 = Σ IC × σ_섹터 × z (Grinold & Kahn 1999). 렌즈 안 하위 신호는 z 평균
+  trend:          # 추세추종 — 시계열 모멘텀(Moskowitz, Ooi & Pedersen 2012 JFE), 섹터 모멘텀(Moskowitz & Grinblatt 1999 JF), 200일 추세 필터(Faber 2007)
+    ic: 0.05
+    signals: {mom_12_1: 0.5, mom_6_1: 0.25, above200: 0.25}
+  value:          # 가치평가 — 자기 3년 역사 대비 배수 위치(싼 쪽 +), 섹터 가치 회귀(Asness, Moskowitz & Pedersen 2013 JF 'Value and Momentum Everywhere')
+    ic: 0.03
+    signals: {evs_pct_3y: 1.0}
+  alpha:          # 알파 — 이익 추정 수정 모멘텀(Chan, Jegadeesh & Lakonishok 1996 JF), 매크로 국면 적합(경기 순환 섹터 로테이션 실무)
+    ic: 0.05
+    signals: {rev30: 0.7, regime: 0.3}
+
+regime:           # 국면 판정(knowledge/models/portfolio/market_latest.json macro). 섹터 z 가산
+  risk_off: {vix_min: 25, sp500_dd_max: -0.10, hy_d20_min: 0.50}     # 하나라도 해당
+  risk_on:  {vix_max: 16, sp500_dd_min: -0.03}
+  rates_up_d20: 0.25      # 10년물 20거래일 +25bp 이상
+  rates_down_d20: -0.25
+  tilts:
+    risk_off: {필수소비재: 1, 유틸리티: 1, 헬스케어: 1, 경기소비재: -1, 기술: -0.5, 소재: -0.5, 산업재: -0.5, 금융: -0.5}
+    risk_on: {경기소비재: 1, 기술: 0.5, 산업재: 0.5, 금융: 0.5, 소재: 0.5, 필수소비재: -1, 유틸리티: -1}
+    rates_up: {금융: 1, 에너지: 0.5, 유틸리티: -1, 부동산: -1}
+    rates_down: {유틸리티: 0.5, 부동산: 1, 금융: -0.5}
+
+allocation:       # 블랙-리터만(사전 = 벤치마크 비중의 CAPM 균형, 견해 = 위 기대 초과수익) → 제약 평균-분산
+  lambda: 2.5
+  tau: 0.05
+  view_conf: 0.4
+  mrp: 0.05
+  active_max: 0.10        # 섹터별 벤치마크 대비 ±10%p
+  w_max: 0.40
+  window: 63              # 공분산 일수(ETF 일봉 — 짧으면 축소가 크다)
+  halflife: 21
