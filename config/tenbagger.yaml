@@ -94,6 +94,30 @@ multiple_select:
   judge_cap: 0.3       # 사이클·실행 판단 조정 상한
   over_peer: 0.15      # 동종 최고값을 넘을 수 있는 폭
   spread: {bear: -0.25, base: 0.0, bull: 0.25}
+  # 반복 매출 프리미엄(scripts/valuation/v2/multiples.py recurring_premium, 마스터 지시 2026-11-04) — 등록부 prm-tb-mult-rec-*, 사전값
+  recurring:
+    per_share: 0.30          # 반복 매출 비중이 동종보다 100%p 높을 때의 프리미엄(비례) — 비중 +30%p면 +9%
+    peer_share_default: 0.2  # 동종 비중을 모를 때
+    retention_slope: 2.0     # 유지율 계수 = 1 + 2·(유지율 − 1): NRR 110% → 1.2, 95% → 0.9
+    retention_floor: 0.5
+    retention_cap: 1.4
+    halflife_years: 3        # 반복 단계까지 3년이면 프리미엄 절반(아직 판매 단계인 설치 기반 사업)
+    base_growth_slope: 0.2   # 설치·사용자 기반 성장 가산(동종보다 반복 비중이 높을 때만)
+    cap: 0.15
+  # 수주 전환·가시성 프리미엄(backlog_premium, 마스터 지시 2026-11-04) — 등록부 prm-tb-mult-bk-*, 사전값
+  backlog:
+    peer_conversion_months_default: 12
+    conv_slope: 0.08         # 동종의 절반 기간에 매출로 바꾸면 +4%
+    conv_cap: 0.05
+    coverage_range: [0.3, 1.0]     # 잔고가 다음 연도 매출의 30%면 0점, 100%면 1점
+    btb_range: [0.8, 1.3]          # book-to-bill 0.8 → 0, 1.3 → 1
+    rpo12_range: [0.3, 0.8]        # RPO 중 12개월 안 인식 비중
+    rpo_vs_rev_range: [-0.1, 0.2]  # RPO·ACV 성장 − 매출 성장(잔고가 매출보다 빨리 쌓이는가)
+    cancel_penalty: 2.0            # 취소율 5% → −0.1
+    concentration_penalty: 1.0     # 최대 고객 비중이 concentration_free를 넘는 몫만큼
+    concentration_free: 0.25
+    vis_cap: 0.08
+  structure_cap: 0.25        # 해자 + 반복 매출 + 수주 전환·가시성 합의 상한(같은 체질을 두 번 세지 않게)
 
 # 발굴 경로
 paths:
@@ -104,8 +128,8 @@ paths:
 factors:
   fcf_yield:      {weight: 0.25, direction: high, basis: "Yartseva(2025-02, CAFE WP 33, Birmingham City Univ.) 원문 확인 2026-10-29: 464개 멀티배거(2009~2024 10배+, NYSE·Nasdaq, 2000~2024 패널) 안에서 FCF/P와 B/M이 계수 최대·강한 유의, 성장 변수는 비유의. 단 표본이 승자만이라(결과 조건부) '10배가 될 확률' 근거는 아님 — 가중치는 사전값 유지, 피팅으로 검증"}
   book_to_market: {weight: 0.15, direction: high, basis: "Yartseva(2025-02, CAFE WP 33) 원문 확인 2026-10-30: B/M=총자본÷시총, 멀티배거 3분위 연 초과수익 저 12.8%·중 14.5%·고 34.7%(규모·수익성·투자 통제 후 유지), 패널 회귀에서 FCF/P와 함께 계수 최대·강한 유의. 승자만의 표본이라 10배 확률 근거 아님 — 가중치 사전값 유지, 피팅으로 검증"}
-  size:           {weight: 0.15, direction: low,  basis: "소형주일수록 10배 경로의 산술적 여지 — 기준 연구별로 정의 다름. 원문 확인 대기"}
-  quality:        {weight: 0.15, direction: high, basis: "총이익률·ROIC 수준·개선(수익성 요인 문헌). 원문 확인 대기"}
+  size:           {weight: 0.15, direction: low,  basis: "Asness 외(2018, JFE 129(3)) 게재본 수치 확인 2026-11-03: 미국 SMB 월 0.23%(t 2.27, 1월이 전부), 4요인 알파 0.14%(t 1.23) → QMJ 통제 0.49%(t 4.89). 가장 정크인 5분위는 규모 차 비유의, 해외 선진 SMB t 0.91. 한국·대만은 표본 밖이고 10배 확률 근거 아님 — 가중치 사전값 유지, 피팅으로 검증"}
+  quality:        {weight: 0.15, direction: high, basis: "Asness·Frazzini·Pedersen(2019, RAST 24(1)) 게재본 표 확인 2026-11-02: QMJ 월 0.29%(t 3.62), 4요인 알파 0.60%(t 9.95), 수익성 0.25%(t 3.69), 성장 0.17%(t 2.46), 미국 1957~2016. Novy-Marx(2010 WP, 2013 JFE) 총이익/자산 슬로프 0.67(t 5.06). 한국·대만은 표본 밖이고 10배 확률 근거 아님. 현재 코드는 영업이익률 단일 값이라 근거의 측정치와 다르다 — 가중치 사전값 유지, 피팅으로 검증"}
   growth_accel:   {weight: 0.15, direction: high, basis: "매출 성장 가속 — 실무 문헌(100-bagger류). 학술 근거 약함, 피팅으로 검증"}
   bottleneck:     {weight: 0.15, direction: high, basis: "치입 자체 요인 — 병목 해결 기술 노출도(모델 판단 0~10). 근거 없음, 가상 추적 성과로 피팅"}
 

@@ -190,6 +190,67 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     return out
 
 
+def recurring_premium(dp, cfg):
+    """반복 매출 프리미엄(마스터 지시 2026-11-04 "User base·Installation base에 따른 Recurring Revenue가 있는지 파악해 멀티플 프리미엄 요인으로,
+    반복 매출 단계까지 걸리는 시간도 반영"). 이익의 지속성이 높을수록 같은 이익에 더 높은 배수가 붙는다(Kormendi & Lipe 1987 이익 지속성↔반응 계수).
+    datapack recurring = {"share": 반복 매출 비중 0~1, "peer_share": 동종 중앙 비중(없으면 cfg 기본), "kind": 구독|소모품|서비스·유지보수|사용량,
+                          "base": "설치·사용자 기반 설명", "base_growth": 기반 성장률, "retention": 순매출 유지율(NRR·갱신율, 1.0=100%),
+                          "years_to_recurring": 첫 판매 뒤 반복 매출이 본격화하기까지 남은 햇수(이미 반복 단계면 0), "source": "…"}
+    프리미엄 = (비중 − 동종 비중) × per_share × 유지율 계수 × 시간 할인(반감기 halflife년) ± 기반 성장 가산, ±cap"""
+    r = dp.get("recurring") or {}
+    c = cfg.get("recurring") or {}
+    if r.get("share") is None or not c:
+        return 0.0, "재료 없음"
+    gap = float(r["share"]) - float(r.get("peer_share", c["peer_share_default"]))
+    ret = r.get("retention")
+    q = 1.0 if ret is None else max(c["retention_floor"], min(c["retention_cap"], 1 + c["retention_slope"] * (float(ret) - 1)))
+    yrs = max(0.0, float(r.get("years_to_recurring") or 0))
+    t = 0.5 ** (yrs / c["halflife_years"])
+    g = c["base_growth_slope"] * max(-0.1, min(0.3, float(r.get("base_growth") or 0))) if gap > 0 else 0.0
+    v = max(-c["cap"], min(c["cap"], gap * c["per_share"] * q * t + g * t))
+    why = (f"반복 매출 {float(r['share']):.0%}(동종 {float(r.get('peer_share', c['peer_share_default'])):.0%}) · {r.get('kind') or '유형 미확인'}"
+           + (f" · 유지율 {float(ret):.0%}" if ret is not None else "") + (f" · 반복 단계까지 {yrs:g}년(할인 ×{t:.2f})" if yrs else " · 이미 반복 단계")
+           + (f" · 기반 {r['base']}" if r.get("base") else ""))
+    return v, why
+
+
+def backlog_premium(dp, cfg):
+    """수주 전환·가시성 프리미엄(마스터 지시 2026-11-04 "수주 기반이면 수주를 얼마나 빨리 매출로 전환하는지, 미래 수주 가시성이 얼마나 뚜렷한지 —
+    book-to-bill·RPO·ACV 참조"). 수주잔고는 미래 이익을 예측하는데 시장이 덜 반영한다(Rajgopal, Shevlin & Venkatachalam 2003, RAST 8).
+    datapack backlog = {"conversion_months": 수주→매출 평균 개월(잔고 ÷ 월매출 또는 회사 공시), "peer_conversion_months": 동종(없으면 cfg 기본),
+                        "coverage_next_fy": 잔고 중 다음 회계연도 매출로 인식될 몫 ÷ 다음 연도 매출 추정(0~1+), "book_to_bill": 최근 4분기 수주÷매출,
+                        "rpo_12m_share": RPO 중 12개월 안 인식 비중(ASC 606 주석), "rpo_growth": RPO(또는 ACV) 성장률, "revenue_growth": 매출 성장률,
+                        "cancel_rate": 취소·조정 비율, "top_customer_share": 최대 고객 비중, "source": "…"}
+    전환 프리미엄 = conv_slope × (1 − 개월/동종 개월), ±conv_cap. 가시성 = 항목별 0~1 점수의 평균(있는 것만) − 감점 → (가시성 − 0.5) × 2 × vis_cap"""
+    b = dp.get("backlog") or {}
+    c = cfg.get("backlog") or {}
+    if not b or not c:
+        return 0.0, 0.0, "재료 없음"
+    conv = 0.0
+    if b.get("conversion_months"):
+        pm = float(b.get("peer_conversion_months") or c["peer_conversion_months_default"])
+        conv = max(-c["conv_cap"], min(c["conv_cap"], c["conv_slope"] * (1 - float(b["conversion_months"]) / pm)))
+    lin = lambda x, lo, hi: max(0.0, min(1.0, (x - lo) / (hi - lo)))
+    parts = {}
+    if b.get("coverage_next_fy") is not None:
+        parts["잔고 커버리지"] = lin(float(b["coverage_next_fy"]), *c["coverage_range"])
+    if b.get("book_to_bill") is not None:
+        parts["book-to-bill"] = lin(float(b["book_to_bill"]), *c["btb_range"])
+    if b.get("rpo_12m_share") is not None:
+        parts["RPO 12개월"] = lin(float(b["rpo_12m_share"]), *c["rpo12_range"])
+    if b.get("rpo_growth") is not None:
+        parts["RPO·ACV 성장 − 매출 성장"] = lin(float(b["rpo_growth"]) - float(b.get("revenue_growth") or 0), *c["rpo_vs_rev_range"])
+    if not parts:
+        return conv, 0.0, "가시성 재료 없음"
+    vis = sum(parts.values()) / len(parts)
+    pen = c["cancel_penalty"] * float(b.get("cancel_rate") or 0) + c["concentration_penalty"] * max(0.0, float(b.get("top_customer_share") or 0) - c["concentration_free"])
+    vis = max(0.0, vis - pen)
+    vprem = max(-c["vis_cap"], min(c["vis_cap"], (vis - 0.5) * 2 * c["vis_cap"]))
+    why = " · ".join(f"{k} {v:.2f}" for k, v in parts.items()) + f" → 가시성 {vis:.2f}" + (f"(감점 {pen:.2f})" if pen else "") \
+        + (f" · 전환 {float(b['conversion_months']):g}개월(동종 {float(b.get('peer_conversion_months') or c['peer_conversion_months_default']):g})" if b.get("conversion_months") else "")
+    return conv, vprem, why
+
+
 def select_multiple(m, dp, cfg):
     """IB식 목표 멀티플 선정(마스터 지시 2026-10-31 "피어그룹 레인지를 참조하고 해당 종목의 내러티브와 구조적 기업 체질 변화 등을 정량적으로 반영해 합리적인 수준으로").
     동종 중앙값에서 출발 → 펀더멘털 프리미엄(합리적 멀티플과의 차이, 절반만 인정) → 해자 → 내러티브 단계 → 사이클·실행 판단 → 동종 레인지 안으로.
@@ -210,11 +271,17 @@ def select_multiple(m, dp, cfg):
     narr = cfg["stage"].get(n.get("stage"), 0.0)
     mv = dp.get("multiple_view") or {}
     judge = clip(float(mv.get("adj") or 0), cfg["judge_cap"])
-    raw = p50 * (1 + fund + moat + narr + judge)
+    rec, rec_why = recurring_premium(dp, cfg)                 # 반복 매출(2026-11-04)
+    conv, vis, bk_why = backlog_premium(dp, cfg)              # 수주 전환·가시성(2026-11-04)
+    struct = clip(moat + rec + conv + vis, cfg.get("structure_cap", 1.0)) - moat   # 해자와 겹치는 몫(전환 비용 등)을 합쳐서 상한 — 이중 계산 방지
+    raw = p50 * (1 + fund + moat + struct + narr + judge)
     value = max(low, min(high * (1 + cfg["over_peer"]), raw))
     rows = [["동종 중앙값", f"{p50:.1f}배", f"범위 {low:.1f}~{high:.1f}배, {len(acts)}곳"],
             ["펀더멘털", pct(fund), f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정" if rational else "재료 없음"],
             ["해자", pct(moat), " · ".join(f"{str(x.get('kind')).split('에 따른')[0]} {x.get('verdict')}" for x in items) or "재료 없음"],
+            ["반복 매출", pct(rec), rec_why],
+            ["수주 전환·가시성", pct(conv + vis), bk_why],
+            *([["구조 상한 조정", pct(struct - rec - conv - vis), f"해자+반복+수주 합 {cfg.get('structure_cap', 1.0):.0%} 상한"]] if abs(struct - rec - conv - vis) > 1e-9 else []),
             ["내러티브", pct(narr), f"단계 {n.get('stage') or '미확인'}"],
             ["사이클·실행 판단", pct(judge), str(mv.get("why") or "조정 없음")],
             ["**선정**", f"**{value:.1f}배**", f"지금 {v['current']:.1f}배"]]

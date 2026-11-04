@@ -3534,6 +3534,118 @@ params:
     data: knowledge/models/spac/
     last_fit: null
     oos_metric: null
+- id: prm-tb-mult-recurring-per-share
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.recurring.per_share
+  value: 0.3
+  unit: 프리미엄/비중
+  status: prior
+  prior:
+    value: 0.3
+    basis: 반복 매출 비중 초과분당 프리미엄
+    source: Kormendi & Lipe(1987) J. Business 60 — 이익 지속성↔반응 계수; 구독 사업 멀티플 프리미엄 실무
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-recurring-halflife-years
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.recurring.halflife_years
+  value: 3
+  unit: 년
+  status: prior
+  prior:
+    value: 3
+    basis: 반복 단계까지 시간 할인 반감기
+    source: 치입 운영 가정 — 설치 기반 사업 반복 매출 램프
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-recurring-retention-slope
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.recurring.retention_slope
+  value: 2.0
+  unit: 계수
+  status: prior
+  prior:
+    value: 2.0
+    basis: 유지율(NRR·갱신율) 계수 기울기
+    source: SaaS 실무(NRR 프리미엄)
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-recurring-cap
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.recurring.cap
+  value: 0.15
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.15
+    basis: 반복 매출 프리미엄 상한
+    source: 치입 운영 가정
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-backlog-conv-slope
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.backlog.conv_slope
+  value: 0.08
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.08
+    basis: 수주→매출 전환 속도 프리미엄 기울기
+    source: 치입 운영 가정
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-backlog-vis-cap
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.backlog.vis_cap
+  value: 0.08
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.08
+    basis: 수주 가시성 프리미엄 상한
+    source: Rajgopal, Shevlin & Venkatachalam(2003) RAST 8 — 수주잔고의 이익 예측력·시장의 과소 반영
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tb-mult-structure-cap
+  model: tenbagger.multiple
+  binding: config/tenbagger.yaml#multiple_select.structure_cap
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: 해자+반복+수주 합 상한(이중 계산 방지)
+    source: 치입 운영 가정
+  fit:
+    method: 리포트 선정 멀티플 vs 이후 12개월 실현 멀티플·주가(구매 등급 성과 원장), 중첩 표본 외
+    target: 선정 멀티플 오차
+    data: knowledge/models/tenbagger/rating_ledger.csv
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-rate-sb-dcf
   model: tenbagger.report
   binding: config/tenbagger.yaml#rating.strong_buy.dcf_min

@@ -37,3 +37,4 @@
 - **같은 종목 옛 리포트는 GitHub에서 지운다**(2026-11-04 마스터 지시 "11월 4일 Erock 보고서 뒤 12월 4일에 또 썼다면 11월 4일분은 Github에서 삭제"): `publish_tenbagger.py prepare`가 `prune_reports.py`로 같은 티커·더 이른 날짜의 리포트·차트·발송 상태를 claude/reports 게시 커밋에서 빼고 작업 트리에서도 지운다. 장부(delivery.csv 등)는 남긴다. 다른 파일 삭제는 코드 가드가 막는다.
 
 - **보기 링크·노션 본문 = 마크다운**(2026-11-04 마스터 지시 "Analysis 링크 제공할 때 html 말고 md로 제공하라. 노션 안에도 html 말고 md로"): 텔레그램 보기 링크는 GitHub 마크다운(`github_md`), 노션은 HTML 임베드 없이 _notion.md 본문만. Artifact 게시는 하지 않는다.
+- **반복 매출·수주 프리미엄**(2026-11-04 마스터 지시): `scripts/valuation/v2/multiples.py` `recurring_premium`(반복 비중 − 동종 × 유지율 × 반복 단계까지 시간 할인, ±15%)·`backlog_premium`(전환 속도 ±5% + 가시성 — 잔고 커버리지·book-to-bill·RPO 12개월·RPO/ACV 성장 vs 매출, 취소·고객 집중 감점, ±8%). 해자와 합쳐 상한 25%. 상수 `config/tenbagger.yaml` multiple_select, 등록부 prm-tb-mult-*.
