@@ -91,8 +91,16 @@ class TestGit(unittest.TestCase):
         (self.root / "radar" / "c.txt").unlink()
         out = self.post()
         self.assertEqual((self.root / "radar" / "a.py").read_text(encoding="utf-8"), "print(1)\n")
-        self.assertFalse((self.root / "radar" / "c.txt").exists())
+        self.assertTrue((self.root / "radar" / "c.txt").exists())   # 추적 파일도 복구(마스터 지시 2026-11-04)
         self.assertIn("radar/a.py", out["hookSpecificOutput"]["additionalContext"])
+
+    def test_only_pruned_reports_may_go(self):
+        (self.root / "radar" / "state").mkdir(parents=True, exist_ok=True)
+        (self.root / "radar" / "state" / "pruned.txt").write_text("2026-11-04T00:00:00+09:00\tradar/c.txt\n", encoding="utf-8")
+        self.pre("py 지우는스크립트.py")
+        (self.root / "radar" / "c.txt").unlink()
+        self.post()
+        self.assertFalse((self.root / "radar" / "c.txt").exists())
 
     def test_file_already_gone_is_left_alone(self):
         (self.root / "radar" / "a.py").unlink()

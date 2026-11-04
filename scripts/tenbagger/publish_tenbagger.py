@@ -105,7 +105,12 @@ def prepare(src, extra=(), title=None, dry=False):
     if dry:
         links, commit = [f"(dry) {rel(f)}" for f in files], "dry"
     else:
-        links, commit = publish_report.publish([str(f) for f in files], ttl)
+        import prune_reports   # 같은 종목 옛 리포트는 GitHub에서 지운다(마스터 지시 2026-11-04)
+        gone = prune_reports.drop(src.stem)
+        links, commit = publish_report.publish([str(f) for f in files], ttl, drop=gone)
+        prune_reports.remove(src.stem)
+        if gone:
+            log(src.stem, d.get("ticker"), "github_prune", "ok", " ".join(gone))
     by = dict(zip([rel(f) for f in files], links))
     gh_md, gh_html = by.get(rel(built["md"])), by.get(rel(html))
     art = src.with_name(src.stem + "_artifact.html")
@@ -179,7 +184,7 @@ def send(src, caption="", dry=False, resend=False, reissue=False):
     else:
         cap = Path(caption).read_text(encoding="utf-8") if caption and Path(caption).exists() else (caption or f"[Chiip Ten-bagger Report] {st['company']}({st['ticker']})")
         rep = json.loads(Path(src).read_text(encoding="utf-8")) if Path(src).exists() else {}
-        if rep.get("format") == 3:   # 양식 3은 피드를 엔진이 만든다(마스터 지시 2026-11-01)
+        if rep.get("format") == 3 and rep.get("kind") != "spac":   # 양식 3은 피드를 엔진이 만든다(마스터 지시 2026-11-01). 스팩 리포트는 등급·목표주가가 없어 캡션으로
             import report_feed
             cap = report_feed.build(rep)
         text = ("[수정판 — 어닝콜 전문 반영]\n" if reissue else "") + message(st, cap)

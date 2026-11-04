@@ -1,7 +1,7 @@
 """코드 삭제 가드 훅 (2026-11-02 마스터 지시 "짜놓은 코드를 에이전트가 스스로 삭제하지 않도록")
 
 pre  (PreToolUse, Bash·PowerShell·Write·Edit):
-  delete-guard   코드 파일을 지우거나 옮기거나 비우는 명령, 코드 삭제를 담은 git commit
+  delete-guard   코드 파일·git 추적 파일(2026-11-04 확대, 예외는 prune_reports.py의 옛 리포트)을 지우거나 옮기거나 비우는 명령, 코드 삭제를 담은 git commit
   git-guard      git clean·reset --hard·stash·강제 푸시·--no-verify처럼 코드를 날리거나 검사를 건너뛰는 명령
   gut-guard      Write·Edit로 코드 파일을 비우는 저장, 설정에서 훅을 빼는 저장
   → 모두 승인 창 없이 거부(deny). 에이전트는 삭제를 시도하지 않고, 필요한 삭제는 마스터가 직접 한다(2026-11-02 마스터 지시 "삭제 시도 하지마라").
@@ -71,6 +71,32 @@ def protected(r):
     return r in CODE_FILES or r.startswith(CODE_DIRS) or Path(r).suffix.lower() in CODE_SUFFIX
 
 
+_TRACKED = None
+
+
+def tracked():
+    global _TRACKED
+    if _TRACKED is None:
+        _TRACKED = set(git("ls-files", "-z").decode("utf-8").split("\0")) - {""}
+    return _TRACKED
+
+
+def pruned():
+    """prune_reports.py가 지운 같은 종목 옛 리포트 — 마스터가 명령한 유일한 에이전트 삭제(2026-11-04)"""
+    f = ROOT / "radar" / "state" / "pruned.txt"
+    if not f.exists():
+        return set()
+    return {ln.split("\t", 1)[1].strip() for ln in f.read_text(encoding="utf-8").splitlines() if "\t" in ln}
+
+
+def guarded(r):
+    """지우면 안 되는 파일: 코드, 그리고 git이 추적하는 모든 파일(마스터 지시 2026-11-04 "명령한 것 외에 다른 소스코드나 파일을
+    삭제하지 않도록"). 예외는 prune_reports.py가 적은 옛 리포트뿐"""
+    if r in pruned():
+        return False
+    return protected(r) or r in tracked()
+
+
 def unquote(t):
     return t.strip("\"'")
 
@@ -103,12 +129,12 @@ def hits(token, cwd):
         r = rel(path)
         if r is None:
             continue
-        if path.is_file() and protected(r):
+        if path.is_file() and guarded(r):
             out.append(r)
         elif path.is_dir():
             for base, dirs, files in os.walk(path):
                 dirs[:] = [d for d in dirs if d not in NOT_CODE_PARTS]
-                if any(protected(rel(os.path.join(base, f)) or "") for f in files):
+                if any(guarded(rel(os.path.join(base, f)) or "") for f in files):
                     out.append(r)
                     break
     return out
@@ -146,7 +172,7 @@ def git(*args):
 def missing(*extra):
     """HEAD에는 있는데 지금 없는 보호 파일. 이름 바꾸기(git mv)는 삭제가 아니다."""
     names = git("diff", "HEAD", *extra, "--name-only", "--diff-filter=D", "-z").decode("utf-8").split("\0")
-    return [r for r in names if r and protected(r)]
+    return [r for r in names if r and guarded(r)]
 
 
 def git_reason(seg):

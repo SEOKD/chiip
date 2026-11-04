@@ -44,7 +44,8 @@ def base_commit():
         return git("rev-parse", "refs/remotes/origin/main")
 
 
-def publish(paths, title):
+def publish(paths, title, drop=()):
+    """drop: 같은 커밋에서 브랜치에서 뺄 경로(같은 종목 옛 리포트, prune_reports.drop)"""
     rels = []
     for p in paths:
         ap = (ROOT / p).resolve() if not Path(p).is_absolute() else Path(p).resolve()
@@ -62,6 +63,10 @@ def publish(paths, title):
         for ap, rel in rels:
             blob = git("hash-object", "-w", str(ap))
             git("update-index", "--add", "--cacheinfo", f"100644,{blob},{rel}", env=env)
+        keep = {rel for _, rel in rels}
+        for rel in drop:
+            if rel not in keep:
+                git("update-index", "--force-remove", rel, env=env)
         tree = git("write-tree", env=env)
     if tree == git("rev-parse", f"{parent}^{{tree}}"):
         commit = parent   # 같은 내용이면 새 커밋 없이 링크만
