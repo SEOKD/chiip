@@ -1,0 +1,2138 @@
+{
+ "id": "us-cifr",
+ "name": "Cipher Digital",
+ "ticker": "CIFR",
+ "as_of": "2026-11-05",
+ "unit": "B$",
+ "industry": "datacenter",
+ "region_mix": {
+  "US": 1.0
+ },
+ "region_why": "10-Q: 모든 시설이 미국(텍사스 중심, 오하이오 부지 1곳)",
+ "tax": 0.21,
+ "main_metric": "ebitda",
+ "main_metric_why": "선행 EPS가 적자이고 감가상각이 큰 임대형 데이터센터 — 회사도 조정 EBITDA·NOI(순영업이익)로 설명한다",
+ "profile": {
+  "price": 6.19,
+  "shares_basic": 0.456365,
+  "shares_date": "2026-10-30",
+  "cash": 0.724,
+  "debt": 6.7,
+  "source": "가격 = 11/5 종가 추정 $6.19(Fiscal.ai calculated_market_cap $2.8249B ÷ 표지 주식 456,365,113주. 11/4 종가 $6.50). 주식 = 10-Q 표지(10/30). 차입 = CFO 3Q 콜(11/2) 10월 거래 반영 총차입 약 $6.7B(프로젝트 비소구 담보채 $4.5B + 모회사 전환사채 $2.2B). 현금 = 무제한 현금 약 $724M만 — 제한 현금 약 $3.0B(회사 순부채 약 $3B 기준과의 차이)는 계약 캠퍼스 건설에만 쓰는 돈이라 지분 몫 현금에서 뺀다. 그래서 순부채 약 $5.98B = 완공 뒤 순부채와 같은 기준이고, 완공 뒤 EBITDA(12개월 뒤 다음 4개 분기)와 짝이 맞는다. 회사 기준 순부채는 약 $3B. 9/30 재무상태표: 현금 $656M·제한 현금 $2.197B·차입 장부가 $5.56B https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+ },
+ "dilution": {
+  "rsu": 0.017115,
+  "options": 0,
+  "warrants": 0.02471,
+  "converts_shares": 0.001484,
+  "potential_total": 0.043309,
+  "date": "2026-10-30",
+  "source": "10-Q EPS 주석: 미발행 RSU·PSU 17,115,345주, Google 워런트 24,710,265주(행사가 $0.01 — 사실상 주식). 2030년 전환사채는 10/16 $165.9M을 40.7M주로 교환해 $6.6M만 남음(224.9213주/$1,000 → 1.48M주, 내가격). 2031년 전환사채 약 $1.30B(전환가 $16.03, 62.3733주/$1,000 → 81M주)와 2032년 0% 전환사채 $850M(전환가 $15.31, 캡드콜 $28.35까지 희석 상쇄 → 55.5M주)은 $6.19에서 외가격이라 차입으로 둔다. 표지 주식(10/30)은 10/16 교환분을 포함"
+ },
+ "financials": {
+  "rev_ttm": 0.146087,
+  "ebit_ttm": -0.565635,
+  "invested_capital": 6.768,
+  "capex_ttm": 3.0,
+  "da_ttm": 0.111412,
+  "sbc_ttm": null,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25·1Q26·2Q26·3Q26. 매출 59.711+34.838+24.837+26.701. GAAP 영업이익 −300.615−114.569−78.536−71.915(4Q25에 채굴기 손상 등 기타 비용 $239M). 투하자본 = 자기자본 0.626 + 10월 전환사채 주식화 0.166 + 차입 6.7 − 무제한 현금 0.724(제한 현금은 건설에 묶인 투하자본으로 본다). D&A = Fiscal.ai 현금흐름표 4개 분기 합. CAPEX TTM은 미공시 — 9/30 유형자산 $3.9B, 3Q에만 +$1.8B라 약 $3.0B로 둔다(추정)"
+ },
+ "sbc_pct_rev": null,
+ "sbc_why": "GAAP 이익률 기준이라 차감하지 않는다. 3Q 보상·복리후생 $38.6M에 주식 보상이 섞여 있고 분리 금액은 미확인",
+ "peers_basis": "ntm",
+ "peers_source": "Fiscal.ai 표준 재무(최근 4분기 합)·calculated_market_cap 11/5, 선행 배수는 forward_multiples. 동종은 채굴에서 AI·HPC 임대로 옮기는 미국 상장 5곳(IREN·CORZ·APLD·WULF·HUT)",
+ "peers": [
+  {
+   "key": "NASDAQ_IREN",
+   "ticker": "IREN",
+   "rev": 0.707012,
+   "growth": 0.4111,
+   "ebit_margin": -1.4804,
+   "mcap": 8.1176,
+   "cash": 5.8956,
+   "debt": 7.4236,
+   "equity": 4.1856,
+   "goodwill": 0.0366,
+   "intangibles": 0.3174,
+   "pb": 1.94,
+   "ev_sales": 13.64,
+   "pe_fwd": 39.99,
+   "ev_ebitda_fwd": 3.05,
+   "pe_fwd2": 6.15,
+   "ev_ebitda_fwd2": 1.06,
+   "pe_fwd3": 3.46,
+   "ev_ebitda_fwd3": 0.7,
+   "ntm_ebit_margin": 0.1318,
+   "ntm_growth": 3.1725
+  },
+  {
+   "key": "NASDAQ_CORZ",
+   "ticker": "CORZ",
+   "rev": 0.592074,
+   "growth": 0.7717,
+   "ebit_margin": -0.733,
+   "mcap": 4.1357,
+   "cash": 0.8039,
+   "debt": 4.3022,
+   "equity": 3.379,
+   "goodwill": 0.0,
+   "intangibles": 0.7375,
+   "pb": 1.22,
+   "ev_sales": 12.89,
+   "pe_fwd": 115.96,
+   "ev_ebitda_fwd": 15.14,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 6.91,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 4.67
+  },
+  {
+   "key": "NASDAQ_APLD",
+   "ticker": "APLD",
+   "rev": 0.853849,
+   "growth": 2.862,
+   "ebit_margin": -0.3558,
+   "mcap": 4.808,
+   "cash": 2.9499,
+   "debt": 6.2639,
+   "equity": 1.6082,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "pb": 2.99,
+   "ev_sales": 9.51,
+   "pe_fwd": 107,
+   "ev_ebitda_fwd": 17.83,
+   "pe_fwd2": 102.58,
+   "ev_ebitda_fwd2": 16.28,
+   "pe_fwd3": 93.51,
+   "ev_ebitda_fwd3": 15.07,
+   "ntm_ebit_margin": 0.1099,
+   "ntm_growth": 0.8228
+  },
+  {
+   "key": "NASDAQ_WULF",
+   "ticker": "WULF",
+   "rev": 0.165193,
+   "growth": 0.1465,
+   "ebit_margin": -2.5037,
+   "mcap": 5.6683,
+   "cash": 2.6192,
+   "debt": 5.1224,
+   "equity": 0.1475,
+   "goodwill": 0.0555,
+   "intangibles": 0.0,
+   "pb": 38.43,
+   "ev_sales": 49.5,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 21.84,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 5.8,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 3.32
+  },
+  {
+   "key": "NASDAQ_HUT",
+   "ticker": "HUT",
+   "rev": 0.305514,
+   "growth": 0.7133,
+   "ebit_margin": -2.2695,
+   "mcap": 5.655,
+   "cash": 0.1569,
+   "debt": 7.4865,
+   "equity": 1.9302,
+   "goodwill": 0.2082,
+   "intangibles": 0.0079,
+   "pb": 2.93,
+   "ev_sales": 42.5,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 57.21,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 9.27,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 5.86
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.35,
+  "base": 0.45,
+  "bull": 0.2
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "Barber Lake에서 회사가 변경주문 $359M을 떠안아 MW당 비용이 $10.4M에서 $13M으로 올랐다. 1~3분기 매출이 연속으로 컨센서스를 밑돌았고, 차입 $6.7B·전환사채 2건이 지분 위에 있다 — 동종 대비 할인"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "계약 700MW의 임대료가 투자등급 고객에게서 나온다. 할인은 멀티플 단계에서 이미 반영했다"
+ },
+ "next_event": {
+  "date": "2026-12-15",
+  "tag": "Colchis·Mikeska 1GW 조건부 기저부하 최종 분류(ERCOT, 회사 예상 12월) — 날짜는 회사가 밝힌 '12월'의 중간으로 둔 추정. 4Q26 실적은 2027년 2월 말(작년 2/24)"
+ },
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "source": "회사는 분기·연간 매출 가이던스를 내지 않는다(3Q 콜 11/2). 대신 계약 3개 캠퍼스 700MW, 계약 매출 약 $16.6B(가중 17.3년, 연장 포함 $28.4B), 안정화 뒤 연평균 NOI 약 $864M을 제시했다 https://www.sec.gov/Archives/edgar/data/1819989/000181998926000047/cifr-20261102.htm",
+  "next": {
+   "period": "4Q26",
+   "rev_cons": 101,
+   "unit": "$M",
+   "note": "회사 가이던스 없음. 컨센서스 $85.6M~$101M. Barber Lake 첫 51MW 서비스 개시 통지(RFS) 11/2, 데이터홀 4Q26~1Q27 단계 인도"
+  }
+ },
+ "terms": {
+  "HPC": "고성능 컴퓨팅 — AI 학습·추론용 GPU 서버를 돌리는 데이터센터 수요(High-Performance Computing)",
+  "NOI": "순영업이익 — 임대 매출에서 시설 운영비를 뺀 값(Net Operating Income)",
+  "RFS": "서비스 개시 통지 — 데이터홀을 임차인에게 넘겨 임대료가 시작되는 시점(Ready for Service)",
+  "ERCOT": "텍사스 전력망 운영 기관(Electric Reliability Council of Texas)",
+  "PCLR": "ERCOT의 조건부 대형 부하 지정 — 송전망 보강 전에도 신청 전력을 쓰되 일부 출력제한을 받을 수 있는 지위",
+  "Batch Zero": "ERCOT가 대형 부하 연결 신청을 묶어 처음 심사하는 일괄 절차(75MW 이상 대상)",
+  "OFCI": "고객이 사서 공급하고 시공사가 설치하는 장비(Owner-Furnished, Contractor-Installed)",
+  "IPP": "독립 발전 사업자(Independent Power Producer)",
+  "PPA": "전력 구매 계약(Power Purchase Agreement)",
+  "MW": "메가와트 — 데이터센터 IT 용량 단위",
+  "GW": "기가와트(1,000MW)",
+  "IT MW": "서버에 실제로 공급되는 전력 용량(냉각·손실 제외)",
+  "BTC": "비트코인",
+  "Black Pearl": "Cipher의 텍사스 데이터센터 캠퍼스 — 채굴장에서 HPC로 전환, AWS 300MW 15년 임대(Fiscal.ai 회사 개요)",
+  "Barber Lake": "Cipher의 텍사스 콜로라도시티 HPC 캠퍼스 — Fluidstack 임대, Google 보증 구조, 20년으로 연장",
+  "Stingray": "Cipher의 세 번째 계약 HPC 캠퍼스(텍사스) — 외장 구조물 4Q26 완공 예정",
+  "Odessa": "Cipher의 텍사스 오데사 비트코인 채굴장 — HPC 전환·매각 검토 중",
+  "Colchis": "Cipher의 1GW 개발 부지 — ERCOT 조건부 기저부하 분류, 12월 최종 예정",
+  "Mikeska": "Cipher의 1GW 개발 부지 — 조건부 기저부하 분류·PCLR 지정",
+  "Horizon": "3Q에 인수한 텍사스 70MW 부지 — 2029년 전력 공급 예정",
+  "Reveille": "Cipher 개발 부지 — 계통연계 승인 확보",
+  "Ulysses": "Cipher 개발 부지 — 계통연계 승인 확보",
+  "Apollo": "Cipher 개발 부지 — PCLR 지정",
+  "Fluidstack": "영국계 AI 클라우드 회사 — Barber Lake 임차인",
+  "AWS": "아마존 웹서비스 — 아마존의 클라우드 사업",
+  "Luminant": "텍사스 전력 회사 Vistra의 자회사 — Odessa 부지·전력 계약 상대",
+  "IREN": "호주계 채굴·AI 클라우드 회사 IREN",
+  "CORZ": "미국 채굴·HPC 임대 회사 Core Scientific",
+  "APLD": "미국 데이터센터 개발 회사 Applied Digital",
+  "WULF": "미국 채굴·HPC 임대 회사 TeraWulf",
+  "HUT": "미국·캐나다 채굴·데이터센터 회사 Hut 8",
+  "KBW": "미국 금융 전문 증권사 Keefe, Bruyette & Woods",
+  "AR": "자기회귀 모형 — 과거 값으로 다음 값을 예측하는 통계 모형",
+  "HP": "호드릭-프레스콧 필터 — 시계열에서 추세를 떼어내는 방법",
+  "PPI": "생산자물가지수",
+  "CAR": "누적 초과수익률 — 사건 뒤 시장 대비 더 오르거나 내린 폭",
+  "MOIC": "투자배수 — 회수액 ÷ 투자액(Multiple on Invested Capital)",
+  "IRR": "내부수익률",
+  "NPV": "순현재가치",
+  "SLA": "서비스 수준 계약 — 가동률·전력 품질 보장 조건",
+  "GP": "매출총이익",
+  "RPO": "잔여 이행 의무 — 계약했지만 아직 매출로 잡지 않은 금액",
+  "13D": "5% 넘는 지분을 경영 참여 목적으로 보유한 주주가 내는 SEC 공시",
+  "13F": "운용자산 $100M 이상 기관의 분기 보유 종목 공시",
+  "WGMI": "비트코인 채굴 기업 상장지수펀드(CoinShares Valkyrie Bitcoin Miners ETF)",
+  "IT": "정보기술 — 여기서는 서버·네트워크 장비",
+  "JPMorgan": "미국 투자은행 JP모건",
+  "UPS": "무정전 전원 장치(Uninterruptible Power Supply)"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.187376,
+   "FY2027": 0.82,
+   "FY2028": 1.15
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": -1.5,
+   "FY2027": 0.33,
+   "FY2028": 0.45
+  },
+  "ebitda": {
+   "FY2026": -0.16244,
+   "FY2027": 0.58,
+   "FY2028": 0.88
+  },
+  "rev_low": {
+   "FY2027": 0.62,
+   "FY2028": 0.86
+  },
+  "rev_high": {
+   "FY2027": 1.0,
+   "FY2028": 1.52
+  },
+  "n_analysts": 6,
+  "revisions_90d": {
+   "rev": -0.146
+  },
+  "quarters_est": {
+   "2026Q4": 0.101,
+   "2027Q1": 0.188,
+   "2027Q2": 0.208,
+   "2027Q3": 0.185663,
+   "2027Q4": 0.238338,
+   "2028Q1": 0.283301
+  },
+  "quarters_act": {
+   "2025Q4": 0.059711,
+   "2026Q1": 0.034838,
+   "2026Q2": 0.024837,
+   "2026Q3": 0.026701
+  },
+  "eps_quarters_est": {
+   "2026Q4": -0.14,
+   "2027Q1": -0.03,
+   "2027Q2": 0.01,
+   "2027Q3": 0.01
+  },
+  "eps_year": {
+   "FY2026": [
+    -0.78,
+    -1.79,
+    0.34
+   ],
+   "FY2027": [
+    -0.75,
+    -3.28,
+    2.8
+   ],
+   "FY2028": [
+    -0.61,
+    -2.86,
+    3.29
+   ]
+  },
+  "ratings": {
+   "strong_buy": 17,
+   "buy": 1,
+   "hold": 4,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-04",
+   "target_mean": 22.07,
+   "target_high": 51.5,
+   "target_low": 9.5,
+   "source": "Fiscal.ai company_analyst_ratings(Zacks) 22명, 목표가 22명(중앙 $18.5). yfinance(Easyconomics): Buy 22·Hold 3, 목표 평균 $24.04($9.5~59). 11/2~11/4 하향: KBW $28→$11→Market Perform $9.5, Rosenblatt $30→$19, JPMorgan $22→$18, Chardan $24→$18, Macquarie $35→$30. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "target_mean": 22.07,
+  "target_low": 9.5,
+  "target_high": 51.5,
+  "price_window": {
+   "from": 24.16,
+   "to": 6.19,
+   "note": "2Q26 발표 전날 8/3 종가 → 11/5 추정 종가"
+  },
+  "note": "Fiscal.ai 자체 추정 1순위(4Q26·FY26은 model, 2027년 이후 agentic consensus). Zacks: FY26 매출 $184.6M·FY27 $785.7M·FY28 $876.7M, FY27 EBITDA $593.6M(3명). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "revisions": {
+   "from_date": "2026-08-07",
+   "to_date": "2026-11-04",
+   "from_label": "2Q26 콜 직후",
+   "source": "Zacks 연간 매출 컨센서스 history 8/7 → 11/4. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "FY2026",
+     "metric": "매출",
+     "from": 221.7,
+     "to": 184.6
+    },
+    {
+     "period": "FY2027",
+     "metric": "매출",
+     "from": 802.0,
+     "to": 785.7
+    },
+    {
+     "period": "FY2028",
+     "metric": "매출",
+     "from": 823.9,
+     "to": 876.7
+    }
+   ]
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 59.711,
+    "est": 86.049,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-24",
+    "pair": {
+     "zacks": 77.86
+    }
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.14,
+    "est": -0.12,
+    "est_src": "zacks",
+    "est_asof": "2025-11-28",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-24"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -0.04,
+    "est": 37.44,
+    "est_src": "zacks",
+    "est_asof": "2026-02-05",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-24"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 34.838,
+    "est": 36.12,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-05",
+    "pair": {
+     "zacks": 33.71
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.28,
+    "est": -0.22,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-05",
+    "pair": {
+     "zacks": -0.27
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -0.048,
+    "est": 15.23,
+    "est_src": "zacks",
+    "est_asof": "2026-02-05",
+    "basis": "adjusted",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 24.837,
+    "est": 31.861,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-04",
+    "pair": {
+     "zacks": 29.282
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.65,
+    "est": -0.24,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-04",
+    "pair": {
+     "zacks": -0.205
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -0.03,
+    "est": -15.85,
+    "est_src": "zacks",
+    "est_asof": "2026-07-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-04"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 26.701,
+    "est": 29.073,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "gaap",
+    "earnings_date": "2026-11-02"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.22,
+    "est": 0.025,
+    "est_src": "fiscal:model",
+    "est_asof": "2026-10-16",
+    "basis": "gaap",
+    "earnings_date": "2026-11-02"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -9.963,
+    "est": -27.988,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-02"
+   }
+  ],
+  "range_note": "FY26은 실적 3개 분기가 들어 있어 고·저를 빼고 FY27부터 둔다. EBIT 이익률은 컨센서스가 없어 EBITDA 컨센서스에서 감가상각(추정)을 뺀 값 — FY27 EBITDA 마진 71% − 감가 38%, FY28 77% − 32%(추정)"
+ },
+ "call": {
+  "date": "2026-11-02",
+  "prev_date": "2026-08-04",
+  "tone": "flat",
+  "tone_score": 6.4,
+  "tone_delta": -0.3,
+  "guidance_direction": "none",
+  "kpis": {
+   "rev_m": 26.7,
+   "hpc_rev_m": 5.852,
+   "mining_rev_m": 20.849,
+   "adj_ebitda_m": -10,
+   "net_income_m": 32,
+   "warrant_gain_m": 127,
+   "contracted_mw": 700,
+   "contracted_rev_b": 16.6,
+   "noi_avg_m": 864,
+   "pipeline_gw": 6.8,
+   "btc_sold": 632,
+   "restricted_cash_b": 2.197,
+   "unrestricted_cash_pf_m": 724,
+   "debt_pf_b": 6.7
+  },
+  "guidance_changes": [
+   "회사 매출 가이던스 없음(직전도 없음, 일정 목표만)",
+   "Barber Lake 기본 임대 10년 → 20년, 계약 매출 약 $9.1B(+$5.2B)",
+   "Barber Lake 회사 부담 MW당 비용 $10.4M(조달 기준) → 약 $13M, 평균 수익률 약 13% → 약 15%"
+  ],
+  "new_topics": [
+   "Black Pearl 첫 HPC 임대 매출 $5.85M(8월, 예정보다 앞당겨 18MW 인도)",
+   "Barber Lake 첫 51MW RFS 통지(11/2)",
+   "Barber Lake 변경주문 $409M 중 회사 부담 $359M",
+   "온사이트 발전용 가스 배관 최대 2.5GW, 약 1GW 임대 협의 진전",
+   "Colchis·Mikeska 1GW 조건부 기저부하, 12월 최종",
+   "PCLR 지정 3곳(Mikeska·Apollo·Stingray 확장)",
+   "0% 2032 전환사채 $850M(전환가 $15.31)·2030 전환사채 주식화",
+   "다음 임대는 설계 30~60% 확정 뒤 체결"
+  ],
+  "dropped_topics": [
+   "2Q에 말한 '2026년 말 추가 임대 체결' 시점을 이번엔 말하지 않았다",
+   "Odessa 매각 시점·조건은 이번에도 숫자가 없다"
+  ],
+  "risks": [
+   "건설비 상승·변경주문 — 회사 부담 $359M",
+   "1~3Q 매출 컨센서스 연속 하회(3Q −32%)",
+   "총차입 약 $6.7B, 전환사채 $2.2B(2031·2032)",
+   "고객 3곳·텍사스 집중, ERCOT 규제 변화",
+   "온사이트 발전 장비(터빈·엔진) 세계적 부족",
+   "AI 인프라 신용시장 재가격(KBW 업종 목표가 재설정)"
+  ],
+  "qa_focus": [
+   "UBS: 건설비 인플레이션과 향후 MW당 지출·수익률 유지",
+   "Wells Fargo: Odessa 가치 실현, 텍사스 집중",
+   "BTIG: 가스 배관·발전 장비 확보",
+   "Cantor Fitzgerald: Barber Lake 비용 확정 시점·원인, Colchis 임대 시점",
+   "Compass Point: PCLR·배터리, 온사이트 발전 수익률"
+  ],
+  "answer": "회사 답변: 비용 증가의 원인은 설계가 덜 된 채 서둘러 맺은 첫 계약의 변경주문이고, 다음 계약은 설계 30~60%를 확정한 뒤 맺겠다고 했다(Cantor). 비용 상승분 절반은 고객이 계약 수익률을 얹어 임대료로 갚는다(CFO). Colchis는 계통연계 승인 전 최종 임대를 예상하지 않는다고 했다(Cantor). 향후 MW당 비용 숫자는 '설계 요구에 따라 다르다'며 내지 않았다(UBS — 회사 답변 없음)",
+  "source": "3Q26 보도자료 8-K https://www.sec.gov/Archives/edgar/data/1819989/000181998926000047/cifr-20261102.htm · 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm · 3Q26 어닝콜(2026-11-02) 요지 · 2Q26 어닝콜(2026-08-04) 요지",
+  "tone_note": "가이던스 없음 + 톤 −0.3 + 셀사이드 우호 질문 비중 하락(stance 0.8 → 0.33) = flat",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "신규",
+    "item": "Black Pearl 첫 HPC 매출",
+    "label": "첫 HPC 매출",
+    "prior": "8월 인도 예정",
+    "latest": "3Q HPC 매출 $5.85M, 18MW 조기 인도",
+    "driver": "rev0",
+    "shift": 0.006,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "Barber Lake 임대 연장",
+    "label": "Barber Lake 20년",
+    "prior": "10년 기본 임대",
+    "latest": "20년, 계약 매출 약 $9.1B(+$5.2B)",
+    "driver": "growth_decay",
+    "shift": -0.05,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "Barber Lake 비용 초과",
+    "label": "Barber Lake 비용",
+    "prior": "MW당 $9~11M(조달 $10.4M)",
+    "latest": "회사 부담 약 $13M/MW",
+    "driver": "s2c",
+    "shift": -0.1,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "Barber Lake 수익률",
+    "label": "Barber Lake 수익률",
+    "prior": "약 13%(연장 전)",
+    "latest": "약 15%(연장 후)",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "전환사채·주식화",
+    "label": "CB $850M·주식화",
+    "prior": "모회사 전환사채 2030·2031",
+    "latest": "2032 0% $850M 추가, 2030 $166M → 40.7M주",
+    "driver": "net_debt",
+    "shift": 0.69,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "온사이트 발전 파이프라인",
+    "label": "가스 2.5GW",
+    "prior": "언급 없음",
+    "latest": "가스 배관 최대 2.5GW, 약 1GW 임대 협의",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.3,
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "id": "F7",
+    "kind": "부정",
+    "item": "매출 컨센서스 하회",
+    "label": "3Q 매출 −32%",
+    "prior": "추정 $29~39M",
+    "latest": "$26.7M",
+    "driver": "rev0",
+    "shift": -0.01,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000047/cifr-20261102.htm"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "3Q 매출 $26.7M 중 채굴 $20.8M(78%)·HPC 임대 $5.85M(22%)다. 계약 700MW의 임차인은 AWS(Black Pearl, 300MW·15년 — 회사 개요), Fluidstack(Barber Lake, Google 워런트·보증 구조, 20년), Stingray 임차인(이름은 이 자료에서 미확인) 세 곳이다. 10-Q는 고객별 매출 비중을 따로 적지 않는다",
+  "items": [
+   {
+    "name": "비트코인 네트워크(채굴 보상)",
+    "alias": "채굴 매출",
+    "share": 0.78,
+    "prior": 1.0,
+    "basis": "공시",
+    "buys": "채굴 연산(해시레이트)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm",
+    "why": "3Q 채굴 $20.85M ÷ $26.70M · prior = 2Q26 HPC 매출 0"
+   },
+   {
+    "name": "AWS",
+    "alias": "Black Pearl 임차인",
+    "share": 0.22,
+    "prior": 0.0,
+    "basis": "추정",
+    "buys": "Black Pearl 300MW 턴키 데이터센터 15년 임대",
+    "source": "https://fiscal.ai/company/NasdaqGS-CIFR",
+    "why": "3Q HPC 매출 $5.85M은 Black Pearl에서만 나왔다(콜). Black Pearl 임차인이 AWS라는 것은 회사 개요·발표 기준 — 몫은 계산값"
+   },
+   {
+    "name": "Fluidstack(Google 보증 구조)",
+    "alias": "Barber Lake 임차인",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "회사 발표",
+    "buys": "Barber Lake 300MW, 20년, 계약 매출 약 $9.1B",
+    "source": "3Q26 어닝콜(2026-11-02) 요지",
+    "why": "첫 51MW RFS 통지 11/2 — 4Q부터 매출. Google은 워런트 24.7M주를 가진 보증 당사자(10-Q)"
+   },
+   {
+    "name": "Stingray 임차인",
+    "alias": "미확인",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "회사 발표",
+    "buys": "Stingray 캠퍼스 임대",
+    "source": "3Q26 어닝콜(2026-11-02) 요지",
+    "why": "외장 구조물 4Q26 완공 예정 — 임차인 이름은 이 회차 자료에서 확인하지 못했다"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q 채굴 매출원가 $14.6M(채굴 매출의 70%), HPC 임대 원가 $0.73M(HPC 매출의 12%). 보상·복리후생 $38.6M·일반관리비 $26.4M·감가상각 등 $18.3M이 매출 $26.7M보다 커 GAAP 영업손실 $71.9M이다. HPC가 커지면 원가 비중이 낮은 임대 매출이 늘어 구조가 바뀐다",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.071707,
+    "cogs": 0.041178,
+    "rd": 0.0,
+    "sga": 0.008167,
+    "other": 0.059979
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.026701,
+    "cogs": 0.053919,
+    "rd": 0.0,
+    "sga": 0.026359,
+    "other": 0.018338
+   }
+  ],
+  "costs": [
+   {
+    "name": "채굴 매출원가(전력·호스팅)",
+    "stage": "매출원가",
+    "pct_rev": 0.5482,
+    "prior_pct": "미확인",
+    "fixed": 0.2,
+    "driver": "텍사스 전력 단가·채굴 가동",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "name": "HPC 임대 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.0272,
+    "prior_pct": 0.0,
+    "fixed": 0.6,
+    "driver": "인도 MW",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "name": "보상·복리후생(주식 보상 포함)",
+    "stage": "매출원가",
+    "pct_rev": 1.444,
+    "prior_pct": "미확인",
+    "fixed": 0.9,
+    "driver": "인력·주식 보상 — 표준화 재무가 매출원가로 분류",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "name": "일반관리비",
+    "stage": "판관비",
+    "pct_rev": 0.9872,
+    "prior_pct": 0.1139,
+    "fixed": 0.8,
+    "driver": "거래 자문·Colorado City 수자원 기부금 $3M",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "name": "감가상각·기타",
+    "stage": "기타",
+    "pct_rev": 0.6868,
+    "prior_pct": "미확인",
+    "fixed": 0.9,
+    "driver": "시설·채굴기 감가상각",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "HPC 데이터센터 임대",
+    "rev_share": 0.219,
+    "rev_share_prev": 0.0,
+    "mix_basis": "3Q HPC $5.85M ÷ $26.70M(10-Q)",
+    "gpm": 0.88,
+    "gpm_basis": "공시 — 3Q HPC 원가 $0.73M",
+    "bom": [
+     {
+      "item": "전기 설비(변전소·개폐기·UPS)",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-02) 요지",
+      "pass_through": 0.5,
+      "why": "MW당 $10~13M 건설비의 가장 큰 몫(업계 통상, 추정) · 전가 50% = Barber Lake 범위 확대·인플레 비용을 고객과 반씩 나누고 고객 몫은 임대료로 회수(CFO) — 다른 캠퍼스는 자본 지출 상한 보호"
+     },
+     {
+      "item": "냉각 설비(액체 냉각·칠러)",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-02) 요지",
+      "pass_through": 0.5,
+      "why": "냉각 설계 변경이 변경주문의 원인이었다(CEO) · 전가 50% = Barber Lake 범위 확대·인플레 비용을 고객과 반씩 나누고 고객 몫은 임대료로 회수(CFO) — 다른 캠퍼스는 자본 지출 상한 보호"
+     },
+     {
+      "item": "건물·토목·시공 인건비",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-02) 요지",
+      "pass_through": 0.5,
+      "why": "노동시장 타이트, 2027년에도 상승(CEO) · 전가 50% = Barber Lake 범위 확대·인플레 비용을 고객과 반씩 나누고 고객 몫은 임대료로 회수(CFO) — 다른 캠퍼스는 자본 지출 상한 보호"
+     }
+    ]
+   },
+   {
+    "name": "비트코인 채굴",
+    "rev_share": 0.781,
+    "rev_share_prev": 1.0,
+    "mix_basis": "3Q 채굴 $20.85M ÷ $26.70M, 2Q $24.84M 전부(10-Q)",
+    "gpm": 0.3,
+    "gpm_basis": "공시 — 3Q 채굴 원가 $14.64M",
+    "bom": [
+     {
+      "item": "전력(텍사스 PPA)",
+      "share": [
+       0.65,
+       0.8
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm",
+      "pass_through": 0,
+      "why": "채굴 원가의 대부분은 전력"
+     },
+     {
+      "item": "채굴기 감가상각",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm",
+      "pass_through": 0,
+      "why": "4Q25 채굴기 손상 뒤 감가가 줄었다"
+     },
+     {
+      "item": "시설 운영·인력",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm",
+      "pass_through": 0,
+      "why": "Odessa 운영"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-05",
+  "summary": "병목은 전력과 시공이다. 10-Q 건설 약정은 $1.61B(9/30)이고 대부분 HPC 임차 부지 시공이다. 회사는 노동시장이 타이트하고 일부 고객 장비(OFCI) 납기가 늘어 작업팀이 기다렸다고 말했다. 온사이트 발전용 터빈·엔진은 세계적으로 부족하다(CEO)",
+  "links": [
+   {
+    "item": "전기 설비(변전소·개폐기·UPS)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "변전·배전 장비",
+      "status": "추정",
+      "source": "3Q26 어닝콜(2026-11-02) 요지"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "CFO: 일부 가격 상승·납기 연장, 장비 대기",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "선발주(장기 납기 장비 조기 조달)",
+    "why": "Odessa의 장기 납기 장비가 매각 가치의 근거로 언급될 만큼 귀하다",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "item": "건물·토목·시공 인건비",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "종합건설사·하도급(이름 미공시)",
+      "role": "시공",
+      "status": "회사 발표",
+      "source": "3Q26 어닝콜(2026-11-02) 요지"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "CEO·CFO: 노동시장 확실히 타이트, 2027년에도 지속",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "텍사스",
+    "secured": "건설 약정 $1.61B",
+    "why": "생산성 저하·변경주문이 비용 초과 원인",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "item": "계통 전력(ERCOT 연결)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "ERCOT·지역 송전 사업자",
+      "role": "계통연계·부하 분류",
+      "status": "공시",
+      "source": "3Q26 어닝콜(2026-11-02) 요지"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "부족",
+    "capacity_basis": "PCLR은 송전망 보강 전 출력제한 가능, 조건은 2027년 확정",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": 1.0,
+    "region": "텍사스",
+    "secured": "계통연계 승인(Reveille·Ulysses), 조건부 기저부하(Colchis·Mikeska)",
+    "why": "다른 지역은 수억 달러 보증금·2030년대 연결(CEO)",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "item": "온사이트 발전 장비(가스터빈·왕복엔진)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "IPP가 확보하는 구조(미정)",
+      "role": "발전 장비·운영",
+      "status": "회사 발표",
+      "source": "3Q26 어닝콜(2026-11-02) 요지"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "CEO: 터빈과 왕복엔진이 세계적으로 충분하지 않다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확보",
+    "why": "1GW 온사이트 임대 협의의 전제",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-05",
+  "unit": "IT MW(HPC 인도 기준)",
+  "summary": "채굴 운영 약 207MW, 계약 HPC 700MW(3개 캠퍼스), 전체 운영·계약·개발 약 6.8GW(10-Q·콜). Black Pearl 18MW 인도, Barber Lake 첫 51MW RFS(11/2)",
+  "current": {
+   "nameplate": 69,
+   "utilization": 1.0,
+   "basis": "회사 발표 — Black Pearl 18MW 인도(8월~) + Barber Lake 첫 51MW RFS(11/2). 인도분은 전량 임대. 채굴 운영 약 207MW는 별도",
+   "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+  },
+  "plans": [
+   {
+    "name": "Barber Lake 잔여 데이터홀",
+    "add": 249,
+    "stage": "착공",
+    "online": "2027-03",
+    "capex": "미확인",
+    "blocker": "변경주문·노동력",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "Black Pearl 1단계 잔여·2단계",
+    "add": 282,
+    "stage": "착공",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "전기 공사 진행 중",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "Stingray",
+    "add": "미확인",
+    "stage": "착공",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "외장 구조물 4Q26 완공 예정",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "Colchis 1GW",
+    "add": 1000,
+    "stage": "인허가",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "ERCOT 최종 분류 12월, 임차인 미정",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   }
+  ],
+  "capex": [
+   {
+    "period": "TTM 3Q26",
+    "capex": 3.0,
+    "rev": 0.146,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2026",
+    "capex": 4.62,
+    "rev": 0.187,
+    "kind": "컨센서스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 2.2,
+    "rev": 0.82,
+    "kind": "컨센서스"
+   },
+   {
+    "period": "FY2028",
+    "capex": 3.0,
+    "rev": 1.15,
+    "kind": "컨센서스"
+   }
+  ],
+  "sites_none": "소유 시설(Odessa·Black Pearl·Barber Lake·Stingray)의 위성 판독 등록은 이 회차에 하지 않았다 — 다음 회차 과제"
+ },
+ "pipeline": {
+  "as_of": "2026-11-02",
+  "summary": "계약 3개 캠퍼스 700MW, 계약 매출 약 $16.6B. 건별 인도 MW만 일부 공개된다",
+  "items": [
+   {
+    "name": "Barber Lake(Fluidstack, 20년)",
+    "status": "확정",
+    "total": 9.1,
+    "progress": 0.17,
+    "progress_basis": "51MW RFS ÷ 300MW(추정 몫)",
+    "margin": 0.15,
+    "start": "2026-11",
+    "end": "2027-03",
+    "speed": "임대 체결 → 첫 RFS 약 13개월(2025-09 계약 기준)",
+    "blockers": [
+     "변경주문 비용",
+     "노동력"
+    ],
+    "source": "3Q26 어닝콜(2026-11-02) 요지",
+    "margin_kind": "개발 수익률(NOI ÷ 회사 몫 비용)",
+    "margin_basis": "CFO 3Q 콜: 연장 뒤 평균 수익률 약 15%(연장 전 약 13%)"
+   },
+   {
+    "name": "Black Pearl(AWS, 15년)",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.06,
+    "progress_basis": "18MW ÷ 300MW",
+    "margin": "미확인",
+    "start": "2026-08",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "2단계 전기 공사"
+    ],
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "Stingray",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "외장 구조물 공사 중",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "시공 일정"
+    ],
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "온사이트 발전 1GW 임대 협의",
+    "status": "협상",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "초기·진전된 협의(CEO)",
+    "margin": "미확인",
+    "start": "2027",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "발전 장비 부족",
+     "IPP 구조"
+    ],
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 207,
+  "revenue_growth": -0.292,
+  "source": "계약 매출 약 $16.6B ÷ 가중 17.3년 = 연 $960M — 잔고 ÷ 월평균 매출 대신 회사가 밝힌 가중 계약 기간 17.3년(207개월)을 쓴다. 임대는 ASC 842 운용리스라 RPO 주석이 없다(10-Q)"
+ },
+ "recurring": {
+  "share": 0.22,
+  "kind": "장기 임대료",
+  "base": "계약 700MW(3개 캠퍼스)",
+  "years_to_recurring": 1,
+  "source": "3Q HPC 임대 매출 $5.85M ÷ $26.7M. 계약 700MW가 다 인도되는 2027년 이후 매출 대부분이 15~20년 임대료가 된다 — 1년은 추정"
+ },
+ "moat": {
+  "summary": "해자는 텍사스에서 계통연계를 이미 받은 전력 부지와 투자등급 임차인의 장기 계약이다. 기술 해자는 없다 — 건물과 전기는 누구나 지을 수 있고, 차이는 전력 확보 시점과 조달 금리에서 난다",
+  "items": [
+   {
+    "kind": "전력 확보 부지",
+    "verdict": "중간",
+    "claim": "계통연계·조건부 기저부하를 받은 GW급 부지가 있다",
+    "evidence": "3Q 콜: 6.8GW 포트폴리오, Reveille·Ulysses 연계 승인, Colchis·Mikeska 1GW 조건부, PCLR 3곳",
+    "quant": "계약 700MW / 단기 개발 5.9GW",
+    "falsifier": "12월 ERCOT 최종 분류에서 Colchis·Mikeska가 빠지거나 출력제한이 크게 붙는다"
+   },
+   {
+    "kind": "조달 금리",
+    "verdict": "중간",
+    "claim": "프로젝트 채권 금리가 업계 하단이다",
+    "evidence": "CFO: AI 인프라 고수익 채권 20~25건 중 스프레드 하위 4개 중 3개가 Cipher. 금리 7⅛%·6⅛%·6%",
+    "quant": "Stingray 6% vs Barber Lake 7⅛%",
+    "falsifier": "다음 프로젝트 채권 금리가 7.5%를 넘는다"
+   },
+   {
+    "kind": "임차인 신용",
+    "verdict": "강함",
+    "claim": "임대료를 AWS·Google 보증 구조가 낸다",
+    "evidence": "회사 개요·10-Q Google 워런트",
+    "quant": "가중 계약 17.3년, 계약 매출 $16.6B",
+    "falsifier": "임차인이 인도 지연을 이유로 계약 조건을 바꾼다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-05",
+  "summary": "Tyler Page CEO와 Greg Mumford CFO가 3Q 콜을 이끌었다. 공개 자료로 확인한 범위에서 경영진의 정계·동문 연결이 매출로 이어진 근거는 없다",
+  "people": [
+   {
+    "name": "Tyler Page",
+    "role": "CEO",
+    "since": "미확인",
+    "profile": "3Q 콜 진행·전략 답변",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "Greg Mumford",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "자본구조·비용 답변",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "대주주 13D/A가 10/7·11/4에 제출됐다 — 지분 변동 내용은 이 회차에서 원문 미확인",
+    "strength": 1,
+    "exposure": 0.0,
+    "basis": "매출 연결 근거 없음",
+    "evidence": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819989"
+   }
+  ]
+ },
+ "sync": {
+  "none": "매출은 임대 계약 인도 일정과 비트코인 가격이 정한다 — 무역·PPI 지표와 매출의 연결이 약하다"
+ },
+ "pq": {
+  "none": "채굴에서 임대로 사업이 바뀌는 중이라 가격·물량 분해의 10년 기준이 없다"
+ },
+ "ma": {
+  "none": "최근 3년 사업 인수는 부지 인수(Horizon 70MW 등)뿐이고 시너지를 밝힌 기업 인수가 없다"
+ },
+ "events": [
+  {
+   "date": "2026-05-05",
+   "tag": "1Q26 실적 — 당일 +23.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-04",
+   "tag": "2Q26 실적 — 다음 날 −15.6%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-13",
+   "tag": "8-K: 전환사채 발행 발표 — 당일 −12.8%, 거래량 128M주",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-16",
+   "tag": "2032 전환사채 $850M 발행·2030 전환사채 40.7M주 교환",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-02",
+   "tag": "3Q26 실적·Barber Lake 20년 연장",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-03",
+   "tag": "3Q 뒤 목표가 일괄 하향(Rosenblatt $19, JPMorgan $18)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "KBW Market Perform 하향($9.5) — 당일 −20%",
+   "kind": "rating"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-24",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-05",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-08-04",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-13",
+   "kind": "내러티브",
+   "tag": "전환사채 발행"
+  },
+  {
+   "date": "2026-11-02",
+   "kind": "실적",
+   "tag": "3Q26 실적",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "sources": [
+  "3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm",
+  "3Q26 보도자료 8-K https://www.sec.gov/Archives/edgar/data/1819989/000181998926000047/cifr-20261102.htm",
+  "전환사채 8-K(10/13·10/14·10/16) https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819989&type=8-K",
+  "KBW 하향 보도(11/4) https://www.moomoo.com/hans/news/post/1003495176/keefe-bruyette-woods-downgrades-cipher-digital-to-market-perform-9",
+  "보강 적용: R-20261103-01·R-20261031-01·R-20261030-01·D-20261104-01·D-20261102-01·X-20261102-01"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-05T22:40:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_CIFR",
+   "price": 6.19,
+   "market_cap": 2.8249,
+   "total_cash": 1.141961,
+   "total_debt": 5.559878,
+   "shares_outstanding": 0.456365,
+   "as_of": "2026-11-05",
+   "balance_date": "2026-09-30",
+   "note": "price = calculated_market_cap ÷ 표지 주식. total_cash = Fiscal total_cash_and_cash_equivalents(제한 현금 일부 포함), total_debt = 단기 0.1127 + 장기 5.4472 장부가",
+   "auditUrl": "https://fiscal.ai/company/NasdaqGS-CIFR"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.059711,
+    "2026Q1": 0.034838,
+    "2026Q2": 0.024837,
+    "2026Q3": 0.026701
+   },
+   "op_income": {
+    "2025Q4": -0.300615,
+    "2026Q1": -0.114569,
+    "2026Q2": -0.078536,
+    "2026Q3": -0.071915
+   },
+   "note": "Fiscal.ai company_financials_standardized"
+  },
+  "balance_2026_10_31": {
+   "equity": 0.792,
+   "cash": 0.724,
+   "debt_lt": 6.7,
+   "note": "회사 프로포마(3Q 콜): 총차입 약 $6.7B, 회사 기준 순부채 약 $3B(제한 현금 포함), 무제한 현금 약 $724M. 여기 cash는 무제한 현금만(제한 현금 약 $3.0B는 건설 전용). 자기자본 = 9/30 $626M + 2030 전환사채 주식화 $166M(추정). 9/30 원본: 현금 $656.0M·제한 현금 유동 $1,719.4M·비유동 $477.2M·차입 장부가 $5.56B"
+  },
+  "cash_flow": {
+   "ocf_q3": -0.131187,
+   "ocf_q2": -0.243538,
+   "ocf_q1": 0.091531,
+   "ocf_q4_25": -0.054432,
+   "note": "Fiscal.ai 현금흐름표"
+  },
+  "sec": {
+   "10q_3q26": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm",
+   "antidilutive_2026_09_30": 0.203756,
+   "antidilutive_note": "9개월 기준 반희석 제외 203,756,356주(전환사채 최대 전환율 161.9M·Google 24.7M·RSU 17.1M) — 10월 교환·발행 전, 최대 전환율 가정이라 희석 표(외가격 전환사채 제외)와 기준이 다르다",
+   "purchase_commitments": "건설 등 공급 약정 약 $1,610.1M(9/30, 대부분 HPC 임차 부지 시공)",
+   "restricted_cash": "제한 현금 $2,196.6M(9/30, 프로젝트 채권 조달금 — 해당 부지 건설에만 사용)",
+   "customers_10pct": "10-Q에 고객별 10% 공시 없음 — 세그먼트는 채굴·HPC 임대",
+   "gov_support": "정부 보조·전략 계약 공시 없음"
+  },
+  "estimates_sales_m": {
+   "2026Q1(실적)": 34.838,
+   "2026Q2(실적)": 24.837,
+   "2026Q3(실적)": 26.701,
+   "2026Q4": 101.0,
+   "2027Q1": 188.0,
+   "2027Q2": 208.0,
+   "2027Q3": 185.6625,
+   "2027Q4": 238.3375,
+   "2028Q1": 283.301133,
+   "2028Q2": 260.9184,
+   "2028Q3": 265.35609,
+   "2028Q4": 340.424377
+  },
+  "estimates_note": "Fiscal.ai 추정(4Q26 agentic consensus, 2027·2028 agentic consensus). Zacks: FY26 $184.6M·FY27 $785.7M·FY28 $876.7M. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "shares_cover_implied": 0.456365
+ },
+ "overrides": {
+  "growth_base": {
+   "start": 3.3762,
+   "end": 0.03,
+   "decay": 0.11
+  },
+  "margin_base": {
+   "target": 0.45,
+   "year_target": 3,
+   "lr": 0.42,
+   "lam": 0.1
+  },
+  "s2c": 0.5,
+  "why": "임대형 데이터센터: ① 매출은 계약 700MW 인도로 FY27 +338%·FY28 +40% 뒤 임대료 인상률 수준(3%)으로 빠르게 수렴한다 — 규칙의 감쇠 하한 0.3은 FY29 이후 매출을 계약 밖으로 부풀린다(decay 0.11 = FY28 성장 40%에 맞춘 값). ② 15~20년 고정 임대라 장기 EBIT 이익률이 일반 기업 15%로 수렴하지 않는다 — FY28 EBITDA 컨센서스 마진 77%에서 감가상각(매출의 약 31~35%, 추정)을 빼 42~45%. ③ 남은 건설비는 회사가 '완공 자금 확보'라 밝힌 현금 약 $3.7B다. 이 중 제한 현금 약 $3.0B는 투하자본에 이미 넣었으므로(현금에서 뺌) 추가 재투자는 무제한 현금 몫 약 $0.7B와 비용 초과 여유를 더한 약 $1.9B로 보고, 매출 증가 약 $0.96B ÷ $1.9B ≈ 매출/투하자본 0.5(규칙 기본값과 같음, 추정)"
+ },
+ "narrative": {
+  "as_of": "2026-11-05",
+  "stage": "붕괴",
+  "crowding": "높음",
+  "summary": "6월 고점 $29에서 11/5 $6.19까지 −79%. '채굴장을 AI 데이터센터로 바꾸는 회사'라는 이야기가 '건설비를 떠안고 빚으로 짓는 회사'로 바뀌었다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "Strong Buy 17·Buy 1·Hold 4·Sell 0(22명)"
+     ],
+     [
+      "목표가",
+      "평균 $22.07, 중앙 $18.5, $9.5~51.5"
+     ],
+     [
+      "11/2~11/4 하향",
+      "KBW $28→$9.5, Rosenblatt $30→$19, JPMorgan $22→$18, Chardan $24→$18, Macquarie $35→$30"
+     ]
+    ],
+    "read": "의견은 아직 매수 일색인데 목표가가 사흘 새 20~65% 깎였다. KBW는 업종 전체를 '계약 임대 가치 근처'로 다시 쟀다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "92%(yfinance)"
+     ],
+     [
+      "대주주",
+      "13D/A 10/7·11/4 제출(내용 미확인)"
+     ],
+     [
+      "캡드콜",
+      "$28.35까지 희석 상쇄 — 전환사채 매수자의 헤지 매도 가능성"
+     ]
+    ],
+    "read": "전환사채 발행 직후 거래량이 3배가 됐다 — 전환사채 차익거래 헤지 매도가 가격을 눌렀을 가능성(정황)"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "공매도 비율",
+      "유통 주식의 26.8%(yfinance)"
+     ],
+     [
+      "거래량",
+      "11/4 103M주, 평균 41M주의 2.5배"
+     ]
+    ],
+    "read": "공매도가 많아 반등 때 되감기 매수가 붙을 수 있지만, 지금은 매도 쪽이 우세다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "목표가 하향·건설비 초과·AI 인프라 신용 재가격"
+     ]
+    ],
+    "read": "매체는 업종 전체의 밸류에이션 재설정으로 다룬다"
+   }
+  },
+  "factors": [
+   {
+    "name": "계약 임대료의 채권화",
+    "thesis": "15~20년 투자등급 임대료라 리츠처럼 NOI 배수로 평가받는다",
+    "inputs": "NOI $864M",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "완공 기준 기업가치 약 $9.1B(완전 희석 시총 $3.09B + 차입 $6.7B − 무제한 현금 $0.72B) ÷ NOI $864M = 10.5배, 자본화율 9.5%",
+    "status": "약화",
+    "falsifier": "다음 프로젝트 채권 금리가 7.5%를 넘는다",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "건설비 초과",
+    "thesis": "MW당 비용이 오르면 계약 수익률이 깎이고 추가 자본이 필요하다",
+    "inputs": "MW당 $13M",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "회사 부담 $359M = 시총의 12%",
+    "status": "강화",
+    "falsifier": "Black Pearl·Stingray가 자본 지출 상한 안에서 끝난다",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "GW 파이프라인 옵션",
+    "thesis": "6.8GW 중 계약 전 6GW가 임대되면 가치가 몇 배가 된다",
+    "inputs": "Colchis·Mikeska 2GW",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "1GW 임대 = 연 NOI 약 $1.2B(700MW당 $864M 비례, 추정)",
+    "status": "정체",
+    "falsifier": "12월 ERCOT 최종 분류 실패",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   },
+   {
+    "name": "희석·전환사채 헤지",
+    "thesis": "전환사채가 늘 때마다 헤지 매도와 희석 우려가 주가를 누른다",
+    "inputs": "$2.2B 전환사채",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "외가격 잠재 주식 약 137M주(2031·2032)",
+    "status": "강화",
+    "falsifier": "다음 자금을 프로젝트 채권만으로 조달",
+    "source": "https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm"
+   },
+   {
+    "name": "반대 내러티브: 지분은 계약 가치 아래",
+    "thesis": "주가가 계약 임대 가치만큼도 반영하지 않는다(KBW의 업종 진단을 거꾸로 읽은 것)",
+    "inputs": "NOI·자본비용",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "NOI $864M을 7%로 자본화하면 $12.3B − 순차입 약 $6.0B = 지분 $6.3B, 완전 희석 시총 $3.09B의 2배(추정)",
+    "status": "태동",
+    "falsifier": "임차인 계약 조건 변경 또는 자본화율 9% 이상",
+    "source": "3Q26 어닝콜(2026-11-02) 요지"
+   }
+  ],
+  "lead": {
+   "summary": "Cipher Digital(CIFR)은 텍사스 채굴장을 AI 데이터센터로 바꿔 AWS·Fluidstack(Google 보증)에 15~20년 빌려주는 회사다. 계약 700MW·계약 매출 약 $16.6B가 있지만 3Q 매출은 $26.7M에 그쳤고, 첫 계약의 비용 초과($359M)와 전환사채 $850M이 겹치며 주가는 6월 고점 대비 −79%다",
+   "value_story": "기업가치는 계약 NOI 연 $864M을 시장이 몇 퍼센트로 자본화하느냐와, 남은 6GW 부지가 새 임대로 바뀌느냐로 정해진다. 완공 기준 기업가치 약 $9.1B(완전 희석)는 NOI의 10.5배, 자본화율 9.5%다. 차입이 $6.7B라 자본화율 1%p가 지분 가치를 약 $1B(시총의 약 3분의 1) 움직인다",
+   "premium": {
+    "multiple": "Fwd 1Y EV/EBITDA 40배는 인도 초기라 의미가 작다. Fwd 2Y는 약 8~9배로 동종(CORZ·APLD 15~18배 Fwd 1Y)보다 낮다",
+    "eps": "3Q GAAP EPS는 Google 워런트 평가이익 $127M 덕에 기본 $0.08, 희석 −$0.22. 조정 EBITDA는 −$10M"
+   },
+   "why_excited": "2025년 9월 Fluidstack·Google 계약 뒤 $7에서 $29까지 올랐다. 식은 이유는 세 가지다 — 매출이 세 분기 연속 추정을 밑돌았고, Barber Lake 비용을 회사가 떠안았고, 10월 전환사채 발행 직후 헤지 매도와 업종 목표가 재설정이 겹쳤다",
+   "products": [
+    {
+     "kind": "서비스",
+     "name": "HPC 데이터센터 임대",
+     "what": "전력·냉각을 갖춘 건물을 통째로 장기 임대",
+     "use": "AI 학습·추론 서버",
+     "money": "15~20년 고정 임대료"
+    },
+    {
+     "kind": "서비스",
+     "name": "비트코인 채굴",
+     "what": "자체 채굴기로 비트코인 생산",
+     "use": "현금 확보(전환 기간 다리)",
+     "money": "채굴 보상·비트코인 매각"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "채굴 100%(2Q) → HPC 임대 22%(3Q), 2027년 대부분 임대료로",
+     "evidence": "10-Q 세그먼트",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "2027년 1Q HPC 매출이 컨센서스 $188M의 절반 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "HPC 원가율 12% vs 채굴 70%",
+     "evidence": "10-Q",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "HPC 운영비가 인도 MW보다 빨리 는다"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "해당 없음 — 시설은 표준 설계, 고객이 장비를 소유",
+     "evidence": "콜",
+     "drives": "multiple",
+     "status": "정체",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "Black Pearl은 예정보다 앞서 인도, Barber Lake는 비용 초과",
+     "evidence": "콜",
+     "drives": "both",
+     "status": "정황",
+     "falsifier": "Barber Lake 최종 데이터홀이 1Q27을 넘긴다",
+     "lead_time": {
+      "now": 13,
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "동종 5곳",
+        "value": "미확인"
+       }
+      ],
+      "basis": "임대 체결 → 첫 RFS(Barber Lake 2025-09 계약 → 2026-11 첫 51MW, 추정 13개월)"
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "부지 인수(Horizon 70MW, 인접 토지 685·256에이커)만 있다",
+     "evidence": "콜",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "하이퍼스케일러 AI 투자가 임대 수요를 만든다 — 다만 고객 투자 발표를 이 회사 매출로 바로 옮기지 않는다",
+     "evidence": "콜: 수요는 충분하다(CEO)",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "다음 임대 체결이 2027년 상반기까지 없다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음 — 이 회사의 연방 보조금 공시가 없다",
+     "evidence": "10-Q 검색",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음",
+     "house": {
+      "level": 1,
+      "why": "데이터센터 직접 지원 세출 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "AI 인프라·전력 인허가 가속 행정명령은 업종 우호, 직접 수혜 공시 없음",
+     "evidence": "콜",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "데이터센터 전력 사용 제한 조치",
+     "house": {
+      "level": 0,
+      "why": "행정부 단독 조치"
+     },
+     "senate": {
+      "level": 0,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "텍사스 대형 부하 규정(ERCOT 대형 부하 연결·출력제한 규정)이 부지 가치를 정한다 — 주 규정이라 연방 의회 단계가 없다",
+     "evidence": "콜(Wells Fargo 질문)",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "ERCOT가 PCLR 출력제한 조건을 강하게 정한다"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "윤서하",
+    "house": "가상 리서치 하우스 한빛자산",
+    "thesis": "지분이 계약 NOI 가치의 절반도 안 된다",
+    "evidence": [
+     "NOI $864M",
+     "완공 기준 EV/NOI 10.5배",
+     "채권 스프레드 업계 하단"
+    ],
+    "falsifier": "다음 채권 금리 7.5% 초과"
+   },
+   {
+    "seat": "Buy",
+    "name": "강도윤",
+    "house": "가상 리서치 하우스 누리증권",
+    "thesis": "2027년 1Q까지 인도가 끝나면 EBITDA가 $580M으로 뛴다",
+    "evidence": [
+     "FY27 EBITDA 컨센서스 $580M",
+     "Barber Lake RFS 11/2"
+    ],
+    "falsifier": "1Q27 매출 $150M 미만"
+   },
+   {
+    "seat": "Neutral",
+    "name": "백지안",
+    "house": "가상 리서치 하우스 다솜리서치",
+    "thesis": "계약 가치는 있지만 비용 초과와 희석이 끝났는지 모른다",
+    "evidence": [
+     "회사 부담 $359M",
+     "전환사채 $2.2B"
+    ],
+    "falsifier": "Stingray 비용 상한 안 완공"
+   },
+   {
+    "seat": "Sell",
+    "name": "문태경",
+    "house": "가상 리서치 하우스 은하증권",
+    "thesis": "새 임대 없이 빚만 늘면 파이프라인 가치는 0이다",
+    "evidence": [
+     "6GW 미계약",
+     "온사이트 발전 장비 부족"
+    ],
+    "falsifier": "12월 Colchis 임대 발표"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "오세린",
+    "house": "가상 리서치 하우스 가람투자",
+    "thesis": "건설비가 계속 오르면 지분이 차입에 먹힌다",
+    "evidence": [
+     "MW당 $10.4M → $13M",
+     "총차입 $6.7B"
+    ],
+    "falsifier": "Black Pearl 2단계 비용 확정 공시"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "NOI $864M을 7%로만 자본화해도 $12.3B다. 순차입 약 $6.0B를 빼도 지분 $6.3B, 지금 완전 희석 시총의 두 배다"
+     },
+     {
+      "seat": "Buy",
+      "text": "Barber Lake 첫 51MW가 11/2에 넘어갔다. FY27 EBITDA 컨센서스 $580M이면 Fwd 2Y EV/EBITDA 8배다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "계약은 좋다. 문제는 회사가 비용 $359M을 떠안았고 남은 두 캠퍼스도 같은지 모른다는 점이다"
+     },
+     {
+      "seat": "Sell",
+      "text": "6.8GW 중 계약은 700MW다. 나머지는 ERCOT 분류와 발전 장비에 달려 있다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "MW당 비용이 $10.4M에서 $13M으로 25% 올랐다. 같은 일이 Black Pearl에서 나면 지분이 또 희석된다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Black Pearl·Stingray 계약에는 자본 지출 상한 보호가 있다고 CFO가 말했다. Barber Lake와 구조가 다르다",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "비용 초과의 절반은 고객이 수익률을 얹어 갚는다. 그래서 평균 수익률이 13%에서 15%로 올랐다",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "수익률 15%는 회사 계산이다. MW당 $13M 기준의 검증 자료는 아직 없다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "7% 자본화율은 낙관이다. KBW는 업종을 계약 가치 근처로 다시 쟀고 금리가 오르면 9%도 가능하다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "자본화율 9%면 $9.6B, 순차입 $6.0B를 빼면 지분 $3.6B로 지금 시총과 비슷하다 — 상방이 없다",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "9%여도 지금 가격이다. 하방이 계약 가치로 막혀 있고 파이프라인은 공짜다",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "12월 ERCOT 분류는 날짜가 정해진 촉매다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Neutral",
+      "text": "공짜 옵션이라도 개발하려면 또 자본이 든다. 전환사채가 또 나오면 주당 가치는 준다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "매출이 세 분기 연속 추정을 밑돌았다. 인도 일정도 미끄러질 수 있다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "공매도 27%는 시장이 비용 초과가 끝나지 않았다고 본다는 뜻이다",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "계약 가치 대비 할인이 너무 크다 — 유지"
+     },
+     {
+      "seat": "Buy",
+      "text": "1Q27 인도 완료가 확인되면 재평가 — 유지"
+     },
+     {
+      "seat": "Neutral",
+      "text": "Stingray 비용과 다음 조달 방식을 보고 판단한다"
+     },
+     {
+      "seat": "Sell",
+      "text": "새 임대가 나오기 전까지 파이프라인에 값을 주지 않는다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "비용 초과 재발 위험을 지분이 진다 — 유지"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "규칙 등급은 Sell(목표 $5, −18%)이다. 약세 −$0.80은 지분이 0 아래로 가는 값인데, 차입 $6.7B 중 $4.5B가 캠퍼스별 비소구 채권이라 지분 손실에는 바닥이 있다. 투자등급 임차인의 계약 임대료와 12월 ERCOT 분류라는 날짜 있는 촉매를 근거로 한 단계 올려 Neutral로 둔다",
+   "dissent": "Strong Sell 자리: 비용 초과가 한 번 더 나오면 비소구 구조와 무관하게 모회사 전환사채 $2.15B가 지분 위에 남는다"
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": null,
+  "ev_ebitda_fwd": 40.19,
+  "pe_fwd2": null,
+  "ev_ebitda_fwd2": 9.81,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": 6.7
+ },
+ "forward": {
+  "as_of": "2026-11-05",
+  "ntm": {
+   "eps": null,
+   "ebitda": 193377664,
+   "ebit": 111532713,
+   "revenue": 682662500,
+   "rev_ttm": 146087000
+  },
+  "horizons": {
+   "2": {
+    "eps": null,
+    "ebitda": 792574503,
+    "ext": 0
+   },
+   "3": {
+    "eps": null,
+    "ebitda": 1159175490.5,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": null,
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [
+   {
+    "date": "2024-05-31",
+    "value": 247.33
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2025-02-28",
+    "value": 11.49
+   },
+   {
+    "date": "2025-03-31",
+    "value": 7.77
+   },
+   {
+    "date": "2025-04-30",
+    "value": 10.69
+   },
+   {
+    "date": "2025-05-30",
+    "value": 11.68
+   },
+   {
+    "date": "2025-06-30",
+    "value": 14.23
+   },
+   {
+    "date": "2025-07-31",
+    "value": 13.05
+   },
+   {
+    "date": "2025-08-29",
+    "value": 15.33
+   },
+   {
+    "date": "2025-09-30",
+    "value": 19.42
+   },
+   {
+    "date": "2025-10-31",
+    "value": 28.85
+   },
+   {
+    "date": "2025-11-28",
+    "value": 45.25
+   },
+   {
+    "date": "2025-12-31",
+    "value": 24.31
+   },
+   {
+    "date": "2026-01-30",
+    "value": 30.02
+   },
+   {
+    "date": "2026-02-27",
+    "value": 42.13
+   },
+   {
+    "date": "2026-03-31",
+    "value": 21.47
+   },
+   {
+    "date": "2026-04-30",
+    "value": 27.52
+   },
+   {
+    "date": "2026-05-29",
+    "value": 59.68
+   },
+   {
+    "date": "2026-06-30",
+    "value": 36.06
+   },
+   {
+    "date": "2026-07-31",
+    "value": 32.88
+   },
+   {
+    "date": "2026-08-31",
+    "value": 29.6
+   },
+   {
+    "date": "2026-09-30",
+    "value": 20.48
+   },
+   {
+    "date": "2026-10-30",
+    "value": 14.29
+   }
+  ]
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_CIFR",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2022-12-31",
+    "rev": 3037000,
+    "cogs": 748000,
+    "gp": 2289000,
+    "sga": 18987000,
+    "rd": null,
+    "da": 4352000,
+    "other": -4366000,
+    "op": -49774000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 21895000,
+    "cogs": 20078000,
+    "gp": 1817000,
+    "sga": 5483000,
+    "rd": null,
+    "da": 11655000,
+    "other": 11200000,
+    "op": -4121000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 31224000,
+    "cogs": 28536000,
+    "gp": 2688000,
+    "sga": 8667000,
+    "rd": null,
+    "da": 14412000,
+    "other": 6582000,
+    "op": -12089000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 30304000,
+    "cogs": 30079000,
+    "gp": 225000,
+    "sga": 6827000,
+    "rd": null,
+    "da": 16217000,
+    "other": 7409000,
+    "op": -19106000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 43419000,
+    "cogs": 29015000,
+    "gp": 14404000,
+    "sga": 6819000,
+    "rd": null,
+    "da": 16809000,
+    "other": -3471000,
+    "op": -15201000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 48137000,
+    "cogs": 27856000,
+    "gp": 20281000,
+    "sga": 6077000,
+    "rd": null,
+    "da": 17244000,
+    "other": -49826000,
+    "op": -46786000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 36808000,
+    "cogs": 30566000,
+    "gp": 6242000,
+    "sga": 8365000,
+    "rd": null,
+    "da": 20251000,
+    "other": -6203000,
+    "op": -16171000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 24102000,
+    "cogs": 29801000,
+    "gp": -5699000,
+    "sga": 8919000,
+    "rd": null,
+    "da": 28636000,
+    "other": 48140000,
+    "op": -91394000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 42223000,
+    "cogs": 34937000,
+    "gp": 7286000,
+    "sga": 9294000,
+    "rd": null,
+    "da": 36317000,
+    "other": -55405000,
+    "op": -17080000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 48959000,
+    "cogs": 29197000,
+    "gp": 19762000,
+    "sga": 8951000,
+    "rd": null,
+    "da": 43467000,
+    "other": 5432000,
+    "op": -38088000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 43565000,
+    "cogs": 30989000,
+    "gp": 12576000,
+    "sga": 9078000,
+    "rd": null,
+    "da": 44086000,
+    "other": 4655000,
+    "op": -45243000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 71707000,
+    "cogs": 41178000,
+    "gp": 30529000,
+    "sga": 8167000,
+    "rd": null,
+    "da": 59549000,
+    "other": 430000,
+    "op": -37617000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 59711000,
+    "cogs": 58981000,
+    "gp": 730000,
+    "sga": 10186000,
+    "rd": null,
+    "da": 51871000,
+    "other": 239288000,
+    "op": -300615000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 34838000,
+    "cogs": 52708000,
+    "gp": -17870000,
+    "sga": 11741000,
+    "rd": null,
+    "da": 19014000,
+    "other": 65944000,
+    "op": -114569000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 24837000,
+    "cogs": 57405000,
+    "gp": -32568000,
+    "sga": 16479000,
+    "rd": null,
+    "da": 19365000,
+    "other": 10124000,
+    "op": -78536000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 26701000,
+    "cogs": 53919000,
+    "gp": -27218000,
+    "sga": 26359000,
+    "rd": null,
+    "da": 18821000,
+    "other": -483000,
+    "op": -71915000
+   }
+  ]
+ }
+}

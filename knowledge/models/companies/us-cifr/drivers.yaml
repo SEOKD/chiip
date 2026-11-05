@@ -1,0 +1,104 @@
+auto: true
+id: us-cifr
+name: Cipher Digital
+ticker: CIFR
+unit: B$
+unit_usd: 1000000000.0
+industry: datacenter
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-05'
+market:
+  date: '2026-11-05'
+  price: 6.19
+  shares: 0.499674
+  net_debt: 5.976
+  source: '가격 = 11/5 종가 추정 $6.19(Fiscal.ai calculated_market_cap $2.8249B ÷ 표지 주식
+    456,365,113주. 11/4 종가 $6.50). 주식 = 10-Q 표지(10/30). 차입 = CFO 3Q 콜(11/2) 10월 거래
+    반영 총차입 약 $6.7B(프로젝트 비소구 담보채 $4.5B + 모회사 전환사채 $2.2B). 현금 = 무제한 현금 약 $724M만 — 제한
+    현금 약 $3.0B(회사 순부채 약 $3B 기준과의 차이)는 계약 캠퍼스 건설에만 쓰는 돈이라 지분 몫 현금에서 뺀다. 그래서 순부채 약 $5.98B
+    = 완공 뒤 순부채와 같은 기준이고, 완공 뒤 EBITDA(12개월 뒤 다음 4개 분기)와 짝이 맞는다. 회사 기준 순부채는 약 $3B. 9/30
+    재무상태표: 현금 $656M·제한 현금 $2.197B·차입 장부가 $5.56B https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm'
+rev0: 0.187376
+ic0: 6.768
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 3.3762
+      end: 0.03
+      decay: 0.11
+    margin:
+      m0: -1.5
+      target: 0.45
+      year_target: 3
+      lr: 0.42
+      lam: 0.1
+      anchors:
+      - 0.33
+      - 0.45
+    s2c: 0.5
+  bull:
+    prob: 0.2
+    growth:
+      start: 4.3369
+      end: 0.04
+      decay: 0.16
+    margin:
+      m0: -1.5
+      target: 0.53
+      year_target: 3
+      lr: 0.42
+      lam: 0.25
+      anchors:
+      - 0.33
+      - 0.45
+    s2c: 0.575
+  bear:
+    prob: 0.35
+    growth:
+      start: 2.3089
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: -1.5
+      target: 0.37
+      year_target: 3
+      lr: 0.42
+      lam: 0.5
+      anchors:
+      - 0.33
+      - 0.45
+    s2c: 0.425
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 0.187376
+  growth: 컨센서스 1년차 337.6%, 2년차 40.2%
+  margin: 1~2년차 컨센서스 33.0%, 45.0% 고정 → 목표 45%(3년차, 덮어쓰기) → 장기 수렴 42%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 0.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 230.9%~433.7%
+  probs: '데이터 묶음 지정 {''bear'': 0.35, ''base'': 0.45, ''bull'': 0.2}'
+  overrides: '임대형 데이터센터: ① 매출은 계약 700MW 인도로 FY27 +338%·FY28 +40% 뒤 임대료 인상률 수준(3%)으로
+    빠르게 수렴한다 — 규칙의 감쇠 하한 0.3은 FY29 이후 매출을 계약 밖으로 부풀린다(decay 0.11 = FY28 성장 40%에 맞춘
+    값). ② 15~20년 고정 임대라 장기 EBIT 이익률이 일반 기업 15%로 수렴하지 않는다 — FY28 EBITDA 컨센서스 마진 77%에서
+    감가상각(매출의 약 31~35%, 추정)을 빼 42~45%. ③ 남은 건설비는 회사가 ''완공 자금 확보''라 밝힌 현금 약 $3.7B다.
+    이 중 제한 현금 약 $3.0B는 투하자본에 이미 넣었으므로(현금에서 뺌) 추가 재투자는 무제한 현금 몫 약 $0.7B와 비용 초과 여유를
+    더한 약 $1.9B로 보고, 매출 증가 약 $0.96B ÷ $1.9B ≈ 매출/투하자본 0.5(규칙 기본값과 같음, 추정)'
+  shares: '완전 희석 = 기본 0.456365(2026-10-30) + 옵션·RSU·워런트·전환 0.0433 — 10-Q EPS 주석: 미발행
+    RSU·PSU 17,115,345주, Google 워런트 24,710,265주'
+notes:
+- 자동 생성(build_drivers) 2026-11-05 — 데이터 묶음 2026-11-05
+- '어닝콜 위험: 건설비 상승·변경주문 — 회사 부담 $359M'
+- '어닝콜 위험: 1~3Q 매출 컨센서스 연속 하회(3Q −32%)'
+- '어닝콜 위험: 총차입 약 $6.7B, 전환사채 $2.2B(2031·2032)'
+evidence:
+- 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm
+- 3Q26 보도자료 8-K https://www.sec.gov/Archives/edgar/data/1819989/000181998926000047/cifr-20261102.htm
+- 전환사채 8-K(10/13·10/14·10/16) https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819989&type=8-K
+- KBW 하향 보도(11/4) https://www.moomoo.com/hans/news/post/1003495176/keefe-bruyette-woods-downgrades-cipher-digital-to-market-perform-9
