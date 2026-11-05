@@ -137,6 +137,20 @@ def compute(dp):
     return {"now": now, "periods": [margins(p) for p in mg["periods"]], "items": rows, "shock": shock}
 
 
+def last4(dp):
+    """quarters_hist 최근 4개 분기 → 매출 대비 비율(GPM·OPM·비용). 4개가 안 되면 None"""
+    q = [r for r in (dp.get("quarters_hist") or {}).get("q") or [] if r.get("rev") and r.get("gp") is not None and r.get("op") is not None][-4:]
+    if len(q) < 4:
+        return None
+    out = []
+    for r in q:
+        rev = r["rev"]
+        rd, sga = (r.get("rd") or 0) / rev, (r.get("sga") or 0) / rev
+        gpm, opm = r["gp"] / rev, r["op"] / rev
+        out.append({"period": str(r["period"])[:7], "gpm": gpm, "opm": opm, "cogs_pct": 1 - gpm, "rd": rd, "sga": sga, "other": max(gpm - opm - rd - sga, 0)})
+    return out
+
+
 def _pt(x, digits=1):
     return UNKNOWN if x is None else f"{x * 100:+.{digits}f}%p"
 
@@ -176,11 +190,14 @@ def section(dp):
     B = [{"type": "hl", "text": head}]
     B.append({"type": "table", "title": f"GPM에서 OPM까지({mg.get('basis', 'GAAP')})", "headers": ["기간", "GPM", "연구개발", "판관비", "기타", "OPM"],
               "rows": [[p["period"], _pct(p["gpm"]), _pct(p["rd"]), _pct(p["sga"]), _pct(p["other"]), _pct(p["opm"])] for p in c["periods"]]})
-    B.append({"type": "chart", "chart": {"kind": "line", "title": "GPM·OPM 추이", "unit": "%",   # 시각물 보강(2026-11-03 마스터 지시)
-                                         "series": [{"name": "GPM", "color": "c", "points": [[p["period"], round(p["gpm"] * 100, 1)] for p in c["periods"]]},
-                                                    {"name": "OPM", "color": "a", "points": [[p["period"], round(p["opm"] * 100, 1)] for p in c["periods"]]}]}})
-    B.append({"type": "chart", "chart": {"kind": "bars", "stack": True, "title": "매출 100의 쓰임(기간별)", "unit": "%", "categories": [p["period"] for p in c["periods"]],
-                                         "series": [{"name": n, "color": col, "values": [round(max(p[k], 0) * 100, 1) for p in c["periods"]]} for k, n, col in
+    q4 = last4(dp)   # 마스터 지시 2026-11-06: GPM·OPM은 선 대신 값을 바로, 시계열은 최근 4개 분기
+    if q4:
+        B.append({"type": "table", "title": "GPM·OPM 최근 4개 분기", "headers": ["분기", "GPM", "OPM"], "rows": [[r["period"], _pct(r["gpm"]), _pct(r["opm"])] for r in q4]})
+        cols, cats = q4, [r["period"] for r in q4]
+    else:
+        cols, cats = c["periods"], [p["period"] for p in c["periods"]]
+    B.append({"type": "chart", "chart": {"kind": "bars", "stack": True, "title": "매출 100의 쓰임(최근 4개 분기)" if q4 else "매출 100의 쓰임(기간별)", "unit": "%", "categories": cats,
+                                         "series": [{"name": n, "color": col, "values": [round(max(p[k] or 0, 0) * 100, 1) for p in cols]} for k, n, col in
                                                     (("cogs_pct", "매출원가", "b"), ("rd", "연구개발", "e"), ("sga", "판관비", "d"), ("other", "기타", "c"), ("opm", "영업이익", "a"))]}})
     costs = sorted(mg["costs"], key=lambda k: -k["pct_rev"])
     rows = []
