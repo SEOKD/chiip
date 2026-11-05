@@ -1,0 +1,102 @@
+auto: true
+id: us-aehr
+name: Aehr Test Systems
+ticker: AEHR
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-05'
+market:
+  date: '2026-11-05'
+  price: 60.84
+  shares: 0.033564
+  net_debt: -0.095098
+  source: 가격 = 11/4 종가. 주식 = 1Q FY27 재무상태표 32,663천 주(9/25). 현금 = 9/25 $104.9M(제한 현금
+    포함 $105.1M). 차입 없음, 차입 칸은 운용 리스 $9.8M(단기 0.653 + 장기 9.151)
+rev0: 0.15
+ic0: 0.127014
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.4
+      end: 0.035
+      decay: 0.491
+    margin:
+      m0: 0.2193
+      target: 0.25
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.2262
+      - 0.2343
+    s2c: 1.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1
+      end: 0.04
+      decay: 0.541
+    margin:
+      m0: 0.2193
+      target: 0.27
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.2262
+      - 0.2343
+    s2c: 1.725
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.0613
+      end: 0.030000000000000002
+      decay: 0.391
+    margin:
+      m0: 0.2193
+      target: 0.23
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.2262
+      - 0.2343
+    s2c: 1.275
+mc:
+  sigma_growth: 0.0403
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.15, 0.15] (1Q FY27 보도자료(11/2): FY27(2027-06-25 종료) 매출 $150M(직전
+    $130~150M), 비GAAP 순이익 매출의 20% 이상)'
+  growth: 컨센서스 1년차 40.0%, 2년차 21.4%
+  margin: 1~2년차 컨센서스 22.6%, 23.4% 고정 → 목표 25%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.567 → 덮어쓰기 1.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -6.1%~10.0%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: '1Q 비GAAP 영업이익률 24.9%, FY27 비GAAP 순이익률 하한 20%. 장기 비GAAP EBIT 이익률 27%(컨센서스)에서
+    SBC 5%를 빼 GAAP 기준 약 22~25% — 장기값 25% · s2c 1.5: TTM 투하자본 $127M에는 이연법인세 자산 $25M과
+    램프용 선구매 재고가 들어 있어 TTM 매출 ÷ 투하자본 0.57은 증분 자본을 과대평가한다. 1Q 매출 연환산 $132M에 순운전자본(매출채권+재고−매입채무)
+    약 $67M, CAPEX는 매출의 2% 미만 — 증분 매출 $1당 자본 약 $0.5~0.7로 보고 1.5를 둔다'
+  shares: 완전 희석 = 기본 0.032663(2026-09-25) + 옵션·RSU·워런트·전환 0.0009 — 1Q FY27 희석 주식 33,520천
+    − 기본 32,619천 = 약 0.90M주(옵션·RSU 순증분, 자사
+notes:
+- 자동 생성(build_drivers) 2026-11-05 — 데이터 묶음 2026-11-05
+- '어닝콜 위험: 고객 3곳이 FY26 매출 51%(26.3·14.2·10.9%), 상위 5곳 70%'
+- '어닝콜 위험: 잔고는 취소·일정 변경 가능(10-K)'
+- '어닝콜 위험: 부품 다수가 단일·소수 공급원(환경 챔버·전원·고밀도 인터커넥트·컨택터)'
+evidence:
+- 1Q FY27 실적 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm
+- 4Q FY26 실적 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426006655/aehr_ex991.htm
+- FY26 10-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm
+- 위임장 https://www.sec.gov/Archives/edgar/data/1040470/000165495426008222/aehr_def14a.htm
+- ATM 소진 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426003746/aehr_8k.htm
+- 이사 선임 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426009242/aehr_8k.htm
+- Fiscal.ai NASDAQ_AEHR https://fiscal.ai/company/NasdaqCM-AEHR

@@ -1,0 +1,2448 @@
+{
+ "id": "us-aehr",
+ "name": "Aehr Test Systems",
+ "ticker": "AEHR",
+ "as_of": "2026-11-05",
+ "unit": "B$",
+ "industry": "semicap",
+ "region_mix": {
+  "US": 1.0
+ },
+ "region_why": "회사가 지역별 매출을 10-K 주석에만 내고 이번 회차에 표를 대조하지 못했다 — 본사 기준 US 1.0(미확인)",
+ "tax": 0.21,
+ "main_metric": "eps",
+ "main_metric_why": "회사 가이던스가 매출과 비GAAP 순이익률(20% 이상)이다 — EPS 기준",
+ "profile": {
+  "price": 60.84,
+  "shares_basic": 0.032663,
+  "shares_date": "2026-09-25",
+  "cash": 0.104902,
+  "debt": 0.009804,
+  "customer_deposits": 0.0,
+  "source": "가격 = 11/4 종가. 주식 = 1Q FY27 재무상태표 32,663천 주(9/25). 현금 = 9/25 $104.9M(제한 현금 포함 $105.1M). 차입 없음, 차입 칸은 운용 리스 $9.8M(단기 0.653 + 장기 9.151)"
+ },
+ "dilution": {
+  "potential_total": 0.000901,
+  "options": 0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-09-25",
+  "source": "1Q FY27 희석 주식 33,520천 − 기본 32,619천 = 약 0.90M주(옵션·RSU 순증분, 자사주법). 전환사채·워런트 없음. ATM $60M은 4/17 소진(이미 기본 주식에 포함)"
+ },
+ "financials": {
+  "rev_ttm": 0.072039,
+  "ebit_ttm": -0.004036,
+  "invested_capital": 0.127014,
+  "capex_ttm": 0.00253,
+  "da_ttm": 0.0031,
+  "sbc_ttm": 0.0069,
+  "basis": "GAAP",
+  "note": "TTM = FY26 2Q(11/28)·3Q(2/27)·4Q(5/29) + FY27 1Q(9/25). 매출 9.884+10.313+18.835+33.007. 영업이익 −4.648−4.229−1.206+6.047. 6월 한 달 전환기(매출 $0.638M, 영업손실 $3.995M)는 TTM에서 뺐다. 투하자본 = 자기자본 222.112 + 리스 9.804 − 현금 104.902. CAPEX = FY26 $3.87M − FY26 1Q $1.39M + FY27 1Q $0.05M. SBC는 분기 $1.6~1.9M 합(추정)"
+ },
+ "sbc_pct_rev": 0.05,
+ "sbc_why": "FY27 1Q SBC $1.88M ÷ 매출 $33.0M = 5.7%. 매출이 $150M로 커지면 비중이 4~5%로 내려간다 — 5%로 둔다",
+ "peers_basis": "ntm",
+ "peers_source": "Fiscal.ai 표준 재무(최근 4분기 합)·calculated_market_cap 11/4, 선행 배수는 forward_multiples",
+ "peers": [
+  {
+   "ticker": "TER",
+   "key": "NASDAQ_TER",
+   "rev": 5.000771,
+   "ebit_margin": 0.3211,
+   "mcap": 39.1858,
+   "pb": 10.49,
+   "debt": 0.0,
+   "cash": 0.4724,
+   "ev_sales": 7.74,
+   "growth": 0.7488,
+   "goodwill": 0.6638,
+   "intangibles": 0.0967,
+   "pe_fwd": 26,
+   "ev_ebitda_fwd": 20.05,
+   "pe_fwd2": 20.56,
+   "ev_ebitda_fwd2": 16.13,
+   "pe_fwd3": 18.48,
+   "ev_ebitda_fwd3": 14.86,
+   "ntm_ebit_margin": 0.2993,
+   "ntm_growth": 0.1618
+  },
+  {
+   "ticker": "FORM",
+   "key": "NASDAQ_FORM",
+   "rev": 0.980096,
+   "ebit_margin": 0.1832,
+   "mcap": 6.6831,
+   "pb": 5.66,
+   "debt": 0.01136,
+   "cash": 0.6526,
+   "ev_sales": 6.16,
+   "growth": 0.2908,
+   "goodwill": 0.2126,
+   "intangibles": 0.0172,
+   "pe_fwd": 20.48,
+   "ev_ebitda_fwd": 16.43,
+   "pe_fwd2": 16.13,
+   "ev_ebitda_fwd2": 12.94,
+   "pe_fwd3": 13.72,
+   "ev_ebitda_fwd3": 11.08,
+   "ntm_ebit_margin": 0.3101,
+   "ntm_growth": 0.2815
+  },
+  {
+   "ticker": "COHU",
+   "key": "NASDAQ_COHU",
+   "rev": 0.569307,
+   "ebit_margin": -0.0238,
+   "mcap": 2.0823,
+   "pb": 2.63,
+   "debt": 0.302061,
+   "cash": 0.7436,
+   "ev_sales": 2.88,
+   "growth": 0.34,
+   "goodwill": 0.2787,
+   "intangibles": 0.057,
+   "pe_fwd": 18.88,
+   "ev_ebitda_fwd": 13.96,
+   "pe_fwd2": 12.29,
+   "ev_ebitda_fwd2": 9.04,
+   "pe_fwd3": 10.66,
+   "ev_ebitda_fwd3": 7.92,
+   "ntm_ebit_margin": 0.186,
+   "ntm_growth": 0.3881
+  },
+  {
+   "ticker": "CAMT",
+   "key": "NASDAQ_CAMT",
+   "rev": 0.54432,
+   "ebit_margin": 0.2315,
+   "mcap": 4.7407,
+   "pb": 6.28,
+   "debt": 0.489184,
+   "cash": 0.9324,
+   "ev_sales": 7.9,
+   "growth": 0.1218,
+   "goodwill": 0.1127,
+   "intangibles": 0.016,
+   "pe_fwd": 19.82,
+   "ev_ebitda_fwd": 19.06,
+   "pe_fwd2": 16.58,
+   "ev_ebitda_fwd2": 16.46,
+   "pe_fwd3": 14.22,
+   "ev_ebitda_fwd3": 14.18,
+   "ntm_ebit_margin": 0.3469,
+   "ntm_growth": 0.4622
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.45,
+  "bull": 0.25
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "고객 3곳이 FY26 매출의 51%이고 대형 고객의 양산 결정(2027년 초 설치 후 수개월)이 아직 나지 않았다. 매출 $72M 규모의 단일 장비 회사라 실행·고객 집중 할인을 둔다"
+ },
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "next_event": {
+  "date": "2026-11-09",
+  "tag": "1Q FY27 10-Q 제출 기한(분기 말 9/25 + 45일) — 고객별 매출·잔고 이행 기간·구매 약정 확인"
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.15,
+   0.15
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "source": "1Q FY27 보도자료(11/2): FY27(2027-06-25 종료) 매출 $150M(직전 $130~150M), 비GAAP 순이익 매출의 20% 이상",
+  "next": {
+   "period": "FY27",
+   "rev": 150,
+   "rev_cons": 150,
+   "unit": "$M",
+   "note": "회사는 분기 가이던스를 내지 않는다. FY27 연간 매출 가이던스 $150M = 컨센서스 $150M(발표 뒤 갱신). 발표 전 9/11 컨센서스는 $140.8M"
+  }
+ },
+ "terms": {
+  "WLBI": "웨이퍼 레벨 번인 — 다이를 자르기 전 웨이퍼 통째로 고온·고전압 스트레스를 걸어 초기 불량을 걸러내는 공정(Wafer-Level Burn-In)",
+  "PLBI": "패키지 레벨 번인 — 패키징이 끝난 칩 단위로 하는 번인(Package-Level Burn-In)",
+  "FOX-XP": "Aehr의 웨이퍼 레벨 번인 장비 — 웨이퍼 최대 9장을 동시에 번인",
+  "FOX-NP": "Aehr의 소량·엔지니어링용 번인 장비",
+  "FOX-CP": "Aehr의 단일 웨이퍼 소형 시험 장비",
+  "FOX": "Aehr의 웨이퍼·다이 번인 장비 제품군",
+  "WaferPak": "Aehr의 웨이퍼 통째 접촉용 전용 소모품(풀 웨이퍼 컨택터) — 기기마다 새로 산다",
+  "DiePak": "Aehr의 개별 다이·모듈 번인용 전용 캐리어(소모품)",
+  "Sonoma": "Aehr(옛 Incal)의 초고전력 패키지 번인 장비 — AI 가속기용",
+  "Tahoe": "Aehr(옛 Incal)의 중전력 패키지 신뢰성 장비",
+  "Echo": "Aehr(옛 Incal)의 저전력·대량 병렬 패키지 장비",
+  "Incal": "Aehr가 2024년 7월 $22.2M에 인수한 패키지 번인 장비 회사(Incal Technology)",
+  "OSAT": "반도체 후공정 외주 조립·시험 회사",
+  "SiC": "실리콘 카바이드 — 전기차 인버터용 전력 반도체 소재",
+  "GaN": "질화갈륨 — 고효율 전력·고주파 반도체 소재",
+  "ATM": "시장가 수시 유상증자(at-the-market)",
+  "TER": "미국 반도체 시험 장비 회사 Teradyne",
+  "FORM": "미국 프로브 카드 회사 FormFactor",
+  "COHU": "미국 반도체 시험·핸들러 회사 Cohu",
+  "CAMT": "이스라엘 반도체 검사 장비 회사 Camtek",
+  "FY27": "회사 회계연도 2027(2027년 6월 하순 종료 — 2026년 회계연도 말을 5월에서 6월로 바꿨다)",
+  "FY26": "회사 회계연도 2026(2026-05-29 종료)",
+  "CPO": "광학 엔진을 칩 패키지 안에 넣는 공동 패키지 광학(Co-Packaged Optics)",
+  "HPC": "고성능 컴퓨팅",
+  "ASIC": "특정 용도 맞춤 반도체",
+  "TPU": "구글의 AI 가속기 칩",
+  "EV": "전기차",
+  "B/B": "수주 ÷ 매출(book-to-bill)",
+  "RPO": "잔여 이행 의무(계약 잔고)",
+  "13F": "미국 기관투자자 분기 보유 공시",
+  "PPI": "생산자물가지수",
+  "SMH": "반도체 업종 상장지수펀드",
+  "ETF": "상장지수펀드",
+  "CAR": "누적 초과수익률(시장 대비)",
+  "HBM": "고대역폭 메모리",
+  "CPU": "중앙처리장치",
+  "GPU": "그래픽·AI 연산 칩",
+  "ACV": "연간 계약 가치",
+  "AR": "자기회귀(AR) 통계 모형",
+  "GP": "매출총이익",
+  "HP": "호드릭-프레스콧 추세 필터",
+  "IC": "집적회로(반도체 칩)",
+  "JPMorgan": "미국 투자은행 JP모건",
+  "NP": "FOX-NP(Aehr 소량·엔지니어링용 번인 장비)",
+  "UC": "미국 캘리포니아대(University of California)",
+  "XP": "FOX-XP(Aehr 양산용 웨이퍼 번인 장비)"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-05T18:30:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_AEHR",
+   "price": 60.84,
+   "market_cap": 1.984628,
+   "total_cash": 0.104902,
+   "total_debt": 0.009804,
+   "shares_outstanding": 0.032663,
+   "as_of": "2026-11-04",
+   "balance_date": "2026-09-25",
+   "note": "Fiscal.ai calculated_market_cap 11/4 $1,984.6M. 현금 9/25 $104.902M, 차입 0, 리스 $9.804M(Fiscal 표준 재무 = 11/2 보도자료 재무상태표 일치)",
+   "auditUrl": "https://fiscal.ai/company/NasdaqCM-AEHR"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.009884,
+    "2026Q1": 0.010313,
+    "2026Q2": 0.018835,
+    "2026Q3": 0.033007
+   },
+   "op_income": {
+    "2025Q4": -0.004648,
+    "2026Q1": -0.004229,
+    "2026Q2": -0.001206,
+    "2026Q3": 0.006047
+   },
+   "note": "분기 말 11/28·2/27·5/29·9/25. 9/25 분기는 6/27~9/25(회계연도 변경). 6월 전환기 한 달 매출 $0.638M·영업손실 $3.995M 별도"
+  },
+  "balance_2026_09_25": {
+   "equity": 0.222112,
+   "debt": 0.0,
+   "lease_current": 0.000653,
+   "lease_lt": 0.009151,
+   "cash": 0.104902,
+   "restricted_incl": 0.105052,
+   "receivables": 0.02663,
+   "inventory": 0.05312,
+   "payables": 0.012504,
+   "deferred_rev": 0.00803,
+   "deferred_tax_assets": 0.02512,
+   "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+  },
+  "cash_flow": {
+   "ocf_q1fy27": -0.003054,
+   "capex_q1fy27": 4.9e-05,
+   "ocf_fy26": -0.0033,
+   "atm_gross_apr26": 0.06,
+   "note": "1Q 영업현금흐름 −$3.1M은 매출채권 +$10.7M·재고 +$9.0M 증가 때문(보도자료 현금흐름표)"
+  },
+  "sec": {
+   "10k_fy26": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+   "customers_fy26": "Customer A 26.3%, B 14.2%, C 10.9%(FY25 C 15.1%, D 38.6%) · 상위 5곳 70%(FY25 77%, FY24 93%)",
+   "contractual_obligations": "12개월 넘는 무조건 구매 약정은 중요하지 않다(FY26 10-K, FY25도 같은 문구)",
+   "restricted_cash": "현금·제한 현금 합 $116.5M(5/29), 제한 현금은 선급비용·기타 비유동자산에 포함 — 9/25 차이 $0.15M",
+   "government": "정부 보조금·전략 계약 공시 없음(10-K 검색: CHIPS·grant 해당 없음)",
+   "backlog": "5/29 $80.6M(1년 전 $15.2M), 9/25 $100.9M, 유효 잔고 11/1 $109.3M. 잔고 = 12개월 안 출하 확정 주문, 취소·일정 변경 가능"
+  },
+  "estimates_sales_m": {
+   "2027Q1(실적)": 33.007,
+   "2027Q2": 35.006,
+   "2027Q3": 38.691,
+   "2027Q4": 43.297,
+   "2028Q1": 48.0,
+   "2028Q2": 49.502,
+   "2028Q3": 49.04,
+   "2028Q4": 63.458
+  },
+  "shares_cover_implied": 0.03262,
+  "shares_cover_note": "Fiscal.ai calculated_market_cap $1,984.6M ÷ 11/4 종가 $60.84 = 32.62M주(주총 기준일 주식 32,659,546주, 9/25 재무상태표 32,663천 주와 0.1% 차이)",
+  "estimates_note": "회계연도 분기(FY27 = 2026-06-27~2027-06-25). Fiscal.ai 추정, FY27 1Q는 실적. Zacks FY27 $140.75M(9/11)·FY28 $216.675M"
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 0.15,
+   "FY2028": 0.21,
+   "FY2029": 0.255
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "ebit_margin": {
+   "FY2027": 0.2693,
+   "FY2028": 0.2762,
+   "FY2029": 0.2843
+  },
+  "rev_low": {
+   "FY2027": 0.1408,
+   "FY2028": 0.15,
+   "FY2029": 0.165
+  },
+  "rev_high": {
+   "FY2027": 0.165,
+   "FY2028": 0.285,
+   "FY2029": 0.37
+  },
+  "n_analysts": 7,
+  "revisions_90d": {
+   "rev": 0.066
+  },
+  "quarters_est": {
+   "2026Q4": 0.035006,
+   "2027Q1": 0.038691,
+   "2027Q2": 0.043297,
+   "2027Q3": 0.048,
+   "2027Q4": 0.049502,
+   "2028Q1": 0.04904,
+   "2028Q2": 0.063458
+  },
+  "quarters_act": {
+   "2025Q4": 0.009884,
+   "2026Q1": 0.010313,
+   "2026Q2": 0.018835,
+   "2026Q3": 0.033007
+  },
+  "eps_quarters_est": {
+   "2026Q4": 0.23,
+   "2027Q1": 0.31,
+   "2027Q2": 0.37,
+   "2027Q3": 0.35
+  },
+  "eps_year": {
+   "FY2027": [
+    1.19,
+    0.7,
+    1.45
+   ],
+   "FY2028": [
+    1.57,
+    0.8,
+    2.3
+   ],
+   "FY2029": [
+    1.91,
+    0.75,
+    3.0
+   ]
+  },
+  "ratings": {
+   "strong_buy": 6,
+   "buy": 0,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-03",
+   "source": "Fiscal.ai company_analyst_ratings(Zacks) 7명. yfinance(Easyconomics)는 Buy 6·목표 평균 $127",
+   "target_mean": 121,
+   "target_high": 140,
+   "target_low": 110
+  },
+  "target_mean": 121,
+  "target_low": 110,
+  "target_high": 140,
+  "price_window": {
+   "from": 72.01,
+   "to": 60.84,
+   "note": "4Q FY26 발표일 7/14 종가 → 11/4 종가"
+  },
+  "note": "Fiscal.ai 자체 추정(agentic consensus, 신뢰도 low~medium, 11/3)이 1순위 — FY27 매출은 회사 가이던스 $150M. Zacks(9/11, 발표 전) FY27 매출 $140.75M·EPS $0.735, FY28 $216.7M·$1.42, 표본 2명. Fiscal 분기 추정 일부는 날짜가 비어 회계연도·분기 순서로 맞췄다. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "revisions": {
+   "from_date": "2026-07-17",
+   "to_date": "2026-11-03",
+   "from_label": "4Q FY26 콜 직후",
+   "source": "Zacks 7/17(분기 EPS 1명) → Fiscal.ai 11/3. 회계연도 변경으로 Zacks 분기 말(11·2·5월)과 Fiscal 분기 말(12·3·6월)이 한 달 어긋난다 — 같은 회계 분기로 맞췄다. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.21,
+     "to": 0.23
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 0.19,
+     "to": 0.31
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 0.21,
+     "to": 0.37
+    },
+    {
+     "period": "2026Q4",
+     "metric": "매출",
+     "from": 40.4,
+     "to": 35.006
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출",
+     "from": 34.9,
+     "to": 38.691
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출",
+     "from": 37.2,
+     "to": 43.297
+    }
+   ]
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-11-28",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 9.884,
+    "est": 11.05,
+    "est_src": "zacks",
+    "est_asof": "2025-10-08",
+    "basis": "gaap",
+    "earnings_date": "2026-01-08"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-11-28",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.04,
+    "est": -0.08,
+    "est_src": "zacks",
+    "est_asof": "2025-10-09",
+    "basis": "adjusted",
+    "earnings_date": "2026-01-08"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-11-28",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -2.724,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-08"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-02-27",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 10.313,
+    "est": 10.85,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-07",
+    "pair": {
+     "zacks": 12.9
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-02-27",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.05,
+    "est": -0.08,
+    "est_src": "zacks",
+    "est_asof": "2026-01-13",
+    "basis": "adjusted",
+    "earnings_date": "2026-04-07"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-02-27",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -2.549,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-07"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-05-29",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 18.835,
+    "est": 18.7,
+    "est_src": "zacks",
+    "est_asof": "2026-04-09",
+    "basis": "gaap",
+    "earnings_date": "2026-07-14"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-05-29",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.11,
+    "est": -0.01,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-14",
+    "pair": {
+     "zacks": -0.01
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-05-29",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 0.955,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-14"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-25",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 33.007,
+    "est": 27.45,
+    "est_src": "zacks",
+    "est_asof": "2026-09-11",
+    "basis": "gaap",
+    "earnings_date": "2026-11-02"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-25",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.28,
+    "est": 0.11,
+    "est_src": "zacks",
+    "est_asof": "2026-09-11",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-02"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-25",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 8.223,
+    "est": 4.02,
+    "est_src": "zacks",
+    "est_asof": "2026-09-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-02"
+   }
+  ]
+ },
+ "call": {
+  "date": "2026-11-02",
+  "prev_date": "2026-07-14",
+  "tone": "up",
+  "tone_score": null,
+  "tone_delta": null,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_m": 33.007,
+   "rev_growth_yoy": 2.0,
+   "gm_non_gaap": 0.485,
+   "eps_non_gaap": 0.28,
+   "bookings_m": 46.7,
+   "book_to_bill": 1.4,
+   "backlog_m": 100.9,
+   "effective_backlog_m": 109.3,
+   "consumables_share": 0.41,
+   "cash_m": 105.1
+  },
+  "guidance_changes": [
+   "FY27 매출 $130~150M → $150M(상단), 비GAAP 순이익률 20% 이상 신규"
+  ],
+  "new_topics": [
+   "벤치마크 고객(AI 가속기·CPU·네트워크 프로세서 대형 공급사)이 FOX-XP 풀 구성 1셀을 사서 대만 OSAT에 2027년 초 설치 — 양산 판정은 설치 뒤 수개월",
+   "하이퍼스케일 고객의 두 번째 AI 프로세서가 Sonoma 인증 통과, 초기 샘플용 추가 주문 — 고객은 두 번째 칩 물량이 첫 칩보다 많다고 예측",
+   "Sonoma를 월 12대 넘게 출하·설치",
+   "FY27 소모품 비중 약 35%(1Q 41%, FY26 약 30%)",
+   "이사회에 Meta 인프라 부사장 출신 Narsing Vijayrao 선임(10/28)"
+  ],
+  "dropped_topics": [
+   "7월에 쓴 '벤치마크 고객이 두 번째 칩 평가도 요청'은 이번엔 한 셀 구매·OSAT 양산 평가로 구체화됐다(소멸이 아니라 진전)"
+  ],
+  "risks": [
+   "고객 3곳이 FY26 매출 51%(26.3·14.2·10.9%), 상위 5곳 70%",
+   "잔고는 취소·일정 변경 가능(10-K)",
+   "부품 다수가 단일·소수 공급원(환경 챔버·전원·고밀도 인터커넥트·컨택터)",
+   "대만·동남아 지정학·관세(보도자료 위험 문구)",
+   "1Q 영업현금흐름 −$3.1M — 매출채권·재고 증가"
+  ],
+  "qa_focus": [
+   "Craig-Hallum: 벤치마크 고객 양산 판정 시점·SiC 매출 비중",
+   "William Blair: 분기 매출 선형성·수주 가시성·생산 능력·벤치마크 계약 조건",
+   "Lake Street: 소모품 비중·가이던스 보수성",
+   "Jefferies: 벤치마크 고객이 다른 고객 채택을 앞당기나"
+  ],
+  "answer": "회사 답변: 가이던스 $150M은 현재 고객 주문·희망 출하일 기준이고 공급 제약이 아니며 보수적으로 잡았다(CEO). 벤치마크 고객과는 양산 장비 조건(시간당 처리량·가동률)을 담은 작업 명세를 맞췄고, 1~3월에 데이터를 보고 캐파 계획을 정할 것이라 했다. 2Q는 하이퍼스케일 고객 출하가 잔고에 있어 강한 분기라고 CFO가 답했다",
+  "source": "1Q FY27 보도자료 https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm · 1Q FY27 어닝콜(2026-11-02) 질의응답 요지",
+  "tone_note": "가이던스 상향(범위 상단 확정) + 비GAAP 이익률 하한 신규 = up",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "FY27 매출 가이던스",
+    "label": "FY27 $150M",
+    "prior": "$130~150M(7/14)",
+    "latest": "$150M(11/2)",
+    "driver": "rev0",
+    "shift": 0.07,
+    "confidence": 0.8,
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "비GAAP 순이익률 하한",
+    "label": "순이익률 ≥20%",
+    "prior": "숫자 없음",
+    "latest": "FY27 비GAAP 순이익 매출의 20% 이상",
+    "driver": "margin_m0",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "벤치마크 고객",
+    "label": "대형 고객 셀 구매",
+    "prior": "벤치마크 통과·파일럿 관심(7월)",
+    "latest": "FOX-XP 1셀 구매, 대만 OSAT 2027년 초 설치",
+    "driver": "growth_end",
+    "shift": 0.02,
+    "confidence": 0.3,
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "Sonoma 두 번째 칩",
+    "label": "Sonoma 2번째 칩",
+    "prior": "두 번째 칩용 구매 확대 예측",
+    "latest": "두 번째 칩 인증 통과·초기 생산 주문, 2027년 램프",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.5,
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "소모품 비중",
+    "label": "소모품 35%",
+    "prior": "FY26 약 30%",
+    "latest": "FY27 약 35%(1Q 41%)",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "1Q FY27 어닝콜(2026-11-02) 질의응답 요지"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "운전자본",
+    "label": "현금 −$7.4M",
+    "prior": "5/29 현금 $116.5M",
+    "latest": "9/25 $105.1M — 매출채권·재고 증가",
+    "driver": "s2c",
+    "shift": -0.1,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-05-29",
+  "period": "FY26",
+  "summary": "FY26 매출 $50.0M 중 고객 A 26.3%·B 14.2%·C 10.9%, 상위 5곳 70%(FY25 77%, FY24 93%). 회사는 이름을 밝히지 않는다. 회사 설명으로는 WLBI 선두 AI 고객, Sonoma 하이퍼스케일 고객, SiC 고객이 큰 몫이다 — 이름 연결은 가설",
+  "items": [
+   {
+    "name": "AI 프로세서 WLBI 선두 고객(이름 미공시)",
+    "alias": "10-K 'Customer A'(가설)",
+    "share": [
+     0.2,
+     0.35
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "FOX-XP 시스템·WaferPak(8월 $22M 후속 주문)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+    "why": "FY26 최대 고객 26.3%. WLBI 선두 고객의 캐파 확장과 8월 $22M 주문으로 FY27에도 큰 몫 — 어느 알파벳인지는 가설"
+   },
+   {
+    "name": "하이퍼스케일 데이터센터 고객(이름 미공시)",
+    "alias": "보도자료 'lead hyperscale customer'",
+    "share": [
+     0.2,
+     0.4
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "Sonoma 패키지 번인 시스템·번인 모듈",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm",
+    "why": "월 12대 넘게 출하 — 1Q 매출 상당 몫. 회사가 몫을 밝히지 않아 범위로 둔다"
+   },
+   {
+    "name": "SiC·GaN 전력 반도체 고객",
+    "alias": "10-K 'Customer C·D'(가설)",
+    "share": [
+     0.05,
+     0.12
+    ],
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "WaferPak 소모품 위주",
+    "source": "1Q FY27 어닝콜(2026-11-02) 질의응답 요지",
+    "why": "CEO: FY26 매출 $50M 중 SiC는 약 10% · 이전: FY24 SiC 약 90%"
+   },
+   {
+    "name": "실리콘 포토닉스 고객(복수)",
+    "alias": "보도자료 'multiple customers'",
+    "share": [
+     0.05,
+     0.15
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "FOX-XP·FOX-NP와 WaferPak",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm",
+    "why": "1Q에 여러 고객 추가 양산 주문 — 몫 미공시"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-25",
+  "basis": "GAAP",
+  "summary": "1Q FY27 GAAP 매출총이익률 47.5%(1년 전 8/29 분기 33.9%), 비GAAP 48.5%(37.5%). 물량과 소모품 믹스가 이유다. 연구개발 12.6%·판관비 16.6%로 영업이익률 18.3%",
+  "periods": [
+   {
+    "period": "1Q FY26",
+    "rev": 0.010969,
+    "cogs": 0.00725,
+    "rd": 0.002849,
+    "sga": 0.004717,
+    "other": 0.000219
+   },
+   {
+    "period": "1Q FY27",
+    "rev": 0.033007,
+    "cogs": 0.017344,
+    "rd": 0.004143,
+    "sga": 0.005473,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "구매 부품·서브어셈블리(챔버·전원·인터커넥트·IC)",
+    "stage": "매출원가",
+    "pct_rev": 0.3,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "부품 단가·외주 가공비 — 단일·소수 공급원",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "name": "WaferPak·번인 모듈 소재(컨택터·기판)",
+    "stage": "매출원가",
+    "pct_rev": 0.08,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "소모품 물량",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "name": "직접 인건비·제조 간접비(프리몬트·필리핀)",
+    "stage": "매출원가",
+    "pct_rev": 0.1,
+    "prior_pct": "미확인",
+    "fixed": 0.6,
+    "driver": "가동률 — 물량이 늘면 비중이 준다",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "name": "보증·설치·재고 충당·기타",
+    "stage": "매출원가",
+    "pct_rev": 0.0455,
+    "prior_pct": "미확인",
+    "fixed": 0.3,
+    "driver": "설치 대수",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.1255,
+    "prior_pct": 0.2597,
+    "fixed": 0.8,
+    "driver": "엔지니어 인력",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "판매·관리비",
+    "stage": "판관비",
+    "pct_rev": 0.1658,
+    "prior_pct": 0.43,
+    "fixed": 0.7,
+    "driver": "인력·주식 보상",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "WLBI 시스템(FOX-XP·FOX-NP)",
+    "rev_share": 0.3,
+    "gpm": 0.4,
+    "gpm_basis": "추정 — 제품별 이익률 미공시. 회사 1Q GAAP 매출총이익률 47.5% = 소모품 41%×약 60% + 시스템 59%×약 39%로 맞춘 값",
+    "bom": [
+     {
+      "item": "환경 챔버·온도 제어",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "10-K가 단일·소수 공급원 부품으로 든다"
+     },
+     {
+      "item": "고전력 전원 공급 장치",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "웨이퍼당 수천 W — 전원 비중이 크다"
+     },
+     {
+      "item": "고밀도 인터커넥트·신호 분배 기판",
+      "share": [
+       0.1,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "10-K 단일 공급원 목록"
+     }
+    ],
+    "mix_basis": "시스템 59%(1Q, 소모품 41%의 나머지)를 WLBI·Sonoma로 나눈 몫은 추정 — 회사 미공시"
+   },
+   {
+    "name": "Sonoma 패키지 번인 시스템",
+    "rev_share": 0.29,
+    "gpm": 0.38,
+    "gpm_basis": "추정 — 제품별 이익률 미공시. 회사 1Q GAAP 매출총이익률 47.5% = 소모품 41%×약 60% + 시스템 59%×약 39%로 맞춘 값",
+    "bom": [
+     {
+      "item": "고전력 전원 공급 장치",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "AI 가속기 한 개당 1kW 이상"
+     },
+     {
+      "item": "액체·공기 냉각 열 관리",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "초고전력 번인의 핵심"
+     },
+     {
+      "item": "외주 서브어셈블리(필리핀·외주사)",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "1Q FY27 어닝콜(2026-11-02) 질의응답 요지",
+      "pass_through": "미확인",
+      "why": "CEO: 외주사가 서브어셈블리를 더 맡는다"
+     }
+    ],
+    "mix_basis": "시스템 59%(1Q, 소모품 41%의 나머지)를 WLBI·Sonoma로 나눈 몫은 추정 — 회사 미공시"
+   },
+   {
+    "name": "소모품(WaferPak·DiePak·번인 모듈)",
+    "rev_share": 0.41,
+    "rev_share_prev": 0.3,
+    "mix_basis": "1Q FY27 41%(콜), FY26 약 30%",
+    "gpm": 0.6,
+    "gpm_basis": "추정 — 제품별 이익률 미공시. 회사 1Q GAAP 매출총이익률 47.5% = 소모품 41%×약 60% + 시스템 59%×약 39%로 맞춘 값",
+    "bom": [
+     {
+      "item": "풀 웨이퍼 컨택터 프로브·기판",
+      "share": [
+       0.3,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "독점 설계"
+     },
+     {
+      "item": "번인 모듈 소켓·보드",
+      "share": [
+       0.2,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "Sonoma 모듈"
+     },
+     {
+      "item": "정렬·조립 인건비",
+      "share": [
+       0.1,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+      "pass_through": "미확인",
+      "why": "자체 조립"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-05",
+  "summary": "약한 고리는 단일·소수 공급원 부품(환경 챔버·전원·고밀도 인터커넥트·컨택터·일부 IC)이다. 10-K가 그렇게 적고, 회사는 1Q에 장납기 부품을 미리 사들여 재고가 $44.4M에서 $53.1M로 늘었다. 공급사 이름은 공시하지 않는다",
+  "links": [
+   {
+    "item": "환경 챔버·온도 제어",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "챔버 — 단일·소수 공급원(10-K)",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "균형",
+    "capacity_basis": "CEO(11/2): FY27 $150M은 공급 제약이 아니다 — 회사 전체 판단을 품목에 적용(품목별 여력 미공시)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "선급금",
+    "why": "10-K 단일·소수 공급원 목록 · 인증 공급사 1곳은 10-K \"하나 또는 소수\"를 보수적으로 읽은 값(추정). 물량 확보 = FY26 10-K 현금흐름 설명의 공급사 선급금. 재인증 12개월은 업계 통상 범위의 중간(추정)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "item": "고전력 전원 공급 장치",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "전원 — 단일·소수 공급원(10-K)",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "균형",
+    "capacity_basis": "CEO(11/2): FY27 $150M은 공급 제약이 아니다 — 회사 전체 판단을 품목에 적용(품목별 여력 미공시)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "선급금",
+    "why": "CFO: 1Q 운전자본에 장납기 부품 구매 포함 · 인증 공급사 1곳은 10-K \"하나 또는 소수\"를 보수적으로 읽은 값(추정). 물량 확보 = FY26 10-K 현금흐름 설명의 공급사 선급금. 재인증 12개월은 업계 통상 범위의 중간(추정)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "item": "고밀도 인터커넥트·신호 분배 기판",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "기판 — 단일·소수 공급원(10-K)",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "균형",
+    "capacity_basis": "CEO(11/2): FY27 $150M은 공급 제약이 아니다 — 회사 전체 판단을 품목에 적용(품목별 여력 미공시)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "선급금",
+    "why": "10-K · 인증 공급사 1곳은 10-K \"하나 또는 소수\"를 보수적으로 읽은 값(추정). 물량 확보 = FY26 10-K 현금흐름 설명의 공급사 선급금. 재인증 12개월은 업계 통상 범위의 중간(추정)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "item": "외주 서브어셈블리·Sonoma 직송 생산",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "외주 제조사(이름 미공시)",
+      "role": "Sonoma 생산·직송, WLBI 서브어셈블리",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "CEO: 가이던스는 공급 제약이 아니다. 10-K: 외주사의 Sonoma 직송을 4Q에 인증해 총 캐파가 크게 늘었다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "외주 계약",
+    "why": "외주 확대로 시스템 조립 시간을 연말까지 약 1/3로 줄인다는 계획(콜)",
+    "relief": "진행 중 — 인증 완료",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-05",
+  "unit": "공장 면적(제곱피트)·출하 대수 — 회사는 생산 단위 캐파를 공시하지 않는다",
+  "summary": "프리몬트 본사 51,289제곱피트(임차, 2030년 9월까지)와 필리핀 클라크 공장(임차, 2029년 6월까지). 4Q FY26에 외주사의 Sonoma 직송을 인증했고, Sonoma를 월 12대 넘게 출하한다. CEO는 $150M 가이던스가 공급 제약이 아니라고 했다",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "10-K 설비 항목은 면적만",
+   "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+  },
+  "plans": [
+   {
+    "name": "외주사 Sonoma 직송·서브어셈블리 확대",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2026-05",
+    "capex": "미확인",
+    "blocker": "단일 공급원 부품",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "name": "프리몬트 운영 확장",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "미확인",
+    "source": "1Q FY27 어닝콜(2026-11-02) 질의응답 요지"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY25",
+    "capex": 0.005,
+    "rev": 0.059,
+    "kind": "실적"
+   },
+   {
+    "period": "FY26",
+    "capex": 0.00387,
+    "rev": 0.05,
+    "kind": "실적"
+   },
+   {
+    "period": "FY27",
+    "capex": 0.0025,
+    "rev": 0.15,
+    "kind": "컨센서스"
+   }
+  ],
+  "sites_none": "소유 시설 없음 — 프리몬트·필리핀 모두 임차(10-K 7번 주석). 위성 판독 대상 아님"
+ },
+ "pipeline": {
+  "as_of": "2026-11-01",
+  "summary": "잔고 9/25 $100.9M, 11/1 유효 잔고 $109.3M — FY27 가이던스 $150M 중 남은 3개 분기분($117M)의 약 93%. 개별 주문은 8월 $22M(WLBI 선두 AI 고객) 외에 금액을 밝히지 않는다",
+  "items": [
+   {
+    "name": "WLBI 선두 AI 고객 후속 주문(8월)",
+    "status": "확정",
+    "total": 0.022,
+    "progress": "미확인",
+    "progress_basis": "FY27 출하 예정",
+    "margin": "미확인",
+    "start": "2026-08",
+    "end": "2027-06",
+    "speed": "주문→출하 12개월 안",
+    "blockers": [
+     "단일 공급원 부품"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "회사 전체 잔고(유효)",
+    "status": "확정",
+    "total": 0.1093,
+    "progress": "미확인",
+    "progress_basis": "12개월 안 출하 예정 주문",
+    "margin": "미확인",
+    "start": "2026-11",
+    "end": "2027-10",
+    "speed": "잔고 ÷ 월 매출 약 10개월",
+    "blockers": [
+     "취소·일정 변경 가능(10-K)"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "대형 AI 가속기·CPU 공급사 FOX-XP 평가 셀",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "1셀 구매 결정, 대만 OSAT 2027년 초 설치, 양산 판정은 설치 뒤 수개월",
+    "margin": "미확인",
+    "start": "2027-01",
+    "end": "미확인",
+    "speed": "평가 → 양산 판정 3~6개월(회사 발언)",
+    "blockers": [
+     "OSAT 환경 양산 검증",
+     "고객 캐파 계획"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "하이퍼스케일 고객 두 번째 AI 칩(Sonoma)",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "인증 통과·초기 샘플 주문, 2027년 램프 예상",
+    "margin": "미확인",
+    "start": "2026-10",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "고객 예측은 구속력 없음"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 9.9,
+  "coverage_next_fy": 0.93,
+  "book_to_bill": 1.75,
+  "rpo_12m_share": 1.0,
+  "rpo_growth": 5.6,
+  "revenue_growth": 0.27,
+  "top_customer_share": 0.263,
+  "source": "유효 잔고 $109.3M ÷ 월평균 매출(1Q $33.0M ÷ 3) = 약 9.9개월. 커버리지 = $109.3M ÷ FY27 남은 3개 분기 $117.0M(=$150M − $33.0M). B/B 최근 4분기 = 수주(4Q $60.7M + 1Q $46.7M + 2·3Q 추정 약 $20M) ÷ 매출 $72.0M ≈ 1.75(2·3Q 수주는 미대조). 잔고 성장 = $15.2M(5/30/25) → $100.9M(9/25/26). 잔고는 12개월 안 출하분이라 12개월 비중 1.0"
+ },
+ "recurring": {
+  "share": 0.35,
+  "kind": "소모품(WaferPak·DiePak·번인 모듈)",
+  "base": "설치된 FOX·Sonoma 시스템 수(대수 미공시, '수천 대 설치' 회사 소개)",
+  "years_to_recurring": 0,
+  "source": "CFO(11/2 콜): FY27 소모품 약 35%, FY26 약 30%, 1Q 41%. CEO: 새 칩이 나올 때마다 1~3년 주기로 WaferPak 전 세트를 새로 산다 · 유지율·설치 기반 성장은 미공시(미확인)"
+ },
+ "moat": {
+  "summary": "해자는 '웨이퍼 9장을 수천 W로 동시에 번인'하는 풀 웨이퍼 접촉 기술과, 장비를 깔면 칩이 바뀔 때마다 다시 사야 하는 독점 소모품(WaferPak)이다. 다만 대형 장비사가 같은 시장을 노리고, 고객 몇 곳이 매출의 절반을 쥔다",
+  "items": [
+   {
+    "kind": "풀 웨이퍼 고전력 번인(WLBI)",
+    "verdict": "보통",
+    "claim": "자르기 전 웨이퍼 단계에서 AI 칩 초기 불량을 걸러 비싼 다중 다이 패키지 손실을 줄인다",
+    "evidence": "10-K·11/2 콜: 웨이퍼 9장 동시, 웨이퍼당 수천 W",
+    "quant": "특허 125건(만료 2028~2045), 출원 100건 이상",
+    "falsifier": "대형 장비사가 같은 처리량의 웨이퍼 번인을 양산 고객에 넣는다"
+   },
+   {
+    "kind": "독점 소모품 반복 구매",
+    "verdict": "보통",
+    "claim": "장비 설치 기반 위에서 칩 세대마다 WaferPak·번인 모듈을 다시 산다",
+    "evidence": "콜: 소모품 FY26 약 30% → 1Q 41%, SiC 고객은 1년 반 동안 소모품만 샀다",
+    "quant": "FY27 소모품 약 35%",
+    "falsifier": "소모품 비중이 시스템 성장기에도 25% 아래로 떨어진다"
+   },
+   {
+    "kind": "패키지 초고전력 번인(Sonoma)",
+    "verdict": "약함",
+    "claim": "하이퍼스케일 AI 칩 양산 번인에 들어갔다",
+    "evidence": "월 12대 넘게 출하, 두 번째 칩 인증",
+    "quant": "고객 1곳 중심",
+    "falsifier": "두 번째 칩 램프에서 경쟁 장비가 공동 공급사로 들어온다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-05",
+  "summary": "창업자 Rhea Posedel이 1977년부터 이사회 의장(1.5% 보유), Gayn Erickson이 2012년부터 CEO(Verigy 메모리 시험 사업 총괄 출신). 10월에 Meta 인프라 부사장 출신을 이사로 들였다. 7월 이후 내부자는 장내 매도만 했다",
+  "people": [
+   {
+    "name": "Rhea J. Posedel",
+    "role": "창업자·이사회 의장",
+    "since": "1977",
+    "profile": "1977~2012 CEO, 2012~2013 집행 의장. UC 버클리 전기공학. 477,714주(1.5%)",
+    "business": "Cohu 이사 경력(위임장)",
+    "political": "미확인",
+    "alumni": "UC 버클리·산호세 주립대",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426008222/aehr_def14a.htm"
+   },
+   {
+    "name": "Gayn Erickson",
+    "role": "사장·CEO·이사",
+    "since": "2012",
+    "profile": "2006~2011 Verigy 메모리 시험 사업 총괄. 259,996주. 9월 장내 40,000주 매도(약 $5.2M)",
+    "business": "Verigy(현 Advantest에 합병) 출신",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426008222/aehr_def14a.htm"
+   },
+   {
+    "name": "Narsing Vijayrao",
+    "role": "이사(10/28 선임)",
+    "since": "2026",
+    "profile": "Meta 인프라 부사장(2013~2026-08)",
+    "business": "하이퍼스케일 인프라",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009242/aehr_8k.htm"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "이사 Vijayrao — 전 Meta 인프라 부사장",
+    "strength": 2,
+    "exposure": 0.0,
+    "basis": "하이퍼스케일 고객 이름은 공시되지 않았다. 이사 선임이 매출을 만든다고 쓰지 않는다",
+    "evidence": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009242/aehr_8k.htm"
+   },
+   {
+    "network": "비즈니스",
+    "link": "CEO의 Verigy(메모리 시험) 경력",
+    "strength": 2,
+    "exposure": 0.0,
+    "basis": "업계 경력 연결이며 매출 연결 근거 없음",
+    "evidence": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426008222/aehr_def14a.htm"
+   }
+  ]
+ },
+ "sync": {
+  "none": "회사 매출은 고객 몇 곳의 장비 주문 시점이 정한다(상위 5곳 70%). 반도체 장비 수출(HS 848620)은 업종 전체를 재고, 분기 매출이 $10~33M인 회사와 같은 시계열 신호를 만들지 못한다 — 상관을 재도 의미가 약해 쓰지 않는다"
+ },
+ "pq": {
+  "none": "회사는 출하 대수·단가를 공시하지 않는다. 매출은 고객별 장비 주문 물량이 정한다(Q형 추정이나 잴 수 없음)"
+ },
+ "ma": {
+  "deals": [
+   {
+    "target": "Incal Technology",
+    "closed": "2024-07-31",
+    "price": 0.0222,
+    "financing": {
+     "cash": 0.0106,
+     "debt": 0.0,
+     "rate": 0.0,
+     "new_shares": 0.0009
+    },
+    "integration_cost": 0.0005,
+    "synergies": [
+     {
+      "type": "매출",
+      "name": "Sonoma 하이퍼스케일 양산 공급",
+      "run_rate": 0.04,
+      "full_year": 2027,
+      "prob": 0.5,
+      "mechanism": "Aehr의 고객 영업·외주 생산 확대로 Incal의 Sonoma를 AI 칩 양산 번인에 공급(월 12대 넘게 출하)",
+      "margin": 0.25,
+      "source": "회사는 시너지 규모를 밝히지 않았다 — Sonoma 매출 규모는 추정"
+     }
+    ],
+    "note": "Incal 인수 전 매출·이익은 공시되지 않았다(미확인). 대가 $22.2M = 현금 $10.6M + 양도 제한 주식 $9.4M + 에스크로 $2.4M(10-K 4번 주석)"
+   }
+  ],
+  "acquirer": {
+   "eps": 1.19,
+   "shares": 0.0335,
+   "tax": 0.21,
+   "year0": 2027
+  }
+ },
+ "events": [
+  {
+   "date": "2026-01-08",
+   "tag": "2Q FY26 실적(매출 $9.9M, 추정 하회)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-04-07",
+   "tag": "3Q FY26 실적·ATM $60M 개시(4/8) — 3/31~4/24 +159%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-04-17",
+   "tag": "ATM $60M 소진(8-K 4/20)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-14",
+   "tag": "4Q FY26 실적 — 수주 $60.7M, FY27 $130~150M — 다음 날 +21.9%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-17",
+   "tag": "고점 $145.61 — 같은 달 WLBI 선두 고객 $22M 후속 주문 발표",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-19",
+   "tag": "주총",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "이사회에 전 Meta 인프라 부사장 선임",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-02",
+   "tag": "1Q FY27 실적 — 매출 $33.0M, FY27 $150M — 다음 날 +26.5%",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-08",
+   "kind": "실적",
+   "tag": "2Q FY26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-04-07",
+   "kind": "실적",
+   "tag": "3Q FY26 실적",
+   "q": "3Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-14",
+   "kind": "실적",
+   "tag": "4Q FY26 실적·FY27 가이던스",
+   "q": "4Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-02",
+   "kind": "실적",
+   "tag": "1Q FY27 실적·가이던스 상향",
+   "q": "1Q27",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "1Q FY27 실적 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm",
+  "4Q FY26 실적 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426006655/aehr_ex991.htm",
+  "FY26 10-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm",
+  "위임장 https://www.sec.gov/Archives/edgar/data/1040470/000165495426008222/aehr_def14a.htm",
+  "ATM 소진 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426003746/aehr_8k.htm",
+  "이사 선임 8-K https://www.sec.gov/Archives/edgar/data/1040470/000165495426009242/aehr_8k.htm",
+  "Fiscal.ai NASDAQ_AEHR https://fiscal.ai/company/NasdaqCM-AEHR"
+ ],
+ "overrides": {
+  "margin_base": {
+   "target": 0.25,
+   "lr": 0.3
+  },
+  "why": "1Q 비GAAP 영업이익률 24.9%, FY27 비GAAP 순이익률 하한 20%. 장기 비GAAP EBIT 이익률 27%(컨센서스)에서 SBC 5%를 빼 GAAP 기준 약 22~25% — 장기값 25% · s2c 1.5: TTM 투하자본 $127M에는 이연법인세 자산 $25M과 램프용 선구매 재고가 들어 있어 TTM 매출 ÷ 투하자본 0.57은 증분 자본을 과대평가한다. 1Q 매출 연환산 $132M에 순운전자본(매출채권+재고−매입채무) 약 $67M, CAPEX는 매출의 2% 미만 — 증분 매출 $1당 자본 약 $0.5~0.7로 보고 1.5를 둔다",
+  "s2c": 1.5
+ },
+ "narrative": {
+  "as_of": "2026-11-05",
+  "stage": "확산",
+  "crowding": "높음",
+  "summary": "AI 칩이 여러 다이를 한 패키지에 묶으면서, 비싼 패키지를 만들기 전에 웨이퍼 단계에서 불량을 거르는 번인이 필수가 된다는 이야기다. FY27 매출을 FY26의 3배($150M)로 잡았고 1Q가 그 경로를 숫자로 보였다. 그러나 주가는 8월 $145에서 10월 $55까지 62% 빠졌다가 실적 날 26% 올랐다 — 내러티브는 맞는데 값을 얼마나 줄지가 흔들린다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "Strong Buy 6·Hold 1",
+      "7명",
+      "11/3"
+     ],
+     [
+      "목표가",
+      "$121(범위 $110~140)",
+      "현재가 대비 +99%",
+      "11/3"
+     ],
+     [
+      "실적 뒤 목표가",
+      "Lake Street $110→$90, Jefferies 하향($140)",
+      "가이던스 상향에도 목표 하향",
+      "언론 제목"
+     ]
+    ],
+    "read": "셀사이드는 전원 매수 쪽이지만 실적 직후 목표가를 내렸다 — 주가 급락을 따라간 하향이며, 이익 추정은 올랐다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 기관(2Q26)",
+      "240곳, 순감 53만 주",
+      "증가 61·감소 67",
+      "Fiscal.ai 13F"
+     ],
+     [
+      "순매수 상위",
+      "Two Sigma·D. E. Shaw·JPMorgan·Jane Street",
+      "퀀트·마켓메이커 위주",
+      "13F"
+     ],
+     [
+      "5% 주주",
+      "BlackRock 6.4%·Jane Street 5.0%",
+      "",
+      "위임장"
+     ],
+     [
+      "내부자",
+      "7월 이후 장내 매도만 약 $18.9M(CEO $5.2M 포함)",
+      "장내 매수 0건",
+      "Form 4"
+     ]
+    ],
+    "read": "장기 펀더멘털 펀드보다 퀀트·마켓메이커 비중이 크고, 내부자는 고점 부근에서 팔았다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "공매도 비율",
+      "유통 주식의 18.0%",
+      "숏 커버 2.2일",
+      "yfinance(Easyconomics)"
+     ],
+     [
+      "베타",
+      "3.33",
+      "",
+      "yfinance"
+     ]
+    ],
+    "read": "공매도 18%와 베타 3.3 — 리테일·단기 자금이 큰 변동을 만든다. 텔레그램 공개 채널 언급은 없다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "AI 수주·매출 3배, 'beat and raise'",
+      "Motley Fool·Seeking Alpha·Benzinga",
+      "제목 색인"
+     ]
+    ],
+    "read": "커뮤니티 매체는 '매출 3배'에 맞춰져 있다 — 양산 판정 같은 다음 관문은 덜 다룬다"
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 칩 웨이퍼 번인 전환",
+    "thesis": "다중 다이 AI 칩은 패키지 전 웨이퍼 단계 번인이 필요해진다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "선두 고객 $22M 후속 주문, 대형 공급사 1셀 구매",
+    "status": "강화",
+    "falsifier": "대형 고객이 2027년 상반기 평가 뒤 양산을 미룬다",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "Sonoma 하이퍼스케일 램프",
+    "thesis": "하이퍼스케일 고객 두 칩이 연달아 Sonoma로 간다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "월 12대 넘게 출하, 두 번째 칩 인증",
+    "status": "강화",
+    "falsifier": "두 번째 칩 2027년 램프 지연 또는 경쟁 장비 공동 공급",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   },
+   {
+    "name": "소모품 반복 매출",
+    "thesis": "설치 기반이 커질수록 소모품이 이익률을 받친다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "소모품 30% → 1Q 41% → FY27 약 35%",
+    "status": "유지",
+    "falsifier": "소모품 비중이 25% 아래",
+    "source": "1Q FY27 어닝콜(2026-11-02) 질의응답 요지"
+   },
+   {
+    "name": "고객 다변화",
+    "thesis": "큰 주문을 줄 수 있는 고객이 손에 꼽히던 데서 12곳 넘게 늘었다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "상위 5곳 93%(FY24) → 70%(FY26)",
+    "status": "강화",
+    "falsifier": "FY27 10-K에서 상위 1곳이 40%를 넘는다",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426006919/aehr_10k.htm"
+   },
+   {
+    "name": "반대: 값이 앞서 갔다",
+    "thesis": "Fwd 1Y P/E 48배는 동종 중앙의 2.4배 — 양산 판정 전에 대형 고객을 이미 넣은 값",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "8월 $145 → 10월 $55(−62%), 내부자 매도 약 $18.9M",
+    "status": "유지",
+    "falsifier": "대형 고객 양산 주문 공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1040470/000165495426009385/aehr_ex991.htm"
+   }
+  ],
+  "lead": {
+   "summary": "Aehr Test Systems(AEHR)는 반도체를 고온·고전압으로 미리 혹사시켜 초기 불량을 걸러내는 번인(burn-in) 장비 회사다. 예전엔 SiC 전기차 칩이 매출의 90%였지만, 이제는 AI 칩이 주인공이다. 1Q FY27 매출 $33.0M(전년 3배), 수주 $46.7M, FY27 가이던스 $150M(FY26의 3배)",
+   "value_story": "Fwd 1Y P/E 48.3배로 동종 4곳 중앙값 20.2배의 2.4배다. 다음 4개 분기 EPS 컨센서스 $1.26은 회사 가이던스(비GAAP 순이익률 20% 이상)보다 높은 27% 순이익률을 깔고 있다. 가치는 FY28 이후 대형 AI 고객 양산 여부에 달렸다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 48.3배, 동종 4곳 중앙값 20.2배(COHU 18.9·CAMT 19.8·FORM 20.5·TER 26.0)",
+    "eps": "1Q 비GAAP EPS $0.28은 발표 전 추정 $0.11의 2.5배. FY27 EPS 컨센서스는 $0.735(9/11)에서 $1.19(11/3)로 +62%"
+   },
+   "why_excited": "2025년 11월 $20에서 2026년 8월 $145까지 7배 올랐다 — 4월 3Q 실적과 ATM 뒤 AI WLBI 고객·Sonoma 하이퍼스케일 주문이 이유였다. 8월 고점 뒤 10월 말 $55까지 빠진 원인은 공시로 확인되지 않았다(내부자 매도·업종 조정과 겹친다). 11/3 실적으로 +26.5%",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "WLBI 시스템(FOX-XP·FOX-NP)",
+     "what": "웨이퍼 9장 동시 번인",
+     "use": "AI 프로세서·SiC·포토닉스",
+     "money": "장비 판매"
+    },
+    {
+     "kind": "제품",
+     "name": "Sonoma 패키지 번인 시스템",
+     "what": "AI 가속기 초고전력 패키지 번인",
+     "use": "하이퍼스케일 AI 칩",
+     "money": "장비 판매"
+    },
+    {
+     "kind": "소모품",
+     "name": "소모품(WaferPak·DiePak·번인 모듈)",
+     "what": "웨이퍼·칩 접촉 전용 소모품",
+     "use": "칩 세대마다 재구매",
+     "money": "반복 구매"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "SiC 회사에서 AI 칩 신뢰성 회사로 — SiC는 FY24 약 90%에서 FY26 약 10%로 줄었다",
+     "evidence": "11/2 콜 CEO 발언, 10-K",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "FY27 매출에서 AI 비중이 50% 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "소모품 비중 30%→41%, 비GAAP 매출총이익률 37.5%→48.5%",
+     "evidence": "1Q 보도자료·콜",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "매출총이익률 40% 아래로 복귀"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "웨이퍼당 수천 W를 9장 동시에 — 다중 다이 AI 칩의 패키지 전 불량 선별",
+     "evidence": "콜·10-K",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "대형 장비사의 동급 웨이퍼 번인 양산 채택"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "잔고를 약 10개월 매출로 바꾼다. 고객이 2Q 출하분을 1Q로 당겨 달라 했고 회사가 맞췄다",
+     "evidence": "콜·보도자료",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "잔고가 늘었는데 분기 매출이 정체",
+     "lead_time": {
+      "unit": "개월",
+      "basis": "잔고 ÷ 월 매출(계산)",
+      "now": 9.9,
+      "prior": 12.8,
+      "prior_when": "FY26 말(잔고 $80.6M ÷ 4Q 월 매출 $6.3M)",
+      "peers": [
+       {
+        "name": "TER",
+        "value": "미확인"
+       },
+       {
+        "name": "FORM",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "Incal(2024-07, $22.2M) 인수로 얻은 Sonoma가 하이퍼스케일 양산에 들어갔다",
+     "evidence": "10-K 4번 주석, 보도자료",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "Sonoma 두 번째 칩 램프 실패"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "AI 가속기·CPU 출하 증가가 번인 장비 수요로 온다. 고객 투자 발표를 이 회사 매출로 바로 옮기지 않는다 — 확인된 것은 잔고 $109.3M",
+     "evidence": "보도자료",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "하이퍼스케일 CAPEX 감속과 잔고 감소가 겹친다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(정부 보조금·CHIPS 지원 공시 없음)",
+     "evidence": "10-K 검색",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "반도체 장비 세액공제 축소 의결",
+     "house": {
+      "level": 1,
+      "why": "회사 관련 세출 논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "관세·수출 통제: 보도자료가 대만·동남아 지정학과 관세를 위험으로 든다. 회사 특정 조치는 확인하지 못했다",
+     "evidence": "보도자료 위험 문구",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "대만산 반도체 장비·부품 관세 시행",
+     "house": {
+      "level": 0,
+      "why": "행정부 단독 조치"
+     },
+     "senate": {
+      "level": 0,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 겨냥한 연방 법안 없음, 로비 공시는 키가 없어 미확인)",
+     "evidence": "lobby_watch 11/5 미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "반도체 장비 대중 수출 통제 확대 의결"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "윤태오",
+    "house": "가상 리서치 하우스 해온증권",
+    "thesis": "FY27 매출 3배가 잔고로 거의 덮였고, 대형 AI 고객 하나만 양산에 들어와도 FY28 추정이 다시 오른다",
+    "evidence": [
+     "유효 잔고 $109.3M = 남은 3개 분기 가이던스의 93%",
+     "1Q EPS $0.28 vs 추정 $0.11",
+     "소모품 41%"
+    ],
+    "falsifier": "2027년 상반기 대형 고객 양산 보류"
+   },
+   {
+    "seat": "Buy",
+    "name": "서민하",
+    "house": "가상 리서치 하우스 다솜투자",
+    "thesis": "이익 추정이 주가보다 빨리 오른다 — 주가는 8월보다 58% 낮은데 FY27 EPS 추정은 62% 올랐다",
+    "evidence": [
+     "FY27 EPS $0.735 → $1.19",
+     "주가 $145.61 → $60.84"
+    ],
+    "falsifier": "2Q 매출이 $30M 아래"
+   },
+   {
+    "seat": "Neutral",
+    "name": "강도윤",
+    "house": "가상 리서치 하우스 누리자산",
+    "thesis": "좋은 회사이지만 48배는 양산 판정 전 값이다. 판정(2027년 1~3월 데이터) 전에는 위아래가 다 열려 있다",
+    "evidence": [
+     "Fwd 1Y P/E 48.3 vs 동종 20.2",
+     "판정 시점 2027년 초"
+    ],
+    "falsifier": "판정 전 대형 고객 양산 주문 공시"
+   },
+   {
+    "seat": "Sell",
+    "name": "문서진",
+    "house": "가상 리서치 하우스 한결증권",
+    "thesis": "고객 3곳이 51%이고 잔고는 취소 가능하다. 내부자는 고점 근처에서 팔았다",
+    "evidence": [
+     "고객 A·B·C 26.3·14.2·10.9%",
+     "내부자 장내 매도 약 $18.9M, 매수 0"
+    ],
+    "falsifier": "FY27 상위 고객 비중이 40% 아래로 분산"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "임하준",
+    "house": "가상 리서치 하우스 바른리서치",
+    "thesis": "장비 회사 사이클 고점 이익에 48배다. 2024년 SiC 고객이 빠지자 매출이 반토막 난 전례가 있다",
+    "evidence": [
+     "FY24 상위 2곳 84% → FY25 SiC 급감",
+     "1Q 영업현금흐름 −$3.1M"
+    ],
+    "falsifier": "FY28 매출 컨센서스 $210M 이상이 두 분기 유지"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "남은 3개 분기 매출 $117M 중 $109M이 이미 잔고다. 가이던스는 공급 제약도 아니라고 회사가 답했다"
+     },
+     {
+      "seat": "Buy",
+      "text": "FY27 EPS 추정이 9월 $0.735에서 $1.19로 올랐는데 주가는 8월 고점의 42%다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "Fwd 1Y P/E 48배는 동종 중앙 20배의 2.4배다. 대형 고객 양산 판정은 2027년 초에야 나온다"
+     },
+     {
+      "seat": "Sell",
+      "text": "10-K는 잔고가 취소·일정 변경 가능하다고 적는다. 고객 3곳이 FY26 매출의 51%다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "FY24 고객 2곳 84%가 SiC 둔화로 빠지자 FY25·FY26 매출이 $66M→$59M→$50M으로 줄었다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "잔고는 FY27을 덮지만 48배는 FY28 이후를 산 값이다. FY28 추정 $210M은 표본이 얇다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "SiC 시절과 달리 큰 주문을 줄 고객이 12곳 넘는다고 회사가 말했고, 상위 5곳 비중은 93%에서 70%로 내려왔다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "소모품 41%는 설치 기반에서 나온다 — 시스템 주문이 쉬어도 매출 바닥이 있다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "목표가는 실적 뒤 오히려 내려갔다. 셀사이드도 배수를 낮췄다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "1Q 영업현금흐름이 −$3.1M이다. 매출채권과 재고가 $19.7M 늘었다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "현금 $105M에 차입이 없다. 운전자본 증가는 장납기 부품 선구매라고 CFO가 설명했다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "EPS 추정 $1.19는 순이익률 27% 가정이다. 회사가 말한 하한은 20%다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "벤치마크 고객은 1셀 구매다. 양산 결정은 설치 뒤 수개월 — 아직 매출이 아니다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "목표가 하향은 주가 급락을 따른 것이고 이익 추정은 올랐다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "공매도 18%·베타 3.3 — 판정이 늦어지면 하방이 크다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "잔고·소모품·두 번째 Sonoma 칩이 FY27을 받친다"
+     },
+     {
+      "seat": "Buy",
+      "text": "추정 상향 대비 주가 하락으로 배수가 반 가까이 줄었다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "판정 전에는 규칙 등급을 옮길 근거가 부족하다"
+     },
+     {
+      "seat": "Sell",
+      "text": "고객 집중과 취소 가능한 잔고는 그대로다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "48배는 고점 이익의 값이다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Sell",
+   "votes": {
+    "Strong Buy": "Neutral",
+    "Buy": "Neutral",
+    "Neutral": "Sell",
+    "Sell": "Sell",
+    "Strong Sell": "Strong Sell"
+   },
+   "reason": "강세 5조차 현재가 아래라는 반박은 살아남았다. 다만 규칙은 다음 4개 분기 EPS에 동종 중앙 배수를 곱해, Fwd 2Y EPS가 +37% 더 크는 경로(Fwd 2Y P/E 35.2배)를 덜 본다는 반박도 살아남았다. FY27이 잔고로 덮였고 차입이 없어 Strong Sell의 약세 2(−80%)는 판정 실패가 겹친 경우에 가깝다 — 한 단계 올려 Sell",
+   "dissent": "Neutral 자리: 대형 고객 양산 판정(2027년 1~3월 데이터) 전에는 위아래가 다 열려 있다"
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 48.29,
+  "ev_ebitda_fwd": 47.82,
+  "pe_fwd2": 35.16,
+  "ev_ebitda_fwd2": 34.21,
+  "pe_fwd3": 30.11,
+  "ev_ebitda_fwd3": 28.61
+ },
+ "forward": {
+  "as_of": "2026-11-04",
+  "ntm": {
+   "eps": 1.26,
+   "ebitda": 48576401,
+   "ebit": 45177000,
+   "revenue": 164993000,
+   "rev_ttm": 72039000
+  },
+  "horizons": {
+   "2": {
+    "eps": 1.7303929999999998,
+    "ebitda": 67893916,
+    "ext": 0
+   },
+   "3": {
+    "eps": 2.0205309681528663,
+    "ebitda": 81179342.55844466,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. AEHR 추정 분기 일부 reportDate가 비어 회계연도·분기 순으로 정렬. 과거 레인지는 이번 회차 미산출. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_AEHR",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-11-30",
+    "rev": 4620000,
+    "cogs": 2929000,
+    "gp": 1691000,
+    "sga": 1713000,
+    "rd": 923000,
+    "da": null,
+    "other": null,
+    "op": -945000
+   },
+   {
+    "period": "2016-02-29",
+    "rev": 1677000,
+    "cogs": 1508000,
+    "gp": 169000,
+    "sga": 1695000,
+    "rd": 1293000,
+    "da": null,
+    "other": null,
+    "op": -2819000
+   },
+   {
+    "period": "2016-05-31",
+    "rev": 1571000,
+    "cogs": 1669000,
+    "gp": -98000,
+    "sga": 1722000,
+    "rd": 1046000,
+    "da": null,
+    "other": 0,
+    "op": -2866000
+   },
+   {
+    "period": "2016-08-31",
+    "rev": 5318000,
+    "cogs": 3112000,
+    "gp": 2206000,
+    "sga": 1716000,
+    "rd": 1060000,
+    "da": null,
+    "other": null,
+    "op": -570000
+   },
+   {
+    "period": "2016-11-30",
+    "rev": 4216000,
+    "cogs": 2753000,
+    "gp": 1463000,
+    "sga": 1707000,
+    "rd": 1040000,
+    "da": null,
+    "other": null,
+    "op": -1284000
+   },
+   {
+    "period": "2017-02-28",
+    "rev": 2681000,
+    "cogs": 2178000,
+    "gp": 503000,
+    "sga": 1724000,
+    "rd": 1248000,
+    "da": null,
+    "other": null,
+    "op": -2469000
+   },
+   {
+    "period": "2017-05-31",
+    "rev": 6683000,
+    "cogs": 4075000,
+    "gp": 2608000,
+    "sga": 1905000,
+    "rd": 1309000,
+    "da": null,
+    "other": 0,
+    "op": -606000
+   },
+   {
+    "period": "2017-08-31",
+    "rev": 6970000,
+    "cogs": 4052000,
+    "gp": 2918000,
+    "sga": 1791000,
+    "rd": 955000,
+    "da": null,
+    "other": null,
+    "op": 172000
+   },
+   {
+    "period": "2017-11-30",
+    "rev": 7923000,
+    "cogs": 4792000,
+    "gp": 3131000,
+    "sga": 1854000,
+    "rd": 1090000,
+    "da": null,
+    "other": null,
+    "op": 187000
+   },
+   {
+    "period": "2018-02-28",
+    "rev": 7393000,
+    "cogs": 4217000,
+    "gp": 3176000,
+    "sga": 1829000,
+    "rd": 1040000,
+    "da": null,
+    "other": null,
+    "op": 307000
+   },
+   {
+    "period": "2018-05-31",
+    "rev": 7269000,
+    "cogs": 4108000,
+    "gp": 3161000,
+    "sga": 1816000,
+    "rd": 1096000,
+    "da": null,
+    "other": 0,
+    "op": 249000
+   },
+   {
+    "period": "2018-08-31",
+    "rev": 4740000,
+    "cogs": 3187000,
+    "gp": 1553000,
+    "sga": 1879000,
+    "rd": 1116000,
+    "da": null,
+    "other": null,
+    "op": -1442000
+   },
+   {
+    "period": "2018-11-30",
+    "rev": 5911000,
+    "cogs": 3513000,
+    "gp": 2398000,
+    "sga": 1977000,
+    "rd": 986000,
+    "da": null,
+    "other": null,
+    "op": -565000
+   },
+   {
+    "period": "2019-02-28",
+    "rev": 3163000,
+    "cogs": 2891000,
+    "gp": 272000,
+    "sga": 1850000,
+    "rd": 931000,
+    "da": null,
+    "other": 607000,
+    "op": -3116000
+   },
+   {
+    "period": "2019-05-31",
+    "rev": 7242000,
+    "cogs": 3863000,
+    "gp": 3379000,
+    "sga": 2018000,
+    "rd": 1120000,
+    "da": null,
+    "other": 118000,
+    "op": 123000
+   },
+   {
+    "period": "2019-08-31",
+    "rev": 5533000,
+    "cogs": 3262000,
+    "gp": 2271000,
+    "sga": 1808000,
+    "rd": 892000,
+    "da": null,
+    "other": null,
+    "op": -429000
+   },
+   {
+    "period": "2019-11-30",
+    "rev": 6874000,
+    "cogs": 3672000,
+    "gp": 3202000,
+    "sga": 2157000,
+    "rd": 795000,
+    "da": null,
+    "other": null,
+    "op": 250000
+   },
+   {
+    "period": "2020-02-29",
+    "rev": 6111000,
+    "cogs": 3120000,
+    "gp": 2991000,
+    "sga": 1891000,
+    "rd": 845000,
+    "da": null,
+    "other": null,
+    "op": 255000
+   },
+   {
+    "period": "2020-05-31",
+    "rev": 3773000,
+    "cogs": 3866000,
+    "gp": -93000,
+    "sga": 1674000,
+    "rd": 854000,
+    "da": null,
+    "other": 220000,
+    "op": -2841000
+   },
+   {
+    "period": "2020-08-31",
+    "rev": 2012000,
+    "cogs": 1785000,
+    "gp": 227000,
+    "sga": 1514000,
+    "rd": 900000,
+    "da": null,
+    "other": null,
+    "op": -2187000
+   },
+   {
+    "period": "2020-11-30",
+    "rev": 1683000,
+    "cogs": 1306000,
+    "gp": 377000,
+    "sga": 1501000,
+    "rd": 820000,
+    "da": null,
+    "other": null,
+    "op": -1944000
+   },
+   {
+    "period": "2021-02-28",
+    "rev": 5267000,
+    "cogs": 3373000,
+    "gp": 1894000,
+    "sga": 1643000,
+    "rd": 903000,
+    "da": null,
+    "other": null,
+    "op": -652000
+   },
+   {
+    "period": "2021-05-31",
+    "rev": 7638000,
+    "cogs": 4104000,
+    "gp": 3534000,
+    "sga": 1904000,
+    "rd": 1029000,
+    "da": null,
+    "other": 0,
+    "op": 601000
+   },
+   {
+    "period": "2021-08-31",
+    "rev": 5646000,
+    "cogs": 3365000,
+    "gp": 2281000,
+    "sga": 1953000,
+    "rd": 1321000,
+    "da": null,
+    "other": null,
+    "op": -993000
+   },
+   {
+    "period": "2021-11-30",
+    "rev": 9611000,
+    "cogs": 5092000,
+    "gp": 4519000,
+    "sga": 2489000,
+    "rd": 1313000,
+    "da": null,
+    "other": null,
+    "op": 717000
+   },
+   {
+    "period": "2022-02-28",
+    "rev": 15283000,
+    "cogs": 8886000,
+    "gp": 6397000,
+    "sga": 2612000,
+    "rd": 1529000,
+    "da": null,
+    "other": null,
+    "op": 2256000
+   },
+   {
+    "period": "2022-05-31",
+    "rev": 20289000,
+    "cogs": 9821000,
+    "gp": 10468000,
+    "sga": 2993000,
+    "rd": 1655000,
+    "da": null,
+    "other": 0,
+    "op": 5820000
+   },
+   {
+    "period": "2022-08-31",
+    "rev": 10671000,
+    "cogs": 6190000,
+    "gp": 4481000,
+    "sga": 2525000,
+    "rd": 1498000,
+    "da": null,
+    "other": null,
+    "op": 458000
+   },
+   {
+    "period": "2022-11-30",
+    "rev": 14815000,
+    "cogs": 6904000,
+    "gp": 7911000,
+    "sga": 2875000,
+    "rd": 1551000,
+    "da": null,
+    "other": null,
+    "op": 3485000
+   },
+   {
+    "period": "2023-02-28",
+    "rev": 17206000,
+    "cogs": 8331000,
+    "gp": 8875000,
+    "sga": 3250000,
+    "rd": 1832000,
+    "da": null,
+    "other": null,
+    "op": 3793000
+   },
+   {
+    "period": "2023-05-31",
+    "rev": 22269000,
+    "cogs": 10790000,
+    "gp": 11479000,
+    "sga": 3587000,
+    "rd": 2253000,
+    "da": null,
+    "other": 0,
+    "op": 5639000
+   },
+   {
+    "period": "2023-08-31",
+    "rev": 20624000,
+    "cogs": 10643000,
+    "gp": 9981000,
+    "sga": 3409000,
+    "rd": 2457000,
+    "da": null,
+    "other": null,
+    "op": 4115000
+   },
+   {
+    "period": "2023-11-30",
+    "rev": 21431000,
+    "cogs": 10473000,
+    "gp": 10958000,
+    "sga": 3518000,
+    "rd": 1972000,
+    "da": null,
+    "other": null,
+    "op": 5468000
+   },
+   {
+    "period": "2024-02-29",
+    "rev": 7563000,
+    "cogs": 4407000,
+    "gp": 3156000,
+    "sga": 3063000,
+    "rd": 2139000,
+    "da": null,
+    "other": null,
+    "op": -2046000
+   },
+   {
+    "period": "2024-05-31",
+    "rev": 16600000,
+    "cogs": 8152000,
+    "gp": 8448000,
+    "sga": 3756000,
+    "rd": 2151000,
+    "da": null,
+    "other": 0,
+    "op": 2541000
+   },
+   {
+    "period": "2024-08-30",
+    "rev": 13119000,
+    "cogs": 6041000,
+    "gp": 7078000,
+    "sga": 4558000,
+    "rd": 2361000,
+    "da": null,
+    "other": null,
+    "op": 159000
+   },
+   {
+    "period": "2024-11-29",
+    "rev": 13453000,
+    "cogs": 8053000,
+    "gp": 5400000,
+    "sga": 4637000,
+    "rd": 2276000,
+    "da": null,
+    "other": null,
+    "op": -1513000
+   },
+   {
+    "period": "2025-02-28",
+    "rev": 18307000,
+    "cogs": 11124000,
+    "gp": 7183000,
+    "sga": 5162000,
+    "rd": 3140000,
+    "da": null,
+    "other": null,
+    "op": -1119000
+   },
+   {
+    "period": "2025-05-30",
+    "rev": 14089000,
+    "cogs": 9817000,
+    "gp": 4272000,
+    "sga": 3926000,
+    "rd": 2686000,
+    "da": null,
+    "other": 864000,
+    "op": -3204000
+   },
+   {
+    "period": "2025-08-29",
+    "rev": 10969000,
+    "cogs": 7250000,
+    "gp": 3719000,
+    "sga": 4717000,
+    "rd": 2849000,
+    "da": null,
+    "other": 219000,
+    "op": -4066000
+   },
+   {
+    "period": "2025-11-28",
+    "rev": 9884000,
+    "cogs": 7339000,
+    "gp": 2545000,
+    "sga": 4434000,
+    "rd": 2972000,
+    "da": null,
+    "other": -213000,
+    "op": -4648000
+   },
+   {
+    "period": "2026-02-27",
+    "rev": 10313000,
+    "cogs": 6945000,
+    "gp": 3368000,
+    "sga": 4430000,
+    "rd": 3167000,
+    "da": null,
+    "other": 0,
+    "op": -4229000
+   },
+   {
+    "period": "2026-05-29",
+    "rev": 18835000,
+    "cogs": 10816000,
+    "gp": 8019000,
+    "sga": 5580000,
+    "rd": 3645000,
+    "da": null,
+    "other": 0,
+    "op": -1206000
+   },
+   {
+    "period": "2026-09-25",
+    "rev": 33007000,
+    "cogs": 17344000,
+    "gp": 15663000,
+    "sga": 5473000,
+    "rd": 4143000,
+    "da": null,
+    "other": null,
+    "op": 6047000
+   }
+  ]
+ }
+}
