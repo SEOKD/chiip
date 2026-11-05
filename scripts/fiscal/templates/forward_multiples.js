@@ -62,49 +62,55 @@ async () => {
   };
   const { qs, ntm, horizons, guided } = await ntmOf(k);
 
-  // 과거 레인지 — 월말 Fwd 1Y P/E·EV/EBITDA
-  const z = await codemode.company_analyst_estimates({ companyKey: k, history: true });
-  const hist = id => {
-    const m = {};
-    (z.history || []).filter(h => h.metricId === id && h.periodType === "Quarterly" && h.mean != null).forEach(h => { (m[h.reportDate] = m[h.reportDate] || []).push([h.asOf || "", h.mean]); });
-    Object.values(m).forEach(a => a.sort((x, y) => (x[0] < y[0] ? -1 : 1)));
-    return m;
+  // 과거 레인지 — 월말 Fwd 1Y P/E·EV/EBITDA. 동종사는 최근 4개 분기말만(멀티플 프리미엄 추이 재료, 마스터 지시 2026-11-06)
+  const histOf = async (key, qs, quarterEnds) => {
+    const z = await codemode.company_analyst_estimates({ companyKey: key, history: true }).catch(() => ({ history: [] }));
+    const hist = id => {
+      const m = {};
+      (z.history || []).filter(h => h.metricId === id && h.periodType === "Quarterly" && h.mean != null).forEach(h => { (m[h.reportDate] = m[h.reportDate] || []).push([h.asOf || "", h.mean]); });
+      Object.values(m).forEach(a => a.sort((x, y) => (x[0] < y[0] ? -1 : 1)));
+      return m;
+    };
+    const he = hist("analyst_eps");
+    const hb = hist("analyst_ebitda");
+    const ntmAt = (h, d) => {
+      const ends = Object.keys(h).filter(e => e > d).sort().slice(0, 4);
+      if (ends.length < 4) return null;
+      let s = 0;
+      for (const e of ends) {
+        const known = h[e].filter(r => r[0] <= d).slice(-1)[0];
+        if (!known) return null;
+        s += known[1];
+      }
+      return s;
+    };
+    const px = await codemode.company_stock_prices({ companyKey: key }).catch(() => ({ prices: [] }));
+    const rows = (px.prices || []).filter(p => p.closePrice != null).sort((a, b) => (a.date < b.date ? -1 : 1));
+    const mc = await codemode.company_daily_ratios({ ratioId: "calculated_market_cap", companyKey: key }).catch(() => []);
+    const mcAt = {};
+    (mc || []).forEach(r => { mcAt[r.date] = r.ratio; });
+    const nd = qs.map(r => [r.reportDate, (r.metricsValues.net_debt || {}).actual]).filter(r => r[1] != null);
+    const ndAt = d => { const c = new Date(new Date(d) - 45 * 864e5).toISOString().slice(0, 10); const x = nd.filter(r => r[0] <= c).slice(-1)[0]; return x ? x[1] : null; };
+    let ends = [];
+    rows.forEach((r, i) => { if (i === rows.length - 1 || rows[i + 1].date.slice(0, 7) !== r.date.slice(0, 7)) ends.push(r); });
+    ends = ends.slice(0, -1);   // 진행 중인 달은 뺀다
+    ends = quarterEnds ? ends.filter(r => ["03", "06", "09", "12"].includes(r.date.slice(5, 7))).slice(-4) : ends.slice(-36);
+    const out = [];
+    ends.forEach(r => {
+      const eps = ntmAt(he, r.date);
+      const eb = ntmAt(hb, r.date);
+      const m = mcAt[r.date];
+      const net = ndAt(r.date);
+      const row = { date: r.date, pe_fwd: eps > 0 ? Math.round(r.closePrice / eps * 100) / 100 : null,
+                    ev_ebitda_fwd: eb > 0 && m != null && net != null ? Math.round((m + net) / eb * 100) / 100 : null };
+      if (row.pe_fwd != null || row.ev_ebitda_fwd != null) out.push(row);
+    });
+    return { rows, out };
   };
-  const he = hist("analyst_eps");
-  const hb = hist("analyst_ebitda");
-  const ntmAt = (h, d) => {
-    const ends = Object.keys(h).filter(e => e > d).sort().slice(0, 4);
-    if (ends.length < 4) return null;
-    let s = 0;
-    for (const e of ends) {
-      const known = h[e].filter(r => r[0] <= d).slice(-1)[0];
-      if (!known) return null;
-      s += known[1];
-    }
-    return s;
-  };
-  const px = await codemode.company_stock_prices({ companyKey: k });
-  const rows = (px.prices || []).filter(p => p.closePrice != null).sort((a, b) => (a.date < b.date ? -1 : 1));
-  const mc = await codemode.company_daily_ratios({ ratioId: "calculated_market_cap", companyKey: k }).catch(() => []);
-  const mcAt = {};
-  mc.forEach(r => { mcAt[r.date] = r.ratio; });
-  const nd = qs.map(r => [r.reportDate, (r.metricsValues.net_debt || {}).actual]).filter(r => r[1] != null);
-  const ndAt = d => { const c = new Date(new Date(d) - 45 * 864e5).toISOString().slice(0, 10); const x = nd.filter(r => r[0] <= c).slice(-1)[0]; return x ? x[1] : null; };
-  const monthEnds = [];
-  rows.forEach((r, i) => { if (i === rows.length - 1 || rows[i + 1].date.slice(0, 7) !== r.date.slice(0, 7)) monthEnds.push(r); });
-  const history = [];
-  monthEnds.slice(-37, -1).forEach(r => {
-    const eps = ntmAt(he, r.date);
-    const eb = ntmAt(hb, r.date);
-    const m = mcAt[r.date];
-    const net = ndAt(r.date);
-    const row = { date: r.date, pe_fwd: eps > 0 ? Math.round(r.closePrice / eps * 100) / 100 : null,
-                  ev_ebitda_fwd: eb > 0 && m != null && net != null ? Math.round((m + net) / eb * 100) / 100 : null };
-    if (row.pe_fwd != null || row.ev_ebitda_fwd != null) history.push(row);
-  });
+  const { rows, out: history } = await histOf(k, qs, false);
 
   const peerRows = {};
-  for (const p of peers) { const f = await ntmOf(p); peerRows[p] = { ...(await latest(p)), ntm: f.ntm, horizons: f.horizons }; }
+  for (const p of peers) { const f = await ntmOf(p); peerRows[p] = { ...(await latest(p)), ntm: f.ntm, horizons: f.horizons, hist_q: (await histOf(p, f.qs, true)).out }; }
   console.log(JSON.stringify({ key: k, as_of: (rows[rows.length - 1] || {}).date, target, ntm, horizons, guided,
     peers: peerRows, history, source: "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com" }));
 }

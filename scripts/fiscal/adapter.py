@@ -103,6 +103,8 @@ def put_forward(cid, out):
         v = by_ticker.get(row.get("ticker"))
         if v:
             row.update({"pe_fwd": v.get("pe_fwd"), "ev_ebitda_fwd": v.get("ev_ebitda_fwd")})
+            if v.get("hist_q"):   # 최근 4개 분기말 배수 — 멀티플 프리미엄 추이(2026-11-06)
+                row["hist_q"] = v["hist_q"]
             row.update(later_multiples(v, v.get("ntm"), v.get("horizons")))
             q = v.get("ntm") or {}
             if q.get("revenue") and q.get("ebit") is not None:

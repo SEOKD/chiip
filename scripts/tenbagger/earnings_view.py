@@ -162,6 +162,23 @@ def revisions(rv, price=None):
     return {"rows": rows, "total": total, "decomp": decomp}
 
 
+def premium_trend(dp):
+    """최근 4개 분기말 멀티플 프리미엄(마스터 지시 2026-11-06 "현 수치만이 아니라 최근 4개 분기 바와 추이로").
+    대상 = history(월말 Fwd 1Y 배수)의 분기말, 동종 = peers[].hist_q 같은 달 중앙값. 동종 재료가 2사 미만인 분기는 비운다"""
+    out = []
+    for k, name in (("pe_fwd", "Fwd 1Y P/E"), ("ev_ebitda_fwd", "Fwd 1Y EV/EBITDA")):
+        own = {str(r["date"])[:7]: r["value"] for r in (dp.get("history") or {}).get(k) or [] if r.get("value") and str(r["date"])[5:7] in ("03", "06", "09", "12")}
+        months = sorted(own)[-4:]
+        vals = []
+        for m in months:
+            pv = sorted(r[k] for p in dp.get("peers") or [] for r in p.get("hist_q") or [] if str(r.get("date"))[:7] == m and r.get(k) and r[k] > 0)
+            med = (pv[len(pv) // 2] if len(pv) % 2 else (pv[len(pv) // 2 - 1] + pv[len(pv) // 2]) / 2) if len(pv) >= 2 else None
+            vals.append(round((own[m] / med - 1) * 100) if med else None)
+        if sum(v is not None for v in vals) >= 2:
+            out.append({"metric": name, "months": months, "values": vals})
+    return out
+
+
 def premiums(now, peers):
     """대상 배수 ÷ 동종 중앙값 − 1. 성장 조정 = (배수 ÷ 성장%) 끼리 비교 — 성장이 0 이하인 동종은 제외"""
     def rows(metrics):
@@ -264,6 +281,9 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
         B.append({"type": "chart", "chart": {"kind": "bars", "title": "멀티플 프리미엄 (%) — 0 = 동종 중앙값", "unit": "%", "categories": [r["metric"] for r in pm],
                   "series": [{"name": "단순", "color": "c", "values": [round(r["premium"] * 100) for r in pm]},
                              {"name": "성장 조정", "color": "d", "values": [round(r["growth_adj_premium"] * 100) if r["growth_adj_premium"] is not None else None for r in pm]}]}})
+    for tr in premium_trend(dp):
+        B.append({"type": "chart", "chart": {"kind": "bars", "trend": True, "title": f"멀티플 프리미엄 추이 — {tr['metric']}, 최근 4개 분기말 (%, 0 = 동종 중앙값)", "unit": "%", "metric": tr["metric"],
+                  "categories": tr["months"], "series": [{"name": tr["metric"], "color": "c", "values": tr["values"]}]}})
     if not B:
         return None
     return {"h2": "어닝콜 변화·컨센서스·멀티플 프리미엄·EPS 리비전", "blocks": B}

@@ -380,6 +380,12 @@ def chart_bars(c):
             if len(series) <= 3:
                 g.append(f'<text x="{x + (bw - 2) / 2:.1f}" y="{(y - 3) if v >= 0 else (y + h + 10):.1f}" text-anchor="middle" style="font-size:9.5px">{_fmt(v)}</text>')
         g.append(f'<text x="{x0 + gw / 2 - 5:.1f}" y="{H - 10}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
+    if c.get("trend"):   # 막대 위 추이선(멀티플 프리미엄 추이, 2026-11-06)
+        for si, s in enumerate(series):
+            pts = [(L + ci * gw + 5 + si * bw + (bw - 2) / 2, Y(v)) for ci, v in enumerate(s.get("values") or []) if v is not None]
+            if len(pts) >= 2:
+                g.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pts)}" fill="none" stroke="var(--b)" stroke-width="2"/>'
+                         + "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3" fill="var(--b)"/>' for x, y in pts))
     return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
