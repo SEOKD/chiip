@@ -1,0 +1,106 @@
+auto: true
+id: us-veco
+name: Veeco Instruments
+ticker: VECO
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 0.31
+  TW: 0.25
+  KR: 0.1
+  JP: 0.1
+  EU: 0.12
+  CN: 0.12
+tax: 0.15
+horizon: 10
+as_of: '2026-11-05'
+market:
+  date: '2026-11-05'
+  price: 36.0
+  shares: 0.064372
+  net_debt: -0.05519
+  source: 가격 = 11/4 종가. 주식 = 10-Q 표지 61,135,594주(9/30). 현금 = 현금 $205.3M + 단기 투자 $277.2M(9/30).
+    차입 = 2029년 만기 2.875% 전환사채 장부가 $226.8M(원금 $230M) + 운용 리스 $31.5M. 고객 선수금 $169M(CFO,
+    3Q 콜 — 2Q $111M에서 +$58M)은 현금에 들어 있어 순운전자본 음수로 둔다 https://www.sec.gov/Archives/edgar/data/103145/000110465926122721/veco-20260930x10q.htm
+rev0: 0.805
+ic0: 0.699732
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.3416
+      end: 0.035
+      decay: 0.369
+    margin:
+      m0: 0.0783
+      target: 0.17
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.1346
+      - 0.1606
+    s2c: 1.038
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4658
+      end: 0.04
+      decay: 0.419
+    margin:
+      m0: 0.0783
+      target: 0.2112
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.1346
+      - 0.1606
+    s2c: 1.194
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1801
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.0783
+      target: 0.1289
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.1346
+      - 0.1606
+    s2c: 0.882
+mc:
+  sigma_growth: 0.0714
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.79, 0.82] (3Q26 보도자료·콜(11/4): FY26 매출 $790~820M(직전 $780~810M),
+    비GAAP EPS $1.32~1.52(직전 $1.36~1.61). 4Q 매출 $230~260M, 매출총이익률 43~44%, 영업비용 $64~66M,
+    EPS $0.50~0.70 https://www.sec.gov/Archives/edgar/data/103145/000110465926122689/veco-ex99d1.htm)'
+  growth: 컨센서스 1년차 34.2%, 2년차 14.8%
+  margin: 1~2년차 컨센서스 13.5%, 16.1% 고정 → 목표 17%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.038
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 18.0%~46.6%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: 장기 비GAAP EBIT 이익률 컨센서스 FY28 20.6%에서 SBC 4.5%를 빼 GAAP 기준 약 16~17% — 장기값
+    17%
+  shares: '완전 희석 = 기본 0.061136(2026-09-30) + 옵션·RSU·워런트·전환 0.0032 — 10-Q 2번 주석: 3Q
+    희석 효과 주식 보상 1,756천 주. 2029년 전환사채($230M, 전환가 $'
+notes:
+- 자동 생성(build_drivers) 2026-11-05 — 데이터 묶음 2026-11-05
+- '어닝콜 위험: 3Q 매출총이익률 39% — 가이던스 41~42% 하회(공급망 비용·믹스·수출 심사 이연)'
+- '어닝콜 위험: 부품 부족·리드타임 증가(CFO)'
+- '어닝콜 위험: 중국 매출 25% → 12%, 2027년 추가 감소 예상(CEO)'
+evidence:
+- 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/103145/000110465926122721/veco-20260930x10q.htm
+- 3Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/103145/000110465926122689/veco-ex99d1.htm
+- FY25 10-K https://www.sec.gov/Archives/edgar/data/103145/000110465926019711/veco-20251231x10k.htm
+- 2026 위임장 https://www.sec.gov/Archives/edgar/data/103145/000110465926032085/tm261442-1_def14a.htm
+- 합병 종결 일정 8-K https://www.sec.gov/Archives/edgar/data/103145/000110465926120936/tm2628709d1_8k.htm
+- Fiscal.ai NASDAQ_VECO https://fiscal.ai/company/NasdaqGS-VECO
