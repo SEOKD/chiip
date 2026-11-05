@@ -7,6 +7,7 @@ add:
   buy_call_counts: true   # 리포트 규칙 등급이 현재가로 Buy 이상(buy_call_latest)이면 종합 점수 대신 인정
   confirm_days: 2         # 서로 다른 날 연속 충족해야 편입(하루 잡음 방지)
 remove:
+  use_add_criteria: true  # 편입 기준(alpha_min·composite_pct·Buy Call·거래대금)에 못 미치면 제외(마스터 지시 2026-11-06). false면 아래 중앙값 규칙
   alpha_pct: 0.5          # 알파와 종합 점수가 '둘 다' 그날 분포의 중앙값 아래일 때만 미달(하나만 낮으면 유지 — 보수적 제외)
   composite_pct: 0.5
   confirm_days: 3         # 연속 미달 일수 — 편입보다 길게(들락날락 방지)

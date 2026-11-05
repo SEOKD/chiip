@@ -33,6 +33,13 @@ class T(unittest.TestCase):
         drops = w.decide(H, mt(), C, st, "2026-11-06")[1]
         self.assertEqual([i for i, _ in drops], ["x0"])
 
+    def test_remove_when_add_criteria_unmet(self):
+        H = [{"id": "x5", "status": "관심"}]   # 알파 5.5 < 6.0 — 중앙값 위여도 편입 기준 미달이면 제외(2026-11-06)
+        st = {}
+        for d in ("2026-11-04", "2026-11-05"):
+            w.decide(H, mt(), C, st, d)
+        self.assertEqual([i for i, _ in w.decide(H, mt(), C, st, "2026-11-06")[1]], ["x5"])
+
     def test_unknown_metrics_never_remove(self):
         H = [{"id": "ghost", "status": "관심"}]
         st = {}

@@ -5,7 +5,7 @@
   1. 지표 모으기  알파(knowledge/models/alpha/latest.json) · 종합 점수·기술적·거래대금·킬(composite_latest.json rows) · 리포트 등급(buy_call_latest.json)
   2. 편입 후보    킬·거래대금 미달이 아니고, 알파 ≥ alpha_min, 그리고 (종합 ≥ composite_min 또는 Buy Call)
                  서로 다른 날 confirm_days일 연속 충족 → 편입. 자동 편입 상한(max_auto)이면 가장 낮은 자동 편입보다 replace_margin 이상 높을 때만 교체
-  3. 제외         status 관심만(보유는 마스터 몫이라 건드리지 않는다). 킬 발동은 즉시, 알파 < alpha_below 또는 종합 < composite_below가
+  3. 제외         status 관심만(보유는 마스터 몫이라 건드리지 않는다). 킬 발동은 즉시, 편입 기준(2번)에 못 미치는 날이
                  confirm_days일 연속이면 제외. 지표가 없는 날은 판정하지 않는다(모르면 미확인 — 없는 숫자로 빼지 않는다)
   4. 반영         config/portfolio.yaml에 블록 추가(added_by: chiip) 또는 status: 종료 + ended·ended_reason(지우지 않는다).
                  기록 knowledge/models/portfolio/watchlist_log.csv(편입·제외일 지표 — 성적표 재료)
@@ -80,8 +80,18 @@ def failing(m, c, k):
     """None = 판정 불가(지표 없음), "" = 기준 충족, 그 밖 = 미달 이유"""
     if m.get("killed") and c["remove"]["killed_immediate"]:
         return "킬 조건 발동"
-    if m.get("alpha") is None or m.get("composite") is None or k["rm_alpha"] is None:
+    if m.get("alpha") is None or m.get("composite") is None or k["add_comp"] is None:
         return None
+    # 편입 기준과 같은 잣대로 판정한다(마스터 지시 2026-11-06 "와치리스트 후보 기준에 충족하지 못하면 디리스트하도록 해라")
+    a = c["add"]
+    if c["remove"].get("use_add_criteria", True):
+        if m.get("adv_ok") is False:
+            return "거래대금 미달"
+        if m["alpha"] < a["alpha_min"]:
+            return f"알파 {m['alpha']:.1f} < {a['alpha_min']}"
+        if m["composite"] < k["add_comp"] and not (a["buy_call_counts"] and m.get("buy")):
+            return f"종합 {m['composite']:.1f} < 상위 {round((1 - a['composite_pct']) * 100)}% 문턱 {k['add_comp']:.1f}·Buy Call 아님"
+        return ""
     if m["alpha"] < k["rm_alpha"] and m["composite"] < k["rm_comp"]:
         return f"알파 {m['alpha']:.1f}·종합 {m['composite']:.1f} 둘 다 중앙값({k['rm_alpha']:.1f}·{k['rm_comp']:.1f}) 아래"
     return ""
