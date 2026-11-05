@@ -1,0 +1,111 @@
+auto: true
+id: us-mtsi
+name: MACOM Technology Solutions
+ticker: MTSI
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.35
+  CN: 0.39
+  TW: 0.06
+  EU: 0.1
+  JP: 0.05
+  KR: 0.05
+tax: 0.06
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 190.35
+  shares: 0.07767
+  net_debt: -0.381864
+  source: 가격 = 11/5 종가(실적 발표일 −18.4%). 주식 = 4Q 기본 가중평균 76.372M(보도자료)·10-Q 표지 76,370,931주(8/3).
+    현금 = 현금 $112.0M + 단기 투자 $680.4M(10/2). 장기 투자 $121.6M(IQE 지분·전환 대여금 포함)은 전략 투자라
+    현금에서 뺀다. 차입 = 2029년 만기 0% 전환사채 원금 $344.3M(장부가 $340.7M, 단기 차입 분류) + 금융 리스 $29.8M
+    + 금융 약정 $36.4M https://www.sec.gov/Archives/edgar/data/1493594/000149359426000041/ex99_1earningsreleaseq4fy26.htm
+rev0: 1.327623
+ic0: 1.314803
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.41
+      end: 0.03
+      decay: 0.607
+    margin:
+      m0: 0.2547
+      target: 0.36
+      year_target: 4
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.3557
+      - 0.3524
+      - 0.3625
+    s2c: 2.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.5968
+      end: 0.034999999999999996
+      decay: 0.657
+    margin:
+      m0: 0.2547
+      target: 0.4139
+      year_target: 4
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.3557
+      - 0.3524
+      - 0.3625
+    s2c: 2.875
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.2202
+      end: 0.024999999999999998
+      decay: 0.507
+    margin:
+      m0: 0.2547
+      target: 0.3061
+      year_target: 4
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.3557
+      - 0.3524
+      - 0.3625
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0942
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [1.327623, 1.327623] (4Q FY26 보도자료·콜(11/5): 1Q FY27(2027-01-01
+    종료) 매출 $450~460M, 조정 매출총이익률 62~63%, 조정 EPS $2.21~2.29(희석 79M주), 조정 영업이익률 가이던스
+    중간 약 40%. 연간 가이던스는 내지 않는다 https://www.sec.gov/Archives/edgar/data/1493594/000149359426000041/ex99_1earningsreleaseq4fy26.htm)'
+  growth: 컨센서스 1년차 41.0%, 2년차 26.1%
+  margin: 1~3년차 컨센서스 35.6%, 35.2%, 36.2% 고정 → 목표 36%(4년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.01 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 22.0%~59.7%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '장기 조정 EBIT 이익률 컨센서스 FY29 42.7%에서 SBC 6.5%를 빼 GAAP 기준 약 36% — 장기값 36%.
+    재투자 효율: TTM 매출 ÷ 투하자본 1.01은 영업권 $394M과 IQE 투자가 든 평균값이다. FY26 증분은 매출 +$360M에 CAPEX
+    − D&A 약 $2M + 운전자본 증가 약 $105M(매출채권 +$61M·재고 +$46M) — 증분 약 3.4, 보수적으로 2.5'
+  shares: 완전 희석 = 기본 0.07637(2026-10-02) + 옵션·RSU·워런트·전환 0.0013 — 4Q 희석 주식 78.257M
+    − 기본 76.372M = 1.885M(주식 보상 + 전환사채 순주식). 20
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 청구지 기준 중국 매출 39%(3Q, 1년 전 28%) — 수출 통제·관세'
+- '어닝콜 위험: 고객 A 23%·고객 C 13%(3Q), 상위 10곳 60%'
+- '어닝콜 위험: SiGe 칩은 외부 파운드리 — 확정 약정 요구'
+evidence:
+- 4Q FY26 실적 8-K https://www.sec.gov/Archives/edgar/data/1493594/000149359426000041/ex99_1earningsreleaseq4fy26.htm
+- 3Q FY26 10-Q https://www.sec.gov/Archives/edgar/data/1493594/000149359426000038/mtsi-20260703.htm
+- FY25 10-K https://www.sec.gov/Archives/edgar/data/1493594/000149359425000054/mtsi-20251003.htm
+- 2026 위임장 https://www.sec.gov/Archives/edgar/data/1493594/000149359426000007/mtsi-20260116.htm
+- Fiscal.ai NASDAQ_MTSI https://fiscal.ai/company/NasdaqGS-MTSI
+- '보강 적용: R-20261103-01·R-20261031-01·R-20261030-01·D-20261104-01·D-20261102-01·X-20261102-01·D-20261029-05'
