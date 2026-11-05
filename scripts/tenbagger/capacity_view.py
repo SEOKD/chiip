@@ -119,6 +119,10 @@ def section(dp):
     B.append({"type": "table", "title": "CAPEX와 매출 대비", "headers": ["기간", "CAPEX", "매출", "매출 대비", "구분"],
               "rows": [[y["period"], _money(y["capex"], money), _money(y["rev"], money), f"{y['pct']:.1%}", y["kind"]] for y in c["years"]]})
     B.extend(site_view.blocks(dp))
+    import photo_view   # 생산시설 실사 사진(마스터 지시 2026-11-05)
+    ph = photo_view.block(dp, "site")
+    if ph:
+        B.append(ph)
     return {"h2": "생산능력", "blocks": B, "_sources": sorted({str(cap["current"]["source"])} | {str(p["source"]) for p in cap["plans"]} | set(site_view.sources(dp)))}
 
 

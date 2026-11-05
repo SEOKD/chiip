@@ -310,6 +310,10 @@ def portfolio3(dp):
     if moved:
         n, d = moved[0]
         blocks.append({"type": "p", "text": f"**Mix 변화가 가장 큰 쪽은 {n}({d * 100:+.1f}%p, {basis}).** 계절성 판정: 분기 매출 계절 지수 기준 {'있음 → 전년 같은 분기와 비교' if basis == '전년 대비' else '없음 → 직전 분기와 비교'}."})
+    import photo_view   # 제품 실사 사진(마스터 지시 2026-11-05)
+    ph = photo_view.block(dp, "product")
+    if ph:
+        blocks.insert(1, ph)
     return {"h2": "포트폴리오", "blocks": blocks}
 
 

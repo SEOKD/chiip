@@ -80,6 +80,10 @@ def render(d, github=None, charts=None, h1=False):
             elif k == "boxes":
                 for x in b.get("items") or []:
                     L += ["", f"> **{x.get('title')}**" + (f" · {x['tag']}" if x.get("tag") else "")] + [f"> **{a}:** {w}" for a, w in x.get("lines") or [] if w]
+            elif k == "photos":   # GitHub 판은 사진을 charts/에 복사해 싣고(report_md), 노션 판은 설명만
+                for x in b.get("items") or []:
+                    cap = f"**{x.get('name')}**" + (f" — {x['caption']}" if x.get("caption") else "")
+                    L += ["", f"![{x.get('name')}](charts/{x['jpg']})" if charts else "", cap, f"_{x.get('credit')}_"]
             elif k == "chart" and id(b) in num:
                 n = num[id(b)]
                 c = b["chart"]

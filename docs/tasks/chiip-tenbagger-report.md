@@ -104,6 +104,8 @@
    - SEC(미국)·적시공시(일본)·회사 IR로 수주잔고·고객 집중도·설비투자·자금 조달을 보강한다. 기술: 병목 → 해결 기술 → 이 회사의 위치(엔지니어 관점, 금지표). knowledge/narratives/companies/<id>.md·알파 점수가 있으면 반영.
    - D:\local-only 읽기 금지, 유료 본문 복제 금지, robots.txt가 막은 사이트 접속 금지.
 
+   - **실사 사진**(2026-11-05 마스터 지시): `narrative.lead.products`의 제품마다, 그리고 생산시설(공장·팹·데이터센터)마다 `py scripts/tenbagger/photo_view.py --search "<영문 제품·시설 이름>"`으로 위키미디어 공용 자유 라이선스 사진을 찾아 datapack `photos`에 `{"for": "product|site", "name", "file", "caption"}`로 쓰고 `--fetch <datapack.json>`. 그 제품·시설이 실제로 찍힌 사진만 고른다(같은 종류의 다른 회사 제품은 caption에 "같은 종류 예시"라고 밝힌다). 못 찾으면 빼고 지나간다. 회사·언론 사진 복제와 생성 이미지는 쓰지 않는다.
+
 3. 밸류에이션(맥킨지·IB 방식 — 의무) + 판단:
    a0. `py scripts/valuation/v2/datapack_check.py <id>` — **10/10이 아니면 다음 단계로 가지 않는다.** 실패 항목을 원자료로 고치거나, 자료가 정말 없으면 그 항목을 '미확인'으로 리포트 위험 절에 적는다(검사표는 리포트 '데이터 검증' 표로 자동 삽입).
    a. `py scripts/valuation/v2/build_drivers.py <id>` — 데이터 묶음이 동인이 된다(가이던스 > 컨센서스 > TTM, 콜 톤 → 시나리오 확률, 완전 희석 주식 수). 출력된 동인 출처(provenance)를 확인하고, 규칙이 사업을 잘못 그리면(예: 자본 집약도·장기 이익률) datapack `overrides`에 값과 **이유**를 적고 다시 돌린다. 손으로 만든 drivers.yaml이 이미 있으면 그것이 우선(자동판은 drivers.auto.yaml로 비교).
