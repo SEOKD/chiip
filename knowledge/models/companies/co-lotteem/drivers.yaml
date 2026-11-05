@@ -1,0 +1,104 @@
+auto: true
+id: co-lotteem
+name: 롯데에너지머티리얼즈
+ticker: '020150'
+unit: BKRW
+unit_usd: 0.000694
+industry: electrical_equipment
+region_mix:
+  KR: 0.4
+  US: 0.45
+  EU: 0.15
+tax: 0.22
+horizon: 10
+as_of: '2026-11-05'
+market:
+  date: '2026-11-05'
+  price: 34850
+  shares: 0.052366
+  net_debt: -37.59
+  source: 가격 = TradingView 11/5 13:40 장중 ₩34,850(−15.2%). 주식 = 52,365,500주(자본금 ₩262억
+    ÷ 액면 ₩500, 2Q PT). 현금·차입 = 6/30(3Q 재무상태표는 분기보고서 전이라 미확인). 9/3 롯데에코월 지분 매각 대금(보도
+    ₩170.8B)이 3Q에 들어왔고 3Q 차입금은 보도상 ₩381.9B — 둘 다 미반영. 비지배지분 ₩147.5B는 EV에 더하지 않았다
+rev0: 896.5
+ic0: 1825.6
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.4
+      end: 0.03
+      decay: 0.25
+    margin:
+      m0: -0.059
+      target: 0.08
+      year_target: 4
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.0247
+      - 0.0617
+    s2c: 0.8
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.488
+      end: 0.04
+      decay: 0.3
+    margin:
+      m0: -0.059
+      target: 0.1404
+      year_target: 4
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.0247
+      - 0.0617
+    s2c: 0.92
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.2817
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: -0.059
+      target: 0.0197
+      year_target: 4
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.0247
+      - 0.0617
+    s2c: 0.68
+mc:
+  sigma_growth: 0.0516
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 896.5
+  growth: 컨센서스 1년차 39.3%, 2년차 29.9%
+  margin: 1~2년차 컨센서스 2.5%, 6.2% 고정 → 목표 8%(4년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 0.8
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 28.2%~48.8%
+  probs: '데이터 묶음 지정 {''bear'': 0.35, ''base'': 0.45, ''bull'': 0.2}'
+  overrides: '매출은 FY2027 컨센서스(+39%)·FY2028(+30%) 경로를 따라 빠르게 늘다 둔화한다고 둔다. 장기 영업이익률
+    8%는 2022년 11.6%(호황)와 2023년 1.5% 사이, 키움 FY2028 6.2%보다 조금 높은 값 — 회로박 비중 확대를 반영한
+    판단. 매출 ÷ 투하자본 0.8은 TTM 0.45보다 높다: 말레이시아 5·6공장 캐파가 이미 깔려 있어 증분 매출에 드는 자본이 작다'
+  shares: 완전 희석 = 기본 0.0523655(2026-06-30) + 옵션·RSU·워런트·전환 0.0000 — 2Q PT 기준 자본금 변동
+    없음(₩262억). 전환사채·신주인수권 공시는 이번 회차에 DART를 열지 못해
+notes:
+- 자동 생성(build_drivers) 2026-11-05 — 데이터 묶음 2026-11-05
+- '어닝콜 위험: 9개 분기 연속 영업적자'
+- '어닝콜 위험: 말레이시아 5공장 초기 고정비·감가상각'
+- '어닝콜 위험: 동박 판가(가공비) 정상화 지연'
+evidence:
+- '2Q26 경영실적 PT: https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf'
+- '3Q 잠정 보도(디일렉): https://www.thelec.kr/news/articleView.html?idxno=64930'
+- '3Q 잠정 보도(비즈니스포스트): https://www.businesspost.co.kr/BP?command=article_view&num=451226'
+- '3Q 잠정 보도(리드경제): https://www.leadeconomy.co.kr/news/articleView.html?idxno=10942'
+- '반기 실적·7개사 추정(데이터뉴스 9/4): https://datanews.co.kr/news/article.html?no=146298'
+- '키움 추정(이투데이 8/7): https://www.etoday.co.kr/news/view/2611973'
+- 'NH 추정(5/12): https://v.daum.net/v/20260512084404289?f=p'
+- 'IBK 추정(5/12): https://www.newsquest.co.kr/news/articleView.html?idxno=266188'

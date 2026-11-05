@@ -1,0 +1,1716 @@
+{
+ "id": "co-lotteem",
+ "name": "롯데에너지머티리얼즈",
+ "ticker": "020150",
+ "as_of": "2026-11-05",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 0.000694,
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "KR": 0.4,
+  "US": 0.45,
+  "EU": 0.15
+ },
+ "region_why": "지역별 매출 공시를 이번 회차에 대조하지 못했다(분기보고서 11월 중순 제출) — 북미 ESS·EV 출하가 3Q 성장 동인이라는 회사 설명으로 둔 추정",
+ "tax": 0.22,
+ "main_metric": "ebitda",
+ "main_metric_why": "9개 분기 연속 영업적자이고 선행 EPS도 적자다. 감가상각(분기 약 ₩25B)이 EBITDA의 대부분이라 EV/EBITDA를 주요 지표로 쓴다. 증권사 목표가도 EBITDA 배수로 낸다(키움 2028 EBITDA × 14배)",
+ "profile": {
+  "price": 34850,
+  "shares_basic": 0.0523655,
+  "shares_date": "2026-06-30",
+  "cash": 386.35,
+  "debt": 348.76,
+  "customer_deposits": 0.0,
+  "source": "가격 = TradingView 11/5 13:40 장중 ₩34,850(−15.2%). 주식 = 52,365,500주(자본금 ₩262억 ÷ 액면 ₩500, 2Q PT). 현금·차입 = 6/30(3Q 재무상태표는 분기보고서 전이라 미확인). 9/3 롯데에코월 지분 매각 대금(보도 ₩170.8B)이 3Q에 들어왔고 3Q 차입금은 보도상 ₩381.9B — 둘 다 미반영. 비지배지분 ₩147.5B는 EV에 더하지 않았다"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "options": 0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-06-30",
+  "source": "2Q PT 기준 자본금 변동 없음(₩262억). 전환사채·신주인수권 공시는 이번 회차에 DART를 열지 못해(robots 제한) 미확인 — 0으로 둔다"
+ },
+ "financials": {
+  "rev_ttm": 814.6,
+  "ebit_ttm": -77.0,
+  "invested_capital": 1825.6,
+  "capex_ttm": 53.6,
+  "da_ttm": 93.5,
+  "sbc_ttm": 0.0,
+  "basis": "K-IFRS 연결",
+  "note": "TTM = 4Q25~3Q26. 매출 170.9+159.8+194.2+289.7, 영업이익 −33.8−5.0−16.9−21.3(3Q는 잠정). 투하자본 = 자본 1,869.6 + 차입 337.1 + 리스 11.66 − 현금·단기 392.8(6/30). CAPEX TTM = 3Q25~2Q26(TradingView). 감가상각 = EBITDA − 영업이익: 4Q25 23.8 + 1Q 24.5 + 2Q 24.6 + 3Q 26.9(3Q EBITDA ₩5.6B − 영업손실 ₩21.3B)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 11/5. 원화 환산 ¥1=₩9.4, NT$1=₩47, ¥(위안)1=₩202 근사. EV/EBITDA 선행값은 동종 대부분 없어 TTM EV/매출과 Fwd 1Y P/E만 쓴다. 동종 EV/EBITDA는 선행 추정이 없어 후행 TTM 값으로 대신한다(미쓰이금속 7.1·후루카와전기 18.0·코텍 40.8배). 중국 노드·자위안은 FY2025 침체기 EBITDA라 배수가 부풀어(29~39배) 뺐다 — 선행과 후행이 섞인 비교라 거칠다",
+ "peers": [
+  {
+   "ticker": "SKC",
+   "key": "KRX:011790",
+   "rev": 2209.2,
+   "ebit_margin": -0.091,
+   "mcap": 3219.6,
+   "pb": null,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 1.46,
+   "growth": 0.239,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "솔루스첨단소재",
+   "key": "KRX:336370",
+   "rev": 609.1,
+   "ebit_margin": -0.143,
+   "mcap": 528.8,
+   "pb": 0.79,
+   "debt": 909.5,
+   "cash": 70.3,
+   "ev_sales": 2.71,
+   "growth": 0.012,
+   "pe_fwd": 18.2,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "노드신소재",
+   "key": "SSE:600110",
+   "rev": 2565.7,
+   "ebit_margin": 0.043,
+   "mcap": 2877.6,
+   "pb": 2.55,
+   "debt": 2466.9,
+   "cash": 943.8,
+   "ev_sales": 1.84,
+   "growth": 1.0,
+   "pe_fwd": 41.9,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "자위안테크",
+   "key": "SSE:688388",
+   "rev": 3180.8,
+   "ebit_margin": 0.043,
+   "mcap": 2711.3,
+   "pb": 1.73,
+   "debt": 1275.0,
+   "cash": 557.7,
+   "ev_sales": 1.09,
+   "growth": 0.805,
+   "pe_fwd": 19.0,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "미쓰이금속",
+   "key": "TSE:5706",
+   "rev": 7436.2,
+   "ebit_margin": 0.179,
+   "mcap": 10791.4,
+   "pb": 2.36,
+   "debt": 1124.5,
+   "cash": 503.9,
+   "ev_sales": 1.55,
+   "growth": 0.112,
+   "pe_fwd": 11.4,
+   "ev_ebitda_fwd": 7.15,
+   "ev_ebitda_basis": "후행 대용(선행 EBITDA 추정 없음)"
+  },
+  {
+   "ticker": "코텍(대만 Co-Tech)",
+   "key": "TPEX:8358",
+   "rev": 445.9,
+   "ebit_margin": 0.227,
+   "mcap": 4315.3,
+   "pb": 9.5,
+   "debt": 59.9,
+   "cash": 57.2,
+   "ev_sales": 9.68,
+   "growth": 0.312,
+   "pe_fwd": 35.5,
+   "ev_ebitda_fwd": 40.8,
+   "ev_ebitda_basis": "후행 대용(선행 EBITDA 추정 없음)"
+  },
+  {
+   "ticker": "후루카와전기",
+   "key": "TSE:5801",
+   "rev": 12963.2,
+   "ebit_margin": 0.059,
+   "mcap": 18218.5,
+   "pb": 3.58,
+   "debt": 3316.7,
+   "cash": 588.0,
+   "ev_sales": 1.63,
+   "growth": 0.129,
+   "pe_fwd": 13.4,
+   "ev_ebitda_fwd": 18.0,
+   "ev_ebitda_basis": "후행 대용(TTM)"
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.35,
+  "base": 0.45,
+  "bull": 0.2
+ },
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "흑자 전환이 2027년 1분기 이후로 밀려 있고 3Q에 매출이 49% 늘었는데도 영업손실이 커졌다. 가공비 인상이 계약으로 확인되기 전에는 동종보다 할증을 주지 않고 10% 할인한다"
+ },
+ "next_event": {
+  "date": "2026-11-16",
+  "tag": "3Q 분기보고서 제출 기한(분기 말 + 45일) — 재무상태표·차입·제품별 매출·가동률 확인"
+ },
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "숫자 가이던스 없음. 4Q 말레이시아 6공장 조기 가동으로 판매량 증가, 2027년 회로박 판매량 2배 이상·회로박 판매의 50% 이상을 HVLP 중심 고성능 제품으로, 회로박 생산능력 2027년까지 단계 확대·추가 증설 검토, 장기공급계약 추진(3Q 보도자료)",
+  "source": "3Q 잠정실적 보도자료 요지(디일렉·비즈니스포스트 2026-11-05) — 매출 숫자 가이던스 없음(미확인)",
+  "next": {}
+ },
+ "terms": {
+  "동박": "구리를 얇게 편 박 — 전해(전기분해)로 드럼 위에 구리를 석출해 만든다",
+  "전지박": "이차전지 음극 집전체로 쓰는 얇은 동박(4~20㎛)",
+  "회로박": "인쇄회로기판(PCB)·동박적층판(CCL)용 동박",
+  "HVLP": "표면 거칠기를 아주 낮춘 초저조도 회로박(Hyper Very Low Profile) — 고속 신호 손실을 줄여 AI 서버 기판에 쓴다",
+  "HVLP5": "HVLP 5세대 — 가장 낮은 조도 등급(개발 중)",
+  "RTF": "뒷면 처리 회로박(Reverse Treated Foil) — 고주파용",
+  "극박": "1~3㎛ 두께의 아주 얇은 회로박 — 반도체 패키징·광트랜시버 기판용",
+  "CCL": "동박적층판 — 수지 절연층 양면에 동박을 붙인 PCB 원판",
+  "PCB": "인쇄회로기판",
+  "ESS": "에너지저장장치(대형 배터리)",
+  "BBU": "데이터센터 서버용 배터리 백업 장치(Battery Backup Unit)",
+  "AIDC": "AI 데이터센터",
+  "LFP": "리튬인산철 배터리",
+  "OEM": "완성차 회사",
+  "4680": "지름 46mm·높이 80mm 원통형 배터리 규격",
+  "LTA": "장기공급계약",
+  "MLB": "다층 인쇄회로기판(Multi-Layer Board)",
+  "LME": "런던금속거래소 — 구리 국제 가격의 기준",
+  "롯데에코월": "롯데에너지머티리얼즈의 옛 환경·건자재 자회사(9/3 지분 90% 매각)",
+  "익산": "전북 익산 공장 — 회로박 전환 중",
+  "말레이시아 5공장": "말레이시아 사라왁주 동박 공장 5번째 라인(약 1만 톤, 2026년 7월 가동)",
+  "말레이시아 6공장": "말레이시아 동박 공장 6번째 라인(약 1만 톤, 4Q26 조기 가동 추진)",
+  "SKC": "한국 소재 회사 — 자회사 SK넥실리스가 전지박을 만든다",
+  "EV": "전기차",
+  "IT": "정보기술 기기",
+  "PPI": "생산자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "ETF": "상장지수펀드",
+  "CAR": "누적 초과수익률(시장 대비)",
+  "AR": "자기회귀(AR) 통계 모형",
+  "HP": "호드릭-프레스콧 추세 필터",
+  "GP": "매출총이익",
+  "AI": "인공지능",
+  "GPU": "그래픽·AI 연산 칩",
+  "CPU": "중앙처리장치",
+  "BKRW": "십억 원 단위",
+  "EU": "유럽연합",
+  "FEOC": "우려 외국 기관 — 미국 IRA가 중국 등 공급망을 세액공제에서 빼는 규정",
+  "IBK": "IBK투자증권",
+  "IFRS": "국제회계기준(K-IFRS는 한국 채택판)",
+  "IRA": "미국 인플레이션 감축법",
+  "KR": "한국",
+  "MY": "말레이시아",
+  "NH": "NH투자증권",
+  "PT": "실적 발표 자료(프레젠테이션)",
+  "DART": "금융감독원 전자공시시스템"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-05T13:40:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "KRX:020150",
+   "price": 34850,
+   "market_cap": 1824.94,
+   "total_cash": 386.35,
+   "total_debt": 348.76,
+   "shares_outstanding": 0.0523655,
+   "as_of": "2026-11-05",
+   "balance_date": "2026-06-30",
+   "note": "Fiscal.ai는 한국 종목을 다루지 않는다(KOSE_020150 'Company not found'). Easyconomics는 KR 티커 미지원(400). 원자료 개요는 TradingView: 종가 ₩34,850(장중), 주식 52,365,500주, 현금·단기 ₩386.35B, 총차입 ₩348.76B(6/30). TradingView market_cap_basic ₩1,989.9B는 11/3 종가 ₩38,000 기준이라 시가총액은 가격 × 주식 수로 다시 셌다",
+   "auditUrl": "https://www.tradingview.com/symbols/KRX-020150/"
+  },
+  "shares_cover_implied": 0.0523655,
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 170.9,
+    "2026Q1": 159.8,
+    "2026Q2": 194.2,
+    "2026Q3": 289.7
+   },
+   "op_income": {
+    "2025Q4": -33.8,
+    "2026Q1": -5.0,
+    "2026Q2": -16.9,
+    "2026Q3": -21.3
+   },
+   "note": "K-IFRS 연결. 2Q PT 9쪽(4Q25~2Q26) + 3Q 잠정(11/5 보도). 3Q EBITDA ₩5.6B, 순이익 ₩70.4B(롯데에코월 처분이익 ₩111.1B 포함)"
+  },
+  "balance_2026_06_30": {
+   "equity": 1869.6,
+   "debt_lt": 337.1,
+   "lease_lt": 11.66,
+   "cash": 386.35,
+   "st_investments": 6.45,
+   "minority_interest": 147.5,
+   "source": "2Q PT 10쪽 요약 재무상태표(6/30): 자본 ₩1,869.6B(비지배지분 ₩147.5B 포함), 차입금 ₩337.1B, 현금·현금성·단기금융·예치금 ₩392.8B. 리스 ₩11.66B = TradingView 총차입 ₩348.76B − PT 차입금(추정 분리). https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf"
+  },
+  "estimates_sales_m": {
+   "2026Q1(실적)": 159798,
+   "2026Q2(실적)": 194198,
+   "2026Q3(실적)": 289700,
+   "2026Q4": 252802
+  },
+  "estimates_note": "단위 ₩백만. FY2026 매출 컨센서스 ₩896.5B(TradingView revenue_forecast_next_fy, 11/5)에서 1~3Q 실적을 뺀 4Q 잔여값. 3Q 실적이 컨센서스(₩256.5B)를 13% 웃돌아 이 FY 값은 3Q 반영 전일 가능성이 크다",
+  "consensus_sources": {
+   "3Q": "3Q 컨센서스 매출 ₩256.5B·영업손실 ₩20.0B·순손실 ₩19.2B(공개 텔레그램 채널 집계 https://t.me/easobi_ai/26840)",
+   "FY": "FY2026 영업손실 평균 ₩52.9B·FY2027 영업이익 평균 ₩30.8B(7개사, 데이터뉴스 9/4 https://datanews.co.kr/news/article.html?no=146298). FY2027 매출 = 키움 ₩1,334.0B·하나 ₩1,265.0B·IBK ₩1,149.0B 평균 ₩1,249.3B. FY2028 = 키움 매출 ₩1,622.7B·영업이익 ₩100.1B(1곳)"
+  },
+  "sec_checks": {
+   "note": "한국 상장사라 SEC 10-K·10-Q가 없다. R-20261031-01의 네 곳(구매 약정·제한 현금·10% 고객·정부 지원)은 DART 분기보고서 항목인데 dart.fss.or.kr robots.txt가 뷰어를 막아 열지 못했다 — 미확인"
+  },
+  "source_coverage": {
+   "fiscal": "미지원(한국)",
+   "easyconomics": "KR 미지원 400 · earnings_summary_dates 빈 목록",
+   "yfinance": "Easyconomics 경유 불가(KR 미지원)",
+   "zacks": "미지원",
+   "tradingview": "시세·재무·동종·의견 분포"
+  }
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 896.5,
+   "FY2027": 1249.0,
+   "FY2028": 1622.7
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": -0.059,
+   "FY2027": 0.0247,
+   "FY2028": 0.0617
+  },
+  "rev_low": {
+   "FY2027": 1149.0
+  },
+  "rev_high": {
+   "FY2027": 1334.0
+  },
+  "n_analysts": 7,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 252.8
+  },
+  "quarters_act": {
+   "2025Q4": 170.9,
+   "2026Q1": 159.8,
+   "2026Q2": 194.2,
+   "2026Q3": 289.7
+  },
+  "eps_quarters_est": {},
+  "ratings": {
+   "strong_buy": 3,
+   "buy": 2,
+   "hold": 2,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-05",
+   "source": "TradingView 의견 분포 7명(Buy 3·Overweight 2·Hold 2). 목표가는 TradingView가 단위 불일치로 제외 — 공개 보도: 키움 ₩54,000(8/7, ₩82,000에서 하향), NH ₩95,000(5/12), IBK ₩80,000(5/12)"
+  },
+  "note": "Fiscal.ai·Zacks·Easyconomics 모두 한국 종목 미지원. 컨센서스는 TradingView 연간 매출과 공개 보도의 증권사 추정 평균",
+  "surprise": [
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "₩B",
+    "actual": 159.8,
+    "est": 174.0,
+    "est_src": "보도 컨센서스(IBK 리포트 인용)",
+    "basis": "gaap",
+    "earnings_date": "2026-05-11"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "₩B",
+    "actual": -5.0,
+    "est": -23.0,
+    "est_src": "보도 컨센서스(IBK 리포트 인용)",
+    "basis": "gaap",
+    "earnings_date": "2026-05-11"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "₩B",
+    "actual": 194.2,
+    "est": 175.0,
+    "est_src": "IBK 추정(5/12)",
+    "basis": "gaap",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "₩B",
+    "actual": -16.9,
+    "est": -17.6,
+    "est_src": "보도 컨센서스(키움 리포트 인용)",
+    "basis": "gaap",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "₩B",
+    "actual": 289.7,
+    "est": 256.5,
+    "est_src": "공개 채널 집계 컨센서스",
+    "basis": "gaap",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "₩B",
+    "actual": -21.3,
+    "est": -20.0,
+    "est_src": "공개 채널 집계 컨센서스",
+    "basis": "gaap",
+    "earnings_date": "2026-11-05"
+   }
+  ],
+  "price_window": {
+   "from": 31250,
+   "to": 34850,
+   "note": "2Q 발표 전날 8/5 종가 ₩31,250(TradingView 일봉) → 11/5 장중"
+  }
+ },
+ "call": {
+  "date": "2026-11-05",
+  "prev_date": "2026-08-06",
+  "tone": "flat",
+  "tone_delta": null,
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_b": 289.7,
+   "rev_growth_yoy": 1.016,
+   "op_b": -21.3,
+   "ebitda_b": 5.6,
+   "net_b": 70.4,
+   "disposal_gain_b": 111.1,
+   "utilization_2q": 0.721
+  },
+  "guidance_changes": [
+   "숫자 가이던스 없음 — 6공장 조기 가동(4Q)은 2Q PT의 '4Q 조기 가동 추진'과 같다",
+   "2027년 회로박 판매량 2배 이상, HVLP 중심 고성능이 회로박의 50% 이상(신규 목표)"
+  ],
+  "new_topics": [
+   "3Q 매출 ₩289.7B 분기 최대, 전년 대비 +102% — 북미 ESS·북미 완성차 동박 출하",
+   "롯데에코월 매각 처분이익 ₩111.1B로 순이익 흑자",
+   "회로박 장기공급계약(LTA) 추진·추가 증설 검토",
+   "범용 회로박 공급 부족 — 업계 캐파가 고성능으로 옮겨 감"
+  ],
+  "dropped_topics": [
+   "2Q PT의 'BBU·전동공구 후박 하반기 출하 100% 이상 증가'를 3Q 보도에서는 숫자로 다시 말하지 않았다(소멸인지 생략인지 미확인)"
+  ],
+  "risks": [
+   "9개 분기 연속 영업적자",
+   "말레이시아 5공장 초기 고정비·감가상각",
+   "동박 판가(가공비) 정상화 지연",
+   "차입금 증가(2Q ₩337.1B, 보도상 3Q ₩381.9B)",
+   "6㎛ ESS 전지박·HVLP 3·4급 수율(데이터뉴스 9/4)"
+  ],
+  "qa_focus": [
+   "미확인 — 한국 상장사 콜 질의응답 전문이 공개되지 않았다"
+  ],
+  "answer": "회사 답변 없음(콜 질의응답 미공개). 회사 보도자료는 2027년을 고성능 제품 중심 구조적 수익 체계 전환의 원년으로 적었다",
+  "source": "3Q 잠정 보도 https://www.thelec.kr/news/articleView.html?idxno=64930 · https://www.businesspost.co.kr/BP?command=article_view&num=451226 · https://www.leadeconomy.co.kr/news/articleView.html?idxno=10942 · 2Q PT https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+  "tone_note": "매출은 컨센서스를 13% 넘었으나 영업손실은 컨센서스(₩−20.0B)보다 조금 컸고 전분기보다 커졌다. 숫자 가이던스 변화 없음 = flat",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "분기 매출",
+    "label": "3Q 매출 ₩289.7B",
+    "prior": "2Q ₩194.2B",
+    "latest": "3Q ₩289.7B(+49% QoQ)",
+    "driver": "rev0",
+    "shift": 0.08,
+    "confidence": 1.0,
+    "source": "https://www.thelec.kr/news/articleView.html?idxno=64930"
+   },
+   {
+    "id": "F2",
+    "kind": "부정",
+    "item": "영업손실",
+    "label": "영업손실 확대",
+    "prior": "2Q −₩16.9B(−8.7%)",
+    "latest": "3Q −₩21.3B(−7.4%)",
+    "driver": "margin_m0",
+    "shift": -0.01,
+    "confidence": 1.0,
+    "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=10942"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "회로박 2027 목표",
+    "label": "회로박 2배·HVLP 50%",
+    "prior": "High-End 생산 역량 확대(정성)",
+    "latest": "2027 판매량 2배 이상, 50% 이상 HVLP 중심",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "https://www.thelec.kr/news/articleView.html?idxno=64930"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "롯데에코월 매각",
+    "label": "에코월 매각 유입",
+    "prior": "매각 추진",
+    "latest": "처분이익 ₩111.1B, 대금 ₩170.8B(보도)",
+    "driver": "net_debt",
+    "shift": -0.05,
+    "confidence": 1.0,
+    "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=10942"
+   },
+   {
+    "id": "F5",
+    "kind": "반복",
+    "item": "6공장 조기 가동",
+    "label": "6공장 4Q 가동",
+    "prior": "4Q 조기 가동 추진(2Q PT)",
+    "latest": "4Q 조기 가동으로 판매량 증가(3Q)",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "https://www.businesspost.co.kr/BP?command=article_view&num=451226"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-11-05",
+  "period": "3Q26",
+  "summary": "회사는 고객별 매출을 이번 자료에 밝히지 않았다. 회사 설명은 '북미 ESS 핵심 고객'·'북미 완성차(4680 원통형)'·'국내 CCL 업체를 통한 북미 고객'이다. 이름 연결은 모두 가설이고 몫은 미확인",
+  "items": [
+   {
+    "name": "북미 ESS 핵심 고객(이름 미공시)",
+    "alias": "보도자료 '핵심 고객사'",
+    "share": [
+     0.25,
+     0.4
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "ESS용 6㎛ 전지박",
+    "source": "https://www.businesspost.co.kr/BP?command=article_view&num=451226",
+    "why": "NH(5/12)는 국내 배터리사의 북미 라인 ESS 전환 수혜를 짚었다 — 특정 회사 연결은 가설 · 몫 범위 = NH 2026E ESS+회로박 판매 비중 47%에서 회로박 약 13%를 뺀 약 34%를 가운데로 둔 추정(판매량 기준이라 매출 몫과 다를 수 있다)"
+   },
+   {
+    "name": "북미 완성차(4680 원통형 배터리)",
+    "alias": "2Q PT '북미 EV OEM 4680向'",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "EV용 전지박",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+    "why": "2Q PT: 3Q 본격 출하 · 3Q 보도: 북미 완성차향 출하 본격화"
+   },
+   {
+    "name": "국내 CCL·PCB 업체(회로박)",
+    "alias": "NH '국내 CCL 업체 경유 북미 고객'",
+    "share": 0.13,
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "HVLP·RTF·극박 회로박",
+    "source": "https://v.daum.net/v/20260512084404289?f=p",
+    "why": "1Q26 회로박 매출 ₩21.0B ÷ 매출 ₩159.8B = 13%(NH 5/12) — 회로박을 사는 CCL·PCB 업체 묶음의 몫(제품 몫으로 근사)"
+   },
+   {
+    "name": "BBU·전동공구 소형전지 고객",
+    "alias": "2Q PT 'AIDC용 BBU/전동공구'",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "12~20㎛ 후박 전지박",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+    "why": "2Q PT: 하반기 출하 100% 이상 증가 목표"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-06-30",
+  "basis": "K-IFRS",
+  "summary": "2Q26 매출총이익률 1.6%(2Q25 −6.0%), 판관비 10.2%로 영업이익률 −8.7%. 동박 값은 구리 시세 + 가공비라 구리는 대체로 고객에게 넘어가고, 이익은 가공비와 가동률이 정한다. 3Q는 매출이 49% 늘었는데 5공장 초기 고정비로 영업이익률 −7.4%",
+  "periods": [
+   {
+    "period": "2Q25",
+    "rev": 204.9,
+    "cogs": 217.1,
+    "rd": 0.0,
+    "sga": 18.9,
+    "other": 0.0
+   },
+   {
+    "period": "2Q26",
+    "rev": 194.2,
+    "cogs": 191.2,
+    "rd": 0.0,
+    "sga": 19.9,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "구리 원료(전기동·스크랩)",
+    "stage": "매출원가",
+    "pct_rev": 0.6,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "LME 구리 시세 — 판매가에 연동",
+    "basis": "추정",
+    "source": "업계 가격 구조(구리 + 가공비) — 회사 원재료 비중 미대조"
+   },
+   {
+    "name": "전력",
+    "stage": "매출원가",
+    "pct_rev": 0.08,
+    "prior_pct": "미확인",
+    "fixed": 0.2,
+    "driver": "전해 공정 전력 단가 — 말레이시아 수력 전력",
+    "basis": "추정",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf"
+   },
+   {
+    "name": "감가상각",
+    "stage": "매출원가",
+    "pct_rev": 0.127,
+    "prior_pct": 0.111,
+    "fixed": 1.0,
+    "driver": "말레이시아 5·6공장 가동",
+    "basis": "공시",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf"
+   },
+   {
+    "name": "인건비·약품·기타 제조원가",
+    "stage": "매출원가",
+    "pct_rev": 0.178,
+    "prior_pct": "미확인",
+    "fixed": 0.5,
+    "driver": "가동률(2Q 72.1%)",
+    "basis": "추정",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf"
+   },
+   {
+    "name": "판매·관리비",
+    "stage": "판관비",
+    "pct_rev": 0.102,
+    "prior_pct": 0.092,
+    "fixed": 0.7,
+    "driver": "인력·물류",
+    "basis": "공시",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf"
+   }
+  ],
+  "products": [
+   {
+    "name": "전지박",
+    "rev_share": 0.87,
+    "mix_basis": "1Q26 회로박 ₩21.0B(NH) ÷ 매출 ₩159.8B의 나머지",
+    "gpm": 0.0,
+    "gpm_basis": "추정 — 제품별 이익률 미공시. 2Q 전사 GPM 1.6% = 전지박 약 0% × 87% + 회로박 약 12% × 13%로 맞춘 값",
+    "bom": [
+     {
+      "item": "구리 원료",
+      "share": [
+       0.6,
+       0.75
+      ],
+      "basis": "추정",
+      "source": "업계 가격 구조",
+      "pass_through": "미확인",
+      "why": "동박 원가의 가장 큰 몫 · 동박 값은 구리 시세 + 가공비 구조라 구리는 대체로 판가에 연동된다(업계 관행) — 회사 계약 조항은 확인 못 해 미확인",
+      "input": "copper"
+     },
+     {
+      "item": "전력",
+      "share": [
+       0.06,
+       0.12
+      ],
+      "basis": "추정",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+      "pass_through": "미확인",
+      "why": "전해 석출 공정"
+     },
+     {
+      "item": "전해 드럼·설비 감가상각",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+      "pass_through": "미확인",
+      "why": "말레이시아 신공장 초기"
+     }
+    ]
+   },
+   {
+    "name": "회로박(HVLP·RTF·극박)",
+    "rev_share": 0.13,
+    "mix_basis": "1Q26 회로박 ₩21.0B ÷ 매출 ₩159.8B(NH 5/12)",
+    "gpm": 0.12,
+    "gpm_basis": "추정 — 키움: HVLP 가공비는 전지박의 3배 이상(추정)",
+    "bom": [
+     {
+      "item": "구리 원료",
+      "share": [
+       0.45,
+       0.65
+      ],
+      "basis": "추정",
+      "source": "업계 가격 구조",
+      "pass_through": "미확인",
+      "why": "가공비가 높아 구리 몫이 전지박보다 작다 · 동박 값은 구리 시세 + 가공비 구조라 구리는 대체로 판가에 연동된다(업계 관행) — 회사 계약 조항은 확인 못 해 미확인",
+      "input": "copper"
+     },
+     {
+      "item": "표면처리 약품·도금",
+      "share": [
+       0.05,
+       0.12
+      ],
+      "basis": "추정",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+      "pass_through": "미확인",
+      "why": "저조도·내열 처리"
+     },
+     {
+      "item": "전해 드럼·설비 감가상각",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "https://www.newsquest.co.kr/news/articleView.html?idxno=266188",
+      "pass_through": "미확인",
+      "why": "회로박 신규 설비 ₩49.0B 투자"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-05",
+  "summary": "약한 고리는 구리 원료 가격과 말레이시아 공장 전력이다. 구리는 판가에 연동되지만 시세가 급히 움직이면 재고 손익(1Q 재고평가 환입 ₩12.0B)이 생긴다. 공급사 이름은 공시하지 않았다",
+  "links": [
+   {
+    "item": "구리 원료",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "전기동·스크랩",
+      "status": "추정",
+      "source": "미확인"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "균형",
+    "capacity_basis": "전기동은 상품 시장 — 물량 병목 근거 없음(가격 위험)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 3,
+    "top_share": 0.1,
+    "region_share": 0.45,
+    "region": "중국(세계 정련동 생산 약 45%, 업계 통계 근사)",
+    "secured": "복수구매",
+    "why": "전기동은 상품 시장이라 물량 병목 근거가 없다. 인증 공급사 3곳·재인증 3개월·1위 점유율 10%·물량 확보 방식(복수 구매)은 업계 구조로 본 추정 — 회사 공시 미확인. 2Q PT: 운전자본 증가는 구리 원재료 구매",
+    "relief": "미확인",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+    "input": "copper"
+   },
+   {
+    "item": "전력",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "말레이시아 사라왁 전력 공급사(미공시)",
+      "role": "말레이시아 공장 전력",
+      "status": "추정",
+      "source": "미확인"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "말레이시아",
+    "secured": "미확인",
+    "why": "전해 공정은 전력이 끊기면 멈춘다 — 단일 지역 집중 · 지역 집중 1.0 = 말레이시아 공장 전력은 현지 전력망 하나(추정)",
+    "relief": "미확인",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf"
+   },
+   {
+    "item": "전해 드럼·생산 설비",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "티타늄 음극 드럼·제박기",
+      "status": "추정",
+      "source": "미확인"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "회로박 ₩49.0B 투자 2027년 말 완료 예정(IBK)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "증설 속도를 정하는 설비",
+    "relief": "미확인",
+    "source": "https://www.newsquest.co.kr/news/articleView.html?idxno=266188"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-05",
+  "unit": "동박 톤(연)",
+  "summary": "회사는 전체 명목 캐파를 이번 자료에 숫자로 밝히지 않았다. 가동률은 2025년 47.4% → 1Q26 66.6% → 2Q26 72.1%(반기보고서, 데이터뉴스). 말레이시아 5공장(약 1만 톤) 7월 가동, 6공장(약 1만 톤) 4Q 조기 가동 추진. 회로박은 3,700톤(2025) → 6,700톤(2026) → 2027년 말 1만 6,000톤(IBK)",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": 0.721,
+   "basis": "2Q26 가동률(반기보고서 인용 보도)",
+   "source": "https://datanews.co.kr/news/article.html?no=146298"
+  },
+  "plans": [
+   {
+    "name": "말레이시아 5공장 전지박",
+    "add": 10000,
+    "stage": "가동",
+    "online": "2026-07",
+    "capex": "미확인",
+    "blocker": "초기 수율·고정비",
+    "source": "https://www.newsquest.co.kr/news/articleView.html?idxno=266188"
+   },
+   {
+    "name": "말레이시아 6공장 전지박",
+    "add": 10000,
+    "stage": "발표",
+    "online": "2026-12",
+    "capex": "미확인",
+    "blocker": "북미 ESS 수요 지속",
+    "source": "https://www.businesspost.co.kr/BP?command=article_view&num=451226"
+   },
+   {
+    "name": "회로박 증설(익산 전환 포함)",
+    "add": 9300,
+    "stage": "착공",
+    "online": "2027-12",
+    "capex": 49.0,
+    "blocker": "HVLP 3·4급 수율",
+    "source": "https://www.newsquest.co.kr/news/articleView.html?idxno=266188"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 73.5,
+    "rev": 677.5,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 2Q26",
+    "capex": 53.6,
+    "rev": 668.7,
+    "kind": "실적"
+   }
+  ],
+  "sites_none": "말레이시아·익산 공장은 소유 시설이지만 이번 회차에 위성 등록부(knowledge/models/sites/co-lotteem.yaml)를 만들지 못했다 — 다음 회차 등록 대기"
+ },
+ "pipeline": {
+  "none": "개별 수주 금액을 공시하지 않는다. 동박은 고객과 연 단위 물량·가공비를 협상해 판다. 장기공급계약(LTA)은 3Q 보도자료의 추진 발언뿐이라 수주로 보지 않는다(금지표: 협력·MOU → 매출)"
+ },
+ "moat": {
+  "summary": "해자는 아직 약하다. 전지박은 중국 업체와 가격 경쟁이고, 회로박 HVLP는 일본·대만 소수 업체가 앞서 있다. 비중국 공급망(말레이시아)과 국내 유일 회로박 양산이라는 위치가 지금의 차별점이다",
+  "items": [
+   {
+    "kind": "비중국 공급망 위치",
+    "verdict": "보통",
+    "claim": "북미 고객이 중국산을 피하면서 말레이시아·한국 동박을 찾는다",
+    "evidence": "3Q 보도: '비중국 공급망 확보가 최우선인 북미 고객'",
+    "quant": "3Q 매출 +102% YoY",
+    "falsifier": "북미 고객이 중국계 동남아 공장 물량을 같은 조건으로 받는다"
+   },
+   {
+    "kind": "회로박 HVLP 양산",
+    "verdict": "약함",
+    "claim": "AI 서버 기판용 HVLP를 국내에서 유일하게 양산한다고 회사가 말한다",
+    "evidence": "2Q PT·NH: 3월 HVLP 양산 시작",
+    "quant": "1Q 회로박 매출 ₩21.0B, HVLP 3·4급 수율은 낮다(데이터뉴스)",
+    "falsifier": "2027년 회로박 판매 2배 목표 미달 또는 HVLP 비중 50% 미달"
+   },
+   {
+    "kind": "말레이시아 저원가 전력",
+    "verdict": "보통",
+    "claim": "전해 공정 원가의 큰 몫인 전력을 말레이시아에서 싸게 쓴다",
+    "evidence": "2Q PT 전략 지역",
+    "quant": "미확인(전력 단가 비교 미공시)",
+    "falsifier": "말레이시아 전력 요금 인상"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-05",
+  "summary": "최대주주는 롯데케미칼이다(2023년 일진머티리얼즈 인수). 대표는 김연섭. 경영진의 정치·사적 연결은 공개 기록으로 확인하지 못했다",
+  "people": [
+   {
+    "name": "김연섭",
+    "role": "대표이사",
+    "since": "미확인",
+    "profile": "3Q 보도자료에서 회사를 대표해 발언",
+    "business": "롯데그룹 계열",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.thelec.kr/news/articleView.html?idxno=64930"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "롯데그룹 계열(최대주주 롯데케미칼)",
+    "strength": 2,
+    "exposure": 0.0,
+    "basis": "그룹 계열사 매출 비중은 미확인. 계열 관계가 매출을 만든다고 쓰지 않는다",
+    "evidence": "https://www.tradingview.com/news/hankyung:567e7459065a7:0/"
+   }
+  ]
+ },
+ "sync": {
+  "none": "동박 매출은 구리 시세와 고객 물량이 함께 정한다. 이번 회차에 config/trade_ppi.yaml의 동박(HS 741011) 시계열을 대조하지 못했다 — 다음 회차"
+ },
+ "pq": {
+  "none": "회사가 분기 판매량을 매 분기 공시하지 않는다(1Q 4,800톤만 NH 인용). 가격·물량 분해를 잴 수 없다"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수 없음. 2026-09 롯데에코월 지분 90% 매각은 처분이라 시너지 모형 대상이 아니다"
+ },
+ "midterm": {
+  "exposure": {
+   "clean_energy_credit": 0.6,
+   "tariff_codify": 0.3
+  },
+  "sub": "battery_materials",
+  "etf": "LIT",
+  "why": "미국 직접 매출은 미공시. 북미 ESS·EV 고객 공급이 3Q 성장 동인 — IRA 세액공제(ESS 투자세액공제·첨단제조)는 고객 경유 노출이라 0.6, 말레이시아 생산분의 미국 관세는 0.3(가설)"
+ },
+ "events": [
+  {
+   "date": "2025-11-10",
+   "tag": "하루 +29.8%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-01-22",
+   "tag": "하루 +26.6%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-05-12",
+   "tag": "1Q 실적 뒤 NH 목표 ₩95,000·IBK ₩80,000 상향",
+   "kind": "의견 변경"
+  },
+  {
+   "date": "2026-05-04",
+   "tag": "장중 고점 ₩83,100(하루 +17.7%)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "2Q 실적(영업손실 ₩16.9B)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-07",
+   "tag": "키움 목표 ₩82,000 → ₩54,000",
+   "kind": "의견 변경"
+  },
+  {
+   "date": "2026-09-03",
+   "tag": "롯데에코월 지분 90% 매각",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-02",
+   "tag": "하루 +18.3%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-14",
+   "tag": "롯데그룹 시가총액 1위(보도)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-19",
+   "tag": "하루 +18.4%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-03",
+   "tag": "하루 −10.3%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "3Q 실적 — 매출 최대·영업손실 확대, 장중 −15%",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-05",
+   "kind": "실적",
+   "tag": "3Q26 실적",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "sources": [
+  "2Q26 경영실적 PT: https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/SZAWEWFANB5MN_H4888SZVNUAJT727FGE202686145533.pdf",
+  "3Q 잠정 보도(디일렉): https://www.thelec.kr/news/articleView.html?idxno=64930",
+  "3Q 잠정 보도(비즈니스포스트): https://www.businesspost.co.kr/BP?command=article_view&num=451226",
+  "3Q 잠정 보도(리드경제): https://www.leadeconomy.co.kr/news/articleView.html?idxno=10942",
+  "반기 실적·7개사 추정(데이터뉴스 9/4): https://datanews.co.kr/news/article.html?no=146298",
+  "키움 추정(이투데이 8/7): https://www.etoday.co.kr/news/view/2611973",
+  "NH 추정(5/12): https://v.daum.net/v/20260512084404289?f=p",
+  "IBK 추정(5/12): https://www.newsquest.co.kr/news/articleView.html?idxno=266188"
+ ],
+ "overrides": {
+  "growth_base": {
+   "start": 0.4,
+   "end": 0.03,
+   "decay": 0.25
+  },
+  "margin_base": {
+   "target": 0.08,
+   "year_target": 4,
+   "lr": 0.3,
+   "lam": 0.35
+  },
+  "s2c": 0.8,
+  "why": "매출은 FY2027 컨센서스(+39%)·FY2028(+30%) 경로를 따라 빠르게 늘다 둔화한다고 둔다. 장기 영업이익률 8%는 2022년 11.6%(호황)와 2023년 1.5% 사이, 키움 FY2028 6.2%보다 조금 높은 값 — 회로박 비중 확대를 반영한 판단. 매출 ÷ 투하자본 0.8은 TTM 0.45보다 높다: 말레이시아 5·6공장 캐파가 이미 깔려 있어 증분 매출에 드는 자본이 작다"
+ },
+ "multiples_now": {
+  "pe_fwd": null,
+  "pe_fwd2": null,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd": 20.3,
+  "ev_ebitda_fwd2": 10.4,
+  "ev_ebitda_fwd3": 7.9
+ },
+ "forward": {
+  "as_of": "2026-11-05",
+  "ntm": {
+   "eps": -100,
+   "ebitda": 88.0,
+   "ebit": 3.0,
+   "revenue": 1189.7,
+   "rev_ttm": 814.6
+  },
+  "horizons": {
+   "2": {
+    "eps": 800,
+    "ebitda": 172.0,
+    "ext": 0
+   },
+   "3": {
+    "eps": 1300,
+    "ebitda": 225.0,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "ev_ebitda_fwd": "street_news"
+  },
+  "source": "NTM = 4Q26(FY 잔여 매출 ₩252.8B, 영업손실 약 −₩20B) + FY2027 × 0.75. EBITDA = 영업이익 + 감가상각 연 약 ₩90B(키움 2028 ₩89.4B). Fwd 2Y = FY2027 × 0.25 + FY2028 × 0.75(키움 1곳). Fwd 3Y는 FY2028 + 25% 외삽(ext). EPS는 지배주주 순이익 추정이 없어 영업이익 − 이자 ₩15B 가정의 대략값(모델 추정) — 멀티플 계산에 쓰지 않는다"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "TradingView 분기 매출·매출총이익(3Q22~2Q26) + 회사 PT 영업이익(1Q25~2Q26) + 3Q26 잠정 보도",
+  "key": "KRX:020150",
+  "currency": "KRW",
+  "q": [
+   {
+    "period": "2022-09-30",
+    "rev": 169696051570,
+    "cogs": 136520358015,
+    "gp": 33175693555,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 171172539630,
+    "cogs": 142099949672,
+    "gp": 29072589958,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 163641169901,
+    "cogs": 146423885333,
+    "gp": 17217284568,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 198156156712,
+    "cogs": 181943760056,
+    "gp": 16212396656,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 217671724682,
+    "cogs": 199891911218,
+    "gp": 17779813464,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 229537005706,
+    "cogs": 213999910738,
+    "gp": 15537094968,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 241707544353,
+    "cogs": 220206136042,
+    "gp": 21501408311,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 262700694495,
+    "cogs": 241659379640,
+    "gp": 21041314855,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 211447693928,
+    "cogs": 224424782859,
+    "gp": -12977088931,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 186396087415,
+    "cogs": 207566132523,
+    "gp": -21170045108,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 157974854210,
+    "cogs": 182786613871,
+    "gp": -24811759661,
+    "sga": 21188240339.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -46000000000.0
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 204945979311,
+    "cogs": 219216637973,
+    "gp": -14270658662,
+    "sga": 16829341338.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -31100000000.0
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 143705956170,
+    "cogs": 161910857180,
+    "gp": -18204901010,
+    "sga": 16095098990.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -34300000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 170904016902,
+    "cogs": 188069184435,
+    "gp": -17165167533,
+    "sga": 16634832467.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -33800000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 159848681509,
+    "cogs": 147653261145,
+    "gp": 12195420364,
+    "sga": 17195420364.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -5000000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 194197979593,
+    "cogs": 193274392862,
+    "gp": 923586731,
+    "sga": 17823586731.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -16900000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 289700000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -21300000000.0
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-05",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "전지박 회사가 AI 데이터센터 소재 회사로 바뀐다는 이야기다. AI 서버 기판용 HVLP 회로박, 데이터센터 ESS·BBU용 전지박, 중국을 피하려는 북미 고객이 세 축이다. 매출은 3Q에 분기 최대(₩289.7B, +102% YoY)를 찍었지만 9개 분기째 영업적자다. 주가는 5월 장중 ₩83,100 → 7월 ₩22,600 → 10월 ₩58,500 → 11/5 ₩34,850으로 이야기의 값이 크게 흔들린다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "Buy 3·Overweight 2·Hold 2",
+      "7명",
+      "11/5"
+     ],
+     [
+      "목표가(보도)",
+      "키움 ₩54,000(8/7, ₩82,000에서 하향)·NH ₩95,000·IBK ₩80,000(5/12)",
+      "날짜가 제각각",
+      "보도"
+     ],
+     [
+      "FY2027 영업이익",
+      "7개사 평균 ₩30.8B(9/4)",
+      "전원 흑자 전환 전망",
+      "데이터뉴스"
+     ]
+    ],
+    "read": "셀사이드는 매수 쪽이지만 근거는 2027~2028년 흑자 전환이다. 키움은 2028 EBITDA ₩190B에 14배를 곱했다 — 지금 값은 2년 뒤 이익을 미리 사는 구조다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관·외국인 보유 변화",
+      "미확인",
+      "",
+      "한국 13F 없음"
+     ],
+     [
+      "최대주주",
+      "롯데케미칼(2023년 인수)",
+      "",
+      "보도"
+     ]
+    ],
+    "read": "외국인·기관 수급 자료를 이번 회차에 확보하지 못했다(미확인)"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "텔레그램 공개 채널",
+      "3Q 잠정실적 표 1건(11/5)",
+      "매출 +13%·영업이익 적자 확대로 정리",
+      "공개 채널"
+     ],
+     [
+      "일 거래량",
+      "3Q 발표일 46만 주(11/5 장중) vs 260일 평균 41만 주",
+      "",
+      "TradingView"
+     ]
+    ],
+    "read": "10월 두 번의 하루 +18% 급등은 원인이 공시로 확인되지 않는다. 테마 ETF(전고체·ESS) 편입 보도가 있었다 — 리테일·테마 자금 비중이 크다는 정황"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "역대 최대 매출 vs 9분기 연속 적자",
+      "디일렉·리드경제·아주경제",
+      "11/5"
+     ]
+    ],
+    "read": "언론은 '매출은 최대, 이익은 아직'으로 갈렸다"
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 서버 회로박(HVLP)",
+    "thesis": "AI 서버 기판이 고속 신호용 HVLP 동박을 쓰면서 회로박이 고부가 제품이 된다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "회로박 캐파 3,700톤(2025) → 6,700톤(2026) → 1만 6,000톤(2027 말), 2027 판매 2배·HVLP 50% 이상 목표",
+    "status": "강화",
+    "falsifier": "2027년 상반기 회로박 판매가 전년 대비 50% 미만 성장",
+    "source": "https://www.thelec.kr/news/articleView.html?idxno=64930"
+   },
+   {
+    "name": "북미 ESS 비중국 동박",
+    "thesis": "북미 ESS·완성차가 중국산을 피해 말레이시아 동박을 산다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3Q 매출 +102% YoY, 6공장 4Q 조기 가동",
+    "status": "강화",
+    "falsifier": "4Q 매출이 3Q보다 15% 넘게 줄어든다",
+    "source": "https://www.businesspost.co.kr/BP?command=article_view&num=451226"
+   },
+   {
+    "name": "동박 공급 부족과 가공비",
+    "thesis": "업계 캐파가 회로박으로 옮겨 전지박이 부족해지고 가공비를 올릴 수 있다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "미확인 — 가공비 인상 계약은 공시되지 않았다",
+    "status": "정황",
+    "falsifier": "2027년 가공비 협상이 동결로 끝난다",
+    "source": "https://datanews.co.kr/news/article.html?no=146298"
+   },
+   {
+    "name": "가동률 레버리지",
+    "thesis": "고정비가 큰 공장이라 가동률이 오르면 이익이 빨리 돈다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "가동률 47.4%(2025) → 72.1%(2Q26), EBITDA 2Q ₩7.7B → 3Q ₩5.6B",
+    "status": "유지",
+    "falsifier": "6공장 가동 뒤에도 4Q·1Q 영업손실이 ₩20B 이상",
+    "source": "https://datanews.co.kr/news/article.html?no=146298"
+   },
+   {
+    "name": "반대: 흑자는 늘 다음 해",
+    "thesis": "2024년부터 '내년 흑자'가 반복됐고 3Q에도 매출이 49% 늘었는데 손실이 커졌다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "9개 분기 연속 영업적자, 3Q 영업이익률 −7.4%",
+    "status": "유지",
+    "falsifier": "1Q27 분기 영업흑자(IBK 예상 시점)",
+    "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=10942"
+   }
+  ],
+  "lead": {
+   "summary": "롯데에너지머티리얼즈(020150)는 구리를 전기분해로 얇게 펴 배터리용 전지박과 기판용 회로박을 만드는 회사다(옛 일진머티리얼즈, 2023년 롯데케미칼 인수). 3Q 매출 ₩289.7B는 분기 최대이고 전년의 두 배지만 영업손실 ₩21.3B로 9개 분기째 적자다. 주가는 11/5 장중 ₩34,850(−15.2%)",
+   "value_story": "적자라 Fwd 1Y EV/EBITDA 20.3배(다음 4개 분기 EBITDA 약 ₩88B, 모델 추정)로 본다. Fwd 2Y는 10.4배로 내려간다 — 가치는 2027~2028년 흑자 전환과 회로박 믹스가 정한다. TTM EV/매출 2.19배는 중국 동박사(1.1~1.8배)보다 높고 대만 회로박 회사 코텍(9.7배)보다 한참 낮다 — 시장은 아직 '전지박 회사'로 값을 매긴다",
+   "premium": {
+    "multiple": "TTM EV/매출 2.19배, 동종 6곳 중앙값 1.70배(SKC 1.46·솔루스 2.71·노드 1.84·자위안 1.09·미쓰이금속 1.55·코텍 9.68)",
+    "eps": "EPS는 적자 — FY2027 영업이익 컨센서스 ₩30.8B(7개사)가 첫 흑자 해"
+   },
+   "why_excited": "2025년 10월 ₩24,000대에서 2026년 5월 장중 ₩83,100까지 3.4배 올랐다. AI 회로박(HVLP 3월 양산)과 북미 ESS 수요, 1Q 영업손실 축소(−₩5.0B)가 이유였다. 6~7월에 ₩22,600까지 −73% 빠졌다 — 2Q 손실 확대와 EV 부진이 겹쳤다(원인 일부 미확인). 10월 다시 ₩58,500까지 올랐다가 3Q 손실 확대로 11/5 −15%",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "전지박",
+     "what": "배터리 음극용 동박",
+     "use": "EV·ESS·BBU·전동공구",
+     "money": "구리 + 가공비"
+    },
+    {
+     "kind": "제품",
+     "name": "회로박(HVLP·RTF·극박)",
+     "what": "PCB·CCL용 동박",
+     "use": "AI 서버 기판·반도체 패키징",
+     "money": "구리 + 높은 가공비"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "EV 전지박 회사 → AI 데이터센터 소재(회로박·ESS·BBU) 회사. NH는 ESS+회로박 비중을 2026년 47% → 2027년 53%로 본다",
+     "evidence": "2Q PT, NH(5/12)",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "2027년 ESS+회로박 비중 50% 미만"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "회로박 HVLP 가공비가 전지박의 3배 이상(키움 추정). 회로박 매출은 1Q ₩21.0B로 아직 13%",
+     "evidence": "키움(8/7)·NH",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "HVLP 3·4급 수율 개선 지연"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "HVLP 1~4급 양산, HVLP5 개발, RTF·1~3㎛ 극박 — 국내 유일 회로박 양산이라는 위치",
+     "evidence": "2Q PT 8쪽",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "고객 인증에서 일본·대만 공급사에 밀림"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(주문→출하 리드타임을 회사가 공시하지 않는다 — 동박은 고객 연간 공급 물량을 월 단위로 출하한다). 대신 증설 속도: 말레이시아 5공장 2026년 7월 가동, 6공장을 2027년 초(IBK 5/12 기준 계획)에서 4Q26으로 앞당겼다",
+     "evidence": "2Q PT·3Q 보도",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "6공장 가동이 2027년 2Q 이후로 밀림"
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(인수 없음). 9/3 롯데에코월 지분 90% 매각 — 대금은 동박 투자에 쓴다(보도)",
+     "evidence": "데이터뉴스 9/4",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "추가 자산 매각·유상증자"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "AI 데이터센터 투자 → 서버 기판 → HVLP 회로박. 고객 투자 발표를 이 회사 매출로 바로 옮기지 않는다 — 확인된 것은 회로박 1Q 매출 ₩21.0B와 2027 판매 2배 목표",
+     "evidence": "NH·3Q 보도",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "AI 서버 기판 업체의 CCL 주문 둔화"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "미국 IRA 첨단제조·ESS 투자세액공제는 고객(배터리사) 경유 노출 — 회사 직접 수혜는 미확인",
+     "evidence": "중간선거 영향 모형",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "ESS 투자세액공제 축소 의결",
+     "house": {
+      "level": 1,
+      "why": "2026 회기 중 축소 법안 본회의 표결 기록 미확인"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "중국산 배터리 소재 관세·우려 외국 기관(FEOC) 규정이 비중국 동박 수요를 만든다 — 회사 특정 조치는 없다",
+     "evidence": "3Q 보도 '비중국 공급망'",
+     "drives": "revision",
+     "status": "정황",
+     "falsifier": "중국산 동박 관세 완화",
+     "house": {
+      "level": 0,
+      "why": "행정부 조치"
+     },
+     "senate": {
+      "level": 0,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 겨냥한 미국·한국 법안 미확인)",
+     "evidence": "로비 공시 키 없음(미확인)",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "미국 배터리 소재 원산지 규정 강화 의결"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "윤태오",
+    "house": "가상 리서치 하우스 해온증권",
+    "thesis": "6공장이 돌면 2027년 매출이 ₩1.2T를 넘고 회로박이 이익을 바꾼다 — 지금은 Fwd 2Y EV/EBITDA 10배",
+    "evidence": [
+     "3Q 매출 +102% YoY",
+     "회로박 캐파 2027 말 1만 6,000톤",
+     "Fwd 2Y EV/EBITDA 10.4배"
+    ],
+    "falsifier": "1Q27에도 영업적자"
+   },
+   {
+    "seat": "Buy",
+    "name": "서민하",
+    "house": "가상 리서치 하우스 다솜투자",
+    "thesis": "매출이 컨센서스를 13% 넘었고 손실은 컨센서스와 비슷하다 — 오늘 −15%는 이익 기대가 너무 앞섰던 탓",
+    "evidence": [
+     "3Q 매출 ₩289.7B vs ₩256.5B",
+     "영업손실 −₩21.3B vs −₩20.0B"
+    ],
+    "falsifier": "4Q 매출 ₩250B 미만"
+   },
+   {
+    "seat": "Neutral",
+    "name": "강도윤",
+    "house": "가상 리서치 하우스 누리자산",
+    "thesis": "방향은 맞지만 흑자 시점이 계속 밀린다. 1Q27 분기 흑자 확인 전에는 위아래가 다 열려 있다",
+    "evidence": [
+     "9개 분기 연속 적자",
+     "IBK 분기 흑자 예상 1Q27"
+    ],
+    "falsifier": "1Q27 영업흑자"
+   },
+   {
+    "seat": "Sell",
+    "name": "문서진",
+    "house": "가상 리서치 하우스 한결증권",
+    "thesis": "매출이 49% 늘어도 손실이 커졌다 — 증설 고정비가 가공비를 앞선다. 차입도 늘었다",
+    "evidence": [
+     "3Q 영업이익률 −7.4%",
+     "차입 ₩181.4B(2025 말) → ₩337.1B(6/30)"
+    ],
+    "falsifier": "가공비 인상 계약 공시"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "임하준",
+    "house": "가상 리서치 하우스 바른리서치",
+    "thesis": "흑자 전환은 2024년부터 매년 '내년'이었다. 중국 동박사가 1.1~1.8배 EV/매출에 거래되는데 2.2배다",
+    "evidence": [
+     "2024 −₩64.4B·2025 −₩145.2B 영업손실",
+     "중국 동종 EV/매출 1.09·1.84"
+    ],
+    "falsifier": "FY2027 영업이익 컨센서스 ₩50B 이상으로 상향"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "3Q 매출 ₩289.7B는 전년의 두 배다. 6공장이 4Q에 돌면 판매량이 더 는다"
+     },
+     {
+      "seat": "Buy",
+      "text": "매출은 컨센서스 ₩256.5B를 13% 넘었고 영업손실은 ₩1.3B 차이다 — 실적이 무너진 게 아니다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "Fwd 1Y EV/EBITDA 20배는 흑자 전환을 이미 넣은 값이다. 증거는 1Q27 분기 실적이다"
+     },
+     {
+      "seat": "Sell",
+      "text": "2Q 영업이익률 −8.7%, 3Q −7.4% — 매출이 49% 늘었는데 이익률이 1.3%p만 나아졌다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "2024년 −₩64.4B, 2025년 −₩145.2B, 2026년도 적자다. '내년 흑자'는 세 번째다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "판매량은 늘지만 가공비 인상은 계약으로 나온 적이 없다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "2025년은 가동률 47%였다. 2Q26은 72%다 — 같은 회사가 아니다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "3Q 손실은 5공장 초기 고정비다. 가동 초기는 늘 이렇다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "회사가 4Q 숫자 가이던스를 주지 않았다. 매출 서프라이즈만으로 값을 올릴 근거가 없다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "차입이 6개월 만에 거의 두 배다. 흑자가 늦으면 증자 위험이 있다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "에코월 매각 대금 ₩170.8B(보도)가 3Q에 들어왔다 — 증자 압박은 낮다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "HVLP 3·4급 수율이 낮다는 보도가 있다. 회로박 2배 목표는 수율이 정한다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "Fwd 2Y 10배는 키움 1곳의 2028 추정에 기댄다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "범용 회로박이 부족하다고 회사와 업계가 같이 말한다 — 가격 결정력이 생기는 구간이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "중국 동박사는 흑자인데도 EV/매출 1~2배다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "6공장·회로박 증설이 2027년 이익을 바꾼다"
+     },
+     {
+      "seat": "Buy",
+      "text": "매출 서프라이즈와 공급 부족이 이어진다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "1Q27 흑자 확인 전에는 규칙 등급을 옮길 근거가 약하다"
+     },
+     {
+      "seat": "Sell",
+      "text": "가공비 계약 없이는 이익률이 따라오지 않는다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "적자 회사의 프리미엄은 근거가 없다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Neutral",
+    "Neutral": "Neutral",
+    "Sell": "Sell",
+    "Strong Sell": "Sell"
+   },
+   "reason": "매출 서프라이즈와 6공장 가동은 살아남았고, 흑자 시점·가공비 계약 부재 반박도 살아남았다. 1Q27 분기 흑자 확인 전에는 규칙 등급을 따른다",
+   "dissent": "Strong Buy 자리: Fwd 2Y EV/EBITDA 10배는 2027~2028년 이익을 덜 반영한다"
+  }
+ },
+ "industry_why": "등록부에 소재 업종 베타가 없어 전기장비(배터리 부품 포함, 베타 1.25)를 쓴다 — 전자부품(0.97)보다 높은 쪽을 골랐다: 9개 분기 적자·높은 주가 변동"
+}
