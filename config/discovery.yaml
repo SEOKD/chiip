@@ -243,6 +243,19 @@ themes:
       - {id: us-crs, name: Carpenter Technology, aliases: ["Carpenter Technology"], market: us, code: "CRS", edge: 6, why: "항공용 특수 합금 — 공급 부족 지속과 가격 확인(1차 판정)"}
       - {id: us-ndsn, name: Nordson, aliases: ["Nordson"], market: us, code: "NDSN", edge: 5, why: "정밀 도포·계량 장비 — 전자·패키징 수요 확인(1차 판정)"}
       - {id: us-iex, name: IDEX, aliases: ["IDEX Corporation"], market: us, code: "IEX", edge: 4, why: "유체 제어·정밀 부품 — 소량 고마진 부품의 수요 회복 확인(1차 판정)"}
+  # 라이브·스포츠 엔터테인먼트(2026-11-05 마스터 지시 "FWONK(Formula 1), LYV, TKO, SPHR 같은 엔터테인먼트 섹터도 레이더 망에")
+  - id: live_entertainment
+    name: 라이브·스포츠 엔터테인먼트(스포츠 IP·공연·체험 공연장)
+    watch: true
+    sector: consumer
+    bottleneck: "희소한 스포츠 리그·공연 IP와 공연장·좌석은 복제가 어렵다 — 중계권 재계약·티켓 가격·스폰서 단가가 IP 소유자에게 모이는지가 관건(1차 판정)"
+    driver: "중계권 계약 단가 × 계약 기간 + 관객 수 × 티켓·부대 지출 + 스폰서십"
+    evidence: ["중계권 재계약 금액·기간", "티켓 판매·이연 매출", "스폰서십 매출 증가율", "공연장 가동률·신규 개장"]
+    candidates:
+      - {id: us-fwonk, name: Formula One Group, aliases: ["Formula One Group", "Formula 1", "Liberty Media"], market: us, code: "FWONK", edge: 7, why: "F1 상업권 보유 — 미국 중계권·스폰서·레이스 개최료 단가와 MotoGP 편입 효과 확인(1차 판정)"}
+      - {id: us-lyv, name: Live Nation Entertainment, aliases: ["Live Nation Entertainment", "Live Nation", "Ticketmaster"], market: us, code: "LYV", edge: 6, why: "공연 기획·티켓마스터·공연장 — 관객 수·티켓 단가와 반독점 소송 결과 확인(1차 판정)"}
+      - {id: us-tko, name: TKO Group Holdings, aliases: ["TKO Group Holdings", "UFC", "WWE"], market: us, code: "TKO", edge: 7, why: "UFC·WWE IP — 중계권 재계약 단가와 신규 스포츠 사업 확인(1차 판정)"}
+      - {id: us-sphr, name: Sphere Entertainment, aliases: ["Sphere Entertainment"], market: us, code: "SPHR", edge: 6, why: "라스베이거스 Sphere 공연장 — 회당 매출·가동률과 추가 공연장 계획 확인(1차 판정)"}
   # >>> tradingview — radar/tv_sync.py가 만든다. 손으로 고치지 않는다(종목은 TradingView에서 고친다)
   - id: "tv_1_us_미분류"
     name: "TradingView 1_US 미분류"
