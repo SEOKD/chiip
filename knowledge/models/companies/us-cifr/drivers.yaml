@@ -12,15 +12,14 @@ horizon: 10
 as_of: '2026-11-05'
 market:
   date: '2026-11-05'
-  price: 6.19
+  price: 6.5
   shares: 0.499674
   net_debt: 5.976
-  source: '가격 = 11/5 종가 추정 $6.19(Fiscal.ai calculated_market_cap $2.8249B ÷ 표지 주식
-    456,365,113주. 11/4 종가 $6.50). 주식 = 10-Q 표지(10/30). 차입 = CFO 3Q 콜(11/2) 10월 거래
-    반영 총차입 약 $6.7B(프로젝트 비소구 담보채 $4.5B + 모회사 전환사채 $2.2B). 현금 = 무제한 현금 약 $724M만 — 제한
-    현금 약 $3.0B(회사 순부채 약 $3B 기준과의 차이)는 계약 캠퍼스 건설에만 쓰는 돈이라 지분 몫 현금에서 뺀다. 그래서 순부채 약 $5.98B
-    = 완공 뒤 순부채와 같은 기준이고, 완공 뒤 EBITDA(12개월 뒤 다음 4개 분기)와 짝이 맞는다. 회사 기준 순부채는 약 $3B. 9/30
-    재무상태표: 현금 $656M·제한 현금 $2.197B·차입 장부가 $5.56B https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm'
+  source: '가격 = 11/4 종가 $6.50(TradingView·yfinance, 11/5 장 시작 전 조회). 주식 = 10-Q 표지(10/30).
+    차입 = CFO 3Q 콜(11/2) 10월 거래 반영 총차입 약 $6.7B(프로젝트 비소구 담보채 $4.5B + 모회사 전환사채 $2.2B).
+    현금 = 무제한 현금 약 $724M만 — 제한 현금 약 $3.0B(회사 순부채 약 $3B 기준과의 차이)는 계약 캠퍼스 건설에만 쓰는 돈이라
+    지분 몫 현금에서 뺀다. 그래서 순부채 약 $5.98B = 완공 뒤 순부채와 같은 기준이고, 완공 뒤 EBITDA(12개월 뒤 다음 4개 분기)와
+    짝이 맞는다. 회사 기준 순부채는 약 $3B. 9/30 재무상태표: 현금 $656M·제한 현금 $2.197B·차입 장부가 $5.56B https://www.sec.gov/Archives/edgar/data/1819989/000181998926000050/cifr-20260930.htm'
 rev0: 0.187376
 ic0: 6.768
 scenarios:
@@ -102,3 +101,4 @@ evidence:
 - 3Q26 보도자료 8-K https://www.sec.gov/Archives/edgar/data/1819989/000181998926000047/cifr-20261102.htm
 - 전환사채 8-K(10/13·10/14·10/16) https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001819989&type=8-K
 - KBW 하향 보도(11/4) https://www.moomoo.com/hans/news/post/1003495176/keefe-bruyette-woods-downgrades-cipher-digital-to-market-perform-9
+- '보강 적용: R-20261103-01·R-20261031-01·R-20261030-01·D-20261104-01·D-20261102-01·X-20261102-01'
