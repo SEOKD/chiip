@@ -4,7 +4,7 @@
 # 2026-10-30 마스터가 알려준 수량·평균 매입가는 개인 금융 정보라 저장소에 두지 않는다 → config/portfolio_positions.local.yaml(git 제외, 이 PC에만). 평가손익(사실)만 계산한다. 치입은 투자자문이 아니다 — 추가 매수·매도 시점·비중은 제시하지 않고, 사실·지표·일정만.
 # status: 보유 / 관심(와치리스트 — 팔로업은 같게, 손익 없음) / 종료
 # 실체 확인: SEC EDGAR 회사 검색·submissions(cik), easyconomics 회사 개요 (2026-10-29)
-updated: 2026-11-05   # 2026-11-05 AEIS 와치리스트 제외 · 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
+updated: 2026-11-05   # 2026-11-05 BKSY 와치리스트 추가 · 2026-11-05 AEIS 와치리스트 제외 · 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
 holdings:
   - id: co-enchantedrock
     ticker: EROC
@@ -84,6 +84,17 @@ holdings:
     sub: fpga
     related: ["Altera", "AMD", "Xilinx", "Microchip", "Achronix", "Efinix"]
     since: 2026-11-03
+    status: 관심
+  - id: us-bksy
+    ticker: BKSY
+    name: BlackSky Technology Inc.
+    cik: 1753539
+    exchange: NYSE
+    names: ["BlackSky Technology", "BlackSky"]
+    wiki: BlackSky
+    sub: space
+    related: ["Planet Labs", "Maxar", "Rocket Lab", "Spire Global", "Satellogic"]
+    since: 2026-11-05   # 마스터 지시 "Portfolio에 BKSY 추가하라"
     status: 관심
   - id: us-aeis
     ticker: AEIS
