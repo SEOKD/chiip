@@ -1,0 +1,97 @@
+auto: false
+id: jp-mtg
+name: MTG
+ticker: '7806'
+unit: BJPY
+unit_usd: 6451612.9
+industry: personal_products
+region_mix:
+  JP: 0.88
+  ASIA: 0.1
+  US: 0.02
+tax: 0.31
+rf_local: 0.02755
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 8610
+  shares: 0.039982
+  net_debt: 8.909
+  source: 가격 = TradingView 11/5 종가 ¥8,610. 주식 = 40,202,888주 − 자기주식 846,547주 = 39,356,341주(6/30,
+    3Q 결산단신). 현금 ¥9.83B·총차입 ¥18.74B = 6/30(TradingView·yfinance 일치). 차입이 9/30 ¥3.71B
+    → 3/31 ¥10.89B → 6/30 ¥18.74B로 늘었다 — Kirala 인수(¥3.9B)·재고·점포 투자로 보이나 차입 내역은 첨부
+    재무상태표를 열지 못해 미확인
+rev0: 142.0
+ic0: 69.318
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.18
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.1137
+      target: 0.13
+      year_target: 3
+      lr: 0.12
+      lam: 0.38
+    s2c: 2.5
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.28
+      end: 0.03
+      decay: 0.35
+    margin:
+      m0: 0.1137
+      target: 0.15
+      year_target: 3
+      lr: 0.12
+      lam: 0.25
+    s2c: 2.875
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.06
+      end: 0.015
+      decay: 0.3
+    margin:
+      m0: 0.1137
+      target: 0.11
+      year_target: 3
+      lr: 0.12
+      lam: 0.5
+    s2c: 2.125
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [142.0, 142.0] (3Q 결산단신(2026-08-04) 통기 예상: 매출 ¥142,000M·영업이익
+    ¥16,000M·경상이익 ¥16,000M·순이익 ¥11,000M·EPS ¥279.66, 배당 ¥37 https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm)'
+  growth: 컨센서스 없음 — 기본 10% 가정(약함)
+  margin: 출발 11% → 목표 13%(3년차, 덮어쓰기) → 장기 수렴 12%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.893 → 덮어쓰기 2.5
+  range: 손 보정 — 자동 범위(기본 10% ±40%)가 기본 경로 18%보다 강세가 낮아 맞지 않아 강세 28%(가이던스 상향 지속·FY9/26
+    +44%의 약 2/3)·약세 6%(유행 꺾임)로 둔다
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: 매출은 FY9/26 +44%(가이던스)에서 FY9/27 +18%(SMBC닛코 영업이익 ¥19.0B·12개월 선행 EPS ¥355에
+    맞는 성장)로 꺾이고 빠르게 둔화한다고 둔다 — 소비재 히트 상품은 평균 회귀가 빠르다. 장기 영업이익률 13%는 9개월 12.4%와 반기
+    15.1% 사이. 매출 ÷ 투하자본 2.5는 TTM 1.9보다 높다 — 위탁 생산 구조라 증분 매출에 드는 자본이 작다(추정). 장기 수렴
+    이익률 12%는 일본 뷰티 동종 중 이익률 높은 곳(밀본 12.9%·로토 12.1%) 수준
+  shares: '완전 희석 = 기본 0.039356341(2026-06-30) + 옵션·RSU·워런트·전환 0.0006 — 3Q 결산단신 9개월
+    EPS 기본 ¥247.66 vs 희석 ¥243.78 → 희석 비율 1.59% × 기본 '
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 3Q 영업이익률 7.4%(반기 15.1%) — 브랜딩·마케팅비 +94%'
+- '어닝콜 위험: 하반기 성장 투자 ¥4.5B(2Q 자료)'
+- '어닝콜 위험: 엔화 약세 지속 가정'
+- '2026-11-06 손 보정: 강세·약세 1년차 성장(provenance.range)'
+evidence:
+- '3Q FY9/26 결산단신(2026-08-04): https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm'
+- '3Q 결산·통기 상향 보도(WWD 8/4): https://www.wwdjapan.com/?p=2466820'
+- '긴자 플래그십·2046 목표(WWD 7/22): https://www.wwdjapan.com/articles/2456522'
+- '회사 IR: https://www.mtg.gr.jp/ir/'

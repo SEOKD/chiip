@@ -1,0 +1,1580 @@
+{
+ "id": "jp-mtg",
+ "name": "MTG",
+ "ticker": "7806",
+ "as_of": "2026-11-06",
+ "unit": "BJPY",
+ "currency_symbol": "¥",
+ "unit_usd": 6451612.9,
+ "industry": "personal_products",
+ "industry_why": "등록부에 뷰티·생활용품 업종이 없어 personal_products(베타 0.90, 추정)를 새로 넣었다 — Damodaran Household Products 표는 이번 회차에 대조하지 못했다. MTG 시장 베타 0.51(yfinance)은 지분 66%가 내부자라 유통 주식이 적어 낮게 나온 값으로 보고 쓰지 않는다",
+ "region_mix": {
+  "JP": 0.88,
+  "ASIA": 0.1,
+  "US": 0.02
+ },
+ "region_why": "지역별 매출은 이번 회차에 1차 자료로 대조하지 못했다(결산단신 첨부·설명자료 미열람). 인바운드(방일 관광객) 매출은 일본 매출로 잡힌다 — 긴자 플래그십 매출의 약 65%가 인바운드(WWD 7/22). 해외 직접 매출 10%는 추정",
+ "tax": 0.31,
+ "main_metric": "eps",
+ "main_metric_why": "흑자 회사이고 감가상각이 EBITDA의 약 22%(TTM ¥4.0B ÷ ¥18.0B)라 EPS가 주요 지표다. 회사 가이던스도 순이익·EPS로 낸다",
+ "profile": {
+  "price": 8610,
+  "shares_basic": 0.039356341,
+  "shares_date": "2026-06-30",
+  "cash": 9.83,
+  "debt": 18.739,
+  "customer_deposits": 0.0,
+  "source": "가격 = TradingView 11/5 종가 ¥8,610. 주식 = 40,202,888주 − 자기주식 846,547주 = 39,356,341주(6/30, 3Q 결산단신). 현금 ¥9.83B·총차입 ¥18.74B = 6/30(TradingView·yfinance 일치). 차입이 9/30 ¥3.71B → 3/31 ¥10.89B → 6/30 ¥18.74B로 늘었다 — Kirala 인수(¥3.9B)·재고·점포 투자로 보이나 차입 내역은 첨부 재무상태표를 열지 못해 미확인"
+ },
+ "dilution": {
+  "potential_total": 0.000626,
+  "options": 0.000626,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-06-30",
+  "source": "3Q 결산단신 9개월 EPS 기본 ¥247.66 vs 희석 ¥243.78 → 희석 비율 1.59% × 기본 주식 = 약 626,000주(신주예약권 추정). 종류별 수는 첨부 주석을 열지 못해 미확인"
+ },
+ "financials": {
+  "rev_ttm": 131.239,
+  "ebit_ttm": 14.004,
+  "invested_capital": 69.318,
+  "capex_ttm": 10.496,
+  "da_ttm": 3.989,
+  "sbc_ttm": 0.0,
+  "basis": "일본 기준(J-GAAP) 연결",
+  "note": "TTM = 4Q FY9/25(7~9월) + 1~3Q FY9/26. 매출 28.753+34.410+32.113+35.963. 영업이익 1.337+5.662+4.360+2.645(4Q25 = FY 10.665 − 9개월 9.328, 1Q = 마쓰이증권 결산표, 2Q = 반기 10.022 − 1Q, 3Q = 9개월 12.667 − 반기). 투하자본 = 순자산 60.409 + 차입 18.739 − 현금 9.830(6/30). CAPEX = FY9/25 연간 ¥10.5B(TradingView, TTM 미확인). 감가상각 = EBITDA TTM 17.993 − 영업이익 14.004(J-GAAP 영업이익에는 영업권 상각이 들어 있다)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 11/5. 일본 뷰티·생활용품 상장사. Fwd P/E = 종가 ÷ 다음 회계연도 EPS 컨센서스(TradingView earnings_per_share_forecast_next_fy). 성장 = 다음 FY 매출 컨센서스 ÷ TTM − 1. 야만(6630)은 EPS가 ¥7로 P/E 107배라 뺐다. 아이엔(4933)은 다음 FY EPS 적자 컨센서스라 P/E 비움. 미용기기만 하는 상장 동종사가 야만뿐이라 화장품·헤어케어가 섞인 비교다",
+ "peers": [
+  {
+   "ticker": "카오",
+   "key": "TSE:4452",
+   "rev": 1751.5,
+   "ebit_margin": 0.101,
+   "mcap": 3373.4,
+   "pb": 3.14,
+   "debt": 237.2,
+   "cash": 326.7,
+   "ev_sales": 1.89,
+   "growth": 0.028,
+   "pe_fwd": 25.0,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "시세이도",
+   "key": "TSE:4911",
+   "rev": 999.1,
+   "ebit_margin": 0.038,
+   "mcap": 1509.3,
+   "pb": 2.58,
+   "debt": 336.9,
+   "cash": 105.7,
+   "ev_sales": 1.76,
+   "growth": 0.021,
+   "pe_fwd": 35.9,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "로토제약",
+   "key": "TSE:4527",
+   "rev": 353.4,
+   "ebit_margin": 0.121,
+   "mcap": 637.3,
+   "pb": 2.08,
+   "debt": 58.1,
+   "cash": 84.8,
+   "ev_sales": 1.78,
+   "growth": 0.058,
+   "pe_fwd": 17.6,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "코세",
+   "key": "TSE:4922",
+   "rev": 334.6,
+   "ebit_margin": 0.041,
+   "mcap": 337.4,
+   "pb": 1.26,
+   "debt": 10.8,
+   "cash": 76.8,
+   "ev_sales": 0.87,
+   "growth": 0.029,
+   "pe_fwd": 28.7,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "폴라오르비스",
+   "key": "TSE:4927",
+   "rev": 171.4,
+   "ebit_margin": 0.102,
+   "mcap": 310.6,
+   "pb": 2.0,
+   "debt": 0.03,
+   "cash": 60.8,
+   "ev_sales": 1.46,
+   "growth": 0.007,
+   "pe_fwd": 30.2,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "밀본",
+   "key": "TSE:4919",
+   "rev": 54.9,
+   "ebit_margin": 0.129,
+   "mcap": 104.8,
+   "pb": 2.18,
+   "debt": 0.0,
+   "cash": 12.3,
+   "ev_sales": 1.68,
+   "growth": 0.02,
+   "pe_fwd": 23.6,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "아이엔",
+   "key": "TSE:4933",
+   "rev": 53.5,
+   "ebit_margin": 0.079,
+   "mcap": 43.5,
+   "pb": 2.51,
+   "debt": 6.0,
+   "cash": 6.9,
+   "ev_sales": 0.8,
+   "growth": -0.014,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "3Q 영업이익률이 7.4%로 반기(15.1%)의 절반이 됐고, 4Q 가이던스도 8.4%다. 2019년 상장 뒤 인바운드 수요가 꺼지며 주가가 −90% 빠진 이력이 있다 — 성장은 동종 10배지만 이익률 회복이 확인되기 전에는 동종 중앙값에서 10% 할인한다"
+ },
+ "next_event": {
+  "date": "2026-11-11",
+  "tag": "FY9/26 결산 발표(예정) — FY9/27 첫 가이던스·4Q 이익률"
+ },
+ "guidance": {
+  "rev_fy0": [
+   142.0,
+   142.0
+  ],
+  "op_fy0": 16.0,
+  "ni_fy0": 11.0,
+  "eps_fy0": 279.66,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "숫자 중기 목표 없음. 사장은 창립 50주년인 2046년 매출 ¥10T를 목표로 말했다(WWD 7/22 — 연 약 24% 성장이 20년 필요, 사업별 구성은 '정리 중')",
+  "history": "FY9/26 가이던스: 12/19 매출 ¥120.0B·영업이익 ¥13.0B → 2월 ¥128.0B·¥14.0B(증분 역산) → 5/12 ¥135.0B·¥15.0B → 8/4 ¥142.0B·¥16.0B(세 번째 상향)",
+  "source": "3Q 결산단신(2026-08-04) 통기 예상: 매출 ¥142,000M·영업이익 ¥16,000M·경상이익 ¥16,000M·순이익 ¥11,000M·EPS ¥279.66, 배당 ¥37 https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm",
+  "next": {
+   "period": "4Q26",
+   "rev": 39.514,
+   "rev_cons": 40.138,
+   "eps": 31.99,
+   "eps_cons": 38.88,
+   "unit": "¥B"
+  }
+ },
+ "raw": {
+  "retrieved_at": "2026-11-06T00:40:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "TSE:7806",
+   "price": 8610,
+   "market_cap": 338.67,
+   "total_cash": 9.83,
+   "total_debt": 18.739,
+   "shares_outstanding": 0.039334482,
+   "as_of": "2026-11-05",
+   "balance_date": "2026-06-30",
+   "note": "Fiscal.ai는 MTG를 다루지 않는다(XJPX_7806 'Company not found'). 원자료 개요는 yfinance(Easyconomics company_profile, market jp): 가격 ¥8,610·시가총액 ¥338.67B·현금 ¥9.83B·차입 ¥18.74B. TradingView도 같은 현금·차입",
+   "auditUrl": "https://www.tradingview.com/symbols/TSE-7806/"
+  },
+  "shares_cover_implied": 0.039356341,
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 28.753,
+    "2026Q1": 34.41,
+    "2026Q2": 32.113,
+    "2026Q3": 35.963
+   },
+   "op_income": {
+    "2025Q4": 1.337,
+    "2026Q1": 5.662,
+    "2026Q2": 4.36,
+    "2026Q3": 2.645
+   },
+   "note": "회계연도 분기(9월 결산): 2025Q4 = 2025년 7~9월, 2026Q1 = 10~12월, 2026Q2 = 1~3월, 2026Q3 = 4~6월. 매출 = TradingView 분기(9개월 합 ¥102,486M이 결산단신과 일치). 영업이익은 financials.note"
+  },
+  "balance_2026_06_30": {
+   "equity": 60.409,
+   "debt_lt": 18.739,
+   "cash": 9.83,
+   "st_investments": 0.0,
+   "minority_interest": 0.006,
+   "source": "3Q 결산단신 1쪽: 총자산 ¥104,018M·순자산 ¥60,409M(자기자본 ¥60,403M). 차입·현금은 TradingView(첨부 재무상태표 미열람 — 단기·장기·리스 구분 미확인) https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm"
+  },
+  "estimates_sales_m": {
+   "2026Q1(실적)": 34410,
+   "2026Q2(실적)": 32113,
+   "2026Q3(실적)": 35963,
+   "2026Q4": 40138
+  },
+  "estimates_note": "단위 ¥백만. FY9/26 매출 컨센서스 ¥142,624M(TradingView revenue_forecast_next_fy, 카부요호 3명 평균과 같다)에서 1~3Q 실적을 뺀 4Q 잔여값",
+  "consensus_sources": {
+   "FY9/26": "카부요호 11/5: 매출 ¥142,624M·영업이익 ¥16,219M·경상 ¥16,200M·순이익 ¥11,269M(3명), 4주간 변화 없음 https://kabuyoho.jp/reportAnalyst?bcode=7806",
+   "NTM": "카부요호 12개월 선행 EPS ¥355.0(애널리스트 평균) https://kabuyoho.jp/reportTarget?bcode=7806",
+   "FY9/27": "SMBC닛코 영업이익 ¥19.0B(¥18.8B에서 상향, 목표가 ¥7,100 → ¥8,200, 2026년 6월경 보도) https://minkabu.jp/stock/7806/news/4527381 — 매출 컨센서스 미확인"
+  },
+  "sec_checks": {
+   "note": "일본 상장사라 SEC 10-K·10-Q가 없다. R-20261031-01의 네 곳(구매 약정·제한 현금·10% 고객·정부 지원)은 유가증권보고서 항목인데 이번 회차에 EDINET·결산단신 첨부를 열지 못했다(JPX PDF는 다운로드로만 열린다) — 미확인"
+  },
+  "source_coverage": {
+   "fiscal": "미지원(XJPX_7806 없음)",
+   "easyconomics": "company_profile(jp) 가능 · earnings_summary_dates 빈 목록",
+   "yfinance": "Easyconomics 경유 개요(가격·시총·현금·차입·마진)",
+   "zacks": "미지원",
+   "tradingview": "시세·분기 재무·동종·의견 분포"
+  },
+  "rf_local": {
+   "JP10Y": 0.02755,
+   "as_of": "2026-11-05",
+   "source": "TradingView TVC:JP10Y 종가"
+  }
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 142.624
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.1137
+  },
+  "n_analysts": 3,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 40.138
+  },
+  "quarters_act": {
+   "2025Q4": 28.753,
+   "2026Q1": 34.41,
+   "2026Q2": 32.113,
+   "2026Q3": 35.963
+  },
+  "eps_quarters_est": {
+   "2026Q4": 38.88
+  },
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 2,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-05",
+   "source": "카부요호·TradingView 3명: 강세 2·중립 1. 목표가 평균 ¥10,533(카부요호 11/5). SMBC닛코 ¥8,200(6월경)"
+  },
+  "note": "Fiscal.ai·Zacks 미지원. 컨센서스는 카부요호·TradingView(같은 3명). FY9/27 매출·EPS 컨센서스는 공개 페이지에서 찾지 못했다 — 12개월 선행 EPS ¥355만 있다",
+  "surprise": [],
+  "price_window": {
+   "from": 7400,
+   "to": 8610,
+   "note": "3Q 발표일 8/4 종가 ¥7,400(TradingView 일봉) → 11/5 종가"
+  }
+ },
+ "call": {
+  "date": "2026-08-04",
+  "prev_date": "2026-05-12",
+  "tone": "up",
+  "tone_delta": null,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_9m_b": 102.486,
+   "rev_growth_9m": 0.463,
+   "op_9m_b": 12.667,
+   "op_margin_3q": 0.074,
+   "gpm_9m": 0.647,
+   "new_products_3q": 218,
+   "new_product_share_9m": 0.63,
+   "retail_store_growth_9m": 0.825
+  },
+  "guidance_changes": [
+   "FY9/26 매출 ¥135.0B → ¥142.0B, 영업이익 ¥15.0B → ¥16.0B, 순이익 ¥10.0B → ¥11.0B(세 번째 상향)",
+   "기말 배당 ¥33 → ¥37"
+  ],
+  "new_topics": [
+   "3Q 신제품 218개로 최다, 9개월 매출의 63%가 신제품",
+   "리테일 스토어 사업 9개월 +82.5% — 인바운드·매스 프리미엄 판매",
+   "리커버리 웨어 RED가 기대 이상(2025년 7월 출시)",
+   "Kirala·MTG VITABLE 연결 편입"
+  ],
+  "dropped_topics": [
+   "미확인 — 직전 설명회 자료와 문장 단위로 대조하지 못했다"
+  ],
+  "risks": [
+   "3Q 영업이익률 7.4%(반기 15.1%) — 브랜딩·마케팅비 +94%",
+   "하반기 성장 투자 ¥4.5B(2Q 자료)",
+   "엔화 약세 지속 가정",
+   "인바운드 의존(긴자 플래그십 매출의 약 65%)",
+   "차입 ¥3.7B(9/30) → ¥18.7B(6/30)"
+  ],
+  "qa_focus": [
+   "미확인 — 결산설명회 질의응답 전문이 공개되지 않았다"
+  ],
+  "answer": "회사 답변 없음(질의응답 미공개). 쟁점인 이익률 하락에 대해 회사 자료는 하반기 성장 투자 ¥4.5B와 매출총이익률 64% 가정을 적었다(2Q 자료 요약)",
+  "source": "3Q 결산단신 https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm · WWD 8/4 https://www.wwdjapan.com/?p=2466820 · 3Q 요약 https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o · 2Q 요약 https://quartr.com/events/mtg-co-ltd-7806-q2-2026_FtgH7o2F",
+  "tone_note": "통기 가이던스를 세 번째로 올렸다 = up. 다만 3Q 단독 영업이익률은 크게 낮아졌다",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "통기 매출 가이던스",
+    "label": "매출 가이던스 ¥142B",
+    "prior": "¥135.0B(5/12)",
+    "latest": "¥142.0B(8/4)",
+    "driver": "rev0",
+    "shift": 0.05,
+    "confidence": 0.8,
+    "source": "https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "통기 영업이익 가이던스",
+    "label": "영업익 가이던스 ¥16B",
+    "prior": "¥15.0B",
+    "latest": "¥16.0B",
+    "driver": "margin_m0",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "3Q 영업이익률",
+    "label": "3Q 이익률 7.4%",
+    "prior": "반기 15.1%",
+    "latest": "3Q 7.4%(마케팅 +94%)",
+    "driver": "margin_m0",
+    "shift": -0.015,
+    "confidence": 1.0,
+    "source": "https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "신제품 비중",
+    "label": "신제품 매출 63%",
+    "prior": "목표 60%(12/19)",
+    "latest": "9개월 63%, 3Q 218개",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o"
+   },
+   {
+    "id": "F5",
+    "kind": "업데이트",
+    "item": "Kirala 인수",
+    "label": "Kirala ¥3.9B 인수",
+    "prior": "없음",
+    "latest": "취득가 ¥3.9B, 연결 편입",
+    "driver": "net_debt",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "https://filingreader.com/news-wire/tokyo/2026-05-12/mtg-raises-annual-forecasts-and-dividends-as-sales-surge"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-11-05",
+  "period": "FY9/26 9개월",
+  "summary": "불특정 다수 소비자에게 판다. 회사는 10% 넘는 단일 고객을 이번에 확인한 자료에서 밝히지 않았다(유가증권보고서 미열람). 채널은 직영점·백화점·드럭스토어·가전 양판점·온라인·호텔·미용실이고, 직영 매장 매출의 상당 부분이 방일 관광객이다",
+  "items": [
+   {
+    "name": "방일 관광객(인바운드)",
+    "alias": "리테일 스토어 사업 일부",
+    "share": [
+     0.15,
+     0.3
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "ReFa 드라이어·아이론·샤워헤드",
+    "source": "https://www.wwdjapan.com/articles/2456522",
+    "why": "긴자 플래그십 매출의 약 65%가 인바운드(WWD 7/22)·리테일 스토어 9개월 +82.5%를 근거로 둔 범위 — 전사 몫은 공시 미확인"
+   },
+   {
+    "name": "국내 유통(백화점·가전 양판점·드럭스토어)",
+    "alias": "도매·리테일 채널",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "ReFa·SIXPAD 전 제품",
+    "source": "https://filingreader.com/news-wire/tokyo/2025-12-19/mtg-projects-strong-growth-record-profit-for-2025",
+    "why": "드럭스토어 3,000곳 목표(12/19 자료 요약)"
+   },
+   {
+    "name": "온라인 직판·EC 몰",
+    "alias": "다이렉트 마케팅",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "ReFa·SIXPAD·화장품",
+    "source": "https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o",
+    "why": "채널별 매출 미공시"
+   },
+   {
+    "name": "미용실·호텔(전문가 채널)",
+    "alias": "Smart Plan·호텔 객실",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "ReFa 드라이어·아이론",
+    "source": "https://www.wwdjapan.com/articles/2456522",
+    "why": "ReFa 드라이어·아이론이 호텔 객실 약 12만 실에 들어가 있다(WWD 7/22)"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-06-30",
+  "basis": "J-GAAP",
+  "summary": "9개월 매출총이익률 64.7%(전년 62.4%)로 올랐지만 판관비가 매출의 52.4%(전년 49.1%)로 더 빨리 늘어 영업이익률은 13.3% → 12.4%. 3Q 단독은 7.4%다. 이 회사의 이익은 원가보다 마케팅 강도가 정한다",
+  "periods": [
+   {
+    "period": "9M FY25",
+    "rev": 70.057,
+    "cogs": 26.359,
+    "rd": 0.0,
+    "sga": 34.37,
+    "other": 0.0
+   },
+   {
+    "period": "9M FY26",
+    "rev": 102.486,
+    "cogs": 36.132,
+    "rd": 0.0,
+    "sga": 53.687,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "제품 원가(위탁 생산·매입)",
+    "stage": "매출원가",
+    "pct_rev": 0.3,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "생산 위탁처 단가·엔화 환율",
+    "basis": "추정",
+    "source": "9개월 매출원가 35.3%(TradingView 매출총이익) — 세부 미공시"
+   },
+   {
+    "name": "물류·보관·기타 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.053,
+    "prior_pct": "미확인",
+    "fixed": 0.3,
+    "driver": "출하량",
+    "basis": "추정",
+    "source": "매출원가의 나머지"
+   },
+   {
+    "name": "광고·브랜딩·판촉",
+    "stage": "판관비",
+    "pct_rev": 0.2,
+    "prior_pct": "미확인",
+    "fixed": 0.2,
+    "driver": "신제품 출시·브랜딩(9개월 +94%)",
+    "basis": "추정",
+    "source": "https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o"
+   },
+   {
+    "name": "판매 수수료·점포 비용",
+    "stage": "판관비",
+    "pct_rev": 0.15,
+    "prior_pct": "미확인",
+    "fixed": 0.4,
+    "driver": "유통 마진·직영점 임차(긴자 플래그십 2025-11 개점)",
+    "basis": "추정",
+    "source": "https://www.wwdjapan.com/articles/2456522"
+   },
+   {
+    "name": "인건비",
+    "stage": "판관비",
+    "pct_rev": 0.08,
+    "prior_pct": "미확인",
+    "fixed": 0.8,
+    "driver": "인원(1,514명)",
+    "basis": "추정",
+    "source": "https://www.tradingview.com/symbols/TSE-7806/"
+   },
+   {
+    "name": "기타 판관비(감가상각·영업권 상각 포함)",
+    "stage": "판관비",
+    "pct_rev": 0.094,
+    "prior_pct": "미확인",
+    "fixed": 0.6,
+    "driver": "점포·시스템 투자",
+    "basis": "추정",
+    "source": "판관비 52.4%의 나머지"
+   }
+  ],
+  "products": [
+   {
+    "name": "ReFa",
+    "rev_share": 0.737,
+    "mix_basis": "FY9/25 ReFa ¥72.8B ÷ 매출 ¥98.8B(12/19 자료 요약)",
+    "gpm": 0.66,
+    "gpm_basis": "추정 — 브랜드별 이익률 미공시. 전사 9개월 64.7%에 고가 드라이어·아이론 믹스를 더해 조금 높게",
+    "bom": [
+     {
+      "item": "모터·히터·전자 부품",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "업계 드라이어 원가 구조",
+      "pass_through": "미확인",
+      "why": "고속 모터 드라이어·히터 아이론의 핵심 부품"
+     },
+     {
+      "item": "외장 수지·금속 성형",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 원가 구조",
+      "pass_through": "미확인",
+      "why": "디자인 외장이 브랜드 가치의 큰 몫"
+     },
+     {
+      "item": "조립·위탁 생산 가공비",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "미확인",
+      "pass_through": "미확인",
+      "why": "생산 위탁처·국가 미확인"
+     },
+     {
+      "item": "포장·부속품",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "업계 원가 구조",
+      "pass_through": "미확인",
+      "why": "선물 수요용 고급 포장"
+     }
+    ]
+   },
+   {
+    "name": "SIXPAD",
+    "rev_share": 0.145,
+    "mix_basis": "FY9/25 SIXPAD ¥14.3B ÷ ¥98.8B(12/19 자료 요약)",
+    "gpm": 0.6,
+    "gpm_basis": "추정 — 미공시. 소모품(패드)이 섞인 기기라 전사보다 조금 낮게",
+    "bom": [
+     {
+      "item": "근육 자극(EMS) 회로·배터리",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "업계 원가 구조",
+      "pass_through": "미확인",
+      "why": "EMS는 전기 자극으로 근육을 움직이는 장치"
+     },
+     {
+      "item": "겔 패드·소재",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 원가 구조",
+      "pass_through": "미확인",
+      "why": "소모품 성격(교체 수요)"
+     },
+     {
+      "item": "조립·위탁 생산 가공비",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "미확인",
+      "pass_through": "미확인",
+      "why": "생산 위탁처 미확인"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-05",
+  "summary": "공급사 이름을 이번에 확인한 자료에서 찾지 못했다. 제품 대부분이 전자 부품을 쓰는 소형 가전이라 위탁 생산처와 모터·배터리 부품이 약한 고리일 수 있다 — 모두 미확인",
+  "links": [
+   {
+    "item": "조립·위탁 생산 가공비",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "제품 위탁 생산",
+      "status": "추정",
+      "source": "미확인"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "신제품 218개를 한 분기에 내는 구조라 위탁 생산처의 물량 대응이 출시 속도를 정한다 — 위탁처 이름·국가는 공시 미확인",
+    "relief": "미확인",
+    "source": "미확인"
+   },
+   {
+    "item": "모터·히터·전자 부품",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "고속 모터·히터·PCB",
+      "status": "추정",
+      "source": "미확인"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "균형",
+    "capacity_basis": "범용 소형 모터·전자 부품 — 물량 병목 근거 없음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "top_share": "미확인",
+    "region_share": 0.6,
+    "region": "중국(소형 모터·전자 부품 생산 집중 — 업계 구조 근사)",
+    "secured": "복수구매",
+    "why": "드라이어 성능을 정하는 부품. 인증 공급사 3곳·재인증 6개월·중국 집중 60%·복수 구매는 범용 소형 모터·전자 부품 업계 구조로 본 추정 — 회사 공시 미확인",
+    "relief": "미확인",
+    "source": "미확인"
+   }
+  ]
+ },
+ "capacity": {
+  "none": "생산 시설을 공시로 확인하지 못했다(유가증권보고서 설비 항목 미열람). 제품은 외부 위탁 생산으로 보이나 1차 자료로 확인 못 해 생산능력 절을 넣지 않는다 — 미확인. CAPEX(FY9/25 ¥10.5B)는 점포·시스템 성격으로 추정"
+ },
+ "pipeline": {
+  "none": "개별 수주가 없는 소비재 회사다. 잔고·수주 대신 신제품 수(3Q 218개)와 채널 확대(드럭스토어 3,000곳 목표)가 매출 가시성의 재료다"
+ },
+ "moat": {
+  "summary": "해자는 브랜드와 신제품 속도다. 기술 특허보다 '디자인 + 마케팅 + 유통'이 경쟁을 막는다 — 모방품이 쉽게 나오는 업종이라 강도는 보통",
+  "items": [
+   {
+    "kind": "ReFa 브랜드 가격 결정력",
+    "verdict": "보통",
+    "claim": "ReFa 드라이어·아이론을 ¥2만~4만 가격대 고급 미용가전으로 자리 잡았다",
+    "evidence": "FY9/25 ReFa 매출 ¥72.8B(+42%), 9개월 매출총이익률 64.7%(전년 62.4%)",
+    "quant": "GPM +2.3%p",
+    "falsifier": "매출총이익률이 2분기 연속 60% 아래"
+   },
+   {
+    "kind": "신제품 출시 속도",
+    "verdict": "보통",
+    "claim": "한 분기에 신제품 218개를 내고 신제품이 매출의 63%다",
+    "evidence": "3Q 요약(Quartr)",
+    "quant": "신제품 매출 비중 63%",
+    "falsifier": "신제품 비중이 50% 아래로 떨어지면서 성장률 둔화"
+   },
+   {
+    "kind": "다채널 유통망",
+    "verdict": "약함",
+    "claim": "직영점·백화점·드럭스토어·호텔·미용실을 함께 쓴다",
+    "evidence": "호텔 객실 약 12만 실, 드럭스토어 3,000곳 목표",
+    "quant": "미확인(채널별 매출 미공시)",
+    "falsifier": "유통사 재고 조정으로 출하가 판매보다 먼저 꺾임"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-05",
+  "summary": "창업자 마쓰시타 쓰요시가 대표이사 사장이다(1996년 설립). 내부자 지분이 약 66%(yfinance)로 경영권이 집중돼 있다. SIXPAD는 축구 선수 크리스티아누 호날두와 함께 개발·광고한 브랜드로 알려져 있다(회사 홍보, 이번 회차 1차 미대조). 정치 연결은 공개 기록으로 확인하지 못했다",
+  "people": [
+   {
+    "name": "마쓰시타 쓰요시(松下剛)",
+    "role": "대표이사 사장·창업자",
+    "since": "1996",
+    "profile": "1996년 MTG 설립",
+    "business": "ReFa·SIXPAD 브랜드 개발 주도",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm"
+   },
+   {
+    "name": "다지마 아키히코(田島安希彦)",
+    "role": "이사 CFO",
+    "since": "미확인",
+    "profile": "결산단신 문의 책임자",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "스포츠 스타 브랜드 제휴(SIXPAD)",
+    "strength": 2,
+    "exposure": 0.145,
+    "basis": "SIXPAD 매출 몫 14.5%(FY9/25). 제휴가 매출을 만들었다고 쓰지 않는다",
+    "evidence": "https://filingreader.com/news-wire/tokyo/2025-12-19/mtg-projects-strong-growth-record-profit-for-2025"
+   }
+  ]
+ },
+ "sync": {
+  "none": "MTG 매출은 국내 소비·인바운드 관광객이 정한다. 이번 회차에 일본정부관광국 방일객 수와 미용가전 수출입(HS 8516.31 헤어드라이어)을 config/trade_ppi.yaml로 대조하지 못했다 — 다음 회차"
+ },
+ "pq": {
+  "none": "회사가 판매 대수·평균 판매 단가를 공시하지 않고, 신제품 비중이 63%라 가격·물량 분해가 의미가 약하다"
+ },
+ "ma": {
+  "none": "2026년 Kirala(정수기·생활 서비스) 인수 취득가 ¥3.9B(5/12 자료 요약)는 시가총액의 약 1%이고, 회사가 시너지 규모·완성 연도를 밝히지 않았다 — 시너지 모형을 그리지 않는다(밝힌 시너지 없음)"
+ },
+ "midterm": {
+  "exposure": {
+   "tariff_codify": 0.05
+  },
+  "sub": "consumer",
+  "etf": "XLY",
+  "why": "미국 매출은 미공시이고 작다고 본다(추정 2%). 미국 관세 고착화 채널만 아주 작게 노출 — 사실상 무관(가설)"
+ },
+ "events": [
+  {
+   "date": "2025-11-13",
+   "tag": "FY9/25 결산 뒤 하루 +11%·거래량 167만 주",
+   "kind": "earnings"
+  },
+  {
+   "date": "2025-11-14",
+   "tag": "중국 정부 일본 여행 자제 권고 보도(인바운드 우려)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-02-12",
+   "tag": "1Q 실적·통기 1차 상향",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-12",
+   "tag": "2Q 실적·통기 2차 상향(매출 ¥135B)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-04",
+   "tag": "3Q 실적·통기 3차 상향(매출 ¥142B)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "거래량 151만 주(평균의 7배)·종가 ¥9,250(원인 미확인)",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-12",
+   "kind": "실적",
+   "tag": "1Q26 실적·1차 상향",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-12",
+   "kind": "실적",
+   "tag": "2Q26 실적·2차 상향",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-04",
+   "kind": "실적",
+   "tag": "3Q26 실적·3차 상향",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "3Q FY9/26 결산단신(2026-08-04): https://www2.jpx.co.jp/disc/78060/081220260803506610_tse-qcedjpsm-78060-20260804378060-ixbrl.htm",
+  "3Q 결산·통기 상향 보도(WWD 8/4): https://www.wwdjapan.com/?p=2466820",
+  "긴자 플래그십·2046 목표(WWD 7/22): https://www.wwdjapan.com/articles/2456522",
+  "회사 IR: https://www.mtg.gr.jp/ir/"
+ ],
+ "overrides": {
+  "growth_base": {
+   "start": 0.18,
+   "end": 0.03,
+   "decay": 0.3
+  },
+  "margin_base": {
+   "target": 0.13,
+   "year_target": 3,
+   "lr": 0.12,
+   "lam": 0.38
+  },
+  "s2c": 2.5,
+  "why": "매출은 FY9/26 +44%(가이던스)에서 FY9/27 +18%(SMBC닛코 영업이익 ¥19.0B·12개월 선행 EPS ¥355에 맞는 성장)로 꺾이고 빠르게 둔화한다고 둔다 — 소비재 히트 상품은 평균 회귀가 빠르다. 장기 영업이익률 13%는 9개월 12.4%와 반기 15.1% 사이. 매출 ÷ 투하자본 2.5는 TTM 1.9보다 높다 — 위탁 생산 구조라 증분 매출에 드는 자본이 작다(추정). 장기 수렴 이익률 12%는 일본 뷰티 동종 중 이익률 높은 곳(밀본 12.9%·로토 12.1%) 수준. 무위험금리는 엔화 현금흐름에 맞춰 일본 10년 2.755%(TradingView 11/5)"
+ },
+ "multiples_now": {
+  "pe_fwd": 24.3,
+  "pe_fwd2": 21.1,
+  "pe_fwd3": 18.3
+ },
+ "forward": {
+  "as_of": "2026-11-05",
+  "ntm": {
+   "eps": 355.0,
+   "ebitda": 23.0,
+   "ebit": 19.0,
+   "revenue": 162.0,
+   "rev_ttm": 131.239
+  },
+  "horizons": {
+   "2": {
+    "eps": 408.0,
+    "ext": 1
+   },
+   "3": {
+    "eps": 470.0,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "street_news"
+  },
+  "source": "NTM EPS ¥355 = 카부요호 12개월 선행 애널리스트 평균(11/5). NTM 영업이익 ¥19.0B = SMBC닛코 FY9/27 추정(1곳), 매출 ¥162B·EBITDA ¥23B는 모델 추정(가이던스 ¥142B × 1.15, 감가상각 ¥4B). Fwd 2Y·3Y EPS는 선행 컨센서스가 없어 +15% 외삽(ext) — 멀티플 비교에 쓰되 근거가 약하다"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "TradingView 분기 매출·매출총이익·EBITDA(3Q22~2Q26 달력 분기) + 영업이익(4Q FY9/25~3Q FY9/26, 결산단신·마쓰이증권)",
+  "key": "TSE:7806",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2022-09-30",
+    "rev": 14278000000.0,
+    "cogs": 5106000000.0,
+    "gp": 9172000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 14837000000.0,
+    "cogs": 5958000000.0,
+    "gp": 8879000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 12986000000.0,
+    "cogs": 5003000000.0,
+    "gp": 7983000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 15282000000.0,
+    "cogs": 5898000000.0,
+    "gp": 9384000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 17049000000.0,
+    "cogs": 6436000000.0,
+    "gp": 10613000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 17075000000.0,
+    "cogs": 6650000000.0,
+    "gp": 10425000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 15661000000.0,
+    "cogs": 6346000000.0,
+    "gp": 9315000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 17806000000.0,
+    "cogs": 6947000000.0,
+    "gp": 10859000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 21323000000.0,
+    "cogs": 8821000000.0,
+    "gp": 12502000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 23661000000.0,
+    "cogs": 8995000000.0,
+    "gp": 14666000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 23034000000.0,
+    "cogs": 8720000000.0,
+    "gp": 14314000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 23362000000.0,
+    "cogs": 8644000000.0,
+    "gp": 14718000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 28753000000.0,
+    "cogs": 10447000000.0,
+    "gp": 18306000000.0,
+    "sga": 16969000000.0,
+    "rd": null,
+    "da": 841000000.0,
+    "other": null,
+    "op": 1337000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 34410000000.0,
+    "cogs": 11730000000.0,
+    "gp": 22680000000.0,
+    "sga": 17018000000.0,
+    "rd": null,
+    "da": 873000000.0,
+    "other": null,
+    "op": 5662000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 32113000000.0,
+    "cogs": 11554000000.0,
+    "gp": 20559000000.0,
+    "sga": 16199000000.0,
+    "rd": null,
+    "da": 1046000000.0,
+    "other": null,
+    "op": 4360000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 35963000000.0,
+    "cogs": 12847000000.0,
+    "gp": 23116000000.0,
+    "sga": 20471000000.0,
+    "rd": null,
+    "da": 1229000000.0,
+    "other": null,
+    "op": 2645000000.0
+   }
+  ]
+ },
+ "terms": {
+  "ReFa": "MTG의 미용가전·뷰티 브랜드 — 드라이어·스트레이트 아이론·샤워헤드·미용 롤러",
+  "SIXPAD": "MTG의 트레이닝 기기 브랜드 — 전기 자극으로 근육을 움직이는 패드·풋 기기",
+  "RED": "MTG의 리커버리(회복) 웨어 브랜드 — 2025년 7월 출시",
+  "EMS": "근육에 전기 자극을 주는 장치(Electrical Muscle Stimulation)",
+  "Kirala": "MTG가 2026년 인수한 정수기·생활 서비스 회사",
+  "MTG VITABLE": "MTG의 2026년 신규 연결 자회사(사업 내용 미확인)",
+  "Club Aira": "MTG의 고객 멤버십 프로그램",
+  "Smart Plan": "미용실용 ReFa 기기 도입 프로그램",
+  "Neo Treatment": "MTG가 트리트먼트 아이론으로 만들려는 새 제품 범주",
+  "J-Beauty": "일본 뷰티 산업",
+  "인바운드": "방일 외국인 관광객 소비",
+  "긴자 플래그십": "도쿄 긴자의 ReFa 직영 대형 매장(2025년 11월 개점)",
+  "결산단신": "일본 상장사의 분기 실적 속보 공시(決算短信)",
+  "TDnet": "도쿄증권거래소 적시 공시 시스템",
+  "EDINET": "일본 금융청 전자 공시 시스템",
+  "J-GAAP": "일본 회계기준",
+  "SMBC닛코": "SMBC닛코증권",
+  "BJPY": "십억 엔 단위",
+  "JP": "일본",
+  "ASIA": "일본 밖 아시아",
+  "PPI": "생산자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "ETF": "상장지수펀드",
+  "CAR": "누적 초과수익률(시장 대비)",
+  "AR": "자기회귀(AR) 통계 모형",
+  "HP": "호드릭-프레스콧 추세 필터",
+  "GP": "매출총이익",
+  "AI": "인공지능",
+  "EC": "전자상거래",
+  "PCB": "인쇄회로기판",
+  "IR": "투자자 관계",
+  "AP": "미국 AP 통신",
+  "XLY": "미국 경기소비재 업종 ETF",
+  "OEM": "주문자 상표 위탁 생산",
+  "MTG": "이 리포트의 회사 — 주식회사 MTG(나고야)",
+  "PDF": "문서 파일 형식",
+  "SMBC": "미쓰이스미토모 금융그룹(SMBC닛코증권의 모회사)",
+  "VITABLE": "MTG VITABLE — MTG의 2026년 신규 연결 자회사(사업 내용 미확인)",
+  "WWD": "WWD JAPAN — 일본 패션·뷰티 업계지"
+ },
+ "narrative": {
+  "as_of": "2026-11-05",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "ReFa 드라이어·아이론이 '일본 뷰티 가전의 명품'이 되고, 방일 관광객과 신제품 속도가 매출을 1년에 40%씩 키운다는 이야기다. FY9/26 가이던스를 세 번 올렸고 주가는 1년 새 ¥3,600대 → ¥9,500(장중 고점)으로 올랐다. 그런데 3Q 영업이익률은 7.4%로 반기의 절반이 됐다 — 성장을 마케팅으로 사고 있는지가 갈림길이다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "강세 2·중립 1",
+      "3명",
+      "11/5"
+     ],
+     [
+      "목표가 평균",
+      "¥10,533",
+      "현재가 +22%",
+      "카부요호"
+     ],
+     [
+      "FY9/27 영업이익",
+      "SMBC닛코 ¥19.0B",
+      "1곳(6월경)",
+      "보도"
+     ]
+    ],
+    "read": "커버리지가 3명뿐이다. 컨센서스는 회사 가이던스를 조금 넘는 수준(FY9/26 영업이익 ¥16.2B vs ¥16.0B)이고 4주 동안 바뀌지 않았다 — 11/11 FY9/27 첫 가이던스가 기대를 다시 정한다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "5.8%",
+      "yfinance",
+      "11/5"
+     ],
+     [
+      "내부자 보유",
+      "65.6%",
+      "창업자 중심",
+      "yfinance"
+     ]
+    ],
+    "read": "유통 주식이 적어(내부자 66%) 기관 보유가 6%에 그친다. 13F 같은 보유 변화 자료는 일본에 없어 미확인"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "텔레그램 공개 채널",
+      "언급 0건",
+      "",
+      "11/6 조회"
+     ],
+     [
+      "일 거래량",
+      "260일 평균 약 20만 주",
+      "10/29 151만 주",
+      "TradingView"
+     ]
+    ],
+    "read": "한국 공개 채널에서는 거의 다루지 않는다. 10/29 거래량 급증의 원인은 공시로 확인하지 못했다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "세 번째 상향·리테일 +83%·긴자 플래그십",
+      "WWD",
+      "8/4"
+     ]
+    ],
+    "read": "일본 업계지는 'J-Beauty'와 인바운드를 성장 이야기로 묶는다"
+   }
+  },
+  "factors": [
+   {
+    "name": "ReFa 고급 미용가전",
+    "thesis": "¥2만~4만 드라이어·아이론 시장을 ReFa가 넓히고 있다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "FY9/25 ReFa ¥72.8B(+42%), 9개월 매출 +46%",
+    "status": "강화",
+    "falsifier": "FY9/27 매출 가이던스 성장률 10% 미만",
+    "source": "https://filingreader.com/news-wire/tokyo/2025-12-19/mtg-projects-strong-growth-record-profit-for-2025"
+   },
+   {
+    "name": "인바운드 관광 소비",
+    "thesis": "방일 관광객이 ReFa를 '일본 기념품'으로 산다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "리테일 스토어 9개월 +82.5%, 긴자 매출 약 65%가 인바운드",
+    "status": "유지",
+    "falsifier": "리테일 스토어 사업 성장률이 2분기 연속 20% 미만",
+    "source": "https://www.wwdjapan.com/?p=2466820"
+   },
+   {
+    "name": "신제품 속도",
+    "thesis": "신제품이 매출의 60% 이상이라 히트가 이어진다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "3Q 신제품 218개, 9개월 신제품 매출 63%",
+    "status": "강화",
+    "falsifier": "신제품 비중 50% 미만",
+    "source": "https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o"
+   },
+   {
+    "name": "가이던스 반복 상향",
+    "thesis": "회사가 보수적으로 잡고 올린다",
+    "inputs": "EPS 리비전",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "매출 가이던스 ¥120B → ¥128B → ¥135B → ¥142B",
+    "status": "유지",
+    "falsifier": "11/11 FY9/27 가이던스가 컨센서스 아래",
+    "source": "https://www.wwdjapan.com/?p=2466820"
+   },
+   {
+    "name": "반대: 성장을 마케팅으로 산다",
+    "thesis": "매출이 54% 늘었는데 3Q 영업이익은 35%만 늘었다 — 판관비가 매출보다 빨리 는다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "3Q 영업이익률 7.4%, 브랜딩·마케팅비 +94%, 4Q 가이던스 8.4%",
+    "status": "강화",
+    "falsifier": "FY9/27 영업이익률 가이던스 13% 이상",
+    "source": "https://quartr.com/events/mtg-co-ltd-7806-q3-2026_FtgH7o2o"
+   },
+   {
+    "name": "반대: 2019년의 기억",
+    "thesis": "2018년 상장 뒤 중국 수요가 꺼지며 주가가 ¥8,120 → ¥463(−94%)이 됐다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "월봉 고점 ¥8,120(2018-07) → 저점 ¥463(2020-03)",
+    "status": "유지",
+    "falsifier": "인바운드 감소 국면에서도 국내 매출이 성장 유지",
+    "source": "https://www.tradingview.com/symbols/TSE-7806/"
+   }
+  ],
+  "lead": {
+   "summary": "MTG(7806)는 나고야의 미용가전·건강기기 회사다. 매출의 약 74%가 ReFa(드라이어·아이론·샤워헤드), 약 15%가 SIXPAD(근육 자극 트레이닝 기기)다. FY9/26 9개월 매출 ¥102.5B(+46%)·영업이익 ¥12.7B(+36%)이고 통기 가이던스를 세 번 올려 매출 ¥142B·영업이익 ¥16B다. 주가는 11/5 ¥8,610, 시가총액 ¥338.9B(기본 주식 기준)",
+   "value_story": "Fwd 1Y P/E 24.3배(12개월 선행 EPS ¥355 컨센서스)로 일본 뷰티 동종 중앙값 26.9배보다 조금 낮다 — 동종은 매출 성장 0~6%, MTG는 40%대다. 시장은 성장이 이어질지 반신반의하며 값을 매긴다. 가치를 정하는 것은 ① FY9/27 성장률(+15~20%가 컨센서스로 보임) ② 영업이익률이 3Q 7.4%에서 13% 근처로 돌아오는지다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 24.3배, 동종 6곳 중앙값 26.9배(카오 25.0·시세이도 35.9·로토 17.6·코세 28.7·폴라 30.2·밀본 23.6)",
+    "eps": "TTM EPS ¥297(희석) → 12개월 선행 ¥355(+19%). FY9/26 가이던스 EPS는 ¥279.66 — 4Q EPS 약 ¥32로 전년 4Q(약 ¥54)보다 낮다"
+   },
+   "why_excited": "2025년 10월 ¥3,600대에서 2026년 10월 장중 ¥9,500까지 2.6배 올랐다. 가이던스 세 번 상향, 리테일 스토어 +83%, 긴자 플래그십(2025-11 개점, 6월 말까지 32만 명 방문)이 이유였다. 2025년 11월 중국의 일본 여행 자제 권고 보도에도 다음 분기 매출이 늘어 우려가 식었다. 지금은 3Q 이익률 하락과 11/11 FY9/27 가이던스를 기다리며 ¥8,000~9,500 사이에 있다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "ReFa",
+     "what": "고급 드라이어·아이론·샤워헤드·미용 롤러",
+     "use": "가정·호텔·미용실 헤어·피부 관리",
+     "money": "기기 판매(¥1만~4만대)"
+    },
+    {
+     "kind": "제품",
+     "name": "SIXPAD",
+     "what": "전기 자극 근육 트레이닝 기기",
+     "use": "가정 운동·재활",
+     "money": "기기 판매 + 패드 교체"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "단일 히트(미용 롤러) 회사 → 드라이어·아이론·웨어(RED)·생활 서비스(Kirala)까지 넓힌 다브랜드 회사. 신제품이 매출의 63%",
+     "evidence": "3Q 요약·결산단신 연결 범위",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "ReFa 외 브랜드 매출 성장 정체"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "¥3만~4만대 프리미엄 드라이어·트리트먼트 아이론 비중 확대로 9개월 매출총이익률 62.4% → 64.7%",
+     "evidence": "TradingView 분기 매출총이익",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "매출총이익률 60% 미만"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "'Neo Treatment' — 열 손상을 줄인 트리트먼트 아이론으로 새 범주를 만들겠다고 한다(회사 목표 시장 ¥2T, 회사 주장)",
+     "evidence": "WWD 7/22",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "트리트먼트 아이론 경쟁 제품 확산으로 가격 하락"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(주문→인도 리드타임이 없는 소비재). 대신 출시 속도: 3Q 신제품 218개로 최다",
+     "evidence": "3Q 요약",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "신제품 수 감소와 매출 성장 둔화가 함께"
+    },
+    {
+     "lens": "M&A",
+     "change": "Kirala(정수기·생활 서비스) ¥3.9B 인수 — 규모가 작고 시너지 미공시",
+     "evidence": "5/12 자료 요약",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "대형 인수로 차입 급증"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "해당 없음 — 고객 설비투자가 아니라 가계 소비·관광 소비가 수요를 정한다",
+     "evidence": "사업 구조",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "일본 면세 판매 제도가 2026년 11월부터 출국 때 환급하는 방식으로 바뀐다고 알려져 있다 — 인바운드 매장 판매 절차가 바뀐다(보도 기반, 1차 미대조)",
+     "evidence": "일본 2025년도 세제개정(보도)",
+     "drives": "revision",
+     "status": "정황",
+     "falsifier": "11~12월 리테일 스토어 성장률 급락",
+     "house": {
+      "level": 0,
+      "why": "미국 의회 무관 — 일본 국회 세제개정 사항"
+     },
+     "senate": {
+      "level": 0,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "중국 정부의 일본 여행 자제 권고(2025-11 보도)가 인바운드 수요 위험 — 회사 매출은 그 뒤에도 늘었다",
+     "evidence": "보도",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "중국인 방일객 급감이 MTG 리테일 매출 감소로 확인",
+     "house": {
+      "level": 0,
+      "why": "외국 정부 조치 — 미국 의회 무관"
+     },
+     "senate": {
+      "level": 0,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 겨냥한 미국·일본 법안 미확인)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "미용가전 안전 규제 강화"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "하시모토 겐",
+    "house": "가상 리서치 하우스 아오바증권",
+    "thesis": "가이던스를 세 번 올린 회사가 Fwd 1Y P/E 24배로 동종보다 싸다 — 성장 40%대에 할인은 맞지 않다",
+    "evidence": [
+     "9개월 매출 +46%",
+     "Fwd 1Y P/E 24.3배 vs 동종 26.9배"
+    ],
+    "falsifier": "FY9/27 매출 가이던스 +10% 미만"
+   },
+   {
+    "seat": "Buy",
+    "name": "서지안",
+    "house": "가상 리서치 하우스 다온투자",
+    "thesis": "3Q 이익률 하락은 신제품·플래그십 투자라 일시적이다 — 매출총이익률은 오히려 올랐다",
+    "evidence": [
+     "9개월 GPM 64.7%(+2.3%p)",
+     "하반기 성장 투자 ¥4.5B"
+    ],
+    "falsifier": "FY9/27 영업이익률 가이던스 11% 미만"
+   },
+   {
+    "seat": "Neutral",
+    "name": "모리 유이",
+    "house": "가상 리서치 하우스 미나토자산",
+    "thesis": "성장은 확인됐지만 이익률은 확인되지 않았다. 11/11 가이던스가 둘 중 하나를 가른다",
+    "evidence": [
+     "3Q 영업이익률 7.4%",
+     "4Q 가이던스 8.4%"
+    ],
+    "falsifier": "11/11 FY9/27 영업이익 ¥19B 이상"
+   },
+   {
+    "seat": "Sell",
+    "name": "한도겸",
+    "house": "가상 리서치 하우스 정석증권",
+    "thesis": "매출 +54%에 영업이익 +35% — 성장을 마케팅비로 산다. 차입도 다섯 배가 됐다",
+    "evidence": [
+     "브랜딩·마케팅비 +94%",
+     "차입 ¥3.7B → ¥18.7B"
+    ],
+    "falsifier": "판관비율이 전년 수준(49%)으로 회귀"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "오카다 슌",
+    "house": "가상 리서치 하우스 기타미증권",
+    "thesis": "2018년 상장 뒤 −94%를 겪은 회사다. 인바운드 유행 상품은 한 번 꺾이면 빠르다",
+    "evidence": [
+     "2018-07 ¥8,120 → 2020-03 ¥463",
+     "긴자 매출 약 65% 인바운드"
+    ],
+    "falsifier": "인바운드 둔화 분기에도 매출 +20% 이상"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "매출 가이던스가 ¥120B에서 ¥142B로 18% 올라갔다. 회사가 보수적으로 잡는다는 증거다"
+     },
+     {
+      "seat": "Buy",
+      "text": "9개월 매출총이익률이 64.7%로 올랐다 — 가격을 깎아 판 성장이 아니다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "3Q 영업이익률 7.4%와 4Q 가이던스 8.4%는 반기 15.1%와 너무 다르다. 어느 쪽이 정상인지 아직 모른다"
+     },
+     {
+      "seat": "Sell",
+      "text": "판관비가 매출의 49.1%에서 52.4%로 올랐다. 매출이 늘수록 이익률이 떨어지는 구조다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "이 회사는 2019년에 중국 수요가 꺼지자 주가가 1년 만에 −70% 넘게 빠졌다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "가이던스 상향은 매출 쪽이 컸다. 영업이익 가이던스는 ¥13B → ¥16B로 매출만큼 오르지 않았다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "판관비 증가분 중 긴자 플래그십·RED 출시 같은 일회성 투자가 있다 — 4Q까지 ¥4.5B로 회사가 범위를 밝혔다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "2019년은 롤러 하나에 매출이 몰렸다. 지금은 신제품이 매출의 63%이고 드라이어·아이론·웨어로 나뉘었다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "일회성이라면 3Q가 아니라 4Q 가이던스가 올라가야 한다. 4Q도 8.4%다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "차입이 6월 말 ¥18.7B다. 성장 둔화 때 재고가 쌓이면 이익률이 더 내려간다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "4Q 가이던스는 세 번 모두 보수적이었다 — 9개월 경상이익 진척률이 78.6%다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "일회성 투자라는 근거는 회사 설명뿐이다. 판관비 세부는 공시되지 않았다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "Fwd 1Y P/E 24배는 12개월 선행 EPS ¥355를 믿을 때다. 그 숫자는 3명 평균이다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "2025년 11월 중국 여행 자제 권고 뒤에도 1~3Q 매출은 분기마다 전년보다 39~54% 늘었다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "동종보다 싸다는 말은 동종의 이익률이 안정적일 때만 맞다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "11/11에 FY9/27 가이던스가 성장 이야기를 다시 확인할 것이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "매출총이익률 상승이 브랜드 힘을 보여 준다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "이익률 확인 전에는 규칙 등급을 옮길 근거가 약하다"
+     },
+     {
+      "seat": "Sell",
+      "text": "판관비율이 내려오기 전에는 성장의 질을 믿기 어렵다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "유행 소비재의 정점 신호를 무시하지 말아야 한다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "매출총이익률 상승과 반복 상향은 살아남았고, 3Q·4Q 영업이익률 하락 반박도 살아남았다. 11/11 FY9/27 가이던스 전에는 규칙 등급을 따른다",
+   "dissent": "Strong Buy 자리: 동종보다 낮은 P/E에 40%대 성장은 할인 과잉이다"
+  }
+ }
+}
