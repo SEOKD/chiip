@@ -40,6 +40,14 @@ class T(unittest.TestCase):
             w.decide(H, mt(), C, st, d)
         self.assertEqual([i for i, _ in w.decide(H, mt(), C, st, "2026-11-06")[1]], ["x5"])
 
+    def test_low_alpha_removed_without_composite_and_pin_kept(self):
+        m = mt(); m["nc"] = {"ticker": "NC", "alpha": 4.0}; m["pp"] = {"ticker": "PP", "alpha": 1.0}
+        H = [{"id": "nc", "status": "관심"}, {"id": "pp", "status": "관심", "pin": True}]
+        st = {}
+        for d in ("2026-11-04", "2026-11-05"):
+            w.decide(H, m, C, st, d)
+        self.assertEqual([i for i, _ in w.decide(H, m, C, st, "2026-11-06")[1]], ["nc"])
+
     def test_unknown_metrics_never_remove(self):
         H = [{"id": "ghost", "status": "관심"}]
         st = {}

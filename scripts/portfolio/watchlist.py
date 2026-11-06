@@ -6,7 +6,7 @@
   2. 편입 후보    킬·거래대금 미달이 아니고, 알파 ≥ alpha_min, 그리고 (종합 ≥ composite_min 또는 Buy Call)
                  서로 다른 날 confirm_days일 연속 충족 → 편입. 자동 편입 상한(max_auto)이면 가장 낮은 자동 편입보다 replace_margin 이상 높을 때만 교체
   3. 제외         status 관심만(보유는 마스터 몫이라 건드리지 않는다). 킬 발동은 즉시, 편입 기준(2번)에 못 미치는 날이
-                 confirm_days일 연속이면 제외. 지표가 없는 날은 판정하지 않는다(모르면 미확인 — 없는 숫자로 빼지 않는다)
+                 confirm_days일 연속이면 제외(알파 미달은 종합 점수 없이도 판정, pin: true는 제외 안 함). 지표가 없는 날은 판정하지 않는다(모르면 미확인 — 없는 숫자로 빼지 않는다)
   4. 반영         config/portfolio.yaml에 블록 추가(added_by: chiip) 또는 status: 종료 + ended·ended_reason(지우지 않는다).
                  기록 knowledge/models/portfolio/watchlist_log.csv(편입·제외일 지표 — 성적표 재료)
 지표·연구 후보이지 매수 권유가 아니다. 마스터 포지션 파일은 읽지 않는다.
@@ -80,15 +80,15 @@ def failing(m, c, k):
     """None = 판정 불가(지표 없음), "" = 기준 충족, 그 밖 = 미달 이유"""
     if m.get("killed") and c["remove"]["killed_immediate"]:
         return "킬 조건 발동"
+    a = c["add"]
+    if c["remove"].get("use_add_criteria", True) and m.get("alpha") is not None and m["alpha"] < a["alpha_min"]:
+        return f"알파 {m['alpha']:.1f} < {a['alpha_min']}"   # 알파 미달은 종합 점수 없이도 판정한다(2026-11-06 점검 — 종합 미산정 종목이 영영 안 빠지던 구멍)
     if m.get("alpha") is None or m.get("composite") is None or k["add_comp"] is None:
         return None
     # 편입 기준과 같은 잣대로 판정한다(마스터 지시 2026-11-06 "와치리스트 후보 기준에 충족하지 못하면 디리스트하도록 해라")
-    a = c["add"]
     if c["remove"].get("use_add_criteria", True):
         if m.get("adv_ok") is False:
             return "거래대금 미달"
-        if m["alpha"] < a["alpha_min"]:
-            return f"알파 {m['alpha']:.1f} < {a['alpha_min']}"
         if m["composite"] < k["add_comp"] and not (a["buy_call_counts"] and m.get("buy")):
             return f"종합 {m['composite']:.1f} < 상위 {round((1 - a['composite_pct']) * 100)}% 문턱 {k['add_comp']:.1f}·Buy Call 아님"
         return ""
@@ -112,7 +112,7 @@ def streak(st, key, iid, today, hit):
 
 
 def decide(holdings, mt, c, st, today):
-    watch = {h["id"]: h for h in holdings if h.get("status") == "관심"}
+    watch = {h["id"]: h for h in holdings if h.get("status") == "관심" and not h.get("pin")}   # pin: 마스터가 직접 넣은 종목은 자동 제외하지 않는다
     held = {h["id"] for h in holdings if h.get("status") in ("보유", "관심")}
     held |= {h["id"] for h in holdings if h.get("status") == "종료" and h.get("added_by") != "chiip"}   # 마스터가 뺀 종목은 자동으로 다시 넣지 않는다(2026-11-05 AEIS 제외 지시)
     adds, drops, k = [], [], cuts(mt, c)
@@ -150,7 +150,7 @@ def decide(holdings, mt, c, st, today):
 def block(iid, m, today):
     why = f"알파 {m.get('alpha')} · 종합 {m.get('composite')}" + (" · Buy Call" if m.get("buy") else "")
     name = str(m.get("name") or m.get("ticker")).replace('"', "'")
-    return (f"  - id: {iid}\n    ticker: {m['ticker']}\n    name: \"{name}\"\n    names: [\"{name}\"]\n    related: []\n"
+    return (f"  - id: {iid}\n    ticker: \"{m['ticker']}\"\n    name: \"{name}\"\n    names: [\"{name}\"]\n    related: []\n"
             f"    since: {today}\n    status: 관심\n    added_by: chiip                         # 와치리스트 자동 편입(scripts/portfolio/watchlist.py) — {why}\n")
 
 
@@ -188,7 +188,10 @@ def run(dry=False, today=None):
     adds, drops = decide(holdings, mt, c, st, today)
     tick = {h["id"]: h.get("ticker") for h in holdings}
     out = {"add": [{"id": i, "ticker": mt[i].get("ticker"), "alpha": mt[i].get("alpha"), "composite": mt[i].get("composite"), "buy_call": bool(mt[i].get("buy"))} for i in adds],
-           "remove": [{"id": i, "ticker": tick.get(i), "reason": w} for i, w in drops]}
+           "remove": [{"id": i, "ticker": tick.get(i), "reason": w} for i, w in drops],
+           # 알파는 편입 기준을 넘는데 종합 점수가 없어 판정하지 못한 종목 — 다음 회차 composite_in.json에 TradingView 지표를 넣는다(발굴 누락 방지)
+           "need_composite": sorted(mt[i].get("ticker") or i for i, m in mt.items() if (m.get("alpha") or 0) >= c["add"]["alpha_min"] and m.get("composite") is None
+                                    and i not in {h["id"] for h in holdings if h.get("status") in ("보유", "관심")})}
     if not dry:
         if adds or drops:
             PORT.write_text(apply(text, adds, drops, mt, today), encoding="utf-8")
