@@ -37,7 +37,22 @@ def _deep(x):
     return "\n".join(body)
 
 
+def gate(d):
+    """알파 5점 이상 종목만 남긴다(마스터 지시 2026-11-07, scripts/discovery/alpha_gate.py). 결론·이동·전환 문장은 그대로"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import alpha_gate
+    t = alpha_gate.table()
+    d = dict(d)
+    for k in ("deep", "top", "accel", "bands", "consumer", "quiet", "watch"):
+        if d.get(k):
+            d[k] = [x for x in d[k] if alpha_gate.ok_name(x.get("name"), t)]
+    if d.get("alpha"):
+        d["alpha"] = [x for x in d["alpha"] if "이탈" in x or alpha_gate.ok_name(x, t)]
+    return d
+
+
 def render(d):
+    d = gate(d)
     blocks = [f"[Chiip Ten-bagger Discovery {d['date']}]"]
 
     def add(title, lines):
