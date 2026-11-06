@@ -15,10 +15,11 @@
   interval_min: 5
   run_on: local
   language: ko
-  terms_note: "제외(2026-10-28 마스터 결정 — 국내 공시는 마스터가 이미 실시간으로 접함, 타 봇과 중복). 호출 한도 초과 시 status 020. corp_code 1회 조회 시 최대 100개사"
+  terms_note: "2026-10-28 마스터 결정으로 전체 제외(국내 공시는 마스터가 이미 실시간으로 접함) → 2026-11-06 마스터 지시 'SK하이닉스만 켜'로 entities만 조회. 호출 한도 초과 시 status 020. corp_code 1회 조회 시 최대 100개사"
+  entities: [co-skhynix]     # 이 목록만 조회(dart.poll). 다른 기업을 넣으려면 마스터 지시가 필요
   reliability_default: 1차
   verified: true
-  enabled: false
+  enabled: true
 
 - id: src-kind
   name: KRX KIND 공시

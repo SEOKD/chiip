@@ -40,8 +40,11 @@ def poll(env, tiers=("T0",)):
     today = common.now_kst()
     bgn = (today - timedelta(days=1)).strftime("%Y%m%d")
     items = []
+    only = set(next((x.get("entities") or [] for x in common.load_yaml("config/source_registry.yaml") or [] if x.get("id") == SOURCE_ID), []))
     for row in common.load_watchlist():
         if row["market"] != "KRX" or row["tier"] not in tiers or row["ticker"] not in codes:
+            continue
+        if only and row["entity_id"] not in only:   # 등록부 entities로 좁힌다 — 지금은 SK하이닉스만(2026-11-06 마스터 지시)
             continue
         data = json.loads(common.http_get(LIST_URL, {
             "crtfc_key": key, "corp_code": codes[row["ticker"]], "bgn_de": bgn,

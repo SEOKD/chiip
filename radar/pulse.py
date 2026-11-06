@@ -45,7 +45,7 @@ CLASSES = [("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa
            ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
-           ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts")),
+           ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart")),   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
 CLASS_W = {"SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
@@ -130,6 +130,8 @@ def relevant(it, cls):
     if cls == "방위":   # 독·프·이·스·일 국방부 원문이 정상 — 언어 필터 예외(원천에서 조달어로 이미 거름)
         return True
     if cls == "원자력·위성":   # 정부 문서는 회사명이 없어도 인허가·계약이면 본다(원천에서 이미 거름)
+        return True
+    if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True
     if cls == "소비재":   # 일본 적시공시 미러·한국어 원문 포함 — 지도 종목 + 실적·업적 문구로 이미 거름
         return True
