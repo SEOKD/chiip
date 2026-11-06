@@ -1,0 +1,110 @@
+auto: true
+id: us-mtd
+name: Mettler-Toledo
+ticker: MTD
+unit: B$
+unit_usd: 1000000000.0
+industry: instruments
+region_mix:
+  US: 0.42
+  EU: 0.31
+  CN: 0.16
+  JP: 0.05
+  KR: 0.03
+  TW: 0.03
+tax: 0.19
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 1679.08
+  shares: 0.020092
+  net_debt: 1.971447
+  source: 가격 = 11/5 종가(3Q 실적 발표일, 장 마감 뒤 발표 전 종가 −2.6%). 주식 = 발행 주식 20,036,559주(yfinance,
+    Easyconomics) — 3Q 기본 가중평균 19,964,045주(보도자료)보다 약간 많다, 분기 중 자사주 매입 $226M이 반영되기
+    전 표지 수로 본다. 현금 $52.2M, 차입 = 단기 $60.2M + 장기 $1,963.4M(9/30 보도자료 재무상태표) https://www.sec.gov/Archives/edgar/data/1037646/000103764626000072/ex-991mtd8xkq32026.htm
+rev0: 4.2687
+ic0: 2.049108
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.057
+      end: 0.04
+      decay: 0.7
+    margin:
+      m0: 0.2953
+      target: 0.31
+      year_target: 3
+      lr: 0.28
+      lam: 0.35
+      anchors:
+      - 0.2977
+      - 0.303
+    s2c: 3.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0823
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: 0.2953
+      target: 0.33
+      year_target: 3
+      lr: 0.28
+      lam: 0.25
+      anchors:
+      - 0.2977
+      - 0.303
+    s2c: 3.45
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0261
+      end: 0.030000000000000002
+      decay: 0.6
+    margin:
+      m0: 0.2953
+      target: 0.29
+      year_target: 3
+      lr: 0.28
+      lam: 0.5
+      anchors:
+      - 0.2977
+      - 0.303
+    s2c: 2.55
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [4.2687, 4.2687] (3Q26 보도자료(11/5): 4Q26 현지 통화 매출 약 +5%, 조정 EPS
+    $14.84~15.04(+11~13%). 2026년 현지 통화 약 +5%(직전 4~5%), 조정 EPS $47.70~47.90(직전 $47.15~47.50).
+    2027년 현지 통화 약 +5%, 조정 EPS $52.50~53.50(+10~12%) — 처음 제시 https://www.sec.gov/Archives/edgar/data/1037646/000103764626000072/ex-991mtd8xkq32026.htm)'
+  growth: 컨센서스 1년차 0.0%, 2년차 5.7%
+  margin: 1~2년차 컨센서스 29.8%, 30.3% 고정 → 목표 31%(3년차, 덮어쓰기) → 장기 수렴 28%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.049 → 덮어쓰기 3.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 2.6%~8.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '① 성장: rev0가 진행 중인 2026년(가이던스 기준 컨센서스 $4.27B)이라 규칙이 1년차를 0%로 읽는다 — 1년차는
+    2027 컨센서스 $4.51B/$4.27B = +5.7%(회사 2027 현지 통화 +5% 가이던스와 같은 폭), 장기 4%(2016~2025
+    매출 CAGR 약 5%보다 낮게). ② 이익률: 조정 영업이익률이 2021년 이후 28~30%대이고 컨센서스 2028 30.8% — 목표 31%(SBC
+    0.5%라 GAAP과 차이 작음), 장기 수렴 28%(규칙 기본 15%는 10년 넘게 25% 위를 지킨 이 회사와 맞지 않는다). ③ 재투자
+    효율: TTM 매출 ÷ 투하자본 2.05는 자사주 매입으로 자기자본이 $78M까지 줄어든 값이다. 증분은 CAPEX − D&A 약 −$17M에
+    운전자본 증가(재고 +$52M, 9개월)뿐이라 3.0으로 둔다'
+  shares: 완전 희석 = 기본 0.020037(2026-11-05) + 옵션·RSU·워런트·전환 0.0001 — 3Q 희석 가중 20,018,614
+    − 기본 19,964,045 = 54,569주(스톡옵션·RSU, 자사주법
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 미주 +3%·유럽 +2%로 성장의 대부분이 아시아·기타 몫'
+- '어닝콜 위험: 현금 $52M에 차입 $2.0B·자기자본 $78M — 자사주 매입을 차입으로 돌린다'
+- '어닝콜 위험: 2027 현지 통화 +5%는 가격 인상 의존(2Q 가격 약 2.5% 가이던스)'
+evidence:
+- 3Q26 실적 8-K https://www.sec.gov/Archives/edgar/data/1037646/000103764626000072/ex-991mtd8xkq32026.htm
+- 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/1037646/000103764626000051/mtd-20260630.htm
+- FY25 10-K https://www.sec.gov/Archives/edgar/data/1037646/000103764626000011/mtd-20251231.htm
+- 2026 위임장 https://www.sec.gov/Archives/edgar/data/1037646/000117494726000389/mtol-def14a.htm
+- Fiscal.ai NYSE_MTD https://fiscal.ai/company/NYSE-MTD
+- '보강 적용: R-20261103-01·R-20261031-01·R-20261030-01·D-20261104-01·D-20261102-01·X-20261102-01·D-20261029-05'
