@@ -1,0 +1,109 @@
+auto: true
+id: us-aaoi
+name: Applied Optoelectronics
+ticker: AAOI
+unit: B$
+unit_usd: 1000000000.0
+industry: telecom_equipment
+region_mix:
+  US: 0.85
+  TW: 0.05
+  CN: 0.05
+  EU: 0.05
+tax: 0.15
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 46.89
+  shares: 0.096
+  net_debt: -0.306717
+  source: 가격 = 11/5 종가(실적은 장 마감 뒤 발표 — 정규장 반응 전, 당일 −20.9%는 발표 전 업종 동반 하락). 주식 = 10-Q
+    표지 90,770,732주. 현금 = 현금·현금성 $605.4M(제한 현금 포함 총 $621.5M, 9/30). 10/1 3차 ATM 잔여분
+    약 $25M 유입은 반영하지 않았다. 차입 = 단기 차입 $60.0M + 장기 차입(2030 전환사채 장부가 $128.8M 포함) $165.4M
+    + 리스 $73.3M. 은행 인수어음 $51.5M은 영업 부채로 본다 https://www.sec.gov/Archives/edgar/data/1158114/000168316826008351/aaoi_ex9901.htm
+rev0: 1.015442
+ic0: 1.934631
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 1.3
+      end: 0.035
+      decay: 0.35
+    margin:
+      m0: 0.025
+      target: 0.15
+      year_target: 3
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.175
+      - 0.195
+    s2c: 1.5
+  bull:
+    prob: 0.2
+    growth:
+      start: 3.2346
+      end: 0.04
+      decay: 0.39999999999999997
+    margin:
+      m0: 0.025
+      target: 0.23
+      year_target: 3
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.175
+      - 0.195
+    s2c: 1.725
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.9696
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.025
+      target: 0.07
+      year_target: 3
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.175
+      - 0.195
+    s2c: 1.275
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.997942, 1.032942] (3Q26 보도자료(11/5): 4Q26 매출 $385~420M, 조정
+    매출총이익률 29.5~31%, 조정 순이익 $45.9~60.4M, 조정 EPS $0.48~0.63(약 96M주). 8/6 콜에서 말한 FY26
+    ''약 $1.1B''는 이번에 9개월 + 4Q 가이던스 $1.00~1.03B로 내려왔다 https://www.sec.gov/Archives/edgar/data/1158114/000168316826008351/aaoi_ex9901.htm)'
+  growth: 컨센서스 1년차 208.2%, 2년차 40.6%
+  margin: 1~2년차 컨센서스 17.5%, 19.5% 고정 → 목표 15%(3년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 1.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 97.0%~323.5%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '성장: 2027 매출 컨센서스 $3.13B(+208%)는 9/30 agentic 추정으로 미국 증설 지연·FY26 하향(11/5)
+    전 값이고, Zacks 2명은 $2.34B(+130%)다 — 연말 설비 목표가 65만 → 50만 개로 낮아진 점을 반영해 1년차 +130%(FY27
+    약 $2.34B)로 둔다. 이익률: 동종 GAAP 영업이익률 중앙 23%(COHR 13%·FN 10%·LITE 23%)이고 이 회사 역대 최고는
+    2017년 분기 29%였다. 조정 매출총이익률 29%대·LTA 가격 상한·조립 경쟁을 보면 장기 GAAP 15%. 재투자 효율: TTM 매출
+    ÷ 투하자본 0.39는 짓는 중인 설비가 든 값이다. CEO 산술(월 50만 개 ≈ 연 $3.6~4.2B 매출)과 2026~27 CAPEX
+    약 $2.5B, 운전자본(매출채권·재고 9개월 +$364M)을 합쳐 증분 1.5'
+  shares: '완전 희석 = 기본 0.09077(2026-11-04) + 옵션·RSU·워런트·전환 0.0052 — 회사 4Q26 가이던스 희석
+    주식 약 96M − 표지 90.77M = 5.23M. 구성: Amazon 자회사'
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 상위 3곳 92%·상위 10곳 99% — 한 고객의 주문 조정이 바로 매출에 닿는다'
+- '어닝콜 위험: 미이행 설비 약정 $929M > 현금 $621M — 추가 증자·차입 필요 가능성'
+- '어닝콜 위험: 조정 GM 28.7%로 가이던스 하단(29%) 미달, LTA 가격 상한'
+evidence:
+- 3Q26 실적 8-K(EX-99.1) https://www.sec.gov/Archives/edgar/data/1158114/000168316826008351/aaoi_ex9901.htm
+- 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1158114/000143774926035282/aaoi20260930_10q.htm
+- 신규 대출 8-K(2026-10-30) https://www.sec.gov/Archives/edgar/data/1158114/000168316826008310/aaoi_8k.htm
+- 2Q26 어닝콜(2026-08-06) 전문 요지
+- Fiscal.ai NASDAQ_AAOI https://fiscal.ai/company/NasdaqGM-AAOI
+- '보강 적용: R-20261103-01·R-20261031-01·R-20261030-01·D-20261104-01·D-20261102-01·X-20261102-01·D-20261029-05'
