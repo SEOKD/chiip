@@ -1,0 +1,116 @@
+auto: true
+id: co-corning
+name: Corning
+ticker: GLW
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.4
+  CN: 0.15
+  KR: 0.08
+  TW: 0.08
+  JP: 0.07
+  EU: 0.12
+  OTHER: 0.1
+tax: 0.21
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 103.43
+  shares: 0.8724
+  net_debt: 5.663
+  source: 가격 = 11/5 종가(−12.9%). 주식 = 10-Q 표지 861,401,106주(10/23) + NVIDIA 선지급 워런트
+    3M주(행사가 $0.0001, EPS 계산상 이미 유통 주식) = 864.4M. 현금 = 9/30 현금성 자산 $2,537M(제한 현금 $14M
+    별도). 차입 = 단기 $933M + 장기 $7,267M = $8,200M. 비지배 지분 $617M은 차입에 넣지 않았다 https://www.sec.gov/Archives/edgar/data/24741/000002474126000279/glw-20260930.htm
+rev0: 18.55
+ic0: 19.334
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.19
+      end: 0.03
+      decay: 0.85
+    margin:
+      m0: 0.201
+      target: 0.21
+      year_target: 4
+      lr: 0.21
+      lam: 0.35
+      anchors:
+      - 0.212
+      - 0.22
+      - 0.225
+    s2c: 1.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.2722
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.201
+      target: 0.23
+      year_target: 4
+      lr: 0.21
+      lam: 0.25
+      anchors:
+      - 0.212
+      - 0.22
+      - 0.225
+    s2c: 1.15
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.1051
+      end: 0.030000000000000002
+      decay: 0.75
+    margin:
+      m0: 0.201
+      target: 0.19
+      year_target: 4
+      lr: 0.21
+      lam: 0.5
+      anchors:
+      - 0.212
+      - 0.22
+      - 0.225
+    s2c: 0.85
+mc:
+  sigma_growth: 0.0418
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [18.55, 18.55] (3Q26 보도자료(10/27): 4Q 코어 매출 $5.2~5.3B(+19%), 코어
+    EPS $0.96~1.00(+36%). Springboard: 연환산 코어 매출 런레이트 2026년 말 $20B → 2028년 말 $30B
+    → 2030년 말 $40B(2027~2030 CAGR 19%), ''고확신'' 계획 2028년 $27B·2030년 $35B(2Q 콜). 2026
+    CAPEX 약 $2B https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027xex99xq32026.htm)'
+  growth: 컨센서스 1년차 19.1%, 2년차 19.0%
+  margin: 1~3년차 컨센서스 21.2%, 22.0%, 22.5% 고정 → 목표 21%(4년차, 덮어쓰기) → 장기 수렴 21%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.916 → 덮어쓰기 1.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 10.5%~27.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: 성장은 Springboard 2027~2030 CAGR 19%(회사 목표)에서 출발해 해마다 15%씩 영구성장 3% 쪽으로
+    줄인다(FY27 19%·FY28 16.6%·FY29 14.6%, 회사 목표 19% CAGR보다 보수적) — 컨센서스 FY27 +19%·FY28
+    +19%와 같다. 장기 GAAP 영업이익률 21%는 코어 영업이익률 컨센서스 FY28 24%에서 헤지 환율 차이·SBC 2%를 뺀 값(3Q
+    GAAP 18.8%). 매출÷투하자본 1.0은 TTM 0.92에 선수금 몫을 더한 판단 — 2026~2027 CAPEX $2.0~2.7B
+  shares: 완전 희석 = 기본 0.8644(2026-10-23) + 옵션·RSU·워런트·전환 0.0080 — 3Q 희석 871M − 기본 863M
+    = 8M(옵션·주식 보상·워런트 희석분). NVIDIA 일반 워런트 1
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 메모리 가격 상승으로 TV·노트북·스마트폰 수요 약세 — 유리 혁신 3Q −3%'
+- '어닝콜 위험: 태양광 램프가 예상보다 느림(3Q 순손실 −$7M)'
+- '어닝콜 위험: 엔화 약세(2027~2030 계획 환율 ¥150)'
+evidence:
+- 3Q26 실적 8-K EX-99 https://www.sec.gov/Archives/edgar/data/24741/000002474126000273/glw-20261027xex99xq32026.htm
+- 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/24741/000002474126000279/glw-20260930.htm
+- FY2025 10-K https://www.sec.gov/Archives/edgar/data/24741/000002474126000124/glw-20251231.htm
+- NVIDIA 파트너십 8-K EX-99.1(2026-05-06) https://www.sec.gov/Archives/edgar/data/24741/000120677426000273/glw4631061-ex991.htm
+- ATM 8-K(2026-09-11) https://www.sec.gov/Archives/edgar/data/24741/000119312526389321/d154232d8k.htm
+- 2Q26 실적 8-K EX-99 https://www.sec.gov/Archives/edgar/data/24741/000002474126000253/glw-20260728xex99xq22026.htm
+- 3Q26·2Q26 어닝콜 전문(요지만)
+- Fiscal.ai 표준 재무·추정·13F·펀드 레터·내부자 거래 https://fiscal.ai/company/NYSE-GLW
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
