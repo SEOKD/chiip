@@ -1,15 +1,1 @@
-co-doosan | reissue | 20261102_000150
-SDRL | new | 마스터 수동 지시 2026-11-02
-PWR | new | 마스터 수동 지시 2026-11-02
-CACI | new | 마스터 수동 지시 2026-11-02
-DELL | new | 마스터 수동 지시 2026-11-02
-INIO | reissue | 20261030_INIO
-CBRS | reissue | 20261030_CBRS
-TTMI | reissue | 20261030_TTMI
-VICR | reissue | 20261030_VICR
-HII | reissue | 20261031_HII
-EROC | reissue | 20261031_EROC
-KOG | reissue | 20261031_KOG
-jp-takaratomy | new | 마스터가 기존 리포트 갱신을 지시했으나 저장소에 리포트가 없어 양식 3으로 새로 쓴다
-UCTT | reissue | 20261030_UCTT
-ORCL | new | 최신 Investor Day를 1차 자료로 찾아 내러티브·어닝콜 변화·시나리오에 반영한다(마스터 지시 2026-11-02)
+us-mtd | new | 마스터 지시 2026-11-06 "메틀러 톨레도(MTD) Anlaysis 리포트를 써라" — 제품·생산시설 실사 사진 필수(photo_view.py)
