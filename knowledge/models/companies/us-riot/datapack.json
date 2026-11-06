@@ -1831,9 +1831,9 @@
     "item": "트리플넷 자본 구조",
     "label": "MW당 $6M 구조",
     "prior": "Tier 3 직접 건설 MW당 $11~12M(Rockdale)",
-    "latest": "회사 몫 $2M + 환급 $4M = $6M/MW",
+    "latest": "회사 몫 $2M + 환급 $4M = $6M/MW — 전체 프로그램($7.7B) 기준 자본 효율 개선분만 반영",
     "driver": "s2c",
-    "shift": 0.08,
+    "shift": 0.03,
     "confidence": 0.8,
     "source": "https://www.sec.gov/Archives/edgar/data/1167419/000110465926122368/riot-ex99d1.htm"
    },
@@ -4261,7 +4261,7 @@
     "remarks": [
      {
       "seat": "Strong Buy",
-      "text": "지금 기업가치 $5.4B에 남은 투자 $7.7B를 더해도 $13.1B, 완공 NOI $2.2B의 6배다. 데이터센터 리츠는 이 두세 배에 거래된다"
+      "text": "지금 기업가치 $5.4B에 남은 투자 $7.7B를 더해도 $13.1B, 완공 NOI $2.2B의 6배(세전 자본화율 약 17%)다. 장기 임대 자산의 통상 자본화율 6~8%(추정)와 비교하면 간격이 너무 크다"
      },
      {
       "seat": "Buy",
