@@ -1,0 +1,100 @@
+auto: true
+id: co-samsung
+name: 삼성전자
+ticker: 005930
+unit: BKRW
+unit_usd: 736491
+industry: semiconductor
+region_mix:
+  KR: 1.0
+tax: 0.24
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 188700
+  shares: 6.566564
+  net_debt: -197631.7
+  source: 가격 = TradingView KRX:005930 11/6 종가 ₩188,700(−6.35%). 주식 수 = 보통주 5,764,193,295
+    + 우선주 802,371,000(유통 주식, TradingView). 두 주식의 EPS가 같아 합산했다 — 우선주 할인(11/6 ₩150,300,
+    −20%)을 반영하지 않아 시가총액이 약 3% 크게 잡힌다. 현금 등 ₩214.8T·차입금 ₩17.2T = 3Q26 IR 별첨 3·4(순현금
+    ₩197.6T), yfinance 개요와 같다. 3Q 배당 ₩30T(11월 지급)는 아직 현금에서 빼지 않았다
+rev0: 723134.7
+ic0: 416500.0
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.42
+      end: 0.03
+      decay: 0.12
+    margin:
+      m0: 0.528
+      target: 0.3
+      year_target: 5
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.616
+      - 0.613
+    s2c: 1.2
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.5939
+      end: 0.034999999999999996
+      decay: 0.16999999999999998
+    margin:
+      m0: 0.528
+      target: 0.3425
+      year_target: 5
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.616
+      - 0.613
+    s2c: 1.38
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.2545
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.528
+      target: 0.2575
+      year_target: 5
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.616
+      - 0.613
+    s2c: 1.02
+mc:
+  sigma_growth: 0.0848
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [723134.7, 723134.7] (3Q26 콜 2026-10-29, IR 자료 https://images.samsung.com/kdp/ir/events/2026/2026_3Q_conference_kor.pdf)
+  growth: 컨센서스 1년차 42.4%, 2년차 8.8%
+  margin: 1~2년차 컨센서스 61.6%, 61.3% 고정 → 목표 30%(5년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: 재무 재구성 증분 매출/투하자본 1.43 → 덮어쓰기 1.2
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: 매출은 FY2027 증권사 추정(+42%) 뒤 FY2028 정체를 따라간다. 장기 영업이익률 30%는 2016~2025년 평균
+    약 17%에 HBM·LTA 몫을 더한 판단이다. 2023년 영업이익률 2.5%가 있어 지금 55%를 영구값으로 쓰지 않는다. 매출÷투하자본
+    1.2는 2026~2027 CAPEX 증가를 반영했다
+  shares: '완전 희석 = 기본 6.566564295(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 스톡옵션·전환사채 없음.
+    2026년 남은 환원 재원 ₩55~75T의 자사주 매입·소각은 1월 이사회 전이라 '
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 환율로 전사 영업이익 약 ₩10T 감소(QoQ)'
+- '어닝콜 위험: MX·네트워크 영업손실 ₩0.6T, 4Q도 원가 부담'
+- '어닝콜 위험: 2027 스마트폰·TV·디스플레이 수요 약세'
+evidence:
+- '3Q26 실적발표 IR 자료: https://images.samsung.com/kdp/ir/events/2026/2026_3Q_conference_kor.pdf'
+- '3Q26 콜 전문 보도(디일렉): https://www.thelec.kr/news/articleView.html?idxno=64531'
+- 'KB증권 2027 전망 보도: https://www.newsclaim.co.kr/news/articleView.html?idxno=3081019'
+- '11/6 급락 보도: https://www.g-enews.com/article/Securities/2026/11/20261106095122655544093b5d4e_1'
+- '11/6 종가 보도: https://www.daily25news.com/news/articleView.html?idxno=8541'
