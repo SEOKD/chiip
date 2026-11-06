@@ -1,4 +1,4 @@
-# 예약 작업: chiip-valuation-queue (2026-10-28 마스터 등록 승인 → 등록 완료)
+# 예약 작업: chiip-valuation-queue (2026-10-28 마스터 등록 승인 → 등록 완료 · 2026-11-07 예약 목록에서 빠진 것을 발견해 재등록)
 
 운영 규칙: `docs/channels/tenbagger.md`를 먼저 읽는다.
 
@@ -25,6 +25,7 @@
    - '작성': drivers.yaml을 새로 쓴다(양식 knowledge/models/companies/co-gevernova/drivers.yaml). 시가·주식수·순차입은 공개 자료(날짜·출처 기록), 재무는 최근 분기 보고서(SEC 10-Q 등), 컨센서스는 knowledge/models/valuation/manual_consensus.csv(없으면 '컨센서스 미입력'). 근거가 약하면 '근거 약함'.
    - '갱신': 최신 실적·가이던스로 고치고 as_of를 오늘로, 바꾼 이유를 notes 맨 앞에.
    - 그다음 `py scripts/valuation/v2/alpha_watch.py --entity <id> --send --reason "<대기열 reason>"`(3요인 텔레그램 — 내러티브 한 줄이 자동으로 붙음, 대기열에서 제거).
+3-1. kind '내러티브'(2026-11-07 추가 — 알파 감지 3요인이 '내러티브 작성 대기'로 나간 종목): 한 번에 최대 5종목. 3-a 절차대로 knowledge/narratives/companies/<id>.md만 쓰고 대기열에서 지운다. 동인·3요인 재발송은 하지 않는다(다음 감지 때 내러티브 한 줄이 붙는다).
 4. 결과가 직관과 크게 다르면 가정(성장·장기 마진·재투자 효율·WACC·RONIC)을 먼저 점검하고 고친 경우 notes에 남긴다. 숫자를 지어내지 않는다. 커뮤니티·IB 의견은 시장 기대의 증거이지 사실이 아니다.
 5. 금지: D:\local-only 읽기, 필드 인텔·채널체크·공개 확인 전 Exclusive Source 수치를 정량 입력으로 사용, '매수하라/팔아라'·금액 지시 문구(지표·확률로만 — 치입은 투자자문 아님), 공개 채널 게시, Investing.com·Yahoo·Finviz 자동 수집, 유료 본문·IB 리포트 문장 복제, 커뮤니티 작성자 이름·계정 저장.
 6. git 커밋·푸시는 하지 않는다. 마스터 세션에서 일괄 커밋한다.

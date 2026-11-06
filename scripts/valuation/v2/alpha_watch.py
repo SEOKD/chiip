@@ -44,7 +44,7 @@ def narrative_line(eid, today=None, stale_days=30):
     """스킬 narrative-premium 결과(knowledge/narratives/companies/<id>.md) 한 줄 — 없거나 오래되면 그렇게 적는다"""
     p = ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
     if not p.exists():
-        return "내러티브: 미작성(narrative-premium 대기)"
+        return "내러티브: 작성 대기 — chiip-valuation-queue 다음 회차(08:10·18:10)가 쓴다"
     try:
         fm = yaml.safe_load(p.read_text(encoding="utf-8").split("---")[1]) or {}
     except (IndexError, yaml.YAMLError):
@@ -184,6 +184,8 @@ def message(r, name, alpha_total, reasons, update_note=None):
 def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None):
     import run as v2run
     r = v2run.evaluate(eid, c_all["decision"]["watch_draws"])
+    if not (ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md").exists():   # 내러티브가 없으면 작성 일을 대기열에 올린다(2026-11-07 — 대기만 표시되고 아무도 쓰지 않던 구멍)
+        enqueue(eid, r.get("name") or eid, "내러티브 미작성 — 알파 감지 3요인 발송 뒤", "내러티브")
     text = message(r, r["name"], alpha_total, reasons, update_note)
     od = ROOT / "outputs" / "invest" / "valuation_v2"
     od.mkdir(parents=True, exist_ok=True)
