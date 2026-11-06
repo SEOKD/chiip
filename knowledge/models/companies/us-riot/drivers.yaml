@@ -1,0 +1,106 @@
+auto: true
+id: us-riot
+name: Riot Platforms
+ticker: RIOT
+unit: B$
+unit_usd: 1000000000.0
+industry: datacenter
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 14.76
+  shares: 0.376495
+  net_debt: -0.1813
+  source: 가격 = 11/5 종가 $14.76(Fiscal.ai 일봉·yfinance 일치). 주식 = 10-Q 표지 375,183,965주(11/2,
+    미가득 RSA 약 17.6M주 포함). 현금 = 무제한 현금 $669.1M + 보유 비트코인 2,418개 $202.0M(9/30 시가 $83,554)
+    — 제한 현금 $79.2M은 신용장 담보라 뺀다. 차입 = 장부가 $656.6M(원금 $674.5M(2030 전환사채 $594.4M·$50M
+    한도 $34.3M·$20M 한도 $20.0M·Morgan Stanley $573M 한도 인출 $20.8M·CPACE $5.0M) + 운영리스
+    부채 $33.0M https://www.sec.gov/Archives/edgar/data/1167419/000110465926122417/riot-20260930x10q.htm
+rev0: 0.7
+ic0: 1.953
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.9
+      end: 0.03
+      decay: 0.45
+    margin:
+      m0: -1.27
+      target: 0.5
+      year_target: 4
+      lr: 0.45
+      lam: 0.1
+      anchors:
+      - -0.42
+      - 0.46
+    s2c: 0.27
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4286
+      end: 0.04
+      decay: 0.5
+    margin:
+      m0: -1.27
+      target: 0.58
+      year_target: 4
+      lr: 0.45
+      lam: 0.25
+      anchors:
+      - -0.42
+      - 0.46
+    s2c: 0.31
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0286
+      end: 0.030000000000000002
+      decay: 0.35
+    margin:
+      m0: -1.27
+      target: 0.42
+      year_target: 4
+      lr: 0.45
+      lam: 0.5
+      anchors:
+      - -0.42
+      - 0.46
+    s2c: 0.23
+mc:
+  sigma_growth: 0.1
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 0.7
+  growth: 컨센서스 1년차 22.1%, 2년차 133.9%
+  margin: 1~2년차 컨센서스 -42.0%, 46.0% 고정 → 목표 50%(4년차, 덮어쓰기) → 장기 수렴 45%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 0.27
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 2.9%~42.9%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: '임대형 데이터센터로 바뀌는 회사: ① 매출은 계약 1,151MW 인도로 FY27~FY29에 몰려 늘고(컨센서스 FY26 $0.70B
+    → FY28 $2.0B) 이후 임대료 인상률(3%)로 수렴한다 — 규칙은 FY27 +22%만 보고 FY28 +134%를 놓친다. start
+    0.9·decay 0.45면 FY28 약 $1.9B·FY30 약 $2.5B·장기 약 $2.9B(임대료 $2.3B + 엔지니어링·잔여 채굴)로
+    계약과 맞는다. ② 트리플넷·장기 임대라 장기 EBIT 이익률이 일반 기업 15%로 수렴하지 않는다 — NOI 마진 80~99%에서 판관비·감가상각(프로젝트
+    자본 $7.7B를 25년, 연 약 $0.3B)·임차인 환급 상각(매출 차감)을 빼 약 50%(추정). ③ 매출 증가 약 $2.2B에 프로젝트
+    자본 $7.6~7.8B(대부분 비소구 프로젝트 부채)가 들어 매출/투하자본 약 0.27'
+  shares: '완전 희석 = 기본 0.375184(2026-11-02) + 옵션·RSU·워런트·전환 0.0013 — 10-Q EPS 주석: 미가득
+    RSU 1.31M주(3Q 희석 반영분). 미가득 RSA 17.6M주는 이미 표'
+notes:
+- 자동 생성(build_drivers) 2026-11-06 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 계약 매출의 약 98%가 한 임차인(10-Q가 Anthropic PBC로 명시)'
+- '어닝콜 위험: 2027~2028 프로젝트 자본 $7.6~7.8B — 신용시장 스프레드 확대(CFO)'
+- '어닝콜 위험: 텍사스 정치: 11/3 민주당 주지사 당선, 데이터센터 인허가 정책 변화 가능'
+evidence:
+- 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1167419/000110465926122417/riot-20260930x10q.htm
+- 3Q26 보도자료 8-K EX-99.1 https://www.sec.gov/Archives/edgar/data/1167419/000110465926122368/riot-ex99d1.htm
+- 3Q26 실적 자료 EX-99.2 https://www.sec.gov/Archives/edgar/data/1167419/000110465926122368/riot-ex99d2.htm
+- Morgan Stanley $573M 대출 8-K(8/14) https://www.sec.gov/Archives/edgar/data/1167419/000110465926097330/riot-20260810x8k.htm
+- Coinbase 대출 상환 8-K(9/25) https://www.sec.gov/Archives/edgar/data/1167419/000110465926111003/riot-20260921x8k.htm
+- 텍사스 주지사 선거 결과(Texas Tribune 11/3) https://www.texastribune.org/2026/11/03/texas-governor-greg-abbott-gina-hinojosa-election/
+- '보강 적용: R-20261103-01·R-20261031-01·R-20261030-01·D-20261104-01·D-20261102-01·X-20261102-01'
