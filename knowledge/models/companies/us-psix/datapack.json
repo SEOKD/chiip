@@ -1,0 +1,2130 @@
+{
+ "id": "us-psix",
+ "name": "Power Solutions International",
+ "ticker": "PSIX",
+ "as_of": "2026-11-06",
+ "unit": "B$",
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.21,
+ "profile": {
+  "price": 39.16,
+  "shares_basic": 0.023065,
+  "shares_date": "2026-10-29",
+  "cash": 0.072,
+  "debt": 0.0361,
+  "source": "가격 2026-11-06 종가 $39.16 · 주식 수 23,065,450(2026-10-29, 3Q 10-Q 표지) · 현금 $72.0M(제한 현금 $4.5M 별도)·차입 단기 $0.25M + 유동 $0.015M + 장기 $35.9M(10-Q 2026-09-30, 리스 $61.9M 제외)"
+ },
+ "dilution": {
+  "potential_total": 1.1e-05,
+  "date": "2026-10-29",
+  "source": "3Q 10-Q 희석 가중 주식 23,075천 − 기본 23,064천 = 11천 주"
+ },
+ "financials": {
+  "rev_ttm": 0.6744,
+  "ebit_ttm": 0.1004,
+  "invested_capital": 0.1972,
+  "capex_ttm": 0.015,
+  "da_ttm": 0.0064,
+  "sbc_ttm": 0.001,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26 4개 분기 합(Fiscal.ai 표준화 손익, 10-Q 대조). 2Q26에 관세 환급 $22.7M(일회성, IEEPA 판결)이 들어 있다. 투하자본 = 자기자본 $233.0M + 차입 $36.1M − 현금 $72.0M. CAPEX는 유형자산 증가($23.0M → $33.5M, 인수 포함)로 본 추정"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.691,
+   "FY2027": 0.75,
+   "FY2028": 0.81
+  },
+  "ebit_margin": {
+   "FY2026": 0.165,
+   "FY2027": 0.155,
+   "FY2028": 0.161
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "rev_low": {
+   "FY2027": 0.61,
+   "FY2028": 0.6
+  },
+  "rev_high": {
+   "FY2027": 0.89,
+   "FY2028": 1.02
+  },
+  "source": "Fiscal.ai company_estimates(자체 추정, 애널리스트 3명) 2026-11-07. 이익률 = 조정 EBITDA 추정 − 감가상각 약 1%p(추정). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "eps_history": {
+   "basis": null,
+   "updated_at": null,
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": []
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 191.223,
+    "est": 169.2,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-02"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.71,
+    "est": 0.64,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-03-02"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 25.813,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-03-02"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 128.592,
+    "est": 160.8,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.36,
+    "est": 0.52,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 13.875,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-11"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 152.544,
+    "est": 133.95,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.78,
+    "est": 0.27,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 26.833,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 202.074,
+    "est": 185.496,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-29",
+    "basis": "gaap",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.3,
+    "est": 0.961,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-29",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 42.812,
+    "est": 32.096,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-29",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
+   }
+  ],
+  "eps": {
+   "FY2026": 3.57,
+   "FY2027": 3.67,
+   "FY2028": 4.13
+  },
+  "n_analysts": 3,
+  "quarters_est": {
+   "2026Q4": 0.2078,
+   "2027Q1": 0.17,
+   "2027Q2": 0.185,
+   "2027Q3": 0.195
+  },
+  "quarters_act": {
+   "2025Q4": 0.1912,
+   "2026Q1": 0.1286,
+   "2026Q2": 0.1525,
+   "2026Q3": 0.2021
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1.13,
+   "2027Q1": 0.77,
+   "2027Q2": 0.9,
+   "2027Q3": 1.0
+  },
+  "revisions": {
+   "from_date": "2026-08-06",
+   "to_date": "2026-11-07",
+   "from_label": "2Q 실적 직후",
+   "source": "추정 이력 없음 — 3명 커버리지. 리비전은 확인하지 못했다",
+   "rows": []
+  },
+  "price_window": {
+   "from": 49.43,
+   "to": 39.16,
+   "note": "3Q 실적 전 11/3 종가 → 11/6 종가"
+  },
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 3,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-07",
+   "source": "yfinance",
+   "target_mean": 72.79,
+   "target_high": 85,
+   "target_low": 63.37
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.691,
+   0.691
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "rev_fy0_note": "회사는 수치 가이던스를 내지 않는다 — 9개월 실적 $483.2M + 4Q 컨센서스 $207.8M(Chiip 계산)",
+  "source": "3Q26 실적 보도자료 2026-11-05 https://www.globenewswire.com/news-release/2026/11/05/3397148/17954/en/power-solutions-international-announces-third-quarter-2026-financial-results.html — 수치 가이던스 없음",
+  "next": {
+   "period": "4Q26",
+   "rev_cons": 207.8,
+   "unit": "$M",
+   "note": "회사 수치 가이던스 없음"
+  }
+ },
+ "call": {
+  "date": "2026-11-05",
+  "prev_date": "2026-08-06",
+  "tone": "flat",
+  "tone_score": "미확인",
+  "guidance_direction": "none",
+  "kpis": {
+   "rev_3q_m": 202.1,
+   "rev_qoq": 0.325,
+   "power_systems_3q_m": 163.1,
+   "gm_3q": 0.297,
+   "op_income_3q_m": 40.9,
+   "net_income_3q_m": 29.9,
+   "eps_3q": 1.3
+  },
+  "guidance_changes": [
+   "수치 가이던스 없음"
+  ],
+  "new_topics": [
+   "전력 시스템 매출 $163.1M(2Q $122.3M) — 데이터센터·석유가스 제품 믹스",
+   "HSBC $220M 회전 신용(2029-09 만기)로 차입 구조 교체",
+   "위스콘신(Darien·Beloit) 증설 램프 비용",
+   "철강 부품 제작 회사 인수(수직 계열화)"
+  ],
+  "dropped_topics": [
+   "2Q 관세 환급 $22.7M — 3Q에는 없음"
+  ],
+  "analyst_focus": [
+   "Craig-Hallum — 천연가스 발전 전환 속도(직전 콜)"
+  ],
+  "risks": [
+   "Weichai 46%·이사회 과반 지배",
+   "고객 집중(3분기 22·13·12%)",
+   "데이터센터 주문 시점에 따른 분기 변동",
+   "공급사 A 매입 28%",
+   "관세 환급 일회성"
+  ],
+  "deltas": [
+   {
+    "item": "전력 시스템 매출",
+    "kind": "업데이트",
+    "prev": "2Q $122.3M",
+    "now": "3Q $163.1M(+33% QoQ)",
+    "driver": "rev0",
+    "shift": 0.03,
+    "label": "전력 시스템 +33%",
+    "confidence": 1.0,
+    "source": "3Q 10-Q"
+   },
+   {
+    "item": "매출총이익률",
+    "kind": "업데이트",
+    "prev": "2Q 27.1%(관세 환급 포함)",
+    "now": "3Q 29.7%",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "label": "GM 29.7%",
+    "confidence": 1.0,
+    "source": "3Q 10-Q"
+   },
+   {
+    "item": "관세 환급",
+    "kind": "부정",
+    "prev": "2Q $22.7M 일회성",
+    "now": "3Q 없음",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "label": "관세 환급 소멸",
+    "confidence": 1.0,
+    "source": "3Q 10-Q"
+   },
+   {
+    "item": "신용 한도",
+    "kind": "신규",
+    "prev": "Standard Chartered $135M(2027 만기)",
+    "now": "HSBC $220M(2029 만기)",
+    "driver": "wacc",
+    "shift": -0.002,
+    "label": "HSBC $220M 한도",
+    "confidence": 1.0,
+    "source": "3Q 10-Q"
+   },
+   {
+    "item": "위스콘신 증설",
+    "kind": "신규",
+    "prev": "언급 없음",
+    "now": "캐파 램프 비용과 산출 위험",
+    "driver": "s2c",
+    "shift": -0.1,
+    "label": "위스콘신 증설",
+    "confidence": 0.8,
+    "source": "3Q 10-Q 위험 문구"
+   }
+  ],
+  "source": "3Q26 10-Q·실적 보도자료(2026-11-05). 이번 회차는 어닝콜 전문을 확보하지 못했다 — 콜 질의응답은 미확인"
+ },
+ "overrides": {
+  "margin_base": {
+   "lr": 0.1
+  },
+  "s2c": 3.0,
+  "why": "장기 이익률 10%(lr): 3Q 영업이익률 20%는 데이터센터 믹스 정점 — 엔진·발전기 동종 GAAP 6~13%로 수렴(근거 약함) / 매출÷투하자본 3.0: TTM 3.4 근처(조립 중심 사업)"
+ },
+ "sources": [
+  "PSI 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1137091/000162828026071065/psix-20260930.htm",
+  "PSI 3Q26 실적 보도자료 https://www.globenewswire.com/news-release/2026/11/05/3397148/17954/en/power-solutions-international-announces-third-quarter-2026-financial-results.html",
+  "Fiscal.ai 추정·재무·세그먼트 2026-11-07",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-08T00:20:00+09:00",
+  "fiscal_key": "NASDAQ_PSIX",
+  "shares_cover_implied": 0.023065,
+  "fiscal_profile": {
+   "price": 39.16,
+   "market_cap": 0.9032,
+   "total_cash": 0.072,
+   "total_debt": 0.0361,
+   "balance_date": "2026-09-30",
+   "source": "Easyconomics(yfinance) company_profile 2026-11-07(시가총액), 현금·차입은 10-Q(리스 제외)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025-12": 0.1912,
+    "2026-03": 0.1286,
+    "2026-06": 0.1525,
+    "2026-09": 0.2021
+   },
+   "op_income": {
+    "2025-12": 0.0242,
+    "2026-03": 0.0114,
+    "2026-06": 0.0239,
+    "2026-09": 0.0409
+   }
+  },
+  "balance_2026_09_30": {
+   "cash": 0.072,
+   "debt_current": 0.000265,
+   "debt_lt": 0.035875,
+   "equity": 0.233,
+   "restricted_cash": 0.0045,
+   "leases": 0.0619,
+   "source": "https://www.sec.gov/Archives/edgar/data/1137091/000162828026071065/psix-20260930.htm"
+  },
+  "estimates_sales_m": {
+   "2026Q1(실적)": 128.6,
+   "2026Q2(실적)": 152.5,
+   "2026Q3(실적)": 202.1,
+   "2026Q4": 207.8
+  },
+  "sec_10q_2026_09_30": {
+   "weichai_share": 0.46,
+   "customers": {
+    "B": 0.22,
+    "F": 0.13,
+    "C": 0.12
+   },
+   "supplier_a": 0.28,
+   "tariff_refund_2q": 0.0227,
+   "url": "https://www.sec.gov/Archives/edgar/data/1137091/000162828026071065/psix-20260930.htm"
+  }
+ },
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_PSIX",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-03-31",
+    "rev": 86139000,
+    "cogs": 69682000,
+    "gp": 16457000,
+    "sga": 6405000,
+    "rd": 5168000,
+    "da": 814000,
+    "other": null,
+    "op": 4070000
+   },
+   {
+    "period": "2015-06-30",
+    "rev": 94629000,
+    "cogs": 77255000,
+    "gp": 17374000,
+    "sga": 6656000,
+    "rd": 6243000,
+    "da": null,
+    "other": null,
+    "op": 4475000
+   },
+   {
+    "period": "2015-09-30",
+    "rev": 112008000,
+    "cogs": 96700000,
+    "gp": 15308000,
+    "sga": 7259000,
+    "rd": 5562000,
+    "da": 1099000,
+    "other": -50000,
+    "op": 1388000
+   },
+   {
+    "period": "2015-12-31",
+    "rev": 69611000,
+    "cogs": 82975000,
+    "gp": 13695000,
+    "sga": null,
+    "rd": 4708000,
+    "da": 1827000,
+    "other": 98000,
+    "op": -738000
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 61814000,
+    "cogs": 57758000,
+    "gp": 4056000,
+    "sga": 6058000,
+    "rd": 5250000,
+    "da": 1429000,
+    "other": null,
+    "op": -8681000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 94413000,
+    "cogs": 84540000,
+    "gp": 9873000,
+    "sga": 13254000,
+    "rd": 6021000,
+    "da": 1045000,
+    "other": null,
+    "op": -10447000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 127073000,
+    "cogs": 109006000,
+    "gp": 18067000,
+    "sga": 13276000,
+    "rd": 6962000,
+    "da": 1321000,
+    "other": null,
+    "op": -3492000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 136318000,
+    "cogs": 117510000,
+    "gp": 18808000,
+    "sga": 16374000,
+    "rd": 7708000,
+    "da": 1321000,
+    "other": null,
+    "op": -6595000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 138234000,
+    "cogs": 126213000,
+    "gp": 12021000,
+    "sga": 16727000,
+    "rd": 7910000,
+    "da": 1321000,
+    "other": 2234000,
+    "op": -16171000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 115787000,
+    "cogs": 98083000,
+    "gp": 17704000,
+    "sga": 16060000,
+    "rd": 6299000,
+    "da": 910000,
+    "other": null,
+    "op": -5565000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 138684000,
+    "cogs": 113070000,
+    "gp": 25614000,
+    "sga": 13955000,
+    "rd": 6030000,
+    "da": 909000,
+    "other": null,
+    "op": 4720000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 138512000,
+    "cogs": 111640000,
+    "gp": 26872000,
+    "sga": 11461000,
+    "rd": 6366000,
+    "da": 910000,
+    "other": null,
+    "op": 8135000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 153093000,
+    "cogs": 123395000,
+    "gp": 29698000,
+    "sga": 12639000,
+    "rd": 6237000,
+    "da": 909000,
+    "other": 0,
+    "op": 9913000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 105097000,
+    "cogs": 87383000,
+    "gp": 17714000,
+    "sga": 13890000,
+    "rd": 6752000,
+    "da": 763000,
+    "other": null,
+    "op": -3691000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 93056000,
+    "cogs": 89279000,
+    "gp": 3777000,
+    "sga": 12580000,
+    "rd": 5814000,
+    "da": 764000,
+    "other": null,
+    "op": -15381000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 114450000,
+    "cogs": 96281000,
+    "gp": 18169000,
+    "sga": 11964000,
+    "rd": 6555000,
+    "da": 763000,
+    "other": null,
+    "op": -1113000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 105036000,
+    "cogs": 86248000,
+    "gp": 18788000,
+    "sga": 13310000,
+    "rd": 6254000,
+    "da": 763000,
+    "other": 0,
+    "op": -1539000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 100171000,
+    "cogs": 93101000,
+    "gp": 7070000,
+    "sga": 15811000,
+    "rd": 6224000,
+    "da": 634000,
+    "other": null,
+    "op": -15599000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 111478000,
+    "cogs": 98284000,
+    "gp": 13194000,
+    "sga": 21089000,
+    "rd": 6111000,
+    "da": 633000,
+    "other": null,
+    "op": -14639000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 117630000,
+    "cogs": 106288000,
+    "gp": 11342000,
+    "sga": 10958000,
+    "rd": 5437000,
+    "da": 634000,
+    "other": null,
+    "op": -5687000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 126976000,
+    "cogs": 117311000,
+    "gp": 9665000,
+    "sga": 10013000,
+    "rd": 4663000,
+    "da": 634000,
+    "other": 0,
+    "op": -5645000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 98947000,
+    "cogs": 82229000,
+    "gp": 16718000,
+    "sga": 11385000,
+    "rd": 4560000,
+    "da": 541000,
+    "other": null,
+    "op": 232000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 120479000,
+    "cogs": 102158000,
+    "gp": 18321000,
+    "sga": 9995000,
+    "rd": 4554000,
+    "da": 531000,
+    "other": null,
+    "op": 3241000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 124900000,
+    "cogs": 100792000,
+    "gp": 24108000,
+    "sga": 11541000,
+    "rd": 4819000,
+    "da": 526000,
+    "other": null,
+    "op": 7222000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 137007000,
+    "cogs": 107589000,
+    "gp": 29418000,
+    "sga": 10019000,
+    "rd": 4965000,
+    "da": 526000,
+    "other": 0,
+    "op": 13908000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 116469000,
+    "cogs": 93000000,
+    "gp": 23469000,
+    "sga": 9905000,
+    "rd": 4604000,
+    "da": 436000,
+    "other": null,
+    "op": 8524000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 121865000,
+    "cogs": 94911000,
+    "gp": 26954000,
+    "sga": 10550000,
+    "rd": 4662000,
+    "da": 437000,
+    "other": null,
+    "op": 11305000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 115884000,
+    "cogs": 87979000,
+    "gp": 27905000,
+    "sga": 10595000,
+    "rd": 4762000,
+    "da": 436000,
+    "other": null,
+    "op": 12112000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 104755000,
+    "cogs": 77219000,
+    "gp": 27536000,
+    "sga": 9336000,
+    "rd": 5429000,
+    "da": 437000,
+    "other": 0,
+    "op": 12334000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 95240000,
+    "cogs": 69484000,
+    "gp": 25756000,
+    "sga": 9532000,
+    "rd": 5197000,
+    "da": 365000,
+    "other": null,
+    "op": 10662000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 110586000,
+    "cogs": 75398000,
+    "gp": 35188000,
+    "sga": 4520000,
+    "rd": 4959000,
+    "da": 365000,
+    "other": null,
+    "op": 25344000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 125842000,
+    "cogs": 89418000,
+    "gp": 36424000,
+    "sga": 10957000,
+    "rd": 4651000,
+    "da": 365000,
+    "other": null,
+    "op": 20451000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 144299000,
+    "cogs": 101130000,
+    "gp": 43169000,
+    "sga": 12369000,
+    "rd": 5249000,
+    "da": 364000,
+    "other": 0,
+    "op": 25187000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 135446000,
+    "cogs": 95152000,
+    "gp": 40294000,
+    "sga": 11109000,
+    "rd": 4244000,
+    "da": 307000,
+    "other": null,
+    "op": 24634000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 191907000,
+    "cogs": 137824000,
+    "gp": 54083000,
+    "sga": 16680000,
+    "rd": 4615000,
+    "da": 306000,
+    "other": null,
+    "op": 32482000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 203829000,
+    "cogs": 155118000,
+    "gp": 48711000,
+    "sga": 15256000,
+    "rd": 4790000,
+    "da": 308000,
+    "other": null,
+    "op": 28357000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 191223000,
+    "cogs": 149412000,
+    "gp": 41811000,
+    "sga": 12758000,
+    "rd": 4515000,
+    "da": 297000,
+    "other": 0,
+    "op": 24241000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 128592000,
+    "cogs": 99168000,
+    "gp": 29424000,
+    "sga": 12977000,
+    "rd": 4805000,
+    "da": 249000,
+    "other": null,
+    "op": 11393000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 152544000,
+    "cogs": 111176000,
+    "gp": 41368000,
+    "sga": 12117000,
+    "rd": 5051000,
+    "da": 280000,
+    "other": null,
+    "op": 23920000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 202074000,
+    "cogs": 142133000,
+    "gp": 59941000,
+    "sga": 13689000,
+    "rd": 5093000,
+    "da": 265000,
+    "other": null,
+    "op": 40894000
+   }
+  ]
+ },
+ "peers": [
+  {
+   "name": "Caterpillar",
+   "ticker": "CAT",
+   "mcap": 255.63,
+   "rev": 77.773,
+   "ebit_margin": 0.191,
+   "growth": 0.078,
+   "cash": 7.929,
+   "debt": 45.201,
+   "pb": 11.9,
+   "goodwill": 5.905,
+   "pe_fwd": 19.51,
+   "ev_ebitda_fwd": 14.97,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 27.36,
+     "ev_ebitda_fwd": 20.82
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 29.41,
+     "ev_ebitda_fwd": 22.15
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 39.46,
+     "ev_ebitda_fwd": 29.79
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 26.46,
+     "ev_ebitda_fwd": 20.55
+    }
+   ],
+   "pe_fwd2": 16.66,
+   "ev_ebitda_fwd2": 13.89,
+   "pe_fwd3": 14.71,
+   "ev_ebitda_fwd3": 12.92,
+   "ntm_ebit_margin": 0.1987,
+   "ntm_growth": 0.0775
+  },
+  {
+   "name": "Cummins",
+   "ticker": "CMI",
+   "mcap": 61.66,
+   "rev": 35.829,
+   "ebit_margin": 0.1252,
+   "growth": 0.093,
+   "cash": 4.185,
+   "debt": 7.519,
+   "pb": 4.3,
+   "goodwill": 2.221,
+   "pe_fwd": 14.59,
+   "ev_ebitda_fwd": 10.01,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 19.74,
+     "ev_ebitda_fwd": 11.86
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 19.79,
+     "ev_ebitda_fwd": 11.99
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 22.95,
+     "ev_ebitda_fwd": 14.47
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 15.17,
+     "ev_ebitda_fwd": 9.75
+    }
+   ],
+   "pe_fwd2": 13.26,
+   "ev_ebitda_fwd2": 8.85,
+   "pe_fwd3": 11.27,
+   "ev_ebitda_fwd3": 7.92,
+   "ntm_ebit_margin": 0.1472,
+   "ntm_growth": 0.0931
+  },
+  {
+   "name": "GE Vernova",
+   "ticker": "GEV",
+   "mcap": 204.89,
+   "rev": 44.041,
+   "ebit_margin": 0.0642,
+   "growth": 0.19,
+   "cash": 16.764,
+   "debt": 2.795,
+   "pb": 16.34,
+   "goodwill": 9.609,
+   "pe_fwd": 37.46,
+   "ev_ebitda_fwd": 23.56,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 48.26,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 55.21,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 56.73,
+     "ev_ebitda_fwd": 35.85
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 41.93,
+     "ev_ebitda_fwd": 25.78
+    }
+   ],
+   "pe_fwd2": 30.68,
+   "ev_ebitda_fwd2": 19.89,
+   "pe_fwd3": 23.88,
+   "ev_ebitda_fwd3": 15.69,
+   "ntm_ebit_margin": 0.1326,
+   "ntm_growth": 0.1901
+  },
+  {
+   "name": "Generac",
+   "ticker": "GNRC",
+   "mcap": 10.43,
+   "rev": 4.619,
+   "ebit_margin": 0.1037,
+   "growth": 0.341,
+   "cash": 0.394,
+   "debt": 1.334,
+   "pb": 3.46,
+   "goodwill": 1.649,
+   "pe_fwd": 13.09,
+   "ev_ebitda_fwd": 9.62,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 16.49,
+     "ev_ebitda_fwd": 10.44
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 22.57,
+     "ev_ebitda_fwd": 13.55
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 31.57,
+     "ev_ebitda_fwd": 18.96
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 19.24,
+     "ev_ebitda_fwd": 12.08
+    }
+   ],
+   "pe_fwd2": 8.33,
+   "ev_ebitda_fwd2": 6.59,
+   "pe_fwd3": 6.98,
+   "ev_ebitda_fwd3": 5.69,
+   "ntm_ebit_margin": 0.1593,
+   "ntm_growth": 0.3407
+  }
+ ],
+ "peers_basis": "ntm",
+ "peers_source": "Fiscal.ai company_estimates·calculated_market_cap·표준화 재무상태표 최근 분기, 2026-11-07. 성장 = 다음 4분기 매출 추정 ÷ TTM − 1 · Cummins·GE Vernova·Generac 이익률은 조정 EBIT 추정이 없어 GAAP 영업이익 TTM ÷ 매출(Fiscal.ai 표준화)",
+ "multiples_now": {
+  "pe_fwd": 10.31,
+  "ev_ebitda_fwd": 7.37,
+  "pe_fwd2": 9.65,
+  "ev_ebitda_fwd2": 6.92,
+  "pe_fwd3": 8.68,
+  "ev_ebitda_fwd3": 6.27
+ },
+ "forward": {
+  "as_of": "2026-11-06",
+  "ntm": {
+   "eps": 3.8,
+   "ebitda": 127480000,
+   "ebit": 118593000,
+   "revenue": 757790000,
+   "rev_ttm": 674433000
+  },
+  "horizons": {
+   "2": {
+    "eps": 4.058612,
+    "ebitda": 135825949,
+    "ext": 0
+   },
+   "3": {
+    "eps": 4.5133702615803815,
+    "ebitda": 149829111.32336295,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수 → Street Forward. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "sbc_pct_rev": 0.002,
+ "main_metric": "eps",
+ "main_metric_why": "회사가 순이익·EPS로 실적을 알리고 감가상각이 작다",
+ "multiple_view": {
+  "adj": -0.15,
+  "why": "Weichai가 46%와 이사회 과반을 쥔 지배주주 회사이고, 애널리스트가 3명뿐이며, 고객 3곳이 3분기 매출의 47%라 동종 배수를 다 주지 않는다"
+ },
+ "next_event": {
+  "date": "2027-03-02",
+  "tag": "4Q26 실적(날짜 미발표 — 전년 3/2 기준 추정)"
+ },
+ "moat": {
+  "summary": "해자는 배출가스 인증 엔진·발전 패키지의 맞춤 설계 역량과 Weichai 엔진 조달이다. 둘 다 숫자로 재기 어렵다.",
+  "items": [
+   {
+    "kind": "배출가스 인증·맞춤 패키지",
+    "verdict": "보통",
+    "claim": "EPA·CARB 인증 엔진을 OEM 요구에 맞춰 통합한다",
+    "evidence": "10-Q 사업 설명",
+    "quant": "GM 29.7%(3Q)",
+    "falsifier": "대형 엔진사가 같은 맞춤 패키지를 직접 판다"
+   },
+   {
+    "kind": "Weichai 조달·자본",
+    "verdict": "보통",
+    "claim": "지배주주 Weichai의 엔진과 신용을 쓴다",
+    "evidence": "Weichai 46%·이사회 4석, 공급사 A 매입 28%(10-Q)",
+    "quant": "관계사 매입채무 $18.8M",
+    "falsifier": "미국 규제로 Weichai 관계가 제약된다"
+   }
+  ]
+ },
+ "terms": {
+  "Weichai": "중국 엔진 회사 웨이차이동력(PSIX 지배주주)",
+  "EPA": "미국 환경보호청",
+  "CARB": "캘리포니아 대기자원국",
+  "IEEPA": "국제비상경제권한법(관세 근거 법)",
+  "HSBC": "영국 은행 HSBC",
+  "SOFR": "미국 담보부 익일물 금리",
+  "OEM": "주문자 상표 제조사",
+  "GNRC": "미국 Generac",
+  "CMI": "미국 Cummins",
+  "CAT": "미국 Caterpillar",
+  "GEV": "미국 GE Vernova",
+  "Craig-Hallum": "미국 중소형 증권사",
+  "Darien": "위스콘신 공장 지역",
+  "Beloit": "위스콘신 공장 지역",
+  "GM": "매출총이익률",
+  "GP": "매출총이익",
+  "HP": "추세 분리 필터",
+  "Standard Chartered": "영국 은행 스탠다드차타드",
+  "PCB": "인쇄회로기판",
+  "GE": "미국 GE(GE Vernova 모회사 계열)"
+ },
+ "pipeline": {
+  "none": "개별 수주를 공시하지 않는다. 잔여 이행 의무는 $1.8M로 작다(10-Q) — 단기 주문 사업이다"
+ },
+ "backlog": {
+  "none": "수주잔고를 공시하지 않는다"
+ },
+ "ma": {
+  "none": "2026년 철강 부품 제작 회사 인수(영업권 $29.8M → $34.9M)는 인수가·시너지를 따로 밝히지 않아 램프 모델을 세우지 않는다"
+ },
+ "pq": {
+  "none": "출하 대수·단가를 공시하지 않는다 — 업종 PPI로 대신한다"
+ },
+ "sync": {
+  "none": "발전기 세트 무역 시계열(HS 8502)이 미국 쪽으로 등록돼 있지 않다"
+ },
+ "segments_hist": {
+  "segments": {
+   "전력 시스템(발전기·데이터센터)": [
+    {
+     "period": "2024-06-30",
+     "rev": 73100000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 84100000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 106600000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 106600000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 157000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 169400000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 153400000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 96500000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 122300000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 163100000.0
+    }
+   ],
+   "산업용 엔진": [
+    {
+     "period": "2024-06-30",
+     "rev": 31500000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 32799999.999999996
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 30200000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 23500000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 29900000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 28100000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 33299999.999999996
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 26600000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 26800000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 33700000.0
+    }
+   ],
+   "운송용 엔진": [
+    {
+     "period": "2024-06-30",
+     "rev": 6000000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 9000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 7500000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 5300000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 5100000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 6400000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 4600000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 5500000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 3400000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 5300000.0
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(10-Q 최종 시장별 매출) 2026-11-07"
+ },
+ "events": [
+  {
+   "date": "2026-11-06",
+   "tag": "3Q 실적 다음 날 +9.2%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "3Q 실적 발표, 장중 −9.6%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "AI 전력주 동반 매도 −19.7%(직접 원인 1차 미확인)",
+   "kind": "market"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "2Q 실적(관세 환급 포함)",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-03-02",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-11",
+   "kind": "실적",
+   "tag": "1Q26 실적 미달",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-04",
+   "kind": "내러티브",
+   "tag": "AI 전력주 동반 매도",
+   "q": "",
+   "session": ""
+  },
+  {
+   "date": "2026-11-05",
+   "kind": "실적",
+   "tag": "3Q26 실적, 전력 +33%",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q26 매출원가는 매출의 70.3%로 1년 전 76.1%보다 5.8%p 낮다. 전력 시스템(데이터센터·석유가스) 믹스와 가격 덕이다. 판관비는 7.5% → 6.8%다. 2Q에는 관세 환급 $22.7M이 끼어 있어 비교에서 뺐다",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.2038,
+    "cogs": 0.1551,
+    "rd": 0.0048,
+    "sga": 0.0153,
+    "other": 0.0003
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.2021,
+    "cogs": 0.1421,
+    "rd": 0.0051,
+    "sga": 0.0137,
+    "other": 0.0003
+   }
+  ],
+  "costs": [
+   {
+    "name": "엔진·엔진 블록(외부 조달, 공급사 A 포함)",
+    "stage": "매출원가",
+    "pct_rev": 0.4,
+    "prior_pct": 0.44,
+    "fixed": 0.0,
+    "driver": "엔진 단가·관세",
+    "basis": "추정",
+    "source": "10-Q 매출원가 총액 × 공급사 A 매입 28% — 몫 미공시"
+   },
+   {
+    "name": "발전기·교류발전기·전기 부품",
+    "stage": "매출원가",
+    "pct_rev": 0.15,
+    "prior_pct": 0.16,
+    "fixed": 0.0,
+    "driver": "구리·전기강판",
+    "basis": "추정",
+    "source": "업계 일반"
+   },
+   {
+    "name": "인건비·공장 간접비(일리노이·위스콘신)",
+    "stage": "매출원가",
+    "pct_rev": 0.1,
+    "prior_pct": 0.11,
+    "fixed": 0.6,
+    "driver": "위스콘신 램프",
+    "basis": "추정",
+    "source": "10-Q 위험 문구"
+   },
+   {
+    "name": "인클로저·철강·기타",
+    "stage": "매출원가",
+    "pct_rev": 0.053,
+    "prior_pct": 0.051,
+    "fixed": "미확인",
+    "driver": "철강 가격",
+    "basis": "추정",
+    "source": "총액과의 차이"
+   },
+   {
+    "name": "연구개발비",
+    "stage": "연구개발",
+    "pct_rev": 0.0252,
+    "prior_pct": 0.0235,
+    "fixed": 0.9,
+    "driver": "인증 엔진 개발",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.0677,
+    "prior_pct": 0.0748,
+    "fixed": 0.8,
+    "driver": "인건비",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익"
+   },
+   {
+    "name": "기타 영업비용",
+    "stage": "기타",
+    "pct_rev": 0.0013,
+    "prior_pct": 0.0015,
+    "fixed": 1.0,
+    "driver": "상각",
+    "basis": "공시",
+    "source": "총액과의 차이"
+   }
+  ],
+  "products": [
+   {
+    "name": "전력 시스템(발전기·데이터센터)",
+    "rev_share": 0.807,
+    "gpm": 0.297,
+    "gpm_basis": "회사 전체 3Q GAAP GM — 부문 GM 미공시",
+    "bom": [
+     {
+      "item": "엔진·엔진 블록",
+      "share": [
+       0.45,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "원가의 중심, 관세 노출"
+     },
+     {
+      "item": "교류발전기",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "input": "copper",
+      "pass_through": "미확인",
+      "why": "구리 가격"
+     },
+     {
+      "item": "인클로저·제어반",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "철강·전기 부품"
+     }
+    ]
+   },
+   {
+    "name": "산업용 엔진",
+    "rev_share": 0.167,
+    "gpm": 0.297,
+    "gpm_basis": "회사 전체 값",
+    "bom": [
+     {
+      "item": "엔진·엔진 블록",
+      "share": [
+       0.5,
+       0.7
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "원가 중심"
+     },
+     {
+      "item": "연료 시스템",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "인증 부품"
+     },
+     {
+      "item": "조립 인건비",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "공장"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "핵심 투입물은 엔진·엔진 블록이다. 공급사 A 한 곳이 3Q 매입의 28%다(10-Q, 이름 미공시). 관계사(Weichai) 매입채무가 $18.8M다",
+  "links": [
+   {
+    "item": "엔진·엔진 블록",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "공급사 A(이름 미공시)",
+      "role": "매입의 28%",
+      "status": "공시",
+      "source": "3Q 10-Q"
+     },
+     {
+      "name": "Weichai(관계사)",
+      "role": "엔진·부품",
+      "status": "공시",
+      "source": "10-Q 관계사 매입채무"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "빠듯",
+    "capacity_basis": "데이터센터 발전기 수요 증가(업계) — 공급사별 여유 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": 0.4,
+    "region_share": 0.6,
+    "region": "미국·중국(추정)",
+    "secured": "미확인",
+    "why": "인증 엔진은 재인증이 길다",
+    "relief": "미확인",
+    "source": "3Q 10-Q"
+   },
+   {
+    "item": "교류발전기",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "외부 공급사(미공시)",
+      "role": "교류발전기",
+      "status": "추정",
+      "source": "업계 일반"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "빠듯",
+    "capacity_basis": "발전기 업계 공급 부족(업계 일반)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "top_share": 0.4,
+    "region_share": 0.5,
+    "region": "미국·유럽(추정)",
+    "secured": "미확인",
+    "why": "발전 패키지 출하 속도",
+    "relief": "미확인",
+    "source": "업계 일반"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "분기 매출 $B(명목 캐파 미공시 — 3Q 매출로 대신)",
+  "summary": "회사는 명목 캐파를 밝히지 않는다. 위스콘신(Darien·Beloit) 램프를 진행 중이고 비용·산출이 위험 문구에 있다(10-Q). 유형자산은 $23.0M에서 $33.5M로 늘었다",
+  "current": {
+   "nameplate": 0.2021,
+   "utilization": "미확인",
+   "basis": "명목 캐파 미공시",
+   "source": "3Q 10-Q"
+  },
+  "plans": [
+   {
+    "name": "위스콘신 캐파 램프",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2026",
+    "capex": "미확인",
+    "blocker": "램프 비용·인력",
+    "source": "3Q 10-Q"
+   }
+  ],
+  "capex": [
+   {
+    "period": "9M26",
+    "capex": 0.0105,
+    "rev": 0.4832,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.015,
+    "rev": 0.75,
+    "kind": "추정"
+   }
+  ],
+  "capex_source": "9M26 = 유형자산 순증 $10.5M(인수 포함, 근사) · FY2027 = Chiip 추정 — 현금흐름표 CAPEX와 컨센서스는 이번 회차 미확인",
+  "sites_none": "소유·임차 공장(일리노이·위스콘신)이 있으나 이번 회차에 위성 판독 등록을 하지 못했다"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "10% 넘는 고객 3곳이 3분기 매출의 47%다(B 22%·F 13%·C 12%). 이름은 공시되지 않는다",
+  "items": [
+   {
+    "name": "고객 B(이름 미공시)",
+    "alias": "Customer B",
+    "share": 0.22,
+    "prior": 0.18,
+    "basis": "공시",
+    "buys": "미확인",
+    "source": "3Q 10-Q",
+    "why": "이름 미공시"
+   },
+   {
+    "name": "고객 F(이름 미공시)",
+    "alias": "Customer F",
+    "share": 0.13,
+    "prior": 0.17,
+    "basis": "공시",
+    "buys": "미확인",
+    "source": "3Q 10-Q",
+    "why": "매출채권의 25%"
+   },
+   {
+    "name": "고객 C(이름 미공시)",
+    "alias": "Customer C",
+    "share": 0.12,
+    "prior": 0.11,
+    "basis": "공시",
+    "buys": "미확인",
+    "source": "3Q 10-Q",
+    "why": "이름 미공시"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-07",
+  "summary": "지배주주 Weichai(중국 웨이차이동력)가 46%와 이사회 4석(과반)을 갖는다. 창업자들은 Weichai 안건에 찬성하기로 약정했다(10-Q). 경영진 이름은 이번 회차에 위임장으로 확인하지 못했다",
+  "people": [
+   {
+    "name": "미확인",
+    "role": "CEO",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "이번 회차 위임장 미확인"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Weichai — 지분 46%, 이사 4석, 관계사 매입",
+    "strength": 5,
+    "exposure": 0.6744,
+    "basis": "회사 전체 TTM 매출",
+    "evidence": "3Q 10-Q 지배 구조·관계사 거래"
+   },
+   {
+    "network": "정계",
+    "link": "미·중 정책 노출(중국 지배주주)",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "공개 기록에서 정치 연결은 찾지 못했다",
+    "evidence": "10-Q"
+   }
+  ]
+ },
+ "social": {
+  "none": "Quantral 미수록 — 이번 회차 미조회"
+ },
+ "narrative": {
+  "as_of": "2026-11-07",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "'데이터센터 발전기 소형주'가 52주 고점 $106.5를 만들었지만 지금 $39다. 3Q 매출이 +33% QoQ로 돌아섰는데도 시장은 Weichai 지배·고객 집중·커버리지 3명에 할인을 건다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "3명 — 모두 강력 매수",
+      "커버리지가 얇다",
+      "company_analyst_ratings"
+     ],
+     [
+      "목표가 평균·범위",
+      "$80 ($70~$93)",
+      "현재가 대비 +103% — 기대의 증거일 뿐",
+      "Fiscal.ai"
+     ]
+    ],
+    "read": "표본 3명이라 컨센서스의 정보가 적다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "38%",
+      "유통주식의 대부분",
+      "yfinance"
+     ],
+     [
+      "공매도 비중",
+      "유통의 14.1%",
+      "높다",
+      "yfinance"
+     ],
+     [
+      "내부자(Weichai 포함)",
+      "63%(yfinance) — 10-Q 기준 Weichai 46%",
+      "유통 물량이 적다",
+      "yfinance·10-Q"
+     ]
+    ],
+    "read": "유통이 적고 공매도가 많아 변동성이 크다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "커뮤니티 수집",
+      "미수집",
+      "이번 회차 미조회",
+      "-"
+     ]
+    ],
+    "read": "미확인"
+   },
+   "media": {
+    "metrics": [
+     [
+      "3Q 보도자료",
+      "매출 $202.1M(+32.5% QoQ)",
+      "2026-11-05",
+      "GlobeNewswire"
+     ]
+    ],
+    "read": "회사 발표 위주"
+   }
+  },
+  "factors": [
+   {
+    "name": "데이터센터 발전기 수요",
+    "thesis": "데이터센터 대기·주전원 발전기가 전력 시스템 매출을 끈다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "전력 시스템 3Q $163.1M(+33% QoQ)",
+    "status": "유지",
+    "falsifier": "4Q 전력 시스템 매출 감소(2027-03)",
+    "source": "3Q 10-Q"
+   },
+   {
+    "name": "이익률 개선",
+    "thesis": "믹스·가격으로 GM이 오른다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "GM 23.9%(3Q25) → 29.7%(3Q26)",
+    "status": "유지",
+    "falsifier": "GM 25% 아래",
+    "source": "3Q 10-Q"
+   },
+   {
+    "name": "중국 지배주주(약세)",
+    "thesis": "Weichai 지배가 미국 데이터센터 고객·정책에서 할인 요인이다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "Weichai 46%, 이사 4석",
+    "status": "유지",
+    "falsifier": "지분 매각·지배 구조 변경",
+    "source": "3Q 10-Q"
+   },
+   {
+    "name": "고객 집중·변동(약세)",
+    "thesis": "주문 시점에 따라 분기 매출이 크게 흔들린다",
+    "inputs": "배수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "1Q26 매출 $128.6M(−20% 미달) → 3Q $202.1M",
+    "status": "강화",
+    "falsifier": "4개 분기 연속 컨센서스 상회",
+    "source": "Fiscal.ai·10-Q"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 '데이터센터 발전기 수요를 받는 작은 엔진 회사'다.** 3Q 매출 $202.1M(+32.5% QoQ), 전력 시스템 $163.1M, GM 29.7%, EPS $1.30(컨센서스 $0.92~0.96)로 숫자는 다시 좋아졌다. 그런데 주가는 52주 고점 $106.5에서 $39로 −63%이고, 11/4 하루에 −20%였다. 쟁점은 ①Weichai 46%·이사회 과반의 지배 구조 ②고객 3곳 47% 집중과 분기 변동 ③2Q 관세 환급 같은 일회성의 질이다.",
+   "value_story": "값은 전력 시스템 매출 × GM이다. 데이터센터·석유가스 발전 패키지가 전력 시스템의 대부분이고 GM은 믹스로 오른다. 값을 가르는 것은 데이터센터 주문이 분기마다 이어지는지와 지배 구조 할인이 줄어드는지다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 10.3배로 Generac 13.1배·Cummins 14.6배·Caterpillar 19.5배·GE Vernova 37.5배보다 낮다(11/6 종가). Fwd 2Y는 9.7배다.",
+    "eps": "추정 이력이 없어 리비전을 잴 수 없다 — 커버리지 3명"
+   },
+   "why_excited": "2025년 데이터센터 발전기 수요로 매출이 크게 늘며 주가가 $106.5까지 갔다. 1Q26 매출이 컨센서스를 20% 밑돌며 식었고, 11/4 AI 전력주 동반 매도 하루 −20%(직접 원인 1차 미확인)가 더해졌다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "전력 시스템(발전기·데이터센터)",
+     "what": "대기·주전원 발전 패키지, 이동식·고정식 발전기 세트",
+     "use": "데이터센터·석유가스·임대·마이크로그리드",
+     "money": "3Q $163.1M(매출 81%)"
+    },
+    {
+     "kind": "제품",
+     "name": "산업용 엔진",
+     "what": "지게차·작업차·펌프용 인증 엔진",
+     "use": "산업 장비 OEM",
+     "money": "3Q $33.7M(17%)"
+    },
+    {
+     "kind": "제품",
+     "name": "운송용 엔진",
+     "what": "스쿨버스·작업 트럭용 엔진",
+     "use": "운송 OEM",
+     "money": "3Q $5.3M(3%)"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "산업·운송 엔진 회사에서 전력 시스템 회사로",
+     "evidence": "전력 시스템 비중 2024 2Q 66% → 3Q26 81%",
+     "drives": "both",
+     "status": "강화",
+     "falsifier": "전력 시스템 비중 하락"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "데이터센터 발전 패키지가 GM을 올린다",
+     "evidence": "GM 23.9% → 29.7%",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "GM 25% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "해당 없음(인증 엔진 통합 회사 — 새 기술 공시 없음)",
+     "evidence": "10-Q",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "-"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(주문→출하 기간을 공시하지 않고 동종 비교 값도 없다)",
+     "evidence": "10-Q",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "-"
+    },
+    {
+     "lens": "M&A",
+     "change": "철강 부품 제작 회사 인수로 수직 계열화",
+     "evidence": "영업권 $29.8M → $34.9M(10-Q)",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "인수 손상"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "하이퍼스케일러 데이터센터 투자가 발전기 수요로 온다. 고객 투자를 PSIX 매출로 바로 옮기지 않는다",
+     "evidence": "고객 3곳 47%(이름 미공시)",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "데이터센터 주문 지연"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(보조금 의존 사업이 아니다)"
+    },
+    "orders": {
+     "change": "관세 — IEEPA 판결로 2Q 관세 환급 $22.7M을 받았다. 다른 관세 근거(232조 등)는 계속 원가에 남는다",
+     "evidence": "3Q 10-Q",
+     "drives": "revision",
+     "status": "시행",
+     "falsifier": "추가 관세로 GM 하락",
+     "house": {
+      "level": 1,
+      "why": "행정부 조치·법원 판결 사안"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "중국 지배 기업에 대한 미국 규제 논의(일반) — 이 회사 특정 법안은 찾지 못했다",
+     "evidence": "공개 기록",
+     "drives": "multiple",
+     "status": "감시",
+     "falsifier": "관련 법안 발의"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "name": "한서윤",
+    "house": "가상 리서치 하우스 아라증권",
+    "thesis": "3Q EPS $1.30에 Fwd 1Y P/E 10.3배다",
+    "evidence": [
+     "매출 +32.5% QoQ",
+     "GM 29.7%",
+     "순현금"
+    ],
+    "falsifier": "4Q 매출 $180M 아래"
+   },
+   {
+    "seat": "Buy",
+    "name": "오지후",
+    "house": "가상 리서치 하우스 누리리서치",
+    "thesis": "동종 중 가장 싸고 이익률은 오른다",
+    "evidence": [
+     "Generac 13.1배·Cummins 14.6배",
+     "GM +5.8%p YoY",
+     "HSBC $220M 한도"
+    ],
+    "falsifier": "GM 하락"
+   },
+   {
+    "seat": "Neutral",
+    "name": "배다온",
+    "house": "가상 리서치 하우스 솔빛증권",
+    "thesis": "분기 변동이 너무 크다",
+    "evidence": [
+     "1Q $128.6M → 3Q $202.1M",
+     "고객 3곳 47%",
+     "커버리지 3명"
+    ],
+    "falsifier": "4개 분기 연속 상회"
+   },
+   {
+    "seat": "Sell",
+    "name": "권태하",
+    "house": "가상 리서치 하우스 다솜리서치",
+    "thesis": "중국 지배주주 할인은 구조적이다",
+    "evidence": [
+     "Weichai 46%·이사 4석",
+     "공급사 A 28%",
+     "관계사 매입채무 $18.8M"
+    ],
+    "falsifier": "지배 구조 변경"
+   },
+   {
+    "seat": "Strong Sell",
+    "name": "민세온",
+    "house": "가상 리서치 하우스 한결증권",
+    "thesis": "이익의 질이 낮다",
+    "evidence": [
+     "2Q 관세 환급 $22.7M",
+     "공매도 14%",
+     "11/4 −20%"
+    ],
+    "falsifier": "일회성 없이 GM 30% 유지"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "EPS $1.30 분기에 10배다"
+     },
+     {
+      "seat": "Buy",
+      "text": "동종보다 싸다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "분기 변동이 크다"
+     },
+     {
+      "seat": "Sell",
+      "text": "Weichai 지배 할인은 사라지지 않는다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "관세 환급이 이익을 부풀렸다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "3Q에는 관세 환급이 없는데 영업이익 $40.9M다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "고객 3곳이 47%다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "커버리지 3명의 추정은 정보가 적다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "Weichai 조달이 원가 경쟁력이기도 하다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "공매도 14%는 이유가 있다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Sell",
+      "text": "가를 자료는 4Q 실적이다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Buy로 물러선다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "Buy를 유지한다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "Buy로 옮긴다. DCF·몬테카를로가 모두 현재가 위다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "Neutral로 물러선다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "Sell을 유지한다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Buy",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "규칙 등급 Strong Buy는 DCF(+24%)·몬테카를로 중앙값(+15%)이 모두 현재가 위라 숫자로 지지된다. 다만 Weichai 지배·고객 3곳 47%·커버리지 3명이라 컨센서스 표본이 얇아 한 단계 낮춘 Buy로 조율한다",
+   "dissent": "Neutral·Sell 두 자리 — 분기 변동과 지배 구조 할인은 4Q 전까지 가를 수 없다"
+  }
+ }
+}
