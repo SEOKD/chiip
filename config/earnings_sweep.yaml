@@ -1,0 +1,50 @@
+# 실적 발표 종목 알파 전수 점검 (마스터 지시 2026-11-07)
+#  일회성: "2026년 10월 1일부터 11월 7일까지 어닝 릴리즈한 상장기업 중에서 전수 조사해 Chiip의 알파 평가 시스템으로부터 7점 이상 받을 수 있는 종목이
+#          있는지 점검하라. 7점 이상인 경우 Watchlist에 넣고 Analysis 리포트를 적어라"
+#  영구:   "앞으로 매주마다 주중 어닝을 발표한 종목들을 점검하고 알파 평가 점수를 매긴 이후 6점 이상인 종목을 Watchlist에 넣고 Analysis 리포트를 적어라.
+#          이는 Weekly Review 기능에 넣고 Weekly Review Report에도 관련 내용을 넣어라"
+# 계산: scripts/discovery/earnings_sweep.py(결정론) · 판단: 스킬 tenbagger-card '알파 점수'(후보만) · 소비: Weekly Review 'Earnings 알파 점검' 절
+#
+# 깔때기(전수 → 후보 → 판단):
+#  1. 전수  TradingView 스크리너 earnings_release_date ∈ 기간 · 시가총액 ≥ min_mcap_usd(시장별 통화 환산) · 보통주 — 시장마다 '발표 종목 수'(totalCount)를 기록
+#           응답이 커서 한 번에 다 받을 수 없으니 lanes(서로 다른 정량 문턱)로 나눠 받는다. 레인 밖 종목은 정량 하위로 기록(개수만)
+#  2. 정량  알파 v2 블록 정의(config/alpha_v2.yaml)를 스크리너 열로 옮긴 사전 점수 Q → 상위 judge_top개 + 이미 알파 판단이 있는 종목
+#  3. 판단  후보만 v1 알파(upside·gap·bottleneck·asymmetry, 근거 URL 필수)를 매기고 score.py --finalize
+#  4. 반영  v1 알파 ≥ floor → 와치리스트(added_by: earnings-sweep, alpha_floor) + Analysis 리포트 대기열 + 주간 요약 JSON
+markets:                    # TradingView 스크리너 시장 → Chiip id 접두
+  america: us
+  korea: kr
+  japan: jp
+  taiwan: tw
+min_mcap_usd: 300000000     # 소형주 하한(유동성·자료 품질). 시장별 현지 통화로 환산해 필터에 넣는다
+fx_per_usd: {america: 1, korea: 1400, japan: 150, taiwan: 32}   # 필터용 어림 환산(경계만 정한다)
+columns: [name, description, sector, industry, earnings_release_date, market_cap_basic, close, price_free_cash_flow_ttm, enterprise_value_to_ebit_ttm,
+          price_book_fq, return_on_assets, piotroski_f_score_ttm, Perf.6M, Perf.Y, price_52_week_high, price_52_week_low, recommendation_total,
+          eps_surprise_percent_fq, revenue_surprise_percent_fq]
+lanes:                      # 서버 필터 레인 — 레인 합집합이 '정량 후보 풀'. 레인 밖은 정량 하위(수만 기록)
+  value:    {filters: {price_free_cash_flow_ttm: [0, 25], enterprise_value_to_ebit_ttm: [0, 20]}, sort_by: price_free_cash_flow_ttm, sort_order: asc, limit: 150,
+             why: "Yartseva(2025) FCF/P·가치 — 다배수 예측력 가장 큼"}
+  surprise: {filters: {revenue_surprise_percent_fq: [5, null]}, sort_by: revenue_surprise_percent_fq, sort_order: desc, limit: 150,
+             why: "매출 서프라이즈 — 실적 발표 뒤 드리프트(Bernard & Thomas 1989), 적자 성장주도 잡는다"}
+  eps:      {filters: {eps_surprise_percent_fq: [20, null]}, sort_by: eps_surprise_percent_fq, sort_order: desc, limit: 100,
+             why: "EPS 서프라이즈 상위"}
+sec:                        # 미국 전수 단계(결정론, 모델 토큰 없음) — EDGAR 전문검색 8-K Item 2.02 + SEC frames(scripts/backtest/frames.py 캐시)
+  quarter: "2026Q3"         # 최근 분기(1년 전 같은 분기와 비교). 주간 점검은 실행일 직전 분기
+  float_periods: [CY2026Q2I, CY2025Q4I, CY2025Q2I]   # dei:EntityPublicFloat — 최신부터
+  min_float_usd: 150000000  # 초소형주 제외(radar/pollers/sec_earnings_all.py MIN_FLOAT와 같음, Hou·Xue·Zhang 2020)
+  price_top: 50             # 가격 없이 매긴 정량 상위 몇 개에 TradingView 가격·밸류 열을 붙이나(get_symbol_data_batch — NASDAQ:·NYSE: 두 접두로 25종목씩 2번). 응답이 모델 문맥을 지나므로 비용 상한
+factors:                    # 스크리너 열·SEC frames → 알파 v2 블록(부호·가중은 config/alpha_v2.yaml 블록 ic 그대로)
+  value: {fcf_yield: 1, ebit_ev: 1, book_to_market: 1}
+  quality: {roa: 1, fscore: 1}
+  investment: {inv_dummy: -1, asset_growth: -1}   # Yartseva(2025) 자산 증가 > 이익 증가면 −4~−11%p
+  revision: {rev_surprise: 1, eps_surprise: 1, sue_proxy: 1, rev_yoy: 0.5}   # 리비전 자리에 실적 서프라이즈·영업이익 변화/자산(SUE 대용, Bernard & Thomas 1989)
+  price: {mom_12m: 1, price_range: -1, mom_6m: -0.5}
+  discovery: {log_mcap: -1, n_analysts: -1}
+min_blocks: 3
+judge_top: 25               # 판단(모델) 대상 상한 — 비용 상한. 정량 Q 상위부터
+floors:
+  one_time: 7.0             # 2026-10-01~11-07 일회성 점검
+  weekly: 6.0               # 매주 Weekly Review
+watchlist:
+  added_by: earnings-sweep  # scripts/portfolio/watchlist.py — 이 출처는 alpha_floor 미달이 remove.confirm_days일 이어지면 제외(종합 점수 기준은 적용 안 함)
+report_queue: true          # floor 이상이면 knowledge/models/tenbagger/report_queue.txt에 'key | sweep | 메모'로 추가(이미 최근 리포트가 있으면 갱신 표시)

@@ -36,6 +36,10 @@ def names():
     for t in disc.get("themes") or []:   # 발굴 후보·TradingView 와치리스트 종목도 알파 점수 대상(2026-10-31 마스터 지시)
         for c in t.get("candidates") or []:
             out.setdefault(c["id"], c.get("name"))
+    sweep = ROOT / "knowledge" / "models" / "discovery" / "earnings_sweep" / "names.json"   # 실적 발표 알파 점검 후보(2026-11-07 마스터 지시)
+    if sweep.exists():
+        for k, v in json.loads(sweep.read_text(encoding="utf-8")).items():
+            out.setdefault(k, v)
     return out
 
 

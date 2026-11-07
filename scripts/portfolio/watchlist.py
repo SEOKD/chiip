@@ -114,6 +114,7 @@ def streak(st, key, iid, today, hit):
 def decide(holdings, mt, c, st, today):
     # 자동 제외는 Chiip이 넣은 종목만 — 마스터가 손으로 지정한 관심 종목은 마스터 몫(마스터 지시 2026-11-07 "내가 수동으로 지정하거나, 알파 7점 이상 중에서")
     watch = {h["id"]: h for h in holdings if h.get("status") == "관심" and h.get("added_by") == "chiip" and not h.get("pin")}
+    sweep = {h["id"]: h for h in holdings if h.get("status") == "관심" and h.get("added_by") == SWEEP and not h.get("pin")}
     held = {h["id"] for h in holdings if h.get("status") in ("보유", "관심")}
     held |= {h["id"] for h in holdings if h.get("status") == "종료" and h.get("added_by") != "chiip"}   # 마스터가 뺀 종목은 자동으로 다시 넣지 않는다(2026-11-05 AEIS 제외 지시)
     adds, drops, k = [], [], cuts(mt, c)
@@ -126,6 +127,13 @@ def decide(holdings, mt, c, st, today):
             continue
         if streak(st, "fail", iid, today, bool(why)) >= c["remove"]["confirm_days"]:
             drops.append((iid, f"{why} {c['remove']['confirm_days']}일 연속"))
+    for iid, h in sweep.items():   # 실적 발표 알파 점검 편입분 — 자기 알파 문턱(alpha_floor)만 본다(종합 점수 기준은 적용하지 않는다)
+        al = mt.get(iid, {}).get("alpha")
+        if al is None:
+            continue
+        floor = float(h.get("alpha_floor") or c["add"]["alpha_min"])
+        if streak(st, "fail", iid, today, al < floor) >= c["remove"]["confirm_days"]:
+            drops.append((iid, f"알파 {al:.1f} < 실적 점검 문턱 {floor} {c['remove']['confirm_days']}일 연속"))
     auto = [i for i, h in watch.items() if h.get("added_by") == "chiip" and i not in dict(drops)]
     cands = []
     for iid, m in mt.items():
@@ -146,6 +154,34 @@ def decide(holdings, mt, c, st, today):
             adds.append(iid)
             auto.append(iid)
     return adds, drops
+
+
+SWEEP = "earnings-sweep"
+
+
+def add_sweep(passed, floor, added_by, tag, today, port=None):
+    """실적 발표 알파 점검(scripts/discovery/earnings_sweep.py) 통과 종목을 관심으로 넣는다(마스터 지시 2026-11-07 — 일회성 7점·매주 6점).
+    이미 보유·관심이거나 마스터가 뺀(종료, added_by가 Chiip 계열이 아님) 종목은 넣지 않는다. 자동 편입 상한(max_auto)과 따로 센다"""
+    port = port or PORT
+    text = port.read_text(encoding="utf-8")
+    holdings = yaml.safe_load(text).get("holdings") or []
+    skip = {h["id"] for h in holdings if h.get("status") in ("보유", "관심")}
+    skip |= {h["id"] for h in holdings if h.get("status") == "종료" and h.get("added_by") not in ("chiip", SWEEP)}
+    skip |= {str(h.get("ticker") or "").upper() for h in holdings if h.get("status") in ("보유", "관심")}
+    adds = [x for x in passed if x["id"] not in skip and x["ticker"].upper() not in skip]
+    if not adds:
+        return []
+    blocks = ""
+    for x in adds:
+        name = str(x.get("name") or x["ticker"]).replace('"', "'")
+        blocks += (f"  - id: {x['id']}\n    ticker: \"{x['ticker']}\"\n    name: \"{name}\"\n    names: [\"{name}\"]\n    related: []\n"
+                   f"    since: {today}\n    status: 관심\n    added_by: {added_by}                 # 실적 발표 알파 점검 {tag} — 알파 {x['alpha']:.1f} ≥ {floor}\n"
+                   f"    alpha_floor: {floor}\n")
+    cut = re.search(r"(?m)^(?:#.*\n)*events:", text)
+    pos = cut.start() if cut else len(text)
+    port.write_text(text[:pos].rstrip("\n") + "\n" + blocks + "\n" + text[pos:], encoding="utf-8")
+    log([[today, "편입", x["id"], x["ticker"], x["alpha"], "", "", f"실적 발표 알파 점검 {tag}"] for x in adds])
+    return [x["id"] for x in adds]
 
 
 def block(iid, m, today):

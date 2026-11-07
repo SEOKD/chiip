@@ -128,6 +128,24 @@ holdings:
     since: 2026-11-03
     ended: 2026-11-05   # 마스터 지시 "AEIS는 포트폴리오 와치리스트 항목에서 제외하라"
     status: 종료
+  - id: us-axti
+    ticker: "AXTI"
+    name: "AXT INC"
+    names: ["AXT INC"]
+    related: []
+    since: 2026-11-07
+    status: 관심
+    added_by: earnings-sweep                 # 실적 발표 알파 점검 2026-10-01_2026-11-07 — 알파 7.3 ≥ 7.0
+    alpha_floor: 7.0
+  - id: co-wdc
+    ticker: "WDC"
+    name: "WESTERN DIGITAL CORP"
+    names: ["WESTERN DIGITAL CORP"]
+    related: []
+    since: 2026-11-07
+    status: 관심
+    added_by: earnings-sweep                 # 실적 발표 알파 점검 2026-10-01_2026-11-07 — 알파 7.2 ≥ 7.0
+    alpha_floor: 7.0
 
 # 날짜가 확정된 일정(1차 출처 있는 것만). 관문이 D-1·당일에 알린다. 치입이 실적일·IR 행사·투표일을 확인하면 여기에 추가한다.
 # time은 현지 시각과 KST를 함께. confirmed: false는 추정(알림에 '미확정' 표시).

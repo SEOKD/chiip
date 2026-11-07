@@ -1,0 +1,101 @@
+id,component,score,reason,evidence
+us-psix,upside,6,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 데이터센터 비상 발전기(젠셋) 엔진. 3Q 매출 서프라이즈 +14%·2H26 매출 전망 상향, 그러나 3Q 마진은 일회성 관세 환급으로 부풀려짐(Earnings Whispers 보도). 1년 −56%·P/E 13배. 데이터센터 백업 전력은 병목이나 PSI 점유·고객 미확인. SA L2",https://www.sec.gov/Archives/edgar/data/1137091/000162828026071095/
+us-psix,gap,7,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 데이터센터 비상 발전기(젠셋) 엔진. 3Q 매출 서프라이즈 +14%·2H26 매출 전망 상향, 그러나 3Q 마진은 일회성 관세 환급으로 부풀려짐(Earnings Whispers 보도). 1년 −56%·P/E 13배. 데이터센터 백업 전력은 병목이나 PSI 점유·고객 미확인. SA L2",https://www.sec.gov/Archives/edgar/data/1137091/000162828026071095/
+us-psix,bottleneck,6,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 데이터센터 비상 발전기(젠셋) 엔진. 3Q 매출 서프라이즈 +14%·2H26 매출 전망 상향, 그러나 3Q 마진은 일회성 관세 환급으로 부풀려짐(Earnings Whispers 보도). 1년 −56%·P/E 13배. 데이터센터 백업 전력은 병목이나 PSI 점유·고객 미확인. SA L2",https://www.sec.gov/Archives/edgar/data/1137091/000162828026071095/
+us-psix,asymmetry,7,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 데이터센터 비상 발전기(젠셋) 엔진. 3Q 매출 서프라이즈 +14%·2H26 매출 전망 상향, 그러나 3Q 마진은 일회성 관세 환급으로 부풀려짐(Earnings Whispers 보도). 1년 −56%·P/E 13배. 데이터센터 백업 전력은 병목이나 PSI 점유·고객 미확인. SA L2",https://www.sec.gov/Archives/edgar/data/1137091/000162828026071095/
+us-kmt,upside,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 초경 공구·텅스텐 소재. SEC frames 분기 매출 +54%는 회계연도 어긋남 가능(미확인), EV/EBIT 3.3배 이상치. 텅스텐 공급 제약 수혜는 AI 병목과 거리. 근거 약함",https://www.sec.gov/Archives/edgar/data/55242/000162828026069779/
+us-kmt,gap,6,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 초경 공구·텅스텐 소재. SEC frames 분기 매출 +54%는 회계연도 어긋남 가능(미확인), EV/EBIT 3.3배 이상치. 텅스텐 공급 제약 수혜는 AI 병목과 거리. 근거 약함",https://www.sec.gov/Archives/edgar/data/55242/000162828026069779/
+us-kmt,bottleneck,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 초경 공구·텅스텐 소재. SEC frames 분기 매출 +54%는 회계연도 어긋남 가능(미확인), EV/EBIT 3.3배 이상치. 텅스텐 공급 제약 수혜는 AI 병목과 거리. 근거 약함",https://www.sec.gov/Archives/edgar/data/55242/000162828026069779/
+us-kmt,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 초경 공구·텅스텐 소재. SEC frames 분기 매출 +54%는 회계연도 어긋남 가능(미확인), EV/EBIT 3.3배 이상치. 텅스텐 공급 제약 수혜는 AI 병목과 거리. 근거 약함",https://www.sec.gov/Archives/edgar/data/55242/000162828026069779/
+us-cenx,upside,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 알루미늄 제련. 전력 비용이 원가 핵심 — 데이터센터 전력 경쟁은 부담. 6개월 −46%, P/E 5.8배는 시황 정점 이익. 근거 약함",https://www.sec.gov/Archives/edgar/data/949157/000162828026071024/
+us-cenx,gap,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 알루미늄 제련. 전력 비용이 원가 핵심 — 데이터센터 전력 경쟁은 부담. 6개월 −46%, P/E 5.8배는 시황 정점 이익. 근거 약함",https://www.sec.gov/Archives/edgar/data/949157/000162828026071024/
+us-cenx,bottleneck,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 알루미늄 제련. 전력 비용이 원가 핵심 — 데이터센터 전력 경쟁은 부담. 6개월 −46%, P/E 5.8배는 시황 정점 이익. 근거 약함",https://www.sec.gov/Archives/edgar/data/949157/000162828026071024/
+us-cenx,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 알루미늄 제련. 전력 비용이 원가 핵심 — 데이터센터 전력 경쟁은 부담. 6개월 −46%, P/E 5.8배는 시황 정점 이익. 근거 약함",https://www.sec.gov/Archives/edgar/data/949157/000162828026071024/
+us-insw,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유조선. 운임 사이클 정점 이익(P/E 6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1679049/000110465926123058/
+us-insw,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유조선. 운임 사이클 정점 이익(P/E 6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1679049/000110465926123058/
+us-insw,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유조선. 운임 사이클 정점 이익(P/E 6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1679049/000110465926123058/
+us-insw,asymmetry,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유조선. 운임 사이클 정점 이익(P/E 6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1679049/000110465926123058/
+us-lpg,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: LPG 운반선. 운임 사이클, AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1596993/000159699326000055/
+us-lpg,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: LPG 운반선. 운임 사이클, AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1596993/000159699326000055/
+us-lpg,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: LPG 운반선. 운임 사이클, AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1596993/000159699326000055/
+us-lpg,asymmetry,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: LPG 운반선. 운임 사이클, AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1596993/000159699326000055/
+us-pbf,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 정유. 크랙 마진 사이클 정점(EV/EBIT 2.6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1534504/000153450426000039/
+us-pbf,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 정유. 크랙 마진 사이클 정점(EV/EBIT 2.6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1534504/000153450426000039/
+us-pbf,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 정유. 크랙 마진 사이클 정점(EV/EBIT 2.6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1534504/000153450426000039/
+us-pbf,asymmetry,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 정유. 크랙 마진 사이클 정점(EV/EBIT 2.6배), AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1534504/000153450426000039/
+us-hcat,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 헬스케어 데이터. 분기 이익은 일회성 의심(SEC frames ROA 67%), 근거 약함",https://www.sec.gov/Archives/edgar/data/1636422/000163642226000122/
+us-hcat,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 헬스케어 데이터. 분기 이익은 일회성 의심(SEC frames ROA 67%), 근거 약함",https://www.sec.gov/Archives/edgar/data/1636422/000163642226000122/
+us-hcat,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 헬스케어 데이터. 분기 이익은 일회성 의심(SEC frames ROA 67%), 근거 약함",https://www.sec.gov/Archives/edgar/data/1636422/000163642226000122/
+us-hcat,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 헬스케어 데이터. 분기 이익은 일회성 의심(SEC frames ROA 67%), 근거 약함",https://www.sec.gov/Archives/edgar/data/1636422/000163642226000122/
+us-sana,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오, 이익 지표 왜곡. 근거 약함",https://www.sec.gov/Archives/edgar/data/1770121/000119312526449791/
+us-sana,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오, 이익 지표 왜곡. 근거 약함",https://www.sec.gov/Archives/edgar/data/1770121/000119312526449791/
+us-sana,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오, 이익 지표 왜곡. 근거 약함",https://www.sec.gov/Archives/edgar/data/1770121/000119312526449791/
+us-sana,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오, 이익 지표 왜곡. 근거 약함",https://www.sec.gov/Archives/edgar/data/1770121/000119312526449791/
+us-purr,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 암호화폐 보유 전략 회사 — 영업 펀더멘털 아님",https://www.sec.gov/Archives/edgar/data/2078856/000119312526450063/
+us-purr,gap,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 암호화폐 보유 전략 회사 — 영업 펀더멘털 아님",https://www.sec.gov/Archives/edgar/data/2078856/000119312526450063/
+us-purr,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 암호화폐 보유 전략 회사 — 영업 펀더멘털 아님",https://www.sec.gov/Archives/edgar/data/2078856/000119312526450063/
+us-purr,asymmetry,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 암호화폐 보유 전략 회사 — 영업 펀더멘털 아님",https://www.sec.gov/Archives/edgar/data/2078856/000119312526450063/
+us-rei,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 소형 원유 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1384195/000138419526000088/
+us-rei,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 소형 원유 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1384195/000138419526000088/
+us-rei,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 소형 원유 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1384195/000138419526000088/
+us-rei,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 소형 원유 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1384195/000138419526000088/
+us-mbi,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 채권 보증 런오프",https://www.sec.gov/Archives/edgar/data/814585/000119312526447336/
+us-mbi,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 채권 보증 런오프",https://www.sec.gov/Archives/edgar/data/814585/000119312526447336/
+us-mbi,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 채권 보증 런오프",https://www.sec.gov/Archives/edgar/data/814585/000119312526447336/
+us-mbi,asymmetry,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 채권 보증 런오프",https://www.sec.gov/Archives/edgar/data/814585/000119312526447336/
+us-indv,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 중독 치료제. 이익 개선이나 AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1625297/000119312526436953/
+us-indv,gap,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 중독 치료제. 이익 개선이나 AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1625297/000119312526436953/
+us-indv,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 중독 치료제. 이익 개선이나 AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1625297/000119312526436953/
+us-indv,asymmetry,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 중독 치료제. 이익 개선이나 AI 병목 무관",https://www.sec.gov/Archives/edgar/data/1625297/000119312526436953/
+us-jynt,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 카이로프랙틱 프랜차이즈 구조조정",https://www.sec.gov/Archives/edgar/data/1612630/000161263026000077/
+us-jynt,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 카이로프랙틱 프랜차이즈 구조조정",https://www.sec.gov/Archives/edgar/data/1612630/000161263026000077/
+us-jynt,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 카이로프랙틱 프랜차이즈 구조조정",https://www.sec.gov/Archives/edgar/data/1612630/000161263026000077/
+us-jynt,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 카이로프랙틱 프랜차이즈 구조조정",https://www.sec.gov/Archives/edgar/data/1612630/000161263026000077/
+us-skin,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 미용 의료기기, 근거 약함",https://www.sec.gov/Archives/edgar/data/1818093/000162828026071066/
+us-skin,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 미용 의료기기, 근거 약함",https://www.sec.gov/Archives/edgar/data/1818093/000162828026071066/
+us-skin,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 미용 의료기기, 근거 약함",https://www.sec.gov/Archives/edgar/data/1818093/000162828026071066/
+us-skin,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 미용 의료기기, 근거 약함",https://www.sec.gov/Archives/edgar/data/1818093/000162828026071066/
+us-ww,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 체중 관리 — 회생 후 재상장, 근거 약함",https://www.sec.gov/Archives/edgar/data/105319/000119312526448523/
+us-ww,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 체중 관리 — 회생 후 재상장, 근거 약함",https://www.sec.gov/Archives/edgar/data/105319/000119312526448523/
+us-ww,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 체중 관리 — 회생 후 재상장, 근거 약함",https://www.sec.gov/Archives/edgar/data/105319/000119312526448523/
+us-ww,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 체중 관리 — 회생 후 재상장, 근거 약함",https://www.sec.gov/Archives/edgar/data/105319/000119312526448523/
+us-repx,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 퍼미안 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1001614/000100161426000061/
+us-repx,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 퍼미안 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1001614/000100161426000061/
+us-repx,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 퍼미안 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1001614/000100161426000061/
+us-repx,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 퍼미안 E&P, 유가 연동",https://www.sec.gov/Archives/edgar/data/1001614/000100161426000061/
+us-pgen,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유전자 치료 — 승인 후 매출 초입, AI 무관",https://www.sec.gov/Archives/edgar/data/1356090/000095010326016970/
+us-pgen,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유전자 치료 — 승인 후 매출 초입, AI 무관",https://www.sec.gov/Archives/edgar/data/1356090/000095010326016970/
+us-pgen,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유전자 치료 — 승인 후 매출 초입, AI 무관",https://www.sec.gov/Archives/edgar/data/1356090/000095010326016970/
+us-pgen,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 유전자 치료 — 승인 후 매출 초입, AI 무관",https://www.sec.gov/Archives/edgar/data/1356090/000095010326016970/
+us-bcyc,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1761612/000110465926119858/
+us-bcyc,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1761612/000110465926119858/
+us-bcyc,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1761612/000110465926119858/
+us-bcyc,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1761612/000110465926119858/
+us-evc,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 광고·방송, 근거 약함",https://www.sec.gov/Archives/edgar/data/1109116/000119312526449765/
+us-evc,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 광고·방송, 근거 약함",https://www.sec.gov/Archives/edgar/data/1109116/000119312526449765/
+us-evc,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 광고·방송, 근거 약함",https://www.sec.gov/Archives/edgar/data/1109116/000119312526449765/
+us-evc,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 광고·방송, 근거 약함",https://www.sec.gov/Archives/edgar/data/1109116/000119312526449765/
+us-cold,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 냉장 물류 리츠 — 데이터센터 전환 부지 논의 미확인",https://www.sec.gov/Archives/edgar/data/1455863/000162828026070516/
+us-cold,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 냉장 물류 리츠 — 데이터센터 전환 부지 논의 미확인",https://www.sec.gov/Archives/edgar/data/1455863/000162828026070516/
+us-cold,bottleneck,2,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 냉장 물류 리츠 — 데이터센터 전환 부지 논의 미확인",https://www.sec.gov/Archives/edgar/data/1455863/000162828026070516/
+us-cold,asymmetry,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 냉장 물류 리츠 — 데이터센터 전환 부지 논의 미확인",https://www.sec.gov/Archives/edgar/data/1455863/000162828026070516/
+us-lope,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 교육 서비스",https://www.sec.gov/Archives/edgar/data/1434588/000110465926122660/
+us-lope,gap,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 교육 서비스",https://www.sec.gov/Archives/edgar/data/1434588/000110465926122660/
+us-lope,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 교육 서비스",https://www.sec.gov/Archives/edgar/data/1434588/000110465926122660/
+us-lope,asymmetry,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 교육 서비스",https://www.sec.gov/Archives/edgar/data/1434588/000110465926122660/
+us-frd,upside,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 철강 가공, 시황 연동",https://www.sec.gov/Archives/edgar/data/39092/000143774926035315/
+us-frd,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 철강 가공, 시황 연동",https://www.sec.gov/Archives/edgar/data/39092/000143774926035315/
+us-frd,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 철강 가공, 시황 연동",https://www.sec.gov/Archives/edgar/data/39092/000143774926035315/
+us-frd,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 철강 가공, 시황 연동",https://www.sec.gov/Archives/edgar/data/39092/000143774926035315/
+us-boom,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 폭발 접합·건축재, 근거 약함",https://www.sec.gov/Archives/edgar/data/34067/000003406726000052/
+us-boom,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 폭발 접합·건축재, 근거 약함",https://www.sec.gov/Archives/edgar/data/34067/000003406726000052/
+us-boom,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 폭발 접합·건축재, 근거 약함",https://www.sec.gov/Archives/edgar/data/34067/000003406726000052/
+us-boom,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 폭발 접합·건축재, 근거 약함",https://www.sec.gov/Archives/edgar/data/34067/000003406726000052/
+us-prta,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1559053/000155905326000030/
+us-prta,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1559053/000155905326000030/
+us-prta,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1559053/000155905326000030/
+us-prta,asymmetry,5,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 임상 단계 바이오",https://www.sec.gov/Archives/edgar/data/1559053/000155905326000030/
+us-tbi,upside,3,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 인력 파견, 경기 민감",https://www.sec.gov/Archives/edgar/data/768899/000076889926000039/
+us-tbi,gap,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 인력 파견, 경기 민감",https://www.sec.gov/Archives/edgar/data/768899/000076889926000039/
+us-tbi,bottleneck,1,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 인력 파견, 경기 민감",https://www.sec.gov/Archives/edgar/data/768899/000076889926000039/
+us-tbi,asymmetry,4,"1차 판정(미검증), 실적 발표 알파 점검 2026-10-01~11-07: 인력 파견, 경기 민감",https://www.sec.gov/Archives/edgar/data/768899/000076889926000039/

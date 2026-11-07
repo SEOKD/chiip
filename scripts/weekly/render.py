@@ -25,6 +25,10 @@ BRIEF = ROOT / "outputs" / "brief"
 MOVERS = ROOT / "knowledge" / "models" / "weekly_movers"
 
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import earnings_alpha  # noqa: E402
+
+
 def cfg():
     return yaml.safe_load((ROOT / "config" / "weekly_review.yaml").read_text(encoding="utf-8"))
 
@@ -149,6 +153,7 @@ def to_md(d, movers):
     L += ["", "## AI 하드웨어 리드타임·병목", "", f"병목 지수 {m['index']:.2f}배" + (f" (전주 {m['prev_index']:.2f}배)" if m["prev_index"] else "") + f" · 지금 병목 {m['tight']['name']} · 늘어난 곳 {m['moving']['name'] if m['moving'] else '-'} · 풀린 곳 {m['easing']['name'] if m['easing'] else '-'}", "", d["leadtime"]["read"], "",
           "| 부품 | 지금(주) | 전주(주) | 평시(주) | 압박도 | 근거 |", "|---|---|---|---|---|---|"]
     L += [f"| {r['name']} | {r['now']} | {r.get('prev', '-')} | {r['normal']} | {r['stress']:.1f}배 | {r['evidence']} |" for r in m["rows"]]
+    L += earnings_alpha.md_lines(d)   # Earnings 알파 점검(2026-11-07 마스터 지시)
     L += ["", "## 다음 주 볼 것", "", "| 날짜 | 무엇 | 볼 숫자 | 의미 |", "|---|---|---|---|"]
     L += [f"| {x['date']} | {x['what']} | {x['watch']} | {x['means']} |" for x in d["next"]]
     L += ["", "## 이 판단이 틀릴 조건", ""] + [f"- {r}" for r in d["risks"]] + [""]
@@ -197,6 +202,7 @@ def to_html(d, movers):
     hi = max(r["stress"] for r in m["rows"]) or 1
     lt = "".join(f'<tr><td>{_e(r["name"])}</td><td>{r["now"]}주</td><td>{r.get("prev", "-")}주</td><td>{r["normal"]}주</td><td><span class="bar" style="width:{r["stress"] / hi * 100:.0f}%"></span>{r["stress"]:.1f}배 {_delta(r["delta"])}</td><td>{_e(r["evidence"])}</td></tr>' for r in m["rows"])
     ltsum = f"병목 지수 {m['index']:.2f}배" + (f" · 전주 {m['prev_index']:.2f}배" if m["prev_index"] else "") + f" · 지금 병목 {_e(m['tight']['name'])}" + (f" · 늘어난 곳 {_e(m['moving']['name'])}" if m["moving"] else "") + (f" · 풀린 곳 {_e(m['easing']['name'])}" if m["easing"] else "")
+    esec = earnings_alpha.html_section(d)   # Earnings 알파 점검(2026-11-07 마스터 지시)
     nxt = "".join(f"<tr><td>{_e(x['date'])}</td><td>{_e(x['what'])}</td><td>{_e(x['watch'])}</td><td>{_e(x['means'])}</td></tr>" for x in d["next"])
     tb = "".join(f"<tr><td>{_e(t)}</td><td>{k}</td><td>{_e(' · '.join(ex))}</td></tr>" for t, k, ex in th)
     return f"""<title>Chiip {d['week_no']}주차 리뷰</title>
@@ -211,6 +217,7 @@ def to_html(d, movers):
 <section><h2>이번 주 바뀐 것</h2>{cards}</section>
 <section><h2>섹터 온도</h2><div class="tw"><table><tr><th>섹터</th><th>5일</th><th>20일</th><th>고점 대비</th><th>EPS 추정 30일</th><th>읽기</th></tr>{sec}</table></div></section>
 <section><h2>AI 하드웨어 리드타임·병목</h2><p class="k">{ltsum}</p><p>{_e(d["leadtime"]["read"])}</p><div class="tw"><table><tr><th>부품</th><th>지금</th><th>전주</th><th>평시</th><th>압박도(지금÷평시)</th><th>근거</th></tr>{lt}</table></div><p class="note">압박도 = 지금 리드타임 ÷ 평시. 병목 지수는 부품 비중으로 가중한 평균. 리드타임은 이번 주 실적·콜·리포트 발언에서 모은 값이다.</p></section>
+{esec}
 <section><h2>다음 주 볼 것</h2><div class="tw"><table><tr><th>날짜</th><th>무엇</th><th>볼 숫자</th><th>의미</th></tr>{nxt}</table></div></section>
 <section><h2>이 판단이 틀릴 조건</h2><ul>{''.join(f'<li>{_e(r)}</li>' for r in d['risks'])}</ul></section>
 {''.join(f'<p class="note">{_e(n)}</p>' for n in d.get('notes') or [])}
@@ -224,6 +231,7 @@ def render(week):
     d = json.loads((BRIEF / f"{week}_weekly.json").read_text(encoding="utf-8"))
     movers = load_movers(week, c)
     check(d, c)
+    d["_earnings_alpha"] = earnings_alpha.load(week)
     md = to_md(d, movers)
     lint(md, c)
     (BRIEF / f"{week}_weekly.md").write_text(md, encoding="utf-8")
