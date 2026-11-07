@@ -1,0 +1,101 @@
+auto: true
+id: co-broadcom
+name: Broadcom
+ticker: AVGO
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 293.69
+  shares: 4.89463
+  net_debt: 35.444
+  source: 가격 2026-11-06 종가 $293.69 · 주식 수 4,773,629,865(2026-08-28, FQ3 10-Q 표지) ·
+    현금 $23,975M·차입 단기 $2,252M + 장기 $57,167M(10-Q 2026-08-02 재무상태표)
+rev0: 105.89
+ic0: 135.134
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.6054
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.5888
+      target: 0.5889
+      year_target: 3
+      lr: 0.45
+      lam: 0.35
+      anchors:
+      - 0.5818
+      - 0.5889
+    s2c: 2.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0246
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.5888
+      target: 0.6089
+      year_target: 3
+      lr: 0.45
+      lam: 0.25
+      anchors:
+      - 0.5818
+      - 0.5889
+    s2c: 2.875
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.0141
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.5888
+      target: 0.5689
+      year_target: 3
+      lr: 0.45
+      lam: 0.5
+      anchors:
+      - 0.5818
+      - 0.5889
+    s2c: 2.125
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [105.89, 105.89] (FQ3 FY26 실적·콜 2026-09-02: FQ4 매출 $34.8B(+93%),
+    AI 반도체 $21.7B, 소프트웨어 약 $8.7B, GM 약 73%, OPM 약 66%, 희석 주식 약 49.4억 주, CAPEX $1.4B.
+    FY26 AI 매출 $58B(기존 $56B), FY27 약 $115B, FY28 약 $230B, FY28 EPS $30 초과 궤도)'
+  growth: 컨센서스 1년차 60.5%, 2년차 64.7%
+  margin: 1~2년차 컨센서스 58.2%, 58.9% 고정 → 목표 59%(3년차, 덮어쓰기) → 장기 수렴 45%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.659 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -1.4%~2.5%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '장기 이익률 45%(lr): 비GAAP 영업이익률 66~68%는 AI 램프 정점, GAAP는 VMware 상각이 줄어 오른다
+    — 장기 수렴은 과거 GAAP 30~40%대보다 높은 45%로(근거 약함) / 매출÷투하자본 2.5: TTM 0.66은 VMware 영업권
+    $97.8B 탓 — 팹리스 증분 투하자본 기준(근거 약함)'
+  shares: 완전 희석 = 기본 4.77363(2026-08-28) + 옵션·RSU·워런트·전환 0.1210 — FQ3 10-Q 희석 가중 주식
+    4,887M − 기본 4,766M = 121M주(RSU·ESPP, 자기주식법
+notes:
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: XPV 잔존가치 보증(최대 $29B, 장부 밖)'
+- '어닝콜 위험: XPU 믹스·메모리로 GM 하락'
+- '어닝콜 위험: 부지·전력·기판·HBM 병목'
+evidence:
+- Broadcom FQ3 FY26 10-Q https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm
+- FQ3 FY26 어닝콜 요지(라이선스, 자기 말 요약)
+- $63B 금융 SPV 보도 https://www.morningstar.com/news/dow-jones/202610269207/banks-blackstone-form-63-billion-financing-vehicle-for-broadcom-ai-tech
+- Fiscal.ai 추정·재무·세그먼트 2026-11-07
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- Quantral 커뮤니티 점수·월간 요약 2026-11-07
