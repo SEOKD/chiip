@@ -19,7 +19,7 @@
   entities: [co-skhynix]     # 이 목록만 조회(dart.poll). 다른 기업을 넣으려면 마스터 지시가 필요
   reliability_default: 1차
   verified: true
-  enabled: true
+  enabled: false             # 2026-11-08 마스터 지시: 텔레그램 채널 darthacking으로 대체(config/tg_channels.yaml)
 
 - id: src-kind
   name: KRX KIND 공시

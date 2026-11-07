@@ -1,7 +1,7 @@
 # 공개 텔레그램 채널 수집 (마스터 지시 2026-11-01 "모든 피드를 다 수집하고 실시간으로 파악하라") → radar/pollers/tg_channels.py, docs/channels/telegram.md
 # always: 글이 모두 본업 주제인 채널 — 키워드 없이도 Pulse 회차를 연다
 min_chars: 20     # 이보다 짧은 글은 회차를 열지 않는다(수집은 한다)
-keywords: [반도체, 메모리, 파운드리, 패키징, 데이터센터, 전력기기, 변압기, 가스터빈, 원전, 방산, 실적, 가이던스, 컨센서스, 수주, 증설, 목표주가, 공급계약, 내부자, 공매도]
+keywords: [반도체, 메모리, 파운드리, 패키징, 데이터센터, 전력기기, 변압기, 가스터빈, 원전, 방산, 실적, 가이던스, 컨센서스, 수주, 증설, 목표주가, 공급계약, 내부자, 공매도, 하이닉스, SK하이닉스]
 channels:
   - {handle: marketfeed}
   - {handle: kwusa}
@@ -17,5 +17,5 @@ channels:
   - {handle: jsheo}
   - {handle: dykim0210}
   - {handle: Badonions}
-  - {handle: darthacking}
+  - {handle: darthacking}   # DART 공시 대체(2026-11-08 마스터 지시 "DART 보는 건 텔레그램 채널로 대체")
   - {handle: bumgore}
