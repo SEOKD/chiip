@@ -4475,7 +4475,7 @@ params:
   fit:
     method: 과거 시점 복원 — 혼합 후 5년 매출 예측 오차(표본 외)
     target: 5년 매출 CAGR 예측 RMSE
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-dcf-ov-start
@@ -4491,7 +4491,7 @@ params:
   fit:
     method: 위와 같음
     target: 5년 매출 CAGR 예측 RMSE
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-dcf-norm-blend
@@ -4507,7 +4507,7 @@ params:
   fit:
     method: 순환 기업 계속가치 마진 vs 실현 10년 평균
     target: 마진 예측 오차
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-dcf-norm-years
@@ -4523,7 +4523,7 @@ params:
   fit:
     method: 위와 같음
     target: 마진 예측 오차
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-dcf-mc-rho
@@ -4539,7 +4539,7 @@ params:
   fit:
     method: SEC 패널 — 매출 성장 서프라이즈와 마진 변화의 상관(표본 외)
     target: 몬테카를로 구간 적중률(P10~P90 커버리지)
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-dcf-mc-tdf
@@ -4555,7 +4555,7 @@ params:
   fit:
     method: 위와 같음
     target: P10·P90 커버리지
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-dcf-roic-maxspread
@@ -4571,7 +4571,7 @@ params:
   fit:
     method: SEC 패널 — ROIC 10년 뒤 잔존 스프레드 분포
     target: 잔존 스프레드 예측 오차
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-sotp-holding-discount
@@ -4619,7 +4619,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-value
@@ -4635,7 +4635,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-quality
@@ -4651,7 +4651,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-quality
@@ -4667,7 +4667,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-investment
@@ -4683,7 +4683,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-investment
@@ -4699,7 +4699,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-revision
@@ -4715,7 +4715,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-revision
@@ -4731,7 +4731,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-price
@@ -4747,7 +4747,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-price
@@ -4763,7 +4763,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-discovery
@@ -4779,7 +4779,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-discovery
@@ -4795,7 +4795,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-risk
@@ -4811,7 +4811,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-risk
@@ -4827,7 +4827,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-attention
@@ -4843,7 +4843,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-attention
@@ -4859,7 +4859,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-ic-engine
@@ -4875,7 +4875,7 @@ params:
   fit:
     method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
     target: 블록 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-hl-engine
@@ -4891,7 +4891,7 @@ params:
   fit:
     method: 신호 나이별 IC 감쇠 곡선 적합
     target: IC 감쇠 반감기
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-shrink
@@ -4907,7 +4907,7 @@ params:
   fit:
     method: walk-forward 합성 IC — 축소 비율 0·0.25·0.5·0.75 비교
     target: 합성 표본 외 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-alpha2-judgment-weight
@@ -4955,7 +4955,7 @@ params:
   fit:
     method: 합성 z의 표본 외 IC
     target: 합성 IC
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null
 - id: prm-bt-t-hurdle
@@ -4987,6 +4987,6 @@ params:
   fit:
     method: 발표 연도 전후 IC 비교
     target: 발표 후 IC 비
-    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    data: 앞으로의 성과(knowledge/models/alpha/v2_shadow.csv 만기 초과수익) — 과거 시점 백테스트는 보류(2026-11-07 마스터 결정: 유료 원천 쓰지 않음)
     last_fit: null
     oos_metric: null

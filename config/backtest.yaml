@@ -16,10 +16,11 @@ sec_frames:                 # SEC XBRL frames API(전 상장사 한 기간 한 �
     total_assets: [Assets]
     equity: [StockholdersEquity]
     shares: [dei:EntityCommonStockSharesOutstanding]
-price_source: null          # 일봉 대량 원천 — 마스터 승인 전에는 비워 둔다(아래 후보 점검 결과)
+price_source: null          # 보류 — 마스터 결정 2026-11-07 "유료 서비스를 쓰면서까지 백테스트 필요성을 별로 못 느끼겠다. 하지 마라". 원천을 새로 찾거나 제안하지 않는다
+status: 보류            # 피팅은 앞으로의 성과(알파 v2 병행 기록 v2_shadow.csv·브라이어 성적표)로 한다. 재무 수집(frames.py)·검정(ic.py) 코드는 남겨 둔다
 price_candidates:           # 2026-11-07 약관·robots 점검(scripts/backtest/prices.py)
   stooq: {status: 제외, why: "robots.txt가 일반 봇 전체 차단(User-agent: * / Disallow: /) — 스크립트 대량 수집 불가"}
-  tiingo: {status: 승인 대기, why: "개인·내부 용도 허용, API 키 필요. 무료(Starter)는 데이터 저장 금지라 백테스트 캐시 불가 — 유료 Power($30/월)는 구독 중에만 저장 가능, 종료 시 삭제 의무. 재배포 금지(통계 결과만 파생물 허용). 상장 폐지 종목 포함 여부 미확인", terms: "https://www.tiingo.com/tos"}
+  tiingo: {status: 마스터 거절(유료), why: "개인·내부 용도 허용, API 키 필요. 무료(Starter)는 데이터 저장 금지라 백테스트 캐시 불가 — 유료 Power($30/월)는 구독 중에만 저장 가능, 종료 시 삭제 의무. 재배포 금지(통계 결과만 파생물 허용). 상장 폐지 종목 포함 여부 미확인", terms: "https://www.tiingo.com/tos"}
   alpha_vantage: {status: 미확인, why: "약관이 PDF라 읽지 못함 — 다시 확인 필요"}
   nasdaq_data_link: {status: 미확인, why: "약관 페이지를 찾지 못함"}
   fiscal_ai: {status: 사용 가능(소량), why: "이미 승인된 원천이나 모델 회차(MCP)로만 받는다 — 2012~2025 전 종목 대량 수집에는 맞지 않는다"}

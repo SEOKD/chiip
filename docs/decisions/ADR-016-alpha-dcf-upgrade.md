@@ -107,13 +107,19 @@
   - 삼성전자는 상장 지분이 시가 ₩54.0T로 시가총액의 4%라서, 할인율을 0%에서 50%까지 바꿔도 결과가 ±0.01배 안에서 움직인다.
 - **일봉 대량 원천:** 약관·robots를 점검했다(`config/backtest.yaml` price_candidates).
   - Stooq: robots.txt가 일반 봇을 전부 막아 **제외**.
-  - Tiingo: 개인 내부 용도는 허용하지만, 무료 등급은 저장을 금지하고 유료($30/월)는 구독 중에만 저장할 수 있다. 상장 폐지 종목 포함 여부는 미확인이라 **마스터 승인 대기**.
+  - Tiingo: 개인 내부 용도는 허용하지만, 무료 등급은 저장을 금지하고 유료($30/월)는 구독 중에만 저장할 수 있다. 상장 폐지 종목 포함 여부는 미확인. **마스터 결정(2026-11-07): 유료 원천을 쓰면서까지 백테스트를 하지 않는다 — 백테스트 보류.**
   - Alpha Vantage·Nasdaq Data Link: 약관을 읽지 못해 **미확인**.
   - 승인 전에는 `scripts/backtest/prices.py`가 PriceSourceNotApproved를 내고, 백테스트는 재무(frames)까지만 준비된다.
 
 ## 6. 바뀌지 않는 것
 - 알파 점수는 매수 의견이 아니다. 투자자문 경계, 금액·비중 지시 금지 그대로
 - 모든 상수는 등록부에 사전값·출처와 함께, 채택은 표본 외 개선 확인 후
+
+## 6-1. 백테스트 보류(2026-11-07 마스터 결정)
+마스터: "난 유료 서비스를 쓰면서까지 백테스트 필요성을 별로 못 느끼겠다. 하지 마라."
+- 일봉 대량 원천을 찾거나 제안하지 않는다. §2-3 과거 시점 복원 피팅은 하지 않는다.
+- 사전값(prior)은 그대로 쓰고, 피팅·채택은 앞으로의 성과로만 한다: 알파 v2 병행 기록(`v2_shadow.csv`)의 만기 초과수익 → `calibrate.py` 보정, 등록부 채택 관문(표본 외 개선) 그대로.
+- 그래서 사전값이 표본 외 검증을 받기까지 1년 이상 걸린다(1년 수익률 판정). 그 전까지 알파 v2의 확률(P(1년 초과))은 사전 곡선이다.
 
 ## 7. 구현(2026-11-07)
 | 항목 | 파일 | 상태 |
@@ -122,7 +128,7 @@
 | D4 상관·두꺼운 꼬리 충격 | `montecarlo.py` `corr_pair`·`t_unit` | 켜짐 |
 | SOTP | `scripts/valuation/v2/sotp.py`, `knowledge/models/companies/co-samsung/sotp.yaml`, 리포트 `scripts/tenbagger/sotp_view.py`(폭포 그림 → 한눈에 보기) | 삼성전자 적용 |
 | 알파 v2 | `scripts/alpha/v2.py`, `config/alpha_v2.yaml`, 보정 `scripts/alpha/calibrate.py` | **병행 기록**(`score.py --finalize`가 같이 돌림) — 게이트는 2026-11-21까지 v1 |
-| 백테스트 | `scripts/backtest/frames.py`(SEC frames, 실시험 통과), `panel.py`, `ic.py`(Newey-West t ≥ 3·발표 후 ×0.5·walk-forward), `prices.py`(원천 관문), 설정 `config/backtest.yaml` | 재무 수집 가능, 일봉 원천 승인 대기 |
+| 백테스트 | `scripts/backtest/frames.py`(SEC frames, 실시험 통과), `panel.py`, `ic.py`(Newey-West t ≥ 3·발표 후 ×0.5·walk-forward), `prices.py`(원천 관문), 설정 `config/backtest.yaml` | **보류**(마스터 결정 — 유료 원천 쓰지 않음). 코드만 유지 |
 | 등록부 | `prm-dcf-*`·`prm-sotp-*`·`prm-alpha2-*`·`prm-bt-*` 33개 | 모두 prior |
 | 시험 | `tests/test_alpha_dcf_v3.py` | 통과 |
 
