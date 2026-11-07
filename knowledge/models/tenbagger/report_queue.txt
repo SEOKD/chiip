@@ -1,1 +1,6 @@
-us-mtd | new | 마스터 지시 2026-11-06 "메틀러 톨레도(MTD) Anlaysis 리포트를 써라" — 제품·생산시설 실사 사진 필수(photo_view.py)
+co-quanta-services | reissue | 20261102_PWR — 마스터 지시 2026-11-07 "새로운 보고서 양식대로 최신 정보로 다시 써라. 새 html 링크를 과거 html 링크에 덮어라": Artifact는 기존 URL https://claude.ai/artifact/T5TR2exMCRgdvkfNkFppeE 에 url 인자로 덮어 게시(새 링크 금지), 노션 페이지도 덮어쓴다
+co-caci | reissue | 20261102_CACI — 마스터 지시 2026-11-07 "새로운 보고서 양식대로 최신 정보로 다시 써라. 새 html 링크를 과거 html 링크에 덮어라": Artifact는 기존 URL https://claude.ai/artifact/NNDtE1KesaifaeL2joGuRt 에 url 인자로 덮어 게시(새 링크 금지), 노션 페이지도 덮어쓴다
+co-innio | reissue | 20261030_INIO — 마스터 지시 2026-11-07 "새로운 보고서 양식대로 최신 정보로 다시 써라. 새 html 링크를 과거 html 링크에 덮어라": Artifact는 기존 URL https://claude.ai/artifact/K56v5DQJuyw3KZuRgMCyph 에 url 인자로 덮어 게시(새 링크 금지), 노션 페이지도 덮어쓴다
+us-cbrs | reissue | 20261030_CBRS — 마스터 지시 2026-11-07 "새로운 보고서 양식대로 최신 정보로 다시 써라. 새 html 링크를 과거 html 링크에 덮어라": Artifact는 기존 URL https://claude.ai/artifact/SekPwcktQWrMrh1eNdxsQs 에 url 인자로 덮어 게시(새 링크 금지), 노션 페이지도 덮어쓴다
+co-enchantedrock | reissue | 20261031_EROC — 마스터 지시 2026-11-07 "새로운 보고서 양식대로 최신 정보로 다시 써라. 새 html 링크를 과거 html 링크에 덮어라": Artifact는 기존 URL https://claude.ai/artifact/JhHWBT6VEc1NFs7RkNwp3J 에 url 인자로 덮어 게시(새 링크 금지), 노션 페이지도 덮어쓴다
+jp-takaratomy | reissue | 20261102_7867 — 마스터 지시 2026-11-07 "새로운 보고서 양식대로 최신 정보로 다시 써라. 새 html 링크를 과거 html 링크에 덮어라": Artifact는 기존 URL https://claude.ai/artifact/ABw49KY2CeGniB2UhZstyb 에 url 인자로 덮어 게시(새 링크 금지), 노션 페이지도 덮어쓴다
