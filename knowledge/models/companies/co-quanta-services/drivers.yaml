@@ -9,13 +9,13 @@ region_mix:
   US: 1.0
 tax: 0.25
 horizon: 10
-as_of: '2026-11-02'
+as_of: '2026-11-07'
 market:
-  date: '2026-11-02'
-  price: 620.73
+  date: '2026-11-07'
+  price: 540.9
   shares: 0.152693
   net_debt: 5.196624
-  source: '가격 = 2026-10-30 종가(Fiscal.ai 일봉, easyconomics 같은 값) · 기본 주식 = 3Q26 가중평균
+  source: '가격 = 2026-11-06 종가(Fiscal.ai 일봉, Easyconomics 같은 값) · 기본 주식 = 3Q26 가중평균
     기본 150,533천 주 · 현금·차입 = 3Q26 10-Q 2026-09-30: 현금 2,315.3 · 유동 차입 639.3 + 장기 차입
     6,351.7 + 운용리스 129.8 + 391.0 (백만$)'
 rev0: 41.45
@@ -91,7 +91,7 @@ provenance:
   shares: '완전 희석 = 기본 0.150533(2026-09-30) + 옵션·RSU·워런트·전환 0.0022 — 8-K EX-99.1 EPS
     표 — 3Q26 가중평균 희석 152,693천 주 − 기본 150,533천 주 '
 notes:
-- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-07
 - '어닝콜 위험: 대형 송전·발전 수주 시점(분기 수주 들쭉날쭉)'
 - '어닝콜 위험: OEM 자재 부족(구리·변압기·전주)'
 - '어닝콜 위험: 고정가 매출 비중 68%(전년 63%)'
@@ -102,3 +102,5 @@ evidence:
 - Quanta 2026 위임장 https://www.sec.gov/Archives/edgar/data/1050915/000119312526150293/d118470ddef14a.htm
 - 3Q·2Q 콜 전문(라이선스, 요지만) · Fiscal.ai 추정·배수·13F·Form 4·펀드 레터. Data provided by Zacks
   Investment Research, Inc., www.zacksdata.com
+- Quantral 커뮤니티 집계(2026-11-07, 본문·작성자 미저장)
+- Easyconomics company_profile·earnings_summary_dates(2026-11-07)
