@@ -4142,3 +4142,323 @@ params:
     data: knowledge/models/conferences/counts.csv
     last_fit: null
     oos_metric: null
+- id: prm-social-weight-x
+  model: radar.social_surge
+  binding: config/social_surge.yaml#weights.x
+  value: 1.0
+  unit: 가중
+  status: prior
+  prior:
+    value: 1.0
+    basis: X 언급 급증 결합 가중
+    source: Bartov, Faurel & Mohanram(2018) 트위터 의견의 이익·수익률 예측력
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-weight-reddit
+  model: radar.social_surge
+  binding: config/social_surge.yaml#weights.reddit
+  value: 0.7
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.7
+    basis: 레딧 — 잡음 커 낮게
+    source: Cookson & Niessner(2020) 투자자 의견 불일치와 거래
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-weight-youtube
+  model: radar.social_surge
+  binding: config/social_surge.yaml#weights.youtube
+  value: 0.7
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.7
+    basis: 유튜브 — 레딧과 같게
+    source: 치입 사전값 — 문헌 값 미확인
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-weight-substack
+  model: radar.social_surge
+  binding: config/social_surge.yaml#weights.substack
+  value: 1.0
+  unit: 가중
+  status: prior
+  prior:
+    value: 1.0
+    basis: 장문 논지
+    source: Chen, De, Hu & Hwang(2014) Seeking Alpha 글의 예측력
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-weight-insider
+  model: radar.social_surge
+  binding: config/social_surge.yaml#weights.insider
+  value: 1.5
+  unit: 가중
+  status: prior
+  prior:
+    value: 1.5
+    basis: 내부자 매수 — 가장 정보 가치 큼
+    source: Cohen, Malloy & Pomorski(2012) 기회주의적 내부자 거래
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-weight-congress
+  model: radar.social_surge
+  binding: config/social_surge.yaml#weights.congress
+  value: 0.6
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.6
+    basis: 의회 매매 — 문헌이 엇갈려 낮게
+    source: Ziobrowski et al.(2004) vs Eggers & Hainmueller(2013)
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-baseline-days
+  model: radar.social_surge
+  binding: config/social_surge.yaml#baseline_days
+  value: 28
+  unit: 일
+  status: prior
+  prior:
+    value: 28
+    basis: 기준 수준 창
+    source: 치입 사전값 — 월 주기 한 바퀴
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-recent-days
+  model: radar.social_surge
+  binding: config/social_surge.yaml#recent_days
+  value: 3
+  unit: 일
+  status: prior
+  prior:
+    value: 3
+    basis: 급증 측정 창
+    source: Da, Engelberg & Gao(2011) 관심 충격의 단기 지속
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-prior-days
+  model: radar.social_surge
+  binding: config/social_surge.yaml#prior_days
+  value: 14
+  unit: 일
+  status: prior
+  prior:
+    value: 14
+    basis: 월간 게시 수 사전의 가상 표본(경험적 베이즈)
+    source: Efron & Morris(1975) 축소 추정
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-nb-k-floor
+  model: radar.social_surge
+  binding: config/social_surge.yaml#nb_k_floor
+  value: 0.5
+  unit: k
+  status: prior
+  prior:
+    value: 0.5
+    basis: 음이항 과산포 하한
+    source: Cameron & Trivedi(2013) 계수 자료 회귀
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-cusum-k
+  model: radar.social_surge
+  binding: config/social_surge.yaml#cusum.k
+  value: 0.5
+  unit: σ
+  status: prior
+  prior:
+    value: 0.5
+    basis: CUSUM 허용치 — 1σ 이동 탐지 최적
+    source: Page(1954); Montgomery(2019) 통계적 품질관리
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-cusum-h
+  model: radar.social_surge
+  binding: config/social_surge.yaml#cusum.h
+  value: 4.0
+  unit: σ
+  status: prior
+  prior:
+    value: 4.0
+    basis: CUSUM 경보 — ARL0 약 168
+    source: Montgomery(2019) k=0.5·h=4 표준 설계
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-cred-prior
+  model: radar.social_surge
+  binding: config/social_surge.yaml#credibility_prior.a
+  value: 9
+  unit: 건
+  status: prior
+  prior:
+    value: 9
+    basis: 작성자 적중률 베타 사전 a(b=11, 평균 0.45)
+    source: 치입 사전값 — Quantral 적중률 분포 중앙 근처
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-alert-z
+  model: radar.social_surge
+  binding: config/social_surge.yaml#alert.z_comb
+  value: 3.0
+  unit: Z
+  status: prior
+  prior:
+    value: 3.0
+    basis: 결합 Z 경보 문턱
+    source: 치입 사전값 — 단측 p≈0.0013
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-alert-min
+  model: radar.social_surge
+  binding: config/social_surge.yaml#alert.min_recent
+  value: 5
+  unit: 건
+  status: prior
+  prior:
+    value: 5
+    basis: 최근 3일 신뢰 가중 건수 하한
+    source: 치입 사전값 — 작은 수 비율 착시 방지
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-event-p
+  model: radar.social_surge
+  binding: config/social_surge.yaml#alert.event_p
+  value: 0.01
+  unit: p
+  status: prior
+  prior:
+    value: 0.01
+    basis: 사건형 채널 단독 경보
+    source: 치입 사전값
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-score-scale
+  model: radar.social_surge
+  binding: config/social_surge.yaml#score.scale
+  value: 2.5
+  unit: Z
+  status: prior
+  prior:
+    value: 2.5
+    basis: 급증 점수 눈금(Z 3 → 7.0점)
+    source: 치입 사전값
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-alpha-weight
+  model: radar.social_surge
+  binding: config/social_surge.yaml#alpha.weight
+  value: 0.1
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.1
+    basis: 알파 attention 요소 가중치(config/alpha.yaml weights.attention과 같이 바꾼다)
+    source: Da, Engelberg & Gao(2011); Barber & Odean(2008)
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-alpha-tilt
+  model: radar.social_surge
+  binding: config/social_surge.yaml#alpha.tilt
+  value: 3.0
+  unit: 점
+  status: prior
+  prior:
+    value: 3.0
+    basis: attention 5점 기준 최대 폭
+    source: 치입 사전값
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-social-alpha-crowd
+  model: radar.social_surge
+  binding: config/social_surge.yaml#alpha.crowd_penalty
+  value: 1.5
+  unit: 점
+  status: prior
+  prior:
+    value: 1.5
+    basis: 이미 과밀(Quantral 7일 ≥ 85, 급증 없음) 감점
+    source: Barber & Odean(2008) 관심 끄는 종목의 이후 저조
+  fit:
+    method: 급증 경보·attention과 이후 5·20거래일 초과수익의 관계(중첩 표본 외, scripts/fit/stepwise.py) — 60거래일 쌓인 뒤
+    target: 경보 종목 20거래일 초과수익·알파 IC 개선
+    data: knowledge/models/social/daily.csv
+    last_fit: null
+    oos_metric: null

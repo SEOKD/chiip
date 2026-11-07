@@ -55,13 +55,34 @@ def load_judgments():
     return out
 
 
-def combine(judg, c):
+def social_rows():
+    """커뮤니티 관심 급증 모델의 attention 요소(radar/social_surge.py, 마스터 지시 2026-11-07 "이 변수는 알파 점수를 매기는 데도 활용")"""
+    p = ROOT / "knowledge" / "models" / "social" / "latest.json"
+    try:
+        d = json.loads(p.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    sc = yaml.safe_load((ROOT / "config" / "social_surge.yaml").read_text(encoding="utf-8"))["alpha"]
+    try:
+        age = (date.today() - datetime.fromisoformat(d["as_of"]).date()).days
+    except (KeyError, ValueError):
+        return {}
+    if age > sc["stale_days"]:
+        return {}
+    day = datetime.fromisoformat(d["as_of"]).strftime("%Y%m%d")
+    return {k: {"score": v["attention"], "day": day} for k, v in (d.get("rows") or {}).items() if v.get("attention") is not None}
+
+
+def combine(judg, c, social=None):
     w = c["weights"]
     rows = {}
+    social = social_rows() if social is None else social
     for cid, comps in judg.items():
-        have = {k: v for k, v in comps.items() if k in w}
+        have = {k: v for k, v in comps.items() if k in w and k != "attention"}
         total = None
-        if len(have) >= int(c.get("min_components", 2)):
+        if len(have) >= int(c.get("min_components", 2)):   # 판단 요소가 충분할 때만 — 관심 요소만으로는 산정하지 않는다
+            if cid in social and "attention" in w:
+                have["attention"] = social[cid]
             ws = sum(w[k] for k in have)
             total = round(sum(w[k] * v["score"] for k, v in have.items()) / ws, 2)
         rows[cid] = {"total": total, "scored_on": max(v["day"] for v in comps.values()),

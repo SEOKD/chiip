@@ -1,0 +1,47 @@
+# 커뮤니티 관심 급증 모델 (마스터 지시 2026-11-07 "Quantral로 Pulse에 X, 서브스택, 레딧, 유튜브, 의회 의원 매매, 내부자 매수가 급격히 늘어나는
+# 종목을 관측하는 시스템 … 급격히 증가하는 정도는 고도화된 수학 모델을 통해 체계적으로 설계 … 이 변수는 알파 점수를 매기는 데도 활용").
+# 계산: radar/social_surge.py(결정론). 원천: Quantral MCP(get_company_score·get_company_signals·get_company_recaps) — 모델이 받아 파일로 넘긴다.
+# 저장은 집계만(종목·날짜·채널별 건수·감성 평균·신뢰 가중 건수). 글 본문·작성자·링크는 저장하지 않는다(CLAUDE.md 커뮤니티 경계, ADR-011).
+# 값은 모두 사전값(미검증) — 등록부 prm-social-*. 피팅은 knowledge/models/social/daily.csv가 60거래일 쌓인 뒤 Model Lab이 표본 외로.
+channels:                 # Quantral sourceType → 채널. 그 밖(patent 등)은 집계하지 않는다
+  twitter: x
+  x: x
+  reddit: reddit
+  youtube: youtube
+  substack: substack
+  insider: insider        # 내부자 매수(Form 4) — 사건형
+  congress: congress      # 의회 의원 매매(STOCK Act 공시) — 사건형
+attention: [x, reddit, youtube, substack]   # 연속형(건수) 채널
+events: [insider, congress]                 # 드문 사건형 채널 — 포아송 꼬리확률로 잰다
+weights:                  # 스토퍼 결합 가중치(채널 신호의 정보 가치)
+  x: 1.0
+  reddit: 0.7             # 잡음 큼 — Cookson & Niessner(2020) 의견 불일치·소음
+  youtube: 0.7
+  substack: 1.0           # 장문 논지 — Chen, De, Hu & Hwang(2014) 사용자 생성 리서치의 예측력
+  insider: 1.5            # Cohen, Malloy & Pomorski(2012) 기회주의적 내부자 매수의 초과수익
+  congress: 0.6           # Ziobrowski et al.(2004) 초과수익 vs Eggers & Hainmueller(2013) 없음 — 엇갈려 낮게
+baseline_days: 28         # 기준 수준 창(최근 recent_days 제외)
+recent_days: 3            # 급증을 재는 최근 창
+prior_days: 14            # 일별 이력이 짧을 때 월간 요약(recaps) 게시 수로 기준을 메우는 가상 표본 크기(경험적 베이즈 혼합)
+nb_k_floor: 0.5           # 음이항 과산포 k 하한(작을수록 꼬리가 두껍다)
+cusum: {k: 0.5, h: 4.0}   # Page(1954) 한쪽 CUSUM — 표준화 잔차 기준 허용 k·경보 h(ARL0 ≈ 수백 일)
+credibility_prior: {a: 9, b: 11}   # 작성자 적중률 베타 사전(평균 0.45) — 적중 기록이 적은 작성자는 평균으로 당긴다
+event_lookback_days: 365  # 사건형 채널 기저율 창
+event_floor_rate: 0.5     # 기저율 하한(30일당 건수) — 이력이 없는 종목의 첫 사건을 과대평가하지 않게
+alert:
+  z_comb: 3.0             # 결합 Z(스토퍼) 경보 문턱
+  min_recent: 5           # 최근 창 신뢰 가중 건수 하한(작은 수의 비율 착시 방지)
+  event_p: 0.01           # 사건형 채널 꼬리확률 단독 경보
+  cooldown_days: 3        # 같은 종목 재알림 간격
+score:                    # 급증 점수 0~10 = 10·(1 − exp(−max(0, Z)/scale))
+  scale: 2.5
+alpha:                    # 알파 '관심(attention)' 요소 — scripts/alpha/score.py가 합성에 넣는다
+  weight: 0.10            # 알파 가중치(나머지 요소는 재정규화). Da, Engelberg & Gao(2011): 관심 급증 → 단기 초과수익 후 반전
+  tilt: 3.0               # 5점 기준 ± 최대 폭: attention = 5 + tilt·tanh(Z/3)·(0.5 + 0.5·감성) − 과밀
+  crowd_score: 85         # Quantral 7일 점수가 이 이상이고 급증이 없으면 이미 과밀 — Barber & Odean(2008) 관심 끄는 종목의 이후 저조
+  crowd_penalty: 1.5
+  stale_days: 7
+fetch:
+  per_run: 15             # Pulse 회차당 Quantral 조회 종목 수(1분 60회 한도 안)
+  refresh_hours: 6        # 같은 종목 재조회 간격
+  min_gap_minutes: 60     # Pulse가 이 일로 회차를 여는 최소 간격(모델 비용)

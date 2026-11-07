@@ -29,3 +29,4 @@
 ## 양식 개선 기록
 - 2026-11-05 · 숫자 과밀(ALPHA 8.3, 표본 5) — 22:54 BKSY 한 줄에 알파 점수·매출·추정·가이던스·52주 고점 대비 7개 · 숫자 6개 넘으면 둘째 줄 · 전 8.3 → 후 8.7 예상(11/12 확인)
 - **DART = SK하이닉스만**(2026-11-06 마스터 지시 "SK하이닉스만 켜"): `config/source_registry.yaml` src-dart `entities: [co-skhynix]`, 5분 주기. Pulse 공시 유형에 src-dart를 넣고 한국어 언어 필터에서 뺐다. 규칙 P0(잠정실적·공급계약·시설투자 등)는 기존 deterministic_p0 그대로. 키 값이 비어 있으면 건너뛴다(docs/TODO_MASTER.md).
+- **📣 커뮤니티 관심 급증**(2026-11-07 마스터 지시): Quantral MCP로 알파 5점 이상·Portfolio 종목의 X·레딧·유튜브·서브스택 언급과 내부자 매수·의회 매매를 받아 `radar/social_surge.py`가 음이항 급증 Z·CUSUM·포아송 꼬리확률·스토퍼 결합으로 잰다(설정 `config/social_surge.yaml`, 등록부 prm-social-*). 경보만 Pulse에 📣로. 같은 Z가 알파 attention 요소(가중 0.10)가 된다. 저장은 집계만 — 글 본문·작성자·링크는 버린다. Quantral 약관상 개인·비상업 사용 — 점수·글을 공개 산출물·기사에 옮겨 싣지 않는다.

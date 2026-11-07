@@ -598,7 +598,12 @@ def run(now=None, peek=False):
         heal = self_heal.status(now)
     except Exception as exc:
         heal = {"due": False, "error": type(exc).__name__}
-    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due"):
+    try:   # 커뮤니티 관심 급증(Quantral, 2026-11-07 마스터 지시) — 받을 종목이 있으면 회차를 연다(1시간 간격)
+        import social_surge
+        soc = social_surge.status(now)
+    except Exception as exc:
+        soc = {"due": False, "error": type(exc).__name__}
+    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
@@ -616,12 +621,14 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in select(sources)],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if ex.get("due"):
         exclusive_leads.offered(now)
     if heal.get("due"):
         self_heal.offered(now)
+    if soc.get("due"):
+        social_surge.offered(now)
     OUT.mkdir(parents=True, exist_ok=True)
     path = OUT / f"{now.strftime('%Y%m%d_%H%M')}.json"
     path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -464,6 +464,8 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     out += [x for x in [ma_view.section(dp)] if x]   # M&A 시너지(2026-11-03 마스터 지시)
     out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}] + [x for x in [sync_view.section(dp), pq_view.section(dp)] if x] + [val] + [x for x in [entry_view.section(flow.load_ohlcv(entity), pt["target"])] if x] + [debate_view.section(dp, deb)]   # 매수 위치(일봉, 2026-11-03)   # 거시 지표 싱크로율(2026-11-03 마스터 지시)
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
+    import social_view   # 커뮤니티 내러티브(Quantral, 2026-11-07 마스터 지시) — 그래프는 아래에서 한눈에 보기로 옮긴다
+    out += [x for x in [social_view.section(dp, entity)] if x]
     market = narrative_view.market_section(dp)   # 셀사이드·바이사이드·언론은 체크리스트 바로 앞(마스터 지시 2026-11-01)
     if market:
         out.append(market)
