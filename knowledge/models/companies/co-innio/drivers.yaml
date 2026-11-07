@@ -10,15 +10,15 @@ region_mix:
   EU: 0.4
 tax: 0.25
 horizon: 10
-as_of: '2026-10-30'
+as_of: '2026-11-07'
 market:
-  date: '2026-10-30'
-  price: 16.3
+  date: '2026-11-07'
+  price: 13.77
   shares: 0.7517
   net_debt: 1.6216
-  source: 가격 = 2026-10-30 종가(Fiscal.ai·Easyconomics 일치) · 주식 수 750,000,000(10-Q 2026-09-30)
-    · 현금·차입 = 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$). Easyconomics(yfinance)
-    총차입 $2.95B는 운용리스 $98M 등을 더한 값이라 차이가 난다
+  source: 가격 = 2026-11-06 종가 $13.77(Fiscal.ai·Easyconomics 일치) · 주식 수 750,000,000(10-Q
+    2026-09-30) · 현금·차입 = 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$).
+    Easyconomics(yfinance) 총차입 $2.95B는 운용리스 등 포함 기준이라 차이가 난다
 rev0: 3.95
 ic0: 1.9678
 scenarios:
@@ -86,7 +86,7 @@ provenance:
     291백만$ ÷ 매출 증가 1.28B$) → 증분 3~5, 보수적으로 3 / SBC 0.2%: 3Q SBC 2.7백만$ ÷ 매출 1,168'
   shares: 완전 희석 = 기본 0.75(2026-09-30) + 옵션·RSU·워런트·전환 0.0017 — SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarn
 notes:
-- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-10-30
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-07
 - '어닝콜 위험: 증설 실행(3.5 → 10GW 초과)'
 - '어닝콜 위험: 데이터센터 고객 집중(9개월 상위 5개 고객 매출 54%)'
 - '어닝콜 위험: 텍사스 인허가(프로젝트 1건 1주 지연 뒤 해소)'
@@ -103,3 +103,7 @@ evidence:
   3Q 실적)·3Q 콜 Q&A 질문 증권사 8곳
 - '2026-11-02 재발행: EDGAR 10-Q(2026-10-27)·424B4(2026-06-04) 본문, Fiscal.ai·Zacks·Easyconomics(yfinance)
   2026-10-30 기준, 노션 Stocks 이니오 INIO(공장 지도·공매도 잔고), JPM GE Vernova 노트 요지(라이선스, 업종 맥락만)'
+- '2026-11-07 재발행(양식 3): Fiscal.ai 분기 손익·세그먼트 KPI·현금흐름·company_ratios(조회 2026-11-07),
+  Easyconomics company_profile·price_history·earnings_summary_dates·company_news(yfinance
+  출처 포함), SEC EDGAR 제출 목록(10/27 이후 새 공시 없음), Quantral 커뮤니티 신호(X·레딧 17건, 본문 미저장), 위키미디어
+  공용 사진 2장. Data provided by Zacks Investment Research, Inc., www.zacksdata.com'

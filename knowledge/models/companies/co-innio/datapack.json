@@ -1,1889 +1,2715 @@
 {
- "id": "co-innio",
- "name": "INNIO",
- "ticker": "INIO",
- "as_of": "2026-10-30",
- "unit": "B$",
- "industry": "electrical_equipment",
- "region_mix": {
-  "US": 0.6,
-  "EU": 0.4
- },
- "tax": 0.25,
- "profile": {
-  "price": 16.3,
-  "shares_basic": 0.75,
-  "shares_date": "2026-09-30",
-  "cash": 1.1958,
-  "debt": 2.8174,
-  "source": "가격 = 2026-10-30 종가(Fiscal.ai·Easyconomics 일치) · 주식 수 750,000,000(10-Q 2026-09-30) · 현금·차입 = 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$). Easyconomics(yfinance) 총차입 $2.95B는 운용리스 $98M 등을 더한 값이라 차이가 난다"
- },
- "dilution": {
-  "potential_total": 0.0017,
-  "options": null,
-  "rsu": null,
-  "warrants": null,
-  "converts_shares": 0.0,
-  "date": "2026-09-30",
-  "source": "SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount 2026Q3 = 1.7백만 주(상장 후 부여 RSU·옵션) — 전량 반영"
- },
- "financials": {
-  "rev_ttm": 3.5148,
-  "ebit_ttm": 0.3797,
-  "invested_capital": 1.9678,
-  "capex_ttm": 0.2909,
-  "da_fy2025": 0.1535,
-  "sbc_3q": 0.00273,
-  "rev_growth_ttm": 0.573,
-  "basis": "GAAP",
-  "note": "TTM = Fiscal.ai 표준화 분기 손익 2025Q4~2026Q3 매출 740.6+668.6+937.7+1,167.9, 영업이익 77.9+63.1+45.1+193.6백만$(4Q25 영업이익은 이전 역산값 86.7 → Fiscal 공시값 77.9로 정정). 투하자본 = 자기자본 346.2 + 차입 2,817.4 − 현금 1,195.8"
- },
- "consensus": {
-  "rev": {
-   "FY2026": 3.9969,
-   "FY2027": 5.2902,
-   "FY2028": 6.0957
+  "id": "co-innio",
+  "name": "INNIO",
+  "ticker": "INIO",
+  "as_of": "2026-11-07",
+  "unit": "B$",
+  "industry": "electrical_equipment",
+  "region_mix": {
+    "US": 0.6,
+    "EU": 0.4
   },
-  "rev_basis": "gaap",
-  "ebit_margin": {
-   "FY2026": 0.1273,
-   "FY2027": 0.1782
+  "tax": 0.25,
+  "profile": {
+    "price": 13.77,
+    "shares_basic": 0.75,
+    "shares_date": "2026-09-30",
+    "cash": 1.1958,
+    "debt": 2.8174,
+    "source": "가격 = 2026-11-06 종가 $13.77(Fiscal.ai·Easyconomics 일치) · 주식 수 750,000,000(10-Q 2026-09-30) · 현금·차입 = 표준화 재무상태표 2026-09-30(현금 1,195.8, 단기 221.3 + 장기 2,596.1백만$). Easyconomics(yfinance) 총차입 $2.95B는 운용리스 등 포함 기준이라 차이가 난다"
   },
-  "margin_basis": "gaap",
-  "n_analysts": 2,
-  "quarters_est": {
-   "2026Q4": 1.2227,
-   "2027Q1": 1.2148,
-   "2027Q2": 1.3636,
-   "2027Q3": 1.2924,
-   "2027Q4": 1.4194
-  },
-  "quarters_act": {
-   "2026Q1": 0.6686,
-   "2026Q2": 0.9377,
-   "2026Q3": 1.1679
-  },
-  "ebitda_est_m": {
-   "2026Q4": 262.2,
-   "2027Q1": 255.1,
-   "2027Q2": 288.0,
-   "2027Q3": 302.3
-  },
-  "note": "2026-10-30 기준. Fiscal.ai 자체 추정이 없는 종목이라(company_estimates '아직 없음') Zacks가 기본이다. 4Q26 매출만 yfinance $1,222.7M — Zacks 분기 $1,267M는 회사 가이던스 환산 $1,126~1,226M 상단을 넘고 Zacks 연간 $3.91B와 맞지 않는다. FY2026·27 매출은 분기 합, 대조 Zacks 연간 $3.91B·$5.23B. EBIT 이익률 = Zacks EBIT ÷ Zacks 연간 매출. 매출 추정 2명, EPS 2~3명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
-  "surprise": [
-   {
-    "period": "2026Q2",
-    "report_date": "2026-06-30",
-    "metric": "매출",
-    "unit": "M$",
-    "actual": 937.7,
-    "est": 881.71,
-    "est_src": "zacks",
-    "basis": "gaap",
-    "earnings_date": "2026-07-28"
-   },
-   {
-    "period": "2026Q2",
-    "report_date": "2026-06-30",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": 0.08,
-    "est": 0.0568,
-    "est_src": "zacks",
-    "basis": "adjusted",
-    "earnings_date": "2026-07-28"
-   },
-   {
-    "period": "2026Q3",
-    "report_date": "2026-09-30",
-    "metric": "매출",
-    "unit": "M$",
-    "actual": 1167.9,
-    "est": 1045.74,
-    "est_src": "zacks",
-    "basis": "gaap",
-    "earnings_date": "2026-10-27"
-   },
-   {
-    "period": "2026Q3",
-    "report_date": "2026-09-30",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": 0.15,
-    "est": 0.1158,
-    "est_src": "zacks",
-    "basis": "adjusted",
-    "earnings_date": "2026-10-27"
-   }
-  ],
-  "revisions": {
-   "from_date": "2026-07-30",
-   "to_date": "2026-10-30",
-   "from_label": "2Q 실적 직후",
-   "source": "company_analyst_estimates history, 같은 분기끼리. 제출 2~3명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
-   "rows": [
-    {
-     "period": "2026Q4",
-     "metric": "EPS",
-     "from": 0.175,
-     "to": 0.18
-    },
-    {
-     "period": "2027Q1",
-     "metric": "EPS",
-     "from": 0.155,
-     "to": 0.175
-    },
-    {
-     "period": "2027Q2",
-     "metric": "EPS",
-     "from": 0.175,
-     "to": 0.205
-    },
-    {
-     "period": "2027Q3",
-     "metric": "EPS",
-     "from": 0.18,
-     "to": 0.22
-    },
-    {
-     "period": "2027Q4",
-     "metric": "EPS",
-     "from": 0.24,
-     "to": 0.24
-    }
-   ]
-  },
-  "price_window": {
-   "from": 26.92,
-   "to": 16.3,
-   "note": "2Q 실적 전날 7/27 종가 → 10/30 종가"
-  },
-  "eps_history": {
-   "basis": "adjusted",
-   "updated_at": "2026-10-31T09:04:41.000Z",
-   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
-   "rows": [
-    [
-     "Q",
-     "2026-06-30",
-     null,
-     0.05,
-     2
-    ],
-    [
-     "Q",
-     "2026-06-30",
-     "2026-07-01",
-     0.05,
-     3
-    ],
-    [
-     "Q",
-     "2026-09-30",
-     null,
-     0.11,
-     1
-    ],
-    [
-     "Q",
-     "2026-09-30",
-     "2026-07-01",
-     0.11,
-     2
-    ],
-    [
-     "Q",
-     "2026-09-30",
-     "2026-07-29",
-     0.11667,
-     3
-    ],
-    [
-     "Q",
-     "2026-09-30",
-     "2026-07-30",
-     0.11,
-     3
-    ],
-    [
-     "Q",
-     "2026-12-31",
-     null,
-     0.17,
-     1
-    ],
-    [
-     "Q",
-     "2026-12-31",
-     "2026-07-01",
-     0.17,
-     2
-    ],
-    [
-     "Q",
-     "2026-12-31",
-     "2026-07-30",
-     0.175,
-     2
-    ],
-    [
-     "Q",
-     "2026-12-31",
-     "2026-10-28",
-     0.17333,
-     3
-    ],
-    [
-     "Q",
-     "2026-12-31",
-     "2026-10-29",
-     0.18,
-     3
-    ],
-    [
-     "A",
-     "2026-12-31",
-     null,
-     0.325,
-     2
-    ],
-    [
-     "A",
-     "2026-12-31",
-     "2026-07-01",
-     0.32667,
-     3
-    ],
-    [
-     "A",
-     "2026-12-31",
-     "2026-07-29",
-     0.32,
-     3
-    ],
-    [
-     "A",
-     "2026-12-31",
-     "2026-07-31",
-     0.24,
-     2
-    ],
-    [
-     "A",
-     "2026-12-31",
-     "2026-10-28",
-     0.265,
-     2
-    ],
-    [
-     "A",
-     "2026-12-31",
-     "2026-10-29",
-     0.295,
-     2
-    ],
-    [
-     "Q",
-     "2027-03-31",
-     null,
-     0.17,
-     1
-    ],
-    [
-     "Q",
-     "2027-03-31",
-     "2026-07-01",
-     0.16,
-     2
-    ],
-    [
-     "Q",
-     "2027-03-31",
-     "2026-07-30",
-     0.155,
-     2
-    ],
-    [
-     "Q",
-     "2027-03-31",
-     "2026-10-28",
-     0.16,
-     2
-    ],
-    [
-     "Q",
-     "2027-03-31",
-     "2026-10-29",
-     0.175,
-     2
-    ],
-    [
-     "Q",
-     "2027-06-30",
-     null,
-     0.17,
-     1
-    ],
-    [
-     "Q",
-     "2027-06-30",
-     "2026-07-01",
-     0.175,
-     2
-    ],
-    [
-     "Q",
-     "2027-06-30",
-     "2026-10-28",
-     0.18,
-     2
-    ],
-    [
-     "Q",
-     "2027-06-30",
-     "2026-10-29",
-     0.205,
-     2
-    ],
-    [
-     "Q",
-     "2027-09-30",
-     null,
-     0.17,
-     1
-    ],
-    [
-     "Q",
-     "2027-09-30",
-     "2026-07-01",
-     0.175,
-     2
-    ],
-    [
-     "Q",
-     "2027-09-30",
-     "2026-07-30",
-     0.18,
-     2
-    ],
-    [
-     "Q",
-     "2027-09-30",
-     "2026-10-28",
-     0.195,
-     2
-    ],
-    [
-     "Q",
-     "2027-09-30",
-     "2026-10-29",
-     0.22,
-     2
-    ],
-    [
-     "Q",
-     "2027-12-31",
-     null,
-     0.25,
-     1
-    ],
-    [
-     "Q",
-     "2027-12-31",
-     "2026-07-01",
-     0.24,
-     2
-    ],
-    [
-     "Q",
-     "2027-12-31",
-     "2026-10-28",
-     0.245,
-     2
-    ],
-    [
-     "Q",
-     "2027-12-31",
-     "2026-10-29",
-     0.24,
-     2
-    ],
-    [
-     "A",
-     "2027-12-31",
-     null,
-     0.76,
-     2
-    ],
-    [
-     "A",
-     "2027-12-31",
-     "2026-07-01",
-     0.75333,
-     3
-    ],
-    [
-     "A",
-     "2027-12-31",
-     "2026-07-29",
-     0.77,
-     3
-    ],
-    [
-     "A",
-     "2027-12-31",
-     "2026-10-28",
-     0.81,
-     3
-    ],
-    [
-     "A",
-     "2027-12-31",
-     "2026-10-29",
-     0.84667,
-     3
-    ],
-    [
-     "Q",
-     "2028-03-31",
-     null,
-     0.23,
-     1
-    ],
-    [
-     "Q",
-     "2028-03-31",
-     "2026-07-30",
-     0.24,
-     1
-    ],
-    [
-     "Q",
-     "2028-03-31",
-     "2026-10-28",
-     0.26,
-     1
-    ],
-    [
-     "Q",
-     "2028-06-30",
-     null,
-     0.23,
-     1
-    ],
-    [
-     "Q",
-     "2028-06-30",
-     "2026-10-28",
-     0.25,
-     1
-    ],
-    [
-     "Q",
-     "2028-09-30",
-     null,
-     0.23,
-     1
-    ],
-    [
-     "Q",
-     "2028-09-30",
-     "2026-07-30",
-     0.25,
-     1
-    ],
-    [
-     "Q",
-     "2028-09-30",
-     "2026-10-28",
-     0.28,
-     1
-    ],
-    [
-     "Q",
-     "2028-12-31",
-     null,
-     0.25,
-     1
-    ],
-    [
-     "Q",
-     "2028-12-31",
-     "2026-07-30",
-     0.26,
-     1
-    ],
-    [
-     "Q",
-     "2028-12-31",
-     "2026-10-28",
-     0.27,
-     1
-    ],
-    [
-     "A",
-     "2028-12-31",
-     null,
-     0.99,
-     1
-    ],
-    [
-     "A",
-     "2028-12-31",
-     "2026-07-01",
-     0.965,
-     2
-    ],
-    [
-     "A",
-     "2028-12-31",
-     "2026-07-29",
-     0.97,
-     2
-    ],
-    [
-     "A",
-     "2028-12-31",
-     "2026-07-30",
-     0.99,
-     2
-    ],
-    [
-     "A",
-     "2028-12-31",
-     "2026-10-28",
-     1.025,
-     2
-    ],
-    [
-     "A",
-     "2028-12-31",
-     "2026-10-29",
-     1.095,
-     2
-    ]
-   ]
-  },
-  "rev_low": {
-   "FY2027": 5.2202,
-   "FY2028": 5.9792
-  },
-  "rev_high": {
-   "FY2027": 5.3844,
-   "FY2028": 6.0605
-  },
-  "ebitda": {
-   "FY2026": 0.8024,
-   "FY2027": 1.1755
-  },
-  "eps_quarters_est": {
-   "2026Q4": 0.18,
-   "2027Q1": 0.175,
-   "2027Q2": 0.205,
-   "2027Q3": 0.22,
-   "2027Q4": 0.24
-  },
-  "ratings": {
-   "strong_buy": 6,
-   "buy": 2,
-   "hold": 3,
-   "sell": 0,
-   "strong_sell": 0,
-   "as_of": "2026-10-13"
-  },
-  "targets": {
-   "mean": 34.6,
-   "median": 34.5,
-   "high": 42,
-   "low": 22,
-   "n": 10,
-   "as_of": "2026-10-30"
-  },
-  "revisions_90d": {
-   "eps": 0.1
-  }
- },
- "guidance": {
-  "rev_fy0": [
-   3.9,
-   4.0
-  ],
-  "ebit_margin_fy0": 0.162,
-  "rev_basis": "gaap",
-  "margin_basis": "non_gaap",
-  "ebitda_fy0": [
-   0.78,
-   0.8
-  ],
-  "deliveries_gw_fy0": 4.5,
-  "source": "3Q 보도자료·콜 2026-10-27: FY26 매출 $3.9~4.0B, 조정 EBITDA $780~800M. 4Q 매출 = FY 가이던스 − 9개월 $2,774.2M = $1,126~1,226M(중간값 $1,176M)",
-  "next": {
-   "period": "4Q26",
-   "rev": 1176,
-   "rev_cons": 1222.7,
-   "unit": "$M"
-  }
- },
- "call": {
-  "date": "2026-10-27",
-  "prev_date": "2026-07-28",
-  "tone_score": 6.2,
-  "tone_delta": 0.2,
-  "guidance_direction": "raise",
-  "kpis": {
-   "backlog_b": 8.0,
-   "backlog_plus_slots_gw": 19,
-   "orders_3q_b": 2.2,
-   "btb_ttm": 3.3,
-   "eq_margin_3q": 0.171,
-   "svc_margin_3q": 0.32,
-   "usd_per_kw_3q": 650,
-   "net_leverage": 2.1,
-   "capacity_gw_2030": "10 초과"
-  },
-  "guidance_changes": [
-   "FY26 매출 $3.8~3.9B → $3.9~4.0B",
-   "조정 EBITDA $720~740M → $780~800M, 마진 19 → 20%",
-   "4Q 인도 약 1.5GW, 연 4.5GW"
-  ],
-  "new_topics": [
-   "신규 설치분 서비스 강도 >$50k/MW/년(기존 약 $30k)",
-   "최대 고객 수주 비중 2024 20%·2025 41%·단기 전망 약 21%",
-   "네오클라우드·토지 개발사 미거래",
-   "Type 6 물 사용량 0.1L/MWh 미만",
-   "M&A 시 레버리지 2.5배 허용",
-   "주문 대부분 take-or-pay + 선금·취소 수수료",
-   "슬롯은 6~18개월 뒤 주문 전환"
-  ],
-  "dropped_topics": [
-   "장비 마진 하락 설명(2Q 14%) — 3Q 17.1%로 해소"
-  ],
-  "analyst_focus": [
-   "Morgan Stanley — 수주 지속·슬롯 시점",
-   "Goldman Sachs — $/kW 가격 vs 범위",
-   "Bank of America — 백로그 신용 질",
-   "JPMorgan — 서비스 마진·고객 자체 정비",
-   "Baird — 주 인허가·물 규제"
-  ],
-  "risks": [
-   "증설 실행(3.5 → 10GW 초과)",
-   "데이터센터 고객 집중(9개월 상위 5개 고객 매출 54%)",
-   "텍사스 인허가(프로젝트 1건 1주 지연 뒤 해소)",
-   "3Q 수주 $2.2B로 2Q $2.3B 대비 둔화(전력 $546M → $265M, 압축 $281M → $116M)"
-  ],
-  "source": "Fiscal.ai 3Q·2Q 트랜스크립트(q3-2026·q2-2026), Easyconomics 실적 변화 레이더(톤 6.0 → 6.2, 가이던스 raise → raise)",
-  "deltas": [
-   {
-    "id": "F1",
-    "kind": "업데이트",
-    "item": "FY26 매출 가이던스 상향",
-    "prior": "$3.8~3.9B",
-    "latest": "$3.9~4.0B",
-    "driver": "rev0",
-    "shift": 0.1,
-    "confidence": 0.8,
-    "source": "3Q 콜 CFO",
-    "label": "FY26 매출 상향"
-   },
-   {
-    "id": "F2",
-    "kind": "업데이트",
-    "item": "그룹 조정 EBITDA 마진 가이던스",
-    "prior": "약 19%",
-    "latest": "약 20%(장비 3Q 17.1% 조기 도달)",
-    "driver": "margin_m0",
-    "shift": 0.01,
-    "confidence": 0.8,
-    "source": "3Q 콜 CFO",
-    "label": "EBITDA 마진 20%"
-   },
-   {
-    "id": "F3",
-    "kind": "신규",
-    "item": "장비 $/kW 공개·1H27 매출 추정 상향",
-    "prior": "수치 없음",
-    "latest": "3Q 약 $650/kW, 앞으로 600 이상",
-    "driver": "growth_start",
-    "shift": 0.03,
-    "confidence": 0.7,
-    "source": "3Q Q&A(Goldman Sachs)·컨센서스 1H27 +2.9%",
-    "label": "장비 $650/kW"
-   },
-   {
-    "id": "F4",
-    "kind": "업데이트",
-    "item": "수주잔고·슬롯",
-    "prior": "6.6B$·15GW+·2030까지",
-    "latest": "8.0B$·약 19GW·2031까지",
-    "driver": "growth_decay",
-    "shift": 0.03,
-    "confidence": 0.6,
-    "source": "3Q 콜",
-    "label": "잔고·슬롯 19GW"
-   },
-   {
-    "id": "F5",
-    "kind": "신규",
-    "item": "신규 설치분 서비스 강도",
-    "prior": "상당히 높다(수치 없음)",
-    "latest": ">$50k/MW/년(기존 약 $30k)",
-    "driver": "margin_lr",
-    "shift": 0.01,
-    "confidence": 0.5,
-    "source": "3Q 콜·Q&A(BNP Paribas)",
-    "label": "서비스 $50k/MW"
-   },
-   {
-    "id": "F6",
-    "kind": "신규",
-    "item": "서비스 EBITDA 장기 목표",
-    "prior": "2.5배 유지 또는 개선",
-    "latest": "2030년대 중반 4배",
-    "driver": "margin_target",
-    "shift": 0.005,
-    "confidence": 0.4,
-    "source": "3Q 콜 CFO",
-    "label": "서비스 4배 목표"
-   },
-   {
-    "id": "F7",
-    "kind": "신규",
-    "item": "최대 고객 수주 비중 공개",
-    "prior": "과다 아님(수치 없음)",
-    "latest": "수주 비중 2024 20%·2025 41% → 단기 전망 약 21%, 네오클라우드 무배정",
-    "driver": "wacc",
-    "shift": -0.0025,
-    "confidence": 0.4,
-    "source": "3Q 콜 CEO·Q&A(BofA)",
-    "label": "고객 집중 완화"
-   },
-   {
-    "id": "F8",
-    "kind": "업데이트",
-    "item": "순차입 감소",
-    "prior": "1.69B$(2Q, 리스 포함)",
-    "latest": "1.54B$(3Q, 리스 포함)",
-    "driver": "net_debt",
-    "shift": -0.15,
-    "confidence": 1.0,
-    "source": "10-Q XBRL",
-    "label": "순차입 감소"
-   },
-   {
-    "id": "F9",
-    "kind": "신규",
-    "item": "증설 CAPEX 가속",
-    "prior": "상반기 94백만$",
-    "latest": "3Q 93백만$(9개월 187)",
-    "driver": "s2c",
-    "shift": -0.1,
-    "confidence": 0.8,
-    "source": "10-Q XBRL",
-    "label": "증설 CAPEX 가속"
-   },
-   {
-    "id": "F10",
-    "kind": "부정",
-    "item": "3Q 수주 둔화",
-    "prior": "2Q 2.3B$, B/B 4.4",
-    "latest": "3Q 2.2B$(전력 546→265·압축 281→116백만$), B/B 3.3",
-    "driver": "growth_decay",
-    "shift": -0.02,
-    "confidence": 0.3,
-    "source": "두 콜",
-    "label": "3Q 수주 둔화"
-   },
-   {
-    "id": "F11",
-    "kind": "반복",
-    "item": "취소·지연 없음, 서비스 고한자릿수 성장",
-    "prior": "같음",
-    "latest": "같음",
-    "driver": null,
-    "shift": 0,
-    "confidence": 1.0,
-    "source": "두 콜",
-    "label": "취소·지연 없음"
-   }
-  ]
- },
- "multiples_now": {
-  "pe_fwd": 21.65,
-  "ev_ebitda": 28.38,
-  "ev_sales": 4.379,
-  "growth": 0.573,
-  "note": "easyconomics(yfinance) 2026-10-28 — 선행 P/E는 선행 12개월 EPS 0.826$ 기준, EV/EBITDA·EV/매출은 TTM(GAAP). 조정 EBITDA 선행 12개월(4Q26~3Q27 추정 합 1,055백만$) 기준 EV/EBITDA = 14.6배(Chiip 계산)",
-  "ev_ebitda_fwd": 12.46,
-  "pe_fwd2": 16.4,
-  "ev_ebitda_fwd2": 10.35,
-  "pe_fwd3": 13.07,
-  "ev_ebitda_fwd3": null
- },
- "peers_basis": "ttm",
- "peers_source": "Fiscal.ai 표준화 분기 재무(최근 4분기 합, 성장 = TTM ÷ 직전 TTM)·daily ratios(시총·EV/매출·EV/EBITDA, 2026-10-29, 달러 환산) — CMI 최근 분기 2026-06-30",
- "peers": [
-  {
-   "ticker": "CAT",
-   "rev": 77.773,
-   "ebit_margin": 0.1833,
-   "mcap": 302.65,
-   "pb": 14.09,
-   "debt": 37.021,
-   "cash": 7.929,
-   "ev_sales": 4.37,
-   "ev_ebitda": 20.38,
-   "growth": 0.2026,
-   "goodwill": 5.905,
-   "intangibles": 0.409,
-   "pe_fwd": 21.88,
-   "ev_ebitda_fwd": 16.5,
-   "pe_fwd2": 18.73,
-   "ev_ebitda_fwd2": 15.09,
-   "pe_fwd3": 16.5,
-   "ev_ebitda_fwd3": 13.85,
-   "ntm_ebit_margin": 0.1976,
-   "ntm_growth": 0.0852
-  },
-  {
-   "ticker": "CMI",
-   "rev": 34.708,
-   "ebit_margin": 0.1122,
-   "mcap": 72.02,
-   "pb": 5.18,
-   "debt": 7.544,
-   "cash": 3.924,
-   "ev_sales": 2.21,
-   "ev_ebitda": 15.33,
-   "growth": 0.0293,
-   "goodwill": 2.222,
-   "intangibles": 2.168,
-   "pe_fwd": 16.46,
-   "ev_ebitda_fwd": 12.45,
-   "pe_fwd2": 15.47,
-   "ev_ebitda_fwd2": 11.19,
-   "pe_fwd3": 13.36,
-   "ev_ebitda_fwd3": 10.15,
-   "ntm_ebit_margin": 0.1234,
-   "ntm_growth": 0.1089
-  },
-  {
-   "ticker": "GEV",
-   "rev": 44.041,
-   "ebit_margin": 0.0642,
-   "mcap": 240.08,
-   "pb": 19.15,
-   "debt": 2.795,
-   "cash": 16.764,
-   "ev_sales": 5.16,
-   "ev_ebitda": 53.41,
-   "growth": 0.1691,
-   "goodwill": 9.609,
-   "intangibles": 4.343,
-   "pe_fwd": 41.51,
-   "ev_ebitda_fwd": 27.17,
-   "pe_fwd2": 34.0,
-   "ev_ebitda_fwd2": 22.28,
-   "pe_fwd3": 26.46,
-   "ev_ebitda_fwd3": 17.58,
-   "ntm_ebit_margin": 0.1178,
-   "ntm_growth": 0.1901
-  },
-  {
-   "ticker": "BE",
-   "rev": 3.83,
-   "ebit_margin": 0.1481,
-   "mcap": 67.07,
-   "pb": 34.17,
-   "debt": 2.779,
-   "cash": 2.487,
-   "ev_sales": 17.6,
-   "ev_ebitda": 108.46,
-   "growth": 1.1059,
-   "goodwill": 0.0,
-   "intangibles": 0.0,
-   "pe_fwd": 46.6,
-   "ev_ebitda_fwd": 46.41,
-   "pe_fwd2": 37.08,
-   "ev_ebitda_fwd2": 34.05,
-   "pe_fwd3": 30.1,
-   "ev_ebitda_fwd3": 25.56,
-   "ntm_ebit_margin": 0.2406,
-   "ntm_growth": 0.5921
-  },
-  {
-   "ticker": "WRT1V",
-   "rev": 7.62,
-   "ebit_margin": 0.1324,
-   "mcap": 17.51,
-   "pb": 5.81,
-   "debt": 0.549,
-   "cash": 2.797,
-   "ev_sales": 2.08,
-   "ev_ebitda": 12.45,
-   "growth": 0.068,
-   "goodwill": 0.0,
-   "intangibles": 1.76,
-   "pe_fwd": 20.46,
-   "ev_ebitda_fwd": 10.51,
-   "pe_fwd2": 17.91,
-   "ev_ebitda_fwd2": 9.13,
-   "pe_fwd3": 15.02,
-   "ev_ebitda_fwd3": 7.97,
-   "ntm_ebit_margin": 0.1413,
-   "ntm_growth": 0.0056
-  }
- ],
- "sbc_pct_rev": 0.002,
- "overrides": {
-  "margin_base": {
-   "target": 0.19,
-   "year_target": 4,
-   "lr": 0.17,
-   "lam": 0.35
-  },
-  "s2c": 3.0,
-  "why": "목표 조정 EBITA 이익률 19%(4년차): 장비 마진 3Q 17.1% 도달 + 서비스(마진 32%) 비중이 2030년대 확대 — 동종 CAT 22%·Wärtsilä 14%·CMI 12% 사이, 장기 17%로 수렴 / 매출÷투하자본 3.0: TTM 1.9는 인수 영업권 1.67B$가 섞인 값 — 증분 기준으로는 고객 선수금(9개월 +782백만$)이 운전자본을 대고 CAPEX는 매출 증가분의 약 20%(TTM 291백만$ ÷ 매출 증가 1.28B$) → 증분 3~5, 보수적으로 3 / SBC 0.2%: 3Q SBC 2.7백만$ ÷ 매출 1,168"
- },
- "history": {
-  "basis": "Fiscal.ai daily ratio_ev_to_sales(월말 표본)",
-  "ev_sales": [
-   {
-    "date": "2026-07-31",
-    "value": 6.5
-   },
-   {
-    "date": "2026-08-31",
-    "value": 5.5
-   },
-   {
+  "dilution": {
+    "potential_total": 0.0017,
+    "options": null,
+    "rsu": null,
+    "warrants": null,
+    "converts_shares": 0.0,
     "date": "2026-09-30",
-    "value": 4.3
-   },
-   {
-    "date": "2026-10-28",
-    "value": 4.4
-   }
-  ],
-  "pe_fwd": [
-   {
-    "date": "2026-07-31",
-    "value": 39.71
-   },
-   {
-    "date": "2026-08-31",
-    "value": 32.85
-   },
-   {
-    "date": "2026-09-30",
-    "value": 26.47
-   },
-   {
-    "date": "2026-10-30",
-    "value": 20.9
-   }
-  ],
-  "ev_ebitda_fwd": [
-   {
-    "date": "2026-07-31",
-    "value": 21.01
-   },
-   {
-    "date": "2026-08-31",
-    "value": 17.81
-   },
-   {
-    "date": "2026-09-30",
-    "value": 14.85
-   },
-   {
-    "date": "2026-10-30",
-    "value": 12.5
-   }
-  ]
- },
- "sources": [
-  "easyconomics company_profile·financial_statements(분기 손익)·financials_summary(연간)·earnings_summary 2026-10-27·2026-07-28·company_price_history (조회 2026-10-29 KST)",
-  "SEC XBRL companyfacts CIK 2109150(10-Q 2026-09-30: 매출·영업이익·재무상태·희석 증권·CAPEX, 조회 2026-10-29)",
-  "SEC XBRL 동종 영업권(CAT 18230·CMI 26172·GEV 1996810·BE 1664703)",
-  "outputs/invest/20261028_innio_q3_delta.md · knowledge/models/companies/co-innio/factors.yaml(회사 전용 요인 모델)",
-  "Fiscal.ai MCP 2026-10-30 — 표준화 재무(공시 원문 auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·뉴스(10/22 620MW 후속 수주, 10/27 3Q 실적)·3Q 콜 Q&A 질문 증권사 8곳",
-  "2026-11-02 재발행: EDGAR 10-Q(2026-10-27)·424B4(2026-06-04) 본문, Fiscal.ai·Zacks·Easyconomics(yfinance) 2026-10-30 기준, 노션 Stocks 이니오 INIO(공장 지도·공매도 잔고), JPM GE Vernova 노트 요지(라이선스, 업종 맥락만)"
- ],
- "raw": {
-  "retrieved_at": "2026-11-02T03:40:00+09:00",
-  "easyconomics_profile": {
-   "price": 16.3,
-   "market_cap": 12.225,
-   "enterprise_value": 13.9905,
-   "shares_outstanding_yf": 0.75,
-   "total_cash": 1.1958,
-   "total_debt": 2.9533,
-   "revenue_ttm": 3.5148,
-   "ev_sales": 3.98,
-   "ev_ebitda": 25.794,
-   "forward_pe": 19.13168,
-   "eps_forward": 0.85199,
-   "revenue_growth": 0.573,
-   "short_pct_float": 0.2118,
-   "analyst_total": 10,
-   "target_mean": 31.4,
-   "target_low": 21,
-   "target_high": 42
+    "source": "SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarningsPerShareAmount 2026Q3 = 1.7백만 주(상장 후 부여 RSU·옵션) — 전량 반영"
   },
-  "shares_cover_implied": 0.75,
-  "quarters_gaap": {
-   "rev": {
-    "2025Q4": 0.7406,
-    "2026Q1": 0.6686,
-    "2026Q2": 0.9377,
-    "2026Q3": 1.1679
-   },
-   "op_income": {
-    "2025Q4": 0.0779,
-    "2026Q1": 0.0631,
-    "2026Q2": 0.0451,
-    "2026Q3": 0.1936
-   }
+  "financials": {
+    "rev_ttm": 3.5148,
+    "ebit_ttm": 0.3797,
+    "invested_capital": 1.9678,
+    "capex_ttm": 0.2909,
+    "da_fy2025": 0.1535,
+    "sbc_3q": 0.00273,
+    "rev_growth_ttm": 0.573,
+    "basis": "GAAP",
+    "note": "TTM = Fiscal.ai 표준화 분기 손익 2025Q4~2026Q3 매출 740.6+668.6+937.7+1,167.9, 영업이익 77.9+63.1+45.1+193.6백만$(4Q25 영업이익은 이전 역산값 86.7 → Fiscal 공시값 77.9로 정정). 투하자본 = 자기자본 346.2 + 차입 2,817.4 − 현금 1,195.8"
   },
-  "balance_2026_09_30": {
-   "cash": 1.1958,
-   "st_investments": 0.0,
-   "debt_current": 0.2213,
-   "debt_lt": 2.5961,
-   "lease_current": 0.0,
-   "lease_lt": 0.0,
-   "equity": 0.3462,
-   "goodwill": 1.6668,
-   "intangibles": 0.7,
-   "contract_liabilities": 1.5982,
-   "shares": 0.75,
-   "note": "Fiscal.ai 표준화 재무상태표 2026-09-30 — 단기 차입 221.3(유동 차입·리스 포함), 장기 2,596.1, 자기자본 346.2백만$",
-   "lease_op": 0.0983
-  },
-  "estimates_sales_m": {
-   "2026Q1_act": 668.6,
-   "2026Q2_act": 937.7,
-   "2026Q3_act": 1167.9,
-   "2026Q4": 1222.7,
-   "2027Q1": 1214.8,
-   "2027Q2": 1363.6,
-   "2027Q3": 1292.4,
-   "2027Q4": 1419.4,
-   "2028Q1": 1463.9,
-   "2028Q2": 1549.3,
-   "2028Q3": 1500.2,
-   "2028Q4": 1582.3
-  },
-  "estimates_eps": {
-   "2026Q4": 0.18,
-   "2027Q1": 0.175,
-   "2027Q2": 0.205,
-   "2027Q3": 0.22,
-   "2027Q4": 0.24
-  },
-  "estimates_prev_call_2026_07_28": {
-   "eps": {
-    "2026Q3": 0.12,
-    "2026Q4": 0.18,
-    "2027Q1": 0.16,
-    "2027Q2": 0.19
-   },
-   "sales_b": {
-    "2026Q3": 1.03,
-    "2026Q4": 1.22,
-    "2027Q1": 1.18,
-    "2027Q2": 1.3
-   }
-  },
-  "sec": {
-   "antidilutive_2026_09_30": 0.0017,
-   "contract_liabilities_2025_12_31": 0.8161
-  },
-  "radar_2026_10_27": {
-   "tone_score": 6.2,
-   "prev_tone_score": 6.0,
-   "guidance_direction": "raise",
-   "prev_guidance_direction": "raise"
-  },
-  "price_history_points": {
-   "2026-06-08": 33.72,
-   "2026-06-15": 34.72,
-   "2026-06-22": 41.13,
-   "2026-06-30": 39.55,
-   "2026-07-15": 30.16,
-   "2026-07-27": 26.92,
-   "2026-07-31": 24.42,
-   "2026-08-14": 27.43,
-   "2026-08-31": 20.2,
-   "2026-09-15": 17.79,
-   "2026-09-30": 18.13,
-   "2026-10-15": 16.5,
-   "2026-10-26": 16.63,
-   "2026-10-28": 18.35
-  },
-  "source": "Fiscal.ai MCP(execute_code) — company_stock_prices·daily_ratios·shares_outstanding·financials_standardized·analyst_estimates(Zacks)·analyst_ratings(Zacks)·peers 값",
-  "fiscal_profile": {
-   "companyKey": "NASDAQ_INIO",
-   "terminalUrl": "https://fiscal.ai/company/NasdaqGS-INIO",
-   "price": 16.3,
-   "market_cap": 12.225,
-   "total_cash": 1.1958,
-   "total_debt": 2.8174,
-   "shares_outstanding": 0.75,
-   "ev_sales": 3.94,
-   "as_of": "2026-10-30"
-  },
-  "zacks": {
-   "FY2026_rev": 3.9096,
-   "FY2026_ebit": 0.5087,
-   "FY2027_rev": 5.2288,
-   "FY2027_ebit": 0.9425,
-   "n_rev": 2,
-   "price_target": {
-    "mean": 34.6,
-    "low": 22,
-    "high": 42,
-    "n": 10
-   },
-   "rating": {
-    "strongBuy": 6,
-    "buy": 2,
-    "hold": 3,
-    "sell": 0,
-    "n": 11
-   },
-   "asOf": "2026-10-30",
-   "note": "연간 FY2026 $3.91B와 분기 합 차이: 4Q 분기 추정 $1.27B는 회사 가이던스 상단을 넘는다. 분기 추정은 yfinance $1.22B를 쓰고 FY2026을 분기 합으로 맞췄다. 매출 추정 제출 2명",
-   "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
-   "FY2026_ebitda": 0.8024,
-   "FY2027_ebitda": 1.1755,
-   "FY2028_rev": 6.0199
-  },
-  "sec_10q_2026_09_30": {
-   "url": "https://www.sec.gov/Archives/edgar/data/2109150/000162828026067448/inio-20260930.htm",
-   "contract_obligations": "유형자산 약정 $368.7M, 무형자산 $27.6M. 전년 비교값은 10-Q에 없음. 부품 구매 약정 금액은 공시 없음",
-   "liquidity": "현금 $1,195.8M, 제한 현금 표기 없음, €210M RCF 미인출, 텀론 3종 모두 2028-11 만기(금리 SOFR/EURIBOR+4.25%에서 레버리지로 낮아짐)",
-   "customers": "9개월 상위 5개 고객 매출 54%(2025 34%, 2024 27%). Clarke Energy 2025 매출 15.0%(간접). VoltaGrid 2025 장비 수주 41%(2024 14%)",
-   "gov": "기타영업이익에 정부 보조금 항목은 있으나 금액 공시 없음. 전략적 정부 계약 없음",
-   "rpo": "RPO $10.9B, 71%가 24개월 안 인식",
-   "lockup": "주요 주주 646,500,000주, 180일 보호예수(2026-06-03 기산 → 2026-11-30 만료)",
-   "cash_flow_9m": "영업현금 $741.5M, 그중 계약부채 증가 $797.0M. 유형자산 투자 $187.3M, 무형 $11.8M",
-   "icfr": "재무보고 내부통제 중대한 취약점 미해소, 공시 통제 비효과적",
-   "legal": "중대한 소송 없음(10-Q). 7월 이후 투자자 로펌 조사 공고는 있으나 제소 확인 못 함"
-  }
- },
- "narrative": {
-  "as_of": "2026-11-02",
-  "stage": "소멸",
-  "crowding": "낮음",
-  "summary": "'데이터센터 현장 가스엔진'이 상장 프리미엄을 만들었지만 2Q 뒤 FY2027 EPS 추정 +10%에도 주가는 −39.5%다. 지금은 AI 전력주 전체의 수요 지속 의심과 11/30 보호예수 해제가 값을 누른다",
-  "layers": {
-   "sell_side": {
-    "metrics": [
-     [
-      "애널리스트 의견",
-      "11명 — 강력 매수 6·매수 2·보유 3·매도 0",
-      "10월에만 Morgan Stanley·Citi·RBC·JPM이 목표가 조정",
-      "company_analyst_ratings 2026-10-13"
-     ],
-     [
-      "목표가 평균·범위",
-      "$31.4~$34.6 ($21~$42, 10명)",
-      "현재가 대비 평균 +93~+112%, 기대의 증거일 뿐 Chiip 목표가 아니다",
-      "2026-10-30"
-     ],
-     [
-      "3Q 뒤 목표가 변경",
-      "Morgan Stanley $40 → $42, JPM $33 → $31",
-      "방향이 갈렸다",
-      "회사 뉴스 2026-10-28·30"
-     ],
-     [
-      "3Q 콜 질문 증권사",
-      "Morgan Stanley, Goldman Sachs, RBC, Bank of America, Baird, Citigroup 등 8곳",
-      "초점: 수주 지속, $/kW, 서비스 마진, 슬롯 신용, 주 규제",
-      "3Q 트랜스크립트"
-     ]
+  "consensus": {
+    "rev": {
+      "FY2026": 3.9969,
+      "FY2027": 5.2902,
+      "FY2028": 6.0957
+    },
+    "rev_basis": "gaap",
+    "ebit_margin": {
+      "FY2026": 0.1273,
+      "FY2027": 0.1782
+    },
+    "margin_basis": "gaap",
+    "n_analysts": 2,
+    "quarters_est": {
+      "2026Q4": 1.2227,
+      "2027Q1": 1.2148,
+      "2027Q2": 1.3636,
+      "2027Q3": 1.2924,
+      "2027Q4": 1.4194
+    },
+    "quarters_act": {
+      "2026Q1": 0.6686,
+      "2026Q2": 0.9377,
+      "2026Q3": 1.1679
+    },
+    "ebitda_est_m": {
+      "2026Q4": 262.2,
+      "2027Q1": 255.1,
+      "2027Q2": 288.0,
+      "2027Q3": 302.3
+    },
+    "note": "2026-10-30 기준. Fiscal.ai 자체 추정이 없는 종목이라(company_estimates '아직 없음') Zacks가 기본이다. 4Q26 매출만 yfinance $1,222.7M — Zacks 분기 $1,267M는 회사 가이던스 환산 $1,126~1,226M 상단을 넘고 Zacks 연간 $3.91B와 맞지 않는다. FY2026·27 매출은 분기 합, 대조 Zacks 연간 $3.91B·$5.23B. EBIT 이익률 = Zacks EBIT ÷ Zacks 연간 매출. 매출 추정 2명, EPS 2~3명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+    "surprise": [
+      {
+        "period": "2026Q2",
+        "report_date": "2026-06-30",
+        "metric": "매출",
+        "unit": "M$",
+        "actual": 937.7,
+        "est": 881.71,
+        "est_src": "zacks",
+        "basis": "gaap",
+        "earnings_date": "2026-07-28"
+      },
+      {
+        "period": "2026Q2",
+        "report_date": "2026-06-30",
+        "metric": "EPS",
+        "unit": "$",
+        "actual": 0.08,
+        "est": 0.0568,
+        "est_src": "zacks",
+        "basis": "adjusted",
+        "earnings_date": "2026-07-28"
+      },
+      {
+        "period": "2026Q3",
+        "report_date": "2026-09-30",
+        "metric": "매출",
+        "unit": "M$",
+        "actual": 1167.9,
+        "est": 1045.74,
+        "est_src": "zacks",
+        "basis": "gaap",
+        "earnings_date": "2026-10-27"
+      },
+      {
+        "period": "2026Q3",
+        "report_date": "2026-09-30",
+        "metric": "EPS",
+        "unit": "$",
+        "actual": 0.15,
+        "est": 0.1158,
+        "est_src": "zacks",
+        "basis": "adjusted",
+        "earnings_date": "2026-10-27"
+      }
     ],
-    "read": "실적 추정은 오르는데 목표가는 내린다. 배수를 낮춰 잡는다는 뜻이다"
-   },
-   "buy_side": {
-    "metrics": [
-     [
-      "13F 기관 보유",
-      "미공개",
-      "3Q 13F 공시는 11월 중순이 첫 대규모 자료",
-      "institutional_holders"
-     ],
-     [
-      "펀드 레터",
-      "Baron 계열 4개 펀드 5건, 2Q 신규 편입",
-      "논지: 현장 전력 + 면도기·면도날 서비스, 아직 단일 운용사",
-      "company_fund_letters"
-     ],
-     [
-      "공매도 잔고",
-      "9/30 20.5M주, 유통주식 대비 약 20%",
-      "상장 직후 대비 약 5배",
-      "마스터 노션(FINRA 결제일 자료), yfinance 21.2%"
-     ],
-     [
-      "이사 장내 매수",
-      "IPO 때 $27에 Linebarger $2.5M 등",
-      "이후 장내 매매 없음",
-      "Form 4 2026-06-08"
-     ]
-    ],
-    "read": "공매도가 쌓여 있고 롱 논지는 아직 한 운용사에 몰렸다"
-   },
-   "retail": {
-    "metrics": [
-     [
-      "레딧 언급(ApeWisdom)",
-      "상위 목록 밖(언급 적음)",
-      "리테일 관심 낮음",
-      "apewisdom.io 2026-10-29 23:52"
-     ],
-     [
-      "텔레그램 공개 채널 언급(7일)",
-      "0건",
-      "국내 투자 채널 관심 없음",
-      "knowledge/models/discovery/attention.csv 2026-10-29"
-     ],
-     [
-      "Seeking Alpha 색인 제목(7일)",
-      "8건",
-      "미국 개인 투자자 글은 있음",
-      "같은 곳"
-     ]
-    ],
-    "read": "리테일 관심이 낮다 — 가격은 기관이 정한다"
-   },
-   "media": {
-    "metrics": [
-     [
-      "글로벌 언론 언급(7일)",
-      "40건",
-      "실적·데이터센터 전력 맥락",
-      "attention.csv"
-     ]
-    ],
-    "read": "언론은 데이터센터 전력 병목의 수혜주로 다룬다"
-   }
-  },
-  "factors": [
-   {
-    "name": "데이터센터 현장 발전(전력망 접속 대기)",
-    "thesis": "전력망 접속을 기다리는 데이터센터가 현장 가스엔진으로 전력을 직접 확보한다",
-    "inputs": "성장(수주)·가격($/kW)",
-    "who": {
-     "sell": "강",
-     "buy": "중",
-     "retail": "약"
-    },
-    "drives": "both",
-    "quant": "장비 잔고 $8.0B, 잔고+슬롯 약 19GW, RPO $10.9B",
-    "status": "유지",
-    "falsifier": "4Q 수주 12개월 B/B 2.0 미만(2027-02)",
-    "source": "3Q 콜·10-Q"
-   },
-   {
-    "name": "2028년 이후 주문 절벽(약세)",
-    "thesis": "현장 발전은 전력망이 따라잡기 전까지의 다리일 뿐이라 주문이 꺾인다",
-    "inputs": "성장 감속·이익률",
-    "who": {
-     "sell": "중",
-     "buy": "강",
-     "retail": "-"
-    },
-    "drives": "multiple",
-    "quant": "2Q 뒤 FY2027 EPS 추정 +10%, 주가 −39.5%",
-    "status": "강화",
-    "falsifier": "2029~31 슬롯의 주문 전환 공시",
-    "source": "주가·추정 이력"
-   },
-   {
-    "name": "설치 기반 서비스",
-    "thesis": "신규 설치분이 MW당 연 5만$ 이상의 서비스 매출을 만든다",
-    "inputs": "이익률·지속성",
-    "who": {
-     "sell": "중",
-     "buy": "중",
-     "retail": "-"
-    },
-    "drives": "revision",
-    "quant": "서비스 강도 MW당 연 5만$ 이상(경영진 발언, 확신도 0.5)",
-    "status": "유지",
-    "falsifier": "서비스 마진 하락, 고객 자체 정비 확대",
-    "source": "3Q 콜(리포트)"
-   },
-   {
-    "name": "보호예수 해제와 지배주주 매각(약세)",
-    "thesis": "11/30 뒤 Advent·ADIA 물량이 시장에 나온다",
-    "inputs": "할인율·수급",
-    "who": {
-     "sell": "중",
-     "buy": "강",
-     "retail": "-"
-    },
-    "drives": "multiple",
-    "quant": "매도 가능 6.47억 주 = 유통주식 1.04억 주의 6.2배, 시가 $10.5B",
-    "status": "강화",
-    "falsifier": "블록 매각이 할인 5% 안에서 소화되거나 주주가 추가 보호예수를 약속",
-    "source": "3Q 10-Q 위험요인"
-   }
-  ],
-  "attention_raw": {
-   "telegram": "0",
-   "news_global": "40",
-   "news_local": "3",
-   "seeking_alpha": "9",
-   "substack": "0",
-   "research_feeds": "0",
-   "sellside_events": "0"
-  },
-  "lead": {
-   "summary": "**시장이 산 이야기는 '전력망을 못 기다리는 데이터센터가 가스엔진을 깐다'는 것이다.** 수요는 숫자로 나왔다. 12개월 장비 수주 $6.8B, 잔고 $8.0B, 잔고+슬롯 약 19GW다. 그런데 주가는 종가 고점 $41.13에서 $16.30으로 −60%, IPO가 $27 아래다. 쟁점이 수요에서 ①지속 기간 ②고객 집중 ③11/30 보호예수 해제로 옮겨 갔다.",
-   "value_story": "값은 두 줄이다. 장비는 GW × kW당 가격이고 3Q는 1.2GW × 약 $650이다. 서비스는 설치 기반 × MW당 연 매출이고 44GW × $30k에서 새 물량은 $50k 이상으로 간다. 2028년까지 장비 이익은 잔고가 거의 정했다. 값을 가르는 것은 2029년 뒤 주문과 서비스 전환이다.",
-   "premium": {
-    "multiple": "Fwd 1Y EV/EBITDA 12.46배로 동종 중앙값 16.5배보다 24% 낮고 상장 뒤 7월 말 21배에서 내려왔다. 프리미엄이 할인으로 뒤집혔다.",
-    "eps": "FY2027 EPS 컨센서스는 $0.77에서 $0.85로 +10%, FY2028은 $0.99에서 $1.10으로 +11%다. 제출이 2~3명뿐이라 표본이 얇다."
-   },
-   "why_excited": "6월 IPO 때 $27에 나와 3주 만에 $42.95를 찍었다. VoltaGrid 2.3GW 수주, 전력망 접속 대기 6년 이상 숫자, 연 3.5GW → 10GW 초과 증설이 겹쳤다. 식은 순서는 이렇다. 7/28 2Q 장비 마진 14%, 9월 공매도 급증, 10/22 GE Vernova 급락, 10/29 Caterpillar 실적 뒤 동반 매도다.",
-   "products": [
-    {
-     "kind": "제품",
-     "name": "Jenbacher 가스엔진",
-     "what": "J620·J624 등 왕복동 가스엔진과 컨테이너 패키지",
-     "use": "데이터센터 현장 주전원, 열병합 발전",
-     "money": "장비 3Q 매출 약 $778M, 세그먼트 EBITDA 마진 17.1%"
-    },
-    {
-     "kind": "제품",
-     "name": "Waukesha 엔진",
-     "what": "가스 압축·발전용 엔진",
-     "use": "가스 압축, 유전",
-     "money": "압축 3Q 수주 $116M"
-    },
-    {
-     "kind": "서비스",
-     "name": "엔진 애프터서비스",
-     "what": "장기 서비스 계약, 부품, 오버홀, 재제조",
-     "use": "설치 기반 약 44GW",
-     "money": "3Q $390M, TTM $1.5B, 마진 약 32%"
-    },
-    {
-     "kind": "기술",
-     "name": "myPlant",
-     "what": "AI 기반 엔진 군 관리",
-     "use": "원격 감시, 정비 시점 예측",
-     "money": "매출 별도 공시 없음"
-    }
-   ],
-   "lenses": [
-    {
-     "lens": "구조적 체질 변화",
-     "change": "CHP·유럽 회사에서 미국 데이터센터 장비 회사로 바뀌었다",
-     "evidence": "데이터센터가 12개월 장비 수주의 67%. 북미 매출 비중 확대, TTM 장비 비중 58%로 +6%p",
-     "drives": "both",
-     "status": "강화",
-     "falsifier": "데이터센터 수주가 2분기 연속 전년 대비 감소"
-    },
-    {
-     "lens": "고부가 믹스 확장",
-     "change": "kW당 가격과 서비스 강도가 함께 오른다. 다만 컨테이너 범위는 마진을 깎는다",
-     "evidence": "$/kW 3Q 약 $650, 앞으로 $600 이상. 장비 마진 2Q 14% → 3Q 17.1%. 서비스 강도 $30k → $50k 초과",
-     "drives": "both",
-     "status": "강화",
-     "falsifier": "장비 마진 2분기 연속 15% 미만"
-    },
-    {
-     "lens": "기술 혁신",
-     "change": "새 기술보다 부하 추종과 물 사용이 판매 논리다",
-     "evidence": "Type 6 물 0.1L/MWh 미만(회사 자료, 터빈 최대 200L). 회사 주장이고 독립 시험은 확인 못 했다",
-     "drives": "multiple",
-     "status": "유지",
-     "falsifier": "연료전지·소형 터빈이 같은 현장에서 수주를 뺏는다"
-    },
-    {
-     "lens": "실행 속도",
-     "change": "납품은 늘고 납기는 고객 대기 상태다. 3Q 1.2GW, 4Q 약 1.5GW",
-     "evidence": "Liberty 450MW 2026-09 수주 → 2028 납품, VoltaGrid 1.5GW 2026-02 수주 → 2028까지. 공장 납기 월수는 회사가 공개하지 않아 수주 공시로 환산했다",
-     "drives": "revision",
-     "status": "강화",
-     "falsifier": "2027 인도 가이던스가 6GW 아래",
-     "lead_time": {
-      "unit": "개월",
-      "now": [
-       16,
-       27
-      ],
-      "prior": "미확인",
-      "prior_when": "2025년",
-      "peers": [
-       {
-        "name": "Caterpillar",
-        "value": "미확인"
-       },
-       {
-        "name": "Wärtsilä",
-        "value": "미확인"
-       }
+    "revisions": {
+      "from_date": "2026-07-30",
+      "to_date": "2026-10-30",
+      "from_label": "2Q 실적 직후",
+      "source": "company_analyst_estimates history, 같은 분기끼리. 제출 2~3명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+      "rows": [
+        {
+          "period": "2026Q4",
+          "metric": "EPS",
+          "from": 0.175,
+          "to": 0.18
+        },
+        {
+          "period": "2027Q1",
+          "metric": "EPS",
+          "from": 0.155,
+          "to": 0.175
+        },
+        {
+          "period": "2027Q2",
+          "metric": "EPS",
+          "from": 0.175,
+          "to": 0.205
+        },
+        {
+          "period": "2027Q3",
+          "metric": "EPS",
+          "from": 0.18,
+          "to": 0.22
+        },
+        {
+          "period": "2027Q4",
+          "metric": "EPS",
+          "from": 0.24,
+          "to": 0.24
+        }
       ]
-     }
+    },
+    "price_window": {
+      "from": 26.92,
+      "to": 13.77,
+      "note": "2Q 실적 전날 7/27 종가 → 11/6 종가"
+    },
+    "eps_history": {
+      "basis": "adjusted",
+      "updated_at": "2026-10-31T09:04:41.000Z",
+      "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+      "rows": [
+        [
+          "Q",
+          "2026-06-30",
+          null,
+          0.05,
+          2
+        ],
+        [
+          "Q",
+          "2026-06-30",
+          "2026-07-01",
+          0.05,
+          3
+        ],
+        [
+          "Q",
+          "2026-09-30",
+          null,
+          0.11,
+          1
+        ],
+        [
+          "Q",
+          "2026-09-30",
+          "2026-07-01",
+          0.11,
+          2
+        ],
+        [
+          "Q",
+          "2026-09-30",
+          "2026-07-29",
+          0.11667,
+          3
+        ],
+        [
+          "Q",
+          "2026-09-30",
+          "2026-07-30",
+          0.11,
+          3
+        ],
+        [
+          "Q",
+          "2026-12-31",
+          null,
+          0.17,
+          1
+        ],
+        [
+          "Q",
+          "2026-12-31",
+          "2026-07-01",
+          0.17,
+          2
+        ],
+        [
+          "Q",
+          "2026-12-31",
+          "2026-07-30",
+          0.175,
+          2
+        ],
+        [
+          "Q",
+          "2026-12-31",
+          "2026-10-28",
+          0.17333,
+          3
+        ],
+        [
+          "Q",
+          "2026-12-31",
+          "2026-10-29",
+          0.18,
+          3
+        ],
+        [
+          "A",
+          "2026-12-31",
+          null,
+          0.325,
+          2
+        ],
+        [
+          "A",
+          "2026-12-31",
+          "2026-07-01",
+          0.32667,
+          3
+        ],
+        [
+          "A",
+          "2026-12-31",
+          "2026-07-29",
+          0.32,
+          3
+        ],
+        [
+          "A",
+          "2026-12-31",
+          "2026-07-31",
+          0.24,
+          2
+        ],
+        [
+          "A",
+          "2026-12-31",
+          "2026-10-28",
+          0.265,
+          2
+        ],
+        [
+          "A",
+          "2026-12-31",
+          "2026-10-29",
+          0.295,
+          2
+        ],
+        [
+          "Q",
+          "2027-03-31",
+          null,
+          0.17,
+          1
+        ],
+        [
+          "Q",
+          "2027-03-31",
+          "2026-07-01",
+          0.16,
+          2
+        ],
+        [
+          "Q",
+          "2027-03-31",
+          "2026-07-30",
+          0.155,
+          2
+        ],
+        [
+          "Q",
+          "2027-03-31",
+          "2026-10-28",
+          0.16,
+          2
+        ],
+        [
+          "Q",
+          "2027-03-31",
+          "2026-10-29",
+          0.175,
+          2
+        ],
+        [
+          "Q",
+          "2027-06-30",
+          null,
+          0.17,
+          1
+        ],
+        [
+          "Q",
+          "2027-06-30",
+          "2026-07-01",
+          0.175,
+          2
+        ],
+        [
+          "Q",
+          "2027-06-30",
+          "2026-10-28",
+          0.18,
+          2
+        ],
+        [
+          "Q",
+          "2027-06-30",
+          "2026-10-29",
+          0.205,
+          2
+        ],
+        [
+          "Q",
+          "2027-09-30",
+          null,
+          0.17,
+          1
+        ],
+        [
+          "Q",
+          "2027-09-30",
+          "2026-07-01",
+          0.175,
+          2
+        ],
+        [
+          "Q",
+          "2027-09-30",
+          "2026-07-30",
+          0.18,
+          2
+        ],
+        [
+          "Q",
+          "2027-09-30",
+          "2026-10-28",
+          0.195,
+          2
+        ],
+        [
+          "Q",
+          "2027-09-30",
+          "2026-10-29",
+          0.22,
+          2
+        ],
+        [
+          "Q",
+          "2027-12-31",
+          null,
+          0.25,
+          1
+        ],
+        [
+          "Q",
+          "2027-12-31",
+          "2026-07-01",
+          0.24,
+          2
+        ],
+        [
+          "Q",
+          "2027-12-31",
+          "2026-10-28",
+          0.245,
+          2
+        ],
+        [
+          "Q",
+          "2027-12-31",
+          "2026-10-29",
+          0.24,
+          2
+        ],
+        [
+          "A",
+          "2027-12-31",
+          null,
+          0.76,
+          2
+        ],
+        [
+          "A",
+          "2027-12-31",
+          "2026-07-01",
+          0.75333,
+          3
+        ],
+        [
+          "A",
+          "2027-12-31",
+          "2026-07-29",
+          0.77,
+          3
+        ],
+        [
+          "A",
+          "2027-12-31",
+          "2026-10-28",
+          0.81,
+          3
+        ],
+        [
+          "A",
+          "2027-12-31",
+          "2026-10-29",
+          0.84667,
+          3
+        ],
+        [
+          "Q",
+          "2028-03-31",
+          null,
+          0.23,
+          1
+        ],
+        [
+          "Q",
+          "2028-03-31",
+          "2026-07-30",
+          0.24,
+          1
+        ],
+        [
+          "Q",
+          "2028-03-31",
+          "2026-10-28",
+          0.26,
+          1
+        ],
+        [
+          "Q",
+          "2028-06-30",
+          null,
+          0.23,
+          1
+        ],
+        [
+          "Q",
+          "2028-06-30",
+          "2026-10-28",
+          0.25,
+          1
+        ],
+        [
+          "Q",
+          "2028-09-30",
+          null,
+          0.23,
+          1
+        ],
+        [
+          "Q",
+          "2028-09-30",
+          "2026-07-30",
+          0.25,
+          1
+        ],
+        [
+          "Q",
+          "2028-09-30",
+          "2026-10-28",
+          0.28,
+          1
+        ],
+        [
+          "Q",
+          "2028-12-31",
+          null,
+          0.25,
+          1
+        ],
+        [
+          "Q",
+          "2028-12-31",
+          "2026-07-30",
+          0.26,
+          1
+        ],
+        [
+          "Q",
+          "2028-12-31",
+          "2026-10-28",
+          0.27,
+          1
+        ],
+        [
+          "A",
+          "2028-12-31",
+          null,
+          0.99,
+          1
+        ],
+        [
+          "A",
+          "2028-12-31",
+          "2026-07-01",
+          0.965,
+          2
+        ],
+        [
+          "A",
+          "2028-12-31",
+          "2026-07-29",
+          0.97,
+          2
+        ],
+        [
+          "A",
+          "2028-12-31",
+          "2026-07-30",
+          0.99,
+          2
+        ],
+        [
+          "A",
+          "2028-12-31",
+          "2026-10-28",
+          1.025,
+          2
+        ],
+        [
+          "A",
+          "2028-12-31",
+          "2026-10-29",
+          1.095,
+          2
+        ]
+      ]
+    },
+    "rev_low": {
+      "FY2027": 5.2202,
+      "FY2028": 5.9792
+    },
+    "rev_high": {
+      "FY2027": 5.3844,
+      "FY2028": 6.0605
+    },
+    "ebitda": {
+      "FY2026": 0.8024,
+      "FY2027": 1.1755
+    },
+    "eps_quarters_est": {
+      "2026Q4": 0.18,
+      "2027Q1": 0.175,
+      "2027Q2": 0.205,
+      "2027Q3": 0.22,
+      "2027Q4": 0.24
+    },
+    "ratings": {
+      "strong_buy": 6,
+      "buy": 2,
+      "hold": 3,
+      "sell": 0,
+      "strong_sell": 0,
+      "as_of": "2026-10-13"
+    },
+    "targets": {
+      "mean": 34.6,
+      "median": 34.5,
+      "high": 42,
+      "low": 22,
+      "n": 10,
+      "as_of": "2026-10-30"
+    },
+    "revisions_90d": {
+      "eps": 0.1
+    }
+  },
+  "guidance": {
+    "rev_fy0": [
+      3.9,
+      4.0
+    ],
+    "ebit_margin_fy0": 0.162,
+    "rev_basis": "gaap",
+    "margin_basis": "non_gaap",
+    "ebitda_fy0": [
+      0.78,
+      0.8
+    ],
+    "deliveries_gw_fy0": 4.5,
+    "source": "3Q 보도자료·콜 2026-10-27: FY26 매출 $3.9~4.0B, 조정 EBITDA $780~800M. 4Q 매출 = FY 가이던스 − 9개월 $2,774.2M = $1,126~1,226M(중간값 $1,176M)",
+    "next": {
+      "period": "4Q26",
+      "rev": 1176,
+      "rev_cons": 1222.7,
+      "unit": "$M"
+    }
+  },
+  "call": {
+    "date": "2026-10-27",
+    "prev_date": "2026-07-28",
+    "tone_score": 6.2,
+    "tone_delta": 0.2,
+    "guidance_direction": "raise",
+    "kpis": {
+      "backlog_b": 8.0,
+      "backlog_plus_slots_gw": 19,
+      "orders_3q_b": 2.2,
+      "btb_ttm": 3.3,
+      "eq_margin_3q": 0.171,
+      "svc_margin_3q": 0.32,
+      "usd_per_kw_3q": 650,
+      "net_leverage": 2.1,
+      "capacity_gw_2030": "10 초과"
+    },
+    "guidance_changes": [
+      "FY26 매출 $3.8~3.9B → $3.9~4.0B",
+      "조정 EBITDA $720~740M → $780~800M, 마진 19 → 20%",
+      "4Q 인도 약 1.5GW, 연 4.5GW"
+    ],
+    "new_topics": [
+      "신규 설치분 서비스 강도 >$50k/MW/년(기존 약 $30k)",
+      "최대 고객 수주 비중 2024 20%·2025 41%·단기 전망 약 21%",
+      "네오클라우드·토지 개발사 미거래",
+      "Type 6 물 사용량 0.1L/MWh 미만",
+      "M&A 시 레버리지 2.5배 허용",
+      "주문 대부분 take-or-pay + 선금·취소 수수료",
+      "슬롯은 6~18개월 뒤 주문 전환"
+    ],
+    "dropped_topics": [
+      "장비 마진 하락 설명(2Q 14%) — 3Q 17.1%로 해소"
+    ],
+    "analyst_focus": [
+      "Morgan Stanley — 수주 지속·슬롯 시점",
+      "Goldman Sachs — $/kW 가격 vs 범위",
+      "Bank of America — 백로그 신용 질",
+      "JPMorgan — 서비스 마진·고객 자체 정비",
+      "Baird — 주 인허가·물 규제"
+    ],
+    "risks": [
+      "증설 실행(3.5 → 10GW 초과)",
+      "데이터센터 고객 집중(9개월 상위 5개 고객 매출 54%)",
+      "텍사스 인허가(프로젝트 1건 1주 지연 뒤 해소)",
+      "3Q 수주 $2.2B로 2Q $2.3B 대비 둔화(전력 $546M → $265M, 압축 $281M → $116M)"
+    ],
+    "source": "Fiscal.ai 3Q·2Q 트랜스크립트(q3-2026·q2-2026), Easyconomics 실적 변화 레이더(톤 6.0 → 6.2, 가이던스 raise → raise)",
+    "deltas": [
+      {
+        "id": "F1",
+        "kind": "업데이트",
+        "item": "FY26 매출 가이던스 상향",
+        "prior": "$3.8~3.9B",
+        "latest": "$3.9~4.0B",
+        "driver": "rev0",
+        "shift": 0.1,
+        "confidence": 0.8,
+        "source": "3Q 콜 CFO",
+        "label": "FY26 매출 상향"
+      },
+      {
+        "id": "F2",
+        "kind": "업데이트",
+        "item": "그룹 조정 EBITDA 마진 가이던스",
+        "prior": "약 19%",
+        "latest": "약 20%(장비 3Q 17.1% 조기 도달)",
+        "driver": "margin_m0",
+        "shift": 0.01,
+        "confidence": 0.8,
+        "source": "3Q 콜 CFO",
+        "label": "EBITDA 마진 20%"
+      },
+      {
+        "id": "F3",
+        "kind": "신규",
+        "item": "장비 $/kW 공개·1H27 매출 추정 상향",
+        "prior": "수치 없음",
+        "latest": "3Q 약 $650/kW, 앞으로 600 이상",
+        "driver": "growth_start",
+        "shift": 0.03,
+        "confidence": 0.7,
+        "source": "3Q Q&A(Goldman Sachs)·컨센서스 1H27 +2.9%",
+        "label": "장비 $650/kW"
+      },
+      {
+        "id": "F4",
+        "kind": "업데이트",
+        "item": "수주잔고·슬롯",
+        "prior": "6.6B$·15GW+·2030까지",
+        "latest": "8.0B$·약 19GW·2031까지",
+        "driver": "growth_decay",
+        "shift": 0.03,
+        "confidence": 0.6,
+        "source": "3Q 콜",
+        "label": "잔고·슬롯 19GW"
+      },
+      {
+        "id": "F5",
+        "kind": "신규",
+        "item": "신규 설치분 서비스 강도",
+        "prior": "상당히 높다(수치 없음)",
+        "latest": ">$50k/MW/년(기존 약 $30k)",
+        "driver": "margin_lr",
+        "shift": 0.01,
+        "confidence": 0.5,
+        "source": "3Q 콜·Q&A(BNP Paribas)",
+        "label": "서비스 $50k/MW"
+      },
+      {
+        "id": "F6",
+        "kind": "신규",
+        "item": "서비스 EBITDA 장기 목표",
+        "prior": "2.5배 유지 또는 개선",
+        "latest": "2030년대 중반 4배",
+        "driver": "margin_target",
+        "shift": 0.005,
+        "confidence": 0.4,
+        "source": "3Q 콜 CFO",
+        "label": "서비스 4배 목표"
+      },
+      {
+        "id": "F7",
+        "kind": "신규",
+        "item": "최대 고객 수주 비중 공개",
+        "prior": "과다 아님(수치 없음)",
+        "latest": "수주 비중 2024 20%·2025 41% → 단기 전망 약 21%, 네오클라우드 무배정",
+        "driver": "wacc",
+        "shift": -0.0025,
+        "confidence": 0.4,
+        "source": "3Q 콜 CEO·Q&A(BofA)",
+        "label": "고객 집중 완화"
+      },
+      {
+        "id": "F8",
+        "kind": "업데이트",
+        "item": "순차입 감소",
+        "prior": "1.69B$(2Q, 리스 포함)",
+        "latest": "1.54B$(3Q, 리스 포함)",
+        "driver": "net_debt",
+        "shift": -0.15,
+        "confidence": 1.0,
+        "source": "10-Q XBRL",
+        "label": "순차입 감소"
+      },
+      {
+        "id": "F9",
+        "kind": "신규",
+        "item": "증설 CAPEX 가속",
+        "prior": "상반기 94백만$",
+        "latest": "3Q 93백만$(9개월 187)",
+        "driver": "s2c",
+        "shift": -0.1,
+        "confidence": 0.8,
+        "source": "10-Q XBRL",
+        "label": "증설 CAPEX 가속"
+      },
+      {
+        "id": "F10",
+        "kind": "부정",
+        "item": "3Q 수주 둔화",
+        "prior": "2Q 2.3B$, B/B 4.4",
+        "latest": "3Q 2.2B$(전력 546→265·압축 281→116백만$), B/B 3.3",
+        "driver": "growth_decay",
+        "shift": -0.02,
+        "confidence": 0.3,
+        "source": "두 콜",
+        "label": "3Q 수주 둔화"
+      },
+      {
+        "id": "F11",
+        "kind": "반복",
+        "item": "취소·지연 없음, 서비스 고한자릿수 성장",
+        "prior": "같음",
+        "latest": "같음",
+        "driver": null,
+        "shift": 0,
+        "confidence": 1.0,
+        "source": "두 콜",
+        "label": "취소·지연 없음"
+      }
+    ]
+  },
+  "multiples_now": {
+    "pe_fwd": 17.65,
+    "ev_ebitda": 24.48,
+    "ev_sales": 3.406,
+    "growth": 0.573,
+    "note": "2026-11-06 종가 $13.77 기준 Chiip 재계산 — 분모는 10/30과 같은 다음 4개 분기 추정(EPS $0.78·조정 EBITDA $1.108B), EV = 완전 희석 시가총액 + 차입 2.8174 − 현금 1.1958. Fiscal.ai Street Forward(같은 날) P/E 18.0·EV/EBITDA 10.7과 근사 일치. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+    "ev_ebitda_fwd": 10.81,
+    "pe_fwd2": 13.37,
+    "ev_ebitda_fwd2": 8.98,
+    "pe_fwd3": 10.66,
+    "ev_ebitda_fwd3": null
+  },
+  "peers_basis": "ttm",
+  "peers_source": "Fiscal.ai 표준화 분기 재무(최근 4분기 합, 성장 = TTM ÷ 직전 TTM)·daily ratios(시총·EV/매출·EV/EBITDA, 2026-10-29, 달러 환산) — CMI 최근 분기 2026-06-30 · Fwd 1Y 배수는 2026-11-07 조회 Fiscal.ai company_ratios latest(자체 Forward, WRT1V 포함). Fwd 2Y·3Y는 10/30 값에 Fwd 1Y와 같은 변화율을 곱했다(분모 추정 불변 가정)",
+  "peers": [
+    {
+      "ticker": "CAT",
+      "rev": 77.773,
+      "ebit_margin": 0.1833,
+      "mcap": 302.65,
+      "pb": 14.09,
+      "debt": 37.021,
+      "cash": 7.929,
+      "ev_sales": 4.37,
+      "ev_ebitda": 20.38,
+      "growth": 0.2026,
+      "goodwill": 5.905,
+      "intangibles": 0.409,
+      "pe_fwd": 19.51,
+      "ev_ebitda_fwd": 14.97,
+      "pe_fwd2": 16.7,
+      "ev_ebitda_fwd2": 13.69,
+      "pe_fwd3": 14.71,
+      "ev_ebitda_fwd3": 12.57,
+      "ntm_ebit_margin": 0.1976,
+      "ntm_growth": 0.0852
     },
     {
-     "lens": "M&A",
-     "change": "규모보다 서비스 거점 인수다",
-     "evidence": "Enerflex 아시아태평양 애프터마켓 $61.6M, 9/30 종결. M&A 때 레버리지 2.5배 허용",
-     "drives": "revision",
-     "status": "유지",
-     "falsifier": "레버리지를 넘는 대형 인수"
+      "ticker": "CMI",
+      "rev": 34.708,
+      "ebit_margin": 0.1122,
+      "mcap": 72.02,
+      "pb": 5.18,
+      "debt": 7.544,
+      "cash": 3.924,
+      "ev_sales": 2.21,
+      "ev_ebitda": 15.33,
+      "growth": 0.0293,
+      "goodwill": 2.222,
+      "intangibles": 2.168,
+      "pe_fwd": 14.59,
+      "ev_ebitda_fwd": 10.01,
+      "pe_fwd2": 13.71,
+      "ev_ebitda_fwd2": 9.0,
+      "pe_fwd3": 11.84,
+      "ev_ebitda_fwd3": 8.16,
+      "ntm_ebit_margin": 0.1234,
+      "ntm_growth": 0.1089
     },
     {
-     "lens": "CAPEX 낙수효과",
-     "change": "하이퍼스케일러 투자가 VoltaGrid·Liberty·Aggreko 같은 중간 공급자를 거쳐 온다",
-     "evidence": "3Q 620MW 후속, Liberty 450MW, Aggreko 2031 연장. 회사는 네오클라우드 무배정이라 밝혔다. 최종 고객명은 비공개",
-     "drives": "revision",
-     "status": "유지",
-     "falsifier": "중간 공급자의 자금 조달 실패, 하이퍼스케일러 CAPEX 가이던스 하향"
-    }
-   ],
-   "policy": {
-    "fiscal": {
-     "change": "해당 없음(보조금·세액공제에 기대는 사업이 아니다. 10-Q 보조금 금액 공시 없음)"
+      "ticker": "GEV",
+      "rev": 44.041,
+      "ebit_margin": 0.0642,
+      "mcap": 240.08,
+      "pb": 19.15,
+      "debt": 2.795,
+      "cash": 16.764,
+      "ev_sales": 5.16,
+      "ev_ebitda": 53.41,
+      "growth": 0.1691,
+      "goodwill": 9.609,
+      "intangibles": 4.343,
+      "pe_fwd": 37.46,
+      "ev_ebitda_fwd": 23.56,
+      "pe_fwd2": 30.68,
+      "ev_ebitda_fwd2": 19.32,
+      "pe_fwd3": 23.88,
+      "ev_ebitda_fwd3": 15.24,
+      "ntm_ebit_margin": 0.1178,
+      "ntm_growth": 0.1901
     },
-    "orders": {
-     "change": "미국 관세가 오스트리아산 엔진 원가를 건드린다. 회사는 Waukesha 조립으로 현지화 중이다",
-     "evidence": "10-Q 위험요인, 첫 Jenbacher 발전기 Waukesha 조립. 비교: Caterpillar 2026 관세 약 $2.2B",
-     "drives": "revision",
-     "status": "시행",
-     "falsifier": "관세 인상분을 가격에 못 넘겨 장비 마진이 내려간다",
-     "house": {
-      "level": 1,
-      "why": "행정부 조치로 관련 표결을 찾지 못했다"
-     },
-     "senate": {
-      "level": 1,
-      "why": "같음"
-     }
+    {
+      "ticker": "BE",
+      "rev": 3.83,
+      "ebit_margin": 0.1481,
+      "mcap": 67.07,
+      "pb": 34.17,
+      "debt": 2.779,
+      "cash": 2.487,
+      "ev_sales": 17.6,
+      "ev_ebitda": 108.46,
+      "growth": 1.1059,
+      "goodwill": 0.0,
+      "intangibles": 0.0,
+      "pe_fwd": 39.73,
+      "ev_ebitda_fwd": 39.61,
+      "pe_fwd2": 31.61,
+      "ev_ebitda_fwd2": 29.06,
+      "pe_fwd3": 25.66,
+      "ev_ebitda_fwd3": 21.81,
+      "ntm_ebit_margin": 0.2406,
+      "ntm_growth": 0.5921
     },
-    "laws": {
-     "change": "주 단위 데이터센터 규칙이 변수다. 고객 프로젝트 대부분이 텍사스다",
-     "evidence": "3Q 콜 Baird 질문. 프로젝트 1건 1주 지연 뒤 해소",
-     "drives": "multiple",
-     "status": "감시",
-     "falsifier": "텍사스 인허가로 주문 지연·취소 공시"
+    {
+      "ticker": "WRT1V",
+      "rev": 7.62,
+      "ebit_margin": 0.1324,
+      "mcap": 17.51,
+      "pb": 5.81,
+      "debt": 0.549,
+      "cash": 2.797,
+      "ev_sales": 2.08,
+      "ev_ebitda": 12.45,
+      "growth": 0.068,
+      "goodwill": 0.0,
+      "intangibles": 1.76,
+      "pe_fwd": 20.52,
+      "ev_ebitda_fwd": 11.11,
+      "pe_fwd2": 17.96,
+      "ev_ebitda_fwd2": 9.65,
+      "pe_fwd3": 15.06,
+      "ev_ebitda_fwd3": 8.42,
+      "ntm_ebit_margin": 0.1413,
+      "ntm_growth": 0.0056
     }
-   }
-  }
- },
- "forward": {
-  "as_of": "2026-10-30",
-  "ntm": {
-   "eps": 0.78,
-   "ebitda": 1107550000,
-   "ebit": 881940000,
-   "revenue": 5137910000,
-   "rev_ttm": 3514800000
-  },
-  "horizons": {
-   "2": {
-    "eps": 1.03,
-    "ebitda": 1333700000,
-    "ext": 0
-   },
-   "3": {
-    "eps": 1.2917085759504885,
-    "ebitda": null,
-    "ext": 3
-   }
-  },
-  "guided": {
-   "eps": false,
-   "ebitda": true
-  },
-  "src": {
-   "pe_fwd": "street",
-   "ev_ebitda_fwd": "street"
-  },
-  "source": "Fiscal.ai Forward 배수 → Street Forward. INIO는 회사 추정 묶음이 없어 애널리스트 분기 추정으로 다음 4개 분기를 합산. Fwd 2Y EBITDA는 4Q27~3Q28 매출 추정 $5.93B × FY2027 EBITDA 마진 22.5%로 모델 추정, Fwd 3Y EBITDA는 추정 없음. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(순차입 9/30 고정). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
- },
- "main_metric": "ebitda",
- "main_metric_why": "회사가 매출과 조정 EBITDA만 가이던스로 낸다. EPS는 텀론 이자와 인수 상각이 커서 이익 체력을 덜 보여 준다",
- "moat": {
-  "summary": "해자는 설치 기반 서비스다. 슬롯은 공급 부족이 끝나면 시험받고, 기술 우위는 경쟁이 있다.",
-  "items": [
-   {
-    "kind": "설치 기반 서비스",
-    "verdict": "강함",
-    "claim": "엔진을 판 뒤 수명 내내 부품과 오버홀을 맡는다",
-    "evidence": "3Q 콜: 설치 기반 약 44GW, TTM 서비스 $1.5B, 엔진 1대 수명 서비스 EBITDA는 장비 EBITDA의 약 2.5배. 고객 계약 10~15년",
-    "quant": "서비스 EBITDA 마진 약 32%, 장비 17.1%",
-    "falsifier": "고객이 인건 범위 외 부품까지 자체 조달, 서비스 마진 하락"
-   },
-   {
-    "kind": "슬롯과 take-or-pay 계약",
-    "verdict": "보통",
-    "claim": "취소 불가 슬롯과 선금으로 2029~31 수요를 묶는다",
-    "evidence": "3Q 콜: 잔고+슬롯 약 19GW, 슬롯 취소·양도 불가, 주문 대부분 take-or-pay. 10-Q RPO $10.9B, 71%가 24개월 안",
-    "quant": "19GW ÷ 2030 연 캐파 10GW = 약 1.9년 치, 지금 캐파 기준 약 5.4년 치",
-    "falsifier": "슬롯이 6~18개월 안에 주문으로 안 바뀌거나 위약금 소송이 난다"
-   },
-   {
-    "kind": "왕복동 가스엔진 기술",
-    "verdict": "보통",
-    "claim": "부분부하 효율, 빠른 부하 추종, 모듈 증설로 터빈·연료전지 틈을 잡는다",
-    "evidence": "회사 자료 기준이고 비교 시험은 미확인. 왕복동 경쟁자는 Caterpillar, Wärtsilä, Rolls-Royce, Cummins",
-    "quant": "Caterpillar 3Q Power Generation 매출 +30%",
-    "falsifier": "Caterpillar·Wärtsilä 증설 뒤 kW당 가격이 $600 아래로"
-   },
-   {
-    "kind": "고객 선수금 자금 구조",
-    "verdict": "약함",
-    "claim": "증설 자금을 고객이 댄다. 수주가 꺾이면 반대로 작동한다",
-    "evidence": "10-Q 9개월 영업현금 $741.5M 중 계약부채 증가가 $797.0M",
-    "quant": "계약부채 증가를 빼면 영업현금 −$55.5M",
-    "falsifier": "수주 둔화로 계약부채가 감소"
-   }
-  ]
- },
- "multiple_view": {
-  "adj": -0.1,
-  "why": "상위 5개 고객이 9개월 매출의 54%이고 중간 공급자 비중이 높으며, 재무보고 내부통제의 중대한 취약점이 남아 동종 수준 배수를 다 주지 않는다"
- },
- "target_view": {
-  "adj": -0.1,
-  "why": "11/30 보호예수 해제 물량이 유통주식의 6.2배다. 요인에 잡히지 않는 수급 부담이라 목표 위치를 조금 낮춘다"
- },
- "next_event": {
-  "date": "2026-11-30",
-  "tag": "IPO 보호예수 만료, 6.47억 주 매도 가능"
- },
- "terms": {
-  "Jenbacher": "INNIO의 가스엔진 브랜드",
-  "Waukesha": "INNIO의 미국 가스엔진 브랜드이자 위스콘신 공장 지역",
-  "J620": "Jenbacher 20기통 가스엔진",
-  "J624": "Jenbacher 24기통 가스엔진",
-  "Type 6": "Jenbacher 6세대 엔진 계열",
-  "myPlant": "INNIO의 엔진 군 원격 관리 플랫폼",
-  "VoltaGrid": "가스엔진으로 현장 전력을 파는 미국 회사",
-  "Aggreko": "영국 임대 발전 회사",
-  "Liberty Energy": "미국 유전 서비스·전력 회사",
-  "Clarke Energy": "Jenbacher 유통·시공 회사",
-  "Enerflex": "캐나다 가스 설비 회사",
-  "Advent": "미국 사모펀드 Advent International",
-  "ADIA": "아부다비 투자청",
-  "AI Alpine": "Advent·ADIA 공동 지주회사",
-  "CHP": "열병합 발전",
-  "take-or-pay": "안 받아도 대금을 내는 계약",
-  "RPO": "계약했지만 아직 매출로 잡지 않은 금액",
-  "RCF": "회전 신용 한도",
-  "CAT": "미국 Caterpillar",
-  "CMI": "미국 엔진 회사 Cummins",
-  "GEV": "미국 GE Vernova",
-  "BE": "미국 연료전지 회사 Bloom Energy",
-  "WRT1V": "핀란드 Wärtsilä",
-  "Baron": "미국 운용사 Baron Capital",
-  "Osram": "독일 조명 회사",
-  "Exyte": "독일 공장 설계·시공 회사",
-  "ThyssenKrupp": "독일 철강·산업재 회사",
-  "Vantage": "미국 데이터센터 회사 Vantage Data Centers",
-  "Layer Zero Power Systems": "데이터센터 전력 장비 회사",
-  "Republic Services": "미국 폐기물 회사",
-  "H.C. Starck": "독일 소재 회사",
-  "IPO": "기업공개",
-  "GW": "기가와트",
-  "MW": "메가와트",
-  "kW": "킬로와트",
-  "BTM": "전력망을 거치지 않는 현장 발전",
-  "Rolls-Royce": "영국 엔진 회사",
-  "Morgan Stanley": "미국 투자은행",
-  "JPM": "J.P. Morgan",
-  "Citi": "미국 Citigroup",
-  "RBC": "캐나다 Royal Bank",
-  "FCF": "잉여현금흐름",
-  "GE": "미국 General Electric",
-  "INNIO": "이 회사",
-  "MWh": "메가와트시"
- },
- "pipeline": {
-  "as_of": "2026-09-30",
-  "reported_backlog": 8.0,
-  "backlog_label": "장비 수주잔고",
-  "summary": "확정 장비 잔고 $8.0B, RPO $10.9B다. 슬롯은 약 19GW의 일부이고 금액 미공개라 확정 합계에 넣지 않았다.",
-  "items": [
-   {
-    "name": "장비 수주잔고 전체",
-    "status": "확정",
-    "total": 8.0,
-    "progress": "미확인",
-    "margin": 0.171,
-    "margin_kind": "세그먼트 EBITDA",
-    "margin_basis": "3Q 장비 마진",
-    "speed": "3Q 1.2GW, 4Q 약 1.5GW 전망",
-    "blockers": [
-     "Jenbach 라인 증설",
-     "숙련 인력",
-     "부품 공급"
-    ],
-    "source": "3Q 콜"
-   },
-   {
-    "name": "RPO 중 장비 잔고 밖 금액",
-    "status": "확정",
-    "total": 2.9,
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "RPO $10.9B 중 71%가 24개월 안 인식, 구성은 차이로 추정",
-    "blockers": [
-     "서비스 계약 착수 시점"
-    ],
-    "source": "3Q 10-Q 주석"
-   },
-   {
-    "name": "VoltaGrid 2.3GW",
-    "status": "확정",
-    "no_sum": true,
-    "total": "미확인",
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "2025-10 수주, 잔고에 포함",
-    "blockers": [
-     "VoltaGrid 자금 조달",
-     "현장 인허가"
-    ],
-    "source": "2025-10 보도자료"
-   },
-   {
-    "name": "VoltaGrid 1.5GW",
-    "status": "확정",
-    "no_sum": true,
-    "total": "미확인",
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "2026-02 수주, 2028까지 납품",
-    "blockers": [
-     "엔진 300대 생산 슬롯"
-    ],
-    "source": "2026-02 보도자료"
-   },
-   {
-    "name": "Liberty Energy 450MW",
-    "status": "확정",
-    "no_sum": true,
-    "total": "미확인",
-    "progress": "미확인",
-    "margin": "미확인",
-    "start": "2026-09",
-    "speed": "2028 납품",
-    "blockers": [
-     "Liberty의 고객 계약"
-    ],
-    "source": "2026-09-17 보도, 3Q 콜"
-   },
-   {
-    "name": "데이터센터 후속 620MW",
-    "status": "확정",
-    "no_sum": true,
-    "total": "미확인",
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "3Q 전후 수주, 서비스 계약 500MW 동반",
-    "blockers": [
-     "개발사 일정"
-    ],
-    "source": "2026-10-22 보도, 3Q 콜"
-   },
-   {
-    "name": "Aggreko 2031 연장",
-    "status": "프레임워크",
-    "no_sum": true,
-    "total": "미확인",
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "2027년 말까지 최소 450MW 주문·납품",
-    "blockers": [
-     "개별 발주"
-    ],
-    "source": "2026-10-08 보도, 3Q 콜"
-   },
-   {
-    "name": "슬롯 예약",
-    "status": "파이프라인",
-    "no_sum": true,
-    "total": "미확인",
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "회사 설명: 6~18개월 뒤 주문 전환, 2029~31 슬롯 서명",
-    "blockers": [
-     "고객 프로젝트 일정",
-     "회사 슬롯 금액 미공개"
-    ],
-    "source": "3Q 콜"
-   }
-  ]
- },
- "leaders": {
-  "as_of": "2026-11-02",
-  "summary": "창업자 없는 사모펀드 분사 회사다. Advent가 사실상 지배하고, 의장은 전 Cummins CEO, 이사에 전 Vantage COO가 있다. 공개 자료로 확인한 정치 연결은 없다.",
-  "people": [
-   {
-    "name": "Olaf Berlien",
-    "role": "CEO·사장",
-    "since": "2021-10",
-    "profile": "Osram CEO(2015~2021), Exyte CEO, ThyssenKrupp 임원(2002~2013) 출신. 독일 대형 산업재 경력",
-    "business": "독일 산업재 경영진 네트워크",
-    "political": "미확인",
-    "alumni": "베를린공대 경영·경제 박사",
-    "social": "미확인",
-    "source": "2026-06 투자설명서"
-   },
-   {
-    "name": "Dennis Schulze",
-    "role": "CFO·M&A 총괄",
-    "since": "2019-04",
-    "profile": "H.C. Starck 그룹 CFO 출신. 사모펀드 소유 회사 재무 경력",
-    "business": "사모펀드 포트폴리오 재무",
-    "political": "미확인",
-    "alumni": "미확인",
-    "social": "미확인",
-    "source": "2026-06 투자설명서"
-   },
-   {
-    "name": "Tom Linebarger",
-    "role": "이사회 의장",
-    "since": "2026(상장)",
-    "profile": "Cummins CEO(2012~2022), 회장(~2023). Republic Services 이사. IPO에서 $2.5M 장내 매수",
-    "business": "왕복동 엔진 업계 최고경영자 경력",
-    "political": "미확인",
-    "alumni": "미확인",
-    "social": "미확인",
-    "source": "2026-06 투자설명서, Form 4"
-   }
   ],
-  "value": [
-   {
-    "network": "비즈니스",
-    "link": "Advent — 지분 지배, 이사 3석(Sen·Chauhan·Thuerbach)",
-    "strength": 5,
-    "exposure": 3.515,
-    "basis": "회사 전체 TTM 매출",
-    "evidence": "투자설명서: Advent가 AI Alpine Parent 지분 53.8%, 주요 주주 지분 86.2%"
-   },
-   {
-    "network": "비즈니스",
-    "link": "이사 Chris Yetman(전 Vantage COO) — 데이터센터 고객층",
-    "strength": 2,
-    "exposure": "미확인",
-    "basis": "Vantage 관련 INNIO 매출 공시 없음",
-    "evidence": "투자설명서. Vantage는 VoltaGrid 고객이라는 보도가 있다"
-   },
-   {
-    "network": "정계",
-    "link": "정부·의회 직책 연결",
-    "strength": 0,
-    "exposure": "미확인",
-    "basis": "투자설명서에서 찾지 못했다. 로비 공시는 이번 회차에 확인하지 못했다",
-    "evidence": "2026-06 투자설명서"
-   }
-  ]
- },
- "events": [
-  {
-   "date": "2026-10-30",
-   "tag": "JPM 목표가 $33 → $31, 전력주 동반 약세",
-   "kind": "market"
+  "sbc_pct_rev": 0.002,
+  "overrides": {
+    "margin_base": {
+      "target": 0.19,
+      "year_target": 4,
+      "lr": 0.17,
+      "lam": 0.35
+    },
+    "s2c": 3.0,
+    "why": "목표 조정 EBITA 이익률 19%(4년차): 장비 마진 3Q 17.1% 도달 + 서비스(마진 32%) 비중이 2030년대 확대 — 동종 CAT 22%·Wärtsilä 14%·CMI 12% 사이, 장기 17%로 수렴 / 매출÷투하자본 3.0: TTM 1.9는 인수 영업권 1.67B$가 섞인 값 — 증분 기준으로는 고객 선수금(9개월 +782백만$)이 운전자본을 대고 CAPEX는 매출 증가분의 약 20%(TTM 291백만$ ÷ 매출 증가 1.28B$) → 증분 3~5, 보수적으로 3 / SBC 0.2%: 3Q SBC 2.7백만$ ÷ 매출 1,168"
   },
-  {
-   "date": "2026-10-29",
-   "tag": "Caterpillar 실적 뒤 AI 전력주 매도",
-   "kind": "market"
+  "history": {
+    "basis": "Fiscal.ai daily ratio_ev_to_sales(월말 표본)",
+    "ev_sales": [
+      {
+        "date": "2026-07-31",
+        "value": 6.5
+      },
+      {
+        "date": "2026-08-31",
+        "value": 5.5
+      },
+      {
+        "date": "2026-09-30",
+        "value": 4.3
+      },
+      {
+        "date": "2026-10-28",
+        "value": 4.4
+      }
+    ],
+    "pe_fwd": [
+      {
+        "date": "2026-07-31",
+        "value": 39.71
+      },
+      {
+        "date": "2026-08-31",
+        "value": 32.85
+      },
+      {
+        "date": "2026-09-30",
+        "value": 26.47
+      },
+      {
+        "date": "2026-10-30",
+        "value": 20.9
+      },
+      {
+        "date": "2026-11-06",
+        "value": 17.65
+      }
+    ],
+    "ev_ebitda_fwd": [
+      {
+        "date": "2026-07-31",
+        "value": 21.01
+      },
+      {
+        "date": "2026-08-31",
+        "value": 17.81
+      },
+      {
+        "date": "2026-09-30",
+        "value": 14.85
+      },
+      {
+        "date": "2026-10-30",
+        "value": 12.5
+      },
+      {
+        "date": "2026-11-06",
+        "value": 10.81
+      }
+    ]
   },
-  {
-   "date": "2026-10-27",
-   "tag": "3Q 실적·가이던스 상향",
-   "kind": "earnings"
+  "sources": [
+    "easyconomics company_profile·financial_statements(분기 손익)·financials_summary(연간)·earnings_summary 2026-10-27·2026-07-28·company_price_history (조회 2026-10-29 KST)",
+    "SEC XBRL companyfacts CIK 2109150(10-Q 2026-09-30: 매출·영업이익·재무상태·희석 증권·CAPEX, 조회 2026-10-29)",
+    "SEC XBRL 동종 영업권(CAT 18230·CMI 26172·GEV 1996810·BE 1664703)",
+    "outputs/invest/20261028_innio_q3_delta.md · knowledge/models/companies/co-innio/factors.yaml(회사 전용 요인 모델)",
+    "Fiscal.ai MCP 2026-10-30 — 표준화 재무(공시 원문 auditUrl)·Zacks 컨센서스·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·뉴스(10/22 620MW 후속 수주, 10/27 3Q 실적)·3Q 콜 Q&A 질문 증권사 8곳",
+    "2026-11-02 재발행: EDGAR 10-Q(2026-10-27)·424B4(2026-06-04) 본문, Fiscal.ai·Zacks·Easyconomics(yfinance) 2026-10-30 기준, 노션 Stocks 이니오 INIO(공장 지도·공매도 잔고), JPM GE Vernova 노트 요지(라이선스, 업종 맥락만)",
+    "2026-11-07 재발행(양식 3): Fiscal.ai 분기 손익·세그먼트 KPI·현금흐름·company_ratios(조회 2026-11-07), Easyconomics company_profile·price_history·earnings_summary_dates·company_news(yfinance 출처 포함), SEC EDGAR 제출 목록(10/27 이후 새 공시 없음), Quantral 커뮤니티 신호(X·레딧 17건, 본문 미저장), 위키미디어 공용 사진 2장. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  ],
+  "raw": {
+    "retrieved_at": "2026-11-07T18:20:00+09:00",
+    "easyconomics_profile": {
+      "price": 16.3,
+      "market_cap": 12.225,
+      "enterprise_value": 13.9905,
+      "shares_outstanding_yf": 0.75,
+      "total_cash": 1.1958,
+      "total_debt": 2.9533,
+      "revenue_ttm": 3.5148,
+      "ev_sales": 3.98,
+      "ev_ebitda": 25.794,
+      "forward_pe": 19.13168,
+      "eps_forward": 0.85199,
+      "revenue_growth": 0.573,
+      "short_pct_float": 0.2118,
+      "analyst_total": 10,
+      "target_mean": 31.4,
+      "target_low": 21,
+      "target_high": 42
+    },
+    "shares_cover_implied": 0.75,
+    "quarters_gaap": {
+      "rev": {
+        "2025Q4": 0.7406,
+        "2026Q1": 0.6686,
+        "2026Q2": 0.9377,
+        "2026Q3": 1.1679
+      },
+      "op_income": {
+        "2025Q4": 0.0779,
+        "2026Q1": 0.0631,
+        "2026Q2": 0.0451,
+        "2026Q3": 0.1936
+      }
+    },
+    "balance_2026_09_30": {
+      "cash": 1.1958,
+      "st_investments": 0.0,
+      "debt_current": 0.2213,
+      "debt_lt": 2.5961,
+      "lease_current": 0.0,
+      "lease_lt": 0.0,
+      "equity": 0.3462,
+      "goodwill": 1.6668,
+      "intangibles": 0.7,
+      "contract_liabilities": 1.5982,
+      "shares": 0.75,
+      "note": "Fiscal.ai 표준화 재무상태표 2026-09-30 — 단기 차입 221.3(유동 차입·리스 포함), 장기 2,596.1, 자기자본 346.2백만$",
+      "lease_op": 0.0983
+    },
+    "estimates_sales_m": {
+      "2026Q1_act": 668.6,
+      "2026Q2_act": 937.7,
+      "2026Q3_act": 1167.9,
+      "2026Q4": 1222.7,
+      "2027Q1": 1214.8,
+      "2027Q2": 1363.6,
+      "2027Q3": 1292.4,
+      "2027Q4": 1419.4,
+      "2028Q1": 1463.9,
+      "2028Q2": 1549.3,
+      "2028Q3": 1500.2,
+      "2028Q4": 1582.3
+    },
+    "estimates_eps": {
+      "2026Q4": 0.18,
+      "2027Q1": 0.175,
+      "2027Q2": 0.205,
+      "2027Q3": 0.22,
+      "2027Q4": 0.24
+    },
+    "estimates_prev_call_2026_07_28": {
+      "eps": {
+        "2026Q3": 0.12,
+        "2026Q4": 0.18,
+        "2027Q1": 0.16,
+        "2027Q2": 0.19
+      },
+      "sales_b": {
+        "2026Q3": 1.03,
+        "2026Q4": 1.22,
+        "2027Q1": 1.18,
+        "2027Q2": 1.3
+      }
+    },
+    "sec": {
+      "antidilutive_2026_09_30": 0.0017,
+      "contract_liabilities_2025_12_31": 0.8161
+    },
+    "radar_2026_10_27": {
+      "tone_score": 6.2,
+      "prev_tone_score": 6.0,
+      "guidance_direction": "raise",
+      "prev_guidance_direction": "raise"
+    },
+    "price_history_points": {
+      "2026-06-08": 33.72,
+      "2026-06-15": 34.72,
+      "2026-06-22": 41.13,
+      "2026-06-30": 39.55,
+      "2026-07-15": 30.16,
+      "2026-07-27": 26.92,
+      "2026-07-31": 24.42,
+      "2026-08-14": 27.43,
+      "2026-08-31": 20.2,
+      "2026-09-15": 17.79,
+      "2026-09-30": 18.13,
+      "2026-10-15": 16.5,
+      "2026-10-26": 16.63,
+      "2026-10-28": 18.35
+    },
+    "source": "Fiscal.ai MCP(execute_code) — company_stock_prices·daily_ratios·shares_outstanding·financials_standardized·analyst_estimates(Zacks)·analyst_ratings(Zacks)·peers 값",
+    "fiscal_profile": {
+      "companyKey": "NASDAQ_INIO",
+      "terminalUrl": "https://fiscal.ai/company/NasdaqGS-INIO",
+      "price": 13.77,
+      "market_cap": 10.3275,
+      "total_cash": 1.1958,
+      "total_debt": 2.8174,
+      "shares_outstanding": 0.75,
+      "ev_sales": 3.94,
+      "as_of": "2026-11-06"
+    },
+    "zacks": {
+      "FY2026_rev": 3.9096,
+      "FY2026_ebit": 0.5087,
+      "FY2027_rev": 5.2288,
+      "FY2027_ebit": 0.9425,
+      "n_rev": 2,
+      "price_target": {
+        "mean": 34.6,
+        "low": 22,
+        "high": 42,
+        "n": 10
+      },
+      "rating": {
+        "strongBuy": 6,
+        "buy": 2,
+        "hold": 3,
+        "sell": 0,
+        "n": 11
+      },
+      "asOf": "2026-10-30",
+      "note": "연간 FY2026 $3.91B와 분기 합 차이: 4Q 분기 추정 $1.27B는 회사 가이던스 상단을 넘는다. 분기 추정은 yfinance $1.22B를 쓰고 FY2026을 분기 합으로 맞췄다. 매출 추정 제출 2명",
+      "attribution": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+      "FY2026_ebitda": 0.8024,
+      "FY2027_ebitda": 1.1755,
+      "FY2028_rev": 6.0199,
+      "FY2026_rev_20261102": 4.0413,
+      "note_20261107": "11/02 연간 매출 추정 FY2026 $4.04B·FY2027 $5.29B·FY2028 $6.10B로 소폭 상향(분기 4Q $1.27B). 데이터 묶음 연간 값은 분기 합 기준을 유지"
+    },
+    "sec_10q_2026_09_30": {
+      "url": "https://www.sec.gov/Archives/edgar/data/2109150/000162828026067448/inio-20260930.htm",
+      "contract_obligations": "유형자산 약정 $368.7M, 무형자산 $27.6M. 전년 비교값은 10-Q에 없음. 부품 구매 약정 금액은 공시 없음",
+      "liquidity": "현금 $1,195.8M, 제한 현금 표기 없음, €210M RCF 미인출, 텀론 3종 모두 2028-11 만기(금리 SOFR/EURIBOR+4.25%에서 레버리지로 낮아짐)",
+      "customers": "9개월 상위 5개 고객 매출 54%(2025 34%, 2024 27%). Clarke Energy 2025 매출 15.0%(간접). VoltaGrid 2025 장비 수주 41%(2024 14%)",
+      "gov": "기타영업이익에 정부 보조금 항목은 있으나 금액 공시 없음. 전략적 정부 계약 없음",
+      "rpo": "RPO $10.9B, 71%가 24개월 안 인식",
+      "lockup": "주요 주주 646,500,000주, 180일 보호예수(2026-06-03 기산 → 2026-11-30 만료)",
+      "cash_flow_9m": "영업현금 $741.5M, 그중 계약부채 증가 $797.0M. 유형자산 투자 $187.3M, 무형 $11.8M",
+      "icfr": "재무보고 내부통제 중대한 취약점 미해소, 공시 통제 비효과적",
+      "legal": "중대한 소송 없음(10-Q). 7월 이후 투자자 로펌 조사 공고는 있으나 제소 확인 못 함"
+    },
+    "easyconomics_profile_20261107": {
+      "price": 13.77,
+      "market_cap": 10.3275,
+      "forward_pe": 16.16,
+      "ev": 12.093,
+      "target_mean": 31.4,
+      "target_low": 21,
+      "target_high": 42,
+      "buy": 8,
+      "hold": 2,
+      "sell": 0,
+      "short_pct_float": 0.2118,
+      "source": "Easyconomics company_profile(yfinance), 조회 2026-11-07"
+    },
+    "sec_filings_check_20261107": "EDGAR 제출 목록 확인(2026-11-07): 10/27 10-Q·8-K 이후 새 공시 없음"
   },
-  {
-   "date": "2026-10-22",
-   "tag": "620MW 수주, GE Vernova 급락일",
-   "kind": "market"
+  "narrative": {
+    "as_of": "2026-11-02",
+    "stage": "소멸",
+    "crowding": "낮음",
+    "summary": "'데이터센터 현장 가스엔진'이 상장 프리미엄을 만들었지만 2Q 뒤 FY2027 EPS 추정 +10%에도 주가는 −39.5%다. 지금은 AI 전력주 전체의 수요 지속 의심과 11/30 보호예수 해제가 값을 누른다",
+    "layers": {
+      "sell_side": {
+        "metrics": [
+          [
+            "애널리스트 의견",
+            "11명 — 강력 매수 6·매수 2·보유 3·매도 0",
+            "10월에만 Morgan Stanley·Citi·RBC·JPM이 목표가 조정",
+            "company_analyst_ratings 2026-10-13"
+          ],
+          [
+            "목표가 평균·범위",
+            "$31.4~$34.6 ($21~$42, 10명)",
+            "현재가 대비 평균 +93~+112%, 기대의 증거일 뿐 Chiip 목표가 아니다",
+            "2026-10-30"
+          ],
+          [
+            "3Q 뒤 목표가 변경",
+            "Morgan Stanley $40 → $42, JPM $33 → $31",
+            "방향이 갈렸다",
+            "회사 뉴스 2026-10-28·30"
+          ],
+          [
+            "3Q 콜 질문 증권사",
+            "Morgan Stanley, Goldman Sachs, RBC, Bank of America, Baird, Citigroup 등 8곳",
+            "초점: 수주 지속, $/kW, 서비스 마진, 슬롯 신용, 주 규제",
+            "3Q 트랜스크립트"
+          ]
+        ],
+        "read": "실적 추정은 오르는데 목표가는 내린다. 배수를 낮춰 잡는다는 뜻이다"
+      },
+      "buy_side": {
+        "metrics": [
+          [
+            "13F 기관 보유",
+            "미공개",
+            "3Q 13F 공시는 11월 중순이 첫 대규모 자료",
+            "institutional_holders"
+          ],
+          [
+            "펀드 레터",
+            "Baron 계열 4개 펀드 5건, 2Q 신규 편입",
+            "논지: 현장 전력 + 면도기·면도날 서비스, 아직 단일 운용사",
+            "company_fund_letters"
+          ],
+          [
+            "공매도 잔고",
+            "9/30 20.5M주, 유통주식 대비 약 20%",
+            "상장 직후 대비 약 5배",
+            "마스터 노션(FINRA 결제일 자료), yfinance 21.2%"
+          ],
+          [
+            "이사 장내 매수",
+            "IPO 때 $27에 Linebarger $2.5M 등",
+            "이후 장내 매매 없음",
+            "Form 4 2026-06-08"
+          ]
+        ],
+        "read": "공매도가 쌓여 있고 롱 논지는 아직 한 운용사에 몰렸다"
+      },
+      "retail": {
+        "metrics": [
+          [
+            "레딧 언급(ApeWisdom)",
+            "상위 목록 밖(언급 적음)",
+            "리테일 관심 낮음",
+            "apewisdom.io 2026-10-29 23:52"
+          ],
+          [
+            "텔레그램 공개 채널 언급(7일)",
+            "0건",
+            "국내 투자 채널 관심 없음",
+            "knowledge/models/discovery/attention.csv 2026-10-29"
+          ],
+          [
+            "Seeking Alpha 색인 제목(7일)",
+            "8건",
+            "미국 개인 투자자 글은 있음",
+            "같은 곳"
+          ]
+        ],
+        "read": "리테일 관심이 낮다 — 가격은 기관이 정한다"
+      },
+      "media": {
+        "metrics": [
+          [
+            "글로벌 언론 언급(7일)",
+            "40건",
+            "실적·데이터센터 전력 맥락",
+            "attention.csv"
+          ]
+        ],
+        "read": "언론은 데이터센터 전력 병목의 수혜주로 다룬다"
+      }
+    },
+    "factors": [
+      {
+        "name": "데이터센터 현장 발전(전력망 접속 대기)",
+        "thesis": "전력망 접속을 기다리는 데이터센터가 현장 가스엔진으로 전력을 직접 확보한다",
+        "inputs": "성장(수주)·가격($/kW)",
+        "who": {
+          "sell": "강",
+          "buy": "중",
+          "retail": "약"
+        },
+        "drives": "both",
+        "quant": "장비 잔고 $8.0B, 잔고+슬롯 약 19GW, RPO $10.9B",
+        "status": "유지",
+        "falsifier": "4Q 수주 12개월 B/B 2.0 미만(2027-02)",
+        "source": "3Q 콜·10-Q"
+      },
+      {
+        "name": "2028년 이후 주문 절벽(약세)",
+        "thesis": "현장 발전은 전력망이 따라잡기 전까지의 다리일 뿐이라 주문이 꺾인다",
+        "inputs": "성장 감속·이익률",
+        "who": {
+          "sell": "중",
+          "buy": "강",
+          "retail": "-"
+        },
+        "drives": "multiple",
+        "quant": "2Q 뒤 FY2027 EPS 추정 +10%, 주가 −39.5%",
+        "status": "강화",
+        "falsifier": "2029~31 슬롯의 주문 전환 공시",
+        "source": "주가·추정 이력"
+      },
+      {
+        "name": "설치 기반 서비스",
+        "thesis": "신규 설치분이 MW당 연 5만$ 이상의 서비스 매출을 만든다",
+        "inputs": "이익률·지속성",
+        "who": {
+          "sell": "중",
+          "buy": "중",
+          "retail": "-"
+        },
+        "drives": "revision",
+        "quant": "서비스 강도 MW당 연 5만$ 이상(경영진 발언, 확신도 0.5)",
+        "status": "유지",
+        "falsifier": "서비스 마진 하락, 고객 자체 정비 확대",
+        "source": "3Q 콜(리포트)"
+      },
+      {
+        "name": "보호예수 해제와 지배주주 매각(약세)",
+        "thesis": "11/30 뒤 Advent·ADIA 물량이 시장에 나온다",
+        "inputs": "할인율·수급",
+        "who": {
+          "sell": "중",
+          "buy": "강",
+          "retail": "-"
+        },
+        "drives": "multiple",
+        "quant": "매도 가능 6.47억 주 = 유통주식 1.04억 주의 6.2배, 시가 $10.5B",
+        "status": "강화",
+        "falsifier": "블록 매각이 할인 5% 안에서 소화되거나 주주가 추가 보호예수를 약속",
+        "source": "3Q 10-Q 위험요인"
+      }
+    ],
+    "attention_raw": {
+      "telegram": "0",
+      "news_global": "40",
+      "news_local": "3",
+      "seeking_alpha": "9",
+      "substack": "0",
+      "research_feeds": "0",
+      "sellside_events": "0"
+    },
+    "lead": {
+      "summary": "**시장이 산 이야기는 '전력망을 못 기다리는 데이터센터가 가스엔진을 깐다'는 것이다.** 수요는 숫자로 나왔다. 12개월 장비 수주 $6.8B, 장비 잔고 $8.0B, 잔고+슬롯 약 19GW다. 그런데 주가는 종가 고점 $41.13에서 $13.77로 −67%이고 공모가 $27의 절반 아래다. 11/4~5 선거 뒤 이틀에 −27%가 더해졌다. 쟁점은 수요가 아니라 ①2029년 뒤 지속 기간 ②고객 집중 ③11/30 보호예수 해제 ④선거 뒤 데이터센터 반발이다.",
+      "value_story": "값은 두 줄이다. 장비는 GW × kW당 가격이고 3Q는 1.2GW × 약 $650이다. 서비스는 설치 기반 × MW당 연 매출이고 44GW × $30k에서 새 물량은 $50k 이상으로 간다. 2028년까지 장비 이익은 잔고가 거의 정했다. 값을 가르는 것은 2029년 뒤 주문과 서비스 전환이다.",
+      "premium": {
+        "multiple": "Fwd 1Y EV/EBITDA 10.8배로 동종 중앙값 15.0배보다 28% 낮다(11/6 종가 기준). 상장 뒤 7월 말 21배에서 10/30 12.5배, 선거 뒤 10.8배로 내려왔다. 프리미엄이 할인으로 뒤집힌 뒤 더 벌어졌다.",
+        "eps": "FY2027 EPS 컨센서스는 2Q 실적 전 $0.77에서 $0.85로 +10%, FY2028은 $0.99에서 $1.10으로 +11%이고 선거 뒤 바뀌지 않았다. 제출이 2~3명뿐이라 표본이 얇다."
+      },
+      "why_excited": "6월 IPO 때 $27에 나와 3주 만에 $42.95를 찍었다. VoltaGrid 2.3GW 수주, 전력망 접속 대기 6년 이상 숫자, 연 3.5GW → 10GW 초과 증설이 겹쳤다. 식은 순서는 이렇다. 7/28 2Q 장비 마진 14%, 9월 공매도 급증, 10/22 GE Vernova 급락, 10/29 Caterpillar 실적 뒤 동반 매도, 11/4~5 중간선거 뒤 데이터센터 반발 우려 매도다.",
+      "products": [
+        {
+          "kind": "제품",
+          "name": "가스엔진 장비",
+          "what": "Jenbacher J620·J624·Type 6 발전 엔진, Waukesha 압축·발전 엔진과 컨테이너 패키지",
+          "use": "데이터센터 현장 주전원, 열병합·분산 발전, 가스 압축",
+          "money": "3Q 장비 $778M — 데이터센터 $463M·전력 $239M·압축 $75M, 세그먼트 EBITDA 17.1%"
+        },
+        {
+          "kind": "서비스",
+          "name": "엔진 애프터서비스",
+          "what": "장기 서비스 계약, 부품, 오버홀, 재제조",
+          "use": "설치 기반 약 44GW 엔진의 수명 관리",
+          "money": "3Q $390M(계약 $122M·건별 $269M), 세그먼트 EBITDA 31.7%"
+        },
+        {
+          "kind": "기술",
+          "name": "myPlant",
+          "what": "AI 기반 엔진 군 원격 관리",
+          "use": "원격 감시, 정비 시점 예측",
+          "money": "서비스 매출에 포함, 별도 공시 없음"
+        }
+      ],
+      "lenses": [
+        {
+          "lens": "구조적 체질 변화",
+          "change": "CHP·유럽 회사에서 미국 데이터센터 장비 회사로 바뀌었다",
+          "evidence": "데이터센터가 12개월 장비 수주의 67%. 북미 매출 비중 확대, TTM 장비 비중 58%로 +6%p",
+          "drives": "both",
+          "status": "강화",
+          "falsifier": "데이터센터 수주가 2분기 연속 전년 대비 감소"
+        },
+        {
+          "lens": "고부가 믹스 확장",
+          "change": "kW당 가격과 서비스 강도가 함께 오른다. 다만 컨테이너 범위는 마진을 깎는다",
+          "evidence": "$/kW 3Q 약 $650, 앞으로 $600 이상. 장비 마진 2Q 14% → 3Q 17.1%. 서비스 강도 $30k → $50k 초과",
+          "drives": "both",
+          "status": "강화",
+          "falsifier": "장비 마진 2분기 연속 15% 미만"
+        },
+        {
+          "lens": "기술 혁신",
+          "change": "새 기술보다 부하 추종과 물 사용이 판매 논리다",
+          "evidence": "Type 6 물 0.1L/MWh 미만(회사 자료, 터빈 최대 200L). 회사 주장이고 독립 시험은 확인 못 했다",
+          "drives": "multiple",
+          "status": "유지",
+          "falsifier": "연료전지·소형 터빈이 같은 현장에서 수주를 뺏는다"
+        },
+        {
+          "lens": "실행 속도",
+          "change": "납품은 늘고 납기는 고객 대기 상태다. 3Q 1.2GW, 4Q 약 1.5GW",
+          "evidence": "Liberty 450MW 2026-09 수주 → 2028 납품, VoltaGrid 1.5GW 2026-02 수주 → 2028까지. 공장 납기 월수는 회사가 공개하지 않아 수주 공시로 환산했다",
+          "drives": "revision",
+          "status": "강화",
+          "falsifier": "2027 인도 가이던스가 6GW 아래",
+          "lead_time": {
+            "unit": "개월",
+            "now": [
+              16,
+              27
+            ],
+            "prior": "미확인",
+            "prior_when": "2025년",
+            "peers": [
+              {
+                "name": "Caterpillar",
+                "value": "미확인"
+              },
+              {
+                "name": "Wärtsilä",
+                "value": "미확인"
+              }
+            ]
+          }
+        },
+        {
+          "lens": "M&A",
+          "change": "규모보다 서비스 거점 인수다",
+          "evidence": "Enerflex 아시아태평양 애프터마켓 $61.6M, 9/30 종결. M&A 때 레버리지 2.5배 허용",
+          "drives": "revision",
+          "status": "유지",
+          "falsifier": "레버리지를 넘는 대형 인수"
+        },
+        {
+          "lens": "CAPEX 낙수효과",
+          "change": "하이퍼스케일러 투자가 VoltaGrid·Liberty·Aggreko 같은 중간 공급자를 거쳐 온다",
+          "evidence": "3Q 620MW 후속, Liberty 450MW, Aggreko 2031 연장. 회사는 네오클라우드 무배정이라 밝혔다. 최종 고객명은 비공개",
+          "drives": "revision",
+          "status": "유지",
+          "falsifier": "중간 공급자의 자금 조달 실패, 하이퍼스케일러 CAPEX 가이던스 하향"
+        }
+      ],
+      "policy": {
+        "fiscal": {
+          "change": "해당 없음(보조금·세액공제에 기대는 사업이 아니다. 10-Q 보조금 금액 공시 없음)"
+        },
+        "orders": {
+          "change": "미국 관세가 오스트리아산 엔진 원가를 건드린다. 회사는 Waukesha 조립으로 현지화 중이다",
+          "evidence": "10-Q 위험요인, 첫 Jenbacher 발전기 Waukesha 조립. 비교: Caterpillar 2026 관세 약 $2.2B",
+          "drives": "revision",
+          "status": "시행",
+          "falsifier": "관세 인상분을 가격에 못 넘겨 장비 마진이 내려간다",
+          "house": {
+            "level": 1,
+            "why": "행정부 조치로 관련 표결을 찾지 못했다"
+          },
+          "senate": {
+            "level": 1,
+            "why": "같음"
+          }
+        },
+        "laws": {
+          "change": "주 단위 데이터센터 규칙이 변수다. 고객 프로젝트 대부분이 텍사스다",
+          "evidence": "3Q 콜 Baird 질문. 프로젝트 1건 1주 지연 뒤 해소",
+          "drives": "multiple",
+          "status": "감시",
+          "falsifier": "텍사스 인허가로 주문 지연·취소 공시"
+        }
+      }
+    }
   },
-  {
-   "date": "2026-10-14",
-   "tag": "Morgan Stanley 목표가 $47 → $40",
-   "kind": "rating"
+  "forward": {
+    "as_of": "2026-11-06",
+    "ntm": {
+      "eps": 0.78,
+      "ebitda": 1107550000,
+      "ebit": 881940000,
+      "revenue": 5137910000,
+      "rev_ttm": 3514800000
+    },
+    "horizons": {
+      "2": {
+        "eps": 1.03,
+        "ebitda": 1333700000,
+        "ext": 0
+      },
+      "3": {
+        "eps": 1.2917085759504885,
+        "ebitda": null,
+        "ext": 3
+      }
+    },
+    "guided": {
+      "eps": false,
+      "ebitda": true
+    },
+    "src": {
+      "pe_fwd": "street",
+      "ev_ebitda_fwd": "street"
+    },
+    "source": "Fiscal.ai Forward 배수 → Street Forward. INIO는 회사 추정 묶음이 없어 애널리스트 분기 추정으로 다음 4개 분기를 합산. Fwd 2Y EBITDA는 4Q27~3Q28 매출 추정 $5.93B × FY2027 EBITDA 마진 22.5%로 모델 추정, Fwd 3Y EBITDA는 추정 없음. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(순차입 9/30 고정). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
   },
-  {
-   "date": "2026-10-12",
-   "tag": "Citi 목표가 $30 → $22",
-   "kind": "rating"
+  "main_metric": "ebitda",
+  "main_metric_why": "회사가 매출과 조정 EBITDA만 가이던스로 낸다. EPS는 텀론 이자와 인수 상각이 커서 이익 체력을 덜 보여 준다",
+  "moat": {
+    "summary": "해자는 설치 기반 서비스다. 슬롯은 공급 부족이 끝나면 시험받고, 기술 우위는 경쟁이 있다.",
+    "items": [
+      {
+        "kind": "설치 기반 서비스",
+        "verdict": "강함",
+        "claim": "엔진을 판 뒤 수명 내내 부품과 오버홀을 맡는다",
+        "evidence": "3Q 콜: 설치 기반 약 44GW, TTM 서비스 $1.5B, 엔진 1대 수명 서비스 EBITDA는 장비 EBITDA의 약 2.5배. 고객 계약 10~15년",
+        "quant": "서비스 EBITDA 마진 약 32%, 장비 17.1%",
+        "falsifier": "고객이 인건 범위 외 부품까지 자체 조달, 서비스 마진 하락"
+      },
+      {
+        "kind": "슬롯과 take-or-pay 계약",
+        "verdict": "보통",
+        "claim": "취소 불가 슬롯과 선금으로 2029~31 수요를 묶는다",
+        "evidence": "3Q 콜: 잔고+슬롯 약 19GW, 슬롯 취소·양도 불가, 주문 대부분 take-or-pay. 10-Q RPO $10.9B, 71%가 24개월 안",
+        "quant": "19GW ÷ 2030 연 캐파 10GW = 약 1.9년 치, 지금 캐파 기준 약 5.4년 치",
+        "falsifier": "슬롯이 6~18개월 안에 주문으로 안 바뀌거나 위약금 소송이 난다"
+      },
+      {
+        "kind": "왕복동 가스엔진 기술",
+        "verdict": "보통",
+        "claim": "부분부하 효율, 빠른 부하 추종, 모듈 증설로 터빈·연료전지 틈을 잡는다",
+        "evidence": "회사 자료 기준이고 비교 시험은 미확인. 왕복동 경쟁자는 Caterpillar, Wärtsilä, Rolls-Royce, Cummins",
+        "quant": "Caterpillar 3Q Power Generation 매출 +30%",
+        "falsifier": "Caterpillar·Wärtsilä 증설 뒤 kW당 가격이 $600 아래로"
+      },
+      {
+        "kind": "고객 선수금 자금 구조",
+        "verdict": "약함",
+        "claim": "증설 자금을 고객이 댄다. 수주가 꺾이면 반대로 작동한다",
+        "evidence": "10-Q 9개월 영업현금 $741.5M 중 계약부채 증가가 $797.0M",
+        "quant": "계약부채 증가를 빼면 영업현금 −$55.5M",
+        "falsifier": "수주 둔화로 계약부채가 감소"
+      }
+    ]
   },
-  {
-   "date": "2026-10-08",
-   "tag": "Aggreko 2031 연장",
-   "kind": "8-K"
+  "multiple_view": {
+    "adj": -0.1,
+    "why": "상위 5개 고객이 9개월 매출의 54%이고 중간 공급자 비중이 높으며, 재무보고 내부통제의 중대한 취약점이 남아 동종 수준 배수를 다 주지 않는다"
   },
-  {
-   "date": "2026-09-22",
-   "tag": "Moody's·Fitch 등급 상향",
-   "kind": "rating"
+  "target_view": {
+    "adj": -0.1,
+    "why": "11/30 보호예수 해제 물량이 유통주식의 6.2배다. 요인에 잡히지 않는 수급 부담이라 목표 위치를 조금 낮춘다"
   },
-  {
-   "date": "2026-09-17",
-   "tag": "Liberty 450MW 수주",
-   "kind": "8-K"
+  "next_event": {
+    "date": "2026-11-30",
+    "tag": "IPO 보호예수 만료, 6.47억 주 매도 가능"
   },
-  {
-   "date": "2026-07-28",
-   "tag": "2Q 실적, 장비 마진 14%",
-   "kind": "earnings"
+  "terms": {
+    "Jenbacher": "INNIO의 가스엔진 브랜드",
+    "Waukesha": "INNIO의 미국 가스엔진 브랜드이자 위스콘신 공장 지역",
+    "J620": "Jenbacher 20기통 가스엔진",
+    "J624": "Jenbacher 24기통 가스엔진",
+    "Type 6": "Jenbacher 6세대 엔진 계열",
+    "myPlant": "INNIO의 엔진 군 원격 관리 플랫폼",
+    "VoltaGrid": "가스엔진으로 현장 전력을 파는 미국 회사",
+    "Aggreko": "영국 임대 발전 회사",
+    "Liberty Energy": "미국 유전 서비스·전력 회사",
+    "Clarke Energy": "Jenbacher 유통·시공 회사",
+    "Enerflex": "캐나다 가스 설비 회사",
+    "Advent": "미국 사모펀드 Advent International",
+    "ADIA": "아부다비 투자청",
+    "AI Alpine": "Advent·ADIA 공동 지주회사",
+    "CHP": "열병합 발전",
+    "take-or-pay": "안 받아도 대금을 내는 계약",
+    "RPO": "계약했지만 아직 매출로 잡지 않은 금액",
+    "RCF": "회전 신용 한도",
+    "CAT": "미국 Caterpillar",
+    "CMI": "미국 엔진 회사 Cummins",
+    "GEV": "미국 GE Vernova",
+    "BE": "미국 연료전지 회사 Bloom Energy",
+    "WRT1V": "핀란드 Wärtsilä",
+    "Baron": "미국 운용사 Baron Capital",
+    "Osram": "독일 조명 회사",
+    "Exyte": "독일 공장 설계·시공 회사",
+    "ThyssenKrupp": "독일 철강·산업재 회사",
+    "Vantage": "미국 데이터센터 회사 Vantage Data Centers",
+    "Layer Zero Power Systems": "데이터센터 전력 장비 회사",
+    "Republic Services": "미국 폐기물 회사",
+    "H.C. Starck": "독일 소재 회사",
+    "IPO": "기업공개",
+    "GW": "기가와트",
+    "MW": "메가와트",
+    "kW": "킬로와트",
+    "BTM": "전력망을 거치지 않는 현장 발전",
+    "Rolls-Royce": "영국 엔진 회사",
+    "Morgan Stanley": "미국 투자은행",
+    "JPM": "J.P. Morgan",
+    "Citi": "미국 Citigroup",
+    "RBC": "캐나다 Royal Bank",
+    "FCF": "잉여현금흐름",
+    "GE": "미국 General Electric",
+    "INNIO": "이 회사",
+    "MWh": "메가와트시",
+    "OEM": "완제품 제조사",
+    "ACV": "연간 계약 가치",
+    "CUSUM": "누적합 변화 감지 통계",
+    "EU": "유럽연합",
+    "KR": "한국",
+    "MY": "말레이시아",
+    "PPI": "생산자물가지수",
+    "EDGAR": "미국 SEC 전자공시 시스템",
+    "GRID": "전력망 인프라 업종 ETF"
+  },
+  "pipeline": {
+    "as_of": "2026-09-30",
+    "reported_backlog": 8.0,
+    "backlog_label": "장비 수주잔고",
+    "summary": "확정 장비 잔고 $8.0B, RPO $10.9B다. 슬롯은 약 19GW의 일부이고 금액 미공개라 확정 합계에 넣지 않았다.",
+    "items": [
+      {
+        "name": "장비 수주잔고 전체",
+        "status": "확정",
+        "total": 8.0,
+        "progress": "미확인",
+        "margin": 0.171,
+        "margin_kind": "세그먼트 EBITDA",
+        "margin_basis": "3Q 장비 마진",
+        "speed": "3Q 1.2GW, 4Q 약 1.5GW 전망",
+        "blockers": [
+          "Jenbach 라인 증설",
+          "숙련 인력",
+          "부품 공급"
+        ],
+        "source": "3Q 콜"
+      },
+      {
+        "name": "RPO 중 장비 잔고 밖 금액",
+        "status": "확정",
+        "total": 2.9,
+        "progress": "미확인",
+        "margin": "미확인",
+        "speed": "RPO $10.9B 중 71%가 24개월 안 인식, 구성은 차이로 추정",
+        "blockers": [
+          "서비스 계약 착수 시점"
+        ],
+        "source": "3Q 10-Q 주석"
+      },
+      {
+        "name": "VoltaGrid 2.3GW",
+        "status": "확정",
+        "no_sum": true,
+        "total": "미확인",
+        "progress": "미확인",
+        "margin": "미확인",
+        "speed": "2025-10 수주, 잔고에 포함",
+        "blockers": [
+          "VoltaGrid 자금 조달",
+          "현장 인허가"
+        ],
+        "source": "2025-10 보도자료"
+      },
+      {
+        "name": "VoltaGrid 1.5GW",
+        "status": "확정",
+        "no_sum": true,
+        "total": "미확인",
+        "progress": "미확인",
+        "margin": "미확인",
+        "speed": "2026-02 수주, 2028까지 납품",
+        "blockers": [
+          "엔진 300대 생산 슬롯"
+        ],
+        "source": "2026-02 보도자료"
+      },
+      {
+        "name": "Liberty Energy 450MW",
+        "status": "확정",
+        "no_sum": true,
+        "total": "미확인",
+        "progress": "미확인",
+        "margin": "미확인",
+        "start": "2026-09",
+        "speed": "2028 납품",
+        "blockers": [
+          "Liberty의 고객 계약"
+        ],
+        "source": "2026-09-17 보도, 3Q 콜"
+      },
+      {
+        "name": "데이터센터 후속 620MW",
+        "status": "확정",
+        "no_sum": true,
+        "total": "미확인",
+        "progress": "미확인",
+        "margin": "미확인",
+        "speed": "3Q 전후 수주, 서비스 계약 500MW 동반",
+        "blockers": [
+          "개발사 일정"
+        ],
+        "source": "2026-10-22 보도, 3Q 콜"
+      },
+      {
+        "name": "Aggreko 2031 연장",
+        "status": "프레임워크",
+        "no_sum": true,
+        "total": "미확인",
+        "progress": "미확인",
+        "margin": "미확인",
+        "speed": "2027년 말까지 최소 450MW 주문·납품",
+        "blockers": [
+          "개별 발주"
+        ],
+        "source": "2026-10-08 보도, 3Q 콜"
+      },
+      {
+        "name": "슬롯 예약",
+        "status": "파이프라인",
+        "no_sum": true,
+        "total": "미확인",
+        "progress": "미확인",
+        "margin": "미확인",
+        "speed": "회사 설명: 6~18개월 뒤 주문 전환, 2029~31 슬롯 서명",
+        "blockers": [
+          "고객 프로젝트 일정",
+          "회사 슬롯 금액 미공개"
+        ],
+        "source": "3Q 콜"
+      }
+    ]
+  },
+  "leaders": {
+    "as_of": "2026-11-02",
+    "summary": "창업자 없는 사모펀드 분사 회사다. Advent가 사실상 지배하고, 의장은 전 Cummins CEO, 이사에 전 Vantage COO가 있다. 공개 자료로 확인한 정치 연결은 없다.",
+    "people": [
+      {
+        "name": "Olaf Berlien",
+        "role": "CEO·사장",
+        "since": "2021-10",
+        "profile": "Osram CEO(2015~2021), Exyte CEO, ThyssenKrupp 임원(2002~2013) 출신. 독일 대형 산업재 경력",
+        "business": "독일 산업재 경영진 네트워크",
+        "political": "미확인",
+        "alumni": "베를린공대 경영·경제 박사",
+        "social": "미확인",
+        "source": "2026-06 투자설명서"
+      },
+      {
+        "name": "Dennis Schulze",
+        "role": "CFO·M&A 총괄",
+        "since": "2019-04",
+        "profile": "H.C. Starck 그룹 CFO 출신. 사모펀드 소유 회사 재무 경력",
+        "business": "사모펀드 포트폴리오 재무",
+        "political": "미확인",
+        "alumni": "미확인",
+        "social": "미확인",
+        "source": "2026-06 투자설명서"
+      },
+      {
+        "name": "Tom Linebarger",
+        "role": "이사회 의장",
+        "since": "2026(상장)",
+        "profile": "Cummins CEO(2012~2022), 회장(~2023). Republic Services 이사. IPO에서 $2.5M 장내 매수",
+        "business": "왕복동 엔진 업계 최고경영자 경력",
+        "political": "미확인",
+        "alumni": "미확인",
+        "social": "미확인",
+        "source": "2026-06 투자설명서, Form 4"
+      }
+    ],
+    "value": [
+      {
+        "network": "비즈니스",
+        "link": "Advent — 지분 지배, 이사 3석(Sen·Chauhan·Thuerbach)",
+        "strength": 5,
+        "exposure": 3.515,
+        "basis": "회사 전체 TTM 매출",
+        "evidence": "투자설명서: Advent가 AI Alpine Parent 지분 53.8%, 주요 주주 지분 86.2%"
+      },
+      {
+        "network": "비즈니스",
+        "link": "이사 Chris Yetman(전 Vantage COO) — 데이터센터 고객층",
+        "strength": 2,
+        "exposure": "미확인",
+        "basis": "Vantage 관련 INNIO 매출 공시 없음",
+        "evidence": "투자설명서. Vantage는 VoltaGrid 고객이라는 보도가 있다"
+      },
+      {
+        "network": "정계",
+        "link": "정부·의회 직책 연결",
+        "strength": 0,
+        "exposure": "미확인",
+        "basis": "투자설명서에서 찾지 못했다. 로비 공시는 이번 회차에 확인하지 못했다",
+        "evidence": "2026-06 투자설명서"
+      }
+    ]
+  },
+  "events": [
+    {
+      "date": "2026-11-05",
+      "tag": "선거 이틀째 하락 — 직접 원인 1차 미확인",
+      "kind": "market"
+    },
+    {
+      "date": "2026-11-04",
+      "tag": "중간선거 뒤 AI 전력·데이터센터주 동반 매도(보도)",
+      "kind": "market"
+    },
+    {
+      "date": "2026-10-30",
+      "tag": "JPM 목표가 $33 → $31, 전력주 동반 약세",
+      "kind": "market"
+    },
+    {
+      "date": "2026-10-29",
+      "tag": "Caterpillar 실적 뒤 AI 전력주 매도",
+      "kind": "market"
+    },
+    {
+      "date": "2026-10-27",
+      "tag": "3Q 실적·가이던스 상향",
+      "kind": "earnings"
+    },
+    {
+      "date": "2026-10-22",
+      "tag": "620MW 수주, GE Vernova 급락일",
+      "kind": "market"
+    },
+    {
+      "date": "2026-10-14",
+      "tag": "Morgan Stanley 목표가 $47 → $40",
+      "kind": "rating"
+    },
+    {
+      "date": "2026-10-12",
+      "tag": "Citi 목표가 $30 → $22",
+      "kind": "rating"
+    },
+    {
+      "date": "2026-10-08",
+      "tag": "Aggreko 2031 연장",
+      "kind": "8-K"
+    },
+    {
+      "date": "2026-09-22",
+      "tag": "Moody's·Fitch 등급 상향",
+      "kind": "rating"
+    },
+    {
+      "date": "2026-09-17",
+      "tag": "Liberty 450MW 수주",
+      "kind": "8-K"
+    },
+    {
+      "date": "2026-07-28",
+      "tag": "2Q 실적, 장비 마진 14%",
+      "kind": "earnings"
+    }
+  ],
+  "revision_events": [
+    {
+      "date": "2026-06-04",
+      "kind": "내러티브",
+      "tag": "IPO $27",
+      "q": "",
+      "session": ""
+    },
+    {
+      "date": "2026-07-28",
+      "kind": "실적",
+      "tag": "2Q26 실적, 장비 마진 14%",
+      "q": "2Q26",
+      "session": "before"
+    },
+    {
+      "date": "2026-09-17",
+      "kind": "내러티브",
+      "tag": "Liberty 450MW 수주",
+      "q": "",
+      "session": ""
+    },
+    {
+      "date": "2026-10-22",
+      "kind": "내러티브",
+      "tag": "620MW 수주, GE Vernova 급락",
+      "q": "",
+      "session": ""
+    },
+    {
+      "date": "2026-10-27",
+      "kind": "실적",
+      "tag": "3Q26 실적, 가이던스 상향",
+      "q": "3Q26",
+      "session": "before"
+    },
+    {
+      "date": "2026-10-29",
+      "kind": "내러티브",
+      "tag": "Caterpillar 실적 뒤 전력주 매도",
+      "q": "",
+      "session": ""
+    }
+  ],
+  "quarters_hist": {
+    "source": "Fiscal.ai company_financials_standardized",
+    "key": "NASDAQ_INIO",
+    "currency": "USD",
+    "q": [
+      {
+        "period": "2025-03-31",
+        "rev": 494000000,
+        "cogs": 304600000,
+        "gp": 189400000,
+        "sga": 97000000,
+        "rd": 19300000,
+        "da": null,
+        "other": -1800000,
+        "op": 74900000
+      },
+      {
+        "period": "2025-06-30",
+        "rev": 659500000,
+        "cogs": 431100000,
+        "gp": 228400000,
+        "sga": 101400000,
+        "rd": 27200000,
+        "da": null,
+        "other": -1300000,
+        "op": 101100000
+      },
+      {
+        "period": "2025-09-30",
+        "rev": 742700000,
+        "cogs": 502100000,
+        "gp": 240600000,
+        "sga": 119000000,
+        "rd": 30300000,
+        "da": null,
+        "other": -1300000,
+        "op": 92600000
+      },
+      {
+        "period": "2025-12-31",
+        "rev": 740600000,
+        "cogs": 487200000,
+        "gp": 253400000,
+        "sga": 149700000,
+        "rd": 26700000,
+        "da": null,
+        "other": -900000,
+        "op": 77900000
+      },
+      {
+        "period": "2026-03-31",
+        "rev": 668600000,
+        "cogs": 434800000,
+        "gp": 233800000,
+        "sga": 143000000,
+        "rd": 28900000,
+        "da": null,
+        "other": -1200000,
+        "op": 63100000
+      },
+      {
+        "period": "2026-06-30",
+        "rev": 937700000,
+        "cogs": 629800000,
+        "gp": 307900000,
+        "sga": 232200000,
+        "rd": 31900000,
+        "da": null,
+        "other": -1300000,
+        "op": 45100000
+      },
+      {
+        "period": "2026-09-30",
+        "rev": 1167900000,
+        "cogs": 800200000,
+        "gp": 367700000,
+        "sga": 142600000,
+        "rd": 32200000,
+        "da": null,
+        "other": -700000,
+        "op": 193600000
+      }
+    ],
+    "note": "INNIO는 2026-06 상장 — 공개된 분기 손익은 1Q25부터 7개뿐이다(표본 부족)"
+  },
+  "segments_hist": {
+    "segments": {
+      "가스엔진 장비": [
+        {
+          "period": "2025-03-31",
+          "rev": 210200000.0
+        },
+        {
+          "period": "2025-06-30",
+          "rev": 354100000.0
+        },
+        {
+          "period": "2025-09-30",
+          "rev": 417400000.0
+        },
+        {
+          "period": "2025-12-31",
+          "rev": 383700000.0
+        },
+        {
+          "period": "2026-03-31",
+          "rev": 322400000.0
+        },
+        {
+          "period": "2026-06-30",
+          "rev": 569300000.0
+        },
+        {
+          "period": "2026-09-30",
+          "rev": 777600000.0
+        }
+      ],
+      "엔진 애프터서비스": [
+        {
+          "period": "2025-03-31",
+          "rev": 283800000.0
+        },
+        {
+          "period": "2025-06-30",
+          "rev": 305400000.0
+        },
+        {
+          "period": "2025-09-30",
+          "rev": 325300000.0
+        },
+        {
+          "period": "2025-12-31",
+          "rev": 356900000.0
+        },
+        {
+          "period": "2026-03-31",
+          "rev": 346200000.0
+        },
+        {
+          "period": "2026-06-30",
+          "rev": 368400000.0
+        },
+        {
+          "period": "2026-09-30",
+          "rev": 390300000.0
+        }
+      ]
+    },
+    "source": "Fiscal.ai 손익계산서 공시 항목 Sales of equipment and products · Sales of services(10-Q·424B4), 조회 2026-11-07. 상장 전 분기 없음"
+  },
+  "photos": [
+    {
+      "for": "product",
+      "name": "가스엔진 장비",
+      "file": "File:GE Jenbacher Gas Engines.jpg",
+      "caption": "Jenbacher 가스엔진(GE 소유 시절 브랜드 표기)"
+    },
+    {
+      "for": "site",
+      "name": "Waukesha 공장(미국 위스콘신)",
+      "file": "File:Barack Obama visit to Waukesha Gas Engines (12230202753).jpg",
+      "caption": "Waukesha 가스엔진 공장 내부(2014년 방문 행사 사진)"
+    }
+  ],
+  "margin": {
+    "as_of": "2026-09-30",
+    "basis": "GAAP",
+    "summary": "TTM 매출원가는 매출의 66.9%로 FY2025 65.4%보다 1.5%p 올랐다. 장비 비중이 커진 믹스 탓이다 — 장비 매출총이익률은 25.5%, 서비스는 43.7%다. 판관비는 17.7%에서 19.0%로 올랐는데 2Q26 판관비 $232.2M(1Q $143.0M, 3Q $142.6M)이 튄 몫이 크고, 일회성 여부는 미확인이다",
+    "periods": [
+      {
+        "period": "FY2025",
+        "rev": 2.6368,
+        "cogs": 1.725,
+        "rd": 0.1035,
+        "sga": 0.4671,
+        "other": -0.0053
+      },
+      {
+        "period": "TTM 3Q26",
+        "rev": 3.5148,
+        "cogs": 2.352,
+        "rd": 0.1197,
+        "sga": 0.6675,
+        "other": -0.0041
+      }
+    ],
+    "costs": [
+      {
+        "name": "장비 매출원가(엔진 부품·조립·공장 간접비)",
+        "stage": "매출원가",
+        "pct_rev": 0.4351,
+        "prior_pct": 0.3772,
+        "fixed": "미확인",
+        "driver": "장비 비중 확대(데이터센터)·컨테이너 패키지 범위",
+        "basis": "공시",
+        "source": "10-Q·424B4 Cost of equipment and products sold(Fiscal.ai), TTM $1,529.2M vs FY2025 $994.5M"
+      },
+      {
+        "name": "서비스 매출원가(교체 부품·현장 정비 인력)",
+        "stage": "매출원가",
+        "pct_rev": 0.2341,
+        "prior_pct": 0.277,
+        "fixed": "미확인",
+        "driver": "설치 기반 정비 물량",
+        "basis": "공시",
+        "source": "총 매출원가 − 장비 매출원가(10-Q), TTM $822.8M vs FY2025 $730.5M"
+      },
+      {
+        "name": "판관비",
+        "stage": "판관비",
+        "pct_rev": 0.1899,
+        "prior_pct": 0.1771,
+        "fixed": 0.7,
+        "driver": "상장 회사 비용·인력 확대, 2Q26 급증분 미확인",
+        "basis": "공시",
+        "source": "Fiscal.ai 표준화 손익(10-Q)"
+      },
+      {
+        "name": "연구개발비",
+        "stage": "연구개발",
+        "pct_rev": 0.0341,
+        "prior_pct": 0.0393,
+        "fixed": 0.9,
+        "driver": "Type 6·수소 혼소 엔진 개발",
+        "basis": "공시",
+        "source": "Fiscal.ai 표준화 손익(10-Q)"
+      }
+    ],
+    "products": [
+      {
+        "name": "가스엔진 장비",
+        "rev_share": 0.584,
+        "gpm": 0.255,
+        "gpm_basis": "TTM 장비 매출 $2,053.0M − 장비 매출원가 $1,529.2M(10-Q·Fiscal.ai). rev_share는 TTM 장비 ÷ 총매출",
+        "bom": [
+          {
+            "item": "엔진 주조·단조 부품(블록·크랭크샤프트·실린더 헤드)",
+            "share": [
+              0.2,
+              0.35
+            ],
+            "basis": "추정",
+            "source": "왕복동 엔진 원가 구조(업계 일반) — 회사 미공시",
+            "pass_through": "미확인",
+            "why": "가장 무겁고 납기가 긴 부품"
+          },
+          {
+            "item": "터보차저·연료·점화 계통",
+            "share": [
+              0.1,
+              0.2
+            ],
+            "basis": "추정",
+            "source": "업계 일반 — 회사 미공시",
+            "pass_through": "미확인",
+            "why": "출력·효율을 정하는 핵심 보기류"
+          },
+          {
+            "item": "발전기(교류 발전기)·제어반",
+            "share": [
+              0.1,
+              0.2
+            ],
+            "basis": "추정",
+            "source": "업계 일반 — 회사 미공시",
+            "input": "copper",
+            "pass_through": "미확인",
+            "why": "발전 패키지에 들어가는 전기 부품, 구리 가격에 민감"
+          },
+          {
+            "item": "조립 인력·공장 간접비(Jenbach·Waukesha)",
+            "share": [
+              0.15,
+              0.25
+            ],
+            "basis": "추정",
+            "source": "업계 일반 — 회사 미공시",
+            "pass_through": "미확인",
+            "why": "증설기에는 고정비 흡수가 마진을 좌우한다"
+          }
+        ]
+      },
+      {
+        "name": "엔진 애프터서비스",
+        "rev_share": 0.416,
+        "gpm": 0.437,
+        "gpm_basis": "TTM 서비스 매출 $1,461.8M − 서비스 매출원가 $822.8M(10-Q·Fiscal.ai)",
+        "bom": [
+          {
+            "item": "교체 부품(자사 순정 부품)",
+            "share": [
+              0.4,
+              0.6
+            ],
+            "basis": "추정",
+            "source": "업계 일반 — 회사 미공시",
+            "pass_through": "미확인",
+            "why": "부품 판매가 서비스 이익의 중심"
+          },
+          {
+            "item": "현장 정비 인력",
+            "share": [
+              0.25,
+              0.4
+            ],
+            "basis": "추정",
+            "source": "업계 일반 — 회사 미공시",
+            "pass_through": "미확인",
+            "why": "장기 계약은 인력 단가 상승 위험을 회사가 진다"
+          },
+          {
+            "item": "재제조·물류",
+            "share": [
+              0.05,
+              0.15
+            ],
+            "basis": "추정",
+            "source": "업계 일반 — 회사 미공시",
+            "pass_through": "미확인",
+            "why": "오버홀 엔진 왕복 물류"
+          }
+        ]
+      }
+    ]
+  },
+  "supply": {
+    "as_of": "2026-09-30",
+    "summary": "병목은 회사 공장의 증설 속도와 대형 주조·단조 부품이다. 회사는 2026년 약 4.5GW 인도에서 2030년 10GW 초과로 캐파를 늘린다고 했고, 3Q 콜은 위험 요인으로 부품 공급을 꼽았다. 공급사 이름·몫은 10-Q에 없다 — 아래 공급사 칸은 대부분 미공시·추정이다",
+    "links": [
+      {
+        "item": "엔진 주조·단조 부품(블록·크랭크샤프트·실린더 헤드)",
+        "critical": true,
+        "suppliers": [
+          {
+            "name": "외부 주조·단조 공급사(미공시)",
+            "role": "주요 구조 부품",
+            "status": "추정",
+            "source": "3Q26 콜 위험 요인(부품 공급)"
+          }
+        ],
+        "qualified": "미확인",
+        "capacity": "빠듯",
+        "capacity_basis": "회사 캐파를 2030년까지 2배 넘게 늘리려면 부품 공급도 같이 늘어야 한다(3Q 콜) — 공급사별 여유는 미공시",
+        "lead_weeks": "미확인",
+        "lead_normal": "미확인",
+        "requal_months": "미확인",
+        "top_share": "미확인",
+        "region_share": "미확인",
+        "region": "유럽·미국(추정)",
+        "secured": "미확인",
+        "why": "엔진 1대의 가장 무거운 부품이라 납기가 인도 일정을 정한다",
+        "relief": "미확인",
+        "source": "3Q26 콜 요지·10-Q"
+      },
+      {
+        "item": "터보차저·연료·점화 계통",
+        "critical": true,
+        "suppliers": [
+          {
+            "name": "외부 보기류 공급사(미공시)",
+            "role": "터보차저·점화",
+            "status": "추정",
+            "source": "업계 일반"
+          }
+        ],
+        "qualified": "미확인",
+        "capacity": "미확인",
+        "capacity_basis": "공시 없음",
+        "lead_weeks": "미확인",
+        "lead_normal": "미확인",
+        "requal_months": "미확인",
+        "top_share": "미확인",
+        "region_share": "미확인",
+        "region": "미확인",
+        "secured": "미확인",
+        "why": "출력·효율 사양을 정해 공급사를 바꾸려면 재인증이 필요하다(추정)",
+        "relief": "미확인",
+        "source": "업계 일반 — 회사 미공시"
+      },
+      {
+        "item": "발전기(교류 발전기)·제어반",
+        "critical": false,
+        "suppliers": [
+          {
+            "name": "외부 발전기 제조사(미공시)",
+            "role": "발전 패키지 전기 부품",
+            "status": "추정",
+            "source": "업계 일반"
+          }
+        ],
+        "qualified": "미확인",
+        "capacity": "미확인",
+        "capacity_basis": "공시 없음",
+        "lead_weeks": "미확인",
+        "lead_normal": "미확인",
+        "requal_months": "미확인",
+        "top_share": "미확인",
+        "region_share": "미확인",
+        "region": "미확인",
+        "secured": "미확인",
+        "input": "copper",
+        "why": "데이터센터용 대형 패키지에서 전기 부품 몫이 커진다",
+        "relief": "미확인",
+        "source": "업계 일반 — 회사 미공시"
+      },
+      {
+        "item": "숙련 조립·정비 인력",
+        "critical": true,
+        "suppliers": [
+          {
+            "name": "자체 직원 약 5,600명",
+            "role": "조립·서비스",
+            "status": "공시",
+            "source": "회사 개요(Easyconomics, 직원 5,642명)"
+          }
+        ],
+        "qualified": 1,
+        "capacity": "빠듯",
+        "capacity_basis": "Waukesha 공장 500명 채용·$300M 투자 계획(2026-08 보도) — 채용 진척 미공시 · 1위 몫 100%는 외부 조달 없이 자체 인력만 쓴다는 뜻(회사 자체 시공·조립)",
+        "lead_weeks": "미확인",
+        "lead_normal": "미확인",
+        "requal_months": "미확인",
+        "top_share": 1.0,
+        "region_share": "미확인",
+        "region": "오스트리아·미국",
+        "secured": "내재화",
+        "why": "증설 캐파를 실제 인도로 바꾸는 것은 사람이다",
+        "relief": "미확인 — 채용은 의도이지 실행이 아니다",
+        "source": "2026-08-20 Milwaukee Journal Sentinel 보도·회사 2026-08-19 보도자료"
+      }
+    ]
+  },
+  "capacity": {
+    "as_of": "2026-09-30",
+    "unit": "GW/년(인도 기준)",
+    "summary": "회사는 명목 캐파를 따로 밝히지 않는다. 2026년 인도 계획 약 4.5GW를 지금 캐파로 보고, 2030년 10GW 초과가 목표다(3Q 콜). CAPEX는 FY2024 매출의 3.2%에서 FY2025 5.7%, TTM 8.3%로 올랐다. 유형자산 약정은 $368.7M이다(10-Q)",
+    "current": {
+      "nameplate": 4.5,
+      "utilization": "미확인",
+      "basis": "2026년 인도 계획 약 4.5GW(3Q26 콜) — 명목 캐파 미공시라 인도 계획으로 대신",
+      "source": "3Q26 어닝콜(2026-10-27) 요지"
+    },
+    "plans": [
+      {
+        "name": "Jenbach·Waukesha 증설(2030년 10GW 초과 목표)",
+        "add": 5.5,
+        "stage": "발표",
+        "online": "2030",
+        "capex": "미확인",
+        "blocker": "부품 공급·숙련 인력·공장 건설",
+        "source": "3Q26 어닝콜 요지"
+      },
+      {
+        "name": "Waukesha 공장 확장($300M·500명)",
+        "add": "미확인",
+        "stage": "발표",
+        "online": "미확인",
+        "capex": 0.3,
+        "blocker": "건설·채용",
+        "source": "회사 보도자료 2026-08-19, Milwaukee Journal Sentinel 2026-08-20"
+      }
+    ],
+    "capex": [
+      {
+        "period": "FY2023",
+        "capex": 0.064,
+        "rev": 2.015,
+        "kind": "실적"
+      },
+      {
+        "period": "FY2024",
+        "capex": 0.0683,
+        "rev": 2.1591,
+        "kind": "실적"
+      },
+      {
+        "period": "FY2025",
+        "capex": 0.151,
+        "rev": 2.6368,
+        "kind": "실적"
+      },
+      {
+        "period": "TTM 3Q26",
+        "capex": 0.2909,
+        "rev": 3.5148,
+        "kind": "실적"
+      }
+    ],
+    "capex_source": "실적 = 현금흐름표 유형자산 취득(Fiscal.ai 표준화, 424B4·10-Q). CAPEX 컨센서스·회사 가이던스는 확인하지 못했다(미확인)",
+    "sites_none": "소유 공장(오스트리아 Jenbach·미국 Waukesha)이 있으나 이번 재발행 회차에 위성 판독 등록을 하지 못했다 — 다음 회차 과제"
+  },
+  "customers": {
+    "as_of": "2026-09-30",
+    "period": "9M26",
+    "summary": "상위 5개 고객이 9개월 매출의 54%다(2025년 34%, 2024년 27%). 이름은 공시되지 않는다. 유통사 Clarke Energy가 2025년 매출의 15%, VoltaGrid가 2025년 장비 수주의 41%였다",
+    "items": [
+      {
+        "name": "상위 5개 고객(합계, 이름 미공시)",
+        "share": 0.54,
+        "prior": 0.34,
+        "basis": "공시",
+        "buys": "데이터센터·전력용 가스엔진",
+        "source": "3Q26 10-Q 매출 집중 공시(직전 = 2025년)",
+        "why": "개별 고객 몫은 공시되지 않는다"
+      },
+      {
+        "name": "Clarke Energy",
+        "share": 0.15,
+        "prior": "미확인",
+        "basis": "공시",
+        "buys": "Jenbacher 엔진(유통·시공, 간접 판매)",
+        "source": "424B4·10-Q(2025년 매출 15.0%)",
+        "why": "2025년 값이다. 유통사라 최종 고객은 그 뒤에 있다"
+      },
+      {
+        "name": "VoltaGrid",
+        "share": "미확인",
+        "prior": "미확인",
+        "basis": "공시",
+        "buys": "데이터센터 현장 발전용 J620 엔진",
+        "source": "424B4·10-Q(2025년 장비 수주의 41%, 2024년 14%)",
+        "why": "수주 비중이며 매출 비중은 공시되지 않는다"
+      }
+    ]
+  },
+  "recurring": {
+    "share": 0.416,
+    "kind": "서비스 계약·부품·오버홀(설치 기반 엔진)",
+    "base": "설치 기반 약 44GW(3Q26 콜)",
+    "base_growth": 0.1,
+    "years_to_recurring": 0,
+    "source": "TTM 서비스 매출 $1,461.8M ÷ 총매출 $3,514.8M(10-Q). 그중 장기 계약 3Q $121.5M·건별 $268.8M. 설치 기반 성장 약 10%는 2026년 인도 4.5GW ÷ 44GW(추정). 갱신율은 미공시. 새 데이터센터 엔진의 서비스 매출이 본격화하는 시점은 미확인"
+  },
+  "backlog": {
+    "conversion_months": 37.2,
+    "book_to_bill": 3.3,
+    "rpo_growth": 1.418,
+    "revenue_growth": 0.573,
+    "source": "RPO $10.9B ÷ TTM 월평균 매출 $0.293B = 37.2개월. RPO의 71%가 24개월 안 인식(10-Q) — 12개월 비중은 미공시. B/B 3.3은 TTM 장비 기준(3Q 콜). 증가율은 장비 잔고 $7.96B vs 전년 $3.29B(+142%). 매출 증가 +57%(3Q). 취소율 미공시 — 주문 대부분 take-or-pay·선금(콜). 상위 고객 몫은 고객 절"
+  },
+  "ma": {
+    "none": "최근 인수는 Enerflex 아시아태평양 애프터마켓 사업(2026-09-30 완료)뿐이고 인수가·대상 이익·시너지를 회사가 밝히지 않아 램프 모델을 세우지 않는다"
+  },
+  "pq": {
+    "why": "장비 매출 ÷ 인도 GW로 kW당 가격을, 인도 GW로 물량을 잰다(회사 KPI)",
+    "price": {
+      "source": "asp",
+      "unit": "$/kW",
+      "series": {
+        "2025-03-31": 420.4,
+        "2025-06-30": 393.4,
+        "2025-09-30": 379.5,
+        "2025-12-31": 426.3,
+        "2026-03-31": 460.6,
+        "2026-06-30": 517.5,
+        "2026-09-30": 648.0
+      }
+    },
+    "volume": {
+      "unit": "GW",
+      "series": {
+        "2025-03-31": 0.5,
+        "2025-06-30": 0.9,
+        "2025-09-30": 1.1,
+        "2025-12-31": 0.9,
+        "2026-03-31": 0.7,
+        "2026-06-30": 1.1,
+        "2026-09-30": 1.2
+      }
+    },
+    "note": "인도 GW가 0.1 단위 반올림이라 kW당 가격 오차가 크다. 3Q26 $648/kW는 콜의 약 $650과 맞는다. 컨테이너·패키지 범위 변화가 섞인 값이다"
+  },
+  "sync": {
+    "none": "공개된 분기 손익이 7개뿐이라 시차 상관을 잴 표본이 없다. 가스엔진·발전기 세트(HS 8502) 무역 시계열도 일본만 수집돼 있다"
+  },
+  "social": {
+    "as_of": "2026-11-07",
+    "summary": "커뮤니티 기대는 '공장은 찼는데 주가는 대주주 매물에 눌렸다'는 수급 논리로 소화됐다. 11/4 선거 뒤 −25% 하락을 다룬 글은 아직 없다",
+    "narratives": [
+      {
+        "channel": "X",
+        "theme": "Bloom Energy와 올해 매출이 비슷한데 시가총액은 몇 분의 1 — 상장 뒤 대주주 매도가 가격을 눌렀다",
+        "expectation": "상향",
+        "vs_fact": "부분 확인 — FY26 매출 가이던스 $3.9~4.0B는 맞고 Advent가 상장 때 약 $2.7B를 팔았다(Form 4). 다만 이익률·성장·제품이 달라 매출만으로 배수를 비교할 근거는 없다",
+        "share": 0.5
+      },
+      {
+        "channel": "X",
+        "theme": "공장이 선금으로 채워졌다 — 잔고가 1년 새 두 배",
+        "expectation": "상향",
+        "vs_fact": "확인 — 장비 잔고 $7.96B(전년 $3.29B), 9개월 계약부채 증가 $797M(10-Q)",
+        "share": 0.3
+      },
+      {
+        "channel": "X",
+        "theme": "2030년 10GW 캐파에 GW당 가치를 곱하면 몇 배 — 셈법형 강세론",
+        "expectation": "상향",
+        "vs_fact": "과장 — 10GW는 회사 목표이고 착공·장비 반입·가동 확인 전이다(투자 발표 → 공급 증가는 금지표)",
+        "share": 0.1
+      },
+      {
+        "channel": "X",
+        "theme": "데이터센터 반대 여론이 AI 전력 인프라주를 누른다(8월)",
+        "expectation": "하향",
+        "vs_fact": "미확인 — 회사 수주 취소 공시는 없다. 11/4 선거 뒤 하락과 같은 방향의 우려",
+        "share": 0.1
+      },
+      {
+        "channel": "레딧",
+        "theme": "가스엔진은 평범한 발전기인가, 데이터센터 주전원인가 — 큰 손실 인증 글을 둘러싼 논쟁",
+        "expectation": "혼재",
+        "vs_fact": "확인 — 데이터센터가 3Q 장비 매출의 60%($463M/$778M, 회사 KPI)",
+        "share": 1.0
+      }
+    ],
+    "turn": "6월 상장 직후 상향 기대 → 8월 데이터센터 반대 우려 → 10월 3Q 실적 전후 수급·저평가 논리 글 17건으로 최다 → 11월에는 1건뿐이고 선거 뒤 하락은 아직 소화되지 않았다"
+  },
+  "debate": {
+    "panel": [
+      {
+        "seat": "Strong Buy",
+        "name": "한서윤",
+        "house": "가상 리서치 하우스 아라증권",
+        "thesis": "회사 숫자가 하나도 안 바뀐 −27%다 — 10.8배는 동종 하단 CMI 10.0배 수준인데 성장은 세 배다",
+        "evidence": [
+          "3Q 매출 +57%, 조정 EBITDA +70%",
+          "Fwd 1Y EV/EBITDA 10.8배 vs 동종 중앙 15.0배",
+          "장비 잔고 $7.96B(전년 $3.29B)"
+        ],
+        "falsifier": "4Q 수주에서 데이터센터 취소가 나오거나 FY27 가이던스가 컨센서스 매출 $5.29B 아래로 시작"
+      },
+      {
+        "seat": "Buy",
+        "name": "오지후",
+        "house": "가상 리서치 하우스 누리리서치",
+        "thesis": "목표주가 $19.7(+43%)이고 DCF 기본도 현재가 위다 — 물량 부담은 날짜가 정해진 일회성이다",
+        "evidence": [
+          "DCF 기본 +4%, 가치 분포 61%가 현재가 이상",
+          "주문 대부분 take-or-pay·선금(3Q 콜)",
+          "공매도 잔고 유통의 약 21%"
+        ],
+        "falsifier": "대주주가 공모가 절반 아래에서 큰 할인으로 블록 매각"
+      },
+      {
+        "seat": "Neutral",
+        "name": "배다온",
+        "house": "가상 리서치 하우스 솔빛증권",
+        "thesis": "상승 여력은 이익이 아니라 배수 복귀다 — 배수가 10.8배에 머물면 약세에서 약 $12다",
+        "evidence": [
+          "엔진 약세 시나리오도 13.1배 가정(손익비 계산 불가)",
+          "11/30 해제 6.47억 주 = 유통의 6.2배",
+          "상위 5개 고객 매출 54%"
+        ],
+        "falsifier": "12월 첫 매각이 작은 할인으로 소화되고 4Q B/B가 2.0 이상"
+      },
+      {
+        "seat": "Sell",
+        "name": "권태하",
+        "house": "가상 리서치 하우스 다솜리서치",
+        "thesis": "데이터센터 몫이 장비 매출의 60%인 회사가 선거 뒤 반발의 정면에 있다",
+        "evidence": [
+          "3Q 데이터센터 매출 $463M / 장비 $778M",
+          "3Q 수주 $2.2B로 2Q 대비 감소",
+          "9개월 영업현금의 원천이 계약부채 증가 $797M"
+        ],
+        "falsifier": "2027년 상반기까지 데이터센터 수주 취소·연기 공시가 없다"
+      },
+      {
+        "seat": "Strong Sell",
+        "name": "민세온",
+        "house": "가상 리서치 하우스 한결증권",
+        "thesis": "내부통제 취약점·2028년 만기 텀론·대주주 출구가 겹친 사모펀드 상장주다",
+        "evidence": [
+          "10-Q 내부통제 중대한 취약점 미해소",
+          "텀론 전액 2028-11 만기",
+          "Advent 상장 때 약 $2.7B 매도(Form 4)"
+        ],
+        "falsifier": "FY2026 10-K에서 취약점 해소, 재융자 조건 개선"
+      }
+    ],
+    "rounds": [
+      {
+        "round": "개회",
+        "remarks": [
+          {
+            "seat": "Strong Buy",
+            "text": "10/27 이후 공시·가이던스·추정이 그대로인데 이틀에 −27%다. 같은 이틀 GRID는 −2.1%였다"
+          },
+          {
+            "seat": "Buy",
+            "text": "엔진 목표 $19.7에 DCF 기본도 현재가 위다. 보호예수는 11/30이라는 날짜가 있는 사건이다"
+          },
+          {
+            "seat": "Neutral",
+            "text": "목표가 위에 있는 건 배수가 17.5배로 돌아간다고 보기 때문이다. 약세조차 13.1배를 쓴다"
+          },
+          {
+            "seat": "Sell",
+            "text": "시장이 판 것은 데이터센터다. INNIO 장비 매출의 60%가 데이터센터다"
+          },
+          {
+            "seat": "Strong Sell",
+            "text": "대주주는 이미 상장 때 팔았고 남은 6.47억 주도 출구를 찾는다. 통제 취약점도 남아 있다"
+          }
+        ]
+      },
+      {
+        "round": "반박1",
+        "remarks": [
+          {
+            "seat": "Buy",
+            "to": "Sell",
+            "text": "데이터센터 주문은 take-or-pay와 선금이다. 9개월 계약부채가 $797M 늘었다는 건 고객이 돈을 먼저 냈다는 뜻이다"
+          },
+          {
+            "seat": "Sell",
+            "to": "Strong Buy",
+            "text": "CMI 10.0배와 비교하지 마라. CMI는 고객 집중이 없다. INNIO 상위 5개 고객이 54%다"
+          },
+          {
+            "seat": "Neutral",
+            "to": "Buy",
+            "text": "DCF 기본 +4%는 사실상 현재가다. +43%는 DCF가 아니라 배수 복귀가 만든 숫자다"
+          }
+        ]
+      },
+      {
+        "round": "반박2",
+        "remarks": [
+          {
+            "seat": "Strong Buy",
+            "to": "Neutral",
+            "text": "배수가 10.8배에 머물 근거가 숫자에 없다. 10/30에는 12.5배였고 동종은 15배다"
+          },
+          {
+            "seat": "Strong Sell",
+            "to": "Buy",
+            "text": "공매도 21%가 물량을 받는다는 건 정황이다. 블록 할인은 매수자가 정한다"
+          },
+          {
+            "seat": "Neutral",
+            "to": "Sell",
+            "text": "데이터센터 반발이 INNIO 수주 취소로 이어졌다는 1차 자료도 없다. 양쪽 다 가를 자료는 12월과 2월에 나온다"
+          }
+        ]
+      },
+      {
+        "round": "최종",
+        "remarks": [
+          {
+            "seat": "Strong Buy",
+            "text": "회사 숫자로는 Buy 이상이다. 다만 12월 매각 전 배수 복귀 시점은 장담 못 한다",
+            "moved": "Buy"
+          },
+          {
+            "seat": "Buy",
+            "text": "Buy를 유지한다. 가격이 이미 약세 시나리오 아래다"
+          },
+          {
+            "seat": "Neutral",
+            "text": "규칙 등급을 지지한다. 손익비를 잴 수 없는 상태에서 한 단계 올릴 근거가 부족하다"
+          },
+          {
+            "seat": "Sell",
+            "text": "4Q 수주 전까지는 Neutral로 물러선다. 취소 증거가 없다는 반박은 맞다",
+            "moved": "Neutral"
+          },
+          {
+            "seat": "Strong Sell",
+            "text": "Sell로 한 단계 물러선다. 통제·만기 위험은 남는다",
+            "moved": "Sell"
+          }
+        ]
+      }
+    ],
+    "final": {
+      "rating": "Neutral",
+      "votes": {
+        "Strong Buy": "Buy",
+        "Buy": "Buy",
+        "Neutral": "Neutral",
+        "Sell": "Neutral",
+        "Strong Sell": "Sell"
+      },
+      "reason": "상승 여력이 이익이 아니라 배수 복귀(10.8배 → 17.5배)에 걸려 있다는 Neutral의 반박이 살아남았다. 배수 정체를 가를 12월 매각·4Q 수주가 나오기 전이라 규칙 등급을 유지한다",
+      "dissent": "Buy 두 자리 — 가격이 이미 약세 시나리오 아래이고 회사 숫자는 바뀌지 않았다"
+    }
   }
- ],
- "revision_events": [
-  {
-   "date": "2026-06-04",
-   "kind": "내러티브",
-   "tag": "IPO $27",
-   "q": "",
-   "session": ""
-  },
-  {
-   "date": "2026-07-28",
-   "kind": "실적",
-   "tag": "2Q26 실적, 장비 마진 14%",
-   "q": "2Q26",
-   "session": "before"
-  },
-  {
-   "date": "2026-09-17",
-   "kind": "내러티브",
-   "tag": "Liberty 450MW 수주",
-   "q": "",
-   "session": ""
-  },
-  {
-   "date": "2026-10-22",
-   "kind": "내러티브",
-   "tag": "620MW 수주, GE Vernova 급락",
-   "q": "",
-   "session": ""
-  },
-  {
-   "date": "2026-10-27",
-   "kind": "실적",
-   "tag": "3Q26 실적, 가이던스 상향",
-   "q": "3Q26",
-   "session": "before"
-  },
-  {
-   "date": "2026-10-29",
-   "kind": "내러티브",
-   "tag": "Caterpillar 실적 뒤 전력주 매도",
-   "q": "",
-   "session": ""
-  }
- ]
 }
