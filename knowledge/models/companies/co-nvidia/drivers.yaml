@@ -1,0 +1,99 @@
+auto: true
+id: co-nvidia
+name: Nvidia
+ticker: NVDA
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.15
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 186.64
+  shares: 24.242
+  net_debt: -66.003
+  source: 가격 2026-11-06 종가 $186.64 · 주식 수 24,147M(FQ2 FY27 10-Q 표지 기준 근사, yfinance
+    shares_outstanding) · 현금+단기투자 $99,369M·차입 단기 $1,000M + 장기 $32,366M(10-Q 2026-07-26)
+rev0: 413.15
+ic0: 162.981
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.7291
+      end: 0.035
+      decay: 0.425
+    margin:
+      m0: 0.6318
+      target: 0.6242
+      year_target: 3
+      lr: 0.4
+      lam: 0.35
+      anchors:
+      - 0.6188
+      - 0.6242
+    s2c: 3.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.0408
+      end: 0.04
+      decay: 0.475
+    margin:
+      m0: 0.6318
+      target: 0.6442
+      year_target: 3
+      lr: 0.4
+      lam: 0.25
+      anchors:
+      - 0.6188
+      - 0.6242
+    s2c: 3.45
+  bear:
+    prob: 0.2
+    growth:
+      start: -0.0221
+      end: 0.030000000000000002
+      decay: 0.32499999999999996
+    margin:
+      m0: 0.6318
+      target: 0.6042
+      year_target: 3
+      lr: 0.4
+      lam: 0.5
+      anchors:
+      - 0.6188
+      - 0.6242
+    s2c: 2.55
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [411.0, 415.3] (FQ2 FY27 실적·콜 2026-08-26: FQ3 매출 $108B ± 2%,
+    GM 74% ± 0.5%p, 비GAAP 영업비용 약 $9.0B. GM은 FQ4 71~72% 저점 뒤 FY28 72~73%. FY28 매출 약
+    +70%(공급 기준 예비 전망), CPU 매출 2배 이상. 중국 데이터센터 컴퓨팅은 전망에서 제외)'
+  growth: 컨센서스 1년차 72.9%, 2년차 33.0%
+  margin: 1~2년차 컨센서스 61.9%, 62.4% 고정 → 목표 62%(3년차, 덮어쓰기) → 장기 수렴 40%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.859 → 덮어쓰기 3.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -2.2%~4.1%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '장기 이익률 40%(lr): 비GAAP 영업이익률 65%는 공급 부족기 정점 — 경쟁·고객 자체 칩이 들어오는 장기에는 40%로
+    수렴(근거 약함) / 매출÷투하자본 3.0: TTM 1.86은 현금성 투자 일부·지분 투자 $51B 포함 — 팹리스 증분 기준(근거 약함)'
+  shares: 완전 희석 = 기본 24.147(2026-08-21) + 옵션·RSU·워런트·전환 0.0950 — FQ2 FY27 10-Q 희석
+    가중 주식 24,285M − 기본 24,190M = 95M주(RSU 등, 자기
+notes:
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: 공급 제약(웨이퍼·HBM·LPS)'
+- '어닝콜 위험: 메모리 원가로 GM 하락'
+- '어닝콜 위험: 고객 자체 칩(XPU)'
+evidence:
+- NVIDIA FQ2 FY27 10-Q https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm
+- FQ2 FY27 어닝콜 요지(라이선스, 자기 말 요약)
+- Fiscal.ai 추정·재무·세그먼트 2026-11-07
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- Quantral 커뮤니티 점수·월간 요약 2026-11-07
