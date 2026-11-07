@@ -9,13 +9,13 @@ region_mix:
   US: 1.0
 tax: 0.25
 horizon: 10
-as_of: '2026-11-02'
+as_of: '2026-11-07'
 market:
-  date: '2026-11-02'
-  price: 675.62
+  date: '2026-11-07'
+  price: 611.16
   shares: 0.022316
   net_debt: 5.055165
-  source: 가격 = 2026-10-30 종가(Fiscal.ai 일봉·Easyconomics 동일). 주식 수 = 10-Q 표지(2026-10-16)
+  source: 가격 = 2026-11-06 종가(Fiscal.ai 일봉·Easyconomics 동일). 주식 수 = 10-Q 표지(2026-10-16)
     22,211,835주. 현금·차입 = 2026-09-30 10-Q, 리스 유동분 $51.3M은 2026-06-30 10-K 값(분기 공시 없음)
 rev0: 10.8
 ic0: 9.681856
@@ -86,7 +86,7 @@ provenance:
   shares: 완전 희석 = 기본 0.022212(2026-10-16) + 옵션·RSU·워런트·전환 0.0001 — 10-Q 희석 가중평균 22,316천
     주 − 표지 22,212천 주. 전환사채·워런트 없음(10-Q 부채 표
 notes:
-- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-07
 - '어닝콜 위험: 하반기 성장 집중(1Q 유기적 2.1%)'
 - '어닝콜 위험: 12/11 끝나는 임시 예산(CR)'
 - '어닝콜 위험: 메모리·희토류 가격과 납기'
@@ -95,3 +95,5 @@ evidence:
 - CACI FY2026 10-K https://www.sec.gov/Archives/edgar/data/16058/000162828026054195/caci-20260630.htm
 - CACI 2026 위임장 https://www.sec.gov/Archives/edgar/data/16058/000162828026060738/caci-20260904.htm
 - CACI 1Q FY27 보도자료 https://www.sec.gov/Archives/edgar/data/0000016058/000162828026066740/fy27-q1caci20261021ex991.htm
+- CACI 공군 DEAMS 수주 발표(2026-11-03) https://www.prnewswire.com/news-releases/caci-advances-us-air-force-financial-transparency-and-mission-readiness-302926761.html
+- Form 4 이사 매도(2026-11-03) https://www.sec.gov/Archives/edgar/data/16058/000171236026000007/0001712360-26-000007-index.htm
