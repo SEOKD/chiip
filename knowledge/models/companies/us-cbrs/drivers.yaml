@@ -9,16 +9,17 @@ region_mix:
   US: 1.0
 tax: 0.21
 horizon: 10
-as_of: '2026-11-02'
+as_of: '2026-11-07'
 market:
-  date: '2026-11-02'
-  price: 109.18
+  date: '2026-11-07'
+  price: 89.68
   shares: 0.304215
   net_debt: -6.4345
   source: '가격 = 2026-10-30 종가 · 주식 수 = 기본 228,203,927(2026-06-30)·표지 237,564,041(2026-08-05)
     · 현금 = 현금 6,742.2 + 투자 1,179.4백만$(제한 현금 684.7 제외) · 차입 = OpenAI 운전자금 대출 유동 736.0
     + 장기 182.2 + 영업리스 568.8백만$. 2026-11-02 10-Q 재대조: 10/30 묶음이 유동 대출 736.0을 빠뜨렸던 것을
-    복구'
+    복구 · 2026-11-07 가격 갱신: 11/6 종가 $89.68(Fiscal.ai 일봉·yfinance 일치). 주식 수·현금·차입은 3Q
+    10-Q 전이라 6/30 그대로'
 rev0: 0.885
 ic0: 2.719
 scenarios:
@@ -89,7 +90,7 @@ provenance:
     1.0을 유지하고 민감도를 본문에 적는다'
   shares: 완전 희석 = 기본 0.228204(2026-06-30) + 옵션·RSU·워런트·전환 0.0760 — SEC XBRL AntidilutiveSecuritiesExcludedFromComputationOfEarn
 notes:
-- 자동 생성(build_drivers) 2026-11-02 — 데이터 묶음 2026-11-02
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-07
 - '어닝콜 위험: 고객 집중, OpenAI·MBZUAI 2Q 66%'
 - '어닝콜 위험: 데이터센터 확보·구축 지연'
 - '어닝콜 위험: 임차 시스템으로 3Q 총마진 저점'
@@ -108,3 +109,9 @@ evidence:
   Investment Research, Inc., www.zacksdata.com
 - '2차 보도(OpenAI Ultrafast): Trefis 10/5, KuCoin 10/5, CryptoBriefing 10/2 — 원 보도(CNBC·SemiAnalysis)는
   직접 확인하지 못함'
+- Fiscal.ai MCP 2026-11-07 — 시세(11/6 종가)·추정·목표가·세그먼트·현금흐름. Data provided by Zacks
+  Investment Research, Inc., www.zacksdata.com
+- Easyconomics company_profile·earnings_summary_dates(yfinance) 2026-11-07
+- Cerebras 블로그 2026-11-05 https://www.cerebras.ai/blog/what-it-took-to-build-wafer-scale-and-why-it-lasts
+- Quantral get_company_score·signals·recaps 2026-11-07(집계만)
+- 10-Q 2026-06-30(2026-08-12 제출) https://www.sec.gov/Archives/edgar/data/2021728/000162828026056357/cbrs-20260630.htm
