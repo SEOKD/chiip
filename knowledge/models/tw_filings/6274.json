@@ -1,0 +1,46 @@
+{
+ "code": "6274",
+ "id": "tw-tuc",
+ "name": "타이완유니온테크놀로지",
+ "market": "tpex",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 42303815.0,
+    "cogs": 28897575.0,
+    "gp": 13406240.0,
+    "opex": 2652760.0,
+    "other": null,
+    "op": 10753480.0,
+    "nonop": 141465.0,
+    "pretax": 10894945.0,
+    "tax": 3436600.0,
+    "ni": 7458345.0,
+    "ni_parent": 7458345.0,
+    "eps": 25.41
+   },
+   "bs": {
+    "ca": 47734524.0,
+    "assets": 58672652.0,
+    "cl": 22285832.0,
+    "liab": 30540656.0,
+    "capital": 2994971.0,
+    "equity_parent": 28131996.0,
+    "equity": 28131996.0,
+    "bvps": 93.93
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci",
+    "bs": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap07_O_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

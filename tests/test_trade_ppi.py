@@ -48,6 +48,27 @@ class TestParsers(unittest.TestCase):
         text = '\ufeff"國家別","美國/ 出口/ 總計(千美元)","美國/ 出口/ 16.機械及電機設備(千美元)"\n"115年",1,2\n"115年 9月",10,7\n\n'
         self.assertEqual(tp.tw_trade_table(text), {("出口", "16", "美國"): {"2026-09": 7.0}})
 
+    def test_taiwan_mof_detail_and_cross_tables(self):   # 재정부 통계 DB 세부 품목·국가 교차(2026-11-07)
+        detail = '﻿"幣別","按美元計算(千美元)/ 積體電路","按美元計算(千美元)/ DRAM"\n"115年","9","9"\n"115年 9月","29737612","-"\n"114年 9月","20000000","100"\n'
+        self.assertEqual(tp.mof_table(detail), {("按美元計算(千美元)", "積體電路"): {"2026-09": 29737612.0, "2025-09": 20000000.0}, ("按美元計算(千美元)", "DRAM"): {"2025-09": 100.0}})
+        cross = '"國家/地區別","全球/ (1)電子零組件","美國/ (1)電子零組件"\n"115年 9月","31131036","9000"\n'
+        self.assertEqual(tp.mof_table(cross)[("美國", "(1)電子零組件")], {"2026-09": 9000.0})
+        self.assertEqual(tp.roc_ym("2016-11"), "10511")
+
+    def test_taiwan_view_and_status_lines(self):
+        cfg = {"taiwan": {"mof": {"partners": ["美國", "中國大陸"]}, "goods_watch": ["積體電路"], "main_watch": ["(1)電子零組件"], "ppi_watch": ["(1)半導體"], "labels": {"美國": "미국", "積體電路": "집적회로"}}}
+        s = {f"{y}-{m:02d}": v for y, v in ((2025, 1.0), (2026, 2.0)) for m in (7, 8, 9)}
+        mof = {"detail": {"export": {"積體電路": {k: v * 1e6 for k, v in s.items()}}},
+               "cross": {"export": {("美國", "(1)電子零組件"): s, ("全球", "(1)電子零組件"): s, ("中國大陸", "(1)電子零組件"): s}}}
+        tw = tp.taiwan_view(cfg, {"(1)半導體": {"2026-09": 150.0, "2025-09": 120.0}}, mof)
+        self.assertAlmostEqual(tw["ppi"]["(1)半導體"]["yoy"], 0.25)
+        self.assertEqual(set(tw["partners"]["export:(1)電子零組件"]), {"美國", "中國大陸"})   # 全球 같은 합계는 몫에서 뺀다
+        lines = tp.taiwan_lines(tw)
+        self.assertIn("대만 수출 집적회로(積體電路) 3개월 $6.0B 전년비 +100.0%(2026-09)", lines)
+        self.assertIn("미국 50%", lines[-1])   # 나라 이름은 한국어, 표에 없는 이름은 원문 그대로
+        self.assertIn("中國大陸 50%", lines[-1])
+        self.assertTrue(lines[0].startswith("대만 업종 PPI 전년비: (1)半導體 +25.0%"))
+
     def test_hong_kong_index_not_year_change(self):
         rows = [{"sv": "PPI", "svDesc": "Index", "freq": "Q", "period": "202606", "IND": "a", "figure": 170.3}, {"sv": "PPI", "svDesc": "Year-on-year % change", "freq": "Q", "period": "202606", "IND": "a", "figure": 24.6}]
         with mock.patch.dict(tp.HK_CACHE, {"t": rows}):

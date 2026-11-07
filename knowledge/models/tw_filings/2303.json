@@ -1,0 +1,46 @@
+{
+ "code": "2303",
+ "id": "tw-umc",
+ "name": "UMC",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 204009681.0,
+    "cogs": 138663878.0,
+    "gp": 65345803.0,
+    "opex": 22275722.0,
+    "other": 1798853.0,
+    "op": 44868934.0,
+    "nonop": 36871951.0,
+    "pretax": 81740885.0,
+    "tax": 7010957.0,
+    "ni": 74729928.0,
+    "ni_parent": 74865383.0,
+    "eps": 6.0
+   },
+   "bs": {
+    "ca": 238898324.0,
+    "assets": 675785677.0,
+    "cl": 72968194.0,
+    "liab": 204905665.0,
+    "capital": 125700939.0,
+    "equity_parent": 470916768.0,
+    "equity": 470880012.0,
+    "bvps": 37.55
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

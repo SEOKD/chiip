@@ -1,0 +1,77 @@
+# 대만 공시 재무 파이프라인 (마스터 지시 2026-11-07 "한국 DART와 같은 대만 전자공시시스템에도 연결해 대만 AI 밸류체인 기업들의 어닝 및 재무 데이터를 가져올 수 있는 파이프라인을 구축해라")
+# 수집 radar/pollers/tw_financials.py(분기 재무), radar/pollers/tw_disclosure.py(重大訊息·이사회 재무보고 승인 공고), radar/reverse/collectors/twse_monthly.py(월매출)
+# 운영 docs/channels/earnings.md '대만 공시 재무', 원천 상세 docs/channels/data.md
+
+# 원천·약관 확인(2026-11-07). 쓸 수 있는 것만 자동 수집한다 — 로그인·유료벽·CAPTCHA 우회 금지
+sources:
+  twse_openapi:
+    url: https://openapi.twse.com.tw/v1
+    use: [t187ap06_L_ci 綜合損益表(누계), t187ap07_L_ci 資產負債表, t187ap05_L 월매출, t187ap04_L 重大訊息]
+    terms: "Swagger 첫머리가 '歡迎各位介接使用'·정부 데이터 개방 라이선스 1판(data.gov.tw/license) 안내. TWSE 사이트 약관은 자동 다운로드를 금지하되 정부 데이터 개방 플랫폼 제공분은 예외로 둔다"
+    robots: "없음(404)"
+    status: ok
+  tpex_openapi:
+    url: https://www.tpex.org.tw/openapi/v1
+    use: [mopsfin_t187ap06_O_ci 綜合損益表(누계), mopsfin_t187ap07_O_ci 資產負債表, mopsfin_t187ap05_O 월매출, mopsfin_t187ap04_O 重大訊息]
+    terms: "TPEx 사이트 약관 5조가 자동 다운로드를 금지하되 7조가 정부 데이터 개방 플랫폼 제공분을 예외로 둔다. OpenAPI가 그 제공 경로"
+    robots: "빈 파일"
+    status: ok
+  mops:
+    url: https://mops.twse.com.tw
+    status: blocked
+    why: "TWSE 사이트 약관 '下載軟體或資料' 조항이 스크립트·크롤러 다운로드를 금지한다(TWSE 동의 방식 제외). 새 사이트 JSON(t164sb03·04·05)은 이력·현금흐름이 있지만 자동 수집하지 않는다. 구 사이트 mopsov·emops는 robots 전면 금지"
+    manual: "과거 분기·현금흐름은 마스터가 화면에서 직접 내려받거나, Fiscal.ai(1순위) 이력을 쓴다"
+  trade_gov_tw:
+    url: https://publicinfo.trade.gov.tw/cuswebo
+    status: blocked
+    why: "자료는 정부 데이터 개방 라이선스 1판(데이터 개방 선언)이지만 HS 2~11단위×국가 조회 화면 6종이 모두 CAPTCHA를 요구한다 — 자동 조회하지 않는다"
+
+# 재무 항목 단위: 천 대만달러(NT$ thousand) 원값. quarters_hist로 내보낼 때만 원 단위(×1000)로 바꾼다
+statement_kind: ci   # 一般業만. 금융·보험업 표는 받지 않는다
+
+# 감시 목록이 영문 이름만 가진 종목의 한국어 표기(한자 이름은 config/tw_hk_names.yaml이 먼저)
+ko_names:
+  Taiwan Glass: 타이완글라스
+  King Slide: 킹슬라이드
+  Yageo: 야게오
+  Accton: 액턴
+  Quanta Computer: 콴타
+  Gold Circuit Electronics: 골드서킷
+  Asia Vital Components: 에이브이씨
+  Auras Technology: 오라스
+  BizLink: 비즈링크
+  Lotes: 로테스
+  MPI Corporation: MPI
+  WinWay Technology: 윈웨이
+  Chunghwa Precision Test: 중화정밀테스트
+  Walsin Technology: 월신테크놀로지
+  Ventec International Group: 벤텍
+  Topoint Technology: 토포인트
+  Delta Electronics: 델타일렉트로닉스
+  Elite Material: 엘리트머티리얼즈
+  Wiwynn: 위윈
+  Unimicron: 유니마이크론
+  Taiwan Union Technology: 타이완유니온테크놀로지
+  ITEQ: 아이텍
+  Nan Ya Printed Circuit Board: 난야PCB
+
+# 감시 목록(config/tw_hk_ir.yaml market tw, valuation·earnings_watch region TW, discovery market tw, mirror_matrix tw_codes)에 없는 AI 밸류체인 종목
+extra:
+  - {code: "2454", name: 미디어텍, id: tw-mediatek}
+  - {code: "2408", name: 난야테크놀로지, id: tw-nanyatech}
+  - {code: "2360", name: 크로마ATE, id: tw-chroma}
+  - {code: "3035", name: 패러데이테크놀로지, id: tw-faraday}
+  - {code: "2303", name: UMC, id: tw-umc}
+  - {code: "2344", name: 윈본드, id: tw-winbond}
+  - {code: "3189", name: 킨서스, id: tw-kinsus}
+  - {code: "3661", name: 알칩, id: tw-alchip}
+  - {code: "3443", name: GUC, id: tw-guc}
+  - {code: "2449", name: KYEC, id: tw-kyec}
+  - {code: "6239", name: PTI, id: tw-pti}
+  - {code: "5274", name: 에이스피드, id: tw-aspeed}
+  - {code: "3529", name: 이메모리, id: tw-ememory}
+  - {code: "3105", name: 윈세미컨덕터, id: tw-winsemi}
+  - {code: "2376", name: 기가바이트, id: tw-gigabyte}
+  - {code: "3231", name: 위스트론, id: tw-wistron}
+  - {code: "2356", name: 인벤텍, id: tw-inventec}
+  - {code: "3044", name: 트라이포드, id: tw-tripod}

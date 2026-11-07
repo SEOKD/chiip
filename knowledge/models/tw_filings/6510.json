@@ -1,0 +1,46 @@
+{
+ "code": "6510",
+ "id": "tw-chpt",
+ "name": "중화정밀테스트",
+ "market": "tpex",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 4901661.0,
+    "cogs": 2097464.0,
+    "gp": 2804197.0,
+    "opex": 1166565.0,
+    "other": -9.0,
+    "op": 1637623.0,
+    "nonop": 58082.0,
+    "pretax": 1695705.0,
+    "tax": 313305.0,
+    "ni": 1382400.0,
+    "ni_parent": 1387073.0,
+    "eps": 42.2
+   },
+   "bs": {
+    "ca": 9858322.0,
+    "assets": 14167493.0,
+    "cl": 1817795.0,
+    "liab": 3512725.0,
+    "capital": 329291.0,
+    "equity_parent": 10649445.0,
+    "equity": 10654768.0,
+    "bvps": 323.41
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci",
+    "bs": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap07_O_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

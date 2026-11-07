@@ -38,6 +38,7 @@ ONS = "https://www.ons.gov.uk/economy/inflationandpriceindices/timeseries/{cdid}
 HMRC = "https://api.uktradeinfo.com"
 BLS = "https://api.bls.gov/publicAPI/{v}/timeseries/data/"
 CENSUS = "https://api.census.gov/data/timeseries/intltrade/imports/hs"
+MOF = "https://web02.mof.gov.tw/njswww/webMain.aspx"   # 재정부 통계 DB(정부 데이터 개방 라이선스 1판) — 대만 세부 품목·국가 교차(2026-11-07)
 HK_CACHE = {}
 
 
@@ -185,6 +186,46 @@ def tw_trade_table(text):
     return out
 
 
+def roc_ym(month):
+    """'2016-11' → '10511' (재정부 조회 시작 연월)"""
+    return f"{int(month[:4]) - 1911}{month[5:7]}"
+
+
+def mof_get(funid, start, sel):
+    """재정부 통계 DB 조회 CSV — data.gov.tw 28573·8380이 가리키는 같은 엔진. sel은 품목·국가 선택 인자"""
+    return get(MOF, {"sys": 220, "ym": roc_ym(start), "kind": 21, "type": 4, "funid": funid, "cycle": 41, "outmode": 12,
+                     "compmode": "00", "outkind": 1, "utf": 1, **sel}, timeout=120)
+
+
+def mof_table(text):
+    """재정부 CSV → {(묶음, 품목): {YYYY-MM: 값}}. 머리는 '美國/ (1)電子零組件'·'按美元計算(千美元)/ 積體電路' 모양, 연간 합계 행은 건너뛴다"""
+    rows = list(csv.reader(io.StringIO(text.lstrip("﻿"))))
+    out = {}
+    for r in rows[1:]:
+        when = re.fullmatch(r"(\d+)年\s*(\d+)月", r[0].strip()) if r else None
+        if not when:
+            continue
+        ym = f"{int(when[1]) + 1911}-{int(when[2]):02d}"
+        for h, v in zip(rows[0][1:], r[1:]):
+            parts = [x.strip() for x in h.split("/")]
+            val = v.strip().replace(",", "")
+            if len(parts) >= 2 and re.fullmatch(r"-?\d+(\.\d+)?", val):
+                out.setdefault((parts[-2], parts[-1]), {})[ym] = float(val)
+    return out
+
+
+def tw_goods(cfg, start):
+    """대만 세부 품목(수출 i9161·수입 i9162)과 국가×주요 품목(i8201·i8202), 천 달러 → {'detail': {방향: {품목: 시계열}}, 'cross': {방향: {(나라, 품목): 시계열}}}"""
+    conf, out = cfg["taiwan"]["mof"], {"detail": {}, "cross": {}}
+    for flow, d in conf["detail"].items():
+        out["detail"][flow] = {item: x for (_, item), x in mof_table(mof_get(d["funid"], start, {"fld0": 1, "codlst0": "1" * d["items"]})).items()}
+        time.sleep(PAUSE)
+    for flow, d in conf["cross"].items():
+        out["cross"][flow] = mof_table(mof_get(d["funid"], start, {"fldspc": f"0,{d['countries']},", "codspc0": f"{d['goods'][0]},{d['goods'][1]},"}))
+        time.sleep(PAUSE)
+    return out
+
+
 def hk_table(table, sv, key_field=None, key=None):
     """홍콩 C&SD 표 API → {YYYY-MM: 값}"""
     rows = HK_CACHE.get(table)
@@ -289,6 +330,8 @@ def collect(cfg, today, env):
     gaps += [f"{name} 키 없음" for name, v in (("CENSUS_API_KEY", census), ("ECOS_API_KEY", ecos), ("ESTAT_APP_ID", estat)) if not v]
     tw_ppi = attempt("tw ppi", lambda: tw_ppi_table(get(dataset_url(cfg["taiwan"]["ppi_dataset"]), timeout=90))) or {}
     tw_trade = attempt("tw trade", lambda: tw_trade_table(get(dataset_url(cfg["taiwan"]["trade_dataset"]), timeout=90))) or {}
+    tw_mof = (attempt("tw mof", lambda: tw_goods(cfg, start)) or {}) if cfg["taiwan"].get("mof") else {}
+    countries = (cfg["taiwan"].get("mof") or {}).get("partners") or []
     tables = (attempt("e-stat 표", lambda: estat_tables(estat, today)) or {}) if estat else {}
     metas = {}
     hist = {k: {"ppi": {}, "trade": {}} for k in cfg["inputs"]}
@@ -326,11 +369,31 @@ def collect(cfg, today, env):
         if v.get("tw_section"):
             ex = {c: x for (flow, sec, c), x in tw_trade.items() if flow == "出口" and sec == v["tw_section"]}
             o["trade"]["tw"] = {"partners": shares(ex), "unit": "USD thousand", "flow": "수출", "scope": f"HS {v['tw_section']}류"}
+        if v.get("tw_goods") and tw_mof:   # 재정부 세부 품목(천 달러) — 방향별 최근 3개월 합과 전년 대비
+            names = v["tw_goods"] if isinstance(v["tw_goods"], dict) else {"export": v["tw_goods"], "import": v["tw_goods"]}   # 수출입 품목 이름이 다를 때(DRAM·記憶體)
+            g = {"item": names["export"], "items": names, "label": (cfg["taiwan"].get("labels") or {}).get(names["export"]), "unit": "USD thousand"}
+            for flow in ("export", "import"):
+                g[flow] = tm(f"tw:{flow}", tw_mof["detail"].get(flow, {}).get(names.get(flow)))
+            if v.get("tw_main"):   # 나라별 몫은 주요 품목군(전자부품·정보통신 등) 단위로만 공개된다
+                g["main"] = v["tw_main"]
+                g["partners"] = shares({c: x for (c, item), x in tw_mof["cross"].get("export", {}).items() if item == v["tw_main"] and c in countries})
+            o["trade"]["tw_goods"] = g
         if tables:
             total, parts = attempt(f"e-stat {k}", lambda: trade_estat(estat, v["hs"], tables, metas)) or ({}, {})
             o["trade"]["jp"] = {**(tm("jp", total) or {}), "partners": shares(parts), "unit": "JPY thousand"}
     collect.hist = hist
+    collect.taiwan = taiwan_view(cfg, tw_ppi, tw_mof)
     return out, gaps, errors
+
+
+def taiwan_view(cfg, tw_ppi, tw_mof):
+    """대만 업종 PPI·세부 품목 수출입·국가별 주요 품목 수출입 요약(--status 대만 절, 2026-11-07)"""
+    conf = cfg["taiwan"]
+    countries = (conf.get("mof") or {}).get("partners") or []
+    goods = {f"{flow}:{item}": trade_metric(x) for flow, items in (tw_mof.get("detail") or {}).items() for item, x in items.items() if item in conf.get("goods_watch", [])}
+    cross = {f"{flow}:{item}": shares({c: x for (c, i), x in table.items() if i == item and c in countries})
+             for flow, table in (tw_mof.get("cross") or {}).items() for item in conf.get("main_watch", [])}
+    return {"ppi": {k: ppi_metric(tw_ppi.get(k)) for k in conf.get("ppi_watch", [])}, "goods": goods, "partners": cross, "labels": conf.get("labels") or {}}
 
 
 def run(today=None):
@@ -341,7 +404,7 @@ def run(today=None):
     if not filled:   # 전부 실패하면 어제 값을 지우지 않는다
         raise RuntimeError("PPI를 하나도 받지 못했다: " + "; ".join(errors[:3]))
     LATEST.parent.mkdir(parents=True, exist_ok=True)
-    LATEST.write_text(json.dumps({"as_of": today.isoformat(), "inputs": inputs, "gaps": gaps, "errors": errors}, ensure_ascii=False, indent=1), encoding="utf-8")
+    LATEST.write_text(json.dumps({"as_of": today.isoformat(), "inputs": inputs, "taiwan": getattr(collect, "taiwan", {}), "gaps": gaps, "errors": errors}, ensure_ascii=False, indent=1), encoding="utf-8")
     HISTORY.write_text(json.dumps({"as_of": today.isoformat(), "inputs": getattr(collect, "hist", {})}, ensure_ascii=False), encoding="utf-8")
     return f"입력 {len(inputs)}개, PPI {filled}칸, 공백 {len(gaps)}건, 오류 {len(errors)}건"
 
@@ -355,7 +418,24 @@ def line(key, v):
     ppi = " · ".join(f"{c.upper()}{'*' if c in v.get('proxy', []) else ''} {pct(m)}" for c, m in v["ppi"].items())
     eu = sorted(v["trade"].get("eu", {}).get("partners", {}).items(), key=lambda kv: -kv[1]["value"])[:3]
     top = " · ".join(f"{c} {m['share'] * 100:.0f}%" for c, m in eu) or "미확인"
-    return f"{key} {v['name']} HS{v['hs']} | PPI 전년비 {ppi} | EU 수입처 {top} | UK 수입 {pct(v['trade'].get('uk'))} | * 업종 대용"
+    tw = v["trade"].get("tw_goods")
+    tw = f" | TW 수출 {tw.get('label') or tw['item']} {pct(tw.get('export'))}" if tw else ""
+    return f"{key} {v['name']} HS{v['hs']} | PPI 전년비 {ppi} | EU 수입처 {top} | UK 수입 {pct(v['trade'].get('uk'))}{tw} | * 업종 대용"
+
+
+def taiwan_lines(tw):
+    """--status 대만 절 — 업종 PPI, 세부 품목 수출입(최근 3개월 합), 주요 품목군 상대국 몫"""
+    pct = lambda m: "미확인" if not m or m.get("yoy") is None else f"{m['yoy'] * 100:+.1f}%({m['period']})"
+    usd = lambda m: "미확인" if not m else f"${m['value'] / 1e6:,.1f}B"   # 천 달러 → $B
+    labels = tw.get("labels") or {}
+    ko = lambda x: f"{labels[x]}({x})" if x in labels else x   # 한국어 표기, 원문은 괄호
+    side = lambda k: ("수출" if k.startswith("export") else "수입", ko(k.split(":", 1)[1]))
+    out = ["대만 업종 PPI 전년비: " + " · ".join(f"{ko(k)} {pct(m)}" for k, m in (tw.get("ppi") or {}).items())]
+    out += ["대만 %s %s 3개월 %s 전년비 %s" % (*side(k), usd(m), pct(m)) for k, m in (tw.get("goods") or {}).items()]
+    for k, parts in (tw.get("partners") or {}).items():
+        top = " · ".join(f"{labels.get(c, c)} {m['share'] * 100:.0f}%({pct(m)})" for c, m in list(parts.items())[:5])
+        out.append("대만 %s %s 상대국: %s" % (*side(k), top or "미확인"))
+    return out
 
 
 def need(entity):
@@ -382,6 +462,7 @@ def main():
         print("기준일", d.get("as_of"))
         for k, v in d.get("inputs", {}).items():
             print(line(k, v))
+        print("\n".join(taiwan_lines(d.get("taiwan") or {})))
         print("공백:", *d.get("gaps", []), sep="\n  ")
         print("오류:", *d.get("errors", []), sep="\n  ")
 

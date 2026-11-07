@@ -1,0 +1,46 @@
+{
+ "code": "8046",
+ "id": "tw-nanyapcb",
+ "name": "난야PCB",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 41130983.0,
+    "cogs": 31199035.0,
+    "gp": 9931948.0,
+    "opex": 1357697.0,
+    "other": null,
+    "op": 8574251.0,
+    "nonop": 453136.0,
+    "pretax": 9027387.0,
+    "tax": 2159240.0,
+    "ni": 6868147.0,
+    "ni_parent": 6868147.0,
+    "eps": 10.63
+   },
+   "bs": {
+    "ca": 34044902.0,
+    "assets": 68699858.0,
+    "cl": 8663680.0,
+    "liab": 15847909.0,
+    "capital": 6461655.0,
+    "equity_parent": 52851949.0,
+    "equity": 52851949.0,
+    "bvps": 81.79
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

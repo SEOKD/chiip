@@ -1,7 +1,9 @@
 """대만 원문 공시(重大訊息) — Chiip Ten-bagger 발굴·커버리지 대만 종목 (마스터 지시 2026-10-29 "발굴하고 관련 보도(반드시 원문)를 팔로업하라").
 
 TWSE OpenAPI 上市公司每日重大訊息(t187ap04_L, 공식 공개 API)에서 config/discovery.yaml·config/coverage.yaml의 대만 종목만 거른다.
-회사가 직접 낸 공시라 '원문'이다(event_gate의 1차 자료). 월매출은 src-twse-monthly가 따로 받는다. TPEx(상장 장외) 종목은 다음 단계.
+회사가 직접 낸 공시라 '원문'이다(event_gate의 1차 자료). 월매출은 src-twse-monthly가 따로 받는다.
+TPEx(上櫃) 종목은 mopsfin_t187ap04_O(같은 모양, 필드 이름만 영문)로 받는다(2026-11-07). 이사회 재무보고 승인 공고(第31款)는
+대만 공시 재무 감시 목록 전체(tw_financials.universe)에서 누계 숫자를 뽑아 tw_financials에 넘긴다 — 재무제표 표보다 며칠 먼저 나온다.
 
 법설회(法人說明會) 확보 절차(마스터 지시 2026-10-30, knowledge/methods/tw_hk_ir_qa_procedure.md): '召開法人說明會' 공시를 따로 표시하고
 개최일·自辦/受邀·주최 증권사·影音 예정을 뽑아 radar/state/tw_ir_profile.json에 쌓는다(MOPS 法人說明會一覽表는 자동 수집하지 않는다 — 구 사이트 robots 전면 금지).
@@ -14,6 +16,7 @@ from pollers import common
 
 SRC = "src-tw-disclosure"
 API = "https://openapi.twse.com.tw/v1/opendata/t187ap04_L"
+APIS = {"twse": API, "tpex": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap04_O"}
 
 
 def tw_codes():
@@ -81,24 +84,36 @@ def update_profile(code, name, conf, announced):
 
 def poll(env=None):
     import json
-    codes = tw_codes()
-    rows = json.loads(common.http_get(API, timeout=30))
+    from pollers import tw_financials
+    codes, fin = tw_codes(), tw_financials.universe()
     items = []
-    for r in rows:
-        code = str(r.get("公司代號", "")).strip()
-        if code not in codes:
-            continue
-        c = codes[code]
-        subj = " ".join(str(r.get("主旨 ") or r.get("主旨") or "").split())
-        title = f"{r.get('公司名稱', c.get('name'))}({code}) 重大訊息: {subj}"
-        uid = hashlib.sha1(f"{code}|{r.get('發言日期')}|{r.get('發言時間')}|{subj}".encode()).hexdigest()[:16]
-        when = roc_to_iso(r.get("發言日期"), r.get("發言時間"))
-        extra = {"entities_matched": [c["id"]], "publisher": "TWSE 重大訊息"}
-        if CONF_RE.search(subj):   # 召開法人說明會 — 법설회 확보 절차 시작점(펄스 ⑥, 등급은 모델이 확보 후 부여)
-            conf = parse_conference(f"{subj} {r.get('說明', '')}")
-            update_profile(code, c.get("name"), conf, when)
-            extra.update({"ir_event": "法說會", "conference": conf, "source_class": "IR 질의응답"})
-            title = f"🎙 {r.get('公司名稱', c.get('name'))}({code}) 法說會 공고 — {conf['date'] or '일자 미확인'} {conf['host']}" + (f"·{conf['broker']}" if conf["broker"] else "")
-        items.append(common.make_item(SRC, uid, f"{API}#{code}-{r.get('發言日期')}-{r.get('發言時間')}", title,
-                                      when, "공시", "zh", " ".join(str(r.get("說明", "")).split())[:200], extra=extra))
+    for market, api in APIS.items():
+        try:
+            rows = json.loads(common.http_get(api, timeout=30))
+        except Exception:
+            if market == "twse":
+                raise
+            continue   # TPEx가 막혀도 TWSE 항목은 낸다
+        for r in rows:
+            code = str(r.get("公司代號") or r.get("SecuritiesCompanyCode") or "").strip()
+            if code not in codes and code not in fin:
+                continue
+            subj = " ".join(str(r.get("主旨 ") or r.get("主旨") or "").split())
+            local = r.get("公司名稱") or r.get("CompanyName")
+            when = roc_to_iso(r.get("發言日期"), r.get("發言時間"))
+            url = f"{api}#{code}-{r.get('發言日期')}-{r.get('發言時間')}"
+            if code in fin and tw_financials.NOTICE_RE.search(subj):
+                tw_financials.record_notice(code, local, r.get("說明", ""), url, when, market)
+            if code not in codes:
+                continue
+            c = codes[code]
+            title = f"{local or c.get('name')}({code}) 重大訊息: {subj}"
+            uid = hashlib.sha1(f"{code}|{r.get('發言日期')}|{r.get('發言時間')}|{subj}".encode()).hexdigest()[:16]
+            extra = {"entities_matched": [c["id"]], "publisher": "TWSE 重大訊息" if market == "twse" else "TPEx 重大訊息"}
+            if CONF_RE.search(subj):   # 召開法人說明會 — 법설회 확보 절차 시작점(펄스 ⑥, 등급은 모델이 확보 후 부여)
+                conf = parse_conference(f"{subj} {r.get('說明', '')}")
+                update_profile(code, c.get("name"), conf, when)
+                extra.update({"ir_event": "法說會", "conference": conf, "source_class": "IR 질의응답"})
+                title = f"🎙 {local or c.get('name')}({code}) 法說會 공고 — {conf['date'] or '일자 미확인'} {conf['host']}" + (f"·{conf['broker']}" if conf["broker"] else "")
+            items.append(common.make_item(SRC, uid, url, title, when, "공시", "zh", " ".join(str(r.get("說明", "")).split())[:200], extra=extra))
     return items

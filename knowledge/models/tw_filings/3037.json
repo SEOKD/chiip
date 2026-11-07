@@ -1,0 +1,46 @@
+{
+ "code": "3037",
+ "id": "co-unimicron",
+ "name": "유니마이크론",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 132986108.0,
+    "cogs": 100432460.0,
+    "gp": 32553648.0,
+    "opex": 12679185.0,
+    "other": 61056.0,
+    "op": 19935519.0,
+    "nonop": 15102357.0,
+    "pretax": 35037876.0,
+    "tax": 5894561.0,
+    "ni": 29143315.0,
+    "ni_parent": 28209851.0,
+    "eps": 17.85
+   },
+   "bs": {
+    "ca": 232945011.0,
+    "assets": 399844428.0,
+    "cl": 95939239.0,
+    "liab": 217773911.0,
+    "capital": 16439167.0,
+    "equity_parent": 177832637.0,
+    "equity": 182070517.0,
+    "bvps": 108.24
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

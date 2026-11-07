@@ -1,0 +1,46 @@
+{
+ "code": "3443",
+ "id": "tw-guc",
+ "name": "GUC",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 44098869.0,
+    "cogs": 34131210.0,
+    "gp": 9967659.0,
+    "opex": 3915972.0,
+    "other": null,
+    "op": 6051687.0,
+    "nonop": 254548.0,
+    "pretax": 6306235.0,
+    "tax": 832790.0,
+    "ni": 5473445.0,
+    "ni_parent": 5473445.0,
+    "eps": 40.84
+   },
+   "bs": {
+    "ca": 42895860.0,
+    "assets": 46268108.0,
+    "cl": 30143905.0,
+    "liab": 30537483.0,
+    "capital": 1340119.0,
+    "equity_parent": 15730625.0,
+    "equity": 15730625.0,
+    "bvps": 117.38
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

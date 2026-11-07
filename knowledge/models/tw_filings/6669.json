@@ -1,0 +1,46 @@
+{
+ "code": "6669",
+ "id": "co-wiwynn",
+ "name": "위윈",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 989278016.0,
+    "cogs": 904080697.0,
+    "gp": 85197319.0,
+    "opex": 15070659.0,
+    "other": null,
+    "op": 70126660.0,
+    "nonop": -2801894.0,
+    "pretax": 67324766.0,
+    "tax": 14876969.0,
+    "ni": 52447797.0,
+    "ni_parent": 52447797.0,
+    "eps": 94.04
+   },
+   "bs": {
+    "ca": 641591652.0,
+    "assets": 689600265.0,
+    "cl": 487559273.0,
+    "liab": 501574763.0,
+    "capital": 5843370.0,
+    "equity_parent": 188025502.0,
+    "equity": 188025502.0,
+    "bvps": 321.78
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

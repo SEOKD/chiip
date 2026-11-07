@@ -1,0 +1,46 @@
+{
+ "code": "2383",
+ "id": "co-elitematerial",
+ "name": "엘리트머티리얼즈",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 141226994.0,
+    "cogs": 92544063.0,
+    "gp": 48682931.0,
+    "opex": 10134214.0,
+    "other": null,
+    "op": 38548717.0,
+    "nonop": 134137.0,
+    "pretax": 38682854.0,
+    "tax": 8973315.0,
+    "ni": 29709539.0,
+    "ni_parent": 29713011.0,
+    "eps": 82.92
+   },
+   "bs": {
+    "ca": 141325615.0,
+    "assets": 193742980.0,
+    "cl": 92975838.0,
+    "liab": 120298788.0,
+    "capital": 3583211.0,
+    "equity_parent": 73468253.0,
+    "equity": 73444192.0,
+    "bvps": 205.03
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

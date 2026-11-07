@@ -1,0 +1,46 @@
+{
+ "code": "2308",
+ "id": "co-delta",
+ "name": "델타일렉트로닉스",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 539667536.0,
+    "cogs": 348244081.0,
+    "gp": 191423455.0,
+    "opex": 99815980.0,
+    "other": null,
+    "op": 91607475.0,
+    "nonop": 8151455.0,
+    "pretax": 99758930.0,
+    "tax": 22697090.0,
+    "ni": 77061840.0,
+    "ni_parent": 69185826.0,
+    "eps": 26.64
+   },
+   "bs": {
+    "ca": 553072192.0,
+    "assets": 835660191.0,
+    "cl": 323465621.0,
+    "liab": 451230114.0,
+    "capital": 25975433.0,
+    "equity_parent": 318197309.0,
+    "equity": 384430077.0,
+    "bvps": 122.5
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

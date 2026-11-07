@@ -1,0 +1,46 @@
+{
+ "code": "3035",
+ "id": "tw-faraday",
+ "name": "패러데이테크놀로지",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 9566239.0,
+    "cogs": 5285981.0,
+    "gp": 4280258.0,
+    "opex": 3699420.0,
+    "other": null,
+    "op": 580838.0,
+    "nonop": 459727.0,
+    "pretax": 1040565.0,
+    "tax": 251296.0,
+    "ni": 789269.0,
+    "ni_parent": 581143.0,
+    "eps": 2.23
+   },
+   "bs": {
+    "ca": 14039062.0,
+    "assets": 26358272.0,
+    "cl": 6597062.0,
+    "liab": 7429745.0,
+    "capital": 2605503.0,
+    "equity_parent": 18014356.0,
+    "equity": 18928527.0,
+    "bvps": 69.14
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

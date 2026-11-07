@@ -1,0 +1,46 @@
+{
+ "code": "6213",
+ "id": "tw-iteq",
+ "name": "아이텍",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 36290498.0,
+    "cogs": 27346419.0,
+    "gp": 8944079.0,
+    "opex": 2337322.0,
+    "other": null,
+    "op": 6606757.0,
+    "nonop": 46675.0,
+    "pretax": 6653432.0,
+    "tax": 2001218.0,
+    "ni": 4652214.0,
+    "ni_parent": 4652214.0,
+    "eps": 12.8
+   },
+   "bs": {
+    "ca": 37908923.0,
+    "assets": 51678099.0,
+    "cl": 21884746.0,
+    "liab": 25778377.0,
+    "capital": 3637640.0,
+    "equity_parent": 25899722.0,
+    "equity": 25899722.0,
+    "bvps": 71.23
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

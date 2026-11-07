@@ -1,0 +1,46 @@
+{
+ "code": "6239",
+ "id": "tw-pti",
+ "name": "PTI",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 69764228.0,
+    "cogs": 54504633.0,
+    "gp": 15259595.0,
+    "opex": 4496295.0,
+    "other": null,
+    "op": 10763300.0,
+    "nonop": 612390.0,
+    "pretax": 11375690.0,
+    "tax": 2573932.0,
+    "ni": 8801758.0,
+    "ni_parent": 6675267.0,
+    "eps": 9.05
+   },
+   "bs": {
+    "ca": 59163581.0,
+    "assets": 144092699.0,
+    "cl": 31906566.0,
+    "liab": 71588487.0,
+    "capital": 7591466.0,
+    "equity_parent": 56925389.0,
+    "equity": 72504212.0,
+    "bvps": 78.11
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

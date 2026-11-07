@@ -1,0 +1,46 @@
+{
+ "code": "8021",
+ "id": "tw-topoint",
+ "name": "토포인트",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 5496440.0,
+    "cogs": 3242305.0,
+    "gp": 2254135.0,
+    "opex": 784401.0,
+    "other": 3832.0,
+    "op": 1473566.0,
+    "nonop": 2608.0,
+    "pretax": 1476174.0,
+    "tax": 444204.0,
+    "ni": 1031970.0,
+    "ni_parent": 898769.0,
+    "eps": 6.18
+   },
+   "bs": {
+    "ca": 7632930.0,
+    "assets": 12349225.0,
+    "cl": 3429993.0,
+    "liab": 4949544.0,
+    "capital": 1473296.0,
+    "equity_parent": 6772618.0,
+    "equity": 7399681.0,
+    "bvps": 45.97
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

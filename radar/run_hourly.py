@@ -23,6 +23,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-fedreg", "fedreg", 60),
     ("src-edgar-fts", "edgar_fts", 120),
     ("src-twse-monthly", "twse_monthly", 1440),
+    ("src-tw-financials", "pollers.tw_financials", 360),  # 대만 공시 분기 손익·재무상태(TWSE·TPEx OpenAPI, 모델 없음, 2026-11-07 마스터 지시)
     ("src-press-wire", "pollers.press_wire", 30),  # PR Newswire·Business Wire (저녁 브리프 '글로벌 공식 발표')
     ("src-spac-watch", "pollers.spac_watch", 30),  # SPAC 감지·생애 단계 장부(SIC 6770 EDGAR 검색 + S2~S4 후속 추적, 2026-11-04 마스터 지시 1단계)
     ("src-weekly-movers", "markets.weekly_movers", 30),  # EODHD 주간 상승률 — 모듈이 토 06~09시·주 1회만 실제 실행

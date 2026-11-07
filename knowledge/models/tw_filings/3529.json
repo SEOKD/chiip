@@ -1,0 +1,46 @@
+{
+ "code": "3529",
+ "id": "tw-ememory",
+ "name": "이메모리",
+ "market": "tpex",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 3400810.0,
+    "cogs": 0.0,
+    "gp": 3400810.0,
+    "opex": 1307725.0,
+    "other": null,
+    "op": 2093085.0,
+    "nonop": 71716.0,
+    "pretax": 2164801.0,
+    "tax": 287058.0,
+    "ni": 1877743.0,
+    "ni_parent": 1815136.0,
+    "eps": 24.3
+   },
+   "bs": {
+    "ca": 4099642.0,
+    "assets": 5082109.0,
+    "cl": 843360.0,
+    "liab": 852896.0,
+    "capital": 746865.0,
+    "equity_parent": 4127803.0,
+    "equity": 4229213.0,
+    "bvps": 55.27
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap06_O_ci",
+    "bs": "https://www.tpex.org.tw/openapi/v1/mopsfin_t187ap07_O_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

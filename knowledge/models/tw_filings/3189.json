@@ -1,0 +1,46 @@
+{
+ "code": "3189",
+ "id": null,
+ "name": "킨서스",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 38140960.0,
+    "cogs": 27595405.0,
+    "gp": 10545555.0,
+    "opex": 4760339.0,
+    "other": null,
+    "op": 5785216.0,
+    "nonop": 215243.0,
+    "pretax": 6000459.0,
+    "tax": 679770.0,
+    "ni": 5320689.0,
+    "ni_parent": 4247778.0,
+    "eps": 8.38
+   },
+   "bs": {
+    "ca": 38871623.0,
+    "assets": 93006790.0,
+    "cl": 20674335.0,
+    "liab": 36794490.0,
+    "capital": 5269002.0,
+    "equity_parent": 46937831.0,
+    "equity": 56212300.0,
+    "bvps": 89.08
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

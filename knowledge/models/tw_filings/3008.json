@@ -1,0 +1,46 @@
+{
+ "code": "3008",
+ "id": null,
+ "name": "라간정밀",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 44859658.0,
+    "cogs": 23820302.0,
+    "gp": 21039356.0,
+    "opex": 5344148.0,
+    "other": null,
+    "op": 15695208.0,
+    "nonop": 3783779.0,
+    "pretax": 19478987.0,
+    "tax": 3313522.0,
+    "ni": 16165465.0,
+    "ni_parent": 15975633.0,
+    "eps": 121.98
+   },
+   "bs": {
+    "ca": 145894333.0,
+    "assets": 221362243.0,
+    "cl": 27818764.0,
+    "liab": 28011919.0,
+    "capital": 1307982.0,
+    "equity_parent": 191322917.0,
+    "equity": 193350324.0,
+    "bvps": 1462.73
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

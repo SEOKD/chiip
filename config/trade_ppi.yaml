@@ -10,10 +10,64 @@ sources:
   uk: {trade: {via: HMRC, status: ok}, ppi: {via: ONS, status: ok}}
   jp: {trade: {via: e-Stat 品別国別表, status: ok}, ppi: {via: 일본은행, status: ok}}
   kr: {trade: {via: 공공데이터포털 관세청, status: todo, why: "키가 관세청 서비스에 등록되지 않았다(활용신청 필요)"}, ppi: {via: 한국은행 ECOS 404Y014, status: ok}}
-  tw: {trade: {via: 재정부 data.gov.tw 28573, status: ok, note: "HS 21개 류·주요국 단위, 6단위 공개 자료 없음"}, ppi: {via: 주계총처 data.gov.tw 148439, status: ok}}
+  tw: {trade: {via: "재정부 data.gov.tw 28573 + 재정부 통계 DB i9161·i9162·i8201·i8202", status: ok, note: "HS 21개 류·주요국 + 세부 품목(積體電路·DRAM·서버·반도체 장비 등, 세계 합계) + 국가×주요 품목군. HS 4·6단위×국가 조회(국제무역서 publicinfo.trade.gov.tw)는 CAPTCHA라 자동 수집하지 않는다", terms: "재정부·국제무역서 '데이터 개방 선언' — 정부 데이터 개방 라이선스 1판, 출처 표기(2026-11-07 확인). 재정부 robots 없음·CAPTCHA 없음"}, ppi: {via: 주계총처 data.gov.tw 148439, status: ok, note: "업종 101개 항목 — taiwan.ppi_watch를 --status 대만 절에 싣는다"}}
   hk: {trade: {via: "C&SD 410-50031", status: ok, note: "SITC 10개 대분류, HS 품목별 공개 표 없음"}, ppi: {via: "C&SD 520-62001", status: ok, note: "분기, 업종 단위"}}
 
-taiwan: {ppi_dataset: 148439, trade_dataset: 28573}
+taiwan:
+  ppi_dataset: 148439
+  trade_dataset: 28573
+  # 재정부 통계 DB 조회(radar/trade_ppi.py tw_goods, 2026-11-07 마스터 지시 "대만 수출입 통계 데이터, PPI 데이터 파이프라인도 함께"). 천 달러
+  mof:
+    detail:   # 세부 품목(세계 합계) — items는 조회 화면의 품목 수(전부 고른다)
+      export: {funid: i9161, items: 56}
+      import: {funid: i9162, items: 51}
+    cross:    # 국가×주요 품목 — countries는 나라·지역 수, goods는 (시작 위치, 개수): 16류 (1)電子零組件~(5)家用電器
+      export: {funid: i8201, countries: 75, goods: [31, 5]}
+      import: {funid: i8202, countries: 75, goods: [29, 5]}
+    partners: [中國大陸, 香港, 美國, 日本, 南韓, 新加坡, 馬來西亞, 越南, 泰國, 菲律賓, 印度, 墨西哥, 加拿大, 德國, 荷蘭, 英國]   # 지역 합계(亞洲·東協 등)는 몫 계산에서 뺀다
+  goods_watch: [積體電路, DRAM, 記憶體, 自動資料處理機及其附屬單元, 電腦之零附件, 半導體設備, 生產半導體等機械, 印刷電路, 交換器及路由器, 電容器及電阻器, 晶圓(化學品)]
+  main_watch: [(1)電子零組件, (4)資通與視聽產品, (2)機械]
+  ppi_watch: [15.電子零組件, (1)半導體, (2)被動電子元件, (3)印刷電路板, 16.電腦、電子產品及光學製品, (1)電腦及其週邊設備, (2)通訊傳播設備, 17.電力設備及配備, 18.機械設備, (2)其他專用生產機械]
+  labels:   # --status 한국어 표기(원문은 괄호로 남긴다). 나라·품목·업종 이름
+    中國大陸: 중국
+    香港: 홍콩
+    美國: 미국
+    日本: 일본
+    南韓: 한국
+    新加坡: 싱가포르
+    馬來西亞: 말레이시아
+    越南: 베트남
+    泰國: 태국
+    菲律賓: 필리핀
+    印度: 인도
+    墨西哥: 멕시코
+    加拿大: 캐나다
+    德國: 독일
+    荷蘭: 네덜란드
+    英國: 영국
+    積體電路: 집적회로
+    記憶體: 메모리
+    自動資料處理機及其附屬單元: 자동 데이터 처리기(서버·PC)
+    電腦之零附件: 컴퓨터 부품
+    半導體設備: 반도체 설비
+    生產半導體等機械: 반도체 제조 기계
+    印刷電路: 인쇄회로
+    交換器及路由器: 스위치·라우터
+    電容器及電阻器: 커패시터·저항
+    晶圓(化學品): 웨이퍼
+    (1)電子零組件: 전자부품
+    (4)資通與視聽產品: 정보통신·AV 제품
+    (2)機械: 기계
+    15.電子零組件: 전자부품
+    (1)半導體: 반도체
+    (2)被動電子元件: 수동부품
+    (3)印刷電路板: PCB
+    16.電腦、電子產品及光學製品: 컴퓨터·전자·광학
+    (1)電腦及其週邊設備: 컴퓨터·주변기기
+    (2)通訊傳播設備: 통신장비
+    17.電力設備及配備: 전력설비
+    18.機械設備: 기계설비
+    (2)其他專用生產機械: 기타 전용 생산기계
 
 inputs:
   logic-ic:
@@ -22,6 +76,8 @@ inputs:
     ppi: {us: PCU334413334413, jp: PRCG20_2201540002, eu: C26, uk: G6T5, kr: 30911AA, tw: "(1)半導體", hk: ind_PPI_IND_24-30}
     proxy: [eu, uk, hk, kr, tw]
     tw_section: "16"
+    tw_goods: 積體電路   # 재정부 세부 품목(2026-11-07)
+    tw_main: (1)電子零組件
     sitc: "77"
   memory:
     name: 메모리 반도체
@@ -29,6 +85,8 @@ inputs:
     ppi: {us: PCU334413334413, jp: PRCG20_2201540002, eu: C26, uk: G6T5, kr: 30911AA, tw: "(1)半導體", hk: ind_PPI_IND_24-30}
     proxy: [us, jp, eu, uk, tw, hk]   # 메모리 단독 PPI는 없다. 메모리 비중이 큰 한국 반도체 지수를 대표로 쓴다
     tw_section: "16"
+    tw_goods: {export: DRAM, import: 記憶體}
+    tw_main: (1)電子零組件
     sitc: "77"
   pcb:
     name: 인쇄회로기판
@@ -36,6 +94,8 @@ inputs:
     ppi: {us: PCU334412334412, jp: PRCG20_2201550007, eu: C26, uk: G6T5, kr: 30931AA, tw: "(3)印刷電路板", hk: ind_PPI_IND_24-30}
     proxy: [eu, uk, hk]
     tw_section: "16"
+    tw_goods: 印刷電路
+    tw_main: (1)電子零組件
     sitc: "77"
   transformer:
     name: 변압기
@@ -61,9 +121,20 @@ inputs:
   semicap:
     name: 반도체 제조장비
     hs: "848620"
-    ppi: {us: PCU333242333242, jp: PRCG20_2201340009, eu: C28, kr: 311241AA}
-    proxy: [eu]
+    ppi: {us: PCU333242333242, jp: PRCG20_2201340009, eu: C28, kr: 311241AA, tw: "(2)其他專用生產機械"}
+    proxy: [eu, tw]
     tw_section: "16"
+    tw_goods: 生產半導體等機械   # 재정부 품목 정의와 HS 8486의 대응은 미확인 — 半導體設備도 goods_watch에 함께 싣는다
+    tw_main: (2)機械
+  server:
+    name: 서버·컴퓨터   # 2026-11-07 대만 세부 품목(自動資料處理機, HS 8471) 연결. EU·영국 PPI는 업종 대용
+    hs: "847150"
+    ppi: {us: PCU334111334111, eu: C26, uk: G6T5, tw: "(1)電腦及其週邊設備"}
+    proxy: [eu, uk, tw]
+    tw_section: "16"
+    tw_goods: 自動資料處理機及其附屬單元
+    tw_main: (4)資通與視聽產品
+    sitc: "75"
 
 # HS 시계열·급등 품목 — radar/trade_hs.py (마스터 지시 2026-11-02). 미국은 전 품목, EU·일본은 아래 관심 장만 받는다
 hs_scan:

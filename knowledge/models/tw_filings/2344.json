@@ -1,0 +1,46 @@
+{
+ "code": "2344",
+ "id": "tw-winbond",
+ "name": "윈본드",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 180427134.0,
+    "cogs": 62266142.0,
+    "gp": 118160992.0,
+    "opex": 32847493.0,
+    "other": null,
+    "op": 85313499.0,
+    "nonop": 1254472.0,
+    "pretax": 86567971.0,
+    "tax": 17113076.0,
+    "ni": 69454895.0,
+    "ni_parent": 69853242.0,
+    "eps": 15.32
+   },
+   "bs": {
+    "ca": 184042559.0,
+    "assets": 336300892.0,
+    "cl": 73617487.0,
+    "liab": 110762516.0,
+    "capital": 47204908.0,
+    "equity_parent": 217320411.0,
+    "equity": 225538376.0,
+    "bvps": 46.04
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

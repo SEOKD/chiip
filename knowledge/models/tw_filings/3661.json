@@ -1,0 +1,36 @@
+{
+ "code": "3661",
+ "id": "tw-alchip",
+ "name": "알칩",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 37877562.0,
+    "gp": 9462133.0,
+    "op": 6643602.0,
+    "pretax": 7900866.0,
+    "ni": 6314827.0,
+    "ni_parent": 6317516.0,
+    "eps": 75.94
+   },
+   "bs": {
+    "assets": 94471212.0,
+    "liab": 30705963.0,
+    "equity_parent": 63731727.0
+   },
+   "basis": {
+    "is": "board_notice",
+    "bs": "board_notice"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap04_L#3661-1151106-142023",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap04_L#3661-1151106-142023"
+   },
+   "retrieved": "2026-11-06T14:20:23+08:00"
+  }
+ }
+}

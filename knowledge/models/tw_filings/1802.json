@@ -1,0 +1,46 @@
+{
+ "code": "1802",
+ "id": "tw-taiwanglass",
+ "name": "타이완글라스",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 36440332.0,
+    "cogs": 27190538.0,
+    "gp": 9249794.0,
+    "opex": 3756130.0,
+    "other": 221951.0,
+    "op": 5715615.0,
+    "nonop": -755648.0,
+    "pretax": 4959967.0,
+    "tax": 262803.0,
+    "ni": 4697164.0,
+    "ni_parent": 4564895.0,
+    "eps": 1.57
+   },
+   "bs": {
+    "ca": 40385282.0,
+    "assets": 100084236.0,
+    "cl": 30025761.0,
+    "liab": 41896346.0,
+    "capital": 29080608.0,
+    "equity_parent": 55168426.0,
+    "equity": 58187890.0,
+    "bvps": 18.97
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}

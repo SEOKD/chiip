@@ -1,0 +1,46 @@
+{
+ "code": "2408",
+ "id": "tw-nanyatech",
+ "name": "난야테크놀로지",
+ "market": "twse",
+ "unit": "NT$ thousand",
+ "currency": "TWD",
+ "ytd": {
+  "2026Q3": {
+   "end": "2026-09-30",
+   "is": {
+    "rev": 265284971.0,
+    "cogs": 51848594.0,
+    "gp": 213417452.0,
+    "opex": 15585875.0,
+    "other": null,
+    "op": 197831577.0,
+    "nonop": 5547518.0,
+    "pretax": 203379095.0,
+    "tax": 39502162.0,
+    "ni": 163876933.0,
+    "ni_parent": 163878695.0,
+    "eps": 49.28
+   },
+   "bs": {
+    "ca": 378756591.0,
+    "assets": 509574525.0,
+    "cl": 75403940.0,
+    "liab": 98883230.0,
+    "capital": 34502059.0,
+    "equity_parent": 410553249.0,
+    "equity": 410691295.0,
+    "bvps": 118.99
+   },
+   "basis": {
+    "is": "statement",
+    "bs": "statement"
+   },
+   "sources": {
+    "is": "https://openapi.twse.com.tw/v1/opendata/t187ap06_L_ci",
+    "bs": "https://openapi.twse.com.tw/v1/opendata/t187ap07_L_ci"
+   },
+   "retrieved": "2026-11-07T15:44:25+09:00"
+  }
+ }
+}
