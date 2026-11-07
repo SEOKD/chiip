@@ -389,13 +389,39 @@ def chart_bars(c):
     return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
+def _tw(text, px=12):
+    """글자 폭 어림 — 한글·한자는 글자 크기만큼, 영문·숫자는 그 0.6배"""
+    return sum(px if ord(ch) > 0x2E80 else px * 0.6 for ch in text)
+
+
+def _wrap2(text, width):
+    """최대 두 줄로 접는다. 띄어쓰기에서 먼저 끊고, 그래도 넘치면 둘째 줄 끝을 …로 줄인다(전체 이름은 마우스를 올리면 보인다)"""
+    if _tw(text) <= width:
+        return [text]
+    words, a = text.split(" "), ""
+    while words and _tw((a + " " + words[0]).strip()) <= width:
+        a = (a + " " + words.pop(0)).strip()
+    if not a:   # 띄어쓰기 없는 긴 이름
+        k = 1
+        while k < len(text) and _tw(text[:k + 1]) <= width:
+            k += 1
+        a, words = text[:k], [text[k:]]
+    b = " ".join(words)
+    while _tw(b + "…") > width and len(b) > 1:
+        b = b[:-1]
+    return [a, b + ("…" if b != " ".join(words) else "")]
+
+
 def chart_hbars(c):
     """가로 막대 — 음수도 그린다(0 기준선 왼쪽). 항목 이름이 긴 그래프(콜 변화 항목 등)를 위해 이름 칸을 넓게(2026-10-30)"""
     rows = c.get("rows") or []
     vals = [b.get("value") or 0 for r in rows for b in r.get("bars") or []]
     if not rows or not vals:
         return ""
-    W, L, R = c.get("w", 700), c.get("label_w", 180), 56
+    W, R = c.get("w", 700), 56
+    # 긴 항목 이름은 두 줄로 접고 이름 칸을 넓힌다 — 좁은 화면(PC·모바일 HTML)에서 왼쪽이 잘리던 문제(마스터 지시 2026-11-07, 코닝 마진 절)
+    lines = {r["label"]: _wrap2(str(r["label"]), W * 0.42) for r in rows}
+    L = min(W * 0.45, max(c.get("label_w", 180), max(_tw(x) for ls in lines.values() for x in ls) + 14))
     pct = "%" if c.get("unit") == "%" else ""   # 막대 값에 % 단위를 붙인다(마스터 지시 2026-11-01)
     hi, lo = max(max(vals), 0), min(min(vals), 0)
     span = (hi - lo) * 1.12 or 1
@@ -410,7 +436,10 @@ def chart_hbars(c):
     g, y = [], 10
     for r in rows:
         bars = r.get("bars") or []
-        g.append(f'<text x="{L - 8}" y="{y + 8 * len(bars) + 4}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(r["label"])}</text>')
+        ls = lines[r["label"]]
+        mid = y + 8 * len(bars) + 4 - (len(ls) - 1) * 7
+        g.append(f'<text x="{L - 8}" y="{mid}" text-anchor="end" style="fill:var(--fg);font-size:12px"><title>{t(r["label"])}</title>'
+                 + "".join(f'<tspan x="{L - 8}" dy="{0 if i == 0 else 14}">{t(x)}</tspan>' for i, x in enumerate(ls)) + "</text>")
         for b in bars:
             v = b.get("value") or 0
             col = COLORS.get(b.get("color", "c"), "var(--c)")
@@ -762,8 +791,8 @@ def render3(d):
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
     figs = figures(d)
-    if figs:
-        parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "</div>")
+    if figs or d.get("gallery_photos"):   # 사진도 한눈에 보기에(2026-11-07)
+        parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "".join(f"<div>{block(b)}</div>" for b in d.get("gallery_photos") or []) + "</div>")
     names = [str(s.get("h2")) for s in d.get("sections") or []]
     parts.append('<nav class="toc">' + "".join(f'<a href="#s{i}">{t(n)}</a>' for i, n in enumerate(names)) + "</nav>")
     for i, s in enumerate(d.get("sections") or []):

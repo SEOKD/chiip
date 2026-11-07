@@ -27,7 +27,7 @@ CONFIG = common.ROOT / "config" / "trade_ppi.yaml"
 LATEST = common.ROOT / "knowledge" / "models" / "trade_ppi" / "latest.json"
 HISTORY = common.ROOT / "knowledge" / "models" / "trade_ppi" / "history.json"   # 월별 원 시계열 — 거시 지표 싱크로율(scripts/tenbagger/sync_view.py, 2026-11-03)
 UA = "Chiip research fhteo1101@gmail.com"
-HISTORY_MONTHS = 30
+HISTORY_MONTHS = 120   # 10년 — 리포트 매출 시계열과 같은 구간(마스터 지시 2026-11-07, 30→120)
 PAUSE = 0.4
 WINDOW = 3   # 무역은 월별 변동이 커서 최근 3개월 합을 전년 같은 3개월과 비교한다
 MONTHS = {m: i + 1 for i, m in enumerate("JAN FEB MAR APR MAY JUN JUL AUG SEP OCT NOV DEC".split())}
@@ -83,7 +83,7 @@ def ppi_eurostat(nace, start):
 
 def ppi_bls(series, today, key=None):
     """{시리즈: {YYYY-MM: 값}} — 키가 없으면 v1(하루 25회), 있으면 v2"""
-    body = {"seriesid": series, "startyear": str(today.year - 2), "endyear": str(today.year)}
+    body = {"seriesid": series, "startyear": str(today.year - (19 if key else 9)), "endyear": str(today.year)}   # BLS 한 요청 상한: v1 10년·v2 20년
     if key:
         body["registrationkey"] = key
     doc = json.loads(get(BLS.format(v="v2" if key else "v1"), data=body))

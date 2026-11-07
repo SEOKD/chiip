@@ -63,13 +63,12 @@ def build(src):
         else:
             rels.append(None)
     import photo_view   # 제품·시설 사진을 charts/로 복사(2026-11-05)
-    for sec in d.get("sections") or []:
-        for b in sec.get("blocks") or []:
-            for x in (b.get("items") or []) if b.get("type") == "photos" else []:
-                f = photo_view.path_of(x["file"])
-                if f.exists():
-                    (cdir / f.name).write_bytes(f.read_bytes())
-                    rels.append(f"charts/{f.name}")
+    for b in [b for sec in d.get("sections") or [] for b in sec.get("blocks") or []] + (d.get("gallery_photos") or []):
+        for x in (b.get("items") or []) if b.get("type") == "photos" else []:
+            f = photo_view.path_of(x["file"])
+            if f.exists():
+                (cdir / f.name).write_bytes(f.read_bytes())
+                rels.append(f"charts/{f.name}")
     md = src.with_suffix(".md")
     md.write_text(report_notion.render(d, charts=[r or "" for r in rels], h1=True), encoding="utf-8")
     return {"md": str(md), "charts": [str(src.parent / r) for r in rels if r]}

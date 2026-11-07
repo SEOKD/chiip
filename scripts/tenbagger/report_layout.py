@@ -301,7 +301,8 @@ def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, por
         want = "EV/EBITDA" if mm["basis"] != "pe_fwd" else "P/E"
         idx = [i for i, c in enumerate(prem["categories"]) if want in c]
         series = [{**x, "values": [x["values"][i] for i in idx]} for x in prem["series"]]
-        prem.update({"title": "멀티플 프리미엄", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
+        # 분기 추이 재료(자기 월말 배수·동종사 분기말 배수)가 없으면 현재값만 — 이유를 제목에 밝힌다(2026-11-07 삼성전자: Fiscal.ai 미수록 종목)
+        prem.update({"title": "멀티플 프리미엄(현재값 — 최근 4개 분기 추이 재료 없음)", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
         parts["멀티플 프리미엄"] = prem
     F = [b for b in (flow_sec or {}).get("blocks") or [] if b.get("type") == "chart"]
     for key, name in (("일별 거래량", SHORT_TITLES["일별 거래량"]), ("기관 자금", SHORT_TITLES["기관 자금"])):
@@ -467,6 +468,22 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if market:
         out.append(market)
     out += [{**x, "h2": "체크리스트"} for x in find("체크리스트")] + find("재발행 기록", "정정 기록")
+    # 본문의 그래프·사진을 모두 한눈에 보기로 올린다(마스터 지시 2026-11-07 "모든 시각물은 한 눈에 보기에 몰아놔 — 거시 지표 싱크로율, 마진 구조, 제품 사진 등")
+    have = {c.get("title") for c in d["gallery"]}
+    d["gallery_photos"] = []
+    for part in out:
+        keep = []
+        for b in part.get("blocks") or []:
+            if b.get("type") == "chart" and b.get("chart"):
+                if b["chart"].get("title") not in have:
+                    d["gallery"].append(b["chart"])
+                    have.add(b["chart"].get("title"))
+            elif b.get("type") == "photos":
+                d["gallery_photos"].append(b)
+            else:
+                keep.append(b)
+        part["blocks"] = keep
+    out[:] = [x for x in out if x.get("blocks")]
     d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}})
 
     def zero(o):
