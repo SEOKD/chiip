@@ -47,6 +47,12 @@ def day_reports(day, c=None):
         return []
     with LOG.open(encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r.get("date") == day]
+    # 주기 밖 회차(마스터 지시 2026-11-07 "지금 작업 중인 Analysis는 오늘 주기에 포함시키지 마라") — off_cycle.csv(date,id)에 적힌 리포트는 당일 점검 대상에서 뺀다
+    off = ROOT / "knowledge" / "models" / "tenbagger" / "off_cycle.csv"
+    if off.exists():
+        with off.open(encoding="utf-8", newline="") as f:
+            skip = {(r["date"], r["id"]) for r in csv.DictReader(f)}
+        rows = [r for r in rows if (r.get("date"), r.get("id")) not in skip]
     out = []
     for r in rows[-int(c["max_per_day"]):]:
         r["json"] = str(Path(r["html"]).with_suffix(".json"))
