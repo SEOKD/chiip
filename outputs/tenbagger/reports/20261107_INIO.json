@@ -5884,7 +5884,34 @@
   }
  ],
  "support": "",
- "gallery_photos": [],
+ "gallery_photos": [
+  {
+   "type": "photos",
+   "items": [
+    {
+     "name": "가스엔진 장비",
+     "caption": "Jenbacher 가스엔진(GE 소유 시절 브랜드 표기)",
+     "file": "File:GE Jenbacher Gas Engines.jpg",
+     "jpg": "2c248ccd2826fb47.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:GE_Jenbacher_Gas_Engines.jpg",
+     "credit": "사진: SteidlLu · CC BY-SA 4.0 · Wikimedia Commons"
+    }
+   ]
+  },
+  {
+   "type": "photos",
+   "items": [
+    {
+     "name": "Waukesha 공장(미국 위스콘신)",
+     "caption": "Waukesha 가스엔진 공장 내부(2014년 방문 행사 사진)",
+     "file": "File:Barack Obama visit to Waukesha Gas Engines (12230202753).jpg",
+     "jpg": "bb5d4d5df5ec4f3b.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Barack_Obama_visit_to_Waukesha_Gas_Engines_(12230202753).jpg",
+     "credit": "사진: WisPolitics.com · CC BY-SA 2.0 · Wikimedia Commons"
+    }
+   ]
+  }
+ ],
  "format": 3,
  "terms": {
   "Jenbacher": "INNIO의 가스엔진 브랜드",
