@@ -2,7 +2,7 @@
 # 단, 체계적인 판단 흐름과 정량적 지표에 따라"). 계산: scripts/portfolio/watchlist.py. 대상은 config/portfolio.yaml status: 관심 — 보유는 건드리지 않는다.
 # 값은 둥근 사전값(미검증). 등록부 prm-watchlist-*. 성과는 watchlist_log.csv → 편입 후 20거래일 초과수익으로 Model Lab이 점검한다.
 add:
-  alpha_min: 6.0          # 알파 잠재력(knowledge/models/alpha/latest.json total) — Buy Call 기준과 같다
+  alpha_min: 7.0          # 알파 잠재력(knowledge/models/alpha/latest.json total) — 마스터 지시 2026-11-07 "알파 점수가 7점 이상인 종목 중에서" (6.0→7.0)
   composite_pct: 0.75     # 종합 점수가 그날 평가 종목 중 상위 25%(분위 — 점수 눈금이 바뀌어도 같은 뜻, 2026-11-04 분포 최고 6.5라 고정 7.0은 닿지 않는다)
   buy_call_counts: true   # 리포트 규칙 등급이 현재가로 Buy 이상(buy_call_latest)이면 종합 점수 대신 인정
   confirm_days: 2         # 서로 다른 날 연속 충족해야 편입(하루 잡음 방지)

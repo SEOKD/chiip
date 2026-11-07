@@ -9,6 +9,7 @@ import watchlist as w  # noqa: E402
 C = {"add": {"alpha_min": 6.0, "composite_pct": 0.75, "buy_call_counts": True, "confirm_days": 2},
      "remove": {"alpha_pct": 0.5, "composite_pct": 0.5, "confirm_days": 3, "killed_immediate": True},
      "cap": {"max_auto": 1, "replace_margin": 1.0}}
+WIDE = {**C, "cap": {"max_auto": 9, "replace_margin": 1.0}}   # 제외 시험에서 상한 교체가 끼지 않게
 
 
 def mt():
@@ -26,15 +27,15 @@ class T(unittest.TestCase):
         self.assertEqual(adds, ["x7"])   # 상한 1 — 종합 최고만, 보유는 후보 아님
 
     def test_remove_needs_both_low_three_days(self):
-        H = [{"id": "x0", "status": "관심"}, {"id": "x7", "status": "관심"}]
+        H = [{"id": "x0", "status": "관심", "added_by": "chiip"}, {"id": "x7", "status": "관심", "added_by": "chiip"}, {"id": "held", "status": "보유"}]
         st = {}
         for d in ("2026-11-04", "2026-11-05"):
-            self.assertEqual(w.decide(H, mt(), C, st, d)[1], [])
-        drops = w.decide(H, mt(), C, st, "2026-11-06")[1]
+            self.assertEqual(w.decide(H, mt(), WIDE, st, d)[1], [])
+        drops = w.decide(H, mt(), WIDE, st, "2026-11-06")[1]
         self.assertEqual([i for i, _ in drops], ["x0"])
 
     def test_remove_when_add_criteria_unmet(self):
-        H = [{"id": "x5", "status": "관심"}]   # 알파 5.5 < 6.0 — 중앙값 위여도 편입 기준 미달이면 제외(2026-11-06)
+        H = [{"id": "x5", "status": "관심", "added_by": "chiip"}]   # 알파 5.5 < 6.0 — 중앙값 위여도 편입 기준 미달이면 제외(2026-11-06)
         st = {}
         for d in ("2026-11-04", "2026-11-05"):
             w.decide(H, mt(), C, st, d)
@@ -42,17 +43,23 @@ class T(unittest.TestCase):
 
     def test_low_alpha_removed_without_composite_and_pin_kept(self):
         m = mt(); m["nc"] = {"ticker": "NC", "alpha": 4.0}; m["pp"] = {"ticker": "PP", "alpha": 1.0}
-        H = [{"id": "nc", "status": "관심"}, {"id": "pp", "status": "관심", "pin": True}]
+        H = [{"id": "nc", "status": "관심", "added_by": "chiip"}, {"id": "pp", "status": "관심", "added_by": "chiip", "pin": True}]
         st = {}
         for d in ("2026-11-04", "2026-11-05"):
             w.decide(H, m, C, st, d)
         self.assertEqual([i for i, _ in w.decide(H, m, C, st, "2026-11-06")[1]], ["nc"])
 
-    def test_unknown_metrics_never_remove(self):
-        H = [{"id": "ghost", "status": "관심"}]
+    def test_manual_watch_never_auto_removed(self):
+        H = [{"id": "x0", "status": "관심"}]   # 마스터 수동 지정(added_by 없음)
         st = {}
         for d in ("2026-11-04", "2026-11-05", "2026-11-06", "2026-11-07"):
             self.assertEqual(w.decide(H, mt(), C, st, d)[1], [])
+
+    def test_unknown_metrics_never_remove(self):
+        H = [{"id": "ghost", "status": "관심", "added_by": "chiip"}, {"id": "held", "status": "보유"}]
+        st = {}
+        for d in ("2026-11-04", "2026-11-05", "2026-11-06", "2026-11-07"):
+            self.assertEqual(w.decide(H, mt(), WIDE, st, d)[1], [])
 
     def test_apply_marks_ended_not_deleted(self):
         text = "holdings:\n  - id: a\n    ticker: A\n    status: 관심\n\nevents:\n  - {}\n"

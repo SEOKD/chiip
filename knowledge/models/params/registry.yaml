@@ -2833,12 +2833,12 @@ params:
 - id: prm-watchlist-add-alpha-min
   model: portfolio.watchlist
   binding: config/watchlist.yaml#add.alpha_min
-  value: 6.0
+  value: 7.0
   unit: 점
   status: prior
   prior:
-    value: 6.0
-    basis: 편입 알파 하한 — Buy Call 기준과 같다
+    value: 7.0
+    basis: 편입 알파 하한 — 마스터 지시 2026-11-07 "알파 점수가 7점 이상인 종목 중에서"(6.0→7.0)
     source: 치입 운영 가정(2026-11-04 마스터 지시) — 문헌 값 미확인
   fit:
     method: 편입·제외일 이후 20거래일 초과수익(편입군 − 제외군), 중첩 표본 외
