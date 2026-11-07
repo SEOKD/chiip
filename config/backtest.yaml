@@ -1,0 +1,31 @@
+# 과거 시점 복원 백테스트 (ADR-016 §2-3, 마스터 승인 2026-11-07) — scripts/backtest/
+# 목적: 알파 v2 요인 IC·가중치, DCF 보강 사전값(D2 k·D4 ρ 등), 확률 보정 곡선을 앞으로의 성과를 기다리지 않고 피팅한다.
+period: {start: "2012-01-31", end: "2025-12-31"}   # 월말 리밸런싱 시점
+horizons_months: [12, 36, 60]
+sec_frames:                 # SEC XBRL frames API(전 상장사 한 기간 한 항목) — 키 불필요, User-Agent = radar/pollers/sec_filings._ua()
+  base: "https://data.sec.gov/api/xbrl/frames"
+  rate_per_sec: 5           # SEC 공정 접근 한도(초당 10회)의 절반
+  lag_days: {quarter: 45, annual: 90}   # 기간 종료 뒤 이 일수가 지나야 '알려진 값'으로 쓴다(frames는 제출일이 없어 10-Q·10-K 제출 기한으로 대신, 미래 누설 방지)
+  restatement_note: "frames는 같은 기간의 최신 제출값이라 정정 공시가 과거로 스며든다(재작성 편향) — 결과에 표기"
+  concepts:                 # 지표 → us-gaap 태그(첫 태그가 비면 다음 태그)
+    revenue: [Revenues, RevenueFromContractWithCustomerExcludingAssessedTax, SalesRevenueNet]
+    operating_income: [OperatingIncomeLoss]
+    da: [DepreciationDepletionAndAmortization, DepreciationAndAmortization]
+    cfo: [NetCashProvidedByUsedInOperatingActivities]
+    capex: [PaymentsToAcquirePropertyPlantAndEquipment]
+    total_assets: [Assets]
+    equity: [StockholdersEquity]
+    shares: [dei:EntityCommonStockSharesOutstanding]
+price_source: null          # 일봉 대량 원천 — 마스터 승인 전에는 비워 둔다(아래 후보 점검 결과)
+price_candidates:           # 2026-11-07 약관·robots 점검(scripts/backtest/prices.py)
+  stooq: {status: 제외, why: "robots.txt가 일반 봇 전체 차단(User-agent: * / Disallow: /) — 스크립트 대량 수집 불가"}
+  tiingo: {status: 승인 대기, why: "개인·내부 용도 허용, API 키 필요. 무료(Starter)는 데이터 저장 금지라 백테스트 캐시 불가 — 유료 Power($30/월)는 구독 중에만 저장 가능, 종료 시 삭제 의무. 재배포 금지(통계 결과만 파생물 허용). 상장 폐지 종목 포함 여부 미확인", terms: "https://www.tiingo.com/tos"}
+  alpha_vantage: {status: 미확인, why: "약관이 PDF라 읽지 못함 — 다시 확인 필요"}
+  nasdaq_data_link: {status: 미확인, why: "약관 페이지를 찾지 못함"}
+  fiscal_ai: {status: 사용 가능(소량), why: "이미 승인된 원천이나 모델 회차(MCP)로만 받는다 — 2012~2025 전 종목 대량 수집에는 맞지 않는다"}
+gates:
+  t_hurdle: 3.0             # Harvey, Liu & Zhu(2016) RFS 29(1) — 다중검정을 감안한 새 요인 t 문턱
+  post_pub_decay: 0.5       # McLean & Pontiff(2016) J Finance 71(1) — 발표 뒤 요인 수익 약 절반(사전 IC = 문헌 × 0.5)
+  newey_west_lags: 11       # 12개월 수익률 겹침(월별 표본) 자기상관 보정
+  min_months: 60
+  walk_forward: {min_train: 60, step: 12}

@@ -1,0 +1,44 @@
+# 알파 v2 — 정량 사전 + 판단 덧씌우기 + 확률 보정 (ADR-016 §2, 마스터 승인 2026-11-07)
+# 계산: scripts/alpha/v2.py(결정론) · 보정·성적표: scripts/alpha/calibrate.py · 피팅: scripts/backtest/
+# 전환 전 2주 병행 기록(shadow): 게이트(어닝 캘린더·Portfolio·Discovery)는 아직 v1(config/alpha.yaml)을 쓴다.
+# 값은 모두 사전값 — 등록부 prm-alpha2-*. 블록 가중은 IC 사전값을 동일 가중 1/N 쪽으로 반 축소(DeMiguel, Garlappi & Uppal 2009 RFS).
+shadow: true
+shadow_until: "2026-11-21"   # 이날 v1·v2 비교표(--compare)로 마스터에게 전환 여부를 묻는다
+min_blocks: 3                # 정량 블록이 이보다 적으면 v2 미산정
+winsor_z: 2.33               # 순위 → z 변환 뒤 1%/99% 절단
+shrink_to_equal: 0.5
+blocks:                      # ic = 블록 정보계수 사전값(월간 순위 IC, 문헌 효과를 McLean & Pontiff 2016에 따라 반으로 깎은 값), half_life = 신호 반감기(일)
+  value:      {ic: 0.035, half_life: 365, factors: {fcf_yield: 1, ebit_ev: 1, book_to_market: 1},
+               source: "Yartseva(2025) 표 5 — FCF/P·B/M 계수가 가장 크다(시스템 GMM 51.8·42.4, 1% 유의) · Gray & Carlisle(2012) 획득자 배수 · Fama & French(1992)"}
+  quality:    {ic: 0.02, half_life: 365, factors: {roic: 1},
+               source: "Novy-Marx(2013) 총이익/자산 · Yartseva(2025) ROA 0.4~1.9(작다)"}
+  investment: {ic: 0.025, half_life: 365, factors: {inv_dummy: -1, asset_growth: -1},
+               source: "Yartseva(2025) 자산 증가율 > EBITDA 증가율이면 다음 해 초과수익 −4~−11%p · Cooper, Gulen & Schill(2008)"}
+  revision:   {ic: 0.03, half_life: 60, factors: {rev_revision: 1},
+               source: "Chan, Jegadeesh & Lakonishok(1996) · Bernard & Thomas(1989)"}
+  price:      {ic: 0.02, half_life: 90, factors: {mom_12_1: 1, price_range: -1, mom_6m: -0.5},
+               source: "Jegadeesh & Titman(1993) 12-1 모멘텀(+) vs Yartseva(2025) 다배수 종목은 12개월 고점 근접(−0.88)·6개월 모멘텀(−0.44) 역전 — 둘 다 넣고 백테스트로 가린다"}
+  discovery:  {ic: 0.015, half_life: 365, factors: {log_mcap: -1, n_analysts: -1},
+               source: "Banz(1981) 규모 · Yartseva(2025) ln TEV −5~−49 · Hong, Lim & Stein(2000) 커버리지"}
+  risk:       {ic: 0.01, half_life: 30, factors: {short_ratio: -1},
+               source: "Asquith, Pathak & Ritter(2005) 공매도 — 여기 값은 FINRA 일별 공매도 거래 비중(공매도 잔고 아님)"}
+  attention:  {ic: 0.01, half_life: 7, factors: {social_z: 1},
+               source: "Da, Engelberg & Gao(2011) 관심 급증 → 단기 초과수익 후 반전"}
+  engine:     {ic: 0.03, half_life: 90, factors: {p_double: 1, base_vs_implied: 1},
+               source: "치입 v2 밸류 엔진(upside.p_h[2]·기저율 백분위 차) — 강제 입력으로 승격"}
+judgment:                    # 판단 덧씌우기 — 모델 판단(bottleneck·upside·gap·asymmetry, 근거 URL 필수)
+  components: [bottleneck, upside, gap, asymmetry]
+  scale: 2.5                 # 판단 점수 → z: (점수 − 5) / scale
+  weight: 0.5                # 판단 신뢰 λ — 최종 z = Q + clip(λ·(J − Q), ±clip). λ = 1이면 1σ 안에서 판단이 정량을 덮어쓴다(그래서 0.5: 정량·판단 동등 신뢰 사전값)
+  clip: 1.0
+  conflict: 1.5              # |J − Q| > 이 값이면 '판단 충돌'(red-team 대상)
+  half_life: 30
+  require_url: true
+grinold:
+  ic: 0.05                   # E[α] = σ·IC·z (Grinold & Kahn 2000). 사전값 — 보정 곡선이 생기면 교체
+  vol_days: 252
+calibration:
+  platt_min_n: 30            # 이 수 이상의 만기 관측이 쌓이면 로지스틱(Platt) 보정
+  isotonic_min_n: 200        # 이 수 이상이면 등위(isotonic) 회귀
+  horizon_days: 365          # P(1년 시장 초과) 판정 기간
+  benchmark: SPY

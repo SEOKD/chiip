@@ -1,0 +1,49 @@
+# DCF 보강(D2~D6) + SOTP (ADR-016, 마스터 승인 2026-11-07 "위 설계안과 확인하지 못한 것 모두 Chiip 시스템 아키텍처에 구현하라")
+# 값은 모두 사전값(prior) — 등록부 prm-dcf-*·prm-sotp-*. 피팅은 scripts/backtest/ 데이터셋이 생긴 뒤 표본 외로(채택 관문 그대로).
+# 계산: scripts/valuation/v2/plus.py(D2·D3·D5·D6) · montecarlo.py(D4) · sotp.py(SOTP)
+
+outside_view:              # D2 외부 관점 혼합 — 3년차 이후 성장률을 같은 규모 구간 기저율 중앙값 쪽으로 당긴다
+  enabled: true
+  start_year: 3            # 이 해까지는 종목 가정 그대로(컨센서스·가이던스 구간)
+  k: 0.35                  # 혼합 가중 w_t = 1 − exp(−k·(t − start_year)). 10년차 w ≈ 0.91
+  source: "Mauboussin, Callahan & Majd(2016) The Base Rate Book; Chan, Karceski & Lakonishok(2003) J Finance 58(2) — 장기 성장 지속성은 우연 수준"
+
+normalize:                 # D3 정상화 이익률 — 경기순환 업종은 계속가치 마진을 한 사이클 평균으로
+  blend_years: 3           # 마지막 몇 해 동안 정상화 마진으로 선형 이동(계속가치는 마지막 해 마진을 쓴다)
+  cycle_years: 10          # 피어 SEC 연간 영업이익률 평균 창(8~10년 = 메모리 한 사이클)
+  source: "Damodaran, Investment Valuation 3판 22장(순환 기업 — 정상화 이익)"
+
+mc_corr:                   # D4 상관 충격 + 두꺼운 꼬리
+  enabled: true
+  rho_growth_margin: 0.4   # 성장 충격과 마진 충격의 상관(영업 레버리지). 사전값 — 피팅 대상
+  t_df: 5                  # 스튜던트 t 자유도(분산 1로 정규화)
+  source: "영업 레버리지(Mandelker & Rhee 1984 J Financial Quant Anal); 수익률 두꺼운 꼬리(Cont 2001 Quant Finance)"
+
+exit_check:                # D5 계속가치의 내포 출구 배수(EV/EBIT) 점검 — 벗어나면 경고만(값은 바꾸지 않는다)
+  ranges:                  # 업종 장기 EV/EBIT 범위(사전값, 미대조 — Damodaran 업종 배수 표와 대조 필요)
+    semiconductor: [8, 25]
+    semicap: [8, 22]
+    software: [10, 30]
+    software_internet: [10, 30]
+    electronics: [6, 18]
+    electrical_equipment: [8, 22]
+    aerospace_defense: [8, 20]
+    power_utility: [8, 16]
+    default: [6, 20]
+  source: "Damodaran 업종별 EV/EBIT(pages.stern.nyu.edu/~adamodar, 연 1회) — 범위는 어림값, 대조 전"
+
+roic_fade:                 # D6 계속가치 RONIC = WACC + max_spread × 해자 점수(0~1). drivers에 ronic_spread가 있으면 그것이 우선
+  max_spread: 0.08
+  source: "Fama & French(2000) J Business 73(2) — 수익성 연 약 38% 평균회귀; McKinsey Valuation 7판 — 넓은 해자 기업도 계속가치 스프레드는 한 자릿수"
+
+sotp:
+  holding_discount: 0.30   # 상장 지분 시가 할인 사전값(아래 근거) — 리포트는 0%·30%·50% 민감도를 같이 낸다
+  holding_discount_range: [0.20, 0.50]
+  holding_discount_basis:
+    - "신현한 외 — 한국 지주회사는 상장 자회사가 많을수록 할인 확대(https://www.bohrium.com/scholar/37292C67/Hyun-Han_Shin, 서지만 확인)"
+    - "자회사 상장 시 모회사 PBR 약 −33% 보도(어림)"
+    - "삼성물산 셀사이드 SOTP: 목표 할인율 45% 적용 사례(증권사·날짜 미확인), 시장 NAV 할인 50%대 거론(아시아경제 2025-12-08, https://core.asiae.co.kr/article/2025120816154741157) — 지주회사 자체 할인이라 사업회사가 쥔 지분 할인의 상한 참고"
+    - "Berger & Ofek(1995) J Financial Econ 37 복합기업 할인 13~15% — 상한 참고만(이중 적용 금지)"
+  corr_segments: 0.5       # 사업부 충격의 공통 거시 요인 비중(상관 ρ)
+  draws: 2000
+  seed: 20261107

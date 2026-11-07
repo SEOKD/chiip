@@ -4462,3 +4462,531 @@ params:
     data: knowledge/models/social/daily.csv
     last_fit: null
     oos_metric: null
+- id: prm-dcf-ov-k
+  model: valuation.v2.plus
+  binding: config/valuation_v3.yaml#outside_view.k
+  value: 0.35
+  unit: 1/년
+  status: prior
+  prior:
+    value: 0.35
+    basis: 3년차 이후 성장의 기저율 중앙값 혼합 속도(10년차 가중 0.91)
+    source: Mauboussin, Callahan & Majd(2016) The Base Rate Book; Chan, Karceski & Lakonishok(2003)
+  fit:
+    method: 과거 시점 복원 — 혼합 후 5년 매출 예측 오차(표본 외)
+    target: 5년 매출 CAGR 예측 RMSE
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-dcf-ov-start
+  model: valuation.v2.plus
+  binding: config/valuation_v3.yaml#outside_view.start_year
+  value: 3
+  unit: 년
+  status: prior
+  prior:
+    value: 3
+    basis: 컨센서스·가이던스 구간은 종목 가정 그대로
+    source: ADR-016 D2
+  fit:
+    method: 위와 같음
+    target: 5년 매출 CAGR 예측 RMSE
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-dcf-norm-blend
+  model: valuation.v2.plus
+  binding: config/valuation_v3.yaml#normalize.blend_years
+  value: 3
+  unit: 년
+  status: prior
+  prior:
+    value: 3
+    basis: 경기순환 업종 마지막 몇 해를 정상화 마진으로
+    source: Damodaran, Investment Valuation 22장
+  fit:
+    method: 순환 기업 계속가치 마진 vs 실현 10년 평균
+    target: 마진 예측 오차
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-dcf-norm-years
+  model: valuation.v2.plus
+  binding: config/valuation_v3.yaml#normalize.cycle_years
+  value: 10
+  unit: 년
+  status: prior
+  prior:
+    value: 10
+    basis: 피어 SEC 영업이익률 평균 창(메모리 한 사이클 8~10년)
+    source: Damodaran 순환 기업 정상화
+  fit:
+    method: 위와 같음
+    target: 마진 예측 오차
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-dcf-mc-rho
+  model: valuation.v2.montecarlo
+  binding: config/valuation_v3.yaml#mc_corr.rho_growth_margin
+  value: 0.4
+  unit: 상관
+  status: prior
+  prior:
+    value: 0.4
+    basis: 성장 충격과 마진 충격의 상관(영업 레버리지)
+    source: Mandelker & Rhee(1984) 영업 레버리지
+  fit:
+    method: SEC 패널 — 매출 성장 서프라이즈와 마진 변화의 상관(표본 외)
+    target: 몬테카를로 구간 적중률(P10~P90 커버리지)
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-dcf-mc-tdf
+  model: valuation.v2.montecarlo
+  binding: config/valuation_v3.yaml#mc_corr.t_df
+  value: 5
+  unit: 자유도
+  status: prior
+  prior:
+    value: 5
+    basis: 두꺼운 꼬리 충격
+    source: Cont(2001) 수익률 꼬리
+  fit:
+    method: 위와 같음
+    target: P10·P90 커버리지
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-dcf-roic-maxspread
+  model: valuation.v2.plus
+  binding: config/valuation_v3.yaml#roic_fade.max_spread
+  value: 0.08
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.08
+    basis: 계속가치 RONIC − WACC 최대(해자 점수 1)
+    source: Fama & French(2000) 수익성 평균회귀; McKinsey Valuation 7판
+  fit:
+    method: SEC 패널 — ROIC 10년 뒤 잔존 스프레드 분포
+    target: 잔존 스프레드 예측 오차
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-sotp-holding-discount
+  model: valuation.v2.sotp
+  binding: config/valuation_v3.yaml#sotp.holding_discount
+  value: 0.3
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.3
+    basis: 상장 지분 시가 할인(범위 0.2~0.5, 리포트 민감도 병기)
+    source: 신현한 외(상장 자회사 수와 지주 할인), 자회사 상장 시 모회사 PBR −33% 보도, 삼성물산 셀사이드 목표 할인 45%·시장 NAV 할인 50%대(지주사 자체 — 상한 참고)
+  fit:
+    method: 한국 사업회사 SOTP 대비 실제 시가총액 괴리의 지분 비중 회귀
+    target: SOTP 잔차
+    data: 미집계 — KR 사업회사 SOTP 표본 필요
+    last_fit: null
+    oos_metric: null
+- id: prm-sotp-corr
+  model: valuation.v2.sotp
+  binding: config/valuation_v3.yaml#sotp.corr_segments
+  value: 0.5
+  unit: 상관
+  status: prior
+  prior:
+    value: 0.5
+    basis: 사업부 충격의 공통 거시 요인 비중
+    source: ADR-016 3-1(사전값)
+  fit:
+    method: 사업부 영업이익 분기 변화의 상관(IR 공시)
+    target: 사업부 합산 분포 커버리지
+    data: 삼성전자 분기 IR 사업부 실적 — 수집 전
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-value
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.value.ic
+  value: 0.035
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.035
+    basis: value 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Yartseva(2025) 표 5 — FCF/P·B/M 계수가 가장 크다(시스템 GMM 51.8·42.4, 1% 유의) · Gray & Carlisle(2012) 획득자 배수 · Fama & French(1992)
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-value
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.value.half_life
+  value: 365
+  unit: 일
+  status: prior
+  prior:
+    value: 365
+    basis: value 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-quality
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.quality.ic
+  value: 0.02
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.02
+    basis: quality 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Novy-Marx(2013) 총이익/자산 · Yartseva(2025) ROA 0.4~1.9(작다)
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-quality
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.quality.half_life
+  value: 365
+  unit: 일
+  status: prior
+  prior:
+    value: 365
+    basis: quality 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-investment
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.investment.ic
+  value: 0.025
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.025
+    basis: investment 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Yartseva(2025) 자산 증가율 > EBITDA 증가율이면 다음 해 초과수익 −4~−11%p · Cooper, Gulen & Schill(2008)
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-investment
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.investment.half_life
+  value: 365
+  unit: 일
+  status: prior
+  prior:
+    value: 365
+    basis: investment 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-revision
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.revision.ic
+  value: 0.03
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.03
+    basis: revision 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Chan, Jegadeesh & Lakonishok(1996) · Bernard & Thomas(1989)
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-revision
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.revision.half_life
+  value: 60
+  unit: 일
+  status: prior
+  prior:
+    value: 60
+    basis: revision 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-price
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.price.ic
+  value: 0.02
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.02
+    basis: price 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Jegadeesh & Titman(1993) 12-1 모멘텀(+) vs Yartseva(2025) 다배수 종목은 12개월 고점 근접(−0.88)·6개월 모멘텀(−0.44) 역전 — 둘 다 넣고 백테스트로 가린다
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-price
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.price.half_life
+  value: 90
+  unit: 일
+  status: prior
+  prior:
+    value: 90
+    basis: price 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-discovery
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.discovery.ic
+  value: 0.015
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.015
+    basis: discovery 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Banz(1981) 규모 · Yartseva(2025) ln TEV −5~−49 · Hong, Lim & Stein(2000) 커버리지
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-discovery
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.discovery.half_life
+  value: 365
+  unit: 일
+  status: prior
+  prior:
+    value: 365
+    basis: discovery 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-risk
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.risk.ic
+  value: 0.01
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.01
+    basis: risk 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Asquith, Pathak & Ritter(2005) 공매도 — 여기 값은 FINRA 일별 공매도 거래 비중(공매도 잔고 아님)
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-risk
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.risk.half_life
+  value: 30
+  unit: 일
+  status: prior
+  prior:
+    value: 30
+    basis: risk 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-attention
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.attention.ic
+  value: 0.01
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.01
+    basis: attention 블록 IC 사전값(문헌 효과 × 0.5)
+    source: Da, Engelberg & Gao(2011) 관심 급증 → 단기 초과수익 후 반전
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-attention
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.attention.half_life
+  value: 7
+  unit: 일
+  status: prior
+  prior:
+    value: 7
+    basis: attention 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-ic-engine
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.engine.ic
+  value: 0.03
+  unit: 월간 순위 IC
+  status: prior
+  prior:
+    value: 0.03
+    basis: engine 블록 IC 사전값(문헌 효과 × 0.5)
+    source: 치입 v2 밸류 엔진(upside.p_h[2]·기저율 백분위 차) — 강제 입력으로 승격
+  fit:
+    method: scripts/backtest/ic.py 월별 순위 IC·Newey-West t ≥ 3·walk-forward 표본 외
+    target: 블록 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-hl-engine
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#blocks.engine.half_life
+  value: 90
+  unit: 일
+  status: prior
+  prior:
+    value: 90
+    basis: engine 신호 반감기
+    source: ADR-016 §2-2(관심 7·리비전 60·가격 90·가치 365일)
+  fit:
+    method: 신호 나이별 IC 감쇠 곡선 적합
+    target: IC 감쇠 반감기
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-shrink
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#shrink_to_equal
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: IC 가중을 동일 가중 1/N 쪽으로 반 축소
+    source: DeMiguel, Garlappi & Uppal(2009) RFS
+  fit:
+    method: walk-forward 합성 IC — 축소 비율 0·0.25·0.5·0.75 비교
+    target: 합성 표본 외 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-judgment-weight
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#judgment.weight
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: '판단 신뢰 λ: z = Q + clip(λ(J − Q), ±1)'
+    source: Grinold & Kahn(2000) 정보 결합 — 정량·판단 동등 신뢰 사전
+  fit:
+    method: v2_shadow.csv Q·J와 만기 초과수익 회귀(판단 증분 IC)
+    target: 판단 증분 IC
+    data: knowledge/models/alpha/v2_shadow.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-judgment-clip
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#judgment.clip
+  value: 1.0
+  unit: σ
+  status: prior
+  prior:
+    value: 1.0
+    basis: 판단 덧씌우기 최대 폭
+    source: ADR-016 §2-2
+  fit:
+    method: 위와 같음
+    target: 판단 증분 IC
+    data: knowledge/models/alpha/v2_shadow.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-alpha2-grinold-ic
+  model: alpha.v2
+  binding: config/alpha_v2.yaml#grinold.ic
+  value: 0.05
+  unit: IC
+  status: prior
+  prior:
+    value: 0.05
+    basis: E[α] = σ·IC·z
+    source: Grinold & Kahn(2000) Active Portfolio Management
+  fit:
+    method: 합성 z의 표본 외 IC
+    target: 합성 IC
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null
+- id: prm-bt-t-hurdle
+  model: backtest.ic
+  binding: config/backtest.yaml#gates.t_hurdle
+  value: 3.0
+  unit: t
+  status: prior
+  prior:
+    value: 3.0
+    basis: 새 요인 채택 t 문턱(다중검정)
+    source: Harvey, Liu & Zhu(2016) RFS 29(1)
+  fit:
+    method: 고정(위험 관리 상수) — 피팅 대상 아님
+    target: '-'
+    data: '-'
+    last_fit: null
+    oos_metric: null
+- id: prm-bt-post-pub
+  model: backtest.ic
+  binding: config/backtest.yaml#gates.post_pub_decay
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: 문헌 효과의 발표 뒤 잔존 비율
+    source: McLean & Pontiff(2016) J Finance 71(1)
+  fit:
+    method: 발표 연도 전후 IC 비교
+    target: 발표 후 IC 비
+    data: scripts/backtest/ 과거 시점 복원(SEC frames + 승인된 일봉) — 일봉 원천 승인 대기
+    last_fit: null
+    oos_metric: null

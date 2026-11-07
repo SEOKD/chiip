@@ -1,0 +1,119 @@
+# 삼성전자 SOTP 입력 (ADR-016, scripts/valuation/v2/sotp.py) — 금액 단위 10억 원(₩B), 기준 2026-11-07
+# 사업부 기준 매출·이익 = 3Q26 실적 × 4(연환산 런레이트). 출처: 삼성전자 2026년 3분기 실적발표 IR 자료 6~11쪽
+# (https://images.samsung.com/kdp/ir/events/2026/2026_3Q_conference_kor.pdf). 부문 매출은 부문 간 내부매출 포함(IR 6쪽 주석) —
+# 사업부 매출 합(₩211.5T/분기)이 전사(₩195.3T)보다 크다. 영업이익 합은 106.5 − 0.8 + 1.1 + 0.6 = 107.4로 전사와 같아 본사 비용은 이미 배분됐다.
+id: co-samsung
+name: 삼성전자
+as_of: '2026-11-07'
+unit: ₩B
+unit_usd: 736491          # drivers.yaml과 같은 환산(₩B → 달러 매출 규모, 기저율 구간용)
+chart_scale: 1000
+chart_scale_label: 조 원
+tax: 0.24
+g_term: 0.03
+horizon: 10
+region_mix: {KR: 1.0}     # drivers.yaml과 같다 — 매출 지역 배분 전(국가위험을 한국 하나로 둔다)
+market:
+  date: '2026-11-06'
+  price: 188700           # TradingView KRX:005930 11/6 종가
+  shares: 6.566564        # 보통 + 우선(10억 주) — drivers.yaml과 같은 기준(우선주 할인 미반영)
+  net_debt: -197631.7     # 3Q26 IR 별첨: 현금 등 ₩214.8T − 차입 ₩17.2T. 3Q 배당 ₩30T(11월 지급) 미차감
+hq_cost: 0.0              # 부문 영업이익 합 = 전사 영업이익 → 본사 비용 별도 차감 없음
+segments:
+- name: 메모리
+  parent: DS
+  rev0: 562800            # 3Q26 메모리 매출 ₩140.7T × 4 (IR 7쪽)
+  margin0: 0.757          # DS 영업이익 ₩106.5T 전부를 메모리로 둔 값 — 시스템LSI·파운드리 이익 미공시(아래 note)
+  industry: semiconductor
+  growth: {start: 0.35, end: 0.03, decay: 0.35}
+  margin: {m0: 0.757, target: 0.40, year_target: 5, lr: 0.40, lam: 0.3, anchors: [0.74, 0.70]}
+  cyclical: {peer: MU, years: 10}   # D3: 마지막 3년은 마이크론 SEC 10-K 영업이익률 10년 평균으로
+  s2c: 1.0
+  moat: 0.5               # 3사 과점·HBM 인증 장벽(판단) — D6 RONIC 스프레드 = 0.5 × 8%p
+  mc: {sigma_growth: 0.15, sigma_margin: 0.08, decay: 0.6}
+  method: dcf
+  multiple: {metric: ebit, margin: 0.757, peers: {SK하이닉스: 5.07, 마이크론: 7.43},
+             basis: "TradingView 11/7 EV ÷ 영업이익 TTM(SK하이닉스는 EV 칸이 시가총액과 같아 순현금 미차감 — 배수가 약간 높다)"}
+  note: "4Q 가이던스 DRAM 비트 +10%대 중후반·낸드 +10%대 중반 QoQ, LTA 10곳 체결(2030년 캐파의 60~70%) — 1년차 성장 35%·1~2년차 마진 74%·70%는 판단. 5년차 40%는 LTA 기간 구조적 상향 가정(미검증)"
+- name: 시스템LSI·파운드리
+  parent: DS
+  rev0: 25600             # (DS ₩147.1T − 메모리 ₩140.7T) × 4 — 내부매출 포함 차감값(IR 6~8쪽)
+  margin0: 0.0            # 미공시 — 회사는 '실적 대폭 개선'만 밝힘. 손익분기 가정(미확인)
+  industry: semiconductor
+  growth: {start: 0.25, end: 0.04, decay: 0.6}
+  margin: {m0: 0.0, target: 0.06, year_target: 5, lr: 0.06, lam: 0.3}
+  s2c: 0.5
+  moat: 0.0
+  mc: {sigma_growth: 0.15, sigma_margin: 0.05, decay: 0.6}
+  method: dcf
+  multiple: {metric: sales, peers: {글로벌파운드리: 2.96, UMC: 4.51}, basis: "TradingView 11/7 EV ÷ 매출 TTM. TSMC(10.8배)는 수익성 격차로 제외(판단)"}
+  note: "영업이익 미공시 — 사업부 가치 신뢰도 가장 낮음. 2나노 대형 고객·테일러 가동은 성장 가정에만 반영"
+- name: MX·네트워크
+  parent: DX
+  rev0: 150800            # 3Q26 ₩37.7T × 4 (IR 10쪽), 영업이익 −₩0.6T
+  margin0: -0.016
+  industry: electronics
+  growth: {start: 0.05, end: 0.02, decay: 0.5}
+  margin: {m0: -0.016, target: 0.07, year_target: 3, lr: 0.07, lam: 0.3, anchors: [0.02]}
+  s2c: 4.0
+  moat: 0.2
+  mc: {sigma_growth: 0.05, sigma_margin: 0.03, decay: 0.5}
+  method: dcf
+  multiple: {metric: sales, peers: {샤오미: 1.31, 소니: 1.79}, basis: "TradingView 11/7 EV ÷ 매출 TTM. 애플(10.4배) 제외(판단)"}
+  note: "3Q25 영업이익률 10.6%(₩3.6T/₩34.1T) → 3Q26 −1.6%: 메모리 가격 상승이 원가로 — 목표 7%는 원가 부담 완화 가정"
+- name: VD·DA
+  parent: DX
+  rev0: 84400             # 3Q26 VD ₩13.9T + DA ₩7.2T = ₩21.1T × 4 (IR 11쪽), 영업이익 −₩0.2T
+  margin0: -0.0095
+  industry: electronics
+  growth: {start: 0.02, end: 0.02, decay: 0.5}
+  margin: {m0: -0.0095, target: 0.03, year_target: 3, lr: 0.03, lam: 0.3, anchors: [0.0]}
+  s2c: 4.0
+  moat: 0.0
+  mc: {sigma_growth: 0.03, sigma_margin: 0.02, decay: 0.5}
+  method: dcf
+  multiple: {metric: sales, peers: {LG전자: 0.26}, basis: "TradingView 11/7 — EV 칸이 시가총액과 같아 순부채 미반영(배수 과소)"}
+- name: 디스플레이(SDC)
+  parent: SDC
+  rev0: 32000             # 3Q26 ₩8.0T × 4 (IR 9쪽), 영업이익 ₩1.1T(13.8%)
+  margin0: 0.1375
+  industry: electronics
+  growth: {start: 0.03, end: 0.02, decay: 0.5}
+  margin: {m0: 0.13, target: 0.12, year_target: 3, lr: 0.12, lam: 0.3}
+  s2c: 0.8
+  moat: 0.3
+  minority: 0.152         # 삼성디스플레이 지분 84.8%(2025 연결 주석) → 15.2%는 소수주주 몫
+  mc: {sigma_growth: 0.05, sigma_margin: 0.04, decay: 0.5}
+  method: dcf
+  multiple: {metric: ebit, margin: 0.12, peers: {LG디스플레이: 8.0}, basis: "TradingView 11/7 — EV 칸이 시가총액과 같아 순부채 미반영. BOE(EV/EBIT 71배)는 이익 바닥이라 제외"}
+- name: 하만
+  parent: Harman
+  rev0: 17200             # 3Q26 ₩4.3T × 4 (IR 11쪽)
+  margin0: 0.093          # 3Q26 14%는 미국 관세 환급 등 일회성 포함(IR 11쪽) → 2Q26 8.7%·3Q25 10% 사이로 정상화
+  industry: electronics
+  growth: {start: 0.05, end: 0.03, decay: 0.5}
+  margin: {m0: 0.093, target: 0.095, year_target: 3, lr: 0.095, lam: 0.3}
+  s2c: 2.5
+  moat: 0.2
+  mc: {sigma_growth: 0.04, sigma_margin: 0.02, decay: 0.5}
+  method: dcf
+  multiple: {metric: ebit, margin: 0.093, peers: {비스테온: 9.73, 앱티브: 7.14}, basis: "TradingView 11/7 EV ÷ 영업이익 TTM"}
+price_scale: 1000000000   # 주식 수 × 원 → ₩B
+stakes:                   # 2025 연결 주석(https://images.samsung.com/kdp/ir/financial-info/2025/2025_con_quarter04_note.pdf) 시장성 있는 관계기업·공정가치 상장주식, 가격 TradingView 11/6 종가
+- {name: 삼성바이오로직스, code: "KRX:207940", shares: 14449944, pct: 0.312, price: 1516000}
+- {name: 삼성전기, code: "KRX:009150", shares: 17693084, pct: 0.237, price: 870000}
+- {name: 삼성SDI, code: "KRX:006400", shares: 15663968, pct: 0.194, price: 468000}
+- {name: 삼성에스디에스, code: "KRX:018260", shares: 17472110, pct: 0.226, price: 218000}
+- {name: 삼성에피스홀딩스, code: "KRX:0126Z0", shares: 7767364, pct: 0.312, price: 349500}
+- {name: 삼성중공업, code: "KRX:010140", shares: 134027281, pct: 0.152, price: 16200}
+- {name: 제일기획, code: "KRX:030000", shares: 29038075, pct: 0.252, price: 19580}
+- {name: 호텔신라, code: "KRX:008770", shares: 2004717, pct: 0.051, price: 35500}
+unlisted: []              # 삼성코닝어드밴스드글라스(50%) 등 비상장 공동기업은 장부가 미집계 — 0으로 둔다(과소)
+conglomerate_check: "복합기업 할인(Berger & Ofek 1995, 13~15%)은 상한 참고만 — 상장 지분에 지주 할인을 이미 적용해 사업부 합에는 더 깎지 않는다(이중 적용 금지)"
+notes:
+- "사업부 기준 매출은 3Q26 × 4 런레이트 — 메모리 가격이 오르는 구간이라 연간 실적과 다르다(FY2026 매출 컨센서스 ₩723.1T vs 런레이트 ₩781.0T)"
+- "주식 수는 보통 + 우선 합산, 우선주 할인 미반영(drivers.yaml과 같은 기준) — 시가총액이 약 3% 크게 잡힌다"
+- "상장 지분 주식 수는 2025년 말 기준 — 2026년 변동(유상증자·소각) 미반영"
+evidence:
+- "3Q26 실적발표 IR: https://images.samsung.com/kdp/ir/events/2026/2026_3Q_conference_kor.pdf"
+- "2025 연결재무제표 주석(관계기업 지분율·시장성 있는 주식 수): https://images.samsung.com/kdp/ir/financial-info/2025/2025_con_quarter04_note.pdf"

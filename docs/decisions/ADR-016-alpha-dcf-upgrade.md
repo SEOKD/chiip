@@ -1,8 +1,8 @@
-# ADR-016 알파 산정 체계·DCF 고도화 + SOTP (설계안 — 마스터 승인 대기)
+# ADR-016 알파 산정 체계·DCF 고도화 + SOTP
 
 - 날짜: 2026-11-07
 - 마스터 지시: "Alpha 산정 체계를 고도화하라. 전문 서적과 자료, 논문, 칼럼, 블로그 등 월스트리트가 실제로 사용하는 최신 또는 신뢰성 높은 전통적인 기법을 적용해 업데이트하라. 파라미터 피팅, 변수 요인 확장, 추론 플로우 등 전반을 점검하라. DCF 밸류에이션에도 같은 요청 … 삼성전자처럼 사업부가 많은 종목은 SOTP를 적용"
-- 상태: 제안. 승인 후 단계별 구현(각 단계 끝에 보고 게이트)
+- 상태: **승인·구현(2026-11-07)** — 마스터 "위 설계안과 확인하지 못한 것 모두 Chiip 시스템 아키텍처에 구현하라". 구현 내역은 §7
 
 ## 1. 점검 결과 — 지금 체계의 약점
 
@@ -85,11 +85,51 @@
 4. **백테스트 데이터셋** — SEC frames + 일봉 원천(새 원천이면 승인 요청) → 요인 IC·보정 곡선 피팅 → 채택 관문
 5. **보정·성적표** — 알파 점수의 확률 해석과 월간 브라이어
 
-## 5. 확인 필요(미검증 표시)
-- Yartseva(2025) 효과 크기·표본(464종목, 2009~2024)은 2차 요약으로만 확인 — 원문 회귀표 확인 후 사전값 확정. [IDEAS 서지](https://ideas.repec.org/p/akf/cafewp/33.html)
-- 한국 지주 할인 30%는 연구·보도 수치의 어림 — 삼성물산·삼성생명 SOTP 셀사이드 관행과 대조 필요
-- 일봉 대량 원천(Stooq 등)은 약관·robots 확인 전 — 승인 전에는 Fiscal.ai 묶음으로
+## 5. 확인 결과(2026-11-07)
+- **Yartseva(2025) 원문 확인**([BCU 오픈액세스 PDF](https://www.open-access.bcu.ac.uk/16180/1/The%20Alchemy%20of%20Multibagger%20Stocks%20-%20Anna%20Yartseva%20-%20CAFE%20Working%20Paper%2033%20%282025%29.pdf) 표 5, 24쪽):
+  - 표본: 2009~2024년에 10배 이상 오른 미국 상장 **464종목만**(이미 10배를 달성한 생존 종목). 추정 2000~2022, 표본 외 2023~2024. 종속변수 = 연 주가 수익률 − 무위험 수익률.
+  - 추정: FE·IV(Anderson-Hsiao)·차분 GMM(Arellano-Bond)·시스템 GMM(Roodman·Blundell-Bond) 7개 모형. 모형 6은 Hansen 검정 실패.
+  - 시스템 GMM 1단계(모형 7) 계수:
+    - 클수록 수익률 상승: FCF/P +51.8, B/M +42.4, ROA +1.83.
+    - 클수록 수익률 하락: ln TEV(규모) −15.2, 12개월 고점 근접(Price range) −0.88, 6개월 모멘텀 −0.44.
+    - 투자 더미(자산 증가율 > EBITDA 증가율) −4.1(모형별 −4.1~−11.4), 금리 상승 더미 −10.3.
+    - 1·5% 유의.
+  - 2차 요약의 '자산 증가 > EBITDA 증가 시 −23%p'는 **틀렸다**. 원문은 −4~−11%p(본문 26쪽).
+  - 성장 변수(EBITDA·EPS·FCF 성장, 5년 CAGR), P/E, 부채·Altman Z는 동적 모형에서 유의하지 않다.
+  - 반영:
+    - 가치 블록을 가장 크게 잡았다.
+    - 가격 블록은 12-1 모멘텀(+, Jegadeesh-Titman)과 고점 근접·6개월 모멘텀(−, Yartseva)을 함께 넣었다. 문헌이 서로 엇갈려 백테스트로 가린다.
+    - 투자 더미를 넣었다.
+    - **한계:** 결과에 이른 종목 안의 시점 효과라서, 종목 선별 효과로 그대로 옮기지 않는다. 그래서 IC 사전값을 McLean-Pontiff에 따라 반으로 깎았다.
+- **한국 지주 할인 30%:** 사전값을 유지하고 리포트에 0·30·50% 민감도를 같이 낸다.
+  - 대조 근거: 삼성물산 셀사이드 SOTP는 목표 할인 45%를 적용한 사례가 있다(증권사·날짜 미확인). 시장 NAV 할인은 50%대가 거론된다([아시아경제 2025-12-08](https://core.asiae.co.kr/article/2025120816154741157)).
+  - 이 수치들은 지주회사 자체의 할인이라, 사업회사(삼성전자)가 쥔 지분 할인의 **상한 참고**로만 둔다.
+  - 삼성전자는 상장 지분이 시가 ₩54.0T로 시가총액의 4%라서, 할인율을 0%에서 50%까지 바꿔도 결과가 ±0.01배 안에서 움직인다.
+- **일봉 대량 원천:** 약관·robots를 점검했다(`config/backtest.yaml` price_candidates).
+  - Stooq: robots.txt가 일반 봇을 전부 막아 **제외**.
+  - Tiingo: 개인 내부 용도는 허용하지만, 무료 등급은 저장을 금지하고 유료($30/월)는 구독 중에만 저장할 수 있다. 상장 폐지 종목 포함 여부는 미확인이라 **마스터 승인 대기**.
+  - Alpha Vantage·Nasdaq Data Link: 약관을 읽지 못해 **미확인**.
+  - 승인 전에는 `scripts/backtest/prices.py`가 PriceSourceNotApproved를 내고, 백테스트는 재무(frames)까지만 준비된다.
 
 ## 6. 바뀌지 않는 것
 - 알파 점수는 매수 의견이 아니다. 투자자문 경계, 금액·비중 지시 금지 그대로
 - 모든 상수는 등록부에 사전값·출처와 함께, 채택은 표본 외 개선 확인 후
+
+## 7. 구현(2026-11-07)
+| 항목 | 파일 | 상태 |
+|---|---|---|
+| D2 외부 관점 · D3 정상화 마진 · D5 출구 배수 점검 · D6 해자 RONIC | `scripts/valuation/v2/plus.py`, `scenarios.drivers`·`run.py` 연결, 설정 `config/valuation_v3.yaml` | 켜짐(전 종목 v2에 적용). D3·D6은 drivers의 `cyclical`·`moat_score`가 있는 종목만 |
+| D4 상관·두꺼운 꼬리 충격 | `montecarlo.py` `corr_pair`·`t_unit` | 켜짐 |
+| SOTP | `scripts/valuation/v2/sotp.py`, `knowledge/models/companies/co-samsung/sotp.yaml`, 리포트 `scripts/tenbagger/sotp_view.py`(폭포 그림 → 한눈에 보기) | 삼성전자 적용 |
+| 알파 v2 | `scripts/alpha/v2.py`, `config/alpha_v2.yaml`, 보정 `scripts/alpha/calibrate.py` | **병행 기록**(`score.py --finalize`가 같이 돌림) — 게이트는 2026-11-21까지 v1 |
+| 백테스트 | `scripts/backtest/frames.py`(SEC frames, 실시험 통과), `panel.py`, `ic.py`(Newey-West t ≥ 3·발표 후 ×0.5·walk-forward), `prices.py`(원천 관문), 설정 `config/backtest.yaml` | 재무 수집 가능, 일봉 원천 승인 대기 |
+| 등록부 | `prm-dcf-*`·`prm-sotp-*`·`prm-alpha2-*`·`prm-bt-*` 33개 | 모두 prior |
+| 시험 | `tests/test_alpha_dcf_v3.py` | 통과 |
+
+첫 결과(2026-11-07):
+- 삼성전자 SOTP 주주가치는 시가총액의 2.44배다(전사 DCF 2.69배).
+  - 몬테카를로 분포: P10 1.66 · P50 2.40 · P90 3.38배.
+  - 메모리 사업부가 가치의 대부분을 차지한다.
+  - 시스템LSI·파운드리는 영업이익이 미공시라 신뢰도가 가장 낮다.
+- 알파 v2는 46/54종목을 산정했고, v1과의 순위 상관은 +0.42다.
+- 판단 충돌 2건: SK하이닉스, Riot Platforms.

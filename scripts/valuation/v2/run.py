@@ -19,6 +19,7 @@ import baserates  # noqa: E402
 import decision  # noqa: E402
 import dcf  # noqa: E402
 import montecarlo  # noqa: E402
+import plus  # noqa: E402
 import regime as regime_mod  # noqa: E402
 import scenarios  # noqa: E402
 import upside  # noqa: E402
@@ -64,6 +65,9 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     g_term = co.get("g_term", cfg["defaults"]["g_term"].get(region, 0.03))
     base_d = scenarios.drivers(co, co["scenarios"]["base"], coc["wacc"], g_term)
     base = dcf.value(base_d)
+    pc = plus.cfg()
+    exit_mult, exit_rng, exit_warn = plus.exit_check(base, base_d, co["industry"], pc)   # D5
+    nm, nm_src = plus.normal_margin(co.get("cyclical"))   # D3
     scen = {}
     for name, sc in co["scenarios"].items():
         d = scenarios.drivers(co, sc, coc["wacc"], g_term)
@@ -77,7 +81,10 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     dec = decision.compute(mc, mcap, coc["ke"], coc["rf"], cfg["decision"], cfg["upside"]["horizon_years"])
     return {"decision": dec, "drivers_as_of": str(co.get("as_of", "")), "ronic_spread": co.get("ronic_spread", 0.0), "entity": entity, "name": co["name"], "as_of": date.today().isoformat(), "market": m, "mcap": mcap, "coc": coc,
             "g_term": g_term, "base": {"v0": base["equity"] / mcap, "cv_share": base["cv_share"], "ep_gap": base["ep_gap"],
-                                       "roic_y1": base["rows"][0]["roic"], "roic_y5": base["rows"][4]["roic"]},
+                                       "roic_y1": base["rows"][0]["roic"], "roic_y5": base["rows"][4]["roic"],
+                                       "exit_ev_ebit": exit_mult, "exit_range": exit_rng, "exit_warn": exit_warn,
+                                       "ronic": base_d.get("ronic"), "normal_margin": nm, "normal_margin_src": nm_src,
+                                       "outside_median": scenarios._median(co)},
             "scenarios": scen, "upside": blk, "rate_50bp": rs, "regime": {"rf": reg["rf_us"], "erp": reg["erp"], "as_of": reg["as_of"]},
             "unit": co.get("unit", ""), "evidence": co.get("evidence", []), "notes": co.get("notes", [])}
 
@@ -94,6 +101,8 @@ def render(r):
          f"## {r['name']} — 가치 분포와 필요 가정 (시가총액 {r['mcap']:.1f}{r['unit']} 대비 배수)",
          f"- 할인율: WACC {c['wacc']:.2%} = 무위험 {c['rf']:.2%}(미 10년) + 베타 {c['beta']:.2f} × ERP {c['erp']:.2%} + 국가위험 {c['crp']:.2%} · 부채비중 {c['debt_weight']:.0%} · 영구성장 {r['g_term']:.1%}",
          f"- 기본 시나리오: 내재가치 {b['v0']:.2f}배 · 계속가치 비중 {b['cv_share']:.0%} · ROIC 1년차 {b['roic_y1']:.0%} → 5년차 {b['roic_y5']:.0%} · EP 항등 오차 {b['ep_gap']:.1e}",
+         f"- 보강(ADR-016): 계속가치 내포 EV/EBIT {b['exit_ev_ebit']:.1f}배" + (f" ⚠ {b['exit_warn']}" if b.get("exit_warn") else f"(업종 범위 {b['exit_range'][0]}~{b['exit_range'][1]}배 안)") if b.get("exit_ev_ebit") else f"- 보강(ADR-016): {b.get('exit_warn') or '출구 배수 점검 불가'}",
+         f"- 외부 관점: 3년차 이후 성장을 기저율 중앙값 {b['outside_median']:.1%} 쪽으로 혼합" + (f" · 정상화 마진 {b['normal_margin']:.1%}({b['normal_margin_src']})" if b.get("normal_margin") is not None else "") + (f" · 계속가치 RONIC {b['ronic']:.1%}" if b.get("ronic") else " · 계속가치 RONIC = WACC") if b.get("outside_median") is not None else "- 외부 관점: 기저율 표본 없음",
          "", "| 시나리오 | 확률 | 지금 가치/시총 | 5년 뒤 가치/시총 | 5년 매출 CAGR |", "|---|---|---|---|---|"]
     for n, s in r["scenarios"].items():
         L.append(f"| {n} | {s['prob']:.0%} | {s['v0']:.2f} | {s['v5']:.2f} | {s['cagr5']:.1%} |")

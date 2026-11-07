@@ -56,3 +56,7 @@ knowledge/exclusive/
 # 마스터 포지션(개인 금융 정보) — 이 PC에만
 config/portfolio_positions.local.yaml
 radar/conferences/cache/
+
+# 백테스트 원천 캐시(ADR-016, 재생성 가능·용량 큼 — 일봉은 원천 약관상 재배포 금지)
+knowledge/models/backtest/frames/
+knowledge/models/backtest/prices/

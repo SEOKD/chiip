@@ -131,6 +131,12 @@ def main(argv):
     ap.add_argument("--show", action="store_true")
     a = ap.parse_args(argv)
     data = finalize() if a.finalize else json.loads(LATEST.read_text(encoding="utf-8"))
+    if a.finalize:   # 알파 v2 병행 기록(ADR-016 — 전환 전 2주, 게이트는 이 v1 그대로)
+        try:
+            import v2
+            v2.run()
+        except Exception as e:   # v2 실패가 v1 산정을 막지 않는다
+            print(f"[알파 v2 병행 기록 실패] {e}")
     rows = sorted(data["rows"].items(), key=lambda kv: -(kv[1]["total"] or -1))
     print(f"[알파 잠재력] {data['as_of']} 기준 {data['threshold']:.1f} 이상 {len(data['pass'])}/{len(rows)}종목")
     for cid, r in rows:
