@@ -1,0 +1,112 @@
+auto: true
+id: us-wldn
+name: Willdan Group
+ticker: WLDN
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  us: 1.0
+tax: 0.25
+horizon: 10
+as_of: '2026-11-08'
+market:
+  date: '2026-11-08'
+  price: 66.22
+  shares: 0.015896
+  net_debt: 0.3132
+  source: 가격 = 2026-11-06 종가(11/7~8 주말). 주식 수 = 10-Q 표지 15,326,126주(2026-11-05). 현금
+    = 10-Q 10/2 $39.2M(제한 현금 $3.1M 별도). 차입 = Mantis 종결(10/30) 뒤 CFO 프로포마 총차입 $332M(신규
+    Term Loan $250M + 회전한도 $35M + 기존 Term Loan A $46.9M), 순차입 $293M(3Q 콜). 10/2 재무상태표
+    차입은 $61.9M. 차입에는 리스 약 $20.4M(10/2)을 더했다(Fiscal 총차입 $82.3M과 같은 기준)
+rev0: 0.824
+ic0: 0.6843
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.2379
+      end: 0.03
+      decay: 0.398
+    margin:
+      m0: 0.0707
+      target: 0.0899
+      year_target: 3
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.0858
+      - 0.0899
+    s2c: 4.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.3046
+      end: 0.034999999999999996
+      decay: 0.448
+    margin:
+      m0: 0.0707
+      target: 0.1099
+      year_target: 3
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.0858
+      - 0.0899
+    s2c: 4.6
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.1711
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.0707
+      target: 0.0699
+      year_target: 3
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.0858
+      - 0.0899
+    s2c: 3.4
+mc:
+  sigma_growth: 0.0334
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.812, 0.836] (3Q 실적 보도자료·콜(2026-11-05): FY2026 순매출 $435~445M·조정
+    EBITDA $109~111M·조정 EPS $5.15~5.25(희석 15.9M주, GAAP 실효세율 0%), 2Q 콜의 $415~430M·$103~107M·$5.00~5.15에서
+    상향. 2027 예비: 계약매출 약 $1B, 순매출 $500M 이상, 조정 EBITDA $140M 이상. 정식 2027 가이던스는 2월 말)'
+  growth: 컨센서스 1년차 23.8%, 2년차 11.3%
+  margin: 1~2년차 컨센서스 8.6%, 9.0% 고정 → 목표 9%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: 재무 재구성 증분 매출/투하자본 4.0 → 덮어쓰기 4.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 17.1%~30.5%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '장기 수렴 EBIT 이익률 기본값 15%는 하도급 통과분이 계약매출의 절반인 사업에 맞지 않는다. 회사 장기 목표(조정 EBITDA
+    ÷ 순매출 20%대 후반) × 순매출 비중 약 52% − 감가상각·주식보상 약 4~5%p ≈ 계약매출 대비 GAAP EBIT 약 10%(추정)
+    · 재투자 효율 s2c 1.5 → 4.0: CAPEX가 매출의 약 1%(TTM $7.7M)이고 CFO가 FCF를 조정 EBITDA의 70%
+    이상으로 제시했다. 1년차 성장(23.8%)의 상당 부분은 이미 투하자본(프로포마 $684M)에 들어간 Mantis 몫이라 1.5를 쓰면 인수
+    자본을 두 번 센다. 유기 성장의 재투자는 운전자본 위주다(추정)'
+  shares: 완전 희석 = 기본 0.015326(2026-11-05) + 옵션·RSU·워런트·전환 0.0006 — 회사 FY2026 가이던스
+    희석 주식 약 15.9M(3Q 콜) − 표지 기본 주식 15.33M = 약 0.5
+notes:
+- 자동 생성(build_drivers) 2026-11-08 — 데이터 묶음 2026-11-08
+- '어닝콜 위험: Mantis 순매출 재분류(회사 전달치 −38%)'
+- '어닝콜 위험: 인수 차입으로 순차입 $40M → $293M'
+- '어닝콜 위험: 데이터센터 정치 역풍·인터커넥션 지연'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1370450/000110465926123492/wldn-20261002x10q.htm
+- https://www.sec.gov/Archives/edgar/data/1370450/000110465926020767/wldn-20260102x10k.htm
+- https://www.sec.gov/Archives/edgar/data/1370450/000110465926123327/wldn-20261030x8k.htm
+- https://www.sec.gov/Archives/edgar/data/1370450/000110465926123346/wldn-20261105x8k.htm
+- https://www.sec.gov/Archives/edgar/data/1370450/000110465926048621/wldn-20260617xdef14a.htm
+- https://www.sec.gov/Archives/edgar/data/1370450/000110465926092196/wldn-20260703x10q.htm
+- Fiscal.ai company_ir_events_transcript q3-2026(2026-11-05)·q2-2026(2026-08-06) —
+  요지만
+- Fiscal.ai company_estimates·analyst_estimates·analyst_ratings·stock_prices·institutional_holders·insider_transactions(2026-11-08
+  조회)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- Easyconomics company_profile(yfinance, 2026-11-08)
+- Quantral get_company_score·signals(2026-11-08)
