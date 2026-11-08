@@ -837,6 +837,32 @@ themes:
       - {"id": "hk-2050", "name": "Zhejiang Sanhua Intelligent Controls Co., Ltd.", "aliases": ["Zhejiang Sanhua Intelligent Controls Co., Ltd.", "Zhejiang Sanhua Intelligent Controls"], "market": "hk", "code": "2050", "why": "마스터 TradingView 와치리스트(5_HK 미분류) — edge 미판정"}
   # <<< tradingview
 
+  # ── 페이먼츠 테마(마스터 지시 2026-11-08 "앞으로 페이먼츠 섹터도 레이더 망에 넣도록 해") — edge는 치입 1차 판정(미검증), 일요일 회차가 원문 증거로 고친다
+  - id: payments
+    name: 페이먼츠(결제 네트워크·가맹점 결제·기업 지급)
+    bottleneck: "결제는 네트워크 효과·규제 라이선스·가맹점 확보가 진입 장벽 — 스테이블코인 정산·AI 에이전트 결제·실시간 계좌이체가 기존 수수료 구조를 흔드는 국면"
+    driver: "결제액(TPV) × 수수료율(take rate) − 거래·신용 손실 + 예치금 이자(금리 민감)"
+    evidence: ["분기 TPV·수수료율·거래 건수", "스테이블코인·에이전트 결제 규제와 제휴(미국 GENIUS법 시행 단계)", "카드 수수료 소송·규제(교환수수료)"]
+    candidates:
+      - {id: us-cpay, name: Corpay, market: us, code: "CPAY", edge: 6, why: "법인 연료카드·기업 간 지급·환전 — 국경 간 B2B 지급 성장과 연료가격 민감도(1차 판정)"}
+      - {id: us-v, name: Visa, market: us, code: "V", edge: 5, why: "글로벌 카드 네트워크 — 스테이블코인 정산·에이전트 결제 대응이 관건(1차 판정)"}
+      - {id: us-ma, name: Mastercard, market: us, code: "MA", edge: 5, why: "카드 네트워크·부가서비스 — 교환수수료 규제 위험(1차 판정)"}
+      - {id: us-pypl, name: PayPal, market: us, code: "PYPL", edge: 5, why: "브랜디드 결제·Venmo — 수익성 회복 vs 점유 하락(1차 판정)"}
+      - {id: us-xyz, name: Block, market: us, code: "XYZ", edge: 5, why: "Square 가맹점·Cash App — 비트코인·대출 노출(1차 판정)"}
+      - {id: us-fi, name: Fiserv, market: us, code: "FI", edge: 4, why: "Clover 가맹점 결제·은행 코어 — 성장 둔화 논쟁(1차 판정)"}
+      - {id: us-fis, name: FIS, market: us, code: "FIS", edge: 4, why: "은행·결제 처리 인프라(1차 판정)"}
+      - {id: us-gpn, name: Global Payments, market: us, code: "GPN", edge: 4, why: "가맹점 결제 — Worldpay 인수 통합(1차 판정)"}
+      - {id: us-toast, name: Toast, market: us, code: "TOST", edge: 5, why: "외식업 POS·결제 — 가맹점 수 성장(1차 판정)"}
+      - {id: us-four, name: Shift4 Payments, market: us, code: "FOUR", edge: 5, why: "호텔·경기장 등 통합 결제(1차 판정)"}
+      - {id: us-afrm, name: Affirm, market: us, code: "AFRM", edge: 5, why: "선구매후결제(BNPL) — 신용 손실·자금 조달 금리 민감(1차 판정)"}
+      - {id: us-wex, name: WEX, market: us, code: "WEX", edge: 5, why: "법인 연료카드·복리후생 결제 — Corpay와 같은 축(1차 판정)"}
+      - {id: us-flyw, name: Flywire, market: us, code: "FLYW", edge: 5, why: "교육·의료 국경 간 지급(1차 판정)"}
+      - {id: us-mq, name: Marqeta, market: us, code: "MQ", edge: 5, why: "카드 발급 처리 플랫폼 — 고객 집중(1차 판정)"}
+      - {id: us-payo, name: Payoneer, market: us, code: "PAYO", edge: 5, why: "중소 수출기업 국경 간 지급(1차 판정)"}
+      - {id: nl-adyen, name: Adyen, market: eu, code: "ADYEN", edge: 6, why: "유럽 통합 결제 — 대형 가맹점 점유(1차 판정)"}
+      - {id: kr-kakaopay, name: 카카오페이, ko: ["카카오페이"], market: kr, code: "377300", edge: 5, why: "국내 간편결제·증권 — 해외 결제 제휴(1차 판정)"}
+      - {id: kr-nhnkcp, name: NHN KCP, ko: ["NHN KCP", "엔에이치엔케이씨피"], market: kr, code: "060250", edge: 4, why: "국내 전자결제대행(PG) — 해외 가맹점 결제(1차 판정)"}
+      - {id: jp-gmopg, name: GMO Payment Gateway, local: "GMOペイメントゲートウェイ", ko: ["GMO페이먼트게이트웨이"], market: jp, code: "3769", edge: 5, why: "일본 온라인 결제대행 1위권(1차 판정)"}
 code_verified: false
 
 # 투자자 관심도 원천 — CLAUDE.md 컴플라이언스(약관·robots·제외 원천) 안에서
