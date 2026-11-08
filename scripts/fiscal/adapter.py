@@ -4,6 +4,8 @@
   --fund <id> <출력 json>   fundamentals.js → knowledge/models/discovery/fundamentals.json 한 행(bands.ingest_profile과 같은 스키마 + 추세 재료)
   --ohlcv <id> <출력 txt>   prices.js → knowledge/models/companies/<id>/ohlcv.csv(일봉 260) + ohlcv_m.csv(월봉 120)
                             Fiscal.ai 일봉에는 고가·저가가 없어 max/min(시가·종가) 근사 — 파일 첫 줄 주석에 남기고 levels·flow가 '근사'로 표기한다
+  --ohlcv-tv <id> <TradingView json> [심볼]   mcp-tv-get-ohlcv(1D, format=columns 또는 rows) 응답 → ohlcv.csv 일봉을 실제 고가·저가로 바꾼다(마스터 지시 2026-11-08
+                            "일봉 그래프 데이터를 제대로 못 가져온다" — Fiscal.ai 근사 봉은 리포트 일봉에 쓰지 않는다). 월봉(ohlcv_m.csv)은 그대로
   --key <id> <companyKey> [terminalUrl]   config/fiscal_keys.yaml 캐시(감시 목록 id → Fiscal.ai 회사 키)
 사용 예: py scripts/fiscal/adapter.py --fund co-quanta-services out.json
 """
@@ -65,6 +67,23 @@ def put_ohlcv(cid, text):
     if len(monthly) > 1:
         (d / "ohlcv_m.csv").write_text(APPROX + "\n" + "\n".join(monthly) + "\n", encoding="utf-8")
     return len(daily) - 1, max(0, len(monthly) - 1)
+
+
+def put_ohlcv_tv(cid, resp, symbol=None):
+    """TradingView 일봉(정규장·분할 보정) → ohlcv.csv. t는 UTC 초 — 미국·아시아 정규장 봉은 UTC 날짜가 거래일과 같다"""
+    from datetime import datetime, timezone
+    b = resp.get("bars", resp)
+    rows = [dict(zip("tohlcv", x)) for x in zip(*(b[k] for k in "tohlcv"))] if isinstance(b, dict) else list(b)
+    rows = [r for r in rows if None not in (r.get(k) for k in "ohlc") and r["h"] >= max(r["o"], r["c"]) - 1e-9 and r["l"] <= min(r["o"], r["c"]) + 1e-9]
+    if len(rows) < 60:
+        raise SystemExit(f"TradingView 일봉 {len(rows)}개 — 60개 이상 필요")
+    sym = symbol or resp.get("symbol") or ""
+    head = f"# source: TradingView {sym} 1D(정규장, 실제 고가·저가, 분할 보정) 조회 {datetime.now().strftime('%Y-%m-%d %H:%M')} KST"
+    out = [head, "date,o,h,l,c,v"] + [f"{datetime.fromtimestamp(r['t'], timezone.utc):%Y-%m-%d},{r['o']},{r['h']},{r['l']},{r['c']},{int(r.get('v') or 0)}" for r in sorted(rows, key=lambda r: r["t"])]
+    d = ROOT / "knowledge" / "models" / "companies" / cid
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "ohlcv.csv").write_text("\n".join(out) + "\n", encoding="utf-8")
+    return len(rows)
 
 
 def put_eps_history(cid, out):
@@ -142,6 +161,10 @@ def main(argv):
     if len(argv) >= 3 and argv[0] == "--ohlcv":
         n, m = put_ohlcv(argv[1], Path(argv[2]).read_text(encoding="utf-8"))
         print(f"[Fiscal.ai→일봉] {argv[1]} 일봉 {n} · 월봉 {m}(고저 근사)")
+        return 0
+    if len(argv) >= 3 and argv[0] == "--ohlcv-tv":
+        n = put_ohlcv_tv(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")), argv[3] if len(argv) > 3 else None)
+        print(f"[TradingView→일봉] {argv[1]} 일봉 {n}(실제 고가·저가)")
         return 0
     if len(argv) >= 3 and argv[0] == "--eps-history":
         n = put_eps_history(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")))

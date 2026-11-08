@@ -74,6 +74,12 @@ def approx_hl(entity):
     return p.exists() and p.read_text(encoding="utf-8")[:200].startswith("# source: Fiscal.ai")
 
 
+def approx_daily(entity):
+    """일봉 파일이 Fiscal.ai 근사(고가·저가 = 시가·종가)인가 — 리포트 일봉 캔들에는 쓰지 않는다(마스터 지시 2026-11-08)"""
+    p = company_dir(entity) / "ohlcv.csv"
+    return p.exists() and "근사" in p.read_text(encoding="utf-8").split("\n", 1)[0]
+
+
 def load_ohlcv(entity, name="ohlcv.csv"):
     p = company_dir(entity) / name
     if not p.exists():

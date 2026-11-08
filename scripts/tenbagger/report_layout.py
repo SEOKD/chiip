@@ -194,6 +194,7 @@ def price_charts(entity):
     daily = flow.load_ohlcv(entity)
     if len(daily) < 60:
         return [], []
+    if flow.approx_daily(entity):   # 근사 봉은 캔들 모양이 틀린다 — TradingView 실측 일봉을 먼저 넣는다(마스터 지시 2026-11-08)
     sp = levels.supports(daily, flow.load_monthly(entity))
     price = sp["price"]
     fmt = (lambda v: f"{v:,.2f}") if price < 1000 else (lambda v: f"{v:,.0f}")

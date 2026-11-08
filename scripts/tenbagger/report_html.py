@@ -55,8 +55,13 @@ FIT_JS = ("<script>(function(){function fit(){document.querySelectorAll('svg[vie
           "document.querySelectorAll('details.sec').forEach(function(d){d.addEventListener('toggle',function(){if(d.open)fit()})});"
           "function openHash(){var h=location.hash&&document.getElementById(location.hash.slice(1));var d=h&&h.querySelector('details.sec');if(d)d.open=true}"
           "window.addEventListener('hashchange',openHash);openHash();"
-          "document.querySelectorAll('.toc a').forEach(function(a){a.addEventListener('click',function(){var d=document.querySelector(a.getAttribute('href')+' details.sec');if(d)d.open=true})})})();</script>")
-CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
+          "document.querySelectorAll('.toc a').forEach(function(a){a.addEventListener('click',function(){var d=document.querySelector(a.getAttribute('href')+' details.sec');if(d)d.open=true})});"
+          # 캔들을 누르면(마우스·터치) 그날 종가·고가·저가·시가를 차트 위 칸에 보여 주고 그 봉을 표시한다(마스터 지시 2026-11-08)
+          "document.addEventListener('click',function(e){var k=e.target.closest&&e.target.closest('.ck');if(!k)return;var sv=k.ownerSVGElement,box=sv&&sv.parentNode.querySelector('.cinfo');"
+          "if(!box)return;var d=k.dataset;box.innerHTML='<b>'+d.d+'</b> 종가 <b>'+d.c+'</b> · 고가 '+d.h+' · 저가 '+d.l+' · 시가 '+d.o+' <span class=\\''+(d.up==='1'?'red':'blue')+'\\'>'+d.p+'</span>';"
+          "sv.querySelectorAll('.ck.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')})})();</script>")
+CSS = """.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}
+:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;line-height:1.8;font-size:16px}.w{max-width:820px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -202,13 +207,21 @@ def chart_candle(c):
     for i, (d, o, hh, ll, cl) in enumerate(b[:5] for b in bars):
         x = L + i * gw + gw / 2
         col = "var(--b)" if cl >= o else "var(--c)"
+        pf = (lambda v: f"{v:,.2f}") if hi < 1000 else (lambda v: f"{v:,.0f}")   # 캔들 정보는 호가 단위 그대로
+        prev = bars[i - 1][4] if i else None
+        chg = f"{(cl / prev - 1) * 100:+.1f}%" if prev else ""
         g.append(f'<line x1="{x:.1f}" x2="{x:.1f}" y1="{Y(hh):.1f}" y2="{Y(ll):.1f}" stroke="{col}"/>'
                  f'<rect x="{x - max(gw * 0.35, 0.6):.1f}" y="{Y(max(o, cl)):.1f}" width="{max(gw * 0.7, 1.2):.1f}" height="{max(abs(Y(o) - Y(cl)), 0.8):.1f}" fill="{col}">'
-                 f'<title>{t(d)} 시 {_fmt(o)} 고 {_fmt(hh)} 저 {_fmt(ll)} 종 {_fmt(cl)}</title></rect>')
+                 f'<title>{t(d)} 시 {_fmt(o)} 고 {_fmt(hh)} 저 {_fmt(ll)} 종 {_fmt(cl)}</title></rect>'
+                 # 누르는 칸 = 봉 폭 전체·차트 높이 전체(가는 봉도 손가락으로 누를 수 있게)
+                 f'<rect class="ck" x="{x - gw / 2:.1f}" y="{T}" width="{gw:.1f}" height="{H - T - B}" fill="transparent" data-d="{t(d)}" data-o="{pf(o)}" data-h="{pf(hh)}" data-l="{pf(ll)}" data-c="{pf(cl)}" data-p="{chg}" data-up="{1 if cl >= o else 0}"/>')
         if i % step == 0:
             g.append(f'<text x="{x:.1f}" y="{H - 8}" text-anchor="middle" style="font-size:9.5px">{t(str(d)[2:])}</text>')
     legend = _legend(c["legend"]) if c.get("legend") else ""
-    return legend + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+    lb = bars[-1]
+    pf = (lambda v: f"{v:,.2f}") if hi < 1000 else (lambda v: f"{v:,.0f}")
+    info = f'<div class="cinfo"><b>{t(lb[0])}</b> 종가 <b>{pf(lb[4])}</b> · 고가 {pf(lb[2])} · 저가 {pf(lb[3])} · 시가 {pf(lb[1])} <span class="mut">— 캔들을 누르면 그날 값</span></div>'
+    return legend + f'<div class="cwrap">{info}<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg></div>'
 
 
 def chart_progress(c):
