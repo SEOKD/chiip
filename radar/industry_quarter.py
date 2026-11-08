@@ -54,8 +54,33 @@ def qlabel(period):
 
 
 def members():
+    """산업 → 구성 종목. 세그먼트 풀이 정의된 산업(config/industry_segments.yaml)은 풀 회원 — 겸업 회사는 그 사업부만 센다(ADR-020)"""
+    import industry_segments as S
     import weekly_pick
-    return weekly_pick.members()
+    m = dict(weekly_pick.members())
+    for ind in (S.cfg().get("industry_pools") or {}):
+        seen = {}
+        for x in S.members(ind):
+            if x["id"] in seen:
+                seen[x["id"]]["share_hint"] = min(1.0, seen[x["id"]]["share_hint"] + x["share_hint"])
+            else:
+                seen[x["id"]] = dict(x)
+        m[ind] = list(seen.values())
+    return m
+
+
+def industries():
+    """분기 결산 대상 산업 id — 세그먼트 풀 산업 + 시장 세부 산업 묶음(풀 산업과 겹치는 묶음도 그대로 둔다)"""
+    import industry_segments as S
+    import weekly_pick
+    return list((S.cfg().get("industry_pools") or {})) + [k for k in weekly_pick.cfg()["industries"] if k not in (S.cfg().get("industry_pools") or {})]
+
+
+def industry_name(industry):
+    import industry_segments as S
+    import weekly_pick
+    ip = (S.cfg().get("industry_pools") or {}).get(industry)
+    return ip["name"] if ip else weekly_pick.cfg()["industries"][industry]["name"]
 
 
 def keys():
@@ -106,7 +131,7 @@ def progress(industry, quarter=None, c=None):
         r = rows.get((industry, m["id"])) or {}
         fx = c["fx_usd"].get((r.get("currency") or "USD").upper(), None)
         ttm = _f(r.get("ttm_rev"))
-        w[m["id"]] = ttm * fx if ttm and fx else None
+        w[m["id"]] = ttm * fx * m.get("share_hint", 1.0) if ttm and fx else None   # 겸업 회사는 그 산업 사업부 비중만큼만 무게
         if r.get("period") == quarter and _f(r.get("rev")):
             rep.add(m["id"])
     known = [v for v in w.values() if v]
@@ -125,10 +150,9 @@ def status(now=None, c=None):
         return {"due": False}
     st = common.load_state(STATE, {})
     last = (st.get("collected") or {}).get(quarter)
-    import weekly_pick
     done = set((common.load_state(STATE, {}).get("done") or {}).get(quarter, []))
     ready, prog = [], {}
-    for k in weekly_pick.cfg()["industries"]:
+    for k in industries():
         s, n, tot, _ = progress(k, quarter, c)
         prog[k] = s
         if k not in done and tot and (s >= c["gate_share"] or now.date() >= end + timedelta(days=c["deadline_days"])):
@@ -171,6 +195,8 @@ def put(industry, path, quarter=None):
     by_key = {v: k for k, v in keys().items()}
     for m in members().get(industry) or []:   # 후보 키로 찾은 미국 종목
         t = str(m["ticker"] or "").replace(".US", "")
+        if "_" in t:   # 세그먼트 풀 회원은 Fiscal 키 그대로
+            by_key.setdefault(t, m["id"])
         for ex in ("NASDAQ_", "NYSE_"):
             by_key.setdefault(ex + t, m["id"])
     names = {m["id"]: m["name"] for m in members().get(industry) or []}
@@ -327,8 +353,7 @@ def main(argv):
         print("[분기 결산] 작성 표시")
         return 0
     s = status()
-    import weekly_pick
-    print(json.dumps({**s, "quarter": q, "progress": {k: progress(k, q) for k in weekly_pick.cfg()["industries"]}}, ensure_ascii=False))
+    print(json.dumps({**s, "quarter": q, "progress": {k: progress(k, q) for k in industries()}}, ensure_ascii=False))
     return 0
 
 

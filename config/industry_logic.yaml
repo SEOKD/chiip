@@ -1,0 +1,24 @@
+# 산업 리포트 사고 논리 틀(마스터 지시 2026-11-08 "산업 리포트 양식이 사고 논리가 부실하다. IB 리포트 양식과 월스트리트 등 금융기관의 기술 자료와 논리 구조를 참조해 고도화하라")
+# scripts/industry/logic.py가 관문(gate)과 절(sections)을 만든다 — 주간·분기·사건 심층 공통. ADR-020.
+# 가져온 방법(형식만 — 내용·도표·상품명은 쓰지 않는다):
+#   결론 먼저(피라미드 원칙, Minto) · 핵심 논쟁 3개(Key Debates: 시장 견해 ↔ 우리 견해 ↔ 확인 신호 — 월가 산업 노트의 표준 틀)
+#   차별 견해(variant perception, Steinhardt) · 가격 내포 기대(Expectations Investing, Rappaport·Mauboussin — 역DCF로 시장이 이미 가정한 것을 먼저 잰다)
+#   동인 분해(매출 = 물량 × 가격 × 믹스 — 메모리·부품 산업 모델의 비트 출하 × ASP 브리지) · 사이클 지표판(재고일수·CAPEX/매출·가격·가동률 — 선행/동행/후행 구분)
+#   이익 풀 이동(Profit Pools, Gadiesh·Gilbert, HBR 1998) · 시나리오 확률 가중(약세·기본·강세, 확률 합 1) · 외부 관점 기저율(Base Rate, Mauboussin)
+#   인과 사슬의 고리마다 증거 유형(확정사실·가이던스·추정·자체추론·미확인) — 가장 약한 고리가 결론의 강도를 정한다
+required_from: "2026-11-09"     # 이 날짜 이후 리포트부터 관문 적용(이전 발행분은 다시 만들 때 적용)
+debates: {weekly: 2, quarterly: 3, event: 2}
+cycle_min: {weekly: 0, quarterly: 3, event: 0}
+drivers_min: {weekly: 1, quarterly: 1, event: 0}
+chain_min: 4
+link_types: [확정사실, 가이던스, 추정, 채널체크, 자체추론, 미확인]
+cases: [약세, 기본, 강세]
+bridge_tolerance: 0.10          # 물량 × 가격 브리지와 실제 세그먼트 성장의 차이가 10%p를 넘으면 '설명 안 된 잔차'로 표시
+banned:                          # 매매·비중 지시와 근거 없는 단정
+  - "매수하라"
+  - "매도하라"
+  - "비중 확대"
+  - "비중 축소"
+  - "반드시 오른다"
+  - "확실하다"
+needs_expectations: ["간과", "과소평가", "과대평가", "덜 반영", "더 반영"]   # 이 말을 쓰면 가격 내포 기대(expectations)가 있어야 한다

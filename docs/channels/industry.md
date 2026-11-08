@@ -18,3 +18,7 @@
 절차는 스킬 `industry-event`, 설정 `config/industry_event.yaml`, 엔진 `scripts/industry/event_frame.py`, 렌더 `scripts/industry/industry_html.py`, 데이터 `knowledge/models/industries/events/<id>/`. 정당별 기업 PAC 기부는 `radar/usgov/fec_money.py`(FEC 공개 API, `.env` FEC_API_KEY 또는 DATA_GOV_API_KEY — 없으면 시간당 약 30회 DEMO_KEY).
 첫 리포트: 2026-11-08 「블루 스윕은 데이터센터를 멈추지 않는다 — 값을 매긴다」(2026 중간선거 뒤 규제산업).
 - **텔레그램 피드 양식**(2026-11-08 마스터 지시 "산업 리포트를 텔레그램 피드로 제공할 때 글이 가독성 있게 정리되도록"): `scripts/industry/tg_feed.py`가 리포트 JSON에서 조립한다 — 머리(종류·날짜) → 제목 → 산업 판단(등급별 묶음·🟢⚪🔴) → 핵심 Q&A 한 줄씩(괄호 풀이 빼고 절 경계에서 끊음) → 숫자 4개(기준 병기) → 다음 확인(날짜·무엇·Chiip 확률) → 링크 → 안내문. 문단 사이 빈 줄, 한 줄 120자 안. 손으로 쓰지 않는다.
+
+## 세그먼트 귀속·IB 사고 논리(2026-11-08 마스터 지시, ADR-020)
+- "스토리지(낸드) 사업이 전체 매출의 믹스로 잡히는 삼성전자, SK하이닉스, 마이크론은 세그먼트별 실적을 분류해서 봐야지. 이 구조를 앞으로 산업 리포트 쓸 때도 반영하라" → 모든 산업 리포트는 겸업 회사를 그 산업 사업부 매출로만 센다. 풀·회원·근거 등급(A 공시·B IR·C 제3자·E 브리지 추정·U 미공시) `config/industry_segments.yaml`, 장부 `radar/industry_segments.py`. 회사 전체 지표는 '회사 전체' 표로 따로. A·B 근거 60% 미만 풀은 등급 보류.
+- "산업 리포트 양식이 사고 논리가 부실하다. IB 리포트 양식과 … 논리 구조를 참조해 고도화하라" → 주간·분기·사건 공통 논리 층 `scripts/industry/logic.py`·`config/industry_logic.yaml`: 결론 먼저 + 인과 사슬(증거 유형·가장 약한 고리) · 핵심 논쟁(시장 ↔ Chiip ↔ 판가름 신호) · 가격 내포 기대 · 동인 분해(물량 × 가격, 잔차 검산) · 사이클 지표판 · 이익 풀 · 시나리오 확률 가중. 관문이 빠진 고리를 이름으로 막는다(2026-11-09 이후 리포트).

@@ -15,9 +15,16 @@
 
 ## phase: write — `ready` 산업마다(한 회차에 1개)
 1. 장부 확인: `py -c "import sys;sys.path.insert(0,'scripts/industry');sys.path.insert(0,'radar');import quarter_frame as Q;print(Q.member_rows('<분기>','<산업>'))"`. 숫자는 장부 계산값만 쓴다.
-2. 글 datapack `knowledge/models/industries/quarterly/<분기>/<산업>/datapack.json`(형식은 scripts/industry/quarter_frame.py 맨 위, 본보기 2026Q3/nand-storage).
-   - 무엇이 바뀌었나 → 왜(가격·물량·원가로 분해) → 누가 유리해졌나(가치사슬) → 재고·CAPEX 사이클 → 반대 검증 → 반증 조건.
-   - 사업군 2~4개마다 market(다음 분기 컨센서스 내포 성장 등, %p)·expected·confidence. 확신도는 근거만큼만.
+1-1. **세그먼트 장부(겸업 회사는 사업부만 — 마스터 지시 2026-11-08, ADR-020)**: 산업이 `config/industry_segments.yaml` industry_pools에 있으면
+   `py radar/industry_segments.py --plan <분기> <산업>` → 회원마다 Fiscal.ai `company_segments_and_kpis`(지표명은 설정 fiscal 칸)·회사 IR 제품별 비중·TrendForce 공급사 순위 보도자료로
+   `[{pool, id, period_end, currency, seg_rev, seg_rev_prev_q, seg_rev_prev_y, company_rev, grade, method, source, vol_chg, price_chg, note}]`를 만들어 `--put <분기> <파일>`.
+   근거 등급 A 공시·B IR·C 제3자·E 브리지 추정(방법 필수)·U 미공시(합산 제외). 사업부 매출을 모르면 U로 둔다 — 회사 전체 매출로 채우지 않는다.
+   풀이 없는 산업이라도 겸업 회사(사업부 비중 70% 미만)가 끼면 풀을 먼저 정의한다.
+2. 글 datapack `knowledge/models/industries/quarterly/<분기>/<산업>/datapack.json`(형식은 scripts/industry/quarter_frame.py·scripts/industry/logic.py 맨 위, 본보기 2026Q3/nand-storage).
+   - **logic 블록(IB 사고 논리, config/industry_logic.yaml)**: 한 문장 결론·지난 판단 대비 → 핵심 논쟁 3개(시장 견해+출처 ↔ Chiip 견해 ↔ 왜 다른가 ↔ 판가름 신호 날짜·지표·문턱 ↔ 확률)
+     → 동인 분해(물량 × 가격, ref로 회사 사업부와 대조) → 가격 내포 기대(시장이 이미 가정한 숫자) → 시나리오 3개(확률 합 1) → 사이클 지표 3개(선행·동행·후행) → 이익 풀 → 인과 사슬(고리마다 증거 유형).
+   - 서술(narrative): 무엇이 바뀌었나 → 왜 → 누가 유리해졌나 → 사이클 → 반대 검증 → 반증 조건. 숫자는 장부 값만.
+   - 사업군 2~4개마다 pool·market(다음 분기 컨센서스 내포 성장 등, %p)·expected·confidence. 확신도는 근거만큼만. 겸업 회사의 전사 컨센서스를 사업군 시장 기대로 쓰지 않는다(전업 회사 값이나 사업부 가이던스).
 3. `py scripts/industry/quarter_frame.py <분기> <산업> --predictions` → `py scripts/industry/industry_html.py outputs/industry/<날짜>_quarterly-<산업>-<분기>.json`.
 4. 게시: `_artifact.html`을 claude.ai 비공개 Artifact로. 노션 Industry → '분기 결산' 아래 리포트 페이지(요약 + 링크).
    `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send`(마스터 개인 봇만).

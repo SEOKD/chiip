@@ -20,6 +20,8 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
 3. **조사·datapack**: knowledge/models/industries/weekly/<YYYY-Www>-<산업>/datapack.json(형식은 scripts/industry/weekly_frame.py 맨 위). 1차 출처 우선(공시·실적 자료·정부 통계·학회),
    분야 모듈 스킬(domain-*)의 핵심 변수·흔한 오류를 따른다. 사업군 2~4개마다 market(시장 반영, %p — 2주·연초 대비 상대수익이나 컨센서스 내포 성장)·expected(Chiip 기대, %p)·confidence(0~1).
    필드 인텔·채널체크·공개 확인 전 Exclusive Source 수치는 정량 입력으로 쓰지 않는다. 노션 IB 요지는 대조용(출처로 쓰지 않는다).
+   **logic 블록 필수(2026-11-09부터, ADR-020)** — 한 문장 결론·핵심 논쟁 2개 이상·동인 분해(물량 × 가격)·가격 내포 기대(출처)·시나리오 3개(확률 합 1)·이익 풀·인과 사슬(증거 유형). 형식은 scripts/industry/logic.py 맨 위.
+   겸업 회사는 그 산업 사업부 매출로만 말한다(config/industry_segments.yaml 풀이 있으면 장부 값, 없으면 Fiscal.ai 세그먼트 자료) — 회사 전체 성장을 산업 성장으로 쓰지 않는다.
    이미지는 산업 이미지 지시서(ADR-017) 조건일 때만 `images`에 — 제품 BOM은 knowledge/models/products/.
 4. **조립·렌더**: `py scripts/industry/weekly_frame.py <폴더> --predictions` → `py scripts/industry/industry_html.py outputs/industry/<날짜>_weekly-<산업>.json`. 관문을 못 넘으면 빈칸을 채우지 않고 고친다.
 5. **게시**: `_artifact.html`을 claude.ai 비공개 Artifact로, 노션 Industry 아래 '주간 산업' 하위 페이지(없으면 만든다)에 리포트 페이지(요약 + 링크).

@@ -1,0 +1,45 @@
+# 산업 리포트 세그먼트 귀속(마스터 지시 2026-11-08 "스토리지(낸드) 사업이 전체 매출의 믹스로 잡히는 삼성전자, SK하이닉스, 마이크론은 세그먼트별 실적을 분류해서 봐야지.
+#   이 구조를 앞으로 산업 리포트 쓸 때도 반영하라") — radar/industry_segments.py · ADR-020
+# 원칙: 산업 매출 = 각 회사의 '그 산업 사업부' 매출의 합. 회사 전체 매출을 산업 매출로 쓰지 않는다(IB 메모리 산업 모델의 공급사별 NAND 매출 합산 방식).
+#   ① 세그먼트 매출이 있으면 그것만 합산·가중한다. ② 회사 전체 지표(GPM·재고·CAPEX·컨센서스)는 '회사 전체'로 따로 보여 주고 산업 값에 섞지 않는다.
+#   ③ 세그먼트를 공시하지 않는 회사는 근거 등급을 달아 추정하거나(E) 합산에서 뺀다(U). 빈칸을 그럴듯하게 채우지 않는다.
+exposure:                    # 산업 노출도 = 세그먼트 매출 ÷ 회사 전체 매출
+  pure: 0.7                  # 이상 = 전업(pure play)
+  major: 0.3                 # 이상 = 주요 겸업, 미만 = 부분 겸업
+  min_include: 0.05          # 미만이면 산업 구성에서 뺀다(대표성 없음)
+grades:                      # 세그먼트 매출 근거 등급 — 표에 그대로 표시
+  A: "공시 세그먼트(분기보고서·10-Q·Fiscal.ai 세그먼트 자료)"
+  B: "회사 IR·실적 발표의 제품별 매출 비중"
+  C: "제3자 집계(TrendForce 등 공개 보도자료·언론 보도)"
+  E: "Chiip 추정 — 직전 분기 A~C 값 × 회사가 말한 물량·가격 변화(브리지). '추정' 표시"
+  U: "미공시 — 산업 합계에서 뺀다"
+aggregate: [A, B, C, E]      # 산업 합계·가중에 넣는 등급
+min_graded_share: 0.6        # A·B 등급 매출이 산업 합계의 60% 미만이면 등급(Attractive 등)을 매기지 않는다
+pools:                       # 제품으로 정의한 산업 매출 풀
+  nand-flash:
+    name: NAND 플래시
+    define: "NAND 칩·SSD·임베디드 플래시 매출. D램·HBM·HDD·로직은 뺀다."
+    ref: "TrendForce 분기 NAND 공급사 매출 순위(상장 상위 5사 합계) — 산업 합계 대조용(C)"
+    members:
+      co-samsung: {name: 삼성전자, key: XKRX_005930, fiscal: [], share_hint: 0.12, how: "NAND 미공시(DS 부문에 메모리·시스템LSI·파운드리 합산) → TrendForce 공급사 매출(C) 또는 E 브리지", hint_src: "TrendForce 2Q26 $23.06B ÷ 2Q26 전사 매출 근사"}
+      co-skhynix: {name: SK하이닉스(솔리다임 포함), key: "", fiscal: [], share_hint: 0.2, how: "실적 발표 제품별 비중(B) — 없으면 TrendForce(C) 또는 E 브리지(회사 언급 NAND 비트·ASP)", hint_src: "TrendForce 2Q26 $14.27B"}
+      co-micron: {name: Micron, key: NASDAQ_MU, fiscal: ["NAND Revenue"], share_hint: 0.26, how: "10-Q 기술별 매출(A)"}
+      co-kioxia: {name: 키옥시아, key: "", fiscal: [], share_hint: 1.0, how: "전업 — 회사 전체 매출(A, 결산 단신)"}
+      co-sandisk: {name: SanDisk, key: NASDAQ_SNDK, fiscal: ["Datacenter Revenue", "Edge Revenue", "Consumer Revenue"], share_hint: 1.0, how: "전업 — 시장별 세그먼트 합(A)"}
+  hdd:
+    name: HDD
+    define: "하드디스크 드라이브 매출."
+    members:
+      co-seagate: {name: Seagate, key: NASDAQ_STX, fiscal: ["Data Center Revenue", "Edge IoT Revenue"], share_hint: 1.0, how: "전업 — 세그먼트 합(A)"}
+      co-wdc: {name: Western Digital, key: NASDAQ_WDC, fiscal: ["HDD Revenue"], share_hint: 1.0, how: "2025년 플래시 분할(SanDisk) 뒤 HDD 전업(A)"}
+  dram:
+    name: D램·HBM
+    define: "D램(HBM 포함) 매출. NAND·로직·파운드리는 뺀다."
+    ref: "TrendForce 분기 D램 공급사 매출 순위 — 산업 합계 대조용(C)"
+    members:
+      co-samsung: {name: 삼성전자, key: XKRX_005930, fiscal: [], share_hint: 0.45, how: "D램 미공시 → TrendForce(C) 또는 E 브리지"}
+      co-skhynix: {name: SK하이닉스, key: "", fiscal: [], share_hint: 0.78, how: "실적 발표 제품별 비중(B)"}
+      co-micron: {name: Micron, key: NASDAQ_MU, fiscal: ["DRAM Revenue"], share_hint: 0.73, how: "10-Q 기술별 매출(A)"}
+industry_pools:              # 산업 리포트 id → 풀(풀이 정의된 산업은 세그먼트 기준으로만 쓴다)
+  nand-storage: {name: "NAND·스토리지", pools: [nand-flash, hdd]}
+  semiconductors.dram-hbm: {name: "D램·HBM", pools: [dram]}

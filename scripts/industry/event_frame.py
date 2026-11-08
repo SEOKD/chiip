@@ -64,7 +64,8 @@ def gate(dp, cfg):
         bad.append("⑦ 반대 근거 부족")
     if len([x for x in dp.get("checkpoints") or [] if x.get("date") and x.get("p") is not None]) < g["checkpoint_min"]:
         bad.append("⑧ 날짜·확률 붙은 체크포인트 부족")
-    return bad
+    import logic as LG   # 2026-11-09 이후 사건 심층도 IB 논리 층(결론·논쟁·기대·시나리오·인과 사슬) — ADR-020
+    return bad + [f"논리: {b}" for b in LG.gate(dp, "event")]
 
 
 def market(dp):
@@ -189,6 +190,19 @@ def build(dp, cfg=None):
                                           "rows": [[x["date"], x["what"], x.get("metric", ""), f"{float(x['p']):.0%}", x.get("confirms", "")] for x in dp["checkpoints"]]},
                                          {"type": "p", "text": nar.get("kill", "")}]})
     sec.append({"h2": "종료 상태", "blocks": [{"type": "p", "text": nar.get("status", "")}]})
+    import logic as LG
+    LS = LG.sections(dp, "event")
+    if LS:
+        out = [{"h2": "결론", "blocks": LS["bottom"]}]
+        for x in sec:
+            if x["h2"] == STEPS[5]:
+                x["blocks"] = LS.get("expectations", []) + x["blocks"] + LS.get("scenarios", [])
+            if x["h2"] == STEPS[6] and LS.get("debates"):
+                out.append({"h2": "핵심 논쟁", "blocks": LS["debates"]})
+            out.append(x)
+            if x["h2"] == STEPS[4]:
+                out += [{"h2": h, "blocks": LS[k]} for k, h in (("drivers", "동인 분해"), ("cycle", "사이클 지표판"), ("profit_pool", "이익 풀 이동")) if LS.get(k)]
+        sec = out
     image_plan = place_images(dp, sec, cfg)
     gallery = charts(dp, rows)
     return {"kind": "industry_event", "id": dp["id"], "title": dp["title"], "subtitle": dp.get("subtitle", ""), "date": dp["date"], "industry": dp["industry"],

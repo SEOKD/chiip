@@ -1,7 +1,7 @@
 """Chiip Industry Weekly 조립 (마스터 지시 2026-11-08 — 매주 일요일 08:00 KST 산업 하나, IB 산업 노트 양식)
 
 datapack(knowledge/models/industries/weekly/<YYYY-Www>-<산업>/datapack.json) → 리포트 JSON(outputs/industry/<날짜>_weekly-<산업>.json, industry_html이 그린다).
-절: ① 왜 지금(선정 점수 — weekly_pick) ② 수요 ③ 공급·캐파 ④ 병목·가격 ⑤ 가치사슬 지도 ⑥ 시장 반영 vs Chiip(사업군 등급)
+절(2026-11-08 고도화: 결론·핵심 논쟁·동인 분해·사이클 지표판·이익 풀·가격 내포 기대·시나리오를 logic.py가 끼운다): ① 왜 지금(선정 점수 — weekly_pick) ② 수요 ③ 공급·캐파 ④ 병목·가격 ⑤ 가치사슬 지도 ⑥ 시장 반영 vs Chiip(사업군 등급)
     ⑦ 반대 검증 ⑧ 반증 조건·체크포인트(predictions.csv 등록) ⑨ 종료 상태.
 등급은 사건 심층과 같은 규칙(event_frame.rate — 갭 ±5%p·확신도 0.5, 토론 조정은 한 단계). 매매·비중·금액 지시가 아니다.
 datapack 필수: industry, week, title, narrative{view, summary, demand, supply, bottleneck, counter, kill, status},
@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import event_frame as E  # noqa: E402
+import logic as LG  # noqa: E402
 import weekly_pick as W  # noqa: E402
 
 BASE = ROOT / "knowledge" / "models" / "industries" / "weekly"
@@ -40,7 +41,7 @@ def gate(dp):
         bad.append("체크포인트 2개 미만")
     if len(dp.get("sources") or []) < 3:
         bad.append("출처 3개 미만")
-    return bad
+    return bad + [f"논리: {b}" for b in LG.gate(dp, "weekly")]
 
 
 def rows_of(dp, cfg):
@@ -89,6 +90,20 @@ def build(dp, cfg=None):
                                                    "rows": [[x["date"], x["what"], x.get("metric", ""), f"{float(x['p']):.0%}", x.get("confirms", "")] for x in dp["checkpoints"]]},
                                                   {"type": "p", "text": nar["kill"]}]},
            {"h2": "종료 상태", "blocks": [{"type": "p", "text": nar["status"]}]}]
+    LS = LG.sections(dp, "weekly")
+    if LS:   # IB 산업 노트의 사고 순서 — 결론 먼저, 논쟁, 동인, 기대, 시나리오(ADR-020)
+        ins = {"① 왜 지금": ("debates", "핵심 논쟁"), "③ 공급·캐파": ("drivers", "동인 분해 — 물량 × 가격"), "④ 병목·가격": ("cycle", "사이클 지표판")}
+        out = [{"h2": "결론", "blocks": LS["bottom"]}]
+        for x in sec:
+            if x["h2"].startswith("⑤") and LS.get("profit_pool"):
+                x["blocks"] += LS["profit_pool"]
+            if x["h2"].startswith("⑥"):
+                x["blocks"] = LS.get("expectations", []) + x["blocks"] + LS.get("scenarios", [])
+            out.append(x)
+            k = ins.get(x["h2"])
+            if k and LS.get(k[0]):
+                out.append({"h2": k[1], "blocks": LS[k[0]]})
+        sec = out
     image_plan = E.place_images(dp, sec)
     return {"kind": "industry_weekly", "cycle": "weekly", "id": f"weekly-{dp['industry']}-{dp['week']}", "title": dp["title"], "subtitle": dp.get("subtitle", ""),
             "date": dp["date"], "industry": dp.get("industry_name") or W.cfg()["industries"][dp["industry"]]["name"], "event": f"{dp['week']} 주간 산업",
