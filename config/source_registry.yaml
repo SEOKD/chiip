@@ -907,6 +907,18 @@
   enabled: true
 
 # ===== 즉시 포착 보강 (2026-10-29 마스터 지시 "CBRS 숏 리포트·Marvell의 Lumentum 인수 기사를 즉시 찾아오는 파이프라인" 점검 — 4.5/10) =====
+- id: src-company-sites
+  name: 숏 캠페인 대상 회사 사이트 직접 감시(사이트맵 lastmod — 블로그·뉴스룸·IR 새 글)
+  category: F-뉴스
+  module: company_sites
+  entry: poll
+  method: sitemap
+  endpoint_doc: "config/short_watch.yaml target_sites"
+  auth: none
+  scope: [글로벌]
+  interval_min: 10
+  run_on: local
+  note: "2026-11-09 시의성 점검 — Cerebras 반박 블로그를 3일 늦게 2차 보도로 잡은 뒤 추가"
 - id: src-short-sites
   name: 숏 운용사 원문 사이트 직접 감시(공개 RSS·목록 페이지 새 링크) × 19곳
   category: F-뉴스

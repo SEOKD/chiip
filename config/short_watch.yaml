@@ -42,3 +42,13 @@ sites:
   - {firm: "Bonitas Research", url: "https://www.bonitasresearch.com"}
   - {firm: "Night Market Research", url: "https://nightmarketresearch.com"}
   - {firm: "Pelican Research", url: "https://pelicanresearch.com"}
+
+# 숏 캠페인 대상 회사 사이트 직접 감시(radar/pollers/company_sites.py, 원천 src-company-sites, 10분) — 2026-11-09 시의성 점검:
+# Cerebras의 반박 블로그(2026-11-05 14:00 UTC)를 3일 뒤 2차 보도로 잡았다. 회사 반박은 8-K·보도자료가 아니라 블로그·뉴스룸에 먼저 올라온다.
+# 사이트맵 lastmod가 target_lookback_h 안인 새·고친 글만. Pulse가 새 숏 리포트를 판정하면 대상 회사를 여기 더한다(캠페인이 끝나면 지운다 — 마스터).
+target_lookback_h: 72
+target_sites:
+  - {company: Cerebras, campaign: "Culper Research 2026-10-29", entity_ids: [us-cbrs], sitemap: "https://www.cerebras.ai/sitemap.xml", path: "/(blog|news|press|company/news)/"}
+  - {company: NVIDIA, campaign: "Hunterbrook 2026-11-06(숏 여부 미확인)", entity_ids: [co-nvidia], sitemap: "https://nvidianews.nvidia.com/sitemap.xml", path: "/news/"}
+  - {company: NVIDIA, campaign: "Hunterbrook 2026-11-06(숏 여부 미확인)", entity_ids: [co-nvidia], sitemap: "https://blogs.nvidia.com/sitemap_index.xml", path: 'blogs\.nvidia\.com/blog/(?!tag/|category/|author/|page/)'}
+
