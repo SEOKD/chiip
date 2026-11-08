@@ -1,0 +1,116 @@
+auto: true
+id: us-cpay
+name: Corpay
+ticker: CPAY
+unit: B$
+unit_usd: 1000000000.0
+industry: payments
+region_mix:
+  us: 0.45
+  br: 0.16
+  uk: 0.15
+  other: 0.24
+tax: 0.25
+horizon: 10
+as_of: '2026-11-08'
+market:
+  date: '2026-11-08'
+  price: 455.16
+  shares: 0.064762
+  net_debt: 5.206
+  source: 가격 = 2026-11-06 종가(11/7~8 주말). 주식 수 = 10-Q 표지 63,971,827주(10/30). 현금 = 9/30
+    비제한 현금 $3.073B + Maintenance 매각 대금 약 $0.8B(11/2 종결, 10-Q '약 £600M(약 $800M)') 프로포마.
+    제한 현금 $6.34B는 고객 예치금이라 빼고, 같은 금액의 고객 예치 부채($8.07B)도 차입에 넣지 않았다. 차입 = 어음·신용한도 유동
+    $2.861B + 비유동 $6.072B + 리스 약 $0.146B(Fiscal 총차입 $11.379B − 증권화 $2.3B − 어음 $8.933B).
+    증권화 차입 $2.3B는 같은 금액의 매출채권을 담보로 한 운전자본 조달이라 빼고 적었다(회사 레버리지 산식과 같은 방식, 추정). 상환 가능
+    비지배지분 $0.32B(Mastercard 2.3%, 2027-08 풋)는 차입에 넣지 않았다
+rev0: 5.35
+ic0: 8.87
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0804
+      end: 0.03
+      decay: 0.9
+    margin:
+      m0: 0.436
+      target: 0.455
+      year_target: 3
+      lr: 0.44
+      lam: 0.35
+      anchors:
+      - 0.448
+      - 0.455
+    s2c: 2.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1121
+      end: 0.034999999999999996
+      decay: 0.9
+    margin:
+      m0: 0.436
+      target: 0.475
+      year_target: 3
+      lr: 0.44
+      lam: 0.25
+      anchors:
+      - 0.448
+      - 0.455
+    s2c: 2.3
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0374
+      end: 0.024999999999999998
+      decay: 0.8
+    margin:
+      m0: 0.436
+      target: 0.435
+      year_target: 3
+      lr: 0.44
+      lam: 0.5
+      anchors:
+      - 0.448
+      - 0.455
+    s2c: 1.7
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [5.35, 5.35] (3Q 실적 보도자료·콜(2026-11-04): FY2026 매출 약 $5.35B·조정
+    EPS $28.00(2Q 콜 $5.31B·$27.35에서 상향, 2월 최초 $26.00). 2026 매출에는 매각한 두 사업의 약 $120M이
+    들어 있고 2027에는 빠진다)'
+  growth: 컨센서스 1년차 8.0%, 2년차 9.9%
+  margin: 1~2년차 컨센서스 44.8%, 45.5% 고정 → 목표 46%(3년차, 덮어쓰기) → 장기 수렴 44%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.59 → 덮어쓰기 2.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 3.7%~11.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '장기 수렴 EBIT 이익률 기본값은 결제 네트워크 사업에 맞지 않는다. 회사 GAAP 영업이익률은 3Q 45.0%, TTM
+    43.9%이고 애널리스트 EBIT 추정도 2027년 44.8%다 — 판매 투자를 늘리며 이익률을 크게 올리지 않겠다는 CFO 발언(2Q 콜)대로
+    44%에 둔다 · 재투자 효율 s2c 0.59 → 2.0: 투하자본의 대부분이 인수 영업권·무형자산($10.0B)이라 매출 ÷ 투하자본은 유기
+    성장에 드는 자본을 크게 부풀린다. 유기 성장의 재투자는 CAPEX(매출의 약 3.8%)와 순운전자본(매출채권 − 매입채무, 매출의 약 50%)의
+    증가분이다 — 매출 $1 증가에 약 $0.5(추정)'
+  shares: 완전 희석 = 기본 0.063972(2026-10-30) + 옵션·RSU·워런트·전환 0.0008 — 3Q 가중 희석 주식 66,385천
+    − 기본 65,592천 = 약 0.79M주(옵션·RSU, 10-Q 손익계
+notes:
+- 자동 생성(build_drivers) 2026-11-08 — 데이터 묶음 2026-11-08
+- '어닝콜 위험: 일회성 수익화 100bp가 4Q에 반복되지 않을 수 있다'
+- '어닝콜 위험: 결제액 성장(+24%)과 매출 성장(+18%) 사이 수수료율 하락'
+- '어닝콜 위험: 매각으로 2027 매출에서 약 $120M 빠진다'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1175454/000117545426000059/cpay-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1175454/000117545426000018/flt-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/1175454/000117545426000054/flt-20261104.htm
+- https://www.sec.gov/Archives/edgar/data/1175454/000117545426000022/cpay-20260410.htm
+- https://www.sec.gov/Archives/edgar/data/1175454/000117545426000050/cpay-20260630.htm
+- Easyconomics 실적 정리 3Q26(2026-11-04)·2Q26(2026-08-05) — 콜 요지만
+- Easyconomics company_profile(yfinance, 2026-11-08)
+- Fiscal.ai company_estimates·analyst_estimates·analyst_ratings·stock_prices·segments_and_kpis·institutional_holders·insider_transactions(2026-11-08
+  조회)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- TradingView NYSE:CPAY 일봉(2026-11-08)
+- Quantral get_company_score·recaps(2026-11-08, 언급 없음)
