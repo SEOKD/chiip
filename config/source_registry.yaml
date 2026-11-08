@@ -920,6 +920,7 @@
   interval_min: 360
   run_on: local
   note: "run_hourly가 돌린다(radar/cftc.py). 화요일 기준 포지션을 금요일 15:30 ET 공표"
+  enabled: false   # run_poll이 아니라 run_hourly가 돌린다(원천 목록·건강 표시용 등록)
 - id: src-company-sites
   name: 숏 캠페인 대상 회사 사이트 직접 감시(사이트맵 lastmod — 블로그·뉴스룸·IR 새 글)
   category: F-뉴스
@@ -932,6 +933,7 @@
   interval_min: 10
   run_on: local
   note: "2026-11-09 시의성 점검 — Cerebras 반박 블로그를 3일 늦게 2차 보도로 잡은 뒤 추가"
+  enabled: true
 - id: src-short-sites
   name: 숏 운용사 원문 사이트 직접 감시(공개 RSS·목록 페이지 새 링크) × 19곳
   category: F-뉴스
