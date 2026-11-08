@@ -50,7 +50,12 @@ FIT_JS = ("<script>(function(){function fit(){document.querySelectorAll('svg[vie
           "s.querySelectorAll('text').forEach(function(t){var b=t.getBBox();if(!b.width)return;x0=Math.min(x0,b.x-2);y0=Math.min(y0,b.y-2);x1=Math.max(x1,b.x+b.width+2);y1=Math.max(y1,b.y+b.height+2)});"
           "if(x0<v.x||y0<v.y||x1>v.x+v.width||y1>v.y+v.height)s.setAttribute('viewBox',[x0,y0,x1-x0,y1-y0].join(' '))}catch(e){}})}"
           "if(document.readyState!=='loading')fit();else document.addEventListener('DOMContentLoaded',fit);window.addEventListener('load',fit);"
-          "if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)})();</script>")
+          "if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);"
+          # 접힌 절(details)은 펼칠 때 그래프 글자를 다시 재고, 목차·주소의 #s0 같은 대상은 열어서 보여 준다(2026-11-08)
+          "document.querySelectorAll('details.sec').forEach(function(d){d.addEventListener('toggle',function(){if(d.open)fit()})});"
+          "function openHash(){var h=location.hash&&document.getElementById(location.hash.slice(1));var d=h&&h.querySelector('details.sec');if(d)d.open=true}"
+          "window.addEventListener('hashchange',openHash);openHash();"
+          "document.querySelectorAll('.toc a').forEach(function(a){a.addEventListener('click',function(){var d=document.querySelector(a.getAttribute('href')+' details.sec');if(d)d.open=true})})})();</script>")
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
@@ -64,7 +69,7 @@ table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{bord
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
 ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-size:12px;margin-top:26px;overflow-wrap:anywhere}.verdict{border:2px solid var(--fg);border-radius:12px;padding:12px 14px;margin:12px 0}
-section{margin-top:34px}p{margin:10px 0}details{margin:10px 0}summary{cursor:pointer;color:var(--mut);font-size:13.5px;padding:6px 0}.toc{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 4px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;border-bottom:1px solid var(--line)}.toc a{font-size:12.5px;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}
+section{margin-top:34px}p{margin:10px 0}details{margin:10px 0}summary{cursor:pointer;color:var(--mut);font-size:13.5px;padding:6px 0}details.sec>summary{list-style:none;color:var(--fg)}details.sec>summary::-webkit-details-marker{display:none}details.sec>summary h2{display:flex;justify-content:space-between;align-items:center;gap:8px}details.sec>summary h2::after{content:"펼치기 ▾";font-size:12.5px;font-weight:500;color:var(--mut);white-space:nowrap}details.sec[open]>summary h2::after{content:"접기 ▴"}.toc{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 4px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;border-bottom:1px solid var(--line)}.toc a{font-size:12.5px;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}
 .dash{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}.dash>div{background:var(--card);border-radius:10px;padding:9px 11px;min-width:0}.dash .k{font-size:11.5px;color:var(--mut)}.dash .v{font-size:18px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.dash .s{font-size:11.5px;color:var(--mut);line-height:1.4;margin-top:2px;overflow-wrap:anywhere}
 @media (max-width:640px){.dash{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .phs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:10px 0}.ph{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}.ph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;max-width:100%}.ph figcaption{padding:8px 12px;font-size:13.5px}
@@ -1023,7 +1028,8 @@ def render3(d):
     names = [str(s.get("h2")) for s in d.get("sections") or []]
     parts.append('<nav class="toc">' + "".join(f'<a href="#s{i}">{t(n)}</a>' for i, n in enumerate(names)) + "</nav>")
     for i, s in enumerate(d.get("sections") or []):
-        parts.append(f"<section id=\"s{i}\"><h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []) + "</section>")
+        # 한눈에 보기 다음 세부 설명은 절마다 접어 둔다(마스터 지시 2026-11-08) — 제목을 누르거나 위 목차를 누르면 펼쳐진다
+        parts.append(f"<section id=\"s{i}\"><details class=\"sec\"><summary><h2>{t(s.get('h2'))}</h2></summary>" + "".join(block(b) for b in s.get("blocks") or []) + "</details></section>")
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER3}</div></div>{FIT_JS}</body></html>')
     return money_units(fx_units(chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))))
