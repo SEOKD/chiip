@@ -9,6 +9,8 @@
   ④ 오늘 쓴 Industry·Analysis 리포트(outputs/industry·outputs/tenbagger/reports)
   ⑥ 한국 전자기업 특허 등록·분쟁 — 기자 페이지(지디넷코리아 이기종)·미 ITC 공고(Federal Register)·언론 색인, 키가 오면 법원·PTAB·특허 등록·DART 소송 공시
      (knowledge/models/patents/latest.json, radar/patent_watch.py, 2026-11-08 마스터 지시)
+  ⑦ 연구·학회·협회 — 논문(arXiv·OpenAlex·연구 피드)·협회·학회 새 항목 중 한국 기업·감시 기술이 든 것(2026-11-09)
+  ③의 IR 문서가 한국 전자기업의 공급망 상대방(config/korea_counterparties.yaml)이면 한국 연결 2점·10일 창(2026-11-09 마스터 지시)
   ⑤ 한국 전자기업 해외 생산 거점 — 그 나라 정부 자료 새 항목·거점 품목 수출입 급변(+품목 PPI)(knowledge/models/overseas_sites/latest.json, 2026-11-08 마스터 지시)
 점수 = 1차 문서 있음 3 + 한국 연결(직접 2 / 같은 산업군에 국내 종목 1) + 인사이트(0~10 → 0~3) + 숫자 1
 감점: 최근 7일 기사 소재로 낸 종목 −3, 마스터 딘스티커 최근 7일에 쓴 종목 −2(같은 각도 되풀이 방지 — 후속 각도면 모델이 살린다)
@@ -63,6 +65,16 @@ def entity_maps():
             by_code.setdefault(str(m["ticker"] or "").replace(".US", "").upper(), m["id"])
             by_code.setdefault(str(m["name"] or "").upper(), m["id"])
     return by_code, info, ind_of, korea_ind
+
+
+def counterparty(text, ids):
+    """한국 전자기업의 공급망 상대방이면 (상대방 이름, 한국 기업들, 역할) — config/korea_counterparties.yaml(감시 목록, 관계 확정 아님)"""
+    import yaml
+    c = yaml.safe_load((ROOT / "config" / "korea_counterparties.yaml").read_text(encoding="utf-8")) or {}
+    for x in c.get("counterparties") or []:
+        if set(ids) & set(x.get("ids") or []) or any(re.search(r"(?<![A-Za-z])" + re.escape(n) + r"(?![A-Za-z])", text) for n in x["names"]):
+            return x["names"][0], x["korea"], x.get("role", "")
+    return None
 
 
 def korea_link(ids, info, ind_of, korea_ind):
@@ -143,7 +155,9 @@ def gather(now):
             if t < since:
                 continue
             dd = str(it.get("doc_date") or it.get("published_at") or "")[:10]
-            if dd and dd < (now - timedelta(days=3)).date().isoformat():   # 수집이 늦게 들어온 옛 발표(밀린 첫 회차)는 소재가 아니다
+            cp = counterparty(str(it.get("title") or ""), it.get("entities_matched") or [])
+            # 수집이 늦게 들어온 옛 발표는 소재가 아니다 — 다만 한국 기업 공급망 상대방의 실적 자료는 국내 보도가 늦으므로 10일까지 본다(2026-11-09)
+            if dd and dd < (now - timedelta(days=10 if cp else 3)).date().isoformat():
                 continue
             key = (tuple(it.get("entities_matched") or []), it.get("period"))
             hit = ir.get(key)
@@ -151,7 +165,7 @@ def gather(now):
             if hit:   # 같은 회사·기간의 PT·보도자료·보고서는 한 후보로
                 hit["docs"].append(f"{it.get('kind') or it.get('tier')}: {doc}")
                 continue
-            ir[key] = {"src": "IR 문서·공시", "at": t.isoformat(timespec="minutes"), "name": it.get("title"), "ids": list(it.get("entities_matched") or []),
+            ir[key] = {"counterparty": cp, "src": "IR 문서·공시(공급망 상대방)" if cp else "IR 문서·공시", "at": t.isoformat(timespec="minutes"), "name": it.get("title"), "ids": list(it.get("entities_matched") or []),
                        "event": f"{it.get('period') or ''} 실적 자료 · 발표 {dd}", "insight": 4, "primary": True, "basis": it.get("source_id"), "docs": [f"{it.get('kind') or it.get('tier')}: {doc}"]}
     cands += list(ir.values())
     # ④ 오늘 리포트
@@ -182,6 +196,35 @@ def gather(now):
                       "event": f"{x['kind']} · {x['title']}", "insight": 5 if x.get("primary") else 4, "primary": bool(x.get("primary")),
                       "basis": f"{x['kind']} — {x.get('note', '')}", "links": [["원문", x["url"]]], "patent": True,
                       "why": "특허 분쟁은 단계를 나눈다 — 청구·개시·예비판정·최종판정·합의. 소송 제기 → 손해 확정, 재심사 청구 → 특허 무효, 등록 → 매출은 금지표"})
+    # ⑦ 연구·학회·협회(2026-11-09 마스터 지시 "논문, 학회 세미나, 협회 자료 등도 참조") — 한국 기업 이름·감시 기술이 든 새 항목
+    import yaml
+    kc = yaml.safe_load((ROOT / "config" / "korea_counterparties.yaml").read_text(encoding="utf-8")) or {}
+    rx = re.compile(kc.get("research_terms") or "HBM", re.I)
+    pre = tuple(kc.get("research_sources") or [])
+    for day in {now.strftime("%Y%m%d"), (now - timedelta(days=1)).strftime("%Y%m%d")}:
+        folder = ROOT / "radar" / "inbox" / day
+        for f in folder.glob("src-*.json") if folder.exists() else []:
+            it = _load(f, {})
+            if not str(it.get("source_id") or "").startswith(pre):
+                continue
+            text = f"{it.get('title') or ''} {it.get('snippet') or ''}"
+            if not rx.search(text):
+                continue
+            kind = "논문" if any(k in it["source_id"] for k in ("arxiv", "openalex", "research")) else "협회" if "assoc" in it["source_id"] else "학회"
+            cands.append({"src": f"연구·학회·협회({kind})", "at": now.isoformat(timespec="minutes"), "name": it.get("title"), "ids": list(it.get("entities_matched") or []),
+                          "event": it.get("title"), "insight": 4, "primary": True, "basis": f"{kind} 원문 — {it.get('source_id')}", "links": [["원문", it.get("url")]],
+                          "counterparty": counterparty(text, it.get("entities_matched") or []),
+                          "why": "논문·학회 발표는 양산이 아니다(금지표: 신기술 발표 → 경쟁우위, 샘플 → 양산) — 저자 소속·실험 조건·수율 언급을 본다"})
+    seen_u = {c.get("links", [[None, None]])[0][1] for c in cands if c.get("links")}
+    for f in sorted((ROOT / "radar" / "pulse").glob(f"{now:%Y%m%d}_*.json")) + sorted((ROOT / "radar" / "pulse").glob(f"{now - timedelta(days=1):%Y%m%d}_*.json")):
+        for it in _load(f, {}).get("sources") or []:   # Pulse가 직접 받는 arXiv 등 논문(받은편지함에 없다)
+            if it.get("source_class") != "논문" or it.get("url") in seen_u or not rx.search(f"{it.get('title') or ''} {it.get('snippet') or ''}"):
+                continue
+            seen_u.add(it.get("url"))
+            cands.append({"src": "연구·학회·협회(논문)", "at": now.isoformat(timespec="minutes"), "name": it.get("title"), "ids": list(it.get("entities_matched") or []),
+                          "event": it.get("title"), "insight": 4, "primary": True, "basis": f"논문 원문 — {it.get('source_id')}", "links": [["원문", it.get("url")]],
+                          "counterparty": counterparty(it.get("title") or "", it.get("entities_matched") or []),
+                          "why": "논문은 양산이 아니다(금지표) — 저자 소속·실험 조건·수율 언급을 본다"})
     return cands, (by_code, info, ind_of, korea_ind)
 
 
@@ -195,6 +238,9 @@ def score(cands, maps, today):
             continue
         seen.add(key)
         k, why = korea_link(c["ids"], info, ind_of, korea_ind)
+        if c.get("counterparty") and k < 2:   # 한국 전자기업의 공급망 상대방 — 역방향 레이더(상대방이 먼저 말한다)
+            k, why = 2, f"공급망 상대방 {c['counterparty'][0]}({c['counterparty'][2]}) → {', '.join(c['counterparty'][1][:3])}"
+            c.setdefault("company_names", list(c["counterparty"][1]))
         if c.get("patent") and not k and c.get("company_names"):   # 특허표의 한국 기업(감시 목록 밖 LG디스플레이 등)도 직접 연결
             k, why = 2, f"한국 기업 특허({', '.join(c['company_names'])})"
         if c.get("overseas") and not k:   # 해외 거점 나라 자료는 그 나라에 거점을 둔 한국 기업과 이어진다

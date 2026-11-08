@@ -1,0 +1,44 @@
+# 한국 전자기업의 공급망 상대방 감시 목록 — 기사 소재 후보 풀(scripts/article/pitch_pool.py ⑥·⑦)이 쓴다(마스터 지시 2026-11-09
+# "한국 전자기업과 공급망을 형성하고 있는 미국·대만·일본·EU·영국 상장기업의 어닝콜 스크립트·Q&A 서머리·어닝 프레젠테이션을 보고 시의성 있는 기사 소재를 파악").
+# 역방향 레이더 명제(§11.0): 국내 기업을 가장 빨리 아는 길은 상대방을 보는 것이다.
+# 이 표는 '감시 목록'이지 공급 관계 확정이 아니다 — 관계는 회사 공시·공식 발표·주요 언론 보도로 널리 알려진 것만 적고, 기사에 쓸 때는 1차 출처로 다시 확인한다
+# (금지표: 고객 투자 확대 → 특정 공급사 매출). 확정 관계는 supply-chain-map 스킬로 knowledge/models/supply_relations.csv에 넣는다.
+# names = 문서 제목·본문에서 찾는 이름(영문·한글), korea = 연결되는 한국 기업, role = 상대방 역할
+counterparties:
+  - {names: ["NVIDIA"], ids: [co-nvidia], korea: [SK하이닉스, 삼성전자], role: "HBM 고객"}
+  - {names: ["AMD", "Advanced Micro Devices"], ids: [co-amd], korea: [삼성전자, SK하이닉스], role: "HBM 고객"}
+  - {names: ["Broadcom"], ids: [co-broadcom], korea: [SK하이닉스, 삼성전자], role: "맞춤 가속기(ASIC) HBM 수요"}
+  - {names: ["Apple"], ids: [co-apple], korea: [삼성디스플레이, LG디스플레이, LG이노텍, 삼성전기], role: "패널·카메라 모듈·부품 고객"}
+  - {names: ["TSMC", "台積電"], ids: [co-tsmc], korea: [삼성전자, SK하이닉스], role: "파운드리 경쟁·HBM 패키징(CoWoS) 연계"}
+  - {names: ["Micron"], ids: [co-micron], korea: [삼성전자, SK하이닉스], role: "메모리 경쟁사(가격·캐파 비교)"}
+  - {names: ["ASML"], ids: [co-asml], korea: [삼성전자, SK하이닉스], role: "노광 장비 공급사(한국 매출 비중 공시)"}
+  - {names: ["Applied Materials"], ids: [co-amat], korea: [삼성전자, SK하이닉스], role: "장비 공급사(한국 매출 공시)"}
+  - {names: ["Lam Research"], ids: [co-lam], korea: [삼성전자, SK하이닉스], role: "장비 공급사(한국 매출 공시)"}
+  - {names: ["Tokyo Electron", "東京エレクトロン"], ids: [co-tel], korea: [삼성전자, SK하이닉스], role: "장비 공급사(지역별 매출 공시)"}
+  - {names: ["KLA"], ids: [], korea: [삼성전자, SK하이닉스], role: "검사 장비 공급사"}
+  - {names: ["Advantest", "アドバンテスト"], ids: [co-advantest], korea: [SK하이닉스, 삼성전자], role: "메모리·HBM 테스터"}
+  - {names: ["BE Semiconductor", "Besi"], ids: [], korea: [SK하이닉스, 삼성전자, 한미반도체, 한화세미텍], role: "하이브리드 본딩 장비(경쟁·공급)"}
+  - {names: ["Disco", "ディスコ"], ids: [], korea: [SK하이닉스, 삼성전자], role: "웨이퍼 연삭·절단 장비"}
+  - {names: ["Lasertec", "レーザーテック"], ids: [], korea: [삼성전자, SK하이닉스], role: "EUV 마스크 검사"}
+  - {names: ["Kokusai Electric", "KOKUSAI"], ids: [], korea: [삼성전자, SK하이닉스], role: "증착 장비"}
+  - {names: ["SCREEN Holdings", "SCREENホールディングス"], ids: [], korea: [삼성전자, SK하이닉스], role: "세정 장비"}
+  - {names: ["Shin-Etsu", "信越化学"], ids: [], korea: [삼성전자, SK하이닉스], role: "웨이퍼·포토레지스트"}
+  - {names: ["SUMCO"], ids: [], korea: [삼성전자, SK하이닉스], role: "웨이퍼"}
+  - {names: ["Resonac", "レゾナック"], ids: [], korea: [SK하이닉스, 삼성전자], role: "HBM 패키징 소재"}
+  - {names: ["Ibiden", "イビデン"], ids: [co-ibiden], korea: [삼성전기, LG이노텍], role: "FC-BGA 기판 경쟁"}
+  - {names: ["Unimicron", "欣興"], ids: [co-unimicron], korea: [삼성전기, LG이노텍], role: "기판 경쟁"}
+  - {names: ["Murata", "村田製作所"], ids: [], korea: [삼성전기], role: "MLCC 경쟁"}
+  - {names: ["TDK"], ids: [], korea: [삼성전기, 삼성SDI], role: "수동소자·전지 경쟁"}
+  - {names: ["Universal Display"], ids: [], korea: [삼성디스플레이, LG디스플레이], role: "OLED 발광 재료·특허 공급"}
+  - {names: ["Corning"], ids: [], korea: [삼성디스플레이, LG디스플레이], role: "디스플레이 유리"}
+  - {names: ["Tesla"], ids: [], korea: [LG에너지솔루션, 삼성SDI], role: "배터리 고객"}
+  - {names: ["General Motors", "GM"], ids: [], korea: [LG에너지솔루션, 삼성SDI], role: "배터리 합작·고객"}
+  - {names: ["Qualcomm"], ids: [], korea: [삼성전자], role: "파운드리·모뎀 고객"}
+  - {names: ["Infineon", "STMicroelectronics", "NXP"], ids: [], korea: [삼성전자, SK하이닉스], role: "전력·차량 반도체 경쟁·파운드리"}
+  - {names: ["Sony", "ソニー"], ids: [], korea: [삼성전자, LG이노텍], role: "이미지센서 경쟁"}
+  - {names: ["Amkor", "ASE", "日月光"], ids: [], korea: [삼성전자, SK하이닉스], role: "후공정 외주"}
+  - {names: ["Arm"], ids: [], korea: [삼성전자], role: "설계 IP"}
+
+# ⑦ 연구·학회·협회 — 원천 id 접두어와 걸러 낼 단어(한국 기업 이름 또는 감시 기술). 논문·학회·협회 자료는 국내 언론보다 빨리 나온다
+research_sources: ["src-arxiv-", "src-openalex", "src-research-feeds", "src-assoc-", "src-conf"]
+research_terms: "Samsung|SK hynix|SK Hynix|LG Display|LG Energy|Samsung SDI|Hanmi|HBM|high bandwidth memory|hybrid bonding|DRAM|NAND|OLED|MLCC|FC-BGA|glass substrate|CXL|backside power|GAA|EUV|solid-state batter|삼성|하이닉스|LG"
