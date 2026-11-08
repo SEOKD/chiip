@@ -26,3 +26,10 @@ needs_expectations: ["간과", "과소평가", "과대평가", "덜 반영", "�
 global_kinds: [weekly, quarterly]
 min_countries: 2
 country_words: [한국, 미국, 일본, 대만, 중국, 유럽, 국내, 韩国, 美国]
+# 사건 인뎁스 관문(scripts/industry/event_gate.py, 마스터 지시 2026-11-08 — Indepth Weekly 작업이 매일 확인)
+event_gate:
+  window_hours: 48       # 최근 48시간 P0·P1 알림
+  min_members: 2         # 같은 산업 묶음의 서로 다른 종목 2곳 이상이면 후보
+  cooldown_days: 14      # 같은 산업은 14일 안에 다시 후보로 올리지 않는다
+  policy_types: [규제·정책]
+  max_candidates: 3

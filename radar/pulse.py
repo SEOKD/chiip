@@ -614,11 +614,7 @@ def run(now=None, peek=False):
             github_usage.check(now, send=True)
     except Exception as exc:
         common.record_health("github-usage", False, type(exc).__name__)
-    try:   # 분기 결산 산업 리포트(ADR-018, 2026-11-08 마스터 결정) — 시즌 중 하루 한 번 수집, 산업별 80% 발표면 작성
-        import industry_quarter
-        iq = industry_quarter.status(now)
-    except Exception as exc:
-        iq = {"due": False, "error": type(exc).__name__}
+    iq = {"due": False, "moved": "chiip-industry-weekly"}   # 분기 결산 산업 리포트는 2026-11-08 마스터 지시로 Industry Indepth 작업(매일 07:00)이 연다 — Pulse는 깨우지 않는다
     try:   # 13F 시즌 기관 매입·매도 순위(2026-11-08 마스터 지시) — 마감 기준 잠정·주·확정 차례에 회차를 연다
         import thirteenf
         i13 = thirteenf.status(now)

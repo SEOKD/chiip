@@ -1,7 +1,7 @@
 # Chiip Industry Quarterly — 분기 결산 산업 리포트 절차 (ADR-018, 마스터 결정 2026-11-08)
 
 마스터 결정: ① 산업마다 따로 쓴다 ② 산업별 구성 매출 80% 발표 관문(또는 분기 말 + 55일) ③ 아시아 종목 가이던스·재고 빈칸은 국내 증권사 공개 요약으로 보완 ④ 2026년 3분기 시험판(NAND·스토리지, 2026-11-08 발송).
-운영 규칙: `docs/channels/industry.md`. 예약 작업이 아니라 **Pulse가 회차를 연다** — 펄스 데이터의 `industry_quarter`(radar/industry_quarter.py status).
+운영 규칙: `docs/channels/industry.md`. **Industry Indepth 작업(chiip-industry-weekly, 매일 07:00)이 회차를 연다**(2026-11-08 마스터 지시, 그전엔 Pulse) — `py radar/industry_quarter.py`(status)의 `due`.
 
 ## phase: collect — 시즌 중 하루 한 번
 1. `py radar/industry_quarter.py --plan <산업>`을 `industries`의 산업마다(한 회차에 최대 3개) 돌린다.
