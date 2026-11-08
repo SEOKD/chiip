@@ -495,7 +495,7 @@ def chart_bars(c):
             v = (s.get("values") or [None] * len(cats))[ci]
             if v is None:
                 continue
-            col = COLORS.get(s.get("color", "c"), "var(--c)")
+            col = COLORS.get((s.get("colors") or [None] * len(cats))[ci] or s.get("color", "c"), "var(--c)")   # 막대마다 색(colors, 2026-11-08 가이던스·컨센서스 구분)
             y, h = (Y(v), Y(0) - Y(v)) if v >= 0 else (Y(0), Y(v) - Y(0))
             x = x0 + si * bw
             g.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw - 2:.1f}" height="{max(h, 1):.1f}" rx="2" fill="{col}"><title>{t(s["name"])} {t(cat)}: {_fmt(v)}{t(c.get("unit", ""))}</title></rect>')
@@ -508,7 +508,7 @@ def chart_bars(c):
             if len(pts) >= 2:
                 g.append(f'<polyline points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in pts)}" fill="none" stroke="var(--b)" stroke-width="2"/>'
                          + "".join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="3" fill="var(--b)"/>' for x, y in pts))
-    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+    return _legend(c.get("legend") or series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
 def _tw(text, px=12):

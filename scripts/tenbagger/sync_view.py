@@ -498,16 +498,19 @@ def section(dp, history=None, db=HS_DB):
                      "points": [pts_c[-1], [c["next"], round(nx["g"] * 100, 1)]]})
     B.append({"type": "chart", "chart": {"kind": "line", "title": f"매출과 {top['ind']['label']} 증가율({top['basis']}, 최근 {WINDOW}개 분기 + 다음 분기 추정)", "unit": "%", "series": gser}})
     if nx and cmp and (guide or cons):
-        cats, vals = ["지표 내포" + ("(전사 환산)" if cmp is not nx else ""), "−1σ", "+1σ"], [cmp["rev"], cmp["lo"], cmp["hi"]]
-        if guide:
+        cats, vals, cols = ["지표 내포" + ("(전사 환산)" if cmp is not nx else ""), "−1σ", "+1σ"], [cmp["rev"], cmp["lo"], cmp["hi"]], ["a", "a", "a"]
+        if guide:   # 가이던스·컨센서스는 다른 색(마스터 지시 2026-11-08)
             cats.append("가이던스")
             vals.append(guide)
+            cols.append("b")
         if cons:
             cats.append("컨센서스")
             vals.append(cons)
+            cols.append("c")
         sc = 1e9 if max(vals) >= 1e9 else 1e6
         B.append({"type": "chart", "chart": {"kind": "bars", "w": 480, "title": f"{c['next']} 매출 — 지표 추세 vs 가이던스·컨센서스", "unit": "B" if sc == 1e9 else "M",
-                                             "categories": cats, "series": [{"name": "매출", "color": "a", "values": [round(v / sc, 2 if sc == 1e9 else 0) for v in vals]}]}})
+                                             "categories": cats, "series": [{"name": "매출", "color": "a", "colors": cols, "values": [round(v / sc, 2 if sc == 1e9 else 0) for v in vals]}],
+                                             "legend": [{"name": "지표 추세(±1σ)", "color": "a"}] + ([{"name": "회사 가이던스", "color": "b"}] if guide else []) + ([{"name": "컨센서스", "color": "c"}] if cons else [])}})
     pth = [r for r in ok if r["path"]]
     if pth:   # 선행 지표로 본 향후 분기 세그먼트 매출 전망
         prow = [[r["ind"]["label"], r["target"], p["q"], _pct(p["x"], 1), _pct(p["g"], 1), f"{_money(p['rev'])}({_money(p['lo'])}~{_money(p['hi'])})"]
