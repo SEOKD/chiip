@@ -1,0 +1,14 @@
+# 규제산업 기업 PAC — FEC 정당별 기부 집계(radar/usgov/fec_money.py, 마스터 지시 2026-11-08 Industry Report "민주당도 규제산업 로비를 받았다 — 데이터 확인 필수")
+# id는 FEC 위원회 번호. 비우면 수집기가 이름으로 찾아 채운다(api.open.fec.gov names/committees). 사업 묶음(group)으로 합산한다.
+cycle: 2026
+pacs:
+  - {group: 데이터센터·AI, company: Microsoft, query: "MICROSOFT CORPORATION STAKEHOLDERS", id: C00227546}
+  - {group: 데이터센터·AI, company: Amazon, query: "AMAZON.COM SERVICES LLC PAC"}
+  - {group: 데이터센터·AI, company: Alphabet, query: "GOOGLE LLC NETPAC"}
+  - {group: 데이터센터·AI, company: Oracle, query: "ORACLE AMERICA INC POLITICAL ACTION COMMITTEE"}
+  - {group: 전력, company: NextEra Energy, query: "NEXTERA ENERGY INC POLITICAL ACTION COMMITTEE"}
+  - {group: 전력, company: Dominion Energy, query: "DOMINION ENERGY INC POLITICAL ACTION COMMITTEE"}
+  - {group: 전력, company: Constellation Energy, query: "CONSTELLATION ENERGY CORPORATION POLITICAL ACTION COMMITTEE"}
+  - {group: 전력, company: Vistra, query: "VISTRA CORP PAC"}
+  - {group: 금융·스테이블코인, company: JPMorgan Chase, query: "JPMORGAN CHASE & CO. PAC"}
+  - {group: 금융·스테이블코인, company: Coinbase, query: "COINBASE"}

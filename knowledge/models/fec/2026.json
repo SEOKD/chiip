@@ -1,0 +1,102 @@
+{
+ "as_of": "2026-11-08T11:33:17+09:00",
+ "cycle": 2026,
+ "source": "FEC api.open.fec.gov schedule_b(기부, 금액 큰 순)",
+ "key": "DEMO_KEY",
+ "pacs": [
+  {
+   "group": "데이터센터·AI",
+   "company": "Microsoft",
+   "status": "ok",
+   "committee_id": "C00227546",
+   "committee": null,
+   "n_total": 560,
+   "n_used": 100,
+   "by_party": {
+    "민주": 165000.0,
+    "공화": 160000.0,
+    "기타": 371900.0
+   }
+  },
+  {
+   "group": "데이터센터·AI",
+   "company": "Amazon",
+   "status": "ok",
+   "committee_id": "C00360354",
+   "committee": "AMAZON.COM SERVICES LLC SEPARATE SEGREGATED FUND (AMAZON PAC)",
+   "n_total": 584,
+   "n_used": 100,
+   "by_party": {
+    "민주": 145000.0,
+    "공화": 175000.0,
+    "기타": 270000.0
+   }
+  },
+  {
+   "group": "데이터센터·AI",
+   "company": "Alphabet",
+   "status": "ok",
+   "committee_id": "C00428623",
+   "committee": "GOOGLE LLC NETPAC",
+   "n_total": 666,
+   "n_used": 100,
+   "by_party": {
+    "민주": 110000.0,
+    "공화": 165000.0,
+    "기타": 370000.0
+   }
+  },
+  {
+   "group": "데이터센터·AI",
+   "company": "Oracle",
+   "status": "ok",
+   "committee_id": "C00323048",
+   "committee": "ORACLE AMERICA, INC. POLITICAL ACTION COMMITTEE (ORACLE PAC)",
+   "n_total": 139,
+   "n_used": 100,
+   "by_party": {
+    "민주": 118500.0,
+    "공화": 145000.0,
+    "기타": 61500.0
+   }
+  },
+  {
+   "group": "전력",
+   "company": "NextEra Energy",
+   "status": "실패: HTTPError HTTP Error 429: Too Many Requests"
+  },
+  {
+   "group": "전력",
+   "company": "Dominion Energy",
+   "status": "실패: HTTPError HTTP Error 429: Too Many Requests"
+  },
+  {
+   "group": "전력",
+   "company": "Constellation Energy",
+   "status": "실패: HTTPError HTTP Error 429: Too Many Requests"
+  },
+  {
+   "group": "전력",
+   "company": "Vistra",
+   "status": "실패: HTTPError HTTP Error 429: Too Many Requests"
+  },
+  {
+   "group": "금융·스테이블코인",
+   "company": "JPMorgan Chase",
+   "status": "실패: HTTPError HTTP Error 429: Too Many Requests"
+  },
+  {
+   "group": "금융·스테이블코인",
+   "company": "Coinbase",
+   "status": "실패: HTTPError HTTP Error 429: Too Many Requests"
+  }
+ ],
+ "groups": {
+  "데이터센터·AI": {
+   "민주": 538500.0,
+   "공화": 645000.0,
+   "기타": 1073400.0,
+   "민주_몫": 0.4550063371356147
+  }
+ }
+}

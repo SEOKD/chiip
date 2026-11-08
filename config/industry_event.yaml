@@ -1,0 +1,23 @@
+# Industry Report '사건 때 심층' 논리 틀 — 마스터 지시 2026-11-08
+# "시장이 명목적으로 받아들이는 해석 ↔ 실제 이해관계자의 돈과 유인 ↔ 정치인이 실행을 보여줘야 하는 시점"으로 사건을 읽는다.
+#   ① 사건과 명목 해석(시장 반응을 잰다) ② 돈의 흐름(로비 LD·PAC·슈퍼 PAC — 양당 모두, 데이터 필수) ③ 지연 유인 vs 실행 압력
+#   ④ 실행 경로와 시계(주·연방·기관, 정책 단계, 선거 직후 창) ⑤ 산업 영향(경로 × 사업군) ⑥ 시장 반영 vs Chiip(갭 → 산업 판단 등급)
+#   ⑦ 반대 검증(마스터 가설도 같은 강도로) ⑧ 반증 조건·체크포인트(날짜·확률 → predictions.csv)
+# 엔진 scripts/industry/event_frame.py, 렌더 scripts/industry/industry_html.py, 절차 docs/channels/industry.md, 스킬 .claude/skills/industry-event
+gate:                     # 하나라도 못 채우면 렌더하지 않는다(빈칸을 그럴듯하게 채우지 않는다)
+  reaction_min: 1         # ① 시장 반응 측정값(원천·기간 포함)
+  money_min: 3            # ② 돈의 흐름 숫자(출처 URL·기준일 포함)
+  money_both_parties: true   # ② 양당 모두에 간 돈이 있는지 반드시 확인한다(가설 검증의 핵심 — 한쪽만 보면 확증 편향)
+  delay_min: 1            # ③ 지연 유인 근거
+  act_min: 1              # ③ 실행 압력 근거
+  counter_min: 3          # ⑦ 반대 근거
+  checkpoint_min: 3       # ⑧ 날짜 붙은 확인 사건
+stages:                   # ④ 정책 단계(CLAUDE.md 금지표 — 발의·규칙안·최종·시행 / 발표·계약·지급을 섞지 않는다)
+  [공약, 발의, 위원회 통과, 본회의 통과, 서명·제정, 규칙안, 최종 규칙, 시행, 행정명령, 규제기관 명령, 지연·폐기]
+levels: [주, 연방 의회, 연방 기관, 행정부]
+rating:                   # ⑥ 산업 판단 등급(텐배거처럼 규칙이 계산 — 2026-11-08 마스터 지시). 매매·비중·금액 지시가 아니다
+  labels: [Attractive, In-Line, Cautious]
+  gap_band: 5.0           # Chiip 기대 영향 − 시장 반영(%p)이 +이 값 이상이면 Attractive, −이 값 이하면 Cautious
+  min_confidence: 0.5     # 확신도가 이보다 낮으면 갭이 커도 In-Line
+  confound_penalty: 0.25  # 같은 기간 다른 큰 사건이 겹치면(교란) 확신도에서 뺀다
+  debate_max_steps: 1     # 모델 토론은 한 단계까지만 바꾼다

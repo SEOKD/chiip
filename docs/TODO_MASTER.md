@@ -86,5 +86,6 @@
 | 21-35 | **LDA.gov 키 발급 — 선택(2026-11-08).** lda.gov 전체가 한국 접속을 막는다(Akamai Access Denied). 로비 지출·쟁점은 Easyconomics 하원 LD 분기 집계로 대신 받게 연결했다(대형주 약 120개). 로비 회사 이름·법안명까지 보려면 차단 화면 Reference 번호를 붙여 data-requests@clerk.house.gov 등에 접근 허용을 요청한다. 우회하지 않는다. |
 | 21-36 | **TradingView 알림 개수 한도(2026-11-05).** 신호 가격 알림 생성이 `max_primitive_alerts_count_exceeded`로 8건 모두 거부됐다(대기 46건). 쓰지 않는 알림을 정리하거나 요금제 한도를 늘려 주시면 다음 회차부터 다시 만든다. 멈춘 알림은 지우지 않았다. |
 | 21-37 | **연락처 UA 넣기(2026-11-08).** 외부 요청 헤더에 박혀 있던 이메일을 코드에서 뺐다(`common.contact_ua()`). Wikimedia·Census 등은 연락처가 든 User-Agent를 요구하므로 `D:\local-only\secrets\.env`에 `CHIIP_CONTACT_UA=Chiip research <연락처 이메일 또는 URL>` 한 줄을 넣는다. 넣기 전에는 연락처 없는 UA로 나가 일부 원천이 거부할 수 있다. |
+| 21-38 | **api.data.gov 무료 키(2026-11-08, 선택).** 정당별 기업 PAC 기부 수집(`radar/usgov/fec_money.py`, FEC 공개 API)이 공용 DEMO_KEY의 시간당·하루 한도에 걸려 전력·금융 PAC을 받지 못했다. https://api.data.gov/signup/ 에서 이메일로 무료 키를 받아 `D:\local-only\secrets\.env`에 `DATA_GOV_API_KEY=키`로 넣으면 다음 수집부터 쓴다 |
 
 - **DART_API_KEY 값 입력(2026-11-06)**: SK하이닉스 DART 공시 감시를 켰지만 `D:\local-only\secrets\.env`의 `DART_API_KEY=` 값이 비어 있어 수집이 "키 없음"으로 건너뛴다. opendart.fss.or.kr에서 발급한 인증키를 그 줄에 넣으면 다음 5분 수집부터 돈다.

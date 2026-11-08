@@ -1,0 +1,1068 @@
+{
+ "id": "2026-midterm-regulated",
+ "date": "2026-11-08",
+ "title": "블루 스윕은 데이터센터를 멈추지 않는다 — 값을 매긴다",
+ "subtitle": "2026 중간선거 뒤 규제산업(데이터센터 전력·스테이블코인): 시장은 '제동'을 샀고, 돈과 시계는 '조건부 허용'을 가리킨다",
+ "industry": "규제산업 — 데이터센터 전력·설비, 발전·유틸리티, 스테이블코인·크립토",
+ "event": {
+  "name": "2026 미국 중간선거(민주 양원 장악, 데이터센터 밀집 주 민주 주지사 당선)",
+  "date": "2026-11-03"
+ },
+ "value_add": [
+  "해석(정치경제 틀: 명목 해석 ↔ 돈의 흐름 ↔ 실행 시계)",
+  "정량(로비·PAC·파이프라인 비중·사업군 갭)",
+  "속도(선거 5일 뒤)"
+ ],
+ "groups": [
+  {
+   "id": "G1",
+   "name": "데이터센터 전력·설비 공급망",
+   "tickers": [
+    "VRT",
+    "PWR",
+    "GEV",
+    "ETN"
+   ],
+   "why": "냉각·전력 설비·송배전 시공 — 데이터센터 착공 속도에 직결"
+  },
+  {
+   "id": "G2",
+   "name": "상업 발전사(머천트 IPP)",
+   "tickers": [
+    "VST",
+    "NRG",
+    "CEG",
+    "TLN"
+   ],
+   "why": "규제 밖에서 전력을 파는 발전사 — 데이터센터 직접 계약·전력 가격에 기댄다"
+  },
+  {
+   "id": "G3",
+   "name": "규제 유틸리티",
+   "tickers": [
+    "D",
+    "SO",
+    "AEP",
+    "NEE"
+   ],
+   "why": "요금을 주 규제기관이 정하는 전력회사 — 투자(요금 기반)가 늘면 이익이 는다"
+  },
+  {
+   "id": "G4",
+   "name": "데이터센터 리츠",
+   "tickers": [
+    "EQIX",
+    "DLR"
+   ],
+   "why": "이미 전력을 확보한 데이터센터를 임대"
+  },
+  {
+   "id": "G5",
+   "name": "하이퍼스케일러·AI 클라우드",
+   "tickers": [
+    "MSFT",
+    "AMZN",
+    "GOOGL",
+    "META",
+    "ORCL"
+   ],
+   "why": "데이터센터를 짓고 쓰는 쪽 — 비용 전가의 최종 부담자"
+  },
+  {
+   "id": "G6",
+   "name": "스테이블코인·크립토",
+   "tickers": [
+    "COIN",
+    "CRCL",
+    "HOOD"
+   ],
+   "why": "GENIUS법(스테이블코인) 시행·CLARITY법(시장 구조) 지연의 영향"
+  }
+ ],
+ "reaction": {
+  "window": "2026-10-30 → 11-06 종가(1주, 선거일 11-03 포함)",
+  "benchmark": "SPY(−2.7%)",
+  "source": "TradingView change|1W(2026-11-08 조회)",
+  "items": [
+   {
+    "group": "G1",
+    "ticker": "VRT",
+    "name": "Vertiv",
+    "ret": -21.350537634408596,
+    "rel": -18.6471554293591
+   },
+   {
+    "group": "G1",
+    "ticker": "PWR",
+    "name": "Quanta Services",
+    "ret": -12.860664056836313,
+    "rel": -10.157281851786816
+   },
+   {
+    "group": "G1",
+    "ticker": "GEV",
+    "name": "GE Vernova",
+    "ret": -9.763717113315536,
+    "rel": -7.060334908266039
+   },
+   {
+    "group": "G1",
+    "ticker": "ETN",
+    "name": "Eaton",
+    "ret": -7.635754250344622,
+    "rel": -4.932372045295125
+   },
+   {
+    "group": "G2",
+    "ticker": "VST",
+    "name": "Vistra",
+    "ret": -9.807039098070396,
+    "rel": -7.103656893020899
+   },
+   {
+    "group": "G2",
+    "ticker": "NRG",
+    "name": "NRG Energy",
+    "ret": -8.088694565896311,
+    "rel": -5.3853123608468145
+   },
+   {
+    "group": "G2",
+    "ticker": "CEG",
+    "name": "Constellation",
+    "ret": -4.737403765530912,
+    "rel": -2.0340215604814147
+   },
+   {
+    "group": "G2",
+    "ticker": "TLN",
+    "name": "Talen",
+    "ret": -1.305665656330152,
+    "rel": 1.3977165487193453
+   },
+   {
+    "group": "G3",
+    "ticker": "D",
+    "name": "Dominion",
+    "ret": 2.972080456319408,
+    "rel": 5.675462661368906
+   },
+   {
+    "group": "G3",
+    "ticker": "SO",
+    "name": "Southern",
+    "ret": -1.4619571016967137,
+    "rel": 1.2414251033527837
+   },
+   {
+    "group": "G3",
+    "ticker": "AEP",
+    "name": "AEP",
+    "ret": -2.82620382459105,
+    "rel": -0.1228216195415528
+   },
+   {
+    "group": "G3",
+    "ticker": "NEE",
+    "name": "NextEra",
+    "ret": 3.8705053159718186,
+    "rel": 6.573887521021316
+   },
+   {
+    "group": "G4",
+    "ticker": "EQIX",
+    "name": "Equinix",
+    "ret": -0.09766203018644658,
+    "rel": 2.605720174863051
+   },
+   {
+    "group": "G4",
+    "ticker": "DLR",
+    "name": "Digital Realty",
+    "ret": -3.597122302158274,
+    "rel": -0.8937400971087768
+   },
+   {
+    "group": "G5",
+    "ticker": "MSFT",
+    "name": "Microsoft",
+    "ret": 1.6669540725412515,
+    "rel": 4.370336277590749
+   },
+   {
+    "group": "G5",
+    "ticker": "AMZN",
+    "name": "Amazon",
+    "ret": 7.884335344289585,
+    "rel": 10.587717549339082
+   },
+   {
+    "group": "G5",
+    "ticker": "GOOGL",
+    "name": "Alphabet",
+    "ret": 1.7652944539736986,
+    "rel": 4.468676659023195
+   },
+   {
+    "group": "G5",
+    "ticker": "META",
+    "name": "Meta",
+    "ret": -0.7870046667425539,
+    "rel": 1.9163775383069435
+   },
+   {
+    "group": "G5",
+    "ticker": "ORCL",
+    "name": "Oracle",
+    "ret": -11.150225759546945,
+    "rel": -8.446843554497448
+   },
+   {
+    "group": "G6",
+    "ticker": "COIN",
+    "name": "Coinbase",
+    "ret": -6.1167618782221,
+    "rel": -3.4133796731726025
+   },
+   {
+    "group": "G6",
+    "ticker": "CRCL",
+    "name": "Circle",
+    "ret": -6.4240419079128905,
+    "rel": -3.720659702863393
+   },
+   {
+    "group": "G6",
+    "ticker": "HOOD",
+    "name": "Robinhood",
+    "ret": -4.800564772326155,
+    "rel": -2.0971825672766573
+   }
+  ],
+  "etf": [
+   {
+    "name": "SMH(반도체)",
+    "car": -2.7341277879919845,
+    "t": -0.8352009960908994
+   },
+   {
+    "name": "GRID(전력망)",
+    "car": -2.0999733821076747,
+    "t": -0.9540717309753921
+   },
+   {
+    "name": "PAVE(인프라)",
+    "car": -3.4805621803524103,
+    "t": -2.152748131940428
+   },
+   {
+    "name": "XLU(유틸리티)",
+    "car": -1.0765629450354315,
+    "t": -0.5392336752848872
+   },
+   {
+    "name": "TAN(태양광)",
+    "car": 14.135524089242054,
+    "t": 4.853471723581828
+   },
+   {
+    "name": "ICLN(청정에너지)",
+    "car": 8.651631672001814,
+    "t": 3.9830986894928744
+   },
+   {
+    "name": "XLE(에너지)",
+    "car": -11.279701382968845,
+    "t": -4.338086908275003
+   },
+   {
+    "name": "XLF(금융)",
+    "car": 0.45964471442696075,
+    "t": 0.31434885371524485
+   },
+   {
+    "name": "KBE(은행)",
+    "car": -0.7205751325088623,
+    "t": -0.38522051655468764
+   }
+  ],
+  "paths": [
+   {
+    "name": "SMH(반도체)",
+    "color": "b",
+    "points": [
+     [
+      "11-03",
+      1.35
+     ],
+     [
+      "11-04",
+      -5.4
+     ],
+     [
+      "11-05",
+      -5.67
+     ],
+     [
+      "11-06",
+      -2.73
+     ]
+    ]
+   },
+   {
+    "name": "GRID(전력망)",
+    "color": "e",
+    "points": [
+     [
+      "11-03",
+      1.59
+     ],
+     [
+      "11-04",
+      -3.89
+     ],
+     [
+      "11-05",
+      -3.22
+     ],
+     [
+      "11-06",
+      -2.1
+     ]
+    ]
+   },
+   {
+    "name": "PAVE(인프라)",
+    "color": "a",
+    "points": [
+     [
+      "11-03",
+      0.49
+     ],
+     [
+      "11-04",
+      -2.79
+     ],
+     [
+      "11-05",
+      -4.07
+     ],
+     [
+      "11-06",
+      -3.48
+     ]
+    ]
+   },
+   {
+    "name": "TAN(태양광)",
+    "color": "d",
+    "points": [
+     [
+      "11-03",
+      2.74
+     ],
+     [
+      "11-04",
+      5.33
+     ],
+     [
+      "11-05",
+      11.06
+     ],
+     [
+      "11-06",
+      14.13
+     ]
+    ]
+   },
+   {
+    "name": "XLE(에너지)",
+    "color": "c",
+    "points": [
+     [
+      "11-03",
+      -0.9
+     ],
+     [
+      "11-04",
+      -4.7
+     ],
+     [
+      "11-05",
+      -11.22
+     ],
+     [
+      "11-06",
+      -11.28
+     ]
+    ]
+   }
+  ],
+  "confound": "같은 주 11/5 AI 인프라주 디레버리징(헤지펀드 순 레버리지 하위 10% — 모건스탠리 프라임 브로커리지 집계 보도)과 일부 실적 발표가 겹쳐 선거 몫만 떼어 낼 수 없다. ETF 시장 모형 CAR(선거일부터)도 함께 본다."
+ },
+ "money": [
+  {
+   "kind": "로비(LD)",
+   "who": "Meta",
+   "amount": 6922500,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "Amazon",
+   "amount": 5165000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 +2.6%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "Oracle",
+   "amount": 3530000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 +33.7%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "Microsoft",
+   "amount": 3360000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 -7.9%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "NextEra Energy",
+   "amount": 3150000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 +1.1%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "NVIDIA",
+   "amount": 2590000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 +52.4%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "JPMorgan Chase",
+   "amount": 2000000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 +17.0%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "로비(LD)",
+   "who": "Morgan Stanley",
+   "amount": 2340000,
+   "party": "정당 구분 없음(의회 접촉)",
+   "period": "2026년 3분기 · 전 분기 대비 +57.0%",
+   "source": "Easyconomics insider_and_politics(lobbying, 하원 LD 집계, 2026-11-08 조회)"
+  },
+  {
+   "kind": "PAC 기부",
+   "who": "Microsoft",
+   "amount": 325000.0,
+   "split": {
+    "민주": 165000.0,
+    "공화": 160000.0,
+    "기타": 371900.0
+   },
+   "party": "양당",
+   "amount_text": "민주 $165,000 · 공화 $160,000",
+   "period": "2026 사이클 상위 100/560건",
+   "source": "FEC schedule_b",
+   "url": "https://api.open.fec.gov/v1/schedules/schedule_b/"
+  },
+  {
+   "kind": "PAC 기부",
+   "who": "Amazon",
+   "amount": 320000.0,
+   "split": {
+    "민주": 145000.0,
+    "공화": 175000.0,
+    "기타": 270000.0
+   },
+   "party": "양당",
+   "amount_text": "민주 $145,000 · 공화 $175,000",
+   "period": "2026 사이클 상위 100/584건",
+   "source": "FEC schedule_b",
+   "url": "https://api.open.fec.gov/v1/schedules/schedule_b/"
+  },
+  {
+   "kind": "PAC 기부",
+   "who": "Alphabet",
+   "amount": 275000.0,
+   "split": {
+    "민주": 110000.0,
+    "공화": 165000.0,
+    "기타": 370000.0
+   },
+   "party": "양당",
+   "amount_text": "민주 $110,000 · 공화 $165,000",
+   "period": "2026 사이클 상위 100/666건",
+   "source": "FEC schedule_b",
+   "url": "https://api.open.fec.gov/v1/schedules/schedule_b/"
+  },
+  {
+   "kind": "PAC 기부",
+   "who": "Oracle",
+   "amount": 263500.0,
+   "split": {
+    "민주": 118500.0,
+    "공화": 145000.0,
+    "기타": 61500.0
+   },
+   "party": "양당",
+   "amount_text": "민주 $118,500 · 공화 $145,000",
+   "period": "2026 사이클 상위 100/139건",
+   "source": "FEC schedule_b",
+   "url": "https://api.open.fec.gov/v1/schedules/schedule_b/"
+  },
+  {
+   "kind": "슈퍼 PAC",
+   "who": "Fairshake 네트워크(크립토)",
+   "amount": 14,
+   "amount_text": "하원 33명 지원 — 공화 19·민주 14",
+   "party": "양당",
+   "period": "2026-10",
+   "source": "CNBC 2026-10-31",
+   "url": "https://www.cnbc.com/2026/10/31/crypto-industry-spends-more-than-200-million-to-sway-the-midterms.html"
+  },
+  {
+   "kind": "슈퍼 PAC",
+   "who": "크립토 업계 전체",
+   "amount": 200000000.0,
+   "amount_text": "$200M 이상",
+   "party": "양당",
+   "period": "2026 사이클",
+   "source": "CNBC 2026-10-31",
+   "url": "https://www.cnbc.com/2026/10/31/crypto-industry-spends-more-than-200-million-to-sway-the-midterms.html"
+  },
+  {
+   "kind": "슈퍼 PAC",
+   "who": "Leading the Future(AI)",
+   "amount": 125000000.0,
+   "amount_text": "$125M 모금 — 민주 Hoyle·Menendez·Torres 지지, Melissa Bean(D) $1M+",
+   "party": "민주",
+   "period": "2025 말 모금·2026 지출",
+   "source": "Axios 2026-05-08 · CNBC 2026-10-27",
+   "url": "https://www.axios.com/2026/05/08/ai-super-pac-endorsement-democrats"
+  },
+  {
+   "kind": "슈퍼 PAC",
+   "who": "Leading the Future(AI)",
+   "amount": 8100000.0,
+   "amount_text": "$8.1M — AI 규제법 공동 발의자 Alex Bores(D) 낙선 운동",
+   "party": "민주",
+   "period": "2026 예비선거",
+   "source": "CNBC 2026-10-27",
+   "url": "https://www.cnbc.com/2026/10/27/ai-political-spending-silicon-valley-election.html"
+  }
+ ],
+ "incentives": {
+  "delay": [
+   {
+    "text": "CLARITY법 16개월 지연 — 2025-07 하원 통과 → 2026-05 상원 은행위 15-9 → 2026-09-15 상원 절차 표결 49-50 부결. 쟁점(윤리 조항·스테이블코인 이자)은 남았다",
+    "source": "American Banker",
+    "url": "https://www.americanbanker.com/news/crypto-market-structure-bill-fails-in-senate-vote-49-50"
+   },
+   {
+    "text": "지대 추출 이론 — 규제 위협을 유지할수록 이해관계자가 계속 돈을 낸다(McChesney 1987, Journal of Legal Studies)",
+    "source": "McChesney(1987)"
+   },
+   {
+    "text": "분점 정부 — 민주 의회 법안은 트럼프 거부권을 넘어야 한다. 연방 입법은 협상 카드로 남기 쉽다",
+    "source": "NPR 2026-11-03(양원 민주)",
+    "url": "https://www.npr.org/2026/11/03/g-s1-149526/2026-midterms-congress-balance-of-power"
+   }
+  ],
+  "act": [
+   {
+    "text": "공약 — Bottoms(GA) 주 전역 일시 중단, Acton(OH) '100% 비용 부담 조건부 모라토리엄', 세제 혜택 종료·지방정부 자체 모라토리엄 허용안",
+    "source": "AP via 10News",
+    "url": "https://www.10news.com/politics/america-votes/voters-elected-governors-to-curb-data-centers-lowering-bills-for-gas-and-groceries-is-harder"
+   },
+   {
+    "text": "유권자 — 출구조사 56%가 데이터센터를 결정적·주요 요인으로 꼽았고, 데이터센터 투표안 41건 중 1건 빼고 반대쪽 승리",
+    "source": "CNBC 2026-11-04",
+    "url": "https://www.cnbc.com/2026/11/04/data-center-ballot-measures-2026-midterm.html"
+   },
+   {
+    "text": "로비 자금의 한계 — Fairshake 수입 $137.4M·지출 $88.7M·현금 $113M(2026-07-31). 돈을 낸 쪽은 결과물을 요구한다",
+    "source": "FactCheck.org",
+    "url": "https://www.factcheck.org/2026/08/fairshake-2/"
+   },
+   {
+    "text": "선례 — Spanberger(VA, 2026-01 취임)는 7개월 만에 규제기관이 데이터센터에 송전비를 직접 부과하게 만들었다(제동이 아니라 비용 전가)",
+    "source": "Virginia Mercury",
+    "url": "https://virginiamercury.com/2026/08/05/scc-orders-dominion-to-develop-tariff-to-assign-more-transmission-costs-to-data-centers/"
+   },
+   {
+    "text": "선례 — 트럼프 2기 첫 100일 행정명령 143건(첫날 26건), 1933년 루스벨트 99건 기록을 넘었다",
+    "source": "Wikipedia 행정명령 목록",
+    "url": "https://en.wikipedia.org/wiki/List_of_executive_orders_in_the_second_Trump_presidency"
+   }
+  ]
+ },
+ "channels": [
+  {
+   "id": "C1",
+   "name": "주 차원 신규 데이터센터 일시 중단·세제 혜택 중단(TX·GA·OH 중 1곳 이상)",
+   "level": "주",
+   "stage": "공약",
+   "actor": "신임 주지사·주의회·주 공공요금위원회",
+   "window": "2027-01 취임 ~ 2027 회기(TX는 1~5월)",
+   "p": 0.45,
+   "source": "AP via 10News 2026-11",
+   "url": "https://www.10news.com/politics/america-votes/voters-elected-governors-to-curb-data-centers-lowering-bills-for-gas-and-groceries-is-harder",
+   "impact": {
+    "G1": -4,
+    "G2": -5,
+    "G3": -1,
+    "G4": 3,
+    "G5": -2
+   }
+  },
+  {
+   "id": "C2",
+   "name": "조건부 허용 — 데이터센터가 전력 비용 100% 부담·지역 혜택 협약을 조건으로 승인 재개",
+   "level": "주",
+   "stage": "공약",
+   "actor": "Acton(OH)·Bottoms(GA) 등 신임 주지사",
+   "window": "2027 상반기",
+   "p": 0.55,
+   "source": "Fortune 2026-11-04",
+   "url": "https://fortune.com/2026/11/04/democrats-midterm-election-2026-anti-data-center-governors-texas-georgia-ohio-ai-infrastructure-big-tech-spending-moratorium-regulations/",
+   "impact": {
+    "G1": 2,
+    "G2": 1,
+    "G3": 1,
+    "G5": -1
+   }
+  },
+  {
+   "id": "C3",
+   "name": "대형 부하 비용 전가 확산(송전·설비 비용 직접 부과·담보) — Virginia 밖 2개 주 이상",
+   "level": "주",
+   "stage": "규제기관 명령",
+   "actor": "주 규제기관(VA SCC 선례)",
+   "window": "2027 상반기",
+   "p": 0.8,
+   "source": "Virginia Mercury 2026-08-05",
+   "url": "https://virginiamercury.com/2026/08/05/scc-orders-dominion-to-develop-tariff-to-assign-more-transmission-costs-to-data-centers/",
+   "impact": {
+    "G1": -1,
+    "G3": 2,
+    "G4": -1,
+    "G5": -1
+   }
+  },
+  {
+   "id": "C4",
+   "name": "민주 주지사의 전기요금 억제 압박(요금 인상·자기자본이익률 억제)",
+   "level": "주",
+   "stage": "공약",
+   "actor": "신임 주지사·규제기관",
+   "window": "2027",
+   "p": 0.5,
+   "source": "AP via 10News 2026-11",
+   "url": "https://www.10news.com/politics/america-votes/voters-elected-governors-to-curb-data-centers-lowering-bills-for-gas-and-groceries-is-harder",
+   "impact": {
+    "G3": -4
+   }
+  },
+  {
+   "id": "C5",
+   "name": "레임덕 허가 개혁(송전 가속 + 데이터센터 송전비 부담 조항)",
+   "level": "연방 의회",
+   "stage": "발의",
+   "actor": "상원 초당파 작업반",
+   "window": "2026-12-11 임시 예산 만료 전후",
+   "p": 0.2,
+   "source": "Semafor 2026-11-04",
+   "url": "https://www.semafor.com/article/11/04/2026/congress-faces-long-lame-duck-to-do-list",
+   "impact": {
+    "G1": 3,
+    "G2": 1,
+    "G3": 2,
+    "G4": 1,
+    "G5": 1
+   }
+  },
+  {
+   "id": "C6",
+   "name": "민주 의회의 연방 데이터센터 규제 입법",
+   "level": "연방 의회",
+   "stage": "공약",
+   "actor": "제120대 의회(민주 양원)",
+   "window": "2027",
+   "p": 0.05,
+   "source": "NPR 2026-11-03(양원 민주) — 대통령 거부권은 구조 사실",
+   "url": "https://www.npr.org/2026/11/03/g-s1-149526/2026-midterms-congress-balance-of-power",
+   "impact": {
+    "G1": -3,
+    "G2": -2,
+    "G5": -2
+   }
+  },
+  {
+   "id": "C7",
+   "name": "FERC 대형 부하 접속 규정(6개 RTO 쇼코즈 응답 → 명령)",
+   "level": "연방 기관",
+   "stage": "규제기관 명령",
+   "actor": "FERC",
+   "window": "2026-11 응답 ~ 2027",
+   "p": 0.6,
+   "source": "Bracewell(FERC 2026-06-18 명령 해설)",
+   "url": "https://www.bracewell.com/resources/ferc-show-cause-orders-data-center-interconnection/",
+   "impact": {
+    "G1": 1,
+    "G2": -1,
+    "G3": 1
+   }
+  },
+  {
+   "id": "C8",
+   "name": "GENIUS법 시행(2027-01-18, OCC 최종 규칙 2026-10-21)",
+   "level": "연방 기관",
+   "stage": "최종 규칙",
+   "actor": "OCC·재무부",
+   "window": "2027-01-18",
+   "p": 0.95,
+   "source": "OCC 보도자료 2026-92",
+   "url": "https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-92.html",
+   "impact": {
+    "G6": 2
+   }
+  },
+  {
+   "id": "C9",
+   "name": "CLARITY법(크립토 시장 구조) 2027년 안 제정",
+   "level": "연방 의회",
+   "stage": "지연·폐기",
+   "actor": "상원(2027-01 Warren 은행위원장 예상)",
+   "window": "2027",
+   "p": 0.15,
+   "source": "American Banker(상원 49-50 부결)",
+   "url": "https://www.americanbanker.com/news/crypto-market-structure-bill-fails-in-senate-vote-49-50",
+   "impact": {
+    "G6": 8
+   }
+  },
+  {
+   "id": "C10",
+   "name": "스테이블코인 이자·리워드 제한(민주·은행권 요구)",
+   "level": "연방 의회",
+   "stage": "공약",
+   "actor": "상원 민주·은행권",
+   "window": "2027",
+   "p": 0.25,
+   "source": "Orrick 2026-10(쟁점: 윤리 조항·이자)",
+   "url": "https://www.orrick.com/en/Insights/2026/10/The-CLARITY-Act-Stalls-in-the-Senate-Whats-Next-for-Digital-Asset-Regulation",
+   "impact": {
+    "G6": -6
+   }
+  }
+ ],
+ "clock": [
+  {
+   "date": "2026-11-16",
+   "what": "FERC 대형 부하 쇼코즈 응답 기한(보도마다 다름 — 확인 필요)",
+   "why": "연방 접속 규칙의 첫 단추"
+  },
+  {
+   "date": "2026-12-11",
+   "what": "연방 임시 예산 만료 — 레임덕 마감",
+   "why": "허가 개혁(데이터센터 송전비 조항)이 실릴 수 있는 마지막 창"
+  },
+  {
+   "date": "2027-01-03",
+   "what": "제120대 의회 개원(민주 양원)",
+   "why": "Warren 상원 은행위원장 예상 — CLARITY 재추진이 더 어려워진다"
+  },
+  {
+   "date": "2027-01 초·중순",
+   "what": "신임 주지사 취임(TX·GA·OH·NV·IA 등)",
+   "why": "실행 시계의 시작 — 첫 100일이 가설의 시험대"
+  },
+  {
+   "date": "2027-01-12",
+   "what": "텍사스 주의회 정기 회기 시작(홀수 해, 140일)",
+   "why": "하원은 민주로 넘어갔고 상원은 공화(NCSL) — 법은 초당파여야 통과"
+  },
+  {
+   "date": "2027-01-18",
+   "what": "GENIUS법·OCC 최종 규칙 시행",
+   "why": "스테이블코인은 입법이 끝나 집행 단계"
+  },
+  {
+   "date": "2027-01-20",
+   "what": "4분기 로비 보고(LD-2) 마감",
+   "why": "선거 뒤 로비가 줄었는지 늘었는지 — 가설의 돈 쪽 검증"
+  },
+  {
+   "date": "2027-04-30 무렵",
+   "what": "취임 100일",
+   "why": "행정 조치가 나왔는지 점검"
+  }
+ ],
+ "analog": [
+  {
+   "what": "트럼프 2기 첫 100일 행정명령",
+   "number": "143건(첫날 26건)",
+   "source": "Wikipedia"
+  },
+  {
+   "what": "Spanberger(VA) 취임 → 데이터센터 송전비 직접 부과 명령",
+   "number": "약 7개월(2026-01 → 2026-08-05)",
+   "source": "Virginia Mercury"
+  },
+  {
+   "what": "CLARITY법 하원 통과 → 상원 부결",
+   "number": "약 14개월(2025-07 → 2026-09-15), 2026-11 현재 16개월째 미제정",
+   "source": "American Banker"
+  }
+ ],
+ "counter": [
+  {
+   "text": "로비는 표를 사기보다 이미 같은 편인 의원을 돕는 '입법 보조금'에 가깝다 — 데이터센터 반대 공약으로 당선된 주지사가 로비로 돌아선다는 근거는 약하다",
+   "source": "Hall & Deardorff(2006), APSR"
+  },
+  {
+   "text": "정치 자금은 걸린 이해에 비해 작고 표결 영향이 약하다 — 위 기업 PAC 기부도 회사당 $26~33만(상위 100건)이다",
+   "source": "Ansolabehere·de Figueiredo·Snyder(2003), JEP; FEC"
+  },
+  {
+   "text": "유권자 압력이 진짜다 — 전기요금이 투표 요인으로 56%, 투표안 대부분 데이터센터 패배. '조건부 허용'이어도 비용 부담이 커져 데이터센터 경제성은 낮아진다",
+   "source": "CNBC 2026-11-04",
+   "url": "https://www.cnbc.com/2026/11/04/data-center-ballot-measures-2026-midterm.html"
+  },
+  {
+   "text": "행정명령 선례는 그대로 옮겨지지 않는다 — 텍사스 상원은 공화, 조지아·오하이오 주의회 결과는 미확인. 주지사 단독 권한은 대통령보다 좁다",
+   "source": "NCSL 2026-11-04",
+   "url": "https://www.ncsl.org/news/details/2026-state-legislative-elections-the-results-and-what-they-mean"
+  },
+  {
+   "text": "교란 — 선거 주간 하락이 11/5 AI 인프라 디레버리징과 겹쳐 '시장이 제동을 샀다'의 크기를 과대평가할 수 있다",
+   "source": "TradingView·midterm 관측(시장 모형 CAR)"
+  },
+  {
+   "text": "지연이 정치인에게 최적일 수 있다 — 크립토(CLARITY)는 선거 뒤에도 실행보다 지연 쪽 근거가 많다(예측시장 연내 통과 확률 2.5% 보도)",
+   "source": "McChesney(1987); Orrick 2026-10",
+   "url": "https://www.orrick.com/en/Insights/2026/10/The-CLARITY-Act-Stalls-in-the-Senate-Whats-Next-for-Digital-Asset-Regulation"
+  }
+ ],
+ "checkpoints": [
+  {
+   "date": "2027-04-30",
+   "what": "TX·GA·OH 신임 주지사 중 1명 이상이 데이터센터 관련 행정 조치(행정명령·주 기관 지시·규제기관 지시)를 발표한다",
+   "metric": "주지사실·주 기관 공식 발표",
+   "p": 0.75,
+   "confirms": "가설 지지 — 선거 직후 실행"
+  },
+  {
+   "date": "2027-06-30",
+   "what": "TX·GA·OH 중 1곳 이상에서 신규 데이터센터 전면 모라토리엄이 법으로 제정된다",
+   "metric": "주의회 통과·서명",
+   "p": 0.15,
+   "confirms": "가설 반대 — 제동이 실제"
+  },
+  {
+   "date": "2027-06-30",
+   "what": "Virginia 밖 2개 주 이상에서 데이터센터 비용 전가(대형 부하 요금·담보·100% 비용 부담)가 법이나 규제기관 명령으로 확정된다",
+   "metric": "주법·주 규제기관 명령",
+   "p": 0.6,
+   "confirms": "가설 지지 — 조건부 허용"
+  },
+  {
+   "date": "2027-01-20",
+   "what": "Meta·Amazon·Oracle·Microsoft 합산 4분기 로비 지출(하원 LD)이 3분기 $18.98M 이상이다",
+   "metric": "하원 LD-2(Easyconomics 집계)",
+   "target": "≥ $18.98M",
+   "p": 0.6,
+   "confirms": "가설 지지 — 선거 뒤에도 로비가 실행을 요구"
+  },
+  {
+   "date": "2027-12-31",
+   "what": "CLARITY법 또는 후속 크립토 시장 구조법이 서명된다",
+   "metric": "대통령 서명",
+   "p": 0.15,
+   "confirms": "가설 지지 — 로비 결과물(아니면 지연 유인 우세)"
+  },
+  {
+   "date": "2026-12-31",
+   "what": "데이터센터 송전비 부담 조항이 든 허가 개혁 법안이 레임덕 회기에 양원을 통과한다",
+   "metric": "양원 통과",
+   "p": 0.2,
+   "confirms": "가설 지지 — 선거 직후 창"
+  }
+ ],
+ "debate": {},
+ "tiles": [
+  {
+   "k": "민주 주지사 주의 데이터센터 파이프라인",
+   "v": "173GW",
+   "sub": "미국 전체 345.9GW의 50% (TX·VA·GA·OH·AZ, dcmap.us)"
+  },
+  {
+   "k": "데이터센터·AI 기업 PAC의 민주 몫",
+   "v": "46%",
+   "sub": "민주 $538K · 공화 $645K(FEC 상위 기부)"
+  },
+  {
+   "k": "4개 하이퍼스케일러 3분기 로비",
+   "v": "$18.98M",
+   "sub": "Meta·Amazon·Oracle·Microsoft, 하원 LD"
+  },
+  {
+   "k": "설비 공급망 선거 주간",
+   "v": "-10.2%p",
+   "sub": "SPY 대비(VRT·PWR·GEV·ETN)",
+   "tone": "blue"
+  },
+  {
+   "k": "CLARITY법",
+   "v": "16개월째 미제정",
+   "sub": "상원 49-50 부결(2026-09-15)"
+  }
+ ],
+ "names": [
+  "SPY",
+  "SMH",
+  "GRID",
+  "PAVE",
+  "XLU",
+  "TAN",
+  "ICLN",
+  "XLE",
+  "XLF",
+  "KBE",
+  "VRT",
+  "PWR",
+  "GEV",
+  "ETN",
+  "VST",
+  "NRG",
+  "CEG",
+  "TLN",
+  "EQIX",
+  "DLR",
+  "MSFT",
+  "AMZN",
+  "GOOGL",
+  "META",
+  "ORCL",
+  "COIN",
+  "CRCL",
+  "HOOD",
+  "NEE",
+  "AEP",
+  "SO",
+  "TX",
+  "GA",
+  "OH",
+  "VA",
+  "AZ",
+  "NV",
+  "IA",
+  "D",
+  "NCSL",
+  "SCC",
+  "RTO",
+  "NBC",
+  "NPR",
+  "CNBC",
+  "AP",
+  "OCC",
+  "FERC",
+  "PJM",
+  "MISO",
+  "SPP",
+  "CAISO",
+  "NYISO",
+  "ERCOT",
+  "PAC",
+  "LD",
+  "JEP",
+  "APSR",
+  "LTF",
+  "IPP",
+  "TCEQ",
+  "CLARITY",
+  "GENIUS"
+ ],
+ "terms": {
+  "PAC": "기업·단체가 만든 정치 기부 위원회",
+  "LD": "로비 공개법 분기 보고서",
+  "RTO": "광역 전력망 운영 기구",
+  "FERC": "미국 연방 에너지 규제위원회",
+  "OCC": "미국 통화감독청",
+  "CAR": "사건 뒤 시장 대비 초과 누적 수익률",
+  "IPP": "규제 밖에서 전력을 파는 독립 발전사",
+  "SCC": "버지니아 주 공공요금 규제기관"
+ },
+ "sources": [
+  "nbc_gov: https://www.nbcnews.com/politics/2026-elections/governor-results",
+  "npr: https://www.npr.org/2026/11/03/g-s1-149526/2026-midterms-congress-balance-of-power",
+  "usnews: https://www.usnews.com/news/national-news/articles/2026-midterm-election-results-maps-show-how-democrats-took-congress",
+  "fortune_dc: https://fortune.com/2026/11/04/democrats-midterm-election-2026-anti-data-center-governors-texas-georgia-ohio-ai-infrastructure-big-tech-spending-moratorium-regulations/",
+  "ap_gov: https://www.10news.com/politics/america-votes/voters-elected-governors-to-curb-data-centers-lowering-bills-for-gas-and-groceries-is-harder",
+  "cnbc_ballot: https://www.cnbc.com/2026/11/04/data-center-ballot-measures-2026-midterm.html",
+  "ncsl: https://www.ncsl.org/news/details/2026-state-legislative-elections-the-results-and-what-they-mean",
+  "dcmap: https://dcmap.us/insights/pipeline/",
+  "vamerc: https://virginiamercury.com/2026/08/05/scc-orders-dominion-to-develop-tariff-to-assign-more-transmission-costs-to-data-centers/",
+  "lameduck: https://www.semafor.com/article/11/04/2026/congress-faces-long-lame-duck-to-do-list",
+  "ferc: https://www.bracewell.com/resources/ferc-show-cause-orders-data-center-interconnection/",
+  "occ: https://www.occ.gov/news-issuances/news-releases/2026/nr-occ-2026-92.html",
+  "clarity: https://www.americanbanker.com/news/crypto-market-structure-bill-fails-in-senate-vote-49-50",
+  "orrick: https://www.orrick.com/en/Insights/2026/10/The-CLARITY-Act-Stalls-in-the-Senate-Whats-Next-for-Digital-Asset-Regulation",
+  "eo: https://en.wikipedia.org/wiki/List_of_executive_orders_in_the_second_Trump_presidency",
+  "fairshake: https://www.factcheck.org/2026/08/fairshake-2/",
+  "capex: https://www.hl.co.uk/news/ai-hyperscalers-are-expected-to-finish-the-year-spending-a-whopping-828-billion-on-capex",
+  "FEC: https://api.open.fec.gov",
+  "Easyconomics 하원 LD 로비 집계",
+  "TradingView(종목 1주 변화)",
+  "Chiip midterm2026 관측(ETF CAR)"
+ ],
+ "narrative": {
+  "view": "시장은 '민주 양원·민주 주지사 = 데이터센터 제동'을 샀다. 선거 주간 데이터센터 설비 공급망(Vertiv·Quanta·GE Vernova·Eaton)이 SPY보다 평균 10.2%p 더 빠졌다. 그러나 돈과 시계는 다른 쪽을 가리킨다. 데이터센터·AI 기업 PAC 기부의 46%가 민주로 갔고, 4개 하이퍼스케일러는 3분기에만 $19M을 로비에 썼다. 민주 주지사 주에 미국 데이터센터 파이프라인의 50%(173GW)가 몰려 있어, 이들이 고를 수 있는 현실적 선택은 '중단'보다 '값 매기기'(비용 100% 부담·송전비 직접 부과를 조건으로 한 허용)다. Virginia의 Spanberger가 취임 7개월 만에 보여준 것이 그 형태다. 연방은 다르다 — 분점 정부와 지연 유인이 겹쳐 크립토 시장 구조법(CLARITY)은 선거 뒤에도 실행보다 지연 쪽이다. 산업 판단: 데이터센터 전력·설비 공급망 Attractive, 나머지 다섯 사업군 In-Line.",
+  "summary": [
+   [
+    "시장은 무엇을 샀나?",
+    "'블루 스윕이 데이터센터를 멈춘다'. 선거 주간 설비 공급망 −10.2%p, 머천트 발전사 −3.3%p(SPY 대비)였고 규제 유틸리티는 +3.3%p, 태양광 ETF는 +14.1%(CAR, t 4.85)였다."
+   ],
+   [
+    "민주당도 규제산업 돈을 받았나?",
+    "그렇다. 데이터센터·AI 4개사 PAC 기부의 46%가 민주 후보에게 갔다(FEC 상위 기부). AI 슈퍼 PAC은 민주 후보를 공개 지지했고, 크립토 Fairshake 네트워크가 지원한 하원 후보 33명 중 14명이 민주다."
+   ],
+   [
+    "그럼 민주당이 실행을 보여줄까?",
+    "주 차원에서는 그렇다고 본다. 다만 내용은 '중단'이 아니라 '조건부 허용·비용 전가'일 가능성이 크다(실행 확률 55~80%). 전면 모라토리엄 입법은 15%로 본다."
+   ],
+   [
+    "언제?",
+    "취임 직후다. 주지사 취임(2027-01)과 텍사스 회기(1~5월)가 첫 창이고, 레임덕 허가 개혁(12/11 전후)이 연방의 마지막 창이다. 100일(4월 말)에 점검한다."
+   ],
+   [
+    "스테이블코인은?",
+    "갈린다. GENIUS법은 OCC 최종 규칙까지 나와 2027-01-18 시행(집행 단계)이다. CLARITY법은 상원 49-50 부결 뒤 16개월째 미제정이고 Warren 은행위원장 체제가 온다 — 여기서는 '시간 끌기'가 우세하다."
+   ]
+  ],
+  "nominal": "선거 다음 날 SMH −6.7%, GRID −5.5%가 하루에 났다. 데이터센터 설비 공급망이 가장 크게 빠졌고 상업 발전사가 뒤를 이었다. 반대로 규제 유틸리티와 태양광·청정에너지는 올랐다. 시장은 '데이터센터 착공이 늦어지고, 그 대신 재생에너지 보조금은 지켜진다'로 읽었다. 같은 주 11/5 AI 인프라 디레버리징이 겹쳐 선거 몫이 부풀었을 수 있다.",
+  "money": "돈은 양당으로 갔다. 기업 PAC은 거의 반반이고(민주 46%), 슈퍼 PAC은 지지와 낙선 운동을 당보다 '정책 성향' 기준으로 나눴다 — AI 쪽은 민주 후보를 지지하면서도 AI 규제법을 낸 민주 후보 낙선에 $8.1M을 썼다. 로비는 선거 직전 분기에도 늘었다(Oracle +34%, NVIDIA +52%, 전 분기 대비). 하원 로비 보고에는 접촉한 의원의 정당이 나오지 않아, 로비 자체를 당으로 나누지는 않았다. 전력·금융 기업 PAC은 FEC 공용 키 한도로 이번에 받지 못했다.",
+  "incentives": "양쪽 근거가 모두 있다. 시간을 끌수록 돈이 계속 들어온다는 지대 추출 유인이 있고, 크립토 시장 구조법이 실제로 16개월째 끌리고 있다. 그러나 주지사는 공약과 유권자(출구조사 56%)에 묶여 있고, 슈퍼 PAC 현금은 쓰는 만큼 줄며, 돈을 낸 쪽은 결과물을 요구한다. 그래서 '보여주기 쉬운 실행'(행정 조치·규제기관 명령)은 빨리, '돈줄이 걸린 큰 입법'은 늦게 나올 것으로 본다.",
+  "channels": "실행은 주에서 먼저 나온다. 연방 의회 입법은 대통령 거부권 때문에 5%로 낮게 둔다. 텍사스는 하원이 민주로 넘어갔지만 상원이 공화라, 주법은 초당파 형태(비용 전가)여야 통과한다. 조지아·오하이오 주의회 결과는 확인하지 못했다.",
+  "impact": "영향은 '얼마나 멈추나'보다 '누가 비용을 내나'로 갈린다. 중단은 설비 공급망·상업 발전사에 불리하지만, 이미 전력을 확보한 데이터센터 리츠에는 희소성 프리미엄이다. 비용 전가는 하이퍼스케일러 부담을 늘리고 규제 유틸리티의 요금 반발을 줄인다. 숫자는 가정이고 표에 그대로 적었다.",
+  "gap": "데이터센터 설비 공급망만 갭이 띠(±5%p) 밖이다. 불리한 경로(주 차원 중단·비용 전가·연방 규제 입법)가 모두 실행되는 최악을 가정해도 기대 영향은 −8.0%로, 시장이 이미 반영한 −10.2%p보다 덜 나쁘다. 나머지는 시장 반응이 기대와 비슷하다 — 하이퍼스케일러(−4.7%p)와 크립토(+4.7%p)는 띠 경계 근처라 다음 자료에 따라 바뀔 수 있다.",
+  "counter": "마스터 가설을 같은 강도로 때렸다. 가장 아픈 반론은 셋이다 — 로비는 표를 사지 않는다는 실증, 유권자 압력이 진짜라는 투표 결과, 그리고 선거 주간 하락의 교란.",
+  "kill": "판단이 틀리는 조건: ① 2027-06-30까지 TX·GA·OH 중 한 곳이라도 전면 모라토리엄을 법으로 만들면 설비 공급망 Attractive를 거둔다. ② 4분기 하이퍼스케일러 로비가 3분기보다 크게 줄면(돈이 결과물을 포기) '로비가 실행을 요구한다'는 고리가 약해진다. ③ 취임 100일 안에 행정 조치가 하나도 없으면 '선거 직후 실행' 가설을 접는다.",
+  "status": "조건부 판단(가정 명시). 시장 반응·돈의 흐름·정책 단계는 1차 자료로 확인했다. 경로별 실행 확률과 사업군 영향(%)은 Chiip 가정이고, 조지아·오하이오 주의회 결과와 전력·금융 기업 PAC 기부는 미확인이다. 부가가치 원천: 해석(정치경제 틀)·정량(로비·PAC·파이프라인·갭)·속도(선거 5일 뒤)."
+ }
+}
