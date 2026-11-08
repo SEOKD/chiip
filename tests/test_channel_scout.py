@@ -28,10 +28,20 @@ class TestScout(unittest.TestCase):
 
     def test_paid_channel_stays_a_candidate(self):
         for need in ("유료", "키 발급", "로그인"):
-            self.assertTrue(cs.problems({**OK, "needs": need}, CFG))
+            self.assertTrue(cs.problems({**OK, "needs": need}, CFG))                      # 채택 제안은 없어졌다 — 연결(키 대기)·승인 대기·기각
             self.assertTrue(cs.problems({**OK, "needs": need, "decision": "보류"}, CFG))
             self.assertEqual(cs.problems({**OK, "needs": need, "decision": "승인 대기"}, CFG), [])
         self.assertTrue(cs.problems({**OK, "decision": "승인 대기"}, CFG))
+
+    def test_connect_without_consent_needs_a_real_collector(self):   # 마스터 지시 2026-11-08
+        row = {**OK, "decision": "연결", "reason": "radar/trade_ppi.py로 연결, Analysis 무역 재료"}
+        self.assertEqual(cs.problems(row, CFG), [])
+        self.assertTrue(cs.problems({**row, "reason": "연결함"}, CFG))                       # 수집기 경로 없음
+        self.assertTrue(cs.problems({**row, "reason": "radar/없는파일.py"}, CFG))             # 파일이 없다
+        self.assertTrue(cs.problems({**row, "terms": "미확인"}, CFG))                         # 약관 미확인은 연결 불가
+        self.assertTrue(cs.problems({**row, "needs": "키 발급"}, CFG))                        # 키 대기 연결은 .env 키 이름이 있어야
+        self.assertEqual(cs.problems({**row, "needs": "키 발급", "reason": "radar/usgov/lobby_watch.py, LDA_API_KEY 대기"}, CFG), [])
+        self.assertEqual(cs.problems({**row, "terms": "공공 저작물"}, CFG), [])                 # 미국 연방 공공 저작물은 연결 가능
 
     def test_empty_search_needs_a_reason(self):
         self.assertEqual(cs.problems({"channel": "없음", "decision": "없음", "reason": "공급망 분야 무료 원천 3곳 확인"}, CFG), [])

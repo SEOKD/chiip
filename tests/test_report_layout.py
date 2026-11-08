@@ -247,3 +247,44 @@ class TestAssemble(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestGlossScope(unittest.TestCase):
+    """괄호 풀이는 투자자가 모를 기술·제품·프로젝트·유형자산만 — 회사명은 풀지 않고 자기 반복 괄호를 쓰지 않는다(마스터 지시 2026-11-08)"""
+
+    def test_self_reference_removed(self):
+        self.assertEqual(rh.clean_def("XPV", "Broadcom AI 인프라 금융 플랫폼(AI XPV)"), "Broadcom AI 인프라 금융 플랫폼")
+        self.assertIsNone(rh.clean_def("VCF", "VCF 플랫폼"))
+
+    def test_no_nested_parens(self):
+        self.assertEqual(rh.clean_def("CW 레이저", "연속파 레이저(실리콘 포토닉스 광원)"), "연속파 레이저, 실리콘 포토닉스 광원")
+
+    def test_company_names_not_glossed(self):
+        for k, v in [("NVDA", "미국 Nvidia"), ("TD", "캐나다 TD Cowen 증권"), ("Naver", "한국 네이버"), ("Groq", "저지연 추론 칩 회사")]:
+            self.assertIsNone(rh.clean_def(k, v), k)
+        self.assertEqual(rh.clean_def("EPA", "미국 환경보호청"), "미국 환경보호청")   # 정부 기관은 푼다
+        self.assertEqual(rh.clean_def("NeoCloud", "GPU 임대 전문 클라우드 회사"), "GPU 임대 전문 클라우드 회사")   # 회사 유형은 푼다
+
+    def test_render(self):
+        d = {"verdict": {"view": "TSMC(타이완 세미컨덕터 매뉴팩처링) 증설과 XPV 트랜치, GM 60%, HBM 공급"}, "summary": [], "sections": [],
+             "terms": {"XPV": "Broadcom AI 인프라 금융 플랫폼(AI XPV)", "GM": "매출총이익률"}}
+        self.assertEqual(rh.gloss(d)["verdict"]["view"], "TSMC 증설과 XPV(Broadcom AI 인프라 금융 플랫폼) 트랜치, GM 60%, HBM(고대역폭 메모리) 공급")
+
+    def test_twin_parens_merged(self):
+        d = {"verdict": {"view": "Weichai(관계사)(엔진·부품) 매입"}, "summary": [], "sections": [], "terms": {}}
+        self.assertEqual(rh.gloss(d)["verdict"]["view"], "Weichai(관계사, 엔진·부품) 매입")
+
+
+class TestGalleryTailAndLabels(unittest.TestCase):
+    """마스터 지시 2026-11-08 — 거래량 분해·기관 자금·몬테카를로는 한눈에 보기 맨 아래, 음수 막대 값은 0선 오른쪽"""
+
+    def test_last_order(self):
+        self.assertEqual(rl.GALLERY_LAST, ("일별 거래량 분해", "기관 자금 흐름", "몬테카를로"))
+
+    def test_negative_label_right_of_zero(self):
+        import re
+        svg = rh.chart_hbars({"unit": "%p", "w": 480, "label_w": 150, "rows": [{"label": "아주 긴 비용 항목 이름", "bars": [{"name": "마진 기여", "value": -2.0}]},
+                                                                             {"label": "다른 항목", "bars": [{"name": "마진 기여", "value": 1.0}]}]})
+        xs = [float(x) for x in re.findall(r'<text x="([\d.]+)" y="[\d.]+">-?[\d.]+', svg)]
+        line = float(re.search(r'<line x1="([\d.]+)"', svg).group(1))
+        self.assertTrue(all(x > line for x in xs))   # 음수 값 글자도 0 기준선 오른쪽 — 항목 이름 칸과 겹치지 않는다

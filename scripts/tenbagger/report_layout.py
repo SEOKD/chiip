@@ -60,6 +60,8 @@ BANNED = ("DCF ÷ 시가총액", "주주가치 ÷ 시가총액", "배수 사다�
 # 한눈에 보기 순서 — 모든 리포트가 이 순서 하나만 쓴다(마스터 지시 2026-10-31, 2026-11-02 "이 구조를 엔진 아키텍처에 영구적으로 설계하라", tests/test_report_layout.py가 고정)
 GALLERY = ("일봉", "주봉", "월봉", "실적", "주가 변화 분석", "EPS 리비전", "시나리오", "주가별 업사이드", "포트폴리오", "고객 믹스", "공급 병목", "생산능력", "CAPEX", "위성 판독", "어닝콜 변화",
            "멀티플 프리미엄", "합리적 멀티플", "일별 거래량", "기관 자금", "몬테카를로")
+# 맨 아래로 내리는 그림 — 본문에서 올라온 그림(마진·P·Q·싱크로율 등)보다도 뒤(마스터 지시 2026-11-08 "일별 거래량 분해와 기관 자금 흐름은, 몬테카를로는 맨 아래 순서로 내려라")
+GALLERY_LAST = ("일별 거래량 분해", "기관 자금 흐름", "몬테카를로")
 SHORT_TITLES = {"콜 변화": "어닝콜 변화별 주주가치 영향", "최근 4개 분기 주가": "최근 4개 분기 주가 변화 분석", "일별 거래량": "일별 거래량 분해", "기관 자금": "기관 자금 흐름"}
 
 
@@ -365,7 +367,7 @@ def flow_blocks(flow_sec, price_list, cur="$"):
 def unglossed(d, dp):
     """풀이 없는 전문 약자 — 금융 용어(plain_ok)·티커가 아니면 report_glossary.yaml 또는 datapack terms에 넣게 한다. 대문자 약자만 잡는다(제품명은 모델이 terms에 쓴다)"""
     g = yaml.safe_load((ROOT / "config" / "report_glossary.yaml").read_text(encoding="utf-8"))
-    known = set(g["terms"]) | set(g.get("no_gloss") or {}) | set(g.get("plain_ok") or []) | set(dp.get("terms") or {})
+    known = set(g["terms"]) | set(g.get("no_gloss") or {}) | set(g.get("names") or {}) | set(g.get("plain_ok") or []) | set(dp.get("terms") or {}) | set(dp.get("names") or [])
     names = " ".join(known)
     tick = {str(p.get("ticker")) for p in dp.get("peers") or []} | {str(d.get("ticker"))}
     text = []
@@ -487,8 +489,10 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
             else:
                 keep.append(b)
         part["blocks"] = keep
+    last = [c for k in GALLERY_LAST for c in d["gallery"] if c.get("title") == k]
+    d["gallery"] = [c for c in d["gallery"] if c.get("title") not in GALLERY_LAST] + last
     out[:] = [x for x in out if x.get("blocks")]
-    d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}})
+    d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}, "names": dp.get("names") or []})
 
     def zero(o):
         if isinstance(o, dict):
@@ -503,5 +507,5 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         raise SystemExit(f"양식 3에서 쓰지 않는 표기: {left}")
     bad = unglossed(d, dp)
     if bad:
-        raise SystemExit(f"풀이 없는 전문 약자: {bad} — config/report_glossary.yaml terms 또는 datapack terms에 넣는다(금융 용어면 plain_ok)")
+        raise SystemExit(f"풀이 없는 전문 약자: {bad} — 기술·제품·프로젝트·유형자산이면 config/report_glossary.yaml terms 또는 datapack terms, 회사명·티커면 datapack names(풀이하지 않는다), 금융 용어면 plain_ok")
     return d

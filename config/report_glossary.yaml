@@ -1,14 +1,16 @@
 # 리포트 용어 풀이 — 마스터 지시 2026-10-30 "전문 용어는 괄호 열고 무슨 의미인지 한국어로 적어줘라. 기관, 협회 이름이 영어 약자로 돼 있으면 괄호 열고 한국어로 풀 네임을 풀이하라"
 # scripts/tenbagger/report_html.py gloss()가 리포트에서 처음 나오는 곳에 '용어(풀이)'로 넣는다. 이미 바로 뒤에 괄호가 있으면 건드리지 않는다.
 # 새 용어·기관 약자는 여기에 추가한다. 긴 말이 먼저 잡힌다(EV/매출 → EV).
+# 풀이 대상은 투자자가 읽다가 정말 모를 기술·제품·프로젝트명·유형자산·정부 기관·협회뿐이다(마스터 지시 2026-11-08 "기술과 제품, 프로젝트명, 유형자산 등 투자자들이 읽으면서 정말로 모를만한 부분만 괄호로 설명하도록 해라").
+# 회사명·티커는 뜻을 풀지 않는다(아래 names). 풀이 안에 용어 자신을 다시 쓰지 않는다 — gloss()가 자기 반복 괄호를 지운다.
 terms:
+  BIC: 모형 차수를 고르는 정보 기준
   BOM: 제품 원가를 이루는 부품·재료 명세
   EAC: 사업 완공 원가 재추정
   RCOH: 항공모함 연료 교체·복합 정비
   MUSV: 중형 무인 수상정
   MT: Mission Technologies 부문
   CR: 연속 예산 결의안
-  GD: General Dynamics
   build-to-spec: 고객 요구 성능에 맞춰 직접 설계·생산
   build-to-print: 고객 도면대로 생산
   NPX: 신제품 개발·도입·이관
@@ -21,28 +23,10 @@ terms:
   TSV: 실리콘 관통 전극
   서브시스템: 장비 안에 들어가는 모듈 조립품
   서브팹: 장비 아래층의 배기·가스 설비
-  # 기관·협회·회사 약자
-  IBD: 인베스터스 비즈니스 데일리
-  SA: 시킹 알파
-  HN: 해커 뉴스
+  # 기관·협회 약자(정부 기관·협회만 — 회사·은행·증권사·언론사는 아래 names)
   SEC: 미국 증권거래위원회
   SEMI: 국제반도체장비재료협회
   FINRA: 미국 금융산업규제국
-  TSMC: 타이완 세미컨덕터 매뉴팩처링
-  AMAT: 어플라이드 머티어리얼즈
-  Lam Research: 램리서치
-  Lam: 램리서치
-  LRCX: 램리서치
-  KLA: 케이엘에이, 공정 검사 장비사
-  UBS: 유니온 뱅크 오브 스위츠랜드
-  BofA: 뱅크 오브 아메리카
-  MKSI: MKS 인스트루먼트
-  ICHR: 아이커 시스템즈
-  ENTG: 엔테그리스
-  AEIS: 어드밴스드 에너지 인더스트리스
-  KLIC: 쿨리케 앤 소파
-  VRT: 버티브
-  MPWR: 모놀리식 파워 시스템즈
   CPO: 칩 옆에 광 변환 소자를 함께 넣는 패키징
   NPO: 칩 가까이 광 소자를 두는 방식
   OCS: 빛 신호를 전기 변환 없이 바꾸는 광 스위치
@@ -55,11 +39,38 @@ terms:
   HBM5: HBM 5세대
   IEEPA: 미국 국제긴급경제권한법
   CHIPS: 미국 반도체지원법
+  IRA: 미국 인플레이션감축법
+  CAR: 사건 뒤 시장 대비 초과 누적 수익률
+  HS: 국제 통일 상품 분류 코드
+  PE: 사모펀드
   OBBBA: 2025년 미국 세제·재정 법안
-  GPU: 그래픽 처리 장치
-  CPU: 중앙 처리 장치
-  DRAM: D램 메모리
-  NAND: 낸드 플래시 메모리
+# 풀지 않는 회사·은행·증권사·언론사 이름과 티커 — 마스터 지시 2026-11-08 "TSMC도 타이완 세미컨덕터 매뉴팩처링이라고 풀어져 있는데 기업명의 의미는 풀이하지 마라"
+# 값은 모델이 글에 직접 적어도 렌더러가 지울 풀이다. 리포트마다 datapack terms에 회사 설명(…회사·은행·증권사·운용사, '미국 Nvidia' 꼴)을 쓰면 gloss()가 풀이하지 않는다.
+names:
+  GD: [General Dynamics]
+  IBD: [인베스터스 비즈니스 데일리]
+  SA: [시킹 알파]
+  HN: [해커 뉴스]
+  TSMC: [타이완 세미컨덕터 매뉴팩처링]
+  AMAT: [어플라이드 머티어리얼즈]
+  Lam Research: [램리서치]
+  Lam: [램리서치]
+  LRCX: [램리서치]
+  KLA: [케이엘에이, 공정 검사 장비사]
+  UBS: [유니온 뱅크 오브 스위츠랜드]
+  BofA: [뱅크 오브 아메리카]
+  MKSI: [MKS 인스트루먼트]
+  ICHR: [아이커 시스템즈]
+  ENTG: [엔테그리스]
+  AEIS: [어드밴스드 에너지 인더스트리스]
+  KLIC: [쿨리케 앤 소파]
+  VRT: [버티브]
+  MPWR: [모놀리식 파워 시스템즈]
+  Toshiba: [일본 도시바]
+  AWS: [아마존 웹 서비스]
+  SMH: [반도체 ETF]
+  GRID: [전력망 ETF]
+  Weichai: [중국 웨이차이동력, 웨이차이동력]
 # 괄호 풀이를 달지 않는 용어 — 마스터 지시 2026-10-31 "전문 용어 설명할 때 Fwd 1Y, P/E, P/B, EBITDA, EPS, 멀티플은 괄호 설명을 제외하라"
 # terms에 다시 넣지 않는다. 값은 모델이 글에 직접 적어도 렌더러가 지울 풀이 문구다.
 no_gloss:
@@ -68,6 +79,8 @@ no_gloss:
   P/B: [주가순자산비율]
   EBITDA: [상각전영업이익]
   EPS: [주당순이익]
+  GM: [매출총이익률]
+  GP: [매출총이익]
   멀티플: [주가가 이익·매출의 몇 배인지 나타내는 배수, 배수]
   # 금융 용어 괄호 풀이 금지(마스터 지시 2026-10-31 "금융 용어(가이던스, 컨센서스, EPS, OPM, Fwd, CAGR)는 괄호 열고 의미를 풀이하지 마라"). 제품·기술·정책·협회 약자는 위 terms에서 풀이한다
   EV/EBITDA: [기업가치 ÷ 상각전영업이익]
@@ -124,4 +137,4 @@ no_gloss:
   계속가치: [예측 기간 이후의 가치]
   낙수효과: [대기업 투자가 아래 공급망으로 번지는 효과]
 # 풀이 없이 써도 되는 약자 — scripts/tenbagger/report_layout.py가 풀이 없는 약자를 잡을 때 뺀다. 금융 용어·일반 IT 약어
-plain_ok: [AI, NOK, MNOK, SEK, EUR, GBP, JPY, KRW, ASP, SK, US, USD, IR, CEO, CFO, COO, CTO, PER, PBR, ETF, IPO, M&A, FY, CY, EPS, OPM, GPM, EV, EBIT, EBITA, EBITDA, DCF, WACC, ERP, ROIC, RONIC, NOPAT, CAGR, TTM, YoY, QoQ, GAAP, CAPEX, FCF, FCFF, SBC, ATM, CMF, RVOL, ATS, ATR, IB, EP, SEC, MC, OCF, CMF, EPS, NTM, LTM, Fwd, KPI, NVDA, TSMC, AMD, TOP, ROE, ROA, RSU]
+plain_ok: [AI, NASDAQ, NYSE, AMEX, TSE, TWSE, KRX, GPU, CPU, DRAM, NAND, HDD, SSD, PCB, PC, GW, TB, OEM, ODM, MBA, MIT, NOK, MNOK, SEK, EUR, GBP, JPY, KRW, ASP, SK, US, USD, IR, CEO, CFO, COO, CTO, PER, PBR, ETF, IPO, M&A, FY, CY, EPS, OPM, GPM, EV, EBIT, EBITA, EBITDA, DCF, WACC, ERP, ROIC, RONIC, NOPAT, CAGR, TTM, YoY, QoQ, GAAP, CAPEX, FCF, FCFF, SBC, ATM, CMF, RVOL, ATS, ATR, IB, EP, SEC, MC, OCF, CMF, EPS, NTM, LTM, Fwd, KPI, NVDA, TSMC, AMD, TOP, ROE, ROA, RSU]

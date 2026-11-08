@@ -137,7 +137,7 @@ attention:
   spike_min_views: 20000  # 위키 7일 조회가 이보다 적으면 급가속이라도 잡음으로 본다
   apple_countries: [us, jp, kr]
   apple_feeds: [top-free, top-paid]
-  user_agent: "Chiip research fhteo1101@gmail.com"   # Wikimedia API 정책: 연락처가 든 UA
+  user_agent: null   # Wikimedia API 정책: 연락처가 든 UA — 연락처는 .env CHIIP_CONTACT_UA(common.contact_ua), 저장소에 쓰지 않는다
 
 # 지도 밖 신규 발굴 스크린(scripts/discovery/consumer_screen.py, 2026-11-04 마스터 지시) — 일요일 Discovery 회차에 TradingView 스크리너로
 screen:

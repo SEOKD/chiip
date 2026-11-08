@@ -85,5 +85,6 @@
 | 21-34 | **OpenStreetMap Overpass 사용 범위 확인(2026-11-03, 선택).** 공개 서버 지침이 상업적 이용은 자체 서버나 유료 서버를 권한다. 시설 윤곽을 시설당 30일 1회만 조회하게 해 두었다. 리포트를 유료로 판매하게 되면 자체 서버·유료 서버 또는 영상 판독 윤곽으로 바꾼다. 영상을 주는 Planetary Computer도 '평가·시험용 미리보기' 약관이라 중단될 수 있고, 업무 핵심 용도로 쓰지 말라고 적혀 있다. |
 | 21-35 | **LDA.gov 키 발급(2026-11-03).** 연방 로비 공시 API가 키 없이 403이다. https://lda.gov/api/register/ 에서 발급해 `D:\local-only\secrets\.env`에 `LDA_API_KEY`로 넣는다. |
 | 21-36 | **TradingView 알림 개수 한도(2026-11-05).** 신호 가격 알림 생성이 `max_primitive_alerts_count_exceeded`로 8건 모두 거부됐다(대기 46건). 쓰지 않는 알림을 정리하거나 요금제 한도를 늘려 주시면 다음 회차부터 다시 만든다. 멈춘 알림은 지우지 않았다. |
+| 21-37 | **연락처 UA 넣기(2026-11-08).** 외부 요청 헤더에 박혀 있던 이메일을 코드에서 뺐다(`common.contact_ua()`). Wikimedia·Census 등은 연락처가 든 User-Agent를 요구하므로 `D:\local-only\secrets\.env`에 `CHIIP_CONTACT_UA=Chiip research <연락처 이메일 또는 URL>` 한 줄을 넣는다. 넣기 전에는 연락처 없는 UA로 나가 일부 원천이 거부할 수 있다. |
 
 - **DART_API_KEY 값 입력(2026-11-06)**: SK하이닉스 DART 공시 감시를 켰지만 `D:\local-only\secrets\.env`의 `DART_API_KEY=` 값이 비어 있어 수집이 "키 없음"으로 건너뛴다. opendart.fss.or.kr에서 발급한 인증키를 그 줄에 넣으면 다음 5분 수집부터 돈다.

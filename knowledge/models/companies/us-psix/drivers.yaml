@@ -1,0 +1,98 @@
+auto: true
+id: us-psix
+name: Power Solutions International
+ticker: PSIX
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-06'
+market:
+  date: '2026-11-06'
+  price: 39.16
+  shares: 0.023076
+  net_debt: -0.0359
+  source: 가격 2026-11-06 종가 $39.16 · 주식 수 23,065,450(2026-10-29, 3Q 10-Q 표지) · 현금 $72.0M(제한
+    현금 $4.5M 별도)·차입 단기 $0.25M + 유동 $0.015M + 장기 $35.9M(10-Q 2026-09-30, 리스 $61.9M
+    제외)
+rev0: 0.691
+ic0: 0.1972
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0854
+      end: 0.035
+      decay: 0.893
+    margin:
+      m0: 0.163
+      target: 0.159
+      year_target: 3
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.153
+      - 0.159
+    s2c: 3.0
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.288
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.163
+      target: 0.179
+      year_target: 3
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.153
+      - 0.159
+    s2c: 3.45
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.1172
+      end: 0.030000000000000002
+      decay: 0.793
+    margin:
+      m0: 0.163
+      target: 0.139
+      year_target: 3
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.153
+      - 0.159
+    s2c: 2.55
+mc:
+  sigma_growth: 0.1013
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.691, 0.691] (3Q26 실적 보도자료 2026-11-05 https://www.globenewswire.com/news-release/2026/11/05/3397148/17954/en/power-solutions-international-announces-third-quarter-2026-financial-results.html
+    — 수치 가이던스 없음)
+  growth: 컨센서스 1년차 8.5%, 2년차 8.0%
+  margin: 1~2년차 컨센서스 15.3%, 15.9% 고정 → 목표 16%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 3.42 → 덮어쓰기 3.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -11.7%~28.8%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '장기 이익률 10%(lr): 3Q 영업이익률 20%는 데이터센터 믹스 정점 — 엔진·발전기 동종 GAAP 6~13%로 수렴(근거
+    약함) / 매출÷투하자본 3.0: TTM 3.4 근처(조립 중심 사업)'
+  shares: 완전 희석 = 기본 0.023065(2026-10-29) + 옵션·RSU·워런트·전환 0.0000 — 3Q 10-Q 희석 가중 주식
+    23,075천 − 기본 23,064천 = 11천 주
+notes:
+- 자동 생성(build_drivers) 2026-11-07 — 데이터 묶음 2026-11-06
+- '어닝콜 위험: Weichai 46%·이사회 과반 지배'
+- '어닝콜 위험: 고객 집중(3분기 22·13·12%)'
+- '어닝콜 위험: 데이터센터 주문 시점에 따른 분기 변동'
+evidence:
+- PSI 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1137091/000162828026071065/psix-20260930.htm
+- PSI 3Q26 실적 보도자료 https://www.globenewswire.com/news-release/2026/11/05/3397148/17954/en/power-solutions-international-announces-third-quarter-2026-financial-results.html
+- Fiscal.ai 추정·재무·세그먼트 2026-11-07
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com

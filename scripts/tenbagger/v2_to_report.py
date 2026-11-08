@@ -21,6 +21,7 @@ scripts/valuation/v2/run.py의 evaluate()를 다시 돌려(같은 시드) 다음
 """
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -235,6 +236,58 @@ def merge_lead(d, lead, lad, summary, pipeline=None):
     return d
 
 
+FIX_H2 = ("정정 기록", "재발행 기록")
+_FIX_ROW = re.compile(r"'([^']+)'(?:\s*\d+곳)?\s*→\s*'([^']+)'")
+
+
+def carry_corrections(old, m):
+    """다시 조립하기 전에 옛 리포트의 정정을 모델 글로 옮긴다(2026-11-08 마스터 지시 — 다시 병합이 Proviser 정정을 덮어쓰지 않게).
+    정정 기록·재발행 기록 절은 그대로 붙이고, 고친 문장은 d['corrections'] [{from, to}]로 남긴다. 표의 "'전' → '후'" 행도 읽는다"""
+    keep = [s for s in old.get("sections") or [] if _strip_no(s.get("h2", "")).startswith(FIX_H2)]
+    have = {s.get("h2") for s in m.get("sections") or []}
+    m["sections"] = (m.get("sections") or []) + [s for s in keep if s.get("h2") not in have]
+    fx = [dict(x) for x in old.get("corrections") or [] if x.get("from") and x.get("to")]
+    for s in keep:
+        for b in s.get("blocks") or []:
+            for row in b.get("rows") or [] if b.get("type") == "table" else []:
+                for a, z in _FIX_ROW.findall(str(row[0] if row else "")):
+                    if not any(x["from"] == a for x in fx):
+                        fx.append({"from": a, "to": z})
+    m["corrections"] = fx
+    return m
+
+
+def apply_corrections(d):
+    """조립한 글에 정정을 다시 적용한다. 고칠 문장도 고친 문장도 없으면 그 정정을 돌려준다(모델이 다시 확인)"""
+    fx = d.get("corrections") or []
+    seen = {i: False for i in range(len(fx))}
+
+    def fix(s):
+        for i, x in enumerate(fx):
+            a, z = x["from"], x["to"]
+            if a in z and z in s:   # '전'이 '후'에 들어 있으면 이미 고친 문장을 다시 고치지 않는다
+                seen[i] = True
+                continue
+            if a in s:
+                s, seen[i] = s.replace(a, z), True
+            elif z in s:
+                seen[i] = True
+        return s
+
+    def walk(o):
+        if isinstance(o, dict):
+            return {k: (v if k == "h2" and _strip_no(str(v)).startswith(FIX_H2) else walk(v)) for k, v in o.items()}
+        if isinstance(o, list):
+            return [walk(v) for v in o]
+        return fix(o) if isinstance(o, str) else o
+
+    for k in ("verdict", "summary", "tiles"):
+        if k in d:
+            d[k] = walk(d[k])
+    d["sections"] = [s if _strip_no(s.get("h2", "")).startswith(FIX_H2) else walk(s) for s in d.get("sections") or []]
+    return [fx[i] for i, ok in seen.items() if not ok]
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
@@ -269,7 +322,7 @@ def main(argv):
                 m = json.loads(src.read_text(encoding="utf-8"))
                 m["title"] = d.get("title", m.get("title"))
                 m.setdefault("verdict", {})["view"] = (d.get("verdict") or {}).get("view", m["verdict"].get("view"))
-                d = m
+                d = carry_corrections(d, m)
             src.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
             sys.path.insert(0, str(ROOT / "radar"))
             import notion_library as nlib
@@ -277,10 +330,18 @@ def main(argv):
             left = nlib.unread(lib_rows, a.entity, lib_cfg)
             if left:
                 raise SystemExit("노션 자료의 요지가 없다(마스터 지시 2026-11-01) — py radar/notion_library.py --need " + a.entity + " 뒤 요지를 쓴다: " + ", ".join(r["name"] for r in left))
+            import gather   # 종목별 필수 원천(마스터 지시 2026-11-08) — 돌리지 않은 원천이 있으면 멈춘다
+            gap = gather.missing(a.entity)
+            if gap:
+                raise SystemExit("종목별 원천이 빠졌다 — py scripts/tenbagger/gather.py " + a.entity + " 를 돌리고 MCP 원천은 --mark로 적는다(config/analysis_sources.yaml): " + " · ".join(gap))
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + nlib.citations(lib_rows, a.entity, lib_cfg)))
             co = v2run.load_company(a.entity)
             sel = multiples.select_multiple(r["_mm"], dp, report_layout.config()["multiple_select"])
+            fx = d.get("corrections") or []
             d = report_layout.assemble(d, dp, co, r, r["_mm"], sel, sec, esec, xs, a.entity)
+            d["corrections"] = fx
+            for x in apply_corrections(d):   # 다시 적용 못 한 정정 — 글이 바뀌어 자리를 잃었다. 모델이 확인해 고치거나 corrections에서 뺀다
+                print(f"[정정 재적용 실패] '{x['from']}' → '{x['to']}' — 본문에 고칠 문장도 고친 문장도 없다")
             p.write_text(json.dumps(report_html.clean_vendor(d), ensure_ascii=False, indent=1), encoding="utf-8")
             v = d["verdict"]
             print(f"[양식 3] {p} · 구매 등급 {v['rating']} · 업사이드 {v['upside']:+.0%} · 다운사이드 {v['downside']:+.0%} · 손익비 {v['rr']:.1f} · 선정 멀티플 {sel['value']:.1f}배")

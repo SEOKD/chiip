@@ -193,12 +193,7 @@ def section(dp):
     q4 = last4(dp)   # 마스터 지시 2026-11-06: GPM·OPM은 선 대신 값을 바로, 시계열은 최근 4개 분기
     if q4:
         B.append({"type": "table", "title": "GPM·OPM 최근 4개 분기", "headers": ["분기", "GPM", "OPM"], "rows": [[r["period"], _pct(r["gpm"]), _pct(r["opm"])] for r in q4]})
-        cols, cats = q4, [r["period"] for r in q4]
-    else:
-        cols, cats = c["periods"], [p["period"] for p in c["periods"]]
-    B.append({"type": "chart", "chart": {"kind": "bars", "stack": True, "title": "매출 100의 쓰임(최근 4개 분기)" if q4 else "매출 100의 쓰임(기간별)", "unit": "%", "categories": cats,
-                                         "series": [{"name": n, "color": col, "values": [round(max(p[k] or 0, 0) * 100, 1) for p in cols]} for k, n, col in
-                                                    (("cogs_pct", "매출원가", "b"), ("rd", "연구개발", "e"), ("sga", "판관비", "d"), ("other", "기타", "c"), ("opm", "영업이익", "a"))]}})
+    # '매출 100의 쓰임' 그림은 마진 다리의 '분기 비용 비중 추이'와 사실상 겹쳐 뺀다(마스터 지시 2026-11-08)
     costs = sorted(mg["costs"], key=lambda k: -k["pct_rev"])
     rows = []
     for x in costs:

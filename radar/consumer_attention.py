@@ -101,7 +101,7 @@ def _history():
 def collect(only=None, today=None):
     c = cfg()
     a = c.get("attention") or {}
-    ua, days = a.get("user_agent") or "Chiip research", int(a.get("window_days", 7))
+    ua, days = a.get("user_agent") or common.contact_ua(), int(a.get("window_days", 7))
     today = today or common.now_kst().date()
     hist = _history()
     rows, latest, notes = [], {}, []

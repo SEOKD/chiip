@@ -445,8 +445,8 @@ def chart_hbars(c):
             col = COLORS.get(b.get("color", "c"), "var(--c)")
             x1, x2 = sorted((x0, X(v)))
             g.append(f'<rect x="{x1:.1f}" y="{y}" width="{max(2, x2 - x1):.1f}" height="14" rx="3" fill="{col}"><title>{t(r["label"])} {t(b["name"])}: {_fmt(b.get("value"))}{t(c.get("unit", ""))}</title></rect>'
-                     + (f'<text x="{x2 + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}{pct}</text>' if v >= 0 else
-                        f'<text x="{x1 - 4:.1f}" y="{y + 11}" text-anchor="end">{_fmt(b.get("value"))}{pct}</text>'))
+                     # 음수 값 글자는 0 기준선 오른쪽에 — 막대 왼쪽 끝에 두면 항목 이름과 겹친다(마스터 지시 2026-11-08, 마진 기여·비용 비중 변화)
+                     + f'<text x="{(x2 if v >= 0 else x0) + 4:.1f}" y="{y + 11}">{_fmt(b.get("value"))}{pct}</text>')
             y += 17
         y += 14
     if lo < 0:
@@ -714,16 +714,36 @@ def gloss_text(s, terms, pat, seen):
     return "".join(out)
 
 
+# 회사 설명으로 쓴 풀이 — 회사명은 뜻을 풀지 않는다(마스터 지시 2026-11-08 "기업명의 의미는 풀이하지 마라")
+_NATION = "(?:미국|중국|일본|대만|한국|영국|프랑스|캐나다|독일|네덜란드|스위스)"
+_COMPANY_DEF = re.compile(rf"회사(?!용)|은행|증권|운용사|연구소|공대|합작사|^{_NATION} [A-Z]|^{_NATION} \S+(?<![청국부처원회법소])$")
+_KIND_DEF = re.compile(r"전문|군$|들$")   # 'GPU 임대 전문 클라우드 회사'처럼 회사 '유형' 설명은 풀이한다
+_PERIOD = re.compile(r"[FC]?Q[1-4]|FY\d*")   # 회계 분기·연도 표기는 금융 용어라 풀지 않는다
+
+
+def clean_def(term, text):
+    """풀이를 다듬는다 — 용어 자신을 되풀이하는 괄호는 지우고(XPV: '…플랫폼(AI XPV)' → '…플랫폼'), 남은 괄호는 쉼표로 바꾼다(괄호 안 괄호 방지).
+    풀이가 회사 설명이거나 지운 뒤에도 용어를 되풀이하면 None(풀이하지 않는다). 마스터 지시 2026-11-08"""
+    t = re.sub(r"\s*[(（][^()（）]*[)）]", lambda m: "" if term in m.group(0) else ", " + m.group(0).strip()[1:-1], str(text)).strip(" ,")
+    if not t or term in t or (_COMPANY_DEF.search(t) and not _KIND_DEF.search(t)) or _PERIOD.fullmatch(term):
+        return None
+    return t
+
+
 def gloss(d):
     """읽는 순서대로(Chiip View → 요약 → 본문 글·표) 용어를 처음 나오는 곳에서 풀이한다. 숫자 타일·차트 글자는 건드리지 않는다"""
     glossary = _glossary()
-    terms = {**glossary["terms"], **(d.get("terms") or {})}   # d['terms'] = 이 리포트의 제품명·정책명 풀이(datapack terms)
+    raw = {**glossary["terms"], **(d.get("terms") or {})}   # d['terms'] = 이 리포트의 제품명·정책명 풀이(datapack terms)
+    skip = set(glossary.get("names") or {}) | set(d.get("names") or [])   # 회사명·티커는 풀지 않는다(2026-11-08)
+    skip |= set(glossary.get("no_gloss") or {}) | set(glossary.get("plain_ok") or [])   # 금융 용어·흔한 약자는 datapack terms에 있어도 풀지 않는다
+    terms = {k: v for k, v in ((k, clean_def(k, v)) for k, v in raw.items() if k not in skip) if v}
     names = sorted(terms, key=len, reverse=True)
-    plain = glossary.get("no_gloss") or {}   # 마스터 지시 2026-10-31 — 이 용어는 괄호 풀이를 달지 않는다. 모델이 직접 적은 풀이도 지운다
+    plain = {**(glossary.get("no_gloss") or {}), **(glossary.get("names") or {})}   # 마스터 지시 2026-10-31 — 이 용어는 괄호 풀이를 달지 않는다. 모델이 직접 적은 풀이도 지운다
     drop = re.compile("|".join(rf"(?<={re.escape(t)})[(（](?:{'|'.join(re.escape(w) for w in ws)})[)）]" for t, ws in plain.items())) if plain else None
     pat = re.compile(r"(?<![A-Za-z0-9/.\-])(?:" + "|".join(re.escape(x) for x in names) + r")(?![A-Za-z0-9/\-])")
     seen = set()
-    g = lambda x: gloss_text(drop.sub("", x) if drop else x, terms, pat, seen) if isinstance(x, str) else x
+    twin = re.compile(r"[(（]([^()（）]+)[)）][(（]([^()（）]+)[)）]")   # '이름(관계사)(엔진·부품)'처럼 이어진 괄호는 하나로(2026-11-08)
+    g = lambda x: twin.sub(r"(\1, \2)", gloss_text(drop.sub("", x) if drop else x, terms, pat, seen)) if isinstance(x, str) else x
     if d.get("verdict"):
         d["verdict"]["view"] = g(d["verdict"].get("view"))
     for s in d.get("summary") or []:

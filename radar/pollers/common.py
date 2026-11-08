@@ -43,6 +43,14 @@ INBOX = ROOT / "radar" / "inbox"
 UA = "chiip-radar/0.1 (personal research)"
 
 
+# 연락처가 필요한 원천(Wikimedia·Census·위성 영상 등 UA 정책) — 연락처는 저장소에 쓰지 않고 D:\local-only\secrets\.env CHIIP_CONTACT_UA로만 둔다(2026-11-08 마스터 지시)
+CONTACT_FALLBACK = "chiip-radar/0.1 (personal research; contact via CHIIP_CONTACT_UA)"
+
+
+def contact_ua():
+    return load_env().get("CHIIP_CONTACT_UA") or CONTACT_FALLBACK
+
+
 def stay_awake():
     """수집 중 절전 진입 막기(이 프로세스가 끝나면 자동 해제) — 작업 스케줄러 '절전 중 깨우기'로 깨어난 뒤
     수집을 마치기 전에 다시 잠들지 않게(마스터 승인 2026-10-29). 윈도우 전원 설정은 바꾸지 않는다"""

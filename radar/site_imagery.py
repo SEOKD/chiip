@@ -28,7 +28,7 @@ from pollers import common  # noqa: E402
 sys.path.insert(0, str(common.ROOT / "scripts" / "tenbagger"))
 import site_view as sv  # noqa: E402
 
-UA = "Chiip research fhteo1101@gmail.com"
+UA = None   # 요청 때 common.contact_ua() — 연락처를 코드에 두지 않는다
 STATE = common.ROOT / "radar" / "state" / "sites"
 CHANNELS = {0: 1, 2: 3, 4: 2, 6: 4}
 COLOR = {v: k for k, v in CHANNELS.items()}
@@ -85,7 +85,7 @@ def encode_png(w, h, ch, px):
 
 
 def fetch(url, data=None, timeout=90, pause=30):
-    headers = {"User-Agent": UA}
+    headers = {"User-Agent": common.contact_ua()}
     if data is not None:
         headers["Content-Type"] = "application/json" if isinstance(data, dict) else "application/x-www-form-urlencoded"
     body = json.dumps(data).encode() if isinstance(data, dict) else data

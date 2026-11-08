@@ -1,7 +1,7 @@
 """데이터 파이프라인 채널 탐색 장부 (마스터 지시 2026-11-01 "Proviser는 작동할 때마다 데이터 파이프라인 채널을 찾도록 해라. 이 구조를 엔진에 넣어놔라")
 
 Proviser 회차마다 후보 채널과 약관·robots.txt 확인 결과, 판단과 사유를 한 줄 이상 남긴다. 기록이 없으면 그 회차를 미완료로 적는다.
-run()은 run_hourly가 매시간 부른다. 모델 없이 지난 회차를 점검하고 장부에 '미완료'·'미실행'을 쓴다. 새 유료 서비스·키·로그인이 필요한 채널은 승인 대기로만 남긴다.
+run()은 run_hourly가 매시간 부른다. 모델 없이 지난 회차를 점검하고 장부에 '미완료'·'미실행'을 쓴다. Proviser가 필요하다고 판단한 채널은 동의 없이 연결하고 decision '연결'로 적는다(2026-11-08 마스터 지시). 키·유료·로그인 채널도 수집기까지 연결해 두고(키 대기) 가입·결제만 마스터 몫으로 TODO_MASTER에 남긴다.
 사용: py radar/channel_scout.py --review          # 회차 시작: 오늘 분야·이전 후보·미완료
       py radar/channel_scout.py --add <json 파일>  # [{channel, area, access, robots, terms, needs, decision, reason, url}]
       py radar/channel_scout.py --check            # 이번 회차 기록이 없으면 종료 코드 1 — Proviser 텔레그램 전에 돌린다
@@ -9,6 +9,7 @@ run()은 run_hourly가 매시간 부른다. 모델 없이 지난 회차를 점�
 import argparse
 import csv
 import json
+import re
 import sys
 from datetime import date, timedelta
 from pathlib import Path
@@ -63,10 +64,17 @@ def problems(r, cfg):
             out.append(f"{k} {r[k]}")
     if r["area"] not in cfg["areas"]:
         out.append(f"분야 {r['area']}")
-    if r["decision"] == "채택 제안" and (r["robots"] == "금지" or r["terms"] in ("금지", "미확인")):
-        out.append("약관·robots 미통과는 채택 제안 불가")
-    if r["needs"] != "없음" and r["decision"] not in ("승인 대기", "기각"):
-        out.append("유료·키·로그인 채널은 승인 대기 또는 기각만")
+    if r["decision"] in ("채택 제안", "연결") and (r["robots"] == "금지" or r["terms"] in ("금지", "미확인")):
+        out.append(f"약관·robots 미통과는 {r['decision']} 불가")
+    if r["decision"] == "연결":   # 마스터 지시 2026-11-08 — 동의 없이 연결하되, 연결한 수집기가 실제로 있어야 기록한다
+        mods = [m for m in re.findall(r"(?:radar|scripts)/[\w/]+\.py", r.get("reason", "")) if (common.ROOT / m).exists()]
+        if not mods:
+            out.append("연결은 reason에 실제 수집기 경로(radar/… 또는 scripts/….py)가 있어야 한다")
+        # 키·유료·로그인 채널도 수집기까지 연결해 둔다(키 대기) — 키 이름(.env)을 적고, 키가 들어오면 스스로 켜진다. 가입·결제는 마스터 몫
+        if r["needs"] != "없음" and not re.search(r"\b[A-Z][A-Z0-9_]*_(?:KEY|TOKEN|USER|SECRET)\b", r.get("reason", "")):
+            out.append("키 대기 연결은 reason에 .env 키 이름(예: LDA_API_KEY)을 적는다")
+    if r["needs"] != "없음" and r["decision"] not in ("승인 대기", "기각", "연결"):
+        out.append("유료·키·로그인 채널은 연결(키 대기)·승인 대기·기각만")
     if r["decision"] == "승인 대기" and r["needs"] == "없음":
         out.append("승인이 필요한 조건이 없다")
     return out

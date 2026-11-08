@@ -26,7 +26,7 @@ from pollers import common  # noqa: E402
 CONFIG = common.ROOT / "config" / "trade_ppi.yaml"
 LATEST = common.ROOT / "knowledge" / "models" / "trade_ppi" / "latest.json"
 HISTORY = common.ROOT / "knowledge" / "models" / "trade_ppi" / "history.json"   # 월별 원 시계열 — 거시 지표 싱크로율(scripts/tenbagger/sync_view.py, 2026-11-03)
-UA = "Chiip research fhteo1101@gmail.com"
+UA = None   # 요청 때 common.contact_ua() — 연락처를 코드에 두지 않는다
 HISTORY_MONTHS = 120   # 10년 — 리포트 매출 시계열과 같은 구간(마스터 지시 2026-11-07, 30→120)
 PAUSE = 0.4
 WINDOW = 3   # 무역은 월별 변동이 커서 최근 3개월 합을 전년 같은 3개월과 비교한다
@@ -49,7 +49,7 @@ def config():
 def get(url, params=None, data=None, timeout=45):
     if params:
         url += ("&" if "?" in url else "?") + urllib.parse.urlencode(params)
-    headers = {"User-Agent": UA}
+    headers = {"User-Agent": common.contact_ua()}
     if data is not None:
         headers["Content-Type"] = "application/json"
     req = urllib.request.Request(url, data=json.dumps(data).encode() if data is not None else None, headers=headers)

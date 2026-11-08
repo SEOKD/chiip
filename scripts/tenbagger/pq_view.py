@@ -14,8 +14,8 @@ datapack "pq":
 - 국면: 최근 4분기 평균 g_P·g_Q로 P 사이클(g_P > g_Q, g_P > 0) / Q 사이클(g_Q > g_P, g_Q > 0) / 동반 하강.
 - 강도(0~10): 자기 이력 대비 z값 → 5 + 2z(0~10으로 자른다). 구조성: 최근 8분기 중 같은 요인이 우세했던 비율.
 - 마진 확인: P 사이클인데 GPM이 오르지 않으면 원가 전가형(가짜 P)으로 표시한다.
-- 전환 시점: g_P·g_Q 각각 AR(2)(y_t = c + a1·y_t-1 + a2·y_t-2)를 맞춰 8분기 앞까지 투영하고, 우세 요인이 처음 바뀌는 분기를 센다.
-  AR(2) 특성근이 복소수면 고유 주기 2π ÷ arccos(a1 ÷ 2√−a2)도 낸다. 투영은 통계 외삽이며 가이던스가 아니다.
+- 전환 시점: g_P·g_Q 8분기 전망(pq_forecast — BIC 차수 AR + 물량은 컨센서스 결합)에서 우세 요인이 처음 바뀌는 분기를 센다.
+  고른 차수가 AR(2)이고 특성근이 복소수면 고유 주기 2π ÷ arccos(a1 ÷ 2√−a2)도 낸다. 모형 산출이며 가이던스가 아니다.
 
 10년 위치·프리미엄(마스터 지시 2026-11-04 "P사이클과 Q사이클의 과거 10개 년도 차트 … 어느 시점에 있는지 … P·Q 프리미엄 −100~+100% … 전망",
 상수 config/pq_cycle.yaml, 등록부 prm-pq-*):
@@ -26,7 +26,8 @@ datapack "pq":
     Q 프리미엄 = (e^gQ − 1) × 물량 증분 마진 ÷ 정상 GPM,  P 프리미엄 = e^gQ × (e^gP − 1) × 가격 전가율 ÷ 정상 GPM, ±100%에서 자른다.
     정상 GPM = 10년 GPM 중앙값, 물량 증분 마진 = 전년 대비 ΔGP ÷ ΔRev 회귀 기울기(정상 GPM의 1~2배로 자른다). GP가 없으면 매출 기준.
     +면 이익이 사이클 덕에 정상보다 높다(피크 이익에 높은 멀티플을 주면 이중 계산 — IB는 정상 이익에 멀티플을 건다), −면 정상보다 낮다.
-- 전망: 갭마다 AR(2)로 8분기 투영 → 같은 식으로 4·8분기 뒤 프리미엄, 갭이 절반이 되는 분기(반감기).
+- 전망(2026-11-08 재설계, pq_forecast 맨 위): 가격 갭 AR(p)·물량은 통계 갭과 컨센서스 내포 물량의 분산 역수 결합 → 전망 연장 HP로 끝점 편향 보정
+  → 4·8분기 뒤 갭·80% 범위·프리미엄, 갭이 절반이 되는 분기(반감기). 구조 단절(분리·재작성)은 datapack pq.breaks 또는 자동 감지로 그 뒤만 쓴다.
 - 가격 근거가 없으면(pq 없음·none) datapack industry → 업종 PPI(FRED) 대용으로 잰다. 회사 판매가가 아니라고 표시한다.
 """
 import json
@@ -36,6 +37,8 @@ from pathlib import Path
 
 import yaml
 
+import pq_forecast as F
+from pq_forecast import Z80
 import sync_view as sv
 
 UNKNOWN = "미확인"
@@ -193,14 +196,27 @@ def compute(dp, history=None, db=sv.HS_DB, pq=None, fred_cache=None):
     out = {"rows": rows, "enough": True, "now": now, "mp": mp, "mq": mq, "p_score": strength(gp), "q_score": strength(gq), "persist": persist, "gpm_chg": gpm_up,
            "fake_p": now == "P 사이클" and gpm_up is not None and gpm_up <= 0, "proj": None, "switch": None, "period": None}
     if len(rows) >= MIN_POINTS:
-        cp, cq = ar2(gp), ar2(gq)
-        if cp and cq:
-            pp, pq_ = project(gp, cp), project(gq, cq)
-            last = rows[-1]["q"]
-            proj = [{"q": sv.shift_q(last, i + 1), "g_p": a, "g_q": b} for i, (a, b) in enumerate(zip(pp, pq_))]
+        fc = cfg().get("forecast") or {}
+        kw = {"pmax": fc.get("ar_pmax", 3), "intercept": True, "max_root": fc.get("max_root", 0.95)}   # 전년 대비 증가율은 평균이 0이 아니라 절편을 둔다
+        fp, fq = F.ar_fit(gp, **kw), F.ar_fit(gq, **kw)
+        if fp and fq:
+            pp, sep = F.ar_path(gp, fp, HORIZON)
+            qq, seq = F.ar_path(gq, fq, HORIZON)
+            rev = levels(dp, pq, history, db, fred_cache)[0]
+            last, qs = rows[-1]["q"], sorted(rev)
+            cons, basis = F.consensus_quarters(dp, qs[-1], rev[qs[-1]], sv.shift_q, HORIZON + 4)
+            allq = {**cons, **rev}
+            proj = []
+            for i, (a, b) in enumerate(zip(pp, qq)):
+                q, base = sv.shift_q(last, i + 1), sv.shift_q(last, i - 3)
+                w = 0.0
+                if q in allq and base in allq and q not in rev and allq[base] > 0:
+                    b, _, w = F.combine(b, seq[i], math.log(allq[q] / allq[base]) - a, math.sqrt(F.cons_se(dp, i + 1, fc) ** 2 + sep[i] ** 2))
+                proj.append({"q": q, "g_p": a, "g_q": b, "w_cons": w})
             cur = mp >= mq
             sw = next((i + 1 for i, p in enumerate(proj) if (p["g_p"] >= p["g_q"]) != cur), None)
-            out.update({"proj": proj, "switch": sw, "period": {"P": period(cp[1], cp[2]), "Q": period(cq[1], cq[2])}})
+            per = lambda f: period(f["phi"][0], f["phi"][1]) if f["p"] == 2 else None
+            out.update({"proj": proj, "switch": sw, "period": {"P": per(fp), "Q": per(fq)}, "models": (f"AR({fp['p']})", f"AR({fq['p']})"), "cons": basis if cons else None})
     return out
 
 
@@ -253,11 +269,30 @@ def _median(xs):
     return None if not n else (s[n // 2] if n % 2 else (s[n // 2 - 1] + s[n // 2]) / 2)
 
 
+def breaks(dp, rev, c):
+    """(마지막 단절 분기, 이유) — datapack pq.breaks [{q, why}](분리·대형 인수·재작성)가 먼저, 없으면 자동 감지:
+    분기 매출 로그 변화가 연달아 반대 방향으로 ±spike_log를 넘으면(급변 뒤 되돌림) 재작성·연결 범위가 섞인 자료로 본다(X-13 가법 이상치 판정과 같은 생각)"""
+    decl = [b for b in ((dp.get("pq") or {}).get("breaks") or []) if b.get("q")]
+    if decl:
+        b = max(decl, key=lambda x: x["q"])
+        return b["q"], f"{b['q']} {b.get('why', '구조 변화')}(datapack 선언)"
+    th = (c.get("forecast") or {}).get("spike_log", 0.4)
+    qs = sorted(rev)
+    d = [(q, math.log(rev[q] / rev[p])) for p, q in zip(qs, qs[1:]) if rev[p] > 0 and rev[q] > 0 and sv.shift_q(p, 1) == q]
+    hit = [d[i + 1][0] for i in range(len(d) - 1) if abs(d[i][1]) > th and abs(d[i + 1][1]) > th and d[i][1] * d[i + 1][1] < 0]
+    if not hit:
+        return None, None
+    return max(hit), f"{max(hit)} 전후 분기 매출 급변·되돌림(재작성·분리 자료가 섞인 것으로 보임) — 그 뒤만 쓴다"
+
+
 def long_cycle(dp, pq, history=None, db=sv.HS_DB, fred_cache=None, c=None):
     """10년 P·Q 레벨 갭·위치·프리미엄·전망"""
     c = c or cfg()
     rev, price, gpm, gpv = levels(dp, pq, history, db, fred_cache)
     qs = sorted(rev)
+    cut, why = breaks(dp, rev, c)
+    if cut:   # 구조 단절 뒤만 쓴다 — 단절을 사이클로 읽으면 추세·갭이 모두 틀린다(CLAUDE.md '단위·기간을 맞출 수 없으면 비교 불가')
+        qs = [q for q in qs if q > cut]
     pts = []
     for i in range(3, len(qs)):
         win = qs[i - 3:i + 1]
@@ -269,10 +304,14 @@ def long_cycle(dp, pq, history=None, db=sv.HS_DB, fred_cache=None, c=None):
         pts.append({"q": win[-1], "rev": ttm, "p": p, "vol": ttm / p, "gp": gp})
     pts = pts[-40:]
     if len(pts) < c["min_ttm_points"]:
-        return {"enough": False, "n": len(pts)}
+        return {"enough": False, "n": len(pts), "break": why}
     lam = c["hp_lambda"]
     lp, lv = [math.log(x["p"]) for x in pts], [math.log(x["vol"]) for x in pts]
-    tp, tv = hp(lp, lam), hp(lv, lam)
+    fcast = _forecast(dp, pts, lp, lv, rev, qs, lam, c)
+    # 끝점 편향 보정 — 전망 경로를 이어 붙여 필터를 다시 건다(Kaiser·Maravall 1999). 전망이 없으면 그대로
+    ext_p, ext_q = lp + fcast["lp"] + fcast.get("tail_p", []), lv + fcast["lq"] + fcast.get("tail_q", [])
+    tp, tv = hp(ext_p, lam), hp(ext_q, lam)
+    n = len(pts)
     for x, a, b, ta, tb in zip(pts, lp, lv, tp, tv):
         x["g_p"], x["g_q"] = a - ta, b - tb
         x["trend_p"], x["trend_q"] = math.exp(ta), math.exp(tb)
@@ -297,19 +336,60 @@ def long_cycle(dp, pq, history=None, db=sv.HS_DB, fred_cache=None, c=None):
     out = {"enough": True, "n": len(pts), "pts": pts, "gpm_mid": gpm_mid if has_gp else None, "m_q": m_q if has_gp else None, "slope": slope, "basis": "매출총이익" if has_gp else "매출",
            "p_share": max(0.0, min(1.0, p_share)), "type": "P형" if p_share >= 0.5 else "Q형",
            "clock_p": clock(now["g_p"], prev["g_p"]), "clock_q": clock(now["g_q"], prev["g_q"]), "pct_p": pct(gp_s, now["g_p"]), "pct_q": pct(gq_s, now["g_q"]),
-           "proj": None, "half": {"P": None, "Q": None}}
-    cp, cq = ar2(gp_s), ar2(gq_s)
-    if cp and cq:
-        pp, pq_ = project(gp_s, cp), project(gq_s, cq)
+           "proj": None, "half": {"P": None, "Q": None}, "fc": fcast["meta"]}
+    if fcast["lp"]:
         proj = []
-        for i, (a, b) in enumerate(zip(pp, pq_)):
+        for i, (lpf, lqf, sp, sq, w) in enumerate(zip(fcast["lp"], fcast["lq"], fcast["se_p"], fcast["se_q"], fcast["w"])):
+            a, b = lpf - tp[n + i], lqf - tv[n + i]
             pa, qa = premiums(a, b, gpm_mid, m_q, c)
-            proj.append({"q": sv.shift_q(now["q"], i + 1), "g_p": a, "g_q": b, "prem_p": pa, "prem_q": qa})
+            proj.append({"q": sv.shift_q(now["q"], i + 1), "g_p": a, "g_q": b, "prem_p": pa, "prem_q": qa, "se_p": sp, "se_q": sq, "w_cons": w})
         out["proj"] = proj
-        for k, g0, ser in (("P", now["g_p"], pp), ("Q", now["g_q"], pq_)):
+        for k, g0, ser in (("P", now["g_p"], [x["g_p"] for x in proj]), ("Q", now["g_q"], [x["g_q"] for x in proj])):
             if abs(g0) > 1e-3:
                 out["half"][k] = next((i + 1 for i, v in enumerate(ser) if abs(v) <= abs(g0) / 2 or v * g0 < 0), None)
     return out
+
+
+def _forecast(dp, pts, lp, lv, rev, qs, lam, c):
+    """로그 P·Q 레벨 8분기 전망 — P는 갭 AR(p), Q는 통계 갭 AR(p)와 컨센서스 내포 물량의 분산 역수 결합(pq_forecast 맨 위)"""
+    fc = c.get("forecast") or {}
+    empty = {"lp": [], "lq": [], "se_p": [], "se_q": [], "w": [], "meta": None}
+    tp0, tv0 = hp(lp, lam), hp(lv, lam)
+    gp0, gq0 = [a - b for a, b in zip(lp, tp0)], [a - b for a, b in zip(lv, tv0)]
+    kw = {"pmax": fc.get("ar_pmax", 3), "max_root": fc.get("max_root", 0.95)}
+    fp, fq = F.ar_fit(gp0, **kw), F.ar_fit(gq0, **kw)
+    if not fp or not fq:
+        return empty
+    H = HORIZON
+    gpf, sep = F.ar_path(gp0, fp, H)
+    gqf, seq = F.ar_path(gq0, fq, H)
+    k = fc.get("trend_slope_q", 4)   # 추세는 끝 k분기 평균 기울기로 잇는다
+    sp_, sq_ = (tp0[-1] - tp0[-1 - k]) / k, (tv0[-1] - tv0[-1 - k]) / k
+    lpf = [tp0[-1] + sp_ * (h + 1) + gpf[h] for h in range(H)]
+    lq_stat = [tv0[-1] + sq_ * (h + 1) + gqf[h] for h in range(H)]
+    last = pts[-1]["q"]   # 전망 기준 = 가격이 있는 마지막 TTM 분기. 컨센서스는 마지막 실적 분기 다음부터 잇는다(PPI가 늦으면 둘이 다르다)
+    cons, basis = F.consensus_quarters(dp, qs[-1], rev[qs[-1]], sv.shift_q, H + 4)
+    lq, se_q, w = [], [], []
+    for h in range(H):
+        win = [sv.shift_q(last, h + 1 - j) for j in range(4)]
+        ttm = sum(rev.get(q) if q in rev else cons.get(q, float("nan")) for q in win) if all(q in rev or q in cons for q in win) else None
+        if ttm and ttm > 0:
+            lq_cons = math.log(ttm) - lpf[h]   # 매출 = P × Q → log Q = log 매출 − log P
+            v, s, wc = F.combine(lq_stat[h], seq[h], lq_cons, math.sqrt(F.cons_se(dp, h + 1, fc) ** 2 + sep[h] ** 2))
+        else:
+            v, s, wc = lq_stat[h], seq[h], 0.0
+        lq.append(v)
+        se_q.append(s)
+        w.append(wc)
+    # 보고 구간(8분기) 뒤로 8분기를 더 잇는다 — 연장한 끝점에 다시 생기는 편향을 보고 구간 밖으로 민다.
+    # P는 AR 경로, Q는 전망 끝 4분기의 분기 성장률을 그대로 잇는다(과거 추세 기울기를 이으면 고성장 뒤 감속하는 컨센서스가 추세 아래로 끌려 내려간다)
+    gpf2, _ = F.ar_path(gp0, fp, 2 * H)
+    tail_p = [tp0[-1] + sp_ * (h + 1) + gpf2[h] for h in range(H, 2 * H)]
+    g_end = (lq[-1] - lq[-5]) / 4
+    tail_q = [lq[-1] + g_end * (h + 1 - H) for h in range(H, 2 * H)]
+    meta = {"p_model": f"AR({fp['p']})" + (" 정상성 보정" if fp["shrunk"] else ""), "q_model": f"AR({fq['p']})" + (" 정상성 보정" if fq["shrunk"] else ""),
+            "p_root": fp["radius"], "q_root": fq["radius"], "cons": basis if cons else None, "w4": w[3] if len(w) > 3 else None, "w8": w[-1] if w else None}
+    return {"lp": lpf, "lq": lq, "tail_p": tail_p, "tail_q": tail_q, "se_p": sep, "se_q": se_q, "w": w, "meta": meta}
 
 
 def _pct(x):
@@ -332,8 +412,9 @@ def long_blocks(lc, label):
             f"({lc['basis']}이 정상(추세) 수준보다 요인별로 이만큼 높거나 낮다).**")
     if lc["proj"]:
         p4, p8 = lc["proj"][3], lc["proj"][-1]
-        head += (f" AR(2) 전망으로 P 프리미엄은 4분기 뒤 {p4['prem_p'] * 100:+.0f}%·8분기 뒤 {p8['prem_p'] * 100:+.0f}%({_trend(pp, p8['prem_p'])}), "
-                 f"Q 프리미엄은 {p4['prem_q'] * 100:+.0f}%·{p8['prem_q'] * 100:+.0f}%({_trend(pq_, p8['prem_q'])}).")
+        g = lambda x: _pct(math.exp(x) - 1)
+        head += (f" 전망으로 가격 갭은 4분기 뒤 {g(p4['g_p'])}·8분기 뒤 {g(p8['g_p'])}, 물량 갭은 {g(p4['g_q'])}·{g(p8['g_q'])}"
+                 + (f"(물량은 컨센서스 몫 {p4['w_cons'] * 100:.0f}%를 섞었다)" if p4.get("w_cons") else "(컨센서스가 없어 통계 전망만)") + ".")
     if pp + pq_ > 0.15:
         head += " 이익이 사이클 덕에 정상보다 높다 — 지금 이익에 높은 멀티플을 함께 주면 사이클을 두 번 세는 셈이다(IB는 정상 이익에 멀티플을 건다)."
     elif pp + pq_ < -0.15:
@@ -346,11 +427,6 @@ def long_blocks(lc, label):
         {"name": "물량(Q) 갭", "color": "c", "points": [[x["q"], round((math.exp(x["g_q"]) - 1) * 100, 1)] for x in pts]},
         {"name": "P 전망", "color": "e", "points": [[now["q"], round((math.exp(now["g_p"]) - 1) * 100, 1)]] + [[p["q"], round((math.exp(p["g_p"]) - 1) * 100, 1)] for p in proj]},
         {"name": "Q 전망", "color": "d", "points": [[now["q"], round((math.exp(now["g_q"]) - 1) * 100, 1)]] + [[p["q"], round((math.exp(p["g_q"]) - 1) * 100, 1)] for p in proj]}]}})
-    B.append({"type": "chart", "chart": {"kind": "line", "title": f"P·Q 프리미엄 — {lc['basis']} 정상 수준 대비(−100~+100%)", "unit": "%", "now": now["q"], "series": [
-        {"name": "P 프리미엄", "color": "b", "points": [[x["q"], round(x["prem_p"] * 100, 1)] for x in pts]},
-        {"name": "Q 프리미엄", "color": "c", "points": [[x["q"], round(x["prem_q"] * 100, 1)] for x in pts]},
-        {"name": "P 전망", "color": "e", "points": [[now["q"], round(pp * 100, 1)]] + [[p["q"], round(p["prem_p"] * 100, 1)] for p in proj]},
-        {"name": "Q 전망", "color": "d", "points": [[now["q"], round(pq_ * 100, 1)]] + [[p["q"], round(p["prem_q"] * 100, 1)] for p in proj]}]}})
     hv = lambda k: UNKNOWN if not lc["half"][k] else f"{lc['half'][k]}분기"
     f = lambda p, k: UNKNOWN if not p else f"{p[k] * 100:+.0f}%"
     rows = [["추세 대비 갭(현재)", _pct(math.exp(now["g_p"]) - 1), _pct(math.exp(now["g_q"]) - 1)],
@@ -359,11 +435,18 @@ def long_blocks(lc, label):
             ["프리미엄 4분기 뒤", f(proj[3] if len(proj) > 3 else None, "prem_p"), f(proj[3] if len(proj) > 3 else None, "prem_q")],
             ["프리미엄 8분기 뒤", f(proj[-1] if proj else None, "prem_p"), f(proj[-1] if proj else None, "prem_q")],
             ["갭 반감기", hv("P"), hv("Q")]]
+    band = lambda p, k: UNKNOWN if not p else f"{_pct(math.exp(p['g_' + k]) - 1)} ({_pct(math.exp(p['g_' + k] - Z80 * p['se_' + k]) - 1)}~{_pct(math.exp(p['g_' + k] + Z80 * p['se_' + k]) - 1)})"
+    if proj:
+        rows += [["갭 4분기 뒤(80% 범위)", band(proj[3], "p"), band(proj[3], "q")], ["갭 8분기 뒤(80% 범위)", band(proj[-1], "p"), band(proj[-1], "q")]]
+    fcm = lc.get("fc") or {}
+    if fcm:
+        rows.append(["전망 모형", fcm["p_model"], fcm["q_model"] + (f" + 컨센서스({fcm['cons']}, 4분기 뒤 몫 {fcm['w4'] * 100:.0f}%)" if fcm.get("cons") else " (컨센서스 없음)")])
     B.append({"type": "table", "title": "10년 P·Q 사이클 위치·프리미엄", "headers": ["항목", "가격(P)", "물량(Q)"], "rows": rows})
     note = (f"방법: P = 가격 지수 4분기 평균({label}), Q = TTM 매출 ÷ P. 추세는 로그 레벨의 HP 필터(λ 1600)로 정상(mid-cycle) 수준을 잡는다. "
             f"프리미엄 = 요인별 {lc['basis']} 증분 ÷ 정상 {lc['basis']}"
             + (f"(정상 GPM {lc['gpm_mid'] * 100:.1f}% = 10년 중앙값, 물량 증분 마진 {lc['m_q'] * 100:.1f}% = 전년 대비 ΔGP÷ΔRev 회귀, 가격은 전액 이익 반영)" if lc["gpm_mid"] else "(GP 이력이 없어 매출 기준)")
-            + f". 표본 {lc['n']}개 TTM 분기. 전망은 갭의 AR(2) 통계 외삽이며 가이던스·컨센서스가 아니다. HP 필터는 끝점에서 추세가 최근 값 쪽으로 끌려 현재 갭을 작게 볼 수 있다.")
+            + f". 표본 {lc['n']}개 TTM 분기. 전망: 가격 갭은 BIC로 차수를 고른 AR(정상성 보정), 물량은 통계 갭 AR과 컨센서스 매출 ÷ 가격 전망(매출 = P × Q)을 분산 역수로 섞는다(Bates·Granger 1969). "
+               "끝점 편향을 줄이려고 전망 경로를 이어 붙인 뒤 HP 필터를 다시 건다(Kaiser·Maravall 1999). 80% 범위는 AR 예측 오차와 애널리스트 범위에서 낸다. 모형 산출이며 가이던스가 아니다.")
     B.append({"type": "p", "text": note})
     return B
 
@@ -392,7 +475,7 @@ def section(dp, history=None, db=sv.HS_DB, fred_cache=None):
         head += f" 다만 GPM이 전년보다 {c['gpm_chg'] * 100:+.1f}%p로 오르지 않아 원가 전가형 가격 상승일 가능성이 있다."
     if c["proj"]:
         other = "Q 사이클" if c["mp"] >= c["mq"] else "P 사이클"
-        head += f" AR(2) 투영으로는 {f'{c['switch']}분기 뒤({c['proj'][c['switch'] - 1]['q']}) {other}로 전환' if c['switch'] else f'{HORIZON}분기 안에 전환 신호가 없다'}."
+        head += f" 전망으로는 {f'{c['switch']}분기 뒤({c['proj'][c['switch'] - 1]['q']}) {other}로 전환' if c['switch'] else f'{HORIZON}분기 안에 전환 신호가 없다'}" + ("(물량은 컨센서스를 섞었다)." if c.get("cons") else "(통계 전망만).")
     if pq.get("why"):
         head += " " + str(pq["why"])
     rows = c["rows"]
@@ -404,19 +487,20 @@ def section(dp, history=None, db=sv.HS_DB, fred_cache=None):
         lastp, lastq = hist_p[-1], hist_q[-1]
         series += [{"name": "P 투영", "color": "e", "points": [lastp] + [[p["q"], round(p["g_p"] * 100, 1)] for p in c["proj"]]},
                    {"name": "Q 투영", "color": "d", "points": [lastq] + [[p["q"], round(p["g_q"] * 100, 1)] for p in c["proj"]]}]
-    B.append({"type": "chart", "chart": {"kind": "line", "title": "매출 증가율의 가격·물량 분해와 AR(2) 투영(전년 대비)", "unit": "%", "series": series}})
+    B.append({"type": "chart", "chart": {"kind": "line", "title": "매출 증가율의 가격·물량 분해와 8분기 전망(전년 대비)", "unit": "%", "series": series}})
     B.append({"type": "chart", "chart": {"kind": "bars", "title": "분기별 매출 증가율 분해", "unit": "%", "categories": [r["q"] for r in rows[-8:]],
                                          "series": [{"name": "가격(P)", "color": "b", "values": [round(r["g_p"] * 100, 1) for r in rows[-8:]]},
                                                     {"name": "물량(Q)", "color": "c", "values": [round(r["g_q"] * 100, 1) for r in rows[-8:]]}]}})
     per = c.get("period") or {}
     B.append({"type": "table", "title": "P·Q 사이클 정량", "headers": ["항목", "가격(P)", "물량(Q)"],
               "rows": [["최근 4분기 평균 기여", _pct(c["mp"]), _pct(c["mq"])], ["강도(0~10, 자기 이력 z)", f"{c['p_score']:.1f}", f"{c['q_score']:.1f}"],
-                       ["AR(2) 고유 주기", UNKNOWN if not per.get("P") else f"{per['P']:.1f}분기", UNKNOWN if not per.get("Q") else f"{per['Q']:.1f}분기"],
+                       ["AR 고유 주기(AR(2)일 때)", UNKNOWN if not per.get("P") else f"{per['P']:.1f}분기", UNKNOWN if not per.get("Q") else f"{per['Q']:.1f}분기"],
                        ["다음 4분기 투영 평균", UNKNOWN if not c["proj"] else _pct(sum(p["g_p"] for p in c["proj"][:4]) / 4), UNKNOWN if not c["proj"] else _pct(sum(p["g_q"] for p in c["proj"][:4]) / 4)]]})
-    B.append({"type": "p", "text": f"가격 근거: {label}. PPI를 쓰면 회사 판매가가 아니라 업종 가격 대용이다. 로그 증가율이라 가격·물량 기여의 합이 매출 증가율이다. 투영은 통계 외삽이며 가이던스·컨센서스가 아니다."
+    B.append({"type": "p", "text": f"가격 근거: {label}. PPI를 쓰면 회사 판매가가 아니라 업종 가격 대용이다. 로그 증가율이라 가격·물량 기여의 합이 매출 증가율이다. 전망: 가격은 BIC로 차수를 고른 AR, 물량은 AR과 '컨센서스 매출 증가율 − 가격 전망'을 분산 역수로 섞는다. 모형 산출이며 가이던스가 아니다."
                                          + (f" 회사 판매가로 잴 수 없는 이유: {own['none']}" if proxy and own and own.get("none") else "")})
     if lc["enough"]:
         B = long_blocks(lc, label) + B
     else:
-        B.append({"type": "p", "text": f"10년 위치·프리미엄: TTM 표본 {lc['n']}개로 {cfg()['min_ttm_points']}개에 못 미친다 — quarters.js로 분기 {cfg()['quarters_fetch']}개를 다시 받으면 나온다."})
+        B.append({"type": "p", "text": (f"10년 위치·프리미엄: 구조 단절({lc['break']}) 뒤 TTM 표본이 {lc['n']}개로 {cfg()['min_ttm_points']}개에 못 미쳐 10년 비교를 하지 않는다 — 단절 전후 매출은 같은 회사 범위가 아니다."
+                                             if lc.get("break") else f"10년 위치·프리미엄: TTM 표본 {lc['n']}개로 {cfg()['min_ttm_points']}개에 못 미친다 — quarters.js로 분기 {cfg()['quarters_fetch']}개를 다시 받으면 나온다.")})
     return {"h2": "P·Q 사이클", "blocks": B}

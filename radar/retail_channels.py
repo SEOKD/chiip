@@ -17,7 +17,7 @@ from xml.etree import ElementTree as ET
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 
-UA = {"User-Agent": "Chiip research fhteo1101@gmail.com"}
+UA = None   # 요청 때 common.contact_ua()로 만든다 — 연락처를 코드에 두지 않는다
 APE = "https://apewisdom.io/api/v1.0/filter/all-stocks/page/{p}"
 TRADESTIE = "https://tradestie.com/api/v1/apps/reddit"
 WIKI = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/{title}/daily/{start}/{end}"
@@ -31,7 +31,7 @@ OUT = common.ROOT / "knowledge" / "models" / "discovery" / "retail_latest.json"
 
 
 def _json(url, fetch=None):
-    return json.loads((fetch or (lambda u: common.http_get(u, headers=UA, timeout=25)))(url))
+    return json.loads((fetch or (lambda u: common.http_get(u, headers={"User-Agent": common.contact_ua()}, timeout=25)))(url))
 
 
 def ape_all(fetch=None, max_pages=12):
@@ -119,7 +119,7 @@ def twse_margin(fetch=None):
 
 def trends(geos, fetch=None):
     """{나라: [급상승 검색어…]}"""
-    get = fetch or (lambda u: common.http_get(u, headers=UA, timeout=25))
+    get = fetch or (lambda u: common.http_get(u, headers={"User-Agent": common.contact_ua()}, timeout=25))
     out = {}
     for g in geos:
         try:
