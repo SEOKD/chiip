@@ -17,3 +17,4 @@
 마스터의 논리를 고정 틀로 구현했다: ① 사건과 명목 해석(시장 반응 측정) ② 돈의 흐름(로비·PAC·슈퍼 PAC, 양당 확인 필수) ③ 지연 유인 vs 실행 압력 ④ 실행 경로와 시계(선거·취임 직후 창) ⑤ 산업 영향 ⑥ 시장 반영 vs Chiip(갭 → 산업 판단 등급) ⑦ 반대 검증 ⑧ 반증 조건·체크포인트(예측 장부).
 절차는 스킬 `industry-event`, 설정 `config/industry_event.yaml`, 엔진 `scripts/industry/event_frame.py`, 렌더 `scripts/industry/industry_html.py`, 데이터 `knowledge/models/industries/events/<id>/`. 정당별 기업 PAC 기부는 `radar/usgov/fec_money.py`(FEC 공개 API, `.env` FEC_API_KEY 또는 DATA_GOV_API_KEY — 없으면 시간당 약 30회 DEMO_KEY).
 첫 리포트: 2026-11-08 「블루 스윕은 데이터센터를 멈추지 않는다 — 값을 매긴다」(2026 중간선거 뒤 규제산업).
+- **텔레그램 피드 양식**(2026-11-08 마스터 지시 "산업 리포트를 텔레그램 피드로 제공할 때 글이 가독성 있게 정리되도록"): `scripts/industry/tg_feed.py`가 리포트 JSON에서 조립한다 — 머리(종류·날짜) → 제목 → 산업 판단(등급별 묶음·🟢⚪🔴) → 핵심 Q&A 한 줄씩(괄호 풀이 빼고 절 경계에서 끊음) → 숫자 4개(기준 병기) → 다음 확인(날짜·무엇·Chiip 확률) → 링크 → 안내문. 문단 사이 빈 줄, 한 줄 120자 안. 손으로 쓰지 않는다.

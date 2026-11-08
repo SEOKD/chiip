@@ -33,7 +33,7 @@ argument-hint: "[사건 id]"
    py scripts/industry/industry_html.py outputs/industry/<날짜>_<id>.json
    ```
    관문을 못 넘으면 멈춘다 — 빈칸을 채우지 않는다. 등급은 규칙이 계산하고(갭 ±5%p, 확신도 0.5), 토론으로는 `debate`에 이유를 적어 한 단계까지만 바꾼다.
-9. **게시:** `_artifact.html`을 claude.ai 비공개 Artifact로 게시한다. 노션 `Industry` 아래 산업 하위 페이지에 리포트 페이지(요약 + 링크)를 만들고, 마스터 개인 텔레그램으로 알린다.
+9. **게시:** `_artifact.html`을 claude.ai 비공개 Artifact로 게시한다. 노션 `Industry` 아래 산업 하위 페이지에 리포트 페이지(요약 + 링크)를 만들고, 마스터 개인 텔레그램으로 알린다 — 글은 손으로 쓰지 않고 `py scripts/industry/tg_feed.py outputs/industry/<날짜>_<id>.json --artifact <url> --notion <url> --send`가 리포트 JSON에서 조립한다(2026-11-08 마스터 지시 "텔레그램 피드로 제공할 때 글이 가독성 있게": 제목 → 등급별 판단 → 핵심 Q&A 한 줄씩 → 숫자 4개 → 다음 확인 날짜·확률 → 링크). 양식 점검(줄 길이)을 못 넘으면 보내지 않는다.
 
 ## 쓰지 않는 것
 - 매매·비중·금액 지시. 등급은 산업 판단이다.
