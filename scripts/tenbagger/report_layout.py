@@ -195,7 +195,7 @@ def price_charts(entity):
     if len(daily) < 60:
         return [], []
     if flow.approx_daily(entity):   # 근사 봉은 캔들 모양이 틀린다 — TradingView 실측 일봉을 먼저 넣는다(마스터 지시 2026-11-08)
-        raise SystemExit(f"{entity} 일봉이 Fiscal.ai 근사(고가·저가 없음)다 — mcp-tv-get-ohlcv(1D, count 260, format columns) 응답을 파일로 저장 → py scripts/fiscal/adapter.py --ohlcv-tv {entity} <파일> <심볼>")
+        raise SystemExit(f"{entity} 일봉이 Fiscal.ai 근사(고가·저가 없음)다 — mcp-tv-get-ohlcv(1D, count 760, format columns — 100주선용 약 3년) 응답을 파일로 저장 → py scripts/fiscal/adapter.py --ohlcv-tv {entity} <파일> <심볼>")
     sp = levels.supports(daily, flow.load_monthly(entity))
     price = sp["price"]
     fmt = (lambda v: f"{v:,.2f}") if price < 1000 else (lambda v: f"{v:,.0f}")
@@ -204,11 +204,11 @@ def price_charts(entity):
         view = sp["bars"][title][-tail:]
         near = [x for x in sp["frames"][title] if x["price"] >= min(b["l"] for b in view) * 0.85][:4]
         marks = [{"y": x["price"], "label": f"{plain_level(x['src']).replace(title + ' ', '').replace(' 지지선', '')} {fmt(x['price'])}", "color": "d"} for x in near]
-        # 이동평균선(마스터 지시 2026-11-08 "일봉·주봉·월봉에 이평선 지지선도 표기") — 기간은 지지선 엔진과 같다(levels.MA_WINDOWS: 일 50·200, 주 20·50, 월 12·24)
+        # 이동평균선(마스터 지시 2026-11-08 "일봉·주봉·월봉에 이평선 지지선도 표기") — 지지선 엔진 기간(levels.MA_WINDOWS: 일 50·200, 주 20·50, 월 12·24) + 100
         allb = sp["bars"][title]
         ns, unit = levels.MA_WINDOWS[title]
         lines, legend = [], []
-        for n, col in zip(ns, ("e", "c")):
+        for n, col in zip(sorted(set(ns) | {100}), ("e", "d", "c")):   # 100일·주·개월선 추가(마스터 지시 2026-11-08) — 봉이 모자라면 그 선은 빠진다
             pts = [[allb[i]["date"], sum(b["c"] for b in allb[i - n + 1:i + 1]) / n] for i in range(n - 1, len(allb))]
             pts = [x for x in pts if x[0] >= view[0]["date"]]
             if len(pts) > 1:
