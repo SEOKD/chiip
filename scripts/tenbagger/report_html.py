@@ -46,7 +46,11 @@ from units import chiip_name, fx_units, money_units  # noqa: E402
 COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
 # 그래프 글자가 viewBox 밖으로 나가 잘리지 않게(마스터 지시 2026-11-08 "Analysis 리포트에 글자가 양식 밖으로 빠져 나가서 잘리지 않도록 하라")
 # 브라우저가 실제 글자 폭을 잰 뒤 viewBox를 글자까지 넓힌다 — 축 숫자·끝 이름표·범례가 오른쪽·왼쪽 끝에서 잘리던 문제(2026-11-08 AXTI 리포트 23곳 실측)
-FIT_JS = ("<script>(function(){function fit(){document.querySelectorAll('svg[viewBox]').forEach(function(s){try{var v=s.viewBox.baseVal,x0=v.x,y0=v.y,x1=v.x+v.width,y1=v.y+v.height;"
+FIT_JS = ("<script>(function(){"
+          # 그래프 글자 최소 크기(마스터 지시 2026-11-08 모바일 QA) — viewBox 폭 ÷ 화면 폭만큼 글자를 키워 화면에서 11px 이상
+          "function grow(s){var w=s.clientWidth;if(!w)return;if(!s.dataset.w0)s.dataset.w0=s.viewBox.baseVal.width;var k=s.dataset.w0/w;s.querySelectorAll('text').forEach(function(t){if(!t.dataset.f0)t.dataset.f0=parseFloat(getComputedStyle(t).fontSize);var f=+t.dataset.f0;t.style.fontSize=(f/k<11?11*k:f)+'px'});var seen=[];s.querySelectorAll('text').forEach(function(t){t.style.display='';var b=t.getBBox();if(!b.width)return;if(seen.some(function(o){return b.x<o.x+o.width-0.5&&o.x<b.x+b.width-0.5&&b.y<o.y+o.height-0.5&&o.y<b.y+b.height-0.5}))t.style.display='none';else seen.push(b)})}"
+          "function stack(){if(!matchMedia('(max-width:640px)').matches)return;document.querySelectorAll('.w table').forEach(function(tb){if(tb.dataset.st)return;var hs=[].map.call(tb.querySelectorAll('thead th, tr:first-child th'),function(h){return h.textContent.trim()});var rs=[].filter.call(tb.querySelectorAll('tr'),function(r){return r.querySelector('td')});if(hs.length<4||!rs.length)return;var mx=0;hs.forEach(function(_,i){var n=0;rs.forEach(function(r){var c=r.children[i];n+=c?c.textContent.length:0});mx=Math.max(mx,n/rs.length)});if(mx<30)return;tb.dataset.st=1;tb.classList.add('stk');tb.querySelectorAll('tr').forEach(function(tr){[].forEach.call(tr.children,function(c,i){if(c.tagName==='TD')c.setAttribute('data-th',hs[i]||'')})})})}stack();"
+          "function fit(){document.querySelectorAll('svg[viewBox]').forEach(function(s){try{grow(s);var v=s.viewBox.baseVal,x0=v.x,y0=v.y,x1=v.x+v.width,y1=v.y+v.height;"
           "s.querySelectorAll('text').forEach(function(t){var b=t.getBBox();if(!b.width)return;x0=Math.min(x0,b.x-2);y0=Math.min(y0,b.y-2);x1=Math.max(x1,b.x+b.width+2);y1=Math.max(y1,b.y+b.height+2)});"
           "if(x0<v.x||y0<v.y||x1>v.x+v.width||y1>v.y+v.height)s.setAttribute('viewBox',[x0,y0,x1-x0,y1-y0].join(' '))}catch(e){}})}"
           "if(document.readyState!=='loading')fit();else document.addEventListener('DOMContentLoaded',fit);window.addEventListener('load',fit);"
@@ -60,7 +64,8 @@ FIT_JS = ("<script>(function(){function fit(){document.querySelectorAll('svg[vie
           "document.addEventListener('click',function(e){var k=e.target.closest&&e.target.closest('.ck');if(!k)return;var sv=k.ownerSVGElement,box=sv&&sv.parentNode.querySelector('.cinfo');"
           "if(!box)return;var d=k.dataset;box.innerHTML='<b>'+d.d+'</b> 종가 <b>'+d.c+'</b> · 고가 '+d.h+' · 저가 '+d.l+' · 시가 '+d.o+' <span class=\\''+(d.up==='1'?'red':'blue')+'\\'>'+d.p+'</span>';"
           "sv.querySelectorAll('.ck.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')})})();</script>")
-CSS = """.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}
+CSS = """@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}
 :root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
@@ -85,7 +90,28 @@ body{font-size:clamp(15px,0.85rem + 0.35vw,17.5px);line-height:1.75}.w{max-width
 h1{font-size:clamp(20px,1.05rem + 1vw,28px)}h2{font-size:clamp(17px,0.95rem + 0.6vw,22px)}h3{font-size:clamp(15px,0.9rem + 0.3vw,18px)}
 .lead,.dash .s,.dash .k,.ans b.q,summary,.toc a,.bx .bl{font-size:clamp(12px,0.7rem + 0.2vw,13.5px)}
 table{font-size:clamp(12.5px,0.74rem + 0.22vw,14.5px)}.dash .v{font-size:clamp(16px,0.9rem + 0.5vw,20px)}.bx .br{font-size:clamp(13px,0.78rem + 0.2vw,15px)}
-svg text{font-size:11px}@media (max-width:640px){svg text{font-size:15px}th,td{padding:6px 4px}}"""
+svg text{font-size:11px}@media (max-width:640px){svg text{font-size:15px}th,td{padding:6px 4px}}
+/* 가독성(마스터 지시 2026-11-08 "폰트 크기·종류·색·밑줄을 적재적소로 — 무분별하게 말고 읽다 보면 눈에 확 들어오게")
+   글꼴 = Noto Sans KR(없으면 시스템 한글), 숫자는 표·대시보드·캔들 정보에서 자릿수 맞춤(tabular-nums).
+   강조는 세 단계만: ① 결론·요약 문답·핵심 박스의 굵은 글씨 = 형광 밑줄 ② 질문 이름표 = 파란 글씨 ③ 표 안 굵은 글씨 = 굵게만(밑줄 없음) */
+:root{--mk:#ffe58a}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--mk:#5a4a12}}:root[data-theme=dark]{--mk:#5a4a12}
+body{font-family:'Noto Sans KR',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;word-break:keep-all;-webkit-text-size-adjust:100%}
+h1{letter-spacing:-.01em;text-wrap:balance}h2{letter-spacing:-.01em}.sub{font-size:clamp(15.5px,0.9rem + 0.3vw,18px);line-height:1.6;color:var(--fg);opacity:.86;margin:6px 0 10px}
+table,.dash,.tiles,.cinfo{font-variant-numeric:tabular-nums}
+.verdict{border:0;border-left:4px solid var(--fg);background:var(--card);border-radius:4px 12px 12px 4px;padding:14px 16px;line-height:1.85}
+.verdict b,.ans div>b:not(.q),.hl b{background:linear-gradient(transparent 60%,var(--mk) 60%);padding:0 1px}
+.ans b.q{color:var(--c);font-weight:700;margin-bottom:2px}
+.w a{color:var(--c);text-underline-offset:3px;text-decoration-thickness:1px}.toc a{color:var(--mut)}.toc{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}.toc a{flex:0 0 auto}   /* 고정 목차는 PC·모바일 모두 한 줄(여러 줄이면 본문을 가린다) */
+@media (max-width:640px){
+  body{font-size:16px;line-height:1.72}.w{padding-block:14px 40px}
+  .toc{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:14px 0 4px;padding:6px 0}.toc::-webkit-scrollbar{display:none}.toc a{flex:0 0 auto;padding:5px 12px}
+  th,td{min-width:4.6em}th:first-child,td:first-child{min-width:7em}
+  .tw th:first-child,.tw td:first-child{position:sticky;left:0;background:var(--bg);z-index:1}
+  details.sec>summary h2{padding:12px 0 4px}.verdict{padding:12px 13px}
+  table.stk thead,table.stk tr:first-child:has(th){display:none}table.stk,table.stk tbody,table.stk tr,table.stk td{display:block;width:auto;min-width:0}
+  table.stk tr{border:1px solid var(--line);border-radius:10px;padding:8px 11px;margin:0 0 8px}table.stk td{border:0;padding:3px 0;text-align:left;position:static}
+  table.stk td:first-child{font-weight:700;font-size:15px}table.stk td:not(:first-child)::before{content:attr(data-th);display:block;font-size:12px;color:var(--mut)}table.stk td:empty{display:none}
+}"""
 DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 DISCLAIMER3 = "구매 등급·목표주가 모두 규칙이 계산한 모델 값으로, 개인의 보유 종목·자금 사정을 반영하지 않는다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 
@@ -1027,7 +1053,7 @@ def render3(d):
     v = d.get("verdict") or {}
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
-             f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
+             f'<h1>{t(d["title"])}</h1>' + (f'<p class="sub">{t(d["subtitle"])}</p>' if d.get("subtitle") else ""),
              f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}</p>']
     parts.append(f'<div class="verdict"><b>Chiip View</b><br>{t(v.get("view"))}</div>')
     if d.get("tiles"):
@@ -1058,7 +1084,7 @@ def render(d):
     v = d.get("verdict") or {}
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
-             f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
+             f'<h1>{t(d["title"])}</h1>' + (f'<p class="sub">{t(d["subtitle"])}</p>' if d.get("subtitle") else ""),
              f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}</p>']
     if v:   # 마스터 지시 2026-10-29: 확신도 → 컨빅션(같은 고·중·저), 인사이트 → 알파(같은 10점 체계), 업사이드 +% 추가
         up, _ = upside(d)
