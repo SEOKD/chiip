@@ -226,6 +226,24 @@ def renumber(items, key):
             n += 1
 
 
+CALC_RE = (re.compile(r"\d[\d.,]*\s*[÷×]\s*\$?\d"),                                   # 1.154 ÷ 1.033, 3 × 2
+           re.compile(r"\([^()]*\$?\d[\d.,]*[^()]*→[^()]*\$?\d[\d.,]*[^()]*\)"))      # ($30.53 → $31.55), (2025-11-06 $278 → 2026-11-06 $455)
+
+
+def summary_calc(d):
+    """한 장 요약(모델이 쓴 답)에 남은 계산 과정 — 식(÷·×)과 괄호 속 '전 → 후' 산출 경로(마스터 지시 2026-11-08 "계산 과정이 자세하게 적혀 있는데, 이를 제외하라")"""
+    out = []
+    for x in d.get("summary") or []:
+        if x.get("auto"):
+            continue
+        for rx in CALC_RE:
+            m = rx.search(str(x.get("a") or ""))
+            if m:
+                out.append(f"'{x.get('q')}': {m.group(0)[:60]}")
+                break
+    return out
+
+
 def merge_lead(d, lead, lad, summary, pipeline=None):
     """내러티브 → 배수 사다리 → 수주·파이프라인을 본문·요약 맨 앞에(마스터 지시 2026-10-30 "요약 처음과 세부 설명 처음에 … 내러티브를 먼저")"""
     d["sections"] = [x for x in (lead, lad, pipeline) if x] + d["sections"]
@@ -338,6 +356,9 @@ def main(argv):
             co = v2run.load_company(a.entity)
             sel = multiples.select_multiple(r["_mm"], dp, report_layout.config()["multiple_select"])
             fx = d.get("corrections") or []
+            calc = summary_calc(d)
+            if calc:
+                raise SystemExit("한 장 요약에 계산 과정이 있다 — 결과(숫자·결론)만 쓰고 식·괄호 속 산출 경로는 뺀다(마스터 지시 2026-11-08): " + " · ".join(calc))
             d = report_layout.assemble(d, dp, co, r, r["_mm"], sel, sec, esec, xs, a.entity)
             d["corrections"] = fx
             for x in apply_corrections(d):   # 다시 적용 못 한 정정 — 글이 바뀌어 자리를 잃었다. 모델이 확인해 고치거나 corrections에서 뺀다
