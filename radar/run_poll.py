@@ -19,6 +19,62 @@ from pollers import common  # noqa: E402
 import notify  # noqa: E402
 
 LOCK = common.STATE / "run_poll.lock"
+# 회차 시간 예산(2026-11-09 Pulse 시의성 점검): Windows 작업(chiip-radar)은 30분 한도에 강제 종료된다. 앞쪽 원천이 느리면(9개 매체 뉴스 13분)
+# 뒤쪽 원천이 굶었다 — 일본 IR 질의응답이 매번 남은 시간을 다 써 11/5부터 11개 원천(일·한·대만 IR, 원자력, 방위, X 인용…)이 3.5일 멈췄다.
+# 그래서 ① 밀린 비율(경과 ÷ 주기) 큰 원천부터 ② 원천마다 별도 프로세스 + 시간 한도(멈춰도 그 원천만 끊긴다) ③ 예산을 넘기면 새 원천을 시작하지 않는다.
+BUDGET_MIN = 22
+SOURCE_TIMEOUT_MIN = 8
+
+
+def overdue(src):
+    """경과 ÷ 주기 — 한 번도 안 돈 원천은 가장 먼저"""
+    last = common.load_state("last_run").get(src["id"])
+    if not last:
+        return 1e9
+    from datetime import datetime
+    return (common.now_kst() - datetime.fromisoformat(last)).total_seconds() / 60 / max(interval(src), 1)
+
+
+def run_child(src, timeout_s):
+    """원천 하나를 별도 프로세스로 — 새 항목 목록(JSON) 또는 None(시간 초과·실패). 수집·저장·건강 기록은 자식이 한다"""
+    import subprocess
+    try:
+        r = subprocess.run([sys.executable, str(Path(__file__)), "--child", src["id"]], capture_output=True, timeout=timeout_s, env={**os.environ, "PYTHONIOENCODING": "utf-8"},
+                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    except subprocess.TimeoutExpired:
+        common.record_health(src["id"], False, f"시간 초과 {timeout_s / 60:.0f}분 — 다음 회차에 다시(run_poll 원천별 한도)")
+        common.mark_run(src["id"])
+        print(f"{src['id']}: 시간 초과({timeout_s / 60:.0f}분)")
+        return None
+    out = r.stdout.decode("utf-8", "replace").strip().splitlines()
+    for line in out[:-1]:
+        print(line)
+    try:
+        return json.loads(out[-1]) if out else []
+    except ValueError:
+        print(f"{src['id']}: 자식 출력 해석 실패 — {r.stderr.decode('utf-8', 'replace')[-200:]}")
+        return []
+
+
+def child(sid):
+    """--child: 원천 하나만 수집·저장·건강 기록하고 새 항목을 마지막 줄 JSON으로 낸다(잠금·판정 없음)"""
+    env = common.load_env()
+    src = next(x for x in registry() if x["id"] == sid)
+    new = []
+    try:
+        items = run_source(src, env)
+        new = common.save_new_items(items)
+        common.record_health(sid, True)
+        print(f"{sid}: 수집 {len(items)}, 신규 {len(new)}")
+    except RuntimeError as exc:
+        common.record_health(sid, False, exc)
+        print(f"{sid}: 건너뜀 — {exc}")
+    except Exception as exc:
+        common.record_health(sid, False, f"{type(exc).__name__}: {exc}")
+        print(f"{sid}: 오류 — {type(exc).__name__}: {exc}")
+    finally:
+        common.mark_run(sid)
+    print(json.dumps(new, ensure_ascii=True, default=str))
 
 
 def acquire_lock():
@@ -290,9 +346,13 @@ def main(argv=None):
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--no-triage", action="store_true")
     ap.add_argument("--only")
+    ap.add_argument("--child")   # 원천 하나만(부모 run_poll이 별도 프로세스로 부른다)
     ap.add_argument("--baseline", action="store_true",
                     help="첫 실행용: 지금 있는 항목을 '본 것'으로만 기록하고 알림·판정하지 않음")
     args = ap.parse_args(argv)
+    if args.child:
+        child(args.child)
+        return 0
     if not acquire_lock():
         print("다른 폴링이 실행 중 — 건너뜀")
         return 0
@@ -312,26 +372,19 @@ def main(argv=None):
         new_total, hot = [], set()
         if not args.only:
             new_total, hot = fast_feeds()
-        for src in registry():
-            if args.only and src["id"] != args.only:
-                continue
-            if not args.force and src["id"] not in hot and not common.is_due(src["id"], interval(src)):
-                continue
-            try:
-                items = run_source(src, env)
-                new = common.save_new_items(items)
-                common.record_health(src["id"], True)
+        import time
+        t0 = time.time()
+        due = [x for x in registry() if (not args.only or x["id"] == args.only)
+               and (args.force or x["id"] in hot or common.is_due(x["id"], interval(x)))]
+        due.sort(key=lambda x: (x["id"] not in hot, -overdue(x)))   # 급한 원천(hot) → 가장 밀린 원천 순
+        for i, src in enumerate(due):
+            left = BUDGET_MIN * 60 - (time.time() - t0)
+            if left < 60:
+                print(f"회차 시간 예산 {BUDGET_MIN}분 소진 — 남은 {len(due) - i}개는 다음 회차(가장 밀린 순으로 먼저)")
+                break
+            new = run_child(src, min(SOURCE_TIMEOUT_MIN * 60, left))
+            if new:
                 new_total.extend(new)
-                print(f"{src['id']}: 수집 {len(items)}, 신규 {len(new)}")
-            except RuntimeError as exc:  # 키 없음 등 설정 문제
-                common.record_health(src["id"], False, exc)
-                print(f"{src['id']}: 건너뜀 — {exc}")
-            except Exception as exc:
-                common.record_health(src["id"], False, f"{type(exc).__name__}: {exc}")
-                print(f"{src['id']}: 오류 — {type(exc).__name__}: {exc}")
-                traceback.print_exc(limit=1)
-            finally:
-                common.mark_run(src["id"])
         if args.baseline:
             import run_triage
             run_triage.mark_triaged(it["item_id"] for it in new_total)
