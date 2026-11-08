@@ -201,8 +201,8 @@ def send_document(path, caption="", level="REPORT"):
     return ok
 
 
-def send(text, level="P1", ref=None, html_mode=False, md=False):
-    ok = _send(text, level, ref, html_mode, md)
+def send(text, level="P1", ref=None, html_mode=False, md=False, buttons=None):
+    ok = _send(text, level, ref, html_mode, md, buttons)
     run_ledger.send_row(text, level, ok)
     if ok:   # 피드 가독성 채점·양식 개선용 보관(마스터 지시 2026-11-04 "가독성 있게 쓰도록 보고 양식을 지속 개선") — git 제외
         try:
@@ -215,7 +215,7 @@ def send(text, level="P1", ref=None, html_mode=False, md=False):
     return ok
 
 
-def _send(text, level="P1", ref=None, html_mode=False, md=False):
+def _send(text, level="P1", ref=None, html_mode=False, md=False, buttons=None):
     raw_text = text
     if level == "PORTFOLIO":   # Chiip View 항목의 '기업:' 줄도 다른 항목처럼 하이픈으로 시작한다(마스터 지시 2026-10-31)
         text = re.sub(r"(?m)^기업:", "- 기업:", text)
@@ -266,6 +266,8 @@ def _send(text, level="P1", ref=None, html_mode=False, md=False):
         payload["parse_mode"] = "HTML"
     if ref:  # 알림마다 '⭐ 노션 기록' 버튼 — 누르면 radar/telegram_inbox.py가 인텔 아카이브에 기록
         payload["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": "⭐ 노션 기록", "callback_data": f"save:{ref}"}]]})
+    elif buttons:   # 임의 버튼 줄 [[(글자, callback_data), …], …] — 기사 소재 채택(2026-11-08, scripts/article/pitch_feedback.py)
+        payload["reply_markup"] = json.dumps({"inline_keyboard": [[{"text": t, "callback_data": d} for t, d in row] for row in buttons]})
     data = urllib.parse.urlencode(payload).encode()
     try:
         with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/sendMessage", data=data, timeout=20) as r:

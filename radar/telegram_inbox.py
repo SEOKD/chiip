@@ -74,6 +74,17 @@ def poll_updates():
         cq = u.get("callback_query")
         if cq:
             msg = cq.get("message") or {}
+            if str(msg.get("chat", {}).get("id")) == chat and str(cq.get("data", "")).startswith("pitch:"):   # 기사 소재 채택 버튼(2026-11-08)
+                try:
+                    sys.path.insert(0, str(common.ROOT / "scripts" / "article"))
+                    import pitch_feedback
+                    note, markup = pitch_feedback.on_callback(cq["data"])
+                    _tg(token, "answerCallbackQuery", {"callback_query_id": cq["id"], "text": note})
+                    if markup:
+                        _tg(token, "editMessageReplyMarkup", {"chat_id": chat, "message_id": msg.get("message_id"), "reply_markup": json.dumps(markup)})
+                except Exception as exc:
+                    common.record_health("pitch-feedback", False, type(exc).__name__)
+                continue
             if str(msg.get("chat", {}).get("id")) != chat or not str(cq.get("data", "")).startswith("save:"):
                 continue
             ref = cq["data"][5:]

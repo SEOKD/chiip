@@ -98,8 +98,12 @@ def pitch_adoption_30d(today):
     rows = [r for r in _rows("outputs/article/pitch/log.csv") if (_d(r.get("date")) or date.min) >= today - timedelta(days=29)]
     if not rows:
         return None, 0
-    yes = sum(1 for r in rows if str(r.get("adopted", "")).strip().lower() in ("adopted", "y", "yes", "1", "true", "채택"))
-    return yes / len(rows), len(rows)
+    # 마스터가 답한 칸만 분모로 — 빈칸(미응답)을 '불채택 0'으로 세면 측정 결함이 점수를 깎는다(프로바이저 10/30~11/7 반복 지적, 2026-11-08 채택 버튼 신설)
+    answered = [r for r in rows if str(r.get("adopted", "")).strip()]
+    if not answered:
+        return None, 0
+    yes = sum(1 for r in answered if str(r.get("adopted", "")).strip().lower().startswith(("adopted", "y", "yes", "1", "true", "채택")))
+    return yes / len(answered), len(answered)
 
 
 def datapack_score_7d(today):

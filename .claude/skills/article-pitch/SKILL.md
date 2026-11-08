@@ -1,6 +1,6 @@
 ---
 name: article-pitch
-description: 기자 본업용 기사 소재(§21.14 3대 산출물 ②). 매일 장 마감 후 그날의 레이더 카드·역방향 신호·정책·공시·실적·인사이트 검토에서 야마 후보 최대 3건을 골라 텔레그램으로 보낸다(공개 자료만). 예약 작업 chiip-article-pitch 또는 마스터 요청 시.
+description: 기자 본업용 기사 소재(§21.14 3대 산출물 ②). 매일 아침(06:12 KST) 지난 24시간의 레이더 카드·역방향 신호·정책·공시·실적·인사이트 검토에서 야마 후보 최대 3건을 골라 텔레그램으로 보낸다(공개 자료만). 예약 작업 chiip-article-pitch 또는 마스터 요청 시.
 argument-hint: "[날짜 | 주제]"
 ---
 
@@ -8,6 +8,7 @@ argument-hint: "[날짜 | 주제]"
 
 # article-pitch — 기사 소재 (ADR-010 §7)
 ## 재료 (지난 24시간)
+- **먼저 후보 풀(2026-11-08 보완):** `py scripts/article/pitch_pool.py` — Pulse 피드 판단 건(인사이트 4 이상)·P0·P1 알림·새 IR 문서(일본·한국·대만·홍콩·유럽 Fiscal)·SEC·DART·오늘 Industry 리포트를 모아 '1차 문서 있음 3 + 한국 연결 2/1 + 인사이트 + 숫자'로 순위를 매기고, 최근 7일 기사 소재·마스터 딘스티커 종목은 깎는다. 상위 후보부터 1차 문서를 열고 신규성 검색을 한다 — 찾기에 시간을 쓰지 않는다. 풀에 없는 재료도 아래 목록에서 더할 수 있다.
 - `radar/cards/` P0~P2 카드, `radar/reverse/signals/` 수렴·S3 이상, 정책·학회 항목, SEC 공시·실적, 포커스 점수 급변, `insight-review` 결과, `model-lab` 노트(산업 데이터 논문).
 
 ## 고르는 기준 (`yama-check` 4요소 + 부가가치)
@@ -17,7 +18,7 @@ argument-hint: "[날짜 | 주제]"
 4. 지금 써야 할 이유: 시점(실적·정책 단계·학회).
 5. 부가가치 원천: 독점(역방향 흔적)·해석(양산 관점)·속도·정량 중 무엇인가. 없으면 제외.
 
-## 형식 (텔레그램 1통, `notify.send(text, "PITCH")`) — 마스터 지시 2026-10-30 "양식이 너무 난잡하다"
+## 형식 (텔레그램 1통 — `py scripts/article/pitch_feedback.py send <YYYYMMDD>`가 `_tg.txt`를 채택 버튼과 함께 보낸다, 2026-11-08) — 마스터 지시 2026-10-30 "양식이 너무 난잡하다"
 ```
 [기사 소재 MM/DD] 3건
 
@@ -41,7 +42,7 @@ argument-hint: "[날짜 | 주제]"
 ## 기록
 - `outputs/article/pitch/YYYYMMDD.md`(로컬 상세. 필드 인텔과 맞닿는 메모는 여기만) — 기사마다 1차 출처 링크·신규성 검색 기록·보강 취재 질문 3개·데스크 킬 질문·틀리는 조건·다음 확인 사건·부가가치 원천을 적는다(텔레그램 양식에서 뺀 항목, 성적표·프로바이저 점검 재료).
 - `outputs/article/pitch/YYYYMMDD_tg.txt` = 텔레그램 본문 그대로.
-- `outputs/article/pitch/log.csv`(date,pitch_id,yama,sources,adopted) — adopted는 마스터가 채택을 말하면 채운다(성적표: 채택률).
+- `outputs/article/pitch/log.csv`(date,pitch_id,yama,sources,adopted) — adopted는 비워 둔다. 마스터가 텔레그램 버튼(① 채택·모두 패스)을 누르면 `radar/telegram_inbox.py`가 채운다(2026-11-08). 대화로 채택을 말하면 같은 칸에 '채택'. 프로바이저 채택률은 답한 칸만 센다. pitch_id는 `PITCH-YYYYMMDD-NN`(텔레그램 기사 순서와 같게 — 버튼이 번호로 찾는다).
 
 ## 금지
 - 텔레그램에 필드 인텔·엠바고·취재원 단서. 확인 안 된 단정("단독 확인" 등). 정황을 사실처럼 쓰기.
