@@ -608,7 +608,7 @@ def run(now=None, peek=False):
         fdocs = fiscal_ir_docs.status(now)
     except Exception as exc:
         fdocs = {"due": False, "error": type(exc).__name__}
-    try:   # GitHub 사용량 95% 경보(2026-11-08 마스터 지시) — 하루 한 번, 모델 없이 결정론으로 보낸다
+    try:   # GitHub 사용량 95% 경보(2026-11-08 마스터 지시) — 월말 한 번, 모델 없이 결정론으로 보낸다
         import github_usage
         if github_usage.due(now):
             github_usage.check(now, send=True)

@@ -3,7 +3,7 @@
 API 토큰 없이 저장소에서 추정한다(설정 config/github_usage.yaml):
   ① Actions 실행 시간 — 이번 달 main에 올라간 커밋 수(first-parent, 푸시 횟수의 상한) × 1회 분 ÷ 월 무료 분
   ② 저장소 크기 — git count-objects의 압축 크기 + 느슨한 객체 ÷ 권장 1GB(요금 아님 — 참고 경보)
-95%를 넘은 항목은 한 달에 한 번 Pulse(텔레그램 개인 봇)로 알린다. radar/pulse.py가 하루 한 번 부른다(모델 없이 결정론).
+95%를 넘은 항목은 한 달에 한 번 Pulse(텔레그램 개인 봇)로 알린다. radar/pulse.py가 월말(그달 마지막 날)에 한 번 부른다(모델 없이 결정론, 2026-11-08 마스터 지시).
 사용: py radar/github_usage.py [--check] [--send]
 """
 import subprocess
@@ -77,10 +77,12 @@ def check(now=None, send=False, c=None):
 
 
 def due(now=None):
-    """하루 한 번"""
+    """월말(그달 마지막 날, KST)에 한 번 — 2026-11-08 마스터 지시 "월말(31일 또는 30일)마다 시행" """
     now = now or datetime.now(KST)
+    if (now + timedelta(days=1)).month == now.month:
+        return False
     last = common.load_state(STATE, {}).get("last_check")
-    return not last or datetime.fromisoformat(last) < now - timedelta(hours=24)
+    return not last or not last.startswith(now.strftime("%Y-%m-%d"))
 
 
 def main(argv):
