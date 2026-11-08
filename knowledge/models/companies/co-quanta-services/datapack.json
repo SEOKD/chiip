@@ -869,5 +869,31 @@
     "channels": 5
    }
   }
+ },
+ "sync": {
+  "products": [
+   {
+    "name": "송배전·변전 시공",
+    "segment": "전력·신재생 인프라",
+    "hs": "",
+    "share": 0.75,
+    "inputs": [
+     "transformer",
+     "switchgear",
+     "copper"
+    ],
+    "basis": "서비스 — 전력 기자재 PPI가 투자 수요 대용"
+   },
+   {
+    "name": "지하·산업 인프라 시공",
+    "segment": "지하 인프라·산업",
+    "hs": "",
+    "share": 0.25,
+    "inputs": [
+     "copper"
+    ],
+    "basis": "서비스"
+   }
+  ]
  }
 }

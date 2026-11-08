@@ -18,7 +18,7 @@ datapack "sync":
 지표 자동 선택(마스터 지시 2026-11-08 "기업 제품 및 서비스와 연관성이 가장 높은 PPI 세부 지표, 수출입 세부 지표와 연동하도록 해라. 그리고 다음 분기 추이까지 모델링을 통해 합리적으로 추산"):
   sync.products [{name, segment, hs(6자리), share(매출 비중), inputs[config/trade_ppi.yaml inputs 키]}] — 제품·서비스 → 품목 코드는 모델 판단(없으면 indicators의 hs·input에서 거꾸로 만든다).
   후보 = 그 HS의 무역 세부 시계열(radar/trade_hs.py 저장소, 나라·수출입 전부) + 같은 HS를 가진 PPI 세부 지수(config inputs, 나라별) + 모델 지정 지표.
-  연관성 = 품목 일치(6자리 1.0 · 4자리 0.7) × 대용 지수 감점(업종 대용 PPI 0.6) × 제품 매출 비중. 점수 = 연관성 × 싱크로율(자기 제품 지표는 +방향만, 음의 상관 0점) × (유의 1.0, 아니면 0.8).
+  연관성 = 품목 일치(6자리 1.0 · 4자리 0.7) × 대용 지수 감점(업종 대용 PPI 0.6) × 제품 매출 비중. 점수 = 연관성 × 싱크로율(+방향만, 반대 부호 0점 — 반대여야 하는 지표는 sign: -1) × (유의 1.0, 아니면 0.8).
   PPI 1개·수출입 1개를 점수로 고른다(후보 표에 모두 남긴다 — 후보가 많을수록 최대 상관은 부풀므로 연관성을 먼저 곱한다).
   다음 분기: 지표가 선행하면 확정 값, 0분기면 나온 달로 나우캐스트, 한 달도 없으면 지표 증가율을 자기회귀모델로 한 분기 예측하고
   σ = √(회귀 잔차² + (기울기 × 지표 예측 오차)²)로 넓힌다. 추정값은 그림에 '다음 분기 추정'으로 이어 그린다.
@@ -42,6 +42,7 @@ TRADE_CFG = ROOT / "config" / "trade_ppi.yaml"
 COUNTRY = {"us": "미국", "eu": "EU", "uk": "영국", "jp": "일본", "kr": "한국", "tw": "대만", "hk": "홍콩"}
 FLOW = {"export": "수출", "import": "수입"}
 MAX_CANDIDATES = 24
+BROAD4 = {"8542", "8541", "8471", "8517"}   # 4자리 안에 서로 다른 제품이 섞인 품목군(IC 전체·반도체 소자·컴퓨터·통신기기) — 6자리 일치만 쓴다
 WINDOW = 16   # 그림은 최근 16개 분기 — 매출과 지표를 같은 분기 축에 놓는다(마스터 지시 2026-11-08)
 
 
@@ -248,11 +249,11 @@ def candidates(dp, db=HS_DB):
         w = (float(pr.get("share") or 0) / tot) if tot else 1.0 / max(len(prods), 1)
         w = max(w, 0.25)   # 작은 제품도 후보에서 아주 빠지지는 않게
         for rep, flow, h in have:
-            m = 1.0 if h == hs else 0.7 if hs and h[:4] == hs[:4] else 0
+            m = 1.0 if h == hs else 0.7 if hs and h[:4] == hs[:4] and hs[:4] not in BROAD4 else 0
             if m:
-                add({"label": f"{COUNTRY.get(rep, rep)} {pr['name']} {FLOW.get(flow, flow)}(HS {h})", "source": "hs", "reporter": rep, "flow": flow, "hs": h,
+                add({"label": f"{COUNTRY.get(rep, rep)} {pr['name']} {FLOW.get(flow, flow)}(HS {h})" if m == 1 else f"{COUNTRY.get(rep, rep)} HS {h} {FLOW.get(flow, flow)}({pr['name']}과 같은 4자리 품목군)", "source": "hs", "reporter": rep, "flow": flow, "hs": h,
                      "segment": pr.get("segment"), "why": f"{pr['name']} 품목 {'일치' if m == 1 else '같은 4자리'}", "origin": "자동"}, m * w)
-        keys = list(pr.get("inputs") or []) + [k for k, v in inp.items() if hs and str(v.get("hs") or "")[:4] == hs[:4]]
+        keys = list(pr.get("inputs") or []) + [k for k, v in inp.items() if hs and (str(v.get("hs") or "") == hs or (str(v.get("hs") or "")[:4] == hs[:4] and hs[:4] not in BROAD4))]
         for k in dict.fromkeys(keys):
             v = inp.get(k) or {}
             m = 1.0 if str(v.get("hs") or "") == hs or k in (pr.get("inputs") or []) else 0.7
@@ -270,12 +271,12 @@ def kind(ind):
 
 
 def score(row):
-    """자기 제품의 수요·가격 지표는 같은 방향(+)이어야 말이 된다 — 음의 상관은 점수 0(우연이거나 다른 경로). 모델이 sign을 주면 그 방향, 안 주면 |상관|"""
+    """지표는 기본적으로 같은 방향(+)이어야 말이 된다 — 반대 부호 상관은 점수 0(우연이거나 다른 경로). 반대여야 하는 지표는 sign: -1"""
     f = row.get("rev")
     if not f:
         return 0.0
-    sg = row["ind"].get("sign", 1 if row["ind"].get("origin") == "자동" else None)
-    r = f["r"] * sg if sg else abs(f["r"])
+    sg = row["ind"].get("sign", 1)   # 기본 +방향(수요·가격 지표). 원가·대체재처럼 반대로 움직여야 하는 지표는 indicators에 sign: -1
+    r = f["r"] * sg
     return row["rel"] * max(r, 0.0) * (1.0 if f["sig"] else 0.8)
 
 

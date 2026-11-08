@@ -7312,6 +7312,32 @@
     "country": "us",
     "why": "제품 가격 사이클"
    }
+  ],
+  "products": [
+   {
+    "name": "맞춤형 가속기(XPU)·스위치·네트워크 칩",
+    "segment": "반도체 솔루션(XPU·네트워킹 포함)",
+    "hs": "854231",
+    "share": 0.58,
+    "inputs": [
+     "logic-ic"
+    ],
+    "basis": "프로세서·컨트롤러 IC"
+   },
+   {
+    "name": "광·네트워크 모듈",
+    "segment": "반도체 솔루션(XPU·네트워킹 포함)",
+    "hs": "851762",
+    "share": 0.04,
+    "basis": "데이터 송수신 기기"
+   },
+   {
+    "name": "인프라 소프트웨어(VMware)",
+    "segment": "인프라 소프트웨어(VMware)",
+    "hs": "",
+    "share": 0.38,
+    "basis": "소프트웨어 — 무역·PPI 연결 없음"
+   }
   ]
  },
  "segments_hist": {

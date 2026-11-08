@@ -48,7 +48,9 @@ class TestSelect(unittest.TestCase):
         row = {"ind": {"origin": "자동"}, "rel": 1.0, "rev": {"r": -0.9, "sig": True}}
         self.assertEqual(V.score(row), 0.0)
         row["ind"] = {"origin": "모델 지정"}
-        self.assertAlmostEqual(V.score(row), 0.9)
+        self.assertEqual(V.score(row), 0.0)            # 모델 지정도 기본 +방향
+        row["ind"] = {"origin": "모델 지정", "sign": -1}
+        self.assertAlmostEqual(V.score(row), 0.9)      # 원가·대체재처럼 반대여야 하는 지표
 
     def test_chooses_matching_trade_series_and_models_next(self):
         c = V.compute(self.dp, history={"inputs": {}}, db=self.db)
