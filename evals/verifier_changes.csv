@@ -1,3 +1,4 @@
 date,files,reason
 2026-10-31,evals/rules.yaml scripts/lab/rule_evals.py radar/pulse_check.py radar/verifier_lock.py,ADR-013 1단계 최초 잠금(마스터 승인 2026-10-31)
 2026-11-01,evals/rules.yaml,"2026-11-01 마스터 지시: 텐배거 리포트에 목표주가·투자의견 제시, 매매·비중·금액 지시 금지는 유지"
+2026-11-08,evals/rules.yaml,"AAP-20261102-01 안 1 — report-not-advice require를 '(매수|투자) 권유 아님'으로 넓힘, 마스터 승인 2026-11-08"

@@ -384,7 +384,21 @@ def run(now=None):
                   (f" · 실적 공시 {earnings_hit}" if earnings_hit else "") + cal + f" → {rel}" + (f" · 실패 {errors}" if errors else ""))
 
 
+DISCLAIMER = "공개 자료 기반 분석이며 투자 권유가 아님"
+
+
+def ensure_disclaimer(day=None):
+    """그날 Portfolio 기록 하단에 면책 문구가 없으면 한 줄 덧붙인다(AAP-20261102-01 안 3, 마스터 승인 2026-11-08 — 지시문 강조 대신 결정론 관문)"""
+    p = common.ROOT / "outputs" / "invest" / "portfolio" / f"{day or common.now_kst().strftime('%Y%m%d')}.md"
+    if p.exists() and DISCLAIMER not in p.read_text(encoding="utf-8"):
+        with p.open("a", encoding="utf-8") as f:
+            f.write(chr(10) * 2 + DISCLAIMER + chr(10))
+        return True
+    return False
+
+
 def end():
+    ensure_disclaimer()
     st = common.load_state(STATE, {})
     st.pop("lock", None)
     common.save_state(STATE, st)
