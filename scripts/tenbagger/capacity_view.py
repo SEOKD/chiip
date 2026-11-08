@@ -39,6 +39,18 @@ FAC_STATUS = ("가동", "증설 중", "건설 중", "계획", "가동 중단", "
 OWNED = ("소유", "임차", "소유·임차", "위탁", "미확인")
 
 
+import re as _re
+
+OFFICE = _re.compile(r"사무|오피스|본사|본부|영업|판매|연구|R&D|설계|창고|물류|office|headquarter|HQ|sales|admin|research|design center|warehouse|distribution", _re.I)
+PRODUCTION = _re.compile(r"제조|생산|공장|팹|조립|가공|도금|라인|양산|manufactur|production|plant|fab|factory|assembly|foundry|mill|works", _re.I)
+
+
+def is_production(f):
+    """생산시설인가 — 용도·이름에 생산 말이 있고 사무·연구·영업·창고만의 시설이 아니다(겸용이면 생산으로 본다)"""
+    txt = f"{f.get('use', '')} {f.get('name', '')}"
+    return bool(PRODUCTION.search(txt)) or not OFFICE.search(txt) and bool(f.get("use"))
+
+
 def _num(x):
     return float(x) if isinstance(x, (int, float)) and not isinstance(x, bool) else None
 
@@ -178,12 +190,16 @@ def facility_blocks(cap):
     B = [{"type": "p", "text": text}, {"type": "table", "title": f"생산시설 {fac['count']}곳 — 명칭·위치·생산능력", "headers": head, "rows": rows}]
     units = {f["capacity"]["unit"] for f in known}
     if len(known) >= 2 and len(units) == 1:
-        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"시설별 생산능력({units.pop()})", "unit": "",
-                                             "rows": [{"label": f["name"], "bars": [{"name": "생산능력", "color": "c", "value": f["capacity"]["value"]}]} for f in known]}})
+        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"시설별 생산능력({units.pop()}, 큰 순)", "unit": "",
+                                             "rows": [{"label": f["name"], "bars": [{"name": "생산능력", "color": "c", "value": f["capacity"]["value"]}]} for f in sorted(known, key=lambda f: -f["capacity"]["value"])]}})
     elif has_area:
-        au = next((f["area"].get("unit", "") for f in items if (f.get("area") or {}).get("value")), "")
-        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"시설별 면적({au}) — 생산능력 미공시라 면적을 대용으로", "unit": "",
-                                             "rows": [{"label": f["name"], "bars": [{"name": "면적", "color": "e", "value": f["area"]["value"]}]} for f in items if (f.get("area") or {}).get("value")]}})
+        # 면적 그림은 생산시설만, 면적 큰 순(마스터 지시 2026-11-08 "오피스 말고 생산시설만 다루고 면적 상위 순으로") — 표에는 모든 시설이 남는다
+        prod = [f for f in items if (f.get("area") or {}).get("value") and is_production(f)]
+        au = next((f["area"].get("unit", "") for f in prod), "")
+        if prod:
+            B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"생산시설별 면적({au}, 큰 순) — 생산능력 미공시라 면적을 대용으로", "unit": "",
+                                                 "rows": [{"label": f["name"], "bars": [{"name": "면적", "color": "e", "value": f["area"]["value"]}]}
+                                                          for f in sorted(prod, key=lambda f: -f["area"]["value"])]}})
     return B
 
 

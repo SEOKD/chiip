@@ -112,7 +112,7 @@ class TestFacilities(unittest.TestCase):
         self.assertIn("이름·위치를 밝힌 곳 2곳", B[0]["text"])
         self.assertEqual(B[1]["rows"][0][:2], ["A 공장", "미국 텍사스"])
         self.assertLessEqual(len(B[1]["headers"]), 5)
-        self.assertEqual(B[2]["chart"]["title"], "시설별 생산능력(MW/년)")
+        self.assertEqual(B[2]["chart"]["title"], "시설별 생산능력(MW/년, 큰 순)")
 
     def test_area_proxy_when_capacity_unknown(self):
         c = copy.deepcopy(CAP)
@@ -125,3 +125,16 @@ class TestFacilities(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestAreaChart(unittest.TestCase):
+    """면적 대용 그림 — 생산시설만, 면적 큰 순(마스터 지시 2026-11-08)"""
+    def test_production_only_sorted(self):
+        import capacity_view as CV
+        fac = {"count": 3, "count_basis": "10-K", "items": [
+            {"name": "본사", "location": "A", "use": "본사·사무", "owned": "임차", "status": "가동", "capacity_basis": "미공시", "area": {"value": 900000, "unit": "sq ft"}},
+            {"name": "작은 공장", "location": "B", "use": "제조", "owned": "소유", "status": "가동", "capacity_basis": "미공시", "area": {"value": 100000, "unit": "sq ft"}},
+            {"name": "큰 공장", "location": "C", "use": "제조", "owned": "소유", "status": "가동", "capacity_basis": "미공시", "area": {"value": 500000, "unit": "sq ft"}}]}
+        B = CV.facility_blocks({"facilities": fac})
+        ch = [b for b in B if b.get("type") == "chart"][0]["chart"]
+        self.assertEqual([r["label"] for r in ch["rows"]], ["큰 공장", "작은 공장"])
