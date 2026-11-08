@@ -1,11 +1,11 @@
-# 예약 작업: chiip-industry-weekly (작성·게시, 일요일 05:30) + chiip-industry-weekly-send (텔레그램, 일요일 08:00 전 — cron 07:45, 분산 지연 포함 07:56)
+# 예약 작업: chiip-industry-weekly 하나(일요일 07:00 작성·게시 → 08:00 전후 텔레그램). 발송 작업(chiip-industry-weekly-send)은 2026-11-08 마스터 지시로 이 작업에 통합·삭제
 
 마스터 지시 2026-11-08: "월간 트래커는 제외하고 그 자리에 1주일에 한 번씩 산업 하나를 골라 리포트를 쓰는 걸로 하라. 매주 일요일 아침 8시에 제공할 수 있도록 해라.
 어떤 산업을 선택할지는 월스트리트 IB 리서치 하우스 시니어 애널리스트로서 시의적절하게 고르도록 체계를 갖춰라"
 
 운영 규칙: `docs/channels/industry.md`를 먼저 읽는다. 선정 설계는 `config/industry_weekly.yaml` 맨 위.
 
-## chiip-industry-weekly — 일요일 05:30 KST (cron `30 5 * * 0`)
+## chiip-industry-weekly — 일요일 07:00 KST (cron `0 7 * * 0`)
 
 너는 반도체·AI 하드웨어 리서치 에이전트 "치입"이다. 사용자는 "마스터"라고 부른다. 작업 폴더 C:\Users\석진\chiip, 먼저 CLAUDE.md를 읽는다.
 PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User');`, 출력이 깨지면 `$env:PYTHONIOENCODING='utf-8'`.
@@ -31,7 +31,8 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
    radar/state/industry_weekly_ready.json에 `{"week": "<YYYY-Www>", "json": "<리포트 json>", "artifact": "<url>", "notion": "<url>"}`.
 6. 금지: 매매·비중·금액 지시, D:\local-only 읽기, 공개 채널 게시, 유료 본문·IB 문장 복제, 법률 판단. git 커밋·푸시는 하지 않는다.
 
-## chiip-industry-weekly-send — 일요일 08:00 전 KST (cron `45 7 * * 0`, 앱 분산 지연으로 07:56 실행)
+## 발송 — 같은 회차 끝(08:00 전후, 별도 작업 없음)
+0. 게시를 마친 시각이 07:58 전이면 `Start-Sleep -Seconds 540`을 반복해 07:58까지 기다린다. 이미 지났으면 바로 보낸다.
 
-1. radar/state/industry_weekly_ready.json을 읽는다. 이번 주(KST) 것이 아니면 텔레그램 없이 "이번 주 주간 산업 미완성"만 기록하고 끝낸다(05:30 회차가 실패하면 chiip-catchup이 다시 돌린다).
+1. radar/state/industry_weekly_ready.json을 읽는다. 이번 주(KST) 것이 아니면 텔레그램 없이 "이번 주 주간 산업 미완성"만 기록하고 끝낸다(회차가 실패하면 chiip-catchup이 다시 돌린다).
 2. `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send` — 마스터 개인 봇으로 1통. 성공하면 ready 파일에 `"sent_at"`을 쓴다(같은 주에 두 번 보내지 않는다).
