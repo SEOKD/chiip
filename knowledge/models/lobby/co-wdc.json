@@ -1,0 +1,150 @@
+{
+ "company": "co-wdc",
+ "names": [
+  "Western Digital"
+ ],
+ "as_of": "2026-11-08",
+ "lda": {
+  "status": "키 없음",
+  "rows": []
+ },
+ "sec": {
+  "status": "ok",
+  "rows": [
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2026-10-05",
+    "id": "0001628280-26-064909:wdc-20261005.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2025-10-06",
+    "id": "0001628280-25-044298:wdc-20251006.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "Sandisk Corp  (SNDK)  (CIK 0002023554)",
+    "date": "2025-10-07",
+    "id": "0001628280-25-044481:sndk-20251006.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "Sandisk Corp  (SNDK)  (CIK 0002023554)",
+    "date": "2025-10-07",
+    "id": "0001628280-25-044481:sndk_pxyx2025xwo61xcourtesy.pdf"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2023-10-05",
+    "id": "0001308179-23-001017:wdc4186171-def14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2024-10-07",
+    "id": "0001308179-24-000755:wdc4316471-def14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2024-10-07",
+    "id": "0001308179-24-000755:wdc_courtesy-pdf.pdf"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2023-10-05",
+    "id": "0001308179-23-001017:wdc_courtesy-pdf.pdf"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2022-10-03",
+    "id": "0001206774-22-002479:wdc3995541-def14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "WESTERN DIGITAL CORP  (WDC)  (CIK 0000106040)",
+    "date": "2022-10-03",
+    "id": "0001206774-22-002479:wdc_courtesy-pdf.pdf"
+   }
+  ]
+ },
+ "news": {
+  "status": "ok",
+  "rows": [
+   {
+    "title": "Washington DC’s 500 Most Influential People of 2026 - Washingtonian",
+    "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOTmw1bU1OeUlSY191Y0NOVEE5UUZ4cmdVS182RHZTZWphOGFTYkxYSkR5b1F6VGVkS3FadV9uX2VDUlRsZ2xPLTVac19wWnIwdjYyWDdaRm9SV2FlRUxQUldDT1NMRWZCa3BXOWpEZndTQTZlcEdwSldrMGdacUVqZFVpbHU0X0M0MWZpN0FRbXBjdw?oc=5"
+   },
+   {
+    "title": "Apple Wants to Buy Blacklisted Chinese Memory. Micron Has Nothing to Worry About - 24/7 Wall St.",
+    "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNTUdBSkxHZ0QwWFFQYlJnUHV6UmxtcmVWLU50dURRVjJHNUo0bW9DVmNESFpJelBrNjdRZ1A1SDMtYXFPRERlMHdrQ2VLWWhpT05rZEZyLVQ4RklLQi1BTW9hVTR6azNmQWJzOGQzNEIydHp0Z2MwVjNLUktSWlFydV9aWnI5VlpENG5UNFQtTTh0bzA0YVAzdmd5Nmg3Vy1ybG91U0FpOS1kQVlEZENQWGMxcXR5N3ltUXJCSVhKV2I?oc=5"
+   },
+   {
+    "title": "Western Digital Stock And 2 Crypto Infrastructure Picks Retail Investors Should Watch - Simply Wall St",
+    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNOE55UU9ZY3REUEZCSFJsU0hVNk1GeGlCZnVKbFg5a2c2WXY0eC1ybWZhcFFoSXFIMUNWcks1Qmpvb3Mtd2RUTk5tQWY4dnBiN2tUaHQyV1dtcDJtRmRqNklqZm5UU3NUQTU4QUx2QUd2X3FWLTJfa1JsRU8tVUJyU1dGMzNnWlFZczVsTGhVQ0FLRnJMdGpSWVU1dUxMWVdDWGhKeTJ5eHNRX0hnMUpqN1V1ZFNHTlR5NWdBRGVqNlNyaUVVVTczetIBzgFBVV95cUxNeTR0QU1tS2pNdVhEZTdBbUJDMndrU1FkbTh2bk1vOFViV3pBVjBVWkZqcHlELW85ck1QS0x4dFg5MEJzdFVTQVF5X19vOVRuOE9MM21iTWEtejNVdTkxYk96anBNVndUVktoZ1JDODc3RVdFVFh0TW1JRWtyRmZMYUpWZXVPOWNwVkFEZFhWUVpnMmhndnJ3bk1vLUV6aEE5dHd4eHdTa0tqTXptSDNUTjdJMkE0ZUZpNW92VHdNdDFRWFFsZlMtel9VeXdRUQ?oc=5"
+   },
+   {
+    "title": "Apple’s Fight With Micron Just Took a Wild Turn — And It Could Reshape the Memory Market - 24/7 Wall St.",
+    "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOWm95Z1ZJamdDeDRRNTJxTnFsZEJjYU5FRjJhaEdTbGFMeUpfU0UzNnN5YXN1dnBXVmhyZFkyWjA5WU43NGhFaHd4T094Z21iRGxYYkJnNnhkM0V5TWRnZDFqTS1KYTJnOGVWR245cFAxMTh0NGhObHNTcFlfdnBRMXdXbUN3a0hGYWV5Z2I4WkhLSkI0Zk9xc0d3MUdUVjUyQ1VmVnludlc2ME01X0xmckFHb0tMdzBjcW9ENUFNSzdLX29qS250Tw?oc=5"
+   }
+  ]
+ },
+ "verdict": "로비 지출 있음(하원 LD 분기 집계)",
+ "house": {
+  "status": "ok",
+  "source": "Easyconomics house_ld",
+  "as_of": "2026-11-08",
+  "rows": [
+   {
+    "year": 2026,
+    "quarter": 1,
+    "total_usd": 460000.0,
+    "self_reported": 300000.0,
+    "outside_income": 160000.0,
+    "issues": [
+     "TRD 3",
+     "NAT 2",
+     "DEF 2",
+     "BUD 1",
+     "TAX 1"
+    ]
+   },
+   {
+    "year": 2026,
+    "quarter": 2,
+    "total_usd": 450000.0,
+    "self_reported": 290000.0,
+    "outside_income": 160000.0,
+    "issues": [
+     "TRD 2",
+     "NAT 2",
+     "DEF 1",
+     "BUD 1",
+     "TAX 1",
+     "GOV 1"
+    ]
+   },
+   {
+    "year": 2026,
+    "quarter": 3,
+    "total_usd": 470000.0,
+    "self_reported": 310000.0,
+    "outside_income": 160000.0,
+    "issues": [
+     "TRD 3",
+     "BUD 2",
+     "NAT 2",
+     "DEF 2",
+     "GOV 1",
+     "LBR 1",
+     "MAN 1"
+    ]
+   }
+  ]
+ }
+}

@@ -35,3 +35,4 @@ sources:
   - {id: easyconomics, region: all, kind: model, use: "Easyconomics 실적 요약·프로필·yfinance"}
   - {id: community, region: all, kind: model, use: "커뮤니티 내러티브 MCP(X·레딧·유튜브·서브스택)"}
   - {id: notion_search, region: all, kind: model, use: "노션 게시글 검색"}
+  - {id: lobby_house, region: us, kind: model, use: "Easyconomics insider_and_politics(section=lobbying, ticker) → 파일 저장 → py radar/usgov/lobby_watch.py --put-house <id> <티커> <파일>. 하원 LD 분기 로비 지출·외부 로비 회사 몫·쟁점 코드(대형주 약 120개, 밖이면 '해당 없음(Easyconomics 유니버스 밖)'). lda.gov 차단 대체(2026-11-08)"}

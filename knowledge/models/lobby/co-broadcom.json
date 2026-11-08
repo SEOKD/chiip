@@ -1,0 +1,160 @@
+{
+ "company": "co-broadcom",
+ "names": [
+  "Broadcom"
+ ],
+ "as_of": "2026-11-08",
+ "lda": {
+  "status": "키 없음",
+  "rows": []
+ },
+ "sec": {
+  "status": "ok",
+  "rows": [
+   {
+    "form": "8-K",
+    "filer": "Broadcom Inc.  (AVGO)  (CIK 0001730168)",
+    "date": "2019-03-14",
+    "id": "0001193125-19-074832:d642515d8k.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)",
+    "date": "2024-01-24",
+    "id": "0001193125-24-014287:d633899ddef14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)",
+    "date": "2024-01-24",
+    "id": "0001193125-24-014287:d633899ddef14a1.pdf"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "Meta Platforms, Inc.  (META)  (CIK 0001326801)",
+    "date": "2024-04-19",
+    "id": "0001326801-24-000034:meta-20240418.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "INTERNATIONAL BUSINESS MACHINES CORP  (IBM)  (CIK 0000051143)",
+    "date": "2025-03-10",
+    "id": "0001104659-25-022186:tm2430706-6_def14aseq1.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "INTERNATIONAL BUSINESS MACHINES CORP  (IBM)  (CIK 0000051143)",
+    "date": "2024-03-11",
+    "id": "0001104659-24-032641:tm2329614-d3_def14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "NortonLifeLock Inc.  (GEN)  (CIK 0000849399)",
+    "date": "2020-07-22",
+    "id": "0001047469-20-004195:a2242071zdef14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "VISA INC.  (V)  (CIK 0001403161)",
+    "date": "2012-12-17",
+    "id": "0001193125-12-504140:d410354ddef14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "ELI LILLY & Co  (LLY)  (CIK 0000059478)",
+    "date": "2026-03-20",
+    "id": "0000059478-26-000029:lly-20260317.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "CISCO SYSTEMS, INC.  (CSCO)  (CIK 0000858877)",
+    "date": "2017-10-25",
+    "id": "0001193125-17-319338:d448947ddef14a.htm"
+   }
+  ]
+ },
+ "news": {
+  "status": "ok",
+  "rows": [
+   {
+    "title": "Broadcom Inc Lobbyists, 2026 - OpenSecrets",
+    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPTnhfbDVHT3ZJRktpRzNZeDZyS2g1MldrZFNMbmFFaTZjNlpMWnZaWDl0ZjNmeEhqZHgyNU10MVExNG1tN2FLVUNsM0pWZHBrbk5VTEZsSlNSZjQtcHdfNmhyVlVUc2JXVmtQYWQ1blA0SFE3dFY3ZEJncm1DY3ROdW0wd1ZKbjQ3alNpeVM0MUlKRWxpTzF3?oc=5"
+   },
+   {
+    "title": "Broadcom hit with EU antitrust complaint and request for interim measure - Reuters",
+    "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNWVVXdXdrUm1mU2VKSEJ5TldUY1REcXNTb0FkNUR6cmRzb3ZHalVSZ2lXRkVkTF9XbDFaU2RvUnhUeHF3TTZFVnF4RmV4NVI2T01PTHlzelhIMk9BVHNJZGtsaXQ2dGdtbUNPMExLekhzbFRiSy0zY2V0SnJmWGNjRG1iendHQmlLeWpxekNmbUV2MUdHdU9hbEg1MEZsVVpwN3lwMnI4Y3Boc0p0T3ctdW5BbW45YzFOUzBkZ3NGRlQzYXdJSmNLM3l2cXhsd1ZuMVhCcjMyOTFtbE1saVpseDFObzI?oc=5"
+   },
+   {
+    "title": "'Death sentence': EU cloud lobby takes Broadcom to Brussels over VMware partner purge - The Register",
+    "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxOMVZmN1AweXJLWHZmbzY1bVRaeERLNlozVEE2OGJ0SjlWTk8zUHJxTnR0aUNxQWEzLWpLR3g3TUh5bW1sUFljZzNmQWdBOGt0dHJRRnFnZnVJMGRfaVpwT1FvMFZJOHExTTBQRDVGYW5JTFowM1VGZmRLczNmSzBlV3F1Z1c2aklheWZGYzdaUE5udHNKT090MHQ2cDFWYk5RcWpqMFM0VXJ3dDduSThkX093?oc=5"
+   },
+   {
+    "title": "Broadcom sues EU antitrust regulators over request for US legal documents - Reuters",
+    "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPQUlzWkZNTnJyaWcxcDJla3hSc0l3UExxaEVDQ1JZOVR3OGRUTXp3LW9UN1VCRmU2OGpyclhBandOb0QyUjZKYW1BUzBnVEFtcXRZaEp6T3Q2VGdBeE9LbUdQMFZfYUZJOTllb0oxSkJGOFRXb2paSklwWDM0TjB3bXdHLThVc045X1ZhZWdDdEV3V2ZVXy02eEgzeVBPR0kzMVBWT1FmSzRzSl9EN1E2OS15VUhhbDBBa1dwSDdWSQ?oc=5"
+   },
+   {
+    "title": "European trade group slams American chip company Broadcom, calls its actions in Europe 'death sentence' f - The Times of India",
+    "url": "https://news.google.com/rss/articles/CBMilwJBVV95cUxNSWNQUlFJREZFQXExSEpOQ05GUDgxOFNUVjRRbVduQ0pYdGJQMjh6VmZYcUpXQzBvbHB3QmtHejVON3B3NDY5U2RxS2FsaDlyTDVTQW1EWVIxSjk2VktkZ1FJZzNoQWlobDRFa0xoQVVvYlpzdS13TnhCWl9EWk1CbUJZM2ZJNENHSzZySWh2Nk5URm1iV3lWQkRudFFabnB3Yzdld0dhcm9uci1VRmRnaEhDWlh0MW9oREFWcy04em9IM21JNHoxdHZlU1ZGdUVlRnppWDhKNVBNdWNKMGRqbzNlVkJGSzdLRHgtdWp2VGwtODdLUlJSRkNzeUZCQTkxTjExVTN6WkZMUG04SGtjdFJ6dm9jMFnSAZwCQVVfeXFMTUd5M1NoTUs2Ni1MVi1VeGlybXZHbDdYTk1CV3J4OVo1dFFXRi1DbGZGWFFmN3diZ1JVT0JMZUFHOVdaN3NWaklXNVFET3EyVUlYQ3JlYkhiMmRsZ2UxSEZDcTduTjBYckFEaHRJOGdhdi1SRFRQaEpBanR5Y2YwVkM0NGQ2Yzg2NDlXVnI1TS01YUFNV1dGWFVHQlczZXFQVm92andCanptYTI4eUxfOHBhZzc3a3RXQ2VUSmx6aDltNlVTbC1Ydi1YQlNDX2lPYWp5dHZ3N0stSF9icHJzZTktdk10Q2ljbU83VVVvX2YwcGJ0cDd1c215dlpSWkZMRjU4eE5fMEVnemdDVlVBMldzelBZQ3FQRnZDbWc?oc=5"
+   }
+  ]
+ },
+ "verdict": "로비 지출 있음(하원 LD 분기 집계)",
+ "house": {
+  "status": "ok",
+  "source": "Easyconomics house_ld",
+  "as_of": "2026-11-08",
+  "rows": [
+   {
+    "year": 2026,
+    "quarter": 1,
+    "total_usd": 650000.0,
+    "self_reported": 430000.0,
+    "outside_income": 220000.0,
+    "issues": [
+     "BUD 2",
+     "TEC 2",
+     "CPI 2",
+     "TAX 2",
+     "DEF 1",
+     "TRD 1",
+     "LBR 1",
+     "SCI 1"
+    ]
+   },
+   {
+    "year": 2026,
+    "quarter": 2,
+    "total_usd": 590000.0,
+    "self_reported": 420000.0,
+    "outside_income": 170000.0,
+    "issues": [
+     "BUD 2",
+     "TEC 2",
+     "DEF 1",
+     "CPI 1",
+     "TAX 1",
+     "TRD 1",
+     "SCI 1",
+     "GOV 1"
+    ]
+   },
+   {
+    "year": 2026,
+    "quarter": 3,
+    "total_usd": 640000.0,
+    "self_reported": 500000.0,
+    "outside_income": 140000.0,
+    "issues": [
+     "BUD 2",
+     "TEC 2",
+     "DEF 1",
+     "CPI 1",
+     "TAX 1",
+     "TRD 1",
+     "SCI 1",
+     "GOV 1"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "company": "us-psix",
+ "names": [
+  "Power Solutions International"
+ ],
+ "as_of": "2026-11-08",
+ "lda": {
+  "status": "키 없음",
+  "rows": []
+ },
+ "sec": {
+  "status": "ok",
+  "rows": [
+   {
+    "form": "10-K",
+    "filer": "POWER SOLUTIONS INTERNATIONAL, INC.  (PSIX)  (CIK 0001137091)",
+    "date": "2019-05-16",
+    "id": "0001137091-19-000016:exhibit141-codeofbusinessc.htm"
+   },
+   {
+    "form": "10-K",
+    "filer": "SPRUCE POWER HOLDING CORP  (SPRU)  (CIK 0001772720)",
+    "date": "2025-03-31",
+    "id": "0001628280-25-015702:spru-20241231.htm"
+   }
+  ]
+ },
+ "news": {
+  "status": "ok",
+  "rows": []
+ },
+ "verdict": "미확인"
+}

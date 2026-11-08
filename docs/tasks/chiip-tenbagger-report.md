@@ -150,4 +150,4 @@ git 커밋·푸시는 하지 않는다(예외: publish_tenbagger.py·publish_rep
 3. 처음과 최신 영상을 직접 보고 호기마다 `stage_seen`·`seen_on`·`seen_note`를 쓴다. 보이지 않는 것은 쓰지 않는다. 10m 영상에서 안 보이면 낮은 단계로 쓴다.
 4. 캐파가 공시된 호기는 `capacity`에 출처와 함께 쓴다. 공시가 없는 호기는 비워 두면 엔진이 면적 비교로 추정한다. 비교 시설이 없으면 같은 class의 공시 시설을 등록부에 더한다.
 
-**로비 내역(2026-11-03 마스터 지시):** 종목마다 `py radar/usgov/lobby_watch.py <회사 id> "<공시상 회사명>" [자회사·별칭]`을 돌리고 `knowledge/models/lobby/<회사 id>.json`을 읽어, 경영진 또는 약세 논리에 쓸 내용이 있을 때만 쓴다. verdict가 '미확인'이면 로비가 없다고 쓰지 않는다. SEC 검색 결과와 언론 제목은 단서이므로 원문을 확인한다.
+**로비 내역(2026-11-03 마스터 지시):** 미국 상장 종목은 먼저 Easyconomics `insider_and_politics`(section lobbying, ticker)를 받아 파일로 저장하고 `py radar/usgov/lobby_watch.py --put-house <회사 id> <티커> <파일>`로 넣는다(2026-11-08 — lda.gov가 한국 접속을 막아 하원 LD 분기 집계로 대신한다. 분기 지출·전 분기 대비·쟁점 코드까지이고 로비 회사·법안명은 없다). 이어서 종목마다 `py radar/usgov/lobby_watch.py <회사 id> "<공시상 회사명>" [자회사·별칭]`을 돌리고 `knowledge/models/lobby/<회사 id>.json`을 읽어, 경영진 또는 약세 논리에 쓸 내용이 있을 때만 쓴다. verdict가 '미확인'이면 로비가 없다고 쓰지 않는다. SEC 검색 결과와 언론 제목은 단서이므로 원문을 확인한다.

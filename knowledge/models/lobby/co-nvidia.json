@@ -1,0 +1,166 @@
+{
+ "company": "co-nvidia",
+ "names": [
+  "NVIDIA"
+ ],
+ "as_of": "2026-11-08",
+ "lda": {
+  "status": "키 없음",
+  "rows": []
+ },
+ "sec": {
+  "status": "ok",
+  "rows": [
+   {
+    "form": "8-K",
+    "filer": "NVIDIA CORP  (NVDA)  (CIK 0001045810)",
+    "date": "2026-09-03",
+    "id": "0001045810-26-000078:nvda-20260902.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "ELI LILLY & Co  (LLY)  (CIK 0000059478)",
+    "date": "2026-03-20",
+    "id": "0000059478-26-000029:lly-20260317.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)",
+    "date": "2024-01-24",
+    "id": "0001193125-24-014287:d633899ddef14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "APPLIED MATERIALS INC /DE  (AMAT)  (CIK 0000006951)",
+    "date": "2024-01-24",
+    "id": "0001193125-24-014287:d633899ddef14a1.pdf"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "NVIDIA CORP  (NVDA)  (CIK 0001045810)",
+    "date": "2021-04-23",
+    "id": "0001045810-21-000052:nvda2021definitiveproxysta.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "NVIDIA CORP  (NVDA)  (CIK 0001045810)",
+    "date": "2023-05-08",
+    "id": "0001045810-23-000080:nvda-20230508.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "NVIDIA CORP  (NVDA)  (CIK 0001045810)",
+    "date": "2024-05-14",
+    "id": "0001045810-24-000104:nvda-20240514.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "VERIZON COMMUNICATIONS INC  (VZ)  (CIK 0000732712)",
+    "date": "2024-03-25",
+    "id": "0001308179-24-000279:lvz2024_def14a.pdf"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "VERIZON COMMUNICATIONS INC  (VZ)  (CIK 0000732712)",
+    "date": "2024-03-25",
+    "id": "0001308179-24-000279:lvz2024_def14a.htm"
+   },
+   {
+    "form": "DEF 14A",
+    "filer": "NVIDIA CORP  (NVDA)  (CIK 0001045810)",
+    "date": "2022-04-19",
+    "id": "0001045810-22-000067:nvda2022definitiveproxysta.htm"
+   }
+  ]
+ },
+ "news": {
+  "status": "ok",
+  "rows": [
+   {
+    "title": "NVIDIA Corp Lobbying Profile, 2025 - OpenSecrets",
+    "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPNXgwcjJKejhtQ2VyekNYcjBadW9hMUhlM2NIWFQ4MVlZbGpzRjgyN1pEOTJIdkczMzNRMlZQbnVzUTF2OXhlcGd6TC0tVVE3NDBVSHczdnFvNDg0X3Eycm9HX2xoeHZGaXpCeGxXbVlSY0o5R0F2dUlfZ21VUlBLcnlsSmpBaVFrZ09ETTl1R0ZRc2pTMGZF?oc=5"
+   },
+   {
+    "title": "Why is Nvidia’s CEO lobbying Republicans on AI chip sales to China? - Los Angeles Times",
+    "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOR0xXTmU2UmxEQXEyVEEyeUpNZ3o4Vk9sMTlyeHlMd2ppUEs5UVBVZ0RRcHowRHVjWEpobkVGcV96TURHQWdiTGd2N084YUFHZkRUMjVHNW90NU5UREgteFNYN0ZxV0lTUEo3RXFIdl9QN25MWVlYcTZ5M0RGeUxGRHM0SlFvaV9PUE1ORlZBT1g4TzdLX0lkTlRqZ2xYVTNkc25JM3J2bEVNeXJzeXpuMTRyOUI3UQ?oc=5"
+   },
+   {
+    "title": "Nvidia Can Sell More Chips in China. Now What? - The New York Times",
+    "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPWUhPLW9TT3V2aFdkN3FRYU1wRGwzN3dMdU5EdWRiQkhXUks3aC1OaXF1LVdTckp6TnN4em1iMFlhWnVadTItT204akRBX2tzMHRZbUp5dnVyXzdpM2hkNUVFMTk0ZndMV2JPQ2FNYzg5bWZPUkEtUUFFaGtSb3pZR0hJcmd3QjVlR29nd09KUQ?oc=5"
+   },
+   {
+    "title": "Lawmakers plan to cut off China from AI chips. Nvidia, AMD want Trump to intervene. - Politico",
+    "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPTXdheVlVR0FPX2tsOThwNUNleXVHTUNza3F0bnpBLWE5OVdEOE9sVmpIM3Vac1IxTUVoMXdRUmxXQU1zaXZyX2pQTUc2YWsyYlQ2UGIxX0tMSmFQSkFhakU2a0RkVmNnZkg2cGFUX2FtUUhoMEh6VDZ3ZkVBYUZabEpad3pYcHNk?oc=5"
+   },
+   {
+    "title": "Nvidia Starts PAC as AI Chip Maker Builds DC Influence Force - Bloomberg.com",
+    "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxORkpEejMtTHo5Y1JGQ2dUQ3NybnBFV1FsOHIzR0NodXBVeVRCckdRLXRqMW5yV1ZjdUtQd0Z4TzRNb01rM3lXNG14YXdVckFWMnNQVFBWZVFsLUREc0ZmQnYwTExTaUV1U29TS2dIcWNSVHI2ZXAxVVlZbElzY0ZFenVPVXg5V3JlbFdfQ3JubU5NU2p1TTZEVXJ4OEM1RVZvc050ZUNKUmIyUW43VE9DUQ?oc=5"
+   },
+   {
+    "title": "Nvidia hires veteran lobbyist Bruce Andrews to head government affairs - Reuters",
+    "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNU2IwWUZ1blZEWlhKNEdYU3lIMWlwZXBTRVRfNURoNTR6M0UyT01zaHdXS3U3ME5GRVhaRjVuVk94NFpFOFlNTDRObnowdGdYcHR6cEc3WjN3VDhRN2hua3o2MlhlNk41RFVvZVdseU9iMmQ4eUdBNTdUTTM3NVZsRGdKVkdzLTB0dlhuMDR5TjhhMnd0dmtzbUJsNUczYUFaLWp5enQ4TTA2SWNBLVZ3R2UxeTdBWFo1cm1HOW5hWWZfZw?oc=5"
+   },
+   {
+    "title": "Boom in Major AI Company Spending on Lobbyists - POGO | Project On Government Oversight",
+    "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPUWZod2VxQVFnSHB5dVJyU0pVZGNtekl1M2dGT2dwMGFjb2FsU2RFWkFHSGtISVE2S2ZPV2lTenJCeWFLWGlzRF9TSU55RW1WbThZVTlmWWxHX3dMb2Vzd0ZhUW5ydkVqbVhvcC11emZjU3l0TUVzUFk0YlRtNS1GM1lhMDkzSGM?oc=5"
+   },
+   {
+    "title": "Nvidia Taps Veteran Lobbyist To Help Navigate Washington's China Chip Curbs - Yahoo Finance",
+    "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQR29HckVoX0F3VHRURE5JbW5QZHlmYk5oajZuSU1iNFNTMzNKX09mS0xaZjZ4bTNEVnhHRW13dzlNbi1tNWJxME9Fa0tYd1Y3UG5ZT3dBZVVHSHFrN1UxTWYzSEdUX0VJQXV4aVdURUlJTUM0SlhNQTlZRFZ0aGxfNUJtREtPZE54Q0JqOTZPNmpzcjdMbXJjU1NLWWwtVmJJYlNnMQ?oc=5"
+   }
+  ]
+ },
+ "verdict": "로비 지출 있음(하원 LD 분기 집계)",
+ "house": {
+  "status": "ok",
+  "source": "Easyconomics house_ld",
+  "as_of": "2026-11-08",
+  "rows": [
+   {
+    "year": 2026,
+    "quarter": 1,
+    "total_usd": 1730000.0,
+    "self_reported": 1290000.0,
+    "outside_income": 440000.0,
+    "issues": [
+     "TRD 5",
+     "CPI 4",
+     "DEF 3",
+     "SCI 1",
+     "ENG 1",
+     "LBR 1"
+    ]
+   },
+   {
+    "year": 2026,
+    "quarter": 2,
+    "total_usd": 1700000.0,
+    "self_reported": 1250000.0,
+    "outside_income": 450000.0,
+    "issues": [
+     "TRD 5",
+     "CPI 4",
+     "DEF 3",
+     "SCI 1",
+     "ENG 1",
+     "LBR 1"
+    ]
+   },
+   {
+    "year": 2026,
+    "quarter": 3,
+    "total_usd": 2590000.0,
+    "self_reported": 2150000.0,
+    "outside_income": 440000.0,
+    "issues": [
+     "TRD 5",
+     "CPI 4",
+     "DEF 2",
+     "SCI 1",
+     "ENG 1",
+     "LBR 1"
+    ]
+   }
+  ]
+ }
+}
