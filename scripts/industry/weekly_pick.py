@@ -68,7 +68,12 @@ def groups(c, tax=None):
     for m in cls.values():
         by.setdefault(m["sub"], []).append(m)
     theme_of = {}
-    for t, ms in theme_members(c).items():
+    with (ROOT / "config" / "watchlist.csv").open(encoding="utf-8", newline="") as f:   # 대표 테마 = keywords_ref 첫 태그(NVDA는 ai-accelerators;dram-hbm → AI 가속기)
+        for r in csv.DictReader(f):
+            tags = [t.strip() for t in (r.get("keywords_ref") or "").split(";") if t.strip() in c["themes"]]
+            if tags:
+                theme_of[r["entity_id"]] = tags[0]
+    for t, ms in theme_members(c).items():   # 감시 목록에 없는 유니버스 종목은 sub 라벨 테마
         for m in ms:
             theme_of.setdefault(m["id"], t)
     inds, mem, up = {}, {}, {}
