@@ -5,6 +5,7 @@
 ## 회차
 - `chiip-midterm-2026`: 화~토 07:10 KST(전날 미국 장 마감분). 11/4~11/14.
 - `chiip-midterm-2026-night`: 11/4 14:00 KST 1회(개표 중 선물·아시아 반응).
+- **2026-11-08 전환(마스터 지시 "Chiip Midterm을 Chiip Flow로 — 장초·장마감 섹터 로테이션")**: 예약 작업 `chiip-midterm-intraday`는 이제 상시 **Chiip Flow**다(지시문 `docs/tasks/chiip-flow.md`, 엔진 `radar/markets/sector_flow.py`). 아래 장중·장초 수급 설명은 옛 규칙이고, 중간선거 사건 연구(`midterm.py --compute`·영향 점수)는 그대로 쓴다.
 - **2026-11-07 개정(마스터 지시 "장초, 장마감 수급 움직임만 파악해. 장중에는 보내지 말도록 해")**: `chiip-midterm-intraday`는 하루 2회(KST 23:45 장초·05:45 장마감 직전)만 돌고, 변화 여부와 상관없이 그 시점 수급 국면을 1통씩 보낸다. 장중 변화 알림은 없다. 아래 3분 간격 설명은 옛 규칙.
 - `chiip-midterm-intraday`(마스터 지시 2026-11-04): 미국 정규장(KST 23:30~06:00) 3분마다. `midterm.py --session`이 장외면 끝, 장중이면 TradingView 배치 1회 → `--tick`이 수급 국면(유입·유출 상위 3, 위험 선호 톤, SPY 구간, VIX)을 직전과 비교해 바뀐 것만 텔레그램으로. 10분 안에 여러 번 바뀌어도 매번 보낸다. 임계값 `config/midterm2026.yaml` tick.
 - 매 회차 첫 단계: `py radar/markets/midterm.py --status`가 '관측 종료'면 아무것도 하지 않고 끝낸다.

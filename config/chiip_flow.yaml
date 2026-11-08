@@ -1,0 +1,91 @@
+# Chiip Flow — 미국 장초·장마감 섹터 로테이션 관측(radar/markets/sector_flow.py, 마스터 지시 2026-11-08 "Chiip Midterm을 Chiip Flow로 바꾸고
+# 미국 주식 시장의 장초, 장마감 섹터 로테이션 흐름을 관측") — 옛 중간선거 장중 감시(config/midterm2026.yaml tick)를 상시 엔진으로 옮겼다
+benchmark: AMEX:SPY
+checkpoints:            # 미국 동부 시각(ET) — 서머타임은 zoneinfo가 처리한다. 조기 폐장일은 마감 15분 전
+  open: "09:45"
+  close: "15:45"
+tolerance_min: 40       # 예약 지연(최대 약 15분)을 감안해 체크포인트 ±40분 안이면 그 회차로 본다
+
+names:                  # 한국어 이름(텔레그램)
+  AMEX:XLK: 기술
+  AMEX:XLF: 금융
+  AMEX:XLE: 에너지
+  AMEX:XLV: 헬스케어
+  AMEX:XLI: 산업재
+  AMEX:XLY: 경기소비재
+  AMEX:XLP: 필수소비재
+  AMEX:XLU: 유틸리티
+  AMEX:XLB: 소재
+  AMEX:XLRE: 부동산
+  AMEX:XLC: 커뮤니케이션
+  NASDAQ:SMH: 반도체
+  CBOE:IGV: 소프트웨어
+  NASDAQ:CIBR: 사이버보안
+  CBOE:ITA: 방산·항공우주
+  AMEX:XBI: 바이오
+  AMEX:IHI: 의료기기
+  AMEX:KRE: 지역은행
+  AMEX:KBE: 은행
+  NASDAQ:ICLN: 청정에너지
+  AMEX:TAN: 태양광
+  AMEX:URA: 우라늄·원자력
+  NASDAQ:GRID: 전력망
+  AMEX:XOP: 석유·가스 탐사
+  CBOE:PAVE: 인프라
+  AMEX:XHB: 주택건설
+  AMEX:JETS: 항공
+  AMEX:XRT: 소매
+  AMEX:GDX: 금광
+  AMEX:COPX: 구리 광산
+  AMEX:IWF: 대형 성장
+  AMEX:IWD: 대형 가치
+  AMEX:IWM: 소형주
+  AMEX:SPHB: 고베타
+  CBOE:USMV: 저변동
+  AMEX:MTUM: 모멘텀
+  NASDAQ:QQQ: 나스닥100
+  AMEX:RSP: S&P 동일가중
+  AMEX:HYG: 하이일드
+  AMEX:LQD: 투자등급 회사채
+  NASDAQ:TLT: 장기 국채
+  AMEX:UUP: 달러
+  AMEX:GLD: 금
+  CBOE:VIX: VIX
+
+sectors: [AMEX:XLK, AMEX:XLF, AMEX:XLE, AMEX:XLV, AMEX:XLI, AMEX:XLY, AMEX:XLP, AMEX:XLU, AMEX:XLB, AMEX:XLRE, AMEX:XLC]
+industries: [NASDAQ:SMH, CBOE:IGV, NASDAQ:CIBR, CBOE:ITA, AMEX:XBI, AMEX:IHI, AMEX:KRE, AMEX:KBE, NASDAQ:ICLN, AMEX:TAN, AMEX:URA, NASDAQ:GRID, AMEX:XOP, CBOE:PAVE, AMEX:XHB, AMEX:JETS, AMEX:XRT, AMEX:GDX, AMEX:COPX]
+cross: [NASDAQ:QQQ, AMEX:RSP, AMEX:HYG, AMEX:LQD, NASDAQ:TLT, AMEX:UUP, AMEX:GLD, CBOE:VIX]
+
+# 로테이션 축 = (왼쪽 묶음 평균 등락 − 오른쪽 묶음 평균 등락), %p. 양수면 왼쪽으로 돈이 간다
+axes:
+  - {name: "경기민감 ↔ 방어", left: [AMEX:XLY, AMEX:XLI, AMEX:XLF, AMEX:XLB, AMEX:XLE], right: [AMEX:XLP, AMEX:XLU, AMEX:XLV, AMEX:XLRE]}
+  - {name: "성장 ↔ 가치", left: [AMEX:IWF], right: [AMEX:IWD]}
+  - {name: "소형 ↔ 대형", left: [AMEX:IWM], right: [AMEX:SPY]}
+  - {name: "고베타 ↔ 저변동", left: [AMEX:SPHB], right: [CBOE:USMV]}
+  - {name: "반도체 ↔ 소프트웨어", left: [NASDAQ:SMH], right: [CBOE:IGV]}
+  - {name: "동일가중 ↔ 시총가중(시장 폭)", left: [AMEX:RSP], right: [AMEX:SPY]}
+  - {name: "하이일드 ↔ 투자등급(신용 위험 선호)", left: [AMEX:HYG], right: [AMEX:LQD]}
+axis_dead: 0.15         # |축 값| 이 %p 미만이면 '중립'
+
+rv_floor: 0.3           # 흐름 = (등락 − SPY 등락) × 상대 거래량(10일, floor~cap) — 사전값(미검증)
+rv_cap: 3.0
+thin_rv: 1.0            # 오르는데 상대 거래량이 이 아래면 '얇은 상승'
+streak_days: 3          # 유입 상위 3에 연속 n거래일 장마감 기준으로 들면 '다일 로테이션'
+
+holidays:               # NYSE 휴장일(공식 일정 — 연초에 다음 해를 확인해 넣는다)
+  - "2026-11-26"
+  - "2026-12-25"
+  - "2027-01-01"
+  - "2027-01-18"
+  - "2027-02-15"
+  - "2027-03-26"
+  - "2027-05-31"
+  - "2027-06-18"
+  - "2027-07-05"
+  - "2027-09-06"
+  - "2027-11-25"
+  - "2027-12-24"
+early_close:            # 13:00 ET 폐장 — 장마감 회차는 12:45
+  - "2026-11-27"
+  - "2026-12-24"
+  - "2027-11-26"
