@@ -136,6 +136,8 @@
    a. ToolSearch `select:mcp__8fd822e9-244a-4909-889b-5d1ae95d3af3__get_company_score,mcp__8fd822e9-244a-4909-889b-5d1ae95d3af3__get_company_signals,mcp__8fd822e9-244a-4909-889b-5d1ae95d3af3__get_company_recaps`로 도구를 불러, `social.tickers`마다 `get_company_score`와 `get_company_signals`(month 없이)를 부른다(한 메시지에 6개 이하 병렬). 그 종목을 처음 받는 회차(knowledge/models/social/recaps.csv에 없음)만 `get_company_recaps`(limit 12)도 부른다. 없는 종목(오류·빈 응답)은 건너뛴다.
    b. 응답을 `[{"ticker", "score": <get_company_score 응답>, "signals": <signals 배열 그대로>, "recaps": <recaps 배열>}]`로 radar/state/quantral_in.json에 저장 → `py radar/social_surge.py --put radar/state/quantral_in.json` → `py radar/social_surge.py --run`. 스크립트가 본문·작성자·링크를 버리고 건수만 남긴다 — 모델도 글 본문·작성자 이름을 피드·파일에 옮기지 않는다(CLAUDE.md 커뮤니티 경계).
    c. `--run` 출력이 '급증 없음'이 아니면 줄마다 피드 items에 📣 한 건: event "관심 급증 x/10", view(무엇이 늘었나 + 그 이유가 될 1차 사건이 있으면 그 사건 — 펄스 sources·실적 일정·8-K에서 확인한 것만, 없으면 '원인 사건 미확인'), why(채널별 숫자 줄 그대로 + 감성 변화), against(관심 급증은 주가·펀더멘털 변화가 아니다 — 이미 오른 뒤의 추격 관심일 수 있다), next(확인할 1차 자료), links(get_company_score의 url을 ["Quantral", url]로). 인사이트 점수는 1차 사건이 확인되면 그 사건 기준, 아니면 4 이하로 brief에 한 줄. 커뮤니티 신호는 S1·S2 — 주장(claim)으로 저장하지 않는다.
+2-4. 📊 분기 결산 산업 리포트(ADR-018): 펄스 파일의 `industry_quarter.due`가 true일 때만 — `docs/tasks/chiip-industry-quarterly.md`의 phase(collect 또는 write) 절차. collect는 한 회차에 산업 3개까지, write는 1개.
+
 2-3. 📑 Fiscal IR 문서(마스터 지시 2026-11-08 "AT&S도 최근 실적 발표 프레젠테이션 자료를 공유했는데 이걸 가져오고 있는지"): 펄스 파일의 `fiscal_ir_docs.due`가 true일 때만.
    `py radar/fiscal_ir_docs.py --plan`이 주는 묶음 본문을 execute_code로 돌리고(묶음 안에서 동시 6개 이하) 출력(JSON 배열)을 모두 합쳐 radar/state/fiscal_ir_in.json에 저장 → `py radar/fiscal_ir_docs.py --put radar/state/fiscal_ir_in.json`.
    새 PT·보도자료는 inbox에 'IR 자료'로 들어가 다음 회차 1-5b가 분석한다. 이번 회차에 글을 쓰지 않는다.

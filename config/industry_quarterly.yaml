@@ -1,0 +1,25 @@
+# Chiip Industry Quarterly — 분기 결산 산업 리포트(ADR-018, 마스터 결정 2026-11-08: ① 산업마다 따로 ② 산업별 구성 매출 80% 발표 관문 ③ 아시아 빈칸은 국내 증권사 공개 요약 ④ 2026년 3분기 시험판 1편)
+# 수집·관문 radar/industry_quarter.py · 집계·조립 scripts/industry/quarter_frame.py · 절차 docs/tasks/chiip-industry-quarterly.md
+gate_share: 0.8           # 산업 구성 매출(직전 TTM, 대략 달러 환산)의 80%가 그 분기를 발표하면 그 산업 리포트를 쓴다
+deadline_days: 55         # 분기 말 + 55일이 지나면 80%가 안 돼도 쓴다(남은 종목은 '미발표')
+min_share_rate: 0.6       # 60% 미만 발표 산업은 등급을 매기지 않는다
+deep_metrics: [rev_yoy, gpm_chg, beat, guide_up, revision, inv_days_chg, capex_chg, car]
+fx_usd:                   # 가중치용 대략 환산(보고 숫자 아님) — 분기마다 갱신
+  USD: 1.0
+  KRW: 0.00072
+  JPY: 0.0066
+  TWD: 0.031
+  EUR: 1.08
+  GBP: 1.27
+  CHF: 1.13
+  SEK: 0.094
+  DKK: 0.145
+  NOK: 0.092
+  HKD: 0.128
+  CNY: 0.14
+broker_public:            # 국내 증권사 공개 요약(마스터 결정 ③) — 원천 사이트(네이버 금융 리서치·한경 컨센서스)는 robots.txt가 전부 막아 쓰지 않는다
+  route: "Google News 한국판 색인 — 증권사 리포트를 인용한 기사 제목·링크만(본문·리포트 원문 복제 금지, 요지는 Chiip 말로)"
+  query: '"{name}" (증권 OR 리포트 OR 목표주가) (가이던스 OR 재고 OR 실적 OR 전망)'
+  max_items: 8
+  grade: C                # 2차 인용 — 확정 사실 아님, 표에 '증권사 요약(보도)'로 표시
+  todo: "NAVER_CLIENT_ID/SECRET이 들어오면 네이버 뉴스 검색 API로 바꾼다(공식 API)"
