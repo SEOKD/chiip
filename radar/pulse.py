@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"포지션": 1, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -40,6 +40,7 @@ PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 �
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
 CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운용사 원문 사이트·대상 회사 사이트(2026-11-09 시의성 점검 — 둘 다 분류표에 없어 Pulse가 집지 않았다)
+           ("포지션", ("src-cftc",)),   # CFTC COT 주간 극단(2026-11-09) — 배경 신호
            ("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa")),   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
            ("IR 자료", ("src-jp-ir-docs", "src-kr-ir-docs", "src-tw-hk-ir-docs", "src-fiscal-ir-docs")),   # src-fiscal-ir-docs = 유럽 등 IR 수집기 없는 종목의 PT·보도자료(Fiscal.ai IR 이벤트, 2026-11-08 AT&S)   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
            ("원자력·위성", ("src-nuclear-", "src-space-")),   # NRC·에너지부·우주개발청 등(2026-10-31 마스터 지시, knowledge/methods/nuclear_space_lens.md)
@@ -48,7 +49,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart")),   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"포지션": 3, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -132,7 +133,7 @@ def relevant(it, cls):
         return True
     if cls == "원자력·위성":   # 정부 문서는 회사명이 없어도 인허가·계약이면 본다(원천에서 이미 거름)
         return True
-    if it.get("source_id") in ("src-short-sites", "src-company-sites"):   # 숏 운용사·대상 회사 원문은 원천에서 이미 좁혔다(2026-11-09)
+    if it.get("source_id") in ("src-short-sites", "src-company-sites", "src-cftc"):   # 숏 운용사·대상 회사 원문은 원천에서 이미 좁혔다(2026-11-09)
         return True
     if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True

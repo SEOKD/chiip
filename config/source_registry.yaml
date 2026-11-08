@@ -907,6 +907,18 @@
   enabled: true
 
 # ===== 즉시 포착 보강 (2026-10-29 마스터 지시 "CBRS 숏 리포트·Marvell의 Lumentum 인수 기사를 즉시 찾아오는 파이프라인" 점검 — 4.5/10) =====
+- id: src-cftc
+  name: CFTC 투자자 포지션(Commitments of Traders) — 지수·국채·달러·원자재 유형별 순포지션·3년 백분위
+  category: H-시장
+  module: cftc
+  entry: run
+  method: api
+  endpoint_doc: "config/cftc.yaml, https://publicreporting.cftc.gov (Socrata, 키 불필요)"
+  auth: none
+  scope: [미국]
+  interval_min: 360
+  run_on: local
+  note: "run_hourly가 돌린다(radar/cftc.py). 화요일 기준 포지션을 금요일 15:30 ET 공표"
 - id: src-company-sites
   name: 숏 캠페인 대상 회사 사이트 직접 감시(사이트맵 lastmod — 블로그·뉴스룸·IR 새 글)
   category: F-뉴스

@@ -139,6 +139,23 @@ def _read_log():
         return list(csv.DictReader(fh))
 
 
+def cftc_line():
+    """주간 포지션 배경(CFTC COT, 화요일 기준·금요일 공표, radar/cftc.py) — 지수 선물 자산운용사·레버리지 펀드의 3년 백분위(2026-11-09)"""
+    f = common.ROOT / "knowledge" / "models" / "cftc" / "latest.json"
+    if not f.exists():
+        return None
+    import json as _j
+    d = _j.loads(f.read_text(encoding="utf-8"))
+    parts = []
+    for k in ("es", "nq", "rty"):
+        v = (d.get("contracts") or {}).get(k)
+        if v:
+            g = v["groups"]
+            parts.append(f"{v['name']} 운용사 {g['asset_mgr']['pctile']:.0f}·레버리지 {g['lev_money']['pctile']:.0f}" if "asset_mgr" in g and "lev_money" in g else "")
+    parts = [p for p in parts if p]
+    return f"주간 포지션 배경(CFTC, {d.get('report_date')} 화 기준, 3년 백분위): " + " · ".join(parts) if parts else None
+
+
 def render(sess, et, r, cmp_, stk, c):
     pc = lambda v: f"{v:+.2f}%"
     kst = et.astimezone(KST)
@@ -173,6 +190,9 @@ def render(sess, et, r, cmp_, stk, c):
             L.append("• 방향이 바뀐 축: " + ", ".join(cmp_["axes_turned"]))
     if stk:
         L.append("다일 로테이션: " + ", ".join(f"{name(s, c)} {k}거래일 연속 유입 상위" for s, k in stk.items()))
+    cot = cftc_line()
+    if cot:
+        L += ["", cot]
     L += ["", "1차 판정·미검증 · 등락·거래량만 본 흐름이며 원인은 확인된 것만 적는다 · 공개 자료 기반 분석이며 투자 권유가 아님"]
     return "\n".join(L)
 

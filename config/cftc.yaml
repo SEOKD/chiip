@@ -1,0 +1,23 @@
+# CFTC 투자자 포지션(Commitments of Traders) — radar/cftc.py (마스터 지시 2026-11-09 "CFTC 포지션 파이프라인을 만들어줘")
+# 원천: CFTC Public Reporting(Socrata API, 키 불필요). 화요일 기준 포지션을 금요일 15:30 ET(한국 토 05:30)에 공표 — 3일 늦은 주간 데이터다(실시간 신호 아님).
+# TFF(gpe5-46if, 금융선물): 딜러·자산운용사(asset_mgr)·레버리지 펀드(lev_money)·기타 / Disaggregated(72hh-3qpy, 원자재): 생산자·스왑딜러·관리 펀드(m_money)·기타
+# 순포지션 = 롱 − 숏(계약 수), 미결제약정(OI) 대비 % · 주간 변화 · 3년 백분위·z점수. 극단 = 백분위 95 이상 또는 5 이하(사전값, 미검증)
+lookback_weeks: 156
+extreme_pct: [5, 95]
+datasets:
+  tff: {id: gpe5-46if, groups: {asset_mgr: "자산운용사", lev_money: "레버리지 펀드", dealer: "딜러"}}
+  disagg: {id: 72hh-3qpy, groups: {m_money: "관리 펀드(CTA·헤지펀드)", prod_merc: "생산자·가공자", swap: "스왑딜러"}}
+contracts:
+  - {key: es, name: "S&P 500 E-mini", set: tff, code: "13874A", focus: [asset_mgr, lev_money]}
+  - {key: nq, name: "나스닥100", set: tff, code: "20974+", focus: [asset_mgr, lev_money]}
+  - {key: rty, name: "러셀2000 E-mini", set: tff, code: "239742", focus: [asset_mgr, lev_money]}
+  - {key: vix, name: "VIX 선물", set: tff, code: "1170E1", focus: [lev_money, asset_mgr]}
+  - {key: ty, name: "미 10년물 국채", set: tff, code: "043602", focus: [asset_mgr, lev_money]}
+  - {key: tu, name: "미 2년물 국채", set: tff, code: "042601", focus: [asset_mgr, lev_money]}
+  - {key: dx, name: "달러 인덱스", set: tff, code: "098662", focus: [lev_money, asset_mgr]}
+  - {key: jy, name: "엔화", set: tff, code: "097741", focus: [lev_money, asset_mgr]}
+  - {key: cl, name: "WTI 원유", set: disagg, code: "067651", focus: [m_money, prod_merc]}
+  - {key: ng, name: "천연가스", set: disagg, code: "023651", focus: [m_money, prod_merc]}
+  - {key: hg, name: "구리", set: disagg, code: "085692", focus: [m_money, prod_merc]}
+  - {key: gc, name: "금", set: disagg, code: "088691", focus: [m_money, prod_merc]}
+  - {key: si, name: "은", set: disagg, code: "084691", focus: [m_money, prod_merc]}
