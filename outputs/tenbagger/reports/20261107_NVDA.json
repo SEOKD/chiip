@@ -1784,6 +1784,52 @@
      ]
     },
     {
+     "type": "hl",
+     "text": "**PEG 0.26** — Fwd 1Y P/E 15.0배를 다음 해 EPS 성장 59%로 나눈 값, 동종 중앙 0.50(성장 대비 싸다). 성장률은 Fwd 1Y·2Y P/E에서 역산한 컨센서스라 다음 해 한 해 성장만 반영하고, 성장 지속 기간은 담지 않는다."
+    },
+    {
+     "type": "table",
+     "title": "PEG — Fwd 1Y P/E ÷ 다음 해 EPS 성장률",
+     "headers": [
+      "회사",
+      "Fwd 1Y P/E",
+      "다음 해 EPS 성장",
+      "PEG"
+     ],
+     "rows": [
+      [
+       "**Nvidia**",
+       "15.0",
+       "+59%",
+       "0.26"
+      ],
+      [
+       "AVGO",
+       "16.9",
+       "+59%",
+       "0.29"
+      ],
+      [
+       "AMD",
+       "34.6",
+       "+62%",
+       "0.56"
+      ],
+      [
+       "QCOM",
+       "17.1",
+       "+19%",
+       "0.92"
+      ],
+      [
+       "MRVL",
+       "24.2",
+       "+54%",
+       "0.45"
+      ]
+     ]
+    },
+    {
      "type": "p",
      "text": "지금 주가가 요구하는 5년 매출 CAGR 22%, 기본 시나리오 26%. 몬테카를로 중앙값 업사이드 -27%."
     },
@@ -5333,31 +5379,35 @@
    ]
   },
   {
-   "kind": "progress",
-   "title": "규모·마진·진척도",
+   "kind": "pipeline",
+   "title": "수주·파이프라인 확실성 사다리",
    "rows": [
     {
      "label": "AWS GPU 200만 개 추가(FQ2 FY29까지)",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "프레임워크"
+     "size": "",
+     "status": "프레임워크",
+     "when": ""
     },
     {
      "label": "중국 H200(수입 승인 대기 약 60만 개)",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "파이프라인"
+     "size": "",
+     "status": "파이프라인",
+     "when": ""
     },
     {
      "label": "네오클라우드 수익 공유(최소 매출 보증)",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "조건부"
+     "size": "",
+     "status": "조건부",
+     "when": ""
     }
-   ]
+   ],
+   "fmt": {}
   },
   {
    "kind": "waterfall",
@@ -7457,6 +7507,65 @@
        "name": "현재",
        "color": "e",
        "value": 186.64
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "hbars",
+   "w": 480,
+   "label_w": 130,
+   "title": "PEG — 성장 대비 멀티플(낮을수록 성장 대비 쌈)",
+   "unit": "",
+   "rows": [
+    {
+     "label": "Nvidia",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "e",
+       "value": 0.26
+      }
+     ]
+    },
+    {
+     "label": "AVGO",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.29
+      }
+     ]
+    },
+    {
+     "label": "AMD",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.56
+      }
+     ]
+    },
+    {
+     "label": "QCOM",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.92
+      }
+     ]
+    },
+    {
+     "label": "MRVL",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.45
       }
      ]
     }
