@@ -141,6 +141,11 @@
    - **산업 전반의 큰 변화인가** 판정(셋 중 둘 이상이면 예): ① 한 회사가 아니라 산업 묶음 여러 회사의 매출·마진 동인(물량·가격·원가·규제 비용)을 바꾼다 ② 그 산업의 사업군 판단 등급이나 핵심 논쟁의 답을 바꿀 만하다 ③ 1차 출처(공시·관보·회사 발표)로 확인된다. 한 회사 실적·인수설·단독 수주는 아니오(그건 기존 알림·Analysis 몫).
    - 예면 그 회차에 스킬 `industry-event` 절차로 사건 인뎁스 1편을 쓰고 게시(Artifact·노션 Industry·텔레그램 `scripts/industry/tg_feed.py --send`). 하루 최대 1편.
    - 예든 아니오든 본 후보는 `py scripts/industry/event_gate.py --done <산업>`과 판정 한 줄을 radar/state/industry_event_log.txt에 남긴다(10분마다 같은 후보로 깨지 않게).
+2-6. 📑 Chiip IB Digest(2026-11-08 마스터 지시 "IB Report에 새로운 PDF 파일이 올라오면 스스로 판단하기에 밸류가 높은 리포트 몇 개를 직접 선정하고 요약해 텔레그램 피드로"): 펄스 파일의 `ib_digest.due`가 true일 때만. `top`(새 PDF, 1차 점수 순 — 감시 종목 주 대상·업종 테마 연결·개시/등급·목표가 변경/입문서·심층 분량)의 텍스트(`text` 경로)를 읽고 **가치가 높은 1~3건**을 고른다.
+   - 고르는 기준: ① Chiip 판단(감시 종목 테제·산업 등급·핵심 논쟁)을 바꾸거나 확인하는 새 숫자·논리가 있다 ② 컨센서스와 다른 견해(등급·목표가 변경, 추정치 크게 수정) ③ 한국 공급망에 닿는다. 단순 실적 요약 반복·감시 밖 업종은 고르지 않는다.
+   - 고른 건마다 먼저 `py radar/notion_library.py --digest <id> <요지 md>`로 요지(자기 말, 원문 문장 복제 금지 — 겹치면 거절된다)를 저장한다(Analysis가 재사용).
+   - `[{id, why(왜 골랐나 한 줄), points(요점 2~4개, 160자 안, 자기 말·숫자는 출처 문서 값), chiip(Chiip 판단과 같은가 다른가 한 줄)}]`를 파일로 쓰고 `py radar/ib_digest_feed.py --send <파일>` — 마스터 개인 봇 1통.
+   - 고르지 않은 새 PDF까지 `py radar/ib_digest_feed.py --done <id ...>`로 표시한다(다음 회차에 다시 깨지 않게). 필드 인텔·채널체크·Exclusive Source 내용은 넣지 않는다. 목표가를 결론으로 쓰지 않는다.
 
 2-3. 📑 Fiscal IR 문서(마스터 지시 2026-11-08 "AT&S도 최근 실적 발표 프레젠테이션 자료를 공유했는데 이걸 가져오고 있는지"): 펄스 파일의 `fiscal_ir_docs.due`가 true일 때만.
    `py radar/fiscal_ir_docs.py --plan`이 주는 묶음 본문을 execute_code로 돌리고(묶음 안에서 동시 6개 이하) 출력(JSON 배열)을 모두 합쳐 radar/state/fiscal_ir_in.json에 저장 → `py radar/fiscal_ir_docs.py --put radar/state/fiscal_ir_in.json`.

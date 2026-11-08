@@ -626,7 +626,12 @@ def run(now=None, peek=False):
         iev = event_gate.check(now)
     except Exception as exc:
         iev = {"due": False, "error": type(exc).__name__}
-    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due"):
+    try:   # Chiip IB Digest(2026-11-08 마스터 지시 "IB Report에 새 PDF가 올라오면 밸류가 높은 몇 개를 골라 요약해 텔레그램") — 새 PDF가 있을 때만
+        import ib_digest_feed
+        ibd = ib_digest_feed.status(now)
+    except Exception as exc:
+        ibd = {"due": False, "error": type(exc).__name__}
+    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
@@ -644,7 +649,7 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in select(sources)],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if ex.get("due"):
         exclusive_leads.offered(now)
