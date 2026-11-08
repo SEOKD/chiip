@@ -2,7 +2,7 @@
  "id": "co-ultraclean",
  "name": "Ultra Clean Holdings",
  "ticker": "UCTT",
- "as_of": "2026-11-02",
+ "as_of": "2026-11-09",
  "unit": "B$",
  "industry": "semicap",
  "region_mix": {
@@ -10,12 +10,12 @@
  },
  "tax": 0.21,
  "profile": {
-  "price": 49.71,
+  "price": 41.13,
   "shares_basic": 0.04796,
   "shares_date": "2026-10-21",
   "cash": 0.44,
   "debt": 0.8101,
-  "source": "가격 = Fiscal.ai company_stock_prices 2026-10-30 종가 · 주식 수 47,960,159(Fiscal.ai shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25 장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜 CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)"
+  "source": "가격 = TradingView NASDAQ:UCTT 2026-11-06 종가(Fiscal.ai company_profile·Easyconomics 동일 $41.13) · 주식 수 47,960,159(Fiscal.ai shares_outstanding 2026-10-21, 10-Q 표지 — 10월 첫째 주 ATM 220만 주 포함) · 차입 = 10-Q 2026-09-25 장기차입 635.1 + 리스 22.3 + 152.7백만$ · 현금 = 9/25 현금 270.9 + 10월 ATM 순조달 169.1(3Q 콜 CFO) = 440.0백만$(형식상 추정 — 주식 수와 같은 날짜 기준으로 맞춤)"
  },
  "dilution": {
   "potential_total": 0.00094,
@@ -932,11 +932,14 @@
    "hold": 1,
    "sell": 0,
    "strong_sell": 0,
-   "as_of": "2026-10-21",
+   "as_of": "2026-11-05",
    "source": "fiscal",
-   "target_mean": 110.29,
+   "target_mean": 106.71,
    "target_high": 150,
-   "target_low": 80
+   "target_low": 55,
+   "target_median": 107,
+   "n_targets": 7,
+   "note": "Fiscal.ai company_analyst_ratings 2026-11-05(목표가)·2026-10-21(의견). Data provided by Zacks Investment Research, Inc., www.zacksdata.com. yfinance(Easyconomics) 목표가 평균 $112.83·범위 $80~150·6명 매수"
   },
   "eps_quarters_est": {
    "2026Q4": 1.3,
@@ -1125,16 +1128,16 @@
   ]
  },
  "multiples_now": {
-  "pe_fwd": 8.89,
+  "pe_fwd": 7.35,
   "ev_ebitda": 17.78,
   "ev_sales": 1.33,
   "growth": 0.158,
   "note": "선행 P/E = $49.71 ÷ 선행 4분기 조정 EPS 5.59. Fiscal.ai Forward 배수 2026-10-30. Fwd 2Y·3Y는 2026-10-30 재계산",
-  "ev_ebitda_fwd": 5.48,
-  "pe_fwd2": 7.2,
-  "ev_ebitda_fwd2": 4.1,
-  "pe_fwd3": 5.58,
-  "ev_ebitda_fwd3": 3.25
+  "ev_ebitda_fwd": 6.95,
+  "pe_fwd2": 5.96,
+  "ev_ebitda_fwd2": 5.66,
+  "pe_fwd3": 4.61,
+  "ev_ebitda_fwd3": 4.49
  },
  "peers_basis": "ttm",
  "peers_source": "Fiscal.ai company_peers(ICHR 직접 경쟁, MKSI 사업모델) + 반도체 서브시스템·부품 동종(AEIS·ENTG·KLIC) — 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM), EV/매출·EV/EBITDA = daily ratios 2026-10-29",
@@ -1150,14 +1153,36 @@
    "ev_sales": 1.47,
    "ev_ebitda": 178.6,
    "growth": 0.091,
-   "pe_fwd": 14.73,
-   "ev_ebitda_fwd": 13.31,
-   "ntm_ebit_margin": 0.0864,
-   "ntm_growth": 0.464,
-   "pe_fwd2": 11.64,
-   "ev_ebitda_fwd2": 10.75,
-   "pe_fwd3": 11.02,
-   "ev_ebitda_fwd3": 10.01
+   "pe_fwd": 9.71,
+   "ev_ebitda_fwd": 6.74,
+   "ntm_ebit_margin": 0.101,
+   "ntm_growth": 0.3889,
+   "pe_fwd2": 7.06,
+   "ev_ebitda_fwd2": 5.02,
+   "pe_fwd3": 5.88,
+   "ev_ebitda_fwd3": 4.25,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 28.35,
+     "ev_ebitda_fwd": 13.39
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 29.88,
+     "ev_ebitda_fwd": 18.78
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 53.89,
+     "ev_ebitda_fwd": 36.88
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 20.85,
+     "ev_ebitda_fwd": 13.57
+    }
+   ]
   },
   {
    "ticker": "MKSI",
@@ -1170,14 +1195,36 @@
    "ev_sales": 4.18,
    "ev_ebitda": 17.77,
    "growth": 0.163,
-   "pe_fwd": 12.51,
-   "ev_ebitda_fwd": 11.16,
-   "ntm_ebit_margin": 0.2662,
-   "ntm_growth": 0.3469,
-   "pe_fwd2": 10.87,
-   "ev_ebitda_fwd2": 9.87,
-   "pe_fwd3": 9.87,
-   "ev_ebitda_fwd3": 8.95
+   "pe_fwd": 9.12,
+   "ev_ebitda_fwd": 8.39,
+   "ntm_ebit_margin": 0.2869,
+   "ntm_growth": 0.3447,
+   "pe_fwd2": 7.38,
+   "ev_ebitda_fwd2": 6.94,
+   "pe_fwd3": 5.68,
+   "ev_ebitda_fwd3": 5.59,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 19.31,
+     "ev_ebitda_fwd": 14.81
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 21.85,
+     "ev_ebitda_fwd": 16.3
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 31.3,
+     "ev_ebitda_fwd": 22.65
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 15.79,
+     "ev_ebitda_fwd": 11.81
+    }
+   ]
   },
   {
    "ticker": "AEIS",
@@ -1190,14 +1237,36 @@
    "ev_sales": 4.71,
    "ev_ebitda": 28.94,
    "growth": 0.246,
-   "pe_fwd": 15.5,
-   "ev_ebitda_fwd": 13.96,
-   "ntm_ebit_margin": 0.2405,
-   "ntm_growth": 0.397,
-   "pe_fwd2": 13.39,
-   "ev_ebitda_fwd2": 11.58,
-   "pe_fwd3": 10.76,
-   "ev_ebitda_fwd3": 8.94
+   "pe_fwd": 10.99,
+   "ev_ebitda_fwd": 10.23,
+   "ntm_ebit_margin": 0.2658,
+   "ntm_growth": 0.3876,
+   "pe_fwd2": 8.76,
+   "ev_ebitda_fwd2": 8.32,
+   "pe_fwd3": 7.4,
+   "ev_ebitda_fwd3": 7.17,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 28.22,
+     "ev_ebitda_fwd": 20.9
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 38.82,
+     "ev_ebitda_fwd": 29.65
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 39.92,
+     "ev_ebitda_fwd": 31.83
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 20.75,
+     "ev_ebitda_fwd": 16.48
+    }
+   ]
   },
   {
    "ticker": "ENTG",
@@ -1210,14 +1279,36 @@
    "ev_sales": 7.79,
    "ev_ebitda": 27.95,
    "growth": 0.094,
-   "pe_fwd": 28.12,
-   "ev_ebitda_fwd": 21.55,
+   "pe_fwd": 23.31,
+   "ev_ebitda_fwd": 18.28,
    "ntm_ebit_margin": 0.2784,
    "ntm_growth": 0.1772,
-   "pe_fwd2": 24.68,
-   "ev_ebitda_fwd2": 19.63,
-   "pe_fwd3": 21.03,
-   "ev_ebitda_fwd3": 17.23
+   "pe_fwd2": 20.46,
+   "ev_ebitda_fwd2": 16.64,
+   "pe_fwd3": 17.44,
+   "ev_ebitda_fwd3": 14.62,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.32,
+     "ev_ebitda_fwd": 16.94
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 32.48,
+     "ev_ebitda_fwd": 21.53
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 45.39,
+     "ev_ebitda_fwd": 28.78
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 32.17,
+     "ev_ebitda_fwd": 22.33
+    }
+   ]
   },
   {
    "ticker": "KLIC",
@@ -1230,14 +1321,36 @@
    "ev_sales": 3.88,
    "ev_ebitda": 26.08,
    "growth": 0.444,
-   "pe_fwd": 12.97,
-   "ev_ebitda_fwd": 8.46,
-   "ntm_ebit_margin": 0.229,
+   "pe_fwd": 11.19,
+   "ev_ebitda_fwd": 7.82,
+   "ntm_ebit_margin": 0.2323,
    "ntm_growth": 0.5944,
    "pe_fwd2": null,
-   "ev_ebitda_fwd2": 9.26,
+   "ev_ebitda_fwd2": 8.99,
    "pe_fwd3": null,
-   "ev_ebitda_fwd3": 10.69
+   "ev_ebitda_fwd3": 10.34,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 30.58,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 22.02,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 32.35,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 19.64,
+     "ev_ebitda_fwd": null
+    }
+   ]
   }
  ],
  "sbc_pct_rev": 0.009,
@@ -1332,10 +1445,6 @@
    }
   ],
   "pe_fwd": [
-   {
-    "date": "2023-10-31",
-    "value": 8.9
-   },
    {
     "date": "2023-11-30",
     "value": 10.13
@@ -1475,6 +1584,10 @@
    {
     "date": "2026-09-30",
     "value": 14.15
+   },
+   {
+    "date": "2026-10-30",
+    "value": 8.56
    }
   ],
   "ev_ebitda_fwd": [
@@ -1605,6 +1718,10 @@
    {
     "date": "2026-09-30",
     "value": 10.15
+   },
+   {
+    "date": "2026-10-30",
+    "value": 6.68
    }
   ]
  },
@@ -1638,6 +1755,21 @@
    "date": "2026-10-30",
    "tag": "장비·AI 반도체 동반 하락(ICHR −8.3%·AMAT −7.5%·MU −5.3%), 회사 공시 없음, 업종 원인 미확인",
    "kind": "sector"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "반도체 업종 매도 시작, 회사 공시 없음",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "중간선거 결과 뒤 AI·반도체 급락(SOX −12%, 2020년 이후 최악) — 회사 공시 없음",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "반도체 업종 반등, UCTT +10.6%",
+   "kind": "sector"
   }
  ],
  "sources": [
@@ -1652,21 +1784,21 @@
   "2026-11-02 재발행: Fiscal.ai 시세·Forward 배수·추정·의견(10/30), Easyconomics earnings_summary_dates·company_profile, SEC 10-Q·10-K·DEF 14A·8-K 원문. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
  ],
  "raw": {
-  "retrieved_at": "2026-11-02T13:30:00+09:00",
+  "retrieved_at": "2026-11-09T06:40:00+09:00",
   "shares_cover_implied": 0.04796,
   "fiscal_profile": {
    "companyKey": "NASDAQ_UCTT",
    "terminalUrl": "https://fiscal.ai/company/NasdaqGS-UCTT",
-   "price": 49.71,
-   "market_cap": 2.3841,
+   "price": 41.13,
+   "market_cap": 1.9726,
    "total_cash": 0.2709,
    "total_debt": 0.8101,
    "shares_outstanding": 0.04796,
-   "ev_sales": 1.33,
-   "ev_ebitda": 17.78,
-   "as_of": "2026-10-29",
+   "ev_sales": 1.06,
+   "ev_ebitda": 14.23,
+   "as_of": "2026-11-06",
    "balance_date": "2026-09-25",
-   "note": "시총 = daily calculated_market_cap 2026-10-29(2,623,420,697$). 현금·차입 = 표준화 재무상태표 2026-09-25(장기차입 635.1 + 유동 리스 22.3 + 리스 152.7)"
+   "note": "시총 = 2026-11-06 종가 $41.13 × 표지 주식 47,960,159(Easyconomics market_cap 1,972,601,472$와 일치). 현금·차입 = 표준화 재무상태표 2026-09-25(장기차입 635.1 + 유동 리스 22.3 + 리스 152.7)"
   },
   "quarters_gaap": {
    "rev": {
@@ -1814,6 +1946,21 @@
    "gov": "전략 계약·CHIPS 지원 공시 없음. 2025년 정부 보조금 $2.2M(기타수익). 신규 회계 기준 언급뿐",
    "backlog": "10-K: 중요한 수주잔고가 없고 최소 구매 약정이 있는 장기 주문도 대체로 없다. 고객 예측은 구속력이 없다",
    "source": "10-Q https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm · 10-K https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm"
+  },
+  "easyconomics_2026_11_09": {
+   "price": 41.13,
+   "market_cap": 1.9726,
+   "ev": 2.5976,
+   "forward_pe": 6.34,
+   "short_pct_float": 0.0954,
+   "short_ratio": 2.84,
+   "inst_own": 1.039,
+   "fifty_day_avg": 63.54,
+   "two_hundred_day_avg": 74.55,
+   "high_52w": 144.22,
+   "low_52w": 21.49,
+   "target_mean": 112.83,
+   "source": "Easyconomics company_profile(yfinance) 2026-11-09 조회"
   }
  },
  "narrative": {
@@ -1993,11 +2140,11 @@
    }
   ],
   "lead": {
-   "summary": "UCTT의 기업가치는 **WFE(반도체 장비 투자) × 점유 약 2% × 이익률** 세 숫자로 정해진다. 주가는 1/2 $27.32에서 6/30 $142.59로 5.2배 올랐다. AI 투자가 WFE를 2026년 약 $155B에서 2027년 $200B 초과로 끌어올리고, 상승기에 장비사가 넘기는 외주와 총이익률 20% 목표가 겹치면 이익이 매출보다 빨리 는다는 이야기였다. 지금은 **멀티플 프리미엄이 사라졌다.** EPS 추정은 계속 올랐는데(CY2027 $2.05 → $6.63, 표본 1명) 주가는 고점 대비 −65%다. 시장의 질문이 '얼마나 오르나'에서 '이 사이클이 얼마나 오래가고, 증설 비용을 누가 대나'로 바뀌었다.",
+   "summary": "UCTT의 기업가치는 **WFE(반도체 장비 투자) × 점유 약 2% × 이익률** 세 숫자로 정해진다. 주가는 1/2 $27.32에서 6/30 종가 고점 $142.59로 5.2배 올랐고, 11/6 $41.13으로 고점 대비 −71%다. 이익 추정은 내려가지 않았다 — CY2027 EPS 컨센서스는 $5.85~$6.63으로 3Q 실적 뒤 그대로다. **빠진 것은 멀티플이다.** 11/5 중간선거 결과 뒤 AI 트레이드가 무너지며 반도체 지수가 하루 −12% 빠졌고, UCTT도 그날 −15.5%였다. 회사 소식은 없었다.",
    "value_story": "매출 = WFE × 점유 약 2%(회사 환산 $5B ÷ $250B). 이익 = 매출 × 이익률이고, 총이익률은 3Q 17.3%에서 매출 $4B 시 20%가 목표다. 멀티플은 사이클이 몇 년 가느냐에 대한 시장의 판단이다. UCTT는 고객 설계대로 만드는 비중이 커서 기술 희소성 프리미엄이 작다. 그래서 배수는 업종 사이클과 함께 움직이고, EPS는 가동률과 함께 움직인다.",
    "premium": {
-    "multiple": "지금은 프리미엄이 아니라 할인이다. Fwd 1Y P/E 8.9배는 동종 중앙값 14.7배보다 40% 낮고, 2/23의 44.8배에서 내려왔다. 고점의 프리미엄은 'WFE 다년 사이클 + 외주 확대'가 만들었고, 7월 이후 장비 업종 디레이팅과 증설 자금 조달이 지웠다.",
-    "eps": "EPS에는 기대가 남아 있다. CY2027 EPS 컨센서스 $6.63은 1년 전 $2.05의 3.2배이고, 추정 범위 하단 $5.85와는 13% 벌어져 있다. 일부는 사업이 아니라 재무 구조에서 왔다. 분기 이자비용이 $9.9M에서 $1.5M로 줄어 연 약 $34M, 세후 주당 약 $0.55가 더해졌다(Chiip 계산)."
+    "multiple": "지금은 프리미엄이 아니라 할인이다. Fwd 1Y P/E 7.3배는 동종 중앙값 11.0배보다 33% 낮고, 2/23 고점 44.8배에서 내려왔다. 동종도 같은 주에 배수가 크게 줄었는데(MKSI 9.1배·ICHR 9.7배), UCTT는 그 아래다. 고점 프리미엄은 'WFE 다년 사이클 + 외주 확대'가 만들었고, 7월 이후 장비 업종 디레이팅·증설 자금 조달·11/5 AI 트레이드 붕괴가 지웠다.",
+    "eps": "EPS에는 기대가 남아 있다. CY2027 EPS 컨센서스 $5.85~$6.63은 1년 전 $2.05의 약 3배이고 11/5 급락 뒤에도 내려가지 않았다. 일부는 사업이 아니라 재무 구조에서 왔다 — 분기 이자비용이 1년 새 $9.9M에서 $1.5M로 줄었다(전환사채 0% 쿠폰 차환)."
    },
    "why_excited": "열광의 정점은 6월이었다. 첫째, 규모가 커졌다. 회사가 인용한 고객의 2026년 WFE 전망은 4월 $140~145B였고, 10월 Lam은 2026년 약 $155B, 2027년 $200B 초과를 제시했다. 둘째, 레버리지다. 회사는 매출 $4B에서 총이익률 20%를 목표로 말했고, 상승기에 고객이 서브시스템을 외주로 넘긴다고 설명했다. 셋째, 가시성이다. 2Q 콜에서 경영진은 고객이 예측 기간을 늘려 주고 있다고 말했다. 넷째, 리비전이다. CY2027 EPS 추정이 2월에 2배가 됐고 8월에 다시 34% 올랐다. 식은 이유도 같은 곳에 있다. 7월에 장비 업종이 AI 트레이드 재평가로 급락했고, 8/14 ATM 등록, 10/5 UBS의 증설 사유 목표가 하향, 10/21 Lam 전망 실망이 이어졌다.",
    "lenses": [
@@ -2056,35 +2203,118 @@
      "name": "가스·유체 공급 시스템",
      "what": "장비 안에서 공정 가스와 화학액을 정밀하게 보내는 모듈이다. 밸브·레귤레이터·유량 제어기를 초고순도 용접 배관으로 잇는다.",
      "use": "식각·증착 장비",
-     "money": "장비사 주문을 받아 조달·조립·시험까지 맡는다"
+     "money": "장비사 주문을 받아 조달·조립·시험까지 맡는다",
+     "name_en": "Semiconductor gas delivery system (gas box)",
+     "what_en": "A cabinet-mounted panel of ultra-high-purity valves, regulators, pressure gauges and mass flow controllers joined by orbital-welded stainless steel gas lines on a manifold, feeding process gases into an etch or deposition chamber",
+     "bom": {
+      "as_of": "2026-11-09",
+      "layers_order": "위→아래",
+      "items": [
+       {
+        "no": 1,
+        "part": "질량유량제어기(MFC)",
+        "part_en": "row of mass flow controllers mounted on top of the gas panel",
+        "role": "가스 유량 측정·제어",
+        "suppliers": [],
+        "source": "3Q26 어닝콜(2026-10-27) — 경영진이 MFC 부족을 언급",
+        "confidence": "확인"
+       },
+       {
+        "no": 2,
+        "part": "초청정 밸브·공압 액추에이터",
+        "part_en": "ultra-clean diaphragm valves with pneumatic actuators",
+        "role": "가스 개폐",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm (Item 1 제품: ultra-clean valves, pneumatic actuators)",
+        "confidence": "확인"
+       },
+       {
+        "no": 3,
+        "part": "압력 게이지·레귤레이터",
+        "part_en": "pressure gauges and pressure regulators",
+        "role": "압력 감시·조정",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm (Item 1 제품: pressure gauges)",
+        "confidence": "확인"
+       },
+       {
+        "no": 4,
+        "part": "매니폴드·고순도 커넥터",
+        "part_en": "modular stainless steel manifold base with high-purity connectors",
+        "role": "가스 경로 분기·연결",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm (Item 1 제품: manifolds, high purity connectors)",
+        "confidence": "확인"
+       },
+       {
+        "no": 5,
+        "part": "용접 가스 라인(배관)",
+        "part_en": "orbital-welded stainless steel gas lines",
+        "role": "초고순도 가스 운반",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm (Item 1 제품: gas line, complex weldments)",
+        "confidence": "확인"
+       },
+       {
+        "no": 6,
+        "part": "가스 라인·부품 히터",
+        "part_en": "gas line and component heaters wrapped around the tubing",
+        "role": "응축 방지 온도 유지",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm (Item 1 제품: gas line and component heaters)",
+        "confidence": "확인"
+       },
+       {
+        "no": 7,
+        "part": "캐비닛 프레임",
+        "part_en": "enclosure frame and cabinet panel",
+        "role": "구조 지지·배기",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm (Item 1 제품: frame assemblies)",
+        "confidence": "확인"
+       }
+      ],
+      "source_note": "FY2025 10-K Item 1 제품 목록과 3Q26 콜. 부품별 외부 공급사 이름은 공시되지 않았다(밸브·피팅 일부는 자회사 생산)"
+     }
     },
     {
      "kind": "제품",
      "name": "프레임·용접·공정 모듈·로보틱스",
      "what": "장비의 뼈대, 고순도 용접물, 웨이퍼 이송 장치와 메카트로닉스 조립품이다.",
      "use": "장비사가 외주로 넘기는 상위 조립",
-     "money": "용접·프레임 수직계열화로 원가를 낮춘다. 세부(필리핀) 용접 캐파를 두 배로 늘리는 중이다"
+     "money": "용접·프레임 수직계열화로 원가를 낮춘다. 세부(필리핀) 용접 캐파를 두 배로 늘리는 중이다",
+     "name_en": "Equipment frame, weldment and process module assembly",
+     "what_en": "A machined aluminum and stainless steel equipment frame carrying welded subassemblies, a wafer-handling robot arm and a process module for a semiconductor tool"
     },
     {
      "kind": "제품",
      "name": "부품(Fluid Solutions)",
      "what": "초청정 밸브·커넥터·피팅·히터 같은 가스 라인 부품이다.",
      "use": "반도체와 석유화학·전력",
-     "money": "모듈보다 이익률이 높은 부품을 안에서 만든다"
+     "money": "모듈보다 이익률이 높은 부품을 안에서 만든다",
+     "name_en": "Ultra-high-purity valves, fittings and connectors",
+     "what_en": "Small stainless steel diaphragm valves, pneumatic actuators, compression fittings and connectors used in high-purity gas and chemical lines"
     },
     {
      "kind": "서비스",
      "name": "세정·코팅·오염 분석",
      "what": "쓰고 난 장비 챔버 부품을 초고순도로 세정·재코팅하고 미세 오염을 분석한다.",
      "use": "소자사 팹과 장비사",
-     "money": "웨이퍼 투입량에 연동된다. 3Q 매출 $77.1M, 총이익률 28.8%"
+     "money": "웨이퍼 투입량에 연동된다. 3Q 매출 $77.1M, 총이익률 28.8%",
+     "name_en": "Chamber part cleaning, recoating and contamination analysis service",
+     "what_en": "Used semiconductor chamber parts such as showerheads and liners being cleaned, recoated and checked for particle contamination in a cleanroom service center",
+     "rev_share": 0.102,
+     "rev_share_prev": 0.127,
+     "mix_basis": "10-Q 서비스 매출 ÷ 총매출, 3Q26 vs 3Q25(계절성 낮음 — 전년 같은 분기 대비)"
     },
     {
      "kind": "기술",
      "name": "NPX·build-to-spec",
      "what": "고객 설계대로 만드는 단계에서 설계 단계로 들어가는 전환이다. NPX는 신제품 개발·도입·이관을 합친 조직이다.",
      "use": "식각·ALD·PVD·리소그래피·계측",
-     "money": "첫 공급사 자격을 얻으면 양산 때 점유와 이익률이 오른다. 아직 매출로 확인되지 않았다"
+     "money": "첫 공급사 자격을 얻으면 양산 때 점유와 이익률이 오른다. 아직 매출로 확인되지 않았다",
+     "name_en": "New product co-development and build-to-spec engineering",
+     "what_en": "Engineers and prototype benches co-developing a new subsystem design with an equipment maker before high-volume production"
     }
    ],
    "policy": {
@@ -2203,6 +2433,12 @@
    "kind": "내러티브",
    "tag": "장비주 동반 −6~−8%(회사 공시 없음)",
    "session": "intraday"
+  },
+  {
+   "date": "2026-11-05",
+   "kind": "내러티브",
+   "tag": "중간선거 뒤 AI 트레이드 급락(업종 전체)",
+   "session": "intraday"
   }
  ],
  "ladder": {
@@ -2263,7 +2499,7 @@
   "summary": "2배는 기존 사업 안에 있고, 3배부터는 WFE 성장이 아니라 사업 구조가 바뀌어야 한다."
  },
  "forward": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-06",
   "ntm": {
    "eps": 5.59269,
    "ebitda": 403141257,
@@ -2273,7 +2509,7 @@
   },
   "horizons": {
    "2": {
-    "eps": 6.89995,
+    "eps": 6.8999500000000005,
     "ebitda": 494907825,
     "ext": 0
    },
@@ -2294,8 +2530,8 @@
   "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
  },
  "next_event": {
-  "date": "2027-03-01",
-  "tag": "4Q26 실적(예상일, 전년 발표는 2/23)"
+  "date": "2027-02-23",
+  "tag": "4Q26 실적(예상일 — 전년 발표 2/23, 회사 미공지)"
  },
  "moat": {
   "summary": "고객 승인과 규모가 신규 진입은 막지만, 총이익률 17%가 말하듯 가격 결정력으로 이어지지 않는다",
@@ -2364,7 +2600,11 @@
   "HIS": "서브팹 회사",
   "RAM": "미국 자산운용사",
   "TD": "캐나다계 증권사",
-  "HMT": "하드디스크 부품 회사"
+  "HMT": "하드디스크 부품 회사",
+  "SOX": "필라델피아 반도체 지수",
+  "SOCAMM": "NVIDIA CPU용 저전력 메모리 모듈",
+  "HBF": "고대역폭 플래시",
+  "HP": "추세와 순환을 나누는 통계 필터"
  },
  "leaders": {
   "as_of": "2026-11-02",
@@ -2477,5 +2717,1313 @@
     "source": "3Q 콜"
    }
   ]
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_UCTT",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-12-25",
+    "rev": 103420000,
+    "cogs": 90079000,
+    "gp": 13341000,
+    "sga": 14396000,
+    "rd": 2259000,
+    "da": null,
+    "other": 0,
+    "op": -3314000
+   },
+   {
+    "period": "2016-03-25",
+    "rev": 112229000,
+    "cogs": 97659000,
+    "gp": 14570000,
+    "sga": 12992000,
+    "rd": 2276000,
+    "da": null,
+    "other": null,
+    "op": -698000
+   },
+   {
+    "period": "2016-06-24",
+    "rev": 129831000,
+    "cogs": 110810000,
+    "gp": 19021000,
+    "sga": 12943000,
+    "rd": 2359000,
+    "da": null,
+    "other": null,
+    "op": 3719000
+   },
+   {
+    "period": "2016-09-23",
+    "rev": 146154000,
+    "cogs": 122663000,
+    "gp": 23491000,
+    "sga": 14344000,
+    "rd": 2447000,
+    "da": null,
+    "other": null,
+    "op": 6700000
+   },
+   {
+    "period": "2016-12-30",
+    "rev": 174545000,
+    "cogs": 144844000,
+    "gp": 29701000,
+    "sga": 14213000,
+    "rd": 2818000,
+    "da": null,
+    "other": 0,
+    "op": 12670000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 204594000,
+    "cogs": 167099000,
+    "gp": 37495000,
+    "sga": 14816000,
+    "rd": 2906000,
+    "da": null,
+    "other": null,
+    "op": 19773000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 228261000,
+    "cogs": 184890000,
+    "gp": 43371000,
+    "sga": 16192000,
+    "rd": 2774000,
+    "da": null,
+    "other": null,
+    "op": 24405000
+   },
+   {
+    "period": "2017-09-29",
+    "rev": 242610000,
+    "cogs": 199914000,
+    "gp": 42696000,
+    "sga": 16712000,
+    "rd": 2722000,
+    "da": null,
+    "other": null,
+    "op": 23262000
+   },
+   {
+    "period": "2017-12-29",
+    "rev": 248935000,
+    "cogs": 204797000,
+    "gp": 44138000,
+    "sga": 18780000,
+    "rd": 3298000,
+    "da": null,
+    "other": null,
+    "op": 22060000
+   },
+   {
+    "period": "2018-03-30",
+    "rev": 314842000,
+    "cogs": 266038000,
+    "gp": 48804000,
+    "sga": 18867000,
+    "rd": 3029000,
+    "da": null,
+    "other": null,
+    "op": 26908000
+   },
+   {
+    "period": "2018-06-29",
+    "rev": 290213000,
+    "cogs": 244148000,
+    "gp": 46065000,
+    "sga": 20486000,
+    "rd": 2915000,
+    "da": null,
+    "other": null,
+    "op": 22664000
+   },
+   {
+    "period": "2018-09-28",
+    "rev": 234079000,
+    "cogs": 199084000,
+    "gp": 34995000,
+    "sga": 30789000,
+    "rd": 3284000,
+    "da": null,
+    "other": null,
+    "op": 922000
+   },
+   {
+    "period": "2018-12-28",
+    "rev": 257366000,
+    "cogs": 211430000,
+    "gp": 45936000,
+    "sga": 31658000,
+    "rd": 4072000,
+    "da": null,
+    "other": null,
+    "op": 10206000
+   },
+   {
+    "period": "2019-03-29",
+    "rev": 260100000,
+    "cogs": 215300000,
+    "gp": 44800000,
+    "sga": 33200000,
+    "rd": 3400000,
+    "da": null,
+    "other": null,
+    "op": 8200000
+   },
+   {
+    "period": "2019-06-28",
+    "rev": 265400000,
+    "cogs": 217200000,
+    "gp": 48200000,
+    "sga": 35300000,
+    "rd": 3900000,
+    "da": null,
+    "other": null,
+    "op": 9000000
+   },
+   {
+    "period": "2019-09-27",
+    "rev": 254300000,
+    "cogs": 206800000,
+    "gp": 47500000,
+    "sga": 35600000,
+    "rd": 3600000,
+    "da": null,
+    "other": null,
+    "op": 8300000
+   },
+   {
+    "period": "2019-12-27",
+    "rev": 286400000,
+    "cogs": 230100000,
+    "gp": 56300000,
+    "sga": 48200000,
+    "rd": 3700000,
+    "da": null,
+    "other": null,
+    "op": 4400000
+   },
+   {
+    "period": "2020-03-27",
+    "rev": 320900000,
+    "cogs": 255200000,
+    "gp": 65700000,
+    "sga": 39700000,
+    "rd": 3400000,
+    "da": null,
+    "other": null,
+    "op": 22600000
+   },
+   {
+    "period": "2020-06-26",
+    "rev": 344800000,
+    "cogs": 270900000,
+    "gp": 73900000,
+    "sga": 39300000,
+    "rd": 3800000,
+    "da": null,
+    "other": null,
+    "op": 30800000
+   },
+   {
+    "period": "2020-09-25",
+    "rev": 363300000,
+    "cogs": 288700000,
+    "gp": 74600000,
+    "sga": 36200000,
+    "rd": 3500000,
+    "da": null,
+    "other": null,
+    "op": 34900000
+   },
+   {
+    "period": "2020-12-25",
+    "rev": 369600000,
+    "cogs": 292000000,
+    "gp": 77600000,
+    "sga": 40400000,
+    "rd": 4100000,
+    "da": null,
+    "other": null,
+    "op": 33100000
+   },
+   {
+    "period": "2021-03-26",
+    "rev": 417600000,
+    "cogs": 330700000,
+    "gp": 86900000,
+    "sga": 42300000,
+    "rd": 4200000,
+    "da": null,
+    "other": null,
+    "op": 40400000
+   },
+   {
+    "period": "2021-06-25",
+    "rev": 515200000,
+    "cogs": 415300000,
+    "gp": 99900000,
+    "sga": 61900000,
+    "rd": 6100000,
+    "da": null,
+    "other": null,
+    "op": 31900000
+   },
+   {
+    "period": "2021-09-24",
+    "rev": 553700000,
+    "cogs": 439600000,
+    "gp": 114100000,
+    "sga": 57000000,
+    "rd": 6500000,
+    "da": null,
+    "other": null,
+    "op": 50600000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 615100000,
+    "cogs": 486000000,
+    "gp": 129100000,
+    "sga": 58600000,
+    "rd": 7700000,
+    "da": null,
+    "other": null,
+    "op": 62800000
+   },
+   {
+    "period": "2022-04-01",
+    "rev": 564100000,
+    "cogs": 450400000,
+    "gp": 113700000,
+    "sga": 61200000,
+    "rd": 6800000,
+    "da": null,
+    "other": null,
+    "op": 45700000
+   },
+   {
+    "period": "2022-07-01",
+    "rev": 608700000,
+    "cogs": 490300000,
+    "gp": 118400000,
+    "sga": 60100000,
+    "rd": 7200000,
+    "da": null,
+    "other": 56600000,
+    "op": -5500000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 635000000,
+    "cogs": 510600000,
+    "gp": 124400000,
+    "sga": 59900000,
+    "rd": 7400000,
+    "da": null,
+    "other": 20800000,
+    "op": 36300000
+   },
+   {
+    "period": "2022-12-30",
+    "rev": 566400000,
+    "cogs": 458000000,
+    "gp": 108400000,
+    "sga": 57600000,
+    "rd": 7000000,
+    "da": null,
+    "other": 0,
+    "op": 43800000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 433300000,
+    "cogs": 360300000,
+    "gp": 73000000,
+    "sga": 53500000,
+    "rd": 7100000,
+    "da": null,
+    "other": null,
+    "op": 12400000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 421500000,
+    "cogs": 353400000,
+    "gp": 68100000,
+    "sga": 48300000,
+    "rd": 7200000,
+    "da": null,
+    "other": null,
+    "op": 12600000
+   },
+   {
+    "period": "2023-09-29",
+    "rev": 435000000,
+    "cogs": 369800000,
+    "gp": 65200000,
+    "sga": 52100000,
+    "rd": 7400000,
+    "da": null,
+    "other": null,
+    "op": 5700000
+   },
+   {
+    "period": "2023-12-29",
+    "rev": 444700000,
+    "cogs": 373700000,
+    "gp": 71000000,
+    "sga": 59900000,
+    "rd": 6600000,
+    "da": null,
+    "other": 0,
+    "op": 4500000
+   },
+   {
+    "period": "2024-03-29",
+    "rev": 477700000,
+    "cogs": 395100000,
+    "gp": 82600000,
+    "sga": 58300000,
+    "rd": 7000000,
+    "da": null,
+    "other": null,
+    "op": 17300000
+   },
+   {
+    "period": "2024-06-28",
+    "rev": 516100000,
+    "cogs": 427600000,
+    "gp": 88500000,
+    "sga": 58500000,
+    "rd": 7100000,
+    "da": null,
+    "other": null,
+    "op": 22900000
+   },
+   {
+    "period": "2024-09-27",
+    "rev": 540400000,
+    "cogs": 447000000,
+    "gp": 93400000,
+    "sga": 61100000,
+    "rd": 7100000,
+    "da": null,
+    "other": null,
+    "op": 25200000
+   },
+   {
+    "period": "2024-12-27",
+    "rev": 563300000,
+    "cogs": 471500000,
+    "gp": 91800000,
+    "sga": 58900000,
+    "rd": 7100000,
+    "da": null,
+    "other": 0,
+    "op": 25800000
+   },
+   {
+    "period": "2025-03-28",
+    "rev": 518600000,
+    "cogs": 434600000,
+    "gp": 84000000,
+    "sga": 63500000,
+    "rd": 7600000,
+    "da": null,
+    "other": null,
+    "op": 12900000
+   },
+   {
+    "period": "2025-06-27",
+    "rev": 518800000,
+    "cogs": 439300000,
+    "gp": 79500000,
+    "sga": 62400000,
+    "rd": 7800000,
+    "da": null,
+    "other": 151100000,
+    "op": -141800000
+   },
+   {
+    "period": "2025-09-26",
+    "rev": 510000000,
+    "cogs": 427800000,
+    "gp": 82200000,
+    "sga": 63800000,
+    "rd": 7800000,
+    "da": null,
+    "other": null,
+    "op": 10600000
+   },
+   {
+    "period": "2025-12-26",
+    "rev": 506700000,
+    "cogs": 429400000,
+    "gp": 77300000,
+    "sga": 57600000,
+    "rd": 8800000,
+    "da": null,
+    "other": 0,
+    "op": 10900000
+   },
+   {
+    "period": "2026-03-27",
+    "rev": 533700000,
+    "cogs": 449300000,
+    "gp": 84400000,
+    "sga": 64500000,
+    "rd": 8500000,
+    "da": null,
+    "other": null,
+    "op": 11400000
+   },
+   {
+    "period": "2026-06-26",
+    "rev": 644900000,
+    "cogs": 541200000,
+    "gp": 103700000,
+    "sga": 65400000,
+    "rd": 8800000,
+    "da": null,
+    "other": null,
+    "op": 29500000
+   },
+   {
+    "period": "2026-09-25",
+    "rev": 759000000,
+    "cogs": 630600000,
+    "gp": 128400000,
+    "sga": 65900000,
+    "rd": 8800000,
+    "da": null,
+    "other": null,
+    "op": 53700000
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-25",
+  "unit": "연 매출 환산 캐파($B)",
+  "summary": "회사는 캐파를 '연 매출 환산 금액'으로 말한다. 1H27까지 연 $4B, 이후 $5B 이상을 단계적으로 짓는다(3Q 콜). 3Q 매출 연환산은 $3.04B다. 시설별 캐파·가동률은 공시하지 않는다.",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "3Q 콜 — 1H27 목표 연 $4B만 밝혔다. 현재 명목 캐파·가동률은 숫자로 말하지 않았다",
+   "source": "3Q26 콜(2026-10-27)"
+  },
+  "plans": [
+   {
+    "name": "연 $4B 캐파(1H27)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2027-06",
+    "capex": "미확인",
+    "blocker": "MFC 등 외부 부품 부족, 고객 장기 약정 없음",
+    "source": "3Q26 콜"
+   },
+   {
+    "name": "필리핀 세부 용접 캐파 2배",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2027",
+    "capex": "미확인",
+    "blocker": "숙련 용접 인력·고객 인증",
+    "source": "3Q26 콜"
+   },
+   {
+    "name": "말레이시아·태국 수직계열화 캐파 2배",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2027",
+    "capex": "미확인",
+    "blocker": "장비 반입·고객 인증 미확인",
+    "source": "3Q26 콜"
+   },
+   {
+    "name": "연 $5B 이상 단계적 확장",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "2027 WFE 실현·자금 조달(ATM 잔여 $193M)",
+    "source": "3Q26 콜"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 0.0476,
+    "rev": 2.0995,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 3Q26",
+    "capex": 0.0554,
+    "rev": 2.4443,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.07,
+    "rev": 2.788,
+    "kind": "컨센서스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.1,
+    "rev": 3.75,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "TTM = Fiscal.ai 표준화 현금흐름 분기 10.1·9.6·16.2·19.5백만$(9M26 $45.3M은 10-Q와 일치) · FY2025는 10-K 현금흐름(추정 반올림) · FY2026·27 = 컨센서스 설비투자·매출",
+  "facilities": {
+   "count": 24,
+   "count_basis": "FY2025 10-K Item 2 — 시설 수를 밝히지 않는다. 제조·엔지니어링 시설이 있는 12개 지역(캘리포니아·텍사스·애리조나·이스라엘·오리건·중국·말레이시아·싱가포르·영국·태국·필리핀·체코)과 세정·분석 시설 12개 지역(콜로라도·애리조나·캘리포니아·오리건·메인·텍사스·아일랜드·이스라엘·대만·한국·싱가포르·중국)을 지역당 1곳으로 센 하한",
+   "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm",
+   "items": [
+    {
+     "name": "본사·제조(Hayward)",
+     "location": "미국 캘리포니아 Hayward",
+     "owned": "임차",
+     "use": "본사·엔지니어링·제조",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시 — 임차는 2027년 만료(10-K)",
+     "status": "가동"
+    },
+    {
+     "name": "세부 용접 공장",
+     "location": "필리핀 세부",
+     "owned": "미확인",
+     "use": "용접·프레임 제조",
+     "capacity": "미확인",
+     "capacity_basis": "3Q 콜에서 캐파 2배 계획만 밝혔다",
+     "status": "가동"
+    },
+    {
+     "name": "말레이시아 제조 시설",
+     "location": "말레이시아",
+     "owned": "미확인",
+     "use": "가스 공급 시스템·모듈 제조",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "싱가포르 제조·세정 시설",
+     "location": "싱가포르",
+     "owned": "미확인",
+     "use": "모듈 제조·세정",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "중국 제조·세정 시설",
+     "location": "중국",
+     "owned": "소유·임차",
+     "use": "모듈 제조·세정",
+     "capacity": "미확인",
+     "capacity_basis": "10-K — 중국에 건물·토지를 소유. 시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "체코 제조 시설",
+     "location": "체코",
+     "owned": "미확인",
+     "use": "유럽 고객용 모듈 제조",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "태국 제조 시설",
+     "location": "태국",
+     "owned": "미확인",
+     "use": "부품·수직계열화 제조",
+     "capacity": "미확인",
+     "capacity_basis": "3Q 콜에서 수직계열화 캐파 2배 계획만 밝혔다",
+     "status": "가동"
+    },
+    {
+     "name": "이스라엘 제조·세정 시설(Ham-Let)",
+     "location": "이스라엘",
+     "owned": "미확인",
+     "use": "유체 부품(밸브·피팅) 제조·세정",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "한국 세정 시설",
+     "location": "한국",
+     "owned": "소유",
+     "use": "부품 세정·분석",
+     "capacity": "미확인",
+     "capacity_basis": "10-K — 한국에 건물·토지 소유. 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "영국 제조 시설",
+     "location": "영국",
+     "owned": "소유",
+     "use": "제조",
+     "capacity": "미확인",
+     "capacity_basis": "10-K — 영국에 건물·토지 소유. 캐파 미공시",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "소유 건물(한국·중국·영국)은 10-K가 시 단위 주소를 밝히지 않아 위성 판독 등록을 보류한다"
+ },
+ "customers": {
+  "as_of": "2026-09-25",
+  "period": "3Q26",
+  "summary": "3Q 매출의 61.1%가 두 고객이다 — Lam Research 38.8%, Applied Materials 22.3%(10-Q). 2025년에는 Lam 37.0%, 상위 2곳 58.7%였다. 장비사가 외주를 늘리는 상승기라 집중이 오히려 커졌다.",
+  "items": [
+   {
+    "name": "Lam Research",
+    "share": 0.388,
+    "prior": 0.37,
+    "basis": "공시",
+    "buys": "식각·증착 장비용 가스 공급 시스템·모듈",
+    "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm",
+    "why": "10-Q 10% 초과 고객 공시. prior는 2025년 연간(10-K)"
+   },
+   {
+    "name": "Applied Materials",
+    "share": 0.223,
+    "prior": 0.217,
+    "basis": "공시",
+    "buys": "증착·식각 장비용 서브시스템",
+    "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm",
+    "why": "10-Q 공시. prior는 2025년 상위 2곳 58.7% − Lam 37.0%"
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-10-27",
+  "summary": "가스 공급 시스템의 핵심 구매 부품은 질량유량제어기(MFC)·초고순도 밸브·레귤레이터다. 3Q 콜에서 경영진은 MFC 부족이 1~2분기 이어질 수 있다고 말했다. 회사는 공급사 이름을 공시하지 않는다.",
+  "links": [
+   {
+    "item": "질량유량제어기(MFC)",
+    "critical": true,
+    "input": "valve",
+    "suppliers": [
+     {
+      "name": "MKS Inc.",
+      "role": "MFC·압력 계측",
+      "status": "추정",
+      "source": "업계 구조(MFC 주요 제조사) — UCTT 공시 없음"
+     },
+     {
+      "name": "Horiba",
+      "role": "MFC",
+      "status": "추정",
+      "source": "업계 구조 — UCTT 공시 없음"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "부족",
+    "capacity_basis": "3Q 콜 Q&A — 경영진이 MFC 부족이 1~2분기 지속 가능하다고 답했다(2026-10-27) · 인증 공급사 2곳(MKS·Horiba)과 재인증 9개월은 업계 구조로 어림한 추정, 1위 점유율 0.6은 Horiba IR이 밝혀 온 반도체용 MFC 세계 점유율(약 60%) 기준",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 9,
+    "top_share": 0.6,
+    "region_share": "미확인",
+    "region": "일본·미국(추정)",
+    "secured": "미확인",
+    "why": "가스 라인마다 들어가고, 장비사가 공급사를 지정하는 경우가 많아 UCTT가 대체하기 어렵다(추정)",
+    "relief": "미확인 — MFC 제조사 증설 가동 확인 전",
+    "source": "3Q26 콜 Q&A(Needham 질문)"
+   },
+   {
+    "item": "초고순도 밸브·피팅·레귤레이터",
+    "critical": true,
+    "input": "valve",
+    "suppliers": [
+     {
+      "name": "UCTT 자체(Ham-Let·Fluid Solutions)",
+      "role": "밸브·피팅 내재화",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm"
+     },
+     {
+      "name": "외부 공급사(미공시)",
+      "role": "밸브·레귤레이터",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "공시 없음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "이스라엘·미국·아시아",
+    "secured": "미확인",
+    "why": "일부를 자회사로 내재화해 병목이 MFC보다 작다(추정)",
+    "relief": "태국·말레이시아 수직계열화 캐파 2배(2027, 발표 단계)",
+    "source": "10-K·3Q26 콜"
+   },
+   {
+    "item": "스테인리스 배관·판재·알루미늄 프레임",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "다수 공급사(미공시)",
+      "role": "금속 원재료",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "여유",
+    "capacity_basis": "10-K 위험 요인 — 일부 단일·제한 공급원이 있다고만 적었다. 범용 금속은 대체 공급이 많다(추정) · 인증 공급사 수 3은 10-K의 '다수 공급사'를 최소값으로 둔 것",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 3,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "글로벌",
+    "secured": "현물",
+    "why": "범용 소재",
+    "relief": "해당 없음",
+    "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026010744/uctt-20251226.htm"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-25",
+  "basis": "GAAP",
+  "summary": "3Q26 매출원가는 매출의 83.1%로 1년 전 83.9%보다 0.8%p 낮다. 제품 부문 원가율이 85.5% → 84.4%, 판관비율이 12.5% → 8.7%로 내려 영업이익률이 2.1% → 7.1%가 됐다. 이익률 개선의 대부분은 원가가 아니라 고정비 레버리지다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.51,
+    "cogs": 0.4278,
+    "rd": 0.0078,
+    "sga": 0.0638,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.759,
+    "cogs": 0.6306,
+    "rd": 0.0088,
+    "sga": 0.0659,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "제품 구매 부품·원재료(MFC·밸브·배관·판금)",
+    "stage": "매출원가",
+    "pct_rev": 0.63,
+    "prior_pct": 0.615,
+    "fixed": 0.0,
+    "driver": "부품 단가·MFC 수급·고객 지정 부품",
+    "basis": "추정",
+    "source": "10-Q 제품 원가 $575.7M 총액만 공시 — 10-K '매출원가 대부분은 구매 부품'",
+    "input": "valve"
+   },
+   {
+    "name": "제품 인건비·제조 간접비",
+    "stage": "매출원가",
+    "pct_rev": 0.1085,
+    "prior_pct": 0.111,
+    "fixed": 0.5,
+    "driver": "가동률·세부·말레이시아 램프",
+    "basis": "추정",
+    "source": "제품 원가 − 구매 부품 추정 − 감가상각 추정"
+   },
+   {
+    "name": "감가상각(매출원가)",
+    "stage": "매출원가",
+    "pct_rev": 0.02,
+    "prior_pct": 0.0199,
+    "fixed": 1.0,
+    "driver": "증설 설비",
+    "basis": "추정",
+    "source": "분기 감가상각 $19.4M(Fiscal.ai) 중 매출원가 몫 약 80% 가정"
+   },
+   {
+    "name": "서비스 원가(세정·코팅 인건비·화학약품)",
+    "stage": "매출원가",
+    "pct_rev": 0.0723,
+    "prior_pct": 0.0929,
+    "fixed": 0.5,
+    "driver": "팹 가동률·웨이퍼 투입",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm"
+   },
+   {
+    "name": "연구개발비",
+    "stage": "연구개발",
+    "pct_rev": 0.0116,
+    "prior_pct": 0.0153,
+    "fixed": 0.9,
+    "driver": "NPX 개발",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.0868,
+    "prior_pct": 0.1251,
+    "fixed": 0.7,
+    "driver": "인건비·주식보상·무형자산 상각",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1275014/000162828026067880/uctt-20260925.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "제품(Products) 부문 — 가스 공급 시스템·모듈·부품",
+    "rev_share": 0.898,
+    "gpm": 0.156,
+    "gpm_basis": "10-Q 부문 원가율 84.4%",
+    "bom": [
+     {
+      "item": "질량유량제어기(MFC)",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 가스 박스 구성 — 공시 없음",
+      "pass_through": "미확인",
+      "why": "공급 부족 시 단가 상승, 장비사 지정 부품이면 원가 연동(추정)",
+      "input": "valve"
+     },
+     {
+      "item": "초고순도 밸브·피팅·레귤레이터",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "업계 구성 — 공시 없음",
+      "pass_through": "미확인",
+      "why": "일부 자체 생산(Ham-Let)",
+      "input": "valve"
+     },
+     {
+      "item": "스테인리스 배관·판재·알루미늄 프레임",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "업계 구성 — 공시 없음",
+      "pass_through": "미확인",
+      "why": "니켈·알루미늄 가격"
+     },
+     {
+      "item": "조립·용접·시험 인건비",
+      "share": [
+       0.1,
+       0.16
+      ],
+      "basis": "추정",
+      "source": "종업원 약 6,900명(회사 개요)",
+      "pass_through": "미확인",
+      "why": "아시아 인건비·숙련 용접공"
+     }
+    ]
+   },
+   {
+    "name": "세정·코팅·오염 분석",
+    "rev_share": 0.102,
+    "gpm": 0.288,
+    "gpm_basis": "10-Q 서비스 원가율 71.2%",
+    "bom": [
+     {
+      "item": "세정 인건비",
+      "share": [
+       0.35,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "서비스 원가 총액만 공시",
+      "pass_through": "미확인",
+      "why": "지역 인건비"
+     },
+     {
+      "item": "화학약품·소모품",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "공시 없음",
+      "pass_through": "미확인",
+      "why": "산·용제 가격"
+     },
+     {
+      "item": "설비 감가상각·시설비",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "공시 없음",
+      "pass_through": 0.0,
+      "why": "고정비"
+     }
+    ]
+   }
+  ]
+ },
+ "sync": {
+  "why": "회사 제품은 반도체 장비 부품(HS 8486.90)이고 매출은 장비사 출하를 따른다. 미국 반도체 장비 PPI를 가격 대용, 미국 반도체 장비 수입을 수요 대용, 밸브 PPI를 원가 대용으로 쓴다",
+  "indicators": [
+   {
+    "label": "미국 반도체 장비 PPI",
+    "source": "ppi",
+    "input": "semicap",
+    "country": "us",
+    "segment": "가스·유체 공급 시스템",
+    "why": "고객 제품 가격"
+   },
+   {
+    "label": "미국 반도체 장비 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "848620",
+    "segment": "가스·유체 공급 시스템",
+    "why": "미국 팹 장비 반입"
+   },
+   {
+    "label": "미국 반도체 장비 부품 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "848690",
+    "segment": "가스·유체 공급 시스템",
+    "why": "같은 품목(장비 부품)의 수입"
+   },
+   {
+    "label": "미국 산업용 밸브 PPI",
+    "source": "ppi",
+    "input": "valve",
+    "country": "us",
+    "segment": "부품(Fluid Solutions)",
+    "why": "핵심 원가"
+   }
+  ],
+  "products": [
+   {
+    "name": "가스·유체 공급 시스템",
+    "segment": "가스·유체 공급 시스템",
+    "hs": "848690",
+    "share": 0.9,
+    "inputs": [
+     "semicap",
+     "valve"
+    ],
+    "basis": "반도체 장비 부품"
+   },
+   {
+    "name": "세정·코팅·오염 분석",
+    "segment": "세정·코팅·오염 분석",
+    "hs": "미확인",
+    "share": 0.1,
+    "inputs": [],
+    "basis": "서비스 — HS 없음"
+   }
+  ]
+ },
+ "pq": {
+  "none": "출하 대수·ASP를 공시하지 않는다 — 업종 PPI(반도체 장비) 대용으로 잰다"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수 없음 — 마지막 대형 인수는 2021년 Ham-Let(이스라엘 밸브)"
+ },
+ "midterm": {
+  "sub": "semicap",
+  "exposure": {
+   "chips_subsidy": 0.4
+  },
+  "why": "CHIPS 직접 보조금 공시 없음(10-Q). 미국향 매출은 3Q 21.6%(10-Q 지역 매출)이고, 고객의 미국 팹 투자를 통한 간접 노출이라 기본값 0.8보다 낮춘다"
+ },
+ "recurring": {
+  "share": 0.102,
+  "kind": "서비스(부품 세정·코팅·분석) — 팹 가동·웨이퍼 투입 연동",
+  "base": "미확인(고객 팹 수 미공시)",
+  "years_to_recurring": 0,
+  "source": "10-Q 3Q26 서비스 매출 $77.1M ÷ 총매출 $759.0M"
+ },
+ "main_metric": "eps",
+ "main_metric_why": "회사가 조정 EPS로 가이던스를 내고, 다음 4개 분기 EBITDA 중 감가상각 비중이 12%뿐이다",
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "어닝콜 톤 '상향' 규칙(약세 20·기본 50·강세 30)에서 약세를 30%로 올리고 강세를 20%로 낮춤 — 11/5 업종 급락(SOX −12%, 2020년 이후 최악)과 VIX 28 국면, 고객 장기 약정 없는 캐파 선행, ATM 잔여 $193M 희석 가능성(자체추론)",
+ "social": {
+  "as_of": "2026-11-09",
+  "summary": "커뮤니티는 하락을 '좋은 사업이 2027 이익 약 7배까지 싸졌다'로 소화하는 쪽이 늘었다. 다만 대화량이 적고(7일 Moderate 58, 24시간 언급 없음) 글 대부분이 유튜브·X 소수 계정과 내부자 매도 공시 피드다.",
+  "narratives": [
+   {
+    "channel": "유튜브",
+    "theme": "고점 대비 약 70% 빠져 2027 이익의 약 7배 — 싸졌다",
+    "expectation": "상향",
+    "vs_fact": "확인 — Fwd 2Y P/E 약 6배, 6/30 종가 고점 $142.59 대비 −71%. 단 2027 EPS 표본이 얇다",
+    "share": 0.35
+   },
+   {
+    "channel": "X",
+    "theme": "3Q 제품 매출 급증은 AI 투자가 실제 장비 생산으로 이어진다는 증거",
+    "expectation": "상향",
+    "vs_fact": "확인 — 3Q 제품 매출 $681.9M(전년 +53%, 10-Q)",
+    "share": 0.3
+   },
+   {
+    "channel": "X",
+    "theme": "메모리 증설 투자가 장비 공급망 전체를 끌어올린다",
+    "expectation": "상향",
+    "vs_fact": "과장 — 업종 논리이고 UCTT 몫은 고객 장비 출하로만 확인된다(금지표: 고객 투자 → 공급사 매출)",
+    "share": 0.15
+   },
+   {
+    "channel": "내부자 공시",
+    "theme": "5~7월 고점 부근 임원 매도",
+    "expectation": "하향",
+    "vs_fact": "확인 — Form 4(CFO $2.7M 등)",
+    "share": 0.2
+   }
+  ],
+  "turn": "5월 '공급망 랠리(연초 대비 +200%)' → 6~7월 내부자 매도 집중 → 10/28 3Q 실적 긍정 → 11/5 업종 급락 뒤 '싸졌다'"
+ },
+ "names": [
+  "AEIS",
+  "AMAT",
+  "Advanced Energy",
+  "AllianceBernstein",
+  "Applied Materials",
+  "Bernstein",
+  "Bloomberg",
+  "Citi",
+  "Craig-Hallum",
+  "Deutsche Bank",
+  "Driehaus",
+  "ENTG",
+  "Entegris",
+  "Franklin",
+  "Goldman Sachs",
+  "Ham-Let",
+  "Horiba",
+  "ICHR",
+  "Ichor",
+  "JP",
+  "JP Morgan",
+  "KLIC",
+  "Kioxia",
+  "Kulicke & Soffa",
+  "Lam",
+  "Lam Research",
+  "MKS",
+  "MKS Inc.",
+  "Micron",
+  "NVIDIA",
+  "Needham",
+  "Nomura",
+  "Oppenheimer",
+  "SK하이닉스",
+  "SanDisk",
+  "Seagate",
+  "TD Cowen",
+  "TSMC",
+  "UBS",
+  "VDL ETG",
+  "Wells Fargo",
+  "삼성전자"
+ ],
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "이익 추정이 그대로인데 배수만 업종과 함께 무너졌다 — 2027 EPS 약 6배는 사이클 정점 할인을 넘어섰다",
+    "evidence": [
+     "Fwd 2Y P/E 약 6.0배",
+     "3Q 매출 $759M(+48.8%), 4Q 가이던스 $800~860M",
+     "고객들이 2027 WFE $200B 초과를 확정적으로 말함(3Q 콜)"
+    ],
+    "falsifier": "Lam·AMAT가 2027 WFE를 2026년 수준 이하로 시사"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "업종 매도가 회사 숫자를 앞질렀다 — 목표주가까지 업사이드가 하방보다 크다",
+    "evidence": [
+     "DCF 내재가치(기본) 시가총액의 약 1.8배",
+     "11/5 하락일 회사 공시 없음",
+     "제품 부문 총이익률 15.6%(전년 14.5%)"
+    ],
+    "falsifier": "4Q 영업현금이 다시 음수이고 ATM 추가 매도"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "싸 보이지만 이익의 근거가 구속력 없는 고객 예측이다 — 4Q 현금 전환을 보고 판단해도 늦지 않다",
+    "evidence": [
+     "재고 구매 약정 $1,111M(10-Q)",
+     "10-K: 의미 있는 수주잔고 없음",
+     "영업현금 3분기 연속 음수"
+    ],
+    "falsifier": "4Q 영업현금 플러스 전환과 재고 정체"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "정점 패턴이다 — 서브시스템 회사가 재고를 쌓고 증자로 캐파를 늘릴 때가 사이클 꼭지였다",
+    "evidence": [
+     "재고 $723M(+$93M QoQ)",
+     "ATM 약 $203M 조달·잔여 $193M",
+     "내부자 5~7월 매도 집중"
+    ],
+    "falsifier": "2027 상반기 WFE 상향과 재고 감소가 함께 나옴"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "고객 두 곳 61%에 MFC 부족까지 — 가격 결정력이 없는 위탁 생산자가 사이클 하강을 가장 먼저 맞는다",
+    "evidence": [
+     "Lam 38.8%·AMAT 22.3%",
+     "영업이익률 7.1%로 동종의 절반 이하",
+     "MFC 부족 1~2분기 지속(경영진)"
+    ],
+    "falsifier": "상위 고객이 다년 공급 약정을 공개"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "11/5 SOX −12%에 UCTT도 −15.5%였지만 그날 회사 공시는 없었다. 이익 추정은 그대로이고 Fwd 2Y P/E는 6배다."
+     },
+     {
+      "seat": "Buy",
+      "text": "DCF 기본값이 시가총액의 약 1.8배이고 컨센서스 목표가 중앙 $107과의 거리도 크다. 하방 시나리오를 넣어도 기대값이 지금 가격 위다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "재고 구매 약정 $1,111M은 고객 예측 위에 있고, 10-K는 그 예측이 구속력이 없다고 적었다. 4Q 현금 흐름이 먼저다."
+     },
+     {
+      "seat": "Sell",
+      "text": "재고가 한 분기에 $93M 늘었고 ATM으로 주식을 팔았다. 과거 정점에서 본 모습이다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "두 고객이 61%이고 영업이익률은 7%다. 하강기에 장비사는 외주부터 회수한다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "Fwd 2Y 6배의 분모는 애널리스트 1명의 2027 추정이다. 표본 1명의 EPS로 싸다고 말하기 어렵다."
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "재고 증가는 4Q 가이던스 +9%를 만들기 위한 선매입으로 본다(추정). 재고는 3Q 연환산 매출의 약 24%다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "DCF 1.8배는 목표 영업이익률 10%를 깔고 있다. 3Q 비GAAP 9.0%에서 1%p만 비어도 값이 크게 준다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "11/5 매도는 데이터센터 규제 공포였다 — 메모리·로직 장비 수요로 이어지면 회사 숫자가 늦게 따라 내려온다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "선거 뒤 정책 채널은 오히려 CHIPS 폐지 위험을 낮췄다. 규제 공포는 아직 법안 단계도 아니다(정책 0단계 가설)."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "고객 '2027 확정' 발언은 콜 발언이지 주문이 아니다. 회사는 UBS 질문에 고객 장기 약정 여부를 답하지 않았다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "ATM 잔여 $193M은 주가가 낮을수록 희석이 크다. 지금 가격이면 약 470만 주, 약 10%다(Chiip 계산)."
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "영업현금 음수는 재고 선매입 몫이고, 판관비율이 12.5%에서 8.7%로 내려 고정비 레버리지는 이미 숫자로 확인됐다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "이익이 깨지지 않는 한 지금 배수는 너무 낮다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "업사이드가 하방보다 크다. 다만 4Q 현금 전환은 확인 조건이다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "할인은 과하다고 본다. 확인 조건을 붙여 한 단계 올린다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "희석과 재고 위험은 남는다. 그래도 지금 가격은 그 위험의 상당 부분을 넣었다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "고객 집중은 숫자가 바뀌지 않는다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Buy",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "이익 추정이 유지된 채 배수가 업종과 함께 동종보다 더 줄었다는 반박이 살아남았다. Sell 쪽의 '표본 1명 EPS'와 'ATM 희석'은 확률을 낮추는 근거로 남았다.",
+   "dissent": "고객 두 곳 61%와 구속력 없는 예측 위의 재고 약정 — 하강기에 가장 먼저 맞는다."
+  }
  }
 }
