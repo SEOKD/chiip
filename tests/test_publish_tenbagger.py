@@ -73,8 +73,8 @@ class TestDeliveryGate(unittest.TestCase):
         s1 = pt.send(self.src, "캡션", dry=True)
         self.assertTrue(s1["sent"])
         self.assertFalse(s1["notion_ok"])
-        self.assertIn("노션 게시 실패", s1["text"])
-        self.assertIn("📄 [리포트 보기(md)](", s1["text"])   # Artifact 없이도 GitHub 마크다운(2026-11-04)
+        self.assertNotIn("노션", s1["text"])   # 텔레그램은 html 링크만(2026-11-08)
+        self.assertNotIn("(md)", s1["text"])
         self.assertIn("html 보기 링크 게시 실패", s1["text"])
         self.assertEqual(len(pt.pending()), 1)
         with self.assertRaises(SystemExit):   # 노션에는 html 링크만 — Artifact 먼저(2026-11-04)
@@ -82,10 +82,8 @@ class TestDeliveryGate(unittest.TestCase):
         pt.artifact(self.src, url="https://claude.ai/code/artifact/q")
         self.assertEqual(pt.notion_text(pt.load(self.src)), "📄 [리포트 보기(html)](https://claude.ai/code/artifact/q)")
         pt.notion(self.src, page="https://app.notion.com/p/abc")
-        s2 = pt.send(self.src, dry=True)
-        self.assertIn("노션 게시 완료", s2["text"])
         self.assertEqual(pt.pending(), [])
-        self.assertIn("skipped", pt.send(self.src, dry=True))   # 같은 리포트를 두 번 보내지 않는다
+        self.assertIn("skipped", pt.send(self.src, dry=True))   # 노션이 뒤늦게 올라가도 후속 알림 없음, 두 번 보내지 않는다
 
     def test_full_success_message_has_both_links(self):
         r = pt.prepare(self.src, dry=True)
@@ -95,11 +93,11 @@ class TestDeliveryGate(unittest.TestCase):
         pt.artifact(self.src, url="https://claude.ai/code/artifact/abc")
         pt.notion(self.src, page="https://app.notion.com/p/xyz")
         s = pt.send(self.src, "요약", dry=True)
-        self.assertIn("📄 [리포트 보기(md)](", s["text"])   # md + html 둘 다(2026-11-04 마스터 지시)
-        self.assertIn("🌐 [리포트 보기(html)](https://claude.ai/code/artifact/abc)", s["text"])
+        self.assertNotIn("(md)", s["text"])   # html 링크만(2026-11-08 마스터 지시)
+        self.assertIn("🌐 [리포트 보기](https://claude.ai/code/artifact/abc)", s["text"])
         self.assertIn("skipped", pt.send(self.src, dry=True))
         self.assertTrue(pt.send(self.src, "요약", dry=True, resend=True)["sent"])   # 경로가 바뀐 리포트는 다시 보낼 수 있다
-        self.assertIn("https://app.notion.com/p/xyz", s["text"])
+        self.assertNotIn("https://app.notion.com/p/xyz", s["text"])
         self.assertEqual(pt.existing_notion("TST")[0], "https://app.notion.com/p/xyz")
 
     def later_report(self):

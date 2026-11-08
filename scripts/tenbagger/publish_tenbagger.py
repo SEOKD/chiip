@@ -11,7 +11,7 @@ github 링크를 제공해야지 … 노션에도 결과물이 Github와 동시�
   4. send <json> --caption <파일>         GitHub 게시 기록이 없으면 보내지 않는다. 보기 링크 = Artifact(없으면 GitHub 마크다운 + '보기 링크 게시 실패'),
                                        노션이 성공이면 캡션 + 리포트 보기 + 노션 링크,
                                        노션이 실패·미기록이면 '노션 게시 실패 — 다음 회차 재시도'를 붙여 보내고 상태를 notion_pending으로 남긴다.
-                                       이미 보낸 리포트의 노션이 나중에 성공하면 send가 '노션 게시 완료' 한 줄만 따로 보낸다.
+                                       텔레그램은 html 링크 1통뿐이다 — 노션이 나중에 성공해도 후속 알림은 없다(2026-11-08).
   notion-text <json>                    노션 본문(html 링크 한 줄)을 출력 — 노션에는 이것만 올린다(2026-11-04)
   pending                               노션 미완료·텔레그램 미발송 리포트 목록(다음 회차 시작 때 먼저 처리)
 기록: outputs/tenbagger/reports/delivery.csv(time,stem,ticker,step,status,detail)
@@ -179,12 +179,8 @@ def notion_text(st):
 
 
 def message(st, caption):
-    gh, nt, ar = st["github"]["md"], st.get("notion") or {}, st.get("artifact") or {}
-    view = f"📄 [리포트 보기(md)]({gh})"   # 마스터 지시 2026-11-04 "md 파일과 함께 html도 올려줘" — md + html 둘 다
-    hv = html_link(st)
-    lines = [caption.strip(), "", view] + ([f"🌐 [리포트 보기(html)]({hv})"] if hv else ["🌐 html 보기 링크 게시 실패 — 다음 회차에 다시 올립니다"])
-    lines.append(f"🗂 [노션]({nt['page']})" if nt.get("status") == "ok" else "🗂 노션 게시 실패 — 다음 회차에 다시 올립니다")
-    return "\n".join(x for x in lines if x is not None)
+    hv = html_link(st)   # 마스터 지시 2026-11-08 "텔레그램 피드로 제공할 때 html 링크만" — md·노션 링크는 넣지 않는다
+    return "\n".join([caption.strip(), "", f"🌐 [리포트 보기]({hv})" if hv else "🌐 html 보기 링크 게시 실패 — 다음 회차에 다시 올립니다"])
 
 
 def first_image(rep, prefer="exploded"):
@@ -199,13 +195,9 @@ def send(src, caption="", dry=False, resend=False, reissue=False, photo=False):
         raise SystemExit("GitHub 게시 기록 없음 — 텔레그램을 보내지 않는다")
     tg = {} if resend or reissue else (st.get("telegram") or {})   # resend = 발행 경로가 바뀐 리포트를 새 링크로 다시 보낼 때
     ok = (st.get("notion") or {}).get("status") == "ok"
-    if tg.get("sent") and tg.get("notion_ok"):
-        return {"skipped": "이미 GitHub·노션 링크와 함께 발송함"}
-    if tg.get("sent"):   # 앞서 노션 없이 보낸 리포트 — 노션이 이제 올라갔으면 한 줄만
-        if not ok:
-            return {"skipped": "노션 아직 실패 — 재시도 후 다시"}
-        text = f"[Chiip Analysis] {st['company']}({st['ticker']}) 노션 게시 완료\n🗂 {st['notion']['page']}"
-    else:
+    if tg.get("sent"):   # 텔레그램은 html 링크 1통뿐 — 노션 게시가 늦어도 후속 알림을 보내지 않는다(2026-11-08)
+        return {"skipped": "이미 html 링크로 발송함"}
+    if True:
         cap = Path(caption).read_text(encoding="utf-8") if caption and Path(caption).exists() else (caption or f"[Chiip Analysis] {st['company']}({st['ticker']})")
         rep = json.loads(Path(src).read_text(encoding="utf-8")) if Path(src).exists() else {}
         if rep.get("format") == 3 and rep.get("kind") != "spac":   # 양식 3은 피드를 엔진이 만든다(마스터 지시 2026-11-01). 스팩 리포트는 등급·목표주가가 없어 캡션으로
@@ -232,7 +224,7 @@ def pending():
     for p in sorted(STATE.glob("*.json")) if STATE.exists() else []:
         st = json.loads(p.read_text(encoding="utf-8"))
         tg = st.get("telegram") or {}
-        if (st.get("notion") or {}).get("status") != "ok" or not tg.get("sent") or not tg.get("notion_ok"):   # Artifact는 더 기다리지 않는다(2026-11-04 md 링크)
+        if (st.get("notion") or {}).get("status") != "ok" or not tg.get("sent"):   # 텔레그램은 html 1통 — 노션은 따로 재시도(2026-11-08)   # Artifact는 더 기다리지 않는다(2026-11-04 md 링크)
             out.append({"stem": st["stem"], "ticker": st.get("ticker"), "notion": (st.get("notion") or {}).get("status"),
                         "artifact": (st.get("artifact") or {}).get("status"), "telegram": bool(tg.get("sent")), "json": rel(REP / (st["stem"] + ".json"))})
     return out
