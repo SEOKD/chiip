@@ -1,0 +1,5 @@
+# 산업 묶음의 글로벌 동종사(마스터 지시 2026-11-08 "산업 리포트에서 다루는 섹터는 한 국가를 특정하지 말아라")
+# 유니버스가 미국 종목에 쏠려 한 나라뿐인 묶음이 많다 → 리포트를 쓸 때 TradingView 스크리너(같은 업종, 나라별 시가총액 상위)로 다른 나라 동종사를 채운다.
+# 키 = config/industry_taxonomy.yaml sub(GICS 세부 산업 영문). 값 = [{name, ticker(TradingView 심볼), country}] — weekly_pick.groups()가 묶음에 peer로 붙인다.
+# 절차: docs/tasks/chiip-industry-weekly.md 3-0. peer는 선정 점수(뉴스·알파)에는 거의 영향이 없고, 리포트 범위·나라 관문(logic.gate)에 쓴다.
+peers: {}

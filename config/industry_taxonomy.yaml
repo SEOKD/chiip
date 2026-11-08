@@ -5,9 +5,9 @@
 #   미만 → 상위 '산업'으로 올려 묶고 그래도 미만이면 제외. 구성이 split_over를 넘는 세부 산업(반도체 등)은 감시 목록 테마(분야 모듈)로 한 번 더 나눈다.
 # 티커는 거래소 접미사를 뗀 값(config 유니버스와 맞춘다). 새 종목은 이 표에 넣는다 — 없으면 테마 묶음만 따른다.
 split_over: 15
-etf:                         # 섹터별 비교 ETF(가격 신호 기준)
+etf:
   Information Technology: AMEX:XLK
-  Semiconductors & Semiconductor Equipment: NASDAQ:SMH   # 산업그룹 우선
+  Semiconductors & Semiconductor Equipment: NASDAQ:SMH
   Utilities: AMEX:XLU
   Industrials: AMEX:XLI
   Energy: AMEX:XLE
@@ -17,125 +17,581 @@ etf:                         # 섹터별 비교 ETF(가격 신호 기준)
   Consumer Staples: AMEX:XLP
   Real Estate: AMEX:XLRE
   Materials: AMEX:XLB
-sub:                         # 세부 산업: [한국어 이름, 산업, 산업그룹, 섹터]
-  Semiconductors: [반도체, Semiconductors & Semiconductor Equipment, Semiconductors & Semiconductor Equipment, Information Technology]
-  Semiconductor Materials & Equipment: [반도체 장비·소재, Semiconductors & Semiconductor Equipment, Semiconductors & Semiconductor Equipment, Information Technology]
-  Technology Hardware, Storage & Peripherals: [컴퓨터 하드웨어·스토리지, "Technology Hardware, Storage & Peripherals", Technology Hardware & Equipment, Information Technology]
-  Communications Equipment: [통신 장비, Communications Equipment, Technology Hardware & Equipment, Information Technology]
-  Electronic Components: [전자 부품, "Electronic Equipment, Instruments & Components", Technology Hardware & Equipment, Information Technology]
-  Electronic Manufacturing Services: [전자 제조 서비스(EMS), "Electronic Equipment, Instruments & Components", Technology Hardware & Equipment, Information Technology]
-  Electronic Equipment & Instruments: [전자 장비·계측기, "Electronic Equipment, Instruments & Components", Technology Hardware & Equipment, Information Technology]
-  Systems Software: [시스템 소프트웨어, Software, Software & Services, Information Technology]
-  Application Software: [응용 소프트웨어, Software, Software & Services, Information Technology]
-  IT Consulting & Other Services: [IT 컨설팅·서비스, IT Services, Software & Services, Information Technology]
-  Internet Services & Infrastructure: [인터넷 인프라(클라우드), IT Services, Software & Services, Information Technology]
-  Electric Utilities: [전력 유틸리티, Electric Utilities, Utilities, Utilities]
-  Multi-Utilities: [복합 유틸리티, Multi-Utilities, Utilities, Utilities]
-  Independent Power Producers & Energy Traders: [독립 발전사업자(IPP), Independent Power & Renewable Electricity Producers, Utilities, Utilities]
-  Renewable Electricity: [재생에너지 발전, Independent Power & Renewable Electricity Producers, Utilities, Utilities]
-  Electrical Components & Equipment: [전기 부품·장비, Electrical Equipment, Capital Goods, Industrials]
-  Heavy Electrical Equipment: [중전기기(발전·송전 설비), Electrical Equipment, Capital Goods, Industrials]
-  Construction & Engineering: [건설·엔지니어링(전력·데이터센터 시공), Construction & Engineering, Capital Goods, Industrials]
-  Industrial Machinery & Supplies & Components: [산업 기계·부품, Machinery, Capital Goods, Industrials]
-  Construction Machinery & Heavy Transportation Equipment: [건설기계·엔진, Machinery, Capital Goods, Industrials]
-  Building Products: [건물 설비(공조), Building Products, Capital Goods, Industrials]
-  Aerospace & Defense: [항공우주·방산, Aerospace & Defense, Capital Goods, Industrials]
-  Industrial Conglomerates: [복합 산업재, Industrial Conglomerates, Capital Goods, Industrials]
-  Trading Companies & Distributors: [산업재 유통, Trading Companies & Distributors, Capital Goods, Industrials]
-  Research & Consulting Services: [리서치·컨설팅 서비스, Professional Services, Commercial & Professional Services, Industrials]
-  Oil & Gas Equipment & Services: [석유·가스 장비·서비스, Energy Equipment & Services, Energy, Energy]
-  Life Sciences Tools & Services: [생명과학 도구, Life Sciences Tools & Services, "Pharmaceuticals, Biotechnology & Life Sciences", Health Care]
-  Interactive Media & Services: [인터랙티브 미디어, Interactive Media & Services, Media & Entertainment, Communication Services]
-  Movies & Entertainment: [엔터테인먼트, Entertainment, Media & Entertainment, Communication Services]
-  Alternative Carriers: [위성·대체 통신, Diversified Telecommunication Services, Telecommunication Services, Communication Services]
-  Broadline Retail: [종합 소매, Broadline Retail, Consumer Discretionary Distribution & Retail, Consumer Discretionary]
-  Consumer Electronics: [가전, Household Durables, Consumer Durables & Apparel, Consumer Discretionary]
-  Data Center REITs: [데이터센터 리츠, Specialized REITs, Equity Real Estate Investment Trusts (REITs), Real Estate]
-  Specialty Chemicals: [특수 화학, Chemicals, Materials, Materials]
-  Commodity Chemicals: [범용 화학, Chemicals, Materials, Materials]
-  Packaged Foods & Meats: [가공식품(화학 소재 겸업), Food Products, "Food, Beverage & Tobacco", Consumer Staples]
-  Personal Care Products: [개인 미용 기기, Personal Care Products, Household & Personal Products, Consumer Staples]
-members:                     # 세부 산업: [티커] (fiscal) — assigned: Chiip 배정분
+sub:
   Semiconductors:
-    fiscal: [NVDA, AVGO, QCOM, AMD, TXN, INTC, ADI, MU, MRVL, MPWR, MCHP, NXPI, "ON", FSLR, SWKS, ALAB, MTSI, CRDO, LSCC, OLED, RMBS, CRUS, ALGM, AMKR, SITM, POWI, PI, SYNA, DIOD, PENG, AOSL, WOLF, INDI, NVTS, ATOM, CBRS, ARM, IFX]
-    assigned: ["000660", "2330", "3711", "094360", "399720", "067310"]
+  - 반도체
+  - Semiconductors & Semiconductor Equipment
+  - Semiconductors & Semiconductor Equipment
+  - Information Technology
   Semiconductor Materials & Equipment:
-    fiscal: [AMAT, LRCX, KLAC, TER, ENPH, FORM, ACLS, ACMR, VECO, UCTT, COHU, ICHR, AEHR, Q, ASML, ASM, BESI, "6920", "8035", "6857", "6146", "042700"]
-    assigned: ["240810", "036930", "039030", "095340", "058470", "089030"]
+  - 반도체 장비·소재
+  - Semiconductors & Semiconductor Equipment
+  - Semiconductors & Semiconductor Equipment
+  - Information Technology
   Technology Hardware, Storage & Peripherals:
-    fiscal: [AAPL, DELL, SMCI, STX, WDC, LOGI, SNDK, CRSR, TBCH, "2382", "6669", "005930"]
+  - 컴퓨터 하드웨어·스토리지
+  - Technology Hardware, Storage & Peripherals
+  - Technology Hardware & Equipment
+  - Information Technology
   Communications Equipment:
-    fiscal: [ANET, MSI, UI, FFIV, CIEN, BDC, LITE, VIAV, EXTR, HLIT, VISN, AAOI, ADTN, NTGR, "2345"]
-    assigned: [NOKIA]
+  - 통신 장비
+  - Communications Equipment
+  - Technology Hardware & Equipment
+  - Information Technology
   Electronic Components:
-    fiscal: [APH, GLW, COHR, LFUS, TTMI, VSH, ROG, CTS, BELFA, HUBN, "2308", "3037", "2383", "009150"]
-    assigned: ["011070", "020150", "007660", "353200", "222800", "4062", "3110"]
+  - 전자 부품
+  - Electronic Equipment, Instruments & Components
+  - Technology Hardware & Equipment
+  - Information Technology
   Electronic Manufacturing Services:
-    fiscal: [FLEX, FN, PLXS, BHE, KE, CLS]
+  - 전자 제조 서비스(EMS)
+  - Electronic Equipment, Instruments & Components
+  - Technology Hardware & Equipment
+  - Information Technology
   Electronic Equipment & Instruments:
-    fiscal: [ITRI, MIR, AEIS, OSIS, IPGP, LASR, VPG, MVIS]
+  - 전자 장비·계측기
+  - Electronic Equipment, Instruments & Components
+  - Technology Hardware & Equipment
+  - Information Technology
   Systems Software:
-    fiscal: [MSFT, ORCL, NOW, FTNT, CVLT, ATEN]
+  - 시스템 소프트웨어
+  - Software
+  - Software & Services
+  - Information Technology
   Application Software:
-    fiscal: [PLTR, CDNS, SNPS, RIOT, WULF, CIFR, AIP, SAP]
+  - 응용 소프트웨어
+  - Software
+  - Software & Services
+  - Information Technology
   IT Consulting & Other Services:
-    fiscal: [IBM, "018260"]
-    assigned: ["064400"]
+  - IT 컨설팅·서비스
+  - IT Services
+  - Software & Services
+  - Information Technology
   Internet Services & Infrastructure:
-    fiscal: [SNOW, CRWV]
+  - 인터넷 인프라(클라우드)
+  - IT Services
+  - Software & Services
+  - Information Technology
   Electric Utilities:
-    fiscal: [NEE, SO, DUK, CEG, AEP, AEE, PPL, FE, ES, EVRG, PNW, OGE, IDA, TXNM, POR, OTTR, GNE]
+  - 전력 유틸리티
+  - Electric Utilities
+  - Utilities
+  - Utilities
   Multi-Utilities:
-    fiscal: [D, ED, WEC, DTE, CNP, CMS, NI, BKH, NWE, AVA]
+  - 복합 유틸리티
+  - Multi-Utilities
+  - Utilities
+  - Utilities
   Independent Power Producers & Energy Traders:
-    fiscal: [VST, NRG, TLN, OKLO]
+  - 독립 발전사업자(IPP)
+  - Independent Power & Renewable Electricity Producers
+  - Utilities
+  - Utilities
   Renewable Electricity:
-    fiscal: [ORA, XIFR]
+  - 재생에너지 발전
+  - Independent Power & Renewable Electricity Producers
+  - Utilities
+  - Utilities
   Electrical Components & Equipment:
-    fiscal: [ETN, VRT, HUBB, NVT, GNRC, NXT, POWL, VICR, EOSE, SEDG, ARRY, PLPC, AMSC, SHLS, LYTS, SLDP, ABBN, PRY, LR, SU, NEX, NKT, "006400", "5803"]
-    assigned: ["010120", "001440"]
+  - 전기 부품·장비
+  - Electrical Equipment
+  - Capital Goods
+  - Industrials
   Heavy Electrical Equipment:
-    fiscal: [GEV, BE, SMR, PSIX, BW, INIO, EROC, ENR, WRT1V, "267260", "034020", "298040"]
+  - 중전기기(발전·송전 설비)
+  - Electrical Equipment
+  - Capital Goods
+  - Industrials
   Construction & Engineering:
-    fiscal: [PWR, EME, FIX, MTZ, FLR, DY, ROAD, STRL, GVA, IESC, PRIM, MYRG, AGX, ORN]
+  - 건설·엔지니어링(전력·데이터센터 시공)
+  - Construction & Engineering
+  - Capital Goods
+  - Industrials
   Industrial Machinery & Supplies & Components:
-    fiscal: [VMI, FELE, ERII, RR, NNDM, ALFA, MTRS, "7011"]
+  - 산업 기계·부품
+  - Machinery
+  - Capital Goods
+  - Industrials
   Construction Machinery & Heavy Transportation Equipment:
-    fiscal: [CAT, CMI]
+  - 건설기계·엔진
+  - Machinery
+  - Capital Goods
+  - Industrials
   Building Products:
-    fiscal: [CARR, JCI, LII]
+  - 건물 설비(공조)
+  - Building Products
+  - Capital Goods
+  - Industrials
   Aerospace & Defense:
-    fiscal: [FTAI, DRS, VSEC, NPK, UMAC, RR.LSE]
+  - 항공우주·방산
+  - Aerospace & Defense
+  - Capital Goods
+  - Industrials
   Industrial Conglomerates:
-    fiscal: ["6501", "6503", SIE]
-    assigned: ["000150"]
+  - 복합 산업재
+  - Industrial Conglomerates
+  - Capital Goods
+  - Industrials
   Trading Companies & Distributors:
-    fiscal: [DNOW]
+  - 산업재 유통
+  - Trading Companies & Distributors
+  - Capital Goods
+  - Industrials
   Research & Consulting Services:
-    fiscal: [ULS, CACI, WLDN, BKSY]
+  - 리서치·컨설팅 서비스
+  - Professional Services
+  - Commercial & Professional Services
+  - Industrials
   Oil & Gas Equipment & Services:
-    fiscal: [BKR, NOV, WHD, LBRT, AESI, SEI, PUMP]
+  - 석유·가스 장비·서비스
+  - Energy Equipment & Services
+  - Energy
+  - Energy
   Life Sciences Tools & Services:
-    fiscal: [MTD, WAT, AVTR, BRKR, CTKB, PACB]
+  - 생명과학 도구
+  - Life Sciences Tools & Services
+  - Pharmaceuticals, Biotechnology & Life Sciences
+  - Health Care
   Interactive Media & Services:
-    fiscal: [META]
-    assigned: [GOOGL]
+  - 인터랙티브 미디어
+  - Interactive Media & Services
+  - Media & Entertainment
+  - Communication Services
   Movies & Entertainment:
-    assigned: [FWONK]
+  - 엔터테인먼트
+  - Entertainment
+  - Media & Entertainment
+  - Communication Services
   Alternative Carriers:
-    fiscal: [IRDM]
+  - 위성·대체 통신
+  - Diversified Telecommunication Services
+  - Telecommunication Services
+  - Communication Services
   Broadline Retail:
-    fiscal: [AMZN]
+  - 종합 소매
+  - Broadline Retail
+  - Consumer Discretionary Distribution & Retail
+  - Consumer Discretionary
   Consumer Electronics:
-    assigned: ["066570"]
+  - 가전
+  - Household Durables
+  - Consumer Durables & Apparel
+  - Consumer Discretionary
   Data Center REITs:
-    fiscal: [EQIX]
+  - 데이터센터 리츠
+  - Specialized REITs
+  - Equity Real Estate Investment Trusts (REITs)
+  - Real Estate
   Specialty Chemicals:
-    fiscal: ["4063"]
-    assigned: ["357780"]
+  - 특수 화학
+  - Chemicals
+  - Materials
+  - Materials
   Commodity Chemicals:
-    assigned: ["011790"]
+  - 범용 화학
+  - Chemicals
+  - Materials
+  - Materials
   Packaged Foods & Meats:
-    assigned: ["2802"]
+  - 가공식품(화학 소재 겸업)
+  - Food Products
+  - Food, Beverage & Tobacco
+  - Consumer Staples
   Personal Care Products:
-    assigned: ["7806"]
+  - 개인 미용 기기
+  - Personal Care Products
+  - Household & Personal Products
+  - Consumer Staples
+members:
+  Semiconductors:
+    fiscal:
+    - NVDA
+    - AVGO
+    - QCOM
+    - AMD
+    - TXN
+    - INTC
+    - ADI
+    - MU
+    - MRVL
+    - MPWR
+    - MCHP
+    - NXPI
+    - 'ON'
+    - FSLR
+    - SWKS
+    - ALAB
+    - MTSI
+    - CRDO
+    - LSCC
+    - OLED
+    - RMBS
+    - CRUS
+    - ALGM
+    - AMKR
+    - SITM
+    - POWI
+    - PI
+    - SYNA
+    - DIOD
+    - PENG
+    - AOSL
+    - WOLF
+    - INDI
+    - NVTS
+    - ATOM
+    - CBRS
+    - ARM
+    - IFX
+    assigned:
+    - '000660'
+    - '2330'
+    - '3711'
+    - 094360
+    - '399720'
+    - '067310'
+  Semiconductor Materials & Equipment:
+    fiscal:
+    - AMAT
+    - LRCX
+    - KLAC
+    - TER
+    - ENPH
+    - FORM
+    - ACLS
+    - ACMR
+    - VECO
+    - UCTT
+    - COHU
+    - ICHR
+    - AEHR
+    - Q
+    - ASML
+    - ASM
+    - BESI
+    - '6920'
+    - '8035'
+    - '6857'
+    - '6146'
+    - '042700'
+    assigned:
+    - '240810'
+    - 036930
+    - 039030
+    - 095340
+    - 058470
+    - 089030
+    tv:
+    - NANO
+  Technology Hardware, Storage & Peripherals:
+    fiscal:
+    - AAPL
+    - DELL
+    - SMCI
+    - STX
+    - WDC
+    - LOGI
+    - SNDK
+    - CRSR
+    - TBCH
+    - '2382'
+    - '6669'
+    - 005930
+  Communications Equipment:
+    fiscal:
+    - ANET
+    - MSI
+    - UI
+    - FFIV
+    - CIEN
+    - BDC
+    - LITE
+    - VIAV
+    - EXTR
+    - HLIT
+    - VISN
+    - AAOI
+    - ADTN
+    - NTGR
+    - '2345'
+    assigned:
+    - NOKIA
+  Electronic Components:
+    fiscal:
+    - APH
+    - GLW
+    - COHR
+    - LFUS
+    - TTMI
+    - VSH
+    - ROG
+    - CTS
+    - BELFA
+    - HUBN
+    - '2308'
+    - '3037'
+    - '2383'
+    - 009150
+    assigned:
+    - '011070'
+    - '020150'
+    - '007660'
+    - '353200'
+    - '222800'
+    - '4062'
+    - '3110'
+  Electronic Manufacturing Services:
+    fiscal:
+    - FLEX
+    - FN
+    - PLXS
+    - BHE
+    - KE
+    - CLS
+  Electronic Equipment & Instruments:
+    fiscal:
+    - ITRI
+    - MIR
+    - AEIS
+    - OSIS
+    - IPGP
+    - LASR
+    - VPG
+    - MVIS
+  Systems Software:
+    fiscal:
+    - MSFT
+    - ORCL
+    - NOW
+    - FTNT
+    - CVLT
+    - ATEN
+  Application Software:
+    fiscal:
+    - PLTR
+    - CDNS
+    - SNPS
+    - RIOT
+    - WULF
+    - CIFR
+    - AIP
+    - SAP
+  IT Consulting & Other Services:
+    fiscal:
+    - IBM
+    - 018260
+    assigned:
+    - '064400'
+  Internet Services & Infrastructure:
+    fiscal:
+    - SNOW
+    - CRWV
+  Electric Utilities:
+    fiscal:
+    - NEE
+    - SO
+    - DUK
+    - CEG
+    - AEP
+    - AEE
+    - PPL
+    - FE
+    - ES
+    - EVRG
+    - PNW
+    - OGE
+    - IDA
+    - TXNM
+    - POR
+    - OTTR
+    - GNE
+  Multi-Utilities:
+    fiscal:
+    - D
+    - ED
+    - WEC
+    - DTE
+    - CNP
+    - CMS
+    - NI
+    - BKH
+    - NWE
+    - AVA
+  Independent Power Producers & Energy Traders:
+    fiscal:
+    - VST
+    - NRG
+    - TLN
+    - OKLO
+  Renewable Electricity:
+    fiscal:
+    - ORA
+    - XIFR
+  Electrical Components & Equipment:
+    fiscal:
+    - ETN
+    - VRT
+    - HUBB
+    - NVT
+    - GNRC
+    - NXT
+    - POWL
+    - VICR
+    - EOSE
+    - SEDG
+    - ARRY
+    - PLPC
+    - AMSC
+    - SHLS
+    - LYTS
+    - SLDP
+    - ABBN
+    - PRY
+    - LR
+    - SU
+    - NEX
+    - NKT
+    - '006400'
+    - '5803'
+    assigned:
+    - '010120'
+    - '001440'
+    tv:
+    - '062040'
+    - '006260'
+  Heavy Electrical Equipment:
+    fiscal:
+    - GEV
+    - BE
+    - SMR
+    - PSIX
+    - BW
+    - INIO
+    - EROC
+    - ENR
+    - WRT1V
+    - '267260'
+    - '034020'
+    - '298040'
+  Construction & Engineering:
+    fiscal:
+    - PWR
+    - EME
+    - FIX
+    - MTZ
+    - FLR
+    - DY
+    - ROAD
+    - STRL
+    - GVA
+    - IESC
+    - PRIM
+    - MYRG
+    - AGX
+    - ORN
+  Industrial Machinery & Supplies & Components:
+    fiscal:
+    - VMI
+    - FELE
+    - ERII
+    - RR
+    - NNDM
+    - ALFA
+    - MTRS
+    - '7011'
+  Construction Machinery & Heavy Transportation Equipment:
+    fiscal:
+    - CAT
+    - CMI
+  Building Products:
+    fiscal:
+    - CARR
+    - JCI
+    - LII
+  Aerospace & Defense:
+    fiscal:
+    - FTAI
+    - DRS
+    - VSEC
+    - NPK
+    - UMAC
+    - RR.LSE
+  Industrial Conglomerates:
+    fiscal:
+    - '6501'
+    - '6503'
+    - SIE
+    assigned:
+    - '000150'
+  Trading Companies & Distributors:
+    fiscal:
+    - DNOW
+  Research & Consulting Services:
+    fiscal:
+    - ULS
+    - CACI
+    - WLDN
+    - BKSY
+  Oil & Gas Equipment & Services:
+    fiscal:
+    - BKR
+    - NOV
+    - WHD
+    - LBRT
+    - AESI
+    - SEI
+    - PUMP
+  Life Sciences Tools & Services:
+    fiscal:
+    - MTD
+    - WAT
+    - AVTR
+    - BRKR
+    - CTKB
+    - PACB
+  Interactive Media & Services:
+    fiscal:
+    - META
+    assigned:
+    - GOOGL
+  Movies & Entertainment:
+    assigned:
+    - FWONK
+  Alternative Carriers:
+    fiscal:
+    - IRDM
+  Broadline Retail:
+    fiscal:
+    - AMZN
+  Consumer Electronics:
+    assigned:
+    - '066570'
+  Data Center REITs:
+    fiscal:
+    - EQIX
+  Specialty Chemicals:
+    fiscal:
+    - '4063'
+    assigned:
+    - '357780'
+  Commodity Chemicals:
+    assigned:
+    - 011790
+  Packaged Foods & Meats:
+    assigned:
+    - '2802'
+  Personal Care Products:
+    assigned:
+    - '7806'
+tv_map:
+  Aerospace & Defense: Aerospace & Defense
+  Computer Peripherals: Technology Hardware, Storage & Peripherals
+  Data Processing Services: Application Software
+  Electric Utilities: Electric Utilities
+  Electrical Products: Electrical Components & Equipment
+  Electronic Production Equipment: Semiconductor Materials & Equipment
+  Engineering & Construction: Construction & Engineering
+  Industrial Machinery: Semiconductor Materials & Equipment
+  Oilfield Services/Equipment: Oil & Gas Equipment & Services
+  Semiconductors: Semiconductors

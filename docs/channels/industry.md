@@ -22,3 +22,9 @@
 ## 세그먼트 귀속·IB 사고 논리(2026-11-08 마스터 지시, ADR-020)
 - "스토리지(낸드) 사업이 전체 매출의 믹스로 잡히는 삼성전자, SK하이닉스, 마이크론은 세그먼트별 실적을 분류해서 봐야지. 이 구조를 앞으로 산업 리포트 쓸 때도 반영하라" → 모든 산업 리포트는 겸업 회사를 그 산업 사업부 매출로만 센다. 풀·회원·근거 등급(A 공시·B IR·C 제3자·E 브리지 추정·U 미공시) `config/industry_segments.yaml`, 장부 `radar/industry_segments.py`. 회사 전체 지표는 '회사 전체' 표로 따로. A·B 근거 60% 미만 풀은 등급 보류.
 - "산업 리포트 양식이 사고 논리가 부실하다. IB 리포트 양식과 … 논리 구조를 참조해 고도화하라" → 주간·분기·사건 공통 논리 층 `scripts/industry/logic.py`·`config/industry_logic.yaml`: 결론 먼저 + 인과 사슬(증거 유형·가장 약한 고리) · 핵심 논쟁(시장 ↔ Chiip ↔ 판가름 신호) · 가격 내포 기대 · 동인 분해(물량 × 가격, 잔차 검산) · 사이클 지표판 · 이익 풀 · 시나리오 확률 가중. 관문이 빠진 고리를 이름으로 막는다(2026-11-09 이후 리포트).
+
+## 세부 산업 갱신·나라 구분 없음·TradingView 섹션(2026-11-08 마스터 지시)
+- "32개 기준으로 고정하지 말고 세부 산업이 지속 업데이트해라" → 산업 묶음은 매 회차 `weekly_pick.groups()`가 다시 센다(분류표 `config/industry_taxonomy.yaml`). 새 종목은 `scripts/industry/taxonomy_refresh.py --plan` → Fiscal.ai GICS(`--put-fiscal`) → 빈 곳은 TradingView 업종(`--learn-tv`).
+- "분류가 애매한 것들은 시장이 일반적으로 많이 분류하는 곳에" → 원천 우선순위 GICS(Fiscal) > TradingView > Chiip 배정. TV 업종 → GICS 변환표는 이미 분류된 종목의 최다 득표로 배운다(1·2위 차이 2표 미만이면 변환 안 함). 엇갈린 값은 `knowledge/models/industries/taxonomy_conflicts.csv`.
+- "산업 리포트에서 다루는 섹터는 한 국가를 특정하지 말아라" → 묶음은 나라를 가르지 않는다. 주간·분기 리포트는 `coverage`에 2개국 이상(논리 관문), 제목·산업명에 나라 한정 금지. 유니버스가 한 나라뿐인 묶음은 TradingView 스크리너로 다른 나라 동종사를 `config/industry_peers.yaml`에 채운다.
+- "트레이딩뷰와도 연동해 세부 섹터가 정해지면 이를 와치리스트 섹션에 넣고 추가하거나 업데이트하라" → `py radar/tv_sections.py --taxonomy <list-watchlists 출력>`이 폴더(나라)별로 유니버스 종목을 세부 산업 섹션으로 옮기고 빠진 종목을 더한 순서를 낸다(지우지 않음). 적용은 add-to-watchlist로 와치리스트마다 한 번에(동시 호출 금지).

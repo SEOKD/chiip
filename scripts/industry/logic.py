@@ -101,6 +101,12 @@ def gate(dp, kind, c=None):
     status = ((dp.get("narrative") or {}).get("status") or "")
     if any(x.get("type") == "미확인" for x in ch) and status.startswith("판단 가능"):
         bad.append("미확인 고리가 있는데 종료 상태가 '판단 가능'")
+    if kind in c.get("global_kinds", []):   # 산업은 나라를 가르지 않는다(마스터 지시 2026-11-08)
+        cov = {str(x.get("country") or "").upper() for x in dp.get("coverage") or []} - {""}
+        if len(cov) < c["min_countries"]:
+            bad.append(f"다룬 회사의 나라 {len(cov)}곳 — {c['min_countries']}곳 이상(coverage[{{name, country}}], 다른 나라 동종사는 config/industry_peers.yaml)")
+    title = f"{dp.get('title', '')} {dp.get('industry_name', '')}"
+    bad += [f"제목·산업명이 한 나라로 한정됨('{w}')" for w in c.get("country_words", []) if f"{w} " in title[:12] or title.startswith(w)]
     text = json.dumps({k: v for k, v in dp.items() if k not in ("sources",)}, ensure_ascii=False)
     bad += [f"금지 표현 '{w}'" for w in c["banned"] if w in text]
     if any(w in text for w in c["needs_expectations"]) and not L.get("expectations"):

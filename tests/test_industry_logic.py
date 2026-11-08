@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "radar"))
 import industry_segments as S  # noqa: E402
 import logic as LG  # noqa: E402
 
-GOOD = {"date": "2026-11-15", "narrative": {"status": "조건부 판단"}, "logic": {
+GOOD = {"date": "2026-11-15", "narrative": {"status": "조건부 판단"}, "coverage": [{"name": "Micron", "country": "US"}, {"name": "SK하이닉스", "country": "KR"}], "logic": {
     "bottom_line": {"call": "한 문장 결론", "changed": "무엇이 바뀌었나", "vs_prior": "첫 판단"},
     "debates": [{"q": f"논쟁 {i}", "consensus": {"view": "시장", "source": "Fiscal.ai"}, "chiip": {"view": "Chiip"}, "why_differ": "이유",
                  "signpost": {"date": "2026-12-01", "metric": "지표", "threshold": "문턱"}, "p": 0.6} for i in range(3)],
@@ -47,6 +47,14 @@ class TestLogicGate(unittest.TestCase):
         dp = json.loads(json.dumps(GOOD))
         dp["narrative"]["view"] = "비중 확대가 맞다"
         self.assertTrue(any("금지 표현" in b for b in LG.gate(dp, "weekly")))
+
+    def test_single_country_blocked(self):
+        dp = json.loads(json.dumps(GOOD))
+        dp["coverage"] = [{"name": "a", "country": "US"}, {"name": "b", "country": "US"}]
+        dp["title"] = "한국 반도체 주간"
+        bad = " ".join(LG.gate(dp, "weekly"))
+        self.assertIn("나라 1곳", bad)
+        self.assertIn("한 나라로 한정", bad)
 
     def test_old_reports_exempt(self):
         self.assertEqual(LG.gate({"date": "2026-11-08"}, "event"), [])

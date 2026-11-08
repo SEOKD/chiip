@@ -15,11 +15,21 @@ datapack "sync":
 지표가 0~2분기 앞서는 경우마다 매출·영업이익 증가율과 상관계수 → |상관|이 가장 큰 시차를 고른다. 싱크로율 = 상관계수 × 100.
 다음 분기: 회귀(증가율 = a + b × 지표 증가율)로 지표가 내포하는 매출을 구하고, 잔차 표준편차로 ±1σ 범위를 낸다. 시차 0이면 그 분기의
 지난 달까지로 당겨 쓴다(나우캐스트). 가이던스·컨센서스가 이 범위 안인지 비교한다. 상관은 인과가 아니다.
+지표 자동 선택(마스터 지시 2026-11-08 "기업 제품 및 서비스와 연관성이 가장 높은 PPI 세부 지표, 수출입 세부 지표와 연동하도록 해라. 그리고 다음 분기 추이까지 모델링을 통해 합리적으로 추산"):
+  sync.products [{name, segment, hs(6자리), share(매출 비중), inputs[config/trade_ppi.yaml inputs 키]}] — 제품·서비스 → 품목 코드는 모델 판단(없으면 indicators의 hs·input에서 거꾸로 만든다).
+  후보 = 그 HS의 무역 세부 시계열(radar/trade_hs.py 저장소, 나라·수출입 전부) + 같은 HS를 가진 PPI 세부 지수(config inputs, 나라별) + 모델 지정 지표.
+  연관성 = 품목 일치(6자리 1.0 · 4자리 0.7) × 대용 지수 감점(업종 대용 PPI 0.6) × 제품 매출 비중. 점수 = 연관성 × 싱크로율(자기 제품 지표는 +방향만, 음의 상관 0점) × (유의 1.0, 아니면 0.8).
+  PPI 1개·수출입 1개를 점수로 고른다(후보 표에 모두 남긴다 — 후보가 많을수록 최대 상관은 부풀므로 연관성을 먼저 곱한다).
+  다음 분기: 지표가 선행하면 확정 값, 0분기면 나온 달로 나우캐스트, 한 달도 없으면 지표 증가율을 자기회귀모델로 한 분기 예측하고
+  σ = √(회귀 잔차² + (기울기 × 지표 예측 오차)²)로 넓힌다. 추정값은 그림에 '다음 분기 추정'으로 이어 그린다.
 """
 import json
 import math
 import sqlite3
+import sys
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
 HISTORY = ROOT / "knowledge" / "models" / "trade_ppi" / "history.json"
@@ -28,6 +38,10 @@ MIN_PAIRS = 5
 LAGS = (0, 1, 2, 3, 4)   # 0~4분기(0~12개월) 선행까지 — 2026-11-04 마스터 지시 "통계 지표가 기업 실적을 얼마나 선행하는지"
 UNIT = {"$M": 1e6, "M$": 1e6, "M": 1e6, "$B": 1e9, "B$": 1e9, "B": 1e9}
 UNKNOWN = "미확인"
+TRADE_CFG = ROOT / "config" / "trade_ppi.yaml"
+COUNTRY = {"us": "미국", "eu": "EU", "uk": "영국", "jp": "일본", "kr": "한국", "tw": "대만", "hk": "홍콩"}
+FLOW = {"export": "수출", "import": "수입"}
+MAX_CANDIDATES = 24
 WINDOW = 16   # 그림은 최근 16개 분기 — 매출과 지표를 같은 분기 축에 놓는다(마스터 지시 2026-11-08)
 
 
@@ -181,6 +195,106 @@ def nowcast(series, ym_next, lag, k, ends_next_label, ind_q):
     return sum(series[m] for m in have) / sum(series[b] for b in base) - 1, f"나우캐스트 {len(have)}개월"
 
 
+def _inputs():
+    return (yaml.safe_load(TRADE_CFG.read_text(encoding="utf-8")) or {}).get("inputs") or {}
+
+
+def products(dp):
+    """제품·서비스 → 품목(HS) 목록. sync.products가 없으면 모델 지정 지표에서 만든다"""
+    sy = dp.get("sync") or {}
+    if sy.get("products"):
+        return sy["products"]
+    inp, out = _inputs(), {}
+    for ind in sy.get("indicators") or []:
+        hs = str(ind.get("hs") or (inp.get(ind.get("input")) or {}).get("hs") or "")
+        if hs:
+            by_hs = next((v["name"] for v in inp.values() if str(v.get("hs") or "") == hs), None)
+            nm = (inp.get(ind.get("input")) or {}).get("name") or by_hs or ind.get("segment") or f"HS {hs}"
+            out.setdefault(hs, {"name": str(nm).split("(")[0].strip(), "segment": ind.get("segment"), "hs": hs,
+                                "inputs": [ind["input"]] if ind.get("input") else []})
+    return list(out.values())
+
+
+def candidates(dp, db=HS_DB):
+    """[(지표, 연관성)] — 모델 지정 지표 + 제품 HS로 찾은 PPI·무역 세부 시계열"""
+    inp = _inputs()
+    prods = products(dp)
+    tot = sum(float(x.get("share") or 0) for x in prods) or None
+    out, seen = [], set()
+
+    def key(ind):
+        return (ind["source"], ind.get("reporter") or ind.get("country"), ind.get("flow"), str(ind.get("hs") or ind.get("input")))
+
+    def add(ind, rel):
+        k = key(ind)
+        if k in seen:
+            for i, (x, r) in enumerate(out):
+                if key(x) == k and rel > r:
+                    out[i] = (x, rel)
+            return
+        seen.add(k)
+        out.append((ind, rel))
+    for ind in (dp.get("sync") or {}).get("indicators") or []:
+        add({**ind, "origin": "모델 지정"}, 1.0)
+    have = []
+    if db.exists():
+        c = sqlite3.connect(db)
+        try:
+            have = c.execute("SELECT DISTINCT reporter, flow, hs FROM obs WHERE partner='WORLD'").fetchall()
+        finally:
+            c.close()
+    for pr in prods:
+        hs = str(pr.get("hs") or "")
+        w = (float(pr.get("share") or 0) / tot) if tot else 1.0 / max(len(prods), 1)
+        w = max(w, 0.25)   # 작은 제품도 후보에서 아주 빠지지는 않게
+        for rep, flow, h in have:
+            m = 1.0 if h == hs else 0.7 if hs and h[:4] == hs[:4] else 0
+            if m:
+                add({"label": f"{COUNTRY.get(rep, rep)} {pr['name']} {FLOW.get(flow, flow)}(HS {h})", "source": "hs", "reporter": rep, "flow": flow, "hs": h,
+                     "segment": pr.get("segment"), "why": f"{pr['name']} 품목 {'일치' if m == 1 else '같은 4자리'}", "origin": "자동"}, m * w)
+        keys = list(pr.get("inputs") or []) + [k for k, v in inp.items() if hs and str(v.get("hs") or "")[:4] == hs[:4]]
+        for k in dict.fromkeys(keys):
+            v = inp.get(k) or {}
+            m = 1.0 if str(v.get("hs") or "") == hs or k in (pr.get("inputs") or []) else 0.7
+            for ctry in (v.get("ppi") or {}):
+                pen = 0.6 if ctry in (v.get("proxy") or []) else 1.0
+                add({"label": f"{COUNTRY.get(ctry, ctry)} {v.get('name', k)} PPI" + ("(업종 대용)" if pen < 1 else ""), "source": "ppi", "input": k, "country": ctry,
+                     "segment": pr.get("segment"), "why": f"{pr['name']} ↔ {v.get('name', k)} 생산자물가" + (" — 품목보다 넓은 업종 지수" if pen < 1 else ""), "origin": "자동"}, m * pen * w)
+    out.sort(key=lambda x: -x[1])
+    keep = [x for x in out if x[0].get("origin") == "모델 지정"]
+    return keep + [x for x in out if x[0].get("origin") != "모델 지정"][:MAX_CANDIDATES]
+
+
+def kind(ind):
+    return "ppi" if ind["source"] == "ppi" else "trade"
+
+
+def score(row):
+    """자기 제품의 수요·가격 지표는 같은 방향(+)이어야 말이 된다 — 음의 상관은 점수 0(우연이거나 다른 경로). 모델이 sign을 주면 그 방향, 안 주면 |상관|"""
+    f = row.get("rev")
+    if not f:
+        return 0.0
+    sg = row["ind"].get("sign", 1 if row["ind"].get("origin") == "자동" else None)
+    r = f["r"] * sg if sg else abs(f["r"])
+    return row["rel"] * max(r, 0.0) * (1.0 if f["sig"] else 0.8)
+
+
+def forecast_x(iq, k):
+    """지표 증가율 한 분기 앞 — 자기회귀모델(절편, BIC 차수, 전년 대비면 겹친 표본 장기 분산). (값, 표준오차) 또는 (None, None)"""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import pq_forecast as PF
+    g = growth(iq, k)
+    qs = sorted(g)
+    y = [g[q] for q in qs]
+    if len(y) < 10:
+        return None, None
+    fr = PF.ar_fit(y, pmax=2, intercept=True, overlap=k if k > 1 else 1)
+    if not fr:
+        return None, None
+    m, se = PF.ar_path(y, fr, 1)
+    return m[0], se[0]
+
+
 def compute(dp, history=None, db=HS_DB):
     sy = dp.get("sync") or {}
     qs = [r for r in (dp.get("quarters_hist") or {}).get("q") or [] if r.get("rev")]
@@ -209,12 +323,14 @@ def compute(dp, history=None, db=HS_DB):
     for name, rows_ in ((dp.get("segments_hist") or {}).get("segments") or {}).items():   # 세그먼트 분기 매출(2026-11-04) — 지표가 그 세그먼트를 따라가는지
         segs[name] = {qlabel(r["period"])[0]: r["rev"] for r in rows_ if r.get("rev")}
     out = []
-    for ind in sy.get("indicators") or []:
+    for ind, rel in candidates(dp, db):
         s = monthly(ind, history, db)
+        if not s:
+            continue
         iq = quarterize(s, ends_all, ind["source"] == "ppi")
         target = segs.get(ind.get("segment")) if ind.get("segment") else None
         comp = target if target and len(target) >= MIN_PAIRS + 4 else rev
-        row = {"ind": ind, "months": len(s), "iq": iq, "basis": None, "rev": None, "op": None, "next": None, "path": [],
+        row = {"ind": ind, "rel": rel, "months": len(s), "iq": iq, "basis": None, "rev": None, "op": None, "next": None, "path": [],
                "target": ind.get("segment") if comp is not rev else "전사 매출", "comp": comp}
         for k, basis in ((4, "전년 대비"), (1, "전 분기 대비")):
             fr = fit(comp, iq, k)
@@ -226,11 +342,24 @@ def compute(dp, history=None, db=HS_DB):
             row["path"] = path(comp, iq, fr, k, last)
             x, how = nowcast(s, ym_next, fr["lag"], k, nxt, iq)
             base = comp.get(shift_q(nxt, -k))
+            se = fr["se"]
+            if x is None and base:   # 다음 분기 지표가 한 달도 없으면 지표를 자기회귀모델로 한 분기 예측한다
+                x, sx = forecast_x(iq, k)
+                if x is not None:
+                    how, se = "지표 자기회귀 추정", math.sqrt(fr["se"] ** 2 + (fr["b"] * sx) ** 2)
             if x is not None and base:
                 g = fr["a"] + fr["b"] * x
-                row["next"] = {"x": x, "how": how, "g": g, "rev": base * (1 + g), "lo": base * (1 + g - fr["se"]), "hi": base * (1 + g + fr["se"])}
+                row["next"] = {"x": x, "how": how, "g": g, "rev": base * (1 + g), "lo": base * (1 + g - se), "hi": base * (1 + g + se), "se": se}
+        row["score"] = score(row)
         out.append(row)
-    return {"last": last, "next": nxt, "rev": rev, "op": op, "rows": out}
+    chosen = []
+    for kd in ("ppi", "trade"):   # PPI 1개·수출입 1개 — 연관성 × 싱크로율 점수
+        c = [r for r in out if r["rev"] and kind(r["ind"]) == kd and score(r) > 0]
+        if c:
+            chosen.append(max(c, key=lambda r: r["score"]))
+    for r in out:
+        r["chosen"] = r in chosen
+    return {"last": last, "next": nxt, "rev": rev, "op": op, "rows": out, "chosen": chosen}
 
 
 def _targets(dp, nxt):
@@ -269,7 +398,7 @@ def window(last, n=WINDOW):
     return [shift_q(last, -i) for i in range(n - 1, -1, -1)]
 
 
-def level_chart(c, win):
+def level_chart(c, win, top=None):
     """매출과 지표 레벨을 같은 분기 축·같은 기준 분기 지수(= 100)로 — 단위가 달라도 한 그림에서 흐름을 대조한다(마스터 지시 2026-11-08 "매출 시계열과 PPI 및 수출입 데이터의 시계열은 동일해야 한다").
     축 = 최근 16개 분기 중 매출이 있는 분기, 기준 = 그 첫 분기. 지표는 회사 분기 끝 달 기준 3개월(무역 합·PPI 평균)이라 매출과 같은 기간이다.
     지표가 기준 분기에 값이 없으면(발표 지연) 그 지표의 첫 값으로 기준을 잡고 이름에 적는다"""
@@ -292,7 +421,11 @@ def level_chart(c, win):
             src = {"ppi": "PPI", "hs": "수출입", "trade": "수출입"}.get(r["ind"].get("source"), "")
             name = r["ind"]["label"] + (f"({src})" if src and src not in r["ind"]["label"] else "") + (f" — {b} = 100" if b != base_q else "")
             series.append({"name": name, "color": cols[(i + 1) % len(cols)], "points": pts})
-    return {"kind": "line", "title": f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 같은 축({base_q} = 100)", "unit": "", "series": series}
+    nx = (top or {}).get("next")
+    if nx and c["rev"].get(c["last"]):
+        b0 = c["rev"][axis[0]]
+        series.append({"name": f"매출 다음 분기 추정({c['next']})", "color": "e", "points": [[c["last"], round(c["rev"][c["last"]] / b0 * 100, 1)], [c["next"], round(nx["rev"] / b0 * 100, 1)]]})
+    return {"kind": "line", "title": f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 같은 축({base_q} = 100) + 다음 분기 추정", "unit": "", "series": series}
 
 
 def section(dp, history=None, db=HS_DB):
@@ -311,29 +444,45 @@ def section(dp, history=None, db=HS_DB):
     if not ok:
         return {"h2": "거시 지표 싱크로율", "blocks": [{"type": "hl", "text": f"**지표와 실적을 맞출 표본이 부족하다(쌍 {MIN_PAIRS}개 미만).** 지표 월 시계열이 더 쌓이면 다시 잰다."},
                                                     {"type": "table", "title": "지표 표본", "headers": ["지표", "월 수"], "rows": [[r["ind"]["label"], str(r["months"])] for r in c["rows"]]}]}
-    top = max(ok, key=lambda r: abs(r["rev"]["r"]))
+    top = max(c["chosen"] or ok, key=lambda r: r["score"])
     fr = top["rev"]
     head = (f"**{top['ind']['label']}{_wa(top['ind']['label'])} {top['target']} 싱크로율 {fr['r'] * 100:.0f}%({fr['lag']}분기 = 약 {fr['lag'] * 3}개월 선행, {top['basis']}, "
             f"표본 {fr['n']}개·t {fr['t']:.1f}{'·유의' if fr['sig'] else '·유의 아님'}·신뢰 {reliability(fr['n'])}).** ")
-    nx = top["next"]
+    nx, cmp = top["next"], None
     if nx:
-        head += f"이 지표가 내포하는 {c['next']} 매출은 {_money(nx['rev'])}(±1σ {_money(nx['lo'])}~{_money(nx['hi'])})다. "
-        if guide:
-            head += f"가이던스는 이보다 {_compare(guide, nx['lo'], nx['hi'], nx['rev'])}, "
-        if cons:
-            head += f"컨센서스는 {_compare(cons, nx['lo'], nx['hi'], nx['rev'])}다."
+        head += f"이 지표가 내포하는 {c['next']} {top['target']}은 {_money(nx['rev'])}(±1σ {_money(nx['lo'])}~{_money(nx['hi'])}, {nx['how']})다. "
+        cmp = nx
+        if top["target"] != "전사 매출":   # 세그먼트 값을 전사 가이던스와 바로 비교하지 않는다 — 기준 분기의 세그먼트 비중으로 전사 환산
+            bq = shift_q(c["next"], -top["k"])
+            sh = (top["comp"].get(bq) / c["rev"][bq]) if c["rev"].get(bq) and top["comp"].get(bq) else None
+            if sh:
+                cmp = {k: nx[k] / sh for k in ("rev", "lo", "hi")}
+                head += f"기준 분기({bq}) 세그먼트 비중 {sh:.0%}로 환산한 전사 매출은 {_money(cmp['rev'])}({_money(cmp['lo'])}~{_money(cmp['hi'])})다(다른 사업이 같은 속도로 움직인다는 가정). "
+            else:
+                cmp = None
+                head += "세그먼트 비중을 몰라 전사 가이던스와 비교하지 않는다. "
+        if cmp and guide:
+            head += f"가이던스는 이보다 {_compare(guide, cmp['lo'], cmp['hi'], cmp['rev'])}, "
+        if cmp and cons:
+            head += f"컨센서스는 {_compare(cons, cmp['lo'], cmp['hi'], cmp['rev'])}다."
     if sy.get("why"):
         head += " " + str(sy["why"])
     rows = []
-    for r in c["rows"]:
+    shown = c["chosen"] + [r for r in c["rows"] if r["ind"].get("origin") == "모델 지정" and r not in c["chosen"]]
+    for r in shown:
         f, o, n = r["rev"], r["op"], r["next"]
         rows.append([r["ind"]["label"], r["target"], r["basis"] or "표본 부족", UNKNOWN if not f else f"{f['lag']}분기({f['lag'] * 3}개월)", UNKNOWN if not f else f"{f['r'] * 100:.0f}%(t {f['t']:.1f})",
                      UNKNOWN if not o else f"{o['r'] * 100:.0f}%({o['lag']}분기)", UNKNOWN if not f else f"{f['hit'] * 100:.0f}%",
                      UNKNOWN if not f else f"{f['n']}·{reliability(f['n'])}", UNKNOWN if not n else f"{_pct(n['g'], 1)} → {_money(n['rev'])}" + (f"({n['how']})" if n.get("how") else "")])
     B = [{"type": "hl", "text": head},
-         {"type": "table", "title": "지표별 싱크로율(상관계수 × 100)", "headers": ["지표", "비교 대상", "증가율 기준", "지표 선행", "매출(t값)", "영업이익", "방향 일치", "표본·신뢰", f"{c['next']} 내포 매출"], "rows": rows}]
+         {"type": "table", "title": "지표별 싱크로율(상관계수 × 100) — 위 두 줄이 제품 연관성 × 싱크로율로 고른 PPI·수출입 세부 지표", "headers": ["지표", "비교 대상", "증가율 기준", "지표 선행", "매출(t값)", "영업이익", "방향 일치", "표본·신뢰", f"{c['next']} 내포 매출"], "rows": rows}]
+    cand_rows = [[r["ind"]["label"] + (" ✔" if r["chosen"] else ""), {"ppi": "PPI", "trade": "수출입"}[kind(r["ind"])], f"{r['rel']:.2f}",
+                  UNKNOWN if not r["rev"] else f"{r['rev']['r'] * 100:.0f}%({r['rev']['lag']}분기)", f"{r['score']:.2f}", r["ind"].get("origin", "")]
+                 for r in sorted(c["rows"], key=lambda r: -r["score"])[:12]]
+    B.append({"type": "table", "title": f"지표 후보 {len(c['rows'])}개 — 연관성(제품 품목 일치 × 대용 감점 × 매출 비중) × 싱크로율로 고른다. 후보가 많을수록 최대 상관은 우연히 부풀 수 있다",
+              "headers": ["후보", "종류", "연관성", "싱크로율(선행)", "점수", "출처"], "rows": cand_rows})
     win = window(c["last"])
-    lv = level_chart(c, win)
+    lv = level_chart({**c, "rows": c["chosen"] or [top]}, win, top)
     if lv:
         B.append({"type": "chart", "chart": lv})
     k = top["k"]
@@ -341,10 +490,13 @@ def section(dp, history=None, db=HS_DB):
     pts_c = [[q, round(cg[q] * 100, 1)] for q in win if q in cg]
     lag_label = f"{top['ind']['label']}({fr['lag']}분기 앞당김)" if fr["lag"] else top["ind"]["label"]
     pts_i = [[q, round(full_ig[shift_q(q, -fr["lag"])] * 100, 1)] for q in win if q in cg and shift_q(q, -fr["lag"]) in full_ig]
-    B.append({"type": "chart", "chart": {"kind": "line", "title": f"매출과 {top['ind']['label']} 증가율({top['basis']}, 최근 {WINDOW}개 분기)", "unit": "%",
-                                         "series": [{"name": "매출", "color": "a", "points": pts_c}, {"name": lag_label, "color": "b", "points": pts_i}]}})
-    if nx and (guide or cons):
-        cats, vals = ["지표 내포", "−1σ", "+1σ"], [nx["rev"], nx["lo"], nx["hi"]]
+    gser = [{"name": "매출", "color": "a", "points": pts_c}, {"name": lag_label, "color": "b", "points": pts_i}]
+    if nx and pts_c:   # 다음 분기 추정을 마지막 실적에서 이어 그린다
+        gser.append({"name": f"다음 분기 추정({nx['how']}, ±1σ {_pct(nx['g'] - nx['se'], 0)}~{_pct(nx['g'] + nx['se'], 0)})", "color": "e",
+                     "points": [pts_c[-1], [c["next"], round(nx["g"] * 100, 1)]]})
+    B.append({"type": "chart", "chart": {"kind": "line", "title": f"매출과 {top['ind']['label']} 증가율({top['basis']}, 최근 {WINDOW}개 분기 + 다음 분기 추정)", "unit": "%", "series": gser}})
+    if nx and cmp and (guide or cons):
+        cats, vals = ["지표 내포" + ("(전사 환산)" if cmp is not nx else ""), "−1σ", "+1σ"], [cmp["rev"], cmp["lo"], cmp["hi"]]
         if guide:
             cats.append("가이던스")
             vals.append(guide)
@@ -360,7 +512,7 @@ def section(dp, history=None, db=HS_DB):
                 for r in pth for p in r["path"]]
         B.append({"type": "table", "title": "선행 지표로 본 향후 분기 매출 전망(이미 나온 지표 값 기준, ±1σ)", "headers": ["지표", "대상", "분기", "지표 증가율", "내포 매출 증가율", "내포 매출"], "rows": prow})
         B.append({"type": "p", "text": "지표가 k분기 앞서면 이미 발표된 지표로 k분기 뒤까지의 매출 증가율을 회귀식으로 읽는다. 표본이 작거나 t값이 2 미만이면 전망은 참고용이다."})
-    B.append({"type": "table", "title": "지표를 고른 이유", "headers": ["지표", "이유"], "rows": [[r["ind"]["label"], r["ind"].get("why", "")] for r in c["rows"]]})
-    B.append({"type": "p", "text": "싱크로율은 증가율의 상관계수이며 인과가 아니다. 지표 단위·통화는 원자료 그대로이고 나라끼리 더하지 않는다(EU 수입만 상대국 합계). ±1σ는 회귀 잔차 표준편차다."})
+    B.append({"type": "table", "title": "지표를 고른 이유", "headers": ["지표", "이유"], "rows": [[r["ind"]["label"], r["ind"].get("why", "")] for r in shown]})
+    B.append({"type": "p", "text": "싱크로율은 증가율의 상관계수이며 인과가 아니다. 지표 단위·통화는 원자료 그대로이고 나라끼리 더하지 않는다(EU 수입만 상대국 합계). ±1σ는 회귀 잔차 표준편차이고, 지표를 예측한 분기는 지표 예측 오차까지 더해 넓혔다."})
     return {"h2": "거시 지표 싱크로율", "blocks": B}
 

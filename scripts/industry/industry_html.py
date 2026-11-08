@@ -46,7 +46,7 @@ def render(d):
     for i, s in enumerate(d.get("sections") or []):
         parts.append(f"<section id=\"s{i}\"><h2>{t(s.get('h2'))}</h2>" + "".join(rh.block(b) for b in s.get("blocks") or []) + "</section>")
     src = "; ".join(t(x) for x in d.get("sources") or [])
-    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
+    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div>{rh.FIT_JS}</body></html>')
     return rh.money_units(rh.fx_units(rh.chiip_name("".join(parts).replace("치입 판단", "Chiip View"))))
 
 

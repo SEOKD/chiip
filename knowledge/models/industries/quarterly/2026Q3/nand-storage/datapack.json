@@ -383,5 +383,35 @@
     "ref": "Fiscal.ai 컨센서스"
    }
   ]
- }
+ },
+ "coverage": [
+  {
+   "name": "삼성전자",
+   "country": "KR"
+  },
+  {
+   "name": "SK하이닉스",
+   "country": "KR"
+  },
+  {
+   "name": "Micron",
+   "country": "US"
+  },
+  {
+   "name": "키옥시아",
+   "country": "JP"
+  },
+  {
+   "name": "SanDisk",
+   "country": "US"
+  },
+  {
+   "name": "Seagate",
+   "country": "IE"
+  },
+  {
+   "name": "Western Digital",
+   "country": "US"
+  }
+ ]
 }

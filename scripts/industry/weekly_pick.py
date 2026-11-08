@@ -27,6 +27,7 @@ STATE = ROOT / "radar" / "state"
 
 
 TAX = ROOT / "config" / "industry_taxonomy.yaml"
+PEERS = ROOT / "config" / "industry_peers.yaml"
 
 
 def cfg():
@@ -46,7 +47,7 @@ def classify(tax=None):
     tax = tax or yaml.safe_load(TAX.read_text(encoding="utf-8"))
     exact, base = {}, {}
     for sub, src in (tax.get("members") or {}).items():
-        for kind in ("fiscal", "assigned"):
+        for kind in ("fiscal", "tv", "assigned"):   # tv = TradingView 업종을 학습한 변환표로 넣은 종목(taxonomy_refresh.learn_tv)
             for t in src.get(kind) or []:
                 (exact if "." in str(t) else base)[str(t).upper()] = (sub, kind)
     out = {}
@@ -102,6 +103,14 @@ def groups(c, tax=None):
             g = max(same, key=lambda x: len(mem[x]))
             mem[g] += v["ms"]
             inds[g]["sub"] += " / " + v["info"][0]
+    peers = (yaml.safe_load(PEERS.read_text(encoding="utf-8")) or {}).get("peers") or {} if PEERS.exists() else {}
+    for gid, info in inds.items():   # 다른 나라 동종사 — 산업은 나라를 가르지 않는다(config/industry_peers.yaml)
+        have = {str(m.get("ticker") or "").upper() for m in mem[gid]}
+        for sub in str(info["sub"]).split(" / "):
+            for p in peers.get(sub) or []:
+                if str(p["ticker"]).upper() not in have:
+                    mem[gid].append({"id": f"peer:{p['ticker']}", "name": p["name"], "ticker": p["ticker"], "korea": p.get("country") == "KR", "region": p.get("country"), "peer": True})
+                    have.add(str(p["ticker"]).upper())
     return inds, mem
 
 
@@ -112,14 +121,17 @@ def universe():
         for r in csv.DictReader(f):
             if r["entity_id"] not in seen:
                 seen.add(r["entity_id"])
-                out.append({"id": r["entity_id"], "name": r["name"], "ticker": r.get("ticker"), "korea": _kr(r.get("ticker"))})
+                out.append({"id": r["entity_id"], "name": r["name"], "ticker": r.get("ticker"), "korea": _kr(r.get("ticker")), "region": MARKET_REGION.get(str(r.get("market") or "").upper())})
     for f, key in (("valuation.yaml", "universe"), ("earnings_watch.yaml", "extra")):
         for u in (yaml.safe_load((ROOT / "config" / f).read_text(encoding="utf-8")) or {}).get(key) or []:
             if u["id"] not in seen:
                 seen.add(u["id"])
                 tk = u.get("code") or u.get("jp_code") or u.get("ticker")
-                out.append({"id": u["id"], "name": u.get("name"), "ticker": tk, "korea": u.get("region") == "KR" or _kr(tk)})
+                out.append({"id": u["id"], "name": u.get("name"), "ticker": tk, "korea": u.get("region") == "KR" or _kr(tk), "region": u.get("region")})
     return out
+
+
+MARKET_REGION = {"KRX": "KR", "KOSPI": "KR", "KOSDAQ": "KR", "NASDAQ": "US", "NYSE": "US", "TWSE": "TW", "TPEX": "TW", "TSE": "JP", "TYO": "JP", "JPX": "JP"}
 
 
 def _kr(tk):

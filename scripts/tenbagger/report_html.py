@@ -44,6 +44,13 @@ sys.path.insert(0, str(ROOT / "radar"))
 from units import chiip_name, fx_units, money_units  # noqa: E402
 
 COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
+# 그래프 글자가 viewBox 밖으로 나가 잘리지 않게(마스터 지시 2026-11-08 "Analysis 리포트에 글자가 양식 밖으로 빠져 나가서 잘리지 않도록 하라")
+# 브라우저가 실제 글자 폭을 잰 뒤 viewBox를 글자까지 넓힌다 — 축 숫자·끝 이름표·범례가 오른쪽·왼쪽 끝에서 잘리던 문제(2026-11-08 AXTI 리포트 23곳 실측)
+FIT_JS = ("<script>(function(){function fit(){document.querySelectorAll('svg[viewBox]').forEach(function(s){try{var v=s.viewBox.baseVal,x0=v.x,y0=v.y,x1=v.x+v.width,y1=v.y+v.height;"
+          "s.querySelectorAll('text').forEach(function(t){var b=t.getBBox();if(!b.width)return;x0=Math.min(x0,b.x-2);y0=Math.min(y0,b.y-2);x1=Math.max(x1,b.x+b.width+2);y1=Math.max(y1,b.y+b.height+2)});"
+          "if(x0<v.x||y0<v.y||x1>v.x+v.width||y1>v.y+v.height)s.setAttribute('viewBox',[x0,y0,x1-x0,y1-y0].join(' '))}catch(e){}})}"
+          "if(document.readyState!=='loading')fit();else document.addEventListener('DOMContentLoaded',fit);window.addEventListener('load',fit);"
+          "if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)})();</script>")
 CSS = """:root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
@@ -52,7 +59,7 @@ h1{font-size:21px;margin:0 0 4px;line-height:1.35}h2{font-size:18px;margin:30px 
 .lead{color:var(--mut);font-size:13.5px;margin:0 0 12px}.card{background:var(--card);border-radius:12px;padding:12px 14px;margin:12px 0}.hl{background:var(--hl);border-radius:12px;padding:12px 14px;margin:12px 0}
 .ans{display:grid;grid-template-columns:1fr;gap:8px}.ans div{background:var(--card);border-radius:10px;padding:10px 12px}.ans b.q{display:block;font-size:12.5px;color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600}
-.tw{overflow-x:auto}.mut{color:var(--mut)}.sm{font-size:12.5px}.red{color:var(--b)}.blue{color:var(--c)}.grn{color:var(--d)}
+.tw{overflow-x:auto}th,td{overflow-wrap:anywhere;word-break:keep-all}.mut{color:var(--mut)}.sm{font-size:12.5px}.red{color:var(--b)}.blue{color:var(--c)}.grn{color:var(--d)}
 /* 그래프 한 줄에 하나(마스터 지시 2026-10-30 "가로 한 줄에 두 개라 작게 보인다") */.gal{display:grid;grid-template-columns:1fr;gap:8px}.gal>div{min-width:0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
@@ -964,7 +971,7 @@ def render3(d):
     for i, s in enumerate(d.get("sections") or []):
         parts.append(f"<section id=\"s{i}\"><h2>{t(s.get('h2'))}</h2>" + "".join(block(b) for b in s.get("blocks") or []) + "</section>")
     src = "; ".join(t(x) for x in d.get("sources") or [])
-    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER3}</div></div></body></html>')
+    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER3}</div></div>{FIT_JS}</body></html>')
     return money_units(fx_units(chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))))
 
 
@@ -1008,7 +1015,7 @@ def render(d):
              if id(b) in num else block(b)) for b in s.get("blocks") or [])
         parts.append(f"<h2>{t(s.get('h2'))}</h2>" + body)
     src = "; ".join(t(x) for x in d.get("sources") or [])
-    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div></body></html>')
+    parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div>{FIT_JS}</body></html>')
     out = chiip_name("".join(parts).replace("치입 판단", "Chiip View").replace("Chiip 판단", "Chiip View"))   # GitHub·텔레그램 보고 표기(마스터 지시 2026-10-29)
     return money_units(fx_units(out))   # $25B·$M·$T 표기(마스터 지시 2026-10-29), ¥·€·£ 표기(2026-10-31)
 
