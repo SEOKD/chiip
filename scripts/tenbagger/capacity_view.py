@@ -12,6 +12,12 @@ datapack "capacity":
               "blocker": "방해 요인", "source": "출처"}],
    "capex": [{"period": "FY25", "capex": 0.5, "rev": 3.0, "kind": "실적"},   # KINDS 중 하나, 오래된 기간부터. 분기가 아니라 연간·TTM으로 쓴다
              {"period": "FY26", "capex": 0.8, "rev": 3.6, "kind": "가이던스"}]}
+   "facilities": {"count": 9, "count_basis": "10-K Item 2 — 제조 용도 시설", "source": "10-K URL",   # 마스터 지시 2026-11-08 "생산시설이 몇 곳이 있고 각각의 명칭과 위치, 생산능력 수치"
+                  "items": [{"name": "Prachinburi 공장", "location": "태국 Prachinburi", "owned": "소유",     # 소유·임차·소유·임차·위탁·미확인
+                             "use": "제조", "area": {"value": 1568000, "unit": "sq ft"},                  # 면적은 선택(공시 있을 때)
+                             "capacity": {"value": 20000, "unit": "웨이퍼/월", "source": "출처"} 또는 "미확인",
+                             "capacity_basis": "시설별 캐파 미공시",                                       # capacity가 미확인이면 이유
+                             "status": "가동"}]}                                                          # FAC_STATUS 중 하나
   생산 설비가 없는 회사: {"none": "이유"} → 절을 넣지 않는다.
 
 금지표대로 투자 발표를 공급 증가로 세지 않는다: 착공 이후 단계만 '착공 이상' 합계에 넣고, 명목 캐파와 가동률 반영 실효 캐파를 나눈다.
@@ -29,6 +35,8 @@ FIRM_FROM = STAGES.index("착공")
 LIVE_FROM = STAGES.index("가동")
 KINDS = ("실적", "가이던스", "컨센서스", "추정")
 MIN_PERIODS = 2
+FAC_STATUS = ("가동", "증설 중", "건설 중", "계획", "가동 중단", "매각·폐쇄 예정")
+OWNED = ("소유", "임차", "소유·임차", "위탁", "미확인")
 
 
 def _num(x):
@@ -72,6 +80,21 @@ def check(cap):
         for k in ("add", "capex"):
             if _num(p.get(k)) is None and p.get(k) != UNKNOWN:
                 raise ValueError(f"capacity.plans {name}: {k}가 필요하다(모르면 '미확인')")
+    fac = cap.get("facilities") or {}
+    if not fac.get("items") or not fac.get("source") or not fac.get("count_basis"):
+        raise ValueError("capacity.facilities에 count·count_basis·source·items가 필요하다 — 생산시설 이름·위치·생산능력(마스터 지시 2026-11-08, capacity_view.py 맨 위)")
+    if not isinstance(fac.get("count"), int) or fac["count"] < len(fac["items"]):
+        raise ValueError("capacity.facilities.count는 정수이고 items 수 이상이어야 한다(이름을 공개하지 않은 시설은 count에만 센다)")
+    for f in fac["items"]:
+        nm = f.get("name") or "이름 없음"
+        if not f.get("name") or not f.get("location") or f.get("status") not in FAC_STATUS or f.get("owned", "미확인") not in OWNED:
+            raise ValueError(f"capacity.facilities {nm}: name·location·status({FAC_STATUS})·owned({OWNED})가 필요하다")
+        cv = f.get("capacity")
+        if cv == UNKNOWN:
+            if not f.get("capacity_basis"):
+                raise ValueError(f"capacity.facilities {nm}: 생산능력이 미확인이면 capacity_basis(왜 모르는지)가 필요하다")
+        elif not (isinstance(cv, dict) and _num(cv.get("value")) is not None and cv.get("unit") and cv.get("source")):
+            raise ValueError(f"capacity.facilities {nm}: capacity는 {{value, unit, source}} 또는 '미확인'")
     if len(years) < MIN_PERIODS:
         raise ValueError(f"capacity.capex에 {MIN_PERIODS}개 기간 이상이 필요하다")
     for y in years:
@@ -104,6 +127,7 @@ def section(dp):
     if cap.get("summary"):
         head += " " + str(cap["summary"])
     B = [{"type": "hl", "text": head}]
+    B.extend(facility_blocks(cap))
     if c["pending"]:
         B.append({"type": "table", "title": "생산능력 확충 계획", "headers": ["계획", "단계", "증설", "가동 시점", "CAPEX"],
                   "rows": [[p["name"], p["stage"], _cap(_num(p.get("add")), unit), p["online"], UNKNOWN if _num(p.get("capex")) is None else _money(p["capex"], money)] for p in c["pending"]]})
@@ -123,7 +147,44 @@ def section(dp):
     ph = photo_view.block(dp, "site")
     if ph:
         B.append(ph)
-    return {"h2": "생산능력", "blocks": B, "_sources": sorted({str(cap["current"]["source"])} | {str(p["source"]) for p in cap["plans"]} | set(site_view.sources(dp)))}
+    return {"h2": "생산능력", "blocks": B, "_sources": sorted({str(cap["current"]["source"])} | {str(p["source"]) for p in cap["plans"]} | set(site_view.sources(dp)) | {str((cap.get("facilities") or {}).get("source"))} - {"None"})}
+
+
+def _fcap(f):
+    cv = f.get("capacity")
+    return f"{cv['value']:,.0f} {cv['unit']}" if isinstance(cv, dict) else UNKNOWN
+
+
+def facility_blocks(cap):
+    """생산시설 목록 — 몇 곳, 이름·위치·생산능력(마스터 지시 2026-11-08). 시설별 캐파를 둘 이상 알면 그 막대, 모르면 공시 면적을 대용으로 그린다"""
+    fac = cap.get("facilities") or {}
+    items = fac.get("items") or []
+    if not items:
+        return []
+    known = [f for f in items if isinstance(f.get("capacity"), dict)]
+    named = len(items)
+    text = f"**생산시설 {fac['count']}곳**({fac['count_basis']})"
+    text += f" — 이름·위치를 밝힌 곳 {named}곳" if named < fac["count"] else ""
+    own = {}
+    for f in items:
+        own[f.get("owned", "미확인")] = own.get(f.get("owned", "미확인"), 0) + 1
+    text += ", " + " · ".join(f"{k} {v}곳" for k, v in own.items()) + "."
+    text += f" 시설별 생산능력은 {len(known)}곳만 공개됐다." if known and len(known) < named else (" 시설별 생산능력은 공개되지 않았다 — 회사 전체 캐파만 위에 적었다." if not known else "")
+    has_area = any((f.get("area") or {}).get("value") for f in items)
+    head = ["시설", "위치", "용도", "생산능력", "소유·상태"]   # 표는 5열까지(휴대폰 가독성) — 면적은 생산능력 칸에 함께 쓴다
+    area = lambda f: f" · 면적 {f['area']['value']:,.0f} {f['area'].get('unit', '')}" if (f.get("area") or {}).get("value") else ""
+    rows = [[f["name"], f["location"], f.get("use", ""), (_fcap(f) if isinstance(f.get("capacity"), dict) else f"미확인 — {f.get('capacity_basis', '')}") + area(f),
+             f"{f.get('owned', '미확인')} · {f['status']}"] for f in items]
+    B = [{"type": "p", "text": text}, {"type": "table", "title": f"생산시설 {fac['count']}곳 — 명칭·위치·생산능력", "headers": head, "rows": rows}]
+    units = {f["capacity"]["unit"] for f in known}
+    if len(known) >= 2 and len(units) == 1:
+        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"시설별 생산능력({units.pop()})", "unit": "",
+                                             "rows": [{"label": f["name"], "bars": [{"name": "생산능력", "color": "c", "value": f["capacity"]["value"]}]} for f in known]}})
+    elif has_area:
+        au = next((f["area"].get("unit", "") for f in items if (f.get("area") or {}).get("value")), "")
+        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"시설별 면적({au}) — 생산능력 미공시라 면적을 대용으로", "unit": "",
+                                             "rows": [{"label": f["name"], "bars": [{"name": "면적", "color": "e", "value": f["area"]["value"]}]} for f in items if (f.get("area") or {}).get("value")]}})
+    return B
 
 
 def charts(dp):

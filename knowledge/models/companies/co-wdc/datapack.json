@@ -5477,7 +5477,131 @@
    }
   ],
   "capex_source": "실적 = 현금흐름표 유형자산 취득(10-Q·FQ4 콜), 컨센서스 = Fiscal.ai FY2027 CAPEX 추정",
-  "sites_none": "소유 공장(태국·말레이시아·필리핀 헤드·조립)이 있으나 이번 회차에 위성 판독 등록을 하지 못했다 — 다음 회차 과제"
+  "sites_none": "소유 공장(태국·말레이시아·필리핀 헤드·조립)이 있으나 이번 회차에 위성 판독 등록을 하지 못했다 — 다음 회차 과제",
+  "facilities": {
+   "count": 9,
+   "count_basis": "FY26 10-K Item 2 — 용도에 '제조'가 있는 시설(2026-07-03 기준)",
+   "source": "https://www.sec.gov/Archives/edgar/data/106040/000162828026057139/wdc-20260703.htm",
+   "items": [
+    {
+     "name": "San Jose",
+     "location": "미국 캘리포니아 San Jose",
+     "owned": "소유",
+     "use": "제조·R&D·관리",
+     "area": {
+      "value": 1957000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Fremont",
+     "location": "미국 캘리포니아 Fremont",
+     "owned": "임차",
+     "use": "제조·R&D",
+     "area": {
+      "value": 295000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Shenzhen",
+     "location": "중국 Shenzhen",
+     "owned": "소유·임차",
+     "use": "제조",
+     "area": {
+      "value": 614000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Penang",
+     "location": "말레이시아 Penang",
+     "owned": "소유",
+     "use": "제조",
+     "area": {
+      "value": 1192000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Kuching",
+     "location": "말레이시아 Kuching",
+     "owned": "소유",
+     "use": "제조·R&D",
+     "area": {
+      "value": 638000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Johor Bahru",
+     "location": "말레이시아 Johor Bahru",
+     "owned": "소유",
+     "use": "제조",
+     "area": {
+      "value": 277000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Laguna",
+     "location": "필리핀 Laguna",
+     "owned": "소유",
+     "use": "제조·관리",
+     "area": {
+      "value": 632000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Bang Pa-In",
+     "location": "태국 Bang Pa-In",
+     "owned": "소유·임차",
+     "use": "제조·R&D",
+     "area": {
+      "value": 1595000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Prachinburi",
+     "location": "태국 Prachinburi",
+     "owned": "소유",
+     "use": "제조",
+     "area": {
+      "value": 1568000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K Item 2는 면적·용도만)",
+     "status": "가동"
+    }
+   ]
+  }
  },
  "customers": {
   "as_of": "2026-10-02",

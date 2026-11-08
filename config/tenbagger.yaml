@@ -69,6 +69,7 @@ ladder:
 
 # 구매 등급 — 마스터 지시 2026-10-31 "Strong Buy, Buy, Neutral, Sell, Strong Sell 다섯 가지". 규칙이 고른다(scripts/tenbagger/report_layout.py rating, 등록부 prm-tb-rate-*).
 # upside = 목표주가 업사이드(2026-11-01부터), rr = 강세 상승폭 ÷ 약세 하락폭, dcf_min = DCF 기본 시나리오 업사이드 하한. 개인 포지션은 읽지 않는다.
+peg: {growth_min: 0.15}   # 다음 해 EPS 성장(Fwd 1Y·2Y P/E 역산)이 이 이상이면 성장주로 보고 밸류에이션 절에 PEG를 넣는다(2026-11-08 마스터 지시, scripts/tenbagger/peg_view.py, 등록부 prm-tb-peg-growth-min)
 debate: {max_shift: 1}   # 애널리스트 토론이 규칙 등급을 옮길 수 있는 단계(2026-11-03 마스터 지시, scripts/tenbagger/debate_view.py)
 rating:
   strong_buy: {upside: 0.40, rr: 3.0, dcf_min: 0.0}

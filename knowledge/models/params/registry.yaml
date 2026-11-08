@@ -5070,3 +5070,19 @@ params:
     data: datapack pq.breaks
     last_fit: null
     oos_metric: null
+- id: prm-tb-peg-growth-min
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#peg.growth_min
+  value: 0.15
+  unit: 다음 해 EPS 성장률
+  status: prior
+  prior:
+    value: 0.15
+    basis: 실무 근거 — 성장주(PEG가 의미 있는 종목)를 다음 해 EPS 성장 15% 이상으로 본다. PEG 자체는 P/E ÷ 성장률(%) 관행(Lynch)
+    source: Lynch(1989) One Up on Wall Street; Easton(2004) The Accounting Review(PEG 비율과 기대수익)
+  fit:
+    method: PEG 표시 종목과 미표시 종목의 이후 12개월 멀티플 변화 설명력 비교
+    target: 이후 12개월 Fwd P/E 변화
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null

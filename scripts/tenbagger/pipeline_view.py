@@ -193,9 +193,14 @@ def section3(dp):
     B.append({"type": "hl", "text": head})
     rows = []
     for x in c["items"]:
-        size = _m(x["total"], unit) + (f" · 마진 {x['m'] * 100:.0f}%" if x["m"] is not None else "")
-        rows.append({"label": x["name"], "total": x["total"], "pct": x["p"], "size": size, "status": x["status"]})
-    B.append({"type": "chart", "chart": {"kind": "progress", "title": "규모·마진·진척도", "rows": rows}})
+        size = (_m(x["total"], unit) if x["total"] is not None else "") + (f" · 마진 {x['m'] * 100:.0f}%" if x["m"] is not None else "")
+        when = f"{x.get('start') or '?'} → {x.get('end') or '?'}" if x.get("start") or x.get("end") else ""
+        rows.append({"label": x["name"], "total": x["total"], "pct": x["p"], "size": size.strip(" ·"), "status": x["status"], "when": when})
+    # 확실성 사다리(마스터 지시 2026-11-08 "수주·파이프라인 시각물이 직관적이지 못하다") — 단계별 띠, 색 = 확실성, 길이 = 금액, 진한 몫 = 진척도
+    tiers = {"확정": ("확정",), "조건부": ("조건부",), "협상·프레임워크": ("협상", "프레임워크"), "MOU·파이프라인": ("MOU", "파이프라인")}
+    fmt = {n: _money(sum(x["total"] for x in c["items"] if x["status"] in ks and x["total"] is not None and not x.get("no_sum")), unit)
+           for n, ks in tiers.items() if any(x["status"] in ks and x["total"] is not None for x in c["items"])}
+    B.append({"type": "chart", "chart": {"kind": "pipeline", "title": "수주·파이프라인 확실성 사다리", "rows": rows, "fmt": fmt}})
     B.append({"type": "table", "title": "실행 속도와 방해 요인", "headers": ["항목", "상태", "실행 속도", "방해 요인"], "rows": [[x["name"], x["status"], speed_text(x), " · ".join(x["blockers"])] for x in c["items"]]})
     return {"h2": "수주·파이프라인", "blocks": B}
 

@@ -223,6 +223,74 @@ def chart_progress(c):
     return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>'
 
 
+PIPE_TIERS = (("확정", ("확정",), "d"), ("조건부", ("조건부",), "c"), ("협상·프레임워크", ("협상", "프레임워크"), "e"), ("MOU·파이프라인", ("MOU", "파이프라인"), "a"))
+
+
+def chart_pipeline(c):
+    """수주·파이프라인 확실성 사다리(마스터 지시 2026-11-08 "시각물이 직관적이지 못하다 — 직관성을 더 올려라").
+    위: 금액을 아는 건의 확실성별 몫 한 줄. 아래: 확실성 단계(확정 → 조건부 → 협상·프레임워크 → MOU·파이프라인)마다 띠를 두고 건을 쌓는다.
+    색 = 확실성, 막대 길이 = 금액(제곱근 눈금), 진하게 칠한 몫 = 진척도. 금액을 모르는 건은 막대 대신 '금액 비공개' 표시."""
+    rows = c.get("rows") or []
+    if not rows:
+        return ""
+    W, L = 360, 6   # 휴대폰 폭에서 글자가 줄지 않게 좁게 그린다(다른 그림보다 글이 많다)
+    full = W - 2 * L
+    unit = c.get("money", "")
+    top = max([r["total"] for r in rows if r.get("total")] + [0]) or 1
+    tiers = [(n, [r for r in rows if r.get("status") in keys], col) for n, keys, col in PIPE_TIERS]
+    g, y = [], 4
+    known = [(n, sum(r["total"] for r in rs if r.get("total")), col) for n, rs, col in tiers]
+    tot = sum(v for _, v, _ in known)
+    hidden = sum(1 for r in rows if not r.get("total"))
+    if tot:
+        x = L
+        g.append(f'<text x="{L}" y="{y + 11}" style="fill:var(--fg);font-size:12px;font-weight:600">금액을 아는 건의 확실성 몫</text>')
+        for n, v, col in known:
+            if v:
+                w = full * v / tot
+                g.append(f'<rect x="{x:.1f}" y="{y + 17}" width="{max(w, 2):.1f}" height="14" fill="{COLORS[col]}"><title>{t(n)} {t(c.get("fmt", {}).get(n, ""))}</title></rect>')
+                if w > 60:
+                    g.append(f'<text x="{x + 4:.1f}" y="{y + 28}" style="fill:#fff;font-size:10.5px">{t(n)} {v / tot:.0%}</text>')
+                x += w
+        y += 36
+    if hidden:
+        g.append(f'<text x="{L}" y="{y + 10}" style="font-size:10.5px">금액 비공개 {hidden}건은 위 몫에서 빠진다</text>')
+        y += 16
+    for n, rs, col in tiers:
+        if not rs:
+            continue
+        s = sum(r["total"] for r in rs if r.get("total"))
+        label = f"{n} · {len(rs)}건" + (f" · {c.get('fmt', {}).get(n) or f'{s:,.1f}'}" if s else "")
+        h0, at = y, len(g)   # 띠 바탕은 글 아래에 깔리도록 나중에 이 자리에 넣는다
+        y += 6
+        g.append(f'<text x="{L + 8}" y="{y + 12}" style="fill:{COLORS[col]};font-size:13.5px;font-weight:700">{t(label)}</text>')
+        y += 18
+        for r in rs:
+            lines = wrap_units(r.get("label"), 24)
+            for i, ln in enumerate(lines[:2]):
+                g.append(f'<text x="{L + 8}" y="{y + 13 + 15 * i}" style="fill:var(--fg);font-size:13px;font-weight:600">{t(ln)}</text>')
+            y += 15 * min(len(lines), 2) + 2
+            if r.get("total"):
+                wid = max((full - 150) * math.sqrt(r["total"] / top), 24)
+                g.append(f'<rect x="{L + 8}" y="{y}" width="{wid:.1f}" height="12" rx="3" fill="{COLORS[col]}" fill-opacity="0.28"/>')
+                p = r.get("pct")
+                if p:
+                    g.append(f'<rect x="{L + 8}" y="{y}" width="{max(wid * min(p, 1), 3):.1f}" height="12" rx="3" fill="{COLORS[col]}"/>')
+                tx = L + 14 + wid
+            else:
+                g.append(f'<rect x="{L + 8}" y="{y}" width="74" height="12" rx="3" fill="none" stroke="{COLORS[col]}" stroke-dasharray="3 2"/>'
+                         f'<text x="{L + 13}" y="{y + 9.5}" style="font-size:9.5px">금액 비공개</text>')
+                tx = L + 90
+            info = " · ".join(x for x in (r.get("size"), "진척 미확인" if r.get("pct") is None else f"진척 {r['pct'] * 100:.0f}%", r.get("when")) if x)
+            g.append(f'<text x="{tx:.1f}" y="{y + 10}" style="font-size:11.5px">{t(info)}</text>')
+            y += 22
+        g.insert(len(g) - (len(g) - 0), "")
+        g.insert(at, f'<rect x="{L}" y="{h0}" width="{full}" height="{y - h0}" rx="6" fill="{COLORS[col]}" fill-opacity="0.06" stroke="{COLORS[col]}" stroke-opacity="0.35" stroke-width="0.8"/>')
+        y += 8
+    legend = '<p class="sm mut">색 = 확실성(확정 → MOU) · 막대 길이 = 금액 · 진한 몫 = 진척도</p>'
+    return legend + f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>'
+
+
 def wrap_units(s, width):
     """한글 1칸, 영문·숫자 0.55칸으로 재서 줄을 나눈다 — SVG 글자는 스스로 줄바꿈하지 않는다"""
     lines, cur, used = [], "", 0.0
@@ -535,7 +603,7 @@ def chart_waterfall(c):
     return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall}
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "pipeline": chart_pipeline, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall}
 
 
 def figures(d):

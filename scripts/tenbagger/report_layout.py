@@ -333,7 +333,7 @@ def rational_chart(view):
     return {"kind": "hbars", "w": 480, "label_w": 130, "title": "합리적 멀티플", "unit": "배", "rows": bars}
 
 
-def valuation_section(s, sel, mm, r, co, sec, name, decision_line, pt):
+def valuation_section(s, sel, mm, r, co, sec, name, decision_line, pt, dp=None):
     """밸류에이션 — 계산은 엔진이 체계적으로, 글은 짧게(마스터 지시 2026-10-31)"""
     mcap = r["mcap"]
     base, bull, bear = r["scenarios"]["base"], r["scenarios"]["bull"], r["scenarios"]["bear"]
@@ -346,6 +346,8 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line, pt):
     B.append({"type": "table", "title": f"멀티플 선정 — {sel['label']}", "headers": ["단계", "조정", "근거"], "rows": sel["rows"]})
     peers = [[x["ticker"]] + [("-" if x.get(k) is None else f"{x[k]:.1f}") for k in sel["keys"]] + [f"{x['growth']:.0%}", f"{x['ebit_margin']:.0%}", "-" if x.get("roic") is None else f"{x['roic']:.0%}"] for x in mm["peers"]]
     B.append({"type": "table", "title": "동종 레인지", "headers": ["회사"] + sel["labels"] + ["성장", "영업이익률", "ROIC"], "rows": peers + [[f"**{name}**"] + [f"{v:.1f}" for v in sel["now"]] + ["", "", ""]]})
+    import peg_view   # 성장주는 PEG도(마스터 지시 2026-11-08)
+    B.extend(peg_view.blocks(dp, name))
     u = r["upside"]
     tail = f"몬테카를로 중앙값 업사이드 {u['v0_p50'] - 1:+.0%}"
     if u.get("implied_cagr") is not None:
@@ -441,7 +443,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if sell:
         bear_blocks.append({"type": "boxes", "items": [{"title": "셀온 조건", "lines": [[f"조건 {i}", t] for i, t in enumerate(sell, 1)]}]})
     scen_text = [b for x in find("판단 시나리오") for b in x.get("blocks") or [] if b.get("type") != "chart"]
-    val = valuation_section(s, sel, mm, r, co, sec, co.get("name", d.get("company")), (sec.get("blocks") or [{}])[-1].get("text") if (sec.get("blocks") or [{}])[-1].get("type") == "hl" else None, pt)
+    val = valuation_section(s, sel, mm, r, co, sec, co.get("name", d.get("company")), (sec.get("blocks") or [{}])[-1].get("text") if (sec.get("blocks") or [{}])[-1].get("type") == "hl" else None, pt, dp)
     val["blocks"][1:1] = scen_text
     pressure_line = input_view.valuation_line(dp)
     if pressure_line:

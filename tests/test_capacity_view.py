@@ -13,7 +13,10 @@ CAP = {"as_of": "2026-09-30", "unit": "MW/년", "summary": "증설이 병목이�
        "plans": [{"name": "A 공장", "add": 500, "stage": "착공", "online": "2027-06", "capex": 1.0, "blocker": "변압기", "source": "s1"},
                  {"name": "B 공장", "add": 300, "stage": "발표", "online": "미확인", "capex": "미확인", "blocker": "인허가", "source": "s2"},
                  {"name": "C 공장", "add": 100, "stage": "가동", "online": "2026-03", "capex": 0.2, "blocker": "없음", "source": "s3"}],
-       "capex": [{"period": "FY25", "capex": 0.5, "rev": 5.0, "kind": "실적"}, {"period": "FY26", "capex": 0.9, "rev": 6.0, "kind": "가이던스"}]}
+       "capex": [{"period": "FY25", "capex": 0.5, "rev": 5.0, "kind": "실적"}, {"period": "FY26", "capex": 0.9, "rev": 6.0, "kind": "가이던스"}],
+       "facilities": {"count": 3, "count_basis": "10-K Item 2", "source": "10-K",
+                      "items": [{"name": "A 공장", "location": "미국 텍사스", "owned": "소유", "use": "제조", "capacity": {"value": 600, "unit": "MW/년", "source": "10-K"}, "status": "가동"},
+                                {"name": "C 공장", "location": "멕시코", "owned": "임차", "use": "조립", "capacity": {"value": 400, "unit": "MW/년", "source": "IR"}, "status": "가동"}]}}
 DP = {"unit": "B$", "capacity": CAP}
 
 
@@ -89,6 +92,35 @@ class TestReport(unittest.TestCase):
         self.assertEqual([r["label"] for r in ladder["rows"]], ["가동률 반영 현재", "명목 현재", "착공 이상 반영", "발표까지 반영"])
         self.assertEqual(ladder["rows"][-1]["bars"][0]["value"], 1800)
         self.assertEqual(years["rows"][1]["bars"][0]["value"], 15.0)
+
+
+
+class TestFacilities(unittest.TestCase):
+    """생산시설 몇 곳·명칭·위치·생산능력(마스터 지시 2026-11-08)"""
+
+    def test_required_and_count(self):
+        for change in (lambda c: c.pop("facilities"), lambda c: c["facilities"].update(count=1),
+                       lambda c: c["facilities"]["items"][0].pop("location"), lambda c: c["facilities"]["items"][0].update(capacity="미확인")):
+            c = copy.deepcopy(CAP)
+            change(c)
+            with self.assertRaises(ValueError):
+                cv.check(c)
+
+    def test_table_and_chart(self):
+        B = cv.facility_blocks(CAP)
+        self.assertIn("생산시설 3곳", B[0]["text"])
+        self.assertIn("이름·위치를 밝힌 곳 2곳", B[0]["text"])
+        self.assertEqual(B[1]["rows"][0][:2], ["A 공장", "미국 텍사스"])
+        self.assertLessEqual(len(B[1]["headers"]), 5)
+        self.assertEqual(B[2]["chart"]["title"], "시설별 생산능력(MW/년)")
+
+    def test_area_proxy_when_capacity_unknown(self):
+        c = copy.deepcopy(CAP)
+        for f in c["facilities"]["items"]:
+            f.update(capacity="미확인", capacity_basis="미공시", area={"value": 1000, "unit": "sq ft"})
+        B = cv.facility_blocks(c)
+        self.assertIn("공개되지 않았다", B[0]["text"])
+        self.assertIn("면적", B[2]["chart"]["title"])
 
 
 if __name__ == "__main__":

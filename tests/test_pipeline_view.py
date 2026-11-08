@@ -92,5 +92,22 @@ class TestSection(unittest.TestCase):
                 pv.report_section(dp(bad))
 
 
+class TestLadder(unittest.TestCase):
+    """확실성 사다리(마스터 지시 2026-11-08 — 시각물 직관성)"""
+
+    def test_chart_groups_by_certainty(self):
+        sec = pv.section3(dp(item(), item(name="B MOU", status="MOU", total="미확인", progress="미확인", start=None, end=None)))
+        ch = next(b["chart"] for b in sec["blocks"] if b["type"] == "chart")
+        self.assertEqual(ch["kind"], "pipeline")
+        self.assertEqual([r["status"] for r in ch["rows"]], ["확정", "MOU"])
+        self.assertIn("확정", ch["fmt"])
+        self.assertNotIn("MOU·파이프라인", ch["fmt"])   # 금액을 모르는 단계는 합계를 쓰지 않는다
+        sys.path.insert(0, str(ROOT / "radar"))
+        import report_html as rh
+        svg = rh.chart_pipeline(ch)
+        self.assertIn("금액 비공개", svg)
+        self.assertLess(svg.index("확정 · 1건"), svg.index("MOU·파이프라인 · 1건"))   # 확실한 단계가 위
+
+
 if __name__ == "__main__":
     unittest.main()
