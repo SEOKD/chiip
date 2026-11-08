@@ -275,8 +275,9 @@ def vertex_generate(t, c=None, model=None, extra="", quality=None, size=None):
     warnings.filterwarnings("ignore", message=".*quota project.*")
     m, s, a = model_size(t, c)
     m, s = model or m, size or s
-    v = c["vertex"]
-    cl = genai.Client(vertexai=True, project=v["project"], location=v.get("location", "global"))
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import vertex_auth   # VERTEX_API_KEY 우선(로그인 만료 없음), 없으면 gcloud 로그인 — 2026-11-08
+    cl = vertex_auth.client(c)
     def call(**kw):
         return cl.models.generate_content(model=m, contents=(prompt(t, c) + (" " + extra if extra else "")),
                                           config=types.GenerateContentConfig(response_modalities=["IMAGE"], image_config=types.ImageConfig(image_size=s, aspect_ratio=a, **kw)))

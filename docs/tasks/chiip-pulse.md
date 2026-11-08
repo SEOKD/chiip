@@ -137,6 +137,10 @@
    b. 응답을 `[{"ticker", "score": <get_company_score 응답>, "signals": <signals 배열 그대로>, "recaps": <recaps 배열>}]`로 radar/state/quantral_in.json에 저장 → `py radar/social_surge.py --put radar/state/quantral_in.json` → `py radar/social_surge.py --run`. 스크립트가 본문·작성자·링크를 버리고 건수만 남긴다 — 모델도 글 본문·작성자 이름을 피드·파일에 옮기지 않는다(CLAUDE.md 커뮤니티 경계).
    c. `--run` 출력이 '급증 없음'이 아니면 줄마다 피드 items에 📣 한 건: event "관심 급증 x/10", view(무엇이 늘었나 + 그 이유가 될 1차 사건이 있으면 그 사건 — 펄스 sources·실적 일정·8-K에서 확인한 것만, 없으면 '원인 사건 미확인'), why(채널별 숫자 줄 그대로 + 감성 변화), against(관심 급증은 주가·펀더멘털 변화가 아니다 — 이미 오른 뒤의 추격 관심일 수 있다), next(확인할 1차 자료), links(get_company_score의 url을 ["Quantral", url]로). 인사이트 점수는 1차 사건이 확인되면 그 사건 기준, 아니면 4 이하로 brief에 한 줄. 커뮤니티 신호는 S1·S2 — 주장(claim)으로 저장하지 않는다.
 2-4. 📊 분기 결산 산업 리포트(ADR-018): 2026-11-08 마스터 지시로 Industry Indepth 작업(chiip-industry-weekly, 매일 07:00)으로 옮겼다 — Pulse는 하지 않는다.
+2-5. 🏭 사건 인뎁스(2026-11-08 마스터 지시 "주기에 따르는 게 아니라 Pulse에서 이벤트를 탐지하고 이게 산업 전반의 큰 변화를 가져오는 거라면 실행"): 펄스 파일의 `industry_event.due`가 true일 때만. 후보(`scripts/industry/event_gate.py` — 규제·정책 알림·P0·같은 산업 2곳 이상 동시 알림, 48시간 창, 산업별 14일 재알림 방지)를 1위부터 본다.
+   - **산업 전반의 큰 변화인가** 판정(셋 중 둘 이상이면 예): ① 한 회사가 아니라 산업 묶음 여러 회사의 매출·마진 동인(물량·가격·원가·규제 비용)을 바꾼다 ② 그 산업의 사업군 판단 등급이나 핵심 논쟁의 답을 바꿀 만하다 ③ 1차 출처(공시·관보·회사 발표)로 확인된다. 한 회사 실적·인수설·단독 수주는 아니오(그건 기존 알림·Analysis 몫).
+   - 예면 그 회차에 스킬 `industry-event` 절차로 사건 인뎁스 1편을 쓰고 게시(Artifact·노션 Industry·텔레그램 `scripts/industry/tg_feed.py --send`). 하루 최대 1편.
+   - 예든 아니오든 본 후보는 `py scripts/industry/event_gate.py --done <산업>`과 판정 한 줄을 radar/state/industry_event_log.txt에 남긴다(10분마다 같은 후보로 깨지 않게).
 
 2-3. 📑 Fiscal IR 문서(마스터 지시 2026-11-08 "AT&S도 최근 실적 발표 프레젠테이션 자료를 공유했는데 이걸 가져오고 있는지"): 펄스 파일의 `fiscal_ir_docs.due`가 true일 때만.
    `py radar/fiscal_ir_docs.py --plan`이 주는 묶음 본문을 execute_code로 돌리고(묶음 안에서 동시 6개 이하) 출력(JSON 배열)을 모두 합쳐 radar/state/fiscal_ir_in.json에 저장 → `py radar/fiscal_ir_docs.py --put radar/state/fiscal_ir_in.json`.

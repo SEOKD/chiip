@@ -1,6 +1,6 @@
 # 리포트 이미지(마스터 지시 2026-11-08, 지시서 v1.2 종목·v1.1 산업) — Gemini 이미지 API. 구현 scripts/tenbagger/product_images.py·image_check.py, ADR-017
 # 그림은 Gemini(글자 없는 개념도), 이름표·BOM 표·출처는 Chiip이 datapack/제품 BOM 사실로 얹는다.
-backend: vertex                     # 2026-11-08 마스터 지시 — Vertex AI(에이전트 플랫폼) + gcloud ADC 인증(키 없음). aistudio = 예전 API 키 경로(선불 크레딧 0으로 402)
+backend: vertex                     # 2026-11-08 마스터 지시 — Vertex AI(에이전트 플랫폼). 인증은 scripts/tenbagger/vertex_auth.py: VERTEX_API_KEY 우선(로그인 만료 없음), 없으면 gcloud ADC. aistudio = 예전 API 키 경로(선불 크레딧 0으로 402)
 vertex: {project: project-2e9891a3-ef5c-46af-956, location: global}   # My First Project. ADC 쿼터 프로젝트도 같다(gcloud auth application-default set-quota-project)
 batch_supported: false               # Vertex 일괄 예측은 Cloud Storage 버킷이 필요하다 — 버킷을 만들기 전에는 즉시 생성만(일괄 할인 없음)
 models:

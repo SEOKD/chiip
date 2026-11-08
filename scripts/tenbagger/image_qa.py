@@ -6,6 +6,7 @@
 비용: gemini-3.1-flash-lite 이미지 1장 입력 — 장당 1센트 미만(장부에 qa로 남긴다).
 """
 import json
+import sys
 import warnings
 from pathlib import Path
 
@@ -27,8 +28,9 @@ def review(path, kind, expect_parts=None, cfg=None):
     from google import genai
     from google.genai import types
     warnings.filterwarnings("ignore", message=".*quota project.*")
-    v = (cfg or {}).get("vertex") or {}
-    cl = genai.Client(vertexai=True, project=v["project"], location=v.get("location", "global"))
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import vertex_auth   # VERTEX_API_KEY 우선(로그인 만료 없음), 없으면 gcloud 로그인 — 2026-11-08
+    cl = vertex_auth.client(cfg)
     p = Path(path)
     mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}.get(p.suffix.lower(), "image/png")
     r = cl.models.generate_content(model=(cfg or {}).get("qa_model", QA_MODEL),

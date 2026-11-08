@@ -9,9 +9,11 @@ datapack에 bom이 없는 제품은 Gemini(Vertex) + Google 검색 그라운딩�
 공급사·원가 비중은 여기서 만들지 않는다(웹 검색으로는 공시 수준 확인이 안 된다 — '미확인'·'미공개').
 """
 import json
+import sys
 import re
 import warnings
 from datetime import date
+from pathlib import Path
 from urllib.parse import urlparse
 
 DISCOVER_MODEL = "gemini-3.5-flash"
@@ -64,8 +66,9 @@ def discover(name, company, what, cfg):
     from google import genai
     from google.genai import types
     warnings.filterwarnings("ignore", message=".*quota project.*")
-    v = cfg["vertex"]
-    cl = genai.Client(vertexai=True, project=v["project"], location=v.get("location", "global"))
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import vertex_auth   # VERTEX_API_KEY 우선(로그인 만료 없음), 없으면 gcloud 로그인 — 2026-11-08
+    cl = vertex_auth.client(cfg)
     r = cl.models.generate_content(model=(cfg.get("bom_auto") or {}).get("model", DISCOVER_MODEL), contents=ASK.format(name=name, company=company, what=what or name),
                                    config=types.GenerateContentConfig(tools=[types.Tool(google_search=types.GoogleSearch())], temperature=0))
     gm = r.candidates[0].grounding_metadata if r.candidates else None

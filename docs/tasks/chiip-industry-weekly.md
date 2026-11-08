@@ -1,10 +1,10 @@
-# 예약 작업: chiip-industry-weekly 하나 = Chiip Industry Indepth(매일 07:00 KST) — 2026-11-08 마스터 지시로 주간·분기 결산·사건 인뎁스를 한 작업에 통합, 발송 작업(chiip-industry-weekly-send)도 통합·삭제
+# 예약 작업: chiip-industry-weekly 하나 = Chiip Industry Indepth(매일 07:00 KST) — 2026-11-08 마스터 지시로 주간·분기 결산 인뎁스를 한 작업에 통합(사건 인뎁스는 Pulse), 발송 작업(chiip-industry-weekly-send)도 통합·삭제
 
 ## 매 회차 순서(매일 07:00)
 1. **일요일이면 주간 인뎁스** — 아래 '## chiip-industry-weekly' 절차 0~6 + '## 발송'(08:00 전후 1통). 시간이 걸리는 일이라 먼저 한다.
 2. **분기 결산 인뎁스** — `py radar/industry_quarter.py` 결과가 `due: true`면 `docs/tasks/chiip-industry-quarterly.md`의 phase(collect: 산업 3개까지 / write: 1개) 절차. 아니면 건너뛴다.
-3. **사건 인뎁스** — `py scripts/industry/event_gate.py` 결과가 `due: true`면 후보 1위부터 본다. 스킬 `industry-event` 기준으로 그 사건이 산업 판단(사업군 등급·핵심 논쟁)을 바꾸는지 먼저 판정하고, 바꾸면 그날 1편만 쓴다(같은 절차·관문, Artifact·노션 Industry·텔레그램). 쓰든 안 쓰든 본 후보는 `py scripts/industry/event_gate.py --done <산업>`(14일 재알림 방지)과 판단 한 줄을 radar/state/industry_event_log.txt에 남긴다.
-4. 셋 다 할 일이 없으면 텔레그램 없이 끝낸다.
+3. **사건 인뎁스는 이 작업이 아니다** — 주기 없이 Pulse가 사건을 탐지해 산업 전반의 큰 변화일 때만 쓴다(2026-11-08 마스터 지시, docs/tasks/chiip-pulse.md 2-5).
+4. 둘 다 할 일이 없으면 텔레그램 없이 끝낸다.
 
 마스터 지시 2026-11-08: "월간 트래커는 제외하고 그 자리에 1주일에 한 번씩 산업 하나를 골라 리포트를 쓰는 걸로 하라. 매주 일요일 아침 8시에 제공할 수 있도록 해라.
 어떤 산업을 선택할지는 월스트리트 IB 리서치 하우스 시니어 애널리스트로서 시의적절하게 고르도록 체계를 갖춰라"
