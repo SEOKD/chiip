@@ -353,11 +353,15 @@ def compute(dp, history=None, db=HS_DB):
                 row["next"] = {"x": x, "how": how, "g": g, "rev": base * (1 + g), "lo": base * (1 + g - se), "hi": base * (1 + g + se), "se": se}
         row["score"] = score(row)
         out.append(row)
+    axis = [q for q in window(last) if rev.get(q)]   # 그림 축 = 매출이 있는 최근 분기
+    for r in out:   # 시계열 일치(마스터 지시 2026-11-08 "매출·PPI·수출입 시계열이 반드시 같게") — 매출 분기 중 지표가 있는 몫
+        r["cover"] = sum(1 for q in axis if q in r["iq"]) / len(axis) if axis else 0
     chosen = []
-    for kd in ("ppi", "trade"):   # PPI 1개·수출입 1개 — 연관성 × 싱크로율 점수
+    for kd in ("ppi", "trade"):   # PPI 1개·수출입 1개 — 매출 축을 다 채우는 지표 중 연관성 × 싱크로율 점수, 없으면 가장 많이 채우는 지표
         c = [r for r in out if r["rev"] and kind(r["ind"]) == kd and score(r) > 0]
         if c:
-            chosen.append(max(c, key=lambda r: r["score"]))
+            full = max(r["cover"] for r in c)
+            chosen.append(max([r for r in c if r["cover"] == full], key=lambda r: r["score"]))
     for r in out:
         r["chosen"] = r in chosen
     return {"last": last, "next": nxt, "rev": rev, "op": op, "rows": out, "chosen": chosen}
@@ -401,26 +405,22 @@ def window(last, n=WINDOW):
 
 def level_chart(c, win, top=None):
     """매출과 지표 레벨을 같은 분기 축·같은 기준 분기 지수(= 100)로 — 단위가 달라도 한 그림에서 흐름을 대조한다(마스터 지시 2026-11-08 "매출 시계열과 PPI 및 수출입 데이터의 시계열은 동일해야 한다").
-    축 = 최근 16개 분기 중 매출이 있는 분기, 기준 = 그 첫 분기. 지표는 회사 분기 끝 달 기준 3개월(무역 합·PPI 평균)이라 매출과 같은 기간이다.
-    지표가 기준 분기에 값이 없으면(발표 지연) 그 지표의 첫 값으로 기준을 잡고 이름에 적는다"""
-    axis = [q for q in win if c["rev"].get(q)]
+    축 = 최근 16개 분기 중 매출과 그린 지표가 모두 있는 분기(공통 구간), 기준 = 그 첫 분기. 지표는 회사 분기 끝 달 기준 3개월(무역 합·PPI 평균)이라 매출과 같은 기간이다.
+    지표 선택 단계(compute)에서 매출 분기를 다 채우는 지표를 먼저 고르므로 공통 구간이 매출 구간과 같아진다"""
+    axis = [q for q in win if c["rev"].get(q) and all(r["iq"].get(q) for r in c["rows"])]   # 공통 축 — 매출과 그린 지표가 모두 있는 분기만(시계열 일치)
     if not axis:
         return None
     base_q = axis[0]
 
     def idx(series):
-        have = [q for q in axis if series.get(q)]
-        if not have:
-            return [], None
-        b = have[0]
-        return [[q, round(series[q] / series[b] * 100, 1)] for q in have], b
+        return [[q, round(series[q] / series[base_q] * 100, 1)] for q in axis], base_q
     cols = ["a", "b", "c", "d", "e"]
     series = [{"name": "매출", "color": "a", "points": idx(c["rev"])[0]}]
     for i, r in enumerate(c["rows"]):
         pts, b = idx(r["iq"])
         if pts:
             src = {"ppi": "PPI", "hs": "수출입", "trade": "수출입"}.get(r["ind"].get("source"), "")
-            name = r["ind"]["label"] + (f"({src})" if src and src not in r["ind"]["label"] else "") + (f" — {b} = 100" if b != base_q else "")
+            name = r["ind"]["label"] + (f"({src})" if src and src not in r["ind"]["label"] else "") 
             series.append({"name": name, "color": cols[(i + 1) % len(cols)], "points": pts})
     nx = (top or {}).get("next")
     if nx and c["rev"].get(c["last"]):
@@ -477,20 +477,21 @@ def section(dp, history=None, db=HS_DB):
                      UNKNOWN if not f else f"{f['n']}·{reliability(f['n'])}", UNKNOWN if not n else f"{_pct(n['g'], 1)} → {_money(n['rev'])}" + (f"({n['how']})" if n.get("how") else "")])
     B = [{"type": "hl", "text": head},
          {"type": "table", "title": "지표별 싱크로율(상관계수 × 100) — 위 두 줄이 제품 연관성 × 싱크로율로 고른 PPI·수출입 세부 지표", "headers": ["지표", "비교 대상", "증가율 기준", "지표 선행", "매출(t값)", "영업이익", "방향 일치", "표본·신뢰", f"{c['next']} 내포 매출"], "rows": rows}]
-    cand_rows = [[r["ind"]["label"] + (" ✔" if r["chosen"] else ""), {"ppi": "PPI", "trade": "수출입"}[kind(r["ind"])], f"{r['rel']:.2f}",
+    cand_rows = [[r["ind"]["label"] + (" ✔" if r["chosen"] else ""), {"ppi": "PPI", "trade": "수출입"}[kind(r["ind"])], f"{r['rel']:.2f}", f"{r['cover']:.0%}",
                   UNKNOWN if not r["rev"] else f"{r['rev']['r'] * 100:.0f}%({r['rev']['lag']}분기)", f"{r['score']:.2f}", r["ind"].get("origin", "")]
                  for r in sorted(c["rows"], key=lambda r: -r["score"])[:12]]
     B.append({"type": "table", "title": f"지표 후보 {len(c['rows'])}개 — 연관성(제품 품목 일치 × 대용 감점 × 매출 비중) × 싱크로율로 고른다. 후보가 많을수록 최대 상관은 우연히 부풀 수 있다",
-              "headers": ["후보", "종류", "연관성", "싱크로율(선행)", "점수", "출처"], "rows": cand_rows})
+              "headers": ["후보", "종류", "연관성", "매출 분기 일치", "싱크로율(선행)", "점수", "출처"], "rows": cand_rows})
     win = window(c["last"])
     lv = level_chart({**c, "rows": c["chosen"] or [top]}, win, top)
     if lv:
         B.append({"type": "chart", "chart": lv})
     k = top["k"]
     cg, full_ig = growth(c["rev"], k), growth(top["iq"], k)
-    pts_c = [[q, round(cg[q] * 100, 1)] for q in win if q in cg]
+    both = [q for q in win if q in cg and shift_q(q, -fr["lag"]) in full_ig]   # 두 선이 같은 분기만(시계열 일치)
+    pts_c = [[q, round(cg[q] * 100, 1)] for q in both]
     lag_label = f"{top['ind']['label']}({fr['lag']}분기 앞당김)" if fr["lag"] else top["ind"]["label"]
-    pts_i = [[q, round(full_ig[shift_q(q, -fr["lag"])] * 100, 1)] for q in win if q in cg and shift_q(q, -fr["lag"]) in full_ig]
+    pts_i = [[q, round(full_ig[shift_q(q, -fr["lag"])] * 100, 1)] for q in both]
     gser = [{"name": "매출", "color": "a", "points": pts_c}, {"name": lag_label, "color": "b", "points": pts_i}]
     if nx and pts_c:   # 다음 분기 추정을 마지막 실적에서 이어 그린다
         gser.append({"name": f"다음 분기 추정({nx['how']}, ±1σ {_pct(nx['g'] - nx['se'], 0)}~{_pct(nx['g'] + nx['se'], 0)})", "color": "e",

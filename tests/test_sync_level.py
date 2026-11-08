@@ -23,6 +23,15 @@ class TestLevel(unittest.TestCase):
             self.assertEqual(s["points"][0], [first, 100.0])                   # 모든 시계열이 같은 기준 분기
             self.assertTrue(all(p[0] in rev for p in s["points"]))            # 매출이 없는 분기는 지표도 그리지 않는다
 
+    def test_indicator_gap_trims_all_series(self):
+        w = sv.window("2026Q3")
+        rev = {q: 100 + i for i, q in enumerate(w)}
+        ind = {q: 50 + i for i, q in enumerate(w) if q not in ("2023Q3", "2023Q4")}   # 지표가 빈 분기는 매출도 그리지 않는다
+        ch = sv.level_chart({"rev": rev, "rows": [{"ind": {"label": "한국 변압기 PPI", "source": "ppi"}, "iq": ind}]}, w)
+        qs = [[p[0] for p in s["points"]] for s in ch["series"]]
+        self.assertEqual(qs[0], qs[1])
+        self.assertNotIn("2023Q3", qs[0])
+
 
 if __name__ == "__main__":
     unittest.main()
