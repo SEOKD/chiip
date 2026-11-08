@@ -1,0 +1,89 @@
+auto: false
+id: co-nittobo
+name: Nittobo
+ticker: '3110'
+unit: BJPY
+unit_usd: 6451612.9
+industry: electronics
+region_mix:
+  JP: 0.45
+  ASIA: 0.45
+  US: 0.05
+  EU: 0.05
+tax: 0.31
+rf_local: 0.02755
+horizon: 10
+as_of: '2026-11-08'
+market:
+  date: '2026-11-07'
+  price: 2399.5
+  shares: 0.182031
+  net_debt: 3.792
+  source: 가격 = TradingView 최근 종가 ¥2,399.5(한 주 −16.7%·한 달 −34%). 주식 = TradingView 발행 주식 182,030,565주(자기주식
+    차감 여부 미확인). 현금 ¥45.48B·총차입 ¥49.27B = 2026-09-30(TradingView 분기). 결산단신 본문을 열지 못해(株探 403·JPX 목록 403·회사
+    자료실 스크립트 로딩, 우회하지 않음) 1차 대조는 미완 — 근거 약함
+rev0: 137.0
+ic0: 187.727  # 자기자본 ¥183.94B + 차입 ¥49.27B − 현금 ¥45.48B(2026-09-30, TradingView)
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.15
+      end: 0.03
+      decay: 0.82
+    margin:
+      m0: 0.2
+      target: 0.22
+      year_target: 3
+      lr: 0.15
+      lam: 0.4
+    s2c: 1.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.25
+      end: 0.03
+      decay: 0.85
+    margin:
+      m0: 0.2
+      target: 0.27
+      year_target: 3
+      lr: 0.15
+      lam: 0.3
+    s2c: 1.8
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.04
+      end: 0.02
+      decay: 0.7
+    margin:
+      m0: 0.2
+      target: 0.14
+      year_target: 3
+      lr: 0.15
+      lam: 0.55
+    s2c: 1.1
+mc:
+  sigma_growth: 0.04
+  sigma_margin: 0.025
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 'FY2027(3월 결산) 매출 추정 ¥137B = 상반기 실적 ¥64.67B(1Q ¥30.64B·2Q ¥34.03B, TradingView 분기 재무) + 하반기 2Q 수준.
+    TradingView 컨센서스 다음 회계연도 매출(913.3M, 표시 단위가 달러로 나옴 — ¥150 환산 약 ¥137B)과 같은 크기. 회사 가이던스 수치는 미확인(株探
+    제목만: 경상이익 13% 상향·최고익·배당 9엔 증액, 2026-11-05)'
+  growth: '기본 15% = FY2027 매출 +16%(¥118.2B → ¥137B)에서 감속. 강세 25%는 2029년도 생산능력 3.6배(日経 2026-11-05, 200억 엔 투자)가
+    다 팔리는 경우, 약세 4%는 2027년 증설로 가격 정상화'
+  margin: '현재 = TTM 영업이익률 19.7%(TradingView). 2Q EBITDA 마진 30.7%·매출총이익률 43.8%로 1Q보다 높다. 장기 목표는 시나리오 판단(근거
+    약함)'
+  s2c: '용해로·방사 설비 집약 — 현재 매출/투하자본 약 0.7, 증분은 가동률 상승분이 있어 1.5 안팎으로 둔다(근거 약함)'
+notes:
+- '2026-11-08 작성(마스터 지시 "닛토보 밸류에이션과 3요인 알림 … 동인은 일본 공시 자료로"): Fiscal.ai 키 없음. 일본 공시 1차 자료(결산단신)는 접근 경로가 막혀
+  TradingView 재무·적시공시 제목으로 썼다 — 결산단신 수치를 확인하면 rev0·m0·주식 수를 고친다.'
+- TTM 순이익 ¥44.4B에는 4Q(2026-01~03) 일회성 ¥28.2B가 들어 있어 PER 9.8배는 낮아 보이는 착시 — 동인은 영업이익률로 잡았다.
+- 업종 자본비용은 electronics(베타 0.97, 자기자본 비중 0.90) — 닛토보 자기 자본 구조 0.91(시총 ¥437B ÷ (시총 + 차입 ¥49B))과 비슷하다.
+evidence:
+- https://www.tradingview.com/symbols/TSE-3110/
+- 'radar/inbox/20261105 src-jp-disclosure — 日東紡、今期経常を13％上方修正・最高益予想を上乗せ、配当も9円増額(株探)'
+- 'radar/inbox/20261105 src-jp-disclosure — 日東紡、半導体用ガラス材料に200億円投資 29年度に生産能力3.6倍(日本経済新聞)'
