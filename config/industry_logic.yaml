@@ -33,3 +33,8 @@ event_gate:
   cooldown_days: 14      # 같은 산업은 14일 안에 다시 후보로 올리지 않는다
   policy_types: [규제·정책]
   max_candidates: 3
+# IB 산업 입문서(Primer)·심층 노트 요소 보강(2026-11-08 마스터 지시 "IB 리포트처럼 논리적이고 전문적으로 … 보완") — 점검에서 빠져 있던 셋
+#   시장 규모(TAM, 하향식 추정 + 상향식 다리)·경쟁 구도와 밸류에이션 비교표(comps — 동종사 매출·성장·배수, 순수/겸업 구분)·기술 로드맵(이정표·상태 — 신생 산업은 필수)
+market_size_required: [weekly]
+comps_min: {weekly: 4, quarterly: 0, event: 0}
+roadmap_required_if: emerging     # datapack emerging: true면 로드맵 3개 이상

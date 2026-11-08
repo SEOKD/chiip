@@ -92,7 +92,9 @@ def build(dp, cfg=None):
            {"h2": "종료 상태", "blocks": [{"type": "p", "text": nar["status"]}]}]
     LS = LG.sections(dp, "weekly")
     if LS:   # IB 산업 노트의 사고 순서 — 결론 먼저, 논쟁, 동인, 기대, 시나리오(ADR-020)
-        ins = {"① 왜 지금": ("debates", "핵심 논쟁"), "③ 공급·캐파": ("drivers", "동인 분해 — 물량 × 가격"), "④ 병목·가격": ("cycle", "사이클 지표판")}
+        ins = {"① 왜 지금": ("debates", "핵심 논쟁"), "② 수요": ("market_size", "시장 규모(TAM)"), "③ 공급·캐파": ("drivers", "동인 분해 — 물량 × 가격"),
+               "④ 병목·가격": ("cycle", "사이클 지표판")}
+        ins2 = {"③ 공급·캐파": ("roadmap", "기술 로드맵"), "⑤ 가치사슬 지도": ("comps", "경쟁 구도·밸류에이션 비교")}
         out = [{"h2": "결론", "blocks": LS["bottom"]}]
         for x in sec:
             if x["h2"].startswith("⑤") and LS.get("profit_pool"):
@@ -100,9 +102,10 @@ def build(dp, cfg=None):
             if x["h2"].startswith("⑥"):
                 x["blocks"] = LS.get("expectations", []) + x["blocks"] + LS.get("scenarios", [])
             out.append(x)
-            k = ins.get(x["h2"])
-            if k and LS.get(k[0]):
-                out.append({"h2": k[1], "blocks": LS[k[0]]})
+            for m in (ins, ins2):
+                k = m.get(x["h2"])
+                if k and LS.get(k[0]):
+                    out.append({"h2": k[1], "blocks": LS[k[0]]})
         sec = out
     image_plan = E.place_images(dp, sec)
     return {"kind": "industry_weekly", "cycle": "weekly", "id": f"weekly-{dp['industry']}-{dp['week']}", "title": dp["title"], "subtitle": dp.get("subtitle", ""),

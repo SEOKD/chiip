@@ -28,6 +28,7 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
 3. **조사·datapack**: knowledge/models/industries/weekly/<YYYY-Www>-<산업>/datapack.json(형식은 scripts/industry/weekly_frame.py 맨 위). 1차 출처 우선(공시·실적 자료·정부 통계·학회),
    분야 모듈 스킬(domain-*)의 핵심 변수·흔한 오류를 따른다. 사업군 2~4개마다 market(시장 반영, %p — 2주·연초 대비 상대수익이나 컨센서스 내포 성장)·expected(Chiip 기대, %p)·confidence(0~1).
    필드 인텔·채널체크·공개 확인 전 Exclusive Source 수치는 정량 입력으로 쓰지 않는다. 노션 IB 요지는 대조용(출처로 쓰지 않는다).
+   **IB 산업 입문서 요소(2026-11-08 마스터 지시 점검·보완)**: logic에 `market_size`(지금 값·전망 범위·출처·상향식 다리)·`comps`(4곳 이상 — 노출도(순수/겸업, 이 산업 매출 비중)·매출·성장·시가총액·EV/매출, TradingView `mcp-tv-get-symbol-data-batch` 열 market_cap_basic·total_revenue_ttm·total_revenue_yoy_growth_ttm·enterprise_value_current + Fiscal.ai 컨센서스)·신생 산업(`emerging: true`)이면 `roadmap` 3개 이상. 가격 내포 기대는 'EV 합계 ÷ 시장 규모'로 점유율을 역산한다. 본보기 knowledge/models/industries/weekly/2026-W45-quantum-computing.
    **logic 블록 필수(2026-11-09부터, ADR-020)** — 한 문장 결론·핵심 논쟁 2개 이상·동인 분해(물량 × 가격)·가격 내포 기대(출처)·시나리오 3개(확률 합 1)·이익 풀·인과 사슬(증거 유형). 형식은 scripts/industry/logic.py 맨 위.
    겸업 회사는 그 산업 사업부 매출로만 말한다(config/industry_segments.yaml 풀이 있으면 장부 값, 없으면 Fiscal.ai 세그먼트 자료) — 회사 전체 성장을 산업 성장으로 쓰지 않는다.
    이미지는 산업 이미지 지시서(ADR-017) 조건일 때만 `images`에 — 제품 BOM은 knowledge/models/products/.

@@ -107,6 +107,21 @@ def gate(dp, kind, c=None):
             bad.append(f"다룬 회사의 나라 {len(cov)}곳 — {c['min_countries']}곳 이상(coverage[{{name, country}}], 다른 나라 동종사는 config/industry_peers.yaml)")
     title = f"{dp.get('title', '')} {dp.get('industry_name', '')}"
     bad += [f"제목·산업명이 한 나라로 한정됨('{w}')" for w in c.get("country_words", []) if f"{w} " in title[:12] or title.startswith(w)]
+    if kind in c.get("market_size_required", []):   # 시장 규모 — 지금 값과 전망(범위), 출처 필수
+        ms = L.get("market_size") or {}
+        if not (ms.get("now") or {}).get("source") or not ms.get("forecast"):
+            bad.append("시장 규모(market_size: now{year, value, source}·forecast[{year, low, high, source}]) 없음")
+        for f in ms.get("forecast") or []:
+            if not f.get("source") or not _num(f.get("low")) or not _num(f.get("high")):
+                bad.append(f"시장 전망 {f.get('year')}: low·high 숫자와 출처 필요")
+    cm = L.get("comps") or []
+    if len(cm) < c.get("comps_min", {}).get(kind, 0):
+        bad.append(f"비교 기업(comps) {len(cm)}곳 — {c['comps_min'][kind]}곳 이상(순수/겸업 노출도·매출·성장·배수)")
+    for x in cm:
+        if not x.get("name") or not x.get("exposure") or not x.get("source"):
+            bad.append(f"comps {x.get('name')}: 이름·노출도·출처 필요")
+    if dp.get("emerging") and len(L.get("roadmap") or []) < 3:
+        bad.append("신생 산업(emerging)은 기술 로드맵(roadmap[{date, milestone, who, status, source}]) 3개 이상")
     text = json.dumps({k: v for k, v in dp.items() if k not in ("sources",)}, ensure_ascii=False)
     bad += [f"금지 표현 '{w}'" for w in c["banned"] if w in text]
     if any(w in text for w in c["needs_expectations"]) and not L.get("expectations"):
@@ -179,6 +194,22 @@ def sections(dp, kind, actual=None, c=None):
     if cy:
         out["cycle"] = [{"type": "table", "title": "사이클 지표판 — 선행 지표가 먼저 꺾인다", "headers": ["지표", "구분", "지금", "직전", "읽기"],
                          "rows": [[x["name"], x["kind"], str(x.get("now", "")), str(x.get("prior", "")), x["read"]] for x in sorted(cy, key=lambda x: ("선행", "동행", "후행").index(x["kind"]))]}]
+    ms = L.get("market_size") or {}
+    if ms:
+        now = ms.get("now") or {}
+        rows = [[str(now.get("year", "")), "실적·추정", f"{now.get('value')}", "", now.get("source", "")]]
+        rows += [[str(f["year"]), "전망", f"{f['low']:,}~{f['high']:,}", (f"연 {((f['low'] * f['high']) ** 0.5 / float(now['value'])) ** (1 / (int(f['year']) - int(now['year']))) - 1:+.0%}(중간값 기준)" if _num(now.get("value")) and int(f["year"]) > int(now.get("year", 0)) else ""), f["source"]]
+                 for f in ms.get("forecast") or []]
+        out["market_size"] = [{"type": "table", "title": f"시장 규모({ms.get('unit', '')}) — 하향식 전망 범위와 함의 성장률", "headers": ["연도", "구분", "규모", "함의 연평균 성장", "출처"], "rows": rows}]             + ([{"type": "p", "text": "상향식 다리: " + ms["bridge"]}] if ms.get("bridge") else [])
+    cm = L.get("comps") or []
+    if cm:
+        out["comps"] = [{"type": "table", "title": "경쟁 구도·밸류에이션 비교 — 노출도(이 산업 매출 비중)를 먼저 본다", "headers": ["회사", "노출도", "매출(최근)", "성장", "시가총액", "EV/매출(Fwd)", "메모", "출처"],
+                         "rows": [[f"{x['name']}" + (f"({x['ticker']})" if x.get("ticker") else ""), x["exposure"], str(x.get("revenue", "—")), str(x.get("growth", "—")), str(x.get("mcap", "—")),
+                                   str(x.get("ev_sales", "—")), x.get("note", ""), x["source"]] for x in cm]}]
+    rm = L.get("roadmap") or []
+    if rm:
+        out["roadmap"] = [{"type": "table", "title": "기술 로드맵 — 이정표와 상태(달성·예정·지연)", "headers": ["시점", "이정표", "누가", "상태", "잴 것", "출처"],
+                           "rows": [[x["date"], x["milestone"], x.get("who", ""), x.get("status", ""), x.get("metric", ""), x.get("source", "")] for x in sorted(rm, key=lambda r: str(r["date"]))]}]
     pp = L.get("profit_pool") or []
     if pp:
         out["profit_pool"] = [{"type": "table", "title": "이익 풀 이동 — 가치사슬 층별로 마진을 누가 가져가나", "headers": ["층", "전", "후", "왜"],

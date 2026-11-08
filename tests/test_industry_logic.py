@@ -56,6 +56,14 @@ class TestLogicGate(unittest.TestCase):
         self.assertIn("나라 1곳", bad)
         self.assertIn("한 나라로 한정", bad)
 
+    def test_weekly_needs_market_size_and_comps(self):
+        bad = " ".join(LG.gate(GOOD, "weekly"))
+        self.assertIn("시장 규모", bad)
+        self.assertIn("비교 기업", bad)
+        dp = json.loads(json.dumps(GOOD))
+        dp["emerging"] = True
+        self.assertTrue(any("로드맵" in b for b in LG.gate(dp, "quarterly")))
+
     def test_old_reports_exempt(self):
         self.assertEqual(LG.gate({"date": "2026-11-08"}, "event"), [])
 
