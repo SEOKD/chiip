@@ -227,7 +227,7 @@ def supports(daily, monthly=None, anchors=None, n=6):
     frames = {k: frame_supports(b, sw[k], k, price) for k, b in bars.items()}
     groups = cluster([x for v in frames.values() for x in v])
     picks = sorted(groups, key=lambda g: -g["mid"])
-    return {"price": price, "bars": bars, "frames": frames,
+    return {"price": price, "bars": bars, "frames": frames, "swings": sw,   # swings = 봉별 기준 스윙·피보나치(차트 표기용, 2026-11-09)
             "zones": [{"mid": g["mid"], "lo": g["lo"], "hi": g["hi"], "strength": g["strength"], "srcs": [x["src"] for x in g["items"]]} for g in picks[:n]]}
 
 

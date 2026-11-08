@@ -215,6 +215,14 @@ def price_charts(entity):
                 cur = pts[-1][1]
                 lines.append({"color": col, "points": pts})
                 legend.append({"name": f"{n}{unit}선 {fmt(cur)}" + (" 지지" if cur < price else " 저항"), "color": col})
+        # 피보나치 되돌림 전체(23.6~78.6%, 마스터 지시 2026-11-09 "이동평균선뿐 아니라 피보나치도 함께") — 그 봉의 기준 스윙(levels.zones), 보이는 가격대 ±10% 안만.
+        # 현재가 아래는 지지(초록), 위는 저항(빨강). 스윙 저점 등 다른 지지선은 피보나치와 겹치지 않는 것만 남긴다
+        sw = (sp.get("swings") or {}).get(title) or {}
+        lo_v, hi_v = min(b["l"] for b in view), max(b["h"] for b in view)
+        fib = [{"y": v, "label": f"피보 {k} {fmt(v)}", "color": "d" if v < price else "b"} for k, v in (sw.get("ret") or {}).items() if lo_v * 0.9 <= v <= hi_v * 1.1]
+        marks = fib + [m for m in marks if "피보" not in m["label"] and all(abs(m["y"] - f["y"]) / price > 0.005 for f in fib)]
+        if fib:
+            legend.append({"name": f"피보나치 되돌림({'상승' if sw.get('up') else '하락'} 스윙 {fmt(sw['low'])}↔{fmt(sw['high'])})", "color": "d"})
         out.append({"kind": "candle", "w": 480, "title": title, "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in view], "hlines": marks,
                     "lines": lines, "legend": legend, "levels": [[plain_level(x["src"]), x["price"]] for x in near]})
     return out, sp["zones"]

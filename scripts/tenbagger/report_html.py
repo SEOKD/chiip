@@ -64,7 +64,10 @@ FIT_JS = ("<script>(function(){"
           "document.addEventListener('click',function(e){var k=e.target.closest&&e.target.closest('.ck');if(!k)return;var sv=k.ownerSVGElement,box=sv&&sv.parentNode.querySelector('.cinfo');"
           "if(!box)return;var d=k.dataset;box.innerHTML='<b>'+d.d+'</b> 종가 <b>'+d.c+'</b> · 고가 '+d.h+' · 저가 '+d.l+' · 시가 '+d.o+' <span class=\\''+(d.up==='1'?'red':'blue')+'\\'>'+d.p+'</span>';"
           "sv.querySelectorAll('.ck.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')})})();</script>")
-CSS = """@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+CSS = """.idot{width:16px;height:16px;margin:-8px 0 0 -8px;border:1.5px solid;border-radius:50%;background:var(--bg);font-size:10px;font-weight:700;line-height:13px;text-align:center;opacity:.92}
+.ilab{font-size:12.5px;line-height:1.35;font-weight:500;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ilist{display:none;margin:8px 0 0;padding-left:0;list-style:none;font-size:14px}.ilist li{margin:2px 0}
+@media (max-width:640px){.iwrap{padding:0!important}.iwrap .ilab,.iwrap .ilines{display:none}.ilist{display:block}}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 .cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}
 :root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
@@ -799,29 +802,58 @@ def _img_uri(rel):
     return f"data:{mime};base64," + base64.b64encode(p.read_bytes()).decode()
 
 
+def _spread(ys, gap):
+    """이름표 세로 위치를 겹치지 않게 벌린다(0~100%) — 위에서 아래로 최소 gap, 넘치면 아래에서 위로 밀어 올린다"""
+    out = []
+    for y in ys:
+        out.append(max(y, (out[-1] + gap) if out else y))
+    over = (out[-1] - 100) if out else 0
+    if over > 0:
+        out = [v - over for v in out]
+        for k in range(len(out) - 2, -1, -1):
+            out[k] = min(out[k], out[k + 1] - gap)
+    return [max(v, 2.0) for v in out]
+
+
 def image_html(b):
-    """그림은 base64로 넣고(Artifact·보관 HTML 같은 파일), 컴포넌트 이름표(번호 + 이름)를 그 위치에 HTML로 겹친다(2026-11-08 마스터 지시 "각 컴포넌트 위에 텍스트로 설명").
-    위치를 모르면 번호 범례만. 이름표는 Chiip이 붙인다 — AI 그림 안에는 글자를 넣지 않는다(ADR-017)"""
+    """그림은 base64로 넣고, 컴포넌트 이름표는 그림 밖 좌우 여백에 두고 지시선으로 부품 위치의 작은 번호 점과 잇는다
+    (마스터 지시 2026-11-08 "각 컴포넌트 위에 텍스트로 설명", 2026-11-09 "설명 문구를 넣을 때 이미지를 가리게 배치하지 마라").
+    그림 위에는 번호 점만 — 휴대폰(640px 이하)은 좌우 칸 대신 그림 아래 번호 목록. 이름표는 Chiip이 붙인다(그림 안 글자 금지, ADR-017)"""
     uri = _img_uri(b.get("file", ""))
     if not uri:
         return f'<p class="sm mut">이미지 없음(파일 없음) — {t(b.get("title"))}</p>'
-    tags = []
+    L, W = 26.0, 48.0   # 왼쪽 칸 폭·그림 폭(%) — 오른쪽 칸도 26%
+    cs = []
     for c in b.get("callouts") or []:
-        x, y = float(c["x"]) * 100, float(c["y"]) * 100
-        col = "var(--c)" if c.get("own") else "var(--fg)"
         no = int(c["no"])
-        mark = CIRCLED[no - 1] if 0 < no <= len(CIRCLED) else str(no)
-        side = "right:auto;left" if x < 60 else "left:auto;right"   # 오른쪽 끝 이름표는 왼쪽으로 펼쳐 잘리지 않게
-        pos = f"{x:.1f}%" if x < 60 else f"{100 - x:.1f}%"
-        tags.append(f'<span style="position:absolute;top:{y:.1f}%;{side}:{pos};transform:translateY(-50%);background:var(--bg);color:{col};border:1px solid {col};'
-                    f'border-radius:6px;padding:1px 5px;font-size:11px;font-weight:600;line-height:1.3;max-width:45%;white-space:normal;box-shadow:0 1px 2px rgba(0,0,0,.15)">'
-                    f'{mark} {t(c.get("label") or "")}</span>')
-    svg = "".join(tags)
+        cs.append({"no": no, "x": float(c["x"]), "y": float(c["y"]) * 100, "own": c.get("own"), "label": c.get("label") or "",
+                   "mark": CIRCLED[no - 1] if 0 < no <= len(CIRCLED) else str(no)})
+    dots, labels, lines, items = [], [], [], []
+    for side in ("l", "r"):
+        grp = sorted([c for c in cs if (c["x"] < 0.5) == (side == "l")], key=lambda c: c["y"])
+        for c, ly in zip(grp, _spread([c["y"] for c in grp], 11.0)):
+            col = "var(--c)" if c["own"] else "var(--fg)"
+            px = L + W * c["x"]
+            ax = L - 0.8 if side == "l" else L + W + 0.8
+            lines.append(f'<line x1="{ax:.1f}" y1="{ly:.1f}" x2="{px:.1f}" y2="{c["y"]:.1f}" stroke="{col}" stroke-width="1" vector-effect="non-scaling-stroke" opacity=".7"/>')
+            pos = f"right:{100 - L + 1.2:.1f}%;text-align:right" if side == "l" else f"left:{L + W + 1.2:.1f}%"
+            labels.append(f'<span class="ilab" style="position:absolute;top:{ly:.1f}%;{pos};width:{L - 2:.1f}%;transform:translateY(-50%);color:{col}">'
+                          f'<b>{c["mark"]}</b> {t(c["label"])}</span>')
+    for c in sorted(cs, key=lambda c: c["no"]):
+        col = "var(--c)" if c["own"] else "var(--fg)"
+        dots.append(f'<span class="idot" style="position:absolute;left:{c["x"] * 100:.1f}%;top:{c["y"]:.1f}%;border-color:{col};color:{col}">{c["no"]}</span>')
+        items.append(f'<li><b style="color:{col}">{c["mark"]}</b> {t(c["label"])}</li>')
     legend = ""
     if b.get("legend"):
         legend = '<div class="sm">' + " · ".join(f'<b style="color:{"var(--c)" if own else "var(--fg)"}">{CIRCLED[int(no) - 1] if 0 < int(no) <= len(CIRCLED) else no}</b> {t(part)}' for no, part, own in b["legend"]) + "</div>"
-    return (f'<figure class="card"><b>사진 {t(b.get("photo"))}. {t(b.get("title"))}</b>'
-            f'<div style="position:relative;max-width:100%"><img src="{uri}" alt="{t(b.get("title"))}" style="width:100%;display:block">{svg}</div>'
+    img = f'<div style="position:relative"><img src="{uri}" alt="{t(b.get("title"))}" style="width:100%;display:block">{"".join(dots)}</div>'
+    if cs:
+        body = (f'<div class="iwrap" style="position:relative;padding:0 {L:.0f}%">{img}'
+                f'<svg class="ilines" viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none">{"".join(lines)}</svg>'
+                f'{"".join(labels)}</div><ol class="ilist">{"".join(items)}</ol>')
+    else:
+        body = img
+    return (f'<figure class="card"><b>사진 {t(b.get("photo"))}. {t(b.get("title"))}</b>{body}'
             f'{legend}<figcaption class="sm mut">{t(b.get("caption"))}</figcaption></figure>')
 
 
