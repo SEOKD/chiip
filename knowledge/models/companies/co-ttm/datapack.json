@@ -2,7 +2,7 @@
  "id": "co-ttm",
  "name": "TTM Technologies",
  "ticker": "TTMI",
- "as_of": "2026-11-02",
+ "as_of": "2026-11-08",
  "unit": "B$",
  "industry": "electronics",
  "region_mix": {
@@ -10,12 +10,12 @@
  },
  "tax": 0.21,
  "profile": {
-  "price": 82.94,
+  "price": 66.51,
   "shares_basic": 0.104176,
   "shares_date": "2026-10-27",
   "cash": 0.7763,
   "debt": 2.8467,
-  "source": "가격 = 2026-10-30 종가. 주식 수 = 10-Q 표지 105,375,520주(10/23) − 10/26~27 자사주 매입 약 120만 주(10-Q Liquidity). 현금·차입 = 10-Q 9/28 현금 $876.3M·차입 $1,643.9M·리스 $102.8M에 후속 사건을 더한 추정: 9/30 Epiq 인수 약 $1,100M을 Incremental Term Loan A $300M·B $800M으로 조달, 10월 자사주 $100M 현금 지급. 회전한도 상환액은 미공시이나 순차입에는 영향이 없다. 수수료와 4Q 현금흐름은 반영하지 않았다. Ophir $650M(2027년 2분기 종결 예정)은 넣지 않았다"
+  "source": "가격 = 2026-11-06 종가(Fiscal.ai 일봉, 11/7~8 주말). 주식 수 = 10-Q 표지 105,375,520주(10/23) − 10/26~27 자사주 매입 약 120만 주(10-Q Liquidity). 현금·차입 = 10-Q 9/28 현금 $876.3M·차입 $1,643.9M·리스 $102.8M에 후속 사건을 더한 추정: 9/30 Epiq 인수 약 $1,100M을 Incremental Term Loan A $300M·B $800M으로 조달, 10월 자사주 $100M 현금 지급. 회전한도 상환액은 미공시이나 순차입에는 영향이 없다. 수수료와 4Q 현금흐름은 반영하지 않았다. Ophir $650M(2027년 2분기 종결 예정)은 넣지 않았다"
  },
  "dilution": {
   "potential_total": 0.00232,
@@ -344,8 +344,8 @@
   },
   "price_window": {
    "from": 136.35,
-   "to": 82.94,
-   "note": "리비전 구간과 같은 기간: 8/6 종가(2Q 실적 다음 날) → 10/30 종가"
+   "to": 66.51,
+   "note": "리비전 구간 시작과 같은 날: 8/6 종가(2Q 실적 다음 날) → 11/6 종가. 리비전 끝(10/28) 이후 추정 변화 없음(11/8 조회)"
   },
   "eps_history": {
    "basis": "adjusted",
@@ -925,16 +925,16 @@
   ]
  },
  "multiples_now": {
-  "pe_fwd": 10.43,
+  "pe_fwd": 8.19,
   "ev_ebitda": 16.0,
   "ev_sales": 2.8,
   "growth": 0.376,
   "note": "EV/EBITDA·EV/매출(TTM) = Epiq·자사주 반영 프로포마 EV 약 $10.7B(시총 $8.64B + 순차입 $2.07B) ÷ TTM 조정 EBITDA $668M·매출 $3.83B, Chiip 계산. Fwd 멀티플은 원자료 값",
-  "ev_ebitda_fwd": 7.39,
-  "pe_fwd2": 8.09,
-  "ev_ebitda_fwd2": 6.01,
-  "pe_fwd3": 6.32,
-  "ev_ebitda_fwd3": 5.02
+  "ev_ebitda_fwd": 6.06,
+  "pe_fwd2": 6.48,
+  "ev_ebitda_fwd2": 4.93,
+  "pe_fwd3": 5.06,
+  "ev_ebitda_fwd3": 4.12
  },
  "peers_basis": "ttm",
  "peers_source": "Fiscal.ai company_peers(SANM·PLXS 직접 경쟁, JBL·FLEX·CLS 사업모델, APH 업종 — 중국 PCB 동종 3사는 Fiscal 시총 없음으로 제외) — 매출·이익률·성장 = Fiscal.ai 추정 표의 최근 4분기 실적 합(TTM, GAAP EBIT), EV/매출·EV/EBITDA·P/B = daily ratios 2026-10-29. debt·cash는 EV − 시총으로 역산한 순차입(근사)",
@@ -950,14 +950,36 @@
    "ev_sales": 0.75,
    "ev_ebitda": 13.82,
    "growth": 0.586,
-   "pe_fwd": 12.59,
-   "ev_ebitda_fwd": 9.61,
-   "pe_fwd2": 11.19,
-   "ev_ebitda_fwd2": 8.28,
-   "pe_fwd3": 10.06,
-   "ev_ebitda_fwd3": 7.7,
-   "ntm_ebit_margin": 0.07,
-   "ntm_growth": 0.2066
+   "pe_fwd": 10.44,
+   "ev_ebitda_fwd": 7.17,
+   "pe_fwd2": 8.83,
+   "ev_ebitda_fwd2": 6.12,
+   "pe_fwd3": 8.18,
+   "ev_ebitda_fwd3": 5.64,
+   "ntm_ebit_margin": 0.0689,
+   "ntm_growth": 0.2105,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 14.61,
+     "ev_ebitda_fwd": 7.79
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 11.72,
+     "ev_ebitda_fwd": 8.01
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 20.45,
+     "ev_ebitda_fwd": 13.63
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 15.86,
+     "ev_ebitda_fwd": 10.93
+    }
+   ]
   },
   {
    "ticker": "PLXS",
@@ -970,14 +992,36 @@
    "ev_sales": 1.16,
    "ev_ebitda": 16.92,
    "growth": 0.231,
-   "pe_fwd": 19.17,
-   "ev_ebitda_fwd": 12.05,
-   "pe_fwd2": 16.44,
-   "ev_ebitda_fwd2": 10.84,
-   "pe_fwd3": 14.75,
-   "ev_ebitda_fwd3": 10.04,
+   "pe_fwd": 17.71,
+   "ev_ebitda_fwd": 12.2,
+   "pe_fwd2": 15.19,
+   "ev_ebitda_fwd2": 10.32,
+   "pe_fwd3": 13.63,
+   "ev_ebitda_fwd3": 9.56,
    "ntm_ebit_margin": 0.0607,
-   "ntm_growth": 0.165
+   "ntm_growth": 0.1708,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 19.63,
+     "ev_ebitda_fwd": 11.66
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 25.5,
+     "ev_ebitda_fwd": 15.7
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 33.82,
+     "ev_ebitda_fwd": 22.68
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 26.14,
+     "ev_ebitda_fwd": 16.82
+    }
+   ]
   },
   {
    "ticker": "JBL",
@@ -990,14 +1034,36 @@
    "ev_sales": 0.89,
    "ev_ebitda": 13.38,
    "growth": 0.206,
-   "pe_fwd": 15.54,
-   "ev_ebitda_fwd": 8.96,
-   "pe_fwd2": 12.12,
-   "ev_ebitda_fwd2": 7.61,
-   "pe_fwd3": 10.33,
-   "ev_ebitda_fwd3": 6.88,
-   "ntm_ebit_margin": 0.0599,
-   "ntm_growth": 0.2377
+   "pe_fwd": 13.52,
+   "ev_ebitda_fwd": 8.31,
+   "pe_fwd2": 10.63,
+   "ev_ebitda_fwd2": 7.03,
+   "pe_fwd3": 9.2,
+   "ev_ebitda_fwd3": 6.44,
+   "ntm_ebit_margin": 0.0598,
+   "ntm_growth": 0.2439,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 19.35,
+     "ev_ebitda_fwd": 9.05
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 19.86,
+     "ev_ebitda_fwd": 10.44
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 24.28,
+     "ev_ebitda_fwd": 12.99
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 17.15,
+     "ev_ebitda_fwd": 9.33
+    }
+   ]
   },
   {
    "ticker": "FLEX",
@@ -1010,14 +1076,36 @@
    "ev_sales": 1.2,
    "ev_ebitda": 17.52,
    "growth": 0.175,
-   "pe_fwd": 13.68,
-   "ev_ebitda_fwd": 10.74,
-   "pe_fwd2": 10.2,
-   "ev_ebitda_fwd2": 8.56,
-   "pe_fwd3": 8.08,
-   "ev_ebitda_fwd3": 7.15,
-   "ntm_ebit_margin": 0.0822,
-   "ntm_growth": 0.3013
+   "pe_fwd": 10.86,
+   "ev_ebitda_fwd": 8.09,
+   "pe_fwd2": 8.23,
+   "ev_ebitda_fwd2": 6.52,
+   "pe_fwd3": 6.52,
+   "ev_ebitda_fwd3": 5.45,
+   "ntm_ebit_margin": 0.0828,
+   "ntm_growth": 0.3092,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 17.75,
+     "ev_ebitda_fwd": 10.35
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 18.34,
+     "ev_ebitda_fwd": 10.79
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 33.16,
+     "ev_ebitda_fwd": 19.51
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 19.64,
+     "ev_ebitda_fwd": 12.5
+    }
+   ]
   },
   {
    "ticker": "CLS",
@@ -1030,14 +1118,14 @@
    "ev_sales": 1.79,
    "ev_ebitda": 19.28,
    "growth": 0.616,
-   "pe_fwd": 14.02,
-   "ev_ebitda_fwd": 8.67,
-   "pe_fwd2": 9.4,
-   "ev_ebitda_fwd2": 5.91,
-   "pe_fwd3": 6.85,
-   "ev_ebitda_fwd3": 4.37,
+   "pe_fwd": 11.73,
+   "ev_ebitda_fwd": 7.19,
+   "pe_fwd2": 7.24,
+   "ev_ebitda_fwd2": 4.55,
+   "pe_fwd3": 5.81,
+   "ev_ebitda_fwd3": 3.71,
    "ntm_ebit_margin": 0.0893,
-   "ntm_growth": 0.9344
+   "ntm_growth": 0.8006
   },
   {
    "ticker": "APH",
@@ -1050,14 +1138,36 @@
    "ev_sales": 6.51,
    "ev_ebitda": 20.33,
    "growth": 0.576,
-   "pe_fwd": 22.4,
-   "ev_ebitda_fwd": 13.75,
-   "pe_fwd2": 19.49,
-   "ev_ebitda_fwd2": 12.53,
-   "pe_fwd3": 16.93,
-   "ev_ebitda_fwd3": 11.16,
-   "ntm_ebit_margin": 0.302,
-   "ntm_growth": 0.3466
+   "pe_fwd": 20.73,
+   "ev_ebitda_fwd": 12.98,
+   "pe_fwd2": 18.33,
+   "ev_ebitda_fwd2": 11.83,
+   "pe_fwd3": 15.93,
+   "ev_ebitda_fwd3": 10.53,
+   "ntm_ebit_margin": 0.2988,
+   "ntm_growth": 0.3609,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 17.64,
+     "ev_ebitda_fwd": 21.53
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 13.82,
+     "ev_ebitda_fwd": 16.09
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 16.86,
+     "ev_ebitda_fwd": 19.1
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 26.94,
+     "ev_ebitda_fwd": 16.02
+    }
+   ]
   }
  ],
  "sbc_pct_rev": 0.019,
@@ -1146,10 +1256,6 @@
    }
   ],
   "pe_fwd": [
-   {
-    "date": "2023-10-31",
-    "value": 8.7
-   },
    {
     "date": "2023-11-30",
     "value": 10.38
@@ -1289,6 +1395,10 @@
    {
     "date": "2026-09-30",
     "value": 19.8
+   },
+   {
+    "date": "2026-10-30",
+    "value": 10.39
    }
   ],
   "ev_ebitda_fwd": [
@@ -1419,6 +1529,10 @@
    {
     "date": "2026-09-30",
     "value": 15.08
+   },
+   {
+    "date": "2026-10-30",
+    "value": 7.33
    }
   ]
  },
@@ -1482,6 +1596,26 @@
    "date": "2026-10-30",
    "tag": "−5.4% — 회사 사건 없음, 원인 미확인",
    "kind": "sector"
+  },
+  {
+   "date": "2026-11-02",
+   "tag": "−7.7%($82.94 → $76.58) — 회사 사건 없음, 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "−10.1% — 회사 사건 없음, 원인 미확인(같은 주 나스닥100 20거래일 −12.6%)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "−15.2%, 거래량 971만 주 — 회사 공시 없음, 원인 미확인. 같은 날 이사 장내 매수 $632K(Form 4)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "+6.9% 반등 — 원인 미확인",
+   "kind": "sector"
   }
  ],
  "sources": [
@@ -1494,21 +1628,21 @@
   "2026 위임장 https://www.sec.gov/Archives/edgar/data/1116942/000119312526115993/ttmi-20260319.htm"
  ],
  "raw": {
-  "retrieved_at": "2026-11-02T04:10:00+09:00",
+  "retrieved_at": "2026-11-08T18:30:00+09:00",
   "shares_cover_implied": 0.105376,
   "fiscal_profile": {
    "companyKey": "NASDAQ_TTMI",
    "terminalUrl": "https://fiscal.ai/company/NasdaqGS-TTMI",
-   "price": 82.94,
-   "market_cap": 8.7398,
+   "price": 66.51,
+   "market_cap": 7.0086,
    "total_cash": 0.8763,
    "total_debt": 1.7467,
    "shares_outstanding": 0.105376,
    "ev_sales": 2.52,
    "ev_ebitda": 16.47,
-   "as_of": "2026-10-30",
+   "as_of": "2026-11-06",
    "balance_date": "2026-09-28",
-   "note": "시총 = 10/30 종가 × 10-Q 표지 주식(외부 프로필 8,739,846,144$와 일치). 현금·차입 = 9/28. ev 값은 프로필 값(Epiq 전 재무상태표 기준)"
+   "note": "시총 = 11/6 종가 × 10-Q 표지 주식 105,375,520주(외부 프로필 $7.0085B와 일치). 현금·차입 = 9/28. ev 값은 Epiq 전 재무상태표 기준"
   },
   "quarters_gaap": {
    "rev": {
@@ -1664,8 +1798,13 @@
    "target_mean": 171.5,
    "target_high": 236,
    "target_low": 100,
-   "as_of": "2026-11-02"
-  }
+   "as_of": "2026-11-08",
+   "high_52w_intraday": 223.83,
+   "low_52w_intraday": 55.44,
+   "fifty_day": 108.96,
+   "two_hundred_day": 127.5
+  },
+  "insider_2026_11": "11/5 이사 1명 장내 매수 약 $632K(평균 $63.15, Form 4 2026-11-05) — 10/28 CEO·이사 매수에 이어 두 번째"
  },
  "narrative": {
   "as_of": "2026-11-02",
@@ -1866,42 +2005,199 @@
      "name": "데이터센터·네트워킹 PCB(N+M 포함)",
      "what": "AI 가속기 서버와 스위치에 들어가는 저손실 고다층 보드다. N+M은 층수가 다른 두 판을 맞붙여 신호와 전력 경로를 나눈다",
      "use": "AI 칩 회사·대형 클라우드·네트워크 장비사",
-     "money": "3Q $498.0M, +115%. 프로그램 단위로 팔고 소재 인상분을 전가한다"
+     "money": "3Q $498.0M, +115%. 프로그램 단위로 팔고 소재 인상분을 전가한다",
+     "name_en": "AI data center and networking printed circuit board (N+M high-layer-count board)",
+     "what_en": "A low-loss, high-layer-count circuit board for AI accelerator servers and network switches; the N+M design bonds two sub-boards with different layer counts into one board",
+     "use_en": "AI servers and data center switches",
+     "mix_basis": "최종 시장 매출 ÷ 전사 매출(3Q26 $498.0M ÷ $1,203.9M, 3Q25 $231.4M ÷ $752.7M)",
+     "bom": {
+      "as_of": "2026-11-08",
+      "layers_order": "위→아래",
+      "items": [
+       {
+        "no": 1,
+        "part": "금 도금 접속 패드",
+        "part_en": "gold-plated contact pads on the top surface",
+        "role": "부품 실장·접속",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1 원재료: 도금용 금)",
+        "confidence": "확인"
+       },
+       {
+        "no": 2,
+        "part": "동 도금 배선·관통 비아",
+        "part_en": "copper-plated signal traces and plated through-hole vias",
+        "role": "신호·전력 경로",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1 원재료: 도금용 구리)",
+        "confidence": "확인"
+       },
+       {
+        "no": 3,
+        "part": "저손실 동박적층판(CCL) 코어 층",
+        "part_en": "stack of low-loss copper-clad laminate core layers",
+        "role": "절연·기계 지지",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1 원재료: 동박적층판)",
+        "confidence": "확인"
+       },
+       {
+        "no": 4,
+        "part": "저열팽창 유리섬유(T-glass) 보강재",
+        "part_en": "low-thermal-expansion glass cloth reinforcement inside the laminate",
+        "role": "휨 억제",
+        "suppliers": [],
+        "source": "3Q26 어닝콜(2026-10-22) — 회사가 CCL·T-glass 수급을 제약으로 언급",
+        "confidence": "확인"
+       },
+       {
+        "no": 5,
+        "part": "N+M 접합층(프리프레그)",
+        "part_en": "prepreg bonding layer joining the two sub-boards",
+        "role": "두 판 접합",
+        "suppliers": [],
+        "source": "업계 일반 구조",
+        "confidence": "추정"
+       },
+       {
+        "no": 6,
+        "part": "솔더 레지스트",
+        "part_en": "solder mask coating",
+        "role": "표면 보호",
+        "suppliers": [],
+        "source": "업계 일반 구조",
+        "confidence": "추정"
+       },
+       {
+        "no": 7,
+        "part": "초경 드릴 비트",
+        "kind": "장비",
+        "role": "비아 가공",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1 원재료: 초경 드릴 비트)",
+        "confidence": "확인"
+       }
+      ],
+      "source_note": "FY2025 10-K Item 1 원재료 목록과 3Q26 콜. 공급사 이름은 공시되지 않았다"
+     }
     },
     {
      "kind": "제품",
      "name": "A&D PCB·RF 부품·모듈",
      "what": "국방용 보드, 고주파 부품, 빔포밍 네트워크, 다중 칩 모듈이다",
      "use": "레이더, 미사일, 위성, 전자전",
-     "money": "A&D 매출의 약 절반. 3Q A&D 합계 $404.5M, 장기 프로그램"
+     "money": "A&D 매출의 약 절반. 3Q A&D 합계 $404.5M, 장기 프로그램",
+     "name_en": "Aerospace and defense circuit boards, RF components and modules",
+     "what_en": "Defense-grade circuit boards, high-frequency RF components, beamforming networks and multi-chip modules used in radar, missiles and electronic warfare",
+     "use_en": "radar, missiles, satellites and electronic warfare",
+     "mix_basis": "A&D 최종 시장 전체(임무 시스템·Epiq 포함) ÷ 전사 매출 — 제품별 매출은 미공시",
+     "bom": {
+      "as_of": "2026-11-08",
+      "layers_order": "위→아래",
+      "items": [
+       {
+        "no": 1,
+        "part": "RF 안테나 배열",
+        "part_en": "RF antenna array panel",
+        "role": "송수신",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1 원재료·부품)",
+        "confidence": "확인"
+       },
+       {
+        "no": 2,
+        "part": "세라믹·페라이트 기판",
+        "part_en": "ceramic and ferrite substrates",
+        "role": "고주파 회로 기판",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1)",
+        "confidence": "확인"
+       },
+       {
+        "no": 3,
+        "part": "다이오드·집적회로",
+        "part_en": "diodes and integrated circuits",
+        "role": "증폭·제어",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1)",
+        "confidence": "확인"
+       },
+       {
+        "no": 4,
+        "part": "RF 발진기·주파수 변환기",
+        "part_en": "RF oscillators and frequency converters",
+        "role": "주파수 생성·변환",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1)",
+        "confidence": "확인"
+       },
+       {
+        "no": 5,
+        "part": "커패시터·저항",
+        "part_en": "capacitors and resistors",
+        "role": "수동 소자",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1)",
+        "confidence": "확인"
+       },
+       {
+        "no": 6,
+        "part": "RF 커넥터",
+        "part_en": "RF connectors",
+        "role": "외부 연결",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1)",
+        "confidence": "확인"
+       },
+       {
+        "no": 7,
+        "part": "전원 공급 장치",
+        "part_en": "power supply unit",
+        "role": "전원",
+        "suppliers": [],
+        "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm (Item 1)",
+        "confidence": "확인"
+       }
+      ],
+      "source_note": "FY2025 10-K Item 1 — 엔지니어드 시스템·RF 부품의 주요 구매 부품 목록. 일부 부품은 단일·제한 공급원(10-K). 공급사 이름 미공시"
+     }
     },
     {
      "kind": "제품",
      "name": "임무 시스템",
      "what": "해상 감시 레이더 APS-143·APS-153, IFF, MOSAIC 소형 레이더, 항공기 통신 체계다",
      "use": "미군과 동맹국",
-     "money": "설계부터 맡는 장기 계약. 잔여 이행의무 $463.5M"
+     "money": "설계부터 맡는 장기 계약. 잔여 이행의무 $463.5M",
+     "name_en": "Mission systems",
+     "what_en": "Maritime surveillance radars, identification friend-or-foe systems and aircraft communication suites"
     },
     {
      "kind": "제품",
      "name": "Epiq 소프트웨어 무선",
      "what": "신호 정보·전자전용 소프트웨어 정의 무선과 내방사선 우주 컴퓨팅이다",
      "use": "신호 정보, 전자전, 우주",
-     "money": "9/30 인수. 2027 시너지 반영 EBITDA의 17.4배에 샀고 매출은 미공시다"
+     "money": "9/30 인수. 2027 시너지 반영 EBITDA의 17.4배에 샀고 매출은 미공시다",
+     "name_en": "Epiq software-defined radios",
+     "what_en": "Software-defined radios for signals intelligence and electronic warfare, and radiation-tolerant space computing"
     },
     {
      "kind": "제품",
      "name": "일반 PCB",
      "what": "의료·산업·계측·자동차용 보드다",
      "use": "AI 칩 테스트 장비, 의료기기, 자동차",
-     "money": "3Q 의료·산업·계측 $213.3M(+97%), 자동차 $88.0M(+11%)"
+     "money": "3Q 의료·산업·계측 $213.3M(+97%), 자동차 $88.0M(+11%)",
+     "name_en": "Conventional printed circuit boards",
+     "what_en": "Circuit boards for medical, industrial, instrumentation and automotive equipment",
+     "mix_basis": "자동차 + 의료·산업·계측 최종 시장 매출 ÷ 전사 매출"
     },
     {
      "kind": "기술",
      "name": "Ophir 적외선·레이저 광학(인수 예정)",
      "what": "열화상 렌즈와 레이저 광학 부품이다",
      "use": "무인기·대무인기 탐지, 산업용 레이저",
-     "money": "$650M, 2027 EBITDA 약 10배. 2027년 2분기 종결 예정"
+     "money": "$650M, 2027 EBITDA 약 10배. 2027년 2분기 종결 예정",
+     "name_en": "Ophir infrared and laser optics (pending acquisition)",
+     "what_en": "Thermal imaging lenses and laser optics components"
     }
    ],
    "lenses": [
@@ -1996,12 +2292,12 @@
   }
  },
  "forward": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-06",
   "ntm": {
-   "eps": 7.95479,
+   "eps": 8.11908,
    "ebitda": 1378993000,
-   "ebit": 1154871194,
-   "revenue": 6420508352,
+   "ebit": 1165117104,
+   "revenue": 6488738526,
    "rev_ttm": 3828205000
   },
   "horizons": {
@@ -2301,15 +2597,6 @@
   "Ultra-HDI": "초고밀도 배선 기판",
   "CCL": "동박적층판, PCB 원판",
   "T-glass": "저열팽창 유리섬유",
-  "Epiq": "소프트웨어 무선 장비 회사",
-  "Epiq Solutions": "소프트웨어 무선 장비 회사",
-  "Ophir": "MKS의 적외선·레이저 광학 사업",
-  "Ophir Optics": "MKS의 적외선·레이저 광학 사업",
-  "MKS": "미국 공정 장비·광학 회사",
-  "STG": "스위스 PCB 회사 Swiss Technology Group",
-  "Swiss Technology Group": "스위스 PCB 회사",
-  "ILFA": "독일 PCB 회사",
-  "Merlin": "영국 PCB 지주회사",
   "SPY-6": "미 해군 함정 레이더",
   "APS-143": "해상 감시 레이더",
   "APS-153": "다중 모드 해상 감시 레이더",
@@ -2334,35 +2621,1893 @@
   "Chippewa Falls": "위스콘신주 도시",
   "MSAP": "세미 애디티브 미세 회로 공정",
   "SAP": "세미 애디티브 회로 공정",
-  "Teledyne": "미국 계측·방산 전자 회사",
-  "BWX Technologies": "미국 원자력·해군 추진 회사",
-  "BWXT": "미국 원자력·해군 추진 회사",
   "NASA": "미국 항공우주국",
-  "Lumentum": "미국 광부품 회사",
-  "Synaptics": "미국 반도체 회사",
-  "MKS Inc.": "미국 공정 장비·광학 회사",
   "EMS": "전자제품 위탁 생산",
   "OEM": "완제품 제조사",
-  "Veritas Capital": "미국 사모펀드",
-  "Celestica": "캐나다 전자제품 위탁 생산사",
-  "Longleaf": "미국 가치주 운용사",
-  "Voya": "미국 자산운용사",
-  "Invesco": "미국 자산운용사",
-  "Nomura": "일본 금융그룹",
-  "Fidelity": "미국 자산운용사",
-  "Truist": "미국 은행",
-  "Needham": "미국 투자은행",
-  "Stifel": "미국 투자은행",
-  "B. Riley": "미국 증권사",
-  "Fox Advisors": "미국 리서치사",
-  "Jane Street": "미국 트레이딩사",
-  "Capital World": "미국 자산운용사",
-  "Wellington": "미국 자산운용사",
-  "T. Rowe Price": "미국 자산운용사",
-  "Whale Rock": "미국 기술주 헤지펀드",
-  "Golden": "미국 본토 미사일 방어 구상 이름",
-  "BWX": "미국 원자력·해군 추진 회사 이름",
   "RCF": "회전한도 대출",
-  "TMT": "기술·미디어·통신"
+  "TMT": "기술·미디어·통신",
+  "LTAMDS": "미 육군 저층 방공 레이더",
+  "HP": "경기 추세를 떼어 내는 통계 필터",
+  "RPO": "계약상 아직 인식하지 않은 매출 잔액"
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_TTMI",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-12-28",
+    "rev": 668900000,
+    "cogs": 560600000,
+    "gp": 108300000,
+    "sga": 59600000,
+    "rd": null,
+    "da": 6700000,
+    "other": 5400000,
+    "op": 36500000
+   },
+   {
+    "period": "2016-03-28",
+    "rev": 583300000,
+    "cogs": 499700000,
+    "gp": 83600000,
+    "sga": 53500000,
+    "rd": null,
+    "da": 5900000,
+    "other": 5200000,
+    "op": 18900000
+   },
+   {
+    "period": "2016-06-27",
+    "rev": 601800000,
+    "cogs": 504200000,
+    "gp": 97600000,
+    "sga": 53000000,
+    "rd": null,
+    "da": 5900000,
+    "other": 4000000,
+    "op": 34700000
+   },
+   {
+    "period": "2016-09-26",
+    "rev": 641700000,
+    "cogs": 532200000,
+    "gp": 109600000,
+    "sga": 51300000,
+    "rd": null,
+    "da": 5900000,
+    "other": 2100000,
+    "op": 50200000
+   },
+   {
+    "period": "2017-01-02",
+    "rev": 706500000,
+    "cogs": 573700000,
+    "gp": 132800000,
+    "sga": 55800000,
+    "rd": null,
+    "da": 6400000,
+    "other": 900000,
+    "op": 69600000
+   },
+   {
+    "period": "2017-04-03",
+    "rev": 625200000,
+    "cogs": 520200000,
+    "gp": 105000000,
+    "sga": 46500000,
+    "rd": null,
+    "da": 5900000,
+    "other": null,
+    "op": 52600000
+   },
+   {
+    "period": "2017-07-03",
+    "rev": 627200000,
+    "cogs": 531300000,
+    "gp": 95900000,
+    "sga": 44900000,
+    "rd": null,
+    "da": 5900000,
+    "other": null,
+    "op": 45100000
+   },
+   {
+    "period": "2017-10-02",
+    "rev": 666800000,
+    "cogs": 570000000,
+    "gp": 96800000,
+    "sga": 46800000,
+    "rd": null,
+    "da": 5900000,
+    "other": null,
+    "op": 44100000
+   },
+   {
+    "period": "2018-01-01",
+    "rev": 739300000,
+    "cogs": 607500000,
+    "gp": 131900000,
+    "sga": 53700000,
+    "rd": null,
+    "da": 5900000,
+    "other": 1200000,
+    "op": 71000000
+   },
+   {
+    "period": "2018-04-02",
+    "rev": 663600000,
+    "cogs": 574900000,
+    "gp": 88700000,
+    "sga": 52800000,
+    "rd": null,
+    "da": 5900000,
+    "other": null,
+    "op": 30000000
+   },
+   {
+    "period": "2018-07-02",
+    "rev": 716900000,
+    "cogs": 600700000,
+    "gp": 116100000,
+    "sga": 64900000,
+    "rd": null,
+    "da": 19500000,
+    "other": null,
+    "op": 31700000
+   },
+   {
+    "period": "2018-10-01",
+    "rev": 755800000,
+    "cogs": 626300000,
+    "gp": 129600000,
+    "sga": 58400000,
+    "rd": null,
+    "da": 16600000,
+    "other": null,
+    "op": 54600000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 711000000,
+    "cogs": 588300000,
+    "gp": 122600000,
+    "sga": 56600000,
+    "rd": null,
+    "da": 17700000,
+    "other": 5500000,
+    "op": 42800000
+   },
+   {
+    "period": "2019-04-01",
+    "rev": 536400000,
+    "cogs": 437600000,
+    "gp": 98800000,
+    "sga": 47800000,
+    "rd": 4700000,
+    "da": 16200000,
+    "other": null,
+    "op": 30100000
+   },
+   {
+    "period": "2019-07-01",
+    "rev": 526900000,
+    "cogs": 434000000,
+    "gp": 92800000,
+    "sga": 48800000,
+    "rd": 4500000,
+    "da": 10600000,
+    "other": null,
+    "op": 29000000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 534200000,
+    "cogs": 448900000,
+    "gp": 85300000,
+    "sga": 50300000,
+    "rd": 4400000,
+    "da": 9500000,
+    "other": null,
+    "op": 21100000
+   },
+   {
+    "period": "2019-12-30",
+    "rev": 719300000,
+    "cogs": 594700000,
+    "gp": 124500000,
+    "sga": 57900000,
+    "rd": 4400000,
+    "da": 10200000,
+    "other": 0,
+    "op": 52000000
+   },
+   {
+    "period": "2020-03-30",
+    "rev": 497600000,
+    "cogs": 416300000,
+    "gp": 81300000,
+    "sga": 50800000,
+    "rd": 4800000,
+    "da": 9600000,
+    "other": null,
+    "op": 16200000
+   },
+   {
+    "period": "2020-06-29",
+    "rev": 570300000,
+    "cogs": 469900000,
+    "gp": 100400000,
+    "sga": 62700000,
+    "rd": 5200000,
+    "da": 9600000,
+    "other": null,
+    "op": 23000000
+   },
+   {
+    "period": "2020-09-28",
+    "rev": 513600000,
+    "cogs": 424300000,
+    "gp": 89300000,
+    "sga": 45000000,
+    "rd": 5200000,
+    "da": 10100000,
+    "other": 69200000,
+    "op": -40300000
+   },
+   {
+    "period": "2020-12-28",
+    "rev": 523800000,
+    "cogs": 435800000,
+    "gp": 88000000,
+    "sga": 27900000,
+    "rd": 4600000,
+    "da": 9600000,
+    "other": 16800000,
+    "op": 29200000
+   },
+   {
+    "period": "2021-03-29",
+    "rev": 526400000,
+    "cogs": 444800000,
+    "gp": 81600000,
+    "sga": 47800000,
+    "rd": 4500000,
+    "da": 9500000,
+    "other": null,
+    "op": 19800000
+   },
+   {
+    "period": "2021-06-28",
+    "rev": 567400000,
+    "cogs": 467500000,
+    "gp": 99900000,
+    "sga": 45800000,
+    "rd": 4200000,
+    "da": 9000000,
+    "other": null,
+    "op": 40900000
+   },
+   {
+    "period": "2021-09-27",
+    "rev": 556800000,
+    "cogs": 463600000,
+    "gp": 93200000,
+    "sga": 48200000,
+    "rd": 4400000,
+    "da": 8300000,
+    "other": null,
+    "op": 32200000
+   },
+   {
+    "period": "2022-01-03",
+    "rev": 598100000,
+    "cogs": 500800000,
+    "gp": 97300000,
+    "sga": 46000000,
+    "rd": 5100000,
+    "da": 8900000,
+    "other": 0,
+    "op": 37300000
+   },
+   {
+    "period": "2022-04-04",
+    "rev": 581300000,
+    "cogs": 490300000,
+    "gp": 90900000,
+    "sga": 51000000,
+    "rd": 5600000,
+    "da": 8300000,
+    "other": 200000,
+    "op": 25900000
+   },
+   {
+    "period": "2022-07-04",
+    "rev": 625600000,
+    "cogs": 508500000,
+    "gp": 117100000,
+    "sga": 65900000,
+    "rd": 5200000,
+    "da": 8300000,
+    "other": 500000,
+    "op": 37200000
+   },
+   {
+    "period": "2022-10-03",
+    "rev": 671100000,
+    "cogs": 542500000,
+    "gp": 128600000,
+    "sga": 60600000,
+    "rd": 7300000,
+    "da": 10300000,
+    "other": 600000,
+    "op": 49800000
+   },
+   {
+    "period": "2023-01-02",
+    "rev": 617200000,
+    "cogs": 495800000,
+    "gp": 121400000,
+    "sga": 55800000,
+    "rd": 6700000,
+    "da": 10300000,
+    "other": -49000000,
+    "op": 97600000
+   },
+   {
+    "period": "2023-04-03",
+    "rev": 544400000,
+    "cogs": 458300000,
+    "gp": 86100000,
+    "sga": 56400000,
+    "rd": 7100000,
+    "da": 22000000,
+    "other": 4200000,
+    "op": -3500000
+   },
+   {
+    "period": "2023-07-03",
+    "rev": 546500000,
+    "cogs": 448000000,
+    "gp": 98500000,
+    "sga": 56000000,
+    "rd": 6400000,
+    "da": 3900000,
+    "other": 10800000,
+    "op": 21400000
+   },
+   {
+    "period": "2023-10-02",
+    "rev": 572600000,
+    "cogs": 459300000,
+    "gp": 113300000,
+    "sga": 57700000,
+    "rd": 6200000,
+    "da": 11400000,
+    "other": 48200000,
+    "op": -10200000
+   },
+   {
+    "period": "2024-01-01",
+    "rev": 569000000,
+    "cogs": 453700000,
+    "gp": 115400000,
+    "sga": 56500000,
+    "rd": 7600000,
+    "da": 11400000,
+    "other": 5300000,
+    "op": 34600000
+   },
+   {
+    "period": "2024-04-01",
+    "rev": 570100000,
+    "cogs": 466400000,
+    "gp": 103700000,
+    "sga": 64000000,
+    "rd": 7300000,
+    "da": 11400000,
+    "other": 3900000,
+    "op": 17100000
+   },
+   {
+    "period": "2024-07-01",
+    "rev": 605100000,
+    "cogs": 487900000,
+    "gp": 117200000,
+    "sga": 58400000,
+    "rd": 8500000,
+    "da": 10300000,
+    "other": 1000000,
+    "op": 39000000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 616500000,
+    "cogs": 486700000,
+    "gp": 129900000,
+    "sga": 62500000,
+    "rd": 8100000,
+    "da": 7000000,
+    "other": 1400000,
+    "op": 51000000
+   },
+   {
+    "period": "2024-12-30",
+    "rev": 651000000,
+    "cogs": 524400000,
+    "gp": 126500000,
+    "sga": 65200000,
+    "rd": 7900000,
+    "da": 6900000,
+    "other": 4800000,
+    "op": 41600000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 648700000,
+    "cogs": 517700000,
+    "gp": 131000000,
+    "sga": 65000000,
+    "rd": 8100000,
+    "da": 6900000,
+    "other": 700000,
+    "op": 50300000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 730600000,
+    "cogs": 582500000,
+    "gp": 148100000,
+    "sga": 71000000,
+    "rd": 7000000,
+    "da": 6900000,
+    "other": 1400000,
+    "op": 61800000
+   },
+   {
+    "period": "2025-09-29",
+    "rev": 752700000,
+    "cogs": 596000000,
+    "gp": 156700000,
+    "sga": 70400000,
+    "rd": 7000000,
+    "da": 6900000,
+    "other": 500000,
+    "op": 71900000
+   },
+   {
+    "period": "2025-12-29",
+    "rev": 774300000,
+    "cogs": 608500000,
+    "gp": 165900000,
+    "sga": 71100000,
+    "rd": 6900000,
+    "da": 6900000,
+    "other": 200000,
+    "op": 80700000
+   },
+   {
+    "period": "2026-03-30",
+    "rev": 846000000,
+    "cogs": 664800000,
+    "gp": 181200000,
+    "sga": 93700000,
+    "rd": 7800000,
+    "da": 6900000,
+    "other": 300000,
+    "op": 72400000
+   },
+   {
+    "period": "2026-06-29",
+    "rev": 1004100000,
+    "cogs": 792200000,
+    "gp": 211900000,
+    "sga": 87600000,
+    "rd": 8000000,
+    "da": 6900000,
+    "other": 300000,
+    "op": 109100000
+   },
+   {
+    "period": "2026-09-28",
+    "rev": 1203900000,
+    "cogs": 912000000,
+    "gp": 291900000,
+    "sga": 112700000,
+    "rd": 9600000,
+    "da": 6900000,
+    "other": 400000,
+    "op": 162300000
+   }
+  ]
+ },
+ "segments_hist": {
+  "segments": {
+   "A&D PCB·RF 부품·모듈": [
+    {
+     "period": "2023-01-02",
+     "rev": 246200000
+    },
+    {
+     "period": "2023-04-03",
+     "rev": 232300000
+    },
+    {
+     "period": "2023-07-03",
+     "rev": 254300000
+    },
+    {
+     "period": "2023-10-02",
+     "rev": 255600000
+    },
+    {
+     "period": "2024-01-01",
+     "rev": 262700000
+    },
+    {
+     "period": "2024-04-01",
+     "rev": 278300000
+    },
+    {
+     "period": "2024-07-01",
+     "rev": 273000000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 277600000
+    },
+    {
+     "period": "2024-12-30",
+     "rev": 301900000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 307400000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 325100000
+    },
+    {
+     "period": "2025-09-29",
+     "rev": 333600000
+    },
+    {
+     "period": "2025-12-29",
+     "rev": 315500000
+    },
+    {
+     "period": "2026-03-30",
+     "rev": 341600000
+    },
+    {
+     "period": "2026-06-29",
+     "rev": 371200000
+    },
+    {
+     "period": "2026-09-28",
+     "rev": 404500000
+    }
+   ],
+   "데이터센터·네트워킹 PCB(N+M 포함)": [
+    {
+     "period": "2023-01-02",
+     "rev": 162700000
+    },
+    {
+     "period": "2023-04-03",
+     "rev": 117000000
+    },
+    {
+     "period": "2023-07-03",
+     "rev": 110200000
+    },
+    {
+     "period": "2023-10-02",
+     "rev": 139500000
+    },
+    {
+     "period": "2024-01-01",
+     "rev": 132600000
+    },
+    {
+     "period": "2024-04-01",
+     "rev": 145600000
+    },
+    {
+     "period": "2024-07-01",
+     "rev": 162400000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 163600000
+    },
+    {
+     "period": "2024-12-30",
+     "rev": 190000000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 187500000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 212500000
+    },
+    {
+     "period": "2025-09-29",
+     "rev": 231400000
+    },
+    {
+     "period": "2025-12-29",
+     "rev": 281700000
+    },
+    {
+     "period": "2026-03-30",
+     "rev": 301700000
+    },
+    {
+     "period": "2026-06-29",
+     "rev": 405300000
+    },
+    {
+     "period": "2026-09-28",
+     "rev": 498000000
+    }
+   ],
+   "일반 PCB": [
+    {
+     "period": "2023-01-02",
+     "rev": 207100000
+    },
+    {
+     "period": "2023-04-03",
+     "rev": 195200000
+    },
+    {
+     "period": "2023-07-03",
+     "rev": 182100000
+    },
+    {
+     "period": "2023-10-02",
+     "rev": 177500000
+    },
+    {
+     "period": "2024-01-01",
+     "rev": 173700000
+    },
+    {
+     "period": "2024-04-01",
+     "rev": 146200000
+    },
+    {
+     "period": "2024-07-01",
+     "rev": 169700000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 175300000
+    },
+    {
+     "period": "2024-12-30",
+     "rev": 159000000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 153800000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 193000000
+    },
+    {
+     "period": "2025-09-29",
+     "rev": 187800000
+    },
+    {
+     "period": "2025-12-29",
+     "rev": 177100000
+    },
+    {
+     "period": "2026-03-30",
+     "rev": 202700000
+    },
+    {
+     "period": "2026-06-29",
+     "rev": 227600000
+    },
+    {
+     "period": "2026-09-28",
+     "rev": 301300000
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(분기) 최종 시장별 매출. 2025년까지는 데이터센터 컴퓨팅 + 네트워킹을 합쳤다. 'A&D PCB·RF 부품·모듈' = A&D 최종 시장 전체(임무 시스템·Epiq 포함), '일반 PCB' = 자동차 + 의료·산업·계측"
+ },
+ "margin": {
+  "as_of": "2026-09-28",
+  "basis": "GAAP",
+  "summary": "3Q26 매출원가는 매출의 75.8%로 1년 전 79.2%보다 3.4%p 낮다. 데이터센터 믹스와 가격이 원가를 앞섰고(회사), 판관비 비중은 9.4%로 그대로다. 비용 대부분이 소재·인건비라 소재값이 오르면 전가 속도가 마진을 정한다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.7527,
+    "cogs": 0.596,
+    "rd": 0.007,
+    "sga": 0.0704,
+    "other": 0.0074
+   },
+   {
+    "period": "3Q26",
+    "rev": 1.2039,
+    "cogs": 0.912,
+    "rd": 0.0096,
+    "sga": 0.1127,
+    "other": 0.0073
+   }
+  ],
+  "costs": [
+   {
+    "name": "소재(동박적층판·구리·금·화학약품)",
+    "stage": "매출원가",
+    "pct_rev": 0.4,
+    "prior_pct": 0.41,
+    "fixed": 0.05,
+    "driver": "구리·금 가격, CCL 단가",
+    "basis": "추정",
+    "source": "매출원가 총액만 공시 — 10-K 원재료 목록, 금속 가격 상승이 총이익률을 낮출 수 있다는 위험 요인",
+    "input": "copper"
+   },
+   {
+    "name": "인건비·공장 간접비(중국·말레이시아·미국)",
+    "stage": "매출원가",
+    "pct_rev": 0.2,
+    "prior_pct": 0.23,
+    "fixed": 0.6,
+    "driver": "가동률·Penang 램프",
+    "basis": "추정",
+    "source": "10-K 종업원 약 1.8만 명, Penang 램프 비용이 2025 총이익률을 낮췄다(10-K)"
+   },
+   {
+    "name": "감가상각",
+    "stage": "매출원가",
+    "pct_rev": 0.03,
+    "prior_pct": 0.04,
+    "fixed": 1.0,
+    "driver": "증설 설비",
+    "basis": "공시",
+    "source": "3Q 감가상각·상각 $43.5M − 무형자산 상각 $6.9M = $36.6M ÷ 매출(Fiscal.ai). 3Q25는 추정"
+   },
+   {
+    "name": "기타 매출원가(수율·외주·물류)",
+    "stage": "매출원가",
+    "pct_rev": 0.128,
+    "prior_pct": 0.112,
+    "fixed": "미확인",
+    "driver": "수율",
+    "basis": "추정",
+    "source": "총액과의 차이"
+   },
+   {
+    "name": "연구개발비",
+    "stage": "연구개발",
+    "pct_rev": 0.008,
+    "prior_pct": 0.0093,
+    "fixed": 0.9,
+    "driver": "공정 개발",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.0936,
+    "prior_pct": 0.0935,
+    "fixed": 0.7,
+    "driver": "인건비·주식보상·인수 비용",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익"
+   },
+   {
+    "name": "무형자산 상각",
+    "stage": "기타",
+    "pct_rev": 0.0061,
+    "prior_pct": 0.0098,
+    "fixed": 1.0,
+    "driver": "인수",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익"
+   }
+  ],
+  "products": [
+   {
+    "name": "데이터센터·네트워킹 PCB(N+M 포함)",
+    "rev_share": 0.414,
+    "gpm": 0.242,
+    "gpm_basis": "회사 전체 3Q GAAP 총이익률 — 제품별 미공시(회사는 데이터센터 가격이 원가보다 빨리 올랐다고 말했다)",
+    "bom": [
+     {
+      "item": "저손실 동박적층판(CCL)·T-glass",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "업계 일반 — 고다층 보드는 적층판 비중이 크다",
+      "input": "pcb",
+      "pass_through": "미확인",
+      "why": "CCL·T-glass 수급을 회사가 제약으로 언급"
+     },
+     {
+      "item": "구리(동박·도금)",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "10-K 원재료",
+      "input": "copper",
+      "pass_through": "미확인",
+      "why": "구리 가격 상승은 총이익률 위험(10-K)"
+     },
+     {
+      "item": "가공(적층·드릴·도금 공정 인건비·감가)",
+      "share": [
+       0.35,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "N+M은 순차 적층 횟수가 많다"
+     }
+    ]
+   },
+   {
+    "name": "A&D PCB·RF 부품·모듈",
+    "rev_share": 0.336,
+    "gpm": 0.242,
+    "gpm_basis": "회사 전체 값(부문별 총이익률 미공시)",
+    "bom": [
+     {
+      "item": "RF 반도체·수동 소자",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "10-K 부품 목록",
+      "pass_through": "미확인",
+      "why": "장기 계약이라 가격 조정이 늦다"
+     },
+     {
+      "item": "세라믹·페라이트 기판·PCB",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "input": "pcb",
+      "pass_through": "미확인",
+      "why": "자체 PCB를 쓴다"
+     },
+     {
+      "item": "조립·시험 인건비",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "미국 내 생산"
+     }
+    ]
+   },
+   {
+    "name": "일반 PCB",
+    "rev_share": 0.25,
+    "gpm": 0.242,
+    "gpm_basis": "회사 전체 값",
+    "bom": [
+     {
+      "item": "동박적층판",
+      "share": [
+       0.3,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "10-K 원재료",
+      "input": "pcb",
+      "pass_through": "미확인",
+      "why": "범용 소재"
+     },
+     {
+      "item": "구리·금",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "input": "copper",
+      "pass_through": "미확인",
+      "why": "금속 가격"
+     },
+     {
+      "item": "가공 인건비·감가",
+      "share": [
+       0.4,
+       0.55
+      ],
+      "basis": "추정",
+      "source": "업계 일반",
+      "pass_through": "미확인",
+      "why": "중국 공장"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-08",
+  "summary": "핵심 투입물은 저손실 동박적층판과 그 안의 T-glass, 구리·금이다. 10-K는 원재료 대부분을 여러 공급사에서 산다고 적었지만, 3Q 콜에서 회사는 CCL·T-glass 수급을 데이터센터 램프의 제약으로 꼽았다. 공급사 이름은 공시되지 않는다.",
+  "links": [
+   {
+    "item": "저손실 동박적층판(CCL)·T-glass",
+    "critical": true,
+    "input": "pcb",
+    "suppliers": [
+     {
+      "name": "공급사 미공시",
+      "role": "고속 적층판·유리섬유",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "3Q 콜 — 회사가 CCL·T-glass 수급을 제약으로 언급",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "아시아(추정)",
+    "secured": "미확인",
+    "why": "N+M·고다층 보드의 절연재",
+    "relief": "미확인 — 적층판 업계 증설 가동 전",
+    "source": "3Q 콜(2026-10-22), https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+   },
+   {
+    "item": "구리(동박·도금)",
+    "critical": true,
+    "input": "copper",
+    "suppliers": [
+     {
+      "name": "다수 공급사(미공시)",
+      "role": "구리",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "여유",
+    "capacity_basis": "10-K — 다수 공급사에서 구매",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 3,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "글로벌",
+    "secured": "현물",
+    "why": "배선·도금",
+    "relief": "해당 없음",
+    "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+   },
+   {
+    "item": "RF 반도체·커넥터·전원(A&D 조립)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "단일·제한 공급원(미공시)",
+      "role": "조립 부품",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm 위험 요인"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "미확인",
+    "capacity_basis": "공시 없음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "레이더·모듈 출하에 필수, 국방 인증으로 재인증이 길다(추정)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-28",
+  "unit": "미공시(회사는 캐파를 면적·투자액으로만 밝힌다)",
+  "summary": "시설은 24곳(미국 16·해외 8), 면적 합계 약 936만 sq ft다. 회사는 명목 캐파와 가동률을 숫자로 밝히지 않는다. 증설은 2025~29년 약 $1.2B에 10월 발표한 N+M용 $400M(중국·말레이시아, 4Q26~2028 초)이 더해진다.",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "10-K — 시설이 현재 수준에 적합하다고만 적었다",
+   "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+  },
+  "plans": [
+   {
+    "name": "N+M용 아시아 AI 캐파(중국·말레이시아)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2028",
+    "capex": 0.4,
+    "blocker": "장비 반입·고객 인증, 고객 약정 금액 미공개",
+    "source": "회사 보도자료 2026-10-12·3Q 콜"
+   },
+   {
+    "name": "2025~29년 증설 계획",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2029",
+    "capex": 1.2,
+    "blocker": "데이터센터 수요 지속",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "Syracuse Ultra-HDI 공장",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2026",
+    "capex": "미확인",
+    "blocker": "국방 수요 램프 속도",
+    "source": "회사 발표 2026-06(국방부 지원 $30M 보도)"
+   },
+   {
+    "name": "Penang 인접 부지(10에이커 토지 권리)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "착공 미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm"
+   }
+  ],
+  "capex": [
+   {
+    "period": "TTM 3Q26",
+    "capex": 0.321,
+    "rev": 3.8283,
+    "kind": "실적"
+   },
+   {
+    "period": "9M26",
+    "capex": 0.2516,
+    "rev": 3.0539,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.42,
+    "rev": 4.48,
+    "kind": "가이던스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.56,
+    "rev": 6.63,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "TTM·9M26 = Fiscal.ai 표준화 현금흐름(분기 69.4·106.8·62.4·82.4백만$) · FY2026 = 회사 가이던스 $410~430M · FY2027 = 컨센서스 약 $560M. 매출은 각 기간 같은 기준",
+  "facilities": {
+   "count": 24,
+   "count_basis": "FY2025 10-K Item 2 Properties — 24곳(미국 16·해외 8), 합계 약 9,366,000 sq ft(2025-12-29 기준). 표는 문서 요약 판독이라 원문 대조 전",
+   "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm",
+   "items": [
+    {
+     "name": "Chippewa Falls 공장",
+     "location": "미국 위스콘신 Chippewa Falls",
+     "owned": "소유",
+     "use": "A&D PCB",
+     "area": {
+      "value": 280000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Eau Claire 공장",
+     "location": "미국 위스콘신 Eau Claire",
+     "owned": "소유",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 715000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Farmingdale 공장",
+     "location": "미국 뉴욕 Farmingdale",
+     "owned": "소유",
+     "use": "A&D",
+     "area": {
+      "value": 172000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Forest Grove 공장",
+     "location": "미국 오리건 Forest Grove",
+     "owned": "소유",
+     "use": "A&D PCB",
+     "area": {
+      "value": 212000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Littleton 시설",
+     "location": "미국 콜로라도 Littleton",
+     "owned": "소유·임차",
+     "use": "A&D",
+     "area": {
+      "value": 90000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Logan 공장",
+     "location": "미국 유타 Logan",
+     "owned": "소유·임차",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 130000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "North Jackson 공장",
+     "location": "미국 오하이오 North Jackson",
+     "owned": "소유",
+     "use": "A&D",
+     "area": {
+      "value": 85000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Salem 시설",
+     "location": "미국 뉴햄프셔 Salem",
+     "owned": "임차",
+     "use": "A&D",
+     "area": {
+      "value": 44000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "San Diego 시설",
+     "location": "미국 캘리포니아 San Diego",
+     "owned": "임차",
+     "use": "A&D",
+     "area": {
+      "value": 43000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "San Jose 시설",
+     "location": "미국 캘리포니아 San Jose",
+     "owned": "임차",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 42000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Santa Ana 본사",
+     "location": "미국 캘리포니아 Santa Ana",
+     "owned": "임차",
+     "use": "본사",
+     "area": {
+      "value": 14000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산 없음",
+     "status": "가동"
+    },
+    {
+     "name": "Santa Ana 공장",
+     "location": "미국 캘리포니아 Santa Ana",
+     "owned": "소유·임차",
+     "use": "A&D PCB",
+     "area": {
+      "value": 101000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Stafford 공장",
+     "location": "미국 코네티컷 Stafford",
+     "owned": "소유",
+     "use": "A&D PCB",
+     "area": {
+      "value": 130000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Stafford Springs 공장",
+     "location": "미국 코네티컷 Stafford Springs",
+     "owned": "소유",
+     "use": "A&D PCB",
+     "area": {
+      "value": 116000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Sterling 시설(50% 합작)",
+     "location": "미국 버지니아 Sterling",
+     "owned": "임차",
+     "use": "A&D(지분법 합작)",
+     "area": {
+      "value": 101000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Syracuse 공장",
+     "location": "미국 뉴욕 Syracuse",
+     "owned": "소유·임차",
+     "use": "A&D·RF 부품, Ultra-HDI PCB",
+     "area": {
+      "value": 416000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동",
+     "status_note": "2026-06 회사 발표 — Ultra-HDI 신공장 가동"
+    },
+    {
+     "name": "Toronto 공장",
+     "location": "캐나다 Toronto",
+     "owned": "소유·임차",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 155000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Penang 공장",
+     "location": "말레이시아 Penang",
+     "owned": "임차",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 876000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Dongguan 공장",
+     "location": "중국 광둥 Dongguan",
+     "owned": "소유",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 1292000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Guangzhou 공장",
+     "location": "중국 광둥 Guangzhou",
+     "owned": "소유",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 2251000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "홍콩 아시아 본부",
+     "location": "홍콩",
+     "owned": "소유",
+     "use": "본사",
+     "area": {
+      "value": 25000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Huiyang 공장",
+     "location": "중국 광둥 Huiyang",
+     "owned": "소유",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 518000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Suzhou 공장",
+     "location": "중국 장쑤 Suzhou",
+     "owned": "임차",
+     "use": "RF 부품",
+     "area": {
+      "value": 68000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    },
+    {
+     "name": "Zhongshan 공장",
+     "location": "중국 광둥 Zhongshan",
+     "owned": "소유·임차",
+     "use": "상업용 PCB",
+     "area": {
+      "value": 1490000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시(10-K는 면적·용도만)",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "소유 공장이 미국·중국에 다수 있지만 위성 판독 등록(site_imagery)이 아직 없다 — 이번 회차 미등록"
+ },
+ "customers": {
+  "as_of": "2026-09-28",
+  "period": "3Q26",
+  "summary": "3Q 한 고객이 매출의 약 20%이고, 9개월 기준 두 고객이 27%다(이름 미공시). 2025년에는 상위 5개 완제품 고객이 44%, 두 고객이 23%였다. 데이터센터 램프가 집중도를 높이고 있다.",
+  "items": [
+   {
+    "name": "최대 고객(이름 미공시)",
+    "alias": "10% 초과 고객 1곳",
+    "share": 0.2,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "데이터센터·네트워킹 PCB(추정)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526435875/ttmi-20260928.htm",
+    "why": "10-Q 고객 집중 공시. 어느 회사인지는 공시되지 않아 특정하지 않는다"
+   },
+   {
+    "name": "나머지 상위 4개 고객",
+    "share": [
+     0.2,
+     0.28
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "PCB·A&D 부품",
+    "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm",
+    "why": "2025년 상위 5곳 44% − 최대 고객 몫, 3Q 집중 상승을 반영한 범위"
+   },
+   {
+    "name": "그 밖의 고객(약 1,300곳)",
+    "share": [
+     0.52,
+     0.6
+    ],
+    "prior": 0.56,
+    "basis": "추정",
+    "buys": "PCB·RF 부품·시스템",
+    "source": "https://www.sec.gov/Archives/edgar/data/1116942/000119312526051976/ttmi-20251229.htm",
+    "why": "1 − 상위 5곳. 2025년 상위 5곳 44%"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 14.8,
+  "book_to_bill": 2.1,
+  "rpo_12m_share": 0.55,
+  "revenue_growth": 0.6,
+  "top_customer_share": 0.2,
+  "source": "A&D 잔고 $2.0B ÷ 3Q A&D 월평균 매출 $134.8M = 14.8개월(Chiip 계산). 3Q 전체 수주 ÷ 매출 2.1(콜), 잔여 이행의무 $463.5M 중 55% 12개월(10-Q). 90일 잔고 $1.3B는 취소 가능(콜)"
+ },
+ "ma": {
+  "deals": [
+   {
+    "target": "Epiq Solutions",
+    "closed": "2026-09-30",
+    "price": 1.1,
+    "target_ebitda": 0.055,
+    "target_ni": 0.03,
+    "financing": {
+     "cash": 0.0,
+     "debt": 1.1,
+     "rate": 0.073,
+     "new_shares": 0
+    },
+    "integration_cost": 0.02,
+    "synergies": [
+     {
+      "type": "매출",
+      "name": "보드·RF 모듈과 무선 시스템 교차 판매",
+      "run_rate": 0.05,
+      "full_year": 2029,
+      "prob": 0.4,
+      "margin": 0.2,
+      "mechanism": "TTM의 RF 모듈·레이더 고객에 Epiq 무선을 묶어 탐지 시스템으로 판다",
+      "source": "추정 — 회사는 시너지 금액을 밝히지 않았다"
+     },
+     {
+      "type": "원가",
+      "name": "부품 조달 통합",
+      "run_rate": 0.008,
+      "full_year": 2028,
+      "prob": 0.5,
+      "mechanism": "RF 부품을 TTM 내부 조달로 돌린다",
+      "source": "추정 — 회사가 밝힌 '시너지 반영 2027 EBITDA 17.4배'와 무시너지 EBITDA의 차이를 어림"
+     }
+    ]
+   }
+  ],
+  "acquirer": {
+   "eps": 8.5,
+   "shares": 0.1081,
+   "tax": 0.21,
+   "year0": 2027
+  },
+  "note": "Epiq 대상 EBITDA $55M·순이익 $30M은 '시너지 반영 2027 EBITDA 17.4배'($1.1B ÷ 17.4 ≈ $63M)에서 시너지를 뺀 추정이다. 금리 7.3%는 콜의 분기 이자 약 $20M 증가 ÷ $1.1B 연환산(추정). STG(9월 종결)는 금액 미공시로 제외, Ophir $650M은 2027년 2분기 종결 예정이라 미반영"
+ },
+ "sync": {
+  "why": "회사 제품은 HS 8534(인쇄회로)이고 핵심 원가는 구리·적층판이다. PCB PPI(미국·대만)를 가격 대용, EU PCB 수입을 수요 대용으로 쓴다",
+  "indicators": [
+   {
+    "label": "미국 PCB PPI",
+    "source": "ppi",
+    "input": "pcb",
+    "country": "us",
+    "segment": "데이터센터·네트워킹 PCB(N+M 포함)",
+    "why": "같은 제품의 가격"
+   },
+   {
+    "label": "대만 PCB PPI",
+    "source": "ppi",
+    "input": "pcb",
+    "country": "tw",
+    "segment": "데이터센터·네트워킹 PCB(N+M 포함)",
+    "why": "대만 경쟁사 가격"
+   },
+   {
+    "label": "EU PCB 수입",
+    "source": "hs",
+    "reporter": "eu",
+    "flow": "import",
+    "hs": "853400",
+    "segment": "일반 PCB",
+    "why": "산업·의료 수요"
+   },
+   {
+    "label": "미국 구리 PPI",
+    "source": "ppi",
+    "input": "copper",
+    "country": "us",
+    "segment": "일반 PCB",
+    "why": "핵심 원가"
+   }
+  ],
+  "products": [
+   {
+    "name": "데이터센터·네트워킹 PCB",
+    "segment": "데이터센터·네트워킹 PCB(N+M 포함)",
+    "hs": "853400",
+    "share": 0.41,
+    "inputs": [
+     "pcb",
+     "copper"
+    ],
+    "basis": "인쇄회로"
+   },
+   {
+    "name": "A&D PCB·RF 부품",
+    "segment": "A&D PCB·RF 부품·모듈",
+    "hs": "853400",
+    "share": 0.34,
+    "inputs": [
+     "pcb"
+    ],
+    "basis": "인쇄회로 + 레이더 부품(HS 8526 일부)"
+   },
+   {
+    "name": "일반 PCB",
+    "segment": "일반 PCB",
+    "hs": "853400",
+    "share": 0.25,
+    "inputs": [
+     "pcb",
+     "copper"
+    ],
+    "basis": "인쇄회로"
+   }
+  ]
+ },
+ "pq": {
+  "none": "출하 면적·장당 가격을 공시하지 않는다 — 회사는 '가격이 원가보다 빨리 올랐다'고만 말했다(3Q 콜). 업종 PPI 대용으로 잰다"
+ },
+ "social": {
+  "as_of": "2026-11-08",
+  "summary": "커뮤니티는 하락을 '미국 유일 AI·방산 PCB가 동종보다 싸졌다'와 '반도체 사이클 정점의 낮은 P/E는 함정'으로 나눠 소화한다. 대화 강도는 7일 Moderate(56)·24시간 Weak(44)로 식었고, 글 대부분이 X 소수 계정과 내부자 공시 피드다.",
+  "narratives": [
+   {
+    "channel": "X",
+    "theme": "미국 상장 유일 AI·방산 PCB 순수 기업이 아시아 동종보다 싸다",
+    "expectation": "상향",
+    "vs_fact": "확인 — Fwd 1Y P/E 8.2배로 동종 중앙값보다 낮다. 단 순차입·고객 집중이 할인 이유일 수 있다",
+    "share": 0.4
+   },
+   {
+    "channel": "X",
+    "theme": "AI 랙당 PCB 탑재 금액이 세대마다 급증한다",
+    "expectation": "상향",
+    "vs_fact": "과장 — IB·업계 추정이고 TTM 매출 몫으로 바로 잇는 근거는 없다(금지표: 고객 투자 → 공급사 매출)",
+    "share": 0.25
+   },
+   {
+    "channel": "내부자 매수",
+    "theme": "실적 급락 뒤 CEO·이사 장내 매수(10/28·11/5)",
+    "expectation": "상향",
+    "vs_fact": "확인 — Form 4",
+    "share": 0.15
+   },
+   {
+    "channel": "레딧",
+    "theme": "반도체 이익 정점, 낮은 선행 P/E는 분모의 함정",
+    "expectation": "하향",
+    "vs_fact": "미확인 — 업종 전체 주장이고 TTM 2027 가이던스와는 반대",
+    "share": 0.1
+   },
+   {
+    "channel": "X",
+    "theme": "2027 PCB 수급 부족이 더 심해지고 2028에 균형",
+    "expectation": "혼재",
+    "vs_fact": "미확인 — 전문가 통화 전언",
+    "share": 0.1
+   }
+  ],
+  "turn": "5월 Strong(79, NVIDIA 차세대 BOM의 PCB 증가 보도) → 7월 Weak(50, 주가 급락) → 8월 Strong(87, 2Q 실적·내부자 매수) → 10월 Strong(82, 3Q) → 11월 Moderate(63, 부분)·24시간 Weak(44)"
+ },
+ "names": [
+  "Amphenol",
+  "B. Riley",
+  "BWX",
+  "BWX Technologies",
+  "BWXT",
+  "Bloomberg",
+  "BofA",
+  "Capital World",
+  "Celestica",
+  "Epiq",
+  "Epiq Solutions",
+  "Fidelity",
+  "Flex",
+  "Fox Advisors",
+  "ILFA",
+  "Invesco",
+  "Jabil",
+  "Jane Street",
+  "Longleaf",
+  "Lumentum",
+  "MKS",
+  "MKS Inc.",
+  "Merlin",
+  "Morgan Stanley",
+  "NVIDIA",
+  "Needham",
+  "Nomura",
+  "Ophir",
+  "Ophir Optics",
+  "Plexus",
+  "RTX",
+  "Raytheon",
+  "STG",
+  "Sanmina",
+  "Stifel",
+  "Swiss Technology Group",
+  "Synaptics",
+  "T. Rowe Price",
+  "TTM",
+  "Teledyne",
+  "Truist",
+  "Veritas Capital",
+  "Voya",
+  "Wellington",
+  "Whale Rock"
+ ],
+ "ladder": {
+  "exit": {
+   "pe": 14,
+   "net_margin": 0.1,
+   "opm": 0.15,
+   "basis": "출구 P/E 14배는 동종 Fwd 1Y P/E 중앙값(약 13.5배)과 TTM 자기 3년 범위(9~46배)의 하단 쪽에서 순차입·고객 집중 할인을 뺀 값(추정)이다. 영업이익률 15%·순이익률 10%는 3Q26 GAAP 영업이익률 13.5%와 2027 가이던스(조정 EPS $8.1~8.9, 매출 $6.5~6.75B)의 GAAP 환산(이자·상각 차감, 추정) 사이 값이다"
+  },
+  "refs": [
+   {
+    "label": "FY2026(가이던스)",
+    "value": 4.48
+   },
+   {
+    "label": "FY2027(가이던스)",
+    "value": 6.63
+   },
+   {
+    "label": "FY2028 컨센서스",
+    "value": 7.45
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "2027 가이던스 매출을 지키고 GAAP 순이익률 10%대를 2028년까지 유지하면 닿는 단계다. N+M 지연 프로그램이 1Q27에 양산에 들어가고 A&D 잔고 $2.0B가 매출로 넘어가야 한다.",
+    "outlook": "가이던스와 컨센서스는 이 단계를 지지한다. 걸림돌은 배수다 — 3Q 실적 뒤 시장은 순차입 약 $2.1B와 고객 집중을 이유로 Fwd 1Y P/E를 20배에서 8배로 낮췄다."
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "2028 컨센서스 매출 $7.45B를 크게 넘어야 한다. N+M 프로그램을 5~10개로 늘리고 $400M 증설이 2028년에 다 차야 한다.",
+    "outlook": "증설 고객 약정 금액이 공개되지 않았고, 회사도 고객이 늘 복수 공급사를 쓴다고 말했다. 가를 자료는 4Q 콜의 N+M 프로그램 수와 2027 가이던스 유지 여부다."
+   },
+   "5": {
+    "verdict": "경로 미확인",
+    "path": "매출이 지금의 3배 이상이어야 한다. PCB 업계 전체 성장률(기관 추정 연 18%)을 크게 넘는 점유율 확대가 필요하다.",
+    "outlook": "근거가 없다. 아시아 PCB사가 같은 AI 프로그램 인증을 받고 있다."
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $70B, 순이익 약 $5B가 필요하다 — 2027 가이던스 순이익의 5배 이상이다.",
+    "outlook": "PCB 사업 구조로는 경로가 없다. 10배는 기저율상 희귀 사건이다."
+   }
+  },
+  "summary": "2배는 2027 가이던스와 배수 회복이 함께 필요하고, 3배부터는 N+M 확산을 가를 자료가 없다."
+ },
+ "midterm": {
+  "sub": "electronics",
+  "exposure": {
+   "tariff_codify": 0.8,
+   "chips_subsidy": 0.3
+  },
+  "why": "생산 면적 대부분이 중국·말레이시아라 미국 수입 관세 노출이 크다(10-K 시설). Syracuse 국방 PCB 공장은 국방부 지원을 받았다. A&D 매출(34%)은 국방 예산 채널이 따로 있지만 표에 없어 Golden Dome 정책 상자에서 다룬다"
+ },
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "어닝콜 톤 '상향' 규칙(약세 20·기본 50·강세 30)에서 약세를 30%로 올리고 강세를 20%로 낮춤 — 순차입 약 $2.1B(TTM 조정 EBITDA의 3.1배)에 Ophir $650M이 더해지고, 한 고객이 매출의 약 20%이며, 3Q 뒤 업종 동반 하락(나스닥100 20거래일 −12.6%) 국면이라 하방 꼬리가 크다(자체추론)",
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "2027 가이던스가 맞으면 지금 배수는 AI 이전 바닥보다 낮다",
+    "evidence": [
+     "Fwd 1Y P/E 8.2배 vs 동종 중앙값 13.5배",
+     "2027 조정 EPS 가이던스 $8.10~8.90",
+     "FY2027 컨센서스 EPS $6.06 → $8.61(8/7 → 10/28)"
+    ],
+    "falsifier": "4Q 실적에서 2027 가이던스 하향"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "11월 하락은 회사 사건이 아니고 내부자가 샀다",
+    "evidence": [
+     "11/2~11/5 −25%, 회사 공시 없음",
+     "10/28 CEO·이사, 11/5 이사 장내 매수(Form 4)",
+     "미국 PCB PPI 전년비 +45.8%(9월)"
+    ],
+    "falsifier": "지연된 N+M 프로그램이 1Q27 양산을 놓친다"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "싸다는 것은 조정 EPS 기준이고 부채가 그 차이를 먹는다",
+    "evidence": [
+     "순차입 약 $2.07B, TTM 조정 EBITDA의 3.1배",
+     "4Q 이자 $33.9M(3Q $12.1M)",
+     "FY2026 FCF 컨센서스 약 $20M"
+    ],
+    "falsifier": "2027년 상반기 순레버리지가 2배 아래로 내려간다"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "N+M은 특허가 없는 공정이고 고객은 복수 공급사를 쓴다",
+    "evidence": [
+     "10-K: 공정 기술은 대체로 지식재산 보호 밖",
+     "3개 프로그램 중 1개 지연",
+     "한 고객 약 20%(10-Q)"
+    ],
+    "falsifier": "N+M 프로그램이 5개 이상으로 늘었다는 회사 발표"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "차입 인수가 이어지면 주주 몫이 계속 준다",
+    "evidence": [
+     "Epiq $1.1B 전액 차입",
+     "Ophir $650M 현금 인수 예정",
+     "생산 면적 약 71%가 해외(관세 노출)"
+    ],
+    "falsifier": "Ophir 뒤 추가 인수 없이 순레버리지가 줄어든다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "가이던스 중간 $8.5에 8배면 AI 프리미엄은 0이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "마지막 −25%에는 공시가 없었고 이사는 $63에 샀다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "EV로 보면 순차입 $2.1B가 시가총액의 30%다"
+     },
+     {
+      "seat": "Sell",
+      "text": "한 프로그램이 밀린 것은 시작일 뿐일 수 있다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "인수 두 건이 EPS보다 부채를 먼저 키웠다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "나머지 2개 프로그램은 순항이고 4Q 데이터센터 비중은 약 49% 가이던스다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "조정 EPS는 상각을 뺀다. GAAP 기준 배수는 더 높다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "내부자 매수 $1.9M은 시가총액 $7B에 비해 작다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "FY2027 컨센서스 FCF는 약 $330M로 이자 증가를 덮는다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "그 FCF 추정의 하단은 −$50M이다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Sell",
+      "text": "N+M을 가를 자료는 4Q 콜의 프로그램 수이고 아직 없다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Buy로 물러선다 — FCF 추정 범위가 넓다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "Buy를 유지한다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "Buy로 옮긴다 — 순차입을 빼도 배수가 동종보다 낮다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "Neutral로 물러선다 — 지연이 확산된다는 1차 자료가 없다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "Sell로 물러선다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Buy",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "Neutral의 '부채가 할인을 먹는다'는 EV 기준에서도 동종보다 낮은 배수라는 반박을 넘지 못했다. 반면 Strong Buy의 FCF 논리는 추정 하단 −$50M이라는 반박에 막혀 한 단계 내려왔다",
+   "dissent": "Sell 자리 — N+M 확산과 고객 집중은 2027년 2월 4Q 콜 전까지 가를 수 없다"
+  }
  }
 }
