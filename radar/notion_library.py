@@ -299,13 +299,44 @@ def resolve(q, cos):
     return None
 
 
+_SUB = {}
+
+
+def sub_of(cid):
+    """종목 → 시장 세부 산업(GICS 영문) — scripts/industry/weekly_pick.classify(), 한 번만 읽는다"""
+    if not _SUB:
+        try:
+            sys.path.insert(0, str(common.ROOT / "scripts" / "industry"))
+            import weekly_pick
+            _SUB.update({k: v["sub"] for k, v in weekly_pick.classify().items()})
+        except Exception:   # 분류표를 못 읽어도 종목 연결 자료는 그대로 쓴다
+            _SUB["_"] = None
+    return _SUB.get(cid)
+
+
+def themed(r, cid, cfg):
+    """업종·테마 리포트가 이 종목의 세부 산업을 다루나(config themes, 2026-11-08 마스터 지시)"""
+    sub = sub_of(cid)
+    if not sub:
+        return False
+    name = r["name"].replace("_", " ")
+    return any(sub in t["subs"] and any(re.search(m, name, re.I) for m in t["match"]) for t in cfg.get("themes") or [])
+
+
 def usable(rows, cid, cfg):
-    return [r for r in rows if cid in (r["entities"] + ";" + r.get("related", "")).split(";") and r["cls"] not in cfg["blocked_classes"]]
+    """종목 자료 = 주 대상(entities) + 관련 종목(related) + 그 종목 세부 산업을 다루는 업종·테마 리포트"""
+    return [r for r in rows if r["cls"] not in cfg["blocked_classes"]
+            and (cid in (r["entities"] + ";" + r.get("related", "")).split(";") or (not r["entities"] and themed(r, cid, cfg)))]
 
 
-def unread(rows, cid, cfg):
-    """주 대상인데 요지가 없는 자료 — 있으면 리포트 조립을 멈춘다. 관련 회사로만 걸린 자료는 막지 않는다"""
-    return [r for r in usable(rows, cid, cfg) if r["status"] != "digest" and cid in r["entities"].split(";")]
+def unread(rows, cid, cfg, today=None):
+    """요지가 없는 자료 — 있으면 리포트 조립을 멈춘다. 주 대상은 전부, 관련·테마 자료는 related_max_age_days 안 것만(2026-11-08 마스터 지시 — 관련 IB도 반영)"""
+    cut = ((today or date.today()) - timedelta(days=cfg.get("related_max_age_days", 45))).isoformat()
+    u = usable(rows, cid, cfg)
+    prim = [r for r in u if r["status"] != "digest" and cid in r["entities"].split(";")]
+    rel = sorted([r for r in u if cid not in r["entities"].split(";") and (r.get("doc_date") or r.get("added") or "") >= cut],
+                 key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)[:cfg.get("related_max_per_report", 6)]
+    return prim + [r for r in rel if r["status"] != "digest"]   # 최신 관련 자료 n건 안에서 요지가 없는 것만
 
 
 def citations(rows, cid, cfg):

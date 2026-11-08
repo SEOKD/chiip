@@ -19,3 +19,17 @@ roots:
   - {name: Informations, id: "407b5d1e-0998-803a-8359-e41e621d673c"}
   - {name: Stocks, id: "407b5d1e-0998-803d-a81a-d5570164959f"}
   - {name: Insights, id: "407b5d1e-0998-800a-99aa-c6f8581276ba"}
+# 업종·테마 리포트 → 시장 세부 산업(config/industry_taxonomy.yaml sub, 영문 GICS) 연결(마스터 지시 2026-11-08 "Analysis에서 다루는 종목과 연관된 IB Report를 잘 참고")
+# 파일 이름(밑줄 = 띄어쓰기)이 match 정규식 중 하나에 걸리고, 종목의 세부 산업이 subs에 있으면 그 종목의 관련 자료가 된다(종목 하나만 다루는 리포트는 entities로 이미 연결)
+themes:
+  - {match: ["Utilities", "\\bPower\\b", "\\bIPPs?\\b", "Energy Transition", "Grid", "Watts"], subs: [Electric Utilities, Multi-Utilities, Independent Power Producers & Energy Traders, Renewable Electricity, Heavy Electrical Equipment, Electrical Components & Equipment, Construction & Engineering]}
+  - {match: ["Data ?Cent(er|re)", "Datacenter", "Hyperscaler", "AI Adoption"], subs: [Semiconductors, Technology Hardware, Storage & Peripherals, Communications Equipment, Electrical Components & Equipment, Heavy Electrical Equipment, Construction & Engineering, Internet Services & Infrastructure, Data Center REITs, Electronic Manufacturing Services]}
+  - {match: ["Networking", "Optical", "Switch"], subs: [Communications Equipment, Semiconductors, Electronic Components]}
+  - {match: ["\\bCCL\\b", "\\bPCB\\b", "Substrate", "Passive", "MLCC"], subs: [Electronic Components, Electronic Manufacturing Services]}
+  - {match: ["Semiconductor", "Semis\\b", "Memory", "DRAM", "NAND", "HBM", "Foundry", "Wafer Fab", "WFE"], subs: [Semiconductors, Semiconductor Materials & Equipment, Technology Hardware, Storage & Peripherals]}
+  - {match: ["Solar", "Clean Tech"], subs: [Electrical Components & Equipment, Renewable Electricity, Semiconductors]}
+  - {match: ["Oil ?field", "Oilfield", "Energy Services", "Frac"], subs: [Oil & Gas Equipment & Services]}
+  - {match: ["Aerospace", "Defen[cs]e"], subs: [Aerospace & Defense]}
+  - {match: ["Machinery", "Automation", "Robot"], subs: [Industrial Machinery & Supplies & Components, Semiconductor Materials & Equipment]}
+related_max_age_days: 45   # 관련 자료(테마·관련 종목)는 이 기간 안 자료만 요지를 의무로 한다 — 오래된 업종 자료로 작성이 막히지 않게
+related_max_per_report: 6  # 관련·테마 자료 중 요지 의무는 최신 6건까지(한 리포트 작성 시간 상한) — 요지는 파일 단위라 다른 종목 리포트에서 재사용된다
