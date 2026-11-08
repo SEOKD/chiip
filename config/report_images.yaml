@@ -18,7 +18,8 @@ per_industry_report_max: {total: 3, exploded: 2}
 min_confirmed_parts: 6                # 분해도는 '확인' BOM 부품 6개 이상일 때만 — 모자라면 BOM 표만
 bom_stale_days: 90                    # BOM as_of가 이보다 오래되면 분해도만 다시 그린다
 retries: 1                            # 검수 실패 시 다시 그리기 1회
-approval_first: {company: 5, industry: 3}   # 처음 n건은 텔레그램 미리보기로 마스터 승인 뒤에만 리포트에 넣는다
+approval_first: {company: 5, industry: 3}   # (auto_approve가 false일 때만) 처음 n건은 텔레그램 미리보기로 마스터 승인
+auto_approve: {company: true, industry: true}   # 2026-11-08 마스터 지시 "마스터 승인을 자동 승인하도록" — 자동 검수(눈 검수 포함)를 통과하면 바로 리포트에 넣는다
 max_long_side: 1600
 max_kb: 200
 jpeg_quality: 80                      # Vertex 출력 JPEG 품질(Pillow 없이 200KB 안에)

@@ -27,7 +27,7 @@ argument-hint: "[사건 id]"
 5. **실행 경로:** 경로마다 수준(주·연방 의회·연방 기관·행정부)과 현재 단계(`config/industry_event.yaml` stages — 금지표대로 발의를 시행으로 쓰지 않는다), 주체, 창, 12개월 실행 확률, 사업군 영향(%·가정)을 적는다. 실행 시계(취임·회기·마감·규칙 시행일)와 선례를 붙인다.
 6. **반대 검증:** 마스터 가설을 같은 강도로 때린다. 최소 3개, 출처 포함.
 7. **체크포인트:** 날짜·측정값·확률·'맞으면 가설 지지/반대'를 3개 이상 적고 `--predictions`로 예측 장부에 올린다.
-7-1. **이미지 판정(2026-11-08 마스터 지시, ADR-017):** 절마다 산업 이미지 지시서 1절 조건(구조·병목 위치·세대 비교·생소한 제품·공급사 지도) 중 하나에 해당하면 datapack `images`에 `{section, product, condition, view?}`를 적는다 — 리포트당 최대 3장(분해도 2). 숫자·가격·수급이 논지인 절은 넣지 않는다. 제품 BOM은 `knowledge/models/products/<slug>/bom.json`(README 형식, '확인' 6개 미만이면 표만). 초안 단계에 `py scripts/tenbagger/product_images.py make --product <slug> --batch`(세대 비교는 `<a>,<b> --pair`, 패키지·적층은 `--view cross-section`), 회수 뒤 `image_check.py run --product <slug>` → Read로 보고 `visual` → 처음 3건은 `preview --product` 승인. 산업 몫은 장부 한도의 40%. 판정 기록은 리포트 JSON `image_plan`에 남는다.
+7-1. **이미지 판정(2026-11-08 마스터 지시, ADR-017):** 절마다 산업 이미지 지시서 1절 조건(구조·병목 위치·세대 비교·생소한 제품·공급사 지도) 중 하나에 해당하면 datapack `images`에 `{section, product, condition, view?}`를 적는다 — 리포트당 최대 3장(분해도 2). 숫자·가격·수급이 논지인 절은 넣지 않는다. 제품 BOM은 `knowledge/models/products/<slug>/bom.json`(README 형식, '확인' 6개 미만이면 표만). 초안 단계에 `py scripts/tenbagger/product_images.py make --product <slug> --batch`(세대 비교는 `<a>,<b> --pair`, 패키지·적층은 `--view cross-section`), 회수 뒤 `image_check.py run --product <slug>` → Read로 보고 `visual` → 승인은 자동(auto_approve). 산업 몫은 장부 한도의 40%. 판정 기록은 리포트 JSON `image_plan`에 남는다.
 8. **조립·렌더:** datapack은 `knowledge/models/industries/events/<id>/datapack.json`이다. 아래 명령으로 조립하고 렌더한다.
    ```
    py scripts/industry/event_frame.py <id> --predictions

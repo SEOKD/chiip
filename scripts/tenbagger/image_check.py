@@ -67,7 +67,9 @@ def check(t, meta, c=None):
     return {"items": items, "result": "fail" if score == 0 else ("warn" if score < 1 else "pass"), "pending_visual": not v}
 
 
-def approved(t):
+def approved(t, c=None):
+    if ((c or P.cfg()).get("auto_approve") or {}).get(t["scope"]):   # 자동 승인(2026-11-08 마스터 지시) — 검수 통과가 곧 승인
+        return True
     s = _state()
     if s["auto"].get(t["scope"]):
         return True
@@ -84,7 +86,7 @@ def usable(t, c=None):
         return None, "검수 실패"
     if ck.get("pending_visual"):
         return None, "눈 검수 대기"
-    if not approved(t):
+    if not approved(t, c):
         return None, "마스터 승인 대기"
     return m, ""
 

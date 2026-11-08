@@ -66,11 +66,13 @@ class TestImages(unittest.TestCase):
         (self.tmp / "exploded_1.png").write_bytes(b"x" * 100)
         meta = {"file": "exploded_1.png", "hash": P.key_of(self.t)}
         P.meta_path(self.t).write_text(json.dumps(meta), encoding="utf-8")
-        self.assertEqual(C.usable(self.t)[1], "눈 검수 대기")
+        manual = {**P.cfg(), "auto_approve": {"company": False, "industry": False}}
+        self.assertEqual(C.usable(self.t, manual)[1], "눈 검수 대기")
         C.visual(P.meta_path(self.t), True, parts=6, order_ok=True)
-        self.assertEqual(C.usable(self.t)[1], "마스터 승인 대기")
+        self.assertEqual(C.usable(self.t, manual)[1], "마스터 승인 대기")
+        self.assertIsNotNone(C.usable(self.t)[0])   # 자동 승인(2026-11-08 마스터 지시)
         C.decide("company", "x", "approved")
-        self.assertIsNotNone(C.usable(self.t)[0])
+        self.assertIsNotNone(C.usable(self.t, manual)[0])
 
     def test_bom_tables(self):
         b = V.bom_block(BOM, "company")
