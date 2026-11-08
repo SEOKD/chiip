@@ -230,6 +230,8 @@ def main(argv):
     ap.add_argument("--predictions", action="store_true")
     a = ap.parse_args(argv)
     dp = json.loads((IQ.BASE / a.quarter / a.industry / "datapack.json").read_text(encoding="utf-8"))
+    import weekly_frame   # 노션 IB 자료 요지·인용(마스터 지시 2026-11-08) — 분기 키는 옛 분야 키(nand-storage 등)라 datapack industry_key가 있으면 그것으로
+    dp = weekly_frame.notion_ref({**dp, "industry": dp.get("industry_key") or a.industry})
     d = build(a.quarter, a.industry, dp)
     out = ROOT / "outputs" / "industry" / f"{dp['date'].replace('-', '')}_quarterly-{a.industry}-{a.quarter}.json"
     out.parent.mkdir(parents=True, exist_ok=True)

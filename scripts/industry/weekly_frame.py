@@ -21,6 +21,15 @@ import event_frame as E  # noqa: E402
 import logic as LG  # noqa: E402
 import weekly_pick as W  # noqa: E402
 
+
+def notion_ref(dp):
+    """산업 키·세부 산업·구성 종목으로 노션 IB 자료를 찾아 요지가 없으면 멈추고, 있으면 출처에 붙인다(radar/notion_library.industry_gate)"""
+    sys.path.insert(0, str(ROOT / "radar"))
+    import notion_library as NL
+    c = W.cfg()
+    g = c["industries"].get(dp["industry"]) or {}
+    return NL.industry_gate(dp, dp["industry"], g.get("sub"), tuple(c["_members"].get(dp["industry"]) or ()))
+
 BASE = ROOT / "knowledge" / "models" / "industries" / "weekly"
 NEED_NAR = ("view", "summary", "demand", "supply", "bottleneck", "counter", "kill", "status")
 
@@ -122,6 +131,7 @@ def main(argv):
     ap.add_argument("--predictions", action="store_true")
     a = ap.parse_args(argv)
     dp = json.loads((BASE / a.folder / "datapack.json").read_text(encoding="utf-8"))
+    dp = notion_ref(dp)   # 노션 IB 자료 요지·인용(마스터 지시 2026-11-08)
     d = build(dp)
     out = ROOT / "outputs" / "industry" / f"{dp['date'].replace('-', '')}_weekly-{dp['industry']}.json"
     out.parent.mkdir(parents=True, exist_ok=True)

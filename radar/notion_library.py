@@ -339,6 +339,55 @@ def unread(rows, cid, cfg, today=None):
     return prim + [r for r in rel if r["status"] != "digest"]   # 최신 관련 자료 n건 안에서 요지가 없는 것만
 
 
+def industry_docs(rows, key, cfg, sub=None, members=()):
+    """산업 리포트가 참조할 노션 자료(마스터 지시 2026-11-08 "산업 리포트 쓸 때 노션의 IB 리포트를 참조하라 — Quantum 리포트엔 Quantum computing FAQ BOA.pdf").
+    세 경로: ① config industry_refs(산업 키 정규식 → 파일 이름 패턴, 신흥 산업처럼 세부 산업 분류에 없는 키) ② 그 세부 산업(sub)을 다루는 업종·테마 리포트(themes)
+    ③ 구성 종목이 주 대상인 IB 리포트. 채널체크 등 금지 분류는 뺀다"""
+    pats = [p for k, ps in (cfg.get("industry_refs") or {}).items() if re.fullmatch(k, key) for p in ps]
+    mem = {m["id"] if isinstance(m, dict) else m for m in members}   # weekly_pick _members 행(dict) 또는 id
+    out = []
+    for r in rows:
+        if r["cls"] in cfg["blocked_classes"]:
+            continue
+        name = r["name"].replace("_", " ")
+        ents = set(filter(None, r["entities"].split(";")))
+        if any(re.search(p, name, re.I) for p in pats):
+            out.append({**r, "via": "산업 키"})
+        elif sub and not ents and any(sub in t["subs"] and any(re.search(m, name, re.I) for m in t["match"]) for t in cfg.get("themes") or []):
+            out.append({**r, "via": "세부 산업 테마"})
+        elif ents & mem and r["cls"] == "IB 리포트":
+            out.append({**r, "via": "구성 종목"})
+    return out
+
+
+def industry_need(key, sub=None, members=(), today=None):
+    """(요지가 필요한 자료, 인용 줄). 산업 키 자료는 전부, 테마·구성 종목 자료는 related_max_age_days 안 최신 related_max_per_report건만 요지 의무"""
+    cfg, rows = config(), read()
+    docs = industry_docs(rows, key, cfg, sub, members)
+    cut = ((today or date.today()) - timedelta(days=cfg.get("related_max_age_days", 45))).isoformat()
+    core = [r for r in docs if r["via"] == "산업 키"]   # 산업을 직접 다루는 자료는 날짜와 상관없이 전부
+    mem = sorted([r for r in docs if r["via"] != "산업 키" and (r.get("doc_date") or r.get("added") or "") >= cut],
+                 key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)[:cfg.get("related_max_per_report", 6)]
+    use = core + mem
+    todo = [r for r in use if r["status"] != "digest"]
+    cites = [f"마스터 노션 IB 자료: {r['broker'] if r.get('broker') not in (None, '', '미확인') else ''} {r.get('doc_date') or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ").replace("  ", " ")
+             for r in use if r["status"] == "digest"]
+    return todo, cites, use
+
+
+def industry_gate(dp, key, sub=None, members=()):
+    """산업 리포트 조립 관문 — 참조할 노션 자료의 요지가 없으면 멈추고, 있으면 출처에 인용을 붙인다(datapack sources 덮지 않음)"""
+    try:
+        todo, cites, _ = industry_need(key, sub, members)
+    except FileNotFoundError:
+        return dp
+    if todo:
+        raise SystemExit("노션 IB 자료 요지가 없다 — " + " · ".join(f"{r['name']}(id {r['id']}, 원문 radar/inbox/notion_files/{r['id']}.txt)" for r in todo[:6])
+                         + f" → 요지를 쓰고 py radar/notion_library.py --digest <id> <파일>. 목록: py radar/notion_library.py --industry {key}")
+    src = list(dp.get("sources") or [])
+    return {**dp, "sources": src + [c for c in cites if c not in src]}
+
+
 def citations(rows, cid, cfg):
     return [f"마스터 노션 자료: {r['broker']} {r['doc_date'] or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ") for r in usable(rows, cid, cfg) if r["status"] == "digest"]
 
@@ -381,6 +430,7 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
     ap.add_argument("--need")
+    ap.add_argument("--industry")   # 산업 키 → 참조할 노션 자료(2026-11-08)
     ap.add_argument("--sync")
     ap.add_argument("--queue", action="store_true")
     ap.add_argument("--put")
@@ -388,6 +438,22 @@ def main(argv):
     ap.add_argument("--pull", action="store_true")   # NOTION_TOKEN으로 색인·내려받기(2026-11-04)
     a = ap.parse_args(argv)
     cfg, rows = config(), read()
+    if a.industry:
+        sub, mem = None, ()
+        try:
+            sys.path.insert(0, str(common.ROOT / "scripts" / "industry"))
+            import weekly_pick
+            c = weekly_pick.cfg()
+            sub = (c["industries"].get(a.industry) or {}).get("sub")
+            mem = tuple(c["_members"].get(a.industry) or ())
+        except Exception:
+            pass
+        todo, cites, use = industry_need(a.industry, sub, mem)
+        print(f"[노션 자료·산업] {a.industry} — 참조 {len(use)}건, 요지 필요 {len(todo)}건")
+        for r in use:
+            print(f"{'요지 있음' if r['status'] == 'digest' else '요지 작성 필요'} | {r['via']} | {r['name']} | id {r['id']}"
+                  + ("" if r["status"] == "digest" else f" | 원문 radar/inbox/notion_files/{r['id']}.txt ({r['chars']}자)"))
+        return 0
     if a.pull:
         token = common.load_env().get("NOTION_TOKEN")
         if not token:

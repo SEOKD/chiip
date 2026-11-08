@@ -31,5 +31,11 @@ themes:
   - {match: ["Oil ?field", "Oilfield", "Energy Services", "Frac"], subs: [Oil & Gas Equipment & Services]}
   - {match: ["Aerospace", "Defen[cs]e"], subs: [Aerospace & Defense]}
   - {match: ["Machinery", "Automation", "Robot"], subs: [Industrial Machinery & Supplies & Components, Semiconductor Materials & Equipment]}
+industry_refs:   # 산업 리포트 키(정규식) → 노션 파일 이름 패턴. 세부 산업 분류에 없는 신흥 산업은 여기로 연결한다(마스터 지시 2026-11-08)
+  "quantum.*": ["Quantum"]
+  "(nuclear|smr).*": ["Nuclear", "\\bSMR\\b", "Uranium"]
+  "(space|satellite).*": ["\\bSpace\\b", "Satellite", "LEO"]
+  "(robot|humanoid).*": ["Robot", "Humanoid"]
+  "(photonic|optical|cpo).*": ["Photonic", "Optical", "\\bCPO\\b"]
 related_max_age_days: 45   # 관련 자료(테마·관련 종목)는 이 기간 안 자료만 요지를 의무로 한다 — 오래된 업종 자료로 작성이 막히지 않게
 related_max_per_report: 6  # 관련·테마 자료 중 요지 의무는 최신 6건까지(한 리포트 작성 시간 상한) — 요지는 파일 단위라 다른 종목 리포트에서 재사용된다

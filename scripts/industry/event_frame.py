@@ -292,6 +292,9 @@ def main(argv):
     ap.add_argument("--predictions", action="store_true")
     a = ap.parse_args(argv)
     dp = load(a.id)
+    if dp.get("industry_key"):   # 노션 IB 자료 요지·인용(마스터 지시 2026-11-08) — 사건 심층은 industry가 자유 글이라 industry_key(산업 키)를 적은 경우만
+        import weekly_frame
+        dp = {**weekly_frame.notion_ref({**dp, "industry": dp["industry_key"]}), "industry": dp["industry"]}
     d = build(dp)
     OUT.mkdir(parents=True, exist_ok=True)
     p = OUT / f"{dp['date'].replace('-', '')}_{dp['id']}.json"
