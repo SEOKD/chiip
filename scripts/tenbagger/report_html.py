@@ -676,6 +676,10 @@ def block(b):
                 cap = f'<b>{t(x.get("name"))}</b>' + (f' — {t(x["caption"])}' if x.get("caption") else "")
                 out.append(f'<figure class="ph"><img src="{ph["uri"]}" alt="{t(x.get("name"))}" loading="lazy"><figcaption>{cap}<div class="sm mut">{t(x.get("credit"))}</div></figcaption></figure>')
         return '<div class="phs">' + "".join(out) + "</div>" if out else ""
+    if k == "image":   # AI 개념도 + Chiip 이름표(마스터 지시 2026-11-08, scripts/tenbagger/image_view.py)
+        return image_html(b)
+    if k == "bom":
+        return bom_html(b)
     if k == "chart":
         c = b.get("chart") or {}
         fn = CHARTS.get(c.get("kind"))
@@ -684,6 +688,64 @@ def block(b):
         legend = "".join(f'<div class="sm mut">{t(x)}</div>' for x in under_lines(c))
         return f'<div class="card"><b>{t(c.get("title"))}</b>{fn(c)}{legend}</div>'
     return ""
+
+
+def _img_uri(rel):
+    import base64
+    p = ROOT / rel
+    if not p.exists():
+        return None
+    mime = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg"}.get(p.suffix.lower(), "image/png")
+    return f"data:{mime};base64," + base64.b64encode(p.read_bytes()).decode()
+
+
+def image_html(b):
+    """그림은 base64로 넣고(Artifact·보관 HTML 같은 파일), 번호 원·지시선은 SVG로 겹친다. 위치를 모르면 번호 범례만"""
+    uri = _img_uri(b.get("file", ""))
+    if not uri:
+        return f'<p class="sm mut">이미지 없음(파일 없음) — {t(b.get("title"))}</p>'
+    marks = []
+    for c in b.get("callouts") or []:
+        x, y = float(c["x"]) * 100, float(c["y"]) * 100
+        fill = "var(--c)" if c.get("own") else "var(--fg)"
+        marks.append(f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{min(x + 8, 97):.1f}" y2="{y:.1f}" stroke="{fill}" stroke-width="0.4"/>'
+                     f'<circle cx="{min(x + 10, 98):.1f}" cy="{y:.1f}" r="2.4" fill="{fill}"/>'
+                     f'<text x="{min(x + 10, 98):.1f}" y="{y + 1:.1f}" text-anchor="middle" style="font-size:2.8px;fill:var(--bg);font-weight:700">{int(c["no"])}</text>')
+    svg = f'<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">{"".join(marks)}</svg>' if marks else ""
+    legend = ""
+    if b.get("legend"):
+        legend = '<div class="sm">' + " · ".join(f'<b style="color:{"var(--c)" if own else "var(--fg)"}">{CIRCLED[int(no) - 1] if 0 < int(no) <= len(CIRCLED) else no}</b> {t(part)}' for no, part, own in b["legend"]) + "</div>"
+    return (f'<figure class="card"><b>사진 {t(b.get("photo"))}. {t(b.get("title"))}</b>'
+            f'<div style="position:relative;max-width:100%"><img src="{uri}" alt="{t(b.get("title"))}" style="width:100%;display:block">{svg}</div>'
+            f'{legend}<figcaption class="sm mut">{t(b.get("caption"))}</figcaption></figure>')
+
+
+CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮"
+
+
+def bom_html(b):
+    if b.get("scope") == "industry":
+        head = ["번호", "부품", "하는 일", "공급사", "Chiip 감시", "점유율·비중", "출처", "확인/추정"]
+    else:
+        head = ["번호", "부품", "하는 일", "공급사", "이 회사 위치", "원가 비중", "출처", "확인/추정"]
+    def rows(rs):
+        out = []
+        for r in rs:
+            gray = ' style="color:var(--mut)"' if r[-1] == "추정" else ""
+            own = ' style="color:var(--c);font-weight:700"' if r[4] == "이 회사" or str(r[4]).startswith("감시") else ""
+            cells = "".join(f"<td{own if i == 4 else ''}>{t(c)}</td>" for i, c in enumerate(r))
+            out.append(f"<tr{gray}>{cells}</tr>")
+        return "".join(out)
+    th = "".join(f"<th>{t(h)}</th>" for h in head)
+    html = f'<div class="card tw"><b>BOM(부품 구성)</b><table><tr>{th}</tr>{rows(b.get("rows") or [])}</table></div>'
+    if b.get("equip"):
+        html += f'<div class="card tw"><b>공정·장비(제품에 들어가지 않고 만드는 데 쓰는 것)</b><table><tr>{th}</tr>{rows(b["equip"])}</table></div>'
+    if b.get("candidates"):
+        html += '<div class="sm">후보 메모(감시 목록 밖 상장사 — 자동으로 넣지 않는다): ' + t(" · ".join(b["candidates"])) + "</div>"
+    if b.get("own_none"):
+        html += '<div class="sm mut">이 회사 부품 없음(고객의 최종 제품)</div>'
+    html += f'<div class="sm mut">BOM 기준일 {t(b.get("as_of") or "미확인")} · 출처 {t(b.get("source_note") or "표의 출처 열")} · 회색 행은 출처 없는 추정</div>'
+    return html
 
 
 # 내부 약어 → 풀어 쓴 말(마스터 지시 2026-10-29 "v2 기본이 뭐였더라? 암호로 해놓으면 직관적으로 못 알아보니 의미를 풀어서 표기하라")

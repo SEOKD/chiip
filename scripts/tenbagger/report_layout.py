@@ -449,6 +449,12 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if pressure_line:
         val["blocks"].append(pressure_line)
     out = [narrative_view.section3(dp, mm), narrative_view.portfolio3(dp)]
+    try:   # 제품·서비스 이미지 = 내러티브 절, 분해도 + BOM = 공급망 병목 첫머리(마스터 지시 2026-11-08, image_view)
+        import image_view
+        imgs = image_view.company_blocks(entity)
+    except Exception as exc:   # 이미지 단계가 실패해도 리포트는 멈추지 않는다
+        imgs = {"narrative": [{"type": "p", "text": f"이미지 없음({type(exc).__name__})"}], "supply": []}
+    out[0]["blocks"] = list(out[0].get("blocks") or []) + imgs["narrative"]
     if customer_sec:
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + customer_sec.pop("_sources")))
         out.append(customer_sec)
@@ -460,6 +466,9 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     margin_sec["blocks"] += input_view.margin_blocks(dp)
     if supply_sec:
         supply_sec["blocks"] += input_view.supply_blocks(dp)
+        supply_sec["blocks"][0:0] = imgs["supply"]
+    elif imgs["supply"]:
+        out.append({"h2": "공급망 병목", "blocks": imgs["supply"]})
     for part in (margin_sec, supply_sec, capacity_sec):
         if part:
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))

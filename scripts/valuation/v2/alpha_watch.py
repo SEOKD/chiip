@@ -261,6 +261,16 @@ def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None):
     if not (ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md").exists():   # 내러티브가 없으면 작성 일을 대기열에 올린다(2026-11-07 — 대기만 표시되고 아무도 쓰지 않던 구멍)
         enqueue(eid, r.get("name") or eid, "내러티브 미작성 — 알파 감지 3요인 발송 뒤", "내러티브")
     text = message(r, r["name"], alpha_total, reasons, update_note)
+    if send:   # 알파 감지 목록에 처음 오르면 리포트 이미지를 일괄로 미리 주문(가격 절반, 마스터 지시 2026-11-08) — 실패해도 알림은 간다
+        try:
+            sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+            import product_images as PI
+            if (PI.company_dir(eid) / "datapack.json").exists():
+                todo = [t for t in PI.targets_company(eid) if not PI.cached(t) and PI.budget_ok(t, True)[0]]
+                if todo:
+                    PI.order_batch(todo)
+        except Exception as exc:
+            print(f"[이미지 선주문 건너뜀] {eid}: {type(exc).__name__}")
     od = ROOT / "outputs" / "invest" / "valuation_v2"
     od.mkdir(parents=True, exist_ok=True)
     (od / f"{common.now_kst().strftime('%Y%m%d')}_{eid}.md").write_text(v2run.render(r), encoding="utf-8")

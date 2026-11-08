@@ -63,6 +63,10 @@
 | 21-14 | **방위 섹터·시가총액 구간(10-29 마스터 지시) — 마스터 확인 몫.** ① 방위 지도 `config/defense.yaml`의 기업·제품 대분류·방산 비중(exposure)을 한 번 훑어 빠진 회사(예: 한국 방산 — 지시 범위에 없어 넣지 않음)나 잘못 넣은 회사를 알려주기 ② EODHD 키(21-0 승인 건)를 `D:\local-only\secrets\.env`에 `EODHD_API_KEY=`로 넣으면 시가총액 구간 유니버스가 스크리너로 자동 확대(지금은 시드 + easyconomics 주간 갱신) ③ 선택: SAM.gov API 키(미 국방 계약 본문 — 지금은 국방부 사이트 자동 접속 차단으로 색인 제목만) | `config/defense.yaml`, `config/tenbagger.yaml` bands |
 | 22 | 미국 거점 회의 플랫폼(테일러·윌리엄슨 카운티·웨스트라피엣·티피카누 카운티) — 오스틴은 Legistar 확인됨 | `config/us_gov/sites.yaml` |
 
+## 리포트 이미지(2026-11-08, ADR-017) — 마스터 몫
+- [ ] **Gemini 선불 크레딧 충전**: 첫 호출이 HTTP 402 "prepayment credits are depleted"(과금 없음). AI Studio(https://ai.studio/projects) → 결제에서 충전한 뒤 Chiip에 알려 주시면 `product_images.py resume`으로 이번 달 생성을 다시 엽니다. 구글 예산 한도 ₩13,000은 그대로 둡니다.
+- [ ] **Pillow 설치 승인**: webp 변환·1600px·200KB 축소용(`pip install Pillow==11.0.0`). 승인 전에는 원본 형식으로 저장되고 검수에서 용량 경고.
+
 ## E. 실전 시험 (게이트 대신)
 
 | # | 할 일 |

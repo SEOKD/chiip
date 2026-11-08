@@ -1,0 +1,23 @@
+# 리포트 이미지(마스터 지시 2026-11-08, 지시서 v1.2 종목·v1.1 산업) — Gemini 이미지 API. 구현 scripts/tenbagger/product_images.py·image_check.py, ADR-017
+# 그림은 Gemini(글자 없는 개념도), 이름표·BOM 표·출처는 Chiip이 datapack/제품 BOM 사실로 얹는다.
+models:
+  default: gemini-3.1-flash-image   # 제품·서비스 (Nano Banana 2) — 2026-11-08 models 목록에서 확인
+  exploded: gemini-3-pro-image      # 분해도 (Nano Banana Pro)
+size: {default: "1K", exploded: "2K"}
+aspect: {product: "1:1", service: "16:9", exploded: "4:3"}
+price_usd: {gemini-3.1-flash-image: {"1K": 0.067, "2K": 0.101}, gemini-3-pro-image: {"2K": 0.134}}   # 2026-10 2차 자료 — 분기마다 Google 가격표로 갱신
+batch_discount: 0.5
+monthly_budget_usd: 9.0               # Chiip 장부 한도(약 ₩12,600) — 구글 예산 한도 ₩13,000보다 낮게(구글 비용 기록이 최대 24시간 늦다)
+google_cap_krw: 13000                 # 참고값(Budgets & caps). Chiip이 바꾸지 않는다
+industry_share: 0.4                   # 산업 리포트 몫(장부 scope=industry 합계) — 종목 리포트 이미지가 밀려나지 않게
+per_company_max: {product: 2, service: 1, exploded: 2}
+per_industry_report_max: {total: 3, exploded: 2}
+min_confirmed_parts: 6                # 분해도는 '확인' BOM 부품 6개 이상일 때만 — 모자라면 BOM 표만
+bom_stale_days: 90                    # BOM as_of가 이보다 오래되면 분해도만 다시 그린다
+retries: 1                            # 검수 실패 시 다시 그리기 1회
+approval_first: {company: 5, industry: 3}   # 처음 n건은 텔레그램 미리보기로 마스터 승인 뒤에만 리포트에 넣는다
+max_long_side: 1600
+max_kb: 200
+style: "plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style"
+banned: ["로고", "상표", "글자", "숫자", "워터마크", "실존 인물", "사진 같은 연출"]
+caption_fixed: "AI 생성 개념도 · 실제 제품·내부 구조·비율과 다를 수 있음"

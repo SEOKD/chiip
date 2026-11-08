@@ -187,7 +187,13 @@ def message(st, caption):
     return "\n".join(x for x in lines if x is not None)
 
 
-def send(src, caption="", dry=False, resend=False, reissue=False):
+def first_image(rep, prefer="exploded"):
+    """리포트 JSON의 이미지 블록 중 분해도(없으면 첫 이미지) — 텔레그램 사진 1장(마스터 지시 2026-11-08)"""
+    imgs = [b for s in rep.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "image"]
+    return next((b for b in imgs if b.get("kind") == prefer), imgs[0] if imgs else None)
+
+
+def send(src, caption="", dry=False, resend=False, reissue=False, photo=False):
     st = load(src)
     if not st or not (st.get("github") or {}).get("md"):
         raise SystemExit("GitHub 게시 기록 없음 — 텔레그램을 보내지 않는다")
@@ -212,6 +218,9 @@ def send(src, caption="", dry=False, resend=False, reissue=False):
         import notify
         sent = bool(notify.send(text, "REPORT", md=True))
         notify.run_ledger.record("publish", "chiip-tenbagger-report", output=st["stem"], ok=sent)
+        img = first_image(json.loads(Path(src).read_text(encoding="utf-8"))) if photo and sent and Path(src).exists() else None
+        if img and (ROOT / img["file"]).exists():   # 마스터 개인 봇만 — 공개 채널(딘스티커)에는 보내지 않는다
+            notify.send_document(str(ROOT / img["file"]), caption=f"사진 {img.get('photo')}. {img.get('title')} — {img.get('caption')}", level="REPORT")
     st["telegram"] = {"sent": tg.get("sent") or sent, "notion_ok": ok and sent, "at": now()}
     save(src, st)
     log(st["stem"], st["ticker"], "telegram", "ok" if sent else "fail", "노션 포함" if ok else "노션 실패 표시")
@@ -245,6 +254,7 @@ def main(argv):
     ap.add_argument("--dry", action="store_true", help="GitHub 게시·텔레그램 없이 흐름만")
     ap.add_argument("--resend", action="store_true", help="이미 보낸 리포트를 새 링크로 다시 보낸다")
     ap.add_argument("--reissue", action="store_true", help="어닝콜 전문을 반영한 수정판을 보낸다(report_refresh.py)")
+    ap.add_argument("--photo", action="store_true", help="분해도(없으면 첫 이미지) 1장을 사진으로 함께 보낸다(2026-11-08)")
     a = ap.parse_args(argv)
     if a.cmd == "pending":
         r = pending()
@@ -264,7 +274,7 @@ def main(argv):
             ap.error("--page 또는 --fail")
         r = notion(a.json, a.page, a.fail, a.stock_page, a.replaced)
     else:
-        r = send(a.json, a.caption, a.dry, a.resend, a.reissue)
+        r = send(a.json, a.caption, a.dry, a.resend, a.reissue, a.photo)
     print(json.dumps(r, ensure_ascii=False, indent=1))
     return 0
 

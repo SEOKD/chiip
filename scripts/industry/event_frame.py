@@ -189,12 +189,46 @@ def build(dp, cfg=None):
                                           "rows": [[x["date"], x["what"], x.get("metric", ""), f"{float(x['p']):.0%}", x.get("confirms", "")] for x in dp["checkpoints"]]},
                                          {"type": "p", "text": nar.get("kill", "")}]})
     sec.append({"h2": "종료 상태", "blocks": [{"type": "p", "text": nar.get("status", "")}]})
+    image_plan = place_images(dp, sec, cfg)
     gallery = charts(dp, rows)
     return {"kind": "industry_event", "id": dp["id"], "title": dp["title"], "subtitle": dp.get("subtitle", ""), "date": dp["date"], "industry": dp["industry"],
             "event": dp["event"]["name"], "value_add": dp.get("value_add", []), "verdict": {"view": nar.get("view", "")},
             "ratings": [{"name": r["name"], "rating": r["rating"]} for r in rows],
             "tiles": dp.get("tiles") or [], "summary": [{"q": q, "a": a} for q, a in nar.get("summary", [])], "gallery": gallery, "sections": sec,
-            "sources": dp.get("sources") or [], "terms": dp.get("terms") or {}, "names": dp.get("names") or []}
+            "sources": dp.get("sources") or [], "terms": dp.get("terms") or {}, "names": dp.get("names") or [], "image_plan": image_plan}
+
+
+IMG_CONDITIONS = ("구조", "병목 위치", "세대 비교", "생소한 제품", "공급사 지도")   # 산업 이미지 지시서 1절 — 하나라도 해당해야 넣는다
+
+
+def place_images(dp, sec, cfg=None):
+    """datapack images[{section, product, condition, view?}] → 그 절 첫머리에 제품·분해도·BOM 블록(마스터 지시 2026-11-08 산업판 1·5절).
+    리포트당 최대 3장(분해도 2). 조건이 표에 없거나 절이 없으면 넣지 않는다. 판정 기록(절·조건·종류·재사용·예상 비용)을 돌려준다"""
+    plan = []
+    want = dp.get("images") or []
+    if not want:
+        return plan
+    sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+    import image_view
+    import product_images as PI
+    k = 0
+    c = PI.cfg()
+    lim = c["per_industry_report_max"]
+    for w in want[:lim["total"]]:
+        target = next((s for s in sec if s["h2"].startswith(w["section"])), None)
+        if not target or w.get("condition") not in IMG_CONDITIONS:
+            plan.append({"section": w.get("section"), "condition": w.get("condition"), "kind": None, "reuse": None, "usd": 0, "why": "절 없음" if not target else "조건 표 밖"})
+            continue
+        try:
+            blocks, k = image_view.product_blocks(w["product"], k, w.get("view"), c)
+        except (OSError, ValueError, KeyError) as exc:
+            plan.append({"section": w["section"], "condition": w["condition"], "kind": None, "reuse": None, "usd": 0, "why": f"BOM 없음({type(exc).__name__})"})
+            continue
+        target["blocks"][0:0] = blocks
+        for t in PI.targets_product(w["product"], w.get("view"), c):
+            hit = PI.cached(t, c)
+            plan.append({"section": w["section"], "condition": w["condition"], "kind": t["kind"], "product": w["product"], "reuse": bool(hit), "usd": 0 if hit else PI.est_cost(t, True, c)})
+    return plan
 
 
 def charts(dp, rows):
