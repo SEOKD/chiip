@@ -252,6 +252,52 @@ def run_job(job, tok):
     return out
 
 
+ROLE_EN = {"IB": "IB", "Insights": "Insight", "Informations": "Information", "Stocks": "Stocks", "채널체크": "Channel Check"}
+SECTION = ("결론", "핵심", "Chiip 판단", "반대 근거", "다음 확인", "기업", "산업")
+
+
+def tidy(text):
+    """노션 텔레그램 문안 다듬기(마스터 지시 2026-11-08 "노션 관련 텔레그램 피드도 가독성 있게") — 결정론, 내용은 바꾸지 않는다.
+    ① 머리 '[노션 역할]' → '[Chiip Notion · 역할]', 머리의 '(1차 판정, 미검증)'은 맨 아래 꼬리로 ② 저장소 경로 줄(상세: outputs/…)은 휴대폰에서 못 여니 뺀다
+    ③ 절 이름(결론·핵심·Chiip 판단·반대 근거·다음 확인) 앞에 빈 줄 ④ 목록 기호는 '•'로 통일 ⑤ 빈 줄은 한 줄까지 ⑥ 꼬리(판정 상태·투자 권유 아님)는 한 줄로 모은다"""
+    lines = [l.rstrip() for l in text.strip().splitlines()]
+    tail = []
+    out = []
+    for i, l in enumerate(lines):
+        if i == 0:
+            m = re.match(r"^\[노션\s*([^\]]*)\]\s*(.*)$", l)
+            if m:
+                role = m.group(1).strip()
+                l = f"[Chiip Notion · {ROLE_EN.get(role, role)}] {m.group(2)}".rstrip()
+            if "1차 판정" in l:
+                l = re.sub(r"\s*\(1차 판정[^)]*\)", "", l)
+                tail.append("1차 판정·미검증")
+        if re.match(r"^\(?1차 판정[,·]?\s*미검증\)?$", l.strip()):
+            tail.append("1차 판정·미검증")
+            continue
+        if re.match(r"^(상세|상세 파일|파일)\s*[:：]\s*(outputs|knowledge|radar)/", l.strip()):
+            continue
+        if l.strip() in ("공개 자료 기반 분석이며 투자 권유가 아님", "공개 자료 기반 분석이며 투자 권유가 아님."):
+            tail.append("공개 자료 기반 분석이며 투자 권유가 아님")
+            continue
+        l = re.sub(r"^\s*[-*·]\s+", "• ", l)
+        if i > 0 and any(l.startswith(x) for x in SECTION) and out and out[-1] != "":
+            out.append("")
+        if l == "" and (not out or out[-1] == ""):
+            continue
+        out.append(l)
+    while out and out[-1] == "":
+        out.pop()
+    t = list(dict.fromkeys(tail))
+    return "\n".join(out) + ("\n\n" + " · ".join(t) if t else "")
+
+
+def send_tg(path):
+    """다듬은 문안을 보낸다 — 감시기와 예약 작업이 같은 길로(py radar/notion_watch.py --send-tg <파일>)"""
+    import notify
+    return notify.send(tidy(Path(path).read_text(encoding="utf-8")), "NOTION")
+
+
 def tg_path(job, day=None):
     day = day or common.now_kst().strftime("%Y%m%d")
     return REPORTS / f"{day}_{job['page_id'].replace('-', '')[:8]}_tg.txt"
@@ -292,7 +338,7 @@ def worker():
                 _jobs_today(1)
                 tg = tg_path(job)
                 if tg.exists():
-                    notify.send(tg.read_text(encoding="utf-8"), "NOTION")
+                    send_tg(tg)
                 # 치입 검토 하위 페이지를 만들면 부모 수정 시각도 바뀐다 → 처리 직후 시각으로 표시
                 edited = job.get("edited")
                 try:
@@ -328,7 +374,15 @@ def main(argv):
     ap.add_argument("--worker", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--baseline", action="store_true")
+    ap.add_argument("--send-tg")   # 텔레그램 문안 파일을 다듬어 보낸다(예약 작업용, 2026-11-08)
+    ap.add_argument("--preview")   # 다듬은 결과만 출력
     a = ap.parse_args(argv)
+    if a.preview:
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(tidy(Path(a.preview).read_text(encoding="utf-8")))
+        return 0
+    if a.send_tg:
+        return 0 if send_tg(a.send_tg) else 1
     if a.worker:
         return worker()
     tok = token()
