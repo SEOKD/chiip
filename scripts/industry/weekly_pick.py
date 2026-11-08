@@ -26,14 +26,115 @@ PICKS = OUT / "picks.csv"
 STATE = ROOT / "radar" / "state"
 
 
+TAX = ROOT / "config" / "industry_taxonomy.yaml"
+
+
 def cfg():
-    return yaml.safe_load(CFG.read_text(encoding="utf-8"))
+    """industries = 시장 세부 산업(GICS) 묶음 — config/industry_taxonomy.yaml, 마스터 지시 2026-11-08. 옛 분야 모듈 11개는 themes로 남아 큰 세부 산업을 나누는 데 쓴다."""
+    c = yaml.safe_load(CFG.read_text(encoding="utf-8"))
+    c["themes"] = c.pop("industries")
+    c["industries"], c["_members"] = groups(c)
+    return c
+
+
+def slug(s):
+    return "".join(ch if ch.isalnum() else "-" for ch in s.lower()).strip("-").replace("--", "-").replace("--", "-")
+
+
+def classify(tax=None):
+    """{유니버스 종목 id: 세부 산업} — 거래소 접미사가 붙은 항목(RR.LSE)은 정확히, 나머지는 접미사를 뗀 티커로 맞춘다"""
+    tax = tax or yaml.safe_load(TAX.read_text(encoding="utf-8"))
+    exact, base = {}, {}
+    for sub, src in (tax.get("members") or {}).items():
+        for kind in ("fiscal", "assigned"):
+            for t in src.get(kind) or []:
+                (exact if "." in str(t) else base)[str(t).upper()] = (sub, kind)
+    out = {}
+    for m in universe():
+        tk = str(m["ticker"] or "").upper()
+        hit = exact.get(tk) or (None if any(k.split(".")[0] == tk.split(".")[0] for k in exact) and tk not in exact else base.get(tk.split(".")[0]))
+        if hit:
+            out[m["id"]] = {**m, "sub": hit[0], "source": hit[1]}
+    return out
+
+
+def groups(c, tax=None):
+    """세부 산업 → 산업 묶음. min_members 미만은 상위 '산업'으로, 그래도 미만이면 뺀다. split_over를 넘으면 테마로 한 번 더 나눈다."""
+    tax = tax or yaml.safe_load(TAX.read_text(encoding="utf-8"))
+    meta, etf, n = tax["sub"], tax.get("etf") or {}, c["min_members"]
+    cls = classify(tax)
+    by = {}
+    for m in cls.values():
+        by.setdefault(m["sub"], []).append(m)
+    theme_of = {}
+    for t, ms in theme_members(c).items():
+        for m in ms:
+            theme_of.setdefault(m["id"], t)
+    inds, mem, up = {}, {}, {}
+    def put(gid, name, ms, info):
+        inds[gid] = {"name": name, "etf": etf.get(info[2]) or etf.get(info[3]) or "AMEX:SPY", "sub": info[0], "industry": info[1], "sector": info[3]}
+        mem[gid] = ms
+    for sub, ms in sorted(by.items(), key=lambda x: -len(x[1])):
+        ko, ind, grp, sec = meta[sub]
+        if len(ms) < n:
+            up.setdefault(ind, {"ms": [], "info": (sub, ind, grp, sec)})["ms"] += ms
+            continue
+        split = {}
+        for m in ms:
+            split.setdefault(theme_of.get(m["id"]), []).append(m)
+        kids = {t: tm for t, tm in split.items() if t and len(tm) >= n}
+        if len(ms) <= tax.get("split_over", 15) or len(kids) < 2:   # 테마 둘 이상으로 갈릴 때만 나눈다
+            put(slug(sub), ko, ms, (sub, ind, grp, sec))
+            continue
+        rest = [m for t, tm in split.items() if t not in kids for m in tm]
+        for t, tm in kids.items():
+            put(f"{slug(sub)}.{t}", f"{ko} — {c['themes'][t]['name']}", tm, (sub, ind, grp, sec))
+        if len(rest) >= n:
+            put(slug(sub), f"{ko} — 기타", rest, (sub, ind, grp, sec))
+        else:   # 남은 종목이 대표성 미달이면 가장 큰 테마 묶음에 붙인다(빠뜨리지 않는다)
+            mem[f"{slug(sub)}.{max(kids, key=lambda t: len(kids[t]))}"] += rest
+    for ind, v in up.items():
+        same = [g for g, i in inds.items() if i["industry"] == ind]
+        if len(v["ms"]) >= n:
+            subs = sorted({m["sub"] for m in v["ms"]})
+            put(slug(ind), " · ".join(meta[s][0] for s in subs), v["ms"], (" / ".join(subs),) + v["info"][1:])
+        elif same:   # 같은 '산업'의 묶음이 있으면 거기에 붙인다(재생에너지 → IPP, 건설기계 → 산업 기계)
+            g = max(same, key=lambda x: len(mem[x]))
+            mem[g] += v["ms"]
+            inds[g]["sub"] += " / " + v["info"][0]
+    return inds, mem
+
+
+def universe():
+    """감시 목록 + 알파 유니버스 + 실적 감시 추가 종목 [{id, name, ticker, korea}]"""
+    seen, out = set(), []
+    with (ROOT / "config" / "watchlist.csv").open(encoding="utf-8", newline="") as f:
+        for r in csv.DictReader(f):
+            if r["entity_id"] not in seen:
+                seen.add(r["entity_id"])
+                out.append({"id": r["entity_id"], "name": r["name"], "ticker": r.get("ticker"), "korea": _kr(r.get("ticker"))})
+    for f, key in (("valuation.yaml", "universe"), ("earnings_watch.yaml", "extra")):
+        for u in (yaml.safe_load((ROOT / "config" / f).read_text(encoding="utf-8")) or {}).get(key) or []:
+            if u["id"] not in seen:
+                seen.add(u["id"])
+                tk = u.get("code") or u.get("jp_code") or u.get("ticker")
+                out.append({"id": u["id"], "name": u.get("name"), "ticker": tk, "korea": u.get("region") == "KR" or _kr(tk)})
+    return out
+
+
+def _kr(tk):
+    t = str(tk or "").split(".")[0]
+    return t.isdigit() and len(t) == 6
 
 
 def members(c=None):
-    """{산업: [{id, name, ticker}]} — config/watchlist.csv keywords_ref"""
-    c = c or cfg()
-    out = {k: [] for k in c["industries"]}
+    """{산업(시장 세부 산업 묶음): [{id, name, ticker, korea, sub, source}]}"""
+    return (c or cfg())["_members"]
+
+
+def theme_members(c):
+    """{테마(옛 분야 모듈): [{id, name, ticker}]} — config/watchlist.csv keywords_ref + 유니버스 sub 라벨"""
+    out = {k: [] for k in c["themes"]}
     with (ROOT / "config" / "watchlist.csv").open(encoding="utf-8", newline="") as f:
         for r in csv.DictReader(f):
             for tag in (r.get("keywords_ref") or "").split(";"):

@@ -19,7 +19,7 @@ recency_penalty: 3.0       # 10점 척도 감점(최근 쓴 산업)
 min_members: 3
 catalyst_days: 14
 news_days: 7
-industries:                # id = config/watchlist.csv keywords_ref(분야 모듈) — 구성 종목은 감시 목록에서 자동
+industries:                # 테마(옛 분야 모듈, keywords_ref) — 2026-11-08부터 선정 단위는 시장 세부 산업(config/industry_taxonomy.yaml), 테마는 큰 세부 산업을 나누는 데만 쓴다
   dram-hbm: {name: "DRAM·HBM", etf: "NASDAQ:SMH"}
   nand-storage: {name: "NAND·스토리지", etf: "NASDAQ:SMH"}
   foundry-logic-ip: {name: "파운드리·로직·IP", etf: "NASDAQ:SMH"}

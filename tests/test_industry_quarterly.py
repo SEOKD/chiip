@@ -31,11 +31,11 @@ class TestQuarterly(unittest.TestCase):
                                   "q": [{"period": "2026-09-03", "rev": 54.2, "gp": 47.0}, {"period": "2026-05-28", "rev": 41.5}, {"period": "2026-02-26", "rev": 23.9},
                                         {"period": "2025-11-27", "rev": 13.6}, {"period": "2025-08-28", "rev": 11.3, "gp": 5.05}],
                                   "inv": [{"period": "2026-09-03", "inventory": 10.4}, {"period": "2026-05-28", "inventory": 8.6}], "capex": [], "next_q": {"rev": 63.1}}]), encoding="utf-8")
-        self.assertEqual(IQ.put("nand-storage", f, "2026Q3"), 1)
-        share, n, tot, _ = IQ.progress("nand-storage", "2026Q3")
+        self.assertEqual(IQ.put("semiconductors.dram-hbm", f, "2026Q3"), 1)
+        share, n, tot, _ = IQ.progress("semiconductors.dram-hbm", "2026Q3")
         self.assertEqual(n, 1)
         self.assertLess(share, 0.8)
-        rows = {r["id"]: r for r in QF.member_rows("2026Q3", "nand-storage")}
+        rows = {r["id"]: r for r in QF.member_rows("2026Q3", "semiconductors.dram-hbm")}
         mu = rows["co-micron"]
         self.assertAlmostEqual(mu["rev_yoy"], 54.2 / 11.3 - 1, places=4)
         self.assertAlmostEqual(mu["gpm_chg"], 47.0 / 54.2 - 5.05 / 11.3, places=4)
