@@ -1,6 +1,6 @@
 # chiip-catchup — 예약 작업 누락 재실행 (마스터 지시 2026-11-04 "각 기능이 주기대로 실행 실패하면 넘어간 태스크를 반드시 재시행하는 구조")
 
-매시간 20·50분. 판정은 `scripts/ops/catchup.py`가 한다. 모델은 목록을 받아 저장하고, 재실행을 부르는 일만 한다.
+3시간마다 20분(00·03·06·09·12·15·18·21시, 마스터 지시 2026-11-08 — 이전 매시간 20·50분). 누락 탐색은 지난 24시간이라 주기가 길어도 빠지지 않는다. 판정은 `scripts/ops/catchup.py`가 한다. 모델은 목록을 받아 저장하고, 재실행을 부르는 일만 한다.
 
 1. `list_scheduled_tasks`를 부른다. 켜진 작업마다 `list_task_runs`를 한 번씩 부른다. 자기 자신(chiip-catchup)은 빼고, 1회성 작업도 뺀다.
 2. `{"now": "<지금 KST ISO>", "tasks": [목록 행에 "runs": 실행 목록을 더한 것]}`을 `radar/state/catchup_in.json`에 쓴다(git 제외). 그다음 `py scripts/ops/catchup.py radar/state/catchup_in.json`을 실행한다.
