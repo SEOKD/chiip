@@ -2,7 +2,9 @@
 
 > "Chip pulse 등 나머지 6개의 추론을 재평가하는 Chip proviser를 만들어라. proviser는 이들의 추론 방식과 다른 접근 방법으로 사고하며 이들 추론 점수를 평가하고, 10점 만점에 9점 미만일 경우 10점으로 끌어올릴 수 있는 근거를 생성하고 이를 각 기능의 작업지시서에 넣어라." 마스터는 기능을 6개만 남겼다 — 프로바이저는 새 기능을 만들지 않고 6개를 고친다.
 
-## 대상 (예약 작업 7개 — 2026-10-29 마스터 지시로 portfolio 추가)
+## 대상 — 켜진 반복 예약 작업 전부(2026-11-09 마스터 지시 "모든 기능, 앞으로 새로 나올 기능도")
+대상과 표본 경로의 원본은 `config/proviser_targets.yaml`이고 `scripts/proviser/targets.py`가 매 회차 예약 작업 목록으로 갱신한다(새 기능 자동 편입). 아래 표는 2026-10-29 당시 7개의 상세 설명이다.
+
 | taskId | 이름 | 산출물(평가 표본) |
 |---|---|---|
 | chiip-pulse | Chiip pulse (5분 앱 예약, 항상 켜 둔다) | outputs/article/sources/ (`*_tg.txt`, log.csv, `*_alpha_tg.txt`), knowledge/models/alpha/judgments/ 당일분, radar/pulse/ |
