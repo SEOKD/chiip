@@ -38,7 +38,7 @@ def bom_checks(bom, scope):
     conf = P.confirmed(bom)
     out.append(("확인 항목 source", 1 if all(x.get("source") for x in conf) else 0))
     if scope == "company":
-        has = any(x.get("this_company") for x in bom.get("items") or []) or bom.get("this_company_none")
+        has = any(x.get("this_company") for x in bom.get("items") or []) or bom.get("this_company_none") or bom.get("this_company_product")   # 회사 자체 제품의 분해도
         out.append(("이 회사 부품 표시", 1 if has else 0))
     else:
         miss = [s["name"] for x in conf for s in x.get("suppliers") or [] if not s.get("source")]
@@ -57,7 +57,7 @@ def check(t, meta, c=None):
     items.append(("눈 검수(로고·글자·인물·사진 연출)", 1 if v.get("ok") is True else 0 if v.get("ok") is False else 0.5))
     if t["kind"] == "exploded":
         n = len(P.confirmed(t["bom"]))
-        items.append(("확인 부품 6개 이상", 1 if n >= c["min_confirmed_parts"] else 0))
+        items.append((f"확인 부품 {c['min_confirmed_parts']}개 이상", 1 if n >= c["min_confirmed_parts"] else 0))
         if v.get("parts") is not None:
             items.append(("부품 덩어리 수 ±1", 1 if abs(int(v["parts"]) - n) <= 1 else 0))
         if v.get("order_ok") is not None:

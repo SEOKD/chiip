@@ -35,9 +35,12 @@ class TestImages(unittest.TestCase):
         self.assertNotIn("렌즈", p)          # '추정' 부품은 그리지 않는다
         self.assertEqual(len(P.ordered(BOM)), 6)
 
-    def test_min_six_confirmed(self):
-        few = {**BOM, "items": BOM["items"][:5]}
-        self.assertLess(len(P.confirmed(few)), P.cfg()["min_confirmed_parts"])
+    def test_min_one_confirmed(self):   # 2026-11-08 마스터 지시 — 부품 1개라도 있으면 분해도
+        self.assertEqual(P.cfg()["min_confirmed_parts"], 1)
+        one = {**BOM, "items": BOM["items"][:1]}
+        self.assertGreaterEqual(len(P.confirmed(one)), P.cfg()["min_confirmed_parts"])
+        none = {**BOM, "items": [BOM["items"][-1]]}   # '추정'만이면 그리지 않는다
+        self.assertEqual(len(P.confirmed(none)), 0)
 
     def test_budget_and_google_cap(self):
         c = P.cfg()
@@ -114,7 +117,7 @@ class TestEnsure(unittest.TestCase):
 
     def test_retries_until_pass_with_fix_text(self):
         calls = []
-        P.vertex_generate = lambda t, c=None, model=None, extra="", quality=None: (calls.append(extra) or (bytes([255, 216]) + b"x" * 1000, "image/jpeg"))
+        P.vertex_generate = lambda t, c=None, model=None, extra="", quality=None, size=None: (calls.append(extra) or (bytes([255, 216]) + b"x" * 1000, "image/jpeg"))
         seq = iter([{"ok": False, "reasons": ["text"], "raw": {}}, {"ok": True, "reasons": [], "raw": {"note": "ok"}}])
         st, meta = P.ensure(self.t, qa=lambda f, k, n, c: next(seq))
         self.assertEqual(st, "pass")
@@ -123,7 +126,7 @@ class TestEnsure(unittest.TestCase):
 
     def test_model_fallback(self):
         used = []
-        def gen(t, c=None, model=None, extra="", quality=None):
+        def gen(t, c=None, model=None, extra="", quality=None, size=None):
             used.append(model)
             if len(used) == 1:
                 e = Exception("quota"); e.code = 429; raise e

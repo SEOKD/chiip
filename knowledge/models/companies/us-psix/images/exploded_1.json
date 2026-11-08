@@ -1,0 +1,94 @@
+{
+ "file": "exploded_1.jpg",
+ "kind": "exploded",
+ "name": "전력 시스템(발전기·데이터센터)",
+ "prompt": "Exploded isometric technical illustration of a generic Power Systems (Generator Sets & Data Center Power), components separated along one vertical axis in this order (위→아래): Enclosure, Engine, Switchgear, Fuel System. plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style. Leave clear empty space beside each component for callout labels. No text, no letters, no numbers, no logos.",
+ "prompt_ko": "전력 시스템(발전기·데이터센터) — 분해도 개념도",
+ "model": "gemini-3.1-flash-image",
+ "size": "1K",
+ "made_at": "2026-11-08T14:49+09:00",
+ "usd": 0.067,
+ "batch": false,
+ "hash": "e6a5bea484ee1e25",
+ "bom_as_of": "2026-11-08",
+ "bytes": 77112,
+ "convert": "Pillow 없음 — 원본 형식 저장(webp 변환·축소 안 함)",
+ "scope": "company",
+ "view": null,
+ "source": "Gemini API",
+ "check": {
+  "items": [
+   [
+    "메타·해시",
+    1
+   ],
+   [
+    "고정 캡션",
+    1
+   ],
+   [
+    "용량",
+    1
+   ],
+   [
+    "눈 검수(로고·글자·인물·사진 연출)",
+    1
+   ],
+   [
+    "확인 부품 1개 이상",
+    1
+   ],
+   [
+    "부품 덩어리 수 ±1",
+    1
+   ],
+   [
+    "층 순서",
+    1
+   ],
+   [
+    "확인 항목 source",
+    1
+   ],
+   [
+    "이 회사 부품 표시",
+    1
+   ]
+  ],
+  "result": "pass",
+  "pending_visual": false
+ },
+ "approved": null,
+ "attempt": 3,
+ "prompt_extra": "Absolutely no text of any kind: no letters, no digits, no labels, no markings, no screens showing characters; all surfaces plain.",
+ "visual": {
+  "ok": true,
+  "reason": "",
+  "parts": 4,
+  "order_ok": true,
+  "by": "Gemini 비전 자동 검수",
+  "note": "The image is an exploded view illustration of a generator assembly."
+ },
+ "callouts": [
+  {
+   "no": 1,
+   "x": 0.33,
+   "y": 0.17
+  },
+  {
+   "no": 4,
+   "x": 0.33,
+   "y": 0.42
+  },
+  {
+   "no": 7,
+   "x": 0.33,
+   "y": 0.63
+  },
+  {
+   "no": 8,
+   "x": 0.33,
+   "y": 0.86
+  }
+ ]
+}

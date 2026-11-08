@@ -41,10 +41,10 @@ def image_block(t, m, letter, c=None):
 def bom_block(bom, scope, watch=None):
     items = sorted(bom.get("items") or [], key=lambda x: x.get("no") or 0)
     if scope == "company":
-        rows = [[x.get("no"), x["part"], x.get("role") or "", x.get("supplier") or "미확인", "이 회사" if x.get("this_company") else (x.get("upstream") or ""),
+        rows = [[x.get("no"), x["part"], x.get("role") or "", x.get("supplier") or "미확인", "이 회사" if x.get("this_company") else (x.get("upstream") or ("이 회사 제품의 부품" if bom.get("this_company_product") else "")),
                  f"{x['cost_share'] * 100:.0f}%" if isinstance(x.get("cost_share"), (int, float)) else UNKNOWN, x.get("source") or "", x.get("confidence") or "추정"]
                 for x in items if x.get("kind") not in ("장비", "소재")]
-        return {"type": "bom", "scope": scope, "rows": rows, "as_of": bom.get("as_of"), "source_note": bom.get("source_note") or "",
+        return {"type": "bom", "scope": scope, "rows": rows, "as_of": bom.get("as_of"), "source_note": (bom.get("source_note") or "") + (f" · 근거: {bom['basis']}" if bom.get("basis") else ""),
                 "own_none": bool(bom.get("this_company_none"))}
     watch = watch if watch is not None else _watch_ids()
     rows, equip, cands = [], [], []
@@ -91,7 +91,7 @@ def company_blocks(cid, c=None):
     # 확인 부품이 6개 미만이라 분해도를 그리지 않는 제품도 BOM 표는 넣는다
     dp = __import__("json").loads((P.company_dir(cid) / "datapack.json").read_text(encoding="utf-8"))
     for p in ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []:
-        if p.get("bom") and len(P.confirmed(p["bom"])) < c["min_confirmed_parts"]:
+        if p.get("bom") and 0 < len(P.confirmed(p["bom"])) < c["min_confirmed_parts"]:
             out["supply"].append({"type": "p", "text": f"{p['name']}: 출처 있는 부품이 {len(P.confirmed(p['bom']))}개라 분해도 대신 BOM 표만 싣는다."})
             out["supply"].append(bom_block(p["bom"], "company"))
     return out

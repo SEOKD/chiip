@@ -69,7 +69,34 @@ def ordered(bom):
     return sorted(confirmed(bom), key=lambda x: x.get("no") or 0)
 
 
-def targets_company(cid, c=None):
+def auto_bom(cid, p, c=None, discover=True):
+    """datapack bom이 없을 때 웹 검색 부품(bom_auto.json). 없거나 오래됐고 discover면 찾아서 저장(장부 bom)"""
+    c = c or cfg()
+    f = company_dir(cid) / "bom_auto.json"
+    store = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    hit = store.get(p["name"])
+    fresh = hit and (date.today() - date.fromisoformat(hit["as_of"])).days <= (c.get("bom_auto") or {}).get("stale_days", 90)
+    if fresh or not discover or not (c.get("bom_auto") or {}).get("enabled"):
+        return hit
+    ok, why = budget_ok({"scope": "company"}, False, c) if False else (True, "")
+    if month_stopped() or month_spend() + (c["bom_auto"].get("usd_per_call") or 0) > c["monthly_budget_usd"]:
+        return hit
+    import bom_discover
+    dp = json.loads((company_dir(cid) / "datapack.json").read_text(encoding="utf-8"))
+    try:
+        bom, name_en = bom_discover.discover(p["name"], dp.get("company") or dp.get("name") or cid, p.get("what"), c)
+    except Exception as e:
+        log({"scope": "company", "id": cid, "kind": "bom", "n": 0}, (c.get("bom_auto") or {}).get("model"), "-", False, 0, "bom_error")
+        return hit
+    log({"scope": "company", "id": cid, "kind": "bom", "n": 0}, c["bom_auto"]["model"], "-", False, c["bom_auto"].get("usd_per_call") or 0, "ok")
+    bom["name_en"] = name_en
+    store[p["name"]] = bom
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(json.dumps(store, ensure_ascii=False, indent=1), encoding="utf-8")
+    return bom
+
+
+def targets_company(cid, c=None, discover=False):
     c = c or cfg()
     dp = json.loads((company_dir(cid) / "datapack.json").read_text(encoding="utf-8"))
     prods = ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []
@@ -81,10 +108,14 @@ def targets_company(cid, c=None):
     for i, p in enumerate(svcs, 1):
         out.append({"scope": "company", "id": cid, "kind": "service", "n": i, "name": p["name"], "use": p.get("use_en") or p.get("use") or p.get("what") or p["name"], "name_en": p.get("name_en"), "dir": company_dir(cid) / "images"})
     n = 0
-    for p in prods:
-        if p.get("bom") and len(confirmed(p["bom"])) >= c["min_confirmed_parts"] and n < mx["exploded"]:
+    for p in [x for x in prods if x.get("kind") != "서비스"]:   # 분해도는 물리 제품만
+        if n >= mx["exploded"]:
+            break
+        bom = p.get("bom") or auto_bom(cid, p, c, discover)
+        if bom and len(confirmed(bom)) >= c["min_confirmed_parts"]:
             n += 1
-            out.append({"scope": "company", "id": cid, "kind": "exploded", "n": n, "name": p["name"], "bom": p["bom"], "dir": company_dir(cid) / "images"})
+            out.append({"scope": "company", "id": cid, "kind": "exploded", "n": n, "name": p["name"], "name_en": p.get("name_en") or bom.get("name_en"),
+                        "bom": bom, "dir": company_dir(cid) / "images"})
     return out
 
 
@@ -235,7 +266,7 @@ def _get(url, timeout=60):
     return json.load(urllib.request.urlopen(urllib.request.Request(url, headers={"x-goog-api-key": _key()}), timeout=timeout))
 
 
-def vertex_generate(t, c=None, model=None, extra="", quality=None):
+def vertex_generate(t, c=None, model=None, extra="", quality=None, size=None):
     """Vertex AI(google-genai, ADC 인증) — (bytes, mime). 인증 파일·토큰은 읽거나 찍지 않는다(라이브러리가 쓴다)"""
     import warnings
     from google import genai
@@ -243,7 +274,7 @@ def vertex_generate(t, c=None, model=None, extra="", quality=None):
     c = c or cfg()
     warnings.filterwarnings("ignore", message=".*quota project.*")
     m, s, a = model_size(t, c)
-    m = model or m
+    m, s = model or m, size or s
     v = c["vertex"]
     cl = genai.Client(vertexai=True, project=v["project"], location=v.get("location", "global"))
     def call(**kw):
@@ -382,16 +413,18 @@ def ensure(t, c=None, qa=None):
     cap = est_cost(t, False, c) * e.get("cost_cap_x", 3)
     spent, extra, reasons, mi = 0.0, "", [], 0
     n_parts = len(ordered(t["bom"])) if t["kind"] == "exploded" else None
-    for i in range(e.get("max_attempts", 3)):
+    size_over, i, calls = None, 0, 0
+    while i < e.get("max_attempts", 3) and calls < e.get("max_calls", 5):   # 그린 장수만 시도로 센다 — 할당량·모델 오류는 다음 모델로(호출 상한 5)
+        calls += 1
         ok, why = budget_ok(t, False, c)
         if not ok:
             log(t, models[mi], model_size(t, c)[1], False, 0, why if why.startswith("over_budget") else "stopped")
             return why, None
         if spent + est_cost(t, False, c) > cap + 1e-9:
             break
-        model, size = models[mi], model_size(t, c)[1]
+        model, size = models[mi], size_over or model_size(t, c)[1]
         try:
-            raw, mime = vertex_generate(t, c, model=model, extra=extra, quality=qs[min(i, len(qs) - 1)])
+            raw, mime = vertex_generate(t, c, model=model, extra=extra, quality=qs[min(i, len(qs) - 1)], size=size)
         except Exception as ex:
             st, msg = classify_error(ex) if getattr(ex, "code", None) is not None else ("error", f"{type(ex).__name__}: {ex}"[:200])
             log(t, model, size, False, 0, st)
@@ -403,14 +436,16 @@ def ensure(t, c=None, qa=None):
         if not raw:
             log(t, model, size, False, 0, "no_image")
             continue
-        usd = est_cost(t, False, c)
+        i += 1
+        usd = (c["price_usd"].get(model) or {}).get(size) or est_cost(t, False, c)
         spent += usd
         log(t, model, size, False, usd, "ok")
         meta = save(t, raw, mime, model, size, False, usd, c)
-        meta["attempt"], meta["prompt_extra"] = i + 1, extra
+        meta["attempt"], meta["prompt_extra"], meta["size"] = i, extra, size
         f = t["dir"] / meta["file"]
         if f.stat().st_size > c["max_kb"] * 1024:
             reasons = ["size"]
+            size_over = "1K"   # 2K가 품질을 낮춰도 200KB를 넘으면 다음은 1K로(2026-11-08 PSIX 분해도 270KB)
             meta["check"] = image_check.check(t, meta, c)
             meta_path(t).write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
             continue
@@ -566,6 +601,8 @@ def main(argv):
             print("\n".join(g) or "막힌 곳 없음")
         return 0
     if a.cmd == "ensure":
+        if not a.product:   # 분해도 대상을 정할 때 웹 검색 부품 탐색까지(bom_auto)
+            ts = pick(targets_company(a.id, c, discover=True), a.only)
         for t in ts:
             st, x = ensure(t, c)
             print(stem(t), st, x.get("file") if isinstance(x, dict) and x.get("file") else x)

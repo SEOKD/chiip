@@ -5,3 +5,13 @@ date,scope,id,kind,model,size,batch,usd,status
 2026-11-08T14:31+09:00,company,us-psix,product_2,gemini-3.1-flash-image,1K,0,0.067,ok
 2026-11-08T14:38+09:00,company,us-psix,product_1,gemini-3.1-flash-image,1K,0,0.067,ok
 2026-11-08T14:38+09:00,company,us-psix,product_1,gemini-3.1-flash-image,1K,0,0.067,ok
+2026-11-08T14:45+09:00,company,us-psix,bom_0,gemini-3.5-flash,-,0,0.04,ok
+2026-11-08T14:46+09:00,company,us-psix,bom_0,gemini-3.5-flash,-,0,0.04,ok
+2026-11-08T14:47+09:00,company,us-psix,bom_0,gemini-3.5-flash,-,0,0.04,ok
+2026-11-08T14:48+09:00,company,us-psix,exploded_1,gemini-3-pro-image,2K,0,0.134,ok
+2026-11-08T14:48+09:00,company,us-psix,exploded_1,gemini-3-pro-image,2K,0,0.134,ok
+2026-11-08T14:48+09:00,company,us-psix,exploded_1,gemini-3-pro-image,2K,0,0,quota
+2026-11-08T14:49+09:00,company,us-psix,exploded_1,gemini-3-pro-image,2K,0,0.134,ok
+2026-11-08T14:49+09:00,company,us-psix,exploded_1,gemini-3-pro-image,1K,0,0,quota
+2026-11-08T14:49+09:00,company,us-psix,exploded_1,gemini-3.1-flash-image,1K,0,0.067,ok
+2026-11-08T14:49+09:00,company,us-psix,exploded_1,gemini-3.1-flash-image,1K,0,0.067,ok

@@ -1,0 +1,226 @@
+{
+ "전력 시스템(발전기·데이터센터)": {
+  "as_of": "2026-11-08",
+  "layers_order": "위→아래",
+  "items": [
+   {
+    "no": 1,
+    "part": "외함",
+    "part_en": "Enclosure",
+    "role": "발전기 세트를 외부 환경으로부터 보호하고 소음을 차단하며 공기 흐름을 최적화합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/enclosures/ (페이지 대조)",
+    "confidence": "확인",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 2,
+    "part": "배기 시스템",
+    "part_en": "Exhaust System",
+    "role": "엔진 연소 가스를 안전하게 배출하고 배기 소음을 줄이며 배출가스 후처리를 수행합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/enclosures/",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 3,
+    "part": "냉각 시스템",
+    "part_en": "Cooling System",
+    "role": "라디에이터와 팬을 통해 엔진 작동 중 발생하는 열을 방출하여 적정 온도를 유지합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/manufacturing-capabilities/",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 4,
+    "part": "엔진",
+    "part_en": "Engine",
+    "role": "가스 또는 디젤 연료를 연소시켜 발전기를 구동하기 위한 기계적 회전 에너지를 생성합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/power-systems/ (페이지 대조)",
+    "confidence": "확인",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 5,
+    "part": "교류 발전기",
+    "part_en": "Alternator",
+    "role": "엔진의 기계적 회전 에너지를 전자기 유도 법칙을 통해 전기 에너지로 변환합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/power-systems/",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 6,
+    "part": "제어 시스템",
+    "part_en": "Control System",
+    "role": "발전기의 시동, 정지, 전압 및 주파수 조절 등 전반적인 작동을 제어하고 모니터링합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/manufacturing-capabilities/",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 7,
+    "part": "스위치기어",
+    "part_en": "Switchgear",
+    "role": "발전기에서 생산된 전력을 안전하게 배전하고 과부하 및 단락으로부터 계통을 보호합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/enclosures/ (페이지 대조)",
+    "confidence": "확인",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 8,
+    "part": "연료 시스템",
+    "part_en": "Fuel System",
+    "role": "연료 탱크와 연료 조절 장치를 통해 엔진에 필요한 연료를 안전하게 저장하고 공급합니다.",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://psiengines.com/enclosures/ (페이지 대조)",
+    "confidence": "확인",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   }
+  ],
+  "basis": "웹 검색(Gemini 검색 그라운딩 + 페이지 대조)",
+  "source_note": "구성 부품은 Gemini 검색 그라운딩으로 찾은 회사·업계 기술 자료. 검색 근거에 도메인이 있는 부품만 '확인'. 공급사·원가 비중은 공시 수준 확인 전이라 미확인",
+  "this_company_product": true,
+  "grounded_domains": [],
+  "name_en": "Power Systems (Generator Sets & Data Center Power)"
+ },
+ "산업용 엔진": {
+  "as_of": "2026-11-08",
+  "layers_order": "위→아래",
+  "items": [
+   {
+    "no": 1,
+    "part": "밸브 커버",
+    "part_en": "Valve Cover",
+    "role": "엔진 상부를 밀폐하여 밸브 기구를 보호하고 오일 누출을 방지함",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 2,
+    "part": "서모스탯",
+    "part_en": "Thermostat",
+    "role": "냉각수 온도를 감지하고 유량을 조절하여 엔진 온도를 최적으로 유지함",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 3,
+    "part": "실린더 헤드",
+    "part_en": "Cylinder Head",
+    "role": "실린더 블록 상부에 결합되어 연소실을 형성하고 흡배기 밸브를 수용함",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 4,
+    "part": "워터 펌프",
+    "part_en": "Water Pump",
+    "role": "냉각수를 강제 순환시켜 엔진 내부의 열을 식히고 과열을 방지함",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 5,
+    "part": "피스톤",
+    "part_en": "Piston",
+    "role": "연소 가스의 팽창 압력을 받아 실린더 내부를 왕복하며 동력을 발생시킴",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 6,
+    "part": "크랭크샤프트",
+    "part_en": "Crankshaft",
+    "role": "피스톤의 직선 왕복 운동을 회전 운동으로 변환하여 동력을 외부로 전달함",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 7,
+    "part": "오일 펌프",
+    "part_en": "Oil Pump",
+    "role": "엔진 오일을 흡입 및 가압하여 엔진 내부의 주요 마찰 부위에 공급함",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   },
+   {
+    "no": 8,
+    "part": "오일 팬",
+    "part_en": "Oil Pan",
+    "role": "엔진 최하부에 위치하여 엔진 오일을 저장하고 이물질을 침전시킴",
+    "supplier": "미확인",
+    "this_company": false,
+    "cost_share": null,
+    "source": "https://manuals.plus/psi/psi-heli-certified-df-3-0l-engine-parts-catalog-psi-spec-39000945-pdf",
+    "confidence": "추정",
+    "basis": "웹 검색(Gemini 검색 그라운딩)"
+   }
+  ],
+  "basis": "웹 검색(Gemini 검색 그라운딩 + 페이지 대조)",
+  "source_note": "구성 부품은 Gemini 검색 그라운딩으로 찾은 회사·업계 기술 자료. 검색 근거에 도메인이 있는 부품만 '확인'. 공급사·원가 비중은 공시 수준 확인 전이라 미확인",
+  "this_company_product": true,
+  "grounded_domains": [],
+  "name_en": "PSI Heli Certified DF 3.0L Industrial Engine"
+ },
+ "운송용 엔진": {
+  "as_of": "2026-11-08",
+  "layers_order": "위→아래",
+  "items": [],
+  "basis": "웹 검색(Gemini 검색 그라운딩 + 페이지 대조)",
+  "source_note": "구성 부품은 Gemini 검색 그라운딩으로 찾은 회사·업계 기술 자료. 검색 근거에 도메인이 있는 부품만 '확인'. 공급사·원가 비중은 공시 수준 확인 전이라 미확인",
+  "this_company_product": true,
+  "grounded_domains": [],
+  "name_en": null
+ }
+}
