@@ -87,7 +87,8 @@ def news_allowed(item):
 
 
 def keep(item, focus):
-    if item.get("source_id") in ("src-short-sites", "src-jp-ir-qa", "src-jp-ir-docs", "src-kr-ir-docs", "src-kr-ir-qa", "src-tw-disclosure"):   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
+    if item.get("source_id") in ("src-short-sites", "src-jp-ir-qa", "src-jp-ir-docs", "src-kr-ir-docs", "src-kr-ir-qa", "src-tw-disclosure",
+                                 "src-tw-hk-ir-docs", "src-tw-hk-ir-qa", "src-fiscal-ir-docs"):   # 대만·홍콩 IR·Fiscal IR 문서(2026-11-08 AT&S 점검)   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
         return True
     if not news_allowed(item):
         return False

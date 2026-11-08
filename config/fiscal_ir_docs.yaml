@@ -1,0 +1,53 @@
+# Fiscal.ai IR 문서 감시 (마스터 지시 2026-11-08 "AT&S도 최근 실적 발표 프레젠테이션 자료를 공유했는데 이걸 가져오고 있는지 파이프라인을 점검하라")
+# 구현 radar/fiscal_ir_docs.py, 수집 본보기 scripts/fiscal/templates/ir_docs_batch.js, 절차 docs/tasks/chiip-pulse.md 2-3
+# 회사 IR 수집기(일본 jp_ir_docs·한국 kr_ir_docs·대만·홍콩 tw_hk_ir)가 없는 시장 — 유럽 등 — 의 실적 PT(slide_deck)·보도자료·반기·분기 보고서를
+# Fiscal.ai IR 이벤트로 받는다. AT&S처럼 회사 사이트가 자동 수집을 막아도(2026-11-08 www.ats.net 응답 없음 — 우회하지 않는다) 같은 자료가 Fiscal에 있다.
+interval_h: 3            # 몇 시간마다 회차를 여나(새 문서가 없으면 Pulse 글은 없다)
+batch: 12                # execute_code 한 번에 볼 종목 수
+fresh_days: 14           # 이벤트 날짜가 이보다 오래된 문서는 기록만 하고 알리지 않는다
+roles: [slide_deck, press_release, interim_report, annual_report]
+exclude_prefix: ["NASDAQ_", "NYSE_", "AMEX_", "XJPX_", "XKRX_", "XKOS_", "XTAI_", "XTPE_", "XHKG_"]   # 미국은 8-K·전문 경로, 일·한·대만·홍콩은 회사 IR 수집기가 있다
+extra:                   # config/fiscal_keys.yaml에 없는 유럽 감시 종목 — 키는 2026-11-08 Fiscal companies_list로 확인(CSG·Exail은 Fiscal에 없음)
+  eu-ats: {key: XWBO_ATS, name: AT&S}
+  co-asml: {key: "NASDAQ_ASML", name: "ASML"}
+  co-abb: {key: "XSWX_ABBN", name: "ABB"}
+  co-schneider: {key: "XPAR_SU", name: "Schneider Electric"}
+  co-siemensenergy: {key: "XETR_ENR", name: "Siemens Energy"}
+  co-infineon: {key: "XETR_IFX", name: "Infineon"}
+  co-besi: {key: "XAMS_BESI", name: "BE Semiconductor"}
+  co-asmi: {key: "XAMS_ASM", name: "ASM International"}
+  co-munters: {key: "XSTO_MTRS", name: "Munters"}
+  co-hubersuhner: {key: "XSWX_HUBN", name: "Huber+Suhner"}
+  co-wartsila: {key: "XHEL_WRT1V", name: "Wärtsilä"}
+  co-siemens: {key: "XETR_SIE", name: "Siemens"}
+  co-legrand: {key: "XPAR_LR", name: "Legrand"}
+  co-prysmian: {key: "XMIL_PRY", name: "Prysmian"}
+  co-nexans: {key: "XPAR_NEX", name: "Nexans"}
+  co-nkt: {key: "XCSE_NKT", name: "NKT"}
+  co-alfalaval: {key: "XSTO_ALFA", name: "Alfa Laval"}
+  gb-chemring: {key: "XLON_CHG", name: "Chemring"}
+  de-hensoldt: {key: "XETR_HAG", name: "Hensoldt"}
+  fr-exosens: {key: "XPAR_EXENS", name: "Exosens"}
+  gr-theon: {key: "XAMS_THEON", name: "Theon International"}
+  se-saab: {key: "XSTO_SAAB.B", name: "Saab"}
+  gb-cohort: {key: "XLON_CHRT", name: "Cohort"}
+  se-mildef: {key: "XSTO_MILDEF", name: "MilDef"}
+  eu-f3c: {key: "XETR_F3C", name: "SFC Energy"}
+  co-rollsroyce: {key: "XLON_RR.", name: "Rolls-Royce"}
+  eu-cwr: {key: "XLON_CWR", name: "Ceres Power"}
+  gb-bae: {key: "XLON_BA.", name: "BAE Systems"}
+  eu-bitti: {key: "XHEL_BITTI", name: "Bittium"}
+  eu-soi: {key: "XPAR_SOI", name: "Soitec"}
+  eu-tpro: {key: "XMIL_TPRO", name: "Technoprobe"}
+  eu-rpi: {key: "XLON_RPI", name: "Raspberry Pi"}
+  eu-smhn: {key: "XETR_SMHN", name: "SUSS MicroTec"}
+  eu-land: {key: "XSWX_LAND", name: "Landis+Gyr"}
+  eu-smin: {key: "XLON_SMIN", name: "Smiths Group"}
+  fr-eutelsat: {key: "XPAR_ETL", name: "Eutelsat"}
+  de-ohb: {key: "XETR_OHB", name: "OHB"}
+  de-tkms: {key: "XETR_TKMS", name: "TKMS"}
+  it-fincantieri: {key: "XMIL_FCT", name: "Fincantieri"}
+  eu-alo: {key: "XPAR_ALO", name: "Alstom"}
+  eu-airbus: {key: "XPAR_AIR", name: "Airbus"}
+  eu-ovh: {key: "XPAR_OVH", name: "OVHcloud"}
+  eu-ibe: {key: "BMEX_IBE", name: "Iberdrola"}

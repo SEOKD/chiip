@@ -62,7 +62,7 @@ EVENT_CLASS = [("ma", re.compile(r"acqui|merger|takeover|\bbuy(s|ing)?\b|deal|ta
 
 
 JP_EVENT = [("guide", re.compile(r"業績予想の修正|上方修正|下方修正|最高益|通期.{0,6}(引き上げ|引き下げ)")),
-            ("capex", re.compile(r"設備投資|新工場|増産|固定資産の取得")),
+            ("capex", re.compile(r"設備投資|新工場|増産|固定資産の取得|生産能力|能力増強|増設|\d+億円.{0,6}投資")),   # 2026-11-08 닛토보 '200億円投資 生産能力3.6倍' 누락
             ("return", re.compile(r"自社株買い|自己株式の取得|増配")),
             ("deal", re.compile(r"買収|株式取得|提携|資本業務提携|公開買付|ＴＯＢ|TOB")),
             ("equity", re.compile(r"公募|新株|第三者割当|転換社債")),
@@ -331,6 +331,16 @@ def event_key(item):
     return f"{who}:{etype}"
 
 
+def commit(item, now=None):
+    """check(record=False)로 본 서명을 보낸 뒤에 남긴다"""
+    hit = match(item)
+    if not hit:
+        return
+    st = common.load_state(STATE, {})
+    st.setdefault("sigs", {})[hit[1]] = common.iso(now or common.now_kst())
+    common.save_state(STATE, st)
+
+
 def event_gate(item, level, now=None, window_h=24):
     """P0·P1을 보내기 전 사건 단위 판정 → (보낼지, 앞머리, 사유).
     ① 회사 발표형 사건(실적·가이던스·설비투자·주주환원·증자·계약)은 원문(공시·보도자료)만 보낸다 — 파생 기사는 P2(단독·관계자 보도는 예외)
@@ -357,8 +367,10 @@ def event_gate(item, level, now=None, window_h=24):
     return True, "", ""
 
 
-def check(item, now=None):
-    """P1로 올릴 이유 또는 None. 올리면 서명을 기록한다(window_h 안 같은 서명은 None)"""
+def check(item, now=None, record=True):
+    """P1로 올릴 이유 또는 None. record면 서명을 기록한다(window_h 안 같은 서명은 None).
+    record=False는 서명을 보기만 한다 — 보낼지(사건 관문) 정해진 뒤 commit(item)으로 남긴다(2026-11-08: 2026-11-05 닛토보 결산에서
+    파생 기사가 서명을 먼저 태우고 사건 관문에 막혀, 같은 묶음의 적시공시 원문이 '규칙 없음'으로 버려졌다)"""
     hit = match(item)
     if not hit:
         return None
@@ -370,6 +382,8 @@ def check(item, now=None):
     last = sigs.get(sig)
     if last and datetime.fromisoformat(last) > now - win:
         return None
+    if not record:
+        return why
     sigs[sig] = common.iso(now)
     for k in [k for k, v in sigs.items() if datetime.fromisoformat(v) < now - timedelta(days=7)]:
         del sigs[k]

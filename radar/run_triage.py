@@ -161,7 +161,7 @@ def main(argv=None):
             lvl = r["level"]
             why_up = None
             if lvl in ("P1", "P2", "P3"):   # 규칙 상향(radar/promote.py) — T0 중심 판정이 낮춘 AI 밸류체인 사건·보유 종목
-                why_up = promote.check(it)
+                why_up = promote.check(it, record=False)   # 서명은 보낼 때만(promote.check 설명)
                 new = promote.level_for(it, why_up) if why_up else None
                 if new and RANK[new] > RANK[lvl]:
                     lvl, r["reason"] = new, f"{why_up} (모델 {r['level']}: {r.get('reason', '')})"
@@ -180,6 +180,8 @@ def main(argv=None):
                 go, ev_prefix, why_ev = promote.event_gate(it, lvl)
                 if not go:
                     lvl, r["reason"] = "P2", f"{why_ev} (모델 {r['level']})"
+                elif why_up:
+                    promote.commit(it)
             card = Path(r.get("card_path") or "").stem or None
             if lvl in ("P0", "P1") and r.get("profile"):   # 회사 설명 3줄 저장(30일) — 다음 알림은 다시 묻지 않는다
                 notify.remember_profile(it.get("entities_matched"), r["profile"])

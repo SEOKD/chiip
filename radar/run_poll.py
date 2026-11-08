@@ -124,7 +124,7 @@ def fast_lane(items):
             if not ok:
                 notes.append((it, why_media or "매체 제한"))
                 continue
-            why = promote.check(it)
+            why = promote.check(it, record=False)   # 서명은 보낼 때만(promote.check 설명)
             if not why:
                 notes.append((it, "규칙 없음"))
                 continue
@@ -136,6 +136,7 @@ def fast_lane(items):
                 continue
             go, _, reason = promote.event_gate(it, lvl)
             if go:
+                promote.commit(it)
                 go_list.append((it, lvl, why))
                 notes.append((it, f"발송 대상 {lvl}: {why}"))
             else:

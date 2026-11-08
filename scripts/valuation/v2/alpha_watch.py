@@ -14,6 +14,7 @@
 """
 import argparse
 import json
+import re
 import sys
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -163,13 +164,47 @@ def load_queue():
     return json.loads(QUEUE.read_text(encoding="utf-8")) if QUEUE.exists() else []
 
 
+EVENT_RE = re.compile(r"실적|공시|가이던스|上方修正|下方修正|業績予想|決算|설비투자|수주|8-K")
+
+
 def enqueue(eid, name, reason, kind):
     q = load_queue()
-    if any(x["id"] == eid and x["kind"] == kind for x in q):
-        return False
-    q.append({"id": eid, "name": name, "kind": kind, "reason": reason, "added": common.iso(common.now_kst())})
+    for x in q:
+        if x["id"] == eid and x["kind"] == kind:   # 이미 있으면 새 사건 이유만 덧붙이고 사건 시각을 새로 — 우선순위가 올라간다(2026-11-08 닛토보)
+            if reason and reason not in x["reason"]:
+                x["reason"] = f"{reason} / {x['reason']}"[:400]
+                if EVENT_RE.search(reason):
+                    x["event_at"] = common.iso(common.now_kst())
+                QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=1), encoding="utf-8")
+            return False
+    row = {"id": eid, "name": name, "kind": kind, "reason": reason, "added": common.iso(common.now_kst())}
+    if EVENT_RE.search(reason or ""):
+        row["event_at"] = row["added"]
+    q.append(row)
     QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=1), encoding="utf-8")
     return True
+
+
+def priority(x, alpha, now, c=None):
+    """대기열 우선순위(높을수록 먼저) — 먼저 온 순이면 적체 때 새 사건 종목이 열흘 넘게 밀린다(2026-11-08: 50건 적체, 닛토보 최고익 상향·증설 공시가 3일째 대기).
+    알파 점수 + 최근 사건 가산(event_bonus, event_days일에 걸쳐 0으로) + 대기 일수 가산(age_per_day, 오래 묵은 것도 결국 나온다)"""
+    q = (c or cfg()).get("queue") or {}
+    s = float(alpha.get(x["id"]) or 0)
+    ev = x.get("event_at")
+    if ev:
+        days = (now - datetime.fromisoformat(ev)).total_seconds() / 86400
+        s += q.get("event_bonus", 2.0) * max(0.0, 1 - days / q.get("event_days", 5))
+    s += q.get("age_per_day", 0.05) * (now - datetime.fromisoformat(x["added"])).total_seconds() / 86400
+    return round(s, 2)
+
+
+def ordered(now=None, c=None):
+    """대기열을 우선순위 순으로 — chiip-valuation-queue가 이 순서로 처리한다(`--queue-order`)"""
+    import score as alpha_mod
+    _, rows = alpha_mod.load_latest()
+    alpha = {k: v.get("total") for k, v in rows.items()}
+    now = now or common.now_kst()
+    return sorted(load_queue(), key=lambda x: -priority(x, alpha, now, c))
 
 
 def prune(c, today):
@@ -295,7 +330,16 @@ def main(argv):
     ap.add_argument("--send", action="store_true")
     ap.add_argument("--dry", action="store_true", help="감지만 출력(상태 저장·발송 없음)")
     ap.add_argument("--check-narrative", nargs="*", metavar="ID", help="내러티브 파일 머리 점검(id 없으면 전부)")
+    ap.add_argument("--queue-order", action="store_true", help="동인 대기열을 우선순위 순으로 출력")
     a = ap.parse_args(argv)
+    if a.queue_order:
+        import score as alpha_mod
+        _, rows = alpha_mod.load_latest()
+        alpha = {k: v.get("total") for k, v in rows.items()}
+        now = common.now_kst()
+        for x in ordered(now):
+            print(f"{priority(x, alpha, now):5.2f}  {x['kind']}  {x['id']}  {x['reason'][:70]}")
+        return 0
     if a.check_narrative is not None:
         d = ROOT / "knowledge" / "narratives" / "companies"
         bad = 0
