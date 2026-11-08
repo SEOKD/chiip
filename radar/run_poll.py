@@ -382,7 +382,7 @@ def main(argv=None):
             if left < 60:
                 print(f"회차 시간 예산 {BUDGET_MIN}분 소진 — 남은 {len(due) - i}개는 다음 회차(가장 밀린 순으로 먼저)")
                 break
-            new = run_child(src, min(SOURCE_TIMEOUT_MIN * 60, left))
+            new = run_child(src, min(float(src.get("timeout_min") or SOURCE_TIMEOUT_MIN) * 60, left))   # 원천별 한도(등록부 timeout_min — 9개 매체 뉴스는 혼자 8.3분)
             if new:
                 new_total.extend(new)
         if args.baseline:

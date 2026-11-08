@@ -704,6 +704,7 @@
   auth: none
   scope: [글로벌]
   interval_min: 15
+  timeout_min: 12   # 혼자 496초(2026-11-09 측정) — run_poll 원천별 한도 기본 8분을 넘는다
   run_on: local
   language: en
   doc_type: 기사
