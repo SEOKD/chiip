@@ -3,3 +3,5 @@ date,scope,id,kind,model,size,batch,usd,status
 2026-11-08T14:30+09:00,company,-,resume,-,-,0,0,resumed
 2026-11-08T14:31+09:00,company,us-psix,product_1,gemini-3.1-flash-image,1K,0,0.067,ok
 2026-11-08T14:31+09:00,company,us-psix,product_2,gemini-3.1-flash-image,1K,0,0.067,ok
+2026-11-08T14:38+09:00,company,us-psix,product_1,gemini-3.1-flash-image,1K,0,0.067,ok
+2026-11-08T14:38+09:00,company,us-psix,product_1,gemini-3.1-flash-image,1K,0,0.067,ok

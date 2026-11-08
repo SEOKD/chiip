@@ -102,5 +102,37 @@ class TestImages(unittest.TestCase):
         self.assertIn("<circle", h)
 
 
+class TestEnsure(unittest.TestCase):
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self._s = (P.IMG, P.LEDGER, P.JOBS, P.vertex_generate)
+        P.IMG, P.LEDGER, P.JOBS = self.tmp, self.tmp / "ledger.csv", self.tmp / "jobs.json"
+        self.t = {"scope": "company", "id": "x", "kind": "product", "n": 1, "name": "엔진", "what": "engine", "dir": self.tmp}
+
+    def tearDown(self):
+        P.IMG, P.LEDGER, P.JOBS, P.vertex_generate = self._s
+
+    def test_retries_until_pass_with_fix_text(self):
+        calls = []
+        P.vertex_generate = lambda t, c=None, model=None, extra="", quality=None: (calls.append(extra) or (bytes([255, 216]) + b"x" * 1000, "image/jpeg"))
+        seq = iter([{"ok": False, "reasons": ["text"], "raw": {}}, {"ok": True, "reasons": [], "raw": {"note": "ok"}}])
+        st, meta = P.ensure(self.t, qa=lambda f, k, n, c: next(seq))
+        self.assertEqual(st, "pass")
+        self.assertEqual(meta["attempt"], 2)
+        self.assertIn("Absolutely no text", calls[1])
+
+    def test_model_fallback(self):
+        used = []
+        def gen(t, c=None, model=None, extra="", quality=None):
+            used.append(model)
+            if len(used) == 1:
+                e = Exception("quota"); e.code = 429; raise e
+            return bytes([255, 216]) + b"x" * 1000, "image/jpeg"
+        P.vertex_generate = gen
+        st, _ = P.ensure(self.t, qa=lambda f, k, n, c: {"ok": True, "reasons": [], "raw": {}})
+        self.assertEqual(st, "pass")
+        self.assertNotEqual(used[0], used[1])
+
+
 if __name__ == "__main__":
     unittest.main()

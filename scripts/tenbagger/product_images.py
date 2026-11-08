@@ -235,7 +235,7 @@ def _get(url, timeout=60):
     return json.load(urllib.request.urlopen(urllib.request.Request(url, headers={"x-goog-api-key": _key()}), timeout=timeout))
 
 
-def vertex_generate(t, c=None):
+def vertex_generate(t, c=None, model=None, extra="", quality=None):
     """Vertex AI(google-genai, ADC 인증) — (bytes, mime). 인증 파일·토큰은 읽거나 찍지 않는다(라이브러리가 쓴다)"""
     import warnings
     from google import genai
@@ -243,13 +243,14 @@ def vertex_generate(t, c=None):
     c = c or cfg()
     warnings.filterwarnings("ignore", message=".*quota project.*")
     m, s, a = model_size(t, c)
+    m = model or m
     v = c["vertex"]
     cl = genai.Client(vertexai=True, project=v["project"], location=v.get("location", "global"))
     def call(**kw):
-        return cl.models.generate_content(model=m, contents=prompt(t, c),
+        return cl.models.generate_content(model=m, contents=(prompt(t, c) + (" " + extra if extra else "")),
                                           config=types.GenerateContentConfig(response_modalities=["IMAGE"], image_config=types.ImageConfig(image_size=s, aspect_ratio=a, **kw)))
     try:   # JPEG로 받아 200KB 안에 — flash-image 기본 PNG는 1MB가 넘는다(2026-11-08). 형식 지정을 거부하는 모델이면 기본 형식으로
-        r = call(output_mime_type="image/jpeg", output_compression_quality=c.get("jpeg_quality", 80))
+        r = call(output_mime_type="image/jpeg", output_compression_quality=quality or c.get("jpeg_quality", 80))
     except Exception as e:
         if getattr(e, "code", None) != 400:
             raise
@@ -363,6 +364,99 @@ def make_one(t, batch=False, c=None):
     return "ok", save(t, raw, mime, model, size, False, usd, c)
 
 
+def ensure(t, c=None, qa=None):
+    """검수를 통과할 때까지 다시 그린다(마스터 지시 2026-11-08 "검수에 실패한 이미지가 없도록 웬만하면 다 생성되도록").
+    시도마다: 예산 확인 → 생성(모델 오류면 다음 모델) → 200KB 넘으면 다음 시도 품질↓ → 자동 눈 검수(image_qa) → 실패 사유를 다음 설명문에 덧붙인다.
+    → (상태, 메타 또는 사유). 상태: cached·pass·fail(시도 다 씀)·over_budget·stopped·error"""
+    import image_check
+    import image_qa
+    c = c or cfg()
+    qa = qa or image_qa.review
+    hit = cached(t, c)
+    if hit and (hit.get("check") or {}).get("result") == "pass":
+        return "cached", hit
+    e = c.get("ensure") or {}
+    kind = "exploded" if t["kind"] == "exploded" else "default"
+    models = list(dict.fromkeys([model_size(t, c)[0]] + list((e.get("fallback") or {}).get(kind) or [])))
+    qs = e.get("jpeg_quality_steps") or [80]
+    cap = est_cost(t, False, c) * e.get("cost_cap_x", 3)
+    spent, extra, reasons, mi = 0.0, "", [], 0
+    n_parts = len(ordered(t["bom"])) if t["kind"] == "exploded" else None
+    for i in range(e.get("max_attempts", 3)):
+        ok, why = budget_ok(t, False, c)
+        if not ok:
+            log(t, models[mi], model_size(t, c)[1], False, 0, why if why.startswith("over_budget") else "stopped")
+            return why, None
+        if spent + est_cost(t, False, c) > cap + 1e-9:
+            break
+        model, size = models[mi], model_size(t, c)[1]
+        try:
+            raw, mime = vertex_generate(t, c, model=model, extra=extra, quality=qs[min(i, len(qs) - 1)])
+        except Exception as ex:
+            st, msg = classify_error(ex) if getattr(ex, "code", None) is not None else ("error", f"{type(ex).__name__}: {ex}"[:200])
+            log(t, model, size, False, 0, st)
+            if st == "google_cap":
+                return st, msg
+            if mi + 1 < len(models):   # 모델 거부·할당량·일시 오류 → 다음 모델
+                mi += 1
+            continue
+        if not raw:
+            log(t, model, size, False, 0, "no_image")
+            continue
+        usd = est_cost(t, False, c)
+        spent += usd
+        log(t, model, size, False, usd, "ok")
+        meta = save(t, raw, mime, model, size, False, usd, c)
+        meta["attempt"], meta["prompt_extra"] = i + 1, extra
+        f = t["dir"] / meta["file"]
+        if f.stat().st_size > c["max_kb"] * 1024:
+            reasons = ["size"]
+            meta["check"] = image_check.check(t, meta, c)
+            meta_path(t).write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+            continue
+        try:
+            v = qa(f, t["kind"], n_parts, c)
+        except Exception as ex:   # 검수 모델 오류 — 그림을 버리지 않고 사람 눈 검수로 남긴다
+            meta["visual_error"] = f"{type(ex).__name__}"
+            meta_path(t).write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+            return "error", meta
+        meta["visual"] = {"ok": v["ok"], "reason": ",".join(v["reasons"]), "parts": v["raw"].get("parts") if n_parts else None,
+                          "order_ok": (v["raw"].get("single_axis") if n_parts else None), "by": "Gemini 비전 자동 검수", "note": v["raw"].get("note")}
+        meta["check"] = image_check.check(t, meta, c)
+        meta_path(t).write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
+        if meta["check"]["result"] in ("pass", "warn") and v["ok"]:
+            return "pass", meta
+        reasons = v["reasons"]
+        import image_qa as Q
+        extra = Q.fixes(reasons, n_parts)
+    return "fail", {"reasons": reasons, "spent": round(spent, 3)}
+
+
+def gaps(cid=None, slug=None, c=None):
+    """그리기 전에 막히는 곳 — BOM 없음·'확인' 부품 6개 미만·영어 이름 없음(설명문이 한국어로 나간다)"""
+    c = c or cfg()
+    out = []
+    if slug:
+        bom = json.loads((product_dir(slug) / "bom.json").read_text(encoding="utf-8"))
+        n = len(confirmed(bom))
+        if n < c["min_confirmed_parts"]:
+            out.append(f"{slug}: '확인' 부품 {n}개 — 분해도는 6개부터(출처 있는 부품을 더 찾는다)")
+        out += [f"{slug}: 부품 {x['no']} part_en 없음" for x in confirmed(bom) if not x.get("part_en")]
+        return out
+    dp = json.loads((company_dir(cid) / "datapack.json").read_text(encoding="utf-8"))
+    for p in ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []:
+        if not p.get("name_en"):
+            out.append(f"{p['name']}: name_en 없음(영어 설명문)")
+        if p.get("kind") != "서비스" and not p.get("what_en"):
+            out.append(f"{p['name']}: what_en 없음")
+        b = p.get("bom")
+        if not b:
+            out.append(f"{p['name']}: bom 없음 — 분해도 불가(공시·IR·어닝콜로 부품·공급사·출처를 채운다)")
+        elif len(confirmed(b)) < c["min_confirmed_parts"]:
+            out.append(f"{p['name']}: '확인' 부품 {len(confirmed(b))}개 — 6개부터 분해도")
+    return out
+
+
 def order_batch(ts, c=None):
     """모델별로 일괄 주문(가격 절반) — 작업 ID를 batch_jobs.json에"""
     c = c or cfg()
@@ -439,7 +533,7 @@ def pick(ts, only):
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
-    ap.add_argument("cmd", choices=["plan", "make", "fetch-batch", "ledger", "resume"])
+    ap.add_argument("cmd", choices=["plan", "make", "ensure", "gaps", "fetch-batch", "ledger", "resume"])
     ap.add_argument("id", nargs="?")
     ap.add_argument("--product")
     ap.add_argument("--pair", action="store_true")
@@ -467,6 +561,15 @@ def main(argv):
     else:
         ts = targets_company(a.id, c)
     ts = pick(ts, a.only)
+    if a.cmd == "gaps":
+        for g in (gaps(slug=s) for s in a.product.split(",")) if a.product else [gaps(a.id)]:
+            print("\n".join(g) or "막힌 곳 없음")
+        return 0
+    if a.cmd == "ensure":
+        for t in ts:
+            st, x = ensure(t, c)
+            print(stem(t), st, x.get("file") if isinstance(x, dict) and x.get("file") else x)
+        return 0
     if a.cmd == "plan":
         for t in ts:
             hit = cached(t, c)
