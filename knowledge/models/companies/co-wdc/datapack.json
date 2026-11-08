@@ -4909,7 +4909,24 @@
   ]
  },
  "sync": {
-  "none": "HDD(HS 847170) 무역 시계열이 등록돼 있지 않다"
+  "why": "HDD는 저장장치(HS 847170) 품목이고, 원가에 메모리·PCB가 들어간다",
+  "indicators": [
+   {
+    "label": "EU 저장장치 수입",
+    "source": "hs",
+    "reporter": "eu",
+    "flow": "import",
+    "hs": "847170",
+    "why": "HDD가 속한 품목 — 데이터센터 저장 수요의 거울"
+   },
+   {
+    "label": "미국 메모리 PPI",
+    "source": "ppi",
+    "input": "memory",
+    "country": "us",
+    "why": "저장 반도체 가격 사이클(낸드 대체·캐시 원가)"
+   }
+  ]
  },
  "segments_hist": {
   "segments": {

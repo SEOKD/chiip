@@ -1155,7 +1155,32 @@
   "none": "출하 대수·단가를 공시하지 않는다 — 업종 PPI로 대신한다"
  },
  "sync": {
-  "none": "발전기 세트 무역 시계열(HS 8502)이 미국 쪽으로 등록돼 있지 않다"
+  "why": "가스 엔진 발전기 세트(HS 850220)가 주력 제품이다 — 미국 쪽 시계열이 없어 EU 교역을 업황 대용으로 쓴다",
+  "indicators": [
+   {
+    "label": "EU 가스엔진 발전기 수입",
+    "source": "hs",
+    "reporter": "eu",
+    "flow": "import",
+    "hs": "850220",
+    "why": "주력 제품 품목(스파크 점화 엔진 발전기 세트)"
+   },
+   {
+    "label": "EU 디젤 대형 발전기 수입",
+    "source": "hs",
+    "reporter": "eu",
+    "flow": "import",
+    "hs": "850213",
+    "why": "데이터센터 예비 전원 경쟁 품목(375kVA 초과)"
+   },
+   {
+    "label": "미국 변압기 PPI",
+    "source": "ppi",
+    "input": "transformer",
+    "country": "us",
+    "why": "같은 전력 설비 사이클의 가격"
+   }
+  ]
  },
  "segments_hist": {
   "segments": {

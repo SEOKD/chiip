@@ -161,7 +161,7 @@ def build(entity, draws=3000):
         blocks.append({"type": "table", "title": f"데이터 검증 — 원자료 ↔ 밸류에이션 입력 대조 {chk['score']}/10",
                        "headers": ["검사", "결과", "내용"], "rows": [[c["name"], c["status"], c["detail"][:140]] for c in chk["checks"]]})
     blocks.append({"type": "hl", "text": "의사결정 보조(투자자문 아님): " + " / ".join(v2run.decision.lines(r["decision"])) if r.get("decision") else "의사결정 보조 지표 미산출"})
-    return {"h2": "밸류에이션 — 맥킨지·IB 방식(v2 엔진)", "blocks": blocks}, r
+    return {"h2": "밸류에이션 — 맥킨지·IB 방식", "blocks": blocks}, r
 
 
 def earnings_section(entity, r):

@@ -7287,7 +7287,32 @@
   "none": "회사가 XPU 출하량·단가를 공시하지 않는다(출하 3.5배 이상만 언급) — 업종 PPI로 대신한다"
  },
  "sync": {
-  "none": "맞춤형 가속기는 수출입 품목 코드로 분리되지 않는다"
+  "why": "맞춤형 가속기·네트워크 칩은 프로세서(HS 854231)·네트워크 장비(HS 851762) 교역에 실린다 — 업황 대용",
+  "indicators": [
+   {
+    "label": "EU 프로세서 수입",
+    "source": "hs",
+    "reporter": "eu",
+    "flow": "import",
+    "hs": "854231",
+    "why": "XPU·네트워크 칩이 속한 품목"
+   },
+   {
+    "label": "EU 네트워크 장비 수입",
+    "source": "hs",
+    "reporter": "eu",
+    "flow": "import",
+    "hs": "851762",
+    "why": "Tomahawk 스위치가 들어가는 장비"
+   },
+   {
+    "label": "미국 로직 반도체 PPI",
+    "source": "ppi",
+    "input": "logic-ic",
+    "country": "us",
+    "why": "제품 가격 사이클"
+   }
+  ]
  },
  "segments_hist": {
   "segments": {

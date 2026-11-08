@@ -688,7 +688,7 @@ def block(b):
 
 # 내부 약어 → 풀어 쓴 말(마스터 지시 2026-10-29 "v2 기본이 뭐였더라? 암호로 해놓으면 직관적으로 못 알아보니 의미를 풀어서 표기하라")
 PLAIN = [("DCF(v2, ", "DCF("), ("v2 기본 시나리오", "DCF 기본 시나리오"), ("v2 기본", "DCF 내재가치(기본)"), ("v2 강세", "DCF 내재가치(강세)"), ("v2 약세", "DCF 내재가치(약세)"),
-         ("MC P50", "몬테카를로 중앙값"), ("MC 기대", "몬테카를로 기대값"), ("v2 엔진", "현금흐름 할인(DCF) 엔진"), ("v2 DCF", "DCF"),
+         ("MC P50", "몬테카를로 중앙값"), ("MC 기대", "몬테카를로 기대값"), ("v2 엔진", "현금흐름 할인(DCF)"), ("v2 DCF", "DCF"),
          ("v2 결과", "DCF 결과"), ("v2의", "DCF의"), ("(v2,", "(DCF,"), ("v2 ", "DCF ")]
 
 
@@ -705,8 +705,24 @@ REF_PAREN = re.compile(rf"\s*[(（][^()（）]*(?:\b(?:{REF_NAMES})\b|(?<!\d)(?:
 REF_CITE = re.compile(rf"\b(?:{REF_NAMES})\b[^.。;]{{0,40}}(?<!\d)(?:19|20)\d\d(?!\d)")   # 한글 조사가 붙어도 잡히게 \b 대신 숫자 경계
 
 
+# 리포트 글에 계산 주체(엔진)를 넣지 않는다(마스터 지시 2026-11-08 "Chiip이 본인을 엔진이라고 부르는데, 굳이 주체를 넣지 마라").
+# 가스엔진·엔진 블록 같은 실제 제품은 건드리지 않도록 평가 용어 앞의 '엔진'만 지운다
+_SELF = [(re.compile(r"\(?(?:v2|멀티플) 엔진\)?"), ""), (re.compile(r"(?<=\(DCF\)) 엔진"), ""),
+         (re.compile(r"엔진이 고른다"), "규칙으로 고른다"), (re.compile(r"엔진이 고른 "), "선정 "), (re.compile(r"엔진이 정한 "), "산정된 "),
+         (re.compile(r"엔진이 (?=동종|과거|펀더멘털|규칙)"), ""), (re.compile(r"엔진[은의] (?=\d|최근|약세|기본|강세)"), ""),
+         (re.compile(r"엔진 (?=목표주가|규칙 등급|선정|DCF|배수|약세|강세|기본|시나리오|해석|계산|판단|산정|등급|업사이드|멀티플|`)"), "")]
+
+
+def no_self(x):
+    if not isinstance(x, str) or "엔진" not in x:
+        return x
+    for pat, rep in _SELF:
+        x = pat.sub(rep, x)
+    return x
+
+
 def _scrub_text(x):
-    return REF_PAREN.sub("", x) if isinstance(x, str) else x
+    return no_self(REF_PAREN.sub("", x)) if isinstance(x, str) else x
 
 
 def _walk(o, fn):

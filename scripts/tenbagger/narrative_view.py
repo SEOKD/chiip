@@ -118,7 +118,7 @@ def report_section(dp, mm=None):
     head = f"**한 줄:** {n.get('summary', '')}"
     link = []
     if total is not None and firm is not None:
-        link.append(f"동종 대비 멀티플 차이 {math.exp(total) * 100 - 100:+.0f}% 중 회사 고유 몫 {math.exp(firm) * 100 - 100:+.0f}%(멀티플 엔진) — 내러티브가 설명해야 하는 크기")
+        link.append(f"동종 대비 멀티플 차이 {math.exp(total) * 100 - 100:+.0f}% 중 회사 고유 몫 {math.exp(firm) * 100 - 100:+.0f}% — 내러티브가 설명해야 하는 크기")
     if rev is not None:
         link.append(f"직전 콜 이후 EPS 추정 {rev * 100:+.1f}%({periods}) — 리비전 경로로 이미 숫자가 된 몫")
     if link:

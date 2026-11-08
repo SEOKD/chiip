@@ -28,6 +28,7 @@ MIN_PAIRS = 5
 LAGS = (0, 1, 2, 3, 4)   # 0~4분기(0~12개월) 선행까지 — 2026-11-04 마스터 지시 "통계 지표가 기업 실적을 얼마나 선행하는지"
 UNIT = {"$M": 1e6, "M$": 1e6, "M": 1e6, "$B": 1e9, "B$": 1e9, "B": 1e9}
 UNKNOWN = "미확인"
+WINDOW = 16   # 그림은 최근 16개 분기 — 매출과 지표를 같은 분기 축에 놓는다(마스터 지시 2026-11-08)
 
 
 def _wa(word):
@@ -263,6 +264,37 @@ def _compare(v, lo, hi, mid):
     return f"{v / mid - 1:+.1%}({pos})"
 
 
+def window(last, n=WINDOW):
+    """마지막 매출 분기까지 n개 분기 라벨(오래된 순)"""
+    return [shift_q(last, -i) for i in range(n - 1, -1, -1)]
+
+
+def level_chart(c, win):
+    """매출과 지표 레벨을 같은 분기 축·같은 기준 분기 지수(= 100)로 — 단위가 달라도 한 그림에서 흐름을 대조한다(마스터 지시 2026-11-08 "매출 시계열과 PPI 및 수출입 데이터의 시계열은 동일해야 한다").
+    축 = 최근 16개 분기 중 매출이 있는 분기, 기준 = 그 첫 분기. 지표는 회사 분기 끝 달 기준 3개월(무역 합·PPI 평균)이라 매출과 같은 기간이다.
+    지표가 기준 분기에 값이 없으면(발표 지연) 그 지표의 첫 값으로 기준을 잡고 이름에 적는다"""
+    axis = [q for q in win if c["rev"].get(q)]
+    if not axis:
+        return None
+    base_q = axis[0]
+
+    def idx(series):
+        have = [q for q in axis if series.get(q)]
+        if not have:
+            return [], None
+        b = have[0]
+        return [[q, round(series[q] / series[b] * 100, 1)] for q in have], b
+    cols = ["a", "b", "c", "d", "e"]
+    series = [{"name": "매출", "color": "a", "points": idx(c["rev"])[0]}]
+    for i, r in enumerate(c["rows"]):
+        pts, b = idx(r["iq"])
+        if pts:
+            src = {"ppi": "PPI", "hs": "수출입", "trade": "수출입"}.get(r["ind"].get("source"), "")
+            name = r["ind"]["label"] + (f"({src})" if src and src not in r["ind"]["label"] else "") + (f" — {b} = 100" if b != base_q else "")
+            series.append({"name": name, "color": cols[(i + 1) % len(cols)], "points": pts})
+    return {"kind": "line", "title": f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 같은 축({base_q} = 100)", "unit": "", "series": series}
+
+
 def section(dp, history=None, db=HS_DB):
     sy = (dp or {}).get("sync")
     if not sy:
@@ -300,12 +332,16 @@ def section(dp, history=None, db=HS_DB):
                      UNKNOWN if not f else f"{f['n']}·{reliability(f['n'])}", UNKNOWN if not n else f"{_pct(n['g'], 1)} → {_money(n['rev'])}" + (f"({n['how']})" if n.get("how") else "")])
     B = [{"type": "hl", "text": head},
          {"type": "table", "title": "지표별 싱크로율(상관계수 × 100)", "headers": ["지표", "비교 대상", "증가율 기준", "지표 선행", "매출(t값)", "영업이익", "방향 일치", "표본·신뢰", f"{c['next']} 내포 매출"], "rows": rows}]
+    win = window(c["last"])
+    lv = level_chart(c, win)
+    if lv:
+        B.append({"type": "chart", "chart": lv})
     k = top["k"]
     cg, full_ig = growth(c["rev"], k), growth(top["iq"], k)
-    pts_c = [[q, round(cg[q] * 100, 1)] for q in sorted(cg)]
+    pts_c = [[q, round(cg[q] * 100, 1)] for q in win if q in cg]
     lag_label = f"{top['ind']['label']}({fr['lag']}분기 앞당김)" if fr["lag"] else top["ind"]["label"]
-    pts_i = [[q, round(full_ig[shift_q(q, -fr["lag"])] * 100, 1)] for q in sorted(cg) if shift_q(q, -fr["lag"]) in full_ig]
-    B.append({"type": "chart", "chart": {"kind": "line", "title": f"매출과 {top['ind']['label']} 증가율({top['basis']})", "unit": "%",
+    pts_i = [[q, round(full_ig[shift_q(q, -fr["lag"])] * 100, 1)] for q in win if q in cg and shift_q(q, -fr["lag"]) in full_ig]
+    B.append({"type": "chart", "chart": {"kind": "line", "title": f"매출과 {top['ind']['label']} 증가율({top['basis']}, 최근 {WINDOW}개 분기)", "unit": "%",
                                          "series": [{"name": "매출", "color": "a", "points": pts_c}, {"name": lag_label, "color": "b", "points": pts_i}]}})
     if nx and (guide or cons):
         cats, vals = ["지표 내포", "−1σ", "+1σ"], [nx["rev"], nx["lo"], nx["hi"]]
