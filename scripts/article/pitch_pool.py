@@ -7,6 +7,7 @@
   ② 속보 판단 알림 P0·P1(radar/state/alerts.json)
   ③ 새 IR 문서(일본·한국·대만·홍콩·Fiscal IR — PT·결산·Q&A)와 SEC·DART 공시(radar/inbox)
   ④ 오늘 쓴 Industry·Analysis 리포트(outputs/industry·outputs/tenbagger/reports)
+  ⑤ 한국 전자기업 해외 생산 거점 — 그 나라 정부 자료 새 항목·거점 품목 수출입 급변(+품목 PPI)(knowledge/models/overseas_sites/latest.json, 2026-11-08 마스터 지시)
 점수 = 1차 문서 있음 3 + 한국 연결(직접 2 / 같은 산업군에 국내 종목 1) + 인사이트(0~10 → 0~3) + 숫자 1
 감점: 최근 7일 기사 소재로 낸 종목 −3, 마스터 딘스티커 최근 7일에 쓴 종목 −2(같은 각도 되풀이 방지 — 후속 각도면 모델이 살린다)
 사용: py scripts/article/pitch_pool.py [--date YYYYMMDD] [--top 12]
@@ -157,6 +158,19 @@ def gather(now):
         if d.get("title"):
             cands.append({"src": "Industry Report", "at": now.isoformat(timespec="minutes"), "name": d["title"], "ids": [], "event": d.get("event"),
                           "view": (d.get("verdict") or {}).get("view", "")[:200], "insight": 5, "primary": True, "basis": "Chiip 리포트(1차 자료 인용)", "doc": str(f.relative_to(ROOT))})
+    # ⑤ 한국 전자기업 해외 생산 거점 — 그 나라 정부 자료(새 항목)와 거점 품목 수출입 급변(2026-11-08 마스터 지시, radar/overseas_sites.py)
+    ov = _load(ROOT / "knowledge" / "models" / "overseas_sites" / "latest.json", {})
+    for g in ov.get("gov") or []:
+        cands.append({"src": "해외 거점 정부 자료", "at": now.isoformat(timespec="minutes"), "name": f"[{g.get('juris')}] {g.get('title')}", "ids": [],
+                      "event": g.get("title"), "insight": 4, "primary": not str(g.get("id", "")).endswith("-gn"), "basis": f"{g.get('juris')} — {'원문' if not str(g.get('id', '')).endswith('-gn') else '색인 제목, 원문 확인 필요'}",
+                      "links": [["원문", g.get("url")]], "overseas": g.get("country")})
+    for x in ov.get("signals") or []:
+        if str(x.get("first_seen") or "") < (now - timedelta(days=1)).date().isoformat():   # 새 달 통계가 나온 날만(같은 신호를 매일 되풀이하지 않는다)
+            continue
+        cands.append({"src": "해외 거점 수출입", "at": now.isoformat(timespec="minutes"), "name": f"{x['flow']} HS{x['hs']}({', '.join(x['items'])}) {x['yoy_3m']:+.0%}",
+                      "ids": list(x.get("company_ids") or []), "company_names": x.get("companies"), "event": f"{', '.join(x['places'])} 거점 품목 {x['flow']} 최근 3개월 {x['yoy_3m']:+.0%}(${x['usd_3m'] / 1e6:,.0f}M, ~{x['last']})",
+                      "view": "; ".join(x.get("ppi") or []), "insight": 5, "primary": True, "basis": x.get("source"), "overseas": x.get("country"),
+                      "why": "수출입 급변은 단서 — 가격·물량을 나누지 않은 값이고 특정 기업 매출로 바로 잇지 않는다(금지표)"})
     return cands, (by_code, info, ind_of, korea_ind)
 
 
@@ -170,7 +184,11 @@ def score(cands, maps, today):
             continue
         seen.add(key)
         k, why = korea_link(c["ids"], info, ind_of, korea_ind)
+        if c.get("overseas") and not k:   # 해외 거점 나라 자료는 그 나라에 거점을 둔 한국 기업과 이어진다
+            k, why = 1, f"한국 기업 해외 거점({c['overseas']})"
         names = [info.get(i, (i, False))[0] for i in c["ids"]]
+        if c.get("company_names") and any(n == i for n, i in zip(names, c["ids"])):   # 감시 목록 밖 한국 기업(LG전자 등)은 거점표 이름
+            names = list(c["company_names"])
         text = f"{c.get('event') or ''} {c.get('view') or ''} {c.get('why') or ''}"
         s = (3 if c.get("primary") else 0) + k + min(3.0, float(c.get("insight") or 0) * 0.3) + (1 if NUM_RE.search(text) else 0)
         notes = []

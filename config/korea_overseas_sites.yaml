@@ -1,0 +1,36 @@
+# 한국 전자기업 해외 생산 거점 — 그 나라 정부 자료·수출입을 기사 소재 발굴에 연결한다(마스터 지시 2026-11-08 "기사 소재 발굴 시 해외에 생산 거점을 두고 있는
+# 한국 전자기업과 연관된 해당 국가의 정부기관 자료와 수출입, PPI 데이터도 참고"). 수집 radar/overseas_sites.py, 후보 scripts/article/pitch_pool.py ⑤
+# 거점·품목은 회사 사업보고서·IR의 공개 정보 기준(도시·주력 품목). 수치는 쓰지 않는다. 미국 거점(테일러·오스틴·인디애나·뉴욕)은 config/us_gov/korea_watch.yaml이 맡는다.
+# 수출입 거울: 그 나라에서 미국으로 가는 품목 수입(Census, 나라 코드) + 일본 품목·국가별 수출입(e-Stat, 이미 수집) + EU 국가별 수입(Comext, 이미 수집). 거점 나라 자체 통계는 robots·접근이 열린 곳만.
+# PPI: 거점 나라 PPI는 아직 공식 자동 경로가 없다(베트남 통계총국 DNS 실패·인도 403·필리핀 403, 2026-11-08 확인 — 우회하지 않음). 그 대신 품목의 미국·일본·대만 PPI(config/trade_ppi.yaml)를 거점 품목에 붙여 쓴다.
+census_country: {VN: "5520", IN: "5330", CN: "5700", MX: "2010", PH: "5650"}
+jp_country: {VN: ベトナム, IN: インド, CN: 中華人民共和国, MX: メキシコ, PH: フィリピン}
+months: 36            # 거울 시계열 기간
+surge_yoy: 0.3        # 최근 3개월 합의 전년 같은 기간 대비 ±30% 이상이면 신호
+min_usd_3m: 50000000  # 3개월 합 $50M 미만 품목은 신호에서 뺀다(잡음)
+sites:
+  - {company: co-samsung, name: 삼성전자, country: VN, place: "박닌·타이응우옌", items: [{name: 스마트폰, hs: "851713", ppi: null}]}
+  - {company: co-samsung, name: 삼성전자, country: IN, place: 노이다, items: [{name: 스마트폰, hs: "851713", ppi: null}]}
+  - {company: co-samsung, name: 삼성전자, country: CN, place: 시안, items: [{name: 메모리(NAND), hs: "854232", ppi: memory}]}
+  - {company: co-skhynix, name: SK하이닉스, country: CN, place: "우시·다롄", items: [{name: 메모리(D램·NAND), hs: "854232", ppi: memory}]}
+  - {company: co-lge, name: LG전자, country: VN, place: 하이퐁, items: [{name: TV, hs: "852872", ppi: null}, {name: 세탁기, hs: "845011", ppi: null}]}
+  - {company: co-lge, name: LG전자, country: MX, place: "몬테레이·레이노사", items: [{name: TV, hs: "852872", ppi: null}, {name: 냉장고, hs: "841821", ppi: null}]}
+  - {company: co-lge, name: LG전자, country: IN, place: "노이다·푸네", items: [{name: 냉장고, hs: "841821", ppi: null}]}
+  - {company: co-lginnotek, name: LG이노텍, country: VN, place: 하이퐁, items: [{name: 카메라 모듈, hs: "852589", ppi: null}]}
+  - {company: co-semco, name: 삼성전기, country: VN, place: 타이응우옌, items: [{name: 기판(PCB), hs: "853400", ppi: pcb}, {name: MLCC, hs: "853224", ppi: null}]}
+  - {company: co-semco, name: 삼성전기, country: PH, place: 칼람바, items: [{name: MLCC, hs: "853224", ppi: null}]}
+  - {company: co-semco, name: 삼성전기, country: CN, place: 톈진, items: [{name: MLCC, hs: "853224", ppi: null}]}
+# 정부 자료 — direct: robots 허용·접속 확인한 목록 페이지(2026-11-08 확인), gn: 직접 접속이 막힌 곳은 Google News 색인의 site: 검색(원문 접속 아님, 제목·링크만)
+gov:
+  direct:
+    - {id: vn-moit, country: VN, juris: 베트남 산업무역부, url: "https://moit.gov.vn/tin-tuc"}
+    - {id: vn-thainguyen, country: VN, juris: 베트남 타이응우옌성, url: "https://thainguyen.gov.vn/"}
+    - {id: cn-mofcom, country: CN, juris: 중국 상무부(영문), url: "https://english.mofcom.gov.cn/"}
+    - {id: cn-customs, country: CN, juris: 중국 해관총서(영문), url: "http://english.customs.gov.cn/"}
+    - {id: mx-inegi, country: MX, juris: 멕시코 통계청 무역수지, url: "https://www.inegi.org.mx/temas/balanza/"}
+  gn:   # 막힌 곳: 베트남 통계총국·세관·기획투자부·박닌성, 인도 PIB·전자정보기술부·상공부, 필리핀 통계청·PEZA (2026-11-08 — DNS·타임아웃·403·인증서)
+    - {id: vn-gov-gn, country: VN, juris: 베트남 정부(색인), q: "(site:gov.vn) (Samsung OR \"LG\" OR semiconductor OR electronics)"}
+    - {id: in-gov-gn, country: IN, juris: 인도 정부(색인), q: "(site:pib.gov.in OR site:meity.gov.in) (Samsung OR LG OR PLI OR semiconductor OR smartphone)"}
+    - {id: ph-gov-gn, country: PH, juris: 필리핀 정부(색인), q: "(site:peza.gov.ph OR site:dti.gov.ph) (Samsung OR electronics OR semiconductor)"}
+    - {id: mx-gov-gn, country: MX, juris: 멕시코 정부(색인), q: "(site:gob.mx) (Samsung OR LG OR electrónica OR semiconductores OR aranceles)"}
+terms: [Samsung, "LG ", "LG Electronics", "LG Innotek", "SK hynix", Hynix, "Samsung Electro", semiconductor, electronics, "electronic", "điện tử", "bán dẫn", Samsung Việt Nam, "삼성", "三星", "海力士", "半导体", "PLI", "aranceles", "electrónica", "tariff", "FDI", "export"]
