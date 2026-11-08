@@ -6,7 +6,7 @@
      레이더 종목 인식·SEC 공시·수집 관문·관심도·선별·구간 엔진·리포트 후보에 자동으로 들어간다. 이름 없는 종목은 unresolved로 돌려준다(--names로 넣는다).
   ② Chiip → 와치리스트: --plan 이 빠진 종목을 폴더·섹션에 배치한 호출 목록을 낸다. add-to-watchlist는 맨 뒤에만 붙고 이미 있는 항목은 맨 뒤로 옮기므로
      섹션 중간에 넣으려면 그 뒤 항목 전체를 순서대로 다시 넣는다(plan_order). 새 섹션은 ###NONE 앞에 만든다.
-  지우지 않는다: Chiip은 와치리스트에서 종목을 빼지 않는다. 마스터가 지운 종목(added.csv에 있는데 목록에 없음)은 다시 넣지 않는다.
+  지우지 않는다: Chiip은 와치리스트에서 종목을 빼지 않는다. 마스터가 지운 종목(added.csv에 있는데 목록에 없음)도 Chiip 선정에 남아 있으면 다시 넣고 '다시 넣음'으로 보고한다(마스터 지시 2026-11-09 — 이전 규칙 '다시 넣지 않음'을 바꿈).
 사용: py radar/tv_sync.py --put <파일> · --names <파일> · --plan · --done <파일(add 결과 전체 목록)>
 """
 import csv
@@ -312,13 +312,15 @@ def plan():
     held_codes = {(normalize(rows[s]["ticker"]), market_of(s, c)) for s in present if s in rows and rows[s].get("ticker")}
     hand_market = {x["id"]: code_market(x.get("code"), x.get("market")) for t in _y(DISC).get("themes") or [] for x in t.get("candidates") or []}
     gone = {r["entity_id"] for r in added_ledger()} - in_lists     # 넣었는데 없다 = 마스터가 지웠다
-    by_list, need, skipped = {}, [], sorted(gone)
+    by_list, need, readded = {}, [], []
     theme_sec = c.get("theme_sections") or {}
     folders = {v["market"]: k for k, v in (c.get("folders") or {}).items() if v.get("market")}
     _, idx = known_entities()
     for cid, theme in chiip_picks().items():
-        if cid in in_lists or cid in gone or ((idx.get(cid) or {}).get("code"), hand_market.get(cid)) in held_codes:
+        if cid in in_lists or ((idx.get(cid) or {}).get("code"), hand_market.get(cid)) in held_codes:
             continue
+        if cid in gone:   # 마스터가 지웠어도 다시 넣는다(2026-11-09 마스터 지시)
+            readded.append(cid)
         sym = code_of.get(cid)
         if not sym:
             need.append({"id": cid, "name": (idx.get(cid) or {}).get("name"), "theme": theme})
@@ -331,7 +333,7 @@ def plan():
         w = next(x for x in snap["watchlists"] if x["name"] == folder)
         order, _full = plan_order(w["symbols"], list(secs.items()))
         calls.append({"folder": folder, "watchlist_id": str(w["id"]), "symbols": order, "new": sum(len(v) for v in secs.values())})
-    return {"calls": calls, "need_symbol": need, "removed_by_master": skipped}
+    return {"calls": calls, "need_symbol": need, "readded": readded}
 
 
 def main(argv):

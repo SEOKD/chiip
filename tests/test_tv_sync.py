@@ -73,7 +73,7 @@ class TestPlanOrder(unittest.TestCase):
 
 
 class TestPlan(unittest.TestCase):
-    def test_master_removal_is_not_added_back(self):
+    def test_master_removal_is_added_back(self):   # 2026-11-09 마스터 지시 — 지운 종목도 다시 넣는다
         snap = {"watchlists": [{"id": 1, "name": "1_US", "symbols": ["NYSE:GE", "###NONE"]}]}
         c = {"folders": {"1_US": {"market": "us"}}, "exchange_market": {"NYSE": "us"}, "theme_sections": {"t": "###NUCLEAR"}}
         rows = {"NYSE:GE": {"entity_id": "us-ge"}, "NYSE:CCJ": {"entity_id": "us-ccj"}, "NYSE:LEU": {"entity_id": "us-leu"}}
@@ -84,9 +84,9 @@ class TestPlan(unittest.TestCase):
                     patch.object(t, "added_ledger", lambda: [{"entity_id": "us-ccj"}]), patch.object(t, "chiip_picks", lambda: {"us-ccj": "t", "us-leu": "t", "us-x": "t"}), \
                     patch.object(t, "known_entities", lambda: ({}, {"us-x": {"name": "X"}})):
                 p = t.plan()
-        self.assertEqual(p["removed_by_master"], ["us-ccj"])
+        self.assertEqual(p["readded"], ["us-ccj"])
         self.assertEqual(p["need_symbol"], [{"id": "us-x", "name": "X", "theme": "t"}])
-        self.assertEqual(p["calls"], [{"folder": "1_US", "watchlist_id": "1", "symbols": ["###NUCLEAR", "NYSE:LEU", "###NONE"], "new": 1}])
+        self.assertEqual(p["calls"], [{"folder": "1_US", "watchlist_id": "1", "symbols": ["###NUCLEAR", "NYSE:CCJ", "NYSE:LEU", "###NONE"], "new": 2}])
 
 
 class TestDiscoveryBlock(unittest.TestCase):
