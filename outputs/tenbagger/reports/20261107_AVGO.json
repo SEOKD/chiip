@@ -1884,6 +1884,52 @@
      ]
     },
     {
+     "type": "hl",
+     "text": "**PEG 0.29** — Fwd 1Y P/E 16.9배를 다음 해 EPS 성장 59%로 나눈 값, 동종 중앙 0.50(성장 대비 싸다). 성장률은 Fwd 1Y·2Y P/E에서 역산한 컨센서스라 다음 해 한 해 성장만 반영하고, 성장 지속 기간은 담지 않는다."
+    },
+    {
+     "type": "table",
+     "title": "PEG — Fwd 1Y P/E ÷ 다음 해 EPS 성장률",
+     "headers": [
+      "회사",
+      "Fwd 1Y P/E",
+      "다음 해 EPS 성장",
+      "PEG"
+     ],
+     "rows": [
+      [
+       "**Broadcom**",
+       "16.9",
+       "+59%",
+       "0.29"
+      ],
+      [
+       "AMD",
+       "34.6",
+       "+62%",
+       "0.56"
+      ],
+      [
+       "MRVL",
+       "24.2",
+       "+54%",
+       "0.45"
+      ],
+      [
+       "NVDA",
+       "15.0",
+       "+59%",
+       "0.26"
+      ],
+      [
+       "QCOM",
+       "17.1",
+       "+19%",
+       "0.92"
+      ]
+     ]
+    },
+    {
      "type": "p",
      "text": "지금 주가가 요구하는 5년 매출 CAGR 28%, 기본 시나리오 45%. 몬테카를로 중앙값 업사이드 -38%."
     },
@@ -5431,38 +5477,43 @@
    ]
   },
   {
-   "kind": "progress",
-   "title": "규모·마진·진척도",
+   "kind": "pipeline",
+   "title": "수주·파이프라인 확실성 사다리",
    "rows": [
     {
      "label": "Google 차세대 TPU 장기 계약",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "확정"
+     "size": "",
+     "status": "확정",
+     "when": ""
     },
     {
      "label": "Anthropic 2026~28 배치(1·5·10GW)",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "파이프라인"
+     "size": "",
+     "status": "파이프라인",
+     "when": ""
     },
     {
      "label": "OpenAI Jalapeño(2027 1.3GW·2028 5GW 이상)",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "파이프라인"
+     "size": "",
+     "status": "파이프라인",
+     "when": ""
     },
     {
      "label": "Meta MTIA(2028년까지 3GW)",
      "total": null,
      "pct": null,
-     "size": "미확인",
-     "status": "파이프라인"
+     "size": "",
+     "status": "파이프라인",
+     "when": ""
     }
-   ]
+   ],
+   "fmt": {}
   },
   {
    "kind": "waterfall",
@@ -7637,6 +7688,65 @@
        "name": "현재",
        "color": "e",
        "value": 293.69
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "hbars",
+   "w": 480,
+   "label_w": 130,
+   "title": "PEG — 성장 대비 멀티플(낮을수록 성장 대비 쌈)",
+   "unit": "",
+   "rows": [
+    {
+     "label": "Broadcom",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "e",
+       "value": 0.29
+      }
+     ]
+    },
+    {
+     "label": "AMD",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.56
+      }
+     ]
+    },
+    {
+     "label": "MRVL",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.45
+      }
+     ]
+    },
+    {
+     "label": "NVDA",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.26
+      }
+     ]
+    },
+    {
+     "label": "QCOM",
+     "bars": [
+      {
+       "name": "PEG",
+       "color": "c",
+       "value": 0.92
       }
      ]
     }
