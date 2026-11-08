@@ -63,7 +63,7 @@ def render(d, github=None, charts=None, h1=False):
             lines = report_html.under_lines(c)
             if lines and charts:
                 L += [""] + lines
-        for b in d.get("gallery_photos") or []:   # 제품·시설 사진도 한눈에 보기에(2026-11-07)
+        for b in (d.get("gallery_images") or []) + (d.get("gallery_photos") or []):   # 제품·분해도 사진(2026-11-08)도 한눈에 보기에   # 제품·시설 사진도 한눈에 보기에(2026-11-07)
             for x in b.get("items") or []:
                 cap = f"**{x.get('name')}**" + (f" — {x['caption']}" if x.get("caption") else "")
                 L += ["", f"![{x.get('name')}](charts/{x['jpg']})" if charts else "", cap, f"_{x.get('credit')}_"]

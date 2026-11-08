@@ -96,13 +96,13 @@ class TestImages(unittest.TestCase):
         rh.ROOT = self.tmp
         try:
             h = rh.image_html({"file": "p.png", "photo": "A", "title": "분해 개념도", "caption": P.cfg()["caption_fixed"],
-                               "legend": [[1, "레이저", True]], "callouts": [{"no": 1, "x": 0.5, "y": 0.2, "own": True}]})
+                               "legend": [[1, "레이저", True]], "callouts": [{"no": 1, "x": 0.5, "y": 0.2, "own": True, "label": "레이저"}]})
         finally:
             rh.ROOT = orig
         self.assertIn("data:image/png;base64", h)
         self.assertIn("사진 A", h)
         self.assertIn("AI 생성 개념도", h)
-        self.assertIn("<circle", h)
+        self.assertIn("① 레이저</span>", h)   # 컴포넌트 위에 번호 + 이름 이름표(2026-11-08 마스터 지시)
 
 
 class TestEnsure(unittest.TestCase):

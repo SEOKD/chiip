@@ -58,3 +58,33 @@ FIX = {   # 실패 사유 → 다음 시도 설명문에 덧붙일 문장
 
 def fixes(reasons, n=None):
     return " ".join(FIX[r].format(n=n) for r in reasons if r in FIX)
+
+
+LOCATE = ("This is an illustration of a product or an exploded assembly. For each numbered component in the list, give the point (x, y) at the center of "
+          "where that component appears, as fractions of image width and height (0 = left/top, 1 = right/bottom). Use null for a component you cannot see. "
+          "Components: {parts}")
+
+
+def locate(path, parts, cfg=None):
+    """컴포넌트 이름표 위치 — [{no, x, y}](마스터 지시 2026-11-08 "각 컴포넌트 위에 텍스트로 설명"). 보이지 않는 부품은 뺀다"""
+    from google.genai import types
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import vertex_auth
+    cl = vertex_auth.client(cfg)
+    p = Path(path)
+    mime = {".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".png": "image/png", ".webp": "image/webp"}.get(p.suffix.lower(), "image/png")
+    schema = {"type": "ARRAY", "items": {"type": "OBJECT", "properties": {"no": {"type": "INTEGER"}, "x": {"type": "NUMBER", "nullable": True}, "y": {"type": "NUMBER", "nullable": True}}, "required": ["no"]}}
+    listing = "; ".join(f"{no}. {name}" for no, name in parts)
+    import time
+    for wait in (0, 8, 25):   # 429(한도 초과)는 잠깐 쉬고 다시 — 과금 없는 오류
+        time.sleep(wait)
+        try:
+            r = cl.models.generate_content(model=(cfg or {}).get("locate_model") or (cfg or {}).get("qa_model", QA_MODEL), contents=[types.Part.from_bytes(data=p.read_bytes(), mime_type=mime), LOCATE.format(parts=listing)],
+                                           config=types.GenerateContentConfig(response_mime_type="application/json", response_schema=schema, temperature=0))
+            break
+        except Exception as e:
+            if getattr(e, "code", None) != 429 or wait == 25:
+                raise
+    ok = {int(no) for no, _ in parts}
+    return [{"no": int(x["no"]), "x": round(float(x["x"]), 3), "y": round(float(x["y"]), 3)} for x in json.loads(r.text)
+            if int(x.get("no") or 0) in ok and x.get("x") is not None and x.get("y") is not None and 0 <= float(x["x"]) <= 1 and 0 <= float(x["y"]) <= 1]

@@ -63,7 +63,7 @@ def build(src):
         else:
             rels.append(None)
     import photo_view   # 제품·시설 사진을 charts/로 복사(2026-11-05)
-    for b in [b for sec in d.get("sections") or [] for b in sec.get("blocks") or []] + (d.get("gallery_photos") or []):
+    for b in [b for sec in d.get("sections") or [] for b in sec.get("blocks") or []] + (d.get("gallery_photos") or []) + (d.get("gallery_images") or []):
         for x in (b.get("items") or []) if b.get("type") == "photos" else []:
             f = photo_view.path_of(x["file"])
             if f.exists():

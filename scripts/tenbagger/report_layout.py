@@ -435,7 +435,8 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
-    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, narrative_view.portfolio_chart(dp), supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp), site_view.chart(dp))
+    pchart = narrative_view.portfolio_chart(dp)
+    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, pchart, supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp), site_view.chart(dp))
     model = d.get("sections") or []
     find = lambda *keys: [x for x in model if x.get("h2", "").startswith(keys)]
     bear_blocks = [b for x in find("반대 검증") for b in x.get("blocks") or []]
@@ -454,6 +455,14 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         imgs = image_view.company_blocks(entity)
     except Exception as exc:   # 이미지 단계가 실패해도 리포트는 멈추지 않는다
         imgs = {"narrative": [{"type": "p", "text": f"이미지 없음({type(exc).__name__})"}], "supply": []}
+    # 제품·분해도 사진은 한눈에 보기의 제품·서비스 포트폴리오 바로 다음에(마스터 지시 2026-11-08). 본문에는 BOM 표·'이미지 없음' 줄만 남긴다
+    photos = [b for b in imgs["narrative"] + imgs["supply"] if b.get("type") == "image"]
+    imgs = {k: [b for b in v if b.get("type") != "image"] for k, v in imgs.items()}
+    if photos:
+        at = next((i for i, c in enumerate(d["gallery"]) if c is pchart), None)
+        at = len([c for c in d["gallery"] if c.get("title") in GALLERY[:GALLERY.index("포트폴리오")]]) if at is None else at + 1
+        d["gallery"][at:at] = [{"kind": "image_block", "title": f"사진 {b.get('photo')}. {b.get('title')}", "block": b} for b in photos]
+        d["gallery_images"] = photos   # 마크다운·노션 판도 같은 사진을 쓴다
     out[0]["blocks"] = list(out[0].get("blocks") or []) + imgs["narrative"]
     if customer_sec:
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + customer_sec.pop("_sources")))

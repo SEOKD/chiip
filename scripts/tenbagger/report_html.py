@@ -59,7 +59,7 @@ h1{font-size:21px;margin:0 0 4px;line-height:1.35}h2{font-size:18px;margin:30px 
 .lead{color:var(--mut);font-size:13.5px;margin:0 0 12px}.card{background:var(--card);border-radius:12px;padding:12px 14px;margin:12px 0}.hl{background:var(--hl);border-radius:12px;padding:12px 14px;margin:12px 0}
 .ans{display:grid;grid-template-columns:1fr;gap:8px}.ans div{background:var(--card);border-radius:10px;padding:10px 12px}.ans b.q{display:block;font-size:12.5px;color:var(--mut)}
 table{border-collapse:collapse;width:100%;font-size:13px;margin:6px 0}th,td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:right;vertical-align:top}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600}
-.tw{overflow-x:auto}th,td{overflow-wrap:anywhere;word-break:keep-all}.mut{color:var(--mut)}.sm{font-size:12.5px}.red{color:var(--b)}.blue{color:var(--c)}.grn{color:var(--d)}
+.tw{overflow-x:auto}th,td{overflow-wrap:break-word;word-break:keep-all}.mut{color:var(--mut)}.sm{font-size:12.5px}.red{color:var(--b)}.blue{color:var(--c)}.grn{color:var(--d)}
 /* 그래프 한 줄에 하나(마스터 지시 2026-10-30 "가로 한 줄에 두 개라 작게 보인다") */.gal{display:grid;grid-template-columns:1fr;gap:8px}.gal>div{min-width:0}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}.tile{background:var(--card);border-radius:10px;padding:10px 12px}.tile .v{font-size:20px;font-weight:700}.tile .k{font-size:12px;color:var(--mut)}
 svg{display:block;width:100%;height:auto}svg text{fill:var(--mut);font-size:10.5px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}
@@ -613,11 +613,12 @@ def chart_waterfall(c):
 CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "pipeline": chart_pipeline, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall}
 
 
-def figures(d):
+def figures(d, images=False):
     """그림 번호 순서 [(절, 블록)…] — pin이 있는 차트를 그 번호에 꽂고 나머지는 절 순서대로. HTML 갤러리·마크다운·노션이 같은 번호를 쓴다.
     format 3(2026-10-31 양식)은 report_layout이 정한 d['gallery'] 순서 그대로"""
     if d.get("format") == 3:
-        return [(None, {"type": "chart", "chart": c}) for c in d.get("gallery") or [] if CHARTS.get(c.get("kind"))]
+        return [(None, c["block"] if c.get("kind") == "image_block" else {"type": "chart", "chart": c}) for c in d.get("gallery") or []
+                if CHARTS.get(c.get("kind")) or (images and c.get("kind") == "image_block")]   # 제품·분해도 사진은 HTML 한눈에 보기에만(마크다운·노션은 그림 번호에서 뺀다)
     figs = [(s, b) for s in d.get("sections") or [] for b in s.get("blocks") or [] if b.get("type") == "chart" and CHARTS.get((b.get("chart") or {}).get("kind")) and (b.get("chart") or {}).get("kind") != "progress"]
     pinned = sorted((f for f in figs if f[1]["chart"].get("pin")), key=lambda f: f[1]["chart"]["pin"])
     out = [f for f in figs if not f[1]["chart"].get("pin")]
@@ -707,18 +708,23 @@ def _img_uri(rel):
 
 
 def image_html(b):
-    """그림은 base64로 넣고(Artifact·보관 HTML 같은 파일), 번호 원·지시선은 SVG로 겹친다. 위치를 모르면 번호 범례만"""
+    """그림은 base64로 넣고(Artifact·보관 HTML 같은 파일), 컴포넌트 이름표(번호 + 이름)를 그 위치에 HTML로 겹친다(2026-11-08 마스터 지시 "각 컴포넌트 위에 텍스트로 설명").
+    위치를 모르면 번호 범례만. 이름표는 Chiip이 붙인다 — AI 그림 안에는 글자를 넣지 않는다(ADR-017)"""
     uri = _img_uri(b.get("file", ""))
     if not uri:
         return f'<p class="sm mut">이미지 없음(파일 없음) — {t(b.get("title"))}</p>'
-    marks = []
+    tags = []
     for c in b.get("callouts") or []:
         x, y = float(c["x"]) * 100, float(c["y"]) * 100
-        fill = "var(--c)" if c.get("own") else "var(--fg)"
-        marks.append(f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{min(x + 8, 97):.1f}" y2="{y:.1f}" stroke="{fill}" stroke-width="0.4"/>'
-                     f'<circle cx="{min(x + 10, 98):.1f}" cy="{y:.1f}" r="2.4" fill="{fill}"/>'
-                     f'<text x="{min(x + 10, 98):.1f}" y="{y + 1:.1f}" text-anchor="middle" style="font-size:2.8px;fill:var(--bg);font-weight:700">{int(c["no"])}</text>')
-    svg = f'<svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">{"".join(marks)}</svg>' if marks else ""
+        col = "var(--c)" if c.get("own") else "var(--fg)"
+        no = int(c["no"])
+        mark = CIRCLED[no - 1] if 0 < no <= len(CIRCLED) else str(no)
+        side = "right:auto;left" if x < 60 else "left:auto;right"   # 오른쪽 끝 이름표는 왼쪽으로 펼쳐 잘리지 않게
+        pos = f"{x:.1f}%" if x < 60 else f"{100 - x:.1f}%"
+        tags.append(f'<span style="position:absolute;top:{y:.1f}%;{side}:{pos};transform:translateY(-50%);background:var(--bg);color:{col};border:1px solid {col};'
+                    f'border-radius:6px;padding:1px 5px;font-size:11px;font-weight:600;line-height:1.3;max-width:45%;white-space:normal;box-shadow:0 1px 2px rgba(0,0,0,.15)">'
+                    f'{mark} {t(c.get("label") or "")}</span>')
+    svg = "".join(tags)
     legend = ""
     if b.get("legend"):
         legend = '<div class="sm">' + " · ".join(f'<b style="color:{"var(--c)" if own else "var(--fg)"}">{CIRCLED[int(no) - 1] if 0 < int(no) <= len(CIRCLED) else no}</b> {t(part)}' for no, part, own in b["legend"]) + "</div>"
@@ -963,7 +969,7 @@ def render3(d):
             f'<div><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="s">{t(x.get("sub"))}</div></div>' for x in d["tiles"]) + "</div>")
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
-    figs = figures(d)
+    figs = figures(d, images=True)
     if figs or d.get("gallery_photos"):   # 사진도 한눈에 보기에(2026-11-07)
         parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "".join(f"<div>{block(b)}</div>" for b in d.get("gallery_photos") or []) + "</div>")
     names = [str(s.get("h2")) for s in d.get("sections") or []]

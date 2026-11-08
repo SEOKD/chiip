@@ -30,6 +30,7 @@ ensure:                               # 2026-11-08 마스터 지시 "검수에 �
   cost_cap_x: 3                       # 이미지 하나에 쓰는 돈은 1장 값의 3배까지
   fallback: {default: [gemini-3.1-flash-image, gemini-3.1-flash-lite-image], exploded: [gemini-3-pro-image, gemini-3.1-flash-image]}   # 모델 오류·할당량이면 다음 모델
   jpeg_quality_steps: [80, 65, 50]    # 200KB를 넘으면 다음 시도에서 품질을 낮춘다
+locate_model: gemini-3.5-flash     # 컴포넌트 이름표 위치 찾기(image_qa.locate, 2026-11-08 — lite는 제품 개념도에서 위치를 못 찾았다)
 qa_model: gemini-3.1-flash-lite       # 자동 눈 검수(scripts/tenbagger/image_qa.py) — Vertex에서 쓸 수 있는 모델(2.5-flash-lite는 이 프로젝트에서 404)
 approval_first: {company: 5, industry: 3}   # (auto_approve가 false일 때만) 처음 n건은 텔레그램 미리보기로 마스터 승인
 auto_approve: {company: true, industry: true}   # 2026-11-08 마스터 지시 "마스터 승인을 자동 승인하도록" — 자동 검수(눈 검수 포함)를 통과하면 바로 리포트에 넣는다
