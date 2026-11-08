@@ -14,7 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 MAX_LINE = 120
 DISCLAIMER = "공개 자료 기반 분석이며 투자 권유가 아님"
-KIND = {"event": "사건 때 심층", "monthly": "월간 트래커", "quarterly": "분기 결산"}
+KIND = {"event": "사건 때 심층", "weekly": "주간 산업", "quarterly": "분기 결산"}   # 월간 트래커 → 주간 산업(2026-11-08 마스터 지시)
 ICON = {"Attractive": "🟢", "In-Line": "⚪", "Cautious": "🔴"}
 
 

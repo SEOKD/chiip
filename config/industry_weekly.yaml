@@ -1,0 +1,58 @@
+# Chiip Industry Weekly — 매주 일요일 08:00 KST 산업 하나(마스터 지시 2026-11-08 "월간 트래커는 제외하고 그 자리에 1주일에 한 번씩 산업 하나를 골라 리포트를 쓰는 걸로 하라.
+# 매주 일요일 아침 8시에 제공 … 어떤 산업을 선택할지는 월스트리트 IB 리서치 하우스 시니어 애널리스트로서 시의적절하게 고르도록 체계를 갖춰라")
+# 선정 scripts/industry/weekly_pick.py · 조립 scripts/industry/weekly_frame.py · 절차 docs/tasks/chiip-industry-weekly.md
+#
+# 시니어 애널리스트의 '이번 주 무엇을 쓸까' 질문을 여섯 축으로 쪼갰다 — 독자가 다음 주 돈을 움직일 판단에 쓰는가:
+#   ① 촉매 근접   다음 14일 안 실적·학회·정책·지표(calendar.csv·실적 일정) — 쓰는 시점이 결정 직전이어야 읽힌다
+#   ② 가격 신호   2주 산업 바스켓 vs SPY 초과수익 절대값 — 시장이 움직인 곳(오른 이유든 빠진 이유든 설명 수요)
+#   ③ 뉴스 가속   7일 언급 수 ÷ 직전 4주 주평균 — 관심이 갑자기 커진 곳
+#   ④ 1차 사건    7일 P0·P1 알림 수(실적·가이던스·설비투자·계약) — 서류가 나온 곳
+#   ⑤ 알파 밀도   알파 5점 이상 종목 비중 — Chiip이 이미 가치 차이를 본 곳
+#   ⑥ 논쟁도      컨센서스 추정 분산·의견 갈림(모델이 --put으로 넣는 값, 없으면 중립) — 다른 내러티브를 낼 여지
+# 감점: 최근 recency_weeks주 안에 쓴 산업(같은 독자에게 같은 이야기), 구성 종목 min_members 미만(대표성 부족)
+# 가산: Chiip 엣지 — 한국 공급망 종목이 있는 산업(마스터 취재·한국어 1차 자료 해석이 먹히는 곳)
+# 점수 1위를 그대로 쓰되, 모델은 상위 3개를 보고 한 단계(1위 ↔ 2·3위)까지만 바꿀 수 있다 — 바꾸면 이유를 picks.csv에 적는다.
+weights: {catalyst: 0.25, price: 0.20, news: 0.15, events: 0.15, alpha: 0.10, debate: 0.15}
+korea_edge_bonus: 0.5      # 10점 척도 가산
+recency_weeks: 6
+recency_penalty: 3.0       # 10점 척도 감점(최근 쓴 산업)
+min_members: 3
+catalyst_days: 14
+news_days: 7
+industries:                # id = config/watchlist.csv keywords_ref(분야 모듈) — 구성 종목은 감시 목록에서 자동
+  dram-hbm: {name: "DRAM·HBM", etf: "NASDAQ:SMH"}
+  nand-storage: {name: "NAND·스토리지", etf: "NASDAQ:SMH"}
+  foundry-logic-ip: {name: "파운드리·로직·IP", etf: "NASDAQ:SMH"}
+  packaging-substrate: {name: "패키징·기판·PCB·소재", etf: "NASDAQ:SMH"}
+  ai-accelerators: {name: "AI 가속기(GPU·ASIC)", etf: "NASDAQ:SMH"}
+  networking-interconnect: {name: "네트워킹·광 인터커넥트", etf: "NASDAQ:SMH"}
+  materials-equipment: {name: "반도체 장비·소재", etf: "NASDAQ:SMH"}
+  passives-components: {name: "수동소자·부품(MLCC 등)", etf: "NASDAQ:SMH"}
+  power-infra: {name: "데이터센터 전력 인프라", etf: "AMEX:XLU"}
+  cooling: {name: "데이터센터 냉각", etf: "AMEX:XLI"}
+  devices-robotics: {name: "기기·로보틱스", etf: "AMEX:XLK"}
+sub_map:                   # config/valuation.yaml universe·earnings_watch extra의 sub → 산업(알파 유니버스 종목까지 구성에 넣는다)
+  memory: dram-hbm
+  storage: nand-storage
+  foundry: foundry-logic-ip
+  eda_ip: foundry-logic-ip
+  semi_ip: foundry-logic-ip
+  substrate: packaging-substrate
+  accelerator: ai-accelerators
+  hyperscaler: ai-accelerators
+  edge_ai: ai-accelerators
+  networking: networking-interconnect
+  optical: networking-interconnect
+  lasers: networking-interconnect
+  semicap: materials-equipment
+  equipment: materials-equipment
+  materials: materials-equipment
+  components: passives-components
+  power_infra: power-infra
+  power_semi: power-infra
+  power_semis: power-infra
+  power_services: power-infra
+  utility: power-infra
+  cooling: cooling
+  server: cooling
+  devices: devices-robotics

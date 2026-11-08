@@ -252,7 +252,7 @@ def charts(dp, rows):
     return out
 
 
-def register(dp, made_on):
+def register(dp, made_on, tag="IND", origin="industry_event", basis="Industry Report 사건 심층"):
     """⑧ 체크포인트를 예측 장부에 올린다(이미 있으면 건너뛴다). 사후 수정 금지 — 정정은 새 행"""
     with PRED.open(encoding="utf-8", newline="") as f:
         reader = csv.DictReader(f)
@@ -260,11 +260,11 @@ def register(dp, made_on):
     have = {r["pred_id"] for r in rows}
     add = []
     for i, x in enumerate(dp["checkpoints"], 1):
-        pid = f"P-{made_on.replace('-', '')}-IND{i}"
+        pid = f"P-{made_on.replace('-', '')}-{tag}{i}"
         if pid in have:
             continue
         add.append({**{k: "" for k in fields}, "pred_id": pid, "made_on": made_on, "thesis_id": dp["id"], "statement": x["what"], "metric": x.get("metric", ""),
-                    "target": x.get("target", ""), "deadline": x["date"], "probability": x["p"], "basis": x.get("basis", "Industry Report 사건 심층"), "owner": "Chiip", "origin": "industry_event"})
+                    "target": x.get("target", ""), "deadline": x["date"], "probability": x["p"], "basis": x.get("basis", basis), "owner": "Chiip", "origin": origin})
     if add:
         with PRED.open("a", encoding="utf-8", newline="") as f:
             csv.DictWriter(f, fieldnames=fields).writerows(add)
