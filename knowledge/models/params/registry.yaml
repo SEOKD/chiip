@@ -5070,6 +5070,70 @@ params:
     data: datapack pq.breaks
     last_fit: null
     oos_metric: null
+- id: prm-pq-fc-overlap
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#forecast.overlap_q
+  value: 4
+  unit: 분기(겹친 표본 길이)
+  status: prior
+  prior:
+    value: 4
+    basis: 전년 대비 증가율·TTM은 이웃 분기가 3분기를 공유한다 — 잔차 3시차 바틀렛 가중 장기 분산으로 예측 σ를 키운다(2026-11-08 마스터 지시 P·Q 투영 보완)
+    source: Newey & West (1987) Econometrica; Hansen & Hodrick (1980) J. Political Economy(겹친 관측)
+  fit:
+    method: 4분기 앞 투영 80% 범위의 실제 포함률(목표 80%)
+    target: 실적 P·Q 기여
+    data: 앞으로의 성과
+    last_fit: null
+    oos_metric: null
+- id: prm-pq-fc-mean-prior-p
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#forecast.mean_prior_p
+  value: 0.02
+  unit: 연 증가율(가격)
+  status: prior
+  prior:
+    value: 0.02
+    basis: 가격 전년 대비 장기 기저율 — 미국 PPI 장기 평균 근처. 절편 자기회귀모델의 장기 평균을 이쪽으로 수축한다
+    source: Mauboussin (2015) The Base Rate Book(기저율 접근); BLS PPI 장기 평균
+  fit:
+    method: 8분기 앞 가격 기여 투영 오차(RMSE) 최소화
+    target: 실적 가격 기여
+    data: 앞으로의 성과
+    last_fit: null
+    oos_metric: null
+- id: prm-pq-fc-mean-prior-q
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#forecast.mean_prior_q
+  value: 0.04
+  unit: 연 증가율(물량)
+  status: prior
+  prior:
+    value: 0.04
+    basis: 물량 전년 대비 장기 기저율 — 상장사 매출 성장은 지속성이 약하고 횡단면 중앙값으로 되돌아간다
+    source: Chan, Karceski & Lakonishok (2003) J. Finance(성장 지속성); Mauboussin (2015)
+  fit:
+    method: 8분기 앞 물량 기여 투영 오차(RMSE) 최소화
+    target: 실적 물량 기여
+    data: 앞으로의 성과
+    last_fit: null
+    oos_metric: null
+- id: prm-pq-fc-mean-prior-k
+  model: tenbagger.pq_cycle
+  binding: config/pq_cycle.yaml#forecast.mean_prior_k
+  value: 24
+  unit: 분기(기저율 무게)
+  status: prior
+  prior:
+    value: 24
+    basis: 기저율 무게 = κ ÷ (표본 분기 수 + κ) — 표본 24분기면 표본 평균과 기저율을 반반. 경험적 베이즈 수축(제임스·스타인)의 단순형
+    source: Efron & Morris (1975) J. Am. Stat. Assoc.(수축 추정)
+  fit:
+    method: κ 격자(8·16·24·40)별 8분기 앞 투영 RMSE, 중첩 표본 외 검정(scripts/fit/stepwise.py)
+    target: 실적 P·Q 기여
+    data: 앞으로의 성과
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-peg-growth-min
   model: tenbagger.report
   binding: config/tenbagger.yaml#peg.growth_min

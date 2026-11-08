@@ -94,6 +94,18 @@ def _quarterly(series):
     return out
 
 
+def price_monthly(pq, history=None, db=sv.HS_DB, fred_cache=None):
+    """가격 근거가 월간 지수(PPI·FRED)면 {YYYY-MM: 값}, 아니면 None — 나우캐스트(pq_forecast ⑦)용"""
+    pr = (pq or {}).get("price") or {}
+    if (pq or {}).get("volume"):
+        return None
+    if pr.get("source") == "ppi":
+        return sv.monthly({"source": "ppi", "input": pr["input"], "country": pr["country"]}, history, db)
+    if pr.get("source") == "fred":
+        return fred_monthly(pr["series"], fred_cache)
+    return None
+
+
 def levels(dp, pq=None, history=None, db=sv.HS_DB, fred_cache=None):
     """분기 라벨 → 매출·가격·GPM·GP"""
     pq = pq if pq is not None else dp["pq"]
@@ -197,13 +209,26 @@ def compute(dp, history=None, db=sv.HS_DB, pq=None, fred_cache=None):
            "fake_p": now == "P 사이클" and gpm_up is not None and gpm_up <= 0, "proj": None, "switch": None, "period": None}
     if len(rows) >= MIN_POINTS:
         fc = cfg().get("forecast") or {}
-        kw = {"pmax": fc.get("ar_pmax", 3), "intercept": True, "max_root": fc.get("max_root", 0.95)}   # 전년 대비 증가율은 평균이 0이 아니라 절편을 둔다
-        fp, fq = F.ar_fit(gp, **kw), F.ar_fit(gq, **kw)
+        # 전년 대비 증가율은 평균이 0이 아니라 절편을 둔다. 4분기 겹친 표본(⑤)·장기 평균 수축(⑥) — pq_forecast 맨 위
+        kw = {"pmax": fc.get("ar_pmax", 3), "intercept": True, "max_root": fc.get("max_root", 0.95), "overlap": fc.get("overlap_q", 4), "mean_k": fc.get("mean_prior_k")}
+        fp = F.ar_fit(gp, mean_prior=math.log(1 + fc["mean_prior_p"]) if "mean_prior_p" in fc else None, **kw)
+        fq = F.ar_fit(gq, mean_prior=math.log(1 + fc["mean_prior_q"]) if "mean_prior_q" in fc else None, **kw)
         if fp and fq:
-            pp, sep = F.ar_path(gp, fp, HORIZON)
-            qq, seq = F.ar_path(gq, fq, HORIZON)
             rev = levels(dp, pq, history, db, fred_cache)[0]
             last, qs = rows[-1]["q"], sorted(rev)
+            # ⑦ 가격 나우캐스트 — 마지막 실적 다음 분기에 이미 나온 월간 가격이 있으면 그 분기 가격 증가율은 관측값
+            now_p, n_m = None, 0
+            mon = price_monthly(pq or dp.get("pq"), history, db, fred_cache)
+            if mon:
+                y_, m_ = (int(last[:4]), int(last[-1]) * 3)
+                end = (y_ + (m_ + 3 - 1) // 12, (m_ + 3 - 1) % 12 + 1)
+                now_p, n_m = F.nowcast_yoy(mon, end, sv.months_back)
+            if now_p is not None:
+                pp_, sep_ = F.ar_path(gp + [now_p], fp, HORIZON - 1)
+                pp, sep = [now_p] + pp_, [fp["sigma"] * math.sqrt((3 - n_m) / 3)] + [math.sqrt(s * s + (fp["sigma"] ** 2) * (3 - n_m) / 3) for s in sep_]
+            else:
+                pp, sep = F.ar_path(gp, fp, HORIZON)
+            qq, seq = F.ar_path(gq, fq, HORIZON)
             cons, basis = F.consensus_quarters(dp, qs[-1], rev[qs[-1]], sv.shift_q, HORIZON + 4)
             allq = {**cons, **rev}
             proj = []
@@ -212,11 +237,14 @@ def compute(dp, history=None, db=sv.HS_DB, pq=None, fred_cache=None):
                 w = 0.0
                 if q in allq and base in allq and q not in rev and allq[base] > 0:
                     b, _, w = F.combine(b, seq[i], math.log(allq[q] / allq[base]) - a, math.sqrt(F.cons_se(dp, i + 1, fc) ** 2 + sep[i] ** 2))
-                proj.append({"q": q, "g_p": a, "g_q": b, "w_cons": w})
+                se_q_i = seq[i] if not w else math.sqrt(1 / (1 / max(seq[i], 1e-9) ** 2 + 1 / max(math.sqrt(F.cons_se(dp, i + 1, fc) ** 2 + sep[i] ** 2), 1e-9) ** 2))
+                proj.append({"q": q, "g_p": a, "g_q": b, "w_cons": w, "se_p": sep[i], "se_q": se_q_i})
             cur = mp >= mq
             sw = next((i + 1 for i, p in enumerate(proj) if (p["g_p"] >= p["g_q"]) != cur), None)
             per = lambda f: period(f["phi"][0], f["phi"][1]) if f["p"] == 2 else None
-            out.update({"proj": proj, "switch": sw, "period": {"P": per(fp), "Q": per(fq)}, "models": (f"AR({fp['p']})", f"AR({fq['p']})"), "cons": basis if cons else None})
+            out.update({"proj": proj, "switch": sw, "period": {"P": per(fp), "Q": per(fq)}, "models": (F.ar_name(fp["p"]), F.ar_name(fq["p"])), "cons": basis if cons else None,
+                        "nowcast": {"q": proj[0]["q"], "months": n_m} if now_p is not None else None,
+                        "means": {"P": (fp["mean_raw"], fp["mean"]), "Q": (fq["mean_raw"], fq["mean"])}})
     return out
 
 
@@ -356,7 +384,7 @@ def _forecast(dp, pts, lp, lv, rev, qs, lam, c):
     empty = {"lp": [], "lq": [], "se_p": [], "se_q": [], "w": [], "meta": None}
     tp0, tv0 = hp(lp, lam), hp(lv, lam)
     gp0, gq0 = [a - b for a, b in zip(lp, tp0)], [a - b for a, b in zip(lv, tv0)]
-    kw = {"pmax": fc.get("ar_pmax", 3), "max_root": fc.get("max_root", 0.95)}
+    kw = {"pmax": fc.get("ar_pmax", 3), "max_root": fc.get("max_root", 0.95), "overlap": fc.get("overlap_q", 4)}   # TTM도 4분기 겹친 표본(⑤)
     fp, fq = F.ar_fit(gp0, **kw), F.ar_fit(gq0, **kw)
     if not fp or not fq:
         return empty
@@ -387,7 +415,7 @@ def _forecast(dp, pts, lp, lv, rev, qs, lam, c):
     tail_p = [tp0[-1] + sp_ * (h + 1) + gpf2[h] for h in range(H, 2 * H)]
     g_end = (lq[-1] - lq[-5]) / 4
     tail_q = [lq[-1] + g_end * (h + 1 - H) for h in range(H, 2 * H)]
-    meta = {"p_model": f"AR({fp['p']})" + (" 정상성 보정" if fp["shrunk"] else ""), "q_model": f"AR({fq['p']})" + (" 정상성 보정" if fq["shrunk"] else ""),
+    meta = {"p_model": F.ar_name(fp["p"]) + (" 정상성 보정" if fp["shrunk"] else ""), "q_model": F.ar_name(fq["p"]) + (" 정상성 보정" if fq["shrunk"] else ""),
             "p_root": fp["radius"], "q_root": fq["radius"], "cons": basis if cons else None, "w4": w[3] if len(w) > 3 else None, "w8": w[-1] if w else None}
     return {"lp": lpf, "lq": lq, "tail_p": tail_p, "tail_q": tail_q, "se_p": sep, "se_q": se_q, "w": w, "meta": meta}
 
@@ -445,10 +473,22 @@ def long_blocks(lc, label):
     note = (f"방법: P = 가격 지수 4분기 평균({label}), Q = TTM 매출 ÷ P. 추세는 로그 레벨의 HP 필터(λ 1600)로 정상(mid-cycle) 수준을 잡는다. "
             f"프리미엄 = 요인별 {lc['basis']} 증분 ÷ 정상 {lc['basis']}"
             + (f"(정상 GPM {lc['gpm_mid'] * 100:.1f}% = 10년 중앙값, 물량 증분 마진 {lc['m_q'] * 100:.1f}% = 전년 대비 ΔGP÷ΔRev 회귀, 가격은 전액 이익 반영)" if lc["gpm_mid"] else "(GP 이력이 없어 매출 기준)")
-            + f". 표본 {lc['n']}개 TTM 분기. 전망: 가격 갭은 BIC로 차수를 고른 AR(정상성 보정), 물량은 통계 갭 AR과 컨센서스 매출 ÷ 가격 전망(매출 = P × Q)을 분산 역수로 섞는다(Bates·Granger 1969). "
-               "끝점 편향을 줄이려고 전망 경로를 이어 붙인 뒤 HP 필터를 다시 건다(Kaiser·Maravall 1999). 80% 범위는 AR 예측 오차와 애널리스트 범위에서 낸다. 모형 산출이며 가이던스가 아니다.")
+            + f". 표본 {lc['n']}개 TTM 분기. 전망: 가격 갭은 BIC로 차수를 고른 자기회귀모델(정상성 보정), 물량은 통계 갭 자기회귀모델과 컨센서스 매출 ÷ 가격 전망(매출 = P × Q)을 분산 역수로 섞는다(Bates·Granger 1969). "
+               "끝점 편향을 줄이려고 전망 경로를 이어 붙인 뒤 HP 필터를 다시 건다(Kaiser·Maravall 1999). 80% 범위는 예측 오차(TTM이 4분기씩 겹쳐 생기는 자기상관을 뉴이·웨스트 장기 분산으로 반영)와 애널리스트 범위에서 낸다. 모형 산출이며 가이던스가 아니다.")
     B.append({"type": "p", "text": note})
     return B
+
+
+def band4(p, k):
+    """4분기 뒤 투영값과 80% 범위(전년 대비)"""
+    s = p.get("se_" + k)
+    v = p["g_" + k]
+    return _pct(v) if s is None else f"{_pct(v)} ({_pct(v - Z80 * s)}~{_pct(v + Z80 * s)})"
+
+
+def mean_txt(m):
+    raw, shr = m
+    return UNKNOWN if raw is None else f"{_pct(math.exp(raw) - 1)} → {_pct(math.exp(shr) - 1)}"
 
 
 def section(dp, history=None, db=sv.HS_DB, fred_cache=None):
@@ -494,9 +534,15 @@ def section(dp, history=None, db=sv.HS_DB, fred_cache=None):
     per = c.get("period") or {}
     B.append({"type": "table", "title": "P·Q 사이클 정량", "headers": ["항목", "가격(P)", "물량(Q)"],
               "rows": [["최근 4분기 평균 기여", _pct(c["mp"]), _pct(c["mq"])], ["강도(0~10, 자기 이력 z)", f"{c['p_score']:.1f}", f"{c['q_score']:.1f}"],
-                       ["AR 고유 주기(AR(2)일 때)", UNKNOWN if not per.get("P") else f"{per['P']:.1f}분기", UNKNOWN if not per.get("Q") else f"{per['Q']:.1f}분기"],
-                       ["다음 4분기 투영 평균", UNKNOWN if not c["proj"] else _pct(sum(p["g_p"] for p in c["proj"][:4]) / 4), UNKNOWN if not c["proj"] else _pct(sum(p["g_q"] for p in c["proj"][:4]) / 4)]]})
-    B.append({"type": "p", "text": f"가격 근거: {label}. PPI를 쓰면 회사 판매가가 아니라 업종 가격 대용이다. 로그 증가율이라 가격·물량 기여의 합이 매출 증가율이다. 전망: 가격은 BIC로 차수를 고른 AR, 물량은 AR과 '컨센서스 매출 증가율 − 가격 전망'을 분산 역수로 섞는다. 모형 산출이며 가이던스가 아니다."
+                       ["고유 주기(자기회귀모델 과거 2개 시점일 때)", UNKNOWN if not per.get("P") else f"{per['P']:.1f}분기", UNKNOWN if not per.get("Q") else f"{per['Q']:.1f}분기"],
+                       ["다음 4분기 투영 평균", UNKNOWN if not c["proj"] else _pct(sum(p["g_p"] for p in c["proj"][:4]) / 4), UNKNOWN if not c["proj"] else _pct(sum(p["g_q"] for p in c["proj"][:4]) / 4)]]
+              + ([["4분기 뒤 투영(80% 범위)", band4(c["proj"][3], "p"), band4(c["proj"][3], "q")],
+                  ["장기 평균(표본 → 기저율 수축)", mean_txt(c["means"]["P"]), mean_txt(c["means"]["Q"])],
+                  ["투영 모형", c["models"][0] + (f" · {c['nowcast']['q']} 월간 가격 {c['nowcast']['months']}개월 반영" if c.get("nowcast") else ""),
+                   c["models"][1] + (f" + 컨센서스({c['cons']})" if c.get("cons") else " (컨센서스 없음)")]] if c["proj"] and len(c["proj"]) > 3 else [])})
+    B.append({"type": "p", "text": f"가격 근거: {label}. PPI를 쓰면 회사 판매가가 아니라 업종 가격 대용이다. 로그 증가율이라 가격·물량 기여의 합이 매출 증가율이다. "
+                                         "전망: 가격은 BIC로 차수를 고른 자기회귀모델에 이미 발표된 월간 가격을 먼저 넣고(나우캐스트), 물량은 자기회귀모델과 '컨센서스 매출 증가율 − 가격 전망'을 분산 역수로 섞는다. "
+                                         "장기 평균은 표본 평균을 장기 기저율(가격 연 2%·물량 연 4%) 쪽으로 줄인다 — 고성장 구간만 담긴 표본이 그 성장을 끝없이 잇지 않게. 범위는 4분기 겹친 표본의 자기상관을 반영한다. 모형 산출이며 가이던스가 아니다."
                                          + (f" 회사 판매가로 잴 수 없는 이유: {own['none']}" if proxy and own and own.get("none") else "")})
     if lc["enough"]:
         B = long_blocks(lc, label) + B

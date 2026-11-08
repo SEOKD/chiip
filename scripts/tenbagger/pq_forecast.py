@@ -11,11 +11,36 @@
   ③ AR 차수 고정·정상성 미점검 — AR(2) 계수가 단위근 근처(모듈러스 0.94)여도 그대로 썼다.
      → 절편 없는 AR(p), p = 1~3을 BIC(Schwarz 1978)로 고르고, 동반 행렬 최대 고윳값이 max_root를 넘으면 계수를 줄여 정상성을 지킨다.
   ④ 불확실성이 없었다 → ψ 가중치로 h분기 예측 표준오차, 80% 범위를 낸다(Box & Jenkins).
+2차 점검(2026-11-08 마스터 지시 "P 투영과 Q 투영 모델링을 점검하고 부족한 부분을 보완"):
+  ⑤ 겹친 표본 — 전년 대비 증가율·TTM은 이웃한 분기가 3분기를 공유해 잔차가 MA(3)처럼 이어진다. 그대로 쓰면 σ가 작아 범위가 좁다.
+     → 잔차 자기공분산 3시차까지 바틀렛 가중 장기 분산(Newey & West 1987; 겹친 관측 Hansen & Hodrick 1980)으로 σ를 키운다.
+  ⑥ 장기 평균 = 표본 평균 — 절편 AR은 표본 평균 증가율로 수렴한다. 고성장 구간만 담긴 표본이면 8분기 뒤에도 +40%를 잇는다.
+     → 무조건 평균을 장기 기저율(가격 연 2%, 물량 연 4%)로 n/(n+κ)만큼 수축한다(매출 성장 지속성 약함: Chan, Karceski & Lakonishok 2003;
+       기저율 접근 Mauboussin 2015). 수렴 속도(AR 계수)는 그대로 둔다.
+  ⑦ 이미 나온 가격을 버렸다 — 월간 PPI는 분기 실적보다 먼저 나온다. 마지막 실적 분기 뒤 발표된 달이 있으면 그 분기 가격 증가율은
+     관측값으로 바꾸고(나우캐스트, Giannone, Reichlin & Small 2008) 나머지 달 몫만큼만 오차를 남긴 뒤 AR을 그 점에서 다시 잇는다.
 상수는 config/pq_cycle.yaml forecast, 등록부 prm-pq-fc-*. 전망은 모형 산출이며 가이던스가 아니다.
 """
 import math
 
 Z80 = 1.2816
+
+
+def ar_name(p):
+    """AR(p)를 글로 — 리포트에 'AR(2)'를 그대로 쓰지 않는다(2026-11-08 마스터 지시 "AR(2)는 자기회귀모델(과거 2개시점)이라고 표기")"""
+    return f"자기회귀모델(과거 {p}개 시점)"
+
+
+def long_run_sd(res, lags):
+    """잔차의 바틀렛 가중 장기 표준편차(Newey & West 1987) — 겹친 표본의 자기상관을 반영"""
+    n = len(res)
+    if n < 2 or lags < 1:
+        return None
+    m = sum(res) / n
+    e = [r - m for r in res]
+    g = lambda k: sum(e[t] * e[t - k] for t in range(k, n)) / n
+    lrv = g(0) + 2 * sum((1 - k / (lags + 1)) * g(k) for k in range(1, min(lags, n - 1) + 1))
+    return math.sqrt(max(lrv, g(0)))
 
 
 def _solve(A, b):
@@ -55,8 +80,9 @@ def _radius(phi):
     return r
 
 
-def ar_fit(y, pmax=3, intercept=False, max_root=0.95):
-    """BIC로 차수를 고른 AR(p). {p, phi, c, sigma, radius, shrunk}. 표본이 모자라면 None"""
+def ar_fit(y, pmax=3, intercept=False, max_root=0.95, overlap=1, mean_prior=None, mean_k=None):
+    """BIC로 차수를 고른 AR(p). {p, phi, c, sigma, radius, shrunk, mean, mean_raw}. 표본이 모자라면 None.
+    overlap > 1이면 σ를 겹친 표본 장기 분산으로 키운다(⑤), mean_prior·mean_k가 있으면 절편 모형의 장기 평균을 수축한다(⑥)"""
     best = None
     for p in range(1, pmax + 1):
         rows = [(([1.0] if intercept else []) + [y[t - k] for k in range(1, p + 1)], y[t]) for t in range(p, len(y))]
@@ -73,7 +99,7 @@ def ar_fit(y, pmax=3, intercept=False, max_root=0.95):
         bic = len(res) * math.log(max(s2, 1e-12)) + k * math.log(len(res))
         if best is None or bic < best["bic"]:
             c, phi = (beta[0], beta[1:]) if intercept else (0.0, beta)
-            best = {"p": p, "phi": phi, "c": c, "sigma": math.sqrt(s2 * len(res) / max(len(res) - k, 1)), "bic": bic}
+            best = {"p": p, "phi": phi, "c": c, "sigma": math.sqrt(s2 * len(res) / max(len(res) - k, 1)), "bic": bic, "res": res}
     if not best:
         return None
     r = _radius(best["phi"])
@@ -83,6 +109,18 @@ def ar_fit(y, pmax=3, intercept=False, max_root=0.95):
         best["phi"] = [a * f ** (j + 1) for j, a in enumerate(best["phi"])]
         r = max_root
     best["radius"] = r
+    res = best.pop("res")
+    if overlap > 1:
+        lr = long_run_sd(res, overlap - 1)
+        if lr:
+            best["sigma"] = max(best["sigma"], lr * math.sqrt(len(res) / max(len(res) - best["p"] - 1, 1)))
+    one = 1 - sum(best["phi"])
+    best["mean_raw"] = best["c"] / one if intercept and abs(one) > 1e-9 else None
+    best["mean"] = best["mean_raw"]
+    if intercept and mean_prior is not None and mean_k and best["mean_raw"] is not None:
+        w = len(y) / (len(y) + mean_k)
+        best["mean"] = w * best["mean_raw"] + (1 - w) * mean_prior
+        best["c"] = best["mean"] * one
     return best
 
 
@@ -98,6 +136,18 @@ def ar_path(y, fit, n):
         psi.append(sum(phi[k] * psi[j - 1 - k] for k in range(len(phi)) if j - 1 - k >= 0))
     se = [fit["sigma"] * math.sqrt(sum(x * x for x in psi[:i + 1])) for i in range(n)]
     return out, se
+
+
+def nowcast_yoy(monthly, end_ym, months_back):
+    """마지막 실적 다음 분기(끝 달 end_ym)의 가격 전년 대비 로그 증가율을 이미 나온 달로 — (값, 나온 달 수). 없으면 (None, 0)"""
+    ms = months_back(end_ym)
+    have = [m for m in ms if m in monthly and monthly[m]]
+    if not have:
+        return None, 0
+    ago = [f"{int(m[:4]) - 1}{m[4:]}" for m in have]
+    if not all(a in monthly and monthly[a] for a in ago):
+        return None, 0
+    return math.log(sum(monthly[m] for m in have) / sum(monthly[a] for a in ago)), len(have)
 
 
 def _scale(est, last):
