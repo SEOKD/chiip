@@ -8,8 +8,12 @@ argument-hint: "[daily | weekly | 논문 URL]"
 고도화 = 파라미터를 만들고 피팅하는 과정. 장부는 `knowledge/models/params/registry.yaml` (`py scripts/fit/registry.py --list`, `--check`).
 
 ## daily (매일)
-1. `py radar/literature.py --top 15` — 수집 + 관련도 상위 목록.
-2. 상위에서 **최대 3편**을 고른다. 기준은 "치입 모델에 실제로 쓸 수 있는가"(관련도 점수는 참고). 초록·공개 본문만 읽는다(유료벽 우회 금지).
+0. **보드·그림자(2026-11-08 고도화, 마스터 지시 "Model Laboratory를 더욱 고도화")** — 연구보다 먼저:
+   - `py scripts/lab/shadow.py run` — 도전자(제안 값)를 현행과 나란히 전 종목에 돌려 기록(실전 산출은 그대로). 유료 데이터 없이 '앞으로의 성과' 증거를 제안 첫날부터 쌓는다.
+   - `py scripts/lab/pipeline.py` — 제안마다 막힌 곳(코드 연결 없음·평가기 없음·그림자 미등록·관측 부족·마스터 승인)과 다음 행동. 노트 맨 위에 붙이고, **막힌 곳 하나를 그날 푼다**(binding 경로 만들기·표시형 시험 운영·도전자 등록) — 새 제안을 늘리기 전에.
+   - 일요일: `py scripts/lab/sensitivity.py`(상수별 의사결정 가치 — ±10%에 가치·신호가 얼마나 바뀌나)와 `py scripts/lab/shadow.py score`(h=20·60 순위 정보계수 IC, '강함' 신호 초과수익). 효과 0인 상수는 '연결 확인 필요'로 적고 연구 대상에서 내린다. IC가 현행보다 높고 관측 30·날짜 8을 넘긴 도전자만 stepwise 관문으로 넘긴다.
+1. `py radar/literature.py --top 15` — 수집 + 관련도 상위 목록. 주말(arXiv 휴간)은 주중 미독 상위를 읽는다.
+2. 상위에서 **최대 3편**을 고른다. 기준은 "치입 모델에 실제로 쓸 수 있는가"이고, **의사결정 가치 상위 상수(`knowledge/models/lab/sensitivity.csv`)와 막힌 제안에 닿는 논문을 먼저** 고른다(관련도 점수는 참고). 초록·공개 본문만 읽는다(유료벽 우회 금지).
 3. 노트 `knowledge/models/lab/notes/YYYYMMDD.md` — 편마다:
    - 주장 1문장 / 방법 / 데이터(시장·기간·표본) / 효과 크기(숫자·단위) / 표본 외·재현 증거 / 한계
    - **치입 적용**: 어떤 모델·파라미터에, 어떻게(새 파라미터·사전값 갱신·구조 변경·적용 안 함과 이유)

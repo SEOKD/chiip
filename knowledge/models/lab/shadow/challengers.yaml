@@ -1,0 +1,16 @@
+challengers:
+- id: prm-v2-gterm-us=0.03
+  param: prm-v2-gterm-us
+  binding: config/valuation_v2.yaml#defaults.g_term.US
+  value: 0.03
+  proposal: MLL-20261108
+  since: '2026-11-08'
+  why: 보수적 영구성장 — Damodaran 관행(영구성장 ≤ 무위험금리, 실무 2.5~3%)과 현행 3.5%(판단, 출처 없음) 비교. 의사결정
+    가치 2위
+- id: prm-v2-dec-neutral-p-beat=0.45
+  param: prm-v2-dec-neutral-p-beat
+  binding: config/valuation_v2.yaml#decision.neutral_p_beat
+  value: 0.45
+  proposal: MLL-20261108
+  since: '2026-11-08'
+  why: '''중립'' 신호 경계를 넓혀 신호 정밀도가 나아지는지 — 의사결정 가치 1위(±10%에 신호 5% 바뀜), 사전값은 초안'
