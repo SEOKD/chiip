@@ -30,6 +30,7 @@ from pollers import common  # noqa: E402
 STATE = "alpha_watch"
 QUEUE = common.STATE / "v2_queue.json"
 DISCLAIMER = "투자자문 아님 — 판단을 돕는 정량 지표이며 매수·매도 권유가 아님"
+DISCLAIMER_SHORT = "투자자문 아님"
 
 
 def cfg():
@@ -40,15 +41,54 @@ def drivers_path(eid):
     return ROOT / "knowledge" / "models" / "companies" / eid / "drivers.yaml"
 
 
+def front(text):
+    """내러티브 파일 머리(--- 사이)를 읽는다. YAML이 깨졌으면(따옴표 안 닫힘 등) 줄 단위 'key: 값'으로 읽는다 —
+    한 줄 오류로 알림에 '파일 형식 오류'만 남던 문제(2026-11-08 마스터 지시 "파일 형식 오류가 뭔지 알려주고 해결")"""
+    parts = text.split("\n---")
+    if not text.startswith("---") or len(parts) < 2:
+        return None
+    head = parts[0][3:]
+    try:
+        fm = yaml.safe_load(head)
+        if isinstance(fm, dict):
+            return fm
+    except yaml.YAMLError:
+        pass
+    fm = {}
+    for line in head.splitlines():
+        k, sep, v = line.partition(":")
+        if not sep or not k.strip().isidentifier():
+            continue
+        v = v.split("  #")[0].strip()
+        try:
+            val = yaml.safe_load(v)
+        except yaml.YAMLError:
+            val = None
+        fm[k.strip()] = val if isinstance(val, (dict, list, int, float)) else v
+    return fm or None
+
+
+def check_front(text):
+    """머리가 YAML로 바로 읽히는지 — narrative-premium 스킬이 저장 직후 부른다(오류 문구, 없으면 None)"""
+    parts = text.split("\n---")
+    if not text.startswith("---") or len(parts) < 2:
+        return "머리(--- … ---)가 없다"
+    try:
+        fm = yaml.safe_load(parts[0][3:])
+    except yaml.YAMLError as e:
+        m = getattr(e, "problem_mark", None)
+        return f"YAML 오류 {m.line + 2 if m else '?'}번째 줄 — 값에 따옴표·콜론이 섞이면 값 전체를 큰따옴표로 감싸고 안쪽 따옴표는 ‘ ’로 쓴다"
+    return None if isinstance(fm, dict) and fm.get("summary") else "summary가 없다"
+
+
 def narrative_line(eid, today=None, stale_days=30):
     """스킬 narrative-premium 결과(knowledge/narratives/companies/<id>.md) 한 줄 — 없거나 오래되면 그렇게 적는다"""
     p = ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
     if not p.exists():
         return "내러티브: 작성 대기 — chiip-valuation-queue 다음 회차(08:10·18:10)가 쓴다"
-    try:
-        fm = yaml.safe_load(p.read_text(encoding="utf-8").split("---")[1]) or {}
-    except (IndexError, yaml.YAMLError):
-        return "내러티브: 파일 형식 오류"
+    fm = front(p.read_text(encoding="utf-8"))
+    if not fm:
+        return "내러티브: 머리말 없음 — chiip-valuation-queue 다음 회차가 다시 쓴다"
     as_of = str(fm.get("as_of") or "")
     try:
         age = ((today or date.today()) - date.fromisoformat(as_of)).days
@@ -165,6 +205,9 @@ def message(r, name, alpha_total, reasons, update_note=None):
     import decision
     L = [f"[알파 감지] {name} — 알파 {alpha_total:.1f}" if alpha_total is not None else f"[알파 감지] {name}"]
     L += [f"· 근거: {x}" for x in reasons[:3]]
+    import notify   # 근거 다음에 무엇을 하는 회사인지 1줄(2026-11-08 마스터 지시)
+    biz = notify.company_line([r.get("entity") or ""])
+    L.append(f"· 기업: {biz}" if biz else "· 기업: 미확인")
     if r.get("decision"):
         L += decision.lines(r["decision"])
     L.append(narrative_line(r.get("entity") or ""))
@@ -172,12 +215,8 @@ def message(r, name, alpha_total, reasons, update_note=None):
     if u.get("implied_cagr") is not None:
         pct = u["implied_pct"][0]
         L.append(f"시장 내포 5년 매출 CAGR {u['implied_cagr']:.0%}" + (f"(기저율 상위 {100 - pct:.0f}%)" if pct is not None else ""))
-    L.append(f"가정: 동인 {r.get('drivers_as_of') or '미상'} · 시가 {r['market'].get('date', '미상')} · WACC {r['coc']['wacc']:.1%} · 몬테카를로 {u.get('n', 0):,}회")
-    if not r.get("ronic_spread"):
-        L.append("보수 가정: 계속가치 RONIC=WACC(장기 성장의 가치 0)·장기 마진 페이드 — 해자 큰 기업은 과소평가될 수 있음(종목별 스프레드는 백테스트로 보정 예정)")
-    if update_note:
-        L.append(update_note)
-    L.append(DISCLAIMER)
+    # 가정 줄이 마지막이다 — 아래 설명(보수 가정·안내문)은 뺀다(2026-11-08 마스터 지시 "설명을 간소화"). 동인 갱신 예정과 투자자문 아님 표시만 이 줄에 붙인다
+    L.append(f"가정: 동인 {r.get('drivers_as_of') or '미상'}{'(갱신 예정)' if update_note else ''} · 시가 {r['market'].get('date', '미상')} · WACC {r['coc']['wacc']:.1%} · 몬테카를로 {u.get('n', 0):,}회 · {DISCLAIMER_SHORT}")
     return "\n".join(L)
 
 
@@ -255,7 +294,18 @@ def main(argv):
     ap.add_argument("--reason", default="수동 실행")
     ap.add_argument("--send", action="store_true")
     ap.add_argument("--dry", action="store_true", help="감지만 출력(상태 저장·발송 없음)")
+    ap.add_argument("--check-narrative", nargs="*", metavar="ID", help="내러티브 파일 머리 점검(id 없으면 전부)")
     a = ap.parse_args(argv)
+    if a.check_narrative is not None:
+        d = ROOT / "knowledge" / "narratives" / "companies"
+        bad = 0
+        for p in sorted(d.glob("*.md")) if not a.check_narrative else [d / f"{x}.md" for x in a.check_narrative]:
+            err = check_front(p.read_text(encoding="utf-8")) if p.exists() else "파일 없음"
+            if err:
+                bad += 1
+                print(f"[내러티브 머리] {p.stem}: {err}")
+        print(f"[내러티브 머리] 오류 {bad}건")
+        return 1 if bad else 0
     if a.entity:
         import score as alpha
         passed, rows = alpha.load_latest()
