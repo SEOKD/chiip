@@ -1,0 +1,48 @@
+{
+ "file": "product_2.jpg",
+ "kind": "product",
+ "name": "산업용 엔진",
+ "prompt": "지게차·작업차·펌프용 인증 엔진. Generic unbranded product render of a 산업용 엔진, plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style. No text, no letters, no numbers, no logos, no people. Not photorealistic.",
+ "prompt_ko": "산업용 엔진 — 제품·서비스 개념도",
+ "model": "gemini-3.1-flash-image",
+ "size": "1K",
+ "made_at": "2026-11-08T14:31+09:00",
+ "usd": 0.067,
+ "batch": false,
+ "hash": "81c1dbd82bde687f",
+ "bom_as_of": null,
+ "bytes": 174030,
+ "convert": "Pillow 없음 — 원본 형식 저장(webp 변환·축소 안 함)",
+ "scope": "company",
+ "view": null,
+ "source": "Gemini API",
+ "check": {
+  "items": [
+   [
+    "메타·해시",
+    1
+   ],
+   [
+    "고정 캡션",
+    1
+   ],
+   [
+    "용량",
+    1
+   ],
+   [
+    "눈 검수(로고·글자·인물·사진 연출)",
+    1
+   ]
+  ],
+  "result": "pass",
+  "pending_visual": false
+ },
+ "approved": null,
+ "visual": {
+  "ok": true,
+  "reason": "",
+  "parts": null,
+  "order_ok": null
+ }
+}

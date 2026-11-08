@@ -235,6 +235,32 @@ def _get(url, timeout=60):
     return json.load(urllib.request.urlopen(urllib.request.Request(url, headers={"x-goog-api-key": _key()}), timeout=timeout))
 
 
+def vertex_generate(t, c=None):
+    """Vertex AI(google-genai, ADC 인증) — (bytes, mime). 인증 파일·토큰은 읽거나 찍지 않는다(라이브러리가 쓴다)"""
+    import warnings
+    from google import genai
+    from google.genai import types
+    c = c or cfg()
+    warnings.filterwarnings("ignore", message=".*quota project.*")
+    m, s, a = model_size(t, c)
+    v = c["vertex"]
+    cl = genai.Client(vertexai=True, project=v["project"], location=v.get("location", "global"))
+    def call(**kw):
+        return cl.models.generate_content(model=m, contents=prompt(t, c),
+                                          config=types.GenerateContentConfig(response_modalities=["IMAGE"], image_config=types.ImageConfig(image_size=s, aspect_ratio=a, **kw)))
+    try:   # JPEG로 받아 200KB 안에 — flash-image 기본 PNG는 1MB가 넘는다(2026-11-08). 형식 지정을 거부하는 모델이면 기본 형식으로
+        r = call(output_mime_type="image/jpeg", output_compression_quality=c.get("jpeg_quality", 80))
+    except Exception as e:
+        if getattr(e, "code", None) != 400:
+            raise
+        r = call()
+    for p in (r.candidates[0].content.parts if r.candidates else []):
+        d = getattr(p, "inline_data", None)
+        if d and d.data:
+            return d.data, d.mime_type or "image/jpeg"
+    return None, None
+
+
 def request_body(t, c=None):
     _, s, a = model_size(t, c)
     return {"contents": [{"parts": [{"text": prompt(t, c)}]}],
@@ -242,8 +268,8 @@ def request_body(t, c=None):
 
 
 def classify_error(e):
-    """HTTP 오류 → 장부 상태. 402·결제·한도 = google_cap(그달 중단), 404·모델 = model_rejected, 429 = quota"""
-    code = getattr(e, "code", None)
+    """HTTP·google-genai 오류 → 장부 상태. 402·결제·한도 = google_cap(그달 중단), 404·모델 = model_rejected, 429 = quota"""
+    code = getattr(e, "code", None) or getattr(e, "status_code", None)
     try:
         msg = e.read().decode("utf-8", "replace")[:300] if hasattr(e, "read") else str(e)
     except Exception:
@@ -309,18 +335,26 @@ def make_one(t, batch=False, c=None):
     if not ok:
         log(t, model, size, batch, 0, why if why.startswith("over_budget") else "stopped")
         return why, None
-    if batch:
+    if batch and c.get("batch_supported", True):
         return "batch", t
     try:
-        resp = _post(f"{API}/models/{model}:generateContent", request_body(t, c))
+        if c.get("backend") == "vertex":
+            raw, mime = vertex_generate(t, c)
+            resp = {}
+        else:
+            resp = _post(f"{API}/models/{model}:generateContent", request_body(t, c))
+            raw, mime = image_bytes(resp)
     except urllib.error.HTTPError as e:
         st, msg = classify_error(e)
         log(t, model, size, False, 0, st)
         return st, msg
-    except Exception as e:   # 네트워크 — 과금 없음, 재시도는 다음 회차
-        log(t, model, size, False, 0, "error")
-        return "error", f"{type(e).__name__}: {e}"[:200]
-    raw, mime = image_bytes(resp)
+    except Exception as e:   # google-genai 오류는 code를 갖는다 — 결제·한도면 google_cap, 아니면 과금 없는 오류
+        if getattr(e, "code", None) is not None:
+            st, msg = classify_error(e)
+        else:
+            st, msg = "error", f"{type(e).__name__}: {e}"[:200]
+        log(t, model, size, False, 0, st)
+        return st, msg
     if not raw:
         log(t, model, size, False, 0, "no_image")
         return "no_image", json.dumps(resp, ensure_ascii=False)[:300]

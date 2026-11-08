@@ -265,7 +265,7 @@ def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None):
         try:
             sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
             import product_images as PI
-            if (PI.company_dir(eid) / "datapack.json").exists():
+            if PI.cfg().get("batch_supported", True) and (PI.company_dir(eid) / "datapack.json").exists():   # Vertex는 버킷 전까지 일괄 불가 — 리포트 때 즉시 생성
                 todo = [t for t in PI.targets_company(eid) if not PI.cached(t) and PI.budget_ok(t, True)[0]]
                 if todo:
                     PI.order_batch(todo)

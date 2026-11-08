@@ -1,0 +1,48 @@
+{
+ "file": "product_1.png",
+ "kind": "product",
+ "name": "전력 시스템(발전기·데이터센터)",
+ "prompt": "대기·주전원 발전 패키지, 이동식·고정식 발전기 세트. Generic unbranded product render of a 전력 시스템(발전기·데이터센터), plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style. No text, no letters, no numbers, no logos, no people. Not photorealistic.",
+ "prompt_ko": "전력 시스템(발전기·데이터센터) — 제품·서비스 개념도",
+ "model": "gemini-3.1-flash-image",
+ "size": "1K",
+ "made_at": "2026-11-08T14:31+09:00",
+ "usd": 0.067,
+ "batch": false,
+ "hash": "0b5501b2ef314036",
+ "bom_as_of": null,
+ "bytes": 1170248,
+ "convert": "Pillow 없음 — 원본 형식 저장(webp 변환·축소 안 함)",
+ "scope": "company",
+ "view": null,
+ "source": "Gemini API",
+ "check": {
+  "items": [
+   [
+    "메타·해시",
+    1
+   ],
+   [
+    "고정 캡션",
+    1
+   ],
+   [
+    "용량",
+    0.5
+   ],
+   [
+    "눈 검수(로고·글자·인물·사진 연출)",
+    1
+   ]
+  ],
+  "result": "warn",
+  "pending_visual": false
+ },
+ "approved": null,
+ "visual": {
+  "ok": true,
+  "reason": "",
+  "parts": null,
+  "order_ok": null
+ }
+}

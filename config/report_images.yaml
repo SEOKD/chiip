@@ -1,5 +1,8 @@
 # 리포트 이미지(마스터 지시 2026-11-08, 지시서 v1.2 종목·v1.1 산업) — Gemini 이미지 API. 구현 scripts/tenbagger/product_images.py·image_check.py, ADR-017
 # 그림은 Gemini(글자 없는 개념도), 이름표·BOM 표·출처는 Chiip이 datapack/제품 BOM 사실로 얹는다.
+backend: vertex                     # 2026-11-08 마스터 지시 — Vertex AI(에이전트 플랫폼) + gcloud ADC 인증(키 없음). aistudio = 예전 API 키 경로(선불 크레딧 0으로 402)
+vertex: {project: project-2e9891a3-ef5c-46af-956, location: global}   # My First Project. ADC 쿼터 프로젝트도 같다(gcloud auth application-default set-quota-project)
+batch_supported: false               # Vertex 일괄 예측은 Cloud Storage 버킷이 필요하다 — 버킷을 만들기 전에는 즉시 생성만(일괄 할인 없음)
 models:
   default: gemini-3.1-flash-image   # 제품·서비스 (Nano Banana 2) — 2026-11-08 models 목록에서 확인
   exploded: gemini-3-pro-image      # 분해도 (Nano Banana Pro)
@@ -18,6 +21,7 @@ retries: 1                            # 검수 실패 시 다시 그리기 1회
 approval_first: {company: 5, industry: 3}   # 처음 n건은 텔레그램 미리보기로 마스터 승인 뒤에만 리포트에 넣는다
 max_long_side: 1600
 max_kb: 200
+jpeg_quality: 80                      # Vertex 출력 JPEG 품질(Pillow 없이 200KB 안에)
 style: "plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style"
 banned: ["로고", "상표", "글자", "숫자", "워터마크", "실존 인물", "사진 같은 연출"]
 caption_fixed: "AI 생성 개념도 · 실제 제품·내부 구조·비율과 다를 수 있음"

@@ -33,3 +33,4 @@
 - 텔레그램: `publish_tenbagger.py send --photo`(마스터 개인 봇만). 노션은 이미지 블록 업로드가 안 되면 "이미지는 리포트 보기 링크에서" 한 줄.
 - 2026-11-08 첫 실제 호출(PSIX 제품 1장) → HTTP 402 "prepayment credits are depleted" — 과금 없음, 장부 `google_cap`. 마스터 충전 뒤 `resume`.
 - webp 변환·축소에 Pillow가 필요하다. 설치 전에는 원본 형식으로 저장하고 검수에서 용량 경고가 난다.
+- **2026-11-08 Vertex AI 전환(마스터 지시)**: AI Studio API 키 경로(선불 크레딧 0, 402)를 접고 Vertex AI + gcloud ADC 인증으로 바꿨다(`config/report_images.yaml` backend: vertex, 프로젝트 My First Project `project-2e9891a3-ef5c-46af-956`, location global, 쿼터 프로젝트 같음). Vertex 이미지 모델: gemini-3.1-flash-lite-image·gemini-3.1-flash-image(·preview)·gemini-3-pro-image. 시험: flash-lite 1K 웨이퍼 3.0초 38KB JPEG(WebP 지정은 400 거부) → `us-axti/images/test_wafer.jpeg`. 파이프라인: flash-image 1K 9.5~9.7초, 기본 PNG 1.17MB라 JPEG(품질 80)를 요청해 174KB. Vertex 일괄 예측은 Cloud Storage 버킷이 필요해 `batch_supported: false` — 알파 감지 선주문은 꺼 두고 리포트 때 즉시 생성(할인 없음). 인증 파일·토큰은 읽거나 찍지 않는다.
