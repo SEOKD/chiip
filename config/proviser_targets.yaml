@@ -1,0 +1,18 @@
+# Proviser 점검 대상 표 — scripts/proviser/targets.py가 예약 작업 목록에서 새 기능을 자동으로 더한다(마스터 지시 2026-11-09). 이름·표본 경로는 고쳐도 된다
+# twin_of: 같은 지시문을 다른 시간대에 도는 짝(주말판 등) — 점수는 따로 매기되 지시는 짝과 함께 본다
+chiip-pulse: {name: Chiip Pulse, outputs: "outputs/article/sources/ (*_tg.txt, log.csv, *_alpha_tg.txt), knowledge/models/alpha/judgments/, radar/pulse/", doc: docs/tasks/chiip-pulse.md}
+chiip-pulse-weekend: {name: Chiip Pulse Weekend, outputs: "outputs/article/sources/ 토·일 회차", doc: docs/tasks/chiip-pulse.md, twin_of: chiip-pulse, added: "2026-11-09"}
+chiip-article-pitch: {name: Chiip Reporter, outputs: "outputs/article/pitch/ (<날짜>.md, _tg.txt, log.csv, _pool.json)", doc: .claude/skills/article-pitch/SKILL.md}
+chiip-tenbagger: {name: Chiip Ten-bagger, outputs: "knowledge/models/tenbagger/cards/, watch.csv, judgments", doc: docs/tasks/chiip-tenbagger.md}
+chiip-tenbagger-weekend: {name: Chiip Ten-bagger Weekend, outputs: "토 알파 재산정·일 Discovery 산출물(knowledge/models/tenbagger/, outputs/discovery/)", doc: docs/tasks/chiip-tenbagger.md, twin_of: chiip-tenbagger, added: "2026-11-09"}
+chiip-tenbagger-report: {name: Chiip Analysis, outputs: "outputs/tenbagger/reports/ (HTML·JSON·log.csv) — 당일 3건 정량 점검은 report_audit.py가 따로", doc: docs/tasks/chiip-tenbagger-report.md, added: "2026-11-09"}
+chiip-notion-watch: {name: Chiip Notion Tracker, outputs: "outputs/report/notion/, Insights '치입 검토' 하위 페이지", doc: .claude/skills/notion-intake/SKILL.md}
+chiip-model-lab: {name: Chiip Model Laboratory, outputs: "knowledge/models/lab/notes/, proposals/, outputs/report/lab/", doc: .claude/skills/model-lab/SKILL.md}
+chiip-weekly-review: {name: Chiip Weekly Review, outputs: "outputs/brief/YYYY-Www_weekly.md", doc: .claude/skills/weekly-review/SKILL.md}
+chiip-portfolio: {name: Chiip Portfolio, outputs: "outputs/invest/portfolio/ (<날짜>.md, _tg.txt, tickers/), knowledge/models/portfolio/coverage.csv", doc: docs/tasks/chiip-portfolio.md}
+chiip-portfolio-weekend: {name: Chiip Portfolio Weekend, outputs: "outputs/invest/portfolio/ 토·일 회차", doc: docs/tasks/chiip-portfolio.md, twin_of: chiip-portfolio, added: "2026-11-09"}
+chiip-midterm-intraday: {name: Chiip Flow, outputs: "outputs/report/flow/<날짜>.md, knowledge/models/chiip_flow/log.csv·state.json", doc: docs/tasks/chiip-flow.md, added: "2026-11-09"}
+chiip-industry-weekly: {name: Chiip Industry Indepth, outputs: "outputs/industry/ (주간·분기·사건 인뎁스 JSON·HTML·_tg.txt)", doc: docs/tasks/chiip-industry-weekly.md, added: "2026-11-09"}
+chiip-valuation-queue-2: {name: Chiip Valuation Queue, outputs: "knowledge/models/companies/<id>/drivers.yaml 갱신, 3요인 텔레그램 기록", doc: docs/tasks/chiip-valuation-queue.md, added: "2026-11-09"}
+chiip-tv-sync: {name: Chiip TradingView, outputs: "TradingView 와치리스트 동기화 기록(radar/state/tv_sync*), config/tradingview_symbols.csv", doc: .claude/skills/tv-sync/SKILL.md, added: "2026-11-09"}
+chiip-catchup: {name: Chiip Catchup, outputs: "누락·실패 재실행 기록(scripts/ops/catchup.py 상태)", doc: docs/tasks/chiip-catchup.md, added: "2026-11-09"}

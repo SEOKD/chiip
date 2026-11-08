@@ -1,0 +1,263 @@
+{
+ "date": "2026-10-31",
+ "reports": [
+  {
+   "id": "co-enchantedrock",
+   "ticker": "EROC",
+   "json": "outputs\\tenbagger\\reports\\20261031_EROC.json",
+   "auto": 8.8,
+   "checks": [
+    {
+     "axis": "사실",
+     "name": "데이터 검증 10/10",
+     "status": "경고",
+     "detail": "datapack_check 8.6/10"
+    },
+    {
+     "axis": "사실",
+     "name": "현재값 = 원자료",
+     "status": "통과",
+     "detail": "차트 현재값 8.35 vs 가격 8.35 · 시총 1.83"
+    },
+    {
+     "axis": "사실",
+     "name": "원자료 조회일 = 리포트 날짜",
+     "status": "통과",
+     "detail": "조회 2026-10-31 · 리포트 2026-10-31"
+    },
+    {
+     "axis": "사실",
+     "name": "금액 단위 $B·$M",
+     "status": "통과",
+     "detail": "남은 표기 없음"
+    },
+    {
+     "axis": "과정",
+     "name": "의무 절",
+     "status": "통과",
+     "detail": "모두 있음"
+    },
+    {
+     "axis": "과정",
+     "name": "차트 ≥ 3·렌더 일치",
+     "status": "통과",
+     "detail": "차트 21 · svg 21"
+    },
+    {
+     "axis": "과정",
+     "name": "출처 ≥ 3·1차 출처",
+     "status": "통과",
+     "detail": "출처 7 · 1차 3"
+    },
+    {
+     "axis": "과정",
+     "name": "프로바이저 보강 표시",
+     "status": "경고",
+     "detail": "출처 끝 '보강 적용: D-…' 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "시나리오 확률 합 = 1",
+     "status": "통과",
+     "detail": "합 1.000"
+    },
+    {
+     "axis": "결론",
+     "name": "확률 가중값 재계산",
+     "status": "경고",
+     "detail": "재계산 1.37배 · 본문에 '확률 가중 x배' 수치 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "v2와 차이 설명",
+     "status": "통과",
+     "detail": "판단 1.37배 vs v2 0.90배 — 설명 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "킬 조건 2~4 + 날짜",
+     "status": "통과",
+     "detail": "킬 조건 4개 · 날짜 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "처방 표현 없음·면책",
+     "status": "통과",
+     "detail": "이상 없음"
+    }
+   ]
+  },
+  {
+   "id": "co-formfactor",
+   "ticker": "FORM",
+   "json": "outputs\\tenbagger\\reports\\20261031_FORM.json",
+   "auto": 9.2,
+   "checks": [
+    {
+     "axis": "사실",
+     "name": "데이터 검증 10/10",
+     "status": "통과",
+     "detail": "datapack_check 10.0/10"
+    },
+    {
+     "axis": "사실",
+     "name": "현재값 = 원자료",
+     "status": "통과",
+     "detail": "차트 현재값 87.53 vs 가격 87.53 · 시총 6.84"
+    },
+    {
+     "axis": "사실",
+     "name": "원자료 조회일 = 리포트 날짜",
+     "status": "통과",
+     "detail": "조회 2026-10-31 · 리포트 2026-10-31"
+    },
+    {
+     "axis": "사실",
+     "name": "금액 단위 $B·$M",
+     "status": "통과",
+     "detail": "남은 표기 없음"
+    },
+    {
+     "axis": "과정",
+     "name": "의무 절",
+     "status": "통과",
+     "detail": "모두 있음"
+    },
+    {
+     "axis": "과정",
+     "name": "차트 ≥ 3·렌더 일치",
+     "status": "통과",
+     "detail": "차트 20 · svg 20"
+    },
+    {
+     "axis": "과정",
+     "name": "출처 ≥ 3·1차 출처",
+     "status": "통과",
+     "detail": "출처 7 · 1차 3"
+    },
+    {
+     "axis": "과정",
+     "name": "프로바이저 보강 표시",
+     "status": "경고",
+     "detail": "출처 끝 '보강 적용: D-…' 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "시나리오 확률 합 = 1",
+     "status": "통과",
+     "detail": "합 1.000"
+    },
+    {
+     "axis": "결론",
+     "name": "확률 가중값 재계산",
+     "status": "경고",
+     "detail": "재계산 1.20배 · 본문에 '확률 가중 x배' 수치 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "v2와 차이 설명",
+     "status": "통과",
+     "detail": "판단 1.20배 vs v2 0.69배 — 설명 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "킬 조건 2~4 + 날짜",
+     "status": "통과",
+     "detail": "킬 조건 4개 · 날짜 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "처방 표현 없음·면책",
+     "status": "통과",
+     "detail": "이상 없음"
+    }
+   ]
+  },
+  {
+   "id": "co-coherent",
+   "ticker": "COHR",
+   "json": "outputs\\tenbagger\\reports\\20261031_COHR.json",
+   "auto": 8.8,
+   "checks": [
+    {
+     "axis": "사실",
+     "name": "데이터 검증 10/10",
+     "status": "경고",
+     "detail": "datapack_check 9.3/10"
+    },
+    {
+     "axis": "사실",
+     "name": "현재값 = 원자료",
+     "status": "통과",
+     "detail": "차트 현재값 210.32 vs 가격 210.32 · 시총 41.19"
+    },
+    {
+     "axis": "사실",
+     "name": "원자료 조회일 = 리포트 날짜",
+     "status": "통과",
+     "detail": "조회 2026-10-31 · 리포트 2026-10-31"
+    },
+    {
+     "axis": "사실",
+     "name": "금액 단위 $B·$M",
+     "status": "통과",
+     "detail": "남은 표기 없음"
+    },
+    {
+     "axis": "과정",
+     "name": "의무 절",
+     "status": "통과",
+     "detail": "모두 있음"
+    },
+    {
+     "axis": "과정",
+     "name": "차트 ≥ 3·렌더 일치",
+     "status": "통과",
+     "detail": "차트 20 · svg 20"
+    },
+    {
+     "axis": "과정",
+     "name": "출처 ≥ 3·1차 출처",
+     "status": "통과",
+     "detail": "출처 8 · 1차 2"
+    },
+    {
+     "axis": "과정",
+     "name": "프로바이저 보강 표시",
+     "status": "경고",
+     "detail": "출처 끝 '보강 적용: D-…' 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "시나리오 확률 합 = 1",
+     "status": "통과",
+     "detail": "합 1.000"
+    },
+    {
+     "axis": "결론",
+     "name": "확률 가중값 재계산",
+     "status": "경고",
+     "detail": "재계산 1.28배 · 본문에 '확률 가중 x배' 수치 없음"
+    },
+    {
+     "axis": "결론",
+     "name": "v2와 차이 설명",
+     "status": "통과",
+     "detail": "판단 1.28배 vs v2 10.00배 — 설명 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "킬 조건 2~4 + 날짜",
+     "status": "통과",
+     "detail": "킬 조건 4개 · 날짜 있음"
+    },
+    {
+     "axis": "결론",
+     "name": "처방 표현 없음·면책",
+     "status": "통과",
+     "detail": "이상 없음"
+    }
+   ]
+  }
+ ]
+}

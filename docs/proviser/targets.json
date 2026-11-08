@@ -1,0 +1,150 @@
+{
+ "date": "2026-11-09",
+ "targets": [
+  {
+   "taskId": "chiip-weekly-review",
+   "name": "Chiip Weekly Review",
+   "outputs": "outputs/brief/YYYY-Www_weekly.md",
+   "doc": ".claude/skills/weekly-review/SKILL.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-model-lab",
+   "name": "Chiip Model Laboratory",
+   "outputs": "knowledge/models/lab/notes/, proposals/, outputs/report/lab/",
+   "doc": ".claude/skills/model-lab/SKILL.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-article-pitch",
+   "name": "Chiip Reporter",
+   "outputs": "outputs/article/pitch/ (<날짜>.md, _tg.txt, log.csv, _pool.json)",
+   "doc": ".claude/skills/article-pitch/SKILL.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-tenbagger",
+   "name": "Chiip Ten-bagger",
+   "outputs": "knowledge/models/tenbagger/cards/, watch.csv, judgments",
+   "doc": "docs/tasks/chiip-tenbagger.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-notion-watch",
+   "name": "Chiip Notion Tracker",
+   "outputs": "outputs/report/notion/, Insights '치입 검토' 하위 페이지",
+   "doc": ".claude/skills/notion-intake/SKILL.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-pulse",
+   "name": "Chiip Pulse",
+   "outputs": "outputs/article/sources/ (*_tg.txt, log.csv, *_alpha_tg.txt), knowledge/models/alpha/judgments/, radar/pulse/",
+   "doc": "docs/tasks/chiip-pulse.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-portfolio",
+   "name": "Chiip Portfolio",
+   "outputs": "outputs/invest/portfolio/ (<날짜>.md, _tg.txt, tickers/), knowledge/models/portfolio/coverage.csv",
+   "doc": "docs/tasks/chiip-portfolio.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-tenbagger-report",
+   "name": "Chiip Analysis",
+   "outputs": "outputs/tenbagger/reports/ (HTML·JSON·log.csv) — 당일 3건 정량 점검은 report_audit.py가 따로",
+   "doc": "docs/tasks/chiip-tenbagger-report.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-tv-sync",
+   "name": "Chiip TradingView",
+   "outputs": "TradingView 와치리스트 동기화 기록(radar/state/tv_sync*), config/tradingview_symbols.csv",
+   "doc": ".claude/skills/tv-sync/SKILL.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-pulse-weekend",
+   "name": "Chiip Pulse Weekend",
+   "outputs": "outputs/article/sources/ 토·일 회차",
+   "doc": "docs/tasks/chiip-pulse.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": "chiip-pulse"
+  },
+  {
+   "taskId": "chiip-portfolio-weekend",
+   "name": "Chiip Portfolio Weekend",
+   "outputs": "outputs/invest/portfolio/ 토·일 회차",
+   "doc": "docs/tasks/chiip-portfolio.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": "chiip-portfolio"
+  },
+  {
+   "taskId": "chiip-tenbagger-weekend",
+   "name": "Chiip Ten-bagger Weekend",
+   "outputs": "토 알파 재산정·일 Discovery 산출물(knowledge/models/tenbagger/, outputs/discovery/)",
+   "doc": "docs/tasks/chiip-tenbagger.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": "chiip-tenbagger"
+  },
+  {
+   "taskId": "chiip-midterm-intraday",
+   "name": "Chiip Flow",
+   "outputs": "outputs/report/flow/<날짜>.md, knowledge/models/chiip_flow/log.csv·state.json",
+   "doc": "docs/tasks/chiip-flow.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-catchup",
+   "name": "Chiip Catchup",
+   "outputs": "누락·실패 재실행 기록(scripts/ops/catchup.py 상태)",
+   "doc": "docs/tasks/chiip-catchup.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-valuation-queue-2",
+   "name": "Chiip Valuation Queue",
+   "outputs": "knowledge/models/companies/<id>/drivers.yaml 갱신, 3요인 텔레그램 기록",
+   "doc": "docs/tasks/chiip-valuation-queue.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  },
+  {
+   "taskId": "chiip-industry-weekly",
+   "name": "Chiip Industry Indepth",
+   "outputs": "outputs/industry/ (주간·분기·사건 인뎁스 JSON·HTML·_tg.txt)",
+   "doc": "docs/tasks/chiip-industry-weekly.md",
+   "new": false,
+   "schedule": null,
+   "twin_of": null
+  }
+ ],
+ "paused_or_removed": []
+}
