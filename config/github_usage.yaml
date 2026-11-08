@@ -1,0 +1,8 @@
+# GitHub 사용량 경보 (마스터 지시 2026-11-08 "Github 용량이 요금 부과까지 95% 진척된 경우 Pulse로 알려달라") — radar/github_usage.py
+# 이 PC에는 GitHub API 토큰이 없다(자격 증명 관리자에 든 마스터 자격은 꺼내 쓰지 않는다) → 저장소에서 결정론으로 추정한다.
+# 요금이 붙는 것: Actions 실행 시간(비공개 저장소 무료 월 2,000분 — GitHub Free 기준, 요금표 확인 필요). 저장소 용량 자체는 요금이 없지만 1GB 권장선을 함께 본다.
+alert_at: 0.95                 # 95%에서 Pulse 경보(같은 항목은 한 달에 한 번)
+actions_free_minutes: 2000     # 월 무료 분(비공개 저장소)
+minutes_per_run: 3.0           # validate.yml 한 번(의존성 설치 + 단위 테스트 전체) 추정 — 실제 값을 알면 고친다
+branches: [main]               # validate.yml이 push에 도는 브랜치
+repo_soft_mb: 1000             # GitHub 권장 저장소 크기(요금 아님, 넘으면 정리·LFS 검토)
