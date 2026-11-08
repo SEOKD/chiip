@@ -429,11 +429,14 @@ def chart_revision(c):
 def chart_bars(c):
     if c.get("stack"):
         return chart_stack(c)
-    W, H, L, B, T = c.get("w", 700), 250, 48, 30, 18
+    W, L, T = c.get("w", 700), 48, 18
     cats, series = c.get("categories") or [], c.get("series") or []
     vals = [v for s in series for v in s.get("values") or [] if v is not None]
     if not cats or not vals:
         return ""
+    nl = max(len(wrap_label(x, (W - L - 10) / len(cats) - 4)) for x in cats)   # 이름표 줄 수만큼 아래 여백(2026-11-08 겹침 방지)
+    B = 18 + (nl - 1) * 11
+    H = 220 + B
     lo, hi = min(0, min(vals)), max(0, max(vals)) * 1.15 or 1
     Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
     gw = (W - L - 10) / len(cats)
@@ -454,7 +457,7 @@ def chart_bars(c):
             g.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{bw - 2:.1f}" height="{max(h, 1):.1f}" rx="2" fill="{col}"><title>{t(s["name"])} {t(cat)}: {_fmt(v)}{t(c.get("unit", ""))}</title></rect>')
             if len(series) <= 3:
                 g.append(f'<text x="{x + (bw - 2) / 2:.1f}" y="{(y - 3) if v >= 0 else (y + h + 10):.1f}" text-anchor="middle" style="font-size:9.5px">{_fmt(v)}</text>')
-        g.append(f'<text x="{x0 + gw / 2 - 5:.1f}" y="{H - 10}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
+        g.append(label_svg(cat, x0 + gw / 2 - 5, H - B + 14, gw - 4)[0])
     if c.get("trend"):   # 막대 위 추이선(멀티플 프리미엄 추이, 2026-11-06)
         for si, s in enumerate(series):
             pts = [(L + ci * gw + 5 + si * bw + (bw - 2) / 2, Y(v)) for ci, v in enumerate(s.get("values") or []) if v is not None]
@@ -580,12 +583,57 @@ def chart_satellite(c):
     return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>' if g else ""
 
 
+def _label_w(ch, fs):
+    """글자 폭 대략값 — 한글·한자 1em, 그 밖 0.58em"""
+    return fs * (1.0 if ord(ch) > 0x2E80 else 0.58)
+
+
+def wrap_label(text, max_w, fs=9.5, max_lines=3):
+    """x축 이름표를 칸 폭에 맞춰 줄바꿈(마스터 지시 2026-11-08 "x축의 텍스트 설명이 겹쳐 보인다") — 공백·가운뎃점·괄호·슬래시에서 끊고,
+    그래도 넘치면 글자 단위로 끊는다. max_lines를 넘으면 마지막 줄을 '…'로 줄이고 전체는 <title>로 남긴다"""
+    import re as _re
+    toks = [x for x in _re.split(r"(?<=[ ·/,)])|(?=[(])", str(text)) if x]
+    lines, cur = [], ""
+    width = lambda s_: sum(_label_w(ch, fs) for ch in s_)
+    for tok in toks:
+        if width(cur + tok) <= max_w or not cur:
+            cur += tok
+        else:
+            lines.append(cur.strip())
+            cur = tok
+        while width(cur) > max_w and len(cur) > 1:   # 한 토막이 칸보다 길면 글자 단위로
+            k = len(cur)
+            while k > 1 and width(cur[:k]) > max_w:
+                k -= 1
+            lines.append(cur[:k].strip())
+            cur = cur[k:]
+    if cur.strip():
+        lines.append(cur.strip())
+    if len(lines) > max_lines:
+        last = lines[max_lines - 1]
+        while last and width(last + "…") > max_w:
+            last = last[:-1]
+        lines = lines[:max_lines - 1] + [last + "…"]
+    return lines or [""]
+
+
+def label_svg(text, cx, y, max_w, fs=9.5, max_lines=3):
+    """여러 줄 x축 이름표 SVG — 줄 수와 함께 돌려준다"""
+    lines = wrap_label(text, max_w, fs, max_lines)
+    spans = "".join(f'<tspan x="{cx:.1f}" dy="{0 if i == 0 else fs * 1.15:.1f}">{t(x)}</tspan>' for i, x in enumerate(lines))
+    return f'<text x="{cx:.1f}" y="{y:.1f}" text-anchor="middle" style="font-size:{fs}px"><title>{t(text)}</title>{spans}</text>', len(lines)
+
+
 def chart_waterfall(c):
     """폭포 — total은 0부터 막대, cost는 앞 막대 끝에서 내려간다(2026-11-03 매출 → 매출총이익 → 영업이익)"""
     steps = c.get("steps") or []
     if not steps:
         return ""
-    W, H, L, B, T = c.get("w", 700), 260, 40, 44, 18
+    W, L, T = c.get("w", 700), 40, 18
+    gw0 = (W - L - 10) / len(steps)
+    nl = max(len(wrap_label(x.get("label", ""), gw0 - 4)) for x in steps)   # 이름표 줄 수만큼 아래 여백을 늘린다
+    B = 14 + nl * 11
+    H = 216 + B
     level, bars = 0.0, []
     for s in steps:
         v = s.get("value") or 0
@@ -606,7 +654,7 @@ def chart_waterfall(c):
         val = b - a
         g.append(f'<rect x="{x:.1f}" y="{y1:.1f}" width="{gw - 8:.1f}" height="{max(y2 - y1, 1):.1f}" rx="2" fill="{col}"><title>{t(lab)}: {_fmt(val)}</title></rect>')
         g.append(f'<text x="{x + (gw - 8) / 2:.1f}" y="{y1 - 3:.1f}" text-anchor="middle" style="font-size:10px">{_fmt(val)}</text>')
-        g.append(f'<text x="{x + (gw - 8) / 2:.1f}" y="{H - 26 + (i % 2) * 12}" text-anchor="middle" style="font-size:9.5px">{t(lab)}</text>')
+        g.append(label_svg(lab, x + (gw - 8) / 2, H - B + 14, gw - 4)[0])   # 칸 폭에 맞춘 줄바꿈 — 겹침 방지(2026-11-08)
     return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
