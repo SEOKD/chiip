@@ -1,0 +1,42 @@
+# 한국 전자기업 특허 등록·특허 분쟁 레이더(radar/patent_watch.py, 마스터 지시 2026-11-08
+# "기사 소재 발굴 시스템에 한국 전자기업들의 특허 등록 및 특허 침해 소송 관련 데이터도 가져오는 파이프라인 — 지디넷코리아 이기종 기자 참조, 다른 방안도")
+# 이기종 기자 기사가 쓰는 1차 자료: 미국 특허청(결정계 재심사·권리 양도), 미 ITC 337조 조사, 텍사스동부 연방법원, 한국 특허심판원 무효심판, 회사 공시.
+# 원천별로 키 없이 되는 것(①~④)과 무료 키가 필요한 것(⑤~⑧)을 나눈다. 키가 없으면 건너뛰고 errors에 '키 대기'로 남긴다.
+
+companies:   # id는 config/watchlist.csv entity_id(감시 목록 밖이면 null — 이름으로만 잇는다). en = 미국 문서 검색어, alias = 한국 기사 제목의 약칭(앞의 회사에 먼저 붙는다)
+  - {id: co-samsung, ko: 삼성전자, alias: ["삼성", "Samsung"], en: ["Samsung Electronics"]}
+  - {id: co-skhynix, ko: SK하이닉스, alias: ["하이닉스"], en: ["SK hynix", "SK Hynix"]}
+  - {id: null, ko: 삼성디스플레이, alias: ["삼성D"], en: ["Samsung Display"]}
+  - {id: null, ko: LG디스플레이, alias: ["LGD"], en: ["LG Display"]}
+  - {id: null, ko: LG전자, en: ["LG Electronics"]}
+  - {id: null, ko: LG화학, en: ["LG Chem"]}
+  - {id: null, ko: LG에너지솔루션, en: ["LG Energy Solution"]}
+  - {id: null, ko: 삼성SDI, en: ["Samsung SDI"]}
+  - {id: null, ko: SK온, en: ["SK On"]}
+  - {id: co-semco, ko: 삼성전기, en: ["Samsung Electro-Mechanics"]}
+  - {id: co-lginnotek, ko: LG이노텍, en: ["LG Innotek"]}
+  - {id: co-hanmisemi, ko: 한미반도체, alias: ["한미"], en: ["Hanmi Semiconductor"]}
+  - {id: null, ko: 한화세미텍, alias: ["한화"], en: ["Hanwha Semitech"]}
+  - {id: null, ko: SFC, en: []}
+  - {id: null, ko: 덕산네오룩스, en: ["Duksan Neolux"]}
+
+terms_ko: "(특허 OR 무효심판 OR 특허심판원 OR 재심사 OR ITC OR NPE OR 특허침해 OR 특허소송)"
+terms_en: "(patent OR ITC OR \"inter partes\" OR reexamination OR infringement)"
+title_re: "특허|무효심판|심판원|재심사|ITC|NPE|침해|소송|patent|infring|PTAB|IPR|337"
+
+# ① 기자 페이지(robots 허용 2026-11-08 확인 — /reporter/ 허용, /Contents/·/Include2/user/만 막힘). 제목·링크만 저장(본문 복제 금지)
+reporters:
+  - {id: zdnet-gjgj, name: "지디넷코리아 이기종", url: "https://zdnet.co.kr/reporter/?lstcode=gjgj", base: "https://zdnet.co.kr"}
+
+# ③ Google News 색인 — 다른 매체(디일렉·전자신문·더구루·IAM·Law360 제목 등)의 특허 기사. 제목만, 원문 확인 필요
+gn_batch: 6   # 한 검색에 넣는 회사 수(검색어 길이 제한)
+
+# ⑤~⑧ 무료 키(마스터가 가입해 D:\local-only\secrets\.env에 넣는다 — docs/TODO_MASTER.md 21-39)
+keys:
+  courtlistener: COURTLISTENER_TOKEN   # courtlistener.com 무료 가입 → API 토큰. 미국 연방법원 특허 소송 접수(사건 성격 830 Patent)
+  uspto: USPTO_API_KEY                 # data.uspto.gov(Open Data Portal) 무료 키 — PTAB 무효심판(IPR·PGR)·특허 등록
+  dart: DART_API_KEY                   # opendart.fss.or.kr — '소송등의제기' 공시(값이 비어 있음, 21-7·2026-11-06 항목)
+  kipris: KIPRIS_API_KEY               # plus.kipris.or.kr 무료 회원 — 한국 특허심판원 심판·등록(아직 코드 없음: 키가 오면 공식 문서로 붙인다)
+
+grant_keywords: ["HBM", "high bandwidth memory", "hybrid bonding", "through-silicon", "glass substrate", "OLED", "solid-state battery", "3D NAND", "CXL", "backside power"]
+lookback_days: 7

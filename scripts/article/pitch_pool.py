@@ -7,6 +7,8 @@
   ② 속보 판단 알림 P0·P1(radar/state/alerts.json)
   ③ 새 IR 문서(일본·한국·대만·홍콩·Fiscal IR — PT·결산·Q&A)와 SEC·DART 공시(radar/inbox)
   ④ 오늘 쓴 Industry·Analysis 리포트(outputs/industry·outputs/tenbagger/reports)
+  ⑥ 한국 전자기업 특허 등록·분쟁 — 기자 페이지(지디넷코리아 이기종)·미 ITC 공고(Federal Register)·언론 색인, 키가 오면 법원·PTAB·특허 등록·DART 소송 공시
+     (knowledge/models/patents/latest.json, radar/patent_watch.py, 2026-11-08 마스터 지시)
   ⑤ 한국 전자기업 해외 생산 거점 — 그 나라 정부 자료 새 항목·거점 품목 수출입 급변(+품목 PPI)(knowledge/models/overseas_sites/latest.json, 2026-11-08 마스터 지시)
 점수 = 1차 문서 있음 3 + 한국 연결(직접 2 / 같은 산업군에 국내 종목 1) + 인사이트(0~10 → 0~3) + 숫자 1
 감점: 최근 7일 기사 소재로 낸 종목 −3, 마스터 딘스티커 최근 7일에 쓴 종목 −2(같은 각도 되풀이 방지 — 후속 각도면 모델이 살린다)
@@ -171,6 +173,15 @@ def gather(now):
                       "ids": list(x.get("company_ids") or []), "company_names": x.get("companies"), "event": f"{', '.join(x['places'])} 거점 품목 {x['flow']} 최근 3개월 {x['yoy_3m']:+.0%}(${x['usd_3m'] / 1e6:,.0f}M, ~{x['last']})",
                       "view": "; ".join(x.get("ppi") or []), "insight": 5, "primary": True, "basis": x.get("source"), "overseas": x.get("country"),
                       "why": "수출입 급변은 단서 — 가격·물량을 나누지 않은 값이고 특정 기업 매출로 바로 잇지 않는다(금지표)"})
+    # ⑥ 한국 전자기업 특허 등록·분쟁(2026-11-08 마스터 지시, radar/patent_watch.py) — 지난 24시간에 처음 본 항목
+    pw = _load(ROOT / "knowledge" / "models" / "patents" / "latest.json", {})
+    for x in pw.get("items") or []:
+        if str(x.get("first_seen") or "") < (now - timedelta(days=1)).date().isoformat():
+            continue
+        cands.append({"src": "특허 레이더", "at": now.isoformat(timespec="minutes"), "name": x["title"], "ids": list(x.get("ids") or []), "company_names": x.get("companies"),
+                      "event": f"{x['kind']} · {x['title']}", "insight": 5 if x.get("primary") else 4, "primary": bool(x.get("primary")),
+                      "basis": f"{x['kind']} — {x.get('note', '')}", "links": [["원문", x["url"]]], "patent": True,
+                      "why": "특허 분쟁은 단계를 나눈다 — 청구·개시·예비판정·최종판정·합의. 소송 제기 → 손해 확정, 재심사 청구 → 특허 무효, 등록 → 매출은 금지표"})
     return cands, (by_code, info, ind_of, korea_ind)
 
 
@@ -184,6 +195,8 @@ def score(cands, maps, today):
             continue
         seen.add(key)
         k, why = korea_link(c["ids"], info, ind_of, korea_ind)
+        if c.get("patent") and not k and c.get("company_names"):   # 특허표의 한국 기업(감시 목록 밖 LG디스플레이 등)도 직접 연결
+            k, why = 2, f"한국 기업 특허({', '.join(c['company_names'])})"
         if c.get("overseas") and not k:   # 해외 거점 나라 자료는 그 나라에 거점을 둔 한국 기업과 이어진다
             k, why = 1, f"한국 기업 해외 거점({c['overseas']})"
         names = [info.get(i, (i, False))[0] for i in c["ids"]]
