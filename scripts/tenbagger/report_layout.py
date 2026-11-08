@@ -190,11 +190,12 @@ def actest_chart(dp):
 
 
 def price_charts(entity):
-    """일봉·주봉·월봉 — 이평선은 그리지 않고 차트 기법으로 찾은 지지선만 표시한다(마스터 지시 2026-11-01). 지지선 계산은 levels.supports"""
+    """일봉·주봉·월봉 — 차트 기법으로 찾은 지지선 + 이동평균선 2개(2026-11-08 마스터 지시로 다시 표기). 지지선 계산은 levels.supports"""
     daily = flow.load_ohlcv(entity)
     if len(daily) < 60:
         return [], []
     if flow.approx_daily(entity):   # 근사 봉은 캔들 모양이 틀린다 — TradingView 실측 일봉을 먼저 넣는다(마스터 지시 2026-11-08)
+        raise SystemExit(f"{entity} 일봉이 Fiscal.ai 근사(고가·저가 없음)다 — mcp-tv-get-ohlcv(1D, count 260, format columns) 응답을 파일로 저장 → py scripts/fiscal/adapter.py --ohlcv-tv {entity} <파일> <심볼>")
     sp = levels.supports(daily, flow.load_monthly(entity))
     price = sp["price"]
     fmt = (lambda v: f"{v:,.2f}") if price < 1000 else (lambda v: f"{v:,.0f}")
@@ -203,8 +204,19 @@ def price_charts(entity):
         view = sp["bars"][title][-tail:]
         near = [x for x in sp["frames"][title] if x["price"] >= min(b["l"] for b in view) * 0.85][:4]
         marks = [{"y": x["price"], "label": f"{plain_level(x['src']).replace(title + ' ', '').replace(' 지지선', '')} {fmt(x['price'])}", "color": "d"} for x in near]
+        # 이동평균선(마스터 지시 2026-11-08 "일봉·주봉·월봉에 이평선 지지선도 표기") — 기간은 지지선 엔진과 같다(levels.MA_WINDOWS: 일 50·200, 주 20·50, 월 12·24)
+        allb = sp["bars"][title]
+        ns, unit = levels.MA_WINDOWS[title]
+        lines, legend = [], []
+        for n, col in zip(ns, ("e", "c")):
+            pts = [[allb[i]["date"], sum(b["c"] for b in allb[i - n + 1:i + 1]) / n] for i in range(n - 1, len(allb))]
+            pts = [x for x in pts if x[0] >= view[0]["date"]]
+            if len(pts) > 1:
+                cur = pts[-1][1]
+                lines.append({"color": col, "points": pts})
+                legend.append({"name": f"{n}{unit}선 {fmt(cur)}" + (" 지지" if cur < price else " 저항"), "color": col})
         out.append({"kind": "candle", "w": 480, "title": title, "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in view], "hlines": marks,
-                    "levels": [[plain_level(x["src"]), x["price"]] for x in near]})
+                    "lines": lines, "legend": legend, "levels": [[plain_level(x["src"]), x["price"]] for x in near]})
     return out, sp["zones"]
 
 
@@ -512,6 +524,12 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         part["blocks"] = keep
     last = [c for k in GALLERY_LAST for c in d["gallery"] if c.get("title") == k]
     d["gallery"] = [c for c in d["gallery"] if c.get("title") not in GALLERY_LAST] + last
+    # 다음 분기 매출 — 지표 추세 vs 가이던스·컨센서스(싱크로율)는 '분기 매출·EPS 실적과 컨센서스' 바로 아래(마스터 지시 2026-11-08)
+    nq = [c for c in d["gallery"] if "지표 추세 vs 가이던스" in str(c.get("title"))]
+    at = next((i for i, c in enumerate(d["gallery"]) if c.get("kind") == "actest"), None)
+    if nq and at is not None:
+        d["gallery"] = [c for c in d["gallery"] if c not in nq]
+        d["gallery"][at + 1:at + 1] = nq
     out[:] = [x for x in out if x.get("blocks")]
     d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}, "names": dp.get("names") or []})
 
