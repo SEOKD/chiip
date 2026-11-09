@@ -9,6 +9,7 @@
   ④ 오늘 쓴 Industry·Analysis 리포트(outputs/industry·outputs/tenbagger/reports)
   ⑥ 한국 전자기업 특허 등록·분쟁 — 기자 페이지(지디넷코리아 이기종)·미 ITC 공고(Federal Register)·언론 색인, 키가 오면 법원·PTAB·특허 등록·DART 소송 공시
      (knowledge/models/patents/latest.json, radar/patent_watch.py, 2026-11-08 마스터 지시)
+  ⑧ 대만 월매출 거울 — 새 달 월매출이 들어온 날, 한국 기업과 이어진(mirror_for) 대만 공급망 회사. 대만 IR·공시(법설회·재무·투자 공시)는 ③, 상대방 판별은 같은 연결표(2026-11-09)
   ⑦ 연구·학회·협회 — 논문(arXiv·OpenAlex·연구 피드)·협회·학회 새 항목 중 한국 기업·감시 기술이 든 것(2026-11-09)
   ③의 IR 문서가 한국 전자기업의 공급망 상대방(config/korea_counterparties.yaml)이면 한국 연결 2점·10일 창(2026-11-09 마스터 지시)
   ⑤ 한국 전자기업 해외 생산 거점 — 그 나라 정부 자료 새 항목·거점 품목 수출입 급변(+품목 PPI)(knowledge/models/overseas_sites/latest.json, 2026-11-08 마스터 지시)
@@ -31,6 +32,7 @@ sys.path.insert(0, str(ROOT / "scripts" / "industry"))
 KST = timezone(timedelta(hours=9))
 OUT = ROOT / "outputs" / "article" / "pitch"
 NUM_RE = re.compile(r"[\d.,]+\s*(%|%p|억|조|원|엔|\$|B|M|배|GW|MW|장|개)")
+TW_DISC_RE = re.compile(r"法說會|財務報告|財報|營收|自結|擴產|擴建|資本支出|投資|取得|處分|合併|收購|簽訂|訂單|產能|股利")   # 대만 공시 — 인사·사채 납입 같은 일상 공고는 뺀다
 JP_DISC_RE = re.compile(r"決算短信|業績予想|業績修正|予想の修正|適時開示|決算説明|決算補足|配当予想|自己株式")
 IR_SOURCES = ("src-jp-ir-docs", "src-kr-ir-docs", "src-tw-hk-ir-docs", "src-fiscal-ir-docs", "src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa", "src-sec-filings", "src-dart")
 
@@ -68,10 +70,40 @@ def entity_maps():
     return by_code, info, ind_of, korea_ind
 
 
+_TW = {}
+
+
+def tw_mirror():
+    """대만 공급망 → 한국 기업 연결(knowledge/models/mirror_monthly.csv mirror_for, 대만 월매출 거울) — {코드: (이름, [한국 기업 이름], 최근 행들)}, {회사 id: 코드}"""
+    if not _TW:
+        import yaml
+        kname = {}
+        with (ROOT / "config" / "watchlist.csv").open(encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                kname[r["entity_id"]] = r["name"]
+        kname.update({"co-doosan": "두산(전자BG)", "co-lotteem": "롯데에너지머티리얼즈", "co-isupetasys": "이수페타시스"})
+        rows = {}
+        with (ROOT / "knowledge" / "models" / "mirror_monthly.csv").open(encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                rows.setdefault(r["tw_code"], []).append(r)
+        mp = {c: (v[-1]["name"].rstrip("*"), [kname.get(i, i) for i in v[-1]["mirror_for"].split(";") if i], v) for c, v in rows.items() if v[-1].get("mirror_for")}
+        tw = (yaml.safe_load((ROOT / "config" / "tw_hk_ir.yaml").read_text(encoding="utf-8")) or {}).get("companies") or {}
+        _TW.update({"codes": mp, "ids": {k: str(v.get("code")) for k, v in tw.items() if v.get("market") == "tw"}})
+    return _TW["codes"], _TW["ids"]
+
+
 def counterparty(text, ids):
     """한국 전자기업의 공급망 상대방이면 (상대방 이름, 한국 기업들, 역할) — config/korea_counterparties.yaml(감시 목록, 관계 확정 아님)"""
     import yaml
     c = yaml.safe_load((ROOT / "config" / "korea_counterparties.yaml").read_text(encoding="utf-8")) or {}
+    codes, idmap = tw_mirror()   # 대만 — 월매출 거울 연결(mirror_for)을 그대로 쓴다(2026-11-09 마스터 지시 대만 공급망 점검)
+    for i in ids:
+        cd = idmap.get(i)
+        if cd in codes:
+            return codes[cd][0], codes[cd][1], "대만 공급망(월매출 거울)"
+    for cd, (nm, ko, _) in codes.items():
+        if re.search(rf"\({cd}\)|{re.escape(nm)}\(", text):
+            return nm, ko, "대만 공급망(월매출 거울)"
     for x in c.get("counterparties") or []:
         if set(ids) & set(x.get("ids") or []) or any(re.search(r"(?<![A-Za-z])" + re.escape(n) + r"(?![A-Za-z])", text) for n in x["names"]):
             return x["names"][0], x["korea"], x.get("role", "")
@@ -147,7 +179,7 @@ def gather(now):
     for day in {now.strftime("%Y%m%d"), (now - timedelta(days=1)).strftime("%Y%m%d")}:
         for f in (ROOT / "radar" / "inbox" / day).glob("src-*.json") if (ROOT / "radar" / "inbox" / day).exists() else []:
             it = _load(f, {})
-            if it.get("source_id") not in IR_SOURCES and not (it.get("source_id") == "src-jp-disclosure" and (it.get("doc_type") == "공시" or JP_DISC_RE.search(str(it.get("title") or "")))):
+            if it.get("source_id") not in IR_SOURCES and not (it.get("source_id") == "src-jp-disclosure" and (it.get("doc_type") == "공시" or JP_DISC_RE.search(str(it.get("title") or ""))))                     and not (it.get("source_id") == "src-tw-disclosure" and TW_DISC_RE.search(str(it.get("title") or ""))):
                 continue   # 일본 적시공시 미러는 대부분 기사 색인 — 공시·결산단신·업적 수정·결산 설명만 IR 단계로(2026-11-09)
             try:
                 t = datetime.fromisoformat(str(it.get("saved_at") or it.get("detected_at")))
@@ -226,6 +258,22 @@ def gather(now):
                           "event": it.get("title"), "insight": 4, "primary": True, "basis": f"논문 원문 — {it.get('source_id')}", "links": [["원문", it.get("url")]],
                           "counterparty": counterparty(it.get("title") or "", it.get("entities_matched") or []),
                           "why": "논문은 양산이 아니다(금지표) — 저자 소속·실험 조건·수율 언급을 본다"})
+    # ⑧ 대만 월매출 거울(2026-11-09) — 지난 24시간에 새로 들어온 달의 월매출 중 한국 기업과 이어진 대만 회사(매월 10일 전후)
+    codes, _ = tw_mirror()
+    for cd, (nm, ko, rows_) in codes.items():
+        r = rows_[-1]
+        try:
+            got = datetime.fromisoformat(r["retrieved"])
+        except (ValueError, KeyError):
+            continue
+        if got < now - timedelta(days=1):
+            continue
+        yoy, mom = float(r.get("yoy_pct") or 0), float(r.get("mom_pct") or 0)
+        cands.append({"src": "대만 월매출 거울", "at": now.isoformat(timespec="minutes"), "name": f"{nm}({cd}) {r['period']} 월매출 전년 {yoy:+.0f}%·전월 {mom:+.0f}%",
+                      "ids": [], "company_names": [nm], "event": f"{nm} {r['period']} 매출 {float(r['revenue_k_twd']) / 1e5:,.1f}억 대만달러(전년 {yoy:+.1f}%, 전월 {mom:+.1f}%)",
+                      "insight": 5 if abs(yoy) >= 30 or abs(mom) >= 20 else 4, "primary": True, "basis": f"대만 월매출 공시 — {r.get('source_url')}",
+                      "links": [["원문", r.get("source_url")]], "counterparty": (nm, ko, "대만 공급망(월매출 거울)"),
+                      "why": "월매출은 한국 기업 실적의 거울 지표다 — 다만 고객·품목을 나누지 않은 값이라 특정 한국 기업 매출로 바로 잇지 않는다(금지표)"})
     return cands, (by_code, info, ind_of, korea_ind)
 
 
