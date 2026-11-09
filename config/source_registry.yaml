@@ -998,7 +998,7 @@
   endpoint_doc: "config/jp_ir.yaml"
   auth: none
   scope: [글로벌]
-  interval_min: 360
+  interval_min: 30   # 2026-11-09: 회차당 6분 예산으로 10~12곳씩 이어 본다 — 66곳 한 바퀴 약 3시간(이전 360분이면 하루 반)
   run_on: local
   language: ja
   doc_type: IR 질의응답

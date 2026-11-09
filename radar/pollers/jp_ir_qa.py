@@ -32,6 +32,7 @@ if __name__ == "__main__":
 from pollers import common  # noqa: E402
 
 SRC = "src-jp-ir-qa"
+BUDGET_S = 360   # 한 회차 6분 — run_poll 원천별 한도(8분) 안에서 끝낸다
 UA = "chiip-radar/0.1 (personal research)"
 CACHE = common.ROOT / "radar" / "inbox" / "jp_qa"
 LINK_RE = re.compile(r'<a\s[^>]*href=["\']([^"\'#]+)["\'][^>]*>(.*?)</a>', re.I | re.S)
@@ -266,9 +267,18 @@ def poll(env=None, only=None):
     st = common.load_state("jp_ir_qa", {"companies": {}})
     now = common.now_kst()
     items, errors = [], []
-    for cid, c in (cfg.get("companies") or {}).items():
-        if only and cid not in only:
-            continue
+    # 회차 예산·이어보기(2026-11-09 Pulse 시의성 점검): 전 회사를 한 번에 돌면 15분이 넘어 run_poll 한도에 끊겼고, 상태를 끝에 한 번만 저장해
+    # 끊길 때마다 탐색을 처음부터 다시 했다. 이제 회사마다 저장하고, BUDGET_S를 넘기면 멈춰 다음 회차가 이어서 본다.
+    t0 = time.time()
+    ids = [k for k in (cfg.get("companies") or {}) if not only or k in only]
+    start = st.get("next_index", 0) % max(len(ids), 1) if not only else 0
+    order = ids[start:] + ids[:start]
+    done = 0
+    for cid in order:
+        c = cfg["companies"][cid]
+        if not only and time.time() - t0 > BUDGET_S:
+            break
+        done += 1
         cs = st["companies"].setdefault(cid, {"seen": [], "pages": [], "discovered_at": None})
         try:
             stale = not cs["pages"] or not cs["discovered_at"] or datetime.fromisoformat(cs["discovered_at"]) < now - timedelta(days=REDISCOVER_DAYS)
@@ -277,18 +287,16 @@ def poll(env=None, only=None):
                 cs["pages"], cs["discovered_at"] = pages, common.iso(now)
             else:
                 qa = {}
-                for pg in cs["pages"]:
-                    try:
-                        qa.update(qa_links(_text(fetch(pg)), pg))
-                    except Exception:
-                        continue
-            # 지시문 A(2026-10-30): 우선순위별 자료·외부 전사·IR 프로필·게재 시차
+            # 지시문 A(2026-10-30): 우선순위별 자료·외부 전사·IR 프로필·게재 시차 — 페이지는 한 번만 받아 Q&A 찾기와 자료 분류에 같이 쓴다(2026-11-09)
             scan = {"docs": {}, "materials": {}, "external": {}}
             for pg in cs["pages"]:
                 try:
-                    sp = scan_page(_text(fetch(pg)), pg)
+                    txt = _text(fetch(pg))
                 except Exception:
                     continue
+                if not stale:
+                    qa.update(qa_links(txt, pg))
+                sp = scan_page(txt, pg)
                 for k in scan:
                     scan[k].update(sp[k])
             for u, ttl in list(scan["external"].items()):   # 로그미 書き起こし(robots 허용) — 질의응답이 있으면 C등급 Q&A
@@ -345,6 +353,10 @@ def poll(env=None, only=None):
             cs["seen"] = cs["seen"][-300:]
         except Exception as exc:   # 회사 하나가 실패해도 나머지는 본다
             errors.append(f"{cid}: {type(exc).__name__}")
+        common.save_state("jp_ir_qa", st)   # 회사마다 저장 — 회차가 끊겨도 탐색·기준선이 남는다
+    if not only:
+        st["next_index"] = (start + done) % max(len(ids), 1)
+        print(f"일본 IR Q&A {done}/{len(ids)}곳 확인({time.time() - t0:.0f}초)" + (" — 나머지는 다음 회차" if done < len(ids) else ""))
     common.save_state("jp_ir_qa", st)
     common.save_state("jp_ir_profile", st.get("profiles") or {})   # 일본 IR 프로필 — 모델이 노션 '일본 IR 프로필'과 맞춘다(지시문 A 0·7)
     if errors:
