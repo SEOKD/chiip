@@ -56,7 +56,15 @@
       - 결론이 숫자와 맞지 않으면: 판단 문장·시나리오를 고치고 무엇이 왜 바뀌었는지 남긴다. 결론 방향이 바뀌면 판단 문장 앞에 '(정정)'.
       - 모든 수정은 리포트 맨 끝 절 **'정정 기록 — Chiip Proviser HH:MM'**에 '무엇을(전 → 후) · 왜 · 근거' 표로 남긴다(원래 판단을 지우지 않고 추적 가능하게).
       - 문장을 고칠 때마다 리포트 JSON `corrections`에 `{"from": "고치기 전 문장 그대로", "to": "고친 문장", "by": "Chiip Proviser YYYY-MM-DD"}`를 더한다(2026-11-08 마스터 지시). `v2_to_report --merge`는 모델 글(_model.json)에서 리포트를 다시 조립하므로, 이 기록이 없으면 다시 병합할 때 정정이 사라진다. merge가 정정 기록 절을 옮기고 `corrections`를 다시 적용하며, 자리를 잃은 정정은 '[정정 재적용 실패]'로 알린다 — 그때는 문장을 확인해 고치고 기록을 갱신한다. 표 첫 칸을 "'전' → '후'" 꼴로 쓰면 그 행도 자동으로 읽는다.
-      - 그다음 `py scripts/tenbagger/report_html.py <json>` → 렌더 확인(차트 수 = svg 수) → 텔레그램 `notify.send_document(<html>, '[Chiip Ten-bagger Report MM/DD · Revised] 회사(티커) — 정정 n건: 한 줄', 'REPORT')` → `py scripts/publish_report.py <html> <json> …`(같은 파일 갱신), 이어서 `publish_tenbagger.py prepare`와 노션 기존 페이지 `replace_content`로 옛 본문·HTML 링크를 새것으로 바꾼다(2026-11-02 마스터 지시, `docs/channels/notion.md`). 수정이 없으면 다시 보내지 않는다.
+      - 그다음 `py scripts/tenbagger/report_html.py <json>` → 렌더 확인(차트 수 = svg 수) → 텔레그램 `notify.send_document(<html>, '[Chiip Ten-bagger Report MM/DD · Revised] 회사(티커) — 정정 n건
+
+① …
+
+② …
+
+확인 일치: …
+
+목표주가·등급·시나리오: 그대로|변경', 'REPORT')` — **문단 띄어쓰기**(마스터 지시 2026-11-09 "Proviser 피드도 가독성 있게 문단 띄어쓰기"): 머리 한 줄 → 빈 줄 → 정정 항목마다 한 문단(①②…) → 빈 줄 → 원문과 맞춰 본 숫자 한 문단 → 빈 줄 → 목표주가·등급·시나리오 변동 한 줄. 여러 회사를 한 메시지로 보낼 때는 회사 사이에도 빈 줄. Proviser가 보내는 다른 텔레그램 글(품질 점수·지시서 요청 등)도 같은 규칙 → `py scripts/publish_report.py <html> <json> …`(같은 파일 갱신), 이어서 `publish_tenbagger.py prepare`와 노션 기존 페이지 `replace_content`로 옛 본문·HTML 링크를 새것으로 바꾼다(2026-11-02 마스터 지시, `docs/channels/notion.md`). 수정이 없으면 다시 보내지 않는다.
    f. 같은 감점이 3건 중 2건 이상에서 나오면 chiip-tenbagger 보강 지시(docs/proviser/chiip-tenbagger.md)로 올린다 — 내일 리포트부터 같은 오류가 나오지 않게(이 단계의 학습 고리).
 
 6-3-1. **마스터 평가 우선**(2026-10-31 마스터 지시): 마스터가 기능·산출물 품질을 점수로 말하면 그 값이 그 기능 점수의 상한이다. 다음 회차까지 자체 점수가 그 값을 넘을 수 없고, 재설계가 반영된 산출물을 마스터가 다시 평가하기 전에는 올리지 않는다. 차이가 2점 이상이면 왜 자체 평가가 놓쳤는지 평가 축을 고친다.
