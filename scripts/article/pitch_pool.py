@@ -31,6 +31,7 @@ sys.path.insert(0, str(ROOT / "scripts" / "industry"))
 KST = timezone(timedelta(hours=9))
 OUT = ROOT / "outputs" / "article" / "pitch"
 NUM_RE = re.compile(r"[\d.,]+\s*(%|%p|억|조|원|엔|\$|B|M|배|GW|MW|장|개)")
+JP_DISC_RE = re.compile(r"決算短信|業績予想|業績修正|予想の修正|適時開示|決算説明|決算補足|配当予想|自己株式")
 IR_SOURCES = ("src-jp-ir-docs", "src-kr-ir-docs", "src-tw-hk-ir-docs", "src-fiscal-ir-docs", "src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa", "src-sec-filings", "src-dart")
 
 
@@ -146,8 +147,8 @@ def gather(now):
     for day in {now.strftime("%Y%m%d"), (now - timedelta(days=1)).strftime("%Y%m%d")}:
         for f in (ROOT / "radar" / "inbox" / day).glob("src-*.json") if (ROOT / "radar" / "inbox" / day).exists() else []:
             it = _load(f, {})
-            if it.get("source_id") not in IR_SOURCES:
-                continue
+            if it.get("source_id") not in IR_SOURCES and not (it.get("source_id") == "src-jp-disclosure" and (it.get("doc_type") == "공시" or JP_DISC_RE.search(str(it.get("title") or "")))):
+                continue   # 일본 적시공시 미러는 대부분 기사 색인 — 공시·결산단신·업적 수정·결산 설명만 IR 단계로(2026-11-09)
             try:
                 t = datetime.fromisoformat(str(it.get("saved_at") or it.get("detected_at")))
             except ValueError:
@@ -238,9 +239,12 @@ def score(cands, maps, today):
             continue
         seen.add(key)
         k, why = korea_link(c["ids"], info, ind_of, korea_ind)
+        if not c.get("counterparty"):   # Pulse 피드(어닝콜 전사·Q&A 요약 포함)·알림 후보도 공급망 상대방이면 잡는다(2026-11-09)
+            c["counterparty"] = counterparty(f"{c.get('name') or ''} {c.get('event') or ''}", c.get("ids") or [])
         if c.get("counterparty") and k < 2:   # 한국 전자기업의 공급망 상대방 — 역방향 레이더(상대방이 먼저 말한다)
             k, why = 2, f"공급망 상대방 {c['counterparty'][0]}({c['counterparty'][2]}) → {', '.join(c['counterparty'][1][:3])}"
-            c.setdefault("company_names", list(c["counterparty"][1]))
+            if not c.get("company_names") and all(info.get(i, (i, False))[0] == i for i in c["ids"]):   # 감시 목록 밖 상대방 — 이름은 상대방 회사로(한국 기업은 연결 설명에만, 감점도 상대방 기준)
+                c["company_names"] = [c["counterparty"][0]]
         if c.get("patent") and not k and c.get("company_names"):   # 특허표의 한국 기업(감시 목록 밖 LG디스플레이 등)도 직접 연결
             k, why = 2, f"한국 기업 특허({', '.join(c['company_names'])})"
         if c.get("overseas") and not k:   # 해외 거점 나라 자료는 그 나라에 거점을 둔 한국 기업과 이어진다

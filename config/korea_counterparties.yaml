@@ -18,17 +18,41 @@ counterparties:
   - {names: ["KLA"], ids: [], korea: [삼성전자, SK하이닉스], role: "검사 장비 공급사"}
   - {names: ["Advantest", "アドバンテスト"], ids: [co-advantest], korea: [SK하이닉스, 삼성전자], role: "메모리·HBM 테스터"}
   - {names: ["BE Semiconductor", "Besi"], ids: [], korea: [SK하이닉스, 삼성전자, 한미반도체, 한화세미텍], role: "하이브리드 본딩 장비(경쟁·공급)"}
-  - {names: ["Disco", "ディスコ"], ids: [], korea: [SK하이닉스, 삼성전자], role: "웨이퍼 연삭·절단 장비"}
-  - {names: ["Lasertec", "レーザーテック"], ids: [], korea: [삼성전자, SK하이닉스], role: "EUV 마스크 검사"}
-  - {names: ["Kokusai Electric", "KOKUSAI"], ids: [], korea: [삼성전자, SK하이닉스], role: "증착 장비"}
-  - {names: ["SCREEN Holdings", "SCREENホールディングス"], ids: [], korea: [삼성전자, SK하이닉스], role: "세정 장비"}
-  - {names: ["Shin-Etsu", "信越化学"], ids: [], korea: [삼성전자, SK하이닉스], role: "웨이퍼·포토레지스트"}
-  - {names: ["SUMCO"], ids: [], korea: [삼성전자, SK하이닉스], role: "웨이퍼"}
-  - {names: ["Resonac", "レゾナック"], ids: [], korea: [SK하이닉스, 삼성전자], role: "HBM 패키징 소재"}
+  - {names: ["Disco", "ディスコ"], ids: [co-disco], korea: [SK하이닉스, 삼성전자], role: "웨이퍼 연삭·절단 장비"}
+  - {names: ["Lasertec", "レーザーテック"], ids: [co-lasertec], korea: [삼성전자, SK하이닉스], role: "EUV 마스크 검사"}
+  - {names: ["Kokusai Electric", "KOKUSAI", "ＫＯＫＵＳＡＩ", "国際電気", "コクサイエレ"], ids: [jp-kokusai], korea: [삼성전자, SK하이닉스], role: "증착 장비"}
+  - {names: ["SCREEN Holdings", "SCREENホールディングス", "ＳＣＲＥＥＮ"], ids: [jp-screen], korea: [삼성전자, SK하이닉스], role: "세정 장비"}
+  - {names: ["Shin-Etsu", "信越化学"], ids: [co-shinetsu], korea: [삼성전자, SK하이닉스], role: "웨이퍼·포토레지스트"}
+  - {names: ["SUMCO", "ＳＵＭＣＯ"], ids: [jp-sumco], korea: [삼성전자, SK하이닉스], role: "웨이퍼"}
+  - {names: ["Resonac", "レゾナック"], ids: [jp-resonac], korea: [SK하이닉스, 삼성전자], role: "HBM 패키징 소재"}
   - {names: ["Ibiden", "イビデン"], ids: [co-ibiden], korea: [삼성전기, LG이노텍], role: "FC-BGA 기판 경쟁"}
   - {names: ["Unimicron", "欣興"], ids: [co-unimicron], korea: [삼성전기, LG이노텍], role: "기판 경쟁"}
-  - {names: ["Murata", "村田製作所"], ids: [], korea: [삼성전기], role: "MLCC 경쟁"}
-  - {names: ["TDK"], ids: [], korea: [삼성전기, 삼성SDI], role: "수동소자·전지 경쟁"}
+  - {names: ["Murata", "村田製作所"], ids: [jp-murata], korea: [삼성전기], role: "MLCC 경쟁"}
+  - {names: ["TDK", "ＴＤＫ"], ids: [jp-tdk], korea: [삼성전기, 삼성SDI], role: "수동소자·전지 경쟁"}
+  # 일본 반도체 공급망(2026-11-09 마스터 지시 "일본 반도체 업계 상장기업의 어닝 프레젠테이션·어닝콜·Q&A 요약·공시") — 역할은 업계에 널리 알려진 품목 기준, 고객 관계는 회사 공시·IR로 다시 확인
+  - {names: ["TOWA", "ＴＯＷＡ"], ids: [jp-towa], korea: [SK하이닉스, 삼성전자, 한미반도체], role: "몰딩 장비(HBM 후공정 포함)·경쟁"}
+  - {names: ["Shibaura Mechatronics", "芝浦メカトロニクス"], ids: [jp-shibaura], korea: [SK하이닉스, 삼성전자, 한미반도체, 한화세미텍], role: "본더·세정 장비(본더 경쟁)"}
+  - {names: ["Tokyo Seimitsu", "東京精密"], ids: [jp-tokyoseimitsu], korea: [SK하이닉스, 삼성전자], role: "프로버·다이싱 장비"}
+  - {names: ["Ebara", "荏原製作所", "荏原"], ids: [jp-ebara], korea: [삼성전자, SK하이닉스], role: "CMP·진공 펌프"}
+  - {names: ["Ushio", "ウシオ電機"], ids: [jp-ushio], korea: [삼성전자, SK하이닉스, 삼성전기], role: "노광 광원·패키지 노광"}
+  - {names: ["Micronics Japan", "日本マイクロニクス"], ids: [jp-micronics], korea: [SK하이닉스, 삼성전자], role: "메모리 프로브카드"}
+  - {names: ["Tokyo Ohka", "東京応化"], ids: [jp-tok], korea: [삼성전자, SK하이닉스], role: "포토레지스트"}
+  - {names: ["Ajinomoto", "味の素"], ids: [co-ajinomoto], korea: [삼성전기, LG이노텍], role: "ABF 기판 절연 필름"}
+  - {names: ["Nittobo", "日東紡"], ids: [co-nittobo], korea: [삼성전기, LG이노텍], role: "기판용 유리섬유(T-glass)"}
+  - {names: ["HOYA", "ＨＯＹＡ"], ids: [jp-hoya], korea: [삼성전자, SK하이닉스], role: "EUV 마스크 블랭크"}
+  - {names: ["AGC", "ＡＧＣ"], ids: [jp-agc], korea: [삼성전자, 삼성디스플레이, LG디스플레이], role: "마스크 블랭크·디스플레이 유리"}
+  - {names: ["Nippon Electric Glass", "日本電気硝子"], ids: [jp-neg], korea: [삼성디스플레이, LG디스플레이, 삼성전기], role: "디스플레이·기판용 유리"}
+  - {names: ["Sumitomo Bakelite", "住友ベークライト"], ids: [jp-sumibe], korea: [삼성전자, SK하이닉스], role: "반도체 봉지재(EMC)"}
+  - {names: ["Mitsui Kinzoku", "三井金属"], ids: [jp-mitsuikinzoku], korea: [삼성전기, LG이노텍], role: "극박 동박(기판)"}
+  - {names: ["JX Advanced Metals", "ＪＸ金属"], ids: [jp-jxmetals], korea: [삼성전자, SK하이닉스], role: "스퍼터링 타깃"}
+  - {names: ["Hamamatsu Photonics", "浜松ホトニクス"], ids: [jp-hamamatsu], korea: [삼성전자, SK하이닉스], role: "검사용 광센서"}
+  - {names: ["Kyocera", "京セラ"], ids: [jp-kyocera], korea: [삼성전기, LG이노텍], role: "세라믹 패키지·기판·MLCC 경쟁"}
+  - {names: ["Taiyo Yuden", "太陽誘電"], ids: [jp-taiyoyuden], korea: [삼성전기], role: "MLCC 경쟁"}
+  - {names: ["Kioxia", "キオクシア"], ids: [jp-kioxia], korea: [삼성전자, SK하이닉스], role: "NAND 경쟁·SK하이닉스 지분 관계"}
+  - {names: ["Renesas", "ルネサス"], ids: [jp-renesas], korea: [삼성전자], role: "차량·전력 반도체 경쟁"}
+  - {names: ["Socionext", "ソシオネクスト"], ids: [jp-socionext], korea: [삼성전자], role: "맞춤 반도체 설계(파운드리 고객 후보)"}
+  - {names: ["Dai Nippon Printing", "大日本印刷"], ids: [jp-dnp], korea: [삼성디스플레이, LG디스플레이, 삼성전자], role: "OLED 마스크(FMM)·포토마스크"}
+  - {names: ["TOPPAN", "ＴＯＰＰＡＮ"], ids: [jp-toppan], korea: [삼성전자, 삼성전기], role: "포토마스크·기판"}
   - {names: ["Universal Display"], ids: [], korea: [삼성디스플레이, LG디스플레이], role: "OLED 발광 재료·특허 공급"}
   - {names: ["Corning"], ids: [], korea: [삼성디스플레이, LG디스플레이], role: "디스플레이 유리"}
   - {names: ["Tesla"], ids: [], korea: [LG에너지솔루션, 삼성SDI], role: "배터리 고객"}
