@@ -3162,6 +3162,26 @@
      ]
     }
    ]
+  },
+  {
+   "h2": "정정 기록 — Chiip Proviser 23:19",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "무엇을(전 → 후)",
+      "왜",
+      "근거"
+     ],
+     "rows": [
+      [
+       "머리 타일 '알파 6.6/10' → '6.2/10'",
+       "타일은 병합 시점의 옛 점수였고, 리포트 판단(verdict alpha·insight)과 모델 글(_model.json)은 6.2다. 한 리포트 안에서 같은 점수가 둘이었다",
+       "outputs/tenbagger/reports/20261109_CIEN_model.json verdict.alpha 6.2 · insight 6.2"
+      ]
+     ]
+    }
+   ]
   }
  ],
  "sources": [
@@ -3208,7 +3228,13 @@
   "FQ3 콜·10-Q MD&A",
   "https://www.sec.gov/Archives/edgar/data/936395/000162828025056698/cien-20251101.htm"
  ],
- "corrections": [],
+ "corrections": [
+  {
+   "from": "6.6/10",
+   "to": "6.2/10",
+   "by": "Chiip Proviser 2026-11-09"
+  }
+ ],
  "tiles": [
   {
    "k": "주가",
@@ -3246,7 +3272,7 @@
   },
   {
    "k": "알파",
-   "v": "6.6/10",
+   "v": "6.2/10",
    "sub": "텐배거 가능성 점수"
   },
   {
