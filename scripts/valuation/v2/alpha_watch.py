@@ -96,7 +96,7 @@ def narrative_line(eid, today=None, stale_days=30):
     except ValueError:
         age = None
     eff = fm.get("alpha_effect") or {}
-    tail = f" · 알파 보정 제안 gap {eff.get('gap', 0):+d}·upside {eff.get('upside', 0):+d}" if eff else ""
+    tail = ""   # 알파 보정 제안(gap·upside)은 피드에서 뺀다(2026-11-09 마스터 지시) — 값은 머리말 alpha_effect에 남는다
     stale = f" — {age}일 전, 갱신 필요" if age is not None and age > stale_days else ""
     return f"내러티브({fm.get('stage', '미판정')}·과밀 {fm.get('crowding', '미상')}): {fm.get('summary', '')}{tail} [{as_of}{stale}]"
 
@@ -243,13 +243,16 @@ def message(r, name, alpha_total, reasons, update_note=None):
     import notify   # 근거 다음에 무엇을 하는 회사인지 1줄(2026-11-08 마스터 지시)
     biz = notify.company_line([r.get("entity") or ""])
     L.append(f"· 기업: {biz}" if biz else "· 기업: 미확인")
-    if r.get("decision"):
-        L += decision.lines(r["decision"])
-    L.append(narrative_line(r.get("entity") or ""))
+    if r.get("decision"):   # 덩어리마다 빈 줄(2026-11-09 마스터 지시 "문단 띄어쓰기로 가독성 있게")
+        for x in decision.lines(r["decision"]):
+            L += ["", x]
+    L += ["", narrative_line(r.get("entity") or "")]
     u = r["upside"]
     if u.get("implied_cagr") is not None:
         pct = u["implied_pct"][0]
-        L.append(f"시장 내포 5년 매출 CAGR {u['implied_cagr']:.0%}" + (f"(기저율 상위 {100 - pct:.0f}%)" if pct is not None else ""))
+        L += ["", f"시장 내포 5년 매출 CAGR {u['implied_cagr']:.0%} — 지금 주가가 전제하는 앞으로 5년 연평균 매출 성장률"
+              + (f"(과거 기업들 실제 성장 분포에서 상위 {100 - pct:.0f}% 수준)" if pct is not None else "")]
+    L.append("")
     # 가정 줄이 마지막이다 — 아래 설명(보수 가정·안내문)은 뺀다(2026-11-08 마스터 지시 "설명을 간소화"). 동인 갱신 예정과 투자자문 아님 표시만 이 줄에 붙인다
     L.append(f"가정: 동인 {r.get('drivers_as_of') or '미상'}{'(갱신 예정)' if update_note else ''} · 시가 {r['market'].get('date', '미상')} · WACC {r['coc']['wacc']:.1%} · 몬테카를로 {u.get('n', 0):,}회 · {DISCLAIMER_SHORT}")
     return "\n".join(L)
