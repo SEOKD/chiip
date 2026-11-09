@@ -1093,6 +1093,22 @@
   terms_note: "2026-11-09 마스터 지시(대만·중국 발굴 보완). 거래소 지정 공시 매체의 공개 조회, robots.txt 없음(404). 종목별 조회·1초 간격, 원문은 링크만"
   reliability_default: 1차(회사 공시)
   enabled: true
+- id: src-yt-ir
+  name: YouTube 공식 IR 채널 결산 설명회 영상 게시(공식 Data API v3, 메타데이터만)
+  category: C-IR
+  module: yt_ir
+  entry: poll
+  method: api
+  endpoint_doc: "https://developers.google.com/youtube/v3/docs/playlistItems/list · config/yt_ir_channels.yaml"
+  auth: YOUTUBE_API_KEY
+  scope: [글로벌]
+  interval_min: 30
+  run_on: local
+  language: ja
+  doc_type: IR 자료
+  terms_note: "2026-11-09 마스터 지시(JX금속). 영상·자막 내려받기 금지(약관, robots /timedtext_video·/feeds/videos.xml 금지) — 게시 탐지만. 키 없으면 건너뜀"
+  reliability_default: 1차(회사 게시)
+  enabled: true
 - id: src-nuclear-nrc
   name: 미국 원자력규제위원회(NRC) 보도자료 — 공식 RSS + 색인
   category: L-해외정부

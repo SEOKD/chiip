@@ -42,7 +42,7 @@ DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기�
 CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운용사 원문 사이트·대상 회사 사이트(2026-11-09 시의성 점검 — 둘 다 분류표에 없어 Pulse가 집지 않았다)
            ("포지션", ("src-cftc",)),   # CFTC COT 주간 극단(2026-11-09) — 배경 신호
            ("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa", "src-ir-audio")),   # src-ir-audio = 설명회 음성 자체 전사(D등급, 2026-11-09)   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
-           ("IR 자료", ("src-jp-ir-docs", "src-kr-ir-docs", "src-tw-hk-ir-docs", "src-fiscal-ir-docs")),   # src-fiscal-ir-docs = 유럽 등 IR 수집기 없는 종목의 PT·보도자료(Fiscal.ai IR 이벤트, 2026-11-08 AT&S)   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
+           ("IR 자료", ("src-jp-ir-docs", "src-kr-ir-docs", "src-tw-hk-ir-docs", "src-fiscal-ir-docs", "src-yt-ir")),   # src-yt-ir = YouTube 공식 IR 채널 결산 영상 게시(2026-11-09)   # src-fiscal-ir-docs = 유럽 등 IR 수집기 없는 종목의 PT·보도자료(Fiscal.ai IR 이벤트, 2026-11-08 AT&S)   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
            ("원자력·위성", ("src-nuclear-", "src-space-")),   # NRC·에너지부·우주개발청 등(2026-10-31 마스터 지시, knowledge/methods/nuclear_space_lens.md)
            ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
