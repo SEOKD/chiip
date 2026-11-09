@@ -1,0 +1,105 @@
+auto: true
+id: co-argan
+name: Argan
+ticker: AGX
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.84
+  IE: 0.11
+  UK: 0.05
+tax: 0.24
+horizon: 10
+as_of: '2026-11-10'
+market:
+  date: '2026-11-10'
+  price: 305.98
+  shares: 0.014166
+  net_debt: -0.4014
+  source: 가격 = 2026-11-09 종가 $305.98(TradingView 일봉) · 주식 수 14,029,842(10-Q 표지, 2026-08-28)
+    · 현금 $364.5M + 단기 투자 $664.0M = $1,028.4M, 차입 0(신용한도 미사용, 10-Q) · 계약 부채 $627.0M(2026-07-31)을
+    고객 선수금으로 차감
+rev0: 1.45
+ic0: 0.1054
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.1379
+      end: 0.035
+      decay: 0.543
+    margin:
+      m0: 0.146
+      target: 0.155
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.155
+      - 0.155
+    s2c: 5.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0621
+      end: 0.04
+      decay: 0.5930000000000001
+    margin:
+      m0: 0.146
+      target: 0.175
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.155
+      - 0.155
+    s2c: 5.75
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.0621
+      end: 0.030000000000000002
+      decay: 0.44300000000000006
+    margin:
+      m0: 0.146
+      target: 0.135
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.155
+      - 0.155
+    s2c: 4.25
+mc:
+  sigma_growth: 0.031
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 1.45
+  growth: 컨센서스 1년차 13.8%, 2년차 9.1%
+  margin: 1~2년차 컨센서스 15.5%, 15.5% 고정 → 목표 16%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 5.0 → 덮어쓰기 5.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -6.2%~6.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: '매출÷투하자본 5.0: TTM CAPEX $9.5M(매출 0.8%), 운전자본은 고객 선수금 $627M이 댄다 → 증분 자본이
+    거의 없다. 상한 6 아래 보수적 5(근거 약함)'
+  shares: 완전 희석 = 기본 0.01403(2026-08-28) + 옵션·RSU·워런트·전환 0.0001 — 2Q FY27 가중평균 희석
+    14.164M − 기본 14.028M(10-Q EPS 주석)
+notes:
+- 자동 생성(build_drivers) 2026-11-10 — 데이터 묶음 2026-11-10
+- '어닝콜 위험: 산업 부문 총이익률 7.3%(정상 이하)'
+- '어닝콜 위험: 신규 대형 수주 시점(7~15개월)'
+- '어닝콜 위험: 텍사스 데이터센터 규제'
+evidence:
+- 2Q FY27 10-Q(2026-09-02) https://www.sec.gov/Archives/edgar/data/100591/000110465926104745/agx-20260731x10q.htm
+- 2Q FY27 실적 8-K Item 2.02(2026-09-02, EX-99.1) https://www.sec.gov/Archives/edgar/data/100591/000110465926104735/0001104659-26-104735-index.htm
+- FY26 10-K(2026-03-26) https://www.sec.gov/Archives/edgar/data/100591/000110465926035216/agx-20260131x10k.htm
+- 배당 인상 8-K Item 8.01(2026-09-09) https://www.sec.gov/Archives/edgar/data/100591/000110465926106321/0001104659-26-106321-index.htm
+- ValCor 인수 8-K Item 8.01(2026-08-04) https://www.sec.gov/Archives/edgar/data/100591/000110465926090398/0001104659-26-090398-index.htm
+- Fiscal.ai MCP 조회 2026-11-10 KST — 표준화 재무·부문 KPI·추정·Forward 배수·펀드 레터·내부자. Data provided
+  by Zacks Investment Research, Inc., www.zacksdata.com
+- Easyconomics 실적 정리(2Q FY27 콜 요지)·company_profile(yfinance)
+- TradingView NYSE:AGX 일봉(2023-10~2026-11-09)
+- 마스터 노션 IB 요지(GS 10/28·BofA 10/30·Bernstein 10/6 — 라이선스, 외부 공유 금지)
