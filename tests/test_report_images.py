@@ -102,7 +102,7 @@ class TestImages(unittest.TestCase):
         self.assertIn("data:image/png;base64", h)
         self.assertIn("사진 A", h)
         self.assertIn("AI 생성 개념도", h)
-        self.assertIn("① 레이저</span>", h)   # 컴포넌트 위에 번호 + 이름 이름표(2026-11-08 마스터 지시)
+        self.assertIn("<b>①</b> 레이저</span>", h)   # 컴포넌트 위에 번호 + 이름 이름표(2026-11-08 마스터 지시)
 
 
 class TestEnsure(unittest.TestCase):

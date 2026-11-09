@@ -1077,6 +1077,22 @@
 # (robots.txt도 Access Denied, 2026-10-29 확인) 우회하지 않고 Google News 도메인 색인 제목·링크로만 받는다. 각국 국방부도 같은 방식.
 # 펄스 '방위' 분류(radar/pulse.py — 원본 접두 src-defense-), 판정 상향 radar/promote.py 방위 규칙.
 # 원자력·위성 밸류체인 정부 문서(마스터 2026-10-31 "원천도 추가해줘") — 펄스 '원자력·위성' 분류(radar/pulse.py 접두 src-nuclear-·src-space-), 판정 상향 radar/promote.py.
+- id: src-cn-hk-disclosure
+  name: 중국 본토·홍콩 원문 공시(巨潮资讯 cninfo · HKEXnews) × 아시아 스크리너 후보·와치리스트 중국/홍콩 종목
+  category: B-공시
+  module: cn_hk_disclosure
+  entry: poll
+  method: api
+  endpoint_doc: "http://www.cninfo.com.cn/new/hisAnnouncement/query · https://www1.hkexnews.hk/search/titleSearchServlet.do"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  run_on: local
+  language: zh
+  doc_type: 공시
+  terms_note: "2026-11-09 마스터 지시(대만·중국 발굴 보완). 거래소 지정 공시 매체의 공개 조회, robots.txt 없음(404). 종목별 조회·1초 간격, 원문은 링크만"
+  reliability_default: 1차(회사 공시)
+  enabled: true
 - id: src-nuclear-nrc
   name: 미국 원자력규제위원회(NRC) 보도자료 — 공식 RSS + 색인
   category: L-해외정부

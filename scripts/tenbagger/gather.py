@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CFG = ROOT / "config" / "analysis_sources.yaml"
 OUT = ROOT / "radar" / "state" / "gather"
 KST = timezone(timedelta(hours=9))
-REGION = {"NASDAQ": "us", "NYSE": "us", "AMEX": "us", "KRX": "kr", "TSE": "jp", "TWSE": "tw", "TPEX": "tw"}
+REGION = {"NASDAQ": "us", "NYSE": "us", "AMEX": "us", "KRX": "kr", "TSE": "jp", "TWSE": "tw", "TPEX": "tw", "SSE": "cn", "SZSE": "cn", "HKEX": "hk"}   # 중국·홍콩(2026-11-09) — 지역 미확인이면 지역 전용 원천이 모두 빠졌다
 OK = re.compile(r"^(ok|해당 없음\(.+\))$")
 
 
@@ -51,7 +51,7 @@ def company(entity):
     ticker = str(dp.get("ticker") or row.get("ticker") or "")
     region = REGION.get(row.get("exchange", ""))
     if not region:
-        region = {"₩": "kr", "¥": "jp", "NT$": "tw"}.get(dp.get("currency_symbol"), "us" if ticker.isalpha() else "")
+        region = {"₩": "kr", "¥": "jp", "NT$": "tw", "HK$": "hk", "CN¥": "cn"}.get(dp.get("currency_symbol"), "us" if ticker.isalpha() else "")
     name = str(dp.get("name") or row.get("name") or entity)
     return {"id": entity, "ticker": ticker, "name": name, "legal": row.get("name") or name, "region": region,
             "names": [x for x in dict.fromkeys([name, row.get("name") or ""]) if x]}

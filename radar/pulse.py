@@ -47,7 +47,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-")),
-           ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart")),   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
+           ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-whitehouse", "src-policy-us-", "src-fedreg"))]
 CLASS_W = {"포지션": 3, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
@@ -134,6 +134,8 @@ def relevant(it, cls):
     if cls == "원자력·위성":   # 정부 문서는 회사명이 없어도 인허가·계약이면 본다(원천에서 이미 거름)
         return True
     if it.get("source_id") in ("src-short-sites", "src-company-sites", "src-cftc"):   # 숏 운용사·대상 회사 원문은 원천에서 이미 좁혔다(2026-11-09)
+        return True
+    if it.get("source_id") in ("src-tw-revenue-surge", "src-cn-hk-disclosure"):   # 중문 원문·지도 밖 후보 — 수집기가 업종·중요 공시로 이미 거름(2026-11-09)
         return True
     if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True

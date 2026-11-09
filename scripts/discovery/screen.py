@@ -80,6 +80,30 @@ def score(comp, w):
     return round(tot / wsum, 2) if wsum else None, missing
 
 
+def asia_rows(fund, att, tv, caps, quiet, w, have):
+    """대만·중국·홍콩 스크리너 상위(scripts/discovery/asia_screen.py → asia_candidates.json)를 '아시아 스크리너' 테마로 합류(2026-11-09).
+    Fiscal.ai가 대부분 없는 시장이라 성장·시가총액은 TradingView 스크리너 값을 쓴다. edge는 미판정(5) — 병목 근거를 찾아 손으로 만든 테마로 옮길 때 적는다.
+    그래서 점수가 높아도 '① 아이디어'에 머문다(선별 통과는 edge 6 이상)."""
+    a = _j(DISC / "asia_candidates.json")
+    out = []
+    for m, rs in (a.get("markets") or {}).items():
+        for r in rs:
+            cid = f"asia-{r['market']}-{r['code']}"
+            if cid in have:
+                continue
+            f = dict(fund.get(cid) or {})
+            f.setdefault("rev_growth", None if r.get("outlier") or r.get("rev_growth") is None else r["rev_growth"] / 100)
+            f.setdefault("mcap_usd", r.get("mcap_usd"))
+            c = {"id": cid, "name": r["name"], "market": r["market"], "code": r["code"], "edge": 5}
+            comp = components(c, {cid: f}, att, tv, caps, quiet=quiet)
+            comp["growth"] = lin(r.get("score"), -1.5, 2.0, 2.5, 10.0)   # 절대 성장률은 이 시장 상위가 모두 상한(+60%)에 붙는다 → 시장 안 z합성(성장·가속·질·모멘텀·밸류·규모)으로 순위를 살린다
+            s, missing = score(comp, w)
+            why = f"아시아 스크리너 {m} z합성 {r['score']}" + (f" · 테마 {', '.join(r['themes'])}" if r.get("themes") else "") + (f" · 한국 연결 {', '.join(r['korea_link'])}" if r.get("korea_link") else "")
+            out.append({"id": cid, "name": r["name"], "market": r["market"], "code": r["code"], "theme": "아시아 스크리너", "score": s,
+                        "comp": comp, "missing": missing, "stage": "① 아이디어", "why": why})
+    return out
+
+
 def run(today=None):
     today = today or date.today()
     cfg = _y("config/discovery.yaml")
@@ -98,6 +122,7 @@ def run(today=None):
             stage = "⑤ 커버리지" if c["id"] in cov else ("② 선별 통과" if s and s >= 6.0 and comp["edge"] >= 6 and c["id"] in fund else "① 아이디어")
             rows.append({"id": c["id"], "name": c["name"], "market": c.get("market"), "code": c.get("code"), "theme": t["name"], "score": s,
                          "comp": comp, "missing": missing, "stage": stage, "why": c.get("why", "")})
+    rows += asia_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
     rows.sort(key=lambda r: -(r["score"] or 0))
     deep = [r for r in rows if r["stage"] == "② 선별 통과"][:DEEP_MAX]
     for r in deep:

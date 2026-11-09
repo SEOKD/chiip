@@ -28,6 +28,13 @@ def tw_codes():
     for c in (common.load_yaml("config/coverage.yaml") or {}).get("companies") or []:
         if c.get("market") == "tw":
             out[str(c["code"])] = c
+    try:   # 아시아 스크리너 대만 상위(scripts/discovery/asia_screen.py, 2026-11-09) — 지도 밖 후보도 원문 공시를 팔로업
+        import json
+        a = json.loads((common.ROOT / "knowledge" / "models" / "discovery" / "asia_candidates.json").read_text(encoding="utf-8"))
+        for r in (a.get("markets") or {}).get("taiwan") or []:
+            out.setdefault(str(r["code"]), {"id": f"asia-tw-{r['code']}", "name": r.get("name"), "code": r["code"], "market": "tw"})
+    except (OSError, ValueError):
+        pass
     return out
 
 

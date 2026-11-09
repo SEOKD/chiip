@@ -1,0 +1,33 @@
+# 대만·중국·홍콩 종목 발굴 스크리너(scripts/discovery/asia_screen.py) — 마스터 지시 2026-11-09 "Pulse·Ten-bagger·Analysis 종목 탐지망에 대만·중국 발굴 파이프라인을
+# 점검하고 전문 기법으로 체계적으로 보완". 점검: 발굴 후보 529종목 중 대만 20·홍콩 2·중국 본토 0, Fiscal.ai는 대만 15·중국 26·홍콩 21종목만 지원 → 펀더멘털을 Fiscal.ai에 기대면 늘어날 수 없다.
+# 방법(계량 스크린 → 테마 지도 → 사람 판단): ① 유니버스 = TradingView 스크리너(시장별, 전자·장비·소재 업종) ② 시가총액·거래대금 하한 ③ 시장 안 z점수(±3 절단)로 팩터 합성
+# ④ 대만은 TWSE·TPEx 공개 월매출 전 종목으로 '가속'(당월 전년 대비 − 연누계 전년 대비) ⑤ 테마 키워드·한국 공급망 연결 가점 ⑥ 상위는 발굴 선별(screen.py)에 합류 — 편입은 위원회 메모(사람 판단)
+# 가중치·문턱은 사전값(미검증) — Model Lab 주간 검증 대상(등록부 prm-asia-*)
+fx_to_usd: {TWD: 0.0310, CNY: 0.1390, HKD: 0.1285}   # 문턱용 근사(2026-11 수준) — 정밀 환산이 필요하면 매 회차 갱신
+markets:
+  taiwan: {currency: TWD, region: tw, limit: 150}
+  china: {currency: CNY, region: cn, limit: 150}
+  hongkong: {currency: HKD, region: hk, limit: 100}
+sectors: ["Electronic Technology", "Producer Manufacturing", "Process Industries"]
+exclude_industries: "Agricultural|Animal|Food|Pulp|Textile|Forest|Construction Materials|Containers|Packaging"   # Process Industries에 섞인 농업·식품 등(2026-11-09 시험: 중국 축산·농약, 홍콩 포장재가 상위에)
+growth_outlier: 500   # 매출 YoY(%)가 이보다 크면 합병·기저 효과 의심 — 점수에서 성장 z를 0으로 두고 표에 표시(시험: 산둥훙차오 +9,614%)
+mcap_usd: [200000000, 30000000000]     # 텐배거 구간(config/tenbagger.yaml과 같은 결) — 너무 크면 10배 경로가 없다
+min_value_traded_usd: 2000000          # 30일 평균 거래대금 — 홍콩 소형주의 이상 성장률(+2,165%) 같은 거래 미미 종목을 거른다
+columns: [name, description, sector, industry, market_cap_basic, total_revenue_yoy_growth_ttm, operating_margin_ttm, gross_margin_ttm,
+          enterprise_value_to_revenue_ttm, Perf.6M, Perf.Y, average_volume_30d_calc, close]
+weights:   # 시장 안 z점수 가중합(합 1)
+  growth: 0.30          # 매출 전년 대비(TTM)
+  accel: 0.20           # 대만 월매출 가속(당월 YoY − 연누계 YoY), 다른 시장은 0으로 두고 가중을 성장에 더한다
+  quality: 0.15         # 영업이익률
+  momentum: 0.15        # 6개월 수익률
+  value: 0.10           # EV/매출 낮을수록(부호 반대)
+  size: 0.10            # 작을수록(로그 시가총액, 부호 반대) — 텐배거 기울기
+bonus: {theme: 0.3, korea_link: 0.3}   # 테마 키워드 일치·한국 공급망 연결(월매출 거울·상대방 목록) — z점수 단위
+top_n: 15        # 시장별 후보 상위 n — 발굴 선별(screen.py)에 '아시아 스크리너' 테마로 합류
+themes:          # 업종·설명 키워드 → Chiip 테마(가점 + 분류). 중국어·영문 모두
+  "AI 서버·네트워킹": "server|switch|network|optical|transceiver|光模块|光通信|服务器|交换机|connector|cable|連接器|線材"
+  "PCB·기판·소재": "PCB|printed circuit|substrate|CCL|copper clad|laminate|载板|覆铜板|銅箔|copper foil|glass fiber|玻纤"
+  "반도체·장비": "semiconductor|wafer|foundry|probe card|test (socket|handler|equipment)|lithograph|etch|deposition|Electronic Production Equipment|半导体|晶圆|刻蚀|封测|半導體"   # 2026-11-09 시험: 맨 equipment·test가 통신장비까지 걸어 좁힘
+  "수동부품·전원": "capacitor|MLCC|inductor|resistor|power supply|电容|电源|被动|passive"
+  "냉각·전력": "cooling|thermal|liquid|heat|散热|液冷|transformer|grid|电网|switchgear"
+  "메모리·스토리지": "memory|DRAM|NAND|flash|storage|存储|内存"

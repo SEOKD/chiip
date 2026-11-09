@@ -2,7 +2,7 @@
 # scripts/tenbagger/gather.py가 script 원천을 돌리고(결과 radar/state/gather/<id>/), model 원천은 모델이 MCP로 부른 뒤 --mark로 적는다.
 # v2_to_report --merge가 장부를 본다 — 해당 원천이 ok 또는 '해당 없음(이유)'가 아니면 멈춘다(노션 자료실 관문과 같은 방식).
 # fail_if: 출력에 이 문구가 있으면 실패(재료가 연결되지 않았다는 뜻) — 연결하거나 이유를 붙여 --mark '해당 없음(…)'.
-# region: all · us · kr · jp · tw (상장 거래소 config/tradingview_symbols.csv). Chiip Proviser가 새 파이프라인을 연결하면 여기에 한 줄을 더한다(docs/tasks/chiip-proviser.md 6-5).
+# region: all · us · kr · jp · tw · cn · hk (상장 거래소 config/tradingview_symbols.csv). Chiip Proviser가 새 파이프라인을 연결하면 여기에 한 줄을 더한다(docs/tasks/chiip-proviser.md 6-5).
 max_age_days: 3        # 장부가 이보다 오래되면 다시 모은다
 timeout_s: 240
 sources:
@@ -20,6 +20,8 @@ sources:
   - {id: kr_ir_pt, region: kr, kind: script, cmd: "radar/pollers/kr_ir_docs.py --pt {id}", use: "한국 종목 당기·직전 분기 PT(어닝콜 대신)"}
   - {id: jp_consensus, region: jp, kind: script, cmd: "radar/jp_consensus.py --line {ticker}", use: "일본 종목 컨센서스 줄"}
   - {id: tw_financials, region: tw, kind: script, cmd: "radar/pollers/tw_financials.py --export {ticker} {out}/tw_quarters.json", use: "대만 공시 분기 재무 → quarters.py --put"}
+  - {id: cn_hk_filings, region: cn, kind: script, cmd: "radar/pollers/cn_hk_disclosure.py --about {ticker}", use: "중국 본토 원문 공시(巨潮资讯 cninfo) — 실적·업적 예고·수주·증설·설명회(2026-11-09)"}
+  - {id: hk_filings, region: hk, kind: script, cmd: "radar/pollers/cn_hk_disclosure.py --about {ticker}", use: "홍콩 원문 공시(HKEXnews) — 실적·내부정보·계약·증자(2026-11-09)"}
   # ── 장부 읽기(gather.py 안에서 읽는다) ──
   - {id: radar_items, region: all, kind: read, use: "최근 21일 레이더 수집함(EDGAR·DART·대만·일본 공시, 보도자료, 숏 리포트, 뉴스)과 영향 카드"}
   - {id: pairs, region: all, kind: read, use: "페어북 관계 가설"}
@@ -32,6 +34,8 @@ sources:
   - {id: jp_ir_qa, region: jp, kind: read, use: "일본 IR 질의응답 최신 페이지"}
   # ── 모델이 MCP로 부르고 --mark로 적는다 ──
   - {id: fiscal, region: all, kind: model, use: "Fiscal.ai execute_code(재무·추정·Zacks·트랜스크립트)"}
+  - {id: tv_financials, region: cn, kind: model, use: "Fiscal.ai가 없는 중국·홍콩·대만 종목 재무 대체: TradingView mcp-tv-get-financials·get-financial-history·get-forecasts(순차 호출) → 분기 매출·이익·추정. 대만은 tw_financials가 1순위(2026-11-09)"}
+  - {id: tv_financials_hk, region: hk, kind: model, use: "홍콩 종목 재무 대체 — tv_financials와 같은 절차(2026-11-09)"}
   - {id: easyconomics, region: all, kind: model, use: "Easyconomics 실적 요약·프로필·yfinance"}
   - {id: community, region: all, kind: model, use: "커뮤니티 내러티브 MCP(X·레딧·유튜브·서브스택)"}
   - {id: notion_search, region: all, kind: model, use: "노션 게시글 검색"}
