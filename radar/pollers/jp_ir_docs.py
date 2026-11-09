@@ -305,6 +305,8 @@ def poll(env=None, only=None, force=False):
                 if discovered >= p["discover_per_run"] and not only:
                     continue
                 pages = discover_doc_pages(c, (qa_st["companies"].get(cid) or {}).get("pages") or [])
+                if not pages:   # 자료실을 못 찾으면 Q&A 수집기가 찾은 IR 페이지를 그대로 본다(2026-11-09 — 레이저텍·SUMCO·후지쿠라 등 26곳 자료실 0)
+                    pages = ((qa_st["companies"].get(cid) or {}).get("pages") or [])[:4]
                 cs["doc_pages"], cs["doc_pages_at"] = pages, common.iso(now)
                 discovered += 1
                 fetches += 8
@@ -329,7 +331,8 @@ def poll(env=None, only=None, force=False):
                     if d["kind"] == "video":
                         cs["video"] = d["url"]
                         ex = cs.get("expect") or {}
-                        if not first_page and ex.get("found") and (today - date.fromisoformat(ex["found"])).days <= 21:
+                        recent = cs.get("last_new") and (now - datetime.fromisoformat(cs["last_new"])).days <= 21
+                        if not first_page and (recent or (ex.get("found") and (today - date.fromisoformat(ex["found"])).days <= 21)):   # 결산 자료가 최근 21일 안에 잡힌 회사(2026-11-09 넓힘 — Q&A 대기가 없는 회사도)
                             # 결산 설명회 음성·영상 새 게시(2026-11-09 마스터 지시 "설명회 음성·질의응답 요지가 나오는 즉시 Pulse에서 탐지") —
                             # 기록만 하던 것을 알린다. 음성 전사 도구는 승인 전(TODO 28)이라 내용 분석은 Q&A 요지(대기 중)로 한다
                             items.append(common.make_item(SRC, hashlib.sha1(d["key"].encode()).hexdigest()[:16], d["url"],
