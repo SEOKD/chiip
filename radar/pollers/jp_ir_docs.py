@@ -332,6 +332,8 @@ def poll(env=None, only=None, force=False):
                         cs["video"] = d["url"]
                         ex = cs.get("expect") or {}
                         recent = cs.get("last_new") and (now - datetime.fromisoformat(cs["last_new"])).days <= 21
+                        held = d.get("date") and (today - date.fromisoformat(d["date"])).days <= 21   # 링크 제목의 개최일(〇年〇月〇日開催)이 최근 — 결산 자료가 다른 페이지에 있어 last_new·expect가 없는 회사(2026-11-09 아지노모토: 설명회 페이지만 감시)
+                        recent = recent or held
                         if not first_page and (recent or (ex.get("found") and (today - date.fromisoformat(ex["found"])).days <= 21)):   # 결산 자료가 최근 21일 안에 잡힌 회사(2026-11-09 넓힘 — Q&A 대기가 없는 회사도)
                             # 결산 설명회 음성·영상 새 게시(2026-11-09 마스터 지시 "설명회 음성·질의응답 요지가 나오는 즉시 Pulse에서 탐지") —
                             # 기록만 하던 것을 알린다. 음성 전사 도구는 승인 전(TODO 28)이라 내용 분석은 Q&A 요지(대기 중)로 한다
