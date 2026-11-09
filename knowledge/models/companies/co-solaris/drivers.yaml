@@ -1,0 +1,104 @@
+auto: true
+id: co-solaris
+name: Solaris Energy Infrastructure
+ticker: SEI
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-09'
+market:
+  date: '2026-11-09'
+  price: 57.77
+  shares: 0.086041
+  net_debt: 2.1008
+  source: 가격 = TradingView NYSE:SEI 2026-11-06 종가 $57.77(Fiscal.ai·Easyconomics 같은
+    값) · 주식 수 = 10-Q 표지(2026-11-02) Class A 69,470,966 + Class B 10,697,246 = 80,168,212주(Class
+    B는 Solaris LLC 지분과 묶여 Class A로 1:1 교환 가능 — 경제적 지분 전체) · 현금 = 9/30 $399.5M + 10/1
+    2032 채권 순조달 $1,227.2M(8-K) · 차입 = 9/30 유동 $44.3M + 장기 $2,555.5M + 리스 $32.8M +
+    2032 채권 $1,250M − 2030 전환사채 $155M(전환가 $26.39로 깊은 내가격이라 주식으로 셈, dilution)
+rev0: 1.16235
+ic0: 3.6929
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 1.0089
+      end: 0.035
+      decay: 0.3
+    margin:
+      m0: 0.2396
+      target: 0.33
+      year_target: 3
+      lr: 0.27
+      lam: 0.35
+      anchors:
+      - 0.3148
+      - 0.3333
+    s2c: 0.55
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0539
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.2396
+      target: 0.3769
+      year_target: 3
+      lr: 0.27
+      lam: 0.25
+      anchors:
+      - 0.3148
+      - 0.3333
+    s2c: 0.632
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.0536
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.2396
+      target: 0.2832
+      year_target: 3
+      lr: 0.27
+      lam: 0.5
+      anchors:
+      - 0.3148
+      - 0.3333
+    s2c: 0.468
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [1.0997, 1.225] (3Q 실적 보도자료(8-K EX-99.1, 2026-11-04): 4Q26 조정
+    EBITDA $165~185M(종전 $145~180M), 1Q27 $220~260M(종전 $200~240M), 2027 조정 EBITDA는
+    2026의 두 배 이상. 매출 가이던스는 없어 rev_fy0 = 9M 실적 $756.7M + 4Q 매출 추정 범위($343~468M))'
+  growth: 컨센서스 1년차 100.9%, 2년차 28.5%
+  margin: 1~2년차 컨센서스 31.5%, 33.3% 고정 → 목표 33%(3년차, 덮어쓰기) → 장기 수렴 27%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 0.55
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -5.4%~5.4%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '목표 EBIT 이익률 33%(3년차)는 FY2028 EBIT 이익률 추정 33%와 같다. 회사 run-rate(연 조정 EBITDA
+    $1.6B, 배치 완료 매출 약 $3.5B, 자체 추정)에서 감가상각(매출의 약 12~15%)을 빼면 EBIT 이익률 약 31~34%와도 맞는다.
+    장기 수렴 27%(lr)는 계약 가중 평균 11년 동안은 이익률이 유지되고, 2030년대 후반 갱신 가격 하락·2029 미계약 300MW 위험을
+    감안해 6%p 낮춘 값이다(11/7 초판의 20%는 run-rate 공개 전 가정). 매출÷투하자본 0.55: 9M26 CAPEX $1.38B·2026
+    총 약 $2.4B로 MW당 투자가 무겁다 — 3.5GW 배치 뒤 매출 약 $3B ÷ 투하자본 약 $5.5B(자체 추정)'
+  shares: '완전 희석 = 기본 0.080168(2026-11-02) + 옵션·RSU·워런트·전환 0.0059 — 10-Q 주석 12: 2030
+    전환사채 $155.0M × 37.8896주/$1,000 = 5.873M주(전환'
+notes:
+- 자동 생성(build_drivers) 2026-11-09 — 데이터 묶음 2026-11-09
+- '어닝콜 위험: 고객 1곳이 3Q 매출의 59%·매출채권의 67%(10-Q)'
+- '어닝콜 위험: 편의 해지 조항(조건 세부 미공개)'
+- '어닝콜 위험: 총차입 약 $3.9B(2031 채권 $1.3B·2032 채권 $1.25B·전환사채 $902.5M·Stateline 대출 $433M),
+  리볼버는 계약 조기 종료 시 한도 제한'
+evidence:
+- Fiscal.ai standardized financials NYSE_SEI(3Q26)
+- 'Fiscal.ai 뉴스: 3Q 실적 2026-11-04 https://www.marketscreener.com/news/solaris-energy-infrastructure-q3-earnings-revenue-rise-shares-gain-after-hours-ce785fdfd180ff2d'
+- '3Q 콜 Q&A 질문 증권사: Morgan Stanley·Barclays·Wolfe·Texas Capital·Northland'
