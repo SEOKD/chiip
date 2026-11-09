@@ -337,7 +337,13 @@ def poll(env=None, only=None):
             for u, t in new:
                 if u not in fresh:
                     continue
-                text = to_text(u, fetch(u, 40))
+                try:
+                    text = to_text(u, fetch(u, 40))
+                except PermissionError:   # Q&A가 외부 IR 대행 사이트(irwebmeeting·eir-parts 등)에 있고 robots가 막는다 — 우회하지 않고 이 문서만 건너뛴다(2026-11-09)
+                    host = urllib.parse.urlparse(u).netloc
+                    cs["blocked_hosts"] = sorted(set(cs.get("blocked_hosts") or []) | {host})
+                    cs["seen"].append(u)   # 대신 TradingView 문서(Quartr 전사·요약, radar/jp_tv_docs.py)가 우선 대상으로 맡는다
+                    continue
                 path = save_text(cid, u, text)
                 nm = names.get(cid, {})
                 label = (nm.get("ja") or [nm.get("en", cid)])[0]

@@ -37,9 +37,15 @@ def companies():
     return {i: watch[i] for i in ir if watch.get(i, {}).get("code")}
 
 
+def ir_blocked():
+    """회사 IR Q&A가 외부 대행 사이트 robots로 막힌 회사(radar/pollers/jp_ir_qa.py가 기록) — Q&A 경로가 TradingView뿐이라 먼저 본다(2026-11-09 도쿄일렉트론·국제전기)"""
+    st = common.load_state("jp_ir_qa", {}).get("companies") or {}
+    return {k for k, v in st.items() if v.get("blocked_hosts")}
+
+
 def tier(cid):
     from pollers import gate
-    if cid in gate.portfolio_ids() or cid in gate.extra_focus():
+    if cid in gate.portfolio_ids() or cid in gate.extra_focus() or cid in ir_blocked():
         return 0
     alpha = common.ROOT / "knowledge" / "models" / "alpha" / "latest.json"
     rows = json.loads(alpha.read_text(encoding="utf-8")).get("rows") or {} if alpha.exists() else {}
