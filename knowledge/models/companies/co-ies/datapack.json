@@ -1,0 +1,2737 @@
+{
+ "id": "co-ies",
+ "name": "IES Holdings",
+ "ticker": "IESC",
+ "industry": "electrical_equipment",
+ "profile": {
+  "price": 158.45,
+  "shares_basic": 0.0402797,
+  "shares_date": "2026-10-05",
+  "cash": 0.3679,
+  "debt": 0.6019,
+  "source": "가격 = 2026-11-06 종가(TradingView·Fiscal.ai 같은 값). 기본 주식 = 10-Q 표지 19,924,356주(2026-07-27, 분할 전) ×2(2:1 분할 2026-08-21, 10-Q 주석 15) + DBM 대가 430,974주(8-K 2026-10-06) = 40.28M주. 2026-11-08 datapack은 분할 뒤 주식 수를 한 번 더 2배해 80.13M주로 적었다 — 이번에 정정(시가총액 $12.7B → $6.38B). 현금 = 6/30 현금 $77.3M + 유가증권 $310.6M − DBM 현금 대가 중 자기 현금 몫 $20M(= $545M − 차입 $525M) ≈ $367.9M(4Q 영업현금흐름 미반영). 차입 = 6/30 차입 $76.9M + DBM 인수 차입 $525M(8-K 2026-10-06) = $601.9M. 순차입 약 $234M"
+ },
+ "dilution": {
+  "potential_total": 0.00109,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-06-30",
+  "source": "3Q FY26 가중평균 희석 주식 20,197,707주(10-Q) − 기본 약 19.65M주(2026-11-08 datapack 근사) ≈ 0.547M주 ×2(분할) — 희석 증권 세부 미대조"
+ },
+ "financials": {
+  "rev_ttm": 3.9857,
+  "ebit_ttm": 0.4928,
+  "invested_capital": 1.6146,
+  "capex_ttm": 0.143,
+  "da_ttm": 0.0579,
+  "sbc_ttm": 0.0146,
+  "rev_growth_ttm": 0.2266,
+  "basis": "GAAP",
+  "note": "TTM = 9월 결산 4Q FY25~3Q FY26(2025-07~2026-06) 매출 897.8 + 871.0 + 974.3 + 1,242.7백만$, 영업이익 104.3 + 97.7 + 112.3 + 178.5백만$(10-K·10-Q). D&A = FY25 46.9 − 9M FY25 34.7 + 9M FY26 45.7. SBC = 12.9 − 9.4 + 11.1. 투하자본 = 자기자본 1,229.2 + 차입 76.9 − 현금·유가증권 387.9 + DBM 인수가 691(근사). CAPEX TTM은 2026-11-08 Fiscal.ai 값(미대조)"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 4.373,
+   "FY2027": 6.38,
+   "FY2028": 7.34
+  },
+  "rev_low": {
+   "FY2027": 5.5
+  },
+  "rev_high": {
+   "FY2027": 7.2
+  },
+  "ebit_margin": {
+   "FY2026": 0.1322,
+   "FY2027": 0.1372,
+   "FY2028": 0.1376
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "n_analysts": 1,
+  "note": "Fiscal.ai 자체 추정(agentic consensus — 커버리지 1명 수준). FY26 이익률 = 9M 영업이익 388.5 + 4Q 추정 189.8 ÷ 4,373. EPS는 eps_gaap(분할 반영) — eps_adjusted 추정은 분할 전 기준과 섞여(예 FY27 $28 vs GAAP $14.29) 쓰지 않는다. FY27 매출에 DBM 편입분 포함(유기 성장 미확인). 목표가·의견 1명 $440 Strong Buy — 분할 반영 여부 미확인. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "surprise": [
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 897.803,
+    "est": 843,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2025-11-21"
+   },
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.885,
+    "est": 1.555,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2025-11-21"
+   },
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 104.9,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2025-11-21"
+   },
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 119.6,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2025-11-21"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 870.958,
+    "est": 876,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.855,
+    "est": 1.97,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 98.6,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 113.8,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 974.284,
+    "est": 1006,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-01"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.08,
+    "est": 1.975,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-01"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 133.9,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-01"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 1242.697,
+    "est": 1080,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-31"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 3.35,
+    "est": 2.415,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-31"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 201.3,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-31"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 1,
+   "buy": 0,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-09",
+   "target_mean": 440,
+   "target_high": 440,
+   "target_low": 440,
+   "source": "Fiscal.ai company_analyst_ratings 1명 Strong Buy(yfinance도 1명 매수) — Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "ebitda": {
+   "FY2026": 0.654,
+   "FY2027": 0.936,
+   "FY2028": 1.071
+  },
+  "eps": {
+   "FY2026": 12.3,
+   "FY2027": 14.29,
+   "FY2028": 16.12
+  },
+  "eps_quarters_est": {
+   "2026Q3": 3.52,
+   "2026Q4": 3.35,
+   "2027Q1": 3.55,
+   "2027Q2": 3.73
+  },
+  "quarters_est": {
+   "2026Q3": 1.285,
+   "2026Q4": 1.3,
+   "2027Q1": 1.62,
+   "2027Q2": 1.71
+  },
+  "quarters_act": {
+   "2025Q3": 0.8978,
+   "2025Q4": 0.871,
+   "2026Q1": 0.9743,
+   "2026Q2": 1.2427
+  },
+  "targets": {
+   "mean": 440,
+   "median": 440,
+   "high": 440,
+   "low": 440,
+   "n": 1,
+   "as_of": "2026-11-09"
+  },
+  "surprise_note": "yfinance earnings_history 기간 표기(2026Q3 = 6월 분기)를 실적값 일치로 달력 분기에 다시 맞췄다. EPS는 조정·분할 반영",
+  "revisions": {
+   "from_date": "2026-07-30",
+   "to_date": "2026-11-09",
+   "from_label": "3Q FY26 발표 직전 분기 추정",
+   "source": "6월 분기 매출 추정 $1.08B(Easyconomics 실적 정리) → 실적 $1.24B. 다음 분기 이후 추정 이력은 커버리지 1명이라 Zacks 이력 없음(미확인)",
+   "rows": [
+    {
+     "period": "2026Q2",
+     "metric": "매출(백만$)",
+     "from": 1080,
+     "to": 1242.7
+    }
+   ]
+  },
+  "price_window": {
+   "from": 285.77,
+   "to": 158.45,
+   "note": "3Q FY26 발표 전날(7/30) 종가 → 11/6 종가"
+  }
+ },
+ "call": {
+  "date": "2026-07-31",
+  "prev_date": "2026-05-01",
+  "tone": "flat",
+  "guidance_direction": "none",
+  "kpis": {
+   "backlog_b": 4.525,
+   "backlog_q2_b": 3.862,
+   "backlog_yoy": 1.189,
+   "rpo_b": 2.802,
+   "rpo_12m_b": 2.289,
+   "comm_rev_q": 0.4531,
+   "comm_rev_yoy": 0.514,
+   "comm_oi_margin": 0.185,
+   "ci_rev_q": 0.2414,
+   "ci_rev_qoq": 0.908,
+   "infra_rev_q": 0.2241,
+   "res_rev_q": 0.3241,
+   "res_rev_yoy": -0.063,
+   "contract_liabilities_b": 0.3576,
+   "marketable_securities_b": 0.3106,
+   "securities_gain_q_m": 26.2,
+   "tax_credit_purchase_9m_m": 52.6,
+   "bonded_cost_to_complete_m": 400.9,
+   "purchase_commitments_m": 12.7
+  },
+  "guidance_changes": [
+   "회사 수치 가이던스 없음 — 바뀐 것 없음"
+  ],
+  "new_topics": [
+   "2:1 주식 분할 발표(7/29 이사회, 8/21 분배)",
+   "DBM Global 인수 계약(8/7, 기본가 $650M) — 철골 제작·설치로 확장",
+   "C&I 매출 분기 $126.5M → $241.4M(+91%) — 데이터센터 전기 공사",
+   "Gulf Island(1/16 인수, $152M) 편입 뒤 인프라 솔루션 매출 $224.1M"
+  ],
+  "dropped_topics": [
+   "없음(어닝콜·Q&A가 없어 비교할 말이 없다)"
+  ],
+  "analyst_focus": [
+   "어닝콜 없음 — 질문 초점 미확인"
+  ],
+  "risks": [
+   "고정가 공사 원가 추정",
+   "구리·알루미늄·철강 가격",
+   "주택(Residential) 둔화 — 분기 매출 전년 −6%",
+   "지배주주 Tontine 지분 매각",
+   "인수 통합(Gulf Island·DBM)"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "label": "수주잔고 급증",
+    "item": "수주잔고 3월 말 → 6월 말",
+    "prior": "$3.86B",
+    "latest": "$4.53B",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 1.0,
+    "source": "3Q FY26 10-Q(Fiscal.ai KPI)"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "label": "통신 이익률 상승",
+    "item": "Communications 영업이익률",
+    "prior": "16.6%(1~3월)",
+    "latest": "18.5%(4~6월)",
+    "driver": "margin_m0",
+    "shift": 0.004,
+    "confidence": 1.0,
+    "source": "3Q FY26 10-Q 부문 표"
+   },
+   {
+    "id": "D3",
+    "kind": "신규",
+    "label": "DBM 인수",
+    "item": "DBM Global 약 91% 인수 계약(8/7) → 완료(10/5)",
+    "prior": "없음",
+    "latest": "$691M, 차입 $525M",
+    "driver": "net_debt",
+    "shift": 0.525,
+    "confidence": 1.0,
+    "source": "8-K 2026-08-11·2026-10-06"
+   },
+   {
+    "id": "D4",
+    "kind": "부정",
+    "label": "주택 감소",
+    "item": "Residential 분기 매출",
+    "prior": "$346.0M(전년 4~6월)",
+    "latest": "$324.1M",
+    "driver": "growth_end",
+    "shift": -0.002,
+    "confidence": 1.0,
+    "source": "3Q FY26 10-Q 부문 표"
+   }
+  ],
+  "source": "IES는 어닝콜을 열지 않는다(Easyconomics 실적 정리 no_call_publication). 콜 변화 = 3Q FY26 8-K 보도자료·10-Q vs 2Q FY26 10-Q",
+  "tone_note": "어닝콜이 없고 회사 가이던스가 없어 레이더 기준 flat. 숫자(잔고 +119%)는 강하지만 톤 판정 재료가 아니다"
+ },
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.25,
+ "as_of": "2026-11-09",
+ "unit": "B$",
+ "peers": [
+  {
+   "ticker": "FIX",
+   "mcap": 35.6,
+   "ev_sales": 2.696,
+   "rev": 12.54,
+   "ebit_margin": 0.167,
+   "growth": 0.507,
+   "ntm_growth": 0.3672,
+   "pe_fwd": 15.96,
+   "ev_ebitda_fwd": 11.19,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 31.08,
+     "ev_ebitda_fwd": 21.22
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 37.84,
+     "ev_ebitda_fwd": 26.4
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 44.27,
+     "ev_ebitda_fwd": 31.33
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 31.58,
+     "ev_ebitda_fwd": 21.93
+    }
+   ],
+   "pe_fwd2": 14.01,
+   "ev_ebitda_fwd2": 9.98,
+   "pe_fwd3": 12.58,
+   "ev_ebitda_fwd3": 9.01,
+   "ntm_ebit_margin": 0.1652,
+   "pb": 10.66,
+   "cash": 2.16,
+   "debt": 0.02,
+   "goodwill": 1.15,
+   "intangibles": 0.55
+  },
+  {
+   "ticker": "EME",
+   "mcap": 26.64,
+   "ev_sales": 1.332,
+   "rev": 19.84,
+   "ebit_margin": 0.104,
+   "growth": 0.221,
+   "ntm_growth": 0.2111,
+   "pe_fwd": 14.95,
+   "ev_ebitda_fwd": 9.62,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 22.6,
+     "ev_ebitda_fwd": 14.72
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 25.65,
+     "ev_ebitda_fwd": 16.76
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 27.33,
+     "ev_ebitda_fwd": 17.99
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 21.1,
+     "ev_ebitda_fwd": 13.8
+    }
+   ],
+   "pe_fwd2": 12.52,
+   "ev_ebitda_fwd2": 8.17,
+   "pe_fwd3": 10.89,
+   "ev_ebitda_fwd3": 7.23,
+   "ntm_ebit_margin": 0.1006,
+   "pb": 6.22,
+   "cash": 0.77,
+   "debt": 0.0,
+   "goodwill": 1.71,
+   "intangibles": 1.44
+  },
+  {
+   "ticker": "MYRG",
+   "mcap": 4.09,
+   "ev_sales": 1.008,
+   "rev": 4.31,
+   "ebit_margin": 0.061,
+   "growth": 0.228,
+   "ntm_growth": 0.2199,
+   "pe_fwd": 16.92,
+   "ev_ebitda_fwd": 10,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.71,
+     "ev_ebitda_fwd": 13.47
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 31.9,
+     "ev_ebitda_fwd": 15.92
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 45.52,
+     "ev_ebitda_fwd": 24.05
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 22.17,
+     "ev_ebitda_fwd": 11.47
+    }
+   ],
+   "pe_fwd2": 14.43,
+   "ev_ebitda_fwd2": 8.98,
+   "pe_fwd3": 12.65,
+   "ev_ebitda_fwd3": 8.16,
+   "ntm_ebit_margin": 0.0651,
+   "pb": 4.99,
+   "cash": 0.03,
+   "debt": 0.04,
+   "goodwill": 0.22,
+   "intangibles": 0.23
+  },
+  {
+   "ticker": "PRIM",
+   "mcap": 3.44,
+   "ev_sales": 0.613,
+   "rev": 7.06,
+   "ebit_margin": 0.024,
+   "growth": -0.054,
+   "ntm_growth": 0.0957,
+   "pe_fwd": 13.16,
+   "ev_ebitda_fwd": 9.94,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 21.48,
+     "ev_ebitda_fwd": 12.55
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 23.5,
+     "ev_ebitda_fwd": 13.89
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 23.08,
+     "ev_ebitda_fwd": 12.67
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 15.6,
+     "ev_ebitda_fwd": 9.6
+    }
+   ],
+   "pe_fwd2": 12.06,
+   "ev_ebitda_fwd2": 8.46,
+   "pe_fwd3": 10.51,
+   "ev_ebitda_fwd3": 7.38,
+   "ntm_ebit_margin": 0.0391,
+   "pb": 2.21,
+   "cash": 0.2,
+   "debt": 0.08,
+   "goodwill": 1.05,
+   "intangibles": 0.36
+  },
+  {
+   "ticker": "STRL",
+   "mcap": 7.71,
+   "ev_sales": 1.787,
+   "rev": 4.31,
+   "ebit_margin": 0.182,
+   "growth": 0.931,
+   "ntm_growth": 0.3706,
+   "pe_fwd": 9.44,
+   "ev_ebitda_fwd": 6.95,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 25.48,
+     "ev_ebitda_fwd": 16.3
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 29.42,
+     "ev_ebitda_fwd": 19.15
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 38.37,
+     "ev_ebitda_fwd": 25.76
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 20.74,
+     "ev_ebitda_fwd": 14.04
+    }
+   ],
+   "pe_fwd2": 8.04,
+   "ev_ebitda_fwd2": 5.91,
+   "pe_fwd3": 6.84,
+   "ev_ebitda_fwd3": 5.06,
+   "ntm_ebit_margin": 0.1944,
+   "pb": 4.97,
+   "cash": 0.22,
+   "debt": 0.0,
+   "goodwill": 0.63,
+   "intangibles": 0.66
+  }
+ ],
+ "sources": [
+  "3Q FY26 10-Q(2026-07-31) https://www.sec.gov/Archives/edgar/data/1048268/000104826826000130/iesc-20260630.htm",
+  "3Q FY26 실적 8-K(Item 2.02, 2026-07-31) https://www.sec.gov/Archives/edgar/data/1048268/000104826826000131/iesc-20260731.htm",
+  "DBM 인수 계약 8-K(2026-08-11) https://www.sec.gov/Archives/edgar/data/1048268/000149315226036976/form8-k.htm",
+  "DBM 인수 완료·신용한도 8-K(2026-10-06) https://www.sec.gov/Archives/edgar/data/1048268/000149315226045939/form8-k.htm",
+  "FY2025 10-K(2025-11-21) https://www.sec.gov/Archives/edgar/data/1048268/000104826825000174/iesc-20250930.htm",
+  "SEC XBRL companyfacts(CIK 1048268)",
+  "Fiscal.ai MCP 2026-11-09 — 표준화 손익·부문 KPI·추정·Forward 배수(동종 5사)",
+  "TradingView NASDAQ:IESC 일봉·월봉(2026-11-09)",
+  "Easyconomics company_profile·실적 정리·뉴스(2026-11-09)",
+  "Quantral IESC 신호·점수(2026-11-09)",
+  "마스터 노션 IB 자료 요지(라이선스 — 외부 공유 금지): Citi 2026-11-04 텍사스 데이터센터, BofA 2026-11-04 선거, Bernstein·MS 데이터센터 캐파",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-09T18:30+09:00",
+  "fiscal_profile": {
+   "price": 158.45,
+   "market_cap": 6.314,
+   "total_cash": 0.3879,
+   "total_debt": 0.0769,
+   "note": "Fiscal.ai calculated_market_cap $6.314B = 분할 반영 39.85M주 × $158.45(DBM 대가 주식 미포함). 현금 = 현금+유가증권(6/30)",
+   "balance_date": "2026-06-30",
+   "auditUrl": "https://fiscal.ai/company/NasdaqGM-IESC"
+  },
+  "q_rev_gaap_m": {
+   "2025-09-30": 897.8,
+   "2025-12-31": 871.0,
+   "2026-03-31": 974.3,
+   "2026-06-30": 1242.7
+  },
+  "q_op_income_gaap_m": {
+   "2025-09-30": 104.3,
+   "2025-12-31": 97.7,
+   "2026-03-31": 112.3,
+   "2026-06-30": 178.5
+  },
+  "shares": {
+   "cover_2026-07-27_presplit": 19924356,
+   "split": "2:1 2026-08-21",
+   "dbm_shares": 430974
+  },
+  "rev_basis": "GAAP",
+  "margin_basis": "GAAP",
+  "shares_cover_implied": 0.039849,
+  "balance_2026-10-05": {
+   "cash": 0.0573,
+   "st_investments": 0.3106,
+   "debt_lt": 0.6019,
+   "equity": 1.3752,
+   "note": "8-K 2026-10-06 반영 근사 — 6/30 현금 77.3M − DBM 자기 현금 20M, 유가증권 310.6M, 차입 76.9M + 525M, 자기자본 1,229.2M + DBM 주식 대가 146M(4Q 이익 미반영)",
+   "source_6_30": {
+    "cash": 0.0773,
+    "marketable_securities": 0.3106,
+    "debt": 0.0769,
+    "equity": 1.2292,
+    "contract_liabilities": 0.3576,
+    "source": "https://www.sec.gov/Archives/edgar/data/1048268/000104826826000130/iesc-20260630.htm"
+   }
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025-09-30": 0.8978,
+    "2025-12-31": 0.871,
+    "2026-03-31": 0.9743,
+    "2026-06-30": 1.2427
+   },
+   "op_income": {
+    "2025-09-30": 0.1043,
+    "2025-12-31": 0.0977,
+    "2026-03-31": 0.1123,
+    "2026-06-30": 0.1785
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1A": 871.0,
+   "2026Q2A": 974.3,
+   "2026Q3A": 1242.7,
+   "2026Q4E": 1285.1,
+   "2027Q1E": 1300,
+   "2027Q2E": 1620,
+   "2027Q3E": 1710,
+   "2027Q4E": 1750,
+   "2028Q1E": 1652.3,
+   "2028Q2E": 1777.6,
+   "2028Q3E": 2004.8,
+   "2028Q4E": 1905.3
+  },
+  "estimates_note": "회계연도(9월 결산) 기준 키 — FY2026 = 2025-10~2026-09, A 실적·E Fiscal.ai 추정"
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_IESC",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-09-30",
+    "rev": 159687000,
+    "cogs": 129259000,
+    "gp": 30428000,
+    "sga": 22763000,
+    "rd": null,
+    "da": null,
+    "other": 27000,
+    "op": 7638000
+   },
+   {
+    "period": "2015-12-31",
+    "rev": 150766000,
+    "cogs": 123133000,
+    "gp": 27633000,
+    "sga": 22511000,
+    "rd": null,
+    "da": null,
+    "other": 1000,
+    "op": 5121000
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 159981000,
+    "cogs": 132169000,
+    "gp": 27812000,
+    "sga": 24267000,
+    "rd": null,
+    "da": null,
+    "other": 1041000,
+    "op": 2504000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 179599000,
+    "cogs": 145602000,
+    "gp": 33997000,
+    "sga": 25716000,
+    "rd": null,
+    "da": null,
+    "other": 100000,
+    "op": 8181000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 205646000,
+    "cogs": 168108000,
+    "gp": 37538000,
+    "sga": 28064000,
+    "rd": null,
+    "da": null,
+    "other": 319000,
+    "op": 9155000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 192178000,
+    "cogs": 156996000,
+    "gp": 35182000,
+    "sga": 28194000,
+    "rd": null,
+    "da": null,
+    "other": -7000,
+    "op": 6995000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 203662000,
+    "cogs": 171848000,
+    "gp": 31814000,
+    "sga": 30120000,
+    "rd": null,
+    "da": null,
+    "other": 77000,
+    "op": 1617000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 208323000,
+    "cogs": 172925000,
+    "gp": 35398000,
+    "sga": 30771000,
+    "rd": null,
+    "da": null,
+    "other": -88000,
+    "op": 4715000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 206581000,
+    "cogs": 168477000,
+    "gp": 38104000,
+    "sga": 31285000,
+    "rd": null,
+    "da": null,
+    "other": -196000,
+    "op": 7015000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 198300000,
+    "cogs": 165236000,
+    "gp": 33064000,
+    "sga": 30089000,
+    "rd": null,
+    "da": null,
+    "other": -14000,
+    "op": 2989000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 205677000,
+    "cogs": 171837000,
+    "gp": 33840000,
+    "sga": 29647000,
+    "rd": null,
+    "da": null,
+    "other": 51000,
+    "op": 4142000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 232576000,
+    "cogs": 190039000,
+    "gp": 42537000,
+    "sga": 32372000,
+    "rd": null,
+    "da": null,
+    "other": 71000,
+    "op": 10089000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 240275000,
+    "cogs": 199754000,
+    "gp": 40521000,
+    "sga": 31812000,
+    "rd": null,
+    "da": null,
+    "other": -25000,
+    "op": 8734000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 243842000,
+    "cogs": 202241000,
+    "gp": 41601000,
+    "sga": 32086000,
+    "rd": null,
+    "da": null,
+    "other": 31000,
+    "op": 9484000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 256914000,
+    "cogs": 213679000,
+    "gp": 43235000,
+    "sga": 35070000,
+    "rd": null,
+    "da": null,
+    "other": -51000,
+    "op": 8216000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 282633000,
+    "cogs": 236236000,
+    "gp": 46397000,
+    "sga": 36333000,
+    "rd": null,
+    "da": null,
+    "other": -179000,
+    "op": 10235000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 293607000,
+    "cogs": 242737000,
+    "gp": 50870000,
+    "sga": 37086000,
+    "rd": null,
+    "da": null,
+    "other": -131000,
+    "op": 13915000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 276043000,
+    "cogs": 225828000,
+    "gp": 50215000,
+    "sga": 37872000,
+    "rd": null,
+    "da": null,
+    "other": -36000,
+    "op": 12379000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 291277000,
+    "cogs": 240013000,
+    "gp": 51264000,
+    "sga": 42036000,
+    "rd": null,
+    "da": null,
+    "other": -1000,
+    "op": 9229000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 293125000,
+    "cogs": 234805000,
+    "gp": 58320000,
+    "sga": 44261000,
+    "rd": null,
+    "da": null,
+    "other": -3000,
+    "op": 14062000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 330411000,
+    "cogs": 262251000,
+    "gp": 68160000,
+    "sga": 46742000,
+    "rd": null,
+    "da": null,
+    "other": 7005000,
+    "op": 14413000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 314838000,
+    "cogs": 256159000,
+    "gp": 58679000,
+    "sga": 42786000,
+    "rd": null,
+    "da": null,
+    "other": -10000,
+    "op": 15903000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 331961000,
+    "cogs": 267087000,
+    "gp": 64874000,
+    "sga": 47655000,
+    "rd": null,
+    "da": null,
+    "other": 91000,
+    "op": 17128000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 405871000,
+    "cogs": 333042000,
+    "gp": 72829000,
+    "sga": 50342000,
+    "rd": null,
+    "da": null,
+    "other": 37000,
+    "op": 22450000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 483823000,
+    "cogs": 392207000,
+    "gp": 91616000,
+    "sga": 61468000,
+    "rd": null,
+    "da": null,
+    "other": 46000,
+    "op": 30102000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 480509000,
+    "cogs": 400782000,
+    "gp": 79727000,
+    "sga": 59402000,
+    "rd": null,
+    "da": null,
+    "other": 64000,
+    "op": 20261000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 501593000,
+    "cogs": 443086000,
+    "gp": 58507000,
+    "sga": 63430000,
+    "rd": null,
+    "da": null,
+    "other": 1000,
+    "op": -4924000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 567301000,
+    "cogs": 484501000,
+    "gp": 82800000,
+    "sga": 67090000,
+    "rd": null,
+    "da": null,
+    "other": 76000,
+    "op": 15637000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 617405000,
+    "cogs": 519509000,
+    "gp": 97896000,
+    "sga": 72792000,
+    "rd": null,
+    "da": null,
+    "other": 70000,
+    "op": 25034000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 574874000,
+    "cogs": 479436000,
+    "gp": 95438000,
+    "sga": 67768000,
+    "rd": null,
+    "da": null,
+    "other": -12991000,
+    "op": 40661000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 568881000,
+    "cogs": 467955000,
+    "gp": 100926000,
+    "sga": 69349000,
+    "rd": null,
+    "da": null,
+    "other": -33000,
+    "op": 31610000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 584451000,
+    "cogs": 476842000,
+    "gp": 107609000,
+    "sga": 74300000,
+    "rd": null,
+    "da": null,
+    "other": -1010000,
+    "op": 34319000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 649021000,
+    "cogs": 508455000,
+    "gp": 140566000,
+    "sga": 87208000,
+    "rd": null,
+    "da": null,
+    "other": 172000,
+    "op": 53186000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 634444000,
+    "cogs": 490640000,
+    "gp": 143804000,
+    "sga": 85850000,
+    "rd": null,
+    "da": null,
+    "other": -36000,
+    "op": 57990000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 705733000,
+    "cogs": 534120000,
+    "gp": 171613000,
+    "sga": 95272000,
+    "rd": null,
+    "da": null,
+    "other": -1373000,
+    "op": 77714000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 768415000,
+    "cogs": 573634000,
+    "gp": 194781000,
+    "sga": 104694000,
+    "rd": null,
+    "da": null,
+    "other": -221000,
+    "op": 90176000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 775766000,
+    "cogs": 589374000,
+    "gp": 186392000,
+    "sga": 110868000,
+    "rd": null,
+    "da": null,
+    "other": 660000,
+    "op": 74996000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 749547000,
+    "cogs": 571520000,
+    "gp": 178027000,
+    "sga": 103039000,
+    "rd": null,
+    "da": null,
+    "other": 369000,
+    "op": 74619000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 833960000,
+    "cogs": 625091000,
+    "gp": 208869000,
+    "sga": 116044000,
+    "rd": null,
+    "da": null,
+    "other": 130000,
+    "op": 92695000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 890158000,
+    "cogs": 650561000,
+    "gp": 239597000,
+    "sga": 127334000,
+    "rd": null,
+    "da": null,
+    "other": 361000,
+    "op": 111902000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 897803000,
+    "cogs": 664799000,
+    "gp": 233004000,
+    "sga": 128561000,
+    "rd": null,
+    "da": null,
+    "other": 129000,
+    "op": 104313000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 870958000,
+    "cogs": 650943000,
+    "gp": 220015000,
+    "sga": 121815000,
+    "rd": null,
+    "da": null,
+    "other": 467000,
+    "op": 97733000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 974284000,
+    "cogs": 719497000,
+    "gp": 254787000,
+    "sga": 142442000,
+    "rd": null,
+    "da": null,
+    "other": 90000,
+    "op": 112255000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 1242697000,
+    "cogs": 902035000,
+    "gp": 340662000,
+    "sga": 162167000,
+    "rd": null,
+    "da": null,
+    "other": -52000,
+    "op": 178547000
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 11.2,
+  "ev_ebitda_fwd": 7.5,
+  "pe_fwd2": 10.19,
+  "ev_ebitda_fwd2": 6.24,
+  "pe_fwd3": 8.98,
+  "ev_ebitda_fwd3": 5.56,
+  "ev_sales": 1.66,
+  "growth": 0.484,
+  "note": "Fwd 1Y P/E = $158.45 ÷ 다음 4개 분기 GAAP EPS 추정 $14.15(분할 반영). EV $6.61B = 시총 $6.38B + 순차입 $0.23B"
+ },
+ "forward": {
+  "as_of": "2026-11-06",
+  "ntm": {
+   "eps": 14.15,
+   "ebitda": 879000000,
+   "ebit": 818200000,
+   "revenue": 5915061000,
+   "rev_ttm": 3985742000
+  },
+  "horizons": {
+   "2": {
+    "eps": 15.55,
+    "ebitda": 1056057363,
+    "ext": 0
+   },
+   "3": {
+    "eps": 17.64,
+    "ebitda": 1185527504.278846,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal(eps_gaap 분할 반영 — Chiip 재계산)",
+   "ev_ebitda_fwd": "Chiip 재계산(EV $6.61B ÷ NTM EBITDA $879M)"
+  },
+  "source": "Fiscal.ai Forward 배수 — IES 자체 EPS 추정(eps_adjusted)은 분할 전 기준과 섞여 eps_gaap(분할 반영)로 재계산. 동종 = Fiscal 자체 Forward. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "industry_note": "config/valuation_v2.yaml 업종표에 건설·엔지니어링 행이 없어 전기장비로 대리(PWR과 같은 처리)",
+ "guidance": {
+  "none": "회사는 연간·분기 수치 가이던스를 내지 않는다(실적 보도자료에 전망 수치 없음, 어닝콜 없음)",
+  "next": {
+   "period": "4Q FY26(9월 분기)",
+   "rev_cons": 1285,
+   "eps_cons": 3.52,
+   "unit": "$M",
+   "note": "회사 가이던스 없음 — 컨센서스만"
+  },
+  "source": "3Q FY26 8-K(2026-07-31)"
+ },
+ "main_metric": "eps",
+ "main_metric_why": "순이익이 영업이익의 약 75%이고 감가상각이 NTM EBITDA의 7% 수준이라 EPS가 실적을 대표한다. 다만 회사 조정 EPS 추정이 분할 전 기준과 섞여 GAAP EPS 추정으로 쓴다",
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai(2026-11-09) — 시가총액·EV/매출·최근 4분기 매출·영업이익률·성장, Forward 배수는 forward_multiples.js · 재무상태표(9/30) Fiscal.ai 표준화 — P/B = 시가총액 ÷ 자기자본, 차입은 리스 제외(EME 차입 미표기 0)",
+ "overrides": {
+  "growth_base": {
+   "start": 0.45,
+   "end": 0.04,
+   "decay": 0.55
+  },
+  "margin_base": {
+   "target": 0.12,
+   "year_target": 4,
+   "lr": 0.1,
+   "lam": 0.35
+  },
+  "s2c": 3.0,
+  "why": "성장 1년차 45%: NTM 매출 추정 $5.92B는 TTM $3.99B의 +48%인데 대부분 DBM·Gulf Island 편입분이라 감속 0.55로 빨리 줄인다. 장기 이익률 12%: TTM 영업이익률 12.4%에 철골 제작(DBM)의 낮은 이익률이 섞인다(DBM 이익률 미공시 — 가정). 매출 대비 자본 3.0: 시공업 회전율"
+ },
+ "sbc_pct_rev": 0.0037,
+ "scenario_probs_why": "약세 0.30: 텍사스 주지사 교체·주 의회 데이터센터 규제(2027-01) 위험, DBM 이익률 미확인, 커버리지 1명. 강세 0.20: 잔고 +119%가 있지만 4Q 실적 전이고 회사 가이던스가 없다",
+ "events": [
+  {
+   "date": "2026-07-31",
+   "tag": "3Q FY26 실적·2:1 분할 발표 — 종가 +30.3%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-11",
+   "tag": "DBM Global 인수 계약 8-K(8/7 체결, 기본가 $650M)"
+  },
+  {
+   "date": "2026-08-17",
+   "tag": "종가 고점 $396.98"
+  },
+  {
+   "date": "2026-08-21",
+   "tag": "2:1 주식 분할 분배일"
+  },
+  {
+   "date": "2026-10-05",
+   "tag": "DBM 인수 완료·신용한도 $700M 증액(8-K 10/6)"
+  },
+  {
+   "date": "2026-10-07",
+   "tag": "인수 완료 이틀 뒤 −9.7%(원인 미특정, 같은 날 업종 동반 여부 미확인)"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "중간선거 다음 날 −16.9% — 텍사스 주지사 교체·데이터센터 규제 우려(업종 동반)"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "−13.9% 추가 하락, 종가 $145.58"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "+8.8% 반등"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2025-11-21",
+   "kind": "실적",
+   "tag": "4Q FY25 실적(9월 분기)",
+   "q": "3Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-01-30",
+   "kind": "실적",
+   "tag": "1Q FY26 실적, EPS 컨센서스 하회 — 종가 −19.9%",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-05-01",
+   "kind": "실적",
+   "tag": "2Q FY26 실적",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-07-31",
+   "kind": "실적",
+   "tag": "3Q FY26 실적·분할 발표, 종가 +30.3%",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-08-07",
+   "kind": "내러티브",
+   "tag": "DBM Global 인수 계약"
+  },
+  {
+   "date": "2026-11-04",
+   "kind": "내러티브",
+   "tag": "중간선거·텍사스 주지사 교체"
+  }
+ ],
+ "next_event": {
+  "date": "2026-11-20",
+  "tag": "4Q FY26 실적(예상 — 회사 미발표, 지난해 11/21 기준 추정)"
+ },
+ "names": [
+  "IES",
+  "IES Holdings",
+  "Tontine",
+  "DBM Global",
+  "Gulf Island",
+  "INNOVATE",
+  "Broadwind",
+  "Wells Fargo",
+  "Citi",
+  "BofA",
+  "Barron's",
+  "MarketBeat",
+  "Comfort Systems",
+  "EMCOR",
+  "Sterling",
+  "MYR Group",
+  "Primoris",
+  "Quanta"
+ ],
+ "terms": {
+  "C&I": "상업·산업 시설 전기·기계 공사 부문",
+  "Communications": "데이터센터·물류센터 안 통신·저전압 배선 공사 부문",
+  "Residential": "단독·다가구 주택 전기·배관·공조 공사 부문",
+  "Infrastructure Solutions": "발전기 외함·버스덕트 제조와 모터·발전기 정비 부문",
+  "버스덕트": "큰 전류를 나르는 금속 외함 막대형 배전 도체",
+  "ERCOT": "텍사스 전력망 운영 기구",
+  "PUCT": "텍사스 공익사업위원회",
+  "batch zero": "ERCOT 대형 부하 일괄 접속 심사 절차",
+  "RPO": "잔여 이행의무, 확정 계약 잔액",
+  "MSA": "반복 공사를 단가로 묶은 기본 계약",
+  "DBM": "IES가 2026-10 인수한 철골 제작·설치 회사 DBM Global",
+  "EPC": "설계·조달·시공 일괄 수행",
+  "BBU": "서버 랙 배터리 백업 장치",
+  "FY": "회계연도(IES는 9월 결산)",
+  "GRID": "전력망 인프라 업종 ETF",
+  "PPI": "생산자물가지수",
+  "AR": "자기회귀 모형",
+  "HP": "호드릭-프레스콧 추세 필터",
+  "GP": "매출총이익",
+  "IRA": "미국 인플레이션 감축법"
+ },
+ "segments_hist": {
+  "source": "Fiscal.ai company_segments_and_kpis(분기, 10-Q·10-K 부문 매출)",
+  "segments": {
+   "통신 인프라": [
+    {
+     "period": "2023-03-31",
+     "rev": 141100000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 141600000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 170800000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 170700000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 193500000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 192300000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 219900000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 233000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 273000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 299200000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 335500000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 351900000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 367700000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 453100000.0
+    }
+   ],
+   "주거 전기·설비": [
+    {
+     "period": "2023-03-31",
+     "rev": 306100000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 318000000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 337300000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 315900000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 339400000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 377500000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 356100000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 320000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 318000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 346000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 320400000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 284000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 287600000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 324100000.0
+    }
+   ],
+   "인프라 솔루션": [
+    {
+     "period": "2023-03-31",
+     "rev": 52600000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 57100000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 58400000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 62900000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 75800000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 102000000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 110400000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 108100000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 117600000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 129500000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 143500000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 140200000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 192400000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 224100000.0
+    }
+   ],
+   "상업·산업 전기": [
+    {
+     "period": "2023-03-31",
+     "rev": 69000000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 67800000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 82500000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 85000000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 97100000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 96600000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 89400000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 88500000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 125400000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 115400000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 98500000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 94800000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 126500000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 241400000.0
+    }
+   ]
+  }
+ },
+ "narrative": {
+  "as_of": "2026-11-09",
+  "stage": "소멸",
+  "crowding": "낮음",
+  "summary": "프리미엄은 '데이터센터 전기·통신 공사의 작은 승자'에서 나왔다. 8월 고점 이후 −60%로 프리미엄이 사라졌고, 숫자(잔고 +119%)는 아직 꺾이지 않았다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "등급",
+      "Strong Buy 1명(커버리지 사실상 없음)",
+      "Fiscal.ai·yfinance"
+     ],
+     [
+      "목표가",
+      "$440 1명 — 분할 반영 여부 미확인",
+      "Fiscal.ai"
+     ],
+     [
+      "어닝콜",
+      "열지 않는다",
+      "Easyconomics 실적 정리"
+     ]
+    ],
+    "read": "셀사이드 가격 발견이 없다. 컨센서스는 모형 추정에 가깝고 실적이 곧 정보다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "지배주주",
+      "Tontine 약 54%(FY25 10-K)",
+      "10-K"
+     ],
+     [
+      "기관 보유",
+      "약 97%(yfinance, 지배주주 포함)",
+      "Easyconomics"
+     ],
+     [
+      "내부자 매도",
+      "Tontine 2025-12~2026-06 약 $213M 매도(Form 4 합산, 분할 전 가격)",
+      "Quantral 내부자 공시 집계"
+     ]
+    ],
+    "read": "유통 주식이 적고 지배주주가 고점 부근에서 꾸준히 팔았다. 기관 매수 여력보다 지배주주 매도 속도가 수급을 정한다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "커뮤니티 점수(7일)",
+      "58 Moderate",
+      "Quantral"
+     ],
+     [
+      "레딧(ApeWisdom)",
+      "상위 밖",
+      "ApeWisdom"
+     ],
+     [
+      "공개 텔레그램",
+      "해당 글 없음",
+      "tg_channels"
+     ]
+    ],
+    "read": "리테일 열기는 작다. 선거 뒤 하락을 과잉 반응이라 보는 유튜브 발언이 남은 대부분이다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "Barron's",
+      "'AI 전력 근육' 업종 기사(11/2), 선거 뒤 데이터센터 반발 기사(11/4)",
+      "Google News 색인"
+     ],
+     [
+      "Seeking Alpha",
+      "'투자 사이클이 생각보다 길다'(7/16)",
+      "제목 기준"
+     ]
+    ],
+    "read": "언론은 IES를 AI 전력·데이터센터 시공 테마로 묶는다. 주가도 테마와 함께 움직였다."
+   }
+  },
+  "factors": [
+   {
+    "name": "데이터센터 전기·통신 공사의 숙련 인력 병목",
+    "thesis": "하이퍼스케일 데이터센터 착공이 전기 시공 인력에 막혀 있고 IES 통신·C&I가 그 공사를 받는다",
+    "inputs": "매출 성장·이익률",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "통신 분기 매출 $299.2M → $453.1M(+51%), C&I $115.4M → $241.4M(+109%), 잔고 $2.07B → $4.53B",
+    "status": "유지",
+    "falsifier": "4Q FY26 잔고가 $4.5B 아래로 줄거나 통신 매출 성장이 20% 아래",
+    "source": "3Q FY26 10-Q"
+   },
+   {
+    "name": "인수로 넓히는 제작·전력 장비",
+    "thesis": "Gulf Island·Broadwind 공장·DBM으로 철골·외함 제작을 키워 데이터센터·발전 공사의 더 큰 몫을 잡는다",
+    "inputs": "매출 규모·이익률",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "인수 대가 Gulf Island $152M + Broadwind 공장 $19.5M + DBM $691M = 약 $863M",
+    "status": "태동",
+    "falsifier": "DBM 편입 첫 분기 합산 영업이익률이 10% 아래",
+    "source": "10-Q·8-K"
+   },
+   {
+    "name": "높은 자본 수익률과 순현금에 가까운 재무",
+    "thesis": "ROE 40%대·차입 거의 없는 성장이 프리미엄을 받쳤다",
+    "inputs": "할인율·멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "6/30 순현금 $311M → DBM 뒤 순차입 약 $234M(근사)",
+    "status": "약화",
+    "falsifier": "순차입이 EBITDA 1배를 넘거나 신용한도 약정 위반",
+    "source": "10-Q·8-K 2026-10-06"
+   },
+   {
+    "name": "반대 내러티브: 데이터센터 규제·업종 디레이팅",
+    "thesis": "중간선거로 텍사스 등 데이터센터 핵심 주의 규제가 강해지고 AI 투자 지속성 의심이 겹쳐 시공 업종 배수가 꺼진다",
+    "inputs": "멀티플·잔고 전환 속도",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "동종 Fwd 1Y P/E 6월 말 → 지금: FIX 44.3 → 16.0배, STRL 38.4 → 9.4배, MYRG 45.5 → 16.9배. IES 11/4~5 이틀 −28.4%",
+    "status": "확산",
+    "falsifier": "2026-12-10 ERCOT 결정이 일정대로 나오고 4Q 잔고가 유지된다",
+    "source": "Fiscal.ai Forward 배수·Citi 11/4 요지(마스터 노션)"
+   },
+   {
+    "name": "반대 내러티브: 지배주주 매도",
+    "thesis": "Tontine이 고점 부근에서 매도를 이어 가 유통 물량이 늘고 프리미엄을 누른다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "2025-12~2026-06 Form 4 매도 약 $213M",
+    "status": "유지",
+    "falsifier": "Tontine 매도 중단 또는 자사주 매입 재개",
+    "source": "SEC Form 4(Quantral 집계)"
+   }
+  ],
+  "attention": [
+   {
+    "label": "커뮤니티 점수 7일",
+    "value": 58,
+    "unit": "점"
+   },
+   {
+    "label": "지배주주 지분(%)",
+    "value": 54,
+    "unit": "%"
+   },
+   {
+    "label": "공매도 비율(유통 대비 %)",
+    "value": 9.3,
+    "unit": "%"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 '데이터센터 전기·통신 공사를 가장 빨리 늘리는 작은 시공사'였다.** 3Q FY26 매출 +40%·잔고 +119%로 이야기는 숫자로 확인됐지만, 8월 17일 종가 고점 $396.98 이후 주가는 −60%다. 동종 배수가 함께 꺼졌고, 선거 뒤 텍사스 데이터센터 규제 우려가 마지막 하락을 만들었다.",
+   "value_story": "값은 세 층이다. 데이터센터 통신·C&I 공사(분기 매출 약 $695M, 영업이익률 15~19%)가 성장을 끌고, 주택 공사(분기 $324M)가 현금을 대며, 인수한 제작 공장(인프라 솔루션 + DBM)이 공사 범위를 넓힌다. 결정 변수는 잔고 $4.53B가 얼마나 빨리, 어떤 이익률로 매출이 되느냐다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 11.2배는 동종 중앙 15.0배보다 25% 낮다. 6월 말에는 동종이 38~45배였다 — 배수 하락은 업종 전체의 일이다.",
+    "eps": "지난 네 분기 중 세 번 EPS가 컨센서스를 넘었고 6월 분기는 +39%였다. 커버리지가 1명이라 리비전 이력은 없다."
+   },
+   "why_excited": "7/31 3Q 실적 날 종가 +30.3%로 뛰었다. C&I 매출이 한 분기에 두 배가 되고 잔고가 $4.5B를 넘었다. 식은 이유는 회사 숫자가 아니라 10월 AI 인프라 업종 매도와 11/4 선거다 — 원인을 가를 회사 자료(4Q 실적)는 아직 없다.",
+   "products": [
+    {
+     "kind": "서비스",
+     "name": "통신 인프라",
+     "what": "데이터센터·물류센터 안 통신 배선·저전압 시스템 시공",
+     "use": "코로케이션·하이퍼스케일 데이터센터, 첨단 제조",
+     "money": "분기 $453M, 영업이익률 18.5%",
+     "name_en": "Data center communications cabling installation",
+     "what_en": "Structured cabling, fiber and low-voltage systems installed inside data centers"
+    },
+    {
+     "kind": "서비스",
+     "name": "상업·산업 전기",
+     "what": "데이터센터·제조 시설 전기·기계 설계·시공",
+     "use": "데이터센터, 제조, 의료, 재생에너지",
+     "money": "분기 $241M, 영업이익률 22.5%",
+     "name_en": "Commercial and industrial electrical construction",
+     "what_en": "Electrical and mechanical design-build for data centers and factories"
+    },
+    {
+     "kind": "제품",
+     "name": "인프라 솔루션",
+     "what": "발전기 외함·버스덕트 제조, 모터·발전기 정비, 철골 제작",
+     "use": "데이터센터 전력·발전·산업",
+     "money": "분기 $224M, 영업이익률 23.8%",
+     "name_en": "Metal-enclosed bus duct and generator enclosure",
+     "what_en": "Factory-built metal-enclosed bus duct for power distribution and custom generator enclosures"
+    },
+    {
+     "kind": "서비스",
+     "name": "주거 전기·설비",
+     "what": "단독·다가구 주택 전기·배관·공조 설치",
+     "use": "주택 건설사",
+     "money": "분기 $324M, 영업이익률 5.0%",
+     "name_en": "Residential electrical installation",
+     "what_en": "Electrical, plumbing and HVAC installation for new homes"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "주택 시공사에서 데이터센터·산업 시공사로 바뀌었다. 주택 매출 비중이 2023년 3월 분기 54%에서 2026년 6월 분기 26%로 줄었다",
+     "evidence": "10-Q 부문 매출",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "데이터센터 부문 매출이 2분기 연속 감소"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "통신 영업이익률이 2년 전 10.9%에서 18.5%, C&I가 13.5%에서 22.5%로 올랐다",
+     "evidence": "10-Q 부문 영업이익",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "통신 이익률 15% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "해당 없음(공법보다 인력·제작 역량이 경쟁력이다). 공장 제작 외함·버스덕트로 현장 시간을 줄이는 것이 가장 가깝다",
+     "evidence": "10-K 사업 설명",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "제작 부문 이익률 하락"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(시공업이라 납품 리드타임 공시가 없다). RPO $2.80B 중 $2.29B(82%)가 12개월 안에 매출이 된다",
+     "evidence": "3Q FY26 10-Q",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "12개월 비중 70% 아래",
+     "lead_time": {
+      "now": "미확인",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": {}
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "1년 사이 Gulf Island($152M), Broadwind 공장($19.5M), DBM($691M)을 샀다. DBM은 차입 $525M으로 처음으로 순차입이 됐다",
+     "evidence": "10-Q·8-K",
+     "drives": "both",
+     "status": "강화",
+     "falsifier": "영업권 손상, 합산 이익률 희석"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "하이퍼스케일러 데이터센터 투자가 통신·C&I 잔고로 들어왔다. 금지표대로 IES 몫은 계약으로만 센다 — 10% 넘는 고객이 없고 고객별 매출은 미공시",
+     "evidence": "FY25 10-K 고객 절",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "데이터센터 착공 지연이 잔고 감소로 번짐"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(IES 매출에 연결된 연방 재정 사업이 공시되지 않았다). 연방 세액공제를 사서($52.6M, 9M FY26) 세금을 줄인 것이 재정정책과 닿는 유일한 고리다",
+     "evidence": "3Q FY26 10-Q 현금흐름",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "양도형 세액공제 축소",
+     "house": {
+      "level": 5,
+      "why": "IRA 양도형 세액공제는 2022 본회의 통과 법"
+     },
+     "senate": {
+      "level": 5,
+      "why": "IRA 본회의 통과"
+     }
+    },
+    "orders": {
+     "change": "해당 없음(IES 매출에 직접 닿는 행정명령이 공시·보도에서 확인되지 않았다)",
+     "evidence": "10-K·10-Q 위험 요인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "데이터센터 인허가 제한 행정명령",
+     "house": {
+      "level": 1,
+      "why": "해당 행정명령 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "해당 행정명령 없음"
+     }
+    },
+    "laws": {
+     "change": "주 단위가 핵심이다 — 텍사스 주 의회(2027-01-12 개회)가 데이터센터 송전·수자원 규제 법안을 다룰 것으로 Citi가 전망했다. 발의 전 단계",
+     "evidence": "Citi 2026-11-04 요지(마스터 노션)",
+     "drives": "multiple",
+     "status": "태동",
+     "falsifier": "법안이 발의되지 않거나 위원회에서 멈춘다"
+    }
+   }
+  }
+ },
+ "moat": {
+  "summary": "해자는 숙련 인력과 지역 거점이다. 인수한 제작 공장이 그 위에 쌓이지만 아직 숫자로 검증되지 않았다.",
+  "items": [
+   {
+    "kind": "데이터센터 통신·전기 시공 인력",
+    "verdict": "보통",
+    "claim": "데이터센터 저전압·전기 공사 숙련공을 대량으로 가진 회사가 적다",
+    "evidence": "통신 부문 41개 사무소(FY25 10-K), 통신 영업이익률 18.5%(3Q FY26)",
+    "quant": "통신 이익률 2년 10.9% → 18.5%",
+    "falsifier": "통신 이익률이 15% 아래로 내려오면 가격 결정력이 경쟁에 밀린 것"
+   },
+   {
+    "kind": "공장 제작 전력 장비",
+    "verdict": "보통",
+    "claim": "버스덕트·발전기 외함을 직접 만들어 공급 병목 때 납기 우위를 갖는다",
+    "evidence": "인프라 솔루션 15개 거점(FY25 10-K), 영업이익률 23.8%(3Q FY26)",
+    "quant": "부문 매출 2년 $102M → $224M(분기)",
+    "falsifier": "인프라 솔루션 이익률 18% 아래"
+   },
+   {
+    "kind": "인수 통합 실행력",
+    "verdict": "약함",
+    "claim": "작은 시공사를 사서 붙이는 롤업 기록이 있다",
+    "evidence": "Gulf Island·Broadwind·DBM 1년 사이 인수 — 성과는 미확인",
+    "quant": "미확인",
+    "falsifier": "DBM 편입 뒤 합산 영업이익률 하락"
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": -0.05,
+  "why": "커버리지 1명·어닝콜 없음·가이던스 없음으로 정보가 적고, DBM 이익률이 미확인이라 동종 대비 약간 할인한다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "leaders": {
+  "as_of": "2026-11-09",
+  "summary": "지배주주 Tontine(약 54%)의 Jeffrey Gendell이 Executive Chairman이다. 연결이 매출을 만들었다는 공개 증거는 없다.",
+  "people": [
+   {
+    "name": "Jeffrey L. Gendell",
+    "role": "Executive Chairman(이전 CEO)",
+    "since": "미확인",
+    "profile": "투자회사 Tontine 운영자. Form 4 직함이 2024-12 'CEO' → 2025-12 'Executive Chairman'으로 바뀌었다",
+    "business": "Tontine 계열 펀드",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "SEC Form 4·FY25 10-K"
+   },
+   {
+    "name": "Matthew J. Simmes",
+    "role": "President·CEO",
+    "since": "미확인(2025 Form 4부터 CEO 직함)",
+    "profile": "Form 4 직함 2024-12 President·COO → 2025-12 President·CEO",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "SEC Form 4"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "지배주주 Tontine의 자본 배분 — 인수 대금·지분 매각 결정",
+    "strength": 4,
+    "exposure": 0.691,
+    "basis": "DBM 인수가 $691M(8-K)",
+    "evidence": "FY25 10-K 지배주주 절·8-K 2026-10-06"
+   },
+   {
+    "network": "정계",
+    "link": "로비 공시 없음(하원 로비 공시 분기 집계 유니버스 밖)",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "공개 기록 없음",
+    "evidence": "Easyconomics lobbying"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-06-30",
+  "reported_backlog": 4.525,
+  "backlog_label": "수주잔고",
+  "summary": "잔고 $4.53B 중 확정 RPO는 $2.80B이고 $2.29B가 12개월 안에 매출이 된다. 나머지 $1.72B는 MSA·단기 공사 추정이다. DBM 잔고는 6월 말 숫자에 없다.",
+  "items": [
+   {
+    "name": "잔여 이행의무(RPO)",
+    "status": "확정",
+    "total": 2.802,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "82%가 12개월 안에 매출",
+    "start": "2026-07",
+    "end": "2027-12",
+    "blockers": [
+     "데이터센터 착공 일정",
+     "고정가 원가"
+    ],
+    "source": "3Q FY26 10-Q"
+   },
+   {
+    "name": "MSA·단기 공사 추정 잔고",
+    "status": "프레임워크",
+    "total": 1.723,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "물량 약정 없음"
+    ],
+    "source": "잔고 $4.525B − RPO $2.802B"
+   },
+   {
+    "name": "DBM Global 잔고",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "인수 뒤 첫 공시 전"
+    ],
+    "source": "8-K 2026-10-06 — 잔고 미공시"
+   }
+  ]
+ },
+ "recurring": {
+  "kind": "모터·발전기 정비 MSA·통신 유지보수",
+  "base": "MSA 정비 매출 비중 미공시",
+  "years_to_recurring": 0,
+  "source": "10-Q — 인프라 솔루션 정비 대부분 MSA, 비중 미공시"
+ },
+ "backlog": {
+  "conversion_months": 13.6,
+  "coverage_next_fy": 0.36,
+  "rpo_12m_share": 0.817,
+  "rpo_growth": 1.163,
+  "revenue_growth": 0.396,
+  "source": "잔고 $4.525B ÷ TTM 월평균 매출 $0.332B = 13.6개월. RPO 12개월분 $2.289B ÷ FY27 매출 컨센서스 $6.38B = 0.36(DBM 잔고 미포함). RPO $1.295B → $2.802B(+116%), 3Q 매출 +39.6%"
+ },
+ "margin": {
+  "as_of": "2026-06-30",
+  "basis": "GAAP",
+  "summary": "TTM 매출원가가 매출의 73.7%로 1년 전 75.0%보다 1.3%p 낮아졌다. 데이터센터 공사 비중이 늘며 주택 저마진 몫이 줄었다.",
+  "periods": [
+   {
+    "period": "TTM 2Q25",
+    "rev": 3.2495,
+    "cogs": 2.4366,
+    "rd": 0.0,
+    "sga": 0.4572,
+    "other": 0.0015
+   },
+   {
+    "period": "TTM 2Q26",
+    "rev": 3.9857,
+    "cogs": 2.9373,
+    "rd": 0.0,
+    "sga": 0.555,
+    "other": 0.0006
+   }
+  ],
+  "costs": [
+   {
+    "name": "공사 원가(인력·자재·하도급)",
+    "stage": "매출원가",
+    "pct_rev": 0.737,
+    "prior_pct": 0.75,
+    "fixed": "미확인",
+    "driver": "숙련공 임금·구리·철강 가격·고정가 원가 추정",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익(10-Q)"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.139,
+    "prior_pct": 0.141,
+    "fixed": 0.6,
+    "driver": "인수 회사 간접비·성과급",
+    "basis": "공시",
+    "source": "10-Q"
+   },
+   {
+    "name": "기타",
+    "stage": "기타",
+    "pct_rev": 0.0,
+    "prior_pct": 0.0,
+    "fixed": "미확인",
+    "driver": "자산 처분 손익",
+    "basis": "공시",
+    "source": "10-Q"
+   }
+  ],
+  "products": [
+   {
+    "name": "통신 인프라",
+    "rev_share": 0.378,
+    "gpm": 0.262,
+    "gpm_basis": "부문 매출총이익 3Q FY26 $118.8M ÷ 매출 $453.1M(10-Q)",
+    "bom": [
+     {
+      "item": "현장 숙련 인력(통신·전기공)",
+      "share": [
+       0.45,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "업계 공사 원가 구조",
+      "pass_through": "미확인",
+      "why": "저전압 배선 공사는 인건비가 원가의 대부분"
+     },
+     {
+      "item": "구리·광케이블 자재",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "FY25 10-K 원자재 절(구리·알루미늄·플라스틱)",
+      "input": "copper",
+      "pass_through": "미확인",
+      "why": "배선 자재"
+     },
+     {
+      "item": "하도급·장비",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "업계",
+      "pass_through": "미확인",
+      "why": "부분 하도급"
+     }
+    ]
+   },
+   {
+    "name": "상업·산업 전기",
+    "rev_share": 0.141,
+    "gpm": 0.305,
+    "gpm_basis": "부문 매출총이익 $73.6M ÷ 매출 $241.4M(10-Q)",
+    "bom": [
+     {
+      "item": "현장 숙련 인력(전기공)",
+      "share": [
+       0.35,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "업계",
+      "pass_through": "미확인",
+      "why": "전기 시공 인건비"
+     },
+     {
+      "item": "개폐기·배전 장비",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "FY25 10-K — 개폐기·발전기 납기 수개월",
+      "input": "switchgear",
+      "pass_through": "미확인",
+      "why": "회사가 조달하는 전력 장비"
+     },
+     {
+      "item": "구리 전선",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "10-K 원자재 절",
+      "input": "copper",
+      "pass_through": "미확인",
+      "why": "배선 자재"
+     }
+    ]
+   },
+   {
+    "name": "인프라 솔루션",
+    "rev_share": 0.176,
+    "gpm": 0.34,
+    "gpm_basis": "부문 매출총이익 $76.1M ÷ 매출 $224.1M(10-Q)",
+    "bom": [
+     {
+      "item": "철강·알루미늄 판재",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "10-K 원자재 절(철강·알루미늄)",
+      "pass_through": "미확인",
+      "why": "외함·버스덕트·철골 소재"
+     },
+     {
+      "item": "구리 도체(버스바)",
+      "share": [
+       0.1,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "버스덕트 구조",
+      "input": "copper",
+      "pass_through": "미확인",
+      "why": "버스덕트 도체"
+     },
+     {
+      "item": "공장 인력",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "업계",
+      "pass_through": "미확인",
+      "why": "용접·조립"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-06-30",
+  "summary": "10-K는 원자재가 여러 국내 공급사에서 경쟁 가격으로 나오고 납기가 짧다고 적는다. 병목은 개폐기·발전기 같은 장비 납기(수개월)와 숙련 인력이다.",
+  "links": [
+   {
+    "item": "현장 숙련 인력(전기공)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "자체 직원 약 10,262명",
+      "role": "자체 시공",
+      "status": "공시",
+      "source": "yfinance 회사 개요(직원 수)"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "10-Q 위험 요인 — 숙련 인력 확보·비용",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "내재화",
+    "why": "데이터센터 공사의 착공 속도를 정한다",
+    "relief": "미확인",
+    "source": "FY25 10-K·3Q FY26 10-Q"
+   },
+   {
+    "item": "개폐기·배전 장비",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "외부 장비 제조사(미공시)",
+      "role": "개폐기·발전기",
+      "status": "공시",
+      "source": "FY25 10-K 공급 절"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "10-K — 개폐기·발전기 주문 납기 수개월 이상",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국·해외",
+    "secured": "미확인",
+    "input": "switchgear",
+    "why": "C&I 공사 완공 일정",
+    "relief": "미확인",
+    "source": "FY25 10-K"
+   },
+   {
+    "item": "구리 전선",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "국내 다수 공급사(미공시)",
+      "role": "전선·도체",
+      "status": "공시",
+      "source": "FY25 10-K"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "여유",
+    "capacity_basis": "10-K — 여러 국내 공급사, 납기 짧음(성수기 1개월 이상)",
+    "lead_weeks": 4,
+    "lead_normal": 2,
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국",
+    "secured": "단기 구매 약정",
+    "input": "copper",
+    "why": "원가 변동 요인 — 12개월 확정 구매 약정 $12.7M(6/30)",
+    "relief": "미확인",
+    "source": "FY25 10-K·3Q FY26 10-Q"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-06-30",
+  "unit": "명(직원)",
+  "summary": "시공업이라 공장 캐파 대신 인력이 캐파다. 직원 약 10,262명(회사 개요). 제작 시설은 인프라 솔루션 15개 거점 + Gulf Island + Broadwind 공장 + DBM이다.",
+  "current": {
+   "nameplate": 10262,
+   "utilization": "미확인",
+   "basis": "회사 개요 직원 수(시점 미확인, DBM 미포함 추정)",
+   "source": "Easyconomics company_profile(yfinance)"
+  },
+  "plans": [
+   {
+    "name": "DBM Global 편입(철골 제작·설치)",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2026-10",
+    "capex": 0.691,
+    "blocker": "통합",
+    "source": "8-K 2026-10-06"
+   },
+   {
+    "name": "Broadwind Abilene 공장 인수",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "미확인",
+    "capex": 0.0195,
+    "blocker": "미확인",
+    "source": "3Q FY26 10-Q"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2024",
+    "capex": 0.0452,
+    "rev": 2.8843,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2025",
+    "capex": 0.0673,
+    "rev": 3.3715,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.1525,
+    "rev": 4.373,
+    "kind": "컨센서스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.17,
+    "rev": 6.38,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "실적 = 현금흐름표 유형자산 취득(Fiscal.ai 표준화, 10-K). FY26·FY27 = Fiscal.ai 추정. 9M FY26 실적 $123.0M, TTM $143.0M",
+  "facilities": {
+   "count": 174,
+   "count_basis": "FY25 10-K Item 2 — 지점·창고·영업·사무 174곳, 대부분 임차. 제조 용도는 인프라 솔루션 15곳(본부 Massillon, Ohio)이며 시설별 이름·캐파는 공시되지 않는다",
+   "source": "https://www.sec.gov/Archives/edgar/data/1048268/000104826825000174/iesc-20250930.htm",
+   "items": [
+    {
+     "name": "인프라 솔루션 본부",
+     "location": "미국 Massillon, Ohio",
+     "owned": "미확인",
+     "use": "제조·정비 본부",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "Broadwind Heavy Fabrications 공장(인수)",
+     "location": "미국 Abilene, Texas",
+     "owned": "소유",
+     "use": "제조(철골·중제작)",
+     "capacity": "미확인",
+     "capacity_basis": "인수 자산만 공시($19.5M)",
+     "status": "가동"
+    },
+    {
+     "name": "Gulf Island Fabrication(인수)",
+     "location": "미국 Louisiana(10-Q에 위치 미기재)",
+     "owned": "미확인",
+     "use": "제조(철강 제작)",
+     "capacity": "미확인",
+     "capacity_basis": "인수 공시에 캐파 없음",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "시설 위치·면적이 10-K에 개별 공시되지 않고 대부분 임차 지점이라 위성 판독 대상에서 뺀다"
+ },
+ "customers": {
+  "none": "FY25 10-K — 10% 넘는 고객 없음(FY24·FY23은 주택 부문 고객 1곳 12.0%). 고객별 매출을 공시하지 않는다"
+ },
+ "ma": {
+  "none": "DBM($691M)·Gulf Island($152M) 모두 회사가 시너지 규모·완성 연도를 밝히지 않았다 — 시너지 모델링 재료 없음"
+ },
+ "pq": {
+  "none": "시공업이라 단가·물량을 공시하지 않는다"
+ },
+ "midterm": {
+  "exposure": 1.0,
+  "sub": "power_infra",
+  "etf": "NASDAQ:GRID",
+  "note": "매출 100% 미국. 정책 채널 점수는 midterm_impact 기본값 유지"
+ },
+ "sync": {
+  "why": "통신·C&I 공사는 데이터센터·산업 전기 설비 투자를 따라가고, 그 투자는 개폐기 가격과 구리 가격에 먼저 나타난다",
+  "indicators": [
+   {
+    "label": "미국 개폐기 PPI",
+    "source": "ppi",
+    "input": "switchgear",
+    "country": "us",
+    "segment": "상업·산업 전기",
+    "why": "전기 설비 수요의 가격 신호"
+   },
+   {
+    "label": "미국 구리 PPI",
+    "source": "ppi",
+    "input": "copper",
+    "country": "us",
+    "segment": "통신 인프라",
+    "why": "배선 자재 원가"
+   }
+  ],
+  "products": [
+   {
+    "name": "데이터센터·산업 전기 시공",
+    "segment": "상업·산업 전기",
+    "hs": "",
+    "share": 0.55,
+    "inputs": [
+     "switchgear",
+     "copper"
+    ],
+    "basis": "서비스 — 전기 기자재 PPI가 투자 수요 대용"
+   },
+   {
+    "name": "제작 전력 장비",
+    "segment": "인프라 솔루션",
+    "hs": "",
+    "share": 0.17,
+    "inputs": [
+     "switchgear",
+     "copper"
+    ],
+    "basis": "버스덕트·외함"
+   }
+  ]
+ },
+ "social": {
+  "as_of": "2026-11-09",
+  "summary": "커뮤니티는 작다. 내부자 매도 공시가 언급의 다수이고, 남은 해석 글은 선거 뒤 하락을 과잉 반응으로 본다.",
+  "narratives": [
+   {
+    "channel": "유튜브",
+    "theme": "선거 뒤 하락은 과잉 반응이고 숙련 인력 희소성이 가격을 받친다",
+    "expectation": "상향",
+    "vs_fact": "미확인 — 4Q 실적 전이라 1차 자료로 가를 수 없다",
+    "share": 0.6
+   },
+   {
+    "channel": "X",
+    "theme": "동종(Comfort Systems) 3Q 콜에서 데이터센터 공사가 수요가 아니라 시공 능력에 막혀 있다는 연결 해석",
+    "expectation": "상향",
+    "vs_fact": "과장 가능 — 다른 회사 콜을 IES 매출로 바로 옮기는 것은 금지표",
+    "share": 0.3
+   },
+   {
+    "channel": "X",
+    "theme": "어닝콜·커버리지가 없는 숨은 회사라는 관찰",
+    "expectation": "혼재",
+    "vs_fact": "확인 — 어닝콜 없음, 커버리지 1명",
+    "share": 0.1
+   }
+  ],
+  "turn": "5~6월 내부자 매도 공시가 몰렸고, 11/5 선거 뒤 하락을 과잉 반응으로 보는 해석이 나왔다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "잔고 +119%·매출 +40%인데 주가는 −60%다 — 배수 하락은 업종 전체의 일이고 회사 숫자는 아직 하나도 꺾이지 않았다",
+    "evidence": [
+     "잔고 $2.07B → $4.53B",
+     "6월 분기 EPS 컨센서스 +39% 상회",
+     "Fwd 1Y P/E 11.2배 vs 동종 15.0배"
+    ],
+    "falsifier": "4Q FY26 잔고가 줄거나 통신 매출 성장이 20% 아래"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "동종보다 25% 싼 배수는 정보 부족 할인을 넘는다",
+    "evidence": [
+     "통신 영업이익률 18.5%",
+     "RPO 82%가 12개월 안 매출"
+    ],
+    "falsifier": "DBM 편입 뒤 합산 영업이익률 10% 아래"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "숫자는 좋지만 4Q 실적·텍사스 결정 전에는 가를 자료가 없다",
+    "evidence": [
+     "회사 가이던스 없음",
+     "커버리지 1명",
+     "2026-12-10 ERCOT 결정"
+    ],
+    "falsifier": "4Q 실적이 잔고·이익률 둘 다 확인"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "지배주주가 고점 부근에서 $213M을 팔았고, 처음으로 차입을 지며 저마진 철골 제작을 샀다",
+    "evidence": [
+     "Tontine 매도 약 $213M",
+     "DBM 차입 $525M",
+     "DBM 이익률 미공시"
+    ],
+    "falsifier": "Tontine 매도 중단·DBM 이익률 공시가 10% 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "텍사스 데이터센터 규제가 현실이 되면 잔고 전환이 늦어지고 배수가 더 내려간다",
+    "evidence": [
+     "Citi — 미국 데이터센터의 30~40%가 텍사스 예정",
+     "IES 본사·지점 다수 텍사스"
+    ],
+    "falsifier": "ERCOT 12/10 결정이 일정대로 나온다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "8/17 $396.98에서 11/6 $158.45까지 −60%다. 같은 기간 공시된 잔고는 $4.53B로 사상 최대다."
+     },
+     {
+      "seat": "Buy",
+      "text": "Fwd 1Y P/E 11.2배는 동종 중앙 15.0배보다 25% 낮다. 이익률은 동종보다 높다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "4Q 실적이 11월 하순에 나온다. 그 전에는 잔고가 매출로 바뀌는 속도를 확인할 수 없다."
+     },
+     {
+      "seat": "Sell",
+      "text": "지배주주가 2025-12~2026-06에 약 $213M을 팔았다. 내부자가 가장 잘 안다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "텍사스 주지사 교체로 데이터센터 승인이 늦어질 위험이 크다는 IB 분석이 나왔다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "Tontine 매도는 고점 전 5~6월에 몰렸고 분할 전 주당 $694~706이었다. 지금 가격에서의 매도 공시는 없다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "잔고 증가의 일부는 인수 효과다. Gulf Island 편입 분기와 겹쳐 유기 증가를 가를 수 없다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Sell",
+      "text": "텍사스 노출은 회사가 지역별 매출을 공시하지 않아 크기를 모른다. 규제는 아직 발의 전이다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "동종 배수도 같이 내려가는 중이다. 15배 동종이 다음 분기 10배가 되면 할인 폭은 사라진다."
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "실적을 기다리는 동안 가격이 이미 업종 저점 배수에 왔다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "Gulf Island는 인프라 솔루션 부문이다. 잔고를 끌어올린 건 통신·C&I다 — 그 둘의 매출이 각각 +51%·+109%다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "C&I 이익률 22.5%는 한 분기 값이다. 1년 전은 11.2%였다 — 지속성을 증명한 적이 없다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "업종 저점 배수라는 말은 동종이 더 안 내려간다는 가정이다. 그 가정의 근거가 없다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "ERCOT 결정 지연은 착공 지연이지 취소가 아니다. RPO는 계약된 금액이다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "착공 지연이면 12개월 매출 전환 82%가 깨진다. 그게 컨센서스 FY27 매출을 낮춘다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "숫자가 꺾이지 않은 −60%는 과잉 반응이다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "동종 대비 할인은 남는다. 다만 C&I 이익률 지속성은 4Q에서 확인해야 한다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "가를 자료(4Q 실적)가 2주 안에 나온다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "인수 효과를 뺀 유기 성장이 확인되기 전까지 반대한다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "규제 위험은 남지만 RPO가 계약이라는 반박은 받아들인다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Buy",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "살아남은 반박은 둘이다 — 동종 대비 25% 할인과 계약 잔고는 사실이지만, C&I 이익률 지속성과 유기 성장은 4Q 실적 전에는 확인되지 않는다.",
+   "dissent": "Strong Sell 자리 — 텍사스 규제로 잔고 전환이 늦어지면 FY27 컨센서스가 내려간다"
+  }
+ }
+}

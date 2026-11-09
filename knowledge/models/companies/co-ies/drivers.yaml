@@ -1,0 +1,110 @@
+auto: true
+id: co-ies
+name: IES Holdings
+ticker: IESC
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.25
+horizon: 10
+as_of: '2026-11-09'
+market:
+  date: '2026-11-09'
+  price: 158.45
+  shares: 0.04137
+  net_debt: 0.234
+  source: 가격 = 2026-11-06 종가(TradingView·Fiscal.ai 같은 값). 기본 주식 = 10-Q 표지 19,924,356주(2026-07-27,
+    분할 전) ×2(2:1 분할 2026-08-21, 10-Q 주석 15) + DBM 대가 430,974주(8-K 2026-10-06) = 40.28M주.
+    2026-11-08 datapack은 분할 뒤 주식 수를 한 번 더 2배해 80.13M주로 적었다 — 이번에 정정(시가총액 $12.7B →
+    $6.38B). 현금 = 6/30 현금 $77.3M + 유가증권 $310.6M − DBM 현금 대가 중 자기 현금 몫 $20M(= $545M
+    − 차입 $525M) ≈ $367.9M(4Q 영업현금흐름 미반영). 차입 = 6/30 차입 $76.9M + DBM 인수 차입 $525M(8-K
+    2026-10-06) = $601.9M. 순차입 약 $234M
+rev0: 4.373
+ic0: 1.6146
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.45
+      end: 0.04
+      decay: 0.55
+    margin:
+      m0: 0.1322
+      target: 0.12
+      year_target: 4
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.1372
+      - 0.1376
+    s2c: 3.0
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.6465
+      end: 0.04
+      decay: 0.6000000000000001
+    margin:
+      m0: 0.1322
+      target: 0.14
+      year_target: 4
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.1372
+      - 0.1376
+    s2c: 3.45
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.2577
+      end: 0.030000000000000002
+      decay: 0.45000000000000007
+    margin:
+      m0: 0.1322
+      target: 0.1
+      year_target: 4
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.1372
+      - 0.1376
+    s2c: 2.55
+mc:
+  sigma_growth: 0.0972
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 4.373
+  growth: 컨센서스 1년차 45.9%, 2년차 15.0%
+  margin: 1~2년차 컨센서스 13.7%, 13.8% 고정 → 목표 12%(4년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.469 → 덮어쓰기 3.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 25.8%~64.6%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '성장 1년차 45%: NTM 매출 추정 $5.92B는 TTM $3.99B의 +48%인데 대부분 DBM·Gulf Island
+    편입분이라 감속 0.55로 빨리 줄인다. 장기 이익률 12%: TTM 영업이익률 12.4%에 철골 제작(DBM)의 낮은 이익률이 섞인다(DBM
+    이익률 미공시 — 가정). 매출 대비 자본 3.0: 시공업 회전율'
+  shares: 완전 희석 = 기본 0.0402797(2026-10-05) + 옵션·RSU·워런트·전환 0.0011 — 3Q FY26 가중평균 희석
+    주식 20,197,707주(10-Q) − 기본 약 19.65M주(2026-11-
+notes:
+- 자동 생성(build_drivers) 2026-11-09 — 데이터 묶음 2026-11-09
+- '어닝콜 위험: 고정가 공사 원가 추정'
+- '어닝콜 위험: 구리·알루미늄·철강 가격'
+- '어닝콜 위험: 주택(Residential) 둔화 — 분기 매출 전년 −6%'
+evidence:
+- 3Q FY26 10-Q(2026-07-31) https://www.sec.gov/Archives/edgar/data/1048268/000104826826000130/iesc-20260630.htm
+- 3Q FY26 실적 8-K(Item 2.02, 2026-07-31) https://www.sec.gov/Archives/edgar/data/1048268/000104826826000131/iesc-20260731.htm
+- DBM 인수 계약 8-K(2026-08-11) https://www.sec.gov/Archives/edgar/data/1048268/000149315226036976/form8-k.htm
+- DBM 인수 완료·신용한도 8-K(2026-10-06) https://www.sec.gov/Archives/edgar/data/1048268/000149315226045939/form8-k.htm
+- FY2025 10-K(2025-11-21) https://www.sec.gov/Archives/edgar/data/1048268/000104826825000174/iesc-20250930.htm
+- SEC XBRL companyfacts(CIK 1048268)
+- Fiscal.ai MCP 2026-11-09 — 표준화 손익·부문 KPI·추정·Forward 배수(동종 5사)
+- TradingView NASDAQ:IESC 일봉·월봉(2026-11-09)
+- Easyconomics company_profile·실적 정리·뉴스(2026-11-09)
+- Quantral IESC 신호·점수(2026-11-09)
+- '마스터 노션 IB 자료 요지(라이선스 — 외부 공유 금지): Citi 2026-11-04 텍사스 데이터센터, BofA 2026-11-04 선거,
+  Bernstein·MS 데이터센터 캐파'
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
