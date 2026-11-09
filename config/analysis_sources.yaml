@@ -16,6 +16,7 @@ sources:
   - {id: trade_hs, region: all, kind: script, cmd: "radar/trade_hs.py --company {id}", fail_if: "연결 HS: 없음", use: "BOM 품목과 겹치는 HS 급등(단서)"}
   - {id: site_imagery, region: all, kind: script, cmd: "radar/site_imagery.py --company {id}", use: "시설 위성 판독 — 시설이 없으면 '해당 없음'"}
   - {id: market_regime, region: all, kind: script, cmd: "radar/market_regime.py", use: "거시·위험 국면 — 할인율·배수 맥락"}
+  - {id: eia, region: us, kind: script, cmd: "radar/eia.py --show", use: "EIA 전력 통계(RTO 수요·주별 상업용 판매·계획 가스터빈·엔진·배터리) — 전력·발전 설비 종목 수요 근거(2026-11-09)"}
   - {id: lobby, region: us, kind: script, cmd: "radar/usgov/lobby_watch.py {id} {legal}", use: "연방 로비 내역 — 경영진·약세 논리에 쓸 때만"}
   - {id: kr_ir_pt, region: kr, kind: script, cmd: "radar/pollers/kr_ir_docs.py --pt {id}", use: "한국 종목 당기·직전 분기 PT(어닝콜 대신)"}
   - {id: jp_consensus, region: jp, kind: script, cmd: "radar/jp_consensus.py --line {ticker}", use: "일본 종목 컨센서스 줄"}
