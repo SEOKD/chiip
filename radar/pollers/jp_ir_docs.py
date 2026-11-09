@@ -328,6 +328,15 @@ def poll(env=None, only=None, force=False):
                     cs["seen"].append(d["key"])
                     if d["kind"] == "video":
                         cs["video"] = d["url"]
+                        ex = cs.get("expect") or {}
+                        if not first_page and ex.get("found") and (today - date.fromisoformat(ex["found"])).days <= 21:
+                            # 결산 설명회 음성·영상 새 게시(2026-11-09 마스터 지시 "설명회 음성·질의응답 요지가 나오는 즉시 Pulse에서 탐지") —
+                            # 기록만 하던 것을 알린다. 음성 전사 도구는 승인 전(TODO 28)이라 내용 분석은 Q&A 요지(대기 중)로 한다
+                            items.append(common.make_item(SRC, hashlib.sha1(d["key"].encode()).hexdigest()[:16], d["url"],
+                                                          f"{label}（{code}）{ex.get('period', '')} 決算説明会 音声・動画 掲載", common.iso(now), "IR 자료", "ja",
+                                                          f"설명회 음성 게시 — 전사 도구 없음(내용 분석 불가). 질의응답 요지 대기 {', '.join(ex.get('due') or [])}",
+                                                          extra={"entities_matched": [cid], "publisher": en, "source_class": "IR 자료", "kind": "video", "period": ex.get("period")}))
+                            cs["last_new"] = common.iso(now)
                         continue
                     recent = d["date"] and (today - date.fromisoformat(d["date"])).days <= p["backlog_days"]
                     if (first_page and not recent) or (not first_page and not is_fresh(d, latest, today, p["fresh_days"])):
