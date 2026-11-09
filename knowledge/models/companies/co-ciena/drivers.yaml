@@ -1,0 +1,101 @@
+auto: true
+id: co-ciena
+name: Ciena
+ticker: CIEN
+unit: B$
+unit_usd: 1000000000.0
+industry: telecom_equipment
+region_mix:
+  US: 0.78
+  EU: 0.22
+tax: 0.21
+horizon: 10
+as_of: '2026-11-09'
+market:
+  date: '2026-11-09'
+  price: 243.39
+  shares: 0.145715
+  net_debt: 0.6507
+  source: 가격 = 2026-11-06 종가 $243.39(TradingView·Fiscal.ai 일치) · 주식 수 141,808,525(10-Q
+    표지 2026-08-28) · 현금 = 현금성 $2,445.7M + 단기투자 $184.3M(장기투자 $213.6M은 보수적으로 제외) · 차입
+    = 장기차입 $3,229.8M(0% 2031 전환사채 $2.88B 포함) + 리스 $50.9M (10-Q 2026-08-01)
+rev0: 6.42
+ic0: 3.7074
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.3551
+      end: 0.035
+      decay: 0.645
+    margin:
+      m0: 0.1656
+      target: 0.2437
+      year_target: 3
+      lr: 0.22
+      lam: 0.35
+      anchors:
+      - 0.225
+      - 0.2437
+    s2c: 1.624
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.4642
+      end: 0.04
+      decay: 0.6950000000000001
+    margin:
+      m0: 0.1656
+      target: 0.2828
+      year_target: 3
+      lr: 0.22
+      lam: 0.25
+      anchors:
+      - 0.225
+      - 0.2437
+    s2c: 1.868
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.2928
+      end: 0.030000000000000002
+      decay: 0.545
+    margin:
+      m0: 0.1656
+      target: 0.2046
+      year_target: 3
+      lr: 0.22
+      lam: 0.5
+      anchors:
+      - 0.225
+      - 0.2437
+    s2c: 1.38
+mc:
+  sigma_growth: 0.0428
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [6.37, 6.47] (FQ3 콜(2026-09-03)·실적 8-K(2026-09-03)·투자자 포럼 보도자료(2026-09-16).
+    FY27은 '예비 방향'이고 12월 FQ4 실적 때 갱신한다고 했다)
+  growth: 컨센서스 1년차 35.5%, 2년차 24.1%
+  margin: 1~2년차 컨센서스 22.5%, 24.4% 고정 → 목표 24%(3년차, 덮어쓰기) → 장기 수렴 22%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.624
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 29.3%~46.4%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '장기 이익률 22%(SBC 차감 GAAP 기준): 업종 기본값 15%는 통신 장비 사이클 평균이다. 회사 FY29 조정 영업이익률
+    목표 32~35%에서 SBC 3.5%와 사이클 할인을 뺐다 — 2001·2018년처럼 공급이 풀리면 가격이 내려가는 위험을 남겨 목표보다 10%p
+    낮게 둔다(추정)'
+  shares: '완전 희석 = 기본 0.141809(2026-08-28) + 옵션·RSU·워런트·전환 0.0039 — FQ3 가중평균 희석 145.967M
+    − 기본 142.061M(10-Q). 2031 전환사채($2.88B, '
+notes:
+- 자동 생성(build_drivers) 2026-11-09 — 데이터 묶음 2026-11-09
+- '어닝콜 위험: 공급 제약 — 매출이 수요가 아니라 부품 공급에 묶인다(경영진, 2028년 전 균형 없음)'
+- '어닝콜 위험: 상위 두 고객 Q3 매출 41.6%(28.5%·13.1%)'
+- '어닝콜 위험: 수주잔고 $8.5B 중 취소 불가 주문(RPO)은 $2.5B'
+evidence:
+- Fiscal.ai MCP 조회 2026-11-08 KST — company_financials_standardized(LTM·분기)·company_shares_outstanding·company_stock_prices·company_estimates(Fiscal
+  자체 추정, Zacks 아님)·company_analyst_ratings
+- Fiscal.ai 어닝콜 전문 Q&A(질문 주제만, 증권사명만)
+- 내러티브 knowledge/narratives/companies/co-ciena.md(2026-11-08)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
