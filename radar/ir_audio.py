@@ -23,7 +23,8 @@ from pollers import common  # noqa: E402
 SRC = "src-ir-audio"
 OUT = common.ROOT / "radar" / "inbox" / "ir_audio"
 MEDIA_RE = re.compile(r"\.(mp3|m4a|mp4|wav|aac|m4v)(\?|$)", re.I)
-BLOCK_RE = re.compile(r"youtube\.com|youtu\.be", re.I)   # 약관상 내려받기 금지
+BLOCK_RE = re.compile(r"youtube\.com|youtu\.be|c-hotline\.net", re.I)   # YouTube는 약관상 내려받기 금지, c-hotline은 재생기 설정(/docs/)이 robots 금지(2026-11-09 아지노모토 점검)
+PLAYER_RE = re.compile(r"https?://www\.video-streaming\.net/ir/[^?#]+?/(?=$|[?#])", re.I)   # IR 대행 재생기(아지노모토 등) — json/contentsJSON.js의 원본 영상 경로로 바꾼다(robots.txt 없음)
 MODEL = "small"   # 일본어·중국어 설명회 품질과 CPU 시간의 절충(시험: 2026-11-09 어드밴테스트 질의응답 영상)
 MAX_MIN = 120
 STATE = "ir_audio"
@@ -40,15 +41,29 @@ def candidates(st, days=3):
         except (OSError, ValueError):
             continue
         u = it.get("url") or ""
-        if MEDIA_RE.search(u) and not BLOCK_RE.search(u) and u not in seen:
+        if (MEDIA_RE.search(u) or PLAYER_RE.match(u)) and not BLOCK_RE.search(u) and u not in seen:
             ents = it.get("entities_matched") or []
             out[u] = {"url": u, "cid": (ents[0] if isinstance(ents, list) and ents else ""), "title": it.get("title", ""), "at": it.get("saved_at", "")}
     d = common.load_state("jp_ir_docs", {})
     for cid, v in (d.get("companies") or d).items():
         u = (v or {}).get("video") or ""
-        if MEDIA_RE.search(u) and not BLOCK_RE.search(u) and u not in seen:
+        if (MEDIA_RE.search(u) or PLAYER_RE.match(u)) and not BLOCK_RE.search(u) and u not in seen:
             out.setdefault(u, {"url": u, "cid": cid, "title": f"{cid} 설명회 음성", "at": v.get("last_new") or ""})
     return sorted(out.values(), key=lambda x: x["at"], reverse=True)
+
+
+def resolve(url):
+    """재생기 주소 → 원본 미디어 주소. video-streaming.net: <기본>/json/contentsJSON.js의 videoCuepoint rpath → <기본>/assets/video/data/<rpath>.
+    영상·음성이 섞인 mp4라 음성만 디코딩해도 파일 전체를 받는다(90분 약 1GB, 분기 1회)."""
+    if not PLAYER_RE.match(url):
+        return url
+    base = url if url.endswith("/") else url + "/"
+    cj = json.loads(common.http_get(base + "json/contentsJSON.js", timeout=30).decode("utf-8-sig"))
+    units = ((cj.get("videoCuepoint") or {}).get("unit") or [])
+    rp = next((x.get("rpath") for x in units if x.get("rpath")), None)
+    if not rp:
+        raise RuntimeError("재생기 설정에 영상 경로 없음")
+    return base + "assets/video/data/" + rp
 
 
 def audio(url, max_min=MAX_MIN):
@@ -70,7 +85,7 @@ def audio(url, max_min=MAX_MIN):
 
 def transcribe(url, lang=None):
     from faster_whisper import WhisperModel
-    a = audio(url)
+    a = audio(resolve(url))
     if a is None:
         raise RuntimeError("음성 스트림 없음")
     m = WhisperModel(MODEL, device="cpu", compute_type="int8")
