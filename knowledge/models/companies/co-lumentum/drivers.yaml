@@ -1,0 +1,105 @@
+auto: true
+id: co-lumentum
+name: Lumentum
+ticker: LITE
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-09'
+market:
+  date: '2026-11-09'
+  price: 538.59
+  shares: 0.1028
+  net_debt: -0.5494
+  source: 가격 = TradingView NASDAQ:LITE 2026-11-06 종가 $538.59 · 보통주 90.7M주(10-Q 표지
+    2026-10-30) · 현금·단기투자 $1.980B · 차입 = 유동 장기부채(전환사채) $1,360.3M + 장기 $39.3M + 리스
+    $30.6M(10-Q 2026-09-26). 10/30까지 전환사채 $779.9M 조기 전환 청구 — 원금은 현금 결제(10-Q)
+rev0: 6.855
+ic0: 4.0232
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.5171
+      end: 0.035
+      decay: 0.406
+    margin:
+      m0: 0.4195
+      target: 0.4305
+      year_target: 3
+      lr: 0.25
+      lam: 0.35
+      anchors:
+      - 0.4305
+      - 0.4305
+    s2c: 1.6
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.8381
+      end: 0.04
+      decay: 0.456
+    margin:
+      m0: 0.4195
+      target: 0.4505
+      year_target: 3
+      lr: 0.25
+      lam: 0.25
+      anchors:
+      - 0.4305
+      - 0.4305
+    s2c: 1.84
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.167
+      end: 0.030000000000000002
+      decay: 0.30600000000000005
+    margin:
+      m0: 0.4195
+      target: 0.4105
+      year_target: 3
+      lr: 0.25
+      lam: 0.5
+      anchors:
+      - 0.4305
+      - 0.4305
+    s2c: 1.36
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [6.83, 6.88] (FY2027 = 1Q 실적 $1.2626B + 2Q 회사 가이던스 $1.575~1.625B
+    + 3Q·4Q 컨센서스 $1.877B·$2.117B(회사는 연간 가이던스를 내지 않는다) — 1Q 실적 보도자료(8-K EX-99.1, 2026-11-02)
+    https://www.sec.gov/Archives/edgar/data/1633978/000162828026068655/lite_ex991xq1fy27.htm)
+  growth: 컨센서스 1년차 51.7%, 2년차 23.1%
+  margin: 1~2년차 컨센서스 43.0%, 43.0% 고정 → 목표 43%(3년차, 덮어쓰기) → 장기 수렴 25%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.93 → 덮어쓰기 1.6
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 16.7%~83.8%
+  probs: '데이터 묶음 지정 {''bear'': 0.35, ''base'': 0.45, ''bull'': 0.2}'
+  overrides: '장기 이익률 25%(lr, SBC 차감 전 GAAP 기준): 지금 비GAAP 영업이익률 42%는 레이저 공급 부족 국면 가격이다.
+    광 부품 동종 영업이익률 10~13%와 지금 값 사이에서 InP 레이저 과점을 반영해 25%로 둔다(자체추론) / 매출÷투하자본 1.6: TTM
+    매출 $3.74B ÷ 투하자본 $4.02B = 0.93이지만 증분 매출 대비 설비투자(FY27 컨센서스 $0.95B vs 매출 증가 $3.9B)가
+    낮아 증분 기준으로 올렸다(추정). 주의: Marvell 인수 합의 뒤라 단독 DCF는 인수 무산 시나리오의 참고값이다'
+  shares: '완전 희석 = 기본 0.0907(2026-10-30) + 옵션·RSU·워런트·전환 0.0121 — 10-Q 2026-09-26
+    희석 주식 계산: NVIDIA 보유 Series A 전환우선주 2.9M주(보통주'
+notes:
+- 자동 생성(build_drivers) 2026-11-09 — 데이터 묶음 2026-11-09
+- '어닝콜 위험: Marvell 인수 — 주가가 MRVL 주가에 묶임(고정 교환비율, 칼라 없음)'
+- '어닝콜 위험: 규제 승인(HSR·해외 경쟁·투자 심사)과 시한 2027-11-01(연장 시 2028-08-01)'
+- '어닝콜 위험: 펌프 레이저·OCS 공급 부족'
+evidence:
+- 'LITE 10-Q FQ1 FY27(2026-09-26): https://www.sec.gov/Archives/edgar/data/1633978/000162828026069615/lite-20260926.htm'
+- 'LITE 10-K FY2026(2026-06-27): https://www.sec.gov/Archives/edgar/data/1633978/000162828026057358/lite-20260627.htm'
+- 'Marvell 인수 합의 8-K(Item 1.01, 2026-11-02): https://www.sec.gov/Archives/edgar/data/1633978/000119312526442758/d163169d8k.htm'
+- 'Marvell·Lumentum 공동 보도자료(8-K EX-99.1): https://www.sec.gov/Archives/edgar/data/1633978/000119312526442758/d163169dex991.htm'
+- 'FQ1 FY27 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-02): https://www.sec.gov/Archives/edgar/data/1633978/000162828026068655/lite_ex991xq1fy27.htm'
+- FQ4 FY26 어닝콜(2026-08-11)·FQ3 FY26 어닝콜(2026-05-05) — 요지만 자기 말로
+- Fiscal.ai NASDAQ_LITE 표준화 재무·추정·의견·13F·내부자(2026-11-07~09 조회)
+- TradingView NASDAQ:LITE 일봉(2026-11-09 조회)
