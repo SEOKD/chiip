@@ -1,5 +1,5 @@
 # YouTube 공식 IR 채널(radar/pollers/yt_ir.py) — 결산 설명회를 YouTube에만 올리는 회사(2026-11-09 마스터 지시 JX금속).
 # YouTube는 약관상 내려받기 금지·robots가 자막·RSS를 막는다 → 게시 탐지만(공식 Data API, 메타데이터). 내용은 TradingView 전사·회사 Q&A 요지·PT로.
-# handle·channel_id 중 아는 것을 적는다. 모르면 query(처음 한 번 검색, 결과는 radar/state/yt_ir.json에 캐시 — 맞는 채널인지 첫 회차 뒤 확인).
+# handle·channel_id 중 아는 것을 적는다. query 검색은 채널 이름에 label이나 '公式'이 있어야만 받아들인다(2026-11-09 개인 투자 채널 오인 사고).
 channels:
-  - {id: jp-jxmetals, code: "5016", label: "ＪＸ金属", query: "JX金属 公式 IR情報", note: "회사 영상 라이브러리(jx-nmm.com/company/movie)는 @jx-advanced-metals — IR 채널이 따로면 query가 그것을 찾는다"}
+  - {id: jp-jxmetals, code: "5016", label: "ＪＸ金属", handle: "@jx-advanced-metals", note: "공식 채널 UCai3MBvwOVZdt333yx9iQ5Q(2026-11-09 확인). 검색어 'JX金属 公式 IR情報'는 개인 투자 채널(株ちゃん投資情報)을 골라 쓰지 않는다. 결산 설명회 영상은 공개 업로드 목록에 없음 — 일부 공개(unlisted)로 IR 페이지에만 붙는 듯(IR 자료 목록 xj-storage는 robots 전면 금지)"}

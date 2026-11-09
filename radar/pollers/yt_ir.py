@@ -37,8 +37,9 @@ def uploads_id(ch, key, cache):
     elif ch.get("handle"):
         r = _get("channels", {"part": "contentDetails", "forHandle": ch["handle"]}, key)
     else:
-        s = _get("search", {"part": "snippet", "type": "channel", "q": ch["query"], "maxResults": 1}, key)
-        cid = ((s.get("items") or [{}])[0].get("id") or {}).get("channelId")
+        s = _get("search", {"part": "snippet", "type": "channel", "q": ch["query"], "maxResults": 5}, key)
+        ok = [x for x in s.get("items") or [] if "公式" in x["snippet"]["channelTitle"] or ch["label"] in x["snippet"]["channelTitle"]]   # 개인 투자 채널 오인 방지(2026-11-09)
+        cid = (ok[0].get("id") or {}).get("channelId") if ok else None
         r = _get("channels", {"part": "contentDetails", "id": cid}, key) if cid else {}
     items = r.get("items") or []
     cache[k] = items[0]["contentDetails"]["relatedPlaylists"]["uploads"] if items else None
