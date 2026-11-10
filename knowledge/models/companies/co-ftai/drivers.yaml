@@ -1,0 +1,105 @@
+auto: true
+id: co-ftai
+name: FTAI Aviation
+ticker: FTAI
+unit: B$
+unit_usd: 1000000000.0
+industry: aerospace_defense
+region_mix:
+  US: 0.55
+  EU: 0.25
+  ROW: 0.2
+tax: 0.21
+horizon: 10
+as_of: '2026-11-11'
+market:
+  date: '2026-11-11'
+  price: 188.0
+  shares: 0.103701
+  net_debt: 3.0699
+  source: '가격 = 2026-11-10 종가 $188.00(TradingView NASDAQ:FTAI). 주식 수 102,261,586주(10-Q
+    표지, 2026-10-30). 현금 $385.6M·차입 $3,455.5M(10-Q 9/30, 선순위 사채 5종 합계 순액). 분기 뒤 사건은
+    반영하지 않았다: 11/6 7.125% 2034 사채 $1.0B 발행 → 회전 신용(ASR 자금으로 인출) 상환·2028 사채 $500M 상환(8-K
+    11/2·11/9) — 순차입은 약 $0.5B 늘고 ASR $500M(4Q 종료 예정)이 주식 약 2.6M주를 줄인다(추정, $190 기준)'
+rev0: 3.816
+ic0: 3.5033
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.6771
+      end: 0.035
+      decay: 0.383
+    margin:
+      m0: 0.288
+      target: 0.297
+      year_target: 2
+      lr: 0.22
+      lam: 0.35
+      anchors:
+      - 0.297
+    s2c: 0.977
+  bull:
+    prob: 0.2
+    growth:
+      start: 1.044
+      end: 0.04
+      decay: 0.433
+    margin:
+      m0: 0.288
+      target: 0.317
+      year_target: 2
+      lr: 0.22
+      lam: 0.25
+      anchors:
+      - 0.297
+    s2c: 1.124
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.3365
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.288
+      target: 0.277
+      year_target: 2
+      lr: 0.22
+      lam: 0.5
+      anchors:
+      - 0.297
+    s2c: 0.83
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 3.816
+  growth: 컨센서스 1년차 67.7%, 2년차 28.1%
+  margin: 1년차 컨센서스 29.7% 고정 → 목표 30%(2년차, 덮어쓰기) → 장기 수렴 22%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.977
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 33.6%~104.4%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '장기 수렴 영업이익률 15% → 22%: TTM GAAP 영업이익률 22.3%, 동종 5곳 영업이익률 중앙값 24%(HEICO
+    24%·Woodward 16%·VSE 12%·TransDigm 46%·AerCap 61%), 회사가 항공 제품 EBITDA 30%를 수년간
+    제시 — 업종 기본값 15%는 리스·정비 혼합 사업을 과소평가한다. 매출÷투하자본(0.98)은 재고 매입 국면의 실제 값이라 덮어쓰지 않는다'
+  shares: 완전 희석 = 기본 0.102262(2026-10-30) + 옵션·RSU·워런트·전환 0.0014 — 3Q26 가중 희석 104.106M
+    − 기본 102.667M = 약 1.44M주(EX-99.1 EPS 표).
+notes:
+- 자동 생성(build_drivers) 2026-11-11 — 데이터 묶음 2026-11-11
+- '어닝콜 위험: 4Q 내재 EBITDA 약 $435M(3Q $348M 대비 +25%)이 전략 자본 거래 종결 시점에 달렸다'
+- '어닝콜 위험: 영업현금흐름 9M −$333M — 재고 $1.93B(연초 대비 +$739M)가 현금을 묶는다'
+- '어닝콜 위험: 전력 첫 인도는 2027 — 시험 완료 ≠ 양산(금지표 ''샘플 출하 → 양산 성공'')'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1590364/000159036426000092/ftai9302026earningsrelease.htm
+- https://www.sec.gov/Archives/edgar/data/1590364/000162828026068648/ftai-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1590364/000159036426000092/ftai-20261029.htm
+- https://www.sec.gov/Archives/edgar/data/1590364/000114036126041585/ef20084710_8k.htm
+- https://www.sec.gov/Archives/edgar/data/1590364/000114036126042548/ef20085046_8k.htm
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1590364&type=10-K
+- Fiscal.ai MCP 2026-11-11 — 표준화 손익(분기 44)·추정(Fiscal 자체·Zacks)·Forward 배수·세그먼트 KPI·3Q26·2Q26
+  어닝콜 전문(요지만)
+- TradingView NASDAQ:FTAI 일봉 760·월봉 120(2026-11-11)
+- Easyconomics earnings_summary_dates·company_profile(yfinance)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
