@@ -1,0 +1,111 @@
+auto: true
+id: us-uti
+name: Universal Technical Institute
+ticker: UTI
+unit: B$
+unit_usd: 1000000000.0
+industry: education
+region_mix:
+  US: 1.0
+tax: 0.27
+horizon: 10
+as_of: '2026-11-10'
+market:
+  date: '2026-11-10'
+  price: 21.95
+  shares: 0.055955
+  net_debt: -0.00986
+  source: 가격 = 2026-11-09 종가(TradingView NYSE:UTI). 주식 수 = 3Q FY26 10-Q 재무상태표 6/30
+    유통 55,095천 주. 현금 = 현금 $130.06M + 단기 투자 $40.06M(6/30, 10-Q). 장기 투자 $45.4M은 만기 1년
+    넘는 채권이라 넣지 않았다. 차입 = 금융 차입 $160.3M(리볼버 $95.0M + Avondale 대출 $26.8M + Lisle 대출
+    $35.4M + 금융 리스 $3.1M, 10-Q 유동성 절). 캠퍼스 운용 리스 부채 $199.4M(유동 14.8 + 비유동 184.6)은
+    임차료가 조정 EBITDA 안의 비용(occupancy)이라 차입에 넣지 않았다 — 넣으면 EV가 약 $0.2B 커진다
+rev0: 0.8965
+ic0: 0.3345
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0842
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.051
+      target: 0.103
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.061
+      - 0.103
+    s2c: 1.5
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.1154
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.051
+      target: 0.129
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.061
+      - 0.103
+    s2c: 1.725
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0485
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.051
+      target: 0.077
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.061
+      - 0.103
+    s2c: 1.275
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.893, 0.9] (3Q FY26 실적 8-K EX-99.1(2026-08-05): 매출 $905~915M
+    → $893~900M, 순이익 $40~45M → $32~36M, 희석 EPS $0.71~0.80 → $0.57~0.64, 조정 EBITDA
+    $114~119M → $100~103M(기준 조정 EBITDA $135M 초과 − 성장 투자 약 $35M), 조정 FCF $20~25M →
+    −$20~0M, 신규 등록 31,500~33,000 → 31,900~32,300명, CAPEX 약 $110M. 투자자 발표 자료(EX-99.2)의
+    FY2029 목표 유지)'
+  growth: 컨센서스 1년차 8.4%, 2년차 9.6%
+  margin: 1~2년차 컨센서스 6.1%, 10.3% 고정 → 목표 10%(3년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.642 → 덮어쓰기 1.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 4.9%~11.5%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '재투자 효율 s2c 2.64 → 1.5: 투하자본에서 캠퍼스 운용 리스($199.4M)를 뺐기 때문에 매출 ÷ 투하자본이
+    커 보인다. 리스를 넣으면 1.65이고, 성장은 신규 캠퍼스 CAPEX(연 약 $80M 성장분, 3Q 콜·투자자 자료 FY29 성장 CAPEX
+    약 $70M)로 사야 한다 — 매출 $1 증가에 약 $0.67 재투자(추정)'
+  shares: 완전 희석 = 기본 0.055095(2026-06-30) + 옵션·RSU·워런트·전환 0.0009 — 3Q FY26 가중 희석 55,935천
+    − 기본 55,075천 = 약 0.86M주(RSU·PSU·옵션, 10
+notes:
+- 자동 생성(build_drivers) 2026-11-10 — 데이터 묶음 2026-11-10
+- '어닝콜 위험: 4Q 고교 등록 부족분이 FY27 재학생 이월에 남는다(CFO ''약간의 이월 영향'')'
+- '어닝콜 위험: 숙련 기술 믹스가 늘수록 학생당 수업료가 낮아진다'
+- '어닝콜 위험: FY26 조정 FCF −$20~0M, 리볼버 $95M 차입 — 매년 캠퍼스 2~5곳 개교 계획이 현금을 쓴다'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1261654/000126165426000015/exhibit991-q32026earningsp.htm
+- https://www.sec.gov/Archives/edgar/data/1261654/000126165426000015/q3fy2026investorpresenta.htm
+- https://www.sec.gov/Archives/edgar/data/1261654/000126165426000018/uti-20260630.htm
+- https://www.sec.gov/Archives/edgar/data/1261654/000126165425000025/uti-20250930.htm
+- https://www.sec.gov/Archives/edgar/data/1261654/000119312526354799/d404364d8k.htm
+- Fiscal.ai company_estimates·analyst_estimates·analyst_ratings·stock_prices·financials·institutional_holders·insider_transactions·ir_events_transcript
+  q3-2026·q2-2026(2026-11-10 조회) — 콜 요지만
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- Easyconomics company_profile(yfinance)·earnings_summary_dates(2026-11-10)
+- TradingView NYSE:UTI 일봉(2026-11-10)
+- Quantral get_company_score·recaps(2026-11-10, 언급 없음)
