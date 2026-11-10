@@ -1,0 +1,72 @@
+date,provider,gpu,config,term,usd_per_gpu_hr,node_usd_hr,gpus_per_node,note,source_url,retrieved_at
+2026-11-10,Nebius,GB300,NVIDIA GB300 NVL72,"선점형(from, 최저 시작가)",,,,비교 불가(문의),https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,GB300,NVIDIA GB300 NVL72,온디맨드,,,,비교 불가(문의),https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,B300,NVIDIA HGX B300,"선점형(from, 최저 시작가)",0.99,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,B300,NVIDIA HGX B300,온디맨드,9.5,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,GB200,NVIDIA GB200 NVL72,"선점형(from, 최저 시작가)",,,,비교 불가(문의),https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,GB200,NVIDIA GB200 NVL72,온디맨드,,,,비교 불가(문의),https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,B200,NVIDIA HGX B200,"선점형(from, 최저 시작가)",0.99,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,B200,NVIDIA HGX B200,온디맨드,8.5,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,H200,NVIDIA HGX H200,"선점형(from, 최저 시작가)",0.79,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,H200,NVIDIA HGX H200,온디맨드,5.4,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,H100,NVIDIA HGX H100,"선점형(from, 최저 시작가)",0.79,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,H100,NVIDIA HGX H100,온디맨드,4.5,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,RTX PRO 6000,NVIDIA RTX PRO 6000,"선점형(from, 최저 시작가)",0.79,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,RTX PRO 6000,NVIDIA RTX PRO 6000,온디맨드,1.8,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,L40S,NVIDIA L40S with Intel CPU,"선점형(from, 최저 시작가)",0.74,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,L40S,NVIDIA L40S with Intel CPU,온디맨드,1.55,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,L40S,NVIDIA L40S with AMD CPU,"선점형(from, 최저 시작가)",0.9,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,Nebius,L40S,NVIDIA L40S with AMD CPU,온디맨드,1.82,,,,https://nebius.com/prices,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,GB300,NVIDIA GB300 NVL72,온디맨드,,,4,비교 불가(문의),https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,GB200,NVIDIA GB200 NVL72,온디맨드,10.5,42.0,4,인스턴스 가격÷GPU 수(NVL72 랙의 인스턴스 단위),https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,B300,NVIDIA HGX B300,온디맨드,,,8,비교 불가(문의),https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,B300,NVIDIA HGX B300,스팟,4.48,35.84,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,B200,NVIDIA HGX B200,온디맨드,8.6,68.8,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,B200,NVIDIA HGX B200,스팟,4.26,34.11,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,GH200,NVIDIA GH200,온디맨드,6.5,6.5,1,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,H100,NVIDIA HGX H100,온디맨드,6.16,49.24,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,H100,NVIDIA HGX H100,스팟,2.46,19.71,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,NVIDIA L40,NVIDIA L40,온디맨드,1.25,10.0,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,NVIDIA L40,NVIDIA L40,스팟,0.78,6.27,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,H200,NVIDIA HGX H200,온디맨드,6.3,50.44,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,H200,NVIDIA HGX H200,스팟,2.62,20.93,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,L40S,NVIDIA L40S,온디맨드,2.25,18.0,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,L40S,NVIDIA L40S,스팟,0.98,7.88,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,A100,NVIDIA A100,온디맨드,2.7,21.6,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,CoreWeave,A100,NVIDIA A100,스팟,1.21,9.65,8,인스턴스 가격÷GPU 수,https://www.coreweave.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA HGX B200,약정 2 weeks – 1 year · 16 GPU,9.86,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA HGX B200,약정 2 weeks – 1 year · 64 GPU,9.36,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA HGX B200,약정 2 weeks – 1 year · 256+ GPU,8.87,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA HGX B200,약정 1 year+ · 16+ GPU,,,,비교 불가(문의),https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100,약정 2 weeks – 1 year · 16 GPU,6.16,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100,약정 2 weeks – 1 year · 64 GPU,5.85,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100,약정 2 weeks – 1 year · 256 GPU,5.54,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100,약정 1 year+ · 16+ GPU,,,,비교 불가(문의),https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA HGX B200 8x 180 GB,"온디맨드(시행 November 16, 2026)",7.69,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA HGX H100 8x 80 GB,"온디맨드(시행 November 16, 2026)",4.59,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A100,NVIDIA HGX A100 8x 80 GB,"온디맨드(시행 November 16, 2026)",3.19,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A100,NVIDIA HGX A100 8x 40 GB,"온디맨드(시행 November 16, 2026)",1.99,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,V100,NVIDIA Tesla V100 8x 16 GB,"온디맨드(시행 November 16, 2026)",0.79,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA B200 SXM6 4x 180 GB,"온디맨드(시행 November 16, 2026)",7.79,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100 SXM 4x 80 GB,"온디맨드(시행 November 16, 2026)",4.69,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A100,NVIDIA A100 PCIe 4x 40 GB,"온디맨드(시행 November 16, 2026)",1.99,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A6000,NVIDIA A6000 4x 48 GB,"온디맨드(시행 November 16, 2026)",1.09,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA B200 SXM6 2x 180 GB,"온디맨드(시행 November 16, 2026)",7.89,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100 SXM 2x 80 GB,"온디맨드(시행 November 16, 2026)",4.79,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A100,NVIDIA A100 PCIe 2x 40 GB,"온디맨드(시행 November 16, 2026)",1.99,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A6000,NVIDIA A6000 2x 48 GB,"온디맨드(시행 November 16, 2026)",1.09,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,B200,NVIDIA B200 SXM6 1x 180 GB,"온디맨드(시행 November 16, 2026)",7.99,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,GH200,NVIDIA GH200 1x 96 GB,"온디맨드(시행 November 16, 2026)",2.59,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100 SXM 1x 80 GB,"온디맨드(시행 November 16, 2026)",4.89,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,H100,NVIDIA H100 PCIe 1x 80 GB,"온디맨드(시행 November 16, 2026)",3.79,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A100,NVIDIA A100 SXM 1x 40 GB,"온디맨드(시행 November 16, 2026)",1.99,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A100,NVIDIA A100 PCIe 1x 40 GB,"온디맨드(시행 November 16, 2026)",1.99,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A10,NVIDIA A10 1x 24 GB,"온디맨드(시행 November 16, 2026)",1.29,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,A6000,NVIDIA A6000 1x 48 GB,"온디맨드(시행 November 16, 2026)",1.09,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Lambda,NVIDIA Quadro RTX 6000 1x 24 GB,NVIDIA Quadro RTX 6000 1x 24 GB,"온디맨드(시행 November 16, 2026)",0.69,,,,https://lambda.com/pricing,2026-11-10T21:10:07+09:00
+2026-11-10,Silicon Data 지수,H200,H200 지수,시장 지수(인용),3.48,,,공개 페이지 헤드라인 값 인용 — 데이터셋·API는 유료,https://www.silicondata.com/products/silicon-index/h100,2026-11-10T21:10:07+09:00
+2026-11-10,Silicon Data 지수,A100,A100 지수 SDA100RT,시장 지수(인용),1.59,,,공개 페이지 헤드라인 값 인용 — 데이터셋·API는 유료,https://www.silicondata.com/products/silicon-index/h100,2026-11-10T21:10:07+09:00
+2026-11-10,Silicon Data 지수,B200,B200 지수 SDB200RT,시장 지수(인용),6.84,,,공개 페이지 헤드라인 값 인용 — 데이터셋·API는 유료,https://www.silicondata.com/products/silicon-index/h100,2026-11-10T21:10:07+09:00
+2026-11-10,Silicon Data 지수,B300,B300 지수,시장 지수(인용),7.68,,,공개 페이지 헤드라인 값 인용 — 데이터셋·API는 유료,https://www.silicondata.com/products/silicon-index/h100,2026-11-10T21:10:07+09:00
+2026-11-10,Silicon Data 지수,MI300X,MI300X 지수,시장 지수(인용),2.77,,,공개 페이지 헤드라인 값 인용 — 데이터셋·API는 유료,https://www.silicondata.com/products/silicon-index/h100,2026-11-10T21:10:07+09:00
+2026-11-10,Silicon Data 지수,H100,H100 지수 SDH100RT,시장 지수(인용),3.01,,,공개 페이지 헤드라인 값 인용 — 데이터셋·API는 유료,https://www.silicondata.com/products/silicon-index/b200,2026-11-10T21:10:07+09:00
