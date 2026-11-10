@@ -19,3 +19,4 @@ channels:
   - {handle: Badonions}
   - {handle: darthacking}   # DART 공시 대체(2026-11-08 마스터 지시 "DART 보는 건 텔레그램 채널로 대체")
   - {handle: bumgore}
+  - {handle: js_Enews}   # "[DS] 에너지/인프라 뉴스" — 2026-11-10 마스터 지시, t.me/s 공개 미리보기 200·당일 글 확인
