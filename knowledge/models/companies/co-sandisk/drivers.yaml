@@ -1,0 +1,87 @@
+id: co-sandisk
+name: SanDisk
+ticker: SNDK
+unit: B$
+unit_usd: 1000000000
+industry: semiconductor
+region_mix:
+  US: 0.4
+  JP: 0.3
+  TW: 0.3
+tax: 0.15
+horizon: 10
+as_of: '2026-11-10'
+market:
+  date: '2026-11-09'
+  price: 886.51
+  shares: 0.1509594
+  net_debt: -1.905
+  source: 가격 = 2026-11-09 종가 $886.51(TradingView 일봉, 8:1 분할 전) · 완전 희석 주식 150.96M = 기본 142,289,365(10-Q 표지 2026-10-26) + 잠재 8.7M(2Q 가이던스 희석 151M 기준) · 순차입 = 리스 등 $0.201B − 현금·단기투자 $5.206B + 고객 선수금(계약 부채 $1.5B + NBM 보증금 $1.6B) $3.1B = −$1.905B(10-Q 2026-10-02). Nanya 지분 $2.3B는 넣지 않았다
+rev0: 50.9
+ic0: 16.229   # 자기자본 18.134 + 리스 0.201 − 현금 5.206 + 고객 선수금 3.1 (2026-10-02)
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.1
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.8
+      target: 0.45
+      year_target: 3
+      lr: 0.22
+      lam: 0.35
+    s2c: 1.8
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.22
+      end: 0.035
+      decay: 0.4
+    margin:
+      m0: 0.8
+      target: 0.65
+      year_target: 3
+      lr: 0.28
+      lam: 0.25
+    s2c: 2.0
+  bear:
+    prob: 0.35
+    growth:
+      start: -0.3
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.8
+      target: 0.2
+      year_target: 2
+      lr: 0.15
+      lam: 0.4
+    s2c: 1.5
+mc:
+  sigma_growth: 0.08
+  sigma_margin: 0.05
+  sigma_s2c: 0.25
+  sigma_wacc: 0.005
+provenance:
+  rev0: 'FY2027(2027-06) 매출 = Fiscal.ai 자체 추정(Agentic Consensus) $50.9B(범위 $48.0~54.5B). 1Q FY27 매출 $11.03B(전 분기 대비 +23%, FactSet 컨센서스
+    $10.72B 상회 — 보도자료·MarketScreener 10/29), FY2026 실적 $20.25B'
+  growth: 'Fiscal.ai 추정 FY2028 $62.0B(+22%, 범위 $46~78B)·FY2029 $66.0B(+6.5%, 범위 $40~95B). 기본 1년차는 +22%를 그대로 쓰지 않고 10%로 낮췄다 —
+    NAND 가격 상승기 고점 매출을 기준점으로 삼으면 성장 가정이 이중으로 낙관된다(사이클 함정, valuation-card 함정 1)'
+  margin: 'GAAP EBIT 이익률 FY27 추정 80%($40.7B), FY26 실적 61%($12.39B/20.25), FY22 12%, FY23~25 적자(Fiscal.ai). 이 80%는 가격 사이클 정점 값이라 기본은 3년에
+    걸쳐 45%로, 장기 22%(과거 호황·불황 평균 근처)로 페이드(근거 약함). 약세 = 2년 안에 20%'
+  s2c: 'LTM 매출 ÷ 투하자본 = 29.0 ÷ 16.2 = 1.8(고객 선수금 $3.1B를 투하자본에 더함, 2026-11-10 갱신) — 기본 1.8·강세 2.0·약세 1.5'
+  range: '약세 −30%는 FY28 최저 $46B(−10%)보다 깊다 — NAND 과거 하강기(FY23 매출 −38%) 반영. 강세 22% = Fiscal.ai 중간값'
+  probs: '한 달 −48%(1년 +294%)로 가격이 사이클 정점을 할인 중, 커뮤니티 논조가 하향·상향으로 갈림(SA 11/02 ‘Things Are Getting Weird’ 하향 vs 11/04·11/05 상향
+    두 건) → 약세 0.35·강세 0.20'
+notes:
+- 신규 작성 2026-11-09(대기열 '작성', 알파 6.0 진입·1Q FY27 실적 2026-10-29). 컨센서스 미입력(manual_consensus.csv에 행 없음)
+- '메모리 업종은 정상화 이익·P/B 밴드로 교차 확인해야 한다(valuation-card 함정). 이 DCF는 고점 이익률을 페이드시키는 방식이며, 페이드 속도(lam)와 장기 이익률(lr)이 결과를 대부분 정한다'
+- '8:1 주식 분할 — 기준일 11/9, 효력 11/19, 분할 반영 거래 11/20(EX-99.1). 11/20 이후 price·shares를 함께 8배로 바꿀 것. 지금 값은 모두 분할 전'
+- 계속가치 RONIC = WACC(기본)
+- 'Zacks 목표가 평균 $2,044.8(24명, $1,300~3,000)·의견 평균 1.4(Strong Buy 20·Buy 1·Hold 4) — Data provided by Zacks Investment Research, Inc., www.zacksdata.com'
+evidence:
+- SanDisk 1Q FY27 실적 보도자료(Moomoo 게재본) https://www.moomoo.com/hans/news/post/1002878936/press-release-sandisk-reports-fiscal-first-quarter-2027-financial-results
+- 1Q FY27 실적 대비 FactSet 컨센서스 https://www.marketscreener.com/news/earnings-flash-sndk-sandisk-corporation-reports-q1-revenue-11-03b-vs-factset-est-of-10-72b-ce785fdadc89ff23
+- Fiscal.ai 회사 페이지 https://fiscal.ai/company/NasdaqGS-SNDK
