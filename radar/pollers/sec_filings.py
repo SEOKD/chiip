@@ -13,10 +13,10 @@ from . import common, gate
 SOURCE_ID = "src-sec-filings"
 SUB = "https://data.sec.gov/submissions/CIK{cik:0>10}.json"
 LOOKUP = "https://efts.sec.gov/LATEST/search-index"
-FORMS = {"8-K", "8-K/A", "10-Q", "10-K", "6-K", "6-K/A", "20-F", "S-1", "DEF 14A", "SC 13D", "SCHEDULE 13D", "425"}   # SCHEDULE 13D = EDGAR 새 서식명(2026-11-04 점검: SK하이닉스 13D 누락)
+FORMS = {"8-K", "8-K/A", "10-Q", "10-K", "6-K", "6-K/A", "20-F", "S-1", "S-1/A", "F-1", "F-1/A", "424B4", "DEF 14A", "SC 13D", "SCHEDULE 13D", "425"}   # SCHEDULE 13D = EDGAR 새 서식명(2026-11-04 점검: SK하이닉스 13D 누락)
 ITEM_LABEL = {"2.02": "실적", "1.01": "중요 계약", "1.02": "계약 해지", "2.01": "인수·처분", "2.05": "구조조정",
               "2.06": "손상", "5.02": "임원 변동", "7.01": "IR 자료", "8.01": "기타 중요 사항", "3.02": "증권 발행"}
-DOC_TYPE = {"8-K": "공시", "10-Q": "실적", "10-K": "실적", "6-K": "공시", "20-F": "실적"}
+DOC_TYPE = {"S-1": "공시", "F-1": "공시", "424B4": "공시", "8-K": "공시", "10-Q": "실적", "10-K": "실적", "6-K": "공시", "20-F": "실적"}
 
 
 def _ua():
@@ -63,17 +63,20 @@ def poll(env=None, days=3):
     uni += (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []   # 어닝 감시 확장 종목도(2026-10-28 GEV 누락 수정)
     have = {str(u.get("code", "")).upper() for u in uni}
     uni += [u for u in common.edge_watch_entries() if u["code"].upper() not in have]   # 조용한 매집형 상승 watch·마스터 지정 관측(2026-10-29 Nova 등)
+    always = (common.load_yaml("config/sec_always.yaml") or {}).get("always") or []   # 상시 감시 — 포커스 관문 예외(2026-11-10 앤트로픽 S-1/A 누락)
+    have = {str(u.get("code", "")).upper() for u in uni}
+    uni = [dict(u, always=True) for u in always] + [u for u in uni if str(u.get("code", "")).upper() not in {str(a.get("code", "")).upper() for a in always}]
     watch = gate.watch_ids()
     state = common.load_state("sec_filings", {})
     since = (common.now_kst() - timedelta(days=days)).date().isoformat()
     items = []
     for u in uni:
-        if focus is not None and u["id"] not in focus and u["id"] not in watch:
+        if focus is not None and u["id"] not in focus and u["id"] not in watch and not u.get("always"):
             continue
         tk = ticker_of(u)
         if not tk:
             continue
-        cik = cik_for(tk, state, (u.get("aliases") or [u.get("name")])[0])
+        cik = u.get("cik") or cik_for(tk, state, (u.get("aliases") or [u.get("name")])[0])
         time.sleep(0.15)
         if not cik:
             continue
@@ -97,7 +100,7 @@ def poll(env=None, days=3):
                 r.get("acceptanceDateTime", [""] * len(r["form"]))[i] or r["filingDate"][i],
                 "실적" if "실적" in labels else DOC_TYPE.get(form.split("/")[0], "공시"), "en",
                 f"{u['name']} {form} {items_s} {r.get('primaryDocDescription', [''] * len(r['form']))[i]}",
-                extra={"entities_matched": [u["id"]], "report_nm": form, "sec_items": items_s, "tier": "글로벌"}))
+                extra={"entities_matched": [u["id"]], "report_nm": form, "sec_items": items_s, "tier": "글로벌", "sec_always": bool(u.get("always"))}))
     common.save_state("sec_filings", state)
     return items
 

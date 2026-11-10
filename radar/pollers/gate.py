@@ -87,6 +87,8 @@ def news_allowed(item):
 
 
 def keep(item, focus):
+    if item.get("sec_always"):   # SEC 상시 감시(config/sec_always.yaml) — 포커스와 무관(2026-11-10 앤트로픽 S-1/A)
+        return True
     if item.get("source_id") in ("src-short-sites", "src-jp-ir-qa", "src-jp-ir-docs", "src-kr-ir-docs", "src-kr-ir-qa", "src-tw-disclosure",
                                  "src-tw-hk-ir-docs", "src-tw-hk-ir-qa", "src-fiscal-ir-docs",
                                  "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-yt-ir"):   # 대만 월매출 급증·중국·홍콩 공시는 수집기가 이미 좁혔다(엔티티 없는 지도 밖 후보, 2026-11-09)   # 대만·홍콩 IR·Fiscal IR 문서(2026-11-08 AT&S 점검)   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)

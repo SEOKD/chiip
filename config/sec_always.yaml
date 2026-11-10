@@ -1,0 +1,5 @@
+# SEC 공시 상시 감시(radar/pollers/sec_filings.py) — 포커스 점수·감시 목록과 무관하게 매 회차 본다(2026-11-10 마스터 지시 "앤트로픽이 방금 올린 SEC filing도 가져와라. 실시간으로").
+# 점검: 앤트로픽 S-1/A(11/10 20:29 KST)를 놓친 이유 두 가지 — ① 수집 서식에 S-1/A·F-1·424B4가 없었다 ② us-ant는 TradingView 생성 테마에만 있어 포커스 관문에 걸렸다.
+# IPO 준비 중·상장 직후 AI 랩·인프라 회사를 여기에 둔다. cik는 EDGAR 회사 번호(모르면 비워 두면 이름으로 찾는다).
+always:
+  - {id: us-ant, name: "Anthropic, PBC", code: ANT.US, cik: "2130357", why: "IPO 진행(S-1 10/26, S-1/A 11/2·11/10 가격 범위 $70~78)"}
