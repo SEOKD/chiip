@@ -64,7 +64,7 @@ companies:
   co-mhi: {site: "https://www.mhi.com", ir_pages: ["https://www.mhi.com/jp/finance/"], doc_pages: ["https://www.mhi.com/jp/finance/library/result"]}  # 경로 추정 — 2026-10-29 첫 탐색에서 IR 페이지 0, 주간 점검에서 확인
   jp-fujielectric: {site: "https://www.fujielectric.co.jp"}
   jp-sakura: {site: "https://www.sakura.ad.jp", ir_pages: ["https://www.sakura.ad.jp/corporate/ir/"]}
-  jp-sbg: {site: "https://group.softbank", ir_pages: ["https://group.softbank/ir/financials/annual_reports"]}
+  jp-sbg: {site: "https://group.softbank", ir_pages: ["https://group.softbank/ir/presentations"], doc_pages: ["https://group.softbank/ir/presentations"]}   # 결산 설명회 書き起こし(質疑応答) PDF가 여기 붙는다 — 자동 탐색이 2015~17년 아카이브를 골라 고정(2026-11-10 마스터 지시)
   jp-uniontool: {site: "https://www.uniontool.co.jp"}
   jp-micronics: {site: "https://www.mjc.co.jp"}
   # 방위(2026-10-29) — NEC(403)·富士通(429)은 자동 접속 거절, 石川製作所·豊和工業은 도메인 미확인이라 넣지 않음(적시공시 미러로만)
