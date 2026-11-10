@@ -41,7 +41,8 @@ DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기�
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
 CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운용사 원문 사이트·대상 회사 사이트(2026-11-09 시의성 점검 — 둘 다 분류표에 없어 Pulse가 집지 않았다)
            ("포지션", ("src-cftc",)),
-           ("채용 공고", ("src-semianalysis-jobs",)),   # SemiAnalysis Memory Analyst(한국) 공고(2026-11-11 마스터 지시, radar/semianalysis_jobs.py)
+           ("채용 공고", ("src-semianalysis-jobs",)),
+           ("실적 일정", ("src-alphavantage",)),   # 감시 종목 실적 일정 신규·변경(Alpha Vantage, 2026-11-11 마스터 지시)   # SemiAnalysis Memory Analyst(한국) 공고(2026-11-11 마스터 지시, radar/semianalysis_jobs.py)
            ("주가 급변", ("src-price-move",)),   # 감시 종목 ±7% — 원인 사건 특정(2026-11-10 GEV·SBG 급락 원인 누락, radar/move_watch.py)   # CFTC COT 주간 극단(2026-11-09) — 배경 신호
            ("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa", "src-ir-audio")),   # src-ir-audio = 설명회 음성 자체 전사(D등급, 2026-11-09)   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
            ("IR 자료", ("src-jp-ir-docs", "src-kr-ir-docs", "src-tw-hk-ir-docs", "src-fiscal-ir-docs", "src-yt-ir")),   # src-yt-ir = YouTube 공식 IR 채널 결산 영상 게시(2026-11-09)   # src-fiscal-ir-docs = 유럽 등 IR 수집기 없는 종목의 PT·보도자료(Fiscal.ai IR 이벤트, 2026-11-08 AT&S)   # 일본 決算説明会資料(PT)·決算短信·補足 — 실적 보도 뒤 늦게 올라온다(2026-10-30 마스터 지시)
@@ -51,7 +52,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("보도자료", ("src-prn", "src-bw", "src-newsroom-", "src-assoc-", "src-gpu-rental", "src-trendforce-pr")),   # GPU 렌털료 변화·TrendForce 가격 보도자료(2026-11-10)
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"포지션": 3, "채용 공고": 7, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"포지션": 3, "채용 공고": 7, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(

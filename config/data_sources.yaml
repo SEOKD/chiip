@@ -3,13 +3,16 @@
 # Zacks는 별도 연결이 아니라 Fiscal.ai MCP의 company_analyst_estimates·company_analyst_ratings다. Easyconomics는 별도 MCP(mcp__easyconomics__*).
 # 2순위는 Fiscal.ai 칸이 비었을 때만 쓴다. Fiscal.ai 값이 있으면 2순위를 부르지 않는다.
 tier1: fiscal
-tier2: [easyconomics, zacks, yfinance]
+tier2: [easyconomics, zacks, yfinance, alphavantage]   # alphavantage = 2026-11-11 마스터 지시, radar/alphavantage.py
 
 # yfinance 직접 호출 금지: finance.yahoo.com robots.txt가 ClaudeBot·anthropic-ai를 전면 금지하고 query1 API는 모든 봇을 금지한다. 라이브러리는 브라우저 위장(curl_cffi)으로 그 차단을 넘는다.
 # 그래서 Easyconomics MCP가 내주는 yfinance 출처 자료를 채널로 쓴다. 호출 수는 Easyconomics에 묶인다.
 via: {yfinance: easyconomics}
 
 limits:
+  alphavantage:
+    daily_cap: 24      # 무료 25회/일(alphavantage.co/support) — radar/alphavantage.py BUDGET과 같게
+    cooldown_h: 24
   easyconomics:
     daily_cap: 100     # 실제 한도 미확인 — 보수적으로 잡은 값, 한도를 알게 되면 고친다
     cooldown_h: 24     # 호출 제한 응답을 받으면 이 시간 동안 Zacks로만
@@ -55,3 +58,11 @@ items:
     name: 시장 포지셔닝·유동성·매크로 합성 지표
     tier2: [easyconomics]
     easyconomics: market_positioning·liquidity_monitor·macro_composite
+  us_earnings_calendar:
+    name: 미국 감시 종목 실적 일정·분기 EPS 추정(발표 전)
+    tier2: [alphavantage]
+    alphavantage: radar/alphavantage.py ①(매일, knowledge/models/alphavantage/earnings_calendar.csv) — 회사 IR 일정으로 대조
+  transcript_backup:
+    name: Fiscal.ai에 없는 미국 어닝콜 전사
+    tier2: [alphavantage]
+    alphavantage: py radar/alphavantage.py --transcript <티커> <YYYYQn> — 요약만, 원문 복제 금지

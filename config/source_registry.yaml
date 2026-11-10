@@ -1093,6 +1093,22 @@
   terms_note: "2026-11-09 마스터 지시(대만·중국 발굴 보완). 거래소 지정 공시 매체의 공개 조회, robots.txt 없음(404). 종목별 조회·1초 간격, 원문은 링크만"
   reliability_default: 1차(회사 공시)
   enabled: true
+- id: src-alphavantage
+  name: Alpha Vantage — 감시 종목 실적 일정(EARNINGS_CALENDAR), 필요 시 어닝콜 전사·추정·개요·내부자 거래
+  category: I-데이터
+  module: alphavantage
+  entry: run
+  method: api
+  endpoint_doc: "https://www.alphavantage.co/documentation/ · radar/alphavantage.py 맨 위"
+  auth: ALPHA_VANTAGE_API_KEY
+  scope: [미국]
+  interval_min: 1440
+  run_on: local
+  language: en
+  doc_type: 일정
+  terms_note: "2026-11-11 마스터 지시. 공식 API·무료 키(하루 25회), 프리미엄 함수 미사용. 전사 원문은 radar/state 캐시(git 제외)만, 산출물에는 요약. run_hourly가 돌린다"
+  reliability_default: 2차(데이터 제공사)
+  enabled: false
 - id: src-semianalysis-jobs
   name: SemiAnalysis 공식 채용 페이지 — Memory Analyst(South Korea) 새 공고
   category: L6-채용
