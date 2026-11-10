@@ -20,6 +20,11 @@
   4. 내부자 출처: 장부의 `insider_like: true` 단서는 CLAUDE.md 컴플라이언스대로 invest·public·Portfolio·텐배거 리포트에 쓰지 않는다. 기사 소재와 비투자 분석에만 쓴다. `chiip_guard.py`가 outputs 저장을 막는다.
   5. 추가 조사: `run_hourly`가 6시간마다 열린 단서의 검색어를 돌려 후보를 쌓고, 펄스 회차가 판정한다(`docs/tasks/chiip-pulse.md` 1-1 h). 지지·상충만 텔레그램으로 알린다. 공개 확인되면 `source-ingest` 뒤 `--confirm <FI> <S-id>`로 선행일을 기록하고, 성적표는 `scripts/score_field_intel.py`가 낸다. 재인용은 독립 확인이 아니다.
   6. 새 단서: Portfolio 그날 첫 회차가 색인을 갱신할 때 이 페이지(`leads.yaml` page)도 `notion-fetch`로 읽어 저장하고 `--sync <파일>`을 돌린다. '새 단서'가 나오면 `notion_title`·`title`·`entities`·`names`·`insider_like`·`source_class`·`reliability`·`topics`·`check`·`watch_for`·`queries`·`must`를 쓴 yaml을 `--add`로 올린다. 등록 전에 취재원 표현이 없는지 본다. 신뢰도는 제안값이고 마스터가 확정한다.
+- **Exclusive Source 1급 기밀·해설 피드**(2026-11-11 마스터 지시 "Exclusive Source는 웹 검색과 대조해 크로스체크하지 말고 1급 기밀로서 정보 유출이 없게 하라. 그리고 Exclusive Source에 올라온 내용 자체를 해설하고 풀이해 Feed로 전하도록 해라") — 아래 5번 추가 조사와 2번의 공개 근거 대조를 대신한다.
+  1. 웹 대조 금지: 단서의 제목·키워드·수치로 웹 검색·뉴스 검색·MCP 검색을 하지 않는다. 검색어 자체가 바깥으로 나가는 유출이다. `radar/exclusive_leads.py`의 `WEB_CHECK = False`로 6시간 검색과 Pulse 판정 관문이 멈췄다.
+  2. 유출 금지: 단서 내용은 개인 텔레그램 Chiip Exclusive 피드와 이 PC의 로컬 장부에만 둔다. 리포트·Artifact·노션 쓰기·GitHub·커밋 대상 파일·서브에이전트 프롬프트·외부 서비스에 넣지 않는다. 분석 글에는 쓰지 않는다.
+  3. 해설 피드: Exclusive Source에 새 단서가 올라오거나 본문이 바뀌면 `--sync` 뒤 `py radar/exclusive_leads.py --unexplained`로 고르고, 그 페이지를 `notion-fetch`로 읽어 내용 자체를 풀이한다 — 무슨 말인가(용어 한 줄 풀이), 기술·사업 맥락(이미 알고 있는 치입 지식·로컬 장부 안에서만), 맞다면 무엇이 바뀌나(영향 받는 회사·실적 동인), 이 내용 안의 빈칸과 다음에 볼 사건. 머리는 `[Chiip Exclusive]`, 문단 사이 빈 줄, 끝줄 '(독점 단서, 공개 미확인)'. 보낸 뒤 `--explained <FI>`.
+  4. 그대로 지키는 것: 취재원 표현·직접 인용·개인 인사 세부를 쓰지 않는다. 확정 사실로 쓰지 않는다. 사라·팔아라·금액 지시를 쓰지 않는다.
 - **링크드인**(2026-11-01 마스터 지시 "기사 소재를 선정할 때 Linkedin 피드도 참조하라"): **자동 수집하지 않는다.** robots.txt가 전체 금지(`Disallow: /`)이고 자동 접근을 명시적으로 금지하며, 피드는 로그인 뒤에 있고, 일반 직원 개인 글이라 CLAUDE.md 제외 원천·개인 정보 규칙에 걸린다. 마스터 계정으로 브라우저를 자동 조작하지도 않는다.
   - 경로: 마스터가 읽다가 쓸 만한 글을 노션 Informations 아래 'LinkedIn' 페이지에 옮기면 Reporter가 `notion-search`로 읽는다.
   - 쓰임: 기사 소재의 단서로만 쓴다. 작성자 이름·소속 팀은 저장소·산출물에 쓰지 않고 회사 단위로 묶는다. 사내 비공개로 보이는 내용은 `insider_like`로 다룬다. 공개 자료로 확인하기 전에는 사실로 쓰지 않는다.

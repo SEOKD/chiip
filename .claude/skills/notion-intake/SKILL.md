@@ -37,7 +37,7 @@ argument-hint: "<insights|informations|stocks> <page_id> [inbox 텍스트 경로
 - **정책·법안**: `policy-flash` 원리 — 단계(발의·위원회·본회의·서명·시행, 규칙안·최종·시행)를 1차 출처(congress.gov·연방관보·감독기관 공지)로 확인, 일정(선거·회기·시행일), 누가 수혜·피해(경로·민감도 상·중·하·주가 위치), 마스터 가설 반대 검증, 다음 확인 사건.
 - **IB 리포트 요지**: 라이선스 자료 취급 — 숫자·문장을 상세 파일·텔레그램에 옮기지 않고 자기 말 요지만, `ib-digest` 원리(의견·추정치 변경·새 데이터·치입 판단과 차이). 치입 claim·포커스·알파 점수와 어긋나는 곳을 짚는다.
 - **채널체크**: 필드 인텔일 수 있다 → 텔레그램에는 '채널체크 반영: 영향 종목 n개, 상세 로컬'만. 대조는 로컬 상세 파일에만, invest성 판정 근거로 쓰지 않는다. 취재원 단서가 보이면 즉시 멈추고 '필드 인텔 등급 확인 필요'만 알린다.
-- **Exclusive Source 페이지**: 채널체크가 아니라 마스터 지정 F1 단서다. `docs/channels/notion.md` 'Exclusive Source'대로 `--sync` → 새 단서 `--add`만 하고 텔레그램 문안을 만들지 않는다.
+- **Exclusive Source 페이지**: 채널체크가 아니라 마스터 지정 F1 단서다. `docs/channels/notion.md` 'Exclusive Source'대로 `--sync` → 새 단서 `--add` → **내용 자체를 해설한 Chiip Exclusive 피드**를 만든다(2026-11-11 마스터 지시, 같은 절 '1급 기밀·해설 피드'). 웹 검색으로 대조하지 않고, 상세 파일·노션 쓰기·리포트에 내용을 남기지 않는다.
 - **CAPEX·산업 데이터**: `indicator-update`·`valuation-bridge` 원리 — 숫자가 어느 종목의 실적 동인(물량·ASP·점유율)에 닿는지, 컨센서스와 차이.
 - 영향 종목은 알파 점수(`knowledge/models/alpha/latest.json`)·포커스 점수와 함께 적고, 5.0 경계를 넘을 만한 종목은 `knowledge/models/alpha/judgments/<오늘>.csv`에 판단을 추가한 뒤 `py scripts/alpha/score.py --finalize`.
 

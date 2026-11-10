@@ -8,6 +8,10 @@
       py radar/exclusive_leads.py --confirm <FI> <S-id>           # 공개 확인(source-ingest 뒤)
       py radar/exclusive_leads.py --sync <notion-fetch 출력 파일>   # 새 단서·본문 변경 찾기
       py radar/exclusive_leads.py --add <yaml 파일>                # 새 단서 등록
+      py radar/exclusive_leads.py --unexplained                  # 해설 피드를 아직 보내지 않은 단서(새 단서·본문 변경)
+      py radar/exclusive_leads.py --explained <FI>               # 해설 피드 발송 표시
+2026-11-11 마스터 지시 "Exclusive Source는 웹 검색과 대조해 크로스체크하지 말고 1급 기밀로서 정보 유출이 없게 하라. 그리고 올라온 내용 자체를 해설하고 풀이해 Feed로 전하라":
+  웹 대조(검색어 질의)를 멈춘다(WEB_CHECK) — 검색어 자체가 단서를 바깥에 내보낸다. 해설은 개인 텔레그램 Chiip Exclusive 피드로만.
 """
 import argparse
 import csv
@@ -35,7 +39,8 @@ WINDOW = "7d"
 PER_LEAD = 5       # 한 단서가 한 번에 내는 후보 상한
 MAX_PENDING = 40
 ROUND = 5          # 펄스 회차당 판정 상한
-HOLD_MIN = 60      # 후보를 넘긴 뒤 관문을 다시 열 때까지 — 판정이 밀려도 5분마다 회차가 열리지 않게
+HOLD_MIN = 60
+WEB_CHECK = False  # 2026-11-11 마스터 지시 — 웹 대조 금지(1급 기밀)      # 후보를 넘긴 뒤 관문을 다시 열 때까지 — 판정이 밀려도 5분마다 회차가 열리지 않게
 HEAD_RE = re.compile(r"^\s*(?:<b>)?\s*■(.+?)(?:</b>)?\s*$")
 DATE_RE = re.compile(r"^\s*\d{2}\.\d{2}\.\d{2}\s*$")
 
@@ -83,7 +88,8 @@ def line(lead, row, page):
     n = counts(lead)
     done = row and row.get("publicly_confirmed_at")
     state = "공개 확인" if done else f"공개 미확인(지지 {n['지지']}·상충 {n['상충']}·맥락 {n['맥락']})"
-    guard = " | 내부자 출처: invest·public·Portfolio·텐배거 리포트 금지" if lead.get("insider_like") else ""
+    guard = " | 1급 기밀: 웹 대조 금지·공개 산출물(리포트·Artifact·노션·GitHub) 금지 — 해설은 Chiip Exclusive 피드만"
+    guard += " | 내부자 출처: invest·public·Portfolio·텐배거 리포트 금지" if lead.get("insider_like") else ""
     return f"독점 단서 {lead['id']} | F1 | {lead['title']} | {state}{guard} | 본문 notion-fetch {page}"
 
 
@@ -125,6 +131,11 @@ def collect(lead, entries, seen, known):
 def run():
     """열린 단서의 검색어를 돈다. 공개 확인이 끝난 단서는 묻지 않는다"""
     data, st = load(), common.load_state(STATE, {})
+    if not WEB_CHECK:
+        st.update({"pending": []})
+        common.save_state(STATE, st)
+        common.record_health("exclusive-leads", True, None)
+        return "exclusive-leads", 0
     done = {r["fi_id"] for r in index()[1] if r.get("publicly_confirmed_at") or r.get("outcome") in ("refuted", "unresolved")}
     seen, pending, failed = set(st.get("seen", [])), st.get("pending", []), 0
     for lead in data["leads"]:
@@ -148,7 +159,7 @@ def status(now):
     """펄스 관문 — 판정할 후보가 있고 보류 시간이 지났으면 연다"""
     st = common.load_state(STATE, {})
     items = st.get("pending") or []
-    return {"due": bool(items) and (st.get("hold") or "") <= common.iso(now), "pending": len(items), "items": items[:ROUND]}
+    return {"due": WEB_CHECK and bool(items) and (st.get("hold") or "") <= common.iso(now), "pending": len(items), "items": items[:ROUND]}
 
 
 def offered(now):
@@ -188,6 +199,19 @@ def confirm(fid, source_id, now):
             lead_days = (now.date() - date.fromisoformat(r["entered_at"][:10])).days
             r.update({"publicly_confirmed_at": common.iso(now), "confirm_source_id": source_id, "lead_days": lead_days, "corroboration": "corroborated", "outcome": "confirmed"})
     write_index(fields, rows)
+
+
+def unexplained(data):
+    """해설 피드를 보내지 않았거나 본문이 바뀐 단서"""
+    return [x for x in data["leads"] if x.get("explained") != (x.get("block") or "-")]
+
+
+def explained(fid, data):
+    for x in data["leads"]:
+        if x["id"] == fid:
+            x["explained"] = x.get("block") or "-"
+            return True
+    return False
 
 
 def norm(s):
@@ -248,8 +272,22 @@ def main(argv):
     ap.add_argument("--confirm", nargs=2, metavar=("FI", "SOURCE"))
     ap.add_argument("--sync")
     ap.add_argument("--add")
+    ap.add_argument("--unexplained", action="store_true")
+    ap.add_argument("--explained")
     a = ap.parse_args(argv)
     now = common.now_kst()
+    if a.unexplained:
+        data = load()
+        for x in unexplained(data):
+            print(f"{x['id']} | {x['title']} | 본문 notion-fetch {data['page']}")
+        return 0
+    if a.explained:
+        data = load()
+        if not explained(a.explained, data):
+            raise SystemExit("없는 단서 id")
+        save(data)
+        print(f"[Exclusive] {a.explained} 해설 발송 표시")
+        return 0
     if a.pending:
         for x in common.load_state(STATE, {}).get("pending", []):
             print(f"{x['fi']} | {x['published_at'][:10]} | {x['publisher']} | {x['title']} | {x['url']}")

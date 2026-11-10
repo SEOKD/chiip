@@ -32,6 +32,17 @@ class TestLines(unittest.TestCase):
     def test_confirmed_line(self):
         self.assertIn("공개 확인", ex.line({**LEAD, "insider_like": False}, {"publicly_confirmed_at": "2026-11-03"}, "p"))
 
+    def test_line_marks_top_secret(self):
+        self.assertIn("웹 대조 금지", ex.line(LEAD, ROW, "p"))
+
+    def test_unexplained_until_marked_and_again_on_edit(self):
+        data = {"leads": [dict(LEAD, block="a")]}
+        self.assertEqual(len(ex.unexplained(data)), 1)
+        ex.explained("FI-0001", data)
+        self.assertEqual(ex.unexplained(data), [])
+        data["leads"][0]["block"] = "b"
+        self.assertEqual(len(ex.unexplained(data)), 1)
+
     def test_insider_ids(self):
         self.assertEqual(ex.insider({"leads": [LEAD, {"id": "FI-0002"}]}), {"FI-0001"})
 
@@ -65,7 +76,9 @@ class TestStatus(unittest.TestCase):
     def test_hold_stops_gate_reopening(self):
         st = {"pending": [{"fi": "FI-0001"}]}
         with mock.patch.object(ex.common, "load_state", lambda *a: st):
-            self.assertTrue(ex.status(NOW)["due"])
+            self.assertFalse(ex.status(NOW)["due"])   # 웹 대조 금지(2026-11-11)
+            with mock.patch.object(ex, "WEB_CHECK", True):
+                self.assertTrue(ex.status(NOW)["due"])
             st["hold"] = ex.common.iso(NOW.replace(hour=10))
             self.assertFalse(ex.status(NOW)["due"])
 
