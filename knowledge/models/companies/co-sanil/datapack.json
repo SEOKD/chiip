@@ -1,0 +1,1964 @@
+{
+ "id": "co-sanil",
+ "name": "산일전기",
+ "ticker": "062040",
+ "as_of": "2026-11-10",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 736491,
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "US": 0.665,
+  "EU": 0.249,
+  "KR": 0.025,
+  "JP": 0.012,
+  "OTHER": 0.049
+ },
+ "region_why": "3Q26 IR — 수출 97.5%, 미국 66.5%, 유럽 24.9%(K-IFRS 별도)",
+ "tax": 0.22,
+ "main_metric": "eps",
+ "main_metric_why": "흑자 제조사이고 증권사 목표가가 P/E 기준이다. 감가상각이 작아 EPS와 EBITDA 차이가 작다",
+ "profile": {
+  "price": 122600,
+  "shares_basic": 0.030582097,
+  "shares_date": "2026-11-10",
+  "cash": 198.589,
+  "debt": 0.552,
+  "source": "가격 = TradingView KRX:062040 11/10 종가 ₩122,600. 주식 수 = 총 발행 30,582,097주(TradingView KRX:062040 total_shares_outstanding, 자본금 ₩15.3B ÷ 액면 ₩500과 일치). TradingView market_cap_basic ₩3,480.2B는 28.39M주 기준(자기주식 차감 추정, 미확인). 현금 = FY2025 말 현금·단기금융 ₩198.6B(TradingView KRX:062040 FY) — 3Q26 현금은 IR 요약 재무상태표에 없어 미확인. 차입 = 3Q26 ₩0.55B(TradingView KRX:062040 fq)"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-11-10",
+  "source": "전환사채·신주인수권·스톡옵션 공시 미확인(사업보고서 원문 미대조). 잠재 주식 0으로 둔다"
+ },
+ "financials": {
+  "rev_ttm": 602.639,
+  "ebit_ttm": 215.1,
+  "invested_capital": 503.363,
+  "capex_ttm": 16.461,
+  "da_ttm": 4.95,
+  "sbc_ttm": 0.0,
+  "s2c": 1.5,
+  "rev_growth_ttm": 0.287,
+  "basis": "K-IFRS 별도(IR)·TradingView",
+  "note": "TTM = 4Q25~3Q26 매출 합 ₩602.639B(TradingView 분기), 영업이익 합 ₩215.1B(IR 52.5+55.7+62.2+44.7). 투하자본 = 3Q26 자본 ₩701.4B + 차입 ₩0.55B − 현금 ₩198.6B(FY2025 말 — 3Q 현금 미공시라 보수적). CAPEX = FY2025 ₩16.5B(TTM 미공시). D&A = EBITDA−영업이익 4분기 합(TradingView)"
+ },
+ "sbc_pct_rev": 0.0,
+ "sbc_why": "주식 보상 공시 미확인 — 0",
+ "peers_basis": "ntm",
+ "peers_source": "TradingView 시세·TTM 재무(11/10). Fwd 1Y EPS = 다음 분기 EPS 추정 × 4(대상·동종 같은 근사, TradingView 추정의 달러 환산값 ÷ 같은 피드의 TTM 환산율 1,364.3). 제룡전기는 추정이 없어 TTM P/E",
+ "peers": [
+  {
+   "ticker": "HD현대일렉트릭",
+   "key": "267260",
+   "rev": 4521.4,
+   "ebit_margin": 0.255,
+   "mcap": 12813.4,
+   "pb": 6.99,
+   "debt": 258.6,
+   "cash": 968.0,
+   "growth": 0.212,
+   "pe_fwd": 13.6,
+   "ntm_ebit_margin": 0.255,
+   "ntm_growth": 0.21
+  },
+  {
+   "ticker": "효성중공업",
+   "key": "298040",
+   "rev": 6528.8,
+   "ebit_margin": 0.131,
+   "mcap": 14423.9,
+   "pb": 6.91,
+   "debt": 851.0,
+   "cash": 496.2,
+   "growth": 0.126,
+   "pe_fwd": 14.2,
+   "ntm_ebit_margin": 0.131,
+   "ntm_growth": 0.13
+  },
+  {
+   "ticker": "LS ELECTRIC",
+   "key": "010120",
+   "rev": 6355.7,
+   "ebit_margin": 0.105,
+   "mcap": 16608.9,
+   "pb": 8.69,
+   "debt": 1392.8,
+   "cash": 827.9,
+   "growth": 0.324,
+   "pe_fwd": 27.7,
+   "ntm_ebit_margin": 0.105,
+   "ntm_growth": 0.32
+  },
+  {
+   "ticker": "일진전기",
+   "key": "103590",
+   "rev": 2207.8,
+   "ebit_margin": 0.091,
+   "mcap": 2007.2,
+   "pb": 3.73,
+   "debt": 91.5,
+   "cash": 138.5,
+   "growth": 0.239,
+   "pe_fwd": 11.8,
+   "ntm_ebit_margin": 0.091,
+   "ntm_growth": 0.24
+  },
+  {
+   "ticker": "제룡전기",
+   "key": "033100",
+   "rev": 183.8,
+   "ebit_margin": 0.227,
+   "mcap": 539.7,
+   "pb": 2.36,
+   "debt": 0.7,
+   "cash": 185.3,
+   "growth": -0.204,
+   "pe_fwd": 10.3,
+   "ntm_ebit_margin": 0.227,
+   "ntm_growth": -0.2
+  }
+ ],
+ "multiples_now": {
+  "pe_fwd": 17.4,
+  "pe_fwd2": 11.98,
+  "pe_fwd3": 9.97,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-11-10",
+  "ntm": {
+   "eps": 7044,
+   "ebit": 286.0,
+   "revenue": 798.0,
+   "rev_ttm": 602.639
+  },
+  "horizons": {
+   "2": {
+    "eps": 10235,
+    "ext": 1
+   },
+   "3": {
+    "eps": 12300,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "tv_next_fq_x4"
+  },
+  "source": "Fwd 1Y EPS = 4Q26 EPS 추정 ₩1,761(TradingView, 달러 표시 ÷ 피드 환산율) × 4 — 동종과 같은 근사. 4Q26에는 선적 이연분(₩78B)이 들어가 ×4가 4Q 일회성을 키울 수 있고, 2027 EPS 추정 ₩8,900을 섞은 다음 4개 분기는 ₩8,436(P/E 14.5배)이다. Fwd 2Y·3Y는 FY2027 EPS ₩8,900(증권사 영업이익 ₩327.7~352B에서 환산, 추정)에 FY2028 +20%(외삽, ext)를 섞은 값"
+ },
+ "history": {},
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "probs_why": "수주는 사상 최대(B/B 1.9배)지만 3Q 이익률 −7.3%p와 원자재·환율 시차가 4Q에도 남는다. 기본 50%, 약세 30%(이익률 30% 정체), 강세 20%(4Q 이연 매출+3공장)",
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "단일 고객(Bloom Energy) 수주 비중과 원가 전가 지연은 할인 요인, 수주잔고 1.9배·미국 데이터센터 직접 고객 확보는 할증 요인으로 상쇄로 본다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 안 잡히는 판단 없음"
+ },
+ "next_event": {
+  "date": "2027-02-05",
+  "tag": "4Q26 잠정실적(예상 — 회사 미발표, 지난해 패턴과 TradingView 다음 실적 3/25 사이)"
+ },
+ "guidance": {
+  "rev_fy0": [
+   660.0,
+   660.0
+  ],
+  "rev_fy0_note": "회사는 매출 가이던스를 내지 않는다 — FY2026 매출 컨센서스 ₩660B(SK증권 인용). 회사 숫자 가이던스는 2026 수주 ₩700B(9개월 ₩701.4B로 달성)뿐",
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "수주 확대에 따른 물량 증가와 생산성 개선으로 수익성 강화(IR, 숫자 없음). 3공장 부지 확보(2026-08-26), 2028년 연 생산능력 최대 ₩1.2T 전망(증권가)",
+  "source": "3Q26 IR 자료(2026-11-10 다이와 홍콩 콘퍼런스) https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+  "next": {
+   "period": "4Q26",
+   "eps_cons": 1761,
+   "unit": "₩",
+   "note": "회사 분기 가이던스 없음. 4Q 매출 컨센서스 ₩192~215B(TradingView ₩192B·증권가 ₩215.2B), 영업이익 ₩71.5B(OPM 33.2%, 리드경제 인용)"
+  }
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 660.0,
+   "FY2027": 893.0
+  },
+  "rev_low": {
+   "FY2027": 882.0
+  },
+  "rev_high": {
+   "FY2027": 935.5
+  },
+  "rev_basis": "gaap",
+  "ebit_margin": {
+   "FY2026": 0.355,
+   "FY2027": 0.37
+  },
+  "margin_basis": "gaap",
+  "eps": {
+   "FY2026": 6394,
+   "FY2027": 8900
+  },
+  "n_analysts": 11,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 199.488
+  },
+  "quarters_act": {
+   "2026Q1": 150.323,
+   "2026Q2": 164.179,
+   "2026Q3": 146.01
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1761
+  },
+  "note": "FY2026 매출 ₩660B = SK증권(11/5). FY2027 매출 ₩882B(SK)·₩893B(한국투자 영업이익 ₩327.7B ÷ OPM 36.7% 역산)·₩935.5B(증권가, 리드경제) — 중앙 ₩893B. FY2026 OPM = 9개월 영업이익 ₩162.6B + 4Q 추정 ₩71.5B. EPS FY2026 ₩6,394 = TradingView(달러 표시 ÷ 피드 환산율 1,364.3), FY2027 ₩8,900 = 영업이익 ₩340B × (1+영업외 3%) × (1−22%) ÷ 30.58M주(추정). 4Q26 매출 = FY2026 − 9개월 실적",
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 1460,
+    "est": 1720,
+    "est_src": "공시 속보 채널 예상치(1,700~1,753억 범위)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-04"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 447,
+    "est": 642,
+    "est_src": "같은 자료(636~676억 범위)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-04"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "순이익",
+    "unit": "억 원",
+    "actual": 418,
+    "est": 507,
+    "est_src": "같은 자료",
+    "basis": "gaap",
+    "earnings_date": "2026-11-04"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "₩",
+    "actual": 1343,
+    "est": 1658,
+    "est_src": "순이익 추정 ÷ 30.58M주(추정)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-04"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 10,
+   "buy": 1,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-10",
+   "target_mean": 263667,
+   "target_high": 300000,
+   "target_low": 240000,
+   "source": "TradingView 의견 11명(Strong Buy 10·Overweight 1). 목표가 = 11/5~11/7 발표 6곳 — NH ₩240,000·신한 ₩242,000·LS ₩250,000·KB ₩270,000·SK ₩280,000·한국투자 ₩300,000(보도·공개 채널 요약)"
+  }
+ },
+ "call": {
+  "date": "2026-11-04",
+  "prev_date": "2026-08-07",
+  "tone": "flat",
+  "tone_delta": 0.0,
+  "guidance_direction": "maintain",
+  "kpis": [
+   "3Q26 매출 ₩146.0B(+10% 전년, −11.1% 순차)",
+   "영업이익 ₩44.7B, OPM 30.6%(−7.3%p 순차)",
+   "신규 수주 ₩278.9B(+119% 전년, 분기 최대)",
+   "수주잔고 ₩689.7B(+66.5% 전년)",
+   "Book-to-Bill 1.2→1.5→1.9배",
+   "출고 완료·매출 인식 대기 약 ₩78B",
+   "수출 97.5%·미국 66.5%·유럽 24.9%"
+  ],
+  "guidance_change": "숫자 가이던스 변경 없음. 2026 수주 가이던스 ₩700B를 9개월 만에 넘었다(₩701.4B)",
+  "new": [
+   "선적 지연(태풍·중동 우회)으로 약 ₩78B가 4Q 이후로 이월",
+   "원화 강세(3Q 평균 원/달러 −5.5% 순차)와 원재료 매입·매출 인식 시차(4~5개월)",
+   "유럽 비중 24.9%로 상승(2Q 7.8%)",
+   "분기 ₩10B 이상 수주 고객 수 최대",
+   "미국 데이터센터 신규 고객 첫 직접 수주 ₩32.6B(10/29 공시)"
+  ],
+  "gone": [
+   "2Q까지 이어지던 영업이익률 37~38%대 유지 표현"
+  ],
+  "analyst_focus": [
+   "NH투자증권 — 원가 전가와 자기자본비용",
+   "SK증권 — 환율 시차·리액터(TMEIC) 후속 수주",
+   "한국투자증권 — 4Q OPM 34.8% 회복",
+   "신한투자증권 — 글로벌 동종 대비 할인율"
+  ],
+  "risks": [
+   "알루미늄·절연유 가격 상승",
+   "원화 강세 지속",
+   "선적·항만 혼잡",
+   "Bloom Energy 수주 집중"
+  ],
+  "deltas": [
+   {
+    "kind": "업데이트",
+    "label": "이익률 37.9→30.6%",
+    "item": "3Q 영업이익률이 원화 강세·원자재로 7.3%p 하락",
+    "prev": "2Q26 OPM 37.9%",
+    "now": "3Q26 OPM 30.6%",
+    "driver": "margin_m0",
+    "shift": -0.04,
+    "certainty": 1.0
+   },
+   {
+    "kind": "신규",
+    "label": "선적 이연 ₩78B",
+    "item": "출고 완료·매출 인식 대기 ₩78B가 4Q 이후 인식",
+    "prev": "정상 분기말 이연 약 ₩30B(보도)",
+    "now": "₩78B",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "certainty": 0.8
+   },
+   {
+    "kind": "업데이트",
+    "label": "B/B 1.5→1.9배",
+    "item": "신규 수주 ₩278.9B, 수주잔고 ₩689.7B",
+    "prev": "2Q 수주 ₩243.5B·잔고 ₩556.8B",
+    "now": "3Q 수주 ₩278.9B·잔고 ₩689.7B",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "certainty": 1.0
+   },
+   {
+    "kind": "신규",
+    "label": "데이터센터 직접 고객",
+    "item": "미국 데이터센터용 변압기 ₩32.6B, 6년 1개월(공시)",
+    "prev": "데이터센터는 Bloom Energy 경유",
+    "now": "직접 고객 첫 수주",
+    "driver": "growth_decay",
+    "shift": -0.02,
+    "certainty": 1.0
+   },
+   {
+    "kind": "부정",
+    "label": "원재료 시차",
+    "item": "원재료 매입과 매출 인식 사이 4~5개월 — 4Q에도 환율 영향 지속(SK증권)",
+    "prev": "언급 없음",
+    "now": "4Q까지 영향",
+    "driver": "margin_target",
+    "shift": -0.01,
+    "certainty": 0.5
+   }
+  ],
+  "source": "3Q26 IR 자료 https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf·영업(잠정)실적 공시(11/4)·증권사 보도. 한국 상장사라 어닝콜 전문이 없다 — 당기 PT와 2Q26 실적(8/7)의 차이로 썼다"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "고객별 매출 몫은 공시되지 않는다. 확인되는 것은 지역(미국 66.5%·유럽 24.9%)과 Bloom Energy 반복 수주(공식 Vendor), 미국 데이터센터·BESS 직접 공급 계약이다. 고객별 몫은 모두 추정이다.",
+  "items": [
+   {
+    "name": "Bloom Energy",
+    "alias": "IR 'Bloom Energy 추가 수주(공식 Vendor 진입 효과)'",
+    "share": [
+     0.15,
+     0.3
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "SOFC 온사이트 발전용 승압 변압기(데이터센터향)",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+    "why": "2Q 신규 수주의 약 30%가 Bloom 관련(보도). 매출 몫은 수주 몫보다 늦게 따라온다"
+   },
+   {
+    "name": "미국 신재생·ESS 개발사·EPC",
+    "alias": "공시 '계약상대 -'(비공개)",
+    "share": [
+     0.25,
+     0.4
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "태양광·ESS용 패드형 변압기",
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800320",
+    "why": "미국 비중 66.5%에서 Bloom·데이터센터 몫을 뺀 범위"
+   },
+   {
+    "name": "유럽 신재생·전력망 고객",
+    "alias": "IR 유럽 24.9%",
+    "share": 0.249,
+    "prior": 0.275,
+    "basis": "공시",
+    "buys": "신재생 연계 변압기",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+    "why": "지역 비중은 공시, 고객 이름은 비공개"
+   },
+   {
+    "name": "TMEIC 등 인버터 제조사",
+    "alias": "보도 '리액터 수주'",
+    "share": [
+     0.03,
+     0.07
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "리액터(기타 매출)",
+    "source": "https://www.asiatime.co.kr/article/20261105500145",
+    "why": "3Q 기타 매출 ₩9.2B(+92% 전년), TMEIC향 리액터 약 ₩51.2B 수주(SK증권)"
+   },
+   {
+    "name": "국내 전력망",
+    "alias": "IR 전력망",
+    "share": 0.025,
+    "prior": 0.018,
+    "basis": "공시",
+    "buys": "배전 변압기",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+    "why": "내수 2.5%"
+   }
+  ],
+  "concentration": "Bloom Energy 한 곳이 신규 수주의 큰 몫 — 몫은 미공시",
+  "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+  "geo": {
+   "미국": 0.665,
+   "유럽": 0.249,
+   "일본": 0.012,
+   "한국": 0.025,
+   "기타": 0.049
+  }
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "K-IFRS 별도",
+  "summary": "3Q26 매출총이익률 40.8%(2Q 47.2%), 영업이익률 30.6%(2Q 37.9%). 하락은 원가 쪽이다 — 원화 강세 때 인식한 매출과 원화 약세 때 산 알루미늄·절연유·전기강판의 시차(IR).",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 132.7,
+    "cogs": 71.4,
+    "rd": 0.0,
+    "sga": 18.6,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 146.0,
+    "cogs": 86.5,
+    "rd": 0.0,
+    "sga": 14.8,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "원재료(전기강판·알루미늄·구리·절연유·탱크 강재)",
+    "stage": "매출원가",
+    "pct_rev": 0.42,
+    "prior_pct": 0.36,
+    "fixed": 0.0,
+    "driver": "국제 금속 시세·원/달러",
+    "basis": "추정",
+    "source": "IR 영업이익률 변동 요인 — 금액 미공시"
+   },
+   {
+    "name": "인건비·외주 가공",
+    "stage": "매출원가",
+    "pct_rev": 0.1,
+    "prior_pct": 0.11,
+    "fixed": 0.7,
+    "driver": "2공장 자동화(40%)·물량",
+    "basis": "추정",
+    "source": "보도(핀포인트뉴스 2공장 자동화율)"
+   },
+   {
+    "name": "감가상각·제조 경비",
+    "stage": "매출원가",
+    "pct_rev": 0.072,
+    "prior_pct": 0.068,
+    "fixed": 1.0,
+    "driver": "2공장 가동",
+    "basis": "추정",
+    "source": "TradingView EBITDA−영업이익(감가상각 분기 약 ₩1.3B) + 제조 경비 추정"
+   },
+   {
+    "name": "판매관리비(운반·수출 비용 포함)",
+    "stage": "판관비",
+    "pct_rev": 0.101,
+    "prior_pct": 0.14,
+    "fixed": 0.5,
+    "driver": "수출 운반비·대손",
+    "basis": "공시",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+   }
+  ],
+  "products": [
+   {
+    "name": "특수변압기(신재생·데이터센터·ESS)",
+    "rev_share": 0.8,
+    "rev_share_prev": 0.766,
+    "mix_basis": "IR 전방 산업별 매출 — 3Q26 ₩116.9B ÷ ₩146.0B vs 3Q25 ₩101.7B ÷ ₩132.7B",
+    "gpm": 0.42,
+    "gpm_basis": "추정 — 제품별 이익 미공시, 전사 GPM 40.8%보다 약간 높게",
+    "bom": [
+     {
+      "item": "전기강판(방향성) 코어",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "변압기 원가 구조 업계 통념(추정)",
+      "pass_through": "미확인",
+      "why": "철심 손실을 정하는 핵심 소재 — 공급사 소수"
+     },
+     {
+      "item": "권선(알루미늄·구리)",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "IR '알루미늄' 원가 언급",
+      "pass_through": "미확인",
+      "why": "IR이 짚은 원가 상승 품목",
+      "input": "copper"
+     },
+     {
+      "item": "절연유",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "IR '절연유' 원가 언급",
+      "pass_through": "미확인",
+      "why": "유입식 변압기 냉각·절연"
+     },
+     {
+      "item": "탱크·외함 강재",
+      "share": [
+       0.08,
+       0.12
+      ],
+      "basis": "추정",
+      "source": "업계 통념(추정)",
+      "pass_through": "미확인",
+      "why": "패드형 외함"
+     },
+     {
+      "item": "부싱·탭 절환기·부속",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "업계 통념(추정)",
+      "pass_through": "미확인",
+      "why": "외부 조달 부품"
+     }
+    ]
+   },
+   {
+    "name": "전력망(배전 변압기)",
+    "rev_share": 0.137,
+    "rev_share_prev": 0.197,
+    "mix_basis": "IR — 3Q26 ₩20.0B vs 3Q25 ₩26.2B",
+    "gpm": 0.3,
+    "gpm_basis": "추정",
+    "bom": [
+     {
+      "item": "전기강판(방향성) 코어",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "업계 통념(추정)",
+      "pass_through": "미확인",
+      "why": "같은 소재"
+     },
+     {
+      "item": "권선(알루미늄·구리)",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 통념(추정)",
+      "pass_through": "미확인",
+      "why": "같은 소재",
+      "input": "copper"
+     },
+     {
+      "item": "절연유",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "업계 통념(추정)",
+      "pass_through": "미확인",
+      "why": "같은 소재"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-10",
+  "summary": "병목은 원료보다 자기 캐파와 운송이다. 3Q는 출고를 마친 ₩78B가 배를 못 타 매출이 밀렸다. 전기강판·알루미늄·절연유 공급사 이름은 공시되지 않았다.",
+  "links": [
+   {
+    "item": "전기강판(방향성) 코어",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(국내외 철강사)",
+      "role": "방향성 전기강판",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "변압기 호황 속 방향성 전기강판 품귀 보도(업계 일반, 회사 언급 없음)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "코어 없이는 출하가 멈춘다",
+    "relief": "미확인",
+    "source": "업계 통념(추정)"
+   },
+   {
+    "item": "권선(알루미늄·구리)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "알루미늄·구리 도체",
+      "status": "추정",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "범용 금속 — 가격 위험이 공급 위험보다 크다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "현물·분기 매입(IR: 원화 약세 시기 매입)",
+    "why": "IR이 짚은 원가 상승 품목",
+    "relief": "해당 없음",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+    "input": "copper"
+   },
+   {
+    "item": "해상 운송(미국향 선적)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(선사·포워더)",
+      "role": "아시아→미국 선적",
+      "status": "회사 발표",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "IR — 기상 악화·지정학 리스크로 선적 지연",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 0,
+    "top_share": "미확인",
+    "region_share": 0.665,
+    "region": "미국향",
+    "secured": "미확인",
+    "why": "출고해도 선적 전에는 매출이 안 된다(인도 조건)",
+    "relief": "미확인",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+   },
+   {
+    "item": "생산 캐파(1·2공장)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "자체",
+      "role": "변압기 조립",
+      "status": "회사 발표",
+      "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "수주잔고 ₩689.7B ÷ 연 캐파 ₩600~700B ≈ 1년치(보도)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": 1.0,
+    "region": "한국",
+    "secured": "자체",
+    "why": "수주가 캐파를 넘으면 납기가 길어진다",
+    "relief": "3공장 부지 확보(2026-08) — 착공·가동 전이라 풀렸다고 보지 않는다",
+    "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-10",
+  "unit": "연 매출 환산 ₩B(회사·증권가가 금액으로 말한다)",
+  "summary": "회사는 물량 캐파를 공시하지 않는다. 증권가는 1·2공장 합 연 ₩600~700B(2공장 약 ₩300B), 3공장 완공 시 2028년 최대 ₩1.2T로 본다. TTM 매출 ₩602.6B는 그 하단에 닿았다.",
+  "current": {
+   "nameplate": 650.0,
+   "utilization": 0.93,
+   "basis": "증권가 추산 ₩600~700B 중간(보도) — 공시 아님. 가동률 = TTM 매출 ÷ 그 중간(추정)",
+   "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033"
+  },
+  "plans": [
+   {
+    "name": "제3공장(초고압 변압기)",
+    "add": 550.0,
+    "stage": "발표",
+    "online": "2028",
+    "capex": "미확인",
+    "blocker": "착공·장비 반입 일정 미공시, 초고압 제품 인증",
+    "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033",
+    "note": "2026-08-26 부지 확보(보도). 증권가 '2028년까지 최대 ₩1.2T' — 증가분은 ₩1.2T − 현재 중간값(추정)"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 16.461,
+    "rev": 501.946,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 16.5,
+    "rev": 660.0,
+    "kind": "추정"
+   }
+  ],
+  "capex_source": "TradingView KRX:062040 FY2025 capital_expenditures ₩16.46B, 매출 ₩501.9B. FY2026 CAPEX는 회사·증권가 미공시 — FY2025 수준 유지 가정(자체추론, 3공장 착공 전), 매출은 컨센서스 ₩660B. FY2024 CAPEX는 FCF −₩74.2B만 확인(2공장 건설기, 금액 미확인)",
+  "facilities": {
+   "count": 2,
+   "count_basis": "보도 — 제1·제2공장(사업보고서 '생산설비' 원문 미대조). 3공장은 부지 확보 단계라 세지 않는다",
+   "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033",
+   "items": [
+    {
+     "name": "제1공장",
+     "location": "미확인(경기도 — 사업보고서 미대조)",
+     "owned": "미확인",
+     "use": "제조(특수·배전 변압기)",
+     "capacity": {
+      "value": 350.0,
+      "unit": "연 매출 환산 ₩B",
+      "source": "증권가 전체 ₩600~700B − 2공장 ₩300B(추정)"
+     },
+     "status": "가동"
+    },
+    {
+     "name": "제2공장",
+     "location": "미확인(경기도 — 사업보고서 미대조)",
+     "owned": "미확인",
+     "use": "제조(특수변압기, 자동화율 40%)",
+     "capacity": {
+      "value": 300.0,
+      "unit": "연 매출 환산 ₩B",
+      "source": "보도(2공장 연 생산능력 약 ₩300B)"
+     },
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "시설 좌표·호기 자료를 이번 회차에 시설 등록부에 넣지 못했다(사업보고서 소재지 미대조) — 위성 판독 없음"
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "reported_backlog": 689.7,
+  "backlog_label": "수주잔고",
+  "summary": "수주잔고 ₩689.7B(TTM 매출의 1.1배, +66.5% 전년). 공시된 단일판매 계약은 상대방을 밝히지 않는다. 건별 진척은 공시되지 않는다.",
+  "items": [
+   {
+    "name": "수주잔고(전체)",
+    "status": "확정",
+    "total": 689.7,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "B/B 1.9배 — 잔고가 매출보다 빨리 쌓인다",
+    "start": "2026-09",
+    "end": "2027-12",
+    "blockers": [
+     "선적 지연",
+     "원자재 전가 시차"
+    ],
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+   },
+   {
+    "name": "미국 데이터센터용 변압기(직접 고객)",
+    "status": "확정",
+    "total": 32.6,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "6년 1개월 분할 공급",
+    "start": "2026-10",
+    "end": "2032-12",
+    "blockers": [
+     "고객 데이터센터 착공 일정"
+    ],
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800777"
+   },
+   {
+    "name": "미국 BESS 변압기(6년)",
+    "status": "확정",
+    "total": 35.0,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "6년 분할 공급",
+    "start": "2026-10",
+    "end": "2032-10",
+    "blockers": [
+     "ESS 프로젝트 인허가"
+    ],
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800320"
+   },
+   {
+    "name": "TMEIC향 리액터",
+    "status": "확정",
+    "total": 51.2,
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "후속 논의 중(SK증권)",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "미국 FCC 규제에 따른 인버터 수요 지속성"
+    ],
+    "source": "https://www.asiatime.co.kr/article/20261105500145"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 13.7,
+  "book_to_bill": 1.46,
+  "revenue_growth": 0.287,
+  "source": "IR 수주·수주잔고(https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf). 잔고 ÷ TTM 월평균 매출. B/B = 최근 4분기 수주 합 ₩878.1B ÷ TTM 매출"
+ },
+ "recurring": {
+  "share": null,
+  "source": "변압기 판매 — 반복 매출 공시 없음. 6년 분할 공급 계약은 반복이 아니라 장기 납품"
+ },
+ "moat": {
+  "summary": "해자는 미국 고객 인증·납품 실적과 높은 이익률을 만드는 특수 사양 변압기 경험이다. 숫자로 확인되는 것은 이익률과 수주 반복이고, 기술 우위는 미확인이다.",
+  "items": [
+   {
+    "kind": "미국 고객 인증·공식 Vendor",
+    "verdict": "보통",
+    "claim": "Bloom Energy 공식 Vendor 진입 뒤 반복 수주가 이어진다",
+    "evidence": "IR '공식 Vendor 진입 효과' · 2Q·3Q 연속 Bloom 수주",
+    "quant": "분기 ₩10B 이상 수주 고객 수 최대(IR, 숫자 미공시)",
+    "falsifier": "Bloom Energy가 2차 공급사 비중을 늘려 4Q 수주가 끊긴다"
+   },
+   {
+    "kind": "이익률(특수 사양·납기)",
+    "verdict": "강함",
+    "claim": "동종 국내 변압기 회사보다 영업이익률이 높다",
+    "evidence": "TTM OPM 35.7% vs HD현대일렉트릭 25.5%·효성중공업 13.1%·LS ELECTRIC 10.5%",
+    "quant": "TTM OPM 35.7%",
+    "falsifier": "OPM이 2개 분기 연속 30% 아래"
+   },
+   {
+    "kind": "납기(리드타임)",
+    "verdict": "미확인",
+    "claim": "대형 변압기보다 짧은 납기로 미국 신재생·데이터센터 수요를 먼저 잡는다",
+    "evidence": "납기 공시 없음",
+    "quant": "미확인",
+    "falsifier": "고객이 납기 지연을 이유로 공급사를 바꾼다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-10",
+  "summary": "공개 자료로 확인되는 경영진 정보가 적다. 대표이사가 최대주주인 창업자 경영 회사다(공시 원문 미대조).",
+  "people": [
+   {
+    "name": "박동석",
+    "role": "대표이사",
+    "since": "미확인",
+    "profile": "창업자·최대주주(보도, 공시 원문 미대조)",
+    "business": "미국 신재생·데이터센터 고객 개척",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "언론 보도"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "미국 고객(Bloom Energy·데이터센터·BESS)",
+    "strength": 3,
+    "exposure": 400.8,
+    "basis": "TTM 매출 × 미국 비중 66.5%(IR) — 연결이 매출을 만들었다는 뜻이 아니다",
+    "evidence": "지역 매출 공시"
+   }
+  ]
+ },
+ "midterm": {
+  "sub": "power_infra",
+  "exposure": {
+   "tariff_codify": 0.6
+  },
+  "etf": "AMEX:GRID",
+  "why": "매출의 66.5%가 미국 — 관세(한국산 변압기)와 데이터센터·신재생 정책이 채널"
+ },
+ "sync": {
+  "why": "제품은 미국으로 가는 유입식 변압기다. 미국 변압기 수입과 한국 변압기 PPI가 가장 가까운 지표다",
+  "indicators": [
+   {
+    "label": "미국 변압기 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "850423",
+    "segment": "특수변압기(신재생·데이터센터·ESS)",
+    "why": "미국 고객이 들여오는 대형 변압기 금액"
+   },
+   {
+    "label": "한국 변압기 PPI",
+    "source": "ppi",
+    "input": "transformer",
+    "country": "kr",
+    "segment": "특수변압기(신재생·데이터센터·ESS)",
+    "why": "한국 변압기 생산자물가 — 가격 대용"
+   }
+  ],
+  "products": [
+   {
+    "name": "특수변압기",
+    "segment": "특수변압기(신재생·데이터센터·ESS)",
+    "hs": "850423",
+    "share": 0.8,
+    "inputs": [
+     "transformer",
+     "copper"
+    ],
+    "basis": "유입식 변압기(10MVA 초과는 850423, 이하는 850422 — 제품 용량별 비중 미공시)"
+   },
+   {
+    "name": "배전 변압기",
+    "segment": "전력망(배전 변압기)",
+    "hs": "850422",
+    "share": 0.137,
+    "inputs": [
+     "transformer"
+    ],
+    "basis": "650~10,000kVA 유입식"
+   }
+  ]
+ },
+ "pq": {
+  "why": "회사는 물량·ASP를 공시하지 않는다 — 업종 PPI(한국 변압기) 대용",
+  "price": {
+   "source": "ppi",
+   "input": "transformer",
+   "country": "kr"
+  }
+ },
+ "ma": {
+  "none": "최근 3년 인수·합병 없음(공시 확인 범위)"
+ },
+ "events": [
+  {
+   "date": "2026-08-07",
+   "tag": "2Q26 잠정실적 — 매출 ₩164.2B·영업이익 ₩62.0B",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-26",
+   "tag": "제3공장 부지 확보(보도)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-06",
+   "tag": "미국 BESS 변압기 ₩35.0B 6년 공급 계약(공시)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "미국 데이터센터용 변압기 ₩32.6B 공급 계약(공시)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "3Q26 잠정실적 — 컨센서스 대비 영업이익 −30%, 다음 날 −15.9%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "증권사 6곳 목표가 하향(₩240,000~300,000, 매수 유지)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "미국 중간선거 뒤 국내 증시 급락·52주 신저가 ₩109,600(장중)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "다이와 홍콩 콘퍼런스 IR(3Q 경영실적·질의응답)",
+   "kind": "8-K"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-08-07",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-04",
+   "kind": "실적",
+   "tag": "3Q26 실적 미달·수주 최대",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "names": [
+  "Bloom Energy",
+  "TMEIC",
+  "HD현대일렉트릭",
+  "효성중공업",
+  "LS ELECTRIC",
+  "일진전기",
+  "제룡전기",
+  "NH투자증권",
+  "SK증권",
+  "한국투자증권",
+  "신한투자증권",
+  "KB증권",
+  "LS증권",
+  "미래에셋증권",
+  "다이와",
+  "TradingView",
+  "DS투자증권",
+  "DS",
+  "ELECTRIC",
+  "HD",
+  "KB",
+  "LS",
+  "NH"
+ ],
+ "terms": {
+  "ESS": "에너지 저장 장치",
+  "BESS": "배터리 에너지 저장 장치",
+  "SOFC": "고체산화물 연료전지",
+  "MVA": "변압기 용량 단위(백만 볼트암페어)",
+  "kVA": "변압기 용량 단위(천 볼트암페어)",
+  "PT": "회사 실적 발표 자료",
+  "IR": "투자자 대상 회사 설명",
+  "K-IFRS": "한국 국제회계기준",
+  "B/B": "수주 ÷ 매출 비율",
+  "Book-to-Bill": "수주 ÷ 매출 비율",
+  "FCC": "미국 연방통신위원회",
+  "PCS": "전력 변환 장치",
+  "DART": "금융감독원 전자공시",
+  "PPI": "생산자물가지수",
+  "AR": "자기회귀 통계 모형",
+  "CAR": "누적 초과수익률",
+  "GRID": "미국 전력망 ETF",
+  "EPC": "설계·조달·시공 사업자",
+  "Vendor": "등록 공급사",
+  "HS": "국제 상품 분류 코드",
+  "IFRS": "국제회계기준",
+  "BAAJA": "미국 상원 표결 중인 전력·인허가 법안(약칭, 원문 미확인)"
+ },
+ "photos": [],
+ "overrides": {
+  "growth_base": {
+   "start": 0.35,
+   "end": 0.03,
+   "decay": 0.3
+  },
+  "margin_base": {
+   "m0": 0.34,
+   "target": 0.3,
+   "year_target": 5,
+   "lr": 0.3,
+   "lam": 0.35
+  },
+  "s2c": 1.5,
+  "why": "매출은 FY2027 증권가 +35%(₩893B) 뒤 3공장 캐파(₩1.2T)를 상한으로 둔화한다. 장기 영업이익률 30%는 TTM 35.7%에서 원가 전가 지연·동종 경쟁(국내 대형 3사 10~25%)을 감안한 수렴값(추정)"
+ },
+ "sources": [
+  "3Q26 IR 자료(irgo): https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf",
+  "IR 개최 공시(11/9): https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109800751",
+  "미국 데이터센터 변압기 계약 공시(10/29): https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800777",
+  "미국 BESS 변압기 계약 공시(10/6): https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800320",
+  "SK증권 3Q 리뷰 보도: https://www.asiatime.co.kr/article/20261105500145",
+  "한국투자증권 3Q 리뷰 보도: https://www.jasm.co.kr/news/view/324214/",
+  "NH투자증권 3Q 리뷰 보도: https://supple.kr/news/cmw2stw8lnhft14214y0iem0m",
+  "신한투자증권 보도: https://www.pinpointnews.co.kr/news/articleView.html?idxno=502054",
+  "리드경제(증권가 4Q·2027 추정·3공장): https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033",
+  "미래에셋 3Q 프리뷰 보도: https://www.pinpointnews.co.kr/news/articleView.html?idxno=496219",
+  "시세·재무: TradingView KRX:062040"
+ ],
+ "quarters_hist": {
+  "source": "TradingView 분기 매출·매출총이익 + 회사 IR 영업이익(2Q24~3Q26). 4Q23·1Q24 영업이익은 EBITDA−감가상각 근사, 3Q26 매출총이익은 IR",
+  "key": "KRX:062040",
+  "currency": "KRW",
+  "q": [
+   {
+    "period": "2023-12-31",
+    "rev": 52972000000,
+    "cogs": 34085000000,
+    "gp": 18887000000,
+    "sga": 6887000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 12000000000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 70644000000,
+    "cogs": 41584000000,
+    "gp": 29060000000,
+    "sga": 5760000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 23300000000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 75232000000,
+    "cogs": 43118000000,
+    "gp": 32114000000,
+    "sga": 7614000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 24500000000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 79736000000,
+    "cogs": 44069000000,
+    "gp": 35667000000,
+    "sga": 7867000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 27800000000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 108385000000,
+    "cogs": 61985000000,
+    "gp": 46400000000,
+    "sga": 12700000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 33700000000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 98829000000,
+    "cogs": 52795000000,
+    "gp": 46034000000,
+    "sga": 8534000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 37500000000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 128255000000,
+    "cogs": 67090000000,
+    "gp": 61165000000,
+    "sga": 14865000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 46300000000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 132735000000,
+    "cogs": 71578000000,
+    "gp": 61157000000,
+    "sga": 18457000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 42700000000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 142127000000,
+    "cogs": 77692000000,
+    "gp": 64435000000,
+    "sga": 11935000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 52500000000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 150323000000,
+    "cogs": 79915000000,
+    "gp": 70408000000,
+    "sga": 14708000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 55700000000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 164179000000,
+    "cogs": 86901000000,
+    "gp": 77278000000,
+    "sga": 15078000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 62200000000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 146010000000,
+    "cogs": 86510000000,
+    "gp": 59500000000,
+    "sga": 14800000000,
+    "rd": 0,
+    "da": 0,
+    "other": 0,
+    "op": 44700000000
+   }
+  ]
+ },
+ "segments_hist": {
+  "segments": {
+   "특수변압기(신재생·데이터센터·ESS)": [
+    {
+     "period": "2025-09-30",
+     "rev": 101700000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 132400000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 116900000000.0
+    }
+   ],
+   "전력망(배전 변압기)": [
+    {
+     "period": "2025-09-30",
+     "rev": 26200000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 26600000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 20000000000.0
+    }
+   ]
+  },
+  "source": "3Q26 IR 전방 산업별 매출(3개 분기만 공개)"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-10T22:40:00+09:00",
+  "shares_cover_implied": 0.030582097,
+  "fiscal_profile": {
+   "companyKey": "Fiscal.ai 미수록(코스닥·한국 소형주). 시세·재무 = TradingView KRX:062040, 실적 = 회사 IR",
+   "price": 122600,
+   "market_cap": 3749.365,
+   "total_cash": 198.589,
+   "total_debt": 0.552,
+   "as_of": "2026-11-10",
+   "balance_date": "2025-12-31",
+   "note": "market_cap = 가격 × 총 발행 30,582,097주. TradingView market_cap_basic ₩3,480.2B(28.39M주 기준)와 약 7% 차이 — 자기주식 차감 여부 미확인"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 142.127,
+    "2026Q1": 150.323,
+    "2026Q2": 164.179,
+    "2026Q3": 146.01
+   },
+   "op_income": {
+    "2025Q4": 52.5,
+    "2026Q1": 55.7,
+    "2026Q2": 62.2,
+    "2026Q3": 44.7
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1": 150323.0,
+   "2026Q2": 164179.0,
+   "2026Q3": 146010.0,
+   "2026Q4": 199488.0
+  },
+  "balance_2026-09-30": {
+   "equity": 701.4,
+   "cash": 198.589,
+   "st_investments": 0,
+   "debt_current": 0.552,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0,
+   "note": "자본 = 3Q26 IR 요약 재무상태표 ₩701.4B(자산 ₩789.1B·부채 ₩87.8B). 현금은 IR에 없어 FY2025 말 ₩198.6B로 둔다(3Q까지 FCF ₩81.8B 누적 — 실제 현금은 더 클 가능성)"
+  },
+  "tv_forecast": {
+   "rating": {
+    "strong_buy": 10,
+    "buy": 1,
+    "total": 11
+   },
+   "eps_next_fq": 1761,
+   "rev_next_fq": 192.3,
+   "eps_fy2026": 6394,
+   "rev_fy2026": 633.8,
+   "fx_note": "TradingView 추정은 달러 표시 — 같은 피드 eps_ttm(₩6,047.35 ÷ $4.4327 = 1,364.3)으로 환산",
+   "as_of": "2026-11-10"
+  },
+  "sec_checks": {
+   "form": "SEC 제출사가 아니다. 1차 자료는 회사 IR·DART",
+   "contract_commitments": "미확인 — DART 분기보고서 원문 미열람",
+   "restricted_cash": "미확인",
+   "customers_10pct": "미확인 — 분기보고서 주요 고객 항목 미대조",
+   "gov_support": "해당 없음 확인 못함"
+  },
+  "rev_basis": "K-IFRS 별도",
+  "margin_basis": "gaap"
+ },
+ "narrative": {
+  "as_of": "2026-11-10",
+  "stage": "컨센서스",
+  "crowding": "중간",
+  "summary": "프리미엄은 '미국 신재생·데이터센터·ESS 전력 수요가 특수 변압기 부족을 만들고, 산일전기가 그 부족분을 35% 이익률로 판다'에서 나왔다. 수주는 사상 최대인데 3Q 이익률이 37.9%에서 30.6%로 내려앉자 주가는 5월 종가 고점 대비 −63%가 됐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "등급",
+      "Strong Buy 10·Overweight 1(11명)",
+      "TradingView"
+     ],
+     [
+      "목표가",
+      "₩240,000~300,000, 평균 ₩263,667(11/5~7 6곳, 전원 하향·매수 유지)",
+      "보도·공개 채널"
+     ],
+     [
+      "하향 이유",
+      "자기자본비용 상승(NH)·동종 배수 하락(KB)·글로벌 동종 대비 할인율(신한)",
+      "보도"
+     ]
+    ],
+    "read": "셀사이드는 매수를 유지했지만 목표가를 이익 추정이 아니라 배수로 낮췄다. 2027년 영업이익 추정(₩327.7~352B)은 크게 바뀌지 않았다는 뜻이다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "외국인·기관",
+      "미확인(KRX 투자자별 매매 미수집)",
+      "—"
+     ],
+     [
+      "임원 매도",
+      "2025-02~08 임원 장내 매도 공시 다수(₩0.3B~6.8B 건별, 매수는 2024-10 1건)",
+      "DART(커뮤니티 집계 경유, 원문 미대조)"
+     ]
+    ],
+    "read": "기관 수급은 이번 회차에 재지 못했다. 임원들은 상장 뒤 1년간 팔기만 했다 — 보호예수 해제 뒤 매도로 볼 수 있어 신호 강도는 낮다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "커뮤니티 점수(7일)",
+      "기록 없음(최근 7일 언급 0 — 낮은 점수가 아니다)",
+      "Quantral"
+     ],
+     [
+      "유튜브·블로그",
+      "8~10월 '전력기기 최강·대형 변압기 진입'·'₩500,000 경로' 류 강세 5건",
+      "Quantral 신호"
+     ],
+     [
+      "공개 텔레그램",
+      "11/5 '−15% 급락'·11/6 '신저가' 알림, 증권사 리포트 요약 다수",
+      "공개 채널 수집"
+     ]
+    ],
+    "read": "리테일의 강세 이야기는 9~10월에 몰렸고, 실적 뒤에는 급락·신저가 알림만 남았다. 11/10 +7.7% 반등에도 새 강세 글은 없다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 논조",
+      "'어닝 쇼크'와 '분기 최대 수주'가 같이 나온다",
+      "리드경제·아시아타임즈·핀포인트뉴스"
+     ]
+    ],
+    "read": "언론은 '숨은 반전(온사이트 발전)'처럼 수주 쪽으로 기울었다."
+   }
+  },
+  "factors": [
+   {
+    "name": "미국 전력 수요가 만든 변압기 부족",
+    "thesis": "데이터센터·신재생·ESS 연계 수요가 변압기 공급을 넘어 납기·가격이 공급사 쪽으로 기운다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "3Q 수주 ₩278.9B(+119%), B/B 1.2→1.5→1.9배, 수주잔고 ₩689.7B(+66.5%)",
+    "status": "강화",
+    "falsifier": "4Q·1Q 수주가 2분기 연속 B/B 1.0배 아래",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+   },
+   {
+    "name": "Bloom Energy 온사이트 발전(데이터센터 비전력망 전원)",
+    "thesis": "전력망 접속을 기다리지 않는 연료전지 발전이 늘고, 그 승압 변압기를 산일전기가 공식 Vendor로 받는다",
+    "inputs": "매출 성장·멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "2Q 신규 수주의 약 30%가 Bloom 관련(보도). 2분기 연속 추가 수주(IR)",
+    "status": "유지",
+    "falsifier": "Bloom Energy 수주 공시가 끊기거나 2차 공급사 진입",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+   },
+   {
+    "name": "고이익률 특수 변압기",
+    "thesis": "표준 배전 변압기가 아니라 신재생·ESS용 특수 사양이라 이익률이 대형 변압기 3사보다 높다",
+    "inputs": "이익률·멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "TTM OPM 35.7% vs 국내 동종 10~25%",
+    "status": "약화",
+    "falsifier": "OPM이 2개 분기 연속 30% 아래",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf"
+   },
+   {
+    "name": "캐파 두 배(3공장)",
+    "thesis": "연 ₩600~700B 캐파가 2028년 ₩1.2T로 늘어 수주잔고를 매출로 바꾼다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3공장 부지 확보(2026-08), 착공·CAPEX 미공시",
+    "status": "태동",
+    "falsifier": "2027년 상반기까지 착공 공시가 없다",
+    "source": "https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033"
+   },
+   {
+    "name": "반대 내러티브: 원가 전가가 늦는 수출업자",
+    "thesis": "원재료를 원화 약세 때 사고 원화 강세 때 매출로 인식해, 환율·금속 가격이 이익률을 몇 분기씩 흔든다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "3Q 원/달러 −5.5% 순차, 매출원가율 59.3%(+6.5%p), 원재료 시차 4~5개월(SK증권)",
+    "status": "강화",
+    "falsifier": "4Q OPM 34% 이상 회복(한국투자 전망 34.8%)",
+    "source": "https://www.asiatime.co.kr/article/20261105500145"
+   }
+  ],
+  "attention": [
+   {
+    "label": "공개 텔레그램 언급(14일)",
+    "value": 9,
+    "unit": "건"
+   },
+   {
+    "label": "커뮤니티 점수 7일",
+    "value": 0,
+    "unit": "점(언급 없음)"
+   }
+  ],
+  "lead": {
+   "summary": "**시장이 산 이야기는 '미국 전력 부족이 특수 변압기를 모자라게 만들고, 산일전기가 그걸 35% 이익률로 판다'였다.** 3Q 수주는 ₩278.9B로 분기 최대이고 수주잔고는 ₩689.7B다. 그런데 이익률이 37.9%에서 30.6%로 꺾이자 주가는 5월 4일 종가 고점 ₩333,500에서 11월 10일 ₩122,600까지 −63%다. 시장은 이제 '수주가 이익이 되느냐'를 묻는다.",
+   "value_story": "값은 세 숫자가 정한다. ① 수주잔고가 얼마나 빨리 매출이 되나(캐파 연 ₩600~700B, 3공장 전) ② 그 매출의 이익률(원가 전가·환율 시차) ③ Bloom Energy 같은 고객이 계속 사 주나. 3Q는 ①이 선적 지연으로, ②가 원화 강세로 동시에 흔들렸다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 17.4배(다음 분기 EPS×4 근사)로 동종 중앙 13.6배보다 28% 높다. 2027 EPS 추정을 섞은 다음 4개 분기 기준으로는 14.5배다.",
+    "eps": "3Q 영업이익은 컨센서스보다 약 30% 낮았다(₩44.7B vs ₩63.6~67.6B). 9월 말 이후 2027년 영업이익 추정은 ₩327.7~352B 범위에 머물러 목표가 하향은 대부분 배수 하향이다."
+   },
+   "why_excited": "8/7 2Q 실적(영업이익 ₩62.0B, OPM 37.9%) 다음 거래일 +16.8%, 10월 중순까지 ₩200,000대를 지켰다. 식은 이유는 세 가지다 — 10월 말 전력기기 업종 배수 하락, 11/4 3Q 실적 미달(다음 날 −17.2%), 11/6 중간선거 뒤 국내 증시 급락(₩109,600 장중 신저가).",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "특수변압기(신재생·데이터센터·ESS)",
+     "what": "태양광·풍력·ESS 연계용 패드형 변압기, 연료전지 발전용 승압 변압기",
+     "use": "미국·유럽 신재생 발전소·ESS·데이터센터 온사이트 전원",
+     "money": "분기 ₩116.9B, 매출 80%",
+     "name_en": "Pad-mounted renewable energy transformer",
+     "what_en": "oil-filled pad-mounted step-up transformer for solar, battery storage and data center on-site power",
+     "bom": {
+      "as_of": "2026-11-10",
+      "layers_order": "위→아래",
+      "source_note": "회사 IR이 원가 품목(알루미늄·절연유)만 밝힌다. 부품별 공급사는 공시되지 않았다 — 구성은 유입식 패드형 변압기 업계 표준",
+      "this_company_product": true,
+      "items": [
+       {
+        "no": 1,
+        "part": "부싱(고압·저압 단자)",
+        "part_en": "high and low voltage bushings",
+        "role": "전선을 탱크 안 권선에 절연해 잇는다",
+        "suppliers": [
+         "미공시"
+        ],
+        "source": "업계 표준 구성",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "kind": "부품"
+       },
+       {
+        "no": 2,
+        "part": "탱크·외함(강재)",
+        "part_en": "steel tank and pad-mounted cabinet",
+        "role": "절연유를 담고 옥외에서 보호한다",
+        "suppliers": [
+         "미공시"
+        ],
+        "source": "업계 표준 구성",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "kind": "부품"
+       },
+       {
+        "no": 3,
+        "part": "절연유",
+        "part_en": "insulating oil",
+        "role": "권선을 절연하고 열을 뺀다",
+        "suppliers": [
+         "미공시"
+        ],
+        "source": "3Q26 IR — 절연유 가격 상승이 이익률 하락 요인",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "kind": "소재"
+       },
+       {
+        "no": 4,
+        "part": "권선(알루미늄·구리 도체)",
+        "part_en": "aluminum and copper windings",
+        "role": "전압을 바꾸는 코일",
+        "suppliers": [
+         "미공시"
+        ],
+        "source": "3Q26 IR — 알루미늄 가격 상승이 이익률 하락 요인",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "kind": "소재"
+       },
+       {
+        "no": 5,
+        "part": "철심(방향성 전기강판)",
+        "part_en": "grain-oriented electrical steel core",
+        "role": "자속 통로 — 손실과 효율을 정한다",
+        "suppliers": [
+         "미공시"
+        ],
+        "source": "업계 표준 구성",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "kind": "소재"
+       },
+       {
+        "no": 6,
+        "part": "탭 절환기·보호 계전 부속",
+        "part_en": "tap changer and protection accessories",
+        "role": "출력 전압 조정과 고장 보호",
+        "suppliers": [
+         "미공시"
+        ],
+        "source": "업계 표준 구성",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "kind": "부품"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "전력망(배전 변압기)",
+     "what": "전력회사 배전망용 변압기",
+     "use": "국내외 배전망",
+     "money": "분기 ₩20.0B, 매출 14%",
+     "name_en": "Distribution transformer",
+     "what_en": "oil-filled distribution transformer for utility grids"
+    },
+    {
+     "kind": "제품",
+     "name": "기타(리액터 등)",
+     "what": "인버터용 리액터·부품",
+     "use": "TMEIC 등 인버터 제조사",
+     "money": "분기 ₩9.2B, 매출 6%",
+     "name_en": "Reactor",
+     "what_en": "inductive reactor for power inverters"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "국내 배전 변압기 회사에서 미국 신재생·데이터센터용 특수 변압기 수출 회사로 바뀌었다. 수출 97.5%, 미국 66.5%",
+     "evidence": "3Q26 IR 지역별 매출",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "미국 비중이 2분기 연속 55% 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "특수변압기 비중 76.6%(3Q25) → 80.0%(3Q26), 리액터 기타 매출 +92%",
+     "evidence": "3Q26 IR 전방 산업별 매출",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "특수변압기 비중 75% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "초고압 변압기(3공장 계획)로 제품군을 넓힌다 — 아직 계획 단계다",
+     "evidence": "보도(3공장 부지 확보)",
+     "drives": "multiple",
+     "status": "태동",
+     "falsifier": "초고압 제품 수주·인증 발표가 2027년까지 없다"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(납기 수주→출하를 공시하지 않는다). 확인되는 건 수주잔고 ÷ 월평균 매출 약 14개월과 3Q 선적 지연 ₩78B다",
+     "evidence": "IR 수주잔고·출고 대기",
+     "drives": "revision",
+     "status": "약화",
+     "falsifier": "4Q에 이연분 ₩78B가 매출로 들어오지 않는다",
+     "lead_time": {
+      "now": "미확인",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": []
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 인수 없음)",
+     "evidence": "공시 확인 범위",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "대형 인수 발표"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "하이퍼스케일러·연료전지 발전사 CAPEX가 변압기 수요로 내려온다. 금지표대로 산일전기 몫은 공시 계약과 IR 수주로만 센다 — 데이터센터 직접 계약 ₩32.6B(10/29)",
+     "evidence": "DART 단일판매 공시",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "Bloom Energy·데이터센터 고객 수주 공시가 2분기 끊긴다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "미국 태양광·ESS 세액공제는 2026-07-04 이후 착공분이 2027년 말까지 가동해야 받는다(OBBBA) — 2026~2027년 설치가 앞당겨진다. 2028년 수요 공백 위험이 같이 있다",
+     "evidence": "노션 IB 요지(라이선스)·미국 세법",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "2027년 하반기 신재생 수주가 급감",
+     "house": {
+      "level": 5,
+      "why": "OBBBA 본회의 통과(2025)"
+     },
+     "senate": {
+      "level": 5,
+      "why": "같은 법 본회의 통과"
+     }
+    },
+    "orders": {
+     "change": "한국산 변압기에 대한 미국 관세(232조 등) 확대 여부 — 회사 언급 없음",
+     "evidence": "확인된 행정명령 없음",
+     "drives": "multiple",
+     "status": "태동",
+     "falsifier": "변압기 관세 포고문",
+     "house": {
+      "level": 1,
+      "why": "의회 논의 확인 안 됨"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "Ratepayer Protection Act(하원 통과)·BAAJA(11/9 상원 표결)가 데이터센터 전력 비용 부담·인허가를 정리 중이라는 증권사 해석(공개 채널) — 원문 미확인",
+     "evidence": "DS투자증권 공개 채널 요약(11/10)",
+     "drives": "multiple",
+     "status": "태동",
+     "falsifier": "법안이 본회의에서 멈춘다"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "수주가 매출보다 1.9배 빨리 쌓이는데 주가는 고점 대비 −63%다 — 3Q는 배가 늦은 것이지 수요가 꺾인 게 아니다",
+    "evidence": [
+     "3Q 수주 ₩278.9B(+119%)",
+     "수주잔고 ₩689.7B(+66.5%)",
+     "출고 완료 대기 ₩78B"
+    ],
+    "falsifier": "4Q 매출 ₩190B 미만"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "2027 영업이익 추정 ₩327.7~352B는 그대로다 — Fwd 2Y P/E 12배는 동종보다 싸다",
+    "evidence": [
+     "2027 매출 ₩882~935.5B",
+     "목표가 하향 이유는 배수(KB·NH)",
+     "TTM OPM 35.7%"
+    ],
+    "falsifier": "2027 영업이익 추정이 ₩300B 아래로 하향"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수주는 맞지만 이익률 바닥을 모른다 — 4Q OPM이 가른다",
+    "evidence": [
+     "OPM 37.9% → 30.6%",
+     "원재료 시차 4~5개월",
+     "4Q OPM 전망 33.2~34.8%"
+    ],
+    "falsifier": "4Q OPM 34% 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "Bloom Energy 한 곳 의존과 원가 전가 지연이 같이 있다 — 고이익률은 일시적 부족의 몫일 수 있다",
+    "evidence": [
+     "2Q 수주의 약 30% Bloom 관련(보도)",
+     "매출원가율 +6.5%p",
+     "국내 동종 OPM 10~25%"
+    ],
+    "falsifier": "Bloom 외 고객 수주 비중 확대 공시"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "미국 세액공제 시한(2027년 말 가동)이 수요를 당겨 쓴다 — 2028년 수주 공백과 캐파 증설이 겹친다",
+    "evidence": [
+     "2026-07 이후 착공분 2027년 말 가동 시한",
+     "3공장 2028 캐파 ₩1.2T 전망",
+     "임원 장내 매도만 이어짐"
+    ],
+    "falsifier": "2027년 하반기 수주 B/B 1.2배 이상"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "B/B가 1.2→1.5→1.9배다. 수주잔고 ₩689.7B는 TTM 매출의 1.1배다."
+     },
+     {
+      "seat": "Buy",
+      "text": "증권사 6곳이 모두 매수를 유지했고, 하향 이유는 이익이 아니라 배수였다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "3Q 영업이익은 컨센서스보다 30% 낮았다. 원인 둘 중 환율은 4Q에도 남는다(SK증권)."
+     },
+     {
+      "seat": "Sell",
+      "text": "Bloom Energy가 2Q 수주의 약 30%였다(보도). 한 고객이 수주를 끊으면 B/B가 바로 꺾인다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "미국 신재생 세액공제는 2027년 말 가동 시한이 있다. 지금 수주는 2028년 몫을 당겨 온 것일 수 있다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "10월에 데이터센터 직접 고객 ₩32.6B, BESS ₩35.0B 계약이 따로 나왔다. 분기 ₩10B 이상 수주 고객 수도 최대다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "두 계약은 6년 분할이다. 연 ₩11B 수준이라 Bloom 몫을 대신하지 못한다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "2027 추정이 그대로라는 건 아직 아무도 3Q 원가를 반영하지 않았다는 뜻일 수 있다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "데이터센터·ESS는 세액공제 시한과 무관한 수요다. 신재생만 당겨진다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "매출 80%가 신재생·데이터센터·ESS를 한 칸으로 묶어 공시한다. 그 안의 신재생 몫을 모르면 반박이 안 된다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "4Q에 이연분 ₩78B 중 정상 수준을 넘는 약 ₩48B만 들어와도 매출은 ₩190B를 넘는다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "목표가가 배수로 내려갔다는 건 시장이 이 이익률을 덜 믿는다는 뜻이다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Sell",
+      "text": "2028 공백은 가설이다. 가를 자료는 2027년 하반기 수주다 — 지금은 결론으로 쓸 수 없다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "국내 동종 이익률과 비교하면 할인 이유가 되지만, 산일전기는 2년 연속 30% 이상을 냈다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "출고 대기는 매출이 늦을 뿐 이익률을 고치지 않는다. 4Q 원가도 원화 약세 때 산 재료다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "수요는 확인됐다. 이익률 회복은 4Q로 확인해야 한다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "2027 추정이 유지되면 지금 배수는 싸다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "가를 자료는 2월 초 4Q 실적이다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "직접 고객 확보는 받아들인다. Bloom 집중은 남는다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "2028 공백은 가설이라는 반박을 받아들인다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "투표 중앙은 Neutral이다. 수요(수주 최대·직접 고객)는 숫자로 확인됐지만, 이익률 바닥과 Bloom 집중은 4Q 실적 전에는 가릴 수 없다.",
+   "dissent": "Buy 두 표 — 2027 영업이익 추정이 유지되면 Fwd 2Y P/E 12배는 동종보다 싸다"
+  }
+ },
+ "social": {
+  "as_of": "2026-11-10",
+  "summary": "최근 7일 커뮤니티 언급은 없다(점수 없음 — 낮은 점수가 아니다). 8~10월 유튜브·블로그의 강세 이야기와 실적 뒤 증권사 '매수 유지·목표가 하향'이 기록의 전부다.",
+  "narratives": [
+   {
+    "channel": "유튜브",
+    "theme": "전력기기 주도주 — 대형 변압기 진입·이평선 정배열",
+    "expectation": "상향",
+    "vs_fact": "과장 — '대형 변압기 진입'은 3공장 계획 단계(착공 미공시)",
+    "share": 0.45
+   },
+   {
+    "channel": "블로그",
+    "theme": "₩200,000 → ₩500,000 경로",
+    "expectation": "상향",
+    "vs_fact": "미확인 — 근거 숫자 없음",
+    "share": 0.15
+   },
+   {
+    "channel": "증권사 공개 채널",
+    "theme": "3Q 미달은 일시적, 수주 최대 — 목표가만 하향",
+    "expectation": "혼재",
+    "vs_fact": "확인 — IR 수주 ₩278.9B·출고 대기 ₩78B와 일치",
+    "share": 0.4
+   }
+  ],
+  "turn": "9월(강세 영상 3건) 전력기기 주도주 → 10월 말 업종 배수 하락 → 11/4 실적 미달 뒤 강세 글이 사라지고 급락 알림만 남았다"
+ }
+}

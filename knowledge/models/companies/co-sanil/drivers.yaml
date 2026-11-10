@@ -1,0 +1,107 @@
+auto: true
+id: co-sanil
+name: 산일전기
+ticker: '062040'
+unit: BKRW
+unit_usd: 736491
+industry: electrical_equipment
+region_mix:
+  US: 0.665
+  EU: 0.249
+  KR: 0.025
+  JP: 0.012
+  OTHER: 0.049
+tax: 0.22
+horizon: 10
+as_of: '2026-11-10'
+market:
+  date: '2026-11-10'
+  price: 122600
+  shares: 0.030582
+  net_debt: -198.037
+  source: 가격 = TradingView KRX:062040 11/10 종가 ₩122,600. 주식 수 = 총 발행 30,582,097주(TradingView
+    KRX:062040 total_shares_outstanding, 자본금 ₩15.3B ÷ 액면 ₩500과 일치). TradingView market_cap_basic
+    ₩3,480.2B는 28.39M주 기준(자기주식 차감 추정, 미확인). 현금 = FY2025 말 현금·단기금융 ₩198.6B(TradingView
+    KRX:062040 FY) — 3Q26 현금은 IR 요약 재무상태표에 없어 미확인. 차입 = 3Q26 ₩0.55B(TradingView KRX:062040
+    fq)
+rev0: 660.0
+ic0: 503.363
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.35
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.34
+      target: 0.3
+      year_target: 5
+      lr: 0.3
+      lam: 0.35
+      anchors:
+      - 0.37
+    s2c: 1.5
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.4174
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.34
+      target: 0.32
+      year_target: 5
+      lr: 0.3
+      lam: 0.25
+      anchors:
+      - 0.37
+    s2c: 1.725
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.3364
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.34
+      target: 0.28
+      year_target: 5
+      lr: 0.3
+      lam: 0.5
+      anchors:
+      - 0.37
+    s2c: 1.275
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [660.0, 660.0] (3Q26 IR 자료(2026-11-10 다이와 홍콩 콘퍼런스) https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf)
+  growth: 컨센서스 1년차 35.3%
+  margin: 1년차 컨센서스 37.0% 고정 → 목표 30%(5년차, 덮어쓰기) → 장기 수렴 30%
+  s2c: 재무 재구성 증분 매출/투하자본 1.5 → 덮어쓰기 1.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 33.6%~41.7%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: 매출은 FY2027 증권가 +35%(₩893B) 뒤 3공장 캐파(₩1.2T)를 상한으로 둔화한다. 장기 영업이익률 30%는
+    TTM 35.7%에서 원가 전가 지연·동종 경쟁(국내 대형 3사 10~25%)을 감안한 수렴값(추정)
+  shares: 완전 희석 = 기본 0.030582097(2026-11-10) + 옵션·RSU·워런트·전환 0.0000 — 전환사채·신주인수권·스톡옵션
+    공시 미확인(사업보고서 원문 미대조). 잠재 주식 0으로 둔다
+notes:
+- 자동 생성(build_drivers) 2026-11-10 — 데이터 묶음 2026-11-10
+- '어닝콜 위험: 알루미늄·절연유 가격 상승'
+- '어닝콜 위험: 원화 강세 지속'
+- '어닝콜 위험: 선적·항만 혼잡'
+evidence:
+- '3Q26 IR 자료(irgo): https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/US54MTAWQ4YUQAXFBZM8YDPHRQ2NPZZK2026111010828.pdf'
+- 'IR 개최 공시(11/9): https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261109800751'
+- '미국 데이터센터 변압기 계약 공시(10/29): https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261029800777'
+- '미국 BESS 변압기 계약 공시(10/6): https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800320'
+- 'SK증권 3Q 리뷰 보도: https://www.asiatime.co.kr/article/20261105500145'
+- '한국투자증권 3Q 리뷰 보도: https://www.jasm.co.kr/news/view/324214/'
+- 'NH투자증권 3Q 리뷰 보도: https://supple.kr/news/cmw2stw8lnhft14214y0iem0m'
+- '신한투자증권 보도: https://www.pinpointnews.co.kr/news/articleView.html?idxno=502054'
+- '리드경제(증권가 4Q·2027 추정·3공장): https://www.leadeconomy.co.kr/news/articleView.html?idxno=11033'
+- '미래에셋 3Q 프리뷰 보도: https://www.pinpointnews.co.kr/news/articleView.html?idxno=496219'
+- '시세·재무: TradingView KRX:062040'
