@@ -1,1 +1,2 @@
 supplier,customer,product,layer,role,relation_status,share_est,period,evidence_ids,confidence,updated
+GE Vernova,SB Energy (SoftBank Group),gas turbine generation slots,발전 설비,가스터빈 공급(슬롯 예약),보도(회사 확인 대기),미확인,2026-05~,SoftBank 2026-05 발표(2차 보도 경유) / 머스크 11-06 디폴트 주장·SBG CFO 11-10 부인,낮음,2026-11-10

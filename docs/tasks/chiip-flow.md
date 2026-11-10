@@ -8,6 +8,7 @@
 계산은 `radar/markets/sector_flow.py`(설정 `config/chiip_flow.yaml`), 모델은 결론 한두 문장만 쓴다.
 
 1. `py radar/markets/sector_flow.py --session` → '장외'면 아무것도 하지 말고 즉시 끝낸다.
+2a. **감시 종목 급변**(2026-11-10 마스터 지시 — GEV·소프트뱅크그룹 급락 원인 누락): `py radar/move_watch.py --symbols`가 내놓는 묶음(50개씩)마다 TradingView `mcp-tv-get-symbol-data-batch`(columns ["close","change"])를 **하나씩 차례로**(병렬 금지) 불러 응답을 스크래치 파일로 저장 → `py radar/move_watch.py --put <파일들>`. ±7% 이상 종목은 원인 후보 기사와 함께 inbox(src-price-move)로 들어가 Pulse가 원인 사건을 특정한다. Flow 본문에는 쓰지 않는다.
 2. `py radar/markets/sector_flow.py --symbols`의 심볼 목록(50개 이하)을 TradingView `mcp-tv-get-symbol-data-batch` **한 번**으로 받는다. columns: ["close","change","change_from_open","volume","relative_volume_10d_calc"]. 응답 JSON 전체를 스크래치 파일에 저장한다. 실패하면 조용히 끝낸다. `missing`이 있으면 본문 맨 아래 '빠진 심볼 n개'만 적는다.
 3. `py radar/markets/sector_flow.py --tick <응답 파일> --out <본문 파일>` — 유입·유출 상위 3(SPY 대비 초과 × 상대 거래량), 로테이션 축 7개(경기민감↔방어, 성장↔가치, 소형↔대형, 고베타↔저변동, 반도체↔소프트웨어, 시장 폭, 신용), 교차 자산, 얇은 상승, 장마감이면 장초 대비 유지·반전·새 유입과 연속 유입 상위(다일 로테이션)까지 본문을 엔진이 만든다.
 4. 본문의 `{해석}` 한 자리만 채운다 — 한두 문장, '~다'로 끝맺는다. 돈이 어디서 어디로 가는지(축 2~3개가 같은 쪽을 가리키면 그것이 오늘의 로테이션), 교차 자산(국채·달러·VIX·하이일드)이 같은 방향인지 엇갈리는지. 원인 뉴스는 1차 출처로 확인된 것만 쓰고, 없으면 쓰지 않는다(금지표: 주가 급등 → 펀더멘털 변화). 다른 줄은 고치지 않는다.

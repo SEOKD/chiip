@@ -1221,6 +1221,30 @@
   verified: true
   enabled: true
 
+- id: src-keyperson-gn
+  name: 핵심 인물 발언·부인 이슈(머스크·손정의·젠슨 황·올트먼 등 × 주문·취소·디폴트·전력 설비) — Google News 색인 제목
+  category: L-커뮤니티
+  module: rss
+  method: rss
+  feed_queries:
+    - {q: "(Musk OR \"Masayoshi Son\" OR SoftBank OR \"Jensen Huang\" OR Altman OR Amodei OR Ellison OR Zuckerberg) (turbine OR \"gas turbine\" OR \"power plant\" OR gigawatt OR \"data center\") (order OR cancel OR default OR delay OR denies OR deny OR reservation OR slot) when:2d", hl: en-US, gl: US}
+    - {q: "(\"GE Vernova\" OR \"Siemens Energy\" OR \"Mitsubishi Heavy\" OR \"Doosan Enerbility\" OR Caterpillar OR \"Bloom Energy\") (turbine OR order) (cancel OR default OR delay OR deposit OR slot OR reservation OR denies) when:2d", hl: en-US, gl: US}
+    - {q: "(ソフトバンクグループ OR 孫正義 OR 三菱重工) (タービン OR 発電) (キャンセル OR 解約 OR 否定 OR 受注) when:2d", hl: ja, gl: JP}
+  include_regex: 'turbine|power|gigawatt|data center|order|default|cancel|denie|deny|slot|reserv|タービン|発電|受注|否定|解約'
+  exclude_regex: 'NFL|NBA|MLB|NHL|celebrity|Tesla Model|Cybertruck|SpaceX launch|Starship|horoscope'
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 20
+  max_age_days: 3
+  run_on: local
+  language: en
+  doc_type: SNS
+  terms_note: "2026-11-10 마스터 지시(머스크 'SoftBank 터빈 디폴트' 발언·SBG CFO 부인 누락). Google News RSS 제목·링크만 — X 본문 수집 아님(TODO 21-3 승인 전). 발언은 단서(S1·S2), 원문·1차 출처로 확인"
+  reliability_default: 2차(언론 인용)
+  verified: false
+  enabled: true
+
 - id: src-defense-gov-gn
   name: 각국 국방 조달·예산(미 국방부 일일 계약·DSCA·NATO/EU·독일·프랑스·이탈리아·스페인·일본) — Google News 도메인 제한
   category: L-해외정부

@@ -55,7 +55,7 @@ class TestNarrativeLine(unittest.TestCase):
     def test_line_from_company_file(self):
         line = alpha_watch.narrative_line("co-vicor", today=date(2026, 10, 29))
         self.assertTrue(line.startswith("내러티브(확산"))
-        self.assertIn("gap -1", line)
+        self.assertNotIn("알파 보정 제안", line)   # 피드에서 뺐다(마스터 지시 2026-11-09)
         self.assertNotIn("갱신 필요", line)
 
     def test_stale_and_missing(self):

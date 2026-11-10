@@ -94,6 +94,10 @@ promote_p1:
     min_billion: 1
   ma_talks:                    # 감시 기업 M&A 협상·인수 보도(주요 매체) — 1차 출처 대기 P1
     pattern: 'in talks|nears? (a )?deal|is said to|weighs? (a )?(sale|bid|deal)|explor\w* (a )?sale|to (buy|acquire)|agrees? to (buy|acquire)|acquisition of|merger|takeover'
+  power_orders:                # 가스터빈·발전 설비 주문·슬롯 예약의 취소·연기·디폴트·선금(2026-11-10 — 머스크 'SoftBank 터빈 디폴트' 발언·SBG CFO 부인을 놓친 뒤)
+    terms: 'turbine|gas turbine|slot reservation|reservation slot|タービン|ガスタービン|터빈|燃气轮机'
+    event: 'order|slot|reserv|cancel|default|defer|delay|deposit|backlog|walk away|terminate|キャンセル|解約|受注|취소|연기|디폴트|예약'
+    orgs: 'GE Vernova|GEV|Siemens Energy|Mitsubishi Heavy|MHI|三菱重工|Doosan Enerbility|두산에너빌리티|SoftBank|ソフトバンク|SB Energy|Stargate|Crusoe|OpenAI|xAI|Musk|Caterpillar|Wartsila|Wärtsilä|Bloom Energy|Baker Hughes'
   portfolio_related:           # config/portfolio.yaml holdings의 related(경쟁사·고객) + 사건 문구 → '보유 ○○ 관련'
     event: 'deal|contract|order|wins?\b|financ|custom|design win|supply|guidance|earnings|results|acqui|partner|capex|lawsuit|ban\b|tariff|price|launch|ship'
 

@@ -12,6 +12,7 @@ import argparse
 import json
 import shutil
 import subprocess
+from datetime import timedelta
 import sys
 from pathlib import Path
 
@@ -45,12 +46,18 @@ SCHEMA = {
     "required": ["results"]}
 
 
+STALE_H = 6   # 판정은 수집 직후 돈다 — 6시간 넘은 항목은 Pulse가 이미 다뤘다
+
+
 def pending_items():
     done = set(common.load_state("triaged", {"ids": []})["ids"])
     out = []
-    for f in sorted(common.INBOX.rglob("*.json")):
-        it = json.loads(f.read_text(encoding="utf-8"))
-        if it["item_id"] not in done:
+    for f in sorted(common.INBOX.glob("[0-9]" * 8 + "/*.json")):   # 날짜 폴더의 항목만 — 하위 자료 폴더(jp_qa·notion_files·ir_audio 등)의 JSON에서 KeyError로 판정 전체가 멈췄다(2026-10-31~11-10)
+        try:
+            it = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if isinstance(it, dict) and it.get("item_id") and it["item_id"] not in done:
             out.append(it)
     return out
 
@@ -121,6 +128,12 @@ def main(argv=None):
     if not items:
         print("판정할 항목 없음")
         return 0
+    cutoff = common.iso(common.now_kst() - timedelta(hours=STALE_H))   # 멈췄던 동안 쌓인 옛 항목은 판정·발송하지 않고 닫는다(2026-11-10 복구 — 7,188건 적체)
+    stale = [it for it in items if (it.get("saved_at") or it.get("detected_at") or "") < cutoff]
+    mark_triaged(it["item_id"] for it in stale)
+    items = [it for it in items if it not in stale]
+    if stale:
+        print(f"오래된 항목 {len(stale)}건 판정 없이 닫음({STALE_H}시간 초과)")
     relevant, archived = [], []
     for it in items:
         (relevant if it.get("entities_matched") or it.get("keywords_matched") else archived).append(it)

@@ -154,6 +154,15 @@ def entity_aliases():
     for u in defense_companies():
         names = set(u.get("aliases") or [u["name"]]) | ({u["local"]} if u.get("local") else set())
         out[u["id"]] = sorted(set(out.get(u["id"], [])) | {n for n in names if len(n) >= 2})
+    # 일본 감시 회사(config/jp_watch.yaml) 현지명·영문명 — 빠져 있던 회사(jp-sbg 등)가 레이더에 잡히게(2026-11-10)
+    for u in (load_yaml("config/jp_watch.yaml") or {}).get("companies") or []:
+        names = set(u.get("ja") or []) | ({u["en"]} if _distinct(u.get("en")) and (" " in u["en"] or len(u["en"]) >= 7) else set())   # 짧은 단어형 영문명(Disco 등)은 일반어 오탐이라 뺀다
+        out[u["id"]] = sorted(set(out.get(u["id"], [])) | {n for n in names if len(n) >= 2})
+    ov = load_yaml("config/entity_overrides.yaml") or {}   # 실체 인식 보정 — 자동 생성 구역을 손대지 않고 고친다(2026-11-10 SoftBank Group 오인식)
+    for eid, names in (ov.get("add") or {}).items():
+        out[eid] = sorted(set(out.get(eid, [])) | set(names))
+    for eid, names in (ov.get("remove") or {}).items():
+        out[eid] = [n for n in out.get(eid, []) if n not in set(names)]
     return out
 
 
@@ -217,6 +226,8 @@ def defense_companies():
 
 
 _ALIAS_CACHE = None
+_PREFER = None
+_RELATED = None
 
 
 def match_entities(text):
@@ -239,6 +250,19 @@ def match_entities(text):
             elif n.lower() in low:   # 한·중·일 이름은 부분 일치
                 hits.append(eid)
                 break
+    global _PREFER, _RELATED
+    if _PREFER is None:
+        ov = load_yaml("config/entity_overrides.yaml") or {}
+        _PREFER, _RELATED = ov.get("prefer") or [], ov.get("related") or []
+    for r in _RELATED:   # 상대방 실체 붙이기(2차 전파, 2026-11-10 SB Energy 터빈 → GE Vernova)
+        if r["from"] in hits and re.search(r["when"], text, re.I):
+            hits += [a for a in r.get("add") or [] if a not in hits]
+    for p in _PREFER:   # 겹치는 실체 정리(2026-11-10)
+        if p["keep"] in hits and p["drop"] in hits:
+            if not any(u.lower() in low for u in p.get("unless") or []):
+                hits.remove(p["drop"])
+            elif not any(k.lower() in low for k in p.get("keep_only") or []):   # 'SoftBank Corp.'만 있고 그룹 표지가 없으면 통신사만
+                hits.remove(p["keep"])
     return hits
 
 

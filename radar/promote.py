@@ -207,6 +207,10 @@ def match(item):
             cls = next((k for k, rx in EVENT_CLASS if rx.search(title)), "event" if re.search(ev, title, re.I) else None)
             if cls:   # 사건 문구가 없는 시황('shares edge higher')은 올리지 않는다. 같은 사건 기사 여러 건은 종목×사건 종류로 묶는다
                 return f"규칙 상향: {KIND.get(tk, '보유')} 종목 {tk}", f"held:{tk}:{cls}"
+    m = r.get("power_orders") or {}   # 가스터빈 주문·슬롯 취소·디폴트(2026-11-10 GEV 급락 원인 누락)
+    if m and re.search(m["terms"], text, re.I) and re.search(m["event"], text, re.I) and re.search(m["orgs"], title, re.I):
+        org = re.search(m["orgs"], title, re.I).group(0).lower()
+        return f"규칙 상향: 가스터빈 주문·슬롯 사건({org})", f"turbine:{org}:{(re.search(m['event'], title, re.I) or re.search('x', 'x')).group(0).lower()}"
     m = r.get("frontier_ipo") or {}
     if m:
         terms = re.compile(m["terms"], re.I)

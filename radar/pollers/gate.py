@@ -70,6 +70,7 @@ def watch_ids():
     if "watch" not in _CACHE:
         ids = {u["id"] for u in (common.load_yaml("config/valuation.yaml") or {}).get("universe", [])}
         ids |= {u["id"] for u in (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []}
+        ids |= set((common.load_yaml("config/entity_overrides.yaml") or {}).get("always_watch") or [])   # 실체 보정 파일의 상시 감시(2026-11-10 jp-sbg)
         _CACHE["watch"] = ids
     return _CACHE["watch"]
 
@@ -91,7 +92,7 @@ def keep(item, focus):
         return True
     if item.get("source_id") in ("src-short-sites", "src-jp-ir-qa", "src-jp-ir-docs", "src-kr-ir-docs", "src-kr-ir-qa", "src-tw-disclosure",
                                  "src-tw-hk-ir-docs", "src-tw-hk-ir-qa", "src-fiscal-ir-docs",
-                                 "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-yt-ir", "src-gpu-rental", "src-trendforce-pr"):   # 대만 월매출 급증·중국·홍콩 공시는 수집기가 이미 좁혔다(엔티티 없는 지도 밖 후보, 2026-11-09)   # 대만·홍콩 IR·Fiscal IR 문서(2026-11-08 AT&S 점검)   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
+                                 "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-yt-ir", "src-gpu-rental", "src-trendforce-pr", "src-price-move", "src-keyperson-gn"):   # 대만 월매출 급증·중국·홍콩 공시는 수집기가 이미 좁혔다(엔티티 없는 지도 밖 후보, 2026-11-09)   # 대만·홍콩 IR·Fiscal IR 문서(2026-11-08 AT&S 점검)   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
         return True
     if not news_allowed(item):
         return False

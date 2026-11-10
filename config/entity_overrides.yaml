@@ -1,0 +1,13 @@
+# 레이더 실체 인식 보정(radar/pollers/common.py entity_aliases·match_entities, gate.watch_ids) — 자동 생성 구역(TradingView 동기화 등)을 손대지 않고 고친다.
+# 2026-11-10 마스터 지시("소프트뱅크 … GEV 주가 폭락을 왜 안 가져오나"): SoftBank Group 기사가 전부 jp-9434(소프트뱅크 통신)로 잡히고 jp-sbg는 사전에 없었다.
+add:        # id → 더할 이름(영문은 단어 경계, 한·중·일은 부분 일치)
+  jp-sbg: ["SoftBank Group", "SoftBank", "SBG", "ソフトバンクグループ", "ソフトバンクＧ", "소프트뱅크그룹", "소프트뱅크", "Masayoshi Son", "손정의", "孫正義", "SB Energy", "SB OpenAI Japan", "Stargate"]
+remove:     # id → 뺄 이름(다른 실체와 겹치는 일반 약칭)
+  jp-9434: ["SoftBank"]
+prefer:     # 둘 다 잡히면 앞쪽만 남긴다 — 단 뒤쪽 전용 이름(only)이 본문에 있으면 뒤쪽도 남긴다
+  - {keep: jp-sbg, drop: jp-9434, unless: ["SoftBank Corp", "ソフトバンク株式会社", "소프트뱅크 통신", "SoftBank Mobile"], keep_only: ["SoftBank Group", "SBG", "グループ", "Masayoshi Son", "SB Energy", "Stargate", "Vision Fund", "그룹", "손정의"]}
+always_watch: [jp-sbg]   # 포커스 점수와 무관하게 공시·보도를 저장(gate.watch_ids)
+related:    # 문맥이 맞으면 상대방 실체도 붙인다(2차 전파) — 터빈 슬롯 예약 소식이 공급사로 번지게(2026-11-10)
+  - {from: jp-sbg, when: 'turbine|タービン|터빈|gas plant|gas-fired|power plant|9\.2 ?GW', add: [co-gevernova], why: "SB Energy 오하이오 9.2GW 가스발전 터빈 슬롯 예약(2026-05 소프트뱅크 발표) — 공급사 GE Vernova(그 밖 공급사는 미확인)"}
+tv_symbols:  # TradingView 대응표(config/tradingview_symbols.csv)에 없는 감시 종목 — 급변 감시(radar/move_watch.py)가 쓴다
+  jp-sbg: {symbol: "TSE:9984", name: "SoftBank Group", ticker: "9984"}
