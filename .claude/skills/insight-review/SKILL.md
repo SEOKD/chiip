@@ -60,3 +60,5 @@ argument-hint: "[노션 페이지 URL | 비우면 새 글·수정 글 전부]"
 - 마스터 글 본문 수정(검토는 하위 페이지·속성만). 근거 없는 동조나 반대. 정량 칸을 추정으로 채우기. 노션 검토 페이지에 local-only·필드 인텔 대조.
 
 노션 자료 참조(2026-11-01 마스터 지시): 글에 나온 종목은 `py radar/notion_library.py --need <회사>`의 요지를 반대 검증에 쓴다.
+
+- **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.

@@ -9,6 +9,8 @@ config/analysis_sources.yaml의 원천을 종목마다 한 번에 모으고, 무
       py scripts/tenbagger/gather.py <회사 id> --only tg_channels,lobby  # 일부만 다시
       py scripts/tenbagger/gather.py --mark <회사 id> <원천> ok|"해당 없음(이유)" ["메모"]
       py scripts/tenbagger/gather.py --check <회사 id>                 # 빠진 원천(종료 코드 1)
+      py scripts/tenbagger/gather.py <회사 id> --reuse                 # 3일 안 장부가 있으면 다시 돌리지 않는다(Pulse·Portfolio 등 모든 기능, 2026-11-11)
+      py scripts/tenbagger/gather.py --market [--reuse]               # 시장·산업 원천(config market:) → radar/state/gather/_market/
 """
 import argparse
 import csv
@@ -147,6 +149,7 @@ def read_exclusive(co):
     p = ROOT / "knowledge" / "exclusive" / "leads.yaml"
     if not p.exists():
         return [], False
+    return [], False   # 2026-11-11 마스터 지시 — 1급 기밀, 분석 글에 쓰지 않는다(docs/channels/notion.md '1급 기밀·해설 피드')
     leads = (yaml.safe_load(p.read_text(encoding="utf-8")) or {}).get("leads") or []
     # insider_like는 invest·public 금지(CLAUDE.md) — Analysis에 넣지 않는다. 원문 인용·취재원 표현은 쓰지 않는다
     rows = [f"{x.get('id')} {x.get('dated')} {x.get('title')} · 확인할 것: {' / '.join(x.get('check') or [])}"
@@ -249,6 +252,24 @@ def mark(entity, src, status, note=""):
     save_ledger(entity, led)
 
 
+def market(reuse=False):
+    """시장·산업 원천(종목 무관) — 모든 기능이 쓴다(2026-11-11 마스터 지시)"""
+    cfg, out_dir = config(), OUT / "_market"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    led_p = out_dir / "_ledger.json"
+    led = json.loads(led_p.read_text(encoding="utf-8")) if led_p.exists() else {"sources": {}}
+    if reuse and led.get("at") and (now() - datetime.fromisoformat(led["at"])).total_seconds() < 6 * 3600:
+        return led, True
+    co = {"id": "_market", "ticker": "", "name": "", "legal": ""}
+    srcs = [dict(s, kind="script") for s in cfg.get("market") or []]
+    with ThreadPoolExecutor(max_workers=5) as ex:
+        for s, res in zip(srcs, ex.map(lambda s: run_one(s, co, cfg), srcs)):
+            led["sources"][s["id"]] = res
+    led["at"] = now().isoformat(timespec="seconds")
+    led_p.write_text(json.dumps(led, ensure_ascii=False, indent=1), encoding="utf-8")
+    return led, False
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
@@ -256,6 +277,8 @@ def main(argv):
     ap.add_argument("--only")
     ap.add_argument("--mark", nargs="+", metavar="ARG")
     ap.add_argument("--check")
+    ap.add_argument("--reuse", action="store_true")
+    ap.add_argument("--market", action="store_true")
     a = ap.parse_args(argv)
     if a.mark:
         if len(a.mark) < 3:
@@ -267,8 +290,17 @@ def main(argv):
         m = missing(a.check)
         print("[원천 관문] " + ("통과" if not m else "빠짐: " + " · ".join(m)))
         return 1 if m else 0
+    if a.market:
+        led, cached = market(a.reuse)
+        print(f"[시장 원천] {'6시간 안 장부 재사용' if cached else '수집'} → {OUT / '_market'}")
+        for k, v in led["sources"].items():
+            print(f"  {k}: {v['status']}")
+        return 0
     if not a.entity:
         ap.error("회사 id")
+    if a.reuse and not a.only and not missing(a.entity):
+        print(f"[원천 수집] {a.entity} 3일 안 장부 재사용 → {OUT / a.entity}")
+        return 0
     led, co = gather(a.entity, set(a.only.split(",")) if a.only else None)
     print(f"[원천 수집] {a.entity} {co['ticker']} ({co['region'] or '지역 미확인'}) → {OUT / a.entity}")
     for k, v in led["sources"].items():

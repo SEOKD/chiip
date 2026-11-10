@@ -44,3 +44,5 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
 1. radar/state/industry_weekly_ready.json을 읽는다. 이번 주(KST) 것이 아니면 텔레그램 없이 "이번 주 주간 산업 미완성"만 기록하고 끝낸다(회차가 실패하면 chiip-catchup이 다시 돌린다).
 2. `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send` — 마스터 개인 봇으로 1통. 성공하면 ready 파일에 `"sent_at"`을 쓴다(같은 주에 두 번 보내지 않는다).
 - **노션 IB 자료**(2026-11-08 마스터 지시): datapack을 쓰기 전 `py radar/notion_library.py --industry <산업 키>` — '요지 작성 필요'는 원문을 읽고 자기 말 요지를 `--digest <id> <파일>`로 저장한 뒤, 그 판단·숫자를 수요·시장 규모·반대 검증 절에 반영한다. 조립기가 요지 없는 자료를 만나면 멈춘다.
+
+- **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.

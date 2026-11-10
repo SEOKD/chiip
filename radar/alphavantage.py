@@ -11,6 +11,8 @@
       py radar/alphavantage.py --get EARNINGS_ESTIMATES NVDA      # ② 한 함수(JSON 출력)
       py radar/alphavantage.py --transcript NVDA 2026Q3           # ② 어닝콜 전사(요약용, 원문 복제 금지)
       py radar/alphavantage.py --budget                           # 오늘 쓴 호출 수
+      py radar/alphavantage.py --calendar                         # 저장된 실적 일정(호출 없음)
+      py radar/alphavantage.py --about <티커>                      # 한 종목 일정 + EPS 추정(캐시 우선, 키 없으면 일정만) — gather.py 원천
 """
 import csv
 import io
@@ -144,6 +146,22 @@ def main(argv):
         if "--budget" in argv:
             st = budget()
             print(f"{st['day']} 호출 {st['calls']}/{BUDGET}" + (" · 한도 응답으로 멈춤" if st["limited"] else ""))
+        elif "--calendar" in argv:
+            p = OUT / "earnings_calendar.csv"
+            print(p.read_text(encoding="utf-8") if p.exists() else "실적 일정 없음 — " + ("키 대기(ALPHA_VANTAGE_API_KEY)" if not key() else "다음 회차"))
+        elif "--about" in argv:
+            t = argv[argv.index("--about") + 1].upper()
+            p = OUT / "earnings_calendar.csv"
+            rows = [l for l in (p.read_text(encoding="utf-8").splitlines() if p.exists() else []) if l.split(",")[0].upper() == t]
+            print("실적 일정: " + (" / ".join(rows) if rows else "없음"))
+            if key():
+                try:
+                    d = get("EARNINGS_ESTIMATES", t)
+                    print("EPS 추정: " + json.dumps((d.get("estimates") or [])[:4], ensure_ascii=False))
+                except RuntimeError as e:
+                    print(f"EPS 추정: {e}")
+            else:
+                print("EPS 추정: 키 대기(ALPHA_VANTAGE_API_KEY)")
         elif "--get" in argv:
             i = argv.index("--get")
             print(json.dumps(get(argv[i + 1], argv[i + 2] if len(argv) > i + 2 else None), ensure_ascii=False)[:20000])

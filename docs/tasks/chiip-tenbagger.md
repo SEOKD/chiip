@@ -84,3 +84,5 @@ ToolSearch `select:mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__api_docs,mcp__4056
 **데이터 채널 장애(마스터 지시 2026-11-02):** Fiscal.ai·Zacks·Easyconomics·TradingView 호출이 오류를 내면 `py radar/self_heal.py --report <fiscal|zacks|easyconomics|tradingview> "오류 내용"`을 남기고 `docs/channels/data.md` 순서대로 다음 채널을 쓴다. 키나 토큰 값은 적지 않는다.
 
 **HS 급등 품목(2026-11-02 마스터 지시):** `py radar/trade_hs.py --surge`(급등 품목), `--series <hs>`(시계열), `--company <회사 id>`(이 회사 BOM 품목과 겹치는 급등)를 필요할 때 본다. 수출입 급등은 단서이고 금지표대로 특정 기업 매출로 바로 잇지 않는다. 금액 증가는 가격과 물량을 나누지 않은 값이다.
+
+- **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.

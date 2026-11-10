@@ -34,3 +34,5 @@
 `py scripts/fiscal/estimates.py --code --days 60`을 돌려 산업 구성 종목의 발표 전 추정을 동결한다(서프라이즈·리비전의 기준). 동결이 없으면 스코어카드에 '기대 동결 없음'.
 금지: 매매·비중·금액 지시, D:\local-only 읽기, 유료 리포트·IB 문장 복제(요지·출처만), 공개 채널 게시.
 - **노션 IB 자료**(2026-11-08 마스터 지시): datapack을 쓰기 전 `py radar/notion_library.py --industry <산업 키>` — '요지 작성 필요'는 원문을 읽고 자기 말 요지를 `--digest <id> <파일>`로 저장한 뒤, 그 판단·숫자를 수요·시장 규모·반대 검증 절에 반영한다. 조립기가 요지 없는 자료를 만나면 멈춘다.
+
+- **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.

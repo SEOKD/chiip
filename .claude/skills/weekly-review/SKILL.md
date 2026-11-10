@@ -46,3 +46,5 @@ argument-hint: "[주차 YYYY-Www]"
 노션 자료 참조(2026-11-01 마스터 지시): '이번 주 바뀐 것' 종목은 `py radar/notion_library.py --need <회사>`의 요지와 게시글을 참조한다.
 
 **무역·PPI(마스터 지시 2026-11-02):** 그 주 새 수치가 판단을 바꿀 때 쓴다. 필요할 때 `py radar/trade_ppi.py --status`(또는 `--need <회사 id>`)로 7개 지역 세부 지표를 본다. PPI 전년비·수입처 변화가 판단을 바꿀 때만 쓰고, 나열하지 않는다. 별표는 업종 대용 지수다. 값이 없으면 '미확인'이다.
+
+- **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.

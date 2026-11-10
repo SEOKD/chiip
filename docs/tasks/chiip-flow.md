@@ -16,3 +16,5 @@
 6. 기록: `outputs/report/flow/<YYYYMMDD>.md`에 보낸 본문을 덧붙인다(엔진 기록은 knowledge/models/chiip_flow/log.csv·state.json).
 
 금지: 장중 알림, D:\local-only 읽기, 필드 인텔, 로그인·유료벽 우회, '사라/팔아라'·비중·금액 지시, 공개 채널 게시, TradingView MCP 병렬 호출, git 커밋·푸시. 판단 작업은 짧게.
+
+- **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.
