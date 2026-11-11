@@ -34,6 +34,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-foreign-press", "foreign_press", 120),
     ("src-openalex", "openalex", 10080),
     ("src-page-diff", "page_diff", 1440),
+    ("kr-foreign-hiring", "pollers.kr_foreign_hiring", 60),  # 해외 반도체 기업 한국 채용(마이크론·인텔·엔비디아·KLA·어플라이드 Workday + 사람인 키 대기, 2026-11-11 마스터 지시)
     ("src-job-boards", "jobs_boards", 360),  # 협업사 공개 채용(Greenhouse·Lever·Ashby 25곳) — 삼성·SK하이닉스 파트너십 과제 문구, 1440→360분(2026-11-11 마스터 지시)
     ("src-legistar", "legistar", 240),  # 지방 안건 — 실시간 보고 대상(§21.12)
     # 6단계 v2

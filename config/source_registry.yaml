@@ -416,6 +416,23 @@
   verified: true
   enabled: true
 
+- id: src-gamma-blog
+  name: 감마의 하드웨어정보(gamma0burst.tistory.com) — '단신 > 단신' 새 글
+  category: L8-커뮤니티
+  module: gamma_blog
+  entry: poll
+  method: rss
+  endpoint_doc: "https://gamma0burst.tistory.com/rss · radar/pollers/gamma_blog.py"
+  auth: none
+  scope: [T0, T1, T2]
+  interval_min: 10
+  run_on: local
+  language: ko
+  terms_note: "2026-11-11 마스터 지시. 블로그 공식 RSS(robots 허용), 제목·링크·요약 앞부분만. 2차 출처·루머 — S1·S2 신호, 주장 아님"
+  reliability_default: 2차(개인 블로그)
+  verified: true
+  enabled: true
+
 - id: src-globenewswire
   name: GlobeNewswire RSS
   category: P-보도자료

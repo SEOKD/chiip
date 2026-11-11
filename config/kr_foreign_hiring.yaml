@@ -1,0 +1,17 @@
+# 해외 반도체 기업의 한국 채용(2026-11-11 마스터 지시 "마이크론, 샌디스크, KIOXIA, Rapidus, CXMT, YMTC 등 해외 반도체 기업들이 한국 지사에서 한국 엔지니어를 뽑는 공고가 나오면 파악")
+# radar/pollers/kr_foreign_hiring.py. 링크드인 채용 검색은 robots 전체 금지·제외 원천이라 쓰지 않는다 — 회사 공식 채용(Workday 공개 검색)과 사람인 공개 API(키)로 본다.
+
+# ① 회사 공식 채용 — Workday 공개 검색(robots 허용·응답 확인 2026-11-11). 한국 근무지 공고만
+workday:
+  - {name: Micron, entity: co-micron, host: micron.wd1.myworkdayjobs.com, tenant: micron, site: External}
+  - {name: Intel, entity: null, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External}
+  - {name: NVIDIA, entity: co-nvidia, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite}
+  - {name: KLA, entity: null, host: kla.wd1.myworkdayjobs.com, tenant: kla, site: Search}
+  - {name: Applied Materials, entity: co-amat, host: amat.wd1.myworkdayjobs.com, tenant: amat, site: External}
+workday_search: ["Korea", "Seoul", "Hwaseong", "Icheon", "Pyeongtaek", "Cheonan"]
+korea_location: "Korea|KOR|Seoul|Hwaseong|Icheon|Pyeongtaek|Cheonan|Gyeonggi|Bundang|Suwon|Yongin|Giheung|Cheongju|Gumi|Asan"
+
+# ② 사람인 공개 API(키 SARAMIN_API_KEY — oapi.saramin.co.kr 무료 신청, 없으면 '키 대기'로 건너뛴다). 한국 지사·헤드헌터 공고를 회사 이름으로
+saramin_keywords: ["마이크론", "Micron", "샌디스크", "Sandisk", "키옥시아", "KIOXIA", "라피더스", "Rapidus", "CXMT", "창신메모리", "YMTC", "양쯔메모리", "웨스턴디지털", "난야", "윈본드", "Nanya", "Winbond"]
+# 공고 제목·회사명에 이 회사 이름이 있어야 받는다(검색어가 본문 어디에만 걸린 무관 공고 제외)
+company_match: "마이크론|Micron|샌디스크|Sandisk|SanDisk|키옥시아|KIOXIA|Kioxia|라피더스|Rapidus|CXMT|창신|ChangXin|YMTC|양쯔|Yangtze|웨스턴디지털|Western Digital|난야|Nanya|윈본드|Winbond"
