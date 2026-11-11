@@ -187,3 +187,30 @@ extra:
   - {id: co-mirion, name: Mirion Technologies, code: MIR.US, region: US, sub: power_infra, segment: 발전원, aliases: ["Mirion Technologies", "Mirion"]}
   - {id: co-alfalaval, name: Alfa Laval, code: ALFA.ST, region: EU, sub: power_infra, segment: 냉각, aliases: ["Alfa Laval"]}
   - {id: co-f5, name: F5, code: FFIV.US, region: US, sub: software, aliases: ["F5 Inc", "F5 Networks"]}
+  # 유럽연합 주요국·영국 AI 밸류체인·성장주·항공우주&방위(2026-11-11 마스터 지시 "지멘스 에너지(ENR) 같은 유럽연합 주요국 및 영국의 AI 밸류체인 및 성장주, 항공우주&방위주도 감시 대상에")
+  - {id: co-aixtron, name: Aixtron, code: AIXA.XETRA, region: EU, sub: semicap, aliases: ["Aixtron"]}
+  - {id: co-soitec, name: Soitec, code: SOI.PA, region: EU, sub: materials, aliases: ["Soitec"]}
+  - {id: co-stmicro, name: STMicroelectronics, code: STMPA.PA, region: EU, sub: analog, aliases: ["STMicroelectronics", "STMicro"]}
+  - {id: co-nordicsemi, name: Nordic Semiconductor, code: NOD.OL, region: EU, sub: semis, aliases: ["Nordic Semiconductor"]}
+  - {id: co-mycronic, name: Mycronic, code: MYCR.ST, region: EU, sub: semicap, aliases: ["Mycronic"]}
+  - {id: co-vat, name: VAT Group, code: VACN.SW, region: EU, sub: semicap, aliases: ["VAT Group"]}
+  - {id: co-iqe, name: IQE, code: IQE.LSE, region: UK, sub: materials, aliases: ["IQE plc"]}
+  - {id: co-halma, name: Halma, code: HLMA.LSE, region: UK, sub: instruments, aliases: ["Halma"]}
+  - {id: co-spectris, name: Spectris, code: SXS.LSE, region: UK, sub: instruments, aliases: ["Spectris"]}
+  - {id: co-dassaultsys, name: Dassault Systemes, code: DSY.PA, region: EU, sub: software, aliases: ["Dassault Systemes", "Dassault Systèmes"]}
+  - {id: co-hexagon, name: Hexagon, code: HEXA-B.ST, region: EU, sub: software, aliases: ["Hexagon AB"]}
+  - {id: co-adyen, name: Adyen, code: ADYEN.AS, region: EU, sub: payments, aliases: ["Adyen"]}
+  - {id: co-rheinmetall, name: Rheinmetall, code: RHM.XETRA, region: EU, sub: defense, aliases: ["Rheinmetall"]}
+  - {id: co-hensoldt, name: Hensoldt, code: HAG.XETRA, region: EU, sub: defense_electronics, aliases: ["Hensoldt"]}
+  - {id: co-renk, name: Renk, code: R3NK.XETRA, region: EU, sub: defense, aliases: ["Renk Group"]}
+  - {id: co-mtuaero, name: MTU Aero Engines, code: MTX.XETRA, region: EU, sub: aerospace, aliases: ["MTU Aero Engines"]}
+  - {id: co-airbus, name: Airbus, code: AIR.PA, region: EU, sub: aerospace, aliases: ["Airbus"]}
+  - {id: co-safran, name: Safran, code: SAF.PA, region: EU, sub: aerospace, aliases: ["Safran"]}
+  - {id: co-thales, name: Thales, code: HO.PA, region: EU, sub: defense_electronics, aliases: ["Thales Group"]}
+  - {id: co-dassaultav, name: Dassault Aviation, code: AM.PA, region: EU, sub: defense, aliases: ["Dassault Aviation"]}
+  - {id: co-leonardo, name: Leonardo, code: LDO.MI, region: EU, sub: defense, aliases: ["Leonardo S.p.A.", "Leonardo SpA"]}
+  - {id: co-saab, name: Saab, code: SAAB-B.ST, region: EU, sub: defense, aliases: ["Saab AB"]}
+  - {id: no-kongsberg, name: Kongsberg Gruppen, code: KOG.OL, region: EU, sub: defense, aliases: ["Kongsberg Gruppen", "Kongsberg Defence"]}
+  - {id: co-bae, name: BAE Systems, code: BA.LSE, region: UK, sub: defense, aliases: ["BAE Systems"]}
+  - {id: co-qinetiq, name: QinetiQ, code: QQ.LSE, region: UK, sub: defense, aliases: ["QinetiQ"]}
+  - {id: co-chemring, name: Chemring, code: CHG.LSE, region: UK, sub: defense, aliases: ["Chemring"]}
