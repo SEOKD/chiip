@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -54,7 +54,8 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("보도자료", ("src-prn", "src-bw", "src-ir-press", "src-newsroom-", "src-assoc-", "src-gpu-rental", "src-trendforce-pr")),   # GPU 렌털료 변화·TrendForce 가격 보도자료(2026-11-10)
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg"))]
-CLASS_W = {"포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
+CLASS_W = {"시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -387,7 +388,8 @@ def fetch_new_listings(st, days=3):
             seen.add(adsh)
             sic = (s.get("sics") or [""])[0]
             name, ticker, cik = sea.parse_name((s.get("display_names") or [""])[0])
-            if not sea.relevant(sic) or (ticker and ticker.upper() in watch):
+            cik = cik or (s.get("ciks") or [None])[0]   # 표시명에 CIK가 없는 건 — 없으면 건너뜀(2026-11-11 TypeError)
+            if not cik or not sea.relevant(sic) or (ticker and ticker.upper() in watch):
                 continue
             out.append({"source_id": "src-sec-ipo", "source_class": "신규 상장",
                         "url": f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/",
@@ -488,6 +490,37 @@ def fetch_alerts(st, since=None):
     return p0 + p1
 
 
+def fetch_news(st):
+    """시의성 뉴스(2026-11-12 마스터 지시 "Chiip News Digest는 제공 안 해도 된다. 시의성 있는 자료와 뉴스, 정보를 개별로 Pulse를 통해 해설하며 올려라").
+    run_triage가 P2·막힌 P0/P1·미판정으로 대기열(brief_queue.jsonl)에 적은 기사 중 p2_digest 점수 NEWS_MIN 이상만 한 건씩 Pulse로.
+    같은 제목 묶음은 한 번만, 국내 언론 제외. 회차당 TOP['시의성 뉴스']건 — 넘친 건 다음 회차(커서는 실은 건까지만 민다)"""
+    import p2_digest as pd
+    floor = st.get("news_floor") or common.iso(common.now_kst() - timedelta(hours=6))
+    seen = set(st.get("news_keys") or [])
+    pubs, held_ids, name_re, wl = pd._context()
+    out = []
+    for e in sorted(pd.load(datetime.fromisoformat(floor)), key=lambda e: e.get("at", "")):
+        title = e.get("title") or ""
+        k = pd._key(title)
+        if not k or k in seen or pd.HANGUL.search(title):
+            continue
+        sc = pd.score(e, pubs, held_ids, name_re, wl)
+        if sc < NEWS_MIN:
+            continue
+        seen.add(k)
+        out.append({"source_id": "src-news-queue", "source_class": "시의성 뉴스", "url": e.get("url"), "title": title,
+                    "published_at": e.get("at"), "detected_at": e.get("at"), "language": "en", "entities_matched": e.get("entities") or [],
+                    "snippet": f"{e.get('level')} · 대기열 점수 {sc} · {(e.get('note') or '')[:80]}", "level": e.get("level"), "news_score": sc})
+    out.sort(key=lambda x: -x["news_score"])
+    keep = out[:TOP["시의성 뉴스"]]
+    if keep:
+        st["news_floor"] = max(x["detected_at"] for x in keep)
+    elif not out:
+        st["news_floor"] = common.iso(common.now_kst())
+    st["news_keys"] = sorted(seen)[-3000:]
+    return keep
+
+
 def fetch_consumer_spikes(st):
     """수요 관심 급가속(하루 1회 갱신) — 새 관측일 때만, 상위 5건"""
     if not CONSUMER_LATEST.exists():
@@ -574,7 +607,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("시의성 뉴스", fetch_news)):
         try:
             sources += fn(st)
         except Exception as exc:

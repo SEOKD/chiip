@@ -20,6 +20,7 @@ from pollers import common  # noqa: E402
 QUEUE = common.STATE / "brief_queue.jsonl"
 STATE = "p2_digest"
 TOP = 10
+ENABLED = False   # Chiip News Digest 중단(2026-11-12 마스터 지시) — radar/pulse.py fetch_news로 대체
 LEVEL_SCORE = {"P0": 5, "P1": 4, "미판정": 2, "P2": 1}
 WINDOW = (8, 10)
 MAX_CHARS = 3800          # 텔레그램 한 통 4096자 — 링크는 이 안에 들어갈 때만 붙인다
@@ -117,6 +118,8 @@ def build(entries, now):
 
 def run(send=None, now=None):
     """run_hourly용. (대상 건수, 발송 여부)"""
+    if not ENABLED:   # 2026-11-12 마스터 지시 — 하루 1통 요약 중단, 같은 대기열을 Pulse '시의성 뉴스'가 한 건씩 해설한다
+        return 0, False
     now = now or common.now_kst()
     st = common.load_state(STATE, {})
     if send is None:
