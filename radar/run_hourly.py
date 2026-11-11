@@ -25,7 +25,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-edgar-fts", "edgar_fts", 120),
     ("src-twse-monthly", "twse_monthly", 1440),
     ("src-tw-financials", "pollers.tw_financials", 360),  # 대만 공시 분기 손익·재무상태(TWSE·TPEx OpenAPI, 모델 없음, 2026-11-07 마스터 지시)
-    ("src-press-wire", "pollers.press_wire", 30),  # PR Newswire·Business Wire (저녁 브리프 '글로벌 공식 발표')
+    ("src-press-wire", "pollers.press_wire", 60),  # PR Newswire·Business Wire — 주 수집은 run_poll src-press-fast(5분, 2026-11-11), 여기는 예비
     ("src-spac-watch", "pollers.spac_watch", 30),  # SPAC 감지·생애 단계 장부(SIC 6770 EDGAR 검색 + S2~S4 후속 추적, 2026-11-04 마스터 지시 1단계)
     ("src-weekly-movers", "markets.weekly_movers", 30),  # EODHD 주간 상승률 — 모듈이 토 06~09시·주 1회만 실제 실행
     ("src-valuation", "markets.valuation_data", 30),  # 밸류에이션 수집·계산 — 모듈이 05~06시·15:45~17시에만 실제 실행
@@ -68,7 +68,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-prices-free", "markets.prices_free", 720),  # 무료 시세(TWSE·TPEx, KRX·Finnhub는 키 입력 후)
     ("src-sec-bulk", "sec_bulk", 43200),  # SEC 일괄 재무 → 기저율 표본(월 1회, SEC_USER_AGENT 필요 — 없으면 건너뜀)
     ("src-regime", "regime", 1440),
-    ("src-sec-earnings-all", "pollers.sec_earnings_all", 60),  # 전체 미국 상장사 실적(8-K 2.02) → AI·전력 업종이면 알파 산정 대기열(Investing 캘린더 대체)
+    ("src-sec-earnings-all", "pollers.sec_earnings_all", 30),  # 60→30분(2026-11-11 실시간 점검)  # 전체 미국 상장사 실적(8-K 2.02) → AI·전력 업종이면 알파 산정 대기열(Investing 캘린더 대체)
     ("src-alpha-watch", "alpha_watch", 60),  # 핵심 루프: P0·P1 알림·알파 진입·실적일 → 알파 ≥5면 v2 3요인 텔레그램(동인 없으면 대기열)  # 밸류에이션 v2 시장 체제(FRED 국채·스프레드·환율) — 하루 1회
     ("src-earnings-calendar", "markets.earnings_calendar", 30),
     ("src-attention", "attention", 1440),
@@ -77,27 +77,80 @@ JOBS = [  # (job id, module, interval_min)
 ]
 
 
+# 회차 시간 예산(2026-11-11 실시간 점검): Windows 작업 chiip-hourly는 30분 한도에 강제 종료된다(결과 0x41306). 작업을 목록 순서대로
+# 한 프로세스에서 돌리다 앞쪽이 느리면 끝쪽이 굶었다 — src-attention·src-consumer-attention·src-p2-digest가 10~11일 멈췄다.
+# run_poll과 같게 ① 밀린 비율(경과 ÷ 주기) 큰 작업부터 ② 작업마다 별도 프로세스 + 시간 한도 ③ 예산을 넘기면 새 작업을 시작하지 않는다.
+BUDGET_MIN = 24
+JOB_TIMEOUT_MIN = 10
+RADAR_JOBS = ("src-fedreg", "src-legistar", "korea-watch")  # 레이더 inbox에 새 항목을 넣는 작업
+
+
+def overdue(jid, every):
+    """경과 ÷ 주기 — 한 번도 안 돈 작업은 가장 먼저"""
+    last = common.load_state("last_run").get(jid)
+    if not last:
+        return 1e9
+    from datetime import datetime
+    return (common.now_kst() - datetime.fromisoformat(last)).total_seconds() / 60 / max(every, 1)
+
+
+def run_job(jid, mod):
+    """작업 하나 — 새 레이더 항목이 생겼으면 True"""
+    try:
+        res = importlib.import_module(mod).run()
+        print(jid, res)
+        return jid in RADAR_JOBS and bool(res[1])
+    except RuntimeError as exc:
+        common.record_health(jid, False, exc)
+        print(f"{jid}: 건너뜀 — {exc}")
+    except Exception as exc:
+        common.record_health(jid, False, f"{type(exc).__name__}: {exc}")
+        print(f"{jid}: 오류 — {type(exc).__name__}: {exc}")
+        traceback.print_exc(limit=1)
+    finally:
+        common.mark_run(jid)
+    return False
+
+
+def run_child(jid, timeout_s):
+    """작업 하나를 별도 프로세스로 — 멈춰도 그 작업만 끊긴다"""
+    import os
+    import subprocess
+    try:
+        r = subprocess.run([sys.executable, str(Path(__file__)), "--child", jid], capture_output=True, timeout=timeout_s,
+                           env={**os.environ, "PYTHONIOENCODING": "utf-8"}, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+    except subprocess.TimeoutExpired:
+        common.record_health(jid, False, f"시간 초과 {timeout_s / 60:.0f}분 — 다음 회차에 다시(run_hourly 작업별 한도)")
+        common.mark_run(jid)
+        print(f"{jid}: 시간 초과({timeout_s / 60:.0f}분)")
+        return False
+    out = r.stdout.decode("utf-8", "replace").rstrip().splitlines()
+    for line in out[:-1]:
+        print(line)
+    return bool(out) and out[-1] == "NEW_RADAR"
+
+
 def main(argv):
+    if "--child" in argv:
+        jid = argv[argv.index("--child") + 1]
+        mod = next(m for j, m, _ in JOBS if j == jid)
+        print("NEW_RADAR" if run_job(jid, mod) else "DONE")
+        return 0
     common.stay_awake()
     force = "--force" in argv
-    new_radar = False
-    for jid, mod, every in JOBS:
-        if not force and not common.is_due(jid, every):
+    import time
+    t0 = time.monotonic()
+    due = [(j, m, e) for j, m, e in JOBS if force or common.is_due(j, e)]
+    due.sort(key=lambda x: -overdue(x[0], x[2]))
+    new_radar, left = False, []
+    for jid, mod, every in due:
+        spent = (time.monotonic() - t0) / 60
+        if spent >= BUDGET_MIN:
+            left.append(jid)
             continue
-        try:
-            res = importlib.import_module(mod).run()
-            print(jid, res)
-            if jid in ("src-fedreg", "src-legistar", "korea-watch") and res[1]:  # 레이더 inbox에 새 항목을 넣는 작업
-                new_radar = True
-        except RuntimeError as exc:
-            common.record_health(jid, False, exc)
-            print(f"{jid}: 건너뜀 — {exc}")
-        except Exception as exc:
-            common.record_health(jid, False, f"{type(exc).__name__}: {exc}")
-            print(f"{jid}: 오류 — {type(exc).__name__}: {exc}")
-            traceback.print_exc(limit=1)
-        finally:
-            common.mark_run(jid)
+        new_radar |= run_child(jid, min(JOB_TIMEOUT_MIN, BUDGET_MIN + 4 - spent) * 60)
+    if left:
+        print(f"시간 예산 {BUDGET_MIN}분 소진 — 다음 회차로: {', '.join(left)}")
     if new_radar:
         import run_triage
         run_triage.main([])

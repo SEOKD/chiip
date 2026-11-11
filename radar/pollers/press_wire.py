@@ -68,6 +68,21 @@ def classify(entry, feed, cfg):
 
 
 def run():
+    items, errors = collect()
+    new = common.save_new_items(items)
+    common.record_health("src-press-wire", not errors or bool(items), "; ".join(errors) or None)
+    return len(items), len(new)
+
+
+def poll(env=None):
+    """run_poll 빠른 길(src-press-fast, 5분, 2026-11-11 실시간 점검) — 저장·규칙 선알림은 run_poll이 한다"""
+    items, errors = collect()
+    if errors and not items:
+        raise RuntimeError("; ".join(errors))
+    return items
+
+
+def collect():
     cfg = _cfg()
     items, seen_titles, errors = [], set(), []
     for feed in cfg.get("feeds", []):
@@ -94,9 +109,7 @@ def run():
                 to_iso(e["date"]), "보도자료", "en", common.strip_tags(e["desc"]),
                 extra={"wire": feed.get("wire"), "feed_id": feed["id"], "regions": regions,
                        "ticker": ticker, "press_categories": cats}))
-    new = common.save_new_items(items)
-    common.record_health("src-press-wire", not errors or bool(items), "; ".join(errors) or None)
-    return len(items), len(new)
+    return items, errors
 
 
 def digest(day=None):

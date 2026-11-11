@@ -37,3 +37,8 @@
   - 시장·산업 판단: `py scripts/tenbagger/gather.py --market --reuse` — 거시 국면·EIA 전력·GPU 렌털료·무역·PPI 현황·Alpha Vantage 실적 일정. 출력은 `radar/state/gather/_market/`.
   - 쓰임: 판단을 바꾸는 줄만 근거로 쓴다(없으면 쓰지 않는다). 데이터 우선순위(Fiscal.ai 1순위)와 각 원천의 금지 규칙은 그대로다.
 - **피드의 Zacks 표기 줄 제외**(2026-11-11 마스터 지시 "마지막 줄 Data provided는 제외하라. 다음 피드부터 적용하라"): 텔레그램 피드에는 'Data provided by Zacks…' 줄을 쓰지 않는다. `radar/notify.py` `brand()`가 발송 직전 지운다(모든 피드 공통).
+- **수집 속도 점검·보완**(2026-11-11 마스터 지시 "데이터 파이프라인을 보완할 점이 있는지 점검하라. 특히 실시간 속도로 가져올 수 있는 구조"):
+  - 실시간 체인 = `radar/run_poll.py`(작업 chiip-radar 2분) — 밀린 순서·원천별 프로세스·22분 예산. 감시 종목 SEC 서류는 EDGAR 최신 목록(2분)이 즉시 깨운다.
+  - 저빈도 체인 `radar/run_hourly.py`(chiip-hourly 30분)도 같은 구조로 바꿨다: 밀린 비율 큰 작업부터, 작업마다 별도 프로세스(10분 한도), 24분 예산. 전에는 30분 한도 강제 종료로 끝쪽 작업(관심도·소비재 관심도·P2 요약)이 10~11일 멈췄다.
+  - 실적 보도자료(PR Newswire·Business Wire)는 8-K보다 먼저 뜨므로 실시간 체인 `src-press-fast`(5분)로 옮겨 규칙 선알림을 받는다. run_hourly 쪽은 60분 예비. 전체 미국 실적 스캐너는 60→30분.
+  - 남은 빈칸: GlobeNewswire는 자동 접속 403이라 쓰지 않는다. Business Wire는 M&A 피드뿐 — 실적·기술 피드 주소는 목록 페이지가 자동 접속을 막아 마스터가 브라우저에서 복사해야 한다(docs/TODO_MASTER.md).
