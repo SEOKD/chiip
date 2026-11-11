@@ -38,5 +38,5 @@ keys:
   dart: DART_API_KEY                   # opendart.fss.or.kr — '소송등의제기' 공시(값이 비어 있음, 21-7·2026-11-06 항목)
   kipris: KIPRIS_API_KEY               # plus.kipris.or.kr 무료 회원 — 한국 특허심판원 심판·등록(아직 코드 없음: 키가 오면 공식 문서로 붙인다)
 
-grant_keywords: ["HBM", "high bandwidth memory", "hybrid bonding", "through-silicon", "glass substrate", "OLED", "solid-state battery", "3D NAND", "CXL", "backside power"]
+grant_keywords: ["HBM", "high bandwidth memory", "HBM4", "HBM5", "base die", "logic die", "custom HBM", "hybrid bonding", "through-silicon", "glass substrate", "OLED", "solid-state battery", "3D NAND", "CXL", "backside power"]
 lookback_days: 7

@@ -7,17 +7,17 @@ ashby: [cerebras, etched, d-matrix, axelera, matx, openai, lambda, crusoe, extro
 
 # 협업 흔적 — 회사 이름(lexicon) 말고도 그 회사를 가리키는 공정·제품 이름. 단어 경계로 찾는다(대소문자 무시)
 partner_terms:
-  co-samsung: ["Samsung", "Samsung Foundry", "SF1\\.4", "SF2P?\\+?", "SF3P?", "SF4[XUP]?", "SF8", "8LPP", "I-Cube\\d?", "X-Cube", "SAINT", "Exynos"]
+  co-samsung: ["Samsung", "Samsung Foundry", "SF1\\.4", "SF2[PXZA]?\\+?", "SF3P?", "SF4[XUPA]?", "SF8", "8LPP", "I-Cube\\d?", "X-Cube", "SAINT", "Exynos", "Taylor fab", "Austin fab"]
   co-skhynix: ["SK ?hynix", "Hynix", "Solidigm"]
 # 과제 꼬리표 — 같이 나오면 '파트너십 과제'로 보고 Pulse로 올린다(이름만 나온 공고는 역방향 후보로만)
-context_terms: ["HBM\\d?E?", "base die", "logic die", "custom HBM", "interposer", "2\\.5D", "3D[- ]IC", "hybrid bonding", "TSV", "LPDDR5X?", "LPDDR6", "GDDR7", "CXL",
+context_terms: ["HBM\\d?E?", "zHBM", "NVHBM", "sHBM", "standard HBM", "C-?HBM", "Base/IO die", "IO die", "base die", "logic die", "custom HBM", "interposer", "2\\.5D", "3D[- ]IC", "hybrid bonding", "TSV", "LPDDR5X?", "LPDDR6", "GDDR7", "CXL",
                 "PIM", "processing[- ]in[- ]memory", "PDK", "tape[- ]?out", "MPW", "2 ?nm", "3 ?nm", "GAA", "foundry", "memory controller", "PHY", "SerDes", "UCIe"]
 # 다른 회사(같은 그룹 계열) — 찾기 전에 지운다(FuriosaAI 공고의 'Samsung SDS' 고객 문구, 2026-11-11 시험)
 negative_terms: ["Samsung SDS", "Samsung Biologics", "Samsung C&T", "Samsung Heavy", "Samsung Life", "Samsung Fire", "Samsung Securities", "Samsung Card", "SK Telecom", "SK Square"]
 # 한 보드 공고의 이 비율 이상에 같은 이름이 나오면 회사 소개 상용구로 보고 보드당 1건만 남긴다(과제 아님)
 boilerplate_share: 0.4
 # 대형사 자체 채용 — Workday 공개 검색(2026-11-11 마스터 지시 "1, 2, 3 모두 구현해"). robots 허용·응답 확인분만(AMD·Arm·Synopsys·Dell·Amkor·Lam은 422로 제외)
-workday_search: ["Samsung", "SK hynix", "Hynix"]
+workday_search: ["Samsung", "SK hynix", "Hynix", "HBM4", "HBM4E", "HBM5", "zHBM", "NVHBM", "custom HBM", "base die", "logic die", "SF2", "Taylor fab"]   # 마스터 키워드 목록(2026-11-11)
 workday:
   - {name: nvidia, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite}
   - {name: intel, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External}
@@ -28,3 +28,5 @@ workday:
   - {name: hpe, host: hpe.wd5.myworkdayjobs.com, tenant: hpe, site: Jobsathpe}
   - {name: appliedmaterials, host: amat.wd1.myworkdayjobs.com, tenant: amat, site: External}
   - {name: kla, host: kla.wd1.myworkdayjobs.com, tenant: kla, site: Search}
+# 회사 이름 없이도 Pulse로 올리는 HBM·삼성 공정 과제어(마스터 키워드 목록 2026-11-11 — zHBM·NVHBM·맞춤 HBM·베이스 다이·SF 계열·테일러/오스틴 팹)
+keyword_only: ["HBM4E", "HBM5", "zHBM", "NVHBM", "sHBM", "C-?HBM", "custom HBM", "Base/IO die", "HBM base die", "HBM logic die", "SF1\\.4", "SF2[PXZA]", "Samsung 2 ?nm", "Samsung 4 ?nm", "Taylor fab", "Austin fab"]

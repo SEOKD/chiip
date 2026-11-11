@@ -33,7 +33,38 @@ def queries(cfg):
             out.append((f"{p['id']}:{eid}", f"({terms}) ({sites})", eid, p["why"]))
     for c in cfg.get("claims") or []:
         out.append((f"claim:{c['id']}", c["q"], c["entity"], c["why"]))
+    for c in cfg.get("keywords") or []:   # 마스터 키워드 목록(2026-11-11)
+        out.append((f"kw:{c['id']}", c["q"], c["entity"], c["why"]))
     return out
+
+
+def openalex(cfg, seen, based, cutoff_days=30):
+    """④ 논문 — OpenAlex(키 불필요) 제목·초록에 키워드가 든 최근 논문 중 기업 소속 저자가 있는 것. 저자 이름은 저장하지 않는다(소속 기관만)"""
+    import json
+    since = (common.now_kst() - timedelta(days=cutoff_days)).date().isoformat()
+    corp = ("Inc", "Corp", "Ltd", "Co.", "Company", "GmbH", "LLC", "Electronics", "Semiconductor", "Technologies", "Hynix", "Samsung", "NVIDIA", "TSMC")
+    items = []
+    for kw in cfg.get("openalex_keywords") or []:
+        qid = f"openalex:{kw}"
+        try:
+            d = json.loads(common.http_get("https://api.openalex.org/works", {"search": f'"{kw}"', "filter": f"from_publication_date:{since}", "per-page": "25"}, timeout=30))
+        except Exception:
+            continue
+        for w in d.get("results", []):
+            link = w.get("doi") or w.get("id")
+            if not link or link in seen:
+                continue
+            seen.add(link)
+            insts = sorted({i.get("display_name", "") for a in w.get("authorships", []) for i in a.get("institutions", [])} - {""})
+            orgs = [i for i in insts if any(k in i for k in corp)]
+            if qid not in based or not orgs:
+                continue
+            ents = [e for e, k in (("co-samsung", "Samsung"), ("co-skhynix", "Hynix")) if any(k in i for i in insts)]
+            items.append(common.make_item(SRC, hashlib.sha1(link.encode()).hexdigest()[:16], link, f"[논문] {w.get('title') or ''} — {', '.join(orgs[:4])}",
+                                          (w.get("publication_date") or "") + "T00:00:00+09:00", "논문", "en", f"키워드 {kw} · 소속 {', '.join(insts[:6])}",
+                                          extra={"entities_matched": ents, "trace_query": qid, "source_class": "학술 논문(OpenAlex) — 공동 연구 정황"}))
+        based.add(qid)
+    return items
 
 
 def poll(env=None):
@@ -59,6 +90,7 @@ def poll(env=None):
                                           f"[협업 흔적] {common.strip_tags(e['title'])}", pub or common.iso(common.now_kst()), "보도자료", "en",
                                           why, extra={"entities_matched": [eid], "trace_query": qid, "source_class": "협업사 공식 자료·학회(Google News 색인)"}))
         based.add(qid)
+    items += openalex(cfg, seen, based)
     st.update({"seen": list(seen)[-20000:], "based": sorted(based)})
     common.save_state("partner_trace", st)
     if errs and len(errs) == len(queries(cfg)):

@@ -54,3 +54,4 @@
   - ② 블로그 주장 판정 표 `outputs/report/20261111_gamma_partnership_claims.md`(공개 확인·정황·확인 불가) — 미확인 주장은 ③의 claims 질의로 경보.
   - ③ 협업사 공식 자료 `radar/pollers/partner_trace.py`(run_poll 30분) — 협업사 뉴스룸·기술 블로그·학회 사이트 한정 Google News RSS에서 삼성·SK하이닉스 언급, 새 글만 Pulse '협업 흔적'.
   - 링크드인·개인 이력 원본 찾기는 하지 않는다(제외 원천·신원 추적 금지, 마스터와 합의 2026-11-11).
+  - 마스터 키워드 목록(2026-11-11 "넣어" — 링크드인 검색 대신): HBM4·HBM4E·HBM5, zHBM·NVHBM·sHBM·맞춤 HBM(C-HBM), 베이스/IO·로직 다이, 삼성 SF 계열(SF1.4·SF2·SF2P·SF2X·SF2Z·SF2A·SF4X), 삼성 2·4nm, 테일러·오스틴 팹. ① 채용: Workday 검색어 + 본문 과제어(회사 이름 없이 과제어만 있어도 Pulse — keyword_only) ② partner_trace keywords 질의 7개 + OpenAlex 논문(기업 소속 저자, 이름 미저장) ③ 특허 grant_keywords. Workday 본문은 공고별 캐시(radar/state/job_boards_wd)로 회차 약 4분.

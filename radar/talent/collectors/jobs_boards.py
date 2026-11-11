@@ -63,19 +63,26 @@ def workday(w, terms):
     """Workday 공개 채용 검색(/wday/cxs/<테넌트>/<사이트>/jobs, robots 허용 확인 2026-11-11) → 검색어가 걸린 공고와 본문"""
     import urllib.request
     base = f"https://{w['host']}/wday/cxs/{w['tenant']}/{w['site']}"
-    out, seen = [], set()
+    found = {}
     for q in terms:
         req = urllib.request.Request(base + "/jobs", data=json.dumps({"appliedFacets": {}, "limit": 20, "offset": 0, "searchText": q}).encode(),
                                      headers={"Content-Type": "application/json", "Accept": "application/json", "User-Agent": common.UA})
         for j in json.loads(urllib.request.urlopen(req, timeout=30).read()).get("jobPostings", []):
-            path = j.get("externalPath")
-            if not path or path in seen:
-                continue
-            seen.add(path)
+            if j.get("externalPath"):
+                found.setdefault(j["externalPath"], j)
+    cache = common.load_state("job_boards_wd", {})   # 본문은 공고 경로별로 한 번만 받는다(검색어가 늘어 회차가 10분을 넘던 것, 2026-11-11)
+
+    def detail(path):
+        if path not in cache:
             d = json.loads(common.http_get(base + path, headers={"Accept": "application/json"}, timeout=30)).get("jobPostingInfo", {})
-            out.append((w["name"], path.rsplit("_", 1)[-1], j.get("title", ""), j.get("locationsText", ""),
-                        d.get("externalUrl") or f"https://{w['host']}/{w['site']}{path}", common.strip_tags(html.unescape(d.get("jobDescription", "")))))
-    return out
+            cache[path] = [d.get("externalUrl") or f"https://{w['host']}/{w['site']}{path}", common.strip_tags(html.unescape(d.get("jobDescription", "")))[:6000]]
+        return path, cache[path]
+
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(6) as ex:
+        got = dict(ex.map(lambda p: detail(p), list(found)))
+    common.save_state("job_boards_wd", dict(list(cache.items())[-3000:]))
+    return [(w["name"], p.rsplit("_", 1)[-1], j.get("title", ""), j.get("locationsText", ""), got[p][0], got[p][1]) for p, j in found.items()]
 
 
 def patterns(cfg, lex):
@@ -96,13 +103,18 @@ def run():
     ctx = re.compile(r"(?<![A-Za-z0-9])(?:" + "|".join(cfg.get("context_terms") or ["$^"]) + r")(?![A-Za-z0-9])", re.I)
     neg = re.compile("|".join(re.escape(x) for x in cfg.get("negative_terms") or []) or r"$^", re.I)
     jobs, errs = fetch(cfg)
+    kwo = re.compile(r"(?<![A-Za-z0-9])(?:" + "|".join(cfg.get("keyword_only") or ["$^"]) + r")(?![A-Za-z0-9])", re.I)
     hits = []
     for board, jid, title, loc, url, body in jobs:
         text = neg.sub(" ", re.sub(r"\s+", " ", f"{title}. {body}"))
+        named = False
         for eid, pat in pats.items():
             m = pat.search(text)
             if m:
                 hits.append((board, jid, title, loc, url, text, eid, m))
+                named = True
+        if not named and kwo.search(text):   # 회사 이름 없이 과제어만(zHBM·NVHBM·HBM5·SF2P 등, 2026-11-11 마스터 키워드 목록)
+            hits.append((board, jid, title, loc, url, text, None, kwo.search(text)))
     # 회사 소개 상용구(FuriosaAI 공고마다 'ecosystem includes … SK Hynix') — 보드 공고의 boilerplate_share 이상이면 보드당 1건, Pulse 없음
     from collections import Counter
     per_board = Counter(b for b, *_ in jobs)
@@ -119,14 +131,16 @@ def run():
         if True:
             snip = text[max(0, m.start() - 200):m.end() + 200]
             tags = sorted({x.group(0) for x in ctx.finditer(snip)}, key=str.lower)
-            cands.append({"uid": f"{board}:{jid}", "mentioned_entity": eid, "match_text": m.group(0), "counterparty": board,
+            if eid is None:
+                tags = sorted(set(tags) | {m.group(0)}, key=str.lower)
+            cands.append({"uid": f"{board}:{jid}", "mentioned_entity": eid or "keyword", "match_text": m.group(0), "counterparty": board,
                           "form": "채용", "published_at": "", "language": "en", "url": url, "snippet": snip, "location": loc,
                           "tags": tags, "signal_type_hint": "채용"})
             if tags and jid != "boilerplate":   # 파트너십 과제(이름 + 과제 꼬리표) — Pulse로
-                items.append(common.make_item(SOURCE_ID, hashlib.sha1(f"{board}:{jid}:{eid}".encode()).hexdigest()[:16], url,
+                items.append(common.make_item(SOURCE_ID, hashlib.sha1(f"{board}:{jid}:{eid or 'kw'}".encode()).hexdigest()[:16], url,
                                               f"[협업사 채용] {board}: {title} — {m.group(0)} · {', '.join(tags[:5])}",
                                               common.iso(common.now_kst()), "채용", "en", snip[:400],
-                                              extra={"entities_matched": [eid], "counterparty": board, "location": loc, "tags": tags,
+                                              extra={"entities_matched": [eid] if eid else [], "counterparty": board, "location": loc, "tags": tags,
                                                      "source_class": "협업사 공개 채용 공고(의도, 실행 아님)"}))
     n = save_candidates("L6", SOURCE_ID, cands)
     st = common.load_state("job_boards", {})

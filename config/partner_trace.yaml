@@ -20,4 +20,14 @@ claims:
   - {id: skhynix-hbm4e-logic, entity: co-skhynix, q: '"SK hynix" HBM4E "logic die" OR "base die" TSMC OR Intel', why: "판정 표 3번 — 맞춤 HBM4E 로직 다이 공정(정황)"}
   - {id: baidu-samsung-2nm, entity: co-samsung, q: 'Baidu Samsung 2nm', why: "판정 표 5번 — 바이두 2nm 재개 여부(반대 근거 있음)"}
   - {id: samsung-custom-hbm-customer, entity: co-samsung, q: 'Samsung "custom HBM" customer Google OR Meta OR Nvidia', why: "삼성 맞춤 HBM 고객 공식화"}
+# ③ 마스터 키워드 목록(2026-11-11 "넣어") — 키워드별 검색. 링크드인 대신 공개 색인(뉴스·회사 자료·학회)
+keywords:
+  - {id: kw-hbm-gen, entity: co-skhynix, q: '"HBM4E" OR "HBM5" "base die" OR "logic die"', why: "HBM 세대·베이스 다이"}
+  - {id: kw-zhbm, entity: co-samsung, q: '"zHBM" OR "NVHBM" OR "sHBM"', why: "zHBM·NVHBM·표준 HBM"}
+  - {id: kw-custom-hbm, entity: co-samsung, q: '"custom HBM" OR "C-HBM" OR "cHBM" Samsung OR "SK hynix"', why: "맞춤 HBM"}
+  - {id: kw-base-io-die, entity: co-samsung, q: '"Base/IO die" OR "HBM base die" OR "HBM logic die"', why: "베이스·IO·로직 다이"}
+  - {id: kw-sf-series, entity: co-samsung, q: '"SF1.4" OR "SF2P" OR "SF2X" OR "SF2Z" OR "SF2A" OR "SF4X" Samsung', why: "삼성 파운드리 SF 계열"}
+  - {id: kw-samsung-node, entity: co-samsung, q: '"Samsung 2nm" OR "Samsung 4nm" customer OR tape-out OR contract', why: "삼성 2·4nm 고객"}
+  - {id: kw-samsung-fabs, entity: co-samsung, q: 'Samsung "Taylor fab" OR "Austin fab" OR "Taylor plant"', why: "테일러·오스틴 팹"}
+openalex_keywords: ["HBM4", "HBM4E", "HBM5", "custom HBM", "HBM base die", "HBM logic die", "Samsung 2nm", "SF2"]
 lookback_h: 48
