@@ -238,24 +238,78 @@ def needs_update(eid, reasons, c, today):
 
 def message(r, name, alpha_total, reasons, update_note=None):
     import decision
+    # 2026-11-11 마스터 지시 "근거는 자세하게 풀이, 매수 매력·위험 예산·상방은 %같은 수치만, 내러티브도 자세히, 마지막 가정 부분은 제외"
     L = [f"[알파 감지] {name} — 알파 {alpha_total:.1f}" if alpha_total is not None else f"[알파 감지] {name}"]
-    L += [f"· 근거: {x}" for x in reasons[:3]]
-    import notify   # 근거 다음에 무엇을 하는 회사인지 1줄(2026-11-08 마스터 지시)
+    import notify   # 무엇을 하는 회사인지 1줄(2026-11-08 마스터 지시)
     biz = notify.company_line([r.get("entity") or ""])
-    L.append(f"· 기업: {biz}" if biz else "· 기업: 미확인")
-    if r.get("decision"):   # 덩어리마다 빈 줄(2026-11-09 마스터 지시 "문단 띄어쓰기로 가독성 있게")
-        for x in decision.lines(r["decision"]):
-            L += ["", x]
-    L += ["", narrative_line(r.get("entity") or "")]
+    L.append(f"☞ {biz}" if biz else "☞ 기업 설명 미확인")
+    L += ["", "**왜 감지됐나**"] + [f"· {explain_reason(x)}" for x in reasons[:3]]
+    if r.get("decision"):
+        L += [""] + factor_lines(r["decision"])
     u = r["upside"]
     if u.get("implied_cagr") is not None:
         pct = u["implied_pct"][0]
-        L += ["", f"시장 내포 5년 매출 CAGR {u['implied_cagr']:.0%} — 지금 주가가 전제하는 앞으로 5년 연평균 매출 성장률"
-              + (f"(과거 기업들 실제 성장 분포에서 상위 {100 - pct:.0f}% 수준)" if pct is not None else "")]
-    L.append("")
-    # 가정 줄이 마지막이다 — 아래 설명(보수 가정·안내문)은 뺀다(2026-11-08 마스터 지시 "설명을 간소화"). 동인 갱신 예정과 투자자문 아님 표시만 이 줄에 붙인다
-    L.append(f"가정: 동인 {r.get('drivers_as_of') or '미상'}{'(갱신 예정)' if update_note else ''} · 시가 {r['market'].get('date', '미상')} · WACC {r['coc']['wacc']:.1%} · 몬테카를로 {u.get('n', 0):,}회 · {DISCLAIMER_SHORT}")
+        L.append(f"주가 내포 5년 매출 성장 연 {u['implied_cagr']:.0%}" + (f"(과거 기업 상위 {100 - pct:.0f}%)" if pct is not None else ""))
+    L += [""] + narrative_block(r.get("entity") or "")
+    L += ["", DISCLAIMER_SHORT]
     return "\n".join(L)
+
+
+def explain_reason(x):
+    """감지 근거 한 줄을 풀어 쓴다 — 무엇이 나왔고 왜 알파 감지로 이어졌는지"""
+    import re
+    m = re.match(r"알파 ([\d.]+) 기준 진입", x)
+    if m:
+        return (f"알파 잠재력 점수가 {m[1]}점으로 기준(5.0)을 처음 넘었다 — 시장 관심도·내러티브 매력·펀더멘털 상하방 여지·"
+                "멀티플 프리미엄을 합친 10점 만점 점수다")
+    m = re.match(r"실적 발표\((.*)\)", x)
+    if m:
+        return f"실적 발표 직후({m[1]}) — 발표 숫자가 동인(매출·이익 가정)을 바꿀 수 있어 3요인을 다시 계산했다"
+    m = re.match(r"(P0|P1) (\S*): (.*)", x)
+    if m:
+        lvl = "가장 중요한 실시간 알림(P0)" if m[1] == "P0" else "중요 실시간 알림(P1)"
+        return f"{lvl}으로 나간 {m[2] or '소식'}: {m[3]} — 사건이 가치 입력을 바꿀 수 있어 다시 계산했다"
+    m = re.match(r"(\S+): (.*)", x)
+    if m:
+        return f"새 {m[1]} 자료: {m[2]} — 감시 종목에 1차 자료가 들어와 다시 계산했다"
+    return x
+
+
+def factor_lines(d):
+    """3요인을 수치만(설명 없이) — decision.lines는 리포트용 풀어 쓴 판으로 그대로 둔다"""
+    a, rb, u, h = d["attractiveness"], d["risk_budget"], d["upside"], d["horizon"]
+    budget = 0 if rb.get("gated") else rb["budget"]
+    return [f"① 매수 매력: 연 기대수익 {a['exp_return']:+.1%} · 요구수익률 {a['ke']:.1%} 대비 {a['excess']:+.1%}p · 넘을 확률 {a['p_beat_ke']:.0%} · 안전마진 {a['margin_of_safety']:.0%}",
+            f"② 위험 예산: {budget:.1%} · 하위 10% {rb['p10_loss']:+.0%} · −30% 이상 확률 {rb['p_loss_30']:.0%}",
+            f"③ 상방({h}년): 평균 {u['exp_multiple']:.2f}배 · 2배↑ {u['p2']:.0%} · 3배↑ {u['p3']:.0%} · 10배↑ {u['p10']:.0%} · 상위 10% {u['p90_multiple']:.2f}배"]
+
+
+def narrative_block(eid, today=None):
+    """내러티브를 풀어 쓴다 — 요약 + 단계·과밀 뜻 + 프리미엄·디스카운트 요인 + 확인할 지표(knowledge/narratives/companies/<id>.md)"""
+    import re
+    head = narrative_line(eid, today)
+    p = ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
+    fm = front(p.read_text(encoding="utf-8")) if p.exists() else None
+    if not fm:
+        return ["**내러티브**", head.split(": ", 1)[-1]]
+    body = p.read_text(encoding="utf-8").split("---", 2)[-1]
+    stage = {"초기": "아직 소수만 말하는 이야기", "확산": "커뮤니티·IB로 퍼지는 중", "컨센서스": "시장 다수가 이미 믿는 이야기",
+             "과열": "기대가 숫자를 앞선 상태", "소멸": "힘을 잃는 중"}.get(str(fm.get("stage")), "")
+    crowd = {"낮음": "아직 붐비지 않음", "중간": "어느 정도 알려짐", "높음": "이미 많이 알려져 가격 반영 가능성 큼"}.get(str(fm.get("crowding")), "")
+    out = ["**내러티브**", str(fm.get("summary") or ""),
+           f"· 단계 {fm.get('stage', '미판정')}" + (f"({stage})" if stage else "") + f" · 과밀 {fm.get('crowding', '미상')}" + (f"({crowd})" if crowd else "")]
+
+    def items(label):
+        m = re.search(r"\*\*" + label + r"\*\*\s*\n((?:\s*\d+\..*\n?)+)", body)
+        return [re.sub(r"^\s*\d+\.\s*", "", x).strip() for x in m[1].strip().splitlines()][:2] if m else []
+    for lab, word in (("프리미엄 요인", "＋"), ("디스카운트 요인", "－")):
+        out += [f"{word} {x}" for x in items(lab)]
+    k = re.search(r"## 반증 조건·확인할 KPI\s*\n-\s*(.+)", body)
+    if k:
+        out.append(f"· 확인할 것: {k[1].strip()}")
+    if "갱신 필요" in head:
+        out.append("· " + head.rsplit("— ", 1)[-1].rstrip("]"))
+    return out
 
 
 def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None):

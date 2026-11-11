@@ -13,10 +13,11 @@ R = {"entity": "co-ies", "drivers_as_of": "2026-11-08", "market": {"date": "2026
 class TestAlphaMessage(unittest.TestCase):
     def test_company_line_after_reasons_and_assumption_last(self):
         L = aw.message(R, "IES Holdings", 6.4, ["알파 5.3 기준 진입"], update_note="갱신").split("\n")
-        self.assertTrue(L[1].startswith("· 근거:"))
-        self.assertTrue(L[2].startswith("· 기업:"))
-        self.assertTrue(L[-1].startswith("가정:"))
-        self.assertIn("(갱신 예정)", L[-1])
+        # 2026-11-11 마스터 지시: 근거는 풀어 쓰고, 마지막 '가정:' 줄은 뺀다
+        self.assertTrue(L[1].startswith("☞"))
+        self.assertIn("**왜 감지됐나**", L)
+        self.assertIn("기준(5.0)을 처음 넘었다", "\n".join(L))
+        self.assertFalse(any(x.startswith("가정:") for x in L))
         self.assertNotIn("보수 가정", "\n".join(L))
 
     def test_broken_front_still_reads(self):
