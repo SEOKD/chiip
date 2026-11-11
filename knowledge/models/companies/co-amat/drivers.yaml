@@ -1,0 +1,94 @@
+id: co-amat
+name: Applied Materials
+ticker: AMAT
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  CN: 0.3
+  TW: 0.2
+  KR: 0.2
+  US: 0.15
+  JP: 0.1
+  OTHER: 0.05
+tax: 0.15
+horizon: 10
+as_of: '2026-11-11'
+market:
+  date: '2026-11-11'
+  price: 372.53
+  shares: 0.8
+  net_debt: -7.155
+  source: 가격 = 2026-11-10 종가 $372.53(TradingView NASDAQ:AMAT·Fiscal.ai 일치). 주식 수 = 3Q FY26 희석 가중평균 800M
+    (기본 793.6M 2026-07-26). 차입·리스 $7.346B − 현금·단기 투자 $9.233B − 장기 투자 $5.268B(2026-07-26 재무상태표,
+    Fiscal.ai·TradingView). FQ4(10월 분기) 실적은 2026-11-12 장 마감 뒤 — 이 동인은 실적 하루 전 기준
+rev0: 34.49
+ic0: 18.47  # 자기자본 25.626 + 차입 7.346 − 현금 9.233 − 장기 투자 5.268 (2026-07-26)
+ronic_spread: 0.02
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.33
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.32
+      target: 0.36
+      year_target: 3
+      lr: 0.33
+      lam: 0.35
+      anchors:
+      - 0.357
+      - 0.371
+    s2c: 2.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.51
+      end: 0.045
+      decay: 0.4
+    margin:
+      m0: 0.32
+      target: 0.4
+      year_target: 3
+      lr: 0.36
+      lam: 0.25
+      anchors:
+      - 0.37
+      - 0.39
+    s2c: 2.3
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.16
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.32
+      target: 0.29
+      year_target: 3
+      lr: 0.28
+      lam: 0.5
+      anchors:
+      - 0.33
+      - 0.32
+    s2c: 1.7
+mc:
+  sigma_growth: 0.08
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+notes:
+- 신규 작성 2026-11-11(대기열 '작성', 알파 6.1 진입). 컨센서스 미입력(manual_consensus.csv에 행 없음) — 성장 경로는 Fiscal.ai 자체 추정(FY26 $34.5B 높은 신뢰, FY27 $46.0B 중간, FY28 $51.0B 낮은 신뢰)에 맞췄다. Alpha Vantage FY27 EPS 추정 평균 $18.56(35명)도 Fiscal $18.4와 근사
+- rev0 $34.49B = FY26(10월 결산) — 3개 분기 $24.04B + FQ4 추정 약 $10.45B. 11/12 실적에서 실제 FQ4와 FQ1 FY27 가이던스로 바로 갱신한다
+- 이익률 m0 32% = Fiscal FY26 EBIT $11.03B ÷ $34.49B(TTM 29.6%, 직전 분기 33.7%). 앵커 35.7%·37.1% = Fiscal FY27·FY28 EBIT 추정 ÷ 매출
+- 성장 감쇠 0.35 — FY27 +33% 뒤 FY28 +11%(Fiscal) — 장비 사이클이라 고성장이 길게 이어진다고 보지 않는다
+- ronic_spread 0.02 — 설치 기반 서비스(AGS)·공정 장비 다수 분야 1~2위 점유율 — 해자가 증명된 경우로 본다. 값은 3단계 백테스트로 보정할 파라미터
+- '확률 근거: 강세 0.3 — FY27 추정 범위 $40~52B로 상방이 넓고 메모리·첨단 로직 증설 사이클(HBM·GAA). 약세 0.2 — 중국 매출 비중과 수출 통제 위험. 기본 0.5'
+- '가장 약한 가정: FY27 매출 +33% · 가를 다음 실적일: 2026-11-12 FQ4 FY26 실적·FQ1 가이던스'
+- 지역 비중은 근사(근거 약함 — 10-K 지역 매출 대조 전)
+evidence:
+- Fiscal.ai MCP 2026-11-11 — 표준화 손익(분기)·재무상태표·자체 추정(company_estimates)
+- TradingView NASDAQ:AMAT 시세·재무 스냅숏(2026-11-11 조회)
+- Alpha Vantage 실적 일정·EPS 추정(데이터 허브 gather 2026-11-11)
