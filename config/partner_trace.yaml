@@ -1,0 +1,23 @@
+# 협업 흔적 공식 자료 감시(2026-11-11 마스터 지시 "1, 2, 3 모두 구현해") — radar/pollers/partner_trace.py
+# 링크드인·개인 이력 대신 회사가 공식으로 공개한 자료(협업사 뉴스룸·기술 블로그·학회 프로그램)와, 블로그 판정 표의 미확인 주장
+# (outputs/report/20261111_gamma_partnership_claims.md)을 Google News RSS 검색으로 본다. 새 글(48시간 안)만 Pulse '협업 흔적'.
+
+# ① 협업사 공식 채널 — 사이트를 한정해 삼성·SK하이닉스 언급을 찾는다
+partners:
+  - {id: eda-ip, sites: [synopsys.com, cadence.com, siemens.com, arm.com, rambus.com, alphawavesemi.com, openfive.com, gucglobal.com], why: "EDA·IP 회사의 삼성 공정 인증·HBM PHY 발표"}
+  - {id: ai-chip, sites: [nvidia.com, blogs.nvidia.com, amd.com, broadcom.com, marvell.com, qualcomm.com, tenstorrent.com, groq.com, cerebras.ai], why: "칩 회사의 메모리·파운드리 협업 발표"}
+  - {id: hyperscaler, sites: [ai.meta.com, engineering.fb.com, cloud.google.com, blog.google, aws.amazon.com, azure.microsoft.com], why: "하이퍼스케일러 자체 칩 공급망 언급"}
+  - {id: osat-equip, sites: [amkor.com, aseglobal.com, appliedmaterials.com, lamresearch.com, kla.com, besi.com, hanmisemi.com], why: "후공정·장비 회사의 고객 언급"}
+  - {id: conference, sites: [hotchips.org, isscc.org, vlsisymposium.org, ectc.net, ieee-iedm.org, ocp.org, opencompute.org], why: "학회 프로그램·발표 초록"}
+entity_terms:
+  co-samsung: '"Samsung Foundry" OR "Samsung Electronics" OR "Samsung HBM" OR SF2 OR SF2P'
+  co-skhynix: '"SK hynix" OR "SK Hynix"'
+
+# ② 블로그 판정 표의 미확인 주장 — 공개 근거가 나오면 Pulse로(판정 표 2·3·5번)
+claims:
+  - {id: meta-samsung-hbm4e, entity: co-samsung, q: 'Meta Samsung HBM4E "base die"', why: "판정 표 2번 — 메타 HBM4E 베이스 다이·인터포저 삼성 작업(확인 불가)"}
+  - {id: meta-samsung-interposer, entity: co-samsung, q: 'Meta Samsung "silicon interposer"', why: "판정 표 2번"}
+  - {id: skhynix-hbm4e-logic, entity: co-skhynix, q: '"SK hynix" HBM4E "logic die" OR "base die" TSMC OR Intel', why: "판정 표 3번 — 맞춤 HBM4E 로직 다이 공정(정황)"}
+  - {id: baidu-samsung-2nm, entity: co-samsung, q: 'Baidu Samsung 2nm', why: "판정 표 5번 — 바이두 2nm 재개 여부(반대 근거 있음)"}
+  - {id: samsung-custom-hbm-customer, entity: co-samsung, q: 'Samsung "custom HBM" customer Google OR Meta OR Nvidia', why: "삼성 맞춤 HBM 고객 공식화"}
+lookback_h: 48

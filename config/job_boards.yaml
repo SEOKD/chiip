@@ -16,3 +16,15 @@ context_terms: ["HBM\\d?E?", "base die", "logic die", "custom HBM", "interposer"
 negative_terms: ["Samsung SDS", "Samsung Biologics", "Samsung C&T", "Samsung Heavy", "Samsung Life", "Samsung Fire", "Samsung Securities", "Samsung Card", "SK Telecom", "SK Square"]
 # 한 보드 공고의 이 비율 이상에 같은 이름이 나오면 회사 소개 상용구로 보고 보드당 1건만 남긴다(과제 아님)
 boilerplate_share: 0.4
+# 대형사 자체 채용 — Workday 공개 검색(2026-11-11 마스터 지시 "1, 2, 3 모두 구현해"). robots 허용·응답 확인분만(AMD·Arm·Synopsys·Dell·Amkor·Lam은 422로 제외)
+workday_search: ["Samsung", "SK hynix", "Hynix"]
+workday:
+  - {name: nvidia, host: nvidia.wd5.myworkdayjobs.com, tenant: nvidia, site: NVIDIAExternalCareerSite}
+  - {name: intel, host: intel.wd1.myworkdayjobs.com, tenant: intel, site: External}
+  - {name: broadcom, host: broadcom.wd1.myworkdayjobs.com, tenant: broadcom, site: External_Career}
+  - {name: marvell, host: marvell.wd1.myworkdayjobs.com, tenant: marvell, site: MarvellCareers}
+  - {name: cadence, host: cadence.wd1.myworkdayjobs.com, tenant: cadence, site: External_Careers}
+  - {name: analogdevices, host: analogdevices.wd1.myworkdayjobs.com, tenant: analogdevices, site: External}
+  - {name: hpe, host: hpe.wd5.myworkdayjobs.com, tenant: hpe, site: Jobsathpe}
+  - {name: appliedmaterials, host: amat.wd1.myworkdayjobs.com, tenant: amat, site: External}
+  - {name: kla, host: kla.wd1.myworkdayjobs.com, tenant: kla, site: Search}

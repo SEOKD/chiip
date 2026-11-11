@@ -47,7 +47,35 @@ def fetch(cfg):
                              j.get("jobUrl", ""), j.get("descriptionPlain") or common.strip_tags(j.get("descriptionHtml", "") or "")))
         except Exception as e:
             errs.append(f"ashby:{name} {type(e).__name__}")
+    for w in cfg.get("workday") or []:   # 대형사 자체 채용(Workday 공개 검색, 2026-11-11 마스터 지시 — 엔비디아·브로드컴·KLA 등). 검색어로 좁힌 공고만 받는다
+        try:
+            jobs += workday(w, cfg.get("workday_search") or ["Samsung", "SK hynix"])
+            WORKDAY.add(w["name"])
+        except Exception as e:
+            errs.append(f"workday:{w['name']} {type(e).__name__}")
     return jobs, errs
+
+
+WORKDAY = set()
+
+
+def workday(w, terms):
+    """Workday 공개 채용 검색(/wday/cxs/<테넌트>/<사이트>/jobs, robots 허용 확인 2026-11-11) → 검색어가 걸린 공고와 본문"""
+    import urllib.request
+    base = f"https://{w['host']}/wday/cxs/{w['tenant']}/{w['site']}"
+    out, seen = [], set()
+    for q in terms:
+        req = urllib.request.Request(base + "/jobs", data=json.dumps({"appliedFacets": {}, "limit": 20, "offset": 0, "searchText": q}).encode(),
+                                     headers={"Content-Type": "application/json", "Accept": "application/json", "User-Agent": common.UA})
+        for j in json.loads(urllib.request.urlopen(req, timeout=30).read()).get("jobPostings", []):
+            path = j.get("externalPath")
+            if not path or path in seen:
+                continue
+            seen.add(path)
+            d = json.loads(common.http_get(base + path, headers={"Accept": "application/json"}, timeout=30)).get("jobPostingInfo", {})
+            out.append((w["name"], path.rsplit("_", 1)[-1], j.get("title", ""), j.get("locationsText", ""),
+                        d.get("externalUrl") or f"https://{w['host']}/{w['site']}{path}", common.strip_tags(html.unescape(d.get("jobDescription", "")))))
+    return out
 
 
 def patterns(cfg, lex):
@@ -80,7 +108,7 @@ def run():
     per_board = Counter(b for b, *_ in jobs)
     per_hit = Counter((h[0], h[6]) for h in hits)
     share = cfg.get("boilerplate_share", 0.4)
-    boiler = {k for k, n in per_hit.items() if n >= 5 and n / per_board[k[0]] >= share}
+    boiler = {k for k, n in per_hit.items() if n >= 5 and n / per_board[k[0]] >= share and k[0] not in WORKDAY}   # Workday는 검색어로 좁혀 받아 비율이 뜻이 없다
     cands, items, kept = [], [], set()
     for board, jid, title, loc, url, text, eid, m in hits:
         if (board, eid) in boiler:

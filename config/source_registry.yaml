@@ -399,6 +399,23 @@
   verified: true
   enabled: true
 
+- id: src-partner-trace
+  name: 협업 흔적 — 협업사 뉴스룸·기술 블로그·학회의 삼성·SK하이닉스 언급, 블로그 미확인 주장의 공개 근거
+  category: L7-협업
+  module: partner_trace
+  entry: poll
+  method: rss
+  endpoint_doc: "radar/pollers/partner_trace.py 맨 위 · config/partner_trace.yaml"
+  auth: none
+  scope: [T0]
+  interval_min: 30
+  run_on: local
+  language: en
+  terms_note: "2026-11-11 마스터 지시 '1, 2, 3 모두 구현해'. Google News RSS(사이트 한정 검색), 제목·링크·발행시각만. 링크드인·개인 이력 미사용"
+  reliability_default: 1차(회사 공식 자료) — 색인 경유
+  verified: true
+  enabled: true
+
 - id: src-globenewswire
   name: GlobeNewswire RSS
   category: P-보도자료
