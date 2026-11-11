@@ -82,6 +82,9 @@ def brand(text):
     text = re.sub(r"(?m)^\*\*판단\*\*\s*(.+)$", r"**\1**", text)   # 판단 문장은 머리말 없이 굵게
     text = re.sub(r"(?m)^판단\s+(?=\S)", "", text)
     text = re.sub(r"(?m)^(·\s*)(?:숫자|가격|파급|반대|다음|야마|보도 확인|주장|핵심|밸류|수급|조건|참여자|직전 대비|함의|단계|점유|AI 수요|바뀐 말|질문 초점)\s*[—–-]\s*", r"\1", text)
+    # 실적 ③ 통 제목은 '해설'(마스터 지시 2026-11-11 "제목에 칼럼이라고 쓰지 말고 해설이라고") — 첫 줄의 '칼럼'·'분석'을 바꾼다
+    text = re.sub(r"\A([^\n]*?\d[QH]\d\d\s*)(?:칼럼|분석)(?=\s|$)", r"\1해설", text)
+    text = re.sub(r"\A([^\n]*?)칼럼", r"\1해설", text)
     for ko, en in LABELS:
         text = text.replace(ko, en)
     return readable(code_gloss(money_units(LEVEL_WORD_RE.sub("", LEVEL_TAG_RE.sub("", text)))))   # 금액 $25B·$M·$T(마스터 지시 2026-10-29, radar/units.py)
