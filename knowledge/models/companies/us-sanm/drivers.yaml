@@ -1,0 +1,111 @@
+auto: true
+id: us-sanm
+name: Sanmina
+ticker: SANM
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.6
+  ROW: 0.4
+tax: 0.22
+horizon: 10
+as_of: '2026-11-11'
+market:
+  date: '2026-11-11'
+  price: 155.43
+  shares: 0.055083
+  net_debt: 0.4119
+  source: 가격 = 2026-11-10 종가 $155.43(TradingView NASDAQ:SANM — 4Q 실적은 11/9 장 마감 뒤
+    발표, 11/10이 실적 반응 첫날). 주식 수 = 4Q 기본 가중평균 53,568천 주(EX-99.1). 현금 $1,675.6M, 차입 =
+    단기 $172.0M + 장기 $1,915.5M = $2,087.5M(10/3 재무상태표). ZT 인수 조건부 대가(최대 $450M, 공정가치
+    약 $261M = 최초 $111M + FY26 평가 변동 $150M)는 기타 부채에 있고 차입에 넣지 않았다 — 위험 절에 따로 적는다. 10/27
+    대출 변경(Amendment No. 5)으로 기간 대출이 $70M 늘었다(4Q 뒤)
+rev0: 18.5
+ic0: 3.2048
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.27
+      end: 0.03
+      decay: 0.6
+    margin:
+      m0: 0.0655
+      target: 0.072
+      year_target: 3
+      lr: 0.068
+      lam: 0.35
+      anchors:
+      - 0.067
+      - 0.068
+    s2c: 3.3
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4324
+      end: 0.04
+      decay: 0.65
+    margin:
+      m0: 0.0655
+      target: 0.092
+      year_target: 3
+      lr: 0.068
+      lam: 0.25
+      anchors:
+      - 0.067
+      - 0.068
+    s2c: 3.795
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0
+      end: 0.030000000000000002
+      decay: 0.5
+    margin:
+      m0: 0.0655
+      target: 0.052
+      year_target: 3
+      lr: 0.068
+      lam: 0.5
+      anchors:
+      - 0.067
+      - 0.068
+    s2c: 2.805
+mc:
+  sigma_growth: 0.1081
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [17.5, 19.5] (4Q FY26 실적 8-K(Item 2.02, 2026-11-09) EX-99.1 'Outlook'·어닝콜
+    — 치입 요약)
+  growth: 컨센서스 1년차 18.9%, 2년차 10.9%
+  margin: 1~2년차 컨센서스 6.7%, 6.8% 고정 → 목표 7%(3년차, 덮어쓰기) → 장기 수렴 7%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 4.532 → 덮어쓰기 3.3
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 0.0%~43.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: ① FY27 성장 27%는 회사 가이던스 중간값이고 FY28 +19%는 Fiscal 추정(신뢰도 낮음)이다 — 감쇠 0.6으로
+    FY29 이후 빠르게 줄인다. ② 장기 조정 영업이익률은 FY27 가이던스 중간 7.25%를 넘기지 않는다 — EMS 동종 5곳 최근 4분기
+    3.5~8.3%(중앙 5.1%)이고, 지금 마진에는 Helios 초기 비반복 엔지니어링(NRE) 이익이 섞였다. 10년 뒤 6.8%로 수렴
+    ③ 매출÷투하자본을 TTM 4.5 대신 3.3으로 둔다 — FY27 매출이 약 $4B 늘 때 운전자본·설비투자가 늘어 FCF 추정이 −$200M이다(조정
+    영업이익 약 $1.34B의 세후 약 $1.0B + $0.2B ≈ $1.2B가 재투자 → 증분 매출 ÷ 증분 자본 약 3.3). AI 랙은 재고·매출채권이
+    무겁다
+  shares: 완전 희석 = 기본 0.053568(2026-10-03) + 옵션·RSU·워런트·전환 0.0015 — 4Q 희석 가중평균 55,083천
+    주 − 기본 53,568천 주 = 1,515천 주(주식보상·RSU 희석분,
+notes:
+- 자동 생성(build_drivers) 2026-11-11 — 데이터 묶음 2026-11-11
+- '어닝콜 위험: 클라우드·AI 시스템 매출이 하반기에 몰린다(회사) — Helios 램프 시점이 고객 인수 일정에 달렸다'
+- '어닝콜 위험: 공급망 부족(CEO: 지금 부족이 있다) — 범위 $2B 중 $1.5B가 AI 시스템'
+- '어닝콜 위험: 4Q 마진에 관세 환급 $30M(약 0.75%p·EPS $0.42) 일회성 포함'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/897723/000089772326000044/sanmina_exx991xoctober32026.htm
+- https://www.sec.gov/Archives/edgar/data/897723/000089772326000044/sanm-20261027.htm
+- https://www.sec.gov/Archives/edgar/data/897723/000089772326000037/sanm-20260627.htm
+- https://www.sec.gov/Archives/edgar/data/897723/000089772325000042/sanm-20250927.htm
+- https://www.sec.gov/Archives/edgar/data/897723/000089772326000036/sanmina_exx991xjune272026.htm
+- Fiscal.ai MCP 2026-11-11 — 표준화 손익(분기 44)·재무상태표·세그먼트·추정(Fiscal 자체·Zacks)·Forward
+  배수·4Q 어닝콜 전문(요지만)
+- TradingView NASDAQ:SANM 일봉 760(2026-11-11)·뉴스 제목
+- Easyconomics company_profile(yfinance)·insider_and_politics(lobbying — 집계 밖)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
