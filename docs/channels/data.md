@@ -36,3 +36,4 @@
   - 종목 판단: `py scripts/tenbagger/gather.py <회사 id> --reuse` — `config/analysis_sources.yaml`의 모든 종목 원천(공시·IR·텔레그램·딘스티커·노션·무역·PPI·HS·위성·로비·EIA·GPU 렌털료·Alpha Vantage·지역 공시·장부)을 모은다. 3일 안 장부가 있으면 다시 돌리지 않는다. 출력은 `radar/state/gather/<id>/`.
   - 시장·산업 판단: `py scripts/tenbagger/gather.py --market --reuse` — 거시 국면·EIA 전력·GPU 렌털료·무역·PPI 현황·Alpha Vantage 실적 일정. 출력은 `radar/state/gather/_market/`.
   - 쓰임: 판단을 바꾸는 줄만 근거로 쓴다(없으면 쓰지 않는다). 데이터 우선순위(Fiscal.ai 1순위)와 각 원천의 금지 규칙은 그대로다.
+- **피드의 Zacks 표기 줄 제외**(2026-11-11 마스터 지시 "마지막 줄 Data provided는 제외하라. 다음 피드부터 적용하라"): 텔레그램 피드에는 'Data provided by Zacks…' 줄을 쓰지 않는다. `radar/notify.py` `brand()`가 발송 직전 지운다(모든 피드 공통).
