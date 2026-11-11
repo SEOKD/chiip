@@ -1,0 +1,106 @@
+auto: true
+id: co-bloom
+name: Bloom Energy
+ticker: BE
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.85
+  intl: 0.15
+tax: 0.21
+horizon: 10
+as_of: '2026-11-11'
+market:
+  date: '2026-11-11'
+  price: 185.42
+  shares: 0.312357
+  net_debt: 0.2725
+  source: 가격 = 2026-11-10 종가 $185.42(TradingView NYSE:BE). 주식 수 295,656,689주(10-Q
+    표지, 2026-10-19). 현금 $2,486.7M(제한 현금 $21.4M 별도), 차입 = 전환사채·대출·리스 $2,782.0M(Fiscal
+    표준화 9/30) − 2029 그린 전환사채 $22.8M(전환가 $20.84 — 깊은 내가격이라 주식으로 센다) = $2,759.2M. 2030
+    0% 전환사채 $2.5B(전환가 $194.97)는 지금 가격이 전환가 아래라 차입으로 둔다
+rev0: 4.5
+ic0: 2.2584
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.45
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: 0.1691
+      target: 0.24
+      year_target: 4
+      lr: 0.22
+      lam: 0.35
+      anchors:
+      - 0.1941
+      - 0.2075
+    s2c: 2.2
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.7556
+      end: 0.04
+      decay: 0.8
+    margin:
+      m0: 0.1691
+      target: 0.26
+      year_target: 4
+      lr: 0.22
+      lam: 0.25
+      anchors:
+      - 0.1941
+      - 0.2075
+    s2c: 2.53
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.2
+      end: 0.030000000000000002
+      decay: 0.65
+    margin:
+      m0: 0.1691
+      target: 0.22
+      year_target: 4
+      lr: 0.22
+      lam: 0.5
+      anchors:
+      - 0.1941
+      - 0.2075
+    s2c: 1.87
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [4.4, 4.6] (3Q26 실적 8-K EX-99.1(2026-10-22) 'Guidance'·어닝콜 — 치입
+    요약)
+  growth: 컨센서스 1년차 46.7%, 2년차 27.3%
+  margin: 1~2년차 컨센서스 19.4%, 20.8% 고정 → 목표 24%(4년차, 덮어쓰기) → 장기 수렴 22%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.696 → 덮어쓰기 2.2
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 20.0%~75.6%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: '① 2027 성장 45%는 다음 해 컨센서스(Fiscal $6.6B ÷ 가이던스 $4.5B = +47%, Zacks $7.43B
+    = +65%)의 하단 쪽이다 — 2026년 말 캐파 2GW가 상한이다. 감쇠 0.75로 2029년 이후 빠르게 줄인다 ② 장기 조정 영업이익률
+    24%는 2027·28 컨센서스(24.6%·26.0%)보다 낮게 둔다 — 램프 초기 비용과 가스 엔진 경쟁 ③ 매출÷투하자본 2.2: 3Q에
+    영업현금흐름이 −$27M이었고 계약자산·재고가 늘었다. 매출 $1이 늘 때 운전자본·설비투자로 약 $0.45가 묶인다(추정)'
+  shares: 완전 희석 = 기본 0.295657(2026-10-19) + 옵션·RSU·워런트·전환 0.0167 — 3Q 희석 가중 324.289M
+    − 기본 294.757M = 29.5M 중 2030 전환사채 if-conve
+notes:
+- 자동 생성(build_drivers) 2026-11-11 — 데이터 묶음 2026-11-11
+- '어닝콜 위험: 운전자본(재고·계약자산·매출채권) 증가로 3Q 영업현금흐름 −$27M'
+- '어닝콜 위험: 매출의 69%가 두 고객(10-Q) — 한 곳은 관계사'
+- '어닝콜 위험: 구매 약정 $5.8B(2027년 $2.6B)'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1664703/000162828026066890/ex991_q326financialresults.htm
+- https://www.sec.gov/Archives/edgar/data/1664703/000162828026066931/be-20260930.htm
+- Fiscal.ai MCP 조회 2026-11-11 KST — company_financials_standardized·company_estimates·company_analyst_ratings·company_segments_and_kpis·company_institutional_holders·company_insider_transactions·ir_events_transcript(3Q26·2Q26)
+- TradingView NYSE:BE 일봉 760개(2026-11-10까지)
+- Easyconomics company_profile(yfinance)·earnings_summary_dates
+- Quantral 커뮤니티 점수·월간 요약(2026-11-11)
+- 노션 자료실 IB 요지(전력·데이터센터 업종 19건) — 라이선스 자료 요지 포함, 외부 공유 금지
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
