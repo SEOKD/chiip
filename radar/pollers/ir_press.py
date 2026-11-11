@@ -53,6 +53,10 @@ def targets():
 
 
 EU = set()
+# 유럽 회사 도메인 — 이름 추측이 틀린 곳(2026-11-11 1차 찾기 점검: alfa.com·be.com·nordic.de·vat.co.uk 등 남의 사이트)은 여기서 고정한다
+DOMAINS = {"EU:ALFA": "www.alfalaval.com", "EU:BESI": "www.besi.com", "EU:BA": "www.baesystems.com", "EU:HEXA-B": "hexagon.com",
+           "EU:HUBN": "www.hubersuhner.com", "EU:LDO": "www.leonardo.com", "EU:NOD": "www.nordicsemi.com", "EU:VACN": "www.vatgroup.com",
+           "EU:HO": "www.thalesgroup.com", "EU:MTX": "www.mtu.de", "EU:HAG": "www.hensoldt.net", "EU:SAP": "news.sap.com", "EU:STMPA": "newsroom.st.com"}
 JOBS = re.compile(r"career|jobs?\b|vacanc|stellen|\(f/m/d\)|\(m/w/d\)|engineer -|apprentice|graduate", re.I)
 
 
@@ -197,7 +201,10 @@ def discover(st, tmap, n=FIND_PER_RUN):
         except Exception as exc:   # www.sec.gov 403(SEC_USER_AGENT 없음) 등 — 이름 추측으로 넘어간다
             print(f"ir_press 8-K {t}: {type(exc).__name__}")
             hosts = []
-        for host in hosts + [h for h in guess_hosts(t) if h not in hosts]:
+        if t in DOMAINS:   # 고정 도메인 — 추측하지 않는다
+            feed, host = "gn:" + DOMAINS[t], DOMAINS[t]
+            hosts = []
+        for host in ([] if feed else hosts + [h for h in guess_hosts(t) if h not in hosts]):
             feed = find_feed(host, t)
             if feed:
                 break
