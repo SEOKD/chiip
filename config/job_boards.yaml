@@ -1,3 +1,18 @@
-# 공개 잡보드 API 대상 (§11.4 L6 타사 공고, §12 해외 법인) — Greenhouse·Lever 공개 API만
-greenhouse: []     # 보드 토큰 목록 (예: 팹리스·가속기 스타트업). https://boards-api.greenhouse.io/v1/boards/<token>/jobs
-lever: []          # 회사 슬러그 목록. https://api.lever.co/v0/postings/<slug>?mode=json
+# 공개 잡보드 API 대상 (§11.4 L6 타사 공고, §12 해외 법인) — Greenhouse·Lever·Ashby 공개 게시 API만(인증 없음, 채용 담당자·지원자 정보 미저장)
+# 2026-11-11 마스터 지시 "대안 만들어" — 링크드인 이력 대신, 삼성전자·SK하이닉스와 협업하는 타사의 공개 채용 공고 요구 문구
+# ('Samsung SF2 PDK 경험', 'HBM4 베이스 다이 통합' 등)로 파트너십 과제를 잡는다. 토큰은 2026-11-11 API 응답으로 확인한 것만.
+greenhouse: [tenstorrent, sambanovasystems, lightmatter, asteralabs, bayasystems, furiosaai, anthropic, xai, figure, coreweave, efficientcomputer]
+lever: [eliyan]
+ashby: [cerebras, etched, d-matrix, axelera, matx, openai, lambda, crusoe, extropic, normalcomputing, lumai, neurophos, quadric]
+
+# 협업 흔적 — 회사 이름(lexicon) 말고도 그 회사를 가리키는 공정·제품 이름. 단어 경계로 찾는다(대소문자 무시)
+partner_terms:
+  co-samsung: ["Samsung", "Samsung Foundry", "SF1\\.4", "SF2P?\\+?", "SF3P?", "SF4[XUP]?", "SF8", "8LPP", "I-Cube\\d?", "X-Cube", "SAINT", "Exynos"]
+  co-skhynix: ["SK ?hynix", "Hynix", "Solidigm"]
+# 과제 꼬리표 — 같이 나오면 '파트너십 과제'로 보고 Pulse로 올린다(이름만 나온 공고는 역방향 후보로만)
+context_terms: ["HBM\\d?E?", "base die", "logic die", "custom HBM", "interposer", "2\\.5D", "3D[- ]IC", "hybrid bonding", "TSV", "LPDDR5X?", "LPDDR6", "GDDR7", "CXL",
+                "PIM", "processing[- ]in[- ]memory", "PDK", "tape[- ]?out", "MPW", "2 ?nm", "3 ?nm", "GAA", "foundry", "memory controller", "PHY", "SerDes", "UCIe"]
+# 다른 회사(같은 그룹 계열) — 찾기 전에 지운다(FuriosaAI 공고의 'Samsung SDS' 고객 문구, 2026-11-11 시험)
+negative_terms: ["Samsung SDS", "Samsung Biologics", "Samsung C&T", "Samsung Heavy", "Samsung Life", "Samsung Fire", "Samsung Securities", "Samsung Card", "SK Telecom", "SK Square"]
+# 한 보드 공고의 이 비율 이상에 같은 이름이 나오면 회사 소개 상용구로 보고 보드당 1건만 남긴다(과제 아님)
+boilerplate_share: 0.4

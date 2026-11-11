@@ -41,7 +41,7 @@ DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기�
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
 CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운용사 원문 사이트·대상 회사 사이트(2026-11-09 시의성 점검 — 둘 다 분류표에 없어 Pulse가 집지 않았다)
            ("포지션", ("src-cftc",)),
-           ("채용 공고", ("src-semianalysis-jobs",)),
+           ("채용 공고", ("src-semianalysis-jobs", "src-job-boards")),   # src-job-boards = 협업사 공개 채용의 삼성·SK하이닉스 과제 문구(2026-11-11)
            ("실적 일정", ("src-alphavantage",)),   # 감시 종목 실적 일정 신규·변경(Alpha Vantage, 2026-11-11 마스터 지시)   # SemiAnalysis Memory Analyst(한국) 공고(2026-11-11 마스터 지시, radar/semianalysis_jobs.py)
            ("주가 급변", ("src-price-move",)),   # 감시 종목 ±7% — 원인 사건 특정(2026-11-10 GEV·SBG 급락 원인 누락, radar/move_watch.py)   # CFTC COT 주간 극단(2026-11-09) — 배경 신호
            ("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa", "src-ir-audio")),   # src-ir-audio = 설명회 음성 자체 전사(D등급, 2026-11-09)   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
@@ -140,7 +140,7 @@ def relevant(it, cls):
         return True
     if it.get("source_id") in ("src-tw-revenue-surge", "src-cn-hk-disclosure", "src-price-move"):   # 중문 원문·지도 밖 후보 — 수집기가 업종·중요 공시로 이미 거름(2026-11-09)
         return True
-    if it.get("source_id") == "src-semianalysis-jobs":   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
+    if it.get("source_id") in ("src-semianalysis-jobs", "src-job-boards"):   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
         return True
     if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True
