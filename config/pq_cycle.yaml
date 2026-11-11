@@ -19,6 +19,18 @@ fred_by_industry:
   oilfield_services: {series: PCU213112213112, label: "미국 PPI 석유·가스 지원 서비스"}
   offshore_drilling: {series: PCU213111213111, label: "미국 PPI 석유·가스정 시추"}
 
+# 회사별 가격 지수(2026-11-11 마스터 지시 "P·Q 사이클 모델링이 전문 기법을 바탕으로 올바르게 작동하는지 점검") — 업종 대용보다 먼저 쓴다(pq_view.price_basis).
+# 원칙: P = 그 회사가 파는 물건의 가격(산출 가격). 원가 지수(EMS의 PCB)나 다른 제품 지수(메모리 회사의 로직 중심 반도체 PPI)는 쓰지 않는다.
+# ppi = config/trade_ppi.yaml 입력·나라(trade_ppi 이력), fred = 미국 BLS 산업 PPI 번호
+price_by_entity:
+  co-skhynix: {source: ppi, input: memory, country: kr, label: "한국 PPI D램(한국은행 품목)"}
+  # co-samsung은 지정하지 않는다 — 매출 대부분이 메모리 밖이라 D램 PPI(+418%)를 쓰면 물량이 −58%로 잡힌다(2026-11-11 실측). 사업부 가중 지수가 생기기 전까지 업종 대용
+  co-micron: {source: ppi, input: memory, country: kr, label: "한국 PPI D램(한국은행 품목)"}
+  co-sandisk: {source: fred, series: PCU334413334413, label: "미국 PPI 반도체 — 낸드 단독 지수 없음(대용)"}
+  us-sanm: {source: fred, series: PCU334418334418, label: "미국 PPI 인쇄회로 조립(EMS)"}
+  us-flex: {source: fred, series: PCU334418334418, label: "미국 PPI 인쇄회로 조립(EMS)"}
+  us-clfd: {source: fred, series: PCU335921335921, label: "미국 PPI 광섬유 케이블"}
+
 # P·Q 전망(마스터 지시 2026-11-08 "P 전망, Q 전망이 전문 모델링을 바탕으로 합리적으로 추정되고 있는지 점검 … 체계적으로 바꿔라") — scripts/tenbagger/pq_forecast.py, 등록부 prm-pq-fc-*
 forecast:
   ar_pmax: 3            # 갭 AR 차수 후보 1~3, BIC로 고른다(Schwarz 1978)

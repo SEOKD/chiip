@@ -73,8 +73,8 @@ inputs:
   logic-ic:
     name: 로직 반도체   # 한국·대만 반도체 지수는 메모리 비중이 커서 대용으로 둔다
     hs: "854231"
-    ppi: {us: PCU334413334413, jp: PRCG20_2201540002, eu: C26, uk: G6T5, kr: 30911AA, tw: "(1)半導體", hk: ind_PPI_IND_24-30}
-    proxy: [eu, uk, hk, kr, tw]
+    ppi: {us: PCU334413334413, jp: PRCG20_2201540002, eu: C26, uk: G6T5, kr: 30911203AA, tw: "(1)半導體", hk: ind_PPI_IND_24-30}   # kr = 한은 품목 시스템반도체(2026-11-11)
+    proxy: [eu, uk, hk, tw]
     tw_section: "16"
     tw_goods: 積體電路   # 재정부 세부 품목(2026-11-07)
     tw_main: (1)電子零組件
@@ -82,8 +82,8 @@ inputs:
   memory:
     name: 메모리 반도체
     hs: "854232"
-    ppi: {us: PCU334413334413, jp: PRCG20_2201540002, eu: C26, uk: G6T5, kr: 30911AA, tw: "(1)半導體", hk: ind_PPI_IND_24-30}
-    proxy: [us, jp, eu, uk, tw, hk]   # 메모리 단독 PPI는 없다. 메모리 비중이 큰 한국 반도체 지수를 대표로 쓴다
+    ppi: {us: PCU334413334413, jp: PRCG20_2201540002, eu: C26, uk: G6T5, kr: 30911201AA, tw: "(1)半導體", hk: ind_PPI_IND_24-30}   # kr = 한은 품목 DRAM(2026-11-11, 플래시 30911202AA)
+    proxy: [us, jp, eu, uk, tw, hk]   # 메모리 단독 PPI는 한국 품목(DRAM)뿐이다
     tw_section: "16"
     tw_goods: {export: DRAM, import: 記憶體}
     tw_main: (1)電子零組件
@@ -100,7 +100,7 @@ inputs:
   transformer:
     name: 변압기
     hs: "850423"
-    ppi: {us: PCU335311335311, jp: PRCG20_2201650015, eu: C27, uk: EWKA, kr: 310121AA, tw: "(1)發電、輸電及配電機械", hk: ind_PPI_IND_24-30}
+    ppi: {us: PCU335311335311, jp: PRCG20_2201650015, eu: C27, uk: EWKA, kr: 31012101AA, tw: "(1)發電、輸電及配電機械", hk: ind_PPI_IND_24-30}
     proxy: [eu, uk, hk, tw]
     tw_section: "16"
     sitc: "77"

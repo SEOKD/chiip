@@ -48,7 +48,7 @@ COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e
 # 브라우저가 실제 글자 폭을 잰 뒤 viewBox를 글자까지 넓힌다 — 축 숫자·끝 이름표·범례가 오른쪽·왼쪽 끝에서 잘리던 문제(2026-11-08 AXTI 리포트 23곳 실측)
 FIT_JS = ("<script>(function(){"
           # 그래프 글자 최소 크기(마스터 지시 2026-11-08 모바일 QA) — viewBox 폭 ÷ 화면 폭만큼 글자를 키워 화면에서 11px 이상
-          "function grow(s){var w=s.clientWidth;if(!w)return;if(!s.dataset.w0)s.dataset.w0=s.viewBox.baseVal.width;var k=s.dataset.w0/w;s.querySelectorAll('text').forEach(function(t){if(!t.dataset.f0)t.dataset.f0=parseFloat(getComputedStyle(t).fontSize);var f=+t.dataset.f0;t.style.fontSize=(f/k<11?11*k:f)+'px'});var seen=[];s.querySelectorAll('text').forEach(function(t){t.style.display='';var b=t.getBBox();if(!b.width)return;if(seen.some(function(o){return b.x<o.x+o.width-0.5&&o.x<b.x+b.width-0.5&&b.y<o.y+o.height-0.5&&o.y<b.y+b.height-0.5}))t.style.display='none';else seen.push(b)})}"
+          "function grow(s){var w=s.clientWidth;if(!w)return;if(!s.dataset.w0)s.dataset.w0=s.viewBox.baseVal.width;var k=s.dataset.w0/w;s.querySelectorAll('text').forEach(function(t){if(!t.dataset.f0)t.dataset.f0=parseFloat(getComputedStyle(t).fontSize);var f=+t.dataset.f0;t.style.fontSize=(f/k<11?11*k:f)+'px'});var seen=[];s.querySelectorAll('text').forEach(function(t){t.style.display='';var b=t.getBBox();if(!b.width)return;if(seen.some(function(o){var dy=Math.min(b.y+b.height,o.y+o.height)-Math.max(b.y,o.y);return b.x<o.x+o.width-0.5&&o.x<b.x+b.width-0.5&&dy>0.45*Math.min(b.height,o.height)}))t.style.display='none';else seen.push(b)})}"
           "function stack(){if(!matchMedia('(max-width:640px)').matches)return;document.querySelectorAll('.w table').forEach(function(tb){if(tb.dataset.st)return;var hs=[].map.call(tb.querySelectorAll('thead th, tr:first-child th'),function(h){return h.textContent.trim()});var rs=[].filter.call(tb.querySelectorAll('tr'),function(r){return r.querySelector('td')});if(hs.length<4||!rs.length)return;var mx=0;hs.forEach(function(_,i){var n=0;rs.forEach(function(r){var c=r.children[i];n+=c?c.textContent.length:0});mx=Math.max(mx,n/rs.length)});if(mx<30)return;tb.dataset.st=1;tb.classList.add('stk');tb.querySelectorAll('tr').forEach(function(tr){[].forEach.call(tr.children,function(c,i){if(c.tagName==='TD')c.setAttribute('data-th',hs[i]||'')})})})}stack();"
           "function fit(){document.querySelectorAll('svg[viewBox]').forEach(function(s){try{grow(s);var v=s.viewBox.baseVal,x0=v.x,y0=v.y,x1=v.x+v.width,y1=v.y+v.height;"
           "s.querySelectorAll('text').forEach(function(t){var b=t.getBBox();if(!b.width)return;x0=Math.min(x0,b.x-2);y0=Math.min(y0,b.y-2);x1=Math.max(x1,b.x+b.width+2);y1=Math.max(y1,b.y+b.height+2)});"
@@ -363,14 +363,14 @@ def chart_portfolio(c):
     rows = c.get("rows") or []
     if not rows:
         return ""
-    W, pad, wide, step = 340, 12, 25, 17
+    W, pad, wide, step = 340, 12, 28, 16   # 2026-11-11 마스터 지시 "제품·서비스 포트폴리오 설명란 폰트 크기를 줄여라" — 글자 작게·한 줄 더 길게
     g, y = [], 2
     for r in rows:
         top = y
         names = wrap_units(r.get("name"), wide - 4)
         y += 18
         for i, line in enumerate(names):
-            g.append(f'<text x="{pad}" y="{y + i * step}" style="fill:var(--fg);font-size:13px;font-weight:700">{t(line)}</text>')
+            g.append(f'<text x="{pad}" y="{y + i * step}" style="fill:var(--fg);font-size:12px;font-weight:700">{t(line)}</text>')
         g.append(f'<text x="{W - pad}" y="{y}" text-anchor="end" style="fill:var(--c);font-size:11.5px;font-weight:600">{t(r.get("tag"))}</text>')
         y += (len(names) - 1) * step + 6
         share = r.get("share")
@@ -385,11 +385,11 @@ def chart_portfolio(c):
             text = f"{label} · {r[key]}" if label else r[key]
             for line in wrap_units(text, wide):
                 y += step
-                g.append(f'<text x="{pad}" y="{y}" style="fill:{color};font-size:12px">{t(line)}</text>')
+                g.append(f'<text x="{pad}" y="{y}" style="fill:{color};font-size:10.5px">{t(line)}</text>')
         y += 12
         g.insert(0, f'<rect x="1" y="{top}" width="{W - 2}" height="{y - top}" rx="10" fill="none" stroke="var(--line)"/>')
         y += 8
-    return f'<svg viewBox="0 0 {W} {y}">{"".join(g)}</svg>'
+    return f'<svg viewBox="0 0 {W} {y}" style="width:100%;max-width:460px;height:auto">{"".join(g)}</svg>'
 
 
 def chart_actest(c):
@@ -853,8 +853,8 @@ def image_html(b):
                 f'{"".join(labels)}</div><ol class="ilist">{"".join(items)}</ol>')
     else:
         body = img
-    return (f'<figure class="card"><b>사진 {t(b.get("photo"))}. {t(b.get("title"))}</b>{body}'
-            f'{legend}<figcaption class="sm mut">{t(b.get("caption"))}</figcaption></figure>')
+    # 그림 아래 범례·캡션은 뺀다(2026-11-11 마스터 지시 "밑에 부가 설명을 빼라"). AI 그림 표시(ADR-017)는 제목 줄 작은 표지로만 남긴다
+    return f'<figure class="card"><b>사진 {t(b.get("photo"))}. {t(b.get("title"))}</b> <span class="sm mut">AI 생성 개념도</span>{body}</figure>'
 
 
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮"

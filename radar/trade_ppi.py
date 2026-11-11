@@ -147,10 +147,11 @@ def trade_census(hs, start, key):
 
 
 def ppi_ecos(item, start, key):
-    """한국은행 ECOS 404Y014(생산자물가 기본분류) 월별"""
+    """한국은행 ECOS 생산자물가 월별 — 기본분류 404Y014, 10자리 품목 코드(예: 30911201AA DRAM)는 품목별 404Y016(2026-11-11 점검: 반도체 대분류로 로직·메모리를 모두 대용하던 것을 품목으로)"""
     a, b = start.replace("-", ""), f"{date.today().year}12"
+    table = "404Y016" if len(item) >= 10 else "404Y014"
     # 행 범위 1~80이면 시작월부터 80개월(2016-11~2023-06)에서 끊겼다(2026-11-08 WLDN 리포트 점검) — 한 번에 1,000행까지 받는다
-    doc = json.loads(get(f"https://ecos.bok.or.kr/api/StatisticSearch/{key}/json/kr/1/1000/404Y014/M/{a}/{b}/{item}"))
+    doc = json.loads(get(f"https://ecos.bok.or.kr/api/StatisticSearch/{key}/json/kr/1/1000/{table}/M/{a}/{b}/{item}"))
     return {f"{r['TIME'][:4]}-{r['TIME'][4:6]}": float(r["DATA_VALUE"]) for r in doc["StatisticSearch"]["row"]}
 
 

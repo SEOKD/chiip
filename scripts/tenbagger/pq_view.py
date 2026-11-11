@@ -80,7 +80,16 @@ def price_basis(dp, c=None):
     pq = dp.get("pq") or {}
     if pq and not pq.get("none") and (pq.get("price") or pq.get("volume")):
         return pq, False, None
-    m = ((c or cfg()).get("fred_by_industry") or {}).get(dp.get("industry"))
+    c = c or cfg()
+    # 회사별 가격 지수가 업종 대용보다 먼저(2026-11-11 점검) — 업종 PPI가 그 회사의 '판매 가격'이 아닐 때가 있다:
+    # 메모리 회사에 미국 반도체 PPI(로직 중심, 전년비 −2%)를 쓰면 D램 가격 급등(한국 D램 PPI +418%)이 전부 물량으로 잡히고,
+    # 위탁생산(EMS)에 인쇄회로기판 PPI를 쓰면 원가가 가격으로 잡혀 물량이 줄어든다는 전망이 나온다. P = 그 회사가 파는 물건의 가격이어야 한다
+    e = (c.get("price_by_entity") or {}).get(dp.get("entity_id") or dp.get("id"))
+    if e:
+        if e.get("source") == "ppi":
+            return {"price": {"source": "ppi", "input": e["input"], "country": e["country"]}}, True, e["label"]
+        return {"price": {"source": "fred", "series": e["series"]}}, True, e["label"]
+    m = (c.get("fred_by_industry") or {}).get(dp.get("industry"))
     if not m:
         return None, True, None
     return {"price": {"source": "fred", "series": m["series"]}}, True, m["label"]
