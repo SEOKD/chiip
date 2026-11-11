@@ -47,3 +47,4 @@
   - 찾기 = run_hourly `ir-press-find`(30분, 회차당 8곳, 30일마다 재확인). 실적 8-K 첨부 본문의 IR 주소 → 없으면 investors·ir·investor.<티커·회사명>.com 추측 → RSS 안내·IR 플랫폼 경로(Q4 /rss/pressrelease.aspx 등). 추측 호스트는 피드 글에 그 회사 이름이 나와야 채택(남의 회사 IR 오매칭 방지).
   - 읽기 = run_poll `src-ir-press`(10분) → Pulse '보도자료'. 대상은 감시·포트폴리오 미국 종목 147곳.
   - SEC 원문 서버(www.sec.gov)는 연락처 없는 User-Agent를 403으로 막는다(2026-11-11 14:06부터 EDGAR 최신 목록 실시간 트리거도 멈춤). data.sec.gov(감시 종목 15분)는 정상. 마스터가 `.env`에 `SEC_USER_AGENT`를 넣으면 둘 다 풀린다(TODO 21-4).
+  - 유럽·영국(2026-11-11 마스터 지시 "추가해" — 지멘스 에너지 4분기 보도자료 미탐지 후): earnings_watch extra의 EU·UK 감시 종목(키 'EU:티커'). 회사 사이트는 RSS가 드물고 목록을 스크립트로 그려, 회사 도메인 한정 Google News RSS('site:도메인', 채용 글 제외)로 읽는다. 지멘스 에너지 4Q 보도자료가 게재 수분 뒤 잡혔다.

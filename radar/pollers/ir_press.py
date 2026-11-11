@@ -28,7 +28,7 @@ STATE = "ir_press"
 FIND_PER_RUN = 8
 RECHECK_DAYS = 30
 LOOKBACK_H = 48
-PATHS = ("/rss/news-releases.xml", "/news-releases/rss", "/rss/pressrelease.aspx", "/press-releases/rss", "/news/rss", "/feed/")
+PATHS = ("/rss", "/press/rss", "/en/press/rss", "/media/rss", "/newsroom/rss", "/rss/news-releases.xml", "/news-releases/rss", "/rss/pressrelease.aspx", "/press-releases/rss", "/news/rss", "/feed/")
 URL_RE = re.compile(r"(?:https?://)?((?:ir|investors?|investor-relations|www)\.[a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.(?:com|net|io|ai|co|us|tech))", re.I)
 SKIP_HOST = re.compile(r"sec\.gov|businesswire|globenewswire|prnewswire|accesswire|nasdaq\.com|nyse\.com|xbrl|w3\.org|fasb|zacks", re.I)
 _robots = {}
@@ -43,7 +43,17 @@ def targets():
             if r["entity_id"] in ids and r["tv_symbol"].split(":")[0] in ("NASDAQ", "NYSE", "AMEX", "NYSEARCA"):
                 out[r["ticker"].upper()] = r["entity_id"]
                 NAMES[r["ticker"].upper()] = r["name"]
+    # 유럽·영국 감시 종목(2026-11-11 마스터 지시 — 지멘스 에너지 4분기 보도자료를 Pulse가 못 잡았다). 키 = 'EU:티커'(미국 티커와 겹치지 않게)
+    for u in (common.load_yaml("config/earnings_watch.yaml") or {}).get("extra") or []:
+        if u.get("region") in ("EU", "UK") and u["id"] in ids:
+            k = "EU:" + str(u["code"]).split(".")[0].upper()
+            out[k], NAMES[k] = u["id"], u["name"]
+            EU.add(k)
     return out
+
+
+EU = set()
+JOBS = re.compile(r"career|jobs?\b|vacanc|stellen|\(f/m/d\)|\(m/w/d\)|engineer -|apprentice|graduate", re.I)
 
 
 NAMES = {}
@@ -55,6 +65,9 @@ def guess_hosts(t):
     name = CORP.sub(" ", NAMES.get(t, "")).lower()
     words = re.findall(r"[a-z0-9]+", name)
     stems = list(dict.fromkeys([t.lower().replace(".", "")] + words[:1] + ["".join(words[:2])] + ["".join(words)]))
+    if t in EU:   # 유럽 회사는 IR 하위 도메인보다 회사 사이트 보도자료 RSS가 흔하다 — 티커는 추측에서 뺀다(ENR → enr.com 같은 남의 회사)
+        stems = list(dict.fromkeys(["-".join(words[:2])] + stems[1:]))
+        return [f"www.{w}{tld}" for w in stems if len(w) > 1 for tld in (".com", ".de", ".co.uk")]
     return [f"{p}.{w}.com" for w in stems if len(w) > 1 for p in ("investors", "ir", "investor")]
 
 
@@ -135,7 +148,40 @@ def find_feed(host, t=None):
                 return url
         except Exception:
             continue
+    if t in EU:   # 유럽 회사 사이트는 RSS가 드물고 목록을 스크립트로 그린다(지멘스 에너지·라인메탈·BAE 2026-11-11 확인)
+        # → 회사 도메인으로 한정한 Google News RSS('site:' 검색): 지멘스 에너지 4분기 보도자료가 게재 수분 뒤 잡혔다. 회사 1차 문서만 나온다
+        return "gn:" + host
+    if False:   # 유럽 회사 사이트는 RSS가 드물다(지멘스 에너지·라인메탈·BAE 2026-11-11 확인) — 보도자료 목록 페이지 링크 비교로 대신한다
+        pages = [h for h in re.findall(r'href="([^"]+)"', html) if PRESS_PAGE.search(h)][:6]
+        for c in dict.fromkeys(pages):
+            url = urllib.parse.urljoin(home, c.replace("&amp;", "&"))
+            if urllib.parse.urlparse(url).netloc != host or not robots_ok(url):
+                continue
+            try:
+                if len(page_links(url)) >= 5:
+                    return "page:" + url
+            except Exception:
+                continue
     return None
+
+
+PRESS_PAGE = re.compile(r"/(?:[a-z]{2}(?:-[a-z]{2})?/)?(?:[a-z\-]+/)*(?:press-releases?|pressemitteilungen|newsroom|press|news|media)(?:[./][a-z]*)?$", re.I)
+PRESS_LINK = re.compile(r"(press|news|release|media|pressemitteilung)[^\s\"]*(20\d\d|[a-z0-9]+-[a-z0-9]+-[a-z0-9]+)", re.I)
+
+
+def page_links(url):
+    """보도자료 목록 페이지 → [{title, link}] (같은 호스트, 보도자료 같은 주소, 글자 있는 링크)"""
+    html = common.http_get(url, timeout=20).decode("utf-8", "ignore")
+    host = urllib.parse.urlparse(url).netloc
+    out, seen = [], set()
+    for href, text in re.findall(r'<a[^>]+href="([^"]+)"[^>]*>(.*?)</a>', html, re.S | re.I):
+        link = urllib.parse.urljoin(url, href.replace("&amp;", "&")).split("#")[0]
+        title = re.sub(r"\s+", " ", common.strip_tags(text)).strip()
+        if urllib.parse.urlparse(link).netloc != host or link in seen or link.rstrip("/") == url.rstrip("/") or len(title) < 25 or not PRESS_LINK.search(link):
+            continue
+        seen.add(link)
+        out.append({"title": title, "link": link, "date": "", "desc": ""})
+    return out
 
 
 def discover(st, tmap, n=FIND_PER_RUN):
@@ -162,6 +208,11 @@ def discover(st, tmap, n=FIND_PER_RUN):
 
 def read(t, info):
     try:
+        if info["feed"].startswith("gn:"):
+            es = parse_feed(common.http_get("https://news.google.com/rss/search", {"q": "site:" + info["feed"][3:], "hl": "en-US", "gl": "US", "ceid": "US:en"}, timeout=20))
+            return t, info, [e for e in es if not JOBS.search(e["title"])]
+        if info["feed"].startswith("page:"):
+            return t, info, page_links(info["feed"][5:])
         return t, info, parse_feed(common.http_get(info["feed"], timeout=20))
     except Exception:
         return t, info, None
@@ -178,10 +229,16 @@ def poll(env=None, find=0):
     live = [(t, i) for t, i in st.get("feeds", {}).items() if i.get("feed") and t in tmap]
     items, fails = [], 0
     with ThreadPoolExecutor(max_workers=8) as ex:
+        based = set(st.get("based") or [])
         for t, info, entries in ex.map(lambda x: read(*x), live):
             if entries is None:
                 fails += 1
                 continue
+            if t not in based and not first:
+                seen.update(e["link"] for e in entries if e["link"])
+                based.add(t)
+                continue
+            based.add(t)
             for e in entries[:20]:
                 if not e["link"] or e["link"] in seen:
                     continue
@@ -196,6 +253,7 @@ def poll(env=None, find=0):
     if not find:   # 찾기(run_hourly)가 그 사이 피드를 더했을 수 있다 — 다시 읽고 본 글만 덮는다
         st = dict(common.load_state(STATE, {}), seen=st.get("seen"))
     st["seen"] = list(seen)[-20000:]
+    st["based"] = sorted(based)
     st["baseline_done"] = True
     common.save_state(STATE, st)
     print(f"ir_press: 찾기 {tried}곳(피드 {found}) · 감시 피드 {len(live)} · 읽기 실패 {fails} · 새 글 {len(items)}")
