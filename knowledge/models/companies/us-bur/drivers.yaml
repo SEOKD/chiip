@@ -1,0 +1,108 @@
+auto: true
+id: us-bur
+name: Burford Capital
+ticker: BUR
+unit: B$
+unit_usd: 1000000000.0
+industry: legal_finance
+region_mix:
+  US: 1.0
+tax: 0.15
+horizon: 10
+as_of: '2026-11-11'
+market:
+  date: '2026-11-11'
+  price: 3.65
+  shares: 0.225096
+  net_debt: 1.7805
+  source: 가격 = 2026-11-10 종가(TradingView). 주식 수 = 10-Q 표지 219,595,601주(10/28). 현금
+    = 9/30 현금 $463.8M + 시장성 유가증권 $67.4M(10-Q, 회사 '현금·유가증권 $531M'). 차입 = 사채 장부가 $2,300.1M(원금
+    $2,335M) + 리스 $11.6M. 연결 펀드의 비지배지분 $660.2M(BOF-C 등 외부 투자자 몫)은 차입에 넣지 않았다 — 같은
+    크기의 자산이 연결 재무상태표에 함께 있다
+rev0: 0.52
+ic0: 2.6285
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.1923
+      end: 0.035
+      decay: 0.7
+    margin:
+      m0: 0.65
+      target: 0.65
+      year_target: 2
+      lr: 0.6
+      lam: 0.35
+      anchors:
+      - 0.65
+    s2c: 0.25
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.4423
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: 0.65
+      target: 0.67
+      year_target: 2
+      lr: 0.6
+      lam: 0.25
+      anchors:
+      - 0.65
+    s2c: 0.287
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.2308
+      end: 0.030000000000000002
+      decay: 0.6
+    margin:
+      m0: 0.65
+      target: 0.63
+      year_target: 2
+      lr: 0.6
+      lam: 0.5
+      anchors:
+      - 0.65
+    s2c: 0.212
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 0.52
+  growth: 컨센서스 1년차 19.2%
+  margin: 1년차 컨센서스 65.0% 고정 → 목표 65%(2년차, 덮어쓰기) → 장기 수렴 60%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 0.25
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -23.1%~44.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: TTM 매출이 YPF 상각으로 음수라 매출 ÷ 투하자본 규칙이 쓸모없다. 소송 금융은 매출 $1을 늘리려면 자본 약 $4(분기
+    배치 $100M·회수 기간 2~3년, 역사적 IRR 25%)가 든다 — s2c 0.25(추정). 장기 영업이익률은 3Q 67%·2Q 57%의
+    중간 아래 60%로 둔다(이자는 영업 아래)
+  shares: 완전 희석 = 기본 0.219596(2026-10-28) + 옵션·RSU·워런트·전환 0.0055 — 3Q 가중 희석 주식 225.1M
+    − 기본 219.6M = 약 5.5M주(RSU·옵션 증분 5.6M, 10-
+notes:
+- 자동 생성(build_drivers) 2026-11-11 — 데이터 묶음 2026-11-11
+- '어닝콜 위험: 사채 약정 한도에 걸려 추가 차입이 사실상 막혔다(CFO ''지금 약정 수준'')'
+- '어닝콜 위험: 할인율(시장 금리) 상승이 공정가치를 깎는다 — 3Q 비현금 역풍'
+- '어닝콜 위험: YPF는 1Q에 대부분 상각됐지만 대법원·중재 결과는 수년 뒤다'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1714174/000171417426000112/bur-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1714174/000171417426000111/bur-20261104.htm
+- https://www.sec.gov/Archives/edgar/data/1714174/000171417426000040/bur-20260327xex991.htm
+- https://www.sec.gov/Archives/edgar/data/1714174/000171417426000007/bur-20251231.htm
+- https://www.supremecourt.gov/DocketPDF/26/26-442/426134/20260930163303843_No.%20___%20Petition.pdf
+- https://investors.burfordcapital.com/news/news-details/2026/Burford-Capital-Statement-Re-YPF-Appeal-Decision/default.aspx
+- https://en.mercopress.com/2026/10/20/argentina-awaits-the-supreme-court-after-the-ypf-case-is-closed-at-first-instance
+- https://www.prnewswire.com/news-releases/burford-reports-3q26-and-ytd26-financial-results-302929128.html
+- SEC XBRL companyfacts CIK 1714174(2026-11-11 조회)
+- 3Q26·2Q26 어닝콜 전문(Fiscal.ai) — 요지만 자기 말로
+- Easyconomics company_profile(yfinance, 2026-11-11)
+- Fiscal.ai company_estimates·analyst_estimates·analyst_ratings·company_ratios·stock_prices(2026-11-11
+  조회)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- TradingView NYSE:BUR 일봉(2026-11-11)
+- Quantral get_company_score·recaps(2026-11-11, 언급 없음)
