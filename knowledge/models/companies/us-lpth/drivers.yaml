@@ -1,0 +1,103 @@
+auto: true
+id: us-lpth
+name: LightPath Technologies
+ticker: LPTH
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.58
+  EU: 0.26
+  ROW: 0.16
+tax: 0.21
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 7.52
+  shares: 0.076707
+  net_debt: -0.065534
+  source: 가격 = 2026-11-11 종가 $7.52(TradingView NASDAQ:LPTH, 1Q FY27 실적 다음 날 −5.9%).
+    주식 수 70,088,026주(10-Q 표지 11/6). 현금 $82.9M(10-Q 9/30). 차입 $17.4M = 장비 대출 $0.16M
+    + 금융 리스 $1.17M + 운영 리스 $9.77M + G5 언아웃 현금 지급분 $6.3M(2027-01 지급 예정, 부채성으로 포함)
+rev0: 0.0963
+ic0: 0.094625
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.4
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: -0.012
+      target: 0.13
+      year_target: 5
+      lr: 0.12
+      lam: 0.35
+      anchors:
+      - 0.074
+    s2c: 0.818
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.1859
+      end: 0.04
+      decay: 0.39999999999999997
+    margin:
+      m0: -0.012
+      target: 0.173
+      year_target: 5
+      lr: 0.12
+      lam: 0.25
+      anchors:
+      - 0.074
+    s2c: 0.941
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.108
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: -0.012
+      target: 0.087
+      year_target: 5
+      lr: 0.12
+      lam: 0.5
+      anchors:
+      - 0.074
+    s2c: 0.695
+mc:
+  sigma_growth: 0.0735
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 0.0963
+  growth: 컨센서스 1년차 29.8%, 2년차 20.0%
+  margin: 1년차 컨센서스 7.4% 고정 → 목표 13%(5년차, 덮어쓰기) → 장기 수렴 12%
+  s2c: 재무 재구성 증분 매출/투하자본 0.818
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -10.8%~18.6%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '① 성장: 12개월 인도 잔고 $110.8M이 TTM 매출 $77.4M의 1.43배다 — 첫해 +40%는 잔고 소화율 약
+    75%를 가정한 값(추정). ② 장기 영업이익률 13%: 총이익률 40%대에서 분기 영업비용 $10.8M을 고정하면 매출 $150M에서 약
+    12~14%(추정, 주식보상 포함 GAAP). 동종 중앙 EBIT 이익률(약 17%)보다 낮게 둔다 — 규모가 Teledyne의 1%대'
+  shares: '완전 희석 = 기본 0.070088(2026-11-06) + 옵션·RSU·워런트·전환 0.0066 — 10-Q(9/30) 주식보상
+    주석: 스톡옵션 4,636,910주(가중 행사가 $9.49 — 현재가 $7.52'
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 1Q 매출이 회사 기대를 밑돌았다 — 모터·외부 광학·검출기 공급 지연(CEO)'
+- '어닝콜 위험: 영업현금흐름 −$8.3M(재고 +$13.5M) — 현금 $82.9M에서 1월 언아웃 현금 $6.3M 지급'
+- '어닝콜 위험: 주식보상 $1.8M(전년 $0.4M) — 희석·비용'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/889971/000143774926036165/lpth20260922_8k.htm
+- https://www.sec.gov/Archives/edgar/data/889971/000143774926036178/lpth20260922_10q.htm
+- https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm
+- https://www.sec.gov/Archives/edgar/data/889971/000143774926035272/lpth20261104_8k.htm
+- Fiscal.ai MCP 2026-11-12 — 표준화 손익(분기 44)·추정·Forward 배수·1Q FY27 어닝콜 전문(요지만). 세그먼트
+  KPI 없음
+- TradingView NASDAQ:LPTH 일봉 760·월봉 120(2026-11-12)
+- Easyconomics company_profile(yfinance)·insider_and_politics(lobbying — 대상 밖)
+- Quantral LPTH 신호·월간 요약(2026-11-12)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com

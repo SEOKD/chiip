@@ -1,0 +1,3554 @@
+{
+ "id": "us-lpth",
+ "name": "LightPath Technologies",
+ "ticker": "LPTH",
+ "industry": "electronics",
+ "as_of": "2026-11-12",
+ "unit": "B$",
+ "region_mix": {
+  "US": 0.58,
+  "EU": 0.26,
+  "ROW": 0.16
+ },
+ "tax": 0.21,
+ "profile": {
+  "price": 7.52,
+  "shares_basic": 0.070088,
+  "shares_date": "2026-11-06",
+  "cash": 0.082934,
+  "debt": 0.0174,
+  "source": "가격 = 2026-11-11 종가 $7.52(TradingView NASDAQ:LPTH, 1Q FY27 실적 다음 날 −5.9%). 주식 수 70,088,026주(10-Q 표지 11/6). 현금 $82.9M(10-Q 9/30). 차입 $17.4M = 장비 대출 $0.16M + 금융 리스 $1.17M + 운영 리스 $9.77M + G5 언아웃 현금 지급분 $6.3M(2027-01 지급 예정, 부채성으로 포함)"
+ },
+ "dilution": {
+  "options": 0.004637,
+  "rsu": 0.001623,
+  "warrants": 0.0,
+  "converts_shares": 0.000359,
+  "date": "2026-09-30",
+  "source": "10-Q(9/30) 주식보상 주석: 스톡옵션 4,636,910주(가중 행사가 $9.49 — 현재가 $7.52보다 높아 대부분 내가격 아님), RSU 1,568,577주 + 미가득 제한주 54,548주. converts_shares = G5 언아웃 주식 지급분 $2.7M ÷ $7.52 ≈ 359천 주(2027-01). Series G 전환 우선주 6,492주(장부 $8.9M)의 전환 주식 수는 이번 회차에 확인하지 못했다 — 미확인, 희석에 넣지 않았다"
+ },
+ "financials": {
+  "rev_ttm": 0.077426,
+  "ebit_ttm": -0.019314,
+  "invested_capital": 0.094625,
+  "capex_ttm": 0.008749,
+  "da_ttm": 0.0055,
+  "sbc_ttm": 0.005,
+  "rev_growth_ttm": 0.765,
+  "basis": "GAAP",
+  "note": "TTM = 2025-10~2026-09 4개 분기 합(매출 $77.4M, 영업손실 −$19.3M — 언아웃 공정가치 변동 등 비현금 '기타 영업비용' $14.1M 포함). 투하자본 = 자기자본 $151.3M + Series G 우선주 $8.9M + 차입·리스 $11.1M + 언아웃 현금분 $6.3M − 현금 $82.9M = $94.6M. CAPEX TTM = FY26 $6.3M − 1Q FY26 $0.08M + 1Q FY27 $2.53M. D&A·SBC TTM은 분기 공시 합을 다 대조하지 못해 추정(1Q FY27 D&A $1.48M·SBC $1.80M)",
+  "s2c": 0.818
+ },
+ "main_metric": "ebitda",
+ "main_metric_why": "선행 EPS가 0 근처(다음 4개 분기 합 약 $0.02)라 P/E가 의미가 없다. 회사도 조정 EBITDA(5분기 연속 흑자)를 실적의 기준으로 쓴다",
+ "sbc_pct_rev": 0.087,
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "12개월 안 인도 잔고 $110.8M이 다음 4개 분기 매출 컨센서스 $105.9M보다 크다 — 수요가 아니라 공급망·캐파가 변수라 약세 확률을 30%로 둔다",
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "next": {
+   "period": "2Q FY27(2026-10~12)",
+   "rev_cons": 23.7,
+   "eps_cons": -0.004,
+   "unit": "$M",
+   "basis": "회사 분기 매출 가이던스 없음 — 비교는 컨센서스만. 회사는 총이익률 '40%대 유지', 분기 영업비용 $10.8M이 계획 수준이라고 밝혔다"
+  },
+  "long_term": "숫자 가이던스 없음. 12개월 안 인도 요청 잔고 $110.8M, 총이익률 40%대, 드론 광학 조립품 캐파를 월 1만 개 미만 → 수만 개(12개월), 장기 월 10만 개 가능성",
+  "source": "1Q FY27 어닝콜(2026-11-10) — 회사는 매출·EPS 숫자 가이던스를 내지 않는다(미확인). 총이익률 40%대·분기 OPEX $10.8M만 제시"
+ },
+ "next_event": {
+  "date": "2026-12-15",
+  "tag": "연례 주주총회(12월, 날짜 미확인) — 다음 실적은 2Q FY27(2027-02 예상). 그 사이 G5 언아웃 $9M 지급(2027-01-01~15)"
+ },
+ "call": {
+  "date": "2026-11-10",
+  "prev_date": "2026-09-10",
+  "tone": "flat",
+  "tone_delta": 0.0,
+  "guidance_direction": "maintain",
+  "source": "1Q FY27 어닝콜(2026-11-10, 요지만) · 직전 = 4Q FY26 콜(2026-09-10) 내용은 10-K 경영진 분석·커뮤니티 정리로 대조",
+  "kpis": {
+   "rev_q_m": 20.8,
+   "rev_growth_yoy": 0.38,
+   "gm_q": 0.414,
+   "gm_prev_q": 0.394,
+   "adj_ebitda_q_m": 1.3,
+   "backlog_m": 132.9,
+   "backlog_prev_q_m": 110.9,
+   "backlog_12m_m": 110.8,
+   "backlog_12m_prev_m": 85.6,
+   "book_to_bill": 2.0,
+   "assemblies_share": 0.51,
+   "rd_q_m": 2.0,
+   "opex_q_m": 10.8,
+   "cash_m": 82.9,
+   "inventory_m": 31.5,
+   "cfo_q_m": -8.3,
+   "capex_q_m": 2.5
+  },
+  "guidance_changes": [
+   "총이익률 '40%대에서 시작한다'(CFO) — 직전 분기 39.4%에서 한 단계 위를 기준으로 제시",
+   "분기 영업비용 $10.8M이 앞으로의 계획 수준(4Q FY26 $12.6M)",
+   "드론 광학 조립품 캐파: 월 1만 개 미만 → 12개월 안에 수만 개"
+  ],
+  "new_topics": [
+   "드론용 광학 조립품 5만 개 이상 주문(10월, 금액 미공개)",
+   "카운터 드론 고객 후속 주문 7월 이후 $19M+(7월 $13M + 10월 $6.3M)",
+   "글로벌 기술 기업 적외선 카메라 후속 $11M — 게르마늄 → BlackDiamond 전환 계획 포함",
+   "중국 법인 매각 완료(10/30) — 중국 시설·매출·운영 없음",
+   "Kestrel 소형 냉각 카메라·장파 적외선 줌 렌즈 베타 출하",
+   "Anduril 출신 G5 사업 책임자 영입"
+  ],
+  "dropped_topics": [
+   "언아웃 재평가 손익 — AML 언아웃 종료, G5는 $9M 고정이라 영향 미미",
+   "4Q 콜의 '정부 자금 지연' 언급은 이번 콜에 없다 — 대신 '잔고 전부 자금 확정 주문'을 강조"
+  ],
+  "analyst_focus": [
+   "Craig-Hallum — 총이익률 지속성, 공급망 지연 품목·잔고 실행 위험, 장파 줌 제품 적용처",
+   "Piper Sandler — 드론 주문 주기(월 10만 개 경로), Navy CLEAR 시제품 일정"
+  ],
+  "risks": [
+   "1Q 매출이 회사 기대를 밑돌았다 — 모터·외부 광학·검출기 공급 지연(CEO)",
+   "영업현금흐름 −$8.3M(재고 +$13.5M) — 현금 $82.9M에서 1월 언아웃 현금 $6.3M 지급",
+   "주식보상 $1.8M(전년 $0.4M) — 희석·비용",
+   "고객 집중 — FY26 세 곳 37%(24%·7%·6%)",
+   "게르마늄 단일·소수 공급원(중국 60% 이상)"
+  ],
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "수주잔고",
+    "label": "잔고 $132.9M",
+    "prior": "6/30 $110.9M(12개월분 $85.6M)",
+    "latest": "9/30 $132.9M(+20% QoQ, +54% YoY), 12개월분 $110.8M(+30%)",
+    "driver": "growth_start",
+    "shift": 0.04,
+    "confidence": 1.0,
+    "source": "1Q FY27 어닝콜(2026-11-10, 요지만)"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "총이익률",
+    "label": "총이익률 41.4%",
+    "prior": "4Q FY26 39.4%",
+    "latest": "1Q FY27 41.4% — 조립품·모듈 비중 51%(전년 40%)",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "1Q FY27 어닝콜(2026-11-10, 요지만)"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "드론 광학 조립품",
+    "label": "드론 조립품 5만 개",
+    "prior": "언급 없음",
+    "latest": "5만 개 이상 주문, 캐파 월 1만 → 수만 개 계획",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.8,
+    "source": "1Q FY27 어닝콜(2026-11-10, 요지만)"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "공급망 지연",
+    "label": "공급망 매출 지연",
+    "prior": "4Q: 매출 $21.2M, 기대 부합",
+    "latest": "1Q 매출 $20.8M — 회사 기대 하회, 모터·광학·검출기 지연",
+    "driver": "rev0",
+    "shift": -0.03,
+    "confidence": 1.0,
+    "source": "1Q FY27 어닝콜(2026-11-10, 요지만)"
+   },
+   {
+    "id": "F5",
+    "kind": "업데이트",
+    "item": "영업비용 계획",
+    "label": "분기 OPEX $10.8M",
+    "prior": "4Q FY26 $12.6M",
+    "latest": "$10.8M이 계획 수준(CFO)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "1Q FY27 어닝콜(2026-11-10, 요지만)"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "중국 법인 매각",
+    "label": "중국 운영 0",
+    "prior": "7월 매각 계약",
+    "latest": "10/30 종결 — 일부 정부 프로그램 참여 요건 충족",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926035272/lpth20261104_8k.htm"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-05-07",
+   "tag": "3Q FY26 실적(5/7) — 다음 날 −4.3%(5/7 $12.03 → 5/8 $11.51)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-28",
+   "tag": "52주 종가 고점 $18.15(장중 $18.94) — 커뮤니티는 '미국 게르마늄 대체' 이야기(원인 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-06-03",
+   "tag": "유상증자 714만 주 × $14.00(약 $50M) — 같은 날 10% 주주 이사 관련 펀드 $50M 매도 신고(Form 4)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-06-04",
+   "tag": "+12.8%($15.62 → $17.62) — 증자 마감 다음 날, 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-07-24",
+   "tag": "중국 법인(LPOIZ) 매각 계약 발표 — 당일 −12.4%($12.37 → $10.83)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-08-14",
+   "tag": "+15.6%($13.12 → $15.17) — 외국산 드론·부품 관세 발표 날(원인 추정)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-28",
+   "tag": "−18.6%($13.79 → $11.23) — 회사 공시 없음, 커뮤니티는 육군 차세대 휴대 대공 미사일 경쟁 재개를 꼽음(원인 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-09-10",
+   "tag": "4Q FY26 실적(장 마감 뒤) — 다음 날 −5.0%(9/10 $9.68 → 9/11 $9.20)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-17",
+   "tag": "+7.7% Navy CLEAR 시제품 계약(NSTXL 컨소시엄) 발표",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "드론 광학 조립품 5만 개 이상 주문 발표",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "중국 법인 매각 종결",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "52주 종가 저점 $6.15 — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "1Q FY27 실적(장 마감 뒤) — 다음 날 −5.9%(11/10 $7.99 → 11/11 $7.52)",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-11",
+   "kind": "실적",
+   "tag": "2Q FY26 실적(언아웃 손실로 EPS −$0.20)",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-07",
+   "kind": "실적",
+   "tag": "3Q FY26 실적, 다음 날 −4.3%",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-06-03",
+   "kind": "내러티브",
+   "tag": "$14 증자·대주주 매도"
+  },
+  {
+   "date": "2026-09-10",
+   "kind": "실적",
+   "tag": "4Q FY26 실적·잔고 $110.9M, 다음 날 −5.0%",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-10",
+   "kind": "실적",
+   "tag": "1Q FY27 실적·잔고 $132.9M, 다음 날 −5.9%",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "https://www.sec.gov/Archives/edgar/data/889971/000143774926036165/lpth20260922_8k.htm",
+  "https://www.sec.gov/Archives/edgar/data/889971/000143774926036178/lpth20260922_10q.htm",
+  "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+  "https://www.sec.gov/Archives/edgar/data/889971/000143774926035272/lpth20261104_8k.htm",
+  "Fiscal.ai MCP 2026-11-12 — 표준화 손익(분기 44)·추정·Forward 배수·1Q FY27 어닝콜 전문(요지만). 세그먼트 KPI 없음",
+  "TradingView NASDAQ:LPTH 일봉 760·월봉 120(2026-11-12)",
+  "Easyconomics company_profile(yfinance)·insider_and_politics(lobbying — 대상 밖)",
+  "Quantral LPTH 신호·월간 요약(2026-11-12)",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-12T06:40+09:00",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_LPTH",
+   "price": 7.52,
+   "market_cap": 0.526011,
+   "total_cash": 0.082934,
+   "total_debt": 0.0111,
+   "shares_outstanding": 0.070088,
+   "as_of": "2026-11-11",
+   "balance_date": "2026-09-30",
+   "note": "시총 = Fiscal calculated_market_cap 11/11 $526.0M. yfinance $527.1M(같은 주식 수). 차입 $11.1M = 대출·금융 리스·운영 리스(언아웃 제외)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.016352,
+    "2026Q1": 0.01915,
+    "2026Q2": 0.021162,
+    "2026Q3": 0.020763
+   },
+   "op_income": {
+    "2025Q4": -0.008598,
+    "2026Q1": -0.004252,
+    "2026Q2": -0.004299,
+    "2026Q3": -0.002165
+   },
+   "note": "달력 분기 표기(2026Q3 = FY27 1Q, 7~9월). 2026Q3 매출 $20,762,654·영업손실 −$2,165,226 = 10-Q 손익과 일치"
+  },
+  "balance_20260930": {
+   "cash": 0.082934,
+   "inventory": 0.031487,
+   "inventory_prior": 0.018006,
+   "equity": 0.160159,
+   "preferred_series_g": 0.008907,
+   "loans": 0.000158,
+   "finance_lease": 0.001169,
+   "operating_lease": 0.009772,
+   "earnout_g5": 0.009,
+   "total_assets": 0.196991,
+   "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926036178/lpth20260922_10q.htm",
+   "equity_note": "자기자본 $151.25M + Series G 전환 우선주 $8.91M(메자닌)",
+   "debt_current": 0.006412,
+   "debt_lt": 4.7e-05,
+   "lease_current": 0.001568,
+   "lease_lt": 0.009373,
+   "debt_note": "debt_current = 장비 대출 유동 $0.11M + G5 언아웃 현금분 $6.3M(2027-01 지급), lease = 금융 리스 $1.17M + 운영 리스 $9.77M"
+  },
+  "cash_flow_1q27": {
+   "cfo": -0.008326,
+   "capex": 0.002525,
+   "da": 0.00148,
+   "sbc": 0.001801,
+   "note": "10-Q 현금흐름표(3개월). 금융 리스로 들인 장비 약 $0.6M 별도"
+  },
+  "r_checks": {
+   "purchase_obligations": "FY26 10-K·1Q 10-Q 본문에서 구매 약정 표를 찾지 못했다(읽은 범위 기준) — 회사는 콜에서 '핵심 소재 선구매'를 밝혔다(재고 +$13.5M)",
+   "restricted_cash": "제한 현금 공시 찾지 못함",
+   "customers_10pct": "FY26 세 고객 합 37%(24%·7%·6%), FY25 23%(9%·7%·6%) — 이름 미공시(10-K Item 1)",
+   "gov_strategic": "NRL 칼코게나이드 독점 라이선스(2021-12), Navy CLEAR 시제품 계약(NSTXL, 2026-09, 금액 미공개), DLA·육군·ESA 개발 계약 이력(10-K)",
+   "earnings_8k": "0001437749-26-036165(2026-11-10) 실적 8-K",
+   "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+  },
+  "zacks_pre": {
+   "FY2027_rev_m": 104.78,
+   "FY2027_eps": -0.01,
+   "FY2027_ebitda_m": 6.34,
+   "FY2028_rev_m": 144.06,
+   "FY2028_ebitda_m": 19.11,
+   "asof": "2026-10-26",
+   "n": 1
+  },
+  "estimates_note": "회계 분기 표기(FY27 1Q = 2026-07~09 실적 $20.763M, 2Q~4Q = Fiscal 자체 추정 11/6). 합계 $96.26M = FY27 컨센서스. 회계연도 6월 결산(FY27 = 2026-07~2027-06). Fiscal 자체 추정 FY27 매출 $96.3M(모델, 11/10)·FY28 $125M(11/6)",
+  "shares_cover_implied": 0.070088,
+  "estimates_sales_m": {
+   "2027Q1": 20.763,
+   "2027Q2": 23.7,
+   "2027Q3": 25.5,
+   "2027Q4": 26.3
+  }
+ },
+ "overrides": {
+  "growth_base": {
+   "start": 0.4,
+   "end": 0.04,
+   "decay": 0.35
+  },
+  "margin_base": {
+   "target": 0.13,
+   "year_target": 5,
+   "lr": 0.12
+  },
+  "why": "① 성장: 12개월 인도 잔고 $110.8M이 TTM 매출 $77.4M의 1.43배다 — 첫해 +40%는 잔고 소화율 약 75%를 가정한 값(추정). ② 장기 영업이익률 13%: 총이익률 40%대에서 분기 영업비용 $10.8M을 고정하면 매출 $150M에서 약 12~14%(추정, 주식보상 포함 GAAP). 동종 중앙 EBIT 이익률(약 17%)보다 낮게 둔다 — 규모가 Teledyne의 1%대"
+ },
+ "terms": {
+  "BlackDiamond": "LightPath의 칼코게나이드 적외선 유리 계열(게르마늄 대체 소재)",
+  "BDNL": "NRL 라이선스 기반 LightPath 독점 BlackDiamond 유리 등급",
+  "BD6": "범용 칼코게나이드 적외선 유리(다른 2개사도 생산)",
+  "칼코게나이드": "셀레늄·비소·황 계열 적외선 투과 유리",
+  "NRL": "미국 해군연구소",
+  "CLEAR": "미 해군 게르마늄 대체 광학 시제품 프로그램",
+  "NSTXL": "미 국방 기술 시제품 계약 컨소시엄 운영 기관",
+  "G5": "LightPath가 인수한 적외선 카메라 회사(G5 Infrared, 뉴햄프셔)",
+  "AML": "LightPath가 인수한 적외선 소재 회사(Amorphous Materials, 텍사스)",
+  "ISP Latvia": "LightPath의 라트비아 적외선 광학 공장",
+  "LPOIZ": "LightPath의 옛 중국 전장 법인(2026-10 매각)",
+  "Visimid": "LightPath의 텍사스 플레이노 적외선 엔지니어링 자회사",
+  "Kestrel": "LightPath의 소형 냉각 적외선 카메라 제품군",
+  "카운터 드론": "적 드론을 탐지·요격하는 방어 체계",
+  "중파 적외선": "3~5μm 파장 적외선 — 냉각 검출기가 필요",
+  "장파 적외선": "8~12μm 파장 적외선 — 비냉각 검출기 사용 가능",
+  "Drone Dominance": "미 국방부 저가 드론 대량 도입 사업($1.1B)",
+  "NDAA": "미국 국방수권법",
+  "NGSRI": "미 육군 차세대 휴대용 대공 미사일 사업",
+  "EO/IR": "전자광학·적외선 영상 장비",
+  "OSC": "미 국방부 전략자본국(대출·투자 기관)",
+  "DLA": "미 국방병참국",
+  "ESA": "유럽우주국",
+  "PPI": "생산자물가지수",
+  "HP": "경기 추세를 떼어 내는 통계 필터",
+  "FCF": "잉여현금흐름",
+  "CAPEX": "설비투자",
+  "RSU": "제한 조건부 주식 보상",
+  "LD": "미국 하원 로비 공시",
+  "ATM": "시장가 수시 주식 발행",
+  "PSU": "성과 조건부 주식 보상",
+  "BD2": "범용 칼코게나이드 적외선 유리 등급",
+  "ISP": "LightPath의 라트비아 광학 자회사 약칭",
+  "IT": "정보기술",
+  "JP": "일본",
+  "UAS": "무인 항공 체계(드론)"
+ },
+ "names": [
+  "LightPath",
+  "LPTH",
+  "Teledyne",
+  "TDY",
+  "FLIR",
+  "Teledyne FLIR",
+  "Coherent",
+  "COHR",
+  "Novanta",
+  "NOVT",
+  "Mercury Systems",
+  "MRCY",
+  "Kopin",
+  "KOPN",
+  "Anduril",
+  "Lockheed Martin",
+  "RTX",
+  "Elbit Systems",
+  "Ophir",
+  "MKS Instruments",
+  "Controp",
+  "Clear Align",
+  "CDGM",
+  "Ohara",
+  "Sumita",
+  "Hengtu Optical",
+  "Craig-Hallum",
+  "Piper Sandler",
+  "North Run",
+  "Sam Rubin",
+  "Al Miranda",
+  "Albert Miranda",
+  "Scott Payette",
+  "Michael Amorelli",
+  "Todd Hammer",
+  "PDW",
+  "Neutrino",
+  "Office of Strategic Capital",
+  "LASR",
+  "nLIGHT",
+  "Space Florida"
+ ],
+ "consensus": {
+  "rev": {
+   "FY2027": 0.0963,
+   "FY2028": 0.125,
+   "FY2029": 0.15
+  },
+  "ebit_margin": {
+   "FY2027": -0.012,
+   "FY2028": 0.074
+  },
+  "rev_low": {
+   "FY2027": 0.0859,
+   "FY2028": 0.09
+  },
+  "rev_high": {
+   "FY2027": 0.1142,
+   "FY2028": 0.16
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "n_analysts": 2,
+  "note": "회계연도 6월 결산. FY2027 매출 = Fiscal 자체 추정 $96.3M(1Q 실적 $20.8M + 남은 3분기 $75.5M, 11/10) — 실적 전 애널리스트 추정 $104.8M(1명, 10/26). FY2028 $125M(Fiscal, 범위 $90~160M), 애널리스트 $144.1M. 이익률 = 애널리스트 EBIT 추정 FY27 −$1.29M·FY28 $10.68M ÷ 매출. 애널리스트 = 추정 1~2명, 의견 6명, 목표가 5명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "eps_quarters_est": {
+   "2026Q4": -0.004,
+   "2027Q1": -0.0003,
+   "2027Q2": 0.0077,
+   "2027Q3": 0.0152
+  },
+  "quarters_est": {
+   "2026Q4": 0.0237,
+   "2027Q1": 0.0255,
+   "2027Q2": 0.0263,
+   "2027Q3": 0.030427
+  },
+  "quarters_est_note": "달력 분기 표기(2026Q4 = FY27 2Q, 10~12월). Fiscal 자체 추정(11/6)",
+  "ratings": {
+   "strong_buy": 5,
+   "buy": 0,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "n": 6,
+   "as_of": "2026-10-26",
+   "target_mean": 15.4,
+   "target_low": 13,
+   "target_high": 17,
+   "target_n": 5,
+   "source": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "revisions": {
+   "from_date": "2026-08-19",
+   "to_date": "2026-11-10",
+   "from_label": "4Q 콜 전 컨센서스",
+   "source": "직전 = company_analyst_estimates history(8/19, 1명), 지금 = Fiscal 자체 추정(11/6) — 같은 달력 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "매출",
+     "from": 24.48,
+     "to": 23.7
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출",
+     "from": 27.05,
+     "to": 25.5
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출",
+     "from": 29.06,
+     "to": 26.3
+    },
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.0,
+     "to": -0.004
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 0.01,
+     "to": -0.0003
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 0.02,
+     "to": 0.0077
+    }
+   ]
+  },
+  "price_window": {
+   "from": 10.14,
+   "to": 7.52,
+   "note": "4Q 콜(9/10 장 마감 뒤) 전 종가 → 11/11 종가(1Q 실적 다음 날)"
+  },
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": "2026-11-11T10:02:50.000Z",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    [
+     "Q",
+     "2025-06-30",
+     null,
+     -0.03,
+     1
+    ],
+    [
+     "A",
+     "2025-06-30",
+     null,
+     -0.09,
+     1
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2024-03-18",
+     -0.09,
+     2
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2024-05-13",
+     -0.11,
+     2
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2024-09-23",
+     -0.125,
+     2
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2024-09-25",
+     -0.14,
+     2
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2025-01-06",
+     -0.15,
+     2
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2025-02-19",
+     -0.18,
+     2
+    ],
+    [
+     "A",
+     "2025-06-30",
+     "2025-05-20",
+     -0.225,
+     2
+    ],
+    [
+     "Q",
+     "2025-09-30",
+     null,
+     -0.06,
+     1
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     null,
+     -0.05,
+     1
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2025-11-13",
+     -0.04,
+     1
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     null,
+     -0.04,
+     1
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     null,
+     -0.01,
+     1
+    ],
+    [
+     "A",
+     "2026-06-30",
+     null,
+     -0.1,
+     1
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-01-06",
+     -0.12,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-02-19",
+     -0.09,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-05-20",
+     -0.135,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-08-28",
+     -0.125,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-09-05",
+     -0.11,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-09-29",
+     -0.13,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-09-30",
+     -0.125,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-11-13",
+     -0.11,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-11-14",
+     -0.12,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-12-10",
+     -0.12,
+     1
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2025-12-22",
+     -0.12,
+     2
+    ],
+    [
+     "A",
+     "2027-06-30",
+     null,
+     -0.09,
+     1
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2025-09-29",
+     -0.025,
+     2
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2025-11-13",
+     0,
+     2
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2025-12-10",
+     -0.05,
+     1
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2025-12-22",
+     0,
+     2
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-02-13",
+     -0.02,
+     1
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-02-12",
+     0,
+     1
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-08-13",
+     -0.02,
+     1
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2026-02-13",
+     -0.19,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2026-02-18",
+     -0.185,
+     2
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2026-05-08",
+     -0.11,
+     1
+    ],
+    [
+     "A",
+     "2026-06-30",
+     "2026-08-13",
+     -0.34,
+     1
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     null,
+     -0.01,
+     1
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-09-15",
+     -0.02,
+     1
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     null,
+     0,
+     1
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-09-14",
+     -0.01,
+     1
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     null,
+     0.01,
+     1
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-09-14",
+     0,
+     1
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     null,
+     0.01,
+     1
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-09-15",
+     0.02,
+     1
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2026-02-13",
+     0.02,
+     2
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2026-02-18",
+     0.065,
+     2
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2026-05-08",
+     0.14,
+     1
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2026-08-13",
+     0.075,
+     2
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2026-09-08",
+     0.01,
+     1
+    ],
+    [
+     "A",
+     "2027-06-30",
+     "2026-09-14",
+     -0.01,
+     1
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     null,
+     0.02,
+     1
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     null,
+     0.03,
+     1
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     null,
+     0.04,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     null,
+     0.06,
+     1
+    ],
+    [
+     "A",
+     "2028-06-30",
+     null,
+     0.16,
+     1
+    ]
+   ]
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 16.352,
+    "est": 13.27,
+    "est_src": "zacks",
+    "est_asof": "2025-11-13",
+    "basis": "gaap",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.2,
+    "est": -0.04,
+    "est_src": "zacks",
+    "est_asof": "2025-11-13",
+    "basis": "gaap",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 0.6,
+    "est": -0.64,
+    "est_src": "zacks",
+    "est_asof": "2025-11-12",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 19.15,
+    "est": 17.39,
+    "est_src": "zacks",
+    "est_asof": "2026-02-13",
+    "basis": "gaap",
+    "earnings_date": "2026-05-07"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.07,
+    "est": -0.068,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-07",
+    "pair": {
+     "zacks": -0.02
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 1.1,
+    "est": 0.27,
+    "est_src": "zacks",
+    "est_asof": "2026-02-12",
+    "basis": "adjusted",
+    "earnings_date": "2026-05-07"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 21.162,
+    "est": 19.236,
+    "est_src": "fiscal:model",
+    "est_asof": "2026-08-25",
+    "basis": "gaap",
+    "earnings_date": "2026-09-10"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.06,
+    "est": -0.117,
+    "est_src": "fiscal:model",
+    "est_asof": "2026-08-25",
+    "basis": "gaap",
+    "earnings_date": "2026-09-10"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 2.096,
+    "est": -1.088,
+    "est_src": "fiscal:model",
+    "est_asof": "2026-08-25",
+    "basis": "adjusted",
+    "earnings_date": "2026-09-10"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 20.763,
+    "est": 22.5,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-11-06",
+    "basis": "gaap",
+    "earnings_date": "2026-11-10"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.02,
+    "est": -0.009,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-11-06",
+    "basis": "gaap",
+    "earnings_date": "2026-11-10"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 1.27,
+    "est": 2.2,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-11-06",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-10"
+   }
+  ]
+ },
+ "peers_basis": "ntm",
+ "peers_source": "동종 = 미국 상장 방위·산업용 광학·적외선 영상·광전자 5곳: Teledyne(FLIR 적외선 카메라 — 경쟁사이자 고객), Coherent(적외선 광학·소재), Novanta(정밀 광학·광전자), Mercury Systems(방위 전자·센서 처리), Kopin(방위용 마이크로디스플레이·광학 — 적자 소형주). Fiscal.ai company_estimates·daily_ratios(2026-11-11). 차입 = EV/매출 × 매출 − 시총 + 현금으로 역산(추정). P/B = 시총 ÷ 최근 분기 자기자본",
+ "peers": [
+  {
+   "ticker": "TDY",
+   "rev": 6.5198,
+   "ebit_margin": 0.2346,
+   "mcap": 29.973,
+   "pb": 2.69,
+   "debt": 2.03,
+   "cash": 0.5624,
+   "ev_sales": 4.82,
+   "growth": 0.086,
+   "goodwill": 8.6785,
+   "pe_fwd": 23.83,
+   "ev_ebitda_fwd": 17.39,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 21.68,
+     "ev_ebitda_fwd": 16.08
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 24.8,
+     "ev_ebitda_fwd": 17.66
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 26.89,
+     "ev_ebitda_fwd": 18.63
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 23.2,
+     "ev_ebitda_fwd": 15.99
+    }
+   ],
+   "pe_fwd2": 21.73,
+   "ev_ebitda_fwd2": 16.32,
+   "pe_fwd3": 19.87,
+   "ev_ebitda_fwd3": 15.23,
+   "ntm_ebit_margin": 0.2403,
+   "ntm_growth": 0.0648
+  },
+  {
+   "ticker": "COHR",
+   "rev": 7.9071,
+   "ebit_margin": 0.2148,
+   "mcap": 46.537,
+   "pb": 3.99,
+   "debt": 4.68,
+   "cash": 1.7529,
+   "ev_sales": 6.26,
+   "growth": 0.308,
+   "goodwill": 4.4483,
+   "pe_fwd": 20.07,
+   "ev_ebitda_fwd": 16.47,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 31.94,
+     "ev_ebitda_fwd": 20.74
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 34.97,
+     "ev_ebitda_fwd": 23.34
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 48.92,
+     "ev_ebitda_fwd": 30.78
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 27.81,
+     "ev_ebitda_fwd": 17.96
+    }
+   ],
+   "pe_fwd2": 14.04,
+   "ev_ebitda_fwd2": 11.55,
+   "pe_fwd3": 10.84,
+   "ev_ebitda_fwd3": 8.97,
+   "ntm_ebit_margin": 0.2632,
+   "ntm_growth": 0.5214
+  },
+  {
+   "ticker": "NOVT",
+   "rev": 1.0869,
+   "ebit_margin": 0.1877,
+   "mcap": 4.6665,
+   "pb": 2.87,
+   "debt": 0.892,
+   "cash": 0.1492,
+   "ev_sales": 4.98,
+   "growth": 0.132,
+   "goodwill": 1.4319,
+   "pe_fwd": 30.21,
+   "ev_ebitda_fwd": 22.98,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 32.51,
+     "ev_ebitda_fwd": 18.76
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 33.41,
+     "ev_ebitda_fwd": 16.65
+    }
+   ],
+   "pe_fwd2": 24.57,
+   "ev_ebitda_fwd2": 20.19,
+   "pe_fwd3": 21.6,
+   "ev_ebitda_fwd3": 18.44,
+   "ntm_ebit_margin": 0.2066,
+   "ntm_growth": 0.1887
+  },
+  {
+   "ticker": "MRCY",
+   "rev": 1.0116,
+   "ebit_margin": 0.0271,
+   "mcap": 5.4202,
+   "pb": 3.5,
+   "debt": 0.391,
+   "cash": 0.1097,
+   "ev_sales": 5.64,
+   "growth": 0.084,
+   "goodwill": 0.9416,
+   "pe_fwd": 45.08,
+   "ev_ebitda_fwd": 40.83,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 63.02,
+     "ev_ebitda_fwd": 28.22
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 55.87,
+     "ev_ebitda_fwd": 27.02
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 91.8,
+     "ev_ebitda_fwd": 45.54
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 51.05,
+     "ev_ebitda_fwd": 25.91
+    }
+   ],
+   "pe_fwd2": 35.32,
+   "ev_ebitda_fwd2": 33.57,
+   "pe_fwd3": 28.66,
+   "ev_ebitda_fwd3": 28.33,
+   "ntm_ebit_margin": 0.0636,
+   "ntm_growth": 0.115
+  },
+  {
+   "ticker": "KOPN",
+   "rev": 0.04984,
+   "ebit_margin": -0.3013,
+   "mcap": 0.6919,
+   "pb": 10.33,
+   "debt": 0.001,
+   "cash": 0.0513,
+   "ev_sales": 12.87,
+   "growth": 0.093,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 327.29,
+   "hist_q": [
+    {
+     "date": "2026-06-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 1057.76
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 242.62
+    }
+   ],
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": null,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null,
+   "ntm_ebit_margin": -0.0538,
+   "ntm_growth": 0.455
+  }
+ ],
+ "moat": {
+  "summary": "해자는 '게르마늄 없이 만드는 적외선 광학'이라는 소재 위치다. 미국 국방이 2027-12부터 중국산 게르마늄 조달을 막고 2030까지 중국 의존 광학을 없애라고 법으로 정했다. 다만 범용 BD6는 다른 2개사도 만들고, 카메라 시장에는 Teledyne FLIR 같은 강자가 있다",
+  "items": [
+   {
+    "kind": "NRL 칼코게나이드 독점 라이선스(BDNL)",
+    "verdict": "보통",
+    "claim": "해군연구소가 개발한 칼코게나이드 유리(BDNL 계열)를 독점 라이선스로 만든다 — 게르마늄을 대체해 중국 공급 위험을 피한다",
+    "evidence": "10-K Item 1: 2021-12 독점 라이선스, BD6·BD2는 다른 2개사도 생산, BDNL은 독점",
+    "quant": "라이선스 기간·로열티 미확인",
+    "falsifier": "다른 회사가 동등 성능의 비게르마늄 유리를 국방 인증 받는다"
+   },
+   {
+    "kind": "소재 → 렌즈 → 카메라 수직 계열화",
+    "verdict": "보통",
+    "claim": "유리를 직접 녹여 렌즈를 깎고 카메라까지 조립해 부가가치를 더 가져간다 — 조립품 비중이 오를수록 총이익률이 오른다",
+    "evidence": "1Q FY27 조립품·모듈 비중 51%(전년 40%), 총이익률 41.4%(전년 29.8%)",
+    "quant": "조립품 비중 +11%p ↔ 총이익률 +11.6%p",
+    "falsifier": "조립품 비중이 50%를 넘는데 총이익률이 40% 아래로 내려간다"
+   },
+   {
+    "kind": "중국 밖 공급망(국방 조달 자격)",
+    "verdict": "보통",
+    "claim": "중국 법인을 팔아 중국 시설·매출·운영이 0이다 — 일부 국방 프로그램 참여 요건이다",
+    "evidence": "중국 법인 매각 종결 8-K(2026-11-04), 2026 NDAA 게르마늄 조달 제한(2027-12 시행)",
+    "quant": "미확인(요건이 열어 주는 매출 미공시)",
+    "falsifier": "NDAA 시행이 미뤄지거나 예외가 넓어진다"
+   },
+   {
+    "kind": "프로그램 설계 반영(디자인 윈)",
+    "verdict": "약함",
+    "claim": "카운터 드론·드론·요격 미사일 프로그램에 광학이 설계로 들어가면 바꾸기 어렵다",
+    "evidence": "카운터 드론 고객 후속 $19M+, 카메라 후속 $11M(게르마늄 → BlackDiamond 전환 계획 포함)",
+    "quant": "잔고 $132.9M(전부 자금 확정 주문, CEO)",
+    "falsifier": "후속 주문이 끊기거나 고객이 내재화한다(10-K: Anduril·Teledyne FLIR 등 고객 자체 설계 역량)"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-12",
+  "summary": "CEO Sam Rubin(2020 취임)이 '부품 회사 → 적외선 카메라 회사' 전환을 이끈다. 2026-06 증자 때 10% 주주 이사 관련 펀드(North Run)가 $14에 $50M을 팔았다. 경영진은 Anduril 출신을 G5 사업 책임자로 데려왔다",
+  "people": [
+   {
+    "name": "Sam Rubin",
+    "role": "사장·CEO",
+    "since": "2020",
+    "profile": "적외선 카메라·조립품 중심 전략, G5·AML 인수, 중국 법인 매각을 이끌었다",
+    "business": "전사",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "FY26 10-K·1Q FY27 어닝콜"
+   },
+   {
+    "name": "Albert Miranda",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "인수 대상: '변곡점 이전·전략적·이익 기여·합리적 가격'을 찾는다고 밝혔다(1Q 콜)",
+    "business": "재무·M&A",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "Scott Payette",
+    "role": "G5 사업 책임자",
+    "since": "2026",
+    "profile": "핵심 고객 Anduril 출신(1Q 콜)",
+    "business": "적외선 카메라(G5)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "Todd Hammer",
+    "role": "이사·10% 주주(North Run)",
+    "since": "미확인",
+    "profile": "North Run 펀드가 2026-03 $4.4M·05 $3.6M·06 $50M($14) 매도(Form 4)",
+    "business": "이사회",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "Form 4(2026-03~06)"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Anduril 출신 G5 책임자 영입 — '네오 프라임' 카운터 드론 고객(7월 이후 $19M+)과의 관계 강화(고객 이름은 회사 미공시, Anduril 대응은 가설)",
+    "strength": 3,
+    "exposure": 0.24,
+    "basis": "FY26 최대 고객 매출 24%(10-K) — 그 고객이 누구인지 미공시",
+    "evidence": "1Q FY27 어닝콜·FY26 10-K"
+   },
+   {
+    "network": "정계",
+    "link": "로비 공시 집계 범위 밖 — 공개 기록에서 정계 연결을 확인하지 못했다",
+    "strength": 0,
+    "exposure": "미확인",
+    "basis": "미확인",
+    "evidence": "Easyconomics 하원 LD 집계(대상 밖)"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "총이익률이 1년 새 29.8% → 41.4%로 올랐다. 회사는 원인을 조립품·모듈 비중(40% → 51%)이라고 밝혔다. 영업비용 $10.8M(매출의 52%)이 매출총이익 $8.6M보다 커 GAAP 영업손실이 남는다 — 그 안에 주식보상 $1.8M과 신제품 개발 $2.0M이 있다. 원가 세부 구성은 공시되지 않아 아래 요인은 추정이다",
+  "periods": [
+   {
+    "period": "1Q FY26",
+    "rev": 0.015058,
+    "cogs": 0.010576,
+    "rd": 0.000867,
+    "sga": 0.004384,
+    "other": 0.001287
+   },
+   {
+    "period": "1Q FY27",
+    "rev": 0.020763,
+    "cogs": 0.012161,
+    "rd": 0.002036,
+    "sga": 0.008048,
+    "other": 0.000227
+   }
+  ],
+  "costs": [
+   {
+    "name": "적외선 광학 소재(칼코게나이드 원료·게르마늄·광학 유리)",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.15,
+    "fixed": 0.0,
+    "driver": "게르마늄 가격(kg당 $6,000 이상, 10-K)·BlackDiamond 전환 비율",
+    "basis": "추정",
+    "input": "germanium",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   },
+   {
+    "name": "검출기·전자·모터(카메라 구매 부품)",
+    "stage": "매출원가",
+    "pct_rev": 0.16,
+    "prior_pct": 0.14,
+    "fixed": 0.0,
+    "driver": "카메라 조립품 비중 증가, 모터·검출기 공급 지연(1Q 콜)",
+    "basis": "추정",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "직접 인건비(올랜도·리가·허드슨·플레이노)",
+    "stage": "매출원가",
+    "pct_rev": 0.14,
+    "prior_pct": 0.21,
+    "fixed": 0.5,
+    "driver": "물량 증가에 따른 흡수 — 중국 인력 104명 매각",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   },
+   {
+    "name": "제조 간접·감가·재고 충당",
+    "stage": "매출원가",
+    "pct_rev": 0.1,
+    "prior_pct": 0.13,
+    "fixed": 0.8,
+    "driver": "공장 임차료·설비 감가(1Q D&A $1.48M)",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926036178/lpth20260922_10q.htm"
+   },
+   {
+    "name": "외주 코팅·외부 광학 가공",
+    "stage": "매출원가",
+    "pct_rev": 0.04,
+    "prior_pct": 0.04,
+    "fixed": 0.0,
+    "driver": "단일·소수 공급원 코팅(10-K), G5 외부 광학(1Q 콜)",
+    "basis": "추정",
+    "input": "optical_lens",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   },
+   {
+    "name": "운임·관세·기타 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.0257,
+    "prior_pct": 0.0324,
+    "fixed": 0.0,
+    "driver": "수출 비중(해외 매출 42%)",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926036178/lpth20260922_10q.htm"
+   },
+   {
+    "name": "신제품 개발 인력·시제품",
+    "stage": "연구개발",
+    "pct_rev": 0.0981,
+    "prior_pct": 0.0576,
+    "fixed": 0.9,
+    "driver": "카메라·적외선 조립품·새 BlackDiamond 유리 개발 인력 증원",
+    "basis": "공시",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "주식보상",
+    "stage": "판관비",
+    "pct_rev": 0.0867,
+    "prior_pct": 0.0239,
+    "fixed": 1.0,
+    "driver": "경영진 성과 스톡옵션(2026-03) 등",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926036178/lpth20260922_10q.htm"
+   },
+   {
+    "name": "판매·관리 인건비",
+    "stage": "판관비",
+    "pct_rev": 0.18,
+    "prior_pct": 0.15,
+    "fixed": 0.8,
+    "driver": "AML 편입·영업 인력·새 경영진",
+    "basis": "추정",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "기타 판관비(IT 보안·상각·전문 용역)",
+    "stage": "판관비",
+    "pct_rev": 0.1209,
+    "prior_pct": 0.1176,
+    "fixed": 0.7,
+    "driver": "국방 고객 사이버 보안 기준 IT 투자(CFO)",
+    "basis": "추정",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "언아웃 공정가치 변동",
+    "stage": "기타",
+    "pct_rev": 0.011,
+    "prior_pct": 0.0854,
+    "fixed": 1.0,
+    "driver": "AML 언아웃 종료, G5 $9M 고정",
+    "basis": "공시",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   }
+  ],
+  "products": [
+   {
+    "name": "조립품·모듈(적외선 카메라·광학 조립품)",
+    "rev_share": 0.51,
+    "rev_share_prev": 0.4,
+    "mix_basis": "공시(1Q FY27 $10.5M ÷ $20.8M)",
+    "gpm": 0.414,
+    "gpm_basis": "전사 1Q FY27 총이익률 대용(제품별 미공시 — 회사는 조립품이 부품보다 높다고만 밝혔다)",
+    "bom": [
+     {
+      "item": "적외선 검출기(냉각·비냉각)",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "카메라 원가의 중심, 단일·소수 공급원(10-K)"
+     },
+     {
+      "item": "적외선 렌즈(BlackDiamond·게르마늄)",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "자체 생산분이 늘수록 마진이 오른다",
+      "input": "germanium"
+     },
+     {
+      "item": "모터·줌 구동부·하우징",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "1Q FY27 어닝콜(2026-11-10)",
+      "pass_through": "미확인",
+      "why": "1Q 공급 지연 품목(모터)"
+     },
+     {
+      "item": "영상 처리 전자 보드",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "1Q FY27 어닝콜(2026-11-10)",
+      "pass_through": "미확인",
+      "why": "전자 부품은 입고 즉시 출하(CEO)"
+     },
+     {
+      "item": "조립·시험 인건비",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "허드슨·올랜도 조립"
+     }
+    ]
+   },
+   {
+    "name": "적외선 부품(렌즈·광학 소자)",
+    "rev_share": 0.23,
+    "rev_share_prev": 0.27,
+    "mix_basis": "공시(1Q FY27 $4.7M, AML $1.1M 포함)",
+    "gpm": 0.414,
+    "gpm_basis": "전사 1Q FY27 총이익률 대용(제품별 미공시 — 회사는 조립품이 부품보다 높다고만 밝혔다)",
+    "bom": [
+     {
+      "item": "칼코게나이드 유리 원료(셀레늄·비소 등)",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "여러 나라에서 구할 수 있는 원료(10-K)"
+     },
+     {
+      "item": "게르마늄 소재",
+      "share": [
+       0.1,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "중국 60% 이상, 수출 금지 — 회사는 게르마늄 주문을 줄였다",
+      "input": "germanium"
+     },
+     {
+      "item": "정밀 성형·다이아몬드 선삭 가공",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "자체 공정(올랜도·리가)"
+     },
+     {
+      "item": "반사 방지 코팅",
+      "share": [
+       0.05,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "일부 단일·소수 외주(10-K)",
+      "input": "optical_lens"
+     }
+    ]
+   },
+   {
+    "name": "가시광 부품(정밀 성형 유리 비구면 렌즈)",
+    "rev_share": 0.22,
+    "rev_share_prev": 0.25,
+    "mix_basis": "공시(1Q FY27 $4.6M)",
+    "gpm": 0.414,
+    "gpm_basis": "전사 1Q FY27 총이익률 대용(제품별 미공시 — 회사는 조립품이 부품보다 높다고만 밝혔다)",
+    "bom": [
+     {
+      "item": "광학 유리 프리폼",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "CDGM·Ohara·Sumita 등 외부 유리(10-K)",
+      "input": "optical_lens"
+     },
+     {
+      "item": "정밀 유리 성형 공정",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "올랜도 자체 공정 — 중국 공장 매각 뒤 일부는 매수자(현 공급사)에서 산다"
+     },
+     {
+      "item": "코팅·검사",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+      "pass_through": "미확인",
+      "why": "광학 성능 검사"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-12",
+  "summary": "1Q 매출을 막은 것은 수요가 아니라 부품이다 — 모터, G5 카메라용 외부 광학, 검출기(CEO). 게르마늄은 중국이 세계 공급의 60% 이상이라 회사가 BlackDiamond로 바꾸는 중이다. 재고를 $13.5M 늘려 핵심 소재를 미리 샀다",
+  "links": [
+   {
+    "item": "적외선 검출기(냉각·비냉각)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "단일·소수 공급사(이름 미공시)",
+      "role": "검출기·센서",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "CEO: 검출기는 들어오는 대로 출하 — 공급사를 한계까지 쓰고 있다(1Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "선구매",
+    "why": "10-K '센서는 단일·소수 공급원'. 카메라 원가의 가장 큰 몫(추정)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   },
+   {
+    "item": "모터·줌 구동부",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "외부 공급사(이름 미공시)",
+      "role": "모터",
+      "status": "회사 발표",
+      "source": "1Q FY27 어닝콜(2026-11-10)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "CEO: 모터가 1Q의 가장 아픈 곳 — 크게 나아지는 중",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "현물",
+    "why": "공급망 책임자(3~4개월 전 영입)가 단일 공급원에 대체 공급원을 만드는 중",
+    "relief": "미확인",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "item": "적외선 렌즈(BlackDiamond·게르마늄)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "LightPath 자체(올랜도·리가·AML)",
+      "role": "칼코게나이드 유리·렌즈",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     },
+     {
+      "name": "외부 광학 공급사(G5 카메라용 일부)",
+      "role": "적외선 광학",
+      "status": "회사 발표",
+      "source": "1Q FY27 어닝콜(2026-11-10)"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "빠듯",
+    "capacity_basis": "G5 일부 광학은 아직 외부 조달 — 공급사도 캐파가 꽉 찼다(CEO)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국·라트비아(자체)",
+    "secured": "내재화",
+    "why": "BlackDiamond 전환이 끝나면 외부 의존이 줄어든다",
+    "relief": "미확인",
+    "input": "optical_lens",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "item": "게르마늄 소재",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "게르마늄 공급사(이름 미공시)",
+      "role": "게르마늄",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "중국이 미국 수출을 막았고(10-K), 콜 기준 중국 수출은 대부분 러시아로 간다. 회사는 게르마늄 주문 수주를 줄였다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 0.6,
+    "region_share": 0.6,
+    "region": "중국(세계 공급 60% 이상, 10-K)",
+    "secured": "현물",
+    "why": "BlackDiamond가 대체 경로 — 필수 품목에서 빼고 위험 요인으로 둔다",
+    "relief": "미확인",
+    "input": "germanium",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   },
+   {
+    "item": "칼코게나이드 원료(셀레늄·비소 등)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "다수 국가 공급사",
+      "role": "유리 원료",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     }
+    ],
+    "qualified": 4,
+    "capacity": "여유",
+    "capacity_basis": "10-K: 원료를 세계 여러 나라에서 구할 수 있다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "다수 국가",
+    "secured": "복수구매",
+    "why": "게르마늄 대비 공급 위험이 낮다는 것이 BlackDiamond 논리의 핵심",
+    "relief": "해당 없음",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   },
+   {
+    "item": "가시광 광학 유리",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "CDGM",
+      "role": "광학 유리",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     },
+     {
+      "name": "Ohara",
+      "role": "광학 유리",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     },
+     {
+      "name": "Sumita",
+      "role": "광학 유리",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "여유",
+    "capacity_basis": "복수 공급사(10-K)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "중국·일본",
+    "secured": "복수구매",
+    "why": "CDGM은 중국 회사 — 국방 제품 적용 시 원산지 문제는 미확인",
+    "relief": "해당 없음",
+    "input": "optical_lens",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+   }
+  ]
+ },
+ "capacity": {
+  "unit": "드론 광학 조립품 개/월",
+  "as_of": "2026-11-10",
+  "summary": "생산은 미국 4곳(올랜도·허드슨·플레이노·갈랜드)과 라트비아 리가 1곳이다(중국 공장은 10/30 매각). 회사가 밝힌 캐파 수치는 드론 광학 조립품 하나뿐 — 지금 월 1만 개 미만, 12개월 안에 월 수만 개, 장기 월 10만 개 가능성. 다른 제품 캐파·가동률은 공시하지 않는다",
+  "current": {
+   "nameplate": 10000,
+   "utilization": "미확인",
+   "basis": "CEO: 드론 광학 조립품 캐파 '월 1만 개 바로 아래'(1Q 콜). 다른 제품은 미공시",
+   "source": "1Q FY27 어닝콜(2026-11-10)"
+  },
+  "plans": [
+   {
+    "name": "드론 광학 조립품 자동화·증설",
+    "add": 20000,
+    "stage": "장비 반입",
+    "online": "2027-11",
+    "capex": "미확인",
+    "blocker": "자동화 프로젝트 진행·인력·부품 공급",
+    "source": "1Q FY27 어닝콜(2026-11-10)",
+    "note": "'수만 개'를 2만 개 추가로 보수 해석(추정). 단계는 회사가 자동화 프로젝트를 '잘 진행 중'이라 한 수준 — 장비 반입 확인 자료 없음, 확인 전까지 낮춰 읽는다"
+   },
+   {
+    "name": "유리 제조·계측 설비(1Q CAPEX $2.5M + 금융 리스 $0.6M)",
+    "add": "미확인",
+    "stage": "장비 반입",
+    "online": "2027",
+    "capex": 0.0031,
+    "blocker": "미확인",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 0.0013,
+    "rev": 0.0372,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.0063,
+    "rev": 0.0717,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.0079,
+    "rev": 0.0963,
+    "kind": "컨센서스"
+   }
+  ],
+  "facilities": {
+   "count": 6,
+   "count_basis": "FY26 10-K Item 2: 올랜도 58,500 sq ft(본사·제조·연구), 허드슨 27,000(G5), 플레이노 9,000(Visimid), 갈랜드 7,300(AML, 라이선스 사용), 리가 29,000(ISP Latvia) — 모두 임차. 전장 39,500 sq ft(LPOIZ)는 2026-10-30 매각 — count 6 = 가동 5곳 + 매각된 전장 1곳(표에 남김)",
+   "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+   "items": [
+    {
+     "name": "올랜도 본사·공장",
+     "location": "미국 플로리다 올랜도",
+     "owned": "임차",
+     "use": "본사·제조·연구개발(정밀 성형 유리·칼코게나이드)",
+     "area": {
+      "value": 58500,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "G5 Infrared 허드슨 공장",
+     "location": "미국 뉴햄프셔 허드슨",
+     "owned": "임차",
+     "use": "적외선 카메라 엔지니어링·제조",
+     "area": {
+      "value": 27000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "Visimid 플레이노",
+     "location": "미국 텍사스 플레이노",
+     "owned": "임차",
+     "use": "적외선 엔지니어링·제조",
+     "area": {
+      "value": 9000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "AML 갈랜드",
+     "location": "미국 텍사스 갈랜드",
+     "owned": "임차",
+     "use": "적외선 소재 엔지니어링·제조(라이선스 사용 공간)",
+     "area": {
+      "value": 7300,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "ISP Latvia 리가 공장",
+     "location": "라트비아 리가",
+     "owned": "임차",
+     "use": "적외선 광학 제조·관리",
+     "area": {
+      "value": 29000,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "LPOIZ 전장 공장(매각)",
+     "location": "중국 장쑤 전장",
+     "owned": "임차",
+     "use": "가시광·적외선 부품 제조 — 매수자(현지 경영진)가 상업 제품 공급사로 남는다",
+     "area": {
+      "value": 39500,
+      "unit": "sq ft"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "매각·폐쇄 예정"
+    }
+   ]
+  },
+  "sites_none": "소유 공장이 없다(모두 임차·라이선스) — 실내 광학 공장이라 위성 영상으로 처리량을 잴 수 없다"
+ },
+ "customers": {
+  "as_of": "2026-06-30",
+  "period": "FY26",
+  "summary": "FY26 매출의 37%가 세 고객(24%·7%·6%)이다 — 이름은 공시하지 않는다. 1년 전엔 세 곳 합이 23%였다. 1Q 콜에서 회사가 이름 없이 밝힌 두 고객이 커지고 있다 — 카운터 드론 '네오 프라임'(7월 이후 $19M+)과 글로벌 기술 기업(카메라 $11M)",
+  "items": [
+   {
+    "name": "최대 고객(미공시)",
+    "alias": "최대 고객 24%",
+    "share": 0.24,
+    "prior": 0.09,
+    "basis": "공시",
+    "buys": "적외선 카메라·조립품(추정)",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+    "why": "FY26 비중 24%(FY25 최대 9%). 10-K 경영진 분석의 '글로벌 기술 고객 주문 약 $58M'과 같은 고객일 가능성(가설)"
+   },
+   {
+    "name": "고객 2(미공시)",
+    "share": 0.07,
+    "prior": 0.07,
+    "basis": "공시",
+    "buys": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+    "why": "FY26 7%"
+   },
+   {
+    "name": "고객 3(미공시)",
+    "share": 0.06,
+    "prior": 0.06,
+    "basis": "공시",
+    "buys": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm",
+    "why": "FY26 6%"
+   },
+   {
+    "name": "카운터 드론·방위 시스템 '네오 프라임'(미공시)",
+    "alias": "a leading counter-UAS and defense systems supplier",
+    "share": [
+     0.12,
+     0.2
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "광학 조립품",
+    "source": "1Q FY27 어닝콜(2026-11-10)",
+    "why": "7월 이후 $19M+ 주문 = FY26 이 고객 주문의 2배, '다음 회계연도 최대 고객 중 하나가 될 수 있다'(CEO). 범위는 $19M ÷ FY27 컨센서스 $96M(추정). Anduril로 보는 것은 가설 — 신임 G5 책임자가 Anduril 출신"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-11-12",
+  "reported_backlog": 0.1329,
+  "backlog_label": "수주잔고(자금 확정 주문)",
+  "summary": "잔고 $132.9M은 TTM 매출의 1.7배이고, 그중 $110.8M을 고객이 12개월 안에 인도해 달라고 했다. CEO는 잔고 전부가 예산 통과와 무관한 자금 확정 주문이라고 강조했다. 건별 진척은 공시하지 않는다",
+  "items": [
+   {
+    "name": "카운터 드론 조립품 후속(네오 프라임)",
+    "status": "확정",
+    "total": 0.0193,
+    "progress": "미확인",
+    "progress_basis": "7월 $13M + 10월 $6.3M 주문 — 인식 금액 미공시",
+    "margin": "미확인",
+    "start": "2026-07",
+    "end": "2027-06",
+    "blockers": [
+     "부품 공급(모터·검출기)",
+     "고객 프로그램 일정"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "적외선 카메라 후속(글로벌 기술 기업)",
+    "status": "확정",
+    "total": 0.011,
+    "progress": "미확인",
+    "progress_basis": "카운터 드론용, 게르마늄 → BlackDiamond 전환 계획 포함",
+    "margin": "미확인",
+    "start": "2026-10",
+    "end": "2027-09",
+    "blockers": [
+     "외부 광학·검출기 공급"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "드론 카메라 광학 조립품 5만 개+",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "10월 주문, 월 1만 개 캐파로 수개월~반년(CEO)",
+    "margin": "미확인",
+    "start": "2026-11",
+    "end": "2027-05",
+    "blockers": [
+     "조립품 캐파(월 1만 개 미만)"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "그 밖의 잔고(기존 반복 프로그램 등)",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "잔고 $132.9M 중 위 건 외 몫 미공시",
+    "margin": "미확인",
+    "start": "2026-10",
+    "end": "2028-06",
+    "blockers": [
+     "공급망",
+     "캐파"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "Navy CLEAR 시제품(NSTXL)",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "2년에 걸쳐 시제품 납품 → 기존 국방 프로그램의 BlackDiamond 전환 평가(CEO). 금액 미공개",
+    "margin": "미확인",
+    "start": "2026-09",
+    "end": "2028-09",
+    "blockers": [
+     "시제품 평가",
+     "프로그램 재설계 결정"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "드론 장기 전략 공급 계약",
+    "status": "협상",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "고객과 예측·프레임워크 논의 시작(CEO) — 계약 없음",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "고객 물량 예측",
+     "캐파 확충"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "요격 미사일·비공개 항공 시스템 신규 프로그램",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "지금 매출·잔고에서 작은 몫(CEO)",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "프로그램 선정"
+    ],
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 19.2,
+  "coverage_next_fy": 1.05,
+  "book_to_bill": 2.0,
+  "revenue_growth": 0.765,
+  "top_customer_share": 0.24,
+  "source": "잔고 $132.9M ÷ 1Q 월평균 매출 $6.92M = 19.2개월. 커버 = 12개월 인도 요청 잔고 $110.8M ÷ 다음 4개 분기 매출 컨센서스 $105.9M = 1.05(자체 계산). B/B ≈ 2.0(CEO). 취소율 미공시 — CEO는 잔고 전부가 자금 확정·서명된 인도일 주문이라고 밝혔다"
+ },
+ "sync": {
+  "why": "회사 제품은 적외선·가시광 광학 소자와 조립품이다 — 미국 광학 렌즈·프리즘 수입과 광학 기기·렌즈 PPI",
+  "indicators": [
+   {
+    "label": "미국 광학 렌즈·프리즘 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "900190",
+    "segment": "광학 부품·조립품(전사)",
+    "why": "미국 광학 소자 수요의 거울"
+   },
+   {
+    "label": "미국 광학 기기·렌즈 PPI",
+    "source": "ppi",
+    "input": "optical_lens",
+    "country": "us",
+    "segment": "광학 부품·조립품(전사)",
+    "why": "제품 가격 대용"
+   }
+  ],
+  "products": [
+   {
+    "name": "광학 부품·조립품(전사)",
+    "segment": "광학 부품·조립품(전사)",
+    "hs": "900190",
+    "share": 1.0,
+    "inputs": [
+     "optical_lens",
+     "germanium"
+    ]
+   }
+  ]
+ },
+ "pq": {
+  "none": "제품 단가·출하 수량을 분기로 공시하지 않는다 — 업종 PPI 대용으로 잰다"
+ },
+ "ma": {
+  "none": "G5 Infrared·AML(Amorphous Materials) 인수(최근 3년 안)는 있지만, 인수가·대상 실적·시너지 수치를 이번 회차 1차 자료로 확인하지 못했다 — 시너지 모델 미작성(미확인). 확인된 것: G5 2년차 언아웃 $9M 고정(현금 $6.3M + 주식 $2.7M, 2027-01), AML 언아웃 종료(1Q 콜)"
+ },
+ "social": {
+  "as_of": "2026-11-12",
+  "summary": "8월이 정점이었다 — 소형주 인터뷰 계정과 서브스택이 '중국 없는 광학, Anduril 공급사' 이야기를 퍼뜨렸다. 8/28 −18.6% 뒤 이야기가 식었고 지금은 한 계정이 실적·중국 매각을 정리하는 수준이다(대화 강도 Weak 50)",
+  "narratives": [
+   {
+    "channel": "X",
+    "theme": "중국 없는 적외선 광학 — 게르마늄 대체 BlackDiamond",
+    "expectation": "상향",
+    "vs_fact": "확인(NRL 독점 라이선스·NDAA 게르마늄 조달 제한 2027-12, 10-K·콜)",
+    "share": 0.35
+   },
+   {
+    "channel": "X",
+    "theme": "미국산 드론 10대 중 7대에 들어간다(CEO 인터뷰 전언)",
+    "expectation": "상향",
+    "vs_fact": "미확인(회사 공시에 없는 수치)",
+    "share": 0.15
+   },
+   {
+    "channel": "서브스택",
+    "theme": "Anduril 공급사·매출 +109%",
+    "expectation": "상향",
+    "vs_fact": "확인(FY26 매출 +93%, Anduril은 10-K에 고객 자체 설계 역량 보유 회사로 언급 — 공급 관계 금액은 미공시)",
+    "share": 0.2
+   },
+   {
+    "channel": "X",
+    "theme": "곧 정부 자금이 온다(CEO 인터뷰 전언)",
+    "expectation": "소진",
+    "vs_fact": "과장(9월 Navy CLEAR 시제품 계약은 나왔지만 금액 미공개)",
+    "share": 0.15
+   },
+   {
+    "channel": "X",
+    "theme": "잔고 $132.9M·총이익률 41%",
+    "expectation": "혼재",
+    "vs_fact": "확인(1Q 콜)",
+    "share": 0.15
+   }
+  ],
+  "turn": "8월(대화 강도 Strong 81) 정점 → 9월 Moderate 68 → 10~11월 Weak 50. 8/28 −18.6%가 전환점"
+ },
+ "midterm": {
+  "sub": "defense",
+  "exposure": {
+   "defense_budget": 0.6
+  },
+  "etf": "AMEX:ITA",
+  "why": "매출의 상당 부분이 방위·보안 광학(카운터 드론·드론·요격 미사일) — 방위 예산 채널. 방위 매출 비중은 미공시라 60%로 추정. 잔고는 자금 확정 주문이라 단기 세출 영향은 작다(CEO)"
+ },
+ "multiple_view": {
+  "adj": 0.1,
+  "why": "+10%를 가산한다. ① 12개월 인도 잔고가 다음 4개 분기 컨센서스 매출보다 크다 ② 총이익률이 40%대로 올라섰다 ③ NDAA 게르마늄 제한(2027-12)이 소재 위치를 법으로 받친다. 다만 Fwd 1Y EBITDA가 거의 0이라 배수 자체는 의미가 약하고, 공급망 지연으로 첫 분기부터 매출이 기대를 밑돌아 가산을 크게 두지 않는다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "ladder": {
+  "exit": {
+   "ev_ebitda": 20,
+   "ebitda_margin": 0.2,
+   "net_margin": 0.11,
+   "opm": 0.14,
+   "basis": "출구 Fwd EV/EBITDA 20배 = 동종 이익 흑자 4곳(16.5~40.8배) 중앙 약 20배. EBITDA 이익률 20% = 총이익률 40%대 − 분기 영업비용 고정 가정(추정). 순이익률 11%·영업이익률 14% = Teledyne·Novanta(19~23%)보다 낮게"
+  },
+  "base": {
+   "cagr_from": {
+    "eps": 0.06,
+    "year": 2,
+    "label": "FY2028 컨센서스(Fiscal)"
+   }
+  },
+  "refs": [
+   {
+    "label": "TTM(실적)",
+    "value": 0.0774
+   },
+   {
+    "label": "FY2027(컨센서스)",
+    "value": 0.0963
+   },
+   {
+    "label": "12개월 인도 잔고",
+    "value": 0.1108
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "시가총액 약 $1.05B — 매출 약 $260M·EBITDA 약 $52M(이익률 20%). 잔고 소화 + 드론 조립품 캐파 확충이 같이 와야 한다",
+    "outlook": "잔고가 1년 반치 매출이다. 공급망이 풀리면 FY28 매출 $125~160M(컨센서스 범위)까지는 경로가 있지만 $260M은 FY29 이후다"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "매출 약 $390M",
+    "outlook": "드론 조립품 월 10만 개(CEO '장기 가능성')와 카메라 프로그램 반복 주문이 필요하다. 가를 자료가 없다"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "매출 약 $650M",
+    "outlook": "Teledyne FLIR급 카메라 점유율이 필요하다 — 근거 없음"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $5.3B",
+    "outlook": "경로가 없다. 10배는 기저율상 희귀 사건이다"
+   }
+  },
+  "summary": "2배는 잔고 소화와 캐파 확충이 함께 될 때 열린다. 3배 이상은 근거가 없다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "12개월 인도 잔고가 다음 4개 분기 컨센서스 매출보다 크다 — 수요는 이미 확보됐다",
+    "evidence": [
+     "12개월 잔고 $110.8M",
+     "다음 4개 분기 매출 컨센서스 $105.9M",
+     "B/B 약 2.0"
+    ],
+    "falsifier": "2Q FY27 매출이 $22M 아래"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "조립품 비중이 오르며 총이익률이 40%대로 올라섰다 — 매출이 붙으면 영업 레버리지가 난다",
+    "evidence": [
+     "총이익률 41.4%(전년 29.8%)",
+     "조립품 비중 51%",
+     "분기 OPEX $10.8M 계획"
+    ],
+    "falsifier": "총이익률이 2분기 연속 40% 아래"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수요는 확인됐지만 공급이 문제다 — 첫 분기부터 부품 때문에 매출이 기대를 밑돌았다",
+    "evidence": [
+     "1Q 매출 $20.8M(컨센서스 $22.5M)",
+     "모터·광학·검출기 지연",
+     "재고 +$13.5M"
+    ],
+    "falsifier": "2Q에 매출이 잔고 소화 경로($24M+)로 돌아온다"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "EV가 $0.51B(완전 희석)인데 다음 4개 분기 EBITDA는 $7~9M이다 — 배수가 이익을 몇 년 앞서 간다",
+    "evidence": [
+     "Fwd 1Y EV/EBITDA 63배",
+     "Fwd 2Y 약 22배",
+     "동종 중앙 약 23배"
+    ],
+    "falsifier": "FY28 EBITDA가 $25M을 넘는다"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "현금이 빠지고 대주주가 팔았다 — 증자가 또 나올 수 있다",
+    "evidence": [
+     "영업현금흐름 −$8.3M(1Q)",
+     "1월 언아웃 현금 $6.3M",
+     "6월 $14 증자 때 10% 주주 펀드 $50M 매도"
+    ],
+    "falsifier": "2Q 영업현금흐름이 흑자로 돌아선다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "잔고 $132.9M은 TTM 매출 $77.4M의 1.7배다. 1년 반치 일이 쌓여 있다"
+     },
+     {
+      "seat": "Buy",
+      "text": "총이익률이 1년 만에 11.6%p 올랐다. 조립품 비중이 오를수록 더 오른다고 회사가 밝혔다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "1Q 매출 $20.8M은 4Q $21.2M보다 낮다. 잔고가 늘었는데 매출이 줄었다 — 공급망이다"
+     },
+     {
+      "seat": "Sell",
+      "text": "Fwd 1Y EV/EBITDA 63배다. Teledyne은 17배, Coherent는 16배다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "1Q에 현금 $10.3M이 줄었다. 1월에 언아웃 $6.3M이 또 나간다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Fwd 2Y EBITDA 컨센서스 $21M이면 배수는 22배다. 동종 중앙과 같다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Sell",
+      "text": "그 $21M은 추정 1~2명이다. 1Q에 이미 EBITDA 컨센서스 $2.2M을 $1.3M으로 밑돌았다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "재고 증가는 잔고를 위한 선구매다. 현금 소진이 아니라 매출의 선행 지표다",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "선구매라도 현금은 $82.9M에서 1월 뒤 $70M대로 간다. 캐파 투자도 늘린다고 했다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "공급망 책임자가 대체 공급원을 만들고 있다지만 회사도 '보장할 수 없다'고 했다",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "NDAA가 2027-12부터 중국산 게르마늄 조달을 막는다. 대체 소재를 가진 곳이 적다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Sell",
+      "text": "범용 BD6는 다른 2개사도 만든다. 독점은 BDNL 등급뿐이다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "드론 조립품 캐파를 월 1만 개에서 수만 개로 올린다. 주문은 이미 5만 개다",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "드론 주문은 6개월마다 덩어리로 온다(CEO). 장기 계약은 아직 협상이다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "최대 고객 한 곳이 24%다. 그 고객이 내재화하면 잔고 성장이 꺾인다",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "수요는 숫자로 확인됐다. 다만 공급망 지연을 인정해 Buy로 물러선다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "총이익률 40%대가 유지되면 Buy가 맞다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "2Q 매출이 잔고 소화 속도를 보여 줄 때까지 판단을 미룬다"
+     },
+     {
+      "seat": "Sell",
+      "text": "배수 부담은 남지만 잔고가 하방을 받친다는 점은 인정한다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "현금 경로가 핵심이다. 증자 위험을 두고 Sell을 지킨다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "수요(잔고·B/B 2.0)와 마진(총이익률 41.4%)은 1차 자료로 확인됐다. 살아남은 반박은 '공급망이 매출을 늦춘다'와 '현금이 줄어든다' 두 가지다 — 둘 다 2Q FY27(2027-02) 매출과 현금흐름으로 가를 수 있다.",
+   "dissent": "Strong Sell 자리는 대주주 매도와 현금 소진으로 추가 증자 가능성을 끝까지 남겼다"
+  }
+ },
+ "narrative": {
+  "as_of": "2026-11-12",
+  "stage": "확산",
+  "crowding": "낮음",
+  "summary": "'게르마늄 없이 만드는 미국산 적외선 광학 — 드론·카운터 드론 시대의 눈'이라는 이야기. 수요는 숫자로 나왔다(잔고 $132.9M, B/B 2.0, 총이익률 41.4%). 주가는 5월 고점 $18.15에서 59% 내려왔다 — 공급망 지연·현금 소진·대주주 매도가 기대를 깎았다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견(6명)",
+      "Strong Buy 5 · Hold 1"
+     ],
+     [
+      "목표가 평균(5명)",
+      "$15.40 (범위 $13~17)"
+     ],
+     [
+      "추정 커버리지",
+      "EPS·매출 1~2명 — 소형주"
+     ]
+    ],
+    "read": "의견은 강하게 한쪽이지만 추정은 1~2명이라 얇다. 1Q 콜 질문은 Craig-Hallum·Piper Sandler 두 곳 — 총이익률 지속성과 공급망·드론 주문 주기가 초점이었다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "84%(yfinance)"
+     ],
+     [
+      "내부자 보유",
+      "1.1%"
+     ],
+     [
+      "10% 주주 펀드 매도",
+      "2026-03~06 약 $58M(6월 $14에 $50M)"
+     ],
+     [
+      "공매도",
+      "유통 주식의 18.1%, 3.8일"
+     ]
+    ],
+    "read": "공매도 잔고가 유통의 18%로 높다. 6월 증자 때 초기 투자 펀드가 대부분을 팔았다 — 공급 물량이 한 번 정리됐다고 볼 수도, 확신이 줄었다고 볼 수도 있다(해석 두 갈래)"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "커뮤니티 대화 강도",
+      "7일 Weak 50 · 8월 Strong 81"
+     ],
+     [
+      "레딧 언급(ApeWisdom)",
+      "순위 밖"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "11/10 장후 실적 일정 목록에만 등장"
+     ]
+    ],
+    "read": "8월 소형주 인터뷰·서브스택이 '중국 없는 광학' 이야기를 키웠고 8/28 급락 뒤 식었다. 마스터 딘스티커(9/13)는 자폭 드론 BOM의 탈중국 적외선 광학으로 이 종목을 짚었다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 제목",
+      "1Q FY27 실적(11/10)·드론 조립품 5만 개 주문(10/29)·중국 법인 매각 종결(10/30)"
+     ],
+     [
+      "장문 분석",
+      "Seeking Alpha '수요가 공급을 앞선다'(10/31)"
+     ]
+    ],
+    "read": "독립 분석은 '수요 > 공급, 매도는 과하다' 쪽이다. 회사 보도자료 전재가 많다"
+   }
+  },
+  "factors": [
+   {
+    "name": "게르마늄 대체(BlackDiamond)",
+    "thesis": "중국이 게르마늄 수출을 막고 미국 NDAA가 2027-12부터 중국산 게르마늄 조달을 제한한다 — 대체 유리를 가진 공급사가 적다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "카메라 후속 $11M에 게르마늄 → BlackDiamond 전환 계획 포함, Navy CLEAR 시제품(2년)",
+    "status": "확산",
+    "falsifier": "NDAA 시행 연기·예외 확대, 또는 경쟁사의 비게르마늄 소재 국방 인증",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "드론·카운터 드론 물량",
+    "thesis": "국방부 드론 대량 도입($1.1B)과 카운터 드론 체계가 열화상 광학 조립품을 수만~수십만 개 단위로 요구한다",
+    "inputs": "이익",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "revision",
+    "quant": "드론 조립품 5만 개+ 주문, 카운터 드론 고객 $19M+, 캐파 월 1만 → 수만 개",
+    "status": "확산",
+    "falsifier": "후속 드론 주문이 6개월 안에 없다",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "부품 → 카메라 믹스 전환",
+    "thesis": "조립품·카메라 비중이 오를수록 자체 유리·렌즈의 부가가치를 더 가져가 총이익률이 오른다",
+    "inputs": "이익",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "조립품 비중 40% → 51%, 총이익률 29.8% → 41.4%",
+    "status": "확인",
+    "falsifier": "조립품 비중이 오르는데 총이익률이 내려간다",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "탈중국 공급망(국방 조달 자격)",
+    "thesis": "중국 법인 매각으로 중국 시설·매출이 0 — 일부 정부 프로그램 참여 요건을 채웠다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "중국 법인 매각 종결(10/30), 정부와의 상호작용에서 영향이 보이기 시작(CEO)",
+    "status": "태동",
+    "falsifier": "매각 뒤에도 새 국방 프로그램 수주가 없다",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "반대 — 공급망이 매출을 늦춘다",
+    "thesis": "잔고는 쌓이는데 1Q 매출이 직전 분기보다 줄었다 — 모터·외부 광학·검출기 공급사가 캐파 한계다",
+    "inputs": "이익",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "1Q 매출 $20.8M vs 컨센서스 $22.5M, 조정 EBITDA $1.3M vs $2.2M",
+    "status": "확인",
+    "falsifier": "2Q FY27 매출 $24M 이상",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   },
+   {
+    "name": "반대 — 현금 소진·희석",
+    "thesis": "운전자본 투자로 현금이 줄고 언아웃·캐파 투자가 남았다 — 대주주 매도 뒤 추가 증자 가능성",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "현금 $93.2M → $82.9M(1Q), 1월 언아웃 현금 $6.3M, 주식보상 $1.8M/분기",
+    "status": "잠복",
+    "falsifier": "2Q 영업현금흐름 흑자·증자 없음",
+    "source": "1Q FY27 어닝콜(2026-11-10)"
+   }
+  ],
+  "lead": {
+   "summary": "LightPath의 값은 **게르마늄 없이 만드는 미국산 적외선 광학이 드론·카운터 드론 물량을 받아낼 수 있느냐**에 달렸다. 수요는 확인됐다 — 잔고 $132.9M(12개월분 $110.8M)이 다음 4개 분기 매출 컨센서스 $105.9M보다 크고, 총이익률은 41.4%로 올라섰다. 막힌 곳은 공급이다 — 1Q 매출은 부품 지연으로 컨센서스를 7.7% 밑돌았고 현금은 $10.3M 줄었다",
+   "value_story": "회사는 유리를 직접 녹여(칼코게나이드 BlackDiamond) 적외선 렌즈를 깎고, 그 렌즈로 광학 조립품과 열화상 카메라(G5)까지 만든다. 적외선 렌즈의 표준 소재 게르마늄은 중국이 세계 공급의 60% 이상을 쥐고 미국 수출을 막았다. 미국은 2026 NDAA로 2027-12부터 국방 조달에서 중국산 게르마늄을 제한하고 2030까지 중국 의존 광학을 없애라고 했다. 해군연구소가 개발한 독점 유리(BDNL)와 중국 법인 매각으로 LightPath는 '중국 없는 적외선 광학'의 몇 안 되는 상장 공급사가 됐다. 동시에 드론과 카운터 드론이 열화상 광학을 수만 개 단위로 사기 시작했다",
+   "premium": {
+    "multiple": "Fwd 1Y EV/EBITDA 63배로 동종 중앙(약 23배)의 약 2.7배다. 이익이 0 근처라 배수가 의미가 약하다 — Fwd 2Y 약 22배·3Y 약 15배로 내려간다. 시장은 FY28~29 이익을 지금 값에 넣고 있다",
+    "eps": "FY27 EPS 컨센서스는 8월 $0.075에서 −$0.016으로 내려갔다. 매출 추정도 같은 분기끼리 3~10% 낮아졌다 — 1년 동안 매출 추정은 오르고(FY27 $67M → $96~105M) 이익 추정은 내려왔다"
+   },
+   "why_excited": "열광은 5월 말이었다 — 3Q 실적 뒤 4명이 FY27 매출 추정을 $83M → $106M으로 올렸고 5/28 종가 고점 $18.15(장중 $18.94)까지 갔다. 8월에는 소형주 인터뷰가 'Anduril 공급사·중국 없는 광학' 이야기를 다시 키웠다. 식은 이유는 셋이다 — 6/3 $14 증자와 10% 주주 펀드의 $50M 매도, 8/28 −18.6%(원인 미확인), 그리고 9월·11월 두 번 연속 매출이 추정에 못 미친 공급망 지연이다. 1년 동안 주가는 $7.78 → $7.52로 제자리이고, 고점 대비 −59%다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "조립품·모듈(적외선 카메라·광학 조립품)",
+     "what": "G5 열화상 카메라, 드론·카운터 드론용 광학 조립품, Kestrel 소형 냉각 카메라",
+     "use": "카운터 드론 감시탑·드론 카메라·요격 미사일·국경 감시",
+     "money": "프로그램 주문(출하 때 인식)",
+     "rev_share": 0.51,
+     "rev_share_prev": 0.4,
+     "mix_basis": "공시(1Q FY27)",
+     "name_en": "long-range infrared thermal imaging camera",
+     "what_en": "Ruggedized long-range cooled infrared thermal camera with a large germanium-free infrared zoom lens for counter-drone surveillance",
+     "use_en": "a thermal camera mounted on a surveillance tower",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "적외선 줌 렌즈(BlackDiamond)",
+        "part_en": "infrared zoom lens",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "LightPath 자체 유리·렌즈(일부 외부 광학)",
+        "source": "1Q FY27 어닝콜·FY26 10-K https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+       },
+       {
+        "no": 2,
+        "part": "적외선 검출기(냉각·비냉각)",
+        "part_en": "infrared detector",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "단일·소수 공급사(이름 미공시)",
+        "source": "FY26 10-K 공급 위험 https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+       },
+       {
+        "no": 3,
+        "part": "극저온 냉각기(중파 카메라)",
+        "part_en": "cryogenic cooler",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "1Q FY27 어닝콜(중파 카메라 냉각기 수명 2~3년 언급)"
+       },
+       {
+        "no": 4,
+        "part": "줌·초점 모터",
+        "part_en": "zoom focus motor",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "외부 공급사(1Q 지연 품목)",
+        "source": "1Q FY27 어닝콜"
+       },
+       {
+        "no": 5,
+        "part": "영상 처리 전자 보드",
+        "part_en": "image processing board",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "외부 전자 부품",
+        "source": "1Q FY27 어닝콜(전자·검출기 입고 즉시 출하)"
+       },
+       {
+        "no": 6,
+        "part": "방진·방수 하우징",
+        "part_en": "ruggedized housing",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "FY26 10-K 제품 설명(장거리 감시 카메라) https://www.sec.gov/Archives/edgar/data/889971/000143774926030106/lpth20260630_10k.htm"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "적외선 부품(렌즈·광학 소자)",
+     "what": "성형·다이아몬드 선삭 적외선 비구면 렌즈, BlackDiamond 유리",
+     "use": "야간 투시·열화상·감시 장비 업체에 납품",
+     "money": "카탈로그·맞춤 주문",
+     "rev_share": 0.23,
+     "rev_share_prev": 0.27,
+     "mix_basis": "공시(1Q FY27, AML 포함)",
+     "name_en": "molded infrared aspheric lens",
+     "what_en": "Precision molded chalcogenide glass infrared aspheric lenses of various diameters",
+     "use_en": "a set of dark infrared lenses on a lab table"
+    },
+    {
+     "kind": "제품",
+     "name": "가시광 부품(정밀 성형 유리 비구면 렌즈)",
+     "what": "레이저·광통신·의료기기용 정밀 성형 유리 비구면 렌즈",
+     "use": "산업용 레이저·텔레콤·의료·머신 비전",
+     "money": "주문 단위 판매",
+     "rev_share": 0.22,
+     "rev_share_prev": 0.25,
+     "mix_basis": "공시(1Q FY27)",
+     "name_en": "precision molded glass aspheric lens",
+     "what_en": "Small precision molded glass aspheric lenses for laser and telecom applications",
+     "use_en": "tiny clear glass lenses held by tweezers"
+    },
+    {
+     "kind": "서비스",
+     "name": "엔지니어링 서비스",
+     "what": "고객 맞춤 광학 설계·개발 용역",
+     "use": "국방·우주 개발 프로그램",
+     "money": "용역 계약",
+     "rev_share": 0.04,
+     "rev_share_prev": 0.07,
+     "mix_basis": "공시(1Q FY27)",
+     "name_en": "optical engineering service",
+     "what_en": "Optical design engineers testing a prototype lens assembly",
+     "use_en": "an optics lab bench with test equipment"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "부품 회사 → 카메라·조립품 회사. 조립품·모듈 매출 비중이 FY25 23% → FY26 44% → 1Q FY27 51%로 올랐다",
+     "evidence": "FY26 10-K·1Q 콜",
+     "falsifier": "조립품 비중이 50% 아래로 되돌아간다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "revision",
+     "status": "확인",
+     "change": "총이익률 FY25 27% → FY26 36% → 1Q FY27 41.4%. 회사는 '40%대에서 시작한다'를 기준으로 제시했다",
+     "evidence": "10-K·1Q 콜",
+     "falsifier": "2Q FY27 총이익률 40% 미만"
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "게르마늄 없는 장파 줌 렌즈·카메라(회사는 '아마 유일'하다고 주장), Kestrel 소형 냉각 카메라 — 베타 출하 단계, 잔고는 $1~2M 수준",
+     "evidence": "1Q 콜",
+     "falsifier": "장파 줌 제품 주문이 1년 안에 $10M을 넘지 못한다"
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "역행",
+     "change": "잔고 ÷ 월평균 매출로 근사한 주문 → 출하 평균 대기가 19.2개월로 1년 전(약 17.2개월)보다 길어졌다(추정) — 주문이 생산보다 빠르다. 1Q는 부품 지연으로 매출이 기대를 밑돌았다",
+     "lead_time": {
+      "now": 19.2,
+      "prior": 17.2,
+      "prior_when": "2025-09-30(잔고 $86M ÷ 1Q FY26 월매출 $5.0M)",
+      "peers": [
+       {
+        "name": "Teledyne FLIR",
+        "value": "미확인"
+       },
+       {
+        "name": "Coherent",
+        "value": "미확인"
+       }
+      ],
+      "unit": "개월",
+      "basis": "분기말 잔고 ÷ 그 분기 월평균 매출(추정). 피어는 같은 기준 자료가 없어 비교하지 않는다"
+     },
+     "evidence": "1Q 콜·10-K",
+     "falsifier": "2Q FY27 매출이 $24M을 넘어 잔고 소화가 빨라진다"
+    },
+    {
+     "lens": "M&A",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "G5 Infrared(카메라)·AML(적외선 소재) 인수로 카메라 회사가 됐다. CFO는 현금으로 추가 인수를 찾는다고 밝혔다 — 인수가·시너지 수치는 미확인",
+     "evidence": "1Q 콜",
+     "falsifier": "추가 인수가 현금을 줄이고 증자로 이어진다"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "both",
+     "status": "초기",
+     "change": "국방부 드론 대량 도입($1.1B)·전략자본국의 드론 제조사 투자(연 100만 대 캐파 거론) — 금지표대로 고객 투자를 LightPath 매출로 바로 옮기지 않는다. 확인된 것은 드론 조립품 5만 개 주문 한 건",
+     "evidence": "1Q 콜",
+     "falsifier": "드론 제조사 증설이 열화상 없는 저가 기종에 몰린다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "국방부 드론 대량 도입 사업(Drone Dominance, $1.1B)과 카운터 드론 조달 — 고객 쪽 예산. 회사 잔고는 예산 통과와 무관한 자금 확정 주문(CEO)",
+     "evidence": "1Q 콜",
+     "drives": "revision",
+     "status": "시행(집행 초기)",
+     "falsifier": "국방 세출이 줄어 드론 조달이 미뤄진다",
+     "house": {
+      "level": 4,
+      "why": "FY26 국방 세출 하원 통과 수준으로 판단 — 드론 사업 개별 세출선은 이번 회차에 확인 못 함(보수적으로 4)"
+     },
+     "senate": {
+      "level": 4,
+      "why": "같은 이유로 4 — 개별 법안 번호 미대조"
+     }
+    },
+    "orders": {
+     "change": "외국산 드론·부품 관세(8월, 열화상 기능이 관세 기준) — 미국산 광학에 유리. 원문 미대조",
+     "evidence": "커뮤니티 정리·8/14 주가 반응(원인 추정)",
+     "drives": "multiple",
+     "status": "미확인",
+     "falsifier": "관세 철회·예외",
+     "house": {
+      "level": 1,
+      "why": "의회 절차 아님"
+     },
+     "senate": {
+      "level": 1,
+      "why": "의회 절차 아님"
+     }
+    },
+    "laws": {
+     "change": "2026 NDAA — 게르마늄을 국방 조달 제한 소재에 추가(2027-12 시행), 2030까지 중국 의존 광학 유리·광학 시스템 제거 전략 수립 지시",
+     "evidence": "1Q 콜(CEO 설명) — 법 조문 미대조",
+     "drives": "multiple",
+     "status": "시행 예정",
+     "falsifier": "시행 연기·예외 확대"
+    }
+   }
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 399.03,
+  "ev_ebitda_fwd": 63,
+  "pe_fwd2": 103.27,
+  "ev_ebitda_fwd2": 20.83,
+  "pe_fwd3": 58.3,
+  "ev_ebitda_fwd3": 14.79
+ },
+ "forward": {
+  "as_of": "2026-11-11",
+  "ntm": {
+   "eps": 0.018845729000000002,
+   "ebitda": 7053436,
+   "ebit": 1982252,
+   "revenue": 105927268,
+   "rev_ttm": 77426472
+  },
+  "horizons": {
+   "2": {
+    "eps": 0.0728166,
+    "ebitda": 21328054,
+    "ext": 0
+   },
+   "3": {
+    "eps": 0.12898484999999998,
+    "ebitda": 30035058.422459893,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [
+   {
+    "date": "2026-06-30",
+    "value": 1635
+   },
+   {
+    "date": "2026-07-31",
+    "value": 1037
+   },
+   {
+    "date": "2026-08-31",
+    "value": 1006
+   },
+   {
+    "date": "2026-09-30",
+    "value": 343.67
+   },
+   {
+    "date": "2026-10-30",
+    "value": 270
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2025-11-28",
+    "value": 614.01
+   },
+   {
+    "date": "2025-12-31",
+    "value": 272.72
+   },
+   {
+    "date": "2026-01-30",
+    "value": 263.18
+   },
+   {
+    "date": "2026-02-27",
+    "value": 157.02
+   },
+   {
+    "date": "2026-03-31",
+    "value": 120.48
+   },
+   {
+    "date": "2026-04-30",
+    "value": 157.71
+   },
+   {
+    "date": "2026-05-29",
+    "value": 223.69
+   },
+   {
+    "date": "2026-06-30",
+    "value": 230.6
+   },
+   {
+    "date": "2026-07-31",
+    "value": 142.89
+   },
+   {
+    "date": "2026-08-31",
+    "value": 130.3
+   },
+   {
+    "date": "2026-09-30",
+    "value": 67.81
+   },
+   {
+    "date": "2026-10-30",
+    "value": 51.42
+   }
+  ]
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_LPTH",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-12-31",
+    "rev": 4236331,
+    "cogs": 1876331,
+    "gp": 2360000,
+    "sga": 1571321,
+    "rd": 168067,
+    "da": null,
+    "other": 11876,
+    "op": 608736
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 4111973,
+    "cogs": 1887146,
+    "gp": 2224827,
+    "sga": 1812205,
+    "rd": 164990,
+    "da": null,
+    "other": 34189,
+    "op": 213443
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 4733604,
+    "cogs": 2265489,
+    "gp": 2468115,
+    "sga": 1759100,
+    "rd": 187437,
+    "da": null,
+    "other": -1028,
+    "op": 522606
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 5000229,
+    "cogs": 2166481,
+    "gp": 2833748,
+    "sga": 2165062,
+    "rd": 278018,
+    "da": null,
+    "other": null,
+    "op": 390668
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 5869837,
+    "cogs": 2573380,
+    "gp": 3296457,
+    "sga": 1695881,
+    "rd": 267527,
+    "da": null,
+    "other": null,
+    "op": 1333049
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 8490042,
+    "cogs": 4267318,
+    "gp": 4222724,
+    "sga": 2329762,
+    "rd": 308394,
+    "da": 304809,
+    "other": null,
+    "op": 1279759
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 9007380,
+    "cogs": 4640850,
+    "gp": 4366530,
+    "sga": 2460318,
+    "rd": 381995,
+    "da": 389138,
+    "other": 1444,
+    "op": 1133635
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 7572093,
+    "cogs": 4282756,
+    "gp": 3289337,
+    "sga": 2398242,
+    "rd": 381388,
+    "da": 329271,
+    "other": null,
+    "op": 180436
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 8361373,
+    "cogs": 4849657,
+    "gp": 3511716,
+    "sga": 2294177,
+    "rd": 413081,
+    "da": 329271,
+    "other": 3315,
+    "op": 471872
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 8503628,
+    "cogs": 5211602,
+    "gp": 3292026,
+    "sga": 2362578,
+    "rd": 384380,
+    "da": 329270,
+    "other": 0,
+    "op": 215798
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 8088377,
+    "cogs": 5653725,
+    "gp": 2434652,
+    "sga": 2163350,
+    "rd": 440145,
+    "da": 329270,
+    "other": -3573,
+    "op": -494540
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 8549721,
+    "cogs": 5506548,
+    "gp": 3043173,
+    "sga": 2463878,
+    "rd": 469983,
+    "da": 329271,
+    "other": 58757,
+    "op": -278716
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 8548507,
+    "cogs": 5007364,
+    "gp": 3541143,
+    "sga": 2518853,
+    "rd": 518793,
+    "da": 324351,
+    "other": -15500,
+    "op": 194646
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 7905582,
+    "cogs": 4799913,
+    "gp": 3105669,
+    "sga": 2431819,
+    "rd": 505636,
+    "da": 283521,
+    "other": -136125,
+    "op": 20818
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 8745278,
+    "cogs": 5916343,
+    "gp": 2828935,
+    "sga": 3084101,
+    "rd": 522203,
+    "da": 283521,
+    "other": 15821,
+    "op": -1076711
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 7551930,
+    "cogs": 5161112,
+    "gp": 2390818,
+    "sga": 2341778,
+    "rd": 428411,
+    "da": 283521,
+    "other": -50000,
+    "op": -612892
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 9599912,
+    "cogs": 5670632,
+    "gp": 3929280,
+    "sga": 2199133,
+    "rd": 468646,
+    "da": 283279,
+    "other": -79224,
+    "op": 1057446
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 8708981,
+    "cogs": 4696805,
+    "gp": 4012176,
+    "sga": 2255625,
+    "rd": 412326,
+    "da": 281270,
+    "other": 142,
+    "op": 1062812
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 9107140,
+    "cogs": 5596915,
+    "gp": 3510225,
+    "sga": 2164614,
+    "rd": 404694,
+    "da": 281270,
+    "other": 21802,
+    "op": 637845
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 9508972,
+    "cogs": 5658780,
+    "gp": 3850192,
+    "sga": 2440477,
+    "rd": 450497,
+    "da": 281271,
+    "other": -45,
+    "op": 677992
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 9922171,
+    "cogs": 6291835,
+    "gp": 3630336,
+    "sga": 2763178,
+    "rd": 529902,
+    "da": 281271,
+    "other": -477,
+    "op": 56462
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 10701362,
+    "cogs": 6797605,
+    "gp": 3903757,
+    "sga": 2805829,
+    "rd": 640528,
+    "da": 281270,
+    "other": 9473,
+    "op": 166657
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 8332316,
+    "cogs": 6268831,
+    "gp": 2063485,
+    "sga": 3980113,
+    "rd": 545024,
+    "da": 281271,
+    "other": 0,
+    "op": -2742923
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 9103343,
+    "cogs": 5931408,
+    "gp": 3171935,
+    "sga": 2869046,
+    "rd": 427011,
+    "da": 281271,
+    "other": null,
+    "op": -405393
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 9243174,
+    "cogs": 6443328,
+    "gp": 2799846,
+    "sga": 2946998,
+    "rd": 551960,
+    "da": 281271,
+    "other": null,
+    "op": -980383
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 8305412,
+    "cogs": 5271161,
+    "gp": 3034251,
+    "sga": 2619269,
+    "rd": 590405,
+    "da": 281270,
+    "other": 337,
+    "op": -457030
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 8907231,
+    "cogs": 6098627,
+    "gp": 2808604,
+    "sga": 2786553,
+    "rd": 516310,
+    "da": 281271,
+    "other": 8898,
+    "op": -784428
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 7366901,
+    "cogs": 5132989,
+    "gp": 2233912,
+    "sga": 2638173,
+    "rd": 549881,
+    "da": 281271,
+    "other": null,
+    "op": -1235413
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 8472679,
+    "cogs": 5248334,
+    "gp": 3224345,
+    "sga": 3030653,
+    "rd": 466163,
+    "da": 281271,
+    "other": 2742,
+    "op": -556484
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 7409648,
+    "cogs": 4874244,
+    "gp": 2535404,
+    "sga": 2759306,
+    "rd": 513694,
+    "da": 281270,
+    "other": -58652,
+    "op": -960214
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 9684721,
+    "cogs": 6603559,
+    "gp": 3081162,
+    "sga": 3009109,
+    "rd": 615675,
+    "da": 281271,
+    "other": -22463,
+    "op": -802430
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 8077248,
+    "cogs": 5745542,
+    "gp": 2331706,
+    "sga": 2661168,
+    "rd": 639889,
+    "da": 281271,
+    "other": null,
+    "op": -1250622
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 7315637,
+    "cogs": 5147316,
+    "gp": 2168321,
+    "sga": 2858457,
+    "rd": 607747,
+    "da": 485446,
+    "other": null,
+    "op": -1783329
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 7699175,
+    "cogs": 6092988,
+    "gp": 1606187,
+    "sga": 3171770,
+    "rd": 569962,
+    "da": 434403,
+    "other": 13248,
+    "op": -2583196
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 8634132,
+    "cogs": 6109100,
+    "gp": 2525032,
+    "sga": 3605988,
+    "rd": 582822,
+    "da": 434403,
+    "other": 111336,
+    "op": -2209517
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 8400381,
+    "cogs": 5555952,
+    "gp": 2844429,
+    "sga": 3270583,
+    "rd": 476441,
+    "da": 395776,
+    "other": 78437,
+    "op": -1376808
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 7424829,
+    "cogs": 5493998,
+    "gp": 1930831,
+    "sga": 3356063,
+    "rd": 764396,
+    "da": 294711,
+    "other": null,
+    "op": -2484339
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 9167627,
+    "cogs": 6503526,
+    "gp": 2664101,
+    "sga": 4448359,
+    "rd": 757938,
+    "da": 779025,
+    "other": 132513,
+    "op": -3453734
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 12209793,
+    "cogs": 9519040,
+    "gp": 2690753,
+    "sga": 4739622,
+    "rd": 1064997,
+    "da": -54695,
+    "other": 1448829,
+    "op": -4508000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 15058281,
+    "cogs": 10575709,
+    "gp": 4482572,
+    "sga": 4383870,
+    "rd": 867428,
+    "da": 450524,
+    "other": 1286528,
+    "op": -2505778
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 16351652,
+    "cogs": 10331322,
+    "gp": 6020330,
+    "sga": 5859461,
+    "rd": 748829,
+    "da": 450526,
+    "other": 7559017,
+    "op": -8597503
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 19149814,
+    "cogs": 12193531,
+    "gp": 6956283,
+    "sga": 6296286,
+    "rd": 1041794,
+    "da": 477245,
+    "other": 3393000,
+    "op": -4252042
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 21162352,
+    "cogs": 12816746,
+    "gp": 8345606,
+    "sga": 8120886,
+    "rd": 1125978,
+    "da": 455025,
+    "other": 2942699,
+    "op": -4298982
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 20762654,
+    "cogs": 12160790,
+    "gp": 8601864,
+    "sga": 8048205,
+    "rd": 2036377,
+    "da": 455026,
+    "other": 227482,
+    "op": -2165226
+   }
+  ]
+ }
+}
