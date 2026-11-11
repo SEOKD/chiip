@@ -382,6 +382,23 @@
   verified: true
   enabled: true
 
+- id: src-ir-press
+  name: 상장사 IR 보도자료 RSS 직접 감시 — 감시·포트폴리오 미국 종목(통신사 대체)
+  category: P-보도자료
+  module: ir_press
+  entry: poll
+  method: rss
+  endpoint_doc: "radar/pollers/ir_press.py 맨 위 — 피드 찾기는 run_hourly ir-press-find"
+  auth: none
+  scope: [T0, T1, T2, 글로벌]
+  interval_min: 10
+  run_on: local
+  language: en
+  terms_note: "2026-11-11 마스터 지시 'Business Wire와 GlobeNewswire 접근이 거부된다면 상장 기업들의 Press 및 IR 채널을 접근하도록'. 회사 공식 IR RSS, robots 준수, 제목·링크·요약 앞부분만"
+  reliability_default: 1차(회사 발표)
+  verified: true
+  enabled: true
+
 - id: src-globenewswire
   name: GlobeNewswire RSS
   category: P-보도자료

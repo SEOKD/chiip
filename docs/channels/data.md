@@ -43,3 +43,7 @@
   - 실적 보도자료(PR Newswire·Business Wire)는 8-K보다 먼저 뜨므로 실시간 체인 `src-press-fast`(5분)로 옮겨 규칙 선알림을 받는다. run_hourly 쪽은 60분 예비. 전체 미국 실적 스캐너는 60→30분.
   - 남은 빈칸: GlobeNewswire는 자동 접속 403이라 쓰지 않는다. Business Wire는 M&A 피드뿐 — 실적·기술 피드 주소는 목록 페이지가 자동 접속을 막아 마스터가 브라우저에서 복사해야 한다(docs/TODO_MASTER.md).
 - **알파 감지 피드 양식**(2026-11-11 마스터 지시 "알파 감지 근거는 자세하게 풀이하되 매수 매력과 위험 예산 지표, 상방은 % 같은 딱 수치만. 내러티브도 자세히 풀이. 마지막 가정: 부분은 제외"): 회사 1줄 → '왜 감지됐나'(근거마다 무엇이 나왔고 왜 다시 계산했는지) → ①②③ 수치만 → 내러티브(요약·단계·과밀 뜻·프리미엄/디스카운트 요인·확인할 것) → '투자자문 아님'. 가정 줄 없음. `scripts/valuation/v2/alpha_watch.py` message().
+- **상장사 IR 보도자료 직접 감시**(2026-11-11 마스터 지시 "Business Wire와 GlobeNewswire 접근이 거부된다면 상장 기업들의 Press 및 IR 채널을 접근하도록 하라"): `radar/pollers/ir_press.py`.
+  - 찾기 = run_hourly `ir-press-find`(30분, 회차당 8곳, 30일마다 재확인). 실적 8-K 첨부 본문의 IR 주소 → 없으면 investors·ir·investor.<티커·회사명>.com 추측 → RSS 안내·IR 플랫폼 경로(Q4 /rss/pressrelease.aspx 등). 추측 호스트는 피드 글에 그 회사 이름이 나와야 채택(남의 회사 IR 오매칭 방지).
+  - 읽기 = run_poll `src-ir-press`(10분) → Pulse '보도자료'. 대상은 감시·포트폴리오 미국 종목 147곳.
+  - SEC 원문 서버(www.sec.gov)는 연락처 없는 User-Agent를 403으로 막는다(2026-11-11 14:06부터 EDGAR 최신 목록 실시간 트리거도 멈춤). data.sec.gov(감시 종목 15분)는 정상. 마스터가 `.env`에 `SEC_USER_AGENT`를 넣으면 둘 다 풀린다(TODO 21-4).
