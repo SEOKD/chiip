@@ -1,0 +1,102 @@
+auto: true
+id: us-clfd
+name: Clearfield
+ticker: CLFD
+unit: B$
+unit_usd: 1000000000.0
+industry: telecom_equipment
+region_mix:
+  US: 0.97
+  ROW: 0.03
+tax: 0.21
+horizon: 10
+as_of: '2026-11-11'
+market:
+  date: '2026-11-11'
+  price: 30.19
+  shares: 0.013948
+  net_debt: -0.1478
+  source: 가격 = 2026-11-10 종가 $30.19(TradingView NASDAQ:CLFD — 4Q 실적은 같은 날 장 마감 뒤 발표,
+    실적 반응 전 가격). 주식 수 13,537,530주(FY26 실적 8-K EX-99.1 재무상태표 9/30). 현금·투자 = 현금 $29.3M
+    + 단기 투자 $79.0M + 장기 투자 $49.1M = $157.4M(회사 '현금·투자 $157M, 차입 없음'). 차입 = 리스 부채 $9.6M(유동
+    $2.8M + 비유동 $6.8M) — 금융 차입 0, $40M 회전 신용(미사용, 2026-11-21 만기)
+rev0: 0.2
+ic0: 0.096886
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.12
+      end: 0.035
+      decay: 0.6
+    margin:
+      m0: 0.004
+      target: 0.1
+      year_target: 5
+      lr: 0.12
+      lam: 0.35
+    s2c: 1.568
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.14
+      end: 0.04
+      decay: 0.65
+    margin:
+      m0: 0.004
+      target: 0.18
+      year_target: 5
+      lr: 0.12
+      lam: 0.25
+    s2c: 1.803
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.06
+      end: 0.030000000000000002
+      decay: 0.5
+    margin:
+      m0: 0.004
+      target: 0.02
+      year_target: 5
+      lr: 0.12
+      lam: 0.5
+    s2c: 1.333
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.195, 0.205] (FY26 4Q 실적 8-K(Item 2.02, 2026-11-10) EX-99.1
+    'Outlook' — 치입 요약)
+  growth: 컨센서스 없음 — 기본 10% 가정(약함)
+  margin: 출발 0% → 목표 10%(5년차, 덮어쓰기) → 장기 수렴 12%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.568
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: '① 성장: FY28 이후 컨센서스가 없다(Fiscal 자체 FY28 $180M은 가이던스 전 11/6 값이라 쓰지 않는다).
+    FY28 +12%(추정)는 데이터센터 같은 캠퍼스 후속 건물과 BEAD 구축 정점(2027~28)을 반영하되 FY27 +31%의 절반 아래로
+    둔다. ② 장기 수렴 영업이익률을 동종 중앙 약 16% 대신 10%(5년차), 그 뒤 12%로 둔다 — Clearfield의 영업이익률은 FY19~21
+    평균 약 11%, FY22 고점 24%(물량 부족 국면), FY24~26 적자~0%다. 매출 규모가 Corning·Amphenol의 1% 미만이라
+    고정비 흡수가 다르다. 매출÷투하자본(1.57)은 실제 값이라 덮어쓰지 않는다'
+  shares: '완전 희석 = 기본 0.013538(2026-09-30) + 옵션·RSU·워런트·전환 0.0004 — 10-Q(6/30) 주식보상
+    주석: 스톡옵션 118,350주(가중 행사가 $52.95 — 현재가보다 높아 내'
+notes:
+- 자동 생성(build_drivers) 2026-11-11 — 데이터 묶음 2026-11-11
+- '어닝콜 위험: 매출 +31%에도 FY27 EPS 가이던스 중간 $0.355의 대부분은 현금 $157M의 이자 수익이다(세후 약 $0.32/주,
+  추정) — 영업은 손익분기 근처'
+- '어닝콜 위험: 4Q 총이익률 30.7%(전년 34.6%) — 하반기 ''높아진 제품 원가''를 흡수'
+- '어닝콜 위험: 광섬유·케이블·커넥터 공급 제약(대형 통신사·데이터센터가 물량을 먼저 가져간다 — 3Q 콜 CEO)'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/796505/000117184326007330/exh_991.htm
+- https://www.sec.gov/Archives/edgar/data/796505/000117184326007330/f8k_111026.htm
+- https://www.sec.gov/Archives/edgar/data/796505/000117184326005329/clfd20260630_10q.htm
+- https://www.sec.gov/Archives/edgar/data/796505/000117184325007594/clfd20250930_10k.htm
+- https://www.sec.gov/Archives/edgar/data/796505/000117184326006713/exh_991.htm
+- https://www.sec.gov/Archives/edgar/data/796505/000117184326004903/f8k_072426.htm
+- Fiscal.ai MCP 2026-11-11 — 표준화 손익(분기 44)·추정(Fiscal 자체·Zacks)·Forward 배수·3Q26 어닝콜
+  전문(요지만). 세그먼트 KPI 없음
+- TradingView NASDAQ:CLFD 일봉 760·월봉 120(2026-11-11)
+- Easyconomics company_profile(yfinance)·insider_and_politics(lobbying — 대상 밖)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
