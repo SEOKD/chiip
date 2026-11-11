@@ -150,3 +150,4 @@ CAPEX 관점에서 흥미로운 점은 … 칩플레이션 영향이라고 봐�
 ## 기록
 - 세 파일(④가 있으면 네 파일)과 함께 판단 근거(CIF 7단계·출처 링크·조회 시각, ④는 call_feed 계산 파일 경로)는 `outputs/article/sources/<YYYYMMDD>.md`에 남긴다. 텔레그램 세 통에는 링크·내부 코드를 넣지 않는다.
 - 같은 실적을 다시 보내지 않는다(outputs/article/earnings/에 같은 티커·분기 파일이 있으면 '갱신'일 때만).
+- **Guidance 줄 est.는 분기·연간 모두**(마스터 지시 2026-11-11 "Guidance에도 컨센서스(est.)가 붙도록 — 가끔씩 빠져 있더라"): `earnings_est.js` 출력 pick의 `guidance`(다음 분기)·`fy_current`·`fy_next`(연간)에서 고른다. 발표 뒤 Fiscal.ai는 추정 칸을 회사 가이던스로 덮어쓰므로(asOf = 발표일) 발표 전 값은 Zacks 이력이 채운다. 그래도 없으면 `(est. 없음)` — `notify.send`가 Guidance 절의 est. 없는 수치 줄에 자동으로 붙이고 `radar/state/guidance_est_gaps.jsonl`에 남긴다.

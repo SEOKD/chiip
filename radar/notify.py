@@ -202,7 +202,31 @@ def send_document(path, caption="", level="REPORT"):
     return ok
 
 
+def guidance_est(text):
+    """실적 피드 Guidance 절의 수치 줄에 (est. …)가 없으면 '(est. 없음)'을 붙이고 빠진 줄을 기록한다(마스터 지시 2026-11-11
+    "Guidance에도 컨센서스(est.)가 붙도록 — 가끔씩 빠져 있더라"). 조용히 빠지지 않게 하는 마지막 관문 — 값은 scripts/fiscal/templates/earnings_est.js가 고른다"""
+    out, inside, gaps = [], False, []
+    for line in (text or "").split("\n"):
+        if re.search(r"Guidance\s*$", line.strip()):
+            inside = True
+        elif not line.strip() or not line.lstrip().startswith("-"):
+            inside = inside and line.lstrip().startswith("-")
+        elif inside and re.search(r"\d", line) and "(est." not in line and "est." not in line:
+            gaps.append(line.strip())
+            line = line.rstrip() + " (est. 없음)"
+        out.append(line)
+    if gaps:
+        try:
+            with (common.STATE / "guidance_est_gaps.jsonl").open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"at": common.iso(common.now_kst()), "lines": gaps, "head": (text or "")[:60]}, ensure_ascii=False) + "\n")
+        except Exception:
+            pass
+    return "\n".join(out)
+
+
 def send(text, level="P1", ref=None, html_mode=False, md=False, buttons=None):
+    if not html_mode:
+        text = guidance_est(text)
     ok = _send(text, level, ref, html_mode, md, buttons)
     run_ledger.send_row(text, level, ok)
     if ok:   # 피드 가독성 채점·양식 개선용 보관(마스터 지시 2026-11-04 "가독성 있게 쓰도록 보고 양식을 지속 개선") — git 제외
