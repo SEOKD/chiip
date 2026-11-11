@@ -243,7 +243,7 @@ def message(r, name, alpha_total, reasons, update_note=None):
     import notify   # 무엇을 하는 회사인지 1줄(2026-11-08 마스터 지시)
     biz = notify.company_line([r.get("entity") or ""])
     L.append(f"☞ {biz}" if biz else "☞ 기업 설명 미확인")
-    L += ["", "**왜 감지됐나**"] + [f"· {explain_reason(x)}" for x in reasons[:3]]
+    L += ["", "왜 감지됐나"] + [f"· {explain_reason(x)}" for x in reasons[:3]]
     if r.get("decision"):
         L += [""] + factor_lines(r["decision"])
     u = r["upside"]
@@ -251,7 +251,7 @@ def message(r, name, alpha_total, reasons, update_note=None):
         pct = u["implied_pct"][0]
         L.append(f"주가 내포 5년 매출 성장 연 {u['implied_cagr']:.0%}" + (f"(과거 기업 상위 {100 - pct:.0f}%)" if pct is not None else ""))
     L += [""] + narrative_block(r.get("entity") or "")
-    L += ["", DISCLAIMER_SHORT]
+    # 끝의 '투자자문 아님'·** 표기 제외(2026-11-12 마스터 지시 — 텔레그램은 일반 글이라 **가 그대로 보인다)
     return "\n".join(L)
 
 
@@ -291,22 +291,22 @@ def narrative_block(eid, today=None):
     p = ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
     fm = front(p.read_text(encoding="utf-8")) if p.exists() else None
     if not fm:
-        return ["**내러티브**", head.split(": ", 1)[-1]]
+        return ["내러티브", head.split(": ", 1)[-1]]
     body = p.read_text(encoding="utf-8").split("---", 2)[-1]
     stage = {"초기": "아직 소수만 말하는 이야기", "확산": "커뮤니티·IB로 퍼지는 중", "컨센서스": "시장 다수가 이미 믿는 이야기",
              "과열": "기대가 숫자를 앞선 상태", "소멸": "힘을 잃는 중"}.get(str(fm.get("stage")), "")
     crowd = {"낮음": "아직 붐비지 않음", "중간": "어느 정도 알려짐", "높음": "이미 많이 알려져 가격 반영 가능성 큼"}.get(str(fm.get("crowding")), "")
-    out = ["**내러티브**", str(fm.get("summary") or ""),
+    out = ["내러티브", str(fm.get("summary") or "").replace("**", ""),
            f"· 단계 {fm.get('stage', '미판정')}" + (f"({stage})" if stage else "") + f" · 과밀 {fm.get('crowding', '미상')}" + (f"({crowd})" if crowd else "")]
 
     def items(label):
         m = re.search(r"\*\*" + label + r"\*\*\s*\n((?:\s*\d+\..*\n?)+)", body)
         return [re.sub(r"^\s*\d+\.\s*", "", x).strip() for x in m[1].strip().splitlines()][:2] if m else []
     for lab, word in (("프리미엄 요인", "＋"), ("디스카운트 요인", "－")):
-        out += [f"{word} {x}" for x in items(lab)]
+        out += [f"{word} {x}".replace("**", "") for x in items(lab)]
     k = re.search(r"## 반증 조건·확인할 KPI\s*\n-\s*(.+)", body)
     if k:
-        out.append(f"· 확인할 것: {k[1].strip()}")
+        out.append(f"· 확인할 것: {k[1].strip()}".replace("**", ""))
     if "갱신 필요" in head:
         out.append("· " + head.rsplit("— ", 1)[-1].rstrip("]"))
     return out
