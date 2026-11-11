@@ -2,7 +2,7 @@
 체계적인 자료를 html 파일로 남겨라. 오후 11시마다 하루 하나씩")
 
 모델(예약 작업 chiip-tenbagger-report)은 내용만 JSON으로 쓰고, 모양·차트는 이 스크립트가 늘 같은 방식으로 그린다.
-문자열 안의 **굵게**만 <b>로 바꾸고 나머지 HTML은 모두 이스케이프한다(수집한 웹 문장이 섞여도 스크립트가 끼어들지 않게).
+문자열 안의 **굵게**·__밑줄__·==형광==만 태그로 바꾸고(부호 붙은 %는 색을 자동으로) 나머지 HTML은 모두 이스케이프한다(수집한 웹 문장이 섞여도 스크립트가 끼어들지 않게).
 사용: py scripts/tenbagger/report_html.py outputs/tenbagger/reports/20261029_CBRS.json   → 같은 이름 .html
 
 JSON 구조(필수 = *):
@@ -104,6 +104,14 @@ table,.dash,.tiles,.cinfo{font-variant-numeric:tabular-nums}
 .verdict{border:0;border-left:4px solid var(--fg);background:var(--card);border-radius:4px 12px 12px 4px;padding:14px 16px;line-height:1.85}
 .verdict b,.ans div>b:not(.q),.hl b{background:linear-gradient(transparent 60%,var(--mk) 60%);padding:0 1px}
 .ans b.q{color:var(--c);font-weight:700;margin-bottom:2px}
+/* 강조 확대(마스터 지시 2026-11-12 "색과 볼드, 밑줄 등을 더") — 본문 굵게 = 진한 남색, __밑줄__ = 색 밑줄, ==형광== = 형광 칠, 부호 % = 오름 빨강·내림 파랑, 소제목 = 색 막대 */
+:root{--em:#16348a;--ul:#d0452f}@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--em:#a9c1ff;--ul:#ff7d66}}:root[data-theme=dark]{--em:#a9c1ff;--ul:#ff7d66}
+.w p b,.w li b,.card>b:first-child~* b,.bx .br b{color:var(--em);font-weight:700}
+.w u{text-decoration:underline;text-decoration-color:var(--ul);text-decoration-thickness:2px;text-underline-offset:3px}
+.w mark{background:linear-gradient(transparent 55%,var(--mk) 55%);color:inherit;padding:0 1px}
+.up{color:var(--b);font-weight:600}.dn{color:var(--c);font-weight:600}
+h2{border-top-color:var(--c)}h3{border-left:4px solid var(--c);padding-left:9px;line-height:1.4}
+.card>b:first-child{color:var(--c)}.lead b{color:var(--fg)}
 .w a{color:var(--c);text-underline-offset:3px;text-decoration-thickness:1px}.toc a{color:var(--mut)}.toc{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}.toc a{flex:0 0 auto}   /* 고정 목차는 PC·모바일 모두 한 줄(여러 줄이면 본문을 가린다) */
 @media (max-width:640px){
   body{font-size:16px;line-height:1.72}.w{padding-block:14px 40px}
@@ -119,9 +127,18 @@ DISCLAIMER = "연구 후보이지 매수 권유가 아닙니다 · 공개 자료
 DISCLAIMER3 = "구매 등급·목표주가 모두 규칙이 계산한 모델 값으로, 개인의 보유 종목·자금 사정을 반영하지 않는다 · 공개 자료 기반 분석이며 투자 권유가 아님 · 1차 판정, 미검증 · Chiip ten-bagger"
 
 
+_UP = re.compile(r"(?:(?<=^)|(?<=[\s(（:·,]))(\+\d[\d.,]*%(?:p)?)")
+_DN = re.compile(r"(?:(?<=^)|(?<=[\s(（:·,]))([−–-]\d[\d.,]*%(?:p)?)")
+
+
 def t(s):
-    """이스케이프 후 **굵게**만 허용"""
-    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(s if s is not None else "")))
+    """이스케이프 후 **굵게**·__밑줄__·==형광==만 허용. 부호 붙은 %는 오름 빨강·내림 파랑(마스터 지시 2026-11-12 "색과 볼드, 밑줄을 더")"""
+    s = html.escape(str(s if s is not None else ""))
+    s = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s)
+    s = re.sub(r"__(.+?)__", r"<u>\1</u>", s)
+    s = re.sub(r"==(.+?)==", r"<mark>\1</mark>", s)
+    s = _UP.sub(r'<span class="up">\1</span>', s)
+    return _DN.sub(r'<span class="dn">\1</span>', s)
 
 
 def _legend(series):

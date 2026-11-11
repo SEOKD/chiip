@@ -1,5 +1,6 @@
 """텐배거 리포트 개정 양식 시험 (마스터 지시 2026-10-30 — 배수 사다리·내러티브 선두·참고 문헌 제거·그림 3·5·8)"""
 import json
+import re
 import sys
 import unittest
 from datetime import date
@@ -14,6 +15,11 @@ import earnings_view  # noqa: E402
 import ladder  # noqa: E402
 import narrative_view  # noqa: E402
 import report_html  # noqa: E402
+
+
+def plain(h):
+    """부호 % 색 꼬리표(span.up·dn)를 벗긴 HTML"""
+    return re.sub(r'<span class="(?:up|dn)">([^<]*)</span>', r'\1', h)
 import report_md  # noqa: E402
 import report_notion  # noqa: E402
 import revision_view as rv  # noqa: E402
@@ -113,7 +119,7 @@ class TestLadder(unittest.TestCase):
         self.assertEqual(t, "5,000번 돌리면 5년 뒤 주주가치가 지금 시가총액의 2배 이상 2,086번(약 2.4번에 1번) · 3배 이상 823번(약 6.1번에 1번) · 5배 이상 111번(약 45번에 1번) · 10배 이상 0번")
         self.assertNotIn("3배", ladder.mc_conclusion(5000, p, [2]))
         c = {**chart("몬테카를로")["chart"], "conclusion": t, "note": "주석"}
-        h = report_html.render({**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}]}]})
+        h = plain(report_html.render({**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}]}]}))
         self.assertIn(t, h)
         self.assertNotIn("주석", h)
         self.assertIn(t, report_notion.render({**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}]}]}))
@@ -131,7 +137,7 @@ class TestLadder(unittest.TestCase):
         self.assertIn("뒷받침하지 못하는", ladder.mc_reading(100, 0.2, 1, 1, 1, {}, [2])[1])
         c = {**chart("몬테카를로")["chart"], "conclusion": lines}
         doc = {**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": c}, {"type": "chart", "chart": chart("다른 그림")["chart"]}]}]}
-        h = report_html.render(doc)
+        h = plain(report_html.render(doc))
         for line in lines:
             self.assertIn(line.split(":")[0], h)
         self.assertEqual(report_html.under_lines(chart("다른 그림")["chart"]), [])   # 이 그림에만
@@ -221,7 +227,7 @@ class TestScrub(unittest.TestCase):
         d = {**BASE, "summary": [{"q": "q", "a": "경쟁 증설(Greenwood & Hanson 2015 — 과소평가)을 본다"}],
              "sections": [{"h2": "s", "blocks": [{"type": "p", "text": "희귀하다(Bessembinder 2018). CES 2026 발표"}]}],
              "sources": ["기저율: Bessembinder (2018) JFE 129(3) · Greenwood & Hanson (2015) QJE 130(1)", "10-Q 2026-09-25"]}
-        h = report_html.render(d)
+        h = plain(report_html.render(d))
         for w in ("Greenwood", "Hanson", "Bessembinder", "JFE"):
             self.assertNotIn(w, h)
         self.assertIn("CES 2026", h)
@@ -242,7 +248,7 @@ class TestScrub(unittest.TestCase):
         for out in (report_html.render(d), report_notion.render(d)):
             for w in ("Fiscal", "Zacks", "zacksdata", "읽는 법", "보강 적용", "MCP", "트랜스크립트"):
                 self.assertNotIn(w, out)
-        h = report_html.render(d)
+        h = plain(report_html.render(d))
         self.assertIn("컨센서스 $5.85", h)
         self.assertIn("컨센서스 CY2027", h)
         self.assertNotIn("모델 추정", h)
@@ -267,7 +273,7 @@ class TestScrub(unittest.TestCase):
         d = {**BASE, "verdict": {"view": "v", "upside": 0.2, "upside_basis": "기준 문장"},
              "sections": [{"h2": "s", "blocks": [{"type": "chart", "chart": {**chart("주가")["chart"], "note": "차트 주석"}},
                                                   {"type": "table", "headers": ["a"], "rows": [["1"]], "note": "표 주석"}]}]}
-        h = report_html.render(d)
+        h = plain(report_html.render(d))
         for w in ("기준 문장", "차트 주석", "표 주석", "업사이드 기준", "↳"):
             self.assertNotIn(w, h)
         self.assertIn("업사이드 +20%", h)
@@ -276,7 +282,7 @@ class TestScrub(unittest.TestCase):
         d = {**BASE, "verdict": {"view": "CAGR이 올랐다. CAGR은 또 올랐다. WFE(장비 투자)와 EV/매출을 본다."},
              "summary": [{"q": "q", "a": "CY2027 추정과 CY2028 추정. SEMI 자료 https://x.com/EPS/WFE"}],
              "sections": [{"h2": "s", "blocks": [{"type": "table", "headers": ["a"], "rows": [["DCF 1.1배"]]}]}]}
-        h = report_html.render(d)
+        h = plain(report_html.render(d))
         self.assertNotIn("CAGR(", h)   # 금융 용어는 풀이하지 않는다(마스터 지시 2026-10-31)
         self.assertIn("WFE(장비 투자)", h)
         self.assertNotIn("CY2027(", h)
@@ -287,7 +293,7 @@ class TestScrub(unittest.TestCase):
 
     def test_no_gloss_terms(self):
         d = {**BASE, "summary": [{"q": "q", "a": "Fwd 1Y P/E와 P/B, EBITDA(상각전영업이익), EPS, 멀티플(배수), EV/EBITDA, EBIT, 멀티플(−54%)"}], "sections": []}
-        h = report_html.render(d)
+        h = plain(report_html.render(d))
         self.assertIn("Fwd 1Y P/E와 P/B, EBITDA, EPS, 멀티플, EV/EBITDA, EBIT", h)
         self.assertIn("멀티플(−54%)", h)
 
@@ -405,7 +411,7 @@ class TestRevision(unittest.TestCase):
                "events": [{"date": "2026-02-23", "mark": "①", "kind": "실적", "tag": "4Q25 실적", "pct": "+110%"},
                           {"date": "2026-02-26", "mark": "②", "kind": "내러티브", "tag": "전환사채", "pct": "겹침"}]}
         d = {**BASE, "sections": [{"h2": "a", "blocks": [{"type": "chart", "chart": rev}, {"type": "chart", "chart": {**chart("주가")["chart"], "note": "차트 주석"}}]}]}
-        h = report_html.render(d)
+        h = plain(report_html.render(d))
         self.assertIn("① 26-02-23 4Q25 실적 · EPS 리비전 +110%", h)   # 번호 설명은 그래프 아래
         self.assertIn("② 26-02-26 전환사채 · 실적 창과 겹침", h)
         self.assertNotIn("차트 주석", h)
