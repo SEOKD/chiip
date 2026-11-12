@@ -57,3 +57,8 @@
   - 마스터 키워드 목록(2026-11-11 "넣어" — 링크드인 검색 대신): HBM4·HBM4E·HBM5, zHBM·NVHBM·sHBM·맞춤 HBM(C-HBM), 베이스/IO·로직 다이, 삼성 SF 계열(SF1.4·SF2·SF2P·SF2X·SF2Z·SF2A·SF4X), 삼성 2·4nm, 테일러·오스틴 팹. ① 채용: Workday 검색어 + 본문 과제어(회사 이름 없이 과제어만 있어도 Pulse — keyword_only) ② partner_trace keywords 질의 7개 + OpenAlex 논문(기업 소속 저자, 이름 미저장) ③ 특허 grant_keywords. Workday 본문은 공고별 캐시(radar/state/job_boards_wd)로 회차 약 4분.
 - **감마의 하드웨어정보 단신**(2026-11-11 마스터 지시 "단신에 글이 올라오면 Pulse로 즉시"): `radar/pollers/gamma_blog.py`, 블로그 공식 RSS에서 분류 '단신/단신'만, run_poll 10분 → Pulse '블로그 단신'. 2차 출처·루머(S1·S2) — 주장은 공개 근거로 판정한 뒤에만(판정 표 방식). 글 속 이력 그림의 원본 프로필은 찾지 않는다.
 - **해외 반도체 기업 한국 채용**(2026-11-11 마스터 지시 "마이크론·샌디스크·KIOXIA·Rapidus·CXMT·YMTC 등이 한국 지사에서 한국 엔지니어를 뽑는 공고"): `radar/pollers/kr_foreign_hiring.py`, `config/kr_foreign_hiring.yaml`. ① 회사 공식 Workday(마이크론·인텔·엔비디아·KLA·어플라이드) 한국 근무지 공고 ② 사람인 공개 API(회사 이름 검색 — 샌디스크·키옥시아·라피더스·CXMT·YMTC·웨스턴디지털·난야·윈본드, SARAMIN_API_KEY 키 대기). run_hourly 60분 → Pulse '채용 공고'. 링크드인 채용 검색은 robots 전체 금지·제외 원천이라 쓰지 않는다. 샌디스크·키옥시아 Workday는 422·401로 막혀 사람인으로 본다.
+
+## TickerTrends(2026-11-12 마스터 지시)
+- `radar/tickertrends.py`가 하루 1회 소비·검색·소셜 관심의 90일 가속을 본다(`config/tickertrends.yaml`). 유료 API — 키(`TICKERTRENDS_API_KEY`)가 들어오면 켜진다.
+- 약관이 내부 업무용 한정·제3자 공유 금지다. 수치는 마스터 개인 Pulse와 내부 판단 입력으로만 쓰고, 기사·리포트·노션·공개 산출물에 옮기지 않는다(항목 `internal_only`). 저장 파일은 git에 올리지 않는다.
+- 관심 가속은 실적이 아니다 — 판단에 쓸 때는 실적 동인(매출·KPI)과의 연결을 따로 확인한다.

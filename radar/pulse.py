@@ -45,6 +45,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("블로그 단신", ("src-gamma-blog",)),   # 감마의 하드웨어정보 단신(2차 출처·루머, 2026-11-11 마스터 지시)
            ("딜 추적", ("src-deal-watch",)),   # 소문난 딜의 미국 1차 문서 흔적(시의회 녹취·주 페이지·관보·SEC, config/deal_watch.yaml, 2026-11-12 마스터 지시)
            ("협업 흔적", ("src-partner-trace",)),   # 협업사 공식 자료·블로그 미확인 주장의 공개 근거(2026-11-11 마스터 지시)   # src-job-boards = 협업사 공개 채용의 삼성·SK하이닉스 과제 문구(2026-11-11)
+           ("관심도 가속", ("src-tickertrends",)),   # TickerTrends 소비·검색·소셜 관심 가속(유료·내부용 — 수치를 공개 산출물에 옮기지 않는다, 2026-11-12 마스터 지시)
            ("실적 일정", ("src-alphavantage",)),   # 감시 종목 실적 일정 신규·변경(Alpha Vantage, 2026-11-11 마스터 지시)   # SemiAnalysis Memory Analyst(한국) 공고(2026-11-11 마스터 지시, radar/semianalysis_jobs.py)
            ("주가 급변", ("src-price-move",)),   # 감시 종목 ±7% — 원인 사건 특정(2026-11-10 GEV·SBG 급락 원인 누락, radar/move_watch.py)   # CFTC COT 주간 극단(2026-11-09) — 배경 신호
            ("IR 질의응답", ("src-jp-ir-qa", "src-kr-ir-qa", "src-tw-hk-ir-qa", "src-ir-audio")),   # src-ir-audio = 설명회 음성 자체 전사(D등급, 2026-11-09)   # 일본 IR 질의응답 원문(2026-10-29 마스터 지시 — easyconomics에 일본 어닝콜 없음)
@@ -56,7 +57,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-edinet")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg"))]
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
-CLASS_W = {"딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -144,7 +145,7 @@ def relevant(it, cls):
         return True
     if it.get("source_id") in ("src-tw-revenue-surge", "src-cn-hk-disclosure", "src-price-move"):   # 중문 원문·지도 밖 후보 — 수집기가 업종·중요 공시로 이미 거름(2026-11-09)
         return True
-    if it.get("source_id") in ("src-semianalysis-jobs", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch"):   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
+    if it.get("source_id") in ("src-semianalysis-jobs", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch", "src-tickertrends"):   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
         return True
     if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True

@@ -60,3 +60,5 @@ radar/conferences/cache/
 # 백테스트 원천 캐시(ADR-016, 재생성 가능·용량 큼 — 일봉은 원천 약관상 재배포 금지)
 knowledge/models/backtest/frames/
 knowledge/models/backtest/prices/
+# TickerTrends 수치 — 약관 내부용·제3자 공유 금지(2026-11-12)
+knowledge/models/tickertrends/
