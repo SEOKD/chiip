@@ -71,7 +71,7 @@
   },
   {
    "q": "지금 가격은 무엇을 가정하나?",
-   "a": "시가총액은 $4.47B, 순현금은 약 $0.41B다. 다음 4개 분기 EPS 컨센서스 $1.98 기준 Fwd 1Y P/E는 14.7배로 동종 중앙값(18.5배)보다 약 20% 낮고, Fwd 2Y 12.7배·3Y 11.4배로 내려간다. 지금 가격은 이익 회복이 2027년까지만 이어지고 그 뒤 사이클이 꺾인다는 가정에 가깝다. 애널리스트 목표가 평균은 $36.63(8명)이다."
+   "a": "시가총액은 $4.47B, 순현금은 약 $0.41B다. 다음 4개 분기 EPS 컨센서스 $1.98 기준 Fwd 1Y P/E는 14.7배로 동종 중앙(약 17배)보다 약 13% 낮고, Fwd 2Y 12.7배·3Y 11.4배로 내려간다. 지금 가격은 이익 회복이 2027년까지만 이어지고 그 뒤 사이클이 꺾인다는 가정에 가깝다. 애널리스트 목표가 평균은 $36.63(8명)이다."
   },
   {
    "q": "왜 움직였나?",
@@ -3071,9 +3071,11 @@
    ]
   }
  ],
+ "corrections": [],
  "sources": [
   "마스터 노션 자료: 미확인 Taiwan_CCL__Increasing_AI_customers_in_2027E_without_any_impact_on_market_share_for_existing_projects.pdf (요지만, 외부 공유 금지)",
   "마스터 노션 자료: 미확인 Bernstein_-_US_Networking_-_Connecting_the_dots..._A_primer_on_networking_equipment_in_the_age_of_AI_-_8_Oct_2026.pdf (요지만, 외부 공유 금지)",
+  "마스터 노션 자료: 미확인 JP Morgan SemiconductorsSemi Cap Equipment 3Q26 Sector Preview.pdf (요지만, 외부 공유 금지)",
   "마스터 노션 자료: JPM 2026-11-05 JPM_Arm_Holdings_Plc_Lic_2026-11-05_5524008.pdf (요지만, 외부 공유 금지)",
   "마스터 노션 자료: 미확인 aapl F4Q26 boa.pdf (요지만, 외부 공유 금지)",
   "마스터 노션 자료: JPM 2026-11-09 JPM_Semiconductors_Septe_2026-11-09_5521351.pdf (요지만, 외부 공유 금지)",
@@ -12913,7 +12915,29 @@
   }
  ],
  "support": "$28.11 일봉 피보나치 38.2% 되돌림 지지선",
- "gallery_photos": [],
+ "gallery_photos": [
+  {
+   "type": "photos",
+   "items": [
+    {
+     "name": "수동 부품(저항·커패시터·인덕터)",
+     "caption": "전원 보드에 실장된 Vishay 필름 커패시터(F1772 계열)",
+     "file": "File:Nedap ESD1 - power supply board 1 - Vishay F1772-410-2000-1049.jpg",
+     "jpg": "51f90bc087e8279a.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Nedap_ESD1_-_power_supply_board_1_-_Vishay_F1772-410-2000-1049.jpg",
+     "credit": "사진: Raimond Spekking · CC BY-SA 4.0 · Wikimedia Commons"
+    },
+    {
+     "name": "개별 반도체(MOSFET·다이오드·광전자)",
+     "caption": "Siliconix(현재 Vishay의 MOSFET 브랜드) 소자 — 옛 세대 제품",
+     "file": "File:Siliconix WD087.jpg",
+     "jpg": "90b407cc560a6ccc.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Siliconix_WD087.jpg",
+     "credit": "사진: Mister rf · CC BY-SA 4.0 · Wikimedia Commons"
+    }
+   ]
+  }
+ ],
  "format": 3,
  "terms": {
   "MOSFET": "전류를 켜고 끄는 전력용 트랜지스터",
@@ -13000,6 +13024,5 @@
   "JPM",
   "JP Morgan",
   "JP"
- ],
- "corrections": []
+ ]
 }

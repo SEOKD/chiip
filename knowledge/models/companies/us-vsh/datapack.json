@@ -3756,5 +3756,19 @@
    "dissent": "Strong Sell 자리는 부품 사이클의 2년 주기와 자동차 보합을 끝까지 남겼다"
   }
  },
- "industry_note": "Damodaran 반도체 업종 베타(1.52)를 쓴다 — 매출 48%가 개별 반도체이고 시장 베타(yfinance 1.92)도 전자부품(0.97)보다 반도체에 가깝다"
+ "industry_note": "Damodaran 반도체 업종 베타(1.52)를 쓴다 — 매출 48%가 개별 반도체이고 시장 베타(yfinance 1.92)도 전자부품(0.97)보다 반도체에 가깝다",
+ "photos": [
+  {
+   "for": "product",
+   "name": "수동 부품(저항·커패시터·인덕터)",
+   "file": "File:Nedap ESD1 - power supply board 1 - Vishay F1772-410-2000-1049.jpg",
+   "caption": "전원 보드에 실장된 Vishay 필름 커패시터(F1772 계열)"
+  },
+  {
+   "for": "product",
+   "name": "개별 반도체(MOSFET·다이오드·광전자)",
+   "file": "File:Siliconix WD087.jpg",
+   "caption": "Siliconix(현재 Vishay의 MOSFET 브랜드) 소자 — 옛 세대 제품"
+  }
+ ]
 }
