@@ -1,0 +1,103 @@
+auto: true
+id: us-vsh
+name: Vishay Intertechnology
+ticker: VSH
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.24
+  EU: 0.38
+  ROW: 0.38
+tax: 0.3
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 29.14
+  shares: 0.181883
+  net_debt: -0.409709
+  source: 가격 = 2026-11-11 종가 $29.14(TradingView NYSE:VSH). 주식 수 = 시가총액 $4.4696B ÷
+    $29.14 = 153.4M주(보통주 + Class B, 7월 유상증자 반영 — 10-Q 표지 수치 미대조, 역산). 현금 = 현금 $1,139.9M
+    + 단기투자 $5.3M(10-Q 2026-10-03). 차입 = 장기부채 $735.5M(10-Q, 대부분 2030년 만기 전환사채) — 리스·유동성
+    장기부채는 Fiscal 표준화 재무상태표에 별도 칸이 없어 미포함(미확인)
+rev0: 3.7064
+ic0: 2.544669
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.1332
+      end: 0.03
+      decay: 0.632
+    margin:
+      m0: 0.074
+      target: 0.13
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.117
+      - 0.13
+    s2c: 1.4
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.0224
+      end: 0.034999999999999996
+      decay: 0.682
+    margin:
+      m0: 0.074
+      target: 0.158
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.117
+      - 0.13
+    s2c: 1.61
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.0178
+      end: 0.024999999999999998
+      decay: 0.532
+    margin:
+      m0: 0.074
+      target: 0.102
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.117
+      - 0.13
+    s2c: 1.19
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [3.6914, 3.7214] (3Q26 어닝콜(2026-11-04, 요지만 자기 말로) · 4Q26 가이던스.
+    연간 매출 $3,706.4M = 1~3Q 실적 $2,706.8M + 4Q 가이던스 중앙 약 $1.0B(Fiscal 가이던스 조정값 $999.7M))
+  growth: 컨센서스 1년차 13.3%, 2년차 9.5%
+  margin: 1~2년차 컨센서스 11.7%, 13.0% 고정 → 목표 13%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 1.4
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -1.8%~2.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  shares: 완전 희석 = 기본 0.153383(2026-10-03) + 옵션·RSU·워런트·전환 0.0285 — RSU·PSU 약 1.5M주(추정,
+    10-Q 주식보상 주석 미대조). 전환사채(2030년 만기, 장부 약 $
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 이중 주문·재고 확보용 선주문이 수주에 섞였을 가능성(회사도 관찰 중)'
+- '어닝콜 위험: AI·자동차 고객의 PCB 부족'
+- '어닝콜 위험: 후공정 외주 의존 — 경쟁사도 같은 외주처를 쓴다'
+evidence:
+- https://www.vishay.com/company/press/releases/
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000103730&type=10-Q
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000103730&type=10-K
+- https://www.vishay.com/en/company/investors/
+- Fiscal.ai MCP 2026-11-12 — 표준화 손익(분기 44)·재무상태표·추정·Forward 배수·애널리스트 의견
+- TradingView NYSE:VSH 일봉 520·Fiscal 월봉 120(2026-11-12)
+- Easyconomics company_profile(yfinance)·3Q26 실적 정리(어닝콜 요지)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
