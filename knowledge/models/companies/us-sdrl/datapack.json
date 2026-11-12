@@ -5,30 +5,6 @@
  "consensus": {
   "surprise": [
    {
-    "period": "2025Q3",
-    "report_date": "2025-09-30",
-    "metric": "매출",
-    "unit": "M$",
-    "actual": 363,
-    "est": 329,
-    "est_src": "zacks",
-    "est_asof": "2025-08-12",
-    "basis": "gaap",
-    "earnings_date": "2025-11-05"
-   },
-   {
-    "period": "2025Q3",
-    "report_date": "2025-09-30",
-    "metric": "EBITDA",
-    "unit": "M$",
-    "actual": 86,
-    "est": 90,
-    "est_src": "zacks",
-    "est_asof": "2025-08-11",
-    "basis": "adjusted",
-    "earnings_date": "2025-11-05"
-   },
-   {
     "period": "2025Q4",
     "report_date": "2025-12-31",
     "metric": "매출",
@@ -41,6 +17,21 @@
     "earnings_date": "2026-02-25",
     "pair": {
      "zacks": 332
+    }
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.16,
+    "est": 0.053,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-25",
+    "pair": {
+     "zacks": 0.07
     }
    },
    {
@@ -61,11 +52,29 @@
     "metric": "매출",
     "unit": "M$",
     "actual": 358,
-    "est": 332,
-    "est_src": "zacks",
-    "est_asof": "2026-03-03",
+    "est": 326.752,
+    "est_src": "yfinance",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-05-11"
+    "earnings_date": "2026-05-11",
+    "pair": {
+     "zacks": 332
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.11,
+    "est": -0.276,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-11",
+    "pair": {
+     "zacks": -0.1
+    }
    },
    {
     "period": "2026Q1",
@@ -89,9 +98,24 @@
     "est_src": "yfinance",
     "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-08-10",
+    "earnings_date": "2026-08-07",
     "pair": {
      "zacks": 386
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.47,
+    "est": 0.371,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-07",
+    "pair": {
+     "zacks": 0.29
     }
    },
    {
@@ -104,104 +128,93 @@
     "est_src": "zacks",
     "est_asof": "2026-07-01",
     "basis": "adjusted",
-    "earnings_date": "2026-08-10"
-   },
-   {
-    "period": "2025Q3",
-    "report_date": "2025-09-30",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": -0.17,
-    "est": 0.26,
-    "est_src": "zacks",
-    "est_asof": "2025-08-12",
-    "basis": "gaap",
-    "earnings_date": "2025-11-05"
-   },
-   {
-    "period": "2025Q4",
-    "report_date": "2025-12-31",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": -0.16,
-    "est": 0.07,
-    "est_src": "zacks",
-    "est_asof": "2025-11-12",
-    "basis": "gaap",
-    "earnings_date": "2026-02-25"
-   },
-   {
-    "period": "2026Q1",
-    "report_date": "2026-03-31",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": -0.11,
-    "est": -0.1,
-    "est_src": "zacks",
-    "est_asof": "2026-03-03",
-    "basis": "gaap",
-    "earnings_date": "2026-05-11"
-   },
-   {
-    "period": "2026Q2",
-    "report_date": "2026-06-30",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": 0.47,
-    "est": 0.29,
-    "est_src": "zacks",
-    "est_asof": "2026-07-02",
-    "basis": "gaap",
     "earnings_date": "2026-08-07"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 428,
+    "est": 415,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-27",
+    "basis": "gaap",
+    "earnings_date": "2026-11-03"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.49,
+    "est": 0.262,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-27",
+    "basis": "gaap",
+    "earnings_date": "2026-11-03"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 121,
+    "est": 106.841,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-08-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-03"
    }
   ],
   "rev": {
-   "FY2026": 1.6,
-   "FY2027": 1.68,
-   "FY2028": 1.78
+   "FY2026": 1.663,
+   "FY2027": 1.77,
+   "FY2028": 1.88
   },
   "rev_basis": "gaap",
   "margin_basis": "gaap",
   "ebit_margin": {
-   "FY2026": 0.09,
-   "FY2027": 0.137,
-   "FY2028": 0.163
+   "FY2026": 0.096,
+   "FY2027": 0.13,
+   "FY2028": 0.16
   },
   "ebitda": {
-   "FY2026": 0.435,
-   "FY2027": 0.53,
-   "FY2028": 0.6
+   "FY2026": 0.45,
+   "FY2027": 0.54,
+   "FY2028": 0.62
   },
   "rev_low": {
-   "FY2027": 1.5,
-   "FY2028": 1.48
+   "FY2027": 1.62,
+   "FY2028": 1.62
   },
   "rev_high": {
-   "FY2027": 1.85,
-   "FY2028": 2.05
+   "FY2027": 1.93,
+   "FY2028": 2.15
   },
   "n_analysts": 2,
   "revisions_90d": {
-   "rev": 0.0,
+   "rev": 0.002,
    "eps": 0.0
   },
   "quarters_est": {
-   "2026Q3": 0.415,
-   "2026Q4": 0.378,
-   "2027Q1": 0.405,
-   "2027Q2": 0.41,
-   "2027Q3": 0.434,
-   "2027Q4": 0.431
+   "2026Q4": 0.428,
+   "2027Q1": 0.43,
+   "2027Q2": 0.445,
+   "2027Q3": 0.455,
+   "2027Q4": 0.44
   },
   "quarters_act": {
+   "2025Q4": 0.362,
    "2026Q1": 0.358,
-   "2026Q2": 0.449
+   "2026Q2": 0.449,
+   "2026Q3": 0.428
   },
   "eps_quarters_est": {
-   "2026Q3": 0.26,
-   "2026Q4": -0.05,
-   "2027Q1": 0.34,
-   "2027Q2": 0.42
+   "2026Q4": -0.22,
+   "2027Q1": 0.15,
+   "2027Q2": 0.28,
+   "2027Q3": 0.57
   },
   "ratings": {
    "strong_buy": 9,
@@ -212,52 +225,24 @@
    "as_of": "2026-10-15"
   },
   "targets": {
-   "mean": 56.33,
+   "mean": 56.56,
    "median": 55,
    "high": 80,
    "low": 43,
    "n": 9,
-   "as_of": "2026-10-29"
+   "as_of": "2026-11-11"
   },
-  "note": "매출·EBITDA = 자체 추정 1순위, FY2026 EBITDA는 가이던스 범위. EBIT 이익률 = (EBITDA − D&A 추정 $290M·$300M·$310M) ÷ 매출. 애널리스트 표본 2명",
+  "note": "매출·EBITDA = Fiscal.ai 자체 추정 1순위(2026-11-05), FY2026 EBITDA는 가이던스 중앙. EBIT 이익률 = (EBITDA − D&A 추정 $290M·$310M·$320M) ÷ 매출. 애널리스트 표본 2명(Zacks), 의견 12명·목표가 9명. FY2027 EPS 컨센서스 범위 $1.40~$2.14(Fiscal·Zacks). 90일 리비전: FY2027 매출 9/15 $1.755B → 11/11 $1.758B, EPS는 표본이 1명→2명으로 바뀌어 비교 불가라 0으로 둔다. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
   "eps_history": {
    "basis": "adjusted",
-   "updated_at": "2026-10-17T09:37:27.000Z",
+   "updated_at": "2026-11-12T10:07:10.000Z",
    "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
     [
-     "A",
+     "Q",
      "2025-12-31",
-     "2025-02-11",
-     3.715,
-     2
-    ],
-    [
-     "A",
-     "2025-12-31",
-     "2025-03-03",
-     2.625,
-     2
-    ],
-    [
-     "A",
-     "2025-12-31",
-     "2025-03-05",
-     1.865,
-     2
-    ],
-    [
-     "A",
-     "2025-12-31",
-     "2025-05-08",
-     2.06,
-     1
-    ],
-    [
-     "A",
-     "2025-12-31",
-     "2025-05-14",
-     0.99,
+     "2025-11-12",
+     0.07,
      1
     ],
     [
@@ -272,55 +257,6 @@
      "2025-12-31",
      "2025-11-12",
      -1,
-     1
-    ],
-    [
-     "Q",
-     "2025-12-31",
-     "2025-05-14",
-     0.14,
-     1
-    ],
-    [
-     "Q",
-     "2025-12-31",
-     "2025-08-12",
-     0.01,
-     1
-    ],
-    [
-     "Q",
-     "2025-12-31",
-     "2025-11-12",
-     0.07,
-     1
-    ],
-    [
-     "Q",
-     "2026-03-31",
-     null,
-     0.21,
-     1
-    ],
-    [
-     "Q",
-     "2026-06-30",
-     null,
-     0.46,
-     1
-    ],
-    [
-     "Q",
-     "2026-09-30",
-     null,
-     0.55,
-     1
-    ],
-    [
-     "Q",
-     "2026-12-31",
-     null,
-     0.37,
      1
     ],
     [
@@ -492,6 +428,20 @@
      2
     ],
     [
+     "Q",
+     "2026-12-31",
+     "2026-11-09",
+     0.11,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-11-11",
+     -0.19,
+     2
+    ],
+    [
      "A",
      "2026-12-31",
      "2026-01-28",
@@ -555,10 +505,17 @@
      2
     ],
     [
-     "Q",
-     "2027-03-31",
-     null,
-     0.78,
+     "A",
+     "2026-12-31",
+     "2026-11-09",
+     0.34,
+     2
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-11-11",
+     -0.3,
      1
     ],
     [
@@ -584,10 +541,17 @@
     ],
     [
      "Q",
-     "2027-06-30",
-     null,
-     0.85,
-     1
+     "2027-03-31",
+     "2026-11-09",
+     0.13,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-11-11",
+     0.005,
+     2
     ],
     [
      "Q",
@@ -612,10 +576,17 @@
     ],
     [
      "Q",
-     "2027-09-30",
-     null,
-     0.77,
-     1
+     "2027-06-30",
+     "2026-11-06",
+     0.725,
+     2
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-11-11",
+     0.655,
+     2
     ],
     [
      "Q",
@@ -640,10 +611,17 @@
     ],
     [
      "Q",
-     "2027-12-31",
-     null,
-     0.9,
-     1
+     "2027-09-30",
+     "2026-11-06",
+     0.785,
+     2
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-11-11",
+     0.73,
+     2
     ],
     [
      "Q",
@@ -667,11 +645,18 @@
      2
     ],
     [
-     "A",
+     "Q",
      "2027-12-31",
-     null,
-     3.31,
-     1
+     "2026-11-06",
+     0.79,
+     2
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-11-11",
+     0.75,
+     2
     ],
     [
      "A",
@@ -693,38 +678,94 @@
      "2026-10-16",
      2.325,
      2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-11-06",
+     2.425,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-11-11",
+     2.14,
+     2
     ]
-   ],
-   "note": "2025-03-03 작성 FY2026 추정 $7.15(1명)는 9개월 갱신이 없다가 2025-12-18 $1.59로 바뀐 묵은 값이라 제외했다. 넣으면 3Q25 구간 멀티플 변화가 +1,189%로 뜻을 잃는다"
+   ]
+  },
+  "revisions": {
+   "from_date": "2026-08-07",
+   "to_date": "2026-11-11",
+   "from_label": "2Q 콜 직전 컨센서스",
+   "source": "company_analyst_estimates history(Zacks) — 같은 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.035,
+     "to": -0.19
+    },
+    {
+     "period": "2026Q4",
+     "metric": "매출",
+     "from": 0.3645,
+     "to": 0.404
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출",
+     "from": 0.426,
+     "to": 0.3935
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출",
+     "from": 0.435,
+     "to": 0.4425
+    },
+    {
+     "period": "2027Q3",
+     "metric": "매출",
+     "from": 0.435,
+     "to": 0.461
+    }
+   ]
+  },
+  "price_window": {
+   "from": 43.24,
+   "to": 44.85,
+   "note": "2Q 콜(8/10 장 시작 전) 직전 종가 8/7 $43.24 → 11/12 종가"
   }
  },
  "multiples_now": {
-  "pe_fwd": 54.24,
-  "ev_ebitda_fwd": 8.31,
-  "pe_fwd2": 17.77,
-  "ev_ebitda_fwd2": 5.83,
-  "pe_fwd3": 13.34,
-  "ev_ebitda_fwd3": 5.66
+  "pe_fwd": 57.21,
+  "ev_ebitda_fwd": 6.23,
+  "pe_fwd2": 18.09,
+  "ev_ebitda_fwd2": 4.77,
+  "pe_fwd3": 12.82,
+  "ev_ebitda_fwd3": 4.38
  },
  "forward": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-12",
   "ntm": {
-   "eps": 0.9692312,
-   "ebitda": 439000000,
-   "ebit": 155592191,
-   "revenue": 1608000000,
-   "rev_ttm": 1532000000
+   "eps": 0.7846150000000001,
+   "ebitda": 488000000,
+   "ebit": 179000000,
+   "revenue": 1758000000,
+   "rev_ttm": 1597000000
   },
   "horizons": {
    "2": {
-    "eps": 2.9588599999999996,
-    "ebitda": 625663112,
+    "eps": 2.481552,
+    "ebitda": 636952905,
     "ext": 0
    },
    "3": {
-    "eps": 3.9409685,
-    "ebitda": 644993242.2075472,
-    "ext": 2
+    "eps": 3.502314,
+    "ebitda": 693622651.5925926,
+    "ext": 3
    }
   },
   "guided": {
@@ -739,10 +780,6 @@
  },
  "history": {
   "pe_fwd": [
-   {
-    "date": "2023-10-31",
-    "value": 11.07
-   },
    {
     "date": "2023-11-30",
     "value": 12.43
@@ -882,21 +919,13 @@
    {
     "date": "2026-09-30",
     "value": 15.62
+   },
+   {
+    "date": "2026-10-30",
+    "value": 32.75
    }
   ],
   "ev_ebitda_fwd": [
-   {
-    "date": "2023-11-30",
-    "value": 5.98
-   },
-   {
-    "date": "2023-12-29",
-    "value": 7.22
-   },
-   {
-    "date": "2024-01-31",
-    "value": 5.92
-   },
    {
     "date": "2024-02-29",
     "value": 6.41
@@ -1023,11 +1052,15 @@
    },
    {
     "date": "2026-09-30",
-    "value": 5.73
+    "value": 5.69
+   },
+   {
+    "date": "2026-10-30",
+    "value": 7.55
    }
   ]
  },
- "as_of": "2026-10-30",
+ "as_of": "2026-11-13",
  "unit": "B$",
  "industry": "offshore_drilling",
  "region_mix": {
@@ -1037,12 +1070,12 @@
  "main_metric": "ebitda",
  "main_metric_why": "회사가 조정 EBITDA로 가이던스를 내고 EPS는 내지 않는다. 감가상각이 EBITDA의 약 60%이고 선행 EPS는 표본 1~2명에 범위가 넓어 P/E 54배는 뜻이 약하다",
  "profile": {
-  "price": 52.57,
-  "shares_basic": 0.062030365,
-  "shares_date": "2026-06-30",
-  "cash": 0.36,
-  "debt": 0.754,
-  "source": "가격 = 10/30 종가. 주식 = 2Q 10-Q: 발행 62,541,443주에서 소각 대기 자사주 511,078주를 뺀 62,030,365주(3Q 자사주 매입은 미확인). 현금 $337M + 제한 현금 $23M. 차입 = 장부 장기 차입 $737M + 리스 $17M. 원금은 2034 채권 $700M + 전환사채 $50M https://www.sec.gov/Archives/edgar/data/1737706/000173770626000026/sdrl-20260630.htm"
+  "price": 44.85,
+  "shares_basic": 0.061498053,
+  "shares_date": "2026-10-30",
+  "cash": 0.483,
+  "debt": 0.759,
+  "source": "가격 = 11/12 종가. 주식 = 3Q 10-Q 표지 61,498,053주(10/30). 현금 = 현금·현금성 $483M(제한 현금 $23M 제외, XBRL). 차입 = 장부 장기차입 $737M(원금 $750M, 콜) + 리스 약 $22M = $759M(개요 총차입) https://www.sec.gov/Archives/edgar/data/1737706/000173770626000033/sdrl-20260930.htm"
  },
  "dilution": {
   "potential_total": 0.003,
@@ -1050,147 +1083,179 @@
   "rsu": null,
   "warrants": 0,
   "converts_shares": 0.00263,
-  "date": "2026-06-30",
-  "source": "2Q 10-Q 주석 4: 희석 효과 300만 주(기본 62M·희석 65M 반올림). $50M 전환사채는 $1,000당 52.6316주, 전환가 약 $19로 현재가보다 낮다. 전환하면 차입 $50M이 사라지지만 보수적으로 차입과 희석을 둘 다 남겼다"
+  "date": "2026-10-30",
+  "source": "3Q 10-Q XBRL: 희석 가중 주식 65M − 기본 62M = 300만 주(주식보상 300만 주 증분). $50M 전환사채(전환가 약 $19)는 2Q 주석 기준 유지. 3Q 순손실이라 희석 EPS = 기본 EPS"
  },
  "financials": {
-  "rev_ttm": 1.532,
-  "ebit_ttm": 0.119,
-  "invested_capital": 3.258,
-  "capex_ttm": 0.265,
-  "da_ttm": 0.27,
-  "sbc_ttm": 0.017,
+  "rev_ttm": 1.597,
+  "ebit_ttm": 0.137,
+  "invested_capital": 3.092,
+  "capex_ttm": 0.22,
+  "da_ttm": 0.289,
+  "sbc_ttm": 0.016,
   "basis": "GAAP",
-  "note": "TTM = 3Q25~2Q26. 매출 363+362+358+449. 영업이익 26−3+24+72. 조정 EBITDA 86+88+97+144 = $415M. D&A = FY25 238 − 1H25 111 + 1H26 143. CAPEX = 설비 추가 (110−68+38) + 장기 정비 (213−98+70). SBC = 20−9+6. 투하자본 = 자기자본 2.864 + 차입 0.737 + 리스 0.017 − 현금 0.360"
+  "note": "TTM = 4Q25~3Q26. 매출 362+358+449+428 = $1,597M. 영업이익 −3+24+72+44 = $137M. 조정 EBITDA 88+97+144+121 = $450M. D&A 69+71+72+77 = $289M. SBC = 4Q25 6 + 9M26 10 = $16M. CAPEX(장기 정비 포함) = FY2026 가이던스 중앙 $220M로 대용(분기 현금흐름표 3Q 미대조, 추정). 투하자본 = 자기자본 2.816 + 차입 0.737 + 리스 0.022 − 현금 0.483 = 3.092"
  },
  "guidance": {
   "rev_fy0": [
-   1.55,
-   1.6
+   1.65,
+   1.67
   ],
   "rev_basis": "gaap",
   "ebitda_fy0": [
-   0.42,
-   0.45
+   0.44,
+   0.46
   ],
   "capex_fy0": [
-   0.2,
-   0.24
+   0.21,
+   0.23
   ],
   "margin_basis": "gaap",
-  "source": "2Q 콜 2026-08-10: 영업수익 $1.5~1.55B(대납 비용 수익 $50M 제외, 여기 표기는 더한 값), EBITDA $420~450M, CAPEX $200~240M. 1Q 기준 $1.43~1.48B·$370~420M",
+  "source": "3Q 콜 2026-11-04: 영업수익 $1.56~1.58B(대납 비용 수익 $90M 제외 — 전체 매출 기준은 약 $1.65~1.67B), EBITDA $440~460M(이동비 상각 순비용 $33M 포함), CAPEX·장기 정비 $210~230M. 2Q 가이던스 $1.5~1.55B·$420~450M·$200~240M",
   "next": {
    "period": "FY2026",
-   "rev": 1575,
-   "rev_cons": 1600,
+   "rev": 1660,
+   "rev_cons": 1663,
    "unit": "$M"
   }
  },
  "call": {
-  "date": "2026-08-10",
-  "prev_date": "2026-05-11",
+  "date": "2026-11-04",
+  "prev_date": "2026-08-10",
   "tone": "up",
-  "tone_score": 6.5,
+  "tone_score": 6.0,
   "guidance_direction": "raise",
   "kpis": {
-   "economic_utilization": 0.96,
-   "avg_dayrate_k": 360,
-   "backlog_b": 2.934,
-   "ebitda_m": 144,
-   "cash_m": 360
+   "economic_utilization": 0.95,
+   "ebitda_m": 121,
+   "fcf_m": 179,
+   "cash_m": 506,
+   "net_leverage": 0.6,
+   "buyback_q3_m": 22,
+   "new_tcv_m": 800,
+   "drillship_days_open_2027": 0.15
   },
   "guidance_changes": [
-   "영업수익 $1.43~1.48B → $1.5~1.55B(대납 수익 제외)",
-   "EBITDA $370~420M → $420~450M",
-   "CAPEX $200~240M 유지",
-   "비현금 이동비 상각 $26M → $30M"
+   "영업수익 $1.5~1.55B → $1.56~1.58B(대납 제외, 3분기 연속 상향)",
+   "EBITDA $420~450M → $440~460M",
+   "CAPEX·장기 정비 $200~240M → $210~230M(중앙값 유지)"
   ],
   "new_topics": [
-   "2034 채권 $700M 6.75%로 8.375% 채권 $575M 차환",
-   "West Vela 12개월 $161M",
-   "6월 자사주 $20M(평균 $38.66)",
-   "드릴십 가동률 90% 중반 전망",
-   "2027 대형 특별 검사 없음"
+   "3Q FCF $179M — 하반기 FCF 전환 약속을 숫자로 확인",
+   "8월 이후 신규 계약 총액 약 $800M",
+   "West Carina 이동비 $85M(계약 시작 때 청구)",
+   "2027 미계약 드릴십 일수 30% → 15% 미만",
+   "Sonangol Libongos 약 3년 연장(2030년까지)",
+   "Sevan Louisiana LLOG 60일 — 멕시코만 3척 모두 LLOG",
+   "West Capella 연장, 무가격 옵션 일부를 일 $400K 중반에 행사(2028년 2월까지)",
+   "ONGC·Oil India 입찰은 일부러 참여하지 않음"
   ],
   "dropped_topics": [
-   "M&A 언급(1Q 콜의 '양쪽 모두 본다'가 2Q 준비 발언에서 빠졌다)"
+   "Petrobras 지연 위약금 분쟁(콜 발언·질문 모두 없음 — 10-Q 주석 미대조)",
+   "M&A 언급"
   ],
   "risks": [
-   "Sevan Louisiana 하반기 가시성 낮음",
-   "하반기 수리·정비비 집중",
-   "미국 멕시코만 연내 드릴십 공백",
-   "노동·자재 인플레이션",
-   "고객의 장기 선계약은 아직 전면 변화가 아니다"
+   "4분기 수리·정비비 집중",
+   "미국 멕시코만 드릴십 몇 척 공급 과잉",
+   "IOC는 여전히 프로그램 단위로만 장기 계약",
+   "3Q 순손실 −$30M(영업외 기타 −$48M, 내역 미대조)",
+   "West Gemini 2027년 1월 뒤 공백"
   ],
   "qa_focus": [
-   "Capital One: 자사주 규모와 속도",
-   "Barclays: 가이던스 상향 원인, $400K 중반 이후 일당",
-   "Clarksons: 2027 하반기 만료 리그, 운전자본",
-   "BTIG: 아시아의 7세대 수요, 2027 정기 검사",
-   "Pickering: 고객의 선계약, 냉각 정지 반잠수식 재가동",
-   "BWS: West Carina 후속 계약"
+   "Pickering: 멕시코만 2028 전망",
+   "Barclays: 일당 상승 속도·IOC 장기 계약",
+   "Citi: 2027 CAPEX·자사주",
+   "Clarksons: Carina 이동비 마진·청구 시점, Gemini 연장 시 관리 수익",
+   "BTIG: Aquarius·Phoenix 재가동 조건, 앙골라 4번째 리그",
+   "Capital One: 부대 서비스 마진, 4분기 비용",
+   "BWS: 2027 정지 일수, Gemini",
+   "Daniel Energy: ONGC 입찰"
   ],
-  "source": "회사 2Q 콜(2026-08-10)·1Q 콜(2026-05-11)",
+  "source": "회사 3Q 콜(2026-11-04)·2Q 콜(2026-08-10), 요지만 자기 말로",
   "deltas": [
    {
     "id": "F1",
     "kind": "업데이트",
-    "item": "2026 매출 가이던스",
+    "item": "2026 영업수익 가이던스",
     "label": "매출 가이던스 상향",
-    "prior": "$1.43~1.48B",
-    "latest": "$1.5~1.55B",
+    "prior": "$1.5~1.55B",
+    "latest": "$1.56~1.58B(대납 제외)",
     "driver": "rev0",
-    "shift": 0.07,
+    "shift": 0.03,
     "confidence": 0.8,
-    "source": "2Q 콜"
+    "source": "3Q 콜"
    },
    {
     "id": "F2",
     "kind": "업데이트",
     "item": "2026 EBITDA 가이던스",
     "label": "EBITDA 상향",
-    "prior": "$370~420M",
-    "latest": "$420~450M",
+    "prior": "$420~450M",
+    "latest": "$440~460M",
     "driver": "margin_m0",
-    "shift": 0.014,
+    "shift": 0.008,
     "confidence": 0.8,
-    "source": "2Q 콜"
+    "source": "3Q 콜"
    },
    {
     "id": "F3",
     "kind": "신규",
-    "item": "채권 차환",
-    "label": "채권 금리 인하",
-    "prior": "8.375% 2030년",
-    "latest": "6.75% 2034년",
-    "driver": "wacc",
-    "shift": -0.002,
+    "item": "3Q FCF",
+    "label": "3Q FCF $179M",
+    "prior": "1H26 FCF −$78M",
+    "latest": "3Q FCF $179M, 현금 $506M",
+    "driver": "net_debt",
+    "shift": -0.15,
     "confidence": 1.0,
-    "source": "2Q 10-Q 주석 9"
+    "source": "3Q 콜·10-Q"
    },
    {
     "id": "F4",
     "kind": "신규",
-    "item": "2027 드릴십 가동률",
-    "label": "가동률 90% 중반",
-    "prior": "2027 개선 전망",
-    "latest": "입찰이 전환되면 90% 중반",
-    "driver": "margin_target",
-    "shift": 0.015,
-    "confidence": 0.5,
-    "source": "2Q 콜"
+    "item": "2027 미계약 드릴십 일수",
+    "label": "2027 미계약 15%↓",
+    "prior": "30%",
+    "latest": "15% 미만",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "3Q 콜"
    },
    {
     "id": "F5",
+    "kind": "신규",
+    "item": "West Carina 이동비",
+    "label": "Carina 이동비 $85M",
+    "prior": "총액 $420M만 공개",
+    "latest": "이동비 $85M, 계약 시작 때 청구",
+    "driver": "margin_m0",
+    "shift": 0.004,
+    "confidence": 1.0,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F6",
     "kind": "부정",
-    "item": "하반기 수리·정비비",
-    "label": "하반기 정비비",
-    "prior": "1Q 말 일부 이연 언급",
-    "latest": "하반기 비중 높음",
+    "item": "4분기 정비비·3Q 순손실",
+    "label": "4Q 정비비 집중",
+    "prior": "하반기 정비비 증가",
+    "latest": "4분기 집중, 3Q 순손실 −$30M",
     "driver": "margin_m0",
     "shift": -0.005,
     "confidence": 0.8,
-    "source": "2Q 콜"
+    "source": "3Q 콜·XBRL"
+   },
+   {
+    "id": "F7",
+    "kind": "반복",
+    "item": "멕시코만 공급 과잉",
+    "label": "멕시코만 과잉",
+    "prior": "하반기 약세 예상",
+    "latest": "몇 척 과잉, 1~2척 더 이탈 가능",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 0.5,
+    "source": "3Q 콜"
    }
   ]
  },
@@ -1210,14 +1275,36 @@
    "growth": -0.05,
    "goodwill": 0,
    "intangibles": 0,
-   "pe_fwd": 21.03,
-   "ev_ebitda_fwd": 9.41,
-   "pe_fwd2": 15.72,
-   "ev_ebitda_fwd2": 7.74,
-   "pe_fwd3": 10.66,
-   "ev_ebitda_fwd3": 6.72,
-   "ntm_ebit_margin": 0.1927,
-   "ntm_growth": -0.0504
+   "pe_fwd": 15.2,
+   "ev_ebitda_fwd": 8.1,
+   "pe_fwd2": 12.37,
+   "ev_ebitda_fwd2": 6.93,
+   "pe_fwd3": 8.79,
+   "ev_ebitda_fwd3": 6.31,
+   "ntm_ebit_margin": 0.1915,
+   "ntm_growth": -0.0403,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 22.94,
+     "ev_ebitda_fwd": 7.63
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 45.46,
+     "ev_ebitda_fwd": 9.87
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 20.85,
+     "ev_ebitda_fwd": 7.78
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 19.77,
+     "ev_ebitda_fwd": 7.75
+    }
+   ]
   },
   {
    "ticker": "VAL",
@@ -1232,14 +1319,36 @@
    "growth": 0.0574,
    "goodwill": 0,
    "intangibles": 0,
-   "pe_fwd": 26.5,
-   "ev_ebitda_fwd": 13.1,
-   "pe_fwd2": 21.51,
-   "ev_ebitda_fwd2": 14.2,
-   "pe_fwd3": 18.8,
-   "ev_ebitda_fwd3": 12.12,
-   "ntm_ebit_margin": 0.1788,
-   "ntm_growth": 0.0574
+   "pe_fwd": 24.76,
+   "ev_ebitda_fwd": 11.19,
+   "pe_fwd2": 19.26,
+   "ev_ebitda_fwd2": 10.55,
+   "pe_fwd3": 15.4,
+   "ev_ebitda_fwd3": 9.28,
+   "ntm_ebit_margin": 0.1646,
+   "ntm_growth": 0.0816,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 14.02,
+     "ev_ebitda_fwd": 7.96
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 20.58,
+     "ev_ebitda_fwd": 11.75
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 11.03,
+     "ev_ebitda_fwd": 7
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 11.48,
+     "ev_ebitda_fwd": 7.4
+    }
+   ]
   },
   {
    "ticker": "NE",
@@ -1254,14 +1363,36 @@
    "growth": -0.2148,
    "goodwill": 0,
    "intangibles": 0,
-   "pe_fwd": 544.44,
-   "ev_ebitda_fwd": 11.98,
-   "pe_fwd2": 22.84,
-   "ev_ebitda_fwd2": 8.47,
-   "pe_fwd3": 15.84,
-   "ev_ebitda_fwd3": 6.8,
-   "ntm_ebit_margin": 0.0939,
-   "ntm_growth": -0.2147
+   "pe_fwd": 473.22,
+   "ev_ebitda_fwd": 10.67,
+   "pe_fwd2": 19.86,
+   "ev_ebitda_fwd2": 7.54,
+   "pe_fwd3": 13.77,
+   "ev_ebitda_fwd3": 6.06,
+   "ntm_ebit_margin": 0.0941,
+   "ntm_growth": -0.0459,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 27.29,
+     "ev_ebitda_fwd": 5.97
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 32.93,
+     "ev_ebitda_fwd": 8.71
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 25.37,
+     "ev_ebitda_fwd": 6.93
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 27.37,
+     "ev_ebitda_fwd": 8.24
+    }
+   ]
   },
   {
    "ticker": "BORR",
@@ -1276,14 +1407,36 @@
    "growth": 0.0078,
    "goodwill": 0,
    "intangibles": 0,
-   "pe_fwd": 106.1,
-   "ev_ebitda_fwd": 8.25,
+   "pe_fwd": 55.54,
+   "ev_ebitda_fwd": 9.29,
    "pe_fwd2": null,
-   "ev_ebitda_fwd2": 7.47,
+   "ev_ebitda_fwd2": 7.57,
    "pe_fwd3": null,
-   "ev_ebitda_fwd3": 6.77,
-   "ntm_ebit_margin": 0.2385,
-   "ntm_growth": 0.0078
+   "ev_ebitda_fwd3": 6.84,
+   "ntm_ebit_margin": 0.1827,
+   "ntm_growth": -0.0208,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 100.75,
+     "ev_ebitda_fwd": 6.58
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 144.25,
+     "ev_ebitda_fwd": 7.61
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 18.77,
+     "ev_ebitda_fwd": 6.45
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 64.83,
+     "ev_ebitda_fwd": 7.49
+    }
+   ]
   }
  ],
  "scenario_probs": {
@@ -1292,6 +1445,26 @@
   "bull": 0.25
  },
  "events": [
+  {
+   "date": "2026-11-05",
+   "tag": "콜 다음 날 추가 하락 −5.1%, 회사 사건 없음(원인 미확인)",
+   "kind": "market"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "3Q 실적 다음 날 −6.5%(EPS −$0.49, 가이던스 상향)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-03",
+   "tag": "3Q26 실적 8-K(장 마감 후)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-02",
+   "tag": "−9.2%, 회사 사건 없음(원인 미확인 — 같은 날 장 마감 후 Transocean·Valaris 3Q 발표)",
+   "kind": "market"
+  },
   {
    "date": "2026-10-23",
    "tag": "원인 미확인, 거래량 동반 +6.4%",
@@ -1344,8 +1517,8 @@
   }
  ],
  "next_event": {
-  "date": "2026-11-03",
-  "tag": "3Q26 실적(장 마감 후), 11/4 콜"
+  "date": "2027-02-24",
+  "tag": "4Q26 실적(예상, 회사 미확정 — 작년 2/25 발표 기준 추정)"
  },
  "terms": {
   "West Carina": "Seadrill의 2015년식 7세대 드릴십",
@@ -1360,7 +1533,7 @@
   "West Saturn": "Seadrill의 7세대 드릴십, 브라질 작업",
   "West Aquarius": "냉각 정지 중인 극한 해역용 반잠수식 시추선",
   "West Phoenix": "냉각 정지 중인 극한 해역용 반잠수식 시추선",
-  "West Elara": "노르웨이의 극한 해역용 잭업",
+  "West Elara": "Seadrill의 극한 해역용 잭업, 노르웨이 작업",
   "West Hercules": "Seadrill이 2022년 SFL에 반납한 반잠수식 시추선",
   "Sevan Louisiana": "원통형 반잠수식 시추선, 미국 멕시코만 단기 작업",
   "Sonadrill": "Seadrill과 앙골라 국영사 Sonangol의 합작사",
@@ -1377,7 +1550,13 @@
   "대납 비용 수익": "고객 대신 쓴 비용을 돌려받아 잡는 수익",
   "FID": "유전 개발 최종 투자 결정",
   "EOG": "미국 석유·가스 생산 회사",
-  "UTI": "Patterson-UTI, 미국 육상 시추 회사 이름의 일부"
+  "UTI": "Patterson-UTI, 미국 육상 시추 회사 이름의 일부",
+  "이동비": "시추선을 새 작업지로 옮기는 비용을 고객이 일시금으로 내는 돈",
+  "부대 서비스": "시추 외에 함께 파는 장비·인력 서비스",
+  "IOC": "국제 석유 메이저",
+  "SPS": "5년마다 받는 시추선 정기 검사",
+  "BOP": "유정 폭발을 막는 해저 차단 장치",
+  "XBRL": "공시 재무제표의 기계 판독용 숫자 표기"
  },
  "moat": {
   "summary": "해자는 강하지 않다. 있는 것은 공급 비탄력과 실행 기록이고 둘 다 사이클에 기대며, 고객 Petrobras가 34%다.",
@@ -1417,10 +1596,10 @@
   "why": "요인에 없는 조정은 하지 않는다"
  },
  "pipeline": {
-  "as_of": "2026-10-13",
+  "as_of": "2026-11-04",
   "reported_backlog": 2.934,
   "backlog_label": "계약 잔고(6월 말)",
-  "summary": "6월 말 잔고 $2.93B에 10월 West Carina $420M과 West Capella $41M이 더해졌다. West Gemini 후속과 냉각 정지 2척은 미확정이다.",
+  "summary": "6월 말 잔고 $2.93B에 8월 이후 신규 약 $800M(West Carina $420M 포함)이 더해졌다. 2027 미계약 드릴십 일수는 15% 미만이다. West Gemini 후속과 정지 2척 재가동은 미확정이다",
   "items": [
    {
     "name": "6월 말 계약 잔고",
@@ -1444,12 +1623,12 @@
     "margin": "미확인",
     "start": "2027-06",
     "end": "2029-11",
-    "speed": "880일, 이동비 포함 일 약 $477K",
+    "speed": "880일, 이동비 $85M 포함 총 약 $420M — 이동비는 계약 시작 때 청구(3Q 콜)",
     "blockers": [
      "이동 일정",
      "고객명 미공개"
     ],
-    "source": "Offshore Magazine 2026-10-13"
+    "source": "Offshore Magazine 2026-10-13·3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
    },
    {
     "name": "West Capella 말레이시아 연장",
@@ -1458,11 +1637,11 @@
     "progress": 0.0,
     "progress_basis": "기존 작업 뒤",
     "margin": "미확인",
-    "speed": "120일, 일 약 $342K, 2028년 2월까지",
+    "speed": "약 8개월 추가, 절반은 무가격 옵션을 일 $400K 중반에 행사, 2028년 2월까지",
     "blockers": [
      "추가 120일은 미확정"
     ],
-    "source": "Offshore Magazine 2026-10-13"
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
    },
    {
     "name": "West Vela Talos",
@@ -1484,11 +1663,11 @@
     "total": "미확인",
     "progress": "미확인",
     "margin": "미확인",
-    "speed": "연말 만료, 앙골라·서아프리카 입찰",
+    "speed": "현 계약 2027년 1월까지, 앙골라·서아프리카·아시아 영업 중",
     "blockers": [
      "계약 공백"
     ],
-    "source": "2Q 콜"
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
    },
    {
     "name": "West Aquarius·Phoenix 재가동",
@@ -1501,6 +1680,34 @@
      "재가동 비용을 대는 계약 필요"
     ],
     "source": "2Q 콜"
+   },
+   {
+    "name": "Sonangol Libongos 연장",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": 0.0,
+    "progress_basis": "2030년까지",
+    "margin": "미확인",
+    "speed": "약 3년, Sonadrill 관리 수익",
+    "blockers": [
+     "관리 수수료 조건 미공개"
+    ],
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "name": "Sevan Louisiana LLOG·Kosmos",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-11",
+    "end": "2027-01",
+    "speed": "LLOG 60일, 11월~2027년 1월 연속",
+    "blockers": [
+     "멕시코만 과잉"
+    ],
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
    }
   ]
  },
@@ -1551,7 +1758,7 @@
   ]
  },
  "narrative": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-13",
   "stage": "컨센서스",
   "crowding": "보통",
   "summary": "'신조 없는 심해 사이클'은 업계 공통 이야기다. Seadrill만의 이야기는 저가 계약 3건의 재계약이 끝났다는 것과 인수 대상이 될 수 있다는 것이다",
@@ -1693,10 +1900,10 @@
      "retail": "-"
     },
     "drives": "both",
-    "quant": "가정: 일당 $50K 상승 × 재계약 5척 × 가동률 96% = 연 약 $88M",
-    "status": "유지",
+    "quant": "2027 미계약 드릴십 일수 30% → 15% 미만(3Q 콜)",
+    "status": "강화",
     "falsifier": "2027 상반기 입찰이 지연되고 일당이 $400K 초반에 머문다",
-    "source": "2Q 콜, Noble 3Q"
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
    },
    {
     "name": "업계 재편·인수 대상",
@@ -1723,10 +1930,10 @@
      "retail": "-"
     },
     "drives": "multiple",
-    "quant": "2027 FCF 컨센서스 $200M = 시가총액의 6%",
-    "status": "유지",
-    "falsifier": "2H26 FCF가 음수로 끝난다",
-    "source": "2Q 10-Q"
+    "quant": "3Q FCF $179M, 3Q 자사주 $22M(연간 $42M = 시가총액의 1.5%)",
+    "status": "강화",
+    "falsifier": "12월 말 자사주 계획이 연장되지 않는다",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
    },
    {
     "name": "반대: Petrobras 분쟁과 소송",
@@ -1738,41 +1945,47 @@
      "retail": "-"
     },
     "drives": "multiple",
-    "quant": "지연 위약금 주장 $213M, 보상 주장 $825M(회사에 청구 안 함), SFL 약 $55M",
-    "status": "강화",
+    "quant": "지연 위약금 주장 $213M(2Q 10-Q), 3Q 콜에서는 언급 없음 — 3Q 주석 미대조",
+    "status": "유지",
     "falsifier": "조정이 소액으로 끝난다",
     "source": "2Q 10-Q 주석 13"
    }
   ],
   "lead": {
-   "summary": "**시장이 산 이야기는 '새 드릴십이 없어 2027년에 일당이 오른다'이다.** Seadrill은 여기에 저가 계약 재가격이 끝났다는 숫자를 더했다. West Carina는 880일 $420M으로 이동비 포함 일 약 $477K이고, 2Q 평균 일당 $360K보다 32% 높다. 주가는 6월 저점 종가 $37.70에서 $52.57로 +39%다. 지금 쟁점은 재계약 이후 남은 리그의 일당과 Petrobras 분쟁이다.",
-   "value_story": "값은 세 줄이다. 시장가로 바뀐 계약의 일당, 앞으로 재계약할 리그의 일당, Sonadrill 관리 수익이다. 2027 잔고는 10월 계약을 합쳐 컨센서스 매출의 약 3/4으로 추정한다. 나머지 1/4의 일당이 이익을 가른다.",
+   "summary": "**3Q는 '가동 일수가 현금으로 돌아오느냐'에 답했다.** FCF가 $179M 나왔고 현금은 $506M, 순레버리지 0.6배다. 가이던스는 3분기 연속 올랐다. 그런데 주가는 10/30 $52.57에서 $44.85로 −15%다. 3Q EPS가 −$0.49로 적자였고 4Q EPS 컨센서스도 적자로 내려갔다. 지금 쟁점은 2027이 아니라 2028 일당이다 — 2027 미계약 드릴십 일수는 이미 15% 미만이다.",
+   "value_story": "값은 세 줄이다. 시장가로 바뀐 계약의 일당, 2027 말~2028에 재계약할 리그(West Auriga·Neptune·Gemini)의 일당, Sonadrill 관리 수익이다. 2027은 계약으로 대부분 찼으므로 놀랄 여지는 2028 입찰에 있다.",
    "premium": {
-    "multiple": "Fwd 1Y EV/EBITDA 8.31배는 자기 36개월 범위(3.74~8.47배)의 꼭대기다. 동종 중앙값 10.7배보다는 22% 낮다. 2027~2028 이익이 커지는 분모 효과가 있어 Fwd 2Y는 5.83배다.",
-    "eps": "FY2027 EPS 컨센서스는 $1.92~$2.33이고 추정 범위는 $0.46~$3.30이다. 10/14 $3.30(1명)이 10/16 $2.33(2명)이 됐다. 표본이 늘며 평균이 내린 것이고 기존 추정의 하향인지는 미확인이다. 그래서 EPS 리비전은 근거가 약하고, 주가 변화 분석의 멀티플 변화도 이 표본 변화를 안고 있다."
+    "multiple": "Fwd 1Y EV/EBITDA 6.23배는 자기 36개월 범위(3.74~8.47배)의 중간 위이고 동종 중앙값보다 낮다. Fwd 2Y는 4.77배로 2027 이익 증가가 분모를 키운다.",
+    "eps": "EPS는 감가상각·영업외 비용 때문에 기준으로 쓰기 어렵다. Fwd 1Y P/E 57배는 이익이 거의 0이라는 뜻이고, 4Q EPS 컨센서스는 3Q 전 $0.11에서 −$0.19~−$0.22로 내렸다. 그래서 기준 지표는 EBITDA다."
    },
-   "why_excited": "2025년 4월 $18대에서 시작했다. 2026년 2월 Transocean의 Valaris 인수, 2월 말 이란 충돌과 호르무즈 봉쇄, 브렌트 2분기 평균 $103이 겹쳤다. 6월에 긴장이 풀리며 −31% 밀렸다가 2Q 상향과 10월 계약으로 회복했다. 브렌트가 8월 초 $82로 내려왔는데도 주가가 올라 지금은 유가보다 계약이 주가를 움직인다.",
+   "why_excited": "2025년 4월 $18대에서 시작해 2026년 5월 종가 고점 $54.80까지 갔다. 호르무즈 긴장과 Transocean·Valaris 합병, 재가격 계약이 겹쳤다. 10월 West Carina 계약으로 $52대를 회복했지만 11/2 −9.2%(원인 미확인), 11/4 3Q EPS 적자에 −6.5%가 나며 식었다. 기대는 FCF가 아니라 EPS를 보고 꺾였다.",
    "products": [
     {
      "kind": "서비스",
      "name": "드릴십 시추",
      "what": "12,000피트 수심의 심해 유정을 뚫는 선박과 인력을 일당으로 빌려준다",
      "use": "Petrobras, 미국 멕시코만 독립사, 동남아 운영사",
-     "money": "2Q 시추 수익 $355M, 평균 일당 $360K, 경제적 가동률 96%"
+     "money": "3Q 시추 수익 약 $329M, 경제적 가동률 95%, 평균 일당은 또 올랐다(수치 미공개)",
+     "name_en": "Drillship contract drilling",
+     "what_en": "Leases a deepwater drillship with crew at a day rate to drill offshore oil and gas wells"
     },
     {
      "kind": "서비스",
      "name": "Sonadrill 관리·리스",
      "what": "앙골라 합작사 리그 3척의 운영 대행과 West Gemini 임대",
      "use": "앙골라 심해",
-     "money": "2Q 관리 수익 $67M·리스 수익 $8M"
+     "money": "3Q 관리 수익 $66M·리스 약 $9M, Libongos 2030년까지 연장",
+     "name_en": "Sonadrill management and leasing",
+     "what_en": "Operates joint-venture drillships in Angola for a daily management fee"
     },
     {
      "kind": "제품",
      "name": "시추 선단",
      "what": "소유 15척. 드릴십 10척, 반잠수식 4척, 잭업 1척. 전부 2007년 이후 인도",
      "use": "소유 15척 중 3척 정지. West Aquarius·Phoenix 재가동비는 척당 $100M 이상",
-     "money": "장부가 $2.93B, 척당 약 $195M"
+     "money": "장부가 $2.93B, 척당 약 $195M",
+     "name_en": "Offshore drilling rig fleet",
+     "what_en": "Fifteen owned floaters and jackups: ten drillships, four semi-submersibles, one jackup"
     }
    ],
    "lenses": [
@@ -1880,63 +2093,67 @@
   "Elliott 13D/A No.9 https://www.sec.gov/Archives/edgar/data/1737706/000091957426006770/xslSCHEDULE_13D_X02/primary_doc.xml",
   "Offshore Magazine 계약 보도 https://www.offshore-mag.com/rigs/news/55411692/seadrill-seadrill-secures-drilling-contracts-and-extensions-across-us-gulf-southeast-asia-and-angola",
   "Seatrade SFL 판결 보도 https://www.seatrade-maritime.com/offshore/seadrill-loses-55m-appeal-over-hercules-rig-redelivery",
-  "Noble 3Q26 보도자료 https://www.sec.gov/Archives/edgar/data/0001895262/000189526226000147/exhibit991-q32026pressrele.htm",
   "Transocean 합병 진행 공시 https://www.sec.gov/Archives/edgar/data/0001451505/000110465926115872/tm269762d12_defa14a.htm",
   "공법 119-21 https://www.congress.gov/bill/119th-congress/house-bill/1",
-  "Transocean Valaris 인수 8-K https://www.sec.gov/Archives/edgar/data/1451505/000110465926011776/tm265550d1_ex99-1.htm"
+  "Transocean Valaris 인수 8-K https://www.sec.gov/Archives/edgar/data/1451505/000110465926011776/tm265550d1_ex99-1.htm",
+  "Seadrill 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1737706/000173770626000033/sdrl-20260930.htm",
+  "Seadrill 3Q26 실적 8-K(Item 2.02) https://www.sec.gov/Archives/edgar/data/1737706/000173770626000029/sdrl-20261103.htm",
+  "SEC XBRL companyfacts CIK 1737706"
  ],
  "raw": {
-  "retrieved_at": "2026-11-02T06:10:00+09:00",
-  "shares_cover_implied": 0.062541443,
+  "retrieved_at": "2026-11-13T06:40+09:00",
+  "shares_cover_implied": 0.061498053,
   "fiscal_profile": {
    "companyKey": "NYSE_SDRL",
-   "price": 52.57,
-   "market_cap": 3.288,
-   "total_cash": 0.36,
-   "total_debt": 0.754,
-   "shares_outstanding": 0.062541443,
-   "as_of": "2026-10-30",
-   "balance_date": "2026-06-30"
+   "price": 44.85,
+   "market_cap": 2.758,
+   "total_cash": 0.483,
+   "total_debt": 0.759,
+   "shares_outstanding": 0.061498053,
+   "as_of": "2026-11-12",
+   "balance_date": "2026-09-30",
+   "source": "Easyconomics company_profile(yfinance)·XBRL"
   },
   "quarters_gaap": {
    "rev": {
-    "2025Q3": 0.363,
-    "2025Q4": 0.362,
-    "2026Q1": 0.358,
-    "2026Q2": 0.449
+    "4Q25": 0.362,
+    "1Q26": 0.358,
+    "2Q26": 0.449,
+    "3Q26": 0.428
    },
    "op_income": {
-    "2025Q3": 0.026,
-    "2025Q4": -0.003,
-    "2026Q1": 0.024,
-    "2026Q2": 0.072
-   }
-  },
-  "balance_2026_06_30": {
-   "equity": 2.864,
-   "cash": 0.36,
-   "st_investments": 0.0,
-   "debt_current": 0.0,
-   "debt_lt": 0.737,
-   "lease_current": 0.0,
-   "lease_lt": 0.017,
-   "receivables": 0.311,
-   "ppe": 2.926,
-   "contract_liabilities": 0.139
+    "4Q25": -0.003,
+    "1Q26": 0.024,
+    "2Q26": 0.072,
+    "3Q26": 0.044
+   },
+   "3Q26_detail": {
+    "rev": 428,
+    "op": 44,
+    "nonop": -55,
+    "other_nonop": -48,
+    "interest": -15,
+    "tax": 19,
+    "net": -30,
+    "eps": -0.49,
+    "da": 77,
+    "ebitda_adj": 121
+   },
+   "source": "Fiscal.ai 표준화 손익·XBRL"
   },
   "estimates_sales_m": {
    "2026Q1": 358,
    "2026Q2": 449,
-   "2026Q3": 415,
-   "2026Q4": 378,
-   "2027Q1": 405,
-   "2027Q2": 410,
-   "2027Q3": 434,
-   "2027Q4": 431,
-   "2028Q1": 435.6,
-   "2028Q2": 456,
-   "2028Q3": 443.7,
-   "2028Q4": 444.7
+   "2026Q3": 428,
+   "2026Q4": 428,
+   "2027Q1": 430,
+   "2027Q2": 445,
+   "2027Q3": 455,
+   "2027Q4": 440,
+   "2028Q1": 463.5,
+   "2028Q2": 481.6,
+   "2028Q3": 472.9,
+   "2028Q4": 462.1
   },
   "sec": {
    "fcf_1h26_m": -78,
@@ -1953,7 +2170,11 @@
    "restricted_cash_m": 23,
    "customers_over_10pct_2q26": "Petrobras 34%, Sonadrill 18%, Walter Oil & Gas 10%",
    "government_support": "정부 지원·전략 계약 공시 없음",
-   "master_notion": "노션 Stocks 해양시추(2026-10-28): 적치 3기, 핵심 확인은 가동일수 증가의 현금 회수. IB 원문 아님"
+   "master_notion": "노션 Stocks 해양시추(2026-10-28): 적치 3기, 핵심 확인은 가동일수 증가의 현금 회수. IB 원문 아님",
+   "fcf_3q26_m": 179,
+   "buyback_3q26": "547,674주 $22M, 평균 $40.34(XBRL)",
+   "note_3q": "www.sec.gov 원문 서버는 연락처 User-Agent가 없어 403 — 3Q 10-Q 본문(약정·제한 현금·10% 고객·분쟁 주석)은 이번 회차 열지 못했다. XBRL 수치만 대조. 10% 고객·구매 약정·Petrobras·SFL은 2Q 10-Q·FY2025 10-K 값을 유지한다",
+   "sfl_hypothesis": "3Q 영업외 기타 −$48M은 SFL 항소 패소 판결금 약 $55M과 같은 분기(10/14 보도는 분기 뒤) — 인식 여부 미확인, 가설"
   },
   "zacks": {
    "rev": {
@@ -1975,7 +2196,34 @@
    "elliott_shares_1008": 3108641,
    "elliott_swaps_1008": 4228545,
    "insider_open_market_sells_jun_m": 5.44
-  }
+  },
+  "prior_balance_2026_06_30": {
+   "equity": 2.864,
+   "cash": 0.36,
+   "st_investments": 0.0,
+   "debt_current": 0.0,
+   "debt_lt": 0.737,
+   "lease_current": 0.0,
+   "lease_lt": 0.017,
+   "receivables": 0.311,
+   "ppe": 2.926,
+   "contract_liabilities": 0.139
+  },
+  "balance_2026_09_30": {
+   "equity": 2.816,
+   "cash": 0.483,
+   "st_investments": 0.0,
+   "debt_current": 0.0,
+   "debt_lt": 0.737,
+   "lease_current": 0.0,
+   "lease_lt": 0.022,
+   "cash_incl_restricted": 0.506,
+   "debt_principal": 0.75,
+   "assets": 4.152,
+   "contract_liabilities": 0.137,
+   "source": "SEC XBRL companyfacts 3Q26 10-Q(0001737706-26-000033) · 리스 = 총차입 $759M(개요) − 장기차입 $737M"
+  },
+  "estimates_sales_source": "Fiscal.ai company_estimates 2026-11-05(1Q~3Q26은 실적)"
  },
  "overrides": {
   "s2c": 2.5,
@@ -1991,13 +2239,6 @@
   "why": "시추선은 이미 있고 신조 계획이 없어 매출 성장에 새 자본이 거의 들지 않는다. 규칙의 매출 ÷ 투하자본 0.5는 선단을 새로 사는 값이라 2.5로 둔다. 장기 이익률 20%는 FY2028 EBIT 이익률 16.3%에 일당 상승을 더한 값이고 사이클 평균으로 낮춘다"
  },
  "revision_events": [
-  {
-   "date": "2025-11-05",
-   "kind": "실적",
-   "tag": "3Q25 실적, 다음 날 -6.1%",
-   "q": "3Q25",
-   "session": "after"
-  },
   {
    "date": "2026-02-09",
    "kind": "내러티브",
@@ -2030,6 +2271,1026 @@
    "kind": "내러티브",
    "tag": "West Carina $420M 계약 공개(10/15~16 추정 표본 1→2명 변경과 겹침)",
    "session": "intraday"
+  },
+  {
+   "date": "2026-11-03",
+   "kind": "실적",
+   "tag": "3Q26 실적, 다음 날 −6.5%",
+   "q": "3Q26",
+   "session": "after"
   }
- ]
+ ],
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized — 2023-03 이후만(2022년 이전은 파산 전 선행 법인·반기 균등 분할 값이라 제외)",
+  "key": "NYSE_SDRL",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2023-03-31",
+    "rev": 266000000.0,
+    "cogs": 166000000.0,
+    "gp": 100000000.0,
+    "sga": 14000000.0,
+    "rd": null,
+    "da": 36000000.0,
+    "other": -1000000.0,
+    "op": 51000000.0
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 414000000.0,
+    "cogs": 241000000.0,
+    "gp": 173000000.0,
+    "sga": 14000000.0,
+    "rd": null,
+    "da": 37000000.0,
+    "other": 13000000.0,
+    "op": 109000000.0
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 414000000.0,
+    "cogs": 243000000.0,
+    "gp": 171000000.0,
+    "sga": 20000000.0,
+    "rd": null,
+    "da": 39000000.0,
+    "other": -5000000.0,
+    "op": 117000000.0
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 408000000.0,
+    "cogs": 284000000.0,
+    "gp": 124000000.0,
+    "sga": 26000000.0,
+    "rd": null,
+    "da": 43000000.0,
+    "other": 3000000.0,
+    "op": 52000000.0
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 367000000.0,
+    "cogs": 238000000.0,
+    "gp": 129000000.0,
+    "sga": 25000000.0,
+    "rd": null,
+    "da": 38000000.0,
+    "other": -14000000.0,
+    "op": 80000000.0
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 375000000.0,
+    "cogs": 220000000.0,
+    "gp": 155000000.0,
+    "sga": 24000000.0,
+    "rd": null,
+    "da": 43000000.0,
+    "other": -200000000.0,
+    "op": 288000000.0
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 354000000.0,
+    "cogs": 236000000.0,
+    "gp": 118000000.0,
+    "sga": 27000000.0,
+    "rd": null,
+    "da": 42000000.0,
+    "other": 2000000.0,
+    "op": 47000000.0
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 289000000.0,
+    "cogs": 230000000.0,
+    "gp": 59000000.0,
+    "sga": 31000000.0,
+    "rd": null,
+    "da": 45000000.0,
+    "other": -14000000.0,
+    "op": -3000000.0
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 335000000.0,
+    "cogs": 239000000.0,
+    "gp": 96000000.0,
+    "sga": 23000000.0,
+    "rd": null,
+    "da": 55000000.0,
+    "other": null,
+    "op": 18000000.0
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 377000000.0,
+    "cogs": 289000000.0,
+    "gp": 88000000.0,
+    "sga": 26000000.0,
+    "rd": null,
+    "da": 56000000.0,
+    "other": null,
+    "op": 6000000.0
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 363000000.0,
+    "cogs": 251000000.0,
+    "gp": 112000000.0,
+    "sga": 27000000.0,
+    "rd": null,
+    "da": 58000000.0,
+    "other": 1000000.0,
+    "op": 26000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 362000000.0,
+    "cogs": 247000000.0,
+    "gp": 115000000.0,
+    "sga": 27000000.0,
+    "rd": null,
+    "da": 69000000.0,
+    "other": 22000000.0,
+    "op": -3000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 358000000.0,
+    "cogs": 237000000.0,
+    "gp": 121000000.0,
+    "sga": 25000000.0,
+    "rd": null,
+    "da": 71000000.0,
+    "other": 1000000.0,
+    "op": 24000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 449000000.0,
+    "cogs": 276000000.0,
+    "gp": 173000000.0,
+    "sga": 29000000.0,
+    "rd": null,
+    "da": 72000000.0,
+    "other": 0.0,
+    "op": 72000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 428000000.0,
+    "cogs": 282000000.0,
+    "gp": 146000000.0,
+    "sga": 25000000.0,
+    "rd": null,
+    "da": 77000000.0,
+    "other": 0.0,
+    "op": 44000000.0
+   }
+  ]
+ },
+ "sbc_pct_rev": 0.0,
+ "scenario_probs_why": "3Q 콜 톤은 개선(가이던스 3연속 상향, FCF $179M)이지만 4Q EPS 컨센서스가 적자로 내려갔고 IOC 장기 계약은 아직 선별적이다",
+ "names": [
+  "Seadrill",
+  "Petrobras",
+  "Sonangol",
+  "Sonadrill",
+  "Transocean",
+  "Valaris",
+  "Noble",
+  "Borr",
+  "Odfjell",
+  "LLOG",
+  "Kosmos",
+  "Talos",
+  "Eni",
+  "Walter Oil & Gas",
+  "ONGC",
+  "Oil India",
+  "Chevron",
+  "Shell",
+  "ExxonMobil",
+  "BP",
+  "Equinor",
+  "Aker BP",
+  "Vår Energi",
+  "SFL",
+  "Elliott",
+  "Pickering Energy Partners",
+  "Barclays",
+  "Citi",
+  "Clarksons Securities",
+  "BTIG",
+  "Capital One Securities",
+  "BWS Financial",
+  "Daniel Energy Partners",
+  "Wood Mackenzie",
+  "RigLogix",
+  "NOV",
+  "Samir Ali",
+  "Grant Creed",
+  "Jacob Taylor",
+  "TradingView",
+  "RIG",
+  "VAL",
+  "NE",
+  "BORR",
+  "Patient Capital",
+  "삼성중공업",
+  "한화오션",
+  "HD현대중공업",
+  "HD",
+  "JP"
+ ],
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "TTM 영업이익률이 3.4%에서 8.6%로 올랐다. 매출원가 비중이 74%에서 65%로 내려간 덕이고, 재가격된 드릴십 일당이 같은 인력·정비비 위에 얹혔다. 원가 분해는 회사가 공시하지 않아 추정이다",
+  "periods": [
+   {
+    "period": "TTM 3Q25",
+    "rev": 1.364,
+    "cogs": 1.009,
+    "rd": 0.0,
+    "sga": 0.107,
+    "other": 0.201
+   },
+   {
+    "period": "TTM 3Q26",
+    "rev": 1.597,
+    "cogs": 1.042,
+    "rd": 0.0,
+    "sga": 0.106,
+    "other": 0.312
+   }
+  ],
+  "costs": [
+   {
+    "name": "시추 인력(선원·육상 지원)",
+    "stage": "매출원가",
+    "pct_rev": 0.29,
+    "prior_pct": 0.31,
+    "fixed": 0.8,
+    "driver": "척당 약 100~150명 선원, 정지 선박에도 일부 남는다",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "name": "수리·정비",
+    "stage": "매출원가",
+    "pct_rev": 0.11,
+    "prior_pct": 0.12,
+    "fixed": 0.3,
+    "driver": "4분기 집중(3Q 콜), Carina 이동 전 정비",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "name": "대납 비용",
+    "stage": "매출원가",
+    "pct_rev": 0.05,
+    "prior_pct": 0.05,
+    "fixed": 0.0,
+    "driver": "고객 대신 쓰고 같은 금액을 대납 비용 수익으로 받는다(FY2026 약 $90M)",
+    "basis": "공시",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "name": "Sonadrill 관리 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.07,
+    "prior_pct": 0.08,
+    "fixed": 0.6,
+    "driver": "앙골라 합작사 3척 운영 대행 인력",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "name": "기타 선박 운영비(보험·물류·이동 상각)",
+    "stage": "매출원가",
+    "pct_rev": 0.132,
+    "prior_pct": 0.18,
+    "fixed": 0.5,
+    "driver": "이동비 상각 순비용 FY2026 $33M 포함",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.066,
+    "prior_pct": 0.078,
+    "fixed": 0.9,
+    "driver": "본사 비용, 분기 $25~29M",
+    "basis": "공시",
+    "source": "SEC XBRL companyfacts 3Q26 10-Q(0001737706-26-000033)"
+   },
+   {
+    "name": "감가상각",
+    "stage": "기타",
+    "pct_rev": 0.181,
+    "prior_pct": 0.157,
+    "fixed": 1.0,
+    "driver": "장기 정비 자본화와 재가동 선박 상각",
+    "basis": "공시",
+    "source": "SEC XBRL companyfacts 3Q26 10-Q(0001737706-26-000033)"
+   },
+   {
+    "name": "기타 영업 손익",
+    "stage": "기타",
+    "pct_rev": 0.014,
+    "prior_pct": -0.01,
+    "fixed": "미확인",
+    "driver": "자산 처분·기타",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익"
+   }
+  ],
+  "products": [
+   {
+    "name": "드릴십 시추",
+    "rev_share": 0.77,
+    "rev_share_prev": "미확인",
+    "mix_basis": "3Q 매출 $428M에서 관리 $66M·대납 $24M·리스 약 $9M을 뺀 몫(추정)",
+    "gpm": 0.348,
+    "gpm_basis": "회사 TTM 총이익률 대용(사업별 원가 미공시)",
+    "bom": [
+     {
+      "item": "시추 인력(선원·육상 지원)",
+      "share": [
+       0.4,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "숙련 해상 인력 임금"
+     },
+     {
+      "item": "수리·정비",
+      "share": [
+       0.15,
+       0.22
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+      "pass_through": 0.0,
+      "why": "BOP·시추 장비 부품, 일당에 넘기지 못한다",
+      "input": "oilwell_drilling"
+     },
+     {
+      "item": "기타 선박 운영비(보험·물류·이동 상각)",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "보험료·보급선·이동비"
+     }
+    ]
+   },
+   {
+    "name": "Sonadrill 관리·리스",
+    "rev_share": 0.175,
+    "rev_share_prev": "미확인",
+    "mix_basis": "3Q 관리 수익 $66M + 리스 약 $9M ÷ $428M(추정)",
+    "gpm": 0.348,
+    "gpm_basis": "회사 총이익률 대용",
+    "bom": [
+     {
+      "item": "관리 인력",
+      "share": [
+       0.6,
+       0.75
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "운영 대행 인력"
+     },
+     {
+      "item": "기술 지원·부품",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "본사 기술 지원"
+     },
+     {
+      "item": "기타 관리비",
+      "share": [
+       0.05,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "현지 비용"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-13",
+  "summary": "투입물의 병목은 사람과 정비다. 새 드릴십 공급이 막힌 것은 회사에 유리한 업계 병목이다. 부품 공급사·몫은 공시되지 않는다",
+  "links": [
+   {
+    "item": "추가 드릴십(신조)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "한국 대형 조선소(삼성중공업·한화오션·HD현대중공업 등)",
+      "role": "드릴십 건조",
+      "status": "추정",
+      "source": "업계 통념 — 2010년대 드릴십 대부분이 한국 조선소 건조(이번 회차 1차 대조 안 됨)"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "부족",
+    "capacity_basis": "신조 발주가 없어 업계 선단이 고정이다 — 회사에는 유리한 병목(3Q 콜 '공급 비탄력'·2Q 콜)",
+    "lead_weeks": 156,
+    "lead_normal": 156,
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 0.9,
+    "region": "한국",
+    "secured": "내재화",
+    "factor_basis": "추정(자체 추론): 건조 가능 조선소 3곳 내외, 건조 기간 약 3년, 한국 비중 약 90% — 1차 대조 안 됨",
+    "why": "수요가 늘어도 3년 안에 새 드릴십이 나오지 않아 일당이 오른다",
+    "relief": "미확인(신조 발주 없음)",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "item": "시추 인력(선원·육상 지원)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "자체 고용(전 세계 약 3,000명)",
+      "role": "선원·운영",
+      "status": "회사 발표",
+      "source": "Easyconomics company_profile(직원 수)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "균형",
+    "capacity_basis": "3Q 콜에 인력 부족 언급 없음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "다국적(브라질·미국·앙골라·동남아)",
+    "secured": "내재화",
+    "why": "가동률 95%는 숙련 선원에 달렸다",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   },
+   {
+    "item": "수리·정비",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "시추 장비·BOP 제조사(이름 미공시)",
+      "role": "부품·정비",
+      "status": "추정",
+      "source": "FY2025 10-K(공급사 미공시)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "공급 지연 언급 없음, 정비는 4분기 집중(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "BOP·드릴링 패키지 정비가 가동 일수를 정한다",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+    "input": "oilwell_drilling"
+   },
+   {
+    "item": "재가동 작업(정지 선박)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "노르웨이 조선소(이름 미공시)",
+      "role": "West Aquarius·Phoenix 재가동",
+      "status": "추정",
+      "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "고객이 재가동비를 대는 계약이 있어야 시작(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "노르웨이",
+    "secured": "미확인",
+    "why": "정지 2척이 추가 캐파",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   }
+  ]
+ },
+ "capacity": {
+  "unit": "척",
+  "as_of": "2026-11-04",
+  "summary": "소유 시추선 15척 중 정지 3척, 나머지는 계약 중이고 경제적 가동률 95%다. 신조 계획은 없고 늘릴 수 있는 캐파는 정지한 반잠수식 2척의 재가동뿐이다(고객이 비용을 대야 시작)",
+  "current": {
+   "nameplate": 15,
+   "utilization": 0.8,
+   "basis": "소유 15척 중 가동 12척(정지 3척) = 80%. 경제적 가동률 95%는 계약 중 선박의 수취율이라 다른 개념이다",
+   "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+  },
+  "plans": [
+   {
+    "name": "West Aquarius·Phoenix 재가동",
+    "add": 2,
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "고객이 재가동비를 대는 다년 계약이 필요(3Q 콜)",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 0.323,
+    "rev": 1.437,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.22,
+    "rev": 1.663,
+    "kind": "가이던스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.22,
+    "rev": 1.77,
+    "kind": "추정"
+   }
+  ],
+  "capex_note": "FY2025 = 설비 추가 + 장기 정비(FY2025 10-K 현금흐름표, 2Q 회차 대조). FY2026 = 가이던스 중앙 $220M. FY2027은 CFO가 '올해와 비슷한 수준'이라고만 해 같은 값으로 둔다(추정)",
+  "facilities": {
+   "count": 15,
+   "count_basis": "소유 시추선 15척(FY2025 10-K Item 2 — 드릴십 10·반잠수식 4·잭업 1). 고정 공장은 없다. 이름을 확인한 선박만 아래에 적는다",
+   "source": "https://www.sec.gov/Archives/edgar/data/1737706/000173770626000010/sdrl-20251231.htm",
+   "items": [
+    {
+     "name": "West Tellus",
+     "location": "브라질 해상",
+     "owned": "소유",
+     "use": "드릴십(Petrobras)",
+     "capacity": "미확인",
+     "capacity_basis": "선박별 시추 능력 수치 미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Jupiter",
+     "location": "브라질 해상",
+     "owned": "소유",
+     "use": "드릴십(Petrobras)",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Polaris",
+     "location": "브라질 해상",
+     "owned": "소유",
+     "use": "드릴십",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Auriga",
+     "location": "브라질 해상",
+     "owned": "소유",
+     "use": "드릴십, 2027년 말 계약 종료",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Saturn",
+     "location": "브라질 해상",
+     "owned": "소유",
+     "use": "드릴십",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Carina",
+     "location": "브라질 → 인도네시아 이동 중",
+     "owned": "소유",
+     "use": "드릴십, 2027년 Eni 인도네시아",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동 중단"
+    },
+    {
+     "name": "West Capella",
+     "location": "말레이시아 해상",
+     "owned": "소유",
+     "use": "드릴십, 2028년 2월까지",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Neptune",
+     "location": "미국 멕시코만",
+     "owned": "소유",
+     "use": "드릴십(LLOG), 2027년 말까지",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Vela",
+     "location": "미국 멕시코만",
+     "owned": "소유",
+     "use": "드릴십, 2028년 중반까지",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Gemini",
+     "location": "앙골라 해상",
+     "owned": "소유",
+     "use": "드릴십(Sonadrill 임대), 2027년 1월까지",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "Sevan Louisiana",
+     "location": "미국 멕시코만",
+     "owned": "소유",
+     "use": "원통형 반잠수식(Kosmos·LLOG)",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Elara",
+     "location": "노르웨이 해상",
+     "owned": "소유",
+     "use": "극한 해역 잭업",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동"
+    },
+    {
+     "name": "West Aquarius",
+     "location": "노르웨이(정지)",
+     "owned": "소유",
+     "use": "극한 해역 반잠수식",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동 중단"
+    },
+    {
+     "name": "West Phoenix",
+     "location": "노르웨이(정지)",
+     "owned": "소유",
+     "use": "극한 해역 반잠수식",
+     "capacity": "미확인",
+     "capacity_basis": "미대조",
+     "status": "가동 중단"
+    }
+   ]
+  },
+  "sites_none": "시추선은 바다를 옮겨 다니는 선박이라 위성으로 판독할 고정 시설이 없다"
+ },
+ "customers": {
+  "as_of": "2026-06-30",
+  "period": "2Q26",
+  "summary": "10% 이상 고객은 2Q 10-Q 기준 Petrobras 34%·Sonadrill 18%·Walter Oil & Gas 10%다. 3Q 10-Q 고객 주석은 이번 회차 열지 못했다. 3Q에는 West Tellus가 Petrobras에서 한 분기 내내 일했고 West Carina가 브라질을 떠났다",
+  "items": [
+   {
+    "name": "Petrobras",
+    "alias": "Petrobras",
+    "share": 0.34,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "브라질 드릴십 시추",
+    "source": "2Q26 10-Q",
+    "why": "브라질 5척 안팎, Sete Brazil 관련 분쟁 중"
+   },
+   {
+    "name": "Sonadrill",
+    "alias": "Sonadrill",
+    "share": 0.18,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "관리 계약·West Gemini 임대",
+    "source": "2Q26 10-Q",
+    "why": "Libongos 약 3년 연장(3Q 콜)"
+   },
+   {
+    "name": "Walter Oil & Gas",
+    "alias": "Walter Oil & Gas",
+    "share": 0.1,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "멕시코만 시추",
+    "source": "2Q26 10-Q",
+    "why": "멕시코만 계약"
+   },
+   {
+    "name": "LLOG",
+    "alias": "LLOG",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "멕시코만 3척",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+    "why": "Sevan Louisiana 60일 계약으로 멕시코만 3척 모두 LLOG"
+   },
+   {
+    "name": "Eni",
+    "alias": "Eni",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "회사 발표",
+    "buys": "West Carina 인도네시아(2027 시작)",
+    "source": "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
+    "why": "880일 약 $420M, 이동비 $85M"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 24,
+  "coverage_next_fy": 0.75,
+  "revenue_growth": 0.171,
+  "top_customer_share": 0.34,
+  "source": "잔고 = 6월 말 $2.93B − 3Q 인식 약 $0.40B + 신규 약 $0.80B ≈ $3.3B(추정, 9월 말 공시 잔고 미대조). 전환 = $3.3B ÷ 월평균 매출 $0.138B ≈ 24개월. 2027 커버 = 2027 인식 잔고 약 $1.3B(6월 말 $1.18B + 신규 일부, 추정) ÷ FY2027 컨센서스 $1.77B ≈ 0.75 — 회사는 2027 미계약 드릴십 일수 15% 미만이라고 했다(3Q 콜). 매출 성장 = TTM $1,597M ÷ $1,364M − 1"
+ },
+ "sync": {
+  "none": "일당은 1~3년 전에 맺은 계약으로 정해져 같은 분기 무역·PPI와 동행하지 않는다. 유정 시추 PPI(NAICS 213111)는 정비 품목 input으로만 연결했다"
+ },
+ "pq": {
+  "none": "평균 일당·가동 일수 분기 시계열을 이번 회차에 4개 분기 이상 확보하지 못했다(2Q 평균 $360K, 3Q 추가 상승만 확인)"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수·합병 없음 — Aquadrill 인수는 2023년 4월 종결로 3년 경과"
+ },
+ "social": {
+  "none": "Quantral 수록, 최근 24시간·7일 언급 없음, 월간 요약 없음(2026-11-13 조회)"
+ },
+ "midterm": {
+  "sub": "oilfield",
+  "exposure": {
+   "fossil_permitting": 0.3
+  },
+  "etf": "AMEX:XOP",
+  "why": "미국 매출은 멕시코만 3~4척(약 25~30%, 추정)뿐이고 브라질·앙골라·동남아가 대부분이라 미국 인허가 노출을 낮춘다"
+ },
+ "ladder": {
+  "exit": {
+   "ev_ebitda": 7.0,
+   "ebitda_margin": 0.38,
+   "opm": 0.2,
+   "net_margin": 0.13,
+   "basis": "출구 Fwd EV/EBITDA 7배 = 자기 36개월 범위(3.7~8.5배) 상단과 동종 Fwd 2Y(약 5~9배) 사이. EBITDA 이익률 38%는 신규 일당 $450K 이상이 선단 전체로 번질 때의 사이클 상단(FY2028 컨센서스 33%), 순이익률 13%는 감가상각 $300M대와 이자·세금 뒤(추정)"
+  },
+  "refs": [
+   {
+    "label": "TTM(실적)",
+    "value": 1.597
+   },
+   {
+    "label": "FY2026 컨센서스",
+    "value": 1.663
+   },
+   {
+    "label": "FY2027 컨센서스",
+    "value": 1.77
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "EBITDA 약 $0.8B — 매출 약 $2.1B에 이익률 38%. 평균 일당이 $500K 안팎으로 오르고 정지 2척이 재가동해야 한다",
+    "outlook": "FY2028 컨센서스 EBITDA $620M과의 차이는 일당 사이클 상단 하나다"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "EBITDA 약 $1.2B — 매출 약 $3.1B",
+    "outlook": "15척 전부가 일 $550K 이상, 가동률 95%면 근처에 닿는다. 지난 사이클 고점(2013~2014)급이 필요하다"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "매출 약 $5B",
+    "outlook": "선단을 두 배로 늘려야 한다 — 신조 계획이 없다"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $28B",
+    "outlook": "경로가 없다. 10배는 기저율상 희귀 사건이다"
+   }
+  },
+  "summary": "2배도 일당 사이클 상단과 재가동이 필요하다. 10배 경로는 없다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "FCF 전환이 확인됐다 — 3Q $179M, Carina 이동비 $85M이 2027 상반기에 들어온다",
+    "evidence": [
+     "3Q FCF $179M",
+     "순레버리지 0.6배",
+     "2027 미계약 15% 미만"
+    ],
+    "falsifier": "4Q FCF가 다시 음수"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "가이던스 3연속 상향인데 주가는 10/30 고점 대비 −15%다",
+    "evidence": [
+     "EBITDA $440~460M",
+     "목표가 평균 $56.56"
+    ],
+    "falsifier": "2027 EBITDA 컨센서스가 $500M 아래로"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "2027은 이미 계약으로 찼고 위쪽은 2028 일당에 달렸다",
+    "evidence": [
+     "Fwd 2Y EV/EBITDA 4.8배",
+     "IOC는 프로그램 단위 계약"
+    ],
+    "falsifier": "2028 시작 다년 계약이 $500K 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "EPS는 적자 — 4Q EPS 컨센서스 −$0.22, 3Q 순손실 −$30M",
+    "evidence": [
+     "3Q EPS −$0.49",
+     "영업외 −$55M"
+    ],
+    "falsifier": "4Q 흑자 전환"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "멕시코만 과잉과 Petrobras 분쟁이 2027 하반기 재계약을 누른다",
+    "evidence": [
+     "멕시코만 몇 척 과잉",
+     "Petrobras 위약금 주장 $213M"
+    ],
+    "falsifier": "West Gemini가 $450K 이상에 계약"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "약속한 하반기 FCF가 한 분기에 $179M 나왔다"
+     },
+     {
+      "seat": "Buy",
+      "text": "가이던스는 올랐는데 주가는 내렸다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "2027은 숫자가 거의 정해졌다. 놀랄 여지가 작다"
+     },
+     {
+      "seat": "Sell",
+      "text": "주주에게 남는 이익은 아직 적자다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "멕시코만이 과잉이고 최대 고객과 분쟁 중이다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "적자는 감가상각과 영업외 일회성이다. EBITDA $121M을 봐야 한다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Sell",
+      "text": "영업외 −$48M의 내역을 회사가 콜에서 설명하지 않았다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "−15%는 업종 동반 하락이 섞였다. 회사 숫자만의 신호가 아니다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "같은 업종 안에서 순레버리지가 가장 낮다",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "Fwd 1Y P/E 57배는 이익이 없다는 뜻이다",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "멕시코만 2척은 2027 말·2028 중반까지 잡혀 있다",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "Gemini는 2027년 1월 뒤 비어 있다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "EV/EBITDA 6.2배는 동종 중앙 9.7배보다 낮다. 싸 보이지만 이익 저점 분모다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "자사주 연 $42M은 시가총액의 1.5%다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Sell",
+      "text": "자사주 계획은 12월 말 만료다",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "4Q FCF 확인 전이라 Buy로 물러선다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "Buy 유지"
+     },
+     {
+      "seat": "Neutral",
+      "text": "동종보다 38% 싼 배수는 2027이 다 반영됐다는 내 논리를 약하게 한다 — Buy로 옮긴다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "EBITDA 상향은 인정한다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "분쟁 위험을 남겨 Sell",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Buy",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "FCF 전환이 숫자로 확인됐고 Fwd 1Y EV/EBITDA가 동종 중앙값보다 크게 낮다. 2028 일당과 EPS 적자는 남은 위험이라 Strong Buy까지는 가지 않는다"
+  }
+ },
+ "photos": []
 }
