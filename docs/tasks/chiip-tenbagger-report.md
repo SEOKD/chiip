@@ -75,6 +75,11 @@
    c. 콜로 판단이 달라졌으면 Chiip View·요약·시나리오를 고친다. 맨 끝 절 '재발행 기록 — 어닝콜 전문 반영'에 무엇이 바뀌었는지 전 → 후로 적는다. 달라진 게 없어도 그렇게 적는다.
    d. 6번 발행을 같은 주소로 한다: `prepare` → 노션 같은 페이지 갱신(Artifact 없음, 2026-11-04) → `publish_tenbagger.py send <json> --caption <캡션> --reissue`(머리에 '수정판'이 붙는다).
    e. `py scripts/tenbagger/report_refresh.py --done <stem> <event> "<바뀐 것 한 줄>"`. 그다음 1번으로 간다.
+   **`kind: 실적 업데이트`**(마스터 지시 2026-11-12 "기존에 Analysis 리포트에서 다뤘던 종목은 재무 결과 및 어닝콜 스크립트가 모두 공개되면 새로 업데이트"): 다룬 적 있는 종목의 다음 분기 콜 전문이 올라온 건이다. 전문 반영 건과 같은 회차당 1건 규칙으로, 콜 날짜가 오래된 것부터 처리한다.
+   a'. 먼저 재무제표를 확인한다: Fiscal.ai로 그 분기 손익(매출·영업이익·EPS)이 올라왔는지 본다. 없으면 `py scripts/tenbagger/report_refresh.py --wait-fin <stem> <event>`(24시간 뒤 다시)로 미루고 1번으로 간다.
+   b'. 있으면 a → 데이터 허브를 새로 모은다(`gather.py <id>`, `--reuse` 아님) → datapack 전체를 새 분기 기준으로 고친다: 시세·일봉(TradingView), `financials`·분기 실적(`surprise.js`로 4개 분기), `call`(새 콜 — 톤·KPI·가이던스 변화·새로 꺼낸 말·사라진 말), `guidance`, `consensus`(발표 뒤 수정), 바뀐 `margin`·`supply`·`capacity`·`customers`·`pipeline` → `datapack_check` → `build_drivers` → `v2_to_report.py <id> --merge <그 리포트 json>` → `report_html.py`. 목표주가·등급은 규칙이 다시 계산한다.
+   c'. 결론·Chiip View·요약·시나리오를 새 분기로 다시 쓰고, 날짜를 오늘로 고친다. 맨 끝 절 '재발행 기록 — <분기> 실적 업데이트'에 매출·이익·가이던스·등급·목표주가가 전 → 후로 어떻게 바뀌었는지 적는다.
+   d'·e'. d·e와 같다(같은 주소, `--reissue`, `--done <stem> <event> "<바뀐 것 한 줄>"`).
 1. 종목 고르기: `py scripts/tenbagger/pick_report.py` → JSON(id·name·ticker·reason). id가 null이면 "오늘 리포트 대상 없음"만 기록하고 끝낸다(텔레그램 없음). 회차마다 다른 종목이다 — 앞 회차가 `--done`으로 기록한 종목은 30일 규칙으로 자동 제외되고, 후보가 바닥나면 스크립트가 알파 5.0 미만 산정 종목, 그다음 7일 지난 종목을 고른다.
 
 1-S. **SPAC 종목은 SPAC 보고서 경로**(마스터 지시 2026-11-03 "SPAC 종목은 SPAC 보고서를 중심으로 분석하도록 해라"): 고른 종목이 스팩이면(config/portfolio.yaml `kind: spac`, 회사명에 Acquisition Corp·Capital Corp·SPAC, 또는 Fiscal.ai 키가 없고 SEC에 S-4/F-4·424B3 합병 위임장이 있음) 2번 이후 양식 3 절차를 쓰지 않는다. 1차 자료는 합병 위임장(S-4·424B3), 주총·환매·종결 8-K, 슈퍼 8-K, PIPE·스폰서 계약이다. datapack `spac`(구조는 `scripts/tenbagger/spac_report.py` 맨 위 — 환매·현금·지분·워런트·언아웃·보호예수·공정성 의견 범위·경영진 전망·동종 EV/매출·현금 소진)을 채우고, 모델 글(`<id>_spac_model.json` — 제목·사업·Chiip View·요약·사업과 제품·수주의 조건·경쟁·약세 논리·다음 확인 사건 절)을 쓴 뒤 `py scripts/tenbagger/spac_report.py <id> <모델 글>`로 만든다. 목표주가·구매 등급은 내지 않는다. 경영진 전망과 공정성 의견은 '경영진 전망'·'평가사 범위'로만 쓰고 컨센서스로 부르지 않는다. 발행(Artifact·노션·텔레그램·`pick_report --done`)은 6번과 같다. 종결 8-K 전이면 주식 수가 확정 전임을 결론에 쓴다.

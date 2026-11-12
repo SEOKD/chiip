@@ -64,6 +64,24 @@ class TestStatus(Base):
         self.events("found", date_="2026-11-12")
         self.assertEqual(self.status(), [])
 
+    def test_next_quarter_update_after_results_and_transcript(self):   # 실적 업데이트(2026-11-12 마스터 지시)
+        self.events("wait", date_="2026-10-31")
+        self.assertEqual(self.status(), [])                      # 전문 전 — 아직
+        self.events("found", date_="2026-10-31")
+        r = self.status()
+        self.assertEqual((r[0]["kind"], r[0]["state"]), ("실적 업데이트", "재발행"))
+        self.assertEqual(len(rr.due(today=TODAY, root=self.rep, companies=self.co, events_file=self.ev)), 1)
+        rr.wait_fin("20261030_AAA", "q3-2026", root=self.rep)  # 재무제표가 아직 — 하루 미룬다
+        self.assertEqual(self.status()[0]["state"], "재무 대기")
+        self.assertEqual(rr.due(today=TODAY, root=self.rep, companies=self.co, events_file=self.ev), [])
+
+    def test_update_has_no_age_limit_but_call_window(self):
+        self.log([("2026-06-01", "us-a", "AAA", "outputs/tenbagger/reports/20260601_AAA.html")])
+        self.events("done", date_="2026-10-29")
+        self.assertEqual(self.status()[0]["stem"], "20260601_AAA")   # 오래된 리포트도 대상
+        self.events("done", date_="2026-09-01")
+        self.assertEqual(self.status(), [])                          # 콜 뒤 21일이 지나면 다음 분기를 기다린다
+
     def test_korea_waits_for_nothing(self):
         self.events("found", key="XKRX_000660")
         self.assertEqual(self.status(), [])
