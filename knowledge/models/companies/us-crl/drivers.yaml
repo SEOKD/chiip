@@ -1,0 +1,101 @@
+auto: true
+id: us-crl
+name: Charles River Laboratories
+ticker: CRL
+unit: B$
+unit_usd: 1000000000.0
+industry: life_science_services
+region_mix:
+  US: 0.55
+  EU: 0.3
+  ROW: 0.15
+tax: 0.23
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 342.69
+  shares: 0.048517
+  net_debt: 2.24308
+  source: 가격 = 2026-11-11 종가 $342.69(TradingView NYSE:CRL). 주식 수 = 47.92M주(yfinance
+    shares_outstanding, Fiscal 시총 $16,420.8M ÷ $342.69와 일치). 현금 = $200.4M, 차입 = 장기부채
+    $2,443.5M(10-Q 2026-09-26, Fiscal 표준화). 리스 부채 $405.4M은 별도(투하자본에 포함)
+rev0: 3.945
+ic0: 5.923806
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0241
+      end: 0.035
+      decay: 0.7
+    margin:
+      m0: 0.181
+      target: 0.213
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.204
+      - 0.213
+    s2c: 1.2
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0103
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: 0.181
+      target: 0.233
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.204
+      - 0.213
+    s2c: 1.38
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.0082
+      end: 0.030000000000000002
+      decay: 0.6
+    margin:
+      m0: 0.181
+      target: 0.193
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.204
+      - 0.213
+    s2c: 1.02
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [3.935, 3.955] (3Q26 어닝콜(2026-11-04, 요지만 자기 말로) · 2025 보고 매출 $4,015.4M
+    × (1 − 1.5~2%) = $3,935~3,955M)
+  growth: 컨센서스 1년차 2.4%, 2년차 5.5%
+  margin: 1~2년차 컨센서스 20.4%, 21.3% 고정 → 목표 21%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 1.2
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -0.8%~1.0%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  shares: 완전 희석 = 기본 0.047917(2026-11-11) + 옵션·RSU·워런트·전환 0.0006 — 회사 2026 가이던스 평균
+    희석 주식 수 약 48.5M주(2Q 콜) − 기본 47.9M주 = 약 0.6M주
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: B/B가 1.19 → 1.09로 내려옴'
+- '어닝콜 위험: RMS(연구 모델) 역성장 — 학계·정부 예산'
+- '어닝콜 위험: 동물 대체 시험법(NAMs) 규제 전환'
+evidence:
+- https://ir.criver.com/
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001100682&type=10-Q
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001100682&type=10-K
+- Fiscal.ai MCP 2026-11-12 — 표준화 손익·재무상태표·현금흐름·추정·Forward 배수·애널리스트 의견·어닝콜 전문(3Q26·2Q26)
+- TradingView NYSE:CRL 일봉 520·월봉 120(2026-11-12)
+- Easyconomics company_profile(yfinance)·실적 정리 날짜
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
