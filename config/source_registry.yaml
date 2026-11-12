@@ -416,6 +416,23 @@
   verified: true
   enabled: true
 
+- id: src-deal-watch
+  name: 딜 추적 문서철 — 소문난 딜의 미국 1차 문서 흔적(SK하이닉스–인텔 오하이오 등)
+  category: L2-정부·인허가
+  module: deal_watch
+  entry: poll
+  method: mixed
+  endpoint_doc: "radar/pollers/deal_watch.py · config/deal_watch.yaml"
+  auth: none
+  scope: [T0]
+  interval_min: 30
+  run_on: local
+  language: en
+  terms_note: "2026-11-12 마스터 지시(Fable 조사 파이프라인 → 기사 소재). Google News 미국 사이트 색인·JobsOhio·리킹 카운티·뉴올버니 Swagit 회의 페이지(robots 허용, 시 사이트 wp-content PDF는 robots 금지라 안 읽음)·연방 관보 API·SEC 전문 검색. 본문 저장 없이 키워드 문장 앞뒤 200자"
+  reliability_default: 1차(기관 문서) / 2차(보도 색인)
+  verified: true
+  enabled: true
+
 - id: src-gamma-blog
   name: 감마의 하드웨어정보(gamma0burst.tistory.com) — '단신 > 단신' 새 글
   category: L8-커뮤니티

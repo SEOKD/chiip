@@ -1,0 +1,31 @@
+# 딜 추적 문서철(2026-11-12 마스터 지시 "Fable 5.2가 조사한 파이프라인을 기사 소재 발굴 시스템에 넣어라")
+# 소문난 딜 하나를 '서류가 말보다 먼저' 원칙(§11.0)으로 미국 1차 문서에서 지켜본다. radar/pollers/deal_watch.py가 30분마다 읽는다.
+# 새 흔적은 Pulse '딜 추적'(기사 소재 1순위 후보)으로. 매 회차 원천별 '확인 결과'(흔적 있음·없음·접근 불가)를 knowledge/deals/<id>.json에 남긴다 —
+# 침묵도 신호다(§11.0). 소문·보도 단계와 서류 단계를 섞지 않는다(금지표: 협력·MOU → 매출 확보, 지방 안건 상정 → 투자 확정).
+# 원천 종류: gn(Google News 사이트 한정 — 미국 사이트만) · page(문서 본문에 키워드 문장이 새로 생기면) · swagit(시·카운티 회의 영상 페이지의 안건·녹취)
+#           fedreg(연방 관보 API) · sec_fts(SEC 전문 검색 — sec_filings._ua, 403이면 '접근 불가'로 기록)
+dossiers:
+  - id: intel-skhynix-ohio
+    title: SK하이닉스–인텔 오하이오(뉴올버니) 팹 JV·임차
+    entities: [co-skhynix, co-intel]
+    keywords: '\b(?:SK ?hynix|Hynix|joint venture|JV|lease agreement|leas(?:e|ing) (?:of|to) (?:the )?(?:fab|plant|facility|site)|memory (?:fab|chip|production|manufactur\w*)|HBM|DRAM|foundry partner|operating partner)\b'
+    stage_note: "2026-11-12 기준: 보도(세마포 7/22·로이터 9/16)·정치인 발언(허스티드 7/24)·회사 부인(SK하이닉스 7/22 공시) 단계. JV 계약·주 보조금 수정 계약·시의회 안건 없음"
+    expected:   # 무엇이 나타나야 하는지 미리 적어 둔다(§11.0 페어북 원칙) — 나오면 단계가 바뀐다
+      - "오하이오 개발부 온쇼어링 보조금($600M) 계약 수정 — 완료 시한 2028-12-31·$20B 투자·3,000명 고용 조건 변경, 사업 주체 추가"
+      - "뉴올버니 시의회·리킹 카운티 세제 감면(CRA·TIF) 조례에 새 법인명"
+      - "오하이오 컨트롤링 보드·세액공제위원회(TCA) 안건에 인텔 또는 새 법인"
+      - "연방 관보 FTZ 138 생산활동 변경 신고(사업자·품목 — 2023년 승인 품목에 이미 electronic memory circuits 포함)"
+      - "인텔 8-K(Item 1.01 중요 계약)·10-K(2027-03-01 기한) 오하이오 파트너 언급, SK하이닉스 공시(조회공시 답변 재공시)"
+    sources:
+      - {type: gn, id: us-press, q: "(\"SK hynix\" OR Hynix) (Intel) (Ohio OR \"New Albany\" OR Licking) (site:cnbc.com OR site:reuters.com OR site:semafor.com OR site:bloomberg.com OR site:wsj.com OR site:dispatch.com OR site:nbc4i.com OR site:bizjournals.com OR site:ohio.news OR site:axios.com OR site:10tv.com OR site:wosu.org OR site:statehousenews.org)"}
+      - {type: gn, id: oh-gov, q: "(Intel OR \"SK hynix\") (site:governor.ohio.gov OR site:development.ohio.gov OR site:jobsohio.com OR site:husted.senate.gov OR site:moreno.senate.gov OR site:ohiosenate.gov OR site:ohiohouse.gov OR site:lickingcounty.gov OR site:newalbanyohio.org OR site:controllingboard.ohio.gov)"}
+      - {type: page, id: jobsohio-intel, url: "https://www.jobsohio.com/industries/growth-spotlights/intel-in-ohio", note: "인텔 단독 팹 2기로만 기술(2026-11-12) — 파트너·메모리 문구가 생기면"}
+      - {type: page, id: licking-commissioners, url: "https://www.lickingcounty.gov/depts/commissioners/default.htm", note: "리킹 카운티 커미셔너 안건·공지"}
+      - {type: swagit, id: newalbany-council, base: "https://newalbanyoh.new.swagit.com", bodies: ["/views/397"], note: "시 사이트 안건 PDF는 robots(wp-content) 금지 — 시가 링크한 Swagit 전체 회의 목록(views/397, 시의회·계획위원회 등)의 안건·녹취로 본다"}
+      - {type: fedreg, id: fedreg-intel-newalbany, term: "Intel \"New Albany\""}
+      - {type: fedreg, id: fedreg-ftz-138, term: "\"Foreign-Trade Zone (FTZ) 138\""}
+      - {type: sec_fts, id: sec-intel-ohio, q: "Ohio", ciks: "0000050863", forms: "8-K,10-Q,10-K"}
+    blocked:   # 이번에 열지 못한 원천 — 사람이 확인할 곳(기사 취재 단서)
+      - "오하이오 컨트롤링 보드 안건(controllingboard.ohio.gov — 이 PC에서 DNS 실패, 2026-11-12)"
+      - "오하이오 세액공제위원회(TCA) 안건(tca.ohio.gov DNS 실패)"
+      - "뉴올버니 시의회 안건 PDF(newalbanyohio.org/wp-content — robots 금지, Swagit로 대체)"

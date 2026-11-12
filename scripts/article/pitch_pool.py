@@ -274,6 +274,20 @@ def gather(now):
                       "insight": 5 if abs(yoy) >= 30 or abs(mom) >= 20 else 4, "primary": True, "basis": f"대만 월매출 공시 — {r.get('source_url')}",
                       "links": [["원문", r.get("source_url")]], "counterparty": (nm, ko, "대만 공급망(월매출 거울)"),
                       "why": "월매출은 한국 기업 실적의 거울 지표다 — 다만 고객·품목을 나누지 않은 값이라 특정 한국 기업 매출로 바로 잇지 않는다(금지표)"})
+    # ⑨ 딜 추적 문서철(2026-11-12 마스터 지시 "Fable 5.2가 조사한 파이프라인을 기사 소재 발굴 시스템에") — 소문난 딜의 미국 1차 문서 새 흔적
+    for day in {now.strftime("%Y%m%d"), (now - timedelta(days=1)).strftime("%Y%m%d")}:
+        folder = ROOT / "radar" / "inbox" / day
+        for f in folder.glob("src-deal-watch_*.json") if folder.exists() else []:
+            it = _load(f, {})
+            if str(it.get("status") or "").startswith("제외"):
+                continue
+            dossier = _load(ROOT / "knowledge" / "deals" / f"{it.get('deal_id')}.json", {})
+            primary = it.get("doc_type") == "규제·정책" or it.get("deal_source", "").startswith(("fedreg", "sec"))
+            cands.append({"src": "딜 추적", "at": now.isoformat(timespec="minutes"), "name": it.get("title"), "ids": list(it.get("entities_matched") or []),
+                          "event": f"{dossier.get('title', '')} — {it.get('deal_source')}", "insight": 6 if primary else 4, "primary": primary,
+                          "basis": f"{it.get('source_class')} · 지금 단계: {dossier.get('stage_note', '')}", "links": [["원문", it.get("url")]],
+                          "why": "나타나야 할 서류: " + " / ".join((dossier.get("expected") or [])[:3]) + " — 흔적은 정황, 단계(보도·발언·안건·의결·계약)를 나눈다(금지표: 지방 안건 상정 → 투자 확정)",
+                          "next": "사람이 확인할 곳: " + " / ".join(dossier.get("blocked") or [])})
     return cands, (by_code, info, ind_of, korea_ind)
 
 
