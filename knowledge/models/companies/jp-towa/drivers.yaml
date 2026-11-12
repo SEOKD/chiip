@@ -1,0 +1,95 @@
+auto: true
+id: jp-towa
+name: TOWA
+ticker: '6315'
+unit: BJPY
+unit_usd: 6261662.0
+industry: semicap
+region_mix:
+  JP: 0.11
+  ASIA: 0.85
+  US: 0.04
+tax: 0.274
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 2317
+  shares: 0.075042
+  net_debt: -13.088
+  source: 가격 = TradingView 11/12 일봉 ¥2,317(장중 진행 봉). 주식 = 발행 75,167,951주 − 자기주식 125,703주
+    = 75,042,248주(9/30, 2Q 결산단신 — 자기주식에는 J-ESOP 신탁 보유분 포함). 현금·예금 ¥32,148M, 차입 = 단기
+    ¥14,000M + 1년 내 장기 ¥1,780M + 장기 ¥3,280M = ¥19,060M(9/30 중간 연결 재무상태표). 회사 정의 순현금(현금+정기예금−유이자부채)
+    ¥13.08B
+rev0: 71.0
+ic0: 63.698
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.22
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.185
+      target: 0.19
+      year_target: 2
+      lr: 0.15
+      lam: 0.4
+    s2c: 2.2
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.14
+      end: 0.034999999999999996
+      decay: 0.39999999999999997
+    margin:
+      m0: 0.185
+      target: 0.27
+      year_target: 2
+      lr: 0.15
+      lam: 0.25
+    s2c: 2.53
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.06
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.185
+      target: 0.11
+      year_target: 2
+      lr: 0.15
+      lam: 0.5
+    s2c: 1.87
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [71.0, 71.0] (2Q 결산단신(2026-11-06) 통기 예상 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf
+    · 2Q 결산설명자료 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf)
+  growth: 컨센서스 없음 — 기본 10% 가정(약함)
+  margin: 출발 18% → 목표 19%(2년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.015 → 덮어쓰기 2.2
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.5, ''bull'': 0.2}'
+  overrides: 매출은 FY3/27 +30.6%(가이던스)에서 FY3/28 +13%(사장 감 ¥80B)로 둔화한다고 보고 출발 성장 22%를
+    쓴다. 장비 회사라 장기 성장은 4%로 낮춘다. 이익률은 하반기 계획 20%와 TTM 15.6% 사이 19%를 2년 뒤 목표로. 매출/투하자본
+    TTM 1.0이지만 증분은 협력사 활용으로 가벼워 2.2
+  shares: 완전 희석 = 기본 0.075042248(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 결산단신 1쪽 잠재주식
+    조정 후 EPS 칸이 비어 있다(희석 증권 없음). 주식 보상은 J-ESOP 신탁(이
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 모터·센서 같은 구매 부품 납기 지연이 생산 병목'
+- '어닝콜 위험: 2023년 7~9월에도 한국 수주가 튄 뒤 꺾였다(질의자 지적)'
+- '어닝콜 위험: HBM 적층 사양 하향설(12단 → 8단) — 회사는 금형 수요를 바꾸지 않는다고 답했다'
+evidence:
+- '2Q FY3/27 결산단신(2026-11-06): https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf'
+- '2Q FY3/27 결산설명자료: https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf'
+- '2Q 결산설명회 스피치·질의응답 전문: https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf'
+- 'FY3/26 결산 질의응답(2026-05-15): https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/05/2025FY_qa.pdf'
+- '컨센서스(카부요호): https://kabuyoho.jp/reportAnalyst?bcode=6315'
+- '시세·동종(TradingView): https://www.tradingview.com/symbols/TSE-6315/'

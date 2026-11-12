@@ -1,0 +1,1823 @@
+{
+ "id": "jp-towa",
+ "name": "TOWA",
+ "ticker": "6315",
+ "as_of": "2026-11-12",
+ "unit": "BJPY",
+ "currency_symbol": "¥",
+ "unit_usd": 6261662.0,
+ "industry": "semicap",
+ "industry_why": "반도체 후공정 장비(몰딩·싱귤레이션)가 매출의 76%(1H FY3/27 반도체 사업 ¥25.76B ÷ ¥33.71B)라 등록부 semicap(베타 1.40)을 쓴다. TradingView 1년 베타 2.14는 2026년 6~11월 −50% 급락 구간이 섞인 값이라 쓰지 않는다",
+ "region_mix": {
+  "JP": 0.11,
+  "ASIA": 0.85,
+  "US": 0.04
+ },
+ "region_why": "2Q FY3/27 출하지별 매출 ¥17.53B 중 중국 ¥8.28B(47%), 일본 약 11%, 대만·한국·그 밖의 아시아가 나머지 대부분, 구미 약 4%(2Q 결산설명자료 지역별 매출 그림 — 비율은 그림에서 읽은 값이라 ±2%p 오차)",
+ "tax": 0.274,
+ "main_metric": "eps",
+ "main_metric_why": "흑자 회사이고 감가상각이 EBITDA의 약 26%(TTM ¥3.57B ÷ ¥13.68B)라 EPS가 주요 지표다. 회사 가이던스도 순이익·EPS(¥119.95)로 낸다",
+ "profile": {
+  "price": 2317,
+  "shares_basic": 0.075042248,
+  "shares_date": "2026-09-30",
+  "cash": 32.148,
+  "debt": 19.06,
+  "customer_deposits": 0.0,
+  "source": "가격 = TradingView 11/12 일봉 ¥2,317(장중 진행 봉). 주식 = 발행 75,167,951주 − 자기주식 125,703주 = 75,042,248주(9/30, 2Q 결산단신 — 자기주식에는 J-ESOP 신탁 보유분 포함). 현금·예금 ¥32,148M, 차입 = 단기 ¥14,000M + 1년 내 장기 ¥1,780M + 장기 ¥3,280M = ¥19,060M(9/30 중간 연결 재무상태표). 회사 정의 순현금(현금+정기예금−유이자부채) ¥13.08B"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "options": 0.0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-09-30",
+  "source": "결산단신 1쪽 잠재주식 조정 후 EPS 칸이 비어 있다(희석 증권 없음). 주식 보상은 J-ESOP 신탁(이미 발행된 자기주식)이라 희석이 없다"
+ },
+ "financials": {
+  "rev_ttm": 64.633,
+  "ebit_ttm": 10.111,
+  "invested_capital": 63.698,
+  "capex_ttm": 4.65,
+  "da_ttm": 3.568,
+  "sbc_ttm": 0.0,
+  "basis": "일본 기준(J-GAAP) 연결",
+  "note": "TTM = 3Q·4Q FY3/26 + 1Q·2Q FY3/27. 매출 13.48+17.43+16.18+17.53 = ¥64.63B(TradingView ¥64.633B, 회사 분기 자료와 일치). 영업이익 1.19+3.23+2.21+3.47 = ¥10.10B(TradingView ¥10.111B). 투하자본 = 순자산 76.786 + 차입 19.060 − 현금 32.148(9/30). CAPEX = FY3/26 연간 ¥4.65B(TradingView, 분기 설비투자 ¥0.7~2.0B와 같은 수준). 감가상각 = EBITDA TTM 13.679 − 영업이익 10.111"
+ },
+ "peers_basis": "ntm",
+ "peers_source": "TradingView 11/12. 후공정·패키징 장비 6곳. Fwd P/E = 종가 ÷ 다음 회계연도 EPS 컨센서스(TradingView earnings_per_share_forecast_next_fy — 일본 3월 결산사는 FY3/27). 성장 = 다음 FY 매출 컨센서스 ÷ TTM − 1. 외화는 11/12 환율(EUR ¥176.87·HKD ¥20.35·KRW ¥0.1200)로 엔 환산. TOWA 자신은 12개월 선행 EPS ¥143.5(카부요호 애널리스트 평균) 기준 — FY3/27 컨센서스 ¥116.84로 재면 19.8배",
+ "peers": [
+  {
+   "ticker": "디스코",
+   "key": "TSE:6146",
+   "rev": 499.41,
+   "ebit_margin": 0.444,
+   "mcap": 4917.6,
+   "pb": 9.01,
+   "debt": 0.0,
+   "cash": 342.41,
+   "ev_sales": 9.16,
+   "growth": 0.142,
+   "pe_fwd": 27.7,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "도쿄정밀",
+   "key": "TSE:7729",
+   "rev": 182.17,
+   "ebit_margin": 0.216,
+   "mcap": 530.5,
+   "pb": 2.85,
+   "debt": 11.8,
+   "cash": 69.22,
+   "ev_sales": 2.6,
+   "growth": 0.061,
+   "pe_fwd": 16.8,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "시바우라메카트로닉스",
+   "key": "TSE:6590",
+   "rev": 88.98,
+   "ebit_margin": 0.155,
+   "mcap": 192.7,
+   "pb": 3.55,
+   "debt": 8.565,
+   "cash": 46.74,
+   "ev_sales": 1.74,
+   "growth": 0.236,
+   "pe_fwd": 13.1,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "BESI",
+   "key": "EURONEXT:BESI",
+   "rev": 177.2,
+   "ebit_margin": 0.405,
+   "mcap": 2387.2,
+   "pb": 30.4,
+   "debt": 71.2,
+   "cash": 118.6,
+   "ev_sales": 13.21,
+   "growth": 0.177,
+   "pe_fwd": 30.6,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "ASMPT",
+   "key": "HKEX:522",
+   "rev": 327.9,
+   "ebit_margin": 0.091,
+   "mcap": 821.1,
+   "pb": 2.54,
+   "debt": 80.5,
+   "cash": 119.6,
+   "ev_sales": 2.39,
+   "growth": 0.218,
+   "pe_fwd": 22.5,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "한미반도체",
+   "key": "KRX:042700",
+   "rev": 66.17,
+   "ebit_margin": 0.425,
+   "mcap": 1974.0,
+   "pb": 25.0,
+   "debt": 0.27,
+   "cash": 10.63,
+   "ev_sales": 29.7,
+   "growth": 0.263,
+   "pe_fwd": 60.3,
+   "ev_ebitda_fwd": null
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "multiple_view": {
+  "adj": -0.25,
+  "why": "동종 중앙값 25.1배는 하이브리드 본딩·HBM 본더 기대가 붙은 한미반도체(60배)·BESI(31배)·디스코(28배)가 끌어올린 값이다 — 이들은 영업이익률 40%대이고 TOWA는 16~20%다. 또 2023년 7~9월 한국 수주가 튄 뒤 꺾였고, 2026년 6월 종가 고점 ¥3,540에서 11월 6일 ¥1,785까지 −50% 빠진 이력이 있다. HBM 고객 다변화가 고객 발표로 확인되기 전에는 펀더멘털·해자·수주 가산분을 대부분 상쇄해 25% 낮춘다"
+ },
+ "next_event": {
+  "date": "2027-02-06",
+  "tag": "3Q FY3/27 결산 발표(예정, 전년 일정 기준 2월 초) — 10~12월 수주가 ¥25B를 지키는지"
+ },
+ "guidance": {
+  "rev_fy0": [
+   71.0,
+   71.0
+  ],
+  "op_fy0": 13.15,
+  "ni_fy0": 9.0,
+  "eps_fy0": 119.95,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "중기 계획: 2032년(FY3/33) 매출 ¥100B. 사장은 FY3/28 매출 감을 '올해 실적에서 10~20% 위, ¥80B 정도'라고 말했다(2Q 콜, 가이던스 아님). 수요가 더 늘면 ¥100B 시나리오도 언급",
+  "history": "FY3/27 가이던스: 5월 매출 ¥64.0B·영업이익 ¥10.24B → 11/6 ¥71.0B·¥13.15B(상향, 순이익 ¥9.0B·EPS ¥119.95, 배당 ¥20 → ¥30)",
+  "source": "2Q 결산단신(2026-11-06) 통기 예상 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf · 2Q 결산설명자료 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf",
+  "next": {
+   "period": "3Q27",
+   "rev": 18640,
+   "rev_cons": 17460,
+   "eps": 34.4,
+   "unit": "¥M",
+   "note": "회사는 하반기 합계(매출 ¥37,280M·영업이익 ¥7,460M)만 밝혔다 — 3Q 값은 하반기 ÷ 2 근사. 분기 매출 컨센서스 ¥17,460M = FY3/27 컨센서스 ¥68,630M − 상반기 실적을 반으로 나눈 값. 분기 EPS 컨센서스 미확인"
+  }
+ },
+ "raw": {
+  "retrieved_at": "2026-11-12T13:20:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "TSE:6315",
+   "price": 2317,
+   "market_cap": 173.87,
+   "total_cash": 32.148,
+   "total_debt": 19.06,
+   "shares_outstanding": 0.075042248,
+   "as_of": "2026-11-12",
+   "balance_date": "2026-09-30",
+   "note": "Fiscal.ai는 TOWA를 다루지 않는다(TSE_6315·TYO_6315 'Company not found'). 원자료 개요는 yfinance(Easyconomics company_profile, market jp): 가격 ¥2,313·시가총액 ¥173.57B·현금 ¥32.15B·차입 ¥19.06B. TradingView 시가총액 ¥169.9B는 기준 주식 수가 다르다(자기주식·신탁 처리)",
+   "auditUrl": "https://www.tradingview.com/symbols/TSE-6315/"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2026Q3": 13.48,
+    "2026Q4": 17.43,
+    "2027Q1": 16.18,
+    "2027Q2": 17.53
+   },
+   "op_income": {
+    "2026Q3": 1.19,
+    "2026Q4": 3.23,
+    "2027Q1": 2.21,
+    "2027Q2": 3.47
+   },
+   "note": "회계연도 분기(3월 결산): 2027Q1 = 2026년 4~6월, 2027Q2 = 7~9월. 매출·영업이익 = 2Q 결산설명자료 3쪽 분기표(억 엔)"
+  },
+  "balance_2026_09_30": {
+   "equity": 76.786,
+   "debt_lt": 19.06,
+   "cash": 32.148,
+   "st_investments": 0.0,
+   "inventory": 22.71,
+   "advances_received_increase": 2.603,
+   "total_assets": 117.889,
+   "source": "2Q 결산단신 4~5쪽 중간 연결 재무상태표: 현금·예금 ¥32,148M, 재고(제품 ¥6,205M·재공품 ¥14,430M·원재료 ¥2,075M), 단기차입 ¥14,000M(+¥2.5B, 운전자금), 장기 ¥5,060M, 순자산 ¥76,786M, 자기자본비율 65.1%. 선수금 +¥2,603M — debt_lt 칸은 단기 ¥14.0B·1년 내 장기 ¥1.78B·장기 ¥3.28B 합계(유이자부채 전체)"
+  },
+  "estimates_sales_m": {
+   "2027Q1(실적)": 16180,
+   "2027Q2(실적)": 17530,
+   "2027Q3": 17460,
+   "2027Q4": 17460
+  },
+  "consensus_sources": {
+   "FY3/27": "카부요호 11/11: 매출 ¥68,630M·영업이익 ¥12,700M·경상 ¥12,675M·순이익 ¥9,097M(5명), 경상이익 컨센서스 4주 전 ¥12,177M → ¥12,675M(+4.1%) https://kabuyoho.jp/reportAnalyst?bcode=6315",
+   "NTM": "카부요호 12개월 선행 EPS ¥143.5(애널리스트 평균), 목표가 평균 ¥3,230, 강세 3·중립 2 https://kabuyoho.jp/reportTarget?bcode=6315",
+   "FY3/28": "컨센서스 미확인(공개 페이지에 없음). yfinance forward EPS ¥193.18은 기간 표기가 없어 쓰지 않는다"
+  },
+  "sec_checks": {
+   "note": "일본 상장사라 SEC 10-K·10-Q가 없다. R-20261031-01의 네 곳 대응: ① 구매 약정 — 결산단신에 없음, 콜에서 '모터·센서 장납기 부품 선행 발주'만 확인 ② 제한 현금 — 결산단신에 별도 표시 없음 ③ 10% 초과 고객 — 결산단신·설명자료에 없음(유가증권보고서 미열람, 미확인) ④ 정부 지원 — 확인된 것 없음"
+  },
+  "source_coverage": {
+   "fiscal": "미지원(TSE_6315 없음)",
+   "easyconomics": "company_profile(jp) 가능 · earnings_summary_dates는 미국 종목 전용",
+   "yfinance": "Easyconomics 경유 개요(가격·시총·현금·차입·마진)",
+   "zacks": "미지원",
+   "tradingview": "시세·분기 재무·동종·의견 분포(6명: 강세 4·중립 2)",
+   "kabuyoho": "컨센서스·12개월 선행 EPS·목표가(5명)"
+  },
+  "rf_local": {
+   "JP10Y": 0.02773,
+   "as_of": "2026-11-12",
+   "source": "TradingView TVC:JP10Y"
+  },
+  "shares_cover_implied": 0.075042248,
+  "estimates_note": "단위 ¥백만. FY3/27 매출 컨센서스 ¥68,630M(카부요호 5명)에서 1·2Q 실적을 뺀 하반기 잔여 ¥34,920M을 3Q·4Q에 반씩 — 분기 컨센서스는 공개 자료에 없다"
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 68.63
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2027": 0.185
+  },
+  "n_analysts": 5,
+  "revisions_90d": {
+   "ordinary_income_4w": 0.041
+  },
+  "quarters_est": {
+   "2027Q3": 17.46,
+   "2027Q4": 17.46
+  },
+  "quarters_act": {
+   "2026Q3": 13.48,
+   "2026Q4": 17.43,
+   "2027Q1": 16.18,
+   "2027Q2": 17.53
+  },
+  "eps_quarters_est": {},
+  "ratings": {
+   "strong_buy": 3,
+   "buy": 0,
+   "hold": 2,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-11",
+   "source": "카부요호 5명: 강세 3·중립 2, 목표가 평균 ¥3,230(현재가 +39%). TradingView는 6명(강세 4·중립 2)"
+  },
+  "note": "Fiscal.ai·Zacks 미지원. 컨센서스는 카부요호(5명)·TradingView. FY3/27 컨센서스(매출 ¥68.6B·영업이익 ¥12.7B)는 11/6 회사 가이던스(¥71.0B·¥13.15B)보다 낮다 — 가이던스 상향을 아직 다 반영하지 않았다. 분기 발표 직전 컨센서스는 공개 자료로 얻지 못해 분기 서프라이즈 표는 비운다(기사 인용 1Q: 매출 ¥16.2B vs 컨센서스 ¥15.6B)",
+  "surprise": [],
+  "price_window": {
+   "from": 1785,
+   "to": 2317,
+   "note": "2Q 발표일 11/6 종가 ¥1,785(TradingView 일봉) → 11/12 ¥2,317"
+  }
+ },
+ "call": {
+  "date": "2026-11-06",
+  "prev_date": "2026-05-15",
+  "tone": "up",
+  "tone_delta": null,
+  "guidance_direction": "raise",
+  "kpis": {
+   "orders_2q_b": 32.97,
+   "orders_1h_b": 54.78,
+   "backlog_b": 51.83,
+   "rev_1h_b": 33.72,
+   "op_1h_b": 5.69,
+   "opm_2q": 0.198,
+   "opm_2h_plan": 0.2,
+   "molding_orders_2q_b": 26.03,
+   "korea_orders_2q_b": 4.51,
+   "china_orders_2q_b": 11.62
+  },
+  "guidance_changes": [
+   "FY3/27 매출 ¥64.0B → ¥71.0B, 영업이익 ¥10.24B → ¥13.15B, 순이익 → ¥9.0B(EPS ¥119.95)",
+   "연간 배당 ¥20 → ¥30",
+   "하반기 매출 ¥37.28B·영업이익률 20% 계획"
+  ],
+  "new_topics": [
+   "HBM용 몰딩 장비 수요: 예전 '연 십수 대' → 1.5~2배('연 20대 수준도 가능, 고객 공장 건설 나름')",
+   "다른 HBM 고객도 인증을 받아 공급을 시작, 미국계 포함 2027년 HBM 양산 공장 건설",
+   "리드타임 약 6개월 → 1년 초과",
+   "FY3/28 매출 감 ¥80B(사장 발언, 가이던스 아님)",
+   "데이터센터 전원 — 방열 수지를 쓰는 파워 반도체는 컴프레션 방식만 가능",
+   "INNOMS(신형 장비) 고객 현장 평가 중, 빠르면 2027년 4월 다른 메모리 고객에 판매"
+  ],
+  "dropped_topics": [
+   "1Q 뒤 '당분간 MUF 고객의 큰 HBM 발주는 없다'던 설명(질의자 언급) — 이번에는 고객 공장 건설로 수요가 늘었다고 바뀌었다"
+  ],
+  "risks": [
+   "모터·센서 같은 구매 부품 납기 지연이 생산 병목",
+   "2023년 7~9월에도 한국 수주가 튄 뒤 꺾였다(질의자 지적)",
+   "HBM 적층 사양 하향설(12단 → 8단) — 회사는 금형 수요를 바꾸지 않는다고 답했다",
+   "PLP 등 개발품의 낮은 초기 이익률(모건스탠리 질문)"
+  ],
+  "qa_focus": [
+   "모건스탠리: 하반기 영업이익률 20% 근거·부재료 원가·PLP 개발품 이익률·INNOMS 진척",
+   "SMBC닛코 외: HBM 장비 연간 대수·고객 다변화",
+   "생산능력·2032년 ¥100B 계획 앞당김 여부·FY3/28 매출 감",
+   "리드타임"
+  ],
+  "answer": "쟁점(수요의 지속성)에 회사는 '고객이 후공정 공장을 짓고 있어 공장이 생기는 한 납입 대수는 계속된다'고 답했다. 생산능력은 협력사를 포함하면 다음 해 ¥100B 규모까지 대응 가능하다고 했다",
+  "source": "2Q 결산설명회 스피치·질의응답 전문(회사 공개) https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf · 직전 FY3/26 결산 Q&A(2026-05-15) https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/05/2025FY_qa.pdf",
+  "tone_note": "통기 가이던스 상향 + 수주 사상 최대 = up",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "통기 매출 가이던스",
+    "label": "매출 가이던스 ¥71B",
+    "prior": "¥64.0B(5월)",
+    "latest": "¥71.0B(11/6)",
+    "driver": "rev0",
+    "shift": 0.06,
+    "confidence": 0.8,
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "하반기 영업이익률",
+    "label": "하반기 OPM 20%",
+    "prior": "통기 16.0%(5월 계획)",
+    "latest": "하반기 20.0%, 통기 18.5%",
+    "driver": "margin_m0",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "HBM 장비 대수",
+    "label": "HBM 장비 1.5~2배",
+    "prior": "연 십수 대",
+    "latest": "1.5~2배(연 20대 가능)",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.5,
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "FY3/28 매출 감",
+    "label": "내년 매출 ¥80B 감",
+    "prior": "중기 2032년 ¥100B",
+    "latest": "FY3/28 ¥80B 정도(사장)",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "구매 부품 납기",
+    "label": "모터·센서 납기 지연",
+    "prior": "언급 약함",
+    "latest": "생산 병목으로 언급",
+    "driver": "s2c",
+    "shift": -0.1,
+    "confidence": 0.3,
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-11-12",
+  "period": "1H FY3/27",
+  "summary": "회사는 고객 이름과 10% 초과 고객을 결산단신·설명자료에서 밝히지 않는다(유가증권보고서 미열람). 출하지는 중국이 매출의 47%(2Q)로 가장 크고, HBM용 MR-MUF 몰딩은 한국 메모리 고객이 쓰는 것으로 보이나 고객 이름 매핑은 가설이다",
+  "items": [
+   {
+    "name": "중국 OSAT·반도체 회사",
+    "alias": "출하지 중국",
+    "share": 0.47,
+    "prior": 0.35,
+    "basis": "회사 발표",
+    "buys": "몰딩·싱귤레이션 장비(파워·아날로그·범용 패키지)",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf",
+    "why": "2Q 출하지별 매출 ¥8.28B ÷ ¥17.53B. 1Q 34.6%(¥5.6B)에서 올랐다 — 개별 고객은 미공시"
+   },
+   {
+    "name": "한국 메모리 회사(HBM)",
+    "alias": "출하지 한국 · 'MUF 고객'",
+    "share": [
+     0.06,
+     0.12
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "HBM용 컴프레션 몰딩(MR-MUF 공정)",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf",
+    "why": "2Q 한국 수주 ¥4.51B(1Q ¥1.38B). MR-MUF를 쓰는 HBM 회사를 SK하이닉스로 보는 것은 가설 — 회사는 고객 이름을 대지 않는다"
+   },
+   {
+    "name": "대만·그 밖의 아시아 OSAT",
+    "alias": "출하지 대만·마레이시아 외",
+    "share": [
+     0.25,
+     0.35
+    ],
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "몰딩 장비·금형·서비스",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf",
+    "why": "2Q 그 밖의 아시아 수주 ¥10.12B — 매출 비중은 그림에서 읽은 범위"
+   },
+   {
+    "name": "일본 반도체 회사",
+    "alias": "출하지 일본",
+    "share": 0.11,
+    "prior": 0.12,
+    "basis": "회사 발표",
+    "buys": "몰딩 장비·의료 조립품",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf",
+    "why": "2Q 출하지 일본 약 11%(그림 판독)"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "J-GAAP",
+  "summary": "1H 매출총이익률 35.6%(전년 33.9%), 판관비 18.7%(전년 23.3%) — 매출이 44% 늘며 고정비가 깔려 영업이익률이 10.6% → 16.9%가 됐다. 회사 분해: 매출 증가 +¥4.69B, 믹스 +¥0.10B, 개발비 −¥0.76B, 판관비 −¥0.85B. 이 회사의 이익은 가동률(물량)이 정한다",
+  "periods": [
+   {
+    "period": "1H FY3/26",
+    "rev": 23.45,
+    "cogs": 15.502,
+    "rd": 0.0,
+    "sga": 5.455,
+    "other": 0.0
+   },
+   {
+    "period": "1H FY3/27",
+    "rev": 33.718,
+    "cogs": 21.729,
+    "rd": 0.0,
+    "sga": 6.301,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "구매 부품(모터·센서·제어기)",
+    "stage": "매출원가",
+    "pct_rev": 0.22,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "부품 단가·납기(콜: 판가 인상으로 흡수 가능)",
+    "basis": "추정",
+    "source": "2Q 콜 — 구매 부품 납기 지연 언급, 비중 미공시",
+    "input": "semicap"
+   },
+   {
+    "name": "내제 가공품·금형 소재(강재)",
+    "stage": "매출원가",
+    "pct_rev": 0.15,
+    "prior_pct": "미확인",
+    "fixed": 0.2,
+    "driver": "강재·초경 소재 가격",
+    "basis": "추정",
+    "source": "금형 내제(콜 '가공품·내제품은 캐파 있음')"
+   },
+   {
+    "name": "제조 인건비·외주 가공",
+    "stage": "매출원가",
+    "pct_rev": 0.15,
+    "prior_pct": "미확인",
+    "fixed": 0.6,
+    "driver": "인원·협력사 활용(하반기 파견·도급 확대)",
+    "basis": "추정",
+    "source": "2Q 설명자료 '생산 체제 강화'"
+   },
+   {
+    "name": "개발비·감가상각·기타 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.124,
+    "prior_pct": "미확인",
+    "fixed": 0.8,
+    "driver": "개발비 +¥0.76B(전년 대비), 감가상각 분기 ¥0.88B",
+    "basis": "공시",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf"
+   },
+   {
+    "name": "판관비(인건비 중심)",
+    "stage": "판관비",
+    "pct_rev": 0.187,
+    "prior_pct": 0.233,
+    "fixed": 0.7,
+    "driver": "인건비 증가가 판관비 +¥0.85B의 주인",
+    "basis": "공시",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf"
+   }
+  ],
+  "products": [
+   {
+    "name": "몰딩 장비",
+    "rev_share": 0.722,
+    "mix_basis": "1H 몰딩 ¥24.33B ÷ 매출 ¥33.72B(2Q 설명자료)",
+    "gpm": 0.37,
+    "gpm_basis": "추정 — 제품별 이익률 미공시. 반도체 사업 영업이익률 17.1%(1H)에서 전사 판관비율을 더해 역산",
+    "bom": [
+     {
+      "item": "구매 부품(모터·센서·제어기)",
+      "share": [
+       0.3,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "2Q 콜(구매 부품이 병목)",
+      "pass_through": "미확인",
+      "why": "서보 모터·압력 센서·PLC가 장비 원가의 큰 몫 — 사장은 판가 인상으로 부품값 상승을 흡수할 수 있다고 했다(계약 연동 조항은 미확인)",
+      "input": "semicap"
+     },
+     {
+      "item": "정밀 금형",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "회사 사업 설명(금형 내제)",
+      "pass_through": "미확인",
+      "why": "패키지마다 따로 만드는 금형 — 내제라 마진의 원천"
+     },
+     {
+      "item": "프레스·기계 구조물",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 장비 원가 구조",
+      "pass_through": "미확인",
+      "why": "수지를 누르는 프레스 유닛·프레임"
+     },
+     {
+      "item": "조립·시험 인건비",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "미확인",
+      "pass_through": "미확인",
+      "why": "교토·중국 공장 조립"
+     }
+    ]
+   },
+   {
+    "name": "TSS(금형·부품·서비스)",
+    "rev_share": 0.17,
+    "mix_basis": "1H TSS ¥5.73B ÷ ¥33.72B",
+    "gpm": 0.45,
+    "gpm_basis": "추정 — 미공시. 교체 금형·부품·서비스라 장비보다 높게 본 업계 관행 추정",
+    "bom": [
+     {
+      "item": "교체 금형·부품",
+      "share": [
+       0.5,
+       0.7
+      ],
+      "basis": "추정",
+      "source": "TSS = Total Solution Service",
+      "pass_through": "미확인",
+      "why": "설치 대수가 늘수록 교체 수요가 는다"
+     },
+     {
+      "item": "서비스 인건비",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "미확인",
+      "pass_through": "미확인",
+      "why": "현장 서비스"
+     },
+     {
+      "item": "이형 필름 등 소모품",
+      "share": [
+       0.05,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "회사 제품 목록(이형 필름)",
+      "pass_through": "미확인",
+      "why": "컴프레션 몰딩용 소모품"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-12",
+  "summary": "내제 가공품·금형은 캐파가 있다고 회사가 말했다. 약한 고리는 모터·센서 같은 구매 부품 — 반도체 장비 업계 전체가 납기 지연을 겪는다(2Q 콜). 공급사 이름은 공시되지 않았다",
+  "links": [
+   {
+    "item": "구매 부품(모터·센서·제어기)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "서보 모터·센서·제어기",
+      "status": "추정",
+      "source": "2Q 콜"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "2Q 콜 — '구매품 납기가 매우 길어졌다', 장납기 부품 선행 발주",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "일본·독일계 부품사(업계 구조 추정)",
+    "secured": "복수구매",
+    "why": "장비 리드타임이 6개월 → 1년 초과로 늘어난 원인 중 하나. 재인증 6개월은 업계 관행 추정 · 물량 확보는 장납기 부품 선행 발주와 조달처 확대(회사 설명) — 복수구매로 분류",
+    "relief": "미확인",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf",
+    "input": "semicap"
+   },
+   {
+    "item": "정밀 금형",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "TOWA 내제",
+      "role": "금형 설계·가공",
+      "status": "회사 발표",
+      "source": "2Q 콜"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "여유",
+    "capacity_basis": "2Q 콜 — '가공품·내제품은 금형 포함 캐파 있음'",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": "미확인",
+    "region": "일본·중국",
+    "secured": "내재화",
+    "why": "내제라 외부 병목은 없지만 단일 출처",
+    "relief": "해당 없음",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "매출 환산 ¥B/년",
+  "summary": "회사는 명목 캐파를 대수로 밝히지 않는다. 사장은 현행 캐파로 지금 수주를 '전혀 문제없이' 생산할 수 있고, 협력사를 포함하면 다음 해 ¥100B 규모까지 대응 가능하다고 했다. 중국 공장 부지 안 증설은 계획대로 진행",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "명목 캐파 미공시 — 질의자가 '몰딩 장비 월 ¥5B(연 ¥60B) 여유'를 묻자 '현재도 가능'이라고 답했다(질의자 수치, 회사 확인은 정성)",
+   "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+  },
+  "plans": [
+   {
+    "name": "중국(蘇州) 공장 부지 내 증설",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "구매 부품 납기·인력",
+    "source": "2Q 콜"
+   },
+   {
+    "name": "2032년 매출 ¥100B 대응 단계적 설비 확충",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2032",
+    "capex": "미확인",
+    "blocker": "수요 확인 뒤 단계 투자",
+    "source": "2Q 설명자료 '생산 체제 강화'"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY3/26",
+    "capex": 4.65,
+    "rev": 54.365,
+    "kind": "실적"
+   },
+   {
+    "period": "1H FY3/27",
+    "capex": 2.58,
+    "rev": 33.718,
+    "kind": "실적"
+   }
+  ],
+  "facilities": {
+   "count": 2,
+   "count_basis": "회사가 이름을 밝힌 생산 거점만 센다 — 본사(교토)와 중국 공장. 유가증권보고서 '설비의 상황'(국내·해외 공장 목록)은 이번 회차에 열지 못해 전체 수는 미확인",
+   "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf",
+   "items": [
+    {
+     "name": "본사·공장",
+     "location": "일본 교토시 미나미구",
+     "owned": "미확인",
+     "use": "몰딩 장비·금형 설계·제조",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "중국 공장(蘇州)",
+     "location": "중국 장쑤성 쑤저우",
+     "owned": "미확인",
+     "use": "몰딩 장비·싱귤레이션 블레이드 제조",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시 — 부지 여유가 있어 증설 예정(2Q 콜)",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "이번 회차에 시설 좌표를 1차 자료로 확인하지 못해 위성 판독 등록을 하지 않았다 — 유가증권보고서 설비 항목 확인 뒤 등록"
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "reported_backlog": 51.83,
+  "backlog_label": "수주잔고",
+  "summary": "9월 말 수주잔고 ¥51.8B = 최근 12개월 매출의 약 9.6개월치. 건별 수주는 공시하지 않는다",
+  "items": [
+   {
+    "name": "9월 말 수주잔고(전사)",
+    "status": "확정",
+    "total": 51.83,
+    "progress": "미확인",
+    "progress_basis": "건별 진척 미공시 — 하반기 매출 계획 ¥37.3B가 잔고에서 나온다",
+    "margin": 0.2,
+    "margin_kind": "영업이익",
+    "margin_basis": "하반기 계획 영업이익률 20%",
+    "start": "2026-10",
+    "end": "2027-09",
+    "blockers": [
+     "구매 부품 납기",
+     "리드타임 1년 초과"
+    ],
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf"
+   },
+   {
+    "name": "INNOMS 신형 장비(메모리 고객 평가)",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2027-04",
+    "end": "미확인",
+    "speed": "빠르면 2027년 4월 다른 메모리 고객 판매",
+    "blockers": [
+     "고객 현장 평가"
+    ],
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 9.6,
+  "book_to_bill": 1.38,
+  "revenue_growth": 0.306,
+  "source": "잔고 ¥51.83B ÷ TTM 월평균 매출 ¥5.39B. B/B = 최근 4분기 수주 ¥89.30B ÷ 매출 ¥64.62B(2Q 설명자료)"
+ },
+ "recurring": {
+  "share": 0.17,
+  "kind": "금형·부품·서비스(TSS)",
+  "base": "설치 장비 대수 미공시",
+  "years_to_recurring": 0,
+  "source": "1H TSS 매출 ¥5.73B(+34.7%) ÷ ¥33.72B — 장비 납입 대수가 늘면 같이 늘었다(2Q 콜)"
+ },
+ "moat": {
+  "summary": "해자는 컴프레션 몰딩 기술과 내제 금형이다. 방열 수지 파워 반도체와 HBM MR-MUF 몰딩처럼 컴프레션만 되는 공정에서 TOWA의 위치가 강하다 — 다만 점유율 수치는 미공시",
+  "items": [
+   {
+    "kind": "컴프레션 몰딩 공정 독점성",
+    "verdict": "강함",
+    "claim": "방열 수지를 쓰는 데이터센터 파워 반도체는 컴프레션 방식만 가능하고, HBM 고객도 인증을 거쳐 쓴다",
+    "evidence": "2Q 콜 — HBM 고객 추가 인증·공급 시작, 몰딩 수주 ¥26.0B(2Q)",
+    "quant": "몰딩 매출 비중 72%, 점유율 미공시(미확인)",
+    "falsifier": "하이브리드 본딩 전환으로 HBM 몰딩 공정이 줄거나 경쟁사 컴프레션 장비가 HBM 인증"
+   },
+   {
+    "kind": "내제 금형·설치 기반",
+    "verdict": "보통",
+    "claim": "패키지별 금형을 내제하고 설치 장비에 교체 금형·서비스(TSS)를 판다",
+    "evidence": "TSS 1H ¥5.73B(+34.7%)",
+    "quant": "반복 매출 비중 17%",
+    "falsifier": "TSS 성장률이 장비 매출보다 2분기 연속 낮다"
+   },
+   {
+    "kind": "고객 인증 기간",
+    "verdict": "보통",
+    "claim": "HBM 공정 장비는 고객 인증에 시간이 걸려 한 번 들어가면 바꾸기 어렵다",
+    "evidence": "INNOMS가 고객 현장 평가 중(2027년 4월 판매 목표)",
+    "quant": "인증 기간 미공시(미확인)",
+    "falsifier": "고객이 다른 몰딩 공급사를 이중 인증"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-12",
+  "summary": "대표이사 사장 미우라(三浦) 씨가 설명회 질의응답에 직접 답했다(전문 공개, 이름 전체·경력은 이번 회차 미대조). 경영진 정치·동문 연결은 공개 기록으로 확인하지 못했다",
+  "people": [
+   {
+    "name": "미우라(三浦) 대표이사 사장 — 이름 전체는 이번 회차 1차 미대조",
+    "role": "대표이사 사장",
+    "since": "미확인",
+    "profile": "2Q 결산설명회에서 수요·캐파·리드타임 질문에 답변",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "미확인 — 공개 연결 기록 없음",
+    "strength": 0,
+    "exposure": 0.0,
+    "basis": "공개 자료에 없음",
+    "evidence": "미확인"
+   }
+  ]
+ },
+ "sync": {
+  "none": "TOWA 매출은 고객 후공정 설비투자가 정한다. 이번 회차에 일본 반도체 제조장비 수출(HS 8486)과 SEMI 후공정 장비 지표를 config/trade_ppi.yaml로 연결하지 못했다 — 다음 회차"
+ },
+ "pq": {
+  "none": "회사가 장비 판매 대수·평균 단가를 공시하지 않는다. 가격 인상 언급(콜)은 있으나 수치가 없어 가격·물량 분해를 하지 않는다"
+ },
+ "ma": {
+  "none": "최근 3년 안 의미 있는 인수가 확인되지 않았다(결산단신·설명자료에 없음)"
+ },
+ "midterm": {
+  "exposure": {
+   "tariff_codify": 0.03,
+   "export_control": 0.05
+  },
+  "sub": "semicap",
+  "etf": "SMH",
+  "why": "구미 매출 약 4%로 미국 직접 노출은 작다. 중국 출하 47%라 미국 대중 장비 수출통제가 일본으로 확대되는 경로가 더 큰 위험(가설)"
+ },
+ "events": [
+  {
+   "date": "2026-05-12",
+   "tag": "FY3/26 결산·FY3/27 첫 가이던스 다음 날 −20.7%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-06-22",
+   "tag": "종가 고점 ¥3,540",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-08-07",
+   "tag": "1Q 결산 다음 날 −11.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "하루 −12.4%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "2Q 결산·통기 상향 발표(장 마감 뒤), 종가 ¥1,785 = 종가 고점 대비 −50%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-09",
+   "tag": "2Q 결산 다음 날 +17.7%·거래량 829만 주",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-09",
+   "tag": "노무라증권 보유 5% 초과 대량보유 보고",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-05-11",
+   "kind": "실적",
+   "tag": "FY3/26 결산·첫 가이던스",
+   "q": "4Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "1Q27 결산",
+   "q": "1Q27",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-06",
+   "kind": "실적",
+   "tag": "2Q27 결산·통기 상향",
+   "q": "2Q27",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "2Q FY3/27 결산단신(2026-11-06): https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_annual.pdf",
+  "2Q FY3/27 결산설명자료: https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf",
+  "2Q 결산설명회 스피치·질의응답 전문: https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf",
+  "FY3/26 결산 질의응답(2026-05-15): https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/05/2025FY_qa.pdf",
+  "컨센서스(카부요호): https://kabuyoho.jp/reportAnalyst?bcode=6315",
+  "시세·동종(TradingView): https://www.tradingview.com/symbols/TSE-6315/"
+ ],
+ "overrides": {
+  "growth_base": {
+   "start": 0.22,
+   "end": 0.04,
+   "decay": 0.35
+  },
+  "margin_base": {
+   "target": 0.19,
+   "year_target": 2,
+   "lr": 0.15,
+   "lam": 0.4
+  },
+  "s2c": 2.2,
+  "why": "매출은 FY3/27 +30.6%(가이던스)에서 FY3/28 +13%(사장 감 ¥80B)로 둔화한다고 보고 출발 성장 22%를 쓴다. 장비 회사라 장기 성장은 4%로 낮춘다. 이익률은 하반기 계획 20%와 TTM 15.6% 사이 19%를 2년 뒤 목표로. 매출/투하자본 TTM 1.0이지만 증분은 협력사 활용으로 가벼워 2.2"
+ },
+ "multiples_now": {
+  "pe_fwd": 16.1,
+  "pe_fwd2": 14.0,
+  "pe_fwd3": 12.5
+ },
+ "forward": {
+  "as_of": "2026-11-11",
+  "ntm": {
+   "eps": 143.5,
+   "ebitda": 18.4,
+   "ebit": 14.9,
+   "revenue": 75.8,
+   "rev_ttm": 64.633
+  },
+  "horizons": {
+   "2": {
+    "eps": 165.0,
+    "ext": 1
+   },
+   "3": {
+    "eps": 185.0,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "street_news"
+  },
+  "source": "NTM EPS ¥143.5 = 카부요호 12개월 선행 애널리스트 평균(11/11). NTM 매출 ¥75.8B = 하반기 가이던스 ¥37.3B + FY3/28 상반기 모델 추정 ¥38.5B, 영업이익 ¥14.9B(19.7%)·EBITDA ¥18.4B는 모델 추정. Fwd 2Y·3Y EPS는 FY3/28·29 컨센서스가 없어 사장 감(¥80B)과 이익률 20%로 모델 외삽(ext) — 근거가 약하다"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "terms": {
+  "컴프레션 몰딩": "반도체 칩 위에 수지를 깔고 눌러 굳히는 패키지 봉지 방식 — 얇고 넓은 패키지·적층 칩에 쓴다",
+  "트랜스퍼 몰딩": "녹인 수지를 금형 통로로 밀어 넣어 칩을 감싸는 전통 봉지 방식",
+  "싱귤레이션": "봉지가 끝난 기판을 개별 패키지로 자르는 공정",
+  "MR-MUF": "HBM 적층 칩 사이와 바깥을 한 번에 수지로 채우는 공정(몰디드 언더필)",
+  "MUF": "칩 아래 빈틈과 바깥을 한 번에 몰딩 수지로 채우는 방식",
+  "TSS": "TOWA의 금형·부품·서비스 사업(Total Solution Service)",
+  "INNOMS": "TOWA가 메모리 고객과 평가 중인 신형 몰딩 장비",
+  "PLP": "둥근 웨이퍼 대신 큰 사각 패널 위에서 패키지를 만드는 방식",
+  "하이브리드 본딩": "범프 없이 구리 패드끼리 직접 붙이는 차세대 칩 적층 방식",
+  "J-ESOP": "회사가 신탁에 주식을 넣어 직원에게 나눠 주는 일본식 주식 보상 제도",
+  "이형 필름": "몰딩 뒤 패키지가 금형에서 잘 떨어지게 까는 필름",
+  "BJPY": "십억 엔 단위",
+  "JP": "일본",
+  "ASIA": "일본 밖 아시아",
+  "PPI": "생산자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "CAR": "누적 초과수익률(시장 대비)",
+  "AR": "자기회귀(AR) 통계 모형",
+  "HP": "호드릭-프레스콧 추세 필터",
+  "GP": "매출총이익",
+  "IR": "투자자 관계",
+  "AP": "미국 AP 통신",
+  "PDF": "문서 파일 형식",
+  "J-GAAP": "일본 회계기준",
+  "결산단신": "일본 상장사의 분기 실적 속보 공시(決算短信)",
+  "EDINET": "일본 금융청 전자 공시 시스템",
+  "TDnet": "도쿄증권거래소 적시 공시 시스템",
+  "OSAT": "반도체 후공정(패키징·테스트)을 외주로 맡는 회사",
+  "PLC": "공장 기계를 제어하는 산업용 컨트롤러",
+  "HBM": "D램 칩을 여러 층 쌓아 AI 가속기 옆에 붙이는 고대역폭 메모리",
+  "SMH": "반도체 업종 ETF"
+ },
+ "names": [
+  "TOWA",
+  "디스코",
+  "도쿄정밀",
+  "시바우라메카트로닉스",
+  "BESI",
+  "ASMPT",
+  "한미반도체",
+  "SK하이닉스",
+  "삼성전자",
+  "마이크론",
+  "노무라증권",
+  "모건스탠리",
+  "SMBC닛코",
+  "카부요호",
+  "SMBC",
+  "SMBC닛코",
+  "LMR"
+ ],
+ "social": {
+  "none": "Quantral 미수록"
+ },
+ "narrative": {
+  "as_of": "2026-11-12",
+  "stage": "확산",
+  "crowding": "낮음",
+  "summary": "AI 데이터센터가 HBM과 전원용 파워 반도체를 늘리고, 둘 다 컴프레션 몰딩을 써야 하니 TOWA 수주가 사상 최대로 간다는 이야기다. 2Q 수주 ¥33.0B(+126%)·잔고 ¥51.8B·통기 상향이 이를 숫자로 보여 줬다. 그런데 주가는 6월 종가 고점 ¥3,540에서 11월 6일 ¥1,785까지 반 토막이 났다 — 'HBM 발주가 한 번 튀고 끝난다'는 2023년의 기억이 할인을 만든다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "강세 3·중립 2",
+      "5명",
+      "11/11"
+     ],
+     [
+      "목표가 평균",
+      "¥3,230",
+      "현재가 +39%",
+      "카부요호"
+     ],
+     [
+      "FY3/27 영업이익 컨센서스",
+      "¥12.7B",
+      "가이던스 ¥13.15B 아래",
+      "11/11"
+     ]
+    ],
+    "read": "컨센서스가 아직 11/6 가이던스를 다 따라오지 않았다 — 경상이익 컨센서스가 4주 동안 +4.1% 올랐다. 질의응답에는 모건스탠리·SMBC닛코 등이 하반기 이익률·HBM 대수·캐파를 물었다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "28.9%",
+      "공개 시세 개요",
+      "11/12"
+     ],
+     [
+      "내부자 보유",
+      "15.6%",
+      "공개 시세 개요",
+      "11/12"
+     ],
+     [
+      "대량보유",
+      "노무라증권 5% 초과",
+      "보고",
+      "11/9"
+     ]
+    ],
+    "read": "13F 같은 보유 변화 자료는 일본에 없어 미확인. 노무라증권 5% 초과 보고는 자기 계정·신탁 구분이 없어 매수 의도로 읽지 않는다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "텔레그램 공개 채널",
+      "언급 0건",
+      "",
+      "11/12 조회"
+     ],
+     [
+      "일 거래량",
+      "260일 평균 약 400만 주",
+      "11/9 829만 주",
+      "TradingView"
+     ],
+     [
+      "미나비부 개인 예상",
+      "'매수 예상 수 상승' 2위",
+      "11/10",
+      "보도 제목"
+     ]
+    ],
+    "read": "한국 공개 채널에서는 다루지 않는다. 일본 개인 투자자 관심은 2Q 뒤 올라갔다(보도 제목 기준, 본문 미수집)"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "통기 상향·컨센서스 넘는 상향·생성 AI 수요",
+      "가부탄·피스코",
+      "11/9"
+     ]
+    ],
+    "read": "일본 시황 매체는 '컨센서스를 넘는 상향'과 4일 만의 반등으로 묶었다"
+   }
+  },
+  "factors": [
+   {
+    "name": "HBM 후공정 공장 증설",
+    "thesis": "HBM 고객이 후공정 공장을 지으며 몰딩 장비 수요가 연 십수 대 → 1.5~2배가 된다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "2Q 몰딩 수주 ¥26.0B, 한국 수주 ¥4.51B(1Q의 3.3배)",
+    "status": "강화",
+    "falsifier": "3Q 수주 ¥25B 미만(2027년 2월 결산)",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   },
+   {
+    "name": "데이터센터 전원 파워 반도체",
+    "thesis": "GPU 기판 하나에 디스크리트 소자가 약 500개, 방열 수지 파워 반도체는 컴프레션만 가능하다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2Q 중국 수주 ¥11.6B(전원·범용 패키지 중심, 회사 설명)",
+    "status": "강화",
+    "falsifier": "중국 수주가 2분기 연속 ¥6B 미만",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   },
+   {
+    "name": "가이던스 상향·이익률 레버리지",
+    "thesis": "매출이 늘면 고정비가 깔려 하반기 영업이익률 20%가 된다",
+    "inputs": "EPS 리비전",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "1H OPM 16.9%, 2Q 19.8%, 하반기 계획 20%",
+    "status": "강화",
+    "falsifier": "3Q 영업이익률 17% 미만",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf"
+   },
+   {
+    "name": "리드타임·잔고 가시성",
+    "thesis": "리드타임이 1년을 넘어 잔고가 내년 매출을 미리 깔아 준다",
+    "inputs": "매출 가시성",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "잔고 ¥51.8B = 9.6개월 매출, B/B 1.38",
+    "status": "강화",
+    "falsifier": "잔고가 2분기 연속 감소",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation.pdf"
+   },
+   {
+    "name": "반대: 2023년식 한 번 튀고 꺾이는 발주",
+    "thesis": "2023년 7~9월에도 한국 수주가 튄 뒤 꺾였다 — HBM 장비는 소수 고객·소수 대수라 덩어리로 들어온다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "종가 고점 ¥3,540(6/22) → ¥1,785(11/6) −50%",
+    "status": "유지",
+    "falsifier": "3Q·4Q 수주가 연속 ¥25B 이상",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   },
+   {
+    "name": "반대: 하이브리드 본딩 전환",
+    "thesis": "HBM이 하이브리드 본딩으로 넘어가면 MR-MUF 몰딩 수요가 준다",
+    "inputs": "장기 성장",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "회사: 고객에게서 수요 감소 신호 없음, 높이 제한 완화로 MR-MUF 유지 움직임",
+    "status": "정황",
+    "falsifier": "HBM 회사가 16단 이상에서 하이브리드 본딩 양산 채택 발표",
+    "source": "https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf"
+   }
+  ],
+  "lead": {
+   "summary": "TOWA(6315)는 교토의 반도체 후공정 장비 회사다. 칩을 수지로 감싸는 몰딩 장비가 매출의 72%, 금형·부품·서비스(TSS)가 17%다. 1H FY3/27 매출 ¥33.7B(+44%)·영업이익 ¥5.7B(+128%)이고, 11/6 통기 가이던스를 매출 ¥71.0B·영업이익 ¥13.15B·EPS ¥119.95로 올렸다. 2Q 수주 ¥33.0B는 분기 사상 최대, 9월 말 잔고는 ¥51.8B다. 주가는 11/12 ¥2,317, 시가총액 ¥173.9B(기본 주식 기준)",
+   "value_story": "Fwd 1Y P/E 16.1배(12개월 선행 EPS ¥143.5 컨센서스)로 후공정 장비 동종 6곳 중앙값 25.1배보다 크게 낮다. 시장은 HBM 발주가 덩어리로 왔다가 사라지는 사업으로 값을 매긴다. 가치를 정하는 것은 ① 3Q·4Q 수주가 ¥25B 이상을 이어 가는지 ② 하반기 영업이익률 20%가 실제로 나오는지 ③ FY3/28 매출이 사장 감 ¥80B에 닿는지다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 16.1배, 동종 6곳 중앙값 25.1배(디스코 27.7·도쿄정밀 16.8·시바우라 13.1·BESI 30.6·ASMPT 22.5·한미반도체 60.3 — 동종은 다음 회계연도 컨센서스 기준)",
+    "eps": "TTM EPS ¥87.6 → FY3/27 가이던스 ¥119.95(+37%) → 12개월 선행 ¥143.5. 하반기만 보면 EPS 약 ¥69(가이던스 순이익 ¥9.0B − 상반기 ¥3.83B)"
+   },
+   "why_excited": "2026년 4~6월 HBM·AI 기대로 ¥2,100대에서 6월 22일 종가 ¥3,540까지 올랐다. 그 뒤 5월 결산 다음 날 −21%, 8월 1Q 결산 다음 날 −12%로 '수주가 이어지지 않는다'는 걱정이 커져 11월 6일 ¥1,785까지 빠졌다. 2Q 결산(수주 +126%·통기 상향) 다음 날 +17.7%로 반등했다 — 기대가 다시 붙는 초입이지만 고점 대비로는 아직 −35%다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "몰딩 장비",
+     "what": "칩을 수지로 감싸는 컴프레션·트랜스퍼 몰딩 장비",
+     "use": "HBM·파워 반도체·로직 패키지 봉지",
+     "money": "장비 판매(대당 수억 엔대, 추정)",
+     "rev_share": 0.722,
+     "rev_share_prev": 0.693,
+     "mix_basis": "1H 몰딩 ¥24.33B ÷ ¥33.72B, 전년 1H ¥16.24B ÷ ¥23.44B",
+     "name_en": "semiconductor compression molding system",
+     "what_en": "Automated semiconductor package compression molding machine with a hydraulic or servo press, a precision mold set, resin dispensing unit, release film feeder and substrate loader and unloader",
+     "use_en": "an industrial cleanroom machine with a central press block, a precision steel mold, a film roll feeder and robotic loading stages",
+     "bom": {
+      "as_of": "2026-11-12",
+      "items": [
+       {
+        "no": 1,
+        "part": "정밀 금형(몰드 세트)",
+        "part_en": "precision steel mold set",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "TOWA 내제",
+        "source": "2Q 결산설명회 질의응답 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf — '가공품·내제품은 금형 포함 캐파 있음'"
+       },
+       {
+        "no": 2,
+        "part": "서보 모터·구동부",
+        "part_en": "servo motor drive",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시(구매품)",
+        "source": "2Q 결산설명회 질의응답 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf — 구매품 모터 납기 지연"
+       },
+       {
+        "no": 3,
+        "part": "센서(압력·위치)",
+        "part_en": "pressure and position sensors",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시(구매품)",
+        "source": "2Q 결산설명회 질의응답 https://www.towajapan.co.jp/jp/wp-content/uploads/sites/2/2026/11/2026FY_secondquarter_presentation_speech_and_QA.pdf — 구매품 센서 납기 지연"
+       },
+       {
+        "no": 4,
+        "part": "이형 필름 공급부",
+        "part_en": "release film feeder roll",
+        "kind": "소모품",
+        "confidence": "확인",
+        "supplier": "TOWA(이형 필름 판매)",
+        "source": "회사 사업 설명(이형 필름 판매)"
+       },
+       {
+        "no": 5,
+        "part": "프레스 유닛",
+        "part_en": "press block",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "업계 장비 구조"
+       },
+       {
+        "no": 6,
+        "part": "수지 공급부",
+        "part_en": "resin dispensing unit",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "업계 장비 구조"
+       },
+       {
+        "no": 7,
+        "part": "기판 로더·언로더",
+        "part_en": "substrate loader and unloader",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "업계 장비 구조"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "TSS(금형·부품·서비스)",
+     "what": "교체 금형·부품·현장 서비스",
+     "use": "설치된 TOWA 장비 유지",
+     "money": "반복 매출",
+     "rev_share": 0.17,
+     "rev_share_prev": 0.181,
+     "mix_basis": "1H TSS ¥5.73B ÷ ¥33.72B, 전년 ¥4.25B ÷ ¥23.44B",
+     "name_en": "mold maintenance and spare parts service",
+     "what_en": "Field service engineer replacing a precision mold set and spare parts on an installed semiconductor molding machine",
+     "use_en": "service work at an installed back-end machine with replacement mold parts on a cart"
+    },
+    {
+     "kind": "제품",
+     "name": "싱귤레이션 장비",
+     "what": "봉지된 기판을 개별 패키지로 자르는 장비·블레이드",
+     "use": "패키지 절단",
+     "money": "장비·블레이드 판매",
+     "rev_share": 0.042,
+     "rev_share_prev": 0.046,
+     "mix_basis": "1H ¥1.42B ÷ ¥33.72B",
+     "name_en": "package singulation saw",
+     "what_en": "Automated saw that cuts molded package panels into individual semiconductor packages with a thin dicing blade"
+    },
+    {
+     "kind": "제품",
+     "name": "의료·레이저",
+     "what": "의료용 조립품, 레이저 트리머",
+     "use": "의료 기기·전자 부품 가공",
+     "money": "제품 판매",
+     "rev_share": 0.065,
+     "rev_share_prev": 0.079,
+     "mix_basis": "1H 의료 ¥1.38B + 레이저 ¥0.82B",
+     "name_en": "medical assembly and laser trimmer",
+     "what_en": "Medical device assembly parts and a laser trimming system for electronic components"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "HBM 고객 1곳 위주 → 다른 HBM 고객도 인증·공급 시작(미국계 포함 2027년 HBM 공장). 고객이 늘면 덩어리 발주가 이어지는 발주로 바뀔 수 있다",
+     "evidence": "2Q 콜(회사 말, 고객 발표 미확인)",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "3Q 한국·미국 출하지 수주 감소"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "몰딩 비중 69% → 72%, 하반기 영업이익률 계획 20%(2Q 19.8%)",
+     "evidence": "2Q 설명자료",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "몰딩 비중 하락과 영업이익률 17% 미만"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "INNOMS 신형 장비가 메모리 고객 현장 평가 중 — 빠르면 2027년 4월 다른 고객에 판매",
+     "evidence": "2Q 콜",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "평가 연장·판매 시점 연기"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "리드타임이 약 6개월 → 1년 초과로 늘었다 — 수요가 공급보다 빠르다는 신호이면서 납기 경쟁에는 약점",
+     "evidence": "2Q 콜",
+     "drives": "revision",
+     "status": "약화",
+     "falsifier": "리드타임이 다시 6개월대로 줄며 수주도 유지",
+     "lead_time": {
+      "now": [
+       12,
+       14
+      ],
+      "prior": 6,
+      "prior_when": "2026-05",
+      "peers": [
+       {
+        "name": "후공정 장비 동종(디스코·BESI·한미반도체)",
+        "value": "미확인"
+       }
+      ],
+      "unit": "개월",
+      "basis": "주문→출하(회사 설명, 설비별 차이)"
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음 — 최근 3년 의미 있는 인수 없음",
+     "evidence": "결산단신",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "change": "AI 데이터센터 CAPEX → HBM·전원 반도체 생산 → 고객 후공정 공장 증설 → 몰딩 장비. 가장 마지막 고리라 시점이 늦고 덩어리로 온다",
+     "evidence": "2Q 콜(고객 공장 건설이 발주 조건)",
+     "drives": "both",
+     "status": "강화",
+     "falsifier": "HBM 회사 후공정 CAPEX 축소 발표"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(TOWA를 겨냥한 미국 재정정책 미확인). 고객의 미국 HBM 공장은 CHIPS 보조금 대상이지만 TOWA 매출로 바로 잇지 않는다(금지표)",
+     "evidence": "미확인",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "해당 없음",
+     "house": {
+      "level": 1,
+      "why": "TOWA 관련 논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "미국의 대중 반도체 장비 수출통제가 일본 후공정 장비로 넓어질 위험 — TOWA는 중국 출하 47%. 현재 후공정 몰딩 장비가 통제 대상이라는 1차 자료는 없다",
+     "evidence": "미확인(정책 0단계 가설)",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "일본 경제산업성 수출 규제 대상에 몰딩 장비 추가",
+     "house": {
+      "level": 1,
+      "why": "후공정 장비를 겨냥한 행정명령·법안 미확인"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 겨냥한 미국·일본 법안 미확인)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "대중 후공정 장비 수출 제한 법안 발의"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "사상 최대 수주·잔고에 Fwd 1Y P/E 16배 — 동종 중앙값 25배와의 차이가 너무 크다",
+    "evidence": [
+     "2Q 수주 ¥33.0B(+126%)",
+     "Fwd 1Y P/E 16.1배 vs 동종 25.1배"
+    ],
+    "falsifier": "3Q 수주 ¥20B 미만"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "하반기 영업이익률 20% 계획은 잔고가 받친다 — 컨센서스가 아직 가이던스 아래다",
+    "evidence": [
+     "잔고 ¥51.8B = 9.6개월치",
+     "컨센서스 영업이익 ¥12.7B vs 가이던스 ¥13.15B"
+    ],
+    "falsifier": "3Q 영업이익률 17% 미만"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수주는 확인됐지만 지속성은 확인되지 않았다. HBM 고객 다변화가 회사 말뿐이다",
+    "evidence": [
+     "한국 수주 ¥4.51B — 2023년에도 ¥4.4B로 튄 뒤 꺾였다",
+     "고객 이름 미공시"
+    ],
+    "falsifier": "3Q·4Q 수주 연속 ¥25B 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "리드타임 1년 초과와 구매 부품 지연은 매출 인식이 밀릴 위험이다",
+    "evidence": [
+     "리드타임 6개월 → 1년 초과",
+     "단기차입 +¥2.5B(운전자금)"
+    ],
+    "falsifier": "하반기 매출 ¥37.3B 달성"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "HBM 장비는 소수 고객·소수 대수다. 주가가 6개월 만에 반 토막 난 건 시장이 그 덩어리를 안다는 뜻이다",
+    "evidence": [
+     "종가 고점 대비 −50%(11/6)",
+     "HBM 장비 연 십수 대 → 20대 수준"
+    ],
+    "falsifier": "FY3/28 매출 가이던스 ¥80B 이상"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "상반기 수주 ¥54.8B는 전년의 2.2배다. 잔고만으로 하반기 매출 계획 ¥37.3B를 넘는다"
+     },
+     {
+      "seat": "Buy",
+      "text": "2Q 영업이익률이 이미 19.8%다. 하반기 20%는 새 가정이 아니다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "2Q 수주 중 중국이 ¥11.6B로 가장 크다. HBM만의 이야기가 아니고, 범용 패키지 경기도 섞여 있다"
+     },
+     {
+      "seat": "Sell",
+      "text": "리드타임이 두 배가 됐다. 잔고가 쌓여도 매출로 넘어가는 속도가 느려진다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "HBM 장비 시장은 연 20대 수준이다. 한 고객의 공장 일정이 바뀌면 분기 수주가 크게 흔들린다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "동종 중앙값 25배에는 한미반도체 60배·BESI 31배 같은 하이브리드 본딩 기대가 섞였다. 몰딩 회사에 그대로 적용하기 어렵다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "회사는 협력사까지 쓰면 다음 해 ¥100B까지 만들 수 있다고 했다. 캐파보다 부품이 병목이고, 판가 인상으로 흡수한다고 답했다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "이번엔 다른 HBM 고객 인증과 미국계 공장이 더해졌다. 2023년은 고객 한 곳이었다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "단기차입이 ¥2.5B 늘었다. 재공품이 ¥11.8B에서 ¥14.4B로 쌓이는 동안 현금은 운전자금에 묶인다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "다변화가 회사 말뿐이라는 점에 동의한다. 고객 발표가 없다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "2Q 영업현금흐름 ¥5.1B로 순현금이 ¥13.1B다. 운전자금 증가는 감당 가능하다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "하반기 20%는 2Q 한 분기 숫자에 기댄다. 1Q는 13.7%였다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "Fwd 1Y P/E 16배는 12개월 선행 EPS ¥143.5를 믿을 때다. FY3/28 컨센서스는 공개되지 않았다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "몰딩 수주 ¥26.0B 중 HBM이 얼마인지 몰라도, 전원 반도체만으로도 중국 수주가 ¥11.6B였다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "새 고객 인증은 매출이 아니다. 금지표대로 계약·물량이 나와야 한다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "3Q 수주가 ¥25B를 넘으면 할인이 풀린다"
+     },
+     {
+      "seat": "Buy",
+      "text": "잔고와 컨센서스 갭이 리비전을 위로 이끈다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "지속성 확인 전에는 규칙 등급을 크게 옮길 근거가 약하다"
+     },
+     {
+      "seat": "Sell",
+      "text": "리드타임과 부품 지연을 3Q에서 확인해야 한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "덩어리 발주의 꺾임을 할인으로 반영해야 한다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Strong Buy",
+    "Buy": "Buy",
+    "Neutral": "Buy",
+    "Sell": "Neutral",
+    "Strong Sell": "Neutral"
+   },
+   "reason": "잔고 ¥51.8B·2Q 영업이익률 19.8%·순현금 반박이 살아남았고, 고객 다변화가 회사 말뿐이라는 반박도 살아남았다. 규칙 등급을 출발점으로 둔다",
+   "dissent": "Strong Sell 자리: HBM 장비는 덩어리 발주라 수주 정점이 곧 주가 정점이다"
+  }
+ },
+ "quarters_hist": {
+  "source": "TradingView 분기 매출·매출총이익(4Q FY3/23~2Q FY3/27, 회계연도 분기) + 영업이익(1Q FY3/26~2Q FY3/27, 2Q 결산설명자료 분기표)",
+  "key": "TSE:6315",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2022-12-31",
+    "rev": 11387896000.0,
+    "cogs": 7539430000.0,
+    "gp": 3848466000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 13651267000.0,
+    "cogs": 8879967000.0,
+    "gp": 4771300000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 9511078000.0,
+    "cogs": 6393606000.0,
+    "gp": 3117472000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 11753967000.0,
+    "cogs": 8005606000.0,
+    "gp": 3748361000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 10767942000.0,
+    "cogs": 6682872000.0,
+    "gp": 4085070000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 18438812000.0,
+    "cogs": 11191536000.0,
+    "gp": 7247276000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 13253020000.0,
+    "cogs": 8479218000.0,
+    "gp": 4773802000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 14145729000.0,
+    "cogs": 8449145000.0,
+    "gp": 5696584000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 11860656000.0,
+    "cogs": 7760166000.0,
+    "gp": 4100490000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 14219800000.0,
+    "cogs": 8891990000.0,
+    "gp": 5327810000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 8080222000.0,
+    "cogs": 5926361000.0,
+    "gp": 2153861000.0,
+    "sga": 2733861000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": -580000000.0
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 15369674000.0,
+    "cogs": 9575395000.0,
+    "gp": 5794279000.0,
+    "sga": 2724279000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 3070000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 13480394000.0,
+    "cogs": 9369660000.0,
+    "gp": 4110734000.0,
+    "sga": 2920734000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 1190000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 17434934000.0,
+    "cogs": 11122246000.0,
+    "gp": 6312688000.0,
+    "sga": 3082688000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 3230000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 16183487000.0,
+    "cogs": 10733386000.0,
+    "gp": 5450101000.0,
+    "sga": 3240101000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 2210000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 17534272000.0,
+    "cogs": 10995584000.0,
+    "gp": 6538688000.0,
+    "sga": 3068688000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 3470000000.0
+   }
+  ]
+ }
+}
