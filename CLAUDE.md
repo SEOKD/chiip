@@ -145,6 +145,7 @@
 | 종목 발굴·방위·원자력·위성·소비재·시가총액 구간·TradingView | `docs/channels/discovery.md` |
 | 노션 구조·올림 즉시 처리·인텔 아카이브 | `docs/channels/notion.md` |
 | Weekly Review | `docs/channels/weekly.md` |
+| Chiip Quantral(일요일 리테일 관심 순위) | `docs/channels/quantral.md` |
 | Industry Report(산업 리포트) | `docs/channels/industry.md` |
 | 딘스티커 채널 읽기 | `docs/channels/dticker.md` |
 | 공개 텔레그램 채널 수집 | `docs/channels/telegram.md` |

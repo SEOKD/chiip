@@ -1,0 +1,22 @@
+# Chiip Quantral 운영 규칙
+
+- **Chiip Quantral**(2026-11-12 마스터 지시 "일요일 아침마다 Reddit, X, Substack에서 언급 수가 가장 많은 종목을 상위 순으로 순위를 매겨 어떤 내러티브로 리테일 투자자들의 관심을 얻고 있는지 분석하는 리포트. Weekly Review와 별개다"): 예약 작업 `chiip-quantral`(매주 일요일 08:00 KST). Weekly Review와 섞지 않는다.
+- **수집:** Quantral MCP만 쓴다.
+  - `get_stories(week=<토요일 날짜>)`로 그 주(월~일, UTC) 이야기 전부를 받는다.
+  - 이야기 게시 수 합 상위 25개 종목은 `get_company_signals(ticker)`로 최근 언급 표본을 받는다. 파일에는 `sourceType`·`detectedAt`만 남긴다.
+  - 작성자·글 본문·링크는 파일에 쓰지 않는다(ADR-011).
+- **계산은 결정론**(`scripts/quantral/weekly.py`):
+  - 언급 수 = 이야기 postCount 합.
+  - 순위 점수 = 언급 수 × 표본의 Reddit·X·Substack 비중. 유튜브·텔레그램·국내 블로그 몫은 뺀다.
+  - 상위 15개를 싣는다. 표본이 없으면 비중 1로 두고 '채널 미확인'으로 표시한다.
+- **모델 몫**은 `<주차>_report.json`이다:
+  - headline: 그 주 리테일 관심의 변화를 한 문장으로.
+  - bullets: 3개.
+  - themes: 2~4개 묶음. 여러 종목을 묶는 이야기(예: 네오클라우드 재평가).
+  - notes: 상위 10개 종목 필수. 종목마다 narrative(리테일이 믿는 이야기), why_now(이번 주 관심을 끈 사건), check(그 이야기를 확인하거나 깨는 다음 숫자·일정).
+- **작성 원칙:**
+  - 내러티브는 Quantral 이야기 요약과 표본 글의 논지를 자기 말로 쓴다. 직접 인용은 하지 않고 작성자 이름도 쓰지 않는다.
+  - 커뮤니티가 말하는 숫자(매출·백로그 등)는 주장이다. 사실로 쓸 때는 1차 자료(보도자료·공시·Fiscal.ai)로 확인한 것만 쓰고, 확인하지 못하면 "커뮤니티 주장"으로 표시한다.
+  - 관심 순위는 펀더멘털이 아니다(금지표: 주가 급등 → 펀더멘털 변화). 매매·비중·금액 지시는 쓰지 않는다.
+  - 감시 종목(포커스·포트폴리오)이 순위에 있으면 note 끝에 "Chiip 판단과의 차이"를 한 줄 덧붙인다.
+- **발행:** `py scripts/quantral/weekly.py --render <주차>` → `py scripts/publish_report.py outputs/quantral/<주차>.html --title "Chiip Quantral <주차>"` → 텔레그램은 헤드라인 + 상위 5(티커·언급 수·내러티브 한 구절) + 링크 1통.
