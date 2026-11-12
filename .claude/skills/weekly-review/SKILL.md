@@ -29,6 +29,7 @@ argument-hint: "[주차 YYYY-Www]"
    c. `--rank <주차>` → `--targets <주차>`가 내는 미국 티커(정량 상위 150)를 `mcp-tv-get-symbol-data-batch`(50개씩, `NASDAQ:`/`NYSE:` 접두, 열은 설정 columns)로 받아 `--put <주차> <파일> america` → 다시 `--rank <주차>`.
    d. `--rank`가 낸 판단 후보(최대 25 + 이미 알파가 있는 종목)를 스킬 tenbagger-card '알파 점수' 절대로 매긴다 — 근거 URL(8-K·IR 보도자료) 필수, 판단 파일 `knowledge/models/alpha/judgments/YYYYMMDD.csv` → `py scripts/alpha/score.py --finalize`.
    e. `--finalize <주차> --floor 6` → 알파 6.0 이상을 와치리스트(added_by: earnings-sweep, alpha_floor 6)·Analysis 리포트 대기열에 넣는다. 통과 종목마다 weekly json `earnings_alpha.notes`에 왜 알파가 높은지 1차 자료로 한 줄, `earnings_alpha.read`에 이번 주 점검 한 줄. 렌더러가 'Earnings 알파 점검' 절을 만든다(점검 파일이 없으면 절을 뺀다).
+6-1. **Nebius GPU 렌털료 추이**(2026-11-13 마스터 지시): 표는 렌더러가 자동으로 넣는다(`scripts/weekly/gpu_rent.py`, 변화 없어도 매주). 바뀐 GPU가 있거나 정가와 Silicon Data 지수의 괴리가 크게 움직였으면 JSON `gpu_read`에 읽기 한 문장을 쓴다.
 7. **이 판단이 틀릴 조건 2~3줄**.
 8. 첫 문장(headline)과 결론 3줄을 맨 마지막에 쓴다. 지수·종목 나열이 아니라 그 주의 변화 한 문장이다.
 9. `outputs/brief/<YYYY-Www>_weekly.json`(구조는 `scripts/weekly/render.py` 맨 위) → `py scripts/weekly/render.py <YYYY-Www>` → .md·.html.

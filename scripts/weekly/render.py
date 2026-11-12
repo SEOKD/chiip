@@ -7,7 +7,8 @@ JSON: {"week": "2026-W44", "week_no": 44, "period": "10/26~10/30", "as_of": "202
        "bullets": ["결론 3개"], "indices": [{"name", "pct"}], "changes": [{"title", "what", "why", "winners", "losers", "next"}],
        "sectors": [{"name", "d5", "d20", "dd", "rev30", "read"}], "next": [{"date", "what", "watch", "means"}], "risks": ["3개"], "notes": ["출처·표기 의무"],
        "leadtime": {"components": [{"name": "HBM", "now": 52, "prev": 48, "normal": 16, "weight": 0.2, "evidence": "콜·리포트 근거 한 줄", "n": 3}],
-                    "read": "병목이 어디서 어디로 옮겨 가나 한 문장"}}   # AI 하드웨어 리드타임(주) — 2026-11-04 마스터 지시, 숫자 계산은 leadtime_model()
+                    "read": "병목이 어디서 어디로 옮겨 가나 한 문장"},
+       "gpu_read": "(선택) Nebius GPU 렌털료 읽기 한 문장"}   # AI 하드웨어 리드타임(주) — 2026-11-04 마스터 지시, 숫자 계산은 leadtime_model()
 사용: py scripts/weekly/render.py 2026-W44
 """
 import csv
@@ -27,6 +28,7 @@ MOVERS = ROOT / "knowledge" / "models" / "weekly_movers"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import earnings_alpha  # noqa: E402
+import gpu_rent  # noqa: E402   # Nebius GPU 렌털료 고정 블록(2026-11-13 마스터 지시)
 
 
 def cfg():
@@ -153,6 +155,7 @@ def to_md(d, movers):
     L += ["", "## AI 하드웨어 리드타임·병목", "", f"병목 지수 {m['index']:.2f}배" + (f" (전주 {m['prev_index']:.2f}배)" if m["prev_index"] else "") + f" · 지금 병목 {m['tight']['name']} · 늘어난 곳 {m['moving']['name'] if m['moving'] else '-'} · 풀린 곳 {m['easing']['name'] if m['easing'] else '-'}", "", d["leadtime"]["read"], "",
           "| 부품 | 지금(주) | 전주(주) | 평시(주) | 압박도 | 근거 |", "|---|---|---|---|---|---|"]
     L += [f"| {r['name']} | {r['now']} | {r.get('prev', '-')} | {r['normal']} | {r['stress']:.1f}배 | {r['evidence']} |" for r in m["rows"]]
+    L += gpu_rent.md_lines(d)   # Nebius GPU 렌털료 추이 — 매주 고정, 변화 없어도 표시(2026-11-13 마스터 지시)
     L += earnings_alpha.md_lines(d)   # Earnings 알파 점검(2026-11-07 마스터 지시)
     L += ["", "## 다음 주 볼 것", "", "| 날짜 | 무엇 | 볼 숫자 | 의미 |", "|---|---|---|---|"]
     L += [f"| {x['date']} | {x['what']} | {x['watch']} | {x['means']} |" for x in d["next"]]
@@ -217,6 +220,7 @@ def to_html(d, movers):
 <section><h2>이번 주 바뀐 것</h2>{cards}</section>
 <section><h2>섹터 온도</h2><div class="tw"><table><tr><th>섹터</th><th>5일</th><th>20일</th><th>고점 대비</th><th>EPS 추정 30일</th><th>읽기</th></tr>{sec}</table></div></section>
 <section><h2>AI 하드웨어 리드타임·병목</h2><p class="k">{ltsum}</p><p>{_e(d["leadtime"]["read"])}</p><div class="tw"><table><tr><th>부품</th><th>지금</th><th>전주</th><th>평시</th><th>압박도(지금÷평시)</th><th>근거</th></tr>{lt}</table></div><p class="note">압박도 = 지금 리드타임 ÷ 평시. 병목 지수는 부품 비중으로 가중한 평균. 리드타임은 이번 주 실적·콜·리포트 발언에서 모은 값이다.</p></section>
+{gpu_rent.html_section(d)}
 {esec}
 <section><h2>다음 주 볼 것</h2><div class="tw"><table><tr><th>날짜</th><th>무엇</th><th>볼 숫자</th><th>의미</th></tr>{nxt}</table></div></section>
 <section><h2>이 판단이 틀릴 조건</h2><ul>{''.join(f'<li>{_e(r)}</li>' for r in d['risks'])}</ul></section>
