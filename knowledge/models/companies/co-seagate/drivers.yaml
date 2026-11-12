@@ -1,0 +1,105 @@
+auto: true
+id: co-seagate
+name: Seagate Technology
+ticker: STX
+unit: B$
+unit_usd: 1000000000.0
+industry: computers
+region_mix:
+  US: 1.0
+tax: 0.16
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 551.72
+  shares: 0.232961
+  net_debt: 1.414
+  source: 가격 2026-11-11 종가 $551.72(TradingView) · 주식 수 229,561,109주(10-Q 표지, 2026-10-26)
+    · 현금 $1,258M·장기 차입 $2,351M + 비유동 리스 $321M(10-Q 2026-10-02 재무상태표). 10/15 2032 채권
+    $750M 상환은 현금·차입이 같이 줄어 순차입에 영향 없음
+rev0: 20.28
+ic0: 4.867
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.2919
+      end: 0.035
+      decay: 0.3
+    margin:
+      m0: 0.5122
+      target: 0.5421
+      year_target: 3
+      lr: 0.27
+      lam: 0.35
+      anchors:
+      - 0.5518
+      - 0.5421
+    s2c: 2.6
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.0843
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.5122
+      target: 0.5621
+      year_target: 3
+      lr: 0.27
+      lam: 0.25
+      anchors:
+      - 0.5518
+      - 0.5421
+    s2c: 2.99
+  bear:
+    prob: 0.2
+    growth:
+      start: -0.0533
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.5122
+      target: 0.5221
+      year_target: 3
+      lr: 0.27
+      lam: 0.5
+      anchors:
+      - 0.5518
+      - 0.5421
+    s2c: 2.21
+mc:
+  sigma_growth: 0.0344
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [20.18, 20.38] (FQ1 FY27 실적 8-K(2026-10-27)·콜: FQ2(12월 분기) 매출
+    $4.8B ± $0.1B, 비GAAP EPS $9.20 ± $0.20(세율 약 16%, 희석 2.33억 주), 비GAAP 영업비용 약 $300M,
+    비GAAP 영업이익률 50~55%(CFO 답변). 연간 가이던스 없음)'
+  growth: 컨센서스 1년차 29.2%, 2년차 11.1%
+  margin: 1~2년차 컨센서스 55.2%, 54.2% 고정 → 목표 54%(3년차, 덮어쓰기) → 장기 수렴 27%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.835 → 덮어쓰기 2.6
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -5.3%~8.4%
+  probs: '어닝콜 톤 ''up'' 규칙 {''bear'': 0.2, ''base'': 0.5, ''bull'': 0.3}'
+  overrides: '장기 이익률 27%(lr): FY27~29 컨센서스 비GAAP EBIT 이익률 53~57%는 3사 증설 규율이 이어질 때의
+    사이클 상단 — 과거 10년 GAAP 영업이익률 중앙 약 13%와 정점 사이로 수렴(근거 약함) / 매출÷투하자본 2.6: TTM 2.84는
+    누적 결손으로 자기자본이 작아 높다 — 증분 기준으로 낮춤(근거 약함)'
+  shares: 완전 희석 = 기본 0.229561(2026-10-26) + 옵션·RSU·워런트·전환 0.0034 — FQ2 가이던스 비GAAP
+    희석 주식 2.33억 주 − 기본 2.2956억 주 ≈ 3.4M주(RSU·PSU)
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 경쟁사 증설(WDC CAPEX 상향 발언·Toshiba 보도)'
+- '어닝콜 위험: Mozaic 4 전환 중 스크랩·생산 손실'
+- '어닝콜 위험: 외부 부품(메모리) 원가'
+evidence:
+- Seagate FQ1 FY27 10-Q https://www.sec.gov/Archives/edgar/data/1137789/000113778926000309/stx-20261002.htm
+- Seagate FY2026 10-K https://www.sec.gov/Archives/edgar/data/1137789/000113778926000159/stx-20260703.htm
+- Seagate FQ1 FY27 실적 8-K(Item 2.02, 2026-10-27) https://www.sec.gov/Archives/edgar/data/1137789/000113778926000300/stx-20261027.htm
+- FQ1 FY27·FQ4 FY26 어닝콜 요지(라이선스, 자기 말 요약)
+- Fiscal.ai 추정·재무·세그먼트·KPI 2026-11-12
+- TradingView NASDAQ:STX 일봉 2026-11-12
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- Quantral 커뮤니티 점수·월간 요약 2026-11-12
+- Form 4(CEO 2026-11-02 매도) SEC EDGAR
