@@ -151,7 +151,8 @@ def review():
     print(f"[데이터 채널 탐색] 회차 {day} · 오늘 분야: {focus(day, cfg['areas'])}")
     seen = sorted({r["channel"] for r in rows if r["channel"] not in ("-", "없음")})
     print("이미 본 채널: " + (" · ".join(seen) or "없음"))
-    wait = [f"{r['channel']}({r['needs']})" for r in rows if r["decision"] == "승인 대기"]
+    wait = [f"{r['channel']}({r['needs']})" for i, r in enumerate(rows) if r["decision"] == "승인 대기"
+            and not any(x["channel"] in (r["channel"], r["channel"][:len(x["channel"])]) and x["decision"] in ("연결", "기각") for x in rows[i + 1:])]
     if wait:
         print("마스터 승인 대기: " + " · ".join(dict.fromkeys(wait)))
     miss = [f"{r['date']} {r['decision']}" for r in rows if r["decision"] in ("미완료", "미실행")][-5:]

@@ -1,7 +1,7 @@
 # 일본 정보망 (마스터 지시 2026-10-29 "이비덴이 연간 실적 전망치 상향 발표했는데 왜 찾아서 보고 안 하나? 일본 정보망도 체계적으로 뚫어라")
 # radar/pollers/jp_disclosure.py가 10분마다 Google News 일본판 색인(hl=ja, gl=JP)에서 이 회사들의 적시공시(適時開示) 제목 미러
 # (日経会社情報DIGITAL '…(適時開示)')와 일본 매체 속보(株探·日経·日刊工業 등)를 찾는다.
-# TDnet·EDINET 직접 수집은 하지 않는다(TDnet은 robots.txt 차단). 원문 확인은 회사 IR 페이지 PDF로(모델 몫).
+# TDnet 직접 수집은 하지 않는다(robots.txt 차단). EDINET은 공식 API로 법정 서류 목록만 본다(radar/edinet.py, 키 대기, 2026-11-12). 원문 확인은 회사 IR 페이지 PDF로(모델 몫).
 # code는 도쿄증권거래소 4자리(일부 미검증 — code_verified false). ja는 일본어 표기(제목 매칭·검색어), en은 영문.
 code_verified: false
 companies:
