@@ -3141,5 +3141,19 @@
    "reason": "회복(DSA 유기 성장·마진·가이던스 상향)은 1차 자료로 확인됐다. 살아남은 반박은 '배수가 이미 반영했다'와 'B/B 하락'이다 — 4Q B/B와 2027 가이던스가 가를 자료다",
    "dissent": "Strong Sell 자리는 NAMs 규제 전환을 끝까지 남겼다"
   }
- }
+ },
+ "photos": [
+  {
+   "for": "product",
+   "name": "DSA(발굴·안전성 평가)",
+   "file": "File:Toxicology Research at FDA (NCTR - Biochemical Toxicology Division) (6022921756).jpg",
+   "caption": "독성 시험 실험실 — 같은 종류 예시(미국 FDA 국립독성연구센터, Charles River 시설 아님)"
+  },
+  {
+   "for": "product",
+   "name": "RMS·Manufacturing(연구 모델·품질 시험)",
+   "file": "File:Black-mouse-trio-in-cage-2.jpg",
+   "caption": "사육 케이지 안의 실험용 쥐 — 같은 종류 예시(Charles River 연구 모델 아님)"
+  }
+ ]
 }

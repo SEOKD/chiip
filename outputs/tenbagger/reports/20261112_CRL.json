@@ -2153,6 +2153,7 @@
    ]
   }
  ],
+ "corrections": [],
  "sources": [
   "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)",
   "2Q26 어닝콜(2026-08-05, 요지만 자기 말로)",
@@ -10019,7 +10020,29 @@
   }
  ],
  "support": "$337.64 일봉 피보나치 38.2% 되돌림 지지선",
- "gallery_photos": [],
+ "gallery_photos": [
+  {
+   "type": "photos",
+   "items": [
+    {
+     "name": "DSA(발굴·안전성 평가)",
+     "caption": "독성 시험 실험실 — 같은 종류 예시(미국 FDA 국립독성연구센터, Charles River 시설 아님)",
+     "file": "File:Toxicology Research at FDA (NCTR - Biochemical Toxicology Division) (6022921756).jpg",
+     "jpg": "c5975140303dd6d8.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Toxicology_Research_at_FDA_(NCTR_-_Biochemical_Toxicology_Division)_(6022921756).jpg",
+     "credit": "사진: The U.S. Food and Drug Administration · Public domain · Wikimedia Commons"
+    },
+    {
+     "name": "RMS·Manufacturing(연구 모델·품질 시험)",
+     "caption": "사육 케이지 안의 실험용 쥐 — 같은 종류 예시(Charles River 연구 모델 아님)",
+     "file": "File:Black-mouse-trio-in-cage-2.jpg",
+     "jpg": "55a524cd7af1a8bd.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Black-mouse-trio-in-cage-2.jpg",
+     "credit": "사진: Commissioned by Understanding Animal Research · CC BY-SA 4.0 · Wikimedia Commons"
+    }
+   ]
+  }
+ ],
  "format": 3,
  "terms": {
   "DSA": "신약 후보 발굴과 안전성 평가(독성 시험) 사업부",
@@ -10081,6 +10104,5 @@
   "LH",
   "FTRE",
   "JP"
- ],
- "corrections": []
+ ]
 }
