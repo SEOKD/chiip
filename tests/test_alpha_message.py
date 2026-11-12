@@ -11,6 +11,9 @@ R = {"entity": "co-ies", "drivers_as_of": "2026-11-08", "market": {"date": "2026
 
 
 class TestAlphaMessage(unittest.TestCase):
+    def test_new_source_reason_has_no_trailing_phrase(self):   # 마스터 지시 2026-11-13
+        self.assertEqual(aw.explain_reason("보도자료: NVIDIA Announces CEO Transition"), "새 보도자료 자료: NVIDIA Announces CEO Transition")
+
     def test_company_line_after_reasons_and_assumption_last(self):
         L = aw.message(R, "IES Holdings", 6.4, ["알파 5.3 기준 진입"], update_note="갱신").split("\n")
         # 2026-11-11 마스터 지시: 근거는 풀어 쓰고, 마지막 '가정:' 줄은 뺀다

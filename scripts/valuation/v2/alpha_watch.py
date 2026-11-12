@@ -271,7 +271,7 @@ def explain_reason(x):
         return f"{lvl}으로 나간 {m[2] or '소식'}: {m[3]} — 사건이 가치 입력을 바꿀 수 있어 다시 계산했다"
     m = re.match(r"(\S+): (.*)", x)
     if m:
-        return f"새 {m[1]} 자료: {m[2]} — 감시 종목에 1차 자료가 들어와 다시 계산했다"
+        return f"새 {m[1]} 자료: {m[2]}"
     return x
 
 
