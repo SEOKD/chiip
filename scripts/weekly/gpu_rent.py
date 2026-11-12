@@ -1,7 +1,7 @@
 """Weekly Review 'Nebius GPU 렌털료 추이' 고정 블록 (마스터 지시 2026-11-13 "Weekly Review에 네비우스 GPU 렌탈료 추이도 넣도록 해라")
 
 숫자는 모두 여기서 계산한다(모델은 읽기 한 줄 d["gpu_read"]만, 없어도 된다). 원천 knowledge/models/gpu_rental.csv(radar/gpu_rental.py, 6시간마다).
-  Nebius GPU별 온디맨드·선점형 시작가($/GPU·시) — 기준일 값, 전주(7일 전 이전 마지막 값) 대비, 추적 시작 대비. 바뀌지 않았으면 '변화 없음'.
+  Nebius GPU별 온디맨드·선점형 스팟 하한($/GPU·시, 가격표 'from' — 스팟은 15분 단위 변동이라 하한만 공개) — 기준일 값, 전주(7일 전 이전 마지막 값) 대비, 추적 시작 대비. 바뀌지 않았으면 '변화 없음'.
   비교 줄: CoreWeave 온디맨드·스팟, Lambda 온디맨드(8x, 11-16 새 가격표 시행 전후 구분), Silicon Data 지수(인용), Nebius 온디맨드 ÷ 지수 괴리.
   값이 없거나 단위를 맞출 수 없으면 '비교 불가'(NVL72 랙 '문의' 등). 추이 그림은 주간 종가(주의 마지막 값) — 2주가 안 되면 일별 점과 '추적 n일치'.
 """
@@ -75,13 +75,8 @@ def build(as_of, rows=None):
         out.append({"gpu": g, "od": now, "pre": pnow, "wk": _chg(now, wk), "since": _chg(now, first), "start": min(s_od) if s_od else None,
                     "cw": cw, "cw_spot": cws, "lambda": lo, "lambda_new": ln, "index": idx, "gap": _chg(now, idx),
                     "trend": _weekly(s_od, day)})
-    pres = [r["pre"] for r in out if r["pre"] is not None]
-    pre_bad = len(pres) >= 4 and len(set(pres)) * 2 <= len(pres)   # 서로 다른 GPU가 같은 '시작가' — 가격표 공통 문구를 읽은 것으로 보인다(2026-11-13: H100~RTX PRO 6000 모두 $0.79·$0.99)
-    if pre_bad:
-        for r in out:
-            r["pre"] = None
     days = sorted({r["date"] for r in rows if r["provider"] == "Nebius" and r["date"] <= day})
-    return {"as_of": day, "rows": out, "days": len(days), "start": days[0] if days else None, "pre_bad": pre_bad,
+    return {"as_of": day, "rows": out, "days": len(days), "start": days[0] if days else None,
             "changed": [r["gpu"] for r in out if r["wk"] not in (None, 0.0)]}
 
 
@@ -123,12 +118,12 @@ def md_lines(d, rows=None):
     L = ["", "## Nebius GPU 렌털료 추이", "", _head(b), ""]
     if d.get("gpu_read"):
         L += [d["gpu_read"], ""]
-    L += ["| GPU | Nebius 온디맨드 | 선점형 시작가 | 전주 대비 | 추적 시작 대비 | CoreWeave 온디맨드·스팟 | Lambda 온디맨드 | Silicon Data 지수 | Nebius ÷ 지수 |",
+    L += ["| GPU | Nebius 온디맨드 | 선점형 스팟 하한 | 전주 대비 | 추적 시작 대비 | CoreWeave 온디맨드·스팟 | Lambda 온디맨드 | Silicon Data 지수 | Nebius ÷ 지수 |",
           "|---|---|---|---|---|---|---|---|---|"]
     for r in b["rows"]:
         L.append(f"| {r['gpu']} | {_usd(r['od'])} | {_usd(r['pre'])} | {_pc(r['wk'], '기록 전')} | {_pc(r['since'])} | {_usd(r['cw'])} · {_usd(r['cw_spot'])} | {_lam(r)} | {_usd(r['index'])} | {_pc(r['gap']) if r['gap'] not in (None, 0.0) else ('-' if r['gap'] is None else '같음')} |")
     L += ["", "단위 $/GPU·시. 랙 단위(NVL72)·'문의'는 비교 불가. L40S는 CPU 구성 중 낮은 값. Silicon Data는 공개 지수 카드 인용. Nebius ÷ 지수 = 정가가 시장 지수보다 몇 % 비싼가."
-          + (" 선점형 시작가는 GPU마다 같은 값으로 읽혀 수집 점검 전까지 비교 불가로 둔다." if b["pre_bad"] else "")]
+          + " 선점형은 스팟 변동가(최대 15분마다 바뀜)이고 표의 값은 Nebius가 공개한 등급별 하한(from)이다. 실제 체결가는 콘솔에서만 보이므로 정가 비교에는 쓰지 않는다. L40S 선점형은 스팟이 아니라 고정가."]
     return L
 
 
@@ -151,7 +146,7 @@ def html_section(d, rows=None):
                  f"<td>{_usd(r['cw'])} · {_usd(r['cw_spot'])}</td><td>{e(_lam(r))}</td><td>{_usd(r['index'])}</td>"
                  f"<td>{_pc(r['gap']) if r['gap'] not in (None, 0.0) else ('-' if r['gap'] is None else '같음')}</td><td>{_spark(r['trend'])}</td></tr>" for r in b["rows"])
     read = f"<p>{e(d['gpu_read'])}</p>" if d.get("gpu_read") else ""
-    return (f'<section><h2>Nebius GPU 렌털료 추이</h2><p class="k">{e(_head(b))}</p>{read}<div class="tw"><table><tr><th>GPU</th><th>Nebius 온디맨드</th><th>선점형 시작가</th>'
+    return (f'<section><h2>Nebius GPU 렌털료 추이</h2><p class="k">{e(_head(b))}</p>{read}<div class="tw"><table><tr><th>GPU</th><th>Nebius 온디맨드</th><th>선점형 스팟 하한</th>'
             f'<th>전주 대비</th><th>추적 시작 대비</th><th>CoreWeave 온디맨드·스팟</th><th>Lambda 온디맨드</th><th>Silicon Data 지수</th><th>Nebius ÷ 지수</th><th>추이</th></tr>{tr}</table></div>'
             f'<p class="note">단위 $/GPU·시. 랙 단위(NVL72)·문의는 비교 불가. L40S는 CPU 구성 중 낮은 값. 추이는 주간 종가, 2주 전에는 일별 값. Silicon Data는 공개 지수 카드 인용.'
-            + (" 선점형 시작가는 GPU마다 같은 값으로 읽혀 수집 점검 전까지 비교 불가로 둔다." if b["pre_bad"] else "") + '</p></section>')
+            + " 선점형은 스팟 변동가(최대 15분마다 바뀜)이고 표의 값은 Nebius가 공개한 등급별 하한(from)이다. 실제 체결가는 콘솔에서만 보이므로 정가 비교에는 쓰지 않는다. L40S 선점형은 스팟이 아니라 고정가." + '</p></section>')

@@ -31,10 +31,12 @@ class TestGpuRent(unittest.TestCase):
         self.assertEqual(len(h["trend"]), 2)               # 주간 종가 2점 → 추이 그림
         self.assertIn("<svg", G.html_section({"as_of": "2026-11-17"}, rows))
 
-    def test_suspect_preemptible_hidden_and_old_weeks_skipped(self):
+    def test_shared_spot_floor_kept_and_old_weeks_skipped(self):
         rows = [r("2026-11-13", "Nebius", g, "선점형(from)", "0.79") for g in ("H100", "H200", "L40S", "RTX PRO 6000")]
         rows += [r("2026-11-13", "Nebius", g, "온디맨드", "2") for g in ("H100", "H200", "L40S", "RTX PRO 6000")]
-        self.assertTrue(G.build("2026-11-13", rows)["pre_bad"])
+        b = G.build("2026-11-13", rows)   # 등급별 공통 하한(from $0.79)은 실제 가격표 값 — 숨기지 않는다
+        self.assertTrue(all(x["pre"] == 0.79 for x in b["rows"] if x["gpu"] in ("H100", "H200")))
+        self.assertIn("스팟 하한", " ".join(G.md_lines({"as_of": "2026-11-13"}, rows)))
         self.assertEqual(G.md_lines({"as_of": "2026-11-07"}, rows), [])   # 추적 전 주차는 절 없음
 
 
