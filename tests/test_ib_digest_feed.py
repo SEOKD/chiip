@@ -25,15 +25,25 @@ class TestFeed(unittest.TestCase):
         c, _ = F.candidates(rows, {"baseline": ["old"], "done": []}, CFG)
         self.assertEqual([x["id"] for x in c], ["n1", "n2", "n3"])   # 주 대상+등급 변경 > 업종 테마 > 감시 밖
 
-    def test_send_gate(self):
-        ok = [{"id": "n1", "why": "등급 상향", "points": ["a", "b"], "chiip": "같다"}]
-        self.assertEqual(F.check(ok), [])
-        self.assertTrue(F.check(ok * 4))
-        self.assertTrue(F.check([{"id": "n1", "why": "w", "points": ["매수하라", "b"]}]))
-        msg = F.message(ok, rows=[row("n1", "Micron_Upgrade_to_OW.pdf", "co-micron")])
-        self.assertIn("[Chiip IB Digest]", msg)
-        self.assertIn("투자 권유가 아님", msg)
+    def test_send_gate(self):   # 회차당 1건·상세 해석(2026-11-12 마스터 지시)
+        rows = [row("n1", "Micron_Upgrade_to_OW.pdf", "co-micron")]
+        ok = [{"id": "n1", "why": "등급 상향", "conclusion": "c", "claims": ["a", "b", "c"], "numbers": ["1", "2"],
+               "logic": "l", "gap": "g", "weak": "w", "next": "n"}]
+        self.assertEqual(F.check(ok, rows), [])
+        self.assertTrue(F.check(ok * 2, rows))                                     # 2건 이상 거절
+        self.assertTrue(F.check([{**ok[0], "claims": ["a", "b"]}], rows))           # 주장 3개 미만
+        self.assertTrue(F.check([{**ok[0], "weak": ""}], rows))                     # 약한 고리 없음
+        self.assertTrue(F.check([{**ok[0], "logic": "매수하라"}], rows))
+        msg = F.message(ok, rows=rows)
+        for k in ("[Chiip IB Digest]", "핵심 주장", "근거 숫자", "약한 고리", "다음 확인", "투자 권유가 아님"):
+            self.assertIn(k, msg)
 
+    def test_same_report_twice_is_one(self):   # 같은 PDF를 두 번 올려 id가 둘(11/12 Top of Mind)
+        rows = [row("a", "Top of Mind_ Is the AI cycle durable_.pdf"), row("b", "Top of Mind_ Is the AI cycle durable_.pdf")]
+        c, _ = F.candidates(rows, {"baseline": [], "done": []}, CFG)
+        self.assertEqual(len(c), 1)
+        c, _ = F.candidates(rows, {"baseline": [], "done": ["a"], "sent_keys": [F.report_key(rows[0]["name"])]}, CFG)
+        self.assertEqual(c, [])
 
 if __name__ == "__main__":
     unittest.main()
