@@ -323,10 +323,50 @@ def themed(r, cid, cfg):
     return any(sub in t["subs"] and any(re.search(m, name, re.I) for m in t["match"]) for t in cfg.get("themes") or [])
 
 
+_MENT = {}
+
+
+def mentions(r, cid, cos=None):
+    """본문에서 종목 이름·티커가 나온 횟수(2026-11-12 마스터 지시 — 파일 이름에 없어도 본문에서 다루면 관련 자료).
+    티커는 3자 이상 대문자 단어로만 센다(오탐 방지). 텍스트가 없거나 종목 이름을 모르면 0"""
+    key = (r["id"], cid)
+    if key in _MENT:
+        return _MENT[key]
+    c = next((x for x in (cos if cos is not None else _cos()) if x["id"] == cid), None)
+    f = CACHE / f"{r['id']}.txt"
+    n = 0
+    if c and f.exists():
+        t = f.read_text(encoding="utf-8", errors="ignore")
+        pats = [re.escape(x) for x in c["names"]]
+        if len(c["ticker"]) >= 3 and c["ticker"].isalpha():
+            n += len(re.findall(r"(?<![A-Za-z])" + re.escape(c["ticker"]) + r"(?![A-Za-z])", t))
+        if pats:
+            n += len(re.findall(r"(?<![A-Za-z])(?:" + "|".join(pats) + r")(?![A-Za-z])", t, re.I))
+    _MENT[key] = n
+    return n
+
+
+_COS = []
+
+
+def _cos():
+    if not _COS:
+        _COS.extend(companies())
+    return _COS
+
+
 def usable(rows, cid, cfg):
-    """종목 자료 = 주 대상(entities) + 관련 종목(related) + 그 종목 세부 산업을 다루는 업종·테마 리포트"""
+    """종목 자료 = 주 대상(entities) + 관련 종목(related) + 그 종목 세부 산업을 다루는 업종·테마 리포트
+    + 본문에서 그 종목을 mention_min번 이상 다루는 자료(2026-11-12 — 파일 이름 연결만으로는 NVDA 11건·CIFR 2건이 빠졌다)"""
+    mm = int(cfg.get("mention_min", 5))
     return [r for r in rows if r["cls"] not in cfg["blocked_classes"]
-            and (cid in (r["entities"] + ";" + r.get("related", "")).split(";") or (not r["entities"] and themed(r, cid, cfg)))]
+            and (cid in (r["entities"] + ";" + r.get("related", "")).split(";") or (not r["entities"] and themed(r, cid, cfg))
+                 or (r["status"] in ("text", "digest") and mentions(r, cid) >= mm))]
+
+
+def related_rank(r, cid, cfg):
+    """관련 자료 순서 — 본문 언급 많은 순 → 업종·테마 연결 → 최신(2026-11-12 마스터 지시, 최신 순만이면 VSH에 Arm·애플 리포트가 들어갔다)"""
+    return (mentions(r, cid), 1 if themed(r, cid, cfg) else 0, r.get("doc_date") or r.get("added") or "")
 
 
 def unread(rows, cid, cfg, today=None):
@@ -335,8 +375,8 @@ def unread(rows, cid, cfg, today=None):
     u = usable(rows, cid, cfg)
     prim = [r for r in u if r["status"] != "digest" and cid in r["entities"].split(";")]
     rel = sorted([r for r in u if cid not in r["entities"].split(";") and (r.get("doc_date") or r.get("added") or "") >= cut],
-                 key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)[:cfg.get("related_max_per_report", 6)]
-    return prim + [r for r in rel if r["status"] != "digest"]   # 최신 관련 자료 n건 안에서 요지가 없는 것만
+                 key=lambda r: related_rank(r, cid, cfg), reverse=True)[:cfg.get("related_max_per_report", 6)]
+    return prim + [r for r in rel if r["status"] != "digest"]   # 관련성 상위 n건 안에서 요지가 없는 것만
 
 
 def industry_docs(rows, key, cfg, sub=None, members=()):

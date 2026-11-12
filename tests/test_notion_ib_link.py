@@ -40,3 +40,18 @@ class TestLink(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestMentionRank(unittest.TestCase):   # 본문 언급 연결·관련성 순(2026-11-12 마스터 지시)
+    def test_body_mention_links_and_ranks_first(self):
+        import notion_library as NL2
+        cfg = {"blocked_classes": ["채널체크"], "mention_min": 5, "related_max_per_report": 2, "related_max_age_days": 45, "themes": []}
+        rows = [{"id": i, "name": n, "cls": "IB 리포트", "entities": "", "related": "", "status": "text", "doc_date": d, "added": d, "chars": "1"}
+                for i, n, d in (("a", "Macro_outlook.pdf", "2026-11-10"), ("b", "Old_note.pdf", "2026-11-01"), ("c", "Newest.pdf", "2026-11-11"))]
+        NL2._MENT.clear()
+        NL2._MENT.update({("a", "co-x"): 30, ("b", "co-x"): 6, ("c", "co-x"): 1})
+        u = NL2.usable(rows, "co-x", cfg)
+        self.assertEqual({r["id"] for r in u}, {"a", "b"})            # 1회 언급은 연결 안 함
+        left = NL2.unread(rows, "co-x", cfg, today=__import__("datetime").date(2026, 11, 12))
+        self.assertEqual([r["id"] for r in left], ["a", "b"])          # 최신(c)보다 언급 많은 순
+        NL2._MENT.clear()
