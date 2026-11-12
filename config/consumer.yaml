@@ -13,6 +13,7 @@
 # fiscal = Fiscal.ai 회사 키 — 재무가 있는 것만(2026-10-30 확인: 미국·영국 11곳). 캡콤 XJPX_9697·닌텐도 XJPX_7974·미쉐 XHKG_2097은 키는 있으나 재무·주가 없음, 나머지 아시아 소비재는 키 자체가 없음 → 회사 결산 자료로 --put-q.
 # wiki = {언어: 문서 제목} 위키 조회수(Wikimedia 공식 API, robots 제한 없음) — 제목이 틀리면 수집기가 'missing'으로 기록, 주간 회차에서 고친다(1차 입력, 미검증).
 # steam = 스팀 앱 id(store.steampowered.com/api/appdetails 누적 추천 수, robots 허용) · apps = 애플 앱 순위 RSS의 개발사 이름 패턴(정규식) · terms = 브랜드 뉴스 검색어.
+# apple_artist = 애플 개발사 id 목록(선택) — iTunes 조회 API로 전체 앱 평점 수 합계를 본다. 없으면 순위 RSS에 걸린 앱의 개발사 id를 자동으로 배운다(2026-11-12).
 # 아마존: 원천에서 제외(2026-10-30 마스터 결정). robots.txt가 ClaudeBot을 명시적으로 막아 직접 수집 금지, PA-API는 폐지, 후속 Creators API는 약관이 분석 용도를 제한 — knowledge/methods/consumer_lens.md.
 # 레딧 직접 수집·틱톡·스팀 리뷰 API는 robots 차단이라 쓰지 않는다(레딧은 ApeWisdom 미국 티커 언급 수만).
 
@@ -99,7 +100,7 @@ companies:
   - {id: us-rblx, name: Roblox, market: us, code: RBLX, fiscal: NYSE_RBLX, segment: platform, aliases: ["Roblox"],
      wiki: {en: Roblox}, apps: "Roblox", terms: ["Roblox"], why: "사용자 시간·부킹 성장 — 플랫폼형 IP 생태계"}
   - {id: us-duol, name: Duolingo, market: us, code: DUOL, fiscal: NASDAQ_DUOL, segment: platform, aliases: ["Duolingo"],
-     wiki: {en: Duolingo}, apps: "Duolingo", terms: ["Duolingo"], why: "유료 전환·일간 사용자 성장"}
+     wiki: {en: Duolingo}, apps: "Duolingo", apple_artist: [570060151], terms: ["Duolingo"], why: "유료 전환·일간 사용자 성장"}
   - {id: us-fnko, name: Funko, market: us, code: FNKO, fiscal: NASDAQ_FNKO, segment: toys_ip, aliases: ["Funko"],
      wiki: {en: Funko}, terms: ["Funko Pop"], why: "수집형 완구 — 재고·관세 위험, 팝마트와 대조군"}
   - {id: us-mat, name: Mattel, market: us, code: MAT, fiscal: NASDAQ_MAT, segment: toys_ip, aliases: ["Mattel"],

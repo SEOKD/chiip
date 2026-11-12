@@ -535,7 +535,9 @@ def fetch_consumer_spikes(st):
     st["consumer_spikes_at"] = d.get("as_of") or ""
     out = []
     for s in (d.get("spikes") or [])[:5]:
-        what = f"위키 '{s['key'].split(':', 1)[-1]}' 7일 조회 {s.get('views7')}" if s["source"] == "wiki" else f"스팀 앱 {s['key']} 7일 추천 +{s.get('gain7')}"
+        what = (f"위키 '{s['key'].split(':', 1)[-1]}' 7일 조회 {s.get('views7')}" if s["source"] == "wiki"
+                else f"애플 앱 평점 수({s['key'].upper()} 상점) 7일 +{s.get('gain7'):,}" if s["source"] == "apple_ratings"   # 다운로드 증가의 대용(2026-11-12)
+                else f"스팀 앱 {s['key']} 7일 추천 +{s.get('gain7')}")
         out.append({"source_id": "consumer-attention", "source_class": "소비재", "url": "", "title": f"{s['name']} 수요 관심 급가속 ×{s['accel']} — {what}",
                     "published_at": d.get("as_of"), "detected_at": common.iso(common.now_kst()), "snippet": "radar/consumer_attention.py", "language": "ko",
                     "entities_matched": [s["id"]], "consumer_spike": s})

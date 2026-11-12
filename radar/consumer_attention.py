@@ -5,6 +5,8 @@
   wiki   Wikimedia 조회수 공식 API — 문서별 최근 7일 ÷ 직전 28일 주평균(일별 자료라 기준선을 쌓을 필요가 없다). 사람 조회(user)만.
   steam  상점 앱 정보(store.steampowered.com/api/appdetails, robots 허용)의 누적 추천 수 — 하루 1회 기록, 7일 증가 ÷ 직전 7일 증가
   apple  애플 앱 순위 RSS(rss.applemarketingtools.com, 공식) 무료·유료 — 회사 앱 개수와 최고 순위
+  ratings 애플 iTunes 조회 API(itunes.apple.com/lookup, 공식·무료·키 없음) — 개발사 전체 앱의 누적 평점 수, 7일 증가 ÷ 직전 7일 증가
+         (다운로드 증가의 대용, 2026-11-12 마스터 지시 'B2C 종목 분석 파이프라인'). 개발사 id는 config apple_artist 또는 순위 RSS에서 자동으로 배운다(apple_artists.json)
   news   브랜드 검색어 Google News 색인 7일 건수(현지어 포함) — 7·14·21·28일 전 기록 평균과 비교(4주 기준선이 쌓인 뒤부터)
 아마존·레딧 직접·틱톡은 robots 차단이라 쓰지 않는다(knowledge/methods/consumer_lens.md 3). 리테일·투자자 언급 수는 radar/attention.py가 같은 종목을 함께 센다.
 쓰는 것: knowledge/models/consumer/attention.csv(날짜·종목·원천·키·값 누적), attention_latest.json(종목별 수요 가속·원천별 값·급가속 spikes).
@@ -29,6 +31,8 @@ LATEST = OUT / "attention_latest.json"
 WIKI = "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/{lang}.wikipedia/all-access/user/{title}/daily/{start}/{end}"
 STEAM = "https://store.steampowered.com/api/appdetails?appids={appid}&filters=recommendations,basic"
 APPLE = "https://rss.applemarketingtools.com/api/v2/{cc}/apps/{feed}/100/apps.json"
+LOOKUP = "https://itunes.apple.com/lookup"   # robots는 /search만 막는다 — 검색 API는 쓰지 않고 id 조회만
+ARTISTS = OUT / "apple_artists.json"
 LOCALE = {"jp": ("ja", "JP"), "kr": ("ko", "KR"), "hk": ("zh-HK", "HK"), "us": ("en-US", "US"), "eu": ("en-GB", "GB")}
 
 
@@ -73,7 +77,7 @@ def apple_ranks(countries, feeds, ua):
                 rs = _get_json(APPLE.format(cc=cc, feed=feed), ua, 40)["feed"]["results"]
             except Exception:
                 continue
-            out[(cc, feed)] = [(i + 1, r.get("name", ""), r.get("artistName", "")) for i, r in enumerate(rs)]
+            out[(cc, feed)] = [(i + 1, r.get("name", ""), r.get("artistName", ""), _artist_id(r)) for i, r in enumerate(rs)]
             time.sleep(0.5)
     return out
 
@@ -85,6 +89,21 @@ def news_count(term, market, days):
         return len(rss.parse_feed(common.http_get(url, timeout=25)))
     except Exception:
         return None
+
+
+def _artist_id(r):
+    a = r.get("artistId") or re.search(r"/id(\d+)", r.get("artistUrl") or "")
+    return str(a.group(1) if hasattr(a, "group") else a) if a else None
+
+
+def apple_ratings(artists, cc, ua):
+    """개발사 id들의 전체 앱 누적 평점 수 합계(국가별 상점) — 실패하면 None"""
+    try:
+        d = _get_json(f"{LOOKUP}?id={','.join(artists)}&entity=software&country={cc}&limit=200", ua, 40)
+    except Exception:
+        return None
+    apps = [x for x in d.get("results") or [] if x.get("wrapperType") == "software"]
+    return (sum(int(x.get("userRatingCount") or 0) for x in apps), len(apps)) if apps else None
 
 
 def _history():
@@ -106,6 +125,7 @@ def collect(only=None, today=None):
     hist = _history()
     rows, latest, notes = [], {}, []
     charts = apple_ranks(a.get("apple_countries") or [], a.get("apple_feeds") or [], ua)
+    learned = json.loads(ARTISTS.read_text(encoding="utf-8")) if ARTISTS.exists() else {}
     notes.append(f"애플 순위 {len(charts)}개 표")
     for co in c.get("companies") or []:
         cid = co["id"]
@@ -134,10 +154,28 @@ def collect(only=None, today=None):
         if co.get("apps"):
             rx = re.compile(co["apps"], re.I)
             for (cc, feed), lst in charts.items():
-                for rank, name, artist in lst:
+                for rank, name, artist, aid in lst:
                     if rx.search(artist):
                         o["apple"].append({"country": cc, "feed": feed, "rank": rank, "app": name[:40]})
+                        if aid:
+                            learned.setdefault(cid, [])
+                            if aid not in learned[cid]:
+                                learned[cid].append(aid)
             rows.append((today.isoformat(), cid, "apple", "best_rank", min((x["rank"] for x in o["apple"]), default="")))
+        artists = list(dict.fromkeys([str(x) for x in co.get("apple_artist") or []] + learned.get(cid, [])))
+        if artists:
+            o["ratings"] = {}
+            for cc in dict.fromkeys(["us", co.get("market", "us")]):
+                r = apple_ratings(artists, cc, ua)
+                time.sleep(3.5)   # 애플 Search API 문서 한도 분당 약 20회 안쪽(2026-11-12 확인)
+                if r is None:
+                    o["missing"].append(f"ratings:{cc}")
+                    continue
+                rows.append((today.isoformat(), cid, "apple_ratings", cc, r[0]))
+                s = hist.get((cid, "apple_ratings", cc), {})
+                w1, w2 = s.get((today - timedelta(days=7)).isoformat()), s.get((today - timedelta(days=14)).isoformat())
+                o["ratings"][cc] = {"total": r[0], "apps": r[1], "gain7": r[0] - w1 if w1 is not None else None,
+                                    "accel": round((r[0] - w1 + 1) / (w1 - w2 + 1), 2) if w1 is not None and w2 is not None and w1 >= w2 else None}
         hl = co.get("market", "us")
         for term in (co.get("terms") or [])[:2]:
             n7 = news_count(term, hl, days)
@@ -151,6 +189,8 @@ def collect(only=None, today=None):
             rows.append((today.isoformat(), cid, "news", term, n7))
             time.sleep(0.3)
         o["demand_accel"] = demand_accel(o)
+    OUT.mkdir(parents=True, exist_ok=True)
+    ARTISTS.write_text(json.dumps(learned, ensure_ascii=False, indent=1), encoding="utf-8")
     return rows, latest, notes
 
 
@@ -162,6 +202,7 @@ def demand_accel(o):
         tot = sum(x for x, _ in w)
         parts.append(sum(x * a for x, a in w) / tot)
     parts += [v["accel"] for v in o["steam"].values() if v.get("accel")]
+    parts += [v["accel"] for v in (o.get("ratings") or {}).values() if v.get("accel")]
     parts += [v["accel"] for v in o["news"].values() if v.get("accel") and not v["saturated"]]
     return round(sum(parts) / len(parts), 2) if parts else None
 
@@ -176,6 +217,9 @@ def spikes(latest, spike_accel, min_views):
         for k, v in o["steam"].items():
             if (v.get("accel") or 0) >= spike_accel:
                 out.append({"id": cid, "name": o["name"], "source": "steam", "key": k, "accel": v["accel"], "gain7": v["gain7"]})
+        for k, v in (o.get("ratings") or {}).items():
+            if (v.get("accel") or 0) >= spike_accel and (v.get("gain7") or 0) >= 1000:   # 평점 1,000건 미만 증가는 잡음
+                out.append({"id": cid, "name": o["name"], "source": "apple_ratings", "key": k, "accel": v["accel"], "gain7": v["gain7"]})
     return sorted(out, key=lambda x: -x["accel"])
 
 
