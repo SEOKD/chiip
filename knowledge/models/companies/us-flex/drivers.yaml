@@ -1,0 +1,110 @@
+auto: true
+id: us-flex
+name: Flex
+ticker: FLEX
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.5
+  EU: 0.2
+  TW: 0.3
+tax: 0.21
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 78.97
+  shares: 0.374561
+  net_debt: 7.3
+  source: 가격 = 2026-11-11 종가 $78.97(TradingView NASDAQ:FLEX). 주식 수 = 10-Q 표지 369,460,804주(10/23).
+    현금 $3.083B(9/25 10-Q). 차입 = 장기 차입 $5.213B(9/25) + EPC Power 인수 차입 $4.4B(10/14
+    전액 인출 — 기간 대출 $3.3B·브리지 $1.1B, 10-Q 후속 사건) + 비유동 리스 $0.770B = $10.383B. Axiom
+    전환우선주 $2.0B(사모, 10/2 계약)가 들어오면 그만큼 EPC 차입을 갚는다 — 아직 미납입이라 차입에서 빼지 않았다
+rev0: 35.4
+ic0: 13.107
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.29
+      end: 0.035
+      decay: 0.5
+    margin:
+      m0: 0.071
+      target: 0.095
+      year_target: 4
+      lr: 0.09
+      lam: 0.35
+      anchors:
+      - 0.081
+      - 0.089
+    s2c: 2.5
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4266
+      end: 0.04
+      decay: 0.55
+    margin:
+      m0: 0.071
+      target: 0.115
+      year_target: 4
+      lr: 0.09
+      lam: 0.25
+      anchors:
+      - 0.081
+      - 0.089
+    s2c: 2.875
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.1441
+      end: 0.030000000000000002
+      decay: 0.4
+    margin:
+      m0: 0.071
+      target: 0.075
+      year_target: 4
+      lr: 0.09
+      lam: 0.5
+      anchors:
+      - 0.081
+      - 0.089
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0706
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [34.9, 35.9] (2Q FY27 실적 발표(2026-10-28)·어닝콜, Innovation Day 8-K(2026-11-10,
+    Item 7.01) EX-99.1·99.2 — 치입 요약)
+  growth: 컨센서스 1년차 29.4%, 2년차 16.6%
+  margin: 1~2년차 컨센서스 8.1%, 8.9% 고정 → 목표 10%(4년차, 덮어쓰기) → 장기 수렴 9%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.362 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 14.4%~42.7%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: ① 첫해 성장 29% = FY28 컨센서스 $45.8B ÷ FY27 가이던스 중간 $35.4B(Axiom CY27 $20~21B
+    '95% 확보' 포함) — 감쇠 0.5로 FY30 이후 빠르게 줄인다. ② 장기 조정 영업이익률 9.5%(4년차)·10년 9% = Axiom
+    CY30 조정 EBITDA 'high teens'와 잔존 Flex FY29 7%+를 매출 비중으로 섞은 값(Axiom $37B·EBIT 약
+    15%, 잔존 $26B·7% → 약 11.6%)에서 실행 위험을 깎았다. FY27 가이던스 7.7%. ③ 매출÷투하자본 2.5 = 현재 $31.0B
+    ÷ $13.1B(EPC 인수 포함)는 2.4 — 설비투자 FY27 $1.5~1.6B(매출 4.4%)·재고 +39%로 증분 자본이 무겁다
+  shares: 완전 희석 = 기본 0.369461(2026-10-23) + 옵션·RSU·워런트·전환 0.0051 — 2Q 희석 가중 374M −
+    기본 369M = 5M(RSU, 10-Q EPS 주석). Amazon 워런트 3
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 부품 부족이 몇 년 갈 수 있다(CEO) — 재고 순일수 55 → 60일'
+- '어닝콜 위험: EPC 차입 $4.4B 중 브리지 $1.1B·기간 대출 $3.3B가 1년 만기(2027-10)'
+- '어닝콜 위험: 분사 비용 6개월 $144M·현금 비용 2Q $61M'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/866374/000086637426000042/flex-20260925.htm
+- https://www.sec.gov/Archives/edgar/data/866374/000119312526454502/d150156d8k.htm
+- https://www.sec.gov/Archives/edgar/data/866374/000119312526454502/d150156dex991.htm
+- https://www.sec.gov/Archives/edgar/data/866374/000119312526454502/d150156dex992.htm
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000866374&type=10-K
+- Fiscal.ai MCP 2026-11-12 — 표준화 손익(분기 44)·현금흐름·세그먼트·추정(Fiscal 자체·Zacks)·Forward 배수·2Q·1Q
+  FY27 어닝콜 전문(요지만)
+- TradingView NASDAQ:FLEX 일봉 760(2026-11-11)
+- Easyconomics company_profile(yfinance)·earnings_summary_dates
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
