@@ -1,0 +1,105 @@
+auto: true
+id: co-coreweave
+name: CoreWeave
+ticker: CRWV
+unit: B$
+unit_usd: 1000000000.0
+industry: datacenter
+region_mix:
+  US: 0.75
+  EU: 0.15
+  ROW: 0.1
+tax: 0.21
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 60.77
+  shares: 0.6675
+  net_debt: 62.035
+  source: 가격 = TradingView 11/11 종가 $60.77. 주식 수 = Fiscal calculated_market_cap 11/11
+    $33.52B ÷ 가격(클래스 A·B 합, 2Q 가중평균 551M주와 일치). 현금 $4.184B(현금 $4.122B + 단기투자 $0.062B)·차입
+    $66.219B(유동 장기부채 $10.572B + 장기부채 $36.301B + 리스 $0.964B + $18.382B, Fiscal 표준화
+    9/30). 제한 현금 포함 유동성은 회사 발표 $6.5B
+rev0: 13.15
+ic0: 66.06
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 1.0532
+      end: 0.035
+      decay: 0.402
+    margin:
+      m0: 0.0508
+      target: 0.22
+      year_target: 4
+      lr: 0.25
+      lam: 0.3
+      anchors:
+      - 0.1278
+      - 0.1679
+    s2c: 0.35
+  bull:
+    prob: 0.25
+    growth:
+      start: 1.3924
+      end: 0.04
+      decay: 0.452
+    margin:
+      m0: 0.0508
+      target: 0.2786
+      year_target: 4
+      lr: 0.25
+      lam: 0.25
+      anchors:
+      - 0.1278
+      - 0.1679
+    s2c: 0.402
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.749
+      end: 0.030000000000000002
+      decay: 0.30200000000000005
+    margin:
+      m0: 0.0508
+      target: 0.1615
+      year_target: 4
+      lr: 0.25
+      lam: 0.5
+      anchors:
+      - 0.1278
+      - 0.1679
+    s2c: 0.297
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [13.0, 13.3] (3Q26 실적 보도자료(8-K EX-99.1, 2026-11-10)·3Q26 어닝콜(요지만
+    자기 말로))
+  growth: 컨센서스 1년차 105.3%, 2년차 44.4%
+  margin: 1~2년차 컨센서스 12.8%, 16.8% 고정 → 목표 22%(4년차, 덮어쓰기) → 장기 수렴 25%
+  s2c: 재무 재구성 증분 매출/투하자본 0.5 → 덮어쓰기 0.35
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 74.9%~139.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.3, ''base'': 0.45, ''bull'': 0.25}'
+  overrides: GPU 임대는 매출 대비 투하자본이 크다(투하자본 $66B vs TTM 매출 $9.9B — s2c 약 0.15). 백로그 인도로
+    매출이 자본보다 빨리 늘고 재계약 GPU는 추가 CAPEX가 없어 0.35로 둔다. 장기 조정 EBIT 이익률 22%는 FY2028 컨센서스
+    21.8%와 맞춘다(추정)
+  shares: 완전 희석 = 기본 0.5515(2026-11-11) + 옵션·RSU·워런트·전환 0.1160 — SEC XBRL AntidilutiveSecuritiesExcluded…
+    2Q26(6/30) 116M주(옵션
+notes:
+- 자동 생성(build_drivers) 2026-11-12 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 4Q 이자비용 $1.05~1.15B — 조정 영업이익 내재치 $0.75~0.85B보다 크다'
+- '어닝콜 위험: 텍사스·오하이오 주지사 당선인의 데이터센터 유예 공약'
+- '어닝콜 위험: 업계 공급 증가 시 단기 계약 가격 하락'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1769628/000176962826000461/coreweave3q26earningspress.htm
+- https://www.sec.gov/Archives/edgar/data/1769628/000176962826000461/crwv-20261110.htm
+- https://www.sec.gov/Archives/edgar/data/1769628/000176962826000366/crwv-20260630.htm
+- https://www.sec.gov/Archives/edgar/data/1769628/000176962826000429/crwv-20260917.htm
+- https://www.sec.gov/Archives/edgar/data/1769628/000176962826000104/crwv-20251231.htm
+- https://investors.coreweave.com/
+- https://www.coreweave.com/pricing
