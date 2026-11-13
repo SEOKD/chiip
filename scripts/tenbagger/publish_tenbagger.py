@@ -189,7 +189,7 @@ def first_image(rep, prefer="exploded"):
     return next((b for b in imgs if b.get("kind") == prefer), imgs[0] if imgs else None)
 
 
-def send(src, caption="", dry=False, resend=False, reissue=False, photo=False, update=False):
+def send(src, caption="", dry=False, resend=False, reissue=False, photo=False, update=False, reason="어닝콜 전문 반영"):
     st = load(src)
     if not st or not (st.get("github") or {}).get("md"):
         raise SystemExit("GitHub 게시 기록 없음 — 텔레그램을 보내지 않는다")
@@ -203,7 +203,7 @@ def send(src, caption="", dry=False, resend=False, reissue=False, photo=False, u
         if rep.get("format") == 3 and rep.get("kind") != "spac":   # 양식 3은 피드를 엔진이 만든다(마스터 지시 2026-11-01). 스팩 리포트는 등급·목표주가가 없어 캡션으로
             import report_feed
             cap = report_feed.build(rep)
-        head = "[수정판 — 어닝콜 전문 반영]\n" if reissue else ""
+        head = f"[수정판 — {reason or '어닝콜 전문 반영'}]\n" if reissue else ""   # 수정 사유(2026-11-14: 추정 모델 재점검 반영판이 '어닝콜 전문 반영'으로 나갔다)
         if update:   # 알파 상승 갱신(scripts/tenbagger/alpha_refresh.py, 2026-11-13) — 새 파일이라 처음 보내는 리포트다
             rf = rep.get("refresh") or {}
             ok_n = rf.get("alpha") is not None and rf.get("base_alpha") is not None
@@ -251,6 +251,7 @@ def main(argv):
     ap.add_argument("--dry", action="store_true", help="GitHub 게시·텔레그램 없이 흐름만")
     ap.add_argument("--resend", action="store_true", help="이미 보낸 리포트를 새 링크로 다시 보낸다")
     ap.add_argument("--reissue", action="store_true", help="어닝콜 전문을 반영한 수정판을 보낸다(report_refresh.py)")
+    ap.add_argument("--reason", default="어닝콜 전문 반영", help="--reissue 머리의 수정 사유")
     ap.add_argument("--update", action="store_true", help="알파 상승 갱신 리포트(alpha_refresh.py) — 머리에 '갱신'")
     ap.add_argument("--photo", action="store_true", help="분해도(없으면 첫 이미지) 1장을 사진으로 함께 보낸다(2026-11-08)")
     a = ap.parse_args(argv)
@@ -272,7 +273,7 @@ def main(argv):
             ap.error("--page 또는 --fail")
         r = notion(a.json, a.page, a.fail, a.stock_page, a.replaced)
     else:
-        r = send(a.json, a.caption, a.dry, a.resend, a.reissue, a.photo, a.update)
+        r = send(a.json, a.caption, a.dry, a.resend, a.reissue, a.photo, a.update, a.reason)
     print(json.dumps(r, ensure_ascii=False, indent=1))
     return 0
 
