@@ -62,7 +62,7 @@ class TestSection(unittest.TestCase):
 
     def test_unknown_is_shown_not_filled(self):
         sec = pv.report_section(dp(item(progress="미확인", margin="미확인")))
-        self.assertEqual(self.rows(sec, "수주·파이프라인 진척")[0][2], "미확인")
+        self.assertEqual(self.rows(sec, "수주·파이프라인 진척")[0][2], "비공개")   # 진척은 '비공개'(2026-11-13)
         self.assertEqual(self.rows(sec, "진척도별 수익")[0][2:6], ["미확인", "미확인", "$1.00B", "미확인"])
         self.assertEqual(self.rows(sec, "합계")[0][4], "미확인")
         self.assertFalse(any("남는 이익" in str(b.get("text")) for b in sec["blocks"]))
@@ -90,6 +90,38 @@ class TestSection(unittest.TestCase):
         for bad in (item(status="수주"), item(source=None), item(blockers=[]), item(progress=None), item(progress=1.2), item(margin=None), item(margin_basis=None)):
             with self.assertRaises(ValueError):
                 pv.report_section(dp(bad))
+
+
+class TestSummaryLayout(unittest.TestCase):
+    """'수주는 어디까지 왔나?'·본문 표 표기(마스터 지시 2026-11-13 — 계산은 그대로)"""
+
+    def d(self):
+        return dp(item(name="잔고", kind="backlog", total=2.934, progress="미확인"),
+                  item(name="C MOU", status="MOU", total="미확인", progress="미확인", start=None, end=None),
+                  item(name="Carina", region="인도네시아", total=0.42, progress=0.0, start="2027-06", end="2029-11", included_in="신규 $0.80B", note="7세대 드릴십"),
+                  item(name="Capella", region="말레이시아 연장", total=0.041, progress=0.0, start=None, end=None),
+                  reported_backlog=2.934, backlog_label="남은 계약(6월 말)", new_since={"label": "8월 이후 신규 약", "total": 0.8}, summary="2027 미계약 15% 미만")
+
+    def test_summary_lines(self):
+        L = pv.summary_lines(self.d())
+        self.assertEqual(L, ["남은 계약 $2.93B(6월 말) + 8월 이후 신규 약 $0.80B",
+                             "- Carina(인도네시아) — 확정 · $0.42B · 진척 0% · 착수 전 (신규 $0.80B에 포함)",
+                             "- Capella(말레이시아 연장) — 확정 · $0.04B · 진척 0%",
+                             "- C MOU — 미확정", "2027 미계약 15% 미만"])
+        self.assertNotIn("7세대", "".join(L))   # 괄호 설명은 본문 비고로
+        self.assertNotIn("미확인", pv.summary_item(self.d())["a"])
+
+    def test_body_table_grouped_by_status(self):
+        t = next(b for b in pv.section3(self.d())["blocks"] if b.get("title") == "수주 목록")
+        self.assertEqual(t["headers"], ["상태", "계약", "계약 총액", "진척", "기간", "비고"])
+        self.assertEqual([r[0] for r in t["rows"]], ["확정", "확정", "확정", "MOU"])
+        self.assertIn("7세대 드릴십", t["rows"][1][5])
+        self.assertEqual(t["rows"][3][2:4], ["금액 비공개", "비공개"])
+
+    def test_terms(self):
+        sec = pv.report_section(dp(item()))
+        h = next(b for b in sec["blocks"] if b.get("title") == "진척도별 수익")["headers"]
+        self.assertEqual(h[2:], ["인식된 매출", "인식된 이익", "계약 총액", "완료 시 이익"])
 
 
 class TestLadder(unittest.TestCase):

@@ -1109,7 +1109,7 @@ def render3(d):
         parts.append('<div class="dash">' + "".join(
             f'<div><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="s">{t(x.get("sub"))}</div></div>' for x in d["tiles"]) + "</div>")
     if d.get("summary"):
-        parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
+        parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a")).replace(chr(10), "<br>")}</div>' for s in d["summary"]) + "</div>")
     figs = figures(d, images=True)
     if figs or d.get("gallery_photos"):   # 사진도 한눈에 보기에(2026-11-07)
         parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "".join(f"<div>{block(b)}</div>" for b in d.get("gallery_photos") or []) + "</div>")
@@ -1145,7 +1145,7 @@ def render(d):
         parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}</div>')
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(
-            f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a"))}</div>' for s in d["summary"]) + "</div>")
+            f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a")).replace(chr(10), "<br>")}</div>' for s in d["summary"]) + "</div>")
     if d.get("tiles"):
         parts.append('<div class="tiles">' + "".join(
             f'<div class="tile"><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="k">{t(x.get("sub"))}</div></div>'

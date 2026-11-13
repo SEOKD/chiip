@@ -13,6 +13,11 @@ datapack "pipeline":
               "speed": "분기 45MW, 목표 300MW",                       # 일정이 없을 때 쓰는 실측 설명
               "blockers": ["조립 램프", "단일 공급원 부품"],
               "source": "10-Q p.12"}]}
+  표기용 선택 필드(2026-11-13 마스터 지시 — 계산은 그대로, 보이는 방식만):
+    pipeline: "new_since": {"label": "8월 이후 신규 약", "total": 0.8} — 요약 맨 위 합계 줄 "잔고 + 신규"
+              "summary" — 계약 목록 아래 한 줄(예: 2027 미계약 일수)
+    item: "kind": "backlog"(회사 전체 잔고 행 — 합계 줄로만, 목록에서 뺀다) · "region" · "short"(요약용 이름)
+          "note"(비고 칸 — 선박 연식·세대 같은 괄호 설명은 여기로) · "included_in"(예 "신규 $0.8B" → "(신규 $0.8B에 포함)") · "when"(시점 직접 지정)
   수주·파이프라인이 없는 회사: {"none": "구독 소프트웨어라 개별 수주가 없다"} → 절을 넣지 않는다.
 """
 import sys
@@ -109,8 +114,52 @@ def check(pl):
             raise ValueError(f"pipeline {name}: margin_basis가 필요하다")
 
 
+HIDDEN = "비공개"   # 진척도를 모를 때 — 단독 '미확인' 대신 무엇을 모르는지(2026-11-13 마스터 지시)
+
+
 def _pct(p):
-    return UNKNOWN if p is None else f"{p * 100:.0f}%"
+    return HIDDEN if p is None else f"{p * 100:.0f}%"
+
+
+def _prog(p):
+    return "진척 " + _pct(p)
+
+
+TIERS = (("확정",), ("조건부",), ("협상", "프레임워크"), ("MOU", "파이프라인"))
+
+
+def _rank(x):
+    return next(i for i, ks in enumerate(TIERS) if x.get("status") in ks)
+
+
+def ordered(items):
+    """확정 → 조건부 → 협상·프레임워크 → MOU·파이프라인, 같은 단계 안은 원래 순서"""
+    return sorted(items, key=_rank)
+
+
+def is_backlog(x, pl):
+    b = _num(pl.get("reported_backlog"))
+    return x.get("kind") == "backlog" or (b is not None and _num(x.get("total")) == b and x.get("status") == FIRM)
+
+
+def _inc(x):
+    if x.get("included_in"):
+        return f"({x['included_in']}에 포함)"
+    return "(다른 항목과 겹칠 수 있어 합계에서 뺌)" if x.get("no_sum") else ""
+
+
+def _period(x):
+    a, b = x.get("start"), x.get("end")
+    return f"{a or '?'} → {b or '?'}" if a or b else "-"
+
+
+def _when(x, as_of):
+    if x.get("when"):
+        return x["when"]
+    st = str(x.get("start") or "")
+    if x.get("p") == 0 and len(st) >= 7 and st[:7] > as_of[:7]:
+        return "착수 전"
+    return f"{x['end']} 종료" if x.get("end") else ""
 
 
 def _m(v, unit):
@@ -161,14 +210,14 @@ def report_section(dp, r=None, strict=True):
     B.append({"type": "hl", "text": head})
     B.append({"type": "table", "title": "수주·파이프라인 진척", "headers": ["항목", "상태", "진척도", "실행 속도", "방해 요인"],
               "rows": [[x["name"], x["status"], _pct(x["p"]), speed_text(x), " · ".join(x["blockers"])] for x in c["items"]]})
-    B.append({"type": "table", "title": "진척도별 수익", "headers": ["항목", "마진 가정", "현 진척 매출", "현 진척 이익", "100% 매출", "100% 이익"],
+    B.append({"type": "table", "title": "진척도별 수익", "headers": ["항목", "마진 가정", "인식된 매출", "인식된 이익", "계약 총액", "완료 시 이익"],
               "rows": [[x["name"], f"{x.get('margin_kind', '이익')} {x['m'] * 100:.0f}%" if x["m"] is not None else UNKNOWN,
                         _m(x["rev_now"], unit), _m(x["gain_now"], unit), _m(x["total"], unit), _m(x["gain_full"], unit)] for x in c["items"]]})
     rows = [_sum_row("확정 합계", c["firm"], c, unit)] if c["firm"] else []
     if c["soft"]:
         rows.append(_sum_row("미확정 합계", c["soft"], c, unit))
     if rows:
-        B.append({"type": "table", "title": "합계", "headers": ["구분", "100% 매출", "현 진척 매출", "현 진척 이익", "100% 이익"], "rows": rows})
+        B.append({"type": "table", "title": "합계", "headers": ["구분", "계약 총액", "인식된 매출", "인식된 이익", "완료 시 이익"], "rows": rows})
     mcap = _num((r or {}).get("mcap"))
     gain, missing = c["total_of"](c["firm"], "gain_full")
     if mcap and gain and not missing:
@@ -201,12 +250,40 @@ def section3(dp):
     fmt = {n: _money(sum(x["total"] for x in c["items"] if x["status"] in ks and x["total"] is not None and not x.get("no_sum")), unit)
            for n, ks in tiers.items() if any(x["status"] in ks and x["total"] is not None for x in c["items"])}
     B.append({"type": "chart", "chart": {"kind": "pipeline", "title": "수주·파이프라인 확실성 사다리", "rows": rows, "fmt": fmt}})
-    B.append({"type": "table", "title": "실행 속도와 방해 요인", "headers": ["항목", "상태", "실행 속도", "방해 요인"], "rows": [[x["name"], x["status"], speed_text(x), " · ".join(x["blockers"])] for x in c["items"]]})
+    ob = ordered(c["items"])   # 본문 표는 상태별로 묶는다(2026-11-13 마스터 지시)
+    B.append({"type": "table", "title": "수주 목록", "headers": ["상태", "계약", "계약 총액", "진척", "기간", "비고"],
+              "rows": [[x["status"], x["name"] + (f"({x['region']})" if x.get("region") else ""), _m(x["total"], unit) if x["total"] is not None else "금액 비공개",
+                        _pct(x["p"]), _period(x), " ".join(v for v in (x.get("note") or "", _inc(x)) if v) or "-"] for x in ob]})
+    B.append({"type": "table", "title": "실행 속도와 방해 요인", "headers": ["항목", "상태", "실행 속도", "방해 요인"], "rows": [[x["name"], x["status"], speed_text(x), " · ".join(x["blockers"])] for x in ob]})
     return {"h2": "수주·파이프라인", "blocks": B}
 
 
-def summary_item(dp):
+def summary_lines(dp):
+    """'수주는 어디까지 왔나?' — 합계 줄 → 한 줄에 한 계약('이름(지역) — 상태 · 계약 총액 · 진척 · 시점', 확정 먼저, 미확정은 금액 없이) → summary 한 줄"""
     pl = (dp or {}).get("pipeline") or {}
     c, unit = compute(dp), dp.get("unit", "B$")
-    parts = [f"{x['name']} {_pct(x['p'])}, 100% 매출 {_m(x['total'], unit)}" for x in c["items"][:3]]
-    return {"q": "수주는 어디까지 왔나?", "a": " · ".join(parts) + (f". {pl['summary']}" if pl.get("summary") else ""), "auto": True}
+    L, top = [], []
+    b = _num(pl.get("reported_backlog"))
+    if b:
+        lab = str(pl.get("backlog_label") or "수주잔고")
+        head, _, tail = lab.partition("(")
+        top.append(f"{head.strip()} {_money(b, unit)}" + (f"({tail}" if tail else ""))
+    ns = pl.get("new_since") or {}
+    if _num(ns.get("total")):
+        top.append(f"{ns.get('label', '신규')} {_money(ns['total'], unit)}")
+    if top:
+        L.append(" + ".join(top))
+    for x in ordered(x for x in c["items"] if not is_backlog(x, pl)):
+        name = (x.get("short") or x["name"]) + (f"({x['region']})" if x.get("region") else "")
+        if x["status"] != FIRM:
+            L.append(f"- {name} — 미확정")
+            continue
+        parts = [x["status"], _m(x["total"], unit) if x["total"] is not None else "금액 비공개", _prog(x["p"]), _when(x, c["as_of"])]
+        L.append(f"- {name} — " + " · ".join(v for v in parts if v) + (f" {_inc(x)}" if _inc(x) else ""))
+    if pl.get("summary"):
+        L.append(str(pl["summary"]))
+    return L
+
+
+def summary_item(dp):
+    return {"q": "수주는 어디까지 왔나?", "a": chr(10).join(summary_lines(dp)), "auto": True}
