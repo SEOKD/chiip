@@ -296,6 +296,13 @@ def check(text, day=None, extra=EXTRA, follow=None):
             for x, dec, ap, raw, unit in numbers(s):
                 if not _match(x, dec, cands, ap, unit):
                     err.append(f"[{k}] 스크립트·출처 숫자에 없음: {raw} — {s[:40]}")
+    # 문단 띄우기(마스터 지시 2026-11-14) — 시장·섹터·앞으로 챙길 것은 줄(문단)마다 빈 줄을 둔다
+    for name, b in secs:
+        k = _sec_key(name)
+        if k in ("시장", "섹터", "앞으로 챙길 것"):
+            ls = b.splitlines()
+            if any(x.strip() and y.strip() for x, y in zip(ls, ls[1:])):
+                err.append(f"[{k}] 문단 사이에 빈 줄을 둔다")
     # 개수 일관성
     allt = text
     for m in re.finditer(r"(?:보유|내|관심)\s?종목\s?(\d+)\s?(?:개|종목|곳)", allt):

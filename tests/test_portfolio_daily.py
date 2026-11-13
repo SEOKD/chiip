@@ -203,6 +203,13 @@ class DailyCheck(unittest.TestCase):
         bad = GOOD.replace("■ 시장", sec + "■ 시장")
         self.assertTrue(any("섹터 배분" in x for x in self.run_(bad)))
 
+    def test_paragraph_spacing(self):
+        bad = GOOD.replace("■ 앞으로 챙길 것
+11/17(화) 장 마감 뒤 NVDA 실적이 나옵니다.", "■ 앞으로 챙길 것
+11/17(화) 장 마감 뒤 NVDA 실적이 나옵니다.
+12/1 일정입니다.")
+        self.assertTrue(any("빈 줄" in x for x in self.run_(bad)))
+
     def test_lead_limits_and_disclaimer(self):
         e = self.run_(GOOD.replace("1차 판정, 미검증 · 공개 자료 기반 분석이며 투자 권유가 아님", "끝"))
         self.assertTrue(any("면책" in x for x in e))
