@@ -249,7 +249,8 @@ def price_sentences(br):
 
 
 def pricing_chart(br):
-    rows = [{"label": f"원가 PPI {r['name']}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
+    short = lambda x: str(x).split("(")[0].strip()   # 괄호 설명을 빼야 휴대폰 폭에서 기준 달이 보인다(2026-11-14)
+    rows = [{"label": f"원가 PPI {short(r['name'])}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
     for r in br["prices"]:
         if r["idx12"] is not None:
             rows.append({"label": f"판매가 {r['label']}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
