@@ -41,6 +41,30 @@ def fetch_series(sid, start):
     return parse_fred(common.http_get(FRED, {"id": sid, "cosd": start.isoformat()}, timeout=30).decode("utf-8", "replace"))
 
 
+TREASURY = "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml"
+TREASURY_FIELDS = {"ust10y": "BC_10YEAR", "ust30y": "BC_30YEAR"}   # FRED DGS10·DGS30과 같은 재무부 일일 국채 수익률(FRED의 원천)
+
+
+def fetch_treasury(start, today):
+    """FRED가 막힐 때 우회(2026-11-14 점검 — fredgraph.csv 응답 없음): 미 재무부 공식 일일 국채 수익률 XML(robots 허용).
+    {키: [(날짜, 값)]} — 달마다 한 번씩 받는다"""
+    import re
+    out, months = {k: [] for k in TREASURY_FIELDS}, []
+    y, m = start.year, start.month
+    while (y, m) <= (today.year, today.month):
+        months.append(f"{y}{m:02d}")
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    for ym in months:
+        text = common.http_get(TREASURY, {"data": "daily_treasury_yield_curve", "field_tdr_date_value_month": ym}, timeout=30).decode("utf-8", "replace")
+        for entry in re.findall(r"<m:properties>(.*?)</m:properties>", text, re.S):
+            d = re.search(r"<d:NEW_DATE[^>]*>(\d{4}-\d{2}-\d{2})", entry)
+            for key, field in TREASURY_FIELDS.items():
+                v = re.search(rf"<d:{field}[^>]*>([\d.]+)<", entry)
+                if d and v:
+                    out[key].append((d.group(1), float(v.group(1))))
+    return {k: sorted(v) for k, v in out.items() if v}
+
+
 def change(series, n):
     """마지막 값 − n개 관측 전 값"""
     if len(series) <= n:
@@ -60,6 +84,16 @@ def build(fetch=fetch_series, today=None):
                 data[key] = {"value": s[-1][1], "date": s[-1][0], "chg_5": change(s, 5), "chg_20": change(s, 20), "series": sid}
         except Exception as exc:
             errors.append(f"{sid}: {type(exc).__name__}")
+    miss = [k for k in TREASURY_FIELDS if k not in data]
+    if miss:   # FRED 우회 — 국채 수익률만(신용 스프레드·환율은 대체 원천 없음, 오류로 남긴다)
+        try:
+            tr = fetch_treasury(start, today)
+            for key in miss:
+                s = tr.get(key)
+                if s:
+                    data[key] = {"value": s[-1][1], "date": s[-1][0], "chg_5": change(s, 5), "chg_20": change(s, 20), "series": f"treasury:{TREASURY_FIELDS[key]}", "route": "우회(미 재무부)"}
+        except Exception as exc:
+            errors.append(f"treasury: {type(exc).__name__}")
     pri = c.get("regime_priors") or {}
     rf = data.get("ust10y", {}).get("value")
     reg = {"as_of": today.isoformat(), "rf_us": None if rf is None else rf / 100, "erp": pri.get("erp", {}).get("value"),

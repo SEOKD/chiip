@@ -66,3 +66,19 @@ items:
     name: Fiscal.ai에 없는 미국 어닝콜 전사
     tier2: [alphavantage]
     alphavantage: py radar/alphavantage.py --transcript <티커> <YYYYQn> — 요약만, 원문 복제 금지
+
+# Fiscal.ai 장애 우회(2026-11-14 파이프라인 점검 — 11/13 22시 Analysis가 Fiscal.ai 커넥터 4회 실패로 리포트 0건). 위 tier2는 '빈칸 보완'이고,
+# 이 절은 '연결 자체가 죽었을 때'다. 순서: ① 10분 뒤 한 번 더 ② 아래 항목별 대체 원천으로 진행하고 datapack sources·리포트 출처에 '대체 원천' 표시
+# ③ 대체가 없는 항목(Fiscal 자체 추정·Forward 배수 이력)은 '미확인'으로 두고 막히면 그 종목은 다음 회차로 미룬다(pick_report --done을 하지 않는다).
+# 장애는 radar/self_heal.py --report fiscal "<오류>"로 남긴다(채널 우회 표 radar/state/channel_down.json).
+outage:
+  fiscal:
+    retry_after_min: 10
+    routes:
+      financial_statements: [tradingview: mcp-tv-get-financials·mcp-tv-get-financial-history, easyconomics: company_financial_statements·company_financials_summary, sec: radar/markets/sec_xbrl.py 출력(knowledge/models/fundamentals/us — 미국 상장·ADR, 주 1회)]
+      quarters: [tradingview: mcp-tv-get-financial-history(분기), easyconomics: company_financial_statements(quarterly)]
+      estimates: [easyconomics: company_profile(yfinance 출처)·earnings_summary_dates, tradingview: mcp-tv-get-forecasts, alphavantage: radar/alphavantage.py --about]
+      ratings_targets: [easyconomics: company_profile·analyst_rating_changes, tradingview: mcp-tv-get-forecasts]
+      prices: [tradingview: mcp-tv-get-ohlcv(일봉은 원래 TradingView가 정본)]
+      transcripts: [easyconomics: earnings_call_transcript, alphavantage: radar/alphavantage.py --transcript]
+      forward_multiples: [tradingview: mcp-tv-get-symbol-data(price_earnings_forward 등) — 이력 레인지는 대체 없음(미확인)]
