@@ -1,0 +1,101 @@
+auto: true
+id: us-app
+name: AppLovin
+ticker: APP
+unit: B$
+unit_usd: 1000000000.0
+industry: software
+region_mix:
+  US: 0.51
+  ROW: 0.49
+tax: 0.17
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 393.68
+  shares: 0.3363
+  net_debt: 0.342
+  source: 가격 = 2026-11-12 종가 $393.68(TradingView NASDAQ:APP). 주식 수 331.3M주(Fiscal
+    시총 $130,434.8M ÷ $393.68). 현금 $3,174M, 장기 차입 $3,516M(10-Q 2026-09-30, Fiscal 표준화)
+rev0: 8.331
+ic0: 3.641
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.3204
+      end: 0.035
+      decay: 0.706
+    margin:
+      m0: 0.786
+      target: 0.79
+      year_target: 3
+      lr: 0.6
+      lam: 0.35
+      anchors:
+      - 0.789
+      - 0.79
+    s2c: 3.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.5124
+      end: 0.04
+      decay: 0.756
+    margin:
+      m0: 0.786
+      target: 0.81
+      year_target: 3
+      lr: 0.6
+      lam: 0.25
+      anchors:
+      - 0.789
+      - 0.79
+    s2c: 3.45
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.1283
+      end: 0.030000000000000002
+      decay: 0.606
+    margin:
+      m0: 0.786
+      target: 0.77
+      year_target: 3
+      lr: 0.6
+      lam: 0.5
+      anchors:
+      - 0.789
+      - 0.79
+    s2c: 2.55
+mc:
+  sigma_growth: 0.096
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [8.316, 8.346] (3Q26 어닝콜(2026-11-04, 요지만 자기 말로))
+  growth: 컨센서스 1년차 32.0%, 2년차 23.6%
+  margin: 1~2년차 컨센서스 78.9%, 79.0% 고정 → 목표 79%(3년차, 덮어쓰기) → 장기 수렴 60%
+  s2c: 재무 재구성 증분 매출/투하자본 3.0
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 12.8%~51.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  overrides: '장기 수렴 이익률 15%(기본) → 60%: GAAP 영업이익률 TTM 77.8%·조정 EBITDA 마진 84% — 경쟁으로
+    내려와도 광고 플랫폼 동종(Meta 33%)보다 높게 둔다(근거 약함)'
+  shares: 완전 희석 = 기본 0.3313(2026-11-12) + 옵션·RSU·워런트·전환 0.0050 — 추정 — 3Q 희석 가중 주식
+    334.8M − 기본 333.6M = 1.2M주에 미발행 RSU를 더해 약 5
+notes:
+- 자동 생성(build_drivers) 2026-11-13 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 증권 집단소송(대표 원고 신청 기한 11/16 — AI 모델 성능 과장 주장)'
+- '어닝콜 위험: Unity Vector의 빠른 성장(3Q +40% QoQ)과 데이터 분쟁(법원 가처분 기각, 중재 진행)'
+- '어닝콜 위험: 게임 광고 의존'
+evidence:
+- https://investors.applovin.com/
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=10-Q
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001751008&type=10-K
+- https://digiday.com/marketing/mobile-ad-giants-applovin-and-unity-locked-in-legal-dispute-over-data-collection/
+- https://www.newsfilecorp.com/release/323215/Kaplan-Fox-Urges-Investors-Who-Lost-Money-on-AppLovin-Corporation-APP-to-Contact-the-Firm-Before-November-16-2026
+- Fiscal.ai MCP 2026-11-13 — 표준화 손익·재무상태표·현금흐름·세그먼트·추정·Forward 배수·애널리스트 의견·어닝콜 전문(3Q26·2Q26)
+- TradingView NASDAQ:APP 일봉 760·월봉 68(2026-11-13)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
