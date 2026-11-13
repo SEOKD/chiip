@@ -188,11 +188,11 @@ def section(dp):
     if mg.get("summary"):
         head += " " + str(mg["summary"])
     B = [{"type": "hl", "text": head}]
-    B.append({"type": "table", "title": f"GPM에서 OPM까지({mg.get('basis', 'GAAP')})", "headers": ["기간", "GPM", "연구개발", "판관비", "기타", "OPM"],
-              "rows": [[p["period"], _pct(p["gpm"]), _pct(p["rd"]), _pct(p["sga"]), _pct(p["other"]), _pct(p["opm"])] for p in c["periods"]]})
     q4 = last4(dp)   # 마스터 지시 2026-11-06: GPM·OPM은 선 대신 값을 바로, 시계열은 최근 4개 분기
-    if q4:
-        B.append({"type": "table", "title": "GPM·OPM 최근 4개 분기", "headers": ["분기", "GPM", "OPM"], "rows": [[r["period"], _pct(r["gpm"]), _pct(r["opm"])] for r in q4]})
+    # 'GPM·OPM 최근 4개 분기' 표는 이 표의 아래 행으로 합쳤다(마스터 지시 2026-11-13 — 마진 상세 표 줄이기, 값은 그대로)
+    B.append({"type": "table", "title": f"GPM에서 OPM까지({mg.get('basis', 'GAAP')}" + (", 아래는 최근 4개 분기" if q4 else "") + ")", "headers": ["기간", "GPM", "연구개발", "판관비", "기타", "OPM"],
+              "rows": [[p["period"], _pct(p["gpm"]), _pct(p["rd"]), _pct(p["sga"]), _pct(p["other"]), _pct(p["opm"])] for p in c["periods"]]
+              + [[r["period"], _pct(r["gpm"]), "-", "-", "-", _pct(r["opm"])] for r in q4 or []]})
     # '매출 100의 쓰임' 그림은 마진 다리의 '분기 비용 비중 추이'와 사실상 겹쳐 뺀다(마스터 지시 2026-11-08)
     costs = sorted(mg["costs"], key=lambda k: -k["pct_rev"])
     rows = []
@@ -203,7 +203,11 @@ def section(dp):
     if moved:
         B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "비용 요인별 매출 대비 비중 1년 변화", "unit": "%p",
                                              "rows": [{"label": x["name"], "bars": [{"name": "변화(%p)", "color": "d" if x["pct_rev"] <= _num(x["prior_pct"]) else "c", "value": round((x["pct_rev"] - _num(x["prior_pct"])) * 100, 1)}]} for x in moved[:8]]}})
-    B.append({"type": "table", "title": f"마진을 결정하는 비용 요인 — 비용 {tag} 시 OPM", "headers": ["비용", "매출 대비", "변화", "고정비", "OPM"], "rows": rows})
+    # '마진을 결정하는 비용 요인 — 비용 +10% 시 OPM' 표는 뺐다(마스터 지시 2026-11-13): 매출 대비·1년 변화·충격 시 마진·고정비 몫이
+    # 앞 '비용 요인 강도' 표(cost_bridge_view)에 모두 있다. 비용 다리 재료(quarters_hist)가 없어 강도 표가 안 나오는 리포트는 이 표를 그대로 낸다
+    import cost_bridge_view
+    if not cost_bridge_view.compute(dp):
+        B.append({"type": "table", "title": f"마진을 결정하는 비용 요인 — 비용 {tag} 시 OPM", "headers": ["비용", "매출 대비", "변화", "고정비", "OPM"], "rows": rows})
     B.append({"type": "table", "title": "비용을 움직이는 요인", "headers": ["비용", "요인"], "rows": [[f"{x['name']}({x['stage']})", f"{x['driver']} · 근거 {x['basis']}"] for x in costs]})
     B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"BOM 항목 가격 {tag} 시 OPM 변화", "unit": "%p",
                                          "rows": [{"label": name, "bars": [{"name": "OPM 변화", "color": "b", "value": round(v * 100, 2)}]} for name, v in by_item(c["items"])[:8]]}})

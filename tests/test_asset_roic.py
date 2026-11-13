@@ -120,3 +120,93 @@ class TestSection(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def _facts():
+    """asset_pack 시험용 최소 SEC 회사 사실 묶음(백만 달러 × 1e6)"""
+    q_ends = ["2024-09-30", "2024-12-31", "2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31", "2026-03-31", "2026-06-30", "2026-09-30"]
+    starts = {"03-31": "01-01", "06-30": "04-01", "09-30": "07-01", "12-31": "10-01"}
+
+    def dur(vals):
+        out = []
+        for e, v in zip(q_ends, vals):
+            if e.endswith("12-31"):   # 4분기는 연간으로만 — asset_pack이 연간 − 1~3분기로 만든다
+                y = e[:4]
+                qs = [x for x, e2 in zip(vals, q_ends) if e2[:4] == y and not e2.endswith("12-31")]
+                out.append({"start": f"{y}-01-01", "end": e, "val": (sum(qs) + v) * 1e6})
+            else:
+                out.append({"start": f"{e[:4]}-{starts[e[5:]]}", "end": e, "val": v * 1e6})
+        return {"units": {"USD": out}}
+
+    def inst(vals):
+        return {"units": {"USD": [{"end": e, "val": v * 1e6} for e, v in zip(q_ends, vals)]}}
+    g = {"RevenueFromContractWithCustomerExcludingAssessedTax": dur([100] * 9), "OperatingIncomeLoss": dur([10] * 9),
+         "DepreciationDepletionAndAmortization": dur([5] * 9), "PropertyPlantAndEquipmentNet": inst([400] * 9),
+         "OperatingLeaseRightOfUseAsset": inst([200] * 9), "Goodwill": inst([50] * 9), "AccountsReceivableNetCurrent": inst([20] * 9),
+         "AccountsPayableCurrent": inst([30] * 9),
+         "OperatingLeaseWeightedAverageDiscountRatePercent": {"units": {"pure": [{"end": "2025-12-31", "val": 0.07}]}}}
+    return {"facts": {"us-gaap": g}}
+
+
+class TestAssetPack(unittest.TestCase):
+    def test_build_from_facts_marks_missing(self):
+        import asset_pack
+        a = asset_pack.build(_facts(), 0.21)
+        self.assertEqual(a["roic"]["rev"], [400.0, 400.0])
+        self.assertEqual(a["roic"]["lease_rate"], 0.07)
+        self.assertEqual(a["roic"]["capital"]["nwc"][0], -10.0)
+        qs = {x["q"]: x for x in a["quarters"]}
+        self.assertNotIn("4Q24", qs)   # 2024년 1·2분기가 없으면 4분기를 만들지 않는다
+        self.assertAlmostEqual(qs["4Q25"]["da"], 5.0)   # 연간 − 1~3분기
+        self.assertIn("운영리스 부채", a["missing"])
+        s = av.section({"assets": a}, 0.09)   # 항목 주석이 없어도 절은 나온다
+        self.assertTrue(any("미공시" in (b.get("text") or "") for b in s["blocks"]))
+
+    def test_merge_keeps_model_rows(self):
+        import asset_pack
+        old = {"ppe": [{"name": "토지", "kind": "land", "gross": [1, 1]}], "roic": None, "missing": ["유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)"]}
+        new = asset_pack.build(_facts(), 0.21)
+        m = asset_pack.merge(old, new)
+        self.assertEqual(m["ppe"][0]["name"], "토지")
+        self.assertIsNotNone(m["roic"])
+        self.assertFalse(any(x.startswith("유형자산 항목별") for x in m["missing"]))
+
+
+class TestRoicCard(unittest.TestCase):
+    def test_one_roic_picture_in_gallery(self):
+        s = av.section({"assets": LTH}, 0.09)
+        charts = [b["chart"] for b in s["blocks"] if b["type"] == "chart"]
+        self.assertEqual([c["kind"] for c in charts], ["line", "roic"])   # 감가 비율 선 + ROIC 한 장
+        c = charts[1]
+        self.assertEqual(c["wacc"], 9.0)
+        self.assertEqual([r["label"] for r in c["rates"]][:2], ["ROIC 영업권 포함", "ROIC 영업권 제외"])
+        svg = report_html.CHARTS["roic"](c)
+        self.assertIn("WACC 9.0%", svg)
+        self.assertIn("−$", svg)   # 음수 운전자본은 '차감'
+        self.assertIn("차감", svg)
+
+
+class TestMarginTrim(unittest.TestCase):
+    def test_duplicate_tables_removed_when_bridge_exists(self):
+        import margin_view
+        dp = json.loads((ROOT / "knowledge" / "models" / "companies" / "us-cbrs" / "datapack.json").read_text(encoding="utf-8"))
+        titles = [b.get("title", "") for b in margin_view.section(dp)["blocks"]]
+        self.assertFalse(any(t.startswith("GPM·OPM 최근 4개 분기") for t in titles))
+        import cost_bridge_view
+        has_bridge = bool(cost_bridge_view.compute(dp))
+        self.assertEqual(any(t.startswith("마진을 결정하는 비용 요인") for t in titles), not has_bridge)
+
+
+class TestCheckFlag(unittest.TestCase):
+    def test_missing_assets_flagged_outside_score(self):
+        sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
+        import datapack_check
+        p = datapack_check.load("us-cbrs")
+        p.pop("assets", None)
+        r = datapack_check.check(p)
+        c = next(x for x in r["checks"] if x["name"] == "자산 구성(assets)")
+        self.assertEqual(c["status"], "경고")
+        p["assets"] = LTH
+        r2 = datapack_check.check(p)
+        self.assertEqual(r2["score"], r["score"])   # 점수에는 넣지 않는다
+        self.assertEqual(next(x for x in r2["checks"] if x["name"] == "자산 구성(assets)")["status"], "통과")

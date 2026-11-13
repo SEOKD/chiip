@@ -98,6 +98,15 @@ def check(p):
         f"매출 {rb or '미표기'} · 이익률 {mb or '미표기'}" + (f" · 비GAAP → SBC {p.get('sbc_pct_rev'):.0%} 차감" if mb == "non_gaap" and p.get("sbc_pct_rev") is not None else ""))
     pts = {"통과": 1.0, "경고": 0.5, "실패": 0.0}
     score = round(sum(pts[c["status"]] for c in out) / len(out) * 10, 1)
+    # 자산 구성과 ROIC 재료(ADR-021, 마스터 지시 2026-11-13) — 표시만 하고 점수에는 넣지 않는다(옛 datapack 관문을 막지 않게).
+    # 없으면 py scripts/tenbagger/asset_pack.py <id> --write 뒤 10-K 주석으로 항목·내용연수를 채운다
+    a = p.get("assets")
+    if not a:
+        out.append({"name": "자산 구성(assets)", "status": "경고", "detail": "없음 — '자산 구성과 ROIC' 절이 빠진다. py scripts/tenbagger/asset_pack.py <id> --write"})
+    else:
+        need = [k for k, ok in (("roic", (a.get("roic") or {}).get("capital")), ("quarters", len(a.get("quarters") or []) >= 5), ("ppe", a.get("ppe"))) if not ok]
+        out.append({"name": "자산 구성(assets)", "status": "경고" if need else "통과",
+                    "detail": (f"빈 칸: {', '.join(need)}" if need else "ROIC·분기 감가·유형자산 있음") + (f" · 미공시 {len(a.get('missing') or [])}건" if a.get("missing") else "")})
     return {"score": score, "checks": out}
 
 

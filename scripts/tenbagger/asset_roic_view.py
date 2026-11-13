@@ -178,7 +178,9 @@ def roic(a):
         rev, ebit = _v(r.get("rev"), i), _v(r.get("ebit"), i)
         if rev is None or ebit is None:
             continue
-        ll = r.get("lease_liab") or []
+        ll = list(r.get("lease_liab") or [])
+        rou = ((r.get("capital") or {}).get("rou") or [])
+        ll = [x if x is not None else _v(rou, j) for j, x in enumerate(ll + [None] * max(0, len(rou) - len(ll)))]   # 리스 부채를 모르는 시점은 사용권자산으로 대신(크기가 비슷하다)
         lease = None
         if r.get("lease_rate") is not None and _v(ll, i) is not None:
             base = (ll[i] + ll[i + 1]) / 2 if avg and _v(ll, i + 1) is not None else ll[i]
@@ -383,23 +385,12 @@ def section(dp, wacc=None):
         B.append({"type": "p", "text": f"NOPAT = (영업이익 {M(p1['ebit'])} + 인수 무형 상각{lease_txt}) × (1 − 세율 {_p((a.get('roic') or {}).get('tax_rate', 0.25), 0)}). "
                                        f"리스 사용권자산을 투하자본에 넣었으므로 임차료 속 이자 몫을 영업이익에 되더했다. 현금은 영업에 필요한 몫을 따로 알 수 없어 투하자본에서 뺐다."
                                        + (f" {(a.get('roic') or {})['note']}." if (a.get("roic") or {}).get("note") else "")})
-        bars = [{"label": "포함", "bars": [{"name": "ROIC", "color": "c", "value": round(p1["roic_incl"] * 100, 1)}]},
-                {"label": "제외", "bars": [{"name": "ROIC", "color": "d", "value": round(p1["roic_excl"] * 100, 1)}]}]
-        if capv and capv["roic"] is not None:
-            bars.append({"label": "무형 자본화", "bars": [{"name": "ROIC", "color": "e", "value": round(capv["roic"] * 100, 1)}]})
-        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 110, "title": f"ROIC 세 가지 판({p1['period']}, 영업권·인수 무형 포함/제외/무형 자본화)", "unit": "%", "rows": bars}})
-        B.append({"type": "chart", "chart": {"kind": "bars", "title": f"투하자본 항목별 매출 1달러당 자본({p1['period']})", "unit": "달러",
-                                             "categories": [x["name"] for x in item_rows(p1)],
-                                             "series": [{"name": "매출 1달러당 자본", "color": "b", "values": [round(x["intensity"], 3) for x in item_rows(p1)]}]}})
+        B.append({"type": "chart", "chart": card(p1, capv, wacc, cur, unit)})   # 한눈에 보기 ROIC 그림은 이 한 장(마스터 지시 2026-11-13)
         if p0:
             dec = lmdi(p1, p0)
             if dec:
                 B.append({"type": "table", "title": f"ROIC 1년 변화 분해(포함판, {p0['period']} → {p1['period']})", "headers": ["요인", "ROIC 기여"],
                           "rows": [[n, _pp(v, 2)] for n, v in dec["parts"]] + [["합계", _pp(dec["to"] - dec["from"], 2)]]})
-                # 0부터 쌓는 폭포는 요인이 작아 안 보인다 — 요인별 기여만 부호 있는 막대로(합 = ROIC 변화)
-                B.append({"type": "chart", "chart": {"kind": "bars", "title": f"ROIC 1년 변화 요인별 기여({_p(dec['from'])} → {_p(dec['to'])}, 포함판)", "unit": "%p",
-                                                     "categories": [n for n, _ in dec["parts"]],
-                                                     "series": [{"name": "ROIC 기여", "color": "c", "values": [round(v * 100, 2) for _, v in dec["parts"]]}]}})
             else:
                 B.append({"type": "p", "text": "투하자본 또는 NOPAT이 0 이하라 ROIC 분해는 비교 불가 — 경제적 이익으로 본다."})
         if capv:
@@ -414,11 +405,30 @@ def section(dp, wacc=None):
             if (a.get("intangible_cap") or {}).get("note"):
                 B.append({"type": "p", "text": a["intangible_cap"]["note"]})
 
+    if a.get("missing"):
+        B.append({"type": "p", "text": "미공시·미분해: " + " · ".join(a["missing"]) + " — 이 칸은 비우고 나머지로 계산했다."})
     # 해석
     lines = interpret(a, p1, p0, shift, capv, lv, band, cfg, M)
     if lines:
         B += [{"type": "h3", "text": "해석 — 무엇이 수익성을 끌어올리고 희석하나"}, {"type": "ul", "items": lines}]
     return {"h2": "자산 구성과 ROIC", "blocks": B, "_sources": [a["source"]] if a.get("source") else []}
+
+
+CARD_COLORS = {"ppe": "c", "rou": "b", "goodwill": "d", "intangibles": "e", "nwc": "a", "other": "a"}
+
+
+def card(p, capv, wacc, cur="$", unit="M"):
+    """한눈에 보기 ROIC 한 장 — 투하자본 구성(유형·리스·영업권·무형·운전자본) + ROIC 포함·제외(·무형 자본화) vs WACC"""
+    order = ("ppe", "rou", "goodwill", "intangibles", "other", "nwc")
+    parts = [{"label": CAP_NAMES[k], "value": round(p["cap"][k], 1), "color": CARD_COLORS[k]} for k in order if k in p["cap"] and abs(p["cap"][k]) > 1e-9]
+    rates = [{"label": "ROIC 영업권 포함", "value": round(p["roic_incl"] * 100, 1), "color": "c"}] if p["roic_incl"] is not None else []
+    if p["roic_excl"] is not None:
+        rates.append({"label": "ROIC 영업권 제외", "value": round(p["roic_excl"] * 100, 1), "color": "d"})
+    if capv and capv.get("roic") is not None:
+        rates.append({"label": "무형 자본화 조정", "value": round(capv["roic"] * 100, 1), "color": "e"})
+    return {"kind": "roic", "title": f"자산 구성과 ROIC({p['period']}) — 투하자본 {_m(p['ic_incl'], cur, unit)}, NOPAT {_m(p['nopat'], cur, unit)}",
+            "parts": parts, "rates": rates, "wacc": round(wacc * 100, 1) if wacc is not None else None, "unit": cur, "unit_suffix": unit,
+            "note": f"NOPAT 마진 {_p(p['margin'])} × 회전율 {p['rev'] / p['ic_incl']:.2f}회" if p["ic_incl"] > 0 else None}
 
 
 def interpret(a, p1, p0, shift, capv, lv, band, cfg, M):

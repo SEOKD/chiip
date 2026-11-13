@@ -726,7 +726,61 @@ def chart_waterfall(c):
     return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
-CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "pipeline": chart_pipeline, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall}
+def chart_roic(c):
+    """자산 구성과 ROIC 한 장(마스터 지시 2026-11-13, ADR-021) — 위: 투하자본 구성 100% 막대 + 항목별 금액·몫(두 열),
+    아래: ROIC(영업권 포함·제외·무형 자본화) 가로 막대와 WACC 점선. 폭 480 — 모바일에서도 글자가 읽히게 항목 이름은 막대 밖에 쓴다.
+    c = {"parts": [{"label", "value", "color"}](음수 = 자금 원천, 막대에서 빼고 목록에 '차감'), "rates": [{"label", "value"(%), "color"}], "wacc": 9.1, "unit": "$", "note"}"""
+    parts, rates = c.get("parts") or [], c.get("rates") or []
+    if not parts or not rates:
+        return ""
+    W, L, R = 480, 10, 10
+    pos = [p for p in parts if (p.get("value") or 0) > 0]
+    tot = sum(p["value"] for p in pos) or 1
+    net = sum(p.get("value") or 0 for p in parts)
+    g, x, y = [], float(L), 8
+    for p in pos:
+        w = (W - L - R) * p["value"] / tot
+        col = COLORS.get(p.get("color", "c"), "var(--c)")
+        g.append(f'<rect x="{x:.1f}" y="{y}" width="{max(w - 1, 1):.1f}" height="26" fill="{col}"><title>{t(p["label"])}: {_fmt(p["value"])}</title></rect>')
+        if w > 44:
+            g.append(f'<text x="{x + w / 2:.1f}" y="{y + 17}" text-anchor="middle" style="fill:#fff;font-size:11px;font-weight:600">{p["value"] / (net if net > 0 else tot) * 100:.0f}%</text>')
+        x += w
+    y += 44
+    for i, p in enumerate(parts):   # 두 열 목록
+        cx, cy = L + (i % 2) * (W - L - R) / 2, y + (i // 2) * 18
+        col = COLORS.get(p.get("color", "c"), "var(--c)") if (p.get("value") or 0) > 0 else "var(--mut)"
+        share = f"{p['value'] / net * 100:.0f}%" if net > 0 else ""
+        v = p.get("value") or 0
+        txt = f"{p['label']} {'−' if v < 0 else ''}{c.get('unit', '$')}{_fmt(abs(v))}{c.get('unit_suffix', '')}" + (f" · {share}" if v > 0 else " · 차감")
+        g.append(f'<rect x="{cx:.1f}" y="{cy - 9}" width="10" height="10" rx="2" fill="{col}"/><text x="{cx + 14:.1f}" y="{cy}" style="fill:var(--fg);font-size:12px">{t(txt)}</text>')
+    y += ((len(parts) + 1) // 2) * 18 + 14
+    LW = 132
+    vals = [r.get("value") or 0 for r in rates] + [c.get("wacc") or 0]
+    hi, lo = max(max(vals), 0) * 1.15 or 1, min(min(vals), 0)
+    X = lambda v: L + LW + (v - lo) / (hi - lo) * (W - L - LW - R - 34)
+    top = y
+    for r in rates:
+        v = r.get("value") or 0
+        col = COLORS.get(r.get("color", "c"), "var(--c)")
+        x1, x2 = sorted((X(0), X(v)))
+        inside = x2 - x1 > 52   # 값은 막대 안쪽 끝에 흰 글씨 — WACC 점선과 겹치지 않게
+        g.append(f'<text x="{L + LW - 8}" y="{y + 12}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(r["label"])}</text>'
+                 f'<rect x="{x1:.1f}" y="{y + 1}" width="{max(x2 - x1, 2):.1f}" height="15" rx="3" fill="{col}"/>'
+                 + (f'<text x="{x2 - 5:.1f}" y="{y + 13}" text-anchor="end" style="fill:#fff;font-size:12px;font-weight:600">{v:.1f}%</text>' if inside
+                    else f'<text x="{x2 + 4:.1f}" y="{y + 13}" style="font-size:12px;font-weight:600">{v:.1f}%</text>'))
+        y += 24
+    if c.get("wacc") is not None:
+        xw = X(c["wacc"])
+        g.append(f'<line x1="{xw:.1f}" x2="{xw:.1f}" y1="{top - 4}" y2="{y}" stroke="var(--fg)" stroke-dasharray="4 3"/>'
+                 f'<text x="{xw:.1f}" y="{y + 13}" text-anchor="middle" style="font-size:11.5px;fill:var(--fg)">WACC {c["wacc"]:.1f}%</text>')
+        y += 18
+    if c.get("note"):
+        g.append(f'<text x="{L}" y="{y + 14}" style="font-size:11.5px">{t(c["note"])}</text>')
+        y += 20
+    return f'<svg viewBox="0 0 {W} {y + 4}">{"".join(g)}</svg>'
+
+
+CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "pipeline": chart_pipeline, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall, "roic": chart_roic}
 
 
 def _svg_safe(fn):
