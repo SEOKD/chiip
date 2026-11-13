@@ -45,7 +45,7 @@ class TestImages(unittest.TestCase):
     def test_budget_and_google_cap(self):
         c = P.cfg()
         self.assertTrue(P.budget_ok(self.t, False, c)[0])
-        P.log(self.t, "m", "2K", False, 8.95, "ok")
+        P.log(self.t, "m", "1K", False, c["monthly_budget_usd"] - 0.05, "ok")   # 한도 바로 아래(한도는 설정값을 따른다)
         self.assertEqual(P.budget_ok(self.t, False, c)[1], "over_budget")
         P.log(self.t, "m", "2K", False, 0, "google_cap")
         self.assertEqual(P.month_stopped(), "google_cap")
@@ -54,7 +54,8 @@ class TestImages(unittest.TestCase):
 
     def test_industry_share(self):
         ti = {**self.t, "scope": "industry"}
-        P.log(ti, "m", "2K", False, 3.55, "ok")
+        c = P.cfg()
+        P.log(ti, "m", "1K", False, c["monthly_budget_usd"] * c["industry_share"] - 0.05, "ok")
         self.assertEqual(P.budget_ok(ti, False)[1], "over_budget_industry")
         self.assertTrue(P.budget_ok(self.t, False)[0])   # 종목 몫은 남아 있다
 
