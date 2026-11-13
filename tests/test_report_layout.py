@@ -165,6 +165,22 @@ class TestRender(unittest.TestCase):
         self.assertIn("var(--e)", s)
         self.assertIn("실적", s)
 
+    def test_negative_eps_draws_down_bars_with_labels(self):   # 마스터 지시 2026-11-13
+        import re
+        c = {"kind": "actest", "panels": [{"name": "EPS($)", "categories": ["4Q25", "1Q26", "2Q26"], "actual": [-0.16, -0.11, 0.47], "est": [0.05, -0.20, 0.35]}]}
+        s = rh.chart_actest(c)
+        rects = re.findall(r'<rect x="[^"]+" y="([^"]+)" width="[^"]+" height="([^"]+)"', s)
+        zero = float(re.search(r'<line x1="[^"]+" x2="[^"]+" y1="([^"]+)"', s).group(1))
+        self.assertEqual(len(rects), 6)
+        for y, h in rects:
+            self.assertGreater(float(h), 1.5)                          # 짧은 가로선이 아니라 막대
+        self.assertTrue(any(abs(float(y) - zero) < 0.2 and float(h) > 5 for y, h in rects))   # 0선에서 아래로
+        for v in ("-0.16", "0.05", "-0.11", "-0.20", "0.47", "0.35"):
+            self.assertIn(f">{v}<", s.replace("-0.2<", "-0.20<").replace("-0.1<", "-0.10<"))  # 모든 막대에 값
+        cat_y = [float(y) for y in re.findall(r'<text x="[^"]+" y="([^"]+)" text-anchor="middle" style="font-size:9.5px">', s)]
+        low = max(float(y) + float(h) for y, h in rects)
+        self.assertTrue(all(y > low for y in cat_y))                   # 분기 이름은 막대 아래
+
     def test_candle_draws_moving_averages(self):
         c = {"bars": [["2026-10-01", 10, 11, 9, 10.5], ["2026-10-02", 10.5, 12, 10, 11]], "lines": [{"name": "50일선", "color": "c", "points": [["2026-10-01", 10], ["2026-10-02", 10.5]]}], "legend": [{"name": "50일선", "color": "c"}]}
         s = rh.chart_candle(c)

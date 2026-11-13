@@ -419,8 +419,12 @@ def chart_actest(c):
     for p in panels:
         cats, act, est = p["categories"], p.get("actual") or [], p.get("est") or []
         vals = [v for v in act + est if v is not None]
-        hi = max(vals + [0]) * 1.18 or 1
-        Y = lambda v: y0 + (hi - v) / hi * (PH - 26)
+        # 음수도 0선에서 아래로 내려가는 막대(마스터 지시 2026-11-13) — 축은 최소 음수까지, 라벨은 막대 끝 바깥, 분기 이름은 패널 맨 아래
+        top, bot = max(vals + [0]), min(vals + [0])
+        span = (top - bot) or 1
+        hi, lo = top + span * 0.16, bot - (span * 0.16 if bot < 0 else 0)
+        PB = 16                                   # 분기 이름 줄
+        Y = lambda v, hi=hi, lo=lo: y0 + (hi - v) / (hi - lo) * (PH - 26 - PB)
         gw = (W - L - 10) / len(cats)
         g.append(f'<text x="{L}" y="{y0 - 5}" style="fill:var(--fg);font-size:12px;font-weight:700">{t(p.get("name"))}</text><line x1="{L}" x2="{W - 10}" y1="{Y(0):.1f}" y2="{Y(0):.1f}" stroke="var(--line)"/>')
         for i, cat in enumerate(cats):
@@ -430,10 +434,10 @@ def chart_actest(c):
                 if v is None:
                     continue
                 xb = x + j * (bw + 2)
-                g.append(f'<rect x="{xb:.1f}" y="{Y(v):.1f}" width="{bw:.1f}" height="{max(Y(0) - Y(v), 1):.1f}" rx="2" fill="{col}"><title>{t(cat)} {"실적" if j == 0 else "컨센서스"} {_fmt(v)}</title></rect>')
-                if j == 0 or (i < len(act) and act[i] is None):
-                    g.append(f'<text x="{xb + bw / 2:.1f}" y="{Y(v) - 3:.1f}" text-anchor="middle" style="font-size:9px">{_fmt(v)}</text>')
-            g.append(f'<text x="{x + gw * 0.38:.1f}" y="{Y(0) + 12:.1f}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
+                y, h = (Y(v), Y(0) - Y(v)) if v >= 0 else (Y(0), Y(v) - Y(0))
+                g.append(f'<rect x="{xb:.1f}" y="{y:.1f}" width="{bw:.1f}" height="{max(h, 1):.1f}" rx="2" fill="{col}"><title>{t(cat)} {"실적" if j == 0 else "컨센서스"} {_fmt(v)}</title></rect>')
+                g.append(f'<text x="{xb + bw / 2:.1f}" y="{(y - 3) if v >= 0 else (y + h + 9):.1f}" text-anchor="middle" style="font-size:8.5px">{_fmt(v)}</text>')   # 모든 막대에 값
+            g.append(f'<text x="{x + gw * 0.38:.1f}" y="{y0 + PH - 26 - PB + 13:.1f}" text-anchor="middle" style="font-size:9.5px">{t(cat)}</text>')
         y0 += PH + gap - 14
     return _legend([{"name": "실적", "color": "c"}, {"name": "컨센서스", "color": "e"}]) + f'<svg viewBox="0 0 {W} {y0 - 10}">{"".join(g)}</svg>'
 
@@ -501,7 +505,7 @@ def chart_bars(c):
     nl = max(len(wrap_label(x, (W - L - 10) / len(cats) - 4)) for x in cats)   # 이름표 줄 수만큼 아래 여백(2026-11-08 겹침 방지)
     B = 18 + (nl - 1) * 11
     H = 220 + B
-    lo, hi = min(0, min(vals)), max(0, max(vals)) * 1.15 or 1
+    lo, hi = min(0, min(vals)) * 1.15, max(0, max(vals)) * 1.15 or 1   # 음수 막대 아래 라벨 자리(2026-11-13)
     Y = lambda v: T + (hi - v) / (hi - lo) * (H - T - B)
     gw = (W - L - 10) / len(cats)
     bw = max(4, (gw - 10) / max(len(series), 1))
