@@ -39,11 +39,12 @@ def release_kst(d):
     return datetime(d.year, d.month, d.day, h, 30, tzinfo=common.KST)
 
 
-def releases():
+def releases(event="BLS PPI"):
+    """calendar.csv의 발표일(KST 날짜) — event는 'BLS PPI'·'BLS CPI' 등(cpi_release.py도 쓴다)"""
     if not CAL.exists():
         return []
     with CAL.open(encoding="utf-8", newline="") as f:
-        return [date.fromisoformat(r["date"]) for r in csv.DictReader(f) if r.get("entity_or_event") == "BLS PPI" and r.get("date")]
+        return [date.fromisoformat(r["date"]) for r in csv.DictReader(f) if r.get("entity_or_event") == event and r.get("date")]
 
 
 def window(now):

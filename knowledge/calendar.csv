@@ -93,3 +93,33 @@ date,time_kst,type,entity_or_event,description,expectation_note_ref,status
 2027-10-15,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 9월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
 2027-11-12,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 10월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
 2027-12-15,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 11월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2026-11-10,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2026년 10월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2026-12-10,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2026년 11월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-01-13,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2026년 12월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-02-11,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 1월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-03-10,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 2월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-04-13,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 3월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-05-12,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 4월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-06-10,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 5월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-07-14,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 6월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-08-11,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 7월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-09-14,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 8월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-10-14,21:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 9월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-11-10,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 10월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2027-12-10,22:30,지표발표,BLS CPI,"미국 소비자물가(CPI) 2027년 11월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/cpi.htm, 2026-11-13 확인)",radar/cpi_release.py,확정
+2026-12-01,09:00,지표발표,산업부 수출입 동향,"한국 2026년 11월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-01-01,09:00,지표발표,산업부 수출입 동향,"한국 2026년 12월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-02-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 1월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-03-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 2월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-04-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 3월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-05-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 4월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-06-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 5월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-07-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 6월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-08-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 7월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-09-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 8월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-10-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 9월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-11-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 10월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2027-12-01,09:00,지표발표,산업부 수출입 동향,"한국 2027년 11월 수출입 동향(반도체·컴퓨터) — 매월 1일 관행, 공식 일정표 미확인(휴일 이동 가능)",radar/kr_exports.py,관행
+2026-11-21,09:00,지표발표,관세청 수출입 현황(10일),"관세청 21일 발표 잠정 수출(반도체 포함) — 수집 경로 없음(기사 경로 robots 금지·무역통계 사이트 자동 접속 차단, 공공데이터 API는 월별만)",radar/kr_exports.py,미수집
+2026-12-11,09:00,지표발표,관세청 수출입 현황(10일),"관세청 11일 발표 잠정 수출(반도체 포함) — 수집 경로 없음(기사 경로 robots 금지·무역통계 사이트 자동 접속 차단, 공공데이터 API는 월별만)",radar/kr_exports.py,미수집
+2026-12-21,09:00,지표발표,관세청 수출입 현황(10일),"관세청 21일 발표 잠정 수출(반도체 포함) — 수집 경로 없음(기사 경로 robots 금지·무역통계 사이트 자동 접속 차단, 공공데이터 API는 월별만)",radar/kr_exports.py,미수집
