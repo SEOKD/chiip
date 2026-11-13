@@ -129,3 +129,20 @@ class TestWiring(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTimeoutNotRetriedInline(unittest.TestCase):
+    """시간 초과 작업은 self-heal 안에서 다시 돌리지 않는다(2026-11-13 점검: self-heal 26회 연속 10분 초과)"""
+
+    def test_timeout_waits(self):
+        import self_heal as sh
+        from unittest import mock
+        called = []
+        st = {}
+        with mock.patch.object(sh, "detect", lambda now, cfg: {"trade-ppi": "시간 초과 10분 — 다음 회차에 다시"}), \
+             mock.patch.object(sh, "retry", lambda ch, cfg: called.append(ch) or True), \
+             mock.patch.object(sh, "plan", lambda e, k, n, c: "retry"), \
+             mock.patch.object(sh.common, "load_state", lambda n, d=None: st.get(n, d)), \
+             mock.patch.object(sh.common, "save_state", lambda n, v: st.__setitem__(n, v)):
+            sh.run(cfg={"jobs": {}, "routed": [], "route_hold_h": 1})
+        self.assertEqual(called, [])

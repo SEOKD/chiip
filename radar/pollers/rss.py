@@ -61,6 +61,8 @@ GNEWS_CAP = 95   # Google News RSS는 한 쿼리 최대 100건 — 이 이상이
 
 FOCUS7_WINDOW = "6h"        # 15분마다 도는 회차는 최근 6시간만 묻는다(포화 줄이기) — when:은 시간 단위도 먹는다(2026-10-29 시험)
 FOCUS7_SWEEP_H = 3           # 3시간마다 한 번은 when:1d로 빠진 것 쓸어 담기
+FOCUS7_BUDGET_S = 480        # 한 회차에 @focus7 쿼리에 쓰는 시간 상한(초) — run_poll 원천별 한도 12분 안에서 끝내고, 못 한 묶음은 다음 회차가 이어 받는다
+                             # (2026-11-13 점검: 감시 종목이 늘어 묶음 36개·요청 76회 → 11-09 이후 182회 연속 12분 초과로 회차 전체가 버려졌다)
 
 
 def _focus7_url(names, sites=NEWS7_SITES, window="1d"):
@@ -161,9 +163,21 @@ def poll_source(src):
         last = (st7.get("sweep") or {}).get(src["id"])
         if not last or datetime.fromisoformat(last) < common.now_kst() - timedelta(hours=FOCUS7_SWEEP_H):
             window = "1d"
+    f7 = [i for i, (u, _) in enumerate(urls) if u == "@focus7"]
+    if f7:   # 돌아가며 시작 — 지난 회차가 멈춘 묶음부터
+        cur = (common.load_state("focus7_stats", {}).get("cursor") or {}).get(src["id"], 0) % len(f7)
+        order = f7[cur:] + f7[:cur]
+        rest = [x for i, x in enumerate(urls) if i not in set(f7)]
+        urls = rest + [urls[i] for i in order]
+    import time as _time
+    t0, done7 = _time.monotonic(), 0
     for url, entity in urls:
+        if url == "@focus7" and _time.monotonic() - t0 > FOCUS7_BUDGET_S:
+            stats["deferred"] = stats.get("deferred", 0) + 1   # 시간 상한 — 다음 회차로
+            continue
         try:
             if url == "@focus7":
+                done7 += 1
                 entries, entity = focus7_entries(entity, stats=stats, window=window), None
             else:
                 entries = parse_feed(common.http_get(url))
@@ -198,8 +212,10 @@ def poll_source(src):
             items.append(it)
     if stats:
         st = common.load_state("focus7_stats", {})
-        st[src["id"]] = {**stats, "window": window, "queries": sum(1 for u, _ in urls if u == "@focus7"), "at": common.iso(common.now_kst())}
-        if window == "1d":
+        st[src["id"]] = {**stats, "window": window, "queries": len(f7), "done": done7, "at": common.iso(common.now_kst())}
+        if f7:
+            st.setdefault("cursor", {})[src["id"]] = (cur + done7) % len(f7)
+        if window == "1d" and not stats.get("deferred"):   # 쓸어 담기는 묶음을 다 돈 회차만 끝난 것으로 본다
             st.setdefault("sweep", {})[src["id"]] = common.iso(common.now_kst())
         common.save_state("focus7_stats", st)
     if failed and len(failed) == len(urls):

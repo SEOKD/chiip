@@ -125,9 +125,12 @@ def run(now=None, cfg=None):
         if ch in cfg.get("routed", []) and kind in ("rate", "network", "unknown"):
             down[ch] = common.iso(now + timedelta(hours=cfg["route_hold_h"]))
         step = plan(e, kind, now, cfg)
+        if step == "retry" and ("시간 초과" in str(why) or ch in (cfg.get("no_inline") or [])):
+            step = "wait"   # 시간 초과 작업을 여기서 다시 돌리면 self-heal도 10분 한도에 걸려 상태를 못 남긴다 — 정규 회차가 다시 돈다(2026-11-13 점검: 26회 연속)
         if step == "retry":
             e["attempts"] += 1
             e["next_at"] = common.iso(now + timedelta(hours=2 ** e["attempts"]))
+            common.save_state(STATE, st)   # 재시도 중 죽어도 시도 횟수·다음 시각이 남게
             if retry(ch, cfg) and ch != "tg-channels":
                 common.record_health(ch, True)
         elif step == "repair" and not e.get("repair_at"):

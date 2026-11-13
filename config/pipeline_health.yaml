@@ -15,6 +15,8 @@ jobs:
   korea-watch: korea_watch
   exclusive-leads: exclusive_leads
   tg-channels: tg_channels
+# 10분 넘게 걸리는 작업 — self-heal 안에서 다시 돌리지 않고 정규 회차(run_hourly)에 맡긴다(2026-11-13 점검: self-heal이 이 작업을 품다 26회 연속 10분 초과)
+no_inline: [trade-ppi, trade-hs, site-imagery]
 
 files:
   - {id: trade-ppi, path: knowledge/models/trade_ppi/latest.json, max_age_h: 30}
