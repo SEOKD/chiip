@@ -4,7 +4,16 @@
 # 풀이 대상은 투자자가 읽다가 정말 모를 기술·제품·프로젝트명·유형자산·정부 기관·협회뿐이다(마스터 지시 2026-11-08 "기술과 제품, 프로젝트명, 유형자산 등 투자자들이 읽으면서 정말로 모를만한 부분만 괄호로 설명하도록 해라").
 # 회사명·티커는 뜻을 풀지 않는다(아래 names). 풀이 안에 용어 자신을 다시 쓰지 않는다 — gloss()가 자기 반복 괄호를 지운다.
 terms:
+  PPI: 생산자물가지수
+  CUSUM: 누적합 변화 감지 통계
   BIC: 모형 차수를 고르는 정보 기준
+  AR: 자기회귀 모형
+  ACV: 연간 계약 가치
+  CN: 중국
+  KR: 한국
+  TW: 대만
+  MY: 말레이시아
+  EU: 유럽연합
   BOM: 제품 원가를 이루는 부품·재료 명세
   EAC: 사업 완공 원가 재추정
   RCOH: 항공모함 연료 교체·복합 정비
@@ -137,4 +146,4 @@ no_gloss:
   계속가치: [예측 기간 이후의 가치]
   낙수효과: [대기업 투자가 아래 공급망으로 번지는 효과]
 # 풀이 없이 써도 되는 약자 — scripts/tenbagger/report_layout.py가 풀이 없는 약자를 잡을 때 뺀다. 금융 용어·일반 IT 약어
-plain_ok: [AI, PEG, NASDAQ, NYSE, AMEX, TSE, TWSE, KRX, GPU, CPU, DRAM, NAND, HDD, SSD, PCB, PC, GW, TB, OEM, ODM, MBA, MIT, NOK, MNOK, SEK, EUR, GBP, JPY, KRW, ASP, SK, US, USD, IR, CEO, CFO, COO, CTO, PER, PBR, ETF, IPO, M&A, FY, CY, EPS, OPM, GPM, EV, EBIT, EBITA, EBITDA, DCF, WACC, ERP, ROIC, RONIC, NOPAT, CAGR, TTM, YoY, QoQ, GAAP, CAPEX, FCF, FCFF, SBC, ATM, CMF, RVOL, ATS, ATR, IB, EP, SEC, MC, OCF, CMF, EPS, NTM, LTM, Fwd, KPI, NVDA, TSMC, AMD, TOP, ROE, ROA, RSU]
+plain_ok: [AI, PEG, NASDAQ, NYSE, AMEX, TSE, TWSE, KRX, GPU, CPU, DRAM, NAND, HDD, SSD, PCB, PC, GW, TB, OEM, ODM, MBA, MIT, NOK, MNOK, SEK, EUR, GBP, JPY, KRW, ASP, SK, US, USD, IR, CEO, CFO, COO, CTO, PER, PBR, ETF, IPO, M&A, FY, CY, EPS, OPM, GPM, EV, EBIT, EBITA, EBITDA, DCF, WACC, ERP, ROIC, RONIC, NOPAT, CAGR, TTM, YoY, QoQ, GAAP, CAPEX, OPEX, FCF, FCFF, SBC, ATM, CMF, RVOL, ATS, ATR, IB, EP, SEC, MC, OCF, CMF, EPS, NTM, LTM, Fwd, KPI, NVDA, TSMC, AMD, TOP, ROE, ROA, RSU, VIX]
