@@ -272,41 +272,324 @@ def life_effects(a, ebit):
     return out
 
 
-# ---------- 절 ----------
-def section(dp, wacc=None):
+# ---------- ⑥ 분기 추이와 다음 4개 분기 추정(마스터 지시 2026-11-14) ----------
+# "자산 구성은 최근 분기 구성 → 자산별 최근 12개 분기 변화율, ROIC는 최근 12개 분기 추이, 둘 다 다음 4개 분기 추정을 그래프에.
+#  추정은 IB 리서치 하우스의 전문 기법, NOPAT은 Fiscal.ai 등 컨센서스"
+# 추정 기법(재무상태표 동인 모형 — sell-side 3표 모델의 표준):
+#   손익: 컨센서스 분기 매출(consensus.quarters_est, Fiscal.ai) × 컨센서스 EBIT 마진(consensus.ebit_margin, 조정이면 SBC를 뺀다) = EBITA.
+#         이미 발표했지만 SEC 공시 데이터(10-Q)에 아직 없는 분기는 Fiscal.ai 표준 재무(quarters_hist)의 실제 매출·영업이익.
+#   운전자본: 항목별 회전 일수(DSO·DIO·DPO) — 매출채권·선급·미지급·선수는 매출, 재고·매입채무는 매출원가에 최근 4개 분기 평균 일수를 곱한다
+#             (CFA 재무제표 모델링 — 일수가 잔액으로 바로 바뀐다. 매출원가 = 매출 × 최근 4개 분기 원가율).
+#   유형자산: 이월 = 기초 + CAPEX − 감가상각. CAPEX = 매출 × 최근 4개 분기 CAPEX 강도, 감가 = 기초 순액 × 최근 4개 분기 분기 감가율
+#             (Koller·Goedhart·Wessels 『Valuation』(McKinsey) 재무상태표 추정 — 순 유형자산은 CAPEX·감가로 굴리고, CAPEX 재료가 없으면 순 유형자산 ÷ 매출 유지).
+#   영업권·리스 사용권·기타: 인수·새 리스 계약은 공시 전엔 모르므로 유지. 인수 무형: 분기 상각만큼 줄인다.
+#   ROIC: TTM NOPAT ÷ 평균 투하자본(이번 분기말과 4개 분기 전 평균, Mauboussin·Callahan 2014 'Calculating ROIC' 평균 자본).
+DAYS = 91.25
+NWC_ITEMS = {"ar": ("rev", 1), "inv": ("cogs", 1), "prepaid": ("rev", 1), "ap": ("cogs", -1), "accrued": ("rev", -1), "deferred_rev": ("rev", -1)}
+NWC_NAMES = {"ar": "매출채권", "inv": "재고자산", "prepaid": "선급·기타 유동자산", "ap": "매입채무", "accrued": "미지급비용", "deferred_rev": "선수수익(계약부채)"}
+ASSET_LINES = {"ar": "매출채권", "inv": "재고자산", "ppe": "유형자산", "rou": "리스 사용권자산", "goodwill": "영업권", "intangibles": "무형자산(인수)"}
+
+
+def _ql(d):
+    from datetime import date as _d
+    d = _d.fromisoformat(d) if isinstance(d, str) else d
+    return f"{(d.month - 1) // 3 + 1}Q{str(d.year)[2:]}"
+
+
+def cap_of(row):
+    """분기말 잔액 → 투하자본 항목(운전자본은 순액)"""
+    b = row.get("bal") or {}
+    out = {}
+    if any(b.get(k) is not None for k in NWC_ITEMS):
+        out["nwc"] = sum((b.get(k) or 0) * s for k, (_, s) in NWC_ITEMS.items())
+    for k in ("ppe", "rou", "goodwill", "intangibles", "other"):
+        if b.get(k) is not None:
+            out[k] = b[k]
+    return out
+
+
+def _mean(xs):
+    xs = [x for x in xs if x is not None]
+    return sum(xs) / len(xs) if xs else None
+
+
+def drivers(a):
+    """최근 4개 분기 실적에서 재무상태표 동인 — 일수·강도·감가율"""
+    H = a.get("hist") or []
+    n = config().get("forecast", {}).get("driver_quarters", 4)   # registry prm-ar-fcst-window
+    if len(H) < n + 1:
+        return None
+    L4 = H[-n:]
+    rev4 = sum(x["rev"] or 0 for x in L4)
+    cogs_ok = all(x.get("cogs") for x in L4)
+    d = {"cogs_ratio": sum(x["cogs"] for x in L4) / rev4 if cogs_ok and rev4 else None, "days": {}}
+    for k, (base, _) in NWC_ITEMS.items():
+        b = "cogs" if base == "cogs" and cogs_ok else "rev"
+        d["days"][k] = _mean([x["bal"].get(k) / x[b] * DAYS if x["bal"].get(k) is not None and x.get(b) else None for x in L4])
+        d.setdefault("base", {})[k] = b
+    capex = [x.get("capex") for x in L4]
+    d["capex_int"] = sum(capex) / rev4 if all(c is not None for c in capex) and rev4 else None
+    amort_y = _v((a.get("roic") or {}).get("acq_amort"), 0) or 0.0
+    am = [x.get("amort") for x in L4]
+    d["amort_q"] = _mean(am) if any(v is not None for v in am) else amort_y / 4
+    W = H[-(n + 1):]
+    dep = [(c.get("da") - (c.get("amort") if c.get("amort") is not None else d["amort_q"]), (c["bal"]["ppe"] + p["bal"]["ppe"]) / 2)
+           for p, c in zip(W, W[1:]) if c.get("da") is not None and c["bal"].get("ppe") and p["bal"].get("ppe")]
+    d["dep_q"] = sum(x for x, _ in dep) / sum(y for _, y in dep) if len(dep) == n else None
+    d["ppe_int"] = _mean([x["bal"]["ppe"] / x["rev"] for x in L4 if x["bal"].get("ppe") and x.get("rev")])
+    return d
+
+
+def income_path(dp, H, n=4):
+    """다음 n개 분기 손익 — [{q, end, rev, ebita, cogs?, src}], 단위 assets.unit(백만). 실적 발표분(quarters_hist) → 컨센서스 순"""
+    from datetime import date, timedelta
+    last = date.fromisoformat(H[-1]["end"])
+    q_rev = H[-1]["rev"] or 1
+    out = []
+    for x in (dp.get("quarters_hist") or {}).get("q") or []:   # SEC 10-Q보다 먼저 들어오는 발표 실적(Fiscal.ai 표준 재무)
+        e = date.fromisoformat(x["period"])
+        if (e - last).days > 20 and x.get("rev") and x.get("op") is not None and len(out) < n:
+            out.append({"q": _ql(e), "end": e.isoformat(), "rev": x["rev"] / 1e6, "ebit": x["op"] / 1e6, "cogs": (x.get("cogs") or 0) / 1e6 or None,
+                        "src": "발표 실적(Fiscal.ai) · 재무상태표 추정"})
+    c = dp.get("consensus") or {}
+    qe = c.get("quarters_est") or {}
+    fy_rev = c.get("rev") or {}
+    m = c.get("ebit_margin") or {}
+    sbc = dp.get("sbc_pct_rev") or 0.0
+    adj = str(c.get("margin_basis", "")).startswith("non")
+    fwd = ((dp.get("forward") or {}).get("ntm") or {})
+    keys = sorted(qe)
+    if not keys and fy_rev:   # 분기 컨센서스가 없으면 다음 회계연도 매출 ÷ 4
+        fy0 = sorted(fy_rev)[0]
+        keys = [f"{fy0[2:]}Q{i}" for i in range(1, 5)]
+        qe = {k: fy_rev[fy0] / 4 for k in keys}
+    scale = 1.0
+    if keys:
+        v0 = qe[keys[0]]
+        scale = 1000.0 if v0 and 0.2 <= v0 * 1000 / q_rev <= 5 else 1.0   # 컨센서스가 십억 단위면 백만으로
+    for k in keys:
+        if len(out) >= n:
+            break
+        prev = date.fromisoformat(out[-1]["end"]) if out else last
+        e = prev + timedelta(days=91)
+        fy = f"FY{k[:4]}"
+        mg = m.get(fy) if m.get(fy) is not None else (m[sorted(m)[0]] if m else None)
+        src = f"컨센서스 매출 × EBIT 마진 {fy}"
+        if mg is None and fwd.get("ebit") and fwd.get("revenue"):
+            mg, src = fwd["ebit"] / fwd["revenue"], "컨센서스 매출 × 다음 4개 분기 EBIT 마진(Fiscal.ai)"
+        if mg is None:
+            break
+        if adj:
+            mg -= sbc
+            src += f"(조정 − 주식보상 {sbc * 100:.1f}%)"
+        rev = qe[k] * scale
+        out.append({"q": _ql(e), "end": e.isoformat(), "rev": rev, "ebita": rev * mg, "cogs": None, "src": src, "key": k})
+    return out
+
+
+def forecast(a, dp):
+    """다음 4개 분기 — 손익(실적 발표분·컨센서스)과 재무상태표 동인으로 굴린 잔액. 행 모양은 hist와 같고 est에 출처"""
+    H = a.get("hist") or []
+    d = drivers(a)
+    if not d:
+        return [], None
+    inc = income_path(dp, H, config().get("forecast", {}).get("horizon", 4))
+    rows, prev = [], H[-1]
+    for x in inc:
+        rev = x["rev"]
+        cogs = x.get("cogs") or (rev * d["cogs_ratio"] if d["cogs_ratio"] else None)
+        pb = prev["bal"]
+        bal = {}
+        for k, (base, _) in NWC_ITEMS.items():
+            b = cogs if d["base"][k] == "cogs" else rev
+            bal[k] = d["days"][k] / DAYS * b if d["days"].get(k) is not None and b else pb.get(k)
+        capex = dep = None
+        if pb.get("ppe") is not None and d["capex_int"] is not None and d["dep_q"] is not None:
+            capex, dep = d["capex_int"] * rev, d["dep_q"] * pb["ppe"]
+            bal["ppe"] = pb["ppe"] + capex - dep
+        else:
+            bal["ppe"] = d["ppe_int"] * rev if d["ppe_int"] else pb.get("ppe")
+        for k in ("rou", "goodwill", "other"):
+            bal[k] = pb.get(k)
+        bal["intangibles"] = None if pb.get("intangibles") is None else max(0.0, pb["intangibles"] - d["amort_q"])
+        ebita = x["ebita"] if x.get("ebita") is not None else x["ebit"] + d["amort_q"]
+        row = {"q": x["q"], "end": x["end"], "rev": rev, "ebita": ebita, "cogs": cogs, "capex": capex, "dep": dep, "bal": bal, "lease": prev.get("lease"), "est": x["src"]}
+        rows.append(row)
+        prev = row
+    return rows, d
+
+
+def roic_path(a, rows):
+    """TTM ROIC — 4개 분기 NOPAT ÷ 평균 투하자본(이번 분기말·4개 분기 전). rows = hist(+추정) 오래된 분기부터"""
+    r = a.get("roic") or {}
+    t = r.get("tax_rate", 0.25)
+    rate = r.get("lease_rate")
+    imp = r.get("impairment_cum") or 0.0
+    amort_q = (_v(r.get("acq_amort"), 0) or 0.0) / 4
+    keys = [k for k in CAP_NAMES if any(k in cap_of(x) for x in rows)]
+    caps = [{k: cap_of(x).get(k) or 0.0 for k in keys} for x in rows]
+    out = []
+    for i in range(4, len(rows)):
+        w = rows[i - 3:i + 1]
+        if any(x.get("rev") is None or (x.get("ebita") is None and x.get("ebit") is None) for x in w):
+            continue
+        rev = sum(x["rev"] for x in w)
+        ebita = sum(x["ebita"] if x.get("ebita") is not None else x["ebit"] + (x["amort"] if x.get("amort") is not None else amort_q) for x in w)
+        lease = (rows[i]["lease"] + rows[i - 4]["lease"]) / 2 * rate if rate is not None and rows[i].get("lease") is not None and rows[i - 4].get("lease") is not None else 0.0
+        nopat = (ebita + lease) * (1 - t)
+        cap = {k: (caps[i][k] + caps[i - 4][k]) / 2 for k in keys}
+        if "goodwill" in cap:
+            cap["goodwill"] += imp
+        incl = sum(cap.values())
+        excl = sum(v for k, v in cap.items() if k not in ACQUIRED)
+        out.append({"q": rows[i]["q"], "est": rows[i].get("est"), "rev": rev, "nopat": nopat, "ic_incl": incl, "ic_excl": excl, "margin": nopat / rev if rev else None,
+                    "roic_incl": nopat / incl if incl > 0 else None, "roic_excl": nopat / excl if excl > 0 else None})
+    return out
+
+
+def _r1(v):
+    return None if v is None else round(v, 1)
+
+
+def mix_chart(a, cur, unit):
+    """최근 분기 투하자본 구성 — 분기말 잔액(실적 발표 분기, SEC 10-Q·10-K)"""
+    H = a.get("hist") or []
+    if H:
+        cap, lab = cap_of(H[-1]), f"{H[-1]['q']} 분기말"
+    else:
+        c = (a.get("roic") or {}).get("capital") or {}
+        cap, lab = {k: _v(v, 0) for k, v in c.items() if _v(v, 0) is not None}, f"{a.get('as_of', '최근')} 분기말"
+    order = ("ppe", "rou", "goodwill", "intangibles", "other", "nwc")
+    parts = [{"label": CAP_NAMES[k], "value": round(cap[k], 1), "color": CARD_COLORS[k]} for k in order if k in cap and abs(cap[k]) > 1e-9]
+    if not parts:
+        return None
+    return {"kind": "roic", "title": f"자산 구성 — {lab} 투하자본 {_m(sum(cap.values()), cur, unit)}", "parts": parts, "rates": [], "unit": cur, "unit_suffix": unit,
+            "note": "운전자본 = 매출채권 + 재고 + 선급 − 매입채무 − 미지급 − 선수수익(현금 제외)"}
+
+
+def change_chart(H, F):
+    """자산별 최근 12개 분기 변화율(첫 분기 = 0%) + 다음 4개 분기 추정 — 잔액이 큰 자산 5개와 투하자본 합계"""
+    if len(H) < 2:
+        return None
+    rows = H[-12:] + F
+    base = rows[0]
+    last = H[-1]["bal"]
+    cand = [k for k in ASSET_LINES if (base["bal"].get(k) or 0) > 0 and (last.get(k) or 0) > 0]
+    cand = sorted(cand, key=lambda k: -last[k])[:5]
+    cols = ["c", "a", "b", "d", "e"]
+    series = [{"name": ASSET_LINES[k], "color": cols[i], "points": [[x["q"], _r1((x["bal"][k] / base["bal"][k] - 1) * 100) if x["bal"].get(k) is not None else None] for x in rows]}
+              for i, k in enumerate(cand)]
+    ic0 = sum(cap_of(base).values())
+    if ic0 > 0:
+        series.append({"name": "투하자본 합계", "color": "f", "dash": True, "points": [[x["q"], _r1((sum(cap_of(x).values()) / ic0 - 1) * 100)] for x in rows]})
+    out = {"kind": "line", "title": f"자산별 변화율 — 최근 {len(H[-12:])}개 분기({base['q']} = 0%)" + (f" + 다음 {len(F)}개 분기 추정" if F else ""), "unit": "%", "series": series}
+    if F:
+        out["est_from"] = F[0]["q"]
+    return out
+
+
+def roic_chart(path, n_hist, wacc):
+    """ROIC 추이 — TTM, 최근 12개 분기 + 다음 4개 분기 추정(점선)"""
+    act = [x for x in path if not x.get("est")][-12:]
+    est = [x for x in path if x.get("est")]
+    rows = act + est
+    if len(rows) < 2:
+        return None
+    series = [{"name": "ROIC 영업권·인수 무형 포함", "color": "c", "points": [[x["q"], _r1(x["roic_incl"] * 100) if x["roic_incl"] is not None else None] for x in rows]},
+              {"name": "ROIC 영업권·인수 무형 제외", "color": "d", "points": [[x["q"], _r1(x["roic_excl"] * 100) if x["roic_excl"] is not None else None] for x in rows]}]
+    if wacc is not None:
+        series.append({"name": f"WACC {wacc * 100:.1f}%", "color": "f", "dash": True, "points": [[x["q"], round(wacc * 100, 1)] for x in rows]})
+    out = {"kind": "line", "title": f"ROIC 추이 — TTM, 최근 {len(act)}개 분기" + (f" + 다음 {len(est)}개 분기 추정(컨센서스 NOPAT)" if est else ""), "unit": "%", "series": series}
+    if est:
+        out["est_from"] = est[0]["q"]
+    return out
+
+
+def _ctx(dp, wacc):
     a = (dp or {}).get("assets")
     if not a or a.get("none"):
         return None
     cfg = config()
     cur = (dp.get("currency_symbol") or "$").strip() if dp.get("currency_symbol") else "$"
     unit = str(a.get("unit", "$M")).replace("$", "").strip() or "M"
-    M = lambda v: _m(v, cur, unit)
-    B = []
     rs = roic(a)
-    lv, band = lives(a)
     dq = dep_rates(a)
     p1 = rs[0] if rs else None
-    p0 = rs[1] if len(rs) > 1 else None
-    shift = dep_shift(dq, p1["ebit"] if p1 else None, cfg)
-    capv = cap_version(a, p1, cfg)
+    H = a.get("hist") or []
+    F, drv = forecast(a, dp) if H else ([], None)
+    path = roic_path(a, H + F) if H else []
+    return {"a": a, "cfg": cfg, "cur": cur, "unit": unit, "M": lambda v: _m(v, cur, unit), "rs": rs, "p1": p1, "p0": rs[1] if len(rs) > 1 else None,
+            "lv": lives(a), "dq": dq, "shift": dep_shift(dq, p1["ebit"] if p1 else None, cfg), "capv": cap_version(a, p1, cfg),
+            "H": H, "F": F, "drv": drv, "path": path, "wacc": wacc}
 
-    # 결론 한 줄
+
+# ---------- 절: 자산 구성 ----------
+def section(dp, wacc=None):
+    """'자산 구성' 절 — 최근 분기 구성 → 자산별 12개 분기 변화율·추정 → 항목별 가치·내용연수·감가 비율. ROIC는 roic_section(마스터 지시 2026-11-14 분리)"""
+    X = _ctx(dp, wacc)
+    if not X:
+        return None
+    a, cfg, M, p1, shift, H, F = X["a"], X["cfg"], X["M"], X["p1"], X["shift"], X["H"], X["F"]
+    lv, band = X["lv"]
+    dq = X["dq"]
+    B = []
     head = []
-    if p1 and p1["roic_incl"] is not None:
-        head.append(f"**{p1['period']} ROIC는 영업권·인수 무형 포함 {_p(p1['roic_incl'])}, 제외 {_p(p1['roic_excl'])}**"
-                    f"(NOPAT 마진 {_p(p1['margin'])} × 투하자본 회전율 {p1['rev'] / p1['ic_incl']:.2f}회)")
-        top = max(item_rows(p1), key=lambda x: x["share"] or 0)
-        head.append(f"투하자본의 가장 큰 몫은 {top['name']}({_p(top['share'], 0)}, 매출 1달러당 {top['intensity']:.2f}달러)이며, 빼고 재면 ROIC {_p(top['without'])}")
-    if p1 and p0:
-        dec = lmdi(p1, p0)
-        if dec:
-            big = max(dec["parts"], key=lambda x: abs(x[1]))
-            head.append(f"1년 동안 {_p(dec['from'])} → {_p(dec['to'])}, 가장 큰 요인은 {big[0]}({_pp(big[1])})")
+    if H:
+        cap = cap_of(H[-1])
+        ic = sum(cap.values())
+        top = sorted(((k, v) for k, v in cap.items() if v > 0), key=lambda x: -x[1])[:2]
+        if ic > 0 and top:
+            head.append(f"**{H[-1]['q']} 분기말 투하자본 {M(ic)}** — " + ", ".join(f"{CAP_NAMES[k]} {_p(v / ic, 0)}" for k, v in top))
+        if len(H) >= 2:
+            b0 = H[-12:][0]
+            ch = [(ASSET_LINES[k], H[-1]["bal"][k] / b0["bal"][k] - 1) for k in ASSET_LINES if (b0["bal"].get(k) or 0) > 0 and H[-1]["bal"].get(k)]
+            if ch:
+                hi = max(ch, key=lambda x: x[1])
+                ic0 = sum(cap_of(b0).values())
+                head.append(f"최근 {len(H[-12:])}개 분기({b0['q']} → {H[-1]['q']}) 가장 크게 늘어난 자산은 {hi[0]}({_p(hi[1], 0, True)})"
+                            + (f", 투하자본 합계 {_p(ic / ic0 - 1, 0, True)}" if ic0 > 0 else ""))
+        if F:
+            capf = sum(cap_of(F[-1]).values())
+            head.append(f"{F[-1]['q']} 추정 투하자본 {M(capf)}({_p(capf / ic - 1, 0, True) if ic > 0 else UNKNOWN}, 컨센서스 매출과 회전 일수·CAPEX 강도 유지 가정)")
     if shift:
         head.append(f"연율 감가 비율({shift['basis']} 기준)은 직전 4분기 {_p(shift['r_old'], 2)} → 최근 4분기 {_p(shift['r_new'], 2)}"
                     + (f", 직전 비율이면 감가상각이 {M(shift['boost'])} 더 컸다(영업이익의 {_p(shift['boost_pct'])})" if shift["boost"] > 0 else ""))
     if head:
         B.append({"type": "hl", "text": ". ".join(head) + "."})
+    mc = mix_chart(a, X["cur"], X["unit"])
+    if mc:
+        B.append({"type": "chart", "chart": mc})
+    cc = change_chart(H, F)
+    if cc:
+        B.append({"type": "chart", "chart": cc})
+    if H:
+        b0, b4 = H[-12:][0], (H[-5] if len(H) >= 5 else None)
+        T = []
+        for k, name in list(ASSET_LINES.items())[:2] + [(k, NWC_NAMES[k]) for k in ("prepaid", "ap", "accrued", "deferred_rev")] + list(ASSET_LINES.items())[2:]:
+            cur_v = H[-1]["bal"].get(k)
+            if cur_v is None:
+                continue
+            f = F[-1]["bal"].get(k) if F else None
+            base = b0["bal"].get(k)
+            T.append([name, M(base), M(b4["bal"].get(k)) if b4 else UNKNOWN, M(cur_v), M(f) if F else "—",
+                      _p(cur_v / base - 1, 0, True) if base and base > 0 else "비교 불가", _p(f / cur_v - 1, 0, True) if F and f is not None and cur_v > 0 else "—"])
+        heads = ["항목", f"{b0['q']}", f"{b4['q']}" if b4 else "1년 전", f"{H[-1]['q']}(최근)", f"{F[-1]['q']} 추정" if F else "추정", f"{len(H[-12:])}개 분기 변화", "다음 4개 분기 변화"]
+        B.append({"type": "table", "title": "자산·운전자본 항목별 분기말 잔액 — 최근 12개 분기와 다음 4개 분기 추정", "headers": heads, "rows": T})
+        if F and X["drv"]:
+            d = X["drv"]
+            D = [[NWC_NAMES[k], f"{d['days'][k]:.0f}일", "매출원가" if d["base"][k] == "cogs" else "매출"] for k in NWC_ITEMS if d["days"].get(k) is not None]
+            if d["capex_int"] is not None and d["dep_q"] is not None:
+                D += [["CAPEX 강도", _p(d["capex_int"], 1), "매출(최근 4개 분기 합)"], ["분기 감가율", _p(d["dep_q"], 2), "기초 유형자산 순액(무형 상각 제외 감가상각)"]]
+            elif d["ppe_int"]:
+                D.append(["유형자산 ÷ 분기 매출", f"{d['ppe_int']:.2f}배", "CAPEX·감가 재료 없음 — 비율 유지"])
+            if d["cogs_ratio"]:
+                D.append(["매출원가율", _p(d["cogs_ratio"], 1), "매출(최근 4개 분기)"])
+            D.append(["영업권·리스 사용권·기타", "유지", "인수·새 리스는 공시 전 모름"])
+            D.append(["인수 무형자산", f"분기 {M(d['amort_q'])} 상각", "최근 4개 분기 평균 상각"])
+            B.append({"type": "table", "title": "자산 추정 동인 — 최근 4개 분기 평균(재무상태표 동인 모형)", "headers": ["동인", "값", "곱하는 기준"], "rows": D})
+            B.append({"type": "p", "text": "**추정 방법:** 증권사 3표 모델(손익·재무상태표·현금흐름)의 재무상태표 동인 방식이다. 운전자본은 항목별 회전 일수(매출채권·선급·미지급·선수는 매출, "
+                                           "재고·매입채무는 매출원가 기준)를 최근 4개 분기 평균으로 두고 컨센서스 매출에 곱한다. 유형자산은 기초 + CAPEX − 감가상각으로 굴린다"
+                                           "(Koller·Goedhart·Wessels 『Valuation』 재무상태표 추정). 매출 경로는 ROIC 절의 컨센서스와 같다."})
 
     # ① 항목별 가치 표
     rows = items(a)
@@ -318,12 +601,11 @@ def section(dp, wacc=None):
             ac = "총계만 공시" if x["group"] == "유형" and x["ac"][0] is None else M(x["ac"][0])
             ch = None if x["g"][0] is None or x["g"][1] in (None, 0) else x["g"][0] / x["g"][1] - 1
             T.append([x["group"], x["name"], M(x["g"][0]), ac, M(x["net"][0]) if x["net"][0] is not None else "총계만 공시", M(x["g"][1]), _p(ch, 1, True), life])
-        for i, lab in ((0, np0), (1, np1)):
-            t = ppe_totals(a, i)
-            if t["accum"] is not None and i == 0:
-                t1 = ppe_totals(a, 1)
-                T.append(["유형 합계", "유형자산", M(t["gross"]), M(t["accum"]), M(t["net"]), M(t1["gross"]),
-                          _p(t["gross"] / t1["gross"] - 1 if t1["gross"] else None, 1, True), f"경과율 {_p(t['accum'] / t['dep_gross'], 0)}(상각 대상 기준)"])
+        t = ppe_totals(a, 0)
+        if t["accum"] is not None:
+            t1 = ppe_totals(a, 1)
+            T.append(["유형 합계", "유형자산", M(t["gross"]), M(t["accum"]), M(t["net"]), M(t1["gross"]),
+                      _p(t["gross"] / t1["gross"] - 1 if t1["gross"] else None, 1, True), f"경과율 {_p(t['accum'] / t['dep_gross'], 0)}(상각 대상 기준)"])
         B.append({"type": "table", "title": f"유형·무형자산 항목별 가치({np0} vs {np1})",
                   "headers": ["구분", "항목", f"총액 {np0}", "누적상각", "순액", f"총액 {np1}", "총액 1년 변화", "공시 내용연수"], "rows": T})
 
@@ -349,8 +631,8 @@ def section(dp, wacc=None):
         T = [[x["q"], M(x["da"]), M(x["base"]), _p(x["rate_q"], 2), _p(x["rate_y"], 2), _y(1 / x["rate_y"])] for x in dq[-8:]]
         B.append({"type": "table", "title": f"분기 감가 비율(감가상각 ÷ 평균 유형자산 {dq[-1]['basis']})",
                   "headers": ["분기", "감가상각", f"평균 유형자산({dq[-1]['basis']})", "분기 비율", "연율", "연율의 역수"], "rows": T})
-        B.append({"type": "chart", "chart": {"kind": "line", "title": f"분기 감가 비율 연율(유형자산 {dq[-1]['basis']} 대비)", "unit": "%",
-                                             "series": [{"name": "연율 감가 비율", "color": "c", "points": [[x["q"], round(x["rate_y"] * 100, 2)] for x in dq[-8:]]}]}})
+        if not _has_roic(X):   # ROIC 절이 있으면 감가 비율 그림은 ROIC 그림 뒤로(한눈에 보기: 자산 구성 → 변화율 → ROIC → 감가 비율)
+            B.append({"type": "chart", "chart": dep_chart(dq)})
         if a.get("da_note"):
             B.append({"type": "p", "text": f"감가상각 기준: {a['da_note']}."})
         if shift:
@@ -364,8 +646,73 @@ def section(dp, wacc=None):
     if le:
         B.append({"type": "table", "title": "내용연수 변경과 이익 효과", "headers": ["시점", "자산", "변경", "연 감가상각 감소(세전)", "영업이익 대비", "근거"],
                   "rows": [[c.get("date", ""), c.get("asset", ""), f"{c.get('old')}년 → {c.get('new')}년", M(c["effect"]) + ("(추정)" if c["est"] else ""), _p(c["pct"]), c.get("source", "")] for c in le]})
+    if a.get("missing"):
+        B.append({"type": "p", "text": "미공시·미분해: " + " · ".join(a["missing"]) + " — 이 칸은 비우고 나머지로 계산했다."})
+    lines = asset_interp(X)
+    if lines:
+        B += [{"type": "h3", "text": "해석 — 자산이 어디에 쌓이고 있나"}, {"type": "ul", "items": lines}]
+    return {"h2": "자산 구성", "blocks": B, "_sources": [a["source"]] if a.get("source") else []}
 
-    # ④ ROIC 분해
+
+def _has_roic(X):
+    return bool(X["p1"] or X["path"])
+
+
+def dep_chart(dq):
+    return {"kind": "line", "title": f"분기 감가 비율 연율(유형자산 {dq[-1]['basis']} 대비)", "unit": "%",
+            "series": [{"name": "연율 감가 비율", "color": "c", "points": [[x["q"], round(x["rate_y"] * 100, 2)] for x in dq[-8:]]}]}
+
+
+# ---------- 절: ROIC ----------
+def roic_section(dp, wacc=None):
+    """'ROIC' 절 — 자산 구성 바로 아래(마스터 지시 2026-11-14 "ROIC는 자산 구성 항목 아래로 분리, 최근 12개 분기, 다음 4개 분기 추정, NOPAT은 컨센서스")"""
+    X = _ctx(dp, wacc)
+    if not X or not _has_roic(X):
+        return None
+    a, cfg, M, p1, p0, capv, path, F = X["a"], X["cfg"], X["M"], X["p1"], X["p0"], X["capv"], X["path"], X["F"]
+    act = [x for x in path if not x.get("est")]
+    est = [x for x in path if x.get("est")]
+    B, head = [], []
+    top = act[-1] if act and act[-1]["roic_incl"] is not None else None   # 추이 그림과 같은 숫자(분기 이력)를 먼저 — 없으면 roic 두 기간 판
+    if top:
+        head.append(f"**TTM {top['q']} ROIC는 영업권·인수 무형 포함 {_p(top['roic_incl'])}, 제외 {_p(top['roic_excl'])}**"
+                    f"(NOPAT 마진 {_p(top['margin'])} × 투하자본 회전율 {top['rev'] / top['ic_incl']:.2f}회)")
+    elif p1 and p1["roic_incl"] is not None:
+        head.append(f"**{p1['period']} ROIC는 영업권·인수 무형 포함 {_p(p1['roic_incl'])}, 제외 {_p(p1['roic_excl'])}**"
+                    f"(NOPAT 마진 {_p(p1['margin'])} × 투하자본 회전율 {p1['rev'] / p1['ic_incl']:.2f}회)")
+    if len(act) >= 2 and act[-12:][0]["roic_incl"] is not None and act[-1]["roic_incl"] is not None:
+        w = act[-12:]
+        hi = max(w, key=lambda x: x["roic_incl"] if x["roic_incl"] is not None else -9)
+        head.append(f"최근 {len(w)}개 분기 {w[0]['q']} {_p(w[0]['roic_incl'])} → {w[-1]['q']} {_p(w[-1]['roic_incl'])}(고점 {hi['q']} {_p(hi['roic_incl'])})")
+    if est and est[-1]["roic_incl"] is not None:
+        head.append(f"컨센서스 NOPAT으로 굴리면 {est[-1]['q']} {_p(est[-1]['roic_incl'])}(제외 {_p(est[-1]['roic_excl'])})"
+                    + (f" — WACC {_p(wacc)} 대비 {_pp(est[-1]['roic_incl'] - wacc)}" if wacc is not None else ""))
+    if p1 and p0:
+        dec = lmdi(p1, p0)
+        if dec:
+            big = max(dec["parts"], key=lambda x: abs(x[1]))
+            head.append(f"1년 변화의 가장 큰 요인은 {big[0]}({_pp(big[1])})")
+    if head:
+        B.append({"type": "hl", "text": ". ".join(head) + "."})
+    rc = roic_chart(path, len(act), wacc)
+    if rc:
+        B.append({"type": "chart", "chart": rc})
+    elif p1:   # 분기 이력(hist)이 없는 옛 datapack — 두 기간 판 한 장(ROIC 포함·제외 vs WACC)
+        B.append({"type": "chart", "chart": card(p1, capv, wacc, X["cur"], X["unit"])})
+    if path:
+        rows = act[-12:] + est
+        B.append({"type": "table", "title": "ROIC 추이(TTM)와 다음 4개 분기 추정 — NOPAT ÷ 평균 투하자본(이번 분기말·4개 분기 전)",
+                  "headers": ["분기", "구분", "TTM 매출", "TTM NOPAT", "NOPAT 마진", "평균 투하자본", "ROIC 포함", "ROIC 제외"],
+                  "rows": [[x["q"], "추정" if x.get("est") else "실적", M(x["rev"]), M(x["nopat"]), _p(x["margin"]), M(x["ic_incl"]), _p(x["roic_incl"]), _p(x["roic_excl"])] for x in rows]})
+    if F:
+        t = (a.get("roic") or {}).get("tax_rate", 0.25)
+        T = [[x["q"], M(x["rev"]), _p(x["ebita"] / x["rev"]) if x["rev"] else UNKNOWN, M(x["ebita"]), M(x["ebita"] * (1 - t)), x["est"]] for x in F]
+        B.append({"type": "table", "title": f"다음 4개 분기 NOPAT — 컨센서스(세율 {_p(t, 0)}, 리스 이자 별도)", "headers": ["분기", "매출", "EBITA 마진", "EBITA", "NOPAT(분기)", "근거"], "rows": T})
+        B.append({"type": "p", "text": "**추정 방법:** NOPAT은 컨센서스(Fiscal.ai 분기 매출 추정 × 회계연도 EBIT 마진 추정)로 잡고, 조정(비 GAAP) 마진이면 주식보상 몫을 빼서 과거 실적과 같은 기준"
+                                       "(영업이익 + 인수 무형 상각)으로 맞췄다. 이미 발표했지만 분기 보고서(10-Q)가 아직 없는 분기는 발표 실적을 쓴다. 투하자본은 자산 구성 절의 재무상태표 동인으로 굴렸다. "
+                                       "ROIC는 4개 분기 NOPAT을 이번 분기말과 4개 분기 전 투하자본의 평균으로 나눈다(Mauboussin·Callahan 평균 자본) — 추정 분기의 ROIC에는 이미 나온 실적 분기가 섞여 있다."})
+
+    # ④ ROIC 분해(최근 TTM)
     if p1:
         T = []
         for x in item_rows(p1):
@@ -385,7 +732,6 @@ def section(dp, wacc=None):
         B.append({"type": "p", "text": f"NOPAT = (영업이익 {M(p1['ebit'])} + 인수 무형 상각{lease_txt}) × (1 − 세율 {_p((a.get('roic') or {}).get('tax_rate', 0.25), 0)}). "
                                        f"리스 사용권자산을 투하자본에 넣었으므로 임차료 속 이자 몫을 영업이익에 되더했다. 현금은 영업에 필요한 몫을 따로 알 수 없어 투하자본에서 뺐다."
                                        + (f" {(a.get('roic') or {})['note']}." if (a.get("roic") or {}).get("note") else "")})
-        B.append({"type": "chart", "chart": card(p1, capv, wacc, cur, unit)})   # 한눈에 보기 ROIC 그림은 이 한 장(마스터 지시 2026-11-13)
         if p0:
             dec = lmdi(p1, p0)
             if dec:
@@ -404,14 +750,12 @@ def section(dp, wacc=None):
                       "headers": ["투자로 보는 몫", "상각 연수", "무형 자산", "NOPAT 조정", "조정 ROIC"], "rows": S})
             if (a.get("intangible_cap") or {}).get("note"):
                 B.append({"type": "p", "text": a["intangible_cap"]["note"]})
-
-    if a.get("missing"):
-        B.append({"type": "p", "text": "미공시·미분해: " + " · ".join(a["missing"]) + " — 이 칸은 비우고 나머지로 계산했다."})
-    # 해석
-    lines = interpret(a, p1, p0, shift, capv, lv, band, cfg, M)
+    if X["dq"]:
+        B.append({"type": "chart", "chart": dep_chart(X["dq"])})   # 한눈에 보기에서 ROIC 그림 뒤(본문 그림은 모두 한눈에 보기로 올라간다)
+    lines = roic_interp(X)
     if lines:
         B += [{"type": "h3", "text": "해석 — 무엇이 수익성을 끌어올리고 희석하나"}, {"type": "ul", "items": lines}]
-    return {"h2": "자산 구성과 ROIC", "blocks": B, "_sources": [a["source"]] if a.get("source") else []}
+    return {"h2": "ROIC", "blocks": B, "_sources": []}
 
 
 CARD_COLORS = {"ppe": "c", "rou": "b", "goodwill": "d", "intangibles": "e", "nwc": "a", "other": "a"}
@@ -426,7 +770,7 @@ def card(p, capv, wacc, cur="$", unit="M"):
         rates.append({"label": "ROIC 영업권 제외", "value": round(p["roic_excl"] * 100, 1), "color": "d"})
     if capv and capv.get("roic") is not None:
         rates.append({"label": "무형 자본화 조정", "value": round(capv["roic"] * 100, 1), "color": "e"})
-    return {"kind": "roic", "title": f"자산 구성과 ROIC({p['period']}) — 투하자본 {_m(p['ic_incl'], cur, unit)}, NOPAT {_m(p['nopat'], cur, unit)}",
+    return {"kind": "roic", "title": f"ROIC({p['period']}) — 투하자본 {_m(p['ic_incl'], cur, unit)}, NOPAT {_m(p['nopat'], cur, unit)}",
             "parts": parts, "rates": rates, "wacc": round(wacc * 100, 1) if wacc is not None else None, "unit": cur, "unit_suffix": unit,
             "note": f"NOPAT 마진 {_p(p['margin'])} × 회전율 {p['rev'] / p['ic_incl']:.2f}회" if p["ic_incl"] > 0 else None}
 
@@ -463,4 +807,50 @@ def interpret(a, p1, p0, shift, capv, lv, band, cfg, M):
         d = capv["roic"] - p1["roic_incl"]
         out.append(f"비용으로 처리한 무형 투자를 자산으로 보면 ROIC가 {_pp(d)} 움직인다(무형 자산 {M(capv['asset'])}). "
                    + ("투자를 늘리는 중이라 NOPAT이 더 커지는 쪽이다." if capv["delta"] > 0 else "투자 증가가 상각보다 작아 NOPAT 조정이 작다."))
+    return out
+
+
+def asset_interp(X):
+    """자산 구성 절 해석 — 어떤 자산이 매출보다 빨리 쌓이나, 감가·내용연수"""
+    out, M, H, F, shift, cfg = [], X["M"], X["H"], X["F"], X["shift"], X["cfg"]
+    lv, band = X["lv"]
+    if len(H) >= 5:
+        b0, b1 = H[-12:][0], H[-1]
+        n0 = sum(x["rev"] or 0 for x in H[-12:][:4]) if len(H[-12:]) >= 8 else None
+        n1 = sum(x["rev"] or 0 for x in H[-4:])
+        g = n1 / n0 - 1 if n0 else None
+        if g is not None:
+            fast = [(ASSET_LINES[k], b1["bal"][k] / b0["bal"][k] - 1) for k in ASSET_LINES if (b0["bal"].get(k) or 0) > 0 and b1["bal"].get(k)]
+            over = [x for x in fast if x[1] > g + 0.10]
+            out.append(f"같은 기간 4개 분기 매출은 {_p(g, 0, True)}" + (" — 매출보다 빨리 늘어난 자산: " + ", ".join(f"{n} {_p(v, 0, True)}" for n, v in over)
+                       + ". 이 자산의 회전율이 떨어지면 ROIC를 희석한다." if over else ". 자산이 매출보다 빨리 쌓이지 않았다 — 회전율이 유지된다."))
+    if F and all(x.get("capex") is not None for x in F):
+        cx, dp_ = sum(x["capex"] for x in F), sum(x["dep"] for x in F)
+        out.append(f"다음 4개 분기 CAPEX {M(cx)} vs 감가상각 {M(dp_)}(최근 4개 분기 CAPEX 강도·감가율 유지) — 유형자산 {H[-1]['q']} {M(H[-1]['bal'].get('ppe'))} → {F[-1]['q']} {M(F[-1]['bal'].get('ppe'))}. "
+                   + ("투자가 감가보다 커서 자산이 쌓이는 국면이다." if cx > dp_ else "투자가 감가보다 작아 자산이 줄어드는 국면이다."))
+    if shift:
+        if shift["flag"]:
+            out.append(f"감가 비율 하락으로 최근 4분기 영업이익에 {M(shift['boost'])}({_p(shift['boost_pct'])})가 보태졌을 수 있다 — 내용연수 변경 공시가 없으면 건설중 자산·토지 같은 비상각 자산 몫이 커진 믹스 효과일 가능성이 크다(자체추론).")
+        elif shift["rel"] > cfg["dep_rate_shift"]:
+            out.append("감가 비율이 올라갔다 — 이익을 보수적으로 잡는 쪽이다(내용연수 단축·짧은 수명 자산 증가).")
+    if lv and band and lv[0]["avg"] > band["hi"]:
+        out.append("산식 평균 내용연수가 공시 가중 범위 위쪽보다 길다 — 감가상각이 적게 잡히는 쪽이라 이익의 질을 낮춰 본다.")
+    return out
+
+
+def roic_interp(X):
+    """ROIC 절 해석 — 희석·부양 항목, 인수 웃돈, 1년 분해, 무형 자본화, 추정 경로"""
+    p1, p0, capv, M = X["p1"], X["p0"], X["capv"], X["M"]
+    out = []
+    if p1:
+        out += [x for x in interpret(X["a"], p1, p0, None, capv, [], None, X["cfg"], M)]
+    act = [x for x in X["path"] if not x.get("est")]
+    est = [x for x in X["path"] if x.get("est")]
+    if act and est and act[-1]["roic_incl"] is not None and est[-1]["roic_incl"] is not None:
+        dm = (est[-1]["margin"] or 0) - (act[-1]["margin"] or 0)
+        dt = est[-1]["rev"] / est[-1]["ic_incl"] - act[-1]["rev"] / act[-1]["ic_incl"] if est[-1]["ic_incl"] and act[-1]["ic_incl"] else None
+        out.append(f"추정 경로 {act[-1]['q']} {_p(act[-1]['roic_incl'])} → {est[-1]['q']} {_p(est[-1]['roic_incl'])}: NOPAT 마진 {_pp(dm)}"
+                   + (f", 투하자본 회전율 {dt:+.2f}회" if dt is not None else "") + " — 컨센서스 매출·마진이 맞고 회전 일수·CAPEX 강도가 유지된다는 가정이다. 마진 추정이 내려가거나 재고 일수가 늘면 이 경로가 먼저 틀린다.")
+    if X["wacc"] is not None and act and act[-1]["roic_incl"] is not None:
+        out.append(f"ROIC(포함) − WACC = {_pp(act[-1]['roic_incl'] - X['wacc'])}({act[-1]['q']}) — 양수면 투하자본을 늘릴수록 가치가 쌓인다.")
     return out

@@ -9,5 +9,8 @@ asset_roic:
     sensitivity:        # 같은 표에 나란히 보여 줄 대안 가정(판관비 몫 × 상각 연수)
       sga_share: [0.2, 0.3]
       sga_life: [2, 5]  # 2년 = Mauboussin·Callahan의 영업·마케팅 투자 상각 연수
+  forecast:             # 자산 구성·ROIC 다음 분기 추정(마스터 지시 2026-11-14 "다음 4개 분기 추정, IB 전문 기법, NOPAT은 컨센서스")
+    horizon: 4          # 추정 분기 수 — 마스터 지시 값
+    driver_quarters: 4  # 회전 일수·CAPEX 강도·감가율·원가율을 평균 내는 최근 분기 수(계절성 1년을 한 번 덮는다). registry prm-ar-fcst-window
   dep_rate_shift: 0.10  # 최근 4분기 평균 연율 감가율이 직전 4분기보다 이 비율 이상 낮으면 '감가율 하락' 경고와 이익 효과 계산
   life_band: 0.15       # 산식 평균 내용연수가 공시 범위의 총액 가중 중간값에서 이 비율 넘게 벗어나면 '공시와 어긋남' 표시

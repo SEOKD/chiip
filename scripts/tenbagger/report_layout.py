@@ -513,9 +513,10 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         supply_sec["blocks"][0:0] = imgs["supply"]
     elif imgs["supply"]:
         out.append({"h2": "공급망 병목", "blocks": imgs["supply"]})
-    import asset_roic_view   # 자산 구성과 ROIC — datapack assets가 있을 때만, 마진 구조 바로 다음(마스터 지시 2026-11-13, ADR-021)
+    import asset_roic_view   # 자산 구성 → ROIC — datapack assets가 있을 때만, 마진 구조 바로 다음(마스터 지시 2026-11-13, ADR-021 · 2026-11-14 두 절로 분리)
     asset_sec = asset_roic_view.section(dp, (r.get("coc") or {}).get("wacc"))
-    for part in (margin_sec, asset_sec, supply_sec, capacity_sec):
+    roic_sec = asset_roic_view.roic_section(dp, (r.get("coc") or {}).get("wacc"))
+    for part in (margin_sec, asset_sec, roic_sec, supply_sec, capacity_sec):
         if part:
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))
             out.append(part)

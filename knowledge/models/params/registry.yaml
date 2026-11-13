@@ -5662,3 +5662,19 @@ params:
     data: 앞으로의 성과(리포트 원장)
     last_fit: null
     oos_metric: null
+- id: prm-ar-fcst-window
+  model: tenbagger.report
+  binding: config/asset_roic.yaml#asset_roic.forecast.driver_quarters
+  value: 4
+  unit: 분기(최근 실적 평균 구간)
+  status: prior
+  prior:
+    value: 4
+    basis: '자산 구성·ROIC 다음 4개 분기 추정의 재무상태표 동인(매출채권·선급·미지급·선수 일수는 매출, 재고·매입채무 일수는 매출원가, CAPEX 강도, 분기 감가율, 원가율)을 최근 4개 분기 평균으로 둔다 — 계절성 한 해를 한 번 덮는 가장 짧은 구간. 방법 근거: 일수 기반 운전자본 추정(DSO·DIO·DPO, CFA 재무제표 모델링 — 일수가 잔액으로 바로 바뀐다), 순 유형자산 이월(기초 + CAPEX − 감가)과 CAPEX ÷ 매출 강도(McKinsey 방식 DCF 모델 사용 설명서의 CAPEX 세 선택지: 순 유형자산 ÷ 매출, CAPEX ÷ 매출, 직접 입력), 평균 투하자본 ROIC(Mauboussin·Callahan 2014). 4분기는 관행값이며 피팅 전'
+    source: https://www.shareholderforum.com/returns/Library/20140604_Mauboussin-Callahan.pdf
+  fit:
+    method: 4·8개 분기 평균 동인으로 잰 다음 4개 분기 투하자본·ROIC 추정 오차(실제 10-Q 공시 대비) 비교, 종목 풀 표본 외
+    target: 4개 분기 뒤 투하자본 추정 오차(절대 %)
+    data: SEC 10-Q 분기 잔액(asset_pack hist) — 4개 분기 뒤 실제와 대조
+    last_fit: null
+    oos_metric: null

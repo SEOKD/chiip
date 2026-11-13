@@ -43,7 +43,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "radar"))
 from units import chiip_name, fx_units, money_units  # noqa: E402
 
-COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)"}
+COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)", "f": "var(--fg)"}   # f = 합계·기준선(점선과 함께, 2026-11-14)
 # 그래프 글자가 viewBox 밖으로 나가 잘리지 않게(마스터 지시 2026-11-08 "Analysis 리포트에 글자가 양식 밖으로 빠져 나가서 잘리지 않도록 하라")
 # 브라우저가 실제 글자 폭을 잰 뒤 viewBox를 글자까지 넓힌다 — 축 숫자·끝 이름표·범례가 오른쪽·왼쪽 끝에서 잘리던 문제(2026-11-08 AXTI 리포트 23곳 실측)
 FIT_JS = ("<script>(function(){"
@@ -185,18 +185,34 @@ def chart_line(c):
     if c.get("now") in keys:   # 현재 위치 세로선(P·Q 사이클 10년 차트, 2026-11-04)
         g.append(f'<line x1="{X(c["now"]):.1f}" x2="{X(c["now"]):.1f}" y1="{T}" y2="{H - B}" stroke="var(--fg)" stroke-dasharray="4 3"/>'
                  f'<text x="{X(c["now"]) - 4:.1f}" y="{T + 10}" text-anchor="end" style="fill:var(--fg);font-weight:700">현재</text>')
+    ef = keys.index(c["est_from"]) if c.get("est_from") in keys else None   # 이 라벨부터 추정 — 점선·속 빈 점, 경계에 '추정'(자산 구성·ROIC 다음 4개 분기, 2026-11-14)
+    if ef:
+        xb = (X(keys[ef - 1]) + X(keys[ef])) / 2
+        g.append(f'<rect x="{xb:.1f}" y="{T}" width="{W - R - xb:.1f}" height="{H - T - B}" fill="var(--line)" fill-opacity="0.35"/>'
+                 f'<text x="{xb + 4:.1f}" y="{T + 10}" style="fill:var(--mut)">추정 →</text>')
     for s in series:
         col = COLORS.get(s.get("color", "c"), "var(--c)")
         pts = [p for p in s.get("points") or [] if p[1] is not None]
-        g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2" points="{" ".join(f"{X(p[0]):.1f},{Y(p[1]):.1f}" for p in pts)}"/>')
+        dash = ' stroke-dasharray="5 4"' if s.get("dash") else ""
+        line = lambda ps, extra="": f'<polyline fill="none" stroke="{col}" stroke-width="2"{extra} points="{" ".join(f"{X(p[0]):.1f},{Y(p[1]):.1f}" for p in ps)}"/>'
+        if ef:
+            done = [p for p in pts if keys.index(p[0]) < ef]
+            fut = [p for p in pts if keys.index(p[0]) >= ef]
+            g.append(line(done, dash))
+            if fut:
+                g.append(line(done[-1:] + fut, ' stroke-dasharray="5 4" stroke-opacity="0.85"'))
+        else:
+            g.append(line(pts, dash))
         for p in pts:
             note = f" · {p[2]}" if len(p) > 2 and p[2] else ""
-            val = f"{_fmt(p[1])}{c.get('unit', '')}"
+            val = f"{_fmt(p[1])}{c.get('unit', '')}" + (" (추정)" if ef and keys.index(p[0]) >= ef else "")
             # 점 + 넓은 투명 터치 영역(반지름 14) — 누르면 위 칸에 값(FIT_JS '.lp', 마스터 지시 2026-11-14)
             esc = lambda x: html.escape(str(x), quote=True)   # 속성 값은 색칠(span) 없이 — t()의 +%·−% 색칠이 속성을 깨뜨린다
             g.append(f'<g class="lp" data-n="{esc(s["name"])}" data-x="{esc(p[0])}" data-v="{esc(val)}" data-m="{esc(p[2]) if len(p) > 2 and p[2] else ""}">'
                      f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="14" fill="transparent"/>'
-                     f'<circle class="dot" cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="4" fill="{col}" stroke="var(--bg)" stroke-width="2"><title>{t(s["name"])} {t(p[0])}: {t(val)}{t(note)}</title></circle></g>')
+                     + (f'<circle class="dot" cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="3.5" fill="var(--bg)" stroke="{col}" stroke-width="2"><title>' if ef and keys.index(p[0]) >= ef else
+                        f'<circle class="dot" cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="4" fill="{col}" stroke="var(--bg)" stroke-width="2"><title>')
+                     + f'{t(s["name"])} {t(p[0])}: {t(val)}{t(note)}</title></circle></g>')
     info = '<div class="cinfo"><span class="mut">점을 누르면 그 값</span></div>'
     return _legend(series) + info + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
@@ -741,7 +757,7 @@ def chart_roic(c):
     아래: ROIC(영업권 포함·제외·무형 자본화) 가로 막대와 WACC 점선. 폭 480 — 모바일에서도 글자가 읽히게 항목 이름은 막대 밖에 쓴다.
     c = {"parts": [{"label", "value", "color"}](음수 = 자금 원천, 막대에서 빼고 목록에 '차감'), "rates": [{"label", "value"(%), "color"}], "wacc": 9.1, "unit": "$", "note"}"""
     parts, rates = c.get("parts") or [], c.get("rates") or []
-    if not parts or not rates:
+    if not parts:   # rates가 비면 투하자본 구성만(자산 구성 그림, 2026-11-14 — ROIC는 따로 추이 그림)
         return ""
     W, L, R = 480, 10, 10
     pos = [p for p in parts if (p.get("value") or 0) > 0]
@@ -764,6 +780,11 @@ def chart_roic(c):
         txt = f"{p['label']} {'−' if v < 0 else ''}{c.get('unit', '$')}{_fmt(abs(v))}{c.get('unit_suffix', '')}" + (f" · {share}" if v > 0 else " · 차감")
         g.append(f'<rect x="{cx:.1f}" y="{cy - 9}" width="10" height="10" rx="2" fill="{col}"/><text x="{cx + 14:.1f}" y="{cy}" style="fill:var(--fg);font-size:12px">{t(txt)}</text>')
     y += ((len(parts) + 1) // 2) * 18 + 14
+    if not rates:
+        if c.get("note"):
+            g.append(f'<text x="{L}" y="{y + 4}" style="font-size:11.5px">{t(c["note"])}</text>')
+            y += 12
+        return f'<svg viewBox="0 0 {W} {y + 4}">{"".join(g)}</svg>'
     LW = 132
     vals = [r.get("value") or 0 for r in rates] + [c.get("wacc") or 0]
     hi, lo = max(max(vals), 0) * 1.15 or 1, min(min(vals), 0)

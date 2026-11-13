@@ -45,8 +45,41 @@ C = {   # 개념 후보(먼저 있는 것)
     "other_l": ["OtherLiabilitiesNoncurrent"],
     "rd": ["ResearchAndDevelopmentExpense"],
     "sga": ["SellingGeneralAndAdministrativeExpense"],
+    "cogs": ["CostOfRevenue", "CostOfGoodsAndServicesSold", "CostOfGoodsSold"],
+    "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"],
 }
 NWC_PLUS, NWC_MINUS = ("ar", "inv", "prepaid"), ("ap", "accrued", "deferred_rev")
+INST = ("ppe_net", "ppe_gross", "ppe_accum", "rou", "lease_liab", "lease_cur", "lease_nc", "lease_rate", "goodwill",
+        "intang", "intang_gross", "intang_accum", "ar", "inv", "prepaid", "ap", "accrued", "deferred_rev", "other_a", "other_l")
+HIST_Q = 16   # 분기말 잔액 16개 → TTM ROIC(평균 투하자본 = 이번 분기말·4분기 전) 12개(마스터 지시 2026-11-14 "최근 12개 분기")
+BAL = {"ar": "ar", "inv": "inv", "prepaid": "prepaid", "ap": "ap", "accrued": "accrued", "deferred_rev": "deferred_rev",
+       "ppe": "ppe_net", "rou": "rou", "goodwill": "goodwill", "intangibles": "intang"}
+
+
+def _asof(s, e, days=200):
+    """e 시점 값 — 없으면 200일 안의 직전 값(분기 보고서가 안 내는 칸은 연말 값을 이어 쓴다)"""
+    if e in s:
+        return s[e]
+    prev = [k for k in s if k < e and (date.fromisoformat(e) - date.fromisoformat(k)).days <= days]
+    return s[max(prev)] if prev else None
+
+
+def hist(S, ends):
+    """분기별 잔액·손익 — 오래된 분기부터. 자산 구성 12개 분기 변화율·TTM ROIC 추이·다음 4개 분기 추정의 재료(asset_roic_view)"""
+    rows = []
+    for e in ends:
+        lease = None
+        if e in S["lease_cur"] or e in S["lease_nc"]:
+            lease = (S["lease_cur"].get(e) or 0) + (S["lease_nc"].get(e) or 0)
+        elif e in S["lease_liab"]:
+            lease = S["lease_liab"][e]
+        oa, ol = _asof(S["other_a"], e), _asof(S["other_l"], e)
+        rows.append({"q": qlabel(e), "end": e,
+                     **{k: (round(S[k][e], 3) if e in S[k] else None) for k in ("rev", "ebit", "cogs", "capex", "da", "amort")},
+                     "bal": {k: (round(v, 3) if (v := _asof(S[src], e)) is not None else None) for k, src in BAL.items()}
+                     | {"other": None if oa is None and ol is None else round((oa or 0) - (ol or 0), 3)},
+                     "lease": None if lease is None else round(lease, 3)})
+    return rows
 
 
 def fetch(ticker):
@@ -62,36 +95,59 @@ def _days(x):
     return (date.fromisoformat(x["end"]) - date.fromisoformat(x["start"])).days if x.get("start") else None
 
 
-def series(facts, key, kind):
-    """kind = 'inst'(시점) → {end: v}, 'q'(분기, 4분기 = 연간 − 1~3분기) → {end: v}, 'y'(연간) → {end: v}. 단위 USD는 백만 달러로"""
-    g = (facts.get("facts") or {}).get("us-gaap") or {}
-    for concept in C[key]:
-        if concept not in g:
+def _one(rows, kind, scale):
+    """한 개념의 값 → {end: v}. 같은 끝 날짜는 나중에 낸 공시(정정)가 이긴다"""
+    rows = sorted(rows, key=lambda x: str(x.get("filed", "")))
+    if kind == "inst":
+        return {x["end"]: x["val"] * scale for x in rows if _days(x) is None}
+    out, fy, ytd = {}, {}, {}
+    for x in rows:
+        d = _days(x)
+        if d is None:
             continue
-        unit = "pure" if key == "lease_rate" else "USD"
-        rows = (g[concept].get("units") or {}).get(unit) or []
-        scale = 1.0 if unit == "pure" else 1e-6
-        out, fy = {}, {}
-        for x in rows:
-            d = _days(x)
-            if kind == "inst" and d is None:
-                out[x["end"]] = x["val"] * scale
-            elif kind in ("q", "y") and d is not None:
-                if d < 100:
-                    out[x["end"]] = x["val"] * scale
-                elif d > 350:
-                    fy[x["end"]] = x["val"] * scale
-        if kind == "y":
-            return dict(sorted(fy.items())), concept
-        if kind == "q":
-            for e, v in fy.items():
-                y = e[:4]
-                qs = [k for k in out if k[:4] == y and k < e]
-                if len(qs) == 3 and e not in out:
-                    out[e] = v - sum(out[k] for k in qs)
-        if out:
-            return dict(sorted(out.items())), concept
-    return {}, None
+        if d < 100:
+            out[x["end"]] = x["val"] * scale
+        if d > 350:
+            fy[x["end"]] = x["val"] * scale
+        if d <= 380:
+            ytd.setdefault(x["start"], {})[x["end"]] = x["val"] * scale
+    if kind == "y":
+        return fy
+    # 현금흐름표는 10-Q가 연초부터 누적(6·9개월)으로만 낸다 — 같은 시작일 누적끼리 빼서 분기를 만든다(2026-11-14: AMAT 감가상각이 1분기만 잡혀 분기 감가율이 3분기씩 건너뛰었다)
+    for cum in ytd.values():
+        ends = sorted(cum)
+        for a, b in zip(ends, ends[1:]):
+            gap = (date.fromisoformat(b) - date.fromisoformat(a)).days
+            if 70 <= gap <= 110 and b not in out:
+                out[b] = cum[b] - cum[a]
+    for e, v in fy.items():   # 4분기 = 연간 − 같은 회계연도(끝 날짜 370일 안) 1~3분기
+        qs = [k for k in out if 0 < (date.fromisoformat(e) - date.fromisoformat(k)).days < 370]
+        if len(qs) == 3 and e not in out:
+            out[e] = v - sum(out[k] for k in qs)
+    return out
+
+
+def series(facts, key, kind):
+    """kind = 'inst'(시점) → {end: v}, 'q'(분기, 누적 차분·4분기 = 연간 − 1~3분기) → {end: v}, 'y'(연간) → {end: v}. 단위 USD는 백만 달러로.
+    후보 개념을 모두 읽어 합친다 — 최근 값이 있는 개념이 먼저다. 회사가 개념을 바꾸면 옛 개념에서 멈추기 때문
+    (2026-11-14 마스터 점검: AMAT 매출이 'Revenues'에서 2021년에 끝나 ROIC가 TTM 1Q21로 나왔다 — 지금은 RevenueFromContractWithCustomer…)"""
+    g = (facts.get("facts") or {}).get("us-gaap") or {}
+    unit = "pure" if key == "lease_rate" else "USD"
+    scale = 1.0 if unit == "pure" else 1e-6
+    got = []
+    for concept in C[key]:
+        if concept in g:
+            s = _one((g[concept].get("units") or {}).get(unit) or [], kind, scale)
+            if s:
+                got.append((max(s), concept, s))
+    if not got:
+        return {}, None
+    got.sort(key=lambda x: x[0], reverse=True)
+    out = {}
+    for _, _, s in got:
+        for k, v in s.items():
+            out.setdefault(k, v)
+    return dict(sorted(out.items())), got[0][1]
 
 
 def qlabel(end):
@@ -104,9 +160,7 @@ def _at(s, ends):
 
 
 def build(facts, tax=0.25):
-    S = {k: series(facts, k, "inst" if k in ("ppe_net", "ppe_gross", "ppe_accum", "rou", "lease_liab", "lease_cur", "lease_nc", "lease_rate", "goodwill",
-                                             "intang", "intang_gross", "intang_accum", "ar", "inv", "prepaid", "ap", "accrued", "deferred_rev", "other_a", "other_l")
-                            else "q")[0] for k in C}
+    S = {k: series(facts, k, "inst" if k in INST else "q")[0] for k in C}
     Y = {k: series(facts, k, "y")[0] for k in ("dep", "da", "amort", "rd", "sga", "gw_impair")}
     missing = []
     q_ends = sorted(set(S["da"]) & set(S["ppe_net"]))[-9:]
@@ -157,8 +211,9 @@ def build(facts, tax=0.25):
             missing.append("리스 가중평균 할인율")
     else:
         missing.append("분기 매출·영업이익 8분기")
-    fy = sorted(set(S["ppe_gross"]) & set(S["ppe_accum"]))[-2:][::-1]
     dep_y = Y["dep"] or Y["da"]
+    # 항목 주석 기준일 = 회계연도 말(연간 감가상각과 같은 날) — 개념을 합친 뒤 분기 값도 들어와 '1년 변화'가 한 분기 차이가 되던 것을 막는다(2026-11-14)
+    fy = sorted(set(S["ppe_gross"]) & set(S["ppe_accum"]) & set(dep_y))[-2:][::-1] or sorted(set(S["ppe_gross"]) & set(S["ppe_accum"]))[-2:][::-1]
     out = {"as_of": qlabel(rq[-1]) if rq else None, "unit": "$M", "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
            "note_periods": fy or None,
            "ppe": [{"name": "유형자산 합계(항목 미분해)", "kind": "other", "gross": [round(S["ppe_gross"][e], 3) for e in fy], "accum": [None] * len(fy), "split": False}] if fy else [],
@@ -166,6 +221,7 @@ def build(facts, tax=0.25):
            "intangibles": [], "dep_annual": [{"year": int(e[:4]), "dep": round(v, 3), "amort": round(Y["amort"].get(e, 0.0), 3)} for e, v in sorted(dep_y.items())[::-1][:2]],
            "quarters": quarters, "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기)" + ("" if any(x["ppe_gross"] for x in quarters) else ". 분기 유형자산 총액이 없어 순액 기준"),
            "roic": roic,
+           "hist": hist(S, sorted(set(rq) & set(S["ppe_net"]))[-HIST_Q:]) if rq else None,
            "intangible_cap": {"rd": [[int(e[:4]), round(v, 3)] for e, v in Y["rd"].items()], "sga": [[int(e[:4]), round(v, 3)] for e, v in Y["sga"].items()]} if (Y["rd"] or Y["sga"]) else None,
            "missing": missing + ["유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)", "무형자산 항목(10-K 주석에서 모델이 채움)"]}
     ends_y = sorted(set(S["goodwill"]) & set(fy))[::-1] if fy else []
@@ -182,8 +238,9 @@ def merge(old, new, force=False):
     if not old:
         return new
     out = dict(old)
+    auto = lambda rows: bool(rows) and all(x.get("split") is False or (x.get("kind") == "goodwill" and x.get("name") == "영업권" and not x.get("life")) for x in rows)
     for k, v in new.items():
-        if force and k not in ("ppe", "intangibles", "missing"):
+        if force and (k not in ("ppe", "intangibles", "missing") or (k in ("ppe", "intangibles") and auto(old.get(k)))):   # 자동 초안 행뿐이면 새로 쓴다(모델이 나눈 행은 지킨다)
             out[k] = v
         elif out.get(k) in (None, [], {}):
             out[k] = v

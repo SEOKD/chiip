@@ -99,23 +99,26 @@ class TestSection(unittest.TestCase):
         self.assertIsNone(av.section({"assets": {"none": "공시 없음"}}))
 
     def test_lth_section_renders(self):
-        s = av.section({"assets": LTH}, 0.09)
-        self.assertEqual(s["h2"], "자산 구성과 ROIC")
-        kinds = [b["type"] for b in s["blocks"]]
-        self.assertEqual(kinds[0], "hl")
-        titles = [b.get("title", "") for b in s["blocks"]]
-        for t in ("항목별 가치", "내용연수 산식", "분기 감가 비율", "회전율과 ROIC 기여", "ROIC 세 가지 판", "1년 변화 분해", "무형 자본화 가정별"):
-            self.assertTrue(any(t in x for x in titles), t)
-        for b in s["blocks"]:
+        s, r = av.section({"assets": LTH}, 0.09), av.roic_section({"assets": LTH}, 0.09)   # 자산 구성과 ROIC는 두 절(마스터 지시 2026-11-14)
+        self.assertEqual((s["h2"], r["h2"]), ("자산 구성", "ROIC"))
+        self.assertEqual((s["blocks"][0]["type"], r["blocks"][0]["type"]), ("hl", "hl"))
+        st = [b.get("title", "") for b in s["blocks"]]
+        rt = [b.get("title", "") for b in r["blocks"]]
+        for t in ("항목별 가치", "내용연수 산식", "분기 감가 비율"):
+            self.assertTrue(any(t in x for x in st), t)
+        for t in ("회전율과 ROIC 기여", "ROIC 세 가지 판", "1년 변화 분해", "무형 자본화 가정별"):
+            self.assertTrue(any(t in x for x in rt), t)
+            self.assertFalse(any(t in x for x in st), t)   # 세부 설명도 분리
+        for b in s["blocks"] + r["blocks"]:
             if b["type"] == "chart":
                 self.assertTrue(report_html.CHARTS[b["chart"]["kind"]](b["chart"]).__contains__("<svg"))
-        body = json.dumps(s, ensure_ascii=False)
+        body = json.dumps([s, r], ensure_ascii=False)
         self.assertNotIn("nan", body.lower().replace("finance", ""))
         self.assertNotIn("PP&E", body)   # 풀이 없는 약자 금지 — 유형자산으로 쓴다
 
     def test_layout_wires_section_after_margin(self):
         src = (ROOT / "scripts" / "tenbagger" / "report_layout.py").read_text(encoding="utf-8")
-        self.assertIn("for part in (margin_sec, asset_sec, supply_sec, capacity_sec)", src)
+        self.assertIn("for part in (margin_sec, asset_sec, roic_sec, supply_sec, capacity_sec)", src)
 
 
 if __name__ == "__main__":
@@ -174,10 +177,14 @@ class TestAssetPack(unittest.TestCase):
 
 class TestRoicCard(unittest.TestCase):
     def test_one_roic_picture_in_gallery(self):
-        s = av.section({"assets": LTH}, 0.09)
-        charts = [b["chart"] for b in s["blocks"] if b["type"] == "chart"]
-        self.assertEqual([c["kind"] for c in charts], ["line", "roic"])   # 감가 비율 선 + ROIC 한 장
-        c = charts[1]
+        s, r = av.section({"assets": LTH}, 0.09), av.roic_section({"assets": LTH}, 0.09)
+        sc = [b["chart"] for b in s["blocks"] if b["type"] == "chart"]
+        self.assertEqual([c["kind"] for c in sc], ["roic"])   # 분기 이력이 없으면 자산 구성 한 장(구성만)
+        self.assertEqual(sc[0]["rates"], [])
+        self.assertIn("<svg", report_html.CHARTS["roic"](sc[0]))
+        charts = [b["chart"] for b in r["blocks"] if b["type"] == "chart"]
+        self.assertEqual([c["kind"] for c in charts], ["roic", "line"])   # 이력 없는 옛 datapack: 두 기간 판 한 장 → 감가 비율 선(ROIC 뒤)
+        c = charts[0]
         self.assertEqual(c["wacc"], 9.0)
         self.assertEqual([r["label"] for r in c["rates"]][:2], ["ROIC 영업권 포함", "ROIC 영업권 제외"])
         svg = report_html.CHARTS["roic"](c)
@@ -233,3 +240,107 @@ class TestSelfWords(unittest.TestCase):
             self.assertEqual(report_html._scrub_text(a), b)
         d = report_html.scrub({"sections": [{"h2": "해자", "blocks": [{"type": "boxes", "items": [{"title": "x", "lines": [["증거", "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"]]}]}]}]})
         self.assertNotIn("자기 말로", json.dumps(d, ensure_ascii=False))
+
+
+def _hist(n=16, grow=0.03):
+    """분기 이력 — 매출이 분기 3%씩 늘고 잔액은 매출에 비례(회전 일수 일정)"""
+    rows = []
+    for i in range(n):
+        rev = 1000 * (1 + grow) ** i
+        y, q = 2022 + (i + 3) // 4, (i + 3) % 4 + 1
+        end = {1: "03-31", 2: "06-30", 3: "09-30", 4: "12-31"}[q]
+        rows.append({"q": f"{q}Q{str(y)[2:]}", "end": f"{y}-{end}", "rev": rev, "ebit": rev * 0.2, "cogs": rev * 0.5, "capex": rev * 0.08, "da": 40.0 + i, "amort": 2.0,
+                     "bal": {"ar": rev * 0.8, "inv": rev * 0.5 * 1.2, "prepaid": rev * 0.1, "ap": rev * 0.5 * 0.6, "accrued": rev * 0.3, "deferred_rev": rev * 0.2,
+                             "ppe": 2000 + 30 * i, "rou": 300.0, "goodwill": 500.0, "intangibles": 100.0 - 2 * i, "other": -10.0}, "lease": 320.0})
+    return rows
+
+
+def _assets_hist():
+    return {"unit": "$M", "hist": _hist(), "roic": {"tax_rate": 0.2, "lease_rate": 0.05, "acq_amort": [8.0, 8.0], "impairment_cum": 0}}
+
+
+def _dp_cons(a):
+    return {"assets": a, "sbc_pct_rev": 0.02,
+            "consensus": {"quarters_est": {"2027Q1": 1.70, "2026Q4": 1.65, "2027Q2": 1.75, "2027Q3": 1.80}, "ebit_margin": {"FY2026": 0.24, "FY2027": 0.25}, "margin_basis": "non_gaap"}}
+
+
+class TestHistoryForecast(unittest.TestCase):
+    """자산 구성 12개 분기 변화율·ROIC 12개 분기 추이·다음 4개 분기 추정(마스터 지시 2026-11-14)"""
+
+    def test_series_prefers_concept_with_latest_values(self):
+        import asset_pack
+        old = {"units": {"USD": [{"start": "2020-01-01", "end": "2020-03-31", "val": 1e6}]}}
+        new = {"units": {"USD": [{"start": "2026-04-01", "end": "2026-06-30", "val": 9e6}, {"start": "2020-01-01", "end": "2020-03-31", "val": 2e6}]}}
+        s, c = asset_pack.series({"facts": {"us-gaap": {"Revenues": old, "RevenueFromContractWithCustomerExcludingAssessedTax": new}}}, "rev", "q")
+        self.assertEqual(c, "RevenueFromContractWithCustomerExcludingAssessedTax")   # AMAT: 'Revenues'가 2021년에 끝나 TTM 1Q21이 나왔다
+        self.assertEqual(max(s), "2026-06-30")
+        self.assertEqual(s["2020-03-31"], 2.0)   # 같은 분기는 최근 개념 값
+
+    def test_ytd_cash_flow_differenced(self):
+        import asset_pack
+        rows = [{"start": "2025-10-27", "end": "2026-01-25", "val": 100e6}, {"start": "2025-10-27", "end": "2026-04-26", "val": 230e6},
+                {"start": "2025-10-27", "end": "2026-07-26", "val": 380e6}]
+        s, _ = asset_pack.series({"facts": {"us-gaap": {"PaymentsToAcquirePropertyPlantAndEquipment": {"units": {"USD": rows}}}}}, "capex", "q")
+        self.assertEqual([s[k] for k in sorted(s)], [100.0, 130.0, 150.0])   # 6·9개월 누적 − 앞 누적
+
+    def test_forecast_four_quarters_from_consensus_and_drivers(self):
+        a = _assets_hist()
+        F, d = av.forecast(a, _dp_cons(a))
+        self.assertEqual(len(F), 4)
+        self.assertEqual([x["q"] for x in F], ["4Q26", "1Q27", "2Q27", "3Q27"])
+        self.assertAlmostEqual(F[0]["rev"], 1650.0)   # 십억 단위 컨센서스 → 백만, 키 순서대로(2026Q4 먼저)
+        self.assertAlmostEqual(F[0]["ebita"], 1650 * (0.24 - 0.02))   # 조정 마진 − 주식보상
+        self.assertAlmostEqual(F[1]["ebita"], 1700 * (0.25 - 0.02))
+        self.assertAlmostEqual(d["days"]["ar"], 0.8 * 91.25, places=6)   # 매출채권 일수
+        self.assertAlmostEqual(F[0]["bal"]["ar"], 0.8 * 1650, places=6)
+        self.assertAlmostEqual(F[0]["bal"]["inv"], 1.2 * 1650 * 0.5, places=6)   # 재고는 매출원가 기준
+        last = a["hist"][-1]["bal"]
+        self.assertAlmostEqual(F[0]["bal"]["ppe"], last["ppe"] + F[0]["capex"] - F[0]["dep"])   # 유형자산 이월
+        self.assertEqual(F[-1]["bal"]["goodwill"], 500.0)
+        self.assertAlmostEqual(F[0]["bal"]["intangibles"], last["intangibles"] - 2.0)
+
+    def test_reported_quarter_before_10q_uses_actuals(self):
+        a = _assets_hist()
+        dp = _dp_cons(a)
+        dp["quarters_hist"] = {"q": [{"period": "2026-12-31", "rev": 1.6e9, "op": 0.33e9, "cogs": 0.8e9}]}
+        F, _ = av.forecast(a, dp)
+        self.assertEqual(F[0]["q"], "4Q26")
+        self.assertAlmostEqual(F[0]["rev"], 1600.0)
+        self.assertAlmostEqual(F[0]["ebita"], 330.0 + 2.0)   # 발표 영업이익 + 인수 무형 상각
+        self.assertIn("발표 실적", F[0]["est"])
+        self.assertAlmostEqual(F[1]["rev"], 1650.0)   # 다음부터 컨센서스
+
+    def test_roic_path_twelve_plus_four(self):
+        a = _assets_hist()
+        F, _ = av.forecast(a, _dp_cons(a))
+        path = av.roic_path(a, a["hist"] + F)
+        act = [x for x in path if not x["est"]]
+        self.assertEqual((len(act), len(path) - len(act)), (12, 4))
+        x = act[-1]
+        H = a["hist"]
+        ttm = sum(r["rev"] for r in H[-4:])
+        ebita = sum(r["ebit"] + r["amort"] for r in H[-4:]) + (320 + 320) / 2 * 0.05
+        ic = (sum(av.cap_of(H[-1]).values()) + sum(av.cap_of(H[-5]).values())) / 2
+        self.assertAlmostEqual(x["rev"], ttm)
+        self.assertAlmostEqual(x["roic_incl"], ebita * 0.8 / ic)   # TTM NOPAT ÷ 평균 투하자본(이번·4개 분기 전)
+
+    def test_sections_charts_with_history(self):
+        a = _assets_hist()
+        dp = _dp_cons(a)
+        s, r = av.section(dp, 0.1), av.roic_section(dp, 0.1)
+        sc = [b["chart"] for b in s["blocks"] if b["type"] == "chart"]
+        self.assertEqual([c["kind"] for c in sc], ["roic", "line"])   # 최근 분기 구성 → 자산별 변화율
+        self.assertIn("3Q26 분기말", sc[0]["title"])
+        ch = sc[1]
+        self.assertEqual(ch["est_from"], "4Q26")
+        self.assertEqual(len(ch["series"][0]["points"]), 16)   # 12개 분기 + 4개 분기 추정
+        self.assertEqual(ch["series"][0]["points"][0][1], 0.0)
+        rc = [b["chart"] for b in r["blocks"] if b["type"] == "chart"]
+        self.assertTrue(rc[0]["title"].startswith("ROIC 추이"))
+        self.assertEqual(rc[0]["est_from"], "4Q26")
+        self.assertEqual(len(rc[0]["series"][0]["points"]), 16)
+        self.assertTrue(r["blocks"][0]["text"].startswith("**TTM 3Q26"))   # 최신 분기 TTM
+        svg = report_html.CHARTS["line"](rc[0])
+        self.assertIn("추정 →", svg)
+        self.assertIn('stroke-dasharray="5 4"', svg)
+        self.assertIn("(추정)", svg)
