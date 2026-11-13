@@ -1,0 +1,4225 @@
+{
+ "id": "us-u",
+ "name": "Unity Software",
+ "ticker": "U",
+ "region": "US",
+ "as_of": "2026-11-12",
+ "unit": "B$",
+ "industry": "software",
+ "industry_note": "게임 엔진 구독(Create) + 모바일 광고(Grow) — 업종 자본비용은 config/valuation_v2.yaml software",
+ "region_mix": {
+  "US": 0.23,
+  "CN": 0.25,
+  "EU": 0.3,
+  "ROW": 0.22
+ },
+ "tax": 0.1,
+ "profile": {
+  "price": 50.18,
+  "shares_basic": 0.4438,
+  "shares_date": "2026-11-12",
+  "cash": 2.6464,
+  "debt": 2.239,
+  "source": "가격 = 2026-11-12 종가 $50.18(TradingView NYSE:U). 주식 수 443.8M주(Fiscal 시총 $22,271.3M ÷ $50.18). 현금 $2,646.4M, 차입 = 유동성 $558M(2026-11-15 만기 전환사채 — 현금 상환 예정) + 장기 $1,681M(10-Q 2026-09-30, Fiscal 표준화)"
+ },
+ "dilution": {
+  "options": 0.005,
+  "rsu": 0.03,
+  "warrants": 0.0,
+  "converts_shares": 0.0216,
+  "date": "2026-11-12",
+  "source": "추정 — 3Q 희석 가중 주식 498.2M − 기본 441.6M = 56.6M주(RSU·옵션·2030 전환사채 합). 항목별 나눔은 10-Q 주석 미대조"
+ },
+ "financials": {
+  "rev_ttm": 2.1799,
+  "ebit_ttm": -0.3895,
+  "invested_capital": 3.121,
+  "capex_ttm": 0.02,
+  "da_ttm": 0.4296,
+  "sbc_ttm": 0.32,
+  "rev_growth_ttm": 0.2,
+  "basis": "gaap",
+  "s2c": 1.2,
+  "note": "TTM = 4Q25~3Q26 합. 매출 $2,179.9M. 조정 EBITDA TTM $680.4M(4Q25 $124.9M·1Q $138.3M·2Q $160.2M·3Q $257.0M). EBIT은 GAAP 영업이익 TTM −$389.5M(조정 EBIT은 EBITDA − 유형 감가 약 $100M로 둔 추정 약 $0.58B)(1Q ironSource 손상 포함, 3Q +$100.6M로 첫 흑자). D&A $429.6M에 인수 무형자산 상각 포함 — 4Q $50M, 2027 분기 $15M로 줄어든다(3Q 콜). 투하자본 = 자기자본 $3,528M + 차입 $2,239M − 현금 $2,646M(리스 미대조). SBC TTM 약 $320M(2Q 매출의 14%, 추정)"
+ },
+ "main_metric": "ebitda",
+ "main_metric_why": "회사가 분기 가이던스를 조정 EBITDA로만 낸다(4Q $290~295M). 인수 무형 상각이 2026→2027 크게 줄어 EPS 기준이 흔들린다",
+ "sbc_pct_rev": 0.147,
+ "sbc_why": "추정 — 2Q 콜 SBC 매출의 14%, 2027 분기 $75M 가이던스",
+ "scenario_probs": {
+  "bear": 0.25,
+  "base": 0.5,
+  "bull": 0.25
+ },
+ "scenario_probs_why": "가이던스·실적이 3개 분기 연속 크게 상회(톤 up)했지만 Vector 단일 동인 의존 — 기본 50%",
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "rev_fy0": [
+   2.365,
+   2.373
+  ],
+  "next": {
+   "period": "4Q26",
+   "rev_low": 0.683,
+   "rev_high": 0.691,
+   "ebitda_low": 0.29,
+   "ebitda_high": 0.295,
+   "ebitda_margin": 0.42,
+   "grow_growth": [
+    1.05,
+    1.07
+   ],
+   "vector_qoq": [
+    0.21,
+    0.23
+   ],
+   "create_growth": [
+    0.04,
+    0.06
+   ],
+   "unit": "B$",
+   "basis": "회사 가이던스(3Q 콜) — 전략 매출 $683~691M(+65~67%), 전략 Grow +105~107%, Vector 전 분기 대비 +21~23%, 전략 Create +4~6%, 비전략 Grow $5M(2027 0), 조정 EBITDA $290~295M(마진 42%)"
+  },
+  "long_term": "Create는 연 약 9% 성장(ARPU) 유지. Unity Spark 2027 정식 출시. 2027 SBC 분기 $75M·무형 상각 분기 $15M·실효세율 5~10%",
+  "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+ },
+ "next_event": {
+  "date": "2027-02-11",
+  "tag": "4Q26 실적·2027 전망(2월 중순 관행, 날짜 미확정)"
+ },
+ "peers_basis": "ntm",
+ "peers_source": "ntm 동종 = 미국 상장 광고 기술·창작 소프트웨어 6곳: AppLovin(모바일 광고 1위), The Trade Desk, Magnite, PubMatic, DoubleVerify(광고 기술), Autodesk(3D 창작 도구). Fiscal.ai 추정·Forward 배수(2026-11-13). 게임 엔진 상장 동종은 없다(Epic Games 비상장)",
+ "call": {
+  "date": "2026-11-05",
+  "prev_date": "2026-08-06",
+  "tone": "up",
+  "tone_delta": 0.4,
+  "guidance_direction": "raise",
+  "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로) · 직전 = 2Q26 어닝콜(2026-08-06, 요지만 자기 말로)",
+  "kpis": {
+   "rev_q_m": 622.1,
+   "rev_growth": 0.322,
+   "strategic_rev_m": 597,
+   "strategic_growth": 0.59,
+   "grow_strategic_m": 432,
+   "grow_growth": 0.9,
+   "create_strategic_m": 165,
+   "create_growth": 0.11,
+   "vector_yoy": 1.26,
+   "vector_qoq": 0.4,
+   "advertiser_accounts_qoq": 0.27,
+   "ebitda_adj_m": 257,
+   "ebitda_margin": 0.41,
+   "gaap_net_income_m": 122,
+   "fcf_m": 220,
+   "cash_b": 2.65,
+   "dau_since_aug": 0.25
+  },
+  "guidance_changes": [
+   "Vector 분기 성장 가이던스 +19~21% → 실제 +40%, 4Q +21~23%",
+   "전략 매출 3Q 가이던스 $540~550M → 실제 $597M, 4Q $683~691M(+65~67%)",
+   "조정 EBITDA 마진 3Q 약 33%(2Q 29%+4%p 안내) → 실제 41%, 4Q 42%",
+   "GAAP 흑자 시점 4Q26 → 3Q26으로 당겼고 실제 달성(순이익 $122M)",
+   "전략 Create 3Q +7~10% → 4Q +4~6%로 둔화"
+  ],
+  "new_topics": [
+   "Unity Spark(Google 협력, 브라우저 기반 창작 — 연내 비공개 베타·2027 정식)",
+   "코딩 에이전트·명령줄 개방 — 8월 이후 DAU +25%",
+   "2027 SBC 분기 $75M·무형 상각 분기 $15M·세율 5~10%",
+   "11/15 만기 전환사채 현금 상환",
+   "Vector 성장은 설치 물량·이용자 가치 덕이지 수수료율(take rate) 인상이 아니라는 해명"
+  ],
+  "dropped_topics": [
+   "ironSource 광고 네트워크 종료 효과(2Q $3M) — 3Q 언급 없음",
+   "Supersonic 매각(8/4 종결) 뒤 비전략 매출 축소"
+  ],
+  "analyst_focus": [
+   "Deutsche Bank — Vector 40% 성장의 동인",
+   "Morgan Stanley — 광고주 ROAS·총지출 vs 수수료율",
+   "Cannonball — 가이던스 보수성",
+   "Wells Fargo — AI 게임 제작 변곡",
+   "Jefferies — 다음 분기 가시성",
+   "BTIG — 제품 개선 일정",
+   "Goldman Sachs — Google 협력 단위 경제성",
+   "William Blair — DAU·Asset Store",
+   "Needham — 광고 인벤토리 공급 충분성"
+  ],
+  "risks": [
+   "Vector 단일 동인(전략 매출의 69%가 Grow)",
+   "AI 생성형 게임 도구의 엔진 대체 우려(1/30 Google Project Genie 공개 뒤 하루 −24%)",
+   "AppLovin과 광고 경쟁(규모 격차)",
+   "Create 성장 둔화(4Q +4~6%)",
+   "중국 매출 비중 약 25%",
+   "인수설(Silver Lake·PIF) 무산 시 되돌림"
+  ],
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "Vector 성장 속도",
+    "label": "Vector +40% QoQ",
+    "prior": "3Q 가이던스 +19~21% QoQ",
+    "latest": "3Q +40% QoQ(+126% YoY), 4Q 가이던스 +21~23%",
+    "driver": "growth_start",
+    "shift": 0.08,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "조정 EBITDA 마진",
+    "label": "EBITDA 마진 41%",
+    "prior": "3Q 약 33% 안내",
+    "latest": "3Q 41%, 4Q 42%",
+    "driver": "margin_m0",
+    "shift": 0.06,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "GAAP 흑자",
+    "label": "GAAP 순익 $122M",
+    "prior": "4Q26 흑자 목표 → 3Q로 당김",
+    "latest": "3Q 순이익 $122M(마진 20%)",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "Unity Spark·Google",
+    "label": "Spark 2027",
+    "prior": "Unity 7 베타 4Q26(2Q 콜)",
+    "latest": "Google 협력 Spark 비공개 베타, 2027 정식 — 가격 미공개",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "Create 성장",
+    "label": "Create +4~6%",
+    "prior": "3Q +7~10% 가이던스(실제 +11%)",
+    "latest": "4Q +4~6%, 연 약 9%",
+    "driver": "growth_decay",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "id": "F6",
+    "kind": "반복",
+    "item": "전환사채 상환",
+    "label": "전환사채 현금 상환",
+    "prior": "11월 상환 예정(2Q 콜)",
+    "latest": "11/15 만기분 현금 상환",
+    "driver": "net_debt",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-05-28",
+   "tag": "+7.9% — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-06-10",
+   "tag": "−6.3% — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "2Q26 실적 상회·가이던스 상향 — 당일 +15.1%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-07",
+   "tag": "2Q 뒤 목표가 상향 잇따름 — +5.4%",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-09-24",
+   "tag": "−6.1% — 원인 미확인(같은 날 Meta VR 지원 발표)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-07",
+   "tag": "Google과 AI 게임 플랫폼(Spark) 협력 발표",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-14",
+   "tag": "−11.2% — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "3Q26 실적·가이던스 상회 — 당일 +14.9%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "Silver Lake·PIF 인수 협의 보도(Reuters) — +5.5%",
+   "kind": "sector"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-30",
+   "kind": "내러티브",
+   "tag": "Google Genie 공개, 하루 −24%"
+  },
+  {
+   "date": "2026-02-11",
+   "kind": "실적",
+   "tag": "4Q25·2026 전망 실망 −26%",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-03-26",
+   "kind": "내러티브",
+   "tag": "1Q 잠정·비전략 광고 철수"
+  },
+  {
+   "date": "2026-05-07",
+   "kind": "실적",
+   "tag": "1Q26 상회·손상 반영",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "2Q26 상회, 당일 +15%",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-07",
+   "kind": "내러티브",
+   "tag": "Google·Spark 협력"
+  },
+  {
+   "date": "2026-11-05",
+   "kind": "실적",
+   "tag": "3Q26 상회·첫 GAAP 흑자",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "terms": {
+  "Unity Vector": "Unity의 AI 광고 추천·입찰 모델",
+  "Vector": "Unity의 AI 광고 추천·입찰 모델",
+  "Grow": "Unity의 광고·수익화 사업부",
+  "Create": "Unity의 엔진·창작 도구 구독 사업부",
+  "LevelPlay": "Unity의 광고 중개(미디에이션) 플랫폼",
+  "Unity Spark": "Google과 만든 브라우저 기반 게임 제작 플랫폼",
+  "Spark": "Google과 만든 브라우저 기반 게임 제작 플랫폼",
+  "Unity 7": "에이전트 협업을 넣은 차세대 엔진 버전",
+  "runtime": "게임 실행 중 엔진이 모으는 플레이 행동 신호",
+  "Day 28 ROAS": "광고 수익률을 28일 기준으로 최적화하는 상품",
+  "ROAS": "광고비 대비 매출",
+  "Asset Store": "Unity의 3D 모델·도구 장터",
+  "ironSource": "2022년 Unity가 합병한 광고 기술 회사",
+  "Supersonic": "Unity가 2026년 8월 매각한 게임 퍼블리싱 사업",
+  "Project Genie": "Google의 AI 월드 생성 모델",
+  "Genie": "Google의 AI 월드 생성 모델",
+  "MAX": "AppLovin의 광고 중개(미디에이션) 플랫폼",
+  "AXON": "AppLovin의 AI 광고 추천 엔진",
+  "MCP": "AI 에이전트가 외부 도구를 쓰는 연결 규격",
+  "CLI": "명령줄 도구",
+  "ARPU": "고객 1인당 매출",
+  "DAU": "일간 활성 이용자",
+  "SBC": "주식 보상 비용",
+  "FCF": "잉여현금흐름",
+  "RSU": "제한 조건부 주식 보상",
+  "AI": "인공지능",
+  "VR": "가상현실",
+  "PIF": "사우디아라비아 국부펀드",
+  "RPO": "잔여 이행 의무(계약상 앞으로 인식할 매출)",
+  "PPI": "생산자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "SVP": "수석 부사장",
+  "take rate": "광고비 중 플랫폼이 가져가는 몫",
+  "EMEA": "유럽·중동·아프리카"
+ },
+ "names": [
+  "Unity",
+  "Unity Software",
+  "EA",
+  "Zynga",
+  "AppLovin",
+  "Google",
+  "Meta",
+  "Moloco",
+  "AppsFlyer",
+  "Tripledot Studios",
+  "Tripledot",
+  "Silver Lake",
+  "Roblox",
+  "Epic Games",
+  "The Trade Desk",
+  "Magnite",
+  "PubMatic",
+  "DoubleVerify",
+  "Autodesk",
+  "PvX",
+  "Reuters",
+  "Barron's",
+  "Deutsche Bank",
+  "Morgan Stanley",
+  "Cannonball",
+  "Wells Fargo",
+  "Jefferies",
+  "BTIG",
+  "Goldman Sachs",
+  "William Blair",
+  "Needham",
+  "BofA Securities",
+  "Raymond James",
+  "StoneX",
+  "Matt Bromberg",
+  "Jarrod Yahes",
+  "Alex Giaimo",
+  "Alexander Blum",
+  "David Helgason",
+  "Tomer Bar-Zeev",
+  "TradingView",
+  "Take-Two",
+  "OpenAI",
+  "APP",
+  "TTD",
+  "MGNI",
+  "PUBM",
+  "DV",
+  "ADSK",
+  "RBLX",
+  "TTWO",
+  "U"
+ ],
+ "moat": {
+  "summary": "해자는 '엔진을 쓰는 개발자 기반'과 그 엔진이 실행 중 모으는 런타임 데이터다. 월 약 30억 명이 Unity로 만든 게임을 하고, 2Q 말부터 그 신호를 Vector에 넣기 시작했다. 약점은 광고 규모에서 AppLovin에 뒤지고, AI 생성형 제작 도구가 엔진의 자리를 흔들 수 있다는 점이다",
+  "items": [
+   {
+    "kind": "개발자 기반·전환 비용",
+    "verdict": "강함",
+    "claim": "한 번 만들면 25개 넘는 플랫폼(모바일·콘솔·웹·VR)에 내보내는 엔진 — 개발 중인 게임을 다른 엔진으로 옮기기 어렵다",
+    "evidence": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+    "quant": "Unity로 만든 게임 월 이용자 약 30억 명(회사 주장)",
+    "falsifier": "주요 퍼블리셔가 신작을 다른 엔진·AI 생성 도구로 옮긴다"
+   },
+   {
+    "kind": "런타임 데이터(광고 모델 입력)",
+    "verdict": "보통",
+    "claim": "엔진이 게임 안 행동 신호를 Vector 학습에 넣는다 — 경쟁 광고망에는 없는 입력",
+    "evidence": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)",
+    "quant": "2Q 말 처음 도입 — 효과 수치 미공시",
+    "falsifier": "런타임 신호 도입 뒤에도 Vector 성장이 업계 평균으로 내려온다"
+   },
+   {
+    "kind": "AI 광고 모델 성능",
+    "verdict": "보통",
+    "claim": "Vector 매출 +126% YoY·광고주 계정 +27% QoQ — 그러나 규모는 AppLovin의 약 5분의 1",
+    "evidence": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+    "quant": "3Q 광고 매출 Unity Grow $457M vs AppLovin $2.18B — 약 5분의 1",
+    "falsifier": "광고 경쟁이 가격 싸움으로 바뀌어 성장이 꺾인다"
+   },
+   {
+    "kind": "AI 대체 위험(약점)",
+    "verdict": "약점",
+    "claim": "AI 월드 생성 모델이 엔진을 건너뛸 수 있다는 우려 — 1/30 하루 −24%",
+    "evidence": "2026-01-30 주가·커뮤니티 기록(Quantral)",
+    "quant": "1~3월 고점 대비 약 −65%",
+    "falsifier": "AI 제작 도구가 Unity 위에서 돌며 DAU를 늘린다(8월 이후 +25%)"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-12",
+  "summary": "CEO Matt Bromberg(2024-05 취임, 전 Zynga COO·EA 임원)와 CFO Jarrod Yahes가 비전략 사업 정리와 Vector 집중을 이끌었다. 경영진은 사전 계획(10b5-1)으로 주식을 꾸준히 팔고 있다",
+  "people": [
+   {
+    "name": "Matt Bromberg",
+    "role": "CEO·이사",
+    "since": "2024",
+    "profile": "전 Zynga COO·EA 임원(공개 경력) — 비전략 광고 철수·Vector 집중",
+    "business": "전사",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "name": "Jarrod Yahes",
+    "role": "SVP·CFO",
+    "since": "2024",
+    "profile": "3Q 콜 재무·가이던스·자본 배분",
+    "business": "재무",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Google 전략 협력(Spark) — 배포·클라우드 파트너",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "가격·매출 배분 미공개",
+    "evidence": "https://www.businesswire.com/news/home/20261007399251/en/"
+   },
+   {
+    "network": "비즈니스",
+    "link": "Meta VR 다년 협력 연장(2026-04)",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "계약 금액 미공개",
+    "evidence": "https://www.businesswire.com/news/home/20260408903873/en"
+   },
+   {
+    "network": "금융",
+    "link": "Silver Lake·PIF 인수 협의 보도(2026-11-05) — 회사 확인 없음",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "보도만",
+    "evidence": "https://www.reuters.com/world/silver-lake-pif-have-held-recent-talks-buy-gaming-software-provider-unity-2026-11-05/"
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-12",
+  "summary": "Unity의 공급망 병목은 부품이 아니라 '광고를 띄울 지면(인벤토리)'과 '모델 학습·서빙 클라우드'다. 지면은 퍼블리셔가 어떤 광고 중개(미디에이션)를 쓰느냐에 달렸는데, 시장의 큰 몫을 경쟁사 AppLovin의 MAX가 쥐고 있다(점유율 미공시, 추정)",
+  "links": [
+   {
+    "item": "광고 인벤토리(앱 광고 지면)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "LevelPlay(자사 미디에이션)",
+      "role": "퍼블리셔 지면 중개",
+      "status": "회사 발표",
+      "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+     },
+     {
+      "name": "AppLovin MAX(경쟁사 미디에이션)",
+      "role": "Vector가 입찰 참여하는 외부 지면",
+      "status": "추정",
+      "source": "업계 구조(추정)"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "빠듯",
+    "capacity_basis": "Needham이 3Q 콜에서 지면 공급 충분성을 물었다 — 회사는 30억 이용자 기반을 근거로 충분하다고 답함",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 0.3,
+    "region": "EMEA(지역 매출 최대 몫 30%)",
+    "secured": "내재화",
+    "factor_basis": "지역 분산 = 3Q 지역 매출 최대 몫(EMEA $184.7M ÷ $622.1M). 경쟁사 미디에이션 의존도는 미공시",
+    "why": "광고 매출 = 지면 × 낙찰률 × 단가 — 지면이 막히면 Vector 성장이 멈춘다",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "item": "클라우드 컴퓨팅(모델 학습·광고 서빙)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Google Cloud",
+      "role": "클라우드 인프라",
+      "status": "회사 발표",
+      "source": "https://www.businesswire.com/news/home/20261007399251/en/"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "균형",
+    "capacity_basis": "3Q 매출원가 속 클라우드 비용 레버리지로 조정 GPM +2%p(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국",
+    "secured": "장기계약",
+    "factor_basis": "클라우드 이전 기간 약 6개월(추정)",
+    "why": "Vector 모델 학습·실시간 입찰 연산",
+    "relief": "-",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "item": "광고 성과 측정(어트리뷰션)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "AppsFlyer",
+      "role": "모바일 광고 성과 측정",
+      "status": "회사 발표",
+      "source": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)"
+     }
+    ],
+    "qualified": 3,
+    "capacity": "여유",
+    "capacity_basis": "Unity가 2Q에 Meta·Google·Moloco와 함께 AppsFlyer에 전략 투자",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "전 세계",
+    "secured": "복수구매",
+    "factor_basis": "측정사 복수(추정)",
+    "why": "광고주가 ROAS를 확인하는 경로",
+    "relief": "-",
+    "source": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)"
+   }
+  ]
+ },
+ "capacity": {
+  "none": "생산 설비가 없는 소프트웨어 회사 — 연산은 클라우드 임차(공급망 병목 절)"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "단일 고객 집중은 없다. Grow 고객은 신규 이용자를 사는 모바일 게임 퍼블리셔(광고주)이고, Create 고객은 엔진 구독 개발사다. 지역으로는 중국(대중화권) 매출이 3Q $157.4M로 전체의 25%다",
+  "items": [
+   {
+    "name": "모바일 게임 퍼블리셔(광고주)",
+    "alias": "Grow 고객",
+    "share": 0.72,
+    "prior": 0.65,
+    "basis": "회사 발표",
+    "buys": "Vector 광고·LevelPlay",
+    "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)",
+    "why": "Grow $457M ÷ 매출 $622.1M(3Q, 비전략 포함) — 1년 전 $318.3M ÷ $470.6M"
+   },
+   {
+    "name": "엔진 구독 개발사(게임·산업)",
+    "alias": "Create 고객",
+    "share": 0.27,
+    "prior": 0.32,
+    "basis": "회사 발표",
+    "buys": "Unity Pro·Enterprise 구독",
+    "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)",
+    "why": "Create $165.1M ÷ $622.1M(3Q) — 1년 전 $152.4M ÷ $470.6M"
+   }
+  ]
+ },
+ "pipeline": {
+  "none": "수주 사업이 아니다 — 매출은 광고 집행(사용량)과 엔진 구독이다. 계약 잔고 RPO $597M은 반복 매출 절에 둔다"
+ },
+ "recurring": {
+  "share": 0.28,
+  "peer_share": 0.5,
+  "kind": "엔진 구독(Create)",
+  "base": "Unity로 만든 게임 월 이용자 약 30억 명(회사 주장), RPO $597M(3Q, 다음 12개월 49%)",
+  "base_growth": 0.35,
+  "years_to_recurring": 0,
+  "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q) · 3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+ },
+ "segments_hist": {
+  "segments": {
+   "엔진·창작 도구 구독(Create)": [
+    {
+     "period": "2023-03-31",
+     "rev": 187400000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 193100000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 188900000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 289800000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 163700000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 150800000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 147400000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 152200000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 150400000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 153800000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 152400000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 164900000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 156600000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 157600000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 165100000.0
+    }
+   ],
+   "광고·수익화(Grow — Vector·LevelPlay)": [
+    {
+     "period": "2023-03-31",
+     "rev": 313000000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 340400000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 355300000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 319500000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 296700000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 298500000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 299100000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 304900000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 284600000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 287200000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 318300000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 338200000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 351600000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 388900000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 457000000.0
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(분기)"
+ },
+ "sync": {
+  "none": "광고·소프트웨어 구독 매출이라 품목 무역·PPI 지표와 같이 움직일 이유가 없다"
+ },
+ "pq": {
+  "none": "가격(광고 단가)·물량(설치 수)을 공시하지 않는다 — 회사는 성장이 물량·이용자 가치 덕이라고만 밝힌다"
+ },
+ "ma": {
+  "none": "최근 3년 큰 인수 없음 — 2026년은 매각(Supersonic → Tripledot, 8/4)과 ironSource 광고망 종료로 줄였다. AppsFlyer는 소수 지분 투자"
+ },
+ "midterm": {
+  "sub": "software",
+  "exposure": {
+   "tariffs": 0.0
+  },
+  "etf": "AMEX:IGV",
+  "why": "소프트웨어·광고 — 관세 노출 없음, 중국 매출 25%는 미·중 정책 노출(추정)"
+ },
+ "overrides": {
+  "margin_base": {
+   "lr": 0.3
+  },
+  "why": "장기 수렴 이익률 15%(기본) → 30%: 4Q 조정 EBITDA 마진 가이던스 42%에서 SBC(매출의 약 15%)를 빼도 약 27~30% — 2027 SBC 분기 $75M·무형 상각 $15M로 GAAP 이익률이 조정치에 가까워진다(근거 약함 — 광고 기술 동종 장기 GAAP 이익률 미산정)"
+ },
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다 — 인수설은 확인 전이라 목표주가에 넣지 않는다"
+ },
+ "ladder": {
+  "exit": {
+   "ev_ebitda": 18,
+   "ebitda_margin": 0.45,
+   "net_margin": 0.3,
+   "opm": 0.38,
+   "basis": "출구 Fwd EV/EBITDA 18배 = 동종 중앙(약 15배)보다 높고 지금(21배)보다 낮게. EBITDA 마진 45%는 4Q 가이던스 42%에서 소폭 개선, 순이익률 30%(추정)"
+  },
+  "refs": [
+   {
+    "label": "TTM(실적)",
+    "value": 2.1799
+   },
+   {
+    "label": "FY2026 컨센서스",
+    "value": 2.392
+   },
+   {
+    "label": "FY2027 컨센서스",
+    "value": 3.25
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "시가총액 약 $45B — 매출 약 $5.5B·EBITDA 약 $2.5B",
+    "outlook": "Vector가 연 30%대로 3~4년 크면 가능 — 광고 경쟁과 AI 대체 우려가 관건"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "매출 약 $8B",
+    "outlook": "AppLovin 지금 규모를 넘어서는 광고 매출이 필요 — 근거 없음"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "매출 약 $13B",
+    "outlook": "닫힘"
+   }
+  },
+  "summary": "2배는 Vector 고성장이 3~4년 이어져야 하는 조건부 경로다. 3배 이상은 AppLovin을 넘는 광고 규모가 필요해 근거가 없다"
+ },
+ "photos": [],
+ "raw": {
+  "retrieved_at": "2026-11-13T19:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NYSE_U",
+   "price": 50.18,
+   "market_cap": 22.2713,
+   "total_cash": 2.6464,
+   "total_debt": 2.239,
+   "shares_outstanding": 0.4438,
+   "as_of": "2026-11-12",
+   "balance_date": "2026-09-30",
+   "note": "시총 = Fiscal calculated_market_cap $22,271.3M"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.503089,
+    "2026Q1": 0.508238,
+    "2026Q2": 0.546468,
+    "2026Q3": 0.622092
+   },
+   "op_income": {
+    "2025Q4": -0.10651,
+    "2026Q1": -0.351413,
+    "2026Q2": -0.032219,
+    "2026Q3": 0.100647
+   },
+   "note": "Fiscal 표준화 손익(GAAP). 1Q26 매출원가 $351.6M에 ironSource 종료 손상 포함. 조정 EBITDA 4Q25 $124.9M·1Q $138.3M·2Q $160.2M·3Q $257.0M"
+  },
+  "dilution_xbrl": "미대조",
+  "shares_cover_implied": 0.4438,
+  "balance_2026_09_30": {
+   "equity": 3.528,
+   "minority": 0.28,
+   "debt_current": 0.558,
+   "debt_lt": 1.681,
+   "cash": 2.646,
+   "goodwill": 3.156,
+   "intangibles": 0.086,
+   "rpo": 0.597
+  },
+  "estimates_sales_m": {
+   "2026Q1": 508.238,
+   "2026Q2": 546.468,
+   "2026Q3": 622.092,
+   "2026Q4": 715.2,
+   "2027Q1": 740.0,
+   "2027Q2": 790.0,
+   "2027Q3": 838.0,
+   "2027Q4": 882.0,
+   "2028Q1": 939.2,
+   "2028Q2": 971.4,
+   "2028Q3": 1033.8,
+   "2028Q4": 1005.5
+  },
+  "estimates_note": "Fiscal 자체 추정(분기). 4Q26 회사 가이던스 $683~691M(+비전략 $5M) — 추정 평균 $715M은 가이던스 위"
+ },
+ "sources": [
+  "https://investors.unity.com/",
+  "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001810806&type=10-Q",
+  "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001810806&type=10-K",
+  "https://www.businesswire.com/news/home/20261105010192/en/",
+  "https://www.businesswire.com/news/home/20261007399251/en/",
+  "https://www.businesswire.com/news/home/20260326990421/en",
+  "https://www.reuters.com/world/silver-lake-pif-have-held-recent-talks-buy-gaming-software-provider-unity-2026-11-05/",
+  "Fiscal.ai MCP 2026-11-13 — 표준화 손익·재무상태표·현금흐름·세그먼트·추정·Forward 배수·애널리스트 의견·어닝콜 전문(3Q26·2Q26)",
+  "TradingView NYSE:U 일봉 760·월봉 75(2026-11-13)",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ ],
+ "narrative": {
+  "as_of": "2026-11-12",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "'게임 엔진 회사가 AI 광고 회사로 바뀌었다'는 이야기. Vector가 1년 새 +126% 크며 전략 매출 성장이 +59%로 7개 분기 연속 빨라졌고, 첫 GAAP 흑자가 났다. 주가는 3월 저점 $17에서 $50으로 약 3배, 그 위에 Silver Lake·PIF 인수설이 얹혔다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견(25명)",
+      "Strong Buy 20 · Buy 2 · Hold 3"
+     ],
+     [
+      "목표가 평균(24명)",
+      "$57.84(범위 $33~72)"
+     ],
+     [
+      "FY2027 EPS 컨센서스",
+      "$2.00(2Q 콜 전 $1.28 → 11/10, +56%)"
+     ]
+    ],
+    "read": "의견은 압도적 매수이고 2Q 뒤 목표가 상향이 잇따랐다(BofA $50 → $65, Raymond James 상향). 3Q 콜 질문은 Vector 성장의 지속성·가이던스 보수성·Google 협력의 수익 구조에 모였다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "약 89%(yfinance)"
+     ],
+     [
+      "공매도",
+      "유통 주식의 약 7%"
+     ],
+     [
+      "내부자",
+      "CEO·CFO·COO 사전 계획 매도 지속(11/6 CEO $5.1M)"
+     ]
+    ],
+    "read": "기관 비중이 높고 경영진은 사전 계획으로 꾸준히 판다 — 매도 자체는 계획 매도라 신호로 쓰지 않는다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral 7일 점수",
+      "73(보통)"
+     ],
+     [
+      "레딧",
+      "r/wallstreetbets 인수설 토론"
+     ]
+    ],
+    "read": "리테일 관심은 인수 가격($54 보도)과 거절 시 되돌림에 모였다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 제목",
+      "3Q 상회 +15%(11/5), Silver Lake·PIF 인수 협의(Reuters 11/5)"
+     ]
+    ],
+    "read": "인수설은 Reuters 보도이고 회사 확인은 없다"
+   }
+  },
+  "factors": [
+   {
+    "name": "Vector — AI 광고 모델의 성장",
+    "thesis": "엔진 회사가 AI 광고 회사로 — Vector +126% YoY, 4Q도 +21~23% QoQ",
+    "inputs": "이익",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "전략 Grow $432M(+90%), 4Q 가이던스 +105~107%",
+    "status": "확인",
+    "falsifier": "Vector QoQ 성장이 10% 아래로 떨어진다",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "name": "마진 레버리지·첫 GAAP 흑자",
+    "thesis": "매출이 고정비를 덮어 조정 EBITDA 마진 29% → 41% → 42%",
+    "inputs": "이익",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3Q 조정 EBITDA $257M(+134%), GAAP 순이익 $122M",
+    "status": "확인",
+    "falsifier": "4Q 조정 EBITDA가 $290M 아래",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "name": "AI 제작 도구의 수혜자(Spark·에이전트)",
+    "thesis": "AI가 게임 제작을 쉽게 하면 엔진 이용과 광고 수요가 함께 는다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "8월 이후 DAU +25%(회사), Spark 2027 정식",
+    "status": "가설",
+    "falsifier": "Spark 가격·이용 지표가 나오지 않거나 Create 성장이 5% 아래로",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "name": "인수설(Silver Lake·PIF)",
+    "thesis": "사모·국부펀드가 인수 협의 — 주당 약 $54 보도(커뮤니티 전언)",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "Reuters 협의 보도만, 가격 미확인",
+    "status": "미확인",
+    "falsifier": "회사·인수자 부인 또는 협의 결렬 보도",
+    "source": "https://www.reuters.com/world/silver-lake-pif-have-held-recent-talks-buy-gaming-software-provider-unity-2026-11-05/"
+   },
+   {
+    "name": "반대 — AI가 엔진을 대체한다",
+    "thesis": "AI 월드 생성 모델이 엔진 없이 게임을 만든다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "1/30 Genie 공개 뒤 하루 −24%",
+    "status": "잠복",
+    "falsifier": "AI 도구가 Unity 위에서 돌며 DAU·Create가 는다",
+    "source": "Quantral 커뮤니티 기록(2026-09-06 X 글이 1/30 하락을 짚음)"
+   },
+   {
+    "name": "반대 — AppLovin과의 광고 경쟁",
+    "thesis": "규모가 큰 AppLovin AXON이 지면·데이터에서 앞선다 — 가격 경쟁이 오면 Unity가 약자",
+    "inputs": "이익",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3Q 광고 매출 Unity Grow $457M vs AppLovin $2.18B(약 5분의 1)",
+    "status": "잠복",
+    "falsifier": "AppLovin과 Unity가 함께 시장을 키운다(둘 다 고성장 지속)",
+    "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)"
+   }
+  ],
+  "lead": {
+   "summary": "Unity의 값은 **AI 광고 모델 Vector가 AppLovin의 독주 속에서 2위 자리를 얼마나 빨리, 얼마나 오래 키우느냐**에 달렸다. 3Q는 그 속도를 확인했다 — Vector +126% YoY(+40% QoQ), 전략 매출 +59%, 조정 EBITDA 마진 41%, 첫 GAAP 흑자. 주가는 3월 저점 $17에서 $50으로 올라 Fwd 1Y EV/EBITDA 21배가 됐고, 동종 중앙(약 15배)보다 높다. Silver Lake·PIF 인수 협의 보도는 확인되지 않은 변수다",
+   "value_story": "Unity는 모바일·PC·콘솔 게임을 만드는 엔진(Create, 구독)과 그 게임에 광고를 붙여 신규 이용자를 사고팔게 하는 광고 사업(Grow)을 함께 한다. 2024년 새 경영진이 비전략 광고·퍼블리싱을 정리하고 AI 광고 모델 Vector에 집중했다. 기업가치는 Vector의 성장 속도와 지속성, 엔진이 모으는 런타임 데이터가 광고 성과로 이어지는지, 그리고 AI 제작 도구가 엔진의 자리를 키우는지 깎는지로 정해진다",
+   "premium": {
+    "multiple": "Fwd 1Y EV/EBITDA 21.2배로 동종 중앙(약 15.1배)보다 약 40% 높다. Fwd 1Y P/E는 22.0배로 AppLovin(19.0배)보다 높다 — 성장 속도(4Q 매출 +65%)가 배수를 받친다",
+    "eps": "FY2027 EPS 컨센서스는 2Q 콜 직전 $1.28에서 $2.00으로 56% 올랐다. 같은 기간 주가는 $35.47 → $50.18(+41%)이다 — 오름의 대부분이 이익 추정 상향이고 배수는 오히려 내려왔다"
+   },
+   "why_excited": "1월 30일 Google AI 월드 생성 모델 공개로 하루 −24%, 2월 2026 전망 실망으로 −26% 떨어져 3월 $17까지 갔다. 3월 26일 1Q 잠정 상회와 비전략 광고 철수 발표 뒤 반등했고, 2Q(+15%)·3Q(+15%) 실적이 연속으로 가이던스를 크게 넘었다. 11월 인수설이 더해졌다",
+   "products": [
+    {
+     "kind": "서비스",
+     "name": "광고·수익화(Grow — Vector·LevelPlay)",
+     "what": "AI 광고 추천·입찰(Vector)과 광고 중개(LevelPlay)",
+     "use": "게임 퍼블리셔의 신규 이용자 확보·광고 수익",
+     "money": "광고 집행액의 수수료",
+     "rev_share": 0.735,
+     "rev_share_prev": 0.676,
+     "mix_basis": "공시(3Q $457.0M ÷ $622.1M, 비전략 포함)",
+     "name_en": "AI mobile ad platform",
+     "what_en": "mobile game advertising recommendation engine with servers and phone ad screens",
+     "use_en": "mobile game user acquisition",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "AI 추천 모델(Vector)",
+        "part_en": "AI recommendation model servers",
+        "kind": "소프트웨어",
+        "confidence": "확인",
+        "supplier": "자체 개발",
+        "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+       },
+       {
+        "no": 2,
+        "part": "클라우드 연산",
+        "part_en": "cloud compute racks",
+        "kind": "인프라",
+        "confidence": "확인",
+        "supplier": "Google Cloud",
+        "source": "https://www.businesswire.com/news/home/20261007399251/en/"
+       },
+       {
+        "no": 3,
+        "part": "광고 중개(LevelPlay)",
+        "part_en": "ad mediation exchange",
+        "kind": "소프트웨어",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+       },
+       {
+        "no": 4,
+        "part": "런타임 신호",
+        "part_en": "in-game runtime telemetry",
+        "kind": "데이터",
+        "confidence": "확인",
+        "supplier": "자체 엔진",
+        "source": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)"
+       },
+       {
+        "no": 5,
+        "part": "성과 측정(어트리뷰션)",
+        "part_en": "attribution measurement",
+        "kind": "외부 서비스",
+        "confidence": "확인",
+        "supplier": "AppsFlyer 등",
+        "source": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)"
+       },
+       {
+        "no": 6,
+        "part": "앱 광고 지면",
+        "part_en": "in-app ad inventory",
+        "kind": "공급",
+        "confidence": "확인",
+        "supplier": "퍼블리셔 앱",
+        "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "소프트웨어",
+     "name": "엔진·창작 도구 구독(Create)",
+     "what": "Unity 엔진·에디터·Asset Store·AI 도구",
+     "use": "게임·산업용 3D 콘텐츠 제작",
+     "money": "좌석당 구독(Pro·Enterprise)",
+     "rev_share": 0.265,
+     "rev_share_prev": 0.324,
+     "mix_basis": "공시(3Q $165.1M ÷ $622.1M)",
+     "name_en": "real-time 3D game engine",
+     "what_en": "game development editor workstation with 3D scene and multi-platform build targets",
+     "use_en": "game creation software",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "엔진 런타임",
+        "part_en": "game engine runtime",
+        "kind": "소프트웨어",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+       },
+       {
+        "no": 2,
+        "part": "에디터·창작 도구",
+        "part_en": "editor and authoring tools",
+        "kind": "소프트웨어",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+       },
+       {
+        "no": 3,
+        "part": "Asset Store",
+        "part_en": "asset marketplace",
+        "kind": "장터",
+        "confidence": "확인",
+        "supplier": "외부 아티스트",
+        "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+       },
+       {
+        "no": 4,
+        "part": "AI 에이전트 연결(MCP)",
+        "part_en": "AI agent connector",
+        "kind": "소프트웨어",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)"
+       }
+      ]
+     }
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "비전략 광고(ironSource 광고망)·퍼블리싱(Supersonic) 정리 → AI 광고 Vector 집중, 첫 GAAP 흑자",
+     "evidence": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+     "falsifier": "비전략 정리 뒤 전략 매출 성장이 20% 아래로"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "Grow 비중 69%(전략 매출) — 고마진 광고 모델 매출이 커지며 조정 EBITDA 마진 +18%p YoY",
+     "evidence": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+     "falsifier": "광고 단가 인하로 마진이 꺾인다"
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "Vector 분기 20건 넘는 모델 개선, 런타임 신호 투입(2Q 말), 엔진을 코딩 에이전트에 개방",
+     "evidence": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로) · 3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+     "falsifier": "개선 속도가 둔화해 Vector QoQ가 한 자릿수로"
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "미확인",
+     "change": "해당 없음(납품 사업이 아니다 — 광고는 즉시 집행, 엔진은 내려받기)",
+     "evidence": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+     "falsifier": "-",
+     "lead_time": {
+      "now": "미확인",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": {}
+     }
+    },
+    {
+     "lens": "M&A",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "매각(Supersonic)·축소(ironSource 광고망) — 인수자 쪽으로는 Silver Lake·PIF 협의 보도(미확인)",
+     "evidence": "https://www.reuters.com/world/silver-lake-pif-have-held-recent-talks-buy-gaming-software-provider-unity-2026-11-05/",
+     "falsifier": "협의 결렬 보도"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "revision",
+     "status": "해당 없음",
+     "change": "해당 없음(고객 CAPEX가 아니라 게임사 마케팅 예산이 매출이 된다)",
+     "evidence": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+     "falsifier": "-"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(재정 지출과 직접 연결된 매출 없음)",
+     "evidence": "미확인",
+     "drives": "revision",
+     "status": "해당 없음",
+     "falsifier": "-",
+     "house": {
+      "level": 1,
+      "why": "직접 관련 법안 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같은 이유"
+     }
+    },
+    "orders": {
+     "change": "해당 없음 — 미·중 기술 규제가 중국 매출(25%)에 간접 노출(추정)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "해당 없음",
+     "falsifier": "-",
+     "house": {
+      "level": 1,
+      "why": "논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같은 이유"
+     }
+    },
+    "laws": {
+     "change": "해당 없음 — 아동 온라인 보호·개인정보 입법이 광고 타기팅에 간접 영향(확인 못 함)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "해당 없음",
+     "falsifier": "-"
+    }
+   }
+  }
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "GAAP 영업이익률이 3Q 16.2%로 1년 전(−26.7%)에서 흑자로 돌았다. 매출이 +32% 느는 동안 판관비는 −32%, 연구개발비는 +3%에 그쳤다 — Supersonic 매각·광고망 종료로 마케팅 비용이 빠졌다. 매출원가(클라우드·광고 서빙)는 매출의 18%로 1년 전 26%에서 내려왔다",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.470615,
+    "cogs": 0.120332,
+    "rd": 0.244357,
+    "sga": 0.231782,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.622092,
+    "cogs": 0.112505,
+    "rd": 0.251148,
+    "sga": 0.157792,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "클라우드·광고 서빙 비용",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.17,
+    "fixed": 0.4,
+    "driver": "Vector 연산·서빙 — 3Q 클라우드 레버리지로 조정 GPM +2%p",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "name": "무형자산 상각(매출원가분)",
+    "stage": "매출원가",
+    "pct_rev": 0.04,
+    "prior_pct": 0.06,
+    "fixed": 1.0,
+    "driver": "ironSource 인수 무형 — 4Q $50M·2027 분기 $15M(전체)",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+   },
+   {
+    "name": "기타 매출원가(지원·결제)",
+    "stage": "매출원가",
+    "pct_rev": 0.021,
+    "prior_pct": 0.026,
+    "fixed": 0.5,
+    "driver": "고객 지원·결제 수수료",
+    "basis": "추정",
+    "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)"
+   },
+   {
+    "name": "연구개발(인력·SBC 포함)",
+    "stage": "연구개발",
+    "pct_rev": 0.404,
+    "prior_pct": 0.519,
+    "fixed": 0.8,
+    "driver": "엔지니어 인건비·주식 보상",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)"
+   },
+   {
+    "name": "판관비(영업·마케팅·관리)",
+    "stage": "판관비",
+    "pct_rev": 0.254,
+    "prior_pct": 0.493,
+    "fixed": 0.6,
+    "driver": "Supersonic 매각으로 마케팅 비용 축소(3Q 조정 S&M −$22M QoQ)",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)"
+   }
+  ],
+  "products": [
+   {
+    "name": "광고·수익화(Grow — Vector·LevelPlay)",
+    "rev_share": 0.735,
+    "gpm": 0.8,
+    "basis": "공시(3Q $457.0M)",
+    "bom": [
+     {
+      "item": "클라우드·광고 서빙 비용",
+      "share": [
+       0.08,
+       0.14
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "모델 학습·실시간 입찰 연산"
+     },
+     {
+      "item": "무형자산 상각(매출원가분)",
+      "share": [
+       0.03,
+       0.06
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "ironSource 기술 무형 상각"
+     },
+     {
+      "item": "결제·측정 수수료",
+      "share": [
+       0.01,
+       0.03
+      ],
+      "basis": "추정",
+      "source": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "광고 성과 측정·결제"
+     }
+    ],
+    "gpm_basis": "회사 GPM 81.9%(3Q26 GAAP) 근처로 둔 추정 — 사업부 원가 미공시"
+   },
+   {
+    "name": "엔진·창작 도구 구독(Create)",
+    "rev_share": 0.265,
+    "gpm": 0.85,
+    "basis": "공시(3Q $165.1M)",
+    "bom": [
+     {
+      "item": "클라우드(빌드·협업 서비스)",
+      "share": [
+       0.04,
+       0.08
+      ],
+      "basis": "추정",
+      "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)",
+      "pass_through": "미확인",
+      "why": "클라우드 빌드·버전 관리"
+     },
+     {
+      "item": "고객 지원·전문 서비스",
+      "share": [
+       0.04,
+       0.08
+      ],
+      "basis": "추정",
+      "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q)",
+      "pass_through": "미확인",
+      "why": "엔터프라이즈 지원 인력"
+     },
+     {
+      "item": "Asset Store 판매자 몫",
+      "share": [
+       0.01,
+       0.03
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "장터 거래 중 판매자 배분"
+     }
+    ],
+    "gpm_basis": "구독 소프트웨어 — 회사 GPM보다 약간 높게 둔 추정"
+   }
+  ],
+  "pass_through": "해당 없음(원가 연동 계약 없음 — 광고 수수료·구독 가격으로 회수)",
+  "source": "Fiscal.ai 표준화 손익·세그먼트(3Q26 10-Q) · 3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
+ },
+ "peers": [
+  {
+   "ticker": "APP",
+   "rev": 7.6089,
+   "ebit_margin": 0.7778,
+   "mcap": 130.435,
+   "pb": 39.54,
+   "debt": 3.5161,
+   "cash": 3.1737,
+   "ev_sales": 17.19,
+   "growth": 0.5779,
+   "goodwill": 1.5164,
+   "intangibles": 0.3362,
+   "pe_fwd": 18.97,
+   "ev_ebitda_fwd": 15.54,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 46.03,
+     "ev_ebitda_fwd": 36.35
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 23.81,
+     "ev_ebitda_fwd": 18.71
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 28.06,
+     "ev_ebitda_fwd": 21.69
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 15.1,
+     "ev_ebitda_fwd": 11.69
+    }
+   ],
+   "pe_fwd2": 14.96,
+   "ev_ebitda_fwd2": 12.51,
+   "pe_fwd3": 12.05,
+   "ev_ebitda_fwd3": 10.22,
+   "ntm_ebit_margin": 0.7969,
+   "ntm_growth": 0.361
+  },
+  {
+   "ticker": "TTD",
+   "rev": 2.9867,
+   "ebit_margin": 0.1733,
+   "mcap": 7.316,
+   "pb": 2.71,
+   "debt": 0.0,
+   "cash": 1.6497,
+   "ev_sales": 2.09,
+   "growth": 0.0703,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "pe_fwd": 12.58,
+   "ev_ebitda_fwd": 12.21,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 18,
+     "ev_ebitda_fwd": 12.52
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 10.3,
+     "ev_ebitda_fwd": 6.97
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 8.91,
+     "ev_ebitda_fwd": 5.69
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 11.33,
+     "ev_ebitda_fwd": 6.71
+    }
+   ],
+   "pe_fwd2": 9.7,
+   "ev_ebitda_fwd2": 9.92,
+   "pe_fwd3": 9.12,
+   "ev_ebitda_fwd3": 9.58,
+   "ntm_ebit_margin": 0.1381,
+   "ntm_growth": -0.0759
+  },
+  {
+   "ticker": "MGNI",
+   "rev": 0.7667,
+   "ebit_margin": 0.1845,
+   "mcap": 4.212,
+   "pb": 4.38,
+   "debt": 0.3499,
+   "cash": 0.3929,
+   "ev_sales": 5.52,
+   "growth": 0.0914,
+   "goodwill": 0.9839,
+   "intangibles": 0.039,
+   "pe_fwd": 21.73,
+   "ev_ebitda_fwd": 16.2,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 16.91,
+     "ev_ebitda_fwd": 9.51
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 12,
+     "ev_ebitda_fwd": 6.48
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 24.03,
+     "ev_ebitda_fwd": 10.34
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.03,
+     "ev_ebitda_fwd": 12.07
+    }
+   ],
+   "pe_fwd2": 15.53,
+   "ev_ebitda_fwd2": 12.58,
+   "pe_fwd3": 11.93,
+   "ev_ebitda_fwd3": 10.31,
+   "ntm_ebit_margin": 0.2328,
+   "ntm_growth": 0.1259
+  },
+  {
+   "ticker": "DV",
+   "rev": 0.7858,
+   "ebit_margin": 0.1333,
+   "mcap": 2.12,
+   "pb": 1.87,
+   "debt": 0.0,
+   "cash": 0.2509,
+   "ev_sales": 2.52,
+   "growth": 0.0716,
+   "goodwill": 0.5111,
+   "intangibles": 0.0813,
+   "pe_fwd": 12.8,
+   "ev_ebitda_fwd": 9.8,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 10.57,
+     "ev_ebitda_fwd": 6.5
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 8.53,
+     "ev_ebitda_fwd": 4.68
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 9.01,
+     "ev_ebitda_fwd": 5.52
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 11.87,
+     "ev_ebitda_fwd": 6.84
+    }
+   ],
+   "pe_fwd2": 10.91,
+   "ev_ebitda_fwd2": 8.62,
+   "pe_fwd3": 10.45,
+   "ev_ebitda_fwd3": 8.23,
+   "ntm_ebit_margin": 0.1365,
+   "ntm_growth": 0.0811
+  },
+  {
+   "ticker": "ADSK",
+   "rev": 7.79,
+   "ebit_margin": 0.262,
+   "mcap": 54.231,
+   "pb": 16.03,
+   "debt": 2.484,
+   "cash": 4.155,
+   "ev_sales": 6.9,
+   "growth": 0.1794,
+   "goodwill": 4.331,
+   "intangibles": 0.423,
+   "pe_fwd": 19.21,
+   "ev_ebitda_fwd": 16.12,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.86,
+     "ev_ebitda_fwd": 20.79
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 19.36,
+     "ev_ebitda_fwd": 15.52
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 15.14,
+     "ev_ebitda_fwd": 12.1
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 16.18,
+     "ev_ebitda_fwd": 12.49
+    }
+   ],
+   "pe_fwd2": 17.04,
+   "ev_ebitda_fwd2": 14.47,
+   "pe_fwd3": 14.6,
+   "ev_ebitda_fwd3": 12.46,
+   "ntm_ebit_margin": 0.4002,
+   "ntm_growth": 0.1366
+  },
+  {
+   "ticker": "PUBM",
+   "rev": 0.3008,
+   "ebit_margin": 0.0086,
+   "mcap": 0.872,
+   "pb": 3.61,
+   "debt": 0.0,
+   "cash": 0.1445,
+   "ev_sales": 2.55,
+   "growth": 0.043,
+   "goodwill": 0.0296,
+   "intangibles": 0.0015,
+   "pe_fwd": 22.38,
+   "ev_ebitda_fwd": 14.64,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 32.25,
+     "ev_ebitda_fwd": 6.01
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 17.59,
+     "ev_ebitda_fwd": 4.61
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 20.18,
+     "ev_ebitda_fwd": 7.52
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 23.71,
+     "ev_ebitda_fwd": 9.64
+    }
+   ],
+   "pe_fwd2": 15.53,
+   "ev_ebitda_fwd2": 10.85,
+   "pe_fwd3": 13.66,
+   "ev_ebitda_fwd3": 9.91,
+   "ntm_ebit_margin": 0.059,
+   "ntm_growth": 0.1071
+  }
+ ],
+ "consensus": {
+  "rev": {
+   "FY2026": 2.392,
+   "FY2027": 3.25,
+   "FY2028": 3.95
+  },
+  "rev_low": {
+   "FY2027": 2.75,
+   "FY2028": 2.9
+  },
+  "rev_high": {
+   "FY2027": 3.85,
+   "FY2028": 5.1
+  },
+  "ebit_margin": {
+   "FY2026": 0.32,
+   "FY2027": 0.43,
+   "FY2028": 0.466
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "n_analysts": 25,
+  "note": "Fiscal 자체 추정(2026-11-06). 조정 EBIT 추정이 없어 EBIT 이익률 = 조정 EBITDA 추정(FY2026 $868M·FY2027 $1,520M·FY2028 $1,980M) − 유형 감가(약 $100~140M)로 둔 추정. 애널리스트 추정 범위는 FY2027 매출 $3.14B(7명)",
+  "eps_quarters_est": {
+   "2026Q4": 0.52,
+   "2027Q1": 0.53,
+   "2027Q2": 0.59,
+   "2027Q3": 0.64
+  },
+  "quarters_est": {
+   "2026Q4": 0.7152,
+   "2027Q1": 0.74,
+   "2027Q2": 0.79,
+   "2027Q3": 0.838
+  },
+  "quarters_est_note": "Fiscal 자체 추정. 4Q26 회사 가이던스 전략 $683~691M + 비전략 $5M — 추정 평균 $715M이 가이던스보다 약 4% 높다. 4Q26 EPS 범위 $0.43~0.61",
+  "ratings": {
+   "strong_buy": 20,
+   "buy": 2,
+   "hold": 3,
+   "sell": 0,
+   "strong_sell": 0,
+   "n": 25,
+   "as_of": "2026-11-06",
+   "target_mean": 57.84,
+   "target_low": 33,
+   "target_high": 72,
+   "target_n": 24,
+   "source": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com (company_analyst_ratings 2026-11-06·목표가 11-11)"
+  },
+  "revisions": {
+   "from_date": "2026-07-22",
+   "to_date": "2026-11-10",
+   "from_label": "2Q 콜 직전 컨센서스",
+   "source": "company_analyst_estimates history(Zacks) — 같은 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.30167,
+     "to": 0.39333
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 0.284,
+     "to": 0.39
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 0.3,
+     "to": 0.425
+    },
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": 1.2771,
+     "to": 1.9967
+    }
+   ]
+  },
+  "price_window": {
+   "from": 35.47,
+   "to": 50.18,
+   "note": "2Q 콜(8/6) 전날 종가 $35.47 → 11/12 종가"
+  },
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": "2026-11-11T10:07:43.000Z",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    [
+     "Q",
+     "2025-09-30",
+     "2025-10-13",
+     0.164,
+     5
+    ],
+    [
+     "Q",
+     "2025-09-30",
+     "2025-10-24",
+     0.165,
+     6
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2025-10-13",
+     0.185,
+     4
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2025-10-24",
+     0.18993,
+     5
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2025-11-07",
+     0.19661,
+     6
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2025-11-10",
+     0.19321,
+     6
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2025-11-11",
+     0.20167,
+     6
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-10-13",
+     0.768,
+     5
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-10-24",
+     0.77333,
+     6
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-11-07",
+     0.78167,
+     6
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-11-10",
+     0.785,
+     6
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-11-11",
+     0.81667,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2025-10-13",
+     0.21,
+     4
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2025-10-24",
+     0.208,
+     5
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2025-11-11",
+     0.224,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2025-10-13",
+     0.2025,
+     4
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2025-10-24",
+     0.204,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2025-11-10",
+     0.20585,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2025-11-11",
+     0.222,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2025-10-13",
+     0.2025,
+     4
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2025-10-24",
+     0.206,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2025-11-10",
+     0.214,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2025-11-11",
+     0.244,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2025-10-13",
+     0.225,
+     4
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2025-10-24",
+     0.232,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2025-11-10",
+     0.236,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2025-11-11",
+     0.262,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-10-13",
+     0.836,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-10-24",
+     0.845,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-11-10",
+     0.85667,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-11-11",
+     0.92667,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-12-02",
+     0.92833,
+     6
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2025-11-10",
+     0.245,
+     2
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2025-11-10",
+     0.265,
+     2
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2025-11-10",
+     0.29,
+     2
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2025-11-10",
+     0.3,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2025-10-13",
+     1.26,
+     1
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2025-10-24",
+     1.2,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2025-11-10",
+     1.275,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2025-11-11",
+     1.188,
+     5
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2025-12-02",
+     1.216,
+     5
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2025-10-24",
+     1.2892,
+     1
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2025-11-10",
+     1.5271,
+     1
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-02-11",
+     0.228,
+     5
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-02-13",
+     0.22333,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-02-17",
+     0.215,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-02-18",
+     0.21,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-03-27",
+     0.21167,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-03-30",
+     0.21833,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-03-31",
+     0.22667,
+     6
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-04-13",
+     0.235,
+     6
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-02-11",
+     0.226,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-02-18",
+     0.214,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-03-30",
+     0.208,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-03-31",
+     0.214,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-04-13",
+     0.22,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-05-21",
+     0.242,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-06-02",
+     0.23,
+     4
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-06-03",
+     0.242,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-06-30",
+     0.24333,
+     6
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-02-11",
+     0.248,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-02-17",
+     0.238,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-02-18",
+     0.242,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-03-30",
+     0.236,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-03-31",
+     0.24,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-04-13",
+     0.244,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-05-21",
+     0.268,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-06-02",
+     0.26,
+     4
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-06-03",
+     0.27,
+     5
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-06-30",
+     0.27167,
+     6
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-07-22",
+     0.275,
+     6
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-08-10",
+     0.28286,
+     7
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-08-17",
+     0.29167,
+     6
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-08-18",
+     0.33667,
+     6
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-02-11",
+     0.266,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-02-18",
+     0.27,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-03-30",
+     0.262,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-03-31",
+     0.264,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-04-13",
+     0.268,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-05-21",
+     0.298,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-06-02",
+     0.2875,
+     4
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-06-03",
+     0.296,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-06-30",
+     0.29833,
+     6
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-07-22",
+     0.30167,
+     6
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-08-17",
+     0.312,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-08-18",
+     0.37,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-10-29",
+     0.372,
+     5
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-11-10",
+     0.39333,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-02-11",
+     0.94167,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-02-18",
+     0.91667,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-02-27",
+     0.93333,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-03-30",
+     0.95333,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-03-31",
+     0.975,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-04-13",
+     0.99333,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-05-11",
+     0.99167,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-05-21",
+     1.0583,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-05-26",
+     1.026,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-06-30",
+     1.0333,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-07-22",
+     1.04,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-10",
+     1.06,
+     6
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-17",
+     1.086,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-18",
+     1.21,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-11-10",
+     1.252,
+     5
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-02-17",
+     0.2525,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-02-18",
+     0.2675,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-03-30",
+     0.2625,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-03-31",
+     0.2725,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-04-10",
+     0.275,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-05-21",
+     0.2925,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-06-02",
+     0.27333,
+     3
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-06-03",
+     0.2975,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-06-30",
+     0.282,
+     5
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-07-22",
+     0.284,
+     5
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-08-17",
+     0.3,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-08-18",
+     0.39,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-02-17",
+     0.26667,
+     3
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-02-18",
+     0.28,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-03-30",
+     0.27,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-03-31",
+     0.28,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-04-10",
+     0.285,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-05-21",
+     0.305,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-06-02",
+     0.28667,
+     3
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-06-03",
+     0.3125,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-06-30",
+     0.298,
+     5
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-07-22",
+     0.3,
+     5
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-08-17",
+     0.3325,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-08-18",
+     0.4225,
+     4
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-10-29",
+     0.425,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-02-17",
+     0.30667,
+     3
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-02-18",
+     0.3125,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-03-30",
+     0.3,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-03-31",
+     0.305,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-04-10",
+     0.3125,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-05-21",
+     0.3325,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-06-02",
+     0.30667,
+     3
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-06-03",
+     0.34,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-06-30",
+     0.32,
+     5
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-07-22",
+     0.326,
+     5
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-08-17",
+     0.3475,
+     4
+    ],
+    [
+     "Q",
+     "2027-09-30",
+     "2026-08-18",
+     0.475,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-02-17",
+     0.31667,
+     3
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-02-18",
+     0.3425,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-03-30",
+     0.3275,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-03-31",
+     0.33,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-04-10",
+     0.3375,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-05-21",
+     0.36,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-06-02",
+     0.33,
+     3
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-06-03",
+     0.365,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-06-30",
+     0.346,
+     5
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-07-22",
+     0.354,
+     5
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-08-17",
+     0.375,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-08-18",
+     0.525,
+     4
+    ],
+    [
+     "Q",
+     "2027-12-31",
+     "2026-10-30",
+     0.5275,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-02-11",
+     1.248,
+     5
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-02-13",
+     1.23,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-02-18",
+     1.1767,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-03-30",
+     1.1767,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-03-31",
+     1.1967,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-04-13",
+     1.21,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-05-11",
+     1.2233,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-05-21",
+     1.2967,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-06-02",
+     1.242,
+     5
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-06-03",
+     1.3133,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-06-30",
+     1.2643,
+     7
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-07-22",
+     1.2771,
+     7
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-10",
+     1.3871,
+     7
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-17",
+     1.4567,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-18",
+     1.825,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-30",
+     1.8283,
+     6
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-11-10",
+     1.9967,
+     6
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     "2026-04-10",
+     0.34,
+     1
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     "2026-05-21",
+     0.35,
+     1
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     "2026-07-23",
+     0.8,
+     1
+    ],
+    [
+     "Q",
+     "2028-03-31",
+     "2026-08-18",
+     0.6,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     "2026-04-10",
+     0.36,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     "2026-05-21",
+     0.37,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     "2026-07-22",
+     0.41,
+     1
+    ],
+    [
+     "Q",
+     "2028-06-30",
+     "2026-08-18",
+     0.62,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     "2026-04-10",
+     0.37,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     "2026-05-21",
+     0.39,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     "2026-07-22",
+     0.43,
+     1
+    ],
+    [
+     "Q",
+     "2028-09-30",
+     "2026-08-18",
+     0.65,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     "2026-04-10",
+     0.39,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     "2026-05-21",
+     0.41,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     "2026-07-22",
+     0.46,
+     1
+    ],
+    [
+     "Q",
+     "2028-12-31",
+     "2026-08-18",
+     0.68,
+     1
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-02-17",
+     1.4886,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-02-18",
+     1.43,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-03-31",
+     1.495,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-04-10",
+     1.5,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-05-21",
+     1.645,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-07-22",
+     1.735,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-08-18",
+     2.545,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-10-30",
+     2.56,
+     2
+    ]
+   ]
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 503.089,
+    "est": 492.791,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-11",
+    "pair": {
+     "zacks": 492.233
+    }
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.24,
+    "est": 0.202,
+    "est_src": "zacks",
+    "est_asof": "2025-11-11",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 124.894,
+    "est": 116.245,
+    "est_src": "zacks",
+    "est_asof": "2026-02-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 508.238,
+    "est": 501.957,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-07",
+    "pair": {
+     "zacks": 500.571
+    }
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.23,
+    "est": 0.235,
+    "est_src": "zacks",
+    "est_asof": "2026-04-13",
+    "basis": "adjusted",
+    "earnings_date": "2026-05-07"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 138.28,
+    "est": 125.014,
+    "est_src": "zacks",
+    "est_asof": "2026-04-10",
+    "basis": "adjusted",
+    "earnings_date": "2026-05-07"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 546.468,
+    "est": 514.72,
+    "est_src": "easyconomics",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-06",
+    "pair": {
+     "zacks": 511.836
+    }
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.28,
+    "est": 0.243,
+    "est_src": "zacks",
+    "est_asof": "2026-06-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 160.191,
+    "est": 133.387,
+    "est_src": "zacks",
+    "est_asof": "2026-07-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 622.092,
+    "est": 580.143,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-29",
+    "basis": "gaap",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.44,
+    "est": 0.335,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-29",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 257,
+    "est": 187.5,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-08-06",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
+   }
+  ]
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "Vector는 7개 분기 된 제품이고 아직 초기다 — 성장 가속이 이어지면 Fwd 2Y 15.6배는 싸다",
+    "evidence": [
+     "Vector +126% YoY·+40% QoQ",
+     "4Q 가이던스 +21~23% QoQ",
+     "FY2027 EPS 추정 +56%(2Q 콜 이후)"
+    ],
+    "falsifier": "4Q Vector가 +21% 아래"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "마진 레버리지와 순현금이 하방을 받친다",
+    "evidence": [
+     "조정 EBITDA 마진 41% → 42%",
+     "분기 FCF $220M",
+     "현금 $2.65B"
+    ],
+    "falsifier": "마진이 40% 아래로 내려온다"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "좋은 실적이지만 Fwd 1Y EV/EBITDA 21배가 동종보다 약 40% 높고 인수설이 가격에 섞였다",
+    "evidence": [
+     "Fwd 1Y EV/EBITDA 21.2배 vs 동종 중앙 약 15배",
+     "11/6 인수설 보도 +5.5%"
+    ],
+    "falsifier": "2027 EBITDA 전망이 $1.6B를 넘는다"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "매출의 약 70%가 Vector 하나 — 규모 5배인 AppLovin과 가격 경쟁이 오면 약자다",
+    "evidence": [
+     "3Q 광고 매출 Unity Grow $457M vs AppLovin $2.18B",
+     "Create 4Q +4~6% 둔화"
+    ],
+    "falsifier": "두 회사 모두 4Q 광고 매출 +40% 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "AI 월드 생성 모델이 엔진 회사를 대체한다 — 1월의 −24%가 예고였다",
+    "evidence": [
+     "1/30 Google Genie 공개 뒤 하루 −24%",
+     "1~3월 −65%"
+    ],
+    "falsifier": "Spark·에이전트로 DAU와 Create가 함께 는다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Vector가 가이던스의 두 배로 컸고 4Q도 올렸다"
+     },
+     {
+      "seat": "Buy",
+      "text": "이익과 현금이 매출을 따라왔다 — 첫 GAAP 흑자"
+     },
+     {
+      "seat": "Neutral",
+      "text": "배수가 동종보다 40% 높고 인수설이 끼어 있다"
+     },
+     {
+      "seat": "Sell",
+      "text": "광고 규모는 AppLovin의 5분의 1이고 Create는 둔화한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "AI가 엔진을 대체하면 광고 데이터도 사라진다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "AppLovin도 3Q 콜에서 시장은 나눠 먹기가 아니라고 했고, 같은 분기 둘 다 컸다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "둘 다 큰 것은 지면 가치가 오른 국면이라서다 — 4Q 가이던스 +21~23%는 3Q +40%보다 낮다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "마진 42%는 이미 컨센서스에 들어 있다 — 다음 4개 분기 EBITDA $1.40B"
+     },
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "2Q 콜 이후 주가 +41% 중 대부분이 이익 상향이었다 — 배수는 내려왔다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "DAU +25%는 회사 숫자일 뿐 매출 지표가 아니다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "코딩 에이전트가 Unity 위에서 돈다 — AI는 엔진을 쓰는 쪽이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "Spark 가격도 이용 지표도 아직 없다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Sell",
+      "text": "Create 둔화는 매출의 27%라 전체 성장을 바꾸지 못한다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Neutral",
+      "text": "그래서 Vector 하나에 더 기대게 됐다는 게 내 요점이다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "순현금 $0.4B와 분기 FCF $220M면 AI 우려가 와도 버틴다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "성장은 확인됐지만 목표가가 주가와 가깝다 — Buy로 물러선다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "배수가 동종 레인지 위라 Neutral",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "4Q Vector와 2027 전망을 본다 — Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "AppLovin과 함께 크는 동안은 Neutral",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "AI 대체 위험을 남겨 Sell",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Neutral",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "Vector 성장·마진·현금은 1차 자료로 확인됐다. 그러나 Fwd 1Y EV/EBITDA 21배는 동종보다 약 40% 높고 다음 4개 분기 컨센서스가 이미 마진 45%를 담았다 — 살아남은 반박은 '배수가 성장을 반영했다'와 'Vector 단일 동인·AppLovin 규모 격차'다. 4Q Vector 성장과 2027 전망이 가를 자료다",
+   "dissent": "Strong Buy 자리는 Fwd 2Y 15.6배면 성장 대비 싸다고 끝까지 남겼다"
+  }
+ },
+ "social": {
+  "as_of": "2026-11-13",
+  "summary": "3Q 숫자는 대체로 그대로 받아들이고, 관심은 인수 가격과 거절 시 되돌림, 그리고 AppLovin과의 상대 강도에 모였다",
+  "narratives": [
+   {
+    "channel": "X",
+    "theme": "3Q 숫자(Vector +126%, 첫 GAAP 흑자) 정리와 AI가 소프트웨어를 키운다는 논지",
+    "expectation": "상향",
+    "vs_fact": "확인",
+    "share": 0.45
+   },
+   {
+    "channel": "레딧",
+    "theme": "Silver Lake·PIF 인수설 — 주당 약 $54, 거절되면 내려간다는 논쟁",
+    "expectation": "혼재",
+    "vs_fact": "미확인",
+    "share": 0.35
+   },
+   {
+    "channel": "유튜브",
+    "theme": "AI 에이전트가 게임 제작을 쉽게 하면 Unity가 도구층이 된다",
+    "expectation": "상향",
+    "vs_fact": "미확인",
+    "share": 0.2
+   }
+  ],
+  "turn": "1월 30일 Google Genie 공개 뒤 'AI가 엔진을 대체' 우려가 지배했고, 8월 2Q 실적 뒤 'Vector 광고 회사'로 이야기가 바뀌었다",
+  "views": [
+   {
+    "side": "강세",
+    "claim": "3Q는 매출 +32%, 전략 Grow +90%, Vector +40% QoQ, GAAP 첫 흑자로 숫자가 서사를 따라잡았다",
+    "basis": "3Q 실적 발표 수치 정리",
+    "source": "X",
+    "date": "2026-11-06",
+    "check": "확인"
+   },
+   {
+    "side": "새 쟁점",
+    "claim": "Silver Lake가 약 $25B(주당 약 $54)를 제시했다는 전언 — 회사가 거절하면 옵션 프리미엄이 되살아난다는 베팅",
+    "basis": "Reuters 협의 보도 + 커뮤니티 전언 가격",
+    "source": "레딧 r/wallstreetbets",
+    "date": "2026-11-06",
+    "check": "사실관계 미확인"
+   },
+   {
+    "side": "시장과 다른 점",
+    "claim": "AppLovin 3Q 콜은 더 나은 광고 예측이 정해진 예산을 나눠 먹는 게 아니라 지면의 가치를 키운다는 증거 — Unity와 AppLovin이 함께 클 수 있다",
+    "basis": "AppLovin 3Q 콜(11/4) 해석",
+    "source": "X",
+    "date": "2026-11-08",
+    "check": "사실관계 미확인"
+   },
+   {
+    "side": "약세",
+    "claim": "Unity와 AppLovin의 주가 격차가 커졌으니 Unity 매도·AppLovin 매수 짝 거래가 맞다",
+    "basis": "8월 두 종목 상대 주가",
+    "source": "X",
+    "date": "2026-08-18",
+    "check": "확인"
+   },
+   {
+    "side": "약세",
+    "claim": "Google Genie 같은 AI 월드 모델이 엔진 회사를 대체할 수 있다는 공포로 1~2월 반토막",
+    "basis": "1/30 하루 −24%, 2월 −26%",
+    "source": "유튜브",
+    "date": "2026-02-05",
+    "check": "확인"
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 22.01,
+  "ev_ebitda_fwd": 21.22,
+  "pe_fwd2": 16.14,
+  "ev_ebitda_fwd2": 15.64,
+  "pe_fwd3": 12.84,
+  "ev_ebitda_fwd3": 12.27
+ },
+ "forward": {
+  "as_of": "2026-11-12",
+  "ntm": {
+   "eps": 2.2800000000000002,
+   "ebitda": 1402186400,
+   "ebit": 969985000,
+   "revenue": 3083202000,
+   "rev_ttm": 2179887000
+  },
+  "horizons": {
+   "2": {
+    "eps": 3.108588,
+    "ebitda": 1902537025,
+    "ext": 0
+   },
+   "3": {
+    "eps": 3.9088954291497977,
+    "ebitda": 2425636205.9342103,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": true
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [
+   {
+    "date": "2023-11-30",
+    "value": 39.81
+   },
+   {
+    "date": "2023-12-29",
+    "value": 55.16
+   },
+   {
+    "date": "2024-01-31",
+    "value": 41.01
+   },
+   {
+    "date": "2024-02-29",
+    "value": 62.69
+   },
+   {
+    "date": "2024-03-28",
+    "value": 57.09
+   },
+   {
+    "date": "2024-04-30",
+    "value": 37.52
+   },
+   {
+    "date": "2025-08-29",
+    "value": 50.9
+   },
+   {
+    "date": "2025-09-30",
+    "value": 49.31
+   },
+   {
+    "date": "2025-10-31",
+    "value": 46.91
+   },
+   {
+    "date": "2025-11-28",
+    "value": 47.69
+   },
+   {
+    "date": "2025-12-31",
+    "value": 46.4
+   },
+   {
+    "date": "2026-01-30",
+    "value": 30.57
+   },
+   {
+    "date": "2026-02-27",
+    "value": 19.48
+   },
+   {
+    "date": "2026-03-31",
+    "value": 22.15
+   },
+   {
+    "date": "2026-04-30",
+    "value": 26.24
+   },
+   {
+    "date": "2026-05-29",
+    "value": 27.69
+   },
+   {
+    "date": "2026-06-30",
+    "value": 24.85
+   },
+   {
+    "date": "2026-07-31",
+    "value": 27.32
+   },
+   {
+    "date": "2026-08-31",
+    "value": 27.71
+   },
+   {
+    "date": "2026-09-30",
+    "value": 24.69
+   },
+   {
+    "date": "2026-10-30",
+    "value": 22.68
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2024-02-29",
+    "value": 30.27
+   },
+   {
+    "date": "2024-03-28",
+    "value": 27.81
+   },
+   {
+    "date": "2024-04-30",
+    "value": 20.27
+   },
+   {
+    "date": "2024-05-31",
+    "value": 17.37
+   },
+   {
+    "date": "2024-06-28",
+    "value": 15.7
+   },
+   {
+    "date": "2024-07-31",
+    "value": 14.17
+   },
+   {
+    "date": "2024-08-30",
+    "value": 20.72
+   },
+   {
+    "date": "2024-09-30",
+    "value": 26.99
+   },
+   {
+    "date": "2024-10-31",
+    "value": 24.26
+   },
+   {
+    "date": "2024-11-29",
+    "value": 28.97
+   },
+   {
+    "date": "2024-12-31",
+    "value": 25.98
+   },
+   {
+    "date": "2025-01-31",
+    "value": 25.26
+   },
+   {
+    "date": "2025-02-28",
+    "value": 30.68
+   },
+   {
+    "date": "2025-03-31",
+    "value": 21.93
+   },
+   {
+    "date": "2025-04-30",
+    "value": 23.82
+   },
+   {
+    "date": "2025-05-30",
+    "value": 29.48
+   },
+   {
+    "date": "2025-06-30",
+    "value": 25.78
+   },
+   {
+    "date": "2025-07-31",
+    "value": 34.79
+   },
+   {
+    "date": "2025-08-29",
+    "value": 39.48
+   },
+   {
+    "date": "2025-09-30",
+    "value": 38.77
+   },
+   {
+    "date": "2025-10-31",
+    "value": 36.93
+   },
+   {
+    "date": "2025-11-28",
+    "value": 37.87
+   },
+   {
+    "date": "2025-12-31",
+    "value": 36.27
+   },
+   {
+    "date": "2026-01-30",
+    "value": 24.17
+   },
+   {
+    "date": "2026-02-27",
+    "value": 15.89
+   },
+   {
+    "date": "2026-03-31",
+    "value": 17.09
+   },
+   {
+    "date": "2026-04-30",
+    "value": 20.29
+   },
+   {
+    "date": "2026-05-29",
+    "value": 22.12
+   },
+   {
+    "date": "2026-06-30",
+    "value": 19.52
+   },
+   {
+    "date": "2026-07-31",
+    "value": 21.2
+   },
+   {
+    "date": "2026-08-31",
+    "value": 22.63
+   },
+   {
+    "date": "2026-09-30",
+    "value": 20.62
+   },
+   {
+    "date": "2026-10-30",
+    "value": 18.94
+   }
+  ]
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_U",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2018-03-31",
+    "rev": 80051000,
+    "cogs": 16541000,
+    "gp": 63510000,
+    "sga": 48877000,
+    "rd": 46689000,
+    "da": null,
+    "other": null,
+    "op": -32056000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 88973000,
+    "cogs": 18011000,
+    "gp": 70962000,
+    "sga": 62465000,
+    "rd": 52343000,
+    "da": null,
+    "other": null,
+    "op": -43846000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 95235000,
+    "cogs": 20049000,
+    "gp": 75186000,
+    "sga": 52591000,
+    "rd": 53205000,
+    "da": null,
+    "other": null,
+    "op": -30610000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 116496000,
+    "cogs": 26666000,
+    "gp": 89830000,
+    "sga": 61785000,
+    "rd": 51834000,
+    "da": null,
+    "other": null,
+    "op": -23789000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 123392000,
+    "cogs": 33102000,
+    "gp": 90290000,
+    "sga": 63448000,
+    "rd": 54526000,
+    "da": null,
+    "other": null,
+    "op": -27684000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 129373000,
+    "cogs": 29049000,
+    "gp": 100324000,
+    "sga": 68725000,
+    "rd": 64272000,
+    "da": null,
+    "other": null,
+    "op": -32673000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 130943000,
+    "cogs": 26451000,
+    "gp": 104492000,
+    "sga": 82190000,
+    "rd": 64034000,
+    "da": null,
+    "other": null,
+    "op": -41732000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 158071000,
+    "cogs": 29995000,
+    "gp": 128076000,
+    "sga": 103560000,
+    "rd": 73096000,
+    "da": null,
+    "other": null,
+    "op": -48580000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 166994000,
+    "cogs": 31868000,
+    "gp": 135126000,
+    "sga": 80812000,
+    "rd": 81751000,
+    "da": null,
+    "other": null,
+    "op": -27437000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 184331000,
+    "cogs": 40432000,
+    "gp": 143899000,
+    "sga": 83636000,
+    "rd": 85108000,
+    "da": null,
+    "other": null,
+    "op": -24845000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 200784000,
+    "cogs": 47540000,
+    "gp": 153244000,
+    "sga": 178279000,
+    "rd": 116648000,
+    "da": null,
+    "other": null,
+    "op": -141683000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 220336000,
+    "cogs": 52507000,
+    "gp": 167829000,
+    "sga": 128668000,
+    "rd": 120008000,
+    "da": null,
+    "other": null,
+    "op": -80847000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 234772000,
+    "cogs": 58734000,
+    "gp": 176038000,
+    "sga": 132925000,
+    "rd": 154015000,
+    "da": null,
+    "other": null,
+    "op": -110902000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 273562000,
+    "cogs": 57725000,
+    "gp": 215837000,
+    "sga": 210805000,
+    "rd": 154216000,
+    "da": null,
+    "other": null,
+    "op": -149184000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 286328000,
+    "cogs": 63517000,
+    "gp": 222811000,
+    "sga": 171148000,
+    "rd": 178413000,
+    "da": null,
+    "other": null,
+    "op": -126750000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 315864000,
+    "cogs": 73654000,
+    "gp": 242210000,
+    "sga": 177973000,
+    "rd": 209066000,
+    "da": null,
+    "other": null,
+    "op": -144829000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 320126000,
+    "cogs": 93833000,
+    "gp": 226293000,
+    "sga": 176414000,
+    "rd": 221040000,
+    "da": null,
+    "other": null,
+    "op": -171161000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 297043000,
+    "cogs": 96836000,
+    "gp": 200207000,
+    "sga": 181913000,
+    "rd": 215960000,
+    "da": null,
+    "other": null,
+    "op": -197666000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 322881000,
+    "cogs": 111903000,
+    "gp": 210978000,
+    "sga": 202224000,
+    "rd": 248380000,
+    "da": null,
+    "other": null,
+    "op": -239626000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 450974000,
+    "cogs": 139928000,
+    "gp": 311046000,
+    "sga": 310695000,
+    "rd": 274111000,
+    "da": null,
+    "other": null,
+    "op": -273760000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 500361000,
+    "cogs": 161964000,
+    "gp": 338397000,
+    "sga": 312901000,
+    "rd": 280480000,
+    "da": null,
+    "other": null,
+    "op": -254984000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 533478000,
+    "cogs": 158827000,
+    "gp": 374651000,
+    "sga": 298148000,
+    "rd": 267955000,
+    "da": null,
+    "other": null,
+    "op": -191452000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 544210000,
+    "cogs": 151349000,
+    "gp": 392861000,
+    "sga": 280256000,
+    "rd": 240003000,
+    "da": null,
+    "other": null,
+    "op": -127398000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 609268000,
+    "cogs": 261582000,
+    "gp": 347686000,
+    "sga": 341496000,
+    "rd": 265150000,
+    "da": null,
+    "other": null,
+    "op": -258960000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 460380000,
+    "cogs": 144387000,
+    "gp": 315993000,
+    "sga": 408194000,
+    "rd": 282728000,
+    "da": null,
+    "other": null,
+    "op": -374929000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 449259000,
+    "cogs": 108875000,
+    "gp": 340384000,
+    "sga": 260869000,
+    "rd": 208935000,
+    "da": null,
+    "other": null,
+    "op": -129420000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 446517000,
+    "cogs": 112054000,
+    "gp": 334463000,
+    "sga": 246412000,
+    "rd": 215197000,
+    "da": null,
+    "other": null,
+    "op": -127146000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 457099000,
+    "cogs": 115537000,
+    "gp": 341562000,
+    "sga": 247246000,
+    "rd": 217970000,
+    "da": null,
+    "other": null,
+    "op": -123654000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 435000000,
+    "cogs": 113957000,
+    "gp": 321043000,
+    "sga": 228353000,
+    "rd": 220625000,
+    "da": null,
+    "other": null,
+    "op": -127935000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 440944000,
+    "cogs": 114211000,
+    "gp": 326733000,
+    "sga": 230678000,
+    "rd": 214807000,
+    "da": null,
+    "other": null,
+    "op": -118752000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 470615000,
+    "cogs": 120332000,
+    "gp": 350283000,
+    "sga": 231782000,
+    "rd": 244357000,
+    "da": null,
+    "other": null,
+    "op": -125856000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 503089000,
+    "cogs": 129239000,
+    "gp": 373850000,
+    "sga": 230633000,
+    "rd": 249727000,
+    "da": null,
+    "other": null,
+    "op": -106510000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 508238000,
+    "cogs": 351637000,
+    "gp": 156601000,
+    "sga": 253589000,
+    "rd": 254425000,
+    "da": null,
+    "other": null,
+    "op": -351413000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 546468000,
+    "cogs": 111709000,
+    "gp": 434759000,
+    "sga": 188703000,
+    "rd": 278275000,
+    "da": null,
+    "other": null,
+    "op": -32219000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 622092000,
+    "cogs": 112505000,
+    "gp": 509587000,
+    "sga": 157792000,
+    "rd": 251148000,
+    "da": null,
+    "other": null,
+    "op": 100647000
+   }
+  ]
+ }
+}
