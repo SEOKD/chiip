@@ -60,12 +60,25 @@ def _fetch(url):
 
 
 def body_of(item):
-    """(본문 발췌, 근거 종류) — 없으면 ('', '')"""
+    """(본문 발췌, 근거 종류) — 없으면 ('', 실패 사유). 원문 열람은 radar/fulltext.py(SEC 8-K+EX-99.1, 대체 와이어·IR, 2026-11-13)"""
+    ft = item.get("fulltext")
+    if not ft:
+        try:
+            import fulltext
+            fulltext.enrich([item], limit=1)
+            ft = item.get("fulltext")
+        except Exception:
+            ft = None
+    if ft and ft.get("status") == "ok":
+        return ("\n".join(ft.get("kpi") or []) + "\n" + (ft.get("excerpt") or ""))[:MAX_BODY], ft.get("route", "원문")
     card = _card_text(item.get("item_id"))
     if card:
         return card[:MAX_BODY], "레이더 카드"
-    b = _fetch(item.get("url"))
-    return (b, "원문") if len(b) >= 300 else ("", "")
+    if not ft:
+        b = _fetch(item.get("url"))
+        if len(b) >= 300:
+            return b, "원문"
+    return "", (ft or {}).get("why", "")
 
 
 def model_call(prompt):
@@ -101,7 +114,7 @@ def note(item, name, alpha_row=None, use_model=True, caller=None, state=None):
     else:
         body, kind = body_of(item)
         if not body:
-            line = UNREAD
+            line = f"본문 미확인 — {kind}" if kind else UNREAD
         elif not use_model:
             return f"→ {UNREAD.split(' — ')[0]}(판정 대기)"
         else:
@@ -114,7 +127,8 @@ def note(item, name, alpha_row=None, use_model=True, caller=None, state=None):
                 return f"→ 판정 실패 — {UNREAD.split(' — ')[0]}"   # 캐시하지 않는다 — 다음 회차 재시도
             tail = f"알파 영향: {res.get('change') or '가치 입력 변화'}" if res.get("alpha_relevant") else "알파 변화 요인 아님"
             line = f"{res['summary'].strip().rstrip('.')} — {tail}"
-        st[key] = line
+        if not line.startswith("본문 미확인"):   # 못 읽은 건은 캐시하지 않는다 — 원문 재시도(fulltext)가 성공하면 다음 감지 때 풀이
+            st[key] = line
         if state is None:
             common.save_state(STATE, dict(list(st.items())[-500:]))
     fact = alpha_fact(alpha_row, str(item.get("published_at") or item.get("saved_at") or "")[:10])

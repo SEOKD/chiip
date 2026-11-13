@@ -274,7 +274,7 @@ FAST_SCHEMA = {"type": "object", "properties": {"results": {"type": "array", "it
 FAST_PROMPT = (
     "radar/state/fast_batch.json의 뉴스 항목마다 한국어로 쓴다(마스터 지시 2026-10-29 실시간 알림 양식). "
     "① points: 핵심 내용 최대 3줄(각 60자 안팎) — 무엇이 일어났나·숫자(단위 그대로, 금액은 $50.6B·$420M 표기)·왜 중요한가. "
-    "제목·요약(snippet)에 있는 사실만 쓰고, 헤드라인을 사실로 단정하지 말고 주체를 붙인다(예: '로이터 보도'). relay가 있으면 주체는 전달 매체가 아니라 원보도 매체(relay.outlet)다. 쓸 사실이 1~2개면 1~2줄만. "
+    "제목·요약(snippet)·fulltext(본문 숫자 문장 kpi·발췌 excerpt — 실적이면 매출·EPS·가이던스·핵심 KPI 우선)에 있는 사실만 쓰고, fulltext.status가 fail이면 숫자를 지어내지 말고 한 줄을 '본문 미확인 — <fulltext.why>'로 쓰고, 헤드라인을 사실로 단정하지 말고 주체를 붙인다(예: '로이터 보도'). relay가 있으면 주체는 전달 매체가 아니라 원보도 매체(relay.outlet)다. 쓸 사실이 1~2개면 1~2줄만. "
     "② profile: 주인공 기업(entities_matched 첫 종목) 설명 3줄 — 비즈니스 모델 / 성장 동력 / 시장의 내러티브. "
     "각 줄 45자 안팎(휴대폰 한 줄), '모델:'·'성장:'·'내러티브:' 같은 머리말 없이 내용만(마스터 지시 2026-10-30). "
     "known_line·narrative가 있으면 그것과 맞게 쓴다. 확실히 아는 사실만, 모르면 빈 배열. "
@@ -294,6 +294,14 @@ def enrich(items):
                   "source_id": it.get("source_id"), "published_at": it.get("published_at"), "entities_matched": it.get("entities_matched"),
                   "known_line": notify.company_line(it.get("entities_matched")),
                   "narrative": next((s for s in map(notify._narrative_summary, it.get("entities_matched") or []) if s), None)} for it in items]
+        try:   # 원문 열람(마스터 지시 2026-11-13) — 핵심 3줄은 본문 숫자 문장으로, 못 열면 사유
+            import fulltext
+            fulltext.enrich(batch, limit=6)
+            for b in batch:
+                ft = b.get("fulltext") or {}
+                b["fulltext"] = {"status": ft.get("status"), "kpi": ft.get("kpi"), "why": ft.get("why"), "excerpt": (ft.get("excerpt") or "")[:1200]}
+        except Exception as exc:
+            common.record_health("src-fulltext", False, f"{type(exc).__name__}: {exc}"[:200])
         f = common.STATE / "fast_batch.json"
         f.write_text(json.dumps(batch, ensure_ascii=False, indent=1), encoding="utf-8")
         out = run_triage.run_claude(FAST_PROMPT, "haiku", FAST_SCHEMA, timeout=180)

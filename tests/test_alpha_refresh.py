@@ -92,11 +92,12 @@ class TestRefresh(unittest.TestCase):
 
 class TestNotes(unittest.TestCase):
     def test_unread_without_body(self):
-        item = {"item_id": "t:1", "title": "x", "url": "https://news.google.com/rss/articles/abc"}
+        item = {"item_id": "t:1", "title": "x", "url": "https://www.sec.gov/Archives/x.htm",
+                "fulltext": {"status": "fail", "why": "SEC 403 — .env SEC_USER_AGENT 미설정"}}
         orig = item_notes._card_text
         item_notes._card_text = lambda _id: ""
         try:
-            self.assertIn("본문 미확인", item_notes.note(item, "X", state={}))
+            self.assertEqual(item_notes.note(item, "X", state={}), "→ 본문 미확인 — SEC 403 — .env SEC_USER_AGENT 미설정")
         finally:
             item_notes._card_text = orig
 

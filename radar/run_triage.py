@@ -155,6 +155,14 @@ def main(argv=None):
             mark_triaged(it["item_id"] for it in batch)
             common.record_health("triage", False, why)
             continue
+        try:   # 카드 전에 원문을 실제로 연다(마스터 지시 2026-11-13) — 판정 모델은 fulltext(숫자 문장·발췌·실패 사유)를 읽고 쓴다
+            import fulltext
+            fulltext.enrich(batch)
+            for it in batch:
+                if (it.get("fulltext") or {}).get("excerpt"):
+                    it["fulltext"] = {**it["fulltext"], "excerpt": it["fulltext"]["excerpt"][:1500]}
+        except Exception as exc:
+            common.record_health("src-fulltext", False, f"{type(exc).__name__}: {exc}"[:200])
         BATCH.write_text(json.dumps(batch, ensure_ascii=False, indent=1), encoding="utf-8")
         try:
             out = run_claude(f"/radar-triage {BATCH.relative_to(common.ROOT).as_posix()}", "haiku", SCHEMA)

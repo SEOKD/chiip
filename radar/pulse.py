@@ -696,9 +696,16 @@ def run(now=None, peek=False):
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",
             "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike", "relay")   # IR 자료·Q&A·소비재 필드(2026-10-30)
+    keep = keep + ("fulltext",)
+    picked = select(sources)
+    try:   # 원문 열람(마스터 지시 2026-11-13) — 실적·공시·보도자료는 본문·첨부(EX-99.1)를 읽어 숫자 문장을 붙인다. 실패면 사유·재시도
+        import fulltext
+        fulltext.enrich(picked, now)
+    except Exception as exc:
+        errors.append(f"원문 열람: {type(exc).__name__}")
     import origin   # 재인용 기사는 원보도로 바꿔 모델에 넘긴다(2026-11-02 마스터 지시)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
-            "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in select(sources)],
+            "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in picked],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
             "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}

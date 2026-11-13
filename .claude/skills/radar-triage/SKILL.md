@@ -8,6 +8,7 @@ argument-hint: "[radar/state/triage_batch.json]"
 
 ## 입력
 `$ARGUMENTS` = 항목 배열 JSON 파일 경로(BUILD_PROMPT §5.12 형식). 파일을 Read로 연다.
+- **원문 열람 결과 `fulltext`**(마스터 지시 2026-11-13 — 원문을 실제로 읽고 카드를 쓴다, `radar/fulltext.py`): `status: ok`면 `kpi`(본문 숫자 문장)·`excerpt`(발췌)로 what_happened를 쓴다 — 실적(8-K 2.02)은 매출·EPS·가이던스·핵심 KPI를 숫자 그대로, `route`가 '대체: …'면 그 자료(와이어·IR 보도자료)라고 밝힌다. `status: fail`이면 숫자를 지어내지 말고 '본문 미확인 — <why>'를 open_questions 첫 줄에 쓴다(재시도 대기열은 스크립트가 맡는다). 제목·snippet만으로 '본문 미열람'이라고 쓰지 않는다.
 
 ## 판정 기준
 **알림 등급** (`config/alert_rules.yaml` 참고)
