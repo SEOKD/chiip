@@ -1,0 +1,20 @@
+# 알파 섹터 보정 — 그림자 계산 (마스터 지시 2026-11-13 종목 범위 확대 3단계, ADR-028, scripts/alpha/sector_shadow.py)
+# 지금 알파(config/alpha.yaml)는 그대로 쓴다. 이 설정은 '바꿨다면 어땠나'를 나란히 기록만 한다 — 4주 뒤 표본 외 비교로 채택 여부를 정한다.
+# 수치는 사전값(미검증), 등록부 prm-asec-*.
+
+# ① 구조적 우위(edge_struct): AI 밸류체인 섹터는 지금 '병목' 점수 그대로, AI 밖 섹터는 섹터 판단 틀로 잰 우위로 바꿔 넣는다.
+#    원천 우선순위: 섹터 판단 틀 카드 edge(lens_cards, 검사 통과·90일) → 알파 판단 파일의 edge_struct 요소(모델이 틀 7번 질문으로 판단) → 없으면 병목 점수(대체 표시)
+edge_sources: [card, judgment, bottleneck]
+
+# ② 섹터 안 순위: 같은 섹터 산정 종목이 min_sector_n 이상일 때만 섹터 안 백분위를 쓴다(적으면 전체 백분위)
+min_sector_n: 5
+blend: 0.30            # S2 = (1 − blend)·S1 + blend·10·섹터 안 백분위 — 섹터마다 점수 눈금이 다른 것을 줄인다
+top_pct: 0.90          # 섹터 안 상위 10%면 표시(sector_top)
+
+# ③ 채택 관문(Model Lab 일요일): 기록 시작 4주(min_days) 뒤, 20거래일 앞 초과수익(SPY 대비)과의 순위 상관(IC)을 비교
+gate:
+  min_days: 28         # 달력일 — 4주 그림자
+  horizon_td: 20       # 앞 수익 기간(거래일)
+  min_obs: 60          # 종목·날짜 관측 수 하한
+  ic_margin: 0.03      # S가 v1보다 IC 0.03 이상 높아야(AI 밖 부분집합과 전체 모두 나빠지지 않을 것)
+  halves: true         # 기간을 앞·뒤 절반으로 나눠 두 절반 모두에서 이겨야(한 구간 운 배제)
