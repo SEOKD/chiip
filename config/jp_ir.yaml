@@ -88,3 +88,32 @@ companies:
   jp-toei-anim: {site: "https://corp.toei-anim.co.jp"}
   jp-kadokawa: {site: "https://group.kadokawa.co.jp"}
   jp-asics: {site: "https://corp.asics.com"}
+  # 2026-11-14 추가(jp_watch.yaml과 같은 35곳 중 대표 도메인을 확인한 곳 — 나머지는 IR 자료실 탐색 주간 점검에서 채운다)
+  jp-6777: {site: "https://www.santec.com"}
+  jp-186a: {site: "https://astroscale.com"}
+  jp-290a: {site: "https://synspective.com"}
+  jp-gmopg: {site: "https://www.gmo-pg.com"}
+  jp-4182: {site: "https://www.mgc.co.jp"}
+  jp-4568: {site: "https://www.daiichisankyo.co.jp"}
+  jp-6367: {site: "https://www.daikin.co.jp"}
+  jp-6376: {site: "https://www.nikkiso.co.jp"}
+  jp-6407: {site: "https://www.ckd.co.jp"}
+  jp-6517: {site: "https://www.denyo.co.jp"}
+  jp-6728: {site: "https://www.ulvac.co.jp"}
+  jp-6752: {site: "https://holdings.panasonic"}
+  jp-6814: {site: "https://www.furuno.co.jp"}
+  jp-7003: {site: "https://www.mes.co.jp"}
+  jp-7453: {site: "https://www.ryohin-keikaku.jp"}
+  jp-7532: {site: "https://ppih.co.jp"}
+  jp-7552: {site: "https://www.happinet.co.jp"}
+  jp-8001: {site: "https://www.itochu.co.jp"}
+  jp-8002: {site: "https://www.marubeni.com"}
+  jp-8031: {site: "https://www.mitsui.com"}
+  jp-8053: {site: "https://www.sumitomocorp.com"}
+  jp-8058: {site: "https://www.mitsubishicorp.com"}
+  jp-8306: {site: "https://www.mufg.jp"}
+  jp-8697: {site: "https://www.jpx.co.jp"}
+  jp-9101: {site: "https://www.nyk.com"}
+  jp-9104: {site: "https://www.mol.co.jp"}
+  jp-9107: {site: "https://www.kline.co.jp"}
+  jp-9983: {site: "https://www.fastretailing.com"}

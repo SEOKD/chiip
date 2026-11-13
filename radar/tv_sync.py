@@ -336,8 +336,23 @@ def plan():
     return {"calls": calls, "need_symbol": need, "readded": readded}
 
 
+def jp_gaps():
+    """와치리스트 도쿄 종목 중 config/jp_watch.yaml에 없는 것 — 일본 적시공시 미러·IR 자료실·TradingView 문서·일본 컨센서스·EDINET이 모두
+    jp_watch.yaml만 보므로 여기에 없으면 실적·공시를 못 잡는다(2026-11-14 마스터 점검: santec 11/6 실적·11/13 반기보고서 미탐지, 35곳 누락)"""
+    import csv
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from pollers import common
+    have = {str(c.get("code")) for c in (common.load_yaml("config/jp_watch.yaml") or {}).get("companies") or []}
+    with (common.ROOT / "config" / "tradingview_symbols.csv").open(encoding="utf-8", newline="") as f:
+        return [{"code": r["ticker"], "id": r["entity_id"], "name": r["name"]} for r in csv.DictReader(f) if r.get("exchange") == "TSE" and r["ticker"] not in have]
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
+    if argv[:1] == ["--jp-gaps"]:
+        g = jp_gaps()
+        print(json.dumps(g, ensure_ascii=False, indent=1))
+        return 1 if g else 0
     if argv[:1] == ["--put"]:
         print(json.dumps(put(json.loads(Path(argv[1]).read_text(encoding="utf-8"))), ensure_ascii=False))
     elif argv[:1] == ["--names"]:

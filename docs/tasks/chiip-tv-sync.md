@@ -13,6 +13,7 @@
    - `need_symbol`: `mcp-tv-search-symbols`로 회사명을 확인해 `EXCHANGE:TICKER`를 찾고, `mcp-tv-get-symbol-data-batch`로 description이 맞는지 본 뒤 `config/tradingview_symbols.csv`에 행을 넣는다(match_method manual, confirmed true). 그다음 --plan을 다시 돌린다. 못 찾으면 보고만 한다.
    - `calls`: 폴더마다 `mcp-watchlist-add-to-watchlist`를 한 번 부른다(watchlist_id, symbols 그대로 — 순서가 곧 섹션 배치다. 보이지 않는 문자가 든 섹션 표시도 있으니 손으로 고치지 않는다). 응답의 전체 목록에서 새 종목이 맞는 섹션에 있고 기존 항목이 줄지 않았는지 확인한다.
    - `readded`: 마스터가 지웠던 종목을 다시 넣었다(2026-11-09 마스터 지시 — Chiip 선정에 남아 있으면 넣는다). 보고 '확인 필요'에 '다시 넣음: 이름'으로 적는다.
+3-1. **일본 감시 목록 맞추기**(2026-11-14 마스터 지시 — santec 실적·반기보고서 미탐지): `py radar/tv_sync.py --jp-gaps`가 종목을 내면 각 종목을 `config/jp_watch.yaml`에 `{id, code, ja, en, sub}`로 넣는다. `ja`는 일본 매체가 실제로 쓰는 표기(株探·日経 제목으로 확인 — 같은 가타카나의 다른 회사가 있으면 쓰지 않는다, 예: サンテック(1960) ≠ santec(6777)). 회사 대표 도메인을 확인했으면 `config/jp_ir.yaml` companies에 `site`도 넣는다. 다 넣으면 종료 코드 0.
 4. 대만 등 폴더가 없는 시장의 종목이 나오면 `config/tradingview.yaml` folders를 보고 판단한다. 새 폴더가 필요하면 만들지 말고 보고한다.
 5. 변화가 있을 때만 텔레그램 1통(`notify.send(본문, 'PULSE')`): 와치리스트 → 레이더 신규 N개, Chiip → 와치리스트 추가(폴더·섹션별 종목), 확인 필요 항목. 변화가 없으면 보내지 않는다.
 

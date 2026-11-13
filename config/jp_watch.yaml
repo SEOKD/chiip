@@ -82,6 +82,42 @@ companies:
   - {id: jp-toei-anim, code: "4816", ja: ["東映アニメーション", "東映アニメ"], en: "Toei Animation", sub: consumer}
   - {id: jp-kadokawa, code: "9468", ja: ["ＫＡＤＯＫＡＷＡ", "KADOKAWA"], en: "Kadokawa", sub: consumer}
   - {id: jp-asics, code: "7936", ja: ["アシックス"], en: "ASICS", sub: consumer}
+  # TradingView 일본 와치리스트 중 빠져 있던 35곳(2026-11-14 마스터 점검 'santec 반기보고서·결산 자료 미탐지' — 적시공시 미러·IR 자료실·EDINET이 이 목록만 본다)
+  - {id: jp-6777, code: "6777", ja: ["ｓａｎｔｅｃ", "santec Holdings", "santec"], en: "santec", sub: components}   # サンテック(1960, 전기공사)와 다른 회사 — 일본 매체는 영문 소문자 표기
+  - {id: jp-186a, code: "186A", ja: ["アストロスケール"], en: "Astroscale", sub: space}
+  - {id: jp-290a, code: "290A", ja: ["Synspective", "シンスペクティブ"], en: "Synspective", sub: space}
+  - {id: jp-gmopg, code: "3769", ja: ["ＧＭＯペイメントゲートウェイ", "GMOペイメントゲートウェイ", "ＧＭＯＰＧ"], en: "GMO Payment Gateway", sub: other}
+  - {id: jp-4182, code: "4182", ja: ["三菱ガス化学"], en: "Mitsubishi Gas Chemical", sub: materials}
+  - {id: jp-429a, code: "429A", ja: ["テクセンドフォトマスク", "テクセンド"], en: "Tekscend Photomask", sub: materials}
+  - {id: jp-4568, code: "4568", ja: ["第一三共"], en: "Daiichi Sankyo", sub: other}
+  - {id: jp-6367, code: "6367", ja: ["ダイキン工業", "ダイキン"], en: "Daikin", sub: power}
+  - {id: jp-6376, code: "6376", ja: ["日機装"], en: "Nikkiso", sub: power}
+  - {id: jp-6407, code: "6407", ja: ["ＣＫＤ"], en: "CKD Corporation", sub: semicap}
+  - {id: jp-6517, code: "6517", ja: ["デンヨー"], en: "Denyo", sub: power}
+  - {id: jp-oxide, code: "6521", ja: ["オキサイド"], en: "OXIDE", sub: components}
+  - {id: jp-6728, code: "6728", ja: ["アルバック"], en: "ULVAC", sub: semicap}
+  - {id: jp-6752, code: "6752", ja: ["パナソニック ホールディングス", "パナソニックＨＤ", "パナソニック"], en: "Panasonic Holdings", sub: components}
+  - {id: jp-6814, code: "6814", ja: ["古野電気"], en: "Furuno Electric", sub: components}
+  - {id: jp-7003, code: "7003", ja: ["三井Ｅ＆Ｓ", "三井E&S"], en: "Mitsui E&S", sub: power}
+  - {id: jp-7018, code: "7018", ja: ["内海造船"], en: "Naikai Zosen", sub: other}
+  - {id: jp-7022, code: "7022", ja: ["サノヤスホールディングス", "サノヤスＨＤ"], en: "Sanoyas Holdings", sub: other}
+  - {id: jp-7453, code: "7453", ja: ["良品計画"], en: "Ryohin Keikaku", sub: consumer}
+  - {id: jp-7532, code: "7532", ja: ["パン・パシフィック・インターナショナルホールディングス", "ＰＰＩＨ"], en: "Pan Pacific International", sub: consumer}
+  - {id: jp-7552, code: "7552", ja: ["ハピネット"], en: "Happinet", sub: consumer}
+  - {id: jp-mtg, code: "7806", ja: ["ＭＴＧ"], en: "MTG", sub: consumer}
+  - {id: jp-8001, code: "8001", ja: ["伊藤忠商事", "伊藤忠"], en: "Itochu", sub: other}
+  - {id: jp-8002, code: "8002", ja: ["丸紅"], en: "Marubeni", sub: other}
+  - {id: jp-8031, code: "8031", ja: ["三井物産"], en: "Mitsui & Co", sub: other}
+  - {id: jp-8053, code: "8053", ja: ["住友商事"], en: "Sumitomo Corporation", sub: other}
+  - {id: jp-8058, code: "8058", ja: ["三菱商事"], en: "Mitsubishi Corporation", sub: other}
+  - {id: jp-8306, code: "8306", ja: ["三菱ＵＦＪフィナンシャル・グループ", "三菱ＵＦＪ"], en: "Mitsubishi UFJ Financial", sub: other}
+  - {id: jp-8309, code: "8309", ja: ["三井住友トラストグループ", "三井住友トラスト"], en: "Sumitomo Mitsui Trust", sub: other}
+  - {id: jp-8697, code: "8697", ja: ["日本取引所グループ", "ＪＰＸ"], en: "Japan Exchange Group", sub: other}
+  - {id: jp-9101, code: "9101", ja: ["日本郵船"], en: "NYK Line", sub: other}
+  - {id: jp-9104, code: "9104", ja: ["商船三井"], en: "Mitsui O.S.K. Lines", sub: other}
+  - {id: jp-9107, code: "9107", ja: ["川崎汽船"], en: "Kawasaki Kisen", sub: other}
+  - {id: jp-9434, code: "9434", ja: ["ソフトバンク"], en: "SoftBank Corp", sub: other}
+  - {id: jp-9983, code: "9983", ja: ["ファーストリテイリング", "ファストリ"], en: "Fast Retailing", sub: consumer}
 # 제목에 이 말이 있으면 사건으로 본다(검색어로도 쓴다)
 event_terms: ["適時開示", "業績予想", "上方修正", "下方修正", "決算", "受注", "設備投資", "新工場", "増産", "買収", "提携", "増配", "最高益", "自社株買い", "公募", "新株", "月次"]
 # 일본 매체(제목 끝 ' - 매체명', 정확히 일치). 기사는 이 매체만 저장·발송 — 9개 영어 매체 규칙의 일본판
