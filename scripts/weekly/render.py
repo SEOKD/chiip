@@ -30,7 +30,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import earnings_alpha  # noqa: E402
 import gpu_rent  # noqa: E402   # Nebius GPU 렌털료 고정 블록(2026-11-13 마스터 지시)
 import surges  # noqa: E402   # 급등 종목, 왜 올랐나(2026-11-14 마스터 지시)
-import sector_moves  # noqa: E402   # 섹터 온도 = AI 밸류체인 + 크게 움직인 섹터(2026-11-14 마스터 지시)
+import sector_moves  # noqa: E402
+import evidence  # noqa: E402   # 근거 묶음(DART·텔레그램·inbox, 2026-11-14 마스터 지시)   # 섹터 온도 = AI 밸류체인 + 크게 움직인 섹터(2026-11-14 마스터 지시)
 
 
 def cfg():
@@ -267,7 +268,11 @@ def render(week):
     d["_gpu"] = bool(c.get("gpu_block", False))
     check(d, c)
     # 급등 종목 원인 — json에 surges가 있으면 관문을 지켜야 렌더된다. 없으면 절을 빼고 알린다(2026-11-14 이전 주차 재렌더용)
-    d["_surges"] = surges.build(d, movers, c["limits"]) if d.get("surges") else None
+    strict = week >= c.get("routes_from", "2026-W46")   # 근거 경로 관문(2026-11-14 마스터 지시) — 이 주차부터
+    d["_surges"] = surges.build(d, movers, c["limits"], evidence.manifest(week) if strict else None) if d.get("surges") else None
+    if strict:
+        for x in d["changes"]:
+            surges.routes_ok(f"changes '{x['title']}'", x.get("routes"))
     d["_earnings_alpha"] = earnings_alpha.load(week)
     md = to_md(d, movers)
     lint(md, c)
