@@ -135,6 +135,11 @@ def collect(force=False):
 def put(src, wid=None):
     """Weekly Review 모델이 TradingView 스크리너(change|1W)로 뽑아 쓴 JSON → 주차 CSV(2026-10-31 재설계, 지시서 .claude/skills/weekly-review)"""
     rows = json.loads(Path(src).read_text(encoding="utf-8"))
+    import yaml   # 업종은 config/weekly_review.yaml themes 중 하나(2026-11-14 마스터 지시 "섹터 분류를 제대로 해라")
+    themes = (yaml.safe_load((common.ROOT / "config" / "weekly_review.yaml").read_text(encoding="utf-8")) or {}).get("themes") or {}
+    bad = [f"{r.get('name_ko')}({r.get('theme')})" for r in rows if themes and r.get("theme") not in themes]
+    if bad:
+        raise SystemExit(f"업종이 분류표에 없음: {', '.join(bad)} — config/weekly_review.yaml themes에서 고른다")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     path = OUT_DIR / f"{wid or week_id()}.csv"
     with path.open("w", encoding="utf-8", newline="") as f:

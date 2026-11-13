@@ -64,5 +64,20 @@ class TestGpuWeekly(unittest.TestCase):
             self.assertFalse(gpu_weekly.status(datetime(2026, 11, 16, 9, 0, tzinfo=KST))["due"])
 
 
+class TestThemeGate(unittest.TestCase):
+    def test_renderer_rejects_theme_outside_taxonomy(self):
+        import render
+        c = render.cfg()
+        self.assertIn("클라우드·데이터센터", c["themes"])
+        self.assertNotIn("사이버보안·SW", c["themes"])
+        rows = "region,rank,pct_change,name_ko,desc_ko,theme,ticker\nUS,1,10,코어위브,GPU 클라우드,사이버보안·SW,CRWV\n"
+        cc = {**c, "regions": [{"key": "US", "title": "US", "count": 1}]}
+        with mock.patch.object(Path, "read_text", return_value=rows):
+            with self.assertRaises(ValueError):
+                render.load_movers("2026-W46", cc)
+        with mock.patch.object(Path, "read_text", return_value=rows.replace("사이버보안·SW", "클라우드·데이터센터")):
+            self.assertEqual(render.load_movers("2026-W46", cc)[0]["rows"][0]["theme"], "클라우드·데이터센터")
+
+
 if __name__ == "__main__":
     unittest.main()

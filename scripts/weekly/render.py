@@ -45,6 +45,9 @@ def load_movers(week, c):
         got.sort(key=lambda x: -float(x["pct_change"]))
         if len(got) != r["count"]:
             raise ValueError(f"{r['title']} {len(got)}종목 — {r['count']}종목 필요")
+        bad = [f"{x['name_ko']}({x.get('theme')})" for x in got if c.get("themes") and week >= c.get("themes_from", "2026-W46") and x.get("theme") not in c["themes"]]
+        if bad:   # 업종은 config themes 18개 중 하나(2026-11-14 마스터 지시 — GPU 클라우드가 SW로 분류된 오류)
+            raise ValueError(f"{r['title']} 업종이 분류표에 없음: {', '.join(bad)} — config/weekly_review.yaml themes에서 고른다")
         out.append({**r, "rows": got})
     return out
 
