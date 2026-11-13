@@ -17,7 +17,8 @@ class TestEarnings(unittest.TestCase):
         hits = [hit("1", "Lattice Semiconductor Corp  (LSCC)  (CIK 0000855658)", ["2.02", "9.01"]),
                 hit("2", "Other Co  (ZZZZ)  (CIK 0000000001)", ["2.02"]),
                 hit("3", "Lattice Semiconductor Corp  (LSCC)  (CIK 0000855658)", ["5.02"])]
-        with mock.patch.object(pulse, "earnings_universe", return_value={"LSCC": "us-lscc"}), mock.patch.object(pulse.sea, "fetch_hits", return_value=hits):
+        with mock.patch.object(pulse, "earnings_universe", return_value={"LSCC": "us-lscc"}), mock.patch.object(pulse.sea, "fetch_hits", return_value=hits), \
+                mock.patch.object(pulse, "atom_earnings", return_value=[]):   # 실시간 목록 경로는 test_pulse_audit_20261114가 따로 잰다
             st = {"earn_seen": []}
             out = pulse.fetch_earnings(st)
             self.assertEqual([x["ticker"] for x in out], ["LSCC"])

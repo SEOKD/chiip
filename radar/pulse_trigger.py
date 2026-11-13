@@ -77,7 +77,7 @@ def launch(c):
     before = gate_mark()
     try:
         proc = subprocess.run(command(c, exe, prompt(c)), cwd=common.ROOT, capture_output=True, text=True, encoding="utf-8", stdin=subprocess.DEVNULL,
-                              env={**os.environ, "PYTHONIOENCODING": "utf-8"}, timeout=c["timeout_min"] * 60, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                              env={**os.environ, "PYTHONIOENCODING": "utf-8", "CHIIP_PULSE_VIA": "trigger-model"}, timeout=c["timeout_min"] * 60, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     except subprocess.TimeoutExpired:
         return False, {"error": "시간 초과", "seconds": round(time.time() - start)}
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
@@ -109,6 +109,21 @@ def urgent(c, now=None):
     return False
 
 
+def app_stalled(c, now=None):
+    """앱 예약(chiip-pulse·chiip-pulse-weekend)이 멈췄나 — 마지막 실제 관문 시각(watermark)이 주중 stall_min.weekday·주말 weekend분보다 오래면
+    그 시각 문자열, 아니면 None. 2026-11-10(월) 07:30~13:33·14:29~20:56 앱 예약이 돌지 않았는데, 문턱은 '급한 자료'만 띄워 12시간 넘게 회차가 없었다"""
+    s = c.get("stall_min") or {}
+    if not s:
+        return None
+    now = now or common.now_kst()
+    app = [r["ts"] for r in run_ledger.rows(2) if r.get("kind") == "gate" and r.get("task") == "chiip-pulse" and not r.get("via")]
+    if not app:
+        return None
+    mark = max(app)   # 앱 예약 회차의 마지막 관문(새 자료가 없어 '종료'한 회차도 센다)
+    lim = s.get("weekend" if now.weekday() >= 5 else "weekday", 30)
+    return mark if datetime.fromisoformat(mark) < now - timedelta(minutes=lim) else None
+
+
 def alert(text):
     notify.send(f"[Chiip Pulse 문턱] {text}", "SYSTEM")
 
@@ -130,7 +145,11 @@ def main(argv):
         run_ledger.record("gate", "chiip-pulse", outcome="종료", via="trigger")
         common.save_state(STATE, st)
         return 0
-    if not urgent(c, now):   # 급하지 않은 자료는 앱 예약 회차 몫 — 장부도 남기지 않는다(빈 회차 비용 0)
+    stalled = app_stalled(c, now)
+    if stalled and st.get("stall_alert") != stalled:   # 정지 구간마다 한 번만
+        st["stall_alert"] = stalled
+        alert(f"앱 예약 Pulse가 {stalled[11:16]} 이후 돌지 않아 문턱이 대신 회차를 띄웁니다. Claude 앱이 켜져 있는지 확인이 필요합니다.")
+    if not stalled and not urgent(c, now):   # 급하지 않은 자료는 앱 예약 회차 몫 — 장부도 남기지 않는다(빈 회차 비용 0)
         common.save_state(STATE, st)
         return 0
     if busy(now):   # 앱 예약 회차가 지금 돌고 있다 — 같은 자료를 두 번 띄우지 않는다

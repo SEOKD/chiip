@@ -222,8 +222,31 @@ def inbox_items(since):
                     continue
             if not cls or not relevant(it, cls):
                 continue
+            if cls != "채용 공고" and is_job_post(it):   # 방위 뉴스룸·IR·협회 색인에 섞인 채용 공고(2026-11-14 점검: 방위 240건 중 71건)
+                continue
             out.append(dict(it, source_class=cls))
     return out
+
+
+# 채용 공고 제목 — 'Mission Engineer in Sterling, Virginia, United States | … - BAE Systems', '… - RQ227923 - General Dynamics',
+# '[IR] EU:SAAB-B: Head of Systems Design - Saab'. 채용 신호는 '채용 공고' 유형(전용 수집기)이 따로 본다
+JOB_TITLE_RE = re.compile(
+    r"\bRQ\d{5,}\b|\bR\d{6,}\b|\bREQ[-\s]?\d{4,}\b|"
+    r"\bin [A-Z][\w .'-]+, [A-Z][\w .'-]+, (?:United States|USA|US|United Kingdom|UK|Germany|Sweden|Australia|Canada)\b|"
+    r"^(?:\[IR\] \S+: )?(?:Senior |Sr\.? |Principal |Lead |Staff |Junior |Chief |Head of )?[\w/&,.\- ]{0,40}"
+    r"\b(?:Engineer|Technician|Worker|Specialist|Integrator|Coordinator|Scientist|Operator|Administrator|Intern(?:ship)?|Planner|"
+    r"Buyer|Machinist|Inspector|Mechanic|Electrician|Assembler|Recruiter|Architect|Developer|Designer|Head of [\w ]+|FSR)\b"
+    r"(?:\s*[–-]\s*[\w /&]+)?\s*(?:[|–-]|\bin\b|$)", re.I)
+JOB_URL_RE = re.compile(r"//(?:careers?|jobs?|recruit(?:ing)?)\.|/(?:careers?|jobs?|job-details|stellenangebote|lediga-jobb)/", re.I)
+NOT_JOB_RE = re.compile(r"\b(?:contract|award|order|launch|deliver|unveil|announce|appoint|names|results|earnings|acquire|partner|selects?)\w*\b", re.I)
+
+
+def is_job_post(it):
+    """채용 공고면 True — 제목 모양·채용 주소. 계약·발표 같은 사건 단어가 있으면 기사로 본다('… names new Chief Engineer')"""
+    t = (it.get("title") or "").strip()
+    if NOT_JOB_RE.search(t):
+        return False
+    return bool(JOB_URL_RE.search(it.get("url") or "") or JOB_TITLE_RE.search(t))
 
 
 def fetch_papers(st):
@@ -520,7 +543,77 @@ def fetch_earnings(st, days=1):
         out.append({"source_id": "src-sec-earnings-now", "source_class": "실적", "url": folder, "title": f"[SEC 8-K 2.02 실적] {name} ({tk})",
                     "published_at": s.get("file_date"), "detected_at": common.iso(common.now_kst()), "language": "en", "ticker": tk,
                     "entities_matched": [uni[tk]], "snippet": f"8-K {','.join(s.get('items') or [])} · 실적 보도자료는 색인의 Ex.99.1", "sec_items": ",".join(s.get("items") or [])})
+    try:
+        out += atom_earnings(uni, seen, st)
+    except Exception as exc:   # 실시간 목록이 막혀도 전문 검색 경로는 그대로 간다
+        common.record_health("src-sec-earnings-atom", False, f"{type(exc).__name__}: {exc}")
     st["earn_seen"] = sorted(seen)[-3000:]
+    return out
+
+
+ATOM_URL = "https://www.sec.gov/cgi-bin/browse-edgar"
+TICKERS_URL = "https://www.sec.gov/files/company_tickers.json"
+ATOM_ENTRY_RE = re.compile(r"<entry>(.*?)</entry>", re.S)
+
+
+def _cik_tickers(st):
+    """CIK → 티커(SEC company_tickers.json, 하루 한 번)"""
+    from pollers.sec_filings import _ua
+    day = common.now_kst().date().isoformat()
+    if st.get("cik_tk_day") != day or not st.get("cik_tk"):
+        d = json.loads(common.http_get(TICKERS_URL, {}, {"User-Agent": _ua()}, timeout=30))
+        st["cik_tk"] = {str(v["cik_str"]): v["ticker"].upper() for v in d.values()}
+        st["cik_tk_day"] = day
+    return st["cik_tk"]
+
+
+def et_to_kst(stamp):
+    """SEC 접수 시각 'YYYYMMDDHHMMSS'(미국 동부) → KST ISO. 이 PC에는 tzdata가 없어 미국 서머타임(3월 둘째 일요일 ~ 11월 첫째 일요일, 02시)을 직접 센다"""
+    from datetime import timezone
+    t = datetime.strptime(stamp, "%Y%m%d%H%M%S")
+    def nth_sunday(y, mo, n):
+        d = datetime(y, mo, 1)
+        return d + timedelta(days=(6 - d.weekday()) % 7 + 7 * (n - 1), hours=2)
+    dst = nth_sunday(t.year, 3, 2) <= t < nth_sunday(t.year, 11, 1)
+    return t.replace(tzinfo=timezone(timedelta(hours=-4 if dst else -5))).astimezone(common.KST).isoformat(timespec="minutes")
+
+
+def atom_earnings(uni, seen, st):
+    """실적 8-K를 EDGAR '최신 제출' Atom에서 바로 잡는다(2026-11-14 점검 — 전문 검색 색인이 늦어 KULR 3시간·FAC·KOPN·SATL 2시간 늦게 잡혔다).
+    감시 티커의 8-K만 index-headers로 Item 2.02(Results of Operations)를 확인한다. published_at = SEC 접수 시각(ACCEPTANCE-DATETIME, ET)"""
+    from pollers.sec_filings import _ua
+    tk_of = _cik_tickers(st)
+    xml = ""
+    for start in (0, 100):   # 실적 몰리는 16:00~16:30 ET에는 5분에 8-K가 100건을 넘는다 — 두 쪽(200건)
+        xml += common.http_get(ATOM_URL, {"action": "getcurrent", "type": "8-K", "start": start, "count": 100, "output": "atom"},
+                               {"User-Agent": _ua()}, timeout=20).decode("utf-8", "replace")
+    out = []
+    for e in ATOM_ENTRY_RE.findall(xml):
+        link = re.search(r'<link[^>]*href="([^"]+)"', e)
+        m = re.search(r"\((\d{6,10})\)", e)
+        if not (link and m):
+            continue
+        cik = m[1].lstrip("0")
+        tk = tk_of.get(cik)
+        a = re.search(r"/(\d{10}-\d{2}-\d{6})-index", link[1])
+        if not (tk and tk in uni and a) or a[1] in seen:
+            continue
+        adsh = a[1]
+        head = common.http_get(link[1].replace("-index.htm", "-index-headers.html"), {}, {"User-Agent": _ua()}, timeout=20).decode("latin1", "replace")
+        if "Results of Operations and Financial Condition" not in head:
+            seen.add(adsh)   # 실적이 아닌 8-K — 다시 열지 않는다
+            continue
+        seen.add(adsh)
+        acc = re.search(r"ACCEPTANCE-DATETIME>(\d{14})", head)
+        pub = et_to_kst(acc[1]) if acc else None
+        name = re.search(r"COMPANY CONFORMED NAME:\s*(.+)", head)
+        items = re.findall(r"ITEM INFORMATION:\s*(.+)", head)
+        out.append({"source_id": "src-sec-earnings-now", "source_class": "실적", "url": link[1].rsplit("/", 1)[0] + "/",
+                    "title": f"[SEC 8-K 2.02 실적] {(name[1].strip() if name else tk)} ({tk})", "published_at": pub,
+                    "detected_at": common.iso(common.now_kst()), "language": "en", "ticker": tk, "entities_matched": [uni[tk]],
+                    "snippet": "8-K · " + " · ".join(i.strip() for i in items)[:200] + " · 실적 보도자료는 색인의 Ex.99.1", "sec_items": "2.02", "via": "atom"})
+        time.sleep(0.15)
+    common.record_health("src-sec-earnings-atom", True)
     return out
 
 
@@ -822,7 +915,9 @@ def main(argv):
         return 0
     _, msg = run()
     print(msg)
-    run_ledger.record("gate", "chiip-pulse", outcome="종료" if msg.rstrip().endswith("종료") else "진행")
+    import os   # 문턱이 띄운 모델 회차는 via=trigger-model — 앱 예약 정지 판정(pulse_trigger.app_stalled)이 앱 회차만 센다
+    via = os.environ.get("CHIIP_PULSE_VIA")
+    run_ledger.record("gate", "chiip-pulse", outcome="종료" if msg.rstrip().endswith("종료") else "진행", **({"via": via} if via else {}))
     return 0
 
 

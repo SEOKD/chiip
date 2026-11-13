@@ -13,6 +13,7 @@ pulse_trigger:
   max_budget_usd: 8               # 회차당 추정 비용 상한(공식 문서상 클라이언트 추정값이라 조금 넘을 수 있다)
   fail_alert_after: 2             # 연속 실패가 이 횟수에 닿으면 알린다
   heartbeat_stale_min: 20         # 문턱이 이만큼 안 돌면 run_hourly가 알린다
+  stall_min: {weekday: 20, weekend: 90}   # 앱 예약 회차(주중 5분·주말 1시간)가 이만큼 안 돌면 급하지 않은 새 자료도 문턱이 대신 띄운다(2026-11-14 점검 — 11/10 앱 예약 12시간 정지). 상한은 daily_model_cap 그대로
   allowed_tools:
     - Read
     - Glob
