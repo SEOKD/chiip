@@ -1,0 +1,98 @@
+auto: true
+id: us-lth
+name: Life Time Group Holdings
+ticker: LTH
+unit: B$
+unit_usd: 1000000000.0
+industry: leisure_facilities
+region_mix:
+  US: 0.98
+  ROW: 0.02
+tax: 0.25
+horizon: 10
+as_of: '2026-11-12'
+market:
+  date: '2026-11-12'
+  price: 45.54
+  shares: 0.2326
+  net_debt: 1.1778
+  source: 가격 = 2026-11-12 종가 $45.54(TradingView NYSE:LTH). 주식 수 = Fiscal 시총 $10,228.4M
+    ÷ $45.54 = 약 224.6M주(10-Q 표지 미대조). 현금 $314.3M, 차입 = 장기부채 $1,462.4M + 유동성 $29.7M(10-Q
+    2026-09-30, Fiscal 표준화). 리스 부채 $2,808.4M은 별도(투하자본에 포함)
+rev0: 3.384
+ic0: 7.4379
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.0978
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.166
+      target: 0.176
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.171
+      - 0.176
+    s2c: 0.55
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.0018
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.166
+      target: 0.196
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.171
+      - 0.176
+    s2c: 0.632
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.0017
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.166
+      target: 0.156
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.171
+      - 0.176
+    s2c: 0.468
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [3.378, 3.39] (3Q26 어닝콜(2026-10-29, 요지만 자기 말로))
+  growth: 컨센서스 1년차 9.8%, 2년차 9.8%
+  margin: 1~2년차 컨센서스 17.1%, 17.6% 고정 → 목표 18%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 0.55
+  range: 컨센서스 최저·최고 추정 → 1년차 성장 -0.2%~0.2%
+  probs: '데이터 묶음 지정 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25}'
+  shares: 완전 희석 = 기본 0.2246(2026-11-12) + 옵션·RSU·워런트·전환 0.0080 — 희석 증권 수는 10-Q 주석
+    미대조 — 옵션·RSU 각 약 4M주로 둔 추정(희석 주식 수와 기본 주식 수
+notes:
+- 자동 생성(build_drivers) 2026-11-13 — 데이터 묶음 2026-11-12
+- '어닝콜 위험: 소비 둔화(고가 회비 탄력)'
+- '어닝콜 위험: 금리 상승 시 매각 후 재임차 조건 악화'
+- '어닝콜 위험: 신규 클럽 개장 비용과 초기 적자'
+evidence:
+- https://ir.lifetime.life/
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-Q
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K
+- Fiscal.ai MCP 2026-11-13 — 표준화 손익·재무상태표·현금흐름·KPI·추정·Forward 배수·애널리스트 의견·어닝콜 전문(3Q26·2Q26)
+- TradingView NYSE:LTH 일봉 760·월봉 62(2026-11-13)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com

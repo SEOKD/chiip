@@ -1,0 +1,3253 @@
+{
+ "id": "us-lth",
+ "name": "Life Time Group Holdings",
+ "ticker": "LTH",
+ "region": "US",
+ "as_of": "2026-11-12",
+ "unit": "B$",
+ "industry": "leisure_facilities",
+ "industry_note": "회원제 피트니스·라이프스타일 클럽 운영 — 업종 자본비용은 config/valuation_v2.yaml leisure_facilities(없으면 기본값, 추정)",
+ "region_mix": {
+  "US": 0.98,
+  "ROW": 0.02
+ },
+ "tax": 0.25,
+ "profile": {
+  "price": 45.54,
+  "shares_basic": 0.2246,
+  "shares_date": "2026-11-12",
+  "cash": 0.3143,
+  "debt": 1.4921,
+  "source": "가격 = 2026-11-12 종가 $45.54(TradingView NYSE:LTH). 주식 수 = Fiscal 시총 $10,228.4M ÷ $45.54 = 약 224.6M주(10-Q 표지 미대조). 현금 $314.3M, 차입 = 장기부채 $1,462.4M + 유동성 $29.7M(10-Q 2026-09-30, Fiscal 표준화). 리스 부채 $2,808.4M은 별도(투하자본에 포함)"
+ },
+ "dilution": {
+  "options": 0.004,
+  "rsu": 0.004,
+  "warrants": 0.0,
+  "converts_shares": 0.0,
+  "date": "2026-11-12",
+  "source": "희석 증권 수는 10-Q 주석 미대조 — 옵션·RSU 각 약 4M주로 둔 추정(희석 주식 수와 기본 주식 수 차이 약 3~4%로 가정). 전환사채·워런트 없음(추정)"
+ },
+ "financials": {
+  "rev_ttm": 3.2933,
+  "ebit_ttm": 0.5721,
+  "invested_capital": 7.4379,
+  "capex_ttm": 1.05,
+  "da_ttm": 0.3264,
+  "sbc_ttm": 0.045,
+  "rev_growth_ttm": 0.1304,
+  "basis": "gaap",
+  "s2c": 0.55,
+  "note": "TTM = 4Q25~3Q26 합. 매출 $3,293.3M, GAAP 영업이익 $572.1M(17.4%). 조정 EBITDA TTM $932.1M(4Q25 $202.6M·1Q $226.7M·2Q $246.5M·3Q $256.3M). 투하자본 = 자기자본 $3,451.7M + 차입 $1,492.1M + 리스 $2,808.4M − 현금 $314.3M = $7,437.9M. CAPEX TTM 약 $1.05B(3Q $288.7M·2Q $263.3M, 1Q·4Q25 미대조 — 추정). 매각 후 재임차(sale-leaseback) 회수 연 $400M이 CAPEX 일부를 되돌린다. SBC 약 $45M은 추정"
+ },
+ "main_metric": "ebitda",
+ "main_metric_why": "회사가 조정 EBITDA·EBITDA 마진으로 가이던스를 내고, 클럽 소유·리스 구조라 순이익보다 EBITDA로 비교한다",
+ "sbc_pct_rev": 0.014,
+ "sbc_why": "추정 — 10-Q 현금흐름표 SBC 미대조",
+ "scenario_probs": {
+  "bear": 0.25,
+  "base": 0.5,
+  "bull": 0.25
+ },
+ "scenario_probs_why": "가이던스 상향이 3개 분기 이어졌다(톤 up) — 기본 50%",
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "rev_fy0": [
+   3.378,
+   3.39
+  ],
+  "next": {
+   "period": "FY2026",
+   "rev_low": 3.378,
+   "rev_high": 3.39,
+   "ebitda_low": 0.958,
+   "ebitda_high": 0.962,
+   "ebitda_margin": 0.284,
+   "comp_growth": [
+    0.085,
+    0.087
+   ],
+   "new_clubs": 14,
+   "slb": 0.4,
+   "unit": "B$",
+   "basis": "회사 가이던스(3Q 콜) — 동일 센터 매출 +8.5~8.7%(직전 7.9~8.3%), 조정 EBITDA 마진 중간 28.4%(직전 28.2%), 매출 약 $3.38~3.39B·조정 EBITDA 약 $958~962M(Fiscal 가이던스 값), 신규 클럽 14곳, 매각 후 재임차 $400M"
+  },
+  "long_term": "2027 신규 클럽 14곳(대부분 착공). 2030년까지 연 $400M 잉여현금흐름(2Q 콜 이전 제시 목표, 3Q 질의에서 재언급)",
+  "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+ },
+ "next_event": {
+  "date": "2027-02-24",
+  "tag": "4Q26 실적·2027 가이던스(2월 말 관행, 날짜 미확정)"
+ },
+ "peers_basis": "ntm",
+ "peers_source": "ntm 동종 = 미국 상장 회원제·레저 시설 8곳: Planet Fitness, Xponential Fitness, Lucky Strike Entertainment, Vail Resorts, Six Flags, Topgolf Callaway, Dave & Buster's, Marriott Vacations. Fiscal.ai 추정·Forward 배수(2026-11-13). 자사주 매입으로 자기자본이 음수인 4곳(PLNT·XPOF·LUCK·FUN)은 ROIC를 잴 수 없어 내재 배수 계산에서 빠진다. 고급 대형 클럽 상장 동종은 없다(Equinox 비상장). Marriott Vacations 선행 이익률은 추정 값이 비정상이라 TTM 이익률을 쓴다",
+ "peers": [
+  {
+   "ticker": "PLNT",
+   "rev": 1.4387,
+   "ebit_margin": 0.2989,
+   "mcap": 4.4663,
+   "pb": null,
+   "debt": 2.469,
+   "cash": 0.4005,
+   "ev_sales": 4.96,
+   "growth": 0.1167,
+   "goodwill": 0.7123,
+   "intangibles": 0.2624,
+   "pe_fwd": 17.19,
+   "ev_ebitda_fwd": 11.72,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 31.04,
+     "ev_ebitda_fwd": 17.7
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 20.79,
+     "ev_ebitda_fwd": 13.18
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 15.74,
+     "ev_ebitda_fwd": 10.51
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 12.54,
+     "ev_ebitda_fwd": 9.51
+    }
+   ],
+   "pe_fwd2": 14.95,
+   "ev_ebitda_fwd2": 10.95,
+   "pe_fwd3": 12.7,
+   "ev_ebitda_fwd3": 10.09,
+   "ntm_ebit_margin": 0.2894,
+   "ntm_growth": 0.009
+  },
+  {
+   "ticker": "XPOF",
+   "rev": 0.2719,
+   "ebit_margin": 0.1246,
+   "mcap": 0.1968,
+   "pb": null,
+   "debt": 0.5043,
+   "cash": 0.0272,
+   "ev_sales": 2.67,
+   "growth": -0.1372,
+   "goodwill": 0.1278,
+   "intangibles": 0.0652,
+   "pe_fwd": 9.1,
+   "ev_ebitda_fwd": 12.11,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 12.66,
+     "ev_ebitda_fwd": 5.28
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 10.52,
+     "ev_ebitda_fwd": 6.77
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 10.56,
+     "ev_ebitda_fwd": 7.31
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 10.89,
+     "ev_ebitda_fwd": 7.17
+    }
+   ],
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 12.36,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 12.02,
+   "ntm_ebit_margin": 0.2142,
+   "ntm_growth": -0.084
+  },
+  {
+   "ticker": "LUCK",
+   "rev": 1.2557,
+   "ebit_margin": 0.1089,
+   "mcap": 0.4253,
+   "pb": null,
+   "debt": 1.7909,
+   "cash": 0.0379,
+   "ev_sales": 2.66,
+   "growth": 0.0181,
+   "goodwill": 0.8878,
+   "intangibles": 0.0483,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 12.72,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 89.83,
+     "ev_ebitda_fwd": 9.48
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 38.25,
+     "ev_ebitda_fwd": 9.4
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 47.75,
+     "ev_ebitda_fwd": 9.76
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 10.15
+    }
+   ],
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 12.43,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 11.56,
+   "ntm_ebit_margin": 0.1289,
+   "ntm_growth": 0.0364
+  },
+  {
+   "ticker": "MTN",
+   "rev": 2.8382,
+   "ebit_margin": 0.1482,
+   "mcap": 5.387,
+   "pb": 9.66,
+   "debt": 3.1864,
+   "cash": 0.2685,
+   "ev_sales": 3.1,
+   "growth": -0.0426,
+   "goodwill": 1.674,
+   "intangibles": 0.2936,
+   "pe_fwd": 27.31,
+   "ev_ebitda_fwd": 11.13,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 19.92,
+     "ev_ebitda_fwd": 8.77
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 21.98,
+     "ev_ebitda_fwd": 9.02
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 23.48,
+     "ev_ebitda_fwd": 9.36
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 24.41,
+     "ev_ebitda_fwd": 9.72
+    }
+   ],
+   "pe_fwd2": 21.33,
+   "ev_ebitda_fwd2": 10.27,
+   "pe_fwd3": 17.91,
+   "ev_ebitda_fwd3": 9.58,
+   "ntm_ebit_margin": 0.1577,
+   "ntm_growth": 0.0887
+  },
+  {
+   "ticker": "FUN",
+   "rev": 2.9137,
+   "ebit_margin": -0.1882,
+   "mcap": 1.1448,
+   "pb": null,
+   "debt": 4.9061,
+   "cash": 0.2679,
+   "ev_sales": 2.12,
+   "growth": -0.0713,
+   "goodwill": 1.4594,
+   "intangibles": 0.6214,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 8.41,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 53.36,
+     "ev_ebitda_fwd": 7.2
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 8.13
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 315.56,
+     "ev_ebitda_fwd": 8.47
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 7.01
+    }
+   ],
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": 7.54,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": 7.23,
+   "ntm_ebit_margin": 0.1121,
+   "ntm_growth": -0.0125
+  },
+  {
+   "ticker": "PLAY",
+   "rev": 2.0811,
+   "ebit_margin": 0.0174,
+   "growth": -0.0149,
+   "mcap": 0.2734,
+   "ev_sales": 1.59,
+   "debt": 1.5075,
+   "cash": 0.016,
+   "goodwill": 0.7426,
+   "intangibles": 0.1782,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": 8.81,
+   "ev_ebitda_fwd2": 8.79,
+   "ntm_ebit_margin": 0.0464,
+   "ntm_growth": 0.0219,
+   "pb": 3.11
+  },
+  {
+   "ticker": "VAC",
+   "rev": 5.267,
+   "ebit_margin": 0.3212,
+   "growth": 0.0459,
+   "mcap": 3.9578,
+   "ev_sales": 1.73,
+   "debt": 5.399,
+   "cash": 0.229,
+   "goodwill": 2.958,
+   "intangibles": 0.665,
+   "pe_fwd": 11.02,
+   "ev_ebitda_fwd": 10.69,
+   "ev_ebitda_fwd2": 9.98,
+   "pb": 1.87
+  },
+  {
+   "ticker": "MODG",
+   "rev": 2.1041,
+   "ebit_margin": 0.1158,
+   "growth": 0.0194,
+   "mcap": 2.9044,
+   "ev_sales": 1.29,
+   "debt": 0.0058,
+   "cash": 0.4335,
+   "goodwill": 0.6195,
+   "intangibles": 0.2188,
+   "pe_fwd": 14.67,
+   "ev_ebitda_fwd": 10.92,
+   "ev_ebitda_fwd2": 12.37,
+   "ntm_ebit_margin": 0.1036,
+   "ntm_growth": 0.0035,
+   "pb": 1.34
+  }
+ ],
+ "consensus": {
+  "rev": {
+   "FY2026": 3.3782,
+   "FY2027": 3.715,
+   "FY2028": 4.079
+  },
+  "rev_low": {
+   "FY2026": 3.3782,
+   "FY2027": 3.56,
+   "FY2028": 3.8
+  },
+  "rev_high": {
+   "FY2026": 3.39,
+   "FY2027": 3.85,
+   "FY2028": 4.33
+  },
+  "ebit_margin": {
+   "FY2026": 0.18,
+   "FY2027": 0.185,
+   "FY2028": 0.19
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "n_analysts": 16,
+  "note": "Fiscal 자체 추정(2026-11-12). 조정 EBIT 추정이 없어 EBIT 이익률 = 조정 EBITDA 추정(FY2026 $960M·FY2027 $1,066M·FY2028 $1,187M) − D&A 추정(약 $330M·$360M·$390M)으로 둔 추정",
+  "eps_quarters_est": {
+   "2026Q4": 0.385,
+   "2027Q1": 0.48,
+   "2027Q2": 0.54,
+   "2027Q3": 0.521
+  },
+  "quarters_est": {
+   "2026Q4": 0.83,
+   "2027Q1": 0.876,
+   "2027Q2": 0.955,
+   "2027Q3": 0.9788
+  },
+  "quarters_est_note": "Fiscal 자체 추정(4Q26은 가이던스 환산). 4Q26 EPS 범위 $0.33~0.56",
+  "ratings": {
+   "strong_buy": 13,
+   "buy": 2,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "n": 16,
+   "as_of": "2026-10-26",
+   "target_mean": 57.13,
+   "target_low": 52,
+   "target_high": 69,
+   "target_n": 15,
+   "source": "Data provided by Zacks Investment Research, Inc., www.zacksdata.com (company_analyst_ratings 2026-10-26·목표가 11-11)"
+  },
+  "revisions": {
+   "from_date": "2026-07-29",
+   "to_date": "2026-11-04",
+   "from_label": "2Q 콜 직전 컨센서스",
+   "source": "company_analyst_estimates history(Zacks) — 같은 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": 0.3967,
+     "to": 0.41
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": 0.47,
+     "to": 0.48
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": 0.52,
+     "to": 0.53
+    },
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": 1.9933,
+     "to": 2.065
+    }
+   ]
+  },
+  "price_window": {
+   "from": 45.71,
+   "to": 45.54,
+   "note": "2Q 콜(7/30) 전날 종가 $45.71 → 11/12 종가"
+  },
+  "eps_history": {
+   "basis": "adjusted",
+   "updated_at": "2026-11-05T10:08:29.000Z",
+   "source": "Fiscal.ai company_analyst_estimates history(Zacks), 2025-11 이후 주요 행. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    [
+     "Q",
+     "2025-12-31",
+     "2025-11-10",
+     0.315,
+     4
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-11-17",
+     1.495,
+     4
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2025-12-22",
+     1.4925,
+     4
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2025-11-14",
+     0.37,
+     2
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2025-11-14",
+     0.425,
+     2
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2025-11-14",
+     0.465,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2025-11-14",
+     0.38,
+     2
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-11-14",
+     1.6425,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2025-12-22",
+     1.625,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2025-11-17",
+     1.85,
+     1
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2026-01-12",
+     0.3125,
+     4
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2026-01-27",
+     0.315,
+     4
+    ],
+    [
+     "Q",
+     "2025-12-31",
+     "2026-02-20",
+     0.335,
+     2
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2026-01-20",
+     1.4875,
+     4
+    ],
+    [
+     "A",
+     "2025-12-31",
+     "2026-02-20",
+     1.515,
+     2
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-01-27",
+     0.36,
+     2
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-02-26",
+     0.38333,
+     3
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-03-16",
+     0.378,
+     5
+    ],
+    [
+     "Q",
+     "2026-03-31",
+     "2026-04-16",
+     0.3875,
+     4
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-01-27",
+     0.41,
+     2
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-03-16",
+     0.4075,
+     4
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-05-14",
+     0.428,
+     5
+    ],
+    [
+     "Q",
+     "2026-06-30",
+     "2026-07-22",
+     0.445,
+     4
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-01-27",
+     0.45,
+     2
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-03-16",
+     0.4225,
+     4
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-05-14",
+     0.4275,
+     4
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-07-22",
+     0.44333,
+     3
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-08-19",
+     0.4525,
+     4
+    ],
+    [
+     "Q",
+     "2026-09-30",
+     "2026-10-28",
+     0.45,
+     4
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-01-27",
+     0.365,
+     2
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-03-16",
+     0.3875,
+     4
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-05-14",
+     0.395,
+     4
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-07-22",
+     0.39667,
+     3
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-08-19",
+     0.41,
+     3
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-10-28",
+     0.40667,
+     3
+    ],
+    [
+     "Q",
+     "2026-12-31",
+     "2026-11-04",
+     0.41,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-01-12",
+     1.6225,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-02-05",
+     1.575,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-03-16",
+     1.598,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-04-16",
+     1.6475,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-05-14",
+     1.654,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-06-18",
+     1.6675,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-07-22",
+     1.7025,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-05",
+     1.75,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-08-20",
+     1.7675,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-10-16",
+     1.732,
+     5
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-10-28",
+     1.765,
+     4
+    ],
+    [
+     "A",
+     "2026-12-31",
+     "2026-11-03",
+     1.815,
+     4
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-03-16",
+     0.435,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-08-19",
+     0.485,
+     2
+    ],
+    [
+     "Q",
+     "2027-03-31",
+     "2026-10-28",
+     0.48,
+     2
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-03-16",
+     0.49,
+     2
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-08-20",
+     0.535,
+     2
+    ],
+    [
+     "Q",
+     "2027-06-30",
+     "2026-10-28",
+     0.53,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-01-20",
+     1.725,
+     2
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-03-16",
+     1.8375,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-05-14",
+     1.8775,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-07-23",
+     1.9933,
+     3
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-08-20",
+     2.045,
+     4
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-10-16",
+     1.994,
+     5
+    ],
+    [
+     "A",
+     "2027-12-31",
+     "2026-11-04",
+     2.065,
+     4
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-06-11",
+     2.3,
+     1
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-10-16",
+     2.24,
+     2
+    ],
+    [
+     "A",
+     "2028-12-31",
+     "2026-10-27",
+     2.5,
+     1
+    ]
+   ]
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 745.096,
+    "est": 743.89,
+    "est_src": "zacks",
+    "est_asof": "2026-02-20",
+    "basis": "gaap",
+    "earnings_date": "2026-02-24"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.34,
+    "est": 0.335,
+    "est_src": "zacks",
+    "est_asof": "2026-02-20",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-24"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 202.6,
+    "est": 202.742,
+    "est_src": "zacks",
+    "est_asof": "2026-02-23",
+    "basis": "adjusted",
+    "earnings_date": "2026-02-24"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 788.7,
+    "est": 788.002,
+    "est_src": "zacks",
+    "est_asof": "2026-03-13",
+    "basis": "gaap",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.42,
+    "est": 0.388,
+    "est_src": "zacks",
+    "est_asof": "2026-04-16",
+    "basis": "adjusted",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 226.655,
+    "est": 217.21,
+    "est_src": "zacks",
+    "est_asof": "2026-03-12",
+    "basis": "adjusted",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 865.996,
+    "est": 844.5,
+    "est_src": "zacks",
+    "est_asof": "2026-07-23",
+    "basis": "gaap",
+    "earnings_date": "2026-07-30"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.48,
+    "est": 0.445,
+    "est_src": "zacks",
+    "est_asof": "2026-07-22",
+    "basis": "adjusted",
+    "earnings_date": "2026-07-30"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 246.532,
+    "est": 237.782,
+    "est_src": "zacks",
+    "est_asof": "2026-07-23",
+    "basis": "adjusted",
+    "earnings_date": "2026-07-30"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 893.524,
+    "est": 868.74,
+    "est_src": "fiscal:guidance",
+    "est_asof": "2026-05-05",
+    "basis": "gaap",
+    "earnings_date": "2026-10-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.51,
+    "est": 0.464,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-07-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 256.259,
+    "est": 249.534,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-07-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-29"
+   }
+  ]
+ },
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-07-30",
+  "tone": "flat",
+  "tone_delta": 0.2,
+  "guidance_direction": "up",
+  "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로) · 직전 = 2Q26 어닝콜(2026-07-30, 요지만 자기 말로)",
+  "kpis": {
+   "rev_q_m": 893.5,
+   "rev_growth": 0.142,
+   "comp_center_rev": 0.087,
+   "dues_m": 622.1,
+   "dues_growth": 0.137,
+   "in_center_m": 249.0,
+   "avg_dues": 244,
+   "arpm": 1016,
+   "center_members": 858747,
+   "centers": 196,
+   "visits_per_member_m": 13,
+   "ebitda_adj_m": 256.3,
+   "ebitda_margin": 0.287,
+   "capex_q_m": 288.7,
+   "net_leverage": 1.3,
+   "liquidity_b": 0.9
+  },
+  "guidance_changes": [
+   "동일 센터 매출 +7.9~8.3% → +8.5~8.7%",
+   "조정 EBITDA 마진 중간 28.2% → 28.4%",
+   "연간 매출·조정 EBITDA 가이던스 상향(4Q 신규 7곳 개장 비용 포함)",
+   "4Q 센터 회원 +2.4~3.1%(의료 회원 제외 +4.8~5.2%)",
+   "매각 후 재임차 연 $400M 유지(4Q 약 $135M 남음)"
+  ],
+  "new_topics": [
+   "2027 신규 클럽 14곳, 대부분 이미 착공",
+   "회원 월 방문 13회(+4%)",
+   "순차입 배수 1.3배·유동성 $900M 이상"
+  ],
+  "dropped_topics": [
+   "2Q의 3Q 회원 증가 +1~1.5% 안내는 3Q 실적으로 대체"
+  ],
+  "analyst_focus": [
+   "Jefferies — 가이던스 상향의 이익 전환율, 2030 FCF 목표",
+   "Guggenheim — 센터 내 매출 가속, 2027 개장 계획",
+   "UBS — 소비 둔화, 매각 후 재임차 시장(금리)",
+   "Barclays — 의료 회원 정리 뒤 회원 수 바닥",
+   "Oppenheimer — 질문 초점 미확인"
+  ],
+  "risks": [
+   "소비 둔화(고가 회비 탄력)",
+   "금리 상승 시 매각 후 재임차 조건 악화",
+   "신규 클럽 개장 비용과 초기 적자",
+   "의료(보험 연계) 회원 감소",
+   "리스 부채 $2.8B"
+  ],
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "동일 센터 매출 가이던스",
+    "label": "동일센터 +8.6%",
+    "prior": "+7.9~8.3%",
+    "latest": "+8.5~8.7%",
+    "driver": "rev0",
+    "shift": 0.004,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "조정 EBITDA 마진",
+    "label": "EBITDA 마진 28.4%",
+    "prior": "중간 28.2%",
+    "latest": "중간 28.4%(3Q 28.7%)",
+    "driver": "margin_m0",
+    "shift": 0.002,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "회비 단가",
+    "label": "월 회비 $244 +12%",
+    "prior": "2Q 평균 회비 상승(수치 미대조)",
+    "latest": "평균 월 회비 $244(+11.9%), 회원당 매출 $1,016(+12%)",
+    "driver": "growth_start",
+    "shift": 0.005,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "2027 개장 계획",
+    "label": "2027 클럽 14곳",
+    "prior": "2027 착공 진행(수치 없음)",
+    "latest": "2027 신규 14곳, 대부분 착공",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "id": "F5",
+    "kind": "반복",
+    "item": "매각 후 재임차",
+    "label": "SLB $400M 유지",
+    "prior": "연 $400M",
+    "latest": "연 $400M(4Q $135M 남음)",
+    "driver": "s2c",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "회원 수",
+    "label": "회원 −0.1% QoQ",
+    "prior": "2Q 센터 회원 860,041",
+    "latest": "3Q 858,747(의료 회원 정리), 4Q +2.4~3.1% 예상",
+    "driver": "growth_start",
+    "shift": -0.002,
+    "confidence": 1.0,
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-05-05",
+   "tag": "1Q26 실적 상회·가이던스 상향 — 당일 +11.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-06",
+   "tag": "1Q26 실적 다음 날 연속 상승 — 당일 +14.3%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-06-01",
+   "tag": "-5.3% — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-06-18",
+   "tag": "+6.7% — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-07-30",
+   "tag": "2Q26 실적·가이던스 상향 — 당일 -3.3%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-26",
+   "tag": "+4.6% — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "3Q26 실적 상회·가이던스 상향 — 당일 +5.1%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "+6.3% — 원인 미확인",
+   "kind": "sector"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-24",
+   "kind": "실적",
+   "tag": "4Q25 실적·2026 가이던스",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-05-05",
+   "kind": "실적",
+   "tag": "1Q26 상회, 이틀 +28%",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-07-30",
+   "kind": "실적",
+   "tag": "2Q26 가이던스 상향",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-29",
+   "kind": "실적",
+   "tag": "3Q26 상회·상향, 당일 +5%",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "terms": {
+  "Life Time": "회사 이름이자 클럽 브랜드",
+  "LT Digital": "Life Time 회원용 앱(운동 기록·예약·코칭)",
+  "MIORA": "Life Time의 장수·건강관리 클리닉 사업",
+  "LifeCafe": "클럽 안 식음료 매장",
+  "LifeSpa": "클럽 안 스파·미용 서비스",
+  "Dynamic Personal Training": "개인 트레이닝 프로그램",
+  "Life Time Work": "클럽 안 공유 오피스",
+  "Life Time Living": "클럽 옆 주거 임대 사업",
+  "sale-leaseback": "자산을 팔고 다시 빌려 쓰는 거래(매각 후 재임차)",
+  "SLB": "매각 후 재임차",
+  "ARPM": "센터 회원 1인당 연 매출",
+  "CAPEX": "설비투자",
+  "FCF": "잉여현금흐름",
+  "RSU": "제한 조건부 주식 보상",
+  "AI": "인공지능",
+  "PPI": "생산자물가지수",
+  "LD": "미국 하원 로비 공시",
+  "HS": "국제 품목 분류 코드",
+  "EVP": "수석 부사장",
+  "CARES Act": "2020년 코로나 경기 부양법"
+ },
+ "names": [
+  "Life Time",
+  "Life Time Group Holdings",
+  "Planet Fitness",
+  "Xponential Fitness",
+  "Lucky Strike Entertainment",
+  "Vail Resorts",
+  "Six Flags",
+  "Equinox",
+  "Leonard Green",
+  "TPG",
+  "LGP",
+  "Jefferies",
+  "Guggenheim",
+  "Guggenheim Partners",
+  "UBS",
+  "Barclays",
+  "Oppenheimer",
+  "Bahram Akradi",
+  "Erik Weaver",
+  "Connor Wienberg",
+  "TradingView",
+  "PLNT",
+  "XPOF",
+  "LUCK",
+  "MTN",
+  "FUN",
+  "Topgolf Callaway",
+  "Dave & Buster's",
+  "Marriott Vacations",
+  "MODG",
+  "PLAY",
+  "VAC",
+  "LT"
+ ],
+ "moat": {
+  "summary": "해자는 '큰 부지에 직접 짓는 대형 클럽(평균 약 9.6만 sq ft)'이라는 물리적 규모와, 고소득층 회원이 가족 단위로 쓰는 생활 거점이라는 습관이다. 같은 동네에 비슷한 시설을 지으려면 수천만 달러와 몇 년의 인허가가 든다. 위협은 소비 둔화와 리스·차입이라는 재무 구조다",
+  "items": [
+   {
+    "kind": "부지·시설 규모(진입 장벽)",
+    "verdict": "강함",
+    "claim": "196개 센터, 총 1,890만 sq ft — 센터당 평균 약 9.6만 sq ft",
+    "evidence": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)",
+    "quant": "센터 196곳·1,890만 sq ft(3Q26)",
+    "falsifier": "경쟁사가 같은 상권에 대형 고급 클럽을 연다"
+   },
+   {
+    "kind": "가격 결정력(회비 인상)",
+    "verdict": "강함",
+    "claim": "평균 월 회비가 1년 새 약 12% 올랐는데 회원 방문은 늘었다",
+    "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+    "quant": "평균 월 회비 $244(+11.9%), 월 방문 13회(+4%)",
+    "falsifier": "회비 인상 뒤 해지율이 오른다(공시 시)"
+   },
+   {
+    "kind": "센터 내 지출(생태계)",
+    "verdict": "보통",
+    "claim": "트레이닝·카페·스파·피클볼 등 센터 안 지출이 매출의 약 28%",
+    "evidence": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)",
+    "quant": "센터 내 매출 $249.0M(3Q, +16.6% YoY)",
+    "falsifier": "센터 내 매출 성장이 회비 성장보다 낮아진다"
+   },
+   {
+    "kind": "재무 구조(리스·차입)",
+    "verdict": "약점",
+    "claim": "리스 부채 $2.8B와 차입 $1.5B — 매각 후 재임차로 성장 자금을 대므로 임차료가 고정비로 쌓인다",
+    "evidence": "10-Q 2026-09-30(Fiscal 표준화)",
+    "quant": "순차입 배수 1.3배(리스 제외), 임차료 매출의 약 12%(2Q 콜)",
+    "falsifier": "금리 상승으로 재임차 조건이 나빠진다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-12",
+  "summary": "창업자 Bahram Akradi가 1992년부터 회장·CEO다. 2015년 사모펀드(Leonard Green·TPG) 비공개 전환과 2021년 재상장을 이끌었다. CFO는 Erik Weaver",
+  "people": [
+   {
+    "name": "Bahram Akradi",
+    "role": "창업자·회장·CEO",
+    "since": "1992",
+    "profile": "회사 창업, 3Q 콜에서 회원 참여·개장 계획 설명",
+    "business": "전사",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "name": "Erik Weaver",
+    "role": "EVP·CFO",
+    "since": "미확인",
+    "profile": "3Q 콜 재무·가이던스·매각 후 재임차",
+    "business": "재무",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "부동산 투자자와의 매각 후 재임차 거래(연 $400M) — 성장 자금 조달 경로",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "거래 상대 미공시",
+    "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "network": "금융",
+    "link": "대주주 사모펀드(Leonard Green·TPG, 재상장 뒤 지분 보유 — 현재 지분율 미대조)",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "위임장 미대조",
+    "evidence": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "GAAP 영업이익률은 3Q 17.7%로 1년 새 +4.4%p 올랐다. 회비 단가 인상과 센터 내 지출 증가가 고정비(인력·임차·시설)를 덮은 결과다. 매출원가(센터 운영비)는 매출의 약 53%로 거의 그대로이고 판관비·감가 비중이 내려왔다(분해는 추정)",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.782649,
+    "cogs": 0.414328,
+    "rd": 0.0,
+    "sga": 0.147351,
+    "other": 0.085325
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.893524,
+    "cogs": 0.474518,
+    "rd": 0.0,
+    "sga": 0.161851,
+    "other": 0.09915
+   }
+  ],
+  "costs": [
+   {
+    "name": "센터 인력(트레이너·운영)",
+    "stage": "매출원가",
+    "pct_rev": 0.27,
+    "prior_pct": 0.27,
+    "fixed": 0.6,
+    "driver": "센터 직원·트레이너 급여 — 트레이닝 매출과 함께 늘어난다",
+    "basis": "추정",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "name": "임차료(리스)",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.12,
+    "fixed": 1.0,
+    "driver": "매각 후 재임차로 늘지만 매출 대비 약 12% 유지(2Q 콜)",
+    "basis": "공시",
+    "source": "2Q26 어닝콜(2026-07-30, 요지만 자기 말로)"
+   },
+   {
+    "name": "시설 운영(전기·수도·유지보수)",
+    "stage": "매출원가",
+    "pct_rev": 0.08,
+    "prior_pct": 0.085,
+    "fixed": 0.8,
+    "driver": "에너지 단가·수영장 운영",
+    "basis": "추정",
+    "source": "10-Q 2026-09-30 미대조",
+    "input": "commercial_power"
+   },
+   {
+    "name": "식음료·소매 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.061,
+    "prior_pct": 0.06,
+    "fixed": 0.0,
+    "driver": "LifeCafe·소매 판매량",
+    "basis": "추정",
+    "source": "10-Q 2026-09-30 미대조"
+   },
+   {
+    "name": "판관비(본사·마케팅)",
+    "stage": "판관비",
+    "pct_rev": 0.181,
+    "prior_pct": 0.188,
+    "fixed": 0.7,
+    "driver": "매출 증가에 고정비 레버리지",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)"
+   },
+   {
+    "name": "감가상각·기타",
+    "stage": "기타",
+    "pct_rev": 0.111,
+    "prior_pct": 0.109,
+    "fixed": 1.0,
+    "driver": "신규 클럽 감가상각",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)"
+   }
+  ],
+  "products": [
+   {
+    "name": "회원 회비·가입비",
+    "rev_share": 0.696,
+    "gpm": 0.52,
+    "basis": "공시(3Q $622.1M)",
+    "bom": [
+     {
+      "item": "센터 인력(트레이너·운영)",
+      "share": [
+       0.3,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "10-Q 2026-09-30 미대조(추정)",
+      "pass_through": "미확인",
+      "why": "트레이너·운영 인력 임금"
+     },
+     {
+      "item": "임차료(리스)",
+      "share": [
+       0.15,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "재임차 임대료(연 인상 조항)"
+     },
+     {
+      "item": "시설 운영(전기·수도·유지보수)",
+      "share": [
+       0.1,
+       0.15
+      ],
+      "basis": "추정",
+      "input": "commercial_power",
+      "source": "10-Q 2026-09-30 미대조(추정)",
+      "pass_through": "미확인",
+      "why": "상업용 전력·수도 요금"
+     },
+     {
+      "item": "운동 기구",
+      "share": [
+       0.02,
+       0.04
+      ],
+      "basis": "추정",
+      "input": "exercise_equipment",
+      "source": "10-Q 2026-09-30 미대조(추정)",
+      "pass_through": "미확인",
+      "why": "기구 교체 단가(수입 의존)"
+     }
+    ],
+    "gpm_basis": "회사 GPM 46.9%(3Q26)에서 회비 몫을 높게 둔 추정"
+   },
+   {
+    "name": "센터 내 사업(트레이닝·카페·스파 등)",
+    "rev_share": 0.279,
+    "gpm": 0.33,
+    "basis": "공시(3Q $249.0M)",
+    "bom": [
+     {
+      "item": "센터 인력(트레이너·운영)",
+      "share": [
+       0.4,
+       0.55
+      ],
+      "basis": "추정",
+      "source": "10-Q 2026-09-30 미대조(추정)",
+      "pass_through": "미확인",
+      "why": "트레이너·운영 인력 임금"
+     },
+     {
+      "item": "식음료·소매 원가",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "10-Q 2026-09-30 미대조(추정)",
+      "pass_through": "미확인",
+      "why": "식자재·소매 상품 단가"
+     },
+     {
+      "item": "임차료(리스)",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+      "pass_through": "미확인",
+      "why": "재임차 임대료(연 인상 조항)"
+     }
+    ],
+    "gpm_basis": "인력 비중이 커 회사 GPM보다 낮게 둔 추정"
+   }
+  ],
+  "pass_through": "미확인(회비 인상 여력으로 원가를 넘긴다 — 계약 연동 조항은 없음)",
+  "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q) · 3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+ },
+ "supply": {
+  "as_of": "2026-11-12",
+  "summary": "공급망 병목은 부품이 아니라 '새 클럽을 지을 땅·인허가·건설'과 '매각 후 재임차 자금'이다. 운동 기구·식음료는 여러 공급사에서 산다(공급사 이름 미공시)",
+  "links": [
+   {
+    "item": "신규 클럽 부지·건설",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "지역 시공사(이름 미공시)",
+      "role": "클럽 건설",
+      "status": "추정",
+      "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "균형",
+    "capacity_basis": "2027 개장 14곳 대부분 착공(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "내재화",
+    "factor_basis": "부지 확보부터 개장까지 약 18~24개월(추정 — 회사 미공시) — 리드타임 수치로는 쓰지 않는다 · 시공사 교체 약 6개월(추정 — 지역 시공사 다수, 설계는 자체)",
+    "why": "성장의 유일한 물량 동인이 신규 클럽이다",
+    "relief": "2027분 대부분 착공(3Q 콜)",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "item": "매각 후 재임차 자금",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "부동산 투자자(이름 미공시)",
+      "role": "클럽 건물 매입·재임대",
+      "status": "회사 발표",
+      "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "균형",
+    "capacity_basis": "2026 $400M 목표 유지, 9월 $62M 체결(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "복수구매",
+    "factor_basis": "금리 상승 시 조건 악화(UBS 질문)",
+    "why": "개장 CAPEX를 회수해 잉여현금흐름을 플러스로 유지한다",
+    "relief": "미확인",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "item": "운동 기구",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "기구 제조사(이름 미공시)",
+      "role": "운동 기구",
+      "status": "추정",
+      "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 0,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "복수구매",
+    "factor_basis": "공급사 다수(추정)",
+    "why": "교체 주기 구매",
+    "relief": "-",
+    "input": "exercise_equipment",
+    "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+   }
+  ]
+ },
+ "capacity": {
+  "unit": "센터",
+  "as_of": "2026-09-30",
+  "summary": "196개 센터, 총 1,890만 sq ft(3Q26). 2026년 14곳(4Q 7곳), 2027년 14곳을 연다. 센터별 가동률은 공시하지 않고 회원 수·방문 횟수로 수요를 본다",
+  "current": {
+   "nameplate": 196,
+   "utilization": "미확인",
+   "basis": "공시",
+   "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)"
+  },
+  "plans": [
+   {
+    "name": "2026 신규 클럽(남은 4Q 7곳 포함 연 14곳)",
+    "stage": "착공",
+    "online": "2026-12",
+    "capex": "미확인",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+    "add": 14,
+    "blocker": "개장 지연 · 초기 적자"
+   },
+   {
+    "name": "2027 신규 클럽",
+    "stage": "착공",
+    "online": "2027-12",
+    "capex": "미확인",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+    "add": 14,
+    "blocker": "대부분 착공 — 일부 인허가 · 금리(재임차 조건)"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2024",
+    "capex": 0.6,
+    "rev": 2.621,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2025",
+    "capex": 0.8,
+    "rev": 2.9953,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2026",
+    "capex": 1.0955,
+    "rev": 3.3782,
+    "kind": "컨센서스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 1.2,
+    "rev": 3.715,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_note": "FY2024·FY2025 CAPEX는 10-K 현금흐름표 미대조(추정). FY2026·2027은 Fiscal 자체 추정. 매각 후 재임차 회수(연 $400M)는 빼지 않은 총액",
+  "facilities": {
+   "count": 196,
+   "count_basis": "센터 수(3Q26 KPI). 10-K Item 2 소유·임차 구분은 이번 회차 미대조",
+   "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K",
+   "items": [
+    {
+     "name": "본사(Chanhassen)",
+     "location": "미국 미네소타 찬하센",
+     "owned": "미확인",
+     "use": "본사",
+     "capacity": "미확인",
+     "capacity_basis": "미공시",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "센터가 196곳으로 많고 개별 처리량을 공시하지 않아 위성 영상으로 재지 않는다"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "개인 회원이 고객이다 — 단일 고객 집중은 없다. 센터 회원 858,747명(의료 보험 연계 회원 정리 중), 평균 월 회비 $244",
+  "items": [
+   {
+    "name": "센터 회원(개인·가족)",
+    "alias": "회원",
+    "share": 0.95,
+    "prior": 0.95,
+    "basis": "회사 발표",
+    "buys": "월 회비·센터 내 서비스",
+    "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)",
+    "why": "회비 + 센터 내 매출 = 센터 매출 $871.1M(전체의 97.5%)"
+   },
+   {
+    "name": "의료 보험 연계 회원",
+    "alias": "qualified medical",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "보험사 프로그램 회원권",
+    "source": "2Q26 어닝콜(2026-07-30, 요지만 자기 말로)",
+    "why": "회사가 줄이고 있다 — 회원 수 증가율을 낮추는 요인"
+   }
+  ]
+ },
+ "pipeline": {
+  "none": "수주 사업이 아니다 — 매출은 개인 회원의 월 회비와 센터 내 지출이다. 신규 클럽 개장 일정은 생산능력 절에 있다"
+ },
+ "recurring": {
+  "share": 0.7,
+  "peer_share": 0.75,
+  "kind": "월 회원 회비",
+  "base": "센터 회원 858,747명(3Q26)",
+  "base_growth": 0.022,
+  "years_to_recurring": 0,
+  "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)"
+ },
+ "segments_hist": {
+  "segments": {
+   "회원 회비·가입비": [
+    {
+     "period": "2023-03-31",
+     "rev": 357500000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 387100000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 407900000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 404800000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 425400000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 462700000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 488100000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 477800000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 501700000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 527299999.99999994
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 547300000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 535100000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 561500000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 597200000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 622100000.0
+    }
+   ],
+   "센터 내 사업(트레이닝·카페·스파 등)": [
+    {
+     "period": "2023-03-31",
+     "rev": 140300000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 155000000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 160500000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 141300000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 155100000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 182300000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 186700000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 168600000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 184000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 208600000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 213600000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 191200000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 206100000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 240200000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 249000000.0
+    }
+   ],
+   "기타 서비스(디지털·이벤트 등)": [
+    {
+     "period": "2023-03-31",
+     "rev": 13100000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 19600000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 16800000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 12800000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 16200000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 22800000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 18500000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 16900000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 20400000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 25600000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 21800000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 18800000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 21100000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 28600000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 22400000.0
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(분기, 10-Q)"
+ },
+ "sync": {
+  "none": "회원 구독·서비스 매출이라 품목 무역·PPI 지표와 매출이 같이 움직일 이유가 없다"
+ },
+ "pq": {
+  "none": "가격(평균 회비)·물량(회원 수)은 공시되지만 상장(2021) 뒤 시계열이 짧아 10년 사이클을 잴 수 없다"
+ },
+ "ma": {
+  "none": "최근 3년 큰 인수 없음(10-Q 미대조) — 성장은 직접 개장"
+ },
+ "social": {
+  "none": "Quantral 24h·7d 언급 없음(2026-11-13) — 최근 신호는 'X 게시글이 올해 +69% 상승과 경영진 실행을 짚었다'는 한 줄뿐"
+ },
+ "midterm": {
+  "sub": "consumer",
+  "exposure": {
+   "tariffs": 0.05
+  },
+  "etf": "AMEX:XLY",
+  "why": "미국 내수 회원 서비스 — 관세 노출은 기구·건설 자재뿐(추정)"
+ },
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "ladder": {
+  "exit": {
+   "ev_ebitda": 13,
+   "ebitda_margin": 0.285,
+   "net_margin": 0.12,
+   "opm": 0.18,
+   "basis": "출구 Fwd EV/EBITDA 13배 = LTH 3년 범위(10.6~14.1배)의 중간 위, 동종(Planet Fitness 11.7배·Vail 11.1배)보다 높게. EBITDA 마진 28.5%는 2026 가이던스 수준, 순이익률 12%(추정)"
+  },
+  "refs": [
+   {
+    "label": "TTM(실적)",
+    "value": 3.2933
+   },
+   {
+    "label": "FY2026 컨센서스",
+    "value": 3.3782
+   },
+   {
+    "label": "FY2027 컨센서스",
+    "value": 3.715
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "시가총액 약 $20B — 클럽 수와 회비가 함께 늘어 매출 약 $6.5B·EBITDA 약 $1.9B",
+    "outlook": "연 14곳 개장(약 +7%)과 회비 +5~8%면 연 12~14% 성장 — 약 5~6년. 리스·재임차 조건이 유지돼야 한다"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "매출 약 $10B",
+    "outlook": "미국 고급 클럽 상권 수의 한계 — 해외 확장·새 사업(MIORA 등) 근거 없음"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "매출 약 $16B",
+    "outlook": "닫힘"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $100B",
+    "outlook": "경로가 없다. 10배는 기저율상 희귀 사건이다"
+   }
+  },
+  "summary": "2배는 개장 속도와 회비 인상이 5~6년 이어져야 하는 조건부 경로다. 3배 이상은 근거가 없다"
+ },
+ "narrative": {
+  "as_of": "2026-11-12",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "'고소득층의 생활 거점 클럽은 경기와 무관하게 회비를 올릴 수 있고, 이제 자체 현금으로 개장 자금을 댄다'는 이야기. 숫자가 받쳤다(평균 회비 +12%, EBITDA 마진 28.7%, 순차입 배수 1.3배). 주가는 1년 +76%, Fwd 1Y EV/EBITDA는 약 11배 → 14.4배",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견(16명)",
+      "Strong Buy 13 · Buy 2 · Hold 1"
+     ],
+     [
+      "목표가 평균(15명)",
+      "$57.13(범위 $52~69)"
+     ],
+     [
+      "FY2027 EPS 컨센서스",
+      "$2.07(7/29 $1.99 → 11/4, +4%)"
+     ]
+    ],
+    "read": "의견은 거의 만장일치 매수이고 목표가 하단($52)도 주가보다 14% 높다. 3Q 콜 질문은 소비 둔화·재임차 시장·회원 수 바닥이 초점이었다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "미확인"
+     ],
+     [
+      "대주주",
+      "Leonard Green·TPG(재상장 뒤 지분 매도 진행 — 현재 지분 미대조)"
+     ]
+    ],
+    "read": "사모펀드 대주주의 잔여 지분 매도(오버행)가 주가 상단을 누르는 요인이다(추정)"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧·X",
+      "미수집"
+     ]
+    ],
+    "read": "리테일 관심 자료 없음"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 제목",
+      "1Q 상회 뒤 이틀 +28%(5/5~6), 3Q 상회·상향(10/29)"
+     ]
+    ],
+    "read": "5월 급등 원인은 1Q 상회와 연간 가이던스 상향 — 1차 보도 대조는 회사 발표만"
+   }
+  },
+  "factors": [
+   {
+    "name": "회비 인상과 고급화",
+    "thesis": "회원 수보다 회원당 매출을 키운다 — 평균 회비 +12%",
+    "inputs": "이익",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "평균 월 회비 $244(+11.9%), 회원당 매출 $1,016(+12%)",
+    "status": "확인",
+    "falsifier": "회원 수가 2개 분기 연속 줄고 회비 성장이 둔화한다",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "name": "자체 현금으로 개장(재무 체질)",
+    "thesis": "매각 후 재임차와 영업현금으로 개장 자금을 대며 잉여현금흐름이 플러스로 돌았다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "순차입 배수 1.3배, 2030 FCF 연 $400M 목표",
+    "status": "확인",
+    "falsifier": "재임차 조건 악화로 차입이 다시 늘어난다",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "name": "센터 내 지출 확대(트레이닝·피클볼·MIORA)",
+    "thesis": "센터 안에서 쓰는 돈이 회비보다 빨리 는다",
+    "inputs": "이익",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "센터 내 매출 $249.0M(+16.6% YoY)",
+    "status": "확인",
+    "falsifier": "센터 내 매출 성장이 10% 아래로 떨어진다",
+    "source": "Fiscal.ai 표준화 손익·KPI(3Q26 10-Q)"
+   },
+   {
+    "name": "개장 속도(연 14곳)",
+    "thesis": "2026·2027 각 14곳 — 물량 성장 약 7%",
+    "inputs": "이익",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2027 14곳 대부분 착공",
+    "status": "확인",
+    "falsifier": "2027 개장이 10곳 아래로 밀린다",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   },
+   {
+    "name": "반대 — 소비 둔화·고가 회비 탄력",
+    "thesis": "고가 회비는 경기 둔화 때 해지가 늘 수 있다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "3Q 센터 회원 −0.1% QoQ(의료 회원 정리 포함)",
+    "status": "잠복",
+    "falsifier": "4Q 회원 증가가 가이던스(+2.4~3.1%)를 맞춘다",
+    "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+   }
+  ],
+  "lead": {
+   "summary": "Life Time의 값은 **고급 대형 클럽의 회비 인상력과 연 14곳 개장이 5년 넘게 이어지고, 그 자금을 매각 후 재임차로 대며 잉여현금흐름을 지키느냐**에 달렸다. 3Q는 그 방향을 확인했다 — 매출 +14.2%, 동일 센터 +8.7%, 조정 EBITDA 마진 28.7%, 연간 가이던스 상향. 주가는 1년 +76%로 Fwd 1Y EV/EBITDA 14.4배가 됐고, 동종(약 11~12배)보다 높다",
+   "value_story": "Life Time은 미국·캐나다에 196개의 대형 고급 클럽(평균 약 9.6만 sq ft)을 직접 지어 운영한다. 헬스장·수영장·테니스·피클볼·스파·카페·키즈 공간을 한 건물에 넣고 가족 단위 월 회비를 받는다. 매출의 70%는 회비, 28%는 트레이닝·카페·스파 같은 센터 내 지출이다. 기업가치는 회비 인상 여력, 신규 클럽 개장 속도, 그리고 개장 자금을 매각 후 재임차로 회수해 차입을 늘리지 않는 재무 구조로 정해진다",
+   "premium": {
+    "multiple": "Fwd 1Y EV/EBITDA 14.4배로 동종 중앙(약 11.7배)보다 약 23% 높다. Fwd 1Y P/E는 23.6배다. 1년 전 약 11배에서 배수가 올랐다",
+    "eps": "FY2027 EPS 컨센서스는 2Q 콜 직전 $1.99에서 $2.07로 4% 올랐다. 같은 기간 주가는 $45.71 → $45.54로 거의 그대로다 — 5월 급등 뒤에는 이익 추정 상향이 배수를 따라잡았다"
+   },
+   "why_excited": "2026년 5월 1Q 실적 뒤 이틀 동안 +28%(5/4 $26.28 → 5/6 $33.59) 올랐다. 회비 인상과 마진 개선이 예상보다 빨랐고 자체 현금으로 개장하는 구조가 확인됐다. 그 뒤 $40~47 사이에서 움직였고 11월 고점은 $48.61이다",
+   "products": [
+    {
+     "kind": "시설",
+     "name": "회원 회비·가입비",
+     "what": "대형 고급 클럽 월 회원권(가족 단위)",
+     "use": "운동·수영·테니스·피클볼·키즈",
+     "money": "월 회비(평균 $244) + 가입비",
+     "rev_share": 0.696,
+     "rev_share_prev": 0.699,
+     "mix_basis": "공시(3Q $622.1M ÷ $893.5M)",
+     "name_en": "premium athletic country club",
+     "what_en": "large premium fitness and recreation club building with indoor pool, gym floor, courts and family areas",
+     "use_en": "a membership athletic club",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "실내 수영장",
+        "part_en": "indoor lap pool",
+        "kind": "시설",
+        "confidence": "확인",
+        "supplier": "자체 시공",
+        "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+       },
+       {
+        "no": 2,
+        "part": "운동 기구 플로어",
+        "part_en": "gym floor with equipment",
+        "kind": "시설",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+       },
+       {
+        "no": 3,
+        "part": "테니스·피클볼 코트",
+        "part_en": "tennis and pickleball courts",
+        "kind": "시설",
+        "confidence": "확인",
+        "supplier": "자체 시공",
+        "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+       },
+       {
+        "no": 4,
+        "part": "키즈 공간",
+        "part_en": "kids area",
+        "kind": "시설",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "센터 내 사업(트레이닝·카페·스파 등)",
+     "what": "개인 트레이닝, LifeCafe, LifeSpa, 키즈 아카데미, 피클볼 리그, MIORA 클리닉",
+     "use": "회원의 추가 지출",
+     "money": "건별·패키지 결제",
+     "rev_share": 0.279,
+     "rev_share_prev": 0.273,
+     "mix_basis": "공시(3Q $249.0M ÷ $893.5M)",
+     "name_en": "club cafe and personal training",
+     "what_en": "in-club cafe counter and personal training area inside a premium fitness club",
+     "use_en": "in-center services",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "개인 트레이너",
+        "part_en": "personal trainers",
+        "kind": "인력",
+        "confidence": "확인",
+        "supplier": "자체 고용",
+        "source": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)"
+       },
+       {
+        "no": 2,
+        "part": "카페 주방",
+        "part_en": "cafe kitchen",
+        "kind": "시설",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+       },
+       {
+        "no": 3,
+        "part": "스파 시설",
+        "part_en": "spa rooms",
+        "kind": "시설",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K"
+       }
+      ]
+     }
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "개장 자금을 차입 대신 매각 후 재임차(연 $400M)와 영업현금으로 — 순차입 배수 1.3배, 잉여현금흐름 플러스",
+     "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+     "falsifier": "순차입 배수가 2배를 넘는다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "회비 단가 +12%와 센터 내 지출 +16.6% — 저가 의료 연계 회원은 줄인다",
+     "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+     "falsifier": "회비 성장이 5% 아래로 둔화한다"
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "multiple",
+     "status": "초기",
+     "change": "LT Digital 앱·MIORA 장수 클리닉 — 매출 기여 수치 미공시",
+     "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+     "falsifier": "새 사업 매출이 공시되지 않거나 적자를 키운다"
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "미확인",
+     "change": "해당 없음(납품 사업이 아니다 — 클럽 착공부터 개장까지 기간은 회사·동종 모두 공시하지 않는다)",
+     "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+     "falsifier": "-",
+     "lead_time": {
+      "now": "미확인",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": {}
+     }
+    },
+    {
+     "lens": "M&A",
+     "drives": "both",
+     "status": "해당 없음",
+     "change": "해당 없음(최근 큰 인수 없음 — 직접 개장)",
+     "evidence": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-Q",
+     "falsifier": "-"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "revision",
+     "status": "해당 없음",
+     "change": "해당 없음(고객이 기업이 아닌 개인 회원 — 다른 회사의 CAPEX가 매출로 내려오지 않는다)",
+     "evidence": "3Q26 어닝콜(2026-10-29, 요지만 자기 말로)",
+     "falsifier": "-"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(재정 지출과 직접 연결된 매출 없음) — 소비자 감세·환급이 고소득층 지출에 주는 간접 영향만",
+     "evidence": "미확인",
+     "drives": "revision",
+     "status": "해당 없음",
+     "falsifier": "-",
+     "house": {
+      "level": 1,
+      "why": "직접 관련 법안 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같은 이유"
+     }
+    },
+    "orders": {
+     "change": "해당 없음 — 관세 행정명령은 운동 기구·건설 자재 원가에만 간접 노출(추정)",
+     "evidence": "미확인",
+     "drives": "revision",
+     "status": "해당 없음",
+     "falsifier": "-",
+     "house": {
+      "level": 1,
+      "why": "논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같은 이유"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(직접 관련 입법 확인 못 함)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "해당 없음",
+     "falsifier": "-"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "회비 인상력과 연 14곳 개장이 함께 가는 드문 소비 성장주다",
+    "evidence": [
+     "평균 회비 +11.9%",
+     "2027 14곳 대부분 착공",
+     "EBITDA 마진 28.7%"
+    ],
+    "falsifier": "4Q 회원 증가가 가이던스 하단 아래"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "잉여현금흐름이 플러스로 돌아 배수가 더 오를 여지가 있다",
+    "evidence": [
+     "순차입 1.3배",
+     "2030 FCF $400M 목표"
+    ],
+    "falsifier": "재임차 조건 악화로 차입 증가"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "좋은 회사지만 Fwd EV/EBITDA 14.4배가 동종보다 23% 높다",
+    "evidence": [
+     "Fwd 1Y EV/EBITDA 14.4배 vs 동종 11.7배",
+     "5월 이틀 +28%"
+    ],
+    "falsifier": "2027 EBITDA 컨센서스가 $1.1B를 넘는다"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "회원 수가 늘지 않고 회비만 오른다 — 해지가 나오면 꺾인다",
+    "evidence": [
+     "3Q 센터 회원 −0.1% QoQ"
+    ],
+    "falsifier": "4Q 회원 +2.4% 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "리스 $2.8B는 숨은 차입이다 — 경기 둔화 때 고정비가 이익을 깎는다",
+    "evidence": [
+     "리스 부채 $2.8B",
+     "임차료 매출의 약 12%"
+    ],
+    "falsifier": "경기 둔화에도 동일 센터 매출 +5% 이상"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "회비와 회원당 매출이 1년 새 12% 올랐다"
+     },
+     {
+      "seat": "Buy",
+      "text": "이제 자체 현금으로 클럽을 짓는다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "배수가 동종보다 높다"
+     },
+     {
+      "seat": "Sell",
+      "text": "회원 수가 3Q에 줄었다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "리스가 숨은 차입이다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "회원 감소는 저가 의료 연계 회원을 정리한 것이다. 제외하면 +4.8~5.2%다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Sell",
+      "text": "그 숫자는 4Q 가이던스일 뿐 실적이 아니다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "목표가 평균 $57이면 +25%지만 사모펀드 매도가 남았다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "매도 물량은 이미 여러 번 소화됐다",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "임차료 12%는 경기와 무관하게 나간다",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "방문 횟수가 +4% — 회원이 더 자주 온다",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "방문 증가는 해지 위험을 낮추지만 경기 둔화 시험은 아직 없다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "5월 이후 주가는 옆으로 갔다 — 이익이 배수를 따라잡는 중이다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "그래서 지금이 배수 부담이 줄어든 구간이다",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "회비 인상이 멈추면 성장은 개장 7%뿐이다",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "실행은 확인됐지만 선정 배수 10배 기준 목표가 $41이 주가 아래다 — Buy로 물러선다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "배수가 동종 레인지 위라 Neutral로 간다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "4Q 회원 수와 2027 가이던스를 본다 — Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "4Q 회원 수를 보겠다 — Neutral",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "리스 위험을 남겨 Sell",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Neutral",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "회비 인상·마진·개장 계획은 1차 자료로 확인됐다. 그러나 동종 레인지로 고른 배수(Fwd EV/EBITDA 10배)로는 목표가 $41이 주가보다 10% 낮다 — 살아남은 반박은 '배수가 이미 실행을 반영했다'와 '회원 수 정체·리스 고정비'다. 4Q 회원 수와 2027 가이던스가 가를 자료다",
+   "dissent": "Strong Buy 자리는 회비 인상력이 동종과 다른 배수를 정당화한다고 끝까지 남겼다"
+  }
+ },
+ "photos": [
+  {
+   "for": "site",
+   "name": "Life Time 클럽(조지아 알파레타)",
+   "file": "File:Life Time Fitness, Alpharetta, GA Oct 2017.jpg",
+   "caption": "Life Time 클럽 외관 — 조지아 알파레타(2017)"
+  },
+  {
+   "for": "product",
+   "name": "회원 회비·가입비",
+   "file": "File:Clouds over Life Time Fitness Club.jpg",
+   "caption": "Life Time 클럽 건물 외관"
+  }
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-13T17:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NYSE_LTH",
+   "price": 45.54,
+   "market_cap": 10.2284,
+   "total_cash": 0.3143,
+   "total_debt": 1.4921,
+   "shares_outstanding": 0.2246,
+   "as_of": "2026-11-12",
+   "balance_date": "2026-09-30",
+   "note": "시총 = Fiscal calculated_market_cap $10,228.4M. 리스 부채 $2,808.4M 별도"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.745096,
+    "2026Q1": 0.7887,
+    "2026Q2": 0.865996,
+    "2026Q3": 0.893524
+   },
+   "op_income": {
+    "2025Q4": 0.129529,
+    "2026Q1": 0.134838,
+    "2026Q2": 0.149705,
+    "2026Q3": 0.158005
+   },
+   "note": "Fiscal 표준화 손익(GAAP). 조정 EBITDA 4Q25 $202.6M·1Q $226.7M·2Q $246.5M·3Q $256.3M"
+  },
+  "dilution_xbrl": "미대조",
+  "shares_cover_implied": 0.2246,
+  "balance_2026_09_30": {
+   "equity": 3.4517,
+   "debt_current": 0.0297,
+   "debt_lt": 1.4624,
+   "lease_current": 0.085,
+   "lease_lt": 2.7234,
+   "cash": 0.3143,
+   "goodwill": 1.2354,
+   "intangibles": 0.1804
+  },
+  "estimates_sales_m": {
+   "2026Q1": 788.7,
+   "2026Q2": 865.996,
+   "2026Q3": 893.524,
+   "2026Q4": 829.966,
+   "2027Q1": 876.0,
+   "2027Q2": 955.0,
+   "2027Q3": 978.826,
+   "2027Q4": 905.174,
+   "2028Q1": 955.729,
+   "2028Q2": 1047.257,
+   "2028Q3": 1078.784,
+   "2028Q4": 997.23
+  },
+  "estimates_note": "2026Q1~Q3 실적 + 2026Q4(가이던스 환산)·2027·2028 Fiscal 자체 추정(분기)"
+ },
+ "sources": [
+  "https://ir.lifetime.life/",
+  "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-Q",
+  "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001869198&type=10-K",
+  "Fiscal.ai MCP 2026-11-13 — 표준화 손익·재무상태표·현금흐름·KPI·추정·Forward 배수·애널리스트 의견·어닝콜 전문(3Q26·2Q26)",
+  "TradingView NYSE:LTH 일봉 760·월봉 62(2026-11-13)",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ ],
+ "multiples_now": {
+  "pe_fwd": 23.64,
+  "ev_ebitda_fwd": 14.4,
+  "pe_fwd2": 20.43,
+  "ev_ebitda_fwd2": 12.91,
+  "pe_fwd3": 17.78,
+  "ev_ebitda_fwd3": 11.58
+ },
+ "forward": {
+  "as_of": "2026-11-12",
+  "ntm": {
+   "eps": 1.926348,
+   "ebitda": 1036069422,
+   "ebit": 613159391,
+   "revenue": 3639792029,
+   "rev_ttm": 3293316000
+  },
+  "horizons": {
+   "2": {
+    "eps": 2.228691,
+    "ebitda": 1155926082,
+    "ext": 0
+   },
+   "3": {
+    "eps": 2.5611718712871285,
+    "ebitda": 1288640170.716698,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": true
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [
+   {
+    "date": "2023-11-30",
+    "value": 27.86
+   },
+   {
+    "date": "2023-12-29",
+    "value": 27.72
+   },
+   {
+    "date": "2024-01-31",
+    "value": 22.54
+   },
+   {
+    "date": "2024-02-29",
+    "value": 22.16
+   },
+   {
+    "date": "2024-03-28",
+    "value": 24.55
+   },
+   {
+    "date": "2024-04-30",
+    "value": 21.02
+   },
+   {
+    "date": "2024-05-31",
+    "value": 26.36
+   },
+   {
+    "date": "2024-06-28",
+    "value": 29.58
+   },
+   {
+    "date": "2024-07-31",
+    "value": 30.69
+   },
+   {
+    "date": "2024-08-30",
+    "value": 28.37
+   },
+   {
+    "date": "2024-09-30",
+    "value": 27.23
+   },
+   {
+    "date": "2024-10-31",
+    "value": 24.62
+   },
+   {
+    "date": "2024-11-29",
+    "value": 26.82
+   },
+   {
+    "date": "2024-12-31",
+    "value": 21.69
+   },
+   {
+    "date": "2025-01-31",
+    "value": 24.36
+   },
+   {
+    "date": "2025-02-28",
+    "value": 24.7
+   },
+   {
+    "date": "2025-03-31",
+    "value": 22.88
+   },
+   {
+    "date": "2025-04-30",
+    "value": 22.97
+   },
+   {
+    "date": "2025-05-30",
+    "value": 21.72
+   },
+   {
+    "date": "2025-06-30",
+    "value": 21.87
+   },
+   {
+    "date": "2025-07-31",
+    "value": 21.01
+   },
+   {
+    "date": "2025-08-29",
+    "value": 20.05
+   },
+   {
+    "date": "2025-09-30",
+    "value": 18.4
+   },
+   {
+    "date": "2025-10-31",
+    "value": 16.22
+   },
+   {
+    "date": "2025-11-28",
+    "value": 17.73
+   },
+   {
+    "date": "2025-12-31",
+    "value": 16.21
+   },
+   {
+    "date": "2026-01-30",
+    "value": 18.4
+   },
+   {
+    "date": "2026-02-27",
+    "value": 16.74
+   },
+   {
+    "date": "2026-03-31",
+    "value": 16.3
+   },
+   {
+    "date": "2026-04-30",
+    "value": 15.72
+   },
+   {
+    "date": "2026-05-29",
+    "value": 19.63
+   },
+   {
+    "date": "2026-06-30",
+    "value": 22.65
+   },
+   {
+    "date": "2026-07-31",
+    "value": 24.66
+   },
+   {
+    "date": "2026-08-31",
+    "value": 22.32
+   },
+   {
+    "date": "2026-09-30",
+    "value": 20.4
+   },
+   {
+    "date": "2026-10-30",
+    "value": 23.1
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2024-02-29",
+    "value": 11.85
+   },
+   {
+    "date": "2024-03-28",
+    "value": 12.08
+   },
+   {
+    "date": "2024-04-30",
+    "value": 11.19
+   },
+   {
+    "date": "2024-05-31",
+    "value": 12.24
+   },
+   {
+    "date": "2024-06-28",
+    "value": 12.89
+   },
+   {
+    "date": "2024-07-31",
+    "value": 13.18
+   },
+   {
+    "date": "2024-08-30",
+    "value": 13.13
+   },
+   {
+    "date": "2024-09-30",
+    "value": 13.33
+   },
+   {
+    "date": "2024-10-31",
+    "value": 12.54
+   },
+   {
+    "date": "2024-11-29",
+    "value": 12.89
+   },
+   {
+    "date": "2024-12-31",
+    "value": 12
+   },
+   {
+    "date": "2025-01-31",
+    "value": 13.3
+   },
+   {
+    "date": "2025-02-28",
+    "value": 13.3
+   },
+   {
+    "date": "2025-03-31",
+    "value": 13
+   },
+   {
+    "date": "2025-04-30",
+    "value": 13.1
+   },
+   {
+    "date": "2025-05-30",
+    "value": 12.48
+   },
+   {
+    "date": "2025-06-30",
+    "value": 12.49
+   },
+   {
+    "date": "2025-07-31",
+    "value": 12.1
+   },
+   {
+    "date": "2025-08-29",
+    "value": 11.92
+   },
+   {
+    "date": "2025-09-30",
+    "value": 11.44
+   },
+   {
+    "date": "2025-10-31",
+    "value": 10.76
+   },
+   {
+    "date": "2025-11-28",
+    "value": 11.48
+   },
+   {
+    "date": "2025-12-31",
+    "value": 10.91
+   },
+   {
+    "date": "2026-01-30",
+    "value": 11.46
+   },
+   {
+    "date": "2026-02-27",
+    "value": 10.93
+   },
+   {
+    "date": "2026-03-31",
+    "value": 10.62
+   },
+   {
+    "date": "2026-04-30",
+    "value": 10.59
+   },
+   {
+    "date": "2026-05-29",
+    "value": 11.93
+   },
+   {
+    "date": "2026-06-30",
+    "value": 13.29
+   },
+   {
+    "date": "2026-07-31",
+    "value": 14.09
+   },
+   {
+    "date": "2026-08-31",
+    "value": 13.4
+   },
+   {
+    "date": "2026-09-30",
+    "value": 12.57
+   },
+   {
+    "date": "2026-10-30",
+    "value": 13.74
+   }
+  ]
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NYSE_LTH",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2020-03-31",
+    "rev": 408295000,
+    "cogs": 261457000,
+    "gp": 146838000,
+    "sga": 95545000,
+    "rd": null,
+    "da": 64931000,
+    "other": 6257000,
+    "op": -19895000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 80585000,
+    "cogs": 88321000,
+    "gp": -7736000,
+    "sga": 82847000,
+    "rd": null,
+    "da": 62193000,
+    "other": 16003000,
+    "op": -168779000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 231030000,
+    "cogs": 165572000,
+    "gp": 65458000,
+    "sga": 79743000,
+    "rd": null,
+    "da": 61359000,
+    "other": 15152000,
+    "op": -90796000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 228469000,
+    "cogs": 144696000,
+    "gp": 83773000,
+    "sga": 78020000,
+    "rd": null,
+    "da": 59210000,
+    "other": 26222000,
+    "op": -79679000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 249298000,
+    "cogs": 174615000,
+    "gp": 74683000,
+    "sga": 88787000,
+    "rd": null,
+    "da": 61206000,
+    "other": 6934000,
+    "op": -82244000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 323187000,
+    "cogs": 218711000,
+    "gp": 104476000,
+    "sga": 94844000,
+    "rd": null,
+    "da": 57822000,
+    "other": 8930000,
+    "op": -57120000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 385040000,
+    "cogs": 231996000,
+    "gp": 153044000,
+    "sga": 97817000,
+    "rd": null,
+    "da": 57977000,
+    "other": 14796000,
+    "op": -17546000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 360528000,
+    "cogs": 218776000,
+    "gp": 141752000,
+    "sga": 408918000,
+    "rd": null,
+    "da": 58119000,
+    "other": 12993000,
+    "op": -338278000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 392254000,
+    "cogs": 239573000,
+    "gp": 152681000,
+    "sga": 122525000,
+    "rd": null,
+    "da": 58107000,
+    "other": -17035000,
+    "op": -10916000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 461267000,
+    "cogs": 279557000,
+    "gp": 181710000,
+    "sga": 111939000,
+    "rd": null,
+    "da": 57173000,
+    "other": -8212000,
+    "op": 20810000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 496381000,
+    "cogs": 295253000,
+    "gp": 201128000,
+    "sga": 120352000,
+    "rd": null,
+    "da": 56400000,
+    "other": -31358000,
+    "op": 55734000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 472655000,
+    "cogs": 253825000,
+    "gp": 218830000,
+    "sga": 104386000,
+    "rd": null,
+    "da": 57203000,
+    "other": 12250000,
+    "op": 44991000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 510851000,
+    "cogs": 274109000,
+    "gp": 236742000,
+    "sga": 109034000,
+    "rd": null,
+    "da": 58197000,
+    "other": 2127000,
+    "op": 67384000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 561731000,
+    "cogs": 302603000,
+    "gp": 259128000,
+    "sga": 120274000,
+    "rd": null,
+    "da": 58252000,
+    "other": 28194000,
+    "op": 52408000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 585177000,
+    "cogs": 319401000,
+    "gp": 265776000,
+    "sga": 120893000,
+    "rd": null,
+    "da": 63618000,
+    "other": 34516000,
+    "op": 46749000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 558834000,
+    "cogs": 288257000,
+    "gp": 270577000,
+    "sga": 126052000,
+    "rd": null,
+    "da": 64330000,
+    "other": 21526000,
+    "op": 58669000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 596717000,
+    "cogs": 321900000,
+    "gp": 274817000,
+    "sga": 121135000,
+    "rd": null,
+    "da": 65903000,
+    "other": 15722000,
+    "op": 72057000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 667761000,
+    "cogs": 355510000,
+    "gp": 312251000,
+    "sga": 128193000,
+    "rd": null,
+    "da": 69714000,
+    "other": 9588000,
+    "op": 104756000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 693234000,
+    "cogs": 371134000,
+    "gp": 322100000,
+    "sga": 136312000,
+    "rd": null,
+    "da": 69451000,
+    "other": 22642000,
+    "op": 93695000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 663283000,
+    "cogs": 343877000,
+    "gp": 319406000,
+    "sga": 140352000,
+    "rd": null,
+    "da": 69613000,
+    "other": 22466000,
+    "op": 86975000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 706041000,
+    "cogs": 370987000,
+    "gp": 335054000,
+    "sga": 139012000,
+    "rd": null,
+    "da": 70919000,
+    "other": 17453000,
+    "op": 107670000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 761469000,
+    "cogs": 403925000,
+    "gp": 357544000,
+    "sga": 144864000,
+    "rd": null,
+    "da": 72988000,
+    "other": 31243000,
+    "op": 108449000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 782649000,
+    "cogs": 414328000,
+    "gp": 368321000,
+    "sga": 147351000,
+    "rd": null,
+    "da": 75094000,
+    "other": 10231000,
+    "op": 135645000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 745096000,
+    "cogs": 379371000,
+    "gp": 365725000,
+    "sga": 152554000,
+    "rd": null,
+    "da": 77344000,
+    "other": 6298000,
+    "op": 129529000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 788700000,
+    "cogs": 406704000,
+    "gp": 381996000,
+    "sga": 149522000,
+    "rd": null,
+    "da": 80693000,
+    "other": 16943000,
+    "op": 134838000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 865996000,
+    "cogs": 453732000,
+    "gp": 412264000,
+    "sga": 160367000,
+    "rd": null,
+    "da": 83352000,
+    "other": 18840000,
+    "op": 149705000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 893524000,
+    "cogs": 474518000,
+    "gp": 419006000,
+    "sga": 161851000,
+    "rd": null,
+    "da": 85013000,
+    "other": 14137000,
+    "op": 158005000
+   }
+  ]
+ }
+}
