@@ -1,0 +1,70 @@
+# Portfolio Daily '■ 섹터' 동적 선정 (마스터 지시 2026-11-13, ADR-022, scripts/portfolio/sector_select.py)
+# 고정 목록 대신 Chiip이 신호로 편입·제외한다. 후보 = Chiip 바스켓(config/market_watch.yaml sectors) + 미국 11개 업종 ETF + 산업·테마 묶음.
+# 묶음마다 대표 ETF(TradingView 일괄 조회로 시세가 잡히는 것만 — IGV·ITA·PAVE는 2026-11-13 'Quote data not found'라 뺐다) + 대형 구성 종목 3~4개. TradingView get_symbol_data_batch(50종목당 1회)로 받는다.
+# 수치 상수는 사전값이다 — 출처·근거는 ADR-022. 피팅은 표본이 쌓인 뒤 Model Lab 일요일 관문으로만 바꾼다(prm-ssel-*).
+
+weights: {momentum: 0.40, flow: 0.35, alpha: 0.25}   # prm-ssel-w  산업 모멘텀이 가장 오래 검증됨 → 최대, 수급은 짧게 끝남, 알파는 Chiip 자체 점수(표본 외 미검증)
+enter: {score: 6.5, pillars: 2}     # prm-ssel-enter  복수 신호(3축 중 2축 이상) + 점수
+exit: {score: 4.5, pillars: 1}      # prm-ssel-exit   점수 4.5 미만이면서 켜진 축 1개 이하 → 꺾임(편입 문턱과 2점 띄워 깜빡임 방지)
+confirm_runs: 2                      # prm-ssel-confirm 편입·제외는 서로 다른 날 2회 연속 충족 시(히스테리시스)
+max_sectors: 8                       # prm-ssel-max 섹터 최대 개수(보유 섹터 포함)
+min_members: 3                       # 시세가 3종목 미만이면 판정하지 않는다(미확인)
+protect_status: [보유]               # 이 상태의 종목이 속한 섹터는 꺾여도 빼지 않고 '약세 지속'
+pillar_on:                           # 축이 '켜짐'으로 보는 조건(섹터 간 백분위 0~1)
+  momentum: {pct: 0.70, rs20_min: 0.0}           # 모멘텀 백분위 70% 이상 + 20일 상대강도 플러스
+  flow: {pct: 0.70, turnover_min: 1.15, r5_min: 0.0}   # 10일/30일 거래량 1.15배 이상 + 5일 주가 플러스(올라가는 거래 = 유입)
+  alpha: {n_ge5: 2, max_ge: 7.0}                 # 알파 5점 이상 2종목, 또는 7점 이상 1종목
+near_high: 0.97                      # 52주 고점의 97% 이상이면 '신고가 근처'
+eps_rev_days: 20                     # EPS 추정 변화는 스냅숏 20거래일 전과 비교(쌓이기 전에는 Fiscal rev30이 있는 바스켓만)
+bench: AMEX:SPY                      # 상대강도 기준
+columns: [close, Perf.W, Perf.1M, relative_volume_10d_calc, average_volume_10d_calc, average_volume_30d_calc, price_52_week_high, earnings_per_share_forecast_next_fy]
+
+# 처음 실행 때 활성 목록 = 마스터가 정했던 고정 4개(갑작스러운 교체를 막는다)
+bootstrap_active: [power_infra, ai_compute, semicap, ai_hardware]
+
+# 내 종목 → 섹터(첫 문장 '내 종목이 속한 섹터'와 보호 판정에 쓴다). 없으면 sub로 Chiip 바스켓을 찾는다
+holding_group: {EROC: power_infra, INIO: power_infra, PWR: power_infra, CBRS: ai_compute, LSCC: analog_embedded, AGLT: robotics, BKSY: space,
+                MTD: life_tools, FWONA: media_ent, TTMI: elec_components, AXTI: semicap, WDC: memory_storage}
+
+groups:
+  # Chiip 바스켓 — 구성은 config/market_watch.yaml sectors(Fiscal 30일 EPS 추정 변화 rev30을 함께 쓴다)
+  power_infra: {name: 전력·데이터센터 전력, chiip: true, etf: NASDAQ:GRID}
+  ai_compute: {name: AI 가속기·반도체, chiip: true, etf: NASDAQ:SMH}
+  semicap: {name: 반도체 장비·소재, chiip: true}
+  ai_hardware: {name: AI 서버·네트워크, chiip: true}
+  # 미국 11개 업종(SPDR 업종 ETF + 대형주)
+  energy: {name: 에너지, etf: AMEX:XLE, members: [NYSE:XOM, NYSE:CVX, NYSE:COP, NYSE:EOG]}
+  materials: {name: 소재, etf: AMEX:XLB, members: [NASDAQ:LIN, NYSE:SHW, NYSE:FCX, NYSE:NEM]}
+  industrials: {name: 산업재, etf: AMEX:XLI, members: [NYSE:GE, NYSE:CAT, NYSE:RTX, NYSE:UNP]}
+  cons_disc: {name: 경기소비재, etf: AMEX:XLY, members: [NASDAQ:AMZN, NASDAQ:TSLA, NYSE:HD, NYSE:MCD]}
+  cons_staples: {name: 필수소비재, etf: AMEX:XLP, members: [NASDAQ:WMT, NASDAQ:COST, NYSE:PG, NYSE:KO]}
+  health: {name: 헬스케어, etf: AMEX:XLV, members: [NYSE:LLY, NYSE:JNJ, NYSE:UNH, NYSE:ABBV]}
+  financials: {name: 금융, etf: AMEX:XLF, members: [NYSE:JPM, NYSE:V, NYSE:BAC, NYSE:GS]}
+  info_tech: {name: 정보기술(대형), etf: AMEX:XLK, members: [NASDAQ:AAPL, NASDAQ:MSFT, NYSE:ORCL, NYSE:CRM]}
+  comm: {name: 통신서비스, etf: AMEX:XLC, members: [NASDAQ:GOOGL, NASDAQ:META, NASDAQ:NFLX, NASDAQ:TMUS]}
+  utilities: {name: 유틸리티, etf: AMEX:XLU, members: [NYSE:NEE, NYSE:SO, NYSE:DUK, NASDAQ:CEG]}
+  real_estate: {name: 부동산, etf: AMEX:XLRE, members: [NYSE:PLD, NYSE:AMT, NASDAQ:EQIX, NYSE:WELL]}
+  # 산업·테마(AI 밸류체인 밖 포함)
+  software: {name: 소프트웨어, members: [NYSE:NOW, NASDAQ:ADBE, NASDAQ:PLTR, NASDAQ:INTU]}
+  cyber: {name: 사이버보안, etf: NASDAQ:CIBR, members: [NASDAQ:CRWD, NASDAQ:PANW, NASDAQ:FTNT, NASDAQ:ZS]}
+  defense: {name: 방산·항공우주, members: [NYSE:LMT, NYSE:GD, NYSE:NOC, NYSE:LHX]}
+  nuclear: {name: 원자력·우라늄, etf: AMEX:URA, members: [NYSE:CCJ, NYSE:OKLO, NYSE:SMR, NYSE:LEU]}
+  solar: {name: 태양광, etf: AMEX:TAN, members: [NASDAQ:FSLR, NASDAQ:ENPH, NASDAQ:NXT, NASDAQ:RUN]}
+  gold: {name: 금광, etf: AMEX:GDX, members: [NYSE:NEM, NYSE:AEM, NYSE:WPM, NYSE:B]}
+  copper: {name: 구리·비철, etf: AMEX:COPX, members: [NYSE:FCX, NYSE:SCCO, NYSE:TECK, NYSE:HBM]}
+  biotech: {name: 바이오, etf: AMEX:XBI, members: [NASDAQ:VRTX, NASDAQ:REGN, NASDAQ:ALNY, NASDAQ:INSM]}
+  medtech: {name: 의료기기, etf: AMEX:IHI, members: [NASDAQ:ISRG, NYSE:ABT, NYSE:SYK, NYSE:BSX]}
+  homebuild: {name: 주택건설, etf: AMEX:XHB, members: [NYSE:DHI, NYSE:LEN, NYSE:PHM, NYSE:NVR]}
+  retail: {name: 소매 유통, etf: AMEX:XRT, members: [NYSE:TJX, NASDAQ:ROST, NYSE:BBY, NYSE:DKS]}
+  regional_banks: {name: 지역은행, etf: AMEX:KRE, members: [NASDAQ:HBAN, NYSE:RF, NYSE:CFG, NYSE:KEY]}
+  airlines: {name: 항공사, etf: AMEX:JETS, members: [NYSE:DAL, NASDAQ:UAL, NASDAQ:AAL, NYSE:LUV]}
+  infra_build: {name: 인프라 건설·자재, members: [NYSE:VMC, NYSE:MLM, NYSE:URI, NYSE:NUE]}
+  space: {name: 우주·위성, etf: NASDAQ:UFO, members: [NASDAQ:RKLB, NASDAQ:ASTS, NYSE:PL, NYSE:BKSY]}
+  robotics: {name: 로봇·자동화, etf: NASDAQ:BOTZ, members: [NASDAQ:TER, NASDAQ:SYM, NYSE:ROK, NYSE:EMR]}
+  quantum: {name: 양자컴퓨팅, etf: NASDAQ:QTUM, members: [NYSE:IONQ, NASDAQ:RGTI, NASDAQ:QUBT]}
+  memory_storage: {name: 메모리·스토리지, members: [NASDAQ:MU, NASDAQ:WDC, NASDAQ:STX, NASDAQ:SNDK]}
+  optical: {name: 광통신 부품, members: [NYSE:COHR, NASDAQ:LITE, NYSE:CIEN, NYSE:FN]}
+  elec_components: {name: 전자부품·PCB, members: [NYSE:APH, NYSE:TEL, NYSE:GLW, NASDAQ:TTMI]}
+  analog_embedded: {name: 아날로그·임베디드 반도체, members: [NASDAQ:ADI, NASDAQ:TXN, NASDAQ:MCHP, NASDAQ:NXPI]}
+  life_tools: {name: 생명과학 도구·계측, members: [NYSE:TMO, NYSE:DHR, NYSE:A, NYSE:MTD]}
+  media_ent: {name: 미디어·엔터, members: [NYSE:DIS, NYSE:LYV, NYSE:TKO, NASDAQ:FWONA]}
