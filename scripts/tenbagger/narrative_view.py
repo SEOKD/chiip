@@ -29,7 +29,32 @@ import math
 
 DRIVES = {"multiple": "멀티플", "revision": "리비전", "both": "멀티플+리비전"}
 LAYERS = (("sell_side", "셀사이드(IB 애널리스트)"), ("buy_side", "바이사이드(기관 투자자)"), ("retail", "리테일(레딧·텔레그램·X)"), ("media", "언론·업계"))
-LENSES = ("구조적 체질 변화", "고부가 믹스 확장", "기술 혁신", "실행 속도", "M&A", "재정정책", "CAPEX 낙수효과")   # 마스터 지시 2026-10-30 — 맨 앞 내러티브 절의 필수 렌즈. 실행 속도 = 납품 리드타임(2026-10-31)
+LENSES = ("구조적 체질 변화", "고부가 믹스 확장", "기술 혁신", "실행 속도", "M&A", "재정정책", "고객의 지출 예산")   # 마스터 지시 2026-10-30 — 맨 앞 내러티브 절의 필수 렌즈. 실행 속도 = 납품 리드타임(2026-10-31)
+# '고객의 지출 예산'(마스터 지시 2026-11-13 — 옛 'CAPEX 낙수효과'): 고객의 CAPEX에 노출되나 OPEX(마케팅·IT·운영 예산)에 노출되나를 사업별로 가른다.
+#   렌즈에 "budgets": [{"business": "사업 이름", "budget": BUDGETS 중 하나, "line": "고객 쪽 예산 항목(예: 앱 개발사 이용자 확보 광고비)",
+#                       "share": 매출 비중(선택), "driver": "그 예산을 움직이는 것", "evidence": "출처"}]
+BUDGETS = ("CAPEX", "OPEX", "혼합", "해당 없음")
+LEGACY_LENS = {"CAPEX 낙수효과": "고객의 지출 예산"}
+
+
+def lens_map(lead):
+    """렌즈 이름 → 렌즈. 옛 이름('CAPEX 낙수효과')은 새 이름으로 읽는다(2026-11-13)"""
+    out = {}
+    for x in lead.get("lenses") or []:
+        out[LEGACY_LENS.get(x.get("lens"), x.get("lens"))] = x
+    return out
+
+
+def budget_text(x):
+    """사업별 고객 예산 노출 한 줄씩 — 구분이 없으면 '사업별 구분 미확인'"""
+    rows = [b for b in x.get("budgets") or [] if b.get("business")]
+    if not rows:
+        return "사업별 CAPEX·OPEX 구분 미확인"
+    def one(b):
+        bud = b.get("budget") if b.get("budget") in BUDGETS else "미확인"
+        share = f", 매출의 {b['share'] * 100:.0f}%" if isinstance(b.get("share"), (int, float)) else ""
+        return f"{b['business']} — 고객 {bud}" + (f"({b['line']})" if b.get("line") else "") + share + (f": {b['driver']}" if b.get("driver") else "")
+    return " · ".join(one(b) for b in rows)
 
 
 POLICY = (("fiscal", "재정정책(행정부)"), ("orders", "행정명령(행정부)"), ("laws", "연관입법(의회)"))
@@ -158,7 +183,7 @@ def lead_section(dp, mm=None, strict=True):
     lead = ((dp or {}).get("narrative") or {}).get("lead")
     if not lead:
         return None
-    have = {x.get("lens"): x for x in lead.get("lenses") or []}
+    have = lens_map(lead)
     policy = lead.get("policy")
     if strict and not policy:
         raise ValueError("datapack narrative.lead.policy가 없다 — 재정정책·행정명령·연관입법(옛 리포트 정정은 --legacy)")
@@ -187,6 +212,7 @@ def lead_section(dp, mm=None, strict=True):
         x = have[k]
         tag = " · ".join(t for t in (DRIVES.get(x.get("drives"), x.get("drives")), x.get("status")) if t)
         speed_txt = speed_text(x["lead_time"]) if isinstance(x.get("lead_time"), dict) else ""
+        speed_txt += (f" 사업별 예산: {budget_text(x)}." if k == "고객의 지출 예산" else "")
         items.append(f"**{k}**" + (f" ({tag})" if tag else "") + f" — {x['change']}" + speed_txt + (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else ""))
     B.append({"type": "ul", "items": items})
     B.append({"type": "h3", "text": "이 회사의 제품·서비스·기술"})
@@ -197,7 +223,7 @@ def lead_section(dp, mm=None, strict=True):
 
 def lens_boxes(lead):
     """무엇이 기업가치를 바꾸나 — 소제목은 렌즈 이름만, 설명은 음영 박스(마스터 지시 2026-10-31)"""
-    have = {x.get("lens"): x for x in lead.get("lenses") or []}
+    have = lens_map(lead)
     policy = lead.get("policy")
     out = []
     for k in LENSES:
@@ -214,7 +240,8 @@ def lens_boxes(lead):
             continue
         x = have[k]
         change = str(x.get("change", "")) + (speed_text(x["lead_time"]) if isinstance(x.get("lead_time"), dict) else "")
-        out.append({"title": k, "lines": [["변화", change], ["증거", x.get("evidence")], ["반증", x.get("falsifier")]]})
+        lines = [["변화", change]] + ([["사업별 예산", budget_text(x)]] if k == "고객의 지출 예산" else []) + [["증거", x.get("evidence")], ["반증", x.get("falsifier")]]
+        out.append({"title": k, "lines": lines})
     return out
 
 
