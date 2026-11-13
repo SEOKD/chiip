@@ -217,7 +217,7 @@ def fwd_return(series, d, h):
     return ds[h][1] / ds[0][1] - 1
 
 
-def gate(today=None, c=None, rows=None, prices=None, tick=None):
+def gate(today=None, c=None, rows=None, prices=None, tick=None, write=False):
     c = c or cfg()
     g = c["gate"]
     today = today or date.today()
@@ -268,14 +268,18 @@ def gate(today=None, c=None, rows=None, prices=None, tick=None):
             break
     out = {"verdict": f"채택 제안 가능({best})" if best else "기각 — v1 유지", "n": len(obs), "ic": res, "as_of": today.isoformat(),
            "note": "config/alpha.yaml 구조 변경은 마스터 승인 뒤에만"}
-    GATE.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    if write:
+        GATE.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     return out
 
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if "--gate" in argv:
-        print(json.dumps(gate(), ensure_ascii=False, indent=1))
+        g = gate(write=True)
+        if g["verdict"] == "판정 보류":   # 보류도 기록해 둔다(시험이 남긴 값이 남지 않게)
+            GATE.write_text(json.dumps({**g, "as_of": date.today().isoformat()}, ensure_ascii=False, indent=1), encoding="utf-8")
+        print(json.dumps(g, ensure_ascii=False, indent=1))
     elif "--price-request" in argv:
         print(json.dumps(price_request(), ensure_ascii=False))
     elif "--put-prices" in argv:
