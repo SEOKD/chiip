@@ -92,13 +92,21 @@ def reward_risk(price, bull, bear):
     return (bull - price) / (price - bear) if price > bear else None
 
 
-def scenario_build(d, dp, mm, sel, shares):
-    """모델이 쓴 cases(EPS·확률·이유)에 엔진이 고른 멀티플을 곱한다. 주가 = 멀티플 × EPS, EBITDA 지표면 (멀티플 × EBITDA − 순차입) ÷ 주식 수"""
+def scenario_build(d, dp, mm, sel, shares, co=None):
+    """모델이 쓴 cases(EPS·이유)에 엔진이 고른 멀티플을 곱한다. 주가 = 멀티플 × EPS, EBITDA 지표면 (멀티플 × EBITDA − 순차입) ÷ 주식 수.
+    확률은 모델 값이 아니라 v2 동인의 근거 계산 확률(scenario_prob — 다음 해 매출 성장 분포, ADR-035, 마스터 지시 2026-11-14)로 바꾼다"""
     sec = next((s for s in d.get("sections") or [] if s.get("h2", "").startswith("판단 시나리오")), None)
     block = next((b for b in (sec or {}).get("blocks") or [] if (b.get("chart") or {}).get("kind") == "scenario"), None)
     if not block:
         raise SystemExit("리포트 JSON에 '판단 시나리오' 절의 scenario 차트가 없다")
     c = block["chart"]
+    sp = (co or {}).get("scenario_prob") or {}
+    if sp.get("status") == "계산":
+        for k in c["cases"]:
+            key = {"약세": "bear", "기본": "base", "강세": "bull"}.get(k["name"])
+            if key:
+                k["prob"] = sp["probs"][key]
+        c["prob_why"] = sp["why"] + (f" · 모델 조정: {sp['judge']}" if sp.get("judge") else "")
     price = float(dp["profile"]["price"])
     net_debt = (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
     if abs(sum(float(k.get("prob") or 0) for k in c["cases"]) - 1) > 0.01:
@@ -428,7 +436,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     input_view.check(dp)
     margin_sec, supply_sec, capacity_sec, customer_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp), customer_view.section(dp)   # 재료가 없으면 여기서 멈춘다
     shares = r["mcap"] / float(dp["profile"]["price"])
-    s = scenario_build(d, dp, mm, sel, shares)
+    s = scenario_build(d, dp, mm, sel, shares, co)
     dcf_up = r["scenarios"]["base"]["v0"] - 1
     cfg = config()
     prof = dp["profile"]
@@ -471,6 +479,8 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     scen_text = [b for x in find("판단 시나리오") for b in x.get("blocks") or [] if b.get("type") != "chart"]
     val = valuation_section(s, sel, mm, r, co, sec, co.get("name", d.get("company")), (sec.get("blocks") or [{}])[-1].get("text") if (sec.get("blocks") or [{}])[-1].get("type") == "hl" else None, pt, dp)
     val["blocks"][1:1] = scen_text
+    if s["chart"].get("prob_why"):   # 시나리오 확률의 근거 한 줄(ADR-035)
+        val["blocks"].insert(1 + len(scen_text), {"type": "p", "text": "시나리오 확률: " + s["chart"]["prob_why"]})
     pressure_line = input_view.valuation_line(dp)
     if pressure_line:
         val["blocks"].append(pressure_line)

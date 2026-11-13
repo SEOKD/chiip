@@ -1,0 +1,10 @@
+# 시나리오 확률(약세·기본·강세) — 마스터 지시 2026-11-14 "약세와 강세 확률이 각 25%씩으로 계산이 많이 되는데 이 확률 체계를 다시 점검하라"
+# 엔진 scripts/valuation/v2/scenario_prob.py, 설계 docs/decisions/ADR-035-scenario-probabilities.md, 값의 출처·상태는 등록부 prm-sp-*
+scenario_prob:
+  outside_weight: 0.3     # 외부 관점(같은 규모 기업의 실제 1년 매출 성장 분포) 가중. 나머지는 내부 관점(컨센서스 중심·분산)
+  dispersion_inflate: 1.5 # 애널리스트 추정 범위로 잰 표준편차를 이만큼 키운다(추정치 사이 흩어짐 < 실제 예측 오차)
+  sigma_floor: 0.03       # 내부 관점 표준편차 하한(추정 범위가 좁을 때, 매출 성장률 단위)
+  no_range: {base: 0.05, per_growth: 0.25}   # 추정 범위가 없을 때 σ = base + per_growth × |성장률| — 고성장일수록 1년 예측 오차가 크다
+  min_prob: 0.05          # 각 시나리오 확률 하한
+  round_to: 0.05          # 확률 단위
+  judge_cap: 0.10         # 모델(datapack scenario_probs)이 엔진 확률에서 옮길 수 있는 폭(시나리오마다), 이유 필수

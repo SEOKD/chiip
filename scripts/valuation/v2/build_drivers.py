@@ -114,9 +114,11 @@ def build(p):
 
     # 강세·약세: 컨센서스 고·저 추정의 2년차 성장 폭, 없으면 ±40%
     lo_, hi_ = _fy_sorted(cons.get("rev_low")), _fy_sorted(cons.get("rev_high"))
-    if lo_ and hi_:
-        g_bear, g_bull = lo_[0] / rev0 - 1, hi_[0] / rev0 - 1
-        prov["range"] = f"컨센서스 최저·최고 추정 → 1년차 성장 {g_bear:.1%}~{g_bull:.1%}"
+    # 1년차 성장 g1은 다음 해(revs[1]) 기준이므로 최저·최고도 같은 해([1])로 — 그전엔 올해([0])를 써서 강세가 기본보다 낮아졌다(2026-11-14, 15/113 종목)
+    k = 1 if len(revs) >= 2 else 0
+    if len(lo_) > k and len(hi_) > k and lo_[k] / rev0 - 1 < g1 < hi_[k] / rev0 - 1:
+        g_bear, g_bull = lo_[k] / rev0 - 1, hi_[k] / rev0 - 1
+        prov["range"] = f"컨센서스 최저·최고 추정({sorted(cons['rev_low'])[k]}) → 1년차 성장 {g_bear:.1%}~{g_bull:.1%}"
     else:
         if g1 > 1.0:   # 초고성장: 약세는 램프 지연(성장의 40%), 강세는 +25%
             g_bear, g_bull = g1 * 0.4, g1 * 1.25
@@ -130,6 +132,16 @@ def build(p):
     tone = call["tone"]
     probs = p.get("scenario_probs") or dict(zip(("bear", "base", "bull"), TONE_PROB.get(tone, TONE_PROB["flat"])))
     prov["probs"] = ("데이터 묶음 지정" if p.get("scenario_probs") else f"어닝콜 톤 '{tone}' 규칙") + f" {probs}"
+    try:   # 근거 계산 확률(마스터 지시 2026-11-14, ADR-035) — 다음 해 매출 성장 분포를 시나리오 중간점에서 자른다. 모델 지정은 ±judge_cap 조정만
+        import scenario_prob
+        r = scenario_prob.compute(g1, g_bear, g_bull, rev0, *(((cons.get("rev_low") or {}).get(sorted(cons["rev_low"])[k]), (cons.get("rev_high") or {}).get(sorted(cons["rev_high"])[k]))
+                                                         if cons.get("rev_low") and cons.get("rev_high") and len(cons["rev_low"]) > k else (None, None)),
+                                  cons.get("n_analysts"), rev0 * (1e9 if p.get("unit", "B$") == "B$" else float(p.get("unit_usd") or 1e9)))
+        if r:
+            probs, mwhy = scenario_prob.judged(r, p.get("scenario_probs"), p.get("scenario_probs_why"))
+            prov["probs"] = f"근거 계산 {probs} — {r['why']}" + (f" · 모델 조정: {mwhy}" if mwhy else "")
+    except Exception as exc:
+        prov["probs"] += f" (근거 계산 실패 {type(exc).__name__})"
     spread = clamp(abs(target - m0) * 0.5, 0.02, 0.08)   # 강세·약세 목표 이익률 폭 — 최대 ±8%p
 
     ov = p.get("overrides") or {}

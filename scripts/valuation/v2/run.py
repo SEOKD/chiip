@@ -52,7 +52,13 @@ def load_company(entity):
     import leases
     reg = regime_mod.load() or {}
     cfg = yaml.safe_load((ROOT / "config" / "valuation_v2.yaml").read_text(encoding="utf-8"))
-    leases.apply(co, leases.load_datapack(entity), co.get("rf_local") or reg.get("rf_us"), cfg["defaults"]["pretax_cost_of_debt_spread"])
+    dp = leases.load_datapack(entity)
+    leases.apply(co, dp, co.get("rf_local") or reg.get("rf_us"), cfg["defaults"]["pretax_cost_of_debt_spread"])
+    try:   # 시나리오 확률은 근거로 계산(마스터 지시 2026-11-14, ADR-035) — DCF 시나리오·몬테카를로·리포트가 같은 확률을 쓴다
+        import scenario_prob
+        scenario_prob.apply(co, dp)
+    except Exception as exc:
+        co["scenario_prob"] = {"status": "계산 실패", "why": f"{type(exc).__name__}: {exc}"[:160]}
     return co
 
 

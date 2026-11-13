@@ -90,7 +90,8 @@ class TestDatapackToDrivers(unittest.TestCase):
         d = build_drivers.build(self.pack())
         self.assertAlmostEqual(d["rev0"], 1.2)
         self.assertAlmostEqual(d["scenarios"]["base"]["growth"]["start"], 0.25, places=3)   # 1.5/1.2−1
-        self.assertEqual(d["scenarios"]["bear"]["prob"], 0.30)                              # 콜 톤 down → 약세 확률↑
+        self.assertAlmostEqual(sum(d["scenarios"][k]["prob"] for k in ("bear", "base", "bull")), 1.0)   # 확률은 근거 계산(ADR-035, 톤 규칙 아님)
+        self.assertIn("근거 계산", d["provenance"]["probs"])
         self.assertAlmostEqual(d["market"]["shares"], 1.1)                                  # 워런트 포함 완전 희석
         self.assertAlmostEqual(d["market"]["net_debt"], -1.0)
         self.assertIn("컨센서스", d["provenance"]["growth"])

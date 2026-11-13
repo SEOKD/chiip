@@ -5566,3 +5566,99 @@ params:
     data: radar/state/fulltext_hold.log·sent 기록
     last_fit: null
     oos_metric: null
+- id: prm-sp-outside-w
+  model: valuation.v2
+  binding: config/scenario_prob.yaml#scenario_prob.outside_weight
+  value: 0.3
+  unit: 외부 관점 가중
+  status: prior
+  prior:
+    value: 0.3
+    basis: '초안 — 참조 집단 예측(내부 관점만 쓰면 낙관으로 기운다, Kahneman·Lovallo 1993 Management Science; Mauboussin 2016 기저율). SEC 전 상장사 표본 전에는 엔진이 끈다(ADR-035)'
+    source: null
+  fit:
+    method: 리포트 원장의 다음 해 실제 매출이 약세·기본·강세 구간 어디에 떨어졌는지로 브라이어 점수, 값 후보 비교(표본 외)
+    target: 시나리오 확률 브라이어 점수
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-sp-inflate
+  model: valuation.v2
+  binding: config/scenario_prob.yaml#scenario_prob.dispersion_inflate
+  value: 1.5
+  unit: 배
+  status: prior
+  prior:
+    value: 1.5
+    basis: '초안 — 애널리스트 추정치 사이 흩어짐은 실제 예측 오차보다 작다는 전제로 키운다. 원문 근거 미확인 — 피팅 대상'
+    source: null
+  fit:
+    method: 리포트 원장의 다음 해 실제 매출이 약세·기본·강세 구간 어디에 떨어졌는지로 브라이어 점수, 값 후보 비교(표본 외)
+    target: 시나리오 확률 브라이어 점수
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-sp-floor
+  model: valuation.v2
+  binding: config/scenario_prob.yaml#scenario_prob.sigma_floor
+  value: 0.03
+  unit: 매출 성장률 표준편차
+  status: prior
+  prior:
+    value: 0.03
+    basis: '초안 — 추정 범위가 아주 좁을 때 하한'
+    source: null
+  fit:
+    method: 리포트 원장의 다음 해 실제 매출이 약세·기본·강세 구간 어디에 떨어졌는지로 브라이어 점수, 값 후보 비교(표본 외)
+    target: 시나리오 확률 브라이어 점수
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-sp-norange-base
+  model: valuation.v2
+  binding: config/scenario_prob.yaml#scenario_prob.no_range.base
+  value: 0.05
+  unit: 매출 성장률 표준편차
+  status: prior
+  prior:
+    value: 0.05
+    basis: '초안 — 추정 범위가 없을 때 기본 1년 매출 예측 오차'
+    source: null
+  fit:
+    method: 리포트 원장의 다음 해 실제 매출이 약세·기본·강세 구간 어디에 떨어졌는지로 브라이어 점수, 값 후보 비교(표본 외)
+    target: 시나리오 확률 브라이어 점수
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-sp-norange-growth
+  model: valuation.v2
+  binding: config/scenario_prob.yaml#scenario_prob.no_range.per_growth
+  value: 0.25
+  unit: 성장률 비례 계수
+  status: prior
+  prior:
+    value: 0.25
+    basis: '초안 — 고성장일수록 1년 예측 오차가 크다'
+    source: null
+  fit:
+    method: 리포트 원장의 다음 해 실제 매출이 약세·기본·강세 구간 어디에 떨어졌는지로 브라이어 점수, 값 후보 비교(표본 외)
+    target: 시나리오 확률 브라이어 점수
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-sp-judge-cap
+  model: valuation.v2
+  binding: config/scenario_prob.yaml#scenario_prob.judge_cap
+  value: 0.1
+  unit: 확률 조정 폭(시나리오마다)
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 모델 판단 조정 폭, multiple_view·target_view의 판단 한도와 같은 방식'
+    source: null
+  fit:
+    method: 리포트 원장의 다음 해 실제 매출이 약세·기본·강세 구간 어디에 떨어졌는지로 브라이어 점수, 값 후보 비교(표본 외)
+    target: 시나리오 확률 브라이어 점수
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
