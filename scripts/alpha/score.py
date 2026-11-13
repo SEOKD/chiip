@@ -40,6 +40,21 @@ def names():
     if sweep.exists():
         for k, v in json.loads(sweep.read_text(encoding="utf-8")).items():
             out.setdefault(k, v)
+    for k, v in rotation_names().items():   # 섹터 순환 스크린 후보도 알파 대상(2026-11-13 종목 범위 확대 — 판단 카드 → 알파 그림자 → Analysis 순번으로 잇는다)
+        out.setdefault(k, v)
+    return out
+
+
+def rotation_names():
+    """{us-<티커>: 회사 이름} — knowledge/models/discovery/rotation_candidates.json(scripts/discovery/sector_rotation.py)"""
+    import re
+    f = ROOT / "knowledge" / "models" / "discovery" / "rotation_candidates.json"
+    if not f.exists():
+        return {}
+    out = {}
+    for v in (json.loads(f.read_text(encoding="utf-8")).get("sectors") or {}).values():
+        for r in v.get("rows") or []:
+            out[f"us-{re.sub(r'[^a-z0-9]', '', str(r.get('ticker', '')).lower())}"] = r.get("name")
     return out
 
 

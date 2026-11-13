@@ -7,9 +7,9 @@
 기록: knowledge/models/alpha/sector_shadow.json(최신) · sector_shadow.csv(날짜마다 한 번)
 채택: --gate — 4주 뒤 20거래일 앞 초과수익(SPY 대비)과의 순위 상관(IC)을 v1·S1·S2로 비교, 앞·뒤 절반 모두에서 S가 v1보다 ic_margin 이상이고
       AI 밖 부분집합에서도 나빠지지 않으면 '채택 제안 가능'. config/alpha.yaml 변경은 구조 변경이라 마스터 승인 뒤에만(Model Lab이 제안서를 쓴다).
-시세: 공짜 원천만(유료 시세 금지 — 기억 no-paid-data-for-backtest). --price-request가 필요한 티커·시작일을 내면 모델이 Fiscal.ai company_stock_prices로 받아
-      `[["YYYY-MM-DD", 종가], …]` {티커: …} JSON을 --put-prices <파일>로 넣는다(knowledge/models/alpha/shadow_prices.json).
-사용: py scripts/alpha/sector_shadow.py [--dry] | --show | --price-request | --put-prices <파일> | --gate
+시세: 공짜 원천만(유료 시세 금지). 회사 일봉(knowledge/models/companies/<id>/ohlcv.csv)이 있으면 그걸 쓰고, 없는 종목은 --price-code 출력을
+      Fiscal.ai execute_code로 한 번 돌려 파일로 저장 → --put-prices <파일>(knowledge/models/alpha/shadow_prices.json).
+사용: py scripts/alpha/sector_shadow.py [--dry] | --show | --price-request | --price-code | --put-prices <파일> | --gate
 """
 import csv
 import json
@@ -27,6 +27,7 @@ OUT = A / "sector_shadow.json"
 LOG = A / "sector_shadow.csv"
 PRICES = A / "shadow_prices.json"
 GATE = A / "sector_shadow_gate.json"
+DISC_ROT = ROOT / "knowledge" / "models" / "discovery" / "rotation_candidates.json"
 COLS = ["date", "id", "sector", "ai", "v1", "s1", "s2", "sector_pct", "edge_src", "edge"]
 sys.path.insert(0, str(ROOT / "scripts" / "alpha"))
 sys.path.insert(0, str(ROOT / "scripts" / "sectors"))
@@ -174,8 +175,68 @@ def price_request():
     return {"tickers": out, "start": min(r["date"] for r in rows), "have": len(have)}
 
 
+def local_series(cid):
+    """knowledge/models/companies/<id>/ohlcv.csv 종가 — 이미 받아 둔 일봉은 다시 받지 않는다"""
+    f = ROOT / "knowledge" / "models" / "companies" / cid / "ohlcv.csv"
+    if not f.exists():
+        return []
+    out = []
+    for line in f.read_text(encoding="utf-8").splitlines():
+        p = line.split(",")
+        if len(p) >= 5 and p[0][:1].isdigit() and p[4]:
+            try:
+                out.append([p[0], float(p[4])])
+            except ValueError:
+                continue
+    return out
+
+
+def price_code():
+    """Fiscal.ai execute_code 본문 — 기록 종목 중 일봉이 로컬에 없는 미국 종목 + SPY의 시작일 이후 종가.
+    키는 config/fiscal_keys.yaml → config/tradingview_symbols.csv('NASDAQ:XYZ' → 'NASDAQ_XYZ') 순. 키를 모르면 빼고 목록에 남긴다"""
+    req = price_request()
+    if not req["tickers"]:
+        return "// 기록 없음"
+    t = us_ticker()
+    with LOG.open(encoding="utf-8", newline="") as f:
+        ids = sorted({r["id"] for r in csv.DictReader(f)})
+    fk = (yaml.safe_load((ROOT / "config" / "fiscal_keys.yaml").read_text(encoding="utf-8")) or {}).get("keys") or {}
+    tv = {}
+    tvf = ROOT / "config" / "tradingview_symbols.csv"
+    if tvf.exists():
+        with tvf.open(encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                if r.get("tv_symbol") and r.get("ticker") and r.get("exchange") in ("NASDAQ", "NYSE", "AMEX"):
+                    tv[r["ticker"].upper()] = r["tv_symbol"].replace(":", "_")
+    ss = yaml.safe_load((ROOT / "config" / "sector_select.yaml").read_text(encoding="utf-8")) or {}   # Portfolio 섹터 묶음·순환 후보의 'EXCH:TKR'
+    for g in (ss.get("groups") or {}).values():
+        for sym in (g.get("members") or []) + ([g["etf"]] if g.get("etf") else []):
+            tv.setdefault(sym.split(":")[-1].upper(), sym.replace(":", "_"))
+    for g in ((yaml.safe_load((ROOT / "config" / "market_watch.yaml").read_text(encoding="utf-8")) or {}).get("sectors") or {}).values():
+        for k in g.get("keys") or []:
+            tv.setdefault(k.split("_", 1)[-1].upper(), k)
+    for v in (_j(DISC_ROT).get("sectors") or {}).values():
+        for r in v.get("rows") or []:
+            if r.get("symbol") and r.get("ticker"):
+                tv.setdefault(r["ticker"].upper(), r["symbol"].replace(":", "_"))
+    keys, missing = {"SPY": "AMEX_SPY"}, []
+    for i in ids:
+        tk = t(i)
+        loc = local_series(i)
+        if not tk or (loc and (date.today() - date.fromisoformat(loc[-1][0])).days <= 7):   # 1주 안 일봉이 있으면 받지 않는다
+            continue
+        k = (fk.get(i) or {}).get("key") or tv.get(tk)
+        if k:
+            keys[tk] = k
+        else:
+            missing.append(tk)
+    tpl = (ROOT / "scripts" / "fiscal" / "templates" / "shadow_prices.js").read_text(encoding="utf-8")
+    return tpl.replace("__KEYS__", json.dumps(keys)).replace("__START__", req["start"]).replace("__MISSING__", ", ".join(missing[:40]) or "없음")
+
+
 def put_prices(path):
     new = json.loads(Path(path).read_text(encoding="utf-8"))
+    new = new.get("prices", new) if isinstance(new, dict) else new
     cur = _j(PRICES)
     for t, rows in new.items():
         m = dict(map(tuple, cur.get(t) or []))
@@ -231,13 +292,14 @@ def gate(today=None, c=None, rows=None, prices=None, tick=None, write=False):
     first = min(r["date"] for r in rows)
     if (today - date.fromisoformat(first)).days < g["min_days"]:
         return {"verdict": "판정 보류", "why": f"그림자 {first} 시작, {g['min_days']}일 전"}
+    use_local = prices is None   # 실제 판정에서는 이미 받아 둔 회사 일봉(ohlcv.csv)도 쓴다
     prices = _j(PRICES) if prices is None else prices
     tick = tick or us_ticker()
     spy = prices.get("SPY") or []
     obs = []
     for r in rows:
         t = tick(r["id"])
-        s = prices.get(t) if t else None
+        s = (prices.get(t) if t else None) or (local_series(r["id"]) if use_local else None)
         if not s or not spy:
             continue
         fr, fb = fwd_return(s, r["date"], g["horizon_td"]), fwd_return(spy, r["date"], g["horizon_td"])
@@ -280,6 +342,8 @@ def main(argv):
         if g["verdict"] == "판정 보류":   # 보류도 기록해 둔다(시험이 남긴 값이 남지 않게)
             GATE.write_text(json.dumps({**g, "as_of": date.today().isoformat()}, ensure_ascii=False, indent=1), encoding="utf-8")
         print(json.dumps(g, ensure_ascii=False, indent=1))
+    elif "--price-code" in argv:
+        print(price_code())
     elif "--price-request" in argv:
         print(json.dumps(price_request(), ensure_ascii=False))
     elif "--put-prices" in argv:

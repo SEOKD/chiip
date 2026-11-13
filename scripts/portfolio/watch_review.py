@@ -117,13 +117,14 @@ def adv_m(cid, ticker, tvq):
     return None
 
 
-def last_info(cid, ticker, rep_date, alpha_on):
-    """새 정보가 마지막으로 들어온 날 — 리포트·데이터팩·종목 장부·알파 산정 중 가장 늦은 날"""
+def last_info(cid, ticker, rep_date, alpha_on, today=None):
+    """새 정보가 마지막으로 들어온 날 — 리포트·데이터팩·종목 장부·알파 산정 중 가장 늦은 날.
+    오늘보다 뒤 날짜(장부에 적힌 다음 실적·보호예수 일정)는 '들어온 정보'가 아니라 빼다(2026-11-13 점검)"""
     ds = [rep_date, _d(alpha_on), _d(_j(CO / cid / "datapack.json").get("as_of"))]
     p = TICK / f"{ticker}.md"
     if p.exists():
         ds += [_d(x) for x in DATE.findall(p.read_text(encoding="utf-8"))]
-    ds = [d for d in ds if d]
+    ds = [d for d in ds if d and (today is None or d <= today)]
     return max(ds) if ds else None
 
 
@@ -139,11 +140,11 @@ def facts(h, today, ctx):
     rep = ctx["reports"].get(cid)
     return {"id": cid, "ticker": t, "name": h.get("name"), "pin": bool(h.get("pin")), "added_by": h.get("added_by"),
             "alpha": a.get("total"), "alpha_on": a.get("scored_on"), "alpha_floor": h.get("alpha_floor"),
-            "report": rep.isoformat() if rep else None, "drivers": (CO / cid / "drivers.yaml").exists(),
+            "report": rep.isoformat() if rep else None, "drivers": (CO / cid / "drivers.yaml").exists(), "card": cid in ctx.get("cards", {}),
             "mcap_b": round(mcap, 2) if mcap else None, "adv_m": (lambda x: round(x, 1) if x is not None else None)(adv_m(cid, t, ctx["tv"])),
             "earnings": (dp.get("call") or {}).get("date"), "kill_written": bool(kc.strip()) or report_has_kill(ts),
             "killed": "킬" in close or st in ("킬",) or t.upper() in ctx.get("killed", set()),
-            "last_info": (lambda d: d.isoformat() if d else None)(last_info(cid, t, rep, a.get("scored_on")))}
+            "last_info": (lambda d: d.isoformat() if d else None)(last_info(cid, t, rep, a.get("scored_on"), today))}
 
 
 # ---------- 판정 ----------
@@ -156,8 +157,8 @@ def entry(f, c, today):
     ra = age(f["report"])
     out = {
         "알파": (None if f["alpha"] is None else f["alpha"] >= e["alpha_min"], f"알파 {f['alpha']}" if f["alpha"] is not None else "알파 미산정"),
-        "리서치": (bool((ra is not None and ra <= e["research_days"]) or f["drivers"]),
-                 f"리포트 {f['report']}" if f["report"] else ("v2 밸류 동인 있음" if f["drivers"] else "리포트·밸류 동인 없음")),
+        "리서치": (bool((ra is not None and ra <= e["research_days"]) or f["drivers"] or f.get("card")),
+                 f"리포트 {f['report']}" if f["report"] else ("v2 밸류 동인 있음" if f["drivers"] else ("섹터 판단 카드 있음" if f.get("card") else "리포트·밸류 동인·판단 카드 없음"))),
         "시총": (None if f["mcap_b"] is None else f["mcap_b"] >= e["mcap_min_b"], f"시총 ${f['mcap_b']}B" if f["mcap_b"] is not None else "시총 미확인"),
         "유동성": (None if f["adv_m"] is None else f["adv_m"] >= e["adv_min_m"], f"거래대금 ${f['adv_m']}M/일" if f["adv_m"] is not None else "거래대금 미확인"),
         "실적 확인": (None if age(f["earnings"]) is None else age(f["earnings"]) <= e["earnings_days"],
@@ -201,7 +202,7 @@ def warnings(f, prev, c, today):
 def review(holdings, ctx, c, st, today):
     """→ (행 목록, 새 상태). 같은 ISO 주차 재실행은 연속 횟수를 늘리지 않는다"""
     wk = "%d-W%02d" % today.isocalendar()[:2]
-    st = {"weeks": dict(st.get("weeks") or {}), "last": dict(st.get("last") or {})}
+    st = {"weeks": dict(st.get("weeks") or {}), "last": dict(st.get("last") or {}), "announced": dict(st.get("announced") or {})}
     rows = []
     for h in holdings:
         if h.get("status") != "관심":
@@ -225,7 +226,13 @@ def review(holdings, ctx, c, st, today):
 
 def context(killed=()):
     rep, tk = reports()
-    return {"alpha": (_j(M / "alpha" / "latest.json").get("rows") or {}), "reports": rep, "rep_tickers": tk, "kills": kills(), "tv": tv_quotes(), "killed": set(killed)}
+    try:   # 섹터 판단 틀 카드(ADR-027) — AI 밖 종목은 카드도 '리서치'로 센다(2026-11-13 점검)
+        sys.path.insert(0, str(ROOT / "scripts" / "discovery"))
+        import sector_rotation
+        cards = sector_rotation.cards()
+    except Exception:  # noqa: BLE001
+        cards = {}
+    return {"alpha": (_j(M / "alpha" / "latest.json").get("rows") or {}), "reports": rep, "rep_tickers": tk, "kills": kills(), "tv": tv_quotes(), "killed": set(killed), "cards": cards}
 
 
 def run(dry=False, today=None, killed=()):
@@ -255,13 +262,25 @@ def run(dry=False, today=None, killed=()):
 
 
 # ---------- 문장·표 ----------
-def daily(out=None):
-    """Daily '관심 종목 변동' 한두 문장 — 변화가 없으면 빈 문자열"""
+def daily(out=None, today=None, props=None, announced=None):
+    """Daily '관심 종목 변동' 한두 문장 — 변화가 없으면 빈 문자열.
+    주간 심사 변화는 심사한 날에만, 와치리스트 일일 판정(radar/state/watch_proposals.json — 자동 편입·편입 후보·제외 후보)은
+    전에 알리지 않은 것만 싣는다(같은 날 다시 불러도 같은 문장, 2026-11-13 점검 — 한 주 내내 반복되던 문제)"""
     out = out or _j(LATEST)
+    today = (today or date.today()).isoformat()
     rows = {r["ticker"]: r for r in out.get("rows") or []}
-    ch = out.get("changes") or []
-    cand = [x for x in out.get("proposals") or [] if x.get("kind") == "편입 후보"]
+    ch = (out.get("changes") or []) if out.get("as_of") == today else []
+    props = _j(STATE.with_name("watch_proposals.json"), []) if props is None else props
+    announced = (_j(STATE).get("announced") or {}) if announced is None else announced
+    fresh = [x for x in props if announced.get(f"{x.get('kind')}:{x.get('id')}", today) == today]
+    added = [x for x in fresh if x.get("kind") == "편입"]
+    cand = [x for x in fresh if x.get("kind") == "편입 후보"]
+    drop = [x for x in fresh if x.get("kind") == "제외 후보"]
     s = []
+    if added:
+        s.append(f"{', '.join(x['ticker'] for x in added[:3])}를 편입 기준 6가지를 모두 채워 관심 종목에 새로 넣었습니다.")
+    if drop:
+        s.append(f"{', '.join(x['ticker'] for x in drop[:3])}는 일일 판정에서 제외 후보가 됐습니다({drop[0].get('reason', '')}). 승인해 주시면 뺍니다.")
     rm = [c["ticker"] for c in ch if c["to"] == "제외 후보"]
     wn = [c["ticker"] for c in ch if c["to"] == "경고"]
     if rm:
@@ -272,6 +291,18 @@ def daily(out=None):
     if cand:
         s.append(f"{', '.join(x['ticker'] for x in cand[:3])}는 알파는 높지만 편입 기준을 다 채우지 못해 후보로만 둡니다.")
     return " ".join(s[:2])
+
+
+def mark_announced(today=None):
+    """--daily로 문장을 낸 뒤 그 일일 판정을 '알림'으로 기록 — 다음 날부터 반복하지 않는다"""
+    today = (today or date.today()).isoformat()
+    st = _j(STATE)
+    ann = st.get("announced") or {}
+    for x in _j(STATE.with_name("watch_proposals.json"), []):
+        ann.setdefault(f"{x.get('kind')}:{x.get('id')}", today)
+    st["announced"] = ann
+    STATE.parent.mkdir(parents=True, exist_ok=True)
+    STATE.write_text(json.dumps(st, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 def table(out=None):
@@ -315,6 +346,7 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if "--daily" in argv:
         print(daily())
+        mark_announced()
         return
     if "--table" in argv:
         print(table())

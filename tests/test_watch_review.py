@@ -88,12 +88,26 @@ class Review(unittest.TestCase):
 
 class Output(unittest.TestCase):
     def test_daily_only_on_change(self):
-        out = {"rows": [{"ticker": "X", "warnings": ["알파 6.0 < 7.0"]}], "changes": [], "proposals": []}
-        self.assertEqual(wr.daily(out), "")
+        out = {"as_of": "2026-11-16", "rows": [{"ticker": "X", "warnings": ["알파 6.0 < 7.0"]}], "changes": []}
+        self.assertEqual(wr.daily(out, date(2026, 11, 16), [], {}), "")
         out["changes"] = [{"ticker": "X", "from": "경고", "to": "제외 후보"}]
-        s = wr.daily(out)
+        s = wr.daily(out, date(2026, 11, 16), [], {})
         self.assertIn("제외 후보", s)
         self.assertIn("승인", s)
+        self.assertEqual(wr.daily(out, date(2026, 11, 17), [], {}), "")      # 심사 다음 날엔 반복하지 않는다
+
+    def test_daily_proposals_once(self):
+        out = {"as_of": "2026-11-16", "rows": [], "changes": []}
+        props = [{"kind": "편입", "id": "us-a", "ticker": "A"}, {"kind": "제외 후보", "id": "us-b", "ticker": "B", "reason": "킬 조건 발동"}]
+        s = wr.daily(out, date(2026, 11, 17), props, {})
+        self.assertIn("A", s)
+        self.assertIn("B", s)
+        ann = {"편입:us-a": "2026-11-17", "제외 후보:us-b": "2026-11-17"}
+        self.assertEqual(wr.daily(out, date(2026, 11, 17), props, ann), s)   # 같은 날은 같은 문장
+        self.assertEqual(wr.daily(out, date(2026, 11, 18), props, ann), "")  # 다음 날은 다시 싣지 않는다
+
+    def test_future_dates_not_counted_as_new_info(self):
+        self.assertIsNone(wr.last_info("zz-none", "ZZZZ", date(2026, 12, 7), None, today=date(2026, 11, 13)))
 
     def test_apply_marks_ended_not_deleted(self):
         text = "holdings:\n  - id: a\n    ticker: A\n    status: 관심\n  - id: b\n    ticker: B\n    status: 보유\nevents:\n"
@@ -109,3 +123,9 @@ class Output(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class CardCountsAsResearch(unittest.TestCase):
+    def test_card(self):
+        self.assertFalse(wr.entry_ok(f(report=None, drivers=False), C, D))
+        self.assertTrue(wr.entry_ok(f(report=None, drivers=False, card=True), C, D))

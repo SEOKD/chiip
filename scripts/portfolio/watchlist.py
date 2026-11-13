@@ -254,7 +254,7 @@ def run(dry=False, today=None, entry_gate=None):
         (held_rows if ok else cand_rows).append({**a, "missing": miss})
     out["add"] = held_rows
     out["candidates"] = cand_rows
-    proposals = [{"kind": "편입 후보", **x} for x in cand_rows] + [{"kind": "제외 후보", **r} for r in out["remove"]]
+    proposals = [{"kind": "편입", **x} for x in held_rows] + [{"kind": "편입 후보", **x} for x in cand_rows] + [{"kind": "제외 후보", **r} for r in out["remove"]]
     if not dry:
         if out["add"]:
             PORT.write_text(apply(text, [a["id"] for a in out["add"]], [], mt, today), encoding="utf-8")   # 제외는 반영하지 않는다

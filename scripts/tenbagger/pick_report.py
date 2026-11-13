@@ -48,6 +48,12 @@ def _universe():
     for t in (disc or {}).get("themes") or []:   # Chiip Ten-bagger Discovery 후보(일본·대만·한국 포함, 2026-10-29)
         for c in t.get("candidates") or []:
             out.setdefault(c["id"], {"id": c["id"], "name": c["name"], "ticker": str(c.get("code")), "market": c.get("market")})
+    rc = ROOT / "knowledge" / "models" / "discovery" / "rotation_candidates.json"   # 섹터 순환 후보(2026-11-13) — 알파가 붙으면 티커로 리포트를 쓸 수 있게
+    if rc.exists():
+        for v in (json.loads(rc.read_text(encoding="utf-8")).get("sectors") or {}).values():
+            for r in v.get("rows") or []:
+                cid = "us-" + "".join(ch for ch in str(r.get("ticker", "")).lower() if ch.isalnum())
+                out.setdefault(cid, {"id": cid, "name": r.get("name"), "ticker": r.get("ticker"), "market": "us"})
     return out
 
 
