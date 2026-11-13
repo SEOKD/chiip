@@ -95,13 +95,16 @@ def margin_blocks(dp, data=None, hist=None, cpi=None):
             ch = {n: change(s, n) for n in (3, 6, 12)}
             months.update(m for _, m in ch.values() if m)
             r = hit.get(name)
-            rows.append([name, pc(ch[3][0]), pc(ch[6][0]), pc(ch[12][0]) + ("*" if "us" in (inputs[k].get("proxy") or []) else ""),
-                         _yoy(inputs[k], "jp"), _yoy(inputs[k], "kr"), _yoy(inputs[k], "tw"), pp(r["d_opm"]) if r else "-"])
+            rows.append([name, pc(ch[3][0]), pc(ch[6][0]), pc(ch[12][0]) + ("*" if "us" in (inputs[k].get("proxy") or []) else ""), pp(r["d_opm"]) if r else "-",
+                         _yoy(inputs[k], "jp"), _yoy(inputs[k], "kr"), _yoy(inputs[k], "tw")])
         asof = max(months) if months else data.get("as_of")
-        B.append({"type": "table", "title": f"투입 물가 — 미국 PPI 3·6·12개월({asof}, 개정 반영)과 해외 전년비", "headers": ["항목", "미국 3개월", "6개월", "12개월", "일본", "한국", "대만", "전가 못 할 때 OPM"], "rows": rows})
+        heads = ["항목", "미국 3개월", "6개월", "12개월", "전가 못 할 때 OPM", "일본", "한국", "대만"]
+        keep = [i for i in range(len(heads)) if i < 5 or any(not str(r[i]).startswith(UNKNOWN) for r in rows)]   # 해외 열은 값이 하나라도 있을 때만(휴대폰 폭, 2026-11-14)
+        B.append({"type": "table", "title": f"투입 물가 — 미국 PPI 3·6·12개월({asof}, 개정 반영)" + ("과 해외 전년비" if len(keep) > 5 else ""),
+                  "headers": [heads[i] for i in keep], "rows": [[r[i] for i in keep] for r in rows]})
     say = ["별표는 품목보다 넓은 업종 지수다"] if names else []
     drag, cover = pressure(dp, data)
-    if drag is not None:
+    if drag is not None and br["cost12"] is None:   # 비용 요인 가중치(실제 매출 대비 몫)로 잰 문장이 있으면 BOM 기준 OPM 압력은 겹치니 뺀다(2026-11-14)
         say.append(f"지난 1년 투입 물가를 판매가 전가 뒤 원가에 넣으면 OPM은 {drag * 100:+.2f}%p 움직인다(매출원가의 {cover * 100:.0f}% 기준)")
     say += price_sentences(br)
     if br["unmapped"]:
@@ -246,16 +249,16 @@ def price_sentences(br):
 
 
 def pricing_chart(br):
-    rows = [{"label": f"원가 PPI {r['name']}", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
+    rows = [{"label": f"원가 PPI {r['name']}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
     for r in br["prices"]:
         if r["idx12"] is not None:
-            rows.append({"label": f"판매가 {r['label']}", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
+            rows.append({"label": f"판매가 {r['label']}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
         if r["company"] is not None:
             rows.append({"label": f"회사 가격 {r['business']}", "bars": [{"name": "1년 변화", "color": "a", "value": round(r["company"] * 100, 1)}]})
     if not rows:
         return None
     months = sorted({r["month"] for r in br["costs"] + br["prices"] if r.get("month")})
-    return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"투입 원가 물가·판매가 물가·회사 가격 — 1년 변화({months[-1] if months else UNKNOWN})", "unit": "%", "rows": rows[:8]}}
+    return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "투입 원가 물가·판매가 물가·회사 가격 — 1년 변화(항목별 최근 달)", "unit": "%", "rows": rows[:8]}}
 
 
 def pricing_blocks(dp, hist=None, cpi=None):

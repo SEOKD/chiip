@@ -51,7 +51,8 @@ class TestOneTable(unittest.TestCase):
         self.assertEqual(sum(1 for b in B if b["type"] == "p"), 1)
         t = next(b for b in B if b["type"] == "table")
         self.assertIn("미국 3개월", t["headers"])
-        self.assertEqual(t["rows"][0][-1], "-1.0%p")
+        self.assertEqual(t["rows"][0][4], "-1.0%p")
+        self.assertEqual(len(t["headers"]), 5)   # 해외 값이 모두 미확인이면 열을 숨긴다
 
 
 if __name__ == "__main__":
