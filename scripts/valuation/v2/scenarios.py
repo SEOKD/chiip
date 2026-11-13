@@ -13,9 +13,11 @@ _MEDIAN = {}
 
 def _median(company):
     """규모 구간 기저율 5년 CAGR 중앙값(프로세스 안에서 한 번만 표본을 읽는다)"""
-    start = company["rev0"] * float(company.get("unit_usd", 1e9))
+    import baserates
+    if not baserates.BULK.exists():   # 생존 종목 표본(AI 밸류체인 40종목)은 고성장 쪽으로 치우쳐 4년차 이후 성장을 끌어올렸다 — 전 상장사 표본 전엔 끈다(2026-11-14 점검, scenario_prob.outside와 같은 관문)
+        return None
+    start = company["rev0"] * float(company.get("unit_usd") or 1e9)
     if "sample" not in _MEDIAN:
-        import baserates
         _MEDIAN["sample"] = baserates.windows(5)
     return plus.base_median(start, _MEDIAN["sample"]) if _MEDIAN["sample"] else None
 
@@ -57,4 +59,4 @@ def drivers(company, scen, wacc, g_term):
             "g_term": scen.get("g_term", g_term), "ronic": ronic, "net_debt": m["net_debt"], "shares": m["shares"],
             "nonop": company.get("nonop", 0.0), "minority": company.get("minority", 0.0),
             "midyear": company.get("midyear", True),
-            "kd": company.get("kd", 0.05 * (1 - company["tax"]))}   # 순차입·순현금의 세후 이자(미 10년 5% 근사) — equity_at에서 사용
+            "kd": company.get("kd", 0.05 * (1 - company["tax"])), "kd_debt": company.get("kd_debt")}   # 순차입·순현금의 세후 이자(미 10년 5% 근사) — equity_at에서 사용

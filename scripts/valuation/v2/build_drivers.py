@@ -112,13 +112,23 @@ def build(p):
     s2c = round(clamp(s2c, 0.5, 6.0), 3)
     prov["s2c"] = f"{ssrc} {s2c}"
 
-    # 강세·약세: 컨센서스 고·저 추정의 2년차 성장 폭, 없으면 ±40%
-    lo_, hi_ = _fy_sorted(cons.get("rev_low")), _fy_sorted(cons.get("rev_high"))
-    # 1년차 성장 g1은 다음 해(revs[1]) 기준이므로 최저·최고도 같은 해([1])로 — 그전엔 올해([0])를 써서 강세가 기본보다 낮아졌다(2026-11-14, 15/113 종목)
-    k = 1 if len(revs) >= 2 else 0
-    if len(lo_) > k and len(hi_) > k and lo_[k] / rev0 - 1 < g1 < hi_[k] / rev0 - 1:
-        g_bear, g_bull = lo_[k] / rev0 - 1, hi_[k] / rev0 - 1
-        prov["range"] = f"컨센서스 최저·최고 추정({sorted(cons['rev_low'])[k]}) → 1년차 성장 {g_bear:.1%}~{g_bull:.1%}"
+    # 성장 덮어쓰기는 강세·약세·확률보다 먼저 — 뒤에 바꾸면 강세 < 기본이 된다(2026-11-14 점검: jp-towa 강세 14% vs 기본 22%)
+    ov = p.get("overrides") or {}
+    if ov.get("growth_base"):
+        gb = ov["growth_base"]
+        g_ov = gb[0] if isinstance(gb, list) else gb.get("start", g1)
+        prov["growth"] += f" → 덮어쓰기 1년차 {g_ov:.1%}"
+        g1_cons, g1 = g1, g_ov
+    else:
+        g1_cons = g1
+    # 강세·약세: 컨센서스 고·저 추정의 다음 해 성장 폭, 없으면 ±40%
+    # 최저·최고는 같은 회계연도 키로 찾는다 — 목록 위치로 찾으면 rev_low가 다른 해부터 있을 때 2년치 성장을 1년치로 썼다(2026-11-14 점검: Amkor 강세 50%)
+    nxt = sorted(cons["rev"])[1] if len(revs) >= 2 else (sorted(cons["rev"])[0] if revs else None)
+    lo_v, hi_v = (cons.get("rev_low") or {}).get(nxt), (cons.get("rev_high") or {}).get(nxt)
+    shift = g1 - g1_cons   # 덮어쓰기면 컨센서스 폭을 그대로 옮긴다
+    if lo_v and hi_v and lo_v / rev0 - 1 < g1_cons < hi_v / rev0 - 1:
+        g_bear, g_bull = lo_v / rev0 - 1 + shift, hi_v / rev0 - 1 + shift
+        prov["range"] = f"컨센서스 최저·최고 추정({nxt}) → 1년차 성장 {g_bear:.1%}~{g_bull:.1%}" + (" (덮어쓰기만큼 이동)" if shift else "")
     else:
         if g1 > 1.0:   # 초고성장: 약세는 램프 지연(성장의 40%), 강세는 +25%
             g_bear, g_bull = g1 * 0.4, g1 * 1.25
@@ -126,6 +136,9 @@ def build(p):
         else:
             g_bear, g_bull = g1 * 0.6, g1 * 1.4
             prov["range"] = "고·저 추정 없음 — 1년차 성장 ±40%"
+    if not g_bear < g1 < g_bull:   # 약세 < 기본 < 강세가 깨지면 확률·몬테카를로가 뒤집힌다 — 1년차 성장 ±40%로 되돌린다
+        g_bear, g_bull = (g1 * 0.6, g1 * 1.4) if g1 > 0 else (g1 - 0.1, g1 + 0.1)
+        prov["range"] += f" → 순서 깨짐, ±40%로 {g_bear:.1%}~{g_bull:.1%}"
     if not call.get("tone"):   # 어닝콜 톤은 실적 변화 레이더(가이던스 방향·톤 변화)에서 — 2026-10-29 CBRS는 상향인데 flat으로 적혀 있었다
         import datapack_check
         call = {**call, "tone": datapack_check.derived_tone(call) or "flat"}
@@ -134,17 +147,16 @@ def build(p):
     prov["probs"] = ("데이터 묶음 지정" if p.get("scenario_probs") else f"어닝콜 톤 '{tone}' 규칙") + f" {probs}"
     try:   # 근거 계산 확률(마스터 지시 2026-11-14, ADR-035) — 다음 해 매출 성장 분포를 시나리오 중간점에서 자른다. 모델 지정은 ±judge_cap 조정만
         import scenario_prob
-        r = scenario_prob.compute(g1, g_bear, g_bull, rev0, *(((cons.get("rev_low") or {}).get(sorted(cons["rev_low"])[k]), (cons.get("rev_high") or {}).get(sorted(cons["rev_high"])[k]))
-                                                         if cons.get("rev_low") and cons.get("rev_high") and len(cons["rev_low"]) > k else (None, None)),
+        r = scenario_prob.compute(g1, g_bear, g_bull, rev0, *((rev0 * (1 + g_bear), rev0 * (1 + g_bull)) if lo_v and hi_v else (None, None)),
                                   cons.get("n_analysts"), rev0 * (1e9 if p.get("unit", "B$") == "B$" else float(p.get("unit_usd") or 1e9)))
         if r:
             probs, mwhy = scenario_prob.judged(r, p.get("scenario_probs"), p.get("scenario_probs_why"))
-            prov["probs"] = f"근거 계산 {probs} — {r['why']}" + (f" · 모델 조정: {mwhy}" if mwhy else "")
+            eng = {k2: round(r[k2], 2) for k2 in ("bear", "base", "bull") if k2 in r}
+            prov["probs"] = (f"근거 계산 {eng} → 모델 조정 {probs}({mwhy})" if mwhy else f"근거 계산 {probs}") + f" — {r['why']}"   # 조정값을 '근거 계산'으로 적지 않는다(2026-11-14)
     except Exception as exc:
         prov["probs"] += f" (근거 계산 실패 {type(exc).__name__})"
     spread = clamp(abs(target - m0) * 0.5, 0.02, 0.08)   # 강세·약세 목표 이익률 폭 — 최대 ±8%p
 
-    ov = p.get("overrides") or {}
     if ov:
         prov["overrides"] = ov.get("why", "이유 미기재")
     growth_base = ov.get("growth_base", growth_base)

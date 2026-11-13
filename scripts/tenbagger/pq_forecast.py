@@ -196,11 +196,17 @@ def combine(stat, se_stat, cons, se_cons):
 
 def cons_se(dp, h, fc):
     """h분기 앞 컨센서스 매출의 로그 오차 표준편차 — 애널리스트 범위(최고−최저 ≈ 4σ, Tippett 범위 근사)와 바닥값 중 큰 것, √(h/4)로 늘린다"""
+    # 2026-11-14 점검: 모든 회계연도 중 최소(거의 끝난 올해)를 써서 바닥값만 남았고, 범위 ÷ 4는 애널리스트가 많을 때만 맞다 —
+    # h분기 앞에 해당하는 회계연도(올해 다음 해부터)의 범위를 애널리스트 수의 기대 범위 계수 d2(n)로 나눈다
     c = dp.get("consensus") or {}
-    rel = []
-    for k, v in (c.get("rev") or {}).items():
-        lo, hi = (c.get("rev_low") or {}).get(k), (c.get("rev_high") or {}).get(k)
-        if isinstance(v, (int, float)) and v and isinstance(lo, (int, float)) and isinstance(hi, (int, float)) and hi > lo:
-            rel.append((hi - lo) / 4 / v)
-    base = max(fc["cons_se_floor"], min(rel) if rel else 0.0)
-    return base * math.sqrt(max(h, 1) / 4)
+    keys = [k for k in sorted(c.get("rev") or {}) if isinstance((c.get("rev_low") or {}).get(k), (int, float)) and isinstance((c.get("rev_high") or {}).get(k), (int, float))]
+    rel = None
+    if keys:
+        k = keys[min(len(keys) - 1, (1 if len(keys) > 1 else 0) + (max(h, 1) - 1) // 4)]
+        v, lo, hi = c["rev"][k], c["rev_low"][k], c["rev_high"][k]
+        n = int(c.get("n_analysts") or 4)
+        D2 = {2: 1.128, 3: 1.693, 4: 2.059, 5: 2.326, 6: 2.534, 7: 2.704, 8: 2.847, 10: 3.078, 12: 3.258, 15: 3.472, 20: 3.735, 25: 3.931}
+        d2 = D2[max(x for x in D2 if x <= max(2, min(n, 25)))]
+        if isinstance(v, (int, float)) and v and hi > lo:
+            rel = (hi - lo) / d2 / v
+    return max(fc["cons_se_floor"], rel or 0.0) * (1 if rel else math.sqrt(max(h, 1) / 4))

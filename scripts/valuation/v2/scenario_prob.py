@@ -109,7 +109,10 @@ def judged(engine, model, why, c=None):
     b = min(max(model.get("bear", engine["bear"]), engine["bear"] - cap), engine["bear"] + cap)
     u = min(max(model.get("bull", engine["bull"]), engine["bull"] - cap), engine["bull"] + cap)
     b, u = max(b, c["min_prob"]), max(u, c["min_prob"])
-    return {"bear": round(b, 2), "base": round(1 - b - u, 2), "bull": round(u, 2)}, why
+    if 1 - b - u < c["min_prob"]:   # 기본 확률이 하한 밑(음수 포함)이면 약세·강세를 같은 비율로 줄인다(2026-11-14 점검: 기본 −0.10이 몬테카를로 가중으로 들어갔다)
+        k = (1 - c["min_prob"]) / (b + u)
+        b, u = b * k, u * k
+    return {"bear": round(b, 2), "base": round(1 - round(b, 2) - round(u, 2), 2), "bull": round(u, 2)}, why
 
 
 def _start(spec):

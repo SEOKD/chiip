@@ -78,8 +78,17 @@ def equity_at(d, year, midyear=None):
     rows, _ = project(d)
     w, kd = d["wacc"], d.get("kd", 0.0)
     nd = d["net_debt"]
+    base = max(nd, 0.0)   # 지금 있는 순차입 — 세후 차입금리(kd_debt). 그보다 더 빌린 몫(적자 램프)만 WACC(2026-11-14 점검: 기존 차입까지 WACC로 불려 레버리지 종목의 5년 뒤 가치가 낮았다)
+    kdd = d.get("kd_debt")
     for r in rows[:year]:
-        nd = nd * (1 + (kd if nd < 0 else w)) - r["fcff"]
+        if nd < 0:
+            nd = nd * (1 + kd) - r["fcff"]
+        elif kdd is None:
+            nd = nd * (1 + w) - r["fcff"]
+        else:
+            old = min(nd, base)
+            nd = old * (1 + kdd) + (nd - old) * (1 + w) - r["fcff"]
+            base = max(min(base, nd), 0.0)   # 갚은 만큼 기존 차입이 줄어든다
     later = copy.deepcopy(d)
     later["rev0"] = rows[year - 1]["rev"]
     later["growth"] = d["growth"][year:]

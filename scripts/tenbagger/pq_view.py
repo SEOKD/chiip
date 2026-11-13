@@ -229,7 +229,9 @@ def compute(dp, history=None, db=sv.HS_DB, pq=None, fred_cache=None):
             now_p, n_m = None, 0
             mon = price_monthly(pq or dp.get("pq"), history, db, fred_cache)
             if mon:
-                y_, m_ = (int(last[:4]), int(last[-1]) * 3)
+                # 회사 분기 끝 달 기준(52·53주 결산 포함) — 달력 분기로 잡으면 10월 결산 종목은 8~10월 대신 10~12월을 봤다(2026-11-14 점검)
+                ends = {sv.qlabel(r["period"])[0]: sv.qlabel(r["period"])[1] for r in (dp.get("quarters_hist") or {}).get("q") or [] if r.get("period")}
+                y_, m_ = ends.get(last) or (int(last[:4]), int(last[-1]) * 3)
                 end = (y_ + (m_ + 3 - 1) // 12, (m_ + 3 - 1) % 12 + 1)
                 now_p, n_m = F.nowcast_yoy(mon, end, sv.months_back)
             if now_p is not None:
@@ -244,7 +246,12 @@ def compute(dp, history=None, db=sv.HS_DB, pq=None, fred_cache=None):
             for i, (a, b) in enumerate(zip(pp, qq)):
                 q, base = sv.shift_q(last, i + 1), sv.shift_q(last, i - 3)
                 w = 0.0
-                if q in allq and base in allq and q not in rev and allq[base] > 0:
+                if q in rev and base in allq and allq[base] > 0:   # 가격 지표보다 먼저 나온 실적 분기 — 매출은 관측값, 물량 = 매출 − 가격(2026-11-14 점검: AMAT 4Q 실적을 버리고 AR로만 잡았다)
+                    b, w = math.log(rev[q] / allq[base]) - a, 1.0
+                    se_q_i = sep[i]
+                    proj.append({"q": q, "g_p": a, "g_q": b, "w_cons": w, "se_p": sep[i], "se_q": se_q_i, "actual_rev": True})
+                    continue
+                if q in allq and base in allq and allq[base] > 0:
                     b, _, w = F.combine(b, seq[i], math.log(allq[q] / allq[base]) - a, math.sqrt(F.cons_se(dp, i + 1, fc) ** 2 + sep[i] ** 2))
                 se_q_i = seq[i] if not w else math.sqrt(1 / (1 / max(seq[i], 1e-9) ** 2 + 1 / max(math.sqrt(F.cons_se(dp, i + 1, fc) ** 2 + sep[i] ** 2), 1e-9) ** 2))
                 proj.append({"q": q, "g_p": a, "g_q": b, "w_cons": w, "se_p": sep[i], "se_q": se_q_i})

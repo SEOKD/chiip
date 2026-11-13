@@ -333,9 +333,13 @@ def drivers(a):
     am = [x.get("amort") for x in L4]
     d["amort_q"] = _mean(am) if any(v is not None for v in am) else amort_y / 4
     W = H[-(n + 1):]
-    dep = [(c.get("da") - (c.get("amort") if c.get("amort") is not None else d["amort_q"]), (c["bal"]["ppe"] + p["bal"]["ppe"]) / 2)
+    # 감가율은 기초 잔액으로 맞춘다(추정도 기초 잔액에 곱한다 — 평균 잔액으로 맞추고 기초에 곱하면 성장기에 감가가 작게 나왔다, 2026-11-14 점검)
+    dep = [(c.get("da") - (c.get("amort") if c.get("amort") is not None else d["amort_q"]), p["bal"]["ppe"], c)
            for p, c in zip(W, W[1:]) if c.get("da") is not None and c["bal"].get("ppe") and p["bal"].get("ppe")]
-    d["dep_q"] = sum(x for x, _ in dep) / sum(y for _, y in dep) if len(dep) == n else None
+    d["dep_q"] = sum(x for x, _, _ in dep) / sum(y for _, y, _ in dep) if len(dep) == n else None
+    # 이월 잔차 = 실제 변화 − (CAPEX − 감가) — 처분·매각 후 재임차·환율·재분류. 이월식만 쓰면 유형자산이 과대해진다(2026-11-14 점검: AMAT 4개 분기 +13.6%, LTH +7.4%)
+    res = [c["bal"]["ppe"] - y - c["capex"] + x for x, y, c in dep if c.get("capex") is not None]
+    d["ppe_resid"] = sum(res) / len(res) if len(res) == n else 0.0
     d["ppe_int"] = _mean([x["bal"]["ppe"] / x["rev"] for x in L4 if x["bal"].get("ppe") and x.get("rev")])
     return d
 
@@ -383,7 +387,8 @@ def income_path(dp, H, n=4):
             mg -= sbc
             src += f"(조정 − 주식보상 {sbc * 100:.1f}%)"
         rev = qe[k] * scale
-        out.append({"q": _ql(e), "end": e.isoformat(), "rev": rev, "ebita": rev * mg, "cogs": None, "src": src, "key": k})
+        # 조정(비 GAAP) 마진은 인수 무형 상각을 이미 뺀 이익 → 그대로 EBITA. GAAP 마진이면 영업이익이라 상각을 forecast에서 되더한다(2026-11-14 점검)
+        out.append({"q": _ql(e), "end": e.isoformat(), "rev": rev, **({"ebita": rev * mg} if adj else {"ebit": rev * mg}), "cogs": None, "src": src, "key": k})
     return out
 
 
@@ -406,7 +411,7 @@ def forecast(a, dp):
         capex = dep = None
         if pb.get("ppe") is not None and d["capex_int"] is not None and d["dep_q"] is not None:
             capex, dep = d["capex_int"] * rev, d["dep_q"] * pb["ppe"]
-            bal["ppe"] = pb["ppe"] + capex - dep
+            bal["ppe"] = max(0.0, pb["ppe"] + capex - dep + d["ppe_resid"])
         else:
             bal["ppe"] = d["ppe_int"] * rev if d["ppe_int"] else pb.get("ppe")
         for k in ("rou", "goodwill", "other"):
@@ -512,6 +517,18 @@ def _ctx(dp, wacc):
     cfg = config()
     cur = (dp.get("currency_symbol") or "$").strip() if dp.get("currency_symbol") else "$"
     unit = str(a.get("unit", "$M")).replace("$", "").strip() or "M"
+    H0 = a.get("hist") or []
+    if len(H0) >= 9 and all(x.get("rev") is not None and x.get("ebit") is not None for x in H0[-8:]):
+        # 두 기간 판(표)도 추이 그림과 같은 분기 이력으로 — 모델이 고친 roic.capital과 SEC 이력이 섞여 같은 TTM에 ROIC가 두 개 나왔다(2026-11-14 점검: LTH 8.27% vs 8.43%)
+        r0 = dict(a.get("roic") or {})
+        caps = [cap_of(H0[i]) for i in (-1, -5, -9)]
+        keys = [k for k in CAP_NAMES if any(k in c for c in caps)]
+        r0["capital"] = {k: [c.get(k) or 0.0 for c in caps] for k in keys}
+        r0["rev"] = [sum(x["rev"] for x in H0[-4:]), sum(x["rev"] for x in H0[-8:-4])]
+        r0["ebit"] = [sum(x["ebit"] for x in H0[-4:]), sum(x["ebit"] for x in H0[-8:-4])]
+        r0["periods"] = [f"TTM {H0[-1]['q']}", f"TTM {H0[-5]['q']}"]
+        r0["lease_liab"] = [H0[i].get("lease") for i in (-1, -5, -9)]
+        a = {**a, "roic": r0}
     rs = roic(a)
     dq = dep_rates(a)
     p1 = rs[0] if rs else None

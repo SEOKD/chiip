@@ -5678,3 +5678,35 @@ params:
     data: SEC 10-Q 분기 잔액(asset_pack hist) — 4개 분기 뒤 실제와 대조
     last_fit: null
     oos_metric: null
+- id: prm-sync-winsor
+  model: tenbagger.report
+  binding: scripts/tenbagger/sync_view.py#WINSOR
+  value: 0.1
+  unit: 양 끝 분위(지표 증가율)
+  status: prior
+  prior:
+    value: 0.1
+    basis: '거시 지표 싱크로율 회귀·표본 밖 검증·외삽 제한에 쓰는 지표 증가율의 양 끝 10%를 자른다(윈저화). 2026-11-14 점검: AMAT EU HS848620 수입이 작은 기저 뒤 +142%·+535% 두 분기로 r 0.92를 만들었다(두 분기를 빼면 0.15, 순위 상관 0.50). 10%는 표본 12~16쌍에서 양 끝 1개씩 — 관행값, 피팅 전(ADR-036)'
+    source: docs/decisions/ADR-036-estimation-audit.md
+  fit:
+    method: 0·5·10·20% 윈저화의 롤링 오리진 다음 분기 매출 오차 비교(종목 풀 표본 외)
+    target: 다음 분기 매출 추정 절대 오차
+    data: datapack sync·quarters_hist 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-sync-tsig
+  model: tenbagger.report
+  binding: scripts/tenbagger/sync_view.py#T_SIG
+  value: 2.6
+  unit: t값 문턱
+  status: prior
+  prior:
+    value: 2.6
+    basis: '선행 0~4분기 다섯 개 중 상관이 가장 큰 것을 고르므로 본페로니 보정(양측 5% ÷ 5 ≈ 1%, 자유도 10~14의 t 임계 약 2.6~3.0)의 하단. 순위 상관(스피어만) 0.4 이상·같은 방향을 함께 요구한다. 그전 2.0은 보정 없음(ADR-036)'
+    source: docs/decisions/ADR-036-estimation-audit.md
+  fit:
+    method: 무작위 순열(지표 분기 섞기)로 거짓 유의 비율이 5%가 되는 문턱 추정
+    target: 거짓 유의 비율
+    data: datapack sync 후보 지표
+    last_fit: null
+    oos_metric: null

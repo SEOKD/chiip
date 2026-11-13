@@ -129,17 +129,21 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     """datapack + v2 기본 시나리오 → 멀티플 분석 dict"""
     tax = dp.get("tax", 0.21)
     fin = dp.get("financials") or {}
-    net_debt = (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
+    # 시장 EV도 DCF EV와 같은 순차입(리스 포함, run.load_company → leases.apply)으로 — 리스를 한쪽만 넣으면 내재 배수가 부풀었다(2026-11-14 점검: LTH 0.26배 시총)
+    net_debt = base_drivers.get("net_debt") if base_drivers.get("net_debt") is not None else (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
     ev = mcap + net_debt
     rev = fin.get("rev_ttm")
     basis, why = choose_basis(dp)
     cur = (ev / rev if rev else None) if basis == "ev_sales" else dp["multiples_now"][basis]
     peers = []
     for p in dp.get("peers") or []:
-        if not all(p.get(k) is not None for k in ("rev", "ebit_margin", "mcap", "pb", basis, "growth")) or p[basis] <= 0:
+        if p.get(basis) is None or p[basis] <= 0:
+            continue
+        if not all(p.get(k) is not None for k in ("rev", "ebit_margin", "mcap", "pb", "growth")):   # 펀더멘털이 없는 동종(자본잠식 등)도 시장 레인지에는 남기고 심리 배율에서만 뺀다(2026-11-14 점검: LTH 8곳 → 4곳)
+            peers.append({**p, "market": p[basis], "roic": None, "roic_ex": None, "s2c": None, "warranted": None, "ratio": None})
             continue
         if basis != "ev_sales" and p.get("ntm_ebit_margin") is not None:   # 선행 멀티플은 선행 이익률·성장으로 잰다(GAAP 후행 이익률이면 내재가 낮게 나온다)
-            p = {**p, "ebit_margin": p["ntm_ebit_margin"], "growth": p.get("ntm_growth", p["growth"])}
+            p = {**p, "ebit_margin": p["ntm_ebit_margin"], "growth": p["ntm_growth"] if p.get("ntm_growth") is not None else p["growth"]}
         roic, roic_ex, s2c, ic = peer_fundamentals(p, tax)
         w = warranted_ev_sales(p["rev"], p["growth"], p["ebit_margin"], s2c, ic, wacc, g_term, tax) if roic is not None else None
         ratio = None
@@ -147,7 +151,10 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
             ratio = (p["mcap"] + (p.get("debt") or 0) - (p.get("cash") or 0)) / (w * p["rev"]) if basis != "ev_sales" else p[basis] / w
         peers.append({**p, "market": p[basis], "roic": roic, "roic_ex": roic_ex, "s2c": s2c, "warranted": p[basis] / ratio if ratio else None, "ratio": ratio})
     ev_dcf = dcf.value(base_drivers)["ev"]
-    tw = cur / (ev / ev_dcf) if cur and ev_dcf > 0 else None   # 대상 내재 = 시장 멀티플 ÷ (시장 EV ÷ v2 기본 시나리오 EV)
+    # 대상 내재 = 시장 멀티플 ÷ (시장 값 ÷ v2 기본 시나리오 값). P/E는 지분끼리(시총 ÷ DCF 지분가치), EV 배수는 EV끼리 — P/E에 EV 비율을 쓰면 차입이 큰 종목에서 틀린다(2026-11-14 점검)
+    eq_dcf = ev_dcf - net_debt
+    mkt_ratio = (mcap / eq_dcf if eq_dcf > 0 else None) if basis == "pe_fwd" else (ev / ev_dcf if ev_dcf > 0 else None)
+    tw = cur / mkt_ratio if cur and mkt_ratio else None
     ratios = [x["ratio"] for x in peers if x["ratio"]]
     acts, warrs = [x["market"] for x in peers], [x["warranted"] for x in peers if x["warranted"]]
     med_act, med_w, med_r = pct(acts, 0.5), pct(warrs, 0.5), pct(ratios, 0.5)
@@ -159,7 +166,7 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     if hist:
         out["history"] = {"p10": pct(hist, 0.1), "p50": pct(hist, 0.5), "p90": pct(hist, 0.9), "n": len(hist),
                           "basis": (dp.get("history") or {}).get("basis", "")}
-    out["horizons"] = horizon_views(dp, basis, peers, out["sentiment"], ev / ev_dcf if ev_dcf > 0 else None, out.get("history"))
+    out["horizons"] = horizon_views(dp, basis, peers, out["sentiment"], mkt_ratio, out.get("history"))
     out["ext"] = max((((dp.get("forward") or {}).get("horizons") or {}).get(str(h["h"])) or {}).get("ext") or 0 for h in out["horizons"]) if out["horizons"] else 0
     if cur and med_act and tw and med_w and med_r and tw > 0:
         total = math.log(cur / med_act)
@@ -167,7 +174,7 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
         out["decomp"] = {"total": total, "fundamental": total - firm, "firm": firm,   # 두 몫의 곱 = 전체(정확히 맞아떨어짐)
                          "fund_only": math.log(tw / med_w)}                         # 참고: 심리를 빼고 펀더멘털만 비교
         out["rational"] = {k: tw * out["sentiment"][k] for k in ("p25", "p50", "p75") if out["sentiment"][k]}
-        out["rational_value_x"] = {k: (ev_dcf * out["sentiment"][k] - net_debt) / mcap for k in out["rational"]}
+        out["rational_value_x"] = {k: (eq_dcf * out["sentiment"][k] if basis == "pe_fwd" else ev_dcf * out["sentiment"][k] - net_debt) / mcap for k in out["rational"]}
     # 정상 상태(5년차) 멀티플을 지금으로 할인한 교차 확인 — 5년차 이익률·ROIC는 v2 기본 시나리오에서
     rows, _ = dcf.project(base_drivers)
     if len(rows) >= 6 and rows[5]["roic"] and rows[5]["roic"] > g_term:

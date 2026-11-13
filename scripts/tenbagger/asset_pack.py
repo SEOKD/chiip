@@ -49,6 +49,7 @@ C = {   # 개념 후보(먼저 있는 것)
     "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets"],
 }
 NWC_PLUS, NWC_MINUS = ("ar", "inv", "prepaid"), ("ap", "accrued", "deferred_rev")
+SYNONYM = {"rev", "ebit", "da", "dep", "amort", "cogs", "capex", "rd", "sga", "gw_impair", "ppe_net", "goodwill", "rou"}   # 이름만 바뀐 같은 개념 — 날짜별로 합친다
 INST = ("ppe_net", "ppe_gross", "ppe_accum", "rou", "lease_liab", "lease_cur", "lease_nc", "lease_rate", "goodwill",
         "intang", "intang_gross", "intang_accum", "ar", "inv", "prepaid", "ap", "accrued", "deferred_rev", "other_a", "other_l")
 HIST_Q = 16   # 분기말 잔액 16개 → TTM ROIC(평균 투하자본 = 이번 분기말·4분기 전) 12개(마스터 지시 2026-11-14 "최근 12개 분기")
@@ -143,6 +144,8 @@ def series(facts, key, kind):
     if not got:
         return {}, None
     got.sort(key=lambda x: x[0], reverse=True)
+    if key not in SYNONYM:   # 범위가 다른 개념(선급 ⊃ 선급비용, 무형 전체 ⊃ 상각 무형)은 섞지 않고 최근 개념 하나만 — 날짜마다 다른 개념이면 가짜 계단이 생긴다(2026-11-14 점검)
+        return dict(sorted(got[0][2].items())), got[0][1]
     out = {}
     for _, _, s in got:
         for k, v in s.items():
@@ -160,7 +163,11 @@ def _at(s, ends):
 
 
 def build(facts, tax=0.25):
-    S = {k: series(facts, k, "inst" if k in INST else "q")[0] for k in C}
+    S, used = {}, {}
+    for k in C:
+        S[k], used[k] = series(facts, k, "inst" if k in INST else "q")
+    if used.get("accrued") == "AccountsPayableAndAccruedLiabilitiesCurrent" and S["ap"]:   # 매입채무가 들어 있는 합계 칸 — 매입채무를 두 번 빼지 않게
+        S["accrued"] = {e: v - S["ap"][e] for e, v in S["accrued"].items() if e in S["ap"]}
     Y = {k: series(facts, k, "y")[0] for k in ("dep", "da", "amort", "rd", "sga", "gw_impair")}
     missing = []
     q_ends = sorted(set(S["da"]) & set(S["ppe_net"]))[-9:]

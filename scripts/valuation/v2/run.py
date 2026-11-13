@@ -73,6 +73,7 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
         reg = {**reg, "rf_us": co["rf_local"]}
     coc = wacc_mod.cost_of_capital(reg, co["industry"], co["region_mix"], mcap, m["net_debt"], co["tax"],
                                    co.get("pretax_kd"), cfg["defaults"]["pretax_cost_of_debt_spread"])
+    co["kd_debt"] = coc["kd"] * (1 - co["tax"])   # 기존 차입은 세후 차입금리로 굴린다(equity_at, 2026-11-14 점검)
     region = max(co["region_mix"], key=co["region_mix"].get)
     g_term = co.get("g_term", cfg["defaults"]["g_term"].get(region, 0.03))
     base_d = scenarios.drivers(co, co["scenarios"]["base"], coc["wacc"], g_term)

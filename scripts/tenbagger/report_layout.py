@@ -107,8 +107,11 @@ def scenario_build(d, dp, mm, sel, shares, co=None):
             if key:
                 k["prob"] = sp["probs"][key]
         c["prob_why"] = sp["why"] + (f" · 모델 조정: {sp['judge']}" if sp.get("judge") else "")
-    price = float(dp["profile"]["price"])
-    net_debt = (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
+    price = float(((co or {}).get("market") or {}).get("price") or dp["profile"]["price"])
+    # EV 배수(Fiscal.ai EV = 시총 + 차입 + 리스 − 현금)를 지분으로 바꿀 때 리스 부채도 뺀다 — v2 동인 순차입(leases.apply)과 같게(2026-11-14 점검: LTH 리스 $2.81B, 주당 약 $12 과대)
+    net_debt = ((co or {}).get("market") or {}).get("net_debt")
+    if net_debt is None:
+        net_debt = (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
     if abs(sum(float(k.get("prob") or 0) for k in c["cases"]) - 1) > 0.01:
         raise SystemExit("판단 시나리오 확률 합이 1이 아니다")
     spread = config()["multiple_select"]["spread"]
@@ -435,13 +438,13 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
             raise SystemExit(f"양식 3 본론에 없는 절: {s0.get('h2')} — 쓸 수 있는 절은 {MODEL_SECTIONS}. 내용은 datapack narrative·moat로 옮긴다")
     input_view.check(dp)
     margin_sec, supply_sec, capacity_sec, customer_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp), customer_view.section(dp)   # 재료가 없으면 여기서 멈춘다
-    shares = r["mcap"] / float(dp["profile"]["price"])
+    shares = r["market"]["shares"]   # v2와 같은 완전 희석 주식 수 — 시총 ÷ datapack 가격으로 되짚으면 시세 파일이 더 새로울 때 주식 수가 틀렸다(2026-11-14 점검)
     s = scenario_build(d, dp, mm, sel, shares, co)
     dcf_up = r["scenarios"]["base"]["v0"] - 1
     cfg = config()
     prof = dp["profile"]
     pt = target_price.build(s, r["scenarios"]["base"]["v0"], r["coc"]["ke"], (dp.get("narrative") or {}).get("stage"), dp.get("target_view"), flow.load_ohlcv(entity),
-                            (prof.get("debt") or 0) - (prof.get("cash") or 0), shares, cfg["target_price"], ((dp.get("consensus") or {}).get("ratings") or {}).get("target_mean"))
+                            r["market"].get("net_debt", (prof.get("debt") or 0) - (prof.get("cash") or 0)), shares, cfg["target_price"], ((dp.get("consensus") or {}).get("ratings") or {}).get("target_mean"))
     s.update({"weighted_up": s["upside"], "target": pt["target"], "upside": pt["upside"]})
     s["chart"].update({"target": pt["target"]})
     grade, deb = debate_view.decide(dp, rating(s["upside"], s["rr"], dcf_up, cfg))   # 규칙 등급 → 가상 애널리스트 5인 토론으로 조율(2026-11-03 마스터 지시)

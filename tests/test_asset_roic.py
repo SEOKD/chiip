@@ -295,7 +295,10 @@ class TestHistoryForecast(unittest.TestCase):
         self.assertAlmostEqual(F[0]["bal"]["ar"], 0.8 * 1650, places=6)
         self.assertAlmostEqual(F[0]["bal"]["inv"], 1.2 * 1650 * 0.5, places=6)   # 재고는 매출원가 기준
         last = a["hist"][-1]["bal"]
-        self.assertAlmostEqual(F[0]["bal"]["ppe"], last["ppe"] + F[0]["capex"] - F[0]["dep"])   # 유형자산 이월
+        self.assertAlmostEqual(F[0]["bal"]["ppe"], last["ppe"] + F[0]["capex"] - F[0]["dep"] + d["ppe_resid"])   # 이월 + 처분·재분류 잔차
+        H = a["hist"]
+        exp = sum(H[i]["bal"]["ppe"] - H[i - 1]["bal"]["ppe"] - H[i]["capex"] + (H[i]["da"] - H[i]["amort"]) for i in range(-4, 0)) / 4
+        self.assertAlmostEqual(d["ppe_resid"], exp)   # 유형자산 이월
         self.assertEqual(F[-1]["bal"]["goodwill"], 500.0)
         self.assertAlmostEqual(F[0]["bal"]["intangibles"], last["intangibles"] - 2.0)
 

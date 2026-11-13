@@ -219,10 +219,14 @@ class TestMultiples(unittest.TestCase):
             m = multiples.analyze(dp, base, 12.0, 0.1, 0.03)
             self.assertEqual((m["basis"], m["label"], m["current"]), (key, lb, dp["multiples_now"][key]))
             self.assertEqual(m["history"]["p50"], dp["history"][key][0]["value"])
-            # 시장÷내재는 EV끼리 — 어느 배수로 보든 같다
+            # 시장÷내재: EV 배수는 EV끼리, P/E는 지분끼리(시총 ÷ DCF 지분가치) — 차입이 큰 종목에서 EV 비율을 P/E에 쓰면 틀린다(2026-11-14 점검)
             ev = multiples.dcf.value(base)["ev"]
-            self.assertAlmostEqual(m["current"] / m["target_warranted"], 11.0 / ev)
-            self.assertAlmostEqual(m["rational_value_x"]["p50"], (ev * m["sentiment"]["p50"] + 1.0) / 12.0)
+            if key == "pe_fwd":
+                self.assertAlmostEqual(m["current"] / m["target_warranted"], 12.0 / (ev + 1.0))
+                self.assertAlmostEqual(m["rational_value_x"]["p50"], (ev + 1.0) * m["sentiment"]["p50"] / 12.0)
+            else:
+                self.assertAlmostEqual(m["current"] / m["target_warranted"], 11.0 / ev)
+                self.assertAlmostEqual(m["rational_value_x"]["p50"], (ev * m["sentiment"]["p50"] + 1.0) / 12.0)
             self.assertAlmostEqual(m["decomp"]["fundamental"] + m["decomp"]["firm"], m["decomp"]["total"])
             bl = multiples.report_blocks(m, "B$", 12.0, "대상")
             text = json.dumps(bl, ensure_ascii=False)

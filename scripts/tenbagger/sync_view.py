@@ -138,23 +138,56 @@ def reliability(n):
     return "보통" if n >= 12 else ("낮음" if n >= 8 else "참고용")
 
 
+WINSOR = 0.10   # 지표 증가율 양 끝 10%를 자른다 — 작은 기저(수입 $239M → 다음 해 +535%) 한두 분기가 상관을 만들던 것을 막는다(2026-11-14 점검: AMAT r 0.92 → 마지막 두 분기 빼면 0.15)
+T_SIG = 2.6    # 선행 0~4분기 중 최댓값을 고르므로 다중 비교 보정(본페로니 5개 ≈ 양측 1%) — 그전엔 2.0
+
+
+def wgrowth(series, k):
+    """증가율을 표본 분위(WINSOR, 1−WINSOR)로 자른 것 — 회귀·표본 밖 검증·외삽 제한이 같은 값을 쓴다"""
+    g = growth(series, k)
+    v = sorted(g.values())
+    if len(v) < 8:
+        return g
+    lo, hi = v[int(WINSOR * (len(v) - 1))], v[int(round((1 - WINSOR) * (len(v) - 1)))]
+    return {q: min(max(x, lo), hi) for q, x in g.items()}
+
+
+def _rank(x):
+    o = sorted(range(len(x)), key=lambda i: x[i])
+    r = [0.0] * len(x)
+    i = 0
+    while i < len(o):
+        j = i
+        while j + 1 < len(o) and x[o[j + 1]] == x[o[i]]:
+            j += 1
+        for t in range(i, j + 1):
+            r[o[t]] = (i + j) / 2
+        i = j + 1
+    return r
+
+
 def fit(comp, ind_q, k):
-    """comp·ind_q: 분기 라벨 → 수준. k = 4(전년 대비) 또는 1(전 분기 대비)"""
-    cg, ig = growth(comp, k), growth(ind_q, k)
+    """comp·ind_q: 분기 라벨 → 수준. k = 4(전년 대비) 또는 1(전 분기 대비). 지표는 양 끝을 자른 증가율, 순위 상관(스피어만)을 함께 잰다"""
+    cg, ig = growth(comp, k), wgrowth(ind_q, k)
     best = None
     for lag in LAGS:
         pairs = [(ig[shift_q(q, -lag)], cg[q]) for q in sorted(cg) if shift_q(q, -lag) in ig]
         if len(pairs) < MIN_PAIRS:
             continue
         x, y = zip(*pairs)
+        if max(x) - min(x) < 1e-9 * max(1.0, abs(max(x))) or max(y) - min(y) < 1e-9 * max(1.0, abs(max(y))):   # 변화가 없는 증가율(부동소수 잡음)은 상관을 재지 않는다
+            continue
         r = corr(x, y)
         if r is None:
             continue
+        rho = corr(_rank(list(x)), _rank(list(y)))
         hit = sum(1 for u, v in pairs if (u >= 0) == (v >= 0)) / len(pairs)
         t = r * math.sqrt(len(pairs) - 2) / math.sqrt(max(1e-9, 1 - r * r)) if len(pairs) > 2 else 0.0
         if best is None or abs(r) > abs(best["r"]):
             a, b, se = ols(x, y)
-            best = {"lag": lag, "r": r, "n": len(pairs), "hit": hit, "a": a, "b": b, "se": se, "t": t, "sig": abs(t) >= 2.0}
+            # 유의 = 보정한 t 문턱 + 순위 상관도 같은 방향으로 0.4 이상(이상치 한두 개로 생긴 상관이 아니다)
+            best = {"lag": lag, "r": r, "rho": rho, "n": len(pairs), "hit": hit, "a": a, "b": b, "se": se, "t": t,
+                    "sig": abs(t) >= T_SIG and rho is not None and rho * r > 0 and abs(rho) >= 0.4}
     return best
 
 
@@ -168,14 +201,17 @@ def oos(comp, ind_q, fr, k, last, m=6):
     """표본 밖 검증(롤링 오리진, 마스터 지시 2026-11-08 '전문 기법 점검'): 마지막 m개 분기마다 그 이전 자료로만 회귀를 다시 맞춰 한 분기를 예측하고
     단순 기준선(직전 증가율 지속)과 오차를 비교한다. 지표 값은 실제 관측치(조건부) — 지표 예측 오차는 forecast_x 표준오차로 따로 더한다.
     반환 {n, mae_model, mae_naive, skill(1 − 모델/기준), w(결합 가중 = 역MSE), rmse_comb}"""
-    cg, ig = growth(comp, k), growth(ind_q, k)
+    cg, ig = growth(comp, k), wgrowth(ind_q, k)
     em, en = [], []
     for h in range(m, 0, -1):
         q = shift_q(last, -h + 1)
         if q not in cg:
             continue
-        pairs = [(ig[shift_q(t, -fr["lag"])], cg[t]) for t in sorted(cg) if t < q and shift_q(t, -fr["lag"]) in ig]
-        xq, nv = ig.get(shift_q(q, -fr["lag"])), naive_g(comp, k, q)
+        # 선행 분기도 그 시점까지의 자료로 다시 고른다 — 전체 표본에서 고른 선행을 쓰면 표본 밖 성적이 부풀었다(2026-11-14 점검)
+        f0 = fit({t: v for t, v in comp.items() if t < q}, ind_q, k)
+        lag = f0["lag"] if f0 else fr["lag"]
+        pairs = [(ig[shift_q(t, -lag)], cg[t]) for t in sorted(cg) if t < q and shift_q(t, -lag) in ig]
+        xq, nv = ig.get(shift_q(q, -lag)), naive_g(comp, k, q)
         if len(pairs) < MIN_PAIRS or xq is None or nv is None:
             continue
         x, y = zip(*pairs)
@@ -193,8 +229,8 @@ def oos(comp, ind_q, fr, k, last, m=6):
 
 
 def clip_x(ind_q, k, x, lag=0):
-    """회귀에 쓴 지표 범위 밖이면 범위 끝으로 자른다(외삽 제한) — (값, 잘랐나)"""
-    v = list(growth(ind_q, k).values())
+    """회귀에 쓴 지표 범위 밖이면 범위 끝으로 자른다(외삽 제한, 양 끝을 자른 범위 — 이상치가 범위를 정하지 않게) — (값, 잘랐나)"""
+    v = list(wgrowth(ind_q, k).values())
     if not v or x is None:
         return x, False
     lo, hi = min(v), max(v)
@@ -324,8 +360,9 @@ def score(row):
     return row["rel"] * max(r, 0.0) * (1.0 if f["sig"] else 0.8)
 
 
-def forecast_x(iq, k):
-    """지표 증가율 한 분기 앞 — 자기회귀모델(절편, BIC 차수, 전년 대비면 겹친 표본 장기 분산). (값, 표준오차) 또는 (None, None)"""
+def forecast_x(iq, k, target=None):
+    """지표 증가율 — 자기회귀모델(절편, BIC 차수, 전년 대비면 겹친 표본 장기 분산). target(필요한 분기 = 다음 분기 − 선행)까지 몇 걸음인지 세어
+    그 걸음의 예측을 쓴다(그전엔 늘 한 걸음 — 선행 0인 지표의 2026Q4 예측을 2027Q1에 썼다, 2026-11-14 점검). (값, 표준오차) 또는 (None, None)"""
     sys.path.insert(0, str(Path(__file__).resolve().parent))
     import pq_forecast as PF
     g = growth(iq, k)
@@ -336,8 +373,15 @@ def forecast_x(iq, k):
     fr = PF.ar_fit(y, pmax=2, intercept=True, overlap=k if k > 1 else 1)
     if not fr:
         return None, None
-    m, se = PF.ar_path(y, fr, 1)
-    return m[0], se[0]
+    h = 1
+    if target:
+        h = 0
+        while shift_q(qs[-1], h) < target and h < 8:
+            h += 1
+        if h == 0:
+            return g.get(target), 0.0
+    m, se = PF.ar_path(y, fr, h)
+    return m[-1], se[-1]
 
 
 def compute(dp, history=None, db=HS_DB):
@@ -391,7 +435,7 @@ def compute(dp, history=None, db=HS_DB):
             base = comp.get(shift_q(nxt, -k))
             se = fr["se"]
             if x is None and base:   # 다음 분기 지표가 한 달도 없으면 지표를 자기회귀모델로 한 분기 예측한다
-                x, sx = forecast_x(iq, k)
+                x, sx = forecast_x(iq, k, shift_q(nxt, -fr["lag"]))
                 if x is not None:
                     how, se = "지표 자기회귀 추정", math.sqrt(fr["se"] ** 2 + (fr["b"] * sx) ** 2)
             if x is not None and base:
