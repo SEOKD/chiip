@@ -224,3 +224,12 @@ class TestLineTap(unittest.TestCase):
         self.assertIn("closest('.lp')", report_html.FIT_JS)
         neg = report_html.CHARTS["line"]({"kind": "line", "unit": "%", "series": [{"name": "변화", "points": [["a", -1.5], ["b", 2.0]]}]})
         self.assertNotIn('data-v="<', neg)   # 속성 값에 색칠 태그가 들어가지 않는다
+
+
+class TestSelfWords(unittest.TestCase):
+    def test_license_phrase_removed(self):
+        for a, b in (("3Q26 어닝콜(2026-11-04, 요지만 자기 말로)", "3Q26 어닝콜(2026-11-04)"), ("2Q 콜(2026-11-12) — 요지만 자기 말로", "2Q 콜(2026-11-12)"),
+                     ("어닝콜 요지만 자기 말로, 매출 상향", "어닝콜 매출 상향")):
+            self.assertEqual(report_html._scrub_text(a), b)
+        d = report_html.scrub({"sections": [{"h2": "해자", "blocks": [{"type": "boxes", "items": [{"title": "x", "lines": [["증거", "3Q26 어닝콜(2026-11-04, 요지만 자기 말로)"]]}]}]}]})
+        self.assertNotIn("자기 말로", json.dumps(d, ensure_ascii=False))

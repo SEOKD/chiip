@@ -249,6 +249,10 @@ FOOTER_BITS = {"1차 판정·미검증", "1차 판정, 미검증", "1차 판정 
                "등락·거래량만 본 흐름이며 원인은 확인된 것만 적는다"}
 
 
+SELF_WORDS = re.compile(r"\s*[,·]\s*요지만\s*자기\s*말로(?:\s*(?:정리|요약))?(?=\))|\s*[—–-]\s*요지만\s*자기\s*말로(?:\s*(?:정리|요약))?|\s*\(\s*요지만\s*자기\s*말로\s*\)"
+                        r"|(?<=\S)(?:을|를)\s*자기\s*말로(?:\s*(?:정리|요약))?(?=[,)\s])")
+
+
 def feed_tidy(text, md=False):
     """텔레그램 피드 공통 다듬기(마스터 지시 2026-11-14 "맨 아래 줄을 빼라 … 독자가 직관적으로 이해하도록, 문단 띄어쓰기를 잘하고
     굳이 필요하지 않은 부가 설명은 제외") — ① 면책·판정 상태만으로 된 꼬리 줄(1차 판정·미검증 · 투자 권유 아님 등)을 뺀다
@@ -261,6 +265,7 @@ def feed_tidy(text, md=False):
         bits = [b.strip().rstrip(".") for b in re.split(r"\s+·\s+", core) if b.strip()]
         if bits and all(b in FOOTER_BITS for b in bits):
             continue
+        l = SELF_WORDS.sub("", l)   # '요지만 자기 말로'·'…를 자기 말로'는 작업 규칙이지 독자에게 보일 말이 아니다(2026-11-14)
         l = re.sub(r"\(\s+", "(", re.sub(r"\s+\)", ")", l.rstrip())) if "(" in l else l.rstrip()
         m = re.match(r"^(\s*(?:[-•·]\s*)?)(원문|출처|링크|보도|자료|공시)\s*[:：]\s*(https?://\S{60,})$", l) if md else None
         if m:

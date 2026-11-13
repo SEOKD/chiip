@@ -1020,8 +1020,13 @@ def no_self(x):
     return x
 
 
+# '요지만 자기 말로'는 라이선스 자료를 다루는 작업 규칙이지 독자에게 보일 말이 아니다(마스터 지시 2026-11-14 — 'Analysis 리포트에서 제외')
+SELF_WORDS = re.compile(r"\s*[,·]\s*요지만\s*자기\s*말로(?:\s*(?:정리|요약))?(?=\))|\s*[—–-]\s*요지만\s*자기\s*말로(?:\s*(?:정리|요약))?|\s*\(\s*요지만\s*자기\s*말로(?:\s*(?:정리|요약))?\s*\)|요지만\s*자기\s*말로(?:\s*(?:정리|요약))?\s*[,·]?\s*"
+                        r"|(?<=\S)(?:을|를)\s*자기\s*말로(?:\s*(?:정리|요약))?(?=[,)\s])")
+
+
 def _scrub_text(x):
-    return no_self(REF_PAREN.sub("", x)) if isinstance(x, str) else x
+    return no_self(REF_PAREN.sub("", SELF_WORDS.sub("", x))) if isinstance(x, str) else x
 
 
 def _walk(o, fn):

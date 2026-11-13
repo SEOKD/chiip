@@ -175,3 +175,10 @@ class TestFeedTidy(unittest.TestCase):
         out = notify.feed_tidy(t)
         self.assertEqual(out, "제목\n\n본문 · 근거")
         self.assertIn("투자 권유 아님 — 다른 말", notify.feed_tidy("투자 권유 아님 — 다른 말"))
+
+
+class TestSelfWordsFeed(unittest.TestCase):
+    def test_feed_drops_self_words(self):
+        import notify
+        self.assertEqual(notify.feed_tidy("미국 회사(2026-11-10 3Q 8-K를 자기 말로)"), "미국 회사(2026-11-10 3Q 8-K)")
+        self.assertEqual(notify.feed_tidy("회사(회사 개요를 자기 말로, 10-K 미대조)"), "회사(회사 개요, 10-K 미대조)")
