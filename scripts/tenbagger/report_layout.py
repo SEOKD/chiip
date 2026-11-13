@@ -10,6 +10,7 @@ datapack 새 재료(없으면 --merge가 멈춘다, 옛 리포트 정정은 --le
             "evidence": "1차 자료 숫자", "quant": "숫자(선택)", "falsifier": "깨지는 조건"}…]}   # 회사별로 독립적으로 찾는다, 2개 이상
   "leaders": scripts/tenbagger/leader_view.py 맨 위 — 창업자·회장·CEO 프로필과 네트워크 정량화
   "margin": scripts/tenbagger/margin_view.py 맨 위 — GPM·OPM 비용 요인과 핵심 제품·서비스 BOM 분해
+  "assets": scripts/tenbagger/asset_roic_view.py 맨 위 — 유형·무형자산 항목별 가치·내용연수·분기 감가 비율·ROIC 분해(선택, 없으면 절이 빠진다, ADR-021)
   "supply": scripts/tenbagger/supply_view.py 맨 위 — 부품 공급망 업체와 공급 병목 10점
   "customers": scripts/tenbagger/customer_view.py 맨 위 — 고객사와 고객별 매출 믹스 추정
   "sync": scripts/tenbagger/sync_view.py 맨 위 — 무역·PPI·수출 지표와 매출·영업이익 싱크로율, 가이던스·컨센서스 비교
@@ -499,7 +500,9 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         supply_sec["blocks"][0:0] = imgs["supply"]
     elif imgs["supply"]:
         out.append({"h2": "공급망 병목", "blocks": imgs["supply"]})
-    for part in (margin_sec, supply_sec, capacity_sec):
+    import asset_roic_view   # 자산 구성과 ROIC — datapack assets가 있을 때만, 마진 구조 바로 다음(마스터 지시 2026-11-13, ADR-021)
+    asset_sec = asset_roic_view.section(dp, (r.get("coc") or {}).get("wacc"))
+    for part in (margin_sec, asset_sec, supply_sec, capacity_sec):
         if part:
             d["sources"] = list(dict.fromkeys((d.get("sources") or []) + part.pop("_sources")))
             out.append(part)

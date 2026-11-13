@@ -5230,3 +5230,83 @@ params:
     data: alpha_refresh.json
     last_fit: null
     oos_metric: null
+- id: prm-ar-rd-life
+  model: tenbagger.report
+  binding: config/asset_roic.yaml#asset_roic.intangible_cap.rd_life
+  value: 6
+  unit: 년(정액 상각)
+  status: prior
+  prior:
+    value: 6
+    basis: '원문 확인 2026-11-13 — Mauboussin·Callahan, "Return on Invested Capital"(Counterpoint Global, 2022-10-06, PDF 2025 판) 무형 자본화 예시: 연구개발 100%를 투자로 보고 Corrado·Hulten 추정에 맞춰 6년 상각. 교차 확인 — Peters·Taylor(2014 WP) 지식 자본 감가율 15%(Hall·Jaffe·Trajtenberg 2001, 정액 환산 약 6.7년). 상각 방식은 Damodaran(1999) R&D 자본화(정액, 올해분은 상각 안 함)'
+    source: https://www.morganstanley.com/im/en-us/institutional-investor/insights/consilient-observer/return-on-invested-capital.html
+  fit:
+    method: 자본화 조정 ROIC와 이후 3년 매출·NOPAT 성장의 설명력 비교(연수 4·6·8년)
+    target: 이후 3년 NOPAT 성장
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-ar-sga-share
+  model: tenbagger.report
+  binding: config/asset_roic.yaml#asset_roic.intangible_cap.sga_share
+  value: 0.2
+  unit: 판관비 중 투자 몫
+  status: prior
+  prior:
+    value: 0.2
+    basis: '원문 확인 2026-11-13 — Peters·Taylor, "Intangible Capital and the Investment-q Relation"(Wharton WP 2014-03-05) 1.2절: Corrado·Hulten·Sichel(2009)을 따라 판관비의 20%를 조직 자본 투자로 보고 0~40%에서 결과가 비슷하다고 밝힘. JFE 2017 게재본의 값은 원문 미확인. Mauboussin·Callahan(2022) Microsoft 예시는 Hulten(2010) 항목별 몫(영업·마케팅 70%, 일반관리 20%)을 씀 — 민감도 표에 30% 병기'
+    source: https://www.stern.nyu.edu/sites/default/files/assets/documents/Wharton-Peters_taylor_Intangible%20capital%20%26%20Q.pdf
+  fit:
+    method: 업종별 몫(소비재·서비스 vs 장비) 비교, 자본화 ROIC의 이후 성장 설명력
+    target: 이후 3년 NOPAT 성장
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-ar-sga-life
+  model: tenbagger.report
+  binding: config/asset_roic.yaml#asset_roic.intangible_cap.sga_life
+  value: 5
+  unit: 년(정액 상각)
+  status: prior
+  prior:
+    value: 5
+    basis: '원문 확인 2026-11-13 — Peters·Taylor(2014 WP) 조직 자본 감가율 20%(Lev·Radhakrishnan 2005 인용)의 정액 환산 1/0.2. 대안 2년 = Mauboussin·Callahan(2022) 영업·마케팅·일반관리 투자 상각 연수(민감도 표에 병기)'
+    source: https://www.stern.nyu.edu/sites/default/files/assets/documents/Wharton-Peters_taylor_Intangible%20capital%20%26%20Q.pdf
+  fit:
+    method: 2년 vs 5년 자본화 ROIC의 이후 성장 설명력 비교
+    target: 이후 3년 NOPAT 성장
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-ar-dep-shift
+  model: tenbagger.report
+  binding: config/asset_roic.yaml#asset_roic.dep_rate_shift
+  value: 0.1
+  unit: 연율 감가율 상대 하락 폭
+  status: prior
+  prior:
+    value: 0.1
+    basis: '초안 — 최근 4분기 평균 연율 감가율이 직전 4분기보다 10% 이상 낮으면 경고. 근거 사례: 내용연수 연장은 감가상각을 줄여 이익을 늘린다(Mauboussin·Callahan 2022 — 내용연수 과대 추정은 뒤에 상각 손실로 드러남; Keating·Zimmerman 1999 JAE 28(3) 감가 정책 변경 연구는 서지만 확인). 문턱 자체는 피팅 전 사전값'
+    source: https://ideas.repec.org/a/eee/jaecon/v28y1999i3p359-389.html
+  fit:
+    method: 경고 종목의 이후 4분기 상각 손실·내용연수 단축 공시 발생률 대조
+    target: 이후 4분기 손상·추정 변경 공시
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-ar-life-band
+  model: tenbagger.report
+  binding: config/asset_roic.yaml#asset_roic.life_band
+  value: 0.15
+  unit: 산식 평균 연수 vs 공시 가중 중간값 상대 차
+  status: prior
+  prior:
+    value: 0.15
+    basis: '초안 — HOLT 자산 수명(총유형자산 ÷ 감가상각비, Credit Suisse 424B2 방법론 설명 확인 2026-11-13)과 공시 범위 가중 중간값의 차가 15%를 넘으면 표시. 산식은 정액법일 때만 근사(실무 자료 공통 단서)'
+    source: https://www.sec.gov/Archives/edgar/data/0001053092/000095010311003876/dp26286_424b2-etn5.htm
+  fit:
+    method: 표시 종목의 이후 내용연수 변경 공시 발생률
+    target: 이후 4분기 추정 변경 공시
+    data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null

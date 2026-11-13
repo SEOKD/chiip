@@ -1,0 +1,13 @@
+# 자산 구성과 ROIC — 마스터 지시 2026-11-13 "유형·무형자산 세부 항목별 가치를 파악하고 이 요인들이 ROIC에 얼마나 기여하는지 정량화하라.
+# 내용연수와 분기별 감가상각 비율 포함". 엔진 scripts/tenbagger/asset_roic_view.py, 설계 docs/decisions/ADR-021-asset-roic.md
+# 값의 출처·상태는 knowledge/models/params/registry.yaml(prm-ar-*)
+asset_roic:
+  intangible_cap:
+    rd_life: 6          # 연구개발 자본화 상각 연수(정액). Mauboussin·Callahan(2022)이 Corrado·Hulten 추정에 맞춰 쓴 6년
+    sga_share: 0.2      # 판관비 중 투자로 보는 몫. Peters·Taylor(2014 WP)가 Corrado·Hulten·Sichel(2009)을 따라 쓴 20%
+    sga_life: 5         # 판관비 투자(조직 자본) 상각 연수. Peters·Taylor 감가율 20%(Lev·Radhakrishnan 2005)의 정액 환산 1/0.2
+    sensitivity:        # 같은 표에 나란히 보여 줄 대안 가정(판관비 몫 × 상각 연수)
+      sga_share: [0.2, 0.3]
+      sga_life: [2, 5]  # 2년 = Mauboussin·Callahan의 영업·마케팅 투자 상각 연수
+  dep_rate_shift: 0.10  # 최근 4분기 평균 연율 감가율이 직전 4분기보다 이 비율 이상 낮으면 '감가율 하락' 경고와 이익 효과 계산
+  life_band: 0.15       # 산식 평균 내용연수가 공시 범위의 총액 가중 중간값에서 이 비율 넘게 벗어나면 '공시와 어긋남' 표시
