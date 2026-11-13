@@ -10,7 +10,7 @@
   주식 분할: 종목별로 두 분기 다 보유한 기관의 주식 수 비율 중앙값이 정수배(×2·×3…)나 그 역수에 가까우면 분할로 보고 직전 보유를 맞춘다.
   종목 이름: 상위 후보 CUSIP만 OpenFIGI(무료, 키 없음 25회/분)로 티커·증권 종류를 붙이고 ETF·펀드는 뺀다. 매핑은
   knowledge/models/inst13f/cusip_map.json에 쌓는다. 못 찾으면 정보표의 발행사 이름으로 쓴다.
-SEC 접속 규칙: 식별 User-Agent(.env SEC_USER_AGENT), 초당 10회 이하(요청 간 0.11초 이상, 동시 6개).
+SEC 접속 규칙: 식별 User-Agent(.env SEC_USER_AGENT), 초당 5회(요청 간 0.2초, 동시 3개 — 초당 9회는 SEC가 429로 막았다), 429면 전역 휴식 뒤 재시도.
 사용: py radar/thirteenf_market.py --collect [--budget-min 30]   # 이번 시즌 분기 수집(이어서)
       py radar/thirteenf_market.py --rank                        # 순위 JSON
       py radar/thirteenf_market.py --status
@@ -37,11 +37,13 @@ OUT = ROOT / "knowledge" / "models" / "inst13f"
 MAP = OUT / "cusip_map.json"
 EFTS = "https://efts.sec.gov/LATEST/search-index"
 SOURCE_ID = "src-13f-market"
-MIN_GAP = 0.11
-WORKERS = 6
+MIN_GAP = 0.2        # 초당 5회 — 2026-11-14 첫 수집에서 초당 9회(0.11초·동시 6개)는 SEC가 429로 막았다(5,000건 넘게 거부)
+WORKERS = 3
+BACKOFF_S = 120      # 429면 모든 요청을 이만큼 쉰다(SEC 차단은 보통 10분 안에 풀린다)
 EXCLUDE_TYPES = ("ETP", "Mutual Fund", "Closed-End Fund", "Open-End Fund", "Unit", "Right", "Warrant")
 _lock = threading.Lock()
 _last = [0.0]
+_pause = [0.0]
 
 
 def ua():
@@ -49,14 +51,21 @@ def ua():
     return fulltext.sec_ua()
 
 
-def get(url, timeout=40):
-    """SEC 요청 — 전역 간격(초당 10회 이하)"""
-    with _lock:
-        wait = MIN_GAP - (time.time() - _last[0])
-        if wait > 0:
-            time.sleep(wait)
-        _last[0] = time.time()
-    return common.http_get(url, headers={"User-Agent": ua() or common.UA}, timeout=timeout)
+def get(url, timeout=40, tries=4):
+    """SEC 요청 — 전역 간격(초당 5회), 429면 전역 휴식 뒤 재시도"""
+    import urllib.error
+    for k in range(tries):
+        with _lock:
+            wait = max(MIN_GAP - (time.time() - _last[0]), _pause[0] - time.time())
+            if wait > 0:
+                time.sleep(wait)
+            _last[0] = time.time()
+        try:
+            return common.http_get(url, headers={"User-Agent": ua() or common.UA}, timeout=timeout)
+        except urllib.error.HTTPError as exc:
+            if exc.code != 429 or k == tries - 1:
+                raise
+            _pause[0] = max(_pause[0], time.time() + BACKOFF_S * (k + 1))
 
 
 def q_end(y, q):
@@ -159,8 +168,24 @@ def one(cik, adsh, y, q):
 
 
 def collect(y, q, budget_min=30, today=None, log=print):
-    """시간 예산 안에서 이어서 수집. (처리, 남음, 전체)"""
+    """시간 예산 안에서 이어서 수집. (처리, 남음, 전체). 다른 프로세스가 수집 중이면(잠금 만료 전) 건너뛴다 —
+    두 수집기가 겹치면 SEC 한도(초당 10회)를 넘어 429로 막힌다(2026-11-14)"""
     t0 = time.time()
+    lock = CACHE / "collect.lock"
+    try:
+        if lock.exists() and float(lock.read_text()) > time.time():
+            return 0, -1, -1
+    except ValueError:
+        pass
+    lock.parent.mkdir(parents=True, exist_ok=True)
+    lock.write_text(str(time.time() + budget_min * 60 + 300))
+    try:
+        return _collect(y, q, budget_min, today, log, t0)
+    finally:
+        lock.write_text("0")   # 만료로 표시(파일은 지우지 않는다)
+
+
+def _collect(y, q, budget_min, today, log, t0):
     st = common.load_state("thirteenf_market", {})
     key = qname(y, q)
     if st.get("listed_on", {}).get(key) != (today or date.today()).isoformat():
