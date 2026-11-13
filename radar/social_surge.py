@@ -212,6 +212,18 @@ def put(raw, now=None, c=None):
     return added
 
 
+def strip(raw):
+    """Quantral 응답 묶음에서 글 단위 필드는 sourceType·detectedAt만 — 작성자 통계·감성·링크·본문은 집계(put) 뒤 버린다(마스터 지시 2026-11-14, ADR-032)"""
+    out = []
+    for item in raw or []:
+        sc = item.get("score") or {}
+        out.append({"ticker": item.get("ticker"),
+                    "score": {k: sc.get(k) for k in ("score24h", "score7d") if k in sc},
+                    "signals": [{"sourceType": s.get("sourceType"), "detectedAt": s.get("detectedAt")} for s in item.get("signals") or []],
+                    "recaps": [{k: x.get(k) for k in ("monthStart", "postCount", "score", "isPartial") if k in x} for x in item.get("recaps") or []]})
+    return out
+
+
 def nb_z(total, m, mu, k):
     """m일 합 total의 음이항 표준화"""
     mean = m * mu
@@ -392,7 +404,11 @@ def main(argv):
         t = due()
         print(json.dumps(t) if t else "→ 종료")
     elif argv[:1] == ["--put"]:
-        print(json.dumps({"added": put(json.loads(Path(argv[1]).read_text(encoding="utf-8")))}))
+        src = Path(argv[1])
+        raw = json.loads(src.read_text(encoding="utf-8"))
+        n = put(raw)
+        src.write_text(json.dumps(strip(raw), ensure_ascii=False), encoding="utf-8")   # 받은 파일엔 sourceType·detectedAt만 남긴다(ADR-032)
+        print(json.dumps({"added": n}))
     elif argv[:1] == ["--run"]:
         lines = run()
         print("\n".join(lines) if lines else "급증 없음")

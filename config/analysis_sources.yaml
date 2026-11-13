@@ -11,6 +11,7 @@ sources:
   - {id: dticker, region: all, kind: script, cmd: "radar/dticker.py --about {name} {ticker}", use: "마스터 딘스티커 글 — 내러티브 쓰기 전에 본다"}
   - {id: notion_library, region: all, kind: script, cmd: "radar/notion_library.py --need {id}", use: "노션 PDF·xlsx 요지(요지 없으면 merge가 따로 멈춘다)"}
   - {id: narrative_sources, region: all, kind: script, cmd: "radar/narrative_sources.py {id}", use: "IB 의견 변경·커뮤니티 제목"}
+  - {id: queue_context, region: all, kind: script, cmd: "scripts/valuation/v2/queue_context.py --company {id}", use: "Quantral 관심(급증 Z·알파 관심 요소·과밀)·Quantral 주간 리테일 순위·IB 커버리지 장부 — 알파 판단·내러티브·동인 notes·커뮤니티 반응 절(2026-11-14, ADR-032)"}
   - {id: midterm, region: all, kind: script, cmd: "scripts/policy/midterm_impact.py {id}", use: "2026 중간선거 영향 점수 → datapack midterm"}
   - {id: trade_ppi, region: all, kind: script, cmd: "radar/trade_ppi.py --need {id}", fail_if: "연결된 input 없음", use: "무역·PPI 연결 → margin·supply input, sync"}
   - {id: trade_hs, region: all, kind: script, cmd: "radar/trade_hs.py --company {id}", fail_if: "연결 HS: 없음", use: "BOM 품목과 겹치는 HS 급등(단서)"}
@@ -50,3 +51,4 @@ market:   # 시장·산업 원천 — gather.py --market (2026-11-11 마스터 �
   - {id: gpu_rental, cmd: "radar/gpu_rental.py --table", use: "GPU 렌털료"}
   - {id: trade_ppi, cmd: "radar/trade_ppi.py --status", use: "무역·PPI 최신 달·급변"}
   - {id: alphavantage, cmd: "radar/alphavantage.py --calendar", use: "감시 미국 종목 실적 일정(3개월)"}
+  - {id: macro_ipo, cmd: "scripts/valuation/v2/queue_context.py --market", use: "미국 PPI·CPI 최근 발표(개정 포함)·한국 반도체 수출·IPO 감시 상태(2026-11-14, ADR-032)"}

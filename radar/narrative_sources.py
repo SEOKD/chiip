@@ -151,6 +151,12 @@ def collect(eid):
             ev[key] = []
             ev["errors"].append(f"{key}: {type(exc).__name__}")
         time.sleep(0.5)
+    try:   # Quantral 관심 집계 한 줄 — 건수·순위만, 글·작성자 없음(2026-11-14, ADR-032)
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "valuation" / "v2"))
+        import queue_context
+        ev["quantral"] = {"note": queue_context.note_line(eid), "social": queue_context.social(eid), "weekly": queue_context.weekly(queue_context.ticker_of(eid))}
+    except Exception as exc:
+        ev["errors"].append(f"quantral: {type(exc).__name__}")
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / f"{eid}.json").write_text(json.dumps(ev, ensure_ascii=False, indent=1), encoding="utf-8")
     return ev

@@ -92,7 +92,21 @@ def stat_line(so, r):
     n = sum(int(x.get("recent_n") or x.get("recent") or 0) for x in ch.values())
     if n:
         parts.append(f"최근 언급 {n}건")
+    w = _weekly(r.get("ticker"))
+    if w:   # Quantral 주간 리테일 순위(2026-11-14, ADR-032)
+        parts.append(f"리테일 관심 {w['week']} {w['rank']}위(이야기 게시 {w['posts']}건" + (f", 묶음 테마 {'·'.join(w['themes'])}" if w["themes"] else "") + ")")
     return "통계: " + (", ".join(parts) if parts else "집계 없음") + "."
+
+
+def _weekly(ticker):
+    if not ticker:
+        return None
+    try:
+        sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
+        import queue_context
+        return queue_context.weekly(str(ticker).upper())
+    except Exception:
+        return None
 
 
 def section(dp, eid):
@@ -103,6 +117,7 @@ def section(dp, eid):
         return {"h2": "커뮤니티 반응", "blocks": [{"type": "p", "text": f"언급 적음 — {so['none']}"}]}
     check(so)
     r = latest(eid) or {}
+    r.setdefault("ticker", (dp or {}).get("ticker"))
     B = [{"type": "p", "text": stat_line(so, r)}]
     if so.get("summary"):
         B.append({"type": "hl", "text": f"**{so['summary']}**"})
