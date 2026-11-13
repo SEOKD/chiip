@@ -63,12 +63,16 @@ FIT_JS = ("<script>(function(){"
           # 캔들을 누르면(마우스·터치) 그날 종가·고가·저가·시가를 차트 위 칸에 보여 주고 그 봉을 표시한다(마스터 지시 2026-11-08)
           "document.addEventListener('click',function(e){var k=e.target.closest&&e.target.closest('.ck');if(!k)return;var sv=k.ownerSVGElement,box=sv&&sv.parentNode.querySelector('.cinfo');"
           "if(!box)return;var d=k.dataset;box.innerHTML='<b>'+d.d+'</b> 종가 <b>'+d.c+'</b> · 고가 '+d.h+' · 저가 '+d.l+' · 시가 '+d.o+' <span class=\\''+(d.up==='1'?'red':'blue')+'\\'>'+d.p+'</span>';"
-          "sv.querySelectorAll('.ck.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')})})();</script>")
+          "sv.querySelectorAll('.ck.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')});"
+          # 꺾은선 점을 누르면(마우스·터치) 그 점의 시리즈·x·y 값을 차트 위 칸에 보여 주고 점을 표시한다(마스터 지시 2026-11-14 '분기 비용 비중 추이')
+          "document.addEventListener('click',function(e){var k=e.target.closest&&e.target.closest('.lp');if(!k)return;var sv=k.ownerSVGElement,box=sv&&sv.parentNode.querySelector('.cinfo');"
+          "if(!box)return;var d=k.dataset;box.innerHTML='<b>'+d.n+'</b> '+d.x+' <b>'+d.v+'</b>'+(d.m?' · '+d.m:'');"
+          "sv.querySelectorAll('.lp.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')})})();</script>")
 CSS = """.idot{width:16px;height:16px;margin:-8px 0 0 -8px;border:1.5px solid;border-radius:50%;background:var(--bg);font-size:10px;font-weight:700;line-height:13px;text-align:center;opacity:.92}
 .ilab{font-size:12.5px;line-height:1.35;font-weight:500;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ilist{display:none;margin:8px 0 0;padding-left:0;list-style:none;font-size:14px}.ilist li{margin:2px 0}
 @media (max-width:640px){.iwrap{padding:0!important}.iwrap .ilab,.iwrap .ilines{display:none}.ilist{display:block}}
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}
+.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}.lp{cursor:pointer}.lp.on .dot{stroke:var(--fg);stroke-width:3}
 :root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
@@ -187,8 +191,14 @@ def chart_line(c):
         g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2" points="{" ".join(f"{X(p[0]):.1f},{Y(p[1]):.1f}" for p in pts)}"/>')
         for p in pts:
             note = f" · {p[2]}" if len(p) > 2 and p[2] else ""
-            g.append(f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="4" fill="{col}" stroke="var(--bg)" stroke-width="2"><title>{t(s["name"])} {t(p[0])}: {_fmt(p[1])}{t(c.get("unit", ""))}{t(note)}</title></circle>')
-    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+            val = f"{_fmt(p[1])}{c.get('unit', '')}"
+            # 점 + 넓은 투명 터치 영역(반지름 14) — 누르면 위 칸에 값(FIT_JS '.lp', 마스터 지시 2026-11-14)
+            esc = lambda x: html.escape(str(x), quote=True)   # 속성 값은 색칠(span) 없이 — t()의 +%·−% 색칠이 속성을 깨뜨린다
+            g.append(f'<g class="lp" data-n="{esc(s["name"])}" data-x="{esc(p[0])}" data-v="{esc(val)}" data-m="{esc(p[2]) if len(p) > 2 and p[2] else ""}">'
+                     f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="14" fill="transparent"/>'
+                     f'<circle class="dot" cx="{X(p[0]):.1f}" cy="{Y(p[1]):.1f}" r="4" fill="{col}" stroke="var(--bg)" stroke-width="2"><title>{t(s["name"])} {t(p[0])}: {t(val)}{t(note)}</title></circle></g>')
+    info = '<div class="cinfo"><span class="mut">점을 누르면 그 값</span></div>'
+    return _legend(series) + info + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
 def chart_stack(c):

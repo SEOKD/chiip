@@ -210,3 +210,17 @@ class TestCheckFlag(unittest.TestCase):
         r2 = datapack_check.check(p)
         self.assertEqual(r2["score"], r["score"])   # 점수에는 넣지 않는다
         self.assertEqual(next(x for x in r2["checks"] if x["name"] == "자산 구성(assets)")["status"], "통과")
+
+
+class TestLineTap(unittest.TestCase):
+    def test_points_show_value_on_tap(self):
+        c = {"kind": "line", "title": "분기 비용 비중 추이(매출 대비, 공시)", "unit": "%",
+             "series": [{"name": "매출원가", "color": "c", "points": [["2025-09", 52.1], ["2025-12", 51.4]]},
+                        {"name": "영업이익률", "color": "a", "points": [["2025-09", 17.3], ["2025-12", 17.7]]}]}
+        out = report_html.CHARTS["line"](c)
+        self.assertEqual(out.count('class="lp"'), 4)
+        self.assertIn('data-n="매출원가" data-x="2025-09" data-v="52.1%"', out)
+        self.assertIn('class="cinfo"', out)   # 누른 값이 뜨는 칸
+        self.assertIn("closest('.lp')", report_html.FIT_JS)
+        neg = report_html.CHARTS["line"]({"kind": "line", "unit": "%", "series": [{"name": "변화", "points": [["a", -1.5], ["b", 2.0]]}]})
+        self.assertNotIn('data-v="<', neg)   # 속성 값에 색칠 태그가 들어가지 않는다
