@@ -204,10 +204,8 @@ class DailyCheck(unittest.TestCase):
         self.assertTrue(any("섹터 배분" in x for x in self.run_(bad)))
 
     def test_paragraph_spacing(self):
-        bad = GOOD.replace("■ 앞으로 챙길 것
-11/17(화) 장 마감 뒤 NVDA 실적이 나옵니다.", "■ 앞으로 챙길 것
-11/17(화) 장 마감 뒤 NVDA 실적이 나옵니다.
-12/1 일정입니다.")
+        line = "11/17(화) 장 마감 뒤 NVDA 실적이 나옵니다."
+        bad = GOOD.replace(line, line + "\n12/1 일정입니다.")
         self.assertTrue(any("빈 줄" in x for x in self.run_(bad)))
 
     def test_lead_limits_and_disclaimer(self):
