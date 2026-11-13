@@ -4,9 +4,11 @@ Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴�
 입력(outputs/article/sources/<YYYYMMDD_HHMM>_feed.json):
   {"time": "16:24", "items": [{"icon": "⚡", "name": "Alphabet", "code": "GOOGL", "event": "사건 한 줄", "biz": "사업 1줄",
      "view": "판단 한 문장", "insight": 7, "conviction": 8, "basis": "1차 서류", "why": ["근거 줄"], "against": "다른 해석 → 가를 자료",
-     "next": "다음 확인", "links": [["8-K 원문", "https://..."]]}],
+     "next": "다음 확인", "links": [["8-K 원문", "https://..."]], "read": "https://… 모델이 실제로 열어 읽은 원문 주소"}],
    "brief": [{"name": "삼성전자", "code": "005930", "line": "결론 한 마디", "link": ["보도", "https://..."]}],
    "empty": ["미보도 원문"], "zacks": false}
+  본문 확인 관문(2026-11-14 마스터 지시 "본문을 반드시 확인하는 구조"): items·brief마다 "read"에 실제로 열어 읽은 원문 주소를 쓴다
+  (fulltext.url 또는 모델이 WebFetch로 연 사본). 없거나 news.google.com 중계 주소면 _tg.txt를 만들지 않고 멈춘다(종료 코드 2).
 사용: py radar/pulse_feed.py <json>   → 같은 이름 _tg.txt(끝의 _feed를 뗀다)를 쓰고 양식 점검 결과를 출력
 잠금 평가기 pulse_check.py가 그대로 재도록 판단은 **굵게**, 근거·반대·다음 확인은 · 줄로 쓴다.
 """
@@ -63,10 +65,26 @@ def build(d):
     return "\n\n".join(out)
 
 
+def unread(d):
+    """본문을 읽었다는 주소(read)가 없는 건 — 이름 목록"""
+    bad = []
+    for x in (d.get("items") or []) + (d.get("brief") or []):
+        r = str(x.get("read") or "")
+        if not r.startswith("http") or "news.google.com" in r:
+            bad.append(f"{x.get('name')} {x.get('code') or ''}".strip())
+    return bad
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     src = Path(argv[0])
-    text = build(json.loads(src.read_text(encoding="utf-8")))
+    d = json.loads(src.read_text(encoding="utf-8"))
+    bad = unread(d)
+    if bad:
+        print("본문 미확인 — 보내지 않는다(마스터 지시 2026-11-14): " + " · ".join(bad)
+              + " → 원문(fulltext.url 또는 WebSearch로 찾은 사본)을 열어 읽고 'read'에 그 주소를 쓴다. 못 읽으면 그 건을 빼고 py radar/fulltext.py --hold <item_id>")
+        return 2
+    text = build(d)
     out = src.with_name(src.stem.removesuffix("_feed") + "_tg.txt")
     out.write_text(text, encoding="utf-8")
     print(out)

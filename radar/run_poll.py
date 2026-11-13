@@ -201,9 +201,13 @@ def fast_lane(items):
             notes.append((it, f"오류 {type(exc).__name__}: {exc}"))
             print(f"빠른 길 오류 {it.get('item_id')}: {type(exc).__name__}: {exc}")
     fast_log(notes)
+    go_list = body_gate(go_list)   # 본문을 읽은 건만 보낸다(2026-11-14 마스터 지시) — 못 읽은 건은 보류 대기열, 다음 회차에 다시 연다
     extra = enrich([it for it, _, _ in go_list]) if go_list else {}
     for it, lvl, why in go_list:
         try:
+            if it.get("_held"):
+                import fulltext
+                fulltext.release(it["item_id"], "sent")
             e = extra.get(it["item_id"]) or {}
             if e.get("profile"):
                 notify.remember_profile(it.get("entities_matched"), e["profile"], "빠른 길 모델")
@@ -217,6 +221,45 @@ def fast_lane(items):
         st["ids"] = (st["ids"] + sent)[-1000:]
         common.save_state("rule_fast", st)
     return sent
+
+
+def body_gate(go_list, fetch=None):
+    """알림 직전 본문 확인 관문(2026-11-14 마스터 지시 "본문을 반드시 확인하는 구조").
+    ① 이번 건은 유형과 무관하게 원문을 연다(fulltext — 원 주소·SEC·같은 제목 다른 원천·발행사 사이트맵·와이어)
+    ② 못 읽은 건은 보내지 않고 radar/state/fulltext_hold.json에 보류 ③ 보류 건은 회차마다 다시 열어 읽히면 이번 회차에 보낸다
+    ④ HOLD_MODEL_AFTER회 실패한 건은 Pulse 모델 회차가 WebSearch로 다른 사본(상대방 발표·와이어·다른 매체)을 찾는다(pulse.py held)
+    ⑤ HOLD_TRIES회 실패하고 모델도 못 읽으면 보내지 않고 기록만(radar/state/fulltext_hold.log) — 헤드라인만으로 알림을 쓰지 않는다"""
+    import fulltext
+    now = common.now_kst()
+    items = [it for it, _, _ in go_list]
+    try:
+        fulltext.enrich(items, now, limit=8, fetcher=fetch, all_types=True)
+    except Exception as exc:
+        common.record_health("src-fulltext", False, f"{type(exc).__name__}: {exc}"[:200])
+    out = []
+    for it, lvl, why in go_list:
+        if (it.get("fulltext") or {}).get("status") == "ok":
+            out.append((it, lvl, why))
+        else:
+            h = fulltext.hold(it, lvl, why, it.get("fulltext"), now)
+            print(f"본문 미확인 보류 {it.get('item_id')} ({h['tries']}회): {(it.get('fulltext') or {}).get('why', '열람 전')[:120]}")
+    for h in fulltext.held():   # 지난 회차 보류 건 다시 열기
+        k = h["item"].get("item_id")
+        if any(it.get("item_id") == k for it, _, _ in out) or any(it.get("item_id") == k for it, _, _ in go_list):
+            continue
+        it = dict(h["item"])
+        try:
+            ft = (fetch or fulltext.fetch)(it, now)
+        except Exception as exc:
+            ft = {"status": "fail", "why": f"오류 {type(exc).__name__}"}
+        if ft.get("status") == "ok":
+            it.update({"fulltext": ft, "_held": True})
+            out.append((it, h["level"], h["rule"]))
+        elif h["tries"] + 1 >= fulltext.HOLD_TRIES * 2:   # 약 2시간 — 모델 회차(HOLD_MODEL_AFTER회부터)도 못 읽었으면 보내지 않는다
+            fulltext.release(k, "given_up")
+        else:
+            fulltext.hold(it, h["level"], h["rule"], ft, now)
+    return out
 
 
 FAST_SEEN = "fast_lane"
@@ -274,7 +317,7 @@ FAST_SCHEMA = {"type": "object", "properties": {"results": {"type": "array", "it
 FAST_PROMPT = (
     "radar/state/fast_batch.json의 뉴스 항목마다 한국어로 쓴다(마스터 지시 2026-10-29 실시간 알림 양식). "
     "① points: 핵심 내용 최대 3줄(각 60자 안팎) — 무엇이 일어났나·숫자(단위 그대로, 금액은 $50.6B·$420M 표기)·왜 중요한가. "
-    "제목·요약(snippet)·fulltext(본문 숫자 문장 kpi·발췌 excerpt — 실적이면 매출·EPS·가이던스·핵심 KPI 우선)에 있는 사실만 쓰고, fulltext.status가 fail이면 숫자를 지어내지 말고 한 줄을 '본문 미확인 — <fulltext.why>'로 쓰고, 헤드라인을 사실로 단정하지 말고 주체를 붙인다(예: '로이터 보도'). relay가 있으면 주체는 전달 매체가 아니라 원보도 매체(relay.outlet)다. 쓸 사실이 1~2개면 1~2줄만. "
+    "제목·요약(snippet)·fulltext(본문 숫자 문장 kpi·발췌 excerpt — 실적이면 매출·EPS·가이던스·핵심 KPI 우선)에 있는 사실만 쓰고, 본문은 확인된 건만 온다 — fulltext.excerpt·kpi의 내용(계약 금액·범위·일정·고객)을 우선 쓰고 제목만으로 쓰지 않는다. 본문에도 없는 값은 '본문에 없음'으로 쓴다. 헤드라인을 사실로 단정하지 말고 주체를 붙인다(예: '로이터 보도'). relay가 있으면 주체는 전달 매체가 아니라 원보도 매체(relay.outlet)다. 쓸 사실이 1~2개면 1~2줄만. "
     "② profile: 주인공 기업(entities_matched 첫 종목) 설명 3줄 — 비즈니스 모델 / 성장 동력 / 시장의 내러티브. "
     "각 줄 45자 안팎(휴대폰 한 줄), '모델:'·'성장:'·'내러티브:' 같은 머리말 없이 내용만(마스터 지시 2026-10-30). "
     "known_line·narrative가 있으면 그것과 맞게 쓴다. 확실히 아는 사실만, 모르면 빈 배열. "
@@ -291,12 +334,13 @@ def enrich(items):
         if not run_triage.claude_exe() or run_triage.calls_today() >= cap:
             return {}
         batch = [{"item_id": it["item_id"], "title": it.get("title"), "snippet": it.get("snippet"), "url": it.get("url"), "relay": it.get("relay"),
+                  "doc_type": it.get("doc_type"), "publisher": it.get("publisher"), "publisher_url": it.get("publisher_url"), "fulltext": it.get("fulltext"),
                   "source_id": it.get("source_id"), "published_at": it.get("published_at"), "entities_matched": it.get("entities_matched"),
                   "known_line": notify.company_line(it.get("entities_matched")),
                   "narrative": next((s for s in map(notify._narrative_summary, it.get("entities_matched") or []) if s), None)} for it in items]
         try:   # 원문 열람(마스터 지시 2026-11-13) — 핵심 3줄은 본문 숫자 문장으로, 못 열면 사유
             import fulltext
-            fulltext.enrich(batch, limit=6)
+            fulltext.enrich(batch, limit=6, all_types=True)   # body_gate가 이미 붙였으면 그대로(본문 확인된 건만 여기 온다)
             for b in batch:
                 ft = b.get("fulltext") or {}
                 b["fulltext"] = {"status": ft.get("status"), "kpi": ft.get("kpi"), "why": ft.get("why"), "excerpt": (ft.get("excerpt") or "")[:1200]}

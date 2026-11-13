@@ -734,7 +734,13 @@ def run(now=None, peek=False):
         ibd = ib_digest_feed.status(now)
     except Exception as exc:
         ibd = {"due": False, "error": type(exc).__name__}
-    if not sources and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due"):
+    try:   # 본문 확인 보류 건(2026-11-14 마스터 지시) — 빠른 길이 못 읽은 건을 모델이 WebSearch로 다른 사본을 찾아 읽는다
+        import fulltext
+        body_hold = fulltext.for_model()
+    except Exception as exc:
+        body_hold = []
+        errors.append(f"본문 보류: {type(exc).__name__}")
+    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
@@ -751,7 +757,7 @@ def run(now=None, peek=False):
     picked = select(sources)
     try:   # 원문 열람(마스터 지시 2026-11-13) — 실적·공시·보도자료는 본문·첨부(EX-99.1)를 읽어 숫자 문장을 붙인다. 실패면 사유·재시도
         import fulltext
-        fulltext.enrich(picked, now)
+        fulltext.enrich(picked, now, all_types=True)   # 보낼 수 있는 건은 유형과 무관하게 연다(2026-11-14)
     except Exception as exc:
         errors.append(f"원문 열람: {type(exc).__name__}")
     import origin   # 재인용 기사는 원보도로 바꿔 모델에 넘긴다(2026-11-02 마스터 지시)
@@ -759,8 +765,10 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in picked],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
+    if body_hold:
+        fulltext.offered([h["item"]["item_id"] for h in body_hold], now)
     if ex.get("due"):
         exclusive_leads.offered(now)
     if heal.get("due"):

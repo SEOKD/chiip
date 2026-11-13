@@ -21,7 +21,8 @@ def parse_feed(raw):
     for it in root.iter("item"):
         out.append({"title": it.findtext("title") or "", "link": it.findtext("link") or "",
                     "date": it.findtext("pubDate") or "", "desc": it.findtext("description") or "",
-                    "publisher": it.findtext("source") or ""})
+                    "publisher": it.findtext("source") or "",
+                    "publisher_url": (it.find("source").get("url") if it.find("source") is not None else "") or ""})   # 구글 뉴스 <source url> — 원문 찾기(fulltext 발행사 경로, 2026-11-14)
     for it in root.iter(f"{ATOM}entry"):
         link = it.find(f"{ATOM}link")
         out.append({"title": it.findtext(f"{ATOM}title") or "", "link": link.get("href") if link is not None else "",
@@ -201,6 +202,8 @@ def poll_source(src):
             extra = {"tier": src.get("tier_hint")}
             if e.get("publisher") or src.get("publisher"):   # 매체 직접 RSS는 원천에 매체명을 적는다(2026-10-29 Bloomberg 직접 피드)
                 extra["publisher"] = (e.get("publisher") or src["publisher"]).strip()
+            if e.get("publisher_url"):
+                extra["publisher_url"] = e["publisher_url"].strip()
             if entity:
                 extra["query_entity"] = entity
             it = common.make_item(
