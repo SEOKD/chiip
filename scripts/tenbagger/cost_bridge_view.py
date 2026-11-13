@@ -105,17 +105,7 @@ def blocks(dp):
     B = [{"type": "hl", "text": head},
          {"type": "chart", "chart": {"kind": "waterfall", "title": "매출 → 매출총이익 → 영업이익(매출 = 100, 최근 4분기)", "unit": "",
                                      "steps": [{"label": n, "value": round(v, 1), "kind": k} for n, v, k in c["steps"]]}}]
-    rows = []
-    for r in sorted(c["rows"], key=lambda r: (r["kind"] != "매출원가 요인", -r["pct"])):
-        rows.append([r["name"], r["kind"], f"{r['pct'] * 100:.1f}%", _pp(r["trend"]), _pp(None if r["trend"] is None else -r["trend"]),
-                     _pp(r["shock"], 2), UNKNOWN if r["elastic"] is None else f"{r['elastic']:.2f}", UNKNOWN if r["fixed"] is None else f"{r['fixed'] * 100:.0f}%"])
-    B.append({"type": "table", "title": f"비용 요인 강도 — 비중·추세·충격(+{c['shock'] * 100:.0f}%)·탄력",
-              "headers": ["비용", "구분", "매출 대비", "1년 변화", "마진 기여", "충격 시 마진", "매출 탄력", "고정비 몫"], "rows": rows})
-    contrib = [r for r in c["rows"] if r["trend"] is not None]
-    if contrib:
-        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "1년 전 대비 마진 기여(비용 비중 변화의 반대)", "unit": "%p",
-                                             "rows": [{"label": f"{r['name']}", "bars": [{"name": "마진 기여", "color": "d" if -r["trend"] >= 0 else "b", "value": round(-r["trend"] * 100, 2)}]}
-                                                      for r in sorted(contrib, key=lambda r: r["trend"])]}})
+    # 분기 비용 비중 추이를 매출→영업이익 다리 바로 다음에(마스터 지시 2026-11-13). '1년 전 대비 마진 기여' 그림은 뺀다 — 같은 값이 표의 '마진 기여' 열에 있다
     h = c["hist"]
     series = []
     for k, name, col in (("cogs", "매출원가", "c"), ("sga", "판관비", "b"), ("rd", "연구개발", "d"), ("op", "영업이익률", "a")):
@@ -124,5 +114,11 @@ def blocks(dp):
             series.append({"name": name, "color": col, "points": pts})
     if series:
         B.append({"type": "chart", "chart": {"kind": "line", "title": "분기 비용 비중 추이(매출 대비, 공시)", "unit": "%", "series": series}})
+    rows = []
+    for r in sorted(c["rows"], key=lambda r: (r["kind"] != "매출원가 요인", -r["pct"])):
+        rows.append([r["name"], r["kind"], f"{r['pct'] * 100:.1f}%", _pp(r["trend"]), _pp(None if r["trend"] is None else -r["trend"]),
+                     _pp(r["shock"], 2), UNKNOWN if r["elastic"] is None else f"{r['elastic']:.2f}", UNKNOWN if r["fixed"] is None else f"{r['fixed'] * 100:.0f}%"])
+    B.append({"type": "table", "title": f"비용 요인 강도 — 비중·추세·충격(+{c['shock'] * 100:.0f}%)·탄력",
+              "headers": ["비용", "구분", "매출 대비", "1년 변화", "마진 기여", "충격 시 마진", "매출 탄력", "고정비 몫"], "rows": rows})
     B.append({"type": "p", "text": "매출 탄력 = 분기 비용을 매출에 회귀한 기울기(매출 1당 변동비), 고정비 몫 = 절편 ÷ 평균 비용. 표본이 8분기 미만이면 미확인. 매출원가 요인 비중은 margin 재료의 추정이 섞여 있고, 공시 매출원가와의 차이는 '기타 매출원가'로 둔다."})
     return B
