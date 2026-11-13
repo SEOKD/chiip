@@ -2,12 +2,12 @@
  "id": "us-acmr",
  "name": "ACM Research",
  "ticker": "ACMR",
- "as_of": "2026-11-03",
+ "as_of": "2026-11-12",
  "unit": "B$",
  "consensus": {
   "eps_history": {
    "basis": "adjusted",
-   "updated_at": "2026-11-03T09:01:37.000Z",
+   "updated_at": "2026-11-07T09:01:47.000Z",
    "source": "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
     [
@@ -36,34 +36,6 @@
      "2026-12-31",
      "2022-05-11",
      1.81,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     null,
-     0.45,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     "2024-05-20",
-     0.35,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     "2024-08-16",
-     0.34,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     "2024-11-19",
-     0.33,
      1
     ],
     [
@@ -162,27 +134,6 @@
      "2025-12-31",
      "2024-11-19",
      1.8,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     "2025-01-16",
-     0.35,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     "2025-03-03",
-     0.49,
-     1
-    ],
-    [
-     "Q",
-     "2025-06-30",
-     "2025-05-21",
-     0.42,
      1
     ],
     [
@@ -637,55 +588,19 @@
   },
   "surprise": [
    {
-    "period": "2025Q3",
-    "report_date": "2025-09-30",
-    "metric": "매출",
-    "unit": "M$",
-    "actual": 269.16,
-    "est": 251.033,
-    "est_src": "zacks",
-    "est_asof": "2025-10-07",
-    "basis": "gaap",
-    "earnings_date": "2025-11-05"
-   },
-   {
-    "period": "2025Q3",
-    "report_date": "2025-09-30",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": 0.36,
-    "est": 0.529,
-    "est_src": "yfinance",
-    "est_asof": null,
-    "basis": "adjusted",
-    "earnings_date": "2025-11-05",
-    "pair": {
-     "zacks": 0.47
-    }
-   },
-   {
-    "period": "2025Q3",
-    "report_date": "2025-09-30",
-    "metric": "EBIT",
-    "unit": "M$",
-    "actual": 36.485,
-    "est": 46.23,
-    "est_src": "zacks",
-    "est_asof": "2025-10-08",
-    "basis": "adjusted",
-    "earnings_date": "2025-11-05"
-   },
-   {
     "period": "2025Q4",
     "report_date": "2025-12-31",
     "metric": "매출",
     "unit": "M$",
     "actual": 244.43,
-    "est": 235.476,
-    "est_src": "zacks",
-    "est_asof": "2026-01-27",
+    "est": 241.281,
+    "est_src": "yfinance",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-02-26"
+    "earnings_date": "2026-02-26",
+    "pair": {
+     "zacks": 235.476
+    }
    },
    {
     "period": "2025Q4",
@@ -715,13 +630,25 @@
     "earnings_date": "2026-02-26"
    },
    {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 33.525,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-02-26"
+   },
+   {
     "period": "2026Q1",
     "report_date": "2026-03-31",
     "metric": "매출",
     "unit": "M$",
     "actual": 231.263,
-    "est": 215.69,
-    "est_src": "easyconomics",
+    "est": 215.687,
+    "est_src": "yfinance",
     "est_asof": null,
     "basis": "gaap",
     "earnings_date": "2026-05-07",
@@ -735,8 +662,8 @@
     "metric": "EPS",
     "unit": "$",
     "actual": 0.34,
-    "est": 0.26,
-    "est_src": "easyconomics",
+    "est": 0.255,
+    "est_src": "yfinance",
     "est_asof": null,
     "basis": "adjusted",
     "earnings_date": "2026-05-07",
@@ -774,11 +701,14 @@
     "metric": "매출",
     "unit": "M$",
     "actual": 292.919,
-    "est": 268.15,
-    "est_src": "zacks",
-    "est_asof": "2026-06-25",
+    "est": 269.276,
+    "est_src": "yfinance",
+    "est_asof": null,
     "basis": "gaap",
-    "earnings_date": "2026-08-07"
+    "earnings_date": "2026-08-07",
+    "pair": {
+     "zacks": 268.15
+    }
    },
    {
     "period": "2026Q2",
@@ -786,8 +716,8 @@
     "metric": "EPS",
     "unit": "$",
     "actual": 0.61,
-    "est": 0.42,
-    "est_src": "easyconomics",
+    "est": 0.419,
+    "est_src": "yfinance",
     "est_asof": null,
     "basis": "adjusted",
     "earnings_date": "2026-08-07",
@@ -818,157 +748,216 @@
     "est_asof": null,
     "basis": "adjusted",
     "earnings_date": "2026-08-07"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 367.687,
+    "est": 314.865,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-08-07",
+    "basis": "gaap",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.55,
+    "est": 0.585,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 66.229,
+    "est": 62.562,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": 59.164,
+    "est": 67.674,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-05"
    }
   ],
   "rev": {
-   "FY2026": 1.15,
-   "FY2027": 1.42,
-   "FY2028": 1.7
+   "FY2026": 1.26,
+   "FY2027": 1.72,
+   "FY2028": 2.15
   },
   "rev_basis": "gaap",
   "margin_basis": "non_gaap",
   "ebit_margin": {
-   "FY2026": 0.192,
-   "FY2027": 0.188,
-   "FY2028": 0.195
+   "FY2026": 0.185,
+   "FY2027": 0.195,
+   "FY2028": 0.205
   },
   "ebitda": {
-   "FY2026": 0.247,
-   "FY2027": 0.305,
-   "FY2028": 0.38
+   "FY2026": 0.206,
+   "FY2027": 0.217,
+   "FY2028": 0.227
   },
   "rev_low": {
-   "FY2027": 1.2,
-   "FY2028": 1.3
+   "FY2027": 1.42,
+   "FY2028": 1.6
   },
   "rev_high": {
-   "FY2027": 1.65,
-   "FY2028": 2.05
+   "FY2027": 2.05,
+   "FY2028": 2.7
   },
   "n_analysts": 3,
   "revisions_90d": {
-   "rev": 0.0,
-   "eps": 0.0
+   "rev": 0.09,
+   "eps": 0.075
   },
   "quarters_est": {
-   "2026Q3": 0.3149,
-   "2026Q4": 0.311,
-   "2027Q1": 0.315,
-   "2027Q2": 0.34,
-   "2027Q3": 0.3877,
-   "2027Q4": 0.3773
+   "2026Q1": 0.231263,
+   "2026Q2": 0.292919,
+   "2026Q3": 0.367687,
+   "2026Q4": 0.368,
+   "2027Q1": 0.385,
+   "2027Q2": 0.42,
+   "2027Q3": 0.445,
+   "2027Q4": 0.47
   },
   "quarters_act": {
-   "2025Q3": 0.26916,
    "2025Q4": 0.24443,
    "2026Q1": 0.231263,
-   "2026Q2": 0.292919
+   "2026Q2": 0.292919,
+   "2026Q3": 0.367687
   },
   "eps_quarters_est": {
-   "2026Q3": 0.585,
-   "2026Q4": 0.575,
-   "2027Q1": 0.55,
-   "2027Q2": 0.62,
-   "2027Q3": 0.876,
-   "2027Q4": 0.604
+   "2026Q4": 0.6,
+   "2027Q1": 0.6,
+   "2027Q2": 0.69,
+   "2027Q3": 0.75,
+   "2027Q4": 0.81
   },
   "eps_year": {
    "FY2026": [
     2.05,
-    2.11
+    2.1
    ],
    "FY2027": [
     2.65,
-    2.65
+    2.85
    ],
    "FY2028": [
-    3.3,
-    3.3
+    3.8,
+    3.8
    ]
   },
-  "note": "Fiscal 자체 추정(agentic consensus·가이던스 계산) 1순위. 3Q26 분기 추정 $314.9M은 10/28 회사 잠정치 $360~365M 전 값이다. Zacks EPS는 애널리스트 1명(8/17), 매출은 3명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "note": "Fiscal 자체 추정(agentic consensus 11/6·가이던스 계산) 1순위. Zacks 매출 3명·EPS 1명(8/17 이후 EPS 변경 없음). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
   "ratings": {
-   "strong_buy": 8,
+   "strong_buy": 7,
    "buy": 0,
    "hold": 2,
    "sell": 0,
    "strong_sell": 0,
-   "as_of": "2026-10-07"
+   "as_of": "2026-11-09",
+   "source": "fiscal",
+   "target_mean": 99.57,
+   "target_high": 159,
+   "target_low": 60
   },
-  "target_mean": 112,
-  "target_low": 75,
+  "target_mean": 99.57,
+  "target_low": 60,
   "target_high": 159,
   "revisions": {
-   "from_date": "2026-05-29",
-   "to_date": "2026-08-17",
-   "from_label": "1Q 실적 직후",
-   "source": "Zacks EPS 1명, 1Q 뒤(5/29) → 2Q 뒤(8/17), 같은 분기끼리. 이후 변경 없음. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "from_date": "2026-08-17",
+   "to_date": "2026-11-06",
+   "from_label": "2Q 실적 직후",
+   "source": "2Q 뒤(8/17, Zacks 1명) → 3Q 뒤(11/6, Fiscal 추정), 같은 분기끼리. 출처가 달라 방향만 본다. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
     {
      "period": "2026Q4",
      "metric": "EPS",
-     "from": 0.4,
-     "to": 0.57
+     "from": 0.57,
+     "to": 0.6
     },
     {
      "period": "2027Q1",
      "metric": "EPS",
-     "from": 0.34,
-     "to": 0.52
+     "from": 0.52,
+     "to": 0.6
     },
     {
      "period": "2027Q2",
      "metric": "EPS",
-     "from": 0.42,
-     "to": 0.58
+     "from": 0.58,
+     "to": 0.69
     },
     {
      "period": "2027Q3",
      "metric": "EPS",
-     "from": 0.55,
+     "from": 0.75,
      "to": 0.75
     },
     {
      "period": "2027Q4",
      "metric": "EPS",
-     "from": 0.59,
+     "from": 0.81,
      "to": 0.81
+    },
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": 2.65,
+     "to": 2.85
     }
    ]
   },
   "price_window": {
-   "from": 86.56,
-   "to": 44.15,
-   "note": "5/29 종가 → 11/2 종가"
+   "from": 78.98,
+   "to": 49.88,
+   "note": "8/6 종가(2Q 실적 전날) → 11/12 종가"
   }
  },
  "multiples_now": {
-  "pe_fwd": 19.41,
-  "ev_ebitda_fwd": 11.64,
-  "pe_fwd2": 14.13,
-  "ev_ebitda_fwd2": 8.38,
-  "pe_fwd3": 12.15,
-  "ev_ebitda_fwd3": 7.22
+  "pe_fwd": 18.89,
+  "ev_ebitda_fwd": 9.26,
+  "pe_fwd2": 13.06,
+  "ev_ebitda_fwd2": 6.71,
+  "pe_fwd3": 10.38,
+  "ev_ebitda_fwd3": 5.4
  },
  "forward": {
-  "as_of": "2026-11-03",
+  "as_of": "2026-11-12",
   "ntm": {
-   "eps": 2.33,
-   "ebitda": 265357000,
-   "ebit": 237376000,
-   "revenue": 1280818000,
-   "rev_ttm": 1037772000
+   "eps": 2.6399999999999997,
+   "ebitda": 355593000,
+   "ebit": 310447000,
+   "revenue": 1618131000,
+   "rev_ttm": 1136299000
   },
   "horizons": {
    "2": {
-    "eps": 3.2017360000000004,
-    "ebitda": 368464504,
+    "eps": 3.8172620000000004,
+    "ebitda": 490964910,
     "ext": 0
    },
    "3": {
-    "eps": 3.7223126037735845,
-    "ebitda": 428065040.96721315,
-    "ext": 2
+    "eps": 4.802421666666667,
+    "ebitda": 610117750.3758389,
+    "ext": 3
    }
   },
   "guided": {
@@ -1130,18 +1119,6 @@
   ],
   "ev_ebitda_fwd": [
    {
-    "date": "2023-11-30",
-    "value": 8.07
-   },
-   {
-    "date": "2023-12-29",
-    "value": 9.86
-   },
-   {
-    "date": "2024-01-31",
-    "value": 7.31
-   },
-   {
     "date": "2024-02-29",
     "value": 14.94
    },
@@ -1275,12 +1252,12 @@
  "main_metric": "eps",
  "main_metric_why": "회사와 애널리스트가 조정 EPS(소수지분 귀속분 제외)로 말한다. ACM 상하이 지분 26.8%가 소수지분이라 EBITDA보다 지배주주 EPS가 주주 몫을 바로 잰다",
  "profile": {
-  "price": 44.15,
-  "shares_basic": 0.069649,
-  "shares_date": "2026-08-04",
-  "cash": 1.4607,
-  "debt": 0.3493,
-  "source": "가격 = 11/2 종가. 주식 = 2Q 10-Q 표지(8/4, A주 64.66M + B주 4.99M). 현금 = 현금 $990.6M(제한 현금 $21.4M 포함) + 단기 정기예금 $470.1M(6/30). 차입 = 단기차입 $107.2M + 유동성 장기차입 $40.8M + 장기차입 $3.5M + 리스 $197.8M. 순현금 약 $1.11B 중 미국 현금은 $314M이고 나머지는 중국·홍콩에 있다"
+  "price": 49.88,
+  "shares_basic": 0.0699,
+  "shares_date": "2026-09-30",
+  "cash": 1.3437,
+  "debt": 0.3507,
+  "source": "가격 = 11/12 종가(TradingView). 주식 = Fiscal 3Q 재무 기준 69.9M(A·B주). 현금 = 현금 $906.4M + 단기투자 $437.2M(9/30, 정기예금 $370.3M 포함). 차입 = 단기 $130.7M + 장기 $212.4M(유동 $64.1M 포함, 10-Q Note 7·9) + 리스 $7.6M = $350.7M. 회사 기준 순현금 약 $0.9B(리스 제외). 미국 현금 $337.9M, 나머지는 중국·홍콩"
  },
  "dilution": {
   "potential_total": 0.0039,
@@ -1288,165 +1265,166 @@
   "rsu": 0,
   "warrants": 0,
   "converts_shares": 0,
-  "date": "2026-08-04",
-  "source": "2Q26 희석 가중평균 71.8M − 기본 67.9M = 3.9M을 옵션·RSU 희석으로 잡았다(10-Q 손익계산서). 전환사채 없음"
+  "date": "2026-09-30",
+  "source": "3Q26 희석 가중평균 73.6M − 기본 69.7M = 3.9M(10-Q 손익계산서). 전환사채 없음"
  },
- "minority_note": "ACM 상하이 지분 73.2%(6/30, 10-Q Note 1). 소수지분 26.8%. DCF는 연결 기업가치에서 소수지분 가치 $1.0B(ACMR 시가 기준 추정: (시가총액 − 미국 현금) ÷ 0.732 × 0.268)를 drivers.minority로 뺀다. 장부가는 $545M",
+ "minority_note": "ACM 상하이 지분 72.8%(9/30, 10-Q Note 1 — 6/30 73.2%, 12월 말 74.6%). 소수지분 27.2%. DCF는 연결 기업가치에서 소수지분 가치를 drivers.minority로 뺀다(ACMR 시가 기준 추정: (시가총액 − 미국 현금) ÷ 0.728 × 0.272 ≈ $1.2B). 장부가는 $572M",
  "financials": {
-  "rev_ttm": 1.037772,
-  "ebit_ttm": 0.1378,
-  "invested_capital": 1.2937,
-  "capex_ttm": 0.1121,
-  "da_ttm": 0.0218,
-  "sbc_ttm": 0.0262,
+  "rev_ttm": 1.136299,
+  "ebit_ttm": 0.164482,
+  "invested_capital": 1.4752,
+  "capex_ttm": 0.1263,
+  "da_ttm": 0.026,
+  "sbc_ttm": 0.031,
   "basis": "GAAP",
-  "note": "TTM = 3Q25~2Q26. 매출 269.2+244.4+231.3+292.9. GAAP 영업이익 28.9+23.0+36.2+49.7. 조정 EBIT 36.5+29.5+41.8+56.3 = $164.1M. 투하자본 = 자기자본(소수지분 포함) 2.405 + 차입 0.152 + 리스 0.198 − 현금·단기예금 1.461"
+  "note": "TTM = 4Q25~3Q26. 매출 244.4+231.3+292.9+367.7. GAAP 영업이익 23.0+36.2+49.7+55.5. 조정 EBIT 29.5+41.8+56.3+66.2 = $193.8M. CAPEX = 9M26 $112.5M + 4Q25 약 $13.8M. D&A·SBC TTM은 3Q 값(7.0·10.7)과 직전 TTM으로 근사. 투하자본 = 자기자본(소수지분 포함) 2.468 + 차입 0.343 + 리스 0.008 − 현금·단기투자 1.344"
  },
- "sbc_pct_rev": 0.025,
+ "sbc_pct_rev": 0.027,
  "sbc_why": "TTM SBC $26.2M ÷ 매출 $1,037.8M",
  "guidance": {
   "rev_fy0": [
-   1.125,
-   1.175
+   1.24,
+   1.28
   ],
   "rev_basis": "gaap",
   "margin_basis": "non_gaap",
-  "source": "2Q 콜 2026-08-07: FY2026 매출 $1.125~1.175B(1Q의 $1.08~1.175B에서 하단 상향, 전년 대비 +25~30%). 출하 성장 > 매출 성장. CAPEX 약 $175M",
+  "source": "3Q 콜·보도자료 2026-11-05: FY2026 매출 $1.24~1.28B(+38~42%), 직전 $1.125~1.175B. 4Q 출하는 3Q보다 많다. 4Q GM은 3Q보다 소폭 개선. CAPEX 약 $175M 유지. 실효세율 약 10%",
   "next": {
-   "period": "3Q26",
-   "rev": 362.5,
-   "rev_cons": 314.9,
+   "period": "4Q26",
+   "rev": 368.1,
+   "rev_cons": 353.8,
    "unit": "$M",
-   "note": "회사 10/28 잠정 매출 $360~365M(전년 대비 +34~36%), 출하 $335~340M. 컨센서스는 잠정치 전 값"
+   "note": "가이던스에서 9M 매출 $891.9M을 뺀 4Q 내포 매출 $348~388M(중간 $368M). 컨센서스 하단 $345M·상단 $368M"
   },
   "long_term": {
-   "장기": "매출 목표 $4B = 중국 $2.5B + 해외 $1.5B, 시점 미제시. GM 장기 42~48%",
-   "source": "2Q 콜 2026-08-07"
+   "목표": "장기 매출 목표 $4B = 중국 $2.5B + 해외 $1.5B, 시점 미공개. GM 장기 42~48%. 린강 두 동 연 $3B 생산 가능",
+   "source": "3Q 콜 2026-11-05"
   }
  },
  "call": {
-  "date": "2026-08-07",
-  "prev_date": "2026-05-07",
+  "date": "2026-11-05",
+  "prev_date": "2026-08-07",
   "tone": "up",
-  "tone_score": 7.0,
+  "tone_score": 7.5,
   "tone_delta": 0.5,
   "guidance_direction": "raise",
   "kpis": {
-   "rev_m": 292.9,
-   "gm": 0.46,
-   "op_margin": 0.192,
-   "shipments_m": 282,
-   "orders_1h_yoy": 1.05,
-   "ecp_rev_yoy": 1.68,
-   "cleaning_rev_yoy": -0.142,
-   "ap_rev_yoy": 1.53,
-   "net_cash_b": 1.0,
-   "inventory_m": 783.1
+   "rev_m": 367.7,
+   "gm": 0.416,
+   "op_margin": 0.18,
+   "shipments_m": 343.5,
+   "orders_9m_yoy": 1.47,
+   "ecp_rev_yoy": 0.83,
+   "cleaning_rev_yoy": 0.16,
+   "ap_rev_yoy": 0.71,
+   "net_cash_b": 0.9,
+   "inventory_m": 851.2,
+   "ocf_q3_m": -70.4
   },
   "guidance_changes": [
-   "FY2026 매출 $1.08~1.175B → $1.125~1.175B(하단 상향)",
-   "R&D 16~18%, 판매비 약 8%, 관리비 5~6%로 범위를 좁혔다",
-   "실효세율 10~12%",
+   "FY2026 매출 $1.125~1.175B → $1.24~1.28B(4Q 내포 $348~388M)",
+   "4Q GM 3Q 대비 소폭 개선",
+   "R&D 15~17%, 판매비 7~8%, 관리비 약 5%",
+   "실효세율 약 10%",
    "CAPEX 약 $175M 유지"
   ],
   "new_topics": [
-   "패널 수평 도금 장비 2곳 수주(중국 양산 주문, 아시아 신규 고객 평가 장비)",
-   "도금 챔버 누적 2,000개 출하",
-   "단일 웨이퍼 SPM 연말까지 20대 이상(1Q엔 15~20대)",
-   "Tahoe를 습식 공정 플랫폼으로 확장",
-   "5월 $150M 직접 공모로 미국 현금 약 $300M",
-   "오리건 데모 센터 연내 가동",
-   "중국 밖 고객 사이트 장비 20대 이상, 5개국 약 10개 고객"
+   "9개월 수주 +147%(상반기 +100%대에서 가속)",
+   "세정 매출 +16%로 성장 복귀, 매출의 57%",
+   "310×310mm 패널 수평 도금 장비 아시아 고객 출하(10월)",
+   "린강 둘째 동 4Q 가동 시작, 생산 면적 2배",
+   "4Q 출하 3Q보다 증가, 2027 출하도 성장 계획",
+   "중국 밖 10% 고객 문턱 약 $120M — 1월에 2027 가이던스"
   ],
   "dropped_topics": [
-   "1Q의 'SPM 15~20대'가 '20대 이상'으로 바뀌었다",
-   "세정 매출 감소 이유(1Q −6%)는 2Q −14%로 커졌는데 설명이 SPM 신제품 주기로만 남았다"
+   "2Q의 'H주 홍콩 상장' 진행 상황 언급이 없다",
+   "수주잔고 금액을 새로 밝히지 않았다(마지막 공시 9/29 $2.5B)"
   ],
   "risks": [
-   "세정 매출 전년 대비 −14%",
-   "2Q 영업현금 −$6.4M, 재고 $783M",
-   "GM 46.0%(전년 48.5%)",
-   "ACM 상하이·ACM 코리아 엔티티 리스트(2024-12)",
-   "중국 WFE 2026 −9.9% 전망(Gartner, 10-K 인용)"
+   "GM 41.6% — 장기 범위 42~48% 하단 아래",
+   "3Q 영업현금 −$70.4M, 9M −$106.3M",
+   "재고 $851M(12월 말 $703M)",
+   "매출채권 $705M, 3Q 증가 $196M",
+   "단기투자 미실현 손실 $39.1M으로 GAAP EPS $0.02",
+   "엔티티 리스트(ACM 상하이·ACM 코리아)"
   ],
   "qa_focus": [
-   "Roth: 중국 밖 지역별 출하, 미국 현금 사용처, 중국 노출",
-   "Needham: 3Q·4Q 모양, 판관비 범위",
-   "JPMorgan: 첨단 패키징 수주, 월 1만 장당 장비 강도, 패널 평가 일정"
+   "Roth: 신제품·해외 고객 믹스, 공급망 제약, 린강 둘째 동 일정",
+   "Daiwa: GM 변동·재고 충당금, 수주 성장 중 물량과 점유율의 몫"
   ],
-  "source": "회사 2Q 콜(2026-08-07)·1Q 콜(2026-05-07), 요지만",
+  "source": "회사 3Q 콜(2026-11-05)·2Q 콜(2026-08-07), 요지만. 3Q 보도자료 https://www.sec.gov/Archives/edgar/data/1680062/000162828026070600/acmr-q32026xearningsreleas.htm",
   "deltas": [
    {
-    "id": "F1",
+    "id": "D1",
     "kind": "업데이트",
     "item": "FY2026 매출 가이던스",
-    "label": "매출 하단 상향",
-    "prior": "$1.08~1.175B",
-    "latest": "$1.125~1.175B",
+    "label": "가이던스 +$110M",
+    "prior": "$1.125~1.175B",
+    "latest": "$1.24~1.28B",
     "driver": "rev0",
-    "shift": 0.0225,
+    "shift": 0.095,
     "confidence": 0.8,
-    "source": "2Q 콜"
+    "source": "3Q 콜·보도자료"
    },
    {
-    "id": "F2",
-    "kind": "신규",
-    "item": "패널 수평 도금 수주",
-    "label": "패널 도금 2곳 수주",
-    "prior": "평가 중",
-    "latest": "중국 양산 주문 + 아시아 평가 장비, 금액 미공개",
-    "driver": "growth_start",
-    "shift": 0.01,
-    "confidence": 0.5,
-    "source": "2Q 콜"
-   },
-   {
-    "id": "F3",
+    "id": "D2",
     "kind": "업데이트",
-    "item": "SPM 출하 목표",
-    "label": "SPM 20대 이상",
-    "prior": "연말 15~20대",
-    "latest": "연말 20대 이상",
+    "item": "수주 증가율",
+    "label": "9M 수주 +147%",
+    "prior": "1H 수주 +105%",
+    "latest": "9M +147%",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D3",
+    "kind": "업데이트",
+    "item": "세정 매출",
+    "label": "세정 +16% 복귀",
+    "prior": "2Q 세정 −14%",
+    "latest": "3Q $211M, +16%",
     "driver": "growth_start",
     "shift": 0.01,
-    "confidence": 0.5,
-    "source": "2Q 콜"
-   },
-   {
-    "id": "F4",
-    "kind": "부정",
-    "item": "세정 매출·GM",
-    "label": "세정 −14%·GM 하락",
-    "prior": "1Q 세정 −6%, GM 46.5%",
-    "latest": "2Q 세정 −14%, GM 46.0%(전년 48.5%)",
-    "driver": "margin_m0",
-    "shift": -0.01,
     "confidence": 1.0,
-    "source": "2Q 콜·10-Q"
+    "source": "3Q 콜"
    },
    {
-    "id": "F5",
+    "id": "D4",
+    "kind": "부정",
+    "item": "매출총이익률",
+    "label": "GM 41.6%",
+    "prior": "2Q 46.0%",
+    "latest": "3Q 41.6%(믹스·환율·재고 충당금)",
+    "driver": "margin_m0",
+    "shift": -0.02,
+    "confidence": 1.0,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D5",
     "kind": "부정",
     "item": "현금 전환",
-    "label": "영업현금 적자",
-    "prior": "1Q 영업현금 −$29.5M",
-    "latest": "2Q −$6.4M, 재고 $738M → $783M",
+    "label": "영업현금 −$70M",
+    "prior": "2Q −$6.4M",
+    "latest": "3Q −$70.4M, 재고 $851M",
     "driver": "s2c",
     "shift": -0.1,
     "confidence": 1.0,
     "source": "10-Q"
    },
    {
-    "id": "F6",
+    "id": "D6",
     "kind": "신규",
-    "item": "해외 확장 자금",
-    "label": "미국 현금 $300M",
-    "prior": "미국 현금 $107M(12월 말)",
-    "latest": "$314M, 오리건 데모 센터",
+    "item": "생산 캐파",
+    "label": "린강 둘째 동 가동",
+    "prior": "연내 개소 예정",
+    "latest": "4Q 가동 시작, 면적 2배",
     "driver": "growth_decay",
-    "shift": 0.02,
-    "confidence": 0.3,
-    "source": "2Q 콜·10-Q"
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "3Q 보도자료·콜"
    }
   ]
  },
@@ -1466,14 +1444,36 @@
    "cash": 7.437,
    "goodwill": 0.0,
    "intangibles": 0.0,
-   "pe_fwd": 23,
-   "ev_ebitda_fwd": 18.38,
-   "pe_fwd2": 19.83,
-   "ev_ebitda_fwd2": 15.64,
-   "pe_fwd3": 19.22,
-   "ev_ebitda_fwd3": 15.31,
+   "pe_fwd": 22.96,
+   "ev_ebitda_fwd": 18.35,
+   "pe_fwd2": 19.75,
+   "ev_ebitda_fwd2": 15.58,
+   "pe_fwd3": 19.18,
+   "ev_ebitda_fwd3": 15.29,
    "ntm_ebit_margin": 0.3993,
-   "ntm_growth": 0.4154
+   "ntm_growth": 0.4154,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 33.6,
+     "ev_ebitda_fwd": 26.86
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 33.82,
+     "ev_ebitda_fwd": 26.16
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 54.32,
+     "ev_ebitda_fwd": 44.64
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 33.59,
+     "ev_ebitda_fwd": 27.25
+    }
+   ]
   },
   {
    "ticker": "AMAT",
@@ -1488,14 +1488,36 @@
    "cash": 9.233,
    "goodwill": 3.873,
    "intangibles": 0.315,
-   "pe_fwd": 21.7,
-   "ev_ebitda_fwd": 17.89,
-   "pe_fwd2": 19.17,
-   "ev_ebitda_fwd2": 16.01,
-   "pe_fwd3": 16.6,
-   "ev_ebitda_fwd3": 13.59,
-   "ntm_ebit_margin": 0.3566,
-   "ntm_growth": 0.4502
+   "pe_fwd": 20.7,
+   "ev_ebitda_fwd": 17.25,
+   "pe_fwd2": 17.97,
+   "ev_ebitda_fwd2": 15.11,
+   "pe_fwd3": 16.42,
+   "ev_ebitda_fwd3": 14.01,
+   "ntm_ebit_margin": 0.3623,
+   "ntm_growth": 0.3354,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.98,
+     "ev_ebitda_fwd": 22.74
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 28.57,
+     "ev_ebitda_fwd": 26.72
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 51.19,
+     "ev_ebitda_fwd": 41.68
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.47,
+     "ev_ebitda_fwd": 24.66
+    }
+   ]
   },
   {
    "ticker": "ONTO",
@@ -1510,14 +1532,36 @@
    "cash": 1.882,
    "goodwill": 0.643,
    "intangibles": 0.259,
-   "pe_fwd": 18.77,
-   "ev_ebitda_fwd": 19.05,
-   "pe_fwd2": 16.75,
-   "ev_ebitda_fwd2": 16.78,
-   "pe_fwd3": 15.02,
-   "ev_ebitda_fwd3": 15.0,
-   "ntm_ebit_margin": 0.3318,
-   "ntm_growth": 0.5185
+   "pe_fwd": 16.8,
+   "ev_ebitda_fwd": 16.38,
+   "pe_fwd2": 14.26,
+   "ev_ebitda_fwd2": 13.85,
+   "pe_fwd3": 12.02,
+   "ev_ebitda_fwd3": 12.03,
+   "ntm_ebit_margin": 0.3537,
+   "ntm_growth": 0.5172,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 28.87,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 31.06,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 43.08,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 28,
+     "ev_ebitda_fwd": 22.34
+    }
+   ]
   },
   {
    "ticker": "CAMT",
@@ -1532,14 +1576,36 @@
    "cash": 0.63,
    "goodwill": 0.113,
    "intangibles": 0.017,
-   "pe_fwd": 23.46,
-   "ev_ebitda_fwd": 25.99,
-   "pe_fwd2": 17.58,
-   "ev_ebitda_fwd2": 19.89,
-   "pe_fwd3": 15.84,
-   "ev_ebitda_fwd3": 17.51,
-   "ntm_ebit_margin": 0.3265,
-   "ntm_growth": 0.442
+   "pe_fwd": 22.1,
+   "ev_ebitda_fwd": 21.39,
+   "pe_fwd2": 17.65,
+   "ev_ebitda_fwd2": 16.86,
+   "pe_fwd3": 14.52,
+   "ev_ebitda_fwd3": 13.78,
+   "ntm_ebit_margin": 0.3113,
+   "ntm_growth": 0.4427,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 32.21,
+     "ev_ebitda_fwd": 29.23
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 39.67,
+     "ev_ebitda_fwd": 34.76
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 38.96,
+     "ev_ebitda_fwd": 34.7
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 32.45,
+     "ev_ebitda_fwd": 27.81
+    }
+   ]
   },
   {
    "ticker": "KLIC",
@@ -1554,32 +1620,54 @@
    "cash": 0.517,
    "goodwill": 0.07,
    "intangibles": 0.005,
-   "pe_fwd": 12.45,
-   "ev_ebitda_fwd": 8.07,
+   "pe_fwd": 11.79,
+   "ev_ebitda_fwd": 8.19,
    "pe_fwd2": null,
-   "ev_ebitda_fwd2": 8.83,
+   "ev_ebitda_fwd2": 11.17,
    "pe_fwd3": null,
-   "ev_ebitda_fwd3": 10.2,
-   "ntm_ebit_margin": 0.229,
-   "ntm_growth": 0.5944
+   "ev_ebitda_fwd3": 16.11,
+   "ntm_ebit_margin": 0.2416,
+   "ntm_growth": 0.6123,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 30.58,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 22.02,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 32.35,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 19.64,
+     "ev_ebitda_fwd": null
+    }
+   ]
   }
  ],
  "scenario_probs": {
-  "bear": 0.3,
-  "base": 0.45,
+  "bear": 0.25,
+  "base": 0.5,
   "bull": 0.25
  },
  "overrides": {
-  "s2c": 1.2,
+  "s2c": 1.1,
   "margin_base": {
    "target": 0.17,
    "lr": 0.16
   },
-  "why": "재고 $783M·매출채권 $605M으로 운전자본이 무겁고 TTM 영업현금이 적자다. 한계 자본 효율은 1.2로 낮춘다. 장기 EBIT 이익률은 조정 약 19%에서 SBC 2.5%를 뺀 약 17%, 중국 경쟁(Naura)과 엔티티 리스트 부품 대체 비용을 감안해 장기 수렴 16%로 둔다"
+  "why": "재고 $851M·매출채권 $705M으로 운전자본이 무겁고 9M 영업현금이 −$106M이다. 한계 자본 효율은 1.2에서 1.1로 더 낮춘다. 장기 EBIT 이익률은 조정 약 19%에서 SBC 2.7%를 뺀 약 17%, 중국 경쟁과 엔티티 리스트 부품 대체 비용을 감안해 장기 수렴 16%로 둔다"
  },
  "next_event": {
-  "date": "2026-11-05",
-  "tag": "3Q26 실적·콜(미 동부 08:00), 연간 전망 갱신"
+  "date": "2027-02-26",
+  "tag": "4Q26 실적·콜(예상, 전년 2/26), 2027 가이던스는 1월에 먼저"
  },
  "events": [
   {
@@ -1641,6 +1729,26 @@
    "date": "2026-10-30",
    "tag": "하루 −7.8%, 원인 미확인",
    "kind": "업종"
+  },
+  {
+   "date": "2026-11-03",
+   "tag": "임원 변동 8-K",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "3Q26 실적, 가이던스 $1.24~1.28B로 상향, 당일 −11.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "3Q 10-Q, 영업현금 9M −$106M",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "하루 +7.7%, 원인 미확인",
+   "kind": "업종"
   }
  ],
  "revision_events": [
@@ -1681,6 +1789,13 @@
    "date": "2026-10-28",
    "kind": "내러티브",
    "tag": "3Q 잠정 매출 $360~365M"
+  },
+  {
+   "date": "2026-11-05",
+   "kind": "실적",
+   "tag": "3Q26 실적, 연간 가이던스 상향",
+   "q": "3Q26",
+   "session": "before"
   }
  ],
  "terms": {
@@ -1782,19 +1897,19 @@
   "as_of": "2026-09-29",
   "reported_backlog": 2.5,
   "backlog_label": "ACM 상하이 수주잔고 RMB 17.1B(9/29, 전년 대비 +88%)",
-  "summary": "확정 잔고는 $2.5B로 FY2026 매출 가이던스의 약 2.2배다. 건별 금액은 공개되지 않는다.",
+  "summary": "확정 잔고는 9/29 공시 $2.5B(+88%)로 새 FY2026 가이던스 중간값의 약 2.0배다. 9개월 수주는 +147%다. 건별 금액은 공개되지 않는다.",
   "items": [
    {
     "name": "ACM 상하이 수주잔고",
     "status": "확정",
     "total": 2.5,
     "progress": "미확인",
-    "margin": 0.46,
+    "margin": 0.416,
     "margin_kind": "매출총이익",
-    "margin_basis": "2Q 회사 GM, 잔고 GM 미공개",
+    "margin_basis": "3Q 회사 GM, 잔고 GM 미공개",
     "start": "2025-10",
     "end": "2027-12",
-    "speed": "1H26 수주 전년 대비 +105%",
+    "speed": "9M26 수주 전년 대비 +147%(3Q 콜)",
     "blockers": [
      "고객 인수 검사",
      "평가 장비 인수 지연"
@@ -1804,16 +1919,16 @@
    {
     "name": "고객 사이트 평가 장비",
     "status": "조건부",
-    "total": 0.1058,
+    "total": 0.08305,
     "progress": "미확인",
     "margin": "미확인",
     "start": "2025-12",
     "end": "미확인",
-    "speed": "12월 말 $145.5M → 6월 말 $105.8M",
+    "speed": "고객 인수 대기 완제품 12월 말 $145.5M → 9월 말 $83.1M",
     "blockers": [
      "인수 검사 통과"
     ],
-    "source": "2Q 10-Q 재고 주석(First Tools)"
+    "source": "3Q 10-Q Note 5(https://www.sec.gov/Archives/edgar/data/1680062/000162828026071670/acmr-20260930.htm)"
    },
    {
     "name": "패널 수평 도금 장비",
@@ -1823,12 +1938,12 @@
     "margin": "미확인",
     "start": "2026-08",
     "end": "미확인",
-    "speed": "중국 양산 주문 1건, 아시아 평가 1건, 10/28 310mm 패널 장비 첫 출하",
+    "speed": "중국 양산 주문 1건, 515×510mm·310×310mm 패널 장비 출하(10월 아시아 고객)",
     "blockers": [
      "평가 결과",
      "양산 전환"
     ],
-    "source": "2Q 콜, 10/28 보도자료"
+    "source": "2Q·3Q 콜"
    },
    {
     "name": "단일 웨이퍼 SPM",
@@ -1838,7 +1953,7 @@
     "margin": "미확인",
     "start": "2026-01",
     "end": "2026-12",
-    "speed": "상반기 소수 출하, 연말 20대 이상 목표",
+    "speed": "2026년 여러 고객에 20대 이상 출하 궤도(3Q 콜)",
     "blockers": [
      "고객 첫 장비 인증"
     ],
@@ -2207,33 +2322,33 @@
   ]
  },
  "capacity": {
-  "as_of": "2026-06-30",
+  "as_of": "2026-09-30",
   "unit": "연 생산액 $B",
-  "summary": "린강 두 동으로 연 $3B 생산이 가능하다고 회사가 말했다. 2026 매출 가이던스는 그 약 38%다.",
+  "summary": "린강 두 동으로 연 $3B 생산이 가능하다고 회사가 말했다. 둘째 동은 4Q 가동을 시작했고 생산 면적이 2배가 된다. FY2026 매출 가이던스는 그 약 42%다.",
   "current": {
    "nameplate": 3.0,
    "utilization": "미확인",
    "basis": "회사 발표",
-   "source": "1Q 콜 2026-05-07: 첫 동 양산, 둘째 동 연내 개소, 두 동 합계 연 $3B"
+   "source": "3Q 콜 2026-11-05: 첫 동 양산, 둘째 동 램프업, 두 동 합계 연 $3B"
   },
   "plans": [
    {
     "name": "린강 둘째 생산동",
     "add": "미확인",
-    "stage": "착공",
+    "stage": "가동",
     "online": "2026-12",
     "capex": "미확인",
-    "blocker": "미확인",
-    "source": "1Q 콜: 연내 개소 예정. 건물은 10-K 린강 5개 동에 포함, 장비 반입·가동은 미확인이라 착공으로 둔다"
+    "blocker": "인력 채용·교육",
+    "source": "3Q 보도자료: 둘째 동 4Q 가동 시작, 생산 면적 2배. 3Q 콜: 내부 공사 끝, 인력 이동 시작"
    },
    {
     "name": "오리건 데모 센터",
     "add": "미확인",
-    "stage": "착공",
+    "stage": "장비 반입",
     "online": "2026-12",
     "capex": 0.0078,
     "blocker": "미확인",
-    "source": "2Q 콜, 10-K: 2024-10 $7.75M 매입"
+    "source": "3Q 콜: 오리건 시설 곧 공식 개소(Class 100 클린룸·데모·조립). 10-K: 2024-10 $7.75M 매입"
    }
   ],
   "capex": [
@@ -2250,53 +2365,80 @@
     "kind": "실적"
    },
    {
-    "period": "1H26",
-    "capex": 0.0873,
-    "rev": 0.5242,
+    "period": "9M26",
+    "capex": 0.1125,
+    "rev": 0.8919,
     "kind": "실적"
    },
    {
     "period": "FY26",
     "capex": 0.175,
-    "rev": 1.15,
+    "rev": 1.26,
     "kind": "가이던스"
    },
    {
     "period": "FY27",
     "capex": 0.14,
-    "rev": 1.42,
+    "rev": 1.72,
     "kind": "컨센서스"
    }
   ],
-  "sites_none": "미등록 — 린강 생산 단지(소유 5개 동, 145만 ft² 이상)는 좌표 원자료를 확인하지 못해 이번 회차에 위성 판독을 하지 못했다. 다음 회차에 등록한다"
+  "sites_none": "미등록 — 린강 생산 단지(소유 5개 동, 145만 ft² 이상)는 좌표 원자료를 확인하지 못해 이번 회차에 위성 판독을 하지 못했다. 다음 회차에 등록한다",
+  "facilities": {
+   "count": 2,
+   "count_basis": "3Q 콜·보도자료가 밝힌 생산·준비 시설(10-K Item 2 원문은 이번 회차 SEC 접속 차단으로 미대조 — 상하이 촨사·한국 시설은 셈에서 뺐다)",
+   "source": "https://www.sec.gov/Archives/edgar/data/1680062/000162828026070600/acmr-q32026xearningsreleas.htm",
+   "items": [
+    {
+     "name": "린강 생산·연구 단지",
+     "location": "중국 상하이 린강",
+     "owned": "소유",
+     "use": "제조·연구",
+     "capacity": {
+      "value": 3.0,
+      "unit": "연 생산액 $B(두 동)",
+      "source": "3Q 콜 2026-11-05"
+     },
+     "status": "증설 중"
+    },
+    {
+     "name": "오리건 시설",
+     "location": "미국 오리건",
+     "owned": "소유",
+     "use": "데모·평가·조립",
+     "capacity": "미확인",
+     "capacity_basis": "생산능력 미공시 — 고객 평가·조립 용도",
+     "status": "건설 중"
+    }
+   ]
+  }
  },
  "customers": {
-  "as_of": "2026-06-30",
-  "period": "1H26",
-  "summary": "10% 초과 고객이 1H25 3곳 49.9%에서 1H26 1곳 12.7%로 줄었다. 이름은 공시되지 않는다. 매출의 거의 전부가 중국이다.",
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "10% 초과 고객은 3Q 2곳 합계 37.3%, 9M 2곳 28.0%다(10-Q). 이름과 고객별 몫은 공시되지 않는다. 매출채권은 5곳이 60.8%다.",
   "items": [
    {
-    "name": "최대 고객",
-    "alias": "10-Q 10% 초과 고객",
-    "share": 0.127,
-    "prior": 0.17,
+    "name": "10% 초과 고객 2곳 합",
+    "alias": "10-Q 10% 초과 고객(3Q)",
+    "share": 0.373,
+    "prior": 0.389,
     "basis": "공시",
     "buys": "세정·도금 장비",
-    "source": "https://www.sec.gov/Archives/edgar/data/1680062/000162828026054832/acmr-20260630.htm",
-    "why": "이름 미공개. 전기는 FY2025 최대 고객 17%(같은 회사인지 미확인)"
+    "source": "https://www.sec.gov/Archives/edgar/data/1680062/000162828026071670/acmr-20260930.htm",
+    "why": "3Q26 2곳 37.3%(3Q25 2곳 38.9%). 9M은 2곳 28.0%"
    },
    {
-    "name": "중국 2~4위 고객 합(3곳)",
-    "alias": "FY2025 Customer Two~Four",
+    "name": "나머지 중국 고객",
     "share": [
-     0.25,
-     0.35
+     0.6,
+     0.62
     ],
-    "prior": 0.36,
     "basis": "추정",
-    "buys": "세정·도금 장비",
-    "source": "https://www.sec.gov/Archives/edgar/data/1680062/000162828026013231/acmr-20251231.htm",
-    "why": "FY2025 2~4위 몫(14·12·10%)에서 1H26 10% 미만으로 낮아졌다고 보고 범위로 잡았다"
+    "buys": "세정·도금·퍼니스·패키징 장비",
+    "source": "https://www.sec.gov/Archives/edgar/data/1680062/000162828026071670/acmr-20260930.htm",
+    "why": "10% 초과 2곳을 뺀 몫에서 중국 밖 매출을 뺐다",
+    "prior": "미확인"
    },
    {
     "name": "중국 밖 고객",
@@ -2307,8 +2449,8 @@
     "prior": 0.004,
     "basis": "추정",
     "buys": "평가 장비 중심",
-    "source": "https://www.sec.gov/Archives/edgar/data/1680062/000162828026013231/acmr-20251231.htm",
-    "why": "FY2025 중국 외 매출 $3.3M. 20대 이상 설치 목표는 대부분 평가 장비다"
+    "source": "3Q 콜: 중국 밖 고객이 10%가 되려면 약 $120M",
+    "why": "FY2025 중국 외 매출 $3.3M. 연말 20대 이상 설치는 대부분 평가 장비"
    }
   ]
  },
@@ -2530,13 +2672,13 @@
    }
   ],
   "lead": {
-   "summary": "ACM Research는 미국 상장 지주사이고 사업은 거의 전부 73.2%를 가진 상하이 자회사 ACMS에서 나온다. 웨이퍼 세정으로 시작해 도금·퍼니스·패키징 장비로 넓히는 중국 장비사다.",
+   "summary": "ACM Research는 미국 상장 지주사이고 사업은 거의 전부 72.8%를 가진 상하이 자회사 ACMS에서 나온다. 웨이퍼 세정으로 시작해 도금·퍼니스·패키징 장비로 넓히는 중국 장비사다.",
    "value_story": "기업가치는 수주잔고 $2.5B가 매출과 현금으로 얼마나 빨리 바뀌느냐로 정해진다. 그 위에 ACMS 대비 지주 할인과 미국 규제라는 두 개의 할인이 얹혀 있다.",
    "premium": {
     "multiple": "Fwd 1Y P/E 19.4배로 동종 5곳 중앙값 약 22배보다 낮다. 성장은 비슷하거나 빠른데 중국 집중과 엔티티 리스트가 프리미엄을 막는다.",
     "eps": "FY2027 EPS 추정은 1Q 뒤 $1.90에서 2Q 뒤 $2.65로 올랐다. 애널리스트 1명이라 표본이 작다."
    },
-   "why_excited": "4월 $40대에서 6월 말 $126.89까지 세 배가 됐다. 도금 매출 급증, 패널 장비, ACMS 홍콩 상장 계획이 겹쳤다. 7월 이후 회사 고유 악재 없이 −65%가 빠졌고 10월에는 3Q 잠정 매출이 컨센서스를 넘었는데도 떨어졌다.",
+   "why_excited": "4월 $40대에서 6월 말 종가 $126.89까지 세 배가 됐다. 도금 매출 급증, 패널 장비, ACMS 홍콩 상장 계획이 겹쳤다. 7월 이후 회사 고유 악재 없이 11/4 $44.43까지 −65%가 빠졌다. 11/5 가이던스를 올렸는데도 GM 41.6%와 영업현금 −$70M에 당일 −11.5%였고, 이후 사흘 만에 $52까지 되돌렸다.",
    "products": [
     {
      "kind": "제품",
@@ -2683,121 +2825,1046 @@
   }
  },
  "sources": [
-  "ACM Research 2Q26 10-Q https://www.sec.gov/Archives/edgar/data/1680062/000162828026054832/acmr-20260630.htm",
+  "ACM Research 3Q26 10-Q https://www.sec.gov/Archives/edgar/data/1680062/000162828026071670/acmr-20260930.htm",
+  "3Q26 실적 보도자료(8-K EX-99.1, Item 2.02) https://www.sec.gov/Archives/edgar/data/1680062/000162828026070600/acmr-q32026xearningsreleas.htm",
   "ACM Research FY2025 10-K https://www.sec.gov/Archives/edgar/data/1680062/000162828026013231/acmr-20251231.htm",
-  "3Q26 잠정 매출 보도자료(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1680062/000162828026067734/a1028_acmrq32026prelimreva.htm",
   "ACM 상하이 수주잔고(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1680062/000162828026063896/acmr-acmshbacklogdata_9302.htm",
-  "ACM Research 2Q 콜 2026-08-07, 1Q 콜 2026-05-07(요지만)",
-  "ACMS H주 상장 계획 공고 2026-04-17 https://pdf.dfcfw.com/pdf/H2_AN202604171821291265_1.pdf",
-  "ACMS H주 이사회 승인 보도 https://m.sohu.com/a/1028019085_115377",
-  "Kerrisdale Capital 펀드 레터 2Q26(요지)",
-  "GuruFocus 10/5 하락 https://www.gurufocus.com/news/9110379/acm-research-acmr-shares-drop-nearly-9-after-recent-rally-on-october-5-2026"
+  "3Q26 잠정 매출 보도자료(8-K 첨부) https://www.sec.gov/Archives/edgar/data/1680062/000162828026067734/a1028_acmrq32026prelimreva.htm",
+  "ACM Research 3Q 콜 2026-11-05, 2Q 콜 2026-08-07(요지만)",
+  "Kerrisdale Capital 펀드 레터 2Q26(요지)"
  ],
  "raw": {
-  "retrieved_at": "2026-11-03T20:40:00+09:00",
+  "retrieved_at": "2026-11-13T13:20:00+09:00",
   "fiscal_profile": {
    "companyKey": "NASDAQ_ACMR",
-   "price": 44.15,
-   "market_cap": 3.075,
-   "total_cash": 1.4607,
-   "total_debt": 0.3493,
-   "shares_outstanding": 0.069649,
-   "as_of": "2026-11-02",
-   "balance_date": "2026-06-30",
-   "note": "가격·시가총액은 company_profile(yfinance)와 Fiscal 시세가 같다. 현금·차입은 Fiscal 표준 재무상태표 6/30 https://fiscal.ai/company/NasdaqGM-ACMR"
+   "price": 49.88,
+   "market_cap": 3.4865,
+   "total_cash": 1.3437,
+   "total_debt": 0.3507,
+   "shares_outstanding": 0.0699,
+   "as_of": "2026-11-12",
+   "balance_date": "2026-09-30",
+   "note": "yfinance 시가총액 $3.49B(기본 주식 기준). Fiscal 재무상태표 9/30: 현금 906.4·단기투자 437.2·단기차입 130.7·리스 153.3. total_debt 350.7은 리스 포함"
   },
   "quarters_gaap": {
    "rev": {
-    "2025Q3": 0.26916,
     "2025Q4": 0.24443,
     "2026Q1": 0.231263,
-    "2026Q2": 0.292919
+    "2026Q2": 0.292919,
+    "2026Q3": 0.367687
    },
    "op_income": {
-    "2025Q3": 0.0289,
-    "2025Q4": 0.023,
-    "2026Q1": 0.0362,
-    "2026Q2": 0.0497
+    "2025Q4": 0.023035,
+    "2026Q1": 0.036177,
+    "2026Q2": 0.049743,
+    "2026Q3": 0.055527
    }
   },
-  "balance_2026_06_30": {
-   "equity": 2.4051,
-   "equity_parent": 1.8602,
-   "nci": 0.545,
-   "cash": 0.9906,
-   "st_investments": 0.4701,
-   "debt_current": 0.148,
-   "debt_lt": 0.0035,
-   "lease_current": 0.0049,
-   "lease_lt": 0.1929,
-   "receivables": 0.6052,
-   "inventory": 0.7831,
-   "ppe": 0.4012,
-   "contract_liabilities": 0.1815
+  "balance_2026_09_30": {
+   "equity": 2.4682,
+   "equity_parent": 1.8959,
+   "nci": 0.5723,
+   "cash": 0.9064,
+   "st_investments": 0.4372,
+   "receivables": 0.7047,
+   "inventory": 0.8512,
+   "ppe": 0.4303,
+   "contract_liabilities": 0.1881,
+   "debt_current": 0.1948,
+   "debt_lt": 0.1483,
+   "lease_current": 0.005,
+   "lease_lt": 0.0026
   },
   "estimates_sales_m": {
    "2026Q1": 231.3,
    "2026Q2": 292.9,
-   "2026Q3": 314.9,
-   "2026Q4": 311.0,
-   "2027Q1": 315.0,
-   "2027Q2": 340.0,
-   "2027Q3": 387.7,
-   "2027Q4": 377.3,
-   "2028Q1": 357.8,
-   "2028Q2": 438.7,
-   "2028Q3": 459.4,
-   "2028Q4": 444.1
+   "2026Q3": 367.7,
+   "2026Q4": 368.1,
+   "2027Q1": 385.0,
+   "2027Q2": 420.0,
+   "2027Q3": 445.0,
+   "2027Q4": 470.0,
+   "2028Q1": 436.5,
+   "2028Q2": 516.3,
+   "2028Q3": 612.3,
+   "2028Q4": 585.0
   },
   "sec": {
-   "purchase_obligations": "총액 미공개. 10-Q Note 16 건설 약정 $0.78M(6/30), 10-K $2.06M(12/31). 일반 구매 약정 표 없음",
-   "restricted_cash_m": 21.4,
-   "restricted_cash_note": "중국·홍콩·한국 은행, 장비 납품 보증용(12월 말 $8.6M)",
+   "purchase_obligations": "3Q 10-Q Note 16은 이번 회차 미대조(SEC 직접 접속 403, 웹 열람이 Note 11에서 잘림). 2Q 10-Q 건설 약정 $0.78M",
+   "restricted_cash_m": 21.5,
    "cash_by_region_m": {
-    "US": 314.3,
-    "중국": 223.7,
-    "홍콩": 427.3,
-    "한국": 2.7,
+    "US": 337.9,
+    "중국": 99.0,
+    "홍콩": 443.4,
+    "한국": 3.4,
     "싱가포르": 1.3
    },
-   "st_deposits_china_m": 365.1,
-   "customers_10pct_1h26": {
-    "1곳": 0.127
-   },
-   "customers_10pct_2q26": "3곳 합계 43.5%",
-   "customers_10pct_fy2025": {
-    "1": 0.17,
-    "2": 0.14,
-    "3": 0.12,
-    "4": 0.1
-   },
-   "government_support": "FY2025 보조금 비용 차감 $7.96M + 기타수익 $1.39M. 린강 토지 약정: 2029-12-12까지 최소 매출·연 세금 RMB 157.6M의 80% 미달 시 위약금",
-   "entity_list": "ACM 상하이·ACM 코리아 2024-12-02 지정",
+   "st_deposits_china_m": 370.3,
+   "customers_10pct_3q26": "2곳 합계 37.3%(3Q25 2곳 38.9%)",
+   "customers_10pct_9m26": "2곳 합계 28.0%(9M25 3곳 46.3%)",
+   "ar_top5": 0.608,
+   "government_support": "3Q 보도자료·10-Q 읽은 부분에 보조금 금액 없음(FY2025 비용 차감 $7.96M + 기타수익 $1.39M). 린강 토지 약정은 10-K 기준 유지",
+   "entity_list": "ACM 상하이·ACM 코리아 2024-12-02 지정(10-K)",
    "acms_ownership": {
     "2025-12-31": 0.746,
-    "2026-06-30": 0.732
+    "2026-06-30": 0.732,
+    "2026-09-30": 0.728
    },
-   "ocf_1h26_m": -35.9,
-   "capex_1h26_m": 87.3,
-   "inventory_m": 783.1,
-   "first_tools_at_customer_m": 105.8,
-   "backlog_2026_09_29_rmb_b": 17.1,
+   "ocf_9m26_m": -106.3,
+   "ocf_q3_m": -70.4,
+   "capex_9m26_m": 112.5,
+   "inventory_m": 851.2,
+   "inventory_mix_m": {
+    "원재료": 465.5,
+    "재공품": 122.7,
+    "완제품": 263.1
+   },
+   "finished_goods_at_customer_m": 83.1,
+   "unrealized_loss_q3_m": -39.1,
+   "gaap_eps_q3": 0.02,
+   "nongaap_eps_q3": 0.55,
+   "gaap_ni_9m_m": 107.8,
    "backlog_2026_09_29_usd_b": 2.5,
-   "q3_prelim_rev_m": [
-    360,
-    365
-   ],
-   "q3_prelim_shipments_m": [
-    335,
-    340
-   ],
-   "fy2025_rev_m": 901.3,
-   "fy2025_china_share": 0.996,
+   "orders_9m_yoy": 1.47,
    "employees_2025": 2513
   },
-  "non_gaap_ebit_ttm_m": 164.1,
-  "shares_cover_implied": 0.069649,
-  "note": "7/18 토요일 행은 시가 0 오류라 뺐다. 7월 월봉 저가는 7/29 종가로 고쳤다"
+  "non_gaap_ebit_ttm_m": 193.8,
+  "shares_cover_implied": 0.0699,
+  "note": "SEC 원문 직접 접속은 403(프로젝트 요청 헤더). 10-Q·보도자료는 웹 열람으로 Note 1·2·5·7·9와 손익·현금흐름표를 확인했다"
  },
- "narrative_sources_note": "tg 없음, dticker 없음, 노션 자료실 색인 갱신 필요(요지 없음), IB 의견 변경 제목 4건(Goldman Buy $166 포함, 날짜 미확인)"
+ "narrative_sources_note": "tg 없음, dticker 없음, 노션 자료실 색인 갱신 필요(요지 없음), IB 의견 변경 제목 4건(Goldman Buy $166 포함, 날짜 미확인)",
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_ACMR",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-12-31",
+    "rev": 17250000,
+    "cogs": 8880000,
+    "gp": 8370000,
+    "sga": 2374000,
+    "rd": 872000,
+    "da": null,
+    "other": 79000,
+    "op": 5045000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 4904000,
+    "cogs": 1989000,
+    "gp": 2915000,
+    "sga": 1314000,
+    "rd": 813000,
+    "da": null,
+    "other": null,
+    "op": 788000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 14345000,
+    "cogs": 6761000,
+    "gp": 7584000,
+    "sga": 2359000,
+    "rd": 960000,
+    "da": null,
+    "other": 0,
+    "op": 4265000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 5660000,
+    "cogs": 3258000,
+    "gp": 2402000,
+    "sga": 3027000,
+    "rd": 928000,
+    "da": null,
+    "other": null,
+    "op": -1553000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 8763000,
+    "cogs": 5312000,
+    "gp": 3451000,
+    "sga": 2714000,
+    "rd": 939000,
+    "da": null,
+    "other": null,
+    "op": -202000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 4891000,
+    "cogs": 2692000,
+    "gp": 2199000,
+    "sga": 2300000,
+    "rd": 1209000,
+    "da": null,
+    "other": null,
+    "op": -1310000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 17192000,
+    "cogs": 8019000,
+    "gp": 9173000,
+    "sga": 3346000,
+    "rd": 2062000,
+    "da": null,
+    "other": 0,
+    "op": 3765000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 9743000,
+    "cogs": 4621000,
+    "gp": 5122000,
+    "sga": 5485000,
+    "rd": 1541000,
+    "da": null,
+    "other": null,
+    "op": -1904000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 20873000,
+    "cogs": 12149000,
+    "gp": 8724000,
+    "sga": 3974000,
+    "rd": 2419000,
+    "da": null,
+    "other": null,
+    "op": 2331000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 23179000,
+    "cogs": 12892000,
+    "gp": 10287000,
+    "sga": 4619000,
+    "rd": 2264000,
+    "da": null,
+    "other": null,
+    "op": 3404000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 20848000,
+    "cogs": 10532000,
+    "gp": 10316000,
+    "sga": 3520000,
+    "rd": 4156000,
+    "da": null,
+    "other": 0,
+    "op": 2640000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 20479000,
+    "cogs": 11653000,
+    "gp": 8826000,
+    "sga": 3810000,
+    "rd": 2765000,
+    "da": null,
+    "other": null,
+    "op": 2251000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 29010000,
+    "cogs": 15879000,
+    "gp": 13131000,
+    "sga": 5129000,
+    "rd": 3341000,
+    "da": null,
+    "other": null,
+    "op": 4661000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 33427000,
+    "cogs": 17173000,
+    "gp": 16254000,
+    "sga": 5732000,
+    "rd": 3492000,
+    "da": null,
+    "other": null,
+    "op": 7030000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 24608000,
+    "cogs": 12165000,
+    "gp": 12443000,
+    "sga": 5292000,
+    "rd": 3302000,
+    "da": null,
+    "other": 0,
+    "op": 3849000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 24248000,
+    "cogs": 14120000,
+    "gp": 10228000,
+    "sga": 5333000,
+    "rd": 3677000,
+    "da": null,
+    "other": null,
+    "op": 1218000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 39049000,
+    "cogs": 19693000,
+    "gp": 19356000,
+    "sga": 6799000,
+    "rd": 5221000,
+    "da": null,
+    "other": null,
+    "op": 7336000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 47665000,
+    "cogs": 27324000,
+    "gp": 20341000,
+    "sga": 8492000,
+    "rd": 4343000,
+    "da": null,
+    "other": null,
+    "op": 7506000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 45562000,
+    "cogs": 25888000,
+    "gp": 19674000,
+    "sga": 8364000,
+    "rd": 5878000,
+    "da": null,
+    "other": 0,
+    "op": 5432000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 43732000,
+    "cogs": 25687000,
+    "gp": 18045000,
+    "sga": 9091000,
+    "rd": 5504000,
+    "da": null,
+    "other": null,
+    "op": 3450000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 53864000,
+    "cogs": 32184000,
+    "gp": 21680000,
+    "sga": 9416000,
+    "rd": 7933000,
+    "da": null,
+    "other": null,
+    "op": 4331000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 67013000,
+    "cogs": 37328000,
+    "gp": 29685000,
+    "sga": 10034000,
+    "rd": 7856000,
+    "da": null,
+    "other": null,
+    "op": 11795000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 95142000,
+    "cogs": 49696000,
+    "gp": 45446000,
+    "sga": 13406000,
+    "rd": 12914000,
+    "da": null,
+    "other": 0,
+    "op": 19126000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 42186000,
+    "cogs": 22500000,
+    "gp": 19686000,
+    "sga": 11646000,
+    "rd": 17346000,
+    "da": null,
+    "other": null,
+    "op": -9306000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 104395000,
+    "cogs": 60238000,
+    "gp": 44157000,
+    "sga": 12755000,
+    "rd": 11367000,
+    "da": null,
+    "other": null,
+    "op": 20035000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 133709000,
+    "cogs": 67742000,
+    "gp": 65967000,
+    "sga": 18653000,
+    "rd": 15678000,
+    "da": null,
+    "other": null,
+    "op": 31636000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 108542000,
+    "cogs": 54737000,
+    "gp": 53805000,
+    "sga": 19300000,
+    "rd": 17835000,
+    "da": null,
+    "other": 0,
+    "op": 16670000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 74256000,
+    "cogs": 34270000,
+    "gp": 39986000,
+    "sga": 17095000,
+    "rd": 14029000,
+    "da": null,
+    "other": null,
+    "op": 8862000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 144577000,
+    "cogs": 75938000,
+    "gp": 68639000,
+    "sga": 18145000,
+    "rd": 20064000,
+    "da": null,
+    "other": null,
+    "op": 30430000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 168569000,
+    "cogs": 80055000,
+    "gp": 88514000,
+    "sga": 29190000,
+    "rd": 26151000,
+    "da": null,
+    "other": null,
+    "op": 33173000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 170321000,
+    "cogs": 91245000,
+    "gp": 79076000,
+    "sga": 23237000,
+    "rd": 32465000,
+    "da": null,
+    "other": 0,
+    "op": 23374000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 152191000,
+    "cogs": 73070000,
+    "gp": 79121000,
+    "sga": 29971000,
+    "rd": 23918000,
+    "da": null,
+    "other": null,
+    "op": 25232000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 202480000,
+    "cogs": 105696000,
+    "gp": 96784000,
+    "sga": 33223000,
+    "rd": 25968000,
+    "da": null,
+    "other": null,
+    "op": 37593000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 203976000,
+    "cogs": 99142000,
+    "gp": 104834000,
+    "sga": 32813000,
+    "rd": 27837000,
+    "da": null,
+    "other": null,
+    "op": 44184000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 223471000,
+    "cogs": 112656000,
+    "gp": 110815000,
+    "sga": 39076000,
+    "rd": 27750000,
+    "da": null,
+    "other": 0,
+    "op": 43989000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 172347000,
+    "cogs": 89797000,
+    "gp": 82550000,
+    "sga": 29270000,
+    "rd": 27503000,
+    "da": null,
+    "other": null,
+    "op": 25777000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 215372000,
+    "cogs": 110911000,
+    "gp": 104461000,
+    "sga": 38950000,
+    "rd": 33817000,
+    "da": null,
+    "other": null,
+    "op": 31694000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 269160000,
+    "cogs": 156011000,
+    "gp": 113149000,
+    "sga": 44575000,
+    "rd": 39651000,
+    "da": null,
+    "other": null,
+    "op": 28923000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 244430000,
+    "cogs": 144523000,
+    "gp": 99907000,
+    "sga": 32854000,
+    "rd": 44018000,
+    "da": null,
+    "other": 0,
+    "op": 23035000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 231263000,
+    "cogs": 124025000,
+    "gp": 107238000,
+    "sga": 34512000,
+    "rd": 36549000,
+    "da": null,
+    "other": null,
+    "op": 36177000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 292919000,
+    "cogs": 158301000,
+    "gp": 134618000,
+    "sga": 42621000,
+    "rd": 42254000,
+    "da": null,
+    "other": null,
+    "op": 49743000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 367687000,
+    "cogs": 215275000,
+    "gp": 152412000,
+    "sga": 45513000,
+    "rd": 51372000,
+    "da": null,
+    "other": null,
+    "op": 55527000
+   }
+  ]
+ },
+ "segments_hist": {
+  "segments": {
+   "단일 웨이퍼·Tahoe·준임계 세정": [
+    {
+     "period": "2023-06-30",
+     "rev": 112530000
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 132420000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 122290000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 109470000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 153220000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 160990000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 155210000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 129570000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 154960000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 181570000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 159860000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 122480000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 132980000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 210720000
+    }
+   ],
+   "ECP·퍼니스·기타": [
+    {
+     "period": "2023-06-30",
+     "rev": 19120000
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 25510000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 32130000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 25800000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 38960000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 34600000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 51700000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 27630000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 48020000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 59850000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 64050000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 84240000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 128550000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 109470000
+    }
+   ],
+   "첨단 패키징(ECP 제외)·서비스·부품": [
+    {
+     "period": "2023-06-30",
+     "rev": 12930000
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 10640000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 15900000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 16920000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 10300000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 8390000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 16570000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 15150000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 12400000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 27740000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 20510000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 24540000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 31400000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 47500000
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(분기, 회사 제품군 매출)"
+ },
+ "sync": {
+  "why": "회사 제품은 반도체 전공정·패키징 장비(HS 848620)다 — 장비 PPI가 가격 대용이다. 중국 장비 수입 통계는 저장소에 없어 수요 거울은 쓰지 못했다",
+  "indicators": [
+   {
+    "label": "미국 반도체 장비 PPI",
+    "source": "ppi",
+    "input": "semicap",
+    "country": "us",
+    "segment": "단일 웨이퍼·Tahoe·준임계 세정",
+    "why": "장비 가격 대용"
+   },
+   {
+    "label": "일본 반도체 장비 PPI",
+    "source": "ppi",
+    "input": "semicap",
+    "country": "jp",
+    "segment": "ECP·퍼니스·기타",
+    "why": "아시아 장비 가격 대용"
+   }
+  ],
+  "products": [
+   {
+    "name": "단일 웨이퍼·Tahoe·준임계 세정",
+    "segment": "단일 웨이퍼·Tahoe·준임계 세정",
+    "hs": "848620",
+    "share": 0.57,
+    "inputs": [
+     "semicap"
+    ]
+   },
+   {
+    "name": "ECP·퍼니스·기타",
+    "segment": "ECP·퍼니스·기타",
+    "hs": "848620",
+    "share": 0.3,
+    "inputs": [
+     "semicap",
+     "copper"
+    ]
+   }
+  ]
+ },
+ "pq": {
+  "none": "장비 대수·ASP를 공시하지 않는다(출하액만) — 업종 PPI 대용으로 잰다"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수·합병 없음. 자회사 ACMS 지분 일부 매각(2026-02, 약 $110M)은 인수가 아니다"
+ },
+ "midterm": {
+  "sub": "semicap",
+  "exposure": {
+   "chips_subsidy": 0.2
+  },
+  "etf": "NASDAQ:SMH",
+  "why": "매출의 거의 전부가 중국이고 미국 보조금 수혜가 없다 — CHIPS 채널 노출을 기본값 0.8에서 0.2로 낮춘다(추정). 미국 정책의 실제 채널은 수출통제(엔티티 리스트)다"
+ },
+ "backlog": {
+  "conversion_months": 21.0,
+  "coverage_next_fy": 0.8,
+  "revenue_growth": 0.366,
+  "source": "잔고 $2.5B(9/29) ÷ 3Q 월평균 매출 $122.6M ≈ 20.4개월 → 4Q 출하 반영 약 21개월(추정). 커버 = 다음 연도 인식분 미공시 — 잔고의 약 55%를 2027 인식으로 가정해 ÷ FY2027 컨센서스 $1.72B ≈ 0.8(추정). B/B·RPO 미공시"
+ },
+ "names": [
+  "ACM Research",
+  "ACMR",
+  "ACMS",
+  "ACM Shanghai",
+  "ACM 상하이",
+  "ACM 코리아",
+  "Naura",
+  "SCREEN",
+  "TEL",
+  "Lam",
+  "Lam Research",
+  "AMAT",
+  "Applied Materials",
+  "KLA",
+  "Onto",
+  "Camtek",
+  "Kulicke",
+  "KLIC",
+  "ONTO",
+  "CAMT",
+  "LRCX",
+  "Roth",
+  "Roth Capital",
+  "Daiwa",
+  "Needham",
+  "JPMorgan",
+  "Kerrisdale",
+  "Kerrisdale Capital",
+  "UBS",
+  "Gartner",
+  "STAR",
+  "Seeking Alpha",
+  "TradingView",
+  "David Wang",
+  "Mark McKechnie",
+  "Steven",
+  "HKEX",
+  "CSRC",
+  "CleanChip"
+ ],
+ "scenario_probs_why": "3Q 콜 톤은 높지만(가이던스 상향·수주 +147%) GM 41.6%와 영업현금 적자가 이익의 질을 깎아 약세 25%를 둔다",
+ "social": {
+  "none": "Quantral 7일 점수 50(Weak), 24시간 언급 없음, 월간 요약 없음(2026-11-13 조회) — 글이 적어 채널별 이야기를 나누지 않았다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "수주 +147%와 가이던스 +10% 상향 — 2027 매출 $2B 경로가 열렸는데 Fwd P/E는 동종보다 싸다",
+    "evidence": [
+     "9M 수주 +147%",
+     "FY2026 가이던스 $1.24~1.28B",
+     "Fwd 1Y P/E 18.9배 vs 동종 중앙 약 21배"
+    ],
+    "falsifier": "1월 2027 가이던스가 $1.6B 미만"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "이익 추정은 오르는데 배수만 줄었다 — 다음 4개 분기 EPS $2.64",
+    "evidence": [
+     "FY2027 EPS 컨센서스 $2.65 → $2.85",
+     "Fwd 2Y P/E 13.1배"
+    ],
+    "falsifier": "4Q GM 41% 미만"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "매출은 확인됐지만 GM·현금이 확인 전이다 — 4Q를 보고 판단한다",
+    "evidence": [
+     "GM 41.6%(장기 42~48% 하단 아래)",
+     "3Q 영업현금 −$70.4M"
+    ],
+    "falsifier": "4Q GM 43% 이상과 영업현금 흑자"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "이익이 현금이 되지 않는다 — 매출채권·재고가 매출보다 빨리 는다",
+    "evidence": [
+     "매출채권 3Q 증가 $196M",
+     "재고 $851M(12월 말 $703M)",
+     "9M 영업현금 −$106M"
+    ],
+    "falsifier": "2H26 영업현금 합계 흑자"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "중국 단일 시장·엔티티 리스트·지주 할인 — 정책 하나로 배수가 반 토막 난다",
+    "evidence": [
+     "매출 거의 전부 중국",
+     "ACM 상하이 엔티티 리스트",
+     "ACMS 지분 74.6% → 72.8%"
+    ],
+    "falsifier": "중국 밖 매출 10%(약 $120M) 달성"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "수주가 9개월 +147%다. 매출 +37%는 시작이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "이익 추정은 올랐는데 주가는 6월 고점의 40% 수준이다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "매출은 맞췄지만 GM이 41.6%로 내려갔다"
+     },
+     {
+      "seat": "Sell",
+      "text": "3Q 영업현금 −$70M이다. 매출채권이 $196M 늘었다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "고객 두 곳이 37%이고 전부 중국이다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "출하가 매출보다 빨라 인수 전 재고가 쌓인다. 인수 대기 완제품은 $145M에서 $83M으로 줄었다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "그런데도 총재고는 $703M에서 $851M으로 늘었다. 원재료만 $465M이다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "미국 현금이 $107M에서 $338M으로 늘어 지주 쪽 여력이 커졌다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "미국 현금은 공모와 ACMS 지분 매각에서 왔다. 지분율은 계속 줄었다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "수주 +147%는 금액이 아니라 증가율이다. 잔고 금액은 9/29 이후 새로 밝히지 않았다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "회사는 4Q 출하가 3Q보다 많고 GM이 오른다고 했다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "GM 개선은 '소폭'이다. 장기 범위 안으로 들어오는지가 숫자로 나와야 한다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "Fwd P/E 18.9배는 조정 EPS 기준이다. GAAP EPS는 $0.02였다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "그 차이는 단기투자 평가 손실 $39M이다. 9M은 평가 이익이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "중국 WFE가 꺾이면 수주 증가율이 먼저 무너진다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "현금 전환을 인정해 Buy로 물러선다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "배수 할인이 이익 상향을 덜 반영한다 — Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "4Q GM·영업현금을 본다 — Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "가이던스 상향은 인정한다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "정책 위험을 두고 Sell을 지킨다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "매출과 수주는 1차 자료로 확인됐다. 살아남은 반박은 'GM 41.6%와 영업현금 적자'다 — 4Q GM과 영업현금이 가를 자료다",
+   "dissent": "Strong Sell 자리는 중국 단일 시장·엔티티 리스트 위험을 끝까지 남겼다"
+  }
+ }
 }
