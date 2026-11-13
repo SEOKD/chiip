@@ -5438,3 +5438,19 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-breadth-sector-min-cos
+  model: signal.revision_breadth
+  binding: config/revision_breadth.yaml#sector_min_cos
+  value: 3
+  unit: 종목
+  status: prior
+  prior:
+    value: 3
+    basis: 섹터 순 비율·확산은 수정이 있던 종목이 3곳 이상일 때만 — 한두 종목이 섹터를 대표하지 않게 하는 표시 하한(사전 판단, 2026-11-14)
+    source: 확산 지표 정의는 실무 관행(상향 우세 종목 비율 — 원문 미확인, 정의만 차용)
+  fit:
+    method: 하한 2·3·5 — 섹터 순 비율과 뒤 20거래일 섹터 바스켓 상대수익의 순위 IC, 중첩 표본 외
+    target: 표본 외 순위 IC
+    data: knowledge/models/estimates/breadth.json 일별 누적(쌓이는 중)
+    last_fit: null
+    oos_metric: null

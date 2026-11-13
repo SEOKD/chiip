@@ -75,8 +75,44 @@ def universe():
                 ids.setdefault(str(h["ticker"]).upper(), 9.9)
     except (OSError, AttributeError):
         pass
+    for t, pri in extra_tickers().items():   # Valuation Queue 대기열·최근 Analysis 종목(2026-11-14 마스터 지시 "비어 있는 곳도 메워", ADR-032)
+        ids.setdefault(t, pri)
     tid = id_map()
     return [(tid.get(k, f"us-{k.lower()}"), k) for k, _ in sorted(ids.items(), key=lambda kv: -kv[1])]
+
+
+def _ticker_of(eid, inv):
+    if eid in inv:
+        return inv[eid]
+    try:
+        t = json.loads((ROOT / "knowledge" / "models" / "companies" / eid / "datapack.json").read_text(encoding="utf-8")).get("ticker")
+    except (OSError, ValueError):
+        t = None
+    if not t and eid.startswith("us-"):
+        t = eid[3:]
+    return str(t or "").upper()
+
+
+def extra_tickers(days=14):
+    """{티커: 우선순위} — 대기열 종목 9.8, 최근 days일 Analysis 리포트 종목 9.7. 미국 알파벳 티커만(Quantral 범위)"""
+    inv = {}
+    for t, i in id_map().items():
+        inv.setdefault(i, t)
+    out = {}
+    try:
+        for q in json.loads((common.STATE / "v2_queue.json").read_text(encoding="utf-8")) or []:
+            t = _ticker_of(q.get("id", ""), inv)
+            if t.isalpha():
+                out.setdefault(t, 9.8)
+    except (OSError, ValueError, AttributeError):
+        pass
+    cut = (datetime.now(KST) - timedelta(days=days)).strftime("%Y%m%d")
+    for f in (ROOT / "outputs" / "tenbagger" / "reports").glob("2*_*.json"):
+        if f.name[:8] >= cut:
+            t = f.stem.split("_", 1)[1].upper()
+            if t.isalpha():
+                out.setdefault(t, 9.7)
+    return out
 
 
 def id_map():

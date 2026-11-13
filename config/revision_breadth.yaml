@@ -10,3 +10,56 @@ metrics:                   # 표에 쓰는 지표(이름 = 보고서 표기)
   analyst_revenue: 매출
   analyst_ebitda: EBITDA
   analyst_ebit: EBIT
+# 섹터 단위(2026-11-14 마스터 "섹터 단위도 만들어"): 종목 → sub는 config/valuation.yaml universe → config/earnings_watch.yaml 순서, 둘 다 없으면 아래.
+# 섹터 순 비율 = Σ상향 − Σ하향 / Σ(상향+하향) (건수 합산), 확산 = 순 비율이 +인 종목 수 / 수정이 있던 종목 수(애널리스트 수정의 '폭'을 회사 수로).
+sector_min_cos: 3          # 수정이 있던 종목이 이보다 적은 섹터는 비율을 쓰지 않는다
+sub_override:              # 두 설정에 sub가 없는 Fiscal 키 보유 종목(회사 개요로 분류, 2026-11-14)
+  de-renk: defense
+  de-rheinmetall: defense
+  gb-babcock: defense
+  us-hii: defense
+  it-avio: space
+  us-asts: space
+  us-gsat: space
+  us-lunr: space
+  us-mda: space
+  us-pl: space
+  us-rdw: space
+  us-rklb: space
+  us-spir: space
+  us-vsat: space
+  us-yss: space
+  us-bwxt: nuclear_power
+  us-ccj: nuclear_power
+  us-leu: nuclear_power
+  us-nne: nuclear_power
+  us-nxe: nuclear_power
+  us-uec: nuclear_power
+  us-uuuu: nuclear_power
+  us-apld: neocloud
+  us-iren: neocloud
+  us-docn: software
+  us-fsly: software
+  us-entg: materials
+  us-flnc: battery_systems
+  us-bmi: instruments
+  us-itt: equipment
+  us-npo: equipment
+  us-rbc: equipment
+  us-rrx: equipment
+  us-tkr: equipment
+  us-wwd: aerospace
+  us-mod: cooling
+  us-mxl: semis
+  us-smtc: semis
+  us-tsem: semis
+  us-sdrl: energy
+groups:                    # sub → 섹터 묶음(표본이 3종목 이상 모이게). 없는 sub는 '기타'
+  반도체: [accelerator, semis, memory, foundry, eda_ip, storage, compound_substrate, analog, power_semi, power_semis, semis_analog]
+  반도체 장비·소재: [semicap, materials, substrate, components]
+  네트워킹·광: [networking, optical, optics, fiber_connectivity, optical_interconnect, telecom_equipment]
+  서버·클라우드: [server, ems_rack, ems, neocloud, hyperscaler, edge_compute]
+  소프트웨어: [software]
+  전력·에너지: [power_infra, cooling, nuclear_power, geothermal_power, power_services, battery, battery_systems, energy, power_epc, engineering_services]
+  방산·우주: [defense, space, aerospace, defense_electronics]
+  산업재·계측: [equipment, instruments]

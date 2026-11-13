@@ -78,11 +78,11 @@ def ratio(up, down, min_events):
     return (up - down) / (up + down) if up + down >= min_events else None
 
 
-def compute(rows, today=None, c=None):
-    """{창: {지표: {up, down, cov, b}, '전체': {...}}}"""
+def compute(rows, today=None, c=None, ev=None):
+    """{창: {지표: {up, down, cov, b}, '전체': {...}}} — ev(샌드박스가 만든 [날짜, 지표, up|down|cov])가 있으면 rows 대신"""
     c = c or cfg()
     today = today or date.today()
-    ev = events(rows, today, c["tol"])
+    ev = [(_d(d), m, k) for d, m, k in ev] if ev is not None else events(rows, today, c["tol"])
     res = {}
     for w in c["windows"]:
         lo = today - timedelta(days=w)
@@ -154,7 +154,13 @@ def put(out, today=None):
     doc = json.loads(STORE.read_text(encoding="utf-8")) if STORE.exists() else {"rows": {}}
     for k, v in (out.get("out") or {}).items():
         t = today or (_d(v["asOf"]) if v.get("asOf") else date.today())
-        res = compute(v.get("rows"), t, c)
+        if v.get("c"):   # 일괄 모드 건수 [상향, 하향, 커버리지] × (EPS 30, EPS 90, 전체 30, 전체 90)
+            x = v["c"]
+            doc["rows"][k] = {"as_of": t.isoformat(), "eps_up30": x[0], "eps_down30": x[1], "eps_cov30": x[2], "eps_up90": x[3], "eps_down90": x[4], "eps_cov90": x[5],
+                              "eps_b30": ratio(x[0], x[1], c["min_events"]), "eps_b90": ratio(x[3], x[4], c["min_events"]),
+                              "all_b90": ratio(x[9], x[10], c["min_events"])}
+            continue
+        res = compute(v.get("rows"), t, c, ev=v.get("events"))
         doc["rows"][k] = {"as_of": t.isoformat(), **summary(res, c), "all_b90": res[c["windows"][-1]]["전체"]["b"]}
     doc["asof"] = (today or date.today()).isoformat()
     doc["source"] = out.get("source")
@@ -165,10 +171,82 @@ def put(out, today=None):
     return len(out.get("out") or {})
 
 
+def subs(c=None):
+    """{Fiscal 키: (id, sub)} — valuation.yaml universe → earnings_watch → sub_override"""
+    c = c or cfg()
+    keys = (yaml.safe_load((ROOT / "config" / "fiscal_keys.yaml").read_text(encoding="utf-8")) or {}).get("keys") or {}
+    sub = {}
+    for f in ("valuation.yaml", "earnings_watch.yaml"):
+        d = yaml.safe_load((ROOT / "config" / f).read_text(encoding="utf-8")) or {}
+        for v in d.values():
+            for r in v if isinstance(v, list) else []:
+                if isinstance(r, dict) and r.get("id") and r.get("sub"):
+                    sub.setdefault(r["id"], r["sub"])
+    sub.update({k: v for k, v in (c.get("sub_override") or {}).items() if k not in sub})
+    grp = {x: g for g, xs in (c.get("groups") or {}).items() for x in xs}
+    return {v["key"]: (i, grp.get(sub.get(i), "기타")) for i, v in keys.items() if isinstance(v, dict) and v.get("key")}
+
+
+def label(s):
+    if s in (cfg().get("groups") or {}) or s == "기타":
+        return s
+    lab = ((yaml.safe_load((ROOT / "config" / "valuation.yaml").read_text(encoding="utf-8")) or {}).get("subsectors") or {}).get(s) or {}
+    return lab.get("label") or s
+
+
+def sectors(doc=None, c=None, w=None):
+    """섹터 단위 수정 폭 — [{sub, label, cos, active, up, down, b, diffusion, ids}] 순 비율 높은 순(EPS 기준)"""
+    c = c or cfg()
+    doc = doc or (json.loads(STORE.read_text(encoding="utf-8")) if STORE.exists() else {"rows": {}})
+    w = w or c["windows"][0]
+    m = subs(c)
+    agg = {}
+    for key, r in (doc.get("rows") or {}).items():
+        eid, s = m.get(key, (key, "미분류"))
+        a = agg.setdefault(s, {"sub": s, "cos": 0, "active": 0, "pos": 0, "up": 0, "down": 0, "ids": []})
+        up, dn = int(r.get(f"eps_up{w}") or 0), int(r.get(f"eps_down{w}") or 0)
+        a["cos"] += 1
+        a["up"] += up
+        a["down"] += dn
+        if up + dn:
+            a["active"] += 1
+            a["pos"] += up > dn
+            a["ids"].append(eid)
+    out = []
+    for a in agg.values():
+        ok = a["active"] >= c.get("sector_min_cos", 3)
+        a["b"] = (a["up"] - a["down"]) / (a["up"] + a["down"]) if ok and a["up"] + a["down"] else None
+        a["diffusion"] = a["pos"] / a["active"] if ok else None
+        a["label"] = label(a["sub"])
+        out.append(a)
+    return sorted(out, key=lambda a: (a["b"] is None, -(a["b"] or 0)))
+
+
+def sector_lines(c=None):
+    c = c or cfg()
+    doc = json.loads(STORE.read_text(encoding="utf-8")) if STORE.exists() else {"rows": {}}
+    w0, w1 = c["windows"][0], c["windows"][-1]
+    s0 = {a["sub"]: a for a in sectors(doc, c, w0)}
+    s1 = {a["sub"]: a for a in sectors(doc, c, w1)}
+    lines = [f"[섹터 수정 폭] {doc.get('asof', '-')} · EPS 추정 {w0}일(괄호 {w1}일) · 순 비율 = (상향−하향)/(상향+하향), 확산 = 상향 우세 종목 / 수정 있던 종목"]
+    for sub, a in s0.items():
+        b = s1.get(sub, {})
+        r = lambda x: "-" if x is None else f"{x:+.2f}"
+        d = lambda x: "-" if x is None else f"{x * 100:.0f}%"
+        lines.append(f"{a['label']}: 순 {r(a['b'])}({r(b.get('b'))}) · 상향 {a['up']}·하향 {a['down']} · 확산 {d(a['diffusion'])}({d(b.get('diffusion'))}) · 수정 있던 종목 {a['active']}/{a['cos']}")
+    return lines
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
+    if argv and argv[0] == "--sectors":
+        print("\n".join(sector_lines()))
+        return 0
+    if argv and argv[0] == "--keys":   # 일괄 수집 대상 Fiscal 키(섹터 단위)
+        print(" ".join(sorted(subs())))
+        return 0
     if argv and argv[0] == "--code":
-        print(TPL.read_text(encoding="utf-8").replace("__KEYS__", json.dumps(argv[1:])))
+        print(TPL.read_text(encoding="utf-8").replace("__KEYS__", json.dumps(argv[1:])).replace("__COUNTS__", "true"))
         return 0
     if len(argv) >= 2 and argv[0] == "--put":
         n = put(json.loads(Path(argv[1]).read_text(encoding="utf-8")))

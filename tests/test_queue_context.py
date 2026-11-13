@@ -67,3 +67,30 @@ class TestContext(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestCoverage(unittest.TestCase):
+    def test_queue_and_analysis_tickers(self):
+        d = Path(tempfile.mkdtemp())
+        (d / "v2_queue.json").write_text(json.dumps([{"id": "us-abcd"}, {"id": "co-x"}]), encoding="utf-8")
+        rep = d / "outputs" / "tenbagger" / "reports"
+        rep.mkdir(parents=True)
+        from datetime import datetime
+        (rep / f"{datetime.now():%Y%m%d}_LTH.json").write_text("{}", encoding="utf-8")
+        (rep / f"{datetime.now():%Y%m%d}_LTH_model.json").write_text("{}", encoding="utf-8")
+        with mock.patch.object(ss.common, "STATE", d), mock.patch.object(ss, "ROOT", d), mock.patch.object(ss, "id_map", lambda: {"XX": "co-x"}):
+            e = ss.extra_tickers()
+        self.assertEqual(e, {"ABCD": 9.8, "XX": 9.8, "LTH": 9.7})
+
+
+class TestSectorBreadth(unittest.TestCase):
+    def test_pool_and_diffusion(self):
+        sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+        import breadth as br
+        c = {**br.cfg(), "sector_min_cos": 2}
+        doc = {"rows": {"K1": {"eps_up30": 3, "eps_down30": 0}, "K2": {"eps_up30": 0, "eps_down30": 1}, "K3": {"eps_up30": 0, "eps_down30": 0}}}
+        with mock.patch.object(br, "subs", lambda c=None: {"K1": ("a", "반도체"), "K2": ("b", "반도체"), "K3": ("c", "반도체")}):
+            s = br.sectors(doc, c, 30)[0]
+        self.assertEqual((s["cos"], s["active"], s["up"], s["down"]), (3, 2, 3, 1))
+        self.assertAlmostEqual(s["b"], 0.5)
+        self.assertAlmostEqual(s["diffusion"], 0.5)

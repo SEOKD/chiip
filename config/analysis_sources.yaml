@@ -51,4 +51,5 @@ market:   # 시장·산업 원천 — gather.py --market (2026-11-11 마스터 �
   - {id: gpu_rental, cmd: "radar/gpu_rental.py --table", use: "GPU 렌털료"}
   - {id: trade_ppi, cmd: "radar/trade_ppi.py --status", use: "무역·PPI 최신 달·급변"}
   - {id: alphavantage, cmd: "radar/alphavantage.py --calendar", use: "감시 미국 종목 실적 일정(3개월)"}
+  - {id: revision_breadth, cmd: "scripts/tenbagger/breadth.py --sectors", use: "섹터 단위 추정치 수정 폭(EPS 30·90일 순 비율·확산, 2026-11-14) — 업종 이익 추정 흐름"}
   - {id: macro_ipo, cmd: "scripts/valuation/v2/queue_context.py --market", use: "미국 PPI·CPI 최근 발표(개정 포함)·한국 반도체 수출·IPO 감시 상태(2026-11-14, ADR-032)"}
