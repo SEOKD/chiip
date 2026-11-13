@@ -1,0 +1,31 @@
+# 대형 비상장사 상장(IPO) 서류 실시간 감시 (마스터 지시 2026-11-13 "Anthropic처럼 큰 회사의 상장 소식이 나오면 SEC에 S-1이 뜨는 즉시 가져와 풀이")
+# 수집기: radar/pollers/ipo_watch.py(10분, EDGAR 전문검색 efts — 문서 메타데이터, 원문은 SEC_USER_AGENT 필요). 설계: docs/decisions/ADR-030-ipo-watch.md
+# 고정 목록이 아니다 — Chiip(chiip-pulse 회차)이 상장 추진·주관사 선정·비공개 제출(DRS) 보도를 보면 여기에 추가하고 status를 바꾼다.
+# 선정 기준: ① AI 밸류체인(모델·컴퓨트·반도체·데이터센터 전력)에서 공모 규모가 클 회사 ② 한국 기업(메모리·파운드리·전력 기기) 공급망 언급 가능성
+#           ③ 이미 상장한 회사는 넣지 않는다(Cerebras·CoreWeave·Nebius). why는 보도·서류 기준이며 미확인 부분은 '보도'로 적는다.
+# status: filed(S-1 공개) · reported(상장 추진 보도) · watch(대형 비상장, 상장 시 대상)
+# names: EDGAR 표시명과 맞출 이름(대소문자 무시, 단어 경계). cik를 알면 cik가 우선
+forms: [S-1, S-1/A, F-1, F-1/A, 424B4, DRS, DRS/A, FWP, RW]   # FWP = 공모 마케팅 자료(로드쇼), RW = 등록 철회
+large_offering_usd: 1.0e9     # 감시 목록 밖이라도 최대 공모 총액(수수료 첨부 EX-FILING FEES)이 이 이상이면 Pulse 후보(원문 필요)
+poll_min: 10
+companies:
+  - {id: us-ant, name: "Anthropic, PBC", names: ["Anthropic"], cik: "2130357", status: filed, why: "S-1 2026-10-26, S-1/A 11-02·11-10(가격 범위·EX-5.1 법률 의견 — 가격 결정 임박), FWP 11-12 로드쇼 자료. 다음: 424B4(공모가 확정). S-1/A에 SK hynix·Samsung·Micron·TSMC·NVIDIA 언급(EDGAR 전문검색)"}
+  - {id: us-openai, name: "OpenAI", names: ["OpenAI"], cik: "", status: watch, why: "최대 AI 랩 — 상장하면 컴퓨트·HBM 수요의 1차 공시. 영리 법인 전환 뒤 상장 추진 보도(시점 미확인)"}
+  - {id: us-spacex, name: "Space Exploration Technologies", names: ["Space Exploration Technologies", "SpaceX"], cik: "", status: reported, why: "2026년 상장 추진 보도, xAI와 합병 보도(미확인) — Colossus 데이터센터·위성 통신. 공모 규모 최대급"}
+  - {id: us-databricks, name: "Databricks", names: ["Databricks"], cik: "", status: watch, why: "AI 데이터 플랫폼 대형 비상장사 — 상장 시 기업 AI 지출의 1차 숫자"}
+  - {id: us-stripe, name: "Stripe", names: ["Stripe, Inc", "Stripe Inc"], cik: "", status: watch, why: "최대급 비상장 핀테크 — AI 밸류체인 밖이지만 공모 규모로 시장 유동성에 영향(마스터 예시)"}
+  - {id: us-lambda, name: "Lambda", names: ["Lambda, Inc", "Lambda Labs"], cik: "", status: reported, why: "GPU 클라우드(neocloud) — 비공개 상장 신청 보도. CoreWeave 비교 대상, NVIDIA GPU·HBM 수요"}
+  - {id: us-crusoe, name: "Crusoe Energy Systems", names: ["Crusoe"], cik: "", status: watch, why: "AI 데이터센터 개발·neocloud(Abilene 등) — 전력·냉각 공급망"}
+  - {id: us-vastdata, name: "VAST Data", names: ["VAST Data"], cik: "", status: watch, why: "AI 스토리지 소프트웨어·시스템 — 낸드·SSD 수요(한국 메모리 연결)"}
+  - {id: us-scaleai, name: "Scale AI", names: ["Scale AI"], cik: "", status: watch, why: "AI 데이터 라벨링 — Meta 지분 투자 뒤 대형 비상장"}
+  - {id: us-anduril, name: "Anduril Industries", names: ["Anduril"], cik: "", status: watch, why: "방위 AI·무인 체계 대형 비상장 — 방위 섹터 지도와 연결"}
+  - {id: us-perplexity, name: "Perplexity AI", names: ["Perplexity"], cik: "", status: watch, why: "AI 검색 — 모델 사용량·추론 컴퓨트 수요"}
+  - {id: us-tenstorrent, name: "Tenstorrent", names: ["Tenstorrent"], cik: "", status: watch, why: "AI 가속기·RISC-V — 삼성 파운드리·현대차·LG 투자(한국 연결)"}
+  - {id: us-lightmatter, name: "Lightmatter", names: ["Lightmatter"], cik: "", status: watch, why: "실리콘 포토닉스 인터커넥트 — 광 연결 병목 해결 기술"}
+  - {id: us-ayarlabs, name: "Ayar Labs", names: ["Ayar Labs"], cik: "", status: watch, why: "광 I/O 칩렛(CPO) — 패키징 공급망"}
+  - {id: us-sambanova, name: "SambaNova Systems", names: ["SambaNova"], cik: "", status: watch, why: "AI 가속기·추론 시스템 — HBM·패키징 수요"}
+  - {id: us-etched, name: "Etched", names: ["Etched.ai", "Etched AI"], cik: "", status: watch, why: "트랜스포머 전용 ASIC — 파운드리·HBM 공급 관계"}
+# 감시 목록 밖 한국 공급망 탐색어 — 감지된 서류마다 EDGAR 전문검색으로 언급 여부만 확인한다(원문 없이도 된다)
+supply_probe:
+  korea: ["SK hynix", "Samsung", "LG Energy Solution", "LG Electronics", "Hyundai", "SK Telecom", "Naver", "Kakao", "Doosan", "HD Hyundai", "Hanwha", "LS Electric"]
+  global: ["Micron", "TSMC", "NVIDIA", "AMD", "Broadcom", "Google", "Amazon Web Services", "Microsoft", "Oracle", "CoreWeave"]

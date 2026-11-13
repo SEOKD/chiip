@@ -44,6 +44,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("채용 공고", ("src-semianalysis-jobs", "src-job-boards", "src-kr-foreign-hiring")),   # 해외 반도체 한국 채용(2026-11-11)
            ("블로그 단신", ("src-gamma-blog",)),   # 감마의 하드웨어정보 단신(2차 출처·루머, 2026-11-11 마스터 지시)
            ("딜 추적", ("src-deal-watch",)),   # 소문난 딜의 미국 1차 문서 흔적(시의회 녹취·주 페이지·관보·SEC, config/deal_watch.yaml, 2026-11-12 마스터 지시)
+           ("신규 상장", ("src-ipo-watch",)),   # 대형 비상장사 상장 서류(S-1·S-1/A·424B4·DRS, config/ipo_watch.yaml, 2026-11-13 마스터 지시)
            ("협업 흔적", ("src-partner-trace",)),   # 협업사 공식 자료·블로그 미확인 주장의 공개 근거(2026-11-11 마스터 지시)   # src-job-boards = 협업사 공개 채용의 삼성·SK하이닉스 과제 문구(2026-11-11)
            ("관심도 가속", ("src-tickertrends",)),   # TickerTrends 소비·검색·소셜 관심 가속(유료·내부용 — 수치를 공개 산출물에 옮기지 않는다, 2026-11-12 마스터 지시)
            ("실적 일정", ("src-alphavantage",)),   # 감시 종목 실적 일정 신규·변경(Alpha Vantage, 2026-11-11 마스터 지시)   # SemiAnalysis Memory Analyst(한국) 공고(2026-11-11 마스터 지시, radar/semianalysis_jobs.py)
@@ -168,7 +169,7 @@ def relevant(it, cls):
         return True
     if it.get("source_id") in ("src-tw-revenue-surge", "src-cn-hk-disclosure", "src-price-move"):   # 중문 원문·지도 밖 후보 — 수집기가 업종·중요 공시로 이미 거름(2026-11-09)
         return True
-    if it.get("source_id") in ("src-semianalysis-jobs", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch", "src-tickertrends"):   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
+    if it.get("source_id") in ("src-semianalysis-jobs", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch", "src-tickertrends", "src-ipo-watch"):   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
         return True
     if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True

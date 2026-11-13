@@ -779,6 +779,23 @@
   verified: true
   enabled: true
 
+- id: src-ipo-watch
+  name: 대형 비상장사 상장(IPO) 서류 — S-1·S-1/A·F-1·424B4·DRS·FWP·RW(config/ipo_watch.yaml)
+  category: A-규제공시
+  module: ipo_watch
+  method: api
+  endpoint_doc: "https://efts.sec.gov/LATEST/search-index (EDGAR 전문검색), 원문 www.sec.gov/Archives"
+  auth: none
+  scope: [글로벌]
+  interval_min: 10
+  run_on: local
+  language: en
+  doc_type: 공시
+  terms_note: "2026-11-13 마스터 지시. 감지는 EDGAR 전문검색(메타데이터), 원문은 .env SEC_USER_AGENT(식별 User-Agent) 필요. 요청 사이 0.15초(초당 10회 이하). 감시 대상 서류는 수집 직후 첫 카드 발송, 상세 풀이는 모델 1회(감시 대상만)"
+  reliability_default: 1차
+  verified: true
+  enabled: true
+
 - id: src-news7-focus
   name: 마스터 지정 9개 매체 × 포커스 종목 (Google News 도메인 제한)
   category: F-뉴스
