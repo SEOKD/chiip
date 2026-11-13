@@ -7622,7 +7622,7 @@
      "bars": [
       {
        "name": "가치 영향",
-       "color": "c",
+       "color": "d",
        "value": 8.4
       }
      ]
@@ -7632,7 +7632,7 @@
      "bars": [
       {
        "name": "가치 영향",
-       "color": "c",
+       "color": "b",
        "value": -2.3
       }
      ]
@@ -7642,7 +7642,7 @@
      "bars": [
       {
        "name": "가치 영향",
-       "color": "c",
+       "color": "d",
        "value": 1.7
       }
      ]
@@ -7652,7 +7652,7 @@
      "bars": [
       {
        "name": "가치 영향",
-       "color": "c",
+       "color": "d",
        "value": 0.1
       }
      ]
@@ -7662,7 +7662,7 @@
      "bars": [
       {
        "name": "가치 영향",
-       "color": "c",
+       "color": "d",
        "value": 0.0
       }
      ]
