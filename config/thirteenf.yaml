@@ -5,7 +5,8 @@ rounds:                   # 마감일 기준 날짜 차 — 잠정(마감 전 �
   - {name: 잠정, offset: -2}
   - {name: 주, offset: 1}
   - {name: 확정, offset: 7}
-universe: fiscal_us       # config/fiscal_keys.yaml에서 NASDAQ_·NYSE_·AMEX_ 키를 가진 감시 종목 전부
+universe: market          # 2026-11-14 마스터 지시 "와치리스트 종목 말고 주식시장 종목 전체" — SEC 13F 정보표 원문 전수(radar/thirteenf_market.py, ADR-034). fiscal_us = 예전 감시 미국 종목(Fiscal.ai 1쪽)
+send_coverage: 0.95       # 시장 전체: 그 시점까지 제출된 13F-HR 중 이 비율 이상을 받아 둔 뒤에만 보낸다
 batch: 20                 # execute_code 한 번에 부를 종목 수
 top: 10                   # Pulse에 싣는 상위 종목 수(매입 기관 수·매도 기관 수 각각)
 min_holders: 30           # 보유 기관이 이보다 적은 종목은 순위에서 뺀다(소형주 왜곡)

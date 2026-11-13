@@ -3,6 +3,8 @@
 구조(설정 config/thirteenf.yaml):
   ① 시계 — 13F-HR 마감 = 분기 말 + 45일(주말이면 다음 영업일). 마감 기준 세 번(잠정 D−2·주 D+1·확정 D+7) 모은다.
   ② 관문 — Pulse(radar/pulse.py)가 status()를 부른다. 그 회차의 차례가 왔고 아직 안 모았거나 안 보냈으면 회차를 연다.
+  ③' 수집(universe: market, 2026-11-14 마스터 지시 — 미국 시장 전체): radar/thirteenf_market.py가 SEC 13F 정보표 원문을 전수로 받아 센다(결정론,
+     run_hourly). 제출분의 send_coverage 이상을 받은 뒤 Pulse가 market_message를 보낸다. 아래 ③은 universe: fiscal_us(예전 방식)일 때만.
   ③ 수집(모델 — Fiscal.ai MCP는 스크립트가 직접 못 부른다) — `--plan`이 감시 미국 종목을 묶음으로 나눠 execute_code 본문을 준다
      (scripts/fiscal/templates/holders_batch.js). 출력 파일을 `--put`으로 넣는다. 기관 이름은 저장하지 않고 수만 센다.
   ④ 순위 — `--rank`가 매입(보유를 늘린) 기관 수 상위·매도(줄인) 기관 수 상위를 낸다. 순매입 기관 = 늘린 − 줄인, 보유 기관 대비 몫도 붙인다.
@@ -84,6 +86,14 @@ def status(now=None):
     rnd = cur[-1]
     st = _load(STATE, {})
     key = f"{y}Q{q}:{rnd}"
+    if (cfg().get("universe") or "") == "market":   # 시장 전체(2026-11-14) — 수집은 결정론(thirteenf_market, run_hourly). 거의 다 모였을 때만 보낸다
+        if key in st.get("sent", []):
+            return {"due": False}
+        prog = (_load(ROOT / "radar" / "state" / "thirteenf_market.json", {}).get("progress") or {}).get(f"{y}Q{q}") or {}
+        cov = prog.get("cached", 0) / prog["filers"] if prog.get("filers") else 0.0
+        if cov < float(cfg().get("send_coverage", 0.95)):
+            return {"due": False, "quarter": f"{y}Q{q}", "round": rnd, "coverage": round(cov, 3)}
+        return {"due": True, "phase": "send", "quarter": f"{y}Q{q}", "round": rnd, "deadline": dl.isoformat(), "coverage": round(cov, 3)}
     done = st.get("done", {}).get(key, [])
     left = [k for k in universe() if k not in done]
     if left:
@@ -151,11 +161,33 @@ def rank(quarter, c=None):
             "net_buy": sorted(rows, key=lambda r: -r["net"])[:top], "n": len(rows)}
 
 
+def market_message(s, c=None, res=None):
+    """시장 전체 순위 글(2026-11-14 마스터 지시) — 종목 = 티커(없으면 발행사 이름)"""
+    c = c or cfg()
+    if res is None:
+        import thirteenf_market as M
+        res = M.rank(int(s["quarter"][:4]), int(s["quarter"][-1]), c["top"], c["min_holders"])
+    if not res.get("buy"):
+        return None
+    nm = lambda x: f"{x['ticker']}({x['name'][:28]})" if x.get("ticker") else x["name"][:36]
+    line = lambda i, x, k: (f"{i}. {nm(x)} {x[k]:,}곳 (보유 {x['holders']:,}곳 · 신규 {x['new']:,}·전량 매도 {x['sold_out']:,} · "
+                            f"순{'매입' if x['net'] >= 0 else '매도'} {abs(x['net']):,}곳)" + (" · 분할 보정" if x.get("split") else ""))
+    st = res["stat"]
+    out = [f"[Chiip Pulse · 13F {res['quarter']} 기관 수급 — 미국 시장 전체 · {s.get('round', '')} 집계]", "",
+           f"매입(보유를 늘린) 기관 수 상위 {len(res['buy'])}"] + [line(i, x, "increased") for i, x in enumerate(res["buy"], 1)]
+    out += ["", f"매도(보유를 줄인) 기관 수 상위 {len(res['sell'])}"] + [line(i, x, "decreased") for i, x in enumerate(res["sell"], 1)]
+    out += ["", f"13F-HR 제출 기관 {st['filers']:,}곳(직전 분기도 제출해 증감을 셀 수 있는 {st['both']:,}곳) · 보유 기관 {c['min_holders']}곳 이상 {res['n']:,}종목 · "
+            f"ETF·펀드 제외 · SEC 정보표 원문 기준(옵션 제외). 13F는 {res['quarter']} 분기 말 보유라 최대 45일 지난 수급이다 — 앞으로의 매매가 아니다."]
+    return "\n".join(out)
+
+
 def message(now=None, c=None):
     s = status(now)
     q = s.get("quarter")
     if not q:
         return None
+    if ((c or cfg()).get("universe") or "") == "market":
+        return market_message(s, c)
     r = rank(q, c)
     if not r["n"]:
         return None

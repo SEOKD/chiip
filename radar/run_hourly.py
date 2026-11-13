@@ -77,6 +77,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-sec-bulk", "sec_bulk", 43200),  # SEC 일괄 재무 → 기저율 표본(월 1회, SEC_USER_AGENT 필요 — 없으면 건너뜀)
     ("src-regime", "regime", 1440),
     ("src-sec-earnings-all", "pollers.sec_earnings_all", 30),  # 60→30분(2026-11-11 실시간 점검)  # 전체 미국 상장사 실적(8-K 2.02) → AI·전력 업종이면 알파 산정 대기열(Investing 캘린더 대체)
+    ("src-13f-market", "thirteenf_market", 60),  # 13F 시즌(마감 D−2~D+40)에만 SEC 정보표 원문 전수 수집, 회차당 15분 예산·모델 없음(2026-11-14 마스터 지시)
     ("src-fulltext-retry", "fulltext", 60),  # 원문 열람 실패(SEC 403 등) 재시도 — 1시간 간격 최대 6회, 모델 없음(2026-11-13 마스터 지시)
     ("src-alpha-watch", "alpha_watch", 60),  # 핵심 루프: P0·P1 알림·알파 진입·실적일 → 알파 ≥5면 v2 3요인 텔레그램(동인 없으면 대기열)  # 밸류에이션 v2 시장 체제(FRED 국채·스프레드·환율) — 하루 1회
     ("src-earnings-calendar", "markets.earnings_calendar", 30),
