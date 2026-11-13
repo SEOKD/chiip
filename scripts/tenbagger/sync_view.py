@@ -474,6 +474,15 @@ def window(last, n=WINDOW):
     return [shift_q(last, -i) for i in range(n - 1, -1, -1)]
 
 
+STALE_Q = 8   # 이 개수 이상 연속 분기 같은 값이면 '원천 지수 갱신 없음'(2026-11-14)
+
+
+def stale(pts, n=STALE_Q):
+    """마지막 n개 분기 값이 모두 같으면 True — 원천이 가격을 다시 조사하지 않는 지수"""
+    v = [p[1] for p in pts][-n:]
+    return len(v) >= n and len(set(v)) == 1
+
+
 def level_chart(c, win, top=None):
     """매출과 지표 레벨을 같은 분기 축·같은 기준 분기 지수(= 100)로 — 단위가 달라도 한 그림에서 흐름을 대조한다(마스터 지시 2026-11-08 "매출 시계열과 PPI 및 수출입 데이터의 시계열은 동일해야 한다").
     축 = 최근 16개 분기 중 매출과 그린 지표가 모두 있는 분기(공통 구간), 기준 = 그 첫 분기. 지표는 회사 분기 끝 달 기준 3개월(무역 합·PPI 평균)이라 매출과 같은 기간이다.
@@ -487,11 +496,15 @@ def level_chart(c, win, top=None):
         return [[q, round(series[q] / series[base_q] * 100, 1)] for q in axis], base_q
     cols = ["a", "b", "c", "d", "e"]
     series = [{"name": "매출", "color": "a", "points": idx(c["rev"])[0]}]
+    flat = []
     for i, r in enumerate(c["rows"]):
         pts, b = idx(r["iq"])
         if pts:
             src = {"ppi": "PPI", "hs": "수출입", "trade": "수출입"}.get(r["ind"].get("source"), "")
             name = r["ind"]["label"] + (f"({src})" if src and src not in r["ind"]["label"] else "") 
+            if stale(pts):   # 원천이 값을 갱신하지 않는 지수(2026-11-14 마스터 지시: 한은 반도체제조용기계 PPI 15개 분기 100.44 — 남기되 표시)
+                name += " — 원천 지수 갱신 없음"
+                flat.append(r["ind"]["label"])
             series.append({"name": name, "color": cols[(i + 1) % len(cols)], "points": pts})
     nx = (top or {}).get("next")
     if nx and c["rev"].get(c["last"]) and c["last"] in axis:
@@ -499,7 +512,11 @@ def level_chart(c, win, top=None):
         tot = to_total(c, top, nx)   # 세그먼트 추정이면 전사로 바꿔 같은 지수에 올린다(2026-11-08 CPAY 반토막 버그)
         series.append({"name": f"매출 다음 분기 추정({c['next']}, ±1σ {round(tot['lo'] / b0 * 100):.0f}~{round(tot['hi'] / b0 * 100):.0f})", "color": "e",
                        "points": [[c["last"], round(c["rev"][c["last"]] / b0 * 100, 1)], [c["next"], round(tot["rev"] / b0 * 100, 1)]]})
-    return {"kind": "line", "title": f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 같은 축({base_q} = 100) + 다음 분기 추정", "unit": "", "series": series}
+    out = {"kind": "line", "title": f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 같은 축({base_q} = 100) + 다음 분기 추정", "unit": "", "series": series}
+    if flat:
+        out["note"] = (f"{'·'.join(flat)}: 원천 통계 기관이 {STALE_Q}개 분기 이상 같은 값을 냈다 — 가격 조사가 갱신되지 않는 지수로 보이며(주문 제작 장비 등), "
+                       "평평한 선은 '가격이 안 올랐다'는 증거가 아니다. 실질 성장 판단에는 쓰지 않는다.")
+    return out
 
 
 def section(dp, history=None, db=HS_DB):
