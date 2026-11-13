@@ -512,6 +512,11 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
     import social_view   # 커뮤니티 내러티브(Quantral, 2026-11-07 마스터 지시) — 그래프는 아래에서 한눈에 보기로 옮긴다
     out += [x for x in [social_view.section(dp, entity)] if x]
+    import sector_view   # 섹터 핵심 지표 — AI 밖 종목, datapack sector_kpis가 있을 때만(마스터 지시 2026-11-13 종목 범위 확대 4단계, ADR-029)
+    sk_sec = sector_view.section(dp, entity)
+    if sk_sec:
+        d["sources"] = list(dict.fromkeys((d.get("sources") or []) + sk_sec.pop("_sources")))
+        out.append(sk_sec)
     import sotp_view   # 사업부 가치 합산(ADR-016, 2026-11-07 마스터 지시) — 폭포 그림은 한눈에 보기로
     out += [x for x in [sotp_view.section(entity)] if x]
     market = narrative_view.market_section(dp)   # 셀사이드·바이사이드·언론은 체크리스트 바로 앞(마스터 지시 2026-11-01)

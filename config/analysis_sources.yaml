@@ -20,6 +20,7 @@ sources:
   - {id: gpu_rental, region: all, kind: script, cmd: "radar/gpu_rental.py --table", use: "GPU 렌털료(제공사 가격표·Silicon Data 지수) — 네오클라우드·GPU 공급망 종목 단가 근거(2026-11-10)"}
   - {id: alphavantage, region: us, kind: script, cmd: "radar/alphavantage.py --about {ticker}", use: "Alpha Vantage 실적 일정·EPS 추정(Fiscal.ai 빈칸 보조, 2026-11-11)"}
   - {id: lobby, region: us, kind: script, cmd: "radar/usgov/lobby_watch.py {id} {legal}", use: "연방 로비 내역 — 경영진·약세 논리에 쓸 때만"}
+  - {id: sector_data, region: all, kind: script, cmd: "scripts/tenbagger/sector_data.py {id} {ticker} {legal}", use: "AI 밖 종목 섹터 판단 틀 질문 + 섹터 공개 데이터(openFDA·FDIC) → datapack sector_kpis(2026-11-13, ADR-029). AI 밸류체인은 해당 없음"}
   - {id: kr_ir_pt, region: kr, kind: script, cmd: "radar/pollers/kr_ir_docs.py --pt {id}", use: "한국 종목 당기·직전 분기 PT(어닝콜 대신)"}
   - {id: jp_consensus, region: jp, kind: script, cmd: "radar/jp_consensus.py --line {ticker}", use: "일본 종목 컨센서스 줄"}
   - {id: tw_financials, region: tw, kind: script, cmd: "radar/pollers/tw_financials.py --export {ticker} {out}/tw_quarters.json", use: "대만 공시 분기 재무 → quarters.py --put"}

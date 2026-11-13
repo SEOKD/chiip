@@ -5,9 +5,9 @@ AI 밸류체인 밖 종목은 '병목·해결 기술·고객 채택(샘플→인
 
 | 틀 | 파일 | 쓰는 섹터(config/sector_map.yaml) |
 |---|---|---|
-| 헬스케어 | `health.md` | health·biotech·medtech·life_tools |
+| 헬스케어 | `health.md` | health·biotech·medtech |
 | 금융 | `financials.md` | financials·regional_banks·real_estate |
-| 산업재 | `industrials.md` | industrials·infra_build·airlines·shipping·robotics |
+| 산업재 | `industrials.md` | industrials·infra_build·airlines·shipping·robotics·life_tools(계측·연구 장비) |
 | 소비재 | `consumer.md` (+ 기존 `knowledge/methods/consumer_lens.md`) | cons_disc·cons_staples·retail·homebuild·media_ent·luxury |
 | 에너지·소재 | `energy.md` | energy·utilities·materials·chemicals·gold·copper·solar |
 | 소프트웨어 | `software.md` | software·cyber·comm |
