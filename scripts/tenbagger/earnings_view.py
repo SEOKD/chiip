@@ -229,7 +229,7 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
             # 가로 막대 + 항목 이름(마스터 지시 2026-10-30 "x축 F1~F9로는 직관적으로 파악하지 못한다") — 영향이 큰 순
             bars = sorted(bars, key=lambda r: -abs(r["solo"] or 0))   # 확신도 가중 수치는 싣지 않는다(마스터 지시 2026-10-30)
             B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "콜 변화 항목별 주주가치 영향 (%)", "unit": "%",
-                      "rows": [{"label": short_label(r), "bars": [{"name": "가치 영향", "color": "c", "value": round(r["solo"] * 100, 1)}]} for r in bars],
+                      "rows": [{"label": short_label(r), "bars": [{"name": "가치 영향", "color": "d" if r["solo"] >= 0 else "b", "value": round(r["solo"] * 100, 1)}]} for r in bars],
                       "note": f"직전 콜 정보만으로 본 가치 {imp['prior_equity']:,.2f} → 최신 {imp['base_equity']:,.2f} {unit}(시가총액 {mcap:,.2f}의 {imp['prior_equity'] / mcap:.2f}배 → {imp['base_equity'] / mcap:.2f}배)"}})
     sp = surprises(cons.get("surprise"))
     if sp:

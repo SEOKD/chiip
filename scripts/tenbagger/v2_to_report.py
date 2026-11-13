@@ -98,7 +98,7 @@ def build(entity, draws=3000):
                    f"(초기 재투자가 커서 1~10년 합이 음수면 계속가치가 기업가치의 100%를 넘는다) · 순현금 {-base_d['net_debt']:,.1f} · ROIC 1년차 {b['roic_y1']:.0%} → 5년차 {b['roic_y5']:.0%} · "
                    f"경제적 이익 항등 오차 {b['ep_gap']:.1e}(DCF와 EP 가치가 같아야 정상) · 할인율 +50bp → 가치 {r['rate_50bp']['chg']:+.1%}"})
     mc = montecarlo.simulate(co, c["wacc"], r["g_term"], 5, draws, 20261028)
-    labels, pct = histogram([v / mcap for v in mc["v0"]])
+    labels, pct = histogram([max(v, 0.0) / mcap for v in mc["v0"]])   # 주주가치는 0 아래로 내려가지 않는다(유한책임) — 0 미만은 0(−100%) 칸에(2026-11-13 LTH −124% 칸)
     if labels:
         blocks.append({"type": "chart", "chart": {"kind": "bars", "title": f"몬테카를로 {mc['used']:,}회 — 지금 가치/시가총액 분포 (%)", "unit": "%", "categories": labels,
                        "series": [{"name": "빈도", "color": "c", "values": pct}],

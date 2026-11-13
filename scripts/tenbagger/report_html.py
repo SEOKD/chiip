@@ -85,7 +85,7 @@ ul{padding-left:20px;margin:6px 0}li{margin:3px 0}.foot{color:var(--mut);font-si
 section{margin-top:34px}p{margin:10px 0}details{margin:10px 0}summary{cursor:pointer;color:var(--mut);font-size:13.5px;padding:6px 0}details.sec>summary{list-style:none;color:var(--fg)}details.sec>summary::-webkit-details-marker{display:none}details.sec>summary h2{display:flex;justify-content:space-between;align-items:center;gap:8px}details.sec>summary h2::after{content:"펼치기 ▾";font-size:12.5px;font-weight:500;color:var(--mut);white-space:nowrap}details.sec[open]>summary h2::after{content:"접기 ▴"}.toc{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 4px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5;border-bottom:1px solid var(--line)}.toc a{font-size:12.5px;color:var(--mut);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}.badge{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}
 .dash{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}.dash>div{background:var(--card);border-radius:10px;padding:9px 11px;min-width:0}.dash .k{font-size:11.5px;color:var(--mut)}.dash .v{font-size:18px;font-weight:700;line-height:1.3;overflow-wrap:anywhere}.dash .s{font-size:11.5px;color:var(--mut);line-height:1.4;margin-top:2px;overflow-wrap:anywhere}
 @media (max-width:640px){.dash{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.phs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:10px 0}.ph{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}.ph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;max-width:100%}.ph figcaption{padding:8px 12px;font-size:13.5px}
+.phs{display:flex;gap:12px;margin:10px 0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}.phs>.ph{flex:0 0 min(280px,78%);scroll-snap-align:start}.ph{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}.ph img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;max-width:100%}.ph figcaption{padding:8px 12px;font-size:13.5px}
 .boxes{display:grid;grid-template-columns:1fr;gap:10px;margin:10px 0}.bx{border:1px solid var(--line);border-radius:12px;overflow:hidden}.bx .bt{font-weight:700;padding:9px 12px;background:var(--card);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}.bx .tag{font-size:12px;font-weight:600;color:var(--c)}.bx .br{display:grid;grid-template-columns:66px minmax(0,1fr);gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13.5px}.bx .bl{color:var(--mut);font-size:12px;padding-top:1px}
 .rate-buy{color:var(--b)}.rate-sell{color:var(--c)}.rate-mid{color:var(--e)}
 /* PC·모바일 글자 크기(2026-11-03 마스터 지시) — 화면 폭에 따라 커지고, 휴대폰에서도 본문 15px·보조 12px 아래로 내려가지 않는다 */
@@ -727,6 +727,21 @@ def chart_waterfall(c):
 
 
 CHARTS = {"line": chart_line, "bars": chart_bars, "hbars": chart_hbars, "scenario": chart_scenario, "candle": chart_candle, "revision": chart_revision, "actest": chart_actest, "progress": chart_progress, "pipeline": chart_pipeline, "portfolio": chart_portfolio, "satellite": chart_satellite, "waterfall": chart_waterfall}
+
+
+def _svg_safe(fn):
+    """그림 안 글자의 HTML <span>(t()의 +%·−% 색칠)을 SVG <tspan>으로 바꾼다 — SVG 안의 span은 그림을 깨뜨린다(2026-11-13 LTH 어닝콜·몬테카를로)"""
+    def run(c):
+        out = fn(c)
+        if not isinstance(out, str):
+            return out
+        return re.sub(r"<svg[\s>].*?</svg>", lambda m: m.group(0).replace('<span class="up">', '<tspan style="fill:var(--b);font-weight:600">')
+                      .replace('<span class="dn">', '<tspan style="fill:var(--c);font-weight:600">').replace("</span>", "</tspan>"), out, flags=re.S)
+    run.__wrapped__ = fn
+    return run
+
+
+CHARTS = {k: _svg_safe(f) for k, f in CHARTS.items()}
 
 
 def figures(d, images=False):
