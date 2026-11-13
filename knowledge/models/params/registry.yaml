@@ -5390,3 +5390,51 @@ params:
     data: knowledge/models/portfolio/sector_select_log.csv(쌓이는 중)
     last_fit: null
     oos_metric: null
+- id: prm-breadth-min-events
+  model: signal.revision_breadth
+  binding: config/revision_breadth.yaml#min_events
+  value: 3
+  unit: 건
+  status: prior
+  prior:
+    value: 3
+    basis: 상향 + 하향이 3건 미만이면 순 비율이 ±1·±0.33 같은 극단값만 나와 정보가 없다 — 표시만 막는 하한(사전 판단, 2026-11-14)
+    source: 순 수정 비율 정의는 실무 지표(Citi Earnings Revision Index — (상향 − 하향) / 전체)와 같은 꼴. 개별 수정 건수 대신 컨센서스 변화일을 센다(원문 미확인, 정의만 차용)
+  fit:
+    method: 하한 2·3·5 비교 — 순 비율과 뒤 60거래일 업종 초과수익의 순위 IC, 중첩 표본 외
+    target: 표본 외 순위 IC
+    data: knowledge/models/estimates/breadth.json 일별 누적(쌓이는 중) + ohlcv.csv — 앞으로의 성과만(유료 원천 쓰지 않음, 2026-11-07 마스터 결정)
+    last_fit: null
+    oos_metric: null
+- id: prm-breadth-strong
+  model: signal.revision_breadth
+  binding: config/revision_breadth.yaml#strong
+  value: 0.5
+  unit: 순 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: 상향이 하향의 3배 이상(0.5 = (3−1)/(3+1))일 때만 '우세'라 쓴다 — 표현 문턱, 사전 판단(2026-11-14)
+    source: Chan, Jegadeesh & Lakonishok(1996, J. Finance) — 애널리스트 추정 수정이 이후 수익률을 예측(크기 신호). 폭 문턱 자체의 문헌 값은 없음
+  fit:
+    method: 문턱 0.33·0.5·0.67 — '우세' 판정 뒤 60거래일 업종 초과수익 적중률, 중첩 표본 외
+    target: 표본 외 적중률(브라이어)
+    data: knowledge/models/estimates/breadth.json 일별 누적(쌓이는 중) + ohlcv.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-breadth-tol
+  model: signal.revision_breadth
+  binding: config/revision_breadth.yaml#tol
+  value: 0.001
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.001
+    basis: 컨센서스 평균의 반올림 흔들림(0.1% 미만)은 수정으로 세지 않는다 — 측정 잡음 하한, 사전 판단(2026-11-14)
+    source: 측정 규칙(문헌 값 아님)
+  fit:
+    method: 고정 — 잡음 하한이라 피팅 대상 아님
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null

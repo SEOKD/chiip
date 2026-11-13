@@ -91,6 +91,8 @@ def put_eps_history(cid, out):
     p = ROOT / "knowledge" / "models" / "companies" / cid / "datapack.json"
     dp = json.loads(p.read_text(encoding="utf-8"))
     dp.setdefault("consensus", {})["eps_history"] = {"basis": out.get("basis"), "updated_at": out.get("updatedAt"), "source": out.get("source"), "rows": out.get("rows") or []}
+    if out.get("breadth_rows") is not None:   # 추정치 수정 폭 재료(2026-11-14, scripts/tenbagger/breadth.py)
+        dp["consensus"]["revision_breadth"] = {"as_of": out.get("asOf"), "source": out.get("source"), "rows": out["breadth_rows"]}
     p.write_text(json.dumps(dp, ensure_ascii=False, indent=1), encoding="utf-8")
     return len(out.get("rows") or [])
 

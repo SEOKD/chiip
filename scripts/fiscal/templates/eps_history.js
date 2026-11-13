@@ -6,6 +6,14 @@ async () => {
   const cut = new Date(Date.now() - 500 * 864e5).toISOString().slice(0, 10);   // 지난해 진행 중이던 회계연도까지
   const rows = (z.history || []).filter(h => h.metricId === "analyst_eps" && h.reportDate >= cut)
     .map(h => [h.periodType === "Annual" ? "A" : "Q", h.reportDate, h.asOf, h.mean, h.numEstimates]);
-  console.log(JSON.stringify({ basis: z.epsBasis, updatedAt: z.updatedAt, rows,
+  // 추정치 수정 폭 재료(2026-11-14) — 열린 기간, 4개 지표, 최근 100일 + 그 앞 마지막 값. scripts/tenbagger/breadth.py가 계산
+  const today = new Date().toISOString().slice(0, 10), c100 = new Date(Date.now() - 100 * 864e5).toISOString().slice(0, 10);
+  const M = ["analyst_eps", "analyst_revenue", "analyst_ebitda", "analyst_ebit"], base = {}, recent = [];
+  for (const x of (z.history || []).filter(x => M.includes(x.metricId) && x.reportDate && x.reportDate > today)) {
+    const s = `${x.metricId}|${x.periodType}|${x.reportDate}`;
+    if (!x.asOf || x.asOf < c100) base[s] = x; else recent.push(x);
+  }
+  const breadth_rows = [...Object.values(base), ...recent].map(x => [x.metricId, x.periodType === "Annual" ? "A" : "Q", x.reportDate, x.asOf, x.mean, x.numEstimates]);
+  console.log(JSON.stringify({ basis: z.epsBasis, updatedAt: z.updatedAt, rows, breadth_rows, asOf: today,
     source: "Fiscal.ai company_analyst_estimates history(Zacks). Data provided by Zacks Investment Research, Inc., www.zacksdata.com" }));
 }

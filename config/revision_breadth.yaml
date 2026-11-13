@@ -1,0 +1,12 @@
+# 추정치 수정 폭(revision breadth) — 마스터 선택 2026-11-14 ("추정치 수정 폭")
+# 정의: 애널리스트 수가 같은 채로 컨센서스 평균이 움직인 날 = 수정 1건(상향·하향). 순 수정 비율 = (상향 − 하향) / (상향 + 하향).
+# 애널리스트 수가 바뀐 날은 커버리지 변화라 수정에서 뺀다. 재료: Fiscal.ai company_analyst_estimates history(Zacks).
+windows: [30, 90]          # 최근 며칠
+tol: 0.001                 # 평균 변화가 이 비율보다 작으면 수정 아님(반올림 흔들림)
+min_events: 3              # 상향 + 하향이 이보다 적으면 비율을 쓰지 않는다(표본 적음)
+strong: 0.5                # 순 비율이 ±이 값 이상이면 '상향 우세'·'하향 우세'
+metrics:                   # 표에 쓰는 지표(이름 = 보고서 표기)
+  analyst_eps: EPS
+  analyst_revenue: 매출
+  analyst_ebitda: EBITDA
+  analyst_ebit: EBIT
