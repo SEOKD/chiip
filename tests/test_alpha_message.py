@@ -11,25 +11,30 @@ R = {"entity": "co-ies", "drivers_as_of": "2026-11-08", "market": {"date": "2026
 
 
 class TestAlphaMessage(unittest.TestCase):
-    def test_short_format_2026_11_13(self):   # 마스터 지시 2026-11-13 축약판
-        r = dict(R, decision={"horizon": 5, "attractiveness": {"exp_return": 0.318, "margin_of_safety": 1.10}},
-                 upside={"implied_cagr": -0.082, "implied_pct": (0, 74, ">500억$", "")})
-        ref = {"item_id": "x:1", "title": "IES to Present at Conference", "url": "", "impact": None, "source_id": "src-pr"}
-        reason = "보도자료: IES to Present at Conference"
-        text = aw.message(r, "IES Holdings", 6.4, [reason, "알파 5.3 기준 진입"], refs={("co-ies", reason): ref}, use_model=False)
-        L = text.split("\n")
-        self.assertTrue(L[0].startswith("[알파 감지] IES Holdings — 알파 6.4"))
-        self.assertTrue(L[1].startswith("☞"))
-        i = L.index("왜 감지됐나")
-        self.assertTrue(L[i + 1].startswith("· 보도자료:"))
-        self.assertTrue(L[i + 2].strip().startswith("→"))
-        self.assertIn("안전마진 9%", text)
-        self.assertIn("연 기대수익 +31.8%", text)
-        self.assertIn("100%가 이보다 높게 성장", text)
-        self.assertNotIn("상위 100%", text)
-        self.assertIn("최근 커버리지", text)
-        for gone in ("요구수익률", "위험 예산", "상방(", "· 단계", "＋", "－", "확인할 것", "**", "투자자문 아님"):
+    def test_bullet_format_2026_11_14(self):   # 마스터 지시 2026-11-14 머리표 양식(AAON 예시)
+        r = dict(R, entity="us-aaon", decision={"horizon": 5, "attractiveness": {"exp_return": 0.088, "margin_of_safety": 0.45}},
+                 upside={"implied_cagr": 0.15, "implied_pct": (54, 74, "", "")})
+        ref = {"item_id": "x:1", "title": "8-K", "url": "", "impact": "11/10 대출계약 체결: $250M 텀론 추가 — 알파 변화 요인 아님", "source_id": "src-sec"}
+        reason = "SEC 8-K 중요 계약: AAON, INC."
+        L = aw.message(r, "AAON", 5.3, [reason], refs={("us-aaon", reason): ref}).split("\n")
+        self.assertEqual(L[0], "[알파 감지] AAON — 알파 5.3")
+        self.assertTrue(L[2].startswith("▶ 뭐하는 회사 : 상업용 공조"))
+        self.assertNotIn("8-K", L[2])   # 출처 괄호는 뺀다
+        self.assertIn("▶ 알파 감지 : 11/10 대출계약 체결. $250M 텀론 추가 — 알파 변화 요인 아님", L)
+        text = "\n".join(L)
+        for want in ("▶ 주가 전망 :", "* 연 기대수익 +8.8%", "* 주가 내포 5년 매출 성장 연 +15%", "* 안전마진 없음",
+                     "* 비관적인 경우 가치가 시총의 45%", "▶ 내러티브 : ", "▶ 커버리지 : "):
+            self.assertIn(want, text)
+        for gone in ("왜 감지됐나", "☞", "요구수익률", "위험 예산", "상위 46%", "**", "투자자문 아님"):
             self.assertNotIn(gone, text)
+
+    def test_multi_reason_bullets_and_mos(self):
+        r = dict(R, decision={"horizon": 5, "attractiveness": {"exp_return": 0.318, "margin_of_safety": 1.10}})
+        text = aw.message(r, "IES Holdings", 6.4, ["보도자료: IES to Present", "알파 5.3 기준 진입"])
+        self.assertIn("▶ 알파 감지 :\n* 보도자료: IES to Present (본문 미확인 — 제목만)", text)
+        self.assertIn("* 안전마진 9%", text)
+        self.assertIn("* 비관적인 경우 가치가 시총의 1.10배", text)
+        self.assertIn("역산 불가", text)
 
     def test_refresh_line_appended(self):
         text = aw.message(R, "IES Holdings", 6.4, ["알파 5.3 기준 진입"], refresh_note="리포트 갱신 대기열 등록 — 테스트")
@@ -46,8 +51,7 @@ class TestAlphaMessage(unittest.TestCase):
 
     def test_company_line_after_reasons_and_assumption_last(self):
         L = aw.message(R, "IES Holdings", 6.4, ["알파 5.3 기준 진입"], update_note="갱신").split("\n")
-        self.assertTrue(L[1].startswith("☞"))
-        self.assertIn("왜 감지됐나", L)
+        self.assertTrue(L[2].startswith("▶ 뭐하는 회사"))
         self.assertNotIn("**", L)
         self.assertNotIn("투자자문 아님", L)
         self.assertFalse(any(x.startswith("가정:") for x in L))

@@ -325,27 +325,64 @@ def coverage_lines(eid, n=3):
     return ["최근 커버리지"] + [f"· {ib_actions.fmt(x)}" for x in rows]
 
 
+def _strip_src(t):
+    """끝의 출처 괄호 '(2026-11-10 3Q 8-K)' 제거 — 머리표 양식에서는 회사 설명만"""
+    return re.sub(r"\s*\([^()]*(?:\d{4}-\d{2}-\d{2}|10-K|10-Q|8-K|20-F|회사 개요|IR)[^()]*\)\s*$", "", (t or "").strip())
+
+
+def detect_text(x, name, ref, alpha_row, use_model):
+    """'▶ 알파 감지' 한 줄 — 풀이가 있으면 풀이, 본문을 못 읽었으면 자료 제목 + (본문 미확인)"""
+    n = reason_note(x, name, ref, alpha_row, use_model).lstrip("→ ").strip()
+    if n.startswith("본문 미확인"):
+        return f"{reason_label(x)} (본문 미확인 — 제목만)"
+    return re.sub(r"^(\d{1,2}/\d{1,2} [^:：—]{1,20})[:：]\s*", r"\1. ", n)
+
+
+def narrative_parts(eid, today=None, stale_days=30):
+    """(내러티브, 최근 실적) — summary를 ' — '에서 나눈다(앞: 이야기 1순위, 뒤: 최근 실적·주가 반응). 오래됐으면 내러티브 끝에 [갱신 필요]"""
+    t = narrative_core(eid, today, stale_days).split(": ", 1)[-1]
+    stale = ""
+    m = re.search(r"\s*(\[[^\]]*갱신 필요\])$", t)
+    if m:
+        t, stale = t[:m.start()], " " + m[1]
+    head, _, tail = t.partition(" — ")
+    return head.strip() + stale, tail.strip() or None
+
+
 def message(r, name, alpha_total, reasons, update_note=None, refs=None, alpha_row=None, use_model=False, refresh_note=None):
-    """2026-11-13 마스터 지시 축약판: 제목 · ☞ 기업 1줄 · 왜 감지됐나(자료마다 → 풀이) · 연 기대수익·안전마진 · 주가 내포 성장 ·
-    내러티브 핵심 · 최근 커버리지 (+ 리포트 갱신 대기열 등록). 요구수익률 대비·넘을 확률·위험 예산·5년 상방·단계·과밀·＋/－·확인할 것은
+    """2026-11-14 마스터 지시 머리표 양식(AAON 예시): 제목 · ▶ 뭐하는 회사 · ▶ 알파 감지 · ▶ 주가 전망(* 기대수익·내포 성장·안전마진·비관 가치) ·
+    ▶ 내러티브 · ▶ 최근 실적 · ▶ 커버리지 (+ ▶ 리포트 갱신 대기열). 요구수익률 대비·넘을 확률·위험 예산·5년 상방·단계·과밀은
     뺀다 — 밸류 카드(outputs/invest/valuation_v2)·리포트에는 그대로 있다"""
     import decision
     eid = r.get("entity") or ""
-    L = [f"[알파 감지] {name} — 알파 {alpha_total:.1f}" if alpha_total is not None else f"[알파 감지] {name}"]
+    L = [f"[알파 감지] {name} — 알파 {alpha_total:.1f}" if alpha_total is not None else f"[알파 감지] {name}", ""]
     biz, _ = biz_line(eid)
-    L.append(f"☞ {biz}" if biz else "☞ 기업 설명 미확인")
-    L += ["", "왜 감지됐나"]
-    for x in reasons[:3]:
-        L += [f"· {reason_label(x)}", f"  {reason_note(x, name, (refs or {}).get((eid, x)), alpha_row, use_model)}"]
-    L.append("")
+    L += [f"▶ 뭐하는 회사 : {_strip_src(biz) if biz else '미확인'}", ""]
+    det = [detect_text(x, name, (refs or {}).get((eid, x)), alpha_row, use_model) for x in reasons[:3]]
+    L += [f"▶ 알파 감지 : {det[0]}"] if len(det) == 1 else ["▶ 알파 감지 :"] + [f"* {x}" for x in det]
+    L += ["", "▶ 주가 전망 :", ""]
     d = r.get("decision")
+    u = r.get("upside") or {}
     if d:
-        a = d["attractiveness"]
-        L.append(f"연 기대수익 {a['exp_return']:+.1%}({d['horizon']}년 가치 수렴 가정) · {decision.mos_text(a['margin_of_safety'])}")
-    L.append(implied_line(r.get("upside") or {}))
-    L += ["", narrative_core(eid), ""] + coverage_lines(eid)
+        L.append(f"* 연 기대수익 {d['attractiveness']['exp_return']:+.1%}")
+    L.append(f"* 주가 내포 5년 매출 성장 연 {u['implied_cagr']:+.0%}" if u.get("implied_cagr") is not None else "* 주가 내포 5년 매출 성장 역산 불가")
+    if d:
+        ratio = d["attractiveness"]["margin_of_safety"]
+        md = decision.mos_discount(ratio)
+        if md is None:
+            L.append("* 안전마진 산정 불가")
+        elif md <= 0:
+            L += ["* 안전마진 없음", f"* 비관적인 경우 가치가 시총의 {ratio:.0%}"]
+        else:
+            L += [f"* 안전마진 {md:.0%}", f"* 비관적인 경우 가치가 시총의 {ratio:.2f}배"]
+    nar, recent = narrative_parts(eid)
+    L += ["", "", f"▶ 내러티브 : {nar}"]
+    if recent:
+        L.append(f"▶ 최근 실적 : {recent}")
+    cov = coverage_lines(eid)
+    L += ["▶ 커버리지 : 최근 기록 없음"] if len(cov) == 1 else ["▶ 커버리지 :"] + [x.replace("· ", "* ", 1) for x in cov[1:]]
     if refresh_note:
-        L += ["", refresh_note]
+        L += ["", f"▶ {refresh_note}"]
     # 끝의 '투자자문 아님'·** 표기 제외(2026-11-12 마스터 지시 — 텔레그램은 일반 글이라 **가 그대로 보인다)
     return "\n".join(L)
 
