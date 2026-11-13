@@ -92,7 +92,7 @@ def keep(item, focus):
         return True
     if item.get("source_id") in ("src-short-sites", "src-jp-ir-qa", "src-jp-ir-docs", "src-kr-ir-docs", "src-kr-ir-qa", "src-tw-disclosure",
                                  "src-tw-hk-ir-docs", "src-tw-hk-ir-qa", "src-fiscal-ir-docs",
-                                 "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-yt-ir", "src-gpu-rental", "src-trendforce-pr", "src-price-move", "src-keyperson-gn", "src-semianalysis-jobs", "src-alphavantage", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch", "src-tickertrends"):   # 대만 월매출 급증·중국·홍콩 공시는 수집기가 이미 좁혔다(엔티티 없는 지도 밖 후보, 2026-11-09)   # 대만·홍콩 IR·Fiscal IR 문서(2026-11-08 AT&S 점검)   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
+                                 "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-yt-ir", "src-gpu-rental", "src-trendforce-pr", "src-price-move", "src-keyperson-gn", "src-semianalysis-jobs", "src-alphavantage", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch", "src-tickertrends", "src-ppi-release"):   # 대만 월매출 급증·중국·홍콩 공시는 수집기가 이미 좁혔다(엔티티 없는 지도 밖 후보, 2026-11-09)   # 대만·홍콩 IR·Fiscal IR 문서(2026-11-08 AT&S 점검)   # 숏 운용사 원문·일본 IR 질의응답은 포커스와 무관하게 저장(2026-10-29)
         return True
     if not news_allowed(item):
         return False

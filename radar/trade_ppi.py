@@ -407,7 +407,16 @@ def run(today=None):
         raise RuntimeError("PPI를 하나도 받지 못했다: " + "; ".join(errors[:3]))
     LATEST.parent.mkdir(parents=True, exist_ok=True)
     LATEST.write_text(json.dumps({"as_of": today.isoformat(), "inputs": inputs, "taiwan": getattr(collect, "taiwan", {}), "gaps": gaps, "errors": errors}, ensure_ascii=False, indent=1), encoding="utf-8")
-    HISTORY.write_text(json.dumps({"as_of": today.isoformat(), "inputs": getattr(collect, "hist", {})}, ensure_ascii=False), encoding="utf-8")
+    old = json.loads(HISTORY.read_text(encoding="utf-8")) if HISTORY.exists() else {}
+    new_hist = getattr(collect, "hist", {})
+    revs = list(old.get("revisions") or [])   # 개정 기록은 남긴다(2026-11-13 마스터 지시 — 9월 28.801 → 28.810이 기록 없이 덮였다)
+    for k, v in new_hist.items():
+        for mkt, s in (v.get("ppi") or {}).items():
+            prev = ((old.get("inputs") or {}).get(k) or {}).get("ppi", {}).get(mkt) or {}
+            for p, val in (s or {}).items():
+                if prev.get(p) is not None and abs(prev[p] - val) > 1e-9 and not any(r.get("input") == k and r["market"] == mkt and r["period"] == p and r["new"] == val for r in revs):
+                    revs.append({"input": k, "series": (cfg["inputs"][k]["ppi"].get(mkt)), "market": mkt, "period": p, "old": prev[p], "new": val, "at": common.iso(common.now_kst())})
+    HISTORY.write_text(json.dumps({"as_of": today.isoformat(), "inputs": new_hist, "us_raw": old.get("us_raw") or {}, "revisions": revs[-500:]}, ensure_ascii=False), encoding="utf-8")
     return f"입력 {len(inputs)}개, PPI {filled}칸, 공백 {len(gaps)}건, 오류 {len(errors)}건"
 
 

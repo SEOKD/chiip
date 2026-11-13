@@ -79,3 +79,17 @@ date,time_kst,type,entity_or_event,description,expectation_note_ref,status
 2027-01-06,,제품행사,CES 2027,"CES 2027, 2027-01-06~09, Las Vegas Convention Center (마스터 출장 2027-01-02 출발 예정)",,확인
 2027-02-14,,학회,ISSCC 2027,"IEEE ISSCC 2027, 2027-02-14~18, San Francisco Marriott Marquis",,확인
 2027-12-04,,학회,IEDM 2027,"IEEE IEDM 2027, 2027-12-04~08, San Francisco Hilton Union Square",,확인
+2026-11-13,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2026년 10월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2026-12-15,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2026년 11월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-01-14,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2026년 12월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-02-12,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 1월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-03-12,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 2월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-04-14,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 3월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-05-13,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 4월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-06-11,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 5월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-07-15,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 6월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-08-10,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 7월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-09-10,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 8월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-10-15,21:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 9월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-11-12,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 10월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
+2027-12-15,22:30,지표발표,BLS PPI,"미국 생산자물가(PPI) 2027년 11월분 — 08:30 ET(BLS 공식 일정 bls.gov/schedule/news_release/ppi.htm, 2026-11-13 확인)",radar/ppi_release.py,확정
