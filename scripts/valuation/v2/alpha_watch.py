@@ -184,17 +184,32 @@ def load_queue():
 EVENT_RE = re.compile(r"실적|공시|가이던스|上方修正|下方修正|業績予想|決算|설비투자|수주|8-K")
 
 
-def enqueue(eid, name, reason, kind):
+REF_KEYS = ("item_id", "url", "link", "title", "source_id", "doc_type", "published_at", "saved_at", "impact", "entities_matched", "ticker", "sec_items", "language")
+
+
+def slim_ref(it):
+    """대기열에 남길 원 항목 연결(본문 열람·풀이에 필요한 필드만) — 대기열을 거쳐 보낼 때 '본문 미확인'이 되던 구멍(2026-11-14 Ichor)"""
+    return {k: it[k] for k in REF_KEYS if it.get(k) not in (None, "", [])}
+
+
+def enqueue(eid, name, reason, kind, refs=None):
+    """refs: {이유 조각: 원 항목} — '--entity --reason'으로 보낼 때 이유 조각마다 원문을 다시 연다"""
     q = load_queue()
+    refs = {k: slim_ref(v) for k, v in (refs or {}).items() if v}
     for x in q:
         if x["id"] == eid and x["kind"] == kind:   # 이미 있으면 새 사건 이유만 덧붙이고 사건 시각을 새로 — 우선순위가 올라간다(2026-11-08 닛토보)
+            if refs:
+                x["refs"] = {**(x.get("refs") or {}), **refs}
             if reason and reason not in x["reason"]:
                 x["reason"] = f"{reason} / {x['reason']}"[:400]
                 if EVENT_RE.search(reason):
                     x["event_at"] = common.iso(common.now_kst())
+            if refs or (reason and reason in x["reason"]):
                 QUEUE.write_text(json.dumps(q, ensure_ascii=False, indent=1), encoding="utf-8")
             return False
     row = {"id": eid, "name": name, "kind": kind, "reason": reason, "added": common.iso(common.now_kst())}
+    if refs:
+        row["refs"] = refs
     if EVENT_RE.search(reason or ""):
         row["event_at"] = row["added"]
     q.append(row)
@@ -514,18 +529,20 @@ def run(send=True, now=None):
     for it in items:
         for e in it.get("entities_matched") or []:
             if e in gate_ids.watch() and (rows.get(e) or {}).get("total") is None:
-                n_q += enqueue(e, e, f"{it['doc_type']}: {it.get('title', '')[:90]}", "알파 산정")
+                why = f"{it['doc_type']}: {it.get('title', '')[:90]}"
+                n_q += enqueue(e, e, why, "알파 산정", refs={why: it})
     for eid, reasons in found.items():
         if evaluated.get(eid) == now.date().isoformat() and eid not in p0:
             continue
         name = (rows.get(eid) or {}).get("name", eid)
         kind = needs_update(eid, reasons, c, now.date())
+        why_refs = {w: refs[(eid, w)] for w in reasons if (eid, w) in refs}
         if kind == "작성":
-            n_q += enqueue(eid, name, " / ".join(reasons), "작성")
+            n_q += enqueue(eid, name, " / ".join(reasons), "작성", refs=why_refs)
             continue
         note = None
         if kind == "갱신":
-            n_q += enqueue(eid, name, " / ".join(reasons), "갱신")
+            n_q += enqueue(eid, name, " / ".join(reasons), "갱신", refs=why_refs)
             note = "※ 동인이 이번 정보 이전 가정 — 모델이 갱신 후 다시 보냄"
         try:
             _, sent = evaluate_and_send(eid, reasons, passed.get(eid), send, c_all, note, refs=refs, alpha_row=rows.get(eid))
@@ -538,6 +555,43 @@ def run(send=True, now=None):
     common.save_state(STATE, st)
     common.record_health("src-alpha-watch", True, None)
     return len(found), n_sent, n_q
+
+
+def find_inbox_item(eid, doc_type, title90, days=21):
+    """수집함(radar/inbox/YYYYMMDD) 최근 days일에서 같은 종목·유형·제목 앞 90자 항목 — 대기열에 오래 머문 건(Ichor 11/03 8-K → 11/14 발송)"""
+    now = common.now_kst()
+    for k in range(days):
+        folder = ROOT / "radar" / "inbox" / (now - timedelta(days=k)).strftime("%Y%m%d")
+        if not folder.exists():
+            continue
+        for f in folder.glob("src-*.json"):
+            try:
+                it = json.loads(f.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            if it.get("doc_type") == doc_type and it.get("title", "")[:90] == title90 and eid in (it.get("entities_matched") or []):
+                return it
+    return None
+
+
+def queued_reasons(eid, reason):
+    """'--reason "<대기열 reason>"'을 이유 조각으로 나누고 대기열에 남긴 원 항목을 되찾는다 → (이유 목록, {(id, 조각): 항목}).
+    2026-11-14 Ichor: 'A / B'가 한 줄로 합쳐져 원 항목 연결이 끊겨 8-K 본문이 있는데도 '본문 미확인 — 제목만'으로 나갔다"""
+    parts = [x.strip() for x in str(reason or "").split(" / ") if x.strip()] or [reason]
+    stored = {}
+    for x in load_queue():
+        if x["id"] == eid:
+            stored.update(x.get("refs") or {})
+    refs = {}
+    for w in parts:
+        it = stored.get(w)
+        if it is None:   # 예전 대기열(refs 없음) — 최근 수집함에서 같은 제목을 찾는다
+            m = re.match(r"([^:]+): (.+)$", w)
+            if m:
+                it = find_inbox_item(eid, m[1], m[2])
+        if it:
+            refs[(eid, w)] = it
+    return parts, refs
 
 
 def main(argv):
@@ -571,7 +625,8 @@ def main(argv):
         import score as alpha
         passed, rows = alpha.load_latest()
         total = (rows.get(a.entity) or {}).get("total")
-        text, sent = evaluate_and_send(a.entity, [a.reason], total, a.send, cfg(), alpha_row=rows.get(a.entity))
+        reasons, refs = queued_reasons(a.entity, a.reason)
+        text, sent = evaluate_and_send(a.entity, reasons, total, a.send, cfg(), refs=refs, alpha_row=rows.get(a.entity))
         print(text)
         print("발송" if sent else "(발송 안 함)")
         if a.send:   # 대기열에서 처리 완료로 제거 + 오늘 처리함으로 기록(매시간 루프의 같은 날 중복 발송 방지)

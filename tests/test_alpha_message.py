@@ -39,6 +39,23 @@ class TestAlphaMessage(unittest.TestCase):
         self.assertIn("* 비관적인 경우 가치가 시총의 1.10배", text)
         self.assertIn("역산 불가", text)
 
+    def test_queue_keeps_source_refs(self):   # 2026-11-14 Ichor — 대기열을 거치며 원 항목 연결이 끊겨 '본문 미확인'
+        import json
+        import tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            q = Path(d) / "q.json"
+            with mock.patch.object(aw, "QUEUE", q):
+                it = {"item_id": "src-sec-filings:1", "url": "https://www.sec.gov/x", "title": "[SEC 8-K 실적] ICHOR", "doc_type": "실적",
+                      "source_id": "src-sec-filings", "entities_matched": ["us-ichr"], "local_text": "긴 본문" * 1000}
+                aw.enqueue("us-ichr", "Ichor", "실적: [SEC 8-K 실적] ICHOR", "알파 산정", refs={"실적: [SEC 8-K 실적] ICHOR": it})
+                aw.enqueue("us-ichr", "Ichor", "알파 5.1 기준 진입", "알파 산정")
+                row = json.loads(q.read_text(encoding="utf-8"))[0]
+                self.assertNotIn("local_text", row["refs"]["실적: [SEC 8-K 실적] ICHOR"])   # 연결 필드만
+                parts, refs = aw.queued_reasons("us-ichr", row["reason"])
+        self.assertEqual(parts, ["알파 5.1 기준 진입", "실적: [SEC 8-K 실적] ICHOR"])
+        self.assertEqual(refs[("us-ichr", "실적: [SEC 8-K 실적] ICHOR")]["url"], "https://www.sec.gov/x")
+
     def test_refresh_line_appended(self):
         text = aw.message(R, "IES Holdings", 6.4, ["알파 5.3 기준 진입"], refresh_note="리포트 갱신 대기열 등록 — 테스트")
         self.assertTrue(text.endswith("리포트 갱신 대기열 등록 — 테스트"))
