@@ -2929,7 +2929,7 @@ params:
 - id: prm-watchlist-cap-max-auto
   model: portfolio.watchlist
   binding: config/watchlist.yaml#cap.max_auto
-  value: 8
+  value: null   # 2026-11-13 마스터 결정 "관심 종목 수에는 상한을 두지 않는다" — 편입 기준(config/watch_review.yaml) 통과로 대신(이전 8)
   unit: 종목
   status: prior
   prior:
@@ -5168,7 +5168,7 @@ params:
     oos_metric: null
 - id: prm-refresh-rise
   model: tenbagger.alpha_refresh
-  binding: scripts/tenbagger/alpha_refresh.py#RISE
+  binding: config/alpha_refresh.yaml#rise
   value: 1.0
   unit: 점
   status: prior
@@ -5184,7 +5184,7 @@ params:
     oos_metric: null
 - id: prm-refresh-min-gap
   model: tenbagger.alpha_refresh
-  binding: scripts/tenbagger/alpha_refresh.py#MIN_GAP_DAYS
+  binding: config/alpha_refresh.yaml#min_gap_days
   value: 14
   unit: 일
   status: prior
@@ -5200,7 +5200,7 @@ params:
     oos_metric: null
 - id: prm-refresh-hold
   model: tenbagger.alpha_refresh
-  binding: scripts/tenbagger/alpha_refresh.py#HOLD_DAYS
+  binding: config/alpha_refresh.yaml#hold_days
   value: 7
   unit: 일
   status: prior
@@ -5216,7 +5216,7 @@ params:
     oos_metric: null
 - id: prm-refresh-cohort
   model: tenbagger.alpha_refresh
-  binding: scripts/tenbagger/alpha_refresh.py#COHORT_MIN,COHORT_DRIFT
+  binding: config/alpha_refresh.yaml#cohort
   value: [10, 0.5]
   unit: 종목·점
   status: prior
@@ -5308,5 +5308,85 @@ params:
     method: 표시 종목의 이후 내용연수 변경 공시 발생률
     target: 이후 4분기 추정 변경 공시
     data: 앞으로의 성과(리포트 원장)
+    last_fit: null
+    oos_metric: null
+- id: prm-ssel-w
+  model: portfolio.sector_select
+  binding: config/sector_select.yaml#weights
+  value: {momentum: 0.40, flow: 0.35, alpha: 0.25}
+  unit: 가중치
+  status: prior
+  prior:
+    value: {momentum: 0.40, flow: 0.35, alpha: 0.25}
+    basis: 산업 모멘텀이 가장 오래 검증된 신호라 최대, 수급은 짧게 끝나 중간, 알파는 Chiip 자체 점수(표본 외 미검증)라 최소
+    source: ADR-023(문헌 방향만 — 사전값, 피팅 전)
+  fit:
+    method: 편입 섹터의 편입 뒤 20거래일 상대수익(대 SPY) − 제외 섹터, 중첩 표본 외
+    target: 편입·제외 기록별 20거래일 상대수익
+    data: knowledge/models/portfolio/sector_select_log.csv(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ssel-enter
+  model: portfolio.sector_select
+  binding: config/sector_select.yaml#enter
+  value: {score: 6.5, pillars: 2}
+  unit: 점·축
+  status: prior
+  prior:
+    value: {score: 6.5, pillars: 2}
+    basis: 복수 신호(3축 중 2축 이상)와 점수 6.5 — 한 신호만으로 편입하지 않는다
+    source: ADR-023(문헌 방향만 — 사전값, 피팅 전)
+  fit:
+    method: 편입 섹터의 편입 뒤 20거래일 상대수익(대 SPY) − 제외 섹터, 중첩 표본 외
+    target: 편입·제외 기록별 20거래일 상대수익
+    data: knowledge/models/portfolio/sector_select_log.csv(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ssel-exit
+  model: portfolio.sector_select
+  binding: config/sector_select.yaml#exit
+  value: {score: 4.5, pillars: 1}
+  unit: 점·축
+  status: prior
+  prior:
+    value: {score: 4.5, pillars: 1}
+    basis: 편입 문턱과 2점 띄워 깜빡임을 막는다
+    source: ADR-023(문헌 방향만 — 사전값, 피팅 전)
+  fit:
+    method: 편입 섹터의 편입 뒤 20거래일 상대수익(대 SPY) − 제외 섹터, 중첩 표본 외
+    target: 편입·제외 기록별 20거래일 상대수익
+    data: knowledge/models/portfolio/sector_select_log.csv(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ssel-confirm
+  model: portfolio.sector_select
+  binding: config/sector_select.yaml#confirm_runs
+  value: 2
+  unit: 회
+  status: prior
+  prior:
+    value: 2
+    basis: 편입·제외는 서로 다른 날 2회 연속 충족 시(히스테리시스)
+    source: ADR-023(문헌 방향만 — 사전값, 피팅 전)
+  fit:
+    method: 편입 섹터의 편입 뒤 20거래일 상대수익(대 SPY) − 제외 섹터, 중첩 표본 외
+    target: 편입·제외 기록별 20거래일 상대수익
+    data: knowledge/models/portfolio/sector_select_log.csv(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ssel-max
+  model: portfolio.sector_select
+  binding: config/sector_select.yaml#max_sectors
+  value: 8
+  unit: 섹터
+  status: prior
+  prior:
+    value: 8
+    basis: 마스터 지시 '최대 6~8개'의 상단
+    source: ADR-023(문헌 방향만 — 사전값, 피팅 전)
+  fit:
+    method: 편입 섹터의 편입 뒤 20거래일 상대수익(대 SPY) − 제외 섹터, 중첩 표본 외
+    target: 편입·제외 기록별 20거래일 상대수익
+    data: knowledge/models/portfolio/sector_select_log.csv(쌓이는 중)
     last_fit: null
     oos_metric: null

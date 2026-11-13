@@ -34,11 +34,15 @@ STATE_FILE = REP / "alpha_refresh.json"
 DELIVERY = REP / "delivery"
 KST = timezone(timedelta(hours=9))
 
-RISE = 1.0            # 마스터 지시 값
-MIN_GAP_DAYS = 14     # ADR-022: 판단 재산정 간격 중앙 9일 → 두 번의 주간 산정이 지나야 한다
-HOLD_DAYS = 7         # 주 1회 전체 산정 주기 — 그동안 되돌림이 없으면 유지로 본다
-COHORT_MIN = 10       # 같은 날 재산정 종목 수가 이 이상이면 쏠림(채점 기준 변화)을 뺀다
-COHORT_DRIFT = 0.5
+try:   # 상수는 config/alpha_refresh.yaml(등록부 prm-refresh-*와 맞춘다, 2026-11-13) — 파일이 없으면 아래 기본값
+    import yaml as _yaml
+    _C = _yaml.safe_load((ROOT / "config" / "alpha_refresh.yaml").read_text(encoding="utf-8")) or {}
+except (OSError, ImportError):
+    _C = {}
+RISE = float(_C.get("rise", 1.0))            # 마스터 지시 값
+MIN_GAP_DAYS = int(_C.get("min_gap_days", 14))   # ADR-022: 판단 재산정 간격 중앙 9일 → 두 번의 주간 산정이 지나야 한다
+HOLD_DAYS = int(_C.get("hold_days", 7))      # 주 1회 전체 산정 주기 — 그동안 되돌림이 없으면 유지로 본다
+COHORT_MIN, COHORT_DRIFT = (_C.get("cohort") or [10, 0.5])   # 같은 날 재산정 종목 수가 이 이상이면 쏠림(채점 기준 변화)을 뺀다
 DAILY_MAX = 1
 LAST_RUN_HOUR = 20    # chiip-tenbagger-report 06·13·20시 중 마지막 회차
 IMAGE_RESERVE = 0.80

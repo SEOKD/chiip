@@ -1,0 +1,6 @@
+# 알파 상승 리포트 갱신 대기열 상수(ADR-022 알파 갱신, 마스터 지시 2026-11-13) — scripts/tenbagger/alpha_refresh.py가 읽는다.
+# 등록부 knowledge/models/params/registry.yaml prm-refresh-* 와 같은 값이어야 한다(tests/test_value_engine.py).
+rise: 1.0            # 마지막 리포트 시점 대비 알파 상승폭(마스터 지시 값)
+min_gap_days: 14     # 같은 종목 갱신 최소 간격 — 판단 재산정 간격 중앙 9일 → 두 번의 주간 산정이 지나야 한다
+hold_days: 7         # 주 1회 전체 산정 주기 — 그동안 되돌림이 없으면 유지로 본다
+cohort: [10, 0.5]    # 같은 날 재산정 종목 수 ≥ 10 이고 평균 변화 ≥ 0.5면 쏠림(채점 기준 변화)으로 보고 뺀다

@@ -9,7 +9,7 @@ sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
 import cost_bridge_view as cb  # noqa: E402
 import margin_view as mv  # noqa: E402
 
-DP = json.loads((ROOT / "knowledge" / "models" / "companies" / "us-lth" / "datapack.json").read_text(encoding="utf-8"))
+DP = json.loads((ROOT / "tests" / "fixtures" / "margin_lth_1113.json").read_text(encoding="utf-8"))   # LTH datapack 발췌(저장소 독립)
 
 
 def titles(blocks):

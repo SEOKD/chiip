@@ -60,7 +60,7 @@ class TestNarrativeLine(unittest.TestCase):
 
     def test_stale_and_missing(self):
         self.assertIn("갱신 필요", alpha_watch.narrative_line("co-vicor", today=date(2026, 12, 31)))
-        self.assertIn("미작성", alpha_watch.narrative_line("co-없는종목"))
+        self.assertIn("작성 대기", alpha_watch.narrative_line("co-없는종목"))   # 2026-11-13 alpha-feed 문구 변경
 
 
 if __name__ == "__main__":
