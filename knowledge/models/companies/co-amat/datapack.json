@@ -3,7 +3,7 @@
  "name": "Applied Materials",
  "ticker": "AMAT",
  "industry": "semicap",
- "as_of": "2026-11-11",
+ "as_of": "2026-11-14",
  "unit": "B$",
  "region_mix": {
   "US": 0.12,
@@ -11,12 +11,12 @@
  },
  "tax": 0.13,
  "profile": {
-  "price": 372.53,
+  "price": 370.5,
   "shares_basic": 0.793597,
   "shares_date": "2026-07-26",
-  "cash": 9.233,
-  "debt": 7.346,
-  "source": "가격 = 2026-11-10 종가 $372.53(TradingView NASDAQ:AMAT — 4Q FY26 실적 11/12 장 마감 뒤 발표 전). 주식 수 793,597,443주(10-Q 표지, 7/26). 현금 = 현금·현금성 $7.037B + 단기 투자 $2.196B = $9.233B(10-Q 재무상태표 7/26). 장기 투자 $5.268B(BESI 지분 등 전략 투자 포함)는 현금에 넣지 않았다. 차입 = 단기 $1.299B(2027 만기 3.300% 노트 $1.2B + CP $0.1B) + 장기 $5.245B + 운영 리스 $0.802B = $7.346B"
+  "cash": 9.339,
+  "debt": 7.334,
+  "source": "가격 = 2026-11-13 종가 $370.50(TradingView NASDAQ:AMAT — 4Q FY26 실적 11/12 장 마감 뒤 발표, 다음 날 −2.7%). 주식 수 793,597,443주(3Q 10-Q 표지 7/26 — FY26 10-K 표지 전, 4Q 자사주 $2.00B 매입분 약 5M주 미반영이라 시총을 약간 높게 잡는다). 현금 = 현금·현금성 $7.239B + 단기 투자 $2.100B = $9.339B(10/25 재무상태표, Fiscal.ai 표준화·EX-99.1). 장기 투자 $4.756B는 현금에 넣지 않았다. 차입 = 단기 $1.299B + 장기 $5.233B + 운영 리스 $0.802B(3Q 10-Q 값 — 4Q 리스는 10-K 전 미확인) = $7.334B"
  },
  "dilution": {
   "potential_total": 0.0055,
@@ -24,55 +24,57 @@
   "source": "3Q FY26 GAAP 순이익 $2.538B ÷ 희석 EPS $3.17 = 희석 가중 주식 약 800.6M주 − 표지 기본 793.6M주 ≈ 7M주. 기본 가중 주식 대비 희석 증분(RSU·성과주)은 통상 약 5~6M주라 0.0055B주로 둔다(추정 — 10-Q RSU 미가득 수 미확인)"
  },
  "financials": {
-  "rev_ttm": 30.837,
-  "ebit_ttm": 9.141,
-  "invested_capital": 23.739,
-  "capex_ttm": 2.773,
-  "da_ttm": 0.527,
-  "sbc_ttm": 0.701,
-  "rev_growth_ttm": 0.098,
+  "rev_ttm": 34.446,
+  "ebit_ttm": 11.087,
+  "invested_capital": 24.101,
+  "capex_ttm": 2.7,
+  "da_ttm": 0.571,
+  "sbc_ttm": 0.719,
+  "rev_growth_ttm": 0.214,
   "basis": "GAAP",
-  "note": "TTM = 4Q FY25~3Q FY26(2025-07-28~2026-07-26) 매출 $30.837B, GAAP 영업이익 $9.141B(조정 $9.686B — 4Q FY25·1Q FY26 기타 비용 $181M·$265M 포함, 9M에 BIS 수출통제 합의금 $253M). 투하자본 = 자기자본 $25.626B + 차입 $6.544B + 리스 $0.802B − 현금·단기투자 $9.233B = $23.739B. CAPEX $2.773B·SBC $0.701B·D&A $0.527B = Fiscal.ai 현금흐름표 4분기 합"
+  "note": "TTM = FY26(2025-10-27~2026-10-25) 매출 $34.446B, GAAP 영업이익 $11.087B(조정 $11.42B, EX-99.1). 투하자본 = 자기자본 $26.106B + 차입 $6.532B + 리스 $0.802B − 현금·단기투자 $9.339B = $24.101B. CAPEX $2.7B(콜, 4Q $684M)·D&A $0.571B·SBC $0.719B = Fiscal.ai 현금흐름표 4분기 합"
  },
  "sources": [
+  "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/exhibit991q42026earningsre.htm",
+  "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/amat-20261112.htm",
   "https://www.sec.gov/Archives/edgar/data/6951/000162828026056699/exhibit991q32026earningsre.htm",
   "https://www.sec.gov/Archives/edgar/data/6951/000162828026058235/amat-20260726.htm",
   "https://www.sec.gov/Archives/edgar/data/6951/000162828025056742/amat-20251026.htm",
   "https://www.sec.gov/Archives/edgar/data/6951/000162828026067303/amat-20261026.htm",
   "https://www.sec.gov/Archives/edgar/data/6951/000162828026059257/amat-20260827.htm",
   "https://www.sec.gov/Archives/edgar/data/6951/000162828026067303/ex991prforprojectbasil.htm",
-  "Fiscal.ai MCP 2026-11-11 — 표준화 손익(분기 44)·재무상태표·현금흐름·세그먼트 KPI·추정(Fiscal 자체·Zacks)·Forward 배수·3Q·2Q FY26 어닝콜 전문(요지만)",
-  "TradingView NASDAQ:AMAT 일봉 760(2026-11-11)",
   "Easyconomics company_profile(yfinance)·earnings_summary_dates·insider_and_politics(lobbying — 집계 밖)",
-  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "Fiscal.ai MCP 2026-11-14 — 표준화 손익·재무상태표·현금흐름(4Q FY26)·세그먼트 KPI·추정(Fiscal 자체·Zacks)·Forward 배수·4Q FY26 어닝콜 전문(요지만)",
+  "TradingView NASDAQ:AMAT 일봉(2026-11-14 갱신, 11/13 종가)"
  ],
  "raw": {
-  "retrieved_at": "2026-11-11T18:30+09:00",
+  "retrieved_at": "2026-11-14T06:30+09:00",
   "fiscal_profile": {
    "companyKey": "NASDAQ_AMAT",
-   "price": 372.53,
-   "market_cap": 295.64,
-   "total_cash": 9.233,
-   "total_debt": 7.346,
+   "price": 370.5,
+   "market_cap": 294.03,
+   "total_cash": 9.339,
+   "total_debt": 7.334,
    "shares_outstanding": 0.793597,
-   "as_of": "2026-11-10",
-   "balance_date": "2026-07-26",
-   "note": "시총 = 793,597,443주 × $372.53 = $295.6B(yfinance $295.64B와 같다). 차입 = 노트·CP $6.544B + 운영 리스 $0.802B(yfinance 총차입 $7.346B와 같다)"
+   "as_of": "2026-11-13",
+   "balance_date": "2026-10-25",
+   "note": "시총 = 793,597,443주 × $370.50 = $294.0B(yfinance $294.03B와 같다). 차입 = 노트·CP $6.532B + 운영 리스 $0.802B(3Q 값)"
   },
   "quarters_gaap": {
    "rev": {
-    "2025Q4": 6.8,
     "2026Q1": 7.012,
     "2026Q2": 7.91,
-    "2026Q3": 9.115
+    "2026Q3": 9.115,
+    "2026Q4": 10.409
    },
    "op_income": {
-    "2025Q4": 1.712,
     "2026Q1": 1.831,
     "2026Q2": 2.523,
-    "2026Q3": 3.075
+    "2026Q3": 3.075,
+    "2026Q4": 3.658
    },
-   "note": "달력 분기 표기(2026Q3 = FY26 3Q, 5~7월). 3Q 매출 $9,115M·영업이익 $3,075M = EX-99.1과 일치"
+   "note": "회계 분기 표기(2026Q4 = FY26 4Q, 8~10월). 4Q 매출 $10,409M·GAAP 영업이익 $3,658M = EX-99.1과 일치(GAAP 이익률 35.1%)"
   },
   "balance_20260726": {
    "cash": 7.037,
@@ -96,11 +98,11 @@
    "2026Q1": 7012,
    "2026Q2": 7910,
    "2026Q3": 9115,
-   "2026Q4": 10450,
-   "2027Q1": 11000,
-   "2027Q2": 11300,
-   "2027Q3": 11700,
-   "2027Q4": 12000
+   "2026Q4": 10409,
+   "2027Q1": 11286,
+   "2027Q2": 11372,
+   "2027Q3": 11771,
+   "2027Q4": 12270
   },
   "sec": {
    "cover_shares": 793597443,
@@ -126,39 +128,68 @@
   },
   "notes": "www.sec.gov 직접 접속이 403으로 막혀 웹 읽기 도구로 10-Q·10-K·8-K를 열었다. 10-Q MD&A(구매 약정·10% 고객)는 본문 끝까지 읽지 못해 미확인으로 둔다",
   "shares_cover_implied": 0.793597,
-  "estimates_sales_m_note": "회계 분기 표기(FY26 1Q~3Q 실적 + 4Q Fiscal 추정, FY27 4개 분기 Fiscal 추정 11/5) — 합계 FY26 $34.487B·FY27 $46.0B"
+  "estimates_sales_m_note": "회계 분기 표기(FY26 실적 + FY27 4개 분기 Fiscal 추정 11/14) — 합계 FY26 $34.446B·FY27 $46.7B",
+  "balance_20261025": {
+   "cash": 7.239,
+   "st_investments": 2.1,
+   "lt_investments": 4.756,
+   "receivables": 8.998,
+   "inventory": 6.889,
+   "equity": 26.106,
+   "debt_current": 1.299,
+   "debt_lt": 5.233,
+   "source": "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/exhibit991q42026earningsre.htm · Fiscal.ai company_financials_standardized(2026-10-25)"
+  },
+  "segments_4q26": {
+   "ss_rev": 7.996,
+   "ags_rev": 1.896,
+   "other_rev": 0.517,
+   "ss_op": 3.101,
+   "ags_op": 0.578,
+   "china": 2.642,
+   "korea": 1.811,
+   "taiwan": 2.916,
+   "japan": 0.619,
+   "us": 1.32,
+   "ss_mix": {
+    "foundry_logic": 0.58,
+    "dram": 0.33,
+    "nand": 0.09
+   },
+   "source": "Fiscal.ai company_segments_and_kpis 2026-10-25 · https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/exhibit991q42026earningsre.htm"
+  }
  },
  "multiples_now": {
-  "pe_fwd": 21.11,
-  "ev_ebitda_fwd": 17.29,
-  "pe_fwd2": 18.4,
-  "ev_ebitda_fwd2": 15.41,
-  "pe_fwd3": 15.83,
-  "ev_ebitda_fwd3": 13.15
+  "pe_fwd": 19.66,
+  "ev_ebitda_fwd": 16.45,
+  "pe_fwd2": 15.84,
+  "ev_ebitda_fwd2": 13.28,
+  "pe_fwd3": 13.78,
+  "ev_ebitda_fwd3": 11.69
  },
  "forward": {
-  "as_of": "2026-11-10",
+  "as_of": "2026-11-13",
   "ntm": {
-   "eps": 17.65,
-   "ebitda": 16928647292,
-   "ebit": 15917000000,
-   "revenue": 44450000000,
-   "rev_ttm": 30837000000
+   "eps": 18.84999,
+   "ebitda": 17733330484,
+   "ebit": 17000000000,
+   "revenue": 46700000001,
+   "rev_ttm": 34446000000
   },
   "horizons": {
    "2": {
-    "eps": 20.24841,
-    "ebitda": 18989757295,
+    "eps": 23.4,
+    "ebitda": 21971363173,
     "ext": 0
    },
    "3": {
-    "eps": 23.535627608695652,
-    "ebitda": 22261351026.759445,
-    "ext": 3
+    "eps": 26.90001,
+    "ebitda": 24951664674,
+    "ext": 0
    }
   },
   "guided": {
-   "eps": false,
+   "eps": true,
    "ebitda": false
   },
   "src": {
@@ -315,18 +346,6 @@
    }
   ],
   "ev_ebitda_fwd": [
-   {
-    "date": "2023-12-29",
-    "value": 17.95
-   },
-   {
-    "date": "2024-01-31",
-    "value": 18.36
-   },
-   {
-    "date": "2024-02-29",
-    "value": 21.36
-   },
    {
     "date": "2024-03-28",
     "value": 21.42
@@ -1111,48 +1130,6 @@
   },
   "surprise": [
    {
-    "period": "2025Q4",
-    "report_date": "2025-10-26",
-    "metric": "매출",
-    "unit": "M$",
-    "actual": 6800,
-    "est": 6683.643,
-    "est_src": "yfinance",
-    "est_asof": null,
-    "basis": "gaap",
-    "earnings_date": "2025-11-13",
-    "pair": {
-     "zacks": 6698.026
-    }
-   },
-   {
-    "period": "2025Q4",
-    "report_date": "2025-10-26",
-    "metric": "EPS",
-    "unit": "$",
-    "actual": 2.17,
-    "est": 2.112,
-    "est_src": "yfinance",
-    "est_asof": null,
-    "basis": "adjusted",
-    "earnings_date": "2025-11-13",
-    "pair": {
-     "zacks": 2.112
-    }
-   },
-   {
-    "period": "2025Q4",
-    "report_date": "2025-10-26",
-    "metric": "EBIT",
-    "unit": "M$",
-    "actual": 1947,
-    "est": 1888.558,
-    "est_src": "zacks",
-    "est_asof": "2025-11-11",
-    "basis": "adjusted",
-    "earnings_date": "2025-11-13"
-   },
-   {
     "period": "2026Q1",
     "report_date": "2026-01-25",
     "metric": "매출",
@@ -1200,8 +1177,8 @@
     "metric": "매출",
     "unit": "M$",
     "actual": 7910,
-    "est": 7683.266,
-    "est_src": "yfinance",
+    "est": 7680.0,
+    "est_src": "easyconomics",
     "est_asof": null,
     "basis": "gaap",
     "earnings_date": "2026-05-14",
@@ -1216,7 +1193,7 @@
     "unit": "$",
     "actual": 2.86,
     "est": 2.68,
-    "est_src": "yfinance",
+    "est_src": "easyconomics",
     "est_asof": null,
     "basis": "adjusted",
     "earnings_date": "2026-05-14",
@@ -1242,8 +1219,8 @@
     "metric": "매출",
     "unit": "M$",
     "actual": 9115,
-    "est": 8994.978,
-    "est_src": "yfinance",
+    "est": 8990.0,
+    "est_src": "easyconomics",
     "est_asof": null,
     "basis": "gaap",
     "earnings_date": "2026-08-13",
@@ -1257,8 +1234,8 @@
     "metric": "EPS",
     "unit": "$",
     "actual": 3.5,
-    "est": 3.403,
-    "est_src": "yfinance",
+    "est": 3.4,
+    "est_src": "easyconomics",
     "est_asof": null,
     "basis": "adjusted",
     "earnings_date": "2026-08-13",
@@ -1277,17 +1254,53 @@
     "est_asof": "2026-08-11",
     "basis": "adjusted",
     "earnings_date": "2026-08-13"
+   },
+   {
+    "period": "2026Q4",
+    "report_date": "2026-10-25",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 10409,
+    "est": 10450,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-11-05",
+    "basis": "gaap",
+    "earnings_date": "2026-11-12"
+   },
+   {
+    "period": "2026Q4",
+    "report_date": "2026-10-25",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 4.16,
+    "est": 4.15,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-11-05",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-12"
+   },
+   {
+    "period": "2026Q4",
+    "report_date": "2026-10-25",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 3676,
+    "est": 3687,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-11-05",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-12"
    }
   ],
   "rev": {
-   "FY2026": 34.487,
-   "FY2027": 46.0,
-   "FY2028": 51.0
+   "FY2027": 46.7,
+   "FY2028": 55.0,
+   "FY2029": 61.0
   },
   "ebit_margin": {
-   "FY2026": 0.331,
-   "FY2027": 0.362,
-   "FY2028": 0.372
+   "FY2027": 0.364,
+   "FY2028": 0.38,
+   "FY2029": 0.39
   },
   "rev_basis": "gaap",
   "margin_basis": "non_gaap",
@@ -1304,19 +1317,19 @@
    "eps": 0.126
   },
   "quarters_est": {
-   "2026Q4": 10.45,
-   "2027Q1": 11.0,
-   "2027Q2": 11.3,
-   "2027Q3": 11.7
+   "2027Q1": 11.286,
+   "2027Q2": 11.372,
+   "2027Q3": 11.771,
+   "2027Q4": 12.27
   },
   "eps_quarters_est": {
-   "2026Q4": 4.15,
-   "2027Q1": 4.25,
-   "2027Q2": 4.51,
-   "2027Q3": 4.74
+   "2027Q1": 4.48,
+   "2027Q2": 4.53,
+   "2027Q3": 4.78,
+   "2027Q4": 5.06
   },
-  "quarters_est_note": "달력 분기 표기(2026Q4 = FY26 4Q, 8~10월). Fiscal 자체 추정(11/5). Zacks 대조: 4Q 매출 $10.295B·EPS $4.06, FY27 매출 $45.65B·EPS $18.28(14명) — 4Q 회사 가이던스 중간 $10.25B·$4.02보다 높다",
-  "note": "FY(10월 결산) 매출·조정 EBIT = Fiscal 자체 추정(11/5): FY26 $34.49B·$11.43B, FY27 $46.0B·$16.67B, FY28 $51.0B·$18.97B. Zacks FY27 $45.65B·EPS $18.28, FY28 $53.64B·EPS $23.40. 이익률은 조정(non-GAAP) — SBC 2.3%는 엔진이 뺀다",
+  "quarters_est_note": "회계 분기 표기(2027Q1 = FY27 1Q, 11~1월, 14주). Fiscal 자체 추정(11/14, 발표 뒤 갱신). 1Q 회사 가이던스 중간 $11.1B·$4.35보다 높다 — 발표 뒤 상향",
+  "note": "FY(10월 결산) 매출·조정 EBIT = Fiscal 자체 추정(11/14): FY27 $46.7B·$17.0B(EPS $18.85), FY28 $55.0B·$20.9B(EPS $23.40), FY29 $61.0B·$23.8B. FY26 실적 $34.446B·조정 EBIT $11.42B. Zacks 이력은 발표 뒤 수정 미반영(11/13 기준). 이익률은 조정(non-GAAP) — SBC 2.1%는 엔진이 뺀다 FY26은 끝난 해라 연도 컨센서스에서 빼고 FY27(진행 중)을 당해로 둔다. 최저·최고 추정(FY27 $40~52B·FY28 $38~62B)은 발표 전 Zacks 값 — 발표 뒤 갱신 전",
   "ratings": {
    "strong_buy": 26,
    "buy": 3,
@@ -1329,44 +1342,45 @@
    "target_low": 452,
    "target_high": 900,
    "target_n": 33,
-   "source": "Fiscal.ai company_analyst_ratings(가격 목표 11/10). yfinance 대조: 매수 36·보유 5·매도 0, 목표 평균 $643.26. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+   "source": "Fiscal.ai company_analyst_ratings(가격 목표 11/12). yfinance 대조: 매수 36·보유 5·매도 0, 목표 평균 $583.88(범위 $430~900). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
   },
   "revisions": {
    "from_date": "2026-07-10",
-   "to_date": "2026-10-15",
+   "to_date": "2026-11-14",
    "from_label": "3Q 콜 전 컨센서스",
-   "source": "company_analyst_estimates history — 3Q 콜(8/13) 전 마지막 값 vs 최근 값, 같은 달력 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "source": "3Q 콜(8/13) 전 값(company_analyst_estimates history 7/10, Zacks) vs 지금(Fiscal 자체 추정 11/14, 4Q 발표 뒤), 같은 회계 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
    "rows": [
-    {
-     "period": "2026Q4",
-     "metric": "EPS",
-     "from": 3.518,
-     "to": 4.062
-    },
     {
      "period": "2027Q1",
      "metric": "EPS",
      "from": 3.585,
-     "to": 4.178
+     "to": 4.48
     },
     {
      "period": "2027Q2",
      "metric": "EPS",
      "from": 3.831,
-     "to": 4.385
+     "to": 4.53
     },
     {
      "period": "2027Q3",
      "metric": "EPS",
      "from": 4.198,
-     "to": 4.694
+     "to": 4.78
     }
    ]
   },
   "price_window": {
    "from": 534.54,
-   "to": 372.53,
-   "note": "3Q 콜(8/13 장 마감 뒤) 당일 종가 → 11/10 종가(4Q 발표 전)"
+   "to": 370.5,
+   "note": "3Q 콜(8/13 장 마감 뒤) 당일 종가 → 11/13 종가(4Q 발표 다음 날)"
+  },
+  "surprise_note": "4Q FY26: 매출 $10.409B(발표 전 컨센서스 $10.30~10.45B), 조정 EPS $4.16($4.06~4.15)",
+  "fy2026_actual": {
+   "rev": 34.446,
+   "ebit_adj": 11.42,
+   "eps_adj": 12.89,
+   "source": "EX-99.1 2026-11-12"
   }
  },
  "peers_basis": "ntm",
@@ -1384,8 +1398,8 @@
    "growth": 0.417,
    "goodwill": null,
    "intangibles": null,
-   "pe_fwd": 21.85,
-   "ev_ebitda_fwd": 17.45,
+   "pe_fwd": 22.21,
+   "ev_ebitda_fwd": 17.74,
    "hist_q": [
     {
      "date": "2025-12-31",
@@ -1408,10 +1422,10 @@
      "ev_ebitda_fwd": 27.25
     }
    ],
-   "pe_fwd2": 18.79,
-   "ev_ebitda_fwd2": 14.82,
-   "pe_fwd3": 18.26,
-   "ev_ebitda_fwd3": 14.54,
+   "pe_fwd2": 19.1,
+   "ev_ebitda_fwd2": 15.06,
+   "pe_fwd3": 18.56,
+   "ev_ebitda_fwd3": 14.78,
    "ntm_ebit_margin": 0.3993,
    "ntm_growth": 0.4154
   },
@@ -1427,8 +1441,8 @@
    "growth": 0.158,
    "goodwill": 1.79,
    "intangibles": 0.21,
-   "pe_fwd": 23.18,
-   "ev_ebitda_fwd": 18.97,
+   "pe_fwd": 23.09,
+   "ev_ebitda_fwd": 18.9,
    "hist_q": [
     {
      "date": "2025-12-31",
@@ -1451,10 +1465,10 @@
      "ev_ebitda_fwd": 26.88
     }
    ],
-   "pe_fwd2": 20.25,
-   "ev_ebitda_fwd2": 16.3,
-   "pe_fwd3": 18.41,
-   "ev_ebitda_fwd3": 15.1,
+   "pe_fwd2": 20.17,
+   "ev_ebitda_fwd2": 16.24,
+   "pe_fwd3": 18.34,
+   "ev_ebitda_fwd3": 15.05,
    "ntm_ebit_margin": 0.4684,
    "ntm_growth": 0.4369
   },
@@ -1471,8 +1485,8 @@
    "goodwill": 4.59,
    "intangibles": 0.58,
    "currency": "EUR",
-   "pe_fwd": 24.34,
-   "ev_ebitda_fwd": 19.17,
+   "pe_fwd": 24.4,
+   "ev_ebitda_fwd": 19.22,
    "hist_q": [
     {
      "date": "2025-12-31",
@@ -1495,10 +1509,10 @@
      "ev_ebitda_fwd": null
     }
    ],
-   "pe_fwd2": 21.63,
-   "ev_ebitda_fwd2": 17.26,
-   "pe_fwd3": 15.82,
-   "ev_ebitda_fwd3": 12.86,
+   "pe_fwd2": 21.69,
+   "ev_ebitda_fwd2": 17.3,
+   "pe_fwd3": 15.85,
+   "ev_ebitda_fwd3": 12.89,
    "ntm_ebit_margin": 0.4547,
    "ntm_growth": 0.4156
   },
@@ -1514,8 +1528,8 @@
    "growth": 0.309,
    "goodwill": 0.63,
    "intangibles": 0.24,
-   "pe_fwd": 15.83,
-   "ev_ebitda_fwd": 15.45,
+   "pe_fwd": 16.31,
+   "ev_ebitda_fwd": 15.91,
    "hist_q": [
     {
      "date": "2025-12-31",
@@ -1538,204 +1552,215 @@
      "ev_ebitda_fwd": 22.34
     }
    ],
-   "pe_fwd2": 13.43,
-   "ev_ebitda_fwd2": 13.07,
-   "pe_fwd3": 11.33,
-   "ev_ebitda_fwd3": 11.35,
+   "pe_fwd2": 13.84,
+   "ev_ebitda_fwd2": 13.46,
+   "pe_fwd3": 11.67,
+   "ev_ebitda_fwd3": 11.68,
    "ntm_ebit_margin": 0.3537,
    "ntm_growth": 0.5172
   }
  ],
  "main_metric": "eps",
- "main_metric_why": "회사가 조정 EPS로 가이던스를 내고(4Q $4.02±$0.20), 감가상각이 선행 EBITDA의 약 6%뿐이라 P/E가 기준이다",
+ "main_metric_why": "회사가 조정 EPS로 가이던스를 내고(1Q FY27 $4.35±$0.20), 감가상각이 선행 EBITDA의 약 3%뿐이라 P/E가 기준이다",
  "sbc_pct_rev": 0.023,
  "guidance": {
   "rev_basis": "gaap",
   "margin_basis": "non_gaap",
-  "rev_fy0": [
-   33.787,
-   34.787
-  ],
-  "ebit_margin_fy0": 0.33,
   "next": {
-   "period": "4Q26",
-   "rev": 10250,
-   "rev_cons": 10450,
-   "eps": 4.02,
-   "eps_cons": 4.15,
+   "period": "1Q27",
+   "rev": 11100,
+   "rev_cons": 11000,
+   "eps": 4.35,
+   "eps_cons": 4.25,
    "unit": "$M",
-   "basis": "4Q FY26(8~10월) 회사 가이던스 중간값 — 매출 $10.25B±$0.5B, 조정 EPS $4.02±$0.20, 총이익률 약 50.4%, 영업비용 약 $1.58B. 컨센서스는 Fiscal 자체 추정(Zacks $10.295B·$4.06)"
+   "basis": "1Q FY27(11~1월, 14주) 회사 가이던스 중간값 — 매출 $11.1B±$0.5B(+58% YoY), 조정 EPS $4.35±$0.20(+83%), 장비 약 $8.7B·AGS 약 $2.0B·기타 약 $0.4B, 총이익률 약 50.8%, 영업비용 약 $1.7B, 세율 약 13%. 컨센서스는 발표 전(11/5) 값 — 발표 뒤 매출 $11.29B·EPS $4.48로 올랐다"
   },
-  "long_term": "회사는 2026년(달력) 반도체 장비 매출 성장을 '30%를 크게 넘는다'고 올렸고(8월), 10/13 투자자 행사에서 2030년 조정 총이익률 약 54%·영업이익률 40%와 WFE 점유 2%p 이상 확대를 제시했다고 보도·커뮤니티가 전한다(회사 자료 원문 미대조). 2027년 세율은 약 13%(글로벌 최저한세)",
-  "source": "3Q FY26 실적 8-K EX-99.1 https://www.sec.gov/Archives/edgar/data/6951/000162828026056699/exhibit991q32026earningsre.htm · 3Q FY26 어닝콜(2026-08-13, 요지)"
+  "long_term": "2027년(달력) WFE 성장 '30% 초과' 첫 숫자 제시, 회사는 WFE보다 빠르게 큰다고 했다. 2025→2030 목표: WFE 점유 2%p 이상 확대, 설치 장비당 서비스 매출 20% 이상, 총이익률 +5%p·영업이익률 +10%p(10월 투자자 행사, 4Q 콜에서 재확인). 2Q FY27 AGS는 1Q 수준, 영업비용은 매출의 약 15%",
+  "source": "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/exhibit991q42026earningsre.htm · 4Q FY26 어닝콜(2026-11-12)",
+  "rev_fy0": [
+   46.0,
+   47.0
+  ],
+  "ebit_margin_fy0": 0.36,
+  "fy0_basis": "FY27(2026-10~2027-10) — 회사는 연간 숫자를 내지 않는다. 1Q 가이던스 $11.1B±$0.5B + 2~4Q 컨센서스($11.37B·$11.77B·$12.27B) = 약 $46.5B±$0.5B. 이익률 = 1Q 가이던스(총이익률 50.8% − 영업비용 $1.7B ÷ $11.1B ≈ 35.5%)와 FY27 컨센서스 36.4% 사이 36%(추정)"
  },
  "call": {
-  "date": "2026-08-13",
-  "prev_date": "2026-05-14",
+  "date": "2026-11-12",
+  "prev_date": "2026-08-13",
   "tone": "up",
-  "tone_delta": 0.5,
+  "tone_delta": 0.3,
   "guidance_direction": "raise",
-  "source": "3Q FY26 어닝콜(2026-08-13, 요지). 직전 = 2Q FY26 어닝콜(2026-05-14, 요지). 4Q FY26 콜은 2026-11-12(미국) 예정 — 전문 게시 뒤 재발행 대상",
+  "source": "4Q FY26 어닝콜(2026-11-12) — 직전 = 3Q FY26 어닝콜(2026-08-13)",
   "kpis": {
-   "rev_3q": 9.115,
-   "rev_growth_3q": 0.25,
-   "gm_3q_adj": 0.504,
-   "opm_3q_adj": 0.34,
-   "eps_3q_adj": 3.5,
-   "ss_rev_3q": 7.04,
-   "ss_gm": 0.554,
-   "ags_rev_3q": 1.781,
-   "ags_opm": 0.301,
-   "dram_growth_yoy": 0.52,
-   "china_share": 0.26,
-   "fcf_3q": 2.33,
-   "buyback_3q": 0.44,
-   "dividend_3q": 0.42,
-   "auth_left": 12.8,
-   "guide_rev_4q": 10.25,
-   "guide_eps_4q": 4.02
+   "rev_4q": 10.409,
+   "rev_growth_4q": 0.53,
+   "gm_4q_adj": 0.506,
+   "opm_4q_adj": 0.353,
+   "eps_4q_adj": 4.16,
+   "ss_rev_4q": 7.996,
+   "ss_opm_adj": 0.39,
+   "ags_rev_4q": 1.896,
+   "ags_opm": 0.305,
+   "dram_share_ss": 0.33,
+   "china_share": 0.254,
+   "fcf_4q": 2.616,
+   "buyback_4q": 2.0,
+   "dividend_4q": 0.421,
+   "auth_left": 10.8,
+   "inventory": 6.889,
+   "guide_rev_1q": 11.1,
+   "guide_eps_1q": 4.35,
+   "fy26_rev": 34.446,
+   "fy26_eps_adj": 12.89
   },
   "guidance_changes": [
-   "4Q 매출 $10.25B±$0.5B(+51% YoY)·조정 EPS $4.02 — 실적 전 컨센서스(매출 약 $9.6B대) 위",
-   "2026년 반도체 장비 성장 '30% 초과' → '그보다 높다'(2월 20% 초과 → 5월 30% 초과 → 8월 상향)",
-   "첨단 패키징 2026년 성장 50% 초과 → 70% 초과",
-   "AGS 2026년 20% 초과(장기 10%대 중반)",
-   "공정 진단·제어(PDC) 2026년 50% 초과 성장 — 신규 제시"
+   "1Q 매출 $11.1B±$0.5B(+58% YoY)·조정 EPS $4.35 — 발표 전 컨센서스($11.0B·$4.25) 위",
+   "2026년 반도체 장비 성장 '30%를 넘어 더 높다' → '40% 초과'(1Q 가이던스 중간값 기준)",
+   "2027년 WFE '30% 초과' 첫 숫자 — 회사는 시장보다 빠르게 큰다고 했다",
+   "첨단 패키징 2026년 70% 초과 → 약 90%",
+   "출하 능력: 4Q26 수준 대비 2028년까지 2배, 2030년까지 제조·랩 캐파 2배 이상"
   ],
   "new_topics": [
-   "2028년까지 분기 시스템 출하 능력 2배 — 3Q에 제조·현장 인력 1,500명 이상 채용",
-   "싱가포르 새 제조 센터 가동, 2030년 대비 다음 증설 계획",
-   "일부 고객과 2030년까지 수요 협의(8분기 순환 예측 위)",
-   "EPIC 센터 첫 R&D 장비 반입(8월), Broadcom·SCREEN·UC 버클리 합류 — 협력 11곳"
+   "클라우드 CAPEX 2027년 +50% 이상(회사가 인용한 전망)",
+   "10개 이상 팹·증설 프로젝트가 3분기 연속 추적 목록에 추가 — 상당수 2029~2030년 가동",
+   "공급 병목(pinch points): 1Q 매출이 부품이 다 있었으면 조금 더 높았다",
+   "가장 큰 고객들이 8분기 순환 예측과 더 이른 주문을 준다, 주요 공급사 임원 250명 이상과 캐파 정렬",
+   "EPIC 파트너 4곳 추가(Intel·KIOXIA·Besi·UCLA) — 총 15곳",
+   "4Q 자사주 $2.0B — 8년여 만에 가장 큰 분기 매입"
   ],
   "dropped_topics": [
-   "2Q 콜의 '중국·ICAPS 매출 보합~소폭 증가' → 중국은 2026·2027년 모두 증가로 바뀌었다",
-   "2Q 콜에 나온 화웨이 관련 질문(UBS)이 3Q에는 없었다"
+   "3Q 콜의 '4Q 총이익률 보합·램프 비용' 우려 → 4Q 50.6%로 상승, 1Q 50.8% 가이던스",
+   "중국 '2026·2027년 모두 증가' 강조 → 2027년 ICAPS 성장은 비중국이 훨씬 빠르다로 무게가 옮겨졌다"
   ],
   "analyst_focus": [
-   "Cantor·UBS — 2026년 장비 성장률을 숫자로 달라(12월 분기 감속 여부)",
-   "BofA·Bernstein — 총이익률(경쟁사와의 차이, 램프 비용 지속 기간)",
-   "TD Cowen — 2030년 가시성이 기술 협의인지 물량인지",
-   "JPMorgan — ICAPS·중국, AGS 이익률",
-   "Jefferies — NAND·CAPEX",
-   "Goldman — 2027년 성장 가속 여부",
-   "RBC — 14주 분기 효과"
+   "Cantor — 지난 3개월 수요 변화, 공급사 선급금",
+   "UBS — 1Q 믹스(DRAM), 주가와 펀더멘털 괴리",
+   "BofA — 데이터센터 건설 둔화 시 완충",
+   "Bernstein — 2026 WFE 성장률, 경쟁사가 말한 공급 제약",
+   "Citi — 3D DRAM·4F² 전환, AGS 성장",
+   "TD Cowen — 부품 공급·재고 일수",
+   "JPMorgan — 공정 제어 50%, AGS 이익률",
+   "Goldman — 4~6분기 총이익률 경로, FY27 중국",
+   "Wolfe — 클린룸 제약, 하이브리드 본딩",
+   "Wells Fargo — 패키징 HBM 대 로직",
+   "Deutsche Bank — 2027년 상·하반기 모양"
   ],
   "risks": [
-   "중국 매출 비중 26%(3Q) — 수출통제 강화 시 직접 노출. 9M에 BIS 수출통제 합의금 $253M 인식",
-   "2027년 세율 11% → 13%(글로벌 최저한세)",
-   "4Q 총이익률 50.4% 보합 — 고객 지원 엔지니어 1,000명 이상 추가 등 램프 비용",
+   "클린룸(팹 건물) 가용성이 장비 소화 속도를 정한다 — 회사가 직접 '게이팅 요인'이라 했다",
+   "부품 공급 병목 — 1Q 매출을 소폭 제한, 재고 $6.9B로 '더 갖고 싶다'",
+   "중국 비중 25.4%(4Q) — 수출통제 강화 시 직접 노출",
+   "2027년 세율 약 13%(글로벌 최저한세)",
    "고객 집중 — FY25 두 고객이 매출의 19%·15%(10-K, 이름 미공시)",
-   "데이터센터 건설 속도(부지·전력) — 반도체 팹 증설 일정이 늦어지면 장비 인도가 밀린다(11월 업종 급락의 이유)"
+   "데이터센터 건설 속도(부지·전력) 둔화 시 팹 증설 지연 — BofA 질문의 초점"
   ],
   "deltas": [
    {
     "id": "F1",
     "kind": "업데이트",
-    "item": "2026 장비 성장 전망",
-    "label": "장비 성장 30%↑ 상향",
-    "prior": "2Q 콜: 2026년 반도체 장비 30% 초과",
-    "latest": "3Q 콜: 30%를 넘어 더 높다(숫자 미제시)",
+    "item": "2026 장비 성장",
+    "label": "장비 성장 40%↑",
+    "prior": "3Q 콜: 30%를 넘어 더 높다(숫자 없음)",
+    "latest": "4Q 콜: 40% 초과(1Q 가이던스 중간값 기준)",
     "driver": "growth_start",
-    "shift": 0.03,
-    "confidence": 0.8,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    },
    {
     "id": "F2",
     "kind": "신규",
-    "item": "출하 능력 2배",
-    "label": "2028 출하 능력 2배",
-    "prior": "2Q 콜: 제조 공간 몇 년 사이 2배",
-    "latest": "2028년까지 분기 시스템 출하 2배 준비, 3Q 1,500명 채용",
-    "driver": "growth_end",
-    "shift": 0.01,
-    "confidence": 0.5,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "item": "2027 WFE 전망",
+    "label": "2027 WFE 30%↑",
+    "prior": "3Q 콜: 2027년 숫자 없음(Goldman이 가속 여부 질문)",
+    "latest": "2027년 WFE 30% 초과, 회사는 시장보다 빠르게",
+    "driver": "growth_start",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    },
    {
     "id": "F3",
     "kind": "업데이트",
     "item": "첨단 패키징",
-    "label": "패키징 70%↑",
-    "prior": "2026년 50% 초과",
-    "latest": "2026년 70% 초과",
+    "label": "패키징 약 90%",
+    "prior": "2026년 70% 초과",
+    "latest": "2026년 약 90%, 2027년도 강한 성장",
     "driver": "growth_start",
-    "shift": 0.01,
+    "shift": 0.005,
     "confidence": 0.8,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    },
    {
     "id": "F4",
     "kind": "업데이트",
-    "item": "AGS 성장",
-    "label": "AGS 20%↑",
-    "prior": "장기 10%대 중반, 올해 더 높을 수 있음",
-    "latest": "2026년 20% 초과, 장기 10%대 중반 유지",
-    "driver": "growth_start",
+    "item": "출하 능력",
+    "label": "2028 출하 2배",
+    "prior": "2028년까지 분기 출하 2배 준비",
+    "latest": "4Q26 수준 대비 2028년 2배, 2030년 제조·랩 2배 이상",
+    "driver": "growth_end",
     "shift": 0.005,
-    "confidence": 0.8,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "confidence": 0.5,
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    },
    {
     "id": "F5",
-    "kind": "신규",
-    "item": "공정 진단·제어",
-    "label": "PDC 50%↑",
-    "prior": "언급 없음(MS가 점유율 하락을 지적)",
-    "latest": "2026년 50% 초과 성장, 광학 검사 신제품",
-    "driver": "growth_start",
-    "shift": 0.005,
-    "confidence": 0.8,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "kind": "업데이트",
+    "item": "영업 레버리지",
+    "label": "OPM 35.3% 기록",
+    "prior": "3Q 조정 영업이익률 34.0%",
+    "latest": "4Q 35.3%, 영업비용 비중 15.2%(−4.3%p YoY)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/exhibit991q42026earningsre.htm"
    },
    {
     "id": "F6",
     "kind": "업데이트",
-    "item": "중국",
-    "label": "중국 증가 전환",
-    "prior": "중국·ICAPS 보합~소폭 증가, 비중 24%",
-    "latest": "2026·2027년 증가(28nm 파운드리), 비중 26%",
-    "driver": "growth_start",
-    "shift": 0.005,
-    "confidence": 0.5,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
-   },
-   {
-    "id": "F7",
-    "kind": "업데이트",
     "item": "총이익률",
-    "label": "총이익률 50.4%",
-    "prior": "2Q 50.0%, 3Q 가이던스 50.1%",
-    "latest": "3Q 50.4%(13분기 연속 YoY 상승), 4Q 50.4% 가이던스",
+    "label": "총이익률 50.8%",
+    "prior": "3Q: 4Q 50.4% 보합 가이던스(램프 비용)",
+    "latest": "4Q 50.6%(14분기 연속 YoY 상승), 1Q 50.8% 가이던스",
     "driver": "margin_target",
     "shift": 0.005,
     "confidence": 0.8,
-    "source": "https://www.sec.gov/Archives/edgar/data/6951/000162828026056699/exhibit991q32026earningsre.htm"
+    "source": "https://www.sec.gov/Archives/edgar/data/6951/000162828026073360/exhibit991q42026earningsre.htm"
+   },
+   {
+    "id": "F7",
+    "kind": "부정",
+    "item": "공급 병목",
+    "label": "부품 병목",
+    "prior": "3Q: 출하 능력 확대 중",
+    "latest": "1Q 매출이 부품 병목으로 소폭 제한, 재고 더 필요",
+    "driver": "growth_start",
+    "shift": -0.005,
+    "confidence": 0.8,
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    },
    {
     "id": "F8",
-    "kind": "부정",
-    "item": "램프 비용",
-    "label": "램프 비용·보합 마진",
-    "prior": "2Q: 이익률 상승 경로",
-    "latest": "4Q 총이익률 보합 — 지원 엔지니어 1,000명 이상 추가 비용",
-    "driver": "margin_m0",
-    "shift": -0.003,
+    "kind": "업데이트",
+    "item": "중국",
+    "label": "중국 비중 25%",
+    "prior": "2026·2027년 증가, 비중 26%",
+    "latest": "비중 25.4%, 2027년 ICAPS는 비중국이 더 빠르다",
+    "driver": "growth_start",
+    "shift": 0.0,
     "confidence": 0.8,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    },
    {
     "id": "F9",
     "kind": "반복",
     "item": "수요 가시성",
-    "label": "8분기 가시성",
-    "prior": "2Q: 8분기 순환 예측",
-    "latest": "8분기 + 일부 2030년까지 협의",
+    "label": "2030 예측 협의",
+    "prior": "8분기 + 일부 2030년까지 협의",
+    "latest": "8분기 순환 예측 + 고객과 2030년까지 예측, 프로젝트 3분기 연속 10개↑ 추가",
     "driver": "growth_decay",
     "shift": 0.02,
     "confidence": 0.5,
-    "source": "3Q FY26 어닝콜(2026-08-13, 요지)"
+    "source": "4Q FY26 어닝콜(2026-11-12)"
    }
   ]
  },
@@ -1744,10 +1769,10 @@
   "base": 0.45,
   "bull": 0.25
  },
- "scenario_probs_why": "콜 톤은 상향(가이던스·세부 성장률 모두 올림)이라 규칙은 강세 쪽이지만, 10/1 이후 업종(SOX) −31%와 11/5 하루 −13.6%가 가리키는 위험 — 데이터센터 부지·전력 지연이 팹 증설 일정을 늦출 가능성 — 을 약세 30%로 반영한다. 2028년 클라우드 설비투자 증가율 컨센서스가 +9%로 꺾이는 점(IB 자료 요지)도 사이클 정점 위험이다",
+ "scenario_probs_why": "콜 톤은 상향(1Q 가이던스가 발표 전 컨센서스 위, 2027년 WFE 30% 초과 첫 숫자)이라 규칙은 강세 쪽이다. 그러나 회사 스스로 클린룸·부품 병목이 출하 속도를 정한다고 했고, 10월 이후 업종(SOX) 급락이 가리키는 데이터센터 건설 지연 위험은 그대로라 약세 확률을 깎지 않는다. 실적 다음 날 −2.7%는 좋은 숫자가 이미 가격에 있다는 신호",
  "next_event": {
-  "date": "2026-11-12",
-  "tag": "4Q FY26 실적·어닝콜(미국 장 마감 뒤, 한국 11/13 06시) — 1Q FY27 가이던스(14주 분기)·2027년 장비 성장 숫자가 첫 확인 사건"
+  "date": "2027-02-18",
+  "tag": "1Q FY27 실적·어닝콜(예상 — 회사 미발표) — 14주 분기 $11.1B 가이던스 달성과 2Q 장비 매출 방향이 첫 확인 사건"
  },
  "events": [
   {
@@ -1814,6 +1839,16 @@
    "date": "2026-11-09",
    "tag": "+11.4%($332.72 → $370.55) — 반도체 저가 매수·유가 급락(시황 보도)",
    "kind": "sector"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "4Q FY26 실적(장 마감 뒤) — 매출 $10.41B·조정 EPS $4.16, 1Q 가이던스 $11.1B·$4.35",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-13",
+   "tag": "−2.7%($380.95 → $370.50) — 실적 다음 날, 장중 $352.23까지 밀린 뒤 회복(원인 미확인 — 가이던스가 발표 뒤 컨센서스 수준)",
+   "kind": "earnings"
   }
  ],
  "revision_events": [
@@ -1859,6 +1894,13 @@
    "date": "2026-11-05",
    "kind": "내러티브",
    "tag": "데이터센터 건설 우려 업종 급락 −13.6%"
+  },
+  {
+   "date": "2026-11-12",
+   "kind": "실적",
+   "tag": "4Q FY26 실적·1Q +58% 가이던스, 다음 날 −2.7%",
+   "q": "4Q26",
+   "session": "after"
   }
  ],
  "segments_hist": {
@@ -1928,6 +1970,10 @@
     {
      "period": "2026-07-26",
      "rev": 7040000000.0
+    },
+    {
+     "period": "2026-10-25",
+     "rev": 7996000000.0
     }
    ],
    "AGS(서비스·부품·업그레이드)": [
@@ -1994,6 +2040,10 @@
     {
      "period": "2026-07-26",
      "rev": 1781000000.0
+    },
+    {
+     "period": "2026-10-25",
+     "rev": 1896000000.0
     }
    ],
    "디스플레이·기타": [
@@ -2060,6 +2110,10 @@
     {
      "period": "2026-07-26",
      "rev": 294000000.0
+    },
+    {
+     "period": "2026-10-25",
+     "rev": 517000000.0
     }
    ]
   }
@@ -2821,7 +2875,7 @@
   "conversion_months": 6.5,
   "coverage_next_fy": 0.22,
   "rpo_12m_share": 0.73,
-  "revenue_growth": 0.098,
+  "revenue_growth": 0.214,
   "top_customer_share": 0.19,
   "source": "잔고 $15.0B ÷ FY25 월평균 매출 $2.36B = 6.4개월(10-K, 자체 계산). 다음 연도 커버 = 12개월 안 인식분 약 $10.4B(69%) ÷ FY27 컨센서스 $46.0B ≈ 0.22(시점 차이 1년 — 추정). RPO 73%는 10-Q Note 7"
  },
@@ -2892,20 +2946,20 @@
  },
  "social": {
   "as_of": "2026-11-11",
-  "summary": "6~8월 'AI 메모리 슈퍼사이클 + WFE 랠리' 이야기가 정점(Strong 85~88)이었고, 9~10월은 Moderate(72)로 식었다. 지금은 11/12 실적을 앞두고 공급망 회사들(PDF Solutions·Air Products·KLA·UCTT) 콜에서 장비 수요를 확인하는 '교차 확인' 글이 주류다",
+  "summary": "6~8월 'AI 메모리 슈퍼사이클 + WFE 랠리' 이야기가 정점(Strong 85~88)이었고, 9~10월은 Moderate(72)로 식었다. 4Q 실적 직전(11/11 기준)에는 공급망 회사들(PDF Solutions·Air Products·KLA·UCTT) 콜에서 장비 수요를 확인하는 '교차 확인' 글이 주류다",
   "narratives": [
    {
     "channel": "X",
     "theme": "공급망 회사 실적이 장비 출하 증가를 확인한다(교차 확인)",
     "expectation": "상향",
-    "vs_fact": "미확인(다른 회사 콜 — Applied 1차 자료는 11/12)",
+    "vs_fact": "부분 확인(다른 회사 콜 — Applied 4Q 콜(11/12)은 출하 증가와 함께 부품·클린룸 병목을 말했다)",
     "share": 0.4
    },
    {
     "channel": "X",
     "theme": "2030년 목표: WFE 점유 +2%p, 총이익률 54%·영업이익률 40%, 매출 2배",
     "expectation": "상향",
-    "vs_fact": "미확인(투자자 행사 원문 미대조)",
+    "vs_fact": "일부 확인(4Q 콜: WFE 점유 +2%p 이상, 총이익률 +5%p·영업이익률 +10%p, 장비당 서비스 매출 +20% 이상 — 54%·40%·매출 2배라는 절대 숫자는 회사 원문 미대조)",
     "share": 0.25
    },
    {
@@ -2942,7 +2996,7 @@
  },
  "multiple_view": {
   "adj": -0.05,
-  "why": "−5%. ① 1년 동안 FY27 EPS 컨센서스가 $11.0 → $18.3(+66%)로 올라 사이클 정점에 가까운 이익을 곱한다 ② 중국 비중 26%와 BIS 수출통제 이력 ③ 2028년 클라우드 설비투자 증가율 컨센서스가 +9%로 꺾인다. 반대로 WFE 점유 확대와 AGS 반복 매출은 동종 중앙 근처를 지킨다"
+  "why": "−5%. ① FY27 EPS 컨센서스($18.85)가 FY26 실적 $12.89보다 46% 높아 사이클 정점에 가까운 이익을 곱한다 ② 회사가 직접 말한 클린룸·부품 병목이 출하 속도를 묶는다 ③ 중국 비중 25%와 BIS 수출통제 이력. 반대로 WFE 점유 확대와 AGS 반복 매출(첫 $2B 분기 가이던스)은 동종 중앙 근처를 지킨다"
  },
  "target_view": {
   "adj": 0.0,
@@ -3148,11 +3202,11 @@
    }
   ],
   "lead": {
-   "summary": "Applied의 값은 **AI가 반도체 공정 단계 수를 늘리는 속도**와 **고객이 그 팹을 제때 짓는 속도** 둘에 달렸다. 앞의 것은 숫자로 나왔다 — 3Q 매출 $9.1B(+25%), 4Q 가이던스 $10.25B(+51%), FY27 EPS 컨센서스 $18.3(1년 전 $11.0). 주가는 뒤의 것을 의심한다 — 6/30 종가 고점 $723에서 11/10 $372.53으로 −48%, Fwd 1Y P/E는 21.1배로 내려왔다",
+   "summary": "Applied의 값은 **AI가 반도체 공정 단계 수를 늘리는 속도**와 **고객이 그 팹을 제때 짓는 속도** 둘에 달렸다. 앞의 것은 숫자로 나왔다 — 4Q FY26 매출 $10.41B(+53%), 1Q FY27 가이던스 $11.1B(+58%), 2027년 WFE 30% 초과 전망. 뒤의 것은 회사도 인정했다 — 클린룸이 업계의 장비 소화량을 정하고 부품 병목이 1Q 매출을 조금 눌렀다. 주가는 6/30 종가 고점 $723에서 11/13 $370.50으로 −49%, Fwd 1Y P/E는 19.7배다",
    "value_story": "Applied는 웨이퍼 위에 막을 쌓고(증착), 깎고(식각), 평평하게 하고(CMP), 결정을 키우고(에피), 재는(e-beam) 장비를 가장 넓게 판다. AI 칩은 트랜지스터 구조(GAA)·배선·메모리 적층(HBM)·패키징이 바뀔 때마다 이런 소재공학 단계가 늘어난다. 그래서 WFE가 30% 클 때 Applied의 기회 시장은 더 빨리 큰다는 것이 회사 논리다. 여기에 팹에 깔린 장비가 서비스·부품 매출(AGS, 매출의 약 20%)을 만든다. 돈은 장비 판매(출하 때 인식)와 서비스 계약에서 나오고, 가치 기반 가격으로 총이익률이 50%를 넘었다",
    "premium": {
-    "multiple": "Fwd 1Y P/E 21.1배로 동종 4곳 중앙(약 22.5배)과 비슷하고 지난 3년 자기 범위(15.6~32배) 중간이다. 6월 정점 때 30배를 넘었던 배수가 이익 상향을 따라가지 못하고 압축됐다. Fwd 2Y 18.4배·3Y 15.8배",
-    "eps": "FY27 EPS 컨센서스가 1년 동안 $11.0 → $18.3(+66%), 3Q 콜 뒤에만 +12.6% 올랐다. 이익이 오르는 동안 주가는 콜 당일 종가 $534.54에서 −30% 내려 배수 몫이 −38%였다"
+    "multiple": "Fwd 1Y P/E 19.7배로 동종 4곳 중앙(약 22.6배)보다 낮고 지난 3년 자기 범위(15.6~51배) 아래쪽이다. 6월 정점 때 30배를 넘었던 배수가 이익 상향을 따라가지 못하고 압축됐다. Fwd 2Y 15.8배·3Y 13.8배",
+    "eps": "1Q FY27 EPS 컨센서스가 3Q 콜 전 $3.59에서 지금 $4.48로 25% 올랐다(4Q 발표 뒤 갱신 포함). 같은 기간 주가는 3Q 콜 당일 종가 $534.54에서 $370.50으로 −31% — 배수 몫이 약 −45%다"
    },
    "why_excited": "열광은 6월이었다 — 5/29 $450에서 6/30 종가 $723까지 한 달 +61%. 메모리 슈퍼사이클과 고객 팹 증설 소식, 'AI 칩 수요가 장비로 번진다'는 이야기에 업종 전체가 올랐다. 식은 이유는 두 번이다 — 7월 초 차익 실현(7/1 −10%), 그리고 10월 이후 '돈과 전력이 데이터센터 일정을 막는다'는 공포(10/1 이후 SOX −31%, 11/5 하루 −13.6%). 회사 숫자가 나빠진 사건은 없었다",
    "products": [
@@ -3319,7 +3373,7 @@
      "lens": "CAPEX 낙수효과",
      "drives": "revision",
      "status": "확인",
-     "change": "하이퍼스케일러 AI 설비투자 → 칩 수요 → 고객 팹 증설(3Q에만 신규 팹 프로젝트 10개 이상) → 장비. 금지표대로 고객 CAPEX를 Applied 매출로 바로 옮기지 않고 회사 가이던스·잔고로 확인한다 — 4Q 가이던스 +51%",
+     "change": "하이퍼스케일러 AI 설비투자 → 칩 수요 → 고객 팹 증설(3Q에만 신규 팹 프로젝트 10개 이상) → 장비. 금지표대로 고객 CAPEX를 Applied 매출로 바로 옮기지 않고 회사 가이던스·잔고로 확인한다 — 1Q FY27 가이던스 +58%",
      "evidence": "3Q 콜",
      "falsifier": "고객이 2027년 설비투자를 낮춘다(TSMC·삼성·SK하이닉스·Micron 1월 가이던스)"
     }
@@ -3369,53 +3423,53 @@
   "panel": [
    {
     "seat": "Strong Buy",
-    "thesis": "이익은 1년에 66% 올랐는데 배수는 30배대에서 21배로 내려왔다 — 수요가 아니라 공포를 할인 중이다",
+    "thesis": "이익은 계속 오르는데 배수는 30배대에서 20배 아래로 내려왔다 — 수요가 아니라 공포를 할인 중이다",
     "evidence": [
-     "FY27 EPS 컨센서스 $11.0 → $18.3",
-     "Fwd 1Y P/E 21.1배",
-     "4Q 가이던스 +51%"
+     "1Q FY27 EPS 컨센서스 +25%(3Q 콜 뒤)",
+     "Fwd 1Y P/E 19.7배",
+     "1Q 가이던스 +58%"
     ],
-    "falsifier": "1Q FY27 가이던스가 4Q보다 낮다"
+    "falsifier": "2Q 장비 매출 가이던스가 1Q보다 낮다"
    },
    {
     "seat": "Buy",
-    "thesis": "선단 로직·D램·패키징 세 곳 모두 1위라 WFE보다 빨리 큰다 — 사이클이 길어진다",
+    "thesis": "선단 로직·D램·패키징 세 곳 모두 1위라 WFE보다 빨리 큰다 — 2027년 WFE 30% 초과가 그 바닥이다",
     "evidence": [
-     "DRAM +52% YoY",
-     "패키징 2026년 70%↑",
-     "AGS +22%"
+     "4Q 장비 매출 +64%",
+     "패키징 2026년 약 90%",
+     "AGS 첫 $2B 분기"
     ],
-    "falsifier": "2027년 장비 성장 숫자가 20% 아래"
+    "falsifier": "고객 2027년 설비투자 합이 30% 아래"
    },
    {
     "seat": "Neutral",
-    "thesis": "숫자는 좋지만 다음 확인은 11/12 하루다 — 가를 자료는 2027년 장비 성장 숫자와 1Q 가이던스",
+    "thesis": "숫자는 좋지만 회사가 스스로 병목을 말했다 — 2027년의 크기는 클린룸이 정하고, 그것은 1월 고객 가이던스에서 처음 보인다",
     "evidence": [
-     "8분기 예측은 확정 주문 아님",
-     "4Q 총이익률 보합 50.4%",
-     "중국 26%"
+     "클린룸이 게이팅 요인(4Q 콜)",
+     "1Q 매출 병목으로 소폭 제한",
+     "실적 다음 날 −2.7%"
     ],
-    "falsifier": "4Q 콜에서 2027년 성장 숫자가 2026년 이상"
+    "falsifier": "1월 고객 설비투자가 30% 넘게 늘어난다"
    },
    {
     "seat": "Sell",
-    "thesis": "장비 사이클 정점의 이익에 동종 수준 배수를 주면 비싸다 — 2028년 고객 설비투자 증가율이 꺾인다",
+    "thesis": "장비 사이클 정점의 이익에 배수를 주면 비싸다 — 2028년 고객 설비투자 증가율이 꺾인다",
     "evidence": [
-     "2028 클라우드 CAPEX 증가율 컨센서스 +9%",
-     "1년 EPS +66%",
-     "Fwd 3Y P/E 15.8배"
+     "FY27 EPS +46% 전망",
+     "2028 클라우드 CAPEX 증가율 둔화 전망",
+     "Fwd 3Y P/E 13.8배"
     ],
     "falsifier": "2028년 WFE 컨센서스가 2027년 위로 올라간다"
    },
    {
     "seat": "Strong Sell",
-    "thesis": "팹을 짓는 속도가 막혔다 — 데이터센터 부지·전력이 늦으면 장비 인도가 밀리고 가이던스가 처음으로 꺾인다",
+    "thesis": "팹을 짓는 속도가 막혔다 — 데이터센터 부지·전력과 클린룸이 늦으면 장비 인도가 밀린다",
     "evidence": [
-     "SOX 10/1 이후 −31%",
+     "SOX 10/1 이후 급락",
      "11/5 −13.6%",
      "BIS 합의금 $253M"
     ],
-    "falsifier": "고객 2027년 설비투자 가이던스(1월)가 늘어난다"
+    "falsifier": "2Q 가이던스가 1Q보다 높다"
    }
   ],
   "rounds": [
@@ -3424,23 +3478,23 @@
     "remarks": [
      {
       "seat": "Strong Buy",
-      "text": "콜 뒤 석 달 동안 FY27 EPS 추정은 +12.6%, 주가는 −30%다. 배수 몫이 약 −38%다"
+      "text": "3Q 콜 뒤 1Q FY27 EPS 추정은 +25%, 주가는 −31%다. 배수 몫이 약 −45%다"
      },
      {
       "seat": "Buy",
-      "text": "D램 매출이 1년에 52% 늘었다. 4Q에는 장비만 +62%를 가이던스로 냈다"
+      "text": "4Q 장비 매출이 1년에 64% 늘었다. 2027년 WFE 30% 초과라는 첫 숫자도 나왔다"
      },
      {
       "seat": "Neutral",
-      "text": "8분기 예측은 주문이 아니다. 확인할 숫자는 11/12에 나온다"
+      "text": "회사가 클린룸을 게이팅 요인이라고 했다. 2027년의 크기는 고객 건물이 정한다"
      },
      {
       "seat": "Sell",
-      "text": "장비주는 이익 정점에서 싸 보인다. Fwd 3Y 15.8배가 그 신호다"
+      "text": "장비주는 이익 정점에서 싸 보인다. Fwd 3Y 13.8배가 그 신호다"
      },
      {
       "seat": "Strong Sell",
-      "text": "11/5 하루 −13.6%는 회사 공시 없이 일어났다. 시장은 고객의 건설 일정을 의심한다"
+      "text": "좋은 실적 다음 날에도 −2.7%다. 시장은 고객의 건설 일정을 의심한다"
      }
     ]
    },
@@ -3450,27 +3504,27 @@
      {
       "seat": "Strong Buy",
       "to": "Strong Sell",
-      "text": "건설 지연은 데이터센터 얘기다. 팹 클린룸은 3Q에만 신규 프로젝트 10개 이상이 발표됐다"
+      "text": "2027년에만 20개 넘는 팹 램프가 추적 목록에 있다. 프로젝트가 3분기 연속 10개 이상 늘었다"
      },
      {
       "seat": "Strong Sell",
       "to": "Strong Buy",
-      "text": "팹 칩의 최종 수요가 데이터센터다. 칩이 늦게 깔리면 팹 램프도 늦어진다"
+      "text": "추적 목록은 계획이다. 상당수가 2029~2030년 가동이라 당장 매출이 아니다"
      },
      {
       "seat": "Sell",
       "to": "Buy",
-      "text": "점유 확대는 목표다. 2Q 콜에서 공정 제어 점유 하락을 질문받았다"
+      "text": "30% 초과는 WFE 전망이지 Applied 주문이 아니다"
      },
      {
       "seat": "Buy",
       "to": "Sell",
-      "text": "그 다음 분기에 PDC를 2026년 50% 이상 성장으로 제시했다"
+      "text": "고객이 8분기 순환 예측과 더 이른 주문을 준다고 했다. 1Q 장비 $8.7B로 +69%다"
      },
      {
       "seat": "Neutral",
       "to": "Strong Buy",
-      "text": "배수 압축의 원인이 공포인지 정점 할인인지는 아직 가를 자료가 없다"
+      "text": "배수 압축이 공포인지 정점 할인인지 가를 자료는 1월 고객 가이던스다"
      }
     ]
    },
@@ -3480,7 +3534,7 @@
      {
       "seat": "Strong Buy",
       "to": "Sell",
-      "text": "AGS가 매출의 20%고 영업이익률 30%다. 과거 사이클보다 하방이 얕다"
+      "text": "AGS가 1Q $2.0B로 매출의 18%고 영업이익률 30%다. 과거 사이클보다 하방이 얕다"
      },
      {
       "seat": "Sell",
@@ -3490,17 +3544,17 @@
      {
       "seat": "Strong Sell",
       "to": "Buy",
-      "text": "중국 26%는 규칙 하나로 줄어든다. 합의금 $253M이 그 이력이다"
+      "text": "중국 25%는 규칙 하나로 줄어든다. 합의금 $253M이 그 이력이다"
      },
      {
       "seat": "Buy",
       "to": "Strong Sell",
-      "text": "회사는 중국이 2026·2027년 모두 는다고 했다. 28nm 성숙 공정이다"
+      "text": "2027년 ICAPS 성장은 비중국이 더 빠르다고 회사가 말했다. 중국 비중은 자연히 낮아진다"
      },
      {
       "seat": "Neutral",
       "to": "Sell",
-      "text": "정점 논리를 가를 자료는 2027년 WFE 성장 숫자다 — 4Q 콜과 1월 고객 가이던스"
+      "text": "정점 논리는 2028년 WFE 방향으로만 가릴 수 있다 — 지금은 자료가 없다"
      }
     ]
    },
@@ -3509,15 +3563,16 @@
     "remarks": [
      {
       "seat": "Strong Buy",
-      "text": "이익과 배수의 괴리는 크다. 등급을 지킨다"
+      "text": "이익과 배수의 괴리는 크다. 다만 병목 발언은 무시하지 않는다. Buy로 물러선다",
+      "moved": "Buy"
      },
      {
       "seat": "Buy",
-      "text": "세 성장 축이 모두 1위라는 점은 지킨다. 다만 배수 정상화는 11/12 숫자가 먼저다"
+      "text": "세 성장 축이 모두 1위라는 점은 지킨다"
      },
      {
       "seat": "Neutral",
-      "text": "목표주가가 지금 가격 근처라면 11/12 숫자 전에는 중립이 맞다"
+      "text": "목표주가 업사이드가 한 자릿수라면 1월 고객 숫자 전에는 중립이 맞다"
      },
      {
       "seat": "Sell",
@@ -3541,8 +3596,8 @@
     "Sell": "Neutral",
     "Strong Sell": "Sell"
    },
-   "reason": "이익 상향(FY27 EPS +66%)과 4Q +51% 가이던스는 1차 자료로 확인됐지만, 선정 배수 20.7배로 계산한 목표주가가 지금 가격 근처이고 DCF는 그보다 낮다. 살아남은 반박은 '고객 건설 일정'이며 11/12 2027년 장비 성장 숫자로 가릴 수 있다 — 그 전에는 규칙 등급(Neutral)을 옮길 근거가 없다",
-   "dissent": "Strong Buy 자리는 콜 뒤 석 달 동안 다음 4개 분기 EPS 추정 +14%에 주가 −30%인 괴리가 공포 할인이라는 점을 남겼다"
+   "reason": "4Q 기록 실적과 1Q +58% 가이던스, 2027년 WFE 30% 초과 전망은 1차 자료로 확인됐지만 목표주가 업사이드가 한 자릿수이고 DCF는 지금 가격보다 낮다. 살아남은 반박은 회사가 직접 말한 '클린룸·부품 병목'이며 1월 고객 설비투자 가이던스로 가릴 수 있다 — 그 전에는 규칙 등급(Neutral)을 옮길 근거가 없다",
+   "dissent": "Strong Buy 자리는 3Q 콜 뒤 1Q EPS 추정 +25%에 주가 −31%인 괴리가 공포 할인이라는 점을 남겼다"
   }
  },
  "quarters_hist": {
@@ -4033,7 +4088,312 @@
     "da": null,
     "other": 0,
     "op": 3075000000
+   },
+   {
+    "period": "2026-10-25",
+    "rev": 10409000000,
+    "cogs": 5158000000,
+    "gp": 5251000000,
+    "sga": 468000000,
+    "rd": 1129000000,
+    "da": null,
+    "other": -4000000,
+    "op": 3658000000
    }
+  ]
+ },
+ "assets": {
+  "as_of": "1Q21",
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "note_periods": [
+   "2026-07-26",
+   "2026-04-26"
+  ],
+  "ppe": [
+   {
+    "name": "유형자산 합계(항목 미분해)",
+    "kind": "other",
+    "gross": [
+     9791.0,
+     9345.0
+    ],
+    "accum": [
+     null,
+     null
+    ],
+    "split": false
+   }
+  ],
+  "ppe_accum": [
+   4185.0,
+   4090.0
+  ],
+  "intangibles": [
+   {
+    "name": "영업권",
+    "kind": "goodwill",
+    "gross": [
+     3873.0,
+     3824.0
+    ],
+    "accum": [
+     0,
+     0
+    ],
+    "acquired": true
+   }
+  ],
+  "dep_annual": [
+   {
+    "year": 2025,
+    "dep": 389.0,
+    "amort": 0.0
+   },
+   {
+    "year": 2024,
+    "dep": 346.0,
+    "amort": 0.0
+   }
+  ],
+  "quarters": [
+   {
+    "q": "1Q23",
+    "end": "2023-01-29",
+    "da": 120.0,
+    "ppe_net": 2494.0,
+    "ppe_gross": 5915.0
+   },
+   {
+    "q": "1Q24",
+    "end": "2024-01-28",
+    "da": 91.0,
+    "ppe_net": 2826.0,
+    "ppe_gross": 6536.0
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-01-26",
+    "da": 105.0,
+    "ppe_net": 3563.0,
+    "ppe_gross": 7410.0
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-04-27",
+    "da": 103.0,
+    "ppe_net": 3832.0,
+    "ppe_gross": 7726.0
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-07-27",
+    "da": 113.0,
+    "ppe_net": 4124.0,
+    "ppe_gross": 8111.0
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-10-26",
+    "da": 114.0,
+    "ppe_net": 4610.0,
+    "ppe_gross": 8511.0
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-01-25",
+    "da": 127.0,
+    "ppe_net": 4949.0,
+    "ppe_gross": 8953.0
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-04-26",
+    "da": 135.0,
+    "ppe_net": 5255.0,
+    "ppe_gross": 9345.0
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-07-26",
+    "da": 151.0,
+    "ppe_net": 5606.0,
+    "ppe_gross": 9791.0
+   }
+  ],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기)",
+  "roic": {
+   "periods": [
+    "TTM 1Q21",
+    "TTM 4Q19"
+   ],
+   "rev": [
+    17676.0,
+    14608.0
+   ],
+   "ebit": [
+    4365.0,
+    3350.0
+   ],
+   "acq_amort": [
+    44.0,
+    40.0
+   ],
+   "tax_rate": 0.13,
+   "lease_liab": [
+    249.0,
+    0,
+    null
+   ],
+   "lease_rate": 0.032,
+   "impairment_cum": 462.0,
+   "capital": {
+    "nwc": [
+     1899.0,
+     1687.0,
+     1616.0
+    ],
+    "ppe": [
+     1638.0,
+     1529.0,
+     1407.0
+    ],
+    "rou": [
+     241.0,
+     0.0,
+     0.0
+    ],
+    "goodwill": [
+     3479.0,
+     3399.0,
+     3368.0
+    ],
+    "intangibles": [
+     140.0,
+     156.0,
+     213.0
+    ],
+    "other": [
+     -416.0,
+     102.0,
+     122.0
+    ]
+   },
+   "note": "SEC 공시 데이터 자동 초안 — 운전자본 = 매출채권 + 재고 + 선급 − (매입채무 + 미지급비용 + 선수수익), 현금 제외. 손상 누계는 공시 데이터 수록분"
+  },
+  "intangible_cap": {
+   "rd": [
+    [
+     2007,
+     1142.073
+    ],
+    [
+     2008,
+     1104.122
+    ],
+    [
+     2009,
+     934.0
+    ],
+    [
+     2010,
+     1143.0
+    ],
+    [
+     2011,
+     1118.0
+    ],
+    [
+     2012,
+     1237.0
+    ],
+    [
+     2013,
+     1320.0
+    ],
+    [
+     2014,
+     1428.0
+    ],
+    [
+     2015,
+     1451.0
+    ],
+    [
+     2016,
+     1540.0
+    ],
+    [
+     2017,
+     1781.0
+    ],
+    [
+     2018,
+     2022.0
+    ],
+    [
+     2019,
+     2054.0
+    ],
+    [
+     2020,
+     2234.0
+    ],
+    [
+     2021,
+     2485.0
+    ],
+    [
+     2022,
+     2771.0
+    ],
+    [
+     2023,
+     3102.0
+    ],
+    [
+     2024,
+     3233.0
+    ],
+    [
+     2025,
+     3570.0
+    ]
+   ],
+   "sga": [
+    [
+     2009,
+     735.0
+    ],
+    [
+     2010,
+     942.0
+    ],
+    [
+     2011,
+     901.0
+    ],
+    [
+     2012,
+     1076.0
+    ],
+    [
+     2023,
+     1628.0
+    ],
+    [
+     2024,
+     1797.0
+    ],
+    [
+     2025,
+     1768.0
+    ]
+   ]
+  },
+  "missing": [
+   "유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)",
+   "무형자산 항목(10-K 주석에서 모델이 채움)"
   ]
  }
 }
