@@ -50,7 +50,8 @@ class TestBuild(unittest.TestCase):
         t = pulse_feed.build({"time": "16:24", "items": [], "brief": [{"name": "삼성전기", "code": "009150", "line": "판가 증거는 아직 없음", "link": ["보도", "https://x.example/a"]}],
                               "empty": ["숏 리포트"]})
         self.assertIn("· 삼성전기 009150 — 판가 증거는 아직 없음 [보도](https://x.example/a)", t)
-        self.assertIn("그 외 새 건 없음: 숏 리포트", t)
+        self.assertNotIn("그 외 새 건 없음", t)   # 2026-11-13 마스터 지시 — Pulse 끝 두 줄 삭제
+        self.assertNotIn("투자 권유가 아님", t)
 
     def test_readable_keeps_section_with_its_list(self):
         self.assertIn("**■ 근거**\n· 1~3Q", notify.readable(self.text()))

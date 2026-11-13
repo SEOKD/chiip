@@ -57,8 +57,9 @@ def build(d):
             out.append(RULE)
     if d.get("brief"):
         out += ([RULE] if rows else []) + ["**■ 간단히**\n" + "\n".join(brief_line(b) for b in d["brief"])]
-    foot = ([f"그 외 새 건 없음: {' · '.join(d['empty'])}"] if d.get("empty") else []) + ([ZACKS] if d.get("zacks") else []) + [FOOT]
-    out.append("\n".join(foot))
+    # '그 외 새 건 없음' 줄과 FOOT(1차 판정·투자 권유 아님)는 Pulse에서 뺀다 — 가독성(마스터 지시 2026-11-13). 다른 채널의 면책은 그대로
+    if d.get("zacks"):
+        out.append(ZACKS)
     return "\n\n".join(out)
 
 
