@@ -11,7 +11,8 @@ AI 밸류체인 밖 종목은 '병목·해결 기술·고객 채택(샘플→인
 | 소비재 | `consumer.md` (+ 기존 `knowledge/methods/consumer_lens.md`) | cons_disc·cons_staples·retail·homebuild·media_ent·luxury |
 | 에너지·소재 | `energy.md` | energy·utilities·materials·chemicals·gold·copper·solar |
 | 소프트웨어 | `software.md` | software·cyber·comm |
-방위·원자력·우주는 기존 `config/defense.yaml`·`knowledge/methods/nuclear_space_lens.md`를 쓴다.
+| AI 밸류체인 병목 | `bottleneck.md` (2026-11-14) | AI 밸류체인 섹터(config/sector_map.yaml ai_chain) — Chiip 본래 틀. 발굴 지도 종목의 edge 미판정을 카드로 채운다 |
+방위·원자력·우주는 기존 `config/defense.yaml`·`knowledge/methods/nuclear_space_lens.md`를 쓰되, 판단 카드를 쓸 때는 산업재 틀(수주잔고·납기)을 쓴다 — 금지표 방위 6줄(프레임워크 → 매출 등)을 함께 확인.
 
 ## 판단 카드 — `knowledge/models/discovery/lens_cards/<id>.yaml`
 ```yaml

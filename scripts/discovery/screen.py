@@ -129,6 +129,23 @@ def rotation_rows(fund, att, tv, caps, quiet, w, have):
     return out
 
 
+def _cards():
+    """{id: edge} — knowledge/models/discovery/lens_cards(sector_rotation.card_check 통과·90일 안)"""
+    try:
+        import sector_rotation
+        return sector_rotation.cards()
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def card_queue(rows, n=6):
+    """판단 카드가 필요한 상위 아이디어 — edge 미판정(5)·카드 없음·성장 자료 있음·점수 5 이상, 점수순. 회차마다 1~2개씩 카드를 쓴다"""
+    have = set(_cards())
+    q = [r for r in rows if r["stage"] == "① 아이디어" and r["comp"].get("edge") == 5 and r["id"] not in have and (r["score"] or 0) >= 5.0
+         and "growth" not in (r.get("missing") or [])]
+    return q[:n]
+
+
 def _diverse(rows, n):
     """점수순 n개 — AI 밖 최소 비율·같은 섹터 상한(config/sector_map.yaml quota). 섹터 지도를 못 읽으면 점수순 그대로"""
     try:
@@ -150,8 +167,11 @@ def run(today=None):
     w = cfg.get("scoring") or {}
     quiet = {r["id"]: r.get("score") for r in (_j(DISC / "quiet_latest.json") or {}).get("rows") or []}
     rows = []
+    cards = _cards()
     for t in cfg.get("themes") or []:
         for c in t.get("candidates") or []:
+            if c["id"] in cards:   # 판단 카드(검사 통과·90일)가 있으면 그 edge가 지도 값보다 앞선다(2026-11-14 점검, ADR-037)
+                c = {**c, "edge": cards[c["id"]], "why": f"{c.get('why', '')} → 판단 카드 edge {cards[c['id']]:.1f}".replace("— edge 미판정 →", "→")}
             comp = components(c, fund, att, tv, caps, quiet=quiet)
             s, missing = score(comp, w)
             stage = "⑤ 커버리지" if c["id"] in cov else ("② 선별 통과" if s and s >= 6.0 and comp["edge"] >= 6 and c["id"] in fund else "① 아이디어")
@@ -172,6 +192,8 @@ def run(today=None):
         c = r["comp"]
         L.append(f"| {i} | {r['name']} | {r['market']} {r['code']} | {r['theme']} | **{f(r['score'])}** | {f(c['edge'])} | {f(c['growth'])} | {f(c['coverage_gap'])} | "
                  f"{f(c['attention_accel'])} | {f(c['crowding'])} | {f(c['valuation'])} | {f(c['size_fit'])} | {f(c.get('quiet'))} | {r['stage']} | {', '.join(r['missing']) or '-'} |")
+    L += ["", "## 판단 카드 대기열(edge 미판정 상위 — 판단 틀로 카드를 쓰면 선별 통과 후보가 된다)"] + \
+         [f"- {r['id']} {r['name']}({r['market']} {r['code']}) · 점수 {f(r['score'])} · {r['theme']}" for r in card_queue(rows)]
     L += ["", "## 심층 대기열(위원회 메모 작성 대상)"] + [f"- {r['name']}({r['market']} {r['code']}) — {r['why']}" for r in deep] + \
          ["", "점수는 판단 보조(가중치 config/discovery.yaml scoring — 성과로 피팅). 연구 후보이지 매수 권유 아님."]
     path = OUTD / f"{today.strftime('%Y%m%d')}.md"

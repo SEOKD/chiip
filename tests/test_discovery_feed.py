@@ -13,6 +13,13 @@ DOC = {"date": "11/01", "summary": ["신규 편입 없음"],
 
 
 class TestFeed(unittest.TestCase):
+    def setUp(self):   # 양식 시험 — 알파 5점 관문(실제 알파 점수에 따라 바뀐다)은 따로 본다(2026-11-14 점검: 표본 이름이 관문에 걸려 깨지던 문제)
+        self._gate = feed.gate
+        feed.gate = lambda d: dict(d)
+
+    def tearDown(self):
+        feed.gate = self._gate
+
     def test_conclusion_comes_first_with_blank_lines(self):
         s = feed.render(DOC)
         self.assertLess(s.index("이번 회차 결론"), s.index("심층 검토"))
