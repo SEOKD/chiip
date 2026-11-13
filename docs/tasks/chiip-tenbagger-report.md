@@ -80,6 +80,12 @@
    b'. 있으면 a → 데이터 허브를 새로 모은다(`gather.py <id>`, `--reuse` 아님) → datapack 전체를 새 분기 기준으로 고친다: 시세·일봉(TradingView), `financials`·분기 실적(`surprise.js`로 4개 분기), `call`(새 콜 — 톤·KPI·가이던스 변화·새로 꺼낸 말·사라진 말), `guidance`, `consensus`(발표 뒤 수정), 바뀐 `margin`·`supply`·`capacity`·`customers`·`pipeline` → `datapack_check` → `build_drivers` → `v2_to_report.py <id> --merge <그 리포트 json>` → `report_html.py`. 목표주가·등급은 규칙이 다시 계산한다.
    c'. 결론·Chiip View·요약·시나리오를 새 분기로 다시 쓰고, 날짜를 오늘로 고친다. 맨 끝 절 '재발행 기록 — <분기> 실적 업데이트'에 매출·이익·가이던스·등급·목표주가가 전 → 후로 어떻게 바뀌었는지 적는다.
    d'·e'. d·e와 같다(같은 주소, `--reissue`, `--done <stem> <event> "<바뀐 것 한 줄>"`).
+0-2. **알파 상승 갱신**(마스터 지시 2026-11-13, ADR-022): 0-1 다음에 `py scripts/tenbagger/alpha_refresh.py --due`. 하루 1건, 20시 회차(또는 그 회차 pick 결과가 null일 때 `--force-window`)에만 나오고, 이미지 예산이 정기 리포트 몫을 침범하면 `image_ok: false` — 그때는 이미지 없이(BOM·사진 그림 빼고) 쓴다. 나온 건:
+   a. `py scripts/tenbagger/alpha_refresh.py --start <id>` — 이전 판 stem·Artifact·커밋 고정 GitHub 주소를 받는다.
+   b. 정기 리포트와 같은 2~5번 절차로 **새 파일**(오늘 날짜 stem)을 만든다 — 이전 판 json을 `--merge` 하지 않는다(새 자료로 다시 판단). 데이터 허브는 `gather.py <id>`(--reuse 아님).
+   c. `py scripts/tenbagger/alpha_refresh.py --inject <새 json> <id>` — 맨 앞 '갱신 사유' 절(알파 전→후·유지 근거·이전 판 링크·핵심 수치 비교 표). 그 절 아래에 알파를 올린 사건을 모델이 2~3문장으로 덧붙인다(판단 파일 reason 근거).
+   d. 6번 발행 그대로(GitHub + 노션 같은 종목 페이지, 텔레그램은 `send <json> --caption <캡션> --update` — 머리 '[갱신 — 알파 x → y]'), `pick_report --done`.
+   e. `py scripts/tenbagger/alpha_refresh.py --done <id> <새 stem>`. 그다음 1번으로 간다.
 1. 종목 고르기: `py scripts/tenbagger/pick_report.py` → JSON(id·name·ticker·reason). id가 null이면 "오늘 리포트 대상 없음"만 기록하고 끝낸다(텔레그램 없음). 회차마다 다른 종목이다 — 앞 회차가 `--done`으로 기록한 종목은 30일 규칙으로 자동 제외되고, 후보가 바닥나면 스크립트가 알파 5.0 미만 산정 종목, 그다음 7일 지난 종목을 고른다.
 
 1-S. **SPAC 종목은 SPAC 보고서 경로**(마스터 지시 2026-11-03 "SPAC 종목은 SPAC 보고서를 중심으로 분석하도록 해라"): 고른 종목이 스팩이면(config/portfolio.yaml `kind: spac`, 회사명에 Acquisition Corp·Capital Corp·SPAC, 또는 Fiscal.ai 키가 없고 SEC에 S-4/F-4·424B3 합병 위임장이 있음) 2번 이후 양식 3 절차를 쓰지 않는다. 1차 자료는 합병 위임장(S-4·424B3), 주총·환매·종결 8-K, 슈퍼 8-K, PIPE·스폰서 계약이다. datapack `spac`(구조는 `scripts/tenbagger/spac_report.py` 맨 위 — 환매·현금·지분·워런트·언아웃·보호예수·공정성 의견 범위·경영진 전망·동종 EV/매출·현금 소진)을 채우고, 모델 글(`<id>_spac_model.json` — 제목·사업·Chiip View·요약·사업과 제품·수주의 조건·경쟁·약세 논리·다음 확인 사건 절)을 쓴 뒤 `py scripts/tenbagger/spac_report.py <id> <모델 글>`로 만든다. 목표주가·구매 등급은 내지 않는다. 경영진 전망과 공정성 의견은 '경영진 전망'·'평가사 범위'로만 쓰고 컨센서스로 부르지 않는다. 발행(Artifact·노션·텔레그램·`pick_report --done`)은 6번과 같다. 종결 8-K 전이면 주식 수가 확정 전임을 결론에 쓴다.

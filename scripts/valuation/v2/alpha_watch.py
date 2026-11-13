@@ -109,6 +109,14 @@ def _ts(s):
 
 
 EVENT_TYPES = ("실적", "공시", "보도자료")
+# 상대방 쪽 흔적 검색 결과는 그 종목의 1차 자료가 아니다(역방향 신호 S1·S2 — 주장이 아님). 2026-11-13: partner_trace가
+# 'SK하이닉스 + 장비' 검색으로 찾은 Applied Materials 실적 발표 자료를 SK하이닉스 '새 보도자료'로 감지했다.
+COUNTERPARTY_SOURCES = {"src-partner-trace", "src-job-boards", "src-semianalysis-jobs", "src-kr-foreign-hiring"}
+
+
+def own_item(it):
+    """감지 대상 종목 자신의 자료인가 — 상대방 흔적 검색(trace_query)·채용 흔적은 아니다"""
+    return it.get("source_id") not in COUNTERPARTY_SOURCES and not it.get("trace_query")
 
 
 def recent_items(since, now):
@@ -124,19 +132,25 @@ def recent_items(since, now):
             except ValueError:
                 continue
             t = _ts(it.get("saved_at") or it.get("detected_at"))   # 저장 시각 기준(2026-11-01 Pulse와 같은 누락)
-            if t and t > since and it.get("doc_type") in EVENT_TYPES:
+            if t and t > since and it.get("doc_type") in EVENT_TYPES and own_item(it):
                 out.append(it)
     return out
 
 
-def detect(now, st, passed, alerts, events, c, items=None):
-    """{id: [이유...]} 와 P0 포함 종목 집합. items: 실적·공시·보도자료 수집 항목(텔레그램 등급과 무관하게 직접 감지)"""
+def detect(now, st, passed, alerts, events, c, items=None, refs=None):
+    """{id: [이유...]} 와 P0 포함 종목 집합. items: 실적·공시·보도자료 수집 항목(텔레그램 등급과 무관하게 직접 감지).
+    refs(선택): {(id, 이유): 원 항목} — 메시지의 자료별 한 줄 풀이(item_notes)가 쓴다"""
     out, p0 = {}, set()
+    refs = {} if refs is None else refs
     since = _ts(st.get("last_run")) or (now - timedelta(hours=c["lookback_hours"]))
     for it in items or []:
+        if not own_item(it):
+            continue
         for e in it.get("entities_matched") or []:
             if e in passed:
-                out.setdefault(e, []).append(f"{it['doc_type']}: {it.get('title', '')[:90]}")
+                why = f"{it['doc_type']}: {it.get('title', '')[:90]}"
+                out.setdefault(e, []).append(why)
+                refs[(e, why)] = it
     for a in alerts.values():
         t = _ts(a.get("sent_at"))
         if not t or t <= since or a.get("level") not in c["levels"]:
@@ -144,7 +158,10 @@ def detect(now, st, passed, alerts, events, c, items=None):
         for e in a.get("entities") or []:
             if e in passed:
                 what = (a.get("what") or a.get("title") or "").replace("\n", " ")
-                out.setdefault(e, []).append(f"{a['level']} {a.get('doc_type') or ''}: {what[:90]}")
+                why = f"{a['level']} {a.get('doc_type') or ''}: {what[:90]}"
+                out.setdefault(e, []).append(why)
+                refs[(e, why)] = {"item_id": a.get("item_id") or "", "url": a.get("url", ""), "title": a.get("title") or what,
+                                  "source_id": a.get("source_id", ""), "published_at": a.get("sent_at"), "impact": a.get("impact")}
                 if a["level"] == "P0":
                     p0.add(e)
     seen = st.get("alpha_seen")
@@ -236,21 +253,99 @@ def needs_update(eid, reasons, c, today):
     return None
 
 
-def message(r, name, alpha_total, reasons, update_note=None):
+def biz_line(eid):
+    """(기업 설명 1줄, 충분한가). config/company_lines.yaml·방위 지도에 있으면 충분 — 감시 목록 역할·업종 대체('— 경쟁사' 등)는 빈약"""
+    import notify
+    line = notify.company_line([eid]) if eid else None
+    notify.company_line(["_"])   # 캐시 채우기
+    good = bool(eid and (notify._LINES["lines"].get(eid) or notify._LINES["def"].get(eid)))
+    return line, good
+
+
+def reason_label(x):
+    """감지 근거 줄의 머리 — 'P1 보도자료: …' → '보도자료(실시간 알림 P1): …'"""
+    m = re.match(r"(P0|P1) (\S*): (.*)", x)
+    if m:
+        return f"{m[2] or '소식'}(실시간 알림 {m[1]}): {m[3]}"
+    m = re.match(r"알파 ([\d.]+) 기준 진입", x)
+    if m:
+        return f"알파 {m[1]} — 기준 5.0 첫 통과"
+    return x
+
+
+def reason_note(x, name, ref, alpha_row, use_model):
+    """근거 줄 아래 '→ …' 풀이. 자료면 item_notes(본문을 읽고 모델 40자), 알파 진입·실적일은 결정론 문구"""
+    if x.startswith("알파 ") and "기준 진입" in x:
+        return "→ 판단 파일 재산정으로 점수가 기준을 넘었다 — 새 자료가 아니라 점수 변화"
+    m = re.match(r"실적 발표\((.*)\)", x)
+    if m:
+        return f"→ 실적 발표일({m[1]}) — 숫자가 동인(매출·이익 가정)을 바꿀 수 있어 다시 계산"
+    if ref is None:
+        return "→ 본문 미확인 — 제목만 확인"
+    if ref.get("impact"):   # 실시간 알림은 판정 모델이 본문을 읽고 쓴 영향 한 줄이 이미 있다
+        return f"→ {str(ref['impact']).strip()[:70]}"
+    import item_notes
+    return item_notes.note(ref, name, alpha_row, use_model=use_model)
+
+
+def implied_line(u):
+    if u.get("implied_cagr") is None:
+        return "주가 내포 5년 매출 성장: 역산 불가"
+    pct = (u.get("implied_pct") or (None,))[0]
+    head = f"주가 내포 5년 매출 성장 연 {u['implied_cagr']:+.0%}"
+    if pct is None:
+        return head
+    if pct < 50:   # '상위 100%'는 거꾸로 읽힌다(2026-11-13 SK하이닉스)
+        return head + f"(같은 규모 과거 기업의 {100 - pct:.0f}%가 이보다 높게 성장)"
+    return head + f"(같은 규모 과거 기업 상위 {100 - pct:.0f}% 수준)"
+
+
+def narrative_core(eid, today=None, stale_days=30):
+    """내러티브 핵심 한두 문장 — 머리말 summary(없으면 작성 대기 문구)"""
+    p = ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md"
+    fm = front(p.read_text(encoding="utf-8")) if p.exists() else None
+    if not fm:
+        return "내러티브: " + narrative_line(eid, today, stale_days).split(": ", 1)[-1]
+    text = " ".join(re.split(r"(?<=[.다])\s+", str(fm.get("summary") or "").replace("**", "").strip())[:2])
+    as_of = str(fm.get("as_of") or "")
+    try:
+        age = ((today or date.today()) - date.fromisoformat(as_of)).days
+    except ValueError:
+        age = None
+    stale = f" [{as_of}, {age}일 전 — 갱신 필요]" if age is not None and age > stale_days else ""
+    return f"내러티브: {text}{stale}"
+
+
+def coverage_lines(eid, n=3):
+    """IB 목표가·의견 변경 최근 n건(knowledge/models/estimates/ib_actions.csv)"""
+    import ib_actions
+    rows = ib_actions.recent(eid, n)
+    if not rows:
+        return ["최근 커버리지: 기록 없음 — 다음 동인·내러티브 회차가 IB 장부를 채운다"]
+    return ["최근 커버리지"] + [f"· {ib_actions.fmt(x)}" for x in rows]
+
+
+def message(r, name, alpha_total, reasons, update_note=None, refs=None, alpha_row=None, use_model=False, refresh_note=None):
+    """2026-11-13 마스터 지시 축약판: 제목 · ☞ 기업 1줄 · 왜 감지됐나(자료마다 → 풀이) · 연 기대수익·안전마진 · 주가 내포 성장 ·
+    내러티브 핵심 · 최근 커버리지 (+ 리포트 갱신 대기열 등록). 요구수익률 대비·넘을 확률·위험 예산·5년 상방·단계·과밀·＋/－·확인할 것은
+    뺀다 — 밸류 카드(outputs/invest/valuation_v2)·리포트에는 그대로 있다"""
     import decision
-    # 2026-11-11 마스터 지시 "근거는 자세하게 풀이, 매수 매력·위험 예산·상방은 %같은 수치만, 내러티브도 자세히, 마지막 가정 부분은 제외"
+    eid = r.get("entity") or ""
     L = [f"[알파 감지] {name} — 알파 {alpha_total:.1f}" if alpha_total is not None else f"[알파 감지] {name}"]
-    import notify   # 무엇을 하는 회사인지 1줄(2026-11-08 마스터 지시)
-    biz = notify.company_line([r.get("entity") or ""])
+    biz, _ = biz_line(eid)
     L.append(f"☞ {biz}" if biz else "☞ 기업 설명 미확인")
-    L += ["", "왜 감지됐나"] + [f"· {explain_reason(x)}" for x in reasons[:3]]
-    if r.get("decision"):
-        L += [""] + factor_lines(r["decision"])
-    u = r["upside"]
-    if u.get("implied_cagr") is not None:
-        pct = u["implied_pct"][0]
-        L.append(f"주가 내포 5년 매출 성장 연 {u['implied_cagr']:.0%}" + (f"(과거 기업 상위 {100 - pct:.0f}%)" if pct is not None else ""))
-    L += [""] + narrative_block(r.get("entity") or "")
+    L += ["", "왜 감지됐나"]
+    for x in reasons[:3]:
+        L += [f"· {reason_label(x)}", f"  {reason_note(x, name, (refs or {}).get((eid, x)), alpha_row, use_model)}"]
+    L.append("")
+    d = r.get("decision")
+    if d:
+        a = d["attractiveness"]
+        L.append(f"연 기대수익 {a['exp_return']:+.1%}({d['horizon']}년 가치 수렴 가정) · {decision.mos_text(a['margin_of_safety'])}")
+    L.append(implied_line(r.get("upside") or {}))
+    L += ["", narrative_core(eid), ""] + coverage_lines(eid)
+    if refresh_note:
+        L += ["", refresh_note]
     # 끝의 '투자자문 아님'·** 표기 제외(2026-11-12 마스터 지시 — 텔레그램은 일반 글이라 **가 그대로 보인다)
     return "\n".join(L)
 
@@ -312,12 +407,22 @@ def narrative_block(eid, today=None):
     return out
 
 
-def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None):
+def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None, refs=None, alpha_row=None):
     import run as v2run
     r = v2run.evaluate(eid, c_all["decision"]["watch_draws"])
+    biz, good = biz_line(eid)
+    if not good and send:   # '— 경쟁사'처럼 빈약하면 모델 회차가 company_lines.yaml에 제대로 쓰게 한다(2026-11-13 Micron)
+        enqueue(eid, r.get("name") or eid, f"기업 설명 보강 — 현재 '{biz or '없음'}'", "보강")
+    refresh_note = None
+    try:
+        sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+        import alpha_refresh
+        refresh_note = alpha_refresh.alert_line(eid)
+    except Exception as exc:
+        print(f"[리포트 갱신 확인 건너뜀] {eid}: {type(exc).__name__}: {exc}")
     if not (ROOT / "knowledge" / "narratives" / "companies" / f"{eid}.md").exists():   # 내러티브가 없으면 작성 일을 대기열에 올린다(2026-11-07 — 대기만 표시되고 아무도 쓰지 않던 구멍)
         enqueue(eid, r.get("name") or eid, "내러티브 미작성 — 알파 감지 3요인 발송 뒤", "내러티브")
-    text = message(r, r["name"], alpha_total, reasons, update_note)
+    text = message(r, r["name"], alpha_total, reasons, update_note, refs=refs, alpha_row=alpha_row, use_model=send, refresh_note=refresh_note)
     if send:   # 알파 감지 목록에 처음 오르면 리포트 이미지를 일괄로 미리 주문(가격 절반, 마스터 지시 2026-11-08) — 실패해도 알림은 간다
         try:
             sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
@@ -356,8 +461,16 @@ def run(send=True, now=None):
     events = json.loads(up.read_text(encoding="utf-8"))["events"] if up.exists() else []
     since = _ts(st.get("last_run")) or (now - timedelta(hours=c["lookback_hours"]))
     items = recent_items(since, now)
-    found, p0 = detect(now, st, passed, alerts, events, c, items)
+    refs = {}
+    found, p0 = detect(now, st, passed, alerts, events, c, items, refs)
     evaluated = st.get("evaluated", {})
+    if send:
+        try:   # 리포트 갱신 대기열(마스터 지시 2026-11-13, ADR-022) — 알파가 마지막 리포트 때보다 +1.0 이상
+            sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+            import alpha_refresh
+            alpha_refresh.scan(now)
+        except Exception as exc:
+            common.record_health("src-alpha-refresh", False, f"{type(exc).__name__}: {exc}"[:200])
     n_sent = n_q = 0
     # 알파 점수가 없는 감시 종목에 실적·공시가 나오면 점수부터(모델) — 점수가 5 이상이면 그다음 동인·3요인
     import gate_ids
@@ -378,7 +491,7 @@ def run(send=True, now=None):
             n_q += enqueue(eid, name, " / ".join(reasons), "갱신")
             note = "※ 동인이 이번 정보 이전 가정 — 모델이 갱신 후 다시 보냄"
         try:
-            _, sent = evaluate_and_send(eid, reasons, passed.get(eid), send, c_all, note)
+            _, sent = evaluate_and_send(eid, reasons, passed.get(eid), send, c_all, note, refs=refs, alpha_row=rows.get(eid))
             n_sent += bool(sent)
             evaluated[eid] = now.date().isoformat()
         except Exception as exc:
@@ -421,7 +534,7 @@ def main(argv):
         import score as alpha
         passed, rows = alpha.load_latest()
         total = (rows.get(a.entity) or {}).get("total")
-        text, sent = evaluate_and_send(a.entity, [a.reason], total, a.send, cfg())
+        text, sent = evaluate_and_send(a.entity, [a.reason], total, a.send, cfg(), alpha_row=rows.get(a.entity))
         print(text)
         print("발송" if sent else "(발송 안 함)")
         if a.send:   # 대기열에서 처리 완료로 제거 + 오늘 처리함으로 기록(매시간 루프의 같은 날 중복 발송 방지)

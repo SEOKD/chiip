@@ -64,6 +64,8 @@ def simulate(company, wacc, g_term, horizon_year=5, draws=5000, seed=1):
     n = company.get("horizon", 10)
     pc = plus.cfg() if company.get("plus", True) else {}
     cc = pc.get("mc_corr") or {}
+    if company.get("plus", True):   # 경기순환 업종은 피어 마진 이동평균의 흔들림만큼 마진 충격을 넓힌다(2026-11-13 SK하이닉스 −30% 확률 0%)
+        sm = plus.margin_sigma(company, sm, pc)
     med = scenarios._median(company) if company.get("plus", True) else None
     v0, vh, used, dropped, picks = [], [], 0, 0, {}
     for _ in range(draws):

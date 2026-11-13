@@ -67,7 +67,7 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     base = dcf.value(base_d)
     pc = plus.cfg()
     exit_mult, exit_rng, exit_warn = plus.exit_check(base, base_d, co["industry"], pc)   # D5
-    nm, nm_src = plus.normal_margin(co.get("cyclical"))   # D3
+    nm, nm_src = plus.normal_margin(plus.cyclical_spec(co))   # D3
     scen = {}
     for name, sc in co["scenarios"].items():
         d = scenarios.drivers(co, sc, coc["wacc"], g_term)
@@ -92,6 +92,8 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
 def _pct(t):
     if not t or t[0] is None:
         return f"백분위 미산정({t[3] if t else ''})"
+    if t[0] < 50:   # '상위 100%'는 거꾸로 읽힌다(2026-11-13 SK하이닉스 내포 −14%) — 낮은 쪽은 하위로 적는다
+        return f"기저율 하위 {t[0]:.0f}% — 과거 기업의 {100 - t[0]:.0f}%가 이보다 높게 성장 (n={t[1]}, {t[2]})"
     return f"기저율 상위 {100 - t[0]:.0f}% (n={t[1]}, {t[2]})"
 
 

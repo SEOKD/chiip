@@ -47,7 +47,7 @@ def drivers(company, scen, wacc, g_term):
     if company.get("plus", True):
         c = plus.cfg()
         growth = plus.outside_view(growth, _median(company), c)
-        margin = plus.normalize(margin, plus.normal_margin(company.get("cyclical"))[0], c)
+        margin = plus.normalize(margin, plus.normal_margin(plus.cyclical_spec(company, c))[0], c)
         ronic = plus.moat_ronic(wacc, company, c)
     return {"rev0": company["rev0"], "growth": growth, "margin": margin,
             "tax": company["tax"], "s2c": scen.get("s2c", company.get("s2c")), "ic0": company["ic0"], "wacc": wacc,

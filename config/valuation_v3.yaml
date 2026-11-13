@@ -11,6 +11,8 @@ outside_view:              # D2 외부 관점 혼합 — 3년차 이후 성장�
 normalize:                 # D3 정상화 이익률 — 경기순환 업종은 계속가치 마진을 한 사이클 평균으로
   blend_years: 3           # 마지막 몇 해 동안 정상화 마진으로 선형 이동(계속가치는 마지막 해 마진을 쓴다)
   cycle_years: 10          # 피어 SEC 연간 영업이익률 평균 창(8~10년 = 메모리 한 사이클)
+  peers: {memory: MU, storage: WDC}   # drivers에 cyclical이 없을 때 감시 목록 업종(sub)으로 정상화 피어를 고른다(2026-11-13 — 메모리 동인 전부 cyclical 누락)
+  sigma_window: 3          # 경기순환 종목 몬테카를로 마진 충격 σ = 피어 영업이익률 3년 이동평균의 표준편차(MU 2017~2026 = 14.7%p, 동인 기본 2%p 대신) — 등록부 prm-dcf-cycle-sigma
   source: "Damodaran, Investment Valuation 3판 22장(순환 기업 — 정상화 이익)"
 
 mc_corr:                   # D4 상관 충격 + 두꺼운 꼬리

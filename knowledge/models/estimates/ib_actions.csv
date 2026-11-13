@@ -1,0 +1,4 @@
+date,id,firm,action,rating,target,prev_target,currency,source,url
+2026-06-25,co-skhynix,하나증권,상향,,3600000,2750000,KRW,헤럴드경제 보도,https://www.heraldk.com/article/2026062515594680449
+2026-10-28,co-skhynix,제이피모건,상향,,2900000,,KRW,"마스터 노션 IB 요지(라이선스, 메타데이터만)",
+2026-10-28,co-skhynix,Citi,제시,,3000000,,KRW,"마스터 노션 IB 요지(라이선스, 메타데이터만)",

@@ -30,6 +30,14 @@ def kelly(ratios, rf, h, steps=100):
     return best_f, best_g
 
 
+def mos_discount(ratio):
+    """안전마진(그레이엄 정의) = 1 − 시총 ÷ 비관 가치(P10). ratio = P10 가치/시총. 2026-11-13: 배수 2.23을 '안전마진 223%'로
+    적어 SK하이닉스가 과장돼 보였다 — 같은 값의 안전마진은 55%다. 신호 등급(strong_mos)은 배수 그대로 쓴다"""
+    if ratio is None or ratio <= 0:
+        return None
+    return 1 - 1 / ratio
+
+
 def signal(excess, p_beat, mos, c):
     if excess >= c["strong_excess"] and p_beat >= c["strong_p_beat"] and mos >= c["strong_mos"]:
         return "강함"
@@ -56,7 +64,7 @@ def compute(mc, mcap, ke, rf, c, h=5):
     return {
         "horizon": h,
         "attractiveness": {"exp_return": exp_ret, "median_return": annualized(montecarlo.quantile(vh, 0.5), h),
-                           "ke": ke, "excess": excess, "p_beat_ke": p_beat, "margin_of_safety": mos,
+                           "ke": ke, "excess": excess, "p_beat_ke": p_beat, "margin_of_safety": mos, "mos_discount": mos_discount(mos),
                            "signal": signal(excess, p_beat, mos, c)},
         "risk_budget": {"kelly_full": f_star, "kelly_fraction": c["kelly_fraction"], "budget": budget, "cap": c["max_position"], "gated": gated,
                         "p10_loss": montecarlo.quantile(vh, 0.10) - 1, "p_loss_30": sum(1 for x in vh if x < 0.7) / len(vh),
@@ -67,6 +75,16 @@ def compute(mc, mcap, ke, rf, c, h=5):
     }
 
 
+def mos_text(ratio):
+    """'안전마진 55%(비관적 가치 = 시총의 2.23배)' — 비관 가치가 시총보다 낮으면 '안전마진 없음'"""
+    md = mos_discount(ratio)
+    if md is None:
+        return "안전마진 산정 불가"
+    if md <= 0:
+        return f"안전마진 없음(비관적 경우(하위 10%) 가치가 시총의 {ratio:.0%})"
+    return f"안전마진 {md:.0%}(비관적 경우(하위 10%) 가치 = 시총의 {ratio:.2f}배)"
+
+
 def lines(d):
     """텔레그램·카드용 3줄 — 지표·확률로만(권유 문구 없음). 용어는 처음 읽는 사람도 알게 풀어 쓴다(2026-11-09 마스터 지시 "켈리, 상위10% 같은 내용을 풀어 설명")"""
     a, r, u = d["attractiveness"], d["risk_budget"], d["upside"]
@@ -74,7 +92,7 @@ def lines(d):
     mos = a["margin_of_safety"]
     return [
         f"① 매수 매력: {h}년 보유 가정 연 기대수익 {a['exp_return']:+.1%} — 주주가 요구하는 수익률(자기자본비용) {a['ke']:.1%}보다 {a['excess']:+.1%}p · "
-        f"요구수익률을 넘을 확률 {a['p_beat_ke']:.0%} · 안전마진 {mos:.2f}(비관적 경우의 기업가치가 지금 시가총액의 {mos:.0%}) → 정량 신호 {a['signal']}",
+        f"요구수익률을 넘을 확률 {a['p_beat_ke']:.0%} · {mos_text(mos)} → 정량 신호 {a['signal']}",
         (f"② 위험 예산 지표(이론): 0% — 기대수익이 요구수익률에 못 미친다(켈리 기준 — 수익·손실 확률로 계산한 이론상 최대 노출 — {r['kelly_full']:.0%}는 참고) · "
          f"{h}년 뒤 나쁜 경우(하위 10%) {r['p10_loss']:+.0%} · 30% 넘게 잃을 확률 {r['p_loss_30']:.0%}"
          if r.get("gated") else

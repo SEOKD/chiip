@@ -91,6 +91,61 @@ def normal_margin(spec):
     return m, f"{spec['peer']} SEC 10-K 영업이익률 {ys[0]}~{ys[-1]} 평균 {m:.1%}"
 
 
+@functools.lru_cache(maxsize=1)
+def _subs():
+    """감시 목록 id → 업종(sub) — config/valuation.yaml universe + config/earnings_watch.yaml extra"""
+    out = {}
+    for f in ("valuation.yaml", "earnings_watch.yaml"):
+        p = ROOT / "config" / f
+        d = yaml.safe_load(p.read_text(encoding="utf-8")) if p.exists() else {}
+        for u in ((d or {}).get("universe") or []) + ((d or {}).get("extra") or []):
+            if u.get("id") and u.get("sub"):
+                out.setdefault(u["id"], u["sub"])
+    return out
+
+
+def cyclical_spec(company, c=None):
+    """drivers의 cyclical이 우선. 없으면 감시 목록 업종이 normalize.peers에 있으면 {peer, years}(2026-11-13 SK하이닉스 점검 —
+    메모리 동인에 cyclical이 없어 D3 정상화가 한 번도 켜지지 않았고, 영업이익률 80%가 10년 내내 2%p 잡음으로만 흔들렸다)"""
+    if company.get("cyclical"):
+        return company["cyclical"]
+    nc = ((c or cfg()).get("normalize") or {})
+    peer = (nc.get("peers") or {}).get(_subs().get(company.get("id")))
+    return {"peer": peer, "years": int(nc.get("cycle_years", 10)), "auto": True} if peer else None
+
+
+@functools.lru_cache(maxsize=64)
+def cycle_sigma(ticker, window=3, years=10):
+    """피어 SEC 연간 영업이익률의 window년 이동평균 표준편차 — 몬테카를로 마진 수준 충격(경로 전체에 한 번 더하는 값이라
+    1년 값의 표준편차가 아니라 여러 해 평균의 흔들림을 쓴다). 이력이 부족하면 None"""
+    _, ys = cycle_margin(ticker, years)
+    if len(ys) < window + 2:
+        return None
+    p = FUND / f"{ticker}.csv"
+    d = {}
+    with p.open(encoding="utf-8", newline="") as fh:
+        for r in csv.DictReader(fh):
+            if r["fp"] != "FY" or not r["form"].startswith("10-K") or r["metric"] not in ("revenue", "operating_income"):
+                continue
+            s, e = date.fromisoformat(r["start"]), date.fromisoformat(r["end"])
+            if (e - s).days >= 340:
+                d.setdefault(e.year, {})[r["metric"]] = float(r["value"])
+    m = [d[y]["operating_income"] / d[y]["revenue"] for y in ys]
+    roll = [sum(m[i:i + window]) / window for i in range(len(m) - window + 1)]
+    mu = sum(roll) / len(roll)
+    return math.sqrt(sum((x - mu) ** 2 for x in roll) / len(roll))
+
+
+def margin_sigma(company, base, c=None):
+    """경기순환 종목이면 max(동인 σ, 피어 이동평균 σ) — 아니면 동인 σ 그대로"""
+    spec = cyclical_spec(company, c)
+    if not spec or not spec.get("peer"):
+        return base
+    nc = ((c or cfg()).get("normalize") or {})
+    s = cycle_sigma(spec["peer"], int(nc.get("sigma_window", 3)), int(spec.get("years", 10)))
+    return max(base, s) if s else base
+
+
 def moat_ronic(wacc, company, c):
     """RONIC(없으면 None = WACC). 명시 ronic_spread 우선, 다음 moat 점수"""
     if company.get("ronic_spread"):
