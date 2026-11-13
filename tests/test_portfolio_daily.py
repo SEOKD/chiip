@@ -1,4 +1,4 @@
-"""Portfolio Daily 섹터 동적 선정·서술형 양식 검사 시험 (마스터 지시 2026-11-13, ADR-022)"""
+"""Portfolio Daily 섹터 동적 선정·서술형 양식 검사 시험 (마스터 지시 2026-11-13, ADR-023)"""
 import json
 import sys
 import tempfile

@@ -7,7 +7,10 @@
                  서로 다른 날 confirm_days일 연속 충족 → 편입. 자동 편입 상한(max_auto)이면 가장 낮은 자동 편입보다 replace_margin 이상 높을 때만 교체
   3. 제외         status 관심만(보유는 마스터 몫이라 건드리지 않는다). 킬 발동은 즉시, 편입 기준(2번)에 못 미치는 날이
                  confirm_days일 연속이면 제외(알파 미달은 종합 점수 없이도 판정, pin: true는 제외 안 함). 지표가 없는 날은 판정하지 않는다(모르면 미확인 — 없는 숫자로 빼지 않는다)
-  4. 반영         config/portfolio.yaml에 블록 추가(added_by: chiip) 또는 status: 종료 + ended·ended_reason(지우지 않는다).
+  4. 반영         편입은 scripts/portfolio/watch_review.py 편입 기준(알파·리서치·시총·유동성·실적 확인·킬 조건)을 모두 통과한 종목만
+                 config/portfolio.yaml에 블록 추가(added_by: chiip). 제외는 자동 반영하지 않는다(마스터 결정 2026-11-13) —
+                 '제외 후보'로 radar/state/watch_proposals.json에 남기고 마스터 승인 뒤 watch_review.py --apply로만 status: 종료.
+                 관심 종목 수 상한 없음(config cap.max_auto: null).
                  기록 knowledge/models/portfolio/watchlist_log.csv(편입·제외일 지표 — 성적표 재료)
 지표·연구 후보이지 매수 권유가 아니다. 마스터 포지션 파일은 읽지 않는다.
 사용: py scripts/portfolio/watchlist.py [--dry]
@@ -16,16 +19,18 @@ import csv
 import json
 import re
 import sys
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 PORT = ROOT / "config" / "portfolio.yaml"
 CFG = ROOT / "config" / "watchlist.yaml"
 M = ROOT / "knowledge" / "models"
 STATE = ROOT / "radar" / "state" / "watchlist_auto.json"
+PROPOSALS = ROOT / "radar" / "state" / "watch_proposals.json"   # 편입 후보·제외 후보(마스터 승인 대기) — watch_review.py가 Daily 문장에 쓴다
 LOG = M / "portfolio" / "watchlist_log.csv"
 KST = timezone(timedelta(hours=9))
 
@@ -143,7 +148,7 @@ def decide(holdings, mt, c, st, today):
             cands.append(iid)
     cands.sort(key=lambda i: -(mt[i].get("composite") or 0))
     for iid in cands:
-        if len(auto) < c["cap"]["max_auto"]:
+        if c["cap"].get("max_auto") is None or len(auto) < c["cap"]["max_auto"]:   # 상한 없음(마스터 결정 2026-11-13)
             adds.append(iid)
             auto.append(iid)
             continue
@@ -215,7 +220,19 @@ def log(rows):
         w.writerows(rows)
 
 
-def run(dry=False, today=None):
+def _entry_gate(today):
+    """(id, 티커) → (통과 여부, 미충족 기준 목록) — watch_review.py 편입 기준"""
+    import watch_review as wr
+    c, ctx, d = wr.cfg(), wr.context(), date.fromisoformat(today)
+
+    def gate(iid, ticker):
+        f = wr.facts({"id": iid, "ticker": ticker}, d, ctx)
+        miss = [k for k, (v, _) in wr.entry(f, c, d).items() if v is not True]
+        return not miss, miss
+    return gate
+
+
+def run(dry=False, today=None, entry_gate=None):
     c = yaml.safe_load(CFG.read_text(encoding="utf-8"))
     text = PORT.read_text(encoding="utf-8")
     holdings = yaml.safe_load(text).get("holdings") or []
@@ -229,11 +246,22 @@ def run(dry=False, today=None):
            # 알파는 편입 기준을 넘는데 종합 점수가 없어 판정하지 못한 종목 — 다음 회차 composite_in.json에 TradingView 지표를 넣는다(발굴 누락 방지)
            "need_composite": sorted(mt[i].get("ticker") or i for i, m in mt.items() if (m.get("alpha") or 0) >= c["add"]["alpha_min"] and m.get("composite") is None
                                     and i not in {h["id"] for h in holdings if h.get("status") in ("보유", "관심")})}
+    # 편입 기준(watch_review.entry) — 하나라도 미충족·미확인이면 넣지 않고 '편입 후보'로만 남긴다
+    gate = entry_gate or _entry_gate(today)
+    held_rows, cand_rows = [], []
+    for a in out["add"]:
+        ok, miss = gate(a["id"], a["ticker"])
+        (held_rows if ok else cand_rows).append({**a, "missing": miss})
+    out["add"] = held_rows
+    out["candidates"] = cand_rows
+    proposals = [{"kind": "편입 후보", **x} for x in cand_rows] + [{"kind": "제외 후보", **r} for r in out["remove"]]
     if not dry:
-        if adds or drops:
-            PORT.write_text(apply(text, adds, drops, mt, today), encoding="utf-8")
-            log([[today, "편입", a["id"], a["ticker"], a["alpha"], a["composite"], a["buy_call"], ""] for a in out["add"]] +
-                [[today, "제외", r["id"], r["ticker"], mt.get(r["id"], {}).get("alpha"), mt.get(r["id"], {}).get("composite"), "", r["reason"]] for r in out["remove"]])
+        if out["add"]:
+            PORT.write_text(apply(text, [a["id"] for a in out["add"]], [], mt, today), encoding="utf-8")   # 제외는 반영하지 않는다
+        log([[today, "편입", a["id"], a["ticker"], a["alpha"], a["composite"], a["buy_call"], ""] for a in out["add"]] +
+            [[today, "편입 후보", x["id"], x["ticker"], x["alpha"], x["composite"], x["buy_call"], "기준 미충족: " + ", ".join(x["missing"])] for x in cand_rows] +
+            [[today, "제외 후보", r["id"], r["ticker"], mt.get(r["id"], {}).get("alpha"), mt.get(r["id"], {}).get("composite"), "", r["reason"] + " — 마스터 승인 대기"] for r in out["remove"]])
+        PROPOSALS.write_text(json.dumps(proposals, ensure_ascii=False, indent=1), encoding="utf-8")
         STATE.parent.mkdir(parents=True, exist_ok=True)
         STATE.write_text(json.dumps(st, ensure_ascii=False), encoding="utf-8")
     return out

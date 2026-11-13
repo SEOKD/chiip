@@ -1,4 +1,4 @@
-"""Portfolio Daily '■ 섹터' 동적 선정 (마스터 지시 2026-11-13 "섹터를 고정 목록만 쓰지 말고 Chiip이 판단해 추가·제외", ADR-022)
+"""Portfolio Daily '■ 섹터' 동적 선정 (마스터 지시 2026-11-13 "섹터를 고정 목록만 쓰지 말고 Chiip이 판단해 추가·제외", ADR-023)
 
 후보 = config/sector_select.yaml groups — Chiip 바스켓(config/market_watch.yaml sectors) + 미국 11개 업종 + 산업·테마(AI 밸류체인 밖 포함).
 판단은 이 스크립트(결정론), 문장은 모델. 모델은 아래 숫자·표시를 바꾸지 않는다.

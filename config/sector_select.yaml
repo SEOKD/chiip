@@ -1,7 +1,7 @@
-# Portfolio Daily '■ 섹터' 동적 선정 (마스터 지시 2026-11-13, ADR-022, scripts/portfolio/sector_select.py)
+# Portfolio Daily '■ 섹터' 동적 선정 (마스터 지시 2026-11-13, ADR-023, scripts/portfolio/sector_select.py)
 # 고정 목록 대신 Chiip이 신호로 편입·제외한다. 후보 = Chiip 바스켓(config/market_watch.yaml sectors) + 미국 11개 업종 ETF + 산업·테마 묶음.
 # 묶음마다 대표 ETF(TradingView 일괄 조회로 시세가 잡히는 것만 — IGV·ITA·PAVE는 2026-11-13 'Quote data not found'라 뺐다) + 대형 구성 종목 3~4개. TradingView get_symbol_data_batch(50종목당 1회)로 받는다.
-# 수치 상수는 사전값이다 — 출처·근거는 ADR-022. 피팅은 표본이 쌓인 뒤 Model Lab 일요일 관문으로만 바꾼다(prm-ssel-*).
+# 수치 상수는 사전값이다 — 출처·근거는 ADR-023. 피팅은 표본이 쌓인 뒤 Model Lab 일요일 관문으로만 바꾼다(prm-ssel-*).
 
 weights: {momentum: 0.40, flow: 0.35, alpha: 0.25}   # prm-ssel-w  산업 모멘텀이 가장 오래 검증됨 → 최대, 수급은 짧게 끝남, 알파는 Chiip 자체 점수(표본 외 미검증)
 enter: {score: 6.5, pillars: 2}     # prm-ssel-enter  복수 신호(3축 중 2축 이상) + 점수

@@ -1,0 +1,19 @@
+# 관심 종목(config/portfolio.yaml status: 관심) 편입 기준·유지 심사 (마스터 결정 2026-11-13, ADR-024, scripts/portfolio/watch_review.py)
+# 관심 종목 수에는 상한을 두지 않는다. 대신 편입은 아래 조건을 '모두' 충족해야 하고, 주 1회 유지 심사에서 경고가 2회 연속이면 '제외 후보'로
+# 마스터에게 목록·사유를 보고한다. 제외는 마스터 승인 뒤에만 반영(자동 삭제 없음). 보유(status: 보유)는 심사 대상이 아니다.
+# 값은 둥근 사전값(미검증) — 근거는 ADR-024, 등록부 prm-wrev-*로 올린다.
+
+entry:                       # 편입 — 전부 충족(하나라도 미확인이면 편입하지 않는다)
+  alpha_min: 7.0             # 알파 잠재력(knowledge/models/alpha/latest.json) — 마스터 지시 2026-11-07 '7점 이상'과 같은 잣대
+  research_days: 90          # 최근 90일 안 Analysis 리포트(outputs/tenbagger/reports/log.csv) 또는 v2 밸류 동인(companies/<id>/drivers.yaml)
+  mcap_min_b: 1.0            # 시가총액 $1B 이상(datapack profile 가격 × 주식 수) — 종합 명단 스크리너 하한과 같다
+  adv_min_m: 10.0            # 20거래일 평균 거래대금 $10M 이상(companies/<id>/ohlcv.csv, 없으면 TradingView 시세 입력)
+  earnings_days: 120         # 최근 실적(어닝콜) 확인이 120일 안(분기 + 여유) — datapack call.date
+  kill_required: true        # 반증(킬) 조건이 적혀 있어야 한다 — tenbagger watch.csv kill_conditions 또는 리포트 본문 '킬 조건'·'반증:'
+
+review:                      # 유지 심사 — 주 1회(ISO 주차당 한 번), 경고가 서로 다른 주 2회 연속이면 제외 후보
+  confirm_weeks: 2
+  alpha_floor: 7.0           # 알파가 이 아래로 내려가면 경고(실적 점검 편입분은 자기 alpha_floor)
+  alpha_drop: 1.0            # 직전 심사 대비 1.0점 이상 떨어지면 경고
+  stale_days: 30             # 30일 동안 새 정보(리포트·데이터팩·종목 장부·알파 산정)가 없으면 '장기 무변화' 경고
+  entry_recheck: true        # 편입 기준(리서치·유동성·시총·실적 확인·킬 조건) 미충족도 경고 — 단 '미확인'은 경고가 아니라 메모
