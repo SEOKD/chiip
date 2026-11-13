@@ -151,7 +151,8 @@
    "AppLovin과 광고 경쟁(규모 격차)",
    "Create 성장 둔화(4Q +4~6%)",
    "중국 매출 비중 약 25%",
-   "인수설(Silver Lake·PIF) 무산 시 되돌림"
+   "인수설(Silver Lake·PIF) 무산 시 되돌림",
+   "AppLovin과의 데이터 분쟁(중재 진행 — Ad Quality SDK가 MAX 광고 데이터를 모았다는 주장)"
   ],
   "deltas": [
    {
@@ -260,6 +261,11 @@
    "kind": "sector"
   },
   {
+   "date": "2026-10-02",
+   "tag": "법원, AppLovin의 Unity 데이터 수집 금지 가처분 기각(보도)",
+   "kind": "sector"
+  },
+  {
    "date": "2026-10-14",
    "tag": "−11.2% — 원인 미확인",
    "kind": "sector"
@@ -354,11 +360,15 @@
   "HS": "국제 품목 분류 코드",
   "SVP": "수석 부사장",
   "take rate": "광고비 중 플랫폼이 가져가는 몫",
+  "Ad Quality SDK": "Unity의 광고 품질 점검 소프트웨어 개발 키트",
+  "SDK": "앱에 넣는 소프트웨어 개발 키트",
   "EMEA": "유럽·중동·아프리카"
  },
  "names": [
   "Unity",
   "Unity Software",
+  "Digiday",
+  "JAMS",
   "EA",
   "Zynga",
   "AppLovin",
@@ -427,7 +437,7 @@
     "claim": "엔진이 게임 안 행동 신호를 Vector 학습에 넣는다 — 경쟁 광고망에는 없는 입력",
     "evidence": "2Q26 어닝콜(2026-08-06, 요지만 자기 말로)",
     "quant": "2Q 말 처음 도입 — 효과 수치 미공시",
-    "falsifier": "런타임 신호 도입 뒤에도 Vector 성장이 업계 평균으로 내려온다"
+    "falsifier": "런타임 신호 도입 뒤에도 Vector 성장이 업계 평균으로 내려오거나, AppLovin 중재에서 데이터 사용이 제한된다"
    },
    {
     "kind": "AI 광고 모델 성능",
@@ -533,7 +543,7 @@
     "region": "EMEA(지역 매출 최대 몫 30%)",
     "secured": "내재화",
     "factor_basis": "지역 분산 = 3Q 지역 매출 최대 몫(EMEA $184.7M ÷ $622.1M). 경쟁사 미디에이션 의존도는 미공시",
-    "why": "광고 매출 = 지면 × 낙찰률 × 단가 — 지면이 막히면 Vector 성장이 멈춘다",
+    "why": "광고 매출 = 지면 × 낙찰률 × 단가 — 지면이 막히면 Vector 성장이 멈춘다. AppLovin은 Unity SDK의 MAX 데이터 수집을 문제 삼아 중재를 걸었다(법원 가처분은 기각, 보도)",
     "relief": "미확인",
     "source": "3Q26 어닝콜(2026-11-05, 요지만 자기 말로)"
    },
@@ -899,6 +909,7 @@
   "https://www.businesswire.com/news/home/20261007399251/en/",
   "https://www.businesswire.com/news/home/20260326990421/en",
   "https://www.reuters.com/world/silver-lake-pif-have-held-recent-talks-buy-gaming-software-provider-unity-2026-11-05/",
+  "https://digiday.com/marketing/mobile-ad-giants-applovin-and-unity-locked-in-legal-dispute-over-data-collection/",
   "Fiscal.ai MCP 2026-11-13 — 표준화 손익·재무상태표·현금흐름·세그먼트·추정·Forward 배수·애널리스트 의견·어닝콜 전문(3Q26·2Q26)",
   "TradingView NYSE:U 일봉 760·월봉 75(2026-11-13)",
   "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
@@ -1041,6 +1052,21 @@
     "status": "잠복",
     "falsifier": "AI 도구가 Unity 위에서 돌며 DAU·Create가 는다",
     "source": "Quantral 커뮤니티 기록(2026-09-06 X 글이 1/30 하락을 짚음)"
+   },
+   {
+    "name": "반대 — AppLovin 데이터 분쟁",
+    "thesis": "AppLovin이 Unity의 Ad Quality SDK가 MAX 광고 데이터를 모아 Vector 학습에 썼다며 중재·법원 가처분을 냈다 — 법원은 가처분을 기각(보도), 본안 중재는 진행 중",
+    "inputs": "이익",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "Unity는 9월 MAX 입찰에서 수집을 끄기로 했고 모델 재학습은 거부(보도)",
+    "status": "잠복",
+    "falsifier": "중재에서 모델 재학습·데이터 삭제 명령이 나온다",
+    "source": "https://digiday.com/marketing/mobile-ad-giants-applovin-and-unity-locked-in-legal-dispute-over-data-collection/"
    },
    {
     "name": "반대 — AppLovin과의 광고 경쟁",
