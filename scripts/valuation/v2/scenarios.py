@@ -49,6 +49,9 @@ def drivers(company, scen, wacc, g_term):
         growth = plus.outside_view(growth, _median(company), c)
         margin = plus.normalize(margin, plus.normal_margin(plus.cyclical_spec(company, c))[0], c)
         ronic = plus.moat_ronic(wacc, company, c)
+    add = (company.get("lease") or {}).get("margin_add") or 0.0   # 리스 내재 이자 되더하기(방식 A, ADR-026 — run.load_company가 leases.apply로 붙인다)
+    if add:
+        margin = [x + add for x in margin]
     return {"rev0": company["rev0"], "growth": growth, "margin": margin,
             "tax": company["tax"], "s2c": scen.get("s2c", company.get("s2c")), "ic0": company["ic0"], "wacc": wacc,
             "g_term": scen.get("g_term", g_term), "ronic": ronic, "net_debt": m["net_debt"], "shares": m["shares"],

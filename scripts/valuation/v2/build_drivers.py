@@ -23,6 +23,7 @@ datapack.json (금액은 unit 하나로 통일 — 보통 B$, 비율은 소수):
   "raw": {"retrieved_at", "fiscal_profile"(옛 easyconomics_profile), "quarters_gaap", "balance_…", "estimates_sales_m", "sec", …},   # 원자료 스냅숏 — datapack_check.py가 대조
   "scenario_probs": {"bear": 0.25, "base": 0.5, "bull": 0.25},             # 선택 — 없으면 규칙
   "overrides": {"growth_base": {...}, "margin_base": {...}, "s2c": x, "why": "…"}   # 선택 — 모델이 이유와 함께
+  "leases": {"liab": L, "rate": 공시 가중평균 할인율, "in_debt": profile.debt에 리스가 들었나, "source"}   # 선택 — 없으면 raw.balance 리스 부채·엔진 금리. 엔진은 방식 A(리스 자본화, ADR-026, scripts/valuation/v2/leases.py)
 }
 사용: py scripts/valuation/v2/build_drivers.py <entity_id> [--force]
 """
