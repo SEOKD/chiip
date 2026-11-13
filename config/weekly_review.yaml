@@ -26,6 +26,11 @@ limits:
   prose_chars: 3500       # 상승률 목록을 뺀 본문 전체
   surges: [4, 8]          # 급등 종목, 왜 올랐나 — 미국·유럽·일본·한국 각 1종목 이상(2026-11-14 마스터 지시, scripts/weekly/surges.py)
   surge_field: 120
+sector_moves:             # 섹터 온도 = Chiip AI 바스켓 + 그 주 크게 움직인 섹터(2026-11-14 마스터 지시, scripts/weekly/sector_moves.py)
+  big: 0.04               # S&P 500 대비 주간 등락 차이 4%p 이상이면 싣는다(상승·하락 모두) — 사전값, 38개 섹터 중 6~10개가 걸리는 수준
+  top: 2                  # 상승·하락 각 상위 2개는 기본(조용한 주에도 양쪽을 본다)
+  max: 16
+gpu_block: false          # Nebius GPU 렌털료 블록 — 2026-11-14 마스터 지시로 Pulse 월요일 06:00 점검(radar/gpu_weekly.py)으로 옮김
 banned:                   # 작업 과정·판정 불가·내부 표기 — 보고서에 쓰지 않는다
   - 미확인
   - 판정 불가

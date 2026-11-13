@@ -30,6 +30,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import earnings_alpha  # noqa: E402
 import gpu_rent  # noqa: E402   # Nebius GPU 렌털료 고정 블록(2026-11-13 마스터 지시)
 import surges  # noqa: E402   # 급등 종목, 왜 올랐나(2026-11-14 마스터 지시)
+import sector_moves  # noqa: E402   # 섹터 온도 = AI 밸류체인 + 크게 움직인 섹터(2026-11-14 마스터 지시)
 
 
 def cfg():
@@ -100,7 +101,8 @@ def check(d, c):
     _short("headline", d["headline"], lim["headline"])
     _within("bullets", d["bullets"], lim["bullets"])
     _within("changes", d["changes"], lim["changes"])
-    _within("sectors", d["sectors"], lim["sectors"])
+    if not d.get("_sectors"):   # 계산된 섹터 온도(sector_moves)가 없을 때만 모델이 쓴 sectors를 잰다(이전 주차)
+        _within("sectors", d["sectors"], lim["sectors"])
     _within("next", d["next"], lim["next"])
     _within("risks", d["risks"], lim["risks"])
     if not d.get("leadtime"):
@@ -151,13 +153,17 @@ def to_md(d, movers):
     L += ["", "## 이번 주 바뀐 것", ""]
     for i, x in enumerate(d["changes"], 1):
         L += [f"### {i}. {x['title']}", f"- 무엇이: {x['what']}", f"- 왜 중요한가: {x['why']}", f"- 유리: {x['winners']}", f"- 불리: {x['losers']}", f"- 다음 확인: {x['next']}", ""]
-    L += ["## 섹터 온도", "", "| 섹터 | 5일 | 20일 | 고점 대비 | EPS 추정 30일 | 읽기 |", "|---|---|---|---|---|---|"]
-    L += [f"| {x['name']} | {_sign(x['d5'])} | {_sign(x['d20'])} | {_sign(x['dd'])} | {_sign(x['rev30'])} | {x['read']} |" for x in d["sectors"]]
+    if d.get("_sectors"):   # AI 밸류체인 + 시장보다 크게 움직인 섹터(2026-11-14 마스터 지시)
+        L += ["## 섹터 온도", "", SECTOR_HEAD, "", "| 섹터 | 주간 | S&P 대비 | 20일 | EPS 추정 | 실린 이유 · 읽기 |", "|---|---|---|---|---|---|"]
+        L += [f"| {x['name']} | {_sign(x['r5'] * 100)} | {_sign(x['rs5'] * 100)} | {_sign(x['r20'] * 100)} | {_opt(x.get('eps_rev'))} | {x['why_in']}{' · ' + x['read'] if x.get('read') else ''} |" for x in d["_sectors"]]
+    else:
+        L += ["## 섹터 온도", "", "| 섹터 | 5일 | 20일 | 고점 대비 | EPS 추정 30일 | 읽기 |", "|---|---|---|---|---|---|"]
+        L += [f"| {x['name']} | {_sign(x['d5'])} | {_sign(x['d20'])} | {_sign(x['dd'])} | {_sign(x['rev30'])} | {x['read']} |" for x in d["sectors"]]
     m = leadtime_model(d["leadtime"])
     L += ["", "## AI 하드웨어 리드타임·병목", "", f"병목 지수 {m['index']:.2f}배" + (f" (전주 {m['prev_index']:.2f}배)" if m["prev_index"] else "") + f" · 지금 병목 {m['tight']['name']} · 늘어난 곳 {m['moving']['name'] if m['moving'] else '-'} · 풀린 곳 {m['easing']['name'] if m['easing'] else '-'}", "", d["leadtime"]["read"], "",
           "| 부품 | 지금(주) | 전주(주) | 평시(주) | 압박도 | 근거 |", "|---|---|---|---|---|---|"]
     L += [f"| {r['name']} | {r['now']} | {r.get('prev', '-')} | {r['normal']} | {r['stress']:.1f}배 | {r['evidence']} |" for r in m["rows"]]
-    L += gpu_rent.md_lines(d)   # Nebius GPU 렌털료 추이 — 매주 고정, 변화 없어도 표시(2026-11-13 마스터 지시)
+    L += gpu_rent.md_lines(d) if d.get("_gpu") else []   # Nebius GPU 렌털료 추이 — 매주 고정, 변화 없어도 표시(2026-11-13 마스터 지시)
     L += earnings_alpha.md_lines(d)   # Earnings 알파 점검(2026-11-07 마스터 지시)
     L += ["", "## 다음 주 볼 것", "", "| 날짜 | 무엇 | 볼 숫자 | 의미 |", "|---|---|---|---|"]
     L += [f"| {x['date']} | {x['what']} | {x['watch']} | {x['means']} |" for x in d["next"]]
@@ -192,6 +198,13 @@ def _e(s):
     return html.escape(str(s), quote=False)
 
 
+SECTOR_HEAD = "AI 밸류체인 4개는 항상 싣고, 나머지는 S&P 500보다 주간 4%p 이상 더 오르거나 더 내린 섹터를 싣는다(상승·하락 각 상위 2개는 기본)."
+
+
+def _opt(v):
+    return "-" if v is None else _sign(v * 100)
+
+
 def _pct(v):
     return f'<span class="{"up" if v >= 0 else "down"}">{_sign(v)}</span>'
 
@@ -202,7 +215,12 @@ def to_html(d, movers):
     regs = "".join(f"<div><h3>{_e(r['title'])}</h3>" + "".join(f'<div class="m"><b>+{round(float(x["pct_change"]))}%</b><span>{_e(x["name_ko"])}<small>{_e(x["desc_ko"])}</small></span></div>' for x in r["rows"]) + "</div>" for r in movers)
     idx = "".join(f'<div><span>{_e(x["name"])}</span><b class="{"up" if x["pct"] >= 0 else "down"}">{_sign(x["pct"])}</b></div>' for x in d["indices"])
     cards = "".join(f'<div class="card"><h3>{i}. {_e(x["title"])}</h3><dl><dt>무엇이</dt><dd>{_e(x["what"])}</dd><dt>왜 중요</dt><dd>{_e(x["why"])}</dd><dt>유리</dt><dd>{_e(x["winners"])}</dd><dt>불리</dt><dd>{_e(x["losers"])}</dd><dt>다음 확인</dt><dd>{_e(x["next"])}</dd></dl></div>' for i, x in enumerate(d["changes"], 1))
-    sec = "".join(f"<tr><td>{_e(x['name'])}</td><td>{_pct(x['d5'])}</td><td>{_pct(x['d20'])}</td><td>{_pct(x['dd'])}</td><td>{_pct(x['rev30'])}</td><td>{_e(x['read'])}</td></tr>" for x in d["sectors"])
+    if d.get("_sectors"):
+        sec = "".join(f"<tr><td>{_e(x['name'])}</td><td>{_pct(x['r5'] * 100)}</td><td>{_pct(x['rs5'] * 100)}</td><td>{_pct(x['r20'] * 100)}</td><td>{_e(_opt(x.get('eps_rev')))}</td><td><small>{_e(x['why_in'])}</small>{'<br>' + _e(x['read']) if x.get('read') else ''}</td></tr>" for x in d["_sectors"])
+        sechead = "<tr><th>섹터</th><th>주간</th><th>S&amp;P 대비</th><th>20일</th><th>EPS 추정</th><th>실린 이유 · 읽기</th></tr>"
+    else:
+        sechead = "<tr><th>섹터</th><th>5일</th><th>20일</th><th>고점 대비</th><th>EPS 추정 30일</th><th>읽기</th></tr>"
+        sec = "".join(f"<tr><td>{_e(x['name'])}</td><td>{_pct(x['d5'])}</td><td>{_pct(x['d20'])}</td><td>{_pct(x['dd'])}</td><td>{_pct(x['rev30'])}</td><td>{_e(x['read'])}</td></tr>" for x in d["sectors"])
     m = leadtime_model(d["leadtime"])
     hi = max(r["stress"] for r in m["rows"]) or 1
     lt = "".join(f'<tr><td>{_e(r["name"])}</td><td>{r["now"]}주</td><td>{r.get("prev", "-")}주</td><td>{r["normal"]}주</td><td><span class="bar" style="width:{r["stress"] / hi * 100:.0f}%"></span>{r["stress"]:.1f}배 {_delta(r["delta"])}</td><td>{_e(r["evidence"])}</td></tr>' for r in m["rows"])
@@ -221,9 +239,9 @@ def to_html(d, movers):
 <section><h2>이번 주 상승 업종</h2><div class="tw"><table><tr><th>상승 상위 {total}종목</th><th>수</th><th>대표</th></tr>{tb}</table></div></section>
 {surges.html_section(d.get("_surges"))}
 <section><h2>이번 주 바뀐 것</h2>{cards}</section>
-<section><h2>섹터 온도</h2><div class="tw"><table><tr><th>섹터</th><th>5일</th><th>20일</th><th>고점 대비</th><th>EPS 추정 30일</th><th>읽기</th></tr>{sec}</table></div></section>
+<section><h2>섹터 온도</h2>{'<p class="k">' + _e(SECTOR_HEAD) + '</p>' if d.get("_sectors") else ''}<div class="tw"><table>{sechead}{sec}</table></div></section>
 <section><h2>AI 하드웨어 리드타임·병목</h2><p class="k">{ltsum}</p><p>{_e(d["leadtime"]["read"])}</p><div class="tw"><table><tr><th>부품</th><th>지금</th><th>전주</th><th>평시</th><th>압박도(지금÷평시)</th><th>근거</th></tr>{lt}</table></div><p class="note">압박도 = 지금 리드타임 ÷ 평시. 병목 지수는 부품 비중으로 가중한 평균. 리드타임은 이번 주 실적·콜·리포트 발언에서 모은 값이다.</p></section>
-{gpu_rent.html_section(d)}
+{gpu_rent.html_section(d) if d.get("_gpu") else ""}
 {esec}
 <section><h2>다음 주 볼 것</h2><div class="tw"><table><tr><th>날짜</th><th>무엇</th><th>볼 숫자</th><th>의미</th></tr>{nxt}</table></div></section>
 <section><h2>이 판단이 틀릴 조건</h2><ul>{''.join(f'<li>{_e(r)}</li>' for r in d['risks'])}</ul></section>
@@ -237,6 +255,13 @@ def render(week):
     c = cfg()
     d = json.loads((BRIEF / f"{week}_weekly.json").read_text(encoding="utf-8"))
     movers = load_movers(week, c)
+    # 섹터 온도 — 이번 주 섹터 시세를 받아 두었으면 계산값으로 바꾼다(모델은 sector_reads만 쓴다, 2026-11-14 마스터 지시)
+    sm = sector_moves.load(week)
+    if sm:
+        reads = d.get("sector_reads") or {}
+        d["_sectors"] = [{**x, "read": reads.get(x["id"], "")} for x in sector_moves.pick(sm, c.get("sector_moves"))]
+    # GPU 렌털료 블록은 2026-11-14 마스터 지시로 Pulse 월요일 점검(radar/gpu_weekly.py)으로 옮겼다 — config gpu_block: true면 다시 싣는다
+    d["_gpu"] = bool(c.get("gpu_block", False))
     check(d, c)
     # 급등 종목 원인 — json에 surges가 있으면 관문을 지켜야 렌더된다. 없으면 절을 빼고 알린다(2026-11-14 이전 주차 재렌더용)
     d["_surges"] = surges.build(d, movers, c["limits"]) if d.get("surges") else None

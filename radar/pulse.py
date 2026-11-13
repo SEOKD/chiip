@@ -734,13 +734,18 @@ def run(now=None, peek=False):
         ibd = ib_digest_feed.status(now)
     except Exception as exc:
         ibd = {"due": False, "error": type(exc).__name__}
+    try:   # GPU 렌털료 주간 점검(2026-11-14 마스터 지시 — Weekly에서 이관, 매주 월요일 06:00 이후 첫 회차)
+        import gpu_weekly
+        gpu = gpu_weekly.status(now)
+    except Exception as exc:
+        gpu = {"due": False, "error": type(exc).__name__}
     try:   # 본문 확인 보류 건(2026-11-14 마스터 지시) — 빠른 길이 못 읽은 건을 모델이 WebSearch로 다른 사본을 찾아 읽는다
         import fulltext
         body_hold = fulltext.for_model()
     except Exception as exc:
         body_hold = []
         errors.append(f"본문 보류: {type(exc).__name__}")
-    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due"):
+    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due") and not gpu.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
@@ -765,7 +770,7 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in picked],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "gpu_weekly": gpu, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if body_hold:
         fulltext.offered([h["item"]["item_id"] for h in body_hold], now)
