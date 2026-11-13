@@ -259,7 +259,7 @@ SECTION = ("결론", "핵심", "Chiip 판단", "반대 근거", "다음 확인",
 def tidy(text):
     """노션 텔레그램 문안 다듬기(마스터 지시 2026-11-08 "노션 관련 텔레그램 피드도 가독성 있게") — 결정론, 내용은 바꾸지 않는다.
     ① 머리 '[노션 역할]' → '[Chiip Notion · 역할]', 머리의 '(1차 판정, 미검증)'은 맨 아래 꼬리로 ② 저장소 경로 줄(상세: outputs/…)은 휴대폰에서 못 여니 뺀다
-    ③ 절 이름(결론·핵심·Chiip 판단·반대 근거·다음 확인) 앞에 빈 줄 ④ 목록 기호는 '•'로 통일 ⑤ 빈 줄은 한 줄까지 ⑥ 꼬리(판정 상태·투자 권유 아님)는 한 줄로 모은다"""
+    ③ 절 이름(결론·핵심·Chiip 판단·반대 근거·다음 확인) 앞에 빈 줄 ④ 목록 기호는 '•'로 통일 ⑤ 빈 줄은 한 줄까지 ⑥ 꼬리(판정 상태·투자 권유 아님)는 뺀다(2026-11-14)"""
     lines = [l.rstrip() for l in text.strip().splitlines()]
     tail = []
     out = []
@@ -288,8 +288,7 @@ def tidy(text):
         out.append(l)
     while out and out[-1] == "":
         out.pop()
-    t = list(dict.fromkeys(tail))
-    return "\n".join(out) + ("\n\n" + " · ".join(t) if t else "")
+    return "\n".join(out)   # 꼬리(1차 판정·미검증 · 투자 권유 아님)는 뺀다(마스터 지시 2026-11-14 "맨 아래 줄을 빼라")
 
 
 def send_tg(path):

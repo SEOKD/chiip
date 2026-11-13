@@ -136,3 +136,42 @@ class TestFeedGate(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestHeadlineAlpha(Base):
+    def test_headline_moving_alpha_is_shared(self):
+        import run_poll
+        it = dict(GN, entities_matched=["co-bae"])
+        fail = lambda i, n: {"status": "fail", "why": "봇 차단 화면 — 우회하지 않음"}
+        judge = lambda batch: [{"item_id": b["item_id"], "moves": True, "component": "upside", "move": 1.0, "reason": "NASA 우주 임무 신규 수주"} for b in batch]
+        with mock.patch.object(run_poll, "_alpha_rows", lambda: {"co-bae": {"name": "BAE Systems", "total": 3.3, "components": {"upside": 4.0}}}):
+            out = run_poll.body_gate([(it, "P1", "방위 수주")], fetch=fail, judge=judge)
+        self.assertEqual(len(out), 1)
+        self.assertEqual(out[0][0]["_headline"]["component"], "upside")
+        self.assertEqual(F.held(), [])   # 보류하지 않는다
+        lines = run_poll.headline_lines(out[0][0]["_headline"], "봇 차단 화면 — 우회하지 않음")
+        self.assertTrue(lines[0].startswith("본문 미확인 · 헤드라인 기준"))
+        self.assertIn("상방 +1.0", lines[1])
+
+    def test_small_or_no_move_is_held(self):
+        import run_poll
+        it = dict(GN, entities_matched=["co-bae"])
+        fail = lambda i, n: {"status": "fail", "why": "x"}
+        judge = lambda batch: [{"item_id": b["item_id"], "moves": True, "component": "gap", "move": 0.2, "reason": "작다"} for b in batch]
+        with mock.patch.object(run_poll, "_alpha_rows", lambda: {"co-bae": {"name": "BAE", "total": 3.3, "components": {}}}):
+            self.assertEqual(run_poll.body_gate([(it, "P1", "r")], fetch=fail, judge=judge), [])
+        self.assertEqual(len(F.held()), 1)
+        self.assertEqual(run_poll.headline_alpha([dict(GN, entities_matched=["zz-none"])], judge, rows={}), {})   # 알파 점수 없는 회사는 판정하지 않는다
+
+    def test_feed_headline_alpha_passes(self):
+        d = {"items": [{"name": "BAE", "read": "", "headline_alpha": "상방 +1.0 — NASA 우주 임무 수주"}]}
+        self.assertEqual(pulse_feed.unread(d), [])
+
+
+class TestFeedTidy(unittest.TestCase):
+    def test_footer_lines_removed_content_kept(self):
+        import notify
+        t = "제목\n\n\n본문 · 근거\n\n1차 판정·미검증 · 공개 자료 기반 분석이며 투자 권유가 아님\n**구매 등급·목표주가 모두 규칙이 계산한 모델 값 · 투자 권유 아님 · 1차 판정, 미검증**\n"
+        out = notify.feed_tidy(t)
+        self.assertEqual(out, "제목\n\n본문 · 근거")
+        self.assertIn("투자 권유 아님 — 다른 말", notify.feed_tidy("투자 권유 아님 — 다른 말"))

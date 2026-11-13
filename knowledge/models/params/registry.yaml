@@ -5550,3 +5550,19 @@ params:
     data: Analysis 리포트 판정 기록(쌓이는 중)
     last_fit: null
     oos_metric: null
+- id: prm-alert-headline-move
+  model: radar.alerts
+  binding: config/alert_rules.yaml#headline_alpha.min_move
+  value: 0.5
+  unit: 알파 요소 점수(10점) 변화
+  status: prior
+  prior:
+    value: 0.5
+    basis: 초안 — 마스터 지시 2026-11-14 "본문을 읽지 않아도 헤드라인만으로 알파 점수를 변화시키는 건은 공유". 알파 요소 판정이 0.5점 단위라 한 칸 이상 움직이면 공유. 피팅 전 사전값
+    source: null
+  fit:
+    method: 헤드라인 공유 건 중 본문 확인 뒤 판단이 바뀐 비율(오경보)과 놓친 건(보류 뒤 본문으로 알파가 움직인 건)을 표본 외로 대조
+    target: 헤드라인 공유 오경보율
+    data: radar/state/fulltext_hold.log·sent 기록
+    last_fit: null
+    oos_metric: null

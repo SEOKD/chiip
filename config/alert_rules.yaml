@@ -48,6 +48,8 @@ fast_feeds:
   boost_on_calendar_days: 0.5     # calendar.csv에 해당 기업 일정이 있는 날은 간격 × 0.5
 
 # 비용 상한
+headline_alpha:   # 본문을 못 읽은 건도 헤드라인만으로 알파 요소가 이만큼 이상 움직이면 바로 공유(마스터 지시 2026-11-14, radar/run_poll.py headline_alpha, 등록부 prm-alert-headline-move)
+  min_move: 0.5
 caps:
   daily_model_calls: 200
   daily_p0_deep_analysis: 10

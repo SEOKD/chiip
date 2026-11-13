@@ -208,7 +208,11 @@ def fast_lane(items):
             if it.get("_held"):
                 import fulltext
                 fulltext.release(it["item_id"], "sent")
-            e = extra.get(it["item_id"]) or {}
+            e = dict(extra.get(it["item_id"]) or {})
+            if it.get("_headline"):   # 헤드라인 공유 건 — 본문 미확인과 알파 영향 두 줄을 맨 앞에(모델 요약은 제목 사실만)
+                import fulltext
+                fulltext.release(it["item_id"], "sent_headline")
+                e["points"] = headline_lines(it["_headline"], (it.get("fulltext") or {}).get("why")) + [p for p in (e.get("points") or []) if "본문" not in p][:1]
             if e.get("profile"):
                 notify.remember_profile(it.get("entities_matched"), e["profile"], "빠른 길 모델")
             ref = notify.remember_alert(it, lvl, why, None, None)
@@ -223,10 +227,13 @@ def fast_lane(items):
     return sent
 
 
-def body_gate(go_list, fetch=None):
+def body_gate(go_list, fetch=None, judge=None):
     """알림 직전 본문 확인 관문(2026-11-14 마스터 지시 "본문을 반드시 확인하는 구조").
     ① 이번 건은 유형과 무관하게 원문을 연다(fulltext — 원 주소·SEC·같은 제목 다른 원천·발행사 사이트맵·와이어)
     ② 못 읽은 건은 보내지 않고 radar/state/fulltext_hold.json에 보류 ③ 보류 건은 회차마다 다시 열어 읽히면 이번 회차에 보낸다
+    ②' 예외(2026-11-14 마스터 개정 "본문을 읽지 않아도 헤드라인 중요도가 높으면 공유 — 헤드라인만으로 알파 점수를 변화시키는 건"):
+       못 읽은 건은 headline_alpha(소형 모델)가 그 회사의 알파 요소 점수를 보고 헤드라인만으로 요소가 바뀌는지 판정한다.
+       바뀌면(|변화| ≥ config/alert_rules.yaml headline_alpha.min_move) '본문 미확인 · 헤드라인 기준'을 밝히고 바로 보낸다
     ④ HOLD_MODEL_AFTER회 실패한 건은 Pulse 모델 회차가 WebSearch로 다른 사본(상대방 발표·와이어·다른 매체)을 찾는다(pulse.py held)
     ⑤ HOLD_TRIES회 실패하고 모델도 못 읽으면 보내지 않고 기록만(radar/state/fulltext_hold.log) — 헤드라인만으로 알림을 쓰지 않는다"""
     import fulltext
@@ -237,9 +244,15 @@ def body_gate(go_list, fetch=None):
     except Exception as exc:
         common.record_health("src-fulltext", False, f"{type(exc).__name__}: {exc}"[:200])
     out = []
+    unread = [(it, lvl, why) for it, lvl, why in go_list if (it.get("fulltext") or {}).get("status") != "ok"]
+    moves = headline_alpha([it for it, _, _ in unread], judge) if unread else {}
     for it, lvl, why in go_list:
         if (it.get("fulltext") or {}).get("status") == "ok":
             out.append((it, lvl, why))
+        elif moves.get(it.get("item_id")):
+            it["_headline"] = moves[it["item_id"]]
+            out.append((it, lvl, why))
+            print(f"헤드라인 알파 공유 {it.get('item_id')}: {it['_headline'].get('component')} {it['_headline'].get('move'):+.1f}")
         else:
             h = fulltext.hold(it, lvl, why, it.get("fulltext"), now)
             print(f"본문 미확인 보류 {it.get('item_id')} ({h['tries']}회): {(it.get('fulltext') or {}).get('why', '열람 전')[:120]}")
@@ -260,6 +273,71 @@ def body_gate(go_list, fetch=None):
         else:
             fulltext.hold(it, h["level"], h["rule"], ft, now)
     return out
+
+
+HEADLINE_SCHEMA = {"type": "object", "properties": {"results": {"type": "array", "items": {"type": "object", "properties": {
+    "item_id": {"type": "string"}, "moves": {"type": "boolean"}, "component": {"type": "string"}, "move": {"type": "number"},
+    "reason": {"type": "string"}}, "required": ["item_id", "moves"]}}}, "required": ["results"]}
+HEADLINE_PROMPT = (
+    "radar/state/headline_batch.json의 항목마다 판정한다(마스터 지시 2026-11-14). 본문은 읽지 못했고 제목·요약(snippet)만 있다. "
+    "alpha는 그 회사의 현재 알파 점수(10점)와 요소 점수(upside 상방·gap 시장과의 차이·bottleneck 병목·asymmetry 비대칭·attention 관심)다. "
+    "제목만으로 이 사건이 사실이라면 요소 점수 중 하나라도 바뀌는지 판단한다 — 바뀌면 moves=true, 가장 크게 바뀌는 요소 이름(component), "
+    "변화량(move, −3~+3, 0.5 단위), 이유 한 줄(reason, 60자 안, 제목에 있는 사실만). 제목이 이미 알려진 일의 반복·홍보성 선정·소규모 파트너십·"
+    "금액 없는 MOU·인사·행사라면 moves=false. 숫자를 지어내지 않는다. 결과는 구조화 출력만.")
+
+
+def _alpha_rows():
+    try:
+        sys.path.insert(0, str(common.ROOT / "scripts" / "alpha"))
+        import score as alpha
+        return alpha.load_latest(common.now_kst().date())[1]
+    except Exception:
+        return {}
+
+
+def headline_alpha(items, judge=None, rows=None):
+    """본문을 못 읽은 건 중 헤드라인만으로 알파 요소가 움직이는 건 {item_id: {component, move, reason}} — 소형 모델 1회.
+    알파 점수가 없는 회사는 판정하지 않는다(보류 유지). 모델이 없거나 상한이면 {}"""
+    cfgh = ((common.load_yaml("config/alert_rules.yaml") or {}).get("headline_alpha") or {})
+    min_move = float(cfgh.get("min_move", 0.5))
+    rows = rows if rows is not None else _alpha_rows()
+    batch = []
+    for it in items:
+        ents = [e for e in it.get("entities_matched") or [] if e in rows]
+        if not ents:
+            continue
+        r = rows[ents[0]]
+        batch.append({"item_id": it["item_id"], "title": it.get("title"), "snippet": it.get("snippet"), "publisher": it.get("publisher"),
+                      "company": r.get("name") or ents[0], "alpha": {"total": r.get("total"), "components": r.get("components")}})
+    if not batch:
+        return {}
+    try:
+        if judge:
+            res = judge(batch)
+        else:
+            import run_triage
+            cap = ((common.load_yaml("config/alert_rules.yaml") or {}).get("caps") or {}).get("daily_model_calls", 200)
+            if not run_triage.claude_exe() or run_triage.calls_today() >= cap:
+                return {}
+            (common.STATE / "headline_batch.json").write_text(json.dumps(batch, ensure_ascii=False, indent=1), encoding="utf-8")
+            out = run_triage.run_claude(HEADLINE_PROMPT, "haiku", HEADLINE_SCHEMA, timeout=120)
+            res = (out.get("structured_output") or {}).get("results", [])
+    except Exception as exc:
+        common.record_health("headline-alpha", False, f"{type(exc).__name__}: {exc}"[:200])
+        return {}
+    names = {b["item_id"]: b["company"] for b in batch}
+    return {r["item_id"]: {"component": r.get("component", ""), "move": float(r.get("move") or 0), "reason": r.get("reason", ""), "company": names.get(r["item_id"])}
+            for r in res if r.get("moves") and abs(float(r.get("move") or 0)) >= min_move and r.get("item_id") in names}
+
+
+COMPONENT_KO = {"upside": "상방", "gap": "시장과의 차이", "bottleneck": "병목", "asymmetry": "비대칭", "attention": "관심"}
+
+
+def headline_lines(h, why):
+    """헤드라인 공유 건의 고정 두 줄 — 본문 미확인과 알파 영향"""
+    comp = COMPONENT_KO.get(h.get("component"), h.get("component") or "알파")
+    return [f"본문 미확인 · 헤드라인 기준 공유({(why or '원문 열람 실패')[:50]})",
+            f"알파 영향(제목 기준): {comp} {h.get('move', 0):+.1f} — {h.get('reason', '')}"]
 
 
 FAST_SEEN = "fast_lane"

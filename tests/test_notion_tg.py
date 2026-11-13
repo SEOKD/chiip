@@ -16,8 +16,9 @@ class TestTidy(unittest.TestCase):
         self.assertNotIn("outputs/", out)
         self.assertIn("• 지연 노출", out)
         self.assertIn("\n\n반대 근거:", out)
-        self.assertTrue(out.endswith("1차 판정·미검증 · 공개 자료 기반 분석이며 투자 권유가 아님"))
-        self.assertEqual(out.count("1차 판정"), 1)
+        self.assertNotIn("투자 권유가 아님", out)   # 꼬리 줄은 뺀다(마스터 지시 2026-11-14)
+        self.assertNotIn("1차 판정", out)
+        self.assertEqual(out.count("1차 판정"), 0)   # 머리·꼬리의 판정 상태는 뺀다(2026-11-14)
 
 
 if __name__ == "__main__":

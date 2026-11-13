@@ -243,7 +243,38 @@ def send(text, level="P1", ref=None, html_mode=False, md=False, buttons=None):
     return ok
 
 
+FOOTER_BITS = {"1차 판정·미검증", "1차 판정, 미검증", "1차 판정 미검증", "공개 자료 기반 분석이며 투자 권유가 아님", "투자 권유 아님", "투자 권유가 아님",
+               "연구 후보이지 매수 권유 아님", "연구 후보이지 매수 권유가 아닙니다", "구매 등급·목표주가 모두 규칙이 계산한 모델 값",
+               "규칙 계산 등급이며 매매·비중·금액 지시가 아님", "투자자문 아님", "투자자문 아님 — 판단을 돕는 정량 지표이며 매수·매도 권유가 아님",
+               "등락·거래량만 본 흐름이며 원인은 확인된 것만 적는다"}
+
+
+def feed_tidy(text, md=False):
+    """텔레그램 피드 공통 다듬기(마스터 지시 2026-11-14 "맨 아래 줄을 빼라 … 독자가 직관적으로 이해하도록, 문단 띄어쓰기를 잘하고
+    굳이 필요하지 않은 부가 설명은 제외") — ① 면책·판정 상태만으로 된 꼬리 줄(1차 판정·미검증 · 투자 권유 아님 등)을 뺀다
+    ② 빈 줄은 한 줄까지, 줄 끝 공백 제거 ③ 맨 앞뒤 빈 줄 제거 ④ 괄호 안쪽 공백('알림 )' → '알림)')
+    ⑤ md 피드의 '원문: <긴 주소>' 줄은 '[원문](주소)' 링크로 — 휴대폰에서 주소가 몇 줄을 차지하지 않게.
+    내용 줄은 바꾸지 않는다(조각 중 하나라도 다른 말이면 그 줄은 남긴다)"""
+    out = []
+    for l in text.splitlines():
+        core = re.sub(r"<[^>]+>|\*\*|__", "", l).strip().rstrip(".")
+        bits = [b.strip().rstrip(".") for b in re.split(r"\s+·\s+", core) if b.strip()]
+        if bits and all(b in FOOTER_BITS for b in bits):
+            continue
+        l = re.sub(r"\(\s+", "(", re.sub(r"\s+\)", ")", l.rstrip())) if "(" in l else l.rstrip()
+        m = re.match(r"^(\s*(?:[-•·]\s*)?)(원문|출처|링크|보도|자료|공시)\s*[:：]\s*(https?://\S{60,})$", l) if md else None
+        if m:
+            l = f"{m.group(1)}[{m.group(2)}]({m.group(3)})"
+        if l == "" and (not out or out[-1] == ""):
+            continue
+        out.append(l)
+    while out and out[-1] == "":
+        out.pop()
+    return "\n".join(out)
+
+
 def _send(text, level="P1", ref=None, html_mode=False, md=False, buttons=None):
+    text = feed_tidy(text, md)
     raw_text = text
     if level == "PORTFOLIO":   # Chiip View 항목의 '기업:' 줄도 다른 항목처럼 하이픈으로 시작한다(마스터 지시 2026-10-31)
         text = re.sub(r"(?m)^기업:", "- 기업:", text)

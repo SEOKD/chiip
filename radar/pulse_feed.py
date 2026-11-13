@@ -9,6 +9,8 @@ Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴�
    "empty": ["미보도 원문"], "zacks": false}
   본문 확인 관문(2026-11-14 마스터 지시 "본문을 반드시 확인하는 구조"): items·brief마다 "read"에 실제로 열어 읽은 원문 주소를 쓴다
   (fulltext.url 또는 모델이 WebFetch로 연 사본). 없거나 news.google.com 중계 주소면 _tg.txt를 만들지 않고 멈춘다(종료 코드 2).
+  예외(2026-11-14 마스터 개정): 본문을 못 읽었어도 헤드라인만으로 알파 요소 점수가 0.5 이상 움직이는 건은 "headline_alpha": "요소 ±값 — 이유"를
+  쓰면 통과한다. 이때 근거 첫 줄에 '본문 미확인 · 헤드라인 기준'을 밝힌다.
 사용: py radar/pulse_feed.py <json>   → 같은 이름 _tg.txt(끝의 _feed를 뗀다)를 쓰고 양식 점검 결과를 출력
 잠금 평가기 pulse_check.py가 그대로 재도록 판단은 **굵게**, 근거·반대·다음 확인은 · 줄로 쓴다.
 """
@@ -70,7 +72,7 @@ def unread(d):
     bad = []
     for x in (d.get("items") or []) + (d.get("brief") or []):
         r = str(x.get("read") or "")
-        if not r.startswith("http") or "news.google.com" in r:
+        if (not r.startswith("http") or "news.google.com" in r) and not x.get("headline_alpha"):
             bad.append(f"{x.get('name')} {x.get('code') or ''}".strip())
     return bad
 
