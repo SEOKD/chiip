@@ -205,6 +205,11 @@ def implied_blocks(dp):
             text += "."
         if oi.get("iv") is not None:
             text += f" ATM 내재 변동성 {oi['iv'] * 100:.0f}%."
+        if oi.get("earnings") and oi.get("expiry"):
+            from datetime import date as _date
+            gap = (_date.fromisoformat(oi["expiry"]) - _date.fromisoformat(oi["earnings"])).days
+            if gap > 7:   # 주간 옵션이 없어 월물을 쓴 경우 — 실적 밖 기간의 변동이 섞여 크게 나온다
+                text += f" 다만 가장 가까운 만기가 실적일 {gap}일 뒤라 실적 밖 기간의 변동이 섞여 실제 실적 몫보다 크다."
     B = [{"type": "p", "text": text}]
     if moves:
         B.append({"type": "table", "title": "실적 발표 예상 변동폭 — 과거 실적 발표 다음 거래일 주가 변화", "headers": ["분기", "발표일", "주가 변화"],

@@ -50,7 +50,8 @@ JOBS = [  # (job id, module, interval_min)
     ("trade-ppi", "trade_ppi", 1440),
     ("ppi-release", "ppi_release", 10),  # BLS PPI 발표일(calendar.csv)에만 발표 10분 뒤~3시간 BLS만 묻고 새 달·개정을 반영, inbox 한 건(모델 없음, 마스터 지시 2026-11-13)
     ("cpi-release", "cpi_release", 10),  # BLS CPI 발표일에만 발표 10분 뒤~3시간(모델 없음, 마스터 지시 2026-11-13)
-    ("kr-exports", "kr_exports", 30),  # 산업부 월간 수출입 동향(매월 1~3일 09~20시) 반도체·컴퓨터 — 못 읽으면 공백만(모델 없음, 2026-11-13)
+    ("kr-exports", "kr_exports", 30),
+    ("options-implied", "options_implied", 240),  # 실적일 14일 안 감시 종목 옵션 ATM 스트래들(Cboe 지연 시세, 마스터 승인 2026-11-14, ADR-033)  # 산업부 월간 수출입 동향(매월 1~3일 09~20시) 반도체·컴퓨터 — 못 읽으면 공백만(모델 없음, 2026-11-13)
     ("trade-hs", "trade_hs", 1440),  # HS 시계열·급등 품목(모델 없음, 2026-11-02 마스터 지시)  # 6개국 무역·PPI 세부 항목(모델 없음, 2026-11-02 마스터 지시)
     ("korea-watch", "usgov.korea_watch", 60),  # 한국 기업 미국 활동·해외 M&A 단서(모델 없음, 2026-11-03 마스터 지시) — 360→60분, 일치 항목은 inbox로(2026-11-04)
     ("patent-watch", "patent_watch", 180),  # 한국 전자기업 특허 등록·분쟁(기자 페이지·미 ITC·언론 색인 + 키 대기 원천, 모델 없음, 2026-11-08 마스터 지시)

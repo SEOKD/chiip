@@ -11,6 +11,7 @@ sources:
   - {id: dticker, region: all, kind: script, cmd: "radar/dticker.py --about {name} {ticker}", use: "마스터 딘스티커 글 — 내러티브 쓰기 전에 본다"}
   - {id: notion_library, region: all, kind: script, cmd: "radar/notion_library.py --need {id}", use: "노션 PDF·xlsx 요지(요지 없으면 merge가 따로 멈춘다)"}
   - {id: narrative_sources, region: all, kind: script, cmd: "radar/narrative_sources.py {id}", use: "IB 의견 변경·커뮤니티 제목"}
+  - {id: options_implied, region: us, kind: script, cmd: "radar/options_implied.py --auto {id} {ticker}", use: "실적일 30일 안이면 옵션 ATM 스트래들 → datapack options_implied → '실적 발표 예상 변동폭'(Cboe 지연 시세, 2026-11-14 마스터 승인, ADR-033)"}
   - {id: queue_context, region: all, kind: script, cmd: "scripts/valuation/v2/queue_context.py --company {id}", use: "Quantral 관심(급증 Z·알파 관심 요소·과밀)·Quantral 주간 리테일 순위·IB 커버리지 장부 — 알파 판단·내러티브·동인 notes·커뮤니티 반응 절(2026-11-14, ADR-032)"}
   - {id: midterm, region: all, kind: script, cmd: "scripts/policy/midterm_impact.py {id}", use: "2026 중간선거 영향 점수 → datapack midterm"}
   - {id: trade_ppi, region: all, kind: script, cmd: "radar/trade_ppi.py --need {id}", fail_if: "연결된 input 없음", use: "무역·PPI 연결 → margin·supply input, sync"}

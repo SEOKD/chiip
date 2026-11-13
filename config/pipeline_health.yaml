@@ -18,6 +18,7 @@ jobs:
   ppi-release: ppi_release   # 지표 발표 수집기 — 발표 창 밖이면 아무것도 안 한다(2026-11-13)
   cpi-release: cpi_release
   kr-exports: kr_exports
+  options-implied: options_implied   # 실적 발표 옵션 내재 변동폭(ADR-033)
 # 10분 넘게 걸리는 작업 — self-heal 안에서 다시 돌리지 않고 정규 회차(run_hourly)에 맡긴다(2026-11-13 점검: self-heal이 이 작업을 품다 26회 연속 10분 초과)
 no_inline: [trade-ppi, trade-hs, site-imagery]
 

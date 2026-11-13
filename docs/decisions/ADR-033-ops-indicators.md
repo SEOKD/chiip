@@ -11,7 +11,8 @@
 3. **수주/출하 × 재고**: B/B(분기·4분기) × 재고 일수·재고 증가율 vs 매출 증가율 → 사이클 사분면(상향 국면 / 수요 강함+재고 축적 / 하향 경고 / 재고 조정). 새 절 '수주·출하·재고 사이클'(재고가 있는 회사만). 수주 미공시면 B/B 칸을 쓰지 않는다.
 4. **실적 발표 예상 변동폭**: 옵션 내재 = 실적일 직후 만기 ATM 스트래들 ÷ 주가, 과거 실적일 다음 거래일 실제 움직임(revision_events × ohlcv)과 비교(>1.2배 = 불확실성 프리미엄, <0.8배 = 작게). 옵션 자료가 없으면 과거 움직임만.
    원천: Cboe 지연 시세 JSON(cdn-api.cboe.com — 일반 요청으로 IV·호가 제공). Fiscal.ai·TradingView·Easyconomics(GEX는 최대 고통·풋콜 비율만)에는 IV가 없다(2026-11-14 확인).
-   **자동 수집은 꺼 둔다**(`config/ops_view.yaml options.enabled: false`) — 약관상 자동 수집 허용 여부가 애매해 마스터 판단을 받는다(CLAUDE.md). `radar/options_implied.py --put`(수동 입력)은 늘 쓴다.
+   약관상 자동 수집 허용 여부가 애매해 마스터에게 물었고 **2026-11-14 승인("켜라")** — `config/ops_view.yaml options.enabled: true`. 프로젝트 User-Agent 그대로, 종목 사이 1초.
+   수집: run_hourly `options-implied`(4시간마다, 실적일 14일 안 감시 종목) + gather 원천 `options_implied`(Analysis, 실적일 30일 안). 첫 실측 NVDA 11/17 장후 실적 — 11/18 만기 스트래들 ±9.5%(과거 4번 평균 ±4.5%의 2.1배, ATM IV 99%).
 5. **사업별 매출 vs 물가**(`input_view.segment_rows`): datapack `pricing` 항목(사업 ↔ 비교 지수 — 제품·기업 대상은 PPI, 소비자 대면 서비스는 CPI)을 `segments_hist`의 사업 매출과 맞춰(`segment` 키 또는 이름 앞부분) 전년 대비 명목 성장 − 물가 = 실질(물량·믹스). 마진 구조 절 문장 하나 + 그림 '사업별 매출 vs 물가'(한눈에 보기로 자동 이동).
 6. `report_layout.earnings_blocks`가 '추정치 수정 폭'·'실적 발표 예상 변동폭'의 문단·표도 싣는다.
 

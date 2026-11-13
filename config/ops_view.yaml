@@ -9,4 +9,6 @@ implied:
   hi: 1.2         # 옵션 내재 ÷ 과거 실적일 평균 움직임 > hi → 평소보다 큰 움직임 예상
   lo: 0.8
 options:
-  enabled: false  # Cboe 지연 시세 자동 수집 — 약관 판단이 애매해 마스터 승인 전까지 끈다(radar/options_implied.py). --put 수동 입력은 늘 쓴다
+  enabled: true   # Cboe 지연 시세 자동 수집(radar/options_implied.py) — 마스터 승인 2026-11-14 "켜라". 끄면 --put 수동 입력만
+  window_days: 30 # Analysis(gather)에서 실적일이 이 안이면 받는다
+  due_days: 14    # run_hourly 정기 수집 — 실적일이 이 안인 감시 종목만
