@@ -79,6 +79,9 @@ keys:
   no-kongsberg:
     checked: '2026-10-30'
     key: OB_KOG
+  us-lth:
+    checked: '2026-11-13'
+    key: NYSE_LTH
   us-asts:
     checked: '2026-10-31'
     key: NASDAQ_ASTS

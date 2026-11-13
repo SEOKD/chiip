@@ -25,6 +25,7 @@ regime_priors:               # 월·연 단위로 바뀌는 시장 값 — model
     telecom_equipment: {beta: 0.92, equity_weight: 0.9156}
     power_utility:   {beta: 0.48, equity_weight: 0.5742}
     offshore_drilling: {beta: 1.40, equity_weight: 0.81}   # 표에 업종 값이 없어 SDRL 시장 베타 1.40·자기 자본 구조 0.81을 쓴다(2026-11-02 SDRL)
+    leisure_facilities: {beta: 1.20, equity_weight: 0.70}   # 표에 업종 값을 대조하지 못해 추정 — 회원제 클럽·레저 시설(Damodaran Recreation 계열 약 1.2 가정). 자기자본 비중 = LTH 시총 $10.23B ÷ (시총 + 차입 $1.49B + 리스 $2.81B) = 0.70(2026-11-13)
 
 fred_series:                 # regime.py가 매일 받는 FRED 계열(키 불필요 CSV)
   ust10y: DGS10

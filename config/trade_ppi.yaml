@@ -135,6 +135,16 @@ inputs:
     tw_goods: 自動資料處理機及其附屬單元
     tw_main: (4)資通與視聽產品
     sitc: "75"
+  commercial_power:
+    name: 상업용 전력 요금   # 2026-11-13 Life Time 클럽 시설 운영비(전기) 연결. HS 2716.00 = 전기 에너지. PPI는 미국 상업용 전력(WPU0542)
+    hs: "271600"
+    ppi: {us: WPU0542}
+    proxy: [us]
+  exercise_equipment:
+    name: 운동 기구(실내 피트니스 장비)   # 2026-11-13 Life Time 클럽 기구 연결. HS 9506.91 = 일반 체육·운동용 기구. PPI는 미국 운동·체육 용품 제조업(NAICS 339920)
+    hs: "950691"
+    ppi: {us: PCU339920339920}
+    proxy: [us]
 
 # HS 시계열·급등 품목 — radar/trade_hs.py (마스터 지시 2026-11-02). 미국은 전 품목, EU·일본은 아래 관심 장만 받는다
 hs_scan:
