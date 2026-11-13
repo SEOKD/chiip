@@ -70,21 +70,48 @@ def check(dp, data=None):
         raise ValueError(f"config/trade_ppi.yaml inputs에 없는 input: {bad}")
 
 
-def margin_blocks(dp, data=None):
+def margin_blocks(dp, data=None, hist=None, cpi=None):
+    """마진 구조 절의 투입 물가 — 표 하나(PPI 3·6·12개월 + 해외 전년비 + 전가 못 할 때 OPM)·문단 하나·그림 하나
+    (2026-11-13 asset-roic 세션과 맞춤: 표를 늘리지 않는다)"""
     data = data if data is not None else load()
+    hist = hist if hist is not None else _json(HIST)
     inputs = data.get("inputs", {})
     check(dp, data)
-    items = {b["input"]: b["item"] for p in dp["margin"]["products"] for b in p["bom"] if b.get("input") in inputs}
-    if not items:
-        return pricing_blocks(dp)   # BOM 연결이 없어도 비용 요인·판매가 물가는 본다(2026-11-13)
-    B = [{"type": "table", "title": f"BOM 투입 물가 — PPI 전년비, {data.get('as_of')} 수집", "headers": ["항목", "미국", "일본", "한국", "대만"],
-          "rows": [[name, _yoy(inputs[k], "us"), _yoy(inputs[k], "jp"), _yoy(inputs[k], "kr"), _yoy(inputs[k], "tw")] for k, name in items.items()]}]
-    text = "별표는 품목보다 넓은 업종 지수다."
+    names = {b["input"]: b["item"] for p in dp["margin"]["products"] for b in p["bom"] if b.get("input") in inputs}
+    for c in (dp.get("margin") or {}).get("costs") or []:
+        if c.get("input") in inputs:
+            names.setdefault(c["input"], c["name"])
+    br = bridge(dp, hist, cpi)
+    hit = {r["name"]: r for r in br["costs"]}
+    pc = lambda x: UNKNOWN if x is None else f"{x * 100:+.1f}%"
+    pp = lambda x: UNKNOWN if x is None else f"{x * 100:+.1f}%p"
+    B = []
+    if br["spread"] is not None and abs(br["spread"]) >= SPREAD_FLAG:
+        B.append({"type": "hl", "text": f"**원가·판매가 물가 격차 {pp(br['spread'])}** — 판매가 물가가 투입 원가 물가보다 {'빠르게' if br['spread'] > 0 else '느리게'} 오른다."})
+    if names:
+        rows, months = [], set()
+        for k, name in names.items():
+            s = series(f"ppi:{k}", hist)
+            ch = {n: change(s, n) for n in (3, 6, 12)}
+            months.update(m for _, m in ch.values() if m)
+            r = hit.get(name)
+            rows.append([name, pc(ch[3][0]), pc(ch[6][0]), pc(ch[12][0]) + ("*" if "us" in (inputs[k].get("proxy") or []) else ""),
+                         _yoy(inputs[k], "jp"), _yoy(inputs[k], "kr"), _yoy(inputs[k], "tw"), pp(r["d_opm"]) if r else "-"])
+        asof = max(months) if months else data.get("as_of")
+        B.append({"type": "table", "title": f"투입 물가 — 미국 PPI 3·6·12개월({asof}, 개정 반영)과 해외 전년비", "headers": ["항목", "미국 3개월", "6개월", "12개월", "일본", "한국", "대만", "전가 못 할 때 OPM"], "rows": rows})
+    say = ["별표는 품목보다 넓은 업종 지수다"] if names else []
     drag, cover = pressure(dp, data)
     if drag is not None:
-        text += f" 지난 1년 투입 물가를 판매가 전가 뒤 원가에 그대로 넣으면 OPM은 {drag * 100:+.2f}%p 움직인다(매출원가의 {cover * 100:.0f}% 기준)."
-    B.append({"type": "p", "text": text})
-    return B + pricing_blocks(dp)
+        say.append(f"지난 1년 투입 물가를 판매가 전가 뒤 원가에 넣으면 OPM은 {drag * 100:+.2f}%p 움직인다(매출원가의 {cover * 100:.0f}% 기준)")
+    say += price_sentences(br)
+    if br["unmapped"]:
+        say.append(f"물가 지수를 붙이지 못한 매출원가 항목은 {', '.join(br['unmapped'])}다(미연결)")
+    if say:
+        B.append({"type": "p", "text": ". ".join(say) + "."})
+    ch = pricing_chart(br)
+    if ch:
+        B.append(ch)
+    return B
 
 
 def _route(v, kind):
@@ -203,38 +230,44 @@ def bridge(dp, hist=None, cpi=None):
             "d_gpm": sum(r["d_gpm"] or 0 for r in costs) if costs else None, "d_opm": sum(r["d_opm"] or 0 for r in costs) if costs else None}
 
 
-def pricing_blocks(dp, hist=None, cpi=None):
-    """마진 구조 절의 원가·판매가 물가 한두 문장 + 작은 그림 + 표. 재료가 없으면 []"""
-    b = bridge(dp, hist, cpi)
-    if not b["costs"] and not b["prices"]:
-        return []
+def price_sentences(br):
     pc = lambda x: UNKNOWN if x is None else f"{x * 100:+.1f}%"
-    pp = lambda x: UNKNOWN if x is None else f"{x * 100:+.1f}%p"
-    months = sorted({r["month"] for r in b["costs"] + b["prices"] if r.get("month")})
-    asof = months[-1] if months else UNKNOWN
-    say = []
-    if b["cost12"] is not None:
-        say.append(f"연결한 투입 원가의 미국 PPI는 1년 새 가중 {pc(b['cost12'])}이고, 판매가로 넘기지 못하면 GPM {pp(b['d_gpm'])}·OPM {pp(b['d_opm'])}가 움직인다")
-    pw = [r for r in b["prices"] if r["power"] is not None]
+    out = []
+    if br["cost12"] is not None:
+        out.append(f"연결한 투입 원가의 미국 PPI는 1년 새 가중 {pc(br['cost12'])}이고, 판매가로 넘기지 못하면 GPM {br['d_gpm'] * 100:+.1f}%p·OPM {br['d_opm'] * 100:+.1f}%p가 움직인다")
+    pw = [r for r in br["prices"] if r["power"] is not None]
     if pw:
         r = pw[0]
-        say.append(f"{r['business']} 가격은 {pc(r['company'])}로 비교 물가({r['label']}, {r['month']}) {pc(r['idx12'])}보다 {abs(r['power']) * 100:.1f}%p {'더' if r['power'] >= 0 else '덜'} 올랐다")
-    elif b["prices"]:
-        r = b["prices"][0]
-        say.append(f"판매가 비교 물가({r['label']})는 1년 새 {pc(r['idx12'])}" + ("" if r["idx12"] is not None else "(전년 같은 달 값 없음)") + " — 회사 가격 변화는 미확인")
-    B = []
-    if b["spread"] is not None and abs(b["spread"]) >= SPREAD_FLAG:
-        B.append({"type": "hl", "text": f"**원가·판매가 물가 격차 {pp(b['spread'])}** — 판매가 물가가 투입 원가 물가보다 {'빠르게' if b['spread'] > 0 else '느리게'} 오른다({asof} 기준)."})
-    B.append({"type": "p", "text": "**물가로 본 가격 결정력(" + asof + " 기준, 개정 반영):** " + ". ".join(say) + "." + (f" 물가 지수를 붙이지 못한 매출원가 항목: {', '.join(b['unmapped'])}(미연결)." if b["unmapped"] else "")})
-    bars = [{"label": f"원가 PPI({r['name']})", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in b["costs"] if r["ch12"] is not None]
-    for r in b["prices"]:
+        out.append(f"{r['business']} 가격은 {pc(r['company'])}로 비교 물가({r['label']}, {r['month']}) {pc(r['idx12'])}보다 {abs(r['power']) * 100:.1f}%p {'더' if r['power'] >= 0 else '덜'} 올랐다")
+    elif br["prices"]:
+        r = br["prices"][0]
+        out.append(f"판매가 비교 물가({r['label']})는 1년 새 {pc(r['idx12'])} — 회사 가격 변화는 미확인")
+    return out
+
+
+def pricing_chart(br):
+    rows = [{"label": f"원가 PPI {r['name']}", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
+    for r in br["prices"]:
         if r["idx12"] is not None:
-            bars.append({"label": f"판매가 지수({r['label']})", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
+            rows.append({"label": f"판매가 {r['label']}", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
         if r["company"] is not None:
-            bars.append({"label": f"회사 가격({r['business']})", "bars": [{"name": "1년 변화", "color": "a", "value": round(r["company"] * 100, 1)}]})
-    if bars:
-        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 170, "title": f"투입 원가 물가·판매가 물가·회사 가격 — 1년 변화({asof})", "unit": "%", "rows": bars}})
-    if b["costs"]:
-        B.append({"type": "table", "title": f"투입 원가 PPI 변화와 전가 못 할 때 마진 영향({asof}, 미국)", "headers": ["비용", "매출 대비", "3개월", "6개월", "12개월", "GPM", "OPM"],
-                  "rows": [[r["name"], pc(r["pct_rev"]).lstrip("+"), pc(r["ch3"]), pc(r["ch6"]), pc(r["ch12"]), pp(r["d_gpm"]), pp(r["d_opm"])] for r in b["costs"]]})
-    return B
+            rows.append({"label": f"회사 가격 {r['business']}", "bars": [{"name": "1년 변화", "color": "a", "value": round(r["company"] * 100, 1)}]})
+    if not rows:
+        return None
+    months = sorted({r["month"] for r in br["costs"] + br["prices"] if r.get("month")})
+    return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"투입 원가 물가·판매가 물가·회사 가격 — 1년 변화({months[-1] if months else UNKNOWN})", "unit": "%", "rows": rows[:8]}}
+
+
+def pricing_blocks(dp, hist=None, cpi=None):
+    """판매가·원가 물가 부분만(시험·다른 절용) — 마진 구조 절은 margin_blocks가 표·문단 하나로 합친다"""
+    br = bridge(dp, hist, cpi)
+    if not br["costs"] and not br["prices"]:
+        return []
+    pp = lambda x: f"{x * 100:+.1f}%p"
+    B = []
+    if br["spread"] is not None and abs(br["spread"]) >= SPREAD_FLAG:
+        B.append({"type": "hl", "text": f"**원가·판매가 물가 격차 {pp(br['spread'])}** — 판매가 물가가 투입 원가 물가보다 {'빠르게' if br['spread'] > 0 else '느리게'} 오른다."})
+    say = price_sentences(br) + ([f"물가 지수를 붙이지 못한 매출원가 항목은 {', '.join(br['unmapped'])}다(미연결)"] if br["unmapped"] else [])
+    B.append({"type": "p", "text": ". ".join(say) + "."})
+    ch = pricing_chart(br)
+    return B + ([ch] if ch else [])
