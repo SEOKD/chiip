@@ -1,0 +1,168 @@
+{
+ "as_of": "2026-11-13",
+ "sectors": {
+  "Finance": {
+   "name": "금융",
+   "as_of": "2026-11-13",
+   "rows": [
+    {
+     "ticker": "PLMR",
+     "symbol": "NASDAQ:PLMR",
+     "name": "Palomar Holdings, Inc.",
+     "industry": "Property/Casualty Insurance",
+     "group": "financials",
+     "lens": "financials",
+     "score": 0.76,
+     "rev_growth": 58.63,
+     "op_margin": 23.84,
+     "perf_6m": 43.33,
+     "mcap_usd": 4162753245,
+     "ev_sales": 3.63,
+     "near_high": true
+    },
+    {
+     "ticker": "SLDE",
+     "symbol": "NASDAQ:SLDE",
+     "name": "Slide Insurance Holdings, Inc.",
+     "industry": "Property/Casualty Insurance",
+     "group": "financials",
+     "lens": "financials",
+     "score": 0.69,
+     "rev_growth": 41.68,
+     "op_margin": 50.68,
+     "perf_6m": 39.05,
+     "mcap_usd": 3043774836,
+     "ev_sales": 2.08,
+     "near_high": false
+    },
+    {
+     "ticker": "CLOV",
+     "symbol": "NASDAQ:CLOV",
+     "name": "Clover Health Investments, Corp.",
+     "industry": "Life/Health Insurance",
+     "group": "financials",
+     "lens": "financials",
+     "score": 0.56,
+     "rev_growth": 54.46,
+     "op_margin": 0.45,
+     "perf_6m": 41.86,
+     "mcap_usd": 2592047203,
+     "ev_sales": 0.95,
+     "near_high": false
+    },
+    {
+     "ticker": "ECPG",
+     "symbol": "NASDAQ:ECPG",
+     "name": "Encore Capital Group Inc",
+     "industry": "Finance/Rental/Leasing",
+     "group": "financials",
+     "lens": "financials",
+     "score": 0.34,
+     "rev_growth": 29.59,
+     "op_margin": 39.12,
+     "perf_6m": 35.21,
+     "mcap_usd": 2292376614,
+     "ev_sales": 3.22,
+     "near_high": false
+    },
+    {
+     "ticker": "VCTR",
+     "symbol": "NASDAQ:VCTR",
+     "name": "Victory Capital Holdings, Inc.",
+     "industry": "Investment Managers",
+     "group": "financials",
+     "lens": "financials",
+     "score": 0.33,
+     "rev_growth": 35.41,
+     "op_margin": 44.55,
+     "perf_6m": 42.56,
+     "mcap_usd": 7690880998,
+     "ev_sales": 5.31,
+     "near_high": true
+    }
+   ]
+  },
+  "Health Technology": {
+   "name": "헬스케어 기술(제약·바이오·의료기기)",
+   "as_of": "2026-11-13",
+   "rows": [
+    {
+     "ticker": "ETON",
+     "symbol": "NASDAQ:ETON",
+     "name": "Eton Pharmaceuticals, Inc.",
+     "industry": "Pharmaceuticals: Major",
+     "group": "health",
+     "lens": "health",
+     "score": 0.77,
+     "rev_growth": 100.61,
+     "op_margin": 28.85,
+     "perf_6m": 111.6,
+     "mcap_usd": 1772354108,
+     "ev_sales": 12.34,
+     "near_high": false
+    },
+    {
+     "ticker": "XERS",
+     "symbol": "NASDAQ:XERS",
+     "name": "Xeris Biopharma Holdings, Inc.",
+     "industry": "Biotechnology",
+     "group": "biotech",
+     "lens": "health",
+     "score": 0.63,
+     "rev_growth": 38.37,
+     "op_margin": 12.7,
+     "perf_6m": 164.29,
+     "mcap_usd": 3041955388,
+     "ev_sales": 8.52,
+     "near_high": true
+    },
+    {
+     "ticker": "CDNA",
+     "symbol": "NASDAQ:CDNA",
+     "name": "CareDx, Inc.",
+     "industry": "Medical Specialties",
+     "group": "medtech",
+     "lens": "health",
+     "score": 0.58,
+     "rev_growth": 38.94,
+     "op_margin": 0.86,
+     "perf_6m": 299.05,
+     "mcap_usd": 4193439594,
+     "ev_sales": 7.99,
+     "near_high": false
+    },
+    {
+     "ticker": "AMLX",
+     "symbol": "NASDAQ:AMLX",
+     "name": "Amylyx Pharmaceuticals, Inc.",
+     "industry": "Pharmaceuticals: Major",
+     "group": "health",
+     "lens": "health",
+     "score": 0.54,
+     "rev_growth": 100,
+     "op_margin": null,
+     "perf_6m": 120.53,
+     "mcap_usd": 3838888630,
+     "ev_sales": null,
+     "near_high": false
+    },
+    {
+     "ticker": "DCTH",
+     "symbol": "NASDAQ:DCTH",
+     "name": "Delcath Systems, Inc.",
+     "industry": "Medical Specialties",
+     "group": "medtech",
+     "lens": "health",
+     "score": 0.43,
+     "rev_growth": 38.13,
+     "op_margin": 5.17,
+     "perf_6m": 94.36,
+     "mcap_usd": 743768840,
+     "ev_sales": 5.84,
+     "near_high": true
+    }
+   ]
+  }
+ },
+ "note": "스크린 점수는 후보를 줄이는 보조 — 경쟁우위 판단이 아니다"
+}

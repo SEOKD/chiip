@@ -100,6 +100,12 @@ def build():
         put(co.get("id"), co.get("code") if co.get("market") == "us" else None, seg.get(co.get("segment"), seg.get("default", "cons_disc")), "소비재 지도")
     for co in _y("config/defense.yaml").get("companies") or []:
         put(co.get("id"), None, "defense", "방위 지도")
+    rc = ROOT / "knowledge" / "models" / "discovery" / "rotation_candidates.json"   # 섹터 순환 스크린 후보(2026-11-13 2단계, ADR-027)
+    if rc.exists():
+        for v in (json.loads(rc.read_text(encoding="utf-8")).get("sectors") or {}).values():
+            for r in v.get("rows") or []:
+                t = str(r.get("ticker") or "").upper()
+                put(f"us-{re.sub(r'[^a-z0-9]', '', t.lower())}", t, by_t.get(t) or r.get("group"), "섹터 순환 스크린")
     sd = c.get("seed_sector") or {}
     for grp, rows in (_y("config/tenbagger_universe.yaml").get("seeds") or {}).items():
         for r in rows or []:

@@ -17,6 +17,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 DISC = ROOT / "knowledge" / "models" / "discovery"
 OUTD = ROOT / "outputs" / "discovery"
 QUEUE = ROOT / "knowledge" / "models" / "tenbagger" / "report_queue.txt"
@@ -104,6 +105,30 @@ def asia_rows(fund, att, tv, caps, quiet, w, have):
     return out
 
 
+def rotation_rows(fund, att, tv, caps, quiet, w, have):
+    """섹터 순환 스크린 상위(scripts/discovery/sector_rotation.py → rotation_candidates.json)를 '섹터 순환: <섹터>' 테마로 합류(2026-11-13, ADR-027).
+    edge는 섹터 판단 틀 카드(knowledge/models/discovery/lens_cards, --card-check 통과·90일 안)가 있을 때만 그 값, 없으면 미판정 5 → '① 아이디어'에 머문다"""
+    try:
+        import sector_rotation
+        cands = sector_rotation.rows_for_screen(have)
+    except Exception:  # noqa: BLE001 — 순환 스크린은 보조 입력이다
+        return []
+    out = []
+    for r in cands:
+        cid = r["id"]
+        f = dict(fund.get(cid) or {})
+        f.setdefault("rev_growth", r.get("rev_growth"))
+        f.setdefault("mcap_usd", r.get("mcap_usd"))
+        c = {"id": cid, "name": r["name"], "market": "us", "code": r["ticker"], "edge": r["edge"]}
+        comp = components(c, {cid: f}, att, tv, caps, quiet=quiet)
+        comp["growth"] = lin(r.get("z"), -1.5, 2.0, 2.5, 10.0)   # 섹터 안 z합성으로 순위를 살린다(아시아 스크리너와 같은 방식)
+        s, missing = score(comp, w)
+        stage = "② 선별 통과" if s and s >= 6.0 and comp["edge"] >= 6 and cid in fund else "① 아이디어"
+        out.append({"id": cid, "name": r["name"], "market": "us", "code": r["ticker"], "theme": r["theme"], "score": s,
+                    "comp": comp, "missing": missing, "stage": stage, "why": r["why"]})
+    return out
+
+
 def _diverse(rows, n):
     """점수순 n개 — AI 밖 최소 비율·같은 섹터 상한(config/sector_map.yaml quota). 섹터 지도를 못 읽으면 점수순 그대로"""
     try:
@@ -133,6 +158,7 @@ def run(today=None):
             rows.append({"id": c["id"], "name": c["name"], "market": c.get("market"), "code": c.get("code"), "theme": t["name"], "score": s,
                          "comp": comp, "missing": missing, "stage": stage, "why": c.get("why", "")})
     rows += asia_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
+    rows += rotation_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
     rows.sort(key=lambda r: -(r["score"] or 0))
     deep = _diverse([r for r in rows if r["stage"] == "② 선별 통과"], DEEP_MAX)   # 섹터 할당량(2026-11-13 종목 범위 확대, ADR-025)
     for r in deep:

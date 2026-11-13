@@ -1,0 +1,78 @@
+# 섹터 순환 스크린 (마스터 지시 2026-11-13 종목 범위 확대 2단계, ADR-027, scripts/discovery/sector_rotation.py)
+# 매 주중 하루 한 번(Ten-bagger 08시 이후 첫 회차) TradingView 섹터 2개씩 스크린 → 18개 섹터를 약 2주(9거래일)에 한 바퀴.
+# Portfolio 섹터 선정에서 '신규 편입'·'편입 후보'가 된 섹터는 순번보다 먼저 본다. 전자기술(Electronic Technology)은 AI 밸류체인 지도가 이미 덮어 뺀다.
+# 수치는 사전값(미검증) — 등록부 prm-srot-*. 점수는 후보를 줄이는 보조이지 판단이 아니다(편입은 섹터 판단 틀 카드 + 위원회 메모).
+
+per_run: 2
+limit: 30                     # 섹터당 스크리너 행(문맥 크기 — 행당 약 0.9KB)
+stale_days: 14                # 이보다 오래된 스크린 결과는 점수에서 뺀다
+filters:                      # TradingView run_screener filters(america)
+  market_cap_basic: [300000000, 30000000000]      # $0.3B~$30B — 텐배거 구간(아시아 스크리너와 같은 결)
+  total_revenue_yoy_growth_ttm: [10, 300]         # 매출 성장 10% 이상, 300% 넘는 기저 효과는 뺀다
+sort_by: Perf.6M              # 성장 기업 중 6개월 주가 흐름이 강한 순으로 잘라 받는다
+min_value_traded_usd: 5000000 # 30일 평균 거래대금 하한(받은 뒤 거른다)
+columns: [name, description, industry, market_cap_basic, total_revenue_yoy_growth_ttm, operating_margin_ttm, gross_margin_ttm,
+          enterprise_value_to_revenue_ttm, Perf.6M, average_volume_30d_calc, close, price_52_week_high]
+weights: {growth: 0.30, momentum: 0.25, quality: 0.20, size: 0.15, value: 0.10}   # 섹터 안 z점수(±3 절단) 가중합
+top_n: 5                      # 섹터별 후보 — 발굴 선별(screen.py)에 '섹터 순환' 테마로 합류
+card_days: 90                 # 섹터 판단 틀 카드 유효 기간 — 지나면 edge 미판정(5)으로 돌아간다
+
+rotation:                     # TradingView 섹터 → (한국어 이름, 기본 판단 틀, 기본 Chiip 섹터)
+  Health Technology: [헬스케어 기술(제약·바이오·의료기기), health, health]
+  Finance: [금융, financials, financials]
+  Producer Manufacturing: [산업 제조, industrials, industrials]
+  Consumer Services: [소비자 서비스, consumer, cons_disc]
+  Energy Minerals: [에너지 자원, energy, energy]
+  Technology Services: [기술 서비스(소프트웨어·인터넷), software, software]
+  Health Services: [헬스케어 서비스, health, health]
+  Industrial Services: [산업 서비스(건설·엔지니어링·유전 서비스), industrials, infra_build]
+  Retail Trade: [소매, consumer, retail]
+  Non-Energy Minerals: [비에너지 광물(금속·광산), energy, materials]
+  Transportation: [운송, industrials, industrials]
+  Consumer Durables: [내구 소비재, consumer, cons_disc]
+  Commercial Services: [상업 서비스, industrials, industrials]
+  Process Industries: [공정 산업(화학·소재), energy, chemicals]
+  Communications: [통신, software, comm]
+  Consumer Non-Durables: [비내구 소비재, consumer, cons_staples]
+  Distribution Services: [유통 서비스, industrials, industrials]
+  Utilities: [유틸리티, energy, utilities]
+
+industry_group:               # TradingView 업종(industry) → Chiip 섹터(config/sector_map.yaml). 처음 맞는 규칙, 없으면 rotation 기본
+  - [Biotechnology, biotech]
+  - [Medical Specialties|Medical/Nursing, medtech]
+  - [Pharmaceuticals, health]
+  - [Regional Banks, regional_banks]
+  - [Aerospace, defense]
+  - [Homebuilding, homebuild]
+  - [Airlines, airlines]
+  - [Marine Shipping, shipping]
+  - [Precious Metals, gold]
+  - [Steel|Aluminum|Other Metals, materials]
+  - [Chemicals, chemicals]
+  - [Oil|Gas Production|Coal|Integrated, energy]
+  - [Electric Utilities|Gas Distributors|Water Utilities|Alternative Power, utilities]
+  - [Engineering & Construction|Building Products, infra_build]
+  - [Packaged Software|Internet Software|Information Technology Services|Data Processing, software]
+  - [Specialty Stores|Department Stores|Apparel|Discount Stores|Internet Retail, retail]
+  - [Movies|Entertainment|Casinos|Recreational|Broadcasting|Cable, media_ent]
+  - [Real Estate, real_estate]
+  - [Electrical Products, power_infra]
+
+group_tv:                     # Portfolio 섹터(신규 편입·편입 후보) → 먼저 볼 TradingView 섹터(rotation 기본 섹터로 안 잡히는 것)
+  biotech: Health Technology
+  medtech: Health Technology
+  life_tools: Health Technology
+  regional_banks: Finance
+  real_estate: Finance
+  homebuild: Consumer Durables
+  airlines: Transportation
+  shipping: Transportation
+  gold: Non-Energy Minerals
+  copper: Non-Energy Minerals
+  solar: Producer Manufacturing
+  robotics: Producer Manufacturing
+  media_ent: Consumer Services
+  cyber: Technology Services
+  nuclear: Utilities
+
+exclude_exchanges: [OTC]     # 장외 시장(OTC) 종목은 공시·유동성 기준이 달라 뺀다(2026-11-13 시험: 해외 ADR·소형 OTC가 섞였다)
