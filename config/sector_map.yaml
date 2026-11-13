@@ -1,0 +1,94 @@
+# 공통 섹터 지도 (마스터 지시 2026-11-13 "Pulse·알파 감지·Ten-bagger·Analysis의 종목 범위를 넓혀 다양한 섹터에서 찾도록" — 1단계, ADR-025)
+# 섹터 분류는 config/sector_select.yaml groups(Portfolio 섹터 후보 36개)를 그대로 쓰고, 시세를 받지 않는 '태그 전용' 섹터를 더한다.
+# 판단은 scripts/sectors/sector_map.py(결정론). 결과 knowledge/models/sectors/tags.json — 모든 기능이 같은 섹터 이름을 쓴다.
+
+ai_chain: [power_infra, ai_compute, semicap, ai_hardware, memory_storage, optical, elec_components, analog_embedded, ai_other, datacenter_infra, quantum]
+
+extra_groups:                 # sector_select에 없는 태그 전용 섹터(시세 안 받음)
+  ai_other: AI 밸류체인(기타 병목 소재·부품)
+  datacenter_infra: 데이터센터 개발·클라우드 인프라
+  shipbuild: 조선·해양
+  shipping: 해운
+  trading_houses: 종합상사
+  autos: 자동차·부품
+  chemicals: 화학
+  luxury: 럭셔리·브랜드 소비재
+
+# 발굴 테마 이름(TradingView 와치리스트 섹션 포함)의 낱말 → 섹터. 위에서부터 처음 맞는 규칙(대소문자 무시)
+name_rules:
+  - [DRAM|HBM|STORAGE|스토리지, memory_storage]
+  - [SEMI EQUIPMENT|EQUIPMENT & PARTS|OSAT|MATERIALS & EQUIPMENT|SEMICONDUCTOR & MATERIALS|SEMICONDUCTOR & EQUIPMENT|반도체 장비|반도체 소재|반도체 테스트, semicap]
+  - [SEMICONDUCTORS · POWER|SEMICONDUCTORS · NETWORKING|SEMICONDUCTORS · PACKAGING, ai_compute]
+  - [SEMICONDUCTOR|반도체, ai_compute]
+  - [QUANTUM, quantum]
+  - [OPTIC|광통신|WIRE & OPTICAL|COMMUNICATIONS EQUIPMENT, optical]
+  - [HYPERSCALER|NEOCLOUD|CDN|DATACENTER, datacenter_infra]
+  - [NUCLEAR|원자력, nuclear]
+  - [ELECTRIFICATION|POWER GENERATION|HEAVY ELECTRICAL|ELECTRICAL COMPONENTS|ELECTRIC CABLE|INDEPENDENT POWER|POWER & INDUSTRIAL|전력기기|중전기|전기 부품, power_infra]
+  - [UTILIT, utilities]
+  - [LNG|PIPELINE|ENERGY|OIL, energy]
+  - [AEROSPACE & DEFENSE|DEFENSE|DRONE|방산, defense]
+  - [SPACE|SATELLITE|AEROSPACE, space]
+  - [SHIPBUILDING|조선, shipbuild]
+  - [SHIPPING|해운, shipping]
+  - [ELECTRONIC COMPONENTS|ELECTRONIC MANUFACTURING|ELECTRONIC EQUIPMENT|AI HARDWARE|TECHNOLOGY HARDWARE|컴퓨터 하드웨어|PCB|기판, elec_components]
+  - [SOFTWARE|IT SERVICES|인터넷, software]
+  - [TELECOM, comm]
+  - [FINANCIALS|EXCHANGES, financials]
+  - [HEALTHCARE|LIFE SCIENCES|바이오, health]
+  - [ENTERTAINMENT|CONSUMER & IP|콘텐츠, media_ent]
+  - [LUXURY, luxury]
+  - [CONSUMER|가전|소비재, cons_disc]
+  - [ROBOTICS|로봇, robotics]
+  - [자동차, autos]
+  - [화학, chemicals]
+  - [MATERIALS|철강, materials]
+  - [TRADING HOUSES|상사, trading_houses]
+  - [CONSTRUCTION, infra_build]
+  - [INDUSTRIAL|HVAC|BUILDING|COMMERCIAL|MACHINERY|CONGLOMERATE|RESEARCH & CONSULTING|지주|산업재, industrials]
+
+# 발굴 테마의 sector 칸 → 섹터(이름 규칙이 안 맞을 때). 칸이 비면 AI 밸류체인 테마(초기 지도)
+theme_sector: {semis: ai_compute, ai_hw: ai_hardware, defense: defense, space: space, nuclear: nuclear, industrial: industrials,
+               consumer: media_ent, software: software, null: ai_other}
+seed_sector: {semis: ai_compute, software: software, ai_hw: ai_hardware}     # config/tenbagger_universe.yaml seeds
+consumer_segment: {default: cons_disc, toys_ip: media_ent, games: media_ent, content_ip: media_ent, beauty: luxury}
+
+quota:                        # 섹터 할당량 — 점수순으로 고르되 아래를 지킨다(채울 후보가 없으면 그만큼 풀어 준다)
+  non_ai_min: 0.4             # AI 밸류체인 밖 최소 비율(마스터 미정 — 사전값, 설계안 예시)
+  per_sector_max: 2           # 같은 섹터 최대 개수
+  analysis_window_days: 7     # Analysis: 최근 7일 리포트의 AI 밖 비율이 non_ai_min 아래면 다음 1건은 AI 밖 알파 5.0 이상에서
+
+pulse:                        # Pulse 섹터 확장 — 감시 이름 사전에 안 걸린 AI 밖 지도 종목의 1차 사건(보도자료·공시)
+  per_run_max: 4              # 회차당 '섹터 확장' 원본 상한
+  per_sector_max: 2           # 그중 같은 섹터 상한
+  general_events: 'contract|award|order|backlog|guidance|raises|record|acquisition|acquire|merger|approval|launch|partnership|agreement|results|quarter'
+  sector_events:              # 섹터 고유 사건 어휘(대소문자 무시)
+    health: 'FDA|PDUFA|Phase (1|2|3|I|II|III)|topline|NDA|BLA|clearance|CE mark|trial'
+    biotech: 'FDA|PDUFA|Phase (1|2|3|I|II|III)|topline|NDA|BLA|trial'
+    medtech: 'FDA|510\(k\)|clearance|CE mark|PMA'
+    financials: 'net interest|NIM|deposit|loan growth|buyback|dividend|capital ratio|CET1'
+    regional_banks: 'net interest|deposit|loan growth|CET1|credit'
+    energy: 'reserves|production|FID|offtake|LNG|drilling|rig'
+    retail: 'same-store|comparable sales|comps'
+    cons_disc: 'same-store|comparable sales|comps|price increase'
+    homebuild: 'orders|closings|backlog'
+    airlines: 'capacity|RASM|load factor'
+    utilities: 'rate case|PPA|data center'
+    materials: 'price increase|capacity|offtake'
+    shipbuild: 'order|vessel|LNG carrier|frigate'
+
+# 감시 목록(config/valuation.yaml universe·config/earnings_watch.yaml extra)의 sub 칸 → 섹터. 없는 sub는 미분류(모르면 미확인)
+watch_sub: {power_infra: power_infra, power_epc: power_infra, power_services: power_infra, energy_storage: power_infra, battery_systems: power_infra, geothermal_power: power_infra,
+  cooling: power_infra, nuclear_power: nuclear, utility: utilities,
+  semicap: semicap, equipment: semicap, materials: semicap, compound_substrate: semicap,
+  accelerator: ai_compute, semis: ai_compute, foundry: ai_compute, eda_ip: ai_compute, semi_ip: ai_compute, power_semi: ai_compute, power_semis: ai_compute, rf: ai_compute, timing: ai_compute,
+  edge_ai: ai_compute, auto_semi: analog_embedded, analog: analog_embedded, semis_analog: analog_embedded, mcu_analog: analog_embedded, analog_power: analog_embedded, fpga: analog_embedded,
+  memory: memory_storage, storage: memory_storage,
+  networking: ai_hardware, server: ai_hardware, ems_rack: ai_hardware, edge_compute: ai_hardware, comms_equipment: ai_hardware, telecom_equipment: ai_hardware, iot_connectivity: ai_hardware,
+  optical_interconnect: optical, fiber_connectivity: optical, optics: optical, optical: optical, lasers: optical,
+  substrate: elec_components, components: elec_components, ems: elec_components, precision_components: elec_components, sensing: elec_components, devices: elec_components,
+  am_electronics: elec_components, pc_peripherals: elec_components,
+  hyperscaler: datacenter_infra, neocloud: datacenter_infra, software: software,
+  defense: defense, defense_electronics: defense, drones: defense, space: space, aerospace: space,
+  instruments: life_tools, cro: health, battery: chemicals, conglomerate: industrials, engineering_services: infra_build, industrial: industrials, robotics: robotics,
+  payments: financials, legal_finance: financials, education: cons_disc, fitness: cons_disc, consumer_gaming: media_ent, media_entertainment: media_ent, consumer_beauty: luxury}

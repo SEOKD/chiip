@@ -78,6 +78,27 @@ def queue_lines():
     return [{"key": r[0], "mode": r[1], "note": r[2]} for r in rows]
 
 
+def non_ai_turn(today):
+    """최근 analysis_window_days일 리포트 중 AI 밸류체인 밖 비율이 non_ai_min 아래면 'AI 밖만 통과' 판정 함수, 아니면 None
+    (2026-11-13 종목 범위 확대 1단계, config/sector_map.yaml quota, ADR-025)"""
+    try:
+        sys.path.insert(0, str(ROOT / "scripts" / "sectors"))
+        import sector_map
+    except Exception:  # noqa: BLE001
+        return None
+    q = sector_map.cfg().get("quota") or {}
+    if not LOG.exists():
+        return None
+    cut = (today - timedelta(days=q.get("analysis_window_days", 7))).isoformat()
+    with LOG.open(encoding="utf-8", newline="") as f:
+        rows = [r for r in csv.DictReader(f) if r["date"] >= cut]
+    tags = [sector_map.tag(r["id"], r.get("ticker")) for r in rows]
+    known = [t for t in tags if t]
+    if not known or sum(1 for t in known if not sector_map.is_ai(t)) / len(known) >= q.get("non_ai_min", 0.4):
+        return None
+    return lambda cid, ticker: (lambda t: bool(t) and not sector_map.is_ai(t))(sector_map.tag(cid, ticker))
+
+
 def pick(today=None):
     today = today or date.today()
     done = recent(today)
@@ -106,7 +127,13 @@ def pick(today=None):
         d = json.loads(al.read_text(encoding="utf-8"))
         rows = sorted(((k, v) for k, v in (d.get("rows") or {}).items() if (v.get("total") or 0) >= float(d.get("threshold", 5.0))),
                       key=lambda kv: -(kv[1].get("total") or 0))
+        bal = non_ai_turn(today)
         for k, v in rows:
+            if k not in done and (not bal or bal(k, uni.get(k, {}).get("ticker"))):
+                u = uni.get(k, {})
+                return {"id": k, "name": v.get("name") or u.get("name"), "ticker": u.get("ticker"),
+                        "reason": f"알파 {v.get('total')}(최고 순" + (", 섹터 균형 — 최근 7일 AI 밖 리포트 부족)" if bal else ")")}
+        for k, v in rows:   # AI 밖 후보가 없으면 원래대로
             if k not in done:
                 u = uni.get(k, {})
                 return {"id": k, "name": v.get("name") or u.get("name"), "ticker": u.get("ticker"), "reason": f"알파 {v.get('total')}(최고 순)"}

@@ -104,6 +104,16 @@ def asia_rows(fund, att, tv, caps, quiet, w, have):
     return out
 
 
+def _diverse(rows, n):
+    """점수순 n개 — AI 밖 최소 비율·같은 섹터 상한(config/sector_map.yaml quota). 섹터 지도를 못 읽으면 점수순 그대로"""
+    try:
+        sys.path.insert(0, str(ROOT / "scripts" / "sectors"))
+        import sector_map
+        return sector_map.diversify(rows, n)
+    except Exception:  # noqa: BLE001 — 할당량은 보조 규칙이다. 실패해도 선별은 돈다
+        return rows[:n]
+
+
 def run(today=None):
     today = today or date.today()
     cfg = _y("config/discovery.yaml")
@@ -124,7 +134,7 @@ def run(today=None):
                          "comp": comp, "missing": missing, "stage": stage, "why": c.get("why", "")})
     rows += asia_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
     rows.sort(key=lambda r: -(r["score"] or 0))
-    deep = [r for r in rows if r["stage"] == "② 선별 통과"][:DEEP_MAX]
+    deep = _diverse([r for r in rows if r["stage"] == "② 선별 통과"], DEEP_MAX)   # 섹터 할당량(2026-11-13 종목 범위 확대, ADR-025)
     for r in deep:
         r["stage"] = "③ 심층 대기열"
     OUTD.mkdir(parents=True, exist_ok=True)

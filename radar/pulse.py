@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -57,7 +57,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-edinet")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg"))]
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
-CLASS_W = {"관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -75,6 +75,29 @@ FIN_8K_ITEMS = {"1.01": "중요 계약", "2.03": "금융 채무 발생", "3.02":
 # + radar/consumer_attention.py의 수요 관심 급가속(IP·브랜드 위키 조회·스팀 추천) — 렌즈 knowledge/methods/consumer_lens.md
 CONSUMER_EVENT_RE = re.compile(r"決算|業績|上方修正|下方修正|月次|増配|株式分割|最高益|earnings|results|guidance|quarter|outlook|raises|record", re.I)
 CONSUMER_LATEST = common.ROOT / "knowledge" / "models" / "consumer" / "attention_latest.json"
+
+
+def sector_hit(it):
+    """AI 밸류체인 밖 섹터 지도 종목의 1차 사건 → 섹터 id, 아니면 None (2026-11-13 종목 범위 확대 1단계, config/sector_map.yaml pulse, ADR-025).
+    감시 이름 사전(entities)·기술 키워드에 안 걸려 버려지던 보도자료·공시만 살린다. 종목은 '(NYSE: XYZ)' 표기 또는 일치한 엔티티로 잇는다"""
+    try:
+        sys.path.insert(0, str(common.ROOT / "scripts" / "sectors"))
+        import sector_map
+    except Exception:  # noqa: BLE001
+        return None
+    pc = sector_map.cfg().get("pulse") or {}
+    title = it.get("title", "")
+    keys = [(None, t) for t in US_TICKER_RE.findall(f"{title} {it.get('snippet', '')}")] + [(e, None) for e in it.get("entities_matched") or []]
+    if it.get("ticker"):
+        keys.append((None, it["ticker"]))
+    for cid, tk in keys:
+        g = sector_map.tag(cid, tk)
+        if not g or sector_map.is_ai(g):
+            continue
+        pat = pc.get("general_events", "") + ("|" + pc["sector_events"][g] if g in (pc.get("sector_events") or {}) else "")
+        if pat and re.search(pat, title, re.I):
+            return g
+    return None
 QUEUE_BUSY = [((8, 5), (8, 45)), ((18, 5), (18, 45))]   # chiip-valuation-queue 실행 창 — 이때 펄스는 알파 산정을 건너뜀
 
 
@@ -188,6 +211,11 @@ def inbox_items(since):
             # 소비재 지도 종목의 실적·업적 수정·월차(일본 적시공시 미러 포함) — 기사는 제외(원문만)
             if cls in (None, "보도자료", "공시") and consumer_hits(it.get("entities_matched") or []) and CONSUMER_EVENT_RE.search(it.get("title", ""))                     and (it.get("doc_type") in ("공시", "실적", "보도자료") or "適時開示" in it.get("title", "")):
                 cls = "소비재"
+            if cls in ("보도자료", "공시") and not relevant(it, cls):   # AI 밖 섹터 지도 종목의 1차 사건(2026-11-13)
+                g = sector_hit(it)
+                if g:
+                    out.append(dict(it, source_class="섹터 확장", sector=g))
+                    continue
             if not cls or not relevant(it, cls):
                 continue
             out.append(dict(it, source_class=cls))
@@ -409,9 +437,28 @@ def is_earnings(x):
     return "2.02" in str(x.get("sec_items") or "") or bool(EARNINGS_RE.search(f"{x.get('title') or ''} {x.get('snippet') or ''}"))
 
 
+def _sector_cap(rows, n):
+    """섹터 확장 원본 — 같은 섹터 per_sector_max건까지(config/sector_map.yaml pulse)"""
+    try:
+        sys.path.insert(0, str(common.ROOT / "scripts" / "sectors"))
+        import sector_map
+        per = (sector_map.cfg().get("pulse") or {}).get("per_sector_max", 2)
+    except Exception:  # noqa: BLE001
+        per = 2
+    out, cnt = [], {}
+    for r in rows:
+        if cnt.get(r.get("sector"), 0) < per:
+            out.append(r)
+            cnt[r.get("sector")] = cnt.get(r.get("sector"), 0) + 1
+        if len(out) >= n:
+            break
+    return out
+
+
 def select(sources):
     """유형별 상한대로 고르고, 상한에 밀린 실적 발표 건은 회차 실적 합계가 EARNINGS_MAX가 될 때까지 더한다"""
-    picked = [s for c, n in TOP.items() for s in [x for x in sources if x["source_class"] == c][:n]]
+    picked = [s for c, n in TOP.items() for s in (_sector_cap([x for x in sources if x["source_class"] == c], n) if c == "섹터 확장"
+                                                  else [x for x in sources if x["source_class"] == c][:n])]
     room = EARNINGS_MAX - sum(1 for s in picked if is_earnings(s))
     ids = {id(s) for s in picked}
     extra = [s for s in sources if id(s) not in ids and s["source_class"] in TOP and is_earnings(s)]
