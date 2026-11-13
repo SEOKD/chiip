@@ -19,6 +19,7 @@ argument-hint: "[주차 YYYY-Www]"
 1. **주간 상승률**: `config/weekly_movers.yaml` tradingview 설정대로 `mcp-tv-run-screener`를 지역별로 `sort_by: "change|1W"`로 돌린다. 개수는 US 20, US(<$10B)·Europe·Japan·Korea·Taiwan·Hong Kong 각 10. 미국·유럽 상위 종목은 Fiscal.ai `company_stock_prices`로 직전 금요일 종가 대비를 대조한다(유럽 키는 XCSE_·XOSL_·XSTO_·XLON_·XETR_·XPAR_·XSWX_). 우선주·같은 회사 중복 상장·해외 주식 코드는 뺀다. 사업을 확인하지 못한 종목은 찾아보고, 그래도 모르면 뺀다.
 2. 행마다 `{region, rank, pct_change, name_ko, desc_ko, theme, ticker, as_of}`를 JSON 목록으로 쓰고 `py radar/markets/weekly_movers.py --put <파일> <YYYY-Www>`. name_ko는 한국 통용 표기, desc_ko는 2~10자 사업, theme은 바이오·의료 / 반도체·부품 / 사이버보안·SW / 전력·에너지 / 방산·우주 / 금융·서비스 / 소비재 / 산업·소재 중 하나.
 3. **글로벌 지수**: S&P 500, 나스닥 100, 필라델피아 반도체, 러셀 2000, 유로 스톡스 50, FTSE 100, 닛케이 225, 코스피, 코스닥, 항셍 — `mcp-tv-get-symbol-data-batch`의 `change|1W`.
+3-2. **급등 종목, 왜 올랐나 4~8종목**(마스터 지시 2026-11-14): 주간 상승률 표의 미국·유럽(영국 포함)·일본·한국에서 각 1~2종목. 실적 발표·공시(TDnet·DART·RNS·8-K)·TradingView 뉴스로 원인 사건을 찾고, JSON `surges`에 `region`(US·US_SMALL·EU·JP·KR)·`ticker`(상승률 표와 같게)·`kind`(실적·가이던스 상향·주주환원·수주·계약·업종 동조·업황 기대)·`why`·`source`·`next`를 쓴다. 회사 자체 사건이 없으면 '업종 동조'·'업황 기대'로 쓰고 증권사 추정은 추정이라고 밝힌다. 원인을 못 찾는 종목은 고르지 않는다.
 4. **이번 주 바뀐 것 3~4건**: 그 주 P0 카드·실적·공시에서 판단을 바꾸는 것만 고른다. 사실을 1차 자료로 대조한 뒤 건마다 무엇이·왜 중요한가·유리·불리·다음 확인을 한두 문장으로 쓴다. '왜 올랐나'는 1차 자료가 있을 때만 쓴다(금지표: 주가 급등 → 펀더멘털 변화).
 5. **섹터 온도**: `knowledge/models/portfolio/sector_latest.json`(Fiscal.ai) 3~6행, 읽기는 한 구절.
 6. **다음 주 볼 것 4~6건**: 일정 전체가 아니라 판단을 가르는 사건만. 날짜(KST)·무엇·볼 숫자(Fiscal `company_estimates`)·의미.

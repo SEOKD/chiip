@@ -29,6 +29,7 @@ MOVERS = ROOT / "knowledge" / "models" / "weekly_movers"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import earnings_alpha  # noqa: E402
 import gpu_rent  # noqa: E402   # Nebius GPU 렌털료 고정 블록(2026-11-13 마스터 지시)
+import surges  # noqa: E402   # 급등 종목, 왜 올랐나(2026-11-14 마스터 지시)
 
 
 def cfg():
@@ -146,6 +147,7 @@ def to_md(d, movers):
     L += [f"| {x['name']} | {_sign(x['pct'])} |" for x in d["indices"]]
     L += ["", "## 글로벌 증시 주간 상승률", "", "```", ticker_block(d, movers), "```", "", "## 이번 주 상승 업종", "", f"상승 상위 {total}종목 기준", "", "| 업종 | 종목 수 | 대표 |", "|---|---|---|"]
     L += [f"| {t} | {k} | {' · '.join(ex)} |" for t, k, ex in th]
+    L += surges.md_lines(d.get("_surges"))   # 급등 종목 원인(2026-11-14 마스터 지시)
     L += ["", "## 이번 주 바뀐 것", ""]
     for i, x in enumerate(d["changes"], 1):
         L += [f"### {i}. {x['title']}", f"- 무엇이: {x['what']}", f"- 왜 중요한가: {x['why']}", f"- 유리: {x['winners']}", f"- 불리: {x['losers']}", f"- 다음 확인: {x['next']}", ""]
@@ -217,6 +219,7 @@ def to_html(d, movers):
 <section><h2>글로벌 지수</h2><div class="idx">{idx}</div></section>
 <section><h2>글로벌 증시 주간 상승률</h2><div class="reg">{regs}</div><details><summary>채널용 텍스트</summary><p><button id="cp">복사</button></p><pre id="tk">{_e(block)}</pre></details></section>
 <section><h2>이번 주 상승 업종</h2><div class="tw"><table><tr><th>상승 상위 {total}종목</th><th>수</th><th>대표</th></tr>{tb}</table></div></section>
+{surges.html_section(d.get("_surges"))}
 <section><h2>이번 주 바뀐 것</h2>{cards}</section>
 <section><h2>섹터 온도</h2><div class="tw"><table><tr><th>섹터</th><th>5일</th><th>20일</th><th>고점 대비</th><th>EPS 추정 30일</th><th>읽기</th></tr>{sec}</table></div></section>
 <section><h2>AI 하드웨어 리드타임·병목</h2><p class="k">{ltsum}</p><p>{_e(d["leadtime"]["read"])}</p><div class="tw"><table><tr><th>부품</th><th>지금</th><th>전주</th><th>평시</th><th>압박도(지금÷평시)</th><th>근거</th></tr>{lt}</table></div><p class="note">압박도 = 지금 리드타임 ÷ 평시. 병목 지수는 부품 비중으로 가중한 평균. 리드타임은 이번 주 실적·콜·리포트 발언에서 모은 값이다.</p></section>
@@ -235,6 +238,8 @@ def render(week):
     d = json.loads((BRIEF / f"{week}_weekly.json").read_text(encoding="utf-8"))
     movers = load_movers(week, c)
     check(d, c)
+    # 급등 종목 원인 — json에 surges가 있으면 관문을 지켜야 렌더된다. 없으면 절을 빼고 알린다(2026-11-14 이전 주차 재렌더용)
+    d["_surges"] = surges.build(d, movers, c["limits"]) if d.get("surges") else None
     d["_earnings_alpha"] = earnings_alpha.load(week)
     md = to_md(d, movers)
     lint(md, c)
