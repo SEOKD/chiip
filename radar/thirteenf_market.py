@@ -233,11 +233,38 @@ def _split(ratios):
     return 1.0
 
 
+def _successors(data):
+    """CUSIP 변경(지주사 전환·재상장 등) 짝 찾기 — 같은 기관들이 A를 전량 내놓고 B를 새로 담았으면 A→B.
+    조건: A 전량 매도 기관 30곳·직전 보유의 50% 이상, B 신규 기관이 B 보유의 50% 이상, 두 기관 집합 겹침이 큰 쪽의 70% 이상, 1:1 짝."""
+    gone, came, prevn, curn = {}, {}, {}, {}
+    for cik, ph, ch in data:
+        for c in ph:
+            prevn[c] = prevn.get(c, 0) + 1
+            if c not in ch:
+                gone.setdefault(c, set()).add(cik)
+        for c in ch:
+            curn[c] = curn.get(c, 0) + 1
+            if c not in ph:
+                came.setdefault(c, set()).add(cik)
+    A = {c: g for c, g in gone.items() if len(g) >= 30 and len(g) >= 0.5 * prevn[c]}
+    B = {c: g for c, g in came.items() if len(g) >= 30 and len(g) >= 0.5 * curn[c]}
+    # 겹침은 큰 쪽 기준(작은 종목 여럿이 큰 신규 종목 하나에 빨려 들지 않게), 짝은 1:1(가장 잘 맞는 짝만)
+    cand = sorted(((len(ga & gb) / max(len(ga), len(gb)), a, b) for a, ga in A.items() for b, gb in B.items() if b != a), reverse=True)
+    out, used = {}, set()
+    for sc, a, b in cand:
+        if sc < 0.7:
+            break
+        if a not in out and b not in used:
+            out[a] = b
+            used.add(b)
+    return out
+
+
 def aggregate(y, q, ciks):
     """{cusip: {holders, increased, decreased, new, sold_out, name}} + 기관 수 통계"""
     py, pq = prev_q(y, q)
-    pairs, names, holders, newf = {}, {}, {}, 0
-    both = 0
+    names, holders, newf = {}, {}, 0
+    data = []
     for cik in ciks:
         cur = load(y, q, cik)
         if not cur:
@@ -250,9 +277,17 @@ def aggregate(y, q, ciks):
         if ph is None:
             newf += 1
             continue
-        both += 1
-        for cus in set(cur["h"]) | set(ph):
-            pairs.setdefault(cus, []).append((ph.get(cus, [0])[0], cur["h"].get(cus, [0])[0]))
+        data.append((cik, ph, cur["h"]))
+    succ = _successors(data)
+    pairs = {}
+    for cik, ph, ch in data:
+        if succ:
+            ph = dict(ph)
+            for a, b in succ.items():
+                if a in ph and b not in ph:
+                    ph[b] = ph.pop(a)
+        for cus in set(ch) | set(ph):
+            pairs.setdefault(cus, []).append((ph.get(cus, [0])[0], ch.get(cus, [0])[0]))
             if cus in ph:
                 names.setdefault(cus, ph[cus][1])
     out = {}
@@ -262,7 +297,12 @@ def aggregate(y, q, ciks):
         dec = sum(1 for a, b in ps if b < a * k * 0.9999)
         out[cus] = {"holders": holders.get(cus, 0), "increased": inc, "decreased": dec, "new": sum(1 for a, b in ps if a == 0 and b > 0),
                     "sold_out": sum(1 for a, b in ps if a > 0 and b == 0), "split": k if k != 1 else None, "name": names.get(cus, "")}
-    return out, {"filers": len(ciks), "both": both, "new_filers": newf}
+        if cus in succ.values():
+            out[cus]["from_cusip"] = [a for a, b in succ.items() if b == cus]
+    st = {"filers": len(ciks), "both": len(data), "new_filers": newf}
+    if succ:
+        st["cusip_changes"] = [[a, b] for a, b in sorted(succ.items())]
+    return out, st
 
 
 def figi(cusips, cmap):

@@ -1,0 +1,336 @@
+{
+ "quarter": "2026Q3",
+ "stat": {
+  "filers": 6522,
+  "both": 6464,
+  "new_filers": 57,
+  "cusip_changes": [
+   [
+    "075896159",
+    "690370127"
+   ],
+   [
+    "25434V625",
+    "25239Y220"
+   ],
+   [
+    "25434V823",
+    "25239Y147"
+   ],
+   [
+    "25434V831",
+    "25239Y196"
+   ],
+   [
+    "30231G102",
+    "30233Q108"
+   ],
+   [
+    "57142B104",
+    "57142B203"
+   ],
+   [
+    "682680103",
+    "30609A109"
+   ],
+   [
+    "68828E809",
+    "68827X105"
+   ],
+   [
+    "81761L102",
+    "81761L201"
+   ],
+   [
+    "881624209",
+    "M8769Q102"
+   ],
+   [
+    "91702V101",
+    "91703D100"
+   ],
+   [
+    "G39108108",
+    "G39104107"
+   ],
+   [
+    "G5S37H101",
+    "G5T40M104"
+   ],
+   [
+    "N3144W105",
+    "G3314M109"
+   ],
+   [
+    "Y95308105",
+    "94352A104"
+   ]
+  ]
+ },
+ "n": 6228,
+ "buy": [
+  {
+   "holders": 5008,
+   "increased": 2586,
+   "decreased": 2012,
+   "new": 113,
+   "sold_out": 69,
+   "split": null,
+   "name": "AMAZON.COM INC",
+   "cusip": "023135106",
+   "ticker": "AMZN",
+   "type": "Common Stock",
+   "net": 574
+  },
+  {
+   "holders": 4955,
+   "increased": 2578,
+   "decreased": 2047,
+   "new": 125,
+   "sold_out": 83,
+   "split": null,
+   "name": "NVIDIA CORP",
+   "cusip": "67066G104",
+   "ticker": "NVDA",
+   "type": "Common Stock",
+   "net": 531
+  },
+  {
+   "holders": 5215,
+   "increased": 2510,
+   "decreased": 2397,
+   "new": 150,
+   "sold_out": 65,
+   "split": null,
+   "name": "MICROSOFT CORP",
+   "cusip": "594918104",
+   "ticker": "MSFT",
+   "type": "Common Stock",
+   "net": 113
+  },
+  {
+   "holders": 4744,
+   "increased": 2258,
+   "decreased": 2057,
+   "new": 101,
+   "sold_out": 87,
+   "split": null,
+   "name": "ALPHABET INC-CL A",
+   "cusip": "02079K305",
+   "ticker": "GOOGL",
+   "type": "Common Stock",
+   "net": 201
+  },
+  {
+   "holders": 4253,
+   "increased": 2166,
+   "decreased": 1789,
+   "new": 237,
+   "sold_out": 101,
+   "split": null,
+   "name": "META PLATFORMS INC-CLASS A",
+   "cusip": "30303M102",
+   "ticker": "META",
+   "type": "Common Stock",
+   "net": 377
+  },
+  {
+   "holders": 4004,
+   "increased": 2108,
+   "decreased": 1656,
+   "new": 138,
+   "sold_out": 132,
+   "split": null,
+   "name": "BROADCOM INC",
+   "cusip": "11135F101",
+   "ticker": "AVGO",
+   "type": "Common Stock",
+   "net": 452
+  },
+  {
+   "holders": 5176,
+   "increased": 2106,
+   "decreased": 2742,
+   "new": 82,
+   "sold_out": 52,
+   "split": null,
+   "name": "APPLE INC",
+   "cusip": "037833100",
+   "ticker": "AAPL",
+   "type": "Common Stock",
+   "net": -636
+  },
+  {
+   "holders": 3862,
+   "increased": 2009,
+   "decreased": 1424,
+   "new": 132,
+   "sold_out": 89,
+   "split": null,
+   "name": "ELI LILLY & CO",
+   "cusip": "532457108",
+   "ticker": "LLY",
+   "type": "Common Stock",
+   "net": 585
+  },
+  {
+   "holders": 4340,
+   "increased": 1957,
+   "decreased": 1937,
+   "new": 97,
+   "sold_out": 72,
+   "split": null,
+   "name": "JPMORGAN CHASE & CO",
+   "cusip": "46625H100",
+   "ticker": "JPM",
+   "type": "Common Stock",
+   "net": 20
+  },
+  {
+   "holders": 2138,
+   "increased": 1941,
+   "decreased": 176,
+   "new": 893,
+   "sold_out": 68,
+   "split": null,
+   "name": "SPACE EXPLORATION TECHN-CL A",
+   "cusip": "84615Q103",
+   "ticker": "SPCX",
+   "type": "Common Stock",
+   "net": 1765
+  }
+ ],
+ "sell": [
+  {
+   "holders": 5176,
+   "increased": 2106,
+   "decreased": 2742,
+   "new": 82,
+   "sold_out": 52,
+   "split": null,
+   "name": "APPLE INC",
+   "cusip": "037833100",
+   "ticker": "AAPL",
+   "type": "Common Stock",
+   "net": -636
+  },
+  {
+   "holders": 5215,
+   "increased": 2510,
+   "decreased": 2397,
+   "new": 150,
+   "sold_out": 65,
+   "split": null,
+   "name": "MICROSOFT CORP",
+   "cusip": "594918104",
+   "ticker": "MSFT",
+   "type": "Common Stock",
+   "net": 113
+  },
+  {
+   "holders": 4744,
+   "increased": 2258,
+   "decreased": 2057,
+   "new": 101,
+   "sold_out": 87,
+   "split": null,
+   "name": "ALPHABET INC-CL A",
+   "cusip": "02079K305",
+   "ticker": "GOOGL",
+   "type": "Common Stock",
+   "net": 201
+  },
+  {
+   "holders": 4955,
+   "increased": 2578,
+   "decreased": 2047,
+   "new": 125,
+   "sold_out": 83,
+   "split": null,
+   "name": "NVIDIA CORP",
+   "cusip": "67066G104",
+   "ticker": "NVDA",
+   "type": "Common Stock",
+   "net": 531
+  },
+  {
+   "holders": 5008,
+   "increased": 2586,
+   "decreased": 2012,
+   "new": 113,
+   "sold_out": 69,
+   "split": null,
+   "name": "AMAZON.COM INC",
+   "cusip": "023135106",
+   "ticker": "AMZN",
+   "type": "Common Stock",
+   "net": 574
+  },
+  {
+   "holders": 4340,
+   "increased": 1957,
+   "decreased": 1937,
+   "new": 97,
+   "sold_out": 72,
+   "split": null,
+   "name": "JPMORGAN CHASE & CO",
+   "cusip": "46625H100",
+   "ticker": "JPM",
+   "type": "Common Stock",
+   "net": 20
+  },
+  {
+   "holders": 4329,
+   "increased": 1899,
+   "decreased": 1880,
+   "new": 107,
+   "sold_out": 99,
+   "split": null,
+   "name": "ALPHABET INC-CL C",
+   "cusip": "02079K107",
+   "ticker": "GOOG",
+   "type": "Common Stock",
+   "net": 19
+  },
+  {
+   "holders": 3293,
+   "increased": 1358,
+   "decreased": 1791,
+   "new": 94,
+   "sold_out": 229,
+   "split": null,
+   "name": "HOME DEPOT INC",
+   "cusip": "437076102",
+   "ticker": "HD",
+   "type": "Common Stock",
+   "net": -433
+  },
+  {
+   "holders": 4253,
+   "increased": 2166,
+   "decreased": 1789,
+   "new": 237,
+   "sold_out": 101,
+   "split": null,
+   "name": "META PLATFORMS INC-CLASS A",
+   "cusip": "30303M102",
+   "ticker": "META",
+   "type": "Common Stock",
+   "net": 377
+  },
+  {
+   "holders": 4115,
+   "increased": 1773,
+   "decreased": 1732,
+   "new": 91,
+   "sold_out": 94,
+   "split": null,
+   "name": "BERKSHIRE HATHAWAY INC-CL B",
+   "cusip": "084670702",
+   "ticker": "BRK/B",
+   "type": "Common Stock",
+   "net": 41
+  }
+ ],
+ "at": "2026-11-14T03:36:54+09:00"
+}

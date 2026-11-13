@@ -42,6 +42,18 @@ class TestMarket(unittest.TestCase):
         self.assertEqual((b["decreased"], b["sold_out"]), (1, 1))
         self.assertEqual(agg["SPY000001"]["new"], 1)
 
+    def test_cusip_change_merged(self):
+        data = [(str(i), {"OLD000001": [100, "OLDCO"]}, {"NEW000001": [100 + (i % 3), "NEWCO HOLDINGS"]}) for i in range(40)]
+        self.assertEqual(M._successors(data), {"OLD000001": "NEW000001"})
+        for i, ph, ch in data:
+            M.save(2026, 2, "x" + i, {"h": ph})
+            M.save(2026, 3, "x" + i, {"h": ch})
+        agg, st = M.aggregate(2026, 3, ["x" + i for i, _, _ in data])
+        n = agg["NEW000001"]
+        self.assertEqual((n["new"], n["sold_out"]), (0, 0))   # 신규 매입·전량 매도로 부풀지 않는다
+        self.assertNotIn("OLD000001", agg)
+        self.assertEqual(st["cusip_changes"], [["OLD000001", "NEW000001"]])
+
     def test_split_adjusted(self):
         self.assertEqual(M._split([4.0] * 6), 4.0)
         self.assertEqual(M._split([1.1, 0.9, 1.3, 1.0, 1.2]), 1.0)

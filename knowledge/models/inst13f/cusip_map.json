@@ -1,0 +1,253 @@
+{
+"00287Y109": {
+"name": "ABBVIE INC",
+"ticker": "ABBV",
+"type": "Common Stock"
+},
+"007903107": {
+"name": "ADVANCED MICRO DEVICES",
+"ticker": "AMD",
+"type": "Common Stock"
+},
+"02079K107": {
+"name": "ALPHABET INC-CL C",
+"ticker": "GOOG",
+"type": "Common Stock"
+},
+"02079K305": {
+"name": "ALPHABET INC-CL A",
+"ticker": "GOOGL",
+"type": "Common Stock"
+},
+"023135106": {
+"name": "AMAZON.COM INC",
+"ticker": "AMZN",
+"type": "Common Stock"
+},
+"037833100": {
+"name": "APPLE INC",
+"ticker": "AAPL",
+"type": "Common Stock"
+},
+"038222105": {
+"name": "APPLIED MATERIALS INC",
+"ticker": "AMAT",
+"type": "Common Stock"
+},
+"060505104": {
+"name": "BANK OF AMERICA CORP",
+"ticker": "BAC",
+"type": "Common Stock"
+},
+"084670702": {
+"name": "BERKSHIRE HATHAWAY INC-CL B",
+"ticker": "BRK/B",
+"type": "Common Stock"
+},
+"11135F101": {
+"name": "BROADCOM INC",
+"ticker": "AVGO",
+"type": "Common Stock"
+},
+"149123101": {
+"name": "CATERPILLAR INC",
+"ticker": "CAT",
+"type": "Common Stock"
+},
+"166764100": {
+"name": "CHEVRON CORP",
+"ticker": "CVX",
+"type": "Common Stock"
+},
+"17275R102": {
+"name": "CISCO SYSTEMS INC",
+"ticker": "CSCO",
+"type": "Common Stock"
+},
+"191216100": {
+"name": "COCA-COLA CO/THE",
+"ticker": "KO",
+"type": "Common Stock"
+},
+"22160K105": {
+"name": "COSTCO WHOLESALE CORP",
+"ticker": "COST",
+"type": "Common Stock"
+},
+"254687106": {
+"name": "WALT DISNEY CO/THE",
+"ticker": "DIS",
+"type": "Common Stock"
+},
+"30231G102": {
+"ticker": null
+},
+"30233Q108": {
+"name": "EXXONMOBIL HOLDINGS CORP",
+"ticker": "XOM",
+"type": "Common Stock"
+},
+"30303M102": {
+"name": "META PLATFORMS INC-CLASS A",
+"ticker": "META",
+"type": "Common Stock"
+},
+"437076102": {
+"name": "HOME DEPOT INC",
+"ticker": "HD",
+"type": "Common Stock"
+},
+"458140100": {
+"name": "INTEL CORP",
+"ticker": "INTC",
+"type": "Common Stock"
+},
+"459200101": {
+"name": "INTL BUSINESS MACHINES CORP",
+"ticker": "IBM",
+"type": "Common Stock"
+},
+"46090E103": {
+"name": "INVESCO QQQ TRUST SERIES 1",
+"ticker": "QQQ",
+"type": "ETP"
+},
+"464287200": {
+"name": "ISHARES CORE S&P 500 ETF",
+"ticker": "IVV",
+"type": "ETP"
+},
+"46625H100": {
+"name": "JPMORGAN CHASE & CO",
+"ticker": "JPM",
+"type": "Common Stock"
+},
+"478160104": {
+"name": "JOHNSON & JOHNSON",
+"ticker": "JNJ",
+"type": "Common Stock"
+},
+"532457108": {
+"name": "ELI LILLY & CO",
+"ticker": "LLY",
+"type": "Common Stock"
+},
+"57636Q104": {
+"name": "MASTERCARD INC - A",
+"ticker": "MA",
+"type": "Common Stock"
+},
+"580135101": {
+"name": "MCDONALD'S CORP",
+"ticker": "MCD",
+"type": "Common Stock"
+},
+"58933Y105": {
+"name": "MERCK & CO. INC.",
+"ticker": "MRK",
+"type": "Common Stock"
+},
+"594918104": {
+"name": "MICROSOFT CORP",
+"ticker": "MSFT",
+"type": "Common Stock"
+},
+"595112103": {
+"name": "MICRON TECHNOLOGY INC",
+"ticker": "MU",
+"type": "Common Stock"
+},
+"64081V208": {
+"name": "NERDY INC",
+"ticker": "NRDY",
+"type": "Common Stock"
+},
+"64110L106": {
+"name": "NETFLIX INC",
+"ticker": "NFLX",
+"type": "Common Stock"
+},
+"67066G104": {
+"name": "NVIDIA CORP",
+"ticker": "NVDA",
+"type": "Common Stock"
+},
+"682680103": {
+"ticker": null
+},
+"68389X105": {
+"name": "ORACLE CORP",
+"ticker": "ORCL",
+"type": "Common Stock"
+},
+"69608A108": {
+"name": "PALANTIR TECHNOLOGIES INC-A",
+"ticker": "PLTR",
+"type": "Common Stock"
+},
+"713448108": {
+"name": "PEPSICO INC",
+"ticker": "PEP",
+"type": "Common Stock"
+},
+"742718109": {
+"name": "PROCTER & GAMBLE CO/THE",
+"ticker": "PG",
+"type": "Common Stock"
+},
+"78462F103": {
+"name": "SS SPDR S&P 500 ETF TRUST-US",
+"ticker": "SPY",
+"type": "ETP"
+},
+"84615Q103": {
+"name": "SPACE EXPLORATION TECHN-CL A",
+"ticker": "SPCX",
+"type": "Common Stock"
+},
+"874039100": {
+"name": "TAIWAN SEMICONDUCTOR-SP ADR",
+"ticker": "TSM",
+"type": "ADR"
+},
+"88160R101": {
+"name": "TESLA INC",
+"ticker": "TSLA",
+"type": "Common Stock"
+},
+"91324P102": {
+"name": "UNITEDHEALTH GROUP INC",
+"ticker": "UNH",
+"type": "Common Stock"
+},
+"921943858": {
+"name": "VANGUARD FTSE DEVELOPED ETF",
+"ticker": "VEA",
+"type": "ETP"
+},
+"922908363": {
+"name": "VANGUARD S&P 500 ETF",
+"ticker": "VOO",
+"type": "ETP"
+},
+"922908769": {
+"name": "VG MORNINGSTAR TS MKT ETF-US",
+"ticker": "VTI",
+"type": "ETP"
+},
+"92343V104": {
+"name": "VERIZON COMMUNICATIONS INC",
+"ticker": "VZ",
+"type": "Common Stock"
+},
+"92826C839": {
+"name": "VISA INC-CLASS A SHARES",
+"ticker": "V",
+"type": "Common Stock"
+},
+"931142103": {
+"name": "WALMART INC",
+"ticker": "WMT",
+"type": "Common Stock"
+}
+}
