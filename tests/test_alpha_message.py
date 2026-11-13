@@ -22,6 +22,9 @@ class TestAlphaMessage(unittest.TestCase):
         self.assertNotIn("8-K", L[2])   # 출처 괄호는 뺀다
         self.assertIn("▶ 알파 감지 : 11/10 대출계약 체결. $250M 텀론 추가 — 알파 변화 요인 아님", L)
         text = "\n".join(L)
+        self.assertIn("▶ 주가 전망 :\n* 연 기대수익", text)   # 머리표 바로 아래 목록, ▶ 절마다 빈 줄 하나(2026-11-14 2차)
+        self.assertNotIn("\n\n\n", text)
+        self.assertRegex(text, r"\n\n▶ 커버리지")
         for want in ("▶ 주가 전망 :", "* 연 기대수익 +8.8%", "* 주가 내포 5년 매출 성장 연 +15%", "* 안전마진 없음",
                      "* 비관적인 경우 가치가 시총의 45%", "▶ 내러티브 : ", "▶ 커버리지 : "):
             self.assertIn(want, text)

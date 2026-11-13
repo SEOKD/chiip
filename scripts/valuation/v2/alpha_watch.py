@@ -360,7 +360,7 @@ def message(r, name, alpha_total, reasons, update_note=None, refs=None, alpha_ro
     L += [f"▶ 뭐하는 회사 : {_strip_src(biz) if biz else '미확인'}", ""]
     det = [detect_text(x, name, (refs or {}).get((eid, x)), alpha_row, use_model) for x in reasons[:3]]
     L += [f"▶ 알파 감지 : {det[0]}"] if len(det) == 1 else ["▶ 알파 감지 :"] + [f"* {x}" for x in det]
-    L += ["", "▶ 주가 전망 :", ""]
+    L += ["", "▶ 주가 전망 :"]   # 머리표 바로 아래 목록(2026-11-14 마스터 지시 2차)
     d = r.get("decision")
     u = r.get("upside") or {}
     if d:
@@ -376,11 +376,11 @@ def message(r, name, alpha_total, reasons, update_note=None, refs=None, alpha_ro
         else:
             L += [f"* 안전마진 {md:.0%}", f"* 비관적인 경우 가치가 시총의 {ratio:.2f}배"]
     nar, recent = narrative_parts(eid)
-    L += ["", "", f"▶ 내러티브 : {nar}"]
+    L += ["", f"▶ 내러티브 : {nar}"]   # ▶ 절마다 빈 줄 하나(2026-11-14 마스터 지시 2차)
     if recent:
-        L.append(f"▶ 최근 실적 : {recent}")
+        L += ["", f"▶ 최근 실적 : {recent}"]
     cov = coverage_lines(eid)
-    L += ["▶ 커버리지 : 최근 기록 없음"] if len(cov) == 1 else ["▶ 커버리지 :"] + [x.replace("· ", "* ", 1) for x in cov[1:]]
+    L += [""] + (["▶ 커버리지 : 최근 기록 없음"] if len(cov) == 1 else ["▶ 커버리지 :"] + [x.replace("· ", "* ", 1) for x in cov[1:]])
     if refresh_note:
         L += ["", f"▶ {refresh_note}"]
     # 끝의 '투자자문 아님'·** 표기 제외(2026-11-12 마스터 지시 — 텔레그램은 일반 글이라 **가 그대로 보인다)
