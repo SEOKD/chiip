@@ -82,6 +82,12 @@ keys:
   us-lth:
     checked: '2026-11-13'
     key: NYSE_LTH
+  us-u:
+    checked: '2026-11-13'
+    key: NYSE_U
+  us-app:
+    checked: '2026-11-13'
+    key: NASDAQ_APP
   us-asts:
     checked: '2026-10-31'
     key: NASDAQ_ASTS
