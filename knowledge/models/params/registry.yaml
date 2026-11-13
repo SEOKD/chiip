@@ -5454,3 +5454,99 @@ params:
     data: knowledge/models/estimates/breadth.json 일별 누적(쌓이는 중)
     last_fit: null
     oos_metric: null
+- id: prm-ops-rule40-pass
+  model: report.ops_view
+  binding: config/ops_view.yaml#rule40.pass
+  value: 40
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 40
+    basis: '성장%+FCF 마진% 기준선 (ADR-033, 2026-11-14)'
+    source: 'Bessemer Venture Partners·McKinsey 실무 기준(원문 미확인, 관행값)'
+  fit:
+    method: 문턱 후보 3개 — 판정 뒤 60거래일 업종 초과수익 적중률(브라이어), 중첩 표본 외
+    target: 표본 외 적중률
+    data: Analysis 리포트 판정 기록(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ops-rule40-flat
+  model: report.ops_view
+  binding: config/ops_view.yaml#rule40.flat
+  value: 3
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 3
+    basis: '4개 분기 변화 「거의 그대로」 폭 (ADR-033, 2026-11-14)'
+    source: '사전 판단'
+  fit:
+    method: 문턱 후보 3개 — 판정 뒤 60거래일 업종 초과수익 적중률(브라이어), 중첩 표본 외
+    target: 표본 외 적중률
+    data: Analysis 리포트 판정 기록(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ops-cycle-bb-line
+  model: report.ops_view
+  binding: config/ops_view.yaml#cycle.bb_line
+  value: 1.0
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 1.0
+    basis: '수주=출하 경계 (ADR-033, 2026-11-14)'
+    source: '정의값'
+  fit:
+    method: 문턱 후보 3개 — 판정 뒤 60거래일 업종 초과수익 적중률(브라이어), 중첩 표본 외
+    target: 표본 외 적중률
+    data: Analysis 리포트 판정 기록(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ops-cycle-inv-gap
+  model: report.ops_view
+  binding: config/ops_view.yaml#cycle.inv_gap
+  value: 0.05
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 0.05
+    basis: '재고 증가율−매출 증가율 「쌓인다」 문턱 (ADR-033, 2026-11-14)'
+    source: '사전 판단'
+  fit:
+    method: 문턱 후보 3개 — 판정 뒤 60거래일 업종 초과수익 적중률(브라이어), 중첩 표본 외
+    target: 표본 외 적중률
+    data: Analysis 리포트 판정 기록(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ops-implied-hi
+  model: report.ops_view
+  binding: config/ops_view.yaml#implied.hi
+  value: 1.2
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 1.2
+    basis: '옵션 내재÷과거 평균 「큰 움직임」 문턱 (ADR-033, 2026-11-14)'
+    source: '사전 판단'
+  fit:
+    method: 문턱 후보 3개 — 판정 뒤 60거래일 업종 초과수익 적중률(브라이어), 중첩 표본 외
+    target: 표본 외 적중률
+    data: Analysis 리포트 판정 기록(쌓이는 중)
+    last_fit: null
+    oos_metric: null
+- id: prm-ops-implied-lo
+  model: report.ops_view
+  binding: config/ops_view.yaml#implied.lo
+  value: 0.8
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 0.8
+    basis: '「작은 움직임」 문턱 (ADR-033, 2026-11-14)'
+    source: '사전 판단'
+  fit:
+    method: 문턱 후보 3개 — 판정 뒤 60거래일 업종 초과수익 적중률(브라이어), 중첩 표본 외
+    target: 표본 외 적중률
+    data: Analysis 리포트 판정 기록(쌓이는 중)
+    last_fit: null
+    oos_metric: null

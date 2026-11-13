@@ -259,6 +259,8 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
     B.extend(series)
     import breadth
     B.extend(breadth.blocks(dp))   # 추정치 수정 폭 — 몇 번 같은 방향으로 고쳤나(마스터 선택 2026-11-14)
+    import ops_view
+    B.extend(ops_view.implied_blocks(dp))   # 실적 발표 예상 변동폭(옵션 내재 vs 과거 실적일 움직임, 2026-11-14, ADR-033)
     rv = cons.get("revisions")
     if rv:
         res = revisions(rv, cons.get("price_window"))

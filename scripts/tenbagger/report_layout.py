@@ -294,6 +294,9 @@ def earnings_blocks(esec):
     for b in out:
         b["title"] = str(b["title"]).split(" — ")[0].split(" (")[0]
     read = next((b for b in B if b.get("type") == "p" and str(b.get("text")).startswith("**해석:**")), None)
+    # 추정치 수정 폭·실적 발표 예상 변동폭(마스터 지시 2026-11-14, ADR-033) — 문단과 표를 함께 싣는다
+    for head in ("추정치 수정 폭", "실적 발표 예상 변동폭"):
+        out += [b for b in B if b.get("type") == "p" and str(b.get("text", "")).startswith(f"**{head}:**")] + [b for b in [_pick(B, head, typ="table")] if b]
     return out + ([read] if read else [])
 
 
@@ -512,6 +515,8 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
     import social_view   # 커뮤니티 내러티브(Quantral, 2026-11-07 마스터 지시) — 그래프는 아래에서 한눈에 보기로 옮긴다
     out += [x for x in [social_view.section(dp, entity)] if x]
+    import ops_view   # 수주·출하·재고 사이클(마스터 지시 2026-11-14, ADR-033) — 재고가 있는 회사만, 그림은 한눈에 보기로
+    out += [x for x in [ops_view.cycle_section(dp or {})] if x]
     import sector_view   # 섹터 핵심 지표 — AI 밖 종목, datapack sector_kpis가 있을 때만(마스터 지시 2026-11-13 종목 범위 확대 4단계, ADR-029)
     sk_sec = sector_view.section(dp, entity)
     if sk_sec:

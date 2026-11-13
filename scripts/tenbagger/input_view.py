@@ -109,11 +109,16 @@ def margin_blocks(dp, data=None, hist=None, cpi=None):
     say += price_sentences(br)
     if br["unmapped"]:
         say.append(f"물가 지수를 붙이지 못한 매출원가 항목은 {', '.join(br['unmapped'])}다(미연결)")
+    seg_text, seg_chart = segment_blocks(segment_rows(dp, hist, cpi))   # 사업별 매출 vs 물가(2026-11-14)
+    if seg_text:
+        say.append(seg_text)
     if say:
         B.append({"type": "p", "text": ". ".join(say) + "."})
     ch = pricing_chart(br)
     if ch:
         B.append(ch)
+    if seg_chart:
+        B.append(seg_chart)
     return B
 
 
@@ -260,6 +265,64 @@ def pricing_chart(br):
         return None
     months = sorted({r["month"] for r in br["costs"] + br["prices"] if r.get("month")})
     return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "투입 원가 물가·판매가 물가·회사 가격 — 1년 변화(항목별 최근 달)", "unit": "%", "rows": rows[:8]}}
+
+
+def change_at(s, month, n=12, step_back=2):
+    """month(YYYY-MM) 기준 n개월 변화 — 그 달 짝이 없으면 최근 step_back개월 안으로 물러난다"""
+    for k in range(step_back + 1):
+        m = _back(month, k)
+        if s.get(m) and s.get(_back(m, n)):
+            return s[m] / s[_back(m, n)] - 1, m
+    return None, None
+
+
+def _segment(segs, p):
+    """pricing 항목 → segments_hist 사업 이름. 'segment'가 있으면 그것, 없으면 사업 이름이 앞에 붙는 사업"""
+    if p.get("segment") in segs:
+        return p["segment"]
+    b = str(p.get("business") or "")
+    return next((k for k in segs if k.startswith(b) or b.startswith(k.split("(")[0].split("·")[0])), None) if b else None
+
+
+def segment_rows(dp, hist=None, cpi=None):
+    """사업별 매출 vs 비교 물가(마스터 지시 2026-11-14 "CPI·PPI는 기업의 제품 및 서비스 매출과 비교할 때 써라")
+    [{business, segment, period, nominal, idx, month, real, label}] — 실질 = (1 + 매출 전년비) ÷ (1 + 물가 전년비) − 1 = 물량·믹스 몫"""
+    segs = ((dp.get("segments_hist") or {}).get("segments")) or {}
+    out = []
+    for p in dp.get("pricing") or []:
+        k = _segment(segs, p)
+        rows = sorted((r for r in segs.get(k) or [] if r.get("rev")), key=lambda r: r["period"]) if k else []
+        if len(rows) < 5:
+            continue
+        cur = rows[-1]
+        prev = next((r for r in rows if r["period"][:4] == str(int(cur["period"][:4]) - 1) and r["period"][5:7] == cur["period"][5:7]), None)
+        if not prev:
+            continue
+        nom = cur["rev"] / prev["rev"] - 1
+        idx, m = change_at(series(p.get("index"), hist, cpi), cur["period"][:7])
+        out.append({"business": p.get("business"), "segment": k, "period": cur["period"][:7], "nominal": nom, "idx": idx, "month": m,
+                    "real": (1 + nom) / (1 + idx) - 1 if idx is not None else None, "label": p.get("label") or p.get("index")})
+    return out
+
+
+def segment_blocks(rows):
+    """문장 하나 + 그림 하나(그림은 한눈에 보기로 올라간다)"""
+    if not rows:
+        return None, None
+    pc = lambda x: UNKNOWN if x is None else f"{x * 100:+.1f}%"
+    say = []
+    for r in rows:
+        if r["real"] is None:
+            say.append(f"{r['business']} 매출은 {r['period']} 전년 대비 {pc(r['nominal'])}(비교 물가 미확인)")
+            continue
+        share = r["idx"] / r["nominal"] if r["nominal"] and r["nominal"] > 0 and r["idx"] > 0 else None
+        tail = ("성장 대부분이 가격(물가)이다" if share is not None and share >= 0.6 else "물량·믹스가 성장을 이끌었다" if r["real"] > 0 else "물가를 빼면 줄었다 — 물량이 빠진다")
+        say.append(f"{r['business']} 매출은 {r['period']} 전년 대비 {pc(r['nominal'])}이고 비교 물가 {r['label']}의 변화 {pc(r['idx'])}({r['month']})를 빼면 실질 {pc(r['real'])} — {tail}")
+    chart = {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "사업별 매출 vs 물가 — 전년 대비(명목 매출 · 비교 물가 · 실질 = 물량·믹스)", "unit": "%",
+             "rows": [{"label": str(r["business"]).split("(")[0][:14], "bars": [{"name": "명목 매출", "color": "a", "value": round(r["nominal"] * 100, 1)}]
+                       + ([{"name": "비교 물가", "color": "c", "value": round(r["idx"] * 100, 1)}, {"name": "실질", "color": "b" if r["real"] >= 0 else "d", "value": round(r["real"] * 100, 1)}] if r["real"] is not None else [])}
+                      for r in rows][:6]}}
+    return ". ".join(say), chart
 
 
 def pricing_blocks(dp, hist=None, cpi=None):

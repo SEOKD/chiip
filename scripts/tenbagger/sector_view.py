@@ -58,8 +58,10 @@ def check(sk):
 
 def section(dp, entity=None):
     sk = (dp or {}).get("sector_kpis")
+    import ops_view   # 소프트웨어는 Rule of 40(마스터 지시 2026-11-14, ADR-033) — sector_kpis가 없어도 이 절에 싣는다
+    r40 = ops_view.rule40_blocks(dp or {})
     if not sk or sk.get("none"):
-        return None
+        return {"h2": "섹터 핵심 지표", "blocks": r40, "_sources": []} if r40 else None
     errs = check(sk)
     if errs:
         raise SystemExit("datapack sector_kpis 오류(scripts/tenbagger/sector_view.py 맨 위): " + "; ".join(errs))
@@ -83,4 +85,4 @@ def section(dp, entity=None):
     if unknown:
         tail += f" 미확인 {unknown}칸은 빈칸을 채우지 않고 그대로 뒀다."
     B.append({"type": "p", "text": tail})
-    return {"h2": "섹터 핵심 지표", "blocks": B, "_sources": list(dict.fromkeys(src))}
+    return {"h2": "섹터 핵심 지표", "blocks": B + r40, "_sources": list(dict.fromkeys(src))}

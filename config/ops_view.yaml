@@ -1,0 +1,12 @@
+# 운영 지표 3종 상수(마스터 지시 2026-11-14, ADR-033, scripts/tenbagger/ops_view.py) — 등록부 prm-ops-*
+rule40:
+  pass: 40        # Rule of 40 기준선(성장% + FCF 마진%)
+  flat: 3         # 4개 분기 변화가 ±이 값 안이면 '거의 그대로'
+cycle:
+  bb_line: 1.0    # 4개 분기 수주/출하 비율 기준
+  inv_gap: 0.05   # 재고 증가율 − 매출 증가율이 이보다 크면 '재고가 쌓인다'
+implied:
+  hi: 1.2         # 옵션 내재 ÷ 과거 실적일 평균 움직임 > hi → 평소보다 큰 움직임 예상
+  lo: 0.8
+options:
+  enabled: false  # Cboe 지연 시세 자동 수집 — 약관 판단이 애매해 마스터 승인 전까지 끈다(radar/options_implied.py). --put 수동 입력은 늘 쓴다
