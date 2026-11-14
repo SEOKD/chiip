@@ -20,7 +20,7 @@ DIR = ROOT / "knowledge" / "models" / "params"
 REGISTRY = DIR / "registry.yaml"
 CHANGELOG = DIR / "changelog.csv"
 CHANGE_COLS = ["date", "param_id", "old", "new", "status", "oos_prior", "oos_fit", "n_oos", "approved_by", "proposal", "note"]
-STATUSES = ("prior", "proposed", "fitted", "adopted", "retired")
+STATUSES = ("prior", "proposed", "fitted", "adopted", "retired", "rejected")   # rejected = 표본 외 검정에서 불채택(검증 완료, 2026-11-15 Proviser 요청 21-52 ③)
 
 
 def load_yaml(rel_or_path):
@@ -50,7 +50,7 @@ def check(reg=None):
     """[(id, 등록부 값, config 값)] — 어긋난 것만"""
     out = []
     for p in (reg or load())["params"]:
-        if not p.get("binding") or p.get("status") == "retired":
+        if not p.get("binding") or p.get("status") in ("retired", "rejected"):   # 불채택·폐기는 운영 값과 대조하지 않는다
             continue
         try:
             cur = resolve(p["binding"])

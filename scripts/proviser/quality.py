@@ -127,7 +127,7 @@ def lab_validation_rate(_today=None):
     prop = [p for p in reg.get("params") or [] if p.get("status") == "proposed" or p["id"] in touched]
     if not prop:
         return None, 0
-    done = [p for p in prop if p.get("status") in ("fitted", "adopted", "retired")]
+    done = [p for p in prop if p.get("status") in ("fitted", "adopted", "retired", "rejected")]   # rejected = 표본 외 검정을 마치고 불채택(검증 완료, 21-52 ③)
     return len(done) / len(prop), len(prop)
 
 

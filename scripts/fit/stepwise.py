@@ -33,10 +33,10 @@ def design(reg):
 
 
 def trials(model, reg):
-    """그 모델에서 지금까지 시도한 파라미터 수 — 변경 기록(changelog)의 서로 다른 id + 폐기(retired) 수. 다중 검정 보정에 쓴다"""
+    """그 모델에서 지금까지 시도한 파라미터 수 — 변경 기록(changelog)의 서로 다른 id + 폐기(retired)·불채택(rejected) 수. 다중 검정 보정에 쓴다"""
     ids = {p["id"] for p in reg.get("params") or [] if p.get("model") == model}
     tried = {r["param_id"] for r in registry_changelog() if r.get("param_id") in ids}
-    tried |= {p["id"] for p in reg.get("params") or [] if p.get("model") == model and p.get("status") == "retired"}
+    tried |= {p["id"] for p in reg.get("params") or [] if p.get("model") == model and p.get("status") in ("retired", "rejected")}
     return max(1, len(tried))
 
 
@@ -78,7 +78,7 @@ def _fitted(p):
 def stage(model, reg, quality=None, msys=None):
     """(단계 번호, 이름, 다음 행동, 근거 dict)"""
     d = design(reg)
-    ps = [p for p in reg.get("params") or [] if p.get("model") == model and p.get("status") != "retired"]
+    ps = [p for p in reg.get("params") or [] if p.get("model") == model and p.get("status") not in ("retired", "rejected")]
     fixed = [p for p in ps if p.get("fixed_by_master")]
     live = [p for p in ps if not p.get("fixed_by_master")]
     no_data = [p["id"] for p in live if not _fitted(p) and not (p.get("fit") or {}).get("data")]

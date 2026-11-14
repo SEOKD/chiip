@@ -5715,7 +5715,11 @@ params:
   binding: knowledge/models/consumer/nowcast.json#tests.wiki.coef.beta
   value: 0.0
   unit: 계수(분기 매출 로그 YoY ÷ 위키 조회 로그 YoY)
-  status: proposed
+  status: rejected
+  rejected:
+    date: '2026-11-14'
+    reason: '표본 외 검정 3회 모두 불채택(최종 관측 409·22개사, MSE 개선 4.7% < 5%, t 1.80 < 보정 문턱 2.64·시도 6). 운영에 쓰지 않는다 — 나우캐스트 숫자·Pulse 미발송'
+    revive: '분기가 쌓여 같은 설계(scripts/discovery/consumer_nowcast.py)로 다시 볼 때 proposed로 되돌린다(시도 수는 changelog로 누적)'
   prior:
     value: 0.0
     basis: 귀무 — 관심(위키 조회)이 지난 분기 성장률 이상의 매출 정보를 준다는 증거가 없으면 0. 위키 조회의 경제 지표 예측력은 Moat·Curme·Preis 계열(2013~2014, Sci. Rep.)이 시장 변동과의 관계를 보였으나 기업 매출 나우캐스트 값은 문헌 미확인
@@ -5731,7 +5735,11 @@ params:
   binding: knowledge/models/consumer/nowcast.json#tests.trade.coef.beta
   value: 0.0
   unit: 계수(분기 매출 로그 YoY ÷ 나라별 미국 수입 로그 YoY)
-  status: proposed
+  status: rejected
+  rejected:
+    date: '2026-11-14'
+    reason: '표본 외 검정 3회 모두 불채택(최종 관측 348·15개사, MSE 악화 0.3%). 한국산 점유가 높은 삼양·APR·실리콘투도 개선 없음 — 업계 합계 수입은 회사 매출 정보를 더하지 않는다'
+    revive: '회사 단위 수입 자료(예: 선하증권)처럼 신호 정의가 바뀌는 제안서가 나오면 새 id로 proposed'
   prior:
     value: 0.0
     basis: 귀무 — 나라·품목 합계 수입은 업계 전체라 개별 회사 매출 정보가 희석된다(금지표 '수출입 급증 → 특정 기업 매출')
