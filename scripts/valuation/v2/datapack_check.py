@@ -45,6 +45,12 @@ def check(p):
     add("시가총액 대조", "통과" if _near((pf.get("price") or 0) * (cover or 0), ez.get("market_cap"), 0.01) else "실패",
         f"가격 {pf.get('price')} × 표지 주식 {cover} = {(pf.get('price') or 0) * (cover or 0):.2f} vs 원자료 개요 {ez.get('market_cap')}")
     add("가격 일치", "통과" if _near(pf.get("price"), ez.get("price"), 0.001) else "실패", f"{pf.get('price')} vs {ez.get('price')}")
+    # 밸류에이션이 쓰는 기본 주식 수 그대로 시가총액을 잰다(ADR-041 — 위 대조는 원자료 시총 ÷ 가격으로 만든 표지 주식이라 늘 통과했다. IES 분할 뒤 주식 이중 집계를 못 잡았다)
+    if pf.get("shares_basic") and ez.get("market_cap") and pf.get("price"):
+        gap = pf["price"] * pf["shares_basic"] / ez["market_cap"] - 1
+        why = pf.get("share_class_note") or (p.get("dilution") or {}).get("share_class_note")
+        add("기본 주식 × 가격 = 원자료 시총", "통과" if abs(gap) <= 0.03 else ("경고" if why else "실패"),
+            f"{pf['price']} × {pf['shares_basic']} = {pf['price'] * pf['shares_basic']:.3f} vs {ez['market_cap']}({gap:+.1%})" + (f" — {why}" if why else ""))
     nd_ok = _near(pf.get("cash"), ez.get("total_cash"), 0.01) and _near(pf.get("debt"), ez.get("total_debt"), 0.01)
     detail = f"현금 {pf.get('cash')} vs {ez.get('total_cash')} · 차입(리스 포함) {pf.get('debt')} vs {ez.get('total_debt')}"
     # 개요(Fiscal.ai·옛 easyconomics) 재무상태표가 지난 분기 값이면 더 최신 1차 재무상태표(10-Q·8-K, raw.balance_<날짜>)와 맞는지 본다(2026-10-29 PWR: 8월 채권 발행 반영)
@@ -61,6 +67,13 @@ def check(p):
         f"{fin.get('rev_ttm')} vs {sum(rev4.values()):.4f}({len(rev4)}분기)")
     add("TTM 영업이익 = 4분기 합", "통과" if len(op4) == 4 and _near(fin.get("ebit_ttm"), sum(op4.values()), 0.005) else "실패",
         f"{fin.get('ebit_ttm')} vs {sum(op4.values()):.4f}")
+    # 같은 datapack에 함께 넣은 분기 원자료(quarters_gaap)는 비GAAP일 때가 있다 — 공시 분기 이력(quarters_hist, Fiscal 표준화 GAAP)과도 맞춘다(ADR-041: SANM +57%, BLOOM +39%)
+    qh = [r for r in ((p.get("quarters_hist") or {}).get("q") or []) if r.get("rev")][-4:]
+    unit = 1e9 if p.get("unit", "B$") == "B$" else None
+    if len(qh) == 4 and unit and all(r.get("op") is not None for r in qh):
+        r4, o4 = sum(r["rev"] for r in qh) / unit, sum(r["op"] for r in qh) / unit
+        ok = _near(fin.get("rev_ttm"), r4, 0.02) and _near(fin.get("ebit_ttm"), o4, 0.05)
+        add("TTM = 공시 분기 이력(GAAP)", "통과" if ok else "실패", f"매출 {fin.get('rev_ttm')} vs {r4:.4f} · 영업이익 {fin.get('ebit_ttm')} vs {o4:.4f}(비GAAP을 GAAP 칸에 넣지 않는다)")
     if bs:
         ic = bs.get("equity", 0) + bs.get("debt_current", 0) + bs.get("debt_lt", 0) + bs.get("lease_current", 0) + bs.get("lease_lt", 0) - bs.get("cash", 0) - bs.get("st_investments", 0) + bs.get("customer_deposits", 0)
         add("투하자본 = 재무상태표", "통과" if _near(fin.get("invested_capital"), ic, 0.02) else "실패", f"{fin.get('invested_capital')} vs 자기자본+차입+리스−현금 {ic:.3f}")
@@ -74,7 +87,14 @@ def check(p):
     bad = [y for y in fy if f"FY{y}" in (cons.get("rev") or {}) and not _near(cons["rev"][f"FY{y}"], fy[y], 0.005)]
     add("연간 컨센서스 = 분기 합", "통과" if fy and not bad else "실패", " · ".join(f"FY{y} {cons.get('rev', {}).get(f'FY{y}')} vs {v:.4f}" for y, v in sorted(fy.items())))
     gd = p.get("guidance") or {}
-    add("회사 가이던스 반영", "통과" if gd.get("rev_fy0") and gd.get("source") else "실패", gd.get("source", "가이던스 없음")[:80])
+    add("회사 가이던스 반영", "통과" if gd.get("rev_fy0") and gd.get("source") else ("경고" if not gd.get("rev_fy0") else "실패"),
+        gd.get("source", "가이던스 없음 — 회사가 내지 않으면 해당 없음(경고)")[:80])   # 가이던스를 내지 않는 회사(SK하이닉스 등)를 실패로 세던 잡음(ADR-041)
+    # 컨센서스 깊이(ADR-041) — 애널리스트 3명 미만·다음 해 범위 없음·범위 밖 평균이면 시나리오 확률이 규칙 기본값으로 떨어진다
+    ks = sorted(cons.get("rev") or {})
+    nk = ks[1] if len(ks) > 1 else None
+    lo, hi, mean = (cons.get("rev_low") or {}).get(nk), (cons.get("rev_high") or {}).get(nk), (cons.get("rev") or {}).get(nk)
+    deep = (cons.get("n_analysts") or 0) >= 3 and lo is not None and hi is not None and lo <= (mean or lo) <= hi
+    add("컨센서스 깊이(3명 이상·다음 해 범위)", "통과" if deep else "경고", f"애널리스트 {cons.get('n_analysts')}명 · {nk} 범위 {lo}~{hi}, 평균 {mean}")
     dl = p.get("dilution") or {}
     sec_pot = next((v for k, v in sorted((raw.get("sec") or {}).items()) if k.startswith("antidilutive")), None)   # antidilutive_<날짜>
     pot = dl.get("potential_total") if dl.get("potential_total") is not None else sum(dl.get(k) or 0 for k in ("options", "rsu", "warrants", "converts_shares"))

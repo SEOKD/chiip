@@ -56,6 +56,19 @@ def _growth_draw(rng, spec, n, sg, first=0.0):
     return out
 
 
+def within_factor(scens, sg):
+    """1년차 성장 충격 축소 비율(ADR-041). σ_growth는 동인 생성기가 약세~강세 범위 ÷ 4로 잡는데, 시나리오를 확률로 섞는 단계에서 같은 범위가
+    이미 들어간다 — 1년차 분산이 이중으로 커졌다(11/15 점검: 25·50·25 확률이면 총 σ가 의도의 1.7배). 시나리오 사이 분산을 빼고 남는 만큼만 쓴다:
+    σ_within = √max(σ² − σ_between², (0.25σ)²) — 하한은 시나리오가 범위를 다 덮을 때도 잡음이 0이 되지 않게(사전값)"""
+    starts = [(s.get("prob") or 0.0, s["growth"]["start"] if isinstance(s.get("growth"), dict) else (s.get("growth") or [0.0])[0]) for s in scens.values()]
+    tot = sum(p for p, _ in starts)
+    if not sg or tot <= 0:
+        return 1.0
+    mu = sum(p * g for p, g in starts) / tot
+    var_b = sum(p * (g - mu) ** 2 for p, g in starts) / tot
+    return math.sqrt(max(sg * sg - var_b, (0.25 * sg) ** 2)) / sg
+
+
 def simulate(company, wacc, g_term, horizon_year=5, draws=5000, seed=1):
     rng = random.Random(seed)
     mc = company.get("mc", {})
@@ -67,6 +80,7 @@ def simulate(company, wacc, g_term, horizon_year=5, draws=5000, seed=1):
     if company.get("plus", True):   # 경기순환 업종은 피어 마진 이동평균의 흔들림만큼 마진 충격을 넓힌다(2026-11-13 SK하이닉스 −30% 확률 0%)
         sm = plus.margin_sigma(company, sm, pc)
     med = scenarios._median(company) if company.get("plus", True) else None
+    wf = within_factor(scens, sg)   # 1년차 충격은 시나리오 사이 분산을 뺀 만큼(ADR-041)
     v0, vh, used, dropped, picks = [], [], 0, 0, {}
     for _ in range(draws):
         name = _pick(rng, scens)
@@ -74,9 +88,9 @@ def simulate(company, wacc, g_term, horizon_year=5, draws=5000, seed=1):
         d = scenarios.drivers(company, sc, wacc, g_term)
         if cc.get("enabled"):
             zg, zm = corr_pair(rng, float(cc.get("rho_growth_margin", 0.4)), cc.get("t_df"))
-            first, shock = sg * zg, sm * zm
+            first, shock = sg * wf * zg, sm * zm
         else:
-            first, shock = 0.0, rng.gauss(0, sm)
+            first, shock = 0.0, rng.gauss(0, sm)   # 상관 충격을 끄면 예전처럼 1년차 충격 없음
         d["growth"] = [max(-0.9, g) for g in plus.outside_view(_growth_draw(rng, sc["growth"], n, sg, first), med, pc)]
         d["margin"] = [m + shock for m in d["margin"]]
         d["s2c"] = max(0.2, d["s2c"] * math.exp(rng.gauss(0, ss)))

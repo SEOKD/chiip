@@ -123,13 +123,57 @@ def speed_text(lt):
     return out
 
 
+STAGES = ("태동", "확산", "컨센서스", "과밀", "소멸", "붕괴")   # 내러티브 단계 — 목표주가 내러티브 요인(25%)과 멀티플 단계 조정이 이 이름으로만 읽는다
+FACTOR_STATUS = ("강화", "유지", "약화")
+
+
 def revision_pct(cons):
-    """consensus.revisions 중 EPS 행의 합계 리비전(같은 분기끼리) — 없으면 None"""
+    """consensus.revisions 중 EPS 행의 합계 리비전(같은 분기끼리) — 없으면 None.
+    합이 0 이하이거나 0에 가까우면(적자) (Σ새 − Σ옛) ÷ Σ|옛| — 적자가 커진 것을 상향으로 읽던 부호 오류(ADR-041: 코어위브 5/5 하향인데 +78%)"""
     rows = [r for r in ((cons or {}).get("revisions") or {}).get("rows") or [] if r.get("metric") == "EPS" and r.get("from") and r.get("to") is not None]
     if not rows:
         return None, None
     f, t = sum(r["from"] for r in rows), sum(r["to"] for r in rows)
-    return (t / f - 1) if f else None, ", ".join(r["period"] for r in rows)
+    absf = sum(abs(r["from"]) for r in rows)
+    if f > 0.2 * absf:
+        return t / f - 1, ", ".join(r["period"] for r in rows)
+    return ((t - f) / absf if absf else None), ", ".join(r["period"] for r in rows)
+
+
+def revision_down_share(cons):
+    rows = [r for r in ((cons or {}).get("revisions") or {}).get("rows") or [] if r.get("metric") == "EPS" and r.get("from") is not None and r.get("to") is not None]
+    return (sum(1 for r in rows if r["to"] < r["from"]) / len(rows)) if rows else None
+
+
+def audit(dp):
+    """내러티브 점검(ADR-041) → (막을 것, 경고). 막을 것: 단계 이름이 여섯 단계 밖(자유 문구는 내러티브 요인에서 0으로 처리됐다 — PRIM '붕괴 뒤 바닥 다지기')
+    · 어닝콜이 내러티브 기준일보다 뒤(실적 뒤 갱신 안 됨 — CBRS 11/7 내러티브, 11/12 콜). 경고: 단계와 리비전이 반대 · 소멸·붕괴인데 약화 요인 없음 ·
+    요인 상태가 강화·유지·약화 밖 · 요인 출처 없음"""
+    n = (dp or {}).get("narrative") or {}
+    block, warn = [], []
+    if not n:
+        return block, warn
+    st = n.get("stage")
+    if st and st not in STAGES:
+        block.append(f"내러티브 단계 '{st}'는 여섯 단계({'·'.join(STAGES)}) 밖이다 — 하나를 고르고 설명은 summary에")
+    call = str(((dp or {}).get("call") or {}).get("date") or "")[:10]
+    if call and str(n.get("as_of") or "")[:10] and call > str(n.get("as_of"))[:10]:
+        block.append(f"어닝콜({call})이 내러티브 기준일({str(n.get('as_of'))[:10]})보다 뒤다 — 콜 뒤 내러티브를 다시 쓰고 as_of를 고친다")
+    rev, _ = revision_pct((dp or {}).get("consensus"))
+    down = revision_down_share((dp or {}).get("consensus"))
+    if st in ("태동", "확산") and ((down is not None and down >= 0.5) or (rev is not None and rev < -0.03)):
+        warn.append(f"단계 {st}인데 EPS 리비전이 하향(합 {rev:+.0%}" + (f", 하향 행 {down:.0%}" if down is not None else "") + ")" if rev is not None else f"단계 {st}인데 EPS 하향 행 {down:.0%}")
+    if st in ("소멸", "붕괴") and rev is not None and rev > 0.05:
+        warn.append(f"단계 {st}인데 EPS 리비전이 상향({rev:+.0%})")
+    fs = n.get("factors") or []
+    if st in ("소멸", "붕괴") and fs and not any(f.get("status") == "약화" for f in fs):
+        warn.append(f"단계 {st}인데 약화 요인이 없다")
+    odd = sorted({str(f.get("status")) for f in fs if f.get("status") not in FACTOR_STATUS})
+    if odd:
+        warn.append(f"요인 상태 {', '.join(odd)}는 강화·유지·약화 밖")
+    if any(not str(f.get("source") or "").strip() for f in fs):
+        warn.append("출처 없는 내러티브 요인")
+    return block, warn
 
 
 def report_section(dp, mm=None):
@@ -265,7 +309,8 @@ def section3(dp, mm=None):
     if n.get("stage"):
         head += f" 단계는 {n['stage']}" + (f", 쏠림은 {n['crowding']}" if n.get("crowding") else "") + "이다."
     B.append({"type": "hl", "text": head})
-    B.append({"type": "boxes", "items": [{"title": f.get("name"), "tag": f.get("status"), "lines": [["논리", f.get("thesis")], ["숫자", f.get("quant")], ["반증", f.get("falsifier")]]} for f in n.get("factors") or []]})
+    B.append({"type": "boxes", "items": [{"title": f.get("name"), "tag": f.get("status"), "lines": [["논리", f.get("thesis")], ["숫자", f.get("quant")], ["반증", f.get("falsifier")]]
+                                          + ([["출처", f.get("source")]] if f.get("source") else [])} for f in n.get("factors") or []]})   # 출처를 독자에게(ADR-041)
     return {"h2": "내러티브", "blocks": B}
 
 

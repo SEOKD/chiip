@@ -94,7 +94,40 @@ def reward_risk(price, bull, bear):
     return (bull - price) / (price - bear) if price > bear else None
 
 
-def scenario_build(d, dp, mm, sel, shares, co=None):
+def case_horizon(dp, mm, base_case, ev_metric):
+    """시나리오 기본 이익이 몇 년 뒤 컨센서스와 맞나(ADR-041 — Fwd 1Y 멀티플에 사실상 2년 뒤 이익을 곱해 22/77곳 목표가 10~38% 과대).
+    → (h, 그 해 멀티플 ÷ 1년 뒤 멀티플, 설명). h = argmin |ln(기본 ÷ h년 뒤 컨센서스)|. 비율은 동종 h년 뒤 중앙값 ÷ 1년 뒤 중앙값, 없으면 대상 지금 배수 비율"""
+    fw = dp.get("forward") or {}
+    key = "ebitda" if ev_metric else "eps"
+    val = base_case.get(key)
+    if val is None:
+        return 1, 1.0, None
+    scale = 1e9 if (ev_metric and dp.get("unit", "B$") == "B$") else 1.0
+    if ev_metric and scale == 1.0:
+        return 1, 1.0, None   # 원화·엔화 EBITDA 단위가 달라 비교하지 않는다
+    hz = {1: (fw.get("ntm") or {}).get(key)}
+    hz.update({int(h): (x or {}).get(key) for h, x in (fw.get("horizons") or {}).items() if str(h).isdigit()})
+    hz = {h: v for h, v in hz.items() if v and v > 0}
+    if not hz or val <= 0:
+        return 1, 1.0, None
+    import math as _m
+    h = min(hz, key=lambda k: abs(_m.log(val * scale / hz[k])))
+    if h == 1 or abs(_m.log(val * scale / hz[1])) <= _m.log(1.10):
+        return 1, 1.0, None
+    views = {x["h"]: x for x in (mm or {}).get("horizons") or []}
+    p1, ph = ((views.get(1) or {}).get("peer_range") or {}).get("p50"), ((views.get(h) or {}).get("peer_range") or {}).get("p50")
+    now = dp.get("multiples_now") or {}
+    k1 = "ev_ebitda_fwd" if ev_metric else "pe_fwd"
+    if p1 and ph:
+        ratio, src = ph / p1, f"동종 {h}년 뒤 중앙값 {ph:.1f}배 ÷ 1년 뒤 {p1:.1f}배"
+    elif now.get(k1) and now.get(f"{k1}{h}"):
+        ratio, src = now[f"{k1}{h}"] / now[k1], f"대상 지금 배수 {h}년 뒤 {now[f'{k1}{h}']:.1f} ÷ 1년 뒤 {now[k1]:.1f}"
+    else:
+        raise SystemExit(f"시나리오 기본 {key} {val}가 {h}년 뒤 컨센서스와 맞는데 그 해 멀티플 재료가 없다 — 사례 이익을 1년 뒤 기준으로 쓰거나 동종 {h}년 뒤 배수를 채운다(ADR-041)")
+    return h, ratio, f"기본 이익이 {h}년 뒤 컨센서스와 맞아 {h}년 뒤 멀티플({src})을 쓰고 {h - 1}년을 자기자본비용으로 할인"
+
+
+def scenario_build(d, dp, mm, sel, shares, co=None, ke=None):
     """모델이 쓴 cases(EPS·이유)에 엔진이 고른 멀티플을 곱한다. 주가 = 멀티플 × EPS, EBITDA 지표면 (멀티플 × EBITDA − 순차입) ÷ 주식 수.
     확률은 모델 값이 아니라 v2 동인의 근거 계산 확률(scenario_prob — 다음 해 매출 성장 분포, ADR-035, 마스터 지시 2026-11-14)로 바꾼다"""
     sec = next((s for s in d.get("sections") or [] if s.get("h2", "").startswith("판단 시나리오")), None)
@@ -118,17 +151,22 @@ def scenario_build(d, dp, mm, sel, shares, co=None):
         raise SystemExit("판단 시나리오 확률 합이 1이 아니다")
     spread = config()["multiple_select"]["spread"]
     ev_metric = sel["basis"] != "pe_fwd"
+    base_case = next((k for k in c["cases"] if k["name"] == "기본"), {})
+    h, h_ratio, h_why = case_horizon(dp, mm, base_case, ev_metric)
+    disc = (1 + (ke or 0.10)) ** (h - 1)
+    if h_why:
+        c["horizon_why"] = h_why
     for k in c["cases"]:
         name = k["name"]
-        m = sel["value"] * (1 + spread[{"약세": "bear", "강세": "bull"}.get(name, "base")])
+        m = sel["value"] * h_ratio * (1 + spread[{"약세": "bear", "강세": "bull"}.get(name, "base")])
         if ev_metric:
             if k.get("ebitda") is None:
                 raise SystemExit(f"시나리오 {name}: 주요 지표가 EBITDA라 ebitda가 필요하다")
-            k["value"] = round((m * float(k["ebitda"]) - net_debt) / shares, 2)
+            k["value"] = round((m * float(k["ebitda"]) - net_debt) / shares / disc, 2)
         else:
             if k.get("eps") is None:
                 raise SystemExit(f"시나리오 {name}: eps가 필요하다")
-            k["value"] = round(m * float(k["eps"]), 2)
+            k["value"] = round(m * float(k["eps"]) / disc, 2)
         k["multiple"] = round(m, 1)
     c.update({"current": price, "unit": sym(dp).strip(), "title": "밸류에이션 주가 시나리오"})
     cases = {k["name"]: k for k in c["cases"]}
@@ -438,15 +476,65 @@ def unglossed(d, dp):
     return sorted(miss)
 
 
+MISJUDGE = re.compile(r"시장이[^.。\n]{0,40}(간과|오판|반만|절반만|믿지 않|과소평가|과대평가)")
+
+
+def price_fmt(cur, x, ref):
+    """주가 표기 — $20 미만이면 소수 둘째 자리(ADR-041: LPTH 목표 $4.3이 '$4(−43%)'로 찍혀 −47%처럼 읽혔다)"""
+    return f"{cur}{x:,.2f}" if ref < 20 else f"{cur}{x:,.0f}"
+
+
+def text_checks(d, r, s):
+    """모델 글 점검(ADR-041) → 막을 것 목록. ① '시장이 간과·오판·반만 믿는다' 류는 같은 문장에 숫자가 있어야 하고, 시장이 기본보다 더 기대하는데
+    (내포 성장 > 기본 성장 또는 DCF < 0) '시장이 비관'이라 쓰면 막는다(PRIM 제목) ② 글 속 시가총액이 엔진(완전 희석) 값과 5% 넘게 다르면 '기본 주식 기준'을 같은 문장에 적어야 한다"""
+    v = d.get("verdict") or {}
+    texts = [d.get("title") or "", d.get("subtitle") or "", v.get("view") or ""] + [str(x.get("a") or "") for x in d.get("summary") or []]
+    u = r.get("upside") or {}
+    pessim = (u.get("implied_cagr") is not None and u.get("base_cagr") is not None and u["implied_cagr"] > u["base_cagr"]) or r["scenarios"]["base"]["v0"] < 1
+    out = []
+    for t in texts:
+        for sent in re.split(r"(?<=[.。!?])\s+|\n", t):
+            m = MISJUDGE.search(sent)
+            if not m:
+                continue
+            if not re.search(r"\d", sent):
+                out.append(f"'{sent[:40]}…' — 시장 판단을 말하려면 같은 문장에 컨센서스·가격 내포 숫자가 있어야 한다(CLAUDE.md 금지표)")
+            elif m.group(1) in ("반만", "절반만", "믿지 않", "과소평가") and pessim:
+                out.append(f"'{sent[:40]}…' — 엔진은 시장이 기본보다 더 기대한다고 본다(내포 5년 CAGR {u.get('implied_cagr') or 0:.0%} > 기본 {u.get('base_cagr') or 0:.0%}, DCF {r['scenarios']['base']['v0'] - 1:+.0%})")
+        for m in re.finditer(r"시가총액\s*(?:은|는|이|)\s*[$₩¥€£]?\s?([\d,.]+)\s*([BT])", t):
+            val = float(m.group(1).replace(",", "")) * (1000 if m.group(2) == "T" else 1)
+            mc = r.get("mcap")
+            sent = t[max(0, m.start() - 60):m.end() + 60]
+            if mc and r.get("unit") == "B$" and abs(val / mc - 1) > 0.05 and "기본 주식" not in sent:
+                out.append(f"글 속 시가총액 {m.group(0)}이 엔진 완전 희석 시가총액 {mc:,.2f}B와 {val / mc - 1:+.0%} 다르다 — 같은 값을 쓰거나 '기본 주식 기준'을 적는다")
+    return out
+
+
 def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     """모델 JSON + 엔진 재료 → 양식 3 리포트 JSON"""
+    nb, nw = narrative_view.audit(dp)   # 내러티브 점검(ADR-041)
+    if nb:
+        raise SystemExit("내러티브 점검 — " + " / ".join(nb))
+    for w in nw:
+        print(f"[내러티브 경고] {w}")
+    from datetime import date as _d   # 가격 신선도(ADR-041 — 77/96곳이 시세 파일 없이 데이터팩 스냅숏 가격을 썼고 15곳은 10일 넘게 묵었다)
+    md = str((r.get("market") or {}).get("date") or "")[:10]
+    if md:
+        age = (_d.today() - _d.fromisoformat(md)).days
+        if age > 14:
+            raise SystemExit(f"평가 가격이 {md}({age}일 전)다 — 시세를 새로 받아 datapack profile.price·날짜를 고친다(14일 넘으면 발행하지 않는다)")
+        if age > 7:
+            print(f"[가격 경고] 평가 가격 {md}({age}일 전)")
     for s0 in d.get("sections") or []:
         if not s0.get("h2", "").startswith(MODEL_SECTIONS):
             raise SystemExit(f"양식 3 본론에 없는 절: {s0.get('h2')} — 쓸 수 있는 절은 {MODEL_SECTIONS}. 내용은 datapack narrative·moat로 옮긴다")
     input_view.check(dp)
     margin_sec, supply_sec, capacity_sec, customer_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp), customer_view.section(dp)   # 재료가 없으면 여기서 멈춘다
     shares = r["market"]["shares"]   # v2와 같은 완전 희석 주식 수 — 시총 ÷ datapack 가격으로 되짚으면 시세 파일이 더 새로울 때 주식 수가 틀렸다(2026-11-14 점검)
-    s = scenario_build(d, dp, mm, sel, shares, co)
+    s = scenario_build(d, dp, mm, sel, shares, co, r["coc"]["ke"])
+    tc = text_checks(d, r, s)
+    if tc:
+        raise SystemExit("글 점검 — " + " / ".join(tc))
     dq = r.get("dcf_quality") or {"usable": True, "flags": [], "warns": [], "status": "정상"}   # DCF 신뢰 점검(ADR-039)
     dcf_up = r["scenarios"]["base"]["v0"] - 1 if dq["usable"] else None
     cfg = config()
@@ -459,12 +547,16 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     v = d.setdefault("verdict", {})
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     cur = sym(dp)
-    v.update({"rating": grade, "rule_rating": deb["rule"], "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4) if dcf_up is not None else None, "dcf_status": dq["status"], "dcf_flags": dq["flags"] + dq["warns"], "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
+    v.update({"rating": grade, "rule_rating": deb["rule"], "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4) if dcf_up is not None else None, "dcf_status": dq["status"], "dcf_flags": dq["flags"] + dq["warns"], "target": pt["target"], "target_text": price_fmt(cur, pt["target"], s["price"]), "narrative_warns": nw, "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
               "weighted_upside": round(s["weighted_up"], 4), "upside_basis": f"목표주가 {cur}{pt['target']:,.0f}"})
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}
     d["tiles"] = dashboard(dp, s, m_short, alpha, grade, r["mcap"], r["unit"], entity)
-    upline = f"**목표주가 {cur}{pt['target']:,.0f}({s['upside']:+.0%}), {pt['place']}다.** 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})는 {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}. 손익비 {s['rr']:.1f}, " + (f"DCF 기준 업사이드 {dcf_up:+.0%}." if dcf_up is not None else f"DCF는 산정하지 않았다({dq['flags'][0]}).")
+    pf_ = lambda x: price_fmt(cur, x, s["price"])
+    rr_txt = f"손익비 {s['rr']:.1f}" if s["bull"] > s["price"] and s["price"] - s["bear"] >= 0.05 * s["price"] else "손익비 의미 없음(강세가 지금 주가 아래거나 약세가 5% 안)"   # ADR-041: CRWV 143.2·CBRS −0.6
+    upline = f"**목표주가 {pf_(pt['target'])}({s['upside']:+.0%}), {pt['place']}다.** 강세 {pf_(s['bull'])}({s['bull_up']:+.0%})는 {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {pf_(s['base'])}, 약세 {pf_(s['bear'])}. {rr_txt}, " + (f"DCF 기준 업사이드 {dcf_up:+.0%}." if dcf_up is not None else f"DCF는 산정하지 않았다({dq['flags'][0]}).")
+    if s["chart"].get("horizon_why"):
+        upline += f" {s['chart']['horizon_why']}."
     keep = [x for x in d.get("summary") or [] if not x.get("auto")]
     auto = [{"q": "기업가치를 결정하는 내러티브", "a": ((dp.get("narrative") or {}).get("lead") or {}).get("summary", ""), "auto": True},
             {"q": "밸류에이션 모델로 본 주가 상방은 어디까지인가?", "a": upline, "auto": True}]

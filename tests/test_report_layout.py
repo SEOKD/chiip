@@ -98,13 +98,17 @@ class TestScenario(unittest.TestCase):
 class TestMultiple(unittest.TestCase):
     def mm(self):
         return {"basis": "pe_fwd", "peers": [{"pe_fwd": 20.0}, {"pe_fwd": 25.0}, {"pe_fwd": 30.0}],
-                "horizons": [{"h": 1, "key": "pe_fwd", "label": "Fwd 1Y P/E", "current": 21.0, "peer_range": {"p50": 25.0}, "rational": {"p50": 35.0}}]}
+                "horizons": [{"h": 1, "key": "pe_fwd", "label": "Fwd 1Y P/E", "current": 21.0, "peer_range": {"p50": 25.0}, "rational": {"p50": 35.0}}], "sentiment": {"n": 5}}
 
     def test_steps_from_peer_median(self):
         dp = {"moat": {"items": [{"kind": "a에 따른 b", "verdict": "강함"}]}, "narrative": {"stage": "확산"}, "multiple_view": {"adj": -0.1, "why": "사이클"}}
         s = multiples.select_multiple(self.mm(), dp, CFG["multiple_select"])
-        self.assertAlmostEqual(s["value"], 25 * (1 + 0.2 + 0.04 + 0.05 - 0.1))
+        import math
+        fund = 0.2 * math.tanh(0.5 * math.log(35 / 25) / 0.2)   # 로그 차이 × 0.5, ±20%에 부드럽게(ADR-041)
+        self.assertAlmostEqual(s["value"], 25 * (1 + fund + 0.04 + 0.05 - 0.1))
         self.assertEqual(s["rows"][-1][0], "**선정**")
+        thin = dict(self.mm(), sentiment={"n": 2})   # 심리 배율 표본 4곳 미만 — 합리적 멀티플을 믿지 않는다
+        self.assertAlmostEqual(multiples.select_multiple(thin, dp, CFG["multiple_select"])["value"], 25 * (1 + 0.04 + 0.05 - 0.1))
 
     def test_stays_inside_peer_range(self):
         dp = {"multiple_view": {"adj": -0.9, "why": "x"}, "narrative": {"stage": "붕괴"}}

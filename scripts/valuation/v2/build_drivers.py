@@ -10,7 +10,9 @@ datapack.json (금액은 unit 하나로 통일 — 보통 B$, 비율은 소수):
   "industry": "semiconductor|semicap|software|software_internet|computers|electronics|electrical_equipment|telecom_equipment|power_utility",
   "region_mix": {"US":1.0}, "tax": 0.21,
   "profile":   {"price", "shares_basic", "shares_date", "cash", "debt"(리스 포함), "customer_deposits"(선택 — 현금에 든 고객 선수금 몫, 현금 제외 순운전자본의 음수), "source"},
-  "dilution":  {"potential_total" 또는 "options","rsu","warrants","converts_shares", "date"(= shares_date), "source"}   # shares_basic과 같은 단위
+  "dilution":  {"potential_total" 또는 "options","rsu","warrants","converts_shares", "date"(= shares_date), "source",   # shares_basic과 같은 단위
+                "converts": [{"name", "principal"(debt와 같은 단위), "conv_price"(주당, 가격과 같은 통화), "shares"(선택 — 없으면 원금 ÷ 전환가),
+                              "settlement": "physical|net_share|cash", "in_debt": profile.debt에 원금이 들었나(기본 true)}]}   # 선택 — 있으면 엔진이 전환 여부를 판정(ADR-041)
   "financials":{"rev_ttm", "ebit_ttm", "invested_capital", "capex_ttm", "da_ttm", "sbc_ttm", "s2c"},
   "consensus": {"rev": {"FY2026": x, "FY2027": y, ...}, "ebit_margin": {"FY2026": m, ...}, "rev_basis": "core|gaap", "margin_basis": "gaap|non_gaap",
                 "quarters_est": {...},
@@ -45,6 +47,34 @@ def _fy_sorted(d):
 
 def clamp(x, lo, hi):
     return max(lo, min(hi, x))
+
+
+def convert_terms(converts, price):
+    """전환사채 판정(ADR-041 — 전환 주식과 원금 차입을 둘 다 세던 이중 반영 방지) → (더할 주식, 차입에서 뺄 원금, 설명).
+    내가격(가격 ≥ 전환가)일 때만 주식이 된다. physical = 전환 주식 전부·원금은 차입에서 뺌 · net_share = 원금은 현금으로 갚고 초과분만 주식
+    (전환 주식 × (1 − 전환가/가격)) · cash = 주식 없음. 외가격이면 차입으로 남는다(주식 0)"""
+    add = out = 0.0
+    why = []
+    for c in converts or []:
+        cp, pr = c.get("conv_price"), c.get("principal")
+        sh = c.get("shares") if c.get("shares") is not None else (pr / cp if pr and cp else None)
+        if not cp or sh is None:
+            why.append(f"{c.get('name', '전환사채')} 전환가·주식 수 없음 — 판정 못 함")
+            continue
+        if price < cp:
+            why.append(f"{c.get('name', '전환사채')} 외가격(전환가 {cp} > 가격 {price}) — 차입")
+            continue
+        st = c.get("settlement", "physical")
+        if st == "net_share":
+            add += sh * (1 - cp / price)
+            why.append(f"{c.get('name', '전환사채')} 내가격·순주식 결제 — 초과분 {sh * (1 - cp / price):.4f} 주식")
+        elif st == "cash":
+            why.append(f"{c.get('name', '전환사채')} 내가격·현금 결제 — 주식 없음")
+        else:
+            add += sh
+            out += (pr or 0) if c.get("in_debt", True) else 0.0
+            why.append(f"{c.get('name', '전환사채')} 내가격 — 주식 {sh:.4f}, 원금 {pr} 차입에서 뺌")
+    return add, out, " · ".join(why)
 
 
 def build(p):
@@ -174,9 +204,12 @@ def build(p):
 
     pf, dl = p["profile"], p.get("dilution") or {}
     pot = dl["potential_total"] if dl.get("potential_total") is not None else sum(dl.get(k) or 0 for k in ("options", "rsu", "warrants", "converts_shares"))
+    conv_sh, conv_debt, conv_why = convert_terms(dl.get("converts"), pf["price"])
+    if dl.get("converts"):   # 구조화한 전환사채가 있으면 잠재 주식에서 옛 전환 몫을 빼고 엔진 판정으로 바꾼다
+        pot = pot - (dl.get("converts_shares") or 0) + conv_sh
     shares = pf["shares_basic"] + pot
-    prov["shares"] = f"완전 희석 = 기본 {pf['shares_basic']}({pf.get('shares_date', '날짜 미기재')}) + 옵션·RSU·워런트·전환 {pot:.4f}" + (f" — {dl['source'][:60]}" if dl.get("source") else "")
-    net_debt = (pf.get("debt") or 0) - (pf.get("cash") or 0) + (pf.get("customer_deposits") or 0)   # 납품으로 소진될 고객 선수금은 순현금에서 뺀다(2026-10-31 EROC)
+    prov["shares"] = f"완전 희석 = 기본 {pf['shares_basic']}({pf.get('shares_date', '날짜 미기재')}) + 옵션·RSU·워런트·전환 {pot:.4f}" + (f" — {dl['source'][:60]}" if dl.get("source") else "") + (f" · 전환사채 판정: {conv_why}" if conv_why else "")
+    net_debt = (pf.get("debt") or 0) - conv_debt - (pf.get("cash") or 0) + (pf.get("customer_deposits") or 0)   # 납품으로 소진될 고객 선수금은 순현금에서 뺀다(2026-10-31 EROC) · 주식으로 바뀌는 전환사채 원금은 차입에서 뺀다(ADR-041)
     ic0 = fin.get("invested_capital") or max(0.1, rev0 / s2c)
 
     drivers = {

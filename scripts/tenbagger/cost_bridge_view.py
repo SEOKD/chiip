@@ -61,14 +61,25 @@ def compute(dp):
                      "shock": -c["pct_rev"] * shock, "elastic": None, "fixed": margin_view._num(c.get("fixed")), "driver": c.get("driver")})
         steps.append((c["name"], -v, "cost"))
     rest = now["cogs"] / rev * 100 - named
-    if abs(rest) >= 0.5:
+    scaled = None
+    if named > 0 and rest <= -0.5:   # 요인 합이 공시 매출원가보다 크다 — 요인 비중이 다른 기간(한 분기 세그먼트 등) 값이라 생긴다(11/15 CBRS '기타 매출원가 +15.4').
+        scaled = (now["cogs"] / rev * 100) / named   # 최근 4분기 매출원가에 맞춰 비례로 줄이고 그렇게 했다고 적는다 — 음수 비용 막대를 그리지 않는다
+        steps = [steps[0]] + [(n, v * scaled, t) for n, v, t in steps[1:]]
+    elif abs(rest) >= 0.5:
         steps.append(("기타 매출원가", -rest, "cost"))
-    steps.append(("매출총이익", (rev - now["cogs"]) / rev * 100, "total"))
+    gp_pct = (rev - now["cogs"]) / rev * 100
+    steps.append(("매출총이익", gp_pct, "total"))
+    opex = 0.0
     for k, name in LINES[1:]:
         if now.get(k):
+            opex += now[k] / rev * 100
             steps.append((name, -now[k] / rev * 100, "cost"))
     if now.get("op") is not None:
-        steps.append(("영업이익", now["op"] / rev * 100, "total"))
+        op_pct = now["op"] / rev * 100
+        gap = gp_pct - opex - op_pct   # 공시 항목이 4분기를 다 채우지 못하면(상장 전 분기 등) 다리가 매출총이익에서 영업이익으로 건너뛰었다(11/15 CBRS 29.6 → −99.3)
+        if abs(gap) >= 0.5:
+            steps.append(("영업비용(항목 미공시)" if not opex else "기타 영업손익", -gap, "cost"))
+        steps.append(("영업이익", op_pct, "total"))
     for k, name in LINES:
         if not now.get(k):
             continue
@@ -82,7 +93,7 @@ def compute(dp):
         if r.get("cogs") is None and r.get("gp") is not None:
             r = {**r, "cogs": r["rev"] - r["gp"]}
         hist.append(r)
-    return {"steps": steps, "rows": rows, "shock": shock, "hist": hist, "now": now, "prior": prior}
+    return {"steps": steps, "rows": rows, "shock": shock, "hist": hist, "now": now, "prior": prior, "scaled": scaled}
 
 
 def _pp(x, d=1):
@@ -102,6 +113,8 @@ def blocks(dp):
     cg = next((r for r in c["rows"] if r["name"] == "매출원가" and r["elastic"] is not None), None)
     if cg:
         head += f" 분기 회귀로 매출 1이 늘 때 매출원가는 {cg['elastic']:.2f} 늘고, 매출원가의 고정비 몫은 {cg['fixed'] * 100:.0f}%다."
+    if c.get("scaled"):
+        head += f" 매출원가 요인 비중은 요인별 공시 기간 값이라 합이 최근 4분기 매출원가를 넘어, 그림에서는 {c['scaled']:.2f}배로 비례 조정했다."
     B = [{"type": "hl", "text": head},
          {"type": "chart", "chart": {"kind": "waterfall", "title": "매출 → 매출총이익 → 영업이익(매출 = 100, 최근 4분기)", "unit": "",
                                      "steps": [{"label": n, "value": round(v, 1), "kind": k} for n, v, k in c["steps"]]}}]

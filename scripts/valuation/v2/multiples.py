@@ -83,6 +83,50 @@ def choose_basis(dp):
 
 
 
+OUTLIER = {"pe_fwd": 100.0, "ev_ebitda_fwd": 60.0, "ev_sales": 40.0}   # 이 위의 배수는 이익이 0 가까운 동종이라 비교에서 뺀다(ADR-041)
+OUTLIER_BAND = 3.0   # 기준별 동종 중앙값의 1/3~3배 밖도 뺀다(ADR-041 — FWONK MSGS 369.9배가 p75를 73.3배로 끌었다)
+
+
+def trim_peers(peers):
+    """동종 배수 이상치를 비운다(행은 남긴다) → (정리된 동종, 뺀 목록). 기준 키마다 따로 — 1·2·3년 뒤 배수 모두"""
+    keys = sorted({k for p in peers for k in p if k.split("2")[0].split("3")[0] in OUTLIER and isinstance(p.get(k), (int, float))})
+    out, cut = [dict(p) for p in peers], []
+    for k in keys:
+        base = k.rstrip("23")
+        vals = [p[k] for p in out if isinstance(p.get(k), (int, float)) and p[k] > 0]
+        if len(vals) < 3:
+            continue
+        med = pct(vals, 0.5)
+        for p in out:
+            v = p.get(k)
+            if isinstance(v, (int, float)) and v > 0 and (v > OUTLIER[base] or v > med * OUTLIER_BAND or v < med / OUTLIER_BAND):
+                cut.append(f"{p.get('ticker')} {k} {v:.1f}")
+                p[k] = None
+    return out, cut
+
+
+def refresh_now(dp, price, ev):
+    """'지금' 배수를 엔진 가격으로 다시 잰다(ADR-041 — Fiscal 스냅숏 배수와 오늘 가격이 섞여 내재 배수가 그만큼 치우쳤다: DELL 0.77배 등).
+    P/E = 가격 ÷ 선행 EPS(1·2·3년), EV/EBITDA = (시총 + 순차입) ÷ 선행 EBITDA(B$ 단위 종목만). 10% 넘게 다르면 바꾸고 기록"""
+    now = dict(dp.get("multiples_now") or {})
+    fw = dp.get("forward") or {}
+    hz = {"1": fw.get("ntm") or {}, **(fw.get("horizons") or {})}
+    notes = []
+    for h, x in hz.items():
+        suf = "" if h == "1" else h
+        cand = {}
+        if price and (x.get("eps") or 0) > 0:
+            cand["pe_fwd" + suf] = price / x["eps"]
+        if ev and (x.get("ebitda") or 0) > 0 and dp.get("unit", "B$") == "B$":
+            cand["ev_ebitda_fwd" + suf] = ev / (x["ebitda"] / 1e9)
+        for k, v in cand.items():
+            old = now.get(k)
+            if old and old > 0 and abs(math.log(v / old)) > 0.10:
+                notes.append(f"{k} {old:.1f} → {v:.1f}")
+                now[k] = round(v, 2)
+    return now, notes
+
+
 def pct(xs, q):
     xs = sorted(x for x in xs if x is not None)
     if not xs:
@@ -134,6 +178,9 @@ def analyze(dp, base_drivers, mcap, wacc, g_term, dcf_ok=True):
     net_debt = base_drivers.get("net_debt") if base_drivers.get("net_debt") is not None else (dp["profile"].get("debt") or 0) - (dp["profile"].get("cash") or 0)
     ev = mcap + net_debt
     rev = fin.get("rev_ttm")
+    peers_in, trimmed = trim_peers(dp.get("peers") or [])
+    now_fix, now_notes = refresh_now(dp, mcap / base_drivers["shares"] if base_drivers.get("shares") else None, ev)
+    dp = {**dp, "peers": peers_in, "multiples_now": now_fix}   # 이 함수 안에서만 — 원본 datapack은 그대로
     basis, why = choose_basis(dp)
     cur = (ev / rev if rev else None) if basis == "ev_sales" else dp["multiples_now"][basis]
     peers = []
@@ -164,6 +211,7 @@ def analyze(dp, base_drivers, mcap, wacc, g_term, dcf_ok=True):
     acts, warrs = [x["market"] for x in peers], [x["warranted"] for x in peers if x["warranted"]]
     med_act, med_w, med_r = pct(acts, 0.5), pct(warrs, 0.5), pct(ratios, 0.5)
     out = {"basis": basis, "label": BASES[basis], "why": why, "tax": tax, "current": cur, "ev": ev, "rev": rev, "peers": peers, "target_warranted": tw,
+           "trimmed": trimmed, "now_refreshed": now_notes,
            "peer_range": {"p25": pct(acts, 0.25), "p50": med_act, "p75": pct(acts, 0.75)},
            "sentiment": {"p25": pct(ratios, 0.25), "p50": med_r, "p75": pct(ratios, 0.75), "n": len(ratios)},
            "steady": steady_state_table(wacc, g_term, tax)}
@@ -276,7 +324,9 @@ def select_multiple(m, dp, cfg):
     clip = lambda x, c: max(-c, min(c, x))
     pct = lambda x: f"{x:+.0%}"
     rational = (v.get("rational") or {}).get("p50")
-    fund = clip((rational / p50 - 1) * cfg["fund_weight"], cfg["fund_cap"]) if rational else 0.0
+    n_sent = (m.get("sentiment") or {}).get("n") or 0
+    ok_r = rational and 1 / 3 <= rational / p50 <= 3 and n_sent >= 4   # 심리 배율 표본 4곳 미만·합리적/중앙값 3배 밖이면 재료 불신(ADR-041 — 29/75곳이 상한에 붙어 ±20% 스위치였다)
+    fund = cfg["fund_cap"] * math.tanh(cfg["fund_weight"] * math.log(rational / p50) / cfg["fund_cap"]) if ok_r else 0.0
     items = (dp.get("moat") or {}).get("items") or []
     import plus   # 같은 뜻 다른 표기(중간·약점·약화 중)를 점수표 이름으로 — DCF 해자 점수와 같은 규칙(ADR-040)
     moat = clip(sum(cfg["moat_points"].get(plus.verdict(x), 0) for x in items), cfg["moat_cap"])
@@ -289,8 +339,10 @@ def select_multiple(m, dp, cfg):
     struct = clip(moat + rec + conv + vis, cfg.get("structure_cap", 1.0)) - moat   # 해자와 겹치는 몫(전환 비용 등)을 합쳐서 상한 — 이중 계산 방지
     raw = p50 * (1 + fund + moat + struct + narr + judge)
     value = max(low, min(high * (1 + cfg["over_peer"]), raw))
-    rows = [["동종 중앙값", f"{p50:.1f}배", f"범위 {low:.1f}~{high:.1f}배, {len(acts)}곳"],
-            ["펀더멘털", pct(fund), f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정" if rational else "재료 없음"],
+    rows = [["동종 중앙값", f"{p50:.1f}배", f"범위 {low:.1f}~{high:.1f}배, {len(acts)}곳" + (f" · 이상치 제외 {', '.join(m['trimmed'][:4])}" if m.get("trimmed") else "")
+             + (f" · 지금 배수를 오늘 가격으로 다시 잼({', '.join(m['now_refreshed'][:3])})" if m.get("now_refreshed") else "")],
+            ["펀더멘털", pct(fund), (f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정(로그 차이 × {cfg['fund_weight']}, 상한 ±{cfg['fund_cap']:.0%}에 부드럽게 수렴)" if ok_r
+                                   else (f"합리적 멀티플 {rational:.1f}배는 쓰지 않음 — 심리 배율 표본 {n_sent}곳·동종 중앙값의 {rational / p50:.1f}배" if rational else "재료 없음"))],
             ["해자", pct(moat), " · ".join(f"{str(x.get('kind')).split('에 따른')[0]} {x.get('verdict')}" for x in items) or "재료 없음"],
             ["반복 매출", pct(rec), rec_why],
             ["수주 전환·가시성", pct(conv + vis), bk_why],
