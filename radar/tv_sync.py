@@ -316,7 +316,10 @@ def plan():
     theme_sec = c.get("theme_sections") or {}
     folders = {v["market"]: k for k, v in (c.get("folders") or {}).items() if v.get("market")}
     _, idx = known_entities()
+    skip_ids = c.get("skip_ids") or {}   # 비상장 등 넣지 않을 회사(2026-11-15 후쿠다금속박분)
     for cid, theme in chiip_picks().items():
+        if cid in skip_ids:
+            continue
         if cid in in_lists or ((idx.get(cid) or {}).get("code"), hand_market.get(cid)) in held_codes:
             continue
         if cid in gone:   # 마스터가 지웠어도 다시 넣는다(2026-11-09 마스터 지시)

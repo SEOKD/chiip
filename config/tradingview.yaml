@@ -21,6 +21,9 @@ skip_symbols:
   CSE:MYR: "캐나다 Meryllion Resources — DATACENTER EPC 섹션이라 MYR Group(NASDAQ:MYRG) 오기로 보임"
   CSE:WG: "캐나다 Westward Gold — 4_EU & UK 목록이라 다른 회사를 뜻한 오기로 보임"
   NASDAQ:ANTHROPIC: "시세 없음(비상장)"
+# Chiip -> 와치리스트 추가에서 뺄 회사(entity id) — 비상장 등. 레이더·발굴 목록에는 남는다
+skip_ids:
+  jp-fukudametal: "후쿠다금속박분(福田金属箔粉工業) 비상장 — 최대주주 Nihon Seiko(5729) 지분 17~18%(마스터 확인 2026-11-15). 코드 5821은 Hirakawa Hewtech"
 rate_budget:
   max_calls_per_run: 60
 exchange_market:
