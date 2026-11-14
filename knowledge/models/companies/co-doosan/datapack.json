@@ -2,7 +2,7 @@
  "id": "co-doosan",
  "name": "두산",
  "ticker": "000150",
- "as_of": "2026-10-30",
+ "as_of": "2026-11-14",
  "unit": "BKRW",
  "currency_symbol": "₩",
  "unit_usd": 690000.0,
@@ -14,56 +14,55 @@
  "main_metric": "eps",
  "main_metric_why": "연결 매출에 지분 30%대 자회사가 섞여 EV 기준 배수가 왜곡된다. 주당 지배순이익으로 비교하고 지분가치는 SOTP로 따로 검산한다",
  "profile": {
-  "price": 891000,
+  "price": 610000,
   "shares_basic": 0.0136049,
-  "shares_date": "2026-10-30",
-  "cash": 1686.5,
-  "debt": 2900.0,
-  "source": "가격 = TradingView 10/30. 주식 수 = 보통주 발행 14,237,400주 − 자사주 632,500주(TradingView 유통 13,604,900주와 일치). DCF 범위는 자체사업이라 현금은 별도 6월 말 ₩1.6865T(허프포스트), 차입은 추정: NICE 3월 말 별도 총차입금/EBITDA 4.7배 × 약 ₩620B. 별도 순차입금 원자료는 미확인"
+  "shares_date": "2026-11-13",
+  "cash": 1314.8,
+  "debt": 1897.0,
+  "source": "가격 = TradingView KRX:000150 11/13 종가 ₩610,000. 주식 수 = TradingView 유통 보통주 13,604,900주(10월 자사주 256.9만 주 소각 뒤, 잔여 자사주 63.3만 주는 RSU 재원 — 3Q IR). 현금·차입 = 3Q26 IR 별도 차입금 표: 현금 ₩1,314.8B, 차입 ₩1,897.0B(은행 ₩1,806.0B + 회사채 ₩91.0B), 순차입 ₩582.2B. DCF 범위는 자체사업이다. SK실트론 인수 대금 ₩2.3T는 9월 말 차입에 아직 없다(종결 미확인)"
  },
  "dilution": {
-  "potential_total": 0.0006325,
-  "date": "2026-10-30",
-  "source": "소각에서 뺀 RSU 재원 보통주 632,500주(9/17 공시 보도). 우선주 4,277,407주는 시장가치 약 ₩770B를 소수지분 항목에 넣었다"
+  "potential_total": 0.000633,
+  "date": "2026-11-13",
+  "source": "잔여 자기주식 633천 주 = 임직원 RSU 부여분(3Q IR). 우선주 4,277,396주(TradingView KRX:000155)는 시가 ₩1,009.5B를 소수지분 항목에 넣었다"
  },
  "financials": {
-  "rev_ttm": 2497.5,
-  "ebit_ttm": 657.8,
-  "invested_capital": 1800.0,
+  "rev_ttm": 3013.1,
+  "ebit_ttm": 769.6,
+  "invested_capital": 1782.2,
   "capex_ttm": 400.0,
   "da_ttm": 120.0,
   "sbc_ttm": 0.0,
   "s2c": 1.8,
-  "rev_growth_ttm": 0.5,
-  "basis": "자체사업(전자BG·DDI·두타몰). 연결이 아니다",
-  "note": "1Q26·2Q26은 공시 보도. 3Q25·4Q25는 전자BG 역산값에 비전자 소액을 더한 근사. 투하자본·설비투자·감가상각은 자체사업 값이 공개되지 않아 추정"
+  "rev_growth_ttm": 0.7,
+  "basis": "자체사업(전자BG·DDI·두타몰) — 3Q IR 분기 실적표. 연결이 아니다",
+  "note": "TTM = 4Q25~3Q26 자체사업 매출 653.4+702.3+765.2+892.2, 영업이익 131.9+187.8+212.0+237.9(3Q26 IR). 성장 = 3Q 전년 대비 +70%(IR). 투하자본 = 자체사업 귀속 자기자본 추정 ₩1.2T + 별도 차입 ₩1,897.0B − 현금 ₩1,314.8B. 설비투자·감가상각은 자체사업 값 미공시(추정)"
  },
  "consensus": {
   "rev": {
-   "FY2026": 3200.0,
-   "FY2027": 4150.0,
-   "FY2028": 5750.0
+   "FY2026": 3261.8,
+   "FY2027": 3800.0,
+   "FY2028": 4500.0
   },
   "rev_basis": "core",
   "ebit_margin": {
-   "FY2026": 0.27,
-   "FY2027": 0.3,
-   "FY2028": 0.31
+   "FY2026": 0.271,
+   "FY2027": 0.27,
+   "FY2028": 0.27
   },
   "margin_basis": "gaap",
-  "n_analysts": 12,
+  "n_analysts": 10,
   "revisions_90d": {},
   "quarters_est": {
-   "2026Q3": 5300.5,
-   "2026Q4": 5947.9
+   "2026Q4": 902.1
   },
   "quarters_act": {
-   "2026Q1": 5060.3,
-   "2026Q2": 5586.1
+   "2026Q1": 702.3,
+   "2026Q2": 765.2,
+   "2026Q3": 892.2
   },
   "eps_quarters_est": {
-   "2026Q3": 8611,
-   "2026Q4": 7907
+   "2026Q4": 8263
   },
   "surprise": [
    {
@@ -173,6 +172,36 @@
     "est": null,
     "est_src": null,
     "basis": null
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 54269,
+    "est": 53289,
+    "est_src": "공시 속보 채널 예상치(연결)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 4594,
+    "est": 4700,
+    "est_src": "같은 자료(연결)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "순이익",
+    "unit": "억 원",
+    "actual": 1031,
+    "est": 1469,
+    "est_src": "같은 자료(연결)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
    }
   ],
   "ratings": {
@@ -184,108 +213,164 @@
    "as_of": "2026-11-02"
   },
   "target_mean": 2229167,
-  "note": "consensus.rev·ebit_margin은 DCF 범위인 자체사업 값이다. FY2026 = 회사 목표 약 ₩3.2T, FY2027·28 = 메리츠 전자BG ₩3.71T·₩5.29T + 비전자 약 ₩0.45T, 이익률은 치입 추정. quarters_est·surprise는 연결. 3Q 연결 매출 추정은 TradingView ₩5.30T, 대신 ₩5.51T로 다르다. 3Q25·4Q25·FY 영업이익은 대신 증가율에서 역산"
+  "note": "자체사업 기준. FY2026 매출 ₩3,261.8B = 회사 연간 계획(3Q IR, 4Q ₩902.0B 포함 — 3Q 누적 ₩2,359.8B). 4Q ₩902.1B = 회사 4Q 계획(전자BG ₩814.6B 포함). FY2026 OPM 27.1% = 1~3Q 영업이익 ₩637.7B + 4Q 전자BG ₩814.6B × 29.8%(교보) + 비전자 약 ₩2B(추정). FY2027 매출 ₩3.8T = 대신 전자BG ₩3,442.4B + 비전자 약 ₩360B(추정), 범위 ₩3.6~4.15T(11/02판 ₩4.15T가 상단). FY2028은 증설 가동 2028년 하반기라 +18%(추정). EPS는 지배 연결 기준: FY2026 ₩34,323(TradingView 달러 표시 환산), FY2027·28은 자체사업 증익 세후 + 두산에너빌리티 지분 이익을 더한 추정(공개 컨센서스 미확인)",
+  "rev_low": {
+   "FY2027": 3600.0
+  },
+  "rev_high": {
+   "FY2027": 4150.0
+  },
+  "eps": {
+   "FY2026": 34323,
+   "FY2027": 45000,
+   "FY2028": 58000
+  },
+  "ebit_basis": "자체사업 영업이익"
  },
  "guidance": {
   "rev_fy0": [
-   3200.0,
-   3200.0
+   3261.8,
+   3261.8
   ],
-  "long_term": "하반기 전자BG 매출 약 ₩1.5T, 광모듈용 CCL 연 약 ₩300B",
-  "source": "2Q 실적 보도의 자체사업 매출 목표 약 ₩3.2T, 대신 10/19 인용",
-  "next": {}
+  "rev_fy0_note": "회사 계획: 자체사업 연간 매출 ₩3.2T 이상(3Q 누적 ₩2,359.8B + 4Q ₩902.0B = ₩3,261.8B), 전자BG ₩2.9T 이상(₩2,910.0B)",
+  "rev_basis": "core",
+  "margin_basis": "gaap",
+  "long_term": "전자BG CCL 캐파 2029년 현재의 2.7배(2028년까지 국내·해외 약 ₩970B 투자). 신규 라인은 2028년 하반기부터 순차 가동",
+  "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf",
+  "next": {
+   "period": "4Q26",
+   "eps_cons": 8263,
+   "unit": "₩",
+   "note": "회사 분기 가이던스는 매출 계획뿐: 자체사업 4Q ₩902.0B, 전자BG ₩814.6B. 교보 4Q 전자BG OPM 29.8%"
+  }
  },
  "call": {
-  "date": "2026-07-27",
-  "prev_date": "2026-04-29",
-  "tone": "up",
-  "tone_delta": 0.3,
-  "guidance_direction": "raise",
-  "kpis": {
-   "own_rev_2q": 765.2,
-   "own_op_2q": 212.0,
-   "own_opm_2q": 0.277,
-   "cons_op_2q": 488.4
-  },
-  "new_topics": [
-   "광모듈용 CCL 연 매출 전망 ₩200B대 → ₩300B대",
-   "국내·중국 CCL ₩968.4B 증설",
-   "SK실트론 70.61% 인수 계약"
+  "date": "2026-11-09",
+  "prev_date": "2026-07-27",
+  "tone": "flat",
+  "tone_delta": 0.0,
+  "guidance_direction": "maintain",
+  "kpis": [
+   "자체사업 3Q 매출 ₩892.2B(+70% 전년), 영업이익 ₩237.9B(+120%), OPM 26.7%",
+   "전자BG 3Q 매출 ₩802.0B(+82%, 분기 최대), 영업이익 ₩235.3B, OPM 29.3%",
+   "전자BG OPM 30.1% → 29.8% → 29.3%(1Q~3Q)",
+   "매출 구성: 네트워크보드 57%(AI 가속기 32%), 광모듈 10%",
+   "별도 순차입 ₩582.2B(2Q 순현금 ₩12.0B)",
+   "자사주 256.9만 주(발행주식 12.2%) 10월 소각 완료"
   ],
-  "dropped_topics": [],
+  "guidance_change": "자체사업 연간 '₩3.2T 이상'을 유지하고 4Q 계획 ₩902.0B를 처음 숫자로 냈다. 전자BG 연간 ₩2.9T 이상",
+  "new": [
+   "CCL 캐파 2029년 2.7배, 2028년까지 약 ₩970B 투자(11/6 중국 창수 약 ₩550B 협약)",
+   "광모듈용 CCL 전분기 대비 약 +70%(S저널)",
+   "고객사 장기공급계약(LTA) 요구 증가 — 조건은 미공유(교보)"
+  ],
+  "gone": [
+   "1Q·2Q의 'OPM 상승' 흐름 — 두 분기 연속 하락"
+  ],
+  "analyst_focus": [
+   "대신증권 — 증설 전까지 성장은 판가·믹스",
+   "교보증권 — 마진 개선 속도·LTA 조건",
+   "DB증권 — CCL 동종 배수 하락 반영",
+   "하나증권 — 경쟁사 주가 하락 반영"
+  ],
   "risks": [
-   "제품 단가는 전년과 비슷하고 물량만 20~30% 증가",
-   "증평·김천 가동률 100% 초과로 2028년 전까지 캐파 제약",
-   "별도 차입 확대"
+   "풀가동 — 2028년 하반기까지 물량 성장이 막혀 있다",
+   "CCL 동종 배수 급락(EMC 등 1개월 −24~−44%)",
+   "두산에너빌리티 지분가치 변동",
+   "SK실트론 인수 대금 ₩2.3T 차입",
+   "주요 고객사 내 점유율 하락 우려(증권가 해석, 회사 확인 없음)"
   ],
-  "qa_focus": [],
-  "source": "한국 상장사는 콜 전문이 공개되지 않는다. 7/27 2Q 잠정실적 보도와 대신·하나·메리츠 인용 보도를 대조했다. 회사 PT는 DART robots 차단으로 대조하지 못했다",
+  "source": "한국 상장사는 콜 전문을 공개하지 않는다. 3Q26 IR 자료(https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf)와 2Q 보도·증권사 인용 보도로 차이를 만들었다",
   "deltas": [
    {
     "id": "F1",
     "kind": "업데이트",
-    "item": "광모듈용 CCL 연 매출 전망",
-    "label": "광모듈 ₩300B",
-    "prior": "약 ₩200B대",
-    "latest": "약 ₩300B대",
-    "driver": "growth_start",
-    "shift": 0.03,
-    "confidence": 0.8,
-    "source": "하나 9/28, 대신 10/19"
+    "item": "전자BG 영업이익률 두 분기 연속 하락",
+    "label": "전자BG OPM 29.3%",
+    "prior": "30.1%(1Q)·29.8%(2Q)",
+    "latest": "29.3%(3Q)",
+    "driver": "margin_m0",
+    "shift": -0.005,
+    "confidence": 1.0,
+    "source": "https://www.s-journal.co.kr/news/articleView.html?idxno=45199"
    },
    {
     "id": "F2",
     "kind": "업데이트",
-    "item": "자체사업 영업이익률",
-    "label": "OPM 27.7%",
-    "prior": "26.7%(1Q)",
-    "latest": "27.7%(2Q)",
-    "driver": "margin_m0",
-    "shift": 0.01,
+    "item": "자체사업 매출 분기 최대",
+    "label": "자체 매출 ₩892B",
+    "prior": "₩765.2B(2Q)",
+    "latest": "₩892.2B(3Q, +16.6% 순차)",
+    "driver": "growth_start",
+    "shift": 0.02,
     "confidence": 1.0,
-    "source": "1Q·2Q 잠정실적 보도"
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
    },
    {
     "id": "F3",
     "kind": "신규",
-    "item": "CCL 증설 결의",
-    "label": "₩968B 증설",
-    "prior": "태국 약 ₩180B",
-    "latest": "국내 ₩421B + 창수 ₩547B 추가",
-    "driver": "s2c",
-    "shift": -0.2,
-    "confidence": 1.0,
-    "source": "9/17 공시 보도"
+    "item": "4Q 매출 계획 숫자",
+    "label": "4Q 계획 ₩902B",
+    "prior": "연간 ₩3.2T 이상(숫자만)",
+    "latest": "4Q ₩902.0B, 연간 ₩3,261.8B",
+    "driver": "rev0",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
    },
    {
     "id": "F4",
-    "kind": "부정",
-    "item": "제품 단가",
-    "label": "단가 인상 없음",
-    "prior": "미확인",
-    "latest": "전년과 비슷, 물량 +20~30%",
-    "driver": "margin_target",
-    "shift": -0.01,
+    "kind": "업데이트",
+    "item": "CCL 캐파 계획",
+    "label": "캐파 2.7배(2029)",
+    "prior": "₩968.4B 증설(9/17)",
+    "latest": "2028년까지 약 ₩970B, 2029년 2.7배",
+    "driver": "growth_end",
+    "shift": 0.01,
     "confidence": 0.8,
-    "source": "대신 10/19"
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "별도 순차입 전환",
+    "label": "순차입 ₩582B",
+    "prior": "순현금 ₩12.0B(2Q)",
+    "latest": "순차입 ₩582.2B(3Q)",
+    "driver": "net_debt",
+    "shift": 594.2,
+    "confidence": 1.0,
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "증설 전 물량 한계",
+    "label": "풀가동·판가 의존",
+    "prior": "가동률 100% 초과(2Q)",
+    "latest": "성장은 판가·믹스에 달렸다(대신)",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "https://www.dailysportshankook.co.kr/news/articleView.html?idxno=435375"
    }
   ]
  },
  "peers_basis": "ttm",
- "peers_source": "TradingView 2026-11-02. P/E는 진행 회계연도 추정. 두산 값도 같은 기준이고 2Q 일회성이 든 FY2026 EPS를 쓴다. 금액은 각 현지 통화(B)",
+ "peers_source": "TradingView 11/13 시가총액. Fwd 1Y P/E는 11/02판 값에 시가총액 변화율을 곱한 근사(추정 이익 불변 가정, 11/13 TradingView에 선행 P/E 칸 없음)",
  "peers": [
   {
    "ticker": "Elite Material",
    "key": "2383.TW",
    "rev": 166.15,
    "ebit_margin": 0.2617,
-   "mcap": 1675.15,
+   "mcap": 1470.9,
    "pb": 22.8,
    "debt": 44.9,
    "cash": 29.68,
-   "ev_sales": 10.17,
+   "ev_sales": 8.93,
    "growth": 0.8904,
-   "pe_fwd": 36.1,
+   "pe_fwd": 31.7,
    "ntm_ebit_margin": 0.2617,
    "ntm_growth": 0.26
   },
@@ -294,13 +379,13 @@
    "key": "6213.TW",
    "rev": 37.31,
    "ebit_margin": 0.088,
-   "mcap": 249.79,
+   "mcap": 189.8,
    "pb": 11.05,
    "debt": 6.11,
    "cash": 4.01,
-   "ev_sales": 6.75,
+   "ev_sales": 5.13,
    "growth": 0.163,
-   "pe_fwd": 37.9,
+   "pe_fwd": 28.8,
    "ntm_ebit_margin": 0.088,
    "ntm_growth": 0.407
   },
@@ -309,13 +394,13 @@
    "key": "6274.TW",
    "rev": 51.43,
    "ebit_margin": 0.2342,
-   "mcap": 378.82,
+   "mcap": 286.28,
    "pb": null,
    "debt": 0,
    "cash": 0,
-   "ev_sales": 7.37,
+   "ev_sales": 5.57,
    "growth": 0.8684,
-   "pe_fwd": 31.2,
+   "pe_fwd": 23.6,
    "ntm_ebit_margin": 0.2342,
    "ntm_growth": 0.223
   },
@@ -324,13 +409,13 @@
    "key": "600183.SS",
    "rev": 41.03,
    "ebit_margin": 0.2221,
-   "mcap": 211.32,
+   "mcap": 183.9,
    "pb": 8.66,
    "debt": 13.27,
    "cash": 9.38,
-   "ev_sales": 5.25,
+   "ev_sales": 4.57,
    "growth": 0.5624,
-   "pe_fwd": 25.6,
+   "pe_fwd": 22.3,
    "ntm_ebit_margin": 0.2221,
    "ntm_growth": 0.14
   },
@@ -339,13 +424,13 @@
    "key": "1888.HK",
    "rev": 25.72,
    "ebit_margin": 0.2107,
-   "mcap": 109.29,
+   "mcap": 90.95,
    "pb": 5.96,
    "debt": 8.21,
    "cash": 4.6,
-   "ev_sales": 4.39,
+   "ev_sales": 3.65,
    "growth": 0.3194,
-   "pe_fwd": 12.3,
+   "pe_fwd": 10.2,
    "ntm_ebit_margin": 0.2107,
    "ntm_growth": 0.404
   },
@@ -354,11 +439,11 @@
    "key": "007660",
    "rev": 1314.29,
    "ebit_margin": 0.1981,
-   "mcap": 6181.06,
+   "mcap": 6173.7,
    "pb": 7.19,
    "debt": 274.96,
    "cash": 234.14,
-   "ev_sales": 4.73,
+   "ev_sales": 4.72,
    "growth": 0.4187,
    "pe_fwd": 22.3,
    "ntm_ebit_margin": 0.1981,
@@ -395,51 +480,82 @@
    "date": "2026-07-27",
    "tag": "2Q 잠정실적",
    "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "−17.4%, 공시 없음. AI 투자 수익성 우려·CCL 동종 급락 보도(원인 확정 아님)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "−11.3%, 창수 CCL 약 ₩550B 투자 협약",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-09",
+   "tag": "3Q26 실적 — 전자BG 매출 ₩802.0B 분기 최대, 연결 영업이익 컨센서스 −2.3%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "증권사 4곳 목표가 45~50% 하향(₩100만~127만, 매수 유지) — CCL 동종 배수 하락",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "+8.2%, 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-13",
+   "tag": "분기보고서 제출, −8.5% 원인 미확인",
+   "kind": "8-K"
   }
  ],
  "sources": [
-  "대신 인용 더파워 10/19 https://www.thepowernews.co.kr/view.php?ud=20261019141142714de3f0aa1be_7",
-  "메리츠 인용 이투데이 10/1 https://www.etoday.co.kr/news/view/2631199",
-  "하나 인용 이코노믹리뷰 9/28 https://www.econovill.com/news/articleView.html?idxno=751977",
-  "한국신용평가 ㈜두산 평가 2026-06-30 https://m.kisrating.com/fileDown.do?menuCd=R8&gubun=2&fileName=rs20260630-52.pdf"
+  "두산 3Q26 IR https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf",
+  "비즈워치 11/10 증권사 4곳 https://news.bizwatch.co.kr/article/market/2026/11/10/0008",
+  "S저널 11/10 https://www.s-journal.co.kr/news/articleView.html?idxno=45199",
+  "데일리스포츠한국 11/10 대신 https://www.dailysportshankook.co.kr/news/articleView.html?idxno=435375",
+  "아시아타임즈 11/10 교보 https://www.asiatime.co.kr/article/20261110500339",
+  "글로벌이코노믹 11/10 https://www.g-enews.com/article/Securities/2026/11/202611101117363641923c501012_1",
+  "공시 속보 채널(텔레그램 공개) 11/13 분기보고서 예상치",
+  "TradingView 시세·추정 11/13·11/14",
+  "한국신용평가 ㈜두산 2026-06-30 https://m.kisrating.com/fileDown.do?menuCd=R8&gubun=2&fileName=rs20260630-52.pdf"
  ],
  "raw": {
-  "retrieved_at": "2026-11-02T01:40:00+09:00",
-  "shares_cover_implied": 0.0142374,
+  "retrieved_at": "2026-11-14T13:40:00+09:00",
+  "shares_cover_implied": 0.0136049,
   "fiscal_profile": {
-   "companyKey": "TradingView KRX:000150 — Fiscal.ai 미제공",
-   "price": 891000,
-   "market_cap": 12685.5,
-   "total_cash": 1686.5,
-   "total_debt": 2900.0,
-   "as_of": "2026-10-30",
-   "balance_date": "2026-06-30"
+   "companyKey": "Fiscal.ai 미수록(XKRX_000150 Company not found 2026-11-14). 시세 = TradingView, 실적 = 3Q26 IR",
+   "price": 610000,
+   "market_cap": 8299.0,
+   "total_cash": 1314.8,
+   "total_debt": 1897.0,
+   "as_of": "2026-11-13",
+   "balance_date": "2026-09-30"
   },
   "consolidated": {
-   "cash": 5353.1,
-   "debt": 10810.2,
-   "equity": 13907.6,
-   "goodwill": 5676.6,
-   "rev_ttm": 20785.4,
-   "op_ttm": 1274.6,
-   "ebitda_ttm": 2128.1,
-   "fcf_ttm": 61.0,
-   "net_income_ttm": 367.8,
-   "capex_ttm": 1075.0,
-   "mcap_with_pref_tv": 13456.5
+   "rev_3q26": 5426.9,
+   "op_3q26": 459.4,
+   "ni_3q26": 103.1,
+   "net_debt_3q26": 5215.2,
+   "debt_ratio": 1.738,
+   "equity_3q26": 12807.0,
+   "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
   },
   "quarters_gaap": {
    "rev": {
-    "2025Q3": 470.0,
-    "2025Q4": 560.0,
+    "2025Q4": 653.4,
     "2026Q1": 702.3,
-    "2026Q2": 765.2
+    "2026Q2": 765.2,
+    "2026Q3": 892.2
    },
    "op_income": {
-    "2025Q3": 110.0,
-    "2025Q4": 148.0,
+    "2025Q4": 131.9,
     "2026Q1": 187.8,
-    "2026Q2": 212.0
+    "2026Q2": 212.0,
+    "2026Q3": 237.9
    }
   },
   "balance_2026_06_30": {
@@ -454,26 +570,26 @@
   },
   "stakes": {
    "enerbility": {
-    "mcap": 35097.5,
+    "mcap": 30230.0,
     "pct": 0.3039,
-    "value": 10667
+    "value": 9186.9
    },
    "robotics": {
-    "mcap": 3526.2,
+    "mcap": 3331.7,
     "pct": 0.5,
-    "value": 1763
+    "value": 1665.8
    },
-   "sum": 12430,
+   "sum": 10852.7,
    "discount": 0.38,
-   "after_discount": 7707,
-   "note": "지분율은 공시 요약 사이트와 DS 보도. 두산테스나·두산퓨얼셀 직접 보유분은 미확인이라 뺐다. PRS로 로보틱스 1,170만 주를 담보 잡혔다"
+   "after_discount": 6728.7,
+   "note": "시가 = TradingView 11/13(두산에너빌리티 ₩46,850, 두산로보틱스 ₩51,900). 지분율은 11/02판과 같다(공시 요약·DS 보도). 두산테스나·두산퓨얼셀 직접 보유분은 미확인이라 뺐다. SK실트론은 종결 전이라 넣지 않았고, 원가 ₩2.3T로 들어오면 차입과 상계된다"
   },
-  "pref_value": 770.0,
+  "pref_value": 1009.5,
   "estimates_sales_m": {
    "2026Q1": 702300,
    "2026Q2": 765200,
-   "2026Q3": 788000,
-   "2026Q4": 944500
+   "2026Q3": 892200,
+   "2026Q4": 902100
   },
   "tv_consensus_fy2026": {
    "rev": 21895.0,
@@ -481,29 +597,58 @@
   },
   "naver_est_eps": 27260,
   "source_coverage": "Fiscal.ai 미제공. Easyconomics는 한국 종목 지원 중단 응답(earnings_summary_dates 빈 응답), Zacks 미제공. 노션 두산 컨센서스·어닝콜 페이지는 비어 있다",
-  "estimates_note": "자체사업. 1·2Q 실적, 3Q는 대신 영업이익 ₩211.9B ÷ OPM 26.9%, 4Q는 연 목표 ₩3.2T의 나머지"
+  "estimates_note": "자체사업. 1·2Q 실적, 3Q는 대신 영업이익 ₩211.9B ÷ OPM 26.9%, 4Q는 연 목표 ₩3.2T의 나머지",
+  "balance_2026_09_30": {
+   "equity": 1200.0,
+   "cash": 1314.8,
+   "st_investments": 0,
+   "debt_current": 1897.0,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0,
+   "note": "현금·차입 = 3Q IR 별도 차입금 표(실측). 별도 자본총계 ₩4,229.1B는 자회사 지분 장부가가 섞여 자체사업 귀속분 ₩1.2T는 추정"
+  },
+  "tv_forecast": {
+   "rating": {
+    "buy": 9,
+    "hold": 1,
+    "total": 10
+   },
+   "eps_next_fq": 8263,
+   "eps_fy2026": 34323,
+   "rev_fy2026": 20788.0,
+   "fx_note": "TradingView 추정은 달러 표시 — eps_ttm ₩17,499 ÷ $12.8268 = 1,364.3으로 환산",
+   "as_of": "2026-11-14"
+  },
+  "sec_checks": {
+   "form": "SEC 제출사 아님. 1차 자료 = 3Q26 IR(irgo)·DART 분기보고서(11/13 제출)",
+   "contract_commitments": "미확인 — DART 분기보고서 원문 미열람(뷰어 robots 차단)",
+   "restricted_cash": "미확인",
+   "customers_10pct": "미확인 — 고객별 매출 미공시",
+   "gov_support": "해당 없음 확인 못함"
+  }
  },
  "multiples_now": {
-  "pe_fwd": 24.44,
-  "pe_fwd2": 17.13,
-  "pe_fwd3": 11.42,
+  "pe_fwd": 14.52,
+  "pe_fwd2": 11.14,
+  "pe_fwd3": 9.38,
   "ev_ebitda_fwd": null
  },
  "forward": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-14",
   "ntm": {
-   "eps": 36462,
-   "ebit": 1865.0,
-   "revenue": 21895.0,
-   "rev_ttm": 20785.4
+   "eps": 42013,
+   "ebit": 1000.0,
+   "revenue": 3700.0,
+   "rev_ttm": 3013.1
   },
   "horizons": {
    "2": {
-    "eps": 52000,
+    "eps": 54750,
     "ext": 0
    },
    "3": {
-    "eps": 78000,
+    "eps": 65000,
     "ext": 3
    }
   },
@@ -512,9 +657,9 @@
    "ebitda": false
   },
   "src": {
-   "pe_fwd": "tradingview"
+   "pe_fwd": "tradingview+추정"
   },
-  "source": "FY2026 = TradingView 컨센서스. FY2027·28 EPS는 공개 추정을 찾지 못해 치입 추정: 일회성 뺀 FY2026 약 27,000원 + 전자BG 증익 세후"
+  "source": "Fwd 1Y EPS = 4Q26 ₩8,263(TradingView 달러 표시 환산) + FY2027 추정 ₩45,000의 3/4. Fwd 2Y = FY2027 1/4 + FY2028 ₩58,000 3/4, Fwd 3Y = 외삽. FY2027·28은 공개 컨센서스를 찾지 못해 추정(지배 연결 EPS)"
  },
  "history": {},
  "overrides": {
@@ -525,15 +670,15 @@
    "lam": 0.35
   },
   "s2c": 1.8,
-  "why": "장기 이익률 22%는 CCL 동종 20~26%에 맞췄다. 지금 30%대 초입은 공급 부족 구간의 값이다. 매출÷투하자본 1.8은 투자 ₩1.15T로 연 매출 캐파 약 ₩2.6T를 더하는 계획을 낮춰 잡았다"
+  "why": "장기 이익률 22%는 CCL 동종 20~26%에 맞췄다. 지금 27~30%는 공급 부족 구간의 값이고 3Q에 두 분기 연속 내렸다. 매출÷투하자본 1.8은 2028년까지 약 ₩970B로 캐파를 2.1배(2028년 말)로 늘리는 계획을 낮춰 잡았다"
  },
  "multiple_view": {
   "adj": -0.3,
-  "why": "동종 중앙값은 순수 CCL 회사 값이다. 두산은 지주 구조라 대신도 NAV에 38% 할인을 걸었고, FY2026 EPS에는 2Q 일회성이 들어 있다"
+  "why": "동종 중앙값은 순수 CCL 회사 값이다. 두산은 지주 구조(NAV 할인 38%, 대신)이고 지배 연결 EPS에 두산에너빌리티 지분 이익이 섞여 있다. 3Q에 전자BG 이익률이 두 분기 연속 내렸고 증설 전 물량이 막혀 있다"
  },
  "next_event": {
-  "date": "2026-11-09",
-  "tag": "3Q26 실적(예상)"
+  "date": "2027-01-29",
+  "tag": "4Q26 잠정실적(예상 — 회사 미발표, 지난해 1월 말 패턴)"
  },
  "terms": {
   "CCL": "동박적층판, 회로기판의 기초 소재",
@@ -563,17 +708,34 @@
   "DS": "DS투자증권",
   "KPMG": "회계법인",
   "MBA": "경영학 석사",
-  "NICE": "NICE신용평가"
+  "NICE": "NICE신용평가",
+  "LTA": "장기공급계약",
+  "HVLP": "초저조도 동박",
+  "PPO": "저손실 수지 계열",
+  "IR": "투자자 대상 회사 설명",
+  "PT": "회사 실적 발표 자료",
+  "PPI": "생산자물가지수",
+  "B/B": "수주 ÷ 매출 비율",
+  "김제": "전북 도시, 두산 광모듈용 CCL 신공장 예정지",
+  "증평": "충북 도시, 두산 CCL 주력 공장",
+  "김천": "경북 도시, 두산 CCL 공장",
+  "800G": "800기가비트 광통신 규격",
+  "1.6T": "1.6테라비트 광통신 규격",
+  "AR": "자기회귀 통계 모형",
+  "CAR": "누적 초과수익률",
+  "SMH": "미국 반도체 ETF",
+  "IT": "정보기술",
+  "BKRW": "십억 원 단위"
  },
  "moat": {
-  "summary": "해자는 엔비디아 인증과 얇은 절연층 기술이다. 다만 루빈 세대의 독점은 다툼이 있고, 핵심 소재 T-글래스는 남의 손에 있다.",
+  "summary": "해자는 엔비디아 공급망 인증과 얇은 절연층 기술이다. 3Q에 AI 가속기 몫 32%·분기 최대 매출로 지위는 확인됐지만, 이익률이 두 분기 연속 내려 가격 협상력은 숫자로 확인되지 않는다. 핵심 원단 T-글래스는 남의 손에 있다.",
   "items": [
    {
     "kind": "엔비디아 인증 지위",
     "verdict": "보통",
     "claim": "블랙웰 컴퓨트 트레이용 CCL을 사실상 단독으로 공급했고 베라 루빈 공급망에도 들어갔다.",
-    "evidence": "메리츠 3Q 북미 엔비디아향 ₩277.3B 추정, 2026년 ₩1.11T 전망. 씨티는 루빈용 유일 인증이라 썼고, 궈밍치 메모는 M10 시험에 공급사 2곳이 추가됐다고 썼다. 양쪽이 충돌한다",
-    "quant": "분기 엔비디아향이 자체사업 매출의 약 36%(3Q 추정 ÷ 2Q 실적 기준)",
+    "evidence": "3Q 전자BG 매출의 AI 가속기 32%(보도), 분기 최대 ₩802.0B(IR). 루빈 세대 2차 공급사 진입 여부는 증권사 간에 엇갈리고 회사 확인은 없다",
+    "quant": "AI 가속기 몫 = 자체사업 매출의 약 29%(3Q, 0.32 × 0.899)",
     "falsifier": "루빈 램프에서 Elite Material이나 TUC가 컴퓨트 트레이 물량을 나눠 가진다"
    },
    {
@@ -588,8 +750,8 @@
     "kind": "풀가동 캐파",
     "verdict": "보통",
     "claim": "공급이 모자라 가동률이 100%를 넘고, 다음 증설분은 2028년에 나온다. 그때까지는 수요가 넘친다.",
-    "evidence": "증평 122%, 김천 106%. 투자 ₩968.4B 가동은 2028년 하반기부터",
-    "quant": "연 매출 캐파 ₩2.8T(2026) → ₩5.4T(2028), 하나 추정",
+    "evidence": "IR 캐파 지수 2027년 말 119.9 → 2028년 말 211. 2028년 하반기부터 순차 가동",
+    "quant": "캐파 2029년 2.7배(IR)",
     "falsifier": "Elite Material·중국 업체의 증설이 먼저 가동돼 2027년에 공급이 풀린다"
    },
    {
@@ -599,11 +761,19 @@
     "evidence": "전자BG 사장 9/11 인터뷰, 닛토보 점유율 보도. 두산의 장기 공급 계약 물량은 미확인",
     "quant": "리드타임 약 2년(딘스티커 10/6)",
     "falsifier": "해당 없음 — 조달 물량이 공시되면 판정을 올린다"
+   },
+   {
+    "kind": "가격 협상력",
+    "verdict": "미확인",
+    "claim": "공급 부족이라 판가를 올릴 수 있다",
+    "evidence": "DB는 증설 뒤에도 수요 초과로 협상력 유지를 봤지만, 교보는 협상력이 분기 실적에 뚜렷하지 않다고 봤다. 전자BG OPM 30.1 → 29.8 → 29.3%",
+    "quant": "OPM −0.8%p(1Q→3Q)",
+    "falsifier": "4Q OPM 29% 미만"
    }
   ]
  },
  "leaders": {
-  "as_of": "2026-11-02",
+  "as_of": "2026-11-14",
   "summary": "오너 경영 지주사다. 엔비디아와의 관계는 공급 계약이 핵심이고 오너 연결이 만든 매출은 입증되지 않는다.",
   "people": [
    {
@@ -641,38 +811,41 @@
   ]
  },
  "pipeline": {
-  "as_of": "2026-10-30",
+  "as_of": "2026-11-14",
   "backlog_label": "수주잔고",
-  "summary": "회사는 수주잔고를 공개하지 않는다. 확인되는 것은 투자 결의와 SK실트론 계약이고, 고객 물량은 증권사 추정이다.",
+  "summary": "회사는 수주잔고를 공개하지 않는다. 확인되는 것은 증설 투자 계획(약 ₩970B, 창수 협약 11/6)과 SK실트론 계약이다. 고객 물량은 증권사 추정이다.",
   "items": [
    {
-    "name": "SK실트론 70.61% 인수",
+    "name": "SK실트론 70.6% 인수",
     "status": "조건부",
-    "total": "미확인",
+    "total": 2300.0,
     "progress": "미확인",
     "margin": "미확인",
+    "start": "2026-07",
+    "end": "2027-01",
     "blockers": [
-     "잔여 29.39% 협상",
-     "인수금융 ₩2.5T",
+     "잔여 29.4% 협상",
+     "인수금융",
      "언아웃"
     ],
-    "source": "허프포스트 8/3, 비즈워치 8/4, 더파워 10/19",
-    "speed": "계약금 10% 지급, 2027-01-31 종결 예정"
+    "source": "뉴시스 7/31·딜사이트",
+    "speed": "계약 7/31, 9월 말 차입에 대금 미반영 — 종결 시점 미확인"
    },
    {
-    "name": "엔비디아향 CCL 연간",
+    "name": "CCL 증설(김제·창수 등)",
     "status": "파이프라인",
-    "total": 1110.0,
+    "total": 970.0,
     "no_sum": true,
     "progress": "미확인",
     "margin": "미확인",
-    "speed": "3Q 추정 ₩277.3B, +34.7% QoQ",
+    "start": "2026-09",
+    "end": "2028-12",
+    "speed": "캐파 2029년 2.7배(IR)",
     "blockers": [
-     "루빈 일정",
-     "T-글래스",
-     "2차 공급사"
+     "착공·장비 반입 미확인",
+     "중국 공장 규제"
     ],
-    "source": "메리츠 인용 이투데이 10/1"
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
    },
    {
     "name": "광모듈용 CCL 연간",
@@ -680,51 +853,19 @@
     "total": 300.0,
     "no_sum": true,
     "progress": "미확인",
-    "margin": 0.25,
-    "margin_kind": "영업이익",
-    "margin_basis": "대신 20~30%대 서술의 중간",
-    "speed": "3Q 추정 ₩105.9B, 2Q의 2배 이상",
+    "margin": "미확인",
+    "speed": "3Q 전분기 대비 약 +70%(S저널)",
     "blockers": [
      "1.6T 전환 시점"
     ],
-    "source": "대신 10/19, 메리츠 10/1"
-   },
-   {
-    "name": "CCL 증설 국내·창수 ₩968.4B",
-    "status": "파이프라인",
-    "total": 2600.0,
-    "no_sum": true,
-    "progress": "미확인",
-    "margin": "미확인",
-    "start": "2026-09",
-    "end": "2028-12",
-    "speed": "연 매출 캐파 ₩2.8T → ₩5.4T(2028), 하나 추정. 태국 포함",
-    "blockers": [
-     "가동 2028년 하반기",
-     "금융 차입",
-     "중국 공장 규제 위험"
-    ],
-    "source": "9/17 공시 보도, 하나 9/28"
-   },
-   {
-    "name": "태국 신공장 약 ₩180B",
-    "status": "파이프라인",
-    "total": "미확인",
-    "no_sum": true,
-    "progress": "미확인",
-    "margin": "미확인",
-    "speed": "2028년 하반기 양산 목표",
-    "blockers": [
-     "고객 인증"
-    ],
-    "source": "머니투데이 6/4 계열 보도"
+    "source": "https://www.s-journal.co.kr/news/articleView.html?idxno=45199"
    }
   ]
  },
  "narrative": {
-  "as_of": "2026-11-02",
-  "stage": "컨센서스",
-  "crowding": "식는 중",
+  "as_of": "2026-11-14",
+  "stage": "소멸",
+  "crowding": "낮음",
   "summary": "AI 서버 CCL 병목을 쥔 회사라는 이야기다. 증권사 12곳 중 11곳이 매수이지만 주가는 6월 고점의 36% 수준이다.",
   "layers": {
    "sell_side": {
@@ -801,9 +942,9 @@
      "retail": "중"
     },
     "drives": "both",
-    "quant": "엔비디아향 2026년 ₩1.11T, 2025년 ₩652.5B(메리츠)",
+    "quant": "3Q 전자BG의 AI 가속기 몫 32%(보도), 전자BG 매출 ₩802.0B(IR)",
     "status": "유지",
-    "falsifier": "3Q 전자BG 매출이 ₩700B 미만이거나 엔비디아향이 QoQ 감소",
+    "falsifier": "4Q 전자BG 매출이 계획 ₩814.6B 미달",
     "source": "이투데이 10/1"
    },
    {
@@ -816,7 +957,7 @@
      "retail": "-"
     },
     "drives": "revision",
-    "quant": "연 전망 ₩200B대 → ₩300B대, OPM 10% → 20~30%대",
+    "quant": "3Q 전자BG의 10%, 전분기 대비 약 +70%(S저널)",
     "status": "강화",
     "falsifier": "연 매출 ₩300B 미달",
     "source": "하나 9/28, 대신 10/19"
@@ -861,7 +1002,7 @@
      "retail": "중"
     },
     "drives": "multiple",
-    "quant": "두 상장 자회사 지분 시가 약 ₩12.4T, 우선주 포함 시가총액 약 ₩13.5T",
+    "quant": "상장 지분 시가 ₩10.85T > 우선주 포함 시가총액 ₩9.31T(11/13)",
     "status": "강화",
     "falsifier": "자회사 주가가 빠지는 날 두산이 덜 빠진다",
     "source": "TradingView 10/30"
@@ -876,20 +1017,35 @@
      "retail": "-"
     },
     "drives": "both",
-    "quant": "Elite Material TTM 매출 +89% YoY, TUC +87% YoY",
+    "quant": "상장 지분 시가 ₩10.85T > 우선주 포함 시가총액 ₩9.31T(11/13)",
     "status": "강화",
     "falsifier": "메리츠 ₩277.3B를 넘는 3Q 엔비디아향이 확인된다",
     "source": "TradingView 11/2, Digitimes·궈밍치 메모 보도"
+   },
+   {
+    "name": "반대: CCL 배수가 업종째 꺾였다",
+    "thesis": "AI 투자 수익성 우려로 CCL 동종 배수가 한 달 25~45% 내렸다 — 두산만 버틸 이유가 없다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "EMC −24%·ITEQ −34%·TUC −42%·Shengyi −44%·Kingboard −42%(1개월, TradingView)",
+    "status": "강화",
+    "falsifier": "동종 배수가 먼저 반등하는데 두산이 따라가지 못한다",
+    "source": "TradingView 11/13"
    }
   ],
   "lead": {
-   "summary": "**시장이 산 이야기는 'AI 서버 CCL 병목을 쥔 회사'다.** 숫자는 그 이야기를 지지한다. 2Q 자체사업 영업이익 ₩212B, OPM 27.7%, 공장 가동률 100% 초과다. 그러나 주가는 6월 고점 대비 −64%이고, 지금 값은 7/30 저점 900,000원 아래다. 이유는 CCL이 아니라 **지분가치와 차입**에서 나왔다.",
-   "value_story": "두산의 값은 세 덩어리다. 전자BG가 버는 돈, 두산에너빌리티·두산로보틱스 지분, 그리고 SK실트론을 사며 늘어나는 차입이다. 상장 지분 시가가 우선주 포함 시가총액의 92%라 전자BG에 붙은 값이 작다. 할인을 얼마나 거느냐가 답을 가른다.",
+   "summary": "**실적은 최대인데 주가는 6주 만에 반 토막이 났다.** 3Q 전자BG 매출 ₩802.0B(+82%)·영업이익 ₩235.3B는 분기 최대다. 그러나 주가는 9/30 종가 1,368,000원에서 11/13 종가 610,000원으로 −55%다. 하락은 두산 숫자가 아니라 **CCL 동종 배수 급락**(대만·중국·홍콩 5사 한 달 −24~−44%)과 **두산에너빌리티 지분가치**에서 왔다. 시장이 묻는 것은 '얼마나 버나'가 아니라 '이 이익률이 얼마나 가나'다.",
+   "value_story": "두산의 값은 세 덩어리다. 전자BG가 버는 돈, 두산에너빌리티·두산로보틱스 지분, 그리고 SK실트론을 사며 늘어날 차입이다. 지금 상장 지분 시가(₩10.85T)가 우선주 포함 시가총액(₩9.31T)보다 크다. 지분에 할인을 걸지 않으면 시장은 전자BG에 값을 거의 주지 않는다.",
    "premium": {
-    "multiple": "FY2026 추정 P/E 24.4배로 CCL 동종 중앙값 25.6배보다 조금 낮다. 다만 FY2026 EPS에 2Q 일회성이 들어 있어 일회성을 뺀 약 27,260원 기준으로는 32.7배다.",
-    "eps": "FY2026 컨센서스 범위 27,260~36,462원, 치입 추정 FY2027 52,000원이다. 공개 FY2027 EPS 컨센서스는 찾지 못했고 리비전 이력은 미확인이다."
+    "multiple": "Fwd 1Y P/E 14.5배로 CCL 동종 중앙값(약 23배, 11/02 추정 이익 유지 가정)보다 낮다. 동종 배수 자체가 한 달 사이 25~45% 내렸다.",
+    "eps": "FY2026 지배 EPS 약 ₩34,300(컨센서스), FY2027 ₩45,000·FY2028 ₩58,000은 추정이다. 공개 FY2027 EPS 컨센서스와 리비전 이력은 미확인이다."
    },
-   "why_excited": "주가는 2025년 9월 53만 원대에서 2026년 6월 1일 장중 248.9만 원까지 4.7배 올랐다. 전자BG 영업이익이 2025년 ₩485B로 뛰었고 엔비디아 공급망 지위가 알려졌다. 이후 6월 2일 −12.9%, 7/31 실트론 계약일 +30%, 10/15 −13.5%로 크게 흔들렸다. 식은 이유는 실적 악화가 아니다. 대규모 차입 인수, 체코 협상 종료, 고점 부담이 겹쳤다.",
+   "why_excited": "2025년 9월 59만 원대에서 2026년 6월 1일 장중 248.9만 원까지 4.2배 올랐다. 엔비디아 블랙웰 CCL 공급과 전자BG 이익 급증이 이유였다. 식은 이유는 세 가지다. 대규모 차입 인수(SK실트론), 두산에너빌리티 체코 협상 종료(10/29), 그리고 11월 AI 투자 수익성 우려 속 CCL 동종 동반 급락이다. 3Q 실적은 식은 이유가 아니다.",
    "lenses": [
     {
      "lens": "구조적 체질 변화",
@@ -902,10 +1058,10 @@
     {
      "lens": "고부가 믹스 확장",
      "change": "AI 가속기·광모듈용 CCL 비중이 늘어 이익률이 오른다. 단가가 아니라 믹스와 물량 효과다.",
-     "evidence": "자체사업 OPM 26.7% → 27.7%. 대신은 단가 변화가 작다고 봤다",
+     "evidence": "광모듈용 CCL 전분기 대비 약 +70%(S저널), 매출의 10%. 그러나 전자BG OPM 30.1 → 29.3%",
      "drives": "revision",
-     "status": "진행 중",
-     "falsifier": "3Q OPM 27% 미만"
+     "status": "둔화",
+     "falsifier": "4Q 전자BG OPM 29% 미만"
     },
     {
      "lens": "기술 혁신",
@@ -917,8 +1073,8 @@
     },
     {
      "lens": "실행 속도",
-     "change": "해당 없음(납기를 숫자로 공개하지 않는다). 대신 증설 속도로 잰다. 4Q 네트워크 캐파 +25%, 큰 증설은 2028년 하반기다.",
-     "evidence": "하나 9/28, 9/17 공시 보도",
+     "change": "해당 없음(회사·동종 모두 납기 미공시 — 증설 속도로 대신 잰다: 캐파 2027년 말 +20%, 2028년 말 2.1배, 2029년 말 2.7배, IR)",
+     "evidence": "3Q IR 캐파 계획, 11/6 창수 협약",
      "drives": "revision",
      "status": "진행 중",
      "falsifier": "4Q 신규 라인 양산이 늦어진다"
@@ -928,46 +1084,101 @@
      "change": "SK실트론을 삼정KPMG 평가 하단 ₩2.3T에 샀다. EBITDA 초과분 공유 언아웃이 붙었다.",
      "evidence": "비즈워치 8/4. 2027~2034년 초과분의 40% × 70.61%",
      "drives": "both",
-     "status": "계약 완료, 종결 대기",
+     "status": "계약 완료, 종결 미확인(9월 말 차입에 대금 미반영)",
      "falsifier": "순차입 ₩2.6T를 떠안은 뒤 웨이퍼 업황이 꺾인다"
     },
     {
-     "lens": "CAPEX 낙수효과",
-     "change": "빅테크 AI 투자가 엔비디아 서버를 거쳐 CCL로 내려온다. 두산은 이 고리가 가장 또렷한 편이다.",
-     "evidence": "엔비디아향 ₩1.11T 전망은 증권사 추정이고 회사는 고객별 매출을 공시하지 않는다",
+     "lens": "고객의 지출 예산",
+     "change": "고객(빅테크·CSP)의 데이터센터 CAPEX가 엔비디아 서버 → PCB 업체 → CCL로 내려온다.",
+     "evidence": "11월 AI 투자 수익성 우려가 CCL 동종 배수를 먼저 내렸다(보도). 고객별 매출은 미공시",
      "drives": "revision",
      "status": "진행 중",
-     "falsifier": "북미 CSP CAPEX 삭감"
+     "falsifier": "북미 CSP CAPEX 삭감",
+     "budgets": [
+      {
+       "business": "CCL(전자BG)",
+       "budget": "CAPEX",
+       "line": "빅테크 데이터센터 서버·네트워크 투자",
+       "share": 0.899,
+       "driver": "AI 가속기·800G 스위치·광모듈 출하",
+       "evidence": "3Q IR 용도별 매출"
+      },
+      {
+       "business": "비전자(DDI·두타몰)",
+       "budget": "OPEX",
+       "line": "그룹사 IT 운영비·임차료",
+       "share": 0.101,
+       "driver": "그룹 IT 예산",
+       "evidence": "IR"
+      }
+     ]
     }
    ],
    "products": [
     {
      "kind": "제품",
-     "name": "AI 가속기용 CCL",
-     "what": "GPU 서버 보드의 기초 소재",
-     "use": "엔비디아 블랙웰·베라 루빈",
-     "money": "3Q 엔비디아향 추정 ₩277.3B"
+     "name": "CCL(전자BG)",
+     "what": "PCB의 기초 소재 — 동박과 절연층을 붙인 판",
+     "use": "AI 가속기 보드 32%·스위치 25%·광모듈 10%·메모리",
+     "money": "3Q ₩802.0B, 영업이익 ₩235.3B(OPM 29.3%)",
+     "name_en": "copper clad laminate sheet stack",
+     "what_en": "Copper foil laminated on glass-fabric resin core, base material of printed circuit boards",
+     "bom": {
+      "as_of": "2026-11-14",
+      "items": [
+       {
+        "no": 1,
+        "part": "동박",
+        "part_en": "copper foil layers on both faces",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "CCL 구조(업계 자료) — 동박적층판의 정의"
+       },
+       {
+        "no": 2,
+        "part": "유리섬유 직물(T-글래스)",
+        "part_en": "woven glass fiber fabric core",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "닛토보(보도)",
+        "source": "전자BG 사장 9/11 인터뷰 보도"
+       },
+       {
+        "no": 3,
+        "part": "저손실 수지·필러",
+        "part_en": "low loss resin impregnated into fabric",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "CCL 구조(업계 자료)"
+       }
+      ]
+     }
     },
     {
-     "kind": "제품",
-     "name": "네트워크·광모듈용 CCL",
-     "what": "스위치와 광트랜시버 기판 소재",
-     "use": "800G·1.6T",
-     "money": "광모듈 3Q 추정 ₩105.9B, 연 약 ₩300B"
+     "kind": "서비스",
+     "name": "비전자(DDI·두타몰)",
+     "what": "그룹 IT 서비스와 동대문 패션몰",
+     "use": "그룹사·임차인",
+     "money": "3Q ₩90.2B",
+     "name_en": "IT services and mall"
     },
     {
      "kind": "서비스",
      "name": "상장 자회사 지분",
-     "what": "두산에너빌리티(가스터빈·원전), 두산로보틱스",
+     "what": "두산에너빌리티(가스터빈·원전)·두산로보틱스",
      "use": "지분가치",
-     "money": "시가 약 ₩12.4T"
+     "money": "시가 약 ₩10.85T(11/13)",
+     "name_en": "Listed subsidiary stakes"
     },
     {
      "kind": "기술",
      "name": "SK실트론(인수 대기)",
-     "what": "실리콘 웨이퍼, SiC 웨이퍼",
+     "what": "실리콘·SiC 웨이퍼",
      "use": "메모리·전력 반도체",
-     "money": "EBITDA 연 ₩600B 이상(DS, 2025년 기준)"
+     "money": "인수가 ₩2.3T(70.6%)",
+     "name_en": "Silicon wafers"
     }
    ],
    "policy": {
@@ -993,6 +1204,817 @@
      "falsifier": ""
     }
    }
+  }
+ },
+ "revision_events": [
+  {
+   "date": "2026-07-27",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-31",
+   "kind": "내러티브",
+   "tag": "SK실트론 인수 계약"
+  },
+  {
+   "date": "2026-11-09",
+   "kind": "실적",
+   "tag": "3Q26 실적·목표가 하향",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "quarters_hist": {
+  "source": "1Q26·2Q26·3Q26 IR 자체사업 분기 실적표(1Q25~3Q26, 7개 분기만 공개). 매출원가·판관비는 자체사업 기준 미공시",
+  "key": "KRX:000150",
+  "currency": "KRW",
+  "q": [
+   {
+    "period": "2025-03-31",
+    "rev": 485000000000.0,
+    "op": 121100000000.0
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 558600000000.0,
+    "op": 142000000000.0
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 524100000000.0,
+    "op": 108700000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 653400000000.0,
+    "op": 131900000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 702300000000.0,
+    "op": 187800000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 765200000000.0,
+    "op": 212000000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 892200000000.0,
+    "op": 237900000000.0
+   }
+  ]
+ },
+ "segments_hist": {
+  "segments": {
+   "CCL(전자BG)": [
+    {
+     "period": "2025-09-30",
+     "rev": 439800000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 556700000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 617300000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 676000000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 802000000000.0
+    }
+   ],
+   "비전자(DDI·두타몰)": [
+    {
+     "period": "2025-09-30",
+     "rev": 84300000000.00002
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 96699999999.99994
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 85000000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 89200000000.00005
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 90200000000.00005
+    }
+   ]
+  },
+  "source": "3Q26 IR 전자BG 분기 매출. 비전자 = 자체사업 − 전자BG(5개 분기만 공개)"
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "자체사업(회사 IR) — 매출원가 미공시",
+  "summary": "3Q 전자BG OPM 29.3%로 1Q 30.1%·2Q 29.8%에서 두 분기 연속 내렸다. 풀가동이라 가동률로 더 벌 몫이 없고(대신), 원가는 동박·유리섬유·수지가 대부분이다. 회사는 원가 구성을 밝히지 않아 비용 몫은 모두 추정이다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 524.1,
+    "cogs": 340.0,
+    "rd": 10.0,
+    "sga": 65.4,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 892.2,
+    "cogs": 560.0,
+    "rd": 14.0,
+    "sga": 80.3,
+    "other": 0.0
+   }
+  ],
+  "periods_note": "매출·영업이익은 IR 실측. 매출원가·연구개발·판관비 나눔은 추정(자체사업 기준 미공시) — 합은 실측 영업이익(108.7·237.9)과 맞췄다",
+  "costs": [
+   {
+    "name": "동박(구리)",
+    "stage": "매출원가",
+    "pct_rev": 0.22,
+    "prior_pct": 0.24,
+    "fixed": 0.0,
+    "driver": "구리 시세·동박 가공비",
+    "basis": "추정",
+    "source": "CCL 원가 구조 업계 통념(추정)",
+    "input": "copper"
+   },
+   {
+    "name": "유리섬유(T-글래스·E-글래스)",
+    "stage": "매출원가",
+    "pct_rev": 0.15,
+    "prior_pct": 0.14,
+    "fixed": 0.0,
+    "driver": "닛토보 등 소수 공급사 가격·물량 배분",
+    "basis": "추정",
+    "source": "업계 통념(추정)"
+   },
+   {
+    "name": "수지·필러",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.12,
+    "fixed": 0.0,
+    "driver": "저손실 수지(PPO 등) 가격",
+    "basis": "추정",
+    "source": "업계 통념(추정)"
+   },
+   {
+    "name": "인건비·감가상각·제조 경비",
+    "stage": "매출원가",
+    "pct_rev": 0.138,
+    "prior_pct": 0.149,
+    "fixed": 0.8,
+    "driver": "풀가동 — 물량 대비 고정비 희석은 이미 끝났다",
+    "basis": "추정",
+    "source": "대신 '가동률 레버리지 소진'(보도)"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.016,
+    "prior_pct": 0.019,
+    "fixed": 0.9,
+    "driver": "M9·M10급 개발",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "판관비(비전자 사업 포함)",
+    "stage": "판관비",
+    "pct_rev": 0.09,
+    "prior_pct": 0.125,
+    "fixed": 0.6,
+    "driver": "DDI·두타몰 운영비",
+    "basis": "추정",
+    "source": "추정"
+   }
+  ],
+  "products": [
+   {
+    "name": "CCL(전자BG)",
+    "rev_share": 0.899,
+    "rev_share_prev": 0.839,
+    "mix_basis": "IR — 3Q26 전자BG ₩802.0B ÷ 자체사업 ₩892.2B vs 3Q25 ₩439.8B ÷ ₩524.1B",
+    "gpm": 0.38,
+    "gpm_basis": "추정 — 제품 GPM 미공시, OPM 29.3%에 판관·연구 약 8~9%p를 더했다",
+    "bom": [
+     {
+      "item": "동박",
+      "share": [
+       0.3,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "CCL 원가 구조 업계 통념",
+      "pass_through": "미확인",
+      "why": "구리 시세 — 교보는 원재료 전가가 꾸준히 반영 중이라 봤다",
+      "input": "copper"
+     },
+     {
+      "item": "유리섬유 직물(T-글래스)",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "고급 저열팽창 원단은 닛토보가 대부분 — 물량 배분이 가격보다 중요"
+     },
+     {
+      "item": "저손실 수지·필러",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "M8~M10 등급을 가르는 소재"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-14",
+  "summary": "병목은 두 곳이다. 자기 캐파(풀가동, 새 라인은 2028년 하반기)와 고급 유리섬유(T-글래스) 조달이다. 동박·수지는 공급사가 여럿이다. 공급사 이름·계약 물량은 공시되지 않는다.",
+  "links": [
+   {
+    "item": "유리섬유 직물(T-글래스)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "닛토보(Nittobo)",
+      "role": "저열팽창 유리섬유",
+      "status": "보도",
+      "source": "전자BG 사장 9/11 인터뷰 보도·업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "회사도 부족을 인정(9/11 인터뷰 보도), 리드타임 약 2년(업계) · 평시 리드타임 약 6개월은 업계 보도 기반 추정",
+    "lead_weeks": 104,
+    "lead_normal": 26,
+    "requal_months": "미확인",
+    "top_share": 0.9,
+    "region_share": 0.9,
+    "region": "일본",
+    "secured": "미확인",
+    "why": "M9급 이상 CCL의 핵심 원단",
+    "relief": "미확인 — 대체 원단 인증 공시 없음",
+    "source": "업계 보도(추정 포함)"
+   },
+   {
+    "item": "동박",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(국내외 동박사)",
+      "role": "HVLP 저조도 동박",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "균형",
+    "capacity_basis": "HVLP 고급 동박은 빠듯하다는 업계 보도, 회사 언급 없음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "일본·한국·대만",
+    "secured": "원재료 3~6개월치 재고(교보, 보도)",
+    "why": "신호 손실을 정한다",
+    "relief": "미확인",
+    "source": "https://www.asiatime.co.kr/article/20261110500339",
+    "input": "copper"
+   },
+   {
+    "item": "저손실 수지·필러",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "PPO·탄화수소 수지",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "범용 화학 공급사 다수(추정)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "등급을 가르는 소재",
+    "relief": "미확인",
+    "source": "업계 통념(추정)"
+   },
+   {
+    "item": "CCL 생산 캐파(자기)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "두산 전자BG(증평·김천·중국·태국)",
+      "role": "자가 생산",
+      "status": "회사 발표",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
+     }
+    ],
+    "qualified": "해당 없음",
+    "capacity": "빠듯",
+    "capacity_basis": "풀가동 — 증설 전 성장은 판가·믹스(대신, 보도)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국·중국",
+    "secured": "내재화",
+    "why": "새 라인 전까지 물량 상한",
+    "relief": "증설 2028년 하반기부터 — 착공 확인 전이라 '풀렸다' 아님",
+    "source": "https://www.dailysportshankook.co.kr/news/articleView.html?idxno=435375"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-09",
+  "unit": "CCL 캐파 지수(2026-09 = 100, 회사 IR)",
+  "summary": "회사 IR은 캐파를 지수로만 낸다. 2026년 9월 100 → 2026년 말 110 → 2027년 말 119.9 → 2028년 말 211 → 2029년 말 268(2.7배). 2027년까지 +20%뿐이고 큰 증가는 2028년이다. 공장은 풀가동이다.",
+  "current": {
+   "nameplate": 100.0,
+   "utilization": 1.0,
+   "basis": "회사 IR 지수 기준점. 가동률은 '풀가동'(대신, 보도) — 2Q 보도의 증평 122%·김천 106%는 공장별 수치",
+   "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
+  },
+  "plans": [
+   {
+    "name": "국내·태국 보강(2026년 말)",
+    "add": 10.0,
+    "stage": "가동",
+    "online": "2026-12",
+    "capex": "미확인",
+    "blocker": "신규 라인 수율",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf",
+    "note": "IR 지수 100 → 110"
+   },
+   {
+    "name": "중국·국내 추가(2027년 말)",
+    "add": 9.9,
+    "stage": "발표",
+    "online": "2027-12",
+    "capex": "미확인",
+    "blocker": "장비 반입 일정 미공시",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
+   },
+   {
+    "name": "국내 김제(광모듈용)·중국 창수(AI 가속기·네트워크용)",
+    "add": 91.1,
+    "stage": "발표",
+    "online": "2028-12",
+    "capex": 970.0,
+    "blocker": "착공·장비 반입 미확인, 중국 공장 규제 위험, 창수 협약은 11/6 체결(약 ₩550B)",
+    "source": "https://www.s-journal.co.kr/news/articleView.html?idxno=45199",
+    "note": "2028년까지 약 ₩970B(IR). 2028년 하반기부터 순차 가동"
+   },
+   {
+    "name": "2029년 추가 램프",
+    "add": 57.0,
+    "stage": "발표",
+    "online": "2029-12",
+    "capex": "미확인",
+    "blocker": "위와 같다",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2026",
+    "capex": 400.0,
+    "rev": 3261.8,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2027",
+    "capex": 450.0,
+    "rev": 3800.0,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2028",
+    "capex": 350.0,
+    "rev": 4500.0,
+    "kind": "추정"
+   }
+  ],
+  "capex_source": "자체사업 CAPEX는 미공시. 2028년까지 약 ₩970B(IR)를 2026~28년에 나눈 추정 + 유지 투자",
+  "facilities": {
+   "count": 5,
+   "count_basis": "IR 캐파 계획의 지역(국내 증평·김제, 중국, 태국)과 2Q 보도의 김천 공장",
+   "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf",
+   "items": [
+    {
+     "name": "증평 공장",
+     "location": "충북 증평",
+     "owned": "소유",
+     "use": "CCL 제조(AI 가속기·네트워크용)",
+     "capacity": "미확인",
+     "capacity_basis": "공장별 캐파 미공시 — 2Q 보도 가동률 122%",
+     "status": "가동"
+    },
+    {
+     "name": "김천 공장",
+     "location": "경북 김천",
+     "owned": "미확인",
+     "use": "CCL 제조",
+     "capacity": "미확인",
+     "capacity_basis": "공장별 캐파 미공시 — 2Q 보도 가동률 106%",
+     "status": "가동"
+    },
+    {
+     "name": "김제 신공장",
+     "location": "전북 김제",
+     "owned": "미확인",
+     "use": "광모듈용 CCL",
+     "capacity": "미확인",
+     "capacity_basis": "투자 계획만 공개",
+     "status": "계획"
+    },
+    {
+     "name": "중국 창수 법인",
+     "location": "중국 장쑤성 창수",
+     "owned": "소유",
+     "use": "CCL 제조(AI 가속기·네트워크용)",
+     "capacity": "미확인",
+     "capacity_basis": "공장별 캐파 미공시",
+     "status": "증설 중"
+    },
+    {
+     "name": "태국 신공장",
+     "location": "태국",
+     "owned": "미확인",
+     "use": "CCL 제조",
+     "capacity": "미확인",
+     "capacity_basis": "공장별 캐파 미공시",
+     "status": "건설 중"
+    }
+   ]
+  },
+  "sites_none": "위성 판독 등록 전 — 공장 좌표·윤곽 미등록(다음 회차 과제)"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "고객별 매출은 공시되지 않는다. 확인되는 것은 용도별 구성(네트워크보드 57%, 그중 AI 가속기 32%, 광모듈 10% — 보도)이다. 엔비디아 몫은 증권사 추정뿐이다.",
+  "items": [
+   {
+    "name": "엔비디아(AI 가속기 보드 공급망)",
+    "alias": "IR 'AI 가속기向'",
+    "share": [
+     0.28,
+     0.36
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "GPU 컴퓨트 보드용 고급 CCL(PCB 업체 경유)",
+    "source": "https://www.dailysportshankook.co.kr/news/articleView.html?idxno=435375",
+    "why": "3Q 전자BG 매출의 AI 가속기 32%(보도)를 자체사업 기준으로 환산(0.32 × 0.899 ≈ 0.29). 엔비디아 외 가속기 몫은 미확인"
+   },
+   {
+    "name": "네트워크 스위치 고객(PCB 업체 경유)",
+    "alias": "IR '800G向'",
+    "share": 0.22,
+    "prior": "미확인",
+    "basis": "보도",
+    "buys": "800G 스위치 보드 CCL",
+    "source": "https://www.g-enews.com/article/Securities/2026/11/202611101117363641923c501012_1",
+    "why": "전자BG 25% × 0.899"
+   },
+   {
+    "name": "광모듈 고객",
+    "alias": "IR '광모듈向'",
+    "share": 0.09,
+    "prior": "미확인",
+    "basis": "보도",
+    "buys": "광트랜시버 기판 CCL",
+    "source": "https://www.dailysportshankook.co.kr/news/articleView.html?idxno=435375",
+    "why": "전자BG 10% × 0.899, 전분기 대비 약 +70%(S저널)"
+   },
+   {
+    "name": "메모리 모듈·패키지 기판 고객",
+    "alias": "IR '반도체용(DRAM·NAND)'",
+    "share": [
+     0.2,
+     0.3
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "메모리 모듈·패키지용 CCL",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf",
+    "why": "전자BG 나머지(약 33%)에서 모바일·기타를 뺀 범위"
+   },
+   {
+    "name": "비전자(IT 서비스·몰 임차인)",
+    "alias": "DDI·두타몰",
+    "share": 0.101,
+    "prior": 0.161,
+    "basis": "공시",
+    "buys": "IT 서비스·임대",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/6B575YSU2NY_W2UXJMJMB9XPK9UH_K_X6MB2026119162047.pdf",
+    "why": "IR 분기 실적표"
+   }
+  ]
+ },
+ "backlog": {
+  "source": "수주 사업이 아니다 — 수주잔고·B/B 미공시(고객 PO 단위 판매). 고객의 LTA 요구는 늘지만 조건 미공유(교보)"
+ },
+ "recurring": {
+  "share": null,
+  "source": "CCL 판매 — 반복 매출 공시 없음. 고객 인증 뒤 같은 플랫폼 동안 반복 구매되는 성격이지만 계약 매출이 아니다"
+ },
+ "ma": {
+  "none": "SK실트론 인수는 계약 단계(종결 미확인)이고 회사가 밝힌 시너지 숫자가 없다 — 종결 뒤 시너지 절을 쓴다"
+ },
+ "sync": {
+  "none": "자체사업 분기 실적이 7개 분기(1Q25~3Q26)만 공개돼 지표와의 시차 상관을 잴 수 없다 — 구리 PPI(전년 대비 한국 +26%)는 마진 구조 절에서 본다"
+ },
+ "pq": {
+  "why": "회사는 CCL 물량·ASP를 공시하지 않는다 — 대신은 '단가는 비슷하고 물량이 늘었다'(2Q)·'증설 전 성장은 판가·믹스'(3Q)라 봤다. 업종 PPI(PCB) 대용",
+  "price": {
+   "source": "ppi",
+   "input": "pcb",
+   "country": "kr"
+  }
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(CCL) 종목 — 섹터 틀 대신 공급망 병목·BOM 절로 본다"
+ },
+ "photos": [],
+ "scenario_probs_why": "3Q 전자BG 매출은 분기 최대였지만 OPM이 두 분기 연속 내렸고 증설 전 물량이 막혀 있다. 동종 배수는 한 달 −24~−44%다. 조정 없음",
+ "midterm": {
+  "sub": "electronics",
+  "exposure": {
+   "tariff_codify": 0.5,
+   "chips_subsidy": 0.2
+  },
+  "etf": "NASDAQ:SMH",
+  "why": "CCL은 대만·중국 PCB 업체를 거쳐 미국 AI 서버로 간다 — 미국 직접 매출 비중 미공시"
+ },
+ "names": [
+  "DB",
+  "DB증권",
+  "EMC",
+  "Elite Material",
+  "ITEQ",
+  "Kingboard Laminates",
+  "LTA",
+  "NH",
+  "NH투자증권",
+  "NVIDIA",
+  "Nittobo",
+  "SK",
+  "SK실트론",
+  "Shengyi",
+  "TUC",
+  "TradingView",
+  "교보증권",
+  "닛토보",
+  "대신증권",
+  "두산로보틱스",
+  "두산밥캣",
+  "두산에너빌리티",
+  "두산테스나",
+  "두산퓨얼셀",
+  "메리츠증권",
+  "엔비디아",
+  "이수페타시스",
+  "하나증권"
+ ],
+ "social": {
+  "as_of": "2026-11-14",
+  "few": true,
+  "views": [],
+  "summary": "최근 7일 추적 커뮤니티 언급은 없다(점수 없음 — 낮은 점수가 아니다). 기록은 10월 블로그의 '지주 안에 숨은 AI 소재' 강세 글과 11/9 증권사 공개 채널의 '매수 유지·목표가 하향'뿐이다.",
+  "narratives": [
+   {
+    "channel": "블로그",
+    "theme": "중후장대 지주 안에 숨은 AI 소재 회사",
+    "expectation": "상향",
+    "vs_fact": "확인 — 전자BG가 자체사업 매출의 90%(3Q IR)",
+    "share": 0.5
+   },
+   {
+    "channel": "증권사 공개 채널",
+    "theme": "실적은 최대, 목표가는 동종 배수 하락으로 반토막",
+    "expectation": "혼재",
+    "vs_fact": "확인 — 3Q IR 숫자와 일치",
+    "share": 0.5
+   }
+  ],
+  "turn": "10월 초 '숨은 AI 지주' 강세 글 → 11월 5~6일 이틀 −27% → 11/10 증권사 목표가 일제 하향. 강세 글은 그 뒤 없다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "상장 지분 시가가 시가총액보다 크다 — 분기 최대 실적의 CCL을 공짜로 받는 셈이다",
+    "evidence": [
+     "지분 시가 ₩10.85T vs 우선주 포함 시총 ₩9.31T",
+     "3Q 전자BG 영업이익 ₩235.3B",
+     "DCF 기본 시총의 1.84배"
+    ],
+    "falsifier": "NAV 할인이 50%를 넘어 굳는다"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "하락은 동종 배수 탓이지 두산 이익 탓이 아니다 — 증권사 4곳 모두 추정은 그대로 두고 배수만 내렸다",
+    "evidence": [
+     "목표가 하향 이유 = CCL 동종 배수(DB·하나)",
+     "Fwd 1Y P/E 14.5배 vs 동종 중앙 23.0배",
+     "4Q 매출 계획 ₩902.0B"
+    ],
+    "falsifier": "4Q 전자BG 매출이 계획 ₩814.6B 미달"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수요는 확인됐지만 이익률 방향이 반대다 — 4Q OPM을 보고 정해도 늦지 않다",
+    "evidence": [
+     "전자BG OPM 30.1 → 29.8 → 29.3%",
+     "구리 PPI 한국 +26% 전년",
+     "캐파 2027년 말 +20%뿐"
+    ],
+    "falsifier": "4Q 전자BG OPM 30% 이상 회복"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "풀가동 회사의 배수는 이익률이 꺾이는 순간 먼저 내린다 — 업종이 그 신호를 냈다",
+    "evidence": [
+     "동종 4사 1개월 −24~−44%",
+     "대신 '증설 전 성장은 판가·믹스'",
+     "교보 '협상력이 실적에 뚜렷하지 않다'"
+    ],
+    "falsifier": "LTA 가격 인상 조건 공개"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "차입 인수와 자회사 변동성이 겹친다 — 지주 할인은 더 커진다",
+    "evidence": [
+     "SK실트론 ₩2.3T 대금 미반영",
+     "별도 순현금 → 순차입 ₩582B",
+     "두산에너빌리티 지분이 시총보다 크다"
+    ],
+    "falsifier": "실트론 종결 뒤 별도 순차입 ₩1.5T 이하"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "지분 시가 ₩10.85T가 우선주 포함 시총 ₩9.31T보다 ₩1.5T 크다. 순차입 ₩0.58T를 더해도 자체사업은 음수다."
+     },
+     {
+      "seat": "Buy",
+      "text": "증권사 4곳이 목표가를 45~50% 내렸지만 이유는 모두 동종 배수였다. 이익 추정을 내린 곳은 없다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "전자BG OPM은 두 분기 연속 내렸다. 매출은 최대인데 이익률은 반대로 간다."
+     },
+     {
+      "seat": "Sell",
+      "text": "동종 다섯 곳이 한 달에 24~44% 빠졌다. 업종 배수는 이익률 정점을 먼저 반영한다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "실트론 대금 ₩2.3T가 들어오면 별도 순차입이 ₩2T대가 된다. 그때 할인율 38%는 낮다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "실트론은 원가 ₩2.3T 자산으로 들어온다. 차입과 자산이 같이 늘어 NAV는 그대로다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "장부 NAV는 그대로지만 시장은 비상장 자산에 더 큰 할인을 건다. 그 차이가 주당 값이다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "추정이 그대로라는 건 아직 4Q 원가를 반영하지 않았다는 뜻일 수 있다. 구리 가격이 전년보다 20% 넘게 올랐다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "교보는 환율을 빼면 OPM이 30%를 넘는다고 봤다. 하락폭 0.8%p는 원가보다 환율 몫이 크다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "환율은 4Q에도 고를 수 없는 변수다. 교보의 환율 조정치는 회사 숫자가 아니다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "OPM 29.3%도 동종 최고 수준이다. 이익률이 0.8%p 내렸다고 배수가 반 토막 날 이유는 없다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "수준이 아니라 방향이다. 4Q가 세 번째 하락이면 시장은 정점으로 읽는다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "지분 시가는 두산에너빌리티 주가에 달렸다. 그 주가가 10% 빠지면 계산이 바로 바뀐다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "실트론 종결은 1월 말 예정이다. 그 전에 4Q 실적이 먼저 나온다 — 순서상 이익이 먼저 확인된다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "인수금융 조건이 공개되지 않았다. 이자 부담을 모른 채 EPS를 세울 수 없다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "지분 대비 할인은 받아들이지만 방향은 바뀌지 않는다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "4Q 매출 계획 달성이 첫 확인이다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "이익률 방향은 4Q 전에는 가릴 수 없다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "이익 추정이 유지됐다는 반박은 받아들인다. 배수 위험은 남는다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "실트론은 자산으로 들어온다는 반박을 받아들인다. 할인 위험은 남는다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "투표 중앙은 Neutral이다. 이익 추정과 지분 대비 할인은 숫자로 확인됐지만, 전자BG 이익률 방향과 실트론 차입 조건은 1월 말 전에는 가릴 수 없다.",
+   "dissent": "Buy 두 표 — 동종보다 낮은 Fwd 1Y P/E 14.5배와 시총보다 큰 지분 시가"
   }
  }
 }
