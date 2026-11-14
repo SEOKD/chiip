@@ -1,0 +1,258 @@
+{
+ "as_of": "2026-11-14T22:51:49+09:00",
+ "method": "패널 walk-forward, 기본 y=a+ρy₋₁ vs 확장 +βs, harness.nested_test(본페로니 2)",
+ "clip": 1.0,
+ "min_train": 40,
+ "n_obs": 508,
+ "companies": [
+  "gb-gaw",
+  "jp-asics",
+  "jp-bandainamco",
+  "jp-capcom",
+  "jp-kadokawa",
+  "jp-konami",
+  "jp-nintendo",
+  "jp-sanrio",
+  "jp-squareenix",
+  "jp-takaratomy",
+  "jp-toei-anim",
+  "us-bros",
+  "us-cava",
+  "us-celh",
+  "us-deck",
+  "us-duol",
+  "us-elf",
+  "us-fnko",
+  "us-mat",
+  "us-onon",
+  "us-rblx",
+  "us-sn",
+  "us-yeti"
+ ],
+ "tests": {
+  "wiki": {
+   "adopted": false,
+   "reason": "t 1.61 < 보정 문턱 2.24(누적 시도 2)",
+   "stats": {
+    "gain": 0.0525,
+    "t": 1.61,
+    "hurdle": 2.24,
+    "n": 296
+   },
+   "n_obs": 338,
+   "companies": 18,
+   "coef": {
+    "a": 0.0468,
+    "rho": 0.6732,
+    "beta": 0.1054
+   },
+   "rmse_oos_ext": 0.1592,
+   "rmse_oos_base": 0.1635,
+   "per_company": {
+    "gb-gaw": {
+     "n_oos": 7,
+     "rmse_base": 0.0424,
+     "rmse_ext": 0.0458,
+     "fits": false
+    },
+    "jp-asics": {
+     "n_oos": 15,
+     "rmse_base": 0.0914,
+     "rmse_ext": 0.1053,
+     "fits": false
+    },
+    "jp-bandainamco": {
+     "n_oos": 16,
+     "rmse_base": 0.0917,
+     "rmse_ext": 0.0971,
+     "fits": false
+    },
+    "jp-capcom": {
+     "n_oos": 15,
+     "rmse_base": 0.2385,
+     "rmse_ext": 0.2284,
+     "fits": true
+    },
+    "jp-kadokawa": {
+     "n_oos": 15,
+     "rmse_base": 0.1079,
+     "rmse_ext": 0.0844,
+     "fits": true
+    },
+    "jp-konami": {
+     "n_oos": 15,
+     "rmse_base": 0.125,
+     "rmse_ext": 0.1302,
+     "fits": false
+    },
+    "jp-nintendo": {
+     "n_oos": 7,
+     "rmse_base": 0.4662,
+     "rmse_ext": 0.4281,
+     "fits": true
+    },
+    "jp-sanrio": {
+     "n_oos": 15,
+     "rmse_base": 0.0576,
+     "rmse_ext": 0.0604,
+     "fits": false
+    },
+    "jp-squareenix": {
+     "n_oos": 15,
+     "rmse_base": 0.1699,
+     "rmse_ext": 0.1569,
+     "fits": true
+    },
+    "jp-takaratomy": {
+     "n_oos": 15,
+     "rmse_base": 0.0634,
+     "rmse_ext": 0.0681,
+     "fits": false
+    },
+    "jp-toei-anim": {
+     "n_oos": 15,
+     "rmse_base": 0.1645,
+     "rmse_ext": 0.1659,
+     "fits": false
+    },
+    "us-bros": {
+     "n_oos": 14,
+     "rmse_base": 0.057,
+     "rmse_ext": 0.0607,
+     "fits": false
+    },
+    "us-celh": {
+     "n_oos": 6,
+     "rmse_base": 0.4258,
+     "rmse_ext": 0.407,
+     "fits": true
+    },
+    "us-deck": {
+     "n_oos": 26,
+     "rmse_base": 0.1201,
+     "rmse_ext": 0.1182,
+     "fits": false
+    },
+    "us-duol": {
+     "n_oos": 22,
+     "rmse_base": 0.0707,
+     "rmse_ext": 0.0634,
+     "fits": true
+    },
+    "us-fnko": {
+     "n_oos": 26,
+     "rmse_base": 0.2349,
+     "rmse_ext": 0.2341,
+     "fits": false
+    },
+    "us-mat": {
+     "n_oos": 26,
+     "rmse_base": 0.13,
+     "rmse_ext": 0.133,
+     "fits": false
+    },
+    "us-rblx": {
+     "n_oos": 26,
+     "rmse_base": 0.1268,
+     "rmse_ext": 0.1319,
+     "fits": false
+    }
+   }
+  },
+  "trade": {
+   "adopted": false,
+   "reason": "표본 외 개선 -1.7% < 5%",
+   "stats": {
+    "gain": -0.0166,
+    "t": -0.43,
+    "hurdle": 2.24,
+    "n": 235
+   },
+   "n_obs": 275,
+   "companies": 12,
+   "coef": {
+    "a": 0.047,
+    "rho": 0.6927,
+    "beta": 0.0377
+   },
+   "rmse_oos_ext": 0.1608,
+   "rmse_oos_base": 0.1595,
+   "per_company": {
+    "jp-asics": {
+     "n_oos": 15,
+     "rmse_base": 0.0921,
+     "rmse_ext": 0.0678,
+     "fits": true
+    },
+    "jp-bandainamco": {
+     "n_oos": 16,
+     "rmse_base": 0.0907,
+     "rmse_ext": 0.0851,
+     "fits": true
+    },
+    "jp-nintendo": {
+     "n_oos": 15,
+     "rmse_base": 0.4031,
+     "rmse_ext": 0.4182,
+     "fits": false
+    },
+    "jp-sanrio": {
+     "n_oos": 15,
+     "rmse_base": 0.0593,
+     "rmse_ext": 0.0872,
+     "fits": false
+    },
+    "jp-takaratomy": {
+     "n_oos": 15,
+     "rmse_base": 0.0631,
+     "rmse_ext": 0.0619,
+     "fits": false
+    },
+    "us-deck": {
+     "n_oos": 26,
+     "rmse_base": 0.1262,
+     "rmse_ext": 0.1331,
+     "fits": false
+    },
+    "us-elf": {
+     "n_oos": 26,
+     "rmse_base": 0.118,
+     "rmse_ext": 0.1252,
+     "fits": false
+    },
+    "us-fnko": {
+     "n_oos": 26,
+     "rmse_base": 0.2441,
+     "rmse_ext": 0.2171,
+     "fits": true
+    },
+    "us-mat": {
+     "n_oos": 26,
+     "rmse_base": 0.1331,
+     "rmse_ext": 0.1321,
+     "fits": false
+    },
+    "us-onon": {
+     "n_oos": 20,
+     "rmse_base": 0.1015,
+     "rmse_ext": 0.1065,
+     "fits": false
+    },
+    "us-sn": {
+     "n_oos": 14,
+     "rmse_base": 0.0567,
+     "rmse_ext": 0.0664,
+     "fits": false
+    },
+    "us-yeti": {
+     "n_oos": 21,
+     "rmse_base": 0.0793,
+     "rmse_ext": 0.1118,
+     "fits": false
+    }
+   }
+  }
+ },
+ "nowcast": [],
+ "note": "채택되지 않은 신호는 나우캐스트를 내지 않는다. 범위 = 회사별 표본 외 RMSE(로그). 매수 권유 아님."
+}

@@ -171,7 +171,7 @@ trade:
   census_country: {KR: "5800", JP: "5880", CN: "5700", TW: "5830", VN: "5520", FR: "4279"}
   items:
     - {hs: "330499", name: 기초화장품(스킨케어), partners: [KR, FR, JP, CN], ids: [kr-apr, kr-silicon2], why: "K뷰티 대미 셀인 — 한국산 스킨케어 수입"}
-    - {hs: "3304", name: 화장품 전체, partners: [KR, CN, FR, JP], ids: [kr-apr, kr-silicon2, us-elf], why: "e.l.f.는 중국 생산 비중이 높다 — 중국산은 관세·재고 축적 영향도 섞인다"}
+    - {hs: "3304", name: 화장품 전체, partners: [KR, CN, FR, JP], primary: {us-elf: CN}, ids: [kr-apr, kr-silicon2, us-elf], why: "e.l.f.는 중국 생산 비중이 높다 — 중국산은 관세·재고 축적 영향도 섞인다"}
     - {hs: "190230", name: 즉석면 등 기타 면류, partners: [KR, JP, CN, TW], ids: [kr-samyang], why: "불닭 대미 수출 — 한국산 면류(경쟁사 미국 현지 생산분은 안 잡힌다)"}
     - {hs: "9503", name: 완구·피규어, partners: [CN, VN, JP], ids: [hk-popmart, us-fnko, us-mat, jp-takaratomy, jp-bandainamco, jp-sanrio], why: "완구 전체라 점유율이 낮다 — 방향만"}
     - {hs: "950450", name: 비디오 게임기, partners: [CN, VN, JP], ids: [jp-nintendo], why: "스위치 2 출하 — PS5·Xbox도 섞인다"}

@@ -5710,3 +5710,51 @@ params:
     data: datapack sync 후보 지표
     last_fit: null
     oos_metric: null
+- id: prm-consumer-nowcast-beta-wiki
+  model: discovery.consumer_nowcast
+  binding: knowledge/models/consumer/nowcast.json#tests.wiki.coef.beta
+  value: 0.0
+  unit: 계수(분기 매출 로그 YoY ÷ 위키 조회 로그 YoY)
+  status: proposed
+  prior:
+    value: 0.0
+    basis: 귀무 — 관심(위키 조회)이 지난 분기 성장률 이상의 매출 정보를 준다는 증거가 없으면 0. 위키 조회의 경제 지표 예측력은 Moat·Curme·Preis 계열(2013~2014, Sci. Rep.)이 시장 변동과의 관계를 보였으나 기업 매출 나우캐스트 값은 문헌 미확인
+    source: 치입 설계안 C(knowledge/methods/consumer_trends_design.md, 2026-11-14)
+  fit:
+    method: 패널 walk-forward — 기본 y=a+ρy₋₁ vs 확장 +β·위키, 짝지은 표본 외 제곱 오차 harness.nested_test(본페로니 2)
+    target: 분기 매출 로그 YoY
+    data: knowledge/models/consumer/revenue_q.csv · fundamentals.json · radar/state/wiki_views.sqlite
+    last_fit: '2026-11-14'
+    oos_metric: '불채택 — 관측 338·18개사, 표본 외 RMSE 0.1635→0.1592(개선 2.6%), t 1.61 < 보정 문턱 2.24. 적합 β 0.105. 회사별 개선(캡콤·가도카와·닌텐도·스퀘어에닉스·셀시어스·듀오링고)은 다중 비교라 채택 근거가 아니다. 분기가 쌓이면 같은 설계로 다시 본다(사후에 설계를 바꾸지 않는다)'
+- id: prm-consumer-nowcast-beta-trade
+  model: discovery.consumer_nowcast
+  binding: knowledge/models/consumer/nowcast.json#tests.trade.coef.beta
+  value: 0.0
+  unit: 계수(분기 매출 로그 YoY ÷ 나라별 미국 수입 로그 YoY)
+  status: proposed
+  prior:
+    value: 0.0
+    basis: 귀무 — 나라·품목 합계 수입은 업계 전체라 개별 회사 매출 정보가 희석된다(금지표 '수출입 급증 → 특정 기업 매출')
+    source: 치입 설계안 C(knowledge/methods/consumer_trends_design.md, 2026-11-14)
+  fit:
+    method: 패널 walk-forward — 기본 vs 확장 +β·수입(분기 앞 두 달, 공표 시차), harness.nested_test(본페로니 2)
+    target: 분기 매출 로그 YoY
+    data: knowledge/models/consumer/trade_partner.csv · revenue_q.csv
+    last_fit: '2026-11-14'
+    oos_metric: '불채택 — 관측 275·12개사, 표본 외 RMSE 0.1595→0.1608(악화 1.7%). 한국 3개사(APR·실리콘투·삼양 — 한국산 품목 점유가 높아 가장 유력한 검정 대상)는 분기 매출 이력이 없어 빠졌다(DART 이력 필요)'
+- id: prm-consumer-nowcast-clip
+  model: discovery.consumer_nowcast
+  binding: scripts/discovery/consumer_nowcast.py#CLIP
+  value: 1.0
+  unit: 로그 비율 상한(|ln| ≤ 1 ≈ 0.37~2.7배)
+  status: prior
+  prior:
+    value: 1.0
+    basis: 신제품 출시·바이럴의 0→N 폭주(예 Labubu 2025년 조회 수십 배)가 패널 회귀를 지배하지 않게 자른다 — 강건 회귀의 관행적 윈저화, 값은 운영 가정
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-11-14)
+  fit:
+    method: 0.5·1.0·2.0 비교는 신호가 채택된 뒤에만(지금 바꾸면 시도 수만 늘린다)
+    target: 표본 외 RMSE
+    data: knowledge/models/consumer/nowcast.json
+    last_fit: null
+    oos_metric: null
