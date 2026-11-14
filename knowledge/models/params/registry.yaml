@@ -5725,7 +5725,7 @@ params:
     target: 분기 매출 로그 YoY
     data: knowledge/models/consumer/revenue_q.csv · fundamentals.json · radar/state/wiki_views.sqlite
     last_fit: '2026-11-14'
-    oos_metric: '불채택(2회 검정). 2026-11-14 ② 한국 5개사 추가(TradingView 16분기) — 관측 371·21개사, 표본 외 RMSE 0.1679→0.1642(MSE 개선 4.4% < 5%, t 1.59, 문턱 2.50·시도 4). ① 같은 날 1차 — 관측 338·18개사, RMSE 0.1635→0.1592(MSE 5.2%), t 1.61 < 2.24. 적합 β 0.105. 회사별 개선(캡콤·가도카와·닌텐도·스퀘어에닉스·셀시어스·듀오링고)은 다중 비교라 채택 근거가 아니다. 분기가 쌓이면 같은 설계로 다시 본다(사후에 설계를 바꾸지 않는다)'
+    oos_metric: '불채택(3회 검정). ③ DART 2015~ 한국 이력 — 관측 409·22개사, RMSE 0.1711→0.1670(MSE 개선 4.7% < 5%, t 1.80, 문턱 2.64·시도 6). ② 한국 5개사 추가(TradingView 16분기) — 관측 371·21개사, 표본 외 RMSE 0.1679→0.1642(MSE 개선 4.4% < 5%, t 1.59, 문턱 2.50·시도 4). ① 같은 날 1차 — 관측 338·18개사, RMSE 0.1635→0.1592(MSE 5.2%), t 1.61 < 2.24. 적합 β 0.105. 회사별 개선(캡콤·가도카와·닌텐도·스퀘어에닉스·셀시어스·듀오링고)은 다중 비교라 채택 근거가 아니다. 분기가 쌓이면 같은 설계로 다시 본다(사후에 설계를 바꾸지 않는다)'
 - id: prm-consumer-nowcast-beta-trade
   model: discovery.consumer_nowcast
   binding: knowledge/models/consumer/nowcast.json#tests.trade.coef.beta
@@ -5741,7 +5741,7 @@ params:
     target: 분기 매출 로그 YoY
     data: knowledge/models/consumer/trade_partner.csv · revenue_q.csv
     last_fit: '2026-11-14'
-    oos_metric: '불채택(2회 검정). ② 한국 3개사 추가 — 관측 308·15개사, 표본 외 RMSE 0.1565→0.1573(MSE 악화 1.1%, t −0.29). 회사별 삼양 0.088→0.082·실리콘투 0.133→0.128·APR 0.154→0.154(각 n 11 — 근거 부족). ① 1차 — 관측 275·12개사, RMSE 0.1595→0.1608'
+    oos_metric: '불채택(3회 검정). ③ DART 2015~ 이력 — 관측 348·15개사, RMSE 0.1552→0.1554(MSE 악화 0.3%). 한국산 품목 점유가 높은 회사도 개선 없음: 삼양 0.1274→0.1272(n 27)·APR 0.150→0.155(n 22)·실리콘투 0.157→0.155(n 16). ② 한국 3개사 추가 — 관측 308·15개사, 표본 외 RMSE 0.1565→0.1573(MSE 악화 1.1%, t −0.29). 회사별 삼양 0.088→0.082·실리콘투 0.133→0.128·APR 0.154→0.154(각 n 11 — 근거 부족). ① 1차 — 관측 275·12개사, RMSE 0.1595→0.1608'
 - id: prm-consumer-nowcast-clip
   model: discovery.consumer_nowcast
   binding: scripts/discovery/consumer_nowcast.py#CLIP
