@@ -8,9 +8,11 @@ from pathlib import Path
 from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
-for sub in ("scripts/valuation/v2", "radar/markets", "radar"):
+for sub in ("scripts/valuation/v2", "radar/markets", "radar", "scripts/tenbagger"):
     sys.path.insert(0, str(ROOT / sub))
 import build_drivers  # noqa: E402
+import datapack_check  # noqa: E402
+import rating_ledger  # noqa: E402
 import multiples  # noqa: E402
 import prices_free  # noqa: E402
 import yaml  # noqa: E402
@@ -64,6 +66,28 @@ class TestGuidanceYear(unittest.TestCase):
             ok = build_drivers.build(dp)["provenance"]["rev0"]
         self.assertIn("컨센서스 첫 해", warned)
         self.assertNotIn("⚠", ok)
+
+
+class TestCurrencyUnit(unittest.TestCase):
+    def test_lotteem_digits(self):   # LOTTEEM: 원당 달러 0.000694를 적어 10⁹배 작았다
+        f = ROOT / "knowledge/models/companies/co-lotteem/datapack.json"
+        if not f.exists():
+            self.skipTest("co-lotteem 없음")
+        p = json.loads(f.read_text(encoding="utf-8"))
+        st = lambda q: next(c["status"] for c in datapack_check.check(q)["checks"] if c["name"].startswith("통화"))
+        self.assertEqual(st(dict(p, unit_usd=694000.0)), "통과")
+        self.assertEqual(st(dict(p, unit_usd=0.000694)), "실패")
+
+
+class TestMoatFit(unittest.TestCase):
+    def test_slope_and_hold(self):
+        rows = [{"ex3": str(10 - 200 * m), "upside": "0.2", "moat": str(m)} for m in [0.015, 0.03, 0.055, 0.07, 0.11] * 7]
+        with mock.patch.object(rating_ledger, "rows", return_value=rows):
+            r = rating_ledger.fit_moat(3)
+        self.assertLess(r["slope_pp_per_point"], 0)
+        self.assertIn("기준선 상향", r["verdict"])
+        with mock.patch.object(rating_ledger, "rows", return_value=rows[:10]):
+            self.assertIn("보류", rating_ledger.fit_moat(3)["verdict"])
 
 
 class TestSyncWarns(unittest.TestCase):

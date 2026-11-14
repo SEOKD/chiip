@@ -5,6 +5,8 @@
   py scripts/tenbagger/rating_ledger.py due                  # 성과를 아직 못 채운 티커 → 모델이 TradingView 일봉(+SPY)을 받는다
   py scripts/tenbagger/rating_ledger.py resolve <가격 json>  # {"SPY": [["2026-11-03", 680.1], …], "STRL": [...]} → 3·6·12개월(63·126·252거래일) 시장 대비 초과수익
   py scripts/tenbagger/rating_ledger.py fit [3|6|12]         # 등급별 평균 초과수익·순서 상관(스피어만), 운영·규칙·그림자 등급 비교 — 30건 전에는 판정 보류
+  py scripts/tenbagger/rating_ledger.py fit-moat [3|6|12]    # 해자 기준선(prm-tb-mult-moat-base) 점검 — 예측 오차를 해자 점수에 회귀(ADR-042)
+moat = 등급일의 datapack 해자 점수 합(가산 전, 기준선 빼기 전). 나중에 datapack이 바뀌면 되살릴 수 없어 등급일에 적는다
 그림자 등급(config/tenbagger_rating_lab.yaml): hyst = 경계 ±band 안이면 직전 등급 유지, volz = 업사이드 ÷ 연 변동성 경계. 운영 등급을 바꾸지 않는다.
 """
 import csv
@@ -21,7 +23,7 @@ REPORTS = ROOT / "outputs" / "tenbagger" / "reports"
 COMPANIES = ROOT / "knowledge" / "models" / "companies"
 ORDER = ["Strong Sell", "Sell", "Neutral", "Buy", "Strong Buy"]
 HORIZONS = {3: 63, 6: 126, 12: 252}
-COLS = ["date", "ticker", "rating", "rule_rating", "price", "upside", "rr", "dcf_up", "vol", "hyst", "volz", "ex3", "ex6", "ex12"]
+COLS = ["date", "ticker", "rating", "rule_rating", "price", "upside", "rr", "dcf_up", "vol", "hyst", "volz", "ex3", "ex6", "ex12", "moat"]
 MIN_N = 30
 
 
@@ -72,6 +74,22 @@ def volz(up, vol, v):
     return "Strong Buy" if z >= v["strong_buy"] else "Buy" if z >= v["buy"] else "Neutral" if z >= v["neutral"] else "Sell" if z >= v["sell"] else "Strong Sell"
 
 
+def moat_score(ticker):
+    """datapack 해자 항목 점수 합(multiples.select_multiple와 같은 표 — config/tenbagger.yaml moat_points). 항목이 없으면 ''"""
+    sys.path.insert(0, str(ROOT / "scripts" / "valuation" / "v2"))
+    import plus
+    pts = yaml.safe_load((ROOT / "config" / "tenbagger.yaml").read_text(encoding="utf-8"))["multiple_select"]["moat_points"]
+    for dp in COMPANIES.glob("*/datapack.json"):
+        try:
+            d = json.loads(dp.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if d.get("ticker") == ticker:
+            items = (d.get("moat") or {}).get("items") or []
+            return round(sum(pts.get(plus.verdict(x), 0) for x in items), 4) if items else ""
+    return ""
+
+
 def ann_vol(ticker, window):
     """회사 폴더 ohlcv.csv 종가의 연 변동성(일 로그수익률 표준편차 × √252)"""
     for dp in COMPANIES.glob("*/datapack.json"):
@@ -115,7 +133,7 @@ def log():
         vol = ann_vol(key[1], lab["vol_scaled"]["window"])
         rs.append({"date": key[0], "ticker": key[1], "rating": v["rating"], "rule_rating": v.get("rule_rating") or rule(up, rr, du, r), "price": v.get("price"),
                    "upside": up, "rr": rr, "dcf_up": du, "vol": vol or "", "hyst": hyst(up, rr, du, r, last.get(key[1]), lab["hysteresis"]["band"]),
-                   "volz": volz(up, vol, lab["vol_scaled"]), "ex3": "", "ex6": "", "ex12": ""})
+                   "volz": volz(up, vol, lab["vol_scaled"]), "ex3": "", "ex6": "", "ex12": "", "moat": moat_score(key[1])})
         last[key[1]] = v["rating"]
         have.add(key)
         n += 1
@@ -193,6 +211,32 @@ def fit(mo=12):
     return out
 
 
+def fit_moat(mo=3):
+    """해자 기준선 점검(ADR-042). 오차 = 실현 초과수익 − 업사이드 × 기간/12(%p). 해자 가산이 과하면 해자 높은 종목의 오차가 음수로 기운다.
+    오차 = a + b × 해자 점수 → |t| ≥ 2이고 30건 이상일 때만 '조정 후보'(기준선을 올리면 해자 높은 쪽 목표가가 내려간다). 채택은 stepwise 관문"""
+    use = [x for x in rows() if x.get(f"ex{mo}") not in ("", None) and x.get("moat") not in ("", None)]
+    out = {"horizon_months": mo, "n": len(use), "min_n": MIN_N, "param": "prm-tb-mult-moat-base"}
+    if len(use) < 3:
+        out["verdict"] = "표본 부족 — 판정 보류"
+        return out
+    xs = [float(x["moat"]) for x in use]
+    ys = [float(x[f"ex{mo}"]) - float(x["upside"]) * 100 * mo / 12 for x in use]
+    n, mx, my = len(xs), sum(xs) / len(xs), sum(ys) / len(ys)
+    sxx = sum((a - mx) ** 2 for a in xs)
+    if sxx <= 0:
+        out["verdict"] = "해자 점수가 한 값뿐 — 판정 보류"
+        return out
+    b = sum((a - mx) * (c - my) for a, c in zip(xs, ys)) / sxx
+    res = [c - my - b * (a - mx) for a, c in zip(xs, ys)]
+    se = math.sqrt(sum(r * r for r in res) / max(n - 2, 1) / sxx)
+    t = b / se if se > 0 else 0.0
+    out.update({"slope_pp_per_point": round(b, 2), "t": round(t, 2), "mean_error_pp": round(my, 2)})
+    out["verdict"] = ("표본 부족 — 판정 보류" if n < MIN_N else
+                      "조정 후보 — 해자 높은 종목이 덜 올랐다(기준선 상향 검정)" if t <= -2 else
+                      "조정 후보 — 해자 높은 종목이 더 올랐다(기준선 하향 검정)" if t >= 2 else "유지 — 기울기 유의하지 않음")
+    return out
+
+
 def due():
     return sorted({(x["ticker"], x["date"]) for x in rows() if x["ex12"] == ""})
 
@@ -206,6 +250,17 @@ if __name__ == "__main__":
         print(json.dumps(due(), ensure_ascii=False))
     elif a[:1] == ["resolve"] and len(a) == 2:
         print(f"초과수익 {resolve(json.loads(Path(a[1]).read_text(encoding='utf-8')))}칸 채움")
+    elif a[:1] == ["fit-moat"]:
+        print(json.dumps(fit_moat(int(a[1]) if len(a) > 1 else 3), ensure_ascii=False, indent=1))
+    elif a[:1] == ["backfill-moat"]:   # 해자 칸이 빈 옛 행을 지금 datapack으로 채운다(근사 — 그 사이 해자 판정이 바뀌었을 수 있다)
+        rs = rows()
+        k = 0
+        for x in rs:
+            if not x.get("moat"):
+                x["moat"] = moat_score(x["ticker"])
+                k += x["moat"] != ""
+        save(rs)
+        print(f"해자 칸 {k}건 채움")
     elif a[:1] == ["fit"]:
         print(json.dumps(fit(int(a[1]) if len(a) > 1 else 12), ensure_ascii=False, indent=1))
     else:

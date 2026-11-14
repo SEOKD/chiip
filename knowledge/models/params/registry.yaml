@@ -5873,9 +5873,9 @@ params:
     basis: '해자 프리미엄을 동종 대비 상대값으로 — 동종도 해자가 있어 동종 중앙값 멀티플에 이미 들어 있다(ADR-042). 75곳 해자 점수 중앙값 0.055를 기준선으로 빼서 평균 해자 회사의 순가산을 0으로 둔다'
     source: 운영 가정 — 리포트 해자 점수 분포(2026-11-15, 75곳)
   fit:
-    method: 해자 점수 구간별 선정 멀티플 뒤 12개월 초과수익 차이로 표본 외 점검(stepwise)
-    target: 해자 구간별 초과수익
-    data: null
+    method: 'rating_ledger.py fit-moat — 오차(실현 초과수익 − 업사이드 × 기간/12)를 해자 점수에 회귀, 30건 이상·|t| ≥ 2면 조정 후보 → stepwise 관문. 3개월 먼저(첫 표본 2027-02)'
+    target: 해자 점수에 대한 예측 오차 기울기 0
+    data: knowledge/models/tenbagger/rating_ledger.csv(moat·ex3·ex6·ex12)
     last_fit: null
     oos_metric: null
 - id: prm-dch-pub-haircut

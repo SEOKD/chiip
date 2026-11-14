@@ -31,6 +31,9 @@ def derived_tone(call):
     return "flat" if (gd or dt is not None) else None
 
 
+FX_PER_USD = {"KRW": (1000, 1800), "JPY": (100, 200), "NOK": (8, 13), "TWD": (25, 40), "EUR": (0.7, 1.2), "GBP": (0.6, 1.0), "CNY": (6, 8.5), "HKD": (7.0, 8.2)}   # 달러당 환율 허용 범위 — 자릿수 오류만 잡는 넓은 띠
+
+
 def check(p):
     raw, pf, fin, cons = p.get("raw") or {}, p.get("profile") or {}, p.get("financials") or {}, p.get("consensus") or {}
     ez, q = raw.get("fiscal_profile") or raw.get("easyconomics_profile") or {}, raw.get("quarters_gaap") or {}   # 2026-10-30 원천 = Fiscal.ai(ADR-012), 옛 묶음은 easyconomics
@@ -108,6 +111,14 @@ def check(p):
         f"사용 {tone} · 레이더 기준 {want}(톤 변화 {call.get('tone_delta')}, 가이던스 {call.get('guidance_direction')})")
     peers = p.get("peers") or []
     basis = p.get("peers_basis")
+    u = p.get("unit", "B$")
+    if u != "B$":   # unit_usd = 그 단위 1개의 달러 값(BKRW = 10억 원 ≈ $0.7M). LOTTEEM이 원당 달러(0.000694)를 적어 10⁹배 작았다(ADR-042)
+        ref = FX_PER_USD.get(u[1:])
+        uu = float(p.get("unit_usd") or 0)
+        fx = 1e9 / uu if uu > 0 else None
+        ok_u = bool(ref and fx and ref[0] <= fx <= ref[1])
+        add("통화 단위(unit_usd = 단위 1개의 달러 값)", "통과" if ok_u else "실패",
+            f"{u} unit_usd {uu:g} → 환율 {fx:,.1f}/$" + ("" if ok_u else f" — 허용 {ref[0]:g}~{ref[1]:g}(1e9 ÷ 달러당 환율로 적는다)" if ref else " — 허용 범위 표(FX_PER_USD)에 통화 추가") if fx else f"{u} unit_usd 없음")
     tgt = (pf.get("price") or 0) * (pf.get("shares_basic") or 0)
     sized = [x for x in peers if (x.get("mcap") or 0) > 0]
     near = sum(1 for x in sized if 0.2 <= x["mcap"] / tgt <= 5) if tgt else 0
