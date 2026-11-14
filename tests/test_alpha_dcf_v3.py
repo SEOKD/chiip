@@ -39,9 +39,13 @@ class Plus(unittest.TestCase):
 
     def test_exit_check_flags(self):
         rows = [{"rev": 100, "margin": 0.2, "nopat": 15.0}]
-        mult, rng, warn = plus.exit_check({"rows": rows}, {"wacc": 0.10, "g_term": 0.03}, "semiconductor", {"exit_check": {"ranges": {"semiconductor": [8, 25]}}})
+        c = {"exit_check": {"industry_ev_ebit": {"semiconductor": 44.3}, "default_ev_ebit": 25.7}}
+        mult, rng, warn = plus.exit_check({"rows": rows}, {"wacc": 0.10, "g_term": 0.03}, "semiconductor", c)
         self.assertAlmostEqual(mult, 15 * 1.03 / 0.10 / (100 * 1.03 * 0.2))   # RONIC = WACC → CV = NOPAT·(1+g)/WACC
-        self.assertIsNotNone(warn)   # 7.5배 < 8
+        self.assertEqual(rng, (7.5, 44.3))   # 바닥 (1 − t)/WACC(세율은 NOPAT ÷ EBIT로 되짚음) · 업종 지금 배수
+        self.assertIsNone(warn)   # 7.5배는 보수 가정의 결과 — 낮다고 경고하지 않는다(ADR-040, 옛 범위 8~25배는 경고했다)
+        mult, _, warn = plus.exit_check({"rows": rows}, {"wacc": 0.04, "g_term": 0.03, "ronic": 0.5}, "semiconductor", {"exit_check": {"industry_ev_ebit": {"semiconductor": 20}}})
+        self.assertIsNotNone(warn)   # 업종 지금 배수보다 높은 출구 = 공격적
 
     def test_t_unit_variance_and_corr(self):
         rng = random.Random(1)

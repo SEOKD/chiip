@@ -5846,3 +5846,19 @@ params:
     data: radar/state/consumer_macro.sqlite
     last_fit: null
     oos_metric: null
+- id: prm-dcf-exit-default
+  model: valuation.v2.plus
+  binding: config/valuation_v3.yaml#exit_check.default_ev_ebit
+  value: 25.7
+  unit: EV/EBIT(배)
+  status: prior
+  prior:
+    value: 25.7
+    basis: '출구 배수 점검의 위 기준 — 업종 대응이 없을 때 미국 시장 전체(금융 제외) 지금 EV/EBIT. 업종별 값은 같은 표의 21개 업종(exit_check.industry_ev_ebit). 계속가치 해 출구 배수가 이보다 높으면 공격적 경고(ADR-040)'
+    source: Damodaran, Enterprise Value Multiples by Sector (US), Data as of January 2026, Total Market (without financials) — pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/vebitda.html
+  fit:
+    method: 연 1회(1월) Damodaran 표 갱신 — 피팅 대상 아님(외부 기준값)
+    target: null
+    data: null
+    last_fit: '2026-11-15'
+    oos_metric: null

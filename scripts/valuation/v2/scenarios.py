@@ -60,4 +60,5 @@ def drivers(company, scen, wacc, g_term):
             "nonop": company.get("nonop", 0.0), "minority": company.get("minority", 0.0),
             "midyear": company.get("midyear", True),
             "kd": company.get("kd", 0.05 * (1 - company["tax"])), "kd_debt": company.get("kd_debt"),   # 순차입·순현금의 세후 이자(미 10년 5% 근사) — equity_at에서 사용
-            "fy_offset": company.get("fy_offset")}   # 평가일 → rev0 회계연도 끝(년, fiscal.apply) — dcf.value 할인 시점(ADR-039)
+            "fy_offset": company.get("fy_offset"),   # 평가일 → rev0 회계연도 끝(년, fiscal.apply) — dcf.value 할인 시점(ADR-039)
+            "ronic_cap": bool(company.get("plus", True) and not company.get("ronic_spread") and company.get("moat_score") is not None)}   # 해자에서 온 RONIC은 10년차 ROIC 상한(ADR-040)

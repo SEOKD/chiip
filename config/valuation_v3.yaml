@@ -21,20 +21,37 @@ mc_corr:                   # D4 상관 충격 + 두꺼운 꼬리
   t_df: 5                  # 스튜던트 t 자유도(분산 1로 정규화)
   source: "영업 레버리지(Mandelker & Rhee 1984 J Financial Quant Anal); 수익률 두꺼운 꼬리(Cont 2001 Quant Finance)"
 
-exit_check:                # D5 계속가치의 내포 출구 배수(EV/EBIT) 점검 — 벗어나면 경고만(값은 바꾸지 않는다)
-  ranges:                  # 업종 장기 EV/EBIT 범위(사전값, 미대조 — Damodaran 업종 배수 표와 대조 필요)
-    semiconductor: [8, 25]
-    semicap: [8, 22]
-    software: [10, 30]
-    software_internet: [10, 30]
-    electronics: [6, 18]
-    electrical_equipment: [8, 22]
-    aerospace_defense: [8, 20]
-    power_utility: [8, 16]
-    default: [6, 20]
-  source: "Damodaran 업종별 EV/EBIT(pages.stern.nyu.edu/~adamodar, 연 1회) — 범위는 어림값, 대조 전"
+exit_check:                # D5 계속가치 내포 출구 EV/EBIT 점검 — 업종의 지금 EV/EBIT보다 높으면 '공격적' 경고(값은 바꾸지 않는다, ADR-040)
+  # 위 기준 = 업종의 지금 배수(성장 기대 포함). 10년 뒤 안정 성장 해의 출구 배수는 보통 이보다 낮아야 한다. 아래 기준(바닥)은 (1 − t)/WACC로 종목마다 계산
+  # 옛 범위(semiconductor 8~25 등, '어림값, 대조 전')는 보수 가정(RONIC = WACC)의 당연한 결과를 '범위 밖'으로 띄웠다(122종목 중 71곳)
+  industry_ev_ebit:        # Damodaran, Enterprise Value Multiples by Sector (US), 2026-01 — EV/EBIT, Only positive EBITDA firms(동인 industry → Damodaran 업종)
+    semiconductor: 44.30         # Semiconductor
+    semicap: 28.81               # Semiconductor Equip
+    electronics: 29.76           # Electronics (General)
+    electrical_equipment: 43.19  # Electrical Equipment
+    aerospace_defense: 34.79     # Aerospace/Defense
+    telecom_equipment: 30.86     # Telecom. Equipment
+    computers: 29.36             # Computers/Peripherals
+    software: 32.41              # Software (System & Application)
+    software_internet: 32.41     # Software (Internet)은 172.99(이익이 작은 회사가 섞여 왜곡) — System & Application으로 대신
+    oilfield_services: 14.90     # Oilfield Svcs/Equip.
+    offshore_drilling: 14.90     # Oilfield Svcs/Equip.
+    datacenter: 19.25            # Computer Services(GPU 클라우드·데이터센터 임대 — 업종 표에 데이터센터가 따로 없다, 근사)
+    power_ipp: 21.86             # Power
+    power_utility: 22.63         # Utility (General)
+    personal_products: 16.25     # Household Products
+    payments: 20.15              # Business & Consumer Services(근사)
+    life_science_services: 15.02 # Healthcare Support Services(근사)
+    media_entertainment: 38.92   # Entertainment
+    leisure_facilities: 23.96    # Recreation
+    instruments: 29.76           # Electronics (General)(정밀 계측, 근사)
+    education: 14.49             # Education
+    legal_finance: null          # 금융업은 EV 배수가 맞지 않는다 — 점검하지 않는다
+  default_ev_ebit: 25.70         # Total Market (without financials)
+  source: "Damodaran, Enterprise Value Multiples by Sector (US), Data as of January 2026 — https://pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/vebitda.html (2026-11-15 확인). 연 1회(1월) 갱신"
 
-roic_fade:                 # D6 계속가치 RONIC = WACC + max_spread × 해자 점수(0~1). drivers에 ronic_spread가 있으면 그것이 우선
+roic_fade:                 # D6 계속가치 RONIC = WACC + max_spread × 해자 점수(0~1). drivers에 ronic_spread가 있으면 그것이 우선.
+                           # 해자 점수 = 리포트 해자 판정(datapack moat.items, 근거 있는 항목)을 멀티플 선정과 같은 점수표로(plus.moat_score, ADR-040). 해자에서 온 RONIC은 10년차 ROIC 상한
   max_spread: 0.08
   source: "Fama & French(2000) J Business 73(2) — 수익성 연 약 38% 평균회귀; McKinsey Valuation 7판 — 넓은 해자 기업도 계속가치 스프레드는 한 자릿수"
 

@@ -2,8 +2,11 @@
 
 D2 outside_view  3년차 이후 성장률을 같은 규모 구간 기저율 중앙값 쪽으로 당긴다(Mauboussin 2016; Chan·Karceski·Lakonishok 2003)
 D3 normalize     경기순환 업종은 마지막 blend_years 동안 마진을 한 사이클 평균으로 옮겨 계속가치를 정상화 이익에 둔다(Damodaran)
-D5 exit_check    계속가치 ÷ 다음 해 EBIT(내포 출구 EV/EBIT)가 업종 범위를 벗어나면 경고
-D6 moat_ronic    RONIC = WACC + max_spread × 해자 점수(drivers의 ronic_spread가 있으면 그것이 우선)
+D5 exit_check    계속가치 ÷ 다음 해 EBIT(내포 출구 EV/EBIT)가 업종의 지금 EV/EBIT(Damodaran 2026-01, 성장 기대 포함)를 넘으면 '공격적' 경고.
+                 아래쪽 기준은 성장이 가치를 더하지 않는 바닥 (1 − t)/WACC — RONIC ≥ WACC면 그 밑으로 갈 수 없다(ADR-040)
+D6 moat_ronic    RONIC = WACC + max_spread × 해자 점수(drivers의 ronic_spread가 있으면 그것이 우선). 해자 점수는 리포트 해자 판정
+                 (datapack moat.items, 근거 있는 항목만)을 멀티플 선정과 같은 점수표로 매긴다(moat_score, ADR-040). 해자에서 온 RONIC은
+                 10년차 ROIC를 넘지 않는다(dcf.effective_ronic — 기존 자본으로 자본비용도 못 버는 회사가 새 투자에서만 높게 벌 수는 없다)
 """
 import csv
 import functools
@@ -146,6 +149,35 @@ def margin_sigma(company, base, c=None):
     return max(base, s) if s else base
 
 
+VERDICT_ALIAS = {"중간": "보통", "약점": "약함", "약화 중": "약함"}   # 같은 뜻 다른 표기(11/15 점검: 10건이 점수표에 없어 0점) — 멀티플 선정과 공용
+SKIP_VERDICT = {"미확인", "해당 없음", None, ""}
+
+
+def verdict(x):
+    v = (x or {}).get("verdict")
+    return VERDICT_ALIAS.get(v, v)
+
+
+@functools.lru_cache(maxsize=1)
+def _moat_table():
+    """멀티플 선정과 같은 해자 점수표(config/tenbagger.yaml multiple_select.moat_points·moat_cap) — 두 곳이 다른 점수를 쓰지 않게 한 곳에서 읽는다"""
+    t = yaml.safe_load((ROOT / "config" / "tenbagger.yaml").read_text(encoding="utf-8")) or {}
+    ms = t.get("multiple_select") or {}
+    return dict(ms.get("moat_points") or {}), float(ms.get("moat_cap") or 0.12)
+
+
+def moat_score(dp, table=None):
+    """리포트 해자 판정 → 해자 점수 0~1과 근거. 근거(evidence)가 있고 판정이 확인된 항목만 센다.
+    점수 = clip(Σ 판정 점수 ÷ 상한, 0, 1) — 강함 3개면 1(넓은 해자), 강함 1·보통 2개면 0.58, 보통 2개면 0.25(멀티플 선정 해자 프리미엄과 같은 비율)"""
+    pts, cap = table or _moat_table()
+    used = [x for x in (((dp or {}).get("moat") or {}).get("items") or []) if verdict(x) not in SKIP_VERDICT and str(x.get("evidence") or "").strip()]
+    raw = sum(pts.get(verdict(x), 0.0) for x in used)
+    score = max(0.0, min(1.0, raw / cap)) if cap > 0 else 0.0
+    label = "넓은 해자" if score >= 2 / 3 else "좁은 해자" if score >= 1 / 3 else "약한 해자" if score > 0 else "해자 근거 없음"
+    return {"score": round(score, 3), "label": label, "n": len(used),
+            "items": [f"{str(x.get('kind'))[:24]} {verdict(x)}" for x in used]}
+
+
 def moat_ronic(wacc, company, c):
     """RONIC(없으면 None = WACC). 명시 ronic_spread 우선, 다음 moat 점수"""
     if company.get("ronic_spread"):
@@ -157,16 +189,24 @@ def moat_ronic(wacc, company, c):
 
 
 def exit_check(res, d, industry, c):
-    """(내포 EV/EBIT, 범위, 경고 문자열 또는 None)"""
+    """(내포 EV/EBIT, (바닥, 업종 지금 배수), 경고 문자열 또는 None).
+    바닥 = (1 − t)/WACC(성장이 가치를 더하지 않을 때). 위 기준 = 업종의 지금 EV/EBIT(Damodaran, 성장 기대 포함) — 10년 뒤 안정 성장 해의
+    출구 배수가 지금 업종 배수보다 높으면 계속가치를 공격적으로 잡은 것이다. 낮은 것은 보수 가정의 결과라 경고하지 않는다(ADR-040:
+    옛 범위 '8~25배' 등은 대조 전 어림값이라 122종목 중 71곳이 '범위 밖'으로 떴다)"""
+    import dcf
     rows = res["rows"]
     w, g = d["wacc"], d["g_term"]
     ebit_next = rows[-1]["rev"] * (1 + g) * rows[-1]["margin"]
     if ebit_next <= 0:
         return None, None, "계속가치 해의 EBIT가 0 이하 — 출구 배수 점검 불가"
-    ronic = d.get("ronic") or w
+    ronic = dcf.effective_ronic(d, rows)
     cv = rows[-1]["nopat"] * (1 + g) * (1 - g / ronic) / (w - g)
     mult = cv / ebit_next
-    rng = (c.get("exit_check") or {}).get("ranges", {})
-    lo, hi = rng.get(industry) or rng.get("default", [6, 20])
-    warn = None if lo <= mult <= hi else f"내포 출구 EV/EBIT {mult:.1f}배가 업종 범위 {lo}~{hi}배 밖"
-    return mult, (lo, hi), warn
+    ec = c.get("exit_check") or {}
+    ind = (ec.get("industry_ev_ebit") or {}).get(industry, ec.get("default_ev_ebit"))
+    tax = d.get("tax")
+    if tax is None:   # 세율이 없으면 마지막 해 NOPAT ÷ EBIT로 되짚는다
+        tax = 1 - rows[-1]["nopat"] / (rows[-1]["rev"] * rows[-1]["margin"])
+    floor = (1 - tax) / w
+    warn = f"내포 출구 EV/EBIT {mult:.1f}배가 업종 지금 배수 {ind:.1f}배보다 높다 — 계속가치가 공격적" if ind and mult > ind else None
+    return mult, (round(floor, 1), ind), warn

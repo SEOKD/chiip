@@ -151,7 +151,9 @@ def analyze(dp, base_drivers, mcap, wacc, g_term, dcf_ok=True):
         if w and w > 0:   # 이익률·ROIC가 음수면 내재 멀티플을 정의할 수 없다 — 심리 배율에서 뺀다
             ratio = (p["mcap"] + (p.get("debt") or 0) - (p.get("cash") or 0)) / (w * p["rev"]) if basis != "ev_sales" else p[basis] / w
         peers.append({**p, "market": p[basis], "roic": roic, "roic_ex": roic_ex, "s2c": s2c, "warranted": p[basis] / ratio if ratio else None, "ratio": ratio})
-    ev_dcf = dcf.value(base_drivers)["ev"]
+    # 해자를 뺀 DCF(RONIC = WACC)로 잰다 — 동종 내재 배수(warranted_ev_sales)도 RONIC = WACC라 같은 기준이고, 해자는 select_multiple의 해자 프리미엄으로
+    # 한 번만 들어간다. DCF에 해자 RONIC을 넣은 뒤로 펀더멘털 조정(합리적 멀티플)에 해자가 두 번 들어가는 것을 막는다(ADR-040)
+    ev_dcf = dcf.value(dict(base_drivers, ronic=None, ronic_cap=False))["ev"]
     # 대상 내재 = 시장 멀티플 ÷ (시장 값 ÷ v2 기본 시나리오 값). P/E는 지분끼리(시총 ÷ DCF 지분가치), EV 배수는 EV끼리 — P/E에 EV 비율을 쓰면 차입이 큰 종목에서 틀린다(2026-11-14 점검)
     eq_dcf = ev_dcf - net_debt
     mkt_ratio = (mcap / eq_dcf if eq_dcf > 0 else None) if basis == "pe_fwd" else (ev / ev_dcf if ev_dcf > 0 else None)
@@ -276,7 +278,8 @@ def select_multiple(m, dp, cfg):
     rational = (v.get("rational") or {}).get("p50")
     fund = clip((rational / p50 - 1) * cfg["fund_weight"], cfg["fund_cap"]) if rational else 0.0
     items = (dp.get("moat") or {}).get("items") or []
-    moat = clip(sum(cfg["moat_points"].get(x.get("verdict"), 0) for x in items), cfg["moat_cap"])
+    import plus   # 같은 뜻 다른 표기(중간·약점·약화 중)를 점수표 이름으로 — DCF 해자 점수와 같은 규칙(ADR-040)
+    moat = clip(sum(cfg["moat_points"].get(plus.verdict(x), 0) for x in items), cfg["moat_cap"])
     n = dp.get("narrative") or {}
     narr = cfg["stage"].get(n.get("stage"), 0.0)
     mv = dp.get("multiple_view") or {}

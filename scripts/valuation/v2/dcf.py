@@ -45,6 +45,16 @@ def project(d):
     return rows, ic
 
 
+def effective_ronic(d, rows):
+    """계속가치 RONIC — 없으면 WACC. 해자 점수에서 온 값(d['ronic_cap'])은 10년차 ROIC를 넘지 않는다: 기존 자본으로 자본비용도 못 버는 회사가
+    새 투자에서만 넓은 해자 수익을 낸다고 둘 수는 없다(ADR-040). 명시한 ronic_spread는 그대로 쓴다"""
+    w = d["wacc"]
+    r = d.get("ronic") or w
+    if d.get("ronic_cap") and rows and rows[-1].get("roic") is not None:
+        r = min(r, max(w, rows[-1]["roic"]))
+    return r
+
+
 def timing(n, off, midyear):
     """연도별 (센 몫, 할인 시점 년) — off = 평가일부터 기준연도(rev0 해) 끝까지(년). 음수면 1년차가 이미 시작돼 지난 몫은 세지 않는다.
     off = 0이면 (1, t − 0.5)(연중) 또는 (1, t)(연말) — 예전 계산과 같다(ADR-039)"""
@@ -63,7 +73,7 @@ def value(d, midyear=None):
     midyear = d.get("midyear", False) if midyear is None else midyear
     rows, ic_T = project(d)
     w, g = d["wacc"], d["g_term"]
-    ronic = d.get("ronic") or w
+    ronic = effective_ronic(d, rows)
     if w <= g:
         raise ValueError("WACC가 영구성장률보다 커야 한다")
     n = len(rows)
@@ -88,7 +98,7 @@ def value(d, midyear=None):
         pv_cv = cv / (1 + w) ** (off + n - (0.5 if midyear else 0.0))
         ev = pv + stub + pv_cv
     eq = ev - d["net_debt"] + d.get("nonop", 0.0) - d.get("minority", 0.0)
-    return {"ev": ev, "equity": eq, "per_share": eq / d["shares"], "cv_share": pv_cv / ev if ev else None, "stub": stub,
+    return {"ev": ev, "equity": eq, "per_share": eq / d["shares"], "cv_share": pv_cv / ev if ev else None, "stub": stub, "ronic": ronic,
             "ev_ep": ev_ep * (ev / ev_end) if ev_end else None, "ep_gap": abs(ev_ep - ev_end) / abs(ev_end) if ev_end else None, "rows": rows}
 
 
@@ -118,7 +128,7 @@ def equity_at(d, year, midyear=None):
     later["net_debt"] = nd
     if not later["growth"]:   # 명시 기간 끝 → 계속가치만
         g = d["g_term"]
-        ronic = d.get("ronic") or w
+        ronic = effective_ronic(d, rows)
         nopat_next = rows[-1]["nopat"] * (1 + g)
         ev = nopat_next * (1 - g / ronic) / (w - g)
         return ev - nd + d.get("nonop", 0.0) - d.get("minority", 0.0)

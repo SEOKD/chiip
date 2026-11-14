@@ -54,6 +54,12 @@ def load_company(entity):
     cfg = yaml.safe_load((ROOT / "config" / "valuation_v2.yaml").read_text(encoding="utf-8"))
     dp = leases.load_datapack(entity)
     leases.apply(co, dp, co.get("rf_local") or reg.get("rf_us"), cfg["defaults"]["pretax_cost_of_debt_spread"])
+    if "ronic_spread" not in co and co.get("moat_score") is None and dp:   # 계속가치 RONIC ← 리포트 해자 판정(ADR-040, 마스터 승인 2026-11-15)
+        import plus
+        ms = plus.moat_score(dp)
+        co["moat"] = ms
+        if ms["n"]:
+            co["moat_score"] = ms["score"]
     try:   # 할인 시점을 평가일 기준으로(ADR-039) — rev0가 진행 중인 회계연도면 그해 남은 몫을 세고 1년차를 제때 할인한다
         import fiscal
         co["market"] = resolve_market(co)
@@ -81,7 +87,7 @@ def quality(scen, base, exit_warn, cfg=None, specs=None):
     산정 불가(usable False): 시나리오 입력 순서(1년차 성장·목표 이익률이 약세 ≤ 기본 ≤ 강세)가 깨졌다 — 동인 버그 · 계속가치 해 NOPAT ≤ 0
     (적자가 끝나지 않는 가정) · 기본 지분가치 ≤ 0.
     주의(쓰되 표시): 입력은 바른데 가치 순서가 뒤집혔다(ROIC < WACC면 성장이 가치를 깎는다 — 경제적으로 맞을 수 있다) · 계속가치가 기업가치의
-    cv_warn 이상(1~10년 현금흐름 합이 크게 음수). 내포 출구 배수 경고는 업종 범위가 아직 대조 전이라 exit로 따로 둔다(리포트 본문에는 싣지 않는다).
+    cv_warn 이상(1~10년 현금흐름 합이 크게 음수). 내포 출구 배수 경고(업종 지금 배수보다 높음, ADR-040)는 exit로 따로 둔다(리포트 본문에는 싣지 않는다).
     11/14 점검: 122종목 중 12종목이 입력 순서가 깨진 채(브로드컴 기본 2.92배·강세 0.25배), 적자 종목은 −2,550% 같은 값이 목표주가·등급에 그대로 들어갔다"""
     c = (cfg or {}).get("dcf_quality") or {}
     flags, warns = [], []
@@ -140,7 +146,8 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
             "g_term": g_term, "base": {"v0": base["equity"] / mcap, "cv_share": base["cv_share"], "ep_gap": base["ep_gap"],
                                        "roic_y1": base["rows"][0]["roic"], "roic_y5": base["rows"][4]["roic"],
                                        "exit_ev_ebit": exit_mult, "exit_range": exit_rng, "exit_warn": exit_warn,
-                                       "ronic": base_d.get("ronic"), "normal_margin": nm, "normal_margin_src": nm_src,
+                                       "ronic": base.get("ronic"), "ronic_src": ("동인 ronic_spread" if co.get("ronic_spread") else (co.get("moat") or {}).get("label") if co.get("moat_score") else None),
+                                       "moat": co.get("moat"), "normal_margin": nm, "normal_margin_src": nm_src,
                                        "outside_median": scenarios._median(co)},
             "scenarios": scen, "upside": blk, "rate_50bp": rs, "regime": {"rf": reg["rf_us"], "erp": reg["erp"], "as_of": reg["as_of"]},
             "unit": co.get("unit", ""), "evidence": co.get("evidence", []), "notes": co.get("notes", []), "lease": co.get("lease"),
@@ -161,10 +168,12 @@ def render(r):
          f"## {r['name']} — 가치 분포와 필요 가정 (시가총액 {r['mcap']:.1f}{r['unit']} 대비 배수)",
          f"- 할인율: WACC {c['wacc']:.2%} = 무위험 {c['rf']:.2%}(미 10년) + 베타 {c['beta']:.2f} × ERP {c['erp']:.2%} + 국가위험 {c['crp']:.2%} · 부채비중 {c['debt_weight']:.0%} · 영구성장 {r['g_term']:.1%}",
          f"- 기본 시나리오: 내재가치 {b['v0']:.2f}배 · 계속가치 비중 {b['cv_share']:.0%} · ROIC 1년차 {b['roic_y1']:.0%} → 5년차 {b['roic_y5']:.0%} · EP 항등 오차 {b['ep_gap']:.1e}",
-         f"- 보강(ADR-016): 계속가치 내포 EV/EBIT {b['exit_ev_ebit']:.1f}배" + (f" ⚠ {b['exit_warn']}" if b.get("exit_warn") else f"(업종 범위 {b['exit_range'][0]}~{b['exit_range'][1]}배 안)") if b.get("exit_ev_ebit") else f"- 보강(ADR-016): {b.get('exit_warn') or '출구 배수 점검 불가'}",
+         f"- 보강(ADR-016): 계속가치 내포 EV/EBIT {b['exit_ev_ebit']:.1f}배" + (f" ⚠ {b['exit_warn']}" if b.get("exit_warn") else f"(바닥 {b['exit_range'][0]}배 · 업종 지금 {b['exit_range'][1]}배)") if b.get("exit_ev_ebit") else f"- 보강(ADR-016): {b.get('exit_warn') or '출구 배수 점검 불가'}",
          f"- 외부 관점: 3년차 이후 성장을 기저율 중앙값 {b['outside_median']:.1%} 쪽으로 혼합" + (f" · 정상화 마진 {b['normal_margin']:.1%}({b['normal_margin_src']})" if b.get("normal_margin") is not None else "") + (f" · 계속가치 RONIC {b['ronic']:.1%}" if b.get("ronic") else " · 계속가치 RONIC = WACC") if b.get("outside_median") is not None else "- 외부 관점: 기저율 표본 없음",
          *([f"- {__import__('leases').line(r['lease'], r['unit'])}"] if r.get("lease") else []),
          *([f"- {__import__('fiscal').line(r['fy_timing'])}"] if r.get("fy_timing") else []),
+         f"- 계속가치 RONIC {b['ronic']:.1%}(WACC {c['wacc']:.1%}" + (f" + 해자 {b['ronic'] - c['wacc']:+.1%}p — {b['ronic_src']}" if b.get("ronic_src") and b['ronic'] > c['wacc'] + 1e-9 else " — 11년차 이후 성장은 가치를 더하지 않는다") + ")"
+         + (f" · 리포트 해자 판정 {b['moat']['n']}건: {', '.join(b['moat']['items'][:4])}" if (b.get("moat") or {}).get("n") else ""),
          *([f"- DCF 신뢰 점검: {r['dcf_quality']['status']}" + "".join(f" · {x}" for x in r["dcf_quality"]["flags"] + r["dcf_quality"]["warns"]) + (f" · 참고: {r['dcf_quality']['exit']}" if r["dcf_quality"].get("exit") else "")] if r.get("dcf_quality") else []),
          "", "| 시나리오 | 확률 | 지금 가치/시총 | 5년 뒤 가치/시총 | 5년 매출 CAGR |", "|---|---|---|---|---|"]
     for n, s in r["scenarios"].items():

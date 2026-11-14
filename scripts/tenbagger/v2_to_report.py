@@ -140,13 +140,16 @@ def build(entity, draws=3000):
                    "headers": [""] + [f"매출÷투하자본 {s:g}" for s in s2cs], "rows": grid_rows})
     alt = []
     for label, d in (("WACC −1%p", dict(base_d, wacc=c["wacc"] - 0.01)), ("WACC +1%p", dict(base_d, wacc=c["wacc"] + 0.01)),
-                     ("RONIC 20%(11년차 이후 성장이 가치 창출)", dict(base_d, ronic=0.20))):
+                     ("RONIC 20%(11년차 이후 성장이 가치 창출)", dict(base_d, ronic=0.20, ronic_cap=False))):
         try:
             alt.append(f"{label} {dcf.value(d)['equity'] / mcap:.2f}배")
         except (ValueError, ZeroDivisionError):
             pass
     blocks.append({"type": "p", "text": "매출÷투하자본 = 매출 1달러를 늘리는 데 드는 설비·운전자본(높을수록 가볍다). 장기 이익률은 4년차 목표와 이후 수렴값을 같이 바꾼 것. "
-                   f"계속가치는 RONIC = WACC(11년차 이후 성장은 가치를 만들지 않는다는 맥킨지 보수 가정) · 다른 축: " + " · ".join(alt)})
+                   + (f"계속가치 RONIC {b['ronic']:.1%} = WACC {c['wacc']:.1%} + 해자 {b['ronic'] - c['wacc']:.1%}p({b['ronic_src']}" + (f" — 리포트 해자 판정 {b['moat']['n']}건" if (b.get('moat') or {}).get('n') else "") + ", 10년차 ROIC를 넘지 않게) · "
+                      if b.get("ronic_src") and b.get("ronic") and b["ronic"] > c["wacc"] + 1e-9
+                      else "계속가치는 RONIC = WACC(11년차 이후 성장은 가치를 만들지 않는다는 맥킨지 보수 가정 — 해자 근거가 없거나 10년차 ROIC가 자본비용 이하) · ")
+                   + "다른 축: " + " · ".join(alt)})   # 해자 RONIC(ADR-040)
     dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
     if dp_path.exists():
         dp = json.loads(dp_path.read_text(encoding="utf-8"))
