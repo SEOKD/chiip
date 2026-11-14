@@ -14,6 +14,9 @@
 # wiki = {언어: 문서 제목} 위키 조회수(Wikimedia 공식 API, robots 제한 없음) — 제목이 틀리면 수집기가 'missing'으로 기록, 주간 회차에서 고친다(1차 입력, 미검증).
 # steam = 스팀 앱 id(store.steampowered.com/api/appdetails 누적 추천 수, robots 허용) · apps = 애플 앱 순위 RSS의 개발사 이름 패턴(정규식) · terms = 브랜드 뉴스 검색어.
 # apple_artist = 애플 개발사 id 목록(선택) — iTunes 조회 API로 전체 앱 평점 수 합계를 본다. 없으면 순위 RSS에 걸린 앱의 개발사 id를 자동으로 배운다(2026-11-12).
+# wiki_old = {언어 키: [옛 문서 제목]} — 제목이 바뀐 문서. Wikimedia 조회수는 제목 단위라 이름을 바꾸면 옛 조회가 옛 제목(넘겨주기)에 남는다.
+#   월별 요약(wiki_monthly.csv)에서 지금 제목에 합친다(2026-11-14 확인: PUBG 2021-08·HYBE 2021-03·BTS 2016-03·2020-03·Asics 2019-07·Hoka 2025-06→2026-06 두 번 개명 — 호카는 그동안 넘겨주기 조회만 재고 있었다). 별개 문서(Pro Evolution Soccer·Big Hit Music)는 넣지 않는다.
+#   순위 RSS에는 개발사 id가 없어(앱 id만) 앱 id 조회로 개발사 id를 얻는다(2026-11-14 수리). 닌텐도·코나미·위버스·크래프톤·로블록스 id는 번들 id 조회로 확인해 넣었다.
 # 아마존: 원천에서 제외(2026-10-30 마스터 결정). robots.txt가 ClaudeBot을 명시적으로 막아 직접 수집 금지, PA-API는 폐지, 후속 Creators API는 약관이 분석 용도를 제한 — knowledge/methods/consumer_lens.md.
 # 레딧 직접 수집·틱톡·스팀 리뷰 API는 robots 차단이라 쓰지 않는다(레딧은 ApeWisdom 미국 티커 언급 수만).
 
@@ -43,10 +46,10 @@ companies:
      wiki: {en: Monster Hunter, en2: Resident Evil}, steam: [2246340, 1364780], apps: "CAPCOM", terms: ["Monster Hunter Wilds", "Resident Evil"],
      why: "구작 디지털 장기 판매(카탈로그) 비중이 이익 안정성을 바꾼 사례 — 신작 사이클 + 카탈로그 매출"}
   - {id: jp-nintendo, name: Nintendo, local: "任天堂", ko: ["닌텐도"], market: jp, code: "7974", segment: games,
-     wiki: {en: Nintendo Switch 2, ja: Nintendo Switch 2}, apps: "Nintendo", terms: ["Switch 2"],
+     wiki: {en: Nintendo Switch 2, ja: Nintendo Switch 2}, apps: "Nintendo", apple_artist: [1062496488], terms: ["Switch 2"],
      why: "콘솔 세대 교체 사이클 — 대형주라 10배 경로는 제한, 사이클 기준점(게임 섹터 체온계)"}
   - {id: jp-konami, name: Konami Group, local: "コナミ", ko: ["코나미"], market: jp, code: "9766", segment: games,
-     wiki: {en: Yu-Gi-Oh!, en2: eFootball}, steam: [1665460], apps: "KONAMI", terms: ["Yu-Gi-Oh!", "eFootball"],
+     wiki: {en: Yu-Gi-Oh!, en2: eFootball}, steam: [1665460], apps: "KONAMI", apple_artist: [299580230], terms: ["Yu-Gi-Oh!", "eFootball"],
      why: "유희왕 카드·모바일·리메이크 — 디지털 비중"}
   - {id: jp-squareenix, name: Square Enix Holdings, local: "スクウェア・エニックス", ko: ["스퀘어에닉스"], market: jp, code: "9684", segment: games,
      wiki: {en: Final Fantasy, en2: Dragon Quest}, apps: "SQUARE ENIX", terms: ["Final Fantasy", "Dragon Quest"],
@@ -58,7 +61,7 @@ companies:
      wiki: {en: Elden Ring, en2: FromSoftware}, steam: [1245620], terms: ["FromSoftware", "Elden Ring"],
      why: "출판·애니 IP + 프롬소프트웨어(게임) — 소니 지분 투자(2025)로 IP 전략 연결"}
   - {id: jp-asics, name: ASICS, local: "アシックス", ko: ["아식스"], market: jp, code: "7936", segment: apparel,
-     wiki: {en: Asics, en2: Onitsuka Tiger}, terms: ["Onitsuka Tiger", "ASICS"],
+     wiki: {en: Asics, en2: Onitsuka Tiger}, wiki_old: {en: ["ASICS"]}, terms: ["Onitsuka Tiger", "ASICS"],
      why: "오니츠카 타이거·러닝화 프리미엄화 — 이익률 구조 변화가 핵심 재료"}
   # 한국
   - {id: kr-samyang, name: Samyang Foods, local: "삼양식품", market: kr, code: "003230", segment: food_bev,
@@ -69,9 +72,9 @@ companies:
   - {id: kr-silicon2, name: Silicon2, local: "실리콘투", market: kr, code: "257720", segment: beauty,
      terms: ["Silicon2", "실리콘투", "Stylekorean"], why: "K-뷰티 해외 유통 플랫폼 — 브랜드 확산의 도매 길목"}
   - {id: kr-hybe, name: HYBE, local: "하이브", market: kr, code: "352820", segment: content_ip,
-     wiki: {en: BTS, en2: Hybe Corporation}, apps: "HYBE|Weverse", terms: ["BTS", "HYBE"], why: "BTS 완전체 활동 사이클·위버스 플랫폼"}
+     wiki: {en: BTS, en2: Hybe Corporation}, wiki_old: {en: ["BTS (band)", "Bangtan Boys"], en2: ["Big Hit Entertainment"]}, apps: "HYBE|Weverse", apple_artist: [1456559071], terms: ["BTS", "HYBE"], why: "BTS 완전체 활동 사이클·위버스 플랫폼"}
   - {id: kr-krafton, name: Krafton, local: "크래프톤", market: kr, code: "259960", segment: games,
-     wiki: {en: "PUBG: Battlegrounds", en2: Inzoi}, steam: [578080, 2456740], apps: "KRAFTON", terms: ["PUBG", "inZOI"],
+     wiki: {en: "PUBG: Battlegrounds", en2: Inzoi}, wiki_old: {en: ["PlayerUnknown's Battlegrounds"]}, steam: [578080, 2456740], apps: "KRAFTON", apple_artist: [852927650], terms: ["PUBG", "inZOI"],
      why: "배틀그라운드 장기 운영 + 신작 파이프라인"}
   - {id: kr-shiftup, name: Shift Up, local: "시프트업", market: kr, code: "462870", segment: games,
      wiki: {en: Stellar Blade, en2: "Goddess of Victory: Nikke"}, apps: "SHIFT UP", terms: ["Stellar Blade", "NIKKE"],
@@ -96,9 +99,9 @@ companies:
   - {id: us-onon, name: On Holding, market: us, code: ONON, fiscal: NYSE_ONON, segment: apparel, aliases: ["On Holding"],
      terms: ["On Running", "On Cloud shoes"], why: "프리미엄 러닝화 — 직판(DTC) 비중·아시아 확장"}
   - {id: us-deck, name: Deckers Brands, market: us, code: DECK, fiscal: NYSE_DECK, segment: apparel, aliases: ["Deckers Brands", "Deckers Outdoor"],
-     wiki: {en: Hoka One One}, terms: ["Hoka shoes", "UGG"], why: "호카 성장 감속 여부 — 브랜드 사이클 위치"}
+     wiki: {en: Hoka}, wiki_old: {en: ["Hoka One One", "Hoka (brand)"]}, terms: ["Hoka shoes", "UGG"], why: "호카 성장 감속 여부 — 브랜드 사이클 위치"}
   - {id: us-rblx, name: Roblox, market: us, code: RBLX, fiscal: NYSE_RBLX, segment: platform, aliases: ["Roblox"],
-     wiki: {en: Roblox}, apps: "Roblox", terms: ["Roblox"], why: "사용자 시간·부킹 성장 — 플랫폼형 IP 생태계"}
+     wiki: {en: Roblox}, apps: "Roblox", apple_artist: [431946155], terms: ["Roblox"], why: "사용자 시간·부킹 성장 — 플랫폼형 IP 생태계"}
   - {id: us-duol, name: Duolingo, market: us, code: DUOL, fiscal: NASDAQ_DUOL, segment: platform, aliases: ["Duolingo"],
      wiki: {en: Duolingo}, apps: "Duolingo", apple_artist: [570060151], terms: ["Duolingo"], why: "유료 전환·일간 사용자 성장"}
   - {id: us-fnko, name: Funko, market: us, code: FNKO, fiscal: NASDAQ_FNKO, segment: toys_ip, aliases: ["Funko"],
@@ -158,3 +161,20 @@ screen:
     content_ip: ["Movies/Entertainment"]
     games: ["Casinos/Gaming"]
     retail: ["Specialty Stores", "Discount Stores"]
+
+# 수입 상대국 분리(2026-11-14 설계안 A-3, knowledge/methods/consumer_trends_design.md) — '물건이 말보다 먼저'.
+# 미국 Census 수입(나라별·월) → radar/state/trade_hs.sqlite obs(reporter us, flow import, partner = 나라 ISO), 요약 knowledge/models/consumer/trade_partner.csv.
+# radar/trade_hs.py가 하루 1회 함께 받는다(처음 120개월, 뒤로는 최근 2개월 다시). 키는 trade_hs와 같은 CENSUS_API_KEY.
+# 연결은 가설이다: 나라·품목 합계이지 회사 매출이 아니다(금지표: 수출입 급증 → 특정 기업 매출). 점유율이 높은 경우만 신호로 쓴다 — 회사별 적합도는 C단계 표본 외 검정이 정한다.
+trade:
+  months: 120
+  census_country: {KR: "5800", JP: "5880", CN: "5700", TW: "5830", VN: "5520", FR: "4279"}
+  items:
+    - {hs: "330499", name: 기초화장품(스킨케어), partners: [KR, FR, JP, CN], ids: [kr-apr, kr-silicon2], why: "K뷰티 대미 셀인 — 한국산 스킨케어 수입"}
+    - {hs: "3304", name: 화장품 전체, partners: [KR, CN, FR, JP], ids: [kr-apr, kr-silicon2, us-elf], why: "e.l.f.는 중국 생산 비중이 높다 — 중국산은 관세·재고 축적 영향도 섞인다"}
+    - {hs: "190230", name: 즉석면 등 기타 면류, partners: [KR, JP, CN, TW], ids: [kr-samyang], why: "불닭 대미 수출 — 한국산 면류(경쟁사 미국 현지 생산분은 안 잡힌다)"}
+    - {hs: "9503", name: 완구·피규어, partners: [CN, VN, JP], ids: [hk-popmart, us-fnko, us-mat, jp-takaratomy, jp-bandainamco, jp-sanrio], why: "완구 전체라 점유율이 낮다 — 방향만"}
+    - {hs: "950450", name: 비디오 게임기, partners: [CN, VN, JP], ids: [jp-nintendo], why: "스위치 2 출하 — PS5·Xbox도 섞인다"}
+    - {hs: "6404", name: 직물 갑피 신발(러닝화), partners: [VN, CN], ids: [us-onon, us-deck, jp-asics], why: "On·호카·아식스 생산지 — 나이키 등 전체 업계 합계"}
+    - {hs: "8509", name: 가정용 전기기기(블렌더 등), partners: [CN, VN], ids: [us-sn], why: "SharkNinja 생산지 — 업계 합계"}
+    - {hs: "961700", name: 진공 보온병, partners: [CN, VN], ids: [us-yeti], why: "YETI 드링크웨어 — 업계 합계"}

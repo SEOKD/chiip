@@ -6,9 +6,11 @@
 - 일본 e-Stat: 관심 장의 수입·수출, 나라별(수출은 2026-11-04 추가)
 - 대만·홍콩: 공개된 분류 단위(HS 류, SITC 대분류)
 저장 radar/state/trade_hs.sqlite(git 제외). 급등 결과 knowledge/models/trade_ppi/surge.json. 값은 원 단위 그대로 두고 나라끼리 더하지 않는다.
-사용: py radar/trade_hs.py --run · --status · --surge [n] · --series <hs> · --company <회사 id>
+소비재 품목 나라별 미국 수입(config/consumer.yaml trade) → knowledge/models/consumer/trade_partner.csv(2026-11-14). --consumer = 그것만.
+사용: py radar/trade_hs.py --run · --status · --surge [n] · --series <hs> · --company <회사 id> · --consumer
 """
 import argparse
+import csv
 import json
 import sqlite3
 import sys
@@ -189,6 +191,64 @@ def company_tags(entity):
     return sorted({inputs[t]["hs"] for t in tags if t in inputs} | {b["hs"] for p in (dp.get("margin") or {}).get("products") or [] for b in p.get("bom") or [] if b.get("hs")})
 
 
+CONSUMER_CSV = common.ROOT / "knowledge" / "models" / "consumer" / "trade_partner.csv"
+
+
+def consumer_partners(c, today, env, errors):
+    """소비재 품목의 미국 수입을 나라별로(config/consumer.yaml trade, 2026-11-14 설계안 A-3) — 품목 하나에 한 번 묻고 설정한 나라만 남긴다.
+    partner = 나라 ISO(overseas_sites와 같은 규칙), surge()는 WORLD만 보므로 섞이지 않는다. 이미 있으면 최근 2개월만 다시 받는다"""
+    t = (common.load_yaml("config/consumer.yaml") or {}).get("trade") or {}
+    key = env.get("CENSUS_API_KEY")
+    if not t or not key:
+        return 0
+    codes = t["census_country"]
+    iso = {v: k for k, v in codes.items()}
+    start = tp.start_month(today, int(t.get("months", 120)))
+    got = 0
+    for it in t["items"]:
+        hs, want = it["hs"], set(it["partners"])
+        have = sorted({r[0] for r in c.execute("SELECT period FROM obs WHERE reporter='us' AND flow='import' AND hs=? AND partner IN (%s)"
+                                               % ",".join("?" * len(want)), (hs, *sorted(want)))})
+        since = have[-2] if len(have) > 1 else start
+        url = (f"https://api.census.gov/data/timeseries/intltrade/imports/hs?get=CTY_CODE,GEN_VAL_MO&I_COMMODITY={hs}&COMM_LVL=HS{len(hs)}"
+               f"&time=from+{since}&key={key}")
+        try:
+            parts = [json.loads(tp.get(url, timeout=120) or "[]")]
+        except Exception:
+            parts = []   # 모든 나라 응답이 커서 끊기면(9503 완구, 2026-11-14) 나라별로 나눠 묻는다
+            for ptn in sorted(want):
+                try:
+                    parts.append(json.loads(tp.get(f"{url}&CTY_CODE={codes[ptn]}", timeout=120) or "[]"))
+                except Exception as e:
+                    errors.append(f"census 소비재 {hs} {ptn}: {type(e).__name__}")
+                time.sleep(PAUSE)
+        for rows in parts:
+            if rows:
+                h = rows[0]
+                a, v, p = h.index("CTY_CODE"), h.index("GEN_VAL_MO"), h.index("time")
+                got += store(c, [("us", "import", iso[r[a]], hs, r[p], float(r[v]), "USD") for r in rows[1:]
+                                 if iso.get(r[a]) in want and r[v] not in ("", None)])
+        time.sleep(PAUSE)
+    consumer_csv(c, t)
+    return got
+
+
+def consumer_csv(c, t):
+    """git에 남는 요약 — 품목·나라·월 수입액(달러). 나우캐스트(설계안 C) 입력"""
+    out = []
+    for it in t["items"]:
+        for ptn in it["partners"]:
+            for period, value in c.execute("SELECT period, value FROM obs WHERE reporter='us' AND flow='import' AND hs=? AND partner=? ORDER BY period",
+                                           (it["hs"], ptn)):
+                out.append([period, it["hs"], ptn, int(value), " ".join(it.get("ids") or [])])
+    CONSUMER_CSV.parent.mkdir(parents=True, exist_ok=True)
+    with CONSUMER_CSV.open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["month", "hs", "partner", "usd", "ids"])
+        w.writerows(out)
+    return len(out)
+
+
 def series(c, hs):
     return c.execute("SELECT reporter, flow, period, value, unit FROM obs WHERE hs=? AND partner=? ORDER BY reporter, flow, period", (hs, WORLD)).fetchall()
 
@@ -197,7 +257,9 @@ def run(today=None, env=None):
     today = today or common.now_kst().date()
     cfg, errors = scan_config(), []
     c = connect()
-    got = collect(c, cfg, today, env or common.load_env(), errors)
+    env = common.load_env() if env is None else env   # env={}(시험)는 실제 키를 읽지 않는다
+    got = collect(c, cfg, today, env, errors)
+    got += consumer_partners(c, today, env, errors)   # 소비재 품목 나라별(2026-11-14)
     if not got and errors:
         raise RuntimeError("무역 시계열을 받지 못했다: " + "; ".join(errors[:3]))
     rows = surge(c, cfg)
@@ -215,7 +277,13 @@ def main():
     ap.add_argument("--surge", nargs="?", const=15, type=int)
     ap.add_argument("--series")
     ap.add_argument("--company")
+    ap.add_argument("--consumer", action="store_true")
     a = ap.parse_args()
+    if a.consumer:
+        errs = []
+        c0 = connect()
+        print(f"소비재 나라별 수입 {consumer_partners(c0, common.now_kst().date(), common.load_env(), errs)}행 · 오류 {len(errs)}", *errs[:5])
+        c0.close()
     if a.run:
         print(run())
     c = connect()

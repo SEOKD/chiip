@@ -10,7 +10,9 @@
   news   브랜드 검색어 Google News 색인 7일 건수(현지어 포함) — 7·14·21·28일 전 기록 평균과 비교(4주 기준선이 쌓인 뒤부터)
 아마존·레딧 직접·틱톡은 robots 차단이라 쓰지 않는다(knowledge/methods/consumer_lens.md 3). 리테일·투자자 언급 수는 radar/attention.py가 같은 종목을 함께 센다.
 쓰는 것: knowledge/models/consumer/attention.csv(날짜·종목·원천·키·값 누적), attention_latest.json(종목별 수요 가속·원천별 값·급가속 spikes).
-사용: py radar/consumer_attention.py [종목 id…]
+  위키 일별 누적 radar/state/wiki_views.sqlite(git 제외, 2015-07~ 백필 + 매일 35일 창) → 월별 요약 wiki_monthly.csv(2026-11-14 설계안 A-2).
+  주의: Wikimedia는 2020-05부터 자동화 트래픽을 'automated'로 따로 분류한다 — 그 전 'user'에는 일부 봇이 섞여 있어 2020-05 전후는 수준 단절이 있을 수 있다.
+사용: py radar/consumer_attention.py [종목 id…] · --wiki-backfill [종목 id…] · --wiki-monthly
 """
 import csv
 import json
@@ -33,6 +35,8 @@ STEAM = "https://store.steampowered.com/api/appdetails?appids={appid}&filters=re
 APPLE = "https://rss.applemarketingtools.com/api/v2/{cc}/apps/{feed}/100/apps.json"
 LOOKUP = "https://itunes.apple.com/lookup"   # robots는 /search만 막는다 — 검색 API는 쓰지 않고 id 조회만
 ARTISTS = OUT / "apple_artists.json"
+WIKI_DB = common.ROOT / "radar" / "state" / "wiki_views.sqlite"   # 일별 누적(git 제외) — 2015-07~ 백필 + 매일 35일 창
+WIKI_MONTHLY = OUT / "wiki_monthly.csv"   # 월별 요약(git) — 나우캐스트 백테스트 입력
 LOCALE = {"jp": ("ja", "JP"), "kr": ("ko", "KR"), "hk": ("zh-HK", "HK"), "us": ("en-US", "US"), "eu": ("en-GB", "GB")}
 
 
@@ -44,16 +48,97 @@ def _get_json(url, ua, timeout=30):
     return json.loads(common.http_get(url, headers={"User-Agent": ua}, timeout=timeout))
 
 
-def wiki_accel(lang, title, ua, today, days=7):
-    """(최근 7일 조회, 직전 28일 주평균, 가속) — 문서가 없으면 None"""
+def wiki_series(lang, title, ua, start, end):
+    """{YYYYMMDD: 사람 조회수} — 기간 전체를 한 번에(응답에 쪽 나눔이 없다). 문서가 없으면 None"""
     lang = re.sub(r"\d+$", "", lang)   # en2·en3 = 같은 언어의 두 번째·세 번째 문서
-    end, start = today - timedelta(days=1), today - timedelta(days=days + 28)
     url = WIKI.format(lang=lang, title=urllib.parse.quote(title.replace(" ", "_"), safe=""), start=start.strftime("%Y%m%d"), end=end.strftime("%Y%m%d"))
     try:
-        items = _get_json(url, ua).get("items") or []
+        items = _get_json(url, ua, 60).get("items") or []
     except Exception:
         return None
-    by = {i["timestamp"][:8]: i["views"] for i in items}
+    return {i["timestamp"][:8]: i["views"] for i in items}
+
+
+def _wiki_db():
+    import sqlite3
+    WIKI_DB.parent.mkdir(parents=True, exist_ok=True)
+    con = sqlite3.connect(WIKI_DB)
+    con.execute("create table if not exists views(lang text, title text, day text, views integer, primary key(lang, title, day))")
+    return con
+
+
+def wiki_store(lang, title, by):
+    """일별 조회를 누적 저장소에 넣는다(같은 날은 덮어씀) — 매일 회차의 35일 창이 백필 뒤 시계열을 이어 붙인다"""
+    if not by:
+        return 0
+    lang = re.sub(r"\d+$", "", lang)
+    with _wiki_db() as con:
+        con.executemany("insert or replace into views values(?,?,?,?)", [(lang, title, d, int(v)) for d, v in by.items()])
+    return len(by)
+
+
+def wiki_backfill(only=None, start=date(2015, 7, 1)):
+    """지도 위키 문서 전체를 2015-07-01(Wikimedia 일별 자료 시작)부터 받는다 — 백테스트·KPI 나우캐스트용(설계안 A-2, 2026-11-14)"""
+    ua = (cfg().get("attention") or {}).get("user_agent") or common.contact_ua()
+    end = common.now_kst().date() - timedelta(days=1)
+    done, miss = 0, []
+    for co in cfg().get("companies") or []:
+        if only and co["id"] not in only:
+            continue
+        for lang, title in _wiki_titles(co):
+            by = wiki_series(lang, title, ua, start, end)
+            if by is None:
+                miss.append(f"{co['id']}:{lang}:{title}")
+                continue
+            done += wiki_store(lang, title, by)
+            time.sleep(0.5)
+    wiki_monthly()
+    return done, miss
+
+
+def _wiki_titles(co):
+    """[(언어 키, 제목)] — 지금 제목 + 옛 제목(wiki_old)"""
+    out = list((co.get("wiki") or {}).items())
+    for lang, olds in (co.get("wiki_old") or {}).items():
+        out += [(lang, t) for t in olds]
+    return out
+
+
+def wiki_monthly():
+    """월별 합계 CSV(git에 남는 요약) — 옛 제목(wiki_old) 조회는 지금 제목 행에 더한다(old_views에 따로 표시).
+    days = 그 달 자료가 있는 날 수(지금·옛 제목 중 많은 쪽 — 진행 중인 달·문서 생성 전은 적다)"""
+    with _wiki_db() as con:
+        agg = {(l, t, ym): (v, n) for l, t, ym, v, n in
+               con.execute("select lang, title, substr(day,1,6), sum(views), count(*) from views group by 1,2,3").fetchall()}
+    out = []
+    for co in cfg().get("companies") or []:
+        olds = co.get("wiki_old") or {}
+        for key, title in (co.get("wiki") or {}).items():
+            lang = re.sub(r"\d+$", "", key)
+            months = {ym for (l, t, ym) in agg if l == lang and (t == title or t in olds.get(key, []))}
+            for ym in sorted(months):
+                v, n = agg.get((lang, title, ym), (0, 0))
+                prev = [agg.get((lang, t, ym), (0, 0)) for t in olds.get(key, [])]
+                old = sum(x[0] for x in prev)
+                n = max([n] + [x[1] for x in prev])
+                out.append([f"{ym[:4]}-{ym[4:]}", co["id"], lang, title, v + old, n, old])
+    with WIKI_MONTHLY.open("w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["month", "id", "lang", "title", "views", "days", "old_views"])
+        w.writerows(out)
+    return len(out)
+
+
+def wiki_accel(lang, title, ua, today, days=7):
+    """(최근 7일 조회, 직전 28일 주평균, 가속) — 문서가 없으면 None"""
+    end, start = today - timedelta(days=1), today - timedelta(days=days + 28)
+    by = wiki_series(lang, title, ua, start, end)
+    if by is None:
+        return None
+    try:
+        wiki_store(lang, title, by)
+    except Exception:
+        pass   # 누적 저장 실패가 오늘 가속 계산을 막지 않는다
     recent = sum(by.get((end - timedelta(days=k)).strftime("%Y%m%d"), 0) for k in range(days))
     prior = sum(by.get((end - timedelta(days=days + k)).strftime("%Y%m%d"), 0) for k in range(28)) / 4
     return recent, prior, (recent + 1) / (prior + 1)
@@ -73,13 +158,36 @@ def apple_ranks(countries, feeds, ua):
     out = {}
     for cc in countries:
         for feed in feeds:
-            try:
-                rs = _get_json(APPLE.format(cc=cc, feed=feed), ua, 40)["feed"]["results"]
-            except Exception:
+            rs = None
+            for wait in (0, 5, 20):   # 순위 RSS는 504를 자주 낸다(2026-11-14 시험) — 두 번 더 묻는다
+                time.sleep(wait)
+                try:
+                    rs = _get_json(APPLE.format(cc=cc, feed=feed), ua, 40)["feed"]["results"]
+                    break
+                except Exception:
+                    continue
+            if rs is None:
                 continue
-            out[(cc, feed)] = [(i + 1, r.get("name", ""), r.get("artistName", ""), _artist_id(r)) for i, r in enumerate(rs)]
+            out[(cc, feed)] = [(i + 1, r.get("name", ""), r.get("artistName", ""), _artist_id(r) or ("app:" + str(r["id"]) if r.get("id") else None))
+                               for i, r in enumerate(rs)]
             time.sleep(0.5)
     return out
+
+
+def resolve_artists(app_ids, ua, cache):
+    """순위 RSS 앱 id → 개발사 id(iTunes 조회 API). RSS v2 결과에는 개발사 id가 없다(2026-11-14 확인, 앱 id만).
+    cache = {앱 id: 개발사 id} — 한 번 푼 앱은 다시 묻지 않는다"""
+    todo = [a for a in dict.fromkeys(app_ids) if a not in cache]
+    for i in range(0, len(todo), 50):
+        try:
+            d = _get_json(f"{LOOKUP}?id={','.join(todo[i:i + 50])}", ua, 40)
+            time.sleep(3.5)
+        except Exception:
+            continue
+        for x in d.get("results") or []:
+            if x.get("trackId") and x.get("artistId"):
+                cache[str(x["trackId"])] = str(x["artistId"])
+    return [cache[a] for a in app_ids if a in cache]
 
 
 def news_count(term, market, days):
@@ -132,6 +240,12 @@ def collect(only=None, today=None):
         if only and cid not in only:
             continue
         o = latest.setdefault(cid, {"name": co["name"], "segment": co.get("segment"), "wiki": {}, "steam": {}, "apple": [], "news": {}, "missing": []})
+        for lang, olds in (co.get("wiki_old") or {}).items():   # 옛 제목은 누적만(가속 계산에는 쓰지 않는다)
+            for t in olds:
+                try:
+                    wiki_store(lang, t, wiki_series(lang, t, ua, today - timedelta(days=35), today - timedelta(days=1)))
+                except Exception:
+                    pass
         for lang, title in (co.get("wiki") or {}).items():
             r = wiki_accel(lang, title, ua, today, days)
             if r is None:
@@ -153,14 +267,21 @@ def collect(only=None, today=None):
             time.sleep(1.0)
         if co.get("apps"):
             rx = re.compile(co["apps"], re.I)
+            hit_apps = []
             for (cc, feed), lst in charts.items():
                 for rank, name, artist, aid in lst:
                     if rx.search(artist):
                         o["apple"].append({"country": cc, "feed": feed, "rank": rank, "app": name[:40]})
-                        if aid:
+                        if aid and aid.startswith("app:"):
+                            hit_apps.append(aid[4:])
+                        elif aid:
                             learned.setdefault(cid, [])
                             if aid not in learned[cid]:
                                 learned[cid].append(aid)
+            for aid in resolve_artists(hit_apps, ua, learned.setdefault("_app_artist", {})):
+                learned.setdefault(cid, [])
+                if aid not in learned[cid]:
+                    learned[cid].append(aid)
             rows.append((today.isoformat(), cid, "apple", "best_rank", min((x["rank"] for x in o["apple"]), default="")))
         artists = list(dict.fromkeys([str(x) for x in co.get("apple_artist") or []] + learned.get(cid, [])))
         if artists:
@@ -244,4 +365,11 @@ def run(only=None):
 
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    print(run(sys.argv[1:] or None))
+    args = sys.argv[1:]
+    if "--wiki-backfill" in args:
+        n, miss = wiki_backfill([a for a in args if not a.startswith("--")] or None)
+        print(f"위키 백필 {n:,}일·문서 · 못 찾은 문서 {len(miss)}" + "".join("\n  " + m for m in miss))
+    elif "--wiki-monthly" in args:
+        print(f"위키 월별 {wiki_monthly():,}행")
+    else:
+        print(run(args or None))
