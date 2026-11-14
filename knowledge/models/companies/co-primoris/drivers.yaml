@@ -1,0 +1,99 @@
+auto: true
+id: co-primoris
+name: Primoris Services
+ticker: PRIM
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.97
+  EU: 0.03
+tax: 0.26
+horizon: 10
+as_of: '2026-11-14'
+market:
+  date: '2026-11-14'
+  price: 69.3
+  shares: 0.053129
+  net_debt: 1.0556
+  source: 가격 = 2026-11-13 종가 $69.30(TradingView NYSE:PRIM, 11/14 조회). 주식 수 52,528,702주(3Q
+    10-Q 표지 2026-10-30). 현금 $203.5M(9/30, 10-Q). 차입 = 차입 $784.3M(장부가, 원금 $788.5M —
+    텀론 $769.9M·장비 대출 $11.1M·담보 대출 $7.5M, 유동 $42.5M, 리볼버 미인출) + 운영 리스 부채 $474.8M =
+    $1,259.1M(9/30 10-Q)
+rev0: 7.105
+ic0: 2.6113
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.1119
+      end: 0.035
+      decay: 0.697
+    margin:
+      m0: 0.0175
+      target: 0.06
+      year_target: 3
+      lr: 0.06
+      lam: 0.35
+      anchors:
+      - 0.0467
+    s2c: 2.703
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.2104
+      end: 0.04
+      decay: 0.747
+    margin:
+      m0: 0.0175
+      target: 0.08
+      year_target: 3
+      lr: 0.06
+      lam: 0.25
+      anchors:
+      - 0.0467
+    s2c: 3.108
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.0134
+      end: 0.030000000000000002
+      decay: 0.597
+    margin:
+      m0: 0.0175
+      target: 0.04
+      year_target: 3
+      lr: 0.06
+      lam: 0.5
+      anchors:
+      - 0.0467
+    s2c: 2.298
+mc:
+  sigma_growth: 0.0493
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 7.105
+  growth: 컨센서스 1년차 11.2%, 2년차 8.9%
+  margin: 1년차 컨센서스 4.7% 고정 → 목표 6%(3년차, 덮어쓰기) → 장기 수렴 6%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.703
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 1.3%~21.0%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} → 모델 조정 {''bear'': 0.35,
+    ''base'': 0.4, ''bull'': 0.25}(약세 +5%p: 2027 EPS 회복은 회사 말뿐이고(가이던스 미제시) 2026년에
+    컨센서스가 −64% 깎인 기록이 있어서다. 강세 −5%p.) — 다음 해 매출 성장 분포로 계산 — 약세 +6.3% 아래·강세 +16.1%
+    위 확률. 내부 관점(컨센서스 +11.2%, σ 10.4%: 범위 19.7% ÷ d2(8) × 1.5) 100% — 외부 관점 꺼짐(SEC
+    전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률을 6%로 둔다: PRIM GAAP 영업이익률 FY19~25 4.4~5.4%, 동종 중앙값 6.5% — 회사가
+    말한 2027 정상화 + 믹스 개선을 넣어도 업종 역사 위로 잡지 않는다'
+  shares: '완전 희석 = 기본 0.052528702(2026-10-30) + 옵션·RSU·워런트·전환 0.0006 — 3Q26 희석 가중
+    주식 54.1M − 기본 53.5M = 주식 보상 0.6M주(10-Q). RSU·PSU '
+notes:
+- 자동 생성(build_drivers) 2026-11-14 — 데이터 묶음 2026-11-14
+- '어닝콜 위험: 재생에너지 마지막 원가 초과 프로젝트 1건 4Q 기계적 준공 예정 — 시운전은 2027년'
+- '어닝콜 위험: 4Q 재생 착공 지연으로 에너지 매출 감소'
+- '어닝콜 위험: FCF 약 0, 순차입/EBITDA 1.8배'
+evidence:
+- https://fiscal.ai/company/NYSE-PRIM
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=1361538&type=8-K
+- Fiscal.ai MCP 2026-11-12 — 표준화 손익·재무상태표·현금흐름, 자체 추정, 3Q26 어닝콜 Q&A(요지만)
