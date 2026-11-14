@@ -1,0 +1,176 @@
+{
+ "as_of": "2026-11-14T23:57:44+09:00",
+ "day": "2026-11-14",
+ "rising": {
+  "apple": [],
+  "steam": [],
+  "wiki": [
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "The Legend of Zelda: Ocarina of Time",
+    "views7": 148997,
+    "base7": 38479,
+    "accel": 3.9,
+    "brand": {
+     "ticker": "7974.T",
+     "company": "닌텐도",
+     "term": "the legend of zelda",
+     "group": "f0"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "The Legend of Zelda: Ocarina of Time (2026 video game)",
+    "views7": 128961,
+    "base7": 37156,
+    "accel": 3.5,
+    "brand": {
+     "ticker": "7974.T",
+     "company": "닌텐도",
+     "term": "the legend of zelda",
+     "group": "f0"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 103440,
+    "base7": 29728,
+    "accel": 3.5,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "ja.wikipedia",
+    "title": "ゼルダの伝説 時のオカリナ",
+    "views7": 54590,
+    "base7": 13155,
+    "accel": 4.1,
+    "brand": {
+     "ticker": "7974.T",
+     "company": "닌텐도",
+     "term": "ゼルダの伝説",
+     "group": "f0"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto VI",
+    "views7": 48397,
+    "base7": 9209,
+    "accel": 5.3,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto vi",
+     "group": "b26"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   }
+  ],
+  "trends": [
+   {
+    "source": "trends",
+    "geo": "DE",
+    "query": "gta 6 deal",
+    "traffic": 200,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "gta 6",
+     "group": "b26"
+    }
+   },
+   {
+    "source": "trends",
+    "geo": "FR",
+    "query": "red dead redemption ii",
+    "traffic": 200,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "red dead redemption",
+     "group": "f9"
+    }
+   }
+  ]
+ },
+ "alerts": [
+  {
+   "source": "wiki",
+   "project": "en.wikipedia",
+   "title": "The Legend of Zelda: Ocarina of Time",
+   "views7": 148997,
+   "base7": 38479,
+   "accel": 3.9,
+   "brand": {
+    "ticker": "7974.T",
+    "company": "닌텐도",
+    "term": "the legend of zelda",
+    "group": "f0"
+   },
+   "kind": "브랜드",
+   "through": "2026-11-13",
+   "also_wikis": [
+    "ja"
+   ],
+   "headline": "닌텐도 'The Legend of Zelda: Ocarina o' 위키(en) 7일 조회 148,997 ×3.9 · ja 위키도 급증"
+  },
+  {
+   "source": "wiki",
+   "project": "en.wikipedia",
+   "title": "Grand Theft Auto V",
+   "views7": 103440,
+   "base7": 29728,
+   "accel": 3.5,
+   "brand": {
+    "ticker": "TTWO",
+    "company": "테이크투",
+    "term": "grand theft auto",
+    "group": "f9"
+   },
+   "kind": "브랜드",
+   "through": "2026-11-13",
+   "also_wikis": [
+    "de"
+   ],
+   "headline": "테이크투 'Grand Theft Auto V' 위키(en) 7일 조회 103,440 ×3.5 · de 위키도 급증"
+  }
+ ],
+ "baseline_days": {
+  "apple": 1,
+  "steam": 1,
+  "wiki": 36,
+  "trends": 1
+ },
+ "baseline_from": {
+  "apple": null,
+  "steam": null
+ },
+ "collected": {
+  "apple": 10,
+  "steam": 30,
+  "wiki": 0,
+  "trends": 50
+ },
+ "errors": [],
+ "note": "단서이지 사실이 아니다(금지표: 관심 증가 → 매출). 상장사 매핑은 개발사·퍼블리셔·브랜드 사전 기준."
+}

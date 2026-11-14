@@ -1,0 +1,254 @@
+# 한국 외 소비재 시장 트렌드 (마스터 지시 2026-11-14 "나는 한국 주식종목을 투자하기도 하지만 메인은 미국, 일본, 유럽이다.
+#  한국 외 소비재 시장 트렌드를 파악하는 파이프라인을 만들어라")
+#
+# 두 층이다. 공식 통계(무엇이 실제로 팔리나 — 월간, 늦지만 정직하다) + 상향식 관심(무엇이 막 뜨나 — 매일, 빠르지만 단서다).
+#   radar/consumer_macro.py      공식 통계 수집·지표(3개월 YoY·가속·5년 z) → knowledge/models/consumer_trends/macro_latest.json
+#                                새 달이 나오고 문턱을 넘는 업종이 있으면 Pulse '지표 발표'(src-consumer-macro)
+#   radar/consumer_discovery.py  애플 차트·스팀 판매 순위·위키 상위 문서·Google Trends 급상승 → discovery_latest.json → Pulse '소비재'
+#   scripts/consumer/trends_board.py  주간 보드(outputs/consumer/trends_<날짜>.md)·대시보드 자료
+# 원천 규칙(2026-11-14 확인): robots·약관 허용 + 공식 API만. 경제산업성(商業動態統計)은 robots.txt까지 비브라우저 접속을 403으로 막아 제외(접속 가장 금지).
+#   위키백과 자체 API(/api/, /w/)는 robots 금지 — Wikimedia 조회수 API(wikimedia.org)만 쓴다. 아마존·월마트·타깃·틱톡은 제외(knowledge/methods/consumer_lens.md 3).
+# 금지표: 업종 판매 증가 → 특정 기업 매출 / 관심 증가 → 매출. 노출(exposure)은 가설이다 — 2026-11-14 C단계 검정에서 관심·수입 신호는 회사 매출 예측을
+#   지난 분기 성장률보다 낫게 하지 못했다(knowledge/models/consumer/nowcast.json). 이 보드는 '무엇이 움직이나'를 먼저 아는 도구이지 실적 예측기가 아니다.
+
+macro:
+  history_from: "2015-01"
+  # 경보 문턱 — 등록부 prm-ctrend-*(운영 가정, 피팅 전). 가속 = 최근 3개월 YoY − 3개월 전의 3개월 YoY(%p), z = 최근 3개월 YoY의 직전 60개월 분포 대비
+  alert: {accel_pp: 3.0, z: 1.5, accel_pp_noisy: 8.0}
+  us:   # FRED — Census 월간 소매(계절조정, 명목) · BLS CPI(계절조정). 공공 자료(Census·BLS)
+    - {id: us-total, series: RSAFS, name: 소매+외식 합계, cat: total}
+    - {id: us-clothing, series: RSCCAS, name: 의류·잡화점, cat: clothing, cpi: us-cpi-apparel}
+    - {id: us-sporting, series: RSSGHBMS, name: 스포츠·취미·악기·서점, cat: sporting_hobby, cpi: us-cpi-toys}
+    - {id: us-health, series: RSHPCS, name: 건강·개인용품점(드럭·화장품), cat: health_personal}
+    - {id: us-foodsvc, series: RSFSDP, name: 외식·주점, cat: food_services, cpi: us-cpi-foodaway}
+    - {id: us-nonstore, series: RSNSR, name: 무점포(온라인 포함), cat: nonstore}
+    - {id: us-genmerch, series: RSGMS, name: 종합소매(할인점·창고형), cat: general_merch}
+    - {id: us-furniture, series: RSFHFS, name: 가구·인테리어, cat: furniture}
+    - {id: us-electronics, series: RSEAS, name: 전자·가전점, cat: electronics, cpi: us-cpi-video}
+    - {id: us-grocery, series: RSDBS, name: 식품·음료점, cat: grocery, cpi: us-cpi-foodhome}
+    - {id: us-building, series: RSBMGESD, name: 건자재·원예, cat: building}
+    - {id: us-misc, series: RSMSR, name: 기타 소매(펫·선물 등), cat: misc}
+    - {id: us-cpi-apparel, series: CPIAPPSL, name: 물가 의류, cat: price}
+    - {id: us-cpi-footwear, series: CUSR0000SEAE, name: 물가 신발, cat: price}
+    - {id: us-cpi-toys, series: CUSR0000SERE01, name: 물가 장난감, cat: price}
+    - {id: us-cpi-foodaway, series: CUSR0000SEFV, name: 물가 외식, cat: price}
+    - {id: us-cpi-foodhome, series: CUSR0000SAF11, name: 물가 가정 식품, cat: price}
+    - {id: us-cpi-recreation, series: CPIRECSL, name: 물가 레저, cat: price}
+    - {id: us-cpi-alcohol, series: CUSR0000SAF116, name: 물가 주류, cat: price}
+    - {id: us-cpi-video, series: CUSR0000SERA, name: 물가 영상·음향기기, cat: price}
+  jp:   # 총무성 家計調査 家計収支編 二人以上の世帯 品目分類(2025年改定) 総数 금액, 전국 — e-Stat 0004023601(1985~). 명목 엔/가구, 표본 조사라 품목 단위는 잡음이 크다(noisy)
+    table: "0004023601"
+    household: "03"
+    area: "00000"
+    items:
+      - {id: jp-total, code: "001100000", name: 소비지출 합계, cat: total}
+      - {id: jp-eatout, code: "011200000", name: 외식, cat: eating_out}
+      - {id: jp-burger, code: "011211090", name: 햄버거 외식, cat: eating_out, noisy: true}
+      - {id: jp-cafe, code: "011212010", name: 찻집(카페), cat: eating_out, noisy: true}
+      - {id: jp-sweets, code: "010800000", name: 과자류, cat: food}
+      - {id: jp-snack, code: "010800110", name: 스낵과자, cat: food, noisy: true}
+      - {id: jp-drinks, code: "011000000", name: 음료, cat: food}
+      - {id: jp-alcohol, code: "011100000", name: 주류, cat: food}
+      - {id: jp-clothing, code: "050000000", name: 의류·신발, cat: clothing}
+      - {id: jp-sneakers, code: "050700010", name: 성인 운동화, cat: clothing, noisy: true}
+      - {id: jp-sportswear, code: "090202030", name: 스포츠웨어, cat: clothing, noisy: true}
+      - {id: jp-console, code: "090203010", name: 게임기, cat: games, noisy: true}
+      - {id: jp-gamesoft, code: "090203150", name: 게임 소프트 등, cat: games, noisy: true}
+      - {id: jp-toys, code: "090203020", name: 기타 장난감, cat: toys, noisy: true}
+      - {id: jp-petfood, code: "090204030", name: 펫푸드, cat: pet, noisy: true}
+      - {id: jp-cosmetics, code: "100121040", name: 비누·화장품, cat: beauty}
+      - {id: jp-watch, code: "100133020", name: 손목시계, cat: watches, noisy: true}
+      - {id: jp-recreation, code: "090000000", name: 교양오락 합계, cat: recreation}
+      - {id: jp-lodging, code: "090410001", name: 숙박료, cat: travel, noisy: true}
+      - {id: jp-tour-dom, code: "090420010", name: 국내 패키지여행, cat: travel, noisy: true}
+      - {id: jp-tour-int, code: "090420020", name: 해외 패키지여행, cat: travel, noisy: true}
+      - {id: jp-admission, code: "090442000", name: 입장·관람·게임비, cat: leisure, noisy: true}
+      - {id: jp-gym, code: "090442040", name: 스포츠클럽 이용료, cat: leisure, noisy: true}
+  jp_inbound:   # 日本政府観光局(JNTO) 訪日外客数 — 통계 페이지의 xlsx(연도별 시트, 시장별 월 인원·전년 동월비). 출처 표기: 日本政府観光局（JNTO）
+    page: "https://www.jnto.go.jp/statistics/data/visitors-statistics/"
+    markets:
+      - {id: jp-inb-total, label: 総数, name: 방일객 합계}
+      - {id: jp-inb-cn, label: 中国, name: 방일객 중국}
+      - {id: jp-inb-kr, label: 韓国, name: 방일객 한국}
+      - {id: jp-inb-tw, label: 台湾, name: 방일객 대만}
+      - {id: jp-inb-hk, label: 香港, name: 방일객 홍콩}
+      - {id: jp-inb-us, label: 米国, name: 방일객 미국}
+  eu:   # Eurostat sts_trtu_m 소매 판매량(VOL_SLS)·계절·영업일 조정(SCA)·2021=100. 나라 × 업종
+    geos: {EU27_2020: EU27, DE: 독일, FR: 프랑스, IT: 이탈리아, ES: 스페인, NL: 네덜란드}
+    nace:
+      - {code: G47_X_G473, name: 소매 합계(연료 제외), cat: total}
+      - {code: G47_FOOD, name: 식품·음료·담배, cat: grocery}
+      - {code: G47_NFOOD_X_G473, name: 비식품(연료 제외), cat: nonfood}
+      - {code: G477, name: 기타 상품 전문점(의류·신발·화장품·약국·시계 등), cat: specialty}   # 의류(G47_NF_CLTH)·화장품(G47_NF_HLTH)은 6개 지역 모두 자료 없음(2026-11-14 확인)
+      - {code: G474, name: 정보통신기기 전문점, cat: electronics}
+      - {code: G475, name: 가정용품 전문점(가구·가전·철물), cat: furniture}
+      - {code: G476, name: 문화·레저 용품(책·스포츠·장난감), cat: sporting_hobby}
+      - {code: G4791, name: 통신판매·온라인, cat: nonstore}
+  uk:   # ONS 소매판매지수(DRSI). kind yoy = 이미 전년 동월비(%) 시계열
+    - {id: uk-total, series: j5ek, name: 소매 판매량 합계(SA 지수), cat: total, kind: level}
+    - {id: uk-food, series: idob, name: 식품점 판매량, cat: grocery, kind: yoy}
+    - {id: uk-nonfood, series: idoc, name: 비식품점 판매량, cat: nonfood, kind: yoy}
+    - {id: uk-clothing, series: idog, name: 의류·신발점 판매량, cat: clothing, kind: yoy}
+    - {id: uk-household, series: idoh, name: 가정용품점 판매량, cat: furniture, kind: yoy}
+    - {id: uk-nonstore, series: j596, name: 무점포 판매액(원계열 지수), cat: nonstore, kind: level}
+
+# 업종 → 상장사 노출(가설). 지역 통계가 움직이면 볼 종목. ref = 지역 통계 id(위). 매출 지역 비중은 공시 기준 대략치이며 숫자 대신 '주력/일부'만 적는다.
+exposure:
+  us-clothing: [TJX, ROST, BURL, ANF, AEO, URBN, GAP, LULU]
+  us-sporting: [DKS, ASO, HAS, MAT, FNKO]
+  us-health: [ULTA, ELF, COTY, EL, KVUE]
+  us-foodsvc: [CMG, CAVA, SBUX, MCD, BROS, WING, DPZ, TXRH, SHAK]
+  us-nonstore: [AMZN, ETSY, CHWY, W, EBAY, PDD]
+  us-genmerch: [WMT, TGT, COST, BJ, DG, DLTR, OLLI, FIVE]
+  us-furniture: [RH, WSM, W]
+  us-electronics: [BBY]
+  us-grocery: [KR, ACI, SFM]
+  us-building: [HD, LOW]
+  us-misc: [CHWY, PETS, FIVE]
+  jp-eatout: [7550.T 젠쇼, 3397.T 토리돌, 3197.T 스카이락, 2702.T 일본맥도날드]
+  jp-burger: [2702.T 일본맥도날드]
+  jp-cafe: [3087.T 도토루·니치레스, 3543.T 코메다]
+  jp-sweets: [2229.T 가루비, 2269.T 메이지, 2206.T 에자키글리코]
+  jp-snack: [2229.T 가루비]
+  jp-drinks: [2587.T 산토리식품, 2593.T 이토엔]
+  jp-alcohol: [2502.T 아사히, 2503.T 기린, 2587.T 산토리식품]
+  jp-clothing: [9983.T 패스트리테일링, 8227.T 시마무라, 7564.T 워크맨]
+  jp-sneakers: [7936.T 아식스, 2670.T ABC마트]
+  jp-sportswear: [7936.T 아식스, 8111.T 골드윈]
+  jp-console: [7974.T 닌텐도, 6758.T 소니]
+  jp-gamesoft: [7974.T 닌텐도, 9697.T 캡콤, 9684.T 스퀘어에닉스, 7832.T 반다이남코, 9766.T 코나미]
+  jp-toys: [7832.T 반다이남코, 7867.T 다카라토미, 8136.T 산리오]
+  jp-petfood: [8113.T 유니참]
+  jp-cosmetics: [4911.T 시세이도, 4452.T 가오, 4922.T 고세, 4927.T 폴라오르비스]
+  jp-watch: [8050.T 세이코, 7762.T 시티즌, 6952.T 카시오]
+  jp-tour-int: [9603.T HIS]
+  jp-admission: [4661.T 오리엔탈랜드, 9602.T 도호]
+  jp-gym: [7085.T 커브스]
+  jp-inb-total: [3099.T 미쓰코시이세탄, 8233.T 다카시마야, 3086.T J프론트, 7532.T PPIH(돈키호테), 3088.T 마쓰키요코코카라]
+  jp-inb-cn: [4911.T 시세이도, 4922.T 고세, 3099.T 미쓰코시이세탄, 8233.T 다카시마야, 3088.T 마쓰키요코코카라]
+  eu-specialty: [ITX.MC 인디텍스, HM-B.ST H&M, ABF.L 프라이마크(ABF), OR.PA 로레알, BEI.DE 바이어스도르프, PUIG.MC 푸이그]
+  eu-electronics: [CEC.DE 세코노미(미디어마크트), FNAC.PA 프낙다르티]
+  eu-furniture: [KGF.L 킹피셔]
+  eu-sporting_hobby: [ADS.DE 아디다스, PUM.DE 푸마]
+  eu-nonstore: [ZAL.DE 잘란도, OCDO.L 오카도]
+  eu-grocery: [CA.PA 까르푸, AD.AS 아홀드델레이즈]
+  uk-clothing: [NXT.L 넥스트, ABF.L 프라이마크(ABF), MKS.L M&S, BRBY.L 버버리]
+  uk-food: [TSCO.L 테스코, SBRY.L 세인즈버리, MKS.L M&S]
+
+# 상향식 발굴 — 개발사·퍼블리셔·브랜드 → 상장사(정규식, 대소문자 무시). 매칭이 없으면 '비상장·미매핑'으로 남긴다(트렌드 단서로는 쓴다)
+discovery:
+  apple: {countries: [us, jp, gb, de, fr], feeds: [top-free, top-paid], top: 25, jump: 50}
+  steam: {countries: [us, jp, de], top: 15}
+  wiki: {projects: [en.wikipedia, ja.wikipedia, de.wikipedia, fr.wikipedia], min_views7: {en: 100000, ja: 30000, de: 30000, fr: 30000}, accel: 3.0, top: 15}
+  trends: {geos: [US, JP, GB, DE, FR]}
+  # 상장사가 아닌 개발사(예: 틱톡·쉬인)는 넣지 않는다. 예: Temu = PDD Holdings
+  issuers:
+    - {ticker: NTDOY/7974.T, name: 닌텐도, rx: "^Nintendo"}
+    - {ticker: SONY/6758.T, name: 소니, rx: "Sony|PlayStation"}
+    - {ticker: 9697.T, name: 캡콤, rx: "^CAPCOM"}
+    - {ticker: 9684.T, name: 스퀘어에닉스, rx: "SQUARE ENIX"}
+    - {ticker: 7832.T, name: 반다이남코, rx: "BANDAI NAMCO"}
+    - {ticker: 9766.T, name: 코나미, rx: "^KONAMI"}
+    - {ticker: 6460.T, name: 세가사미, rx: "^SEGA|ATLUS"}
+    - {ticker: 4751.T, name: 사이버에이전트(사이게임즈), rx: "Cygames|CyberAgent"}
+    - {ticker: 2121.T, name: 믹시, rx: "^mixi|XFLAG"}
+    - {ticker: 3765.T, name: 겅호, rx: "GungHo"}
+    - {ticker: 3659.T, name: 넥슨, rx: "^NEXON"}
+    - {ticker: 4385.T, name: 메루카리, rx: "^Mercari"}
+    - {ticker: 4755.T, name: 라쿠텐, rx: "^Rakuten"}
+    - {ticker: 4689.T, name: LY(라인야후), rx: "LY Corporation|LINE Corporation|Yahoo Japan"}
+    - {ticker: 3092.T, name: ZOZO, rx: "^ZOZO"}
+    - {ticker: 9983.T, name: 패스트리테일링, rx: "FAST RETAILING|UNIQLO"}
+    - {ticker: TTWO, name: 테이크투, rx: "Take-Two|Rockstar Games|^2K|Zynga"}
+    - {ticker: EA, name: 일렉트로닉아츠, rx: "^Electronic Arts|^EA Swiss"}
+    - {ticker: UBI.PA, name: 유비소프트, rx: "^Ubisoft"}
+    - {ticker: CDR.WA, name: CD프로젝트, rx: "CD PROJEKT"}
+    - {ticker: EMBRAC-B.ST, name: 엠브레이서, rx: "THQ Nordic|Embracer|Plaion|Coffee Stain"}
+    - {ticker: PDX.ST, name: 패러독스, rx: "^Paradox Interactive"}
+    - {ticker: RBLX, name: 로블록스, rx: "^Roblox"}
+    - {ticker: DUOL, name: 듀오링고, rx: "^Duolingo"}
+    - {ticker: NFLX, name: 넷플릭스, rx: "^Netflix"}
+    - {ticker: SPOT, name: 스포티파이, rx: "^Spotify"}
+    - {ticker: PDD, name: PDD(테무), rx: "Temu|PDD Holdings|Whaleco"}
+    - {ticker: AMZN, name: 아마존, rx: "^AMZN|^Amazon"}
+    - {ticker: WMT, name: 월마트, rx: "^Walmart"}
+    - {ticker: TGT, name: 타깃, rx: "^Target"}
+    - {ticker: COST, name: 코스트코, rx: "^Costco"}
+    - {ticker: MCD, name: 맥도날드, rx: "^McDonald"}
+    - {ticker: SBUX, name: 스타벅스, rx: "^Starbucks"}
+    - {ticker: CMG, name: 치폴레, rx: "^Chipotle"}
+    - {ticker: DPZ, name: 도미노, rx: "^Domino"}
+    - {ticker: DASH, name: 도어대시, rx: "^DoorDash"}
+    - {ticker: UBER, name: 우버, rx: "^Uber"}
+    - {ticker: ABNB, name: 에어비앤비, rx: "^Airbnb"}
+    - {ticker: BKNG, name: 부킹, rx: "^Booking\\.com"}
+    - {ticker: NKE, name: 나이키, rx: "^Nike"}
+    - {ticker: LULU, name: 룰루레몬, rx: "^lululemon"}
+    - {ticker: ETSY, name: 엣시, rx: "^Etsy"}
+    - {ticker: EBAY, name: 이베이, rx: "^eBay"}
+    - {ticker: ULTA, name: 울타, rx: "^Ulta"}
+    - {ticker: ZAL.DE, name: 잘란도, rx: "^Zalando"}
+    - {ticker: ITX.MC, name: 인디텍스, rx: "^Industria de Diseno|^ZARA|^Inditex"}
+    - {ticker: HM-B.ST, name: H&M, rx: "^H & M|^H&M"}
+    - {ticker: MC.PA, name: LVMH(세포라), rx: "^Sephora|LVMH"}
+    - {ticker: HAS, name: 해즈브로, rx: "^Hasbro|Wizards of the Coast"}
+    - {ticker: MAT, name: 마텔, rx: "^Mattel"}
+    - {ticker: 9992.HK, name: 팝마트, rx: "POP MART"}
+  # 위키·급상승 검색어 브랜드 사전(정확히 일치 또는 단어 경계). config/consumer.yaml(한국 제외) 위키 문서 제목도 자동으로 더한다
+  brands:
+    - {ticker: NKE, name: 나이키, terms: [Nike, Air Jordan, ナイキ]}
+    - {ticker: ONON, name: 온, terms: [On Running, On (company)]}
+    - {ticker: DECK, name: 데커스, terms: [Hoka, Ugg, UGG]}
+    - {ticker: CROX, name: 크록스, terms: [Crocs, HeyDude]}
+    - {ticker: LULU, name: 룰루레몬, terms: [Lululemon]}
+    - {ticker: 7936.T, name: 아식스, terms: [Asics, Onitsuka Tiger, アシックス, オニツカタイガー]}
+    - {ticker: ADS.DE, name: 아디다스, terms: [Adidas, Adidas Samba, アディダス]}
+    - {ticker: 9983.T, name: 패스트리테일링, terms: [Uniqlo, ユニクロ, GU (retailer)]}
+    - {ticker: ITX.MC, name: 인디텍스, terms: [Zara (retailer), Inditex]}
+    - {ticker: ELF, name: e.l.f., terms: [e.l.f. Cosmetics]}
+    - {ticker: OR.PA, name: 로레알, terms: ["L'Oréal", Lancôme, CeraVe]}
+    - {ticker: 4911.T, name: 시세이도, terms: [Shiseido, 資生堂]}
+    - {ticker: CELH, name: 셀시어스, terms: [Celsius (drink), Alani Nu]}
+    - {ticker: MNST, name: 몬스터, terms: [Monster Energy]}
+    - {ticker: SBUX, name: 스타벅스, terms: [Starbucks, スターバックス]}
+    - {ticker: MCD, name: 맥도날드, terms: ["McDonald's", マクドナルド]}
+    - {ticker: CMG, name: 치폴레, terms: [Chipotle Mexican Grill]}
+    - {ticker: CAVA, name: 카바, terms: [Cava (restaurant)]}
+    - {ticker: COST, name: 코스트코, terms: [Costco]}
+    - {ticker: WMT, name: 월마트, terms: [Walmart]}
+    - {ticker: TGT, name: 타깃, terms: [Target Corporation]}
+    - {ticker: PDD, name: PDD, terms: [Temu, Pinduoduo]}
+    - {ticker: HAS, name: 해즈브로, terms: ["Magic: The Gathering", Monopoly, Nerf]}
+    - {ticker: MAT, name: 마텔, terms: [Barbie, Hot Wheels, UNO (card game)]}
+    - {ticker: 7974.T, name: 닌텐도, terms: [Nintendo Switch 2, Pokémon, Mario Kart World, ニンテンドースイッチ2]}
+    - {ticker: 6758.T, name: 소니, terms: [PlayStation 5, PlayStation 6]}
+    - {ticker: TTWO, name: 테이크투, terms: [Grand Theft Auto VI, GTA 6]}
+    - {ticker: 4661.T, name: 오리엔탈랜드, terms: [Tokyo Disneyland, Tokyo DisneySea, 東京ディズニーランド, 東京ディズニーシー]}
+    - {ticker: MC.PA, name: LVMH, terms: [Louis Vuitton, Dior, Sephora, Tiffany & Co.]}
+    - {ticker: RMS.PA, name: 에르메스, terms: [Hermès, Birkin bag]}
+    - {ticker: KER.PA, name: 케링, terms: [Gucci, Saint Laurent (brand)]}
+    - {ticker: CFR.SW, name: 리치몬트, terms: [Cartier (jeweler), Van Cleef & Arpels]}
+    - {ticker: MONC.MI, name: 몽클레르, terms: [Moncler]}
+    - {ticker: YETI, name: 예티, terms: [Yeti (company)]}
+    - {ticker: 9992.HK, name: 팝마트, terms: [Labubu, Pop Mart, ラブブ]}
+  # 시리즈·IP 사전 — 문서 제목·검색어가 이 이름으로 시작하면(예: 'The Legend of Zelda: …') 그 회사. 권리 구조가 나뉜 IP는 대표 권리자만 적는다(가설)
+  franchises:
+    - {ticker: 7974.T, name: 닌텐도, terms: [The Legend of Zelda, Super Mario, Mario Kart, Donkey Kong, Animal Crossing, Splatoon, Kirby, Metroid, Pikmin, Fire Emblem, Xenoblade, Pokémon, ポケットモンスター, ゼルダの伝説, スーパーマリオ, マリオカート, どうぶつの森, スプラトゥーン, 星のカービィ]}
+    - {ticker: 9697.T, name: 캡콤, terms: [Monster Hunter, Resident Evil, Street Fighter, Devil May Cry, Mega Man, Pragmata, Onimusha, モンスターハンター, バイオハザード, ストリートファイター]}
+    - {ticker: 9684.T, name: 스퀘어에닉스, terms: [Final Fantasy, Dragon Quest, Kingdom Hearts, Octopath Traveler, ファイナルファンタジー, ドラゴンクエスト]}
+    - {ticker: 7832.T, name: 반다이남코, terms: [Tekken, Gundam, Mobile Suit Gundam, Tamagotchi, Elden Ring Nightreign, Pac-Man, Tales of, 機動戦士ガンダム, 鉄拳, たまごっち]}
+    - {ticker: 9468.T, name: 가도카와(프롬소프트웨어), terms: [Elden Ring, Dark Souls, Armored Core, Sekiro, Bloodborne]}
+    - {ticker: 9766.T, name: 코나미, terms: [Metal Gear, Silent Hill, Yu-Gi-Oh!, eFootball, Castlevania]}
+    - {ticker: 6460.T, name: 세가사미, terms: [Sonic the Hedgehog, Persona, Like a Dragon, Yakuza, Puyo Puyo, Football Manager]}
+    - {ticker: 8136.T, name: 산리오, terms: [Hello Kitty, Kuromi, My Melody, Cinnamoroll, Pompompurin, ハローキティ, クロミ, シナモロール]}
+    - {ticker: 4816.T, name: 도에이애니메이션, terms: [One Piece, Dragon Ball, Sailor Moon, Precure, ワンピース, ドラゴンボール, プリキュア]}
+    - {ticker: TTWO, name: 테이크투, terms: [Grand Theft Auto, Red Dead Redemption, NBA 2K, Borderlands, Civilization, BioShock]}
+    - {ticker: EA, name: 일렉트로닉아츠, terms: [EA Sports FC, Battlefield, Apex Legends, The Sims, Madden NFL, Mass Effect, Dragon Age]}
+    - {ticker: UBI.PA, name: 유비소프트, terms: ["Assassin's Creed", Far Cry, Rainbow Six, Just Dance, Prince of Persia, Anno]}
+    - {ticker: CDR.WA, name: CD프로젝트, terms: [The Witcher, Cyberpunk 2077, Cyberpunk]}
+    - {ticker: MSFT, name: 마이크로소프트(게임), terms: [Call of Duty, Minecraft, Halo, Diablo, World of Warcraft, Overwatch, Forza, Fallout, The Elder Scrolls]}
+    - {ticker: SONY/6758.T, name: 소니, terms: [God of War, The Last of Us, Horizon, "Marvel's Spider-Man", Gran Turismo, Ghost of Yōtei, Ghost of Tsushima]}
+    - {ticker: MAT, name: 마텔, terms: [Barbie, Hot Wheels, Polly Pocket, Masters of the Universe]}
+    - {ticker: HAS, name: 해즈브로, terms: [Transformers, My Little Pony, Dungeons & Dragons, Peppa Pig]}
+    - {ticker: DIS, name: 디즈니, terms: [Star Wars, Marvel Cinematic Universe, Frozen, Toy Story, Zootopia, Moana, Lilo & Stitch]}
+    - {ticker: 9992.HK, name: 팝마트, terms: [Labubu, The Monsters (Pop Mart), Skullpanda, Crybaby]}

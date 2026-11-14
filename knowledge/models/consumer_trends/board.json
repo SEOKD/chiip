@@ -1,0 +1,1809 @@
+{
+ "day": "2026-11-14",
+ "macro_as_of": "2026-11-14T23:32:28+09:00",
+ "discovery_as_of": "2026-11-14T23:57:44+09:00",
+ "heat": {
+  "us": [
+   {
+    "id": "us-sporting",
+    "name": "스포츠·취미·악기·서점",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0934,
+    "accel_pp": -2.26,
+    "z": 1.67,
+    "real_yoy3": 0.0504,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "DKS",
+     "ASO",
+     "HAS",
+     "MAT",
+     "FNKO"
+    ]
+   },
+   {
+    "id": "us-misc",
+    "name": "기타 소매(펫·선물 등)",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.1298,
+    "accel_pp": 2.73,
+    "z": 0.82,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CHWY",
+     "PETS",
+     "FIVE"
+    ]
+   },
+   {
+    "id": "us-building",
+    "name": "건자재·원예",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0516,
+    "accel_pp": 0.88,
+    "z": 0.59,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "HD",
+     "LOW"
+    ]
+   },
+   {
+    "id": "us-electronics",
+    "name": "전자·가전점",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0761,
+    "accel_pp": 0.51,
+    "z": 0.57,
+    "real_yoy3": 0.0397,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "BBY"
+    ]
+   },
+   {
+    "id": "us-nonstore",
+    "name": "무점포(온라인 포함)",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0753,
+    "accel_pp": -1.64,
+    "z": 0.22,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "AMZN",
+     "ETSY",
+     "CHWY",
+     "W",
+     "EBAY",
+     "PDD"
+    ]
+   },
+   {
+    "id": "us-total",
+    "name": "소매+외식 합계",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0546,
+    "accel_pp": -0.11,
+    "z": 0.06,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "us-genmerch",
+    "name": "종합소매(할인점·창고형)",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0415,
+    "accel_pp": 0.26,
+    "z": 0.05,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "WMT",
+     "TGT",
+     "COST",
+     "BJ",
+     "DG",
+     "DLTR",
+     "OLLI",
+     "FIVE"
+    ]
+   },
+   {
+    "id": "us-furniture",
+    "name": "가구·인테리어",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0028,
+    "accel_pp": 1.56,
+    "z": 0.0,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "RH",
+     "WSM",
+     "W"
+    ]
+   },
+   {
+    "id": "us-clothing",
+    "name": "의류·잡화점",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.045,
+    "accel_pp": -0.73,
+    "z": -0.18,
+    "real_yoy3": 0.0088,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "TJX",
+     "ROST",
+     "BURL",
+     "ANF",
+     "AEO",
+     "URBN",
+     "GAP",
+     "LULU"
+    ]
+   },
+   {
+    "id": "us-foodsvc",
+    "name": "외식·주점",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.0599,
+    "accel_pp": 2.26,
+    "z": -0.4,
+    "real_yoy3": 0.0258,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CMG",
+     "CAVA",
+     "SBUX",
+     "MCD",
+     "BROS",
+     "WING",
+     "DPZ",
+     "TXRH",
+     "SHAK"
+    ]
+   },
+   {
+    "id": "us-grocery",
+    "name": "식품·음료점",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": 0.006,
+    "accel_pp": -0.93,
+    "z": -1.15,
+    "real_yoy3": -0.0157,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KR",
+     "ACI",
+     "SFM"
+    ]
+   },
+   {
+    "id": "us-health",
+    "name": "건강·개인용품점(드럭·화장품)",
+    "region": "미국",
+    "month": "2026-09",
+    "yoy3": -0.0142,
+    "accel_pp": 0.45,
+    "z": -2.1,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ULTA",
+     "ELF",
+     "COTY",
+     "EL",
+     "KVUE"
+    ]
+   }
+  ],
+  "jp": [
+   {
+    "id": "jp-gamesoft",
+    "name": "게임 소프트 등",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.6224,
+    "accel_pp": -13.51,
+    "z": 1.72,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "7974.T 닌텐도",
+     "9697.T 캡콤",
+     "9684.T 스퀘어에닉스",
+     "7832.T 반다이남코",
+     "9766.T 코나미"
+    ]
+   },
+   {
+    "id": "jp-alcohol",
+    "name": "주류",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.038,
+    "accel_pp": 0.63,
+    "z": 1.04,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "2502.T 아사히",
+     "2503.T 기린",
+     "2587.T 산토리식품"
+    ]
+   },
+   {
+    "id": "jp-snack",
+    "name": "스낵과자",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0943,
+    "accel_pp": -0.26,
+    "z": 0.62,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "2229.T 가루비"
+    ]
+   },
+   {
+    "id": "jp-gym",
+    "name": "스포츠클럽 이용료",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.1497,
+    "accel_pp": 9.18,
+    "z": 0.4,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "7085.T 커브스"
+    ]
+   },
+   {
+    "id": "jp-watch",
+    "name": "손목시계",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.6239,
+    "accel_pp": -7.4,
+    "z": 0.27,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "8050.T 세이코",
+     "7762.T 시티즌",
+     "6952.T 카시오"
+    ]
+   },
+   {
+    "id": "jp-tour-int",
+    "name": "해외 패키지여행",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0377,
+    "accel_pp": -50.79,
+    "z": -0.33,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "9603.T HIS"
+    ]
+   },
+   {
+    "id": "jp-lodging",
+    "name": "숙박료",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.1692,
+    "accel_pp": -4.0,
+    "z": -0.38,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": []
+   },
+   {
+    "id": "jp-cosmetics",
+    "name": "비누·화장품",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0182,
+    "accel_pp": -4.81,
+    "z": -0.4,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "4911.T 시세이도",
+     "4452.T 가오",
+     "4922.T 고세",
+     "4927.T 폴라오르비스"
+    ]
+   },
+   {
+    "id": "jp-burger",
+    "name": "햄버거 외식",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0375,
+    "accel_pp": -1.87,
+    "z": -0.47,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "2702.T 일본맥도날드"
+    ]
+   },
+   {
+    "id": "jp-eatout",
+    "name": "외식",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0484,
+    "accel_pp": 0.32,
+    "z": -0.61,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "7550.T 젠쇼",
+     "3397.T 토리돌",
+     "3197.T 스카이락",
+     "2702.T 일본맥도날드"
+    ]
+   },
+   {
+    "id": "jp-sneakers",
+    "name": "성인 운동화",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0221,
+    "accel_pp": -3.41,
+    "z": -0.8,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "7936.T 아식스",
+     "2670.T ABC마트"
+    ]
+   },
+   {
+    "id": "jp-sportswear",
+    "name": "스포츠웨어",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.0163,
+    "accel_pp": -0.12,
+    "z": -0.8,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "7936.T 아식스",
+     "8111.T 골드윈"
+    ]
+   },
+   {
+    "id": "jp-console",
+    "name": "게임기",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.7399,
+    "accel_pp": -59.54,
+    "z": -0.92,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "7974.T 닌텐도",
+     "6758.T 소니"
+    ]
+   },
+   {
+    "id": "jp-clothing",
+    "name": "의류·신발",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.0273,
+    "accel_pp": 4.24,
+    "z": -0.94,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "9983.T 패스트리테일링",
+     "8227.T 시마무라",
+     "7564.T 워크맨"
+    ]
+   },
+   {
+    "id": "jp-toys",
+    "name": "기타 장난감",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.0215,
+    "accel_pp": 2.34,
+    "z": -0.95,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "7832.T 반다이남코",
+     "7867.T 다카라토미",
+     "8136.T 산리오"
+    ]
+   },
+   {
+    "id": "jp-tour-dom",
+    "name": "국내 패키지여행",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.2068,
+    "accel_pp": 1.33,
+    "z": -0.95,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": []
+   },
+   {
+    "id": "jp-admission",
+    "name": "입장·관람·게임비",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.013,
+    "accel_pp": -0.89,
+    "z": -1.15,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "4661.T 오리엔탈랜드",
+     "9602.T 도호"
+    ]
+   },
+   {
+    "id": "jp-cafe",
+    "name": "찻집(카페)",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0619,
+    "accel_pp": -2.34,
+    "z": -1.26,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "3087.T 도토루·니치레스",
+     "3543.T 코메다"
+    ]
+   },
+   {
+    "id": "jp-sweets",
+    "name": "과자류",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0283,
+    "accel_pp": -2.65,
+    "z": -1.33,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "2229.T 가루비",
+     "2269.T 메이지",
+     "2206.T 에자키글리코"
+    ]
+   },
+   {
+    "id": "jp-recreation",
+    "name": "교양오락 합계",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.003,
+    "accel_pp": -3.01,
+    "z": -1.33,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "jp-petfood",
+    "name": "펫푸드",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.0594,
+    "accel_pp": -14.64,
+    "z": -1.44,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": true,
+    "exposure": [
+     "8113.T 유니참"
+    ]
+   },
+   {
+    "id": "jp-total",
+    "name": "소비지출 합계",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.0229,
+    "accel_pp": -2.61,
+    "z": -1.85,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "jp-drinks",
+    "name": "음료",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.032,
+    "accel_pp": -7.58,
+    "z": -3.94,
+    "real_yoy3": null,
+    "flag": "down",
+    "noisy": false,
+    "exposure": [
+     "2587.T 산토리식품",
+     "2593.T 이토엔"
+    ]
+   }
+  ],
+  "jp_inbound": [
+   {
+    "id": "jp-inb-hk",
+    "name": "방일객 홍콩",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.2053,
+    "accel_pp": 16.56,
+    "z": -0.32,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "jp-inb-kr",
+    "name": "방일객 한국",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.2873,
+    "accel_pp": 13.82,
+    "z": -0.34,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "jp-inb-tw",
+    "name": "방일객 대만",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.1561,
+    "accel_pp": -0.62,
+    "z": -0.4,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "jp-inb-total",
+    "name": "방일객 합계",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.0481,
+    "accel_pp": 0.46,
+    "z": -0.45,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "3099.T 미쓰코시이세탄",
+     "8233.T 다카시마야",
+     "3086.T J프론트",
+     "7532.T PPIH(돈키호테)",
+     "3088.T 마쓰키요코코카라"
+    ]
+   },
+   {
+    "id": "jp-inb-us",
+    "name": "방일객 미국",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": 0.0067,
+    "accel_pp": -2.74,
+    "z": -0.48,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "jp-inb-cn",
+    "name": "방일객 중국",
+    "region": "일본",
+    "month": "2026-09",
+    "yoy3": -0.5388,
+    "accel_pp": 4.28,
+    "z": -0.85,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "4911.T 시세이도",
+     "4922.T 고세",
+     "3099.T 미쓰코시이세탄",
+     "8233.T 다카시마야",
+     "3088.T 마쓰키요코코카라"
+    ]
+   }
+  ],
+  "eu": [
+   {
+    "id": "eu-nl-grocery",
+    "name": "네덜란드 식품·음료·담배",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0076,
+    "accel_pp": -0.84,
+    "z": 1.53,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CA.PA 까르푸",
+     "AD.AS 아홀드델레이즈"
+    ]
+   },
+   {
+    "id": "eu-it-nonstore",
+    "name": "이탈리아 통신판매·온라인",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": 0.0646,
+    "accel_pp": -4.28,
+    "z": 1.2,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ZAL.DE 잘란도",
+     "OCDO.L 오카도"
+    ]
+   },
+   {
+    "id": "eu-fr-grocery",
+    "name": "프랑스 식품·음료·담배",
+    "region": "프랑스",
+    "month": "2026-09",
+    "yoy3": 0.0363,
+    "accel_pp": -0.04,
+    "z": 0.95,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CA.PA 까르푸",
+     "AD.AS 아홀드델레이즈"
+    ]
+   },
+   {
+    "id": "eu-eu27-grocery",
+    "name": "EU27 식품·음료·담배",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0113,
+    "accel_pp": 0.21,
+    "z": 0.8,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CA.PA 까르푸",
+     "AD.AS 아홀드델레이즈"
+    ]
+   },
+   {
+    "id": "eu-es-sporting_hobby",
+    "name": "스페인 문화·레저 용품(책·스포츠·장난감)",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.0885,
+    "accel_pp": 0.2,
+    "z": 0.73,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ADS.DE 아디다스",
+     "PUM.DE 푸마"
+    ]
+   },
+   {
+    "id": "eu-fr-nonstore",
+    "name": "프랑스 통신판매·온라인",
+    "region": "프랑스",
+    "month": "2026-08",
+    "yoy3": 0.0621,
+    "accel_pp": -1.12,
+    "z": 0.72,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ZAL.DE 잘란도",
+     "OCDO.L 오카도"
+    ]
+   },
+   {
+    "id": "eu-it-grocery",
+    "name": "이탈리아 식품·음료·담배",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": -0.0029,
+    "accel_pp": 0.43,
+    "z": 0.69,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CA.PA 까르푸",
+     "AD.AS 아홀드델레이즈"
+    ]
+   },
+   {
+    "id": "eu-eu27-furniture",
+    "name": "EU27 가정용품 전문점(가구·가전·철물)",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.008,
+    "accel_pp": -0.26,
+    "z": 0.6,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KGF.L 킹피셔"
+    ]
+   },
+   {
+    "id": "eu-nl-furniture",
+    "name": "네덜란드 가정용품 전문점(가구·가전·철물)",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0204,
+    "accel_pp": 1.21,
+    "z": 0.46,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KGF.L 킹피셔"
+    ]
+   },
+   {
+    "id": "eu-fr-furniture",
+    "name": "프랑스 가정용품 전문점(가구·가전·철물)",
+    "region": "프랑스",
+    "month": "2026-08",
+    "yoy3": -0.0051,
+    "accel_pp": -0.12,
+    "z": 0.39,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KGF.L 킹피셔"
+    ]
+   },
+   {
+    "id": "eu-nl-total",
+    "name": "네덜란드 소매 합계(연료 제외)",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0209,
+    "accel_pp": -0.48,
+    "z": 0.34,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-de-grocery",
+    "name": "독일 식품·음료·담배",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": -0.0042,
+    "accel_pp": -0.14,
+    "z": 0.31,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CA.PA 까르푸",
+     "AD.AS 아홀드델레이즈"
+    ]
+   },
+   {
+    "id": "eu-fr-total",
+    "name": "프랑스 소매 합계(연료 제외)",
+    "region": "프랑스",
+    "month": "2026-09",
+    "yoy3": 0.0333,
+    "accel_pp": -0.31,
+    "z": 0.31,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-eu27-nonstore",
+    "name": "EU27 통신판매·온라인",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0424,
+    "accel_pp": -1.67,
+    "z": 0.25,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ZAL.DE 잘란도",
+     "OCDO.L 오카도"
+    ]
+   },
+   {
+    "id": "eu-nl-sporting_hobby",
+    "name": "네덜란드 문화·레저 용품(책·스포츠·장난감)",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0532,
+    "accel_pp": 0.93,
+    "z": 0.23,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ADS.DE 아디다스",
+     "PUM.DE 푸마"
+    ]
+   },
+   {
+    "id": "eu-eu27-sporting_hobby",
+    "name": "EU27 문화·레저 용품(책·스포츠·장난감)",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0339,
+    "accel_pp": -0.12,
+    "z": 0.22,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ADS.DE 아디다스",
+     "PUM.DE 푸마"
+    ]
+   },
+   {
+    "id": "eu-it-furniture",
+    "name": "이탈리아 가정용품 전문점(가구·가전·철물)",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": 0.0025,
+    "accel_pp": -0.47,
+    "z": 0.19,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KGF.L 킹피셔"
+    ]
+   },
+   {
+    "id": "eu-nl-electronics",
+    "name": "네덜란드 정보통신기기 전문점",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0187,
+    "accel_pp": -1.7,
+    "z": 0.18,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   },
+   {
+    "id": "eu-es-nonstore",
+    "name": "스페인 통신판매·온라인",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.0382,
+    "accel_pp": -6.54,
+    "z": 0.14,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ZAL.DE 잘란도",
+     "OCDO.L 오카도"
+    ]
+   },
+   {
+    "id": "eu-de-sporting_hobby",
+    "name": "독일 문화·레저 용품(책·스포츠·장난감)",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": 0.0095,
+    "accel_pp": -0.61,
+    "z": 0.1,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ADS.DE 아디다스",
+     "PUM.DE 푸마"
+    ]
+   },
+   {
+    "id": "eu-de-furniture",
+    "name": "독일 가정용품 전문점(가구·가전·철물)",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": -0.0162,
+    "accel_pp": 0.06,
+    "z": 0.08,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KGF.L 킹피셔"
+    ]
+   },
+   {
+    "id": "eu-it-total",
+    "name": "이탈리아 소매 합계(연료 제외)",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": 0.0,
+    "accel_pp": -0.31,
+    "z": 0.01,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-eu27-total",
+    "name": "EU27 소매 합계(연료 제외)",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0141,
+    "accel_pp": -0.65,
+    "z": -0.0,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-de-nonstore",
+    "name": "독일 통신판매·온라인",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": 0.0277,
+    "accel_pp": -2.4,
+    "z": -0.04,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ZAL.DE 잘란도",
+     "OCDO.L 오카도"
+    ]
+   },
+   {
+    "id": "eu-nl-nonfood",
+    "name": "네덜란드 비식품(연료 제외)",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0268,
+    "accel_pp": -0.3,
+    "z": -0.1,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-it-sporting_hobby",
+    "name": "이탈리아 문화·레저 용품(책·스포츠·장난감)",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": -0.0003,
+    "accel_pp": -0.86,
+    "z": -0.12,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ADS.DE 아디다스",
+     "PUM.DE 푸마"
+    ]
+   },
+   {
+    "id": "eu-it-nonfood",
+    "name": "이탈리아 비식품(연료 제외)",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": 0.0031,
+    "accel_pp": -0.72,
+    "z": -0.15,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-fr-nonfood",
+    "name": "프랑스 비식품(연료 제외)",
+    "region": "프랑스",
+    "month": "2026-09",
+    "yoy3": 0.0308,
+    "accel_pp": -0.42,
+    "z": -0.18,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-de-electronics",
+    "name": "독일 정보통신기기 전문점",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": 0.0045,
+    "accel_pp": -13.24,
+    "z": -0.24,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   },
+   {
+    "id": "eu-fr-sporting_hobby",
+    "name": "프랑스 문화·레저 용품(책·스포츠·장난감)",
+    "region": "프랑스",
+    "month": "2026-08",
+    "yoy3": 0.0211,
+    "accel_pp": -0.4,
+    "z": -0.24,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ADS.DE 아디다스",
+     "PUM.DE 푸마"
+    ]
+   },
+   {
+    "id": "eu-nl-specialty",
+    "name": "네덜란드 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0269,
+    "accel_pp": 0.38,
+    "z": -0.24,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ITX.MC 인디텍스",
+     "HM-B.ST H&M",
+     "ABF.L 프라이마크(ABF)",
+     "OR.PA 로레알",
+     "BEI.DE 바이어스도르프",
+     "PUIG.MC 푸이그"
+    ]
+   },
+   {
+    "id": "eu-fr-specialty",
+    "name": "프랑스 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+    "region": "프랑스",
+    "month": "2026-08",
+    "yoy3": 0.0531,
+    "accel_pp": 2.04,
+    "z": -0.25,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ITX.MC 인디텍스",
+     "HM-B.ST H&M",
+     "ABF.L 프라이마크(ABF)",
+     "OR.PA 로레알",
+     "BEI.DE 바이어스도르프",
+     "PUIG.MC 푸이그"
+    ]
+   },
+   {
+    "id": "eu-nl-nonstore",
+    "name": "네덜란드 통신판매·온라인",
+    "region": "네덜란드",
+    "month": "2026-09",
+    "yoy3": 0.0297,
+    "accel_pp": -1.71,
+    "z": -0.27,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ZAL.DE 잘란도",
+     "OCDO.L 오카도"
+    ]
+   },
+   {
+    "id": "eu-eu27-nonfood",
+    "name": "EU27 비식품(연료 제외)",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0168,
+    "accel_pp": -1.19,
+    "z": -0.31,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-it-specialty",
+    "name": "이탈리아 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": -0.0128,
+    "accel_pp": -0.04,
+    "z": -0.34,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ITX.MC 인디텍스",
+     "HM-B.ST H&M",
+     "ABF.L 프라이마크(ABF)",
+     "OR.PA 로레알",
+     "BEI.DE 바이어스도르프",
+     "PUIG.MC 푸이그"
+    ]
+   },
+   {
+    "id": "eu-eu27-electronics",
+    "name": "EU27 정보통신기기 전문점",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0215,
+    "accel_pp": -6.71,
+    "z": -0.48,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   },
+   {
+    "id": "eu-de-total",
+    "name": "독일 소매 합계(연료 제외)",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": -0.0136,
+    "accel_pp": -2.81,
+    "z": -0.51,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-es-grocery",
+    "name": "스페인 식품·음료·담배",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": -0.0044,
+    "accel_pp": -1.64,
+    "z": -0.59,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CA.PA 까르푸",
+     "AD.AS 아홀드델레이즈"
+    ]
+   },
+   {
+    "id": "eu-eu27-specialty",
+    "name": "EU27 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+    "region": "EU27",
+    "month": "2026-09",
+    "yoy3": 0.0059,
+    "accel_pp": -1.57,
+    "z": -0.66,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ITX.MC 인디텍스",
+     "HM-B.ST H&M",
+     "ABF.L 프라이마크(ABF)",
+     "OR.PA 로레알",
+     "BEI.DE 바이어스도르프",
+     "PUIG.MC 푸이그"
+    ]
+   },
+   {
+    "id": "eu-fr-electronics",
+    "name": "프랑스 정보통신기기 전문점",
+    "region": "프랑스",
+    "month": "2026-08",
+    "yoy3": 0.0313,
+    "accel_pp": 0.32,
+    "z": -0.66,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   },
+   {
+    "id": "eu-de-nonfood",
+    "name": "독일 비식품(연료 제외)",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": -0.0193,
+    "accel_pp": -4.45,
+    "z": -0.75,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-it-electronics",
+    "name": "이탈리아 정보통신기기 전문점",
+    "region": "이탈리아",
+    "month": "2026-09",
+    "yoy3": 0.024,
+    "accel_pp": -3.12,
+    "z": -0.78,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   },
+   {
+    "id": "eu-es-furniture",
+    "name": "스페인 가정용품 전문점(가구·가전·철물)",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.0045,
+    "accel_pp": -1.47,
+    "z": -0.82,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "KGF.L 킹피셔"
+    ]
+   },
+   {
+    "id": "eu-es-total",
+    "name": "스페인 소매 합계(연료 제외)",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.0069,
+    "accel_pp": -1.34,
+    "z": -1.1,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-es-nonfood",
+    "name": "스페인 비식품(연료 제외)",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.0168,
+    "accel_pp": -1.28,
+    "z": -1.4,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "eu-de-specialty",
+    "name": "독일 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": -0.0583,
+    "accel_pp": -8.37,
+    "z": -1.56,
+    "real_yoy3": null,
+    "flag": "down",
+    "noisy": false,
+    "exposure": [
+     "ITX.MC 인디텍스",
+     "HM-B.ST H&M",
+     "ABF.L 프라이마크(ABF)",
+     "OR.PA 로레알",
+     "BEI.DE 바이어스도르프",
+     "PUIG.MC 푸이그"
+    ]
+   },
+   {
+    "id": "eu-es-specialty",
+    "name": "스페인 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.003,
+    "accel_pp": -0.66,
+    "z": -1.88,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "ITX.MC 인디텍스",
+     "HM-B.ST H&M",
+     "ABF.L 프라이마크(ABF)",
+     "OR.PA 로레알",
+     "BEI.DE 바이어스도르프",
+     "PUIG.MC 푸이그"
+    ]
+   },
+   {
+    "id": "eu-es-electronics",
+    "name": "스페인 정보통신기기 전문점",
+    "region": "스페인",
+    "month": "2026-09",
+    "yoy3": 0.042,
+    "accel_pp": -4.49,
+    "z": -2.14,
+    "real_yoy3": null,
+    "flag": "down",
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   }
+  ],
+  "uk": [
+   {
+    "id": "uk-nonstore",
+    "name": "무점포 판매액(원계열 지수)",
+    "region": "영국",
+    "month": "2026-09",
+    "yoy3": 0.0847,
+    "accel_pp": -2.54,
+    "z": 1.36,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "uk-household",
+    "name": "가정용품점 판매량",
+    "region": "영국",
+    "month": "2026-09",
+    "yoy3": 0.0527,
+    "accel_pp": -1.83,
+    "z": 1.08,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "uk-food",
+    "name": "식품점 판매량",
+    "region": "영국",
+    "month": "2026-09",
+    "yoy3": 0.0003,
+    "accel_pp": -0.43,
+    "z": 0.96,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "TSCO.L 테스코",
+     "SBRY.L 세인즈버리",
+     "MKS.L M&S"
+    ]
+   },
+   {
+    "id": "uk-total",
+    "name": "소매 판매량 합계(SA 지수)",
+    "region": "영국",
+    "month": "2026-09",
+    "yoy3": 0.0154,
+    "accel_pp": -0.35,
+    "z": 0.65,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "uk-nonfood",
+    "name": "비식품점 판매량",
+    "region": "영국",
+    "month": "2026-09",
+    "yoy3": 0.0257,
+    "accel_pp": -1.7,
+    "z": 0.09,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
+    "id": "uk-clothing",
+    "name": "의류·신발점 판매량",
+    "region": "영국",
+    "month": "2026-09",
+    "yoy3": 0.004,
+    "accel_pp": -5.37,
+    "z": -0.39,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "NXT.L 넥스트",
+     "ABF.L 프라이마크(ABF)",
+     "MKS.L M&S",
+     "BRBY.L 버버리"
+    ]
+   }
+  ]
+ },
+ "flags": [
+  {
+   "id": "jp-drinks",
+   "name": "음료",
+   "region": "일본",
+   "month": "2026-09",
+   "yoy3": -0.032,
+   "accel_pp": -7.58,
+   "z": -3.94,
+   "real_yoy3": null,
+   "flag": "down",
+   "noisy": false,
+   "exposure": [
+    "2587.T 산토리식품",
+    "2593.T 이토엔"
+   ]
+  },
+  {
+   "id": "eu-de-specialty",
+   "name": "독일 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
+   "region": "독일",
+   "month": "2026-09",
+   "yoy3": -0.0583,
+   "accel_pp": -8.37,
+   "z": -1.56,
+   "real_yoy3": null,
+   "flag": "down",
+   "noisy": false,
+   "exposure": [
+    "ITX.MC 인디텍스",
+    "HM-B.ST H&M",
+    "ABF.L 프라이마크(ABF)",
+    "OR.PA 로레알",
+    "BEI.DE 바이어스도르프",
+    "PUIG.MC 푸이그"
+   ]
+  },
+  {
+   "id": "eu-es-electronics",
+   "name": "스페인 정보통신기기 전문점",
+   "region": "스페인",
+   "month": "2026-09",
+   "yoy3": 0.042,
+   "accel_pp": -4.49,
+   "z": -2.14,
+   "real_yoy3": null,
+   "flag": "down",
+   "noisy": false,
+   "exposure": [
+    "CEC.DE 세코노미(미디어마크트)",
+    "FNAC.PA 프낙다르티"
+   ]
+  }
+ ],
+ "prices": [
+  {
+   "id": "us-cpi-toys",
+   "name": "물가 장난감",
+   "month": "2026-09",
+   "yoy3": 0.043,
+   "accel_pp": 1.41,
+   "z": 1.74
+  },
+  {
+   "id": "us-cpi-video",
+   "name": "물가 영상·음향기기",
+   "month": "2026-09",
+   "yoy3": 0.0364,
+   "accel_pp": 0.93,
+   "z": 1.49
+  },
+  {
+   "id": "us-cpi-footwear",
+   "name": "물가 신발",
+   "month": "2026-09",
+   "yoy3": 0.0347,
+   "accel_pp": -1.02,
+   "z": 0.58
+  },
+  {
+   "id": "us-cpi-apparel",
+   "name": "물가 의류",
+   "month": "2026-09",
+   "yoy3": 0.0362,
+   "accel_pp": -0.67,
+   "z": 0.49
+  },
+  {
+   "id": "us-cpi-recreation",
+   "name": "물가 레저",
+   "month": "2026-09",
+   "yoy3": 0.0269,
+   "accel_pp": 0.09,
+   "z": -0.29
+  },
+  {
+   "id": "us-cpi-foodhome",
+   "name": "물가 가정 식품",
+   "month": "2026-09",
+   "yoy3": 0.0217,
+   "accel_pp": -0.63,
+   "z": -0.64
+  },
+  {
+   "id": "us-cpi-alcohol",
+   "name": "물가 주류",
+   "month": "2026-09",
+   "yoy3": 0.0171,
+   "accel_pp": -0.31,
+   "z": -0.92
+  },
+  {
+   "id": "us-cpi-foodaway",
+   "name": "물가 외식",
+   "month": "2026-09",
+   "yoy3": 0.0341,
+   "accel_pp": -0.08,
+   "z": -1.17
+  }
+ ],
+ "alerts": [
+  {
+   "source": "wiki",
+   "project": "en.wikipedia",
+   "title": "The Legend of Zelda: Ocarina of Time",
+   "views7": 148997,
+   "base7": 38479,
+   "accel": 3.9,
+   "brand": {
+    "ticker": "7974.T",
+    "company": "닌텐도",
+    "term": "the legend of zelda",
+    "group": "f0"
+   },
+   "kind": "브랜드",
+   "through": "2026-11-13",
+   "also_wikis": [
+    "ja"
+   ],
+   "headline": "닌텐도 'The Legend of Zelda: Ocarina o' 위키(en) 7일 조회 148,997 ×3.9 · ja 위키도 급증"
+  },
+  {
+   "source": "wiki",
+   "project": "en.wikipedia",
+   "title": "Grand Theft Auto V",
+   "views7": 103440,
+   "base7": 29728,
+   "accel": 3.5,
+   "brand": {
+    "ticker": "TTWO",
+    "company": "테이크투",
+    "term": "grand theft auto",
+    "group": "f9"
+   },
+   "kind": "브랜드",
+   "through": "2026-11-13",
+   "also_wikis": [
+    "de"
+   ],
+   "headline": "테이크투 'Grand Theft Auto V' 위키(en) 7일 조회 103,440 ×3.5 · de 위키도 급증"
+  }
+ ],
+ "rising": {
+  "apple": [],
+  "steam": [],
+  "wiki": [
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "The Legend of Zelda: Ocarina of Time",
+    "views7": 148997,
+    "base7": 38479,
+    "accel": 3.9,
+    "brand": {
+     "ticker": "7974.T",
+     "company": "닌텐도",
+     "term": "the legend of zelda",
+     "group": "f0"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "The Legend of Zelda: Ocarina of Time (2026 video game)",
+    "views7": 128961,
+    "base7": 37156,
+    "accel": 3.5,
+    "brand": {
+     "ticker": "7974.T",
+     "company": "닌텐도",
+     "term": "the legend of zelda",
+     "group": "f0"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 103440,
+    "base7": 29728,
+    "accel": 3.5,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "ja.wikipedia",
+    "title": "ゼルダの伝説 時のオカリナ",
+    "views7": 54590,
+    "base7": 13155,
+    "accel": 4.1,
+    "brand": {
+     "ticker": "7974.T",
+     "company": "닌텐도",
+     "term": "ゼルダの伝説",
+     "group": "f0"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto VI",
+    "views7": 48397,
+    "base7": 9209,
+    "accel": 5.3,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto vi",
+     "group": "b26"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-13"
+   }
+  ],
+  "trends": [
+   {
+    "source": "trends",
+    "geo": "DE",
+    "query": "gta 6 deal",
+    "traffic": 200,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "gta 6",
+     "group": "b26"
+    }
+   },
+   {
+    "source": "trends",
+    "geo": "FR",
+    "query": "red dead redemption ii",
+    "traffic": 200,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "red dead redemption",
+     "group": "f9"
+    }
+   }
+  ]
+ },
+ "baseline_days": {
+  "apple": 1,
+  "steam": 1,
+  "wiki": 36,
+  "trends": 1
+ },
+ "series_file": "knowledge/models/consumer_trends/macro_series.csv",
+ "sources": "출처: 미국 Census·BLS(FRED 경유) · 総務省統計局 家計調査(e-Stat) · 日本政府観光局（JNTO） · Eurostat · ONS · 애플 앱 순위 RSS · 스팀 상점 · Wikimedia 조회수 · Google Trends 급상승"
+}

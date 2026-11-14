@@ -19,6 +19,8 @@ jobs:
   cpi-release: cpi_release
   kr-exports: kr_exports
   options-implied: options_implied   # 실적 발표 옵션 내재 변동폭(ADR-033)
+  consumer-macro: consumer_macro   # 한국 외 소비 통계(2026-11-14)
+  consumer-discovery: consumer_discovery
 # 10분 넘게 걸리는 작업 — self-heal 안에서 다시 돌리지 않고 정규 회차(run_hourly)에 맡긴다(2026-11-13 점검: self-heal이 이 작업을 품다 26회 연속 10분 초과)
 no_inline: [trade-ppi, trade-hs, site-imagery]
 
@@ -26,6 +28,8 @@ files:
   - {id: trade-ppi, path: knowledge/models/trade_ppi/latest.json, max_age_h: 30}
   - {id: trade-hs, path: knowledge/models/trade_ppi/surge.json, max_age_h: 30}
   - {id: fiscal, path: knowledge/models/estimates/snapshots.csv, max_age_h: 36}
+  - {id: consumer-macro, path: knowledge/models/consumer_trends/macro_latest.json, max_age_h: 30}
+  - {id: consumer-discovery, path: knowledge/models/consumer_trends/discovery_latest.json, max_age_h: 36}
 
 # 키를 쓰지 않기로 결정한 원천은 문제로 세지 않는다(마스터 결정이 바뀌면 뺀다)
 ignore: [src-valuation, src-weekly-movers]   # EODHD는 무료 조합을 먼저 쓰기로 보류(2026-10-28 마스터 결정)

@@ -20,10 +20,31 @@
     - 채택 전에는 나우캐스트 숫자·컨센서스 비교·Pulse를 내지 않는다. 회사별 개선만으로 쓰지 않는다(다중 비교).
     - 매출 이력 갱신은 Fiscal.ai 44개 분기 → `--put-fiscal`이다. 분기마다 같은 설계로 다시 돌린다.
     - 한국은 `--put-tv`로 넣는다(TradingView, DART 키 대기 중). 라벨을 믿지 않고 개수·YoY로 검증한다. 같은 가설을 다시 보면 시도 수가 쌓여 문턱이 오른다(changelog). 2026-11-14 재검정(한국 5개사 추가)도 둘 다 불채택이었다. 같은 날 DART 키가 들어와 `--dart`(OpenDART 2015~, 겹치는 분기 TradingView 대조)로 바꿨고, 3차 검정(시도 6)도 불채택이었다.
+- **한국 외 소비 트렌드**(2026-11-14 마스터 지시 "메인은 미국, 일본, 유럽이다. 한국 외 소비재 시장 트렌드를 파악하는 파이프라인을 만들어라"): 설정 `config/consumer_trends.yaml`.
+  - **공식 통계** `radar/consumer_macro.py`(run_hourly 6시간)
+    - 미국: FRED 경유 Census 소매 12업종 + BLS 업종 물가 8개
+    - 일본: 総務省 家計調査 품목 23개(e-Stat 0004023601) + JNTO 방일객 시장 6개
+    - 유럽: Eurostat 소매 판매량 8업종 × EU27·독·프·이·스·네
+    - 영국: ONS 6개
+    - 지표: 3개월 YoY·가속·5년 z, 짝지은 물가가 있으면 실질 근사
+    - 새 달에 문턱(가속과 z가 같은 방향, 등록부 `prm-ctrend-*`)을 넘는 업종이 있을 때만 Pulse '지표 발표'(`src-consumer-macro`). 처음 켠 날은 기준만 잡는다.
+  - **상향식 발굴** `radar/consumer_discovery.py`(하루 1회)
+    - 원천: 애플 차트(미·일·영·독·프), 스팀 판매 순위(미·일·독), Wikimedia 상위 1,000 문서(영·일·독·프), Google Trends 급상승(미·일·영·독·프)
+    - 상장사 연결: 개발사·퍼블리셔·브랜드·시리즈 사전. 같은 회사·같은 시리즈는 한 건으로 합치고, 다른 언어 위키에서도 뜨면 함께 적는다.
+    - 애플·스팀은 기록 7일 뒤부터 신규 진입을 판정한다. 위키는 지난 35일을 처음에 받는다.
+    - 매핑된 것만 Pulse '소비재'(`fetch_consumer_trends`, 하루 6건까지)로 보낸다.
+  - **보드** `scripts/consumer/trends_board.py` → `outputs/consumer/trends_<날짜>.md` · `knowledge/models/consumer_trends/board.json`. 유럽은 업종 × 나라 격자로 보인다.
+  - **원천 제외**
+    - 경제산업성 商業動態統計: robots.txt까지 비브라우저 접속 403, 접속 가장 금지
+    - 위키백과 자체 API: robots `/api/`·`/w/` 금지 — Wikimedia 조회수 API만 쓴다
+    - Eurostat 의류(G47_NF_CLTH)·화장품(G47_NF_HLTH): 6개 지역 모두 자료가 없어 G477 기타 전문점으로 대신한다
+  - **해석 경계**: 노출 종목은 가설이다(금지표: 업종 판매 증가 → 특정 기업 매출, 관심 증가 → 매출). 가계조사 품목은 표본 잡음이 커 문턱이 ±8%p다.
+  - **출처 표기**: Census·BLS(FRED 경유)·総務省統計局·日本政府観光局（JNTO）·Eurostat·ONS.
 - **시가총액 구간 엔진**(2026-10-29 마스터 지시 "$1B~$10B 반도체·AI 밸류체인·소프트웨어·방위도 다루고 $10B~$20B … $200B 이상 구간별로 나눠 접근하라"): `scripts/tenbagger/bands.py` — B0 $0.1–1B · B1 $1–10B · B2 $10–20B · B3~B5 $10B 단위 · B6 $50–60B(구간을 잇기 위해 추가) · B7 $60–80B · B8 $80–100B · B9 $100–150B · B10 $150–200B · B11 $200B+(`config/tenbagger.yaml` bands). 구간 안에서만 백분위 점수, 구간별 상위 3, 10배 산술(목표 시총 → 필요 매출 → 참조 시장 점유), 구간 이동 기록. 시가총액은 일요일 Ten-bagger 회차가 Fiscal.ai로(`--stale` → `scripts/fiscal/adapter.py --fund`, 비달러는 ECB 환율), EODHD 키가 들어오면 스크리너로 자동 유니버스. 펄스 🚀 머리줄에 구간 표기.
 - **TradingView 와치리스트 양방향 동기화**(2026-10-31 마스터 지시 "내 와치리스트 종목도 알파·텐배거 발굴 레이더 망에 포함, 반대로 Chiip이 찾은 종목이 없으면 폴더(국가)·Section(섹터)에 맞게 추가, 적절한 Section이 없으면 직접 만들어줘"): 공식 MCP로 `radar/tv_sync.py`(`docs/tasks/chiip-tv-sync.md`, 스킬 `tv-sync`) — 와치리스트 → `config/discovery.yaml` 생성 구역 테마(`watch: true`, 레이더 인식·SEC 공시·관심도·선별·구간·리포트 후보·알파 점수 대상), Chiip 발굴 종목 → 와치리스트 추가(`config/tradingview.yaml` 폴더·섹션). 추가만 하고 지우지 않으며 마스터가 지운 종목은 다시 넣지 않는다(`knowledge/models/tradingview/added.csv`). 도구 목록·시세 지연 `docs/integrations/tradingview_tools.md`.
 - **리테일 채널**(2026-11-01 마스터 지시 "레딧, X에 직접 접속하지 말고 우회 방법을 찾아라"): `radar/retail_channels.py`가 하루 1회 `radar/attention.py` 안에서 돈다. 종목별 ApeWisdom·Tradestie 레딧 집계, Wikimedia 조회, Hacker News, Lemmy, TWSE 신용잔고, 시장별 Google Trends 급상승·Kalshi. 수만 저장한다. robots 금지·ClaudeBot 금지·차단 사이트(네이버 토론, 에펨코리아, 디시, PTT, Xueqiu 등)와 스크래퍼 재판매는 쓰지 않는다. Stocktwits는 약관 확인 전 보류.
 - **Discovery 피드 양식**(2026-11-01 마스터 지시): `scripts/discovery/feed.py`가 고정한다. 결론부터, 절 제목 ■, 회사 ▶, 사실은 하이픈 줄 하나에 하나.
+  - 한 절의 하이픈 줄은 6줄까지(2026-11-14 Proviser 6-8): 알파 진입·이탈이 6건을 넘으면 '진입'·'이탈' 소절로 나누고, 각 소절은 점수 상위 5건만 줄로 쓰고 나머지는 '그 외 n종목: 이름·이름…' 한 줄로 묶는다. 결론 줄에 이름을 든 종목(예: 원익IPS·ASM·Unimicron)은 목록에도 반드시 보인다.
 - **주기**(2026-11-01 마스터 지시 "주중에는 30분마다 유지하고, 토요일에는 알파 재산정 1번만, 일요일은 발굴 전체 선별 1번만"): 월~금 `chiip-tenbagger` 30분마다, 토·일 `chiip-tenbagger-weekend` 08시 15분 1회. 한국 시각 기준이다. 그 달 첫 토요일의 월간 점검은 토요일 회차에 함께 한다.
 - **리테일·커뮤니티 대체 경로**(2026-11-01 마스터 지시 "MCP 및 API 연결에 돈을 지불해야 한다면 우회 경로를 찾아라", "레딧과 X, Substack에서 정보를 수집할 때도 우회 방법을 찾아라"). 공개·무료이고 약관과 robots가 허용하는 경로만 쓴다.
   - 소비재는 Pulse(소비재 분류)·Ten-bagger(일요일 전체 선별, `config/consumer.yaml` 30개사)·Analysis 모두 대상이다.
@@ -49,3 +70,6 @@
 - **유럽·영국 감시 확대**(2026-11-11 마스터 지시 "지멘스 에너지(ENR) 같은 유럽연합 주요국 및 영국의 AI 밸류체인 및 성장주, 항공우주&방위주도 감시 대상에 포함"): `config/earnings_watch.yaml` extra에 26곳 — AI 밸류체인(Aixtron·Soitec·ST·Nordic·Mycronic·VAT·IQE·Halma·Spectris), 성장(Dassault Systèmes·Hexagon·Adyen), 항공우주·방위(Rheinmetall·Hensoldt·Renk·MTU·Airbus·Safran·Thales·Dassault Aviation·Leonardo·Saab·Kongsberg·BAE·QinetiQ·Chemring). 지멘스 에너지·ASML·인피니언·BESI·ASMI·롤스로이스 등은 이미 감시 중.
 - **종목 범위 확대 1단계**(2026-11-13 마스터 지시 "Pulse 및 알파 감지 및 Ten-bagger 및 Analysis의 종목 범위를 조금 더 넓혀 다양한 섹터에서 찾도록", ADR-025): 공통 섹터 지도 `scripts/sectors/sector_map.py`(`config/sector_map.yaml` — Portfolio 섹터 후보 36개 + 태그 전용 8개, 결과 `knowledge/models/sectors/tags.json`)가 발굴 후보·감시 목록·소비재·방위·구간 시드에 섹터를 붙인다. 할당량: Discovery 심층 대기열(`screen.py`)은 AI 밸류체인 밖 최소 40%·같은 섹터 2개까지, Analysis(`pick_report.py`)는 최근 7일 리포트의 AI 밖 비율이 40% 아래면 다음 알파 순번을 AI 밖 알파 5.0 이상에서 고른다(후보가 없으면 원래대로). Pulse는 감시 이름 사전에 안 걸린 AI 밖 지도 종목의 보도자료·공시를 '섹터 확장'으로 살린다(회차당 4건·섹터당 2건). 40%는 사전값(마스터 미정). 2단계 섹터 순환 스크린·판단 틀, 3단계 알파 섹터 보정(그림자 4주)은 다음.
 - **종목 범위 확대 2단계 — 섹터 순환 스크린·섹터 판단 틀**(2026-11-13 마스터 지시, ADR-027): `scripts/discovery/sector_rotation.py` + `config/sector_rotation.yaml` — 주중 하루 한 번 TradingView 섹터 2개씩(전자기술 제외 18개, 약 2주에 한 바퀴, Portfolio 섹터 신규 편입·편입 후보 섹터 먼저) 시가총액 $0.3~30B·매출 성장 10~300%를 스크린해 섹터 안 z합성 상위 5 → 발굴 선별에 '섹터 순환: <섹터>' 테마로 합류. 섹터 판단 틀 6개(`knowledge/methods/sector_lenses/` 헬스케어·금융·산업재·소비재·에너지·소재·소프트웨어, 질문 7개씩)로 쓴 판단 카드(`lens_cards/`, `--card-check` 통과·90일)만 edge가 들어간다 — 카드 없으면 edge 5로 '① 아이디어'.
+
+## 양식 개선 기록
+- 2026-11-14 · 토 알파 재산정 피드 7.5점(덩어리 −1.5·숫자 과밀 −1.0) — '알파 진입·이탈' 절이 13줄 한 덩어리이고, 결론에 든 원익IPS 5.8·ASM 5.2·Unimicron 5.0이 목록에 없다 · 절당 6줄 상한·소절 분리·상위 5건 + '그 외' 한 줄·결론 종목 목록 표시 · 전 7.5 → 후 9.0 예상(7일 뒤 확인)

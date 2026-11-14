@@ -57,7 +57,7 @@ CLASSES = [("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운�
            ("보도자료", ("src-prn", "src-bw", "src-ir-press", "src-newsroom-", "src-assoc-", "src-gpu-rental", "src-trendforce-pr")),   # GPU 렌털료 변화·TrendForce 가격 보도자료(2026-11-10)
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-edinet")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg")),
-           ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports"))]   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)
+           ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"))]   # src-consumer-macro = 미·일·유럽·영국 소비 통계 새 달에 문턱 넘은 업종(radar/consumer_macro.py, 2026-11-14)   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
 CLASS_W = {"지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
@@ -77,6 +77,7 @@ FIN_8K_ITEMS = {"1.01": "중요 계약", "2.03": "금융 채무 발생", "3.02":
 # + radar/consumer_attention.py의 수요 관심 급가속(IP·브랜드 위키 조회·스팀 추천) — 렌즈 knowledge/methods/consumer_lens.md
 CONSUMER_EVENT_RE = re.compile(r"決算|業績|上方修正|下方修正|月次|増配|株式分割|最高益|earnings|results|guidance|quarter|outlook|raises|record", re.I)
 CONSUMER_LATEST = common.ROOT / "knowledge" / "models" / "consumer" / "attention_latest.json"
+TRENDS_LATEST = common.ROOT / "knowledge" / "models" / "consumer_trends" / "discovery_latest.json"   # 한국 외 소비 트렌드 발굴(radar/consumer_discovery.py, 2026-11-14)
 
 
 def sector_hit(it):
@@ -168,7 +169,7 @@ def relevant(it, cls):
         return True
     if it.get("source_id") in ("src-short-sites", "src-company-sites", "src-cftc"):   # 숏 운용사·대상 회사 원문은 원천에서 이미 좁혔다(2026-11-09)
         return True
-    if it.get("source_id") in ("src-ppi-release", "src-cpi-release", "src-kr-exports"):   # 지표 발표 — 수집기가 새 달일 때만 한 건 넣는다(2026-11-13)
+    if it.get("source_id") in ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"):   # 지표 발표 — 수집기가 새 달일 때만 한 건 넣는다(2026-11-13)
         return True
     if it.get("source_id") in ("src-tw-revenue-surge", "src-cn-hk-disclosure", "src-price-move"):   # 중문 원문·지도 밖 후보 — 수집기가 업종·중요 공시로 이미 거름(2026-11-09)
         return True
@@ -688,6 +689,23 @@ def fetch_consumer_spikes(st):
     return out
 
 
+def fetch_consumer_trends(st):
+    """한국 외 소비 트렌드 경보(하루 1회 갱신) — 상장사에 매핑된 앱·게임 순위 진입, 위키 조회 급증, 급상승 검색. 새 관측일 때만"""
+    if not TRENDS_LATEST.exists():
+        return []
+    d = json.loads(TRENDS_LATEST.read_text(encoding="utf-8"))
+    if (d.get("as_of") or "") <= st.get("consumer_trends_at", ""):
+        return []
+    st["consumer_trends_at"] = d.get("as_of") or ""
+    out = []
+    for a in (d.get("alerts") or [])[:6]:
+        tk = ((a.get("issuer") or a.get("brand") or {}).get("ticker")) or ""
+        out.append({"source_id": "consumer-trends", "source_class": "소비재", "url": "", "title": f"소비 트렌드 — {a['headline']}",
+                    "published_at": d.get("as_of"), "detected_at": common.iso(common.now_kst()), "snippet": "radar/consumer_discovery.py(단서 — 관심 증가는 매출이 아니다)",
+                    "language": "ko", "entities_matched": [tk] if tk else [], "consumer_trend": a})
+    return out
+
+
 def candidates(sources, watch):
     """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
     c = {}
@@ -757,7 +775,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("시의성 뉴스", fetch_news)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("시의성 뉴스", fetch_news)):
         try:
             sources += fn(st)
         except Exception as exc:
@@ -850,7 +868,7 @@ def run(now=None, peek=False):
     counts = {c: sum(1 for s in sources if s["source_class"] == c) for c in TOP}
     watch = sea.watch_tickers()
     keep = ("source_id", "source_class", "score", "url", "title", "published_at", "detected_at", "snippet", "entities_matched", "sec_items", "ticker", "publisher", "alert_ref", "level", "local_text", "chars",
-            "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike", "relay")   # IR 자료·Q&A·소비재 필드(2026-10-30)
+            "also", "forwarded_from", "link", "kind", "period", "doc_date", "local_pdf", "prev_text", "prev_url", "prev_period", "grade", "tier", "fallback", "material", "consumer_spike", "consumer_trend", "relay")   # IR 자료·Q&A·소비재 필드(2026-10-30)
     keep = keep + ("fulltext",)
     picked = select(sources)
     try:   # 원문 열람(마스터 지시 2026-11-13) — 실적·공시·보도자료는 본문·첨부(EX-99.1)를 읽어 숫자 문장을 붙인다. 실패면 사유·재시도

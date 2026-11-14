@@ -5790,3 +5790,51 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-ctrend-accel-pp
+  model: consumer_trends.macro
+  binding: config/consumer_trends.yaml#macro.alert.accel_pp
+  value: 3.0
+  unit: '%p(3개월 YoY의 3개월 변화)'
+  status: prior
+  prior:
+    value: 3.0
+    basis: 업종 소매 3개월 YoY가 한 분기 사이 3%p 넘게 바뀌면 실적 가이던스 문구가 바뀌는 크기라는 운영 가정. 5년 z(prm-ctrend-z)와 같은 방향일 때만 경보
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-11-14 마스터 지시 한국 외 소비 트렌드)
+  fit:
+    method: 경보 달 이후 노출 종목의 다음 분기 매출 서프라이즈 방향 적중률(walk-forward) — 경보가 20건 넘게 쌓인 뒤
+    target: 경보 방향과 다음 분기 매출 서프라이즈 부호 일치율
+    data: knowledge/models/consumer_trends/macro_latest.json 이력 · knowledge/models/estimates/snapshots.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-ctrend-z
+  model: consumer_trends.macro
+  binding: config/consumer_trends.yaml#macro.alert.z
+  value: 1.5
+  unit: 표준편차(직전 60개월 3개월 YoY 분포)
+  status: prior
+  prior:
+    value: 1.5
+    basis: 정규 분포에서 양측 약 13% — 업종 수(약 100개) × 월 1회면 달마다 몇 건이 나오는 크기. 가속 문턱과 함께 걸어 거짓 경보를 줄인다
+    source: 치입 운영 가정 — 문헌 값 미확인(2026-11-14)
+  fit:
+    method: prm-ctrend-accel-pp와 같은 적중률 표에서 1.0·1.5·2.0 비교
+    target: 경보 방향과 다음 분기 매출 서프라이즈 부호 일치율
+    data: knowledge/models/consumer_trends/macro_latest.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-ctrend-accel-pp-noisy
+  model: consumer_trends.macro
+  binding: config/consumer_trends.yaml#macro.alert.accel_pp_noisy
+  value: 8.0
+  unit: '%p'
+  status: prior
+  prior:
+    value: 8.0
+    basis: 総務省 家計調査 품목 단위(게임기·손목시계 등)는 2인 이상 가구 약 9천 표본의 월 지출이라 3개월 YoY 변동이 업종 통계보다 수 배 크다(2026-11-14 첫 계산에서 게임기 −74%·손목시계 +62%) — 문턱을 높여 표본 잡음을 거른다
+    source: 総務省統計局 家計調査 標本設計(公表資料) — 배수 값은 운영 가정
+  fit:
+    method: 품목별 3개월 YoY 표준편차 대비 문턱 비율을 맞춘다(같은 거짓 경보율)
+    target: 품목별 거짓 경보율
+    data: radar/state/consumer_macro.sqlite
+    last_fit: null
+    oos_metric: null
