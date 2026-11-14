@@ -1,0 +1,164 @@
+{
+ "rows": [
+  {
+   "quarter": "1Q25",
+   "lab": "Anthropic",
+   "revenue_b": 0.376,
+   "kind": "filing",
+   "lo": 0.376,
+   "hi": 0.376,
+   "annualized_b": 1.5,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "1Q25",
+   "lab": "OpenAI",
+   "revenue_b": 1.685,
+   "kind": "estimate",
+   "lo": 1.499,
+   "hi": 1.893,
+   "annualized_b": 6.74,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  },
+  {
+   "quarter": "2Q25",
+   "lab": "Anthropic",
+   "revenue_b": 0.787,
+   "kind": "filing",
+   "lo": 0.787,
+   "hi": 0.787,
+   "annualized_b": 3.15,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "2Q25",
+   "lab": "OpenAI",
+   "revenue_b": 2.25,
+   "kind": "estimate",
+   "lo": 2.002,
+   "hi": 2.528,
+   "annualized_b": 9.0,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  },
+  {
+   "quarter": "3Q25",
+   "lab": "Anthropic",
+   "revenue_b": 1.382,
+   "kind": "filing",
+   "lo": 1.382,
+   "hi": 1.382,
+   "annualized_b": 5.53,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "3Q25",
+   "lab": "OpenAI",
+   "revenue_b": 3.128,
+   "kind": "estimate",
+   "lo": 2.784,
+   "hi": 3.515,
+   "annualized_b": 12.51,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  },
+  {
+   "quarter": "4Q25",
+   "lab": "Anthropic",
+   "revenue_b": 2.04,
+   "kind": "filing",
+   "lo": 2.04,
+   "hi": 2.04,
+   "annualized_b": 8.16,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "4Q25",
+   "lab": "OpenAI",
+   "revenue_b": 4.463,
+   "kind": "estimate",
+   "lo": 3.971,
+   "hi": 5.015,
+   "annualized_b": 17.85,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  },
+  {
+   "quarter": "1Q26",
+   "lab": "Anthropic",
+   "revenue_b": 4.731,
+   "kind": "filing",
+   "lo": 4.731,
+   "hi": 4.731,
+   "annualized_b": 18.92,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "1Q26",
+   "lab": "OpenAI",
+   "revenue_b": 5.879,
+   "kind": "estimate",
+   "lo": 5.232,
+   "hi": 6.607,
+   "annualized_b": 23.52,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  },
+  {
+   "quarter": "2Q26",
+   "lab": "Anthropic",
+   "revenue_b": 11.555,
+   "kind": "filing",
+   "lo": 11.555,
+   "hi": 11.555,
+   "annualized_b": 46.22,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "2Q26",
+   "lab": "OpenAI",
+   "revenue_b": 6.685,
+   "kind": "estimate",
+   "lo": 5.949,
+   "hi": 7.512,
+   "annualized_b": 26.74,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  },
+  {
+   "quarter": "3Q26",
+   "lab": "Anthropic",
+   "revenue_b": 16.956,
+   "kind": "filing",
+   "lo": 16.956,
+   "hi": 16.956,
+   "annualized_b": 67.82,
+   "source": "S-1/A 2026-11-10"
+  },
+  {
+   "quarter": "3Q26",
+   "lab": "OpenAI",
+   "revenue_b": 9.402,
+   "kind": "estimate",
+   "lo": 8.367,
+   "hi": 10.566,
+   "annualized_b": 37.61,
+   "source": "Chiip 추정(보도 ARR 로그 선형)"
+  }
+ ],
+ "meta": [
+  {
+   "label": "ai_arr.py",
+   "value": "\"\"\"AI 프론티어 랩 월별 ARR·분기 매출 — 공시·보도 뼈대 + 표시된 추정층 (마스터 지시 2026-11-14 \"다시 만들어\").\n\n입력(knowledge/models/ai_labs/)\n  arr_ledger.csv               공개 보도·공시 ARR 장부(유형·총액/순액·차트 사용 primary 표시)\n  anthropic_s1_quarterly.csv   Anthropic S-1/A(2026-11-10) 분기 GAAP 매출 7개 분기\n출력\n  arr_monthly.json    {rows, meta}  랩·월별 월말 ARR — kind reported(장부 primary) / estimate(Chiip 추정)\n  arr_quarterly.json  {rows, meta}  랩·분기 매출 — kind filing(공시 실적) / estimate(Chiip 추정)\n\n추정 방법(보간을 숨기지 않는다 — 추정은 kind=estimate, 범위 lo~hi와 함께)\n  Anthropic: 분기마다 월 매출을 등비(공비 r_q)로 놓아 분기 합계를 공시 실적과 정확히 맞추고,\n             보도된 ARR 기준점(로그 오차)과 분기 경계의 성장 연속성을 함께 최소화하도록 r_q를 좌표 탐색으로 고른다.\n             월말 ARR = 12 × 그 달 매출 × (월 성장률)^0.5. 범위 = 기준점 로그 잔차 RMS.\n  OpenAI:    공시가 없다. 순액 기준 primary 보도값 사이를 로그 선형(일정 성장률)으로 잇는다.\n             범위 = 기준점 하나씩 빼고 이웃으로 맞힌 로그 오차 RMS(leave-one-out).\n  마지막 보도·공시 뒤 달은 추정하지 않는다(외삽 = 전망이라 하지 않음).\n  분기 매출: Anthropic은 공시 실적. OpenAI는 월 ARR/12의 분기 합(추정).\n사용: py scripts/industry/ai_arr.py [--show]\n\"\"\"\nimport csv\nimport json\nimport math\nimport sys\nfrom pathlib import Path\n\nROOT = Path(__file__).resolve().parents[2]\nDIR = ROOT / \"knowledge\" / \"models\" / \"ai_labs\"\nLABS = (\"OpenAI\", \"Anthropic\")\nLAMBDA = 4.0          # 분기 경계 성장 연속성 가중(기준점 1개 = 1)\nGRID = [1.0 + i * 0.005 for i in range(0, 161)]   # 월 공비 1.00~1.80\n\n\ndef months(a, b):\n    y, m = int(a[:4]), int(a[5:7])\n    out = []\n    while True:\n        k = f\"{y}-{m:02d}\"\n        out.append(k)\n        if k >= b:\n            return out\n        m += 1\n        if m > 12:\n            m, y = 1, y + 1\n\n\ndef frac(as_of):\n    \"\"\"기준일의 달 안 위치(0~1). 일자가 없으면 달 중간.\"\"\"\n    if len(as_of) >= 10:\n        import calendar\n        y, m, d = int(as_of[:4]), int(as_of[5:7]), int(as_of[8:10])\n        return d / calendar.monthrange(y, m)[1]\n    return 0.5\n\n\ndef ledger():\n    return list(csv.DictReader(open(DIR / \"arr_ledger.csv\", encoding=\"utf-8\")))\n\n\ndef anchors(rows, lab):\n    out = [r for r in rows if r[\"lab\"] == lab and r[\"primary\"] == \"1\" and not (lab == \"OpenAI\" and r[\"basis\"] == \"gross\")]\n    return sorted(out, key=lambda r: r[\"as_of\"])\n\n\ndef rms(xs):\n    return math.sqrt(sum(x * x for x in xs) / len(xs)) if xs else 0.0\n\n\n# ---------- Anthropic: 분기 실적 + ARR 기준점 ----------\ndef anthropic(rows):\n    q = list(csv.DictReader(open(DIR / \"anthropic_s1_quarterly.csv\", encoding=\"utf-8\")))\n    qmon = []                       # [(quarter, [m1,m2,m3], 매출 $B)]\n    for r in q:\n        y, mm = int(r[\"period_end\"][:4]), int(r[\"period_end\"][5:7])\n        ms = [f\"{y}-{mm - 2 + i:02d}\" for i in range(3)]\n        qmon.append((r[\"quarter\"], ms, float(r[\"revenue_musd\"]) / 1000))\n    span = [m for _, ms, _ in qmon for m in ms]\n    anc = [a for a in anchors(rows, \"Anthropic\") if a[\"as_of\"][:7] in span]\n\n    def path(rs):\n        rev = {}\n        for (qq, ms, s), r in zip(qmon, rs):\n            w = [r ** i for i in range(3)]\n            for m, wi in zip(ms, w):\n                rev[m] = s * wi / sum(w)\n        return rev\n\n    def growth(rev, rs, m):\n        i = span.index(m)\n        if i + 1 < len(span):\n            return rev[span[i + 1]] / rev[m]\n        return rs[-1]\n\n    def arr_at(rev, rs, m, f):\n        return 12 * rev[m] * growth(rev, rs, m) ** (f - 0.5)\n\n    def loss(rs):\n        rev = path(rs)\n        e = sum((math.log(arr_at(rev, rs, a[\"as_of\"][:7], frac(a[\"as_of\"])) / float(a[\"arr_usd_b\"]))) ** 2 for a in anc)\n        for i in range(len(qmon) - 1):   # 분기 경계: 다음 분기 첫 달/이번 분기 끝 달 성장이 두 분기 공비의 기하평균과 같도록\n            last, first = rev[qmon[i][1][2]], rev[qmon[i + 1][1][0]]\n            e += LAMBDA * (math.log(first / last) - 0.5 * math.log(rs[i] * rs[i + 1])) ** 2\n        return e\n\n    rs = [1.2] * len(qmon)\n    for _ in range(40):\n        before = list(rs)\n        for i in range(len(rs)):\n            best = min(GRID, key=lambda g: loss(rs[:i] + [g] + rs[i + 1:]))\n            rs[i] = best\n        if rs == before:\n            break\n    rev = path(rs)\n    resid = [math.log(arr_at(rev, rs, a[\"as_of\"][:7], frac(a[\"as_of\"])) / float(a[\"arr_usd_b\"])) for a in anc]\n    band = rms(resid)\n    est = {m: arr_at(rev, rs, m, 1.0) for m in span}       # 월말 ARR\n    fit = {\"monthly_ratio_by_quarter\": {qq: round(r, 3) for (qq, _, _), r in zip(qmon, rs)},\n           \"anchor_log_rmse\": round(band, 4), \"anchors_used\": len(anc),\n           \"anchor_resid\": [{\"as_of\": a[\"as_of\"], \"reported\": float(a[\"arr_usd_b\"]), \"model\": round(math.exp(e) * float(a[\"arr_usd_b\"]), 2)} for a, e in zip(anc, resid)]}\n    quarterly = [{\"quarter\": qq, \"lab\": \"Anthropic\", \"revenue_b\": round(s, 3), \"kind\": \"filing\", \"lo\": round(s, 3), \"hi\": round(s, 3),\n                  \"annualized_b\": round(4 * s, 2), \"source\": \"S-1/A 2026-11-10\"} for qq, _, s in qmon]\n    return est, band, fit, quarterly\n\n\n# ---------- OpenAI: 보도값 사이 로그 선형 ----------\ndef openai(rows):\n    anc = anchors(rows, \"OpenAI\")\n    pts = []                                   # (월 번호, log ARR)\n    for a in anc:\n        y, m = int(a[\"as_of\"][:4]), int(a[\"as_of\"][5:7])\n        pts.append((y * 12 + m - 1 + frac(a[\"as_of\"]) - 1.0, math.log(float(a[\"arr_usd_b\"]))))   # 월말 기준 위치로\n    def interp(t, ps):\n        for (t0, v0), (t1, v1) in zip(ps, ps[1:]):\n            if t0 <= t <= t1:\n                return v0 + (v1 - v0) * (t - t0) / (t1 - t0) if t1 > t0 else v0\n        return None\n    loo = []\n    for i in range(1, len(pts) - 1):\n        v = interp(pts[i][0], pts[:i] + pts[i + 1:])\n        if v is not None:\n            loo.append(v - pts[i][1])\n    band = rms(loo)\n    first, last = anc[0][\"as_of\"][:7], anc[-1][\"as_of\"][:7]\n    est = {}\n    for m in months(first, last):\n        t = int(m[:4]) * 12 + int(m[5:7]) - 1          # 그 달 말\n        v = interp(t, pts)\n        if v is not None:\n            est[m] = math.exp(v)\n    fit = {\"loo_log_rmse\": round(band, 4), \"anchors_used\": len(anc),\n           \"loo_resid\": [round(x, 3) for x in loo]}\n    return est, band, fit\n\n\ndef build():\n    rows = ledger()\n    a_est, a_band, a_fit, quarterly = anthropic(rows)\n    o_est, o_band, o_fit = openai(rows)\n    rep = {}\n    for lab in LABS:\n        for a in anchors(rows, lab):\n            rep[(lab, a[\"as_of\"][:7])] = a\n    allm = months(\"2025-01\", max(m for (_, m) in rep))\n    out = []\n    for lab, est, band in ((\"OpenAI\", o_est, o_band), (\"Anthropic\", a_est, a_band)):\n        for m in allm:\n            r = rep.get((lab, m))\n            if r:\n                v = float(r[\"arr_usd_b\"])\n                out.append({\"key\": f\"{m}|{lab}\", \"month\": m, \"lab\": lab, \"arr\": v, \"kind\": \"reported\",\n                            \"lo\": v, \"hi\": v, \"type\": r[\"type\"], \"basis\": r[\"basis\"], \"publisher\": r[\"publisher\"],\n                            \"as_of\": r[\"as_of\"], \"ledger_id\": r[\"id\"],\n                            \"model\": round(est[m], 2) if m in est else None})\n            elif m in est:\n                v = est[m]\n                out.append({\"key\": f\"{m}|{lab}\", \"month\": m, \"lab\": lab, \"arr\": round(v, 2), \"kind\": \"estimate\",\n                            \"lo\": round(v * math.exp(-band), 2), \"hi\": round(v * math.exp(band), 2), \"type\": \"chiip_estimate\",\n                            \"basis\": \"net\" if lab == \"OpenAI\" else \"gross\", \"publisher\": \"Chiip 추정\",\n                            \"as_of\": m + \" 말\", \"ledger_id\": \"\", \"model\": round(v, 2)})\n    # OpenAI 분기 매출 추정 = 월 ARR/12 합(월 중간값 근사: 전월 말·당월 말 기하평균)\n    om = {r[\"month\"]: r for r in out if r[\"lab\"] == \"OpenAI\"}\n    for qq, ms in ((\"1Q25\", [\"2025-01\", \"2025-02\", \"2025-03\"]), (\"2Q25\", [\"2025-04\", \"2025-05\", \"2025-06\"]),\n                   (\"3Q25\", [\"2025-07\", \"2025-08\", \"2025-09\"]), (\"4Q25\", [\"2025-10\", \"2025-11\", \"2025-12\"]),\n                   (\"1Q26\", [\"2026-01\", \"2026-02\", \"2026-03\"]), (\"2Q26\", [\"2026-04\", \"2026-05\", \"2026-06\"]),\n                   (\"3Q26\", [\"2026-07\", \"2026-08\", \"2026-09\"])):\n        prev = months(\"2024-12\", ms[0])[-2]\n        seq = [prev] + ms\n        v = {m: (om[m][\"arr\"] if m in om else o_est.get(m)) for m in seq}   # 2024-12는 기준점(장부) 값\n        if any(x is None for x in v.values()):\n            continue\n        s = sum(math.sqrt(v[seq[i]] * v[seq[i + 1]]) / 12 for i in range(3))\n        quarterly.append({\"quarter\": qq, \"lab\": \"OpenAI\", \"revenue_b\": round(s, 3), \"kind\": \"estimate\",\n                          \"lo\": round(s * math.exp(-o_band), 3), \"hi\": round(s * math.exp(o_band), 3),\n                          \"annualized_b\": round(4 * s, 2), \"source\": \"Chiip 추정(보도 ARR 로그 선형)\"})\n    quarterly.sort(key=lambda r: (r[\"quarter\"][2:] + r[\"quarter\"][:2], r[\"lab\"]))\n    code = Path(__file__).read_text(encoding=\"utf-8\")\n    meta = [{\"label\": \"ai_arr.py\", \"value\": code, \"type\": \"code\", \"lang\": \"python\"},\n            {\"label\": \"Input\", \"value\": \"arr_ledger.csv, anthropic_s1_quarterly.csv\"},\n            {\"label\": \"Anthropic fit\", \"value\": json.dumps(a_fit, ensure_ascii=False)},\n            {\"label\": \"OpenAI fit\", \"value\": json.dumps(o_fit, ensure_ascii=False)}]\n    json.dump({\"rows\": out, \"meta\": meta}, open(DIR / \"arr_monthly.json\", \"w\", encoding=\"utf-8\"), ensure_ascii=False, indent=1)\n    json.dump({\"rows\": quarterly, \"meta\": meta}, open(DIR / \"arr_quarterly.json\", \"w\", encoding=\"utf-8\"), ensure_ascii=False, indent=1)\n    return out, quarterly, a_fit, o_fit\n\n\nif __name__ == \"__main__\":\n    out, q, af, of = build()\n    if \"--show\" in sys.argv:\n        print(json.dumps(af, ensure_ascii=False))\n        print(json.dumps(of, ensure_ascii=False))\n        for r in out:\n            print(r[\"month\"], r[\"lab\"], r[\"kind\"], r[\"arr\"], r[\"lo\"], r[\"hi\"], r.get(\"model\"))\n        for r in q:\n            print(r[\"quarter\"], r[\"lab\"], r[\"kind\"], r[\"revenue_b\"], r[\"annualized_b\"])\n",
+   "type": "code",
+   "lang": "python"
+  },
+  {
+   "label": "Input",
+   "value": "arr_ledger.csv, anthropic_s1_quarterly.csv"
+  },
+  {
+   "label": "Anthropic fit",
+   "value": "{\"monthly_ratio_by_quarter\": {\"1Q25\": 1.335, \"2Q25\": 1.255, \"3Q25\": 1.145, \"4Q25\": 1.15, \"1Q26\": 1.45, \"2Q26\": 1.285, \"3Q26\": 1.025}, \"anchor_log_rmse\": 0.1297, \"anchors_used\": 13, \"anchor_resid\": [{\"as_of\": \"2025-01\", \"reported\": 1.0, \"model\": 1.1}, {\"as_of\": \"2025-03\", \"reported\": 2.0, \"model\": 1.95}, {\"as_of\": \"2025-05\", \"reported\": 3.0, \"model\": 3.09}, {\"as_of\": \"2025-07\", \"reported\": 5.0, \"model\": 4.8}, {\"as_of\": \"2025-08\", \"reported\": 5.0, \"model\": 5.49}, {\"as_of\": \"2025-10\", \"reported\": 7.0, \"model\": 7.05}, {\"as_of\": \"2025-12\", \"reported\": 9.0, \"model\": 9.32}, {\"as_of\": \"2026-02\", \"reported\": 14.0, \"model\": 18.08}, {\"as_of\": \"2026-03\", \"reported\": 19.0, \"model\": 26.22}, {\"as_of\": \"2026-04\", \"reported\": 30.0, \"model\": 35.23}, {\"as_of\": \"2026-05\", \"reported\": 47.0, \"model\": 45.27}, {\"as_of\": \"2026-07\", \"reported\": 65.0, \"model\": 66.16}, {\"as_of\": \"2026-09-30\", \"reported\": 71.0, \"model\": 70.37}]}"
+  },
+  {
+   "label": "OpenAI fit",
+   "value": "{\"loo_log_rmse\": 0.1167, \"anchors_used\": 9, \"loo_resid\": [0.071, -0.051, 0.022, 0.005, -0.102, 0.077, 0.266]}"
+  }
+ ]
+}
