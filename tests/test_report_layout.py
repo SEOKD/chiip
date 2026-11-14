@@ -105,10 +105,11 @@ class TestMultiple(unittest.TestCase):
         s = multiples.select_multiple(self.mm(), dp, CFG["multiple_select"])
         import math
         fund = 0.2 * math.tanh(0.5 * math.log(35 / 25) / 0.2)   # 로그 차이 × 0.5, ±20%에 부드럽게(ADR-041)
-        self.assertAlmostEqual(s["value"], 25 * (1 + fund + 0.04 + 0.05 - 0.1))
+        moat = 0.04 - CFG["multiple_select"].get("moat_baseline", 0.0)   # 동종 평균 해자만큼 뺀다(ADR-042)
+        self.assertAlmostEqual(s["value"], 25 * (1 + fund + moat + 0.05 - 0.1))
         self.assertEqual(s["rows"][-1][0], "**선정**")
         thin = dict(self.mm(), sentiment={"n": 2})   # 심리 배율 표본 4곳 미만 — 합리적 멀티플을 믿지 않는다
-        self.assertAlmostEqual(multiples.select_multiple(thin, dp, CFG["multiple_select"])["value"], 25 * (1 + 0.04 + 0.05 - 0.1))
+        self.assertAlmostEqual(multiples.select_multiple(thin, dp, CFG["multiple_select"])["value"], 25 * (1 + moat + 0.05 - 0.1))
 
     def test_stays_inside_peer_range(self):
         dp = {"multiple_view": {"adj": -0.9, "why": "x"}, "narrative": {"stage": "붕괴"}}

@@ -108,6 +108,11 @@ def check(p):
         f"사용 {tone} · 레이더 기준 {want}(톤 변화 {call.get('tone_delta')}, 가이던스 {call.get('guidance_direction')})")
     peers = p.get("peers") or []
     basis = p.get("peers_basis")
+    tgt = (pf.get("price") or 0) * (pf.get("shares_basic") or 0)
+    sized = [x for x in peers if (x.get("mcap") or 0) > 0]
+    near = sum(1 for x in sized if 0.2 <= x["mcap"] / tgt <= 5) if tgt else 0
+    if sized and tgt and p.get("unit", "B$") == "B$":   # 동종 규모(ADR-042 — 12/66곳 동종 중앙 시총이 대상의 5배 초과, 판단 조정으로 메웠다)
+        add("동종 규모(절반 이상 시총 0.2~5배)", "통과" if near * 2 >= len(sized) else "경고", f"{near}/{len(sized)}곳이 대상 시총 {tgt:.2f}의 0.2~5배 — 규모가 다르면 판단 조정이 아니라 동종을 바꾼다")
     ok_p = len(peers) >= 4 and basis in ("ttm", "ntm") and p.get("peers_source")
     add("동종사 4곳 이상·기준 표기", "통과" if ok_p else "실패", f"{len(peers)}곳 · 기준 {basis or '미표기'}")
     mult, why = multiples.choose_basis(p)   # Fwd 1Y 이익 멀티플이 기준(마스터 지시 2026-10-30)

@@ -329,7 +329,8 @@ def select_multiple(m, dp, cfg):
     fund = cfg["fund_cap"] * math.tanh(cfg["fund_weight"] * math.log(rational / p50) / cfg["fund_cap"]) if ok_r else 0.0
     items = (dp.get("moat") or {}).get("items") or []
     import plus   # 같은 뜻 다른 표기(중간·약점·약화 중)를 점수표 이름으로 — DCF 해자 점수와 같은 규칙(ADR-040)
-    moat = clip(sum(cfg["moat_points"].get(plus.verdict(x), 0) for x in items), cfg["moat_cap"])
+    moat_raw = sum(cfg["moat_points"].get(plus.verdict(x), 0) for x in items)
+    moat = clip(moat_raw - cfg.get("moat_baseline", 0.0), cfg["moat_cap"]) if items else 0.0   # 동종 대비(ADR-042 — 75곳 모두 0 이상, 중앙 +5.5%로 위로만 기울었다)
     n = dp.get("narrative") or {}
     narr = cfg["stage"].get(n.get("stage"), 0.0)
     mv = dp.get("multiple_view") or {}
@@ -343,7 +344,7 @@ def select_multiple(m, dp, cfg):
              + (f" · 지금 배수를 오늘 가격으로 다시 잼({', '.join(m['now_refreshed'][:3])})" if m.get("now_refreshed") else "")],
             ["펀더멘털", pct(fund), (f"성장·이익률·ROIC로 본 합리적 멀티플 {rational:.1f}배와의 차이의 일부만 인정(로그 차이 × {cfg['fund_weight']}, 상한 ±{cfg['fund_cap']:.0%}에 부드럽게 수렴)" if ok_r
                                    else (f"합리적 멀티플 {rational:.1f}배는 쓰지 않음 — 심리 배율 표본 {n_sent}곳·동종 중앙값의 {rational / p50:.1f}배" if rational else "재료 없음"))],
-            ["해자", pct(moat), " · ".join(f"{str(x.get('kind')).split('에 따른')[0]} {x.get('verdict')}" for x in items) or "재료 없음"],
+            ["해자", pct(moat), (" · ".join(f"{str(x.get('kind')).split('에 따른')[0]} {x.get('verdict')}" for x in items) + (f" — 점수 {moat_raw:.1%}에서 동종 기준 {cfg.get('moat_baseline', 0.0):.1%}를 뺌" if cfg.get("moat_baseline") else "")) if items else "재료 없음"],
             ["반복 매출", pct(rec), rec_why],
             ["수주 전환·가시성", pct(conv + vis), bk_why],
             *([["구조 상한 조정", pct(struct - rec - conv - vis), f"해자+반복+수주 합 {cfg.get('structure_cap', 1.0):.0%} 상한"]] if abs(struct - rec - conv - vis) > 1e-9 else []),

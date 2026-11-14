@@ -88,6 +88,9 @@ def build(p):
     if gd.get("rev_fy0"):
         rev0 = sum(gd["rev_fy0"]) / 2
         prov["rev0"] = f"회사 가이던스 중간값 {gd['rev_fy0']} ({gd.get('source', '어닝콜·보도자료')})"
+        c0 = revs[0] if revs else None
+        if c0 and abs(rev0 / c0 - 1) > 0.05 and not gd.get("basis_note"):   # 가이던스 해·기준이 컨센서스 첫 해와 다를 수 있다(ADR-042 — CBRS 0.95 vs 0.885, MTD FY2025 키)
+            prov["rev0"] += f" ⚠ 컨센서스 첫 해 {sorted(cons['rev'])[0]} {c0}와 {rev0 / c0 - 1:+.0%} 다름 — 같은 해·같은 기준(core·GAAP)인지 guidance.basis_note에 적는다"
     elif revs:
         rev0 = revs[0]
         prov["rev0"] = f"컨센서스 {sorted(cons['rev'])[0]} {rev0}"

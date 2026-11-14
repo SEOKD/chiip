@@ -5,6 +5,8 @@
 대상: config/earnings_watch.yaml 감시 목록(valuation universe + extra)의 대만 코드(.TW·.TWO).
 저장: knowledge/models/valuation/prices/<code>.csv (date,close,volume — git 제외), prices/latest_free.json
 사용: py radar/markets/prices_free.py
+      py radar/markets/prices_free.py --tv-symbols            # 동인 있는 종목의 TradingView 기호(50개씩)
+      py radar/markets/prices_free.py --tv-put <응답.json> [--date YYYY-MM-DD]   # 일괄 종가 → prices/<종목 id>.csv(엔진이 더 새 가격을 쓴다)
 """
 import csv
 import json
@@ -19,6 +21,65 @@ TWSE = "https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY_ALL"
 TPEX = "https://www.tpex.org.tw/openapi/v1/tpex_mainboard_daily_close_quotes"
 PRICES = common.ROOT / "knowledge" / "models" / "valuation" / "prices"
 SOURCE_ID = "src-prices-free"
+
+
+def tv_symbols():
+    """동인이 있는 종목 → TradingView 기호(ADR-041 후속 — 77/96곳이 시세 파일 없이 데이터팩 스냅숏 가격을 썼다).
+    우선순위: config/tradingview_symbols.csv entity_id → datapack companyKey('NYSE_LTH' → 'NYSE:LTH')"""
+    out = {}
+    ids = {p.parent.name for p in (common.ROOT / "knowledge" / "models" / "companies").glob("*/drivers.yaml")}
+    tv = common.ROOT / "config" / "tradingview_symbols.csv"
+    if tv.exists():
+        with tv.open(encoding="utf-8", newline="") as fh:
+            for r in csv.DictReader(fh):
+                if r.get("entity_id") in ids and r.get("tv_symbol"):
+                    out.setdefault(r["entity_id"], r["tv_symbol"])
+    for p in sorted((common.ROOT / "knowledge" / "models" / "companies").glob("*/drivers.yaml")):
+        eid = p.parent.name
+        if eid in out:
+            continue
+        dp = p.parent / "datapack.json"
+        try:
+            d = json.loads(dp.read_text(encoding="utf-8")) if dp.exists() else {}
+        except ValueError:
+            d = {}
+        key = ((d.get("raw") or {}).get("fiscal_profile") or {}).get("companyKey") or (d.get("quarters_hist") or {}).get("key")
+        if key and "_" in key:
+            out[eid] = key.replace("_", ":", 1)
+    return out
+
+
+def put_tv(path, day=None):
+    """TradingView get_symbol_data_batch 응답(JSON: {"data": {기호: {"close": x}}} 또는 {기호: 종가}) → prices/<entity_id>.csv에 (날짜, 종가) 한 줄.
+    run.resolve_market이 datapack 가격보다 새로우면 이 값을 쓴다. day = 종가 날짜(기본: 오늘 이전 마지막 평일)"""
+    from datetime import timedelta
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    data = raw.get("data", raw)
+    if day is None:
+        d = date.today() - timedelta(days=1)
+        while d.weekday() >= 5:
+            d -= timedelta(days=1)
+        day = d.isoformat()
+    sym2e = {s: e for e, s in tv_symbols().items()}
+    PRICES.mkdir(parents=True, exist_ok=True)
+    n = 0
+    for sym, v in data.items():
+        close = _num(v.get("close") if isinstance(v, dict) else v)
+        eid = sym2e.get(sym)
+        if not eid or not close:
+            continue
+        f = PRICES / f"{eid}.csv"
+        rows = []
+        if f.exists():
+            with f.open(encoding="utf-8", newline="") as fh:
+                rows = list(csv.DictReader(fh))
+        rows = [r for r in rows if r.get("date") != day] + [{"date": day, "close": close, "source": "TradingView"}]
+        with f.open("w", encoding="utf-8", newline="") as fh:
+            w = csv.DictWriter(fh, fieldnames=["date", "close", "source"], extrasaction="ignore")
+            w.writeheader()
+            w.writerows(sorted(rows, key=lambda r: r["date"]))
+        n += 1
+    return n, day
 
 
 def roc_date(s):
@@ -89,6 +150,18 @@ def run():
 
 
 def main(argv):
+    sys.stdout.reconfigure(encoding="utf-8")
+    if "--tv-symbols" in argv:   # TradingView get_symbol_data_batch(columns ["close"])로 받을 기호(50개씩)
+        syms = sorted(set(tv_symbols().values()))
+        for i in range(0, len(syms), 50):
+            print(json.dumps(syms[i:i + 50]))
+        return 0
+    if "--tv-put" in argv:
+        i = argv.index("--tv-put")
+        day = argv[argv.index("--date") + 1] if "--date" in argv else None
+        n, day = put_tv(argv[i + 1], day)
+        print(f"[무료 시세] TradingView 종가 {n}종목 → prices/<종목 id>.csv ({day})")
+        return 0
     n, added, errors = run()
     print(f"[무료 시세] 대만 감시 종목 {n}개(신규 행 {added})" + (f", 실패: {'; '.join(errors)}" if errors else ""))
     data = json.loads((PRICES / "latest_free.json").read_text(encoding="utf-8"))

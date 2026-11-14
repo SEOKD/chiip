@@ -5862,3 +5862,19 @@ params:
     data: null
     last_fit: '2026-11-15'
     oos_metric: null
+- id: prm-tb-mult-moat-base
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#multiple_select.moat_baseline
+  value: 0.055
+  unit: 비율(멀티플 가산)
+  status: prior
+  prior:
+    value: 0.055
+    basis: '해자 프리미엄을 동종 대비 상대값으로 — 동종도 해자가 있어 동종 중앙값 멀티플에 이미 들어 있다(ADR-042). 75곳 해자 점수 중앙값 0.055를 기준선으로 빼서 평균 해자 회사의 순가산을 0으로 둔다'
+    source: 운영 가정 — 리포트 해자 점수 분포(2026-11-15, 75곳)
+  fit:
+    method: 해자 점수 구간별 선정 멀티플 뒤 12개월 초과수익 차이로 표본 외 점검(stepwise)
+    target: 해자 구간별 초과수익
+    data: null
+    last_fit: null
+    oos_metric: null

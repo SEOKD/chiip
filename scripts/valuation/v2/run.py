@@ -38,6 +38,9 @@ def resolve_market(co):
         ew = yaml.safe_load((ROOT / "config" / "earnings_watch.yaml").read_text(encoding="utf-8"))
         code = next((u.get("code") for u in val.get("universe", []) + (ew.get("extra") or []) if u["id"] == co["id"]), None)
     p = ROOT / "knowledge" / "models" / "valuation" / "prices" / f"{code}.csv" if code else None
+    pe = ROOT / "knowledge" / "models" / "valuation" / "prices" / f"{co['id']}.csv"   # 종목 id 파일(TradingView 일괄, radar/markets/prices_free.py --tv-put, ADR-041 후속)
+    if pe.exists() and (not p or not p.exists() or pe.stat().st_mtime > p.stat().st_mtime):
+        p = pe
     if p and p.exists():
         with p.open(encoding="utf-8", newline="") as fh:
             rows = [r for r in csv.DictReader(fh) if r.get("close")]
@@ -111,6 +114,29 @@ def quality(scen, base, exit_warn, cfg=None, specs=None):
     return {"status": "산정 불가" if flags else ("주의" if warns else "정상"), "usable": not flags, "flags": flags, "warns": warns, "exit": exit_warn}
 
 
+def sync_warns(co):
+    """손으로 만든 동인(auto 아님)이 datapack과 어긋나면 경고(ADR-042 — 수기 동인 5곳이 datapack 갱신을 따라가지 않았다: AMAT 순차입 −6.76 vs −2.01).
+    시세는 resolve_market이 따로 새로 하므로 주식 수·순차입만 본다. market.why가 있으면 이유가 적힌 것으로 본다"""
+    if co.get("auto") or (co.get("market") or {}).get("why"):
+        return []
+    p = ROOT / "knowledge" / "models" / "companies" / co["id"] / "datapack.json"
+    try:
+        dp = json.loads(p.read_text(encoding="utf-8"))
+        import build_drivers
+        with __import__("contextlib").redirect_stdout(__import__("io").StringIO()):
+            auto = build_drivers.build(dp)
+    except Exception:
+        return []
+    out = []
+    m, a = co.get("market") or {}, auto.get("market") or {}
+    if m.get("shares") and a.get("shares") and abs(m["shares"] / a["shares"] - 1) > 0.01:
+        out.append(f"수기 동인 주식 수 {m['shares']:.4f} ≠ datapack {a['shares']:.4f}")
+    nd0 = m.get("net_debt", 0) - ((co.get("lease") or {}).get("net_debt_added") or 0)   # 리스 자본화로 더한 몫은 빼고 비교
+    if a.get("net_debt") is not None and abs(nd0 - a["net_debt"]) > 0.01 * max(abs(m.get("price", 0) * m.get("shares", 0)), 1e-9):
+        out.append(f"수기 동인 순차입 {nd0:.3f} ≠ datapack {a['net_debt']:.3f}(시총의 1% 넘게) — market.why에 이유를 적거나 동인을 고친다")
+    return out
+
+
 def evaluate(entity, draws=None, reg=None, cfg=None):
     cfg = cfg or yaml.safe_load((ROOT / "config" / "valuation_v2.yaml").read_text(encoding="utf-8"))
     reg = reg or regime_mod.load() or regime_mod.build()
@@ -142,6 +168,10 @@ def evaluate(entity, draws=None, reg=None, cfg=None):
     rs = dcf.rate_sensitivity(base_d)
     dec = decision.compute(mc, mcap, coc["ke"], coc["rf"], cfg["decision"], cfg["upside"]["horizon_years"])
     dq = quality(scen, base, exit_warn, cfg, co.get("scenarios"))
+    sw = sync_warns(co)
+    dq["warns"] += sw
+    if sw and dq["status"] == "정상":
+        dq["status"] = "주의"
     return {"decision": dec, "drivers_as_of": str(co.get("as_of", "")), "ronic_spread": co.get("ronic_spread", 0.0), "entity": entity, "name": co["name"], "as_of": date.today().isoformat(), "market": m, "mcap": mcap, "coc": coc,
             "g_term": g_term, "base": {"v0": base["equity"] / mcap, "cv_share": base["cv_share"], "ep_gap": base["ep_gap"],
                                        "roic_y1": base["rows"][0]["roic"], "roic_y5": base["rows"][4]["roic"],
