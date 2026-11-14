@@ -1,0 +1,163 @@
+# 발굴 채널 TradingView 스크린 (마스터 지시 2026-11-15, scripts/discovery/channel_screens.py, 설계 knowledge/methods/discovery_engine.md)
+# TradingView 호출은 모델이 한 번에 하나씩(병렬 금지). market_cap_basic은 현지 통화 — plan이 USD 구간을 ECB 환율로 바꾼다.
+# 2026-11-15 시험: 시가총액·price_free_cash_flow_ttm·total_revenue_yoy_growth_ttm 필터와 P/FCF 정렬은 TradingView가 적용한다.
+#   recommendation_total·AvgValue.Traded_30d·is_primary·tobin_q_ratio_fy·price_book_fq 필터는 무시한다(응답 ignored_filters) → 받은 뒤 파이썬 관문에서 다시 거른다.
+# 응답은 모델이 파일로 옮겨 적는다(토큰 비용) — 행 수(limit)·칸 수를 작게, 무거운 거르기는 TradingView 쪽 필터·정렬로.
+# 가중·문턱은 사전값(미검증) — 등록부 prm-cscr-*. 성적표(leads.py --scorecard)가 표본 30 이상이면 표본 외 검정으로만 바꾼다.
+
+fx_fallback: {TWD: 0.031, USD: 1.0}   # ECB가 대만 달러를 내지 않는다 — 근사(2026-11)
+markets:   # TradingView 시장 → Chiip 시장(7개)·통화
+  america: {region: us, ccy: USD}
+  japan: {region: jp, ccy: JPY}
+  korea: {region: kr, ccy: KRW}
+  taiwan: {region: tw, ccy: TWD}
+  hongkong: {region: hk, ccy: HKD}
+  uk: {region: uk, ccy: GBP}
+  germany: {region: eu, ccy: EUR}
+  france: {region: eu, ccy: EUR}
+  italy: {region: eu, ccy: EUR}
+  spain: {region: eu, ccy: EUR}
+  netherlands: {region: eu, ccy: EUR}
+  sweden: {region: eu, ccy: SEK}
+  denmark: {region: eu, ccy: DKK}
+  norway: {region: eu, ccy: NOK}
+  finland: {region: eu, ccy: EUR}
+  switzerland: {region: eu, ccy: CHF}
+
+# 칸 이름 — 조사 G가 값이 돌아오는 것을 확인한 것(2026-11-15). return_on_invested_capital_ttm·total_revenue_YoYTTM·free_cash_flow는 비어 온다
+columns_neglected: &cn [name, description, industry, market_cap_basic, close, is_primary, recommendation_total, AvgValue.Traded_30d,
+                        price_free_cash_flow_ttm, price_book_fq, enterprise_value_ebitda_ttm, total_revenue_yoy_growth_ttm, total_revenue_yoy_growth_fq,
+                        gross_margin, gross_profit_margin_fy, ebitda_margin_ttm, return_on_invested_capital, piotroski_f_score_ttm,
+                        ebitda_yoy_growth_ttm, total_assets_yoy_growth_fy, eps_surprise_percent_fq, free_cash_flow_ttm, free_cash_flow_margin_ttm,
+                        altman_z_score_ttm, buyback_yield, Volatility.M, Perf.1M, Perf.6M, Perf.Y, price_52_week_high, price_52_week_low]
+columns_quant: &cq [name, description, industry, market_cap_basic, close, is_primary, AvgValue.Traded_30d, enterprise_value_to_ebit_ttm,
+                    price_free_cash_flow_ttm, price_book_fq, earnings_yield, return_on_assets_ttm, return_on_invested_capital, piotroski_f_score_ttm,
+                    buyback_yield, sloan_ratio_ttm, Volatility.M, Perf.1M, Perf.Y, price_52_week_high]
+columns_activist: &ca [name, description, industry, market_cap_basic, close, is_primary, AvgValue.Traded_30d, tobin_q_ratio_fy, price_book_fq,
+                       cash_n_short_term_invest_fq, return_on_equity_ttm, dividend_payout_ratio_ttm, buyback_yield, Perf.Y, free_cash_flow_ttm]
+
+base_rates:   # 5년 생존 표본(조사 G — TradingView 2026-11-15, 주 상장·5년 이력, 생존 편향으로 상한). 시장별 → 합동값 축소(강도 200)
+  shrink: 200
+  pooled: {p3x: 0.068, p10x: 0.0069, n: 14765}
+  us: {p3x: 0.063, p10x: 0.004, n: 3383}
+  jp: {p3x: 0.096, p10x: 0.004, n: 3426}
+  kr: {p3x: 0.045, p10x: 0.008, n: 2112}
+  tw: {p3x: 0.102, p10x: 0.014, n: 1884}
+  hk: {p3x: 0.053, p10x: 0.011, n: 1994}
+  uk: {p3x: 0.045, p10x: 0.008, n: 890}
+  eu: {p3x: 0.031, p10x: 0.0033, n: 1076}   # 프랑스 502 + 스웨덴 574 표본 가중 평균(독·이·스 등은 미측정)
+
+screens:
+  neglected:
+    exclude_industries: "Real Estate Investment Trusts|Investment Trusts|Mutual Funds|Closed-End|Exchange Traded|Unit Trust"   # 리츠·펀드 제외(2026-11-15 일본 시험: 인프라 펀드가 1위)
+    title: 저관심 텐배거 조짐 스크린
+    about: "작고(시총 $3천만~$20억) FCF를 벌며 싸고(FCF 수익률·PBR), 매출·이익률이 꺾여 오르기 시작했는데, 애널리스트·거래가 적고 주가가 아직 뻗지 않은 종목(조사 G NMP·조사 B 복합 B — Yartseva 2025 서열). 주 1회 7개 시장 순번."
+    channel: neglected
+    kind: precursor
+    signal_head: 저관심 10배 전조
+    rotation: [america, japan, korea, taiwan, uk, germany, hongkong, france, sweden, italy, netherlands, spain, switzerland, denmark, norway, finland]
+    per_run: 2            # 하루 시장 수 — 16개 시장을 약 8거래일에 한 바퀴
+    weekdays: [0, 1, 2, 3, 4]
+    limit: 50
+    mcap_usd: [30000000, 2000000000]
+    filters: {price_free_cash_flow_ttm: [0.5, 25], total_revenue_yoy_growth_ttm: [0, 300]}   # FCF 흑자(현금 경로 관문)·매출 감소 기업 제외 — TradingView가 적용
+    sort_by: price_free_cash_flow_ttm   # FCF 수익률 높은 순으로 잘라 받는다(Yartseva: 가장 큰 계수)
+    sort_order: asc
+    columns: *cn
+    primary_only: true
+    min_value_usd: {default: 250000, america: 1000000, hongkong: 500000}
+    min_price: {america: 2.0, hongkong: 0.5}
+    size_peak_usd: 250000000   # 규모 언덕형 정점($1~5억, 조사 G)
+    altman_min: 1.1
+    fcf_margin_floor: -5
+    lottery_1m: 100
+    lottery_vol: 15
+    perf_y_max: 400
+    sloan_max: 25
+    dilution_max_pct: 10       # 이 이상 희석은 감점
+    dilution_hard_pct: 20      # 이 이상 희석은 제외
+    weights:                   # 시장 안 백분위 가중(합 1) — 사전값
+      value: 0.24              # FCF 수익률 60%·B/M 30%·EV/EBITDA 10%(Yartseva 2025 최대 계수, 조사 G)
+      inflection: 0.20         # 매출 가속·매출총이익률 계단·EPS 서프라이즈(Bernard·Thomas 1989, 조사 G — 성장 '수준'은 Yartseva에서 무의미)
+      neglect: 0.17            # 애널리스트 수·회전율(Arbel·Strebel 1983 — 시장 안 상대값, 아시아는 0명이 다수)
+      not_extended: 0.15       # 12개월 가격 위치·6개월 수익률이 낮을수록(Yartseva 2025 음의 계수)
+      quality: 0.13            # EBITDA 마진·ROIC·피오트로스키 F·자산 증가 ≤ EBITDA 증가(Yartseva)
+      size: 0.11               # 언덕형($2.5억 정점)
+    completeness_floor: 0.85
+    penalty_each: 0.7
+    top_n: 6                   # 시장별
+    lead_min: 7.0
+    stale_days: 21
+  quant_alpha:
+    exclude_industries: "Real Estate Investment Trusts|Investment Trusts|Mutual Funds|Closed-End|Exchange Traded|Unit Trust"   # 리츠·펀드 제외(2026-11-15 일본 시험: 인프라 펀드가 1위)
+    title: IB 정량 복합 스크린
+    about: "가치(EBIT/EV·FCF 수익률·B/M·E/P)·질(ROA·ROIC·F)·12-1 모멘텀·주식 수 감소·낮은 발생액·낮은 변동성·단기 반전을 시장 안에서 합친 3~12개월 순위(조사 B 복합 A, 시장별 배수). 애널리스트 추정 상향·내부자 매수는 TradingView에 없어 빠진다."
+    channel: quant
+    kind: composite
+    signal_head: IB 정량 복합
+    rotation: [america, japan, korea, uk, germany, taiwan, france, hongkong, sweden, switzerland, italy, netherlands]
+    per_run: 1
+    weekdays: [0, 2, 4]        # 월·수·금
+    limit: 50
+    mcap_usd: [500000000, 30000000000]
+    filters: {price_free_cash_flow_ttm: [0.5, 40], total_revenue_yoy_growth_ttm: [-20, 300]}
+    sort_by: Perf.6M
+    sort_order: desc
+    columns: *cq
+    primary_only: true
+    min_value_usd: {default: 1000000, america: 5000000}
+    sloan_max: 25
+    dilution_max_pct: 5
+    dilution_hard_pct: 20
+    weights:                   # 조사 B 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+      value: 0.30
+      quality: 0.24
+      momentum: 0.18
+      issuance: 0.10
+      accruals: 0.06
+      low_vol: 0.07
+      reversal: 0.05
+    market_mult:               # 조사 B §9·§12 — 일본 모멘텀 ×0.3·가치 ×1.3, 한·대만·홍콩 모멘텀 ×0.5, 홍콩은 가치·질 중심
+      japan: {momentum: 0.3, value: 1.3}
+      korea: {momentum: 0.5}
+      taiwan: {momentum: 0.5}
+      hongkong: {momentum: 0.5, value: 1.2}
+    completeness_floor: 0.85
+    penalty_each: 0.5
+    top_n: 5
+    lead_min: 7.5
+    stale_days: 28
+  activist_target:
+    exclude_industries: "Real Estate Investment Trusts|Investment Trusts|Mutual Funds|Closed-End|Exchange Traded|Unit Trust"   # 리츠·펀드 제외(2026-11-15 일본 시험: 인프라 펀드가 1위)
+    title: 행동주의 표적 유사도 스크린
+    about: "행동주의가 고르는 회사의 특징 — 동종보다 싸고(토빈 q·PBR), 현금이 많고, 자본 효율이 낮고, 주주환원이 적고, 주가가 뒤처진 중소형 — 이 겹치는 종목. 진입 공시가 아니라 '표적이 될 만한가'다."
+    channel: activist
+    kind: target
+    signal_head: 행동주의 표적 유사도
+    rotation: [japan, korea, america, uk, germany, france, sweden, switzerland, hongkong, taiwan, italy, netherlands]
+    per_run: 1
+    weekdays: [1, 3]           # 화·목
+    limit: 50
+    mcap_usd: [300000000, 15000000000]
+    filters: {price_free_cash_flow_ttm: [0.5, 40]}
+    sort_by: price_book_fq
+    sort_order: asc
+    columns: *ca
+    primary_only: true
+    min_value_usd: {default: 1000000}
+    size_sweet_usd: 2000000000
+    dilution_max_pct: 5
+    dilution_hard_pct: 20
+    weights:                   # 사전값 — Brav·Jiang·Partnoy·Thomas 2008 표적 특징(낮은 q·높은 현금·낮은 배당·작은 규모), 일본 PBR 1배 미만 개선 요구(2023 TSE)
+      cheap: 0.25
+      cash_rich: 0.20
+      low_roe: 0.15
+      low_payout: 0.15
+      lagging: 0.10
+      size: 0.10
+      liquid: 0.05
+    completeness_floor: 0.85
+    penalty_each: 0.5
+    top_n: 6
+    lead_min: 7.5
+    stale_days: 28

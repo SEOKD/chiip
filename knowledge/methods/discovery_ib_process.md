@@ -56,3 +56,6 @@
 - 실적: 발표 시 Dean's Ticker 3단 양식(`knowledge/methods/earnings_format.md`).
 - 텐배거 리포트: `pick_report.py`가 커버리지 focus를 알파 순위보다 먼저 고른다(30일 안 재작성 금지).
 - 성적표: 편입일 가격·시가총액을 `knowledge/models/tenbagger/watch.csv`에, 월 1회 기저율 대비 성과 → 가중치 피팅(`model-lab`).
+
+## 전 섹터·다채널 확장(2026-11-15, ADR-043)
+이 절차(테마 → 병목 → 공급사)는 AI 밸류체인의 '테마 지도' 채널이다. 행동주의·구루·특수 상황·국장 테마·저관심 10배·IB 정량 복합 채널은 `knowledge/methods/discovery_engine.md`의 단서 장부 → 채널 선별 → 채널 렌즈 판단 카드 → 같은 위원회 메모(`scripts/discovery/memo_check.py` 기계 검사) → 커버리지 경로를 탄다. 성적표는 채널마다 따로 잰다(`scripts/discovery/leads.py --scorecard`).

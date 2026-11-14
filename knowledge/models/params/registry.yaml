@@ -5878,3 +5878,1043 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-dch-pub-haircut
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#pub_haircut
+  value: 0.5
+  unit: 배수
+  status: prior
+  prior:
+    value: 0.5
+    basis: 문헌 효과 → 사전값 배수. 미국 게재 뒤 약 58% 감소(McLean·Pontiff 2016), 표본 외 기울기 0.26~0.57(Jensen·Kelly·Pedersen 2023)
+    source: McLean & Pontiff 2016 JF; Jensen, Kelly & Pedersen 2023 JF
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-activist-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.activist.prior.excess
+  value: 0.035
+  unit: 비율(252일 초과)
+  status: prior
+  prior:
+    value: 0.035
+    basis: 13D 공시 전후 7.2%(−20,+20) 중 탐지 뒤 몫 × 감쇠
+    source: Brav, Jiang, Partnoy & Thomas 2008 JF
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-guru-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.guru.prior.excess
+  value: 0.03
+  unit: 비율(365일 초과)
+  status: prior
+  prior:
+    value: 0.03
+    basis: 버크셔 13F 따라 사기 연 약 10%·최고 확신 월 39~127bp × 감쇠·45일 지연
+    source: Martin & Puthenpurackal 2008; Cohen, Polk & Silli 2010; Antón, Cohen & Polk 2021
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-cancel-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.special.kind_prior.cancel.excess
+  value: 0.025
+  unit: 비율(30일 초과)
+  status: prior
+  prior:
+    value: 0.025
+    basis: 한국 주식소각결정 +2일~+20일 +4.6%(2025)·+6.0%(2026), 정책 순풍이라 절반
+    source: 증권사 연구 2026-10-14(710건, 조사 H — 2차)
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-spinoff-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.special.kind_prior.spinoff.excess
+  value: 0.04
+  unit: 비율(456일 초과)
+  status: prior
+  prior:
+    value: 0.04
+    basis: 분할 신설사 22개월 +17.1% × 0.35(감쇠·유럽 무효과)
+    source: McConnell, Sibley & Xu 2015; Veld & Veld-Merkoulova 2004
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-overheat-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.kr_theme.kind_prior.overheat.excess
+  value: -0.08
+  unit: 비율(30일 초과)
+  status: prior
+  prior:
+    value: -0.08
+    basis: 투자경고·위험 지정 68%가 20거래일 뒤 지정가 아래·투자위험 평균 −15.6%
+    source: 한국거래소 자료(2022~2026.8, 의원실 공개 — 조사 F)
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-neglected-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.neglected.prior.excess
+  value: 0.02
+  unit: 비율(365일 초과)
+  status: prior
+  prior:
+    value: 0.02
+    basis: 5년 생존 3배 6.8%·10배 0.69% — 대부분 진다, 승자 표본 요인(Yartseva)은 확률을 주지 못한다
+    source: 조사 G TradingView 표본(2026-11-15); Bessembinder 2018 JFE; Yartseva 2025 CAFE WP
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-quant-excess
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#channels.quant.prior.excess
+  value: 0.02
+  unit: 비율(365일 초과)
+  status: prior
+  prior:
+    value: 0.02
+    basis: 팩터 축소 사전값 — 롱 온리 상위는 학술 롱숏보다 작다
+    source: Jensen, Kelly & Pedersen 2023 JF
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-confluence-bonus
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#triage.confluence_bonus
+  value: 0.75
+  unit: 점(0~10)/채널
+  status: prior
+  prior:
+    value: 0.75
+    basis: 독립 채널 겹침 가점 — 수렴은 사실이 아니라 단서(CLAUDE.md 역방향 레이더 명제)
+    source: 운영 가정(2026-11-15)
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-pass-min
+  model: discovery.channels
+  binding: config/discovery_channels.yaml#triage.pass_min
+  value: 6.0
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 6.0
+    basis: 채널 선별 통과 문턱 — 발굴 선별(screen.py) 문턱 6.0과 같게
+    source: 운영 가정(2026-11-15)
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-min-n
+  model: discovery.leads
+  binding: scripts/discovery/leads.py#MIN_N
+  value: 30
+  unit: 건
+  status: prior
+  prior:
+    value: 30
+    basis: 채널별 결과 30건 전에는 다시 맞추지 않는다
+    source: 조사 A(IB 절차 — Beta 축소·30건 뒤 재피팅)
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-dch-beta-prior
+  model: discovery.leads
+  binding: scripts/discovery/leads.py#BETA_PRIOR
+  value: 10
+  unit: 가상 표본(성공·실패 각각)
+  status: prior
+  prior:
+    value: 10
+    basis: 적중률 Beta(10,10) 축소
+    source: 조사 A
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-w-value
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.weights.value
+  value: 0.24
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.24
+    basis: FCF 수익률 60%·B/M 30%·EV/EBITDA 10% — 10배 종목의 가장 큰 계수
+    source: Yartseva 2025 CAFE WP(조사 B·G)
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-w-inflection
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.weights.inflection
+  value: 0.2
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.2
+    basis: 매출 가속·매출총이익률 계단·EPS 서프라이즈 — 성장 수준이 아니라 꺾임
+    source: Bernard & Thomas 1989; 조사 G(Alta Fox·Mayer)
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-w-neglect
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.weights.neglect
+  value: 0.17
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.17
+    basis: 애널리스트 수·회전율(시장 안 상대값)
+    source: Arbel & Strebel 1983; Demiroglu & Ryngaert 2010
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-w-not-extended
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.weights.not_extended
+  value: 0.15
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.15
+    basis: 12개월 가격 위치·6개월 수익률 음(−) 계수
+    source: Yartseva 2025
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-w-quality
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.weights.quality
+  value: 0.13
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.13
+    basis: EBITDA 마진·ROIC·F·자산 증가 ≤ EBITDA 증가
+    source: Yartseva 2025; Novy-Marx 2013; Piotroski 2000
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-w-size
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.weights.size
+  value: 0.11
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.11
+    basis: 언덕형($2.5억 정점) — 10배는 작은 회사에서
+    source: Yartseva 2025; 조사 G 표본
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-ngl-lead-min
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.neglected.lead_min
+  value: 7.0
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 7.0
+    basis: 단서 장부 문턱
+    source: 운영 가정(2026-11-15)
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-value
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.value
+  value: 0.3
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.3
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-quality
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.quality
+  value: 0.24
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.24
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-momentum
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.momentum
+  value: 0.18
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.18
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-issuance
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.issuance
+  value: 0.1
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.1
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-accruals
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.accruals
+  value: 0.06
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.06
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-low-vol
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.low_vol
+  value: 0.07
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.07
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-w-reversal
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.weights.reversal
+  value: 0.05
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.05
+    basis: 복합 A 중 TradingView로 계산 가능한 블록(합 1로 다시 나눔)
+    source: 조사 B 복합 A — Fama-French 1998, Jensen·Kelly·Pedersen 2023, Goyal 외 2022 등
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-qa-jp-mom
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.quant_alpha.market_mult.japan.momentum
+  value: 0.3
+  unit: 배수
+  status: prior
+  prior:
+    value: 0.3
+    basis: 일본 모멘텀 실패
+    source: 조사 B §9.2(Fama-French 2012 등)
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-cheap
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.cheap
+  value: 0.25
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.25
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-cash-rich
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.cash_rich
+  value: 0.2
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.2
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-low-roe
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.low_roe
+  value: 0.15
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.15
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-low-payout
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.low_payout
+  value: 0.15
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.15
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-lagging
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.lagging
+  value: 0.1
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.1
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-size
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.size
+  value: 0.1
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.1
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-cscr-act-w-liquid
+  model: discovery.channel_screens
+  binding: config/channel_screens.yaml#screens.activist_target.weights.liquid
+  value: 0.05
+  unit: 가중
+  status: prior
+  prior:
+    value: 0.05
+    basis: 행동주의 표적 특징(낮은 q·현금·낮은 배당·작은 규모, 일본은 낮은 수익성)
+    source: Brav, Jiang, Partnoy & Thomas 2008 표 IV; Hamao, Kutsuna & Matos
+  fit:
+    method: 스크린 단서의 91·365일 초과수익 순위 상관으로 요소 가중 표본 외 점검(stepwise — 30건 이후, 블록 단위)
+    target: 스크린 점수 ↔ 이후 초과수익 순위 상관
+    data: knowledge/models/discovery/leads.csv(channel neglected·quant·activist target)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-w-new
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.w_new
+  value: 1.0
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 1.0
+    basis: 신규 편입 기준 사건
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-w-add
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.w_add
+  value: 0.5
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.5
+    basis: 증액 × min(증가율,1)
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-add-min
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.add_min
+  value: 0.25
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.25
+    basis: 증액 최소 증가율
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-w-best
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.w_best
+  value: 0.3
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.3
+    basis: 상위 3 유지(사건 아님 — 낮게)
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-w-confidential
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.w_confidential
+  value: 1.2
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 1.2
+    basis: 기밀 보유 공개 — 12개월까지 초과
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-rank-w-6-10
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.rank_w_6_10
+  value: 0.2
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.2
+    basis: 6~10위 가중(상위 5보다 못하다)
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-min-w
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.min_w
+  value: 0.02
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.02
+    basis: 확신 가점 최소 비중
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-q-conc
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.q_conc
+  value: 1.2
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 1.2
+    basis: 상위 5 비중 ≥ 0.5
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-q-giant
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.q_giant
+  value: 0.8
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.8
+    basis: 13F 주식 $10B 이상 — 대형 펀드 최고 아이디어는 0
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-q-diversified
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.q_diversified
+  value: 0.5
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.5
+    basis: 150종목 이상
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-q-regime
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.q_regime
+  value: 0.8
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.8
+    basis: 운용 체제 변화 8분기
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-consensus-step
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.consensus_step
+  value: 0.15
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 0.15
+    basis: 같은 분기 동반 매수 1명당
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-lead-min
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.lead_min
+  value: 5.0
+  unit: 가중·배수
+  status: prior
+  prior:
+    value: 5.0
+    basis: 단서 장부 문턱
+    source: Antón, Cohen & Polk 2021; Agarwal 외 2013; Chen, Jegadeesh & Wermers 2000; Sias 외 2016(조사 E §7)
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-lo
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.crowd_lo
+  value: 0.2
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 0.2
+    basis: 쏠림 감점 — 헤지펀드 상위 10 비중 15% 기준을 13F 보유 기관 비율로 근사
+    source: Brown 외 2022(쏠림 꼬리 위험); 조사 E — GS VIP 2021~22 −38.6%
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-hi
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.crowd_hi
+  value: 0.4
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 0.4
+    basis: 쏠림 감점 — 헤지펀드 상위 10 비중 15% 기준을 13F 보유 기관 비율로 근사
+    source: Brown 외 2022(쏠림 꼬리 위험); 조사 E — GS VIP 2021~22 −38.6%
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-pen-lo
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.crowd_pen_lo
+  value: 0.3
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 0.3
+    basis: 쏠림 감점 — 헤지펀드 상위 10 비중 15% 기준을 13F 보유 기관 비율로 근사
+    source: Brown 외 2022(쏠림 꼬리 위험); 조사 E — GS VIP 2021~22 −38.6%
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-pen-hi
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.crowd_pen_hi
+  value: 0.6
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 0.6
+    basis: 쏠림 감점 — 헤지펀드 상위 10 비중 15% 기준을 13F 보유 기관 비율로 근사
+    source: Brown 외 2022(쏠림 꼬리 위험); 조사 E — GS VIP 2021~22 −38.6%
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-cap
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.crowd_cap
+  value: 5.9
+  unit: 비율·점
+  status: prior
+  prior:
+    value: 5.9
+    basis: 쏠림 감점 — 헤지펀드 상위 10 비중 15% 기준을 13F 보유 기관 비율로 근사
+    source: Brown 외 2022(쏠림 꼬리 위험); 조사 E — GS VIP 2021~22 −38.6%
+  fit:
+    method: 구루 단서 종류·순위·품질별 6·12개월 초과수익(stepwise, 30건 이후)
+    target: 구루 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-mover-change-pct
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.mover_change_pct
+  value: 7
+  unit: 문턱
+  status: prior
+  prior:
+    value: 7
+    basis: 급등 종목 하루 상승률
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-ignite-min
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.ignite_min
+  value: 3
+  unit: 문턱
+  status: prior
+  prior:
+    value: 3
+    basis: 점화 급등 종목 수
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-ignite-quiet-days
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.ignite_quiet_days
+  value: 10
+  unit: 문턱
+  status: prior
+  prior:
+    value: 10
+    basis: 점화 전 조용한 기간
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-overheat-limit-ups
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.overheat_limit_ups
+  value: 3
+  unit: 문턱
+  status: prior
+  prior:
+    value: 3
+    basis: 과열 상한가 종목 수
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-overheat-news-x
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.overheat_news_x
+  value: 5.0
+  unit: 문턱
+  status: prior
+  prior:
+    value: 5.0
+    basis: 과열 언급 배수
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-overheat-alerts
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.overheat_alerts
+  value: 2
+  unit: 문턱
+  status: prior
+  prior:
+    value: 2
+    basis: 과열 투자경고 종목 수
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-structural-growth
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.structural_growth
+  value: 20
+  unit: 문턱
+  status: prior
+  prior:
+    value: 20
+    basis: 구조적 확인 매출 성장 중앙
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-structural-margin
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.structural_margin
+  value: 8
+  unit: 문턱
+  status: prior
+  prior:
+    value: 8
+    basis: 구조적 확인 이익률 중앙
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-krth-min-value-krw
+  model: discovery.kr_theme
+  binding: config/kr_themes.yaml#lifecycle.min_value_krw
+  value: 3000000000
+  unit: 문턱
+  status: prior
+  prior:
+    value: 3000000000
+    basis: 급등 종목 거래대금 하한
+    source: 조사 F §8.3·8.7(시장경보 사다리·생애 단계 표지) — 사전값
+  fit:
+    method: 테마 단계별 30일 초과수익(코스피·코스닥 대비, stepwise — 단계별 30건 이후)
+    target: 국장 테마 단계 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel kr_theme)
+    last_fit: null
+    oos_metric: null
+- id: prm-memo-skew-min
+  model: discovery.memo_check
+  binding: scripts/discovery/memo_check.py#SKEW_MIN
+  value: 2.0
+  unit: 배
+  status: prior
+  prior:
+    value: 2.0
+    basis: 상방 기대 ÷ 하방 기대 하한 — Morgan Stanley 위험·보상 틀(문턱 비공개)
+    source: 조사 A
+  fit:
+    method: 메모 결론(focus·bench) 종목의 12개월 초과수익과 메모 수치(상방÷하방·촉매 점수)의 관계 — 결과 30건 이후
+    target: 메모 관문 통과 종목 초과수익
+    data: knowledge/models/discovery/memos·tenbagger/watch.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-memo-gap-rel
+  model: discovery.memo_check
+  binding: scripts/discovery/memo_check.py#GAP_MIN_REL
+  value: 0.1
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.1
+    basis: 분산 정보가 없을 때 합의 대비 최소 차이(변이 관점)
+    source: 조사 A(Mauboussin·Rappaport 2021)
+  fit:
+    method: 메모 결론(focus·bench) 종목의 12개월 초과수익과 메모 수치(상방÷하방·촉매 점수)의 관계 — 결과 30건 이후
+    target: 메모 관문 통과 종목 초과수익
+    data: knowledge/models/discovery/memos·tenbagger/watch.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-memo-baserate-pctile
+  model: discovery.memo_check
+  binding: scripts/discovery/memo_check.py#PCTILE_WARN
+  value: 90
+  unit: 분위
+  status: prior
+  prior:
+    value: 90
+    basis: 내포 성장이 기저율 90분위를 넘으면 확률 절반(바깥 관점)
+    source: Kahneman & Lovallo 1993; Mauboussin & Callahan 'Base Rate Book'
+  fit:
+    method: 메모 결론(focus·bench) 종목의 12개월 초과수익과 메모 수치(상방÷하방·촉매 점수)의 관계 — 결과 30건 이후
+    target: 메모 관문 통과 종목 초과수익
+    data: knowledge/models/discovery/memos·tenbagger/watch.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-disc-missing-cap
+  model: discovery.screen
+  binding: scripts/discovery/screen.py#MISSING_CAP
+  value: 5.9
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 5.9
+    basis: 빠진 요소 2개 초과 시 선별 점수 상한 — 중립 대입이 약한 종목을 부풀림
+    source: 조사 A(IB 절차 점검 2026-11-15)
+  fit:
+    method: 채널·종류별 단서 30건 이상 쌓인 뒤 91·365일 초과수익으로 표본 외 점검(scripts/fit/stepwise.py, leads.py --scorecard)
+    target: 채널 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv·lead_prices.csv
+    last_fit: null
+    oos_metric: null

@@ -1,0 +1,327 @@
+{
+"as_of": "2026-11-15",
+"note": "전환사채·신주인수권부사채·교환사채·유상증자 결정(OpenDART) — 국장 테마 적신호",
+"rows": {
+"310210": [
+{
+"date": "2026-11-13",
+"kind": "전환사채권발행",
+"rcept_no": "20261113001035"
+}
+],
+"301300": [
+{
+"date": "2026-11-12",
+"kind": "유상증자",
+"rcept_no": "20261112000665"
+},
+{
+"date": "2026-11-12",
+"kind": "유상증자",
+"rcept_no": "20261112000633"
+}
+],
+"307870": [
+{
+"date": "2026-11-12",
+"kind": "전환사채권발행",
+"rcept_no": "20261112000579"
+}
+],
+"181710": [
+{
+"date": "2026-11-12",
+"kind": "투자경고",
+"rcept_no": "krx-warn-181710-2026-11-12",
+"severe": false,
+"alert": true
+}
+],
+"199730": [
+{
+"date": "2026-11-12",
+"kind": "투자경고",
+"rcept_no": "krx-warn-199730-2026-11-12",
+"severe": false,
+"alert": true
+},
+{
+"date": "2026-10-14",
+"kind": "투자경고",
+"rcept_no": "krx-warn-199730-2026-10-14",
+"severe": false,
+"alert": true
+}
+],
+"004540": [
+{
+"date": "2026-11-10",
+"kind": "투자경고",
+"rcept_no": "krx-warn-004540-2026-11-10",
+"severe": false,
+"alert": true
+}
+],
+"004545": [
+{
+"date": "2026-11-10",
+"kind": "투자경고",
+"rcept_no": "krx-warn-004545-2026-11-10",
+"severe": false,
+"alert": true
+}
+],
+"001527": [
+{
+"date": "2026-11-10",
+"kind": "투자경고",
+"rcept_no": "krx-warn-001527-2026-11-10",
+"severe": false,
+"alert": true
+}
+],
+"020400": [
+{
+"date": "2026-11-09",
+"kind": "투자경고",
+"rcept_no": "krx-warn-020400-2026-11-09",
+"severe": false,
+"alert": true
+}
+],
+"18064K": [
+{
+"date": "2026-11-06",
+"kind": "투자경고",
+"rcept_no": "krx-warn-18064K-2026-11-06",
+"severe": false,
+"alert": true
+}
+],
+"051630": [
+{
+"date": "2026-11-05",
+"kind": "투자경고",
+"rcept_no": "krx-warn-051630-2026-11-05",
+"severe": false,
+"alert": true
+}
+],
+"060900": [
+{
+"date": "2026-10-27",
+"kind": "투자경고",
+"rcept_no": "krx-warn-060900-2026-10-27",
+"severe": false,
+"alert": true
+}
+],
+"351320": [
+{
+"date": "2026-10-26",
+"kind": "투자경고",
+"rcept_no": "krx-warn-351320-2026-10-26",
+"severe": false,
+"alert": true
+}
+],
+"290550": [
+{
+"date": "2026-10-26",
+"kind": "투자경고",
+"rcept_no": "krx-warn-290550-2026-10-26",
+"severe": false,
+"alert": true
+}
+],
+"012340": [
+{
+"date": "2026-10-20",
+"kind": "투자경고",
+"rcept_no": "krx-warn-012340-2026-10-20",
+"severe": false,
+"alert": true
+}
+],
+"015260": [
+{
+"date": "2026-10-16",
+"kind": "투자경고",
+"rcept_no": "krx-warn-015260-2026-10-16",
+"severe": false,
+"alert": true
+}
+],
+"009730": [
+{
+"date": "2026-10-16",
+"kind": "투자경고",
+"rcept_no": "krx-warn-009730-2026-10-16",
+"severe": false,
+"alert": true
+}
+],
+"065650": [
+{
+"date": "2026-10-16",
+"kind": "투자경고",
+"rcept_no": "krx-warn-065650-2026-10-16",
+"severe": false,
+"alert": true
+}
+],
+"000650": [
+{
+"date": "2026-10-15",
+"kind": "투자경고",
+"rcept_no": "krx-warn-000650-2026-10-15",
+"severe": false,
+"alert": true
+}
+],
+"308100": [
+{
+"date": "2026-10-14",
+"kind": "투자경고",
+"rcept_no": "krx-warn-308100-2026-10-14",
+"severe": false,
+"alert": true
+}
+],
+"250930": [
+{
+"date": "2026-10-14",
+"kind": "투자경고",
+"rcept_no": "krx-warn-250930-2026-10-14",
+"severe": false,
+"alert": true
+}
+],
+"079650": [
+{
+"date": "2026-10-14",
+"kind": "투자경고",
+"rcept_no": "krx-warn-079650-2026-10-14",
+"severe": false,
+"alert": true
+}
+],
+"092870": [
+{
+"date": "2026-10-14",
+"kind": "투자경고",
+"rcept_no": "krx-warn-092870-2026-10-14",
+"severe": false,
+"alert": true
+}
+],
+"011080": [
+{
+"date": "2026-10-14",
+"kind": "투자경고",
+"rcept_no": "krx-warn-011080-2026-10-14",
+"severe": false,
+"alert": true
+}
+],
+"084670": [
+{
+"date": "2026-10-13",
+"kind": "투자경고",
+"rcept_no": "krx-warn-084670-2026-10-13",
+"severe": false,
+"alert": true
+}
+],
+"291650": [
+{
+"date": "2026-10-13",
+"kind": "투자경고",
+"rcept_no": "krx-warn-291650-2026-10-13",
+"severe": false,
+"alert": true
+}
+],
+"278650": [
+{
+"date": "2026-10-12",
+"kind": "투자경고",
+"rcept_no": "krx-warn-278650-2026-10-12",
+"severe": false,
+"alert": true
+}
+],
+"302920": [
+{
+"date": "2026-10-07",
+"kind": "투자경고",
+"rcept_no": "krx-warn-302920-2026-10-07",
+"severe": false,
+"alert": true
+}
+],
+"138080": [
+{
+"date": "2026-10-07",
+"kind": "투자경고",
+"rcept_no": "krx-warn-138080-2026-10-07",
+"severe": false,
+"alert": true
+}
+],
+"360350": [
+{
+"date": "2026-10-07",
+"kind": "투자경고",
+"rcept_no": "krx-warn-360350-2026-10-07",
+"severe": false,
+"alert": true
+}
+],
+"092190": [
+{
+"date": "2026-10-06",
+"kind": "투자경고",
+"rcept_no": "krx-warn-092190-2026-10-06",
+"severe": false,
+"alert": true
+}
+],
+"390110": [
+{
+"date": "2026-10-02",
+"kind": "투자경고",
+"rcept_no": "krx-warn-390110-2026-10-02",
+"severe": false,
+"alert": true
+}
+],
+"159010": [
+{
+"date": "2026-10-02",
+"kind": "투자경고",
+"rcept_no": "krx-warn-159010-2026-10-02",
+"severe": false,
+"alert": true
+}
+],
+"002360": [
+{
+"date": "2026-09-30",
+"kind": "투자경고",
+"rcept_no": "krx-warn-002360-2026-09-30",
+"severe": false,
+"alert": true
+}
+],
+"073190": [
+{
+"date": "2026-08-11",
+"kind": "투자경고",
+"rcept_no": "krx-warn-073190-2026-08-11",
+"severe": false,
+"alert": true
+}
+]
+}
+}

@@ -71,5 +71,20 @@
 - **종목 범위 확대 1단계**(2026-11-13 마스터 지시 "Pulse 및 알파 감지 및 Ten-bagger 및 Analysis의 종목 범위를 조금 더 넓혀 다양한 섹터에서 찾도록", ADR-025): 공통 섹터 지도 `scripts/sectors/sector_map.py`(`config/sector_map.yaml` — Portfolio 섹터 후보 36개 + 태그 전용 8개, 결과 `knowledge/models/sectors/tags.json`)가 발굴 후보·감시 목록·소비재·방위·구간 시드에 섹터를 붙인다. 할당량: Discovery 심층 대기열(`screen.py`)은 AI 밸류체인 밖 최소 40%·같은 섹터 2개까지, Analysis(`pick_report.py`)는 최근 7일 리포트의 AI 밖 비율이 40% 아래면 다음 알파 순번을 AI 밖 알파 5.0 이상에서 고른다(후보가 없으면 원래대로). Pulse는 감시 이름 사전에 안 걸린 AI 밖 지도 종목의 보도자료·공시를 '섹터 확장'으로 살린다(회차당 4건·섹터당 2건). 40%는 사전값(마스터 미정). 2단계 섹터 순환 스크린·판단 틀, 3단계 알파 섹터 보정(그림자 4주)은 다음.
 - **종목 범위 확대 2단계 — 섹터 순환 스크린·섹터 판단 틀**(2026-11-13 마스터 지시, ADR-027): `scripts/discovery/sector_rotation.py` + `config/sector_rotation.yaml` — 주중 하루 한 번 TradingView 섹터 2개씩(전자기술 제외 18개, 약 2주에 한 바퀴, Portfolio 섹터 신규 편입·편입 후보 섹터 먼저) 시가총액 $0.3~30B·매출 성장 10~300%를 스크린해 섹터 안 z합성 상위 5 → 발굴 선별에 '섹터 순환: <섹터>' 테마로 합류. 섹터 판단 틀 6개(`knowledge/methods/sector_lenses/` 헬스케어·금융·산업재·소비재·에너지·소재·소프트웨어, 질문 7개씩)로 쓴 판단 카드(`lens_cards/`, `--card-check` 통과·90일)만 edge가 들어간다 — 카드 없으면 edge 5로 '① 아이디어'.
 
+- **알파 발굴 엔진 — 전 섹터·7개 시장·다채널**(2026-11-15 마스터 지시 "AI 밸류체인에 국한하지 말고 산업, 섹터 전반에서 알파가 높은 종목을 찾는 프로세스 … IB 리서치 하우스 접근 방법 … 행동주의 표적, SPAC, 국장 테마주, 구루 포지션 추종, 수급·관심이 덜 몰린 텐배거 조짐 등 다양한 채널", ADR-043, 설계 `knowledge/methods/discovery_engine.md`)
+  - **단서 장부** `scripts/discovery/leads.py`: 모든 채널 단서를 탐지일·가격과 함께 덧붙이기만 한다(`knowledge/models/discovery/leads.csv`). 상태·무효는 `leads_events.csv`('void'는 지우지 않고 뺀다). 채널 등록부 `config/discovery_channels.yaml`(채널·종류별 사전값 = 문헌 효과 × 감쇠 0.5, 경보 규칙, 비교 지수).
+  - **채널**(결정론 수집은 run_hourly, TradingView 호출은 Ten-bagger 회차 모델):
+    - 행동주의 `radar/discovery_filings.py`(60분): 미 13D(명단 60개 CIK·명단 밖은 목적 어구 2개 이상)·13D/A·위임장 서류, 한 DART 5% 일반 서식·주주 측 의결권 권유, 일 EDINET(키 대기). 표적 유사도 스크린(화·목). 명단 `config/activists.yaml`.
+    - 구루 `radar/guru13f.py`(360분): 명단 45곳 13F GuruScore(최고 확신·순위·기밀 공개·동반 매수·쏠림 감점), 13D·13G, 공개 포트폴리오 페이지(robots 허용만, 주 1회). 패니·프레디형 논지 장부 `config/special_situations.yaml`(촉매 서류 감시). 명단 `config/gurus.yaml`.
+    - 특수 상황(같은 수집기): 미 SC TO-T·13E3·10-12B, 한 공개매수·분할·소각·취득·밸류업, 일 JPX 자본비용 공시 갱신(월간 xlsx), 대만 第35款(소각 전제 자사주 결의). 국장 적신호(희석 공시·시장조치·KRX 투자경고 — `kr_flags.json`).
+    - 국장 테마 `scripts/discovery/kr_theme.py`: 평일 장 마감 뒤 TradingView 한국 +7% 이상 스냅숏 → 점화·확산·과열·소멸·구조적 확인. 언급은 공개 텔레그램 저장분 테마 어휘(`radar/kr_theme_news.py`, 1440분). 사전 `config/kr_themes.yaml`.
+    - 저관심 10배 전조·IB 정량 복합 `scripts/discovery/channel_screens.py`: 7개 시장 순번(하루 2시장 / 월·수·금 1시장). 시장별 5년 3배·10배 기저율을 후보 옆에 붙인다.
+  - **채널 선별** `scripts/discovery/channels.py`(공시 수집 뒤 매시): 종목별 채널 최고 강도 + 겹침 가점(채널 하나당 0.75, 상한 1.5) − 적신호. '② 채널 선별'(6.0 이상) → 판단 카드 대기열(채널 렌즈 `knowledge/methods/sector_lenses/activism·guru·special·kr_theme·multibagger.md`) → 발굴 선별(screen.py '채널: <이름>' 테마, 지도 종목엔 채널 신호 표시) → 위원회 메모 → `--promote`(채널 후보도 받는다).
+  - **Pulse**: '발굴 채널' 분류 — 등록부 경보 규칙(행동주의 진입·위임장·요구 강화, 구루 지분·겹침·신규·논지, 공개매수·분할 등)을 넘은 새 단서만, 회차당 5건.
+  - **IB식 관문**: 위원회 메모 머리말을 `py scripts/discovery/memo_check.py <메모>`로 검사한다(변이 관점·시나리오 확률·상방÷하방 2.0·촉매·사전 부검 3·킬 조건 2·기저율 분위·만료·red-team). focus·bench는 통과해야 편입한다. 선별 점수는 빈칸 2개 초과면 5.9 상한.
+  - **성적표**: 토요일 회차 `py scripts/discovery/leads.py --price-specs` → TradingView get-symbol-data-batch(50개씩) → `--put-prices` → `--scorecard` → `outputs/discovery/scorecard_<날짜>.md`. 채널별 30건 전에는 가중을 바꾸지 않는다.
+  - **쓰지 않는 원천**(약관·robots, 2026-11-15 확인): Google News RSS(robots 금지·ClaudeBot 차단 — 기존 파이프라인 사용은 마스터 결정 대기, TODO 21-53), HKEXnews(이용약관 5조), 영국 인수위원회 공시표(robots ClaudeBot 금지), FCA NSM(서면 동의), BaFin 포털·TDnet·옛 MOPS·네이버 금융(robots). KRX 투자경고 목록은 내부 표지로만(재배포 금지).
+  - **금지 연결**: 채널 신호 → 경쟁우위·매출 아님, 5% 신고 → 경영권 분쟁 확정 아님, 구루 매입 → 주가 상승 아님, 공개매수 신고 → 성사 아님, 자사주 취득 → 소각 아님, 테마 급등 → 펀더멘털 변화 아님, 스크린 점수 → 경쟁우위 아님.
+
 ## 양식 개선 기록
 - 2026-11-14 · 토 알파 재산정 피드 7.5점(덩어리 −1.5·숫자 과밀 −1.0) — '알파 진입·이탈' 절이 13줄 한 덩어리이고, 결론에 든 원익IPS 5.8·ASM 5.2·Unimicron 5.0이 목록에 없다 · 절당 6줄 상한·소절 분리·상위 5건 + '그 외' 한 줄·결론 종목 목록 표시 · 전 7.5 → 후 9.0 예상(7일 뒤 확인)

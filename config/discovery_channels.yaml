@@ -1,0 +1,128 @@
+# 발굴 채널 등록부 (마스터 지시 2026-11-15 "Chiip의 종목 발굴 시스템 전반을 점검하고 보완 … AI 밸류체인에 국한하지 말고 산업·섹터 전반에서
+# 알파가 높은 종목을 찾는 프로세스 … 월스트리트 IB 리서치 하우스의 접근 방법 … 미국·일본·유럽연합·영국·대만·홍콩·한국 … 행동주의 표적, SPAC 상장,
+# 국장 테마주, 구루 포지션 추종, 수급·관심이 아직 덜 몰린 텐배거 조짐 종목 등 다양한 종목 발굴 채널")
+# 설계 knowledge/methods/discovery_engine.md · 장부 scripts/discovery/leads.py · 선별 scripts/discovery/channels.py
+# prior = 그 단서의 기대 초과수익(같은 시장 지수 대비)·기간·불확실성(sd) — 문헌 효과에 게재 후 감쇠 0.5를 곱한 사전값(조사 A·B: McLean·Pontiff 2016,
+# Jensen·Kelly·Pedersen 2023 표본 외 기울기 0.26~0.57). kind_prior가 있으면 그 종류는 그 값. 성적표(leads.py --scorecard)가 채널·종류별 30건이 쌓이면
+# 표본 외 검정(scripts/fit/stepwise.py)으로만 바꾼다. 등록부 knowledge/models/params/registry.yaml prm-dch-*와 같은 값(사전값, 미검증).
+
+pub_haircut: 0.5   # 게재 효과 → 사전값 배수(조사 A·B)
+
+channels:
+  activist:
+    name: 행동주의
+    markets: [us, jp, kr, uk, eu, hk, tw]
+    kinds: {entry: 행동주의 지분 신고, escalation: 요구 강화(13D 정정), contest: 위임장 대결·주주 측 권유, target: 표적 유사도 스크린}
+    lens: activism
+    dedupe_days: 60
+    prior: {excess: 0.035, horizon_d: 252, sd: 0.10, source: "Brav·Jiang·Partnoy·Thomas 2008 JF — 13D 공시 전후 약 7%, 1년 반전 없음 × 감쇠 0.5"}
+    kind_prior:
+      contest: {excess: 0.02, horizon_d: 252, sd: 0.12, source: "위임장 대결 — 효과 크기 미검증(사전값)"}
+      target: {excess: 0.01, horizon_d: 365, sd: 0.06, source: "표적 확률 × 공시 효과 — 표적 예측 문헌(Brav 외 2008 특징) 사전값"}
+    alert: {kinds: [entry, contest, escalation], min_strength: 6.0}
+  guru:
+    name: 구루 추종
+    markets: [us, jp, kr]
+    kinds: {new: 13F 신규 편입, add: 13F 증액, best: 13F 최고 확신, cluster: 여러 구루 겹침, stake: 구루 5% 이상 지분 신고, thesis: 구루 공개 논지(특수 상황)}
+    lens: guru
+    dedupe_days: 80
+    prior: {excess: 0.03, horizon_d: 365, sd: 0.15, source: "Martin·Puthenpurackal 2008 버크셔 13F 따라 사기 연 약 10%, Cohen·Polk·Silli 2010 최고 확신 월 39~127bp × 감쇠·45일 지연"}
+    kind_prior:
+      best: {excess: 0.04, horizon_d: 365, sd: 0.15, source: "Cohen·Polk·Silli 2010 'Best Ideas'"}
+      cluster: {excess: 0.03, horizon_d: 365, sd: 0.15, source: "헤지펀드 쏠림 뒤 수익(Sias 외 2016) vs 꼬리 위험(Brown 외 2022) — 조사 A, 위험 표시 병행"}
+      thesis: {excess: 0.0, horizon_d: 365, sd: 0.30, source: "구루 공개 논지 특수 상황(패니·프레디형) — 효과 미검증"}
+    alert: {kinds: [stake, cluster, new, thesis], min_strength: 6.5}
+  special:
+    name: 특수 상황
+    markets: [us, jp, kr, uk, eu, hk, tw]
+    kinds: {tender: 공개매수·인수 제안, spinoff: 분할, buyback: 자사주 취득, cancel: 자사주 소각, valueup: 기업가치 제고 계획, control: 경영권 변동 단서, reorg: 회생·재상장, index: 지수 편입 후보, offer_period: 영국 인수 협상 기간, privatisation: 홍콩 사유화}
+    lens: special
+    dedupe_days: 45
+    prior: {excess: 0.0, horizon_d: 365, sd: 0.05, source: "조사 H — 미국 자사주 발표 뒤 표류는 2002년 뒤 사라졌다(Fu·Huang 2016), S&P 500 편입 효과 약 0.8%(Greenwood·Sammon 2025)"}
+    kind_prior:
+      cancel: {excess: 0.025, horizon_d: 30, sd: 0.03, source: "조사 H — 한국 주식소각결정 710건 +2일~+20일 +4.6%(2025)·+6.0%(2026), 정책 순풍이라 절반(증권사 연구 2026-10-14)"}
+      tender: {excess: 0.02, horizon_d: 120, sd: 0.05, source: "Mitchell·Pulvino 2001 합병 차익 연 약 4%(비용 뒤) — 짧은 풋 성격"}
+      spinoff: {excess: 0.04, horizon_d: 456, sd: 0.10, source: "McConnell·Sibley·Xu 2015 분할 신설사 22개월 +17.1% × 0.35, 유럽은 없음(Veld·Veld-Merkoulova 2004)"}
+      valueup: {excess: 0.01, horizon_d: 90, sd: 0.03, source: "JPX 자본비용 공시 갱신 기업(위험 조정 전) — 조사 H, 한국 밸류업은 0(미검증)"}
+      control: {excess: -0.05, horizon_d: 182, sd: 0.20, source: "국장 투자조합 경영권 변동 — 적신호(사전값, 조사 F 적신호 목록)"}
+      reorg: {excess: 0.05, horizon_d: 200, sd: 0.15, source: "Eberhart·Altman·Aggarwal 1999 회생 뒤 주식 200일"}
+      index: {excess: 0.02, horizon_d: 60, sd: 0.04, source: "닛케이225 규칙 복제 발표 전 +2%·시행 뒤 −1.5% 반전(조사 H)"}
+      offer_period: {excess: 0.02, horizon_d: 60, sd: 0.10, source: "영국 2.4 가능 제안 → 2.7 확정 전환율 미검증(Beta(1,1)) — 조사 H"}
+      privatisation: {excess: 0.02, horizon_d: 120, sd: 0.06, source: "홍콩 스킴 승인 확률 0.85(사전값) × 남은 차익 — 조사 H"}
+    alert: {kinds: [tender, spinoff, offer_period, privatisation], min_strength: 6.0}
+  insider:
+    name: 내부자 매수
+    markets: [us, kr, uk, eu, hk, tw]
+    kinds: {cluster: 내부자 여러 명 장내 매수, ceo: 대표 장내 매수}
+    lens: guru
+    dedupe_days: 60
+    prior: {excess: 0.025, horizon_d: 182, sd: 0.08, source: "Cohen·Malloy·Pomorski 2012 JF 기회형 내부자 매수 월 82bp × 감쇠 — 영국 ×1.2·아시아 ×0.5(조사 B)"}
+    alert: {kinds: [cluster], min_strength: 7.0}
+  kr_theme:
+    name: 국장 테마
+    markets: [kr]
+    kinds: {ignite: 테마 점화, spread: 확산, overheat: 과열, structural: 구조적 테마 확인, fade: 소멸}
+    lens: kr_theme
+    dedupe_days: 14
+    prior: {excess: 0.0, horizon_d: 30, sd: 0.20, source: "조사 F — 테마 단계별 효과 미검증(사전값)"}
+    kind_prior:
+      overheat: {excess: -0.08, horizon_d: 30, sd: 0.20, source: "거래소 투자경고·위험 지정 1,548건(2022~2026.8) 68%가 20거래일 뒤 지정가 아래, 투자위험 평균 −15.6%(조사 F)"}
+      fade: {excess: -0.03, horizon_d: 30, sd: 0.15, source: "정치테마 선거 직후 5일 CAR −7.70%(KCMI 17-04) — 소멸 국면 사전값"}
+      structural: {excess: 0.02, horizon_d: 182, sd: 0.25, source: "구조적 테마도 약세장에서 −57~71%(조사 F) — 이익 지속성이 목표 변수"}
+    alert: {kinds: [ignite, structural], min_strength: 6.5}
+  neglected:
+    name: 저관심 텐배거 조짐
+    markets: [us, jp, kr, tw, hk, uk, eu]
+    kinds: {precursor: 10배 전조 스크린}
+    lens: multibagger
+    dedupe_days: 28
+    prior: {excess: 0.02, horizon_d: 365, sd: 0.40, source: "5년 생존 표본 3배 6.8%·10배 0.69%(조사 G TradingView) — 대부분 진다(Bessembinder 2018·2023), Yartseva 2025는 승자만 표본"}
+    alert: {kinds: [], min_strength: 10.1}
+  quant:
+    name: IB 정량 복합
+    markets: [us, jp, kr, tw, hk, uk, eu]
+    kinds: {composite: 가치·질·모멘텀 복합}
+    lens: multibagger
+    dedupe_days: 28
+    prior: {excess: 0.02, horizon_d: 365, sd: 0.15, source: "Jensen·Kelly·Pedersen 2023 팩터 축소(표본 외 기울기 0.26~0.57) — 롱 온리 상위는 학술 롱숏보다 작다(조사 B)"}
+    alert: {kinds: [], min_strength: 10.1}
+  # 기존 채널(이미 있는 파이프라인 — 장부에 기록만, 선별 경로는 그대로)
+  spac:
+    name: SPAC
+    markets: [us]
+    kinds: {deal: 확정 계약 이후 비대칭 점수}
+    lens: special
+    dedupe_days: 60
+    prior: {excess: -0.55, horizon_d: 365, sd: 0.30, source: "Ritter 표 15c 종결 1년 −62~−66%(2021~2024 종결), 3년 −57.7%, 3년 안 −90% 이상 29%(GRZ) — 조사 D"}
+    alert: {kinds: [], min_strength: 10.1}
+  quiet:
+    name: 조용한 매집형 상승
+    markets: [us]
+    kinds: {watch: 관문 통과 watch}
+    lens: bottleneck
+    dedupe_days: 28
+    prior: {excess: 0.02, horizon_d: 182, sd: 0.10, source: "Da·Gurun·Warachka 2014 RFS frog-in-the-pan, George·Hwang 2004 JF 52주 고점"}
+    alert: {kinds: [], min_strength: 10.1}
+
+benchmarks:   # TradingView 기호(2026-11-15 get-symbol-data-batch로 확인) — 같은 시장 지수 대비 초과수익
+  us: SP:SPX
+  us_small: AMEX:IWM
+  jp: TSE:TOPIX
+  kr: KRX:KOSPI
+  kr_kosdaq: KRX:KOSDAQ
+  tw: INDEX:TAIEX
+  hk: TVC:HSI
+  uk: FTSE:UKX
+  eu: TVC:SXXP
+
+filings:      # radar/discovery_filings.py
+  lookback_days: 3   # 처음 켠 날 볼 기간(이후는 마지막 실행일부터)
+
+triage:       # scripts/discovery/channels.py
+  days: 45                 # 이 기간의 단서만 선별에 쓴다
+  confluence_bonus: 0.75   # 다른 채널 단서가 하나 더 겹칠 때마다 가점(상한 1.5)
+  confluence_cap: 1.5
+  pass_min: 6.0            # 채널 선별 통과(② 채널 선별) — 판단 카드 대기열 후보
+  card_queue: 6            # 회차마다 판단 카드를 쓸 상위 수
+  pulse_max: 5             # Pulse 경보 회차당 상한
+  focus_max: 10            # 집중 명단 상한(조사 A — GS 확신 목록·제프리스 관행, 제외 규칙은 킬 규칙과 따로)

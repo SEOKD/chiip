@@ -1,0 +1,83 @@
+# 행동주의 명단 (마스터 지시 2026-11-15 "행동주의 표적" 발굴 채널 — radar/discovery_filings.py, 렌즈 knowledge/methods/sector_lenses/activism.md)
+# 식별자는 2026-11-15 조사 C가 확인: 미국 EDGAR CIK(제출 법인이 여럿이면 filer_ciks), 일본 EDINET 코드 목록 제출인명, 한국 DART 제출인명(flr_nm).
+# 이름 일치: 일본은 NFKC 정규화 뒤(전각 영문·기호 혼재), 한국은 공백을 지운 뒤 대소문자 무시(DART가 외국 이름의 공백을 뺀다).
+# 등급(tier)은 조사 C 제안 사전값 — A 대형·상시 캠페인, B 중형, C 나머지. Saba(폐쇄형 펀드 전문)는 따로 본다.
+# 수익 사전값: 미국 13D 공시 전후 7.2%(−20,+20) 중 탐지 뒤(+2~+20일) 약 +2%, 매각 요구 +8.54%, 늑대 무리(여러 행동주의) ×2.2(Becht 외 2017),
+#   일본 +1.8%(−5,+5)·적대적 +3.8%(Hamao·Kutsuna·Matos), 한국 +2.5%(0,+5, 미검증) — config/discovery_channels.yaml activist prior.
+# 성과는 '결과(이사 선임·매각·환원)'가 날 때만 난다: 북미 61%, 아시아 18%(2000~2010, Becht 2017) → 결과 추적이 킬 조건.
+rules:
+  us_min_terms: 2     # 명단 밖 13D는 목적(Item 4)의 행동주의 어구가 이만큼 이상일 때만
+
+us:
+  - {name: Elliott, cik: 1791786, filer_ciks: [904495, 937611], tier: A}
+  - {name: Starboard Value, cik: 1517137, filer_ciks: [1373638], tier: A}
+  - {name: Trian, cik: 1345471, filer_ciks: [928265], tier: A}
+  - {name: ValueAct, cik: 1464912, filer_ciks: [1418814, 1351069], tier: A}
+  - {name: JANA Partners, cik: 1998597, filer_ciks: [1159159], tier: A}
+  - {name: Third Point, cik: 1040273, tier: A}
+  - {name: Pershing Square, cik: 1336528, filer_ciks: [2026053], tier: A}
+  - {name: Carl Icahn, cik: 921669, filer_ciks: [813762, 1034563, 1412093], tier: A}
+  - {name: Cevian, cik: 1365341, tier: A}
+  - {name: Sachem Head, cik: 1582090, tier: A}
+  - {name: Mantle Ridge, cik: 1695459, tier: A}
+  - {name: Politan, cik: 1885245, tier: A}
+  - {name: Oasis Management, cik: 1317904, tier: A}
+  - {name: 3D Investment Partners, cik: 1841538, tier: A}
+  - {name: TCI Fund Management, cik: 1647251, tier: A}
+  - {name: Palliser Capital, cik: 1881490, filer_ciks: [1875765], tier: A}
+  - {name: Engine No. 1, cik: 1835549, tier: B}
+  - {name: Ancora, cik: 1836192, filer_ciks: [1446114], tier: B}
+  - {name: Land & Buildings, cik: 1536520, tier: B}
+  - {name: Irenic, cik: 1929389, tier: B}
+  - {name: Legion Partners, cik: 1560207, tier: B}
+  - {name: Corvex, cik: 1535472, tier: B}
+  - {name: D. E. Shaw, cik: 1009268, filer_ciks: [1009207], tier: B}
+  - {name: Engaged Capital, cik: 1559771, tier: B}
+  - {name: Impactive, cik: 1786767, tier: B}
+  - {name: Engine Capital, cik: 1580320, tier: B}
+  - {name: Glenview, cik: 1138995, tier: B}
+  - {name: HG Vora, cik: 1525362, tier: B}
+  - {name: Kimmeridge, cik: 1706220, tier: B}
+  - {name: Driver Management, cik: 1756372, tier: B}
+  - {name: Asset Value Investors, cik: 1870300, tier: B}
+  - {name: Dalton Investments, cik: 1388838, tier: B}
+  - {name: Sherborne Investors, cik: 1406672, filer_ciks: [1406888, 1373507], tier: B}
+  - {name: Blackwells, cik: 1720183, tier: C}
+  - {name: TOMS Capital, cik: 1743937, tier: C}
+  - {name: Petrus Advisers, cik: 2002778, tier: C}
+  - {name: Gatemore, cik: 1812647, tier: C}
+  - {name: Teleios, cik: 1690451, tier: C}
+  - {name: Bluebell Capital, cik: 2017376, tier: C}
+  - {name: Anson Funds, cik: 1491072, tier: C}
+  - {name: Voss Capital, cik: 1730145, tier: C}
+  - {name: Lion Point, cik: 1643354, tier: C}
+  - {name: Cannell Capital, cik: 1058854, tier: C}
+  - {name: Saba Capital, cik: 1510281, tier: C, note: "폐쇄형 펀드 전문 — 따로 본다"}
+
+jp:   # EDINET 提出者名(NFKC 정규화 뒤 일치) — 키 대기(TODO 21-46)
+  - {name: Elliott, pattern: "Elliott Investment Management|エリオット", tier: A}
+  - {name: Oasis Management, pattern: "Oasis Management|オアシス", tier: A}
+  - {name: Strategic Capital, pattern: "ストラテジックキャピタル", tier: A}
+  - {name: 3D Investment Partners, pattern: "3D Investment Partners", tier: A}
+  - {name: Dalton Investments, pattern: "ダルトン", tier: B}
+  - {name: NAVF, pattern: "NIPPON ACTIVE VALUE", tier: B}
+  - {name: Murakami 계열, pattern: "シティインデックス|オフィスサポート|南青山不動産", tier: A}
+  - {name: Effissimo, pattern: "Effissimo|エフィッシモ", tier: A}
+  - {name: Silchester, pattern: "シルチェスター|Silchester", tier: B}
+  - {name: Asset Value Investors, pattern: "アセット・バリュー・インベスターズ|AVI JAPAN", tier: B}
+  - {name: Hibiki Path, pattern: "ひびき・パース", tier: B}
+  - {name: Ichigo Asset Management International, pattern: "いちごアセットマネジメント・インターナショナル", tier: B}
+  - {name: ValueAct, pattern: "ValueAct", tier: A}
+  - {name: Farallon, pattern: "Farallon", tier: C}
+  - {name: Kaname Capital, pattern: "カナメ・キャピタル", tier: C}
+
+kr:   # DART 제출인(flr_nm) — 공백을 지운 뒤 일치. 행동주의·관여형만(가치·관여 약한 약식 보고 운용사는 넣지 않는다)
+  - {name: 얼라인파트너스, pattern: "얼라인파트너스", tier: A}
+  - {name: KCGI, pattern: "케이씨지아이", tier: A}
+  - {name: 트러스톤자산운용, pattern: "트러스톤자산운용", tier: B}
+  - {name: 차파트너스자산운용, pattern: "차파트너스", tier: B}
+  - {name: Palliser Capital, pattern: "(?i)palliser", tier: A}
+  - {name: Elliott, pattern: "(?i)elliott", tier: A}
+  - {name: Dalton Investments, pattern: "(?i)daltoninvestments", tier: C}
+
+exclude_jp: ["EVO FUND"]   # MS 워런트 금융 — 행동주의 아님(조사 C)

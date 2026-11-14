@@ -1,0 +1,95 @@
+# 구루 명단 (마스터 지시 2026-11-15 "패니메이 & 프레디맥과 같이 구루 포지션을 따라가는 전략" — radar/guru13f.py, radar/discovery_filings.py 13D·13G 구루 일치)
+# CIK는 2026-11-15 조사 E가 data.sec.gov 제출 목록·13F 표지로 확인(45곳). 제출 법인이 바뀌면 ciks에 기간을 적는다(from/to = 보고 분기).
+# 값은 운용사 13F 정보표의 주식(SH)만 — 풋·콜 제외. 일부 운용사는 가치를 천 달러로 낸다(Baupost 2026Q3·Duquesne 2026Q2) — 비중 계산은 같은 서류 안이라 영향 없다.
+# 해외 직접 보유(Fundsmith 유럽, Pabrai 터키·인도·한국, 버크셔 일본 상사)는 13F에 없다 — 빠진 것이지 0이 아니다.
+# 장외(OTC)·비의결권 종목(패니메이 FNMA·프레디맥 FMCC)은 13F에 안 나온다 → pages(공개 포트폴리오 페이지)·config/special_situations.yaml 논지 장부.
+# 점수 규칙(조사 E §7, 사전값 — 등록부 prm-guru-*): rules 절. 명단 밖 관측은 조사 E 표 'bench'(아래 bench)로 남긴다.
+
+rules:
+  w_new: 1.0             # 신규 편입(직전 2분기 없음)
+  w_add: 0.5             # 증액 — × min(증가율, 1), 증가율 add_min 이상만
+  add_min: 0.25
+  w_best: 0.3            # 상위 3 보유 유지(Antón·Cohen·Polk 2021 최고 확신 — 사건은 아니라 낮게)
+  w_confidential: 1.2    # 13F-HR/A 'NEW HOLDINGS' — 기밀 처리했던 보유 공개(Agarwal 외 2013, Aragon 외 2013)
+  rank_w: [1.0, 0.8, 0.65, 0.55, 0.5]   # 비중 순위 1~5
+  rank_w_6_10: 0.2
+  min_w: 0.02            # 확신 가점 최소 비중(신규 0.5% 미만은 무시)
+  new_min_w: 0.005
+  q_conc: 1.2            # 상위 5 비중 ≥ 0.5
+  q_giant: 0.8           # 13F 주식 ≥ $10B
+  q_diversified: 0.5     # 150종목 이상
+  q_regime: 0.8          # 운용 체제 변화 8분기 안
+  consensus_step: 0.15   # 같은 분기 다른 구루 신규·증액 1명당(최대 3명)
+  consensus_cap: 3
+  strength_base: 3.0     # 단서 강도 = base + slope × 점수(상한 10)
+  strength_slope: 5.0
+  lead_min: 5.0          # 이 강도 밑은 단서 장부에 넣지 않는다(잡음)
+  crowd_lo: 0.20         # 쏠림 — 13F 보유 기관 비율 20% 이상 −0.3, 40% 이상 −0.6(조사 E 헤지펀드 상위 10 기준의 근사)
+  crowd_hi: 0.40
+  crowd_pen_lo: 0.3
+  crowd_pen_hi: 0.6
+  crowd_cap: 5.9         # 40% 이상은 강도 상한(경보·선별 문턱 아래 — 장부에는 남긴다)
+
+gurus:
+  - {id: berkshire, name: Berkshire Hathaway, style: quality-value, ciks: [{cik: 1067983}], regime_change: 2026-01-01}   # 그레그 에이블 CEO(8-K/A 2026-01-06)
+  - {id: pershing, name: Pershing Square, style: activist-concentrated, ciks: [{cik: 1336528, to: 2026Q1}, {cik: 2026053, from: 2026Q2}],
+     pages: [{url: "https://pershingsquareholdings.com/portfolio/", names: {"Fannie Mae": FNMA, "Freddie Mac": FMCC, "Alcon": ALC, "Intercontinental Exchange": ICE}}]}
+  - {id: scion, name: Scion Asset Management, style: contrarian, ciks: [{cik: 1649339, to: 2025Q3}], active: false}   # 마지막 13F 2025Q3, 옵션 95%
+  - {id: appaloosa, name: Appaloosa, style: distressed-macro, ciks: [{cik: 1656456}]}
+  - {id: duquesne, name: Duquesne Family Office, style: macro, ciks: [{cik: 1536411}]}
+  - {id: baupost, name: Baupost Group, style: deep-value, ciks: [{cik: 1061768}]}
+  - {id: himalaya, name: Himalaya Capital, style: concentrated-value, ciks: [{cik: 1709323}]}
+  - {id: greenlight, name: Greenlight Capital(DME), style: value-long-short, ciks: [{cik: 1079114, to: 2023Q4}, {cik: 1489933, from: 2024Q1}]}
+  - {id: thirdpoint, name: Third Point, style: event-driven, ciks: [{cik: 1040273}]}
+  - {id: tiger, name: Tiger Global, style: tech-growth, ciks: [{cik: 1167483}]}
+  - {id: coatue, name: Coatue, style: tech-ai, ciks: [{cik: 1135730}]}
+  - {id: viking, name: Viking Global, style: long-short, ciks: [{cik: 1103804}]}
+  - {id: lonepine, name: Lone Pine, style: growth, ciks: [{cik: 1061165}]}
+  - {id: pabrai, name: Dalal Street(Pabrai), style: deep-value, ciks: [{cik: 1549575}]}
+  - {id: akre, name: Akre Capital, style: compounders, ciks: [{cik: 1112520}]}
+  - {id: markel, name: Markel Group, style: quality-value, ciks: [{cik: 1096343}]}
+  - {id: fundsmith, name: Fundsmith, style: global-quality, ciks: [{cik: 1569205}]}
+  - {id: gardnerrusso, name: Gardner Russo & Quinn, style: consumer-value, ciks: [{cik: 860643}]}
+  - {id: oaktree, name: Oaktree Capital, style: distressed, ciks: [{cik: 949509}]}
+  - {id: valueact, name: ValueAct, style: activist, ciks: [{cik: 1418814}]}
+  - {id: trian, name: Trian Fund Management, style: activist, ciks: [{cik: 1345471}]}
+  - {id: starboard, name: Starboard Value, style: activist, ciks: [{cik: 1517137}]}
+  - {id: elliott, name: Elliott Investment Management, style: activist, ciks: [{cik: 1791786}]}
+  - {id: icahn, name: Carl Icahn, style: activist, ciks: [{cik: 921669}], exclude_names: ["ICAHN ENTERPRISES"]}   # IEP 계열 보유는 뺀다
+  - {id: fairholme, name: Fairholme Capital, style: special-situations, ciks: [{cik: 1056831}], nport_ciks: [1096344]}   # 패니·프레디는 Fairholme Funds N-CSR로만(미구현)
+  - {id: paulson, name: Paulson & Co, style: event-driven, ciks: [{cik: 1035674}]}
+  - {id: situational, name: Situational Awareness, style: ai-thematic, ciks: [{cik: 2045724}]}
+  - {id: altimeter, name: Altimeter Capital, style: tech-ai, ciks: [{cik: 1541617}]}
+  - {id: durable, name: Durable Capital, style: growth, ciks: [{cik: 1798849}]}
+  - {id: d1, name: D1 Capital, style: growth, ciks: [{cik: 1747057}]}
+  - {id: whalerock, name: Whale Rock, style: tech-ai, ciks: [{cik: 1387322}]}
+  - {id: maverick, name: Maverick Capital, style: long-short, ciks: [{cik: 934639}]}
+  - {id: polen, name: Polen Capital, style: quality-growth, ciks: [{cik: 1034524}]}
+  - {id: giverny, name: Giverny Capital, style: quality, ciks: [{cik: 1641864}]}
+  - {id: semperaugustus, name: Semper Augustus, style: value, ciks: [{cik: 1115373}]}
+  - {id: ruane, name: Ruane Cunniff & Goldfarb, style: quality-value, ciks: [{cik: 1720792}]}
+  - {id: southeastern, name: Southeastern(Longleaf), style: deep-value, ciks: [{cik: 807985}]}
+  - {id: abramsbison, name: Abrams Bison, style: concentrated-value, ciks: [{cik: 1317588}]}
+  - {id: bravewarrior, name: Brave Warrior, style: value, ciks: [{cik: 1553733}]}
+  - {id: wedgewood, name: Wedgewood Partners, style: quality-growth, ciks: [{cik: 859804}]}
+  - {id: tci, name: TCI Fund Management, style: concentrated-quality, ciks: [{cik: 1647251}]}
+  - {id: fairfax, name: Fairfax Financial, style: value, ciks: [{cik: 915191}]}
+  - {id: valleyforge, name: Valley Forge Capital, style: concentrated-quality, ciks: [{cik: 1697868}]}
+  - {id: atreides, name: Atreides Management, style: tech-ai, ciks: [{cik: 1777813}]}
+  - {id: abramscap, name: Abrams Capital, style: special-situations, ciks: [{cik: 1358706}]}
+
+bench:   # 확인했지만 핵심 명단 밖(조사 E) — 필요하면 위로 옮긴다
+  - {name: Soros Fund Management, cik: 1029160}
+  - {name: Daily Journal, cik: 783412}
+  - {name: Harris Associates, cik: 813917}
+  - {name: Lindsell Train, cik: 1484150}
+  - {name: Horizon Kinetics, cik: 1056823}
+  - {name: HHLR Advisors, cik: 1762304}
+  - {name: JANA Partners, ciks: [1159159, 1998597]}
+  - {name: Sachem Head, cik: 1582090}
+  - {name: Mantle Ridge, cik: 1695459}
+  - {name: Thiel Macro, cik: 1562087}
+  - {name: Egerton Capital, cik: 1581811}
+  - {name: Spruce House, cik: 1543170}
+
+jp: []   # EDINET 大量保有報告書 제출인(버크셔 = National Indemnity 등) — EDINET 키가 들어오면 이름을 1차 서류로 확인해 넣는다(조사 E: 미확인)

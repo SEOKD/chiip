@@ -1,0 +1,43 @@
+# 국장 테마 사전 (마스터 지시 2026-11-15 "국장 테마주" 발굴 채널, scripts/discovery/kr_theme.py, 렌즈 knowledge/methods/sector_lenses/kr_theme.md)
+# type: structural_candidate(이익 상향·수출·수주가 받칠 수 있는 테마 — 확인 전엔 '후보') / mixed / speculative(재료·인물·기술 소문 위주 — 과열 뒤 급락 기저율이 높다)
+# seeds: KRX 6자리 코드(처음 쓰는 날 TradingView 설명으로 대조 — scripts/discovery/kr_theme.py --verify). 모르는 코드는 넣지 않는다.
+# buzz: 공개 텔레그램 채널(이미 수집 중인 17곳) 글 중 이 어휘가 나온 글 수(radar/kr_theme_news.py) — 리테일·셀사이드 테마 확산의 대용 지표(언급 수 ≠ 펀더멘털).
+#   Google News RSS는 쓰지 않는다(news.google.com robots.txt가 /rss를 모든 수집기에 금지·ClaudeBot 전면 금지 — 2026-11-15 확인).
+# industries: TradingView 업종(industry) — 사전 종목이 아니어도 그 업종 급등 종목을 테마 후보로 묶는다(테마 이름 확정은 모델).
+# 수치 문턱은 config/discovery_channels.yaml이 아니라 아래 lifecycle(사전값, 등록부 prm-krth-*).
+
+lifecycle:
+  mover_change_pct: 7        # 급등 종목 = 하루 +7% 이상(TradingView change)
+  limit_up_pct: 29.5         # 상한가(가격제한폭 30%) 근사
+  ignite_min: 3              # 점화: 같은 테마 급등 3종목 이상(또는 상한가 포함 2종목)
+  ignite_quiet_days: 10      # 점화 = 직전 10거래일 동안 급등 1종목 이하였던 테마
+  spread_days: [3, 5]        # 확산: 최근 5거래일 중 3일 이상 급등 2종목 이상
+  overheat_limit_ups: 3      # 과열: 하루 상한가 3종목 이상, 또는 텔레그램 언급 20일 평균 대비 5배 이상, 또는 최근 10일 KRX 투자경고 지정 2종목 이상
+  overheat_news_x: 5.0
+  overheat_alerts: 2         # 투자경고 지정(open.krx — 내부 표지) 구성 종목 수
+  alert_days: 10
+  fade_days: 5               # 소멸: 최근 5거래일 급등 0 — 직전 20거래일 중 5일 이상 활발했던 테마
+  structural_growth: 20      # 구조적 확인: 테마 구성 종목 매출 성장 중앙값 20% 이상 + 영업이익률 중앙값 8% 이상 + 최근 60거래일 중 20일 이상 활발
+  structural_margin: 8
+  structural_active: 20
+  cluster_min: 3             # 사전 밖 업종 묶음: 같은 TradingView 업종 급등 3종목 이상
+  min_value_krw: 3000000000  # 급등 종목 하한 — 하루 거래대금 30억 원(소형 단주 급등 제외)
+
+themes:
+  - {id: shipbuilding, name: 조선, type: structural_candidate, buzz: ["조선주", "조선업", "조선사", "조선 3사", "LNG선", "HD현대중공업", "한화오션", "삼성중공업"], industries: [], seeds: ["009540", "042660", "010140", "329180", "010620", "082740", "071970", "075580", "033500", "017960"]}
+  - {id: defense, name: 방산, type: structural_candidate, buzz: ["방산", "방위산업", "K9", "K2 전차", "천무", "한화에어로", "LIG넥스원", "현대로템"], industries: ["Aerospace & Defense"], seeds: ["012450", "064350", "079550", "047810", "103140", "272210", "010820", "065450", "013810"]}
+  - {id: power_equip, name: 전력기기, type: structural_candidate, buzz: ["전력기기", "변압기", "초고압", "HD현대일렉트릭", "효성중공업", "LS ELECTRIC"], industries: ["Electrical Products"], seeds: ["267260", "010120", "298040", "103590", "033100", "000500", "006340", "062040"]}
+  - {id: nuclear, name: 원전, type: structural_candidate, buzz: ["원전", "원자력", "SMR", "소형모듈원전", "두산에너빌리티"], industries: [], seeds: ["034020", "052690", "051600", "083650", "032820", "105840", "011700", "006910"]}
+  - {id: hbm_equip, name: HBM·AI 반도체 장비, type: structural_candidate, buzz: ["HBM", "TC본더", "한미반도체", "하이브리드 본딩"], industries: ["Electronic Production Equipment", "Semiconductors"], seeds: ["042700", "007660", "095340", "089030", "036930", "031980", "058470", "067310"]}
+  - {id: kbeauty, name: K-뷰티, type: structural_candidate, buzz: ["화장품", "K뷰티", "K-뷰티", "에이피알", "실리콘투"], industries: ["Household/Personal Care"], seeds: ["278470", "192820", "161890", "257720", "018290", "090430"]}
+  - {id: kfood, name: K-푸드, type: structural_candidate, buzz: ["K푸드", "K-푸드", "라면 수출", "삼양식품", "불닭"], industries: ["Food: Major Diversified", "Food: Specialty/Candy"], seeds: ["003230", "004370", "271560", "097950"]}
+  - {id: battery, name: 2차전지, type: mixed, buzz: ["2차전지", "이차전지", "양극재", "에코프로", "전고체"], industries: [], seeds: ["086520", "247540", "003670", "066970", "373220", "006400", "001570", "005070"]}
+  - {id: robot, name: 로봇, type: mixed, buzz: ["로봇", "휴머노이드", "레인보우로보틱스"], industries: [], seeds: ["277810", "454910", "108490", "388720", "058610", "090360", "090710"]}
+  - {id: bio_obesity, name: 비만치료제·바이오, type: mixed, buzz: ["비만치료제", "GLP-1", "위고비", "펩트론", "알테오젠"], industries: ["Biotechnology", "Pharmaceuticals: Major", "Pharmaceuticals: Other"], seeds: ["087010", "347850", "128940", "196170", "000250", "141080"]}
+  - {id: space, name: 우주항공, type: mixed, buzz: ["우주항공", "누리호", "발사체", "위성"], industries: [], seeds: ["099320", "211270", "189300", "451760"]}
+  - {id: entertainment, name: 엔터, type: mixed, buzz: ["엔터주", "하이브", "BTS", "K팝", "JYP"], industries: ["Movies/Entertainment"], seeds: ["352820", "035900", "041510", "122870"]}
+  - {id: valueup, name: 밸류업·저PBR, type: mixed, buzz: ["밸류업", "저PBR", "자사주 소각", "주주환원"], industries: ["Major Banks", "Regional Banks", "Financial Conglomerates"], seeds: ["105560", "055550", "086790", "316140", "032830"]}
+  - {id: stablecoin, name: 원화 스테이블코인, type: speculative, buzz: ["스테이블코인", "원화 코인", "원화코인"], industries: [], seeds: ["377300", "064260"]}
+  - {id: quantum, name: 양자컴퓨터, type: speculative, buzz: ["양자컴퓨터", "양자 컴퓨팅", "아이온큐"], industries: [], seeds: []}
+  - {id: superconductor, name: 초전도체, type: speculative, buzz: ["초전도체", "LK-99", "LK99"], industries: [], seeds: ["065350", "294630", "004830"]}
+  - {id: politics, name: 정치 테마, type: speculative, buzz: ["정치테마", "정치 테마주", "대선 테마"], industries: [], seeds: []}

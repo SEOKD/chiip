@@ -1,0 +1,33 @@
+{
+ "as_of": "2026-11-15",
+ "alerts": [
+  {
+   "lead_id": "L-20261113-5cfaa814",
+   "date": "2026-11-13",
+   "channel": "activist",
+   "channel_name": "행동주의",
+   "kind": "contest",
+   "kind_name": "위임장 대결·주주 측 권유",
+   "market": "us",
+   "ticker": "BPRE",
+   "name": "Bluerock Private Real Estate Fund",
+   "strength": 7.5,
+   "signal": "위임장 대결 서류 DFAN14A — 제출 Saba Capital Management, L.P.",
+   "url": "https://www.sec.gov/Archives/edgar/data/1551047/000090266426004538/"
+  },
+  {
+   "lead_id": "L-20261113-51fea63a",
+   "date": "2026-11-13",
+   "channel": "activist",
+   "channel_name": "행동주의",
+   "kind": "contest",
+   "kind_name": "위임장 대결·주주 측 권유",
+   "market": "us",
+   "ticker": "CTNT",
+   "name": "CHEETAH NET SUPPLY CHAIN SERVICE INC.",
+   "strength": 6.5,
+   "signal": "위임장 대결 서류 DEFC14A — 제출 회사",
+   "url": "https://www.sec.gov/Archives/edgar/data/1951667/000110465926126566/"
+  }
+ ]
+}

@@ -1,0 +1,2659 @@
+{
+ "as_of": "2026-11-15",
+ "rows": [
+  {
+   "id": "us-bpre",
+   "name": "Bluerock Private Real Estate Fund",
+   "market": "us",
+   "code": "BPRE",
+   "tv": "NYSE:BPRE",
+   "score": 7.5,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/contest"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "contest",
+    "strength": 7.5,
+    "signal": "위임장 대결 서류 DFAN14A — 제출 Saba Capital Management, L.P.",
+    "url": "https://www.sec.gov/Archives/edgar/data/1551047/000090266426004538/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-5cfaa814"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 행동주의·위임장 대결·주주 측 권유: 위임장 대결 서류 DFAN14A — 제출 Saba Capital Management, L.P."
+   ]
+  },
+  {
+   "id": "us-asa",
+   "name": "ASA Gold & Precious Metals Ltd",
+   "market": "us",
+   "code": "ASA",
+   "tv": "NYSE:ASA",
+   "score": 6.5,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/contest"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "contest",
+    "strength": 6.5,
+    "signal": "위임장 대결 서류 DFAN14A — 제출 Merk Alexander",
+    "url": "https://www.sec.gov/Archives/edgar/data/1230869/000121390026118282/",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-2b32d547"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·위임장 대결·주주 측 권유: 위임장 대결 서류 DFAN14A — 제출 Merk Alexander"
+   ]
+  },
+  {
+   "id": "us-ctnt",
+   "name": "CHEETAH NET SUPPLY CHAIN SERVICE INC.",
+   "market": "us",
+   "code": "CTNT",
+   "tv": "NASDAQ:CTNT",
+   "score": 6.5,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/contest"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "contest",
+    "strength": 6.5,
+    "signal": "위임장 대결 서류 DEFC14A — 제출 회사",
+    "url": "https://www.sec.gov/Archives/edgar/data/1951667/000110465926126566/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-51fea63a"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 행동주의·위임장 대결·주주 측 권유: 위임장 대결 서류 DEFC14A — 제출 회사"
+   ]
+  },
+  {
+   "id": "us-hele",
+   "name": "HELEN OF TROY LTD",
+   "market": "us",
+   "code": "HELE",
+   "tv": "NASDAQ:HELE",
+   "score": 6.5,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/contest"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "contest",
+    "strength": 6.5,
+    "signal": "위임장 대결 서류 DFAN14A — 제출 Spectrum Brands Holdings, Inc.",
+    "url": "https://www.sec.gov/Archives/edgar/data/916789/000095010326017390/",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-86d927c4"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·위임장 대결·주주 측 권유: 위임장 대결 서류 DFAN14A — 제출 Spectrum Brands Holdings, Inc."
+   ]
+  },
+  {
+   "id": "us-umh",
+   "name": "UMH PROPERTIES, INC.",
+   "market": "us",
+   "code": "UMH",
+   "tv": "NYSE:UMH",
+   "score": 6.5,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/contest"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "contest",
+    "strength": 6.5,
+    "signal": "위임장 대결 서류 DFAN14A — 제출 Erez REIT Opportunities LP",
+    "url": "https://www.sec.gov/Archives/edgar/data/752642/000090266426004500/",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-d1f9276a"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·위임장 대결·주주 측 권유: 위임장 대결 서류 DFAN14A — 제출 Erez REIT Opportunities LP"
+   ]
+  },
+  {
+   "id": "us-mtn",
+   "name": "VAIL RESORTS INC",
+   "market": "us",
+   "code": "MTN",
+   "tv": "NYSE:MTN",
+   "score": 6.5,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/contest"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "contest",
+    "strength": 6.5,
+    "signal": "위임장 대결 서류 DFAN14A — 제출 Meyer Gregory S",
+    "url": "https://www.sec.gov/Archives/edgar/data/812011/000199937126025223/",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-b2013499"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·위임장 대결·주주 측 권유: 위임장 대결 서류 DFAN14A — 제출 Meyer Gregory S"
+   ]
+  },
+  {
+   "id": "us-intz",
+   "name": "INTRUSION INC",
+   "market": "us",
+   "code": "INTZ",
+   "tv": "NASDAQ:INTZ",
+   "score": 6.0,
+   "stage": "② 채널 선별",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/entry"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "entry",
+    "strength": 6.0,
+    "signal": "Tego Cyber, Inc. 13D 신규(명단 밖) 8.9% · 목적 어구 3개",
+    "url": "https://www.sec.gov/Archives/edgar/data/736012/000181563226000005/",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-4208b4be"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·행동주의 지분 신고: Tego Cyber, Inc. 13D 신규(명단 밖) 8.9% · 목적 어구 3개"
+   ]
+  },
+  {
+   "id": "us-googl",
+   "name": "ALPHABET INC-CL A",
+   "market": "us",
+   "code": "GOOGL",
+   "tv": "NASDAQ:GOOGL",
+   "score": 5.9,
+   "stage": "① 단서",
+   "channels": [
+    "guru"
+   ],
+   "kinds": [
+    "guru/cluster"
+   ],
+   "top": {
+    "channel": "guru",
+    "kind": "cluster",
+    "strength": 5.9,
+    "signal": "구루 2명 같은 분기 매수 — Himalaya Capital 최고 확신 유지 비중 24.6%(1위) · Third Point 증액 비중 7.9%(3위) · Ruane Cunniff & Goldfarb 최고 확신 유지 비중 11.1%(1위) 외 3명 · 점수 1.10",
+    "url": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-6ee49aa9"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "guru",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 구루 추종·여러 구루 겹침: 구루 2명 같은 분기 매수 — Himalaya Capital 최고 확신 유지 비중 24.6%(1위) · Third Point 증액 비중 7.9%(3위) · Ruane Cunniff & Goldfarb 최고 확신 유지 비중 11.1%(1위) 외 3명 · 점수 1.10"
+   ]
+  },
+  {
+   "id": "us-goog",
+   "name": "ALPHABET INC-CL C",
+   "market": "us",
+   "code": "GOOG",
+   "tv": "NASDAQ:GOOG",
+   "score": 5.9,
+   "stage": "① 단서",
+   "channels": [
+    "guru"
+   ],
+   "kinds": [
+    "guru/cluster"
+   ],
+   "top": {
+    "channel": "guru",
+    "kind": "cluster",
+    "strength": 5.9,
+    "signal": "구루 2명 같은 분기 매수 — Himalaya Capital 최고 확신 유지 비중 23.4%(2위) · Gardner Russo & Quinn 최고 확신 유지 비중 11.8%(2위) · Markel Group 최고 확신 유지 비중 7.3%(1위) 외 4명 · 점수 0.85",
+    "url": "https://www.sec.gov/Archives/edgar/data/1709323/000204358526000022/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-7f62f24e"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "guru",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 구루 추종·여러 구루 겹침: 구루 2명 같은 분기 매수 — Himalaya Capital 최고 확신 유지 비중 23.4%(2위) · Gardner Russo & Quinn 최고 확신 유지 비중 11.8%(2위) · Markel Group 최고 확신 유지 비중 7.3%(1위) 외 4명 · 점수 0.85"
+   ]
+  },
+  {
+   "id": "us-amzn",
+   "name": "AMAZON.COM INC",
+   "market": "us",
+   "code": "AMZN",
+   "tv": "NASDAQ:AMZN",
+   "score": 5.9,
+   "stage": "① 단서",
+   "channels": [
+    "guru"
+   ],
+   "kinds": [
+    "guru/cluster"
+   ],
+   "top": {
+    "channel": "guru",
+    "kind": "cluster",
+    "strength": 5.9,
+    "signal": "구루 3명 같은 분기 매수 — Appaloosa 최고 확신 유지 비중 16.0%(1위) · Baupost Group 최고 확신 유지 비중 18.5%(1위) · ValueAct 최고 확신 유지 비중 12.4%(2위) 외 5명 · 점수 1.31",
+    "url": "https://www.sec.gov/Archives/edgar/data/1656456/000165645626000003/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-bd277bfd"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "guru",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 구루 추종·여러 구루 겹침: 구루 3명 같은 분기 매수 — Appaloosa 최고 확신 유지 비중 16.0%(1위) · Baupost Group 최고 확신 유지 비중 18.5%(1위) · ValueAct 최고 확신 유지 비중 12.4%(2위) 외 5명 · 점수 1.31"
+   ]
+  },
+  {
+   "id": "us-meta",
+   "name": "META PLATFORMS INC-CLASS A",
+   "market": "us",
+   "code": "META",
+   "tv": "NASDAQ:META",
+   "score": 5.9,
+   "stage": "① 단서",
+   "channels": [
+    "guru"
+   ],
+   "kinds": [
+    "guru/cluster"
+   ],
+   "top": {
+    "channel": "guru",
+    "kind": "cluster",
+    "strength": 5.9,
+    "signal": "구루 5명 같은 분기 매수 — Whale Rock 증액 비중 7.6%(1위) · Giverny Capital 최고 확신 유지 비중 7.2%(1위) · Altimeter Capital 최고 확신 유지 비중 7.8%(3위) 외 5명 · 점수 1.21",
+    "url": "https://www.sec.gov/Archives/edgar/data/1387322/000117266126005033/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-895d6e21"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "guru",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 구루 추종·여러 구루 겹침: 구루 5명 같은 분기 매수 — Whale Rock 증액 비중 7.6%(1위) · Giverny Capital 최고 확신 유지 비중 7.2%(1위) · Altimeter Capital 최고 확신 유지 비중 7.8%(3위) 외 5명 · 점수 1.21"
+   ]
+  },
+  {
+   "id": "us-aglt",
+   "name": "Agility Robotics, Inc.",
+   "market": "us",
+   "code": "AGLT",
+   "tv": "NASDAQ:AGLT",
+   "score": 5.5,
+   "stage": "① 단서",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/entry"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "entry",
+    "strength": 5.5,
+    "signal": "Hurst Jonathan 13D 신규(명단 밖) 5.2% · 목적 어구 2개",
+    "url": "https://www.sec.gov/Archives/edgar/data/2074973/000121390026118976/",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-a3793df3"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·행동주의 지분 신고: Hurst Jonathan 13D 신규(명단 밖) 5.2% · 목적 어구 2개"
+   ]
+  },
+  {
+   "id": "us-gfl",
+   "name": "GFL ENVIRONMENTAL INC-SUB VT",
+   "market": "us",
+   "code": "GFL",
+   "tv": "NYSE:GFL",
+   "score": 5.2,
+   "stage": "① 단서",
+   "channels": [
+    "guru"
+   ],
+   "kinds": [
+    "guru/cluster"
+   ],
+   "top": {
+    "channel": "guru",
+    "kind": "cluster",
+    "strength": 5.2,
+    "signal": "구루 2명 같은 분기 매수 — Abrams Capital 신규 편입 비중 2.1%(10위) · Maverick Capital 증액 비중 3.4%(9위) · 점수 0.43",
+    "url": "https://www.sec.gov/Archives/edgar/data/1358706/000117266126005028/",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-a15d0263"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "guru",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 구루 추종·여러 구루 겹침: 구루 2명 같은 분기 매수 — Abrams Capital 신규 편입 비중 2.1%(10위) · Maverick Capital 증액 비중 3.4%(9위) · 점수 0.43"
+   ]
+  },
+  {
+   "id": "kr-389140",
+   "name": "4by4 Inc.",
+   "market": "kr",
+   "code": "389140",
+   "tv": "KRX:389140",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Packaged Software' 급등 4종목 — 4by4 Inc. +22.4%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-b81534d1"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Packaged Software' 급등 4종목 — 4by4 Inc. +22.4%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-241520",
+   "name": "DSC INVESTMENT INC.",
+   "market": "kr",
+   "code": "241520",
+   "tv": "KRX:241520",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Investment Managers' 급등 3종목 — DSC INVESTMENT INC. +29.9%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-466208bb"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Investment Managers' 급등 3종목 — DSC INVESTMENT INC. +29.9%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-263860",
+   "name": "GENIANS, INC.",
+   "market": "kr",
+   "code": "263860",
+   "tv": "KRX:263860",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Packaged Software' 급등 4종목 — GENIANS, INC. +9.4%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-e87b8fb4"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Packaged Software' 급등 4종목 — GENIANS, INC. +9.4%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-328130",
+   "name": "Lunit Inc.",
+   "market": "kr",
+   "code": "328130",
+   "tv": "KRX:328130",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Packaged Software' 급등 4종목 — Lunit Inc. +9.5%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-e4bbb04b"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Packaged Software' 급등 4종목 — Lunit Inc. +9.5%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-100790",
+   "name": "Mirae Asset Venture Investment Co., Ltd.",
+   "market": "kr",
+   "code": "100790",
+   "tv": "KRX:100790",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Investment Managers' 급등 3종목 — Mirae Asset Venture Investment Co., Ltd. +7.1%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-01d121d5"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Investment Managers' 급등 3종목 — Mirae Asset Venture Investment Co., Ltd. +7.1%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-034310",
+   "name": "NICE",
+   "market": "kr",
+   "code": "034310",
+   "tv": "KRX:034310",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112801041",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-1cec7acc"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-319660",
+   "name": "PSK INC",
+   "market": "kr",
+   "code": "319660",
+   "tv": "KRX:319660",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Industrial Machinery' 급등 5종목 — PSK INC +8.9%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-1593e96e"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Industrial Machinery' 급등 5종목 — PSK INC +8.9%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-171090",
+   "name": "SUNIC SYSTEM Co., Ltd.",
+   "market": "kr",
+   "code": "171090",
+   "tv": "KRX:171090",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Industrial Machinery' 급등 5종목 — SUNIC SYSTEM Co., Ltd. +13.3%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-b726fe64"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Industrial Machinery' 급등 5종목 — SUNIC SYSTEM Co., Ltd. +13.3%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-289080",
+   "name": "SV INVESTMENT Corp.",
+   "market": "kr",
+   "code": "289080",
+   "tv": "KRX:289080",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Investment Managers' 급등 3종목 — SV INVESTMENT Corp. +8.0%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-bba9ac77"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Investment Managers' 급등 3종목 — SV INVESTMENT Corp. +8.0%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-074600",
+   "name": "WONIK QnC Corporation",
+   "market": "kr",
+   "code": "074600",
+   "tv": "KRX:074600",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "kr_theme"
+   ],
+   "kinds": [
+    "kr_theme/ignite"
+   ],
+   "top": {
+    "channel": "kr_theme",
+    "kind": "ignite",
+    "strength": 5.0,
+    "signal": "사전 밖 업종 묶음 'Industrial Machinery' 급등 5종목 — WONIK QnC Corporation +17.4%(테마 이름은 모델 확인)",
+    "url": "",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-ae96a703"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "kr_theme",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 국장 테마·테마 점화: 사전 밖 업종 묶음 'Industrial Machinery' 급등 5종목 — WONIK QnC Corporation +17.4%(테마 이름은 모델 확인)"
+   ]
+  },
+  {
+   "id": "kr-121600",
+   "name": "나노신소재",
+   "market": "kr",
+   "code": "121600",
+   "tv": "KRX:121600",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112900478",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-28ee9e32"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-039560",
+   "name": "다산네트웍스",
+   "market": "kr",
+   "code": "039560",
+   "tv": "KRX:039560",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112900817",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-fbf54d1e"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-462860",
+   "name": "더즌",
+   "market": "kr",
+   "code": "462860",
+   "tv": "KRX:462860",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113900397",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-cf7c7218"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-102260",
+   "name": "동성케미컬",
+   "market": "kr",
+   "code": "102260",
+   "tv": "KRX:102260",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113801374",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-9dff2ec1"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-001530",
+   "name": "디아이동일",
+   "market": "kr",
+   "code": "001530",
+   "tv": "KRX:001530",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113801927",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-73bdb1e8"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-007310",
+   "name": "오뚜기",
+   "market": "kr",
+   "code": "007310",
+   "tv": "KRX:007310",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113800882",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-68d7b80b"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-336570",
+   "name": "원텍",
+   "market": "kr",
+   "code": "336570",
+   "tv": "KRX:336570",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113900639",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-c3181ed6"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-099750",
+   "name": "이지케어텍",
+   "market": "kr",
+   "code": "099750",
+   "tv": "KRX:099750",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113901784",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-21731407"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-064820",
+   "name": "케이프",
+   "market": "kr",
+   "code": "064820",
+   "tv": "KRX:064820",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/entry"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "entry",
+    "strength": 5.0,
+    "signal": "기관 5% 보고(일반 서식 = 경영권 영향 목적 가능) — 제출 템퍼스인베스트먼트",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000715",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-8a795e39"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 행동주의·행동주의 지분 신고: 기관 5% 보고(일반 서식 = 경영권 영향 목적 가능) — 제출 템퍼스인베스트먼트"
+   ]
+  },
+  {
+   "id": "kr-034830",
+   "name": "한국토지신탁",
+   "market": "kr",
+   "code": "034830",
+   "tv": "KRX:034830",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "activist"
+   ],
+   "kinds": [
+    "activist/entry"
+   ],
+   "top": {
+    "channel": "activist",
+    "kind": "entry",
+    "strength": 5.0,
+    "signal": "기관 5% 보고(일반 서식 = 경영권 영향 목적 가능) — 제출 엠케이인베스트먼트",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001293",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-b2589d62"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "activism",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 행동주의·행동주의 지분 신고: 기관 5% 보고(일반 서식 = 경영권 영향 목적 가능) — 제출 엠케이인베스트먼트"
+   ]
+  },
+  {
+   "id": "kr-000880",
+   "name": "한화",
+   "market": "kr",
+   "code": "000880",
+   "tv": "KRX:000880",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback",
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112800725",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-2368e87d"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 2,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정 — 소각은 별도 결정",
+    "2026-11-12 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "kr-205470",
+   "name": "휴마시스",
+   "market": "kr",
+   "code": "205470",
+   "tv": "KRX:205470",
+   "score": 5.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/cancel"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "cancel",
+    "strength": 5.0,
+    "signal": "자기주식 소각 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113900978",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-eb910b21"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 소각: 자기주식 소각 결정"
+   ]
+  },
+  {
+   "id": "jp-3082",
+   "name": "きちりホールディングス",
+   "market": "jp",
+   "code": "3082",
+   "tv": "TSE:3082",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-15(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-8d91084a"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-15(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-6091",
+   "name": "ウエスコホールディングス",
+   "market": "jp",
+   "code": "6091",
+   "tv": "TSE:6091",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-27(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-9b64b780"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-27(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-3662",
+   "name": "エイチームホールディングス",
+   "market": "jp",
+   "code": "3662",
+   "tv": "TSE:3662",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-28(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-edbf66b6"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-28(プライム)"
+   ]
+  },
+  {
+   "id": "jp-211a",
+   "name": "カドス・コーポレーション",
+   "market": "jp",
+   "code": "211A",
+   "tv": "TSE:211A",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-23(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-4dca616b"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-23(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-4845",
+   "name": "スカラ",
+   "market": "jp",
+   "code": "4845",
+   "tv": "TSE:4845",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-15(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-4d3bbaac"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-15(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-3172",
+   "name": "ティーライフ",
+   "market": "jp",
+   "code": "3172",
+   "tv": "TSE:3172",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-27(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-d36adb5a"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-27(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-7532",
+   "name": "パン・パシフィック・インターナショナルホールディングス",
+   "market": "jp",
+   "code": "7532",
+   "tv": "TSE:7532",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-13(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-bc38078e"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-13(プライム)"
+   ]
+  },
+  {
+   "id": "jp-4194",
+   "name": "ビジョナル",
+   "market": "jp",
+   "code": "4194",
+   "tv": "TSE:4194",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-23(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-4012ad28"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-23(プライム)"
+   ]
+  },
+  {
+   "id": "jp-2391",
+   "name": "プラネット",
+   "market": "jp",
+   "code": "2391",
+   "tv": "TSE:2391",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-26(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-3e6395fe"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-26(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-4385",
+   "name": "メルカリ",
+   "market": "jp",
+   "code": "4385",
+   "tv": "TSE:4385",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-01(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-39bd3f4c"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-01(プライム)"
+   ]
+  },
+  {
+   "id": "jp-2991",
+   "name": "ランドネット",
+   "market": "jp",
+   "code": "2991",
+   "tv": "TSE:2991",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-97415868"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-5929",
+   "name": "三和ホールディングス",
+   "market": "jp",
+   "code": "5929",
+   "tv": "TSE:5929",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-0cbc48d5"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(プライム)"
+   ]
+  },
+  {
+   "id": "jp-9716",
+   "name": "乃村工藝社",
+   "market": "jp",
+   "code": "9716",
+   "tv": "TSE:9716",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-08(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-80db69e1"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-08(プライム)"
+   ]
+  },
+  {
+   "id": "jp-7821",
+   "name": "前田工繊",
+   "market": "jp",
+   "code": "7821",
+   "tv": "TSE:7821",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-15(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-5570487e"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-15(プライム)"
+   ]
+  },
+  {
+   "id": "jp-4100",
+   "name": "戸田工業",
+   "market": "jp",
+   "code": "4100",
+   "tv": "TSE:4100",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-29(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-36f7a18d"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-29(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-4362",
+   "name": "日本精化",
+   "market": "jp",
+   "code": "4362",
+   "tv": "TSE:4362",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-01(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-daa0373e"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-01(プライム)"
+   ]
+  },
+  {
+   "id": "jp-7102",
+   "name": "日本車輌製造",
+   "market": "jp",
+   "code": "7102",
+   "tv": "TSE:7102",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-27(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-69e9b7f7"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-27(プライム)"
+   ]
+  },
+  {
+   "id": "jp-8103",
+   "name": "明和産業",
+   "market": "jp",
+   "code": "8103",
+   "tv": "TSE:8103",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-01(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-b7ba9d43"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-01(プライム)"
+   ]
+  },
+  {
+   "id": "jp-9020",
+   "name": "東日本旅客鉄道",
+   "market": "jp",
+   "code": "9020",
+   "tv": "TSE:9020",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-01b89855"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(プライム)"
+   ]
+  },
+  {
+   "id": "jp-3421",
+   "name": "稲葉製作所",
+   "market": "jp",
+   "code": "3421",
+   "tv": "TSE:3421",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-02(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-43d854ed"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-02(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-8604",
+   "name": "野村ホールディングス",
+   "market": "jp",
+   "code": "8604",
+   "tv": "TSE:8604",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-22(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-f8b8957c"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-22(プライム)"
+   ]
+  },
+  {
+   "id": "jp-7377",
+   "name": "ＤＮホールディングス",
+   "market": "jp",
+   "code": "7377",
+   "tv": "TSE:7377",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-14(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-8e92df39"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-14(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-6262",
+   "name": "ＰＥＧＡＳＵＳ",
+   "market": "jp",
+   "code": "6262",
+   "tv": "TSE:6262",
+   "score": 4.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.5,
+    "signal": "JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-6f44091d"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 공시 갱신 2026-10-30(スタンダード)"
+   ]
+  },
+  {
+   "id": "kr-003570",
+   "name": "SNT다이내믹스",
+   "market": "kr",
+   "code": "003570",
+   "tv": "KRX:003570",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정(신탁) — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000041",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-c7d183cb"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정(신탁) — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-064960",
+   "name": "SNT모티브",
+   "market": "kr",
+   "code": "064960",
+   "tv": "KRX:064960",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정(신탁) — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000083",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-82f715d4"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정(신탁) — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-100840",
+   "name": "SNT에너지",
+   "market": "kr",
+   "code": "100840",
+   "tv": "KRX:100840",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정(신탁) — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000034",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-1be815a8"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정(신탁) — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-036530",
+   "name": "SNT홀딩스",
+   "market": "kr",
+   "code": "036530",
+   "tv": "KRX:036530",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정(신탁) — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112800246",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-eff7cd3c"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정(신탁) — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "jp-7585",
+   "name": "かんなん丸",
+   "market": "jp",
+   "code": "7585",
+   "tv": "TSE:7585",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-761c9ebb"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-386a",
+   "name": "みのや",
+   "market": "jp",
+   "code": "386A",
+   "tv": "TSE:386A",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-2fde1a1b"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-6778",
+   "name": "アルチザネットワークス",
+   "market": "jp",
+   "code": "6778",
+   "tv": "TSE:6778",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒検討中(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-6c102ed2"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒検討中(スタンダード)"
+   ]
+  },
+  {
+   "id": "jp-642a",
+   "name": "キューデンホールディングス",
+   "market": "jp",
+   "code": "642A",
+   "tv": "TSE:642A",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-2ba5beb3"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)"
+   ]
+  },
+  {
+   "id": "jp-8927",
+   "name": "明豊エンタープライズ",
+   "market": "jp",
+   "code": "8927",
+   "tv": "TSE:8927",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-3095d112"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)"
+   ]
+  },
+  {
+   "id": "kr-187220",
+   "name": "디티앤씨",
+   "market": "kr",
+   "code": "187220",
+   "tv": "KRX:187220",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정 — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113000139",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-70cb7a1b"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·자사주 취득: 자기주식 취득 결정 — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-0039p0",
+   "name": "매드업",
+   "market": "kr",
+   "code": "0039P0",
+   "tv": "KRX:0039P0",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정 — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000145",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-3a8e8002"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정 — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-001810",
+   "name": "무림SP",
+   "market": "kr",
+   "code": "001810",
+   "tv": "KRX:001810",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정(신탁) — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000400",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-f7ae412c"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정(신탁) — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-058650",
+   "name": "세아홀딩스",
+   "market": "kr",
+   "code": "058650",
+   "tv": "KRX:058650",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "기업가치 제고 계획 공시",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112800679",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-b2a05939"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·기업가치 제고 계획: 기업가치 제고 계획 공시"
+   ]
+  },
+  {
+   "id": "kr-029460",
+   "name": "케이씨",
+   "market": "kr",
+   "code": "029460",
+   "tv": "KRX:029460",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정(신탁) — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000473",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-a19f5543"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정(신탁) — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "kr-009140",
+   "name": "케이아이이",
+   "market": "kr",
+   "code": "009140",
+   "tv": "KRX:009140",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/buyback"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "buyback",
+    "strength": 4.0,
+    "signal": "자기주식 취득 결정 — 소각은 별도 결정",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261112000285",
+    "date": "2026-11-12",
+    "lead_id": "L-20261112-650219b0"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-12 특수 상황·자사주 취득: 자기주식 취득 결정 — 소각은 별도 결정"
+   ]
+  },
+  {
+   "id": "jp-3491",
+   "name": "ＧＡ　ｔｅｃｈｎｏｌｏｇｉｅｓ",
+   "market": "jp",
+   "code": "3491",
+   "tv": "TSE:3491",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-afebbff3"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)"
+   ]
+  },
+  {
+   "id": "jp-4475",
+   "name": "ＨＥＮＮＧＥ",
+   "market": "jp",
+   "code": "4475",
+   "tv": "TSE:4475",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-8a2921fd"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)"
+   ]
+  },
+  {
+   "id": "jp-6036",
+   "name": "ＫｅｅＰｅｒ技研",
+   "market": "jp",
+   "code": "6036",
+   "tv": "TSE:6036",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-002e828b"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)"
+   ]
+  },
+  {
+   "id": "jp-641a",
+   "name": "ＮＯＫ　Ｇｒｏｕｐ",
+   "market": "jp",
+   "code": "641A",
+   "tv": "TSE:641A",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-ce481a13"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(プライム)"
+   ]
+  },
+  {
+   "id": "jp-3988",
+   "name": "ＳＹＳホールディングス",
+   "market": "jp",
+   "code": "3988",
+   "tv": "TSE:3988",
+   "score": 4.0,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/valueup"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "valueup",
+    "strength": 4.0,
+    "signal": "JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)",
+    "url": "https://www.jpx.co.jp/equities/follow-up/jr4eth0000004vj2-att/list.xlsx",
+    "date": "2026-11-15",
+    "lead_id": "L-20261115-503705cc"
+   },
+   "confluence": 0.0,
+   "penalty": 0.0,
+   "penalty_why": [],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-15 특수 상황·기업가치 제고 계획: JPX 자본비용·주가 의식 경영 — 상태 변화: 未掲載⇒開示済(スタンダード)"
+   ]
+  },
+  {
+   "id": "kr-006740",
+   "name": "블루산업개발",
+   "market": "kr",
+   "code": "006740",
+   "tv": "KRX:006740",
+   "score": 2.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/control"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "control",
+    "strength": 3.5,
+    "signal": "투자조합 5% 보고(일반 서식) — 제출 케이비비조합 · 경영권 변동 단서(적신호: 무자본 M&A 유형 확인)",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001638",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-1713f1ab"
+   },
+   "confluence": 0.0,
+   "penalty": 1.0,
+   "penalty_why": [
+    "적신호 단서(투자조합 경영권 변동 등)"
+   ],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·경영권 변동 단서: 투자조합 5% 보고(일반 서식) — 제출 케이비비조합 · 경영권 변동 단서(적신호: 무자본 M&A 유형 확인)"
+   ]
+  },
+  {
+   "id": "kr-069540",
+   "name": "빛과전자",
+   "market": "kr",
+   "code": "069540",
+   "tv": "KRX:069540",
+   "score": 2.5,
+   "stage": "① 단서",
+   "channels": [
+    "special"
+   ],
+   "kinds": [
+    "special/control"
+   ],
+   "top": {
+    "channel": "special",
+    "kind": "control",
+    "strength": 3.5,
+    "signal": "투자조합 5% 보고(일반 서식) — 제출 비엔에스조합 · 경영권 변동 단서(적신호: 무자본 M&A 유형 확인)",
+    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261113001644",
+    "date": "2026-11-13",
+    "lead_id": "L-20261113-827b2e51"
+   },
+   "confluence": 0.0,
+   "penalty": 1.0,
+   "penalty_why": [
+    "적신호 단서(투자조합 경영권 변동 등)"
+   ],
+   "lens": "special",
+   "edge": null,
+   "n_leads": 1,
+   "signals": [
+    "2026-11-13 특수 상황·경영권 변동 단서: 투자조합 5% 보고(일반 서식) — 제출 비엔에스조합 · 경영권 변동 단서(적신호: 무자본 M&A 유형 확인)"
+   ]
+  }
+ ],
+ "card_queue": [
+  "us-bpre",
+  "us-asa",
+  "us-ctnt",
+  "us-hele",
+  "us-umh",
+  "us-mtn"
+ ]
+}

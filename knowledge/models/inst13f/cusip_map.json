@@ -24,6 +24,11 @@
 "ticker": "AMZN",
 "type": "Common Stock"
 },
+"025816109": {
+"name": "AMERICAN EXPRESS CO",
+"ticker": "AXP",
+"type": "Common Stock"
+},
 "037833100": {
 "name": "APPLE INC",
 "ticker": "AAPL",
@@ -39,6 +44,11 @@
 "ticker": "BAC",
 "type": "Common Stock"
 },
+"084670108": {
+"name": "BERKSHIRE HATHAWAY INC-CL A",
+"ticker": "BRK/A",
+"type": "Common Stock"
+},
 "084670702": {
 "name": "BERKSHIRE HATHAWAY INC-CL B",
 "ticker": "BRK/B",
@@ -52,6 +62,11 @@
 "149123101": {
 "name": "CATERPILLAR INC",
 "ticker": "CAT",
+"type": "Common Stock"
+},
+"15675D103": {
+"name": "CEREBRAS SYSTEMS INC - A",
+"ticker": "CBRS",
 "type": "Common Stock"
 },
 "166764100": {
@@ -79,6 +94,16 @@
 "ticker": "DIS",
 "type": "Common Stock"
 },
+"268150109": {
+"name": "DYNATRACE INC",
+"ticker": "DT",
+"type": "Common Stock"
+},
+"284902509": {
+"name": "ELDORADO GOLD CORP",
+"ticker": "EGO",
+"type": "Common Stock"
+},
 "30231G102": {
 "ticker": null
 },
@@ -92,9 +117,24 @@
 "ticker": "META",
 "type": "Common Stock"
 },
+"36168Q104": {
+"name": "GFL ENVIRONMENTAL INC-SUB VT",
+"ticker": "GFL",
+"type": "Common Stock"
+},
+"369604301": {
+"name": "GENERAL ELECTRIC",
+"ticker": "GE",
+"type": "Common Stock"
+},
 "437076102": {
 "name": "HOME DEPOT INC",
 "ticker": "HD",
+"type": "Common Stock"
+},
+"45579U109": {
+"name": "SUPERNUS INC",
+"ticker": "SUPN",
 "type": "Common Stock"
 },
 "458140100": {
@@ -127,6 +167,11 @@
 "ticker": "JNJ",
 "type": "Common Stock"
 },
+"500754106": {
+"name": "KRAFT HEINZ CO/THE",
+"ticker": "KHC",
+"type": "Common Stock"
+},
 "532457108": {
 "name": "ELI LILLY & CO",
 "ticker": "LLY",
@@ -157,6 +202,11 @@
 "ticker": "MU",
 "type": "Common Stock"
 },
+"615369105": {
+"name": "MOODY'S CORP",
+"ticker": "MCO",
+"type": "Common Stock"
+},
 "64081V208": {
 "name": "NERDY INC",
 "ticker": "NRDY",
@@ -180,6 +230,9 @@
 "ticker": "ORCL",
 "type": "Common Stock"
 },
+"68634K106": {
+"ticker": null
+},
 "69608A108": {
 "name": "PALANTIR TECHNOLOGIES INC-A",
 "ticker": "PLTR",
@@ -190,9 +243,19 @@
 "ticker": "PEP",
 "type": "Common Stock"
 },
+"722304102": {
+"name": "PDD HOLDINGS INC",
+"ticker": "PDD",
+"type": "ADR"
+},
 "742718109": {
 "name": "PROCTER & GAMBLE CO/THE",
 "ticker": "PG",
+"type": "Common Stock"
+},
+"78409V104": {
+"name": "S&P GLOBAL INC",
+"ticker": "SPGI",
 "type": "Common Stock"
 },
 "78462F103": {
@@ -200,9 +263,19 @@
 "ticker": "SPY",
 "type": "ETP"
 },
+"80004C200": {
+"name": "SANDISK CORP",
+"ticker": "SNDK",
+"type": "Common Stock"
+},
 "84615Q103": {
 "name": "SPACE EXPLORATION TECHN-CL A",
 "ticker": "SPCX",
+"type": "Common Stock"
+},
+"87162W100": {
+"name": "TD SYNNEX CORP",
+"ticker": "SNX",
 "type": "Common Stock"
 },
 "874039100": {
@@ -213,6 +286,11 @@
 "88160R101": {
 "name": "TESLA INC",
 "ticker": "TSLA",
+"type": "Common Stock"
+},
+"90353T100": {
+"name": "UBER TECHNOLOGIES INC",
+"ticker": "UBER",
 "type": "Common Stock"
 },
 "91324P102": {
@@ -249,5 +327,14 @@
 "name": "WALMART INC",
 "ticker": "WMT",
 "type": "Common Stock"
+},
+"934423104": {
+"ticker": null
+},
+"G7997R103": {
+"ticker": null
+},
+"N97284108": {
+"ticker": null
 }
 }

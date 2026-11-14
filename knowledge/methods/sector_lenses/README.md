@@ -12,6 +12,11 @@ AI 밸류체인 밖 종목은 '병목·해결 기술·고객 채택(샘플→인
 | 에너지·소재 | `energy.md` | energy·utilities·materials·chemicals·gold·copper·solar |
 | 소프트웨어 | `software.md` | software·cyber·comm |
 | AI 밸류체인 병목 | `bottleneck.md` (2026-11-14) | AI 밸류체인 섹터(config/sector_map.yaml ai_chain) — Chiip 본래 틀. 발굴 지도 종목의 edge 미판정을 카드로 채운다 |
+| 행동주의 | `activism.md` (2026-11-15) | 발굴 채널 activist — 지분 신고·위임장 대결·표적 유사도(ADR-043) |
+| 구루 추종 | `guru.md` (2026-11-15) | 발굴 채널 guru·insider — 13F·13D/G·공개 논지(패니·프레디형) |
+| 특수 상황 | `special.md` (2026-11-15) | 발굴 채널 special·spac — 공개매수·분할·소각·밸류업·회생·지수 |
+| 국장 테마 | `kr_theme.md` (2026-11-15) | 발굴 채널 kr_theme — 점화·확산·과열·구조적 확인 |
+| 저관심 텐배거 | `multibagger.md` (2026-11-15) | 발굴 채널 neglected·quant — 10배 전조·IB 정량 복합 |
 방위·원자력·우주는 기존 `config/defense.yaml`·`knowledge/methods/nuclear_space_lens.md`를 쓰되, 판단 카드를 쓸 때는 산업재 틀(수주잔고·납기)을 쓴다 — 금지표 방위 6줄(프레임워크 → 매출 등)을 함께 확인.
 
 ## 판단 카드 — `knowledge/models/discovery/lens_cards/<id>.yaml`

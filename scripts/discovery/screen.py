@@ -9,6 +9,8 @@
 사용: py scripts/discovery/screen.py            · py scripts/discovery/screen.py --promote <id> [--stage focus|bench] [--memo <경로>]
 """
 DEEP_MAX = 6   # 심층 대기열 — 2026-11-04 발굴 적극성 상향(3 → 6). 선별 관문은 그대로
+MISSING_MAX = 2     # 빠진 요소가 이 수를 넘으면(2026-11-15 IB 절차 점검 — 중립 대입이 약한 종목을 부풀림)
+MISSING_CAP = 5.9   # 선별 점수 상한(등록부 prm-disc-missing-cap) — 선별 문턱 6.0 아래
 import json
 import sys
 from datetime import date
@@ -78,7 +80,10 @@ def score(comp, w):
             v = 5.0   # 자료 없음 → 중립(빠진 자료로 표시)
         tot += wt * v
         wsum += abs(wt) if wt > 0 else 0
-    return round(tot / wsum, 2) if wsum else None, missing
+    s = round(tot / wsum, 2) if wsum else None
+    if s is not None and len(missing) > MISSING_MAX:   # 빠진 요소가 많으면 중립 5.0이 약한 종목을 부풀린다 — 선별 문턱(6.0) 아래로 묶는다(2026-11-15 IB 절차 점검)
+        s = min(s, MISSING_CAP)
+    return s, missing
 
 
 def asia_rows(fund, att, tv, caps, quiet, w, have):
@@ -126,6 +131,37 @@ def rotation_rows(fund, att, tv, caps, quiet, w, have):
         stage = "② 선별 통과" if s and s >= 6.0 and comp["edge"] >= 6 and cid in fund else "① 아이디어"
         out.append({"id": cid, "name": r["name"], "market": "us", "code": r["ticker"], "theme": r["theme"], "score": s,
                     "comp": comp, "missing": missing, "stage": stage, "why": r["why"]})
+    return out
+
+
+def channel_rows(rows, fund, att, tv, caps, quiet, w):
+    """발굴 채널(scripts/discovery/channels.py → channels_latest.json) 합류(2026-11-15 마스터 지시 '다양한 종목 발굴 채널', ADR-043).
+    ① 지도에 이미 있는 종목(시장·코드 일치)은 그 행 why에 채널 신호를 붙인다(겹침이 보이게) ② 지도 밖 '② 채널 선별' 이상은 '채널: <이름>' 테마 새 행.
+    edge는 판단 카드(채널 렌즈 — knowledge/methods/sector_lenses/activism·guru·special·kr_theme·multibagger)가 있을 때만, 없으면 미판정 5 → '① 아이디어'"""
+    try:
+        import channels
+        have_codes = {(str(r.get("market") or ""), str(r.get("code") or "").upper()): r["id"] for r in rows}
+        tags, new = channels.rows_for_screen({r["id"] for r in rows}, have_codes)
+    except Exception:  # noqa: BLE001 — 채널 선별은 보조 입력이다
+        return []
+    names = (channels.leads.cfg().get("channels") or {})
+    for r in rows:
+        t = tags.get(r["id"])
+        if t:
+            r["channels"] = t["channels"]
+            r["why"] = (r.get("why") or "") + f" · 채널 신호({', '.join(names.get(c, {}).get('name', c) for c in t['channels'])}): {t['signal'][:60]}"
+    cards = _cards()
+    out = []
+    for r in new:
+        cid = r["id"]
+        f = dict(fund.get(cid) or {})
+        c = {"id": cid, "name": r["name"], "market": r["market"], "code": r["code"], "edge": cards.get(cid, 5)}
+        comp = components(c, {cid: f}, att, tv, caps, quiet=quiet)
+        s, missing = score(comp, w)
+        stage = "② 선별 통과" if s and s >= 6.0 and comp["edge"] >= 6 and cid in fund else "① 아이디어"
+        label = names.get(r["top"]["channel"], {}).get("name", r["top"]["channel"])
+        out.append({"id": cid, "name": r["name"], "market": r["market"], "code": r["code"], "theme": f"채널: {label}", "score": s, "comp": comp,
+                    "missing": missing, "stage": stage, "why": f"채널 점수 {r['score']}({', '.join(r['channels'])}) — {r['top']['signal'][:80]}", "channels": r["channels"]})
     return out
 
 
@@ -179,6 +215,7 @@ def run(today=None):
                          "comp": comp, "missing": missing, "stage": stage, "why": c.get("why", "")})
     rows += asia_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
     rows += rotation_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
+    rows += channel_rows(rows, fund, att, tv, caps, quiet, w)
     rows.sort(key=lambda r: -(r["score"] or 0))
     deep = _diverse([r for r in rows if r["stage"] == "② 선별 통과"], DEEP_MAX)   # 섹터 할당량(2026-11-13 종목 범위 확대, ADR-025)
     for r in deep:
@@ -206,6 +243,8 @@ def promote(cid, stage="focus", memo=None, today=None):
     today = today or date.today()
     cfg = _y("config/discovery.yaml")
     c = next((x for t in cfg.get("themes") or [] for x in t.get("candidates") or [] if x["id"] == cid), None)
+    if not c:   # 발굴 채널 후보(지도 밖, 2026-11-15) — channels_latest.json
+        c = next((x for x in (_j(DISC / "channels_latest.json").get("rows") or []) if x.get("id") == cid), None)
     if not c:
         raise SystemExit(f"후보 없음: {cid}")
     p = ROOT / "config" / "coverage.yaml"

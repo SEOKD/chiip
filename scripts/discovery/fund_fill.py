@@ -53,6 +53,10 @@ def candidates():
         for r in v.get("rows") or []:
             cid = "us-" + re.sub(r"[^a-z0-9]", "", str(r.get("ticker", "")).lower())
             out.setdefault(cid, {"id": cid, "name": r.get("name"), "code": r.get("ticker"), "market": "us", "edge": None, "symbol": r.get("symbol"), "rotation": True})
+    for r in _j(DISC / "channels_latest.json").get("rows") or []:   # 발굴 채널 선별 통과 미국 종목(2026-11-15, ADR-043) — 순환 후보와 같은 순위
+        if r.get("market") == "us" and r.get("id") and r.get("stage") != "① 단서" and str(r.get("tv") or "").split(":")[0] in ("NASDAQ", "NYSE", "AMEX"):
+            out.setdefault(r["id"], {"id": r["id"], "name": r.get("name"), "code": r.get("code"), "market": "us", "edge": None,
+                                     "symbol": r["tv"], "rotation": True})
     return list(out.values())
 
 
