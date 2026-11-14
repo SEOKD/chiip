@@ -1,0 +1,2350 @@
+{
+ "id": "co-oklo",
+ "name": "Oklo",
+ "ticker": "OKLO",
+ "as_of": "2026-11-15",
+ "unit": "B$",
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.21,
+ "consensus": {
+  "rev": {
+   "FY2026": 0.005367,
+   "FY2027": 0.010248,
+   "FY2028": 0.033051,
+   "FY2029": 0.105218,
+   "FY2030": 0.297989
+  },
+  "rev_basis": "gaap",
+  "rev_range": {
+   "FY2030": [
+    0.1633,
+    0.626851
+   ]
+  },
+  "ebit_margin": {
+   "FY2026": -65.23,
+   "FY2027": -32.2
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 5,
+  "ebitda": {
+   "FY2026": -0.214045,
+   "FY2027": -0.244991
+  },
+  "eps": {
+   "FY2026": -0.99375,
+   "FY2027": -1.2289,
+   "FY2028": -1.3517,
+   "FY2029": -1.0825,
+   "FY2030": -0.265
+  },
+  "eps_range": {
+   "FY2027": [
+    -1.55,
+    -0.69
+   ],
+   "FY2030": [
+    -1.01,
+    1.33
+   ]
+  },
+  "quarters_est": {
+   "2026Q4": 0.002296,
+   "2027Q1": 0.0036,
+   "2027Q2": 0.00385,
+   "2027Q3": 0.0042,
+   "2027Q4": 0.00455,
+   "2028Q1": 0.0032,
+   "2028Q2": 0.0032,
+   "2028Q3": 0.0204,
+   "2028Q4": 0.0204
+  },
+  "quarters_act": {
+   "2026Q1": 0.0,
+   "2026Q2": 0.00121,
+   "2026Q3": 0.001861
+  },
+  "eps_quarters_est": {
+   "2026Q4": -0.28333,
+   "2027Q1": -0.3,
+   "2027Q2": -0.3,
+   "2027Q3": -0.32,
+   "2027Q4": -0.33333,
+   "2028Q1": -0.38,
+   "2028Q2": -0.355,
+   "2028Q3": -0.36,
+   "2028Q4": -0.42
+  },
+  "note": "Fiscal.ai 자체 추정은 이 회사에 없다('not yet available', 11/15). Zacks 11/9~11/11 갱신: FY2026 EPS 8명·매출 5명, FY2030 매출 4명(범위 $163~627M). 분기 매출은 2~3명, 2028년 이후 분기는 1명. Data provided by Zacks Investment Research, Inc., www.zacksdata.com · FY2026 매출 = 1~3Q 실적 $3.07M + 4Q 추정 $2.30M = $5.37M(Zacks 연간 평균 $4.31M은 3Q 전 추정이 섞인 값)",
+  "revisions": {
+   "from_date": "2026-08-06",
+   "to_date": "2026-11-11",
+   "from_label": "2Q 실적 직전",
+   "source": "Zacks 추정 이력(Fiscal.ai company_analyst_estimates history) — 같은 분기끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": -0.2,
+     "to": -0.28333
+    },
+    {
+     "period": "2027Q1",
+     "metric": "EPS",
+     "from": -0.20667,
+     "to": -0.3
+    },
+    {
+     "period": "2027Q2",
+     "metric": "EPS",
+     "from": -0.22333,
+     "to": -0.3
+    },
+    {
+     "period": "2027Q3",
+     "metric": "EPS",
+     "from": -0.24,
+     "to": -0.32
+    },
+    {
+     "period": "2027Q4",
+     "metric": "EPS",
+     "from": -0.25667,
+     "to": -0.33333
+    }
+   ]
+  },
+  "price_window": {
+   "from": 42.19,
+   "to": 23.92,
+   "note": "2Q 실적 발표 전날(8/6) 종가 → 11/13 종가"
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.27,
+    "est": -0.17667,
+    "est_src": "zacks",
+    "basis": "gaap",
+    "earnings_date": "2026-03-17"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.19,
+    "est": -0.2025,
+    "est_src": "zacks",
+    "basis": "gaap",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 1.21,
+    "est": 0.0914,
+    "est_src": "yfinance",
+    "basis": "gaap",
+    "earnings_date": "2026-08-07",
+    "note": "첫 매출. 추정 표본 극소"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.28,
+    "est": -0.16833,
+    "est_src": "zacks",
+    "basis": "gaap",
+    "earnings_date": "2026-08-07"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 1.861,
+    "est": 1.883,
+    "est_src": "zacks",
+    "basis": "gaap",
+    "earnings_date": "2026-11-06",
+    "note": "Zacks 발표 직전 추정 $1.88M(3명), Easyconomics·yfinance $1.03M"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.22,
+    "est": -0.285,
+    "est_src": "zacks",
+    "basis": "gaap",
+    "earnings_date": "2026-11-06",
+    "note": "회사는 조정 EPS를 내지 않는다. 이자수익 약 $28M이 영업손실을 일부 메웠다"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 12,
+   "buy": 2,
+   "hold": 11,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-03",
+   "target_mean": 61.29,
+   "target_median": 60,
+   "target_high": 130,
+   "target_low": 25,
+   "n_target": 21,
+   "note": "Zacks 의견 25명(11/3), 목표가 21명(11/13). yfinance 기준은 매수 13·보유 9·매도 1, 평균 $52.11(범위 $14~$100). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+  },
+  "rev_low": {
+   "FY2027": 0.001,
+   "FY2026": 0.0012
+  },
+  "rev_high": {
+   "FY2027": 0.0198,
+   "FY2026": 0.0072
+  }
+ },
+ "main_metric": "eps",
+ "main_metric_why": "매출 전 단계라 EPS·EBITDA 모두 2029년까지 적자다. 선행 이익 배수를 쓸 수 없어 EV/매출로 내려가며, 매출 기반도 작아 배수는 참고용이다",
+ "profile": {
+  "price": 23.92,
+  "shares_basic": 0.195289593,
+  "shares_date": "2026-11-04",
+  "cash": 3.130785,
+  "debt": 0.004217,
+  "source": "가격 = 11/13 종가(TradingView NYSE:OKLO) · 주식 수 = 10-Q 표지 195,289,593주(2026-11-04) · 현금 = 현금 $1,550.1M + 단기 투자 $951.8M + 장기 투자 $629.0M = $3.13B(10-Q 2026-09-30, Fiscal.ai 재무상태표) · 차입 0, 리스 $4.2M"
+ },
+ "financials": {
+  "rev_ttm": 0.003071,
+  "ebit_ttm": -0.252552,
+  "invested_capital": 1.15077,
+  "capex_ttm": 0.2809,
+  "da_ttm": 0.001334,
+  "sbc_ttm": 0.0655,
+  "rev_growth_ttm": null,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26 합(Fiscal.ai 표준화 손익): 매출 0 + 0 + 1.210 + 1.861 = $3.07M, 영업손익 −57.1 −51.2 −73.2 −71.0 = −$252.6M. 투하자본 = 자기자본 3,648.3 + 리스 4.2 − 현금·투자 3,130.8 = $521.8M. D&A = 4개 분기 현금흐름표 합 · 투하자본 검사 기준(현금·단기 투자만 차감) $1.15B — 장기 투자 $629M을 빼면 $0.52B · CAPEX = 9M26 PP&E 구매 $280.9M(4Q25분 미포함, 근사). SBC = 9M26 $49.1M 연환산 근사"
+ },
+ "guidance": {
+  "rev_fy0": null,
+  "ocf_use_fy0": [
+   0.12,
+   0.15
+  ],
+  "ppe_fy0": [
+   0.4,
+   0.5
+  ],
+  "source": "3Q26 실적 보도자료·콜(2026-11-06): 2026 영업 현금 사용 $120~150M, PP&E 지출 $400~500M 재확인. 매출 가이던스 없음",
+  "next": {
+   "period": "4Q26",
+   "rev_cons": 2.3,
+   "eps_cons": -0.28,
+   "unit": "$M"
+  }
+ },
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai 표준화 재무(최근 4분기 매출·영업이익, 2026-09-30 재무상태표)·company_ratios latest(11/13). 상장 SMR 개발사 3곳(NuScale·X-Energy·NANO Nuclear)과 원전 공급망 흑자 기업 2곳(BWXT·Centrus). 현금은 단기·장기 투자 포함",
+ "peers": [
+  {
+   "ticker": "SMR",
+   "rev": 0.002729,
+   "ebit_margin": null,
+   "mcap": 1.913,
+   "pb": 0.95,
+   "debt": 0.0,
+   "cash": 1.864,
+   "ev_sales": null,
+   "growth": -0.957,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null,
+   "goodwill": 0.008,
+   "intangibles": 0.017
+  },
+  {
+   "ticker": "XE",
+   "rev": 0.200727,
+   "ebit_margin": -1.695,
+   "mcap": 3.296,
+   "pb": 2.22,
+   "debt": 0.0,
+   "cash": 1.806,
+   "ev_sales": 7.42,
+   "growth": 0.878,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null,
+   "goodwill": 0.0,
+   "intangibles": 0.0
+  },
+  {
+   "ticker": "NNE",
+   "rev": 0.000214,
+   "ebit_margin": null,
+   "mcap": 0.597,
+   "pb": 0.97,
+   "debt": 0.0,
+   "cash": 0.583,
+   "ev_sales": null,
+   "growth": null,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null,
+   "goodwill": 0.004,
+   "intangibles": 0.015
+  },
+  {
+   "ticker": "BWXT",
+   "rev": 3.600656,
+   "ebit_margin": 0.1236,
+   "mcap": 11.267,
+   "pb": 7.94,
+   "debt": 2.022,
+   "cash": 0.742,
+   "ev_sales": 3.53,
+   "growth": 0.177,
+   "pe_fwd": 23.99,
+   "ev_ebitda_fwd": 19.33,
+   "goodwill": 0.473,
+   "intangibles": 0.278
+  },
+  {
+   "ticker": "LEU",
+   "rev": 0.4545,
+   "ebit_margin": -0.0125,
+   "mcap": 2.14,
+   "pb": 1.94,
+   "debt": 1.179,
+   "cash": 2.236,
+   "ev_sales": 2.38,
+   "growth": 0.001,
+   "pe_fwd": 34.94,
+   "ev_ebitda_fwd": 23.93,
+   "goodwill": 0.0,
+   "intangibles": 0.016
+  }
+ ],
+ "multiples_now": {
+  "pe_fwd": null,
+  "ev_ebitda_fwd": null,
+  "pe_fwd2": null,
+  "ev_ebitda_fwd2": null,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": null
+ },
+ "forward": {
+  "as_of": "2026-11-13",
+  "ntm": {
+   "eps": -1.23666,
+   "ebitda": null,
+   "revenue": 0.014946,
+   "rev_ttm": 0.003071
+  },
+  "horizons": {
+   "2": {
+    "eps": -1.515,
+    "ebitda": null,
+    "ext": 0
+   },
+   "3": {
+    "eps": null,
+    "ebitda": null,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null
+  },
+  "source": "Zacks 분기 추정 합(4Q26~3Q27 EPS −$1.24, 매출 $14.9M). 선행 EPS·EBITDA 모두 적자라 Forward 배수 없음. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "basis": "선행 이익 적자 — Forward 배수 이력 없음",
+  "ev_sales": [],
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "next_event": {
+  "date": "2027-03-16",
+  "tag": "4Q26 실적·10-K(날짜 미공지, 3월 중순 추정 — 2026년은 3/17)"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-15T06:40:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NYSE_OKLO",
+   "terminalUrl": "https://fiscal.ai/company/NYSE-OKLO",
+   "price": 23.92,
+   "market_cap": 4.671327,
+   "total_cash": 3.130785,
+   "total_debt": 0.004217,
+   "shares_outstanding": 0.195289593,
+   "as_of": "2026-11-13",
+   "balance_date": "2026-09-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "4Q25": 0.0,
+    "2026Q1": 0.0,
+    "2026Q2": 0.00121,
+    "2026Q3": 0.001861
+   },
+   "op_income": {
+    "4Q25": -0.057096,
+    "2026Q1": -0.051249,
+    "2026Q2": -0.07319,
+    "2026Q3": -0.071017
+   },
+   "note": "Fiscal.ai 표준화 손익"
+  },
+  "estimates_sales_m": {
+   "2026Q1": 0.0,
+   "2026Q2": 1.21,
+   "2026Q3": 1.861,
+   "2026Q4": 2.296
+  },
+  "balance_2026_09_30": {
+   "cash": 1.550061,
+   "st_investments": 0.951768,
+   "lt_investments": 0.628956,
+   "debt": 0.0,
+   "lease_current": 0.001226,
+   "lease_lt": 0.002991,
+   "equity": 3.648338,
+   "ppe_net": 0.260159,
+   "goodwill": 0.016535,
+   "intangibles": 0.044184,
+   "shares": 0.195289593
+  },
+  "prev_balance_2026_06_30": {
+   "cash": 1.644704,
+   "st_investments": 0.820454,
+   "lt_investments": 0.541131,
+   "debt_lt": 0.0007,
+   "lease_current": 0.001025,
+   "lease_lt": 0.002234,
+   "equity": 3.273557,
+   "ppe_net": 0.179355
+  },
+  "yfinance": {
+   "ev": 2.1739,
+   "short_pct_float": 0.2188,
+   "short_ratio": 4.06,
+   "inst_own": 0.481,
+   "insider_own": 0.153,
+   "high_52w": 115.72,
+   "low_52w": 18.535,
+   "ma50": 32.11,
+   "ma200": 50.58,
+   "as_of": "2026-11-13"
+  },
+  "shares_cover_implied": 0.195289593,
+  "sec": {
+   "antidilutive_2026_09_30": 0.009481149
+  },
+  "tenq_2026_09_30": {
+   "purchase_commitments": "중요 약정 없음(MD&A, 전년 10-K도 같음). 별도로 선급 농축우라늄 $68.7M, 건설 선급금 $55.4M(전년말 $13.0M), 기타 비유동 선급 $34.4M",
+   "restricted_cash": "$81.9M — 이 중 $58.0M은 농축우라늄 구매 신용장, 2026-10-13 해제",
+   "customers_10pct": "미공시. 매출 전부가 6월 인수한 ARMEC·CEI 엔지니어링·제작 용역",
+   "gov_support": "DOE 원자로 시범사업 3건 선정, DOE OTA(Aurora-INL·Groves), INL 부지 사용 허가·EBR-II HALEU 5톤 배정, ARPA-E FORGE $6.8M, 잉여 플루토늄 우선협상(계약 전)",
+   "atm_9m": "순 $2,254M(3,261만 주, 평균 순가 $70.19)",
+   "rofr_liability": "$25.0M — 2024 데이터센터 고객 선급, 향후 전력 가격 할인으로 상계",
+   "first_plant": "Aurora-INL 목표 '2028' → '2028~2029'",
+   "insider_plan": "DeWitte 부부 신탁 최대 250만 주 10b5-1 매도 계획(2027-01-12~12-31, 9/29 채택)",
+   "ppe": "순 $256.1M 중 건설중·장비 선급 $249.3M",
+   "source": "https://www.sec.gov/Archives/edgar/data/1849056/000162828026071319/oklo-20260930.htm",
+   "earnings_8k": "없음 — 3Q 실적은 Item 2.02 8-K로 내지 않았다(EDGAR 제출 목록 2026-05~11 확인). 회사 뉴스룸 2026-11-06 보도자료"
+  },
+  "retrieved_at_facts": "2026-11-15T06:30+09:00 EDGAR 10-Q(3Q·2Q)·10-K·DEF 14A·8-K, 회사 뉴스룸, 3Q·2Q 콜 전문"
+ },
+ "ops": {
+  "q": [
+   {
+    "period": "2024-12-31",
+    "ocf": -13470000
+   },
+   {
+    "period": "2025-03-31",
+    "ocf": -12243000
+   },
+   {
+    "period": "2025-06-30",
+    "ocf": -18471000
+   },
+   {
+    "period": "2025-09-30",
+    "ocf": -18031000
+   },
+   {
+    "period": "2025-12-31",
+    "ocf": -33429000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 0,
+    "ocf": -17867000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 1210000,
+    "ocf": -47592000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 1861000,
+    "ocf": -45482000
+   }
+  ],
+  "orders_label": null,
+  "backlog_label": null,
+  "source": "Fiscal.ai company_financials_standardized(현금흐름표)"
+ },
+ "social": {
+  "as_of": "2026-11-15",
+  "summary": "추적 언급은 7일 점수 50(Weak), 24시간 언급 없음. 10월 58건으로 늘었다가 11월은 5건이다. 레딧은 조롱과 손절 글이 많고, X에서는 기존 원전 증출력이 신규 SMR 수요를 깎는다는 논지가 나온다",
+  "few": false,
+  "views": [
+   {
+    "side": "약세",
+    "claim": "매출 없이 증자를 반복하는 회사가 1년 전 과열에서 내려오는 중이라는 글이 대부분이고 고점 대비 손실 인증이 이어진다",
+    "basis": "주가 하락·ATM",
+    "source": "레딧 r/wallstreetbets",
+    "date": "2026-11-06",
+    "check": "확인"
+   },
+   {
+    "side": "강세",
+    "claim": "시총에서 현금 약 $3B를 빼면 사업 가치가 약 $2B로 1년 새 91% 줄었다는 계산이 공감을 얻었다",
+    "basis": "시총·현금",
+    "source": "레딧 r/wallstreetbets",
+    "date": "2026-10-20",
+    "check": "확인"
+   },
+   {
+    "side": "새 쟁점",
+    "claim": "기존 원전 증출력이 kW당 약 $3,580으로 싸서 신규 원자로 대신 고객 선택지가 된다는 논지",
+    "basis": "Constellation 3Q 콜",
+    "source": "X",
+    "date": "2026-11-09",
+    "check": "사실관계 미확인"
+   },
+   {
+    "side": "시장과 다른 점",
+    "claim": "정부·대통령 측 지분 매입설이 댓글에 돌았다",
+    "basis": "근거 제시 없음",
+    "source": "레딧 r/wallstreetbets",
+    "date": "2026-10-20",
+    "check": "사실관계 미확인"
+   }
+  ],
+  "narratives": [
+   {
+    "channel": "레딧",
+    "theme": "매출 없는 원전 테마주의 과열 해소",
+    "expectation": "하향",
+    "vs_fact": "확인",
+    "share": 0.7
+   },
+   {
+    "channel": "X",
+    "theme": "기존 원전 증출력이 신규 SMR 수요를 대체",
+    "expectation": "하향",
+    "vs_fact": "미확인",
+    "share": 0.2
+   },
+   {
+    "channel": "레딧",
+    "theme": "현금 대비 낮아진 사업 가치",
+    "expectation": "상향",
+    "vs_fact": "확인",
+    "share": 0.1
+   }
+  ],
+  "turn": "2026-06 Moderate(62) → 7~8월 Weak·Negative(39·29) → 10월 Weak(44, 글 58건) — 7/4 임계 기대가 꺼진 뒤 회복하지 못했고 3Q 실적 뒤에도 언급이 늘지 않았다"
+ },
+ "ma": {
+  "none": "3Q 콜에서 ARMEC·CEI 인수를 언급했으나 금액·시너지 공시가 없어 시너지를 모형화하지 않는다(2024 Atomic Alchemy 인수는 3년 경계 밖 — 미확인)"
+ },
+ "pq": {
+  "none": "매출 전 단계 — 판매 가격·물량 이력이 없다"
+ },
+ "sync": {
+  "none": "매출 분기가 2개뿐이라 무역·PPI 지표와 시차 상관을 잴 수 없다"
+ },
+ "recurring": {
+  "share": 0.0,
+  "kind": "전력 판매(PPA)·연료·동위원소 — 아직 반복 매출 없음",
+  "base": "운영 발전소 0기(시험로 Groves-1은 DOE 시험용)",
+  "base_growth": null,
+  "retention": null,
+  "years_to_recurring": 3,
+  "source": "Aurora-INL 첫 상업 운전이 2028년 말~2029년 초로 밀렸다(Citi 3Q 리뷰 요지·3Q 콜). 반복 매출 단계까지 약 3년(추정)"
+ },
+ "backlog": {
+  "none": "구속력 있는 전력 판매 계약 잔고를 공시하지 않는다. Meta 오하이오는 연료 계약이 확정됐을 뿐 PPA 금액·물량 미공시"
+ },
+ "multiple_view": {
+  "adj": -0.2,
+  "why": "동종 EV/매출은 매출이 있는 X-Energy·BWXT·Centrus 값이라 매출 전 단계 Oklo에 그대로 쓰면 과대다. 다만 연료·인허가 진척이 3Q에 확인돼 상한(−30%)까지는 내리지 않는다"
+ },
+ "scenario_probs": {
+  "bear": 0.4,
+  "base": 0.4,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "첫 호기(FOAK) 원전은 인허가·건설 지연 기저율이 높고, Aurora-INL 가동 목표가 이미 2028년에서 2028년 말~2029년 초로 밀렸다. 반대로 Centrus HALEU 확정 계약과 Groves-1 무제한 운전 승인은 기본 쪽 근거다",
+ "terms": {
+  "SMR": "소형 모듈 원자로",
+  "Aurora": "Oklo의 소형 고속로 발전소(15~75MW)",
+  "Aurora-INL": "아이다호 국립연구소 부지의 Oklo 첫 상업 발전소",
+  "Groves-1": "Oklo 텍사스 시험로",
+  "Groves-2": "Oklo 두 번째 시험로",
+  "HALEU": "고순도 저농축 우라늄(농축도 5~20%)",
+  "A3F": "Oklo 연료 제조 시설",
+  "NRC": "미국 원자력규제위원회",
+  "DOE": "미국 에너지부",
+  "INL": "아이다호 국립연구소",
+  "PDSA": "예비 설계 안전성 평가",
+  "NSDA": "NRC 안전 설계 협약",
+  "COLA": "건설·운영 통합 인허가 신청",
+  "ARPA-E": "에너지부 첨단 에너지 연구 사업",
+  "FORGE": "ARPA-E 핵연료 재활용 연구 과제",
+  "ATM": "시장가 수시 유상증자",
+  "PPA": "전력 구매 계약",
+  "FOAK": "첫 호기",
+  "Atomic Alchemy": "Oklo 동위원소 자회사",
+  "ARMEC": "Oklo가 인수한 원자로 부품 회사",
+  "CEI": "Oklo가 인수한 엔지니어링 회사",
+  "Centrus": "미국 우라늄 농축 회사",
+  "Blykalla": "스웨덴 납 냉각 원자로 개발사",
+  "SEALER": "Blykalla 납 냉각 원자로",
+  "MW": "메가와트",
+  "GW": "기가와트",
+  "Kiewit": "미국 건설·EPC 회사",
+  "EPC": "설계·조달·시공 일괄 수행",
+  "LPO": "에너지부 대출 사업국",
+  "Wedbush": "Wedbush",
+  "U.S. Forged Rings": "미국 단조 링 제조사",
+  "ADVANCE": "미국 첨단 원전 인허가 촉진법(ADVANCE Act)",
+  "AP1000": "Westinghouse 대형 가압경수로",
+  "ATM1": "2026년 첫 번째 시장가 증자 프로그램",
+  "ATM2": "2026년 두 번째 시장가 증자 프로그램",
+  "FERC": "미국 연방에너지규제위원회",
+  "LOI": "의향서",
+  "MOU": "양해각서",
+  "MWe": "전기 출력 메가와트",
+  "OTA": "에너지부 기타 거래 계약",
+  "PJM": "미국 동부 전력망 운영기구",
+  "ROFR": "우선매수권",
+  "UAMPS": "유타 지역 공공 전력 공동체",
+  "EBR-II": "아이다호의 옛 실험 고속로",
+  "II": "",
+  "PP&E": "유형자산",
+  "PP": "",
+  "MD&A": "경영진 재무 분석 절",
+  "MD": "",
+  "DEF 14A": "주주총회 위임장",
+  "DEF": "",
+  "VN": "베트남"
+ },
+ "names": [
+  "Oklo",
+  "Meta",
+  "Centrus",
+  "NuScale",
+  "X-Energy",
+  "NANO Nuclear",
+  "BWXT",
+  "Constellation",
+  "Citi",
+  "UBS",
+  "B. Riley",
+  "TD Cowen",
+  "Wedbush",
+  "Guggenheim",
+  "Piper Sandler",
+  "Canaccord",
+  "Goldman Sachs",
+  "Texas Capital",
+  "Siemens Energy",
+  "Switch",
+  "Equinix",
+  "Vertiv",
+  "Liberty",
+  "Kiewit",
+  "하나증권",
+  "USFR",
+  "MITRE",
+  "BP",
+  "TD",
+  "DeWitte"
+ ],
+ "midterm": {
+  "exposure": {
+   "nuclear_bipartisan": 1.0,
+   "clean_energy_credit": 0.3,
+   "infra_grid": 0.5
+  },
+  "sub": "nuclear",
+  "etf": "URA",
+  "basis": "매출이 아니라 인허가·연료·DOE 지원이 정책 경로에 묶인다(NRC 심사 속도, DOE 원자로 시범 사업, HALEU 공급). 원자력 첨단 원전 세액공제(45Y·48E) 노출은 부분(가설)"
+ },
+ "dilution": {
+  "options": 0.00546463,
+  "rsu": 0.003696456,
+  "restricted": 0.000320063,
+  "warrants": 0.0,
+  "potential_total": 0.009481149,
+  "date": "2026-09-30",
+  "atm_remaining_usd": 0.91,
+  "source": "3Q 10-Q 주석: 옵션 5,464,630주·미가득 RSU 3,696,456주·인수 관련 미가득 제한주 320,063주(9/30), 워런트 없음. 별도로 2026 ATM2 $1.0B 중 약 $0.91B 남음(9/11 8-K) — 지금 주가로 다 쓰면 약 3,800만 주(+19%, Chiip 계산)"
+ },
+ "sbc_pct_rev": null,
+ "call": {
+  "date": "2026-11-06",
+  "prev_date": "2026-08-07",
+  "tone": "flat",
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_3q_m": 1.861,
+   "op_loss_3q_m": -71.0,
+   "net_loss_3q_m": -41.7,
+   "interest_income_3q_m": 27.9,
+   "cash_securities_b": 3.13,
+   "atm_ytd_b": 2.25,
+   "capex_9m_m": 280.9,
+   "ocf_9m_m": -110.9,
+   "pjm_queue_mw": 900,
+   "usfr_modules": 27,
+   "groves1_cost_m": 75
+  },
+  "guidance_changes": [
+   "2026 영업 현금 사용 $120~150M·PP&E $400~500M 유지",
+   "첫 발전소 Aurora-INL 목표 2028 → 2028~2029(10-Q)"
+  ],
+  "new_topics": [
+   "U.S. Forged Rings와 Aurora 27기분 대형 단조 캐파 예약(2030~2035)",
+   "PJM 버지니아 접속 신청 철회·FERC 기각(오하이오와 무관), PJM 2026 심사 900MW",
+   "NRC 최종 규칙(DOE 인가 원자로 자료를 NRC 심사에 활용, 11/25 시행)",
+   "Groves-2 Forge DOE 선정",
+   "A3F·재활용의 제3자 연료 용역 매출 2년 안 가능",
+   "Meta 계약은 원자로 건설에 구속력이 없다는 경영진 답변"
+  ],
+  "dropped_topics": [
+   "2Q에 약속한 Aurora-INL 총사업비 공개",
+   "2Q CFO가 말한 동위원소 첫 매출 2027년 초 — 3Q에는 '첫 계약 인도' 목표로만",
+   "추가 M&A"
+  ],
+  "analyst_focus": [
+   "Guggenheim — 연료 제3자 매출 시점",
+   "Piper Sandler — DSA 시점·NRC 전환",
+   "Canaccord — 잉여 플루토늄 일정·비용",
+   "TD Cowen — Meta 계약 구속력",
+   "Goldman Sachs — 선거 뒤 정치 지형·주 단위 데이터센터 유예",
+   "Needham — 2028 → 2029 지연 여부",
+   "Wedbush — PJM 버지니아 기각·오하이오 일정",
+   "Truist — 공급망 확정 비율"
+  ],
+  "risks": [
+   "첫 호기 일정 완충",
+   "구속력 있는 PPA 없음(Meta 포함)",
+   "PJM 접속(오하이오 약 24개월)",
+   "플루토늄 배정이 DOE에 달림",
+   "ATM 희석·창업자 신탁 매도 계획 250만 주(2027)",
+   "Aurora-INL 총사업비 미공시"
+  ],
+  "source": "3Q 어닝콜(2026-11-06)·3Q 10-Q·회사 3Q 보도자료. 직전 = 2Q 콜(2026-08-07)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "부정",
+    "item": "첫 호기 목표 2028 → 2028~2029",
+    "label": "첫 호기 2029로",
+    "prior": "2028(10-K·2Q 콜 CFO)",
+    "latest": "2028~2029(3Q 10-Q), CEO는 시운전 완충이라 설명",
+    "driver": "growth_start",
+    "shift": -0.3,
+    "confidence": 0.5,
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "Centrus HALEU 확정 다년 계약",
+    "label": "Centrus 연료 확정",
+    "prior": "6월 LOI(비구속)",
+    "latest": "11/12 확정 계약 여러 건, 최대 5기, 2029년 인도, 물량·가격 미공시",
+    "driver": "wacc",
+    "shift": -0.003,
+    "confidence": 1.0,
+    "source": "회사 보도자료 2026-11-12"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "Meta 선급 자금 Centrus에 집행",
+    "label": "Meta 자금 집행",
+    "prior": "선급 구조만",
+    "latest": "11/2 초기 자금 지급(금액 미공시)",
+    "driver": "wacc",
+    "shift": -0.001,
+    "confidence": 1.0,
+    "source": "3Q 10-Q"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "Meta 계약 원자로 건설 비구속 확인",
+    "label": "Meta 비구속",
+    "prior": "선급 프레임워크",
+    "latest": "CEO가 건설 비구속 명시, 예약 자본·연료 마일스톤만 구속",
+    "driver": "growth_decay",
+    "shift": -0.01,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "U.S. Forged Rings 27기분 캐파 예약",
+    "label": "단조 27기 예약",
+    "prior": "없음",
+    "latest": "2030~2035 인도, 소규모 초기 투자",
+    "driver": "growth_decay",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "PJM 버지니아 신청 철회·FERC 기각",
+    "label": "PJM 버지니아 기각",
+    "prior": "여러 신청 진행",
+    "latest": "기각, PJM 900MW 심사 중",
+    "driver": "growth_start",
+    "shift": -0.1,
+    "confidence": 1.0,
+    "source": "3Q 10-Q 위험 요인·콜"
+   },
+   {
+    "id": "F7",
+    "kind": "업데이트",
+    "item": "Groves-1 DOE 무제한 운전 허가",
+    "label": "Groves 운전 허가",
+    "prior": "8/5 첫 임계",
+    "latest": "11/11 최종 운전 보류점 해제",
+    "driver": "wacc",
+    "shift": -0.002,
+    "confidence": 1.0,
+    "source": "회사 보도자료 2026-11-11"
+   },
+   {
+    "id": "F8",
+    "kind": "반복",
+    "item": "2026 현금 가이던스 유지",
+    "label": "가이던스 유지",
+    "prior": "영업 $120~150M·PP&E $400~500M",
+    "latest": "같음, 9M PP&E $280.9M",
+    "driver": "rev0",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q 10-Q"
+   },
+   {
+    "id": "F9",
+    "kind": "부정",
+    "item": "신규 $1B ATM·창업자 신탁 매도 계획",
+    "label": "ATM·내부자 매도",
+    "prior": "ATM1 $1B 소진",
+    "latest": "ATM2 $1B(잔여 약 $0.91B), 신탁 최대 250만 주 2027 매도 계획",
+    "driver": "wacc",
+    "shift": 0.002,
+    "confidence": 1.0,
+    "source": "3Q 10-Q Item 5·8-K 2026-09-11"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-06-11",
+   "tag": "DOE Aurora-INL 예비 안전성 평가 승인",
+   "kind": "news"
+  },
+  {
+   "date": "2026-06-18",
+   "tag": "Centrus HALEU 의향서",
+   "kind": "news"
+  },
+  {
+   "date": "2026-07-23",
+   "tag": "Groves DOE 기동 승인",
+   "kind": "news"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "Groves-1 첫 임계 발표",
+   "kind": "news"
+  },
+  {
+   "date": "2026-08-07",
+   "tag": "2Q26 실적·현금 가이던스 상향",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-11",
+   "tag": "신규 $1B ATM(8-K)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-09-30",
+   "tag": "Centrus 조건부 공급계약",
+   "kind": "news"
+  },
+  {
+   "date": "2026-10-13",
+   "tag": "Groves-2 Forge DOE 선정",
+   "kind": "news"
+  },
+  {
+   "date": "2026-10-26",
+   "tag": "NRC 최종 규칙 게재",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "B. Riley 목표가 $92 → $61",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-03",
+   "tag": "Wedbush 원전 커버리지 개시(Oklo 아웃퍼폼)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "3Q26 실적(장 시작 전)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "Groves-1 무제한 운전 허가",
+   "kind": "news"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "Centrus 확정 HALEU 계약",
+   "kind": "news"
+  },
+  {
+   "date": "2026-11-13",
+   "tag": "임원 3명 Form 144 매도 예정 신고",
+   "kind": "news"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-08-07",
+   "kind": "실적",
+   "tag": "2Q26 실적, 현금 가이던스 상향",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-09-11",
+   "kind": "내러티브",
+   "tag": "신규 $1B ATM"
+  },
+  {
+   "date": "2026-11-06",
+   "kind": "실적",
+   "tag": "3Q26 실적, 첫 호기 2028~2029",
+   "q": "3Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-11-12",
+   "kind": "내러티브",
+   "tag": "Centrus 확정 연료 계약"
+  }
+ ],
+ "pipeline": {
+  "as_of": "2026-11-13",
+  "reported_backlog": null,
+  "backlog_label": "구속력 있는 전력 계약 없음",
+  "summary": "구속력 있는 PPA는 하나도 없다(10-K). 계약서로 확인되는 것은 DOE 인가 사업(Aurora-INL·Groves-1)과 공급 계약(Centrus·Siemens Energy·USFR)이고, 전력 고객 쪽은 Meta 선급 계약(건설 비구속)과 Switch 12GW 프레임워크·비구속 의향서뿐이다",
+  "items": [
+   {
+    "name": "Aurora-INL 75MW 첫 발전소",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2025-09 비원자력 착공, 굴착 완료·안전 등급 철골 작업, 최종 안전분석 2028, 가동 목표 2028~2029",
+    "start": "2025-09",
+    "end": "2029",
+    "blockers": [
+     "DOE 최종 안전분석·기동 승인",
+     "A3F 첫 노심 가공(2027 목표)",
+     "총사업비 미공시",
+     "전력 구매처 미확정(초기엔 연구소)"
+    ],
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "name": "Groves-1 동위원소 시험로(텍사스)",
+    "status": "확정",
+    "total": 0.075,
+    "progress": 1.0,
+    "margin": "미확인",
+    "speed": "착공 1년 안 임계(8/5), 11/11 무제한 운전 허가",
+    "start": "2025-09",
+    "end": "2026-11",
+    "blockers": [
+     "상업 동위원소 생산은 Groves-2와 NRC 면허 필요"
+    ],
+    "source": "회사 보도자료 2026-11-11·3Q 콜(총비용 약 $75M)"
+   },
+   {
+    "name": "Meta 오하이오 1.2GW 캠퍼스",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "부지 준비 착수, PJM 접속 약 24개월, 연료 2029년부터",
+    "start": "2025-12",
+    "end": "미확인",
+    "blockers": [
+     "원자로 건설 비구속",
+     "구속력 있는 PPA 없음",
+     "PJM 접속",
+     "NRC 인허가"
+    ],
+    "source": "10-K·3Q 10-Q·3Q 콜"
+   },
+   {
+    "name": "Centrus HALEU 공급",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "2029년 인도 시작, 최대 5기분",
+    "start": "2029",
+    "end": "미확인",
+    "blockers": [
+     "Centrus 신규 농축 캐파 건설",
+     "물량·가격 미공시"
+    ],
+    "source": "회사 보도자료 2026-11-12·3Q 10-Q"
+   },
+   {
+    "name": "Siemens Energy 증기터빈·발전기",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "엔지니어링·조기 조달",
+    "start": "2025-11",
+    "end": "미확인",
+    "blockers": [
+     "Aurora-INL 인도 일정 미확인"
+    ],
+    "source": "회사 보도자료 2025-11-19·10-K"
+   },
+   {
+    "name": "U.S. Forged Rings 단조 27기분",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "2030년 첫 인도~2035",
+    "start": "2030",
+    "end": "2035",
+    "blockers": [
+     "USFR 신규 공장 건설",
+     "캐파 예약 — 개별 발주는 앞으로"
+    ],
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "name": "Switch 12GW 프레임워크",
+    "status": "프레임워크",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "개별 PPA 미체결",
+    "start": "2024-12",
+    "end": "미확인",
+    "blockers": [
+     "구속력 PPA 없음(10-K)"
+    ],
+    "source": "10-K"
+   },
+   {
+    "name": "Equinix·Diamondback·Prometheus 의향서",
+    "status": "MOU",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "MW 미공시",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "비구속 의향서"
+    ],
+    "source": "3Q 10-Q"
+   },
+   {
+    "name": "잉여 플루토늄 연료",
+    "status": "협상",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "CEO '수개월 안 일정 명확'",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "DOE 배정·안전조치"
+    ],
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "name": "테네시 재활용 시설",
+    "status": "파이프라인",
+    "total": 1.68,
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "시범시설 2027 시운전 목표, 상업 재활용 2030년대 초",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "NRC 면허",
+     "자금"
+    ],
+    "source": "3Q 10-Q·2Q 콜(최대 $1.68B 로드맵)"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "MWe(발전 용량)",
+  "summary": "상업 발전 용량은 0이다. 첫 발전소 Aurora-INL 75MW가 2028~2029 가동 목표로 건설 중이고, 오하이오 Piketon 토지에 Meta용 1.2GW 캠퍼스를 계획한다. 2026 PP&E 지출 가이던스 $400~500M 중 9개월에 $280.9M을 썼다",
+  "current": {
+   "nameplate": 0,
+   "utilization": "미확인",
+   "basis": "운영 중인 상업 발전소 없음 — Groves-1은 저출력 시험로",
+   "source": "3Q 10-Q"
+  },
+  "plans": [
+   {
+    "name": "Aurora-INL",
+    "add": 75,
+    "stage": "착공",
+    "online": "2028~2029",
+    "capex": "미확인",
+    "blocker": "DOE 최종 안전분석(2028)·기동 승인, 첫 노심 연료 가공, 총사업비 미공시",
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "name": "오하이오 Piketon 캠퍼스(Meta)",
+    "add": 1200,
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "건설 비구속, PJM 접속 약 24개월, NRC 인허가",
+    "source": "10-K·3Q 콜"
+   }
+  ],
+  "capex": [
+   {
+    "period": "9M26",
+    "capex": 0.2809,
+    "rev": 0.003071,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.45,
+    "rev": 0.005367,
+    "kind": "추정"
+   }
+  ],
+  "capex_source": "9M26 = 10-Q 현금흐름표 PP&E 구매. FY2026 = 회사 가이던스 $400~500M 중간값. FY2025 이전은 매출이 0이라 비율을 잴 수 없어 뺐다",
+  "facilities": {
+   "count": 9,
+   "count_basis": "10-K Item 2는 본사 전대와 오하이오 Piketon 보유 토지 2곳만 적는다. 나머지는 3Q 10-Q MD&A·주석의 사업장·프로젝트 부지(계획 포함)",
+   "source": "https://www.sec.gov/Archives/edgar/data/1849056/000162828026071319/oklo-20260930.htm",
+   "items": [
+    {
+     "name": "본사",
+     "location": "미국 캘리포니아 Santa Clara",
+     "owned": "임차",
+     "use": "경영·엔지니어링(전대, 2026-12 만료)",
+     "capacity": "미확인",
+     "capacity_basis": "사무 시설",
+     "status": "가동"
+    },
+    {
+     "name": "Aurora-INL 부지",
+     "location": "미국 아이다호 INL",
+     "owned": "임차",
+     "use": "첫 상업 발전소(DOE 부지 사용 허가)",
+     "capacity": {
+      "value": 75,
+      "unit": "MWe(계획)",
+      "source": "3Q 10-Q"
+     },
+     "status": "건설 중"
+    },
+    {
+     "name": "A3F 연료가공시설",
+     "location": "미국 아이다호 INL",
+     "owned": "미확인",
+     "use": "첫 노심 연료 가공",
+     "capacity": "미확인",
+     "capacity_basis": "가공 능력 미공시",
+     "status": "건설 중"
+    },
+    {
+     "name": "Groves-1 시험로",
+     "location": "미국 텍사스 Lockhart",
+     "owned": "미확인",
+     "use": "동위원소 시험로",
+     "capacity": "미확인",
+     "capacity_basis": "저출력 시험로 — 출력 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "Piketon 토지",
+     "location": "미국 오하이오 Pike County",
+     "owned": "소유",
+     "use": "Meta용 발전 캠퍼스(2025-12 취득)",
+     "capacity": {
+      "value": 1200,
+      "unit": "MWe(계획)",
+      "source": "10-K"
+     },
+     "status": "계획"
+    },
+    {
+     "name": "Idaho 방사화학 연구소",
+     "location": "미국 아이다호",
+     "owned": "미확인",
+     "use": "동위원소 처리(NRC 물질 면허)",
+     "capacity": "미확인",
+     "capacity_basis": "미공시",
+     "status": "가동"
+    },
+    {
+     "name": "Advanced Fuel Center",
+     "location": "미국 테네시 Oak Ridge",
+     "owned": "미확인",
+     "use": "연료 재활용·가공",
+     "capacity": "미확인",
+     "capacity_basis": "최대 $1.68B 로드맵, 용량 미공시",
+     "status": "계획"
+    },
+    {
+     "name": "ARMEC·CEI 사업장",
+     "location": "미확인",
+     "owned": "미확인",
+     "use": "정밀 가공·나트륨 시스템 엔지니어링",
+     "capacity": "미확인",
+     "capacity_basis": "용역 사업",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "Aurora-INL(아이다호)·Piketon(오하이오) 부지가 있으나 이번 회차에 위성 판독 등록을 하지 못했다"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "9M26",
+  "summary": "9개월 매출 $3.07M은 전부 6월 인수한 ARMEC·CEI의 기존 엔지니어링·제작 고객이다. 전력 매출은 0이고 구속력 있는 PPA도 없다. 전력 고객 후보는 Meta 1.2GW(선급 계약, 건설 비구속), Switch 12GW(프레임워크), Equinix 등 비구속 의향서, 2024년 $25M 선급을 낸 이름 비공개 데이터센터 고객이다",
+  "items": [
+   {
+    "name": "ARMEC·CEI 용역 고객(정부·민간)",
+    "alias": "엔지니어링·제작 고객",
+    "share": 1.0,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "엔지니어링·컨설팅·정밀 제작",
+    "source": "3Q 10-Q 매출 주석",
+    "why": "인수로 붙은 매출 — 핵심 사업이 아니다"
+   },
+   {
+    "name": "Meta(전력 후보)",
+    "alias": "Meta",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "공시",
+    "buys": "오하이오 1.2GW 예약 캐파(선급)",
+    "source": "10-K·3Q 콜",
+    "why": "건설 비구속, 예약 자본·연료 마일스톤만 구속"
+   },
+   {
+    "name": "이름 비공개 데이터센터 고객",
+    "alias": "2024 ROFR 고객",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "공시",
+    "buys": "우선매수권 $25M 선급",
+    "source": "3Q 10-Q",
+    "why": "Equinix일 가능성은 2Q 콜 발언에 기댄 가설"
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-13",
+  "summary": "병목은 연료다. 첫 노심은 DOE가 배정한 EBR-II 회수 HALEU 5톤으로 확보했고, 후속 연료는 Centrus 확정 계약(2029년부터)과 잉여 플루토늄 협상에 달렸다. 터빈은 Siemens Energy와 구속력 계약, 대형 단조는 U.S. Forged Rings 캐파 예약(2030~2035), 시공은 Kiewit다",
+  "links": [
+   {
+    "item": "HALEU 연료(첫 노심)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "DOE·INL(EBR-II 회수 우라늄 5톤)",
+      "role": "첫 노심 배정",
+      "status": "공시",
+      "source": "3Q 10-Q"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "미국 상업 HALEU 공급이 아직 없다(Citi 리뷰 요지·10-K 위험 요인)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "정부 배정",
+    "why": "첫 노심 연료가 없으면 기동할 수 없다",
+    "relief": "일부 — 첫 노심 배정 확인, A3F 가공은 2027 목표",
+    "source": "3Q 10-Q"
+   },
+   {
+    "item": "HALEU 연료(후속)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Centrus",
+      "role": "확정 다년 공급, 2029년 인도 시작",
+      "status": "회사 발표",
+      "source": "회사 보도자료 2026-11-12"
+     },
+     {
+      "name": "DOE 잉여 플루토늄",
+      "role": "가교 연료",
+      "status": "추정",
+      "source": "3Q 10-Q 우선협상"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "Centrus 신규 농축 캐파는 선급금으로 증설해야 한다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "장기계약",
+    "why": "두 번째 호기부터 연료 공급원",
+    "relief": "미확인 — 계약은 확정, 농축 증설은 확인 전",
+    "source": "회사 보도자료 2026-11-12"
+   },
+   {
+    "item": "증기터빈·발전기",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "Siemens Energy",
+      "role": "SST-600 터빈·SGen-100A 발전기",
+      "status": "회사 발표",
+      "source": "회사 보도자료 2025-11-19·10-K"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "미확인",
+    "capacity_basis": "업계 터빈 납기가 길다(업계 일반)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "장기계약",
+    "why": "발전 계통(비원자력)",
+    "relief": "일부 — 구속력 계약으로 조기 조달",
+    "source": "10-K"
+   },
+   {
+    "item": "원자로 용기·대형 단조",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "U.S. Forged Rings",
+      "role": "27기분 캐파 예약",
+      "status": "공시",
+      "source": "3Q 10-Q"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "공급사가 신규 공장을 지어야 2030년부터 인도",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "장기계약",
+    "input": "stainless_steel",
+    "why": "함대 배치 속도를 정한다",
+    "relief": "미확인 — 2030 첫 인도 전",
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "item": "시공(EPC)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "Kiewit",
+      "role": "Aurora-INL 주시공사",
+      "status": "공시",
+      "source": "10-K·3Q 10-Q"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국",
+    "secured": "장기계약",
+    "why": "건설 일정·비용",
+    "relief": "미확인",
+    "source": "10-K"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q26 매출 $1.86M(ARMEC·CEI 용역)에 매출원가 $1.1M으로 매출총이익률은 약 41%다. 그러나 연구개발 $41.6M·일반관리 $41.6M이 매출의 수십 배라 영업이익률은 의미가 없다. 비용의 핵심은 발전소 개발 인력과 인허가·연료 준비이고, 손실을 메우는 것은 이자·배당 수익($27.9M)이다",
+  "periods": [
+   {
+    "period": "2Q26",
+    "rev": 0.00121,
+    "cogs": 0.000721,
+    "rd": 0.0,
+    "sga": 0.0,
+    "other": 0.073679
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.001861,
+    "cogs": 0.0011,
+    "rd": 0.0416,
+    "sga": 0.0416,
+    "other": -0.0114
+   }
+  ],
+  "costs": [
+   {
+    "name": "용역 매출원가(인력·자재)",
+    "stage": "매출원가",
+    "pct_rev": 0.591,
+    "prior_pct": 0.596,
+    "fixed": 0.3,
+    "driver": "엔지니어링 인력·제작 자재",
+    "basis": "공시",
+    "source": "3Q 10-Q 손익"
+   },
+   {
+    "name": "연구개발(원자로·연료 설계, 인허가)",
+    "stage": "연구개발",
+    "pct_rev": 22.354,
+    "prior_pct": "미확인",
+    "fixed": 0.9,
+    "driver": "인력 확충·DOE 인허가·연료 개발",
+    "basis": "공시",
+    "source": "3Q 10-Q 손익"
+   },
+   {
+    "name": "일반관리(SBC 포함)",
+    "stage": "판관비",
+    "pct_rev": 22.354,
+    "prior_pct": "미확인",
+    "fixed": 0.9,
+    "driver": "인력·주식보상",
+    "basis": "공시",
+    "source": "3Q 10-Q 손익"
+   },
+   {
+    "name": "토지 매각 이익",
+    "stage": "기타",
+    "pct_rev": -6.126,
+    "prior_pct": 0.0,
+    "fixed": 0.0,
+    "driver": "일회성",
+    "basis": "공시",
+    "source": "3Q 10-Q 손익"
+   }
+  ],
+  "products": [
+   {
+    "name": "엔지니어링·제작 용역(ARMEC·CEI)",
+    "rev_share": 1.0,
+    "gpm": 0.409,
+    "gpm_basis": "3Q26 매출 $1.861M − 매출원가 $1.1M(회사 전체 = 용역 전부)",
+    "bom": [
+     {
+      "item": "엔지니어링 인력",
+      "share": [
+       0.5,
+       0.7
+      ],
+      "basis": "추정",
+      "source": "용역 사업 일반",
+      "pass_through": "미확인",
+      "why": "인건비"
+     },
+     {
+      "item": "제작 자재(스테인리스·특수강)",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "용역 사업 일반",
+      "input": "stainless_steel",
+      "pass_through": "미확인",
+      "why": "철강 가격"
+     },
+     {
+      "item": "외주 가공",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "용역 사업 일반",
+      "pass_through": "미확인",
+      "why": "외주 단가"
+     }
+    ]
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-15",
+  "summary": "공동창업자 부부(DeWitte CEO·COO)가 회사를 이끌고, 이사회는 에너지부 부장관·INL 소장·Dominion 원자력 책임자 출신으로 짜였다. 연결은 DOE·국립연구소 쪽에 몰려 있다. 연결이 인가·계약을 만들었다는 증거는 없다",
+  "people": [
+   {
+    "name": "Jacob DeWitte",
+    "role": "공동창업자·CEO·이사회 의장",
+    "since": "2013",
+    "profile": "MIT 원자력공학 박사과정, 국립연구소 펠로",
+    "business": "창업자 신탁이 최대 250만 주 2027년 매도 계획(10b5-1)",
+    "political": "미확인",
+    "alumni": "MIT",
+    "social": "미확인",
+    "source": "DEF 14A·3Q 10-Q"
+   },
+   {
+    "name": "Caroline DeWitte",
+    "role": "공동창업자·COO·이사",
+    "since": "2013",
+    "profile": "MIT 원자력공학",
+    "business": "-",
+    "political": "DOE 원자력자문위원회 위원(2018~2019)",
+    "alumni": "MIT",
+    "social": "미확인",
+    "source": "DEF 14A"
+   },
+   {
+    "name": "Daniel Poneman",
+    "role": "이사",
+    "since": "2025-03",
+    "profile": "DOE 부장관(2009~2014), Centrus CEO(2015~2023)",
+    "business": "Centrus가 현재 연료 공급사 — 이해관계 주시",
+    "political": "전 DOE 부장관",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "DEF 14A"
+   },
+   {
+    "name": "Mark Peters",
+    "role": "이사",
+    "since": "2026-04",
+    "profile": "전 INL 소장, MITRE CEO",
+    "business": "INL은 첫 발전소 부지",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "DEF 14A"
+   },
+   {
+    "name": "R. Craig Bealmear",
+    "role": "CFO",
+    "since": "2023-08",
+    "profile": "Renewable Energy Group CFO, BP 북미 다운스트림 CFO",
+    "business": "-",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "DEF 14A"
+   }
+  ],
+  "value": [
+   {
+    "network": "정계",
+    "link": "전 DOE 부장관·전 INL 소장·전 DOE 자문위원이 경영진·이사회에 있다",
+    "strength": 4,
+    "exposure": "미확인",
+    "basis": "DOE 인가·부지·연료 배정에 닿지만 금액으로 환산할 자료가 없다",
+    "evidence": "DEF 14A"
+   },
+   {
+    "network": "비즈니스",
+    "link": "이사 Poneman이 연료 공급사 Centrus 전 CEO",
+    "strength": 3,
+    "exposure": "미확인",
+    "basis": "Centrus 계약 물량·가격 미공시",
+    "evidence": "DEF 14A·회사 보도자료 2026-11-12"
+   }
+  ]
+ },
+ "moat": {
+  "summary": "해자는 원자로 기술 자체보다 '인가 단계·연료·부지를 먼저 쥔 것'이다. 다만 NRC 상업 인허가는 아직 신청 전이고 같은 DOE 경로를 다른 개발사도 쓴다",
+  "items": [
+   {
+    "kind": "DOE 인가 경로 선점",
+    "verdict": "보통",
+    "claim": "DOE 인가로 시험로를 실제로 짓고 돌렸고, 첫 발전소는 예비 안전성 평가 승인을 받아 건설 중이다",
+    "evidence": "Groves-1은 착공 1년 안 임계(8/5)·11/11 무제한 운전 허가, Aurora-INL 예비 안전성 평가 승인(2026-06), NRC 최종 규칙(11/25 시행)으로 DOE 운전 자료를 NRC 심사에 쓸 수 있다(3Q 10-Q)",
+    "quant": "Groves-1 총비용 약 $75M(CEO)",
+    "falsifier": "NRC 상업 인허가 신청이 2027년 안에 나오지 않거나 다른 시범사업 참여사가 같은 단계를 먼저 밟는다"
+   },
+   {
+    "kind": "연료 확보",
+    "verdict": "보통",
+    "claim": "미국에 상업 HALEU가 없는 상황에서 첫 노심과 후속 연료 경로를 함께 묶었다",
+    "evidence": "EBR-II 회수 HALEU 5톤 배정, Centrus 확정 다년 계약(최대 5기·2029년), 잉여 플루토늄 우선협상(3Q 10-Q·회사 보도자료 11/12)",
+    "quant": "첫 노심 5톤",
+    "falsifier": "Centrus 농축 증설 지연 또는 플루토늄 배정 무산"
+   },
+   {
+    "kind": "자본력·공급망 예약",
+    "verdict": "약함",
+    "claim": "무차입 현금 $3.1B로 대형 단조·터빈을 먼저 예약했다",
+    "evidence": "현금·투자 $3.13B, USFR 27기분 캐파 예약, Siemens Energy 구속력 계약. 그러나 돈은 ATM 희석으로 모았고(9M 3,261만 주) 경쟁사도 현금이 많다(NuScale $1.86B·X-Energy $1.81B)",
+    "quant": "현금·투자 $3.13B",
+    "falsifier": "해당 없음 — 약한 해자로 본다"
+   }
+  ]
+ },
+ "sources": [
+  "3Q26 10-Q(SEC, 2026-11-06) https://www.sec.gov/Archives/edgar/data/1849056/000162828026071319/oklo-20260930.htm",
+  "2Q26 10-Q(SEC) https://www.sec.gov/Archives/edgar/data/1849056/000162828026054571/oklo-20260630.htm",
+  "FY2025 10-K(SEC) https://www.sec.gov/Archives/edgar/data/1849056/000162828026018698/oklo-20251231.htm",
+  "2026 위임장 DEF 14A(SEC) https://www.sec.gov/Archives/edgar/data/1849056/000184905626000023/a2025proxy.htm",
+  "8-K 2026-09-11(신규 ATM, SEC) https://www.sec.gov/Archives/edgar/data/1849056/000110465926106897/tm2625056d1_8k.htm",
+  "Oklo·Centrus 연료 계약 보도자료(2026-11-12) https://oklo.com/newsroom/oklo-centrus-secure-fuel-supply-for-aurora-powerhouse-deployment-in-ohio",
+  "Groves-1 운전 허가 보도자료(2026-11-11) https://oklo.com/newsroom/oklos-groves-1-to-begin-research-and-demonstration-phase-after-being-cleared-by-u-s-department-o",
+  "3Q26 어닝콜(2026-11-06)",
+  "2Q26 어닝콜(2026-08-07)",
+  "TradingView NYSE:OKLO 일봉(2026-11-14 조회)",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ ],
+ "narrative": {
+  "as_of": "2026-11-15",
+  "stage": "소멸",
+  "crowding": "중간",
+  "summary": "'AI 데이터센터에 전력을 파는 첫 SMR'이라는 이야기는 1년 만에 꺼졌다(2025-10 종가 고점 $174.14 대비 −86%, 레딧은 조롱 글 위주, 공매도는 유동 주식의 21.9%). 지금 가격의 쟁점은 수요가 아니라 첫 발전소 날짜, 연료, 그리고 ATM으로 주식을 얼마나 더 찍느냐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "25명 중 Strong Buy 12·Buy 2·Hold 11",
+      "매도 의견은 거의 없다",
+      "컨센서스"
+     ],
+     [
+      "목표가 평균·범위",
+      "$61.29($25~$130, 21명)",
+      "지금 주가의 2.6배 — 주가를 따라 내려오지 못했다",
+      "컨센서스"
+     ],
+     [
+      "최근 변화",
+      "B. Riley $92 → $61(10/28), Wedbush 아웃퍼폼 개시(11/3), 하나증권 목표 $36 상향(11/12), Citi 중립·$33 유지(11/6)",
+      "하향 뒤 바닥 다지기",
+      "뉴스·IB 요지"
+     ],
+     [
+      "EPS 추정",
+      "FY2026 −$0.99(8명), FY2027 −$1.23(9명), FY2030 −$0.27(4명, −$1.01~+$1.33)",
+      "흑자 전환 시점에 합의가 없다",
+      "컨센서스"
+     ],
+     [
+      "콜 질문 초점",
+      "Meta 구속력(TD Cowen), 2029 지연(Needham), 플루토늄(Canaccord)",
+      "수요가 아니라 일정·구속력을 묻는다",
+      "3Q 콜"
+     ]
+    ],
+    "read": "셀사이드는 여전히 강세 쪽이지만 질문은 '언제·구속력 있나'로 옮겨 갔다. 목표가는 기대의 증거일 뿐 결론이 아니다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "약 48%",
+      "yfinance 기준",
+      "보유 집계"
+     ],
+     [
+      "공매도",
+      "유동 주식의 21.9%, 상환 4.1일",
+      "Seeking Alpha 색인 '시총 $2B 이상 유틸리티 중 공매도 1위'(11/3)",
+      "yfinance·보도 제목"
+     ],
+     [
+      "내부자",
+      "CEO·COO 각 $2M, CFO $0.43M 계획 매도(11/4 신고), 임원 3명 Form 144(11/13)",
+      "모두 10b5-1 계획 — 매수는 없다",
+      "Form 4·144"
+     ],
+     [
+      "ATM",
+      "9개월 순 $2.25B(3,261만 주), 잔여 약 $0.91B",
+      "주가가 낮아질수록 같은 돈에 더 많은 주식",
+      "10-Q·8-K"
+     ]
+    ],
+    "read": "바이사이드 수급의 핵심 변수는 신규 매수가 아니라 회사 자신의 ATM 공급과 공매도다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "레딧 언급 순위",
+      "142위(언급 2건)",
+      "관심이 식었다",
+      "ApeWisdom"
+     ],
+     [
+      "Quantral 7일",
+      "50(Weak)",
+      "10월 글 58건 → 11월 5건",
+      "Quantral"
+     ],
+     [
+      "X 언급 수",
+      "미수집",
+      "유료 키를 쓰지 않는다",
+      "-"
+     ]
+    ],
+    "read": "리테일은 '매출 없는 원전주' 손절 국면이다. 과열은 이미 빠졌다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "2026-11-06",
+      "3Q 실적 뒤 원전주 동반 급등",
+      "당일 +22.7%",
+      "보도 제목"
+     ],
+     [
+      "2026-11-11·12",
+      "Groves-1 운전 허가, Centrus 연료 확정",
+      "11/11 +3.1%, 11/12 −5.5% — 진척 뉴스에 주가 반응은 작았다",
+      "회사 보도자료"
+     ],
+     [
+      "2026-11-04",
+      "선거 뒤 데이터센터·에너지 반발 보도",
+      "11/5 −13.2%(원인 미확인, 정황)",
+      "보도 제목"
+     ]
+    ],
+    "read": "언론은 진척 뉴스를 쓰지만 주가는 금리·선거·ATM에 더 크게 반응했다."
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 데이터센터 기저 전력",
+    "thesis": "하이퍼스케일러가 24시간 무탄소 전력을 원하고 SMR이 그 답이 된다",
+    "inputs": "TAM·성장 지속 기간",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "Meta 1.2GW·Switch 12GW 프레임워크, 그러나 구속력 PPA 0건(10-K)",
+    "status": "약화",
+    "falsifier": "구속력 있는 PPA(MW·가격) 공시",
+    "source": "10-K·3Q 콜"
+   },
+   {
+    "name": "DOE 인가 속도",
+    "thesis": "DOE 경로로 NRC보다 빨리 짓고 돌린다",
+    "inputs": "첫 매출 시점",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "Groves-1 착공 1년 안 임계, 11/11 무제한 운전 허가",
+    "status": "강화",
+    "falsifier": "Aurora-INL 최종 안전분석이 2028을 넘긴다",
+    "source": "회사 보도자료·3Q 10-Q"
+   },
+   {
+    "name": "연료 병목 해소",
+    "thesis": "HALEU를 먼저 확보한 회사가 함대를 먼저 짓는다",
+    "inputs": "성장 지속 기간·위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "EBR-II 5톤 + Centrus 확정 계약(최대 5기, 2029~)",
+    "status": "강화",
+    "falsifier": "Centrus 증설 지연·플루토늄 배정 무산",
+    "source": "회사 보도자료 2026-11-12"
+   },
+   {
+    "name": "현금이 시총의 67%",
+    "thesis": "현금을 빼면 사업 가치가 $1.5B로 줄어 하방이 얕다",
+    "inputs": "위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "시총 $4.67B − 현금·투자 $3.13B = $1.54B",
+    "status": "유지",
+    "falsifier": "PP&E 지출이 가이던스를 넘거나 첫 호기 비용 초과",
+    "source": "10-Q"
+   },
+   {
+    "name": "반대 내러티브 — 희석과 지연",
+    "thesis": "매출 없이 ATM으로 버티고 첫 호기는 미뤄지는 원전 개발사의 전형",
+    "inputs": "WACC·주식 수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "9M ATM 3,261만 주(+20%), 첫 호기 2028 → 2028~2029, EPS 추정 6개월 하향",
+    "status": "강화",
+    "falsifier": "2027년 ATM 없이 Aurora-INL 일정 유지",
+    "source": "10-Q·컨센서스"
+   }
+  ],
+  "lead": {
+   "summary": "Oklo의 기업가치는 **첫 발전소 Aurora-INL이 언제 돌고 kW당 얼마에 지어지느냐 × 그다음 호기를 위한 연료와 구속력 있는 고객이 오느냐**로 정해진다. 3Q에는 매출 $1.86M(인수한 용역 회사 몫), 영업손실 $71.0M을 냈고 현금·투자는 $3.13B다. Groves-1 시험로 무제한 운전 허가와 Centrus 연료 확정 계약이 나왔지만, 첫 발전소 목표는 2028에서 2028~2029로 밀렸고 Meta 계약은 건설에 구속력이 없다고 회사가 답했다. 주가는 $23.92(11/13)로 1년 전 종가 고점 $174.14의 14%다.",
+   "value_story": "발전소를 직접 짓고 전력을 파는 사업이라 값은 세 숫자로 갈린다. 첫 호기 가동 날짜, 건설비(kW당), 전력 판매 가격이다. 셋 다 아직 공시되지 않았다. 그래서 지금 시가총액 $4.67B는 현금 $3.13B와 '나머지 $1.54B짜리 옵션'으로 읽는 것이 맞다.",
+   "premium": {
+    "multiple": "선행 이익이 모두 적자라 P/E·EV/EBITDA를 쓸 수 없고 EV/매출로 내려간다. EV는 약 $1.54B, 다음 4개 분기 매출 추정은 $14.9M이라 배수는 100배를 넘는다. 매출이 있는 동종(X-Energy 7.4배, BWXT 3.5배, Centrus 2.4배)과 직접 비교할 수 없는 구간이다.",
+    "eps": "EPS 추정은 FY2026 −$0.99, FY2027 −$1.23, FY2028 −$1.35다. 8/6 이후 분기 EPS 추정이 분기마다 $0.06~0.08씩 더 나빠졌다. 비용 추정이 늘어난 몫이다."
+   },
+   "why_excited": "2025년 하반기에는 AI 전력난, 행정부의 원전 행정명령, Meta·Switch 같은 대형 고객 발표가 겹쳐 종가가 $174(2025-10-14)까지 갔다. 식은 이유는 넷이다. 매출이 계속 0에 가까웠고, ATM으로 9개월에 3,261만 주를 찍었고, 금리가 올라 먼 미래 현금흐름의 할인이 커졌고, 첫 호기가 2029로 밀렸다. 3Q 발표 날(11/6) +22.7%, 11/9 +14.0%로 반등했지만 11/13 $23.92로 다시 내려왔다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "원자로 설계 회사에서 연료·동위원소·엔지니어링까지 묶은 수직계열 원전 회사로 바뀌는 중",
+     "evidence": "Atomic Alchemy(동위원소)·ARMEC·CEI(제작·엔지니어링) 인수, A3F 연료가공·테네시 재활용 계획(3Q 10-Q)",
+     "drives": "both",
+     "status": "진행 중",
+     "falsifier": "2027년에도 비발전 매출이 연 $20M 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "해당 없음 — 매출이 인수한 용역뿐이라 믹스를 말할 단계가 아니다",
+     "evidence": "3Q 매출 $1.86M 전부 엔지니어링·제작 용역(10-Q)",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "동위원소 첫 계약 인도(2027 목표)"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "액체 나트륨 냉각 고속로 — EBR-II 설계 계보, 사용후핵연료 재활용 연료",
+     "evidence": "Groves-1은 착공 1년 안 임계, NRC 설계 기준 토피컬 보고서 승인(2026-04). 다만 75MW급 상업 운전 기록은 없다",
+     "drives": "multiple",
+     "status": "일부 확인",
+     "falsifier": "Aurora-INL 시운전에서 설계 변경"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "시험로는 빨랐고 첫 발전소는 늦어지는 중",
+     "evidence": "Groves-1 주요 공사 229일·착공 1년 안 임계(3Q 콜). Aurora-INL은 2025-09 착공, 목표 2028 → 2028~2029. NuScale 첫 발전소 계획(UAMPS)은 2023년 취소됐다(공개 보도). 기준은 착공 → 가동 비교 대상은 최근 미국 상업 원전 실제 기록 1건뿐이다",
+     "drives": "both",
+     "status": "미증명",
+     "falsifier": "2027년 말까지 Aurora-INL 주요 기기 설치가 확인되지 않는다",
+     "lead_time": {
+      "unit": "개월",
+      "now": [
+       36,
+       48
+      ],
+      "prior": 36,
+      "prior_when": "2Q26(2025-09 착공 → 2028 목표)",
+      "peers": [
+       {
+        "name": "Vogtle 3호기(AP1000, 첫 콘크리트 2013-03 → 상업 운전 2023-07, 공개 기록)",
+        "value": 124
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "작은 인수로 공급망을 안으로 들였다",
+     "evidence": "Atomic Alchemy(2025-02, $28.4M), ARMEC($20.5M)·CEI($12.9M, 2026-06). 시너지 금액 공시 없음",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "인수 사업 매출 정체"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "전력 고객의 돈은 데이터센터 CAPEX에서 나오고, 연료·동위원소는 연구소·제약 OPEX에서 나온다",
+     "evidence": "Meta는 예약 캐파에 선급(자본 제공), 2024 데이터센터 고객 $25M 선급. 용역 매출은 정부·민간 엔지니어링 예산",
+     "drives": "매출",
+     "status": "미증명",
+     "falsifier": "하이퍼스케일러 CAPEX 감속",
+     "budgets": [
+      {
+       "business": "전력 판매",
+       "budget": "CAPEX",
+       "line": "데이터센터 전력 확보 투자(선급·PPA)",
+       "share": 0.0,
+       "driver": "AI 데이터센터 증설",
+       "evidence": "Meta 선급 계약·2024 ROFR 선급"
+      },
+      {
+       "business": "엔지니어링·제작 용역",
+       "budget": "OPEX",
+       "line": "정부·민간 엔지니어링 외주 예산",
+       "share": 1.0,
+       "driver": "원전·국방 프로젝트",
+       "evidence": "3Q 10-Q 매출 주석"
+      },
+      {
+       "business": "동위원소",
+       "budget": "OPEX",
+       "line": "제약·연구소 원재료 구매",
+       "share": 0.0,
+       "driver": "방사성 의약품 수요",
+       "evidence": "3Q 10-Q(Abundantia 2027 매출 기대)"
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "Aurora 발전소",
+     "what": "액체 나트륨 냉각 소형 고속로 발전소, 15~75MW",
+     "use": "데이터센터·국방·산업용 기저 전력",
+     "money": "발전소를 직접 짓고 운영해 전력을 판다(PPA). 매출 0, 첫 호기 2028~2029 목표",
+     "name_en": "compact liquid metal cooled fast reactor powerhouse",
+     "what_en": "Small advanced fission powerhouse building with a compact sodium cooled fast reactor, steam generator, steam turbine generator hall and cooling equipment on a high desert site",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "원자로 노심(HALEU 금속 연료)",
+        "part_en": "reactor core fuel assemblies",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "DOE·INL EBR-II 회수 HALEU 5톤(첫 노심), Centrus(2029~)",
+        "source": "3Q 10-Q·회사 보도자료 2026-11-12"
+       },
+       {
+        "no": 2,
+        "part": "원자로 용기·대형 단조",
+        "part_en": "reactor vessel",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "U.S. Forged Rings(2030~ 캐파 예약)",
+        "source": "3Q 10-Q"
+       },
+       {
+        "no": 3,
+        "part": "액체 나트륨 냉각 계통·펌프",
+        "part_en": "sodium coolant pump",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "ARMEC·CEI(자회사) 일부 내재화, 나머지 미공시",
+        "source": "3Q 10-Q 주석·3Q 콜"
+       },
+       {
+        "no": 4,
+        "part": "열교환기·증기발생기",
+        "part_en": "steam generator heat exchanger",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시(INL분 업체 선정 완료 — CEO)",
+        "source": "3Q 콜"
+       },
+       {
+        "no": 5,
+        "part": "증기터빈",
+        "part_en": "steam turbine",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Siemens Energy SST-600",
+        "source": "회사 보도자료 2025-11-19"
+       },
+       {
+        "no": 6,
+        "part": "발전기",
+        "part_en": "electric generator",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Siemens Energy SGen-100A",
+        "source": "회사 보도자료 2025-11-19"
+       },
+       {
+        "no": 7,
+        "part": "계측·제어 계통",
+        "part_en": "instrumentation and control cabinet",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "3Q 콜(계측 교정이 시운전 완충 사유)"
+       },
+       {
+        "no": 8,
+        "part": "발전소 건물·토목",
+        "part_en": "powerhouse building",
+        "kind": "주변 설비",
+        "confidence": "확인",
+        "supplier": "Kiewit(주시공사)",
+        "source": "10-K·3Q 10-Q"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "엔지니어링·제작 용역(ARMEC·CEI)",
+     "what": "원전·국방용 정밀 가공과 나트륨 시스템 엔지니어링",
+     "use": "정부·민간 고객 외주",
+     "money": "용역 매출. 3Q $1.86M — 지금 매출의 전부"
+    },
+    {
+     "kind": "제품",
+     "name": "연료·재활용",
+     "what": "HALEU 금속 연료 가공(A3F)과 사용후핵연료 재활용",
+     "use": "자사 원자로, 제3자 연료 용역",
+     "money": "아직 매출 없음. 제3자 가공 용역 2년 안 가능(3Q 콜)"
+    },
+    {
+     "kind": "제품",
+     "name": "동위원소(Atomic Alchemy)",
+     "what": "의료·연구용 방사성 동위원소 생산·처리",
+     "use": "제약·연구소",
+     "money": "아직 매출 없음. 2027 첫 계약 인도 목표"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "첨단 원전 세액공제(45Y·48E)와 DOE 시범사업·연료 배정이 비용을 낮춘다. 세액공제는 법정 일정, 연료 배정·OTA는 확정, 금액 효과는 미확인",
+     "evidence": "3Q 10-Q 정부 지원 항목",
+     "drives": "both",
+     "status": "유지",
+     "falsifier": "세액공제 축소 입법",
+     "house": {
+      "level": 2,
+      "why": "청정에너지 세액공제 축소 논의에서 원전 몫은 유지 쪽 — 표결 기록은 미확인"
+     },
+     "senate": {
+      "level": 2,
+      "why": "같음, 표결 기록 미확인"
+     }
+    },
+    "orders": {
+     "change": "2025-05 원전 행정명령들(NRC 심사 기한·DOE 시범사업) — DOE 시범사업 11건 중 Oklo 3건 선정",
+     "evidence": "3Q 10-Q",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "NRC 심사 기한이 법원·규칙으로 무력화",
+     "house": {
+      "level": 1,
+      "why": "행정명령 — 의회 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "ADVANCE Act(2024 시행)와 NRC 최종 규칙(2026-10-26 게재, 11/25 시행) — DOE 운전 자료를 NRC 심사에 활용",
+     "evidence": "3Q 콜·10-Q",
+     "drives": "both",
+     "status": "시행 예정",
+     "falsifier": "규칙 시행 연기"
+    }
+   }
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 25,
+   "net_margin": 0.22,
+   "opm": 0.3,
+   "shares": 0.235,
+   "basis": "출구 P/E 25배는 흑자 원전 공급망 동종 Fwd 1Y(BWXT 24.0배·Centrus 34.9배)의 아래쪽이고 Citi가 2034~35년 EPS에 쓴 배수와 같다. OPM 30%는 발전소 소유·운영 사업자의 정상 상태 가정(추정), 순이익률 22%는 세금·이자를 뺀 값. 주식 수 2.35억 주는 남은 ATM $0.91B와 옵션·RSU를 더한 값(추정)"
+  },
+  "base": {
+   "eps": -0.96,
+   "opm": -82.2,
+   "basis": "최근 4개 분기 GAAP EPS 합(−$0.27 −$0.19 −$0.28 −$0.22). 흑자 해가 컨센서스에 없어 EPS CAGR은 쓰지 않는다"
+  },
+  "refs": [
+   {
+    "label": "FY2028 매출 컨센서스",
+    "value": 0.033
+   },
+   {
+    "label": "FY2030 매출 컨센서스",
+    "value": 0.298
+   },
+   {
+    "label": "FY2032 매출 컨센서스(4명)",
+    "value": 1.416
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "시가총액 약 $9.3B. 현금을 빼면 사업 가치가 지금의 약 4배가 돼야 한다. Aurora-INL이 2029년 안에 돌고, 두 번째 부지에 구속력 있는 PPA가 붙으면 열린다",
+    "outlook": "2027년 A3F 첫 연료와 Aurora 주요 기기 설치가 확인되면 경로가 보인다. 그 전에는 인가 뉴스로 움직인다"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "시가총액 약 $14B. FY2032 매출 컨센서스 $1.4B(4명)를 그대로 믿고 P/E 25배를 받으려면 2030년대 중반 연 1GW 이상 함대 배치가 필요하다",
+    "outlook": "연료(Centrus 2029~)와 단조(2030~) 일정이 그 속도를 받쳐 줄지 확인되지 않았다"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $23B — 2025-10 고점 수준. 함대 수 GW와 kW당 건설비 검증이 함께 필요하다",
+    "outlook": "5년 안에 근거가 될 자료가 나오지 않는다"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $47B. 2030년대 미국 SMR 시장 대부분을 혼자 가져가야 한다",
+    "outlook": "기저율로 매출 전 원전 개발사의 10배는 희귀 사건이다"
+   }
+  },
+  "summary": "2배는 첫 호기 가동과 구속력 있는 두 번째 고객이 함께 와야 열리고, 3배부터는 연료·단조 공급이 함대 속도를 받쳐야 한다."
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "현금이 시총의 67%이고 인가·연료 진척이 3Q에 확인됐다. 사업 가치 $1.5B는 1년 전의 10분의 1이다",
+    "evidence": [
+     "현금·투자 $3.13B, 무차입(10-Q)",
+     "Groves-1 무제한 운전 허가(11/11)",
+     "Centrus 확정 연료 계약(11/12)"
+    ],
+    "falsifier": "2027년 A3F 첫 연료가 나오지 않는다"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "시험로 실행 속도가 첫 발전소에서 반복되면 2029년 첫 전력 판매로 재평가된다",
+    "evidence": [
+     "Groves-1 착공 1년 안 임계",
+     "Aurora-INL 굴착 완료·안전 등급 철골",
+     "USFR 27기분 캐파 예약"
+    ],
+    "falsifier": "Aurora-INL 최종 안전분석이 2028년을 넘긴다"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "진척은 맞지만 값을 정할 숫자(건설비·전력 가격·PPA)가 하나도 없다",
+    "evidence": [
+     "Aurora-INL 총사업비 미공시(2Q 약속 불이행)",
+     "구속력 PPA 0건(10-K)",
+     "FY2030 EPS 추정 −$1.01~+$1.33"
+    ],
+    "falsifier": "총사업비와 kW당 비용 공시"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "ATM이 남은 한 주가는 공급에 눌린다. 공매도도 많다",
+    "evidence": [
+     "9M ATM 3,261만 주, 잔여 약 $0.91B",
+     "창업자 신탁 250만 주 2027 매도 계획",
+     "공매도 유동 주식의 21.9%"
+    ],
+    "falsifier": "2027년 ATM 사용 중단 공시"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "첫 호기는 이미 밀렸고 원전 첫 호기의 지연·비용 초과 기저율은 높다. Meta도 건설을 약속하지 않았다",
+    "evidence": [
+     "목표 2028 → 2028~2029(10-Q)",
+     "Meta 계약 건설 비구속(3Q 콜)",
+     "PJM 버지니아 기각"
+    ],
+    "falsifier": "Meta가 구속력 있는 PPA에 서명"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "현금이 하방을 받친다"
+     },
+     {
+      "seat": "Buy",
+      "text": "시험로 실행 기록이 있다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "값을 정할 숫자가 없다"
+     },
+     {
+      "seat": "Sell",
+      "text": "주식 공급이 가격을 정한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "첫 호기 기저율은 지연이다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "현금은 PP&E로 해마다 $0.4~0.5B씩 줄어든다. 하방 받침이 아니라 줄어드는 받침이다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "Groves-1은 착공 1년 안에 임계했다. 기저율이 이 팀에 그대로 맞지 않는다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "Groves-1은 저출력 시험로이고 총비용 $75M이다. 75MW 발전소와 비교할 수 없다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "ATM 잔여 $0.91B는 지금 시총의 약 19%다. 끝이 보이는 공급이다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Neutral",
+      "text": "총사업비가 나오면 ATM이 더 커질 수 있다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "NRC 최종 규칙이 11/25 시행되면 DOE 자료로 상업 인허가가 빨라진다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "NRC 신청은 아직 없다. 규칙은 경로일 뿐 일정이 아니다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "Centrus 계약 재원이 Meta 선급금이다. Meta가 돈을 넣었다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "넣은 돈은 연료 예약이지 원자로 건설 약속이 아니다. CEO가 그렇게 답했다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "현금이 시총의 67%여도 내부자는 계획 매도만 했다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "2027년 연료·기기 설치가 확인되면 의견을 지킨다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "Aurora-INL 일정이 다음 가를 자료다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "총사업비 공시가 상향 조건이다"
+     },
+     {
+      "seat": "Sell",
+      "text": "ATM 잔여가 소진되면 중립으로 간다",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "구속력 있는 PPA 전엔 의견을 유지한다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "인가·연료 진척은 확인됐지만 값을 정할 건설비·전력 가격·구속력 고객이 없다. 살아남은 반박은 ATM 공급과 첫 호기 지연이다",
+   "dissent": "구속력 PPA 전에는 Meta 수요를 셀 수 없다(Strong Sell)"
+  }
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "조정 없음"
+ }
+}
