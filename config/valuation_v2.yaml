@@ -55,6 +55,9 @@ upside:                      # 상승여력 블록 → 알파 4요소 정량 제
   asym_points_per_doubling: 2.5   # 비대칭(상방/하방 기대) 2배마다 +2.5점(5점 기준)
   gap_points_per_10pct: 1.0  # 우리 기본 가정과 시장 내포 가정의 기저율 백분위 차이 10%p마다 1점
 
+dcf_quality:                 # DCF 신뢰 점검(scripts/valuation/v2/run.py quality, ADR-039) — 산정 불가면 목표주가 요인·등급 교차 확인·합리적 멀티플에서 DCF를 뺀다
+  cv_warn: 1.5               # 계속가치 ÷ 기업가치가 이 값을 넘으면 '주의'(1~10년 현금흐름 합이 크게 음수) — 사전값, 판정이 아니라 표시
+
 decision:                    # 의사결정 보조 3요인(scripts/valuation/v2/decision.py) — 투자자문 아님, 지표·확률로만 표기
   kelly_fraction: 0.25       # 분수 켈리(추정 오차 대비, MacLean·Thorp·Ziemba 관행) — 피팅 대상 아님(위험 관리 상수)
   max_position: 0.10         # 위험 예산 지표 상한(이론값)

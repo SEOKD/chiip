@@ -5758,3 +5758,35 @@ params:
     data: knowledge/models/consumer/nowcast.json
     last_fit: null
     oos_metric: null
+- id: prm-v2-dcfq-cv
+  model: valuation.v2
+  binding: config/valuation_v2.yaml#dcf_quality.cv_warn
+  value: 1.5
+  unit: 계속가치 ÷ 기업가치
+  status: prior
+  prior:
+    value: 1.5
+    basis: '표시 문턱(판정 아님) — 계속가치가 기업가치의 150%를 넘으면 1~10년 현금흐름 현재가치 합이 기업가치의 −50%보다 크다(먼 미래 가정 민감). 성장 기업은 100%를 넘을 수 있어 100%가 아니라 150%(ADR-039)'
+    source: 치입 운영 가정 — McKinsey Valuation 7판 계속가치 비중 해석(성장 기업은 계속가치가 기업가치의 100%를 넘을 수 있다), 문헌 문턱 값 미확인(2026-11-14)
+  fit:
+    method: 주의 종목과 정상 종목의 12개월 뒤 실현 수익률 대비 DCF 오차 분산 비교, 문턱 후보 1.25·1.5·2.0(표본 외)
+    target: DCF 오차 분산
+    data: 앞으로의 성과(리포트 원장·rating_ledger)
+    last_fit: null
+    oos_metric: null
+- id: prm-v2-fy-range
+  model: valuation.v2.fiscal
+  binding: scripts/valuation/v2/fiscal.py#OFFSET_RANGE
+  value: [-0.75, 1.0]
+  unit: 년(평가일 → rev0 회계연도 끝)
+  status: prior
+  prior:
+    value: [-0.75, 1.0]
+    basis: 'rev0는 진행 중이거나 막 끝난 회계연도 — 1년 넘게 남았으면 아직 시작도 안 한 해(라벨 해석 오류, 예: 3월 결산을 12월로 본 TOWA 1.13년), 0.75년 넘게 지났으면 낡은 컨센서스라 시점 보정을 하지 않는다(ADR-039)'
+    source: 치입 해석 관문 — 피팅 대상 아님(날짜 해석 오류를 거르는 범위)
+  fit:
+    method: 고정(해석 관문)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null

@@ -125,8 +125,9 @@ def steady_state_table(wacc, g, tax=0.21, roics=(0.10, 0.15, 0.20, 0.30, 0.50), 
     return rows
 
 
-def analyze(dp, base_drivers, mcap, wacc, g_term):
-    """datapack + v2 기본 시나리오 → 멀티플 분석 dict"""
+def analyze(dp, base_drivers, mcap, wacc, g_term, dcf_ok=True):
+    """datapack + v2 기본 시나리오 → 멀티플 분석 dict. dcf_ok False면(DCF 신뢰 점검 '산정 불가', ADR-039) DCF 내재 배수·합리적 멀티플을 내지 않는다
+    — 적자 지속 종목의 DCF로 만든 '합리적 멀티플'이 멀티플 선정(펀더멘털 조정)에 들어가던 문제"""
     tax = dp.get("tax", 0.21)
     fin = dp.get("financials") or {}
     # 시장 EV도 DCF EV와 같은 순차입(리스 포함, run.load_company → leases.apply)으로 — 리스를 한쪽만 넣으면 내재 배수가 부풀었다(2026-11-14 점검: LTH 0.26배 시총)
@@ -154,6 +155,8 @@ def analyze(dp, base_drivers, mcap, wacc, g_term):
     # 대상 내재 = 시장 멀티플 ÷ (시장 값 ÷ v2 기본 시나리오 값). P/E는 지분끼리(시총 ÷ DCF 지분가치), EV 배수는 EV끼리 — P/E에 EV 비율을 쓰면 차입이 큰 종목에서 틀린다(2026-11-14 점검)
     eq_dcf = ev_dcf - net_debt
     mkt_ratio = (mcap / eq_dcf if eq_dcf > 0 else None) if basis == "pe_fwd" else (ev / ev_dcf if ev_dcf > 0 else None)
+    if not dcf_ok:
+        mkt_ratio = None
     tw = cur / mkt_ratio if cur and mkt_ratio else None
     ratios = [x["ratio"] for x in peers if x["ratio"]]
     acts, warrs = [x["market"] for x in peers], [x["warranted"] for x in peers if x["warranted"]]

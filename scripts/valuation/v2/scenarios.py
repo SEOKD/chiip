@@ -59,4 +59,5 @@ def drivers(company, scen, wacc, g_term):
             "g_term": scen.get("g_term", g_term), "ronic": ronic, "net_debt": m["net_debt"], "shares": m["shares"],
             "nonop": company.get("nonop", 0.0), "minority": company.get("minority", 0.0),
             "midyear": company.get("midyear", True),
-            "kd": company.get("kd", 0.05 * (1 - company["tax"])), "kd_debt": company.get("kd_debt")}   # 순차입·순현금의 세후 이자(미 10년 5% 근사) — equity_at에서 사용
+            "kd": company.get("kd", 0.05 * (1 - company["tax"])), "kd_debt": company.get("kd_debt"),   # 순차입·순현금의 세후 이자(미 10년 5% 근사) — equity_at에서 사용
+            "fy_offset": company.get("fy_offset")}   # 평가일 → rev0 회계연도 끝(년, fiscal.apply) — dcf.value 할인 시점(ADR-039)

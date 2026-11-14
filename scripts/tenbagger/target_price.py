@@ -70,14 +70,16 @@ def place(tilt):
 
 
 def build(s, dcf_ratio, ke, stage, view, daily, net_debt, shares, cfg, street=None):
-    """{'target','upside','tilt','place','reach','factors','judge','why'} — s는 report_layout.scenario_build 결과, dcf_ratio는 기본 DCF 값 ÷ 시가총액"""
+    """{'target','upside','tilt','place','reach','factors','judge','why'} — s는 report_layout.scenario_build 결과, dcf_ratio는 기본 DCF 값 ÷ 시가총액.
+    dcf_ratio가 None이면(DCF 신뢰 점검 '산정 불가', ADR-039) DCF 요인을 빼고 나머지 비중을 다시 맞춘다 — 재료가 없는 차트 요인과 같은 규칙"""
     w = cfg["weights"]
     chart = chart_target(daily, cfg["chart"])
-    rows = [{"key": "scenario", "name": "시나리오 확률 가중", "price": s["weighted"], "why": "약세·기본·강세 확률로 가중"},
-            {"key": "dcf", "name": "DCF 12개월 뒤 값", "price": s["price"] * dcf_ratio * (1 + ke), "why": f"기본 DCF를 자기자본비용 {ke:.1%}로 1년 굴림"},
-            {"key": "narrative", "name": "내러티브 프리미엄 여력", "price": narrative_price(s, stage, cfg["narrative_room"], net_debt, shares), "why": f"단계 {stage or '미확인'}, 기본 이익에 옮긴 멀티플 적용"}]
+    rows = [{"key": "scenario", "name": "시나리오 확률 가중", "price": s["weighted"], "why": "약세·기본·강세 확률로 가중"}]
+    if dcf_ratio is not None:
+        rows.append({"key": "dcf", "name": "DCF 12개월 뒤 값", "price": s["price"] * dcf_ratio * (1 + ke), "why": f"기본 DCF를 자기자본비용 {ke:.1%}로 1년 굴림"})
+    rows.append({"key": "narrative", "name": "내러티브 프리미엄 여력", "price": narrative_price(s, stage, cfg["narrative_room"], net_debt, shares), "why": f"단계 {stage or '미확인'}, 기본 이익에 옮긴 멀티플 적용"})
     if chart:
-        rows.insert(2, {"key": "chart", "name": "차트 상승 여력", **chart})
+        rows.insert(len(rows) - 1, {"key": "chart", "name": "차트 상승 여력", **chart})
     total = sum(w[x["key"]] for x in rows)
     for x in rows:
         x.update({"weight": w[x["key"]] / total, "signal": signal(x["price"], s)})

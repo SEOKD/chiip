@@ -255,7 +255,9 @@ def body_gate(go_list, fetch=None, judge=None):
             print(f"헤드라인 알파 공유 {it.get('item_id')}: {it['_headline'].get('component')} {it['_headline'].get('move'):+.1f}")
         else:
             h = fulltext.hold(it, lvl, why, it.get("fulltext"), now)
-            print(f"본문 미확인 보류 {it.get('item_id')} ({h['tries']}회): {(it.get('fulltext') or {}).get('why', '열람 전')[:120]}")
+            # 콘솔이 cp949면 사유 문구의 줄표(—)에서 UnicodeEncodeError로 회차가 멈출 수 있다(2026-11-14 점검) — 못 쓰는 글자는 바꿔 찍는다
+            msg = f"본문 미확인 보류 {it.get('item_id')} ({h['tries']}회): {(it.get('fulltext') or {}).get('why', '열람 전')[:120]}"
+            print(msg.encode(sys.stdout.encoding or "utf-8", "replace").decode(sys.stdout.encoding or "utf-8"))
     for h in fulltext.held():   # 지난 회차 보류 건 다시 열기
         k = h["item"].get("item_id")
         if any(it.get("item_id") == k for it, _, _ in out) or any(it.get("item_id") == k for it, _, _ in go_list):

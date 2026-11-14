@@ -76,11 +76,13 @@ def config():
 
 
 def rating(up, rr, dcf_up, cfg):
-    """구매 등급(마스터 지시 2026-10-31) — 목표주가 업사이드(2026-11-01)·손익비·DCF 교차 확인으로 규칙이 고른다. 모델이 고르지 않는다. 개인 포지션을 읽지 않는다"""
+    """구매 등급(마스터 지시 2026-10-31) — 목표주가 업사이드(2026-11-01)·손익비·DCF 교차 확인으로 규칙이 고른다. 모델이 고르지 않는다. 개인 포지션을 읽지 않는다.
+    dcf_up이 None이면(DCF 신뢰 점검 '산정 불가' — 적자 지속·시나리오 순서 깨짐, ADR-039) 교차 확인을 할 수 없다: Strong Buy는 주지 않고,
+    Buy는 DCF 조건 없이 업사이드·손익비로만 고른다(예전에는 −2,550% 같은 무의미한 값이 Buy를 막거나 통과시켰다)"""
     r = cfg["rating"]
-    if up >= r["strong_buy"]["upside"] and rr >= r["strong_buy"]["rr"] and dcf_up >= r["strong_buy"]["dcf_min"]:
+    if dcf_up is not None and up >= r["strong_buy"]["upside"] and rr >= r["strong_buy"]["rr"] and dcf_up >= r["strong_buy"]["dcf_min"]:
         return "Strong Buy"
-    if up >= r["buy"]["upside"] and rr >= r["buy"]["rr"] and dcf_up >= r["buy"]["dcf_min"]:
+    if up >= r["buy"]["upside"] and rr >= r["buy"]["rr"] and (dcf_up is None or dcf_up >= r["buy"]["dcf_min"]):
         return "Buy"
     if up >= r["neutral"]["upside"]:
         return "Neutral"
@@ -374,8 +376,13 @@ def valuation_section(s, sel, mm, r, co, sec, name, decision_line, pt, dp=None):
     mcap = r["mcap"]
     base, bull, bear = r["scenarios"]["base"], r["scenarios"]["bull"], r["scenarios"]["bear"]
     cur = s["sym"]
+    dq = r.get("dcf_quality") or {"usable": True, "flags": [], "warns": []}   # DCF 신뢰 점검(ADR-039)
+    dcf_txt = (f"DCF 기준 업사이드는 기본 {base['v0'] - 1:+.0%}, 강세 {bull['v0'] - 1:+.0%}, 약세 {bear['v0'] - 1:+.0%}다(WACC {r['coc']['wacc']:.1%})." if dq["usable"]
+               else f"DCF는 목표주가와 등급에 쓰지 않았다 — {' · '.join(dq['flags'])}.")
+    if dq["usable"] and dq.get("warns"):
+        dcf_txt += f" DCF 주의: {' · '.join(dq['warns'])}."
     B = [{"type": "hl", "text": f"**목표주가 {cur}{pt['target']:,.0f}, 업사이드 {s['upside']:+.0%}.** 자리는 {pt['place']}이고 도달 확률은 약 {pt['reach']:.0%}다. 기본 {cur}{s['base']:,.0f}, 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%}), 약세 {cur}{s['bear']:,.0f}({s['downside']:+.0%}). "
-                                f"DCF 기준 업사이드는 기본 {base['v0'] - 1:+.0%}, 강세 {bull['v0'] - 1:+.0%}, 약세 {bear['v0'] - 1:+.0%}다(WACC {r['coc']['wacc']:.1%})."}]
+                                + dcf_txt}]
     B.append({"type": "chart", "chart": target_price.chart(pt, s)})
     B.append({"type": "boxes", "items": [{"title": f"{k['name']} {cur}{k['value']:,.0f} ({k['value'] / s['price'] - 1:+.0%})", "tag": f"확률 {k['prob']:.0%}",
                                           "lines": [["가정", f"{k['multiple']:.1f}배 × {s['metric_name']} " + (f"{cur}{k['eps']:.2f}" if k.get("eps") is not None else f"{cur}{k['ebitda']:,.2f}B")], ["근거", k.get("why", "")]]} for k in s["cases"]]})
@@ -440,10 +447,11 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     margin_sec, supply_sec, capacity_sec, customer_sec = margin_view.section(dp), supply_view.section(dp), capacity_view.section(dp), customer_view.section(dp)   # 재료가 없으면 여기서 멈춘다
     shares = r["market"]["shares"]   # v2와 같은 완전 희석 주식 수 — 시총 ÷ datapack 가격으로 되짚으면 시세 파일이 더 새로울 때 주식 수가 틀렸다(2026-11-14 점검)
     s = scenario_build(d, dp, mm, sel, shares, co)
-    dcf_up = r["scenarios"]["base"]["v0"] - 1
+    dq = r.get("dcf_quality") or {"usable": True, "flags": [], "warns": [], "status": "정상"}   # DCF 신뢰 점검(ADR-039)
+    dcf_up = r["scenarios"]["base"]["v0"] - 1 if dq["usable"] else None
     cfg = config()
     prof = dp["profile"]
-    pt = target_price.build(s, r["scenarios"]["base"]["v0"], r["coc"]["ke"], (dp.get("narrative") or {}).get("stage"), dp.get("target_view"), flow.load_ohlcv(entity),
+    pt = target_price.build(s, r["scenarios"]["base"]["v0"] if dq["usable"] else None, r["coc"]["ke"], (dp.get("narrative") or {}).get("stage"), dp.get("target_view"), flow.load_ohlcv(entity),
                             r["market"].get("net_debt", (prof.get("debt") or 0) - (prof.get("cash") or 0)), shares, cfg["target_price"], ((dp.get("consensus") or {}).get("ratings") or {}).get("target_mean"))
     s.update({"weighted_up": s["upside"], "target": pt["target"], "upside": pt["upside"]})
     s["chart"].update({"target": pt["target"]})
@@ -451,12 +459,12 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     v = d.setdefault("verdict", {})
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
     cur = sym(dp)
-    v.update({"rating": grade, "rule_rating": deb["rule"], "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4), "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
+    v.update({"rating": grade, "rule_rating": deb["rule"], "upside": round(s["upside"], 4), "downside": round(s["downside"], 4), "rr": round(s["rr"], 3), "price": s["price"], "bear": s["bear"], "bull": s["bull"], "dcf_up": round(dcf_up, 4) if dcf_up is not None else None, "dcf_status": dq["status"], "dcf_flags": dq["flags"] + dq["warns"], "target": pt["target"], "target_text": f"{cur}{pt['target']:,.0f}", "target_place": pt["place"], "target_reach": round(pt["reach"], 3),
               "weighted_upside": round(s["weighted_up"], 4), "upside_basis": f"목표주가 {cur}{pt['target']:,.0f}"})
     v.pop("confidence", None)
     m_short = {"label_short": sel["label"], "current": sel["now"][0], "peer_p50": sel["peer_p50"], "basis": sel["basis"]}
     d["tiles"] = dashboard(dp, s, m_short, alpha, grade, r["mcap"], r["unit"], entity)
-    upline = f"**목표주가 {cur}{pt['target']:,.0f}({s['upside']:+.0%}), {pt['place']}다.** 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})는 {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}. 손익비 {s['rr']:.1f}, DCF 기준 업사이드 {dcf_up:+.0%}."
+    upline = f"**목표주가 {cur}{pt['target']:,.0f}({s['upside']:+.0%}), {pt['place']}다.** 강세 {cur}{s['bull']:,.0f}({s['bull_up']:+.0%})는 {sel['label']} {s['cases'][-1]['multiple']:.1f}배를 강세 {s['metric_name']}에 적용한 값이다. 기본 {cur}{s['base']:,.0f}, 약세 {cur}{s['bear']:,.0f}. 손익비 {s['rr']:.1f}, " + (f"DCF 기준 업사이드 {dcf_up:+.0%}." if dcf_up is not None else f"DCF는 산정하지 않았다({dq['flags'][0]}).")
     keep = [x for x in d.get("summary") or [] if not x.get("auto")]
     auto = [{"q": "기업가치를 결정하는 내러티브", "a": ((dp.get("narrative") or {}).get("lead") or {}).get("summary", ""), "auto": True},
             {"q": "밸류에이션 모델로 본 주가 상방은 어디까지인가?", "a": upline, "auto": True}]

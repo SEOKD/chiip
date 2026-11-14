@@ -42,7 +42,7 @@ def scenario(d):
     """리포트의 (발행가, 약세, 강세, DCF 값). 2026-11-02 뒤 리포트는 verdict에 있고, 그 전 리포트는 업사이드·손익비에서 되짚는다"""
     v = d.get("verdict") or {}
     if v.get("price") and v.get("bear") and v.get("bull"):
-        return v["price"], v["bear"], v["bull"], v["price"] * (1 + v.get("dcf_up", 0))
+        return v["price"], v["bear"], v["bull"], (v["price"] * (1 + v["dcf_up"]) if v.get("dcf_up") is not None else None)   # None = DCF 산정 불가(ADR-039)
     m = NUM.search(str(tile(d, "주가") or ""))
     price = float(m.group().replace(",", "")) if m else None
     if not price or v.get("downside") is None or not v.get("rr"):
@@ -85,7 +85,7 @@ def regrade(r, price, cfg):
     rr = report_layout.reward_risk(price, r["bull"], r["bear"])
     if rr is None:
         return "Neutral", up, 0.0
-    return report_layout.rating(up, rr, r["dcf"] / price - 1, cfg), up, rr
+    return report_layout.rating(up, rr, r["dcf"] / price - 1 if r.get("dcf") is not None else None, cfg), up, rr
 
 
 def judge(r, price, alpha, c, cfg, today, killed=()):

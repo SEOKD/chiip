@@ -46,7 +46,7 @@ class TestCostBridge(unittest.TestCase):
         steps = {n: v for n, v, _ in c["steps"]}
         self.assertAlmostEqual(100 - (100 - steps["매출총이익"]), steps["매출총이익"])
         self.assertAlmostEqual(steps["매출"] + steps["매출원가"] if "매출원가" in steps else steps["매출총이익"], steps["매출총이익"], delta=0.5)
-        self.assertTrue(rh.chart_waterfall({"steps": [{"label": n, "value": v, "kind": k} for n, v, k in c["steps"]]}).startswith("<svg"))
+        self.assertIn("<svg", rh.chart_waterfall({"steps": [{"label": n, "value": v, "kind": k} for n, v, k in c["steps"]]}))   # 그림 앞에 누르면 값이 뜨는 칸(.cinfo, 2026-11-14)
 
     def test_elastic_recovers_variable_cost(self):
         q = [{"rev": 100 + 10 * i, "cogs": 30 + 0.6 * (100 + 10 * i)} for i in range(10)]

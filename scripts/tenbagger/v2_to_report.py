@@ -152,7 +152,7 @@ def build(entity, draws=3000):
         dp = json.loads(dp_path.read_text(encoding="utf-8"))
         # 멀티플(2026-10-29 마스터 지시): 과거 레인지 → 동종 레인지 → ROIC·성장·이익률 기반 펀더멘털 내재 → 할인·프리미엄 분해 → 합리적 멀티플
         import multiples
-        mm = multiples.analyze(dp, base_d, mcap, c["wacc"], r["g_term"])
+        mm = multiples.analyze(dp, base_d, mcap, c["wacc"], r["g_term"], (r.get("dcf_quality") or {}).get("usable", True))   # DCF 산정 불가면 내재 배수 없음(ADR-039)
         r["_mm"] = mm   # 내러티브 절이 회사 고유 프리미엄을 쓴다
         if mm.get("current") and mm["peers"]:
             blocks.extend(multiples.report_blocks(mm, r["unit"], mcap, co.get("name", entity)))

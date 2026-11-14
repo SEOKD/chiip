@@ -1,0 +1,328 @@
+# 회계연도 끝(MM-DD) 캐시 — scripts/valuation/v2/fiscal.py --sync(SEC submissions fiscalYearEnd). 손으로 고칠 땐 source에 근거
+'6315':
+  md: 03-31
+  source: TOWA 결산기 3월(3月期) — 회사 IR 표기, 2026-11-14 입력(원문 대조 필요)
+'7806':
+  md: 09-30
+  source: MTG 결산기 9월(9月期) — 회사 IR 표기, 2026-11-14 입력(원문 대조 필요). 지역 기본값 3월이면 6개월 어긋난다
+'7867':
+  md: 03-31
+  source: 타카라토미 결산기 3월(3月期) — 회사 IR 표기, 2026-11-14 입력(원문 대조 필요)
+AAOI:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AAON:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ACMR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AEHR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AEIS:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AESI:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AGX:
+  md: 01-31
+  source: SEC submissions fiscalYearEnd 0131(2026-11-14)
+AIP:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ALAB:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ALGM:
+  md: 03-31
+  source: SEC submissions fiscalYearEnd 0331(2026-11-14)
+AMAT:
+  md: 10-26
+  source: SEC submissions fiscalYearEnd 1026(2026-11-14)
+AMKR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AMPX:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+APP:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ASML:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+AVGO:
+  md: 11-01
+  source: SEC submissions fiscalYearEnd 1101(2026-11-14)
+AXTI:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+BDC:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+BE:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+BKR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+BKSY:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+BUR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+BW:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+CACI:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+CBRS:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+CIEN:
+  md: 10-31
+  source: SEC submissions fiscalYearEnd 1031(2026-11-14)
+CIFR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+CLFD:
+  md: 09-30
+  source: SEC submissions fiscalYearEnd 0930(2026-11-14)
+CLS:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+COHR:
+  md: 06-30
+  source: SEC submissions fiscalYearEnd 0630(2026-11-14)
+COHU:
+  md: 12-26
+  source: SEC submissions fiscalYearEnd 1226(2026-11-14)
+CPAY:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+CRDO:
+  md: 04-29
+  source: SEC submissions fiscalYearEnd 0429(2026-11-14)
+CRL:
+  md: 12-27
+  source: SEC submissions fiscalYearEnd 1227(2026-11-14)
+CRWV:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+DELL:
+  md: 01-29
+  source: SEC submissions fiscalYearEnd 0129(2026-11-14)
+DY:
+  md: 01-30
+  source: SEC submissions fiscalYearEnd 0130(2026-11-14)
+EROC:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+FIX:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+FLEX:
+  md: 03-31
+  source: SEC submissions fiscalYearEnd 0331(2026-11-14)
+FN:
+  md: 06-27
+  source: SEC submissions fiscalYearEnd 0627(2026-11-14)
+FORM:
+  md: 12-26
+  source: SEC submissions fiscalYearEnd 1226(2026-11-14)
+FRVO:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+FTAI:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+FWONK:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+GEV:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+GLW:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+GNRC:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+HII:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+HNRG:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ICHR:
+  md: 12-27
+  source: SEC submissions fiscalYearEnd 1227(2026-11-14)
+IESC:
+  md: 09-30
+  source: SEC submissions fiscalYearEnd 0930(2026-11-14)
+INIO:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+KLAC:
+  md: 06-30
+  source: SEC submissions fiscalYearEnd 0630(2026-11-14)
+LASR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+LBRT:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+LITE:
+  md: 06-27
+  source: SEC submissions fiscalYearEnd 0627(2026-11-14)
+LPTH:
+  md: 06-30
+  source: SEC submissions fiscalYearEnd 0630(2026-11-14)
+LTH:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+MPWR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+MTD:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+MTSI:
+  md: 10-03
+  source: SEC submissions fiscalYearEnd 1003(2026-11-14)
+MTZ:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+MU:
+  md: 09-02
+  source: SEC submissions fiscalYearEnd 0902(2026-11-14)
+MVIS:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+MWH:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+MYRG:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+NLST:
+  md: 01-02
+  source: SEC submissions fiscalYearEnd 0102(2026-11-14)
+NPK:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+NRG:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+NVDA:
+  md: 01-31
+  source: SEC submissions fiscalYearEnd 0131(2026-11-14)
+NVT:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+OKLO:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ORCL:
+  md: 05-31
+  source: SEC submissions fiscalYearEnd 0531(2026-11-14)
+ORN:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+PLPC:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+POWL:
+  md: 09-30
+  source: SEC submissions fiscalYearEnd 0930(2026-11-14)
+PRIM:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+PSIX:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+PUMP:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+PWR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+RIOT:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+RMBS:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+ROG:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+SANM:
+  md: 10-03
+  source: SEC submissions fiscalYearEnd 1003(2026-11-14)
+SDRL:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+SEI:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+SITM:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+SNDK:
+  md: 06-28
+  source: SEC submissions fiscalYearEnd 0628(2026-11-14)
+STRL:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+STX:
+  md: 06-27
+  source: SEC submissions fiscalYearEnd 0627(2026-11-14)
+TER:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+TTMI:
+  md: 12-28
+  source: SEC submissions fiscalYearEnd 1228(2026-11-14)
+U:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+UCTT:
+  md: 12-30
+  source: SEC submissions fiscalYearEnd 1230(2026-11-14)
+UTI:
+  md: 09-30
+  source: SEC submissions fiscalYearEnd 0930(2026-11-14)
+VECO:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+VIAV:
+  md: 06-27
+  source: SEC submissions fiscalYearEnd 0627(2026-11-14)
+VICR:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+VMI:
+  md: 12-26
+  source: SEC submissions fiscalYearEnd 1226(2026-11-14)
+VRT:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+VSH:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+VST:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)
+WDC:
+  md: 07-03
+  source: SEC submissions fiscalYearEnd 0703(2026-11-14)
+WLDN:
+  md: 01-01
+  source: SEC submissions fiscalYearEnd 0101(2026-11-14)
+XE:
+  md: 12-31
+  source: SEC submissions fiscalYearEnd 1231(2026-11-14)

@@ -45,8 +45,21 @@ def project(d):
     return rows, ic
 
 
+def timing(n, off, midyear):
+    """연도별 (센 몫, 할인 시점 년) — off = 평가일부터 기준연도(rev0 해) 끝까지(년). 음수면 1년차가 이미 시작돼 지난 몫은 세지 않는다.
+    off = 0이면 (1, t − 0.5)(연중) 또는 (1, t)(연말) — 예전 계산과 같다(ADR-039)"""
+    out = []
+    for t in range(1, n + 1):
+        s, e = off + t - 1, off + t
+        a = max(s, 0.0)
+        out.append((max(0.0, e - a), (a + e) / 2 if midyear else e))
+    return out
+
+
 def value(d, midyear=None):
-    """midyear: None이면 d['midyear'](기본 False). McKinsey 관행은 현금흐름이 연중 고르게 발생한다고 보고 EV × (1+WACC)^0.5"""
+    """midyear: None이면 d['midyear'](기본 False). McKinsey 관행은 현금흐름이 연중 고르게 발생한다고 보고 EV × (1+WACC)^0.5.
+    d['fy_offset'](평가일 → rev0 회계연도 끝, 년, scripts/valuation/v2/fiscal.py)가 있으면 연도별 할인 시점을 평가일 기준으로 잡는다 —
+    rev0 해가 남았으면 남은 몫의 현금흐름을 더하고(1년차를 그해 성장률로 되돌린 근사), 이미 끝났으면 1년차의 지난 몫은 뺀다(ADR-039)"""
     midyear = d.get("midyear", False) if midyear is None else midyear
     rows, ic_T = project(d)
     w, g = d["wacc"], d["g_term"]
@@ -54,21 +67,29 @@ def value(d, midyear=None):
     if w <= g:
         raise ValueError("WACC가 영구성장률보다 커야 한다")
     n = len(rows)
-    pv = [r["fcff"] / (1 + w) ** r["t"] for r in rows]
     nopat_next = rows[-1]["nopat"] * (1 + g)
     cv = nopat_next * (1 - g / ronic) / (w - g)
-    pv_cv = cv / (1 + w) ** n
-    ev = sum(pv) + pv_cv
+    ev_end = sum(r["fcff"] / (1 + w) ** r["t"] for r in rows) + cv / (1 + w) ** n   # 연말 할인 — 경제적 이익 항등 검증용
     # 경제적 이익 항등 검증(같은 연말 할인)
     ep_pv = sum((r["nopat"] - w * r["ic_open"]) / (1 + w) ** r["t"] for r in rows)
     ep_next = nopat_next - w * ic_T
     cv_ep = ep_next / w + nopat_next * (g / ronic) * (ronic - w) / (w * (w - g))
     ev_ep = d["ic0"] + ep_pv + cv_ep / (1 + w) ** n
-    adj = (1 + w) ** 0.5 if midyear else 1.0
-    ev *= adj
+    off = d.get("fy_offset")
+    if off is None:
+        adj = (1 + w) ** 0.5 if midyear else 1.0
+        ev, pv_cv, stub = ev_end * adj, cv / (1 + w) ** n * adj, 0.0
+    else:
+        pv = sum(f * r["fcff"] / (1 + w) ** tau for (f, tau), r in zip(timing(n, off, midyear), rows))
+        stub = 0.0
+        if off > 0:   # rev0 해의 남은 몫 — 1년차 FCFF를 1년차 성장률로 되돌린 값으로 근사. 해 구간 [off − 1, off] 중 평가일 뒤만 센다
+            a0 = max(off - 1.0, 0.0)
+            stub = (off - a0) * rows[0]["fcff"] / (1 + d["growth"][0]) / (1 + w) ** ((a0 + off) / 2 if midyear else off)
+        pv_cv = cv / (1 + w) ** (off + n - (0.5 if midyear else 0.0))
+        ev = pv + stub + pv_cv
     eq = ev - d["net_debt"] + d.get("nonop", 0.0) - d.get("minority", 0.0)
-    return {"ev": ev, "equity": eq, "per_share": eq / d["shares"], "cv_share": pv_cv * adj / ev if ev else None,
-            "ev_ep": ev_ep * adj, "ep_gap": abs(ev_ep * adj - ev) / abs(ev) if ev else None, "rows": rows}
+    return {"ev": ev, "equity": eq, "per_share": eq / d["shares"], "cv_share": pv_cv / ev if ev else None, "stub": stub,
+            "ev_ep": ev_ep * (ev / ev_end) if ev_end else None, "ep_gap": abs(ev_ep - ev_end) / abs(ev_end) if ev_end else None, "rows": rows}
 
 
 def equity_at(d, year, midyear=None):

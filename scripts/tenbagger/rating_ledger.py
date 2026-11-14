@@ -46,10 +46,10 @@ def save(rs):
 
 
 def rule(up, rr, dcf_up, r):
-    """report_layout.rating과 같은 규칙(여기서는 그림자 비교의 기준선)"""
-    if up >= r["strong_buy"]["upside"] and rr >= r["strong_buy"]["rr"] and dcf_up >= r["strong_buy"]["dcf_min"]:
+    """report_layout.rating과 같은 규칙(여기서는 그림자 비교의 기준선). dcf_up None = DCF 산정 불가(ADR-039): Strong Buy 없음, Buy는 DCF 조건 없이"""
+    if dcf_up is not None and up >= r["strong_buy"]["upside"] and rr >= r["strong_buy"]["rr"] and dcf_up >= r["strong_buy"]["dcf_min"]:
         return "Strong Buy"
-    if up >= r["buy"]["upside"] and rr >= r["buy"]["rr"] and dcf_up >= r["buy"]["dcf_min"]:
+    if up >= r["buy"]["upside"] and rr >= r["buy"]["rr"] and (dcf_up is None or dcf_up >= r["buy"]["dcf_min"]):
         return "Buy"
     if up >= r["neutral"]["upside"]:
         return "Neutral"
@@ -111,7 +111,7 @@ def log():
         key = (d.get("date") or p.stem[:8], d.get("ticker") or p.stem.split("_", 1)[-1])
         if key in have:
             continue
-        up, rr, du = float(v["upside"]), float(v.get("rr") or 0), float(v.get("dcf_up") or 0)
+        up, rr, du = float(v["upside"]), float(v.get("rr") or 0), (float(v["dcf_up"]) if v.get("dcf_up") is not None else None)   # None = DCF 산정 불가(ADR-039)
         vol = ann_vol(key[1], lab["vol_scaled"]["window"])
         rs.append({"date": key[0], "ticker": key[1], "rating": v["rating"], "rule_rating": v.get("rule_rating") or rule(up, rr, du, r), "price": v.get("price"),
                    "upside": up, "rr": rr, "dcf_up": du, "vol": vol or "", "hyst": hyst(up, rr, du, r, last.get(key[1]), lab["hysteresis"]["band"]),
