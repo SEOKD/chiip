@@ -70,12 +70,17 @@ FIT_JS = ("<script>(function(){"
           # 꺾은선 점을 누르면(마우스·터치) 그 점의 시리즈·x·y 값을 차트 위 칸에 보여 주고 점을 표시한다(마스터 지시 2026-11-14 '분기 비용 비중 추이')
           "document.addEventListener('click',function(e){var k=e.target.closest&&e.target.closest('.lp');if(!k)return;var sv=k.ownerSVGElement,box=sv&&sv.parentNode.querySelector('.cinfo');"
           "if(!box)return;var d=k.dataset;box.innerHTML='<b>'+d.n+'</b> '+d.x+' <b>'+d.v+'</b>'+(d.m?' · '+d.m:'');"
-          "sv.querySelectorAll('.lp.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')})})();</script>")
+          "sv.querySelectorAll('.lp.on').forEach(function(x){x.classList.remove('on')});k.classList.add('on')});"
+          # 막대를 누르면(마우스·터치) 그 막대의 이름·값(<title>)을 그림 바로 위 칸에 보여 주고 막대에 테두리(마스터 지시 2026-11-14 "바 그래프가 있다면 바를 눌렀을 때 값이 뜨도록")
+          # 모든 그림의 제목 달린 막대에 적용 — 칸이 없는 그림은 그림 앞에 칸을 만든다. 꺾은선 점(.lp)·캔들(.ck)은 위 처리기가 맡는다
+          "document.addEventListener('click',function(e){var r=e.target.closest&&e.target.closest('svg rect');if(!r||r.closest('.lp,.ck'))return;var ti=r.querySelector('title');if(!ti)return;"
+          "var sv=r.ownerSVGElement,box=sv.previousElementSibling;if(!box||!box.classList.contains('cinfo')){box=document.createElement('div');box.className='cinfo';sv.parentNode.insertBefore(box,sv)}"
+          "box.textContent=ti.textContent;sv.querySelectorAll('rect.on').forEach(function(x){x.classList.remove('on')});r.classList.add('on')})})();</script>")
 CSS = """.idot{width:16px;height:16px;margin:-8px 0 0 -8px;border:1.5px solid;border-radius:50%;background:var(--bg);font-size:10px;font-weight:700;line-height:13px;text-align:center;opacity:.92}
 .ilab{font-size:12.5px;line-height:1.35;font-weight:500;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}.ilist{display:none;margin:8px 0 0;padding-left:0;list-style:none;font-size:14px}.ilist li{margin:2px 0}
 @media (max-width:640px){.iwrap{padding:0!important}.iwrap .ilab,.iwrap .ilines{display:none}.ilist{display:block}}
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}.lp{cursor:pointer}.lp.on .dot{stroke:var(--fg);stroke-width:3}
+.cinfo{font-size:13px;min-height:1.6em;margin:2px 0 4px}.ck{cursor:pointer}.ck:hover,.ck.on{fill:var(--fg);fill-opacity:.08}.lp{cursor:pointer}.lp.on .dot{stroke:var(--fg);stroke-width:3}svg rect:has(title){cursor:pointer}svg rect.on{stroke:var(--fg);stroke-width:2}
 :root{--bg:#fff;--fg:#1a1d23;--mut:#5d6470;--line:#e6e8ec;--card:#f6f8fb;--a:#1a1d23;--b:#d0452f;--c:#2a5bd7;--d:#1f8a5b;--e:#b07d10;--hl:#fff5d6}
 @media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}}
 :root[data-theme=dark]{--bg:#14161a;--fg:#e8eaee;--mut:#9aa1ad;--line:#2b2f36;--card:#1c1f25;--a:#f2f3f5;--b:#ff7d66;--c:#7aa2ff;--d:#4cc38a;--e:#e0b04a;--hl:#2e2a1c;color-scheme:dark}
@@ -802,7 +807,7 @@ def chart_roic(c):
         x1, x2 = sorted((X(0), X(v)))
         inside = x2 - x1 > 52   # 값은 막대 안쪽 끝에 흰 글씨 — WACC 점선과 겹치지 않게
         g.append(f'<text x="{L + LW - 8}" y="{y + 12}" text-anchor="end" style="fill:var(--fg);font-size:12px">{t(r["label"])}</text>'
-                 f'<rect x="{x1:.1f}" y="{y + 1}" width="{max(x2 - x1, 2):.1f}" height="15" rx="3" fill="{col}"/>'
+                 f'<rect x="{x1:.1f}" y="{y + 1}" width="{max(x2 - x1, 2):.1f}" height="15" rx="3" fill="{col}"><title>{t(r["label"])}: {v:.1f}%</title></rect>'
                  + (f'<text x="{x2 - 5:.1f}" y="{y + 13}" text-anchor="end" style="fill:#fff;font-size:12px;font-weight:600">{v:.1f}%</text>' if inside
                     else f'<text x="{x2 + 4:.1f}" y="{y + 13}" style="font-size:12px;font-weight:600">{v:.1f}%</text>'))
         y += 24
