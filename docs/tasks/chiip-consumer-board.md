@@ -1,6 +1,6 @@
 # chiip-consumer-board — 소비 트렌드 보드 주간 갱신 (마스터 지시 2026-11-15 "주간 갱신 설정")
 
-매주 토요일 09:30 KST. 대시보드 https://claude.ai/artifact/N2m2yXnCF1Us7owpj6Qcpk (비공개, Data 유형)의 고정 자료 파일 3개를 최신 수집분으로 바꾼다.
+매주 일요일 09:00 KST(2026-11-15 마스터 지시로 토요일 09:30에서 변경). 대시보드 https://claude.ai/artifact/N2m2yXnCF1Us7owpj6Qcpk (비공개, Data 유형)의 고정 자료 파일 3개를 최신 수집분으로 바꾼다.
 수집은 run_hourly가 이미 한다(radar/consumer_macro.py 6시간·radar/consumer_discovery.py 하루 1회). 이 작업은 보드를 다시 만들고 올리기만 한다 — 해석·텔레그램 발송 없음.
 
 ## 절차
