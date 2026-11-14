@@ -48,7 +48,10 @@ COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e
 # 브라우저가 실제 글자 폭을 잰 뒤 viewBox를 글자까지 넓힌다 — 축 숫자·끝 이름표·범례가 오른쪽·왼쪽 끝에서 잘리던 문제(2026-11-08 AXTI 리포트 23곳 실측)
 FIT_JS = ("<script>(function(){"
           # 그래프 글자 최소 크기(마스터 지시 2026-11-08 모바일 QA) — viewBox 폭 ÷ 화면 폭만큼 글자를 키워 화면에서 11px 이상
-          "function grow(s){var w=s.clientWidth;if(!w)return;if(!s.dataset.w0)s.dataset.w0=s.viewBox.baseVal.width;var k=s.dataset.w0/w;s.querySelectorAll('text').forEach(function(t){if(!t.dataset.f0)t.dataset.f0=parseFloat(getComputedStyle(t).fontSize);var f=+t.dataset.f0;t.style.fontSize=(f/k<11?11*k:f)+'px'});var seen=[];s.querySelectorAll('text').forEach(function(t){t.style.display='';var b=t.getBBox();if(!b.width)return;if(seen.some(function(o){var dy=Math.min(b.y+b.height,o.y+o.height)-Math.max(b.y,o.y);return b.x<o.x+o.width-0.5&&o.x<b.x+b.width-0.5&&dy>0.45*Math.min(b.height,o.height)}))t.style.display='none';else seen.push(b)})}"
+          "function grow(s){var w=s.clientWidth;if(!w)return;if(!s.dataset.w0)s.dataset.w0=s.viewBox.baseVal.width;var k=s.dataset.w0/w;s.querySelectorAll('text').forEach(function(t){if(!t.dataset.f0)t.dataset.f0=parseFloat(getComputedStyle(t).fontSize);var f=+t.dataset.f0;t.style.fontSize=(f/k<11?11*k:f)+'px'});"
+          # 칸 이름표(.xl)는 키운 글자로 칸 폭(data-w)을 넘으면 '…'로 줄인다 — 전체 이름은 막대를 누르면 위 칸에(마스터 지시 2026-11-14 폭포 그림)
+          "s.querySelectorAll('text.xl').forEach(function(t){var full=t.dataset.full,mw=+t.dataset.w;t.textContent=full;if(t.getComputedTextLength()<=mw)return;var n=full.length;while(n>1&&(t.textContent=full.slice(0,--n)+'…',t.getComputedTextLength()>mw));});"
+          "var seen=[];s.querySelectorAll('text').forEach(function(t){t.style.display='';var b=t.getBBox();if(!b.width)return;if(seen.some(function(o){var dy=Math.min(b.y+b.height,o.y+o.height)-Math.max(b.y,o.y);return b.x<o.x+o.width-0.5&&o.x<b.x+b.width-0.5&&dy>0.45*Math.min(b.height,o.height)}))t.style.display='none';else seen.push(b)})}"
           "function stack(){if(!matchMedia('(max-width:640px)').matches)return;document.querySelectorAll('.w table').forEach(function(tb){if(tb.dataset.st)return;var hs=[].map.call(tb.querySelectorAll('thead th, tr:first-child th'),function(h){return h.textContent.trim()});var rs=[].filter.call(tb.querySelectorAll('tr'),function(r){return r.querySelector('td')});if(hs.length<4||!rs.length)return;var mx=0;hs.forEach(function(_,i){var n=0;rs.forEach(function(r){var c=r.children[i];n+=c?c.textContent.length:0});mx=Math.max(mx,n/rs.length)});if(mx<30)return;tb.dataset.st=1;tb.classList.add('stk');tb.querySelectorAll('tr').forEach(function(tr){[].forEach.call(tr.children,function(c,i){if(c.tagName==='TD')c.setAttribute('data-th',hs[i]||'')})})})}stack();"
           "function fit(){document.querySelectorAll('svg[viewBox]').forEach(function(s){try{grow(s);var v=s.viewBox.baseVal,x0=v.x,y0=v.y,x1=v.x+v.width,y1=v.y+v.height;"
           "s.querySelectorAll('text').forEach(function(t){var b=t.getBBox();if(!b.width)return;x0=Math.min(x0,b.x-2);y0=Math.min(y0,b.y-2);x1=Math.max(x1,b.x+b.width+2);y1=Math.max(y1,b.y+b.height+2)});"
@@ -725,8 +728,7 @@ def chart_waterfall(c):
         return ""
     W, L, T = c.get("w", 700), 40, 18
     gw0 = (W - L - 10) / len(steps)
-    nl = max(len(wrap_label(x.get("label", ""), gw0 - 4)) for x in steps)   # 이름표 줄 수만큼 아래 여백을 늘린다
-    B = 14 + nl * 11
+    B = 28   # 이름표는 한 줄(넘치면 …) — 전체 이름은 막대를 누르면 위 칸에(마스터 지시 2026-11-14 "모바일에서 x축 텍스트가 잘린다")
     H = 216 + B
     level, bars = 0.0, []
     for s in steps:
@@ -746,10 +748,14 @@ def chart_waterfall(c):
         y1, y2 = sorted((Y(a), Y(b)))
         col = "var(--c)" if kind == "total" else "var(--b)"
         val = b - a
-        g.append(f'<rect x="{x:.1f}" y="{y1:.1f}" width="{gw - 8:.1f}" height="{max(y2 - y1, 1):.1f}" rx="2" fill="{col}"><title>{t(lab)}: {_fmt(val)}</title></rect>')
-        g.append(f'<text x="{x + (gw - 8) / 2:.1f}" y="{y1 - 3:.1f}" text-anchor="middle" style="font-size:10px">{_fmt(val)}</text>')
-        g.append(label_svg(lab, x + (gw - 8) / 2, H - B + 14, gw - 4)[0])   # 칸 폭에 맞춘 줄바꿈 — 겹침 방지(2026-11-08)
-    return f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+        # 칸 전체를 누르는 영역으로 — 누르면 위 칸(.cinfo)에 항목 이름·값(FIT_JS '.lp', 마스터 지시 2026-11-14)
+        g.append(f'<g class="lp" data-n="{t(lab)}" data-x="" data-v="{t(_fmt(val))}" data-m="">'
+                 f'<rect x="{L + i * gw:.1f}" y="{T:.1f}" width="{gw:.1f}" height="{H - T:.1f}" fill="transparent"/>'
+                 f'<rect class="dot" x="{x:.1f}" y="{y1:.1f}" width="{gw - 8:.1f}" height="{max(y2 - y1, 1):.1f}" rx="2" fill="{col}"><title>{t(lab)}: {_fmt(val)}</title></rect></g>')
+        g.append(f'<text x="{x + (gw - 8) / 2:.1f}" y="{y1 - 3:.1f}" text-anchor="middle" style="font-size:10px;pointer-events:none">{_fmt(val)}</text>')
+        g.append(f'<text class="xl" data-full="{t(lab)}" data-w="{gw - 6:.1f}" x="{x + (gw - 8) / 2:.1f}" y="{H - B + 20:.1f}" text-anchor="middle" style="pointer-events:none;font-size:9.5px">{t(lab)}</text>')   # 한 줄, 넘치면 FIT_JS가 '…'
+    info = '<div class="cinfo"><span class="mut">막대를 누르면 항목 이름과 값</span></div>'
+    return info + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
 
 
 def chart_roic(c):
