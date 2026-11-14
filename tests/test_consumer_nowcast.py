@@ -58,6 +58,15 @@ class TestNowcast(unittest.TestCase):
         with self.assertRaises(ValueError):          # YoY가 안 맞으면(순서 어긋남) 받지 않는다
             nc.tv_quarters(dict(rec, revenue=vals[:4] + [[150, 20.0], [165, 50.0]]))
 
+    def test_dart_quarters_q4_from_annual(self):
+        def row(fs, amt, add=None, acc="매출액"):
+            return {"sj_div": "IS", "fs_div": fs, "account_nm": acc, "thstrm_amount": amt, "thstrm_add_amount": add}
+        resp = {"11013": [row("CFS", "100"), row("OFS", "90")], "11012": [row("CFS", "110", "210")],
+                "11014": [row("CFS", "1,200", "1,410")], "11011": [row("CFS", "2,000")]}
+        got = nc.dart_quarters(lambda c, y, code: {"status": "000", "list": resp[code]}, "x", [2024])
+        self.assertEqual(got, [("2024-03-31", 100.0), ("2024-06-30", 110.0), ("2024-09-30", 1200.0), ("2024-12-31", 590.0)])
+        self.assertEqual(nc.dart_quarters(lambda c, y, code: {"status": "013"}, "x", [2014]), [])   # 자료 없음
+
     def test_months_drop_and_clip(self):
         self.assertEqual(nc.months_in(date(2026, 6, 30), date(2026, 9, 30)), ["2026-07", "2026-08", "2026-09"])
         self.assertEqual(nc.months_in(date(2026, 1, 3), date(2026, 4, 4)), ["2026-01", "2026-02", "2026-03"])

@@ -15,6 +15,7 @@
 금지표: 관심 증가 → 매출, 수출입 급증 → 특정 기업 매출 — 이 스크립트는 그 연결을 '표본 외로 맞혔는가'로만 판정한다. 매수 권유 아님.
 사용: py scripts/discovery/consumer_nowcast.py --put-fiscal <회사키→[[기말일, 매출, 발표일]] JSON>
       py scripts/discovery/consumer_nowcast.py --put-tv <id→{symbol, first_label, last_label, revenue:[[값, yoy_pct]]} JSON>   # 한국(TradingView, 라벨 검증)
+      py scripts/discovery/consumer_nowcast.py --dart [종목 id…]   # 한국 OpenDART 2015~ 분기 매출(겹치는 분기 대조 후 교체)
       py scripts/discovery/consumer_nowcast.py            # 검정·나우캐스트
       py scripts/discovery/consumer_nowcast.py --consensus <회사키→{period, revenue} JSON>   # Fiscal.ai 다음 분기 매출 컨센서스 붙이기
 """
@@ -108,6 +109,82 @@ def put_tv(path):
                          "source": f"TradingView financial-history {rec.get('symbol', '')}(마지막 분기는 잠정실적일 수 있다)"})
     save_rev(rows)
     return len(rows)
+
+
+DART_ACC = ("매출액", "수익(매출액)", "영업수익", "매출")
+DART_REPORTS = (("11013", 1), ("11012", 2), ("11014", 3), ("11011", 4))   # 1분기·반기·3분기·사업보고서
+
+
+def _amt(s):
+    s = (s or "").replace(",", "").strip()
+    return float(s) if s not in ("", "-") else None
+
+
+def dart_revenue(js):
+    """fnlttSinglAcnt 응답 → (3개월 매출, 누적 매출) — 연결(CFS) 우선, 없으면 별도(OFS). 없으면 (None, None)"""
+    rows = [r for r in (js.get("list") or []) if r.get("sj_div") == "IS" and (r.get("account_nm") or "").strip() in DART_ACC]
+    for fs in ("CFS", "OFS"):
+        for r in rows:
+            if r.get("fs_div") == fs:
+                return _amt(r.get("thstrm_amount")), _amt(r.get("thstrm_add_amount"))
+    return None, None
+
+
+def dart_quarters(fetch, corp, years):
+    """연도별 네 보고서 → [(기말일, 3개월 매출)]. 4분기 = 사업보고서 연간 − 3분기 누적. fetch(corp, 연도, 보고서) → 응답 JSON"""
+    out = []
+    for y in years:
+        got = {}
+        for code, q in DART_REPORTS:
+            js = fetch(corp, y, code)
+            if (js or {}).get("status") != "000":
+                continue
+            got[q] = dart_revenue(js)
+        for q in (1, 2, 3):
+            if q in got and got[q][0]:
+                out.append((_qend(f"Q{q} {y}").isoformat(), got[q][0]))
+        if 4 in got and 3 in got and got[4][0] and got[3][1]:
+            out.append((date(y, 12, 31).isoformat(), got[4][0] - got[3][1]))
+    return out
+
+
+def put_dart(ids=None, years=range(2015, 2027)):
+    """한국 지도 종목 분기 매출 — OpenDART 단일회사 주요계정(fnlttSinglAcnt, 2015~). 키 DART_API_KEY(load_env)
+    겹치는 분기는 기존 TradingView 값과 1.5% 안에서 맞는지 대조해 결과를 돌려준다(어긋나면 그 회사는 넣지 않는다)"""
+    import io
+    import time
+    import xml.etree.ElementTree as ET
+    import zipfile
+    key = common.load_env().get("DART_API_KEY")
+    if not key:
+        raise RuntimeError("DART_API_KEY 값이 비어 있다(D:\\local-only\\secrets\\.env)")
+    want = {co["code"]: co["id"] for co in cfg().get("companies") or [] if co.get("market") == "kr" and (not ids or co["id"] in ids)}
+    raw = common.http_get("https://opendart.fss.or.kr/api/corpCode.xml", {"crtfc_key": key}, timeout=90)
+    with zipfile.ZipFile(io.BytesIO(raw)) as z:
+        xml = z.read(z.namelist()[0])
+    corp = {want[s]: el.findtext("corp_code").strip() for el in ET.fromstring(xml).iter("list")
+            if (s := (el.findtext("stock_code") or "").strip()) in want}
+
+    def fetch(c, y, code):
+        time.sleep(0.15)
+        try:
+            return json.loads(common.http_get("https://opendart.fss.or.kr/api/fnlttSinglAcnt.json",
+                                              {"crtfc_key": key, "corp_code": c, "bsns_year": str(y), "reprt_code": code}, timeout=30))
+        except Exception:
+            return None
+    rows, report = load_rev(), {}
+    old = {(r["id"], r["period"]): r["revenue"] for r in rows}
+    for cid, c in corp.items():
+        qs = dart_quarters(fetch, c, years)
+        diffs = [abs(v / old[(cid, p)] - 1) for p, v in qs if (cid, p) in old and old[(cid, p)]]
+        bad = [x for x in diffs if x > 0.015]
+        report[cid] = {"quarters": len(qs), "first": qs[0][0] if qs else None, "overlap": len(diffs), "max_diff": round(max(diffs), 4) if diffs else None, "accepted": not bad and bool(qs)}
+        if report[cid]["accepted"]:
+            keep = {p for p, _ in qs}
+            rows = [r for r in rows if not (r["id"] == cid and r["period"] in keep)]
+            rows += [{"id": cid, "period": p, "revenue": v, "earnings_date": "", "source": "OpenDART fnlttSinglAcnt(연결 우선, 4분기=연간−3분기 누적)"} for p, v in qs]
+    save_rev(rows)
+    return report
 
 
 def load_rev():
@@ -390,6 +467,9 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if argv[:1] == ["--put-fiscal"]:
         print(f"매출 이력 {put_fiscal(argv[1])}행")
+        return 0
+    if argv[:1] == ["--dart"]:
+        print(json.dumps(put_dart(argv[1:] or None), ensure_ascii=False, indent=1))
         return 0
     if argv[:1] == ["--put-tv"]:
         print(f"매출 이력 {put_tv(argv[1])}행")

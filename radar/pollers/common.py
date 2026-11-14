@@ -85,7 +85,9 @@ def load_env():
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
                 k, v = line.split("=", 1)
-                env[k.strip()] = v.strip().strip('"').strip("'")
+                v = v.strip().strip('"').strip("'")
+                if v or not env.get(k.strip()):   # 같은 이름의 빈 줄이 아래에 남아 있어도 앞서 넣은 값을 지우지 않는다(2026-11-14 DART 키)
+                    env[k.strip()] = v
     for k, v in os.environ.items():
         if k.isupper():
             env.setdefault(k, v)
