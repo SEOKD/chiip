@@ -1,0 +1,310 @@
+<meta name="dash-one-writer">
+<style>
+.arr-wrap{display:flex;flex-direction:column;gap:var(--cds-gap-lg)}
+.arr-title{font-family:var(--font-anthropic-serif);font-weight:400;font-size:var(--cds-font-size-title);margin:0;text-wrap:balance}
+.arr-lede{margin:0;max-width:72ch;line-height:1.55}
+.arr-lede b{font-variant-numeric:tabular-nums}
+.arr-card{background:var(--color-panel);border:1px solid var(--color-border-line);border-radius:var(--cds-radius);padding:var(--cds-pad-lg);display:flex;flex-direction:column;gap:var(--cds-gap-sm);min-width:0}
+.arr-h{font-size:var(--cds-font-size-heading);font-weight:var(--cds-font-weight-medium);margin:0;text-wrap:balance}
+.arr-sub{color:var(--cds-text-secondary);font-size:var(--cds-font-size-caption);margin:0;line-height:1.5}
+.arr-legend{display:flex;flex-wrap:wrap;gap:var(--cds-gap-md);font-size:var(--cds-font-size-caption);color:var(--cds-text-secondary)}
+.arr-chip{display:inline-flex;align-items:center;gap:6px}
+.arr-sw{width:12px;height:12px;border-radius:2px;display:inline-block;background:var(--cds-chart-muted)}
+.arr-line-sw{width:16px;height:0;border-top:2px solid var(--color-ok);display:inline-block}
+.arr-chart{position:relative;min-height:380px}
+.arr-chart svg text{font-size:11px;fill:var(--cds-text-secondary);font-variant-numeric:tabular-nums}
+.arr-chart svg text.arr-in{fill:var(--color-bg);font-weight:600}
+.arr-chart svg text.arr-tot{fill:var(--color-fg);font-weight:600}
+.arr-chart svg text.arr-gl{fill:var(--color-ok);font-weight:600}
+.arr-chart svg text.arr-none{fill:var(--cds-text-secondary);font-style:italic}
+.arr-tip{position:absolute;pointer-events:none;background:var(--cds-surface-popover);border:1px solid var(--cds-border);box-shadow:var(--cds-shadow-popover);border-radius:var(--cds-radius);padding:8px 10px;font-size:var(--cds-font-size-caption);line-height:1.5;max-width:260px;z-index:2}
+.arr-tip b{font-weight:600}
+.arr-tablewrap{overflow-x:auto}
+.arr-table{border-collapse:collapse;width:100%;font-size:var(--cds-font-size-caption);font-variant-numeric:tabular-nums}
+.arr-table th,.arr-table td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--color-border-line);vertical-align:top}
+.arr-table th{color:var(--cds-text-secondary);font-weight:var(--cds-font-weight-medium);white-space:nowrap}
+.arr-table td.num,.arr-table th.num{text-align:right;white-space:nowrap}
+.arr-table td.nw{white-space:nowrap}
+.arr-table a{color:inherit}
+.arr-type{display:inline-block;padding:1px 6px;border-radius:999px;border:1px solid var(--color-border-line);white-space:nowrap}
+.arr-type.t-company{border-color:var(--color-ok)}
+.arr-type.t-vendor_estimate{border-style:dashed}
+.arr-notes{font-size:var(--cds-font-size-caption);color:var(--cds-text-secondary);line-height:1.6}
+.arr-notes summary{cursor:pointer;color:var(--color-fg)}
+.arr-notes ul{margin:8px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+[data-dash-source-state=refreshing]{opacity:.5}
+</style>
+
+<div class="arr-wrap">
+  <h1 class="arr-title" id="title">AI 프론티어 랩 월별 ARR</h1>
+  <p class="arr-lede" id="lede" data-draw="lede">—</p>
+
+  <section class="arr-card" id="chart-card">
+    <h2 class="arr-h">OpenAI·Anthropic ARR과 합산 증가율</h2>
+    <p class="arr-sub">막대는 랩별 연환산 매출(ARR, 왼쪽 축 $B), 녹색 선은 두 랩 합산의 직전 비교 가능 달 대비 증가율(오른쪽 축). 공개 보도 수치만 쓰고 빈 달을 보간하지 않는다 — 한 랩이라도 수치가 없는 달은 합산과 증가율을 그리지 않는다.</p>
+    <div class="arr-legend">
+      <span class="arr-chip"><span class="arr-sw" data-sw="0"></span>OpenAI</span>
+      <span class="arr-chip"><span class="arr-sw" data-sw="1"></span>Anthropic</span>
+      <span class="arr-chip"><span class="arr-line-sw"></span>합산 증가율</span>
+      <span class="arr-chip">'1곳' = 그 달은 한 랩 수치만 있음</span>
+      <span class="arr-chip"><svg width="12" height="12" aria-hidden="true"><defs><pattern id="lg-hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" style="stroke:var(--color-fg);stroke-width:1.2"></line></pattern></defs><rect width="12" height="12" style="fill:var(--cds-chart-muted)"></rect><rect width="12" height="12" fill="url(#lg-hatch)"></rect></svg>빗금 = 벤더 추정(대체 데이터 모델)</span>
+    </div>
+    <div class="arr-chart" id="arr-chart" data-draw="chart" data-source="monthly combined"></div>
+  </section>
+
+  <section class="arr-card" id="ledger-card">
+    <h2 class="arr-h">출처 장부</h2>
+    <p class="arr-sub">차트에 쓴 수치와 쓰지 않은 같은 달 다른 수치까지 모두 적었다. 유형은 회사 발표 / 언론 보도(소식통·내부 문서 인용) / 벤더 추정으로 나눈다. 같은 원출처를 다시 인용한 기사는 독립 확인이 아니다.</p>
+    <div class="arr-tablewrap">
+      <table class="arr-table" id="ledger-table" data-source="ledger" data-row-key="id">
+        <thead><tr>
+          <th data-field="lab">랩</th>
+          <th data-field="as_of">기준일</th>
+          <th class="num" data-field="arr_usd_b">ARR($B)</th>
+          <th data-field="type">유형</th>
+          <th data-field="basis">기준</th>
+          <th data-field="primary">차트</th>
+          <th data-field="publisher">매체</th>
+          <th data-field="metric">지표 표현</th>
+          <th data-field="notes">비고</th>
+        </tr></thead>
+        <tbody data-draw="ledger"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <details class="arr-notes" id="method">
+    <summary>계산 방법과 읽을 때 주의할 점</summary>
+    <ul>
+      <li>월 배정: 수치가 가리키는 기준일의 달. 한 달에 여러 수치가 있으면 기준일이 가장 늦은 것, 같은 날이면 회사 발표 → 언론 보도 → 벤더 추정 순으로 고른다.</li>
+      <li>합산 증가율은 두 랩 모두 수치가 있는 달끼리만 계산한다. 사이에 빈 달이 있으면 라벨에 간격(예: 2개월)을 붙인다 — 월간 증가율과 같은 잣대로 비교하지 않는다.</li>
+      <li>ARR은 감사받은 매출이 아니다. 회사마다 정의가 다르다(현재 월 매출×12, 최근 주간×52 등). 클라우드 재판매분을 총액으로 잡는지에 따라 Anthropic 수치가 커질 수 있다.</li>
+      <li>OpenAI와 Anthropic은 매출 인식 기준이 다르다. Anthropic은 AWS·Google Cloud를 통한 판매를 총액으로 넣고(2026-04 이후 회사 정의, S-1), OpenAI 주요 수치는 클라우드 재판매·마이크로소프트 라이선스를 뺀 순액이다. 그래서 합산은 서로 다른 기준을 더한 근사치다. OpenAI도 총액으로 보면 2026년 9월 약 $70B(Axios)로, 순액 $50B보다 크다 — 차트는 OpenAI를 순액으로 통일했고 총액 수치는 장부에만 남겼다.</li>
+      <li>'넘었다'·'육박' 같은 표현은 하한·상한이다. 2026-09-30 Anthropic $71B는 S-1/A의 '10월 31일 $81B, 9월 30일보다 $10B 증가'에서 뺀 값이다.</li>
+      <li>벤더 추정은 대체 데이터 모델 값이라 회사 발표·보도와 성격이 다르다. 빗금으로 구분했다.</li>
+      <li>공개 보도·자료 기반 정리이며 투자 권유가 아니다.</li>
+    </ul>
+  </details>
+</div>
+
+<script>
+window.ARR = {
+  LABS: ['OpenAI', 'Anthropic'],
+  TYPE_KO: {company: '회사 발표', press_sourced: '언론 보도', vendor_estimate: '벤더 추정'},
+  BASIS_KO: {gross: '총액', net: '순액', unspecified: '미표기'},
+  fmtB: (v) => '$' + (Math.round(v * 10) / 10).toFixed(1) + 'B',
+  fmtPct: (v) => (v > 0 ? '+' : '') + v.toFixed(1) + '%',
+  mlabel: (m) => m.slice(0, 4) + '.' + m.slice(5, 7),
+};
+
+dash.calc('monthly', {
+  title: '월별 대표 수치',
+  description: '장부에서 primary=1로 고른 랩·월별 대표 수치 1건(기준일이 가장 늦은 것 → 회사 발표 > 언론 보도 > 벤더 추정 → 첫 보도, OpenAI는 순액만)',
+  inputs: ['ledger'],
+  fn: (ledger) => ledger
+    .filter((r) => String(r.primary) === '1' && isFinite(parseFloat(r.arr_usd_b)))
+    .map((r) => ({key: String(r.as_of).slice(0, 7) + '|' + r.lab, month: String(r.as_of).slice(0, 7), lab: r.lab, arr: parseFloat(r.arr_usd_b),
+      type: r.type, basis: r.basis, publisher: r.publisher, as_of: r.as_of, id: r.id}))
+    .sort((a, b) => (a.month + a.lab < b.month + b.lab ? -1 : 1)),
+});
+
+dash.calc('combined', {
+  title: 'OpenAI+Anthropic 합산',
+  description: '두 랩 수치가 모두 있는 달만 합산, 직전 합산 가능 달 대비 증가율과 그 사이 개월 수',
+  inputs: ['monthly'],
+  fn: (monthly) => {
+    const byMonth = {};
+    for (const d of monthly) (byMonth[d.month] = byMonth[d.month] || {})[d.lab] = d;
+    const out = [];
+    let prev = null;
+    for (const m of Object.keys(byMonth).sort()) {
+      const o = byMonth[m]['OpenAI'], a = byMonth[m]['Anthropic'];
+      if (!o || !a) continue;
+      const total = Math.round((o.arr + a.arr) * 100) / 100;
+      const gap = prev ? (Number(m.slice(0, 4)) - Number(prev.month.slice(0, 4))) * 12 + Number(m.slice(5, 7)) - Number(prev.month.slice(5, 7)) : null;
+      const growth = prev ? Math.round((total / prev.total - 1) * 1000) / 10 : null;
+      out.push({month: m, openai: o.arr, anthropic: a.arr, total, growth_pct: growth, gap_months: gap, prev_month: prev ? prev.month : null});
+      prev = {month: m, total};
+    }
+    return out;
+  },
+});
+
+dash.onData(() => {
+  document.querySelectorAll('[data-sw]').forEach((el) => {
+    el.style.background = dash.colors[Number(el.getAttribute('data-sw'))] || 'var(--cds-chart-muted)';
+  });
+});
+
+function arrSpan(text, attrs) {
+  const s = document.createElement('b');
+  s.textContent = text;
+  for (const k in attrs) s.setAttribute(k, attrs[k]);
+  return s;
+}
+
+dash.draw('lede', (el) => {
+  const c = dash.data('combined');
+  if (c.status !== 'ok' || !c.data || !c.data.length) { el.textContent = '—'; return; }
+  const last = c.data[c.data.length - 1];
+  const w = 'month=' + encodeURIComponent(last.month);
+  const parts = [
+    document.createTextNode(ARR.mlabel(last.month) + ' 기준 두 랩 합산 ARR은 '),
+    document.createTextNode('$'),
+    arrSpan(last.total.toFixed(1), {'data-source': 'combined', 'data-field': 'total', 'data-where': w}),
+    document.createTextNode('B(OpenAI $'),
+    arrSpan(last.openai.toFixed(1), {'data-source': 'combined', 'data-field': 'openai', 'data-where': w}),
+    document.createTextNode('B, Anthropic $'),
+    arrSpan(last.anthropic.toFixed(1), {'data-source': 'combined', 'data-field': 'anthropic', 'data-where': w}),
+    document.createTextNode('B)'),
+  ];
+  if (last.growth_pct != null) {
+    parts.push(document.createTextNode('로, ' + ARR.mlabel(last.prev_month) + ' 대비 '));
+    parts.push(arrSpan(ARR.fmtPct(last.growth_pct), {'data-source': 'combined', 'data-field': 'growth_pct', 'data-where': w}));
+    parts.push(document.createTextNode(last.gap_months > 1 ? '(' + last.gap_months + '개월 간격)' : ''));
+  }
+  parts.push(document.createTextNode(last.anthropic > last.openai ? '. Anthropic이 OpenAI보다 크다.' : '. OpenAI가 Anthropic보다 크다.'));
+  el.replaceChildren(...parts);
+});
+
+dash.draw('chart', (el) => {
+  const M = dash.data('monthly'), C = dash.data('combined');
+  if (M.status !== 'ok' || C.status !== 'ok') {
+    el.replaceChildren();
+    if (M.status === 'error' || C.status === 'error') { const p = document.createElement('p'); p.className = 'arr-sub'; p.textContent = '불러오지 못했다'; el.append(p); }
+    else el.textContent = '—';
+    return;
+  }
+  el.replaceChildren();
+  const monthly = (M.data || []).filter((d) => ARR.LABS.includes(d.lab));
+  const comb = C.data || [];
+  if (!monthly.length) { el.textContent = '—'; return; }
+  const months = [];
+  const ms = monthly.map((d) => d.month).sort();
+  let y = Number(ms[0].slice(0, 4)), mo = Number(ms[0].slice(5, 7));
+  const endKey = ms[ms.length - 1];
+  while (true) { const k = y + '-' + String(mo).padStart(2, '0'); months.push(k); if (k >= endKey) break; mo++; if (mo > 12) { mo = 1; y++; } }
+  const byM = {};
+  for (const d of monthly) (byM[d.month] = byM[d.month] || {})[d.lab] = d;
+  const cByM = Object.fromEntries(comb.map((d) => [d.month, d]));
+
+  const W = Math.max(320, el.clientWidth), H = W < 520 ? 340 : 400;
+  const narrow = W < 620;
+  const m = {t: 34, r: 46, b: 30, l: 40};
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('role', 'img').attr('aria-label', 'OpenAI와 Anthropic 월별 ARR 누적 막대와 합산 증가율 선');
+  const defs = svg.append('defs');
+  ARR.LABS.forEach((lab, i) => {
+    const p = defs.append('pattern').attr('id', 'hatch-' + i).attr('width', 6).attr('height', 6)
+      .attr('patternUnits', 'userSpaceOnUse').attr('patternTransform', 'rotate(45)');
+    p.append('rect').attr('width', 6).attr('height', 6).style('fill', dash.colors[i]);
+    p.append('line').attr('x1', 0).attr('y1', 0).attr('x2', 0).attr('y2', 6).style('stroke', 'var(--color-bg)').style('stroke-width', 2).style('opacity', 0.55);
+  });
+
+  const x = d3.scaleBand().domain(months).range([m.l, W - m.r]).padding(0.28);
+  const tickStep = Math.max(1, Math.ceil(months.length / Math.max(2, Math.floor((W - m.l - m.r) / (narrow ? 40 : 52)))));
+  const maxStack = d3.max(months, (k) => d3.sum(ARR.LABS, (l) => (byM[k] && byM[k][l] ? byM[k][l].arr : 0))) || 1;
+  const yL = d3.scaleLinear().domain([0, maxStack * 1.15]).nice().range([H - m.b, m.t]);
+  const gVals = comb.filter((d) => d.growth_pct != null).map((d) => d.growth_pct);
+  const gMax = Math.max(10, d3.max(gVals) || 10), gMin = Math.min(0, d3.min(gVals) || 0);
+  const yR = d3.scaleLinear().domain([gMin, gMax * 1.2]).nice().range([H - m.b, m.t]);
+
+  svg.append('g').selectAll('line').data(yL.ticks(5)).join('line')
+    .attr('x1', m.l).attr('x2', W - m.r).attr('y1', (d) => yL(d)).attr('y2', (d) => yL(d)).style('stroke', 'var(--cds-chart-grid)');
+  const ax = svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickSizeOuter(0)
+    .tickValues(months.filter((k, i) => i % tickStep === 0)).tickFormat((k) => narrow ? k.slice(2, 4) + '.' + k.slice(5, 7) : ARR.mlabel(k)));
+  ax.selectAll('path,line').style('stroke', 'var(--cds-chart-axis)');
+  const al = svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(yL).ticks(5).tickSize(0).tickFormat((d) => '$' + d));
+  al.select('path').remove();
+  const ar = svg.append('g').attr('transform', `translate(${W - m.r},0)`).call(d3.axisRight(yR).ticks(5).tickSize(0).tickFormat((d) => d + '%'));
+  ar.select('path').remove();
+  ar.selectAll('text').style('fill', 'var(--color-ok)');
+  svg.append('text').attr('x', m.l - 4).attr('y', m.t - 18).attr('text-anchor', 'start').text('ARR($B)');
+  svg.append('text').attr('x', W - m.r + 4).attr('y', m.t - 18).attr('text-anchor', 'end').style('fill', 'var(--color-ok)').text('합산 증가율');
+
+  const bw = x.bandwidth();
+  const bars = svg.append('g');
+  for (const k of months) {
+    let base = 0;
+    const row = byM[k] || {};
+    ARR.LABS.forEach((lab, i) => {
+      const d = row[lab];
+      if (!d) return;
+      const y0 = yL(base), y1 = yL(base + d.arr);
+      bars.append('rect').attr('x', x(k)).attr('y', y1).attr('width', bw).attr('height', Math.max(0, y0 - y1))
+        .attr('data-source', 'monthly').attr('data-field', 'arr').attr('data-where', 'key=' + encodeURIComponent(d.key))
+        .style('fill', d.type === 'vendor_estimate' ? `url(#hatch-${i})` : dash.colors[i]);
+      if (y0 - y1 > 16 && bw > 24) {
+        bars.append('text').attr('class', 'arr-in').attr('x', x(k) + bw / 2).attr('y', (y0 + y1) / 2 + 4).attr('text-anchor', 'middle')
+          .text((Math.round(d.arr * 10) / 10).toFixed(1));
+      }
+      base += d.arr;
+    });
+    const c = cByM[k];
+    if (c && bw > 22) {
+      svg.append('text').attr('class', 'arr-tot').attr('x', x(k) + bw / 2).attr('y', yL(c.total) - 6).attr('text-anchor', 'middle')
+        .text((Math.round(c.total * 10) / 10).toFixed(1));
+    } else if (!c && base > 0 && bw > 22) {
+      svg.append('text').attr('class', 'arr-none').attr('x', x(k) + bw / 2).attr('y', yL(base) - 6).attr('text-anchor', 'middle').text(narrow ? '·' : '1곳');
+    }
+  }
+
+  const pts = comb.filter((d) => d.growth_pct != null).map((d) => ({...d, cx: x(d.month) + bw / 2, cy: yR(d.growth_pct)}));
+  svg.append('path').datum(pts).attr('d', d3.line().x((d) => d.cx).y((d) => d.cy))
+    .style('fill', 'none').style('stroke', 'var(--color-ok)').style('stroke-width', 2.2);
+  const gp = svg.append('g');
+  pts.forEach((d, i) => {
+    gp.append('circle').attr('cx', d.cx).attr('cy', d.cy).attr('r', 4)
+      .attr('data-source', 'combined').attr('data-field', 'growth_pct').attr('data-where', 'month=' + encodeURIComponent(d.month))
+      .style('fill', 'var(--color-bg)').style('stroke', 'var(--color-ok)').style('stroke-width', 2);
+    if (bw > 20) {
+      const up = i % 2 === 0;
+      gp.append('text').attr('class', 'arr-gl').attr('x', d.cx).attr('y', d.cy + (up ? -9 : 16)).attr('text-anchor', 'middle')
+        .text(ARR.fmtPct(d.growth_pct) + (d.gap_months > 1 ? ` (${d.gap_months}개월)` : ''));
+    }
+  });
+
+  const tip = d3.select(el).append('div').attr('class', 'arr-tip').attr('hidden', '');
+  svg.append('g').selectAll('rect').data(months).join('rect')
+    .attr('x', (k) => x(k) - (x.step() - bw) / 2).attr('y', m.t).attr('width', x.step()).attr('height', H - m.t - m.b)
+    .style('fill', 'transparent').style('cursor', 'default')
+    .on('pointerenter pointermove', (ev, k) => {
+      const row = byM[k] || {}, c = cByM[k];
+      const node = tip.node();
+      node.replaceChildren();
+      const h = document.createElement('div'); const hb = document.createElement('b'); hb.textContent = ARR.mlabel(k); h.append(hb); node.append(h);
+      ARR.LABS.forEach((lab) => {
+        const d = row[lab]; const line = document.createElement('div');
+        line.textContent = d ? `${lab} ${ARR.fmtB(d.arr)} · ${ARR.TYPE_KO[d.type] || d.type} · ${d.publisher} (${d.as_of})` : `${lab} 수치 없음`;
+        node.append(line);
+      });
+      const t = document.createElement('div');
+      t.textContent = c ? `합산 ${ARR.fmtB(c.total)}` + (c.growth_pct != null ? ` · ${ARR.mlabel(c.prev_month)} 대비 ${ARR.fmtPct(c.growth_pct)}` : '') : '합산 없음(한 랩 수치 없음)';
+      node.append(t);
+      tip.attr('hidden', null);
+      const [px, py] = d3.pointer(ev, el);
+      const tw = node.offsetWidth;
+      tip.style('left', Math.min(Math.max(0, px + 12), el.clientWidth - tw) + 'px').style('top', Math.max(0, py - 10) + 'px');
+    })
+    .on('pointerleave', () => tip.attr('hidden', ''));
+});
+
+dash.draw('ledger', (el) => {
+  const L = dash.data('ledger');
+  if (L.status !== 'ok') { el.replaceChildren(); return; }
+  const rows = [...L.data].sort((a, b) => (a.lab === b.lab ? (a.as_of < b.as_of ? -1 : a.as_of > b.as_of ? 1 : 0) : a.lab < b.lab ? -1 : 1));
+  el.replaceChildren(...rows.map((r) => {
+    const tr = document.createElement('tr');
+    tr.setAttribute('data-key', encodeURIComponent(r.id));
+    const td = (text, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = text; return c; };
+    const tType = document.createElement('td');
+    const pill = document.createElement('span'); pill.className = 'arr-type t-' + r.type; pill.textContent = ARR.TYPE_KO[r.type] || r.type; tType.append(pill);
+    const tPub = document.createElement('td');
+    if (/^https?:\/\//.test(r.url || '')) { const a = document.createElement('a'); a.href = r.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.publisher; tPub.append(a); }
+    else tPub.textContent = r.publisher;
+    if (r.origin) { const o = document.createElement('div'); o.className = 'arr-sub'; o.textContent = '원출처: ' + r.origin; tPub.append(o); }
+    tr.append(td(r.lab, 'nw'), td(r.as_of, 'nw'), td((Math.round(parseFloat(r.arr_usd_b) * 10) / 10).toFixed(1), 'num'), tType, td(ARR.BASIS_KO[r.basis] || r.basis, 'nw'), td(String(r.primary) === '1' ? '사용' : '', 'nw'), tPub, td(r.metric), td(r.notes));
+    return tr;
+  }));
+});
+</script>
