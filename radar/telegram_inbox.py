@@ -5,13 +5,16 @@ run_poll이 매번(5분) 부른다. 모델은 쓰지 않는다.
    알림에 답장(reply)으로 글을 쓰면 그 글을 '마스터 메모'로 함께 기록한다.
 2) radar/state/notion_queue.jsonl 에 넣고, NOTION_TOKEN이 있으면 노션 API로 바로 기록.
    토큰이 없으면 대기열에 남고, 예약 작업(chiip-focus-score)이 노션 커넥터로 기록한다(--export로 목록 출력).
-사용: py radar/telegram_inbox.py [--push] [--export] [--mark-done <ref,...>]
+3) 버튼 즉시 반응(2026-11-15 마스터 "눌러도 어떤 반응이 없다"): run_poll이 --listen 감시자(롱 폴링, 55분)를 띄운다.
+   기사 소재 '채택'은 scripts/article/article_draft.py가 기사 초안을 써서 HTML로 보낸다(같은 날 마스터 지시).
+사용: py radar/telegram_inbox.py [--push] [--export] [--listen] [--mark-done <ref,...>]
 """
 import json
 import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from datetime import datetime, timedelta
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -21,9 +24,9 @@ import notify  # noqa: E402
 QUEUE = common.STATE / "notion_queue.jsonl"
 
 
-def _tg(token, method, params):
+def _tg(token, method, params, timeout=20):
     data = urllib.parse.urlencode(params).encode()
-    with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/{method}", data=data, timeout=20) as r:
+    with urllib.request.urlopen(f"https://api.telegram.org/bot{token}/{method}", data=data, timeout=timeout) as r:
         return json.loads(r.read())
 
 
@@ -56,15 +59,15 @@ def enqueue(ref, memo=None):
     return row
 
 
-def poll_updates():
+def poll_updates(wait=0):
     env = common.load_env()
     token, chat = env.get("TELEGRAM_BOT_TOKEN"), str(env.get("TELEGRAM_CHAT_ID") or "")
     if not token or not chat:
         return 0
     st = common.load_state("telegram_inbox", {"offset": 0, "msg_ref": {}})
     try:
-        res = _tg(token, "getUpdates", {"offset": st["offset"], "timeout": 0,
-                                        "allowed_updates": json.dumps(["callback_query", "message"])})
+        res = _tg(token, "getUpdates", {"offset": st["offset"], "timeout": wait,
+                                        "allowed_updates": json.dumps(["callback_query", "message"])}, timeout=wait + 20)
     except Exception as exc:  # 토큰이 섞일 수 있는 URL은 기록하지 않음
         common.record_health("telegram-inbox", False, type(exc).__name__)
         return 0
@@ -79,11 +82,18 @@ def poll_updates():
                     sys.path.insert(0, str(common.ROOT / "scripts" / "article"))
                     import pitch_feedback
                     note, markup = pitch_feedback.on_callback(cq["data"])
-                    _tg(token, "answerCallbackQuery", {"callback_query_id": cq["id"], "text": note})
+                    # 버튼 표시를 먼저 바꾼다 — 응답(answerCallbackQuery)은 누른 지 오래되면 텔레그램이 거절해서(HTTP 400) 2026-11-11에
+                    # 기록은 됐는데 버튼이 그대로 남았다(마스터 "눌러도 어떤 반응이 없다", 2026-11-15)
                     if markup:
                         _tg(token, "editMessageReplyMarkup", {"chat_id": chat, "message_id": msg.get("message_id"), "reply_markup": json.dumps(markup)})
+                    common.record_health("pitch-feedback", True)
                 except Exception as exc:
                     common.record_health("pitch-feedback", False, type(exc).__name__)
+                    note = "처리 실패 — 잠시 뒤 다시 눌러 주세요"
+                try:
+                    _tg(token, "answerCallbackQuery", {"callback_query_id": cq["id"], "text": note})
+                except Exception:
+                    pass
                 continue
             if str(msg.get("chat", {}).get("id")) != chat or not str(cq.get("data", "")).startswith("save:"):
                 continue
@@ -221,8 +231,63 @@ def mark_done(refs, page_ids=None):
     save_queue(rows)
 
 
+LISTEN_LOCK = common.STATE / "telegram_listener.lock"
+LISTEN_MIN = 55   # 한 번 띄운 감시자는 55분 뒤 스스로 끝난다 — run_poll(5분마다)이 다시 띄우며 바뀐 코드를 읽는다
+
+
+def listener_alive():
+    if not LISTEN_LOCK.exists():
+        return False
+    try:
+        info = json.loads(LISTEN_LOCK.read_text(encoding="utf-8"))
+        return common.now_kst() - datetime.fromisoformat(info["at"]) < timedelta(minutes=3)
+    except (ValueError, KeyError):
+        return False
+
+
+def spawn_listener():
+    """버튼 즉시 반응(2026-11-15) — 텔레그램 롱 폴링을 도는 별도 프로세스. 살아 있으면 띄우지 않는다"""
+    if listener_alive():
+        return False
+    import subprocess
+    flags = getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "DETACHED_PROCESS", 0)
+    subprocess.Popen([sys.executable, str(Path(__file__).resolve()), "--listen"], cwd=common.ROOT,
+                     stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, creationflags=flags)
+    return True
+
+
+def listen():
+    """getUpdates 롱 폴링(25초)을 되풀이해 버튼을 몇 초 안에 처리한다. 잠금 파일의 시각을 매 회 갱신한다"""
+    import os
+    import time
+    end = common.now_kst() + timedelta(minutes=LISTEN_MIN)
+    try:
+        while common.now_kst() < end:
+            LISTEN_LOCK.write_text(json.dumps({"pid": os.getpid(), "at": common.iso(common.now_kst())}), encoding="utf-8")
+            t0 = time.monotonic()
+            try:
+                poll_updates(wait=25)
+                if time.monotonic() - t0 < 1:   # 네트워크 오류로 바로 돌아오면 쉬었다가(빈 회전 방지)
+                    time.sleep(10)
+            except Exception as exc:
+                common.record_health("telegram-inbox", False, type(exc).__name__)
+                time.sleep(10)
+    finally:
+        LISTEN_LOCK.unlink(missing_ok=True)
+
+
 def run():
-    n = poll_updates()
+    """run_poll용 — 감시자가 살아 있으면 버튼은 감시자가 처리하고(겹치는 getUpdates 충돌 방지), 없으면 한 번 처리한 뒤 감시자를 띄운다"""
+    n = 0
+    if not listener_alive():
+        n = poll_updates()
+        spawn_listener()
+    try:
+        sys.path.insert(0, str(common.ROOT / "scripts" / "article"))
+        import article_draft
+        article_draft.spawn_worker()   # 남은 기사 초안 작업이 있으면(작업자가 죽었을 때) 다시 띄운다
+    except Exception as exc:
+        common.record_health("article-draft", False, type(exc).__name__)
     pushed = push()
     return n, pushed
 
@@ -231,6 +296,8 @@ if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
     if "--export" in sys.argv:
         print(json.dumps(export_pending(), ensure_ascii=False, indent=1))
+    elif "--listen" in sys.argv:
+        listen()
     elif "--mark-done" in sys.argv:
         refs = sys.argv[sys.argv.index("--mark-done") + 1].split(",")
         mark_done(set(refs))

@@ -5,10 +5,12 @@ import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts" / "article"))
 sys.path.insert(0, str(ROOT / "scripts" / "proviser"))
+import article_draft  # noqa: E402
 import pitch_feedback as F  # noqa: E402
 import pitch_pool as PP  # noqa: E402
 
@@ -33,7 +35,9 @@ class TestFeedback(unittest.TestCase):
         self.assertEqual(b[1][0][1], "pitch:20261109:0:n")
 
     def test_callback_marks_one_and_pass_all(self):
-        note, markup = F.on_callback("pitch:20261109:2:y", self.log)
+        with mock.patch.object(article_draft, "queue") as q:   # 채택 = 기사 초안 작업(2026-11-15) — 시험에서 진짜 작업을 띄우지 않는다
+            note, markup = F.on_callback("pitch:20261109:2:y", self.log)
+        q.assert_called_once_with("PITCH-20261109-02")
         self.assertIn("②", note)
         r = self.rows()
         self.assertEqual(r[0]["adopted"], "")

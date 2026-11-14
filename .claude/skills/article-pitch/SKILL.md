@@ -47,7 +47,7 @@ argument-hint: "[날짜 | 주제]"
 ## 기록
 - `outputs/article/pitch/YYYYMMDD.md`(로컬 상세. 필드 인텔과 맞닿는 메모는 여기만) — 기사마다 1차 출처 링크·신규성 검색 기록·보강 취재 질문 3개·데스크 킬 질문·틀리는 조건·다음 확인 사건·부가가치 원천을 적는다(텔레그램 양식에서 뺀 항목, 성적표·프로바이저 점검 재료).
 - `outputs/article/pitch/YYYYMMDD_tg.txt` = 텔레그램 본문 그대로.
-- `outputs/article/pitch/log.csv`(date,pitch_id,yama,sources,adopted) — adopted는 비워 둔다. 마스터가 텔레그램 버튼(① 채택·모두 패스)을 누르면 `radar/telegram_inbox.py`가 채운다(2026-11-08). 대화로 채택을 말하면 같은 칸에 '채택'. 프로바이저 채택률은 답한 칸만 센다. pitch_id는 `PITCH-YYYYMMDD-NN`(텔레그램 기사 순서와 같게 — 버튼이 번호로 찾는다).
+- `outputs/article/pitch/log.csv`(date,pitch_id,yama,sources,adopted) — adopted는 비워 둔다. 마스터가 텔레그램 버튼(① 채택·모두 패스)을 누르면 `radar/telegram_inbox.py`가 채운다(2026-11-08). **채택을 누르면 그 소재로 기사 초안을 써서 HTML 파일로 보낸다**(2026-11-15 마스터 지시 — 스킬 `article-draft`, `scripts/article/article_draft.py`). 그래서 기록 파일의 1차 출처 링크·숫자 검산·반대 검증은 기사 재료가 된다 — 빠뜨리지 않는다. 대화로 채택을 말하면 같은 칸에 '채택'. 프로바이저 채택률은 답한 칸만 센다. pitch_id는 `PITCH-YYYYMMDD-NN`(텔레그램 기사 순서와 같게 — 버튼이 번호로 찾는다).
 
 ## 금지
 - 텔레그램에 필드 인텔·엠바고·취재원 단서. 확인 안 된 단정("단독 확인" 등). 정황을 사실처럼 쓰기.

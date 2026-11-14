@@ -5,7 +5,7 @@
   [① 채택] [② 채택] [③ 채택]
   [모두 패스]
 누르면 radar/telegram_inbox.py(run_poll이 5분마다)가 이 모듈의 on_callback을 불러 log.csv adopted를 채운다('채택 YYYY-MM-DD HH:MM' 또는 '패스').
-다시 누르면 덮어쓴다. 답하지 않은 칸은 비워 두고, 프로바이저는 답한 칸만 분모로 센다.
+다시 누르면 덮어쓴다. 채택은 기사 초안 작성으로 이어진다(2026-11-15 마스터 지시 — scripts/article/article_draft.py가 HTML로 보낸다). 답하지 않은 칸은 비워 두고, 프로바이저는 답한 칸만 분모로 센다.
 사용: py scripts/article/pitch_feedback.py send <YYYYMMDD>   # outputs/article/pitch/<날짜>_tg.txt를 버튼과 함께 보낸다(예약 작업 3단계)
 """
 import csv
@@ -64,8 +64,14 @@ def on_callback(data, log=LOG):
     hit = mark(day, int(n), v, log)
     if not hit:
         return "기록을 찾지 못함(log.csv)", None
-    note = "모두 패스로 기록" if int(n) == 0 else f"{CIRCLED[int(n) - 1]} 채택으로 기록"
-    return note, {"inline_keyboard": [[{"text": f"✅ {note}", "callback_data": "noop"}]]}
+    if int(n) == 0 or v != "y":
+        note = "모두 패스로 기록"
+        return note, {"inline_keyboard": [[{"text": f"✅ {note}", "callback_data": "noop"}]]}
+    # 채택 = 기사 초안 작성(2026-11-15 마스터 지시 "버튼을 누르면 기사로 써서 보내는 걸로 바꿔줘. html 파일로 제공해줘")
+    import article_draft
+    article_draft.queue(f"PITCH-{day}-{int(n):02d}")
+    note = f"{CIRCLED[int(n) - 1]} 채택 — 기사 쓰는 중, 끝나면 HTML로 보냄"
+    return note, {"inline_keyboard": [[{"text": f"✍️ {note}", "callback_data": "noop"}]]}
 
 
 def main(argv):
