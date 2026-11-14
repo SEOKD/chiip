@@ -11,9 +11,10 @@
       harness.nested_test(본페로니: 시도한 신호 수)로 비교. 통과한 신호만 채택. 회사별 적합(확장 손실 < 기본 손실 5% 이상·표본 외 4개 이상)은 따로 표시.
       채택되지 않으면 나우캐스트 숫자를 내지 않는다(관심 지표로만 남긴다).
 출력: knowledge/models/consumer/nowcast.json — 검정 결과, 회사별 적합, 진행 중 분기 나우캐스트(채택 신호·적합 회사만)와 범위(표본 외 RMSE).
-      매출 이력 knowledge/models/consumer/revenue_q.csv(Fiscal.ai 44개 분기 · 일본은 fundamentals.json 株探 표).
+      매출 이력 knowledge/models/consumer/revenue_q.csv(Fiscal.ai 44개 분기 · 한국 TradingView 16개 분기 · 일본은 fundamentals.json 株探 표).
 금지표: 관심 증가 → 매출, 수출입 급증 → 특정 기업 매출 — 이 스크립트는 그 연결을 '표본 외로 맞혔는가'로만 판정한다. 매수 권유 아님.
 사용: py scripts/discovery/consumer_nowcast.py --put-fiscal <회사키→[[기말일, 매출, 발표일]] JSON>
+      py scripts/discovery/consumer_nowcast.py --put-tv <id→{symbol, first_label, last_label, revenue:[[값, yoy_pct]]} JSON>   # 한국(TradingView, 라벨 검증)
       py scripts/discovery/consumer_nowcast.py            # 검정·나우캐스트
       py scripts/discovery/consumer_nowcast.py --consensus <회사키→{period, revenue} JSON>   # Fiscal.ai 다음 분기 매출 컨센서스 붙이기
 """
@@ -66,6 +67,45 @@ def put_fiscal(path):
         for period, rev, ed in qs:
             if rev:
                 rows.append({"id": cid, "period": period, "revenue": float(rev), "earnings_date": ed or "", "source": "Fiscal.ai company_financials_standardized"})
+    save_rev(rows)
+    return len(rows)
+
+
+def _qend(label):
+    """'Q3 2026' → date(2026, 9, 30)"""
+    q, y = int(label[1]), int(label[-4:])
+    return date(y, 3 * q, 30 if q in (2, 3) else 31)
+
+
+def _qshift(dt, k):
+    m = dt.month + 3 * k
+    y, m = dt.year + (m - 1) // 12, (m - 1) % 12 + 1
+    return date(y, m, 30 if m in (6, 9) else 31)
+
+
+def tv_quarters(rec, tol=0.6):
+    """TradingView mcp-tv-get-financial-history(fq) 매출 → [(기말일, 매출)]. 라벨은 믿지 않는다(2026-11-14 확인: 한국 종목 라벨이 중복·누락 —
+    'Q3 2023' 두 번·'Q1 2023' 없음). 값은 오래된 순 연속 분기이므로 ① 첫 라벨부터 개수만큼 센 분기가 마지막 라벨과 같고
+    ② 4개 뒤 값의 YoY가 함께 준 yoy_pct와 tol%p 안에서 맞을 때만 받는다. 맞지 않으면 ValueError"""
+    vals = rec["revenue"]
+    first = _qend(rec["first_label"])
+    if _qshift(first, len(vals) - 1) != _qend(rec["last_label"]):
+        raise ValueError(f"{rec.get('symbol')}: 분기 수 {len(vals)}가 라벨 범위 {rec['first_label']}~{rec['last_label']}와 다르다")
+    for i in range(4, len(vals)):
+        mine = (vals[i][0] / vals[i - 4][0] - 1) * 100
+        if vals[i][1] is not None and abs(mine - vals[i][1]) > tol:
+            raise ValueError(f"{rec.get('symbol')}: {i}번째 YoY {mine:.1f}% ≠ 제공 {vals[i][1]}% — 순서가 어긋났다")
+    return [(_qshift(first, i).isoformat(), v) for i, (v, _) in enumerate(vals)]
+
+
+def put_tv(path):
+    """한국 등 Fiscal.ai·Easyconomics에 분기 재무가 없는 종목(DART 키 없음, TODO_MASTER 2026-11-06) — config/data_sources.yaml quarters 원천"""
+    raw = json.loads(Path(path).read_text(encoding="utf-8"))
+    rows = [r for r in load_rev() if r["id"] not in raw]
+    for cid, rec in raw.items():
+        for period, v in tv_quarters(rec):
+            rows.append({"id": cid, "period": period, "revenue": float(v), "earnings_date": "",
+                         "source": f"TradingView financial-history {rec.get('symbol', '')}(마지막 분기는 잠정실적일 수 있다)"})
     save_rev(rows)
     return len(rows)
 
@@ -325,11 +365,21 @@ def attach_consensus(path):
     return nc
 
 
+def prior_trials():
+    """같은 가설을 다시 본 횟수도 시도로 센다(선택적 중단 보정, 보수적) — changelog.csv의 나우캐스트 계수 검정 기록 수"""
+    f = ROOT / "knowledge" / "models" / "params" / "changelog.csv"
+    if not f.exists():
+        return 0
+    with f.open(encoding="utf-8", newline="") as fh:
+        return sum(1 for r in csv.DictReader(fh) if (r.get("param_id") or "").startswith("prm-consumer-nowcast-beta-"))
+
+
 def run():
     obs = panel()
-    res = evaluate(obs)
+    trials = prior_trials() + 2
+    res = evaluate(obs, trials=trials)
     nc = nowcast(res)
-    doc = {"as_of": common.iso(common.now_kst()), "method": "패널 walk-forward, 기본 y=a+ρy₋₁ vs 확장 +βs, harness.nested_test(본페로니 2)",
+    doc = {"as_of": common.iso(common.now_kst()), "method": f"패널 walk-forward, 기본 y=a+ρy₋₁ vs 확장 +βs, harness.nested_test(본페로니 {trials} — 다시 본 검정 포함, 개선은 MSE 기준)", "trials": trials,
            "clip": CLIP, "min_train": MIN_TRAIN, "n_obs": len(obs), "companies": sorted({o["id"] for o in obs}), "tests": res, "nowcast": nc,
            "note": "채택되지 않은 신호는 나우캐스트를 내지 않는다. 범위 = 회사별 표본 외 RMSE(로그). 매수 권유 아님."}
     NOWCAST.write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -340,6 +390,9 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if argv[:1] == ["--put-fiscal"]:
         print(f"매출 이력 {put_fiscal(argv[1])}행")
+        return 0
+    if argv[:1] == ["--put-tv"]:
+        print(f"매출 이력 {put_tv(argv[1])}행")
         return 0
     if argv[:1] == ["--consensus"]:
         nc = attach_consensus(argv[1])

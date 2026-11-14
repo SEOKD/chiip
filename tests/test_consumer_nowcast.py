@@ -48,6 +48,16 @@ class TestNowcast(unittest.TestCase):
         self.assertEqual([q["period"] for q in qs], ["2021-06-30"])
         self.assertAlmostEqual(qs[0]["y"], __import__("math").log(15 / 11))
 
+    def test_tv_quarters_ignores_labels_but_checks(self):
+        vals = [[100, None], [110, None], [120, None], [130, None], [150, 50.0], [165, 50.0]]
+        rec = {"symbol": "X", "first_label": "Q4 2022", "last_label": "Q1 2024", "revenue": vals}
+        got = nc.tv_quarters(rec)
+        self.assertEqual([p for p, _ in got], ["2022-12-31", "2023-03-31", "2023-06-30", "2023-09-30", "2023-12-31", "2024-03-31"])
+        with self.assertRaises(ValueError):          # 개수가 라벨 범위와 다르면 받지 않는다
+            nc.tv_quarters(dict(rec, last_label="Q2 2024"))
+        with self.assertRaises(ValueError):          # YoY가 안 맞으면(순서 어긋남) 받지 않는다
+            nc.tv_quarters(dict(rec, revenue=vals[:4] + [[150, 20.0], [165, 50.0]]))
+
     def test_months_drop_and_clip(self):
         self.assertEqual(nc.months_in(date(2026, 6, 30), date(2026, 9, 30)), ["2026-07", "2026-08", "2026-09"])
         self.assertEqual(nc.months_in(date(2026, 1, 3), date(2026, 4, 4)), ["2026-01", "2026-02", "2026-03"])
