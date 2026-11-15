@@ -44,6 +44,24 @@ def base_commit():
         return git("rev-parse", "refs/remotes/origin/main")
 
 
+def series_old(paths):
+    """새 HTML과 같은 계열(같은 폴더, 이름에서 숫자를 지우면 같은 것)인 claude/reports의 옛 HTML 경로"""
+    base = base_commit()
+    out = []
+    for p in paths:
+        ap = (ROOT / p).resolve() if not Path(p).is_absolute() else Path(p).resolve()
+        rel = ap.relative_to(ROOT).as_posix()
+        if not rel.endswith(".html"):
+            continue
+        d, name = rel.rsplit("/", 1) if "/" in rel else ("", rel)
+        key = re.sub(r"\d+", "#", name)
+        for f in git("ls-tree", "--name-only", base, (d + "/") if d else ".").splitlines():
+            n = f.rsplit("/", 1)[-1]
+            if f != rel and n.endswith(".html") and re.sub(r"\d+", "#", n) == key:
+                out.append(f)
+    return out
+
+
 def publish(paths, title, drop=()):
     """drop: 같은 커밋에서 브랜치에서 뺄 경로(같은 종목 옛 리포트, prune_reports.drop)"""
     rels = []
@@ -84,10 +102,12 @@ def main(argv):
     ap.add_argument("files", nargs="+")
     ap.add_argument("--title", required=True)
     ap.add_argument("--no-send", action="store_true")
+    ap.add_argument("--replace", action="store_true", help="같은 폴더의 같은 계열 옛 HTML(이름에서 숫자만 다른 것)을 이 커밋에서 빼고 새 파일로 덮는다(마스터 지시 2026-11-15 'Github에는 새로운 html 파일이 업데이트되면 기존 파일을 덮도록')")
     ap.add_argument("--attach", action="store_true", help="텔레그램에 링크 대신 HTML 파일 자체를 첨부(Quantral, 2026-11-15 마스터 지시)")
     ap.add_argument("--caption", default="", help="링크 위에 붙일 요약(파일 경로 또는 글) — 텔레그램은 GitHub 링크만(마스터 지시 2026-10-30)")
     a = ap.parse_args(argv)
-    links, commit = publish(a.files, a.title)
+    drop = series_old(a.files) if a.replace else ()
+    links, commit = publish(a.files, a.title, drop)
     print(f"[게시] {BRANCH} {commit[:12]}")
     for l in links:
         print(l)
