@@ -188,7 +188,7 @@ def build(quarter, industry, dp, c=None):
     rating_tbl = {"type": "table", "title": f"사업군 판단 등급 — 규칙 계산(갭 ±{ecfg['rating']['gap_band']:.0f}%p, 확신도 {ecfg['rating']['min_confidence']:.1f} 이상)" + (f" · 공시·IR 근거 {S.cfg()['min_graded_share']:.0%} 미만 풀({', '.join(pname[p] for p in hold)})은 보류" if hold else ""),
                   "headers": ["사업군", "시장 반영", "Chiip 기대", "갭", "확신도", "규칙", "최종"],
                   "rows": [[r["name"], E.pct(r["market"], unit="%p"), E.pct(r["expected"], unit="%p"), E.pct(r["gap"], unit="%p"), f"{float(r.get('confidence') or 0):.2f}", r["rule"], r["rating"]] for r in segs]}
-    sec = [{"h2": "결론", "blocks": LS.get("bottom") or [{"type": "hl", "text": nar["view"]}]},
+    sec = [{"h2": "결론", "blocks": (LS.get("bottom") or [{"type": "hl", "text": nar["view"]}]) + LS.get("takeaways", [])},
            {"h2": "① 핵심 논쟁", "blocks": LS.get("debates", [])},
            {"h2": "② 시즌 스코어카드", "blocks": score},
            {"h2": "③ 동인 분해 — 물량 × 가격", "blocks": LS.get("drivers", [])},
@@ -196,8 +196,8 @@ def build(quarter, industry, dp, c=None):
             + ([{"type": "table", "title": "가이던스·재고 — 회사 공시가 비면 국내 증권사 공개 요약(언론 보도, 2차 인용 C등급)", "headers": ["종목", "가이던스", "재고", "출처"], "rows": notes}] if notes else [])},
            {"h2": "⑤ 사이클 지표판", "blocks": LS.get("cycle", []) + [{"type": "p", "text": nar["cycle"]}, cyc_chart]},
            {"h2": "⑥ 이익 풀 — 누가 유리해졌나", "blocks": [{"type": "p", "text": nar["winners"]}] + LS.get("profit_pool", []) + ([{"type": "p", "text": nar["value_chain_shift"]}] if nar.get("value_chain_shift") else [])},
-           {"h2": "⑦ 가격 내포 기대 vs Chiip", "blocks": LS.get("expectations", []) + [{"type": "hl", "text": nar.get("gap") or nar["view"]}, rating_tbl]},
-           {"h2": "⑧ 시나리오", "blocks": LS.get("scenarios", [])},
+           {"h2": "⑦ 가격 내포 기대 vs Chiip", "blocks": LS.get("estimates", []) + LS.get("revisions", []) + LS.get("valuation_history", []) + LS.get("expectations", []) + [{"type": "hl", "text": nar.get("gap") or nar["view"]}, rating_tbl]},
+           {"h2": "⑧ 시나리오", "blocks": LS.get("sensitivity", []) + LS.get("scenarios", []) + LS.get("exposure", []) + LS.get("positioning", [])},
            {"h2": "⑨ 지난 판단 채점", "blocks": ([{"type": "table", "title": "기한이 이번 시즌에 든 Chiip 산업 예측", "headers": ["예측", "내용", "기한", "확률", "결과"], "rows": preds}] if preds
                                             else [{"type": "p", "text": "이번 시즌에 기한이 든 산업 예측이 없다 — 첫 분기 결산이라 채점할 이력이 없다."}])
             + ([{"type": "p", "text": f"브라이어 점수 {br:.3f}(0이 완벽, 0.25가 동전 던지기)."}] if br is not None else [])},

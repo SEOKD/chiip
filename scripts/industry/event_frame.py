@@ -193,10 +193,11 @@ def build(dp, cfg=None):
     import logic as LG
     LS = LG.sections(dp, "event")
     if LS:
-        out = [{"h2": "결론", "blocks": LS["bottom"]}]
+        out = [{"h2": "결론", "blocks": LS["bottom"] + LS.get("takeaways", [])}]
         for x in sec:
             if x["h2"] == STEPS[5]:
-                x["blocks"] = LS.get("expectations", []) + x["blocks"] + LS.get("scenarios", [])
+                x["blocks"] = (LS.get("estimates", []) + LS.get("valuation_history", []) + LS.get("expectations", []) + x["blocks"]
+                               + LS.get("sensitivity", []) + LS.get("scenarios", []) + LS.get("exposure", []) + LS.get("positioning", []))
             if x["h2"] == STEPS[6] and LS.get("debates"):
                 out.append({"h2": "핵심 논쟁", "blocks": LS["debates"]})
             out.append(x)

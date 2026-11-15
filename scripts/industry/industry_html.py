@@ -18,6 +18,10 @@ DISCLAIMER = ("산업 판단 등급(Attractive·In-Line·Cautious)은 규칙이 
 TONE = {"Attractive": "red", "Cautious": "blue", "In-Line": ""}
 
 
+# 주기별 머리 표기(2026-11-15 점검 — 주간 리포트에 '사건 때 심층'이 찍히던 결함)
+CYCLE = {"weekly": "주간 산업", "quarterly": "분기 결산"}
+
+
 def render(d):
     for key in ("title", "date", "industry", "event"):
         if not d.get(key):
@@ -27,7 +31,7 @@ def render(d):
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'
              f'<title>Chiip Industry Report</title><style>{rh.CSS}</style></head><body><div class="w">',
              f'<h1>{t(d["title"])}' + (f'<br><span style="font-size:16px">{t(d["subtitle"])}</span>' if d.get("subtitle") else "") + "</h1>",
-             f'<p class="lead">{t(d["date"])} · Chiip Industry Report · 사건 때 심층 · 산업: {t(d["industry"])} · 사건: {t(d["event"])}'
+             f'<p class="lead">{t(d["date"])} · Chiip Industry Report · {CYCLE.get(d.get("cycle"), "사건 때 심층")} · 산업: {t(d["industry"])} · {"사건" if d.get("cycle") not in CYCLE else "주제"}: {t(d["event"])}'
              + (f' · 부가가치: {t(" · ".join(d["value_add"]))}' if d.get("value_add") else "") + "</p>"]
     if d.get("ratings"):
         parts.append('<div class="dash">' + "".join(

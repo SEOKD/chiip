@@ -130,6 +130,7 @@ def gate(dp, kind, c=None):
                 bad.append(f"comps {x.get('name')}: 출처에 {'·'.join(miss)}가 없다 — 두 원천을 함께 대조한다(한쪽에 없으면 그 칸에 \"미수록\")")
     if dp.get("emerging") and len(L.get("roadmap") or []) < 3:
         bad.append("신생 산업(emerging)은 기술 로드맵(roadmap[{date, milestone, who, status, source}]) 3개 이상")
+    bad += ib_gate(dp, kind, L, c)
     text = json.dumps({k: v for k, v in dp.items() if k not in ("sources",)}, ensure_ascii=False)
     bad += [f"금지 표현 '{w}'" for w in c["banned"] if w in text]
     if any(w in text for w in c["needs_expectations"]) and not L.get("expectations"):
@@ -222,4 +223,96 @@ def sections(dp, kind, actual=None, c=None):
     if pp:
         out["profit_pool"] = [{"type": "table", "title": "이익 풀 이동 — 가치사슬 층별로 마진을 누가 가져가나", "headers": ["층", "전", "후", "왜"],
                                "rows": [[x["layer"], str(x.get("before", "")), str(x.get("after", "")), x.get("why", "")] for x in pp]}]
+    out.update(ib_sections(L))
+    return out
+
+
+# 월가 IB 산업 노트 요소(2026-11-15 마스터 지시 "월스트리트 IB 리서치 하우스의 접근 방법과 사고 논리가 제대로 반영돼 있는지 점검하고 양식을 고도화하라")
+#   핵심 요지(Key takeaways) · 우리 추정 vs 컨센서스(Our estimates vs Street) · 추정치 수정 폭(revisions breadth) ·
+#   역사적 멀티플 밴드(현재 vs 3~5년 평균·고저) · 민감도(동인 ±x% → 매출·EPS) · 노출 지도(가장 레버리지 큰 회사 — 매매 의견 아님) · 수급·포지셔닝
+IB_KEYS = ("takeaways", "estimates", "revisions", "valuation_history", "sensitivity", "exposure", "positioning")
+
+
+def ib_applies(dp, c):
+    return str(dp.get("date") or "") >= str(c.get("ib_required_from", "9999")) or any((dp.get("logic") or {}).get(k) for k in IB_KEYS)
+
+
+def ib_gate(dp, kind, L, c):
+    if not ib_applies(dp, c):
+        return []
+    need, bad = c.get("ib_required", {}).get(kind, []), []
+    tk = L.get("takeaways") or []
+    if "takeaways" in need and not 3 <= len(tk) <= 5:
+        bad.append(f"핵심 요지(takeaways) {len(tk)}개 — 3~5개(한 문장씩, 결론 먼저)")
+    es = L.get("estimates") or []
+    if "estimates" in need and len(es) < c.get("estimates_min", 3):
+        bad.append(f"추정 vs 컨센서스(estimates) {len(es)}줄 — {c.get('estimates_min', 3)}줄 이상[{{company, metric, period, chiip, street, source}}]")
+    for x in es:
+        if not (_num(x.get("chiip")) and _num(x.get("street")) and x.get("period") and x.get("source")):
+            bad.append(f"estimates {x.get('company')}·{x.get('metric')}: chiip·street 숫자·기간·출처 필요(모르면 그 줄을 빼고 미확인으로 적는다)")
+        elif not x.get("basis"):
+            bad.append(f"estimates {x.get('company')}·{x.get('metric')}: Chiip 추정의 근거(basis) 필요")
+    if "revisions" in need and not L.get("revisions"):
+        bad.append("추정치 수정 폭(revisions[{metric, window, up, down, source}]) 없음")
+    for x in L.get("revisions") or []:
+        if not (isinstance(x.get("up"), int) and isinstance(x.get("down"), int) and x.get("window")):
+            bad.append(f"revisions {x.get('metric')}: up·down 건수(정수)와 기간 필요")
+    vh = L.get("valuation_history") or []
+    if "valuation_history" in need and not vh:
+        bad.append("역사적 멀티플 밴드(valuation_history[{name, multiple, now, avg, low, high, years, source}]) 없음")
+    for x in vh:
+        if not all(_num(x.get(k)) for k in ("now", "avg", "low", "high")) or not x.get("source"):
+            bad.append(f"valuation_history {x.get('name')}: now·avg·low·high 숫자와 출처 필요")
+    sn = L.get("sensitivity") or []
+    if "sensitivity" in need and not sn:
+        bad.append("민감도(sensitivity[{driver, shock, metric, impact, basis}]) 없음")
+    for x in sn:
+        if not (x.get("driver") and x.get("shock") and x.get("impact") and x.get("basis")):
+            bad.append(f"sensitivity {x.get('driver')}: 충격·영향·계산 근거 필요")
+    ex = L.get("exposure") or []
+    if "exposure" in need and len(ex) < 3:
+        bad.append(f"노출 지도(exposure) {len(ex)}곳 — 3곳 이상[{{name, lever, direction, why}}]")
+    if "positioning" in need and not L.get("positioning"):
+        bad.append("수급·포지셔닝(positioning[{indicator, value, read, source}]) 없음 — 모르면 value: \"미확인\"")
+    return bad
+
+
+def ib_sections(L):
+    out = {}
+    if L.get("takeaways"):
+        out["takeaways"] = [{"type": "table", "title": "핵심 요지 — 이번 리포트가 말하는 것", "headers": ["#", "요지"],
+                             "rows": [[str(i + 1), t] for i, t in enumerate(L["takeaways"])]}]
+    es = L.get("estimates") or []
+    if es:
+        def diff(x):
+            a, b = x.get("chiip"), x.get("street")
+            return f"{(a / b - 1) * 100:+.1f}%" if _num(a) and _num(b) and b else "—"
+        out["estimates"] = [{"type": "table", "title": "Chiip 추정 vs 컨센서스 — 차이가 곧 차별 견해다", "headers": ["회사", "지표", "기간", "Chiip", "컨센서스", "차이", "Chiip 근거", "출처"],
+                             "rows": [[x.get("company", ""), x.get("metric", ""), str(x.get("period", "")), str(x.get("chiip")), str(x.get("street")), diff(x), x.get("basis", ""), x.get("source", "")] for x in es]}]
+    rv = L.get("revisions") or []
+    if rv:
+        out["revisions"] = [{"type": "table", "title": "추정치 수정 폭 — 상향·하향 건수(방향이 수준보다 먼저 움직인다)", "headers": ["지표", "기간", "상향", "하향", "순(%)", "출처"],
+                             "rows": [[x.get("metric", ""), x.get("window", ""), str(x.get("up")), str(x.get("down")),
+                                       (f"{(x['up'] - x['down']) / (x['up'] + x['down']) * 100:+.0f}%" if isinstance(x.get("up"), int) and isinstance(x.get("down"), int) and x["up"] + x["down"] else "—"),
+                                       x.get("source", "")] for x in rv]}]
+    vh = L.get("valuation_history") or []
+    if vh:
+        def pos(x):
+            n, lo, hi = x.get("now"), x.get("low"), x.get("high")
+            return f"{(n - lo) / (hi - lo) * 100:.0f}%" if all(_num(v) for v in (n, lo, hi)) and hi > lo else "—"
+        out["valuation_history"] = [{"type": "table", "title": "역사적 멀티플 밴드 — 지금 배수가 자기 역사의 어디에 있나(0%=저점, 100%=고점)",
+                                     "headers": ["대상", "배수", "지금", "평균", "저점", "고점", "밴드 위치", "기간", "출처"],
+                                     "rows": [[x.get("name", ""), x.get("multiple", ""), str(x.get("now")), str(x.get("avg")), str(x.get("low")), str(x.get("high")), pos(x), str(x.get("years", "")), x.get("source", "")] for x in vh]}]
+    sn = L.get("sensitivity") or []
+    if sn:
+        out["sensitivity"] = [{"type": "table", "title": "민감도 — 동인 하나가 움직이면 이익이 얼마나 바뀌나", "headers": ["동인", "충격", "지표", "영향", "계산 근거"],
+                               "rows": [[x["driver"], str(x["shock"]), x.get("metric", ""), str(x["impact"]), x.get("basis", "")] for x in sn]}]
+    ex = L.get("exposure") or []
+    if ex:
+        out["exposure"] = [{"type": "table", "title": "노출 지도 — 이 판단에 가장 크게 움직이는 회사(매매 의견 아님)", "headers": ["회사", "레버리지", "방향", "왜"],
+                            "rows": [[x.get("name", ""), str(x.get("lever", "")), x.get("direction", ""), x.get("why", "")] for x in ex]}]
+    po = L.get("positioning") or []
+    if po:
+        out["positioning"] = [{"type": "table", "title": "수급·포지셔닝 — 이미 얼마나 몰려 있나", "headers": ["지표", "값", "읽기", "출처"],
+                               "rows": [[x.get("indicator", ""), str(x.get("value", "")), x.get("read", ""), x.get("source", "")] for x in po]}]
     return out

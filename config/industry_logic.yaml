@@ -38,3 +38,11 @@ event_gate:
 market_size_required: [weekly]
 comps_min: {weekly: 4, quarterly: 0, event: 0}
 roadmap_required_if: emerging     # datapack emerging: true면 로드맵 3개 이상
+# 월가 IB 산업 노트 요소(2026-11-15 마스터 지시 "IB 리서치 하우스의 접근 방법과 사고 논리가 반영돼 있는지 점검하고 양식을 고도화하라")
+#   핵심 요지 · 추정 vs 컨센서스 · 수정 폭 · 역사적 멀티플 밴드 · 민감도 · 노출 지도 · 수급·포지셔닝 — logic.py ib_gate·ib_sections
+ib_required_from: "2026-11-16"   # 이후 발행분부터(이전 발행분은 다시 만들 때)
+ib_required:
+  weekly: [takeaways, estimates, revisions, valuation_history, sensitivity, exposure, positioning]
+  quarterly: [takeaways, estimates, revisions, valuation_history, sensitivity, exposure, positioning]
+  event: [takeaways, sensitivity, exposure]
+estimates_min: 3

@@ -66,12 +66,22 @@ def rows_of(dp, cfg):
 def why_now(dp):
     """선정 점수표 상위 3 — 이 산업을 이번 주에 쓰는 이유(시의성)"""
     r = W.rank()
-    top = r[:3]
+    # 발행일에 기록한 상위 3(picks.csv)을 쓴다 — 렌더 때 다시 순위를 매기면 오늘 고른 산업이 자기 '최근 선정' 감점으로 표에서 빠진다(2026-11-15 점검)
+    by = {x["industry"]: x for x in r}
+    rec = []
+    if W.PICKS.exists():
+        import csv
+        for row in csv.DictReader(W.PICKS.open(encoding="utf-8")):
+            if row.get("date") == str(dp.get("date")) and row.get("industry") == dp["industry"] and row.get("top3"):
+                rec = [i for i in row["top3"].split("|") if i in by]
+    top = [by[i] for i in rec] or r[:3]
+    if dp["industry"] in by and by[dp["industry"]] not in top:
+        top.append(by[dp["industry"]])
     rows = [[x["name"], f"{x['score']:.2f}"] + [f"{v[0]}" for v in x["parts"].values()] for x in top]
     me = next((x for x in r if x["industry"] == dp["industry"]), None)
     hl = dp.get("why_now") or (f"이번 주 선정 점수 {me['score']:.2f}" + (f"({', '.join(me['notes'])})" if me and me["notes"] else "") if me else "")
     return [{"type": "hl", "text": hl},
-            {"type": "table", "title": "이번 주 산업 선정 — 상위 3(촉매·가격·뉴스 가속·1차 사건·알파·논쟁, 0~10)", "headers": ["산업", "점수", "촉매", "가격", "뉴스 가속", "1차 사건", "알파", "논쟁"], "rows": rows}]
+            {"type": "table", "title": "이번 주 산업 선정 — 발행일 상위 3(촉매·가격·뉴스 가속·1차 사건·알파·논쟁, 0~10)", "headers": ["산업", "점수", "촉매", "가격", "뉴스 가속", "1차 사건", "알파", "논쟁"], "rows": rows}]
 
 
 def build(dp, cfg=None):
@@ -104,13 +114,16 @@ def build(dp, cfg=None):
         ins = {"① 왜 지금": ("debates", "핵심 논쟁"), "② 수요": ("market_size", "시장 규모(TAM)"), "③ 공급·캐파": ("drivers", "동인 분해 — 물량 × 가격"),
                "④ 병목·가격": ("cycle", "사이클 지표판")}
         ins2 = {"③ 공급·캐파": ("roadmap", "기술 로드맵"), "⑤ 가치사슬 지도": ("comps", "경쟁 구도·밸류에이션 비교")}
-        out = [{"h2": "결론", "blocks": LS["bottom"]}]
+        out = [{"h2": "결론", "blocks": LS["bottom"] + LS.get("takeaways", [])}]
         for x in sec:
             if x["h2"].startswith("⑤") and LS.get("profit_pool"):
                 x["blocks"] += LS["profit_pool"]
-            if x["h2"].startswith("⑥"):
-                x["blocks"] = LS.get("expectations", []) + x["blocks"] + LS.get("scenarios", [])
+            if x["h2"].startswith("⑥"):   # IB 순서: 추정 vs 컨센서스 → 수정 폭 → 멀티플 밴드 → 가격 내포 기대 → 판단 → 민감도 → 시나리오
+                x["blocks"] = (LS.get("estimates", []) + LS.get("revisions", []) + LS.get("valuation_history", []) + LS.get("expectations", [])
+                               + x["blocks"] + LS.get("sensitivity", []) + LS.get("scenarios", []))
             out.append(x)
+            if x["h2"].startswith("⑥"):
+                out += [{"h2": h, "blocks": LS[k]} for k, h in (("exposure", "노출 지도"), ("positioning", "수급·포지셔닝")) if LS.get(k)]
             for m in (ins, ins2):
                 k = m.get(x["h2"])
                 if k and LS.get(k[0]):

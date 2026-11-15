@@ -30,3 +30,16 @@
 - "트레이딩뷰와도 연동해 세부 섹터가 정해지면 이를 와치리스트 섹션에 넣고 추가하거나 업데이트하라" → `py radar/tv_sections.py --taxonomy <list-watchlists 출력>`이 폴더(나라)별로 유니버스 종목을 세부 산업 섹션으로 옮기고 빠진 종목을 더한 순서를 낸다(지우지 않음). 적용은 add-to-watchlist로 와치리스트마다 한 번에(동시 호출 금지).
 - **노션 IB 자료 참조 의무**(2026-11-08 마스터 지시 "산업 리포트 쓸 때 Notion에 있는 IB 리포트를 참조하라 — Quantum 리포트엔 Quantum computing FAQ BOA.pdf"): 쓰기 전 `py radar/notion_library.py --industry <산업 키>`로 참조할 자료를 본다. 세 경로 — ① `config/notion_library.yaml` industry_refs(산업 키 정규식 → 파일 이름, 신흥 산업 연결) ② 그 세부 산업을 다루는 업종·테마 리포트 ③ 구성 종목이 주 대상인 IB 리포트. ④ 본문에서 구성 종목을 5번 이상 다루는 자료(2026-11-15). ①은 전부, ②~④는 45일 안에서 요지가 이미 있는 자료는 상한 없이 전부 참조하고, 요지가 없는 자료는 최신 6건만 새로 요지를 쓴다(2026-11-15 마스터 지시 "넓혀 줘" — 전엔 요지가 있어도 6건에서 잘렸다). 요지가 없으면 주간·분기 조립기(사건 심층은 datapack `industry_key`가 있을 때)가 멈추고, 있으면 출처에 '마스터 노션 IB 자료' 인용을 자동으로 붙인다. 본문에는 요지의 판단·숫자를 자기 말로 넣는다(원문 복제 금지, 외부 공유 금지). **증권사 반응은 몇 곳 중 몇 곳으로**(2026-11-15 마스터 지시 "넓혀 줘" — 11/15 AI 가속기 리포트가 NVIDIA 11/12 보고서 12건 중 2건만 보고 '증권사들은'이라고 썼다): 같은 회사에 같은 사건 뒤 보고서가 여러 건이면 요지 있는 것을 모두 읽고 '증권사 반응' 표(증권사 · 의견 · 목표가 전→후 · 이익 추정 전→후 · 핵심 논리 한 줄)로 묶는다. 본문은 'N곳 중 M곳이 이익 추정을 유지하고 목표가만 내렸다'처럼 분모를 쓴다. 요지가 없는 보고서는 분모에서 빼고 '요지 미작성 K건'을 적는다 — 2~3건으로 '증권사들은'이라고 일반화하지 않는다.
 - **Fiscal.ai·TradingView 균형**(2026-11-15 마스터 지시 "TradingView만 많이 참조했던데 Fiscal.ai도 참조해라" → "Fiscal.ai를 먼저 가져오는 게 아니라 TradingView와 균형 있게 써라"): 비교 기업(comps)은 종목마다 두 원천을 함께 받아 대조한다 — Fiscal.ai `scripts/fiscal/templates/industry_comps.js`(execute_code, 3곳씩)와 TradingView `mcp-tv-get-symbol-data-batch`(market_cap_basic·total_revenue_ttm·total_revenue_yoy_growth_ttm·enterprise_value_current 등). 두 값이 10% 넘게 다르면 기준(회계 기간·통화·희석 주식·조정 여부)을 확인해 메모에 적고, 출처 칸에 두 원천을 모두 쓴다(예: 'Fiscal.ai·TradingView 2026-11-15'). 한쪽에 없는 종목만 `fiscal: "미수록"` 또는 `tv: "미수록"`. 주가 수익률·스크리너는 TradingView, 사업부(세그먼트)·컨센서스 분산은 Fiscal.ai가 강하다 — 강한 쪽을 쓰되 다른 쪽으로 검산한다. 조립기(`scripts/industry/logic.py`)가 한 원천만 쓴 comps를 멈춘다.
+
+## 월가 IB 산업 노트 요소(2026-11-15 마스터 지시 "IB 리서치 하우스의 접근 방법과 사고 논리가 제대로 반영돼 있는지 점검하고 양식을 고도화하라")
+점검 결과 빠져 있던 것: 우리 추정 vs 컨센서스, 추정치 수정 폭, 역사적 멀티플 밴드, 민감도, 노출 지도, 수급·포지셔닝, 첫 쪽 핵심 요지. 2026-11-16 발행분부터 datapack `logic`에 넣어야 관문을 통과한다(`config/industry_logic.yaml` `ib_required`, `scripts/industry/logic.py` `ib_gate`·`ib_sections`).
+| 키 | 내용 | 위치 |
+|---|---|---|
+| `takeaways` | 핵심 요지 3~5문장 | 결론 아래 |
+| `estimates` | {company, metric, period, chiip, street, basis, source} 3줄 이상 — 차이(%)는 자동 계산, Chiip 근거 필수 | ⑥ 첫머리 |
+| `revisions` | {metric, window, up, down, source} — 순 수정 비율 자동 | ⑥ |
+| `valuation_history` | {name, multiple, now, avg, low, high, years, source} — 밴드 위치(0~100%) 자동 | ⑥ |
+| `sensitivity` | {driver, shock, metric, impact, basis} | ⑥ 시나리오 앞 |
+| `exposure` | {name, lever, direction, why} 3곳 이상 — 매매 의견이 아니다 | ⑥ 뒤 절 |
+| `positioning` | {indicator, value, read, source} — 공매도·13F·옵션 내재 변동성·투자의견 분포, 모르면 "미확인" | ⑥ 뒤 절 |
+사건 심층은 takeaways·sensitivity·exposure만 필수. 추정·배수 수치는 Fiscal.ai·TradingView를 함께 대조한다(위 comps 규칙과 같다). 함께 고친 결함: 주간·분기 리포트 머리에 '사건 때 심층'이 찍히던 것(`industry_html.CYCLE`), 선정 표가 렌더 때 순위를 다시 매겨 그날 고른 산업이 빠지던 것(picks.csv 발행일 상위 3을 쓴다).
