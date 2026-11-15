@@ -43,6 +43,12 @@ class TestSplitAxes(unittest.TestCase):   # 2026-11-15 마스터 지시 — y축
         rev = {q: 1e9 + i * 1e8 for i, q in enumerate(w)}
         ppi = {q: 106.623 if i in (2, 3, 4) else 106.0 + i for i, q in enumerate(w)}
         cs = sv.level_charts({"rev": rev, "rows": [{"ind": {"label": "미국 반도체 장비 PPI", "source": "ppi"}, "iq": ppi}]}, w)
-        self.assertEqual(len(cs), 2)
-        self.assertEqual(cs[1]["series"][0]["points"][0][1], ppi[w[0]])   # 원래 단위(지수 100 환산 아님)
-        self.assertIn("이월", cs[1]["title"])
+        self.assertEqual(len(cs), 1)                                          # 한 그림(2026-11-16)
+        ser = cs[0]["series"]
+        self.assertTrue(cs[0]["multi_axis"])
+        self.assertNotEqual(ser[0]["axis"], ser[-1]["axis"])                    # 선마다 자기 y축
+        self.assertEqual(ser[-1]["points"][0][1], ppi[w[0]])                   # 원래 단위(지수 100 환산 아님)
+        self.assertIn("이월", cs[0]["title"])
+        import report_html
+        svg = report_html.chart_line(cs[0])
+        self.assertIn('text-anchor="start"', svg)                              # 오른쪽 축 눈금

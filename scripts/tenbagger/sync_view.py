@@ -571,7 +571,9 @@ def level_charts(c, win, top=None):
     if nx and rv.get(c["last"]) and c["last"] in axis:
         tot = to_total(c, top, nx)
         s_rev.append({"name": f"다음 분기 추정({c['next']}, ±1σ {tot['lo']:,.0f}~{tot['hi']:,.0f})", "color": "e", "points": [[c["last"], rv[c["last"]]], [c["next"], tot["rev"]]]})
-    out = [{"kind": "line", "title": f"매출 — 최근 {len(axis)}개 분기 + 다음 분기 추정(아래 지표들과 같은 분기)", "unit": "", "series": s_rev}]
+    for x in s_rev:
+        x["axis"] = "rev"
+    series, notes = list(s_rev), []
     cols = ["b", "c", "d", "e"]
     for i, r in enumerate(c["rows"]):
         pts = [[q, r["iq"][q]] for q in axis if r["iq"].get(q) is not None]
@@ -586,8 +588,13 @@ def level_charts(c, win, top=None):
             best = max(best, run)
         if src.startswith("PPI") and best >= 3:   # 원천이 가격을 다시 조사하지 않고 이월(2026-11-15 원익IPS: 미국 반도체 장비 PPI 2025-04~12 9개월 106.623)
             rng += f" · {best}개 분기 같은 값 — 가격 재조사가 드문 지수(이월), 매출 선행 신호로 약하다"
-        out.append({"kind": "line", "title": f"{r['ind']['label']} {src}".strip() + rng, "unit": "", "series": [{"name": r["ind"]["label"], "color": cols[i % len(cols)], "points": pts}]})
-    return out
+        series.append({"name": f"{r['ind']['label']} {src}".strip(), "color": cols[i % len(cols)], "axis": f"i{i}", "points": pts})
+        notes.append(f"{r['ind']['label']}{rng}")
+    # 한 그림, 선마다 자기 y축(마스터 지시 2026-11-16 "하나의 그래프로 합쳐라. 대신 y축을 달리") — 왼쪽 축 = 매출, 오른쪽 축 = 지표(눈금 색 = 선 색)
+    title = f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 + 다음 분기 추정(선마다 자기 y축: 왼쪽 매출, 오른쪽 지표)"
+    if notes:
+        title += " · " + " · ".join(notes)
+    return [{"kind": "line", "multi_axis": True, "title": title, "unit": "", "series": series}]
 
 
 def section(dp, history=None, db=HS_DB):

@@ -163,7 +163,55 @@ def _fmt(v):
     return f"{v:,.0f}" if abs(v) >= 100 else (f"{v:,.1f}" if abs(v) >= 10 else f"{v:,.2f}")
 
 
+def chart_multiaxis(c):
+    """한 그림에 여러 선 — 선마다 자기 y축(마스터 지시 2026-11-16 "하나의 그래프로 합쳐라. 대신 y축을 달리"). 시리즈의 "axis"가 같으면 축을 함께 쓴다(매출과 매출 추정).
+    첫 축은 왼쪽, 나머지는 오른쪽에 차례로. 눈금 글자는 그 선의 색"""
+    series = [s for s in c.get("series") or [] if any(p[1] is not None for p in s.get("points") or [])]
+    keys = sorted(dict.fromkeys(p[0] for s in series for p in s.get("points") or []))
+    if not series or not keys:
+        return ""
+    axes = list(dict.fromkeys(s.get("axis", i) for i, s in enumerate(series)))
+    W, H, T, B, AW = 700, 280, 14, 26, 58
+    L, R = AW, AW * max(len(axes) - 1, 0) + 10
+    rng = {}
+    for i, s in enumerate(series):
+        ax = s.get("axis", i)
+        v = [p[1] for p in s["points"] if p[1] is not None]
+        lo, hi = rng.get(ax, (min(v), max(v)))
+        rng[ax] = (min(lo, min(v)), max(hi, max(v)))
+    for ax, (lo, hi) in rng.items():
+        pad = (hi - lo) * 0.12 or abs(hi) * 0.1 or 1
+        rng[ax] = (lo - pad, hi + pad)
+    X = lambda k: L + (keys.index(k) / max(len(keys) - 1, 1)) * (W - L - R)
+    Y = lambda v, ax: T + (rng[ax][1] - v) / (rng[ax][1] - rng[ax][0]) * (H - T - B)
+    g = []
+    for i in range(5):
+        y = T + (H - T - B) * i / 4
+        g.append(f'<line x1="{L}" x2="{W - R}" y1="{y:.1f}" y2="{y:.1f}" stroke="var(--line)"/>')
+    for n, ax in enumerate(axes):
+        col = COLORS.get(next(s.get("color", "c") for i, s in enumerate(series) if s.get("axis", i) == ax), "var(--c)")
+        x = L - 4 if n == 0 else W - R + 4 + (n - 1) * AW
+        anchor = "end" if n == 0 else "start"
+        lo, hi = rng[ax]
+        for i in range(5):
+            v = hi - (hi - lo) * i / 4
+            g.append(f'<text x="{x:.1f}" y="{Y(v, ax) + 3:.1f}" text-anchor="{anchor}" style="fill:{col}">{_fmt(v)}</text>')
+    step = max(1, len(keys) // 8)
+    for i, k in enumerate(keys):
+        if i % step == 0 or i == len(keys) - 1:
+            g.append(f'<text x="{X(k):.1f}" y="{H - 6}" text-anchor="middle">{t(k)}</text>')
+    for i, s in enumerate(series):
+        ax, col = s.get("axis", i), COLORS.get(s.get("color", "c"), "var(--c)")
+        pts = [p for p in s["points"] if p[1] is not None]
+        dash = ' stroke-dasharray="5 4"' if s.get("dash") else ""
+        g.append(f'<polyline fill="none" stroke="{col}" stroke-width="2"{dash} points="{" ".join(f"{X(p[0]):.1f},{Y(p[1], ax):.1f}" for p in pts)}"/>')
+        g += [f'<circle cx="{X(p[0]):.1f}" cy="{Y(p[1], ax):.1f}" r="3" fill="{col}"><title>{t(s["name"])} {t(p[0])}: {_fmt(p[1])}</title></circle>' for p in pts]
+    return _legend(series) + f'<svg viewBox="0 0 {W} {H}">{"".join(g)}</svg>'
+
+
 def chart_line(c):
+    if c.get("multi_axis"):
+        return chart_multiaxis(c)
     W, H, L, R, T, B = 700, 260, 48, 14, 14, 26
     series = c.get("series") or []
     keys = list(dict.fromkeys(p[0] for s in series for p in s.get("points") or []))   # '10/2'·'6/12'처럼 글자순과 시간순이 다른 라벨이 있어 입력 순서를 쓴다
