@@ -64,15 +64,17 @@ class TestLogicGate(unittest.TestCase):
         dp["emerging"] = True
         self.assertTrue(any("로드맵" in b for b in LG.gate(dp, "quarterly")))
 
-    def test_comps_need_fiscal_source(self):
-        """비교 기업 재무·배수는 Fiscal.ai 1순위(2026-11-15 마스터 지시) — 미수록만 다른 원천"""
+    def test_comps_need_both_sources(self):
+        """비교 기업은 Fiscal.ai·TradingView를 함께 대조(2026-11-15 마스터 지시 — 균형) — 한쪽 미수록만 예외"""
         dp = json.loads(json.dumps(GOOD))
         dp["logic"]["comps"] = [{"name": "A", "exposure": "순수", "source": "TradingView 2026-11-13"},
                                 {"name": "B", "exposure": "순수", "source": "Fiscal.ai 2026-11-15"},
-                                {"name": "C", "exposure": "겸업", "source": "TradingView", "fiscal": "미수록"}]
-        bad = [b for b in LG.gate(dp, "weekly") if "Fiscal.ai가 없다" in b]
-        self.assertEqual(len(bad), 1)
-        self.assertIn("comps A", bad[0])
+                                {"name": "C", "exposure": "겸업", "source": "Fiscal.ai·TradingView 2026-11-15"},
+                                {"name": "D", "exposure": "순수", "source": "TradingView", "fiscal": "미수록"}]
+        bad = [b for b in LG.gate(dp, "weekly") if "두 원천" in b]
+        self.assertEqual(len(bad), 2)
+        self.assertTrue(any("comps A" in b and "Fiscal.ai" in b for b in bad))
+        self.assertTrue(any("comps B" in b and "TradingView" in b for b in bad))
 
     def test_old_reports_exempt(self):
         self.assertEqual(LG.gate({"date": "2026-11-08"}, "event"), [])
