@@ -1,6 +1,6 @@
 """요청 리포트 대기열 (마스터 지시 2026-11-15 "Sekio Giken 리포트 하나 써라. Pulse가 이를 수행하라. Analysis 주기에 카운트하지마라")
 
-마스터가 직접 요청한 Analysis 리포트를 Pulse 회차가 쓴다. 정기 Analysis 회차(pick_report)의 순번·할당량(log.csv)에는 넣지 않고
+마스터가 직접 요청한 Analysis 리포트를 주말 Pulse 회차(chiip-pulse-weekend)가 쓴다. 정기 Analysis 회차(pick_report)의 순번·할당량(log.csv)에는 넣지 않고
 requests_log.csv에만 남긴다. 같은 종목을 30일 안에 정기 회차가 다시 고르지 않도록 pick_report.recent가 이 장부도 읽는다.
 사용: py scripts/tenbagger/report_request.py --add "<이름>" [--id <entity id>] [--ticker <코드>] [--market jp|us|kr|tw|eu] [--note "<메모>"]
       py scripts/tenbagger/report_request.py --due                   # 쓸 요청(오래된 순)
@@ -48,9 +48,10 @@ def due():
 
 
 def status(at=None):
-    """Pulse 관문용 — 대기 요청이 있으면 due(모델 회차를 깨운다)"""
+    """Pulse 관문용 — 주말(토·일 KST) 회차에서만 due(마스터 지시 2026-11-15 "Pulse 말고 Pulse Weekend로 수행하라"). 주중엔 대기만 표시"""
     d = due()
-    return {"due": bool(d), "items": d}
+    weekend = (at or now()).weekday() >= 5
+    return {"due": bool(d) and weekend, "items": d if weekend else [], "waiting": len(d), "runs_on": "chiip-pulse-weekend"}
 
 
 def done(key, html, view):
