@@ -30,3 +30,12 @@ class TestDecompose(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestImageTargets(unittest.TestCase):
+    def test_holdings_not_drawn(self):   # LBRT '에너지 전환 지분'에 오클로 원자로가 그려졌다
+        import product_images as P
+        self.assertTrue(P.is_holding({"name": "에너지 전환 지분", "what": "Oklo·Fervo·Tamboran 상장 지분"}))
+        self.assertFalse(P.is_holding({"name": "LPI 현장 전력", "what": "가스 왕복동 발전"}))
+        self.assertTrue(P.others_only({"items": [{"this_company": False}, {"this_company": False}]}))
+        self.assertFalse(P.others_only({"items": [{"this_company": False}, {"this_company": True}]}))

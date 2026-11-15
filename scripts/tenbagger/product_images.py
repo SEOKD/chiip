@@ -96,10 +96,28 @@ def auto_bom(cid, p, c=None, discover=True):
     return bom
 
 
+HOLDING_WORDS = ("지분", "투자 지분", "투자자산", "stake", "equity interest", "investment")
+
+
+def is_holding(p):
+    """회사가 만들거나 파는 것이 아니라 보유한 다른 회사 지분·투자 — 그림 대상이 아니다
+    (2026-11-15 LBRT '에너지 전환 지분(Oklo·Fervo·Tamboran)'이 제품으로 잡혀 오클로 원자로·탐보란 웰헤드를 Liberty 개념도에 그렸다)"""
+    if p.get("kind") in ("지분", "투자"):
+        return True
+    txt = f"{p.get('name', '')} {p.get('what', '')}".lower()
+    return any(w.lower() in txt for w in HOLDING_WORDS)
+
+
+def others_only(bom):
+    """웹 검색 부품이 모두 다른 회사 것(this_company false)이면 이 회사 제품 그림이 아니다"""
+    items = (bom or {}).get("items") or []
+    return bool(items) and all(x.get("this_company") is False for x in items)
+
+
 def targets_company(cid, c=None, discover=False):
     c = c or cfg()
     dp = json.loads((company_dir(cid) / "datapack.json").read_text(encoding="utf-8"))
-    prods = ((dp.get("narrative") or {}).get("lead") or {}).get("products") or []
+    prods = [p for p in ((dp.get("narrative") or {}).get("lead") or {}).get("products") or [] if not is_holding(p)]   # 보유 지분은 그리지 않는다
     out, mx = [], c["per_company_max"]
     goods = [p for p in prods if p.get("kind") != "서비스"][:mx["product"]]
     svcs = [p for p in prods if p.get("kind") == "서비스"][:mx["service"]]
@@ -112,7 +130,7 @@ def targets_company(cid, c=None, discover=False):
         if n >= mx["exploded"]:
             break
         bom = p.get("bom") or auto_bom(cid, p, c, discover)
-        if bom and len(confirmed(bom)) >= c["min_confirmed_parts"]:
+        if bom and len(confirmed(bom)) >= c["min_confirmed_parts"] and not others_only(bom):
             n += 1
             out.append({"scope": "company", "id": cid, "kind": "exploded", "n": n, "name": p["name"], "name_en": p.get("name_en") or bom.get("name_en"),
                         "bom": bom, "dir": company_dir(cid) / "images"})

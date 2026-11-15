@@ -377,10 +377,11 @@ def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, por
         parts["멀티플 프리미엄"] = trend
     if prem:
         want = "EV/EBITDA" if mm["basis"] != "pe_fwd" else "P/E"
-        idx = [i for i, c in enumerate(prem["categories"]) if want in c]
+        idx = [i for i, c in enumerate(prem["categories"]) if want in c and "1Y" in c] or [i for i, c in enumerate(prem["categories"]) if want in c]   # 기준 Fwd 1Y만(2026-11-15 LBRT: 1Y·2Y·3Y 현재값이 나란히 나와 기준이 바뀐 것처럼 보였다)
         series = [{**x, "values": [x["values"][i] for i in idx]} for x in prem["series"]]
         # 분기 추이 재료(자기 월말 배수·동종사 분기말 배수)가 없으면 현재값만 — 이유를 제목에 밝힌다(2026-11-07 삼성전자: Fiscal.ai 미수록 종목)
-        prem.update({"title": "멀티플 프리미엄(현재값 — 최근 4개 분기 추이 재료 없음)", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
+        why = "최근 4개 분기 추이 재료 없음(동종 분기말 배수 또는 대상 월말 배수)"
+        prem.update({"title": f"멀티플 프리미엄({prem['categories'][idx[0]] if idx else want} 현재값 — {why})", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
         parts["멀티플 프리미엄"] = prem
     F = [b for b in (flow_sec or {}).get("blocks") or [] if b.get("type") == "chart"]
     for key, name in (("일별 거래량", SHORT_TITLES["일별 거래량"]), ("기관 자금", SHORT_TITLES["기관 자금"])):

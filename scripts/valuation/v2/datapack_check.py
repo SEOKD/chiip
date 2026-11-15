@@ -126,6 +126,11 @@ def check(p):
         add("동종 규모(절반 이상 시총 0.2~5배)", "통과" if near * 2 >= len(sized) else "경고", f"{near}/{len(sized)}곳이 대상 시총 {tgt:.2f}의 0.2~5배 — 규모가 다르면 판단 조정이 아니라 동종을 바꾼다")
     ok_p = len(peers) >= 4 and basis in ("ttm", "ntm") and p.get("peers_source")
     add("동종사 4곳 이상·기준 표기", "통과" if ok_p else "실패", f"{len(peers)}곳 · 기준 {basis or '미표기'}")
+    own_q = [r for k in ("pe_fwd", "ev_ebitda_fwd") for r in (p.get("history") or {}).get(k) or [] if str(r.get("date", ""))[5:7] in ("03", "06", "09", "12")]
+    if own_q:   # 멀티플 프리미엄 4개 분기 추이 재료(2026-11-15 LBRT: 동종을 손으로 채워 hist_q가 없어 현재값만 나왔다)
+        nq = sum(1 for x in peers if x.get("hist_q"))
+        add("멀티플 프리미엄 추이 재료(동종 분기말 배수 2곳 이상)", "통과" if nq >= 2 else "실패",
+            f"동종 {nq}/{len(peers)}곳 hist_q — 동종 배수는 scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples로 받는다(손으로 채우면 추이가 없다)")
     mult, why = multiples.choose_basis(p)   # Fwd 1Y 이익 멀티플이 기준(마스터 지시 2026-10-30)
     add("기준 멀티플 Fwd 1Y(이익 지표)", "통과" if mult != "ev_sales" else "경고", f"{multiples.BASES[mult]} · {why}")
     mb, rb = cons.get("margin_basis"), cons.get("rev_basis")
