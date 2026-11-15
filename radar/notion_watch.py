@@ -13,6 +13,7 @@
 """
 import argparse
 import json
+import time
 import os
 import re
 import subprocess
@@ -302,6 +303,15 @@ def tg_path(job, day=None):
     return REPORTS / f"{day}_{job['page_id'].replace('-', '')[:8]}_tg.txt"
 
 
+def fresh_tg(job, since, day=None):
+    """이번 작업이 새로 쓴 텔레그램 문안 — 같은 날 같은 페이지를 다시 처리하면 스킬이 _2·_3·_jpm처럼 접미사를 붙여 새 파일을 쓴다.
+    고정 이름(tg_path)만 보면 아침 회차의 옛 문안을 다시 보낸다(2026-11-15 JPM 11/13 글 5번 재발송). since 뒤에 쓰인 것 중 가장 최근 것, 없으면 None"""
+    day = day or common.now_kst().strftime("%Y%m%d")
+    pid8 = job["page_id"].replace("-", "")[:8]
+    cands = [f for f in REPORTS.glob(f"{day}_{pid8}*_tg.txt") if f.stat().st_mtime >= since]
+    return max(cands, key=lambda f: f.stat().st_mtime) if cands else None
+
+
 def worker():
     LOCK.parent.mkdir(parents=True, exist_ok=True)
     LOCK.write_text(json.dumps({"pid": os.getpid(), "at": common.iso(common.now_kst())}), encoding="utf-8")
@@ -330,13 +340,15 @@ def worker():
                 nf = Path(job["inbox"]).with_suffix(".new.md")
                 nf.write_text("# 이번에 새로 들어온 줄만(이전 내용은 다루지 않는다 — 참고만)\n\n" + "\n".join(new), encoding="utf-8")
                 job = {**job, "inbox": str(nf)}
+            t0 = time.time() - 1
             try:
                 run_job(job, tok)
                 if body is not None:
                     notion_state.remember(job["page_id"], body)
                 _jobs_today(1)
-                tg = tg_path(job)
-                if tg.exists():
+                tg = fresh_tg(job, t0) or tg_path(job)   # 이번 회차가 쓴 문안만 보낸다
+                sent_new = tg.exists() and tg.stat().st_mtime >= t0
+                if sent_new:
                     send_tg(tg)
                 # 치입 검토 하위 페이지를 만들면 부모 수정 시각도 바뀐다 → 처리 직후 시각으로 표시
                 edited = job.get("edited")
