@@ -166,11 +166,12 @@ def event_rows(h, events, px, end):
 
 
 def decompose(h, events, px, n=4):
-    """실적 발표 사이 구간 n개 — 마지막 구간은 마지막 가격일까지. 마지막 실적이 30일 안이면 그 앞 구간에 포함"""
+    """실적 발표 사이 구간 n개 — 마지막 구간(가장 최근 실적 후)은 마지막 가격일까지 '진행 중'으로 따로 둔다.
+    (2026-11-15 LBRT: 전에는 30일 안 실적을 앞 구간에 합치고, 선행 EPS가 0 근처·적자인 구간을 소리 없이 빼서 4개 분기 중 1개만 남았다.
+     남은 1개도 EPS 0.45 → 0.04라 '리비전 −90% × 멀티플 +431%'로 뜻을 잃었다.)
+    분해할 수 없는 구간(시작·끝 선행 EPS ≤ 0, 리비전이 −50% 밑이거나 +100% 위)은 빼지 않고 주가만 두고 이유(why)를 단다"""
     last = max(px)
     earn = sorted((e for e in events or [] if e.get("kind") == "실적"), key=lambda e: e["date"])
-    if earn and (last - _d(earn[-1]["date"])).days <= 30:
-        earn = earn[:-1]
     earn = earn[-n:]
     bounds = [(_d(e["date"]) if e.get("session") == "after" else _d(e["date"]) - timedelta(days=1)) for e in earn] + [last]
     out = []
@@ -179,14 +180,23 @@ def decompose(h, events, px, n=4):
         p0, d0 = price_on(px, s)
         p1, d1 = price_on(px, t)
         e0, e1 = ntm_fixed(h, s, s), ntm_fixed(h, s, t)
-        if not p0 or not p1 or not e0 or e1 is None:
+        if not p0 or not p1 or d1 <= d0:
             continue
-        price, rev = p1 / p0 - 1, e1 / e0 - 1
-        if e0 <= 0 or abs(rev) > 1:   # 적자→흑자 전환기의 선행 EPS는 0 근처라 비율이 뜻을 잃는다(2026-11-02 CBRS)
-            continue
+        price = p1 / p0 - 1
+        rev, why = None, None
+        if e0 is None or e1 is None:
+            why = "EPS 추정 이력 없음"
+        elif e0 <= 0 or e1 <= 0:
+            why = f"선행 EPS {e0:.2f} → {e1:.2f} — 적자·0 근처라 비율 분해 불가"   # 적자→흑자 전환기(2026-11-02 CBRS, 11-15 LBRT)
+        elif not (-0.5 <= e1 / e0 - 1 <= 1):
+            why = f"선행 EPS {e0:.2f} → {e1:.2f}({e1 / e0 - 1:+.0%}) — 0 근처로 움직여 멀티플이 뜻을 잃음"
+        else:
+            rev = e1 / e0 - 1
         n0, n1 = ntm_fixed(h, s, s), ntm_fixed(h, t, t)
-        out.append({"label": f"{earn[i].get('q') or earn[i]['tag']} 후", "from": d0, "to": d1, "p0": p0, "p1": p1, "price": price, "rev": rev,
-                    "rerate": (1 + price) / (1 + rev) - 1, "pe0": p0 / n0 if n0 else None, "pe1": p1 / n1 if n1 else None})
+        live = i == len(bounds) - 2
+        out.append({"label": f"{earn[i].get('q') or earn[i]['tag']} 후" + ("(진행 중)" if live and (last - s).days <= 45 else ""), "from": d0, "to": d1, "p0": p0, "p1": p1,
+                    "price": price, "rev": rev, "rerate": None if rev is None else (1 + price) / (1 + rev) - 1, "why": why,
+                    "pe0": p0 / n0 if n0 and n0 > 0 else None, "pe1": p1 / n1 if n1 and n1 > 0 else None})
     return out
 
 
@@ -234,20 +244,25 @@ def blocks(dp):
               "note": f"전 = 사건 전날까지, 후 = 최대 {WINDOW_DAYS}일(다음 사건 전날까지). 주가 반응 = 장후 발표는 다음 거래일, 그 밖은 그날. {n_txt}."})
     dec = decompose(h, dp["revision_events"], px)
     if dec:
-        B.append({"type": "chart", "chart": {"kind": "bars", "pin": 8, "w": 440, "title": "최근 4개 분기 주가 변화 분해 = EPS 리비전 × 멀티플 변화 (%, 실적 발표 사이 구간)", "unit": "%",
+        B.append({"type": "chart", "chart": {"kind": "bars", "pin": 8, "w": 440, "title": f"최근 {len(dec)}개 분기 주가 변화 분해 = EPS 리비전 × 멀티플 변화 (%, 실적 발표 사이 구간)", "unit": "%",
                                              "categories": [x["label"] for x in dec],
                                              "series": [{"name": "주가", "color": "a", "values": [round(x["price"] * 100, 1) for x in dec]},
-                                                        {"name": "EPS 리비전", "color": "d", "values": [round(x["rev"] * 100, 1) for x in dec]},
-                                                        {"name": "멀티플 변화", "color": "b", "values": [round(x["rerate"] * 100, 1) for x in dec]}],
+                                                        {"name": "EPS 리비전", "color": "d", "values": [None if x["rev"] is None else round(x["rev"] * 100, 1) for x in dec]},
+                                                        {"name": "멀티플 변화", "color": "b", "values": [None if x["rerate"] is None else round(x["rerate"] * 100, 1) for x in dec]}],
                                              "note": f"(1 + 주가) = (1 + EPS 리비전) × (1 + 멀티플 변화). EPS는 구간 시작의 선행 12개월 기간을 고정해 같은 기간끼리 비교."}})
         B.append({"type": "table", "title": "분기별 주가 분해 — 실적 발표 사이 구간",
                   "headers": ["구간", "기간", "주가", "EPS 리비전", "멀티플 변화", "선행 P/E 시작 → 끝"],
-                  "rows": [[x["label"], f"{x['from'].isoformat()[2:]} ~ {x['to'].isoformat()[2:]}", f"${x['p0']:,.2f} → ${x['p1']:,.2f} ({_sign(x['price'])})", _sign(x["rev"]), _sign(x["rerate"]),
+                  "rows": [[x["label"], f"{x['from'].isoformat()[2:]} ~ {x['to'].isoformat()[2:]}", f"${x['p0']:,.2f} → ${x['p1']:,.2f} ({_sign(x['price'])})", (_sign(x["rev"]) if x["rev"] is not None else f"분해 불가 — {x['why']}"), _sign(x["rerate"]),
                             f"{x['pe0']:.1f}배 → {x['pe1']:.1f}배" if x["pe0"] and x["pe1"] else "-"] for x in dec]})
         cum = {k: 1.0 for k in ("price", "rev", "rerate")}
+        skip = [x for x in dec if x["rev"] is None]
+        dec = [x for x in dec if x["rev"] is not None]   # 누적 해석은 분해되는 구간만
+        if not dec:
+            B.append({"type": "p", "text": f"**해석:** {len(skip)}개 구간 모두 선행 EPS가 적자·0 근처라 EPS 리비전 × 멀티플로 나눌 수 없다 — 주가만 표시했다."})
+            return B
         for x in dec:
             for k in cum:
                 cum[k] *= 1 + x[k]
         who = "멀티플" if abs(cum["rerate"] - 1) > abs(cum["rev"] - 1) else "EPS 리비전"
-        B.append({"type": "p", "text": f"**해석:** {len(dec)}개 구간 누적 주가 {_sign(cum['price'] - 1)} = EPS 리비전 {_sign(cum['rev'] - 1)} × 멀티플 {_sign(cum['rerate'] - 1)}. 더 크게 움직인 쪽은 **{who}**이다."})
+        B.append({"type": "p", "text": f"**해석:** {len(dec)}개 구간({"분해 불가 " + ", ".join(x["label"] for x in skip) + " 제외, " if skip else ""}누적) 주가 {_sign(cum['price'] - 1)} = EPS 리비전 {_sign(cum['rev'] - 1)} × 멀티플 {_sign(cum['rerate'] - 1)}. 더 크게 움직인 쪽은 **{who}**이다."})
     return B
