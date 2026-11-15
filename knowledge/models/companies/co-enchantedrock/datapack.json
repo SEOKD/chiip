@@ -1503,7 +1503,8 @@
         "kind": "부품",
         "confidence": "확인",
         "supplier": "ERock 자체 설계·Hyperion 조립",
-        "source": "10-Q 2026-09-30 사업 설명 https://www.sec.gov/Archives/edgar/data/2110029/000119312526458698/eroc-20260930.htm"
+        "source": "10-Q 2026-09-30 사업 설명 https://www.sec.gov/Archives/edgar/data/2110029/000119312526458698/eroc-20260930.htm",
+        "this_company": true
        },
        {
         "no": 3,
@@ -1521,7 +1522,8 @@
         "kind": "부품",
         "confidence": "확인",
         "supplier": "ERock 자체(Granite)",
-        "source": "10-Q 2026-09-30 사업 설명"
+        "source": "10-Q 2026-09-30 사업 설명",
+        "this_company": true
        },
        {
         "no": 5,
@@ -1560,7 +1562,8 @@
         "source": "3Q 콜 — 변압기·개폐장치 등 주변 설비 조달을 ERock이 주도"
        }
       ],
-      "note": "몫·단가는 공시되지 않는다. 마진 구조 절의 BOM 몫은 추정 범위"
+      "note": "몫·단가는 공시되지 않는다. 마진 구조 절의 BOM 몫은 추정 범위",
+      "this_company_product": true
      }
     },
     {
