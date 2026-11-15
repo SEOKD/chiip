@@ -1,0 +1,2088 @@
+{
+ "id": "kr-samyang",
+ "name": "삼양식품",
+ "ticker": "003230",
+ "as_of": "2026-11-15",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 744400.0,
+ "industry": "food_processing",
+ "region_mix": {
+  "KR": 0.17,
+  "US": 0.27,
+  "CN": 0.26,
+  "EU": 0.12,
+  "other": 0.18
+ },
+ "tax": 0.23,
+ "main_metric": "eps",
+ "main_metric_why": "흑자 식품 제조사이고 증권사 목표가가 EPS × P/E로 나온다(KB 2027년 EPS × 23배 보도)",
+ "profile": {
+  "price": 1210000,
+  "shares_basic": 0.007458128,
+  "shares_date": "2026-11-13",
+  "cash": 823.0,
+  "debt": 700.7,
+  "source": "가격 = TradingView KRX:003230 11/13 종가 ₩1,210,000. 주식 수 = TradingView 시가총액 ₩9,024.3B ÷ 종가(유통 7,458,128주, 발행 7,533,015주 — 3Q26 IR). 현금성자산 ₩823.0B·총차입 ₩700.7B·순현금 ₩122.3B = 3Q26 IR 연결 재무상태표 https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-11-13",
+  "source": "전환사채·스톡옵션 공시 미확인 — 3Q26 IR 자본 항목에 희석 증권 표시 없음. 자기주식 약 7.5만 주(발행 − 유통)"
+ },
+ "financials": {
+  "rev_ttm": 2914.2,
+  "ebit_ttm": 688.7,
+  "invested_capital": 1462.0,
+  "capex_ttm": 450.0,
+  "da_ttm": 81.4,
+  "sbc_ttm": 0.0,
+  "s2c": 2.0,
+  "rev_growth_ttm": 0.329,
+  "basis": "연결(K-IFRS) — 3Q26 IR 분기 손익표",
+  "note": "TTM = 4Q25~3Q26 매출 6,377+7,144+7,703+7,918억, 영업이익 1,392+1,771+1,762+1,962억(IR). 투하자본 = 자본총계 ₩1,584.3B + 총차입 ₩700.7B − 현금성자산 ₩823.0B. 감가상각 = EBITDA(TradingView 4Q25~2Q26 + IR 3Q26 2,179억) − 영업이익. CAPEX TTM은 분기 공시를 받지 못해 FY2025 ₩464.6B(TradingView)와 자싱 집행 속도로 둔 추정"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 3101.5,
+   "FY2027": 3768.0,
+   "FY2028": 4400.0
+  },
+  "rev_basis": "core",
+  "ebit_margin": {
+   "FY2026": 0.235,
+   "FY2027": 0.232,
+   "FY2028": 0.235
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 18,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 825.0
+  },
+  "quarters_act": {
+   "2026Q1": 714.4,
+   "2026Q2": 770.3,
+   "2026Q3": 791.8
+  },
+  "eps_quarters_est": {
+   "2026Q4": 17000
+  },
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 7918,
+    "est": 8190,
+    "est_src": "에프앤가이드 컨센서스(보도)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-06"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 1962,
+    "est": 1871,
+    "est_src": "에프앤가이드 컨센서스(보도)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-06"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 7703,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 1762,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 7144,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 1771,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 6377,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 1392,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 16,
+   "buy": 1,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-15"
+  },
+  "target_mean": 1848889,
+  "rev_low": {
+   "FY2027": 3550.0
+  },
+  "rev_high": {
+   "FY2027": 4000.0
+  },
+  "eps": {
+   "FY2026": 66000,
+   "FY2027": 86000,
+   "FY2028": 100000
+  },
+  "note": "FY2026 매출 = 1~3Q 실적 ₩2,276.5B + 4Q TradingView 추정 $604.7M(₩825B, 1,364.3원 환산). FY2027 매출 ₩3,768B·영업이익 ₩873.1B(OPM 23.2%) = 현대차증권(보도 11/13). FY2027 EPS ₩86,000 = KB 목표가 ₩1.95M ÷ 23배(보도)와 현대차 영업이익의 세후 환산이 겹치는 값(추정). FY2026 EPS ₩66,000 = 1~3Q 실적 EPS ₩49,374 + 4Q 약 ₩17,000(추정 — TradingView FY 추정 $47.6 ≈ ₩64,964). FY2028은 자싱 램프 완료 가정 추정. 의견 분포·목표가 평균 = TradingView 18명(11/15)"
+ },
+ "guidance": {
+  "rev_fy0": null,
+  "rev_fy0_note": "회사는 연간 매출·이익 가이던스를 내지 않는다(3Q26 IR)",
+  "rev_basis": "core",
+  "margin_basis": "gaap",
+  "long_term": "자싱 2027년 1월 완공 목표(보도), 베트남 2029-01-31 준공(공시), '25~27년 주요 CAPEX ₩742.6B(IR). 배당성향 연결 순이익의 9~11%(IR)",
+  "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+  "next": {
+   "period": "4Q26",
+   "eps_cons": 17000,
+   "unit": "₩",
+   "note": "회사 분기 가이던스 없음. 4Q 매출 추정 ₩825B는 TradingView 달러 추정의 환산"
+  }
+ },
+ "call": {
+  "date": "2026-11-06",
+  "prev_date": "2026-08-13",
+  "tone": "up",
+  "tone_delta": 0.5,
+  "guidance_direction": "maintain",
+  "kpis": [
+   "3Q 매출 ₩791.8B(+25.3% 전년), 영업이익 ₩196.2B(+49.9%), OPM 24.8%",
+   "해외 매출 ₩660.8B, 비중 83.4%",
+   "미국 법인 ₩212.5B(+36.6%), 중국 법인 ₩208.9B(+13.2%), 유럽 법인 ₩86.9B(+65.5%)",
+   "영국 법인 ₩12.6B(−61.3% 전분기, 거래선 교체)",
+   "GPM 46.6%(전분기 48.1%) — 팜유·에너지·원화 강세",
+   "순이익 ₩89.2B(−18.9%) — 외화자산 평가손실(미실현)",
+   "순현금 ₩122.3B"
+  ],
+  "guidance_change": "숫자 가이던스 없음. 배당성향 9~11% 유지, '25~27년 CAPEX ₩742.6B 제시",
+  "new": [
+   "관세환급금 등 비경상 수익이 영업이익에 반영",
+   "유럽 거래선 교체(프랑스·이탈리아)",
+   "내수 신규 브랜드 짜르르(7월)",
+   "11/11 베트남 생산법인 ₩218.6B 투자 결정(실적 뒤 공시)"
+  ],
+  "gone": [
+   "2Q의 영국 법인 고성장(₩32.6B) — 3Q ₩12.6B로 이연"
+  ],
+  "analyst_focus": [
+   "한화투자증권 — 베트남 이후 공급 부족 대응",
+   "키움증권 — 중장기 매출 ₩6T 가능성",
+   "유안타증권 — 중국 증설 뒤 성장 둔화 우려 완화",
+   "KB증권 — 2027년 EPS 기준 밸류"
+  ],
+  "risks": [
+   "원화 강세(수출 환산·외화자산 평가)",
+   "팜유·에너지 원가",
+   "자싱 램프 속도",
+   "미국 관세",
+   "유럽 거래선 교체에 따른 매출 이연"
+  ],
+  "source": "한국 상장사는 콜 전문을 공개하지 않는다. 3Q26 IR(https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf)와 2Q26 IR(radar/inbox/kr_ir 보관) 차이, 증권사 인용 보도로 만들었다",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "영업이익률 회복",
+    "label": "OPM 24.8%",
+    "prior": "22.9%(2Q26)",
+    "latest": "24.8%(3Q26, 관세환급금 포함)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "id": "F2",
+    "kind": "부정",
+    "item": "매출 컨센서스 하회",
+    "label": "매출 −3.3% vs 컨센",
+    "prior": "컨센서스 ₩819.0B",
+    "latest": "₩791.8B",
+    "driver": "growth_start",
+    "shift": -0.02,
+    "confidence": 1.0,
+    "source": "https://www.fntimes.com/html/view.php?ud=202611061619034892923defd0cc_18"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "매출총이익률 하락",
+    "label": "GPM 46.6%",
+    "prior": "48.1%(2Q26)",
+    "latest": "46.6%(3Q26)",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 1.0,
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "베트남 생산법인 투자",
+    "label": "베트남 ₩219B",
+    "prior": "2029년 이후 캐파 계획 없음",
+    "latest": "₩218.6B, 8라인 수용, 2029-01 준공",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "https://dealsite.co.kr/articles/172588"
+   },
+   {
+    "id": "F5",
+    "kind": "업데이트",
+    "item": "미국 법인 고성장",
+    "label": "미국 +36.6%",
+    "prior": "₩203.6B(2Q26)",
+    "latest": "₩212.5B(3Q26)",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "영국 법인 거래선 교체",
+    "label": "영국 −61%",
+    "prior": "₩32.6B(2Q26)",
+    "latest": "₩12.6B(3Q26)",
+    "driver": "growth_start",
+    "shift": -0.005,
+    "confidence": 1.0,
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 11/15(TTM). 일본 2사는 엔→원 9.28배 환산. Fwd P/E는 TTM P/E ÷ (1 + TTM 매출 성장)로 둔 근사",
+ "peers": [
+  {
+   "ticker": "농심",
+   "key": "004370",
+   "rev": 3702.1,
+   "ebit_margin": 0.0575,
+   "mcap": 2119.3,
+   "pb": 0.74,
+   "debt": 161.5,
+   "cash": 1199.6,
+   "ev_sales": 0.29,
+   "growth": 0.062,
+   "pe_fwd": 11.9,
+   "ntm_ebit_margin": 0.0575,
+   "ntm_growth": 0.06
+  },
+  {
+   "ticker": "오리온",
+   "key": "271560",
+   "rev": 3577.4,
+   "ebit_margin": 0.1687,
+   "mcap": 4489.6,
+   "pb": 1.1,
+   "debt": 149.5,
+   "cash": 1366.2,
+   "ev_sales": 0.91,
+   "growth": 0.113,
+   "pe_fwd": 9.6,
+   "ntm_ebit_margin": 0.1687,
+   "ntm_growth": 0.08
+  },
+  {
+   "ticker": "Nissin Foods",
+   "key": "TSE:2897",
+   "rev": 7643.3,
+   "ebit_margin": 0.0613,
+   "mcap": 8135.8,
+   "pb": 1.6,
+   "debt": 1786.6,
+   "cash": 939.2,
+   "ev_sales": 1.18,
+   "growth": 0.067,
+   "pe_fwd": 18.0,
+   "ntm_ebit_margin": 0.0613,
+   "ntm_growth": 0.05
+  },
+  {
+   "ticker": "Toyo Suisan",
+   "key": "TSE:2875",
+   "rev": 5146.9,
+   "ebit_margin": 0.1656,
+   "mcap": 10098.2,
+   "pb": 1.92,
+   "debt": 29.2,
+   "cash": 2325.9,
+   "ev_sales": 1.52,
+   "growth": 0.071,
+   "pe_fwd": 13.0,
+   "ntm_ebit_margin": 0.1656,
+   "ntm_growth": 0.05
+  }
+ ],
+ "multiples_now": {
+  "pe_fwd": 14.85,
+  "pe_fwd2": 12.54,
+  "pe_fwd3": 10.8,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-11-15",
+  "ntm": {
+   "eps": 81500,
+   "ebit": 850.0,
+   "revenue": 3600.0,
+   "rev_ttm": 2914.2
+  },
+  "horizons": {
+   "2": {
+    "eps": 96500,
+    "ext": 0
+   },
+   "3": {
+    "eps": 112000,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "tradingview+추정"
+  },
+  "source": "Fwd 1Y EPS = 4Q26 약 ₩17,000 + FY2027 ₩86,000의 3/4. Fwd 2Y = FY2027 1/4 + FY2028 ₩100,000 3/4, Fwd 3Y = 외삽. 공개 FY2027·28 EPS 컨센서스는 보도 인용에서 역산한 추정"
+ },
+ "history": {},
+ "overrides": {
+  "margin_base": {
+   "target": 0.21,
+   "year_target": 5,
+   "lr": 0.15,
+   "lam": 0.35
+  },
+  "s2c": 2.0,
+  "why": "장기 OPM 21%는 지금 23~25%에서 신규 공장 감가·해외 판촉 확대와 원화 강세를 반영해 낮췄다. 오리온·도요스이산 16~17%보다는 높게 둔다(해외 ASP). 매출÷투하자본 2.0은 자싱 ₩207.2B·베트남 ₩218.6B 증설로 투하자본이 늘어나는 것을 반영"
+ },
+ "multiple_view": {
+  "adj": 0.1,
+  "why": "동종(농심·오리온·닛신·도요스이산)은 매출 성장 6~11%의 성숙 회사다. 삼양은 TTM 매출 +33%에 캐파가 2027년 약 +40% 늘지만, 성장의 중심이 중국 이관과 해외 판촉이라 성장률 차이를 그대로 배수로 주지 않는다"
+ },
+ "next_event": {
+  "date": "2027-02-25",
+  "tag": "4Q26 잠정실적(예상 — 회사 미발표, 지난해 2월 말 패턴은 미확인)"
+ },
+ "terms": {
+  "불닭볶음면": "삼양식품의 매운 볶음면 브랜드",
+  "불닭": "삼양식품 매운맛 브랜드",
+  "자싱": "중국 저장성 도시, 삼양 중국 공장 소재지",
+  "밀양": "경남 도시, 삼양 수출 전용 공장 소재지",
+  "원주": "강원 도시, 삼양 본 공장",
+  "익산": "전북 도시, 삼양 공장",
+  "투언타잉": "베트남 박닌성 지역, 신공장 예정지",
+  "건면": "튀기지 않은 면",
+  "유탕면": "기름에 튀긴 면",
+  "짜르르": "2026년 7월 내수 신규 브랜드",
+  "맵탱": "삼양 내수 매운맛 라면 브랜드",
+  "CVS": "편의점",
+  "르바란": "인도네시아 라마단 종료 명절",
+  "K-IFRS": "한국 회계 기준",
+  "IFRS": "국제회계기준",
+  "LNG": "액화천연가스",
+  "KOSPI": "한국 유가증권시장 종합 지수",
+  "K-Food": "한국 음식 수출 흐름",
+  "Mainstream": "미국 대형 주류 유통 채널",
+  "IR": "투자자 대상 회사 설명",
+  "PT": "회사 실적 발표 자료",
+  "PPI": "생산자물가지수",
+  "CAPA": "생산능력",
+  "ASP": "평균 판매 단가",
+  "FX": "환율",
+  "OEM": "주문자 상표 위탁 생산",
+  "HS": "국제 품목 분류 코드",
+  "DART": "금융감독원 전자공시",
+  "BKRW": "십억 원 단위",
+  "AR": "자기회귀 통계 모형",
+  "CAR": "누적 초과수익률",
+  "XLY": "미국 경기소비재 ETF",
+  "ESG": "환경·사회·지배구조",
+  "3조": "하루 3교대",
+  "B/B": "수주 ÷ 매출 비율",
+  "IT": "정보기술"
+ },
+ "names": [
+  "KB",
+  "Walmart",
+  "Kroger",
+  "Costco",
+  "Nissin Foods",
+  "Toyo Suisan",
+  "농심",
+  "오리온",
+  "삼양라운드스퀘어",
+  "TradingView",
+  "유안타증권",
+  "한화투자증권",
+  "키움증권",
+  "KB증권",
+  "현대차증권",
+  "신한투자증권",
+  "다올투자증권",
+  "에프앤가이드",
+  "NICE",
+  "한국신용평가",
+  "NICE신용평가",
+  "꿈을 담은 단지"
+ ],
+ "moat": {
+  "summary": "해자는 '불닭'이라는 해외에서 통하는 단일 브랜드와 그 브랜드로 얻은 대형 유통 진열대다. 3Q GPM 46.6%·OPM 24.8%는 라면 동종(OPM 6~17%)보다 훨씬 높다. 다만 이 숫자는 한 브랜드·매운맛 한 카테고리에 기대고, 생산 기술 자체는 경쟁사가 따라 할 수 있다.",
+  "items": [
+   {
+    "kind": "해외 브랜드 가격 프리미엄",
+    "verdict": "강함",
+    "claim": "해외에서 국내보다 비싸게 팔리는데도 물량이 늘고 있다.",
+    "evidence": "3Q26 IR — 고ASP 해외 매출 확대로 OPM 24.8%, 해외 비중 83.4%. 3Q 누적 한국 라면 수출의 약 66%가 삼양(IR)",
+    "quant": "OPM 24.8% vs 농심 5.8%·오리온 16.9%(TTM)",
+    "falsifier": "해외 판촉비 비중이 오르는데 해외 매출 성장이 10%대로 꺾인다"
+   },
+   {
+    "kind": "미국 주류 유통 진입",
+    "verdict": "보통",
+    "claim": "아시아 식품점에서 Walmart·Kroger 같은 주류 채널로 옮겨 갔다.",
+    "evidence": "3Q26 IR 미국 법인 'Walmart·Kroger 등 Mainstream과 Mexico 매출 성장', 미국 법인 ₩212.5B(+36.6%)",
+    "quant": "미국 법인 4개 분기 ₩776.6B",
+    "falsifier": "미국 대형 유통의 진열 축소·자체 브랜드 매운 볶음면 출시"
+   },
+   {
+    "kind": "선제 캐파",
+    "verdict": "보통",
+    "claim": "수요보다 먼저 공장을 지어 품절 기간을 줄인다.",
+    "evidence": "밀양 2공장 2025-06 준공, 자싱 8라인(₩207.2B), 베트남 ₩218.6B 공시",
+    "quant": "'25~27년 주요 CAPEX ₩742.6B(IR)",
+    "falsifier": "새 공장 가동률이 낮아 감가상각이 이익률을 깎는다"
+   },
+   {
+    "kind": "제품 다변화",
+    "verdict": "약함",
+    "claim": "불닭 외 브랜드로 매출을 넓힌다.",
+    "evidence": "3Q 누적 면스낵 90.6%·소스·조미 3.4%·냉동 2.4%(IR). 불닭 단일 브랜드 비중은 미공시",
+    "quant": "면스낵 90.6%",
+    "falsifier": "해당 없음 — 불닭 비중 공시 시 다시 판정"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-15",
+  "summary": "오너 가족 경영 회사다. 김정수 부회장이 불닭 개발과 해외 확장을 이끌었다는 것은 공개 보도로 확인되지만, 개인 연결이 만든 매출은 입증되지 않는다.",
+  "people": [
+   {
+    "name": "김정수",
+    "role": "대표이사 부회장(3Q26 IR 대표이사)",
+    "since": "미확인",
+    "profile": "창업주 가문 며느리, 불닭볶음면 개발을 주도했다고 공개 보도됨",
+    "business": "지주회사 삼양라운드스퀘어 쪽 오너 일가(3Q26 IR 최대주주·특수관계인 45.0%)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 IR 회사 개요, 언론 보도"
+   },
+   {
+    "name": "김동찬",
+    "role": "대표이사(3Q26 IR)",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q26 IR 회사 개요"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "미국 대형 유통(Walmart·Kroger) 입점",
+    "strength": 2,
+    "exposure": 776.6,
+    "basis": "미국 법인 4개 분기 매출(IR). 유통 계약이지 인맥이 아니다",
+    "evidence": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   }
+  ]
+ },
+ "pipeline": {
+  "none": "수주 사업이 아니다 — 유통 채널 주문 단위 판매. 증설 계획은 생산능력 절에서 본다"
+ },
+ "backlog": {
+  "source": "수주잔고·B/B 미공시(소비재 유통 판매)"
+ },
+ "recurring": {
+  "share": null,
+  "source": "반복 구매 소비재지만 계약 매출이 아니다 — 반복 매출 공시 없음"
+ },
+ "ma": {
+  "none": "최근 3년 인수·합병 없음(해외 판매법인 신설만)"
+ },
+ "sync": {
+  "why": "미국 법인 매출은 미국의 즉석면 수입과, 판매 단가는 미국 면류 제조 PPI와 같이 움직여야 한다",
+  "products": [
+   {
+    "name": "면스낵",
+    "segment": "미국 법인",
+    "hs": "190230",
+    "share": 0.27,
+    "inputs": [
+     "noodle"
+    ]
+   }
+  ],
+  "indicators": [
+   {
+    "label": "미국 즉석면 수입(HS 190230)",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "190230",
+    "segment": "미국 법인",
+    "why": "불닭 대미 수출이 들어가는 품목(한국 외 원산지 포함)"
+   },
+   {
+    "label": "미국 면류 제조 PPI",
+    "source": "ppi",
+    "input": "noodle",
+    "country": "us",
+    "segment": "미국 법인",
+    "why": "미국 판매가 비교 지수(업종 대용)"
+   }
+  ]
+ },
+ "pq": {
+  "why": "회사는 물량·ASP를 공시하지 않는다. 지역 믹스(고ASP 해외)가 가격 몫을 만든다는 회사 설명뿐이라 미국 면류 PPI를 업종 대용으로 쓴다",
+  "price": {
+   "source": "ppi",
+   "input": "noodle",
+   "country": "us"
+  }
+ },
+ "sector_kpis": {
+  "lens": "consumer",
+  "as_of": "3Q26",
+  "kpis": [
+   {
+    "q": 1,
+    "name": "해외 매출 증가율(전년)",
+    "value": 29.4,
+    "unit": "%",
+    "peer": null,
+    "period": "3Q26",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "q": 1,
+    "name": "가격 vs 물량 분해",
+    "value": null,
+    "unit": "",
+    "peer": null,
+    "period": "3Q26",
+    "source": "회사 물량·ASP 미공시"
+   },
+   {
+    "q": 2,
+    "name": "매출총이익률",
+    "value": 46.6,
+    "unit": "%",
+    "peer": null,
+    "period": "3Q26",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "q": 4,
+    "name": "해외 매출 비중",
+    "value": 83.4,
+    "unit": "%",
+    "peer": null,
+    "period": "3Q26",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "q": 4,
+    "name": "한국 라면 수출 중 삼양 몫(3Q 누적)",
+    "value": 66,
+    "unit": "%",
+    "peer": null,
+    "period": "3Q26",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "q": 5,
+    "name": "재고자산(9월 말)",
+    "value": 2615,
+    "unit": "억 원",
+    "peer": null,
+    "period": "3Q26",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "q": 7,
+    "name": "영업이익률(TTM)",
+    "value": 23.6,
+    "unit": "%",
+    "peer": 16.9,
+    "period": "TTM 3Q26",
+    "source": "TradingView — 동종은 오리온"
+   }
+  ],
+  "edge_struct": {
+   "score": 6.5,
+   "why": "OPM이 라면 동종보다 7~18%p 높다. 지속 이유는 해외 브랜드 가격과 주류 유통 진열이고, 단일 브랜드 의존이 약점이다"
+  },
+  "kill": "해외 매출 증가율이 2개 분기 연속 15% 아래로 내려가고 GPM이 44% 아래로 내려간다(4Q26·1Q27 IR)"
+ },
+ "photos": [],
+ "scenario_probs_why": "3Q 영업이익은 컨센서스를 웃돌았지만 매출은 −3.3% 밑돌았다. 2027년 성장은 자싱 램프와 미국·유럽 재배치 수요에 달렸다. 조정 없음",
+ "midterm": {
+  "sub": "consumer",
+  "exposure": {
+   "tariff_codify": 0.7
+  },
+  "etf": "AMEX:XLY",
+  "why": "한국에서 생산해 미국에 수출(미국 법인 매출 약 27%) — 관세 입법 고착화에 노출"
+ },
+ "social": {
+  "as_of": "2026-11-15",
+  "few": true,
+  "views": [],
+  "summary": "최근 24시간·7일 추적 커뮤니티 언급은 없다(점수 없음 — 낮은 점수가 아니다). 국내 공개 텔레그램에서는 11/14 CAPA 로드맵 Q&A 정리와 11/12 증권사 톤 상향 집계가 돌았다.",
+  "narratives": [
+   {
+    "channel": "텔레그램 공개 채널",
+    "theme": "캐파 51억 개 로드맵과 고ASP 재배치",
+    "expectation": "상향",
+    "vs_fact": "미확인 — 회사 숫자는 공장 일정·라인 수·투자액만",
+    "share": 0.6
+   },
+   {
+    "channel": "텔레그램 공개 채널",
+    "theme": "베트남 공시 뒤 증권사 톤 상향",
+    "expectation": "상향",
+    "vs_fact": "확인 — 목표가 유지 보도와 일치",
+    "share": 0.4
+   }
+  ],
+  "turn": "11/11 베트남 공시 → 11/12 증권사 톤 상향 → 11/14 CAPA Q&A 정리"
+ },
+ "events": [
+  {
+   "date": "2026-11-06",
+   "tag": "3Q26 실적 — 영업이익 ₩196.2B(컨센서스 +4.9%), 매출 −3.3% 하회",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-09",
+   "tag": "실적 다음 거래일 −5.6%",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "베트남 생산법인 ₩218.6B 투자 결정 공시",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "+4.5%, 증권사 목표가 유지·상향 톤(한화·키움·유안타)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-14",
+   "tag": "공개 채널에 CAPA 로드맵 Q&A 정리 게시(전언)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-26",
+   "tag": "−8.9%, 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-14",
+   "tag": "2Q26 실적 다음 날 +4.2%",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-08-13",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-06",
+   "kind": "실적",
+   "tag": "3Q26 실적",
+   "q": "3Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-11",
+   "kind": "내러티브",
+   "tag": "베트남 공장 투자 공시"
+  }
+ ],
+ "quarters_hist": {
+  "source": "3Q26 IR 분기 손익표(1Q25~3Q26). 매출총이익 일부는 TradingView https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+  "key": "KRX:003230",
+  "currency": "KRW",
+  "q": [
+   {
+    "period": "2024-12-31",
+    "rev": 478800000000.0,
+    "op": 87700000000.0,
+    "gp": 178600000000.0
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 529000000000.0,
+    "op": 134000000000.0,
+    "gp": 240940000000.0
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 553100000000.0,
+    "op": 120100000000.0,
+    "gp": 256530000000.00003
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 632000000000.0,
+    "op": 130900000000.0,
+    "gp": 261200000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 637700000000.0,
+    "op": 139200000000.0,
+    "gp": 285570000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 714400000000.0,
+    "op": 177100000000.0,
+    "gp": 300740000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 770300000000.0,
+    "op": 176200000000.0,
+    "gp": 370500000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 791800000000.0,
+    "op": 196200000000.0,
+    "gp": 369000000000.0
+   }
+  ]
+ },
+ "segments_hist": {
+  "segments": {
+   "미국 법인": [
+    {
+     "period": "2025-03-31",
+     "rev": 132700000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 132000000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 155500000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 175000000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 185500000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 203600000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 212500000000.0
+    }
+   ],
+   "중국 법인": [
+    {
+     "period": "2025-03-31",
+     "rev": 122000000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 125600000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 184600000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 148200000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 166400000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 181000000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 208900000000.0
+    }
+   ],
+   "유럽·영국 법인": [
+    {
+     "period": "2025-03-31",
+     "rev": 24600000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 50100000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 52500000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 55900000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 77400000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 113200000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 99500000000.0
+    }
+   ],
+   "기타 해외(일본·인니·수출)": [
+    {
+     "period": "2025-03-31",
+     "rev": 144700000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 132500000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 117900000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 130000000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 155700000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 148100000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 139900000000.0
+    }
+   ],
+   "내수": [
+    {
+     "period": "2025-03-31",
+     "rev": 105000000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 112900000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 121500000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 128600000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 129400000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 124500000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 131100000000.0
+    }
+   ]
+  },
+  "source": "3Q26 IR '분기별 매출 실적' 표(1Q25~3Q26, 7개 분기만 공개). 유럽·영국 = 유럽법인 + 영국법인(2026년 신설), 기타 해외 = 일본·인니·기타 수출 https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+ },
+ "sources": [
+  "삼양식품 2026년 3분기 경영실적(IR) https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+  "딜사이트 11/11 베트남 공장 https://dealsite.co.kr/articles/172588",
+  "한국경제 11/12 한화 https://www.hankyung.com/article/2026111216606",
+  "알파경제 11/12 유안타 https://www.alphabiz.co.kr/news/articleView.html?idxno=197706",
+  "스마트투데이 자싱 6라인 https://www.smarttoday.co.kr/ko-kr/articles/67664",
+  "세계일보 자싱 ₩201.4B https://www.segye.com/newsView/20250703512726",
+  "시대 2026-01 자싱 8라인·₩207.2B https://www.sidae.com/article/2026012715542743518",
+  "밀양 2공장 르포 https://v.daum.net/v/20250611184134309",
+  "한국금융신문 11/6 3Q 실적 https://www.fntimes.com/html/view.php?ud=202611061619034892923defd0cc_18",
+  "한국경제 11/9 실적분석 https://www.hankyung.com/article/202611095357i",
+  "키움 6조 보도 https://supple.kr/news/cmwcrugb4vgwual9p91bsr31z",
+  "아시아경제 11/13 https://view.asiae.co.kr/article/2026111310555774285",
+  "꿈을 담은 단지 채널 글(전언) https://t.me/dykim0210/1346",
+  "TradingView https://www.tradingview.com/symbols/KRX-003230/"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-15T11:30:00+09:00",
+  "estimates_sales_m": {
+   "2026Q1": 714400,
+   "2026Q2": 770300,
+   "2026Q3": 791800,
+   "2026Q4": 825000
+  },
+  "estimates_note": "1~3Q 실적(IR), 4Q는 TradingView 달러 추정의 환산",
+  "shares_cover_implied": 0.007458128,
+  "fiscal_profile": {
+   "companyKey": "Fiscal.ai 미수록(XKRX_003230 Company not found, companies_list 13쪽 검색 0건 2026-11-15). 시세 = TradingView, 실적 = 3Q26 IR",
+   "price": 1210000,
+   "market_cap": 9024.3,
+   "total_cash": 823.0,
+   "total_debt": 700.7,
+   "as_of": "2026-11-13",
+   "balance_date": "2026-09-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 637.7,
+    "2026Q1": 714.4,
+    "2026Q2": 770.3,
+    "2026Q3": 791.8
+   },
+   "op_income": {
+    "2025Q4": 139.2,
+    "2026Q1": 177.1,
+    "2026Q2": 176.2,
+    "2026Q3": 196.2
+   }
+  },
+  "balance_2026_09_30": {
+   "equity": 1584.3,
+   "cash": 823.0,
+   "st_investments": 0,
+   "debt_current": 700.7,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0,
+   "note": "3Q26 IR 연결 재무상태표 요약 — 차입 만기 구분 미공시라 한 칸에 둔다"
+  },
+  "tv_forecast": {
+   "rating": {
+    "buy": 16,
+    "overweight": 1,
+    "hold": 1,
+    "total": 18
+   },
+   "eps_ttm_krw": 62024,
+   "eps_next_fq_usd": 16.35,
+   "eps_next_fy_usd": 47.62,
+   "rev_next_fq_usd_m": 604.7,
+   "rev_next_fy_usd_m": 2132.7,
+   "target_mean": 1848889,
+   "fx_note": "TradingView 추정은 달러 표시 — eps_ttm ₩62,024 ÷ $45.4636 = 1,364.3으로 환산. 다음 분기 EPS $16.35(₩22,305)는 연간 추정과 맞지 않아 쓰지 않았다",
+   "as_of": "2026-11-15"
+  },
+  "source_coverage": "Fiscal.ai 미수록, Easyconomics는 한국 시장 미지원(us·jp·eu·tw만), Zacks 미제공. DART 분기보고서 원문은 열람하지 못했다(뷰어 robots 차단)",
+  "sec_checks": {
+   "form": "SEC 제출사 아님. 1차 자료 = 3Q26 IR(irgo)·공시 보도",
+   "contract_commitments": "미확인 — DART 분기보고서 원문 미열람",
+   "restricted_cash": "미확인",
+   "customers_10pct": "미확인 — 고객별 매출 미공시",
+   "gov_support": "해당 없음 확인 못함"
+  }
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "연결(K-IFRS) — 3Q26 IR 분기 손익. 원가 세부 구성은 미공시",
+  "summary": "3Q GPM 46.6%로 전분기 48.1%에서 내렸다. 회사는 팜유 등 원재료 투입단가·유가·LNG 에너지 비용과 원화 강세를 이유로 들었다. OPM은 관세환급금 같은 비경상 수익과 광고비 통제로 24.8%까지 올랐다. 비용 요인별 몫은 회사가 밝히지 않아 모두 추정이다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 632.0,
+    "cogs": 370.8,
+    "rd": 0.0,
+    "sga": 130.3,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 791.8,
+    "cogs": 422.9,
+    "rd": 0.0,
+    "sga": 172.8,
+    "other": 0.0
+   }
+  ],
+  "periods_note": "매출·매출원가·판관비·영업이익 = IR 실측(3Q25 영업이익 ₩130.9B, 3Q26 ₩196.2B). 연구개발비는 판관비에 들어 있다",
+  "costs": [
+   {
+    "name": "소맥분",
+    "stage": "매출원가",
+    "pct_rev": 0.08,
+    "prior_pct": 0.095,
+    "fixed": 0.0,
+    "driver": "국제 밀 가격·국내 제분 단가",
+    "basis": "추정",
+    "source": "라면 원가 구조 업계 통념(추정)",
+    "input": "wheat"
+   },
+   {
+    "name": "팜유",
+    "stage": "매출원가",
+    "pct_rev": 0.07,
+    "prior_pct": 0.075,
+    "fixed": 0.0,
+    "driver": "말레이시아·인도네시아 팜유 시세",
+    "basis": "추정",
+    "source": "3Q26 IR '팜유 등 원재료 투입단가 상승'(방향만 회사 확인)"
+   },
+   {
+    "name": "스프·소스 원료",
+    "stage": "매출원가",
+    "pct_rev": 0.09,
+    "prior_pct": 0.1,
+    "fixed": 0.0,
+    "driver": "고추·향신료·조미 원료",
+    "basis": "추정",
+    "source": "업계 통념(추정)"
+   },
+   {
+    "name": "포장재",
+    "stage": "매출원가",
+    "pct_rev": 0.05,
+    "prior_pct": 0.06,
+    "fixed": 0.0,
+    "driver": "용기·필름·박스",
+    "basis": "추정",
+    "source": "업계 통념(추정)"
+   },
+   {
+    "name": "제조 인건비·감가상각·에너지",
+    "stage": "매출원가",
+    "pct_rev": 0.124,
+    "prior_pct": 0.137,
+    "fixed": 0.7,
+    "driver": "LNG·전력 단가, 신공장 감가",
+    "basis": "추정",
+    "source": "3Q26 IR '유가·LNG 에너지 비용 상승'(방향만 회사 확인)"
+   },
+   {
+    "name": "기타 매출원가(외주·상품·운반)",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.12,
+    "fixed": 0.2,
+    "driver": "해외 법인 상품 원가·환율",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "수출 물류·운반",
+    "stage": "판관비",
+    "pct_rev": 0.06,
+    "prior_pct": 0.055,
+    "fixed": 0.1,
+    "driver": "해상 운임",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "광고선전·판촉",
+    "stage": "판관비",
+    "pct_rev": 0.05,
+    "prior_pct": 0.055,
+    "fixed": 0.3,
+    "driver": "해외 마케팅",
+    "basis": "추정",
+    "source": "3Q26 IR '광고선전비 등 비용 통제'(방향만 회사 확인)"
+   },
+   {
+    "name": "판관 인건비",
+    "stage": "판관비",
+    "pct_rev": 0.055,
+    "prior_pct": 0.052,
+    "fixed": 0.8,
+    "driver": "해외 법인 인력",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "기타 판관비(관세환급금 상계 포함)",
+    "stage": "판관비",
+    "pct_rev": 0.053,
+    "prior_pct": 0.044,
+    "fixed": 0.5,
+    "driver": "수수료·관세",
+    "basis": "추정",
+    "source": "추정"
+   }
+  ],
+  "products": [
+   {
+    "name": "면스낵(불닭 등)",
+    "rev_share": 0.906,
+    "rev_share_prev": null,
+    "mix_basis": "IR — 3Q26 누적 매출 비중",
+    "gpm": 0.47,
+    "gpm_basis": "추정 — 제품 GPM 미공시, 전사 GPM 46.6%",
+    "bom": [
+     {
+      "item": "소맥분",
+      "share": [
+       0.15,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "라면 원가 구조 업계 통념",
+      "pass_through": "미확인",
+      "why": "면의 주원료",
+      "input": "wheat"
+     },
+     {
+      "item": "팜유",
+      "share": [
+       0.12,
+       0.18
+      ],
+      "basis": "추정",
+      "source": "업계 통념 · 3Q IR 원가 부담 언급",
+      "pass_through": "미확인",
+      "why": "유탕면 튀김유"
+     },
+     {
+      "item": "스프·소스 원료",
+      "share": [
+       0.15,
+       0.22
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "불닭 소스가 맛을 가른다"
+     },
+     {
+      "item": "포장재",
+      "share": [
+       0.08,
+       0.12
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "봉지·용기"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-15",
+  "summary": "병목은 원재료가 아니라 자기 캐파다. 소맥분·팜유·포장재는 공급사가 많은 범용 원료라 물량보다 가격이 문제다. 2028년까지는 자싱과 초과 생산으로, 그 뒤는 베트남으로 막는 구조라는 것이 채널 전언이고 회사 공시로 확인되는 것은 공장 일정뿐이다.",
+  "links": [
+   {
+    "item": "생산 캐파(자기)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "삼양식품 원주·익산·밀양·자싱(예정)",
+      "role": "자가 생산",
+      "status": "회사 발표",
+      "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+     }
+    ],
+    "qualified": "해당 없음",
+    "capacity": "빠듯",
+    "capacity_basis": "증권사·채널 전언 '초과 생산'. 회사 가동률 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "한국",
+    "secured": "내재화",
+    "why": "2027년 1월 자싱 전까지 모든 물량이 한국 공장에서 나온다",
+    "relief": "자싱 착공 확인, 상업 생산은 2027년 1월 목표 — 가동 확인 전이라 '풀렸다' 아님",
+    "source": "https://www.sidae.com/article/2026012715542743518"
+   },
+   {
+    "item": "소맥분",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "국내 제분사(미공시)",
+      "role": "밀가루",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "국내 제분사 다수(추정)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국(원맥 수입)",
+    "secured": "미확인",
+    "why": "면의 주원료",
+    "relief": "미확인",
+    "source": "업계 통념(추정)",
+    "input": "wheat"
+   },
+   {
+    "item": "팜유",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "말레이시아·인도네시아 공급사(미공시)",
+      "role": "튀김유",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "범용 상품, 가격 변동이 위험. 세계 생산의 약 85%가 인도네시아·말레이시아, 인도네시아 단독 약 58%(USDA 생산 통계 기준 근사). 해상 운송 약 6주(추정)",
+    "lead_weeks": 6,
+    "lead_normal": 6,
+    "requal_months": "미확인",
+    "top_share": 0.58,
+    "region_share": 0.85,
+    "region": "동남아",
+    "secured": "미확인",
+    "why": "유탕면 원가",
+    "relief": "미확인",
+    "source": "3Q26 IR 원가 부담 언급(공급사 미공시)"
+   },
+   {
+    "item": "포장재",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "필름·용기",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "범용(추정)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국",
+    "secured": "미확인",
+    "why": "출하 단위",
+    "relief": "미확인",
+    "source": "업계 통념(추정)"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-15",
+  "unit": "억 개/년(라면)",
+  "summary": "회사는 공장별 생산능력을 IR에서 숫자로 내지 않는다. 보도 기준 국내는 밀양 2공장 풀가동 때 연 약 28억 개(유안타는 2026년 약 25억 식으로 본다). 자싱(8라인)은 착공해 2027년 1월 완공 목표, 베트남(8라인 수용, 첫 1라인 건면)은 2029-01-31 준공 예정이다. 채널 Q&A의 '현재 29억 + 자싱 11억 + 베트남 11억 = 51억'은 회사 숫자로 확인되지 않는다.",
+  "current": {
+   "nameplate": 28.0,
+   "utilization": 1.0,
+   "basis": "보도(밀양 2공장 풀가동 시 연간 최대 28억 개). 가동률 100%는 '초과 생산'(채널·증권사 전언)을 받은 추정 — 회사 가동률 미공시",
+   "source": "https://www.ajunews.com/view/20250610090400908"
+  },
+  "plans": [
+   {
+    "name": "중국 자싱 공장(8라인)",
+    "add": 11.2,
+    "stage": "착공",
+    "online": "2027-01",
+    "capex": 207.2,
+    "blocker": "램프 속도(채널 전언 '3분기 안 램프업'), 중국 내 판매 채널 흡수, 한국 물량 이관 속도",
+    "source": "https://www.sidae.com/article/2026012715542743518",
+    "note": "회사 첫 발표 6라인·불닭 연 8.4억 개(2025-07) → 8라인·₩207.2B로 상향(2026-01 보도). 11.2억 개는 8/6 비례·증권사 추산과 같은 값(회사 미확인). 채널 전언 최대 14억 개(3교대+특근)"
+   },
+   {
+    "name": "베트남 투언타잉 공장(최대 8라인)",
+    "add": 11.2,
+    "stage": "발표",
+    "online": "2029-01",
+    "capex": 218.6,
+    "blocker": "현지 인허가·등록, 첫 라인은 건면 1개 — 8라인 전부 들어설 시점 미공시",
+    "source": "https://dealsite.co.kr/articles/172588",
+    "note": "공시 투자액 $97.6M(₩218.6B), 출자 ₩131.1B. 11.2억 개는 한화 추산(8라인 완성 기준), 유안타는 10~11억 식"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 464.6,
+    "rev": 2351.8,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 450.0,
+    "rev": 3101.5,
+    "kind": "추정"
+   },
+   {
+    "period": "FY2027",
+    "capex": 350.0,
+    "rev": 3768.0,
+    "kind": "추정"
+   }
+  ],
+  "capex_source": "FY2025 = TradingView 연간 설비투자. '25~27년 주요 CAPEX ₩742.6B(IR — 밀양 2공장·중국 공장·2025년 추가)에 베트남 ₩218.6B를 더해 나눈 추정. 매출은 FY2025 실적, FY2026 실적+추정, FY2027 컨센서스(현대차)",
+  "facilities": {
+   "count": 6,
+   "count_basis": "3Q26 IR 회사 개요 '생산기지 원주·익산·밀양·중국(증설 중)' + 밀양 1·2공장 구분 + 베트남 공시",
+   "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+   "items": [
+    {
+     "name": "원주 공장",
+     "location": "강원 원주",
+     "owned": "소유",
+     "use": "라면·스낵 제조(국내 주력)",
+     "capacity": "미확인",
+     "capacity_basis": "공장별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "익산 공장",
+     "location": "전북 익산",
+     "owned": "소유",
+     "use": "라면 제조",
+     "capacity": "미확인",
+     "capacity_basis": "공장별 캐파 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "밀양 1공장",
+     "location": "경남 밀양",
+     "owned": "소유",
+     "use": "수출용 불닭 제조(2022년 준공)",
+     "capacity": {
+      "value": 6.0,
+      "unit": "억 개/년",
+      "source": "https://www.ajunews.com/view/20250610090400908"
+     },
+     "capacity_basis": "보도(연간 최대 6억 개)",
+     "status": "가동"
+    },
+    {
+     "name": "밀양 2공장",
+     "location": "경남 밀양",
+     "owned": "소유",
+     "use": "수출용 불닭 제조(2025-06 준공, 6라인)",
+     "capacity": {
+      "value": 8.3,
+      "unit": "억 개/년",
+      "source": "https://v.daum.net/v/20250611184134309"
+     },
+     "capacity_basis": "보도 — 연 8.3억 개, 다른 보도는 6.9억 개로 엇갈린다",
+     "status": "가동"
+    },
+    {
+     "name": "중국 자싱 공장",
+     "location": "중국 저장성 자싱",
+     "owned": "소유",
+     "use": "중국 내수용 라면 제조(8라인)",
+     "capacity": "미확인",
+     "capacity_basis": "회사 첫 발표 6라인 8.4억 개 → 8라인 상향 뒤 수치 미공시(증권사 11.2~11.3억)",
+     "status": "건설 중"
+    },
+    {
+     "name": "베트남 공장",
+     "location": "베트남 박닌성 투언타잉",
+     "owned": "소유",
+     "use": "유럽·아세안 수출용(초기 건면 1라인, 최대 8라인)",
+     "capacity": "미확인",
+     "capacity_basis": "공시는 투자액·라인 수·준공일만(증권사 10~11.2억)",
+     "status": "계획"
+    }
+   ]
+  },
+  "sites_none": "위성 판독 등록 전 — 공장 좌표·윤곽 미등록(다음 회차 과제)"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "고객별 매출은 공시되지 않는다. 회사가 밝히는 것은 판매법인(지역)별 매출이다. 미국은 Walmart·Kroger 같은 주류 유통, 중국은 권역 대리상·간식 채널이 중심이다(3Q26 IR).",
+  "items": [
+   {
+    "name": "미국 유통(Walmart·Kroger 등)",
+    "alias": "IR '미국 법인'",
+    "share": 0.268,
+    "prior": 0.246,
+    "basis": "공시",
+    "buys": "불닭 라면·소스",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+    "why": "미국 법인 ₩212.5B ÷ ₩791.8B(3Q25 ₩155.5B ÷ ₩632.0B)"
+   },
+   {
+    "name": "중국 대리상·간식 채널",
+    "alias": "IR '중국 법인'",
+    "share": 0.264,
+    "prior": 0.292,
+    "basis": "공시",
+    "buys": "불닭 라면",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+    "why": "중국 법인 ₩208.9B ÷ ₩791.8B"
+   },
+   {
+    "name": "유럽·영국 유통",
+    "alias": "IR '유럽·영국 법인'",
+    "share": 0.126,
+    "prior": 0.083,
+    "basis": "공시",
+    "buys": "불닭 라면",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+    "why": "유럽 ₩86.9B + 영국 ₩12.6B"
+   },
+   {
+    "name": "기타 해외(일본 CVS·인니·직수출)",
+    "alias": "IR '일본·인니·기타'",
+    "share": 0.177,
+    "prior": 0.187,
+    "basis": "공시",
+    "buys": "라면",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+    "why": "₩139.9B"
+   },
+   {
+    "name": "국내 유통",
+    "alias": "IR '내수'",
+    "share": 0.166,
+    "prior": 0.192,
+    "basis": "공시",
+    "buys": "라면·소스·냉동",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+    "why": "₩131.1B"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-15",
+  "stage": "컨센서스",
+  "crowding": "중간",
+  "summary": "불닭이 한국 라면을 해외 주류 식품으로 바꿨다는 이야기다. 증권사 18명 중 17명이 매수이고 목표가 평균은 ₩1.85M이다. 그런데 주가는 1년 전보다 낮고, 시장은 '캐파가 늘어도 수요가 따라오나'를 묻고 있다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "매수 17, 중립 1",
+      "매도 없음",
+      "TradingView 11/15 집계"
+     ],
+     [
+      "11/12 베트남 공시 뒤 목표가",
+      "한화 ₩1.80M · 키움 ₩1.85M · KB ₩1.95M · 유안타 ₩2.00M",
+      "모두 유지 — 기대의 증거다",
+      "한국경제·서플·알파경제 11/12"
+     ],
+     [
+      "FY2027 추정",
+      "매출 ₩3,768B · 영업이익 ₩873.1B(현대차)",
+      "OPM 23.2%",
+      "아시아경제 11/13"
+     ]
+    ],
+    "read": "의견은 거의 만장일치 매수지만 목표가는 올리지 않고 유지했다. 베트남은 2029년 이후 이야기라 이번 추정에는 들어가지 않았다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "외국인 지분",
+      "18.8%",
+      "3Q26 IR 주주 구성",
+      "IR"
+     ],
+     [
+      "국민연금",
+      "11.1%",
+      "같은 자료",
+      "IR"
+     ]
+    ],
+    "read": "기관 순매수 흐름은 받지 못했다. 확인되는 것은 지분 구성뿐이다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "공개 텔레그램",
+      "CAPA 로드맵 Q&A 정리(11/14)·증권사 톤 변화 집계(11/12)",
+      "시장 반응의 증거",
+      "tg_channels"
+     ]
+    ],
+    "read": "리테일 쪽 화제는 '51억 개'라는 큰 숫자다. 회사 자료로 확인된 숫자는 아니다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 보도",
+      "3Q 영업이익 분기 최대, 순이익 −18.9%, 베트남 공장",
+      "환율 평가손실이 순이익을 깎았다",
+      "11/6~11/13 보도"
+     ]
+    ],
+    "read": "'주가 뛰어도 돈 번 사람 없다'는 기사(한국경제 11/9)처럼 실적과 주가의 엇갈림이 화제다"
+   }
+  },
+  "factors": [
+   {
+    "name": "불닭 글로벌 주류화",
+    "thesis": "아시아 식품점을 넘어 미국 대형 유통 진열대로 들어갔다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "미국 법인 3Q ₩212.5B(+36.6%), Walmart·Kroger(IR)",
+    "status": "유지",
+    "falsifier": "미국 법인 성장률 2분기 연속 20% 미만",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "name": "캐파 로드맵 51억 개",
+    "thesis": "공장이 두 배 가까이 늘면 매출도 따라 늘어난다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "revision",
+    "quant": "자싱 8라인 ₩207.2B·베트남 ₩218.6B(공시). 51억은 채널 전언",
+    "status": "강화",
+    "falsifier": "자싱 상업 생산이 2027년 2분기 이후로 밀린다",
+    "source": "https://t.me/dykim0210/1346"
+   },
+   {
+    "name": "고ASP 지역 재배치",
+    "thesis": "중국향 물량을 자싱으로 넘기고 한국 물량을 미국·유럽으로 돌려 단가가 오른다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "-",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3Q IR '고ASP 해외 매출 확대'. 재배치 비율 30%는 채널 전언",
+    "status": "유지",
+    "falsifier": "2027년 상반기 미국·유럽 법인 합산 성장률이 중국 법인보다 낮다",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "name": "반대: 원화 강세와 원가",
+    "thesis": "수출 회사라 원화가 강해지면 환산 매출과 이익률이 깎인다",
+    "inputs": "위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "both",
+    "quant": "3Q GPM 48.1 → 46.6%, 순이익 −18.9%(외화 평가손실)",
+    "status": "강화",
+    "falsifier": "4Q GPM 47% 이상 회복",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   },
+   {
+    "name": "반대: 이관은 증분이 아니다",
+    "thesis": "자싱 물량 대부분은 한국에서 이미 팔던 중국향을 옮긴 것이다",
+    "inputs": "성장",
+    "who": {
+     "sell": "약",
+     "buy": "-",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "채널 전언: 자싱 11억 개의 약 80%가 이관 물량. 3Q 중국 법인 매출 비중 26.4%(IR)",
+    "status": "강화",
+    "falsifier": "2027년 중국 법인 매출 성장률 30% 이상",
+    "source": "https://t.me/dykim0210/1346"
+   },
+   {
+    "name": "반대: 단일 브랜드 유행",
+    "thesis": "매운맛 챌린지 유행이 식으면 수요가 꺾인다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "면스낵 90.6%(IR), 불닭 비중 미공시",
+    "status": "유지",
+    "falsifier": "해외 매출 증가율 10%대 하락",
+    "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+   }
+  ],
+  "lead": {
+   "summary": "**공장은 두 배 가까이 늘어나는데 주가는 1년 전보다 낮다.** 3Q 영업이익 ₩196.2B(+49.9%)는 분기 최대이고 컨센서스를 약 5% 웃돌았다. 그러나 매출은 3.3% 밑돌았고 주가는 1년 동안 −12%였다. 이익이 늘어난 만큼 배수가 줄었다. 시장은 '자싱·베트남 캐파가 실제로 팔리는 물량이 되나'를 묻고 있다.",
+   "value_story": "삼양의 값은 '한 개에 얼마를 남기며 몇 개를 파느냐'다. 해외 비중 83.4%, OPM 24.8%는 해외에서 비싸게 파는 구조에서 나온다. 앞으로 2년의 숫자는 캐파가 아니라 ① 자싱이 한국 물량을 얼마나 빨리 넘겨받고 ② 비는 한국 캐파를 미국·유럽 수요가 얼마나 채우느냐로 정해진다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 14.9배로 라면·과자 동종 중앙(약 12.5배, TTM 근사)보다 약 20% 높다. 1년 전보다 배수가 크게 줄었다.",
+    "eps": "FY2026 EPS 약 ₩66,000, FY2027 약 ₩86,000(보도 인용에서 역산한 추정)."
+   },
+   "why_excited": "2024~25년 불닭이 미국 주류 유통에 들어가며 매출이 해마다 30~40% 늘었고 주가는 2025년 9월 ₩1.6M까지 올랐다. 식은 이유는 성장률이 40%대에서 25%대로 내려왔고, 원화 강세와 원가로 GPM이 꺾였으며, 2027년 이전에는 캐파가 늘지 않는다는 점이다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "내수 라면 회사에서 해외 비중 83%의 수출 식품 회사로 바뀌었다.",
+     "evidence": "해외 비중 3Q25 80.8% → 3Q26 83.4%(IR)",
+     "drives": "multiple",
+     "status": "진행 중",
+     "falsifier": "해외 비중이 80% 아래로 내려간다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "단가가 높은 미국·유럽 매출 비중이 오른다.",
+     "evidence": "미국+유럽·영국 비중 3Q25 32.9% → 3Q26 39.4%(IR)",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "미국·유럽 비중이 2분기 연속 내린다"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "해당 없음(라면 제조 기술은 업계 공통이다 — 차별점은 맛·브랜드).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(유통 주문 즉시 출고라 납기를 공시하지 않는다 — 공장 건설 속도로 대신 잰다: 밀양 2공장 2025-06 준공, 자싱 2025년 발표 뒤 2027년 1월 가동 목표, 베트남 공시 뒤 약 26개월)",
+     "evidence": "밀양 2공장 2025-06 준공, 자싱 2027-01 목표(보도)",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "자싱 상업 생산 지연"
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 인수·합병 없음).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "소비자 장바구니(가계 식비)와 유통사의 진열·판촉 예산이다.",
+     "evidence": "미국 Walmart·Kroger 입점(IR)",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "미국 가계 식품 지출 둔화",
+     "budgets": [
+      {
+       "business": "면스낵(불닭 등)",
+       "budget": "OPEX",
+       "line": "가계 식비·유통사 상품 구매",
+       "share": 0.906,
+       "driver": "해외 진열 확대·매운맛 수요",
+       "evidence": "3Q26 IR"
+      },
+      {
+       "business": "소스·냉동·기타",
+       "budget": "OPEX",
+       "line": "가계 식비",
+       "share": 0.094,
+       "driver": "브랜드 확장",
+       "evidence": "3Q26 IR"
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "면스낵(불닭 등)",
+     "what": "불닭볶음면을 중심으로 한 유탕면·건면·스낵",
+     "use": "미국·중국·유럽·국내 유통",
+     "money": "3Q 누적 매출의 90.6%",
+     "rev_share": 0.906,
+     "name_en": "instant fried noodle production",
+     "what_en": "Wheat flour dough sheeted, cut into wavy noodles, steamed, fried in palm oil, cooled and packed with seasoning sauce sachets",
+     "bom": {
+      "as_of": "2026-11-15",
+      "items": [
+       {
+        "no": 1,
+        "part": "소맥분 면",
+        "part_en": "wheat flour noodle block",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "미공시(국내 제분사)",
+        "source": "유탕면 제조 공정(업계 자료)"
+       },
+       {
+        "no": 2,
+        "part": "팜유 튀김",
+        "part_en": "palm oil frying bath",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "3Q26 IR 팜유 원가 언급"
+       },
+       {
+        "no": 3,
+        "part": "액상 소스",
+        "part_en": "spicy liquid sauce sachet",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "자체(소스 설비 투자, IR)",
+        "source": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf"
+       },
+       {
+        "no": 4,
+        "part": "후레이크·분말 스프",
+        "part_en": "dried flake and powder seasoning sachet",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "자체·미공시",
+        "source": "제품 구성(업계 자료)"
+       },
+       {
+        "no": 5,
+        "part": "포장 봉지·용기",
+        "part_en": "plain unprinted packaging pouch and cup",
+        "kind": "포장",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "제품 구성"
+       },
+       {
+        "no": 6,
+        "part": "증숙·튀김 설비 라인",
+        "part_en": "steaming and frying conveyor line",
+        "kind": "설비",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "밀양 2공장 르포 보도"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "소스·조미소재",
+     "what": "불닭 소스 등 병·파우치 소스",
+     "use": "해외·국내 유통",
+     "money": "3Q 누적 3.4%",
+     "rev_share": 0.034,
+     "name_en": "hot sauce bottles",
+     "what_en": "Spicy chili sauce filled in plain squeeze bottles"
+    },
+    {
+     "kind": "제품",
+     "name": "냉동",
+     "what": "냉동 간편식",
+     "use": "국내",
+     "money": "3Q 누적 2.4%",
+     "rev_share": 0.024,
+     "name_en": "frozen foods",
+     "what_en": "Frozen ready meals in plain trays"
+    },
+    {
+     "kind": "서비스",
+     "name": "기타(뉴트리션·용역)",
+     "what": "건강기능식품·용역",
+     "use": "국내",
+     "money": "3Q 누적 3.6%",
+     "rev_share": 0.036,
+     "name_en": "nutrition and services"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(삼양 매출과 연결된 미국 재정 사업이 없다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "orders": {
+     "change": "미국 상호 관세(행정명령)가 한국산 식품 수입에 붙는다 — 3Q 영업이익에 관세환급금이 비경상 수익으로 들어왔다(IR). 의회 동의는 행정명령이라 해당 없음.",
+     "evidence": "https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf",
+     "drives": "revision",
+     "status": "시행",
+     "falsifier": "관세율 인상",
+     "house": {
+      "level": 1,
+      "why": "관세 입법 논의 없음 — 행정 관세"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같다"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(매출을 바꾸는 계류 법안을 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "이익은 50% 늘었는데 주가는 1년 전보다 낮다 — 배수가 동종과 거의 같아졌다",
+    "evidence": [
+     "3Q 영업이익 +49.9%",
+     "Fwd 1Y P/E 14.9배 vs 동종 약 12.5배",
+     "목표가 평균 ₩1.85M"
+    ],
+    "falsifier": "FY2027 영업이익 추정이 ₩800B 아래로 내린다"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "2027년 캐파 약 +40%가 2년 성장의 바닥을 깐다",
+    "evidence": [
+     "자싱 8라인 ₩207.2B 착공",
+     "미국 법인 +36.6%",
+     "순현금 ₩122.3B"
+    ],
+    "falsifier": "자싱 상업 생산 지연"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "늘어나는 캐파의 대부분은 이관이다 — 순증분 수요는 아직 증명되지 않았다",
+    "evidence": [
+     "채널 전언 이관 80%",
+     "3Q 매출 컨센서스 −3.3%",
+     "영국 −61%"
+    ],
+    "falsifier": "1Q27 미국·유럽 합산 +40% 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "이익률 정점 신호 — GPM이 내렸고 3Q OPM에는 일회성이 섞였다",
+    "evidence": [
+     "GPM 48.1 → 46.6%",
+     "관세환급금 비경상 수익",
+     "원화 강세"
+    ],
+    "falsifier": "4Q GPM 47% 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "단일 브랜드 유행주에 신공장 두 곳 — 수요가 꺾이면 고정비가 남는다",
+    "evidence": [
+     "면스낵 90.6%",
+     "'25~27 CAPEX ₩742.6B + 베트남 ₩218.6B",
+     "성장률 40% → 25%"
+    ],
+    "falsifier": "해외 매출 증가율 25% 이상 유지"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "TTM 영업이익 ₩688.7B로 1년 새 크게 늘었는데 주가는 −12%다. 배수 축소가 지나쳤다."
+     },
+     {
+      "seat": "Buy",
+      "text": "자싱은 이미 착공했고 회사는 2027년 1월 가동을 목표로 한다. 캐파가 늘면 품절 기간이 준다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "자싱 물량의 80%가 이관이라는 전언이 맞다면 새 수요는 한국에서 비는 약 8억 개를 누가 사느냐에 달렸다."
+     },
+     {
+      "seat": "Sell",
+      "text": "GPM이 1.5%p 내렸다. 영업이익률 회복은 관세환급금과 광고비 통제 덕이다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "매출의 90%가 면스낵이다. 유행 상품에 공장 두 곳을 짓는 것은 위험을 키운다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "GPM 46.6%도 동종 어느 회사보다 높다. 내린 이유는 팜유와 환율이지 가격 인하가 아니다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "원인이 외부 변수라는 것은 회사가 통제하지 못한다는 뜻이다. 4Q에도 같은 변수다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "캐파가 늘어도 3Q 매출은 컨센서스를 밑돌았다. 지금 막힌 것이 캐파인지 수요인지 숫자로 가려지지 않았다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "영국 −61%는 거래선 교체로 매출이 이연된 것이라고 회사가 밝혔다. 수요 둔화의 증거가 아니다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "이연이 4Q에도 회복되지 않으면 유럽 성장 이야기는 약해진다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "미국 법인은 7개 분기 동안 한 번도 전년 대비 줄지 않았다. 유행보다 진열이 늘어난 결과다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "진열은 판매가 줄면 바로 줄어든다. 유통 계약은 장기 약정이 아니다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "배수가 동종 수준까지 왔다는 말은 맞지만, 동종은 성장률 6~11%다. 25% 성장이 유지돼야 지금 배수가 싸다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "순현금 상태에서 짓는 공장이다. 차입 부담 없이 감가상각만 늘어난다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "감가상각과 신규 인력은 램프 초기 이익률을 1~2%p 깎는다. 2027년 상반기가 시험대다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "순증분 수요가 아직 증명되지 않았다는 반박은 받아들인다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "선정 배수 12.8배로는 목표주가까지 여유가 거의 없다는 점을 받아들인다. 자싱 가동과 1Q27 해외 매출을 본 뒤 다시 올린다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "이관과 순증분을 가를 자료는 2027년 상반기에 나온다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "GPM 46.6%가 동종보다 높다는 점은 받아들인다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "순현금 투자라 재무 위험은 작다는 반박을 받아들인다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Neutral",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "이익 성장과 배수 축소는 숫자로 확인됐지만, 캐파 증가가 순증분 매출이 되는지는 2027년 상반기 전에는 가릴 수 없다. 동종 배수로는 목표주가 업사이드가 작다.",
+   "dissent": "Buy 한 표 — 1년 동안 이익이 크게 늘었는데 주가가 내려 배수가 동종에 가까워졌다"
+  }
+ }
+}

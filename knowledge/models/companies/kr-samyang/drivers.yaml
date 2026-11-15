@@ -1,0 +1,114 @@
+auto: true
+id: kr-samyang
+name: 삼양식품
+ticker: '003230'
+unit: BKRW
+unit_usd: 744400.0
+industry: food_processing
+region_mix:
+  KR: 0.17
+  US: 0.27
+  CN: 0.26
+  EU: 0.12
+  other: 0.18
+tax: 0.23
+horizon: 10
+as_of: '2026-11-15'
+market:
+  date: '2026-11-15'
+  price: 1210000
+  shares: 0.007458
+  net_debt: -122.3
+  source: 가격 = TradingView KRX:003230 11/13 종가 ₩1,210,000. 주식 수 = TradingView 시가총액
+    ₩9,024.3B ÷ 종가(유통 7,458,128주, 발행 7,533,015주 — 3Q26 IR). 현금성자산 ₩823.0B·총차입 ₩700.7B·순현금
+    ₩122.3B = 3Q26 IR 연결 재무상태표 https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf
+rev0: 3101.5
+ic0: 1462.0
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.2149
+      end: 0.035
+      decay: 0.738
+    margin:
+      m0: 0.235
+      target: 0.21
+      year_target: 5
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.232
+      - 0.235
+    s2c: 2.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2897
+      end: 0.04
+      decay: 0.788
+    margin:
+      m0: 0.235
+      target: 0.23
+      year_target: 5
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.232
+      - 0.235
+    s2c: 2.3
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1446
+      end: 0.030000000000000002
+      decay: 0.638
+    margin:
+      m0: 0.235
+      target: 0.19
+      year_target: 5
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.232
+      - 0.235
+    s2c: 1.7
+mc:
+  sigma_growth: 0.0363
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 3101.5
+  growth: 컨센서스 1년차 21.5%, 2년차 16.8%
+  margin: 1~2년차 컨센서스 23.2%, 23.5% 고정 → 목표 21%(5년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 2.0 → 덮어쓰기 2.0
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 14.5%~29.0%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +18.0% 아래·강세 +25.2% 위 확률. 내부 관점(컨센서스 +21.5%, σ 6.3%: 범위 14.5% ÷ d2(18) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: 장기 OPM 21%는 지금 23~25%에서 신규 공장 감가·해외 판촉 확대와 원화 강세를 반영해 낮췄다. 오리온·도요스이산
+    16~17%보다는 높게 둔다(해외 ASP). 매출÷투하자본 2.0은 자싱 ₩207.2B·베트남 ₩218.6B 증설로 투하자본이 늘어나는 것을
+    반영
+  shares: 완전 희석 = 기본 0.007458128(2026-11-13) + 옵션·RSU·워런트·전환 0.0000 — 전환사채·스톡옵션 공시
+    미확인 — 3Q26 IR 자본 항목에 희석 증권 표시 없음. 자기주식 약 7.5만 주
+notes:
+- 자동 생성(build_drivers) 2026-11-15 — 데이터 묶음 2026-11-15
+- '어닝콜 위험: 원화 강세(수출 환산·외화자산 평가)'
+- '어닝콜 위험: 팜유·에너지 원가'
+- '어닝콜 위험: 자싱 램프 속도'
+evidence:
+- 삼양식품 2026년 3분기 경영실적(IR) https://file.irgo.co.kr/data/BOARD/ATTACH_PDF/AURNVEC556KC6DJZR48SDGA3ZB4VVUBY2026116163446.pdf
+- 딜사이트 11/11 베트남 공장 https://dealsite.co.kr/articles/172588
+- 한국경제 11/12 한화 https://www.hankyung.com/article/2026111216606
+- 알파경제 11/12 유안타 https://www.alphabiz.co.kr/news/articleView.html?idxno=197706
+- 스마트투데이 자싱 6라인 https://www.smarttoday.co.kr/ko-kr/articles/67664
+- 세계일보 자싱 ₩201.4B https://www.segye.com/newsView/20250703512726
+- 시대 2026-01 자싱 8라인·₩207.2B https://www.sidae.com/article/2026012715542743518
+- 밀양 2공장 르포 https://v.daum.net/v/20250611184134309
+- 한국금융신문 11/6 3Q 실적 https://www.fntimes.com/html/view.php?ud=202611061619034892923defd0cc_18
+- 한국경제 11/9 실적분석 https://www.hankyung.com/article/202611095357i
+- 키움 6조 보도 https://supple.kr/news/cmwcrugb4vgwual9p91bsr31z
+- 아시아경제 11/13 https://view.asiae.co.kr/article/2026111310555774285
+- 꿈을 담은 단지 채널 글(전언) https://t.me/dykim0210/1346
+- TradingView https://www.tradingview.com/symbols/KRX-003230/
