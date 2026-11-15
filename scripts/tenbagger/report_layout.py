@@ -572,6 +572,20 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         auto.append(capacity_view.summary_item(dp))
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
+    # 투자 포인트·모멘텀 타임라인·언제 사서 언제 팔아야 할까(마스터 지시 2026-11-16, scripts/tenbagger/playbook_view.py) — 2026-11-16 이후 리포트는 재료가 없으면 멈춘다
+    import playbook_view
+    pb_v = {"price": s["price"], "bear": s["bear"], "base": s["base"], "bull": s["bull"], "target": pt["target"]}
+    if (dp or {}).get("playbook"):
+        S = d["summary"]
+        at = lambda key: next((i for i, x in enumerate(S) if key in str(x.get("q"))), None)
+        S.insert((at("기업가치를 결정하는 내러티브") or 0) + 1, playbook_view.summary_points(dp))
+        S.insert((at("주가 상방") if at("주가 상방") is not None else len(S) - 1) + 1, playbook_view.summary_momentum(dp))
+        k = next((i for i, x in enumerate(S) if "판단이 달라" in str(x.get("q")) or "판단이 바뀌" in str(x.get("q")) or "판단 변화" in str(x.get("q"))), None)
+        S.insert(len(S) if k is None else k + 1, playbook_view.summary_trade(dp, pb_v, zones, pf_))
+    elif str(d.get("date") or "") >= "2026-11-16":
+        raise SystemExit("투자 포인트·모멘텀 타임라인·매매 가격 틀 재료가 없다(마스터 지시 2026-11-16) — datapack playbook을 쓴다(scripts/tenbagger/playbook_view.py 맨 위): " + " · ".join(playbook_view.check(dp)))
+    if (dp or {}).get("playbook") and playbook_view.check(dp) and str(d.get("date") or "") >= "2026-11-16":
+        raise SystemExit("datapack playbook 재료가 모자란다: " + " · ".join(playbook_view.check(dp)))
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
     pchart = narrative_view.portfolio_chart(dp)
     d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, pchart, supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp), site_view.chart(dp))
@@ -604,6 +618,8 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         d["gallery"][at:at] = [{"kind": "image_block", "title": f"사진 {b.get('photo')}. {b.get('title')}", "block": b} for b in photos]
         d["gallery_images"] = photos   # 마크다운·노션 판도 같은 사진을 쓴다
     out[0]["blocks"] = list(out[0].get("blocks") or []) + imgs["narrative"]
+    if (dp or {}).get("playbook"):   # 내러티브 절 끝 — 세 항목 세부(2026-11-16)
+        out[0]["blocks"] += playbook_view.blocks(dp, pb_v, zones, pf_)
     if customer_sec:
         d["sources"] = list(dict.fromkeys((d.get("sources") or []) + customer_sec.pop("_sources")))
         out.append(customer_sec)
