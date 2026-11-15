@@ -74,7 +74,7 @@
 - **예전 리포트 정정:** format 없는 옛 JSON은 `--legacy`로 예전 양식을 유지한다. 배수 사다리(`ladder`)는 새 리포트에서 쓰지 않는다.
 
 0. **노션 Stocks 색인 갱신**(마스터 지시 2026-10-30 "내 노션 Stocks의 티커 중 최신(현 시점 ±7일) 어닝콜 스크립트와 컨센서스를 입력해 놓은 종목부터 분석하라. IB 리포트 내용이 있으면 참조하라"): 노션 커넥터로 Stocks 페이지(config/notion.yaml pages.stocks) 아래에서 최근 8일 안에 편집된 종목 페이지(제목 '회사명 티커')를 찾아, 페이지마다 본문을 `radar/inbox/notion_stocks/<page_id>.md`에 저장하고 `py scripts/tenbagger/notion_stocks.py --classify <파일> --page-id <id> --title "<제목>" --edited <편집일>`. 노션을 읽지 못하면 색인을 그대로 두고 1번으로 간다.
-0-1. **어닝콜 전문 반영 재발행**(마스터 지시 2026-10-31 "어닝콜 스크립트가 아직 안 나온 종목이면 나중에 업데이트됐을 때 리포트에 이를 반영해 다시 발행"): 회차 시작 때 `py scripts/tenbagger/report_refresh.py --due`. 나온 건은 회차당 1건을 새 리포트보다 먼저 처리한다.
+0-1. **어닝콜 전문 반영 재발행 — Analysis 회차에서 하지 않는다**(마스터 지시 2026-11-15 "어닝콜 업데이트를 하는 종목은 Analysis 주기에 넣지 말아줘"): 정기 회차 6건은 모두 새 종목 리포트다. 재발행은 펄스가 전문 게재를 감지한 회차에서 바로 한다(`docs/tasks/chiip-pulse.md` 1-1 e-2). 아래 a~e·a'~e'는 그 펄스 재발행이 따르는 절차다(원래 지시 2026-10-31 "어닝콜 스크립트가 아직 안 나온 종목이면 나중에 업데이트됐을 때 리포트에 이를 반영해 다시 발행").
    a. `py scripts/tenbagger/report_refresh.py --start <stem>` — 기존 Artifact·노션 주소를 받는다.
    b. Fiscal.ai 전문(`company_ir_events_transcript`)으로 datapack `call`·`consensus`·`pipeline`을 고치고 `datapack_check` → `build_drivers` → `v2_to_report.py <id> --merge <그 리포트 json>`(옛 양식이면 빠진 재료를 채우거나 `--legacy`) → `report_html.py`.
    c. 콜로 판단이 달라졌으면 Chiip View·요약·시나리오를 고친다. 맨 끝 절 '재발행 기록 — 어닝콜 전문 반영'에 무엇이 바뀌었는지 전 → 후로 적는다. 달라진 게 없어도 그렇게 적는다.
