@@ -1,0 +1,16 @@
+# 국장 주도주 생애 단계(생·로·병·사) — 마스터 지시 2026-11-15 "국장 종목 분석 시 위 리포트의 메커니즘을 반영"
+# 출처: DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17, KOSPI 200 1992~2018 여덟 장세). 원문은 D:\local-only\licensed\db\ (저장소 밖)
+# 방법 설명: knowledge/methods/kr_leader_lifecycle.md · 엔진: scripts/discovery/kr_leader.py · 상수는 등록부 prm-krld-* (사전값)
+regime:
+  index: KRX:KOSPI
+  fast_weeks: 10            # 상승 장세 대리 판정 — KOSPI 10주선 > 40주선(리포트는 장세를 사후 장기 사이클로 나눴다 — 실시간 대리 규칙이다)
+  slow_weeks: 40
+universe: SYML:KRX;KOSPI200  # 리포트 표본과 같은 KOSPI 200
+early_months: 3              # 장세 시작 첫 3개월 누적 모멘텀 상위 → 초기 후보
+top_pct: 0.05                # 상위 5%
+# 주도주가 장세 시작 뒤 머문 수익률 순위(상위 %)의 한계 — 이보다 밖이면 주도주와 맞지 않는다(리포트 도표 29: 1·3·6·12개월 36.8·23.5·19.8·16.4%)
+rank_ceiling: {m1: 0.368, m3: 0.235, m6: 0.198, m12: 0.164}
+max_drawdown: -0.30          # 장세 중 고점 대비 −30%를 넘는 조정은 역대 주도주의 약 95%가 겪지 않았다
+breakout_vol_ratio: 1.0      # 직전 고점 돌파 주의 거래량 ÷ 직전 10주 평균 > 1 — '돌파는 거래량 증가를 수반'
+sell_fast_weeks: 10          # 10주선이 40주선 아래로 교차 = 매도·지위 상실 신호
+sell_slow_weeks: 40

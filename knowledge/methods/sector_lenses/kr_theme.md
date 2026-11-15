@@ -16,6 +16,8 @@
 - 언급 가속: 공개 텔레그램 채널 17곳 저장분의 테마 어휘 글 수(radar/kr_theme_news.py) — Google News RSS는 robots 금지라 쓰지 않는다
 - 적신호: OpenDART 희석 공시·시장조치(I003), KRX 투자경고 지정(open.krx.co.kr — 거래소 법적고지상 재배포 금지, 내부 표지로만)
 - 쓰지 않는 원천: 네이버 금융 테마(robots 전면 금지), KIND(웹방화벽), 종목토론방·커뮤니티
+- 대장주 생애 단계: `scripts/discovery/kr_leader.py --about <코드>` — KOSPI 상승 장세 안에서 KOSPI 200 순위 상위·고점 대비 −30% 안·10/40주선 위인지(DB금융투자 「주도주의 생로병사」 메커니즘, `knowledge/methods/kr_leader_lifecycle.md`). 테마 급등만으로는 '생'이 아니다.
+
 ## 흔한 오류
 - 테마 급등 → 펀더멘털 변화(금지표: 주가 급등 → 펀더멘털 변화) / '관련주' 기사 → 수요 / 테마 편입 → 매출 / 구조적 테마 → 하방 안전
 - 사후 편입 편향: 테마 구성 종목을 나중에 고르면 테마 수익률이 부풀려진다 — 편입일을 고정해 적는다(사전 config/kr_themes.yaml)

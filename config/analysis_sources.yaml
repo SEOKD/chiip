@@ -24,6 +24,7 @@ sources:
   - {id: lobby, region: us, kind: script, cmd: "radar/usgov/lobby_watch.py {id} {legal}", use: "연방 로비 내역 — 경영진·약세 논리에 쓸 때만"}
   - {id: sector_data, region: all, kind: script, cmd: "scripts/tenbagger/sector_data.py {id} {ticker} {legal}", use: "AI 밖 종목 섹터 판단 틀 질문 + 섹터 공개 데이터(openFDA·FDIC) → datapack sector_kpis(2026-11-13, ADR-029). AI 밸류체인은 해당 없음"}
   - {id: kr_ir_pt, region: kr, kind: script, cmd: "radar/pollers/kr_ir_docs.py --pt {id}", use: "한국 종목 당기·직전 분기 PT(어닝콜 대신)"}
+  - {id: kr_leader, region: kr, kind: script, cmd: "scripts/discovery/kr_leader.py --about {id}", use: "국장 주도주 생애 단계(생·로·병·사 — DB금융투자 주도주의 생로병사 메커니즘, 2026-11-15 마스터 지시) → 매수 위치·셀온 조건·체크리스트. 가격 판정이지 펀더멘털 변화가 아니다. 주봉·순위가 없으면 `--spec`대로 받아 넣는다"}
   - {id: jp_consensus, region: jp, kind: script, cmd: "radar/jp_consensus.py --line {ticker}", use: "일본 종목 컨센서스 줄"}
   - {id: tw_financials, region: tw, kind: script, cmd: "radar/pollers/tw_financials.py --export {ticker} {out}/tw_quarters.json", use: "대만 공시 분기 재무 → quarters.py --put"}
   - {id: cn_hk_filings, region: cn, kind: script, cmd: "radar/pollers/cn_hk_disclosure.py --about {ticker}", use: "중국 본토 원문 공시(巨潮资讯 cninfo) — 실적·업적 예고·수주·증설·설명회(2026-11-09)"}

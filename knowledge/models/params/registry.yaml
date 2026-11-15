@@ -7928,3 +7928,195 @@ params:
     data: knowledge/models/spac/history.csv
     last_fit: null
     oos_metric: null
+- id: prm-krld-regime-fast
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#regime.fast_weeks
+  value: 10
+  unit: 주
+  status: prior
+  prior:
+    value: 10
+    basis: '상승 장세 대리 판정 KOSPI 10주선(리포트 매도 규칙과 같은 10/40주를 장세 판정에도 쓴다 — 리포트는 장세를 사후 장기 사이클로 나눴으므로 대리 규칙)'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-regime-slow
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#regime.slow_weeks
+  value: 40
+  unit: 주
+  status: prior
+  prior:
+    value: 40
+    basis: '상승 장세 대리 판정 KOSPI 40주선'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-early-months
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#early_months
+  value: 3
+  unit: 개월
+  status: prior
+  prior:
+    value: 3
+    basis: '리포트 전략 — 상승 장세가 시작된 첫 3개월 누적 모멘텀으로 초기 주도주를 고른다'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-top-pct
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#top_pct
+  value: 0.05
+  unit: 비율(상위)
+  status: prior
+  prior:
+    value: 0.05
+    basis: '리포트의 주도주 정의·매수 규칙 — KOSPI 200 수익률 상위 5%'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-rank-m1
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#rank_ceiling.m1
+  value: 0.368
+  unit: 비율(상위)
+  status: prior
+  prior:
+    value: 0.368
+    basis: '장세 시작 1개월 시점 주도주의 수익률 순위 하한(도표 29)'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-rank-m3
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#rank_ceiling.m3
+  value: 0.235
+  unit: 비율(상위)
+  status: prior
+  prior:
+    value: 0.235
+    basis: '장세 시작 3개월 시점 주도주의 수익률 순위 하한(도표 29)'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-rank-m6
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#rank_ceiling.m6
+  value: 0.198
+  unit: 비율(상위)
+  status: prior
+  prior:
+    value: 0.198
+    basis: '장세 시작 6개월 시점 주도주의 수익률 순위 하한(도표 29)'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-rank-m12
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#rank_ceiling.m12
+  value: 0.164
+  unit: 비율(상위)
+  status: prior
+  prior:
+    value: 0.164
+    basis: '장세 시작 12개월 시점 주도주의 수익률 순위 하한(도표 29)'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-maxdd
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#max_drawdown
+  value: -0.3
+  unit: 비율
+  status: prior
+  prior:
+    value: -0.3
+    basis: '주도주의 약 95%는 장세 중 고점 대비 −30% 넘는 조정을 겪지 않았다(도표 36) — 필요조건 필터로만 쓴다(역확률 아님)'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-breakout-vol
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#breakout_vol_ratio
+  value: 1.0
+  unit: 배
+  status: prior
+  prior:
+    value: 1.0
+    basis: '직전 고점 돌파는 거래량 증가를 수반했다(도표 37) — 돌파 주 거래량 ÷ 직전 10주 평균 > 1'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-sell-fast
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#sell_fast_weeks
+  value: 10
+  unit: 주
+  status: prior
+  prior:
+    value: 10
+    basis: '주도주는 상승이 하락보다 평균 14.5배 빨라 10/40주선 교차가 고점 가까이에서 난다 — 리포트 매도 규칙'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
+- id: prm-krld-sell-slow
+  model: discovery.kr_leader
+  binding: config/kr_leader.yaml#sell_slow_weeks
+  value: 40
+  unit: 주
+  status: prior
+  prior:
+    value: 40
+    basis: '10/40주선 매도 규칙의 40주선'
+    source: 'DB금융투자 강현기, 「주도주의 생로병사」(2018-10-17) — KOSPI 200 1992~2018 상승 장세 8회, 장세별 수익률 상위 5% 주도주(원문 D:\local-only\licensed\db\)'
+  fit:
+    method: 단계별 다음 3·6개월 KOSPI 대비 초과수익을 쌓아 표본 외로 비교(stepwise) — 사후 정의 표본이라 실시간 대리 규칙은 따로 검증한다
+    target: 단계 판정 뒤 초과수익 순서
+    data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
+    last_fit: null
+    oos_metric: null
