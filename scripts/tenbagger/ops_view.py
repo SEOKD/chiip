@@ -113,7 +113,11 @@ def cycle(dp):
     ops = {r["period"]: r for r in ((dp.get("ops") or {}).get("q") or [])}
     for r in q:
         o = ops.get(r["period"]) or {}
-        r["_orders"], r["_inv"] = o.get("orders"), o.get("inventory")
+        r["_orders"], r["_inv"], r["_bl"] = o.get("orders"), o.get("inventory"), o.get("backlog")
+    if not any(r["_orders"] is not None for r in q):   # 수주 미공시·잔고 공시 — 수주 = 매출 + 잔고 증가(2026-11-15 FIX: 잔고 16개 분기가 있는데 B/B가 비었다). 인수로 잔고가 붙으면 부풀 수 있다
+        for a, b in zip(q, q[1:]):
+            if a.get("_bl") is not None and b.get("_bl") is not None and b.get("rev"):
+                b["_orders"], b["_derived"] = b["rev"] + b["_bl"] - a["_bl"], True
     out = []
     for i in range(4, len(q)):
         r = q[i]
@@ -143,7 +147,7 @@ def cycle_section(dp):
     if not rows:
         return None
     c = cfg()["cycle"]
-    lab = (dp.get("ops") or {}).get("orders_label")
+    lab = (dp.get("ops") or {}).get("orders_label") or ("매출 + 잔고 증가로 계산" if any(r.get("bb") is not None for r in rows) else None)
     last = rows[-1]
     pc = lambda v: "-" if v is None else f"{v * 100:+.0f}%"
     parts = []
@@ -163,7 +167,7 @@ def cycle_section(dp):
     series = [{"name": "재고 일수", "color": "b", "values": [None if r["dio"] is None else round(r["dio"]) for r in rows]}]
     if any(r.get("bb4") is not None for r in rows):
         series.insert(0, {"name": "B/B(4분기)×100", "color": "c", "values": [None if r["bb4"] is None else round(r["bb4"] * 100) for r in rows]})
-    B.append({"type": "chart", "chart": {"kind": "bars", "w": 440, "title": "수주/출하 비율 × 재고 일수 — 분기별(B/B 100 = 수주와 출하가 같다)", "unit": "",
+    B.append({"type": "chart", "chart": {"kind": "bars", "w": 440, "title": "수주/출하 비율 × 재고 일수 — 분기별(B/B 100 = 수주와 출하가 같다)" if len(series) > 1 else "재고 일수 — 분기별(수주 자료가 없어 수주/출하 비율 없음)", "unit": "",
                                          "categories": [r["period"][2:7] for r in rows], "series": series}})
     B.append({"type": "p", "text": "B/B가 1을 넘으면 받은 주문이 내보낸 물건보다 많아 잔고가 쌓이고, 재고가 매출보다 빨리 늘면 수요보다 생산이 앞선다는 뜻이다. 둘을 함께 봐야 '주문이 많아 쌓이는 재고'와 '안 팔려 쌓이는 재고'를 가른다."})
     return {"h2": "수주·출하·재고 사이클", "blocks": B}
