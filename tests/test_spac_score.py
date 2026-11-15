@@ -20,11 +20,12 @@ class T(unittest.TestCase):
 
     def test_net_cash_per_share(self):
         r = ss.score(BASE, "S3", True, C)
-        self.assertAlmostEqual(r["numbers"]["net_cash_ps"], 0.23 * 1000 / 75, places=2)
+        self.assertAlmostEqual(r["numbers"]["net_cash_ps"], 0.23 * 1000 / 75, places=2)   # 합병 뒤 전체 주식 기준(가치 계산용)
+        self.assertAlmostEqual(r["numbers"]["ncps_kor"], (0.2 - 0.02) * 1000 / 25, places=2)   # KOR: 피인수 주주 주식은 분모에서 뺀다
 
     def test_kill_caps_score(self):
         r = ss.score({**BASE, "redemption": {"pct": 0.97}, "cash": {"trust_left": 0.01}}, "S4", True, C)
-        self.assertIn("환매 95% 이상·PIPE 없음", r["kills"])
+        self.assertIn("환매 95% 이상·외부 자금 없음", r["kills"])
         self.assertLessEqual(r["score"], C["kill_cap"])
         self.assertFalse(r["candidate"])
 

@@ -6918,3 +6918,1013 @@ params:
     data: knowledge/models/discovery/leads.csv·lead_prices.csv
     last_fit: null
     oos_metric: null
+- id: prm-spac-w-pre-floor
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.floor
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: 주총 전 바닥(다음 환매 시점까지 신탁가 대비)
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 3 스팩 기간 연 23.9%
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-dilution
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.dilution
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: KOR 주당 순현금
+    source: Klausner, Ohlrogge & Ruan(2022), A Sober Look at SPACs, Yale J. on Regulation 39(1) — 합병 뒤 가격 기울기 1.04~1.16
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-quality
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.quality
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 질(환매·스폰서·주관사·PIPE)
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7·8; Klausner, Ohlrogge & Ruan(2022), A Sober Look at SPACs, Yale J. on Regulation 39(1)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-time
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.time
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: 시간 압박
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7; Leal 외(2026) ECGI WP 1017/2024
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-fundamentals
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.fundamentals
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: LTM 매출·흑자
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 6
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-value
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.value
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 성장 축소 선행 매출 배수·PSR 상한
+    source: Blankespoor 외(2022) Management Science 68(6); Ritter 표 18d
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-edge
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.edge
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: Chiip 렌즈(검증 전 — 테마 일치가 Chiip 표본에서 낫지 않아 낮춤)
+    source: Chiip 판단, base_rates.json theme_match
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-pre-attention
+  model: spac.score
+  binding: config/spac.yaml#score.weights.pre_vote.attention
+  value: 0
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0
+    basis: 관심 0 — 위험 표시만
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 합병 전 수익 계수 −0.184; Dambra 외(2023) TAR
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-dilution
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.dilution
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: KOR 주당 순현금
+    source: Klausner, Ohlrogge & Ruan(2022), A Sober Look at SPACs, Yale J. on Regulation 39(1)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-quality
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.quality
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: 질
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-time
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.time
+  value: 0.05
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.05
+    basis: 시간 압박(종결 뒤 1~3년 수익 계수라 작게)
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7 3년 −0.475
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-fundamentals
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.fundamentals
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: LTM 매출·흑자
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 6
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-value
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.value
+  value: 0.2
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.2
+    basis: 가치
+    source: Blankespoor 외(2022); Ritter 표 18d
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-edge
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.edge
+  value: 0.1
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.1
+    basis: Chiip 렌즈
+    source: Chiip 판단
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-overhang
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.overhang
+  value: 0.15
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0.15
+    basis: 보호예수 해제·재매각
+    source: Field & Hanka(2001) JF 56(2) — 해제 3일 −1.5%
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-w-post-attention
+  model: spac.score
+  binding: config/spac.yaml#score.weights.post_close.attention
+  value: 0
+  unit: 가중치
+  status: prior
+  prior:
+    value: 0
+    basis: 관심 0
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-missing-weight-max
+  model: spac.score
+  binding: config/spac.yaml#score.missing_weight_max
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: 빈칸 가중 허용 한도(0.40이면 바닥·시간만으로 6점 — 2026-11-15 시험)
+    source: Chiip 판단(ADR-043 빈칸 원칙)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-missing-cap
+  model: spac.score
+  binding: config/spac.yaml#score.missing_cap
+  value: 5.9
+  unit: 점
+  status: prior
+  prior:
+    value: 5.9
+    basis: 빈칸 상한
+    source: prm-disc-missing-cap과 같은 값(ADR-043)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-ncps-max-sane
+  model: spac.score
+  binding: config/spac.yaml#score.ncps_max_sane
+  value: 15
+  unit: $
+  status: prior
+  prior:
+    value: 15
+    basis: 주당 순현금 단위 오류 문턱
+    source: Chiip 가정(datapack 단위 점검)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-ncps-redemption-ref
+  model: spac.score
+  binding: config/spac.yaml#score.ncps_redemption_ref
+  value: 0.916
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.916
+    basis: 환매 전 지분표의 가정 환매율
+    source: Ritter, IPO data 표 12·15c·18d(warrington.ufl.edu/ritter, 2026-10 갱신) 표 12 2026Q3 중앙값 91.6%
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-redemption-ref-by-q
+  model: spac.score
+  binding: config/spac.yaml#score.redemption_ref_by_q
+  value:
+    2023Q4: 0.986
+    2025Q3: 0.984
+    2025Q4: 0.916
+    2026Q1: 0.902
+    2026Q2: 0.842
+    2026Q3: 0.916
+  unit: 비율
+  status: prior
+  prior:
+    value:
+      2023Q4: 0.986
+      2025Q3: 0.984
+      2025Q4: 0.916
+      2026Q1: 0.902
+      2026Q2: 0.842
+      2026Q3: 0.916
+    basis: 분기 환매율 중앙값(같은 분기 순위의 근사)
+    source: Ritter, IPO data 표 12·15c·18d(warrington.ufl.edu/ritter, 2026-10 갱신) 표 12(SPAC Research 원자료)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-tbill
+  model: spac.score
+  binding: config/spac.yaml#score.tbill
+  value: 0.04235
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.04235
+    basis: 바닥 인정 문턱의 국채 수익률(갱신 대상)
+    source: TradingView TVC:US03MY 2026-11-13 종가
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-trust-yield
+  model: spac.score
+  binding: config/spac.yaml#score.trust_yield
+  value: 0.04
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.04
+    basis: 신탁 금리 근사
+    source: Chiip 가정(국채 − 세금 인출)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-floor-far-years
+  model: spac.score
+  binding: config/spac.yaml#score.floor_far_years
+  value: 1.0
+  unit: 년
+  status: prior
+  prior:
+    value: 1.0
+    basis: 환매 시점이 먼 바닥 기준
+    source: Chiip 가정 — 조사 D 제안(1년 안 환매 사건)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-floor-far-cap
+  model: spac.score
+  binding: config/spac.yaml#score.floor_far_cap
+  value: 5.0
+  unit: 점
+  status: prior
+  prior:
+    value: 5.0
+    basis: 먼 바닥 상한
+    source: Chiip 가정
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-pts-per-return
+  model: spac.score
+  binding: config/spac.yaml#score.pts_per_return
+  value: 10
+  unit: 점/수익
+  status: prior
+  prior:
+    value: 10
+    basis: 기대 1년 시장 조정 수익 → 점수 환산(10%p = 1점)
+    source: Chiip 척도
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-redemption-beta
+  model: spac.score
+  binding: config/spac.yaml#score.redemption_beta
+  value: 0.35
+  unit: 수익/환매율
+  status: prior
+  prior:
+    value: 0.35
+    basis: 환매율 계수(축소)
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7 −0.492·−0.355
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-sponsor-hq-gap
+  model: spac.score
+  binding: config/spac.yaml#score.sponsor_hq_gap
+  value: 0.275
+  unit: 수익
+  status: prior
+  prior:
+    value: 0.275
+    basis: 상급 스폰서 차(절반 축소)
+    source: Klausner, Ohlrogge & Ruan(2022), A Sober Look at SPACs, Yale J. on Regulation 39(1) 12개월 중앙값 +8.1% vs −47.0%(n=47)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-sponsor-expert
+  model: spac.score
+  binding: config/spac.yaml#score.sponsor_expert
+  value: 0.07
+  unit: 수익
+  status: prior
+  prior:
+    value: 0.07
+    basis: 업종 전문 스폰서(절반 축소)
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 +0.139(통제 포함)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-sponsor-prior-shrink
+  model: spac.score
+  binding: config/spac.yaml#score.sponsor_prior_shrink
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: 스폰서 이전 합병 성과 축소
+    source: Finne(2025) 작업 논문(초록 수준) — 지속성
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-sponsor-prior-base
+  model: spac.score
+  binding: config/spac.yaml#score.sponsor_prior_base
+  value: -0.6
+  unit: 수익
+  status: prior
+  prior:
+    value: -0.6
+    basis: 스폰서 이전 성과 기준
+    source: base_rates.json headline 12개월 중앙값 근처
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-uw-beta
+  model: spac.score
+  binding: config/spac.yaml#score.uw_beta
+  value: 0.05
+  unit: 수익/점
+  status: prior
+  prior:
+    value: 0.05
+    basis: 주관사 순위 계수
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 1년 +0.018~+0.054(비유의)·3년 +0.087
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-uw-center
+  model: spac.score
+  binding: config/spac.yaml#score.uw_center
+  value: 7
+  unit: 순위
+  status: prior
+  prior:
+    value: 7
+    basis: 주관사 순위 중심
+    source: Chiip 가정(Ritter Underwriter-Rank 1~9)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-pipe-quality-pts
+  model: spac.score
+  binding: config/spac.yaml#score.pipe_quality_pts
+  value: 0.5
+  unit: 점
+  status: prior
+  prior:
+    value: 0.5
+    basis: PIPE 질 가감
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 8·각주 28; Foley & Lardner 'SPAC 4.1'(2026-10-13)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-time-full-months
+  model: spac.score
+  binding: config/spac.yaml#score.time_full_months
+  value: 12
+  unit: 개월
+  status: prior
+  prior:
+    value: 12
+    basis: 시간 압박 만점 기준
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7 ln(개월)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-time-zero-months
+  model: spac.score
+  binding: config/spac.yaml#score.time_zero_months
+  value: 36
+  unit: 개월
+  status: prior
+  prior:
+    value: 36
+    basis: 시간 압박 0점 기준
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7 — 12→24개월이면 1년 −37%p
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-time-ext-zero
+  model: spac.score
+  binding: config/spac.yaml#score.time_ext_zero
+  value: 3
+  unit: 회
+  status: prior
+  prior:
+    value: 3
+    basis: 연장 표결 0점 기준
+    source: SPACInsider H1-2025(2분기 종결 13건 중 10건 3회 이상)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-time-beta
+  model: spac.score
+  binding: config/spac.yaml#score.time_beta
+  value: -0.54
+  unit: 수익/ln개월
+  status: prior
+  prior:
+    value: -0.54
+    basis: 표시용 시간 계수
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 7 −0.537~−0.541
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-late-months
+  model: spac.score
+  binding: config/spac.yaml#score.late_months
+  value: 18
+  unit: 개월
+  status: prior
+  prior:
+    value: 18
+    basis: 늦은 거래 기준
+    source: Leal 외(2026) — 시한 가까운 발표 CAR 4~8% 낮음
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-late-clause-pts
+  model: spac.score
+  binding: config/spac.yaml#score.late_clause_pts
+  value: 1
+  unit: 점
+  status: prior
+  prior:
+    value: 1
+    basis: 늦은 거래 보호 조항 하나당
+    source: Leal 외(2026) 조항당 CAR +2%, FPA 셋 묶음 +9~11%
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-late-clause-cap
+  model: spac.score
+  binding: config/spac.yaml#score.late_clause_cap
+  value: 3
+  unit: 점
+  status: prior
+  prior:
+    value: 3
+    basis: 보호 조항 가점 상한
+    source: Leal 외(2026)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-fund-cells
+  model: spac.score
+  binding: config/spac.yaml#score.fund_cells
+  value:
+    big_profit: -0.161
+    big: -0.216
+    small: -0.418
+    small_loss: -0.435
+  unit: 수익
+  status: prior
+  prior:
+    value:
+      big_profit: -0.161
+      big: -0.216
+      small: -0.418
+      small_loss: -0.435
+    basis: 매출·흑자 칸별 1년 시장 조정 수익
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 6
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-fund-mean
+  model: spac.score
+  binding: config/spac.yaml#score.fund_mean
+  value: -0.306
+  unit: 수익
+  status: prior
+  prior:
+    value: -0.306
+    basis: 칸 평균
+    source: Gahng, Ritter & Zhang(2023), SPACs, Review of Financial Studies 36(9):3463–3501 표 6 가중 평균
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-fund-prerev-extra
+  model: spac.score
+  binding: config/spac.yaml#score.fund_prerev_extra
+  value: -0.159
+  unit: 수익
+  status: prior
+  prior:
+    value: -0.159
+    basis: 매출 $1천만 미만 추가 감점(절반 축소)
+    source: Ritter, IPO data 표 12·15c·18d(warrington.ufl.edu/ritter, 2026-10 갱신) IPO 3년 시장 조정 $1천만 미만 −52.3% vs 전체 −20.5%
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-prerev-sales-b
+  model: spac.score
+  binding: config/spac.yaml#score.prerev_sales_b
+  value: 0.01
+  unit: B$
+  status: prior
+  prior:
+    value: 0.01
+    basis: 매출 전 기준
+    source: Ritter, IPO data 표 12·15c·18d(warrington.ufl.edu/ritter, 2026-10 갱신)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-fund-small-ev-b
+  model: spac.score
+  binding: config/spac.yaml#score.fund_small_ev_b
+  value: 0.5
+  unit: B$
+  status: prior
+  prior:
+    value: 0.5
+    basis: 소형 EV 기준
+    source: SPACInsider Substack 2026-11-09(2차 자료)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-fund-small-ev-pts
+  model: spac.score
+  binding: config/spac.yaml#score.fund_small_ev_pts
+  value: -0.5
+  unit: 점
+  status: prior
+  prior:
+    value: -0.5
+    basis: 소형 EV 감점(약한 사전값)
+    source: SPACInsider Substack 2026-11-09
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-proj-growth-shrink
+  model: spac.score
+  binding: config/spac.yaml#score.proj_growth_shrink
+  value: 0.35
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.35
+    basis: 전망 성장 축소 λ(41/116)
+    source: Blankespoor, Hendricks, Miller & Stockbridge(2022) Management Science 68(6)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-proj-growth-shrink-post2024
+  model: spac.score
+  binding: config/spac.yaml#score.proj_growth_shrink_post2024
+  value: 0.35
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.35
+    basis: 2024-07-01 규칙 뒤 전망 λ(따로 맞춘다)
+    source: SEC Release 33-11265(89 FR 14158)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-psr-cap
+  model: spac.score
+  binding: config/spac.yaml#score.psr_cap
+  value:
+  - - 40
+    - 2.0
+  - - 20
+    - 4.0
+  unit: 배·점
+  status: prior
+  prior:
+    value:
+    - - 40
+      - 2.0
+    - - 20
+      - 4.0
+    basis: EV/LTM 매출 상한표
+    source: Ritter, IPO data 표 12·15c·18d(warrington.ufl.edu/ritter, 2026-10 갱신) 표 18d
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-fairness-value-cap
+  model: spac.score
+  binding: config/spac.yaml#score.fairness_value_cap
+  value: 5.0
+  unit: 점
+  status: prior
+  prior:
+    value: 5.0
+    basis: 공정성 의견 가치 상한
+    source: Chiip 판단(경영진 측 평가)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-vote-below-tol
+  model: spac.score
+  binding: config/spac.yaml#score.vote_below_tol
+  value: 0.02
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.02
+    basis: 주총 뒤 신탁가 아래 킬 허용 오차
+    source: Jenkinson & Sousa(2011) J. Applied Finance 21(2) — 2%는 Chiip 가정
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-psr-kill
+  model: spac.score
+  binding: config/spac.yaml#score.psr_kill
+  value: 40
+  unit: 배
+  status: prior
+  prior:
+    value: 40
+    basis: 매출 $1천만 미만 킬 배수
+    source: Ritter, IPO data 표 12·15c·18d(warrington.ufl.edu/ritter, 2026-10 갱신) 표 18d(40배 초과 −58.5%)
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spac-structured-kill
+  model: spac.score
+  binding: config/spac.yaml#score.structured_kill
+  value: 0.5
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.5
+    basis: 구조화 자금 한도 / 유통 킬
+    source: Foley & Lardner 'SPAC 4.1'(2026-10-13) — 50%는 조사 D 제안
+  fit:
+    method: ADR-044 표본(knowledge/models/spac/history.csv 2021~2025 종결 스팩 + datapack 점수)으로 종결 연도 묶음 표본 외 검정(2021~22 학습 → 2023~24 시험), scripts/fit/stepwise.py
+    target: 종결 뒤 12·24개월 수익(같은 시장 지수 대비)
+    data: knowledge/models/spac/
+    last_fit: null
+    oos_metric: null
+- id: prm-spach-lag-max-d
+  model: spac.history
+  binding: config/spac.yaml#history.lag_max_d
+  value: 30
+  unit: 일
+  status: prior
+  prior:
+    value: 30
+    basis: 첫 시세 지연 허용(넘으면 같은 주식의 종결 뒤 수익 아님)
+    source: 'Chiip 판단(2026-11-15 표본: 18건 제외)'
+  fit:
+    method: 기저율 산출 규칙 — 피팅하지 않고 민감도만 본다(값을 바꿔 base_rates.json headline 변화 기록)
+    target: 기저율 강건성
+    data: knowledge/models/spac/history.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-spach-px-band
+  model: spac.history
+  binding: config/spac.yaml#history.px_band
+  value:
+  - 0.5
+  - 100
+  unit: $
+  status: prior
+  prior:
+    value:
+    - 0.5
+    - 100
+    basis: 분할 전 원래 종결가 신뢰 범위
+    source: Chiip 판단(분할 이력 오류 방지)
+  fit:
+    method: 기저율 산출 규칙 — 피팅하지 않고 민감도만 본다(값을 바꿔 base_rates.json headline 변화 기록)
+    target: 기저율 강건성
+    data: knowledge/models/spac/history.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-spach-delist-ret
+  model: spac.history
+  binding: config/spac.yaml#history.delist_ret
+  value:
+    NASDAQ: -0.55
+    NYSE: -0.3
+    NYSEAM: -0.3
+    default: -0.3
+  unit: 수익
+  status: prior
+  prior:
+    value:
+      NASDAQ: -0.55
+      NYSE: -0.3
+      NYSEAM: -0.3
+      default: -0.3
+    basis: 창 안 성과 상장폐지 보정
+    source: Shumway(1997) JF 52(1) NYSE·AMEX −30%; Shumway & Warther(1999) JF 54(6) 나스닥 −55%
+  fit:
+    method: 기저율 산출 규칙 — 피팅하지 않고 민감도만 본다(값을 바꿔 base_rates.json headline 변화 기록)
+    target: 기저율 강건성
+    data: knowledge/models/spac/history.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-spach-fail-fates
+  model: spac.history
+  binding: config/spac.yaml#history.fail_fates
+  value:
+  - bankrupt
+  - delisted
+  unit: 목록
+  status: prior
+  prior:
+    value:
+    - bankrupt
+    - delisted
+    basis: 실패로 더하는 운명
+    source: EDGAR 8-K 1.03 파산·25/25-NSE 뒤 정기보고서 없음
+  fit:
+    method: 기저율 산출 규칙 — 피팅하지 않고 민감도만 본다(값을 바꿔 base_rates.json headline 변화 기록)
+    target: 기저율 강건성
+    data: knowledge/models/spac/history.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-spach-fail-value
+  model: spac.history
+  binding: config/spac.yaml#history.fail_value
+  value: -1.0
+  unit: 수익
+  status: prior
+  prior:
+    value: -1.0
+    basis: 시세 없는 실패의 값(중앙값·문턱 비율은 둔감)
+    source: Chiip 가정
+  fit:
+    method: 기저율 산출 규칙 — 피팅하지 않고 민감도만 본다(값을 바꿔 base_rates.json headline 변화 기록)
+    target: 기저율 강건성
+    data: knowledge/models/spac/history.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-spach-h-days
+  model: spac.history
+  binding: config/spac.yaml#history.h_days
+  value:
+    r6m: 182
+    r12m: 365
+    r24m: 730
+  unit: 일
+  status: prior
+  prior:
+    value:
+      r6m: 182
+      r12m: 365
+      r24m: 730
+    basis: 6·12·24개월 창
+    source: 관행(126·252·504거래일과 함께)
+  fit:
+    method: 기저율 산출 규칙 — 피팅하지 않고 민감도만 본다(값을 바꿔 base_rates.json headline 변화 기록)
+    target: 기저율 강건성
+    data: knowledge/models/spac/history.csv
+    last_fit: null
+    oos_metric: null

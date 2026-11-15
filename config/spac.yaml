@@ -20,9 +20,60 @@ score:
   overhang_days: 180          # 이 기간 안 보호예수 해제를 오버행으로 센다
   candidate_min: 6.0          # Ten-bagger 연구 후보 문턱
   kill_cap: 2.0               # 킬 조건이 있으면 점수 상한
+  # 2026-11-15 개선(ADR-044, 조사 D) — 옛 가중(2026-11-04): pre_vote {floor 0.20, dilution 0.25, edge 0.15, value 0.25, overhang 0.10, attention 0.05},
+  #   post_close {dilution 0.10, edge 0.30, value 0.30, overhang 0.25, attention 0.05}. 근거 있는 요인으로 옮기고 관심은 0(위험 표시만), 엣지는 낮췄다(테마 일치가 Chiip 표본에서 낫지 않음)
   weights:
-    pre_vote:   {floor: 0.20, dilution: 0.25, edge: 0.15, value: 0.25, overhang: 0.10, attention: 0.05}   # 주총 전(S2~S4) — 바닥·희석·가치 중심
-    post_close: {dilution: 0.10, edge: 0.30, value: 0.30, overhang: 0.25, attention: 0.05}              # 종결 뒤(S5~) — 바닥 없음, 사업·가치·오버행 중심
+    pre_vote:   {floor: 0.20, dilution: 0.20, quality: 0.15, time: 0.10, fundamentals: 0.10, value: 0.15, edge: 0.10, attention: 0}   # 주총 전(S2~S4)
+    post_close: {dilution: 0.20, quality: 0.10, time: 0.05, fundamentals: 0.20, value: 0.20, edge: 0.10, overhang: 0.15, attention: 0}   # 종결 뒤(S5~) — GRZ 시간 효과는 종결 뒤 1~3년 수익이라 작게 남긴다
+  missing_weight_max: 0.25    # 가중 합의 이만큼 넘게 빈칸이면(2026-11-15 시험: 0.40이면 바닥·시간 점수만으로 주총 전 스팩 7곳이 6점을 넘었다 — 질·펀더멘털·가치 중 둘은 채워야 한다)
+  ncps_max_sane: 15           # 주당 순현금이 이보다 크면 단위 오류로 보고 버린다(spac-blf $324.8, 2026-11-15)
+  missing_cap: 5.9            #   이 점수 상한(빈칸을 중립 5로 채우지 않는다 — prm-disc-missing-cap과 같은 값)
+  # ② 희석 — KOR 주당 순현금
+  ncps_redemption_ref: 0.916  # 환매 전 지분표·분기 중앙값 없을 때 가정 환매율(Ritter 표 12 2026Q3 중앙값 91.6%)
+  redemption_ref_by_q: {2023Q4: 0.986, 2025Q3: 0.984, 2025Q4: 0.916, 2026Q1: 0.902, 2026Q2: 0.842, 2026Q3: 0.916}   # Ritter 표 12 분기 중앙값(SPAC Research 원자료, 조사 D §3.2). 2024년 분기별 값은 범위(98.8~99.3%)만 확인 — 비웠다
+  # ① 바닥 — 다음 환매 시점까지
+  tbill: 0.04235              # 미국 3개월 국채 수익률(TradingView TVC:US03MY 2026-11-13 종가 4.235%) — 바닥 인정 문턱(국채 − 1%p)
+  trust_yield: 0.04           # 신탁 금리(국채에서 세금 인출 뺀 근사, Chiip 가정) — next_redemption.tps가 없을 때 신탁가 증가분
+  floor_far_years: 1.0        # 다음 환매 시점이 이보다 멀면
+  floor_far_cap: 5.0          #   바닥 점수 상한
+  # ③ 질 — 기대 1년 시장 조정 수익 차를 점수로(10%p = 1점)
+  pts_per_return: 10
+  redemption_beta: 0.35       # GRZ 표 7 −0.49(유의)·−0.355(통제 포함)를 −0.35로
+  sponsor_hq_gap: 0.275       # KOR 상급/비상급 스폰서 12개월 중앙값 +8.1% vs −47.0%(n=47) 차 55%p의 절반 — 반씩 ±
+  sponsor_expert: 0.07        # GRZ 업종 전문 +0.139(통제 포함·비유의)의 절반
+  sponsor_prior_shrink: 0.5   # 스폰서 이전 합병 12개월 중앙값 − 기준을 절반으로(지속성, Finne 2025 초록 수준)
+  sponsor_prior_base: -0.60   # 그 기준 = Chiip 보정 기저율 12개월 중앙값 근처(knowledge/models/spac/base_rates.json headline으로 갱신)
+  uw_beta: 0.05               # GRZ 주관사 순위 점당 1년 +0.018~+0.054(비유의)·3년 +0.087 → 0.05
+  uw_center: 7                # 순위 중심(Chiip 가정 — Ritter Underwriter-Rank 1~9)
+  pipe_quality_pts: 0.5       # 보통주 $10 이상·비계열 PIPE +, 전환·우선주·ELOC·외부 자금 없음 −(GRZ 표 8·각주 28, Foley 2026 — 증거가 섞여 작게)
+  # ④ 시간 압박
+  time_full_months: 12        # 상장 → 계약(종결 뒤는 종결) 12개월 이하 10점
+  time_zero_months: 36        # 36개월 0점(log 선형)
+  time_ext_zero: 3            # 연장 표결 3회면 0점(SPACInsider H1-2025: 2분기 종결 13건 중 10건이 3회 이상)
+  time_beta: -0.54            # 표시용 — GRZ 표 7 ln(개월) 1년 계수 −0.537~−0.541
+  late_months: 18             # 늦은 거래 기준(18개월 초과 또는 연장 1회 이상)
+  late_clause_pts: 1          # 늦은 거래의 보호 조항 하나당(Leal 외 2026: 조항당 발표 CAR +2%, FPA 셋 묶음 +9~11%)
+  late_clause_cap: 3
+  # ⑤ 펀더멘털 — GRZ 표 6(152건, 1년 시장 조정)
+  fund_cells: {big_profit: -0.161, big: -0.216, small: -0.418, small_loss: -0.435}
+  fund_mean: -0.306           # 매출 $1억 이상 84건 −21.6%·미만 68건 −41.8%의 가중 평균
+  fund_prerev_extra: -0.159   # 매출 $1천만 미만 추가 감점 = Ritter IPO 표(1980~2024) $1천만 미만 −52.3% vs 전체 −20.5%(3년 시장 조정) 차 31.8%p의 절반
+  prerev_sales_b: 0.01        # 매출 $1천만(B$)
+  fund_small_ev_b: 0.5        # EV $5억 미만이면
+  fund_small_ev_pts: -0.5     #   감점(SPACInsider 2026-11-09: EV $5억 미만 12개월 뒤 $10 위 4% vs $30~50억 26% — 2차 자료, 약한 사전값)
+  # ⑥ 가치
+  proj_growth_shrink: 0.35            # 전망 성장 축소 λ = 실현 41% / 전망 116%(Blankespoor 외 2022, Management Science)
+  proj_growth_shrink_post2024: 0.35   # 2024-07-01 SEC 규칙(전망 면책 제거·근거 공시) 뒤 전망 — 같은 사전값, 따로 맞춘다
+  proj_regime_date: "2024-07-01"
+  psr_cap: [[40, 2.0], [20, 4.0]]     # EV/LTM 매출 40배 초과 → 가치 2 상한, 20~40배 → 4(Ritter 표 18d IPO 3년 시장 조정 −58.5%·−16.3%)
+  fairness_value_cap: 5.0             # 공정성 의견(경영진 측 평가)으로 잰 가치 상한
+  # 킬 조건
+  vote_below_tol: 0.02        # 주총(환매 마감) 뒤 주가 < 신탁가 × (1 − 이 값)(Jenkinson·Sousa 2011 '나쁜 스팩', 호가 잡음 2%는 Chiip 가정)
+  psr_kill: 40                # 매출 $1천만 미만(0 초과)·EV/매출 이 배수 초과(매출 0은 킬이 아니라 가치 빈칸·펀더멘털 최저 — Oklo류 꼬리를 킬로 지우지 않는다, Chiip 판단)
+  structured_kill: 0.5        # 구조화 자금(전환·ELOC) 발행 가능 주식 / 유통 > 이 값
+  external_base_rate:         # 기저율 한 줄에 붙이는 외부 값(조사 D §3·§4 — 원문 확인분)
+    post_close: "Ritter 표 15c 종결 1년 −62~−66%(2021~2024 종결)·3년 −57.7%(2012~2023), GRZ 3년 안 −90% 이하 29%(IPO 9%)"
+    pre_vote: "스팩 기간 연 23.9%(중앙값 5.6%, 청산 시 2.0% — GRZ 표 3), 확정 계약 발표 +7.4%(늦은 발표 4~8% 낮음), 2026Q1~Q3 환매 중앙값 84~92%(Ritter 표 12)"
   # 4단계 기저율(scripts/tenbagger/spac_history.py rates → knowledge/models/spac/base_rates.json, 2026-11-04 표본) — 리포트·Pulse가 '스팩 종결 뒤 기저율'로 같이 쓴다
   # 표본: 2021~2025 종결 509건 중 시세 99건(2021년 62건 쏠림), 시세 없음 51건(상장폐지 추정 — 생존 편향으로 아래 숫자는 낙관 쪽)
   base_rate:
@@ -33,3 +84,11 @@ score:
     ge3x_24m: 0.081
     ge10x_24m: 0.0            # 10배 도달 0/99
     theme_match: {n: 17, r24m_median: -0.728, ge3x_24m: 0.059}   # Chiip 테마 일치 스팩도 더 낫지 않았다(표본 작음)
+# ── 기저율 재계산(scripts/tenbagger/spac_history.py rates, 2026-11-15 ADR-044) — 등록부 prm-spach-* ──
+history:
+  lag_max_d: 30               # 첫 시세가 종결 8-K보다 이만큼 넘게 늦으면 같은 주식의 종결 뒤 수익으로 쓰지 않는다(티커 변경 뒤 이력만·파산 뒤 재상장)
+  px_band: [0.5, 100]         # 분할 전 원래 종결가로 믿을 범위($) — 밖이면 $10 기준에서만 뺀다(분할 이력 오류 방지)
+  delist_ret: {NASDAQ: -0.55, NYSE: -0.30, NYSEAM: -0.30, default: -0.30}   # 창 안 성과 상장폐지 보정(Shumway 1997 JF NYSE·AMEX −30%, Shumway·Warther 1999 JF 나스닥 −55%), 피인수는 0
+  fail_fates: [bankrupt, delisted]   # 시세 없는 스팩 중 실패로 더하는 운명(EDGAR 8-K 1.03 파산, 25·25-NSE 뒤 정기보고서 없음)
+  fail_value: -1.0            # 그 실패값 — 중앙값·−50% 이하 비율은 '이보다 나쁘다'만 맞으면 값에 둔감하다
+  h_days: {r6m: 182, r12m: 365, r24m: 730}

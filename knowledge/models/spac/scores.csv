@@ -1,2 +1,19 @@
-id,ticker,target,stage,theme,score,floor,dilution,edge,value,overhang,attention,premium,net_cash_ps,kills
-us-ccxi,CCXI,Agility Robotics,S4,로봇·자율,4.9,,1.8,5.0,10.0,0.0,4.0,-0.097,1.78,
+id,ticker,target,stage,theme,score,floor,dilution,quality,time,fundamentals,value,edge,overhang,attention,premium,ncps_kor,net_cash_ps,missing,kills
+spac-apur,APUR,Atlantic HPC Group (미국 오클라호마·아칸소·오하이오 비트코인 채굴·컴퓨팅 설비 운영사 — HPC·AI 데이터센터 임대 전환 계획),S2,AI·반도체,5.9,10.0,1.8,,10.0,,,3.0,10.0,5.0,0.0,1.76,3.25,quality|fundamentals|value,
+spac-apxt,APXT,TECfusions (AI 데이터센터 설계·건설·임대 — 펜실베이니아 New Kensington 캠퍼스 등),S2,전력·에너지 인프라,5.9,10.0,2.1,,9.6,,,4.0,10.0,5.0,-0.0125,2.08,0.87,quality|fundamentals|value,
+spac-bbcq,PSQL,Pasqal (프랑스 중성원자 양자컴퓨터 개발사),S4,전력·에너지 인프라,5.9,10.0,1.7,,10.0,,,4.0,,5.0,-0.556,,1.7,quality|fundamentals|value,
+spac-bhav,BHAV,"Nemi (인도 제조 대행 MaaS·EV 사업, 'Large Manufacturing Model' 소프트웨어 주장)",S2,로봇·자율,5.9,9.7,2.0,,10.0,,,3.0,,5.0,0.01,,2.0,quality|fundamentals|value,
+spac-biii,BIII,"Astrum Space (싱가포르, 아시아·태평양 정지궤도 위성 직접 방송·데이터 배포망 개발, 매출 전 단계)",S3,우주·위성,5.2,10.0,1.6,,,,,3.0,,5.0,-0.0146,1.58,1.45,quality|time|fundamentals|value,
+spac-blf,,Blue Laser Fusion (펄스 OEC 광섬유 레이저 — 지향성 에너지 방어·관성 레이저 핵융합),S5,전력·에너지 인프라,3.0,,,,,,,3.0,,5.0,,,,dilution|quality|time|fundamentals|value|overhang,
+spac-blrk,BLRK,Yellow.ai (Bitonic Technology Labs — 기업 고객 응대용 대화형·에이전트 AI 소프트웨어),S2,AI·반도체,5.9,10.0,3.8,,10.0,,,2.0,,5.0,-0.0064,,3.79,quality|fundamentals|value,
+spac-fwac,FWAC,Olympian Group (홍콩 자회사 HK Shang Ge Industrial — 자동차 전장·산업용 통신 칩·전자부품 조달·솔루션 유통),S2,AI·반도체,5.7,10.0,1.6,,10.0,,,1.0,,5.0,-0.0005,1.64,1.57,quality|fundamentals|value,
+spac-fxac,FXAC,WT Realty Group (미국 부동산 중개·에스크로·모기지·권원 보험 서비스 플랫폼 — 자회사 Wetrust Realty),S2,AI·반도체,5.5,9.9,1.7,,10.0,,,0.0,,5.0,0.0017,1.66,1.34,quality|fundamentals|value,
+spac-hcac,HCAC,"REEcycle (희토류 재활용 — 폐영구자석에서 혼합 희토류 산화물 회수, 미국 휴스턴 실증 설비)",S3,전력·에너지 인프라,5.9,10.0,1.7,,10.0,,,5.0,10.0,5.0,-0.0068,1.7,3.05,quality|fundamentals|value,
+spac-ipfx,IPFX,"Quantum Space, LLC (기동형 우주선 Ranger — 정지궤도·시스루나 감시·기동, 정부 고객 중심)",S4,양자,5.9,9.5,2.0,,10.0,,,4.0,,5.0,0.016,2.01,2.7,quality|fundamentals|value,
+spac-kfii,KFII,Pearl (David's Bridal 디지털 웨딩 기획·미디어·커머스 부문 분할 예정),S4,AI·반도체,1.1,,,,3.3,,,0.0,,5.0,,,,dilution|quality|fundamentals|value|overhang,
+spac-mttn,MTTN,Matternet (드론 배송 — 의료 검체·소포 배송 드론과 운영 소프트웨어),S4,,4.6,10.0,0.5,,,,,2.0,,5.0,-0.6,,0.48,quality|time|fundamentals|value,
+spac-nhic,NWCL,newcleo (영국·프랑스 납 냉각 고속로(LFR)·MOX 핵연료 개발사),S4,,2.0,,0.2,6.4,5.2,,,3.0,0.0,0.0,-0.5704,0.17,1.05,fundamentals|value,주총 뒤 신탁가 아래(주가 $4.58 < 신탁 $10.66)
+spac-pach,PACH,"Green AI Cloud (스웨덴 스톡홀름, 재생에너지·액체 냉각 AI 데이터센터·NVIDIA GPU 클라우드 개발·운영사)",S2,AI·반도체,5.9,10.0,2.6,,7.0,,,3.0,,5.0,0.001,2.61,4.27,quality|fundamentals|value,
+spac-seqc,SEQC,"SeeQC (초전도 디지털 칩 — 양자컴퓨터 큐비트 제어·판독용 극저온 SFQ 회로, 맞춤 초전도 칩 파운드리)",S0,,2.0,,,,0.0,,,5.0,,5.0,,,,dilution|quality|fundamentals|value|overhang,계약 해지
+spac-xlab,XLAB,"Exascale Labs (GPU 클라우드 임대, GPU-as-a-Service)",S5,AI·반도체,1.5,,0.7,4.8,,,,2.0,0.0,10.0,-0.8136,0.72,0.22,time|fundamentals|value,재매각 대량 등록
+us-ccxi,CCXI,Agility Robotics,S5,로봇·자율,4.2,,3.9,6.1,10.0,,5.0,5.0,0.0,4.0,-0.097,3.9,1.78,fundamentals,
