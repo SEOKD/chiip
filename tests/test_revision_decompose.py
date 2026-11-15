@@ -39,3 +39,15 @@ class TestImageTargets(unittest.TestCase):
         self.assertFalse(P.is_holding({"name": "LPI 현장 전력", "what": "가스 왕복동 발전"}))
         self.assertTrue(P.others_only({"items": [{"this_company": False}, {"this_company": False}]}))
         self.assertFalse(P.others_only({"items": [{"this_company": False}, {"this_company": True}]}))
+
+
+class TestEbitdaDecompose(unittest.TestCase):
+    def test_liberty_ebitda_basis(self):   # LBRT: 기준 지표가 EBITDA — EPS 분해는 전부 불가였다
+        f = ROOT / "knowledge/models/companies/co-liberty/datapack.json"
+        if not f.exists():
+            self.skipTest("co-liberty 없음")
+        dp = json.loads(f.read_text(encoding="utf-8"))
+        dec = rv.decompose_ebitda(dp, dp["revision_events"], rv.load_prices(dp["id"]))
+        self.assertEqual(len(dec), 4)
+        for x in dec:   # (1 + EV) = (1 + EBITDA 리비전) × (1 + 배수 변화)
+            self.assertAlmostEqual(1 + x["ev"], (1 + x["rev"]) * (1 + x["rerate"]), places=6)

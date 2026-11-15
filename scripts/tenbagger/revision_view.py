@@ -200,6 +200,47 @@ def decompose(h, events, px, n=4):
     return out
 
 
+def decompose_ebitda(dp, events, px, n=4):
+    """EBITDA가 주요 지표인 회사(EV/EBITDA 기준) — (1 + EV 변화) = (1 + 선행 EBITDA 리비전) × (1 + Fwd EV/EBITDA 변화).
+    (2026-11-15 LBRT: 선행 EPS가 4개 구간 모두 적자·0 근처라 EPS 분해가 전부 '분해 불가'였다 — 기준 지표가 EBITDA인데 EPS로 나눴다.)
+    배수 = datapack history.ev_ebitda_fwd(월말 Fwd 1Y EV/EBITDA, 마지막은 multiples_now), EV = 그날 종가 × 주식 수 + 순차입(drivers market, 구간 내 일정 가정),
+    선행 EBITDA = EV ÷ 배수(롤링 다음 4개 분기). 구간 경계는 실적 발표일에 가장 가까운 앞쪽 월말(35일 안)"""
+    import yaml
+    hist = sorted((_d(r["date"]), r["value"]) for r in (dp.get("history") or {}).get("ev_ebitda_fwd") or [] if r.get("value"))
+    now = (dp.get("multiples_now") or {}).get("ev_ebitda_fwd")
+    f = ROOT / "knowledge" / "models" / "companies" / str(dp.get("id")) / "drivers.yaml"
+    mk = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("market") or {} if f.exists() else {}
+    sh, nd = mk.get("shares"), mk.get("net_debt")
+    if len(hist) < 4 or not px or not sh or nd is None:
+        return []
+    last = max(px)
+    pts = hist + ([(last, now)] if now else [])
+    def at(day):
+        c = [x for x in pts if x[0] <= day and (day - x[0]).days <= 35]
+        return c[-1] if c else None
+    earn = sorted((e for e in events or [] if e.get("kind") == "실적"), key=lambda e: e["date"])[-n:]
+    bounds = [_d(e["date"]) for e in earn] + [last]
+    out = []
+    for i in range(len(bounds) - 1):
+        a, b = at(bounds[i]), at(bounds[i + 1]) if i < len(bounds) - 2 else ((last, now) if now else None)
+        if not a or not b or b[0] <= a[0]:
+            continue
+        (d0, m0), (d1, m1) = a, b
+        p0, _ = price_on(px, d0)
+        p1, _ = price_on(px, d1)
+        if not p0 or not p1:
+            continue
+        ev0, ev1 = p0 * sh + nd, p1 * sh + nd
+        e0, e1 = ev0 / m0, ev1 / m1
+        rev = e1 / e0 - 1
+        live = i == len(bounds) - 2 and d1 == last
+        qd = d1 if not live else d0 + timedelta(days=45)   # 구간이 속한 달력 분기(월말 배수로 경계를 잡으므로 실적 발표 이름이 아니라 분기로 부른다)
+        out.append({"label": f"{(qd.month - 1) // 3 + 1}Q{qd.year % 100}" + ("(진행 중)" if live else ""),
+                    "from": d0, "to": d1, "p0": p0, "p1": p1, "price": p1 / p0 - 1, "ev": ev1 / ev0 - 1, "rev": rev, "rerate": m1 / m0 - 1, "why": None,
+                    "pe0": m0, "pe1": m1, "basis": "EBITDA"})
+    return out
+
+
 def _sign(x, nd=0):
     return "-" if x is None else f"{x * 100:+.{nd}f}%"
 
@@ -242,17 +283,18 @@ def blocks(dp):
     B.append({"type": "table", "title": "사건별 EPS 리비전 — 실적 발표·내러티브 변화 때 추정이 어떻게 움직였나",
               "headers": ["#", "날짜", "구분", "사건", f"CY{end.year} EPS 전→후", f"CY{end.year + 1} EPS 전→후", "리비전", "주가 반응"], "rows": rows,
               "note": f"전 = 사건 전날까지, 후 = 최대 {WINDOW_DAYS}일(다음 사건 전날까지). 주가 반응 = 장후 발표는 다음 거래일, 그 밖은 그날. {n_txt}."})
-    dec = decompose(h, dp["revision_events"], px)
+    dec = (decompose_ebitda(dp, dp["revision_events"], px) if dp.get("main_metric") == "ebitda" else []) or decompose(h, dp["revision_events"], px)
+    bas = "EBITDA" if dec and dec[0].get("basis") == "EBITDA" else "EPS"
     if dec:
-        B.append({"type": "chart", "chart": {"kind": "bars", "pin": 8, "w": 440, "title": f"최근 {len(dec)}개 분기 주가 변화 분해 = EPS 리비전 × 멀티플 변화 (%, 실적 발표 사이 구간)", "unit": "%",
+        B.append({"type": "chart", "chart": {"kind": "bars", "pin": 8, "w": 440, "title": f"최근 {len(dec)}개 분기 주가 변화 분해 = {bas} 리비전 × 멀티플 변화 (%, 실적 발표 사이 구간)", "unit": "%",
                                              "categories": [x["label"] for x in dec],
                                              "series": [{"name": "주가", "color": "a", "values": [round(x["price"] * 100, 1) for x in dec]},
-                                                        {"name": "EPS 리비전", "color": "d", "values": [None if x["rev"] is None else round(x["rev"] * 100, 1) for x in dec]},
+                                                        {"name": f"{bas} 리비전", "color": "d", "values": [None if x["rev"] is None else round(x["rev"] * 100, 1) for x in dec]},
                                                         {"name": "멀티플 변화", "color": "b", "values": [None if x["rerate"] is None else round(x["rerate"] * 100, 1) for x in dec]}],
-                                             "note": f"(1 + 주가) = (1 + EPS 리비전) × (1 + 멀티플 변화). EPS는 구간 시작의 선행 12개월 기간을 고정해 같은 기간끼리 비교."}})
+                                             "note": (f"(1 + EV 변화) = (1 + 선행 EBITDA 리비전) × (1 + Fwd EV/EBITDA 변화). 순차입이 있어 주가 변화는 EV 변화보다 크게 움직인다." if bas == "EBITDA" else f"(1 + 주가) = (1 + EPS 리비전) × (1 + 멀티플 변화). EPS는 구간 시작의 선행 12개월 기간을 고정해 같은 기간끼리 비교.")}})
         B.append({"type": "table", "title": "분기별 주가 분해 — 실적 발표 사이 구간",
-                  "headers": ["구간", "기간", "주가", "EPS 리비전", "멀티플 변화", "선행 P/E 시작 → 끝"],
-                  "rows": [[x["label"], f"{x['from'].isoformat()[2:]} ~ {x['to'].isoformat()[2:]}", f"${x['p0']:,.2f} → ${x['p1']:,.2f} ({_sign(x['price'])})", (_sign(x["rev"]) if x["rev"] is not None else f"분해 불가 — {x['why']}"), _sign(x["rerate"]),
+                  "headers": ["구간", "기간", "주가" if bas == "EPS" else "주가(EV 변화)", f"{bas} 리비전", "멀티플 변화", "선행 P/E 시작 → 끝" if bas == "EPS" else "Fwd EV/EBITDA 시작 → 끝"],
+                  "rows": [[x["label"], f"{x['from'].isoformat()[2:]} ~ {x['to'].isoformat()[2:]}", f"${x['p0']:,.2f} → ${x['p1']:,.2f} ({_sign(x['price'])}" + (f", EV {_sign(x['ev'])})" if x.get("ev") is not None else ")"), (_sign(x["rev"]) if x["rev"] is not None else f"분해 불가 — {x['why']}"), _sign(x["rerate"]),
                             f"{x['pe0']:.1f}배 → {x['pe1']:.1f}배" if x["pe0"] and x["pe1"] else "-"] for x in dec]})
         cum = {k: 1.0 for k in ("price", "rev", "rerate")}
         skip = [x for x in dec if x["rev"] is None]
@@ -263,6 +305,12 @@ def blocks(dp):
         for x in dec:
             for k in cum:
                 cum[k] *= 1 + x[k]
-        who = "멀티플" if abs(cum["rerate"] - 1) > abs(cum["rev"] - 1) else "EPS 리비전"
+        who = "멀티플" if abs(cum["rerate"] - 1) > abs(cum["rev"] - 1) else f"{bas} 리비전"
+        if bas == "EBITDA":
+            ev_c = 1.0
+            for x in dec:
+                ev_c *= 1 + x["ev"]
+            B.append({"type": "p", "text": f"**해석:** {len(dec)}개 구간 누적 주가 {_sign(cum['price'] - 1)}, EV {_sign(ev_c - 1)} = 선행 EBITDA 리비전 {_sign(cum['rev'] - 1)} × Fwd EV/EBITDA {_sign(cum['rerate'] - 1)}. 더 크게 움직인 쪽은 **{who}**이다. 순차입이 있어 주가는 EV보다 크게 움직인다."})
+            return B
         B.append({"type": "p", "text": f"**해석:** {len(dec)}개 구간({"분해 불가 " + ", ".join(x["label"] for x in skip) + " 제외, " if skip else ""}누적) 주가 {_sign(cum['price'] - 1)} = EPS 리비전 {_sign(cum['rev'] - 1)} × 멀티플 {_sign(cum['rerate'] - 1)}. 더 크게 움직인 쪽은 **{who}**이다."})
     return B
