@@ -119,7 +119,7 @@ def build(dp, cfg=None):
             if x["h2"].startswith("⑤") and LS.get("profit_pool"):
                 x["blocks"] += LS["profit_pool"]
             if x["h2"].startswith("⑥"):   # IB 순서: 추정 vs 컨센서스 → 수정 폭 → 멀티플 밴드 → 가격 내포 기대 → 판단 → 민감도 → 시나리오
-                x["blocks"] = (LS.get("estimates", []) + LS.get("revisions", []) + LS.get("valuation_history", []) + LS.get("expectations", [])
+                x["blocks"] = (LS.get("estimates", []) + LS.get("revisions", []) + LS.get("valuation_history", []) + LS.get("expectations", []) + LS.get("broker_reactions", [])
                                + x["blocks"] + LS.get("sensitivity", []) + LS.get("scenarios", []))
             out.append(x)
             if x["h2"].startswith("⑥"):

@@ -311,6 +311,10 @@ def ib_sections(L):
     if ex:
         out["exposure"] = [{"type": "table", "title": "노출 지도 — 이 판단에 가장 크게 움직이는 회사(매매 의견 아님)", "headers": ["회사", "레버리지", "방향", "왜"],
                             "rows": [[x.get("name", ""), str(x.get("lever", "")), x.get("direction", ""), x.get("why", "")] for x in ex]}]
+    br = L.get("broker_reactions") or []   # 증권사 반응 표(2026-11-15 마스터 지시 "넓혀 줘" — 분모를 밝힌다, docs/channels/industry.md)
+    if br:
+        out["broker_reactions"] = [{"type": "table", "title": f"증권사 반응 — 요지 있는 {len(br)}곳(마스터 노션 IB 자료, 외부 공유 금지)", "headers": ["증권사", "의견", "목표가 전→후", "이익 추정 전→후", "핵심 논리"],
+                                    "rows": [[x.get("broker", ""), x.get("rating", ""), x.get("pt", ""), x.get("eps", ""), x.get("why", "")] for x in br]}]
     po = L.get("positioning") or []
     if po:
         out["positioning"] = [{"type": "table", "title": "수급·포지셔닝 — 이미 얼마나 몰려 있나", "headers": ["지표", "값", "읽기", "출처"],

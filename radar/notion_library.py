@@ -413,7 +413,8 @@ def industry_need(key, sub=None, members=(), today=None):
     recent = sorted([r for r in docs if r["via"] != "산업 키" and (r.get("doc_date") or r.get("added") or "") >= cut],
                     key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)
     have = [r for r in recent if r["status"] == "digest"]
-    new = [r for r in recent if r["status"] != "digest"][:cfg.get("related_max_per_report", 6)]
+    # 본문 언급(④)으로만 걸린 자료는 요지가 있으면 쓰고, 없으면 막지 않는다(2026-11-15 — 상한 6건이 미끄러져 애플·휴머노이드 자료까지 의무로 끌어왔다)
+    new = [r for r in recent if r["status"] != "digest" and r["via"] != "본문 언급"][:cfg.get("related_max_per_report", 6)]
     use = core + have + new
     todo = [r for r in use if r["status"] != "digest"]
     cites = [f"마스터 노션 IB 자료: {r['broker'] if r.get('broker') not in (None, '', '미확인') else ''} {r.get('doc_date') or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ").replace("  ", " ")

@@ -1,0 +1,882 @@
+{
+ "industry": "semiconductors.ai-accelerators",
+ "industry_name": "AI 가속기(GPU·ASIC)",
+ "week": "2026-W46",
+ "date": "2026-11-15",
+ "emerging": false,
+ "title": "AI 가속기 — NVIDIA 할인은 이익이 아니라 배수에 붙었다",
+ "subtitle": "CEO 사임·법무부 조사 보도로 NVDA는 2주 상대수익 −20%p, 아시아 ASIC 설계사는 +33%p. 그런데 NVIDIA 2027년(FY28) 이익 추정은 거의 그대로고 배수만 10배로 내려왔다. 고객이 설계를 바꾸는 데는 18~24개월이 걸린다",
+ "value_add": [
+  "정량 — 주가 하락을 이익 추정 변화와 배수 변화로 나눴다(CY27 P/E: NVIDIA 10.0배 vs AMD 34.5배·Broadcom 18.5배·Marvell 21.5배)",
+  "해석 — 양산 엔지니어 관점에서 고객이 GPU에서 ASIC으로 옮기는 데 걸리는 시간(설계·테이프아웃·인증 18~24개월)으로 '수혜주 랠리'의 시점을 검증",
+  "속도 — 11-18(KST) 실적 발표 전에 판가름 지표와 문턱을 미리 적었다"
+ ],
+ "why_now": "11-12 NVIDIA CEO가 사임하고 CFO가 임시 CEO를 맡았다. 미 법무부 조사 3건 보도(11-13)까지 겹쳐 NVDA는 한 주 −14.8%, 한 달 −27.8%였고, 같은 주 AMD +20%·GUC +49%·알칩 +51%로 돈이 옮겨 갔다. 3일 뒤(11-18 KST 아침) 3분기 실적이 이 이동이 맞는지 가르는 첫 숫자다",
+ "coverage": [
+  {
+   "name": "NVIDIA",
+   "country": "US"
+  },
+  {
+   "name": "AMD",
+   "country": "US"
+  },
+  {
+   "name": "Broadcom",
+   "country": "US"
+  },
+  {
+   "name": "Marvell",
+   "country": "US"
+  },
+  {
+   "name": "Cerebras",
+   "country": "US"
+  },
+  {
+   "name": "캠브리콘(Cambricon)",
+   "country": "CN"
+  },
+  {
+   "name": "하이곤(Hygon)",
+   "country": "CN"
+  },
+  {
+   "name": "GUC",
+   "country": "TW"
+  },
+  {
+   "name": "알칩(Alchip)",
+   "country": "TW"
+  },
+  {
+   "name": "소시오넥스트(Socionext)",
+   "country": "JP"
+  }
+ ],
+ "narrative": {
+  "view": "이번 주 AI 가속기 주가는 수요가 아니라 지배구조(경영진) 사건으로 움직였다. NVIDIA 주가가 2주 동안 S&P 500보다 약 20%p 덜 올랐지만, 2027년(회계 FY28) 이익 추정은 크게 바뀌지 않았고 배수가 2027년 이익의 10배로 내려왔다. 반대로 대안 공급사, 특히 아시아 ASIC(맞춤형 반도체) 설계 서비스 회사는 한 주에 30~50% 올랐다. Chiip은 고객이 칩을 바꾸는 데 설계부터 인증까지 18~24개월이 걸린다는 점에서 이 이동이 2027년 매출로 바로 이어지기 어렵다고 본다. 그래서 NVIDIA는 In-Line(확신도 부족 — 실적 콜과 조사 범위를 확인해야 한다), 미국 대안 공급사는 In-Line, 아시아 ASIC 설계·중국 가속기 사업군은 Cautious로 본다.",
+  "summary": [
+   [
+    "무엇이 바뀌었나?",
+    "11-12 NVIDIA CEO가 사임했고 CFO가 임시 CEO를 겸한다. 11-13에는 미 법무부 조사 3건 보도가 나왔다. NVDA 한 주 −14.8%, 같은 주 AMD +20%, GUC +49%, 알칩 +51%."
+   ],
+   [
+    "시장은 무엇을 가정하나?",
+    "NVIDIA 2027년 이익의 10.0배(동종 중간값 21.5배의 절반 이하). 증권사들은 이익 추정을 크게 바꾸지 않고 배수를 낮췄다. 실적 발표 옵션은 주가 ±8.8% 움직임을 가정한다."
+   ],
+   [
+    "Chiip은 어디가 다른가?",
+    "할인이 이익이 아닌 배수에 붙었다면 다음 숫자는 매출보다 '이익이 얼마나 오래 가나'를 바꾸는 신호다. 고객이 ASIC으로 옮기는 속도는 설계 주기에 묶여 있어 2027년 매출 이동은 작다 — 아시아 설계사 랠리는 시점을 앞당겨 반영했다."
+   ],
+   [
+    "다음 판가름은?",
+    "11-18 3분기 실적(가이던스 $108B)과 FY28 +70% 성장 전망 유지 여부, 12월 Broadcom AI 반도체 가이던스, 상임 CEO 선임, 법무부 조사 범위(수출 준수에 한정되는지)."
+   ]
+  ],
+  "demand": "수요는 하이퍼스케일러(대형 클라우드)와 그 밖의 기업·신생 클라우드(NeoCloud)·국가 AI 세 갈래다. NVIDIA는 8-26 실적 콜에서 FY28(2027년) 매출이 약 70% 늘 것으로 보되, 이는 수요가 아니라 전력·부지·냉각·부품 공급 능력이 정한 숫자라고 말했다. 세대가 바뀔수록 1GW(기가와트, 데이터센터 전력 단위)당 NVIDIA 매출 기회가 Hopper $18B에서 Vera Rubin $40B로 커진다는 회사 설명도 있었다. 수요의 실행 위험은 칩이 아니라 데이터센터 쪽에 있다. 마스터 노션 IB 자료 요지로 보면 북미 계획 물량 가운데 실제로 지어질 가능성을 가중한 몫은 약 3분의 1에 머물고, 중간선거 뒤 지역 유예·인허가가 늘어 '취소보다 지연'이 기본 경로다. 고객 쪽 자금도 쟁점이다 — 하이퍼스케일러 채권 발행이 크게 늘며 스프레드가 넓어졌고, 다음 단계로 GPU를 담보로 한 금융이 커지고 있다. 이번 주 사건은 이 수요 그림을 바꾸지 않았다. 바뀐 것은 공급사 한 곳의 경영 위험이다.",
+  "supply": "공급은 세 층이다. ① 범용 GPU(머천트) — NVIDIA가 압도적이고 AMD가 2위. NVIDIA 데이터센터 매출은 2분기(7월 분기) $89.0B로 전년 대비 +117%, 전 분기 대비 +18%, 회사 매출의 92.5%다. ② 커스텀 ASIC — Broadcom·Marvell이 하이퍼스케일러와 함께 설계하고, 아시아에서는 GUC·알칩·소시오넥스트가 설계 서비스(턴키)를 맡는다. ③ 중국 내 가속기 — 캠브리콘·하이곤이 미국 수출 통제 아래 국산 대체 수요를 받는다. 세 층 모두 같은 병목(TSMC 첨단 공정·CoWoS(칩을 실리콘 기판 위에 나란히 붙이는 2.5D 패키징)·HBM(고대역폭 메모리))을 나눠 쓴다. 그래서 단기에는 고객이 공급사를 바꿔도 전체 출하량이 바로 늘지 않고, 같은 캐파 안에서 몫이 옮겨 갈 뿐이다.",
+  "bottleneck": "물리적 병목은 CoWoS·HBM 캐파와 데이터센터 전력이다. 이번 주 새로 생긴 병목은 '경영 실행'이다 — 임시 경영진 아래에서 공급 약정(회사는 약정 대부분이 첫 3년에 몰려 있다고 밝혔다)·고객 금융 지원·수출 준수 체계가 그대로 굴러가는가. 엔지니어 관점에서 고객의 전환 비용은 소프트웨어(CUDA 생태계)와 시스템 통합(NVL72 랙, 네트워크)에 있다. ASIC 한 세대를 새로 설계해 테이프아웃(설계 완료 후 첫 생산 투입)하고 수율·인증을 거쳐 랙 단위로 배치하기까지 보통 18~24개월이 걸린다. 지금 2027년 배치 물량의 칩 선택은 대부분 이미 끝났다.",
+  "pricing": "가격 결정력은 여전히 NVIDIA 쪽이 크다. 회사는 총이익률 75% 수준이 메모리 원가·제품 믹스로 72~73%까지 내려올 수 있다고 말했다 — 이익 풀이 일부 HBM 쪽으로 옮겨 가는 신호다. GPU 임대 가격(데이터 허브 수집)은 B200 온디맨드 시간당 $8.60(CoreWeave)·B300 지수 $7.67로, 급락 신호는 보이지 않는다(직전 값과의 비교는 아직 불가).",
+  "gap": "시장 가격이 가정하는 것: NVIDIA 2027년(FY28) EPS $16.35(Fiscal.ai 추정)를 그대로 두면 주가 $162.85는 10.0배다. 동종 중간 배수(21.5배)를 적용하면 시장은 NVIDIA 2027년 이익이 2026년(FY27)보다 약 20% 줄어든다고 보는 것과 같은 가격이다. 회사 전망은 매출 +70%다. 따라서 시장은 '내년 이익'이 아니라 '이익의 지속 기간과 지배구조 할인'을 매기고 있다. 반대로 GUC는 지난 12개월 매출의 20배, 캠브리콘은 54배로, 대안 공급 몫이 빨리 커진다는 가정이 가격에 들어갔다.",
+  "counter": "이 판단을 깨는 설명: ① 법무부 조사(보도 3건)가 수출 준수 위반으로 이어지면 벌금보다 큰 수출 허가 제한이 올 수 있다 — 그러면 '중국 외'로 분류된 동남아 경유 매출까지 흔들린다 ② 경영 공백이 길어지면 고객이 2028년 이후 설계 선택을 앞당겨 GPU와 ASIC 몫이 대등해지는 속도가 빨라진다 ③ 데이터센터 실행 지연(인허가·보험·전력)이 커지면 공급 제약이 풀리기 전에 수요 쪽이 먼저 꺾일 수 있다 — 이 경우 배수 할인은 이익 하향의 선행 신호였다는 해석이 맞다.",
+  "kill": "판단이 틀리는 조건: ① 11-18 실적에서 4분기 가이던스가 3분기 실적보다 낮거나 FY28 성장 전망을 철회하면 NVIDIA In-Line을 Cautious로 내린다 ② 법무부·상무부가 수출 허가 정지 같은 조치를 공식화하면 NVIDIA 기대 영향을 −9%에서 −20% 이하로 고친다 ③ 하이퍼스케일러가 2027년 배치분의 GPU 주문을 ASIC으로 바꿨다고 공식 확인(계약·실적 콜)하면 아시아 ASIC 설계 사업군을 In-Line으로 올린다.",
+  "status": "조건부 판단 — 사건(CEO 사임·임시 CEO)과 주가·이익 추정은 1차 자료로 확인했다. 법무부 조사 3건은 언론 보도로 1차 확인 전이고, 중국·동남아 경유 매출 비중은 회사가 나눠 밝히지 않아 가정(최대 8%)으로 뒀다. 가정: 임시 경영진 아래에서도 2027년 공급 약정이 유지된다."
+ },
+ "segments": [
+  {
+   "id": "nvidia",
+   "name": "범용 GPU 1위(NVIDIA)",
+   "market": -20.0,
+   "expected": -9.0,
+   "confidence": 0.45
+  },
+  {
+   "id": "us-alt",
+   "name": "미국 대안 공급사(AMD GPU·Broadcom·Marvell 커스텀 ASIC)",
+   "market": 2.3,
+   "expected": 2.0,
+   "confidence": 0.55
+  },
+  {
+   "id": "asia-asic",
+   "name": "아시아 ASIC 설계 서비스·중국 가속기(GUC·알칩·소시오넥스트·캠브리콘·하이곤)",
+   "market": 21.2,
+   "expected": 5.0,
+   "confidence": 0.55
+  }
+ ],
+ "value_chain": [
+  {
+   "layer": "파운드리·첨단 패키징(CoWoS)",
+   "who": "TSMC·ASE",
+   "bottleneck": "CoWoS 캐파",
+   "note": "GPU든 ASIC이든 같은 캐파를 나눠 쓴다 — 공급사가 바뀌어도 총량은 그대로"
+  },
+  {
+   "layer": "HBM(고대역폭 메모리)",
+   "who": "SK하이닉스·삼성전자·마이크론",
+   "bottleneck": "HBM 수율·캐파",
+   "note": "NVIDIA 총이익률 하락 요인으로 언급된 원가 — 이익 풀이 옮겨 가는 층"
+  },
+  {
+   "layer": "범용 GPU·시스템(NVL72 랙)",
+   "who": "NVIDIA·AMD",
+   "bottleneck": "공급 약정·경영 실행",
+   "note": "이번 주 사건의 중심"
+  },
+  {
+   "layer": "커스텀 ASIC 설계",
+   "who": "Broadcom·Marvell·GUC·알칩·소시오넥스트",
+   "bottleneck": "설계·테이프아웃·인증 18~24개월",
+   "note": "고객 전환의 시계가 이 층에서 정해진다"
+  },
+  {
+   "layer": "중국 내 가속기",
+   "who": "캠브리콘·하이곤",
+   "bottleneck": "중국 내 첨단 공정·HBM 조달",
+   "note": "미국 수출 통제가 강해질수록 국산 대체 수요"
+  },
+  {
+   "layer": "고객(클라우드·AI 연구소)",
+   "who": "하이퍼스케일러·NeoCloud·국가 AI",
+   "bottleneck": "전력·인허가·자금",
+   "note": "수요 실행 위험은 칩이 아니라 데이터센터 쪽"
+  }
+ ],
+ "checkpoints": [
+  {
+   "date": "2026-11-18",
+   "what": "NVIDIA 3분기(FY27) 매출이 가이던스 $108B 이상이고 4분기 매출 가이던스가 $120B 이상이다",
+   "metric": "NVIDIA 3분기 실적 보도자료·CFO 코멘터리",
+   "p": 0.6,
+   "confirms": "경영 공백에도 2026년 말 공급·수요 경로가 유지된다 — 할인이 배수에만 붙었다는 판단"
+  },
+  {
+   "date": "2026-11-18",
+   "what": "NVIDIA가 실적 콜에서 FY28 매출 약 70% 성장 전망을 유지(철회·하향 없음)한다",
+   "metric": "실적 콜 발언·보도자료",
+   "p": 0.55,
+   "confirms": "2027년 공급 약정이 임시 경영진 아래에서도 유지된다"
+  },
+  {
+   "date": "2026-12-12",
+   "what": "Broadcom 회계 4분기 실적에서 다음 분기 AI 반도체 매출 가이던스가 전 분기 실적보다 높다",
+   "metric": "Broadcom 실적 보도자료 AI 반도체 매출",
+   "p": 0.65,
+   "confirms": "커스텀 ASIC 수요는 NVIDIA 사건과 별개로 이미 정해진 경로로 늘고 있다"
+  },
+  {
+   "date": "2027-01-31",
+   "what": "NVIDIA 이사회가 상임 CEO를 선임했다고 발표한다",
+   "metric": "NVIDIA 보도자료·8-K",
+   "p": 0.35,
+   "confirms": "지배구조 할인이 줄어드는 첫 사건"
+  }
+ ],
+ "counter": [
+  {
+   "text": "미 법무부가 NVIDIA를 상대로 조사 3건을 진행 중이라는 보도 — 사업 관행·수출 준수가 대상이면 벌금보다 수출 허가 제한이 더 큰 위험",
+   "source": "MarketScreener 2026-11-13(보도, 1차 확인 전)"
+  },
+  {
+   "text": "미 블랙리스트에도 중국 국방 연계 대학이 H200을 샀다는 보도 — 동남아 경유 매출 단속이 강해질 수 있다",
+   "source": "MarketScreener 2026-11-11(보도)"
+  },
+  {
+   "text": "한 증권사는 '중국+기타' 매출(FY27 상반기 매출의 약 8%)을 FY28 추정에서 통째로 빼고, GPU와 ASIC 몫이 대등해지는 쪽으로 간다고 본다 — Chiip의 −9% 가정은 이 숫자를 상한으로 썼다",
+   "source": "마스터 노션 IB 자료 JPM 2026-11-12(요지만, 외부 공유 금지)"
+  },
+  {
+   "text": "북미 데이터센터 계획 물량 중 실제로 지어질 가능성을 가중한 몫은 약 34%이고, 선거 뒤 감액 대상 주가 늘었다 — 수요 쪽 실행 위험이 먼저 올 수 있다",
+   "source": "마스터 노션 IB 자료 Bernstein 2026-11(요지만, 외부 공유 금지)"
+  }
+ ],
+ "logic": {
+  "bottom_line": {
+   "call": "AI 가속기 수요 경로는 그대로이고 NVIDIA 할인은 이익이 아닌 배수(2027년 이익 10배)에 붙었다 — NVIDIA·미국 대안 In-Line, 아시아 ASIC 설계·중국 가속기 Cautious.",
+   "changed": "이번 주 주가 이동은 수요 변화가 아니라 경영진 사건이다. 고객이 공급사를 바꾸는 속도는 설계 주기에 묶여 있어, 대안 공급사 랠리는 2028년 이후 몫을 미리 반영했다고 본다.",
+   "vs_prior": "첫 판단"
+  },
+  "debates": [
+   {
+    "q": "NVIDIA 주가 하락은 이익 하향인가, 배수 하향인가?",
+    "consensus": {
+     "view": "증권사들은 이익 추정을 크게 두고 배수를 낮췄다(한 곳은 FY28·29 이익을 그대로 두고 배수를 21배에서 약 11배로)",
+     "number": "NVDA CY27 P/E 10.0배(동종 중간 21.5배)",
+     "source": "TradingView 11-13 종가·Fiscal.ai 추정, 마스터 노션 IB 자료 요지(Bernstein 2026-11-12)"
+    },
+    "chiip": {
+     "view": "배수 할인이 맞다. 다음 실적은 매출보다 '이익 지속 기간'(공급 약정·고객 금융·수출 준수)을 확인하는 자리다",
+     "number": "FY28 EPS $16.35 기준 10.0배, '중국+기타' 8% 제거 시 약 10.9배",
+     "evidence": [
+      "NVIDIA 8-26 콜(FY28 +70%, 공급 제약 기준)",
+      "Fiscal.ai 추정"
+     ]
+    },
+    "why_differ": "시장은 사건의 끝(조사 결과·후임)을 모르니 할인을 크게 잡고, Chiip은 2027년 배치분의 칩 선택이 이미 끝났다는 제조 시계로 이익 경로를 먼저 고정한다.",
+    "signpost": {
+     "date": "2026-11-18",
+     "metric": "4분기 매출 가이던스·FY28 성장 전망 유지",
+     "threshold": "4분기 $120B 이상 + FY28 +70% 유지면 Chiip 견해 확인"
+    },
+    "p": 0.55
+   },
+   {
+    "q": "고객은 GPU에서 ASIC으로 옮기는 속도를 높일까?",
+    "consensus": {
+     "view": "대안 공급사로 돈이 옮겨 갔다 — 한 주 GUC +49%·알칩 +51%·AMD +20%·캠브리콘 +23%",
+     "number": "GUC EV/지난 12개월 매출 20배, 캠브리콘 54배",
+     "source": "TradingView 2026-11-13"
+    },
+    "chiip": {
+     "view": "전환은 일어나지만 2027년 매출로는 작다. ASIC 한 세대는 설계·테이프아웃·인증·랙 배치까지 18~24개월이고, CoWoS·HBM 캐파가 같아 총량이 늘지 않는다",
+     "number": "2027년 배치분 칩 선택은 대부분 확정(자체추론)",
+     "evidence": [
+      "양산 엔지니어 관점 설계 주기",
+      "공유 병목(CoWoS·HBM)"
+     ]
+    },
+    "why_differ": "시장은 사건을 전환의 계기로 보고 몫 이동을 앞당겨 매긴다. Chiip은 '서류가 말보다' — 계약·테이프아웃 공시가 나와야 몫이 옮겨 갔다고 본다.",
+    "signpost": {
+     "date": "2026-12-12",
+     "metric": "Broadcom 다음 분기 AI 반도체 가이던스 + 하이퍼스케일러 신규 ASIC 계약 공시",
+     "threshold": "2027년 배치분 GPU→ASIC 전환을 회사가 공식 확인하면 Chiip 견해 수정"
+    },
+    "p": 0.6
+   },
+   {
+    "q": "법무부 조사는 NVIDIA 매출에 닿는가?",
+    "consensus": {
+     "view": "조사 3건 보도·중국 관련 프로젝트 감시 강화 — 중국·동남아 경유 매출 위험",
+     "source": "MarketScreener 2026-11-13, 언론 보도"
+    },
+    "chiip": {
+     "view": "조사 대상이 확인되지 않았다. 지금은 '중국+기타' 최대 8% 제거를 상한으로 두고, 수출 허가 조치가 공식화될 때만 더 내린다",
+     "number": "기대 영향 −9%(가정)"
+    },
+    "why_differ": "보도 → 사실은 금지표의 대표 오류다. 1차 자료(법무부·상무부 발표, 회사 8-K)를 기다린다.",
+    "signpost": {
+     "date": "2027-02-28",
+     "metric": "법무부·상무부 공식 조치 또는 회사 공시",
+     "threshold": "수출 허가 정지·제한이 공식화되면 NVIDIA 기대 영향 −20% 이하로 수정"
+    },
+    "p": 0.7
+   }
+  ],
+  "drivers": [
+   {
+    "pool": "ai-accelerators",
+    "name": "NVIDIA 데이터센터(2분기 FY27, 전년 대비)",
+    "volume": {
+     "name": "GW당 배치 물량",
+     "chg": null,
+     "source": "미공시 — 회사는 출하 대수·GW를 나눠 밝히지 않는다"
+    },
+    "price": {
+     "name": "GW당 매출(세대 전환)",
+     "chg": null,
+     "source": "미공시 — 회사 설명은 Hopper $18B → Vera Rubin $40B/GW(8-26 콜)"
+    },
+    "mix": "데이터센터 매출 $89.0B(+117%·전 분기 +18%)는 Blackwell 계열 랙(NVL72) 비중이 커진 것이 끈다 — 물량과 가격을 회사가 나누지 않아 브리지 검산 불가"
+   }
+  ],
+  "market_size": {
+   "unit": "$B, 데이터센터 AI 가속기 매출(GPU·ASIC)",
+   "now": {
+    "year": 2025,
+    "value": 214,
+    "source": "Chiip 합산 — NVIDIA 데이터센터 CY25(4·7·10·1월 분기) $193.7B(Fiscal.ai 세그먼트) + Broadcom AI 반도체 FY25 약 $20B(회사 발표). AMD·Marvell·중국 가속기 제외 → 하한"
+   },
+   "forecast": [
+    {
+     "year": 2027,
+     "low": 700,
+     "high": 950,
+     "source": "Chiip 상향식 — NVIDIA FY28 회사 전망 약 +70%(공급 제약 기준)로 데이터센터 약 $600~650B + Broadcom·AMD·Marvell·ASIC $100~300B"
+    },
+    {
+     "year": 2028,
+     "low": 500,
+     "high": 1000,
+     "source": "AMD Advancing AI 2025-06(가속기 시장 2028년 $500B 이상) — 상단은 Chiip"
+    },
+    {
+     "year": 2030,
+     "low": 1000,
+     "high": 1500,
+     "source": "AMD 2025-11 애널리스트 데이(데이터센터 시장 2030년 $1T 이상, CPU·네트워크 포함) — 상단은 Chiip"
+    }
+   ],
+   "bridge": "2025년 회사들이 낸 하향식 전망은 이미 낡았다 — NVIDIA 한 곳의 회사 전망(FY28 약 +70%)만으로 2027년 매출이 2028년 시장 전망($500B)을 넘는다. 그래서 상한은 수요가 아니라 공급(CoWoS·HBM·데이터센터 GW)으로 잡아야 한다. 이번 주 사건은 이 총량을 바꾸지 않고, 같은 총량 안에서 누가 얼마를 가져가는지에 대한 가격만 바꿨다."
+  },
+  "comps": [
+   {
+    "name": "NVIDIA",
+    "ticker": "NVDA",
+    "exposure": "순수에 가까움(데이터센터 매출 92.5%, 2분기 FY27)",
+    "revenue": "TTM $303.0B",
+    "growth": "+83%",
+    "mcap": "$3.92T",
+    "ev_sales": "EV/TTM 12.8배 · CY27 P/E 10.0배",
+    "note": "한 주 −14.8%·한 달 −27.8%·연초 대비 −14.2%. CEO 사임(11-12), 임시 CEO = CFO [Fiscal.ai: TTM $303.0B·+83%·EV/매출 12.75·Fwd P/E 13.4]",
+    "source": "TradingView 2026-11-13 종가 · Fiscal.ai 2026-11-13 — 두 원천 매출·EV/매출 일치"
+   },
+   {
+    "name": "AMD",
+    "ticker": "AMD",
+    "exposure": "겸업(데이터센터 GPU·CPU, PC·임베디드 — AI 가속기 매출 비중 미확인)",
+    "revenue": "TTM $45.4B",
+    "growth": "+42%",
+    "mcap": "$876B",
+    "ev_sales": "EV/TTM 19.1배 · CY27 P/E 34.5배",
+    "note": "한 주 +20.2%, 연초 대비 +144% [Fiscal.ai: TTM $45.4B·+42%·EV/매출 19.13·Fwd P/E 41.2]",
+    "source": "TradingView 2026-11-13 종가 · Fiscal.ai 2026-11-13 — 두 원천 매출·EV/매출 일치"
+   },
+   {
+    "name": "Broadcom",
+    "ticker": "AVGO",
+    "exposure": "겸업(AI 반도체(커스텀 ASIC·네트워크) + 인프라 소프트웨어)",
+    "revenue": "TTM $89.1B",
+    "growth": "+49%",
+    "mcap": "$1.66T",
+    "ev_sales": "EV/TTM 19.0배 · FY27(10월) P/E 18.5배",
+    "note": "한 주 +11.5% [Fiscal.ai: TTM $89.1B·+49%·EV/매출 18.99·Fwd P/E 19.9]",
+    "source": "TradingView 2026-11-13 종가 · Fiscal.ai 2026-11-13 — 두 원천 매출·EV/매출 일치"
+   },
+   {
+    "name": "Marvell",
+    "ticker": "MRVL",
+    "exposure": "겸업(데이터센터 커스텀 ASIC·광 DSP 중심)",
+    "revenue": "TTM $9.5B",
+    "growth": "+31%",
+    "mcap": "$137B",
+    "ev_sales": "EV/TTM 14.7배 · FY28 P/E 21.5배",
+    "note": "한 달 −40.3% [Fiscal.ai: TTM $9.45B·+31%·EV/매출 15.02·Fwd P/E 26.8]",
+    "source": "TradingView 2026-11-13 종가 · Fiscal.ai 2026-11-13 — 두 원천 매출·EV/매출 일치"
+   },
+   {
+    "name": "GUC",
+    "ticker": "3443",
+    "exposure": "순수에 가까움(ASIC 설계 서비스·턴키)",
+    "revenue": "TTM 565억 대만달러",
+    "growth": "+103%",
+    "mcap": "1.15조 대만달러",
+    "ev_sales": "EV/TTM 20.3배",
+    "note": "한 주 +49.3%, 연초 대비 +295%",
+    "source": "TradingView 2026-11-13",
+    "fiscal": "미수록"
+   },
+   {
+    "name": "알칩",
+    "ticker": "3661",
+    "exposure": "순수에 가까움(ASIC 설계 서비스)",
+    "revenue": "TTM 426억 대만달러",
+    "growth": "+8%",
+    "mcap": "3,456억 대만달러",
+    "ev_sales": "EV/TTM 7.2배",
+    "note": "한 주 +50.8%",
+    "source": "TradingView 2026-11-13",
+    "fiscal": "미수록"
+   },
+   {
+    "name": "소시오넥스트",
+    "ticker": "6526",
+    "exposure": "겸업(커스텀 SoC — 자동차·데이터센터)",
+    "revenue": "TTM 2,130억 엔",
+    "growth": "+21%",
+    "mcap": "3,423억 엔",
+    "ev_sales": "EV/TTM 1.5배",
+    "note": "한 주 +31.1%",
+    "source": "TradingView 2026-11-13",
+    "fiscal": "미수록"
+   },
+   {
+    "name": "캠브리콘",
+    "ticker": "688256",
+    "exposure": "순수(중국 AI 가속기)",
+    "revenue": "TTM 114억 위안",
+    "growth": "+104%",
+    "mcap": "6,156억 위안",
+    "ev_sales": "EV/TTM 54배",
+    "note": "한 주 +23.1% — 미국의 NVIDIA 중국 감시 강화 보도와 겹침",
+    "source": "TradingView 2026-11-13",
+    "fiscal": "미수록"
+   },
+   {
+    "name": "하이곤",
+    "ticker": "688041",
+    "exposure": "겸업(중국 서버 CPU·DCU 가속기)",
+    "revenue": "TTM 198억 위안",
+    "growth": "+59%",
+    "mcap": "4,724억 위안",
+    "ev_sales": "EV/TTM 24배",
+    "note": "한 주 +10.6%",
+    "source": "TradingView 2026-11-13",
+    "fiscal": "미수록"
+   }
+  ],
+  "expectations": [
+   {
+    "what": "NVIDIA 2027년(FY28) 이익 배수",
+    "value": "$162.85 ÷ FY28 EPS $16.35 = 10.0배(AMD 34.5배·Broadcom 18.5배·Marvell 21.5배)",
+    "implied": "동종 중간 21.5배를 적용하면 시장은 2027년 이익이 2026년보다 약 20% 줄어든다고 보는 것과 같은 가격 — 회사 전망(+70%)과 정반대 방향",
+    "source": "TradingView 11-13 종가, Fiscal.ai 추정(2026-11), Chiip 계산"
+   },
+   {
+    "what": "NVIDIA 3분기 매출",
+    "value": "회사 가이던스 $108B · Fiscal.ai 추정 $113B",
+    "implied": "가이던스 초과 폭이 지난 8분기 평균(+3~4%)이면 $112B 안팎 — 숫자 자체로는 놀랄 여지가 작다",
+    "source": "NVIDIA 8-26 실적 콜, Fiscal.ai"
+   },
+   {
+    "what": "실적 발표 옵션 내재 움직임",
+    "value": "11-17 만기(미국) 스트래들 ±8.8%",
+    "implied": "지난 8회 실적 다음 날 평균 절대 반응 4.0%의 두 배 — 시장은 사건 불확실성을 실적보다 크게 본다",
+    "source": "Chiip 데이터 허브(options_implied) 2026-11-14, Easyconomics 실적 반응 이력"
+   },
+   {
+    "what": "아시아 ASIC 설계사 배수",
+    "value": "GUC EV/TTM 매출 20.3배·알칩 7.2배, 한 주 +49~51%",
+    "implied": "2027~28년 커스텀 ASIC 몫이 빨리 커진다는 가정 — 신규 설계 수주 공시가 아직 없다",
+    "source": "TradingView 2026-11-13"
+   },
+   {
+    "what": "증권사 반응",
+    "value": "요지 있는 NVIDIA 보고서 11곳 중 의견 하향 4곳, 목표가 하향 6곳·유지 2곳·철회/미제시/미확인 3곳. 이익 추정 전후를 확인할 수 있는 5곳 중 4곳 유지·1곳 약 −9%",
+    "implied": "할인의 대부분이 배수다 — Citi·Stifel은 추정을 그대로 두고 적용 배수만 낮췄다",
+    "source": "마스터 노션 IB 자료 요지 11건(2026-11-12) — 시장 기대의 증거로만"
+   }
+  ],
+  "scenarios": [
+   {
+    "case": "약세",
+    "p": 0.3,
+    "assume": "수출 허가 조치 공식화 + 중국·동남아 경유 매출 제거 + 고객이 2027년 하반기 배치분 일부를 ASIC·AMD로 이동",
+    "kpi": "NVIDIA FY28(2027년) 매출($B)",
+    "value": 560
+   },
+   {
+    "case": "기본",
+    "p": 0.5,
+    "assume": "공급 약정 유지, '중국+기타' 일부 제거 — 회사 전망 +70%에서 약 6%p 낮음",
+    "kpi": "NVIDIA FY28(2027년) 매출($B)",
+    "value": 680
+   },
+   {
+    "case": "강세",
+    "p": 0.2,
+    "assume": "조사가 개인 문제에 국한되고 상임 CEO가 빨리 선임, CoWoS·HBM 증설로 공급 제약이 일부 풀림",
+    "kpi": "NVIDIA FY28(2027년) 매출($B)",
+    "value": 750
+   }
+  ],
+  "base_rate": {
+   "text": "창업자·CEO가 스캔들로 갑자기 물러난 대형 기술 기업은 사건 직후 배수가 크게 줄었다가 사업 경로가 유지되면 1~2년에 걸쳐 회복한 사례와, 조사가 사업 관행으로 번져 장기 할인된 사례가 갈린다 — 갈림길은 조사 대상이 개인인가 회사인가였다",
+   "source": "Chiip 자체 정리 — 정성 비교, 같은 경로라는 증거 아님"
+  },
+  "cycle": [
+   {
+    "name": "NVDA vs 반도체 ETF(SMH) 한 달",
+    "kind": "선행",
+    "now": "NVDA −27.8% vs SMH −15.6%",
+    "prior": "연초 대비 NVDA −14.2% vs SMH +31.9%",
+    "read": "업종 전체가 아닌 NVIDIA 고유 할인 — 수요 사이클 신호로 읽지 않는다"
+   },
+   {
+    "name": "실적 옵션 내재 움직임",
+    "kind": "선행",
+    "now": "±8.8%",
+    "prior": "지난 8회 실적 다음 날 평균 절대 반응 4.0%",
+    "read": "불확실성 가격이 평소의 두 배"
+   },
+   {
+    "name": "GPU 임대 가격",
+    "kind": "동행",
+    "now": "B200 온디맨드 $8.60/시(CoreWeave)·B300 지수 $7.67/시",
+    "prior": "직전 비교 불가(수집 시작)",
+    "read": "급락 신호 없음 — 가속기 부족 상태 유지로 읽는다(시계열이 쌓이면 다시 판정)"
+   },
+   {
+    "name": "NVIDIA 데이터센터 매출",
+    "kind": "후행",
+    "now": "$89.0B(2분기 FY27, +117%)",
+    "prior": "$75.2B(1분기 FY27)",
+    "read": "전 분기 대비 +18% — 아직 공급 제약 아래 성장"
+   }
+  ],
+  "profit_pool": [
+   {
+    "layer": "범용 GPU(NVIDIA)",
+    "before": "총이익률 약 75%",
+    "after": "72~73%로 내려올 수 있음(회사 언급)",
+    "why": "메모리 원가·믹스 — 가격 결정력은 유지되나 일부가 HBM으로 이동"
+   },
+   {
+    "layer": "HBM 메모리",
+    "before": "커지는 중",
+    "after": "더 커짐",
+    "why": "GPU·ASIC 어느 쪽이 이기든 같은 HBM을 쓴다 — 공급사 이동의 영향을 받지 않는 층"
+   },
+   {
+    "layer": "커스텀 ASIC(칩사 Broadcom·Marvell)",
+    "before": "고객별 덩어리 매출",
+    "after": "몫 확대 기대가 가격에 선반영",
+    "why": "고객이 설계 주도권을 가져 마진은 GPU보다 낮다"
+   },
+   {
+    "layer": "ASIC 설계 서비스(GUC·알칩)",
+    "before": "낮은 마진의 턴키",
+    "after": "물량은 늘어도 마진 구조는 그대로",
+    "why": "웨이퍼·패키징을 대신 사서 넘기는 구조라 매출 대비 이익이 작다 — 배수 20배는 이 구조와 맞지 않는다"
+   }
+  ],
+  "chain": [
+   {
+    "step": "11-12 NVIDIA CEO가 사임했고 CFO가 임시 CEO를 겸한다",
+    "type": "확정사실",
+    "ref": "NVIDIA 보도자료 2026-11-12"
+   },
+   {
+    "step": "NVDA 2주 상대수익 약 −20%p, 같은 기간 GUC·알칩 약 +33%p",
+    "type": "확정사실",
+    "ref": "TradingView 2026-11-13(2주는 주간·월간 수익률로 근사)"
+   },
+   {
+    "step": "회사는 FY28 매출 약 +70%를 공급 제약 기준으로 제시했다",
+    "type": "가이던스",
+    "ref": "NVIDIA 8-26 실적 콜"
+   },
+   {
+    "step": "주가는 2027년 이익의 10배로, 할인 대부분이 배수에 있다",
+    "type": "자체추론",
+    "ref": "Fiscal.ai 추정 × 종가"
+   },
+   {
+    "step": "고객의 GPU→ASIC 전환은 설계 주기(18~24개월)라 2027년 매출 이동은 작다",
+    "type": "자체추론",
+    "ref": "양산 엔지니어 관점·공유 병목"
+   },
+   {
+    "step": "법무부 조사 3건의 대상·범위(수출 준수 포함 여부)",
+    "type": "미확인",
+    "ref": "언론 보도 2026-11-13 — 1차 확인 전"
+   }
+  ],
+  "takeaways": [
+   "NVIDIA 할인은 이익이 아니라 배수에 붙었다 — 2027년(FY28) 이익 추정 $16.35는 그대로인데 Fwd P/E는 5년 밴드 최저(분기 말 TTM P/E 26배, 5년 평균 61배)다.",
+   "증권사 의견은 한 주(11/9~13) 동안 NVIDIA 하향 14건·상향 0건, AMD 상향 2건·하향 0건 — 등급은 경영진 사건에 반응했지 이익 수정이 아니다.",
+   "Chiip 확률 가중 FY28 매출 $658B는 컨센서스 $712B보다 7.6% 낮다 — '중국+기타' 제거와 2027년 하반기 일부 배치 이동을 반영했다.",
+   "아시아 ASIC 설계사(GUC·알칩) 한 주 +49~51%는 설계 수주 공시 없이 2028년 이후 몫을 앞당긴 가격이다 — 설계·인증 18~24개월이 시계를 정한다.",
+   "11/18(KST) NVIDIA 실적의 옵션 내재 움직임 ±8.8%는 과거 평균 반응 4.0%의 두 배 — 숫자보다 경영·조사 관련 발언이 가격을 가른다."
+  ],
+  "estimates": [
+   {
+    "company": "NVIDIA",
+    "metric": "매출($B)",
+    "period": "FY28(2027년)",
+    "chiip": 658,
+    "street": 712,
+    "basis": "시나리오 확률 가중(약세 560×0.3 + 기본 680×0.5 + 강세 750×0.2)",
+    "source": "Fiscal.ai 2026-11-13(agentic consensus)"
+   },
+   {
+    "company": "NVIDIA",
+    "metric": "EPS($)",
+    "period": "FY28(2027년)",
+    "chiip": 15.1,
+    "street": 16.35,
+    "basis": "매출 비율만큼 축소(마진 컨센서스 유지 가정)",
+    "source": "Fiscal.ai 2026-11-13(agentic consensus)"
+   },
+   {
+    "company": "NVIDIA",
+    "metric": "매출($B)",
+    "period": "3분기 FY27(10월)",
+    "chiip": 112,
+    "street": 113.0,
+    "basis": "회사 가이던스 $108B × 지난 8분기 평균 초과 폭 +3~4%",
+    "source": "Fiscal.ai 2026-11-13, NVIDIA 8-26 실적 콜"
+   },
+   {
+    "company": "AMD",
+    "metric": "매출($B)",
+    "period": "FY27(2027년)",
+    "chiip": 84,
+    "street": 89.9,
+    "basis": "회사 전망 기반 컨센서스에서 신규 고객 배치 시점 2분기 지연(설계·인증 주기) 가정 — 자체추론",
+    "source": "Fiscal.ai 2026-11-13(agentic consensus)"
+   },
+   {
+    "company": "Broadcom",
+    "metric": "매출($B)",
+    "period": "FY27(10월)",
+    "chiip": 170,
+    "street": 170.0,
+    "basis": "커스텀 ASIC 고객 일정은 공시 없이 바꿀 근거가 없다 — 컨센서스 유지",
+    "source": "Fiscal.ai 2026-11-13(agentic consensus)"
+   }
+  ],
+  "revisions": [
+   {
+    "metric": "투자의견 변경 — NVIDIA",
+    "window": "11/9~11/13(5일)",
+    "up": 0,
+    "down": 14,
+    "source": "Easyconomics(Finviz 애널리스트 등급 피드) 2026-11-14"
+   },
+   {
+    "metric": "투자의견 변경 — AMD",
+    "window": "11/9~11/13(5일)",
+    "up": 2,
+    "down": 0,
+    "source": "Easyconomics 2026-11-14"
+   },
+   {
+    "metric": "투자의견 변경 — Broadcom",
+    "window": "11/9~11/13(5일)",
+    "up": 0,
+    "down": 1,
+    "source": "Easyconomics 2026-11-14"
+   },
+   {
+    "metric": "이익 추정 — NVIDIA FY28 EPS(노션 IB 요지 중 전후 확인 가능 5곳)",
+    "window": "11/12",
+    "up": 0,
+    "down": 1,
+    "source": "마스터 노션 IB 자료 요지(유지 4곳, 하향 1곳 — 6곳은 이전 값 미확인)"
+   }
+  ],
+  "valuation_history": [
+   {
+    "name": "NVIDIA",
+    "multiple": "TTM P/E",
+    "now": 26.1,
+    "avg": 61.2,
+    "low": 26.1,
+    "high": 144.5,
+    "years": "5년(분기 말 20개, 최근 = 직전 분기 말)",
+    "source": "Fiscal.ai 분기 비율 2021~2026"
+   },
+   {
+    "name": "NVIDIA",
+    "multiple": "EV/매출",
+    "now": 16.3,
+    "avg": 22.6,
+    "low": 11.9,
+    "high": 35.2,
+    "years": "5년(분기 말 20개, 최근 = 직전 분기 말)",
+    "source": "Fiscal.ai 분기 비율 2021~2026"
+   },
+   {
+    "name": "AMD",
+    "multiple": "EV/매출",
+    "now": 22.6,
+    "avg": 9.7,
+    "low": 4.3,
+    "high": 22.6,
+    "years": "5년(분기 말 20개, 최근 = 직전 분기 말)",
+    "source": "Fiscal.ai 분기 비율 2021~2026"
+   },
+   {
+    "name": "Broadcom",
+    "multiple": "EV/매출",
+    "now": 21.3,
+    "avg": 15.2,
+    "low": 6.8,
+    "high": 28.2,
+    "years": "5년(분기 말 20개, 최근 = 직전 분기 말)",
+    "source": "Fiscal.ai 분기 비율 2021~2026"
+   },
+   {
+    "name": "Marvell",
+    "multiple": "EV/매출",
+    "now": 17.9,
+    "avg": 11.2,
+    "low": 6.5,
+    "high": 17.9,
+    "years": "5년(분기 말 20개, 최근 = 직전 분기 말)",
+    "source": "Fiscal.ai 분기 비율 2021~2026"
+   }
+  ],
+  "sensitivity": [
+   {
+    "driver": "NVIDIA FY28 매출",
+    "shock": "±10%",
+    "metric": "FY28 EPS",
+    "impact": "약 ±10.6%",
+    "basis": "매출총이익률 75%, 영업비용 고정 가정 — 증분 매출의 75%가 영업이익으로(자체추론)"
+   },
+   {
+    "driver": "'중국+기타' 매출 제거",
+    "shock": "전액",
+    "metric": "FY28 EPS",
+    "impact": "약 −9%",
+    "basis": "노션 IB 자료 요지(1곳 추정) — 시장 기대의 증거로만"
+   },
+   {
+    "driver": "NVIDIA FY28 P/E",
+    "shock": "±1배",
+    "metric": "주가",
+    "impact": "±$16.35(약 ±10%)",
+    "basis": "FY28 EPS 컨센서스 $16.35 × 1배"
+   },
+   {
+    "driver": "아시아 ASIC 설계 수주 시점",
+    "shock": "2분기 지연",
+    "metric": "GUC·알칩 2027년 매출",
+    "impact": "미확인(분기 수주 공시 없음)",
+    "basis": "설계·인증 18~24개월 — 매출 인식 시점만 밀린다"
+   }
+  ],
+  "exposure": [
+   {
+    "name": "NVIDIA",
+    "lever": "가장 높음",
+    "direction": "경영진·조사 결과에 양방향",
+    "why": "데이터센터 92.5%, 배수가 5년 밴드 바닥 — 사건이 풀리면 배수, 커지면 매출이 움직인다"
+   },
+   {
+    "name": "GUC·알칩",
+    "lever": "높음",
+    "direction": "하방 쪽 비대칭",
+    "why": "한 주 +50%로 2028년 이후 몫을 이미 반영, 설계 수주 공시가 없으면 되돌림 위험"
+   },
+   {
+    "name": "캠브리콘·하이곤",
+    "lever": "높음",
+    "direction": "미국 규제 강도와 같은 방향",
+    "why": "NVIDIA 중국 감시 강화가 국산 대체 수요로 — EV/매출 24~54배"
+   },
+   {
+    "name": "AMD",
+    "lever": "중간",
+    "direction": "고객 이동이 실제로 일어나면 상방",
+    "why": "상향 2건, EV/매출이 5년 고점(22.6배) — 기대가 이미 높다"
+   },
+   {
+    "name": "Broadcom·Marvell",
+    "lever": "중간",
+    "direction": "ASIC 일정에 연동",
+    "why": "겸업 — AI 매출 비중이 희석한다"
+   }
+  ],
+  "positioning": [
+   {
+    "indicator": "NVIDIA 공매도 거래 비율(FINRA 일별)",
+    "value": "33.4%(20일 평균 31.9%, 6개월 평균 37.4%, 시장 48.0%)",
+    "read": "급락 주간에도 공매도 거래가 늘지 않았다 — 매도는 롱 청산 쪽",
+    "source": "Easyconomics(FINRA CNMS) 2026-11-13"
+   },
+   {
+    "indicator": "실적 옵션 내재 움직임",
+    "value": "±8.8%(11-17 만기)",
+    "read": "과거 평균 4.0%의 두 배 — 사건 불확실성 가격",
+    "source": "Chiip 데이터 허브(options_implied) 2026-11-14"
+   },
+   {
+    "indicator": "TradingView 애널리스트 평균 등급(1 = 강력 매수)",
+    "value": "NVDA 1.27 · AMD 1.18 · AVGO 1.13 · MRVL 1.18 · 알칩 1.09 · 소시오넥스트 1.83",
+    "read": "하향 14건 뒤에도 NVIDIA 평균은 매수권 — 등급 분포보다 목표가가 먼저 내려갔다",
+    "source": "TradingView 2026-11-13"
+   },
+   {
+    "indicator": "공매도 잔고(유통 주식 대비)",
+    "value": "미확인",
+    "read": "TradingView 칸 비어 있음 — 다음 FINRA 잔고 공개(격주)에서 확인",
+    "source": "TradingView 2026-11-13"
+   }
+  ],
+  "broker_reactions": [
+   {
+    "broker": "Bernstein",
+    "rating": "Outperform→Market Perform",
+    "pt": "$400→$200",
+    "eps": "요지 참조",
+    "why": "배수 할인"
+   },
+   {
+    "broker": "JPM",
+    "rating": "미확인",
+    "pt": "$320→$215",
+    "eps": "요지 참조",
+    "why": "배수 할인"
+   },
+   {
+    "broker": "Cantor",
+    "rating": "Overweight 유지(Top Pick 제외)",
+    "pt": "$350→$250",
+    "eps": "미확인→$16.50",
+    "why": "후계 계획 부재 — 2년 실적은 보이나 배수 하락"
+   },
+   {
+    "broker": "Citi",
+    "rating": "Buy 유지",
+    "pt": "$285→$225",
+    "eps": "$15.17→$15.17",
+    "why": "추정 유지, 적용 배수만 19배→15배"
+   },
+   {
+    "broker": "Evercore ISI",
+    "rating": "Outperform→In Line",
+    "pt": "$465→$186",
+    "eps": "미확인(표 손상)",
+    "why": "조사 장기화·2인자 부재, P/E 8배"
+   },
+   {
+    "broker": "Mizuho",
+    "rating": "Outperform 유지",
+    "pt": "$250→$250",
+    "eps": "미확인→$16.07",
+    "why": "공급망 해자 견고, 실적에서 상방"
+   },
+   {
+    "broker": "Oppenheimer",
+    "rating": "→Perform(하향)",
+    "pt": "목표가 철회",
+    "eps": "$16.84→$16.84",
+    "why": "창업자 퇴진은 논지 변경 사건, 인재 이탈 위험"
+   },
+   {
+    "broker": "Raymond James",
+    "rating": "Strong Buy 유지",
+    "pt": "미확인",
+    "eps": "미확인→$16.61",
+    "why": "사업 기초 불변, 승계 계획 부재는 주의"
+   },
+   {
+    "broker": "Stifel",
+    "rating": "Buy 유지",
+    "pt": "$315→$205",
+    "eps": "미확인→$15.65",
+    "why": "실적이 아니라 배수 문제(20배→13배)"
+   },
+   {
+    "broker": "UBS",
+    "rating": "Buy 유지",
+    "pt": "$300→$300",
+    "eps": "$17.16→$17.16",
+    "why": "생태계 자금·조달력·동남아 규제(매출 약 10%) 위험"
+   },
+   {
+    "broker": "William Blair",
+    "rating": "→Market Perform(하향)",
+    "pt": "미제시",
+    "eps": "미확인→약 $17.0",
+    "why": "우회 수출 조사와 얽힌 정책 위험"
+   }
+  ]
+ },
+ "sources": [
+  "NVIDIA, NVIDIA Announces CEO Transition 2026-11-12 — https://www.moomoo.com/news/post/1004449396/press-release-nvidia-announces-ceo-transition",
+  "NVIDIA Board of Directors 성명 2026-11-08 — https://www.globenewswire.com/news-release/2026/11/08/3398017/0/en/statement-from-nvidia-board-of-directors.html",
+  "MarketScreener, NVIDIA draws scrutiny from 3 US Justice Department probes 2026-11-13 — https://www.marketscreener.com/news/nvidia-draws-scrutiny-from-3-us-justice-department-probes-ce785ed9df8df320",
+  "MarketScreener, H200 chips purchased by Chinese university despite US blacklist 2026-11-11 — https://www.marketscreener.com/news/nvidia-h200-chips-gets-purchased-by-chinese-university-despite-us-blacklist-ce785edbda8ef524",
+  "NVIDIA 2분기 FY27 실적 콜 2026-08-26(가이던스·Q&A, Easyconomics 실적 요약)",
+  "Fiscal.ai 세그먼트(NVIDIA 데이터센터)·추정(NVDA·AMD·AVGO·MRVL), 2026-11",
+  "TradingView 시세·재무(2026-11-13 종가)",
+  "Chiip 데이터 허브(GPU 임대 가격·옵션 내재 움직임) 2026-11-14",
+  "Fiscal.ai 2026-11-13 — 비교 기업·추정·5년 분기 배수",
+  "Easyconomics — 애널리스트 등급 변경(11/9~13)·FINRA 공매도 거래 비율"
+ ]
+}
