@@ -12520,7 +12520,29 @@
    "pe_fwd2": 10.28,
    "ev_ebitda_fwd2": 6.54,
    "pe_fwd3": 8.54,
-   "ev_ebitda_fwd3": 5.94
+   "ev_ebitda_fwd3": 5.94,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 13.16,
+     "ev_ebitda_fwd": 7.6
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 17.08,
+     "ev_ebitda_fwd": 9.4
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 13.02,
+     "ev_ebitda_fwd": 7.88
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 11.52,
+     "ev_ebitda_fwd": 7.15
+    }
+   ]
   },
   {
    "ticker": "PUMP",
@@ -12540,7 +12562,29 @@
    "pe_fwd2": 26.9,
    "ev_ebitda_fwd2": 3.03,
    "pe_fwd3": 17.8,
-   "ev_ebitda_fwd3": 2.26
+   "ev_ebitda_fwd3": 2.26,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 5.6
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 60.67,
+     "ev_ebitda_fwd": 7.93
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 81.55,
+     "ev_ebitda_fwd": 6.9
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.61,
+     "ev_ebitda_fwd": 4.23
+    }
+   ]
   },
   {
    "ticker": "PTEN",
@@ -12560,7 +12604,29 @@
    "pe_fwd2": 13.65,
    "ev_ebitda_fwd2": 3.87,
    "pe_fwd3": 9.42,
-   "ev_ebitda_fwd3": 3.53
+   "ev_ebitda_fwd3": 3.53,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 4.56
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 6.26
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 575.47,
+     "ev_ebitda_fwd": 4.82
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 44.23,
+     "ev_ebitda_fwd": 4.91
+    }
+   ]
   },
   {
    "ticker": "ACDC",
@@ -12580,7 +12646,29 @@
    "pe_fwd2": null,
    "ev_ebitda_fwd2": 4.07,
    "pe_fwd3": null,
-   "ev_ebitda_fwd3": 3.62
+   "ev_ebitda_fwd3": 3.62,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 7.97
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 8.03
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 6.65
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 6.21
+    }
+   ]
   },
   {
    "ticker": "SEI",
@@ -12600,7 +12688,29 @@
    "pe_fwd2": null,
    "ev_ebitda_fwd2": 6.05,
    "pe_fwd3": null,
-   "ev_ebitda_fwd3": 4.71
+   "ev_ebitda_fwd3": 4.71,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 33.43,
+     "ev_ebitda_fwd": 7.48
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 42.33,
+     "ev_ebitda_fwd": 9.32
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 71.08,
+     "ev_ebitda_fwd": 13.24
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 27.8,
+     "ev_ebitda_fwd": 7.84
+    }
+   ]
   }
  ],
  "next_event": {
