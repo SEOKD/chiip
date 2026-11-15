@@ -15,6 +15,7 @@
 
 ## phase: write — `ready` 산업마다(한 회차에 1개)
 1. 장부 확인: `py -c "import sys;sys.path.insert(0,'scripts/industry');sys.path.insert(0,'radar');import quarter_frame as Q;print(Q.member_rows('<분기>','<산업>'))"`. 숫자는 장부 계산값만 쓴다.
+1-0. **분기 혼합 점검(2026-11-12 회차에서 발견)**: 장부 `period`는 `sync_view.qlabel`(끝 달 기준)이라 7월 말·8월 초에 끝나는 회계 분기(NVIDIA·Broadcom·Marvell 등)를 3분기로 적는다. 석 달 중 두 달이 든 분기(`industry_segments.cal_quarter`)로는 2분기다. 회원 끝 날짜를 Fiscal.ai로 확인하고, 달력 분기가 다른 회원이 산업 매출의 20%를 넘으면 쓰지 않는다. `--done` 없이 마스터 결정을 기다린다(다른 세대의 분기를 한 결산에 합치지 않는다).
 1-1. **세그먼트 장부(겸업 회사는 사업부만 — 마스터 지시 2026-11-08, ADR-020)**: 산업이 `config/industry_segments.yaml` industry_pools에 있으면
    `py radar/industry_segments.py --plan <분기> <산업>` → 회원마다 Fiscal.ai `company_segments_and_kpis`(지표명은 설정 fiscal 칸)·회사 IR 제품별 비중·TrendForce 공급사 순위 보도자료로
    `[{pool, id, period_end, currency, seg_rev, seg_rev_prev_q, seg_rev_prev_y, company_rev, grade, method, source, vol_chg, price_chg, note}]`를 만들어 `--put <분기> <파일>`.
@@ -36,3 +37,5 @@
 - **노션 IB 자료**(2026-11-08 마스터 지시): datapack을 쓰기 전 `py radar/notion_library.py --industry <산업 키>` — '요지 작성 필요'는 원문을 읽고 자기 말 요지를 `--digest <id> <파일>`로 저장한 뒤, 그 판단·숫자를 수요·시장 규모·반대 검증 절에 반영한다. 조립기가 요지 없는 자료를 만나면 멈춘다.
 
 - **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.
+
+- **Fiscal.ai 1순위**(2026-11-15 마스터 지시 "산업 리포트를 보면 TradingView만 많이 참조했던데 Fiscal.ai도 참조해라"): 비교 기업(comps)의 매출·성장·시가총액·EV/매출·Fwd P/E·Fwd EV/EBITDA·다음 4개 분기 추정·세그먼트는 `scripts/fiscal/templates/industry_comps.js`(execute_code, 3곳씩 차례로)로 받고 출처에 'Fiscal.ai'를 적는다. TradingView는 주가 수익률(1W·1M·2W·연초 대비)·스크리너·Fiscal.ai 미수록 종목(`fiscal: "미수록"`)에만 쓴다. 겸업 노출도·사업군 실적은 Fiscal.ai `company_segments_and_kpis`, 컨센서스·의견 분산은 Fiscal.ai `company_estimates`·`company_analyst_ratings`. 조립기(`scripts/industry/logic.py`)가 Fiscal.ai 출처 없는 comps를 멈춘다.

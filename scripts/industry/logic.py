@@ -120,6 +120,10 @@ def gate(dp, kind, c=None):
     for x in cm:
         if not x.get("name") or not x.get("exposure") or not x.get("source"):
             bad.append(f"comps {x.get('name')}: 이름·노출도·출처 필요")
+        # Fiscal.ai 1순위(2026-11-15 마스터 지시 "TradingView만 많이 참조했던데 Fiscal.ai도 참조해라") — 비교 기업 재무·배수는
+        # scripts/fiscal/templates/industry_comps.js로 받는다. Fiscal.ai에 없는 종목만 fiscal: "미수록"을 적고 다른 원천을 쓴다
+        elif "fiscal" not in str(x.get("source")).lower() and x.get("fiscal") != "미수록":
+            bad.append(f"comps {x.get('name')}: 출처에 Fiscal.ai가 없다 — industry_comps.js로 받거나, 미수록이면 fiscal: \"미수록\"")
     if dp.get("emerging") and len(L.get("roadmap") or []) < 3:
         bad.append("신생 산업(emerging)은 기술 로드맵(roadmap[{date, milestone, who, status, source}]) 3개 이상")
     text = json.dumps({k: v for k, v in dp.items() if k not in ("sources",)}, ensure_ascii=False)

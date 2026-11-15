@@ -46,3 +46,6 @@ datapack에 `logic` 블록 — 한 문장 결론·핵심 논쟁 2개 이상·가
 
 ## 노션 IB 자료·증권사 반응(2026-11-15 마스터 지시)
 `py radar/notion_library.py --industry <산업 키>`(또는 `--need <회사>`)의 요지 있는 자료를 모두 읽는다. **증권사 반응은 몇 곳 중 몇 곳으로**(2026-11-15 마스터 지시 "넓혀 줘" — 11/15 AI 가속기 리포트가 NVIDIA 11/12 보고서 12건 중 2건만 보고 '증권사들은'이라고 썼다): 같은 회사에 같은 사건 뒤 보고서가 여러 건이면 요지 있는 것을 모두 읽고 '증권사 반응' 표(증권사 · 의견 · 목표가 전→후 · 이익 추정 전→후 · 핵심 논리 한 줄)로 묶는다. 본문은 'N곳 중 M곳이 이익 추정을 유지하고 목표가만 내렸다'처럼 분모를 쓴다. 요지가 없는 보고서는 분모에서 빼고 '요지 미작성 K건'을 적는다 — 2~3건으로 '증권사들은'이라고 일반화하지 않는다.
+
+## 데이터 원천
+**Fiscal.ai 1순위**(2026-11-15 마스터 지시 "산업 리포트를 보면 TradingView만 많이 참조했던데 Fiscal.ai도 참조해라"): 비교 기업(comps)의 매출·성장·시가총액·EV/매출·Fwd P/E·Fwd EV/EBITDA·다음 4개 분기 추정·세그먼트는 `scripts/fiscal/templates/industry_comps.js`(execute_code, 3곳씩 차례로)로 받고 출처에 'Fiscal.ai'를 적는다. TradingView는 주가 수익률(1W·1M·2W·연초 대비)·스크리너·Fiscal.ai 미수록 종목(`fiscal: "미수록"`)에만 쓴다. 겸업 노출도·사업군 실적은 Fiscal.ai `company_segments_and_kpis`, 컨센서스·의견 분산은 Fiscal.ai `company_estimates`·`company_analyst_ratings`. 조립기(`scripts/industry/logic.py`)가 Fiscal.ai 출처 없는 comps를 멈춘다.
