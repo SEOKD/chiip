@@ -8,6 +8,7 @@
       py radar/pollers/tg_channels.py --about GE Vernova GEV              # 이름이 나온 글
       py radar/pollers/tg_channels.py --score                             # 수집 점수 10점
       py radar/pollers/tg_channels.py --image <주소>                      # 사진 글을 내려받아 모델이 읽는다
+      py radar/pollers/tg_channels.py --refresh-images [--channel X]      # 만료된 사진 주소를 새로 받아 내려받는다(수집 때는 자동, 2026-11-15)
 """
 import argparse
 import html
@@ -51,12 +52,12 @@ def parse(page, seen=""):
         extra = [html.unescape(x).strip() for x in re.findall(r'(?:link_preview_title|link_preview_description|document_title)[^>]*>([^<]+)', b)]
         if not text and extra:   # 글 없이 링크·첨부만 올린 글
             text = " · ".join(dict.fromkeys(extra))
-        img = re.search(r"message_photo_wrap[^>]*background-image:url\('([^']+)'\)", b)
+        imgs = re.findall(r"message_photo_wrap[^>]*background-image:url\('([^']+)'\)", b)
         fwd = re.search(r'forwarded_from_name[^>]*>(?:<span[^>]*>)?([^<]+)', b)
         link = next((u for u in re.findall(r'href="(https?://[^"]+)"', raw) if "t.me/" not in u), "")
         out.append({"id": int(post.group(2)), "channel": post.group(1), "at": common.iso(datetime.fromisoformat(ts.group(1)).astimezone(common.KST)), "text": text, "url": f"https://t.me/{post.group(1)}/{post.group(2)}",
                     "forwarded_from": fwd_name(b, fwd), "link": html.unescape(link), "media": "photo_wrap" in b or "document_wrap" in b, "seen": seen,
-                    "image": img.group(1) if img else "", "unsupported": "message_media_not_supported" in b})
+                    "image": imgs[0] if imgs else "", "images": imgs, "unsupported": "message_media_not_supported" in b})
     return out
 
 
@@ -94,9 +95,9 @@ def read_post(handle, pid, base, get, seen):
     emb = get(url + "?embed=1")   # 시각·전달 출처·사진은 임베드에 있다(2026-11-04 점검: 번호 읽기 채널의 전달 출처가 비어 있었다)
     ts = re.search(r'<time[^>]*datetime="([^"]+)"', page) or re.search(r'<time[^>]*datetime="([^"]+)"', emb)
     at = common.iso(datetime.fromisoformat(ts.group(1)).astimezone(common.KST)) if ts else seen
-    img = re.search(r"message_photo_wrap[^>]*background-image:url\('([^']+)'\)", emb)
+    imgs = re.findall(r"message_photo_wrap[^>]*background-image:url\('([^']+)'\)", emb)
     return {"id": pid, "channel": handle, "at": at, "text": text, "url": url, "forwarded_from": fwd_name(emb), "link": "", "media": "photo_wrap" in emb or "document_wrap" in emb, "seen": seen,
-            "image": img.group(1) if img else "", "unsupported": "message_media_not_supported" in emb}
+            "image": imgs[0] if imgs else "", "images": imgs, "unsupported": "message_media_not_supported" in emb}
 
 
 def latest_id(handle, base, get, pause=0.3, top=200000):
@@ -129,6 +130,7 @@ def collect_by_id(handle, get=fetch, pause=0.5, now=None, tail=30, misses=8, ste
             new += 1
         i += 1
         time.sleep(pause)
+    keep_images(posts, now)
     save(handle, posts)
     return new
 
@@ -149,6 +151,66 @@ def save(handle, posts):
     path_of(handle).write_text("".join(json.dumps(posts[k], ensure_ascii=False) + "\n" for k in sorted(posts)), encoding="utf-8")
 
 
+IMG_KEEP_DAYS = 3   # 사진 주소(telesco.pe)는 며칠 안에 만료된다 — 이 안의 글만 내려받기를 시도한다
+IMG_PER_RUN = 40
+
+
+def keep_images(posts, now=None, get_bytes=None, limit=IMG_PER_RUN):
+    """사진을 수집 때 바로 내려받는다(2026-11-15 점검: '꿈을 담은 단지'(dykim0210)는 글 91건 중 48건이 차트·표 사진인데
+    주소만 저장했고, 11/1 주소가 이미 404 — 사진 내용이 영구 유실됐다). 파일은 radar/inbox/tg_channels/images(git 제외), 글에는 image_files.
+    → 받은 장 수"""
+    now = now or common.now_kst()
+    cut = common.iso(now - timedelta(days=IMG_KEEP_DAYS))
+    get_bytes = get_bytes or (lambda u: common.http_get(u, timeout=25))
+    n = 0
+    for p in sorted(posts.values(), key=lambda x: -x["id"]):
+        urls = p.get("images") or ([p["image"]] if p.get("image") else [])
+        if not urls or p.get("image_files") or p.get("at", "") < cut or n >= limit:
+            continue
+        files = []
+        for u in urls:
+            try:
+                f = DIR / "images" / f"{p['channel']}_{p['id']}_{len(files) + 1}.jpg"
+                f.parent.mkdir(parents=True, exist_ok=True)
+                f.write_bytes(get_bytes(u))
+                files.append(f.relative_to(common.ROOT).as_posix())
+                n += 1
+            except Exception:
+                break
+        if files and len(files) == len(urls):
+            p["image_files"] = files
+    return n
+
+
+def refresh_images(handle, get=fetch, pages=15, pause=1.0):
+    """지난 글의 사진 주소를 미리보기에서 새로 받아 내려받는다(만료된 주소 복구) → 받은 장 수"""
+    posts = load(handle)
+    if not posts:
+        return 0
+    url, low_known = f"https://t.me/s/{handle}", min(posts)
+    for _ in range(pages):
+        page = parse(get(url))
+        if not page:
+            break
+        for x in page:
+            if x["id"] in posts and x.get("images") and not posts[x["id"]].get("image_files"):
+                posts[x["id"]].update(image=x["image"], images=x["images"])
+        low = min(x["id"] for x in page)
+        if low <= low_known:
+            break
+        url = f"https://t.me/s/{handle}?before={low}"
+        time.sleep(pause)
+    cut_days = (common.now_kst() - datetime.fromisoformat(min(p["at"] for p in posts.values()))).days + 1
+    global IMG_KEEP_DAYS
+    keep, IMG_KEEP_DAYS = IMG_KEEP_DAYS, cut_days
+    try:
+        n = keep_images(posts, limit=10 ** 6)
+    finally:
+        IMG_KEEP_DAYS = keep
+    save(handle, posts)
+    return n
+
+
 def collect(handle, get=fetch, pause=1.0, now=None):
     """새 글 수. 고쳐진 글은 덮어쓰되 처음 본 시각은 지킨다. 미리보기가 없으면 None"""
     now = now or common.now_kst()
@@ -166,6 +228,8 @@ def collect(handle, get=fetch, pause=1.0, now=None):
             if p["id"] in posts:
                 old = posts[p["id"]]
                 p["seen"] = old.get("seen") or p["seen"]
+                if old.get("image_files"):
+                    p["image_files"] = old["image_files"]
                 if not p["text"]:   # 글별 페이지에서 채운 본문을 빈 목록으로 덮지 않는다
                     p["text"], p["no_text"] = old.get("text", ""), old.get("no_text", False)
             else:
@@ -177,6 +241,7 @@ def collect(handle, get=fetch, pause=1.0, now=None):
         url = f"https://t.me/s/{handle}?before={low}"
         time.sleep(pause)
     fill_unsupported(handle, posts, get)
+    keep_images(posts, now)
     save(handle, posts)
     return new
 
@@ -222,7 +287,7 @@ def score(now=None):
     fresh = 2.0 if age <= 10 else 1.5 if age <= 20 else 1.0 if age <= 60 else 0.0
     cut = common.iso(now - timedelta(days=7))
     week = [p for r in rows.values() for p in r.values() if p["at"] >= cut]
-    body = sum(1 for p in week if p["text"] or p.get("image") or p.get("no_text")) / max(len(week), 1)   # 사진은 주소를 쥐고 있으면 필요할 때 읽을 수 있다
+    body = sum(1 for p in week if (p["text"] and not (p.get("image") and not p.get("image_files"))) or p.get("image_files") or (p.get("no_text") and not p.get("image"))) / max(len(week), 1)   # 사진 주소는 며칠 뒤 만료된다 — 내려받은 파일이 있어야 본문으로 센다(2026-11-15)
     cut2 = common.iso(now - timedelta(hours=24))
     mark = common.load_state("pulse", {}).get("tg_start") or cut2
     lag = common.iso(now - timedelta(minutes=15))   # 다음 Pulse 회차를 기다리는 글은 아직 판정하지 않는다
@@ -230,7 +295,7 @@ def score(now=None):
     sent = "".join(open(f, encoding="utf-8").read() for f in sorted(glob.glob(str(common.ROOT / "radar" / "pulse" / "*.json")))[-300:])   # 24시간 창을 덮는다(주중 10분 회차면 하루 144개, 60개는 7시간뿐이었다)
     fed = sum(1 for p in recent if p["url"] in sent) / len(recent) if recent else 1   # 새 글이 없는 시간대는 감점하지 않는다
     axes = {"채널": round(2 * live / len(rows), 1), "신선도": fresh, "본문": round(2 * body, 1), "오류": 2.0 if not st.get("fails") else 1.0, "Pulse 전달": round(2 * fed, 1)}
-    return round(sum(axes.values()), 1), axes, {"수집 후 분": round(age, 1), "7일 글": len(week), "글자 없음(사진 포함)": sum(1 for p in week if not p["text"]), "사진 주소도 없음": sum(1 for p in week if not p["text"] and not p.get("image")), "24시간 새 글": len(recent)}
+    return round(sum(axes.values()), 1), axes, {"수집 후 분": round(age, 1), "7일 글": len(week), "글자 없음(사진 포함)": sum(1 for p in week if not p["text"]), "사진 주소도 없음": sum(1 for p in week if not p["text"] and not p.get("image")), "사진 못 받음": sum(1 for p in week if p.get("image") and not p.get("image_files")), "24시간 새 글": len(recent)}
 
 
 def save_image(url):
@@ -301,7 +366,14 @@ def main(argv):
     ap.add_argument("--top", type=int, default=20)
     ap.add_argument("--score", action="store_true")
     ap.add_argument("--image")
+    ap.add_argument("--refresh-images", action="store_true", help="지난 글의 만료된 사진 주소를 새로 받아 내려받는다(--channel로 한 곳만)")
     a = ap.parse_args(argv)
+    if a.refresh_images:
+        for c in config()["channels"]:
+            if c.get("mode") == "by_id" or (a.channel and c["handle"] != a.channel):
+                continue
+            print(c["handle"], refresh_images(c["handle"]))
+        return 0
     if a.image:
         print(save_image(a.image))
     elif a.score:

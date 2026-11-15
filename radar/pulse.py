@@ -776,10 +776,11 @@ def fetch_telegram(st):
         text = r["text"]
         if not tg.relevant(r, cfg, TECH_RE):
             if text or r.get("image"):
-                other.append({"channel": r["channel"], "at": r["at"][:16], "text": text[:100] or "[사진]", "url": r["url"], "image": r.get("image") or ""})
+                other.append({"channel": r["channel"], "at": r["at"][:16], "text": text[:100] or "[사진]", "url": r["url"], "image": r.get("image") or "", "image_files": r.get("image_files") or []})
             continue
         out.append({"source_id": f"src-tg-{r['channel']}", "source_class": "텔레그램", "url": r["url"], "title": text.split(chr(10))[0][:120], "published_at": r["at"], "detected_at": r.get("seen"),
-                    "snippet": text[:600], "entities_matched": common.match_entities(text), "publisher": r["channel"], "also": r.get("also"), "forwarded_from": r.get("forwarded_from"), "link": r.get("link")})
+                    "snippet": text[:600], "entities_matched": common.match_entities(text), "publisher": r["channel"], "also": r.get("also"), "forwarded_from": r.get("forwarded_from"), "link": r.get("link"),
+                    "image_files": r.get("image_files") or []})   # 차트·표 사진은 수집 때 내려받은 파일을 Read로 본다(2026-11-15)
     out.sort(key=lambda x: -len(x["entities_matched"]))
     for x in out[TOP["텔레그램"]:]:   # 회차 상한을 넘은 글도 버리지 않고 목록으로 넘긴다
         other.append({"channel": x["publisher"], "at": x["published_at"][:16], "text": x["snippet"][:100], "url": x["url"]})

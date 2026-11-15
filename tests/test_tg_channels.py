@@ -101,3 +101,29 @@ class TestChannels(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+T = tg
+
+
+class TestKeepImages(unittest.TestCase):
+    def test_downloads_album_and_marks_files(self):
+        import tempfile
+        from pathlib import Path as _P
+        orig = T.DIR
+        T.DIR = _P(tempfile.mkdtemp())
+        try:
+            now = T.common.now_kst()
+            posts = {5: {"id": 5, "channel": "c", "at": T.common.iso(now), "image": "u1", "images": ["u1", "u2"]},
+                     4: {"id": 4, "channel": "c", "at": "2000-01-01T00:00:00+09:00", "image": "u0", "images": ["u0"]}}
+            orig_root = T.common.ROOT
+            T.common.ROOT = T.DIR
+            try:
+                n = T.keep_images(posts, now, get_bytes=lambda u: b"jpg")
+            finally:
+                T.common.ROOT = orig_root
+            self.assertEqual(n, 2)
+            self.assertEqual(len(posts[5]["image_files"]), 2)
+            self.assertNotIn("image_files", posts[4])   # 만료 창 밖은 시도하지 않는다
+        finally:
+            T.DIR = orig
