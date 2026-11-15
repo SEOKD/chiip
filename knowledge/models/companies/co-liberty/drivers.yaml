@@ -1,0 +1,110 @@
+auto: true
+id: co-liberty
+name: Liberty Energy
+ticker: LBRT
+unit: B$
+unit_usd: 1000000000.0
+industry: oilfield_services
+region_mix:
+  US: 0.95
+  ROW: 0.05
+tax: 0.24
+horizon: 10
+as_of: '2026-11-15'
+market:
+  date: '2026-11-15'
+  price: 13.06
+  shares: 0.166991
+  net_debt: 1.484561
+  source: 가격 = 2026-11-13 종가 $13.06(TradingView NYSE:LBRT) · 주식 수 163,191,416(10-Q
+    표지 2026-10-19, 9/30 가중평균 기본 주식과 같음) · 현금 $119.0M · 차입 = 전환사채·기간대출 $1,290.6M +
+    리스 $313.0M(유동 $106.0M + 비유동 $206.9M)(3Q 10-Q 재무상태표 2026-09-30)
+rev0: 4.566
+ic0: 3.405259
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.0841
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.014
+      target: 0.11
+      year_target: 5
+      lr: 0.07
+      lam: 0.35
+      anchors:
+      - 0.0297
+      - 0.0676
+    s2c: 1.307
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.2046
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.014
+      target: 0.1368
+      year_target: 5
+      lr: 0.07
+      lam: 0.25
+      anchors:
+      - 0.0297
+      - 0.0676
+    s2c: 1.503
+  bear:
+    prob: 0.35
+    growth:
+      start: -0.0364
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.014
+      target: 0.0832
+      year_target: 5
+      lr: 0.07
+      lam: 0.5
+      anchors:
+      - 0.0297
+      - 0.0676
+    s2c: 1.111
+mc:
+  sigma_growth: 0.0602
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 4.566
+  growth: 컨센서스 1년차 8.4%, 2년차 9.1%
+  margin: 1~2년차 컨센서스 3.0%, 6.8% 고정 → 목표 11%(5년차, 덮어쓰기) → 장기 수렴 7%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.307
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -3.6%~20.5%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} → 모델 조정 {''bear'': 0.35,
+    ''base'': 0.45, ''bull'': 0.2}(프랙 본업은 2027 가격 인상 쪽으로 돌았지만 TTM 영업이익률 1.7%로 얇고,
+    전력은 첫 ESA(500MW) 서명 전이다. 3GW 전체에 CAPEX $5~6B가 필요하고 레버리지 약정을 4.5배로 완화했다 — 자금 경로가
+    확인되기 전까지 약세 쪽에 무게) — 다음 해 매출 성장 분포로 계산 — 약세 +2.4% 아래·강세 +14.4% 위 확률. 내부 관점(컨센서스
+    +8.4%, σ 11.1%: 범위 24.1% ÷ d2(14) × 1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 영업이익률 11%(5년차): 2023 프랙 호황 실적 약 16%(영업이익 $761M/매출 $4.75B)와 2025~26
+    저점 1~2% 사이. 전력은 15년 계약·비레버리지 IRR 10%대 후반 목표(콜)라 전력 비중이 커질수록 이익률이 오른다 — FY2028
+    컨센서스 EBIT 이익률 6.8%를 지나 11%로 수렴하는 자체 가정(근거 중간)'
+  shares: '완전 희석 = 기본 0.163191416(2026-09-30) + 옵션·RSU·워런트·전환 0.0038 — 3Q 10-Q 주석:
+    미가득 RSU 3,167,291주(9/30), RSU·PSU 합 약 3.8M주(3Q 희'
+notes:
+- 자동 생성(build_drivers) 2026-11-15 — 데이터 묶음 2026-11-15
+- '어닝콜 위험: 첫 ESA가 12월을 넘길 위험(지역 반발)'
+- '어닝콜 위험: 프로젝트 금융 종결 8주~4개월'
+- '어닝콜 위험: 노동·운송비 인플레이션'
+evidence:
+- 3Q26 10-Q(SEC, 2026-10-22) https://www.sec.gov/Archives/edgar/data/1694028/000169402826000062/lbrt-20260930.htm
+- 3Q26 실적 보도자료(8-K EX-99.1, Item 2.02, 2026-10-21) https://www.sec.gov/Archives/edgar/data/0001694028/000169402826000055/q32026-earningsrelease.htm
+- FY2025 10-K(SEC, 2026-02-02) https://www.sec.gov/Archives/edgar/data/1694028/000169402826000006/lbrt-20251231.htm
+- 3Q26 어닝콜(2026-10-22)·2Q26 어닝콜(2026-07-23)
+- 2031 전환사채 8-K(2026-02-06)·2032 전환사채 8-K(2026-03-30)
+- 신용 약정 2차 수정(10-Q Note 7, 2026-10-20)
+- Fiscal.ai MCP 2026-11-15 — 표준화 손익·현금흐름·재무상태표, 자체 추정, Forward 배수, 13F
+- TradingView NYSE:LBRT 일봉(2026-11-13까지)
+- Easyconomics 실적 정리·변화 레이더(2026-10-21), company_profile(yfinance)
+- Quantral LBRT(2026-11-15)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
