@@ -142,6 +142,36 @@
     "est": null,
     "est_src": null,
     "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 12689,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "TradingView 분기 재무(2026-11-15)"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 19198,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "TradingView 분기 재무(2026-11-15)"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 18216,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "TradingView 분기 재무(2026-11-15)"
    }
   ],
   "ratings": {
@@ -310,7 +340,25 @@
    "growth": 0.062,
    "pe_fwd": 11.9,
    "ntm_ebit_margin": 0.0575,
-   "ntm_growth": 0.06
+   "ntm_growth": 0.06,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 15.46
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 12.5
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 10.34
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 13.86
+    }
+   ]
   },
   {
    "ticker": "오리온",
@@ -325,7 +373,25 @@
    "growth": 0.113,
    "pe_fwd": 9.6,
    "ntm_ebit_margin": 0.1687,
-   "ntm_growth": 0.08
+   "ntm_growth": 0.08,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 10.92
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 12.56
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 12.44
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": null
+    }
+   ]
   },
   {
    "ticker": "Nissin Foods",
@@ -340,7 +406,25 @@
    "growth": 0.067,
    "pe_fwd": 18.0,
    "ntm_ebit_margin": 0.0613,
-   "ntm_growth": 0.05
+   "ntm_growth": 0.05,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 16.83
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 19.23
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 17.0
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 18.48
+    }
+   ]
   },
   {
    "ticker": "Toyo Suisan",
@@ -355,7 +439,25 @@
    "growth": 0.071,
    "pe_fwd": 13.0,
    "ntm_ebit_margin": 0.1656,
-   "ntm_growth": 0.05
+   "ntm_growth": 0.05,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 16.02
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 15.42
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 13.89
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 12.55
+    }
+   ]
   }
  ],
  "multiples_now": {
@@ -391,7 +493,26 @@
   },
   "source": "Fwd 1Y EPS = 4Q26 약 ₩17,000 + FY2027 ₩86,000의 3/4. Fwd 2Y = FY2027 1/4 + FY2028 ₩100,000 3/4, Fwd 3Y = 외삽. 공개 FY2027·28 EPS 컨센서스는 보도 인용에서 역산한 추정"
  },
- "history": {},
+ "history": {
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 23.63
+   },
+   {
+    "date": "2026-03-31",
+    "value": 20.69
+   },
+   {
+    "date": "2026-06-30",
+    "value": 17.25
+   },
+   {
+    "date": "2026-09-30",
+    "value": 19.54
+   }
+  ]
+ },
  "overrides": {
   "margin_base": {
    "target": 0.21,
@@ -2084,5 +2205,6 @@
    "reason": "이익 성장과 배수 축소는 숫자로 확인됐지만, 캐파 증가가 순증분 매출이 되는지는 2027년 상반기 전에는 가릴 수 없다. 동종 배수로는 목표주가 업사이드가 작다.",
    "dissent": "Buy 한 표 — 1년 동안 이익이 크게 늘었는데 주가가 내려 배수가 동종에 가까워졌다"
   }
- }
+ },
+ "history_note": "pe_ttm = 분기말 종가 ÷ 그 분기까지 4개 분기 EPS 합(TradingView 분기 재무·월봉, 2026-11-15). 한국·일본 상장은 선행 배수 이력 원천이 없어 후행 P/E로 추이를 본다. 3Q26 삼양식품 EPS = 잠정 순이익 ÷ 주식 수"
 }
