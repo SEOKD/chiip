@@ -1,0 +1,97 @@
+auto: true
+id: jp-seikogroup
+name: Seiko Group
+ticker: '8050'
+unit: BJPY
+unit_usd: 6353240.0
+industry: electronics
+region_mix:
+  JP: 0.55
+  US: 0.15
+  EU: 0.1
+  ASIA: 0.2
+tax: 0.31
+horizon: 10
+as_of: '2026-11-15'
+market:
+  date: '2026-11-15'
+  price: 8220
+  shares: 0.081376
+  net_debt: 57.884
+  source: 가격 = TradingView 11/13 종가 ¥8,220. 주식 = 유통 주식 81,375,710주(Easyconomics 경유
+    yfinance 개요, 2026-04-01 1:2 분할 뒤). TradingView 시가총액 ¥679.4B는 약 8,265만 주 기준이라 자기주식
+    처리 차이로 보인다(결산단신 미대조). 현금 ¥51.0B(TradingView 9/30 분기), 유이자부채 ¥108.9B·순유이자부채 ¥57.9B(2Q
+    설명자료 9/30)
+rev0: 390.0
+ic0: 259.0
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.06
+      end: 0.02
+      decay: 0.35
+    margin:
+      m0: 0.121
+      target: 0.125
+      year_target: 2
+      lr: 0.15
+      lam: 0.4
+    s2c: 1.4
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.084
+      end: 0.025
+      decay: 0.39999999999999997
+    margin:
+      m0: 0.121
+      target: 0.145
+      year_target: 2
+      lr: 0.15
+      lam: 0.25
+    s2c: 1.61
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.036
+      end: 0.015
+      decay: 0.3
+    margin:
+      m0: 0.121
+      target: 0.105
+      year_target: 2
+      lr: 0.15
+      lam: 0.5
+    s2c: 1.19
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [390.0, 390.0] (2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView
+    문서 요약) https://www.seiko.co.jp/ir/ · 1Q FY3/27 결산설명자료(2026-08-06, Quartr 경유 TradingView
+    문서 요약) https://www.seiko.co.jp/ir/)
+  growth: 컨센서스 없음 — 기본 10% 가정(약함) → 덮어쓰기 1년차 6.0%
+  margin: 출발 12% → 목표 12%(2년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.434 → 덮어쓰기 1.4
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '근거 계산 {''bear'': 0.45, ''base'': 0.1, ''bull'': 0.45} → 모델 조정 {''bear'':
+    0.35, ''base'': 0.3, ''bull'': 0.35}(사상 최고 실적·상향 뒤라 이익률 정점 위험을 더 무겁게 본다) — 다음
+    해 매출 성장 분포로 계산 — 약세 +4.8% 아래·강세 +7.2% 위 확률. 내부 관점(컨센서스 +6.0%, σ 6.5%: 추정 범위 없음
+    — 5% + 0.25 × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: FY3/27 매출 +16%(가이던스 ¥390B, FY3/26 ¥335.7B)는 미국 시계 급증·엔화 약세가 겹친 해라 다음
+    해 출발 성장은 6%로 낮춘다. 장기 2%(일본 명목). 이익률은 1H 16.0%가 계절 강세라 통기 가이던스 12.1%와 TTM 12.2%
+    근처 12.5%를 목표로. 매출/투하자본 TTM 1.43
+  shares: 완전 희석 = 기본 0.0813757(2026-11-13) + 옵션·RSU·워런트·전환 0.0000 — TradingView 희석
+    EPS TTM ¥391.39 = 기본 EPS ¥391.39 — 희석 증권 영향 없
+notes:
+- 자동 생성(build_drivers) 2026-11-15 — 데이터 묶음 2026-11-15
+- '어닝콜 위험: 환율 — 1H 평균 환율이 계획보다 약세(¥159.5 vs ¥155), 엔화 강세 시 달러 ¥1당 매출 약 ¥0.26B 감소'
+- '어닝콜 위험: 미국 일부 제품 품귀(공급 부족) 속 수요 — 공급 제약'
+- '어닝콜 위험: 유럽 경기 불확실'
+evidence:
+- '2Q FY3/27 결산설명자료(2026-11-10): https://www.seiko.co.jp/ir/'
+- '1Q FY3/27 결산설명자료(2026-08-06): https://www.seiko.co.jp/ir/'
+- '시세·분기 재무·동종·의견(TradingView): https://www.tradingview.com/symbols/TSE-8050/'
