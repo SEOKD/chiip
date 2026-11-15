@@ -232,6 +232,11 @@ def _entry_gate(today):
     return gate
 
 
+def entry_ok(iid, ticker, today=None):
+    """실적 점검 경로(earnings_sweep.finalize)도 같은 편입 심사를 거치게(2026-11-16)"""
+    return _entry_gate(today or date.today().isoformat())(iid, ticker)
+
+
 def run(dry=False, today=None, entry_gate=None):
     c = yaml.safe_load(CFG.read_text(encoding="utf-8"))
     text = PORT.read_text(encoding="utf-8")

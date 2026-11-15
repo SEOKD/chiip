@@ -2833,7 +2833,7 @@ params:
 - id: prm-watchlist-add-alpha-min
   model: portfolio.watchlist
   binding: config/watchlist.yaml#add.alpha_min
-  value: 7.0
+  value: 6.0
   unit: 점
   status: prior
   prior:

@@ -255,6 +255,10 @@ def finalize(tag, floor, today=None, dry=False):
                     "components": (al.get(k) or {}).get("components"), "pass": a is not None and a >= floor})
     res.sort(key=lambda x: -(x["alpha"] or -1))
     passed = [x for x in res if x["pass"]]
+    if not dry:   # 편입 심사(watch_review 기준) 통과분만 — 실적 점검 경로도 같은 관문(2026-11-16 마스터 "6점으로 기준을 잡아라" 점검 때 우회 발견)
+        gated = [x for x in passed if watchlist.entry_ok(x['id'], x['ticker'])[0]]
+        d.setdefault('held_back', [x['ticker'] for x in passed if x not in gated])
+        passed = gated
     added = [] if dry else watchlist.add_sweep(passed, floor, c["watchlist"]["added_by"], tag, today)
     queued = [] if dry or not c.get("report_queue") else queue(passed, tag)
     d["result"] = {"as_of": today, "floor": floor, "judged": sum(1 for x in res if x["alpha"] is not None), "rows": res,
