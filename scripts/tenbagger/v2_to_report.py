@@ -167,6 +167,20 @@ def build(entity, draws=3000):
     return {"h2": "밸류에이션 — 맥킨지·IB 방식", "blocks": blocks}, r
 
 
+def kr_call_gap(dp):
+    """한국 상장 종목은 어닝콜 스크립트를 데이터 파이프라인(텔레그램 채널 포함)으로 입수했을 때만 리포트로 쓴다(마스터 지시 2026-11-15).
+    datapack call.script = {"kind": "전문|녹취 요약|Q&A 정리", "source": "어디서(채널·URL·Fiscal.ai 등)", "date": "YYYY-MM-DD"} — IR 발표자료(PT)만으로는 안 된다. 없으면 이유를 돌려준다"""
+    tk = str((dp or {}).get("ticker") or "")
+    kr = tk.isdigit() and len(tk) == 6 or str((dp or {}).get("currency_symbol") or "").strip() == "₩"
+    if not kr:
+        return None
+    sc = ((dp or {}).get("call") or {}).get("script") or {}
+    if sc.get("source") and sc.get("kind") and sc.get("date"):
+        return None
+    return ("한국 종목인데 어닝콜 스크립트를 입수하지 못했다 — 리포트로 쓰지 않는다(마스터 지시 2026-11-15). "
+            "텔레그램 채널(radar/pollers/tg_channels.py --about)·Fiscal.ai 전문·회사 녹취에서 찾으면 datapack call.script{kind, source, date}에 적고, 없으면 이 종목을 건너뛰고 다음 후보를 고른다")
+
+
 def earnings_section(entity, r):
     """⑧ 어닝콜 변화의 가치 영향·실적 vs 컨센서스·EPS 리비전·멀티플 프리미엄(2026-10-29 마스터 지시) — scripts/tenbagger/earnings_view.py"""
     dp_path = ROOT / "knowledge" / "models" / "companies" / entity / "datapack.json"
@@ -351,6 +365,9 @@ def main(argv):
             left = nlib.unread(lib_rows, a.entity, lib_cfg)
             if left:
                 raise SystemExit("노션 자료의 요지가 없다(마스터 지시 2026-11-01) — py radar/notion_library.py --need " + a.entity + " 뒤 요지를 쓴다: " + ", ".join(r["name"] for r in left))
+            kr_gap = kr_call_gap(dp)
+            if kr_gap:
+                raise SystemExit(kr_gap)
             import gather   # 종목별 필수 원천(마스터 지시 2026-11-08) — 돌리지 않은 원천이 있으면 멈춘다
             gap = gather.missing(a.entity)
             if gap:
