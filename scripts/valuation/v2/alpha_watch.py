@@ -288,15 +288,67 @@ def reason_label(x):
     return x
 
 
+JUDG = ROOT / "knowledge" / "models" / "alpha" / "judgments"
+COMP_KO = {"upside": "상방 여지", "gap": "기대 괴리", "bottleneck": "병목 노출", "asymmetry": "비대칭", "attention": "관심 급증", "edge_struct": "구조적 우위"}
+# 판단 이유·근거 문구 → 원인 분류(처음 맞는 것). 마스터 지시 2026-11-15 — 컨센서스·IB 커버리지·실적·보도자료·모델 변화를 밝힌다
+CAUSES = [("Fiscal.ai 컨센서스·주가 스냅숏 갱신", r"규칙 보조|snapshots/\S*fiscal"),
+          ("판단 틀 변경(SemiAnalysis 렌즈)", r"SA L\d"),
+          ("IB 커버리지", r"목표가 (상향|하향|변경)|커버리지 개시|분석 개시|Overweight|Neutral 개시|Outperform|Underweight|ib_actions"),
+          ("실적", r"8-K|EX-99|10-Q|가이던스|어닝콜|EPS 서프라이즈|분기 실적"),
+          ("보도자료", r"보도자료|Business Wire|PR Newswire|GlobeNewswire"),
+          ("컨센서스 변화", r"컨센서스|추정 (상향|하향|변화)|Zacks"),
+          ("주가 변화", r"주가|고점|낙폭|52주")]
+
+
+def why_changed(eid, alpha_row=None, n=2):
+    """점수를 움직인 요소 n개와 원인 — '기대 괴리 5→6(주가 변화: 52주 고점의 92%…)'. 바뀐 요소가 없으면 모델 가중치 변화로 본다"""
+    if not eid or not JUDG.exists():
+        return ""
+    import csv as _csv
+    hist = {}
+    for f in sorted(JUDG.glob("*.csv")):
+        try:
+            with f.open(encoding="utf-8", newline="") as fh:
+                for r in _csv.DictReader(fh):
+                    if r.get("id") != eid or not r.get("component"):
+                        continue
+                    try:
+                        v = float(r["score"])
+                    except (TypeError, ValueError):
+                        continue
+                    h = hist.setdefault(r["component"], [])
+                    if not h or h[-1]["v"] != v:
+                        h.append({"v": v, "why": r.get("reason") or "", "ev": r.get("evidence") or "", "day": f.stem[:8]})
+        except OSError:
+            continue
+    w = {"upside": 0.30, "gap": 0.30, "bottleneck": 0.20, "asymmetry": 0.20, "attention": 0.10}
+    moved = [(k, h[-2], h[-1]) for k, h in hist.items() if len(h) >= 2 and k in w]
+    if not moved:
+        return "판단 요소는 그대로 — 모델(가중치·요소 구성) 변경" if hist else ""
+    moved.sort(key=lambda m: -abs(m[2]["v"] - m[1]["v"]) * w.get(m[0], 0.1))
+    out = []
+    for k, a, b in moved[:n]:
+        text = f"{b['why']} {b['ev']}" if re.search(r"규칙 보조|snapshots", b["ev"] + b["why"]) else b["why"]   # 근거 칸의 옛 출처 이름(예: '실적표')에 끌려가지 않게
+        cause = next((c for c, pat in CAUSES if re.search(pat, text)), "모델 재판단(새 자료 표시 없음)")
+        gist = re.sub(r"^1차 판정\([^)]*\):\s*", "", b["why"]).split(" — ")[0].split(". ")[0][:40]
+        out.append(f"{COMP_KO.get(k, k)} {a['v']:g}→{b['v']:g}({cause}: {gist})")
+    return " · ".join(out)
+
+
 def reason_note(x, name, ref, alpha_row, use_model):
     """근거 줄 아래 '→ …' 풀이. 자료면 item_notes(본문을 읽고 모델 40자), 알파 진입·실적일은 결정론 문구"""
     if x.startswith("알파 ") and "기준 진입" in x:
         # 마스터 지시 2026-11-15 "문구 고쳐줘" — '판단 파일 재산정'이 내부 용어라 무슨 일인지 바로 읽히게
+        # + "왜 점수 변화가 생겼는지도(컨센서스·IB 커버리지·실적·보도자료·모델 변화) 명시" → why_changed()
         d = str((alpha_row or {}).get("scored_on") or "")[:8]
         when = f"({int(d[4:6])}/{int(d[6:8])})" if len(d) == 8 and d.isdigit() else ""
         tot = (alpha_row or {}).get("total")
-        to = f" 점수가 {tot:.1f}로 올라" if isinstance(tot, (int, float)) else ""
-        return f"→ 주간 알파 재채점{when}에서{to} 기준 5.0을 처음 넘었다 — 새 뉴스·공시가 아니라 점수 변화"
+        if isinstance(tot, (int, float)):
+            to = f" 점수가 {tot:.1f}점으로 올라 기준 5.0을 처음 넘었다" if tot >= 5.0 else f" 점수가 {tot:.1f}점으로 바뀌었다(기준 5.0 아래)"
+        else:
+            to = " 점수가 바뀌었다"
+        why = why_changed((alpha_row or {}).get("id"), alpha_row)
+        return f"→ 주간 알파 재채점{when}에서{to} — 새 뉴스·공시가 아니라 점수 변화." + (f" 왜: {why}" if why else "")
     m = re.match(r"실적 발표\((.*)\)", x)
     if m:
         return f"→ 실적 발표일({m[1]}) — 숫자가 동인(매출·이익 가정)을 바꿀 수 있어 다시 계산"
@@ -465,6 +517,8 @@ def narrative_block(eid, today=None):
 
 
 def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None, refs=None, alpha_row=None):
+    if alpha_row is not None:
+        alpha_row = {**alpha_row, "id": eid}   # 점수 변화 원인 풀이(why_changed)용
     import run as v2run
     r = v2run.evaluate(eid, c_all["decision"]["watch_draws"])
     biz, good = biz_line(eid)
