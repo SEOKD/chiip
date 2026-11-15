@@ -12,6 +12,7 @@
       py scripts/quantral/weekly.py --put <stories.json> <signals.json> <YYYY-Www>
             stories.json = get_stories(week=...) 응답 그대로, signals.json = {"TICKER": get_company_signals 응답의 signals 목록, ...}
             → outputs/quantral/<주차>_data.json (순위 상위 TOP)
+      py scripts/quantral/weekly.py --reads <reads.json> <YYYY-Www>   # 이야기별 근거 글 채널별 읽은 수(get_story를 끝까지) → data
       py scripts/quantral/weekly.py --render <YYYY-Www>        # <주차>_report.json(모델 글) + _data.json → .md·.html
 """
 import html
@@ -55,7 +56,7 @@ def build(stories, signals, week, monday):
                 continue
             r = rows.setdefault(t, {"ticker": t, "name": c.get("name", t), "posts": 0, "stories": []})
             r["posts"] += int(s.get("postCount") or 0)
-            r["stories"].append({"headline": s.get("headline", ""), "kind": s.get("kind", ""), "posts": int(s.get("postCount") or 0)})
+            r["stories"].append({"id": s.get("id"), "headline": s.get("headline", ""), "kind": s.get("kind", ""), "posts": int(s.get("postCount") or 0)})
     for t, r in rows.items():
         sig = [x for x in (signals.get(t) or []) if _in_week(x.get("detectedAt") or x.get("publishedAt") or x.get("date") or "", monday)]
         mix = {}
@@ -86,6 +87,95 @@ def put(stories_path, signals_path, week):
     return d
 
 
+# 근거 글 읽기(2026-11-15 마스터 지시 "Quantral에서 집계하는 X, 서브스택, 레딧의 글을 최대한 참조해 내러티브를 설명하도록 하라")
+# 모델이 get_story(id)를 nextCursor가 null이 될 때까지(상한 READ_CAP건) 넘기며 근거 글을 읽고, 채널별 읽은 수만 넘긴다 — 본문·작성자는 저장하지 않는다(ADR-011).
+READ_CAP = 200          # 이야기 하나에서 읽을 글 상한
+MIN_POINTS = 3          # 내러티브 묶음·종목 노트마다 근거 논지 최소 개수
+STANCES = ("강세", "약세", "중립")
+CH_KEYS = ("X", "Reddit", "Substack", "기타")
+
+
+def put_reads(reads_path, week):
+    """reads.json = {"<story id>": {"X": n, "Reddit": n, "Substack": n, "기타": n, "pages_done": true|false}} → data에 합친다"""
+    f = OUT / f"{week}_data.json"
+    d = json.loads(f.read_text(encoding="utf-8"))
+    d["reads"] = {str(k): v for k, v in json.loads(Path(reads_path).read_text(encoding="utf-8")).items()}
+    f.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    return d["reads"]
+
+
+def _channels(reads, ids):
+    tot = {}
+    for i in ids:
+        for k, v in (reads.get(str(i)) or {}).items():
+            if k in CH_KEYS:
+                tot[k] = tot.get(k, 0) + int(v or 0)
+    return tot
+
+
+def evidence_gate(d, rp):
+    """내러티브가 실제 글에 기대는지 — 인용한 이야기가 그 주 집계에 있고, 근거 글을 끝까지(또는 상한까지) 읽었고, 논지마다 채널·입장·이야기를 단다"""
+    bad = []
+    reads = d.get("reads") or {}
+    if not reads:
+        return ["근거 글 읽기 기록 없음 — get_story로 이야기별 글을 읽고 --reads로 넘긴다"]
+    sid = {}
+    for r in d["rows"]:
+        for x in r["stories"]:
+            if x.get("id") is not None:
+                sid.setdefault(str(x["id"]), set()).add(r["ticker"])
+    for i, v in reads.items():
+        n = sum(int(v.get(k) or 0) for k in CH_KEYS)
+        if not v.get("pages_done") and n < READ_CAP:
+            bad.append(f"이야기 {i}: 글 {n}건에서 멈췄다 — nextCursor가 끝날 때까지(상한 {READ_CAP}건) 읽는다")
+    blocks = [(f"묶음 '{th.get('name')}'", th, th.get("tickers") or []) for th in rp.get("themes") or []]
+    blocks += [(f"종목 {k}", v, [k]) for k, v in (rp.get("notes") or {}).items()]
+    for name, b, tick in blocks:
+        basis = [str(x) for x in b.get("basis") or []]
+        if not basis:
+            bad.append(f"{name}: basis(근거 이야기 id) 없음")
+            continue
+        unk = [x for x in basis if x not in sid]
+        if unk:
+            bad.append(f"{name}: 이번 주 집계에 없는 이야기 {unk}")
+        unread = [x for x in basis if x not in reads]
+        if unread:
+            bad.append(f"{name}: 근거 글을 읽지 않은 이야기 {unread}")
+        cov = set()
+        for x in basis:
+            cov |= sid.get(x, set())
+        stray = [x for x in tick if x not in cov]
+        if stray:
+            bad.append(f"{name}: 근거 이야기에 없는 종목 {stray} — 묶음에 넣지 않는다")
+        pts = b.get("points") or []
+        if len(pts) < MIN_POINTS:
+            bad.append(f"{name}: 근거 논지(points) {len(pts)}개 — {MIN_POINTS}개 이상(channel·stance·gist·story)")
+        ch = _channels(reads, basis)
+        for q in pts:
+            if q.get("channel") not in ("X", "Reddit", "Substack") or not ch.get(q.get("channel")):
+                bad.append(f"{name}: 논지 채널 '{q.get('channel')}'은 읽은 글에 없다")
+            if q.get("stance") not in STANCES or not str(q.get("gist") or "").strip() or str(q.get("story")) not in basis:
+                bad.append(f"{name}: 논지마다 stance({'·'.join(STANCES)})·gist(자기 말)·story(basis 안 id)")
+        have = {q.get("channel") for q in pts}
+        miss = [c for c in ("X", "Reddit", "Substack") if ch.get(c) and c not in have]
+        if miss:
+            bad.append(f"{name}: 읽은 글에 {'·'.join(miss)}가 있는데 논지에 없다 — 채널마다 최소 1개")
+        if len(pts) >= MIN_POINTS and len({q.get("stance") for q in pts}) < 2:
+            bad.append(f"{name}: 논지가 한쪽 입장뿐 — 반대 측 논지를 함께 싣는다(없으면 '반대 측 글 없음'을 중립 논지로)")
+    return bad
+
+
+def _evidence_html(d, b):
+    reads = d.get("reads") or {}
+    basis = [str(x) for x in b.get("basis") or []]
+    if not basis:
+        return ""
+    ch = _channels(reads, basis)
+    head = f'<div class="ev">근거: Quantral 이야기 {len(basis)}건 · 읽은 글 ' + " · ".join(f"{k} {v:,}" for k, v in ch.items() if v) + "</div>"
+    li = "".join(f'<li><span class="k">{t(q.get("channel"))}</span><span class="k">{t(q.get("stance"))}</span>{t(q.get("gist"))}</li>' for q in b.get("points") or [])
+    return head + (f'<ul class="pts">{li}</ul>' if li else "")
+
+
 def t(s):
     s = html.escape(str(s if s is not None else ""))
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s)
@@ -103,7 +193,7 @@ th,td{border-bottom:1px solid var(--line);padding:6px 5px;text-align:right;verti
 .bar{display:flex;height:8px;border-radius:4px;overflow:hidden;min-width:90px;background:var(--line);margin-top:6px}.bar i{display:block}.rd{background:var(--rd)}.x{background:var(--x)}.ss{background:var(--ss)}.ot{background:var(--mut);opacity:.4}
 .card{background:var(--card);border-radius:12px;padding:12px 15px;margin:12px 0}.card h3{margin:0 0 4px;font-size:17px}.rk{color:var(--acc);font-weight:700;margin-right:6px}
 .k{display:inline-block;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:0 6px;margin-right:4px;color:var(--mut)}.card b{color:var(--acc)}.card u{text-decoration-color:var(--acc);text-decoration-thickness:2px;text-underline-offset:3px}
-.foot{color:var(--mut);font-size:12px;margin-top:26px}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}"""
+.foot{color:var(--mut);font-size:12px;margin-top:26px}.ev{font-size:12.5px;color:var(--mut);margin-top:8px;border-top:1px dashed var(--line);padding-top:6px}.pts{margin:4px 0 0;padding-left:18px;font-size:14px}.pts li{margin:3px 0}.lg{font-size:12.5px;color:var(--mut)}.lg i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 8px;vertical-align:-1px}"""
 
 
 def _bar(mix):
@@ -118,10 +208,17 @@ def render(week):
     miss = [r["ticker"] for r in d["rows"][:10] if r["ticker"] not in notes]
     if miss:
         raise ValueError(f"상위 10 내러티브 누락: {miss}")
+    if d.get("reads") or week >= "2026-W47":   # 근거 관문 — W47(11/22 회차)부터, 그 전 회차도 읽기 기록이 있으면 적용
+        bad = evidence_gate(d, rp)
+        if bad:
+            raise ValueError("내러티브 근거 관문 미통과 — " + " · ".join(bad))
+    allch = _channels(d.get("reads") or {}, list((d.get("reads") or {}).keys()))
+    chan_label = ("읽은 근거 글 " + " · ".join(f"{k} {v:,}" for k, v in sorted(allch.items(), key=lambda kv: -kv[1]) if k != "기타")
+                  + ("" if allch.get("Substack") else " · Substack 0")) if allch else "Reddit·X·Substack"
     H = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          f'<title>Chiip Quantral {week}</title><style>{CSS}</style></head><body><div class="w">',
          f'<h1>{t(rp.get("headline"))}</h1><div class="lead">Chiip Quantral · {week} ({d["period"]}) · 기준 {t(rp.get("as_of", ""))} · '
-         f'Reddit·X·Substack 언급 순위</div>',
+         f'언급 순위 · {chan_label}</div>',
          '<div class="hl">' + "<br>".join(f"· {t(b)}" for b in rp.get("bullets") or []) + "</div>",
          '<h2>언급 순위</h2><div class="lg"><i class="rd"></i>Reddit<i class="x"></i>X<i class="ss"></i>Substack<i class="ot"></i>기타 채널</div>',
          '<div class="tw"><table><tr><th>#</th><th>종목</th><th>언급(R·X·S)</th><th>전체</th><th>채널 비중</th></tr>']
@@ -133,7 +230,7 @@ def render(week):
     if rp.get("themes"):
         H.append("<h2>이번 주 리테일 내러티브 흐름</h2>")
         for th in rp["themes"]:
-            H.append(f'<div class="card"><h3>{t(th.get("name"))}</h3><span class="k">{t(" · ".join(th.get("tickers") or []))}</span><p>{t(th.get("read"))}</p></div>')
+            H.append(f'<div class="card"><h3>{t(th.get("name"))}</h3><span class="k">{t(" · ".join(th.get("tickers") or []))}</span><p>{t(th.get("read"))}</p>{_evidence_html(d, th)}</div>')
     H.append("<h2>종목별 내러티브</h2>")
     for r in d["rows"]:
         n = notes.get(r["ticker"])
@@ -142,7 +239,7 @@ def render(week):
         kinds = " ".join(f'<span class="k">{t(s["kind"])}</span>' for s in r["stories"][:1])
         H.append(f'<div class="card"><h3><span class="rk">{r["rank"]}</span>{t(r["ticker"])} <span class="lead">{t(r["name"])}</span></h3>{kinds}'
                  f'<p><b>내러티브</b> {t(n.get("narrative"))}</p><p><b>왜 지금</b> {t(n.get("why_now"))}</p>'
-                 + (f'<p><u>확인할 것</u> {t(n.get("check"))}</p>' if n.get("check") else "") + "</div>")
+                 + (f'<p><u>확인할 것</u> {t(n.get("check"))}</p>' if n.get("check") else "") + _evidence_html(d, n) + "</div>")
     H.append(f'<div class="foot">이야기 {d["n_stories"]}건 · 언급 종목 {d["n_companies"]}개 집계. 언급 수 = 그 주 Quantral 이야기의 게시 수 합, '
              f'R·X·S = 최근 언급 표본의 Reddit·X·Substack 비중을 곱한 값(추정). {DISCLAIMER}</div></div></body></html>')
     page = "".join(H)
@@ -163,6 +260,9 @@ def main(argv):
         d = put(argv[1], argv[2], argv[3])
         for r in d["rows"]:
             print(r["rank"], r["ticker"], r["score"], r["posts"], r["rxs_share"], r["mix"])
+    elif argv[:1] == ["--reads"]:
+        r = put_reads(argv[1], argv[2])
+        print(f"[Quantral] 근거 글 읽기 {len(r)}개 이야기 · " + " · ".join(f"{k} {v:,}" for k, v in _channels(r, list(r)).items()))
     elif argv[:1] == ["--render"]:
         print(render(argv[1]))
     else:
