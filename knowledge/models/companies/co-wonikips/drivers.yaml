@@ -1,0 +1,110 @@
+auto: true
+id: co-wonikips
+name: 원익IPS
+ticker: '240810'
+unit: BKRW
+unit_usd: 744400.0
+industry: semicap
+region_mix:
+  KR: 0.8
+  CN: 0.1
+  US: 0.05
+  other: 0.05
+tax: 0.2
+horizon: 10
+as_of: '2026-11-15'
+market:
+  date: '2026-11-15'
+  price: 77700
+  shares: 0.048656
+  net_debt: -292.4
+  source: 가격 = TradingView KRX:240810 11/13 종가 ₩77,700. 주식 수 48,655,689주 = TradingView(시가총액
+    ₩3,780.5B ÷ 종가). 현금성자산+단기금융상품 ₩296.2B = FY2025 말(TradingView 연간 재무상태표 — 3Q26 분기보고서
+    원문은 열람하지 못했다). 총차입 ₩3.8B = 2Q26 말(TradingView 분기)
+rev0: 1175.3
+ic0: 680.0
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.2337
+      end: 0.03
+      decay: 0.361
+    margin:
+      m0: 0.145
+      target: 0.19
+      year_target: 4
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - 0.2
+      - 0.205
+    s2c: 1.6
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.4039
+      end: 0.034999999999999996
+      decay: 0.411
+    margin:
+      m0: 0.145
+      target: 0.22
+      year_target: 4
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - 0.2
+      - 0.205
+    s2c: 1.84
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0636
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.145
+      target: 0.16
+      year_target: 4
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - 0.2
+      - 0.205
+    s2c: 1.36
+mc:
+  sigma_growth: 0.0851
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 1175.3
+  growth: 컨센서스 1년차 23.4%, 2년차 10.3%
+  margin: 1~2년차 컨센서스 20.0%, 20.5% 고정 → 목표 19%(4년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: 재무 재구성 증분 매출/투하자본 1.6 → 덮어쓰기 1.6
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 6.4%~40.4%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +14.9% 아래·강세 +31.9% 위 확률. 내부 관점(컨센서스 +23.4%, σ 16.6%: 범위 34.0% ÷ d2(10) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: 장기 OPM 19%는 업황 정점(2021년 OPM 약 16%)과 해외 동종(유진·테스 18~19%, PSK 28%) 사이에
+    둔다. 장비 사이클이라 정점 이익률을 영구값으로 두지 않는다. 매출÷투하자본 1.6은 FY2025 매출 ₩909.8B ÷ 투하자본 ₩680B
+    ≈ 1.34에서 매출 증가를 반영
+  shares: 완전 희석 = 기본 0.048655689(2026-11-13) + 옵션·RSU·워런트·전환 0.0000 — 2026 반기보고서(https://dart.fss.or.kr/dsaf001/main.do?rcpNo=2026
+notes:
+- 자동 생성(build_drivers) 2026-11-15 — 데이터 묶음 2026-11-15
+- '어닝콜 위험: 메모리 가격 정점 통과 우려'
+- '어닝콜 위험: 고객 투자 속도 조절'
+- '어닝콜 위험: 파운드리 매출 이연'
+evidence:
+- 원익IPS 3Q26 잠정실적(공정공시 보도) https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713896
+- 재경일보 3Q 실적 https://news.jkn.co.kr/post/1080555
+- NH투자증권 목표가 하향(아주경제 11/10) https://www.ajunews.com/view/20261110085502084
+- 삼성증권 목표가 하향(비건뉴스) https://www.vegannews.co.kr/news/article.html?no=403050
+- 삼성증권 데이터센터 증설 기대(서플) https://supple.kr/news/cmw9wynn7st5nal9p4lbsoxqt
+- SK증권 1Q26 리뷰(시대) https://www.sidae.com/article/2026051108431180904
+- 2Q26 실적 이벤트 https://www.akrostec.com/indices/ASHKSEM/events/2026-08-06t00-00-00z-wonik-ips-co-ltd-240810-financial-results-fa7da15f
+- 수주잔고 4,000억(다음 7/18) https://v.daum.net/v/20260718215404109
+- 증권사 목표가 하향 요약(공개 텔레그램) https://t.me/ked_epic_ai/39088
+- 메리츠 잠정실적 안내(공개 텔레그램) https://t.me/merITz_tech/19471
+- 장비 발주 변동성(잡포스트 10/30) https://www.job-post.co.kr/news/articleView.html?idxno=235682
+- TradingView https://www.tradingview.com/symbols/KRX-240810/

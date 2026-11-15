@@ -1,0 +1,1831 @@
+{
+ "id": "co-wonikips",
+ "name": "원익IPS",
+ "ticker": "240810",
+ "as_of": "2026-11-15",
+ "unit": "BKRW",
+ "currency_symbol": "₩",
+ "unit_usd": 744400.0,
+ "industry": "semicap",
+ "region_mix": {
+  "KR": 0.8,
+  "CN": 0.1,
+  "US": 0.05,
+  "other": 0.05
+ },
+ "tax": 0.2,
+ "main_metric": "eps",
+ "main_metric_why": "흑자 장비 회사이고 국내 증권사가 P/E·P/B로 평가한다",
+ "profile": {
+  "price": 77700,
+  "shares_basic": 0.048655689,
+  "shares_date": "2026-11-13",
+  "cash": 296.2,
+  "debt": 3.8,
+  "source": "가격 = TradingView KRX:240810 11/13 종가 ₩77,700. 주식 수 48,655,689주 = TradingView(시가총액 ₩3,780.5B ÷ 종가). 현금성자산+단기금융상품 ₩296.2B = FY2025 말(TradingView 연간 재무상태표 — 3Q26 분기보고서 원문은 열람하지 못했다). 총차입 ₩3.8B = 2Q26 말(TradingView 분기)"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-11-13",
+  "source": "2026 반기보고서(https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845): 주식매수선택권 부여 해당사항 없음, 미상환 전환사채·신주인수권부사채·조건부자본증권 해당사항 없음. 유통주식 48,655,690주(발행 49,083,901 − 자기주식 428,211). 자기주식 중 최대 8만 주를 2027년 주총 전 임직원 보상에 쓸 계획(희석 아님 — 이미 발행된 주식)",
+  "options": 0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0
+ },
+ "financials": {
+  "rev_ttm": 994.2,
+  "ebit_ttm": 113.0,
+  "invested_capital": 680.0,
+  "capex_ttm": 30.0,
+  "da_ttm": 39.4,
+  "sbc_ttm": 0.0,
+  "s2c": 1.6,
+  "rev_growth_ttm": 0.069,
+  "basis": "연결(K-IFRS) — 잠정실적 공시·TradingView 분기 손익",
+  "note": "TTM = 4Q25~3Q26 매출 2,750+1,649+2,165+3,378억, 영업이익 172+107+184+667억(공시 보도; 4Q25는 TTM ₩113.0B − 1~3Q26 누계 ₩95.8B로 역산). 투하자본 = FY2025 자본총계 ₩970.0B + 차입 ₩6.2B − 현금·단기금융 ₩296.2B. 감가상각 = FY2025 EBITDA ₩113.2B − 영업이익 ₩73.8B. CAPEX는 FY2025 ₩28.8B(TradingView)"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 1175.3,
+   "FY2027": 1450.0,
+   "FY2028": 1600.0
+  },
+  "rev_basis": "core",
+  "ebit_margin": {
+   "FY2026": 0.145,
+   "FY2027": 0.2,
+   "FY2028": 0.205
+  },
+  "margin_basis": "gaap",
+  "n_analysts": 10,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2026Q4": 456.1
+  },
+  "quarters_act": {
+   "2026Q1": 164.9,
+   "2026Q2": 216.5,
+   "2026Q3": 337.8
+  },
+  "eps_quarters_est": {
+   "2026Q4": 1210
+  },
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 3378,
+    "est": 3412,
+    "est_src": "컨센서스(메리츠 잠정실적 안내 인용)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 667,
+    "est": 551,
+    "est_src": "연합인포맥스 집계 컨센서스(보도)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 68,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "지배주주순이익 33억 ÷ 48,655,689주"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 2165,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 184,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 1848,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "TradingView 분기 재무 — 투자자산 평가이익 약 800억 포함"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 1649,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 107,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q1",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 453,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "TradingView 분기 재무"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "매출",
+    "unit": "억 원",
+    "actual": 2750,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EBIT",
+    "unit": "억 원",
+    "actual": 172,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2025Q4",
+    "metric": "EPS",
+    "unit": "원",
+    "actual": 674,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap",
+    "source": "TradingView 분기 재무"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 7,
+   "buy": 2,
+   "hold": 0,
+   "sell": 1,
+   "strong_sell": 0,
+   "as_of": "2026-11-15"
+  },
+  "target_mean": 119400,
+  "rev_low": {
+   "FY2027": 1250.0
+  },
+  "rev_high": {
+   "FY2027": 1650.0
+  },
+  "eps": {
+   "FY2026": 3579,
+   "FY2027": 5058,
+   "FY2028": 5800
+  },
+  "note": "FY2026 매출 ₩1,175.3B·EPS ₩3,579 = TradingView 컨센서스(다음 회계연도). FY2027 EPS ₩5,058 = 삼성증권 11/10(보도 — 직전 ₩5,272). FY2027 매출 ₩1.45T·OPM 20%는 EPS ₩5,058을 세후 환산해 역산한 추정, 범위 ₩1.25~1.65T도 추정. FY2028 EPS ₩5,800은 P5·Y1 장비 반입이 2027~28년에 걸친다는 증권사 보도를 받은 추정. 3Q 영업이익 컨센서스는 집계처마다 다르다(연합인포맥스 551억, 메리츠 인용 533억, 공개 채널 집계 590억, NH 프리뷰 시장 예상 709억). 의견 분포·목표가 평균 = TradingView 10명"
+ },
+ "guidance": {
+  "rev_fy0": null,
+  "rev_fy0_note": "회사는 연간 매출·이익 가이던스를 내지 않는다",
+  "rev_basis": "core",
+  "margin_basis": "gaap",
+  "long_term": "회사 가이던스 없음. 증권사 보도 기준 삼성전자 평택 P5·용인 Y1 장비 반입은 2027년(신한 2월·5월 전망, NH 2Q27 발주 전망)",
+  "source": "https://www.ajunews.com/view/20261110085502084",
+  "next": {
+   "period": "4Q26",
+   "eps_cons": 1210,
+   "unit": "₩",
+   "note": "회사 분기 가이던스 없음. 4Q 추정 = FY2026 컨센서스 − 1~3Q 실적"
+  }
+ },
+ "call": {
+  "date": "2026-11-09",
+  "prev_date": "2026-08-06",
+  "tone": "flat",
+  "tone_delta": 0.0,
+  "guidance_direction": "none",
+  "kpis": [
+   "3Q 매출 ₩337.8B(+25.8% 전년), 영업이익 ₩66.7B(+142.0%), OPM 19.7%",
+   "지배주주순이익 ₩3.3B(−88.2%) — 투자자산 평가손실",
+   "1~3Q 누계 매출 ₩719.2B(+13.3%), 영업이익 ₩95.8B(+69.2%)",
+   "2Q 순이익에는 투자자산 평가이익 약 ₩80B이 있었다"
+  ],
+  "guidance_change": "회사 숫자 가이던스 없음",
+  "new": [
+   "3Q 영업이익률 19.7%로 2Q 8.5%에서 크게 회복",
+   "일부 파운드리 매출 이연(NH)",
+   "증권사 6곳이 목표가를 ₩100,000~125,000으로 낮췄다(전공정 장비 배수 축소 반영)"
+  ],
+  "gone": [
+   "2Q의 투자자산 평가이익 — 3Q에는 평가손실로 바뀌었다"
+  ],
+  "analyst_focus": [
+   "NH투자증권 — 2027년 신규 라인 투자",
+   "삼성증권 — D램 장비 전망 상향, 2027E P/E 26배→19배",
+   "SK증권 — 수익성, 2027년 이후 실적 지속성",
+   "메리츠증권 — 2027E P/B 4.4배",
+   "BNK투자증권 — 메모리 최종 수요 둔화",
+   "신한투자증권 — 디스플레이 고객 투자 지연"
+  ],
+  "risks": [
+   "메모리 가격 정점 통과 우려",
+   "고객 투자 속도 조절",
+   "파운드리 매출 이연",
+   "투자자산 평가 손익 변동",
+   "디스플레이 고객 투자 지연"
+  ],
+  "source": "한국 상장사는 콜 전문을 공개하지 않고, 이번 분기 IR 자료도 수집되지 않았다(kr_ir_docs 0건). 잠정실적 공시 보도와 증권사 리뷰 보도로 만들었다",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "영업이익률 회복",
+    "label": "OPM 19.7%",
+    "prior": "8.5%(2Q26)",
+    "latest": "19.7%(3Q26)",
+    "driver": "margin_m0",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713896"
+   },
+   {
+    "id": "F2",
+    "kind": "부정",
+    "item": "파운드리 매출 이연",
+    "label": "매출 컨센 −1%",
+    "prior": "컨센서스 ₩341.2B",
+    "latest": "₩337.8B",
+    "driver": "growth_start",
+    "shift": -0.01,
+    "confidence": 1.0,
+    "source": "https://www.ajunews.com/view/20261110085502084"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "2027 EPS 추정 하향",
+    "label": "27E EPS −4%",
+    "prior": "₩5,272",
+    "latest": "₩5,058(삼성증권)",
+    "driver": "growth_start",
+    "shift": -0.01,
+    "confidence": 0.8,
+    "source": "https://www.vegannews.co.kr/news/article.html?no=403050"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "2027 신규 라인 투자",
+    "label": "P5·Y1 반입",
+    "prior": "2028년 가동 전망",
+    "latest": "2027년 장비 반입 전망(증권사)",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.3,
+    "source": "https://www.ajunews.com/view/20261110085502084"
+   }
+  ]
+ },
+ "peers_basis": "ttm",
+ "peers_source": "TradingView 11/13 종가·TTM 재무·다음 회계연도 EPS 추정. AMAT은 ₩1,343/$ 환산",
+ "peers": [
+  {
+   "ticker": "유진테크",
+   "key": "084370",
+   "rev": 429.5,
+   "ebit_margin": 0.185,
+   "mcap": 1780.4,
+   "pb": 3.28,
+   "debt": 12.7,
+   "cash": 335.5,
+   "ev_sales": 3.39,
+   "growth": 0.177,
+   "pe_fwd": 13.5,
+   "ntm_ebit_margin": 0.185,
+   "ntm_growth": 0.17,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 39.49
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 43.92
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 37.77
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 33.23
+    }
+   ]
+  },
+  {
+   "ticker": "테스",
+   "key": "095610",
+   "rev": 462.0,
+   "ebit_margin": 0.186,
+   "mcap": 1511.1,
+   "pb": 3.38,
+   "debt": 21.1,
+   "cash": 158.1,
+   "ev_sales": 2.97,
+   "growth": 0.441,
+   "pe_fwd": 17.3,
+   "ntm_ebit_margin": 0.186,
+   "ntm_growth": 0.05,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 13.83
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 15.21
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 47.29
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 38.31
+    }
+   ]
+  },
+  {
+   "ticker": "피에스케이",
+   "key": "319660",
+   "rev": 672.4,
+   "ebit_margin": 0.278,
+   "mcap": 2832.9,
+   "pb": 4.4,
+   "debt": 16.7,
+   "cash": 293.1,
+   "ev_sales": 3.8,
+   "growth": 0.602,
+   "pe_fwd": 17.5,
+   "ntm_ebit_margin": 0.278,
+   "ntm_growth": 0.03,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 13.61
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 23.11
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 45.47
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 28.88
+    }
+   ]
+  },
+  {
+   "ticker": "Applied Materials",
+   "key": "NASDAQ:AMAT",
+   "rev": 46261.0,
+   "ebit_margin": 0.329,
+   "mcap": 394880.0,
+   "pb": 11.26,
+   "debt": 8772.0,
+   "cash": 12542.0,
+   "ev_sales": 8.66,
+   "growth": 0.214,
+   "pe_fwd": 19.4,
+   "ntm_ebit_margin": 0.33,
+   "ntm_growth": 0.38
+  }
+ ],
+ "multiples_now": {
+  "pe_fwd": 15.53,
+  "pe_fwd2": 13.84,
+  "pe_fwd3": 12.3,
+  "ev_ebitda_fwd": null
+ },
+ "forward": {
+  "as_of": "2026-11-15",
+  "ntm": {
+   "eps": 5004,
+   "ebit": 292.5,
+   "revenue": 1543.6,
+   "rev_ttm": 994.2
+  },
+  "horizons": {
+   "2": {
+    "eps": 5615,
+    "ext": 0
+   },
+   "3": {
+    "eps": 6320,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "tradingview+추정"
+  },
+  "source": "Fwd 1Y EPS = 4Q26 약 ₩1,210 + FY2027 ₩5,058의 3/4. Fwd 2Y = FY2027 1/4 + FY2028 ₩5,800 3/4, Fwd 3Y = 외삽(+12.5%). FY2027·28 EPS는 보도 인용·추정"
+ },
+ "history": {
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 39.32
+   },
+   {
+    "date": "2026-03-31",
+    "value": 47.47
+   },
+   {
+    "date": "2026-06-30",
+    "value": 47.26
+   },
+   {
+    "date": "2026-09-30",
+    "value": 43.2
+   }
+  ]
+ },
+ "history_note": "pe_ttm = 분기말 종가 ÷ 그 분기까지 4개 분기 EPS 합(TradingView 분기 재무·월봉, 2026-11-15). 한국 상장은 선행 배수 이력 원천이 없어 후행 P/E로 추이를 본다. 2Q26 EPS에는 투자자산 평가이익(약 ₩80B)이 들어 있어 2026-06·09 후행 P/E가 낮게 나온다",
+ "overrides": {
+  "margin_base": {
+   "target": 0.19,
+   "year_target": 4,
+   "lr": 0.2,
+   "lam": 0.35
+  },
+  "s2c": 1.6,
+  "why": "장기 OPM 19%는 업황 정점(2021년 OPM 약 16%)과 해외 동종(유진·테스 18~19%, PSK 28%) 사이에 둔다. 장비 사이클이라 정점 이익률을 영구값으로 두지 않는다. 매출÷투하자본 1.6은 FY2025 매출 ₩909.8B ÷ 투하자본 ₩680B ≈ 1.34에서 매출 증가를 반영"
+ },
+ "multiple_view": {
+  "adj": -0.05,
+  "why": "동종(유진·테스·PSK)보다 이익률이 낮고(OPM 14.5% vs 19~28%), 삼성 계열 고객 의존이 커 단일 고객 투자 일정에 매출이 흔들린다. 3Q처럼 투자자산 평가 손익이 순이익을 크게 흔든다"
+ },
+ "next_event": {
+  "date": "2027-02-10",
+  "tag": "4Q26 잠정실적(예상 — 회사 미발표)"
+ },
+ "terms": {
+  "증착": "웨이퍼 위에 얇은 막을 쌓는 공정",
+  "CVD": "화학 기상 증착",
+  "ALD": "원자층 증착",
+  "PE-CVD": "플라즈마 화학 기상 증착",
+  "식각": "막을 깎아 패턴을 만드는 공정",
+  "P5": "삼성전자 평택 5라인",
+  "Y1": "삼성 용인 반도체 클러스터 1기 팹",
+  "Taylor": "삼성전자 미국 텍사스 테일러 팹",
+  "HBM": "고대역폭 메모리",
+  "DRAM": "D램 메모리",
+  "NAND": "낸드 플래시",
+  "OLED": "유기발광 디스플레이",
+  "PO": "장비 구매 주문",
+  "IR": "투자자 대상 회사 설명",
+  "K-IFRS": "한국 회계 기준",
+  "IFRS": "국제회계기준",
+  "DART": "금융감독원 전자공시",
+  "BKRW": "십억 원 단위",
+  "PPI": "생산자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "CAPA": "생산능력",
+  "ASP": "평균 판매 단가",
+  "AR": "자기회귀 통계 모형",
+  "CAR": "누적 초과수익률",
+  "SMH": "미국 반도체 ETF",
+  "CHIPS": "미국 반도체 지원법",
+  "B/B": "수주 ÷ 매출 비율",
+  "1c": "D램 6세대 10나노급 공정",
+  "GAA": "게이트올어라운드 트랜지스터",
+  "IT": "정보기술",
+  "QoQ": "전 분기 대비",
+  "YoY": "전년 대비",
+  "KOSDAQ": "코스닥 시장",
+  "MOCVD": "유기금속 화학 기상 증착",
+  "RF": "고주파"
+ },
+ "names": [
+  "삼성전자",
+  "SK하이닉스",
+  "삼성디스플레이",
+  "원익홀딩스",
+  "원익QnC",
+  "유진테크",
+  "테스",
+  "피에스케이",
+  "주성엔지니어링",
+  "Applied Materials",
+  "Lam Research",
+  "Tokyo Electron",
+  "TradingView",
+  "NH투자증권",
+  "삼성증권",
+  "SK증권",
+  "메리츠증권",
+  "BNK투자증권",
+  "신한투자증권",
+  "연합인포맥스",
+  "드러켄밀러",
+  "BNK",
+  "NH",
+  "JP",
+  "IPS",
+  "PSK",
+  "QnC"
+ ],
+ "moat": {
+  "summary": "해자는 삼성전자 메모리 라인에서 오래 인증받은 증착 장비(PE-CVD·ALD) 자리다. 한 번 공정에 들어간 장비는 다음 세대로 이어지기 쉽다. 다만 이익률은 해외 대형사·국내 동종보다 낮고, 매출이 삼성 계열 투자 일정에 크게 기대 해자가 가격 결정력으로 이어지지 않는다.",
+  "items": [
+   {
+    "kind": "고객 공정 인증(전환 비용)",
+    "verdict": "보통",
+    "claim": "삼성 메모리 증착 공정에 장기간 장비를 공급해 재인증 비용이 경쟁사 진입을 늦춘다.",
+    "evidence": "1Q26 반도체 매출 비중 89%(SK증권 보도). 삼성전자 매출 비중 약 절반(보도 — 기간 미확인)",
+    "quant": "반도체 89%",
+    "falsifier": "P5·Y1 증착 장비 발주에서 해외 대형사·국내 경쟁사 몫이 늘었다는 보도"
+   },
+   {
+    "kind": "제품 폭(증착 + 식각·열처리)",
+    "verdict": "약함",
+    "claim": "증착 외 공정 장비가 있으나 매출 대부분은 증착이다.",
+    "evidence": "미확인 — 제품별 매출 미공시",
+    "quant": "미확인",
+    "falsifier": "해당 없음 — 공시 시 다시 판정"
+   },
+   {
+    "kind": "이익률(가격 결정력)",
+    "verdict": "약함",
+    "claim": "OPM이 동종보다 낮아 가격 결정력은 약하다.",
+    "evidence": "TTM OPM 11.4%(TradingView) vs 유진·테스 18.5%, PSK 27.8%",
+    "quant": "OPM 11.4% vs 동종 18.5~27.8%",
+    "falsifier": "OPM이 2개 분기 연속 20% 이상"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-15",
+  "summary": "원익그룹 계열(원익홀딩스 최대주주) 회사다. 경영진 개인 연결이 매출을 만들었다는 공개 근거는 없다.",
+  "people": [
+   {
+    "name": "미확인",
+    "role": "대표이사(회사 공시 확인 전)",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "원익홀딩스 계열(보도)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "DART 원문 미열람"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "그룹 계열(원익홀딩스·원익QnC)",
+    "strength": 1,
+    "exposure": 0.0,
+    "basis": "계열 거래 규모 미확인",
+    "evidence": "https://www.job-post.co.kr/news/articleView.html?idxno=237301"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-06-30",
+  "reported_backlog": 634.6,
+  "backlog_label": "수주잔고(2Q26 말, 별도·장비 인도 기준)",
+  "summary": "2Q26 말 수주잔고는 ₩634.6B로 회사가 반기보고서에 공시했다(장비 인도 기준, 부품 제외). 발주처·납기는 공시하지 않는다. 3Q26 잔고는 분기보고서 제출 전이라 미확인이다.",
+  "items": [
+   {
+    "name": "회사 전체 수주잔고(2Q26 말)",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 634.6,
+    "progress": "미확인",
+    "progress_basis": "반기 수주총액 ₩1,197.4B 중 기납품 ₩562.8B — 건별 진척 미공시",
+    "margin": "미확인",
+    "blockers": [
+     "고객 반입 일정",
+     "해외 리드타임"
+    ],
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845"
+   },
+   {
+    "name": "삼성 P5·Y1 증착 장비",
+    "short": "P5·Y1",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "증권사 전망 — 발주 전",
+    "margin": "미확인",
+    "start": "2027-02",
+    "end": "2028-06",
+    "blockers": [
+     "삼성 투자 일정(메모리 가격 정점 우려)"
+    ],
+    "source": "https://www.ajunews.com/view/20261110085502084"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 10.0,
+  "revenue_growth": 0.069,
+  "source": "2Q26 말 잔고 ₩634.6B(반기보고서) ÷ 1H26 월평균 매출 ₩63.6B(연결 ₩381.4B ÷ 6) ≈ 10.0개월. B/B·RPO 미공시",
+  "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845"
+ },
+ "recurring": {
+  "share": null,
+  "source": "부품·서비스 매출 비중 미공시(1Q26 '부품 매출 증가' 언급만)"
+ },
+ "ma": {
+  "none": "최근 3년 인수·합병 미확인(IB토마토 보도 'M&A 다시 시동' 이야기는 계획 단계)"
+ },
+ "sync": {
+  "why": "회사 제품은 반도체 전공정 증착 장비(HS 848620)다 — 장비 PPI를 가격 대용으로, 한국 D램 수출을 고객 투자 여력의 거울로 쓴다",
+  "indicators": [
+   {
+    "label": "미국 반도체 장비 PPI",
+    "source": "ppi",
+    "input": "semicap",
+    "country": "us",
+    "segment": "반도체 장비",
+    "why": "장비 가격 대용"
+   },
+   {
+    "label": "일본 반도체 장비 PPI",
+    "source": "ppi",
+    "input": "semicap",
+    "country": "jp",
+    "segment": "반도체 장비",
+    "why": "아시아 장비 가격 대용"
+   }
+  ],
+  "products": [
+   {
+    "name": "반도체 장비",
+    "segment": "반도체 장비",
+    "hs": "848620",
+    "share": 0.89,
+    "inputs": [
+     "semicap"
+    ]
+   }
+  ]
+ },
+ "pq": {
+  "none": "장비 대수·ASP를 공시하지 않는다 — 업종 PPI 대용으로 잰다"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(반도체 장비) — 병목 틀로 본다"
+ },
+ "photos": [],
+ "scenario_probs_why": "3Q 영업이익은 컨센서스를 웃돌았지만 매출은 소폭 밑돌았고, 2027년은 삼성 신규 라인 발주 시점에 달렸다. 조정 없음",
+ "midterm": {
+  "sub": "semicap",
+  "exposure": {
+   "chips_subsidy": 0.3
+  },
+  "etf": "NASDAQ:SMH",
+  "why": "미국 매출은 삼성 테일러 팹 장비 정도로 작다(추정) — CHIPS 채널 노출을 0.8에서 0.3으로 낮춘다"
+ },
+ "social": {
+  "as_of": "2026-11-15",
+  "few": true,
+  "views": [],
+  "summary": "최근 24시간·7일 추적 커뮤니티 언급은 없다(점수 없음 — 낮은 점수가 아니다). 9~10월에는 네이버 블로그·유튜브 경제 채널에서 'HBM·D램 팹 증설 수혜 증착 대표주'라는 강세 글이 이어졌고, 11월에는 공개 텔레그램에서 목표가 하향 요약이 돌았다.",
+  "narratives": [
+   {
+    "channel": "네이버 블로그·유튜브",
+    "theme": "HBM·D램 팹 증설에 따른 증착 장비 수주 증가",
+    "expectation": "상향",
+    "vs_fact": "일부 확인 — 1Q26 잔고 약 ₩400B(보도). 3Q 잔고는 미공시",
+    "share": 0.6
+   },
+   {
+    "channel": "공개 텔레그램",
+    "theme": "실적은 좋지만 목표가 일제 하향",
+    "expectation": "하향",
+    "vs_fact": "확인 — 증권사 6곳 하향 보도와 일치",
+    "share": 0.4
+   }
+  ],
+  "turn": "10/11 메리츠 목표가 ₩169,000 상향 → 11/9 3Q 실적 → 11/10~11 증권사 6곳 하향"
+ },
+ "events": [
+  {
+   "date": "2026-11-09",
+   "tag": "3Q26 잠정실적 — 영업이익 ₩66.7B(컨센서스 +21%), 매출 −1%, 순이익 −88%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "증권사 목표가 하향(NH·삼성·SK) — 전공정 장비 배수 축소",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "+16.5%, 메리츠·BNK·신한 목표가 하향 속 반등(원인 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "−15.7%, 원인 미확인(반도체 장비주 동반 약세)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "−8.4%, 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "−8.8%, 반도체 장비 발주 변동성 보도",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "2Q26 잠정실적 — 매출 ₩216.5B(−10.6%), 영업이익 ₩18.4B",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "2Q26 실적",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-09",
+   "kind": "실적",
+   "tag": "3Q26 실적",
+   "q": "3Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-10",
+   "kind": "내러티브",
+   "tag": "증권사 목표가 일제 하향"
+  }
+ ],
+ "quarters_hist": {
+  "source": "잠정실적 공시 보도·TradingView 분기 재무(매출·매출총이익). 영업이익은 공시 보도, 4Q25는 TTM에서 역산",
+  "key": "KRX:240810",
+  "currency": "KRW",
+  "q": [
+   {
+    "period": "2024-12-31",
+    "rev": 294854886811.0,
+    "op": null,
+    "gp": 93290717236.0
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 124198201773.0,
+    "op": -7440000000.0,
+    "gp": 52840042864.0
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 242168631002.0,
+    "op": 36510000000.0,
+    "gp": 101477650253.0
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 268438240597.0,
+    "op": 27540000000.0,
+    "gp": 98940380255.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 274990617731.0,
+    "op": 17210000000.0,
+    "gp": 101538380657.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 164900948116.0,
+    "op": 10700000000.0,
+    "gp": 76192094618.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 216471641903.0,
+    "op": 18400000000.0,
+    "gp": 89990563127.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 337787000000.0,
+    "op": 66654000000.0,
+    "gp": null
+   }
+  ]
+ },
+ "segments_hist": {
+  "none": "부문별 분기 매출 미수집 — 반도체·디스플레이 비중은 1Q26 89%(보도)만 확인"
+ },
+ "sources": [
+  "원익IPS 3Q26 잠정실적(공정공시 보도) https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713896",
+  "재경일보 3Q 실적 https://news.jkn.co.kr/post/1080555",
+  "NH투자증권 목표가 하향(아주경제 11/10) https://www.ajunews.com/view/20261110085502084",
+  "삼성증권 목표가 하향(비건뉴스) https://www.vegannews.co.kr/news/article.html?no=403050",
+  "삼성증권 데이터센터 증설 기대(서플) https://supple.kr/news/cmw9wynn7st5nal9p4lbsoxqt",
+  "SK증권 1Q26 리뷰(시대) https://www.sidae.com/article/2026051108431180904",
+  "2Q26 실적 이벤트 https://www.akrostec.com/indices/ASHKSEM/events/2026-08-06t00-00-00z-wonik-ips-co-ltd-240810-financial-results-fa7da15f",
+  "수주잔고 4,000억(다음 7/18) https://v.daum.net/v/20260718215404109",
+  "증권사 목표가 하향 요약(공개 텔레그램) https://t.me/ked_epic_ai/39088",
+  "메리츠 잠정실적 안내(공개 텔레그램) https://t.me/merITz_tech/19471",
+  "장비 발주 변동성(잡포스트 10/30) https://www.job-post.co.kr/news/articleView.html?idxno=235682",
+  "TradingView https://www.tradingview.com/symbols/KRX-240810/"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-15T13:40:00+09:00",
+  "estimates_sales_m": {
+   "2026Q1": 164901,
+   "2026Q2": 216472,
+   "2026Q3": 337787,
+   "2026Q4": 456100
+  },
+  "estimates_note": "1~3Q 실적(공시), 4Q는 TradingView FY2026 매출 추정 − 1~3Q",
+  "shares_cover_implied": 0.048655689,
+  "fiscal_profile": {
+   "companyKey": "Fiscal.ai 미수록(코스닥 — config/fiscal_keys.yaml 주석). 시세·재무 = TradingView, 실적 = 잠정실적 공시",
+   "price": 77700,
+   "market_cap": 3780.5,
+   "total_cash": 296.2,
+   "total_debt": 3.8,
+   "as_of": "2026-11-13",
+   "balance_date": "2025-12-31"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 275.0,
+    "2026Q1": 164.9,
+    "2026Q2": 216.5,
+    "2026Q3": 337.8
+   },
+   "op_income": {
+    "2025Q4": 17.2,
+    "2026Q1": 10.7,
+    "2026Q2": 18.4,
+    "2026Q3": 66.7
+   }
+  },
+  "balance_2025_12_31": {
+   "equity": 970.0,
+   "cash": 107.3,
+   "st_investments": 188.9,
+   "debt_current": 6.2,
+   "debt_lt": 0,
+   "lease_current": 0,
+   "lease_lt": 0,
+   "total_assets": 1191.6,
+   "note": "TradingView 연간 재무상태표(FY2025). 3Q26 분기 재무상태표는 받지 못했다"
+  },
+  "tv_forecast": {
+   "rating": {
+    "buy": 7,
+    "overweight": 2,
+    "hold": 0,
+    "underweight": 1,
+    "sell": 0,
+    "total": 10
+   },
+   "eps_next_fy_krw": 3579,
+   "rev_next_fy_krw_b": 1175.3,
+   "target_mean": 119400,
+   "as_of": "2026-11-15"
+  },
+  "source_coverage": "Fiscal.ai 미수록, Easyconomics 한국 시장 미지원(us·jp·eu·tw), Zacks 미제공. DART 분기보고서 원문 미열람(뷰어 robots 차단)",
+  "sec_checks": {
+   "form": "SEC 제출사 아님. 1차 자료 = 잠정실적 공정공시(보도 경유)",
+   "contract_commitments": "미확인 — DART 분기보고서 원문 미열람",
+   "restricted_cash": "미확인",
+   "customers_10pct": "미확인 — 고객별 매출 미공시(삼성전자 약 절반 보도, 기간 미확인)",
+   "gov_support": "미확인"
+  },
+  "balance_2026-06-30": {
+   "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845 (2026 반기보고서, 연결)",
+   "cash_and_equivalents": 136.1,
+   "other_current_financial_assets": 101.1,
+   "current_fvtpl": 173.3,
+   "inventory": 458.1,
+   "equity": 1073.6,
+   "total_liabilities": 419.9,
+   "note": "금융기관 차입 이자비용이 반기 ₩28M 수준 — 차입은 사실상 없다. 유동 FVTPL(₩173.3B)은 3Q에 평가손실이 난 투자자산으로 보여 현금에 넣지 않았다(추정). 평가 현금 ₩296.2B(FY2025 말)와 반기 말 현금+기타유동금융자산 ₩237.2B의 차이는 FVTPL 포함 여부에 따라 달라진다"
+  }
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "연결(K-IFRS) — TradingView 분기 매출총이익·공시 영업이익. 원가 세부 구성 미공시",
+  "summary": "TTM GPM은 약 37%, OPM 11.4%다. 장비 회사라 매출이 줄면 연구개발·인건비 같은 고정비가 이익률을 크게 깎는다(1Q25 영업적자, 2Q26 OPM 8.5%). 3Q26은 매출이 ₩337.8B로 늘며 OPM이 19.7%로 올랐다. 비용 요인별 몫은 회사가 밝히지 않아 모두 추정이다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 268.4,
+    "cogs": 169.5,
+    "rd": 35.0,
+    "sga": 36.4,
+    "other": 0.0
+   },
+   {
+    "period": "2Q26",
+    "rev": 216.5,
+    "cogs": 126.5,
+    "rd": 36.0,
+    "sga": 35.6,
+    "other": 0.0
+   }
+  ],
+  "periods_note": "매출·매출총이익 = TradingView, 영업이익 = 공시 보도(3Q25 ₩27.5B, 2Q26 ₩18.4B). 연구개발·판관비 구분은 추정(합계는 매출총이익 − 영업이익과 맞춤). 3Q26 매출총이익은 아직 받지 못했다. 비용 요인 몫은 2Q26 손익(매출원가 58.4%·연구개발 16.6%·판관비 16.4%)에 맞춘 추정",
+  "costs": [
+   {
+    "name": "부품·모듈(챔버·로봇·밸브·RF 전원)",
+    "stage": "매출원가",
+    "pct_rev": 0.4,
+    "prior_pct": 0.42,
+    "fixed": 0.0,
+    "driver": "부품 단가·환율",
+    "basis": "추정",
+    "source": "장비 원가 구조 업계 통념(추정)",
+    "input": "semicap"
+   },
+   {
+    "name": "제조 인건비·감가상각",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.12,
+    "fixed": 0.8,
+    "driver": "인력·공장",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "셋업·보증·기타 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.064,
+    "prior_pct": 0.09,
+    "fixed": 0.3,
+    "driver": "고객 반입·보증 충당",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "연구개발비",
+    "stage": "판관비",
+    "pct_rev": 0.166,
+    "prior_pct": 0.13,
+    "fixed": 0.9,
+    "driver": "차세대 증착 개발",
+    "basis": "추정",
+    "source": "추정"
+   },
+   {
+    "name": "기타 판관비",
+    "stage": "판관비",
+    "pct_rev": 0.165,
+    "prior_pct": 0.14,
+    "fixed": 0.7,
+    "driver": "인건비·수수료",
+    "basis": "추정",
+    "source": "추정"
+   }
+  ],
+  "products": [
+   {
+    "name": "반도체 장비",
+    "rev_share": 0.89,
+    "rev_share_prev": null,
+    "mix_basis": "1Q26 반도체 매출 비중(SK증권 보도)",
+    "gpm": 0.38,
+    "gpm_basis": "추정 — 제품 GPM 미공시",
+    "bom": [
+     {
+      "item": "공정 챔버·서셉터",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "장비 원가 구조 업계 통념",
+      "pass_through": "미확인",
+      "why": "증착 성능을 가르는 핵심 모듈",
+      "input": "semicap"
+     },
+     {
+      "item": "웨이퍼 이송 로봇·플랫폼",
+      "share": [
+       0.1,
+       0.18
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "처리량"
+     },
+     {
+      "item": "RF 전원·진공 펌프·밸브",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "플라즈마·진공 유지"
+     },
+     {
+      "item": "가스 공급 장치",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "업계 통념",
+      "pass_through": "미확인",
+      "why": "전구체·가스 제어"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-15",
+  "summary": "병목은 부품이 아니라 고객의 발주 시점이다. RF 전원·진공 펌프·밸브는 해외 전문사가 많지만 공급사를 공시하지 않는다. 2026년 5월 장비사들이 1년치 부품을 한꺼번에 주문했다는 보도가 있어 부품 리드타임이 길어졌을 수 있다.",
+  "links": [
+   {
+    "item": "RF 전원·진공 펌프·밸브",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "해외 RF·진공 전문사(미공시)",
+      "role": "RF 전원·펌프",
+      "status": "추정",
+      "source": "업계"
+     },
+     {
+      "name": "뉴파워프라즈마 등 국내 RF 전원사",
+      "role": "RF 전원",
+      "status": "보도",
+      "source": "https://v.daum.net/v/20260703084342850"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "빠듯",
+    "capacity_basis": "2026년 5월 국내 장비사들이 약 1년치 부품을 주문하고 납기 단축을 요구했다는 보도(뉴파워프라즈마 관련)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국·일본·한국",
+    "secured": "복수구매",
+    "why": "플라즈마 증착의 필수 부품. 공급사 이름과 몫은 공시되지 않아 요인 값은 추정이다",
+    "relief": "미확인",
+    "source": "https://v.daum.net/v/20260703084342850",
+    "input": "semicap",
+    "qualified_basis": "해외 전문사 + 국내 RF 전원사(보도로 국내 장비사 공급 확인, 원익IPS 개별 인증은 추정)",
+    "requal_basis": "부품을 바꾸면 고객 팹의 공정 재인증이 필요하다(업계 통상, 추정)"
+   },
+   {
+    "item": "공정 챔버·서셉터",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "원익QnC 등 계열·국내 부품사(추정)",
+      "role": "부품",
+      "status": "추정",
+      "source": "업계"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국",
+    "secured": "미확인",
+    "why": "막질을 가르는 핵심 모듈",
+    "relief": "미확인",
+    "source": "업계 통념(추정)",
+    "input": "semicap"
+   },
+   {
+    "item": "고객 발주(삼성 P5·Y1)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "삼성전자",
+      "role": "고객",
+      "status": "보도",
+      "source": "https://www.ajunews.com/view/20261110085502084"
+     }
+    ],
+    "qualified": "해당 없음",
+    "capacity": "빠듯",
+    "capacity_basis": "증권사 전망 — 2027년 반입",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국",
+    "secured": "미확인",
+    "why": "매출 대부분이 이 일정에 달렸다",
+    "relief": "발주 공시 전 — '풀렸다' 아님",
+    "source": "https://www.ajunews.com/view/20261110085502084"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-06-30",
+  "unit": "대/년(장비 생산능력)",
+  "summary": "회사가 공시하는 생산능력은 반도체 장비 연 1,536대(반기 768대 × 2)·디스플레이 장비 960대이고, 2026년 상반기 가동률은 반도체 20%·디스플레이 9%다. 수주 산업이라 캐파가 아니라 수주가 매출을 정한다. 증설 계획은 공시되지 않았다.",
+  "current": {
+   "nameplate": 3072,
+   "utilization": 0.153,
+   "basis": "공시 — 반기 생산능력 반도체 768대·디스플레이 480대(1일 8시간 3교대·월 22일 기준), 반기 생산실적 150대·41대. 연간 환산 = 반기 × 2. 가동률 = 191 ÷ 1,248(반도체 20%·디스플레이 9%)",
+   "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845"
+  },
+  "plans": [],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 28.8,
+    "rev": 909.8,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 2Q26",
+    "capex": 26.0,
+    "rev": 924.8,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 30.0,
+    "rev": 1175.3,
+    "kind": "추정"
+   }
+  ],
+  "capex_source": "FY2025 = TradingView 연간 설비투자. TTM 2Q26 = FY2025 − 1H25 ₩11.8B + 1H26 ₩9.0B(반기보고서 현금흐름표 유형자산 취득). FY2026은 FY2025 수준 유지 추정. 매출은 실적·컨센서스",
+  "facilities": {
+   "count": 3,
+   "count_basis": "2026 반기보고서 '주요 사업장 현황' — 본점(본사·R&D), 진위3산단지점(반도체 생산), 둔포지점(디스플레이 생산), 화성지점(임대). 생산 용도는 2곳",
+   "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845",
+   "items": [
+    {
+     "name": "진위3산단지점",
+     "location": "경기 평택시 진위면",
+     "owned": "미확인",
+     "use": "반도체 장비 생산",
+     "capacity": {
+      "value": 1536,
+      "unit": "대/년",
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845"
+     },
+     "status": "가동"
+    },
+    {
+     "name": "둔포지점",
+     "location": "충남 아산시 둔포면",
+     "owned": "미확인",
+     "use": "디스플레이 장비 생산",
+     "capacity": {
+      "value": 960,
+      "unit": "대/년",
+      "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845"
+     },
+     "status": "가동"
+    },
+    {
+     "name": "본점(본사·R&D 통합센터)",
+     "location": "경기 평택시 진위면",
+     "owned": "미확인",
+     "use": "본사·R&D",
+     "capacity": "미확인",
+     "capacity_basis": "생산 용도가 아니다",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "위성 판독 등록 전 — 공장 좌표·윤곽 미등록(다음 회차 과제)"
+ },
+ "customers": {
+  "as_of": "2026-06-30",
+  "period": "1H26",
+  "summary": "반기보고서 주석상 매출 10% 이상 고객은 2곳이다 — A사 ₩189.8B(연결 매출의 49.8%), B사 ₩75.8B(19.9%). 두 고객이 매출의 약 70%다. A사를 삼성전자로 보는 것은 가설이다.",
+  "items": [
+   {
+    "name": "삼성전자(가설)",
+    "alias": "A사",
+    "share": 0.498,
+    "prior": 0.582,
+    "basis": "공시",
+    "buys": "메모리·파운드리 증착 장비",
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845",
+    "why": "A사 ₩189.8B ÷ 1H26 연결 매출 ₩381.4B. 전년 반기 A사 ₩213.4B. 삼성 매출 비중 약 49% 보도와 같은 크기 — 이름은 공시되지 않았다"
+   },
+   {
+    "name": "SK하이닉스(가설)",
+    "alias": "B사",
+    "share": 0.199,
+    "prior": 0.147,
+    "basis": "공시",
+    "buys": "증착 장비",
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845",
+    "why": "B사 ₩75.8B ÷ ₩381.4B. 전년 반기 ₩53.7B. 이름 미공시 — 국내 2위 메모리 고객이라는 매핑은 가설"
+   },
+   {
+    "name": "기타(디스플레이·해외 반도체·부품)",
+    "alias": "10% 미만 고객 합",
+    "share": 0.303,
+    "prior": 0.271,
+    "basis": "공시",
+    "buys": "디스플레이 장비·부품·용역",
+    "source": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845",
+    "why": "100% − A·B. 1H26 수출 비중 26.4%"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-15",
+  "stage": "소멸",
+  "crowding": "낮음",
+  "summary": "삼성 메모리 신규 라인 투자가 증착 장비 매출로 이어진다는 이야기다. 6월 고점에서 주가는 절반 넘게 빠졌고, 증권사 6곳이 일주일 사이 목표가를 낮췄다. 시장은 '메모리 가격 정점 뒤에도 2027년 투자가 이어지나'를 묻고 있다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견",
+      "매수 9, 매도 1",
+      "TradingView 10명",
+      "TradingView 11/15 집계"
+     ],
+     [
+      "11/10~11 목표가",
+      "NH ₩125,000 · 신한 ₩125,000 · 메리츠·SK ₩120,000 · 삼성 ₩100,000 · BNK ₩75,000(중립)",
+      "모두 하향 — 기대의 증거다",
+      "공개 텔레그램 요약·보도"
+     ],
+     [
+      "FY2027 추정",
+      "EPS ₩5,058(삼성, 직전 ₩5,272)",
+      "−4%",
+      "비건뉴스"
+     ],
+     [
+      "해외 IB 메모리 설비투자 전망",
+      "2027 DRAM +55%·2028 +52%, 삼성 DRAM 월 캐파 4Q26→4Q27 +12만 장, P5-1 장비 반입 2027-07 전망",
+      "시장 기대의 증거 — 수주가 아니다",
+      "노션 자료실 IB 요지(11/3·10/15)"
+     ]
+    ],
+    "read": "의견은 대부분 매수를 유지했지만 목표가는 일제히 30% 안팎 낮췄다. 이유는 이익이 아니라 국내외 전공정 장비 배수 축소다. 반면 해외 IB 메모리 자료는 2027·2028년 DRAM 설비투자가 해마다 50% 넘게 늘어난다고 본다 — 국내 증권사의 배수 하향과 같은 시기에 나온 반대 방향 기대다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "해외 투자자 방문",
+      "드러켄밀러 방문(딘스티커 채널 전언)",
+      "사실 미확인",
+      "dticker"
+     ]
+    ],
+    "read": "기관 순매수 흐름은 받지 못했다. 해외 매크로 투자자 방문 전언은 회사·보도로 확인되지 않는다"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "공개 텔레그램",
+      "급등 알림·목표가 하향 요약·실적 집계(11/9~11/11)",
+      "시장 반응의 증거",
+      "tg_channels"
+     ]
+    ],
+    "read": "리테일 쪽 화제는 '실적은 좋은데 목표가는 내린다'는 엇갈림이다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 보도",
+      "3Q 영업이익 +142%, 순이익 −88%, 목표가 하향",
+      "투자자산 평가손실이 순이익을 깎았다",
+      "11/9~11/11 보도"
+     ]
+    ],
+    "read": "실적 개선과 목표가 하향이 같은 날 나와 해석이 갈린다"
+   }
+  },
+  "factors": [
+   {
+    "name": "삼성 신규 라인(P5·Y1) 투자",
+    "thesis": "2027년 평택 P5·용인 Y1 장비 반입이 증착 장비 매출을 끌어올린다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "revision",
+    "quant": "증권사 전망: Y1·P5 반입 2027년 2월·5월(신한), 2Q27 발주(NH)",
+    "status": "유지",
+    "falsifier": "삼성이 2027년 메모리 CAPEX를 줄이거나 P5 반입을 2028년 이후로 미룬다",
+    "source": "https://www.ajunews.com/view/20261110085502084"
+   },
+   {
+    "name": "메모리 설비투자 2년 연속 고성장",
+    "thesis": "메모리 부족이 2027년까지 이어져 DRAM 설비투자가 2027·2028년 모두 늘어난다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "-"
+    },
+    "drives": "revision",
+    "quant": "해외 IB 전망: 2027 DRAM 설비투자 +55%, 2028 +52%. 10월 한국 장비 수입 +77%(전년)",
+    "status": "약화",
+    "falsifier": "삼성·SK 4Q26 실적 발표에서 2027년 설비투자 가이던스가 2026년 수준 이하",
+    "source": "노션 자료실 IB 요지(라이선스 — 외부 공유 금지)",
+    "status_why": "3Q 실적 뒤 국내 증권사 6곳이 사흘 사이 목표가를 약 30% 낮췄고 2027년 이후 지속성을 문제 삼았다(보도). 해외 IB 전망은 유지"
+   },
+   {
+    "name": "이익률 회복",
+    "thesis": "매출이 분기 ₩300B를 넘으면 고정비 흡수로 OPM이 20% 가까이 오른다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "-",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3Q OPM 19.7%(2Q 8.5%)",
+    "status": "강화",
+    "falsifier": "4Q 매출 ₩400B 이상인데 OPM 15% 미만",
+    "source": "https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713896"
+   },
+   {
+    "name": "반대: 메모리 정점과 장비 배수 축소",
+    "thesis": "메모리 가격이 2Q26 정점을 지나 고객 투자가 속도를 늦춘다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "증권사 6곳 목표가 평균 약 −30%, 삼성 2027E P/E 26배→19배",
+    "status": "강화",
+    "falsifier": "1Q27 삼성·SK 메모리 CAPEX 가이던스 상향",
+    "source": "https://www.vegannews.co.kr/news/article.html?no=403050"
+   },
+   {
+    "name": "반대: 투자자산 평가 손익",
+    "thesis": "보유 투자자산 평가로 순이익이 크게 흔들려 EPS가 영업과 따로 논다",
+    "inputs": "위험",
+    "who": {
+     "sell": "중",
+     "buy": "-",
+     "retail": "-"
+    },
+    "drives": "multiple",
+    "quant": "2Q 평가이익 약 ₩80B → 3Q 순이익 ₩3.3B",
+    "status": "유지",
+    "falsifier": "해당 투자자산 처분 공시",
+    "source": "https://www.digitaltoday.co.kr/disclosure/articleView.html?idxno=713896"
+   }
+  ],
+  "lead": {
+   "summary": "**영업이익은 142% 늘었는데 목표가는 일제히 내렸다.** 3Q 영업이익 ₩66.7B는 컨센서스를 약 21% 웃돌았다. 그러나 순이익은 투자자산 평가손실로 ₩3.3B에 그쳤고, 증권사 6곳이 사흘 사이 목표가를 ₩75,000~125,000으로 낮췄다. 주가는 6월 고점 대비 −58%다. 이유는 이익이 아니라 메모리 정점 우려와 전공정 장비 배수 축소다.",
+   "value_story": "원익IPS의 값은 '삼성이 언제 얼마나 새 라인을 까느냐'다. 매출의 89%가 반도체이고, 고객 발주가 늦으면 고정비가 이익률을 바로 깎는다(1Q25 적자, 2Q26 OPM 8.5%). 2027년 숫자는 P5·Y1 반입 시점과 증착 몫으로 정해진다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 15.5배로 국내 동종 중앙(약 17.3배)보다 약간 낮다. 6월에는 후행 P/E 47배였다.",
+    "eps": "FY2026 EPS 약 ₩3,579, FY2027 약 ₩5,058(컨센서스·삼성증권)."
+   },
+   "why_excited": "2026년 상반기 삼성·SK의 국내 생산 거점 확대 소식에 반도체 장비주가 함께 올랐고, 원익IPS는 6월 한 달에 약 64% 올라 6/12 종가 ₩183,300을 찍었다. 식은 이유는 메모리 가격 정점 우려, 해외 장비 배수 축소, 2Q 매출 감소와 3Q 매출 이연이다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "디스플레이 비중이 줄고 반도체 비중이 89%로 올랐다.",
+     "evidence": "1Q26 반도체 89%(SK증권 보도)",
+     "drives": "multiple",
+     "status": "진행 중",
+     "falsifier": "디스플레이 투자 재개로 반도체 비중이 80% 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "부품 매출 증가가 믹스를 좋게 했다는 보도가 있다.",
+     "evidence": "1Q26 부품 매출 증가(보도)",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "부품 매출 비중 공시 시 하락"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "D램 1c·HBM용 증착 공정 전환 투자가 장비 수요를 만든다(삼성증권 D램 장비 전망 상향).",
+     "evidence": "https://www.vegannews.co.kr/news/article.html?no=403050",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "1c 전환 투자 축소 보도"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해외 고객 물량은 지역별 리드타임 차이로 매출 인식이 이월됐다(2Q26). 리드타임 숫자는 공시되지 않는다.",
+     "evidence": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814001845",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "4Q에도 해외 매출 이연",
+     "lead_time": {
+      "now": 10.0,
+      "unit": "개월",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Applied Materials",
+        "value": 6.4
+       },
+       {
+        "name": "유진테크",
+        "value": "미확인"
+       },
+       {
+        "name": "테스",
+        "value": "미확인"
+       }
+      ],
+      "basis": "수주 잔고 ÷ 월평균 매출 근사 — 2Q26 말 잔고 ₩634.6B(반기보고서) ÷ 1H26 월평균 매출 ₩63.6B ≈ 10.0개월. Applied Materials는 같은 방식(FY25 말 잔고 ÷ 월평균 매출, 10-K) 6.4개월. 회사는 리드타임을 공시하지 않는다"
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 인수·합병 미확인).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "메모리·파운드리 고객의 설비투자(CAPEX)다.",
+     "evidence": "https://www.ajunews.com/view/20261110085502084",
+     "drives": "revision",
+     "status": "진행 중",
+     "falsifier": "2027년 메모리 CAPEX 감소",
+     "budgets": [
+      {
+       "business": "반도체 장비",
+       "budget": "CAPEX",
+       "line": "고객 팹 장비 투자",
+       "share": 0.89,
+       "driver": "삼성 P5·Y1, 테일러",
+       "evidence": "https://www.ajunews.com/view/20261110085502084"
+      },
+      {
+       "business": "디스플레이 장비",
+       "budget": "CAPEX",
+       "line": "OLED 라인 투자",
+       "share": 0.11,
+       "driver": "삼성디스플레이 공정 업그레이드·중국 신규",
+       "evidence": "https://www.sidae.com/article/2026051108431180904"
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "반도체 장비",
+     "what": "메모리·파운드리용 PE-CVD·ALD 증착 장비와 식각·열처리 장비",
+     "use": "삼성전자·SK하이닉스 팹",
+     "money": "1Q26 매출의 89%",
+     "rev_share": 0.89,
+     "name_en": "semiconductor deposition equipment",
+     "what_en": "Cluster tool with a central wafer transfer robot and several plasma deposition process chambers around it, gas box and RF generator rack behind",
+     "bom": {
+      "as_of": "2026-11-15",
+      "items": [
+       {
+        "no": 1,
+        "part": "공정 챔버",
+        "part_en": "plasma deposition process chamber",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "자체·미공시",
+        "source": "증착 장비 구조(업계 자료)"
+       },
+       {
+        "no": 2,
+        "part": "웨이퍼 이송 로봇",
+        "part_en": "vacuum wafer transfer robot",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "클러스터 장비 구조(업계 자료)"
+       },
+       {
+        "no": 3,
+        "part": "RF 전원",
+        "part_en": "RF power generator",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "플라즈마 장비 구조(업계 자료)"
+       },
+       {
+        "no": 4,
+        "part": "가스 공급 장치",
+        "part_en": "gas delivery box",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "업계 자료"
+       },
+       {
+        "no": 5,
+        "part": "진공 펌프",
+        "part_en": "vacuum pump",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "업계 자료"
+       },
+       {
+        "no": 6,
+        "part": "로드락",
+        "part_en": "load lock chamber",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "자체·미공시",
+        "source": "업계 자료"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "디스플레이 장비",
+     "what": "OLED용 증착·열처리 장비",
+     "use": "삼성디스플레이·중국 패널사",
+     "money": "1Q26 매출의 11%(기타 포함)",
+     "rev_share": 0.11,
+     "name_en": "display deposition equipment",
+     "what_en": "Large glass substrate deposition system"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(미국 재정 사업과 직접 연결된 매출이 작다 — 삼성 테일러 팹 장비 정도).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    },
+    "orders": {
+     "change": "해당 없음(매출을 바꾸는 행정명령을 찾지 못했다).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": "",
+     "house": {
+      "level": 1,
+      "why": "논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "논의 없음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(국내 반도체 특별법 등은 고객 투자에 간접 — 회사 매출 연결 근거 없음).",
+     "evidence": "",
+     "drives": "",
+     "status": "",
+     "falsifier": ""
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "영업이익은 늘고 주가는 절반이 됐다 — Fwd 1Y P/E 15.5배는 동종보다 낮다",
+    "evidence": [
+     "3Q 영업이익 +142%",
+     "Fwd 1Y P/E 15.5배 vs 동종 약 17.3배",
+     "6월 고점 대비 −58%"
+    ],
+    "falsifier": "FY2027 EPS 추정이 ₩4,500 아래로"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "2027년 P5·Y1 반입이 매출을 다시 키운다",
+    "evidence": [
+     "증권사 반입 전망 2027년",
+     "1Q 잔고 약 ₩400B",
+     "순현금 약 ₩290B"
+    ],
+    "falsifier": "P5 반입 2028년 이후로 지연"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "이익률은 좋아졌지만 2027년 발주 시점이 확인되지 않았다",
+    "evidence": [
+     "3Q OPM 19.7%",
+     "매출 컨센 −1%",
+     "목표가 일제 하향"
+    ],
+    "falsifier": "삼성 P5 장비 PO 보도"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "메모리 정점 뒤 장비 투자는 늦어진다",
+    "evidence": [
+     "메모리 최종 수요 둔화(BNK)",
+     "삼성 2027E P/E 26→19배",
+     "EPS 추정 −4%"
+    ],
+    "falsifier": "1Q27 메모리 CAPEX 가이던스 상향"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "단일 고객 의존에 이익률은 동종보다 낮다",
+    "evidence": [
+     "삼성 약 절반(보도)",
+     "OPM 11.4% vs 동종 18.5~27.8%",
+     "투자자산 손익 변동"
+    ],
+    "falsifier": "OPM 2개 분기 연속 20% 이상"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "TTM 영업이익 ₩113.0B로 1년 새 크게 늘었는데 주가는 6월 고점의 절반 아래다."
+     },
+     {
+      "seat": "Buy",
+      "text": "증권사들은 2027년 P5·Y1 반입을 본다. 목표가를 내렸어도 매수 의견은 유지했다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "발주가 언제 나오는지 회사가 말하지 않는다. 지금은 확인할 숫자가 없다."
+     },
+     {
+      "seat": "Sell",
+      "text": "메모리 가격이 2Q를 정점으로 꺾였다는 시각이 늘었다. 장비 투자는 그 뒤를 따라 줄어든다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "매출의 절반이 한 고객이다. 그 고객 일정이 밀리면 이익이 바로 꺾인다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "삼성증권은 이익을 내리면서도 D램 장비 전망은 올렸다. 메모리 투자 전체가 줄어든다는 숫자는 없다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "같은 보고서가 2027E P/E를 26배에서 19배로 낮췄다. 배수가 빠지는 이유가 바로 정점 우려다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "1Q 잔고 ₩400B 이후 3Q 잔고는 공시되지 않았다. 잔고가 줄고 있는지 알 수 없다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "3Q 매출이 전분기보다 56% 늘었다. 잔고가 매출로 바뀌는 중이다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "매출이 늘수록 잔고는 줄어든다. 새 발주가 없으면 2027년 상반기가 빈다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "삼성 의존은 10년 넘게 같았다. 이번 하락은 고객이 바뀌어서가 아니라 업종 배수가 빠져서다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "OPM이 동종보다 7~16%p 낮은 것은 협상력이 약하다는 뜻이다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "Fwd 1Y P/E 15.5배는 FY2027 EPS ₩5,058이 맞아야 싸다. 그 숫자도 내려가는 중이다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "순현금 상태라 업황이 늦어져도 버틸 여력이 있다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "버틸 여력과 주가는 다르다. 배수는 발주가 보일 때까지 오르기 어렵다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "FY2027 EPS 추정이 아직 내려가는 중이라는 반박은 받아들인다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "발주 시점 확인 전에는 업사이드를 확신하기 어렵다는 점을 받아들인다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "P5 장비 PO 보도가 판단을 가른다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "D램 장비 전망이 올랐다는 점은 받아들인다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "순현금이라 재무 위험은 작다는 반박을 받아들인다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Buy",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "영업이익 회복과 배수 축소는 숫자로 확인됐지만, 2027년 발주 시점은 아직 회사·고객 공시로 확인되지 않는다.",
+   "dissent": "Sell 한 표 — 메모리 정점 뒤 장비 투자 둔화"
+  }
+ }
+}
