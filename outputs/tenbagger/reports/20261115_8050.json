@@ -398,10 +398,6 @@
        ]
       }
      ]
-    },
-    {
-     "type": "p",
-     "text": "이미지 없음(아직 생성 전) — 그랜드세이코·세이코 시계"
     }
    ]
   },
@@ -755,10 +751,6 @@
   {
    "h2": "공급망 병목",
    "blocks": [
-    {
-     "type": "p",
-     "text": "이미지 없음(아직 생성 전) — 그랜드세이코·세이코 시계"
-    },
     {
      "type": "bom",
      "scope": "company",
@@ -1161,7 +1153,7 @@
     },
     {
      "type": "p",
-     "text": "데이터 공백: 1순위 재무·컨센서스 데이터 서비스가 이 회사를 다루지 않아 재무는 공개 시세 서비스의 분기 재무와 회사 결산설명자료 요약으로, 컨센서스는 공개 시세 서비스(4명)로 채웠다. 결산단신 원문·유가증권보고서·어닝콜 질의응답을 열지 못해 지역별 매출, 생산 거점 수와 캐파, 인바운드 비중, 경영진은 미확인이다. 3Q·4Q FY3/26 분기 영업이익은 분기 EBITDA에서 뺀 추정이고, 다음 4개 분기 EPS ¥450과 Fwd 2Y·3Y EPS는 모델 외삽이다. 분기 발표 직전 컨센서스가 없어 서프라이즈 표가 빠졌다."
+     "text": "데이터 공백: 1순위 재무·컨센서스 데이터 서비스가 이 회사를 다루지 않아 재무는 공개 시세 서비스의 분기 재무와 회사 결산설명자료 요약으로, 컨센서스는 공개 시세 서비스(4명)로 채웠다. 결산단신 원문·유가증권보고서·어닝콜 질의응답을 열지 못해 지역별 매출, 생산 거점 수와 캐파, 인바운드 비중, 경영진은 미확인이다. 3Q·4Q FY3/26 분기 영업이익은 분기 EBITDA에서 뺀 추정이고, 다음 4개 분기 EPS ¥450과 Fwd 2Y·3Y EPS는 모델 외삽이다. 분기 실적은 공개 시세 서비스 분기 재무로 채웠고, 발표 직전 분기 컨센서스는 공개 자료가 없어 비웠다. 3Q·4Q 분기 컨센서스(매출 ¥97.35B·EPS ¥76.70)는 FY3/27 컨센서스에서 상반기 실적을 뺀 값을 반분한 환산이다. 스와치·리치몬트·LVMH는 반기 보고라 후행 P/E 이력에서 빠졌다."
     },
     {
      "type": "boxes",
@@ -1333,7 +1325,7 @@
       [
        "다음 4분기 투영 평균",
        "+32.3%",
-       "-7.2%"
+       "-7.0%"
       ],
       [
        "4분기 뒤 투영(80% 범위)",
@@ -2081,7 +2073,7 @@
   {
    "k": "가이던스 3Q27",
    "v": "¥96,850M · ¥56.00",
-   "sub": "컨센서스 ¥97,350M"
+   "sub": "컨센서스 ¥97,350M · ¥76.69"
   },
   {
    "k": "알파",
@@ -7059,48 +7051,80 @@
     {
      "name": "매출(¥ M)",
      "categories": [
+      "2026Q3",
+      "2026Q4",
+      "2027Q1",
+      "2027Q2",
       "2027Q3",
       "2027Q4"
      ],
      "actual": [
+      93592.0,
+      81570.0,
+      99089.0,
+      97214.0,
       null,
       null
      ],
      "est": [
-      96850.0,
-      96850.0
+      null,
+      null,
+      null,
+      null,
+      97350.0,
+      97350.0
      ]
     },
     {
      "name": "EPS(¥)",
      "categories": [
+      "2026Q3",
+      "2026Q4",
+      "2027Q1",
+      "2027Q2",
       "2027Q3",
       "2027Q4"
      ],
      "actual": [
+      98.35,
+      17.65,
+      136.98,
+      138.42,
       null,
       null
      ],
      "est": [
       null,
-      null
+      null,
+      null,
+      null,
+      76.69,
+      76.69
      ]
     }
    ]
   },
   {
    "kind": "bars",
-   "title": "멀티플 프리미엄(Fwd 1Y P/E 현재값 — 최근 4개 분기 추이 재료 없음(동종 분기말 배수 또는 대상 월말 배수))",
+   "trend": true,
+   "title": "멀티플 프리미엄(Trailing P/E(선행 이력 없음), 최근 4개 분기말)",
    "unit": "%",
+   "metric": "Trailing P/E(선행 이력 없음)",
    "categories": [
-    "Fwd 1Y P/E"
+    "2025-12",
+    "2026-03",
+    "2026-06",
+    "2026-09"
    ],
    "series": [
     {
-     "name": "단순",
+     "name": "Trailing P/E(선행 이력 없음)",
      "color": "c",
      "values": [
-      6
+      -6,
+      55,
+      28,
+      39
      ]
     }
    ]
@@ -7289,6 +7313,62 @@
      "share": 0.14
     }
    ]
+  },
+  {
+   "kind": "image_block",
+   "title": "사진 A. 그랜드세이코·세이코 시계 개념도",
+   "block": {
+    "type": "image",
+    "kind": "product",
+    "file": "knowledge/models/companies/jp-seikogroup/images/product_1.jpg",
+    "photo": "A",
+    "title": "그랜드세이코·세이코 시계 개념도",
+    "caption": "AI 생성 개념도 · 실제 제품·내부 구조·비율과 다를 수 있음",
+    "legend": [
+     [
+      1,
+      "자체 무브먼트",
+      false
+     ]
+    ],
+    "callouts": [
+     {
+      "no": 1,
+      "x": 0.64,
+      "y": 0.56,
+      "own": false,
+      "label": "자체 무브먼트"
+     }
+    ]
+   }
+  },
+  {
+   "kind": "image_block",
+   "title": "사진 B. 그랜드세이코·세이코 시계 분해 개념도",
+   "block": {
+    "type": "image",
+    "kind": "exploded",
+    "file": "knowledge/models/companies/jp-seikogroup/images/exploded_1.jpg",
+    "photo": "B",
+    "title": "그랜드세이코·세이코 시계 분해 개념도",
+    "caption": "AI 생성 개념도 · 실제 제품·내부 구조·비율과 다를 수 있음",
+    "legend": [
+     [
+      1,
+      "자체 무브먼트",
+      false
+     ]
+    ],
+    "callouts": [
+     {
+      "no": 1,
+      "x": 0.5,
+      "y": 0.5,
+      "own": false,
+      "label": "자체 무브먼트"
+     }
+    ]
+   }
   },
   {
    "kind": "hbars",
@@ -7831,11 +7911,11 @@
       ],
       [
        "2026Q4",
-       -24.2
+       -23.8
       ],
       [
        "2027Q1",
-       -9.2
+       -8.9
       ],
       [
        "2027Q2",
@@ -8907,8 +8987,85 @@
    "note": "P10 0.46 · P50 0.62 · P90 0.80 · 기대 0.63배 · 30% 이상 고평가 확률 74% · 5년 뒤 ≥1.5배 2% · ≥2배 0% · ≥3배 0% · ≥5배 0% · ≥10배 0%"
   }
  ],
+ "gallery_images": [
+  {
+   "type": "image",
+   "kind": "product",
+   "file": "knowledge/models/companies/jp-seikogroup/images/product_1.jpg",
+   "photo": "A",
+   "title": "그랜드세이코·세이코 시계 개념도",
+   "caption": "AI 생성 개념도 · 실제 제품·내부 구조·비율과 다를 수 있음",
+   "legend": [
+    [
+     1,
+     "자체 무브먼트",
+     false
+    ]
+   ],
+   "callouts": [
+    {
+     "no": 1,
+     "x": 0.64,
+     "y": 0.56,
+     "own": false,
+     "label": "자체 무브먼트"
+    }
+   ]
+  },
+  {
+   "type": "image",
+   "kind": "exploded",
+   "file": "knowledge/models/companies/jp-seikogroup/images/exploded_1.jpg",
+   "photo": "B",
+   "title": "그랜드세이코·세이코 시계 분해 개념도",
+   "caption": "AI 생성 개념도 · 실제 제품·내부 구조·비율과 다를 수 있음",
+   "legend": [
+    [
+     1,
+     "자체 무브먼트",
+     false
+    ]
+   ],
+   "callouts": [
+    {
+     "no": 1,
+     "x": 0.5,
+     "y": 0.5,
+     "own": false,
+     "label": "자체 무브먼트"
+    }
+   ]
+  }
+ ],
  "support": "¥7,654.90 200일 이동평균선 지지선",
- "gallery_photos": [],
+ "gallery_photos": [
+  {
+   "type": "photos",
+   "items": [
+    {
+     "name": "그랜드세이코·세이코 시계",
+     "caption": "그랜드세이코 자동 하이비트 모델",
+     "file": "File:Grand Seiko Automatic Hi-Beat.jpg",
+     "jpg": "104615e277a35f5d.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Grand_Seiko_Automatic_Hi-Beat.jpg",
+     "credit": "사진: Dnalor 01 · CC BY-SA 3.0 at · Wikimedia Commons"
+    }
+   ]
+  },
+  {
+   "type": "photos",
+   "items": [
+    {
+     "name": "와코 본관(긴자)",
+     "caption": "긴자 와코 본관(시계탑 건물) — 소매 시설",
+     "file": "File:Ginza Wako 20241021.jpg",
+     "jpg": "655e424bba99c4d4.jpg",
+     "page": "https://commons.wikimedia.org/wiki/File:Ginza_Wako_20241021.jpg",
+     "credit": "사진: This Photo was taken by Supanut Arunoprayote.\n\nFeel free to use any of my images · CC BY 4.0 · Wikimedia Commons"
+    }
+   ]
+  }
+ ],
  "format": 3,
  "terms": {
   "EVS": "세이코의 시계·와코(백화점) 등 소비자 사업 영역(Emotional Value Solution)",

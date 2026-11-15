@@ -61,7 +61,29 @@
    "ev_sales": 1.17,
    "growth": 0.235,
    "pe_fwd": 13.0,
-   "ev_ebitda_fwd": null
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 10.4
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 13.0
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 13.1
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 19.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 13.0
+    }
+   ]
   },
   {
    "ticker": "카시오",
@@ -75,7 +97,29 @@
    "ev_sales": 1.13,
    "growth": 0.17,
    "pe_fwd": 16.3,
-   "ev_ebitda_fwd": null
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 22.1
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 15.1
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 17.5
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 18.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 18.1
+    }
+   ]
   },
   {
    "ticker": "스와치",
@@ -131,7 +175,29 @@
    "ev_sales": 0.94,
    "growth": 0.107,
    "pe_fwd": 12.6,
-   "ev_ebitda_fwd": null
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 18.1
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 26.7
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 13.1
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 33.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 27.1
+    }
+   ]
   }
  ],
  "scenario_probs": {
@@ -171,7 +237,8 @@
    "rev_cons": 97350,
    "eps": 56.0,
    "unit": "¥M",
-   "note": "회사는 통기만 밝혔다 — 하반기 매출 ¥193.7B(= 390.0 − 196.3)를 단순 반분한 근사 ¥96.85B(전년 계절성 3Q 93.6 : 4Q 81.6을 쓰면 3Q가 더 크다). 분기 EPS ¥56은 하반기 순이익 ¥9.5B(= 32.0 − 22.5) ÷ 2 ÷ 8,138만 주 근사. 분기 컨센서스 미확인 — rev_cons는 통기 컨센서스 ¥391B에서 같은 방법으로 낸 값"
+   "note": "회사 가이던스는 통기만 — 3Q 값은 하반기 가이던스(매출 ¥193.7B·순이익 ¥9.5B) 반분 근사(매출 ¥96,850M·EPS ¥56). 컨센서스도 분기 값이 공개되지 않아 FY3/27 컨센서스에서 상반기 실적을 뺀 하반기를 반분했다(매출 ¥97350M·EPS ¥76.69)",
+   "eps_cons": 76.69
   }
  },
  "raw": {
@@ -215,8 +282,8 @@
   "estimates_sales_m": {
    "2027Q1(실적)": 99089,
    "2027Q2(실적)": 97214,
-   "2027Q3": 96850,
-   "2027Q4": 96850
+   "2027Q3": 97350,
+   "2027Q4": 97350
   },
   "consensus_sources": {
    "FY3/27": "TradingView 11/13: 애널리스트 4명 모두 매수(Strong Buy), 1년 목표가 ¥13,600(+65%), 다음 회계연도 EPS 컨센서스 ¥428.8, 매출 컨센서스 약 ¥391B(달러 표기 $2.48B를 TTM EPS 비율 ¥157.4/달러로 환산 — 자체 계산)",
@@ -245,8 +312,8 @@
   "n_analysts": 4,
   "revisions_90d": {},
   "quarters_est": {
-   "2027Q3": 96.85,
-   "2027Q4": 96.85
+   "2027Q3": 97.35,
+   "2027Q4": 97.35
   },
   "quarters_act": {
    "2026Q3": 93.592,
@@ -254,7 +321,10 @@
    "2027Q1": 99.089,
    "2027Q2": 97.214
   },
-  "eps_quarters_est": {},
+  "eps_quarters_est": {
+   "2027Q3": 76.69,
+   "2027Q4": 76.69
+  },
   "ratings": {
    "strong_buy": 4,
    "buy": 0,
@@ -265,12 +335,87 @@
    "source": "TradingView 4명 모두 매수, 1년 목표가 ¥13,600"
   },
   "note": "Fiscal.ai·Zacks 미지원. 컨센서스는 TradingView(4명). FY3/27 EPS 컨센서스 ¥428.8은 회사 가이던스 ¥393(자체 환산)보다 9% 높다. yfinance 선행 EPS ¥342.9는 기간 표기가 없어 쓰지 않는다 — 시장은 회사가 하반기를 보수적으로 잡았다고 본다. 영업이익 컨센서스는 미확인이라 이익률은 가이던스 12.1%를 쓴다. 분기 발표 직전 컨센서스는 공개 자료로 얻지 못해 서프라이즈 표는 비운다",
-  "surprise": [],
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 93592,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 98.35,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 81570,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 17.65,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 99089,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 136.98,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q2",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 97214,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q2",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 138.42,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   }
+  ],
   "price_window": {
    "from": 10070,
    "to": 8220,
    "note": "2Q 발표일 11/10 종가 ¥10,070(TradingView 일봉) → 11/13 ¥8,220(−18%)"
-  }
+  },
+  "surprise_note": "실적 = TradingView 분기 재무(분할 보정 EPS). 발표 직전 분기 컨센서스는 공개 자료로 확인하지 못해 est는 비운다",
+  "quarters_est_note": "분기 컨센서스는 공개되지 않아 FY3/27 컨센서스(매출 ¥391.0B·EPS ¥428.8, TradingView 4명)에서 상반기 실적을 뺀 하반기 값을 반분했다 — 3Q·4Q 각 매출 ¥97.35B·EPS ¥76.69(환산, 계절성 미반영)"
  },
  "call": {
   "date": "2026-11-10",
@@ -839,7 +984,58 @@
  },
  "history": {
   "pe_fwd": [],
-  "ev_ebitda_fwd": []
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2023-12-31",
+    "value": 14.7
+   },
+   {
+    "date": "2024-03-31",
+    "value": 17.1
+   },
+   {
+    "date": "2024-06-30",
+    "value": 18.2
+   },
+   {
+    "date": "2024-09-30",
+    "value": 12.8
+   },
+   {
+    "date": "2024-12-31",
+    "value": 16.2
+   },
+   {
+    "date": "2025-03-31",
+    "value": 12.7
+   },
+   {
+    "date": "2025-06-30",
+    "value": 11.1
+   },
+   {
+    "date": "2025-09-30",
+    "value": 15.6
+   },
+   {
+    "date": "2025-12-31",
+    "value": 14.2
+   },
+   {
+    "date": "2026-03-31",
+    "value": 20.3
+   },
+   {
+    "date": "2026-06-30",
+    "value": 24.6
+   },
+   {
+    "date": "2026-09-30",
+    "value": 25.1
+   }
+  ],
+  "pe_ttm_note": "대상·일본 동종 3곳 = TradingView 분기말 월봉 종가 ÷ 분기 EPS 4개 합(분할 보정). 스와치·리치몬트·LVMH는 반기 보고라 분기 후행 P/E 이력을 만들지 않았다"
  },
  "terms": {
   "EVS": "세이코의 시계·와코(백화점) 등 소비자 사업 영역(Emotional Value Solution)",
@@ -1160,7 +1356,10 @@
      "money": "구축·유지보수",
      "rev_share": 0.14,
      "rev_share_prev": null,
-     "mix_basis": "1H SS ¥28.1B ÷ ¥200.9B(전년 비중 미확인)"
+     "mix_basis": "1H SS ¥28.1B ÷ ¥200.9B(전년 비중 미확인)",
+     "name_en": "enterprise IT system integration service",
+     "what_en": "Server racks, network equipment and payment terminals installed for enterprise and restaurant chain IT systems",
+     "use_en": "a tidy server room with network racks and a restaurant ordering tablet"
     }
    ],
    "lenses": [
@@ -1662,5 +1861,19 @@
    "2026-06-30": 136.98,
    "2026-09-30": 138.42
   }
- }
+ },
+ "photos": [
+  {
+   "for": "product",
+   "name": "그랜드세이코·세이코 시계",
+   "file": "File:Grand Seiko Automatic Hi-Beat.jpg",
+   "caption": "그랜드세이코 자동 하이비트 모델"
+  },
+  {
+   "for": "site",
+   "name": "와코 본관(긴자)",
+   "file": "File:Ginza Wako 20241021.jpg",
+   "caption": "긴자 와코 본관(시계탑 건물) — 소매 시설"
+  }
+ ]
 }
