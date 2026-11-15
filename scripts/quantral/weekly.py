@@ -104,9 +104,16 @@ def put_reads(reads_path, week):
     return d["reads"]
 
 
+def _canon(reads, i):
+    """get_story는 이야기 창이 아니라 그 종목의 최근 언급 피드를 돌려준다(2026-11-15 W46 재작성에서 확인 — NVDA 이야기 6건이 같은 피드).
+    같은 피드를 공유하는 이야기는 reads에 {"same_as": "<읽은 이야기 id>"}로 두고, 글 수는 한 번만 센다"""
+    v = reads.get(str(i)) or {}
+    return str(v["same_as"]) if v.get("same_as") else str(i)
+
+
 def _channels(reads, ids):
     tot = {}
-    for i in ids:
+    for i in dict.fromkeys(_canon(reads, x) for x in ids):
         for k, v in (reads.get(str(i)) or {}).items():
             if k in CH_KEYS:
                 tot[k] = tot.get(k, 0) + int(v or 0)
@@ -125,6 +132,10 @@ def evidence_gate(d, rp):
             if x.get("id") is not None:
                 sid.setdefault(str(x["id"]), set()).add(r["ticker"])
     for i, v in reads.items():
+        if v.get("same_as"):
+            if str(v["same_as"]) not in reads:
+                bad.append(f"이야기 {i}: same_as {v['same_as']}의 읽기 기록이 없다")
+            continue
         n = sum(int(v.get(k) or 0) for k in CH_KEYS)
         if not v.get("pages_done") and n < READ_CAP:
             bad.append(f"이야기 {i}: 글 {n}건에서 멈췄다 — nextCursor가 끝날 때까지(상한 {READ_CAP}건) 읽는다")
@@ -213,7 +224,7 @@ def render(week):
         if bad:
             raise ValueError("내러티브 근거 관문 미통과 — " + " · ".join(bad))
     allch = _channels(d.get("reads") or {}, list((d.get("reads") or {}).keys()))
-    chan_label = ("읽은 근거 글 " + " · ".join(f"{k} {v:,}" for k, v in sorted(allch.items(), key=lambda kv: -kv[1]) if k != "기타")
+    chan_label = ("읽은 근거 글 " + " · ".join(f"{k} {v:,}" for k, v in sorted(allch.items(), key=lambda kv: -kv[1]) if k != "기타" and v)
                   + ("" if allch.get("Substack") else " · Substack 0")) if allch else "Reddit·X·Substack"
     H = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
          f'<title>Chiip Quantral {week}</title><style>{CSS}</style></head><body><div class="w">',

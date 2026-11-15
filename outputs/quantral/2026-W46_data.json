@@ -1,0 +1,597 @@
+{
+ "week": "2026-W46",
+ "period": "11/09~11/15",
+ "rows": [
+  {
+   "ticker": "NVDA",
+   "name": "NVIDIA Corporation",
+   "posts": 1702,
+   "stories": [
+    {
+     "id": 766,
+     "headline": "Nvidia faces storm over CEO affair reports, downgrade, H200 export ban",
+     "kind": "Trending",
+     "posts": 508
+    },
+    {
+     "id": 801,
+     "headline": "Nvidia CEO reported to be leaving, split views",
+     "kind": "Trending",
+     "posts": 466
+    },
+    {
+     "id": 697,
+     "headline": "Nvidia swirl of negative rumors",
+     "kind": "Trending",
+     "posts": 214
+    }
+   ],
+   "mix": {
+    "X": 0.74,
+    "Reddit": 0.22,
+    "기타": 0.04
+   },
+   "sample": 202,
+   "rxs_share": 0.96,
+   "score": 1634.6,
+   "rank": 1
+  },
+  {
+   "ticker": "NBIS",
+   "name": "Nebius Group N.V.",
+   "posts": 226,
+   "stories": [
+    {
+     "id": 795,
+     "headline": "Nebius revenue +571% but 2027 capex plan spooks investors",
+     "kind": "Trending",
+     "posts": 138
+    },
+    {
+     "id": 755,
+     "headline": "Nebius prepares for earnings after strong pricing signals",
+     "kind": "Trending",
+     "posts": 57
+    },
+    {
+     "id": 839,
+     "headline": "Nebius cuts 2026 revenue guidance by $200 million due to DataOne site delays",
+     "kind": "Trending",
+     "posts": 20
+    }
+   ],
+   "mix": {
+    "X": 0.96,
+    "Reddit": 0.02,
+    "기타": 0.02
+   },
+   "sample": 173,
+   "rxs_share": 0.98,
+   "score": 222.1,
+   "rank": 2
+  },
+  {
+   "ticker": "CRWV",
+   "name": "CoreWeave, Inc.",
+   "posts": 152,
+   "stories": [
+    {
+     "id": 723,
+     "headline": "CoreWeave beats and raises, debt load debate",
+     "kind": "Trending",
+     "posts": 103
+    },
+    {
+     "id": 757,
+     "headline": "CoreWeave surges after beat and raise, capacity sold out through 2028",
+     "kind": "Trending",
+     "posts": 42
+    },
+    {
+     "id": 681,
+     "headline": "CoreWeave and Nebius face pressure as Nvidia safety net disappears",
+     "kind": "Divided",
+     "posts": 7
+    }
+   ],
+   "mix": {
+    "X": 0.84,
+    "기타": 0.14,
+    "Reddit": 0.03
+   },
+   "sample": 79,
+   "rxs_share": 0.86,
+   "score": 130.8,
+   "rank": 3
+  },
+  {
+   "ticker": "AMD",
+   "name": "Advanced Micro Devices, Inc.",
+   "posts": 66,
+   "stories": [
+    {
+     "id": 798,
+     "headline": "BofA raises 2030 server CPU forecast, names AMD key beneficiary",
+     "kind": "Trending",
+     "posts": 28
+    },
+    {
+     "id": 760,
+     "headline": "AMD surges 36% in four days on Nvidia CEO turmoil",
+     "kind": "Trending",
+     "posts": 28
+    },
+    {
+     "id": 834,
+     "headline": "AMD seen as potential winner from Nvidia leadership turmoil",
+     "kind": "Trending",
+     "posts": 10
+    }
+   ],
+   "mix": {
+    "X": 0.72,
+    "Reddit": 0.19,
+    "기타": 0.09
+   },
+   "sample": 69,
+   "rxs_share": 0.91,
+   "score": 60.3,
+   "rank": 4
+  },
+  {
+   "ticker": "RKLB",
+   "name": "Rocket Lab Corporation",
+   "posts": 53,
+   "stories": [
+    {
+     "id": 695,
+     "headline": "Rocket Lab pushes Neutron to 2027",
+     "kind": "Trending",
+     "posts": 36
+    },
+    {
+     "id": 730,
+     "headline": "Rocket Lab record quarterly revenue and backlog",
+     "kind": "Trending",
+     "posts": 17
+    }
+   ],
+   "mix": {
+    "Reddit": 0.62,
+    "X": 0.37,
+    "기타": 0.01
+   },
+   "sample": 78,
+   "rxs_share": 0.99,
+   "score": 52.3,
+   "rank": 5
+  },
+  {
+   "ticker": "ASTS",
+   "name": "AST SpaceMobile, Inc.",
+   "posts": 25,
+   "stories": [
+    {
+     "id": 680,
+     "headline": "AST SpaceMobile Japan JV with Rakuten ahead of Q3",
+     "kind": "Trending",
+     "posts": 25
+    }
+   ],
+   "mix": {
+    "X": 0.69,
+    "Reddit": 0.31
+   },
+   "sample": 80,
+   "rxs_share": 1.0,
+   "score": 25.0,
+   "rank": 6
+  },
+  {
+   "ticker": "CBRS",
+   "name": "Cerebras Systems Inc.",
+   "posts": 23,
+   "stories": [
+    {
+     "id": 805,
+     "headline": "Cerebras jumps after hours on $26.1B backlog and Microsoft as third hyperscaler",
+     "kind": "Trending",
+     "posts": 23
+    }
+   ],
+   "mix": {
+    "X": 1.0
+   },
+   "sample": 24,
+   "rxs_share": 1.0,
+   "score": 23.0,
+   "rank": 7
+  },
+  {
+   "ticker": "HIMS",
+   "name": "Hims & Hers Health, Inc.",
+   "posts": 14,
+   "stories": [
+    {
+     "id": 722,
+     "headline": "Hims & Hers falls after earnings, Huberman partnership debated",
+     "kind": "Trending",
+     "posts": 14
+    }
+   ],
+   "mix": {
+    "X": 1.0
+   },
+   "sample": 23,
+   "rxs_share": 1.0,
+   "score": 14.0,
+   "rank": 8
+  },
+  {
+   "ticker": "MSFT",
+   "name": "Microsoft Corporation",
+   "posts": 13,
+   "stories": [
+    {
+     "id": 824,
+     "headline": "Microsoft global outage leaves Outlook down for over 18 hours",
+     "kind": "Trending",
+     "posts": 13
+    }
+   ],
+   "mix": {
+    "X": 0.6,
+    "Reddit": 0.33,
+    "기타": 0.07
+   },
+   "sample": 15,
+   "rxs_share": 0.93,
+   "score": 12.1,
+   "rank": 9
+  },
+  {
+   "ticker": "META",
+   "name": "Meta Platforms, Inc.",
+   "posts": 12,
+   "stories": [
+    {
+     "id": 840,
+     "headline": "Posters compare Meta's $887 million Italian fine to a recurring subscription cost",
+     "kind": "Rising",
+     "posts": 12
+    }
+   ],
+   "mix": {
+    "Reddit": 0.83,
+    "X": 0.17
+   },
+   "sample": 12,
+   "rxs_share": 1.0,
+   "score": 12.0,
+   "rank": 10
+  },
+  {
+   "ticker": "MRNA",
+   "name": "Moderna, Inc.",
+   "posts": 12,
+   "stories": [
+    {
+     "id": 705,
+     "headline": "Moderna drops 25% despite strong melanoma vaccine data",
+     "kind": "Trending",
+     "posts": 12
+    }
+   ],
+   "mix": {
+    "Reddit": 0.79,
+    "기타": 0.14,
+    "X": 0.07
+   },
+   "sample": 14,
+   "rxs_share": 0.86,
+   "score": 10.3,
+   "rank": 11
+  },
+  {
+   "ticker": "TTWO",
+   "name": "Take-Two Interactive Software, Inc.",
+   "posts": 10,
+   "stories": [
+    {
+     "id": 836,
+     "headline": "Take-Two's GTA VI sets pre-order record and $1B launch estimate",
+     "kind": "Trending",
+     "posts": 10
+    }
+   ],
+   "mix": {
+    "Reddit": 0.9,
+    "X": 0.1
+   },
+   "sample": 10,
+   "rxs_share": 1.0,
+   "score": 10.0,
+   "rank": 12
+  },
+  {
+   "ticker": "COHR",
+   "name": "Coherent Corp.",
+   "posts": 10,
+   "stories": [
+    {
+     "id": 726,
+     "headline": "Coherent and Lumentum called key winners of AI optics upgrade",
+     "kind": "Trending",
+     "posts": 10
+    }
+   ],
+   "mix": {
+    "X": 0.98,
+    "기타": 0.02
+   },
+   "sample": 54,
+   "rxs_share": 0.98,
+   "score": 9.8,
+   "rank": 13
+  },
+  {
+   "ticker": "LITE",
+   "name": "Lumentum Holdings Inc.",
+   "posts": 10,
+   "stories": [
+    {
+     "id": 726,
+     "headline": "Coherent and Lumentum called key winners of AI optics upgrade",
+     "kind": "Trending",
+     "posts": 10
+    }
+   ],
+   "mix": {
+    "X": 0.98,
+    "기타": 0.02
+   },
+   "sample": 54,
+   "rxs_share": 0.98,
+   "score": 9.8,
+   "rank": 14
+  },
+  {
+   "ticker": "INTC",
+   "name": "Intel Corporation",
+   "posts": 9,
+   "stories": [
+    {
+     "id": 810,
+     "headline": "Intel gains traction on talk of $2B GPU orders, weak guidance tempers enthusiasm",
+     "kind": "Trending",
+     "posts": 9
+    }
+   ],
+   "mix": {
+    "X": 0.5,
+    "Reddit": 0.5
+   },
+   "sample": 2,
+   "rxs_share": 1.0,
+   "score": 9.0,
+   "rank": 15
+  }
+ ],
+ "n_stories": 36,
+ "n_companies": 28,
+ "reads": {
+  "732": {
+   "X": 150,
+   "Reddit": 44,
+   "Substack": 0,
+   "기타": 8,
+   "pages_done": true,
+   "note": "200건 상한"
+  },
+  "795": {
+   "X": 166,
+   "Reddit": 4,
+   "Substack": 0,
+   "기타": 3,
+   "pages_done": true
+  },
+  "757": {
+   "X": 66,
+   "Reddit": 2,
+   "Substack": 0,
+   "기타": 11,
+   "pages_done": true
+  },
+  "659": {
+   "X": 108,
+   "Reddit": 5,
+   "Substack": 0,
+   "기타": 7,
+   "pages_done": true
+  },
+  "834": {
+   "X": 7,
+   "Reddit": 2,
+   "Substack": 0,
+   "기타": 3,
+   "pages_done": true
+  },
+  "798": {
+   "X": 25,
+   "Reddit": 10,
+   "Substack": 0,
+   "기타": 3,
+   "pages_done": true
+  },
+  "760": {
+   "X": 50,
+   "Reddit": 13,
+   "Substack": 0,
+   "기타": 6,
+   "pages_done": true
+  },
+  "831": {
+   "X": 5,
+   "Reddit": 1,
+   "Substack": 0,
+   "기타": 2,
+   "pages_done": true
+  },
+  "810": {
+   "X": 1,
+   "Reddit": 1,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "724": {
+   "X": 13,
+   "Reddit": 2,
+   "Substack": 0,
+   "기타": 1,
+   "pages_done": true
+  },
+  "743": {
+   "X": 11,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 25,
+   "pages_done": true
+  },
+  "726": {
+   "X": 53,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 1,
+   "pages_done": true
+  },
+  "672": {
+   "X": 11,
+   "Reddit": 3,
+   "Substack": 0,
+   "기타": 2,
+   "pages_done": true
+  },
+  "840": {
+   "X": 2,
+   "Reddit": 10,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "836": {
+   "X": 1,
+   "Reddit": 9,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "824": {
+   "X": 9,
+   "Reddit": 5,
+   "Substack": 0,
+   "기타": 1,
+   "pages_done": true
+  },
+  "805": {
+   "X": 24,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "730": {
+   "X": 14,
+   "Reddit": 32,
+   "Substack": 0,
+   "기타": 1,
+   "pages_done": true
+  },
+  "695": {
+   "X": 29,
+   "Reddit": 48,
+   "Substack": 0,
+   "기타": 1,
+   "pages_done": true
+  },
+  "722": {
+   "X": 23,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "713": {
+   "X": 18,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "709": {
+   "X": 5,
+   "Reddit": 11,
+   "Substack": 0,
+   "기타": 3,
+   "pages_done": true
+  },
+  "705": {
+   "X": 1,
+   "Reddit": 11,
+   "Substack": 0,
+   "기타": 2,
+   "pages_done": true
+  },
+  "706": {
+   "X": 18,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 1,
+   "pages_done": true
+  },
+  "680": {
+   "X": 55,
+   "Reddit": 25,
+   "Substack": 0,
+   "기타": 0,
+   "pages_done": true
+  },
+  "669": {
+   "X": 27,
+   "Reddit": 0,
+   "Substack": 0,
+   "기타": 7,
+   "pages_done": true
+  },
+  "837": {
+   "same_as": "732"
+  },
+  "801": {
+   "same_as": "732"
+  },
+  "766": {
+   "same_as": "732"
+  },
+  "697": {
+   "same_as": "732"
+  },
+  "665": {
+   "same_as": "732"
+  },
+  "839": {
+   "same_as": "795"
+  },
+  "755": {
+   "same_as": "795"
+  },
+  "681": {
+   "same_as": "795"
+  },
+  "660": {
+   "same_as": "795"
+  },
+  "723": {
+   "same_as": "757"
+  }
+ }
+}
