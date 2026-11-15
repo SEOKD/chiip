@@ -1,0 +1,85 @@
+id: co-powell
+name: Powell Industries
+ticker: POWL
+unit: B$
+unit_usd: 1000000000
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.22
+horizon: 10
+as_of: '2026-11-09'
+market:
+  date: '2026-11-06'
+  price: 133.12
+  shares: 0.0364326
+  net_debt: -0.632
+  source: 가격 = 2026-11-06 종가 $133.12(Fiscal.ai·TradingView 일치, 시총 $4.85B) · 주식 수 36,432,564(2026-08-03, Fiscal.ai) · 현금 $0.634B,
+    차입 없음, 리스 $0.0025B = 표준화 재무상태표 2026-06-30(3Q FY26). 순차입 = 0.0025 − 0.6336 = −0.631. 고객 선수금(계약부채) $0.466B는 현금에서 빼지
+    않았다 — 빼면 순현금이 $0.165B로 줄어든다(근거 약함)
+rev0: 1.188
+ic0: 0.125   # 자기자본 0.756 + 순차입 −0.631. 선수금이 운전자본을 대서 투하자본이 작다
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.178
+      end: 0.035
+      decay: 0.75
+    margin:
+      m0: 0.195
+      target: 0.2
+      year_target: 2
+      lr: 0.15
+      lam: 0.3
+      anchors:
+      - 0.199
+      - 0.2
+    s2c: 4.0
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.27
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: 0.195
+      target: 0.21
+      year_target: 3
+      lr: 0.17
+      lam: 0.25
+    s2c: 4.5
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.05
+      end: 0.03
+      decay: 0.6
+    margin:
+      m0: 0.195
+      target: 0.15
+      year_target: 3
+      lr: 0.12
+      lam: 0.4
+    s2c: 3.0
+mc:
+  sigma_growth: 0.05
+  sigma_margin: 0.02
+  sigma_s2c: 0.3
+  sigma_wacc: 0.005
+provenance:
+  rev0: 'FY2026(2026-09) 매출 = Fiscal.ai 자체 추정 $1.188B(범위 $1.165~1.215B) — FY26 실적은 2026-11-17 발표 예정. FY2025 실적 $1.104B, LTM(2026-06-30) $1.158B'
+  growth: 'Fiscal.ai 자체 추정(Agentic Consensus) FY2027 $1.40B(+17.8%, 범위 $1.27~1.52B), FY2028 $1.60B(+14.3%). 감쇠 0.75 = (14.3% − 3.5%) ÷ (17.8% − 3.5%)'
+  margin: 'GAAP EBIT 이익률 FY23 9.0% → FY24 17.7% → FY25 19.7%(실적) · 추정 FY26 19.5% · FY27 19.9% · FY28 20.0%(Fiscal.ai). 3년 만에 1%대에서 20%로 오른
+    이익률이라 장기 15%로 페이드(가격 결정력이 수주 잔고 소진 뒤 유지되는지 미확인, 근거 약함)'
+  s2c: 'LTM 매출 ÷ 투하자본 = 1.16 ÷ 0.125 = 9.3(선수금 효과로 과대) → 증분 4.0으로 낮춤(근거 약함)'
+  range: 'Fiscal.ai FY27 최저·최고 $1.27B·$1.52B → 약세 1년차 5%(최저 +6.9%보다 낮게)·강세 27%'
+  probs: '등급 하향 헤드라인 2건(SA ‘Record Backlog Isn’t Enough’ 10/14, Simply Wall St 실적 전 하향 10/31), 한 달 −33% vs 수주 잔고 사상 최대(헤드라인)
+    → 약세 0.30·강세 0.20'
+notes:
+- 신규 작성 2026-11-09(대기열 '작성', 알파 5.2 진입). FY26 실적(2026-11-17) 전 값이다 — 실적 뒤 '갱신' 대상. 컨센서스 미입력(manual_consensus.csv에 행 없음)
+- 'Zacks 목표가 평균 $281.1(7명, $151~427)이 현재가의 2.1배다. 주식 수가 1년 전 약 1,200만 주에서 3,643만 주로 늘어 주식 분할이 있었던 것으로 보이며, 목표가 일부가 분할 전 기준일 수 있다(미확인) —
+  Data provided by Zacks Investment Research, Inc., www.zacksdata.com'
+- 계속가치 RONIC = WACC(기본)
+evidence:
+- Fiscal.ai 회사 페이지 https://fiscal.ai/company/NasdaqGS-POWL
