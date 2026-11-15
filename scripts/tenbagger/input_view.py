@@ -215,13 +215,24 @@ def cost_rows(dp, hist=None):
     return rows, unmapped
 
 
+def index_name(ref):
+    """'ppi:valve' → config/trade_ppi.yaml inputs.valve.name('산업용 밸브·유량 제어 부품') — 코드가 그림에 그대로 나갔다(2026-11-15 FIX)"""
+    if not str(ref or "").startswith("ppi:"):
+        return ref
+    import yaml
+    from pathlib import Path
+    cfg = yaml.safe_load((Path(__file__).resolve().parents[2] / "config" / "trade_ppi.yaml").read_text(encoding="utf-8")) or {}
+    item = (cfg.get("inputs") or {}).get(ref.split(":", 1)[1]) or {}
+    return f"{item['name']} PPI" if item.get("name") else ref
+
+
 def price_rows(dp, hist=None, cpi=None):
     out = []
     for p in dp.get("pricing") or []:
         s = series(p.get("index"), hist, cpi)
         y, m = change(s, 12)
         comp = (p.get("company") or {}).get("yoy")
-        out.append({"business": p.get("business"), "index": p.get("index"), "label": p.get("label") or p.get("index"), "idx12": y, "month": m,
+        out.append({"business": p.get("business"), "index": p.get("index"), "label": p.get("label") or index_name(p.get("index")), "idx12": y, "month": m,
                     "company": comp, "basis": (p.get("company") or {}).get("basis"), "power": comp - y if None not in (comp, y) else None})
     return out
 
@@ -258,13 +269,18 @@ def pricing_chart(br):
     rows = [{"label": f"원가 PPI {short(r['name'])}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
     for r in br["prices"]:
         if r["idx12"] is not None:
-            rows.append({"label": f"판매가 {r['label']}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
+            rows.append({"label": f"판매가 {short(r['label'])}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
         if r["company"] is not None:
             rows.append({"label": f"회사 가격 {r['business']}", "bars": [{"name": "1년 변화", "color": "a", "value": round(r["company"] * 100, 1)}]})
     if not rows:
         return None
-    months = sorted({r["month"] for r in br["costs"] + br["prices"] if r.get("month")})
-    return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": "투입 원가 물가·판매가 물가·회사 가격 — 1년 변화(항목별 최근 달)", "unit": "%", "rows": rows[:8]}}
+    # 제목에 뜻과 결론을 쓴다(마스터 지시 2026-11-15 "이 시각물이 의미하는 바도 제목에 제대로 명시하라. 의미를 풀이")
+    title = "원가 물가 vs 판매가 물가 — 1년 변화(원가가 판매가보다 더 오르면 단가를 올리지 못하는 만큼 마진이 줄어든다)"
+    if br.get("spread") is not None:
+        sp = br["spread"] * 100
+        title += (f": 판매가 쪽 물가가 원가보다 {sp:.1f}%p 더 올라 단가 전가 여지가 있다" if sp >= 0 else
+                  f": 원가가 판매가 쪽 물가보다 {-sp:.1f}%p 더 올라 단가 인상이 따라가지 못하면 마진 압박")
+    return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": title, "unit": "%", "rows": rows[:8]}}
 
 
 def change_at(s, month, n=12, step_back=2):
