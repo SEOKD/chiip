@@ -291,7 +291,12 @@ def reason_label(x):
 def reason_note(x, name, ref, alpha_row, use_model):
     """근거 줄 아래 '→ …' 풀이. 자료면 item_notes(본문을 읽고 모델 40자), 알파 진입·실적일은 결정론 문구"""
     if x.startswith("알파 ") and "기준 진입" in x:
-        return "→ 판단 파일 재산정으로 점수가 기준을 넘었다 — 새 자료가 아니라 점수 변화"
+        # 마스터 지시 2026-11-15 "문구 고쳐줘" — '판단 파일 재산정'이 내부 용어라 무슨 일인지 바로 읽히게
+        d = str((alpha_row or {}).get("scored_on") or "")[:8]
+        when = f"({int(d[4:6])}/{int(d[6:8])})" if len(d) == 8 and d.isdigit() else ""
+        tot = (alpha_row or {}).get("total")
+        to = f" 점수가 {tot:.1f}로 올라" if isinstance(tot, (int, float)) else ""
+        return f"→ 주간 알파 재채점{when}에서{to} 기준 5.0을 처음 넘었다 — 새 뉴스·공시가 아니라 점수 변화"
     m = re.match(r"실적 발표\((.*)\)", x)
     if m:
         return f"→ 실적 발표일({m[1]}) — 숫자가 동인(매출·이익 가정)을 바꿀 수 있어 다시 계산"
