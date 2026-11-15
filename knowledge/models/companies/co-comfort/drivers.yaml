@@ -1,0 +1,103 @@
+auto: true
+id: co-comfort
+name: Comfort Systems USA
+ticker: FIX
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.23
+horizon: 10
+as_of: '2026-11-15'
+market:
+  date: '2026-11-15'
+  price: 1112.5
+  shares: 0.035146
+  net_debt: -1.783594
+  source: 가격 = 2026-11-13 종가 $1,112.50(TradingView NYSE:FIX) · 주식 수 34,985,904(10-Q
+    표지 2026-10-16) · 현금 $2,158.0M · 차입 = 유동 $5.7M + 장기 $43.8M + 리스 $324.9M(10-Q 재무상태표
+    2026-09-30)
+rev0: 13.877
+ic0: 1.551649
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.2899
+      end: 0.035
+      decay: 0.323
+    margin:
+      m0: 0.1676
+      target: 0.15
+      year_target: 4
+      lr: 0.11
+      lam: 0.35
+      anchors:
+      - 0.1747
+    s2c: 4.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.4124
+      end: 0.04
+      decay: 0.373
+    margin:
+      m0: 0.1676
+      target: 0.17
+      year_target: 4
+      lr: 0.11
+      lam: 0.25
+      anchors:
+      - 0.1747
+    s2c: 4.6
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1746
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.1676
+      target: 0.13
+      year_target: 4
+      lr: 0.11
+      lam: 0.5
+      anchors:
+      - 0.1747
+    s2c: 3.4
+mc:
+  sigma_growth: 0.0595
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 13.877
+  growth: 컨센서스 1년차 29.0%, 2년차 11.7%
+  margin: 1년차 컨센서스 17.5% 고정 → 목표 15%(4년차, 덮어쓰기) → 장기 수렴 11%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 6.0 → 덮어쓰기 4.0
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 17.5%~41.2%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.35, ''bull'': 0.3} → 모델 조정 {''bear'':
+    0.3, ''base'': 0.45, ''bull'': 0.25}(잔고·인력 계획은 강하지만 이익률 16~17%는 MEP 시공사 역사 범위의
+    상단이고 텍사스 정책 결정(12/10·1월 의회) 전이라 약세 몫을 지킨다) — 다음 해 매출 성장 분포로 계산 — 약세 +23.2% 아래·강세
+    +35.1% 위 확률. 내부 관점(컨센서스 +29.0%, σ 13.2%: 범위 23.8% ÷ d2(7) × 1.5) 100% — 외부 관점
+    꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 영업이익률 11%: 2024 실적 10.7% 근처로 되돌림(정점 이익률 회귀, 근거 = 자기 역사). 4년차 15%는
+    컨센서스 17%대에서 페이드 시작. 매출÷투하자본 4.0: 지금 8배는 고객 선수금 덕분이라 성장 투자에 그대로 쓰지 않는다'
+  shares: '완전 희석 = 기본 0.034985904(2026-10-16) + 옵션·RSU·워런트·전환 0.0002 — 3Q26 순이익 $489M
+    ÷ 희석 EPS $13.91 ≈ 희석 주식 35.15M − 표지 34.99M ≈ '
+notes:
+- 자동 생성(build_drivers) 2026-11-15 — 데이터 묶음 2026-11-15
+- '어닝콜 위험: 대형 프로젝트 초기 단계라 4Q까지 마진 보수적 인식'
+- '어닝콜 위험: 2027 성장에 인력 추가 필요'
+- '어닝콜 위험: 신규 모듈러 고객은 프로그램형 계약 전'
+evidence:
+- https://fiscal.ai/company/NYSE-FIX
+- https://www.sec.gov/Archives/edgar/data/1035983/000110465926118159/fix-20260930x10q.htm
+- https://www.sec.gov/Archives/edgar/data/1035983/000110465926017530/fix-20251231x10k.htm
+- https://www.sec.gov/Archives/edgar/data/1035983/000110465926118156/fix-20261022x8k.htm
+- https://www.sec.gov/Archives/edgar/data/1035983/000110465926118149/tm2628079d1_8k.htm
+- https://www.sec.gov/Archives/edgar/data/1035983/000110465926122938/tm2629087d1_8k.htm
+- https://www.sec.gov/Archives/edgar/data/1035983/000110465926076386/tm2618408d1_8k.htm
+- Fiscal.ai·Easyconomics·TradingView MCP 2026-11-15 수집
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
