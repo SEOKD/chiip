@@ -878,13 +878,19 @@ def run(now=None, peek=False):
         gpu = gpu_weekly.status(now)
     except Exception as exc:
         gpu = {"due": False, "error": type(exc).__name__}
+    try:   # 마스터 요청 리포트(2026-11-15 "Pulse가 이를 수행하라. Analysis 주기에 카운트하지마라") — scripts/tenbagger/report_request.py
+        sys.path.insert(0, str(common.ROOT / "scripts" / "tenbagger"))
+        import report_request
+        rreq = report_request.status(now)
+    except Exception as exc:
+        rreq = {"due": False, "error": type(exc).__name__}
     try:   # 본문 확인 보류 건(2026-11-14 마스터 지시) — 빠른 길이 못 읽은 건을 모델이 WebSearch로 다른 사본을 찾아 읽는다
         import fulltext
         body_hold = fulltext.for_model()
     except Exception as exc:
         body_hold = []
         errors.append(f"본문 보류: {type(exc).__name__}")
-    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due") and not gpu.get("due"):
+    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due") and not gpu.get("due") and not rreq.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
@@ -909,7 +915,7 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in picked],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "gpu_weekly": gpu, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "gpu_weekly": gpu, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if body_hold:
         fulltext.offered([h["item"]["item_id"] for h in body_hold], now)

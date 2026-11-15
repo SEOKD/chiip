@@ -21,6 +21,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 LOG = ROOT / "outputs" / "tenbagger" / "reports" / "log.csv"
 QUEUE = ROOT / "knowledge" / "models" / "tenbagger" / "report_queue.txt"
 FIELDS = ["date", "id", "ticker", "html", "view"]
@@ -34,7 +35,8 @@ def recent(today, days=REPEAT_DAYS):
     cut = (today - timedelta(days=days)).isoformat()
     with LOG.open(encoding="utf-8", newline="") as f:
         rows = [r for r in csv.DictReader(f) if r["date"] >= cut]
-    return {r["id"] for r in rows} | {r["ticker"] for r in rows if r.get("ticker")}
+    import report_request   # 마스터 요청 리포트(Pulse가 씀, 정기 순번에는 안 셈)도 30일 재선정 금지에는 넣는다(2026-11-15)
+    return {r["id"] for r in rows} | {r["ticker"] for r in rows if r.get("ticker")} | report_request.recent_ids(cut)
 
 
 def _universe():
