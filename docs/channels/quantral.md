@@ -19,4 +19,4 @@
   - 커뮤니티가 말하는 숫자(매출·백로그 등)는 주장이다. 사실로 쓸 때는 1차 자료(보도자료·공시·Fiscal.ai)로 확인한 것만 쓰고, 확인하지 못하면 "커뮤니티 주장"으로 표시한다.
   - 관심 순위는 펀더멘털이 아니다(금지표: 주가 급등 → 펀더멘털 변화). 매매·비중·금액 지시는 쓰지 않는다.
   - 감시 종목(포커스·포트폴리오)이 순위에 있으면 note 끝에 "Chiip 판단과의 차이"를 한 줄 덧붙인다.
-- **발행:** `py scripts/quantral/weekly.py --render <주차>` → `py scripts/publish_report.py outputs/quantral/<주차>.html --title "Chiip Quantral <주차>"` → 텔레그램은 헤드라인 + 상위 5(티커·언급 수·내러티브 한 구절) + 링크 1통.
+- **발행:** `py scripts/quantral/weekly.py --render <주차>` → `py scripts/publish_report.py outputs/quantral/<주차>.html --title "Chiip Quantral <주차>" --attach --caption <요약 파일>` → 텔레그램은 헤드라인 + 상위 5(티커·언급 수·내러티브 한 구절) 1통 + **HTML 파일 첨부**(2026-11-15 마스터 지시 "html 파일로 제공하도록 해" — 링크 대신, GitHub 게시는 보관용).
