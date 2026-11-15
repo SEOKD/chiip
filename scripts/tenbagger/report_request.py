@@ -5,6 +5,7 @@ requests_log.csv에만 남긴다. 같은 종목을 30일 안에 정기 회차가
 사용: py scripts/tenbagger/report_request.py --add "<이름>" [--id <entity id>] [--ticker <코드>] [--market jp|us|kr|tw|eu] [--note "<메모>"]
       py scripts/tenbagger/report_request.py --due                   # 쓸 요청(오래된 순)
       py scripts/tenbagger/report_request.py --done <이름|id> <html 경로> "<치입 판단 한 줄>"
+      py scripts/tenbagger/report_request.py --cancel <이름|id|코드> "<이유>"   # 마스터가 취소한 요청 — 쓰지도 보내지도 않는다
 """
 import csv
 import json
@@ -79,6 +80,17 @@ def recent_ids(cut_iso):
     return {r["id"] for r in rows if r.get("id")} | {r["ticker"] for r in rows if r.get("ticker")}
 
 
+def cancel(key, why):
+    q, hit = load(), None
+    for x in q:
+        if x["status"] == "대기" and key in (x["name"], x.get("id"), x.get("ticker")) or (x["status"] == "대기" and key in x["name"]):
+            x["status"], x["cancelled"] = "취소", f"{now().isoformat(timespec='minutes')} {why}"
+            hit = x["name"]
+            break
+    save(q)
+    return hit
+
+
 def main(argv):
     def opt(k):
         return argv[argv.index(k) + 1] if k in argv else None
@@ -87,6 +99,9 @@ def main(argv):
         print("추가" if ok else "이미 대기 중")
     elif "--due" in argv:
         print(json.dumps(due(), ensure_ascii=False, indent=1))
+    elif "--cancel" in argv:
+        i = argv.index("--cancel")
+        print(cancel(argv[i + 1], argv[i + 2] if len(argv) > i + 2 else "마스터 취소") or "대기 중인 요청 없음")
     elif "--done" in argv:
         i = argv.index("--done")
         print(json.dumps(done(argv[i + 1], argv[i + 2], argv[i + 3]), ensure_ascii=False))

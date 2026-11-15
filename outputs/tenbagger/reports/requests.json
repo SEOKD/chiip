@@ -1,12 +1,14 @@
 [
  {
   "name": "Seiko Giken(精工技研)",
-  "id": null,
+  "id": "jp-seikohgiken",
   "ticker": "6834",
   "market": "jp",
   "note": "마스터 요청 '정확한 표기 Sekio Giken' — 도쿄증권거래소 코드 6834 추정, 회차에서 확인",
   "asked": "2026-11-15T15:15+09:00",
-  "status": "대기"
+  "status": "취소",
+  "progress": "2026-11-15 17:10 펄스 주말: 상장 확인(TradingView TSE:6834 Seikoh Giken Co., Ltd.) · tradingview_symbols·earnings_watch·jp_watch·jp_ir 등록 · gather 1차(남음: datapack 의존 trade_ppi·trade_hs, market_regime 시간 초과, MCP 원천 fiscal·tv_financials·easyconomics·community·notion_search·lobby_house) — 다음 회차는 datapack(2단계)부터 | 2026-11-15 18:10 펄스 주말: gather tv_financials ok(TV 분기 11개·시세 4,950엔·시총 2,300억 엔·무차입 — 끝 두 분기 라벨 중복·EV 불일치 확인 필요) — 다음 회차 fiscal·easyconomics 원천 후 datapack(2단계)",
+  "cancelled": "2026-11-15T18:48+09:00 마스터 지시 2026-11-15 'Seiko Giken은 보내지 말고 Seiko Group 리포트만'"
  },
  {
   "name": "Seiko Group(セイコーグループ)",
