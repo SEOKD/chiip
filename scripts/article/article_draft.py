@@ -31,6 +31,12 @@ DAILY_JOBS = 6            # 하루 상한(비용 안전장치) — 아침 소재
 ORDER = ("lead", "newfact", "body1", "body2", "body3")
 LABEL = {"lead": "리드", "newfact": "뉴팩트", "body1": "본론1", "body2": "본론2", "body3": "본론3"}
 BANNED = ("단독 확인", "에 있어서", "되어지", "엄청난", "충격적", "어마어마")
+# 보고서체 표지(2026-11-15 마스터 지시 "내용 서술이 기사가 아니라 보고서 같다. 한국경제·서울경제·매일경제·조선일보·중앙일보 기사체를 참조하라")
+# 기사는 사실을 주어·동사로 전하고(밝혔다·나타났다·전망이다), 필자가 독자에게 설명·논평하지 않는다.
+REPORT_TONE = ("점을 보여 준다", "점을 보여준다", "짚었다", "눈에 띈다", "남은 질문은", "여기서 ", "이란 ", "라는 뜻이다", "다는 뜻이다",
+               "결이 다른", "셈이다", "할 수 있다는 점", "주목할 만하다", "시사한다", "의미가 있다", "살펴보면", "정리하면", "요컨대")
+# 설명체 어미 — '~이다.'로 끝나는 문장 비중이 크면 보고서처럼 읽힌다
+EXPLAIN_END = re.compile(r"(이다|것이다|때문이다|점이다|셈이다|있다)\.$")
 PITCH_ID = re.compile(r"^PITCH-(\d{8})-(\d{2})$")
 
 
@@ -72,6 +78,18 @@ def check(d):
     srcs = d.get("sources") or []
     if not srcs or not all(str(s.get("url") or "").startswith("http") for s in srcs):
         bad.append("출처(sources)에 링크가 있어야 한다")
+    sents = [x.strip() for k in ORDER for p in b.get(k) or [] for x in re.findall(r"[^.!?]+[.!?]", str(p))]
+    for w in REPORT_TONE:
+        hit = [x for x in sents if w in x]
+        if hit:
+            bad.append(f"보고서체 '{w.strip()}' — 기사체로(사실은 주어·동사로, 해석은 출처를 밝혀): {hit[0][:24]}…")
+    if sents:
+        ex = sum(1 for x in sents if EXPLAIN_END.search(x))
+        if ex / len(sents) > 0.35:
+            bad.append(f"설명체 어미(~이다·~있다) 비중 {ex / len(sents):.0%} — 35% 이하로. 기사 어미(밝혔다·나타났다·전망이다·분석이다·예정이다)를 쓴다")
+    lead = " ".join(b.get("lead") or [])
+    if lead and not re.search(r"(했다|밝혔다|나타났다|알려졌다|공개했다|내놨다|선보였다|전망이다|발표했다)\.", lead):
+        bad.append("리드는 '누가 무엇을 했다'는 사실 문장으로 연다(밝혔다·공개했다·나타났다)")
     text = json.dumps(d, ensure_ascii=False)
     for w in BANNED:
         if w in text:

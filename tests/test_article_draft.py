@@ -13,7 +13,7 @@ import pitch_feedback as pf  # noqa: E402
 
 GOOD = {"pitch_id": "PITCH-20261115-01", "date": "2026-11-15", "title": "HBF의 걸림돌, GPU가 치운다",
         "subtitle": ["엔비디아 연구진 지연 20배 숨기는 설계 공개", "버퍼 40MB로 이상 성능의 92% 끌어올려"[:20] + "가나다라마바사아자차카타파하", "삼성·SK하이닉스 표준 경쟁에 새 변수 부상"],
-        "body": {"lead": ["리드 문장이다."], "newfact": ["뉴팩트 문장이다."], "body1": ["본론 일."], "body2": ["본론 이."], "body3": ["본론 삼."],
+        "body": {"lead": ["연구진이 새 설계를 공개했다."], "newfact": ["논문은 지난 10일 올라왔다."], "body1": ["버퍼는 40MB로 줄었다."], "body2": ["SK하이닉스는 표준을 주도했다."], "body3": ["샘플은 2027년 나올 예정이다."],
                  "quote": {"text": "인용", "speaker": "저자", "title": "엔비디아 리서치", "source": "https://arxiv.org/abs/2611.14776"}},
         "sources": [{"label": "arXiv", "url": "https://arxiv.org/abs/2611.14776"}], "checks": ["샘플 고객 미확인"]}
 
@@ -40,6 +40,13 @@ class TestCheck(unittest.TestCase):
         self.assertTrue(any("본론3" in x for x in bad))
         self.assertTrue(any("speaker" in x for x in bad))
         self.assertTrue(any("링크" in x for x in bad))
+
+    def test_report_tone_fails(self):
+        d = fix_sub(dict(GOOD))
+        d["body"] = dict(GOOD["body"], lead=["HBF의 약점은 느린 읽기다. 이는 GPU가 중요하다는 점을 보여 준다."])
+        bad = ad.check(d)
+        self.assertTrue(any("보고서체" in x for x in bad))
+        self.assertTrue(any("리드" in x for x in bad))
 
     def test_quote_null_allowed(self):
         d = fix_sub(dict(GOOD))
