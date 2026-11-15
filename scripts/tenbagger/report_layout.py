@@ -222,8 +222,9 @@ def actest_chart(dp):
     for metric, name, scale in (("매출", f"매출({tag}M)" if tag == "$" else f"매출({tag} M)", 1.0), ("EPS", f"EPS({tag})", 1.0)):
         past = sorted((r for r in rows if r.get("metric") == metric), key=lambda r: r["period"])[-4:]
         cats = [r["period"] for r in past]
-        act = [r.get("actual") for r in past]
-        est = [r.get("est") for r in past]
+        k = {"억 원": 100.0, "조 원": 1e6, "십억 원": 1000.0, "백만 원": 1.0}.get(str(past[0].get("unit")) if past else "", 1.0) if metric == "매출" else 1.0   # 실적 행 단위 → 패널 단위(₩ M). 2026-11-15 삼양식품: 억 원 실적 7,918과 십억 원×1000 추정 825,000이 한 칸에 섞였다
+        act = [None if r.get("actual") is None else round(r["actual"] * (k if r.get("unit") == past[0].get("unit") else 1.0), 3) for r in past]
+        est = [None if r.get("est") is None else round(r["est"] * (k if r.get("unit") == past[0].get("unit") else 1.0), 3) for r in past]
         if metric == "매출":
             fut = sorted((k, v * 1000) for k, v in (cons.get("quarters_est") or {}).items())
         else:

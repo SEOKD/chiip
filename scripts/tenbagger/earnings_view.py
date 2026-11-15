@@ -177,6 +177,16 @@ def premium_trend(dp):
             vals.append(round((own[m] / med - 1) * 100) if med else None)
         if sum(v is not None for v in vals) >= 2:
             out.append({"metric": name, "months": months, "values": vals})
+    if not out:   # 선행 배수 이력 원천이 없는 한국·일본 상장(Fiscal.ai 미수록) — 분기말 후행 P/E로(2026-11-15 삼양식품: 1개 분기만 나왔다)
+        own = {str(r["date"])[:7]: r["value"] for r in (dp.get("history") or {}).get("pe_ttm") or [] if r.get("value")}
+        months = sorted(own)[-4:]
+        vals = []
+        for m in months:
+            pv = sorted(r["pe_ttm"] for p in dp.get("peers") or [] for r in p.get("hist_q") or [] if str(r.get("date"))[:7] == m and r.get("pe_ttm") and r["pe_ttm"] > 0)
+            med = (pv[len(pv) // 2] if len(pv) % 2 else (pv[len(pv) // 2 - 1] + pv[len(pv) // 2]) / 2) if len(pv) >= 2 else None
+            vals.append(round((own[m] / med - 1) * 100) if med else None)
+        if sum(v is not None for v in vals) >= 2:
+            out.append({"metric": "Trailing P/E(선행 이력 없음)", "months": months, "values": vals})
     return out
 
 

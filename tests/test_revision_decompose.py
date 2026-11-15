@@ -51,3 +51,20 @@ class TestEbitdaDecompose(unittest.TestCase):
         self.assertEqual(len(dec), 4)
         for x in dec:   # (1 + EV) = (1 + EBITDA 리비전) × (1 + 배수 변화)
             self.assertAlmostEqual(1 + x["ev"], (1 + x["rev"]) * (1 + x["rerate"]), places=6)
+
+
+class TestKrActest(unittest.TestCase):
+    def test_units_and_ttm_premium(self):   # 삼양식품: 억 원 실적과 십억 원 추정이 섞였고, 프리미엄이 1개 분기만
+        import earnings_view
+        import report_layout
+        dp = {"currency_symbol": "₩", "consensus": {"surprise": [{"period": "2026Q3", "metric": "매출", "unit": "억 원", "actual": 7918, "est": 8190}],
+                                                    "quarters_est": {"2026Q4": 825.0}},
+              "history": {"pe_ttm": [{"date": d, "value": v} for d, v in (("2025-12-31", 23.6), ("2026-03-31", 20.7), ("2026-06-30", 17.3))]},
+              "peers": [{"hist_q": [{"date": d, "pe_ttm": v} for d, v in (("2025-12-31", 15.0), ("2026-03-31", 13.0), ("2026-06-30", 12.0))]},
+                        {"hist_q": [{"date": d, "pe_ttm": v} for d, v in (("2025-12-31", 17.0), ("2026-03-31", 15.0), ("2026-06-30", 14.0))]}]}
+        p = report_layout.actest_chart(dp)["panels"][0]
+        self.assertEqual(p["actual"][0], 791800.0)
+        self.assertEqual(p["est"][1], 825000.0)
+        t = earnings_view.premium_trend(dp)
+        self.assertEqual(len(t[0]["values"]), 3)
+        self.assertIn("Trailing", t[0]["metric"])
