@@ -111,6 +111,18 @@ def check(p):
         f"사용 {tone} · 레이더 기준 {want}(톤 변화 {call.get('tone_delta')}, 가이던스 {call.get('guidance_direction')})")
     peers = p.get("peers") or []
     basis = p.get("peers_basis")
+    cx = [y for y in ((p.get("capacity") or {}).get("capex") or []) if y.get("kind") in ("컨센서스", "가이던스")]
+    if cx:   # CAPEX 매출 대비 = 그해 CAPEX ÷ 그해 매출 컨센서스(2026-11-15 마스터 점검 — AXTI FY2028 매출 0.594 vs 컨센서스 0.76)
+        import re as _re
+        crev, bad = (p.get("consensus") or {}).get("rev") or {}, []
+        for y in cx:
+            m = _re.search(r"(20\d\d|\d\d)", str(y.get("period")))
+            yr = (("20" + m.group(1)) if len(m.group(1)) == 2 else m.group(1)) if m else None
+            c0 = next((v for k, v in crev.items() if yr and yr in str(k)), None)
+            r0 = y.get("rev") if isinstance(y.get("rev"), (int, float)) else None
+            if c0 and r0 and abs(r0 / c0 - 1) > 0.03:
+                bad.append(f"{y['period']} 매출 {r0} ≠ 컨센서스 {c0}")
+        add("CAPEX 비중 = 그해 매출 컨센서스 기준", "통과" if not bad else "실패", " · ".join(bad) or f"{len(cx)}개 연도 일치")
     u = p.get("unit", "B$")
     if u != "B$":   # unit_usd = 그 단위 1개의 달러 값(BKRW = 10억 원 ≈ $0.7M). LOTTEEM이 원당 달러(0.000694)를 적어 10⁹배 작았다(ADR-042)
         ref = FX_PER_USD.get(u[1:])
