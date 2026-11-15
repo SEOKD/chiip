@@ -129,7 +129,7 @@ def targets_company(cid, c=None, discover=False):
     for p in [x for x in prods if x.get("kind") != "서비스"]:   # 분해도는 물리 제품만
         if n >= mx["exploded"]:
             break
-        bom = p.get("bom") or auto_bom(cid, p, c, discover)
+        bom = ({**p["bom"], "this_company_product": p["bom"].get("this_company_product", True)} if p.get("bom") else None) or auto_bom(cid, p, c, discover)   # datapack 제품의 BOM = 이 회사 제품(2026-11-15 — 표시가 없어 분해도 12곳이 검수에서 떨어졌다)
         if bom and len(confirmed(bom)) >= c["min_confirmed_parts"] and not others_only(bom):
             n += 1
             out.append({"scope": "company", "id": cid, "kind": "exploded", "n": n, "name": p["name"], "name_en": p.get("name_en") or bom.get("name_en"),
@@ -162,9 +162,9 @@ def prompt(t, c=None):
     generic = " Generic, no brand features." if t["scope"] == "industry" else ""
     if t.get("view") == "cross-section":
         return (f"Cross-section cutaway illustration of a generic {t['name']}, layers stacked in this order ({order}): {parts}. {st}.{generic} "
-                "Leave clear empty space beside each layer for callout labels. No text, no letters, no numbers, no logos.")
+                "Keep a wide empty white margin on both sides. Do not draw any labels, captions, leader lines, callout lines, arrows, part names, annotations, text, letters or numbers anywhere in the image — the image must contain only the drawn components. No text, no letters, no numbers, no logos.")
     return (f"Exploded isometric technical illustration of a generic {t['name']}, components separated along one vertical axis in this order ({order}): {parts}. {st}.{generic} "
-            "Leave clear empty space beside each component for callout labels. No text, no letters, no numbers, no logos.")
+            "Keep a wide empty white margin on both sides. Do not draw any labels, captions, leader lines, callout lines, arrows, part names, annotations, text, letters or numbers anywhere in the image — the image must contain only the drawn components. No text, no letters, no numbers, no logos.")   # 2026-11-15 EROC: 'callout labels' 문구가 오히려 영어 이름표를 그리게 해 눈 검수에서 3번 모두 text로 떨어졌다
 
 
 def model_size(t, c=None):

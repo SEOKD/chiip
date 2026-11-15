@@ -38,7 +38,7 @@ def bom_checks(bom, scope):
     conf = P.confirmed(bom)
     out.append(("확인 항목 source", 1 if all(x.get("source") for x in conf) else 0))
     if scope == "company":
-        has = any(x.get("this_company") for x in bom.get("items") or []) or bom.get("this_company_none") or bom.get("this_company_product")   # 회사 자체 제품의 분해도
+        has = any(x.get("this_company") or "자체" in str(x.get("supplier") or "") for x in bom.get("items") or []) or bom.get("this_company_none") or bom.get("this_company_product")   # 회사 자체 제품의 분해도 · 공급사 칸 '자체'도 이 회사 부품(2026-11-15 EROC)
         out.append(("이 회사 부품 표시", 1 if has else 0))
     else:
         miss = [s["name"] for x in conf for s in x.get("suppliers") or [] if not s.get("source")]
