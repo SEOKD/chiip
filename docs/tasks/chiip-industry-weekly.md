@@ -1,17 +1,19 @@
 # 예약 작업: chiip-industry-weekly 하나 = Chiip Industry Indepth(매일 07:00 KST) — 2026-11-08 마스터 지시로 주간·분기 결산 인뎁스를 한 작업에 통합(사건 인뎁스는 Pulse), 발송 작업(chiip-industry-weekly-send)도 통합·삭제
 
 ## 매 회차 순서(매일 07:00)
-1. **일요일이면 주간 인뎁스** — 아래 '## chiip-industry-weekly' 절차 0~6 + '## 발송'(08:00 전후 1통). 시간이 걸리는 일이라 먼저 한다.
+1. **토요일·일요일이면 주간 인뎁스** — 아래 '## chiip-industry-weekly' 절차 0~6 + '## 발송'(08:00 전후 1통). 시간이 걸리는 일이라 먼저 한다. 주 2회(2026-11-15 마스터 지시 "일요일 아침 8시와 함께 토요일 아침 8시에도 제공 … 일주일에 두 개") — 토요일과 일요일은 서로 다른 산업이다(선정이 최근 6일 안에 쓴 산업을 뺀다, config/industry_weekly.yaml same_week_block_days).
 2. **분기 결산 인뎁스** — `py radar/industry_quarter.py` 결과가 `due: true`면 `docs/tasks/chiip-industry-quarterly.md`의 phase(collect: 산업 3개까지 / write: 1개) 절차. 아니면 건너뛴다.
 3. **사건 인뎁스는 이 작업이 아니다** — 주기 없이 Pulse가 사건을 탐지해 산업 전반의 큰 변화일 때만 쓴다(2026-11-08 마스터 지시, docs/tasks/chiip-pulse.md 2-5).
 4. 둘 다 할 일이 없으면 텔레그램 없이 끝낸다.
+
+마스터 지시 2026-11-15: "Chiip Industry Indepth가 제공하는 주간 리포트는 일요일 아침 8시와 함께 토요일 아침 8시에도 제공하도록 해라. 즉, 일주일에 두 개를 제공하라는 말이다."
 
 마스터 지시 2026-11-08: "월간 트래커는 제외하고 그 자리에 1주일에 한 번씩 산업 하나를 골라 리포트를 쓰는 걸로 하라. 매주 일요일 아침 8시에 제공할 수 있도록 해라.
 어떤 산업을 선택할지는 월스트리트 IB 리서치 하우스 시니어 애널리스트로서 시의적절하게 고르도록 체계를 갖춰라"
 
 운영 규칙: `docs/channels/industry.md`를 먼저 읽는다. 선정 설계는 `config/industry_weekly.yaml` 맨 위.
 
-## chiip-industry-weekly — 일요일(회차 순서 1)
+## chiip-industry-weekly — 토요일·일요일(회차 순서 1)
 
 너는 반도체·AI 하드웨어 리서치 에이전트 "치입"이다. 사용자는 "마스터"라고 부른다. 작업 폴더 C:\Users\석진\chiip, 먼저 CLAUDE.md를 읽는다.
 PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User');`, 출력이 깨지면 `$env:PYTHONIOENCODING='utf-8'`.
@@ -35,14 +37,14 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
 4. **조립·렌더**: `py scripts/industry/weekly_frame.py <폴더> --predictions` → `py scripts/industry/industry_html.py outputs/industry/<날짜>_weekly-<산업>.json`. 관문을 못 넘으면 빈칸을 채우지 않고 고친다.
 5. **게시**: `_artifact.html`을 claude.ai 비공개 Artifact로, 노션 Industry 아래 '주간 산업' 하위 페이지(없으면 만든다)에 리포트 페이지(요약 + 링크).
    `py scripts/industry/tg_feed.py outputs/industry/<날짜>_weekly-<산업>.json --artifact <url> --notion <url>` — **보내지 않는다**(--send 없이). 양식 점검을 넘겨 `_tg.txt`만 남긴다.
-   radar/state/industry_weekly_ready.json에 `{"week": "<YYYY-Www>", "json": "<리포트 json>", "artifact": "<url>", "notion": "<url>"}`.
+   radar/state/industry_weekly_ready.json에 `{"week": "<YYYY-Www>", "date": "<YYYY-MM-DD 오늘>", "json": "<리포트 json>", "artifact": "<url>", "notion": "<url>"}`(주 2회라 오늘 날짜로 회차를 가른다).
 6. 금지: 매매·비중·금액 지시, D:\local-only 읽기, 공개 채널 게시, 유료 본문·IB 문장 복제, 법률 판단. git 커밋·푸시는 하지 않는다.
 
 ## 발송 — 같은 회차 끝(08:00 전후, 별도 작업 없음)
 0. 게시를 마친 시각이 07:58 전이면 `Start-Sleep -Seconds 540`을 반복해 07:58까지 기다린다. 이미 지났으면 바로 보낸다.
 
-1. radar/state/industry_weekly_ready.json을 읽는다. 이번 주(KST) 것이 아니면 텔레그램 없이 "이번 주 주간 산업 미완성"만 기록하고 끝낸다(회차가 실패하면 chiip-catchup이 다시 돌린다).
-2. `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send` — 마스터 개인 봇으로 1통. 성공하면 ready 파일에 `"sent_at"`을 쓴다(같은 주에 두 번 보내지 않는다).
+1. radar/state/industry_weekly_ready.json을 읽는다. `date`가 오늘(KST)이 아니면 텔레그램 없이 "오늘 주간 산업 미완성"만 기록하고 끝낸다(회차가 실패하면 chiip-catchup이 다시 돌린다).
+2. `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send` — 마스터 개인 봇으로 1통. 성공하면 ready 파일에 `"sent_at"`을 쓴다(같은 회차를 두 번 보내지 않는다 — 토·일은 각각 1통).
 - **노션 IB 자료**(2026-11-08 마스터 지시): datapack을 쓰기 전 `py radar/notion_library.py --industry <산업 키>` — '요지 작성 필요'는 원문을 읽고 자기 말 요지를 `--digest <id> <파일>`로 저장한 뒤, 그 판단·숫자를 수요·시장 규모·반대 검증 절에 반영한다. 조립기가 요지 없는 자료를 만나면 멈춘다.
 
 - **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.

@@ -1,4 +1,4 @@
-# Chiip Industry Weekly — 매주 일요일 08:00 KST 산업 하나(마스터 지시 2026-11-08 "월간 트래커는 제외하고 그 자리에 1주일에 한 번씩 산업 하나를 골라 리포트를 쓰는 걸로 하라.
+# Chiip Industry Weekly — 매주 토·일 08:00 KST 산업 하나씩, 주 2회(2026-11-15 마스터 지시 "일요일 아침 8시와 함께 토요일 아침 8시에도"). 처음 지시(마스터 지시 2026-11-08 "월간 트래커는 제외하고 그 자리에 1주일에 한 번씩 산업 하나를 골라 리포트를 쓰는 걸로 하라.
 # 매주 일요일 아침 8시에 제공 … 어떤 산업을 선택할지는 월스트리트 IB 리서치 하우스 시니어 애널리스트로서 시의적절하게 고르도록 체계를 갖춰라")
 # 선정 scripts/industry/weekly_pick.py · 조립 scripts/industry/weekly_frame.py · 절차 docs/tasks/chiip-industry-weekly.md
 #
@@ -15,6 +15,7 @@
 weights: {catalyst: 0.25, price: 0.20, news: 0.15, events: 0.15, alpha: 0.10, debate: 0.15}
 korea_edge_bonus: 0.5      # 10점 척도 가산
 recency_weeks: 6
+same_week_block_days: 6   # 주 2회(토·일 08:00, 2026-11-15 마스터 지시) — 최근 6일 안에 쓴 산업은 후보에서 뺀다(토요일 산업을 일요일에 되풀이하지 않게)
 recency_penalty: 3.0       # 10점 척도 감점(최근 쓴 산업)
 min_members: 3
 catalyst_days: 14

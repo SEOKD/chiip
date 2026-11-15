@@ -46,6 +46,21 @@ class TestWeekly(unittest.TestCase):
             W.PICKS = orig
         self.assertIn("최근", " ".join(r["semiconductors.dram-hbm"]["notes"]))
 
+    def test_saturday_pick_blocked_on_sunday(self):
+        """주 2회(토·일, 2026-11-15 마스터 지시) — 토요일에 쓴 산업은 일요일 상위에 오지 않는다. 같은 날 다시 돌리면 막지 않는다"""
+        tmp = Path(tempfile.mkdtemp()) / "picks.csv"
+        tmp.write_text("date,industry,score,rank,top3,why\n2026-11-21,semiconductors.dram-hbm,,1,,x\n", encoding="utf-8")
+        orig = W.PICKS
+        W.PICKS = tmp
+        try:
+            sun = W.rank(date(2026, 11, 22))
+            same = {x["industry"]: x for x in W.rank(date(2026, 11, 21))}
+        finally:
+            W.PICKS = orig
+        self.assertNotIn("semiconductors.dram-hbm", [x["industry"] for x in sun[:3]])
+        self.assertIn("제외", " ".join(next(x for x in sun if x["industry"] == "semiconductors.dram-hbm")["notes"]))
+        self.assertNotIn("제외", " ".join(same["semiconductors.dram-hbm"]["notes"]))
+
     def test_choose_outside_top3_refused(self):
         bottom = W.rank()[-1]["industry"]
         with self.assertRaises(SystemExit):

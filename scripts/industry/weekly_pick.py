@@ -1,4 +1,4 @@
-"""Chiip Industry Weekly 산업 선정 (마스터 지시 2026-11-08 — 매주 일요일 08:00, 월스트리트 시니어 애널리스트식 시의성 선정)
+"""Chiip Industry Weekly 산업 선정 (마스터 지시 2026-11-08 — 매주 일요일 08:00, 2026-11-15부터 토·일 08:00 주 2회, 월스트리트 시니어 애널리스트식 시의성 선정)
 
 설계는 config/industry_weekly.yaml 맨 위. 결정론 축(①촉매·③뉴스 가속·④1차 사건·⑤알파 밀도·감점·가산)은 저장소 자료로 계산하고,
 ②가격 신호·⑥논쟁도는 모델이 TradingView·Fiscal로 받아 --put으로 넣는다(없으면 중립 5점).
@@ -220,12 +220,14 @@ def alpha_density(ids):
     return min(10.0, 10 * len(hit) / max(len(ids), 1)), len(hit)
 
 
-def recent(today, c):
+def recent(today, c, days=None):
     if not PICKS.exists():
         return set()
-    lim = (today - timedelta(weeks=c["recency_weeks"])).isoformat()
+    lim = (today - (timedelta(days=days) if days is not None else timedelta(weeks=c["recency_weeks"]))).isoformat()
     with PICKS.open(encoding="utf-8", newline="") as f:
-        return {r["industry"] for r in csv.DictReader(f) if r["date"] >= lim}
+        return {r["industry"] for r in csv.DictReader(f) if lim <= r["date"] < today.isoformat() or (days is None and r["date"] >= lim)}
+
+
 
 
 def rank(today=None, c=None):
@@ -236,6 +238,7 @@ def rank(today=None, c=None):
     w = c["weights"]
     mem = members(c)
     done = recent(today, c)
+    block = recent(today, c, days=c.get("same_week_block_days", 6))
     out = []
     for k, meta in c["industries"].items():
         ms = mem.get(k) or []
@@ -251,7 +254,10 @@ def rank(today=None, c=None):
         if any(m["korea"] for m in ms):
             s += c["korea_edge_bonus"]
             notes.append("한국 공급망")
-        if k in done:
+        if k in block:   # 주 2회(토·일, 2026-11-15 마스터 지시) — 토요일에 쓴 산업을 일요일에 다시 쓰지 않는다
+            s -= 99
+            notes.append(f"최근 {c.get('same_week_block_days', 6)}일 안에 씀(제외)")
+        elif k in done:
             s -= c["recency_penalty"]
             notes.append(f"최근 {c['recency_weeks']}주 안에 씀")
         if len(ms) < c["min_members"]:
