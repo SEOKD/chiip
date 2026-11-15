@@ -431,7 +431,8 @@ def message(r, name, alpha_total, reasons, update_note=None, refs=None, alpha_ro
     biz, _ = biz_line(eid)
     L += [f"▶ 뭐하는 회사 : {_strip_src(biz) if biz else '미확인'}", ""]
     det = [detect_text(x, name, (refs or {}).get((eid, x)), alpha_row, use_model) for x in reasons[:3]]
-    L += [f"▶ 알파 감지 : {det[0]}"] if len(det) == 1 else ["▶ 알파 감지 :"] + [f"* {x}" for x in det]
+    # 주가 전망처럼 머리표 아래 * 목록(2026-11-15 마스터 지시, ASM International) — 한 근거 안의 '— 왜:'·' · '도 줄을 나눈다
+    L += ["▶ 알파 감지 :"] + [f"* {y.strip()}" for x in det for y in re.split(r"(?:\s—\s|\.\s)?왜:\s| · ", x) if y.strip()]
     L += ["", "▶ 주가 전망 :"]   # 머리표 바로 아래 목록(2026-11-14 마스터 지시 2차)
     d = r.get("decision")
     u = r.get("upside") or {}

@@ -20,7 +20,8 @@ class TestAlphaMessage(unittest.TestCase):
         self.assertEqual(L[0], "[알파 감지] AAON — 알파 5.3")
         self.assertTrue(L[2].startswith("▶ 뭐하는 회사 : 상업용 공조"))
         self.assertNotIn("8-K", L[2])   # 출처 괄호는 뺀다
-        self.assertIn("▶ 알파 감지 : 11/10 대출계약 체결. $250M 텀론 추가 — 알파 변화 요인 아님", L)
+        self.assertIn("* 11/10 대출계약 체결. $250M 텀론 추가 — 알파 변화 요인 아님", L)
+        self.assertIn("▶ 알파 감지 :", L)
         text = "\n".join(L)
         self.assertIn("▶ 주가 전망 :\n* 연 기대수익", text)   # 머리표 바로 아래 목록, ▶ 절마다 빈 줄 하나(2026-11-14 2차)
         self.assertNotIn("\n\n\n", text)
