@@ -209,8 +209,9 @@ def section(dp):
     if not cost_bridge_view.compute(dp):
         B.append({"type": "table", "title": f"마진을 결정하는 비용 요인 — 비용 {tag} 시 OPM", "headers": ["비용", "매출 대비", "변화", "고정비", "OPM"], "rows": rows})
     B.append({"type": "table", "title": "비용을 움직이는 요인", "headers": ["비용", "요인"], "rows": [[f"{x['name']}({x['stage']})", f"{x['driver']} · 근거 {x['basis']}"] for x in costs]})
-    B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"BOM 항목 가격 {tag} 시 OPM 변화", "unit": "%p",
-                                         "rows": [{"label": name, "bars": [{"name": "OPM 변화", "color": "b", "value": round(v * 100, 2)}]} for name, v in by_item(c["items"])[:8]]}})
+    opm_chart = {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": f"BOM 항목 가격 {tag} 시 OPM 변화", "unit": "%p",
+                                            "rows": [{"label": name, "bars": [{"name": "OPM 변화", "color": "b", "value": round(v * 100, 2)}]} for name, v in by_item(c["items"])[:8]]}}
+    at = len(B)
     for p in mg["products"]:
         items = sorted((r for r in c["items"] if r["product"] == p["name"]), key=lambda r: -(r["mid"] or 0))
         known = sum(r["mid"] or 0 for r in items)
@@ -220,6 +221,9 @@ def section(dp):
         B.append({"type": "table", "title": f"{p['name']} BOM — 매출의 {_pct(p['rev_share'], 0)}, GPM {_pct(p['gpm'], 0)}({p['gpm_basis']}), 항목 가격 {tag} 시",
                   "headers": ["항목", "원가 몫", "전가", "제품 GPM", "OPM"],
                   "rows": [[r["item"], _share_text(r), UNKNOWN if r["passed"] is None else _pct(r["passed"], 0), _pt(r["gpm_move"]), _pt(r["opm_move"], 2)] for r in items] + rest})
+    # BOM 원가 몫(제품별) 그림이 위, 그 아래 'BOM 항목 가격 +10% 시 OPM 변화'(마스터 지시 2026-11-15) — 마지막 원가 몫 그림 바로 다음에 넣는다
+    last = max([i for i, b in enumerate(B) if i >= at and b.get("type") == "chart" and "BOM 원가 몫" in b["chart"].get("title", "")], default=at - 1)
+    B.insert(last + 1, opm_chart)
     notes = []
     ranked = by_item(c["items"])
     if ranked and now["opm"] > 0:
