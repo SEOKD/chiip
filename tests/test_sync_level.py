@@ -35,3 +35,14 @@ class TestLevel(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSplitAxes(unittest.TestCase):   # 2026-11-15 마스터 지시 — y축을 따로
+    def test_one_chart_per_series_in_own_units(self):
+        w = sv.window("2026Q3")[-8:]
+        rev = {q: 1e9 + i * 1e8 for i, q in enumerate(w)}
+        ppi = {q: 106.623 if i in (2, 3, 4) else 106.0 + i for i, q in enumerate(w)}
+        cs = sv.level_charts({"rev": rev, "rows": [{"ind": {"label": "미국 반도체 장비 PPI", "source": "ppi"}, "iq": ppi}]}, w)
+        self.assertEqual(len(cs), 2)
+        self.assertEqual(cs[1]["series"][0]["points"][0][1], ppi[w[0]])   # 원래 단위(지수 100 환산 아님)
+        self.assertIn("이월", cs[1]["title"])

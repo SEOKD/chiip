@@ -558,6 +558,38 @@ def level_chart(c, win, top=None):
     return {"kind": "line", "title": f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 같은 축({base_q} = 100) + 다음 분기 추정", "unit": "", "series": series}
 
 
+def level_charts(c, win, top=None):
+    """매출과 지표를 y축을 따로 둔 그림으로 — 같은 분기 축에 위아래로 놓고, 각자 원래 단위로(마스터 지시 2026-11-15 "y축은 하나로 합치지 말고 따로").
+    한 축(기준 분기 = 100)에 올리면 변동 폭이 큰 지표가 다른 선을 눌러 평평하게 보였다(원익IPS: 미국 반도체 장비 PPI가 정체처럼 보임)"""
+    one = level_chart(c, win, top)
+    if not one:
+        return []
+    axis = [p[0] for p in one["series"][0]["points"]]
+    rv = c["rev"]
+    s_rev = [{"name": "매출", "color": "a", "points": [[q, rv[q]] for q in axis]}]
+    nx = (top or {}).get("next")
+    if nx and rv.get(c["last"]) and c["last"] in axis:
+        tot = to_total(c, top, nx)
+        s_rev.append({"name": f"다음 분기 추정({c['next']}, ±1σ {tot['lo']:,.0f}~{tot['hi']:,.0f})", "color": "e", "points": [[c["last"], rv[c["last"]]], [c["next"], tot["rev"]]]})
+    out = [{"kind": "line", "title": f"매출 — 최근 {len(axis)}개 분기 + 다음 분기 추정(아래 지표들과 같은 분기)", "unit": "", "series": s_rev}]
+    cols = ["b", "c", "d", "e"]
+    for i, r in enumerate(c["rows"]):
+        pts = [[q, r["iq"][q]] for q in axis if r["iq"].get(q) is not None]
+        if not pts:
+            continue
+        src = {"ppi": "PPI(지수)", "hs": "수출입(금액)", "trade": "수출입(금액)"}.get(r["ind"].get("source"), "")
+        lo, hi = min(p[1] for p in pts), max(p[1] for p in pts)
+        rng = f" — {len(pts)}개 분기 범위 {lo:,.1f}~{hi:,.1f}({(hi / lo - 1) * 100:+.1f}%)" if lo else ""
+        run, best = 1, 1
+        for a_, b_ in zip(pts, pts[1:]):
+            run = run + 1 if round(a_[1], 3) == round(b_[1], 3) else 1
+            best = max(best, run)
+        if src.startswith("PPI") and best >= 3:   # 원천이 가격을 다시 조사하지 않고 이월(2026-11-15 원익IPS: 미국 반도체 장비 PPI 2025-04~12 9개월 106.623)
+            rng += f" · {best}개 분기 같은 값 — 가격 재조사가 드문 지수(이월), 매출 선행 신호로 약하다"
+        out.append({"kind": "line", "title": f"{r['ind']['label']} {src}".strip() + rng, "unit": "", "series": [{"name": r["ind"]["label"], "color": cols[i % len(cols)], "points": pts}]})
+    return out
+
+
 def section(dp, history=None, db=HS_DB):
     sy = (dp or {}).get("sync")
     if not sy:
@@ -628,8 +660,7 @@ def section(dp, history=None, db=HS_DB):
     B.append({"type": "table", "title": f"지표 후보 {len(c['rows'])}개 — 연관성(제품 품목 일치 × 대용 감점 × 매출 비중) × 싱크로율로 고른다. 후보가 많을수록 최대 상관은 우연히 부풀 수 있다",
               "headers": ["후보", "종류", "연관성", "매출 분기 일치", "싱크로율(선행)", "점수", "출처"], "rows": cand_rows})
     win = window(c["last"])
-    lv = level_chart({**c, "rows": c["chosen"] or [top]}, win, top)
-    if lv:
+    for lv in level_charts({**c, "rows": c["chosen"] or [top]}, win, top):   # y축 따로(2026-11-15)
         B.append({"type": "chart", "chart": lv})
     k = top["k"]
     cg, full_ig = growth(c["rev"], k), growth(top["iq"], k)
