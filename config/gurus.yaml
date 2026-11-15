@@ -29,6 +29,21 @@ rules:
   crowd_pen_lo: 0.3
   crowd_pen_hi: 0.6
   crowd_cap: 5.9         # 40% 이상은 강도 상한(경보·선별 문턱 아래 — 장부에는 남긴다)
+  # VIP 쏠림(2026-11-15) — GS Hedge Fund VIP 방법론 복제(radar/thirteenf_market.vip, 조사 A·E). 가치 칸 있는 기관이 85% 미만인 분기는 위의 보유 기관 비율 근사로 대신한다
+  crowd_vip_share: 0.15      # 그 종목을 가치 상위 10에 넣은 운용사 비율 15% 이상 → 감점
+  crowd_vip_pen: 0.3
+  crowd_vip_min_pos: 10      # 운용사 띠: 미국 상장 주식 10~200종목(행동주의·퀀트 제외 목적) · 13F 주식 $10M 이상
+  crowd_vip_max_pos: 200
+  crowd_vip_min_usd: 10000000
+  crowd_vip_top: 10          # 운용사별 가치 상위 10
+  crowd_vip_basket: 50       # 가장 자주 나온 50종목 = VIP 바구니(강도 상한 crowd_cap)
+  crowd_vip_coverage: 0.85   # 가치 칸 있는 기관 비율 문턱(GS: 직전 분기 운용사 85% 제출 전에는 기다린다)
+  crowd_vip_min_filers: 3000 # 그 분기 13F 제출 기관이 이보다 적으면(시즌 초반) 세지 않는다 — 예전 근사와 같은 문턱
+  # 등록 펀드 N-PORT(nport_ciks) — 구루 논지 근거(config/special_situations.yaml 조건 A)
+  nport_min_pct: 0.02        # 순자산 비중 2% 이상 = 조건 A 충족
+  nport_add_min: 0.25        # 직전 기간보다 보유 수량 25% 이상 늘면 증액 단서
+  nport_strength_new: 6.5    # 새 편입·2% 돌파 단서 강도(구루 경보 6.5와 같게 — 사전값)
+  nport_strength_add: 6.0    # 증액 단서 강도
 
 gurus:
   - {id: berkshire, name: Berkshire Hathaway, style: quality-value, ciks: [{cik: 1067983}], regime_change: 2026-01-01}   # 그레그 에이블 CEO(8-K/A 2026-01-06)
@@ -56,7 +71,7 @@ gurus:
   - {id: starboard, name: Starboard Value, style: activist, ciks: [{cik: 1517137}]}
   - {id: elliott, name: Elliott Investment Management, style: activist, ciks: [{cik: 1791786}]}
   - {id: icahn, name: Carl Icahn, style: activist, ciks: [{cik: 921669}], exclude_names: ["ICAHN ENTERPRISES"]}   # IEP 계열 보유는 뺀다
-  - {id: fairholme, name: Fairholme Capital, style: special-situations, ciks: [{cik: 1056831}], nport_ciks: [1096344]}   # 패니·프레디는 Fairholme Funds N-CSR로만(미구현)
+  - {id: fairholme, name: Fairholme Capital, style: special-situations, ciks: [{cik: 1056831}], nport_ciks: [1096344]}   # 패니·프레디 우선주는 Fairholme Funds N-PORT-P로 읽는다(guru13f.nport, 2026-11-15 — Fairholme Fund·Focused Income Fund 두 시리즈)
   - {id: paulson, name: Paulson & Co, style: event-driven, ciks: [{cik: 1035674}]}
   - {id: situational, name: Situational Awareness, style: ai-thematic, ciks: [{cik: 2045724}]}
   - {id: altimeter, name: Altimeter Capital, style: tech-ai, ciks: [{cik: 1541617}]}

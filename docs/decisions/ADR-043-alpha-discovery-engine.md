@@ -44,3 +44,19 @@
 - EDINET 키(일본 행동주의·TOB), data.go.kr 주식시세 활용신청(한국 전 종목 일봉·동반 상승 군집), KRX Open API 키
 - SPAC 기저율 재계산(history.csv 시세 재수집), SPAC 점수 개선(조사 D: 시간 압박·스폰서·매출 규모·관심 0 — 이번에는 기록만)
 - 13F 가치 칸 저장(VIP식 쏠림), 미국 Form 4 내부자 매수 군집, 대만 10% 이상 보유자(TWSE t187ap02_L), Fairholme 등 등록 펀드 N-PORT
+
+## 후속(2026-11-15) — 빈 채널 두 개
+위 '남긴 것' 중 13F 가치 칸·VIP 쏠림, 내부자 매수 군집, Fairholme N-PORT를 채웠다(대만 10% 보유자는 남음). 설계 요지는 `knowledge/methods/discovery_engine.md` §4.2·§4.5b에 있다.
+1. **내부자 매수** `radar/insider_buys.py`(run_hourly 60분, 회차 6분 예산, 건강 id = 재시도 키 `src-insider-buys`).
+   - 미국: efts Form 4 → 원문 XML 코드 P. 한국: OpenDART 소유상황보고서 → elestock 증감 → 원본 보고사유 01.
+   - 기회형만 남긴다. Cohen·Malloy·Pomorski 2012 일상형(앞선 3년 같은 달 거래)은 원문으로 확인해 뺀다. 이력이 모자란 내부자는 기회형(이력 부족)으로 둔다.
+   - 10b5-1·거래계획·공모 참여·늦은 제출·펀드형 발행사·소액도 뺀다.
+   - 30일 안 2명 이상은 `cluster`, CEO·CFO 단독은 `ceo`다. 규칙은 `channels.insider.rules`, 등록부 prm-insider-* 26개다.
+2. **13F 가치 칸** — `thirteenf_market.info_table`이 [주식 수, 이름, 가치]를 저장한다. `aggregate()`는 옛 두 칸 캐시도 읽는다.
+3. **VIP 쏠림** — `thirteenf_market.vip`(GS VIP 규칙 복제: 10~200종목·$10M·상위 10·바구니 50)을 `guru13f.crowding`이 쓴다.
+   - 상위 10 비율 15% 이상이면 −0.3, 바구니는 강도 상한이다.
+   - 가치 칸 기관이 85% 미만인 분기는 예전 근사(보유 기관 비율)로 대신한다. 그래서 2026Q4부터 VIP를 실제로 쓴다. 등록부는 prm-guru-crowd-vip-* 9개다.
+4. **Fairholme N-PORT** — `guru13f.nport`가 주 1회 N-PORT-P를 보고 논지 종목(cusip6)과 맞는 보유를 `knowledge/models/guru/thesis_evidence.json`에 남긴다. 기준선 뒤 변화만 guru/thesis 단서다. 등록부는 prm-guru-nport-* 4개다.
+5. **첫 실수집 정정** — 점수식 수정 전 단서 17건을 void했다. 16건은 탐지일로 다시 넣었다. 같은 키·같은 날짜로 다시 넣으면 lead_id가 void와 겹친다.
+   - 11-15 04시 구루 정정 때 다시 넣은 MCO·BRK.A 2건이 이 겹침으로 여전히 무효다(leads.py 후속 과제).
+6. 시험: `tests/test_insider_vip.py` 27개(네트워크 흉내).

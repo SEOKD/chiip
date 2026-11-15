@@ -8120,3 +8120,637 @@ params:
     data: knowledge/models/discovery/kr_leader/universe_*.csv · radar/state/kr_leader/
     last_fit: null
     oos_metric: null
+- id: prm-insider-cluster-days
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.cluster_days
+  value: 30
+  unit: 일
+  status: prior
+  prior:
+    value: 30
+    basis: 같은 회사 기회형 내부자 매수를 한 묶음으로 보는 창 — 과제 정의(2026-11-15). 창 길이 자체의 문헌 근거는 미검증(조사 G 표는 60일 사용)
+    source: 과제 지시·조사 G
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-cluster-min
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.cluster_min
+  value: 2
+  unit: 명
+  status: prior
+  prior:
+    value: 2
+    basis: 서로 다른 매수자 2명 이상 = 군집(공동 보고자는 1명, 임원 아닌 10% 주주는 합쳐 1명)
+    source: 조사 B §5.1 '여러 내부자 군집'·조사 G
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-routine-years
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.routine_years
+  value: 3
+  unit: 년
+  status: prior
+  prior:
+    value: 3
+    basis: 일상형 = 앞선 3년 각 해에 거래가 있고 같은 달 거래가 3년 연속. 논문은 1~5년 창 모두 비슷한 결과(각주 9). 이력 부족은 논문이 분류하지 않았고 Chiip은 기회형(이력 부족)으로 둔다
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-routine-max-docs
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.routine_max_docs
+  value: 2
+  unit: 건/년
+  status: prior
+  prior:
+    value: 2
+    basis: 일상형 판정 때 해마다 여는 같은 달 원문 상한 — 요청량 상한(운영 값)
+    source: 운영 값(SEC 초당 5회·DART 일 2만 건)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-exclude-plan
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.exclude_plan
+  value: true
+  unit: 여부
+  status: prior
+  prior:
+    value: true
+    basis: 10b5-1 계획 표시(aff10b5One, SEC 2022-12 규칙 개정 뒤 Form 4 칸)·한국 거래계획보고(자본시장법 173조의3, 2024-07-24 시행 — 2차 확인) 매매는 미리 정한 매매 → 일상형에 가깝다
+    source: SEC Rule 10b5-1 개정(Release 33-11138); 법률신문 2024 시행령 해설(https://www.lawtimes.co.kr/news/articleView.html?idxno=199134)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-min-value-usd
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.min_value.USD
+  value: 10000
+  unit: USD
+  status: prior
+  prior:
+    value: 10000
+    basis: 이보다 작은 매수는 세지 않는다 — 잡음 거르기 휴리스틱(문헌 근거 없음, 성적표로 재검토)
+    source: null
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-min-value-krw
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.min_value.KRW
+  value: 10000000
+  unit: 원
+  status: prior
+  prior:
+    value: 10000000
+    basis: 이보다 작은 매수는 세지 않는다 — 잡음 거르기 휴리스틱(문헌 근거 없음, 성적표로 재검토)
+    source: null
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-value-tiers-usd
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.value_tiers.USD
+  value: &id001
+  - 1000000
+  - 5000000
+  unit: USD
+  status: prior
+  prior:
+    value: *id001
+    basis: cluster 합계 금액 가점 문턱 — 방향은 CMP(신호 강도는 거래 수·거래 규모와 함께 커진다), 문턱 값은 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-value-tiers-krw
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.value_tiers.KRW
+  value: &id002
+  - 1000000000
+  - 5000000000
+  unit: 원
+  status: prior
+  prior:
+    value: *id002
+    basis: cluster 합계 금액 가점 문턱(한국) — 방향은 CMP, 문턱 값은 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-ceo-tiers-usd
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.ceo_tiers.USD
+  value: &id003
+  - 250000
+  - 1000000
+  unit: USD
+  status: prior
+  prior:
+    value: *id003
+    basis: CEO·CFO 단독 매수 금액 가점 문턱 — 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-ceo-tiers-krw
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.ceo_tiers.KRW
+  value: &id004
+  - 300000000
+  - 1000000000
+  unit: 원
+  status: prior
+  prior:
+    value: *id004
+    basis: 대표이사·CFO 단독 매수 금액 가점 문턱(한국) — 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-tier-bonus
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.tier_bonus
+  value: &id005
+  - 0.5
+  - 1.0
+  unit: 점
+  status: prior
+  prior:
+    value: *id005
+    basis: 금액 문턱 1·2단계 가점 — 사전값
+    source: null
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-cluster-base
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.cluster_base
+  value: 6.5
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 6.5
+    basis: 2명 군집 = 6.5(채널 선별 6.0 통과·경보 7.0 아래) — 강도 척도를 채널 등록부 문턱에 맞춘 사전값
+    source: config/discovery_channels.yaml triage·alert
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-cluster-step
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.cluster_step
+  value: 0.5
+  unit: 점/명
+  status: prior
+  prior:
+    value: 0.5
+    basis: 군집 인원 1명 늘 때 가점 — 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-cluster-step-cap
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.cluster_step_cap
+  value: 1.5
+  unit: 점
+  status: prior
+  prior:
+    value: 1.5
+    basis: 인원 가점 상한 — 사전값
+    source: null
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-ceo-bonus
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.ceo_bonus
+  value: 0.5
+  unit: 점
+  status: prior
+  prior:
+    value: 0.5
+    basis: 군집에 CEO·CFO가 있으면 가점 — 사전값
+    source: null
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-ceo-base
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.ceo_base
+  value: 5.5
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 5.5
+    basis: CEO·CFO 단독 = 5.5(장부만) — CMP는 정보가 가장 많은 쪽이 비임원급 기회형이라 해 군집보다 낮게
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-ceo-cap
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.ceo_cap
+  value: 7.0
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 7.0
+    basis: CEO·CFO 단독 강도 상한(군집 기본보다 높아지지 않게) — 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454)
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-mult-uk
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.market_mult.uk
+  value: 1.2
+  unit: 배
+  status: prior
+  prior:
+    value: 1.2
+    basis: 영국 임원 거래 정보가 미국보다 크다(보고가 빠름) — (강도 − 5)에 곱한다. 수집기는 아직 없다
+    source: Fidrmuc, Goergen & Renneboog 2006 JF 61(6); 조사 B 표 F1 [U]
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-mult-eu
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.market_mult.eu
+  value: 0.8
+  unit: 배
+  status: prior
+  prior:
+    value: 0.8
+    basis: 유럽 — (강도 − 5)에 곱한다. 수집기는 아직 없다
+    source: 조사 B 표 F1 [U](Dardas & Güttler 2011 [M])
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-mult-kr
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.market_mult.kr
+  value: 0.5
+  unit: 배
+  status: prior
+  prior:
+    value: 0.5
+    basis: 한국 — 검증된 수익 문헌이 없어 증거가 쌓일 때까지 절반 강도
+    source: 조사 B §5.1·표 F1 [U]
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-mult-hk
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.market_mult.hk
+  value: 0.5
+  unit: 배
+  status: prior
+  prior:
+    value: 0.5
+    basis: 홍콩 — 절반 강도. 수집기는 아직 없다(HKEXnews 이용약관 5조)
+    source: 조사 B 표 F1 [U]; Cheuk, Fan & So 2006 PBFJ [U]
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-mult-tw
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.market_mult.tw
+  value: 0.5
+  unit: 배
+  status: prior
+  prior:
+    value: 0.5
+    basis: 대만 — 절반 강도. 수집기는 아직 없다
+    source: 조사 B 표 F1 [U]
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-max-lag-days
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.rules.max_lag_days
+  value: 10
+  unit: 일
+  status: prior
+  prior:
+    value: 10
+    basis: 접수일 − 매수일이 이보다 길면(늦은 제출) 단서에 쓰지 않는다 — Form 4 기한 2영업일(1934년법 16(a)), 한국 소유상황보고 5일(자본시장법 173조)
+    source: SEC Form 4 기한; 자본시장법 제173조
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-prior-excess
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.prior.excess
+  value: 0.025
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.025
+    basis: 기회형 내부자 매수 월 82bp(가치가중) × 게재 후 감쇠 0.5를 6개월로 줄인 사전값
+    source: Cohen, Malloy & Pomorski 2012 JF 67(3) — NBER WP 16454 본문 확인 2026-11-15(https://www.nber.org/papers/w16454); McLean & Pontiff 2016 JF
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-insider-alert-min
+  model: discovery.insider
+  binding: config/discovery_channels.yaml#channels.insider.alert.min_strength
+  value: 7.0
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 7.0
+    basis: Pulse 경보 문턱 — 군집만, 7.0 이상(2명이면 CEO·CFO 포함 또는 $1M 이상)
+    source: config/discovery_channels.yaml alert
+  fit:
+    method: 내부자 단서 종류·인원·금액·시장별 91·182일 초과수익(stepwise, 채널 30건 이후 — leads.py --scorecard)
+    target: 내부자 단서 초과수익(같은 시장 지수 대비)
+    data: knowledge/models/discovery/leads.csv(channel insider)·lead_prices.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-share
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_share
+  value: 0.15
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.15
+    basis: 그 종목을 가치 상위 10에 넣은 운용사 비율 15% 이상이면 쏠림 감점
+    source: 조사 E 표 crowd-pen; Brown, Howard & Lundblad 2022 RFS 35(7) 쏠림 꼬리 위험; GVIP 2021-06~2022-12 −38.6% vs SPY −27.5%
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-pen
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_pen
+  value: 0.3
+  unit: 점
+  status: prior
+  prior:
+    value: 0.3
+    basis: VIP 쏠림 감점 — 수익 신호가 아니라 위험 표시(약한 감점)
+    source: 조사 E 표 crowd-pen; 조사 A §2(Sias, Turtle & Zykaj 2016 쏠림 뒤 수익은 오히려 높다)
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-min-pos
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_min_pos
+  value: 10
+  unit: 종목
+  status: prior
+  prior:
+    value: 10
+    basis: VIP 운용사 띠 하한 — 행동주의(종목 수 적음)를 뺀다
+    source: GSAM Hedge Fund VIP Index 방법론 2018-11-13(https://www.solactive.com/wp-content/uploads/2018/11/Goldman-Sachs-Hedge-Fund-VIP-Index-Methodology-20181113-149559.pdf) — 조사 A [V]
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-max-pos
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_max_pos
+  value: 200
+  unit: 종목
+  status: prior
+  prior:
+    value: 200
+    basis: VIP 운용사 띠 상한 — 퀀트(종목 수 많음)를 뺀다
+    source: GSAM Hedge Fund VIP Index 방법론 2018-11-13(https://www.solactive.com/wp-content/uploads/2018/11/Goldman-Sachs-Hedge-Fund-VIP-Index-Methodology-20181113-149559.pdf) — 조사 A [V]
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-min-usd
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_min_usd
+  value: 10000000
+  unit: USD
+  status: prior
+  prior:
+    value: 10000000
+    basis: 13F 주식 $10M 이상 운용사만
+    source: GSAM Hedge Fund VIP Index 방법론 2018-11-13(https://www.solactive.com/wp-content/uploads/2018/11/Goldman-Sachs-Hedge-Fund-VIP-Index-Methodology-20181113-149559.pdf) — 조사 A [V]
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-top
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_top
+  value: 10
+  unit: 종목
+  status: prior
+  prior:
+    value: 10
+    basis: 운용사별 가치 상위 10 롱
+    source: GSAM Hedge Fund VIP Index 방법론 2018-11-13(https://www.solactive.com/wp-content/uploads/2018/11/Goldman-Sachs-Hedge-Fund-VIP-Index-Methodology-20181113-149559.pdf) — 조사 A [V]
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-basket
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_basket
+  value: 50
+  unit: 종목
+  status: prior
+  prior:
+    value: 50
+    basis: 가장 자주 나온 50종목 = VIP 바구니(동률은 티커 알파벳순) — Chiip은 바구니 종목을 구루 단서 강도 상한(5.9) 대상으로 쓴다
+    source: GSAM Hedge Fund VIP Index 방법론 2018-11-13(https://www.solactive.com/wp-content/uploads/2018/11/Goldman-Sachs-Hedge-Fund-VIP-Index-Methodology-20181113-149559.pdf) — 조사 A [V]
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-coverage
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_coverage
+  value: 0.85
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.85
+    basis: 가치 칸 있는 기관이 그 분기 제출 기관의 85% 미만이면 VIP를 쓰지 않고 예전 근사(보유 기관 비율)로 대신
+    source: GSAM Hedge Fund VIP Index 방법론 2018-11-13(https://www.solactive.com/wp-content/uploads/2018/11/Goldman-Sachs-Hedge-Fund-VIP-Index-Methodology-20181113-149559.pdf) — 조사 A [V] — 직전 분기 운용사 85% 제출 규칙
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-crowd-vip-min-filers
+  model: discovery.thirteenf_vip
+  binding: config/gurus.yaml#rules.crowd_vip_min_filers
+  value: 3000
+  unit: 기관
+  status: prior
+  prior:
+    value: 3000
+    basis: 그 분기 13F 제출 기관이 3,000곳 미만(시즌 초반)이면 세지 않는다 — 예전 근사와 같은 운영 문턱
+    source: 운영 값(radar/guru13f.crowd_map)
+  fit:
+    method: 구루 단서의 VIP 비율 구간별 6·12개월 초과수익·하방 꼬리(stepwise, 30건 이후)
+    target: 구루 단서 초과수익·최대 낙폭
+    data: knowledge/models/discovery/leads.csv(channel guru)·knowledge/models/inst13f/<분기>_vip.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-nport-min-pct
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.nport_min_pct
+  value: 0.02
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.02
+    basis: 등록 펀드 보유 순자산 2% 이상 = 논지 조건 A 충족
+    source: config/special_situations.yaml 머리말(조사 E §6.4 탐지 틀)
+  fit:
+    method: 논지 단서(guru/thesis) 이후 성과 — 결과 30건 이후
+    target: 논지 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru, kind thesis)·knowledge/models/guru/thesis_evidence.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-nport-add-min
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.nport_add_min
+  value: 0.25
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.25
+    basis: 직전 N-PORT 기간보다 보유 수량 25% 이상 늘면 증액 단서 — 13F 증액 문턱(prm-guru-add-min)과 같게
+    source: 조사 E §7(add_min)
+  fit:
+    method: 논지 단서(guru/thesis) 이후 성과 — 결과 30건 이후
+    target: 논지 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru, kind thesis)·knowledge/models/guru/thesis_evidence.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-nport-strength-new
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.nport_strength_new
+  value: 6.5
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 6.5
+    basis: N-PORT 새 편입·2% 돌파 단서 강도 — 구루 경보 문턱(6.5)과 같게, 사전값
+    source: config/discovery_channels.yaml guru.alert
+  fit:
+    method: 논지 단서(guru/thesis) 이후 성과 — 결과 30건 이후
+    target: 논지 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru, kind thesis)·knowledge/models/guru/thesis_evidence.json
+    last_fit: null
+    oos_metric: null
+- id: prm-guru-nport-strength-add
+  model: discovery.guru13f
+  binding: config/gurus.yaml#rules.nport_strength_add
+  value: 6.0
+  unit: 점(0~10)
+  status: prior
+  prior:
+    value: 6.0
+    basis: N-PORT 증액 단서 강도 — 채널 선별 문턱(6.0)과 같게, 사전값
+    source: config/discovery_channels.yaml triage
+  fit:
+    method: 논지 단서(guru/thesis) 이후 성과 — 결과 30건 이후
+    target: 논지 단서 초과수익
+    data: knowledge/models/discovery/leads.csv(channel guru, kind thesis)·knowledge/models/guru/thesis_evidence.json
+    last_fit: null
+    oos_metric: null

@@ -14,8 +14,8 @@ theses:
     status: watch
     gurus: [Pershing Square, Fairholme]     # Pershing: 공개 포트폴리오 페이지 보유 표시(13F 미표시, 2014-03 이후 13D 없음 — 보통주가 '의결권 증권 아님'), Fairholme: Fairholme Funds N-CSR(조사 E)
     securities:
-      - {ticker: FNMA, name: Federal National Mortgage Association, cik: 310522, tv: "OTC:FNMA"}
-      - {ticker: FMCC, name: Federal Home Loan Mortgage Corp, cik: 1026214, tv: "OTC:FMCC"}
+      - {ticker: FNMA, name: Federal National Mortgage Association, cik: 310522, tv: "OTC:FNMA", cusip6: "313586"}   # cusip6 = 발행사 CUSIP 앞 6자리(보통주·우선주 공통 — 13F·N-PORT 대조, 2026-11-15)
+      - {ticker: FMCC, name: Federal Home Loan Mortgage Corp, cik: 1026214, tv: "OTC:FMCC", cusip6: "313400"}
     barrier: "장외(OTC) 거래·지수 편입 불가·13F 대상 증권 아님(3분기 13F 제출 기관 7,143곳 중 16곳만 보고 — 조사 E), 2008년부터 보전관리"
     catalysts: "보전관리 해제·재무부 우선주 처리(청산 우선권)·자본 규칙, 거래소 재상장(8-A12B)·공모(S-1), 관련 소송 — 날짜는 1차 발표로만 적는다"
     asymmetry: "미확인 — 10-Q의 순자산·재무부 청산 우선권·자본 부족 숫자를 1차로 옮긴 뒤 계산(조사 E가 2026 3Q 10-Q 수치를 들었으나 이 장부에는 1차 대조 전이라 적지 않는다)"

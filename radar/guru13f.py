@@ -12,7 +12,13 @@
     q_g: 상위 5 비중 ≥ 0.5 ×1.2 · 13F 주식 ≥ $10B ×0.8 · 150종목 이상 ×0.5 · 체제 변화 8분기 안 ×0.8 · 비활성 ×0
     합의 가점: 같은 분기 다른 구루가 신규·증액하면 1명당 +0.15(최대 3명) — 그냥 같이 들고 있는 것은 가점 없음(Chen·Jegadeesh·Wermers 2000)
   단서 강도 = 3 + 5 × 점수(상한 10), 5.0 미만은 장부에 넣지 않는다. 날짜 = 그 신호를 만든 13F 제출일(공개 시점).
-  쏠림 감점: 시장 전체 13F 보유 기관 비율 20% 이상 −0.3, 40% 이상 −0.6(조사 E의 헤지펀드 상위 10 기준을 보유 기관 비율로 근사 — 초대형주가 위를 덮지 않게)
+  쏠림 감점(VIP 기준, 2026-11-15): GS Hedge Fund VIP 규칙 복제(radar/thirteenf_market.vip — 보유 10~200종목·$10M 이상 운용사의 가치 상위 10).
+    그 종목을 상위 10에 넣은 운용사 비율 15% 이상이면 −0.3(조사 E, Brown 외 2022 꼬리 위험). 가장 자주 나온 50종목(VIP 바구니)은 강도 상한 5.9.
+    대체 기준: 가치 칸(13F value)이 있는 기관이 그 분기 제출 기관의 85% 미만이면(2026Q3까지 — 캐시에 가치 칸이 없었다) 예전 근사를 쓴다.
+    예전 근사 = 시장 전체 13F 보유 기관 비율 20% 이상 −0.3, 40% 이상 −0.6, 40% 이상은 강도 상한. 요약에 crowd_basis(vip·holders)를 남긴다.
+  등록 펀드 N-PORT(nport_ciks — Fairholme Funds 1096344): 13F에 안 나오는 OTC 우선주(패니메이·프레디맥 등)를 펀드 공시 보유로 읽는다.
+    config/special_situations.yaml 논지 종목(cusip6·이름)과 맞춰 knowledge/models/guru/thesis_evidence.json에 근거로 남긴다(조건 A: 순자산 2% 이상).
+    기준선 뒤 새 편입·2% 돌파·25% 이상 증액만 guru/thesis 단서.
   아직 없는 것(조사 E): 분기 말→제출 사이 +30% 상승 ×0.7, 구루 매입 단가 대비, 10% 이상 보유 구루의 Form 4.
 한계: 13F는 분기 말 기준·최대 45일 지연(금지표: 기관 매입 → 주가 상승 아님). 13(f) 대상 증권만 보인다 — OTC·공매도·해외 직접 보유는 없다.
 SEC 접속: 프로젝트 User-Agent(fulltext.sec_ua), 초당 5회 이하(thirteenf_market.get — 429면 전역 휴식).
@@ -38,7 +44,9 @@ SOURCE_ID = "src-guru13f"
 KIND_KO = {"new": "신규 편입", "add": "증액", "best": "최고 확신 유지", "confidential": "기밀 보유 공개", "cluster": "구루 겹침", "thesis": "공개 논지"}
 DEF = {"crowd_lo": 0.20, "crowd_hi": 0.40, "crowd_pen_lo": 0.3, "crowd_pen_hi": 0.6, "w_new": 1.0, "w_add": 0.5, "add_min": 0.25, "w_best": 0.3, "w_confidential": 1.2, "rank_w": [1.0, 0.8, 0.65, 0.55, 0.5], "rank_w_6_10": 0.2,
        "min_w": 0.02, "new_min_w": 0.005, "q_conc": 1.2, "q_giant": 0.8, "q_diversified": 0.5, "q_regime": 0.8, "consensus_step": 0.15, "consensus_cap": 3,
-       "strength_base": 3.0, "strength_slope": 5.0, "lead_min": 5.0}
+       "strength_base": 3.0, "strength_slope": 5.0, "lead_min": 5.0, "crowd_vip_share": 0.15, "crowd_vip_pen": 0.3, "nport_min_pct": 0.02, "nport_add_min": 0.25,
+       "nport_strength_new": 6.5, "nport_strength_add": 6.0}
+NPORT_OUT = OUT / "thesis_evidence.json"
 
 
 def cfg():
@@ -240,13 +248,35 @@ def crowd_map(rd):
     return out
 
 
-def apply_crowding(agg, crowd, r):
+def crowding(rd, r):
+    """(기준, {cusip: 비율}, VIP 바구니 cusip 집합, VIP 요약) — VIP(상위 10 비율)가 되면 그것, 아니면 예전 근사(보유 기관 비율)"""
+    import thirteenf_market as tm
+    q = _q(rd)
+    try:
+        v = tm.vip_cached(int(q[:4]), int(q[-1]), r)
+    except Exception as exc:  # noqa: BLE001 — VIP 계산 실패는 대체 기준으로
+        v = {"ok": False, "why": f"{type(exc).__name__}"}
+    info = {k: v.get(k) for k in ("quarter", "managers", "coverage", "why") if v.get(k) is not None}
+    if v.get("ok"):
+        return "vip", v["share"], {b["cusip"] for b in v.get("basket") or []}, info
+    return "holders", crowd_map(rd), set(), info
+
+
+def apply_crowding(agg, crowd, r, basis="holders", basket=()):
+    """쏠림 감점 — basis 'vip': 상위 10 비율 ≥ crowd_vip_share −crowd_vip_pen, VIP 바구니는 강도 상한 표시(crowd_capped).
+    basis 'holders'(대체): 보유 기관 비율 crowd_lo·crowd_hi 두 단계, crowd_hi 이상은 강도 상한"""
     for c, a in agg.items():
         share = crowd.get(c)
         a["crowd"] = share
-        if share is None:
-            continue
-        pen = r["crowd_pen_hi"] if share >= r["crowd_hi"] else (r["crowd_pen_lo"] if share >= r["crowd_lo"] else 0.0)
+        a["crowd_basis"] = basis
+        if basis == "vip":
+            pen = r["crowd_vip_pen"] if share is not None and share >= r["crowd_vip_share"] else 0.0
+            a["crowd_capped"] = c in basket
+        else:
+            if share is None:
+                continue
+            pen = r["crowd_pen_hi"] if share >= r["crowd_hi"] else (r["crowd_pen_lo"] if share >= r["crowd_lo"] else 0.0)
+            a["crowd_capped"] = share >= r["crowd_hi"]
         if pen:
             a["score"] = round(max(0.0, a["score"] - pen), 3)
             a["crowd_pen"] = pen
@@ -288,7 +318,7 @@ def to_leads(agg, r, cmap, today):
         if not a.get("kind") or not a["gurus"]:
             continue
         st = strength(a["score"], r)
-        if (a.get("crowd") or 0) >= r["crowd_hi"]:   # 13F 보유 기관 40% 이상 = 이미 모두가 아는 종목 — 장부에는 남기되 경보·선별 문턱(6.0) 아래로
+        if a.get("crowd_capped"):   # VIP 바구니(또는 대체 기준 보유 기관 40% 이상) = 이미 모두가 아는 종목 — 장부에는 남기되 경보·선별 문턱(6.0) 아래로
             st = min(st, r.get("crowd_cap", 5.9))
         if a["kind"] == "best":   # 신규·증액 없이 상위 보유만 유지 = 사건이 아니다 — 성적표 재료로만(최고 확신 효과는 잰다), 선별·경보 문턱 아래
             st = min(st, r.get("crowd_cap", 5.9))
@@ -302,7 +332,7 @@ def to_leads(agg, r, cmap, today):
         rows.append({"channel": "guru", "kind": a["kind"] if a["kind"] != "confidential" else "new", "market": "us", "ticker": tk, "name": m.get("name") or a["name"],
                      "tv": tvsym.us(tk, tab) if tk else "", "date": a["fd"] or today.isoformat(), "strength": st, "signal": signal_text(a),
                      "url": f"https://www.sec.gov/Archives/edgar/data/{int(top['cik'])}/{top['adsh'].replace('-', '')}/",
-                     "extra": {"cusip": c, "quarter_end": top["rd"], "score": a["score"], "buyers": a["buyers"], "crowd": a.get("crowd"),
+                     "extra": {"cusip": c, "quarter_end": top["rd"], "score": a["score"], "buyers": a["buyers"], "crowd": a.get("crowd"), "crowd_basis": a.get("crowd_basis"),
                                "gurus": [{k: g[k] for k in ("guru", "kinds", "w", "rank", "chg", "q", "s")} for g in a["gurus"]][:12]}})
     return rows
 
@@ -362,8 +392,138 @@ def pages(gurus, st, today, every_days=7):
     return rows, notes
 
 
+# ---------- 등록 펀드 N-PORT(구루 논지 근거) ----------
+def parse_nport(xml_bytes):
+    """N-PORT-P primary_doc.xml → {series, series_id, period, net_assets, rows[{name, title, cusip, balance, units, value, pct(%), asset, issuer_cat}]}"""
+    root = ET.fromstring(xml_bytes)
+    for el in root.iter():
+        if isinstance(el.tag, str) and "}" in el.tag:
+            el.tag = el.tag.split("}", 1)[1]
+    g = root.find(".//genInfo")
+
+    def gt(k):
+        x = g.find(k) if g is not None else None
+        return (x.text or "").strip() if x is not None and x.text else ""
+
+    def num(v):
+        try:
+            return float(str(v).replace(",", ""))
+        except (TypeError, ValueError):
+            return 0.0
+
+    na = root.find(".//fundInfo/netAssets")
+    rows = []
+    for h in root.iter("invstOrSec"):
+        f = {}
+        for c in h.iter():
+            if isinstance(c.tag, str) and c.tag not in f:
+                f[c.tag] = (c.text or "").strip()
+        rows.append({"name": f.get("name", ""), "title": f.get("title", ""), "cusip": f.get("cusip", "").upper(), "balance": num(f.get("balance")), "units": f.get("units", ""),
+                     "value": num(f.get("valUSD")), "pct": num(f.get("pctVal")), "asset": f.get("assetCat", ""), "issuer_cat": f.get("issuerCat", "")})
+    return {"series": gt("seriesName"), "series_id": gt("seriesId"), "period": gt("repPdDate"), "net_assets": num(na.text if na is not None else 0), "rows": rows}
+
+
+def _nname(x):
+    return re.sub(r"[^A-Z0-9]", "", str(x or "").upper())
+
+
+def thesis_securities():
+    """[(논지, 종목)] — config/special_situations.yaml. 종목 일치는 cusip6(발행사 CUSIP 앞 6자리) 우선, 없으면 정규화한 이름"""
+    c = common.load_yaml("config/special_situations.yaml") or {}
+    return [(t, s) for t in c.get("theses") or [] for s in t.get("securities") or []]
+
+
+def nport_hits(doc, secs):
+    out = []
+    for row in doc["rows"]:
+        for t, s in secs:
+            c6 = str(s.get("cusip6") or "")
+            if (c6 and row["cusip"][:6] == c6) or (_nname(s.get("name")) and _nname(row["name"]) == _nname(s.get("name"))):
+                out.append({"thesis": t["id"], "ticker": s.get("ticker", ""), "title": row["title"][:90], "cusip": row["cusip"], "balance": row["balance"],
+                            "value": row["value"], "pct": round(row["pct"], 4), "asset": row["asset"]})
+                break
+    return out
+
+
+def nport_changes(prev, cur, r):
+    """직전 기간 대비 — [(hit, 이유, 강도)] 새 편입·순자산 비중 문턱 돌파 = nport_strength_new, 25% 이상 증액 = nport_strength_add(사전값)"""
+    pm = {h["cusip"]: h for h in prev or []}
+    out = []
+    for h in cur:
+        p = pm.get(h["cusip"])
+        if p is None:
+            out.append((h, "새 편입", r["nport_strength_new"]))
+        elif p["pct"] / 100 < r["nport_min_pct"] <= h["pct"] / 100:
+            out.append((h, f"순자산 {r['nport_min_pct']:.0%} 돌파", r["nport_strength_new"]))
+        elif p["balance"] > 0 and h["balance"] >= p["balance"] * (1 + r["nport_add_min"]):
+            out.append((h, f"{h['balance'] / p['balance'] - 1:+.0%} 증액", r["nport_strength_add"]))
+    return out
+
+
+def nport(gurus, st, r, today, every_days=7):
+    """명단 구루의 등록 펀드 N-PORT-P(분기 — 보고 기간 말 60일 안 공개). 주 1회 제출 목록을 보고 새 서류만 원문을 연다.
+    논지 종목과 맞는 보유는 thesis_evidence.json에 근거로 쌓고, 기준선 뒤의 새 편입·문턱 돌파·증액만 guru/thesis 단서로 낸다"""
+    secs = thesis_securities()
+    ev = json.loads(NPORT_OUT.read_text(encoding="utf-8")) if NPORT_OUT.exists() else {}
+    ev.setdefault("funds", {})
+    rows, notes, changed = [], [], False
+    for g in gurus:
+        for cik in g.get("nport_ciks") or []:
+            k = f"nport:{cik}"
+            last = st.get(k) or {}
+            if last.get("date") and (today - date.fromisoformat(last["date"])).days < every_days:
+                continue
+            baseline = not last.get("seen")
+            seen = set(last.get("seen") or [])
+            sub = json.loads(_get(f"https://data.sec.gov/submissions/CIK{str(cik).zfill(10)}.json"))
+            rc = sub.get("filings", {}).get("recent", {})
+            fl = sorted(((rc["reportDate"][i], rc["filingDate"][i], rc["accessionNumber"][i]) for i in range(len(rc.get("form", []))) if rc["form"][i] == "NPORT-P"), reverse=True)
+            periods = sorted({f[0] for f in fl}, reverse=True)[:2]
+            for rd, fd, adsh in sorted(f for f in fl if f[0] in periods):
+                if adsh in seen:
+                    continue
+                doc = parse_nport(_get(f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/primary_doc.xml"))
+                seen.add(adsh)
+                fund = ev["funds"].setdefault(f"{cik}:{doc['series_id'] or doc['series']}", {"guru": g["name"], "cik": str(cik), "series": doc["series"], "periods": {}})
+                prev_p = sorted(p for p in fund["periods"] if p < (doc["period"] or rd))
+                hits = nport_hits(doc, secs)
+                url = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}/"
+                fund["periods"][doc["period"] or rd] = {"filed": fd, "adsh": adsh, "net_assets": doc["net_assets"], "hits": hits, "url": url}
+                fund["periods"] = dict(sorted(fund["periods"].items())[-6:])
+                changed = True
+                if baseline or not prev_p:
+                    continue
+                for h, why, s in nport_changes(fund["periods"][prev_p[-1]]["hits"], hits, r):
+                    t, sec = next(((t, x) for t, x in secs if t["id"] == h["thesis"] and x.get("ticker") == h["ticker"]), (None, {}))
+                    rows.append({"channel": "guru", "kind": "thesis", "market": "us", "ticker": h["ticker"], "name": sec.get("name") or h["title"], "tv": sec.get("tv", ""),
+                                 "date": fd, "strength": s, "url": url,
+                                 "signal": f"{g['name']} 등록 펀드({doc['series']}) N-PORT {doc['period']}: {h['title'][:50]} 순자산 {h['pct']:.2f}% {why} — 논지 '{(t or {}).get('name', h['thesis'])}' 구루 보유 근거",
+                                 "extra": {"thesis": h["thesis"], "form": "NPORT-P", "fund_cik": str(cik), "series": doc["series"], "period": doc["period"], "pct": h["pct"],
+                                           "cusip": h["cusip"], "why": why}})
+            st[k] = {"date": today.isoformat(), "seen": sorted(seen)[-40:]}
+            if baseline:
+                notes.append(f"{g['name']} N-PORT 기준선")
+    if changed or not NPORT_OUT.exists():
+        th = {}
+        for fk, fund in ev["funds"].items():
+            if not fund["periods"]:
+                continue
+            p = max(fund["periods"])
+            d = fund["periods"][p]
+            for h in d["hits"]:
+                x = th.setdefault(h["thesis"], {"holders": [], "meets_A": False})
+                ok = h["pct"] / 100 >= r["nport_min_pct"]
+                x["holders"].append({"guru": fund["guru"], "series": fund["series"], "period": p, "filed": d["filed"], "title": h["title"], "cusip": h["cusip"],
+                                     "pct": h["pct"], "value": h["value"], "meets_A": ok, "url": d["url"]})
+                x["meets_A"] = x["meets_A"] or ok
+        ev.update({"as_of": common.iso(common.now_kst()), "rule": f"조건 A — 등록 펀드 보유 순자산 {r['nport_min_pct']:.0%} 이상(config/special_situations.yaml)", "theses": th})
+        OUT.mkdir(parents=True, exist_ok=True)
+        NPORT_OUT.write_text(json.dumps(ev, ensure_ascii=False, indent=1), encoding="utf-8")
+    return rows, notes
+
+
 def run(force=False, today=None):
-    """run_hourly용 — 명단 구루의 새 13F가 있을 때만 정보표를 받고 단서를 낸다. 공개 페이지는 주 1회"""
+    """run_hourly용 — 명단 구루의 새 13F가 있을 때만 정보표를 받고 단서를 낸다. 공개 페이지·등록 펀드 N-PORT는 주 1회"""
     import thirteenf_market
     today = today or date.today()
     gurus, r = cfg()
@@ -415,6 +575,12 @@ def run(force=False, today=None):
                         "name": {c: v["name"] for c, v in cur.items()}, "top5": round(top5, 3), "n": n, "usd": usd}
         st[g["id"]] = sig
     page_rows, notes = pages(gurus, st, today)
+    try:
+        np_rows, np_notes = nport(gurus, st, r, today)
+        page_rows += np_rows
+        notes += np_notes
+    except Exception as exc:  # noqa: BLE001 — N-PORT 실패가 13F 회차를 막지 않게
+        errors.append(f"N-PORT: {type(exc).__name__}")
     sys.path.insert(0, str(ROOT / "scripts" / "discovery"))
     import leads
     new = leads.add(page_rows, today=today) if page_rows else []
@@ -424,7 +590,8 @@ def run(force=False, today=None):
         return f"새 13F 없음 · 페이지 단서 {len(new)}" + (f" · {'; '.join(notes)}" if notes else ""), len(new)
     agg = score_all(per, gurus, r)
     rd_now = max((d["rd"] for d in per.values()), default="")
-    agg = apply_crowding(agg, crowd_map(rd_now) if rd_now else {}, r)
+    basis, share, basket, vinfo = crowding(rd_now, r) if rd_now else ("", {}, set(), {})
+    agg = apply_crowding(agg, share, r, basis, basket)
     cmap_p = thirteenf_market.MAP
     cmap = json.loads(cmap_p.read_text(encoding="utf-8")) if cmap_p.exists() else {}
     need = [c for c, a in agg.items() if a.get("kind") and strength(a["score"], r) >= r["lead_min"]]
@@ -438,7 +605,7 @@ def run(force=False, today=None):
                                      "events": sum(1 for v in d["ev"].values() if v)} for d in per.values()},
                "stocks": {c: {**a, "ticker": (cmap.get(c) or {}).get("ticker"), "strength": strength(a["score"], r)}
                           for c, a in sorted(agg.items(), key=lambda x: -x[1]["score"]) if a.get("kind")},
-               "errors": errors, "notes": notes, "new_leads": len(new)}
+               "crowd": {"basis": basis, **vinfo}, "errors": errors, "notes": notes, "new_leads": len(new)}
     LATEST.write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
     common.save_state("guru13f", st)
     common.record_health(SOURCE_ID, not errors, "; ".join(errors)[:300] or None)

@@ -6,6 +6,13 @@
   ② 기관(CIK)마다 정보표 XML(index.json에서 primary_doc.xml이 아닌 .xml)을 받아 CUSIP별 보유 주식 수(SH, 옵션 put/call 제외)를 합친다.
   ③ 같은 기관의 직전 분기 13F-HR(data.sec.gov 제출 목록의 reportDate)도 받아 둔다(다음 분기에는 캐시를 다시 쓴다).
   캐시: radar/state/inst13f/<분기>/<CIK>.json.gz(git 제외) — 기관 이름은 저장하지 않는다(CIK는 공개 식별번호, 순위에는 쓰지 않는다).
+  캐시 한 줄 = {cusip: [주식 수, 발행사 이름, 가치]} — 가치(value, 2023년부터 달러 단위)는 2026-11-15부터 세 번째 칸으로 덧붙였다.
+  그 전 캐시는 [주식 수, 이름] 두 칸이다. aggregate()는 둘 다 읽고, vip()는 가치 칸이 있는 기관만 센다.
+VIP 쏠림(--vip): GS Hedge Fund VIP 방법론(GSAM 2018-11-13, 조사 A [V])을 복제한다.
+  보유 10~200종목·13F 주식 $10M 이상 운용사 → 운용사별 가치 상위 10 → 가장 자주 나온 50종목. 종목마다 '상위 10에 넣은 운용사 비율'을 낸다.
+  ETF·펀드는 이름 규칙(FUND_RE)과 OpenFIGI 증권 종류로 뺀다. 헤지펀드 분류(IARD)는 없어 전체 13F 제출 기관의 같은 띠로 근사한다.
+  가치 칸 있는 기관이 그 분기 제출 기관의 85% 미만이면 쓰지 않는다(GS: 직전 분기 운용사의 85%가 제출하기 전에는 기다린다).
+  → radar/guru13f.py 쏠림 감점(상위 10 비율 15% 이상 −0.3, VIP 바구니 50종목은 강도 상한).
 집계(--rank): 두 분기 다 제출한 기관만 증감을 센다 — 늘린(신규 포함)·줄인(전량 매도 포함). 직전 분기 제출이 없는 기관은 보유 수에만.
   주식 분할: 종목별로 두 분기 다 보유한 기관의 주식 수 비율 중앙값이 정수배(×2·×3…)나 그 역수에 가까우면 분할로 보고 직전 보유를 맞춘다.
   종목 이름: 상위 후보 CUSIP만 OpenFIGI(무료, 키 없음 25회/분)로 티커·증권 종류를 붙이고 ETF·펀드는 뺀다. 매핑은
@@ -13,6 +20,7 @@
 SEC 접속 규칙: 식별 User-Agent(.env SEC_USER_AGENT), 초당 5회(요청 간 0.2초, 동시 3개 — 초당 9회는 SEC가 429로 막았다), 429면 전역 휴식 뒤 재시도.
 사용: py radar/thirteenf_market.py --collect [--budget-min 30]   # 이번 시즌 분기 수집(이어서)
       py radar/thirteenf_market.py --rank                        # 순위 JSON
+      py radar/thirteenf_market.py --vip [--quarter 2026Q4]       # VIP 쏠림(가치 칸이 모자라면 이유만)
       py radar/thirteenf_market.py --status
 """
 import gzip
@@ -41,6 +49,12 @@ MIN_GAP = 0.2        # 초당 5회 — 2026-11-14 첫 수집에서 초당 9회(0
 WORKERS = 3
 BACKOFF_S = 120      # 429면 모든 요청을 이만큼 쉰다(SEC 차단은 보통 10분 안에 풀린다)
 EXCLUDE_TYPES = ("ETP", "Mutual Fund", "Closed-End Fund", "Open-End Fund", "Unit", "Right", "Warrant")
+# 13F 정보표 발행사 이름으로 보는 ETF·펀드(VIP는 '미국 상장 주식' 보유만 센다 — 조사 A). 은행·리츠 이름의 TRUST·TR은 일부러 넣지 않았다
+FUND_RE = re.compile(r"\bETFS?\b|\bETN\b|\bISHARES\b|\bSPDR\b|\bVANGUARD\b|\bPROSHARES\b|\bDIREXION\b|\bWISDOMTREE\b|\bINVESCO (?:QQQ|EXCHANGE|EXCH|DB)\b"
+                     r"|\bSELECT SECTOR\b|\bSCHWAB STRATEGIC\b|\bGLOBAL X\b|\bVANECK\b|\bFLEXSHARES\b|\bINNOVATOR\b|\bEXCHANGE[ -]TRADED\b|\bFIRST TR\b"
+                     r"|\bINDEX (?:FDS?|FUNDS?|SHS)\b|\bFDS?\b|\bFUNDS?\b|\bGRAYSCALE\b|\bSPROTT PHYSICAL\b|\bMUNI\w*\b|\bCLOSED[- ]END\b|\bPORTFOLIO\b", re.I)
+VIP_DEF = {"crowd_vip_min_pos": 10, "crowd_vip_max_pos": 200, "crowd_vip_min_usd": 10e6, "crowd_vip_top": 10, "crowd_vip_basket": 50,
+           "crowd_vip_coverage": 0.85, "crowd_vip_min_filers": 3000}   # 값은 config/gurus.yaml rules(등록부 prm-guru-crowd-vip-*)
 _lock = threading.Lock()
 _last = [0.0]
 _pause = [0.0]
@@ -103,7 +117,7 @@ def list_filings(y, q, today=None):
 
 
 def info_table(cik, adsh):
-    """{cusip: [shares, 발행사 이름]} — 정보표 XML(SH만, 옵션 제외)"""
+    """{cusip: [shares, 발행사 이름, value]} — 정보표 XML(SH만, 옵션 제외). 같은 CUSIP 여러 줄은 주식 수·가치를 합친다"""
     base = f"https://www.sec.gov/Archives/edgar/data/{int(cik)}/{adsh.replace('-', '')}"
     idx = json.loads(get(base + "/index.json"))
     xmls = [x["name"] for x in idx["directory"]["item"] if x["name"].lower().endswith(".xml") and x["name"].lower() != "primary_doc.xml"]
@@ -124,10 +138,15 @@ def info_table(cik, adsh):
             sh = float((f["sshPrnamt"].text or "0").replace(",", ""))
         except (KeyError, ValueError):
             continue
+        try:
+            val = float((f["value"].text or "0").replace(",", "")) if f.get("value") is not None else 0.0
+        except ValueError:
+            val = 0.0
         if len(cus) != 9:
             continue
-        cur = out.setdefault(cus, [0.0, (f["nameOfIssuer"].text or "").strip() if f.get("nameOfIssuer") is not None else ""])
+        cur = out.setdefault(cus, [0.0, (f["nameOfIssuer"].text or "").strip() if f.get("nameOfIssuer") is not None else "", 0.0])
         cur[0] += sh
+        cur[2] += val
     return out
 
 
@@ -271,9 +290,9 @@ def aggregate(y, q, ciks):
             continue
         prev = load(py, pq, cik)
         ph = (prev or {}).get("h")
-        for cus, (sh, nm) in cur["h"].items():
+        for cus, v in cur["h"].items():   # [주식 수, 이름] 또는 [주식 수, 이름, 가치](2026-11-15부터)
             holders[cus] = holders.get(cus, 0) + 1
-            names.setdefault(cus, nm)
+            names.setdefault(cus, v[1])
         if ph is None:
             newf += 1
             continue
@@ -303,6 +322,92 @@ def aggregate(y, q, ciks):
     if succ:
         st["cusip_changes"] = [[a, b] for a, b in sorted(succ.items())]
     return out, st
+
+
+def _unit(items):
+    """가치 단위 — 천 달러로 낸 서류(2023년 전 서식을 그대로 쓴 기관)는 주당 가치 중앙값이 1 미만이다(guru13f.book_stats와 같은 규칙)"""
+    px = sorted(v[2] / v[0] for v in items.values() if v[0] > 0 and v[2] > 0)
+    return 1000.0 if px and px[len(px) // 2] < 1.0 else 1.0
+
+
+def manager_top(h, r, excl=()):
+    """운용사 하나 — (가치 상위 crowd_vip_top CUSIP, 주식 종목 수, 13F 주식 합계 USD). 가치 칸이 없는 옛 캐시면 None"""
+    if not h or any(len(v) < 3 for v in h.values()):
+        return None
+    items = {c: v for c, v in h.items() if v[2] > 0 and c not in excl and not FUND_RE.search(v[1] or "")}
+    usd = sum(v[2] for v in items.values()) * _unit(items)
+    order = sorted(items, key=lambda c: (-items[c][2], c))
+    return order[: int(r["crowd_vip_top"])], len(items), usd
+
+
+def vip_counts(y, q, ciks, r, excl=()):
+    """({cusip: 상위 10에 넣은 운용사 수}, {cusip: 이름}, 대상 운용사 수, 가치 칸 있는 기관 수)"""
+    cnt, names, elig, have = {}, {}, 0, 0
+    for cik in ciks:
+        d = load(y, q, cik)
+        mt = manager_top((d or {}).get("h"), r, excl)
+        if mt is None:
+            continue
+        have += 1
+        top, n, usd = mt
+        if not (r["crowd_vip_min_pos"] <= n <= r["crowd_vip_max_pos"] and usd >= r["crowd_vip_min_usd"]):
+            continue
+        elig += 1
+        for c in top:
+            cnt[c] = cnt.get(c, 0) + 1
+            names.setdefault(c, d["h"][c][1])
+    return cnt, names, elig, have
+
+
+def vip(y, q, ciks, rules=None, cmap=None, map_fn=None):
+    """GS Hedge Fund VIP 복제 — {"ok", "why", "managers", "coverage", "share": {cusip: 상위 10 비율}, "basket": [50종목]}.
+    ok = 제출 기관 ≥ crowd_vip_min_filers 이고 가치 칸 있는 기관 비율 ≥ crowd_vip_coverage(GS 85% 규칙). 상위 후보는 OpenFIGI 종류로 ETF·펀드를 한 번 더 빼고 다시 센다"""
+    r = {**VIP_DEF, **{k: v for k, v in (rules or {}).items() if k in VIP_DEF}}
+    cnt, names, elig, have = vip_counts(y, q, ciks, r)
+    cov = have / len(ciks) if ciks else 0.0
+    res = {"quarter": qname(y, q), "filers": len(ciks), "with_value": have, "coverage": round(cov, 3), "managers": elig, "rules": r, "at": common.iso(common.now_kst())}
+    if len(ciks) < r["crowd_vip_min_filers"] or cov < r["crowd_vip_coverage"] or not elig:
+        return {**res, "ok": False, "share": {}, "basket": [],
+                "why": f"가치 칸 있는 기관 {have:,}/{len(ciks):,}({cov:.0%}) — 문턱 {r['crowd_vip_coverage']:.0%}·제출 {r['crowd_vip_min_filers']:,}곳"}
+    cmap = cmap if cmap is not None else (json.loads(MAP.read_text(encoding="utf-8")) if MAP.exists() else {})
+    cand = sorted(cnt, key=lambda c: (-cnt[c], c))[: int(r["crowd_vip_basket"]) * 3]
+    known = set(cmap)
+    cmap = (map_fn or figi)(cand, cmap)
+    if set(cmap) != known:
+        MAP.parent.mkdir(parents=True, exist_ok=True)
+        MAP.write_text(json.dumps(cmap, ensure_ascii=False, indent=0, sort_keys=True), encoding="utf-8")
+    bad = {c for c in cand if str((cmap.get(c) or {}).get("type") or "").startswith(EXCLUDE_TYPES)}
+    if bad:
+        cnt, names, elig, _ = vip_counts(y, q, ciks, r, excl=bad)
+    share = {c: round(v / elig, 4) for c, v in cnt.items()}
+    tick = lambda c: (cmap.get(c) or {}).get("ticker") or names.get(c) or c
+    order = sorted(cnt, key=lambda c: (-cnt[c], tick(c)))   # 동률은 티커 알파벳순(GS 규칙)
+    basket = [{"cusip": c, "ticker": (cmap.get(c) or {}).get("ticker") or "", "name": (cmap.get(c) or {}).get("name") or names.get(c, ""), "share": share[c], "n": cnt[c]}
+              for c in order[: int(r["crowd_vip_basket"])]]
+    return {**res, "managers": elig, "ok": True, "share": share, "basket": basket, "excluded_types": sorted(bad)}
+
+
+def vip_cached(y, q, rules=None, force=False):
+    """그 분기 VIP — radar/state/inst13f/vip_<분기>.json(git 제외, 비율 전체)에 두고 제출 기관이 5% 넘게 늘었거나 하루 지났으면 다시 센다.
+    ok면 knowledge/models/inst13f/<분기>_vip.json(바구니 50·통계)도 쓴다"""
+    from datetime import datetime as _dt
+    key = qname(y, q)
+    ciks = [row[0] for row in (common.load_state("thirteenf_market", {}).get("filings") or {}).get(key, [])]
+    p = CACHE / f"vip_{key}.json"
+    want = {**VIP_DEF, **{k: v for k, v in (rules or {}).items() if k in VIP_DEF}}
+    if p.exists() and not force:
+        d = json.loads(p.read_text(encoding="utf-8"))
+        fresh = (common.now_kst() - _dt.fromisoformat(d["at"])).total_seconds() < 86400 if d.get("at") else False
+        if d.get("rules") == want and d.get("filers", 0) >= 0.95 * len(ciks) and (d.get("ok") or fresh):
+            return d
+    res = vip(y, q, ciks, want)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(json.dumps(res, separators=(",", ":")), encoding="utf-8")
+    if res.get("ok"):
+        OUT.mkdir(parents=True, exist_ok=True)
+        (OUT / f"{key}_vip.json").write_text(json.dumps({k: res[k] for k in ("quarter", "filers", "with_value", "coverage", "managers", "rules", "at", "basket", "excluded_types")},
+                                                        ensure_ascii=False, indent=1), encoding="utf-8")
+    return res
 
 
 def figi(cusips, cmap):
@@ -378,6 +483,9 @@ def main(argv):
         print("[13F 시장] 처리 %d · 남음 %d / 전체 %d" % collect(*s, budget_min=b))
     elif "--rank" in argv:
         print(json.dumps(rank(*s), ensure_ascii=False, indent=1))
+    elif "--vip" in argv:
+        res = vip_cached(*s, (common.load_yaml("config/gurus.yaml") or {}).get("rules"), force="--force" in argv)
+        print(json.dumps({k: v for k, v in res.items() if k != "share"}, ensure_ascii=False, indent=1)[:6000])
     else:
         print(json.dumps(common.load_state("thirteenf_market", {}).get("progress", {}), ensure_ascii=False, indent=1))
     return 0

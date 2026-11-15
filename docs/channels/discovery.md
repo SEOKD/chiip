@@ -77,6 +77,7 @@
   - **채널**(결정론 수집은 run_hourly, TradingView 호출은 Ten-bagger 회차 모델):
     - 행동주의 `radar/discovery_filings.py`(60분): 미 13D(명단 60개 CIK·명단 밖은 목적 어구 2개 이상)·13D/A·위임장 서류, 한 DART 5% 일반 서식·주주 측 의결권 권유, 일 EDINET(키 대기). 표적 유사도 스크린(화·목). 명단 `config/activists.yaml`.
     - 구루 `radar/guru13f.py`(360분): 명단 45곳 13F GuruScore(최고 확신·순위·기밀 공개·동반 매수·쏠림 감점), 13D·13G, 공개 포트폴리오 페이지(robots 허용만, 주 1회). 패니·프레디형 논지 장부 `config/special_situations.yaml`(촉매 서류 감시). 명단 `config/gurus.yaml`.
+    - 내부자 매수·VIP 쏠림·N-PORT(2026-11-15 빈 채널 보완): `radar/insider_buys.py`(60분, 회차 6분 예산)가 미 Form 4 장내 매수(P)·한 소유상황보고 장내매수(01) 중 기회형만(같은 달 3년 반복 일상형·10b5-1·거래계획·공모 참여·늦은 제출·펀드형 발행사 제외) 30일 안 2명 이상 `cluster`·CEO·CFO `ceo` 단서로 넣는다(규칙 `channels.insider.rules`, 등록부 prm-insider-*). 구루 쏠림은 13F 가치 칸으로 GS VIP 복제(상위 10 비율 15% 이상 −0.3·바구니 50 강도 상한, 가치 칸 기관 85% 전에는 보유 기관 비율 근사 — prm-guru-crowd-vip-*), Fairholme N-PORT 보유는 논지 근거(`knowledge/models/guru/thesis_evidence.json`).
     - 특수 상황(같은 수집기): 미 SC TO-T·13E3·10-12B, 한 공개매수·분할·소각·취득·밸류업, 일 JPX 자본비용 공시 갱신(월간 xlsx), 대만 第35款(소각 전제 자사주 결의). 국장 적신호(희석 공시·시장조치·KRX 투자경고 — `kr_flags.json`).
     - 국장 테마 `scripts/discovery/kr_theme.py`: 평일 장 마감 뒤 TradingView 한국 +7% 이상 스냅숏 → 점화·확산·과열·소멸·구조적 확인. 언급은 공개 텔레그램 저장분 테마 어휘(`radar/kr_theme_news.py`, 1440분). 사전 `config/kr_themes.yaml`.
     - 저관심 10배 전조·IB 정량 복합 `scripts/discovery/channel_screens.py`: 7개 시장 순번(하루 2시장 / 월·수·금 1시장). 시장별 5년 3배·10배 기저율을 후보 옆에 붙인다.

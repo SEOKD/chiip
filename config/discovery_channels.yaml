@@ -58,6 +58,29 @@ channels:
     dedupe_days: 60
     prior: {excess: 0.025, horizon_d: 182, sd: 0.08, source: "Cohen·Malloy·Pomorski 2012 JF 기회형 내부자 매수 월 82bp × 감쇠 — 영국 ×1.2·아시아 ×0.5(조사 B)"}
     alert: {kinds: [cluster], min_strength: 7.0}
+    rules:   # radar/insider_buys.py(run_hourly 60분) — 수집은 미국 Form 4·한국 소유상황보고서만(영국·유럽·홍콩·대만은 수집기 없음), 등록부 prm-insider-*(사전값)
+      cluster_days: 30          # 같은 회사 30일 안 서로 다른 기회형 내부자(과제 정의 — 문헌 창은 미검증)
+      cluster_min: 2
+      routine_years: 3          # 일상형 = 앞선 3년 해마다 같은 달 거래(CMP 2012 NBER WP 16454 — 1~5년 창 모두 비슷한 결과, 본문 각주 9)
+      routine_codes_us: [P, S]  # 일상형 판정 거래(논문은 매수·매도 모두로 사람을 분류한다)
+      routine_codes_kr: ["01", "02"]   # 장내매수(+)·장내매도(-)
+      kr_buy_codes: ["01"]      # 한국 '장내 매수' = 세부변동내역 보고사유 01(장외매수 11·시간외매매 81은 넣지 않는다)
+      routine_max_docs: 2       # 해마다 열어 보는 같은 달 원문 수(요청량 상한)
+      exclude_plan: true        # 10b5-1 계획(aff10b5One)·한국 거래계획보고 매매는 미리 정한 매매 → 뺀다
+      min_value: {USD: 10000, KRW: 10000000}   # 잡음 거르기(휴리스틱) — 이보다 작은 매수는 세지 않는다
+      value_tiers: {USD: [1000000, 5000000], KRW: [1000000000, 5000000000]}   # cluster 합계 금액 가점 문턱
+      ceo_tiers: {USD: [250000, 1000000], KRW: [300000000, 1000000000]}       # ceo 매수 금액 가점 문턱
+      tier_bonus: [0.5, 1.0]
+      cluster_base: 6.5         # 2명 = 6.5(채널 선별 6.0 통과·경보 7.0 아래), CEO·CFO 포함 +0.5(본인 매수가 ceo_tiers 첫 문턱 이상일 때만), 1명 더할 때 +0.5(상한 +1.5)
+      cluster_step: 0.5
+      cluster_step_cap: 1.5
+      ceo_bonus: 0.5
+      ceo_base: 5.5             # CEO·CFO 혼자 = 5.5(장부만), $250K 이상 6.0·$1M 이상 6.5, 상한 7.0(cluster보다 약하게 — CMP: 정보가 가장 많은 쪽은 비임원급)
+      ceo_cap: 7.0
+      market_mult: {us: 1.0, uk: 1.2, eu: 0.8, kr: 0.5, hk: 0.5, tw: 0.5}   # (강도 − 5)에 곱한다 — 조사 B 표 F1(영국 Fidrmuc 외 2006, 아시아는 검증 문헌 없음 [U])
+      max_lag_days: 10          # 접수일 − 매수일이 이보다 길면(늦은 제출) 단서에 쓰지 않는다 — Form 4 기한 2영업일, 한국 소유상황보고 5영업일
+      budget_min: 6             # 회차 시간 예산(분) — run_hourly 작업 한도 10분 안
+      lookback_days: 3          # 처음 켠 날 볼 접수일
   kr_theme:
     name: 국장 테마
     markets: [kr]
