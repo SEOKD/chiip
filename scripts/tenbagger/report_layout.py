@@ -666,6 +666,13 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if nq and at is not None:
         d["gallery"] = [c for c in d["gallery"] if c not in nq]
         d["gallery"][at + 1:at + 1] = nq
+    # 수주/출하 비율 × 재고 일수는 수주·파이프라인 확실성 사다리 바로 아래(마스터 지시 2026-11-15)
+    bb = [c for c in d["gallery"] if str(c.get("title", "")).startswith("수주/출하 비율 × 재고")]
+    lad = next((i for i, c in enumerate(d["gallery"]) if c.get("kind") == "pipeline"), None)
+    if bb and lad is not None:
+        d["gallery"] = [c for c in d["gallery"] if c not in bb]
+        lad = next(i for i, c in enumerate(d["gallery"]) if c.get("kind") == "pipeline")
+        d["gallery"][lad + 1:lad + 1] = bb
     out[:] = [x for x in out if x.get("blocks")]
     d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}, "names": dp.get("names") or []})
 
