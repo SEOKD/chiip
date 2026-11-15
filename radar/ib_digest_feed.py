@@ -96,11 +96,10 @@ def message(picks, rows=None):
     title = re.sub(r"\.pdf$", "", str(r.get("name") or p["id"])).replace("_", " ")
     meta = " · ".join(x for x in (r.get("broker") if r.get("broker") not in (None, "", "미확인") else "", r.get("doc_date") or "") if x)
     L = ["[Chiip IB Digest]", f"{title[:110]}" + (f" ({meta})" if meta else ""), "",
-         f"결론: {p['conclusion']}", f"왜 골랐나: {p['why']}", "", "핵심 주장"]
+         f"■결론: {p['conclusion']}", "", f"■왜 골랐나: {p['why']}", "", "■핵심 주장", ""]   # ■ 머리 양식·끝 안내문 삭제(마스터 지시 2026-11-16)
     L += [f"• {x}" for x in p["claims"]]
-    L += ["", "근거 숫자"] + [f"• {x}" for x in p["numbers"]]
-    L += ["", f"논리: {p['logic']}", "", f"시장 기대·Chiip 판단과의 차이: {p['gap']}", "", f"약한 고리: {p['weak']}", "", f"다음 확인: {p['next']}", ""]
-    L.append("IB 원문 요지를 Chiip 말로 줄인 것 — 전망치는 시장 기대의 증거이고 투자 권유가 아님. 외부 공유 금지.")
+    L += ["", "■근거 숫자", ""] + [f"• {x}" for x in p["numbers"]]
+    L += ["", "■논리", p["logic"], "", "■시장 기대", p["gap"], "", "■약한 고리", p["weak"], "", "■다음 확인", p["next"]]
     return "\n".join(L)
 
 

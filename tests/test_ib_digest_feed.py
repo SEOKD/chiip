@@ -35,7 +35,7 @@ class TestFeed(unittest.TestCase):
         self.assertTrue(F.check([{**ok[0], "weak": ""}], rows))                     # 약한 고리 없음
         self.assertTrue(F.check([{**ok[0], "logic": "매수하라"}], rows))
         msg = F.message(ok, rows=rows)
-        for k in ("[Chiip IB Digest]", "핵심 주장", "근거 숫자", "약한 고리", "다음 확인", "투자 권유가 아님"):
+        for k in ("[Chiip IB Digest]", "핵심 주장", "근거 숫자", "■약한 고리", "■다음 확인", "■결론: ", "■시장 기대"):
             self.assertIn(k, msg)
 
     def test_same_report_twice_is_one(self):   # 같은 PDF를 두 번 올려 id가 둘(11/12 Top of Mind)
