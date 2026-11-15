@@ -397,18 +397,24 @@ def industry_docs(rows, key, cfg, sub=None, members=()):
             out.append({**r, "via": "세부 산업 테마"})
         elif ents & mem and r["cls"] == "IB 리포트":
             out.append({**r, "via": "구성 종목"})
+        elif mem and r["status"] in ("text", "digest") and any(mentions(r, m) >= int(cfg.get("mention_min", 5)) for m in mem):
+            out.append({**r, "via": "본문 언급"})   # 파일 이름·주 대상에 없어도 본문에서 구성 종목을 다루는 자료(2026-11-15 마스터 지시 "넓혀 줘")
     return out
 
 
 def industry_need(key, sub=None, members=(), today=None):
-    """(요지가 필요한 자료, 인용 줄). 산업 키 자료는 전부, 테마·구성 종목 자료는 related_max_age_days 안 최신 related_max_per_report건만 요지 의무"""
+    """(요지가 필요한 자료, 인용 줄, 참조 목록). 산업 키 자료는 전부. 테마·구성 종목·본문 언급 자료는 related_max_age_days 안에서
+    요지가 이미 있는 것은 상한 없이 전부, 요지가 없는 것은 최신 related_max_per_report건만 요지 의무(2026-11-15 마스터 지시 "넓혀 줘" —
+    11/15 AI 가속기 리포트가 NVIDIA 11/12 보고서 12건 중 2건만 보고 '증권사들은'이라고 일반화했다)"""
     cfg, rows = config(), read()
     docs = industry_docs(rows, key, cfg, sub, members)
     cut = ((today or date.today()) - timedelta(days=cfg.get("related_max_age_days", 45))).isoformat()
     core = [r for r in docs if r["via"] == "산업 키"]   # 산업을 직접 다루는 자료는 날짜와 상관없이 전부
-    mem = sorted([r for r in docs if r["via"] != "산업 키" and (r.get("doc_date") or r.get("added") or "") >= cut],
-                 key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)[:cfg.get("related_max_per_report", 6)]
-    use = core + mem
+    recent = sorted([r for r in docs if r["via"] != "산업 키" and (r.get("doc_date") or r.get("added") or "") >= cut],
+                    key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)
+    have = [r for r in recent if r["status"] == "digest"]
+    new = [r for r in recent if r["status"] != "digest"][:cfg.get("related_max_per_report", 6)]
+    use = core + have + new
     todo = [r for r in use if r["status"] != "digest"]
     cites = [f"마스터 노션 IB 자료: {r['broker'] if r.get('broker') not in (None, '', '미확인') else ''} {r.get('doc_date') or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ").replace("  ", " ")
              for r in use if r["status"] == "digest"]

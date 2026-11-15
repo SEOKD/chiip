@@ -55,3 +55,22 @@ class TestMentionRank(unittest.TestCase):   # 본문 언급 연결·관련성 �
         left = NL2.unread(rows, "co-x", cfg, today=__import__("datetime").date(2026, 11, 12))
         self.assertEqual([r["id"] for r in left], ["a", "b"])          # 최신(c)보다 언급 많은 순
         NL2._MENT.clear()
+
+
+class TestIndustryWide(unittest.TestCase):   # 산업 리포트 연결 확대(2026-11-15 마스터 지시 "넓혀 줘")
+    def test_digests_uncapped_new_capped_and_mentions(self):
+        import notion_library as NL3
+        from unittest import mock
+        cfg = {"blocked_classes": ["채널체크"], "mention_min": 5, "related_max_per_report": 2, "related_max_age_days": 45, "themes": [], "industry_refs": {}}
+        mk = lambda i, ent, st: {"id": i, "name": f"{i}.pdf", "cls": "IB 리포트", "entities": ent, "related": "", "status": st,
+                                 "doc_date": "2026-11-12", "added": "2026-11-12", "chars": "1", "broker": "", "page": "", "kind": "", "reference": ""}
+        rows = [mk(f"d{i}", "co-nvidia", "digest") for i in range(5)] + [mk(f"t{i}", "co-nvidia", "text") for i in range(4)] + [mk("body", "", "digest")]
+        NL3._MENT.clear()
+        with mock.patch.object(NL3, "config", return_value=cfg), mock.patch.object(NL3, "read", return_value=rows), \
+             mock.patch.object(NL3, "mentions", side_effect=lambda r, m, cos=None: 9 if r["id"] == "body" else 0):
+            todo, cites, use = NL3.industry_need("semiconductors.ai-accelerators", None, ("co-nvidia",), today=date(2026, 11, 15))
+        ids = {r["id"] for r in use}
+        self.assertTrue({f"d{i}" for i in range(5)} <= ids)       # 요지 있는 자료는 상한 없이
+        self.assertEqual(len([r for r in use if r["status"] == "text"]), 2)   # 새로 요지를 쓸 것은 상한 2
+        self.assertIn("body", ids)                                 # 본문에서 구성 종목을 다루는 자료
+        self.assertEqual(len(todo), 2)

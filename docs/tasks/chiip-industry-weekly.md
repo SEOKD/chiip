@@ -45,6 +45,6 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
 
 1. radar/state/industry_weekly_ready.json을 읽는다. `date`가 오늘(KST)이 아니면 텔레그램 없이 "오늘 주간 산업 미완성"만 기록하고 끝낸다(회차가 실패하면 chiip-catchup이 다시 돌린다).
 2. `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send` — 마스터 개인 봇으로 1통. 성공하면 ready 파일에 `"sent_at"`을 쓴다(같은 회차를 두 번 보내지 않는다 — 토·일은 각각 1통).
-- **노션 IB 자료**(2026-11-08 마스터 지시): datapack을 쓰기 전 `py radar/notion_library.py --industry <산업 키>` — '요지 작성 필요'는 원문을 읽고 자기 말 요지를 `--digest <id> <파일>`로 저장한 뒤, 그 판단·숫자를 수요·시장 규모·반대 검증 절에 반영한다. 조립기가 요지 없는 자료를 만나면 멈춘다.
+- **노션 IB 자료**(2026-11-08 마스터 지시): datapack을 쓰기 전 `py radar/notion_library.py --industry <산업 키>` — '요지 작성 필요'는 원문을 읽고 자기 말 요지를 `--digest <id> <파일>`로 저장한 뒤, 그 판단·숫자를 수요·시장 규모·반대 검증 절에 반영한다. 조립기가 요지 없는 자료를 만나면 멈춘다. 요지가 있는 관련 자료는 상한 없이 모두 넘어온다(2026-11-15) — **증권사 반응은 몇 곳 중 몇 곳으로**(2026-11-15 마스터 지시 "넓혀 줘" — 11/15 AI 가속기 리포트가 NVIDIA 11/12 보고서 12건 중 2건만 보고 '증권사들은'이라고 썼다): 같은 회사에 같은 사건 뒤 보고서가 여러 건이면 요지 있는 것을 모두 읽고 '증권사 반응' 표(증권사 · 의견 · 목표가 전→후 · 이익 추정 전→후 · 핵심 논리 한 줄)로 묶는다. 본문은 'N곳 중 M곳이 이익 추정을 유지하고 목표가만 내렸다'처럼 분모를 쓴다. 요지가 없는 보고서는 분모에서 빼고 '요지 미작성 K건'을 적는다 — 2~3건으로 '증권사들은'이라고 일반화하지 않는다.
 
 - **데이터 허브**(2026-11-11 마스터 지시): 판단 전에 종목은 `py scripts/tenbagger/gather.py <회사 id> --reuse`, 시장·산업은 `py scripts/tenbagger/gather.py --market --reuse`로 모든 파이프라인 출력을 먼저 본다(`docs/channels/data.md` 데이터 허브). 판단을 바꾸는 줄만 근거로 쓴다.
