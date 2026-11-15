@@ -441,3 +441,4 @@ XETR:TKMS,XETR,TKMS,de-tkms,TKMS,ticker,true
 XETR:VOW3,XETR,VOW3,eu-vow3,Volkswagen AG,new,false
 NYSE:DELL,NYSE,DELL,co-dell,Dell Technologies,new,false
 NYSE:SDRL,NYSE,SDRL,us-sdrl,Seadrill,new,false
+TSE:8050,TSE,8050,jp-seikogroup,SEIKO GROUP CORPORATION,ticker,true

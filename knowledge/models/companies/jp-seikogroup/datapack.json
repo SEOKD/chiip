@@ -1,0 +1,1879 @@
+{
+ "id": "jp-seikogroup",
+ "name": "Seiko Group",
+ "ticker": "8050",
+ "as_of": "2026-11-15",
+ "unit": "BJPY",
+ "currency_symbol": "¥",
+ "unit_usd": 6353240.0,
+ "industry": "electronics",
+ "industry_why": "매출의 약 65%가 시계(그랜드세이코·세이코 글로벌 브랜드)인 소비재 회사지만 밸류 규칙 분류에 소비재가 없다. 디바이스(수정 진동자 IC·마이크로 전지·잉크젯 헤드)·시스템 사업이 있어 가장 가까운 electronics를 쓴다 — 시계 사업의 브랜드 프리미엄은 멀티플 조정으로 다룬다",
+ "region_mix": {
+  "JP": 0.55,
+  "US": 0.15,
+  "EU": 0.1,
+  "ASIA": 0.2
+ },
+ "region_why": "추정 — 지역별 매출 비중을 이번 회차에 유가증권보고서로 대조하지 못했다. 시계는 일본 국내·인바운드 비중이 크고 2Q 누적 미국 그랜드세이코 +약 70%·세이코 글로벌 브랜드 +약 90%(현지 통화)로 미국이 빠르게 커졌다",
+ "tax": 0.31,
+ "main_metric": "eps",
+ "main_metric_why": "회사가 영업이익·순이익으로 가이던스를 내고 감가상각이 EBITDA의 4분의 1 수준이라 EPS 기준",
+ "profile": {
+  "price": 8220,
+  "shares_basic": 0.0813757,
+  "shares_date": "2026-11-13",
+  "cash": 51.016,
+  "debt": 108.9,
+  "customer_deposits": 0.0,
+  "source": "가격 = TradingView 11/13 종가 ¥8,220. 주식 = 유통 주식 81,375,710주(Easyconomics 경유 yfinance 개요, 2026-04-01 1:2 분할 뒤). TradingView 시가총액 ¥679.4B는 약 8,265만 주 기준이라 자기주식 처리 차이로 보인다(결산단신 미대조). 현금 ¥51.0B(TradingView 9/30 분기), 유이자부채 ¥108.9B·순유이자부채 ¥57.9B(2Q 설명자료 9/30)"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "options": 0.0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-11-13",
+  "source": "TradingView 희석 EPS TTM ¥391.39 = 기본 EPS ¥391.39 — 희석 증권 영향 없음. 주식 보상 신탁 여부는 미확인"
+ },
+ "financials": {
+  "rev_ttm": 371.465,
+  "ebit_ttm": 45.455,
+  "invested_capital": 259.0,
+  "capex_ttm": 13.947,
+  "da_ttm": 15.17,
+  "sbc_ttm": 0.0,
+  "basis": "일본 기준(J-GAAP) 연결",
+  "note": "TTM = 3Q·4Q FY3/26 + 1Q·2Q FY3/27. 매출 93.592+81.570+99.089+97.214 = ¥371.47B(TradingView). 영업이익 ¥45.455B(TradingView TTM), 1Q 15.4·2Q 16.0(회사). 투하자본 = 순자산 201.1 + 유이자부채 108.9 − 현금 51.0(9/30). CAPEX = FY3/26 연간 ¥13.95B(TradingView). 감가상각 = EBITDA TTM 60.625 − 영업이익 45.455"
+ },
+ "peers_basis": "ntm",
+ "peers_source": "TradingView 11/13 종가 ÷ 다음 회계연도 EPS 컨센서스(earnings_per_share_forecast_next_fy). 시계·명품: 시티즌·카시오·스와치·리치몬트·LVMH, 수정 디바이스: 니혼덴파고교. 다이신쿠(Fwd P/E 220배, 이익 급감)는 뺐다",
+ "peers": [
+  {
+   "ticker": "시티즌",
+   "key": "TSE:7762",
+   "rev": 394.66,
+   "ebit_margin": 0.118,
+   "mcap": 492.52,
+   "pb": 1.68,
+   "debt": 61.22,
+   "cash": 101.16,
+   "ev_sales": 1.17,
+   "growth": 0.235,
+   "pe_fwd": 13.0,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 10.4
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 13.0
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 13.1
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 19.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 13.0
+    }
+   ]
+  },
+  {
+   "ticker": "카시오",
+   "key": "TSE:6952",
+   "rev": 301.12,
+   "ebit_margin": 0.125,
+   "mcap": 445.24,
+   "pb": 1.94,
+   "debt": 42.35,
+   "cash": 147.64,
+   "ev_sales": 1.13,
+   "growth": 0.17,
+   "pe_fwd": 16.3,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 22.1
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 15.1
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 17.5
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 18.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 18.1
+    }
+   ]
+  },
+  {
+   "ticker": "스와치",
+   "key": "SIX:UHR",
+   "rev": null,
+   "ebit_margin": 0.019,
+   "mcap": null,
+   "pb": null,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 1.41,
+   "growth": -0.001,
+   "pe_fwd": 46.6,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "리치몬트",
+   "key": "SIX:CFR",
+   "rev": null,
+   "ebit_margin": 0.226,
+   "mcap": null,
+   "pb": null,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 4.34,
+   "growth": 0.082,
+   "pe_fwd": 24.4,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "LVMH",
+   "key": "EURONEXT:MC",
+   "rev": null,
+   "ebit_margin": 0.218,
+   "mcap": null,
+   "pb": null,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 2.82,
+   "growth": -0.038,
+   "pe_fwd": 18.3,
+   "ev_ebitda_fwd": null
+  },
+  {
+   "ticker": "니혼덴파고교",
+   "key": "TSE:6779",
+   "rev": 59.14,
+   "ebit_margin": 0.063,
+   "mcap": 40.38,
+   "pb": 1.32,
+   "debt": 27.91,
+   "cash": 12.41,
+   "ev_sales": 0.94,
+   "growth": 0.107,
+   "pe_fwd": 12.6,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 18.1
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 26.7
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 13.1
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 33.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 27.1
+    }
+   ]
+  }
+ ],
+ "scenario_probs": {
+  "bear": 0.3,
+  "base": 0.5,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "사상 최고 실적·상향 뒤라 이익률 정점 위험을 더 무겁게 본다",
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "동종 중앙값에는 스와치(이익 급감으로 46.6배)와 리치몬트 24.4배가 섞였다. 세이코 이익은 2Q 누적 미국 시계 매출 급증과 엔화 약세(1H 평균 ¥159.5/달러, 계획 ¥155)를 탔다 — 환율·미국 수요가 되돌면 이익률이 내려갈 수 있어 10% 낮춘다"
+ },
+ "next_event": {
+  "date": "2027-02-06",
+  "tag": "3Q FY3/27 결산 발표(예정, 전년 일정 기준 2월 초) — 10~12월 연말 시계 수요와 영업이익률 16% 유지 여부"
+ },
+ "guidance": {
+  "rev_fy0": [
+   390.0,
+   390.0
+  ],
+  "op_fy0": 47.0,
+  "ni_fy0": 32.0,
+  "eps_fy0": 393.2,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "중기 계획 수치는 이번 회차에 1차 대조하지 못했다(미확인)",
+  "history": "FY3/27 가이던스: 5월 매출 ¥358.0B·영업이익 ¥33.5B → 8/6 ¥375.0B·¥41.0B → 11/10 ¥390.0B·¥47.0B(경상 ¥47.5B·순이익 ¥32.0B). 연간 배당 ¥90 → ¥105 → ¥120. EPS ¥393.2 = 순이익 ¥32.0B ÷ 8,138만 주(자체 계산)",
+  "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/ · 1Q FY3/27 결산설명자료(2026-08-06, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+  "next": {
+   "period": "3Q27",
+   "rev": 96850,
+   "rev_cons": 97350,
+   "eps": 56.0,
+   "unit": "¥M",
+   "note": "회사 가이던스는 통기만 — 3Q 값은 하반기 가이던스(매출 ¥193.7B·순이익 ¥9.5B) 반분 근사(매출 ¥96,850M·EPS ¥56). 컨센서스도 분기 값이 공개되지 않아 FY3/27 컨센서스에서 상반기 실적을 뺀 하반기를 반분했다(매출 ¥97350M·EPS ¥76.69)",
+   "eps_cons": 76.69
+  }
+ },
+ "raw": {
+  "retrieved_at": "2026-11-15T19:00:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "TSE:8050",
+   "price": 8220,
+   "market_cap": 668.908,
+   "total_cash": 51.016,
+   "total_debt": 108.9,
+   "shares_outstanding": 0.0813757,
+   "as_of": "2026-11-13",
+   "balance_date": "2026-09-30",
+   "note": "Fiscal.ai 미수록 일본 종목 — 원자료 개요는 TradingView(get_financials·get_symbol_data). TradingView 총차입 ¥102.7B와 회사 유이자부채 ¥108.9B는 정의 차이(리스 포함 여부 미확인) — 밸류에이션에는 회사 값",
+   "auditUrl": "https://www.tradingview.com/symbols/TSE-8050/"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2026Q3": 93.592,
+    "2026Q4": 81.57,
+    "2027Q1": 99.089,
+    "2027Q2": 97.214
+   },
+   "op_income": {
+    "2026Q3": 11.95,
+    "2026Q4": 2.105,
+    "2027Q1": 15.4,
+    "2027Q2": 16.0
+   },
+   "note": "회계연도 분기(3월 결산): 2027Q1 = 2026년 4~6월. 매출 = TradingView 분기(라벨이 'Q1 2026·Q3 2026·Q3 2026'으로 어긋나 순서로 대응), 영업이익 = 회사 설명자료(1Q ¥15.4B·2Q ¥16.0B). 3Q·4Q FY3/26 분기 영업이익은 합계 ¥14.055B(TTM − 1H)만 확인 — 3Q 11.95·4Q 2.105는 TradingView 분기 EBITDA(15.73·5.81)에서 분기 감가상각 약 ¥3.8B를 빼 합계에 맞춘 추정"
+  },
+  "shares_cover_implied": 0.0813757,
+  "balance_2026_09_30": {
+   "equity": 201.1,
+   "debt_lt": 108.9,
+   "cash": 51.016,
+   "st_investments": 0.0,
+   "total_assets": "미확인",
+   "source": "2Q 설명자료: 순자산 ¥201.1B(+¥23.6B), 자기자본비율 47.2%, 유이자부채 ¥108.9B, 순유이자부채 ¥57.9B. 현금 = TradingView 9/30 ¥51.0B(유이자부채 − 순유이자부채 = ¥51.0B로 일치)"
+  },
+  "estimates_sales_m": {
+   "2027Q1(실적)": 99089,
+   "2027Q2(실적)": 97214,
+   "2027Q3": 97350,
+   "2027Q4": 97350
+  },
+  "consensus_sources": {
+   "FY3/27": "TradingView 11/13: 애널리스트 4명 모두 매수(Strong Buy), 1년 목표가 ¥13,600(+65%), 다음 회계연도 EPS 컨센서스 ¥428.8, 매출 컨센서스 약 ¥391B(달러 표기 $2.48B를 TTM EPS 비율 ¥157.4/달러로 환산 — 자체 계산)",
+   "FY3/28": "컨센서스 미확인"
+  },
+  "sec_checks": {
+   "note": "일본 상장사라 SEC 자료가 없다. ① 구매 약정 미확인 ② 제한 현금 미확인 ③ 10% 초과 고객 — 소비재라 해당 가능성 낮음(미확인) ④ 정부 지원: 1Q 자료에 '미국 관세 환급 효과 약 ¥2.2B(연간)'"
+  },
+  "source_coverage": {
+   "fiscal": "미지원",
+   "easyconomics": "company_profile(jp) — 유통 주식·FCF TTM ¥22.8B·기관 27.5%·내부자 33.1%",
+   "yfinance": "Easyconomics 경유 개요",
+   "zacks": "미지원",
+   "tradingview": "시세·분기 재무·동종·의견 분포(4명 매수)·결산 자료 요약(Quartr)"
+  }
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 391.0
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2027": 0.121
+  },
+  "n_analysts": 4,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2027Q3": 97.35,
+   "2027Q4": 97.35
+  },
+  "quarters_act": {
+   "2026Q3": 93.592,
+   "2026Q4": 81.57,
+   "2027Q1": 99.089,
+   "2027Q2": 97.214
+  },
+  "eps_quarters_est": {
+   "2027Q3": 76.69,
+   "2027Q4": 76.69
+  },
+  "ratings": {
+   "strong_buy": 4,
+   "buy": 0,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-13",
+   "source": "TradingView 4명 모두 매수, 1년 목표가 ¥13,600"
+  },
+  "note": "Fiscal.ai·Zacks 미지원. 컨센서스는 TradingView(4명). FY3/27 EPS 컨센서스 ¥428.8은 회사 가이던스 ¥393(자체 환산)보다 9% 높다. yfinance 선행 EPS ¥342.9는 기간 표기가 없어 쓰지 않는다 — 시장은 회사가 하반기를 보수적으로 잡았다고 본다. 영업이익 컨센서스는 미확인이라 이익률은 가이던스 12.1%를 쓴다. 분기 발표 직전 컨센서스는 공개 자료로 얻지 못해 서프라이즈 표는 비운다",
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 93592,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 98.35,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 81570,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 17.65,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 99089,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 136.98,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q2",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 97214,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q2",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 138.42,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   }
+  ],
+  "price_window": {
+   "from": 10070,
+   "to": 8220,
+   "note": "2Q 발표일 11/10 종가 ¥10,070(TradingView 일봉) → 11/13 ¥8,220(−18%)"
+  },
+  "surprise_note": "실적 = TradingView 분기 재무(분할 보정 EPS). 발표 직전 분기 컨센서스는 공개 자료로 확인하지 못해 est는 비운다",
+  "quarters_est_note": "분기 컨센서스는 공개되지 않아 FY3/27 컨센서스(매출 ¥391.0B·EPS ¥428.8, TradingView 4명)에서 상반기 실적을 뺀 하반기 값을 반분했다 — 3Q·4Q 각 매출 ¥97.35B·EPS ¥76.69(환산, 계절성 미반영)"
+ },
+ "call": {
+  "date": "2026-11-10",
+  "prev_date": "2026-08-06",
+  "tone": "up",
+  "tone_delta": null,
+  "guidance_direction": "raise",
+  "kpis": {
+   "rev_1h_b": 196.3,
+   "op_1h_b": 31.4,
+   "opm_1h": 0.16,
+   "gpm_1h": 0.496,
+   "rev_2q_b": 97.2,
+   "op_2q_b": 16.0,
+   "gpm_2q": 0.51,
+   "evs_rev_1h_b": 131.1,
+   "evs_op_1h_b": 27.7,
+   "ds_rev_1h_b": 41.7,
+   "ds_op_1h_b": 4.9,
+   "ss_rev_1h_b": 28.1,
+   "ss_op_1h_b": 2.2,
+   "fcf_1h_b": 13.0
+  },
+  "guidance_changes": [
+   "FY3/27 매출 ¥375.0B → ¥390.0B, 영업이익 ¥41.0B → ¥47.0B, 순이익 ¥32.0B",
+   "연간 배당 ¥105 → ¥120(중간 ¥60·기말 ¥60)",
+   "환율 전제 ¥155/달러·¥175/유로(1H 실적 평균 ¥159.5·¥184.4)"
+  ],
+  "new_topics": [
+   "DS: AI 서버·데이터센터·광통신용 수정 진동자 IC와 Co-Ni(코발트·니켈) 합금 수요 강화",
+   "미국 시계 수요: 그랜드세이코 약 +70%·세이코 글로벌 브랜드 약 +90%(2Q 누적, 현지 통화)",
+   "10/6 뉴욕 행사(그랜드세이코·크레도르·와코) — 2025년 파리에 이은 해외 브랜드 행사",
+   "대만 유통 재편 뒤 시계 판매 회복 초기 신호"
+  ],
+  "dropped_topics": [
+   "1Q 자료의 '미국 관세 환급 약 ¥2.2B' 언급이 2Q 요약에는 다시 나오지 않았다(유지 여부 미확인)"
+  ],
+  "risks": [
+   "환율 — 1H 평균 환율이 계획보다 약세(¥159.5 vs ¥155), 엔화 강세 시 달러 ¥1당 매출 약 ¥0.26B 감소",
+   "미국 일부 제품 품귀(공급 부족) 속 수요 — 공급 제약",
+   "유럽 경기 불확실",
+   "하반기 순이익 계획 ¥9.5B는 상반기 ¥22.5B의 절반 이하 — 4Q(1~3월) 계절 약세 포함"
+  ],
+  "qa_focus": [
+   "어닝콜 질의응답 전문 미확보 — 질문 초점 미확인"
+  ],
+  "answer": "질의응답 미확보. 회사 자료상 쟁점(하반기 이익 급감 계획)에는 별도 설명이 없다",
+  "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/ · 직전 1Q FY3/27 결산설명자료(2026-08-06, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+  "tone_note": "통기 가이던스 두 번째 상향 + 배당 상향 = up. 콜 전사·Q&A는 확보하지 못했다(일본 회사 자료 요약만, 출처 등급 B·C 사이)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "통기 매출 가이던스",
+    "label": "매출 가이던스 ¥390B",
+    "prior": "¥375.0B(8/6)",
+    "latest": "¥390.0B(11/10)",
+    "driver": "rev0",
+    "shift": 0.04,
+    "confidence": 0.8,
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "통기 영업이익률",
+    "label": "OPM 가이던스 12.1%",
+    "prior": "10.9%(¥41.0B/¥375B)",
+    "latest": "12.1%(¥47.0B/¥390B)",
+    "driver": "margin_m0",
+    "shift": 0.012,
+    "confidence": 0.8,
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "DS AI 데이터센터 수요",
+    "label": "수정 IC AI 수요",
+    "prior": "1Q '타이밍 디바이스 수요 증가'",
+    "latest": "AI 서버·광통신용 수정 진동자 IC·Co-Ni 합금 수요 강화, DS 1H 영업이익 ¥2.0B → ¥4.9B",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "id": "F4",
+    "kind": "업데이트",
+    "item": "미국 시계 성장",
+    "label": "미국 GS +70%",
+    "prior": "1Q '세계 전 지역 성장'",
+    "latest": "그랜드세이코 약 +70%·SGB 약 +90%(2Q 누적, 현지 통화)",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "환율 전제",
+    "label": "엔화 약세 의존",
+    "prior": "1Q 환율 효과 매출 +¥3.8B·영업이익 +¥1.3B",
+    "latest": "1H 평균 ¥159.5/달러 vs 계획 ¥155 — 엔화가 계획대로 가면 하반기 이익 감소",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 0.5,
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   }
+  ]
+ },
+ "customers": {
+  "as_of": "2026-11-15",
+  "period": "1H FY3/27",
+  "summary": "소비재(시계)라 고객 집중은 낮다. 매출은 유통(백화점·전문점·자사 부티크·온라인)과 기업 고객(디바이스·시스템)으로 나뉘며 고객 이름별 비중은 공시되지 않는다",
+  "items": [
+   {
+    "name": "시계 소비자·유통(국내·인바운드·해외)",
+    "alias": "EVS 영역",
+    "share": 0.65,
+    "prior": 0.61,
+    "basis": "회사 발표",
+    "buys": "그랜드세이코·세이코 글로벌 브랜드·크레도르 시계, 와코 백화점 상품",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+    "why": "1H EVS 매출 ¥131.1B ÷ 부문 합계 ¥200.9B(조정 전). 전년 ¥105.3B ÷ ¥172.6B 추정 — 비중은 부문 합 기준(자체 계산)"
+   },
+   {
+    "name": "전자 부품 고객(데이터센터·광통신·프린터)",
+    "alias": "DS 영역",
+    "share": 0.21,
+    "prior": 0.19,
+    "basis": "회사 발표",
+    "buys": "수정 진동자 IC·마이크로 전지·Co-Ni 합금·잉크젯 헤드",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+    "why": "1H DS ¥41.7B ÷ ¥200.9B — 고객 이름 미공시"
+   },
+   {
+    "name": "기업·외식 체인·보안 고객",
+    "alias": "SS 영역",
+    "share": 0.14,
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "IT 인프라·주문 시스템·보안 솔루션",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+    "why": "1H SS ¥28.1B ÷ ¥200.9B"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "J-GAAP",
+  "summary": "1H 매출총이익률 49.6%(+3.4pt), 영업이익률 16.0%(+5.5pt). 영업이익 증가 ¥14.6B = 매출 증가 +¥17.7B + 총이익률 개선 +¥5.4B − 판관비 증가(회사 분해). 고가 시계(그랜드세이코) 비중과 엔화 약세가 이익률을 끌어올렸다",
+  "periods": [
+   {
+    "period": "1H FY3/26",
+    "rev": 160.5,
+    "cogs": 86.3,
+    "rd": 0.0,
+    "sga": 57.4,
+    "other": 0.0
+   },
+   {
+    "period": "1H FY3/27",
+    "rev": 196.3,
+    "cogs": 99.0,
+    "rd": 0.0,
+    "sga": 65.9,
+    "other": 0.0
+   }
+  ],
+  "periods_note": "1H FY3/27: 매출 ¥196.3B·총이익 ¥97.3B·영업이익 ¥31.4B → 판관비 ¥65.9B. 1H FY3/26 = 매출 196.3/1.223·총이익 97.3/1.312·영업이익 31.4/1.865에서 역산(자체 계산)",
+  "costs": [
+   {
+    "name": "시계 무브먼트·부품·외장 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.3,
+    "prior_pct": "미확인",
+    "fixed": 0.3,
+    "driver": "고가 모델 비중·자체 무브먼트 생산",
+    "basis": "추정",
+    "source": "원가 내역 미공시"
+   },
+   {
+    "name": "디바이스 제조 원가(수정·전지·헤드)",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": "미확인",
+    "fixed": 0.5,
+    "driver": "가동률",
+    "basis": "추정",
+    "source": "원가 내역 미공시"
+   },
+   {
+    "name": "시스템 사업 원가(인력·외주)",
+    "stage": "매출원가",
+    "pct_rev": 0.084,
+    "prior_pct": "미확인",
+    "fixed": 0.6,
+    "driver": "인력",
+    "basis": "추정",
+    "source": "원가 내역 미공시"
+   },
+   {
+    "name": "판관비(광고·매장·인건비)",
+    "stage": "판관비",
+    "pct_rev": 0.336,
+    "prior_pct": 0.358,
+    "fixed": 0.6,
+    "driver": "브랜드 광고·해외 부티크",
+    "basis": "공시",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   }
+  ],
+  "products": [
+   {
+    "name": "시계(EVS)",
+    "rev_share": 0.65,
+    "mix_basis": "1H EVS ¥131.1B ÷ 부문 합 ¥200.9B",
+    "gpm": 0.55,
+    "gpm_basis": "추정 — 제품별 총이익률 미공시. 전사 49.6%보다 높게 본 값(EVS 영업이익률 21.1% = 27.7/131.1, 판관비 비중이 큰 소매 구조)",
+    "bom": [
+     {
+      "item": "기계식·스프링드라이브 무브먼트",
+      "share": [
+       0.1,
+       0.18
+      ],
+      "basis": "추정",
+      "source": "회사 사업 설명(자체 무브먼트) — 원가 비중 미공시",
+      "pass_through": "미확인",
+      "why": "그랜드세이코 무브먼트는 자체 공방 생산 — 숙련 인건비가 중심(추정)"
+     },
+     {
+      "item": "케이스·밴드(스테인리스·티타늄·귀금속)",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "업계 구조(추정)",
+      "pass_through": "미확인",
+      "why": "금속 소재값 연동 여부 미확인"
+     },
+     {
+      "item": "다이얼·사파이어 유리·기타 외장",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "업계 구조(추정)",
+      "pass_through": "미확인",
+      "why": "다이얼 마감이 그랜드세이코 차별 요소(추정)"
+     },
+     {
+      "item": "조립·검사·물류",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "업계 구조(추정)",
+      "pass_through": "미확인",
+      "why": "일본 내 조립 — 미국 판매분은 관세가 붙는다"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-11-15",
+  "summary": "공급 사슬 세부 공시가 없다. 2Q 자료에 '미국 일부 제품 품귀'가 언급돼 고가 시계 생산 능력이 수요를 못 따라가는 정황이 있다(제품명·원인 미공시)",
+  "links": [
+   {
+    "item": "고급 기계식 무브먼트(자체 공방)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "세이코 그룹 내제",
+      "role": "무브먼트 조립·조정",
+      "status": "회사 발표",
+      "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "부족",
+    "capacity_basis": "2Q 자료 '미국 일부 제품 품귀' — 어느 공정이 병목인지 미공시(추정)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": "미확인",
+    "region": "일본",
+    "secured": "내재화",
+    "why": "숙련 기능공 의존 공정은 단기 증설이 어렵다(추정)",
+    "relief": "미확인",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "item": "수정 진동자·발진 IC 웨이퍼",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "IC 웨이퍼 제조(외부 파운드리 여부 미확인)",
+      "status": "추정",
+      "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "공시 없음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "일본(추정)",
+    "secured": "미확인",
+    "why": "AI 서버·광통신 수요 강화로 DS 물량이 늘었다 — 웨이퍼 조달처는 미공시",
+    "relief": "미확인",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "미확인",
+  "summary": "회사는 시계·디바이스 생산능력을 수치로 밝히지 않는다. FY3/27 투자 계획 ¥12.7B(8/7 계획 유지)",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "명목 캐파 미공시",
+   "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+  },
+  "plans": [
+   {
+    "name": "FY3/27 설비투자",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2027-03",
+    "capex": 12.7,
+    "blocker": "미확인(회사가 막힘 요인을 밝히지 않았다)",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY3/26",
+    "capex": 13.947,
+    "rev": 335.686,
+    "kind": "실적"
+   },
+   {
+    "period": "1H FY3/27",
+    "capex": 8.0,
+    "rev": 196.3,
+    "kind": "추정",
+    "note": "투자 현금흐름 근사 = 영업 CF 21.0 − FCF 13.0"
+   }
+  ],
+  "facilities": {
+   "count": 1,
+   "count_basis": "회사 자료에서 이름을 확인한 시설 1곳만 센다(생산 거점 전체 수는 미확인) — 유가증권보고서 '설비의 상황'을 이번 회차에 열지 못해 생산 거점 수는 미확인. 회사가 자료에서 이름을 밝힌 시설만 적는다",
+   "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+   "items": [
+    {
+     "name": "와코 본관(긴자)",
+     "location": "일본 도쿄 주오구 긴자",
+     "owned": "미확인",
+     "use": "소매(백화점·부티크) — 생산시설 아님",
+     "capacity": "미확인",
+     "capacity_basis": "소매 시설",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "생산 시설 좌표를 1차 자료로 확인하지 못해 위성 판독 등록을 하지 않았다"
+ },
+ "pipeline": {
+  "none": "소비재·부품 회사라 개별 수주를 공시하지 않는다. 수주잔고 지표도 없다(시스템 사업 잔고 미공시)"
+ },
+ "backlog": {
+  "none": "수주잔고 미공시"
+ },
+ "recurring": {
+  "none": "반복 매출 비중 미공시 — SS 유지보수·운영은 있으나 금액 미공시(SS 42분기 연속 증수증익, 회사)"
+ },
+ "moat": {
+  "summary": "해자는 브랜드(그랜드세이코)와 자체 무브먼트 수직 통합이다. 디바이스 쪽은 수정 진동자 IC 같은 틈새 부품이다 — 점유율 수치는 미공시",
+  "items": [
+   {
+    "kind": "브랜드 가격 결정력",
+    "verdict": "강함",
+    "claim": "그랜드세이코가 미국에서 현지 통화 기준 약 70% 늘며 총이익률이 49.6%로 올랐다",
+    "evidence": "2Q 설명자료",
+    "quant": "1H 총이익률 49.6%(+3.4pt)",
+    "falsifier": "엔화 강세 구간에서 총이익률이 46% 아래로"
+   },
+   {
+    "kind": "수직 통합(무브먼트·부품)",
+    "verdict": "보통",
+    "claim": "무브먼트와 수정 진동자를 자체 생산",
+    "evidence": "회사 사업 설명",
+    "quant": "미확인",
+    "falsifier": "외부 무브먼트 의존 확대"
+   },
+   {
+    "kind": "AI 부품 틈새",
+    "verdict": "약함",
+    "claim": "AI 서버·광통신용 수정 진동자 IC 수요 강화",
+    "evidence": "2Q 설명자료",
+    "quant": "DS 1H 영업이익률 11.8%",
+    "falsifier": "DS 영업이익률이 2분기 연속 8% 미만"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-15",
+  "summary": "경영진 이름·경력은 이번 회차에 1차 자료로 대조하지 못했다(미확인)",
+  "people": [
+   {
+    "name": "미확인",
+    "role": "대표이사",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.seiko.co.jp/ir/"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "미확인 — 공개 연결 기록 미대조",
+    "strength": 0,
+    "exposure": 0.0,
+    "basis": "공개 자료 미대조",
+    "evidence": "미확인"
+   }
+  ]
+ },
+ "sync": {
+  "none": "시계 매출과 맞댈 외부 지표(스위스 시계 수출·일본 백화점 고가품 매출)를 이번 회차에 연결하지 못했다"
+ },
+ "pq": {
+  "none": "판매 개수·평균 단가 미공시"
+ },
+ "ma": {
+  "none": "1H에 염가 매수 차익 ¥0.4B·단계 취득 차익이 있어 소규모 인수가 있었다(대상 미공시) — 의미 있는 인수로 보지 않는다"
+ },
+ "midterm": {
+  "exposure": {
+   "tariff_codify": 0.15,
+   "export_control": 0.0
+  },
+  "sub": "devices",
+  "etf": "미확인",
+  "why": "미국 매출이 빠르게 늘어 미국 관세가 시계 가격·마진에 직접 걸린다(1Q 자료의 관세 환급 언급). 수출통제 노출은 없다"
+ },
+ "events": [
+  {
+   "date": "2026-05-12",
+   "tag": "FY3/26 결산·FY3/27 첫 가이던스",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "1Q 결산·통기 상향(매출 ¥375B·영업이익 ¥41B)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-07",
+   "tag": "1Q 결산 다음 날 +16.4%(¥9,170 → ¥10,670)",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "2Q 결산·통기 재상향(매출 ¥390B·영업이익 ¥47B)·배당 ¥120, 장 마감 뒤",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "2Q 결산 다음 날 −10.8%(¥10,070 → ¥8,986)·거래량 245만 주",
+   "kind": "earnings"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-05-12",
+   "kind": "실적",
+   "tag": "FY3/26 결산·첫 가이던스",
+   "q": "4Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "1Q27 결산·통기 상향",
+   "q": "1Q27",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-10",
+   "kind": "실적",
+   "tag": "2Q27 결산·통기 재상향",
+   "q": "2Q27",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "2Q FY3/27 결산설명자료(2026-11-10): https://www.seiko.co.jp/ir/",
+  "1Q FY3/27 결산설명자료(2026-08-06): https://www.seiko.co.jp/ir/",
+  "시세·분기 재무·동종·의견(TradingView): https://www.tradingview.com/symbols/TSE-8050/"
+ ],
+ "overrides": {
+  "growth_base": {
+   "start": 0.06,
+   "end": 0.02,
+   "decay": 0.35
+  },
+  "margin_base": {
+   "target": 0.125,
+   "year_target": 2,
+   "lr": 0.15,
+   "lam": 0.4
+  },
+  "s2c": 1.4,
+  "why": "FY3/27 매출 +16%(가이던스 ¥390B, FY3/26 ¥335.7B)는 미국 시계 급증·엔화 약세가 겹친 해라 다음 해 출발 성장은 6%로 낮춘다. 장기 2%(일본 명목). 이익률은 1H 16.0%가 계절 강세라 통기 가이던스 12.1%와 TTM 12.2% 근처 12.5%를 목표로. 매출/투하자본 TTM 1.43"
+ },
+ "multiples_now": {
+  "pe_fwd": 18.3,
+  "pe_fwd2": 16.8,
+  "pe_fwd3": 15.5
+ },
+ "forward": {
+  "as_of": "2026-11-13",
+  "ntm": {
+   "eps": 450.0,
+   "ebitda": 63.0,
+   "ebit": 48.0,
+   "revenue": 400.0,
+   "rev_ttm": 371.465
+  },
+  "horizons": {
+   "2": {
+    "eps": 490.0,
+    "ext": 1
+   },
+   "3": {
+    "eps": 530.0,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "street_news"
+  },
+  "source": "NTM EPS ¥450 = 하반기 FY3/27 컨센서스(¥428.8 − 상반기 실적 ¥275.4 = ¥153) + FY3/28 상반기 모델 추정 ¥297(상반기 실적 +8%) — 추정. Fwd 2Y·3Y는 FY3/28 이후 컨센서스가 없어 EPS 성장 약 8%로 모델 외삽(ext) — 근거가 약하다"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2023-12-31",
+    "value": 14.7
+   },
+   {
+    "date": "2024-03-31",
+    "value": 17.1
+   },
+   {
+    "date": "2024-06-30",
+    "value": 18.2
+   },
+   {
+    "date": "2024-09-30",
+    "value": 12.8
+   },
+   {
+    "date": "2024-12-31",
+    "value": 16.2
+   },
+   {
+    "date": "2025-03-31",
+    "value": 12.7
+   },
+   {
+    "date": "2025-06-30",
+    "value": 11.1
+   },
+   {
+    "date": "2025-09-30",
+    "value": 15.6
+   },
+   {
+    "date": "2025-12-31",
+    "value": 14.2
+   },
+   {
+    "date": "2026-03-31",
+    "value": 20.3
+   },
+   {
+    "date": "2026-06-30",
+    "value": 24.6
+   },
+   {
+    "date": "2026-09-30",
+    "value": 25.1
+   }
+  ],
+  "pe_ttm_note": "대상·일본 동종 3곳 = TradingView 분기말 월봉 종가 ÷ 분기 EPS 4개 합(분할 보정). 스와치·리치몬트·LVMH는 반기 보고라 분기 후행 P/E 이력을 만들지 않았다"
+ },
+ "terms": {
+  "EVS": "세이코의 시계·와코(백화점) 등 소비자 사업 영역(Emotional Value Solution)",
+  "DS": "세이코의 디바이스 솔루션 영역 — 수정 진동자 IC·마이크로 전지·잉크젯 헤드·정밀 부품",
+  "SS": "세이코의 시스템 솔루션 영역 — IT 인프라·결제·보안",
+  "SGB": "세이코 글로벌 브랜드 — 해외용 고가 세이코 시계 라인",
+  "그랜드세이코": "세이코의 최상위 시계 브랜드",
+  "크레도르": "세이코의 귀금속 고급 시계 브랜드",
+  "와코": "긴자의 세이코 계열 고급 백화점",
+  "수정 진동자 IC": "수정 결정의 일정한 진동으로 기준 시계 신호를 만드는 칩 — 서버·광모듈의 타이밍 부품",
+  "Co-Ni 합금": "코발트·니켈 합금 — 정밀 스프링·부품 소재",
+  "스프링드라이브": "태엽 동력에 전자 조속기를 더한 세이코 고유 무브먼트",
+  "무브먼트": "시계 안의 동력·구동 장치",
+  "인바운드": "방일 외국인 관광객 소비",
+  "BJPY": "십억 엔 단위",
+  "JP": "일본",
+  "ASIA": "일본 밖 아시아",
+  "US": "미국",
+  "EU": "유럽",
+  "J-GAAP": "일본 회계기준",
+  "결산단신": "일본 상장사의 분기 실적 속보 공시(決算短信)",
+  "TDnet": "도쿄증권거래소 적시 공시 시스템",
+  "PPI": "생산자물가지수",
+  "CPI": "소비자물가지수",
+  "HS": "국제 품목 분류 코드",
+  "IR": "투자자 관계",
+  "GP": "매출총이익",
+  "CAR": "누적 초과수익률(시장 대비)",
+  "AR": "자기회귀(AR) 통계 모형",
+  "HP": "호드릭-프레스콧 추세 필터",
+  "PDF": "문서 파일 형식",
+  "AI": "인공지능",
+  "DX": "디지털 전환",
+  "GS": "그랜드세이코(Grand Seiko)",
+  "IC": "집적회로 칩",
+  "IT": "정보기술"
+ },
+ "names": [
+  "Seiko Group",
+  "세이코",
+  "그랜드세이코",
+  "시티즌",
+  "카시오",
+  "스와치",
+  "리치몬트",
+  "LVMH",
+  "니혼덴파고교",
+  "다이신쿠",
+  "와코",
+  "크레도르",
+  "오타니 쇼헤이"
+ ],
+ "social": {
+  "none": "Quantral 미수록"
+ },
+ "narrative": {
+  "as_of": "2026-11-15",
+  "stage": "확산",
+  "crowding": "중간",
+  "summary": "일본 시계 회사가 그랜드세이코로 '명품 브랜드'가 되고, 덤으로 AI 데이터센터용 수정 부품까지 가진 회사라는 이야기다. 2025년 9월 ¥4,000 아래에서 2026년 9월 종가 고점 ¥11,810까지 약 3배가 됐다. 그런데 11/10 두 번째 상향에도 다음 날 −10.8%, 사흘 만에 ¥8,220이 됐다 — 시장은 하반기 순이익 계획이 상반기의 절반도 안 된다는 점과 엔화·미국 수요의 지속성을 의심한다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "4명 모두 매수",
+      "4명",
+      "11/13"
+     ],
+     [
+      "목표가 평균",
+      "¥13,600",
+      "현재가 +65%",
+      "TradingView"
+     ],
+     [
+      "FY3/27 EPS 컨센서스",
+      "¥428.8",
+      "가이던스 ¥393 위",
+      "11/13"
+     ]
+    ],
+    "read": "커버리지가 4명뿐이고 모두 매수다. 컨센서스 EPS가 가이던스보다 11% 높아, 회사가 하반기를 보수적으로 잡았다고 본다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "27.5%",
+      "공개 시세 개요",
+      "11/15"
+     ],
+     [
+      "내부자 보유",
+      "33.1%",
+      "공개 시세 개요",
+      "11/15"
+     ]
+    ],
+    "read": "일본에는 13F 같은 분기 보유 공시가 없어 보유 변화는 미확인. 내부자 33%는 창업가 계열·법인 지분을 포함한 값으로 보인다(구성 미대조)"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "텔레그램 공개 채널",
+      "실적 요약 1건(11/10 '장후 +10%')",
+      "",
+      "11/15 조회"
+     ],
+     [
+      "일 거래량",
+      "760일 평균 약 34만 주",
+      "11/11 245만 주",
+      "TradingView"
+     ]
+    ],
+    "read": "한국 공개 채널에는 실적 요약 한 건만 있다. 거래량은 결산 다음 날 평소의 7배였다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "미확인",
+      "",
+      ""
+     ]
+    ],
+    "read": "일본 시황 매체 보도는 이번 회차에 확인하지 못했다"
+   }
+  },
+  "factors": [
+   {
+    "name": "그랜드세이코 명품화",
+    "thesis": "그랜드세이코·SGB가 미국에서 크게 늘며 고가 믹스가 총이익률을 끌어올린다",
+    "inputs": "매출 성장·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "미국 GS +70%·SGB +90%(2Q 누적), 총이익률 49.6%",
+    "status": "강화",
+    "falsifier": "3Q EVS 매출 증가율 10% 미만",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "name": "가이던스 연속 상향",
+    "thesis": "회사가 1Q·2Q 연속 통기를 올렸고 컨센서스가 그 위에 있다",
+    "inputs": "EPS 리비전",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "영업이익 가이던스 ¥33.5B → ¥41.0B → ¥47.0B",
+    "status": "강화",
+    "falsifier": "3Q 결산에서 통기 유지·하향",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "name": "AI 데이터센터 타이밍 부품",
+    "thesis": "AI 서버·광통신용 수정 진동자 IC가 DS 이익을 두 배 넘게 키운다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "DS 1H 영업이익 ¥2.0B → ¥4.9B",
+    "status": "강화",
+    "falsifier": "DS 영업이익이 2분기 연속 감소",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "name": "주주환원 확대",
+    "thesis": "배당을 ¥90 → ¥120으로 올렸다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "연간 배당 ¥120, 배당수익률 1.5%",
+    "status": "유지",
+    "falsifier": "배당 계획 하향",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "name": "반대: 엔화 약세·미국 붐 정점",
+    "thesis": "이익의 상당 부분이 엔화 약세(1H ¥159.5/달러)와 미국 일시 수요에서 왔다 — 되돌면 이익률이 내려간다",
+    "inputs": "할인율",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "회사 하반기 순이익 계획 ¥9.5B = 상반기의 42%",
+    "status": "유지",
+    "falsifier": "엔화 ¥145/달러 아래에서도 영업이익률 15% 유지",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   },
+   {
+    "name": "반대: 인바운드 의존",
+    "thesis": "국내 시계 판매에 외국인 관광객 소비가 섞여 있다 — 관광 흐름이 꺾이면 국내 매출이 준다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "인바운드 비중 미공시(미확인)",
+    "status": "유지",
+    "falsifier": "국내 EVS 매출 2분기 연속 증가",
+    "source": "2Q FY3/27 결산설명자료(2026-11-10, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/"
+   }
+  ],
+  "lead": {
+   "summary": "Seiko Group(8050)은 시계(그랜드세이코·세이코 글로벌 브랜드)와 긴자 와코 백화점, 수정 진동자 IC·마이크로 전지 같은 전자 부품, 기업용 IT 시스템을 가진 일본 회사다. 1H FY3/27 매출 ¥196.3B(+22.3%)·영업이익 ¥31.4B(+86.5%)이고, 11/10 통기를 매출 ¥390.0B·영업이익 ¥47.0B·순이익 ¥32.0B로 두 번째 올렸다. 주가는 11/13 ¥8,220, 시가총액 ¥669B",
+   "value_story": "Fwd 1Y P/E 18.3배(12개월 선행 EPS ¥450, 추정)로 시계·명품 동종 6곳 중앙값 17.3배 수준이다. 이 값은 '일본 시계 회사'와 '명품 브랜드' 사이 어디에 세이코를 둘지의 문제다. 가치를 정하는 것은 ① 미국 그랜드세이코 성장이 엔화 효과를 빼고도 이어지는지 ② 영업이익률 12% 이상이 연간으로 굳는지 ③ DS의 AI 부품이 이익의 한 축이 되는지다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 18.3배, 동종 6곳 중앙값 17.3배(시티즌 13.0·카시오 16.3·스와치 46.6·리치몬트 24.4·LVMH 18.3·니혼덴파고교 12.6 — 다음 회계연도 컨센서스 기준)",
+    "eps": "TTM EPS ¥391 → FY3/27 컨센서스 ¥428.8(+10%) → 12개월 선행 ¥450(추정). 회사 가이던스 EPS는 약 ¥393으로 TTM보다 낮다 — 하반기 계획이 보수적이다"
+   },
+   "why_excited": "2025년 9월 ¥3,600대에서 10월 ¥5,000대로 뛰고, 2026년 8월 1Q 상향 다음 날 +16%로 ¥10,000을 넘어 9월 종가 고점 ¥11,810이 됐다. 미국 그랜드세이코 성장과 AI 부품이라는 두 이야기가 겹쳤다. 2Q 결산(11/10) 뒤에는 상향에도 −10.8%, 사흘 만에 ¥8,220으로 고점 대비 −30%다 — 기대가 식는 쪽이다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "그랜드세이코·세이코 시계",
+     "what": "자체 무브먼트를 쓰는 기계식·스프링드라이브·쿼츠 시계",
+     "use": "고가 손목시계(국내·해외 부티크·백화점)",
+     "money": "완제품 판매(소매·도매)",
+     "rev_share": 0.65,
+     "rev_share_prev": 0.61,
+     "mix_basis": "1H EVS ¥131.1B ÷ 부문 합 ¥200.9B, 전년 ¥105.3B ÷ ¥172.6B(추정)",
+     "name_en": "luxury mechanical wristwatch",
+     "what_en": "Mechanical luxury wristwatch with an in-house automatic movement, steel case, sapphire crystal and bracelet",
+     "use_en": "a polished steel wristwatch with a textured dial on a display stand",
+     "bom": {
+      "as_of": "2026-11-15",
+      "items": [
+       {
+        "no": 1,
+        "part": "자체 무브먼트",
+        "part_en": "mechanical watch movement",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "세이코 그룹 내제",
+        "source": "회사 사업 설명 https://www.seiko.co.jp/ir/"
+       },
+       {
+        "no": 2,
+        "part": "케이스·밴드",
+        "part_en": "steel watch case and bracelet",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "source": "업계 구조(추정)"
+       },
+       {
+        "no": 3,
+        "part": "사파이어 유리",
+        "part_en": "sapphire crystal",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "source": "업계 구조(추정)"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "수정 진동자 IC·마이크로 전지",
+     "what": "기준 클록 신호를 만드는 수정 진동자 IC와 초소형 전지",
+     "use": "AI 서버·광통신 모듈·웨어러블",
+     "money": "부품 판매",
+     "rev_share": 0.21,
+     "rev_share_prev": 0.19,
+     "mix_basis": "1H DS ¥41.7B ÷ ¥200.9B",
+     "name_en": "crystal oscillator IC",
+     "what_en": "Small surface-mount crystal oscillator integrated circuit package and coin-type micro battery on a circuit board",
+     "use_en": "tiny electronic components on a green printed circuit board",
+     "bom": {
+      "as_of": "2026-11-15",
+      "items": [
+       {
+        "no": 1,
+        "part": "발진 회로 IC",
+        "part_en": "oscillator integrated circuit die",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "세이코 그룹 내제(추정)",
+        "source": "회사 사업 설명(추정)"
+       },
+       {
+        "no": 2,
+        "part": "수정 진동자",
+        "part_en": "quartz crystal resonator",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "source": "업계 구조(추정)"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "시스템 솔루션",
+     "what": "IT 인프라·외식 체인 주문 시스템·보안 솔루션",
+     "use": "기업 고객",
+     "money": "구축·유지보수",
+     "rev_share": 0.14,
+     "rev_share_prev": null,
+     "mix_basis": "1H SS ¥28.1B ÷ ¥200.9B(전년 비중 미확인)",
+     "name_en": "enterprise IT system integration service",
+     "what_en": "Server racks, network equipment and payment terminals installed for enterprise and restaurant chain IT systems",
+     "use_en": "a tidy server room with network racks and a restaurant ordering tablet"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "국내 중심 시계 회사 → 미국·해외 명품 브랜드(그랜드세이코). 미국 GS +70%·SGB +90%",
+     "evidence": "2Q 설명자료",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "미국 성장률이 2분기 연속 20% 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "총이익률 46.2% → 49.6%(1H), 2Q 51.0%",
+     "evidence": "2Q 설명자료",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "총이익률 47% 미만"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "AI 서버·광통신용 수정 진동자 IC 수요 — 기존 기술의 새 용도이지 신기술은 아니다",
+     "evidence": "2Q 설명자료",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "DS 성장 둔화"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(주문 생산이 아니라 재고를 두고 파는 소비재라 주문→인도 리드타임을 공시하지 않는다. 2Q 자료의 미국 일부 제품 품귀는 공급이 수요를 못 따라간다는 정황)",
+     "evidence": "2Q 설명자료",
+     "drives": "revision",
+     "status": "정황",
+     "falsifier": "품귀 해소와 매출 유지",
+     "lead_time": {
+      "now": "미확인",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "시계 동종(시티즌·스와치)",
+        "value": "미확인"
+       }
+      ],
+      "unit": "개월",
+      "basis": "미공시"
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "1H 소규모 인수(염가 매수 차익 ¥0.4B, 대상 미공시) — 의미 있는 인수 없음",
+     "evidence": "2Q 설명자료",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "재정정책",
+     "change": "해당 없음 — 회사를 겨냥한 재정정책 미확인. 미국 관세는 정책 절에서 본다",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "시계는 소비자 재량 지출(가처분소득·자산 효과), DS는 고객 데이터센터·광모듈 CAPEX, SS는 고객 IT OPEX",
+     "evidence": "사업 구조",
+     "drives": "both",
+     "status": "유지",
+     "falsifier": "미국 고가품 소비 둔화 지표",
+     "budgets": [
+      {
+       "business": "시계(EVS)",
+       "budget": "해당 없음",
+       "line": "소비자 재량 지출(고가품)",
+       "share": 0.65,
+       "driver": "미국·일본 고소득층 소비·환율",
+       "evidence": "2Q 설명자료"
+      },
+      {
+       "business": "디바이스(DS)",
+       "budget": "CAPEX",
+       "line": "데이터센터 서버·광모듈 투자",
+       "share": 0.21,
+       "driver": "AI 서버 출하",
+       "evidence": "2Q 설명자료"
+      },
+      {
+       "business": "시스템(SS)",
+       "budget": "OPEX",
+       "line": "기업 IT·보안 운영 예산",
+       "share": 0.14,
+       "driver": "DX·보안 수요",
+       "evidence": "2Q 설명자료"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(회사를 겨냥한 재정정책 미확인)",
+     "evidence": "미확인",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "해당 없음",
+     "house": {
+      "level": 1,
+      "why": "관련 논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "미국 수입 관세 — 1Q 자료에 관세 환급 효과 약 ¥2.2B. 관세율이 바뀌면 미국 시계 마진에 직접 걸린다",
+     "evidence": "1Q FY3/27 결산설명자료(2026-08-06, Quartr 경유 TradingView 문서 요약) https://www.seiko.co.jp/ir/",
+     "drives": "multiple",
+     "status": "정황",
+     "falsifier": "일본산 시계 관세율 인상",
+     "house": {
+      "level": 1,
+      "why": "시계 품목 겨냥 법안 미확인"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 겨냥한 법안 미확인)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "두 번 올린 가이던스도 보수적이다 — 컨센서스 EPS가 가이던스보다 9% 높고, 주가는 고점 대비 −30%다",
+    "evidence": [
+     "영업이익 가이던스 ¥33.5B → ¥47.0B",
+     "Fwd 1Y P/E 18.3배"
+    ],
+    "falsifier": "3Q 영업이익 ¥12B 미만"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "그랜드세이코의 미국 성장은 환율을 빼도 현지 통화로 +70%다",
+    "evidence": [
+     "미국 GS +70%(현지 통화)",
+     "총이익률 49.6%"
+    ],
+    "falsifier": "3Q EVS 증가율 10% 미만"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "회사 자신이 하반기 순이익을 상반기의 42%로 잡았다. 계절성인지 정점 신호인지 아직 가를 수 없다",
+    "evidence": [
+     "하반기 순이익 계획 ¥9.5B",
+     "전년 4Q EPS ¥17.7(계절 약세)"
+    ],
+    "falsifier": "3Q 순이익 ¥8B 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "엔화가 계획 ¥155로 가면 이익이 깎인다 — 1H 평균 ¥159.5였다",
+    "evidence": [
+     "달러 ¥1당 매출 ¥0.26B",
+     "1Q 환율 효과 영업이익 +¥1.3B"
+    ],
+    "falsifier": "엔화 강세에도 영업이익률 15% 유지"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "주가가 1년 만에 3배가 된 건 소비재 회사의 이익 정점을 사는 것이다 — 상향 다음 날 −10.8%가 그 신호다",
+    "evidence": [
+     "¥3,600대 → ¥11,810",
+     "11/11 −10.8%"
+    ],
+    "falsifier": "FY3/28 가이던스가 FY3/27보다 높게 나온다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "상반기 영업이익 ¥31.4B는 전년의 1.9배다. 연간 ¥47.0B면 하반기는 ¥15.6B로 전년 하반기 ¥14.1B와 비슷하다 — 보수적이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "미국 그랜드세이코 +70%는 현지 통화 기준이다. 환율이 아니라 물량·가격이다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "DS 영업이익 ¥4.9B는 아직 전사의 16%다. AI 이야기만으로 배수를 바꾸기엔 작다"
+     },
+     {
+      "seat": "Sell",
+      "text": "상반기 평균 환율이 계획보다 4.5엔 약했다. 그 몫이 하반기에는 없다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "1년 만에 주가가 3배가 됐고, 두 번째 상향 다음 날 −10.8%였다. 좋은 소식이 더는 주가를 올리지 못한다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "1Q 환율 효과는 영업이익 +¥1.3B였다. 분기 영업이익 ¥15B대에서 환율만으로 설명되는 몫은 10% 안팎이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "커버리지 4명이 모두 매수다. 표본이 작아 '보수적 가이던스'는 이미 가격에 들어 있을 수 있다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "미국 품귀가 있다는 건 다음 분기 성장의 일부가 공급에 막힌다는 뜻이기도 하다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Neutral",
+      "text": "DS가 작다는 데 동의한다. 이익을 끄는 건 시계이고, 시계는 소비 경기와 환율을 탄다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "−10.8%는 50일선 ¥10,000 위에서 나온 차익 실현이다. 실적 추정은 그날 내려가지 않았다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "하반기에는 1~3월(4Q)이 들어 있다 — 전년 4Q EPS는 ¥17.7에 그쳤다. 하반기 계획이 낮은 건 계절성 탓이 크다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "Fwd 1Y P/E 18.3배는 리치몬트 24.4배보다 낮고 시티즌 13.0배보다 높다 — 명품 쪽으로 다 옮겨 간 값이 아니다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "총이익률 49.6%는 엔화 약세의 해에 나온 값이다. 엔화가 강하던 해와 비교할 자료가 아직 없다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "인바운드 비중을 회사가 밝히지 않는다. 관광 수요가 꺾이면 국내 매출도 같이 빠진다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "배당을 ¥90에서 ¥120으로 올렸다. 회사가 이익의 지속을 믿는다는 신호다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "3Q 영업이익이 ¥12B를 넘으면 가이던스는 다시 오른다"
+     },
+     {
+      "seat": "Buy",
+      "text": "미국 성장이 현지 통화로 이어지는 한 배수는 지킨다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "엔화와 미국 수요를 뺀 이익을 확인하기 전에는 판단을 크게 옮기지 않는다"
+     },
+     {
+      "seat": "Sell",
+      "text": "엔화 강세 구간의 이익률을 봐야 한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "소비재 이익 정점의 할인을 반영해야 한다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "연속 상향·현지 통화 미국 성장 반박이 살아남았지만, 엔화·계절성·표본 4명 반박도 살아남았다. 목표주가가 현재가 아래(−6%)라 규칙 등급 Neutral을 출발점으로 둔다",
+   "dissent": "Strong Sell 자리: 주가 3배 뒤 상향에도 빠진 것은 이익 정점 신호다"
+  }
+ },
+ "quarters_hist": {
+  "source": "TradingView 분기 매출·매출총이익(1Q FY3/23 이후 회계연도 분기, 라벨 어긋남 — 순서로 대응)",
+  "key": "TSE:8050",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2023-03-31",
+    "rev": 63045000000.0,
+    "cogs": 37284000000.00001,
+    "gp": 25761000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 62949000000.0,
+    "cogs": 35441999999.99999,
+    "gp": 27507000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 68346000000.0,
+    "cogs": 37332000000.00001,
+    "gp": 31014000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 74377000000.0,
+    "cogs": 40214000000.0,
+    "gp": 34162999999.999996,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 71135000000.0,
+    "cogs": 41132000000.00001,
+    "gp": 30003000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 74040000000.0,
+    "cogs": 41340000000.0,
+    "gp": 32700000000.000004,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 76961000000.0,
+    "cogs": 41385999999.99999,
+    "gp": 35575000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 81513000000.0,
+    "cogs": 43810000000.0,
+    "gp": 37703000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 72230000000.0,
+    "cogs": 41140000000.0,
+    "gp": 31090000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 77114000000.0,
+    "cogs": 41390000000.00001,
+    "gp": 35724000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 83410000000.0,
+    "cogs": 44980999999.99999,
+    "gp": 38429000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 93592000000.0,
+    "cogs": 49164000000.0,
+    "gp": 44428000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 81570000000.0,
+    "cogs": 44947999999.99999,
+    "gp": 36622000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": null
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 99089000000.0,
+    "cogs": 51306000000.0,
+    "gp": 47783000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 15400000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 97214000000.0,
+    "cogs": 47677000000.0,
+    "gp": 49537000000.0,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 16000000000.0
+   }
+  ],
+  "eps": {
+   "2023-03-31": -37.27,
+   "2023-06-30": 29.21,
+   "2023-09-30": 46.85,
+   "2023-12-31": 52.93,
+   "2024-03-31": -7.26,
+   "2024-06-30": 42.82,
+   "2024-09-30": 63.37,
+   "2024-12-31": 52.25,
+   "2025-03-31": 4.66,
+   "2025-06-30": 77.75,
+   "2025-09-30": 75.19,
+   "2025-12-31": 98.35,
+   "2026-03-31": 17.65,
+   "2026-06-30": 136.98,
+   "2026-09-30": 138.42
+  }
+ },
+ "photos": [
+  {
+   "for": "product",
+   "name": "그랜드세이코·세이코 시계",
+   "file": "File:Grand Seiko Automatic Hi-Beat.jpg",
+   "caption": "그랜드세이코 자동 하이비트 모델"
+  },
+  {
+   "for": "site",
+   "name": "와코 본관(긴자)",
+   "file": "File:Ginza Wako 20241021.jpg",
+   "caption": "긴자 와코 본관(시계탑 건물) — 소매 시설"
+  }
+ ]
+}

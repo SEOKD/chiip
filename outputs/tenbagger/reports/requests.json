@@ -12,11 +12,14 @@
  },
  {
   "name": "Seiko Group(セイコーグループ)",
-  "id": null,
+  "id": "jp-seikogroup",
   "ticker": "8050",
   "market": "jp",
   "note": "마스터 요청 2026-11-15 — 도쿄증권거래소 8050",
   "asked": "2026-11-15T15:35+09:00",
-  "status": "대기"
+  "status": "완료",
+  "progress": "2026-11-15 사이드 세션: TSE:8050 상장 확인·등록",
+  "done": "2026-11-15T19:16+09:00",
+  "html": "outputs/tenbagger/reports/20261115_8050.html"
  }
 ]

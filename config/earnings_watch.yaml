@@ -217,3 +217,5 @@ extra:
   - {id: co-bae, name: BAE Systems, code: BA.LSE, region: UK, sub: defense, aliases: ["BAE Systems"]}
   - {id: co-qinetiq, name: QinetiQ, code: QQ.LSE, region: UK, sub: defense, aliases: ["QinetiQ"]}
   - {id: co-chemring, name: Chemring, code: CHG.LSE, region: UK, sub: defense, aliases: ["Chemring"]}
+
+  - {id: jp-seikogroup, name: Seiko Group, code: 8050.TSE, region: JP, sub: devices, aliases: ["Seiko Group", "SEIKO GROUP", "セイコーグループ"]}  # 마스터 요청 리포트(2026-11-15), TradingView TSE:8050 확인

@@ -122,3 +122,5 @@ companies:
 event_terms: ["適時開示", "業績予想", "上方修正", "下方修正", "決算", "受注", "設備投資", "新工場", "増産", "買収", "提携", "増配", "最高益", "自社株買い", "公募", "新株", "月次"]
 # 일본 매체(제목 끝 ' - 매체명', 정확히 일치). 기사는 이 매체만 저장·발송 — 9개 영어 매체 규칙의 일본판
 publishers: ["日本経済新聞", "日経会社情報DIGITAL", "株探", "株探ニュース", "Yahoo!ファイナンス", "日刊工業新聞", "電波新聞", "ロイター", "Reuters", "ブルームバーグ", "Bloomberg.co.jp", "みんかぶ", "MINKABU", "QUICK Money World", "日経クロステック", "EE Times Japan", "MONOist"]
+
+  - {id: jp-seikogroup, code: "8050", ja: ["セイコーグループ"], en: "Seiko Group", sub: devices}  # 2026-11-15 마스터 요청 리포트, TradingView TSE:8050 확인

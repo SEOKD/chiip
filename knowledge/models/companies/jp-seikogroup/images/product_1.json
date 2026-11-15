@@ -1,0 +1,60 @@
+{
+ "file": "product_1.jpg",
+ "kind": "product",
+ "name": "그랜드세이코·세이코 시계",
+ "prompt": "Mechanical luxury wristwatch with an in-house automatic movement, steel case, sapphire crystal and bracelet. Generic unbranded product render of a luxury mechanical wristwatch, plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style. No text, no letters, no numbers, no logos, no people. Not photorealistic.",
+ "prompt_ko": "그랜드세이코·세이코 시계 — 제품·서비스 개념도",
+ "model": "gemini-3.1-flash-image",
+ "size": "1K",
+ "made_at": "2026-11-15T19:29+09:00",
+ "usd": 0.067,
+ "batch": false,
+ "hash": "d1dee7dcf7756216",
+ "bom_as_of": null,
+ "bytes": 176309,
+ "convert": "Pillow 없음 — 원본 형식 저장(webp 변환·축소 안 함)",
+ "scope": "company",
+ "view": null,
+ "source": "Gemini API",
+ "check": {
+  "items": [
+   [
+    "메타·해시",
+    1
+   ],
+   [
+    "고정 캡션",
+    1
+   ],
+   [
+    "용량",
+    1
+   ],
+   [
+    "눈 검수(로고·글자·인물·사진 연출)",
+    1
+   ]
+  ],
+  "result": "pass",
+  "pending_visual": false
+ },
+ "approved": null,
+ "attempt": 1,
+ "prompt_extra": "",
+ "visual": {
+  "ok": true,
+  "reason": "",
+  "parts": null,
+  "order_ok": null,
+  "by": "Gemini 비전 자동 검수",
+  "note": "The image is a technical illustration showing a watch with a detached case back revealing the movement."
+ },
+ "callouts": [
+  {
+   "no": 1,
+   "x": 0.64,
+   "y": 0.56
+  }
+ ],
+ "located_by": "gemini-3.5-flash"
+}

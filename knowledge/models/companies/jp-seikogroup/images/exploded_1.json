@@ -1,0 +1,80 @@
+{
+ "file": "exploded_1.jpg",
+ "kind": "exploded",
+ "name": "그랜드세이코·세이코 시계",
+ "prompt": "Exploded isometric technical illustration of a generic luxury mechanical wristwatch, components separated along one vertical axis in this order (top to bottom): mechanical watch movement. plain white background, isometric projection, neutral grayscale with a single accent color #2563EB, soft shadows, clean technical illustration style. Keep a wide empty white margin on both sides. Do not draw any labels, captions, leader lines, callout lines, arrows, part names, annotations, text, letters or numbers anywhere in the image — the image must contain only the drawn components. No text, no letters, no numbers, no logos.",
+ "prompt_ko": "그랜드세이코·세이코 시계 — 분해도 개념도",
+ "model": "gemini-3.1-flash-image",
+ "size": "1K",
+ "made_at": "2026-11-15T19:30+09:00",
+ "usd": 0.067,
+ "batch": false,
+ "hash": "7b3aa2d2f80c15de",
+ "bom_as_of": "2026-11-15",
+ "bytes": 143522,
+ "convert": "Pillow 없음 — 원본 형식 저장(webp 변환·축소 안 함)",
+ "scope": "company",
+ "view": null,
+ "source": "Gemini API",
+ "check": {
+  "items": [
+   [
+    "메타·해시",
+    1
+   ],
+   [
+    "고정 캡션",
+    1
+   ],
+   [
+    "용량",
+    1
+   ],
+   [
+    "눈 검수(로고·글자·인물·사진 연출)",
+    1
+   ],
+   [
+    "확인 부품 1개 이상",
+    1
+   ],
+   [
+    "부품 덩어리 수 ±1",
+    1
+   ],
+   [
+    "층 순서",
+    1
+   ],
+   [
+    "확인 항목 source",
+    1
+   ],
+   [
+    "이 회사 부품 표시",
+    1
+   ]
+  ],
+  "result": "pass",
+  "pending_visual": false
+ },
+ "approved": null,
+ "attempt": 2,
+ "prompt_extra": "Show exactly 1 clearly separated components, evenly spaced, nothing else.",
+ "visual": {
+  "ok": true,
+  "reason": "",
+  "parts": 0,
+  "order_ok": true,
+  "by": "Gemini 비전 자동 검수",
+  "note": "This is a 3D technical illustration of a mechanical watch movement."
+ },
+ "callouts": [
+  {
+   "no": 1,
+   "x": 0.5,
+   "y": 0.5
+  }
+ ],
+ "located_by": "gemini-3.5-flash"
+}

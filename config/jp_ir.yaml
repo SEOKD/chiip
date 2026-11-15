@@ -117,3 +117,5 @@ companies:
   jp-9104: {site: "https://www.mol.co.jp"}
   jp-9107: {site: "https://www.kline.co.jp"}
   jp-9983: {site: "https://www.fastretailing.com"}
+
+  jp-seikogroup: {site: "https://www.seiko.co.jp"}  # 2026-11-15 등록, 첫 탐색에서 확인
