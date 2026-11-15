@@ -84,6 +84,7 @@ def main(argv):
     ap.add_argument("files", nargs="+")
     ap.add_argument("--title", required=True)
     ap.add_argument("--no-send", action="store_true")
+    ap.add_argument("--attach", action="store_true", help="텔레그램에 링크 대신 HTML 파일 자체를 첨부(Quantral, 2026-11-15 마스터 지시)")
     ap.add_argument("--caption", default="", help="링크 위에 붙일 요약(파일 경로 또는 글) — 텔레그램은 GitHub 링크만(마스터 지시 2026-10-30)")
     a = ap.parse_args(argv)
     links, commit = publish(a.files, a.title)
@@ -94,6 +95,11 @@ def main(argv):
         sys.path.insert(0, str(ROOT / "radar"))
         import notify
         cap = Path(a.caption).read_text(encoding="utf-8").strip() if a.caption and Path(a.caption).exists() else a.caption.strip()
+        if a.attach:   # 요약 글 1통 + HTML 파일 첨부(GitHub 게시는 보관용으로 그대로) — Quantral 2026-11-15 마스터 지시 "html 파일로 제공하도록 해"
+            print("텔레그램:", notify.send(cap or f"[Chiip Report] {a.title}", "REPORT"))
+            for f in a.files:
+                print("첨부:", notify.send_document(f, caption=a.title, level="REPORT"))
+            return 0
         text = (cap + "\n\n" if cap else f"[Chiip Report] {a.title}\n") + "\n".join(links) + "\n(비공개 저장소 — 로그인 필요)"
         print("텔레그램:", notify.send(text, "REPORT"))
     return 0
