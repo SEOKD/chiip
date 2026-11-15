@@ -45,16 +45,18 @@ def lens_map(lead):
     return out
 
 
-def budget_text(x):
-    """사업별 고객 예산 노출 한 줄씩 — 구분이 없으면 '사업별 구분 미확인'"""
+def budget_text(x, sep="\n"):
+    """사업별 고객 예산 노출 — 한 줄에 한 사업, 비중(결론)부터(마스터 지시 2026-11-15 "결론(비중이 얼마인지)부터 앞에 나와야 직관적").
+    '매출의 59%: 데이터센터·반도체 신축(기술 고객) — 고객 CAPEX(…) · 동인: AI 컴퓨팅 투자'. 비중 큰 순. 구분이 없으면 '사업별 구분 미확인'"""
     rows = [b for b in x.get("budgets") or [] if b.get("business")]
     if not rows:
         return "사업별 CAPEX·OPEX 구분 미확인"
+    rows = sorted(rows, key=lambda b: -(b["share"] if isinstance(b.get("share"), (int, float)) else -1))
     def one(b):
         bud = b.get("budget") if b.get("budget") in BUDGETS else "미확인"
-        share = f", 매출의 {b['share'] * 100:.0f}%" if isinstance(b.get("share"), (int, float)) else ""
-        return f"{b['business']} — 고객 {bud}" + (f"({b['line']})" if b.get("line") else "") + share + (f": {b['driver']}" if b.get("driver") else "")
-    return " · ".join(one(b) for b in rows)
+        head = f"**매출의 {b['share'] * 100:.0f}%**: " if isinstance(b.get("share"), (int, float)) else "비중 미확인: "
+        return head + f"{b['business']} — 고객 {bud}" + (f"({b['line']})" if b.get("line") else "") + (f" · 동인: {b['driver']}" if b.get("driver") else "")
+    return sep.join(one(b) for b in rows)
 
 
 POLICY = (("fiscal", "재정정책(행정부)"), ("orders", "행정명령(행정부)"), ("laws", "연관입법(의회)"))
@@ -256,7 +258,7 @@ def lead_section(dp, mm=None, strict=True):
         x = have[k]
         tag = " · ".join(t for t in (DRIVES.get(x.get("drives"), x.get("drives")), x.get("status")) if t)
         speed_txt = speed_text(x["lead_time"]) if isinstance(x.get("lead_time"), dict) else ""
-        speed_txt += (f" 사업별 예산: {budget_text(x)}." if k == "고객의 지출 예산" else "")
+        speed_txt += (f" 사업별 예산: {budget_text(x, ' / ')}." if k == "고객의 지출 예산" else "")
         items.append(f"**{k}**" + (f" ({tag})" if tag else "") + f" — {x['change']}" + speed_txt + (f" 증거: {x['evidence']}" if x.get("evidence") else "") + (f" 반증: {x['falsifier']}" if x.get("falsifier") else ""))
     B.append({"type": "ul", "items": items})
     B.append({"type": "h3", "text": "이 회사의 제품·서비스·기술"})

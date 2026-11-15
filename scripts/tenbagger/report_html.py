@@ -145,7 +145,7 @@ _DN = re.compile(r"(?:(?<=^)|(?<=[\s(（:·,]))([−–-]\d[\d.,]*%(?:p)?)")
 
 def t(s):
     """이스케이프 후 **굵게**·__밑줄__·==형광==만 허용. 부호 붙은 %는 오름 빨강·내림 파랑(마스터 지시 2026-11-12 "색과 볼드, 밑줄을 더")"""
-    s = html.escape(str(s if s is not None else ""))
+    s = html.escape(str(s if s is not None else "")).replace("\n", "<br>")   # 한 칸 안 여러 줄(사업별 비중 등, 2026-11-15)
     s = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s)
     s = re.sub(r"__(.+?)__", r"<u>\1</u>", s)
     s = re.sub(r"==(.+?)==", r"<mark>\1</mark>", s)
