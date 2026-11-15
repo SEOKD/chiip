@@ -1,0 +1,103 @@
+auto: true
+id: co-fabrinet
+name: Fabrinet
+ticker: FN
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.4
+  TW: 0.6
+tax: 0.08
+horizon: 10
+as_of: '2026-11-16'
+market:
+  date: '2026-11-16'
+  price: 327.98
+  shares: 0.036188
+  net_debt: -0.6775
+  source: 가격 = 2026-11-13 TradingView 종가 $327.98(yfinance 일치). 주식 수 35,717,516주(10-Q
+    표지 2026-10-23). 현금 $392.3M + 단기 투자 $363.4M = $755.8M(10-Q 2026-09-25). 차입 = 태국
+    은행 기간 대출 약 $74.7M + 리스 $3.6M = $78.3M(Fiscal.ai 표준화 재무상태표·10-Q 차입 주석)
+rev0: 6.5
+ic0: 1.8386
+scenarios:
+  base:
+    prob: 0.35
+    growth:
+      start: 0.2225
+      end: 0.03
+      decay: 0.631
+    margin:
+      m0: 0.1021
+      target: 0.108
+      year_target: 3
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.1005
+      - 0.1004
+    s2c: 2.794
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.5525
+      end: 0.034999999999999996
+      decay: 0.681
+    margin:
+      m0: 0.1021
+      target: 0.128
+      year_target: 3
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.1005
+      - 0.1004
+    s2c: 3.213
+  bear:
+    prob: 0.45
+    growth:
+      start: 0.1991
+      end: 0.024999999999999998
+      decay: 0.531
+    margin:
+      m0: 0.1021
+      target: 0.088
+      year_target: 3
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.1005
+      - 0.1004
+    s2c: 2.375
+mc:
+  sigma_growth: 0.0883
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 6.5
+  growth: 컨센서스 1년차 22.2%, 2년차 15.1%
+  margin: 1~2년차 컨센서스 10.1%, 10.0% 고정 → 목표 11%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.794
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 19.9%~55.2%
+  probs: '근거 계산 {''bear'': 0.45, ''base'': 0.35, ''bull'': 0.2} — 다음 해 매출 성장 분포로 계산
+    — 약세 +21.1% 아래·강세 +38.7% 위 확률. 내부 관점(컨센서스 +22.2%, σ 17.8%: 범위 35.3% ÷ d2(9) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '영업이익률(주식 보상 차감 뒤)은 3년차 10.8%, 장기 10%로 둔다: 위탁 생산이라 자재 비중이 커 10년 OPM이
+    8~11%였다(Fiscal.ai 분기 손익). CFO는 상승을 말하지만 NPO·CPO 마진은 아직 공시가 없다'
+  shares: '완전 희석 = 기본 0.035717516(2026-10-23) + 옵션·RSU·워런트·전환 0.0005 — 1Q FY27 GAAP
+    희석 EPS $2.86 = 순이익 $103.5M ÷ 희석 약 36.19M주 — 기본 '
+notes:
+- 자동 생성(build_drivers) 2026-11-16 — 데이터 묶음 2026-11-16
+- '어닝콜 위험: 부품 수급 빠듯(콜 ''전반적으로 빠듯'')'
+- '어닝콜 위험: 고객 통합(Marvell–Lumentum, 2028 상반기 종결 예정)이 내재화로 이어질 위험(10-Q 위험 요인)'
+- '어닝콜 위험: 바트 환율 — 가장 큰 마진 변수(CFO)'
+evidence:
+- https://fiscal.ai/company/NYSE-FN
+- https://www.sec.gov/Archives/edgar/data/1408710/000140871026000041/fn-20260925.htm
+- https://www.sec.gov/Archives/edgar/data/1408710/000140871026000028/fn-20260626.htm
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001408710&type=8-K
+- https://www.sec.gov/Archives/edgar/data/0001633978/000119312526443871/d152890d425.htm
+- Fiscal.ai MCP 2026-11-16 — 표준화 손익·현금흐름·자체 추정, 1Q FY27 어닝콜(2026-11-02)
+- TradingView NYSE:FN 일봉·월봉(2026-11-13)
