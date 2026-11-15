@@ -75,6 +75,16 @@ def _y(v):
 
 
 # ---------- ① 항목별 가치 ----------
+def _roic(nopat, ic, rev):
+    """NOPAT ÷ 투하자본. 투하자본이 음수면 음수로 낸다(마스터 지시 2026-11-15 — 고객 선수금이 운전자본을 크게 음수로 만드는 회사, FIX).
+    투하자본이 매출의 5%보다 작으면(0 근처) 비율이 수천 %로 튀어 뜻이 없다 — None(표에 사유)"""
+    if ic is None or nopat is None or ic == 0:
+        return None
+    if rev and abs(ic) < 0.05 * abs(rev):
+        return None
+    return nopat / ic
+
+
 def items(a):
     rows = []
     for it in a.get("ppe") or []:
@@ -194,7 +204,7 @@ def roic(a):
         excl = sum(v for k, v in cap.items() if k not in ACQUIRED)
         out.append({"period": _v(r.get("periods"), i) or f"기간 {i}", "rev": rev, "ebit": ebit, "lease_int": lease, "nopat": nopat, "cap": cap,
                     "ic_incl": incl, "ic_excl": excl, "margin": nopat / rev,
-                    "roic_incl": nopat / incl if incl > 0 else None, "roic_excl": nopat / excl if excl > 0 else None, "avg": avg})
+                    "roic_incl": _roic(nopat, incl, rev), "roic_excl": _roic(nopat, excl, rev), "avg": avg})
     return out
 
 
@@ -448,7 +458,7 @@ def roic_path(a, rows):
         incl = sum(cap.values())
         excl = sum(v for k, v in cap.items() if k not in ACQUIRED)
         out.append({"q": rows[i]["q"], "est": rows[i].get("est"), "rev": rev, "nopat": nopat, "ic_incl": incl, "ic_excl": excl, "margin": nopat / rev if rev else None,
-                    "roic_incl": nopat / incl if incl > 0 else None, "roic_excl": nopat / excl if excl > 0 else None})
+                    "roic_incl": _roic(nopat, incl, rev), "roic_excl": _roic(nopat, excl, rev)})
     return out
 
 
@@ -504,7 +514,12 @@ def roic_chart(path, n_hist, wacc):
               {"name": "ROIC 영업권·인수 무형 제외", "color": "d", "points": [[x["q"], _r1(x["roic_excl"] * 100) if x["roic_excl"] is not None else None] for x in rows]}]
     if wacc is not None:
         series.append({"name": f"WACC {wacc * 100:.1f}%", "color": "f", "dash": True, "points": [[x["q"], round(wacc * 100, 1)] for x in rows]})
-    out = {"kind": "line", "title": f"ROIC 추이 — TTM, 최근 {len(act)}개 분기" + (f" + 다음 {len(est)}개 분기 추정(컨센서스 NOPAT)" if est else ""), "unit": "%", "series": series}
+    notes = []
+    if any(x["ic_incl"] is not None and x["ic_incl"] < 0 for x in rows):
+        notes.append("투하자본이 음수인 분기는 ROIC도 음수(고객 선수금 등 음의 운전자본이 자본을 대신 댄다)")
+    if any(x["roic_incl"] is None and x.get("ic_incl") is not None for x in rows):
+        notes.append("투하자본이 매출의 5%보다 작은 분기는 비율이 수천 %로 튀어 비움")
+    out = {"kind": "line", "title": f"ROIC 추이 — TTM, 최근 {len(act)}개 분기" + (f" + 다음 {len(est)}개 분기 추정(컨센서스 NOPAT)" if est else "") + (" · " + " · ".join(notes) if notes else ""), "unit": "%", "series": series}
     if est:
         out["est_from"] = est[0]["q"]
     return out

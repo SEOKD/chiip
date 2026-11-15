@@ -106,6 +106,9 @@ def _one(rows, kind, scale):
         d = _days(x)
         if d is None:
             continue
+        lim = {"Q1": 100, "Q2": 190, "Q3": 280}.get(str(x.get("fp")))
+        if str(x.get("form", "")).startswith("10-Q") and lim and d > lim:   # 10-Q가 연간 기간을 단 잘못 태깅된 값(2026-11-15 FIX: 1Q26 10-Q가 1Q25 매출 $1,831M을 2025 연간 기간으로 달아 4Q25 = −$4,624M)
+            continue
         if d < 100:
             out[x["end"]] = x["val"] * scale
         if d > 350:

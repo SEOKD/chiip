@@ -347,3 +347,20 @@ class TestHistoryForecast(unittest.TestCase):
         self.assertIn("추정 →", svg)
         self.assertIn('stroke-dasharray="5 4"', svg)
         self.assertIn("(추정)", svg)
+
+
+class TestNegativeCapital(unittest.TestCase):   # 2026-11-15 FIX
+    def test_negative_ic_gives_negative_roic(self):
+        import asset_roic_view as A
+        self.assertAlmostEqual(A._roic(100.0, -500.0, 1000.0), -0.2)
+        self.assertIsNone(A._roic(100.0, 20.0, 1000.0))   # 매출의 5%보다 작은 투하자본은 비운다
+
+    def test_mistagged_10q_annual_ignored(self):
+        import asset_pack as P
+        rows = [{"start": "2025-01-01", "end": "2025-09-30", "val": 6455.0, "form": "10-Q", "fp": "Q3", "filed": "2025-10-23"},
+                {"start": "2025-07-01", "end": "2025-09-30", "val": 2451.0, "form": "10-Q", "fp": "Q3", "filed": "2025-10-23"},
+                {"start": "2025-01-01", "end": "2025-03-31", "val": 1831.0, "form": "10-Q", "fp": "Q1", "filed": "2025-04-24"},
+                {"start": "2025-04-01", "end": "2025-06-30", "val": 2173.0, "form": "10-Q", "fp": "Q2", "filed": "2025-07-24"},
+                {"start": "2025-01-01", "end": "2025-12-31", "val": 9102.0, "form": "10-K", "fp": "FY", "filed": "2026-02-19"},
+                {"start": "2025-01-01", "end": "2025-12-31", "val": 1831.0, "form": "10-Q", "fp": "Q1", "filed": "2026-04-23"}]   # 잘못 태깅된 값
+        self.assertAlmostEqual(P._one(rows, "q", 1.0)["2025-12-31"], 9102.0 - 6455.0)
