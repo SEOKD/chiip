@@ -1,0 +1,106 @@
+auto: true
+id: co-teradyne
+name: Teradyne
+ticker: TER
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.17
+horizon: 10
+as_of: '2026-11-16'
+market:
+  date: '2026-11-16'
+  price: 249.55
+  shares: 0.157388
+  net_debt: -0.3295
+  source: 가격 = 2026-11-13 TradingView 종가 · 주식 수 156.15M = 10-Q 재무상태표(2026-09-27, 표지
+    156,124,751주 2026-10-26) · 현금 $0.461B + 단기 유가증권 $0.006B = $0.467B(장기 유가증권 $0.158B는
+    제외 — 보수적) · 차입 0, 리스 부채 $0.137B(유동 $17.1M + 비유동 $120.1M) · FormFactor 지분 $300M은
+    11/9 종결로 현금이 줄었고, Technoprobe 10% 지분(장부 $519M, 공정가 $2.24B)은 비영업 자산이라 넣지 않았다 —
+    https://www.sec.gov/Archives/edgar/data/97210/000119312526441091/ter-20260927.htm
+rev0: 5.267
+ic0: 3.3584
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.2069
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.326
+      target: 0.31
+      year_target: 3
+      lr: 0.25
+      lam: 0.35
+      anchors:
+      - 0.305
+      - 0.31
+    s2c: 1.489
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.348
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.326
+      target: 0.33
+      year_target: 3
+      lr: 0.25
+      lam: 0.25
+      anchors:
+      - 0.305
+      - 0.31
+    s2c: 1.712
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0442
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.326
+      target: 0.29
+      year_target: 3
+      lr: 0.25
+      lam: 0.5
+      anchors:
+      - 0.305
+      - 0.31
+    s2c: 1.266
+mc:
+  sigma_growth: 0.0759
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [5.217, 5.317] (3Q26 실적 보도자료·어닝콜(2026-10-27) — https://www.sec.gov/Archives/edgar/data/97210/000119312526434981/ter-ex99_1.htm)
+  growth: 컨센서스 1년차 20.7%, 2년차 25.4%
+  margin: 1~2년차 컨센서스 30.5%, 31.0% 고정 → 목표 31%(3년차, 덮어쓰기) → 장기 수렴 25%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.489
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 4.4%~34.8%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +12.6% 아래·강세 +27.7% 위 확률. 내부 관점(컨센서스 +20.7%, σ 15.3%: 범위 30.4% ÷ d2(9) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: 장기 수렴 이익률을 업종 기본 15% 대신 25%로 둔다 — TER GAAP 영업이익률 2017~2025년 9년 평균 24.4%(최저
+    2023년 18.7%·최고 2021년 32.4%, Fiscal.ai 분기 손익 합), 2026년 33.5%. ATE 2강 구조라 사이클 바닥에서도
+    15%까지 내려간 해가 없다(2015·2016 적자는 구조조정·손상 포함)
+  shares: '완전 희석 = 기본 0.15615(2026-09-27) + 옵션·RSU·워런트·전환 0.0012 — 10-Q 3Q26 희석 주식
+    계산: RSU 1.159M + 옵션 0.079M(자기주식법) — 기본 가중 15'
+notes:
+- 자동 생성(build_drivers) 2026-11-16 — 데이터 묶음 2026-11-16
+- '어닝콜 위험: 컴퓨트 주문 시점 — 고객 테스트 셀 구축 속도에 따라 분기 안에서도 출하가 움직인다'
+- '어닝콜 위험: 2027 하반기 쏠림 — ASIC·하이퍼스케일러 램프가 늦어지면 상반기 공백'
+- '어닝콜 위험: 부품 리드타임 연장 — 예측 없는 수요에는 1년 전보다 대응이 늦다'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/97210/000119312526434981/ter-ex99_1.htm
+- https://www.sec.gov/Archives/edgar/data/97210/000119312526441091/ter-20260927.htm
+- https://www.sec.gov/Archives/edgar/data/97210/000119312526059002/ter-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/97210/000119312526127504/ter-20260325.htm
+- https://www.businesswire.com/news/home/20261027311442/en/
+- https://www.businesswire.com/news/home/20261109219142/en/
+- https://www.sec.gov/Archives/edgar/data/1039399/000103939926000037/form-20261006.htm
+- https://fiscal.ai/company/NasdaqGS-TER
