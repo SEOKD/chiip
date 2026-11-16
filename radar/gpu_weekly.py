@@ -2,7 +2,7 @@
 Pulse에서 매주 월요일 아침 6시마다 렌탈료의 전주 대비 변화율을 점검하고 이 현상에 대해 풀이하도록 해")
 
 결정론: 매주 월요일 06:00 KST 이후 첫 Pulse 회차에 due. 숫자는 모두 여기서 계산한다(원천 knowledge/models/gpu_rental.csv, radar/gpu_rental.py 6시간마다).
-  GPU별 Nebius 온디맨드 · CoreWeave 온디맨드·스팟 · Lambda 온디맨드(8x) · Silicon Data 지수 — 기준일(월요일) 값과 7일 전 이전 마지막 값 대비 변화율.
+  GPU별 Nebius·CoreWeave·AWS 온디맨드 정가(2026-11-16 마스터 지시 — 세 곳·가격 종류 하나) — 기준일(월요일) 값과 7일 전 이전 마지막 값 대비 변화율.
   Nebius 선점형은 15분 단위 스팟 변동가의 공개 하한이라 주간 비교에 쓰지 않는다(Weekly 블록과 같은 원칙).
 모델 몫: 풀이 2~4문장(read) — 무엇이 얼마나 움직였고, 왜(공급·수요·세대 교체·가격표 개편 등 근거가 있을 때만), 무엇을 바꾸나.
   값이 하나도 안 움직였으면 '변화 없음'과 그 의미 한 문장. 근거 없는 원인은 쓰지 않는다.
@@ -24,11 +24,10 @@ import gpu_rent  # noqa: E402   # 시세 읽기·변화율 함수(원래 Weekly 
 STATE = "gpu_weekly"
 HOUR = 6          # 월요일 06:00 KST 이후
 READ_MAX = 600
+# 2026-11-16 마스터 지시 "Nebius와 CoreWeave, AWS 세 곳만 … 가격 종류를 하나로 통일" — 세 곳 모두 온디맨드 정가만(스팟·지수·Lambda 뺌)
 COLS = [("Nebius", "Nebius", lambda r: r["term"].startswith("온디맨드")),
         ("CoreWeave", "CoreWeave", lambda r: r["term"].startswith("온디맨드")),
-        ("CoreWeave 스팟", "CoreWeave", lambda r: r["term"] == "스팟"),
-        ("Lambda", "Lambda", lambda r: r["term"].startswith("온디맨드") and "8x" in r.get("config", "")),
-        ("지수", "Silicon Data 지수", lambda r: True)]
+        ("AWS", "AWS", lambda r: r["term"].startswith("온디맨드"))]
 
 
 def week_key(now):
@@ -118,26 +117,27 @@ def _md(d):
 
 
 def message(t, read):
-    """텔레그램 본문 — 결론(풀이) → GPU별 한 줄. 표는 휴대폰에서 깨져서 줄글로"""
+    """텔레그램 본문(2026-11-16 마스터 양식) — ■움직인 지표 → 풀이 → GPU별 ■ 머리와 * 줄. 세 곳 온디맨드 정가만"""
     d0 = date.fromisoformat(t["as_of"])
     since = t.get("base") or t["prev"]
-    head = f"[Chiip Pulse] GPU 렌털료 주간 점검 ({_md(since)} → {d0.strftime('%m/%d')})"
+    lines = [f"[Chiip Pulse] GPU 렌털료 주간 점검 ({_md(since)} → {d0.strftime('%m/%d')})", "", "■움직인 지표"]
     if t["moved"]:
-        moved = "움직인 곳: " + ", ".join(f"{g} {k} {v:+.1f}%" for g, k, v in t["moved"][:6])
+        lines += [f"{g} {k} {v:+.1f}%" for g, k, v in t["moved"][:8]]
     elif t.get("compared"):
-        moved = "전주 대비 모든 가격 변화 없음"
+        lines.append("전주 대비 모든 가격 변화 없음")
     else:
-        moved = "비교할 전주 값이 아직 없다"
+        lines.append("비교할 전주 값이 아직 없다")
     if t.get("base"):
-        moved += f" (추적 첫 주라 {_md(t['base'])} 대비)"
-    lines = [head, "", moved]
+        lines.append(f"(추적 첫 주라 {_md(t['base'])} 대비)")
     if read:
         lines += ["", read.strip()]
-    lines.append("")
     for r in t["rows"]:
-        parts = [f"{k} {_cell(r[k])}" for k, *_ in COLS if _cell(r[k])]
-        lines.append(f"{r['gpu']}: " + " · ".join(parts))
-    lines += ["", "단위 $/GPU·시. CoreWeave 스팟은 변동가, 지수는 Silicon Data 공개 지수, 나머지는 온디맨드 정가다. Nebius 선점형은 스팟 하한이라 비교에서 뺐다."]
+        cells = [f"{k} {_cell(r[k])}" for k, *_ in COLS if _cell(r[k])]
+        if not cells:
+            continue
+        lines.append("")
+        lines += [f"■{r['gpu']}: {cells[0]}"] if len(cells) == 1 else [f"■{r['gpu']}", ""] + [f"* {c}" for c in cells]
+    lines += ["", "단위 $/GPU·시. 세 곳 모두 온디맨드 정가(AWS는 미국 동부·리눅스 8 GPU 인스턴스 ÷ 8)."]
     return "\n".join(lines)
 
 

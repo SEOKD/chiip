@@ -47,12 +47,12 @@ class TestGpuWeekly(unittest.TestCase):
         t = gpu_weekly.table("2026-11-17", ROWS)
         r = t["rows"][0]
         self.assertAlmostEqual(r["Nebius"]["wk"], 10.0)
-        self.assertEqual(r["지수"]["wk"], 0.0)
-        self.assertEqual(r["Lambda"]["now"], 4.59)        # 11-16 시행가
-        self.assertAlmostEqual(r["Lambda"]["wk"], (4.59 / 3.99 - 1) * 100)
-        self.assertEqual(gpu_weekly.table("2026-11-14", ROWS)["rows"][0]["Lambda"]["now"], 3.99)   # 시행 전에는 옛 가격
+        self.assertEqual(set(k for k in r if k != "gpu"), {"Nebius", "CoreWeave", "AWS"})   # 세 곳 온디맨드만(2026-11-16 마스터 지시)
         msg = gpu_weekly.message(t, "풀이")
-        self.assertIn("H100 Nebius +10.0%", msg)
+        self.assertIn("■움직인 지표\nH100 Nebius +10.0%", msg)
+        self.assertIn("■H100: Nebius $4.95(+10.0%)", msg)   # 한 곳뿐이면 머리 줄에
+        for gone in ("지수", "Lambda", "스팟"):
+            self.assertNotIn(gone, msg)
 
     def test_due_only_monday_after_six_once_per_week(self):
         with mock.patch.object(gpu_weekly.common, "load_state", return_value={}), mock.patch.object(gpu_weekly, "table", return_value={"rows": [1], "moved": [], "as_of": "2026-11-16", "prev": "2026-11-09"}), \

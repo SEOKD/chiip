@@ -180,12 +180,35 @@ def table(rows):
     return "\n".join(L)
 
 
+AWS_URL = "https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json"
+# AWS 8 GPU 인스턴스 → GPU(공개 EC2 온디맨드 가격표, 미국 동부·리눅스). 2026-11-16 마스터 지시 "Nebius와 CoreWeave, AWS 세 곳만"
+AWS_TYPES = {"p5.48xlarge": "H100", "p5en.48xlarge": "H200", "p6-b200.48xlarge": "B200", "p6-b300.48xlarge": "B300",
+             "g6e.48xlarge": "L40S", "g7e.48xlarge": "RTX PRO 6000"}
+
+
+def aws():
+    import gzip
+    b = common.http_get(AWS_URL, timeout=60)
+    if b[:2] == b"\x1f\x8b":
+        b = gzip.decompress(b)
+    region = next(iter(json.loads(b)["regions"].values()))
+    rows = []
+    for v in region.values():
+        it = v.get("Instance Type")
+        if it in AWS_TYPES and v.get("price"):
+            p = float(v["price"])
+            rows.append({"provider": "AWS", "gpu": AWS_TYPES[it], "config": it, "term": "온디맨드", "usd_per_gpu_hr": round(p / 8, 2),
+                         "node_usd_hr": round(p, 4), "gpus_per_node": 8, "note": "미국 동부·리눅스 인스턴스 가격÷8",
+                         "source_url": "https://aws.amazon.com/ec2/pricing/on-demand/"})
+    return rows
+
+
 def run():
     st = common.load_state("gpu_rental", {})
     now = common.iso(common.now_kst())
     today = now[:10]
     rows, errs = [], []
-    for name, fn in (("Nebius", nebius), ("CoreWeave", coreweave), ("Lambda", lambda_), ("Silicon Data", silicon_data)):
+    for name, fn in (("Nebius", nebius), ("CoreWeave", coreweave), ("Lambda", lambda_), ("Silicon Data", silicon_data), ("AWS", aws)):
         try:
             got = fn()
             rows += got
