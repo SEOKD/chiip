@@ -1,0 +1,103 @@
+auto: true
+id: us-frvo
+name: Fervo Energy
+ticker: FRVO
+unit: B$
+unit_usd: 1000000000.0
+industry: power_utility
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-16'
+market:
+  date: '2026-11-16'
+  price: 11.51
+  shares: 0.3282
+  net_debt: -1.4847
+  source: 가격 = 2026-11-13 종가 $11.51(TradingView). 주식 수 = 9/30 재무상태표 Class A 287.093M
+    + Class B 7.785M주(8-K Ex.99.1). 현금 = 비제한 현금 $1.916B(제한 현금 $11M 제외). 차입 = 장단기 차입
+    $301.6M + 운용리스 부채 $129.7M(32.2+97.5). 상환 가능 비지배지분 $219.5M(Cape Phase I 세액공제 지분
+    구조)은 차입에 넣지 않았다
+rev0: 0.07
+ic0: 1.525
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 1.52
+      end: 0.035
+      decay: 0.7
+    margin:
+      m0: -1.7887
+      target: 0.45
+      year_target: 6
+      lr: 0.45
+      lam: 0.35
+    s2c: 0.2
+  bull:
+    prob: 0.25
+    growth:
+      start: 2.2252
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: -1.7887
+      target: 0.53
+      year_target: 6
+      lr: 0.45
+      lam: 0.25
+    s2c: 0.23
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.6914
+      end: 0.030000000000000002
+      decay: 0.6
+    margin:
+      m0: -1.7887
+      target: 0.37
+      year_target: 6
+      lr: 0.45
+      lam: 0.5
+    s2c: 0.17
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.06, 0.08] (3Q26 8-K Ex.99.1·3Q 콜(2026-11-09). 2027 매출 $60~80M은
+    2Q 콜 전망이고 3Q에 '변화 없음'(Roth 질문에 회사가 같은 범위를 확인))
+  growth: 컨센서스 1년차 152.1%, 2년차 130.9% → 덮어쓰기 1년차 152.0%
+  margin: 출발 -179% → 목표 45%(6년차, 덮어쓰기) → 장기 수렴 45%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 0.2
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 69.1%~222.5% (덮어쓰기만큼 이동)
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.35, ''bull'': 0.35} → 모델 조정 {''bear'':
+    0.35, ''base'': 0.4, ''bull'': 0.25}(콜 톤은 상향(Google 396MW 확정·1호기 상업 운전)이지만, 공매도
+    리서치가 제기한 저류층 열 감소 의문을 공개 자료로 아직 판정할 수 없고 1호기 운전 데이터가 몇 주뿐이라 약세 쪽에 무게를 더 둔다) —
+    다음 해 매출 성장 분포로 계산 — 약세 +110.6% 아래·강세 +187.3% 위 확률. 내부 관점(컨센서스 +152.0%, σ 90.8%:
+    범위 153.4% ÷ d2(6) × 1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '기준 연도는 첫 영업 해인 FY2027(회사 전망 $60~80M 중간 $70M). 성장 감속 0.7은 컨센서스 FY2028
+    $176M·FY2030 $700M과 맞추고 10년 차 매출 약 $3.2B(약 4.5~5GW, 추정)에서 멈추게 했다 — 자동 감속(0.84)은
+    10년 차 $20B 넘게 그려 계약·자원 근거가 없다. EBIT 이익률 목표 45%(6년 차): 연료비가 없는 장기 고정가 발전이라 EBITDA율
+    약 75~80%, 감가상각이 매출의 약 27~30%($5,500/kW ÷ 30년 ÷ kW당 연 매출 약 $700, 추정)라 EBIT 약 45~50%(추정).
+    재투자 효율 0.2: kW당 연 매출 약 $700~800(계약 매출 $11.9B ÷ 1,054MW ÷ 15년, 추정) ÷ 세액공제(ITC·PTC,
+    설치비의 약 30% 가정 — 추정) 뒤 순설치비 약 $3,800/kW. 자동 하한 0.5는 발전 설비 집약도를 과소평가한다'
+  shares: 완전 희석 = 기본 0.294878(2026-09-30) + 옵션·RSU·워런트·전환 0.0333 — 10-Q XBRL AntidilutiveSecuritiesExcluded
+    33.322M주(9/30 — 옵션·
+notes:
+- 자동 생성(build_drivers) 2026-11-16 — 데이터 묶음 2026-11-16
+- '어닝콜 위험: Project Red 운전 3년 뒤 생산 온도 하락(회사도 인정) — Cape에서의 열 감소 속도는 운전 몇 주 데이터뿐'
+- '어닝콜 위험: 2027 초 변전소 일회성 정지(제3자 태양광 연결) — 2027 매출 범위의 가장 큰 변수'
+- '어닝콜 위험: Google 계약으로 일정이 밀린 약 400MW PPA의 납품 2032 전후 — 계약 수정 협상 중'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm
+- https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm
+- Fervo 3Q26 어닝콜(2026-11-09)·2Q26 어닝콜(2026-08-12) 전문 — 요지만
+- Fiscal.ai company_profile·financials_standardized·analyst_estimates·analyst_ratings·institutional_holders·insider_transactions·fund_letters·news(2026-11-10
+  조회)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- TradingView NASDAQ:FRVO 일봉(2026-11-10)
+- SEC XBRL companyfacts CIK 1853868(2026-11-10)
+- TradingView 뉴스 — Baird 11/10·BofA 11/12 목표가 변경 헤드라인 https://www.tradingview.com/symbols/NASDAQ-FRVO/news/

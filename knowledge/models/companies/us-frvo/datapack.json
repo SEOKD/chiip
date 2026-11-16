@@ -1,0 +1,2166 @@
+{
+ "as_of": "2026-11-16",
+ "unit": "B$",
+ "id": "us-frvo",
+ "name": "Fervo Energy",
+ "ticker": "FRVO",
+ "industry": "power_utility",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.21,
+ "profile": {
+  "price": 11.51,
+  "shares_basic": 0.294878,
+  "shares_date": "2026-09-30",
+  "cash": 1.916,
+  "debt": 0.4313,
+  "source": "가격 = 2026-11-13 종가 $11.51(TradingView). 주식 수 = 9/30 재무상태표 Class A 287.093M + Class B 7.785M주(8-K Ex.99.1). 현금 = 비제한 현금 $1.916B(제한 현금 $11M 제외). 차입 = 장단기 차입 $301.6M + 운용리스 부채 $129.7M(32.2+97.5). 상환 가능 비지배지분 $219.5M(Cape Phase I 세액공제 지분 구조)은 차입에 넣지 않았다"
+ },
+ "dilution": {
+  "potential_total": 0.033322,
+  "options": null,
+  "rsu": null,
+  "warrants": null,
+  "converts_shares": 0.0,
+  "date": "2026-09-30",
+  "source": "10-Q XBRL AntidilutiveSecuritiesExcluded 33.322M주(9/30 — 옵션·RSU·워런트, 손실이라 희석 EPS에서 제외). 전환사채 없음"
+ },
+ "financials": {
+  "rev_ttm": 0.000373,
+  "ebit_ttm": -0.1075,
+  "invested_capital": 1.525,
+  "capex_ttm": 0.8165,
+  "da_ttm": 0.000865,
+  "sbc_ttm": 0.026,
+  "rev_growth_ttm": null,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26. 매출 0.083+0.061+0.113+0.116 = $0.373M. 영업손실 14.9+20.1+28.7+43.7 = $107.5M. CAPEX 160.5+172.8+226.5+256.7 = $816.5M. SBC 1.0+2.6+8.2+14.2. 투하자본 = 자본 총계 3.010(비지배 포함) + 차입 0.302 + 리스 0.130 − 현금 1.916 = $1.525B"
+ },
+ "sbc_pct_rev": null,
+ "consensus": {
+  "rev": {
+   "FY2027": 0.069122,
+   "FY2028": 0.176499,
+   "FY2029": 0.40755,
+   "FY2030": 0.69965
+  },
+  "ebit_margin": {
+   "FY2027": -1.7887
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "rev_low": {
+   "FY2028": 0.1185
+  },
+  "rev_high": {
+   "FY2028": 0.22586
+  },
+  "n_analysts": 6,
+  "revisions_90d": {
+   "rev": -0.103
+  },
+  "note": "Zacks 컨센서스(2026-10-30~11-05). FY2026 매출 $5.28M·EPS −$0.58은 기준연도에서 뺐다 — 1호기 9/30 상업 운전이라 FY2026은 영업 첫해가 아니다. FY2027 매출 $69.1M(5명, 범위 $66.7~71.1M)은 회사 2027 전망 $60~80M(2Q 콜, 3Q 유지) 안. FY2028 $176.5M(5명), FY2029 $408M·FY2030 $700M(2명). FY2027 EBIT 추정 −$123.6M(4명). 90일 수정: FY2027 매출 6/24 $77.0M → 11/5 $69.1M(−10.3%). Data provided by Zacks Investment Research, Inc., www.zacksdata.com · 11/16 갱신: 목표가 평균 $29.18(17명, $11~48, 11/13 — 11/6 $32.24에서 하향), Baird $26→$20(11/10)·BofA $30→$25(11/12) 하향, Bernstein $47 유지(11/9). Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "quarters_est": {
+   "2026Q4": 0.005062,
+   "2027Q1": 0.013836,
+   "2027Q2": 0.017124,
+   "2027Q3": 0.01822,
+   "2027Q4": 0.019962
+  },
+  "eps_quarters_est": {
+   "2026Q4": -0.064,
+   "2027Q1": -0.14,
+   "2027Q2": -0.144,
+   "2027Q3": -0.142,
+   "2027Q4": -0.142,
+   "2028Q1": -0.2,
+   "2028Q2": -0.175,
+   "2028Q3": -0.075
+  },
+  "eps_annual": {
+   "FY2026": -0.583,
+   "FY2027": -0.522,
+   "FY2028": -0.626
+  },
+  "ebitda_annual": {
+   "FY2026": -0.0821,
+   "FY2027": -0.0333
+  },
+  "ratings": {
+   "strong_buy": 14,
+   "buy": 2,
+   "hold": 1,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-06",
+   "target_mean": 29.18,
+   "target_high": 48.0,
+   "target_low": 11.0,
+   "target_n": 17,
+   "target_as_of": "2026-11-13"
+  },
+  "surprise": [
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.116,
+    "est": 0.083,
+    "est_src": "zacks",
+    "est_asof": "2026-11-05",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.07,
+    "est": -0.098,
+    "est_src": "zacks",
+    "est_asof": "2026-10-30",
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -43.746,
+    "est": null,
+    "est_src": "미확인",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-11-09"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.113,
+    "est": 1.05,
+    "est_src": "zacks",
+    "est_asof": "2026-06-24",
+    "basis": "gaap",
+    "earnings_date": "2026-08-12"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": -28.742,
+    "est": null,
+    "est_src": "미확인",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-12"
+   }
+  ],
+  "revisions": {
+   "from_date": "2026-08-14",
+   "to_date": "2026-11-05",
+   "from_label": "2Q 콜(8/12) 직후 추정",
+   "source": "Fiscal.ai analyst_estimates history(Zacks) — 같은 분기·연도끼리. Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+   "rows": [
+    {
+     "period": "2026Q4",
+     "metric": "매출",
+     "from": 4.985,
+     "to": 5.062
+    },
+    {
+     "period": "2027Q1",
+     "metric": "매출",
+     "from": 17.072,
+     "to": 13.836
+    },
+    {
+     "period": "2027Q2",
+     "metric": "매출",
+     "from": 18.387,
+     "to": 17.124
+    },
+    {
+     "period": "FY2027",
+     "metric": "매출",
+     "from": 74.37,
+     "to": 69.122
+    },
+    {
+     "period": "FY2028",
+     "metric": "매출",
+     "from": 224.49,
+     "to": 176.499
+    },
+    {
+     "period": "2026Q4",
+     "metric": "EPS",
+     "from": -0.0325,
+     "to": -0.064
+    },
+    {
+     "period": "FY2027",
+     "metric": "EPS",
+     "from": -0.486,
+     "to": -0.522
+    },
+    {
+     "period": "FY2028",
+     "metric": "EPS",
+     "from": -0.4425,
+     "to": -0.626
+    }
+   ],
+   "unit_note": "매출 $M"
+  },
+  "price_window": {
+   "from": 24.17,
+   "to": 11.38,
+   "note": "2Q 실적 발표 전날(8/11) 종가 → 11/9 종가"
+  },
+  "quarters_act": {
+   "2025Q4": 8.3e-05,
+   "2026Q1": 6.1e-05,
+   "2026Q2": 0.000113,
+   "2026Q3": 0.000116
+  },
+  "target_mean": 29.18
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.06,
+   0.08
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "next": {
+   "period": "4Q26",
+   "rev": null,
+   "rev_cons": 5.06,
+   "eps": null,
+   "eps_cons": -0.064,
+   "unit": "$M",
+   "basis": "회사: 4Q26 매출은 2Q 콜에서 밝힌 기대와 같다(8-K). 컨센서스 4Q26 매출 $5.06M(5명)",
+   "note": "회사: 4Q26 매출은 2Q 콜에서 밝힌 기대와 같다(숫자 미공시, 8-K)"
+  },
+  "capex": "4Q26 CAPEX $450~500M, 하반기 $700~750M(종전 $850~900M) — 총액 불변, 지출 시점만 뒤로",
+  "long_term": "2030 설치 용량 목표 1.0GW → 1.1GW(IPO 뒤 상향). Cape Google 400 설치비 $5,500/kW, 장기 $3,000/kW 목표(목표이지 실적 아님)",
+  "source": "3Q26 8-K Ex.99.1·3Q 콜(2026-11-09). 2027 매출 $60~80M은 2Q 콜 전망이고 3Q에 '변화 없음'(Roth 질문에 회사가 같은 범위를 확인)"
+ },
+ "main_metric": "ebitda",
+ "main_metric_why": "선행 EPS와 EBITDA가 모두 적자인 개발 단계 발전 회사라 이익 배수를 쓸 수 없다 — 엔진이 EV/매출로 내려간다. 회사는 MW·계약 매출·kW당 설치비를 핵심 지표로 쓴다",
+ "next_event": {
+  "date": "2026-11-19",
+  "tag": "Cape Station 투자자 현장 공개(신규 공시 없음 명시) — 다음 실적은 4Q26(2027-02~03 예상, 날짜 미공지)"
+ },
+ "peers_basis": "ttm",
+ "peers_source": "동종 = 기존 지열 IPP(Ormat), 현장 전원 연료전지(Bloom Energy), 매출 전 차세대 원전 개발사(NuScale·Oklo). 매출·영업이익 = Fiscal.ai 분기 손익 최근 4분기 합(2026-09-30, GAAP), 시총 = Fiscal.ai calculated_market_cap 최신, EV/매출·P/B·선행 배수 = Fiscal.ai company_ratios latest(2026-11-10). NuScale·Oklo의 EV/매출은 매출이 거의 없어 수백 배다",
+ "peers": [
+  {
+   "ticker": "ORA",
+   "rev": 1.2138,
+   "ebit_margin": 0.1497,
+   "mcap": 5.826,
+   "growth": 0.2855,
+   "pb": 2.21,
+   "debt": 3.086,
+   "cash": 0.512,
+   "ev_sales": 7.09,
+   "ev_ebitda": 17.3,
+   "pe_fwd": 37.3,
+   "ev_ebitda_fwd": 17.56,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": null,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null
+  },
+  {
+   "ticker": "BE",
+   "rev": 3.8299,
+   "ebit_margin": 0.1481,
+   "mcap": 55.84,
+   "growth": 1.106,
+   "pb": 28.9,
+   "debt": 2.476,
+   "cash": 2.487,
+   "ev_sales": 14.67,
+   "ev_ebitda": 90.4,
+   "pe_fwd": 43.32,
+   "ev_ebitda_fwd": 43.16,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": null,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null
+  },
+  {
+   "ticker": "SMR",
+   "rev": 0.00273,
+   "ebit_margin": null,
+   "mcap": 2.197,
+   "growth": null,
+   "pb": 1.09,
+   "debt": 0.0,
+   "cash": 1.353,
+   "ev_sales": 462.9,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": null,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null
+  },
+  {
+   "ticker": "OKLO",
+   "rev": 0.00307,
+   "ebit_margin": null,
+   "mcap": 5.13,
+   "growth": null,
+   "pb": 1.41,
+   "debt": 0.0,
+   "cash": 3.454,
+   "ev_sales": null,
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null,
+   "pe_fwd2": null,
+   "ev_ebitda_fwd2": null,
+   "pe_fwd3": null,
+   "ev_ebitda_fwd3": null
+  }
+ ],
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "매출 전 단계라 배수 판단 조정을 하지 않는다. 동종 레인지가 Ormat(EV/매출 7배)부터 NuScale(수백 배)까지 벌어져 판단 조정의 근거가 약하다"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "요인에 없는 조정은 하지 않는다"
+ },
+ "scenario_probs": {
+  "bear": 0.35,
+  "base": 0.45,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "콜 톤은 상향(Google 396MW 확정·1호기 상업 운전)이지만, 공매도 리서치가 제기한 저류층 열 감소 의문을 공개 자료로 아직 판정할 수 없고 1호기 운전 데이터가 몇 주뿐이라 약세 쪽에 무게를 더 둔다",
+ "recurring": {
+  "share": 1.0,
+  "kind": "장기 전력 구매 계약(PPA) 전력 판매",
+  "base": "구속력 있는 PPA 1,054MW, 계약 매출 약 $11.9B(8-K)",
+  "base_growth": 0.602,
+  "retention": null,
+  "years_to_recurring": 1,
+  "source": "8-K Ex.99.1: PPA 658 → 1,054MW. 매출은 PPA 전력 판매뿐이라 반복 매출 비중 100%. 상업 운전이 1호기(33MW)뿐이라 본격 반복 매출은 2·3호기 운전(2027-01-01 목표) 뒤 — 1년(추정)"
+ },
+ "backlog": {
+  "conversion_months": null,
+  "coverage_next_fy": null,
+  "book_to_bill": null,
+  "rpo_12m_share": null,
+  "rpo_growth": 0.653,
+  "revenue_growth": null,
+  "cancel_rate": null,
+  "top_customer_share": null,
+  "source": "계약 매출 $7.2B → $11.9B(+65%, 8-K). 연도별 인식 일정·RPO 주석 미공시 · 수주→매출 전환 개월은 미확인(계약 15년·첫 전력 2028 — 잔고 ÷ 월매출 근사는 매출이 거의 없어 뜻이 없다)"
+ },
+ "call": {
+  "date": "2026-11-09",
+  "prev_date": "2026-08-12",
+  "tone": "up",
+  "tone_score": 6.5,
+  "tone_delta": 0.5,
+  "guidance_direction": "maintain",
+  "source": "Fervo 3Q26·2Q26 어닝콜 전문(요지만 자기 말로), 8-K Ex.99.1, 10-Q",
+  "kpis": {
+   "rev_3q_m": 0.116,
+   "op_loss_3q_m": -43.7,
+   "ga_3q_m": 39.4,
+   "sbc_3q_m": 14.2,
+   "capex_3q_m": 256.7,
+   "cash_b": 1.916,
+   "debt_m": 301.6,
+   "ppa_mw": 1054,
+   "contracted_rev_b": 11.9,
+   "operating_mw": 36,
+   "construction_mw": 466,
+   "ready_to_build_mw": 550,
+   "advanced_dev_gw": 3.0,
+   "early_dev_gw": 54.7,
+   "cape_potential_gw": 8.4,
+   "acres_k": 670,
+   "rigs": 4,
+   "employees": 306,
+   "cape_g400_drilling_done": 0.18,
+   "trir": 0.1
+  },
+  "guidance_changes": [
+   "하반기 CAPEX $850~900M → $700~750M(총액 $2.2B 불변, 지출을 매출 시점 쪽으로 미룸)",
+   "2027 매출 $60~80M 유지(2Q 콜 전망)",
+   "4Q26 매출 2Q 콜 기대와 같음",
+   "2·3호기 상업 운전 2027-01-01 유지"
+  ],
+  "new_topics": [
+   "Google 396MW 15년 확정 인수(take-or-pay) PPA, 99MW × 4개 묶음, 2028 중반 첫 전력·2028 말 전량",
+   "Google 약 600MW 확장 옵션 — 유타 SB 132(대형 부하 직접 연결법)로 계량기 뒤 직결 추진",
+   "Cape 잠재 용량 4.3 → 8.4GW(독립 평가사 DeGolyer and MacNaughton)",
+   "Cape Google 400 시추 18% 완료, 50MW 터빈 공장 인수 시험 통과",
+   "보조 전력용 소형 태양광(명판의 20~25%)으로 판매 전력 늘리기",
+   "1호기 → 3호기 시운전 기간 약 50% 단축",
+   "Cape Google 400 프로젝트 금융 2027 중반, 담보 가치 대비 대출 약 70%",
+   "DOE 탐사 보조금 후보 2건 약 $20M(아이다호·네바다, 확정 계약 전)"
+  ],
+  "dropped_topics": [
+   "2Q 콜의 '연말 전 계량기 뒤 PPA 발표' — Google 계약으로 대체됐고 별도 계량기 뒤 확정 계약은 아직 없음",
+   "2Q 콜의 리그 1대당 월 1.5공·연 400MW 시추 예시 — 3Q에는 리그 수(4대)만"
+  ],
+  "analyst_focus": [
+   "Piper Sandler — 1호기 운전 성과, Cape 잠재 용량 상향의 의미",
+   "RBC Capital Markets — 물 손실·열 감소, Project Red를 Cape에 외삽해도 되나",
+   "Barclays — $7,000 → $5,500/kW 경로, 선거 뒤 데이터센터 여론",
+   "Wolfe Research — Google 계약으로 밀린 약 400MW PPA의 납품 시점",
+   "Guggenheim Securities — 신기술 배치 현황, 9 5/8인치 케이싱 전환 시점",
+   "Jefferies — 600MW 옵션 행사 시점, 프로젝트 금융",
+   "Roth Capital Partners — 2027 송전 정지 영향, ITC·PTC 선택",
+   "Northland Capital Markets — 태양광 보조 전력 규모, 탐사 일정",
+   "Needham — 판관비 경상 수준",
+   "William Blair — Google 옵션의 성격, BAAJA 법안"
+  ],
+  "risks": [
+   "Project Red 운전 3년 뒤 생산 온도 하락(회사도 인정) — Cape에서의 열 감소 속도는 운전 몇 주 데이터뿐",
+   "2027 초 변전소 일회성 정지(제3자 태양광 연결) — 2027 매출 범위의 가장 큰 변수",
+   "Google 계약으로 일정이 밀린 약 400MW PPA의 납품 2032 전후 — 계약 수정 협상 중",
+   "Cape Google 400 $2.2B 투자의 프로젝트 금융은 2027 중반 예정 — 그 전까지 회사 현금으로",
+   "판관비 분기 $39.4M(SBC $14.2M 포함) — 상장사 비용·인력 증가",
+   "공매도 리서치(Morpheus Research)가 파일럿 성능을 문제 삼았다 — 회사는 반박만, 독립 데이터 미공개"
+  ],
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "신규",
+    "item": "Google PPA",
+    "label": "Google 396MW PPA",
+    "prior": "구속력 있는 PPA 658MW·계약 매출 $7.2B",
+    "latest": "1,054MW·$11.9B(Google 396MW 15년 확정 인수)",
+    "driver": "growth_start",
+    "shift": 0.15,
+    "confidence": 1.0,
+    "source": "8-K Ex.99.1·10-Q"
+   },
+   {
+    "id": "F2",
+    "kind": "업데이트",
+    "item": "1호기 상업 운전",
+    "label": "1호기 COD 33MW",
+    "prior": "4Q26 첫 전력 목표",
+    "latest": "9/30 상업 운전, 설계 유량·온도 도달",
+    "driver": "rev0",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "8-K·3Q 콜 CEO"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "CAPEX 시점",
+    "label": "하반기 CAPEX 하향",
+    "prior": "하반기 $850~900M",
+    "latest": "$700~750M(총액 불변)",
+    "driver": "s2c",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "8-K·3Q 콜 CFO"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "Cape 잠재 용량",
+    "label": "Cape 8.4GW",
+    "prior": "4.3GW",
+    "latest": "8.4GW(독립 평가)",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "8-K·3Q 콜"
+   },
+   {
+    "id": "F5",
+    "kind": "신규",
+    "item": "Google 600MW 옵션",
+    "label": "600MW 옵션",
+    "prior": "3GW 프레임워크(구속력 없음)",
+    "latest": "약 600MW 확장 옵션 제공 약속, 데이터센터 일정에 달림",
+    "driver": "growth_end",
+    "shift": 0.002,
+    "confidence": 0.3,
+    "source": "8-K·3Q 콜"
+   },
+   {
+    "id": "F6",
+    "kind": "부정",
+    "item": "밀린 PPA",
+    "label": "400MW 납품 2032",
+    "prior": "명시 없음",
+    "latest": "Google 계약으로 일정이 밀린 약 400MW PPA는 2032 전후 납품, 계약 수정 중",
+    "driver": "growth_start",
+    "shift": -0.05,
+    "confidence": 0.8,
+    "source": "3Q 콜 CFO(Wolfe 질문)"
+   },
+   {
+    "id": "F7",
+    "kind": "부정",
+    "item": "판관비",
+    "label": "판관비 +44% QoQ",
+    "prior": "2Q $27.4M",
+    "latest": "3Q $39.4M(SBC $14.2M)",
+    "driver": "margin_m0",
+    "shift": -0.05,
+    "confidence": 1.0,
+    "source": "8-K"
+   },
+   {
+    "id": "F8",
+    "kind": "반복",
+    "item": "설치비 목표",
+    "label": "$5,500/kW 유지",
+    "prior": "$5,500/kW·장기 $3,000",
+    "latest": "같음, 신기술 배치 완료",
+    "driver": "s2c",
+    "shift": 0.0,
+    "confidence": 0.5,
+    "source": "3Q 콜 CEO(Guggenheim 질문)"
+   }
+  ]
+ },
+ "events": [
+  {
+   "date": "2026-05-13",
+   "tag": "나스닥 상장(공모가 $27, 첫날 거래량 35M주)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-07-29",
+   "tag": "−19.1%, 거래량 6.9M주 — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-08-12",
+   "tag": "2Q26 실적·첫 어닝콜, −16.6%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-01",
+   "tag": "+28.4%, 거래량 35M주 — Google 396MW PPA 발표 무렵(PPA 체결 8/26, 10-Q). 발표일 자체는 미확인",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "거래량 20M주 이틀(−6%·−6%) — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-09",
+   "tag": "3Q26 실적(장전)·+26.1%, 거래량 24M주",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "Baird 목표가 $26→$20(Outperform 유지)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "종가 +13.7%, 원인 미확인(장 마감 뒤 MSCI 11월 지수 변경 발표 — 편입 여부 원문 미확인)",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "BofA 목표가 $30→$25(Buy 유지), 종가 −10.0%",
+   "kind": "rating"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-05-13",
+   "kind": "내러티브",
+   "tag": "상장",
+   "session": "before"
+  },
+  {
+   "date": "2026-08-12",
+   "kind": "실적",
+   "tag": "2Q26 실적(첫 콜)",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-09-01",
+   "kind": "내러티브",
+   "tag": "Google 396MW PPA 무렵",
+   "session": "after"
+  },
+  {
+   "date": "2026-11-09",
+   "kind": "실적",
+   "tag": "3Q26 실적·1호기 상업 운전",
+   "q": "3Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-11-12",
+   "kind": "내러티브",
+   "tag": "증권사 목표가 하향(Baird·BofA)"
+  }
+ ],
+ "sources": [
+  "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm",
+  "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm",
+  "Fervo 3Q26 어닝콜(2026-11-09)·2Q26 어닝콜(2026-08-12) 전문 — 요지만",
+  "Fiscal.ai company_profile·financials_standardized·analyst_estimates·analyst_ratings·institutional_holders·insider_transactions·fund_letters·news(2026-11-10 조회)",
+  "Data provided by Zacks Investment Research, Inc., www.zacksdata.com",
+  "TradingView NASDAQ:FRVO 일봉(2026-11-10)",
+  "SEC XBRL companyfacts CIK 1853868(2026-11-10)",
+  "TradingView 뉴스 — Baird 11/10·BofA 11/12 목표가 변경 헤드라인 https://www.tradingview.com/symbols/NASDAQ-FRVO/news/"
+ ],
+ "multiples_now": {
+  "pe_fwd": null,
+  "ev_ebitda_fwd": null,
+  "pe_fwd2": null,
+  "ev_ebitda_fwd2": null,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": null
+ },
+ "forward": {
+  "as_of": "2026-11-09",
+  "ntm": {
+   "eps": -0.49,
+   "ebitda": -45368000,
+   "ebit": null,
+   "revenue": 54242000,
+   "rev_ttm": 373000
+  },
+  "horizons": {
+   "2": {
+    "eps": -0.592,
+    "ebitda": null,
+    "ext": 0
+   },
+   "3": {
+    "eps": null,
+    "ebitda": null,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null
+  },
+  "source": "Fiscal.ai company_ratios latest(동종 선행 배수) + Zacks 분기 추정 합(다음 4개 분기). 대상은 선행 EPS·EBITDA가 적자라 배수 없음. forward_multiples.js는 추정이 없는 회사(FRVO·OKLO)에서 오류가 나 같은 계산을 수동으로 했다(2026-11-10). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "raw": {
+  "retrieved_at": "2026-11-16T11:36:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_FRVO",
+   "price": 11.51,
+   "market_cap": 3.3957,
+   "total_cash": 1.9165,
+   "total_debt": 0.4313,
+   "shares_outstanding": 0.29502,
+   "as_of": "2026-11-13",
+   "balance_date": "2026-09-30",
+   "note": "시총 = Fiscal calculated_market_cap 11/9 $3.357B(÷ $11.38 = 295.0M주, 9/30 Class A+B 294.88M주와 0.05% 차이). 총차입 = 장단기 차입 $301.6M + 운용리스 $129.7M(Fiscal 재무상태표 9/30). 현금 = 비제한 현금 $1.916B · 2026-11-16 갱신: 가격 = TradingView 11/13 종가 $11.51, 시총 = 가격 × 295.02M주(Easyconomics 시총 $3.396B와 일치)"
+  },
+  "shares_cover_implied": 0.29502,
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 8.3e-05,
+    "2026Q1": 6.1e-05,
+    "2026Q2": 0.000113,
+    "2026Q3": 0.000116
+   },
+   "op_income": {
+    "2025Q4": -0.014918,
+    "2026Q1": -0.020052,
+    "2026Q2": -0.028742,
+    "2026Q3": -0.043746
+   }
+  },
+  "balance_20260930": {
+   "cash": 1.9165,
+   "st_investments": 0.0,
+   "debt_current": 0.018686,
+   "debt_lt": 0.282923,
+   "lease_current": 0.032154,
+   "lease_lt": 0.097546,
+   "equity": 3.01013,
+   "equity_note": "자본 총계 = 보통주 자본 $2.7907B + 상환 가능 비지배지분 $219.5M(메자닌) — Fiscal 표준화 값",
+   "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+  },
+  "estimates_sales_m": {
+   "2027Q1": 13.836,
+   "2027Q2": 17.124,
+   "2027Q3": 18.22,
+   "2027Q4": 19.962
+  },
+  "sec": {
+   "antidilutive_20260930": 0.033322
+  },
+  "r_checks": {
+   "contractual_obligations": "10-Q: Phase II(Cape Google 400) 핵심 기자재 발주 완료, 프로젝트별 기자재·용역 계약(다년 납기), 상시 공급 프레임워크 계약은 없음",
+   "ten_pct_customers": "10-Q: Cape Station 관련 장기 PPA 3건 — 상대방 이름은 Southern California Edison·Google만 본문에서 확인",
+   "gov_contracts": "DOE 탐사 보조금 후보 2건 약 $20M(확정 계약 전), 보조금 미수금 $9.5M(9/30)",
+   "tax_credit": "Cape Phase I 세액공제(지하 ITC·지상 PTC) 매각 계약 — Liberty Mutual(2026-04-10, 10-Q)",
+   "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+  },
+  "diluted": "희석 증권: 10-Q XBRL 반희석 증권 33.322M주(9/30), 3Q 가중 기본 = 희석 294.78M주(손실)",
+  "estimates_note": "FY2028 분기 추정(3명) 합 $206.2M과 연간 추정(5명) $176.5M은 표본이 달라 맞지 않는다 — 분기 대조는 FY2027만(모두 5명)"
+ },
+ "terms": {
+  "EGS": "암반에 인공 균열을 내 물을 돌려 열을 뽑는 증강 지열",
+  "PPA": "장기 전력 구매 계약",
+  "GeoBlock": "Fervo의 표준 발전 모듈(33·50MW)",
+  "GeoCluster": "같은 저류층에 여러 GeoBlock을 묶은 개발 단지",
+  "ORC": "낮은 온도 열로 유기 유체를 끓여 터빈을 돌리는 발전 방식",
+  "COD": "상업 운전 개시일",
+  "take-or-pay": "전력을 쓰지 않아도 대금을 내는 확정 인수 조건",
+  "SB 132": "대형 부하가 새 발전원에 직접 연결하도록 허용한 유타 주법",
+  "ITC": "설비 투자 세액공제",
+  "PTC": "발전량 세액공제",
+  "BLM": "미국 연방 토지관리국",
+  "DOE": "미국 에너지부",
+  "D&M": "독립 매장량 평가사 DeGolyer and MacNaughton",
+  "TRIR": "근로 20만 시간당 기록 재해 건수",
+  "LTV": "담보 가치 대비 대출 비율",
+  "BAAJA": "초당적 미국 경제성·일자리법(지열 인허가 조항 포함, 의회 심의 중)",
+  "Project Red": "Fervo의 네바다 3MW 파일럿 발전소",
+  "Cape Station": "Fervo의 유타 Beaver County 지열 발전 단지",
+  "Cape Google 400": "Google에 팔 Cape 4~11호기(약 400MW)",
+  "Corsac": "Fervo의 네바다 GeoCluster",
+  "FlexRig": "Helmerich & Payne의 육상 시추 리그 모델",
+  "MW": "메가와트",
+  "GW": "기가와트",
+  "kW": "킬로와트",
+  "°F": "화씨 온도",
+  "SOFR": "미국 담보 익일 금리",
+  "IPO": "기업공개",
+  "CAPEX": "설비 투자",
+  "VIE": "지배력 기준으로 연결하는 변동 지분 실체",
+  "HP": "경기 추세를 떼어 내는 통계 필터",
+  "PPI": "생산자물가지수",
+  "VIX": "S&P500 옵션 내재 변동성 지수",
+  "LD": "미국 하원 로비 공시",
+  "RTO": "지역 송전 운영자",
+  "IPP": "독립 발전 사업자",
+  "TPU": "Google의 AI 가속기 칩",
+  "MWh": "메가와트시 — 발전량 단위",
+  "RPO": "계약상 아직 인식하지 않은 매출",
+  "LC": "신용장",
+  "SB": "주 상원 법안",
+  "II": "2단계"
+ },
+ "names": [
+  "Fervo",
+  "Fervo Energy",
+  "Google",
+  "Google Energy",
+  "Alphabet",
+  "Southern California Edison",
+  "Ava Community Energy",
+  "Mitsubishi Heavy Industries",
+  "Turboden",
+  "Baker Hughes",
+  "Helmerich & Payne",
+  "H&P",
+  "Liberty Mutual",
+  "DeGolyer and MacNaughton",
+  "Ormat",
+  "Bloom Energy",
+  "NuScale",
+  "Oklo",
+  "Morpheus Research",
+  "Piper Sandler",
+  "RBC Capital Markets",
+  "Barclays",
+  "Wolfe Research",
+  "Guggenheim Securities",
+  "Jefferies",
+  "Roth Capital Partners",
+  "Northland Capital Markets",
+  "Needham",
+  "Needham & Company",
+  "William Blair",
+  "Bernstein",
+  "Morgan Stanley",
+  "Baird",
+  "Bank of America",
+  "Robeco",
+  "Geode Capital Management",
+  "Lingotto",
+  "Tim Latimer",
+  "David Ulrey",
+  "Jack Norbeck",
+  "Mike Lee",
+  "Doug Burgum",
+  "Breakthrough Energy Ventures",
+  "Mercuria",
+  "XRC",
+  "Quantral",
+  "ORA",
+  "BE",
+  "SMR",
+  "OKLO",
+  "FRVO",
+  "NASDAQ",
+  "Nasdaq",
+  "Seeking Alpha",
+  "MarketBeat",
+  "Benzinga",
+  "Shell",
+  "Beaver County",
+  "Milford",
+  "Utah",
+  "Nevada",
+  "Idaho",
+  "SCE",
+  "RBC",
+  "JP",
+  "LLC"
+ ],
+ "moat": {
+  "summary": "해자는 '데이터와 실행 이력'이다. 상업 규모 수평 EGS를 운전한 회사는 Fervo뿐이고, 3년 넘은 파일럿 운전 데이터와 수십 개 우물의 측정 자료가 설계·대출 심사의 근거가 된다. 다만 기술 해자는 운전 수년 뒤에야 증명된다.",
+  "items": [
+   {
+    "kind": "상업 규모 EGS 운전 이력·저류층 데이터",
+    "verdict": "보통",
+    "claim": "세계 첫 그린필드 EGS 상업 운전(1호기)과 3.5년 된 파일럿(Project Red) 운전 데이터로 유량·열 감소를 실측해 설계에 반영한다. 경쟁사는 첫 수평 EGS를 설계·인허가하는 단계다.",
+    "evidence": "3Q 콜(CEO): 파일럿 열 감소 원인 데이터는 독점 자료, 대주단과 공유. 1호기 설계 유량·온도 도달(8-K).",
+    "quant": "운전 36MW(Cape 33 + Red 3) vs 경쟁 EGS 상업 운전 0(콜 주장, 독립 확인 미확인)",
+    "falsifier": "2·3호기 또는 Cape Google 400 우물의 생산 온도가 모델보다 빨리 떨어진다(분기 MWh·용량 계수 공시로 확인)"
+   },
+   {
+    "kind": "셰일식 학습 곡선(시추 속도·설치비)",
+    "verdict": "보통",
+    "claim": "같은 저류층에 표준 모듈을 반복해 시추 일수·완결 시간·kW당 비용을 깎는다. Phase I $7,000/kW → Cape Google 400 $5,500/kW 목표.",
+    "evidence": "2Q 콜: 3.0 설계 우물 측정 깊이 약 19,500ft·460°F를 21일에 시추. 3Q 콜: 시운전 기간 약 50% 단축.",
+    "quant": "설치비 $7,000/kW(실적 기대) → $5,500/kW(목표) → $3,000/kW(장기 목표)",
+    "falsifier": "Cape Google 400 실제 설치비가 $5,500/kW를 넘는다(2028 준공 뒤 확인)"
+   },
+   {
+    "kind": "확정 인수 장기 계약 잔고",
+    "verdict": "강함",
+    "claim": "Google 396MW 15년 take-or-pay와 SCE 등 투자등급 상대방 PPA로 1,054MW·$11.9B 계약 매출이 고정 가격으로 잡혀 있다. 프로젝트 금융을 받을 수 있는 형태다.",
+    "evidence": "8-K Ex.99.1, 10-Q(Google·Alphabet 모회사 보증 — 콜).",
+    "quant": "계약 매출 $11.9B ÷ 1,054MW ≈ MW당 $11.3M(15~20년, 추정)",
+    "falsifier": "납품 지연으로 PPA 해지·벌금이 발생한다(10-Q 위험 요인: 상업 운전 지연 시 상대방 해지 가능)"
+   },
+   {
+    "kind": "토지·자원 선점",
+    "verdict": "보통",
+    "claim": "지열 임차지 67만 에이커와 독립 평가 Cape 잠재 8.4GW가 개발 재고다.",
+    "evidence": "8-K·3Q 콜(D&M 평가).",
+    "quant": "초기 개발 54.7GW, 고급 개발 3.0GW, 착공 준비 550MW",
+    "falsifier": "평가 시추(네바다 Corsac 등)에서 온도·투수 조건이 기대에 못 미쳐 고급 개발 용량이 줄어든다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-10",
+  "summary": "공동 창업자 Tim Latimer(CEO)가 석유·가스 시추 현장 출신으로 '셰일 기술을 지열에'라는 회사 논리를 직접 만든 사람이다. 정계 연결은 회사 차원의 법안 지지(BAAJA)와 공개 행사 수준만 확인된다.",
+  "people": [
+   {
+    "name": "Tim Latimer",
+    "role": "공동 창업자·CEO",
+    "since": "2017(창업)",
+    "profile": "시추 현장 감독 출신(2Q 콜 본인 발언). 3Q 콜에서 열 감소 데이터를 독점 자산으로 설명",
+    "business": "기술·영업(Google 계약)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "2Q·3Q 콜"
+   },
+   {
+    "name": "David Ulrey",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "3Q 콜에서 CAPEX 시점 이동·프로젝트 금융(2027 중반, LTV 약 70%)·ITC/PTC 구조 설명",
+    "business": "재무·금융",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q 콜"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Google(Alphabet) — 396MW PPA·600MW 옵션·3GW 프레임워크",
+    "strength": 4,
+    "exposure": "계약 매출 중 Google 396MW 몫",
+    "basis": "PPA 1,054MW 중 396MW(38%)",
+    "evidence": "10-Q·8-K"
+   },
+   {
+    "network": "정계",
+    "link": "회사가 BAAJA(Mike Lee 상원의원 공동 발의) 지지를 밝혔다. 내무장관이 Google 계약을 공개 축하",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "회사 성장 계획은 이 법안에 기대지 않는다고 밝힘(3Q 콜)",
+    "evidence": "3Q 콜"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "reported_backlog": 11.9,
+  "backlog_label": "계약 매출(구속력 있는 PPA)",
+  "summary": "구속력 있는 PPA 1,054MW·계약 매출 약 $11.9B. 건설 중 466MW 중 상업 운전은 1호기 33MW뿐이다.",
+  "items": [
+   {
+    "name": "Cape Phase I(1~3호기, 약 100MW)",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.33,
+    "progress_basis": "3개 호기 중 1호기 상업 운전(9/30), 2호기 계통 연결·3호기 냉간 시운전",
+    "margin": "미확인",
+    "start": "2024-10",
+    "end": "2027-01",
+    "blockers": [
+     "2027 초 변전소 일회성 정지(제3자 태양광 연결)",
+     "2·3호기 시운전"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "Cape Google 400(4~11호기, 396MW, Google 15년)",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.18,
+    "progress_basis": "시추 약 18% 완료(3Q 콜). 터빈 공장 인수 시험 통과, 공랭 응축기 60% 이상 입고",
+    "margin": "미확인",
+    "start": "2026-01",
+    "end": "2028-12",
+    "blockers": [
+     "$2.2B 투자 중 프로젝트 금융은 2027 중반 예정",
+     "시추 속도·우물당 출력",
+     "열 감소 검증"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   },
+   {
+    "name": "일정이 밀린 기존 PPA 약 400MW(유틸리티)",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "계약 수정 협상 중, 납품 2032 전후(3Q 콜)",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "2032-12",
+    "blockers": [
+     "캘리포니아로의 송전 용량",
+     "계약 수정 합의"
+    ],
+    "source": "Fervo 3Q26 어닝콜(2026-11-09)"
+   },
+   {
+    "name": "Google 확장 옵션 약 600MW(계량기 뒤 직결)",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": 0.0,
+    "progress_basis": "옵션 제공 약속만 — Google 데이터센터 결정·유타 SB 132 승인 필요",
+    "margin": "미확인",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "Google 데이터센터 인허가",
+     "SB 132 규제 승인"
+    ],
+    "no_sum": true,
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "Google 지열 프레임워크 최대 3GW(2033까지)",
+    "status": "프레임워크",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "blockers": [
+     "구속력 없음(10-Q)"
+    ],
+    "no_sum": true,
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "아직 매출이 분기 $0.1M뿐이라 마진 구조는 비용 구조로만 읽힌다. 3Q 영업비용 $43.9M 중 판관비가 $39.4M(SBC $14.2M)이다. 매출이 본격화하면 원가는 감가상각·운영유지·리스가 되고, 연료비가 없다는 것이 구조적 특징이다.",
+  "periods": [
+   {
+    "period": "2Q26",
+    "rev": 0.000113,
+    "cogs": 0.000306,
+    "rd": -0.0,
+    "sga": 0.0274,
+    "other": 0.00115
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.000116,
+    "cogs": 0.001486,
+    "rd": 7.3e-05,
+    "sga": 0.03935,
+    "other": 0.002953
+   }
+  ],
+  "costs": [
+   {
+    "name": "판관비(현금)",
+    "stage": "판관비",
+    "pct_rev": 216.81,
+    "prior_pct": "미확인",
+    "fixed": 0.9,
+    "driver": "상장사 비용·인력(306명)·외부 용역",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "주식 보상(SBC)",
+    "stage": "판관비",
+    "pct_rev": 122.414,
+    "prior_pct": "미확인",
+    "fixed": 1.0,
+    "driver": "상장 뒤 RSU·옵션 부여",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   },
+   {
+    "name": "운영·유지(O&M)",
+    "stage": "매출원가",
+    "pct_rev": 12.81,
+    "prior_pct": 2.708,
+    "fixed": 0.7,
+    "driver": "운전 호기 수",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.629,
+    "prior_pct": 0.0,
+    "fixed": 1.0,
+    "driver": "시추·저류층 기술",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "감가상각·운용리스(기타)",
+    "stage": "기타",
+    "pct_rev": 25.457,
+    "prior_pct": 10.177,
+    "fixed": 1.0,
+    "driver": "토지·리그 리스, 상업 운전 호기 감가상각",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "지열 전력(PPA)",
+    "rev_share": 1.0,
+    "gpm": 0.7,
+    "gpm_basis": "추정 — 정상 운전 때 연료비가 없어 현금 기준 매출총이익률 약 70%(동인 덮어쓰기의 EBITDA율 75~80% 가정에서 O&M 여유를 뺀 값). 3Q 실제는 매출이 미미해 음수 — 호기별 원가 미공시",
+    "bom": [
+     {
+      "item": "시추·완결(지하 우물)",
+      "share": [
+       0.45,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "3Q 콜(지하·지상 분리가 어렵다는 CEO 발언) — 업계 일반 구성비로 추정",
+      "pass_through": 0.0,
+      "why": "설치비의 가장 큰 몫, 시추 일수·우물당 출력이 단가를 정한다",
+      "input": "oilwell_drilling"
+     },
+     {
+      "item": "ORC 발전 설비(터빈·열교환기·공랭 응축기)",
+      "share": [
+       0.25,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "10-Q(Turboden·Baker Hughes 조달), 3Q 콜",
+      "pass_through": 0.0,
+      "why": "고정가 PPA라 기자재 가격 상승은 전가되지 않는다"
+     },
+     {
+      "item": "계통 연결·변전소·공용 설비",
+      "share": [
+       0.1,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "8-K(1호기 대체액에 변전소·연계선 포함)",
+      "pass_through": 0.0,
+      "why": "단지 공용 — 호기가 늘수록 kW당 몫이 준다"
+     }
+    ]
+   }
+  ],
+  "costs_note": "매출이 분기 $0.12M뿐이라 비용 ÷ 매출 비율은 수백 배로 나온다 — 비율은 손익을 맞추기 위한 계산 값이고 구조 비교에는 금액(3Q 판관비 $39.4M·SBC $14.2M·O&M $1.5M)을 본다. 2Q의 판관비·SBC 구분은 받지 못했다"
+ },
+ "supply": {
+  "as_of": "2026-11-10",
+  "summary": "공급망 병목은 ORC 터빈(Turboden·Baker Hughes 두 곳)과 시추 리그다. 회사는 단일 공급원이라고 쓰지 않았지만 'ORC 터빈은 주로 두 곳에서' 산다고 밝혔다. 리그는 H&P FlexRig3 4대로 늘었다.",
+  "links": [
+   {
+    "item": "ORC 발전 설비(터빈·열교환기·공랭 응축기)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Turboden(Mitsubishi Heavy Industries 자회사)",
+      "role": "ORC 터빈·프레임워크 조달",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+     },
+     {
+      "name": "Baker Hughes",
+      "role": "ORC 터빈·관련 설비",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "미확인",
+    "capacity_basis": "공급사 캐파 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "이탈리아·미국(추정)",
+    "secured": "장기계약",
+    "why": "발전 모듈의 심장 — 납기가 COD를 정한다",
+    "relief": "Cape Google 400 첫 50MW 터빈 공장 인수 시험 통과(3Q 콜)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   },
+   {
+    "item": "시추 리그·시추 용역",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Helmerich & Payne",
+      "role": "FlexRig3 4대 운용",
+      "status": "회사 발표",
+      "source": "Fervo 3Q26 어닝콜(2026-11-09)"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "여유",
+    "capacity_basis": "미국 육상 리그 시장은 셰일 경기에 따라 여유(추정)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "장기계약",
+    "why": "우물 수 = 출력",
+    "relief": "리그 2 → 4대(상장 뒤)",
+    "source": "Fervo 3Q26 어닝콜(2026-11-09)",
+    "input": "oilwell_drilling",
+    "qualified_basis": "공개된 시추 용역사는 Helmerich & Payne 한 곳(3Q 콜, FlexRig3 4대)",
+    "top_share_basis": "운용 리그 4대 모두 같은 회사(3Q 콜)"
+   },
+   {
+    "item": "프로젝트 금융·세액공제 매각",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Granite 대주단(약 $421M 신용 한도)",
+      "role": "Cape Phase I 건설·세액공제 브리지·LC",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+     },
+     {
+      "name": "Liberty Mutual",
+      "role": "Cape Phase I 세액공제 매수",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "Cape Google 400 금융은 2027 중반 예정(LTV 약 70%)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국",
+    "secured": "단발",
+    "why": "$2.2B 투자를 회사 현금 $1.9B만으로 끝까지 대기 어렵다",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   },
+   {
+    "item": "송전·계통 연결",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "유타·캘리포니아 송전 사업자(미공시)",
+      "role": "연계·송전",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "부족",
+    "capacity_basis": "2027 초 변전소 일회성 정지, 밀린 400MW는 캘리포니아 송전 용량 확보가 관건(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국 서부",
+    "secured": "미확인",
+    "why": "PPA상 회사가 종단 간 송전을 확보해야 한다(10-Q)",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "MW",
+  "summary": "운전 36MW, 건설 중 466MW, 착공 준비 550MW. 2030 목표 1.1GW.",
+  "current": {
+   "nameplate": 36,
+   "utilization": "미확인",
+   "basis": "공시",
+   "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+  },
+  "plans": [
+   {
+    "name": "Cape Phase I 2·3호기",
+    "add": 66,
+    "stage": "장비 반입",
+    "online": "2027-01",
+    "capex": "미확인",
+    "blocker": "2호기 계통 연결 완료·시험 송전, 3호기 냉간 시운전",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm",
+    "stage_basis": "2호기 계통 연결·시험 송전, 3호기 냉간 시운전(3Q 콜) — 상업 운전 전이라 가동으로 세지 않는다"
+   },
+   {
+    "name": "Cape Google 400(4~11호기)",
+    "add": 400,
+    "stage": "착공",
+    "online": "2028-06",
+    "capex": 2.2,
+    "blocker": "시추 18%, 프로젝트 금융 2027 중반",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "착공 준비(Cape 확장·Corsac)",
+    "add": 550,
+    "stage": "인허가",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "초기 인허가 확보, PPA·금융 미정",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   }
+  ],
+  "capex": [
+   {
+    "period": "TTM 3Q26",
+    "capex": 0.8165,
+    "rev": 0.000373,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 1.11,
+    "rev": 0.00528,
+    "kind": "가이던스"
+   }
+  ],
+  "facilities": {
+   "count": 3,
+   "count_basis": "8-K·10-Q — 발전 시설 3곳(Cape Station Phase I·Phase II는 같은 유타 단지, Project Red는 네바다 파일럿). 단지 기준으로는 2곳",
+   "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm",
+   "items": [
+    {
+     "name": "Cape Station Phase I",
+     "location": "미국 유타 Beaver County(Milford 인근)",
+     "owned": "소유",
+     "use": "지열 발전",
+     "capacity": {
+      "value": 100,
+      "unit": "MW(3개 호기, 1호기 33MW 운전)",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+     },
+     "status": "증설 중"
+    },
+    {
+     "name": "Cape Station Phase II(Cape Google 400)",
+     "location": "미국 유타 Beaver County",
+     "owned": "소유",
+     "use": "지열 발전",
+     "capacity": {
+      "value": 400,
+      "unit": "MW(50MW × 8)",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+     },
+     "status": "건설 중"
+    },
+    {
+     "name": "Project Red",
+     "location": "미국 네바다",
+     "owned": "소유",
+     "use": "파일럿 발전",
+     "capacity": {
+      "value": 3,
+      "unit": "MW",
+      "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+     },
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "Cape Station 위성 판독 등록은 다음 회차로 미룬다 — 단지 경계 좌표를 1차 자료로 아직 확인하지 못했다(지어내지 않는다)",
+  "capex_source": "TTM 3Q26 = 10-Q 현금흐름표, FY2026 = 회사 하반기 CAPEX 가이던스 $700~750M + 상반기 실적. FY2027 CAPEX는 회사가 숫자를 내지 않아 뺐다(Cape Google 400 총 $2.2B는 계획 행에 있다)"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "매출은 아직 1호기 PPA 하나에서 나온다. 계약 잔고 기준으로는 Google(396MW, 38%)이 가장 크고, Southern California Edison 등 유틸리티 PPA가 나머지다. 상대방별 MW는 Google만 공시됐다.",
+  "items": [
+   {
+    "name": "Google(Google Energy LLC)",
+    "share": 0.376,
+    "prior": 0.0,
+    "basis": "공시",
+    "buys": "Cape 396MW 15년 확정 인수 + 600MW 옵션",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm",
+    "why": "계약 MW 기준 396 ÷ 1,054"
+   },
+   {
+    "name": "Southern California Edison",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "Cape 전력(PPA)",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm",
+    "why": "10-Q 위험 요인에 이름만 — MW 미공시"
+   },
+   {
+    "name": "Ava Community Energy",
+    "share": "미확인",
+    "prior": "미확인",
+    "basis": "회사 발표",
+    "buys": "Corsac 전력(PPA)",
+    "source": "Fervo 3Q26 어닝콜(2026-11-09)",
+    "why": "3Q 콜에서 Corsac PPA 상대방으로 언급"
+   },
+   {
+    "name": "기타 유틸리티·부하 사업자",
+    "share": [
+     0.2,
+     0.62
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "Cape·Corsac 전력",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm",
+    "why": "1,054MW − Google 396MW의 나머지 658MW를 SCE·Ava 등이 나눈다(몫 미공시)"
+   }
+  ]
+ },
+ "ma": {
+  "none": "최근 3년 인수·합병 없음(10-Q)"
+ },
+ "sync": {
+  "none": "매출이 분기 $0.1M뿐이고 분기 이력이 5개라 무역·PPI 지표와 싱크로율을 잴 표본이 없다. 전력 가격은 고정가 PPA라 도매가와도 연동되지 않는다"
+ },
+ "pq": {
+  "none": "매출 이력이 상업 운전 전이라 가격 × 물량 분해가 의미 없다. PPA 고정가라 가격 사이클도 없다"
+ },
+ "midterm": {
+  "sub": "clean_power",
+  "exposure": {},
+  "etf": null,
+  "why": "지열은 양당 지지가 넓다(3Q 콜, 내무부 인허가 가속). 표의 정책 채널에 지열 전용 항목이 없어 노출을 따로 매기지 않는다 — 정책 0단계 가설"
+ },
+ "overrides": {
+  "growth_base": {
+   "start": 1.52,
+   "end": 0.035,
+   "decay": 0.7
+  },
+  "margin_base": {
+   "target": 0.45,
+   "year_target": 6,
+   "lr": 0.45
+  },
+  "s2c": 0.2,
+  "why": "기준 연도는 첫 영업 해인 FY2027(회사 전망 $60~80M 중간 $70M). 성장 감속 0.7은 컨센서스 FY2028 $176M·FY2030 $700M과 맞추고 10년 차 매출 약 $3.2B(약 4.5~5GW, 추정)에서 멈추게 했다 — 자동 감속(0.84)은 10년 차 $20B 넘게 그려 계약·자원 근거가 없다. EBIT 이익률 목표 45%(6년 차): 연료비가 없는 장기 고정가 발전이라 EBITDA율 약 75~80%, 감가상각이 매출의 약 27~30%($5,500/kW ÷ 30년 ÷ kW당 연 매출 약 $700, 추정)라 EBIT 약 45~50%(추정). 재투자 효율 0.2: kW당 연 매출 약 $700~800(계약 매출 $11.9B ÷ 1,054MW ÷ 15년, 추정) ÷ 세액공제(ITC·PTC, 설치비의 약 30% 가정 — 추정) 뒤 순설치비 약 $3,800/kW. 자동 하한 0.5는 발전 설비 집약도를 과소평가한다"
+ },
+ "social": {
+  "as_of": "2026-11-10",
+  "summary": "커뮤니티 대화는 얇다. 최근 24시간·7일 추적 언급이 없고, 10월 레딧(r/wallstreetbets) 23건이 보호예수 해제(11/10 무렵)를 놓고 갈렸다.",
+  "channels": [
+   {
+    "channel": "레딧",
+    "story": "보호예수 해제가 다가오며 강세 쪽은 계약 MW와 싼 임차지를, 약세 쪽은 정부 대출·보조금 의존과 선거 위험을 들었다",
+    "direction": "혼재",
+    "check": "과장",
+    "check_note": "커뮤니티의 '1.7GW 계약'은 회사 공시(구속력 있는 PPA 1,054MW)보다 크다 — 프레임워크·옵션을 섞은 숫자로 보인다. 임차지 65만 에이커는 2Q 공시와 같다(3Q 67만)",
+    "share": 1.0
+   }
+  ],
+  "turn": [
+   {
+    "month": "2026-10",
+    "what": "보호예수 해제 논쟁 시작(Quantral 월간 요약 Moderate 59, 23건)"
+   }
+  ],
+  "source": "Quantral get_company_score·get_company_recaps(2026-11-10) — 글 인용·작성자 미저장"
+ },
+ "narrative": {
+  "as_of": "2026-11-10",
+  "stage": "확산",
+  "crowding": "낮음",
+  "summary": "'셰일 시추 기술로 지열을 어디서나'라는 이야기가 공모가 $27에서 시작해 $42까지 갔다가, 파일럿 성능을 문제 삼은 공매도 리서치와 보호예수 물량 우려 속에 $7.6까지 무너졌다. 3Q는 1호기 상업 운전과 Google 396MW라는 1차 증거로 그 이야기를 일부 되살렸다(+26%).",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "애널리스트 의견(17명)",
+      "Strong Buy 14 · Buy 2 · Hold 1"
+     ],
+     [
+      "목표가 평균",
+      "$32.2 (범위 $11~51)"
+     ],
+     [
+      "FY2027 매출 추정 8/14 → 10/30",
+      "$74.4M → $69.1M (−7%)"
+     ]
+    ],
+    "read": "셀사이드는 거의 만장일치 강세인데 목표가가 주가의 약 3배다 — 주가가 추정 하향보다 훨씬 많이 빠졌다. 3Q 콜 질문은 열 감소·물 손실(RBC), 설치비 경로(Barclays), 프로젝트 금융(Jefferies)으로 '기술이 실제로 버티나'에 몰렸다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유 기관(3Q26)",
+      "77곳"
+     ],
+     [
+      "많이 늘린 기관",
+      "Robeco Schweiz +1.31M주 · Geode +0.43M주 · Lingotto +0.36M주"
+     ],
+     [
+      "펀드 레터(7건)",
+      "강세 6 · 약세 1(공매도 리서치)"
+     ]
+    ],
+    "read": "기후 테마 펀드가 신규 편입했고, 한 공매도 리서치가 파일럿 성능을 문제 삼았다. 내부자는 상장 뒤 장내 매도 대신 옵션 행사가 주였다(Form 4 요약)."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "커뮤니티 대화(최근 7일)",
+      "추적 언급 없음"
+     ],
+     [
+      "10월 레딧 언급",
+      "23건, 보호예수 해제 논쟁"
+     ],
+     [
+      "일평균 거래량(30일)",
+      "약 9.4M주(유통 주식 약 183M주의 5%)"
+     ]
+    ],
+    "read": "리테일 관심은 보호예수 해제 날짜에 몰렸다. 하루 변동 폭이 평균 약 10%로 크다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "주요 제목",
+      "'주가 붕괴 뒤 훨씬 매력적'(Seeking Alpha 상향), Morgan Stanley·Needham 신규 커버리지"
+     ]
+    ],
+    "read": "언론은 Google 계약과 지열판 셰일 혁명 비유를, 약세 쪽은 공매도 리서치를 다뤘다."
+   }
+  },
+  "factors": [
+   {
+    "name": "셰일 기술로 지열 확장(학습 곡선)",
+    "thesis": "수평 시추·다단 파쇄를 표준 모듈로 반복하면 kW당 비용이 셰일처럼 떨어져 지열이 어디서나 경쟁력을 얻는다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "설치비 $7,000/kW(Phase I) → $5,500/kW(Cape Google 400 목표) → $3,000/kW(장기 목표)",
+    "status": "유지",
+    "falsifier": "Cape Google 400 준공 설치비가 $5,500/kW를 넘는다",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm",
+    "status_why": "(원래 표기 '진행 중')"
+   },
+   {
+    "name": "AI 데이터센터의 24시간 무탄소 전력",
+    "thesis": "하이퍼스케일러가 기저 무탄소 전력에 웃돈을 낸다 — Google 396MW가 첫 증거",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "PPA 658 → 1,054MW, 논의 중 수요의 50%가 데이터센터·하이퍼스케일러(3Q 콜)",
+    "status": "강화",
+    "falsifier": "다음 4분기 안에 새 구속력 있는 PPA가 없다",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "name": "자원 재평가(Cape 4.3 → 8.4GW)",
+    "thesis": "더 깊고 뜨겁게 시추할수록 같은 땅의 자원이 커진다 — 셰일의 매장량 재평가와 같은 경로",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "Cape 잠재 8.4GW, 초기 개발 48.6 → 54.7GW",
+    "status": "유지",
+    "falsifier": "평가 시추에서 온도·투수 조건이 기대에 못 미친다",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm",
+    "status_why": "(원래 표기 '진행 중')"
+   },
+   {
+    "name": "반대 — 저류층 열 감소·파일럿 성능 의문",
+    "thesis": "파일럿(Project Red) 생산 온도가 떨어졌고, 상업 단지에서도 같은 일이 생기면 PPA 납품 부족·벌금이 난다",
+    "inputs": "이익",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "Project Red 운전 약 3년 뒤 온도 하락(회사 인정, 하락 폭 미공시). Cape 운전 데이터는 몇 주",
+    "status": "유지",
+    "falsifier": "2·3호기 포함 Cape Phase I이 2027년 내내 계약 용량을 낸다(분기 MWh 공시)",
+    "source": "3Q 콜, Fiscal.ai 펀드 레터(공매도 리서치 요지)",
+    "status_why": "(원래 표기 '잠복')"
+   },
+   {
+    "name": "반대 — 자본 집약·희석",
+    "thesis": "kW당 $5,500을 대는 데 프로젝트 금융·세액공제·유상증자가 계속 필요하다. 현금 $1.9B는 Cape Google 400 $2.2B보다 작다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "TTM CAPEX $817M vs 매출 $0.4M, 4Q CAPEX $450~500M",
+    "status": "유지",
+    "falsifier": "2027 중반 프로젝트 금융이 LTV 약 70%로 성사된다",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm",
+    "status_why": "(원래 표기 '잠복')"
+   },
+   {
+    "name": "반대 — 보호예수 해제 물량",
+    "thesis": "상장 180일 보호예수 해제(11/10 무렵으로 알려짐)로 유통 주식이 크게 는다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "Class A 287.1M주 중 유통 약 182.5M주(TradingView) — 해제 대상 규모·날짜는 1차 확인 못 함(미확인)",
+    "status": "유지",
+    "falsifier": "해제 뒤 2주 거래량·주가가 해제 전 수준을 유지한다",
+    "source": "Quantral 월간 요약(커뮤니티 논쟁), TradingView 유통 주식",
+    "status_why": "(원래 표기 '진행 중')"
+   }
+  ],
+  "lead": {
+   "summary": "Fervo의 값은 **MW를 얼마나 빨리, kW당 얼마에, 얼마나 오래 뜨겁게 돌리나** 세 가지로 정해진다. 구속력 있는 계약 1,054MW·$11.9B가 수요를 증명했고, 이제 남은 질문은 공급 쪽이다 — 1호기 33MW가 9/30 상업 운전에 들어갔지만 운전 기록은 몇 주뿐이다.",
+   "value_story": "매출 경로는 계약에 묶여 있다. 2·3호기가 2027-01-01 상업 운전하면 Cape Phase I 약 100MW로 2027 매출 $60~80M(회사 전망), Cape Google 400(396MW)이 2028 하반기에 붙으면 컨센서스 FY2028 $176M·FY2030 $700M으로 간다. 가치를 가르는 숫자는 설치비($7,000 → $5,500/kW 목표)와 우물 온도 유지다. 연료비가 없어 운전 뒤 현금 마진은 높지만, 짓는 동안은 CAPEX가 매출의 수천 배다.",
+   "premium": {
+    "multiple": "선행 이익이 적자라 EV/매출로만 잴 수 있고, 이 값은 매출이 거의 없어 의미가 약하다. 시가총액 $3.4B·순현금 약 $1.5B로 EV 약 $1.9B — 구속력 있는 계약 MW당 약 $1.8M, 건설 중 포함 MW당 약 $3.7M이다(Phase I 설치비 $7.0M/MW보다 낮다).",
+    "eps": "EPS는 2029년까지 적자 추정이다(FY2030 +$0.25, 1명). 추정은 오히려 내려갔다 — FY2027 매출 8/14 $74.4M → 10/30 $69.1M, FY2028 $224M → $176M. 주가 하락의 원인은 추정 하향보다 배수 붕괴다."
+   },
+   "why_excited": "열광의 근거는 세 번 나왔다 — 5월 상장(공모가 $27, 고점 $42.65), 9월 Google 396MW 계약(+28% 하루), 11월 1호기 상업 운전 확인(+26% 하루). 식은 이유도 셋이다. 파일럿 성능을 문제 삼은 공매도 리서치, 매출 전 회사의 자금 소요, 그리고 보호예수 해제 물량 우려다. 상장 뒤 고점 대비 −73%다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "지열 전력(PPA)",
+     "what": "암반에 수평 우물과 인공 균열을 만들어 뜨거운 물을 순환시키고, ORC 발전 모듈(GeoBlock)로 24시간 전기를 만든다",
+     "use": "유틸리티(SCE 등)·하이퍼스케일러(Google)·부하 사업자",
+     "money": "15년 이상 고정가 PPA의 MWh당 요금 + 세액공제 매각",
+     "rev_share": 1.0,
+     "mix_basis": "공시 — 매출은 PPA 전력 판매뿐",
+     "name_en": "Enhanced geothermal power plant",
+     "what_en": "Horizontal wells and stimulated fractures circulate hot brine to an air-cooled organic Rankine cycle power block",
+     "use_en": "a desert geothermal power station with drilling rig and air-cooled condensers",
+     "bom": {
+      "as_of": "2026-11-16",
+      "items": [
+       {
+        "no": 1,
+        "part": "시추·완결(수평 우물)",
+        "part_en": "horizontal wells and fracture network",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "Helmerich & Payne(리그)",
+        "source": "3Q 콜"
+       },
+       {
+        "no": 2,
+        "part": "ORC 터빈",
+        "part_en": "ORC turbine generator",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "Turboden·Baker Hughes",
+        "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+       },
+       {
+        "no": 3,
+        "part": "공랭 응축기",
+        "part_en": "air-cooled condenser bank",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+       },
+       {
+        "no": 4,
+        "part": "복열기(recuperator)",
+        "part_en": "recuperator heat exchanger",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+       },
+       {
+        "no": 5,
+        "part": "광섬유 분포 센서",
+        "part_en": "distributed fiber optic sensing cable",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "Fiscal.ai 회사 설명"
+       },
+       {
+        "no": 6,
+        "part": "변전소·연계선",
+        "part_en": "substation and gen-tie line",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+       }
+      ]
+     }
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "개발 회사 → 운전 발전 회사. 1호기가 9/30 상업 운전, 4Q가 첫 매출 분기다",
+     "evidence": "8-K",
+     "falsifier": "2·3호기 상업 운전이 2027-01-01을 넘긴다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "drives": "multiple",
+     "status": "진행 중",
+     "change": "유틸리티 PPA 중심에서 하이퍼스케일러 take-or-pay(Google)와 계량기 뒤 직결(600MW 옵션)로 — 같은 MW를 더 좋은 조건에 판다",
+     "evidence": "8-K·10-Q",
+     "falsifier": "600MW 옵션이 2027년 안에 행사되지 않는다"
+    },
+    {
+     "lens": "기술 혁신",
+     "drives": "both",
+     "status": "진행 중",
+     "change": "3.0 우물 설계(측면 7,500ft·8 5/8인치 케이싱·430°F), 용해형 플러그·회전 조향 시추·단열 드릴 파이프 배치 완료, 터빈 출력 33 → 50MW",
+     "evidence": "3Q 콜(Guggenheim 질문 답변)",
+     "falsifier": "3.0 우물의 우물당 출력이 2Q 콜 예시(약 15MW)에 못 미친다"
+    },
+    {
+     "lens": "실행 속도",
+     "drives": "revision",
+     "status": "보통",
+     "change": "착공에서 상업 운전까지 23개월(1호기), 회사는 18개월 이하가 목표. 1 → 3호기 시운전 약 50% 단축",
+     "lead_time": {
+      "now": 23,
+      "unit": "개월",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Ormat(재래식 지열)",
+        "value": "미확인"
+       }
+      ],
+      "basis": "착공 → 상업 운전 23개월(Cape 1호기, 3Q 콜). 회사 목표 18개월 이하는 목표이지 실적이 아니다. 재래식 지열 동종의 같은 기준 기간은 공시로 확인하지 못했다"
+     },
+     "evidence": "3Q 콜",
+     "falsifier": "Cape Google 400 첫 전력이 2028 중반을 넘긴다"
+    },
+    {
+     "lens": "M&A",
+     "drives": "multiple",
+     "status": "해당 없음",
+     "change": "해당 없음(최근 3년 인수 없음, 10-Q)",
+     "evidence": "10-Q",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "CAPEX 낙수효과",
+     "drives": "revision",
+     "status": "진행 중",
+     "change": "하이퍼스케일러 전력 CAPEX의 수혜 쪽 — 단 고객 투자 발표가 곧 Fervo 매출은 아니다(구속력 있는 PPA만 센다)",
+     "evidence": "8-K PPA 1,054MW",
+     "falsifier": "하이퍼스케일러 전력 계약이 가스·원전으로 몰린다"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "IRA 세액공제(지하 ITC·지상 PTC)가 Phase I 경제성의 큰 몫 — 3Q 세금 혜택 $29.9M. 향후 호기는 PTC가 기본(CFO). DOE 탐사 보조금 후보 약 $20M",
+     "evidence": "8-K·3Q 콜",
+     "drives": "revision",
+     "status": "시행",
+     "falsifier": "지열 세액공제 축소 입법",
+     "house": {
+      "level": 4,
+      "why": "지열 세액공제는 기존 법(시행 중) — 축소 논의 확인 못 함(미확인)"
+     },
+     "senate": {
+      "level": 4,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "내무부가 BLM에 초기 탐사 활동 신속 승인 지시",
+     "evidence": "3Q 콜",
+     "drives": "multiple",
+     "status": "시행",
+     "falsifier": "탐사 인허가 기간이 다시 늘어난다",
+     "house": {
+      "level": 1,
+      "why": "행정 조치 — 의회 절차 아님"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "BAAJA(초당적, Mike Lee 상원의원 공동 발의) — 지열 인허가에 석유·가스와 같은 대우, 송전 조항. 회사는 성장 계획이 이 법에 기대지 않는다고 밝힘",
+     "evidence": "3Q 콜(William Blair 질문)",
+     "drives": "multiple",
+     "status": "발의",
+     "falsifier": "법안이 위원회를 통과하지 못한다"
+    }
+   }
+  }
+ },
+ "ladder": {
+  "exit": {
+   "ev_sales": 6.0,
+   "ev_ebitda": 12.0,
+   "ebitda_margin": 0.75,
+   "net_margin": 0.25,
+   "opm": 0.45,
+   "basis": "출구 EV/EBITDA 12배는 Ormat 선행 EV/EBITDA(약 13~18배) 아래 — 장기 계약 지열 IPP의 성숙 배수(추정). EBITDA율 75%·EBIT률 45%는 연료비 없는 원가 구조와 감가상각(매출의 약 30%) 가정(추정), 순이익률 25%는 프로젝트 부채 이자 반영(추정)"
+  },
+  "base": {
+   "basis": "기준 EPS·이익률은 적자라 쓰지 않는다 — 첫 흑자 해 추정(FY2030 EPS +$0.25, 1명)부터 잰다",
+   "cagr_from": {
+    "eps": 0.25,
+    "year": 4,
+    "name": "FY2030 컨센서스(1명)"
+   }
+  },
+  "refs": [
+   {
+    "label": "FY2027(회사 전망 중간)",
+    "value": 0.07
+   },
+   {
+    "label": "FY2030(컨센서스)",
+    "value": 0.7
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "Cape Phase I 100MW와 Cape Google 400이 일정대로 돌고 설치비 $5,500/kW가 확인되면 시가총액 약 $6.7B — 2030 매출 약 $0.7B에 EV/매출 약 7배(Ormat 수준)",
+    "outlook": "계약 MW로 매출 경로는 보인다. 관건은 열 감소가 없다는 운전 데이터와 2027 중반 프로젝트 금융"
+   },
+   "3": {
+    "verdict": "조건부",
+    "path": "2030 목표 1.1GW 이상과 600MW Google 옵션 행사, 2030년대 초 매출 $1.3B 이상",
+    "outlook": "옵션 행사와 추가 PPA가 필요하다 — 현재는 프레임워크(구속력 없음)"
+   },
+   "5": {
+    "verdict": "경로 미확인",
+    "path": "수 GW 단위 신규 단지(Corsac·아이다호)가 Cape처럼 개발되고 장기 목표 $3,000/kW에 다가가야 한다",
+    "outlook": "평가 시추 결과가 2027년에 나온다 — 그 전에는 가를 자료가 없다"
+   },
+   "10": {
+    "verdict": "경로 미확인",
+    "path": "시가총액 약 $34B — 지열이 미국 기저 전력의 주요 원천이 되는 시나리오(5GW 이상 운전, 추정)",
+    "outlook": "기술(열 유지)·비용($3,000/kW)·자금(수십 $B) 세 가지가 모두 맞아야 한다. 10배는 기저율상 희귀 사건이다"
+   }
+  },
+  "summary": "2배는 계약된 MW를 일정·예산대로 돌리면 열리는 조건부 경로이고, 3배 이상은 아직 구속력 없는 옵션·프레임워크와 새 단지 평가 결과에 달렸다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "확정 계약 $11.9B를 가진 회사가 EV $1.9B다 — 운전이 증명되는 만큼 재평가된다",
+    "evidence": [
+     "PPA 1,054MW·계약 매출 $11.9B",
+     "1호기 설계 유량·온도 도달, 9/30 상업 운전"
+    ],
+    "falsifier": "2·3호기 상업 운전이 2027-01-01을 넘긴다"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "주가 하락은 추정 하향보다 배수 붕괴였다 — 기술 의문이 풀리면 배수가 돌아온다",
+    "evidence": [
+     "FY2027 매출 추정 −7% vs 주가 상장 고점 대비 −73%",
+     "Google take-or-pay에 Alphabet 모회사 보증(콜)"
+    ],
+    "falsifier": "Cape 운전 데이터가 열 감소를 보인다"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수요는 증명됐고 공급(열 유지·비용)은 아직이다 — 증거가 나올 때까지 판단을 미룬다",
+    "evidence": [
+     "Cape 운전 데이터는 몇 주",
+     "Cape Google 400 시추 18%, 금융 2027 중반"
+    ],
+    "falsifier": "2027 상반기 분기 MWh가 계약 용량에 맞는다"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "자금 소요가 현금보다 크고 보호예수 해제 물량이 겹친다",
+    "evidence": [
+     "현금 $1.9B vs Cape Google 400 투자 $2.2B",
+     "TTM CAPEX $817M vs 매출 $0.4M"
+    ],
+    "falsifier": "2027 중반 프로젝트 금융이 LTV 약 70%로 성사된다"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "파일럿 열 감소가 상업 단지에서 반복되면 PPA 납품 부족·벌금이 난다",
+    "evidence": [
+     "Project Red 생산 온도 하락(회사 인정)",
+     "공매도 리서치가 파일럿 성능 과장을 주장"
+    ],
+    "falsifier": "Cape Phase I이 2027년 내내 계약 용량을 낸다"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "계약 MW당 EV가 약 $1.8M이다. 짓는 데 $5.5~7M이 드는 자산을 그보다 싸게 사고 있다"
+     },
+     {
+      "seat": "Buy",
+      "text": "애널리스트 추정은 7% 내려갔는데 주가는 70% 넘게 빠졌다. 배수의 문제다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "수요 쪽 증거는 충분하다. 공급 쪽 증거 — 우물이 몇 년 동안 뜨거운가 — 는 아직 몇 주 치다"
+     },
+     {
+      "seat": "Sell",
+      "text": "4Q에만 CAPEX $450~500M이다. 현금으로 Cape Google 400을 끝까지 대지 못한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "파일럿 온도가 떨어졌다는 건 회사도 인정했다. 남은 건 속도다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Cape는 파일럿과 다르다 — 측면 길이·케이싱·온도가 모두 크고, 1호기는 설계 유량·온도를 냈다",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "'설계대로'는 운전 몇 주의 말이다. 열 감소는 몇 년 뒤에 보인다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "MW당 EV 비교는 미래 CAPEX $수 B를 빼지 않은 숫자다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "그 CAPEX의 약 70%를 프로젝트 부채로, 일부를 세액공제 매각으로 댄다 — Phase I에서 이미 그렇게 했다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Neutral",
+      "text": "두 쪽 다 가를 자료가 2027에 나온다 — Phase I 연간 MWh와 Cape Google 400 금융 조건",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Google이 take-or-pay로 15년을 묶은 건 대주단 수준의 실사를 거쳤다는 뜻이다",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "구매자의 실사가 저류층 위험을 없애지는 않는다. 위험은 납품 의무를 진 Fervo에 남는다",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "보호예수 해제 물량은 펀더멘털과 무관하게 가격을 누른다",
+      "to": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "해제 물량 규모는 1차 자료로 확인되지 않았고, 지금 가격엔 상당 부분 반영됐을 수 있다",
+      "to": "Sell"
+     },
+     {
+      "seat": "Neutral",
+      "text": "DCF 기본 내재가치가 시가총액 아래라는 점도 무시할 수 없다 — 학습 곡선이 증명돼야 그 차이가 메워진다",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "2·3호기 상업 운전이 1월에 확인되면 지금 가격은 기술 위험을 지나치게 할인한 것이다"
+     },
+     {
+      "seat": "Buy",
+      "text": "계약된 수요와 실제 첫 운전 — 둘이 겹친 첫 분기다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "증거는 2027에 나온다. 그 전까지 변동성이 판단보다 크다"
+     },
+     {
+      "seat": "Sell",
+      "text": "자금 조달 조건을 보기 전엔 희석 위험을 할인해야 한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "열 감소 데이터를 독립적으로 볼 수 없는 한 위험이 남는다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "수요(1,054MW 계약)와 첫 운전은 확인됐지만, 우물 열 유지와 Cape Google 400 자금 조달이 2027에야 증명된다",
+   "dissent": "Strong Buy 자리는 계약 MW당 EV가 설치비보다 낮다는 점을 근거로 재평가를 끝까지 주장했다"
+  }
+ },
+ "options_implied": {
+  "spot": 11.32,
+  "expiry": "2026-11-20",
+  "strike": 11.0,
+  "straddle": 1.475,
+  "iv": 1.14135,
+  "as_of": "2026-11-16 01:27",
+  "earnings": "2026-11-19",
+  "session": "after",
+  "source": "Cboe 지연 시세(15분)"
+ },
+ "assets": {
+  "as_of": "3Q26",
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "ppe": [],
+  "intangibles": [],
+  "dep_annual": [],
+  "quarters": [
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "da": 0.346,
+    "ppe_net": 1491.721,
+    "ppe_gross": null
+   }
+  ],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기). 분기 유형자산 총액이 없어 순액 기준",
+  "hist": [
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "rev": 0.116,
+    "ebit": -43.746,
+    "cogs": 1.486,
+    "capex": 256.744,
+    "da": 0.346,
+    "amort": null,
+    "bal": {
+     "ar": null,
+     "inv": null,
+     "prepaid": 21.367,
+     "ap": null,
+     "accrued": 11.061,
+     "deferred_rev": null,
+     "ppe": 1491.721,
+     "rou": 106.6,
+     "goodwill": null,
+     "intangibles": null,
+     "other": 31.45
+    },
+    "lease": 129.7
+   }
+  ],
+  "missing": [
+   "분기 감가상각·유형자산(순액) 9분기",
+   "분기 매출·영업이익 8분기",
+   "유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)",
+   "무형자산 항목(10-K 주석에서 모델이 채움)"
+  ]
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "계약 MW가 EV보다 크다",
+    "claim": "구속력 있는 계약 1,054MW·계약 매출 $11.9B에 비해 EV 약 $1.9B는 계약 MW당 약 $1.8M이다",
+    "evidence": "3Q26 8-K: PPA 1,054MW·계약 매출 $11.9B(2Q $7.2B에서 +65%), Google 396MW 15년 확정 인수 계약. 1호기 설치비 MW당 약 $7.0M",
+    "variant": "시장은 매출 전 성장주로 배수를 낮췄지만, 이 숫자는 이미 체결된 계약을 지을 설치비의 약 4분의 1만 값으로 준다",
+    "proof": "2·3호기 상업 운전(2027-01-01 목표)과 4Q26 실적의 계약 MW 변화",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "title": "1호기가 첫 답을 냈다",
+    "claim": "Cape 1호기 33MW가 9/30 상업 운전에 들어가 '지을 수 있나'의 첫 증거가 나왔고, 1 → 3호기 시운전 기간은 약 50% 줄었다",
+    "evidence": "3Q 콜: 1호기 설계 유량·온도 도달, 착공 → 상업 운전 23개월, 회사 목표 18개월 이하",
+    "variant": "공매도 리서치가 파일럿 성능을 문제 삼은 뒤 시장은 상업 단지도 같다고 봤다. 상업 단지의 운전 기록은 아직 몇 주라 양쪽 다 확인 전이다",
+    "proof": "4Q26·1Q27 1호기 순출력·가동률 공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026071911/exhibit991earningsrelease1.htm"
+   },
+   {
+    "title": "자금 경로가 주가를 정한다",
+    "claim": "Cape Google 400 투자 약 $2.2B를 프로젝트 부채(담보 가치 대비 약 70%)와 세액공제 매각으로 대면 증자 없이 지을 수 있다",
+    "evidence": "9/30 비제한 현금 $1.916B, 하반기 CAPEX $700~750M(종전 $850~900M에서 시점 이연), Cape Phase I은 Granite 대주단 약 $421M·Liberty Mutual 세액공제 매수로 조달(10-Q)",
+    "variant": "시장은 희석을 기본값으로 둔다. 회사는 Phase I과 같은 구조를 반복하겠다고 했다 — 조건이 확인되면 희석 할인이 줄어든다",
+    "proof": "2027년 중반 Cape Google 400 프로젝트 금융 조건",
+    "source": "https://www.sec.gov/Archives/edgar/data/1853868/000162828026072482/frvo-20260930.htm"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-09-01",
+    "status": "완료",
+    "kind": "생성",
+    "event": "Google 396MW 15년 확정 인수 계약 공시(계약일 8/26)",
+    "reaction": "+28.4%(하루)"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "상장 뒤 종가 저점 $7.79 — 공매도 리서치·보호예수 해제 우려",
+    "reaction": "5/21 종가 고점 대비 −81.7%"
+   },
+   {
+    "date": "2026-11-09",
+    "status": "완료",
+    "kind": "생성",
+    "event": "3Q26 실적·1호기 상업 운전 확인",
+    "reaction": "+26.1%(하루)"
+   },
+   {
+    "date": "2026-11-12",
+    "status": "완료",
+    "kind": "확인",
+    "event": "BofA 목표가 $30→$25(Buy 유지)",
+    "reaction": "−10.0%(하루)"
+   },
+   {
+    "date": "2027-01-01",
+    "status": "예정",
+    "kind": "확인",
+    "event": "Cape Phase I 2·3호기 상업 운전 목표",
+    "check": "두 호기 모두 상업 운전 공시 — 약 100MW 운전",
+    "then": "되면 기본, 밀리면 약세"
+   },
+   {
+    "date": "2027-02~03(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26 실적·첫 10-K",
+    "check": "1호기 순출력이 설계 용량 33MW 부근 유지, 4Q CAPEX $450~500M 안",
+    "then": "출력 유지면 기본~강세, 저하면 약세"
+   },
+   {
+    "date": "2027 중반(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "Cape Google 400 프로젝트 금융",
+    "check": "담보 가치 대비 대출 약 70% 이상, 보통주 증자 없음",
+    "then": "성사면 강세 쪽, 증자면 약세 쪽"
+   }
+  ],
+  "trade": {
+   "watch": "보호예수·변동성(하루 평균 변동 약 10%) 구간이라 차트 지지 구간과 계약 MW당 EV를 함께 본다",
+   "confirm": "2·3호기 상업 운전 공시(2027-01) 그리고 4Q26 1호기 순출력이 설계 용량 부근",
+   "invalid": "2·3호기 상업 운전 지연 공시, 우물 출력 저하 공시, 또는 2027년 중반 프로젝트 금융 대신 보통주 증자",
+   "trim": "목표주가 부근에서는 2028년 Google 전력 공급 전까지 남은 실행 위험을 다시 잰다",
+   "style": "실적·현장 공개일 전후 옵션 내재 변동폭이 ±13% 안팎이라 이벤트 직후 추격은 손익비가 나쁘다"
+  }
+ }
+}
