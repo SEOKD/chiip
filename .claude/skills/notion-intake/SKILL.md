@@ -39,6 +39,7 @@ argument-hint: "<insights|informations|stocks> <page_id> [inbox 텍스트 경로
 - **채널체크**: 필드 인텔일 수 있다 → 텔레그램에는 '채널체크 반영: 영향 종목 n개, 상세 로컬'만. 대조는 로컬 상세 파일에만, invest성 판정 근거로 쓰지 않는다. 취재원 단서가 보이면 즉시 멈추고 '필드 인텔 등급 확인 필요'만 알린다.
 - **Exclusive Source 페이지**: 채널체크가 아니라 마스터 지정 F1 단서다. `docs/channels/notion.md` 'Exclusive Source'대로 `--sync` → 새 단서 `--add` → **내용 자체를 해설한 Chiip Exclusive 피드**를 만든다(2026-11-11 마스터 지시, 같은 절 '1급 기밀·해설 피드'). 웹 검색으로 대조하지 않고, 상세 파일·노션 쓰기·리포트에 내용을 남기지 않는다.
 - **CAPEX·산업 데이터**: `indicator-update`·`valuation-bridge` 원리 — 숫자가 어느 종목의 실적 동인(물량·ASP·점유율)에 닿는지, 컨센서스와 차이.
+- **Chiip View 커버리지에 헬스케어 포함**(마스터 지시 2026-11-16 "Chiip View의 커버리지에 헬스케어도 넣도록 하라"): 제약·바이오·의료기기·생명과학 도구·의료 서비스·헬스케어 정책(FDA 승인·CRL·임상 결과·약가·보험·ACA 등)도 Chiip View로 판단한다. 'AI 하드웨어 유니버스 밖이라 판단하지 않는다'고 쓰지 않는다. 판단 틀은 `knowledge/methods/sector_lenses/health.md`(임상 단계·승인 확률·특허 절벽·약가·보험 등재). FDA 결정·임상 수치는 1차 출처(FDA·회사 공시·ClinicalTrials.gov·학회 초록)로 확인하고, 확인 전이면 '브리핑 인용, 미확인'으로 둔다. 영향 종목은 알파 점수와 함께 적고 5.0 경계를 넘을 만하면 알파 판단에 올린다. 반도체 축과 연결이 없으면 억지로 잇지 않는다.
 - 영향 종목은 알파 점수(`knowledge/models/alpha/latest.json`)·포커스 점수와 함께 적고, 5.0 경계를 넘을 만한 종목은 `knowledge/models/alpha/judgments/<오늘>.csv`에 판단을 추가한 뒤 `py scripts/alpha/score.py --finalize`.
 
 ### Insights (마스터 인사이트 글)
