@@ -69,7 +69,7 @@
   },
   {
    "q": "누가 사 주나?",
-   "a": "최대 고객 Customer A(Customer A(10-Q)) 53%, 상위 3곳 77%. 공시·회사 발표로 확인한 몫은 77%다.",
+   "a": "최대 고객 Customer A(10-Q) 53%, 상위 3곳 77%. 공시·회사 발표로 확인한 몫은 77%다.",
    "auto": true
   },
   {
@@ -650,7 +650,7 @@
    "blocks": [
     {
      "type": "hl",
-     "text": "**3Q26 최대 고객 Customer A(Customer A(10-Q)) 53%, 상위 3곳 77%, 집중도 집중.** 공시·회사 발표로 확인한 몫은 매출의 77%이고, 나머지 고객 몫은 추정이거나 미분해다. 3Q26 매출의 53%가 Customer A 한 곳이다(1년 전 23%). 9개월로는 A 40%·B 18%·C 14%·D 11%다. 회사는 일부가 최종 고객을 대신 사는 위탁 생산사라고 적었다 — 최종 수요처 집중은 숫자보다 클 수도 작을 수도 있다."
+     "text": "**3Q26 최대 고객 Customer A(10-Q) 53%, 상위 3곳 77%, 집중도 집중.** 공시·회사 발표로 확인한 몫은 매출의 77%이고, 나머지 고객 몫은 추정이거나 미분해다. 3Q26 매출의 53%가 Customer A 한 곳이다(1년 전 23%). 9개월로는 A 40%·B 18%·C 14%·D 11%다. 회사는 일부가 최종 고객을 대신 사는 위탁 생산사라고 적었다 — 최종 수요처 집중은 숫자보다 클 수도 작을 수도 있다."
     },
     {
      "type": "table",
@@ -663,25 +663,25 @@
      ],
      "rows": [
       [
-       "Customer A(Customer A(10-Q))",
+       "Customer A(10-Q)",
        "53%",
        "+30%p",
        "공시"
       ],
       [
-       "Customer B(Customer B(10-Q))",
+       "Customer B(10-Q)",
        "14%",
        "-10%p",
        "공시"
       ],
       [
-       "Customer C(Customer C(10-Q))",
+       "Customer C(10-Q)",
        "10%",
        "+0%p",
        "공시"
       ],
       [
-       "Customer D(Customer D(10-Q))",
+       "Customer D(10-Q)",
        "0~10%",
        "-22%p",
        "추정"
@@ -704,7 +704,7 @@
      "type": "boxes",
      "items": [
       {
-       "title": "Customer A(Customer A(10-Q))",
+       "title": "Customer A(10-Q)",
        "tag": "공시",
        "lines": [
         [
@@ -718,7 +718,7 @@
        ]
       },
       {
-       "title": "Customer B(Customer B(10-Q))",
+       "title": "Customer B(10-Q)",
        "tag": "공시",
        "lines": [
         [
@@ -732,7 +732,7 @@
        ]
       },
       {
-       "title": "Customer C(Customer C(10-Q))",
+       "title": "Customer C(10-Q)",
        "tag": "공시",
        "lines": [
         [
@@ -746,7 +746,7 @@
        ]
       },
       {
-       "title": "Customer D(Customer D(10-Q))",
+       "title": "Customer D(10-Q)",
        "tag": "추정",
        "lines": [
         [
@@ -3691,6 +3691,35 @@
      ]
     }
    ]
+  },
+  {
+   "h2": "정정 기록 — Chiip Proviser 23:40",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "무엇을(전 → 후)",
+      "왜",
+      "근거"
+     ],
+     "rows": [
+      [
+       "머리 타일 업사이드: '손익비(강세÷약세) -0.4' → '손익비 해당 없음(강세 $146.61도 현재가 대비 −34%)'",
+       "강세 값도 현재가 아래라 손익비 음수는 읽을 뜻이 없다 — 재계산 146.61 ÷ 221.83 − 1 = −33.9%",
+       "엔진 시나리오 값(약세 $48.59·강세 $146.61·현재가 $221.83)"
+      ],
+      [
+       "'Customer A(Customer A(10-Q))' 꼴 이름 겹침 → 'Customer A(10-Q)'",
+       "같은 이름이 두 번 찍힌 표기 오류(뜻 변화 없음)",
+       "3Q26 10-Q 고객 집중 표 — A 53%(1년 전 23%)·9개월 A 40%·B 18%·C 14%·D 11% 원문과 일치"
+      ]
+     ]
+    },
+    {
+     "type": "p",
+     "text": "목표주가·구매 등급·시나리오 값은 그대로다(정정은 표기·가이던스 인용값만, 밸류에이션 입력과 무관)."
+    }
+   ]
   }
  ],
  "sources": [
@@ -3746,7 +3775,33 @@
   "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
   "https://www.sec.gov/Archives/edgar/data/1736297/000173629726000010/alab-20251231.htm"
  ],
- "corrections": [],
+ "corrections": [
+  {
+   "from": "Customer A(Customer A(10-Q))",
+   "to": "Customer A(10-Q)",
+   "by": "Chiip Proviser 2026-11-16"
+  },
+  {
+   "from": "Customer B(Customer B(10-Q))",
+   "to": "Customer B(10-Q)",
+   "by": "Chiip Proviser 2026-11-16"
+  },
+  {
+   "from": "Customer C(Customer C(10-Q))",
+   "to": "Customer C(10-Q)",
+   "by": "Chiip Proviser 2026-11-16"
+  },
+  {
+   "from": "Customer D(Customer D(10-Q))",
+   "to": "Customer D(10-Q)",
+   "by": "Chiip Proviser 2026-11-16"
+  },
+  {
+   "from": "목표주가 $99 · 다운사이드 -78% · 손익비(강세÷약세) -0.4",
+   "to": "목표주가 $99 · 다운사이드 -78% · 손익비 해당 없음(강세 $146.61도 현재가 대비 −34%)",
+   "by": "Chiip Proviser 2026-11-16"
+  }
+ ],
  "tiles": [
   {
    "k": "주가",
@@ -3762,7 +3817,7 @@
   {
    "k": "업사이드",
    "v": "-55%",
-   "sub": "목표주가 $99 · 다운사이드 -78% · 손익비(강세÷약세) -0.4",
+   "sub": "목표주가 $99 · 다운사이드 -78% · 손익비 해당 없음(강세 $146.61도 현재가 대비 −34%)",
    "tone": "blue"
   },
   {
@@ -8716,7 +8771,7 @@
    "unit": "%",
    "rows": [
     {
-     "label": "Customer A(Customer A(10-Q))",
+     "label": "Customer A(10-Q)",
      "bars": [
       {
        "name": "공시·회사 발표",
@@ -8726,7 +8781,7 @@
      ]
     },
     {
-     "label": "Customer B(Customer B(10-Q))",
+     "label": "Customer B(10-Q)",
      "bars": [
       {
        "name": "공시·회사 발표",
@@ -8736,7 +8791,7 @@
      ]
     },
     {
-     "label": "Customer C(Customer C(10-Q))",
+     "label": "Customer C(10-Q)",
      "bars": [
       {
        "name": "공시·회사 발표",
@@ -8746,7 +8801,7 @@
      ]
     },
     {
-     "label": "Customer D(Customer D(10-Q))",
+     "label": "Customer D(10-Q)",
      "bars": [
       {
        "name": "추정",
