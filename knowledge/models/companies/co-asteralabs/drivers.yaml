@@ -1,0 +1,106 @@
+auto: true
+id: co-asteralabs
+name: Astera Labs
+ticker: ALAB
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.3
+  TW: 0.3
+  ROW: 0.4
+tax: 0.21
+horizon: 10
+as_of: '2026-11-16'
+market:
+  date: '2026-11-16'
+  price: 221.83
+  shares: 0.184702
+  net_debt: -1.33325
+  source: 가격 = 2026-11-13 TradingView 종가 $221.83(yfinance 일치). 주식 수 174,752천주(10-Q
+    재무상태표 2026-09-30 — 희석 증권과 같은 날짜, 10/31 표지 174,782,075주와 0.02% 차이). 현금 $209.4M
+    + 시장성 증권 $1,168.8M = $1,378.2M(10-Q 2026-09-30). 차입금 없음, 운영 리스 부채 $45.0M을 차입으로
+    넣음(10-Q 리스 주석)
+rev0: 2.0658
+ic0: 0.666218
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.6701
+      end: 0.03
+      decay: 0.383
+    margin:
+      m0: 0.285
+      target: 0.2973
+      year_target: 3
+      lr: 0.25
+      lam: 0.35
+      anchors:
+      - 0.2997
+      - 0.2973
+    s2c: 2.336
+  bull:
+    prob: 0.3
+    growth:
+      start: 1.0815
+      end: 0.034999999999999996
+      decay: 0.433
+    margin:
+      m0: 0.285
+      target: 0.3173
+      year_target: 3
+      lr: 0.25
+      lam: 0.25
+      anchors:
+      - 0.2997
+      - 0.2973
+    s2c: 2.686
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.307
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.285
+      target: 0.2773
+      year_target: 3
+      lr: 0.25
+      lam: 0.5
+      anchors:
+      - 0.2997
+      - 0.2973
+    s2c: 1.986
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 2.0658
+  growth: 컨센서스 1년차 67.0%, 2년차 27.5%
+  margin: 1~2년차 컨센서스 30.0%, 29.7% 고정 → 목표 30%(3년차, 덮어쓰기) → 장기 수렴 25%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.336
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 30.7%~108.2%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +48.9% 아래·강세 +87.6% 위 확률. 내부 관점(컨센서스 +67.0%, σ 39.1%: 범위 77.5% ÷ d2(9) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 영업이익률(주식 보상 차감 뒤) 25%: 조정 OPM 45% − SBC 약 14% ≈ 31%가 지금 수준이고,
+    세대 경쟁·신규 축 투자로 장기에는 낮아진다고 본다(판단, 근거 약함 — 팹리스 연결 칩 장기 GAAP OPM 표본 미산정)'
+  shares: 완전 희석 = 기본 0.174752(2026-09-30) + 옵션·RSU·워런트·전환 0.0100 — 3Q 가중 희석 184.08M
+    − 기본 174.13M = 9.95M주(RSU·PSU·옵션·고객 워런트, 3Q
+notes:
+- 자동 생성(build_drivers) 2026-11-16 — 데이터 묶음 2026-11-16
+- '어닝콜 위험: 3Q 매출의 53%가 Customer A 한 곳(10-Q) — 직접 고객은 위탁 생산사일 수 있다'
+- '어닝콜 위험: 4대 신규 축 투자로 영업비용 분기 $194~200M(전 분기 $162M)'
+- '어닝콜 위험: 2027년 성장 속도에 대한 경영진 언급 회피(Barclays 질문)'
+evidence:
+- https://fiscal.ai/company/NasdaqGS-ALAB
+- https://www.sec.gov/Archives/edgar/data/1736297/000173629726000045/alab-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1736297/000173629726000010/alab-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/1736297/000173629726000044/alab-20261103.htm
+- https://www.sec.gov/Archives/edgar/data/1736297/000110465926012606/tm265461d1_8k.htm
+- https://www.sec.gov/Archives/edgar/data/1736297/000162828026070258/alab-20261102.htm
+- Fiscal.ai MCP 2026-11-16 — 표준화 손익·자체 추정, 3Q26·2Q26 어닝콜 전문
+- TradingView NASDAQ:ALAB 일봉(2026-11-13)
