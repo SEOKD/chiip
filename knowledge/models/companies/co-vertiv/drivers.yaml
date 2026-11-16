@@ -1,25 +1,97 @@
-# Vertiv(VRT) 밸류에이션 v2 동인 — 1단계 시험(2026-10-28). 금액 단위 10억 달러
+auto: true
 id: co-vertiv
 name: Vertiv
 ticker: VRT
-unit: "B$"
-unit_usd: 1000000000
+unit: B$
+unit_usd: 1000000000.0
 industry: electrical_equipment
-region_mix: {US: 0.6, EU: 0.2, TW: 0.2}
-tax: 0.22
+region_mix:
+  US: 0.62
+  ROW: 0.38
+tax: 0.21
 horizon: 10
-as_of: 2026-10-28
-market: {date: 2026-10-28, price: 208.56, shares: 0.385, net_debt: 0.23, source: "easyconomics company_profile(yfinance) 2026-10-28 — 총차입 3.34 − 현금 3.11"}
-rev0: 11.9          # 2026 추정(최근 12개월 매출 11.48, 성장 24% — 4분기 반영 근사, 근거 약함)
-ic0: 5.5            # FY2025 10-K 자기자본 3.94 + 장기차입 2.89 − 현금 1.73 = 5.10에 2026 증분 근사
+as_of: '2026-11-16'
+market:
+  date: '2026-11-16'
+  price: 202.07
+  shares: 0.392678
+  net_debt: -0.4435
+  source: 가격 = 2026-11-13 TradingView 종가 $202.07(yfinance 일치). 주식 수 385,027,873주(3Q26
+    10-Q 2026-09-30, 희석 증권과 같은 날짜). 현금 $3,512.9M + 단기투자 $198.8M = $3,711.7M. 차입 =
+    장기차입 $2,925.1M + 유동성 장기차입 $3.4M + 리스 부채 $339.7M = $3,268.2M(10-Q 2026-09-30, Fiscal.ai
+    표준화)
+rev0: 14.65
+ic0: 5.0585
 scenarios:
-  base: {prob: 0.50, growth: {start: 0.20, end: 0.035, decay: 0.75}, margin: {m0: 0.205, target: 0.230, year_target: 3, lr: 0.18, lam: 0.38}, s2c: 4.0}
-  bull: {prob: 0.25, growth: {start: 0.28, end: 0.040, decay: 0.78}, margin: {m0: 0.210, target: 0.250, year_target: 3, lr: 0.20, lam: 0.25}, s2c: 5.0}
-  bear: {prob: 0.25, growth: {start: 0.10, end: 0.030, decay: 0.60}, margin: {m0: 0.195, target: 0.190, year_target: 3, lr: 0.15, lam: 0.50}, s2c: 3.0}
-mc: {sigma_growth: 0.04, sigma_margin: 0.015, sigma_s2c: 0.20, sigma_wacc: 0.005}
+  base:
+    prob: 0.35
+    growth:
+      start: 0.3379
+      end: 0.035
+      decay: 0.541
+    margin:
+      m0: 0.2351
+      target: 0.24
+      year_target: 4
+      lr: 0.22
+      lam: 0.35
+      anchors:
+      - 0.2501
+      - 0.261
+    s2c: 2.593
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.4608
+      end: 0.04
+      decay: 0.5910000000000001
+    margin:
+      m0: 0.2351
+      target: 0.26
+      year_target: 4
+      lr: 0.22
+      lam: 0.25
+      anchors:
+      - 0.2501
+      - 0.261
+    s2c: 2.982
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.2014
+      end: 0.030000000000000002
+      decay: 0.44100000000000006
+    margin:
+      m0: 0.2351
+      target: 0.22
+      year_target: 4
+      lr: 0.22
+      lam: 0.5
+      anchors:
+      - 0.2501
+      - 0.261
+    s2c: 2.204
+mc:
+  sigma_growth: 0.0648
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [14.65, 14.65] (3Q26 어닝콜(2026-10-28)·실적 보도자료(8-K))
+  growth: 컨센서스 1년차 33.8%, 2년차 19.9%
+  margin: 1~2년차 컨센서스 25.0%, 26.1% 고정 → 목표 24%(4년차, 덮어쓰기) → 장기 수렴 22%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.593
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 20.1%~46.1%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.35, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +27.0% 아래·강세 +39.9% 위 확률. 내부 관점(컨센서스 +33.8%, σ 13.7%: 범위 25.9% ÷ d2(8) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 영업이익률(GAAP 근사) 22%: 조정 OPM 2026 24%(가이던스)에서 인수 상각·SBC를 빼면 GAAP
+    약 21~22%이고, 동종(Eaton 17%·Hubbell 20%·nVent 18%) 위에서 증설 경쟁을 감안해 더 올리지 않는다'
+  shares: 완전 희석 = 기본 0.385027873(2026-09-30) + 옵션·RSU·워런트·전환 0.0076 — 3Q26 희석 가중 392.68M
+    − 기본 가중 385.00M = 7.69M주(옵션·RSU, 3Q26 손익계
 notes:
-  - "증분 매출/투하자본 최근 3년 약 6.0(SEC XBRL) — 기본 4.0으로 보수화"
-  - "영업이익률 최근 12개월 20.4%, FY2025 17.9%(무형자산 상각 포함 영업이익 기준)"
-  - "1단계 한계: 컨센서스 추정치 없음(EODHD 대기) — 성장 경로는 판단"
-evidence:
-  - "SEC 10-K XBRL (knowledge/models/fundamentals/us/VRT.csv)"
+- 자동 생성(build_drivers) 2026-11-16 — 데이터 묶음 2026-11-16
+- '어닝콜 위험: 4Q 매출이 3Q와 거의 같은 수준(계절성 실종) — 공급·출하 일정 집중'
+- '어닝콜 위험: 재고 $3.29B(연초 대비 +$1.8B)와 선수금 $4.12B — 선수금이 줄면 현금흐름이 급감'
+- '어닝콜 위험: 주문 금액 비공시 — 시장이 성장 가시성을 직접 확인하지 못함'
+evidence: []
