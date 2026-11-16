@@ -1,0 +1,88 @@
+id: us-hnrg
+name: Hallador Energy
+ticker: HNRG
+unit: B$
+unit_usd: 1000000000
+industry: power_ipp
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-10'
+market:
+  date: '2026-11-13'
+  price: 10.69
+  shares: 0.04783
+  net_debt: 0.129
+  why: '순차입 0.129 = 장부 차입 0.526 − 비제한 현금 0.103 − Turtle Creek 건설 계정 제한 현금 0.294(10-Q 9/30). datapack 0.426은 제한 현금을 빼지 않은 값 — 브리지 대출로 조달해 건설 계정에 묶어 둔 현금을 부채로만 세지 않으려고 고쳤다. Turtle Creek 가치·남은 공사비는 기본 동인에 넣지 않는다'
+  net_debt_note: '2026-11-16 Analysis 수정 — KLIM 대출 장부가 $0.526B − 비제한 현금 $0.103B − Turtle Creek 건설 계정 제한 현금 $0.294B(10-Q). 대출로 조달해 건설 계정에 묶어 둔 현금을 빼지 않으면 같은 돈을 부채로만 센다. 대신 Turtle Creek 가치와 남은 공사비는 기본 동인에 넣지 않는다(가치 0 가정). 리스는 leases.apply가 더한다. 주식 수 = 기본 47.147M + RSU 0.683M(9/30)'
+  source: 가격 = 11/9 종가 $10.59(Fiscal.ai·TradingView 일치). 주식 수 47,145,251(Fiscal.ai 2026-11-05). 순차입 = 장기 차입 $0.526B + 리스 $0.0022B − 현금 $0.1032B(Fiscal.ai 표준화 재무상태표 2026-09-30) — 장기 차입이 회사 은행 차입 규모보다 커 보여 다른 장기 부채가 섞였을 수 있다(근거 약함, 10-Q 확인)
+rev0: 0.4536
+ic0: 0.612  # 자기자본 0.187 + 순차입 0.425 (2026-09-30)
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.08
+      end: 0.02
+      decay: 0.8
+    margin:
+      m0: 0.0
+      target: 0.15
+      year_target: 3
+      lr: 0.12
+      lam: 0.35
+      anchors:
+      - 0.114
+      - 0.168
+    s2c: 0.8
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.2
+      end: 0.025
+      decay: 0.8
+    margin:
+      m0: 0.0
+      target: 0.2
+      year_target: 3
+      lr: 0.16
+      lam: 0.25
+    s2c: 0.9
+  bear:
+    prob: 0.35
+    growth:
+      start: -0.07
+      end: 0.0
+      decay: 0.7
+    margin:
+      m0: 0.0
+      target: 0.06
+      year_target: 3
+      lr: 0.05
+      lam: 0.5
+    s2c: 0.7
+mc:
+  sigma_growth: 0.06
+  sigma_margin: 0.03
+  sigma_s2c: 0.15
+  sigma_wacc: 0.0075
+provenance:
+  rev0: 'FY2026 매출 $0.4536B — Fiscal.ai 자체 추정(agentic_consensus, 범위 $0.44~0.47B). TTM $0.436B(2026-09-30)'
+  growth: 'Fiscal.ai FY2027 $0.49B(+8.0%)·FY2028 $0.535B(+9.2%) — Zacks 컨센서스 미대조'
+  margin: 'GAAP EBIT FY26 약 0%·FY27 11.4%·FY28 16.8%(Fiscal.ai 추정) — 2028~2029 용량 계약 개시분. TTM 영업이익 약 −$3.9M'
+  s2c: 'TTM 매출 ÷ 투하자본 = 0.436 ÷ 0.612 = 0.71 → 0.8(기존 설비 활용, 신규 투자 작음 가정)'
+  range: '약세 FY27 −7%(Fiscal.ai 하단 $0.42B), 강세 +20%(상단 $0.55B)'
+  probs: '약세 0.35·기본 0.45·강세 0.20 — 3Q EPS 미달·FY27까지 적자 추정·석탄 규제 위험, 용량 계약은 에너지 가격을 고정하지 않음'
+notes:
+- '장기 이익률 lr 12%(용량 계약 + 석탄 연료비, 근거 약함) — 양식 lr 0.2를 고쳤다(2026-11-10 가정 점검)'
+- 신규 작성 2026-11-10 — 대기열 '작성'(실적 8-K 2026-11-09, 알파 5.5). 컨센서스 미입력 — Fiscal.ai 자체 추정으로 대신
+- '시나리오 확률 근거: 적자 지속·석탄(약세 0.35), 용량 계약 백로그가 2028~2029 이익률을 받침(기본 0.45), 데이터센터 직접 계약은 비구속 텀시트뿐(강세 0.20)'
+- '가장 약한 가정: 2년차 EBIT 이익률 16.8%(용량 계약 개시 + 에너지 가격 유지) · 가를 실적일: 4Q 실적(2027년 3월 초 예상)과 데이터센터 구속 계약 공시'
+- 순차입·투하자본 근거 약함(장기 차입 범위 미확인) — 가치가 순차입에 민감(시총 $0.50B vs 순차입 $0.43B)
+- 내러티브 knowledge/narratives/companies/us-hnrg.md(2026-11-10) — 단계 확산(조정), gap +1 제안
+evidence:
+- Hallador 실적 8-K 2026-11-09 https://www.sec.gov/Archives/edgar/data/788965/000162828026072319/
+- Fiscal.ai MCP 조회 2026-11-10 KST — company_financials_standardized·company_shares_outstanding·company_estimates(Fiscal 자체 추정, Zacks 아님)
+- 용량 계약 보도(2차 자료) https://www.panabee.com/news/hallador-energy-locks-in-700-million-with-long-term-duke-energy-agreements
+- 데이터센터 텀시트 보도(2차 자료) https://datacenterdynamics.com/en/news/hallador-in-talks-with-data-center-developer-for-coal-power-supply-deal
