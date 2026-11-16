@@ -1,0 +1,102 @@
+auto: true
+id: co-dycom
+name: Dycom Industries
+ticker: DY
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.25
+horizon: 10
+as_of: '2026-11-17'
+market:
+  date: '2026-11-17'
+  price: 215.39
+  shares: 0.030442
+  net_debt: 2.708378
+  source: 가격 = 2026-11-16 TradingView 종가 $215.39. 주식 수 30,160,957주(10-Q 표지 2026-08-24).
+    현금 $340.1M(2026-08-01 재무상태표). 차입 = Term Loan A $1,527.0M + Term Loan B $792.6M
+    + 4.50% 선순위채 $497.5M + 금융 리스 $2.7M + 운용 리스 $228.7M(10-Q 2026-08-01)
+rev0: 7.57
+ic0: 4.772284
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.1096
+      end: 0.035
+      decay: 0.568
+    margin:
+      m0: 0.0793
+      target: 0.0925
+      year_target: 3
+      lr: 0.105
+      lam: 0.35
+      anchors:
+      - 0.0854
+      - 0.0925
+    s2c: 1.442
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1955
+      end: 0.04
+      decay: 0.618
+    margin:
+      m0: 0.0793
+      target: 0.1125
+      year_target: 3
+      lr: 0.105
+      lam: 0.25
+      anchors:
+      - 0.0854
+      - 0.0925
+    s2c: 1.658
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.0238
+      end: 0.030000000000000002
+      decay: 0.46799999999999997
+    margin:
+      m0: 0.0793
+      target: 0.0725
+      year_target: 3
+      lr: 0.105
+      lam: 0.5
+      anchors:
+      - 0.0854
+      - 0.0925
+    s2c: 1.226
+mc:
+  sigma_growth: 0.0429
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [7.48, 7.66] (2Q FY27 실적 보도자료(8-K EX-99.1, 2026-08-26) https://www.sec.gov/Archives/edgar/data/67215/000006721526000039/dyfy2027q2earningsreleasee.htm)
+  growth: 컨센서스 1년차 11.0%, 2년차 7.7%
+  margin: 1~2년차 컨센서스 8.5%, 9.2% 고정 → 목표 9%(3년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.442
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 2.4%~19.6%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} → 모델 조정 {''bear'':
+    0.35, ''base'': 0.4, ''bull'': 0.25}(3Q 실적(11월 하순 추정)을 앞두고 통신 이익률 하락 전망과 무선 $150M
+    이연이 남아, 규칙 값에서 강세를 10%p 덜어 기본에 둔다) — 다음 해 매출 성장 분포로 계산 — 약세 +6.7% 아래·강세 +15.3%
+    위 확률. 내부 관점(컨센서스 +11.0%, σ 9.5%: 범위 17.2% ÷ d2(7) × 1.5) 100% — 외부 관점 꺼짐(SEC 전
+    상장사 표본 없음)'
+  overrides: '장기 수렴 영업이익률(GAAP) 10.5%: TTM 7.8%·컨센서스 FY29 9.25%에는 인수 무형 상각(2Q $60.5M,
+    매출의 약 3.0%, 10-Q)이 들어 있다. 고객관계 무형은 가속 상각이라 장기에는 줄어든다 — 상각을 절반만 되돌린 값. 규칙 기본 15%는
+    시공 업종 역사에 없는 값'
+  shares: 완전 희석 = 기본 0.030161(2026-08-24) + 옵션·RSU·워런트·전환 0.0003 — 2Q FY27(2026-08-01
+    분기) 희석 가중 30.364M − 기본 가중 30.083M = 0.28M
+notes:
+- 자동 생성(build_drivers) 2026-11-17 — 데이터 묶음 2026-11-17
+- '어닝콜 위험: 무선 매출 약 $150M 이연 — 한 고객의 일정 변경(콜)'
+- '어닝콜 위험: 통신 이익률 −134bp(13.6%) — 확장 투자·연료·이연(보도자료)'
+- '어닝콜 위험: 데이터센터 건설 반대·모라토리엄 보도(Wells Fargo 질문)'
+evidence:
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=67215&type=8-K
+- https://fiscal.ai/company/NYSE-DY
+- Fiscal.ai MCP 2026-11-12 — 표준화 손익·재무상태표·현금흐름, 자체 추정, 2Q FY27 어닝콜 Q&A(요지만)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
