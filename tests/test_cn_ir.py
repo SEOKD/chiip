@@ -35,6 +35,17 @@ class TestCnIr(unittest.TestCase):
         self.assertIn("答 尹志尧(董事长): 保持稳定", text)
         self.assertNotIn("无关", text)
 
+    def test_transcript_drops_other_company_moderator(self):
+        t = "兆易创新2026年第三季度业绩说明会"
+        recs = [{"questionType": 4, "activityTitle": t, "content": "欢迎光临兆易创新2026年第三季度业绩说明会", "crtTime": "2026-11-17 08:49:00"},
+                {"questionType": 4, "activityTitle": t, "content": "欢迎光临奥泰生物2026年第三季度业绩说明会", "crtTime": "2026-11-17 09:49:00"},
+                {"questionType": 2, "activityTitle": t, "guestName": "何卫", "questionContent": "价格？", "content": "温和上涨", "crtTime": "2026-11-17 09:10:00"}]
+        with mock.patch.object(cn_ir, "_rs", lambda p, d: {"records": recs, "total": 3}):
+            text, n = cn_ir.rs_transcript(42314)
+        self.assertIn("兆易创新", text)
+        self.assertNotIn("奥泰", text)
+        self.assertEqual(n, 1)
+
     def test_activity_dates_from_startdate(self):
         rec = [{"id": 42013, "activityType": 1, "title": "中微公司2026年第三季度业绩说明会", "startDate": "2026-11-16 00:00:00",
                 "endDate": "2026-11-16 00:00:00", "startTime": "1970-01-01 16:00:00", "endTime": "1970-01-01 17:00:00", "isMulti": False}]

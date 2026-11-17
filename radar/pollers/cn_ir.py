@@ -146,6 +146,10 @@ def rs_transcript(aid, cid=None):
     for r in recs:
         if cid and r.get("questionType") in (2, 3) and r.get("companyId") not in (None, cid):
             continue
+        # 플랫폼이 다른 회사 사회자 인사말을 같은 설명회 번호로 올린 일이 있다(兆易创新 42314에 奥泰生物 환영 문구, 2026-11-17)
+        own = re.match(r"\s*(.+?)(?:20\d\d|第)", r.get("activityTitle") or "")
+        if r.get("questionType") == 4 and own and "欢迎光临" in (r.get("content") or "") and own[1] not in r["content"]:
+            continue
         who = r.get("guestName") or r.get("userNickName") or ""
         role = f"({r['guestTitle']})" if r.get("guestTitle") else ""
         body = re.sub(r"\s+", " ", r.get("content") or "").strip()
