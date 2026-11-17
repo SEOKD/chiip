@@ -6,7 +6,8 @@
      业绩说明会召开情况 공고. PDF는 pdftotext로 글자만(원문은 git 제외 폴더 radar/inbox/cn_ir). 일반 중요 공시는 기존 src-cn-hk-disclosure가 본다.
   ② 上证路演中心 roadshow.sseinfo.com(상하이거래소 자회사, robots.txt 'Disallow:' 빈칸 = 전부 허용) 공개 API — 상하이 상장사(6xxxxx·688xxx)
      业绩说明会의 질문·답변·발언 전문. 끝난 설명회만 한 번 받는다. 이것이 중국 본토의 '어닝콜 스크립트'다.
-  선전 상장사(00xxxx·30xxxx)의 실적설명회는 대개 全景网 路演天下(rs.p5w.net)에서 열린다 — 다음 단계(지금은 cninfo 활동기록표·결과 공고로 본다).
+  ③ 全景网 路演天下 rs.p5w.net(robots.txt 'Allow: /') 공개 조회 — 선전 상장사(00xxxx·30xxxx) 대부분과 일부 상하이 상장사의 业绩说明会
+     질문·경영진 답변(마스터 승인 2026-11-17 "붙여라"). 질문자(가린 휴대폰 번호)는 저장하지 않는다. 모든 회사가 쓰지는 않는다(北方华创은 2022년 이후 없음).
 대상: config/cn_semis.yaml + cn_hk_disclosure.targets()['cn'](와치리스트 SSE·SZSE·아시아 스크리너 중국 후보).
 출력: 받은편지함 항목 src-cn-ir-qa(질의응답·스크립트 → Pulse 'IR 질의응답') · src-cn-ir-docs(정기보고 등 → 'IR 자료'). 같은 문서는 한 번만.
 사용: py radar/pollers/cn_ir.py                 # 한 회차(run_poll이 poll())
@@ -30,8 +31,18 @@ STATE = "cn_ir"
 CACHE = common.ROOT / "radar" / "inbox" / "cn_ir"
 CST = timezone(timedelta(hours=8))
 RS = "https://roadshow.sseinfo.com/base-service/api/pub/v1/"
+P5W = "https://rs.p5w.net/"   # 全景网 路演天下(robots.txt 'Allow: /', 2026-11-17 확인)
 PAUSE_S = 1.0
 LOOK_D = 10
+P5W_LOOK_D = 30   # 답변이 설명회 며칠 뒤에 붙기도 한다(江波龙 2026-04-30 → 05-07)
+# 꺼 둔다 — 全景网 설명회 안내문에 판권 성명("未经全景网书面授权，任何人不得复制、转载、摘编…")이 있다. robots는 허용이지만
+# 약관 성격의 금지라 마스터 판단 전까지 받지 않는다(2026-11-17). 켜려면 True.
+P5W_ON = False
+
+
+class _P5wOff(Exception):
+    pass
+
 BUDGET_S = 300   # 회차당 5분 — 남은 종목은 다음 회차(cursor)
 # 문서 종류 — 제목 규칙(위에서부터 첫 일치). 摘要·英文·更正 등은 뺀다
 KINDS = [("qa", re.compile(r"投资者关系活动记录表|调研活动|业绩说明会召开情况|说明会.*(召开情况|问答|纪要)|接待.*调研")),
@@ -140,6 +151,67 @@ def rs_transcript(aid, cid=None):
     return "\n".join(lines).strip(), n
 
 
+def _p5w(path, data):
+    req = urllib.request.Request(P5W + path, data=urllib.parse.urlencode(data).encode(),
+                                 headers={"User-Agent": common.UA, "Content-Type": "application/x-www-form-urlencoded"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read())
+
+
+def p5w_name(code, cache):
+    """全景网 등록 약칭(목록 검색어). 없으면 None"""
+    if code not in cache:
+        rows = _p5w("c/validCompanyJson.shtml", {"keyword": code, "isShow": 1}).get("obj") or []
+        cache[code] = next((r.get("companyShortname") for r in rows if r.get("companyCode") == code), None)
+    return cache[code]
+
+
+def p5w_activities(code, name, days, now):
+    """全景网 끝난 실적설명회(그 회사 단독, 최근 days일) — [{pid, url, title, start}]"""
+    rows = _p5w("roadshow/getAllRoadshowList.shtml", {"perComType": 0, "page": 0, "rows": 40, "roadshowTitle": name}).get("rows") or []
+    cut = (now - timedelta(days=days)).date().isoformat()
+    out = []
+    for r in rows:
+        t = r.get("roadshowTitle") or ""
+        # 합동 접대일(集体接待日)은 companyCode가 비어 있다 — 그 회사 단독 설명회만
+        if r.get("companyCode") != code or str(r.get("roadshowStatus")) != "2" or (r.get("roadshowDate") or "") < cut:
+            continue
+        if not (str(r.get("roadshowType")) == "5" or re.search(r"业绩|说明会|发布会", t)):
+            continue
+        out.append({"pid": r["pid"], "url": r.get("roadshowUrl") or "", "title": t,
+                    "start": f"{r.get('roadshowDate')} {r.get('beginTime') or '00:00'}:00"})
+    return out
+
+
+def p5w_transcript(pid):
+    """질문·경영진 답변을 시간순 글로(질문자는 가린 휴대폰 번호라 쓰지 않는다). 답 없는 질문은 뺀다. (글, 답변 수)"""
+    recs, page = [], 0
+    while page < 20:
+        rows = _p5w("roadshowLive/getNInteractionDatas.shtml", {"roadshowId": pid, "isPagination": 1, "rows": 50, "type": 1, "page": page}).get("rows") or []
+        if not rows:
+            break
+        recs += rows
+        page += 1
+        time.sleep(PAUSE_S)
+    recs.sort(key=lambda r: r.get("speakTime") or "")
+    clean = lambda s: re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", s or "")).strip()
+    lines, n = [], 0
+    for r in recs:
+        replies = [x for x in r.get("replyList") or [] if clean(x.get("speakContent"))]
+        if str(r.get("speakType")) == "3":
+            if not replies:
+                continue
+            n += 1
+            lines.append(f"问: {clean(r.get('speakContent'))}")
+            lines += [f"答 {clean(x.get('speakUserName'))}: {clean(x.get('speakContent'))}" for x in replies]
+            lines.append("")
+        elif str(r.get("speakType")) == "1":
+            lines += [f"主持: {clean(r.get('speakContent'))}", ""]
+        elif not re.search(r"\d\*{3,}\d|^\s*$", r.get("speakUserName") or ""):   # 가린 번호 = 일반 투자자 — 쓰지 않는다
+            lines += [f"发言 {clean(r.get('speakUserName'))}: {clean(r.get('speakContent'))}", ""]
+    return "\n".join(lines).strip(), n
+
+
 def period(title):
     m = re.search(r"(20\d\d)\s*年\s*(第([一二三四1-4])季度|半年度|年度)", title)
     if not m:
@@ -179,7 +251,7 @@ def item(code, c, key, kind, title, url, when, text, path, grade="A"):
                             f"{kind} · {period(title) or '기간 미확인'} · 글자 {len(text)}", extra=extra)
 
 
-def collect(code, c, st, now, days=LOOK_D, first=False):
+def collect(code, c, st, now, days=LOOK_D, first=False, seed_new=True):
     """한 종목 — 새 문서 항목 목록"""
     seen = set(st.setdefault("seen", []))
     out = []
@@ -221,6 +293,33 @@ def collect(code, c, st, now, days=LOOK_D, first=False):
             path = save_text(code, key, a["title"], url, text)
             out.append(item(code, c, key, "transcript", a["title"] + f" — 질의응답 {n}건", url, when, text, path))
             time.sleep(PAUSE_S)
+    # 全景网 路演天下 — 선전 상장사 대부분과 일부 상하이 상장사(2026-11-17 마스터 승인 "붙여라", 판권 성명 확인으로 P5W_ON 대기)
+    try:
+        if not P5W_ON:
+            raise _P5wOff
+        seeded = st.setdefault("p5w_seeded", [])
+        seed = first or (seed_new and code not in seeded)   # 이 원천을 처음 보는 종목은 지금 있는 설명회를 씨앗으로만
+        name = p5w_name(code, st.setdefault("p5w_name", {}))
+        for a in p5w_activities(code, name, max(days, P5W_LOOK_D), now) if name else []:
+            key = f"p5w:{a['pid']}"
+            if key in seen:
+                continue
+            text, n = p5w_transcript(a["pid"])
+            if not n:   # 답변이 아직 없으면 다음 회차에 다시
+                continue
+            seen.add(key)
+            if seed:
+                continue
+            when = datetime.fromisoformat(a["start"][:19]).replace(tzinfo=CST)
+            path = save_text(code, key, a["title"], a["url"], text)
+            out.append(item(code, c, key, "transcript", a["title"] + f" — 질의응답 {n}건", a["url"], when, text, path))
+            time.sleep(PAUSE_S)
+        if seed_new and code not in seeded:
+            seeded.append(code)
+    except _P5wOff:
+        pass
+    except Exception as exc:   # 全景网이 막혀도 cninfo·上证 몫은 살린다
+        st.setdefault("p5w_err", {})[code] = f"{datetime.now(CST):%m-%d %H:%M} {type(exc).__name__}"
     st["seen"] = sorted(seen)[-5000:]
     return out
 
@@ -253,7 +352,7 @@ def about(code, days=120):
     now = datetime.now(CST)
     st = {"seen": []}
     c = universe().get(code, {"name": code})
-    return collect(code, c, st, now, days=days)
+    return collect(code, c, st, now, days=days, seed_new=False)
 
 
 def main(argv):

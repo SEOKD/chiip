@@ -42,6 +42,32 @@ class TestCnIr(unittest.TestCase):
         self.assertEqual((a["start"], a["end"]), ("2026-11-16 16:00:00", "2026-11-16 17:00:00"))
         self.assertLess(datetime.fromisoformat(a["end"]), datetime(2026, 11, 17))
 
+    def test_p5w_transcript_drops_investor_names_and_unanswered(self):
+        rows = [{"speakType": "1", "speakUserName": "主持人", "speakContent": "<font>说明会开始</font>", "speakTime": "2026-04-30 15:00:00"},
+                {"speakType": "3", "speakUserName": "135****8484", "speakContent": "毛利率？", "speakTime": "2026-04-30 15:05:00",
+                 "replyList": [{"speakUserName": "江波龙 董事长蔡华波", "speakContent": "保持稳定"}]},
+                {"speakType": "3", "speakUserName": "152****6518", "speakContent": "没人回答", "speakTime": "2026-04-30 15:06:00", "replyList": []},
+                {"speakType": "2", "speakUserName": "139****0000", "speakContent": "投资者留言", "speakTime": "2026-04-30 15:07:00"}]
+        pages = iter([{"rows": rows}, {"rows": []}])
+        with mock.patch.object(cn_ir, "_p5w", lambda p, d: next(pages)), mock.patch.object(cn_ir.time, "sleep", lambda s: None):
+            text, n = cn_ir.p5w_transcript("pid")
+        self.assertEqual(n, 1)
+        self.assertIn("问: 毛利率？", text)
+        self.assertIn("答 江波龙 董事长蔡华波: 保持稳定", text)
+        self.assertIn("主持: 说明会开始", text)
+        for s in ("8484", "没人回答", "投资者留言"):
+            self.assertNotIn(s, text)
+
+    def test_p5w_activities_own_ended_recent_only(self):
+        rows = [{"pid": "a", "companyCode": "301308", "roadshowStatus": "2", "roadshowType": "5", "roadshowDate": "2026-11-10", "beginTime": "15:00", "roadshowTitle": "江波龙2026年第三季度业绩说明会"},
+                {"pid": "b", "companyCode": "301308", "roadshowStatus": "0", "roadshowType": "5", "roadshowDate": "2026-11-20", "beginTime": "15:00", "roadshowTitle": "预告"},
+                {"pid": "c", "companyCode": None, "roadshowStatus": "2", "roadshowType": "7", "roadshowDate": "2026-11-12", "roadshowTitle": "集体接待日"},
+                {"pid": "d", "companyCode": "301308", "roadshowStatus": "2", "roadshowType": "5", "roadshowDate": "2026-04-30", "roadshowTitle": "江波龙2025年度业绩说明会"}]
+        with mock.patch.object(cn_ir, "_p5w", lambda p, d: {"rows": rows}):
+            got = cn_ir.p5w_activities("301308", "江波龙", 30, datetime(2026, 11, 17, tzinfo=cn_ir.CST))
+        self.assertEqual([a["pid"] for a in got], ["a"])
+        self.assertEqual(got[0]["start"], "2026-11-10 15:00:00")
+
 
 if __name__ == "__main__":
     unittest.main()
