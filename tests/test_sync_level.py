@@ -33,22 +33,23 @@ class TestLevel(unittest.TestCase):
         self.assertNotIn("2023Q3", qs[0])
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
-class TestSplitAxes(unittest.TestCase):   # 2026-11-15 마스터 지시 — y축을 따로
-    def test_one_chart_per_series_in_own_units(self):
+class TestSplitAxes(unittest.TestCase):   # 2026-11-17 마스터 지시 — 한 축, 변화율(공통 분기 = 100), 로그 눈금, 짧은 제목
+    def test_one_indexed_log_chart(self):
         w = sv.window("2026Q3")[-8:]
         rev = {q: 1e9 + i * 1e8 for i, q in enumerate(w)}
         ppi = {q: 106.623 if i in (2, 3, 4) else 106.0 + i for i, q in enumerate(w)}
-        cs = sv.level_charts({"rev": rev, "rows": [{"ind": {"label": "미국 반도체 장비 PPI", "source": "ppi"}, "iq": ppi}]}, w)
-        self.assertEqual(len(cs), 1)                                          # 한 그림(2026-11-16)
-        ser = cs[0]["series"]
-        self.assertTrue(cs[0]["multi_axis"])
-        self.assertNotEqual(ser[0]["axis"], ser[-1]["axis"])                    # 선마다 자기 y축
-        self.assertEqual(ser[-1]["points"][0][1], ppi[w[0]])                   # 원래 단위(지수 100 환산 아님)
-        self.assertIn("이월", cs[0]["title"])
-        import report_html
-        svg = report_html.chart_line(cs[0])
-        self.assertIn('text-anchor="start"', svg)                              # 오른쪽 축 눈금
+        cs = sv.level_charts({"rev": rev, "rows": [{"ind": {"label": "미국 반도체 장비 PPI", "source": "ppi"}, "iq": ppi, "rev": {"r": 0.8, "lag": 1}}]}, w)
+        self.assertEqual(len(cs), 1)
+        c = cs[0]
+        self.assertTrue(c["log"])
+        self.assertLess(len(c["title"]), 50)
+        for s in c["series"]:
+            self.assertEqual(s["points"][0][1], 100.0)                       # 모두 같은 기준 분기 = 100
+        self.assertEqual([p[0] for p in c["series"][0]["points"]], w)          # 시간순
+        names = " ".join(s["name"] for s in c["series"])
+        self.assertIn("상관 80%", names)
+        self.assertIn("이월", names)
+
+
+if __name__ == "__main__":
+    unittest.main()

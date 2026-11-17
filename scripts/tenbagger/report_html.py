@@ -167,7 +167,7 @@ def chart_multiaxis(c):
     """한 그림에 여러 선 — 선마다 자기 y축(마스터 지시 2026-11-16 "하나의 그래프로 합쳐라. 대신 y축을 달리"). 시리즈의 "axis"가 같으면 축을 함께 쓴다(매출과 매출 추정).
     첫 축은 왼쪽, 나머지는 오른쪽에 차례로. 눈금 글자는 그 선의 색"""
     series = [s for s in c.get("series") or [] if any(p[1] is not None for p in s.get("points") or [])]
-    keys = sorted(dict.fromkeys(p[0] for s in series for p in s.get("points") or []))
+    keys = list(dict.fromkeys(p[0] for s in series for p in s.get("points") or []))   # 입력 순서(시간순) — 글자순이면 1Q23·1Q25·2Q23으로 꺾였다(2026-11-17)
     if not series or not keys:
         return ""
     axes = list(dict.fromkeys(s.get("axis", i) for i, s in enumerate(series)))

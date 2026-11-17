@@ -559,42 +559,43 @@ def level_chart(c, win, top=None):
 
 
 def level_charts(c, win, top=None):
-    """매출과 지표를 y축을 따로 둔 그림으로 — 같은 분기 축에 위아래로 놓고, 각자 원래 단위로(마스터 지시 2026-11-15 "y축은 하나로 합치지 말고 따로").
-    한 축(기준 분기 = 100)에 올리면 변동 폭이 큰 지표가 다른 선을 눌러 평평하게 보였다(원익IPS: 미국 반도체 장비 PPI가 정체처럼 보임)"""
+    """매출이 PPI·수출입에 비례하는지 한눈에(마스터 지시 2026-11-17 "세 지표가 같은 y축 스케일에서 추이가 보이도록 … 절대값이 다르면 변화율을 맞춰라.
+    핵심은 매출이 PPI와 수출입 지표에 비례하는지다. 제목이 너무 길다").
+    - 모든 선을 공통 첫 분기 = 100 으로 바꿔 한 축에 — 단위가 달라도 변화율로 겹쳐 본다
+    - 로그 눈금 — 같은 % 변화가 같은 높이(+50%와 −33%가 대칭). 한 지표가 +400% 뛰어도 다른 선이 눌리지 않는다
+    - 범례에 지표마다 매출과의 싱크로율(상관)·선행 분기·기간 변화 — 비례 여부를 숫자로
+    - 분기 순서는 시간순(2026-11-16 판은 글자순 정렬로 선이 앞뒤로 꺾였다)"""
     one = level_chart(c, win, top)
     if not one:
         return []
-    axis = [p[0] for p in one["series"][0]["points"]]
-    rv = c["rev"]
-    s_rev = [{"name": "매출", "color": "a", "points": [[q, rv[q]] for q in axis]}]
-    nx = (top or {}).get("next")
-    if nx and rv.get(c["last"]) and c["last"] in axis:
-        tot = to_total(c, top, nx)
-        s_rev.append({"name": f"다음 분기 추정({c['next']}, ±1σ {tot['lo']:,.0f}~{tot['hi']:,.0f})", "color": "e", "points": [[c["last"], rv[c["last"]]], [c["next"], tot["rev"]]]})
-    for x in s_rev:
-        x["axis"] = "rev"
-    series, notes = list(s_rev), []
-    cols = ["b", "c", "d", "e"]
-    for i, r in enumerate(c["rows"]):
-        pts = [[q, r["iq"][q]] for q in axis if r["iq"].get(q) is not None]
-        if not pts:
+    base_q = one["series"][0]["points"][0][0]
+    pc = lambda a, b: f"{(b / a - 1) * 100:+.0f}%" if a else "-"
+    series = []
+    for s in one["series"]:
+        pts = s["points"]
+        if s["name"] == "매출":
+            series.append({**s, "name": f"매출 {pc(pts[0][1], pts[-1][1])}", "color": "a"})
             continue
-        src = {"ppi": "PPI(지수)", "hs": "수출입(금액)", "trade": "수출입(금액)"}.get(r["ind"].get("source"), "")
-        lo, hi = min(p[1] for p in pts), max(p[1] for p in pts)
-        rng = f" — {len(pts)}개 분기 범위 {lo:,.1f}~{hi:,.1f}({(hi / lo - 1) * 100:+.1f}%)" if lo else ""
+        if s["name"].startswith("매출 다음 분기"):
+            series.append({**s, "name": "매출 다음 분기 추정", "color": "a", "dash": True})
+            continue
+        r = next((x for x in c["rows"] if s["name"].startswith(x["ind"]["label"])), None)
+        f = (r or {}).get("rev") or {}
+        sync = f" · 매출과 상관 {f['r'] * 100:.0f}%" + (f"({f['lag']}분기 선행)" if f.get("lag") else "") if f.get("r") is not None else ""
+        vals = [p[1] for p in pts]
         run, best = 1, 1
-        for a_, b_ in zip(pts, pts[1:]):
-            run = run + 1 if round(a_[1], 3) == round(b_[1], 3) else 1
+        for a_, b_ in zip(vals, vals[1:]):
+            run = run + 1 if round(a_, 2) == round(b_, 2) else 1
             best = max(best, run)
-        if src.startswith("PPI") and best >= 3:   # 원천이 가격을 다시 조사하지 않고 이월(2026-11-15 원익IPS: 미국 반도체 장비 PPI 2025-04~12 9개월 106.623)
-            rng += f" · {best}개 분기 같은 값 — 가격 재조사가 드문 지수(이월), 매출 선행 신호로 약하다"
-        series.append({"name": f"{r['ind']['label']} {src}".strip(), "color": cols[i % len(cols)], "axis": f"i{i}", "points": pts})
-        notes.append(f"{r['ind']['label']}{rng}")
-    # 한 그림, 선마다 자기 y축(마스터 지시 2026-11-16 "하나의 그래프로 합쳐라. 대신 y축을 달리") — 왼쪽 축 = 매출, 오른쪽 축 = 지표(눈금 색 = 선 색)
-    title = f"매출·PPI·수출입 — 최근 {len(axis)}개 분기 + 다음 분기 추정(선마다 자기 y축: 왼쪽 매출, 오른쪽 지표)"
-    if notes:
-        title += " · " + " · ".join(notes)
-    return [{"kind": "line", "multi_axis": True, "title": title, "unit": "", "series": series}]
+        stale_note = " · 같은 값 이어짐(이월 지수)" if r and r["ind"].get("source") == "ppi" and best >= 3 else ""
+        series.append({**s, "name": f"{r['ind']['label'] if r else s['name']} {pc(vals[0], vals[-1])}{sync}{stale_note}"})
+    pal = ["b", "c", "d", "e"]
+    k = 0
+    for s in series:
+        if not s["name"].startswith("매출"):
+            s["color"] = pal[k % len(pal)]
+            k += 1
+    return [{"kind": "line", "log": True, "title": f"매출 vs PPI·수출입 — {base_q} = 100(변화율, 로그 눈금)", "unit": "", "series": series}]
 
 
 def section(dp, history=None, db=HS_DB):
