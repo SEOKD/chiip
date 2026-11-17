@@ -22,6 +22,7 @@ class TestCnIr(unittest.TestCase):
         self.assertEqual(cn_ir.period("中微公司2026年第三季度业绩说明会"), "2026Q3")
         self.assertEqual(cn_ir.period("2026年半年度报告"), "2026H1")
         self.assertEqual(cn_ir.period("2025年年度业绩说明会"), "2025FY")
+        self.assertEqual(cn_ir.period("2026年三季度报告"), "2026Q3")   # 第 없는 제목(北方华创)
 
     def test_transcript_joint_meeting_filters_company(self):
         recs = [{"questionType": 4, "content": "欢迎", "crtTime": "2026-11-16 15:00:00"},

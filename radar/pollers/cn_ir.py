@@ -31,6 +31,7 @@ STATE = "cn_ir"
 CACHE = common.ROOT / "radar" / "inbox" / "cn_ir"
 CST = timezone(timedelta(hours=8))
 RS = "https://roadshow.sseinfo.com/base-service/api/pub/v1/"
+PERIODIC = "category_ndbg_szsh;category_bndbg_szsh;category_yjdbg_szsh;category_sjdbg_szsh"   # 연간·반기·1분기·3분기 보고
 P5W = "https://rs.p5w.net/"   # 全景网 路演天下(robots.txt 'Allow: /', 2026-11-17 확인)
 PAUSE_S = 1.0
 LOOK_D = 10
@@ -80,14 +81,21 @@ def cn_docs(code, org, days, now):
     more = False
     out = []
     # relation = 투자자관계 탭(선전 상장사의 投资者关系管理信息·活动记录表는 공시 탭이 아니라 여기에만 있다 — 2026-11-17 NAURA)
-    for tab, page in (("fulltext", 1), ("fulltext", 2), ("relation", 1)):
-        if page == 2 and not more:
+    # cninfo는 pageSize를 50으로 줘도 30건만 준다 — 공시가 많은 종목은 정기보고가 2쪽 뒤로 밀려 빠졌다(拓荆科技 3분기 보고, 2026-11-17).
+    # 그래서 정기보고는 분류(category)로 따로 묻고, 일반 탭은 30건 단위로 3쪽까지 본다.
+    seen_ids = set()
+    for tab, page, cat in (("fulltext", 1, PERIODIC), ("fulltext", 1, ""), ("fulltext", 2, ""), ("fulltext", 3, ""), ("relation", 1, "")):
+        if page > 1 and not more:
             continue
-        body = (f"pageNum={page}&pageSize=50&column={col}&tabName={tab}&searchkey=&stock={code},{org}&category=&"
+        body = (f"pageNum={page}&pageSize=30&column={col}&tabName={tab}&searchkey=&stock={code},{org}&category={cat}&"
                 f"seDate={(now - timedelta(days=days)).date()}~{now.date()}&isHLtitle=true").encode()
         rows = json.loads(cnd._post(cnd.CNINFO, body).decode("utf-8")).get("announcements") or []
-        more = len(rows) >= 50
+        if not cat:
+            more = len(rows) >= 30
         for r in rows:
+            if str(r.get("announcementId")) in seen_ids:
+                continue
+            seen_ids.add(str(r.get("announcementId")))
             t = re.sub(r"<[^>]+>", "", r.get("announcementTitle") or "").strip()
             k = "qa" if tab == "relation" else kind_of(t)
             if k:
@@ -213,7 +221,7 @@ def p5w_transcript(pid):
 
 
 def period(title):
-    m = re.search(r"(20\d\d)\s*年\s*(第([一二三四1-4])季度|半年度|年度)", title)
+    m = re.search(r"(20\d\d)\s*年\s*(第?([一二三四1-4])季度|半年度|年度)", title)   # '2026年三季度报告'(北方华创)처럼 第 없는 제목도
     if not m:
         return None
     if m[3]:
