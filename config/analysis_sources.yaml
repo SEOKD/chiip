@@ -28,6 +28,7 @@ sources:
   - {id: jp_consensus, region: jp, kind: script, cmd: "radar/jp_consensus.py --line {ticker}", use: "일본 종목 컨센서스 줄"}
   - {id: tw_financials, region: tw, kind: script, cmd: "radar/pollers/tw_financials.py --export {ticker} {out}/tw_quarters.json", use: "대만 공시 분기 재무 → quarters.py --put"}
   - {id: cn_hk_filings, region: cn, kind: script, cmd: "radar/pollers/cn_hk_disclosure.py --about {ticker}", use: "중국 본토 원문 공시(巨潮资讯 cninfo) — 실적·업적 예고·수주·증설·설명회(2026-11-09)"}
+  - {id: cn_ir, region: cn, kind: script, cmd: "radar/pollers/cn_ir.py --about {ticker}", use: "중국 본토 정기보고·업적 예고·투자자관계 활동기록·실적설명회 질의응답 전문(上证路演中心)(2026-11-17)"}
   - {id: hk_filings, region: hk, kind: script, cmd: "radar/pollers/cn_hk_disclosure.py --about {ticker}", use: "홍콩 원문 공시(HKEXnews) — 실적·내부정보·계약·증자(2026-11-09)"}
   # ── 장부 읽기(gather.py 안에서 읽는다) ──
   - {id: radar_items, region: all, kind: read, use: "최근 21일 레이더 수집함(EDGAR·DART·대만·일본 공시, 보도자료, 숏 리포트, 뉴스)과 영향 카드"}

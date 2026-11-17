@@ -1,0 +1,59 @@
+# 중국 본토 상장 반도체 감시 목록 (마스터 지시 2026-11-17 "중국 반도체 업체 중에 본토 증시에 상장된 종목의 공시, 어닝콜 자료 및 스크립트를 가져올 수 있는 데이터 파이프라인")
+# 수집기: radar/pollers/cn_ir.py — cninfo(공시·정기보고·투자자관계 활동기록표·실적설명회 결과 공고 PDF) + 상하이거래소 上证路演中心(실적설명회 질의응답 전문)
+# 코드는 수집기가 cninfo 종목 검색으로 이름을 대조한다(틀리면 건너뛰고 상태 파일 code_mismatch에 남긴다). ko는 한국 언론 통용 표기, 모르면 영문.
+# 추가: 아래에 한 줄. config/tradingview_symbols.csv의 SSE·SZSE 종목과 아시아 스크리너 중국 후보도 자동으로 함께 본다(cn_hk_disclosure.targets).
+companies:
+  # 장비
+  - {code: "688012", name: 中微公司, en: AMEC, ko: AMEC(중미반도체), sub: 식각·박막 장비}
+  - {code: "002371", name: 北方华创, en: NAURA, ko: 북방화창, sub: 식각·증착·세정 장비}
+  - {code: "688072", name: 拓荆科技, en: Piotech, ko: 퉈징커지, sub: 박막 증착 장비}
+  - {code: "688082", name: 盛美上海, en: ACM Research (Shanghai), ko: ACM리서치 상하이, sub: 세정·도금 장비}
+  - {code: "688120", name: 华海清科, en: Hwatsing, ko: 화하이칭커, sub: CMP 장비}
+  - {code: "688037", name: 芯源微, en: Kingsemi, ko: 신위안웨이, sub: 코터·디벨로퍼 트랙}
+  - {code: "688361", name: 中科飞测, en: Skyverse, ko: 중커페이처, sub: 검사·계측 장비}
+  - {code: "688147", name: 微导纳米, en: LEADMICRO, ko: 웨이다오나노, sub: ALD 장비}
+  - {code: "300567", name: 精测电子, en: Wuhan Jingce, ko: 징처전자, sub: 계측 장비}
+  - {code: "688200", name: 华峰测控, en: AccoTEST, ko: 화펑처쿵, sub: 테스터}
+  - {code: "300604", name: 长川科技, en: Hangzhou Changchuan, ko: 창촨커지, sub: 테스터·핸들러}
+  - {code: "688630", name: 芯碁微装, en: CFMEE, ko: 신치웨이좡, sub: 직접묘화 노광}
+  # 파운드리·IDM
+  - {code: "688981", name: 中芯国际, en: SMIC, ko: SMIC, sub: 파운드리}
+  - {code: "688347", name: 华虹公司, en: Hua Hong Semiconductor, ko: 화훙반도체, sub: 파운드리}
+  - {code: "688249", name: 晶合集成, en: Nexchip, ko: 징허지청, sub: 파운드리}
+  - {code: "688469", name: 芯联集成, en: United Nova Technology, ko: 신롄지청, sub: 전력·MEMS 파운드리}
+  - {code: "688396", name: 华润微, en: China Resources Microelectronics, ko: 화룬웨이, sub: 전력 반도체 IDM}
+  - {code: "600460", name: 士兰微, en: Silan Microelectronics, ko: 스란웨이, sub: 전력 반도체 IDM}
+  - {code: "603290", name: 斯达半导, en: StarPower, ko: 스다반도체, sub: IGBT 모듈}
+  - {code: "600703", name: 三安光电, en: Sanan Optoelectronics, ko: 싼안광전, sub: 화합물 반도체}
+  # 설계(연산·메모리·아날로그)
+  - {code: "688041", name: 海光信息, en: Hygon, ko: 하이광, sub: x86 CPU·DCU}
+  - {code: "688256", name: 寒武纪, en: Cambricon, ko: 캠브리콘, sub: AI 가속기}
+  - {code: "688047", name: 龙芯中科, en: Loongson, ko: 룽신, sub: CPU}
+  - {code: "688008", name: 澜起科技, en: Montage Technology, ko: 몬티지테크놀로지, sub: 메모리 인터페이스}
+  - {code: "603986", name: 兆易创新, en: GigaDevice, ko: 기가디바이스, sub: NOR·MCU·DRAM}
+  - {code: "603501", name: 豪威集团, en: OmniVision (Will Semi), ko: 옴니비전, sub: 이미지센서}
+  - {code: "300661", name: 圣邦股份, en: SG Micro, ko: 성방, sub: 아날로그}
+  - {code: "300782", name: 卓胜微, en: Maxscend, ko: 줘성웨이, sub: RF}
+  - {code: "603893", name: 瑞芯微, en: Rockchip, ko: 록칩, sub: SoC}
+  - {code: "688099", name: 晶晨股份, en: Amlogic, ko: 앰로직, sub: SoC}
+  - {code: "688521", name: 芯原股份, en: VeriSilicon, ko: 베리실리콘, sub: IP·설계 서비스}
+  - {code: "688385", name: 复旦微电, en: Fudan Microelectronics, ko: 푸단웨이, sub: FPGA·보안칩}
+  - {code: "002049", name: 紫光国微, en: Unigroup Guoxin, ko: 쯔광궈웨이, sub: 특수 IC}
+  - {code: "688525", name: 佰维存储, en: Biwin, ko: 바이웨이, sub: 메모리 모듈}
+  - {code: "301308", name: 江波龙, en: Longsys, ko: 롱시스, sub: 메모리 모듈}
+  # EDA
+  - {code: "301269", name: 华大九天, en: Empyrean, ko: 화다주톈, sub: EDA}
+  - {code: "688206", name: 概伦电子, en: Primarius, ko: 가이룬전자, sub: EDA}
+  # 후공정·패키징
+  - {code: "600584", name: 长电科技, en: JCET, ko: JCET, sub: OSAT}
+  - {code: "002156", name: 通富微电, en: TFME, ko: 퉁푸웨이뎬, sub: OSAT}
+  - {code: "002185", name: 华天科技, en: Huatian Technology, ko: 화톈커지, sub: OSAT}
+  - {code: "688362", name: 甬矽电子, en: Forehope, ko: 융시전자, sub: OSAT}
+  # 소재·웨이퍼
+  - {code: "688126", name: 沪硅产业, en: NSIG, ko: 후구이, sub: 실리콘 웨이퍼}
+  - {code: "605358", name: 立昂微, en: Hangzhou Lion Micro, ko: 리앙웨이, sub: 웨이퍼}
+  - {code: "688234", name: 天岳先进, en: SICC, ko: 톈웨, sub: SiC 기판}
+  - {code: "688019", name: 安集科技, en: Anji Microelectronics, ko: 안지커지, sub: CMP 슬러리}
+  - {code: "300346", name: 南大光电, en: Nata Opto, ko: 난다광전, sub: 포토레지스트·특수가스}
+  - {code: "300666", name: 江丰电子, en: KFMI, ko: 장펑전자, sub: 스퍼터링 타깃}
+  - {code: "002409", name: 雅克科技, en: Jiangsu Yoke, ko: 야커커지, sub: 전구체·소재}

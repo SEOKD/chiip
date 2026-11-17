@@ -1195,6 +1195,22 @@
   terms_note: "2026-11-09 마스터 지시(대만·중국 발굴 보완). 거래소 지정 공시 매체의 공개 조회, robots.txt 없음(404). 종목별 조회·1초 간격, 원문은 링크만"
   reliability_default: 1차(회사 공시)
   enabled: true
+- id: src-cn-ir
+  name: 중국 본토 반도체 공시·실적 자료·실적설명회 질의응답(cninfo + 上证路演中心)
+  category: I-학습
+  method: api
+  module: cn_ir
+  endpoint_doc: "radar/pollers/cn_ir.py · http://www.cninfo.com.cn/new/hisAnnouncement/query · https://roadshow.sseinfo.com/base-service/api/pub/v1/"
+  auth: none
+  scope: [글로벌]
+  interval_min: 60
+  run_on: local
+  enabled: true
+  language: zh
+  doc_type: IR 자료
+  terms_note: "2026-11-17 마스터 지시(AMEC 688012 등 중국 본토 반도체). cninfo는 거래소 지정 공시 매체 공개 조회(robots.txt 없음), 上证路演中心 robots.txt 'Disallow:' 빈칸(전부 허용, 같은 날 확인) — 공개(pub) API만, 로그인 구역 안 씀. 종목 사이 1초. 원문 글자는 git 제외 폴더 radar/inbox/cn_ir"
+  reliability_default: 공식 A
+  verified: true
 - id: src-alphavantage
   name: Alpha Vantage — 감시 종목 실적 일정(EARNINGS_CALENDAR), 필요 시 어닝콜 전사·추정·개요·내부자 거래
   category: I-데이터
