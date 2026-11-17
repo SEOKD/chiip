@@ -35,9 +35,9 @@ P5W = "https://rs.p5w.net/"   # 全景网 路演天下(robots.txt 'Allow: /', 20
 PAUSE_S = 1.0
 LOOK_D = 10
 P5W_LOOK_D = 30   # 답변이 설명회 며칠 뒤에 붙기도 한다(江波龙 2026-04-30 → 05-07)
-# 꺼 둔다 — 全景网 설명회 안내문에 판권 성명("未经全景网书面授权，任何人不得复制、转载、摘编…")이 있다. robots는 허용이지만
-# 약관 성격의 금지라 마스터 판단 전까지 받지 않는다(2026-11-17). 켜려면 True.
-P5W_ON = False
+# 全景网 설명회 안내문에 판권 성명("未经全景网书面授权，任何人不得复制、转载、摘编…")이 있다. robots는 허용.
+# 마스터가 성명을 알고 켜도록 결정했다(2026-11-17 "켜라"). 원문은 git 제외 폴더에만 두고, 산출물에는 요지·링크만 쓴다.
+P5W_ON = True
 
 
 class _P5wOff(Exception):
@@ -293,7 +293,7 @@ def collect(code, c, st, now, days=LOOK_D, first=False, seed_new=True):
             path = save_text(code, key, a["title"], url, text)
             out.append(item(code, c, key, "transcript", a["title"] + f" — 질의응답 {n}건", url, when, text, path))
             time.sleep(PAUSE_S)
-    # 全景网 路演天下 — 선전 상장사 대부분과 일부 상하이 상장사(2026-11-17 마스터 승인 "붙여라", 판권 성명 확인으로 P5W_ON 대기)
+    # 全景网 路演天下 — 선전 상장사 대부분과 일부 상하이 상장사(2026-11-17 마스터 승인 "붙여라"·"켜라")
     try:
         if not P5W_ON:
             raise _P5wOff
