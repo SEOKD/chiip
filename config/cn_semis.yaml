@@ -18,7 +18,7 @@ companies:
   - {code: "688630", name: 芯碁微装, en: CFMEE, ko: 신치웨이좡, sub: 직접묘화 노광}
   # 파운드리·IDM
   - {code: "688981", name: 中芯国际, en: SMIC, ko: SMIC, sub: 파운드리}
-  - {code: "688347", name: 华虹公司, en: Hua Hong Semiconductor, ko: 화훙반도체, sub: 파운드리}
+  - {code: "688347", name: 华虹宏力, en: Hua Hong Semiconductor, ko: 화훙반도체, sub: 파운드리}
   - {code: "688249", name: 晶合集成, en: Nexchip, ko: 징허지청, sub: 파운드리}
   - {code: "688469", name: 芯联集成, en: United Nova Technology, ko: 신롄지청, sub: 전력·MEMS 파운드리}
   - {code: "688396", name: 华润微, en: China Resources Microelectronics, ko: 화룬웨이, sub: 전력 반도체 IDM}

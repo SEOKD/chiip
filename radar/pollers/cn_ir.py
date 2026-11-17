@@ -32,6 +32,7 @@ CST = timezone(timedelta(hours=8))
 RS = "https://roadshow.sseinfo.com/base-service/api/pub/v1/"
 PAUSE_S = 1.0
 LOOK_D = 10
+BUDGET_S = 300   # 회차당 5분 — 남은 종목은 다음 회차(cursor)
 # 문서 종류 — 제목 규칙(위에서부터 첫 일치). 摘要·英文·更正 등은 뺀다
 KINDS = [("qa", re.compile(r"投资者关系活动记录表|调研活动|业绩说明会召开情况|说明会.*(召开情况|问答|纪要)|接待.*调研")),
          ("report", re.compile(r"(年度报告|半年度报告|季度报告)$")),
@@ -228,13 +229,21 @@ def poll(env=None, now=None):
     now = now or datetime.now(CST)
     st = common.load_state(STATE, {})
     first = not st.get("seen")   # 처음 켤 때는 지금 있는 문서를 씨앗으로만(옛 자료를 한꺼번에 보내지 않는다)
-    items, errs, bad = [], [], st.setdefault("code_mismatch", {})
-    for code, c in universe().items():
+    items, errs = [], []
+    uni = list(universe().items())
+    start = st.get("cursor", 0) % max(1, len(uni))
+    t0 = time.time()
+    done = 0
+    for code, c in uni[start:] + uni[:start]:   # 한 회차 BUDGET_S 안에서 이어 돈다 — 61개사 한 바퀴가 run_poll 원천 한도(8분)를 넘었다(2026-11-17)
+        if time.time() - t0 > BUDGET_S:
+            break
         try:
             items += collect(code, c, st, now, first=first)
         except Exception as exc:
             errs.append(f"{code} {type(exc).__name__}")
+        done += 1
         time.sleep(PAUSE_S)
+    st["cursor"] = (start + done) % max(1, len(uni))
     common.save_state(STATE, st)
     common.record_health("src-cn-ir", not errs or len(errs) < 5, "; ".join(errs[:5]) or None)
     return items
