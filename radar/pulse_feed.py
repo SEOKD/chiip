@@ -15,6 +15,7 @@ Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴�
 잠금 평가기 pulse_check.py가 그대로 재도록 판단은 **굵게**, 근거·반대·다음 확인은 · 줄로 쓴다.
 """
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -65,6 +66,34 @@ def build(d):
     if d.get("zacks"):
         out.append(ZACKS)
     return "\n\n".join(out)
+
+
+def brief_marks(text):
+    """'■ 간단히' 아래 해설 단락마다 머리에 '■ '를 붙인다 — 기업·보도·판단·반증·원문 단락 구분(마스터 지시 2026-11-18 "양식을 바꿔라").
+    '· 종목' 줄·이미 ■인 줄·구분선은 그대로. '그 외 새 건 없음' 줄은 뺀다(2026-11-13 지시, 마스터 예시에도 없다)."""
+    out, on = [], False
+    for line in text.split("\n"):
+        t = line.strip()
+        if re.fullmatch(r"\**■\s*간단히\**", t):
+            on = True
+            out.append(line)
+            continue
+        if t.startswith("─") or re.match(r"\**■\s*(결론|근거|반대|다음 확인|정량)", t):
+            on = False
+        if on:
+            if t.startswith("그 외 새 건 없음"):
+                continue
+            if t and not t.startswith(("·", "-", "■", "**■", "1차 판정", "Data provided", "공개 자료 기반")):
+                line = "■ " + t
+            elif re.match(r"■(?=\S)", t):
+                line = "■ " + t[1:]
+            prev = out[-1].strip() if out else ""
+            if line.startswith(("■", "**■")) and prev:   # 단락마다 빈 줄
+                out.append("")
+            elif t.startswith("·") and prev and not prev.startswith("·") and not re.fullmatch(r"\**■\s*간단히\**", prev):
+                out.append("")   # 다음 종목 앞 빈 줄
+        out.append(line)
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(out))
 
 
 def unread(d):

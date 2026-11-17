@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 import pulse_check  # noqa: E402
 import pulse_gloss  # noqa: E402
+import pulse_feed  # noqa: E402
 import run_ledger  # noqa: E402
 from units import chiip_name, money_units  # noqa: E402
 
@@ -283,6 +284,8 @@ def _send(text, level="P1", ref=None, html_mode=False, md=False, buttons=None):
     raw_text = text
     if level == "PORTFOLIO":   # Chiip View 항목의 '기업:' 줄도 다른 항목처럼 하이픈으로 시작한다(마스터 지시 2026-10-31)
         text = re.sub(r"(?m)^기업:", "- 기업:", text)
+    if level == "PULSE" and not html_mode:   # '간단히' 해설 단락마다 ■(마스터 지시 2026-11-18)
+        text = pulse_feed.brief_marks(text)
     if level == "PULSE" and not html_mode:   # 기술·세그먼트·제품·정책·프로젝트 이름을 처음 나오는 곳에서 풀이(마스터 지시 2026-10-31)
         text = pulse_gloss.apply(text)
     text = brand(text)
