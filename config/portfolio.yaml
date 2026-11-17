@@ -40,6 +40,7 @@ holdings:
     kind: spac                              # 스팩 — 합병 대상 Agility Robotics(휴머노이드), 합병 후 티커 AGLT·회사명 Agility Robotics, Inc.
     since: 2026-11-03                       # 2026-10-30 종료 후 마스터 지시로 와치리스트 재등록
     status: 관심
+    pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: co-marvell
     ticker: MRVL
     name: Marvell Technology
@@ -63,6 +64,7 @@ holdings:
     related: ["MasTec", "MYR Group", "Primoris", "EMCOR", "Sterling Infrastructure", "Dycom"]
     since: 2026-10-29
     status: 관심
+    pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: us-cbrs
     ticker: CBRS
     name: Cerebras Systems Inc.
@@ -74,6 +76,7 @@ holdings:
     related: ["Etched", "Groq", "SambaNova", "G42", "MBZUAI", "Paricon"]
     since: 2026-10-29
     status: 관심
+    pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: us-lscc
     ticker: LSCC
     name: Lattice Semiconductor
@@ -85,6 +88,7 @@ holdings:
     related: ["Altera", "AMD", "Xilinx", "Microchip", "Achronix", "Efinix"]
     since: 2026-11-03
     status: 관심
+    pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: us-bksy
     ticker: BKSY
     name: BlackSky Technology Inc.
@@ -96,6 +100,7 @@ holdings:
     related: ["Planet Labs", "Maxar", "Rocket Lab", "Spire Global", "Satellogic"]
     since: 2026-11-05   # 마스터 지시 "Portfolio에 BKSY 추가하라"
     status: 관심
+    pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: us-mtd
     ticker: MTD
     name: Mettler-Toledo International Inc.
