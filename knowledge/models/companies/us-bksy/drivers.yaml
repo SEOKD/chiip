@@ -1,0 +1,107 @@
+auto: true
+id: us-bksy
+name: BlackSky Technology
+ticker: BKSY
+unit: B$
+unit_usd: 1000000000.0
+industry: aerospace_defense
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-17'
+market:
+  date: '2026-11-17'
+  price: 23.15
+  shares: 0.043945
+  net_debt: 0.023534
+  source: 가격 = 2026-11-16 TradingView 종가 $23.15. 주식 수 = 10-Q 표지 Class A 41,398,708주(2026-11-02).
+    현금 = 현금 $27.4M + 단기투자 $185.4M(제한 현금 $18.3M은 신용장 담보라 제외). 차입 = 전환사채 원금 $185.0M
+    + 위성 발사 공급사 금융 $40.95M + 운용리스 $10.37M(10-Q 2026-09-30)
+rev0: 0.145
+ic0: 0.258534
+scenarios:
+  base:
+    prob: 0.35
+    growth:
+      start: 0.3103
+      end: 0.035
+      decay: 0.79
+    margin:
+      m0: -0.198
+      target: 0.08
+      year_target: 3
+      lr: 0.25
+      lam: 0.35
+      anchors:
+      - 0.0003
+      - 0.08
+    s2c: 0.9
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5517
+      end: 0.04
+      decay: 0.8400000000000001
+    margin:
+      m0: -0.198
+      target: 0.16
+      year_target: 3
+      lr: 0.25
+      lam: 0.25
+      anchors:
+      - 0.0003
+      - 0.08
+    s2c: 1.035
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.0897
+      end: 0.030000000000000002
+      decay: 0.6900000000000001
+    margin:
+      m0: -0.198
+      target: 0.0
+      year_target: 3
+      lr: 0.25
+      lam: 0.5
+      anchors:
+      - 0.0003
+      - 0.08
+    s2c: 0.765
+mc:
+  sigma_growth: 0.1155
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.14, 0.15] (3Q26 실적 보도자료 Guidance 표(8-K EX-99.1, 2026-11-05)
+    https://www.sec.gov/Archives/edgar/data/1753539/000175353926000154/exhibit991-blackskyq32026e.htm)
+  growth: 컨센서스 1년차 31.0%, 2년차 25.3%
+  margin: 1~2년차 컨센서스 0.0%, 8.0% 고정 → 목표 8%(3년차, 덮어쓰기) → 장기 수렴 25%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.511 → 덮어쓰기 0.9
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 9.0%~55.2%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.35, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +20.0% 아래·강세 +43.1% 위 확률. 내부 관점(컨센서스 +31.0%, σ 24.3%: 범위 46.2% ÷ d2(8) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '매출÷투하자본 0.9: TTM 0.51은 위성군 구축기 자본이 섞인 값 — 증분 서비스 매출은 원가가 거의 안 붙는다(3Q
+    콜). 장기 영업이익률 25%: 3Q 조정 EBITDA 이익률 30%에서 위성 감가상각·주식 보상을 빼면 낮아지고, 위성 교체 투자가 계속되는
+    사업이라 소프트웨어 수준(30%+)을 주지 않는다(추정)'
+  shares: '완전 희석 = 기본 0.0413987(2026-11-02) + 옵션·RSU·워런트·전환 0.0025 — 3Q 희석 가중평균 43,281천주
+    − 기본 40,735천주 = 2,546천주(주식 보상·파생 지분, 10- · 전환사채 판정: 2033 만기 8.25% 전환사채 외가격(전환가
+    36.78 > 가격 23.15) — 차입'
+notes:
+- 자동 생성(build_drivers) 2026-11-17 — 데이터 묶음 2026-11-17
+- '어닝콜 위험: 미국 정부 매출 50% — 의회 세출(상업 정찰 영상 예산)'
+- '어닝콜 위험: 잔고 $355M 중 69%가 2028년 이후 인식'
+- '어닝콜 위험: Gen-3 위성 생산·발사 일정'
+evidence:
+- 'Fiscal.ai MCP 2026-11-17: 표준화 분기 손익·재무상태표·현금흐름표, company_estimates(자체 추정), Zacks
+  추정·목표가·의견(Data provided by Zacks Investment Research, Inc., www.zacksdata.com),
+  3Q·2Q26 어닝콜 전문 요지, 13F·내부자 거래'
+- Easyconomics company_profile(yfinance 출처) 2026-11-17 — 의견 분포·공매도·기관 비중
+- TradingView NYSE:BKSY 일봉 760개·동종 시총·차입(2026-11-16)
+- SEC 10-Q 3Q26 https://www.sec.gov/Archives/edgar/data/1753539/000175353926000161/bksy-20260930.htm
+- SEC 8-K EX-99.1 3Q26 https://www.sec.gov/Archives/edgar/data/1753539/000175353926000154/exhibit991-blackskyq32026e.htm
+- SEC 10-K FY2025 https://www.sec.gov/Archives/edgar/data/1753539/000175353926000032/bksy-20251231.htm
+- 대체 원천 없음
