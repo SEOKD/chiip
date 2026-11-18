@@ -46,10 +46,14 @@ def build(d):
     date = str(d["date"])[5:].replace("-", "/")
     out = [f"[Chiip Analysis {date}]", "", f"**{d['company']}({d['ticker']})**", "", f"■개요 : {d['title']}", "", f"■뭐하는 회사 : {d['biz']}", ""]   # 머리 양식(2026-11-14 마스터 지시)
     alpha = v.get("insight") if v.get("insight") is not None else v.get("alpha")
-    out += ["**■ 결론**", f"- 구매 등급 **{v.get('rating')}** · 알파 {alpha}/10"]
-    if v.get("target_text"):
-        out.append(f"- 목표주가 {v['target_text']} · {v.get('target_place')}")
-    out.append(f"- 업사이드 {_pct(v.get('upside') or 0)} · 다운사이드 {_pct(v.get('downside') or 0)} · 손익비 {(v.get('rr') or 0):.1f}")
+    spac = v.get("rating") is None   # SPAC 리포트(spac_report.py)는 등급·목표주가를 내지 않는다 — 'None' 대신 그렇다고 쓴다(2026-11-19 TACO)
+    if spac:
+        out += ["**■ 결론**", "- 스팩 리포트 — 합병 전이라 구매 등급·목표주가를 내지 않는다"]
+    else:
+        out += ["**■ 결론**", f"- 구매 등급 **{v.get('rating')}** · 알파 {alpha}/10"]
+        if v.get("target_text"):
+            out.append(f"- 목표주가 {v['target_text']} · {v.get('target_place')}")
+        out.append(f"- 업사이드 {_pct(v.get('upside') or 0)} · 다운사이드 {_pct(v.get('downside') or 0)} · 손익비 {(v.get('rr') or 0):.1f}")
     out += ["", "**■ 왜 이렇게 보나**"] + [f"- {a}: {b}" if a else f"- {b}" for a, b in reasons(d)]
     out += ["", "**■ 밸류에이션**", f"- 주가 {_tile(d, '주가').get('v')} ({_tile(d, '주가').get('sub', '').split(' · ')[0]})"]
     if cases:
@@ -69,13 +73,13 @@ def build(d):
     sell = next((x for b in bear.get("blocks") or [] if b.get("type") == "boxes" for x in b.get("items") or [] if x.get("title") == "셀온 조건"), {})
     if sell.get("lines"):
         out += ["", "**■ 셀온 조건**"] + [f"- {t.rstrip('.')}" for _, t in sell["lines"][:3]]
-    check = next((b for b in _sec(d, "체크리스트").get("blocks") or [] if b.get("type") == "table"), {})
+    check = next((b for b in (_sec(d, "체크리스트") or _sec(d, "다음 확인 사건")).get("blocks") or [] if b.get("type") == "table"), {})
     if check.get("rows"):
         out += ["", "**■ 다음 확인**"] + [f"- {r[0]}: {r[1]}" for r in check["rows"][:2]]
     out.append("")
-    if money == "$" and "미확인" not in str(_tile(d, "구매등급").get("sub")) and not _tile(d, "구매등급").get("second"):   # 한국 등 달러가 아닌 종목은 Zacks 수치를 쓰지 않는다
+    if not spac and money == "$" and "미확인" not in str(_tile(d, "구매등급").get("sub")) and not _tile(d, "구매등급").get("second"):   # 한국 등 달러가 아닌 종목은 Zacks 수치를 쓰지 않는다
         out.append(ZACKS)
-    out.append(FOOT)
+    out.append("스팩 서류 기반 분석 · 투자 권유 아님 · 1차 판정, 미검증" if spac else FOOT)
     return "\n".join(out)
 
 
