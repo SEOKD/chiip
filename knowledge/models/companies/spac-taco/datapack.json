@@ -1,0 +1,96 @@
+{
+  "id": "spac-taco",
+  "name": "Berto Acquisition Corp.",
+  "ticker": "TACO",
+  "spac": {
+    "as_of": "2026-11-19",
+    "price": 10.525,
+    "price_source": "Easyconomics(yfinance) TACO 일봉 종가 2026-11-17(발표 당일 장 마감, 거래량 18.0K주) — TradingView 일일 한도 초과로 2순위, 다음 회차 TradingView 대조",
+    "trust_per_share": 10.56,
+    "trust_source": "3Q26 10-Q 재무상태표: 신탁 $317,026,727 ÷ 환매 대상 30,015,000주 = $10.56(2026-09-30)",
+    "target": "AMPERA, Inc. (미국 플로리다 팜비치가든스 — 초임계 CO2(sCO2) 발전 사이클 sPower 기반 모듈형 가스 발전 PowerNOW, 이후 가속기 구동 미임계 토륨 원자로 NuclearNEXT·TRISO 연료 개발)",
+    "new_ticker": "AMPR",
+    "status": "확정 계약(BCA 2026-11-17, 425 0001829126-26-012588) · S-4 미제출 · 보통주 PIPE 약 $30M 약정 · 종결 목표 2027년 1분기",
+    "ipo_date": "2025-05-01",
+    "next_redemption": {
+      "date": "2027-05-01",
+      "tps": 10.57
+    },
+    "redemption": {
+      "shares": 0.0,
+      "pct": 0.0
+    },
+    "cash": {
+      "trust_left": 0.317,
+      "pipe": 0.03,
+      "other": 0.01,
+      "fees": 0.025
+    },
+    "shares": {
+      "공개 주주(환매 전)": 30.0,
+      "스폰서": 7.5,
+      "PIPE": 2.8,
+      "피인수 기존 주주(합계 125.6M − 나머지, 계산)": 85.3
+    },
+    "warrants": [
+      {
+        "name": "공개 워런트",
+        "count": 15.0,
+        "strike": 11.5,
+        "price": null
+      },
+      {
+        "name": "사모 워런트",
+        "count": 7.3,
+        "strike": 11.5,
+        "price": null
+      }
+    ],
+    "earnout": [],
+    "lockups": [
+      {
+        "date": "종결 + 24개월(약 2029-03, 12개월 뒤 $18 조건 조기 해제)",
+        "who": "스폰서(일부 AMPERA 주주 몫은 S-4 전 미공시)",
+        "shares": 7.5
+      }
+    ],
+    "projections": [],
+    "projection_note": "설명자료는 단위 경제성(가스 시스템 대당 약 $9M·원자력 $25M, PPA 회수 1~2년, EBIT 흑자 2031 목표)만 제시 — 연도별 매출 전망 없음. 경영진 전망이며 시장 기대 아님",
+    "ltm": {
+      "revenue": 0.0,
+      "profitable": false
+    },
+    "sponsor": {
+      "hq": "미국 네바다 라스베이거스",
+      "expert": false,
+      "prior_median_12m": null,
+      "note": "dMY 계열 스팩(설명자료: IonQ·Planet Labs·Horizon Quantum·Genius Sports 전례)"
+    },
+    "uw_rank": null,
+    "pipe_terms": {
+      "type": "common",
+      "price": 10.57,
+      "affiliated": false,
+      "note": "최종 신탁 환매가로 발행 — 가격은 계산 근사"
+    },
+    "clauses": [
+      "최소 현금 조건 = 실제 납입된 PIPE 금액(약 $30M) — 문턱이 사실상 없어 대량 환매에도 종결 가능",
+      "종결 기한 2027-03-15(등록서류 효력 지연 시 4/15·5/12로 자동 연장), 스팩 청산 시한 2027-05-01",
+      "추가 PIPE $50~100M 협의 중(확정 계약 없음, 종결 조건 아님)",
+      "언아웃 조항 없음(BCA 검색 기준)",
+      "일부 AMPERA 주주 차등 의결권 주식",
+      "이연 인수 수수료 약 $12M — 환매 비율만큼 비례 감액"
+    ],
+    "structured_shares": 0.0,
+    "edge": 2.5,
+    "edge_note": "매출 0·시제품 전 단계(2026 3Q 가스 사전 시제품, 2027 1Q 7.5MWe 시제품, 2027 3Q 첫 납품 목표). 데이터센터 현장 전력 병목은 실재하지만 sCO2 사이클은 상용 대형 실적이 드물고, 미임계 토륨로는 NRC 사전 신청 단계. 'PowerNOW 20대 이상 논의'는 계약이 아니다(금지표: 협력·MOU → 매출). 양산성·고객 채택 근거 없음.",
+    "flags": [
+      "PIPE $30M 외 환매 보호 장치 없음 — 신탁 $317M 대비 환매 위험 전부 노출",
+      "프리머니 $900M에 매출 0 — 합병 전 프리미엄 판단은 주가 확인 후"
+    ],
+    "sources": [
+      "425(8-K 1.01) 2026-11-18 0001829126-26-012588 — EX-2.1 BCA, EX-10.3 PIPE 구독 계약, EX-10.5 보호예수, EX-99.1 보도자료, EX-99.2 투자자 설명자료",
+      "3Q26 10-Q(2026-11-13) — 신탁 $317.0M, 운전자본 적자 약 $3.7M, 현금 약 $49K"
+    ]
+  }
+}
