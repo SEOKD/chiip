@@ -1,0 +1,103 @@
+auto: true
+id: co-plpc
+name: Preformed Line Products
+ticker: PLPC
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.49
+  Americas: 0.16
+  EMEA: 0.18
+  APAC: 0.17
+tax: 0.25
+horizon: 10
+as_of: '2026-11-19'
+market:
+  date: '2026-11-19'
+  price: 277.21
+  shares: 0.005143
+  net_debt: -0.035669
+  source: 가격 = 2026-11-17 나스닥 종가 $277.21(Easyconomics 일봉). 주식 수 4,880,691주(10-Q 표지
+    2026-10-16). 현금 $99.3M, 차입 = 단기 $2.4M + 유동 장기 $6.1M + 장기 $47.4M + 리스 $8.4M(3Q26
+    10-Q)
+rev0: 0.803
+ic0: 0.476969
+scenarios:
+  base:
+    prob: 0.6
+    growth:
+      start: 0.071
+      end: 0.035
+      decay: 0.643
+    margin:
+      m0: 0.1108
+      target: 0.1231
+      year_target: 3
+      lr: 0.11
+      lam: 0.35
+      anchors:
+      - 0.1174
+      - 0.1231
+    s2c: 1.618
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.1831
+      end: 0.04
+      decay: 0.6930000000000001
+    margin:
+      m0: 0.1108
+      target: 0.1431
+      year_target: 3
+      lr: 0.11
+      lam: 0.25
+      anchors:
+      - 0.1174
+      - 0.1231
+    s2c: 1.861
+  bear:
+    prob: 0.2
+    growth:
+      start: -0.0411
+      end: 0.030000000000000002
+      decay: 0.543
+    margin:
+      m0: 0.1108
+      target: 0.1031
+      year_target: 3
+      lr: 0.11
+      lam: 0.5
+      anchors:
+      - 0.1174
+      - 0.1231
+    s2c: 1.375
+mc:
+  sigma_growth: 0.056
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 0.803
+  growth: 컨센서스 1년차 7.1%, 2년차 5.8%
+  margin: 1~2년차 컨센서스 11.7%, 12.3% 고정 → 목표 12%(3년차, 덮어쓰기) → 장기 수렴 11%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.618
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -4.1%~18.3%
+  probs: '근거 계산 {''bear'': 0.2, ''base'': 0.6, ''bull'': 0.2} — 다음 해 매출 성장 분포로 계산
+    — 약세 +1.5% 아래·강세 +12.7% 위 확률. 내부 관점(컨센서스 +7.1%, σ 6.8%: 추정 범위 없음 — 5% + 0.25 ×
+    |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 15%(기본) → 11%: PLPC GAAP 영업이익률 FY19~25 7.4~12.5%(Fiscal.ai
+    연간 실적) — 15%는 역사에 없는 값'
+  shares: '완전 희석 = 기본 0.0048807(2026-10-16) + 옵션·RSU·워런트·전환 0.0003 — 10-Q 주석 10: 주식
+    보상 희석 효과 40K주(3Q), 랍비 신탁 보유 222,506주는 EPS 분모('
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-19
+- '어닝콜 위험: 관세 역풍 지속(보도자료)'
+- '어닝콜 위험: 판매·운송비·인력 투자로 판관비 증가'
+- '어닝콜 위험: 통신 매출 비중 하락(23% → 19%)'
+evidence:
+- https://fiscal.ai/company/NasdaqGS-PLPC
+- https://www.sec.gov/Archives/edgar/data/80035/000008003526000034/plpc-10qxexx991x2026q3.htm
+- https://www.sec.gov/Archives/edgar/data/80035/000008003526000036/plpc-20260930.htm
+- Fiscal.ai MCP 2026-11-18 — 표준화 재무·자체 추정·13F
+- Easyconomics 일봉·yfinance 개요(2026-11-18)
