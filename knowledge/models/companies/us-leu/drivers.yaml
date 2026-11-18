@@ -1,0 +1,104 @@
+auto: true
+id: us-leu
+name: Centrus Energy
+ticker: LEU
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.52
+  INTL: 0.48
+tax: 0.21
+horizon: 10
+as_of: '2026-11-17'
+market:
+  date: '2026-11-17'
+  price: 94.19
+  shares: 0.024404
+  net_debt: -1.0573
+  source: 가격 = 2026-11-17 TradingView 종가 $94.19. 주식 = Class A 19,899,250 + Class B
+    719,200 = 20,618,450주(10-Q 표지 2026-11-01). 현금 $2,236.1M·장기차입(전환사채 장부가) $1,178.8M(10-Q
+    2026-09-30 재무상태표) https://www.sec.gov/Archives/edgar/data/1065059/000162828026070557/leu-20260930.htm
+rev0: 0.475
+ic0: 0.0478
+scenarios:
+  base:
+    prob: 0.35
+    growth:
+      start: 0.2632
+      end: 0.035
+      decay: 0.3
+    margin:
+      m0: 0.1
+      target: 0.1133
+      year_target: 3
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - 0.0967
+      - 0.1133
+    s2c: 0.8
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.5789
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.1
+      target: 0.1333
+      year_target: 3
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - 0.0967
+      - 0.1133
+    s2c: 0.92
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.0752
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.1
+      target: 0.0933
+      year_target: 3
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - 0.0967
+      - 0.1133
+    s2c: 0.68
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.45, 0.5] (3Q26 실적 보도자료(8-K, 2026-11-04) https://www.sec.gov/Archives/edgar/data/1065059/000162828026070229/leu-20261104.htm)
+  growth: 컨센서스 1년차 26.3%, 2년차 10.0%
+  margin: 1~2년차 컨센서스 9.7%, 11.3% 고정 → 목표 11%(3년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 6.0 → 덮어쓰기 0.8
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -7.5%~57.9%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.35, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +9.4% 아래·강세 +42.1% 위 확률. 내부 관점(컨센서스 +26.3%, σ 36.3%: 범위 65.4% ÷ d2(7) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '① 매출/투하자본: TTM 투하자본 $47.8M은 현금이 전환사채보다 많아 생긴 착시다. 농축 공장은 설비 집약적이라(9개월
+    CAPEX $226.4M vs 매출 $308.3M) 증설 기간 증분 매출/자본을 0.8로 둔다(추정). ② 장기 영업이익률 20%: 지금은
+    구매 SWU 중개라 조정 EBIT 10%대지만, 2029년 이후 자체 SWU 비중이 늘면 원가 구조가 바뀐다 — 자체 원가 미공개라 규칙 기본
+    15%와 대형 농축사 수준(추정 30% 이상) 사이 20%(추정)'
+  shares: 완전 희석 = 기본 0.02061845(2026-11-01) + 옵션·RSU·워런트·전환 0.0038 — 선행 매수권 2,005,513주(행사가
+    $0.10, 10-Q 주석 11) + 2.25% 2030 전환사채 내
+notes:
+- 자동 생성(build_drivers) 2026-11-18 — 데이터 묶음 2026-11-17
+- '어닝콜 위험: 러시아 LEU 수입 금지법 — 2026~27년 미국 고객용 추가 면제 결과 미공시(10-Q)'
+- '어닝콜 위험: Piketon 임차 2027-10-01 만료 — DOE 연장 미확정(10-Q)'
+- '어닝콜 위험: SWU 단가 +28%로 원가가 판매가(+10%)보다 빨리 올랐다(콜)'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1065059/000162828026070557/leu-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1065059/000162828026070229/leu-20261104.htm
+- https://www.sec.gov/Archives/edgar/data/1065059/000162828026073175/leu-20261112.htm
+- https://fiscal.ai/company/NYSE-LEU
+- Fiscal.ai MCP 2026-11-18 — 표준화 손익·현금흐름, 자체 추정, 3Q26·2Q26 어닝콜
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
