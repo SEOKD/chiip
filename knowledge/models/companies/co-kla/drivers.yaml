@@ -1,0 +1,107 @@
+auto: true
+id: co-kla
+name: KLA
+ticker: KLAC
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  CN: 0.345
+  TW: 0.247
+  US: 0.149
+  KR: 0.12
+  JP: 0.039
+  EU: 0.047
+  Other: 0.053
+tax: 0.145
+horizon: 10
+as_of: '2026-11-19'
+market:
+  date: '2026-11-19'
+  price: 144.56
+  shares: 1.30796
+  net_debt: 1.208809
+  source: 가격 = 2026-11-17 나스닥 종가 $144.56(Easyconomics 일봉, 2026-06-11 10:1 분할 조정).
+    주식 수 = Fiscal.ai 시총 $188.36B ÷ 종가(1.303B주). 현금·유가증권 $4.74B(1Q FY27 10-Q), 부채 $5.95B(1Q
+    콜 발언 — Fiscal.ai 장기차입 $5.72B + 유동분)
+rev0: 19.4
+ic0: 7.732216
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.1856
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.4691
+      target: 0.4841
+      year_target: 3
+      lr: 0.33
+      lam: 0.35
+      anchors:
+      - 0.4813
+      - 0.4841
+    s2c: 1.876
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.366
+      end: 0.034999999999999996
+      decay: 0.35
+    margin:
+      m0: 0.4691
+      target: 0.5041
+      year_target: 3
+      lr: 0.33
+      lam: 0.25
+      anchors:
+      - 0.4813
+      - 0.4841
+    s2c: 2.157
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0052
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.4691
+      target: 0.4641
+      year_target: 3
+      lr: 0.33
+      lam: 0.5
+      anchors:
+      - 0.4813
+      - 0.4841
+    s2c: 1.595
+mc:
+  sigma_growth: 0.0902
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 19.4
+  growth: 컨센서스 1년차 18.6%, 2년차 7.0%
+  margin: 1~2년차 컨센서스 48.1%, 48.4% 고정 → 목표 48%(3년차, 덮어쓰기) → 장기 수렴 33%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.876
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 0.5%~36.6%
+  probs: '근거 계산 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25} — 다음 해 매출 성장 분포로 계산
+    — 약세 +9.5% 아래·강세 +27.6% 위 확률. 내부 관점(컨센서스 +18.6%, σ 13.8%: 범위 36.1% ÷ d2(28) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 15%(기본) → 33%: KLA GAAP 영업이익률 FY20~26 25.9~41.7%(Fiscal.ai
+    연간 실적) — 15%는 역사에 없는 값'
+  shares: '완전 희석 = 기본 1.30296(2026-11-17) + 옵션·RSU·워런트·전환 0.0050 — 1Q FY27 희석 가중 1.311B주
+    vs 기본 약 1.306B주(가이던스 희석 주식 1.306B주) — '
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-19
+- '어닝콜 위험: D램 칩 가격 급등으로 시스템 원가 상승 — FY27 총이익률 부담(10-K·콜)'
+- '어닝콜 위험: 광학 부품 등 장기 리드타임 부품 공급'
+- '어닝콜 위험: 고객 팹 건설·전력 지연'
+evidence:
+- https://fiscal.ai/company/NasdaqGS-KLAC
+- https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/klac-20261028.htm
+- https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm
+- Fiscal.ai MCP 2026-11-18
+- Easyconomics 1Q FY27 실적 정리·일봉

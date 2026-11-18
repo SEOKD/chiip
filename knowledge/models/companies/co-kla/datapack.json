@@ -1,0 +1,3744 @@
+{
+ "id": "co-kla",
+ "name": "KLA",
+ "ticker": "KLAC",
+ "industry": "semicap",
+ "region_mix": {
+  "CN": 0.345,
+  "TW": 0.247,
+  "US": 0.149,
+  "KR": 0.12,
+  "JP": 0.039,
+  "EU": 0.047,
+  "Other": 0.053
+ },
+ "tax": 0.145,
+ "profile": {
+  "price": 144.56,
+  "shares_basic": 1.30296,
+  "shares_date": "2026-11-17",
+  "cash": 4.741191,
+  "debt": 5.95,
+  "source": "가격 = 2026-11-17 나스닥 종가 $144.56(Easyconomics 일봉, 2026-06-11 10:1 분할 조정). 주식 수 = Fiscal.ai 시총 $188.36B ÷ 종가(1.303B주). 현금·유가증권 $4.74B(1Q FY27 10-Q), 부채 $5.95B(1Q 콜 발언 — Fiscal.ai 장기차입 $5.72B + 유동분)"
+ },
+ "dilution": {
+  "potential_total": 0.005,
+  "rsu": 0.005,
+  "date": "2026-11-17",
+  "source": "1Q FY27 희석 가중 1.311B주 vs 기본 약 1.306B주(가이던스 희석 주식 1.306B주) — 차이 약 5M주(RSU)"
+ },
+ "financials": {
+  "rev_ttm": 14.505795,
+  "ebit_ttm": 6.185273,
+  "invested_capital": 7.732216,
+  "capex_ttm": 0.474807,
+  "da_ttm": 0.394386,
+  "basis": "GAAP",
+  "note": "TTM = FY26 2Q~FY27 1Q 분기 합(Fiscal.ai 표준화). 투하자본 = 자기자본 $6.52B + 부채 $5.95B − 현금·유가증권 $4.74B"
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 19.4,
+   "FY2028": 23.0,
+   "FY2029": 24.6
+  },
+  "rev_low": {
+   "FY2027": 18.3,
+   "FY2028": 19.5,
+   "FY2029": 18.8
+  },
+  "rev_high": {
+   "FY2027": 20.3,
+   "FY2028": 26.5,
+   "FY2029": 30.5
+  },
+  "ebit_margin": {
+   "FY2027": 0.4691,
+   "FY2028": 0.4813,
+   "FY2029": 0.4841
+  },
+  "eps": {
+   "FY2027": 6.02,
+   "FY2028": 7.43,
+   "FY2029": 8.13
+  },
+  "eps_low": {
+   "FY2027": 5.55,
+   "FY2028": 5.6,
+   "FY2029": 5.1
+  },
+  "eps_high": {
+   "FY2027": 6.45,
+   "FY2028": 9.1,
+   "FY2029": 10.6
+  },
+  "n_analysts": 28,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "source": "Fiscal.ai 자체 추정(company_estimates 2026-11-18) — 매출·GAAP EBIT·조정 EPS(회계연도 6월 말). 의견·목표가 Zacks 28명",
+  "ratings": {
+   "strong_buy": 16,
+   "buy": 3,
+   "hold": 9,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-02",
+   "source": "Fiscal.ai company_analyst_ratings(Zacks) 28명, 목표가 27명",
+   "target_mean": 218.56,
+   "target_median": 220,
+   "target_high": 310,
+   "target_low": 170,
+   "n_targets": 27
+  },
+  "quarters_est": {
+   "2026-12-31": 4.8217,
+   "2027-03-31": 5.0623,
+   "2027-06-30": 5.38,
+   "2027-09-30": 5.58,
+   "2027-12-31": 5.9013,
+   "2028-03-31": 5.7598,
+   "2028-06-30": 5.7589,
+   "2028-09-30": 5.8533,
+   "2028-12-31": 6.4056
+  },
+  "eps_quarters_est": {
+   "2026-12-31": 1.51,
+   "2027-03-31": 1.576,
+   "2027-06-30": 1.714,
+   "2027-09-30": 1.8,
+   "2027-12-31": 1.902,
+   "2028-03-31": 1.862,
+   "2028-06-30": 1.867,
+   "2028-09-30": 1.926,
+   "2028-12-31": 2.114
+  },
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.885,
+    "est": 0.88,
+    "est_src": "Easyconomics 실적 정리(컨센서스 이력)",
+    "basis": "non_gaap",
+    "earnings_date": "2026-01-29"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 0.94,
+    "est": 0.92,
+    "est_src": "Easyconomics 실적 정리",
+    "basis": "non_gaap",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.05,
+    "est": 1.0,
+    "est_src": "Easyconomics 실적 정리",
+    "basis": "non_gaap",
+    "earnings_date": "2026-07-28"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.22,
+    "est": 1.22,
+    "est_src": "Fiscal.ai 발표 전 고정 추정(가이던스 반영)",
+    "basis": "non_gaap",
+    "earnings_date": "2026-10-28"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 4136.0,
+    "est": 4096.7,
+    "est_src": "Fiscal.ai 발표 전 고정 추정",
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 1861.7,
+    "est": 1845.1,
+    "est_src": "Fiscal.ai 발표 전 고정 추정",
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
+   }
+  ],
+  "surprise_note": "분기 표기는 달력 분기(2026Q3 = FY27 1Q, 9/30 종료). EPS는 조정(회사 기준), 컨센서스 이력은 Easyconomics 실적 정리 — 2026Q3 Easyconomics 기준 EPS 추정 $1.19"
+ },
+ "call": {
+  "date": "2026-10-28",
+  "prev_date": "2026-07-28",
+  "tone": "down",
+  "guidance_direction": "maintain",
+  "tone_delta": -1.5,
+  "kpis": {
+   "rev_m": 4136,
+   "rev_qoq": 0.13,
+   "rev_yoy": 0.29,
+   "gm_nongaap": 0.627,
+   "opm_nongaap": 0.461,
+   "eps_adj": 1.22,
+   "services_m": 851,
+   "fcf_m": 1340,
+   "capital_return_m": 1240,
+   "adv_pkg_2026_b": 1.1
+  },
+  "guidance_changes": [
+   "2Q 매출 $4.7B ± $0.2B(1Q $4.14B 대비 +14%)",
+   "조정 총이익률 62.5% ± 1%(1Q 62.7%)",
+   "2027년 WFE $200B 초과 전망, CY26 WFE+패키징 약 $150B 중반"
+  ],
+  "new_topics": [
+   "2030 모델 가정이 2030년 전에 넘어설 수 있다(CEO)",
+   "인도 신규 캠퍼스 토지 매입 — 연 CAPEX $600~800M로 증가",
+   "고객 클린룸·전력 지연으로 장비 인도 보류 사례",
+   "D램 공정제어 강도가 일부 제품에서 선단 로직 수준",
+   "2027년 시장보다 빠르게 성장(CEO)"
+  ],
+  "dropped_topics": [
+   "상반기 공급 제약이 성장 상한이라는 설명 — 공급 개선으로 바뀜"
+  ],
+  "analyst_focus": [
+   "Goldman Sachs — 2027 WFE 대비 초과 성장",
+   "JPMorgan — 총이익률 63% 회복 시점",
+   "Cantor Fitzgerald — 메모리 원가 전가",
+   "UBS — 2027 점유율·D램 증가",
+   "TD Cowen — 초과 성장 동인",
+   "Bernstein — 2030 모델 조기 달성",
+   "Wells Fargo — CAPEX 급증",
+   "Deutsche Bank — 공급망 긴축",
+   "Wolfe Research — 2028 병목·중국",
+   "Morgan Stanley — 첨단 패키징 경쟁"
+  ],
+  "risks": [
+   "D램 칩 가격 급등으로 시스템 원가 상승 — FY27 총이익률 부담(10-K·콜)",
+   "광학 부품 등 장기 리드타임 부품 공급",
+   "고객 팹 건설·전력 지연",
+   "중국 27~29% → 2027년 20%대 초반",
+   "CEO·CFO 장내 매도(Form 4)"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "item": "매출 가속",
+    "label": "1Q $4.14B·2Q $4.7B",
+    "prior": "4Q FY26 $3.66B",
+    "latest": "1Q FY27 $4.14B(QoQ +13%), 2Q 가이던스 $4.7B",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D2",
+    "kind": "신규",
+    "item": "2027 WFE $200B 초과",
+    "label": "WFE 2027 $200B+",
+    "prior": "2030 WFE $220B ± $20B(투자자의 날)",
+    "latest": "2027년 WFE $200B 초과, 2030 모델 조기 초과 가능",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D3",
+    "kind": "부정",
+    "item": "메모리 원가 부담",
+    "label": "메모리 원가 부담",
+    "prior": "총이익률 목표 63~64%",
+    "latest": "1Q 62.7%, 2027년 중반 이후에야 목표 쪽으로",
+    "driver": "margin_m0",
+    "shift": -0.005,
+    "confidence": 0.8,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D4",
+    "kind": "업데이트",
+    "item": "첨단 패키징",
+    "label": "패키징 $1.1B(+70%)",
+    "prior": "패키징 성장 기대",
+    "latest": "2026년 첨단 패키징 공정제어 약 $1.1B(+70% 초과)",
+    "driver": "growth_start",
+    "shift": 0.005,
+    "confidence": 0.8,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D5",
+    "kind": "신규",
+    "item": "CAPEX 증가",
+    "label": "CAPEX $0.6~0.8B",
+    "prior": "CAPEX 매출의 2~3%",
+    "latest": "연 $600~800M(인도 캠퍼스·캐파)",
+    "driver": "s2c",
+    "shift": -0.05,
+    "confidence": 0.8,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D6",
+    "kind": "신규",
+    "item": "고객 팹 지연",
+    "label": "고객 팹 지연",
+    "prior": "공급 제약",
+    "latest": "일부 고객 클린룸·전력 지연으로 인도 보류",
+    "driver": "growth_start",
+    "shift": -0.003,
+    "confidence": 0.3,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D7",
+    "kind": "업데이트",
+    "item": "중국 비중",
+    "label": "중국 20%대 초반",
+    "prior": "중국 27~29%(2026)",
+    "latest": "2027년 20%대 초반 전망",
+    "driver": "growth_start",
+    "shift": -0.002,
+    "confidence": 0.5,
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   }
+  ],
+  "source": "1Q FY27 어닝콜(2026-10-28)·4Q FY26 어닝콜(2026-07-28) — 8-K https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/klac-20261028.htm",
+  "guidance_note": "가이던스 상단 근접·2027 성장 확신이지만 실적 레이더 톤 점수 8.4 → 6.9, 가이던스 방향 유지 — 레이더 톤 점수 하락(−1.5)으로 down"
+ },
+ "scenario_probs": {},
+ "scenario_probs_why": "엔진 계산값 그대로 — 조정 이유 없음",
+ "weakest": "FY27 매출 +43%($19.4B)와 FY28 +19%($23.0B) — 2027 WFE $200B 초과와 고객 팹 일정. 확인: 2Q FY27 실적(2027-01 말 추정)",
+ "ronic_spread": 0.03,
+ "ronic_why": "ronic_spread 0.03 — 공정 제어(검사·계측) 1위·설치 기반 서비스 매출, GAAP 영업이익률 FY21~26 34~42% 지속. 값은 3단계 백테스트로 보정할 파라미터",
+ "overrides": {
+  "margin_base": {
+   "lr": 0.33
+  },
+  "why": "장기 수렴 이익률 15%(기본) → 33%: KLA GAAP 영업이익률 FY20~26 25.9~41.7%(Fiscal.ai 연간 실적) — 15%는 역사에 없는 값"
+ },
+ "sources": [
+  "https://fiscal.ai/company/NasdaqGS-KLAC",
+  "https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/klac-20261028.htm",
+  "https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm",
+  "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+  "Fiscal.ai MCP 2026-11-18",
+  "Easyconomics 1Q FY27 실적 정리·일봉"
+ ],
+ "as_of": "2026-11-19",
+ "unit": "B$",
+ "raw": {
+  "retrieved_at": "2026-11-19T02:30+09:00",
+  "source": "Fiscal.ai MCP",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_KLAC",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqGS-KLAC",
+   "price": 144.56,
+   "market_cap": 188.35625,
+   "total_cash": 4.741191,
+   "total_debt": 5.95,
+   "as_of": "2026-11-17",
+   "balance_date": "2026-09-30",
+   "note": "시총 = calculated_market_cap 2026-11-17. 부채 = 콜 발언 $5.95B(Fiscal 장기차입 $5.72B)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 3.297146,
+    "2026Q1": 3.415078,
+    "2026Q2": 3.657556,
+    "2026Q3": 4.136015
+   },
+   "op_income": {
+    "2025Q4": 1.362146,
+    "2026Q1": 1.407509,
+    "2026Q2": 1.553948,
+    "2026Q3": 1.86167
+   },
+   "note": "Fiscal.ai 표준화 손익 — 달력 분기(2026Q3 = FY27 1Q)"
+  },
+  "balance_20260930": {
+   "cash": 1.53195,
+   "st_investments": 3.209241,
+   "receivables": 3.072087,
+   "inventory": 4.090426,
+   "ppe": 1.541331,
+   "goodwill": 1.789683,
+   "intangibles": 0.212598,
+   "debt_current": 0.226711,
+   "debt_lt": 5.723289,
+   "lease_current": 0.0,
+   "lease_lt": 0.0,
+   "equity": 6.523407,
+   "total_assets": 18.404735,
+   "source": "Fiscal.ai 표준화 재무상태표(1Q FY27 10-Q), 유동 부채 = 콜 총부채 $5.95B − 장기 $5.72B(계산)"
+  },
+  "estimates_sales_m": {
+   "2027Q1": 4136.0,
+   "2027Q2": 4821.7,
+   "2027Q3": 5062.3,
+   "2027Q4": 5380.0
+  },
+  "estimates_sales_m_note": "회계연도 분기(FY는 6월 말 종료): 1Q = 실적, 2~4Q = Fiscal.ai 추정",
+  "shares_cover_implied": 1.30296,
+  "sec": {
+   "10k_2026": {
+    "url": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+    "customers": "TSMC가 FY24·25·26 각각 매출 10% 초과(몫은 표 — 미기재)",
+    "supplier": "일부 부품·원재료는 단일·소수 공급원(10-K)",
+    "dram": "D램 칩 공급 중단·가격 급등이 구매 약정을 늘렸고 FY27 총이익률에 부담(10-K)",
+    "split": "2026-06-11 10:1 주식분할"
+   },
+   "10q_20260930": {
+    "url": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm",
+    "rpo": "잔여 이행 의무 $12.57B(2026-06-30, Fiscal.ai 세그먼트·KPI)"
+   }
+  }
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_KLAC",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-12-31",
+    "rev": 710245000,
+    "cogs": 280980000,
+    "gp": 429265000,
+    "sga": 96532000,
+    "rd": 118272000,
+    "da": null,
+    "other": null,
+    "op": 214461000
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 712433000,
+    "cogs": 274599000,
+    "gp": 437834000,
+    "sga": 87407000,
+    "rd": 115589000,
+    "da": null,
+    "other": null,
+    "op": 234838000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 919171000,
+    "cogs": 337568000,
+    "gp": 581603000,
+    "sga": 103797000,
+    "rd": 127454000,
+    "da": null,
+    "other": 0,
+    "op": 350352000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 750673000,
+    "cogs": 277836000,
+    "gp": 472837000,
+    "sga": 94388000,
+    "rd": 129233000,
+    "da": null,
+    "other": null,
+    "op": 249216000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 876885000,
+    "cogs": 318507000,
+    "gp": 558378000,
+    "sga": 93532000,
+    "rd": 130912000,
+    "da": null,
+    "other": null,
+    "op": 333934000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 913809000,
+    "cogs": 343274000,
+    "gp": 570535000,
+    "sga": 96252000,
+    "rd": 130170000,
+    "da": null,
+    "other": null,
+    "op": 344113000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 938647000,
+    "cogs": 346598000,
+    "gp": 592049000,
+    "sga": 104039000,
+    "rd": 136373000,
+    "da": null,
+    "other": 0,
+    "op": 351637000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 969581000,
+    "cogs": 353117000,
+    "gp": 616464000,
+    "sga": 107432000,
+    "rd": 146687000,
+    "da": null,
+    "other": null,
+    "op": 362345000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 975822000,
+    "cogs": 347002000,
+    "gp": 628820000,
+    "sga": 105265000,
+    "rd": 156700000,
+    "da": null,
+    "other": null,
+    "op": 366855000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 1021294000,
+    "cogs": 368356000,
+    "gp": 652938000,
+    "sga": 113237000,
+    "rd": 153239000,
+    "da": null,
+    "other": null,
+    "op": 386462000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 1070004000,
+    "cogs": 377566000,
+    "gp": 692438000,
+    "sga": 116370000,
+    "rd": 151905000,
+    "da": null,
+    "other": 0,
+    "op": 424163000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 1093260000,
+    "cogs": 381387000,
+    "gp": 711873000,
+    "sga": 114438000,
+    "rd": 153530000,
+    "da": null,
+    "other": null,
+    "op": 443905000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 1119898000,
+    "cogs": 408260000,
+    "gp": 711638000,
+    "sga": 112462000,
+    "rd": 165903000,
+    "da": null,
+    "other": null,
+    "op": 433273000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 1097311000,
+    "cogs": 486945000,
+    "gp": 610366000,
+    "sga": 182184000,
+    "rd": 184887000,
+    "da": null,
+    "other": null,
+    "op": 243295000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 1258435000,
+    "cogs": 592785000,
+    "gp": 665650000,
+    "sga": 190040000,
+    "rd": 206710000,
+    "da": null,
+    "other": 0,
+    "op": 268900000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 1413414000,
+    "cogs": 604241000,
+    "gp": 809173000,
+    "sga": 188345000,
+    "rd": 210580000,
+    "da": null,
+    "other": null,
+    "op": 410248000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 1509453000,
+    "cogs": 633618000,
+    "gp": 875835000,
+    "sga": 192253000,
+    "rd": 220751000,
+    "da": null,
+    "other": null,
+    "op": 462831000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 1423964000,
+    "cogs": 590158000,
+    "gp": 833806000,
+    "sga": 185760000,
+    "rd": 215433000,
+    "da": null,
+    "other": 256649000,
+    "op": 175964000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 1459593000,
+    "cogs": 621544000,
+    "gp": 838049000,
+    "sga": 167791000,
+    "rd": 217100000,
+    "da": null,
+    "other": 0,
+    "op": 453158000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 1538620000,
+    "cogs": 620562000,
+    "gp": 918058000,
+    "sga": 172631000,
+    "rd": 219038000,
+    "da": null,
+    "other": null,
+    "op": 526389000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 1650870000,
+    "cogs": 669733000,
+    "gp": 981137000,
+    "sga": 181909000,
+    "rd": 229064000,
+    "da": null,
+    "other": null,
+    "op": 570164000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 1803773000,
+    "cogs": 709629000,
+    "gp": 1094144000,
+    "sga": 183040000,
+    "rd": 238957000,
+    "da": null,
+    "other": null,
+    "op": 672147000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 1925471000,
+    "cogs": 772241000,
+    "gp": 1153230000,
+    "sga": 192022000,
+    "rd": 241428000,
+    "da": null,
+    "other": 0,
+    "op": 719780000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 2083838000,
+    "cogs": 813624000,
+    "gp": 1270214000,
+    "sga": 193261000,
+    "rd": 258153000,
+    "da": null,
+    "other": null,
+    "op": 818800000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 2352630000,
+    "cogs": 908162000,
+    "gp": 1444468000,
+    "sga": 213479000,
+    "rd": 265031000,
+    "da": null,
+    "other": null,
+    "op": 965958000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 2288676000,
+    "cogs": 892091000,
+    "gp": 1396585000,
+    "sga": 216489000,
+    "rd": 285189000,
+    "da": null,
+    "other": null,
+    "op": 894907000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 2486739000,
+    "cogs": 978564000,
+    "gp": 1508175000,
+    "sga": 236778000,
+    "rd": 296881000,
+    "da": null,
+    "other": 0,
+    "op": 974516000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 2724424000,
+    "cogs": 1041226000,
+    "gp": 1683198000,
+    "sga": 253980000,
+    "rd": 318515000,
+    "da": null,
+    "other": null,
+    "op": 1110703000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 2983887000,
+    "cogs": 1208786000,
+    "gp": 1775101000,
+    "sga": 243096000,
+    "rd": 332826000,
+    "da": null,
+    "other": null,
+    "op": 1199179000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 2432608000,
+    "cogs": 1005346000,
+    "gp": 1427262000,
+    "sga": 238393000,
+    "rd": 328276000,
+    "da": null,
+    "other": null,
+    "op": 860593000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 2355137000,
+    "cogs": 962949000,
+    "gp": 1392188000,
+    "sga": 250857000,
+    "rd": 317110000,
+    "da": null,
+    "other": 0,
+    "op": 824221000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 2396956000,
+    "cogs": 946891000,
+    "gp": 1450065000,
+    "sga": 239645000,
+    "rd": 311214000,
+    "da": null,
+    "other": null,
+    "op": 899206000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 2486726000,
+    "cogs": 976746000,
+    "gp": 1509980000,
+    "sga": 237244000,
+    "rd": 320418000,
+    "da": null,
+    "other": 219000000,
+    "op": 733318000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 2359830000,
+    "cogs": 993885000,
+    "gp": 1365945000,
+    "sga": 237514000,
+    "rd": 321590000,
+    "da": null,
+    "other": 70474000,
+    "op": 736367000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 2568735000,
+    "cogs": 1010551000,
+    "gp": 1558184000,
+    "sga": 255106000,
+    "rd": 325759000,
+    "da": null,
+    "other": 0,
+    "op": 977319000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 2841541000,
+    "cogs": 1147431000,
+    "gp": 1694110000,
+    "sga": 251042000,
+    "rd": 323145000,
+    "da": null,
+    "other": null,
+    "op": 1119923000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 3076851000,
+    "cogs": 1221461000,
+    "gp": 1855390000,
+    "sga": 267081000,
+    "rd": 346157000,
+    "da": null,
+    "other": 239100000,
+    "op": 1003052000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 3063029000,
+    "cogs": 1175689000,
+    "gp": 1887340000,
+    "sga": 248905000,
+    "rd": 338043000,
+    "da": null,
+    "other": null,
+    "op": 1300392000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 3174741000,
+    "cogs": 1207286000,
+    "gp": 1967455000,
+    "sga": 262706000,
+    "rd": 352989000,
+    "da": null,
+    "other": 0,
+    "op": 1351760000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 3209696000,
+    "cogs": 1243070000,
+    "gp": 1966626000,
+    "sga": 268988000,
+    "rd": 360461000,
+    "da": null,
+    "other": null,
+    "op": 1337177000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 3297146000,
+    "cogs": 1271210000,
+    "gp": 2025936000,
+    "sga": 279919000,
+    "rd": 383871000,
+    "da": null,
+    "other": null,
+    "op": 1362146000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 3415078000,
+    "cogs": 1327672000,
+    "gp": 2087406000,
+    "sga": 291134000,
+    "rd": 388763000,
+    "da": null,
+    "other": null,
+    "op": 1407509000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 3657556000,
+    "cogs": 1413108000,
+    "gp": 2244448000,
+    "sga": 291477000,
+    "rd": 399023000,
+    "da": null,
+    "other": 0,
+    "op": 1553948000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 4136015000,
+    "cogs": 1577791000,
+    "gp": 2558224000,
+    "sga": 301458000,
+    "rd": 395096000,
+    "da": null,
+    "other": null,
+    "op": 1861670000
+   }
+  ]
+ },
+ "ops": {
+  "q": [
+   {
+    "period": "2022-12-31",
+    "rev": 2983887000,
+    "cogs": 1208786000,
+    "inventory": 2535375000,
+    "ocf": 688290000,
+    "capex": -93642000,
+    "fcf": null
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 2432608000,
+    "cogs": 1005346000,
+    "inventory": 2749743000,
+    "ocf": 1010855000,
+    "capex": -84914000,
+    "fcf": null
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 2355137000,
+    "cogs": 962949000,
+    "inventory": 2876784000,
+    "ocf": 959115000,
+    "capex": -78683000,
+    "fcf": null
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 2396956000,
+    "cogs": 946891000,
+    "inventory": 3007705000,
+    "ocf": 883740000,
+    "capex": -68045000,
+    "fcf": null
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 2486726000,
+    "cogs": 976746000,
+    "inventory": 3038628000,
+    "ocf": 622242000,
+    "capex": -76801000,
+    "fcf": null
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 2359830000,
+    "cogs": 993885000,
+    "inventory": 3007053000,
+    "ocf": 909978000,
+    "capex": -71793000,
+    "fcf": null
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 2568735000,
+    "cogs": 1010551000,
+    "inventory": 3034781000,
+    "ocf": 892615000,
+    "capex": -60745000,
+    "fcf": null
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 2841541000,
+    "cogs": 1147431000,
+    "inventory": 3109837000,
+    "ocf": 995238000,
+    "capex": -60393000,
+    "fcf": null
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 3076851000,
+    "cogs": 1221461000,
+    "inventory": 3046340000,
+    "ocf": 849515000,
+    "capex": -92323000,
+    "fcf": null
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 3063029000,
+    "cogs": 1175689000,
+    "inventory": 3155777000,
+    "ocf": 1072159000,
+    "capex": -82135000,
+    "fcf": null
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 3174741000,
+    "cogs": 1207286000,
+    "inventory": 3212149000,
+    "ocf": 1164991000,
+    "capex": -100408000,
+    "fcf": null
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 3209696000,
+    "cogs": 1243070000,
+    "inventory": 3297368000,
+    "ocf": 1161591000,
+    "capex": -95894000,
+    "fcf": null
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 3297146000,
+    "cogs": 1271210000,
+    "inventory": 3282605000,
+    "ocf": 1367607000,
+    "capex": -105576000,
+    "fcf": null
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 3415078000,
+    "cogs": 1327672000,
+    "inventory": 3437046000,
+    "ocf": 707451000,
+    "capex": -85187000,
+    "fcf": null
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 3657556000,
+    "cogs": 1413108000,
+    "inventory": 3648538000,
+    "ocf": 906430000,
+    "capex": -89288000,
+    "fcf": null
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 4136015000,
+    "cogs": 1577791000,
+    "inventory": 4090426000,
+    "ocf": 1530939000,
+    "capex": -194756000,
+    "fcf": null
+   }
+  ],
+  "orders_label": null,
+  "backlog_label": null,
+  "source": "Fiscal.ai"
+ },
+ "multiples_now": {
+  "pe_fwd": 22.01,
+  "ev_ebitda_fwd": 18.02,
+  "pe_fwd2": 19.23,
+  "ev_ebitda_fwd2": 15.48,
+  "pe_fwd3": 17.48,
+  "ev_ebitda_fwd3": 14.35
+ },
+ "forward": {
+  "as_of": "2026-11-18",
+  "ntm": {
+   "eps": 6.6,
+   "ebitda": 10160998456,
+   "ebit": 9764032069,
+   "revenue": 20843984999,
+   "rev_ttm": 14505795000
+  },
+  "horizons": {
+   "2": {
+    "eps": 7.555689999999999,
+    "ebitda": 11827254240,
+    "ext": 0
+   },
+   "3": {
+    "eps": 8.31143530282638,
+    "ebitda": 12763129252.797756,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [
+   {
+    "date": "2023-11-30",
+    "value": 22.9
+   },
+   {
+    "date": "2023-12-29",
+    "value": 24.5
+   },
+   {
+    "date": "2024-01-31",
+    "value": 24.5
+   },
+   {
+    "date": "2024-02-29",
+    "value": 28.4
+   },
+   {
+    "date": "2024-03-28",
+    "value": 29.0
+   },
+   {
+    "date": "2024-04-30",
+    "value": 25.9
+   },
+   {
+    "date": "2024-05-31",
+    "value": 28.5
+   },
+   {
+    "date": "2024-06-28",
+    "value": 30.9
+   },
+   {
+    "date": "2024-07-31",
+    "value": 27.5
+   },
+   {
+    "date": "2024-08-30",
+    "value": 27.3
+   },
+   {
+    "date": "2024-09-30",
+    "value": 24.9
+   },
+   {
+    "date": "2024-10-31",
+    "value": 21.4
+   },
+   {
+    "date": "2024-11-29",
+    "value": 20.5
+   },
+   {
+    "date": "2024-12-31",
+    "value": 20.5
+   },
+   {
+    "date": "2025-01-31",
+    "value": 23.9
+   },
+   {
+    "date": "2025-02-28",
+    "value": 22.5
+   },
+   {
+    "date": "2025-03-31",
+    "value": 21.5
+   },
+   {
+    "date": "2025-04-30",
+    "value": 22.2
+   },
+   {
+    "date": "2025-05-30",
+    "value": 23.1
+   },
+   {
+    "date": "2025-06-30",
+    "value": 27.5
+   },
+   {
+    "date": "2025-07-31",
+    "value": 26.8
+   },
+   {
+    "date": "2025-08-29",
+    "value": 25.4
+   },
+   {
+    "date": "2025-09-30",
+    "value": 30.3
+   },
+   {
+    "date": "2025-10-31",
+    "value": 33.1
+   },
+   {
+    "date": "2025-11-28",
+    "value": 32.0
+   },
+   {
+    "date": "2025-12-31",
+    "value": 31.1
+   },
+   {
+    "date": "2026-01-30",
+    "value": 35.8
+   },
+   {
+    "date": "2026-02-27",
+    "value": 37.1
+   },
+   {
+    "date": "2026-03-31",
+    "value": 32.6
+   },
+   {
+    "date": "2026-04-30",
+    "value": 38.2
+   },
+   {
+    "date": "2026-05-29",
+    "value": 41.2
+   },
+   {
+    "date": "2026-07-31",
+    "value": 33.87
+   },
+   {
+    "date": "2026-08-31",
+    "value": 32.51
+   },
+   {
+    "date": "2026-09-30",
+    "value": 33.69
+   },
+   {
+    "date": "2026-10-30",
+    "value": 26.18
+   }
+  ],
+  "ev_ebitda_fwd": [
+   {
+    "date": "2024-02-29",
+    "value": 23.46
+   },
+   {
+    "date": "2024-03-28",
+    "value": 23.63
+   },
+   {
+    "date": "2024-04-30",
+    "value": 20.43
+   },
+   {
+    "date": "2024-05-31",
+    "value": 22.41
+   },
+   {
+    "date": "2024-06-28",
+    "value": 24.29
+   },
+   {
+    "date": "2024-07-31",
+    "value": 21.83
+   },
+   {
+    "date": "2024-08-30",
+    "value": 21.69
+   },
+   {
+    "date": "2024-09-30",
+    "value": 19.87
+   },
+   {
+    "date": "2024-10-31",
+    "value": 17.36
+   },
+   {
+    "date": "2024-11-29",
+    "value": 17.03
+   },
+   {
+    "date": "2024-12-31",
+    "value": 17.61
+   },
+   {
+    "date": "2025-01-31",
+    "value": 20.19
+   },
+   {
+    "date": "2025-02-28",
+    "value": 18.54
+   },
+   {
+    "date": "2025-03-31",
+    "value": 17.92
+   },
+   {
+    "date": "2025-04-30",
+    "value": 18.35
+   },
+   {
+    "date": "2025-05-30",
+    "value": 18.93
+   },
+   {
+    "date": "2025-06-30",
+    "value": 22.62
+   },
+   {
+    "date": "2025-07-31",
+    "value": 21.64
+   },
+   {
+    "date": "2025-08-29",
+    "value": 20.35
+   },
+   {
+    "date": "2025-09-30",
+    "value": 24.22
+   },
+   {
+    "date": "2025-10-31",
+    "value": 26.59
+   },
+   {
+    "date": "2025-11-28",
+    "value": 25.83
+   },
+   {
+    "date": "2025-12-31",
+    "value": 25.39
+   },
+   {
+    "date": "2026-01-30",
+    "value": 28.64
+   },
+   {
+    "date": "2026-02-27",
+    "value": 29.98
+   },
+   {
+    "date": "2026-03-31",
+    "value": 26.1
+   },
+   {
+    "date": "2026-04-30",
+    "value": 30.72
+   },
+   {
+    "date": "2026-05-29",
+    "value": 33.23
+   },
+   {
+    "date": "2026-07-31",
+    "value": 27.33
+   },
+   {
+    "date": "2026-08-31",
+    "value": 26.23
+   },
+   {
+    "date": "2026-09-30",
+    "value": 26.88
+   },
+   {
+    "date": "2026-10-30",
+    "value": 21.1
+   }
+  ]
+ },
+ "sbc_pct_rev": 0.022,
+ "sbc_note": "TTM 주식 보상 $324M ÷ 매출 $14.51B",
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "source": "1Q FY27 실적 발표(2026-10-28) — 2Q 매출 $4.7B ± $0.2B, 조정 EPS $1.44 ± $0.11",
+  "next": {
+   "period": "2Q FY27(2026-12 분기)",
+   "rev": 4700.0,
+   "rev_range": [
+    4500.0,
+    4900.0
+   ],
+   "rev_cons": 4821.7,
+   "eps": 1.44,
+   "eps_range": [
+    1.33,
+    1.55
+   ],
+   "eps_cons": 1.51,
+   "gm_range": [
+    0.615,
+    0.635
+   ],
+   "opex": 710.0,
+   "unit": "$M",
+   "basis": "회사 가이던스: 매출 $4.5~4.9B, 조정 총이익률 62.5% ± 1%, 영업비용 약 $710M, 조정 EPS $1.33~1.55, 세율 14.5%"
+  },
+  "fy": {
+   "note": "연간 숫자 가이던스 없음 — 2H CY26 매출이 1H보다 약 25% 많고 2027년 분기마다 순차 성장(콜)"
+  },
+  "long_term": "2030 모델(2026-03 투자자의 날): WFE $220B ± $20B, 총이익률 63~64%, 증분 영업이익률 40~50% — 콜에서 '2030년 전에 넘을 수 있다'"
+ },
+ "next_event": {
+  "date": "2027-01-28",
+  "tag": "2Q FY27 실적(추정 일정) — 매출 $4.5~4.9B 가이던스, 2027 WFE·메모리 원가·중국 비중"
+ },
+ "main_metric": "eps",
+ "main_metric_why": "회사가 조정 EPS로 가이던스를 내고 감가상각이 EBITDA의 약 4%",
+ "peers": [
+  {
+   "name": "Applied Materials",
+   "ticker": "AMAT",
+   "key": "NASDAQ_AMAT",
+   "rev": 34.446,
+   "ebit_margin": 0.3219,
+   "growth": 0.1777,
+   "mcap": 277.148,
+   "ev_sales": 8.017,
+   "debt": 6.532,
+   "cash": 9.339,
+   "pb": 10.62,
+   "goodwill": 3.875,
+   "intangibles": 0.339,
+   "pe_fwd": 18.65,
+   "ev_ebitda_fwd": 15.6,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.98,
+     "ev_ebitda_fwd": 22.74
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 28.57,
+     "ev_ebitda_fwd": 26.72
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 51.19,
+     "ev_ebitda_fwd": 41.68
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.47,
+     "ev_ebitda_fwd": 24.66
+    }
+   ],
+   "pe_fwd2": 15.02,
+   "ev_ebitda_fwd2": 12.59,
+   "pe_fwd3": 13.07,
+   "ev_ebitda_fwd3": 11.09,
+   "ntm_ebit_margin": 0.364,
+   "ntm_growth": 0.3557
+  },
+  {
+   "name": "Lam Research",
+   "ticker": "LRCX",
+   "key": "NASDAQ_LRCX",
+   "rev": 26.128,
+   "ebit_margin": 0.3695,
+   "growth": 0.1408,
+   "mcap": 263.188,
+   "ev_sales": 10.018,
+   "debt": 3.735,
+   "cash": 7.437,
+   "pb": 18.92,
+   "pe_fwd": 20.88,
+   "ev_ebitda_fwd": 16.66,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 33.6,
+     "ev_ebitda_fwd": 26.86
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 33.82,
+     "ev_ebitda_fwd": 26.16
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 54.32,
+     "ev_ebitda_fwd": 44.64
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 33.59,
+     "ev_ebitda_fwd": 27.25
+    }
+   ],
+   "pe_fwd2": 17.96,
+   "ev_ebitda_fwd2": 14.14,
+   "pe_fwd3": 17.45,
+   "ev_ebitda_fwd3": 13.88,
+   "ntm_ebit_margin": 0.3993,
+   "ntm_growth": 0.4154
+  },
+  {
+   "name": "ASML",
+   "ticker": "ASML",
+   "key": "NASDAQ_ASML",
+   "rev": 45.363,
+   "ebit_margin": 0.3852,
+   "growth": 0.2296,
+   "mcap": 531.253,
+   "ev_sales": 11.4,
+   "debt": 2.233,
+   "cash": 14.49,
+   "pb": 21.16,
+   "goodwill": 5.221,
+   "intangibles": 0.663,
+   "pe_fwd": 22.72,
+   "ev_ebitda_fwd": 17.87,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 37.92,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 37.55,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 50.96,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 36.74,
+     "ev_ebitda_fwd": null
+    }
+   ],
+   "pe_fwd2": 20.19,
+   "ev_ebitda_fwd2": 16.09,
+   "pe_fwd3": 14.76,
+   "ev_ebitda_fwd3": 11.98,
+   "ntm_ebit_margin": 0.4547,
+   "ntm_growth": 0.4156
+  },
+  {
+   "name": "Onto Innovation",
+   "ticker": "ONTO",
+   "key": "NYSE_ONTO",
+   "rev": 1.3117,
+   "ebit_margin": 0.1574,
+   "growth": 0.4001,
+   "mcap": 9.796,
+   "ev_sales": 7.82,
+   "debt": 1.473,
+   "cash": 1.251,
+   "pb": 4.95,
+   "goodwill": 0.6258,
+   "intangibles": 0.239,
+   "pe_fwd": 16.38,
+   "ev_ebitda_fwd": 15.99,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 28.87,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 31.06,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 43.08,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 28,
+     "ev_ebitda_fwd": 22.34
+    }
+   ],
+   "pe_fwd2": 13.9,
+   "ev_ebitda_fwd2": 13.52,
+   "pe_fwd3": 11.72,
+   "ev_ebitda_fwd3": 11.74,
+   "ntm_ebit_margin": 0.3537,
+   "ntm_growth": 0.5172
+  }
+ ],
+ "peers_basis": "ntm",
+ "peers_source": "Fiscal.ai 2026-11-17·18 — LTM 매출·GAAP 영업이익, calculated_market_cap, ev/sales, 성장 = 다음 회계연도 매출 추정 ÷ 이번 회계연도 − 1",
+ "segments_hist": {
+  "segments": {
+   "반도체 공정 제어": [
+    {
+     "period": "2023-09-30",
+     "rev": 2135000000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 2194000000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 2096000000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 2308000000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 2575000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 2756000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 2739000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 2878000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 2899000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 3005000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 3084000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 3257000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 3754000000.0
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(분기 Semiconductor Process Control 부문 매출, 13개 분기)"
+ },
+ "terms": {
+  "공정 제어": "웨이퍼 결함 검사·계측으로 수율을 관리하는 장비",
+  "웨이퍼 검사": "웨이퍼 표면·패턴의 결함을 찾는 장비",
+  "패터닝": "레티클 검사·오버레이 계측 등 회로 패턴 관련 장비",
+  "레티클": "회로 원판(포토마스크)",
+  "오버레이": "앞뒤 회로층의 정렬 정확도",
+  "WFE": "반도체 전공정 장비 시장",
+  "HBM": "고대역폭 메모리",
+  "하이브리드 본딩": "칩과 칩을 구리 패드로 직접 붙이는 패키징 기술",
+  "Gen4": "KLA 광대역 플라즈마 광학 검사 4세대",
+  "Gen5": "KLA 광학 검사 5세대",
+  "전자빔 검사": "전자빔으로 미세 결함을 찾는 검사",
+  "매크로 검사": "패키징 단계 육안 수준 결함 검사",
+  "RPO": "잔여 이행 의무 — 계약됐지만 아직 매출로 잡지 않은 금액",
+  "SPTS": "KLA 식각·증착 장비 자회사(특수 반도체 공정)",
+  "BEOL": "배선 공정",
+  "1.4나노": "1.4나노급 로직 공정",
+  "2나노": "2나노급 로직 공정",
+  "PCB": "인쇄회로기판",
+  "GPU": "그래픽 처리 장치",
+  "CPU": "중앙 처리 장치",
+  "BIS": "미국 상무부 산업안보국",
+  "AOI": "자동 광학 검사",
+  "CD": "회로 선폭(임계 치수)",
+  "EVP": "수석 부사장",
+  "HP": "추세를 뽑는 통계 필터(Hodrick-Prescott)",
+  "JP": "일본"
+ },
+ "names": [
+  "KLA",
+  "KLAC",
+  "TSMC",
+  "Samsung",
+  "삼성",
+  "SK hynix",
+  "SK하이닉스",
+  "Micron",
+  "Intel",
+  "Applied Materials",
+  "Lam Research",
+  "ASML",
+  "Onto Innovation",
+  "Nova",
+  "Hitachi High-Tech",
+  "Lasertec",
+  "Goldman Sachs",
+  "JPMorgan",
+  "Cantor Fitzgerald",
+  "UBS",
+  "TD Cowen",
+  "Bernstein",
+  "Wells Fargo",
+  "Deutsche Bank",
+  "Wolfe Research",
+  "Morgan Stanley",
+  "Rothschild",
+  "Redburn",
+  "BlackRock",
+  "FMR",
+  "Fidelity",
+  "Capital International",
+  "Van Eck",
+  "Assenagon",
+  "Massachusetts Financial Services",
+  "Quantral",
+  "Kronos",
+  "Rick Wallace",
+  "Bren Higgins",
+  "Richard Wallace",
+  "Terafab",
+  "MFS"
+ ],
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "Fwd 1Y P/E 22.0배는 동종 4곳(Applied Materials·Lam Research·ASML·Onto Innovation) 중앙값 19.8배보다 11% 높다. 공정 제어 1위·서비스 매출 23%·영업이익률 46%는 프리미엄 근거지만, 메모리 원가로 총이익률 회복이 2027년 하반기로 밀렸고 중국 비중이 줄어 판단 조정을 더하지 않는다"
+ },
+ "events": [
+  {
+   "date": "2026-06-11",
+   "tag": "10:1 주식분할",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-06-30",
+   "tag": "종가 고점 $301.71(반도체 장비 급등)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-02",
+   "tag": "원인 미확인 — 이틀 −21.9%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-29",
+   "tag": "4Q FY26 실적 다음 날 −10.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "원인 미확인 — 하루 −9.5%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "1Q FY27 실적 — 하루 +5.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "중간선거 뒤 AI 하드웨어 급락 — 하루 −13.3%",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-29",
+   "kind": "실적",
+   "tag": "2Q FY26 실적",
+   "q": "2Q FY26",
+   "session": "after"
+  },
+  {
+   "date": "2026-04-29",
+   "kind": "실적",
+   "tag": "3Q FY26 실적",
+   "q": "3Q FY26",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-28",
+   "kind": "실적",
+   "tag": "4Q FY26 실적 — 가이던스 상향",
+   "q": "4Q FY26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-28",
+   "kind": "실적",
+   "tag": "1Q FY27 실적 — 2027 WFE $200B+",
+   "q": "1Q FY27",
+   "session": "after"
+  }
+ ],
+ "pricing": [
+  {
+   "business": "반도체 공정 제어",
+   "segment": "반도체 공정 제어",
+   "index": "ppi_id:PCU333242333242",
+   "company": {
+    "yoy": null,
+    "basis": "신기능 가치 공유형 가격(콜) — 인상률 미공시"
+   }
+  }
+ ],
+ "sync": {
+  "none": "회사 매출이 고객 팹 장비 반입과 공정 제어 강도에 따라가고, 장비 무역·PPI 시계열과 맞춰 볼 품목 지표의 표본이 분할·회계연도 차이로 짧다 — 메모리 칩 원가는 마진 구조 절에서 본다"
+ },
+ "pq": {
+  "none": "ASP·출하 대수를 공시하지 않는다 — 업종 PPI 대용"
+ },
+ "ma": {
+  "none": "최근 3년 안 큰 인수 없음"
+ },
+ "midterm": {
+  "exposure": {
+   "chips_subsidy": 0.6,
+   "tariff_codify": 0.4
+  },
+  "sub": "semicap",
+  "etf": "NASDAQ:SMH",
+  "why": "미국 매출 약 15%(1Q) — CHIPS 보조금은 고객 팹 투자로 간접 연결, 중국 매출 34%(1Q)는 수출 규제 노출"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(병목) 틀로 본다 — 섹터 렌즈 해당 없음"
+ },
+ "recurring": {
+  "share": 0.23,
+  "peer_share": 0.25,
+  "kind": "설치 기반 서비스(유지보수·가동률)",
+  "base": "설치 장비 대수 미공시",
+  "base_growth": 0.14,
+  "years_to_recurring": 0,
+  "source": "10-K: 서비스 매출 FY26 약 23%, 1Q FY27 $851M(+14% YoY, 콜). 동종 25%는 ASML 설치 기반 관리 비중(28%)과 장비 업계 통상치 사이 추정"
+ },
+ "backlog": {
+  "conversion_months": 10.4,
+  "book_to_bill": 1.1,
+  "revenue_growth": 0.29,
+  "source": "RPO $12.57B(2026-06-30) ÷ TTM 월평균 매출 $1.21B ≈ 10.4개월(계산). B/B 1.1은 '백로그가 늘고 있다'(콜)는 발언에 근거한 근사(추정) — 수주 미공시. 매출 성장 = 1Q YoY"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "1Q FY27",
+  "summary": "10-K는 TSMC가 FY24~26 매 해 매출 10% 넘는 고객이라고 밝힌다(몫 미기재). 지역(출하지) 기준 1Q는 중국 34.5%·대만 24.7%·북미 14.9%·한국 12.0%·일본 3.9%·유럽·이스라엘 4.7%다. 콜에서 12월 분기 공정 제어 시스템 중 메모리 약 40%(D램 84%)라고 했다.",
+  "items": [
+   {
+    "name": "중국 고객(집계)",
+    "alias": "China",
+    "share": 0.345,
+    "prior": 0.262,
+    "basis": "공시",
+    "buys": "웨이퍼 검사·계측(규제 허용 범위)",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm",
+    "why": "Fiscal.ai 지역 매출 1Q $1,426M ÷ $4,136M(4Q $957M ÷ $3,658M)"
+   },
+   {
+    "name": "TSMC(대만 매출로 추정)",
+    "alias": "Taiwan",
+    "share": 0.247,
+    "prior": 0.311,
+    "basis": "추정",
+    "buys": "선단 로직 웨이퍼 검사·패터닝",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+    "why": "대만 매출 1Q $1,023M — TSMC가 10% 초과 고객(10-K)이라 대부분을 TSMC로 본 가설"
+   },
+   {
+    "name": "북미 고객(인텔·마이크론·TSMC 애리조나 등, 집계)",
+    "alias": "North America",
+    "share": 0.149,
+    "prior": 0.179,
+    "basis": "공시",
+    "buys": "공정 제어·서비스",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm",
+    "why": "북미 매출 1Q $618M"
+   },
+   {
+    "name": "삼성·SK하이닉스(한국 매출로 추정)",
+    "alias": "Korea",
+    "share": 0.12,
+    "prior": 0.102,
+    "basis": "추정",
+    "buys": "D램·HBM 공정 제어",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm",
+    "why": "한국 매출 1Q $497M"
+   },
+   {
+    "name": "일본·유럽·기타 아시아(집계)",
+    "alias": "Other",
+    "share": 0.139,
+    "prior": 0.146,
+    "basis": "공시",
+    "buys": "공정 제어·PCB 검사",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000034/klac-20260930.htm",
+    "why": "일본 $160M + 유럽·이스라엘 $194M + 기타 아시아 $218M"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-06-30",
+  "reported_backlog": 12.57,
+  "backlog_label": "잔여 이행 의무(RPO)",
+  "summary": "잔여 이행 의무(RPO)는 2026-06-30 $12.57B다(Fiscal.ai). 1Q 콜에서 '백로그와 파이프라인 가시성이 계속 높아진다'고 했지만 숫자는 내지 않았다. 일부 고객은 클린룸·전력 지연으로 인도를 보류했다.",
+  "items": [
+   {
+    "name": "잔여 이행 의무(RPO)",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 12.57,
+    "progress": "미확인",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "speed": "평균 리드타임 약 12개월, Gen4·Gen5는 더 길다(콜)",
+    "blockers": [
+     "광학 부품 공급",
+     "고객 클린룸·전력 지연",
+     "중국 수출 규제"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+    "start": "2026-07",
+    "end": "2027-12",
+    "note": "2026-06-30 기준 — 1Q 말 RPO 미확인"
+   }
+  ]
+ },
+ "moat": {
+  "summary": "해자는 '선단 공정 결함 검사·계측에서 압도적 점유율과 고객 수율 데이터에 묶인 설치 기반'이다. 약점은 광학 부품 공급과 메모리 칩 원가다.",
+  "items": [
+   {
+    "kind": "공정 제어 점유율·기술",
+    "verdict": "강함",
+    "claim": "선단 로직·D램 수율 관리에 쓰는 광학·전자빔 검사에서 1위이고 노드마다 공정 제어 강도가 오른다",
+    "evidence": "1Q 영업이익률 46.1%(사상 최고), 웨이퍼 검사 매출 $2.11B(+QoQ 18.5%, Fiscal.ai)",
+    "quant": "WFE 점유율 약 7.5%(2025, 콜) → 2030 9% 근접 목표",
+    "falsifier": "TSMC·삼성 2나노 라인에서 경쟁사 검사 장비 채택"
+   },
+   {
+    "kind": "설치 기반 서비스",
+    "verdict": "강함",
+    "claim": "가동률이 높을수록 서비스 매출이 늘고 장비 수명이 길어진다",
+    "evidence": "서비스 매출 1Q $851M(+14%), FY26 매출의 약 23%(10-K)",
+    "quant": "서비스 매출 12개 분기 연속 증가(Fiscal.ai)",
+    "falsifier": "서비스 매출 2분기 연속 감소"
+   },
+   {
+    "kind": "첨단 패키징 확장",
+    "verdict": "보통",
+    "claim": "하이브리드 본딩으로 패키징 검사 민감도가 마이크론 → 100나노미터로 오르며 KLA 고급 장비가 쓰인다",
+    "evidence": "2026년 첨단 패키징 공정제어 약 $1.1B(+70% 초과, 콜)",
+    "quant": "패키징 시장 성장률의 약 2배(콜)",
+    "falsifier": "패키징 장비 경쟁사 점유율 확대"
+   },
+   {
+    "kind": "공급망(광학·메모리 칩)",
+    "verdict": "약함",
+    "claim": "광학 부품 리드타임과 D램 칩 가격이 출하와 총이익률을 묶는다",
+    "evidence": "10-K: 단일·소수 공급원, D램 칩 가격 급등 / 콜: 광학 부품이 출하 결정",
+    "quant": "총이익률 62.7% vs 목표 63~64%",
+    "falsifier": "해당 없음"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "1Q GAAP 매출원가는 매출의 38.1%로 1년 전 38.7%와 비슷하다. 물량 증가가 고정비를 흡수했지만 D램 칩 가격 급등이 원가를 올렸다(10-K·콜). 원가 항목별 몫은 공시되지 않아 추정이다.",
+  "periods": [
+   {
+    "period": "1Q FY26",
+    "rev": 3.209696,
+    "cogs": 1.24307,
+    "rd": 0.360461,
+    "sga": 0.268988,
+    "other": 0.0
+   },
+   {
+    "period": "4Q FY26",
+    "rev": 3.657556,
+    "cogs": 1.413108,
+    "rd": 0.399023,
+    "sga": 0.291477,
+    "other": 0.0
+   },
+   {
+    "period": "1Q FY27",
+    "rev": 4.136015,
+    "cogs": 1.577791,
+    "rd": 0.395096,
+    "sga": 0.301458,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "광학·정밀 부품 구매품",
+    "stage": "매출원가",
+    "pct_rev": 0.13,
+    "prior_pct": 0.135,
+    "fixed": 0.1,
+    "driver": "광학 부품 단가·리드타임",
+    "basis": "추정",
+    "source": "10-K 공급 절 — 비중 미공시",
+    "input": "optical_lens"
+   },
+   {
+    "name": "메모리·컴퓨팅 칩(영상 처리)",
+    "stage": "매출원가",
+    "pct_rev": 0.05,
+    "prior_pct": 0.03,
+    "fixed": 0.0,
+    "driver": "D램 칩 가격 급등(10-K)",
+    "basis": "추정",
+    "source": "10-K 위험 요인·1Q 콜",
+    "input": "memory"
+   },
+   {
+    "name": "기타 부품·모듈",
+    "stage": "매출원가",
+    "pct_rev": 0.07,
+    "prior_pct": 0.075,
+    "fixed": 0.1,
+    "driver": "스테이지·로봇·전자 부품",
+    "basis": "추정",
+    "source": "10-K"
+   },
+   {
+    "name": "제조·서비스 인건비·간접비",
+    "stage": "매출원가",
+    "pct_rev": 0.105,
+    "prior_pct": 0.115,
+    "fixed": 0.6,
+    "driver": "조립·서비스 엔지니어",
+    "basis": "추정",
+    "source": "10-K"
+   },
+   {
+    "name": "감가상각·무형 상각",
+    "stage": "매출원가",
+    "pct_rev": 0.015,
+    "prior_pct": 0.02,
+    "fixed": 1.0,
+    "driver": "분기 D&A $97M 중 매출원가 몫",
+    "basis": "추정",
+    "source": "Fiscal.ai 현금흐름표"
+   },
+   {
+    "name": "기타(보증·재고 충당)",
+    "stage": "매출원가",
+    "pct_rev": 0.0115,
+    "prior_pct": 0.0123,
+    "fixed": 0.3,
+    "driver": "보증·재고 평가",
+    "basis": "추정",
+    "source": "계산(매출원가 − 위 항목)"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.0955,
+    "prior_pct": 0.1123,
+    "fixed": 0.8,
+    "driver": "Gen5·전자빔·패키징 검사 개발",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익(1Q R&D $395M)"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.0729,
+    "prior_pct": 0.0838,
+    "fixed": 0.7,
+    "driver": "영업·관리",
+    "basis": "공시",
+    "source": "Fiscal.ai 표준화 손익(1Q 판관비 $301M)"
+   }
+  ],
+  "products": [
+   {
+    "name": "반도체 공정 제어",
+    "rev_share": 0.908,
+    "gpm": 0.64,
+    "gpm_basis": "공시 — 1Q 부문 총이익 $2,403M ÷ 매출 $3,754M(Fiscal.ai 세그먼트)",
+    "bom": [
+     {
+      "item": "광학·정밀 부품",
+      "share": [
+       0.3,
+       0.45
+      ],
+      "basis": "추정",
+      "source": "10-K 공급 절",
+      "pass_through": "미확인",
+      "why": "광대역 플라즈마 광원·대물렌즈",
+      "input": "optical_lens"
+     },
+     {
+      "item": "메모리·컴퓨팅 칩",
+      "share": [
+       0.08,
+       0.18
+      ],
+      "basis": "추정",
+      "source": "10-K 위험 요인(D램 칩)",
+      "pass_through": "미확인",
+      "why": "검사 영상 처리",
+      "input": "memory"
+     },
+     {
+      "item": "스테이지·진공·로봇 모듈",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "pass_through": "미확인",
+      "why": "웨이퍼 이송·위치 제어"
+     }
+    ]
+   },
+   {
+    "name": "PCB·부품 검사",
+    "rev_share": 0.059,
+    "gpm": 0.56,
+    "gpm_basis": "공시 — 1Q 부문 총이익 $135M ÷ 매출 $242M",
+    "bom": [
+     {
+      "item": "광학·카메라",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "pass_through": "미확인",
+      "why": "AOI 검사"
+     },
+     {
+      "item": "레이저(직접 묘화)",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "pass_through": "미확인",
+      "why": "PCB 노광"
+     },
+     {
+      "item": "기구·전자",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "pass_through": "미확인",
+      "why": "본체"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "출하를 정하는 것은 광학 부품이다(콜). 일부 부품은 단일·소수 공급원이고(10-K), KLA는 핵심 공급사 캐파 확대에 투자하고 있다. D램 칩은 공급은 확보했지만 가격 상승이 원가에 남는다.",
+  "links": [
+   {
+    "item": "광학·정밀 부품",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미확인(핵심 광학 공급사)",
+      "role": "광학 부품",
+      "status": "회사 발표",
+      "source": "1Q FY27 어닝콜(2026-10-28)"
+     }
+    ],
+    "qualified": 1,
+    "qualified_basis": "10-K: 일부 부품 단일·소수 공급원 — 광학 공급사 수 미공시, 단일로 둔 보수적 값",
+    "capacity": "빠듯",
+    "capacity_basis": "2026년 내내 수요가 공급 초과, 하반기부터 개선(콜)",
+    "lead_weeks": 52,
+    "lead_normal": "미확인",
+    "requal_months": 18,
+    "requal_basis": "추정 — 광학 재인증은 장비 성능 재검증 필요",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "장기계약",
+    "why": "검사 장비 출하 상한",
+    "relief": "부분 — 장기 리드타임 부품 공급이 2H CY26부터 개선(콜), 가동 확인은 2Q 출하로",
+    "source": "1Q FY27 어닝콜(2026-10-28)",
+    "input": "optical_lens",
+    "secured_note": "공급사 캐파 투자 지원(콜)"
+   },
+   {
+    "item": "메모리·컴퓨팅 칩",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미확인(D램 공급사)",
+      "role": "D램 칩",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "일부 대형 공급사의 특정 D램 칩 단종(10-K)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "requal_basis": "추정 — 메모리 사용량을 줄이는 설계 변경에 시간이 걸린다(콜)",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "한국·미국·대만(추정)",
+    "secured": "장기계약",
+    "why": "영상 처리 — 원가 부담",
+    "relief": "공급 확보, 가격 부담 지속(콜)",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+    "input": "memory"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "미확인(회사가 캐파를 공시하지 않는다)",
+  "summary": "주요 생산은 미국·싱가포르·이스라엘·중국·유럽이다(10-K). 1Q에 인도 신규 캠퍼스 토지를 사 CAPEX가 역대 최고였고, 앞으로 연 $600~800M(매출의 2~3%)로 모든 공장을 늘린다(콜).",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "10-K Item 2 — 캐파 수치 공시 없음",
+   "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm"
+  },
+  "plans": [
+   {
+    "name": "인도 신규 캠퍼스",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "건설",
+    "source": "1Q FY27 어닝콜(2026-10-28)",
+    "add_note": "미확인",
+    "capex_note": "1Q 설비투자 $195M의 큰 몫(토지)"
+   },
+   {
+    "name": "전 공장 증설·교대 추가",
+    "add": "미확인",
+    "stage": "착공",
+    "online": "2027",
+    "capex": "미확인",
+    "blocker": "광학 부품·인력",
+    "source": "1Q FY27 어닝콜(2026-10-28)",
+    "add_note": "미확인",
+    "capex_note": "연 $600~800M 중 대부분이 캐파"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 0.367,
+    "rev": 12.156,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.373,
+    "rev": 13.579,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.7,
+    "rev": 19.4,
+    "kind": "가이던스"
+   }
+  ],
+  "capex_source": "Fiscal.ai 분기 현금흐름 합(FY = 6월 말), FY2027 = 회사 발언 연 $600~800M 중간값, 매출 = FY27 컨센서스",
+  "sites": [],
+  "sites_none": "주요 시설 위성 판독 등록은 다음 회차 — 이번 회차는 10-K 거점 목록만",
+  "facilities": {
+   "count": 5,
+   "count_basis": "10-K Item 2: 주요 제조 거점 국가(미국·싱가포르·이스라엘·중국·유럽 여러 곳) — 시설 수·이름 미공시라 국가 단위로 센다",
+   "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm",
+   "items": [
+    {
+     "name": "본사·제조",
+     "location": "미국 캘리포니아 밀피타스",
+     "owned": "미확인",
+     "use": "본사·제조·연구개발",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시"
+    },
+    {
+     "name": "싱가포르 제조",
+     "location": "싱가포르",
+     "owned": "미확인",
+     "use": "제조",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시"
+    },
+    {
+     "name": "이스라엘 제조",
+     "location": "이스라엘",
+     "owned": "미확인",
+     "use": "제조·연구개발",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시"
+    },
+    {
+     "name": "중국 제조",
+     "location": "중국",
+     "owned": "미확인",
+     "use": "제조",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 캐파 미공시"
+    },
+    {
+     "name": "인도 신규 캠퍼스",
+     "location": "인도",
+     "owned": "소유",
+     "use": "연구개발·운영(계획)",
+     "status": "계획",
+     "capacity": "미확인",
+     "capacity_basis": "토지 매입 단계(1Q 콜)"
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "as_of": "2026-11-18",
+  "summary": "CEO Rick Wallace(2006~)와 CFO Bren Higgins가 콜을 이끈다. 두 사람 모두 2026년 장내 매도만 했다(Form 4 — CEO 11/10 약 $10.7M 등). 정계 연결은 공개 기록상 미확인이다.",
+  "people": [
+   {
+    "name": "Richard P. Wallace",
+    "role": "President & CEO",
+    "since": "2006-01",
+    "profile": "2026-08~11 장내 매도 여러 건(Form 4)",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm"
+   },
+   {
+    "name": "Bren D. Higgins",
+    "role": "EVP & CFO",
+    "since": "2013",
+    "profile": "2026-08 장내 매도 약 $6.6M(Form 4)",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "TSMC — 10% 초과 고객(10-K)",
+    "strength": 4,
+    "exposure": 0.247,
+    "basis": "대만 매출 몫으로 본 가설 — 연결이 매출을 만든 것이 아니라 고객 관계",
+    "evidence": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000027/klac-20260630.htm"
+   }
+  ]
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "이익은 사상 최고, 주가는 고점의 절반",
+    "claim": "1Q 영업이익률 46.1%·매출 +29%인데 주가는 6/30 종가 고점보다 52% 낮다",
+    "evidence": "1Q 실적·일봉",
+    "variant": "시장은 장비 사이클 정점을 걱정하지만 회사는 2027년 순차 성장과 WFE $200B 초과를 말한다",
+    "proof": "2Q 매출 $4.7B 이상·2027 첫 분기 가이던스",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/klac-20261028.htm"
+   },
+   {
+    "title": "메모리가 새 성장축",
+    "claim": "12월 분기 공정 제어 시스템의 약 40%가 메모리, 그중 D램 84%",
+    "evidence": "1Q FY27 어닝콜(2026-10-28)",
+    "variant": "D램 공정 제어 강도가 선단 로직 수준으로 올라 메모리 사이클이 KLA 점유율을 키운다",
+    "proof": "2Q 메모리 매출 비중·D램 증가 폭",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/klac-20261028.htm"
+   },
+   {
+    "title": "총이익률은 2027년 하반기 이야기",
+    "claim": "D램 칩 가격으로 총이익률 62.7%, 목표 63~64%는 2027년 중반 이후",
+    "evidence": "1Q FY27 어닝콜(2026-10-28)",
+    "variant": "컨센서스 FY28 EBIT 이익률 48%가 원가 회복을 얼마나 넣었는지 확인되지 않았다",
+    "proof": "2Q·3Q 조정 총이익률 63% 이상",
+    "source": "https://www.sec.gov/Archives/edgar/data/319201/000031920126000032/klac-20261028.htm"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-06-30",
+    "status": "완료",
+    "kind": "생성",
+    "event": "반도체 장비 급등 — 종가 고점 $301.71",
+    "reaction": "이후 −52%"
+   },
+   {
+    "date": "2026-07-29",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "4Q FY26 실적 다음 날",
+    "reaction": "하루 −10.8%"
+   },
+   {
+    "date": "2026-10-29",
+    "status": "완료",
+    "kind": "생성",
+    "event": "1Q FY27 실적 — 가이던스 상회",
+    "reaction": "하루 +5.5%"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "중간선거 뒤 AI 하드웨어 급락(매크로·섹터)",
+    "reaction": "하루 −13.3%"
+   },
+   {
+    "date": "2027-01-28(추정)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "2Q FY27 실적·3Q 가이던스",
+    "check": "매출 $4.7B 이상, 조정 총이익률 62.5% 이상, 3Q 가이던스 순차 성장",
+    "then": "셋이 맞으면 FY28 추정 상향, 가이던스 정체면 배수 정체"
+   },
+   {
+    "date": "2027-04(추정)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "3Q FY27 실적",
+    "check": "총이익률 63% 회복 시작, 중국 비중 20%대 초반",
+    "then": "원가 회복이 보이면 이익률 추정 상향"
+   }
+  ],
+  "trade": {
+   "watch": "지지 구간이 약세 시나리오 가격과 겹치는 곳 — 11/5 종가 저점 $129.80 근처",
+   "confirm": "2Q 매출 $4.7B 이상·총이익률 62.5% 이상·3Q 순차 성장 가이던스",
+   "invalid": "11/5 종가 저점 $129.80 이탈과 함께 3Q 가이던스가 2Q보다 낮다",
+   "trim": "목표주가 근처에서는 Fwd 1Y P/E가 동종 대비 프리미엄을 얼마나 다시 붙였는지 본다",
+   "style": "업종 사건 날 −10~13% 움직임이 반복됐다(7/2, 10/22, 11/5)"
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "FY28 EPS $7.43에 Fwd 2Y P/E 19배 — 2027 WFE $200B 초과의 최대 수혜를 고점 절반 가격에 산다",
+    "evidence": [
+     "1Q 매출 +29%",
+     "영업이익률 46.1%",
+     "목표가 하단 $170도 주가 위"
+    ],
+    "falsifier": "2Q 매출 $4.5B 미만"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "메모리 공정 제어 강도 상승이 새 점유율 원천이다",
+    "evidence": [
+     "메모리 약 40%",
+     "D램 강도 = 선단 로직"
+    ],
+    "falsifier": "2Q 메모리 비중 30% 미만"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "성장은 확실하지만 배수 22배는 동종보다 높고 총이익률 회복은 2027년 하반기다",
+    "evidence": [
+     "Fwd 1Y P/E 22.0배 vs 19.8배",
+     "총이익률 62.7%"
+    ],
+    "falsifier": "2Q 조정 총이익률 63.5% 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "중국 34%가 20%대 초반으로 줄고 고객 팹 지연이 2027 성장을 깎는다",
+    "evidence": [
+     "중국 비중 하락 전망",
+     "고객 인도 보류"
+    ],
+    "falsifier": "3Q 가이던스 순차 성장"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "6월 장비 거품의 꼬리 — CEO·CFO가 계속 판다",
+    "evidence": [
+     "고점 대비 −52%",
+     "내부자 매도 55건·매수 0건"
+    ],
+    "falsifier": "WFE 2027 전망 상향 지속"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "고점 절반에 사상 최고 이익이다."
+     },
+     {
+      "seat": "Buy",
+      "text": "메모리가 새 성장축이다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "배수는 이미 동종보다 높다."
+     },
+     {
+      "seat": "Sell",
+      "text": "중국이 줄고 팹이 늦는다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "내부자가 판다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "중국이 줄어도 중국 밖 WFE가 더 빨리 큰다.",
+      "to": "Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "총이익률은 물량 레버리지로 버틴다.",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "메모리 칩 원가는 2027년에도 남는다고 회사가 말했다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "고객이 인도를 미룬다는 것은 수요 둔화의 첫 신호다.",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "6월 P/E 60배였다. 지금 22배도 정상화 중이다.",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "내부자 매도는 계획 매매다.",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "인도 보류는 시설 문제이지 주문 취소가 아니다.",
+      "to": "Sell"
+     },
+     {
+      "seat": "Neutral",
+      "text": "그 구분은 2Q 출하로 확인된다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "중국 20%대 초반은 회사 전망이다.",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "동종 배수 19.8배면 주가는 지금보다 낮다.",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "이익 대비 가격이 낮다는 판단 유지."
+     },
+     {
+      "seat": "Buy",
+      "text": "메모리가 성장을 받친다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "2Q 실적까지 중립."
+     },
+     {
+      "seat": "Sell",
+      "text": "중국·팹 지연 위험."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "배수 정상화 위험."
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "성장·이익률·메모리 강도는 반박되지 않았다. 규칙 등급(Sell)은 FY28 이익에 동종 2년 뒤 배수(16.5배)를 붙이지만, FY28 조정 EPS +23%와 4개 분기 연속 서프라이즈를 낸 회사에 동종 평균 배수 하락을 그대로 적용하는 것은 보수적이다 — 한 단계 올려 Neutral. 총이익률 회복과 고객 팹 일정은 2Q 실적(2027-01 말 추정)에서 확인된다",
+   "dissent": "강세 측은 2027 WFE $200B 초과와 시장 대비 초과 성장이 FY28 추정을 올린다고 본다"
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 22,
+   "net_margin": 0.4,
+   "opm": 0.46,
+   "basis": "출구 P/E 22배는 동종 중앙값 19.8배와 지금 22.0배 사이. 순이익률 40%·영업이익률 46%는 1Q 조정 영업이익률 46.1%와 세율 14.5% 기준"
+  },
+  "base": {
+   "eps": 4.13,
+   "opm": 0.426,
+   "basis": "최근 4개 분기 조정 EPS 합 $4.13(0.885+0.94+1.05+1.22, 회계 2Q FY26~1Q FY27), GAAP 영업이익률 42.6%(TTM $6.19B ÷ $14.51B)"
+  },
+  "refs": [
+   {
+    "label": "FY27 EPS 컨센서스",
+    "value": 6.02
+   },
+   {
+    "label": "FY28 EPS 컨센서스",
+    "value": 7.43
+   },
+   {
+    "label": "FY29 EPS 컨센서스",
+    "value": 8.13
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "주가 약 $290 — 6월 고점 수준. 출구 P/E 22배면 EPS 약 $13",
+    "outlook": "컨센서스 FY29 EPS $8.1의 1.6배 — WFE가 2030 모델($220B)을 크게 넘고 점유율이 9%로 오를 때만"
+   }
+  },
+  "summary": "시가총액 $188B라 2배까지만 본다. 2배는 EPS $13 수준이 필요해 2030 모델 상단을 넘는 업황이 와야 열린다."
+ },
+ "social": {
+  "few": true,
+  "as_of": "2026-11-19",
+  "summary": "언급 적음 — Quantral 7일 50(Weak), 10월 23건·11월 4건. 10월 실적 뒤 WFE 전망 상향을 반기는 X 글이 많았고, 그 전에는 ASML 콜 영향으로 10거래일 연속 하락을 다뤘다.",
+  "narratives": [],
+  "views": [],
+  "turn": "10월 중순 ASML 콜 뒤 하락 → 10/28 실적·WFE 상향 뒤 반등 글"
+ },
+ "photos": [],
+ "assets": {
+  "as_of": "1Q15",
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "note_periods": [
+   "2026-06-30",
+   "2025-06-30"
+  ],
+  "ppe": [
+   {
+    "name": "유형자산 합계(항목 미분해)",
+    "kind": "other",
+    "gross": [
+     3069.512,
+     2739.252
+    ],
+    "accum": [
+     null,
+     null
+    ],
+    "split": false
+   }
+  ],
+  "ppe_accum": [
+   1688.962,
+   1486.477
+  ],
+  "intangibles": [
+   {
+    "name": "영업권",
+    "kind": "goodwill",
+    "gross": [
+     1788.758,
+     1792.193
+    ],
+    "accum": [
+     0,
+     0
+    ],
+    "acquired": true
+   },
+   {
+    "name": "무형자산 합계(항목 미분해)",
+    "kind": "finite",
+    "gross": [
+     2005.459,
+     2170.035
+    ],
+    "accum": [
+     1730.764,
+     1705.423
+    ],
+    "acquired": true,
+    "split": false
+   }
+  ],
+  "dep_annual": [
+   {
+    "year": 2026,
+    "dep": 214.5,
+    "amort": 190.8
+   },
+   {
+    "year": 2025,
+    "dep": 192.0,
+    "amort": 220.4
+   }
+  ],
+  "quarters": [
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "da": 95.823,
+    "ppe_net": 1118.312,
+    "ppe_gross": 2448.034
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "da": 103.922,
+    "ppe_net": 1173.928,
+    "ppe_gross": 2561.937
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "da": 98.091,
+    "ppe_net": 1198.302,
+    "ppe_gross": 2634.3
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "da": 96.252,
+    "ppe_net": 1252.775,
+    "ppe_gross": 2739.252
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "da": 97.016,
+    "ppe_net": 1301.829,
+    "ppe_gross": 2839.795
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "da": 99.268,
+    "ppe_net": 1344.768,
+    "ppe_gross": 2933.704
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "da": 99.088,
+    "ppe_net": 1363.784,
+    "ppe_gross": 2998.441
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "da": 98.606,
+    "ppe_net": 1380.55,
+    "ppe_gross": 3069.512
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "da": 97.424,
+    "ppe_net": 1541.331,
+    "ppe_gross": 3282.32
+   }
+  ],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기)",
+  "roic": {
+   "periods": [
+    "TTM 1Q15",
+    "TTM 1Q14"
+   ],
+   "rev": [
+    2792.06,
+    2915.097
+   ],
+   "ebit": [
+    631.867,
+    786.691
+   ],
+   "acq_amort": [
+    190.8,
+    220.4
+   ],
+   "tax_rate": 0.145,
+   "lease_liab": [
+    null,
+    null,
+    null
+   ],
+   "lease_rate": 0.0371,
+   "impairment_cum": 1023.207,
+   "capital": {
+    "nwc": [
+     1204.78,
+     1150.454,
+     1036.904
+    ],
+    "ppe": [
+     321.081,
+     326.049,
+     298.617
+    ],
+    "goodwill": [
+     335.291,
+     335.246,
+     326.792
+    ],
+    "intangibles": [
+     15.548,
+     31.988,
+     39.008
+    ],
+    "other": [
+     83.324,
+     215.737,
+     176.983
+    ]
+   },
+   "note": "SEC 공시 데이터 자동 초안 — 운전자본 = 매출채권 + 재고 + 선급 − (매입채무 + 미지급비용 + 선수수익), 현금 제외. 손상 누계는 공시 데이터 수록분"
+  },
+  "hist": [
+   {
+    "q": "2Q11",
+    "end": "2011-06-30",
+    "rev": 892.439,
+    "ebit": 344.069,
+    "cogs": 356.18,
+    "capex": 14.607,
+    "da": 22.533,
+    "amort": null,
+    "bal": {
+     "ar": 583.27,
+     "inv": 575.73,
+     "prepaid": 61.796,
+     "ap": 142.945,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 257.358,
+     "rou": null,
+     "goodwill": 328.156,
+     "intangibles": 85.902,
+     "other": 251.86
+    },
+    "lease": null
+   },
+   {
+    "q": "3Q11",
+    "end": "2011-09-30",
+    "rev": 796.476,
+    "ebit": 254.289,
+    "cogs": 340.349,
+    "capex": 12.128,
+    "da": 23.184,
+    "amort": 8.0,
+    "bal": {
+     "ar": 461.64,
+     "inv": 612.603,
+     "prepaid": 52.601,
+     "ap": 114.575,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 264.279,
+     "rou": null,
+     "goodwill": 327.971,
+     "intangibles": 77.949,
+     "other": 224.956
+    },
+    "lease": null
+   },
+   {
+    "q": "4Q11",
+    "end": "2011-12-31",
+    "rev": 642.482,
+    "ebit": 159.463,
+    "cogs": 272.855,
+    "capex": 14.918,
+    "da": 23.267,
+    "amort": 7.7,
+    "bal": {
+     "ar": 544.098,
+     "inv": 639.641,
+     "prepaid": 56.789,
+     "ap": 129.064,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 267.629,
+     "rou": null,
+     "goodwill": 327.813,
+     "intangibles": 70.218,
+     "other": 205.911
+    },
+    "lease": null
+   },
+   {
+    "q": "1Q12",
+    "end": "2012-03-31",
+    "rev": 840.521,
+    "ebit": 284.274,
+    "cogs": 355.149,
+    "capex": 14.278,
+    "da": 22.4,
+    "amort": 7.3,
+    "bal": {
+     "ar": 638.375,
+     "inv": 650.476,
+     "prepaid": 50.615,
+     "ap": 139.371,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 270.171,
+     "rou": null,
+     "goodwill": 327.887,
+     "intangibles": 62.897,
+     "other": 206.252
+    },
+    "lease": null
+   },
+   {
+    "q": "2Q12",
+    "end": "2012-06-30",
+    "rev": 892.465,
+    "ebit": 318.299,
+    "cogs": 361.663,
+    "capex": 16.272,
+    "da": 23.282,
+    "amort": 7.3,
+    "bal": {
+     "ar": 701.28,
+     "inv": 650.802,
+     "prepaid": 53.472,
+     "ap": 139.183,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 277.686,
+     "rou": null,
+     "goodwill": 327.716,
+     "intangibles": 55.636,
+     "other": 239.935
+    },
+    "lease": null
+   },
+   {
+    "q": "3Q12",
+    "end": "2012-09-30",
+    "rev": 720.709,
+    "ebit": 186.557,
+    "cogs": 317.225,
+    "capex": 20.272,
+    "da": 24.016,
+    "amort": 7.2,
+    "bal": {
+     "ar": 537.46,
+     "inv": 689.713,
+     "prepaid": 40.068,
+     "ap": 116.247,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 288.876,
+     "rou": null,
+     "goodwill": 326.848,
+     "intangibles": 48.081,
+     "other": 170.289
+    },
+    "lease": null
+   },
+   {
+    "q": "4Q12",
+    "end": "2012-12-31",
+    "rev": 673.011,
+    "ebit": 153.247,
+    "cogs": 303.915,
+    "capex": 17.091,
+    "da": 21.925,
+    "amort": 4.6,
+    "bal": {
+     "ar": 606.115,
+     "inv": 662.735,
+     "prepaid": 43.89,
+     "ap": 103.575,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 292.394,
+     "rou": null,
+     "goodwill": 326.779,
+     "intangibles": 43.514,
+     "other": 177.642
+    },
+    "lease": null
+   },
+   {
+    "q": "1Q13",
+    "end": "2013-03-31",
+    "rev": 729.029,
+    "ebit": 202.246,
+    "cogs": 309.508,
+    "capex": 18.3,
+    "da": 21.168,
+    "amort": 4.5,
+    "bal": {
+     "ar": 454.224,
+     "inv": 649.822,
+     "prepaid": 40.611,
+     "ap": 107.753,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 298.617,
+     "rou": null,
+     "goodwill": 326.792,
+     "intangibles": 39.008,
+     "other": 176.983
+    },
+    "lease": null
+   },
+   {
+    "q": "2Q13",
+    "end": "2013-06-30",
+    "rev": 720.032,
+    "ebit": 187.635,
+    "cogs": 306.804,
+    "capex": 18.91,
+    "da": 20.425,
+    "amort": 4.5,
+    "bal": {
+     "ar": 524.61,
+     "inv": 634.448,
+     "prepaid": 31.997,
+     "ap": 115.68,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 305.281,
+     "rou": null,
+     "goodwill": 326.635,
+     "intangibles": 34.515,
+     "other": 232.807
+    },
+    "lease": null
+   },
+   {
+    "q": "3Q13",
+    "end": "2013-09-30",
+    "rev": 658.337,
+    "ebit": 149.911,
+    "cogs": 277.657,
+    "capex": 21.751,
+    "da": 20.637,
+    "amort": 4.5,
+    "bal": {
+     "ar": 440.674,
+     "inv": 660.276,
+     "prepaid": 37.146,
+     "ap": 114.716,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 319.837,
+     "rou": null,
+     "goodwill": 326.556,
+     "intangibles": 30.022,
+     "other": 216.122
+    },
+    "lease": null
+   },
+   {
+    "q": "4Q13",
+    "end": "2013-12-31",
+    "rev": 705.129,
+    "ebit": 187.982,
+    "cogs": 285.814,
+    "capex": 14.465,
+    "da": 19.811,
+    "amort": 3.9,
+    "bal": {
+     "ar": 573.077,
+     "inv": 663.04,
+     "prepaid": 33.023,
+     "ap": 141.545,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 325.856,
+     "rou": null,
+     "goodwill": 326.578,
+     "intangibles": 26.098,
+     "other": 218.838
+    },
+    "lease": null
+   },
+   {
+    "q": "1Q14",
+    "end": "2014-03-31",
+    "rev": 831.599,
+    "ebit": 261.163,
+    "cogs": 342.826,
+    "capex": 18.22,
+    "da": 20.614,
+    "amort": 3.5,
+    "bal": {
+     "ar": 557.661,
+     "inv": 680.919,
+     "prepaid": 32.645,
+     "ap": 120.771,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 326.049,
+     "rou": null,
+     "goodwill": 335.246,
+     "intangibles": 31.988,
+     "other": 215.737
+    },
+    "lease": null
+   },
+   {
+    "q": "2Q14",
+    "end": "2014-06-30",
+    "rev": 734.343,
+    "ebit": 173.014,
+    "cogs": 326.665,
+    "capex": 13.066,
+    "da": 22.01,
+    "amort": 4.3,
+    "bal": {
+     "ar": 492.863,
+     "inv": 656.457,
+     "prepaid": 34.743,
+     "ap": 103.422,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 330.263,
+     "rou": null,
+     "goodwill": 335.355,
+     "intangibles": 27.697,
+     "other": 88.148
+    },
+    "lease": null
+   },
+   {
+    "q": "3Q14",
+    "end": "2014-09-30",
+    "rev": 642.901,
+    "ebit": 109.153,
+    "cogs": 288.467,
+    "capex": 13.445,
+    "da": 21.159,
+    "amort": 4.1,
+    "bal": {
+     "ar": 444.048,
+     "inv": 676.241,
+     "prepaid": 37.877,
+     "ap": 108.287,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 329.959,
+     "rou": null,
+     "goodwill": 335.315,
+     "intangibles": 23.624,
+     "other": 81.179
+    },
+    "lease": null
+   },
+   {
+    "q": "4Q14",
+    "end": "2014-12-31",
+    "rev": 676.357,
+    "ebit": 154.714,
+    "cogs": 283.213,
+    "capex": 12.783,
+    "da": 18.901,
+    "amort": 4.0,
+    "bal": {
+     "ar": 632.089,
+     "inv": 662.799,
+     "prepaid": 41.963,
+     "ap": 108.307,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 323.353,
+     "rou": null,
+     "goodwill": 335.273,
+     "intangibles": 19.551,
+     "other": 83.525
+    },
+    "lease": null
+   },
+   {
+    "q": "1Q15",
+    "end": "2015-03-31",
+    "rev": 738.459,
+    "ebit": 194.986,
+    "cogs": 320.282,
+    "capex": 10.326,
+    "da": 20.51,
+    "amort": 4.0,
+    "bal": {
+     "ar": 631.608,
+     "inv": 632.353,
+     "prepaid": 44.008,
+     "ap": 103.189,
+     "accrued": null,
+     "deferred_rev": null,
+     "ppe": 321.081,
+     "rou": null,
+     "goodwill": 335.291,
+     "intangibles": 15.548,
+     "other": 83.324
+    },
+    "lease": null
+   }
+  ],
+  "intangible_cap": {
+   "rd": [
+    [
+     2009,
+     371.463
+    ],
+    [
+     2010,
+     329.56
+    ],
+    [
+     2011,
+     386.163
+    ],
+    [
+     2012,
+     452.937
+    ],
+    [
+     2013,
+     487.832
+    ],
+    [
+     2014,
+     539.469
+    ],
+    [
+     2015,
+     530.616
+    ],
+    [
+     2016,
+     481.258
+    ],
+    [
+     2017,
+     526.688
+    ],
+    [
+     2018,
+     608.531
+    ],
+    [
+     2019,
+     711.03
+    ],
+    [
+     2020,
+     863.864
+    ],
+    [
+     2021,
+     928.487
+    ],
+    [
+     2022,
+     1105.254
+    ],
+    [
+     2023,
+     1296.727
+    ],
+    [
+     2024,
+     1278.981
+    ],
+    [
+     2025,
+     1360.334
+    ],
+    [
+     2026,
+     1532.118
+    ]
+   ],
+   "sga": [
+    [
+     2009,
+     415.126
+    ],
+    [
+     2010,
+     361.372
+    ],
+    [
+     2011,
+     369.431
+    ],
+    [
+     2012,
+     372.666
+    ],
+    [
+     2013,
+     387.812
+    ],
+    [
+     2014,
+     384.907
+    ],
+    [
+     2015,
+     406.864
+    ],
+    [
+     2016,
+     379.399
+    ],
+    [
+     2017,
+     388.211
+    ],
+    [
+     2018,
+     442.304
+    ],
+    [
+     2019,
+     599.124
+    ],
+    [
+     2020,
+     734.149
+    ],
+    [
+     2021,
+     729.602
+    ],
+    [
+     2022,
+     860.007
+    ],
+    [
+     2023,
+     986.326
+    ],
+    [
+     2024,
+     969.509
+    ],
+    [
+     2025,
+     1029.734
+    ],
+    [
+     2026,
+     1131.518
+    ]
+   ]
+  },
+  "missing": [
+   "리스 사용권자산",
+   "유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)",
+   "무형자산 항목(10-K 주석에서 모델이 채움)"
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-19",
+  "stage": "컨센서스",
+  "crowding": "중간(셀사이드 28명 중 19명 매수 쪽) — 13F 보유 기관 2,048곳, Quantral 7일 50(Weak)",
+  "summary": "AI 반도체 증설로 공정이 복잡해질수록 결함 검사·계측이 더 필요해진다는 이야기다. 6월 장비주 급등 때 고점을 찍고 −52%로 배수가 정상화됐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "강력 매수 16·매수 3·보유 9(28명)"
+     ],
+     [
+      "목표가 평균",
+      "$219(범위 $170~310, 27명)"
+     ],
+     [
+      "FY27 EPS 추정",
+      "$6.02(Fiscal.ai 자체 추정)"
+     ],
+     [
+      "콜 질문 초점",
+      "2027 초과 성장·총이익률 회복·2030 모델"
+     ]
+    ],
+    "read": "셀사이드는 대부분 매수 쪽이고 목표가 하단 $170도 지금 주가보다 높다. 질문은 2027 WFE 대비 초과 성장과 메모리 원가에 몰렸다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유 기관",
+      "2,048곳(3Q26)"
+     ],
+     [
+      "증가·감소",
+      "400곳 증가 · 478곳 감소"
+     ],
+     [
+      "순변화",
+      "−14.7M주"
+     ],
+     [
+      "내부자 장내",
+      "매수 0 · 매도 55(최근 1년)"
+     ]
+    ],
+    "read": "기관은 3분기에 순매도했다 — Capital International·Fidelity·MFS가 줄이고 BlackRock·Van Eck가 늘렸다. CEO·CFO는 장내 매도만 했다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral 7일",
+      "50(Weak)"
+     ],
+     [
+      "10월 언급",
+      "23건"
+     ]
+    ],
+    "read": "리테일 관심은 낮다. 10월 실적 뒤 WFE 상향을 반기는 X 글이 있었다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "업종 사건",
+      "11/5 AI 하드웨어 급락 −13.3%"
+     ],
+     [
+      "동종 실적",
+      "ASML 3Q 캐파 부족 발언 뒤 10거래일 하락"
+     ]
+    ],
+    "read": "주가는 회사 실적보다 장비 업종 흐름(ASML 콜·중간선거 뒤 급락)에 더 크게 움직였다."
+   }
+  },
+  "factors": [
+   {
+    "name": "공정 제어 강도 상승",
+    "thesis": "2나노·1.4나노와 HBM·D램에서 검사 단계가 늘어 KLA 점유율이 WFE보다 빨리 큰다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "1Q 매출 +29%, 메모리 약 40%(12월 분기)",
+    "status": "강화",
+    "falsifier": "2Q 매출이 가이던스 하단 $4.5B 미만",
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "name": "2027 WFE $200B 초과",
+    "thesis": "장비 시장이 2026년 $150B 중반에서 2027년 $200B 이상으로 커진다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "회사 전망(콜)",
+    "status": "유지",
+    "falsifier": "2027 고객 CAPEX 가이던스 하향",
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "name": "첨단 패키징",
+    "thesis": "하이브리드 본딩이 패키징 검사를 고급 장비로 바꾼다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2026 패키징 약 $1.1B(+70%)",
+    "status": "강화",
+    "falsifier": "패키징 매출 성장 둔화",
+    "source": "1Q FY27 어닝콜(2026-10-28)"
+   },
+   {
+    "name": "반대 내러티브 — 원가·중국·사이클",
+    "thesis": "메모리 칩 원가로 총이익률이 막히고 중국이 줄며, 6월 같은 장비 과열이 다시 식는다",
+    "inputs": "배수",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "고점 대비 −52%, 총이익률 62.7% vs 목표 63~64%",
+    "status": "강화",
+    "falsifier": "2Q 조정 총이익률 63.5% 이상",
+    "source": "콜·10-K"
+   }
+  ],
+  "lead": {
+   "summary": "KLA의 기업가치는 **AI 증설로 늘어나는 공정 제어 강도를 2027년 WFE 성장보다 빠른 매출로 바꾸고, 메모리 칩 원가를 넘어 총이익률을 63~64%로 되돌리느냐**에 달려 있다. 1Q FY27 매출 $4.14B(+29%)·영업이익률 46.1%로 사상 최고를 찍었지만, 주가는 6월 장비주 급등 고점보다 52% 낮다.",
+   "value_story": "매출의 91%가 반도체 공정 제어(웨이퍼 검사 51%·패터닝 21%·서비스 21%), 6%가 PCB·부품 검사다. 칩이 미세해지고 HBM·패키징이 복잡해질수록 수율을 지키려는 검사 단계가 늘어나고, 깔린 장비는 서비스 매출로 반복된다. 출하 상한은 광학 부품이 정하고, 원가는 장비 안 영상 처리용 D램 칩 가격이 흔든다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 22.0배로 동종 4곳(Applied Materials·Lam Research·ASML·Onto Innovation) 중앙값 19.8배보다 11% 높다. 6월 말 60배대에서 내려왔다.",
+    "eps": "FY27 조정 EPS 컨센서스 $6.02, FY28 $7.43(+23%) — 4개 분기 연속 컨센서스를 넘었다."
+   },
+   "why_excited": "2026년 상반기 투자자들은 'AI 증설의 수율 병목 = 검사·계측'에 열광했고 6/30 종가 $301.71까지 올랐다(Fwd P/E 60배). 식은 이유는 세 가지다 — 7월 장비주 급락과 4Q 실적 다음 날 −10.8%, 10월 ASML 콜 뒤 10거래일 하락, 11/5 중간선거 뒤 AI 하드웨어 급락(하루 −13.3%)이다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "반도체 공정 제어",
+     "what": "웨이퍼·레티클 결함 검사, 오버레이·CD 계측 장비와 설치 기반 서비스",
+     "use": "TSMC·삼성·SK하이닉스·인텔·마이크론의 선단 로직·D램·HBM·패키징 라인",
+     "money": "1Q 매출의 91%($3.75B), 부문 총이익률 64% — 검사 단계가 늘수록 매출 증가",
+     "name_en": "Wafer defect inspection system",
+     "what_en": "a large cleanroom optical wafer inspection tool with wafer handler and optical column",
+     "bom": {
+      "name_en": "Broadband plasma optical wafer inspector",
+      "items": [
+       {
+        "no": 1,
+        "part": "광대역 플라즈마 광원",
+        "part_en": "broadband plasma light source",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "자체 설계(KLA)",
+        "source": "10-K 제품 절(광대역 플라즈마 검사)"
+       },
+       {
+        "no": 2,
+        "part": "대물 광학계",
+        "part_en": "objective optics column",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인(핵심 광학 공급사)",
+        "source": "1Q 콜(광학 부품이 출하 결정)"
+       },
+       {
+        "no": 3,
+        "part": "고속 이미지 센서",
+        "part_en": "high speed image sensor",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K 제품 절"
+       },
+       {
+        "no": 4,
+        "part": "영상 처리 컴퓨터(D램 포함)",
+        "part_en": "image processing computer",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인(D램 공급사)",
+        "source": "10-K 위험 요인(D램 칩)·1Q 콜"
+       },
+       {
+        "no": 5,
+        "part": "웨이퍼 스테이지",
+        "part_en": "wafer stage",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "자체",
+        "source": "10-K"
+       },
+       {
+        "no": 6,
+        "part": "웨이퍼 이송 로봇",
+        "part_en": "wafer handling robot",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       }
+      ],
+      "as_of": "2026-11-19",
+      "this_company_product": true
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "PCB·부품 검사",
+     "what": "PCB 자동 광학 검사·직접 묘화 노광, 부품 검사",
+     "use": "AI 서버용 고다층 PCB·기판 제조사",
+     "money": "1Q 매출의 6%($242M), 부문 총이익률 56%",
+     "name_en": "PCB automated optical inspection",
+     "what_en": "an automated optical inspection machine scanning a printed circuit board"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "로직 중심 → 메모리(D램·HBM) 40% + 첨단 패키징",
+     "evidence": "12월 분기 공정 제어 시스템 중 메모리 약 40%(콜)",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "메모리 비중 30% 아래로"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "Gen5·전자빔 등 고급 검사 비중 확대",
+     "evidence": "콜: 2나노·1.4나노에서 샘플링 단계 증가",
+     "drives": "이익률",
+     "status": "진행 중",
+     "falsifier": "조정 총이익률 61.5% 아래로"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "하이브리드 본딩 검사 민감도 마이크론 → 100나노미터",
+     "evidence": "콜",
+     "drives": "점유율",
+     "status": "확인",
+     "falsifier": "패키징 경쟁사 고급 장비 채택"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(피어 리드타임 미공시라 비교 불가) — 회사 평균 리드타임 약 12개월, Gen4·Gen5는 더 길다(콜)",
+     "evidence": "1Q 콜",
+     "drives": "성장",
+     "status": "확인",
+     "falsifier": "리드타임이 더 길어져 출하 지연"
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 큰 인수 없음)",
+     "evidence": "10-K",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "반도체 회사 팹 장비 투자(CAPEX)와 팹 운영비(서비스)",
+     "evidence": "Fiscal.ai 세그먼트",
+     "drives": "성장",
+     "status": "확인",
+     "falsifier": "TSMC·메모리 3사 2027 CAPEX 하향",
+     "budgets": [
+      {
+       "business": "반도체 공정 제어 장비",
+       "budget": "CAPEX",
+       "line": "파운드리·메모리 팹 장비 투자",
+       "share": 0.7,
+       "driver": "선단 노드·HBM·신규 팹",
+       "evidence": "1Q 웨이퍼 검사 + 패터닝 $2.97B ÷ $4.14B(계산)"
+      },
+      {
+       "business": "서비스",
+       "budget": "OPEX",
+       "line": "팹 운영비(장비 유지보수)",
+       "share": 0.21,
+       "driver": "가동률·설치 기반",
+       "evidence": "1Q 서비스 $851M"
+      },
+      {
+       "business": "PCB·특수 공정",
+       "budget": "CAPEX",
+       "line": "PCB·전력 반도체 설비 투자",
+       "share": 0.09,
+       "driver": "AI 서버 PCB·전력 반도체",
+       "evidence": "1Q 부문 매출(계산)"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "CHIPS 보조금 — 고객 미국 팹 투자로 간접 연결",
+     "evidence": "10-K",
+     "drives": "수요(간접)",
+     "status": "시행",
+     "falsifier": "보조금 지급 지연",
+     "house": {
+      "level": 5,
+      "why": "CHIPS법(2022) 세출 반영"
+     },
+     "senate": {
+      "level": 5,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "미국 상무부 BIS 대중국 장비 수출 규제",
+     "evidence": "10-K 위험 요인",
+     "drives": "중국 매출 34%(1Q) → 2027 20%대 초반",
+     "status": "시행",
+     "falsifier": "규제 확대로 중국 서비스까지 제한",
+     "house": {
+      "level": 1,
+      "why": "행정 규칙 — 의회 의결 대상 아님"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사 매출과 직접 연결되는 법안 미확인)",
+     "evidence": "10-K",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음"
+    }
+   }
+  }
+ }
+}
