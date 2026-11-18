@@ -205,8 +205,9 @@ def api_get(path, token):
         return json.loads(r.read().decode("utf-8"))
 
 
-def walk(page_id, token, depth=2):
-    """페이지 아래 블록을 돌며 (블록 id, 파일 이름, 서명 주소, 페이지 제목) — 하위 페이지는 depth만큼 내려간다"""
+def walk(page_id, token, depth=2, sub=None):
+    """페이지 아래 블록을 돌며 (블록 id, 파일 이름, 서명 주소, 첫 단계 하위 페이지 제목) — 하위 페이지는 depth만큼 내려간다.
+    하위 페이지 제목을 같이 돌려줘 분류에 쓴다(2026-11-18 — Informations 아래 'Memory Channel Check' PDF가 'Informations'로 잡혀 채널체크로 분류되지 않았다)"""
     out, cursor = [], None
     while True:
         d = api_get(f"/blocks/{page_id}/children?page_size=100" + (f"&start_cursor={cursor}" if cursor else ""), token)
@@ -216,9 +217,9 @@ def walk(page_id, token, depth=2):
                 f = b[t].get("file") or b[t].get("external") or {}
                 url = f.get("url") or ""
                 name = b[t].get("name") or urllib.parse.unquote(url.split("?")[0].rsplit("/", 1)[-1])
-                out.append((b["id"], name, url))
+                out.append((b["id"], name, url, sub))
             elif t == "child_page" and depth > 0:
-                out += [(i, n, u) for i, n, u in walk(b["id"], token, depth - 1)]
+                out += walk(b["id"], token, depth - 1, sub or (b.get("child_page") or {}).get("title") or "")
         if not d.get("has_more"):
             return out
         cursor = d.get("next_cursor")
@@ -228,21 +229,27 @@ def pull(token, rows, cfg, cos, today, limit=40):
     """NOTION_TOKEN 경로(2026-11-04 마스터 지시): 공식 API가 주는 서명 주소(1시간)로 스크립트가 직접 내려받는다 — 모델 복사 없음"""
     have = {r["id"]: r for r in rows}
     new, done, failed = [], 0, []
+    jobs = []
     for root in cfg["roots"]:
-        title = root["name"]
         try:
-            files = walk(root["id"], token)
+            jobs += [(root["name"], *f) for f in walk(root["id"], token)]
         except Exception as exc:
-            failed.append(f"{title}: {type(exc).__name__}")
-            continue
-        for bid, name, url in files:
+            failed.append(f"{root['name']}: {type(exc).__name__}")
+    # 채널체크 PDF를 먼저 받는다 — 올리는 PDF를 모두 해설한다(2026-11-18 마스터 지시). IB Report 대기분이 회차 상한을 먼저 쓰지 않게
+    jobs.sort(key=lambda j: classify(f"{j[0]} / {j[4]}" if j[4] else j[0], cfg) != "채널체크")
+    if True:
+        for title, bid, name, url, sub in jobs:
             ext = name.rsplit(".", 1)[-1].lower()
             if ext not in cfg["kinds"]:
                 continue
+            page = sub or title
+            cls = classify(f"{title} / {sub}" if sub else title, cfg)
             row = have.get(bid)
+            if row and (row["page"], row["cls"]) != (page, cls) and row["page"] == title:   # 하위 페이지 이름으로 다시 분류
+                row["page"], row["cls"] = page, cls
             if not row:
                 broker, doc = meta(name)
-                row = {"id": bid, "name": name, "kind": ext, "cls": classify(title, cfg), "page": title, "broker": broker, "doc_date": doc,
+                row = {"id": bid, "name": name, "kind": ext, "cls": cls, "page": page, "broker": broker, "doc_date": doc,
                        "entities": ";".join(match(name, "", cos)), "related": "", "status": "new", "chars": 0, "added": today,
                        "reference": f"notion-file-block://{bid}/api?name={urllib.parse.quote(name)}"}
                 have[bid] = row

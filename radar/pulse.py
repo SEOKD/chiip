@@ -877,6 +877,11 @@ def run(now=None, peek=False):
         ibd = ib_digest_feed.status(now)
     except Exception as exc:
         ibd = {"due": False, "error": type(exc).__name__}
+    try:   # Chiip Memory Channel Check(2026-11-18 마스터 지시 "업로드되는 모든 pdf를 모두 읽고 풀이 및 해설해 텔레그램으로") — 새 PDF가 있을 때만
+        import channel_check_feed
+        mcc = channel_check_feed.status(now)
+    except Exception as exc:
+        mcc = {"due": False, "error": type(exc).__name__}
     try:   # GPU 렌털료 주간 점검(2026-11-14 마스터 지시 — Weekly에서 이관, 매주 월요일 06:00 이후 첫 회차)
         import gpu_weekly
         gpu = gpu_weekly.status(now)
@@ -919,7 +924,7 @@ def run(now=None, peek=False):
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in picked],
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "gpu_weekly": gpu, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "channel_check": mcc, "gpu_weekly": gpu, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if body_hold:
         fulltext.offered([h["item"]["item_id"] for h in body_hold], now)

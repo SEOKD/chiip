@@ -153,6 +153,10 @@
    - 상세 해석본 1건: `[{id, why(왜 골랐나), conclusion(리포트의 결론과 그것이 바꾸는 판단 한두 문장), claims(핵심 주장 3~6개 — 무엇을·왜), numbers(근거 숫자 2~6개 — 값·단위·기간·전과 비교, 출처 문서 값), logic(주장이 숫자로 이어지는 인과 사슬), gap(시장 기대·컨센서스·Chiip 판단과 같은가 다른가, 다르면 어디서), weak(약한 고리 — 가정·빠진 변수·반대 근거), next(다음 확인 사건·숫자)}]`를 파일로 쓰고 `py radar/ib_digest_feed.py --send <파일>` — 마스터 개인 봇 1통(3,800자 안, 관문이 막는다). 각 항목 260자 안, 자기 말로. 전문 용어는 처음 나올 때 한 줄로 푼다.
    - 같은 리포트는 다시 보내지 않는다 — 보내면 같은 이름의 사본까지 표시된다. 해석할 가치가 없는 새 PDF만 `py radar/ib_digest_feed.py --done <id ...>`로 표시하고, 가치가 있는데 이번에 고르지 않은 것은 남겨 다음 회차에 하나씩 보낸다. 필드 인텔·채널체크·Exclusive Source 내용은 넣지 않는다. 목표가를 결론으로 쓰지 않는다.
 
+2-6b. 🧪 Chiip Memory Channel Check(2026-11-18 마스터 지시 "Memory Channel Check 페이지를 읽고 IB Report처럼 텔레그램 피드로 … 업로드되는 모든 pdf를 모두 읽고 풀이 및 해설한 후 텔레그램 피드로 제공하라" · "읽되 로컬 참고만"): 펄스 파일의 `channel_check.due`가 true일 때만. IB Digest와 달리 **고르지 않는다** — `todo`의 PDF마다(회차당 최대 3건, 남은 것은 다음 회차) 텍스트(`text`)를 끝까지 읽고 해설 1통씩.
+   - `{id, summary(풀이 — 이 자료가 말하는 것과 그것이 메모리 판단에 주는 뜻 두세 문장), claims(핵심 내용 3~8개 — 무엇을·왜), numbers(근거 숫자 2~8개 — 값·단위·기간·전과 비교, 문서 값 그대로), korea(삼성전자·SK하이닉스 등 한국 메모리·공급망에 주는 뜻, 연결이 문서에 없으면 '해석'), weak(약한 고리 — 가정·빠진 변수·반대 근거), next(다음 확인 사건·숫자)}`를 radar/inbox/channel_check/<id>_in.json에 쓰고 `py radar/channel_check_feed.py --send <파일>` — 마스터 개인 봇 1통(3,800자 안, 관문이 잰다). 자기 말로, 원문 문장·도표 복제 금지, 용어는 처음 나올 때 한 줄로 푼다. 목표가·매매 지시를 결론으로 쓰지 않는다.
+   - 경계: 채널체크는 필드 인텔일 수 있다 — 이 해설 1통 말고는 Pulse 본문·리포트·Analysis·invest·public 어디에도 쓰지 않는다(`blocked_classes`). 요지를 `notion_library.py --digest`로 저장하지 않는다(저장소 커밋 금지). `scanned: true`(글자 없는 이미지 PDF)는 `py radar/channel_check_feed.py --pages <id>`로 페이지 PNG를 떠서 그림으로 읽는다. `waiting_text`는 수집기가 다시 받으니 기다린다. 끝내 읽을 수 없는 PDF만 `--done <id>`.
+
 2-3. 📑 Fiscal IR 문서(마스터 지시 2026-11-08 "AT&S도 최근 실적 발표 프레젠테이션 자료를 공유했는데 이걸 가져오고 있는지"): 펄스 파일의 `fiscal_ir_docs.due`가 true일 때만.
    `py radar/fiscal_ir_docs.py --plan`이 주는 묶음 본문을 execute_code로 돌리고(묶음 안에서 동시 6개 이하) 출력(JSON 배열)을 모두 합쳐 radar/state/fiscal_ir_in.json에 저장 → `py radar/fiscal_ir_docs.py --put radar/state/fiscal_ir_in.json`.
    새 PT·보도자료는 inbox에 'IR 자료'로 들어가 다음 회차 1-5b가 분석한다. 이번 회차에 글을 쓰지 않는다.
