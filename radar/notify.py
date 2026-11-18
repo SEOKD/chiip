@@ -206,6 +206,40 @@ def send_document(path, caption="", level="REPORT"):
     return ok
 
 
+def send_photo(path, caption="", level="P1"):
+    """그림(PNG·JPG)을 사진으로 마스터 개인 텔레그램에 — 캡션 1,024자 안(2026-11-19 Memory Spot 그래프)"""
+    path = Path(path)
+    caption = brand(caption)
+    reason = guard(caption)
+    if reason:
+        _log(f"[차단:{reason}] 사진 {path.name}")
+        return False
+    env = common.load_env()
+    token, chat = env.get("TELEGRAM_BOT_TOKEN"), env.get("TELEGRAM_CHAT_ID")
+    if not token or not chat:
+        _log(f"[미발송-키없음][{level}] 사진 {path.name}")
+        return False
+    if not private_chat(chat):
+        _log(f"[차단:개인 대화방 아님][{level}] 사진 {path.name}")
+        return False
+    import uuid
+    bnd = uuid.uuid4().hex
+    parts = [f'--{bnd}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode("utf-8") for k, v in (("chat_id", chat), ("caption", caption[:1024]))]
+    parts.append(f'--{bnd}\r\nContent-Disposition: form-data; name="photo"; filename="{path.name}"\r\nContent-Type: image/png\r\n\r\n'.encode("utf-8")
+                 + path.read_bytes() + b"\r\n")
+    parts.append(f"--{bnd}--\r\n".encode())
+    req = urllib.request.Request(f"https://api.telegram.org/bot{token}/sendPhoto", data=b"".join(parts),
+                                 headers={"Content-Type": f"multipart/form-data; boundary={bnd}"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            ok = json.loads(r.read()).get("ok", False)
+    except Exception as exc:   # 토큰이 섞일 수 있는 URL은 기록하지 않음
+        _log(f"[발송실패][{level}] 사진 {path.name} {type(exc).__name__}")
+        return False
+    _log(f"[발송{'됨' if ok else '실패'}][{level}] 사진 {path.name} · {caption[:60]}")
+    return ok
+
+
 def guidance_est(text):
     """실적 피드 Guidance 절의 수치 줄에 (est. …)가 없으면 '(est. 없음)'을 붙이고 빠진 줄을 기록한다(마스터 지시 2026-11-11
     "Guidance에도 컨센서스(est.)가 붙도록 — 가끔씩 빠져 있더라"). 조용히 빠지지 않게 하는 마지막 관문 — 값은 scripts/fiscal/templates/earnings_est.js가 고른다"""

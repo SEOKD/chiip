@@ -1,0 +1,11 @@
+# Chiip Memory Spot — DRAM·NAND 현물가격 추정 그래프 (마스터 지시 2026-11-19) → radar/memory_spot.py, docs/channels/pulse.md
+# channels: '메모리 스팟가격' 줄(제품: 1D x%, 1W y%, 1M z%)을 올리는 공개 텔레그램 채널 — config/tg_channels.yaml 수집 대상이어야 한다
+channels: [merITz_tech]
+dram: DDR5 16Gb     # 그래프에 그릴 DRAM 제품(채널 표기 그대로)
+nand: MLC 64Gb      # 그래프에 그릴 NAND 제품
+# anchors: 달러 기준점 — 공개 보도에 나온 같은 제품 현물 평균가(D램익스체인지 인용)와 날짜·출처. 없으면 지수로 그린다.
+# 여러 개면 중앙값으로 배율을 정하고 나머지와의 어긋남(misfit)을 그래프 요약에 남긴다.
+anchors:   # 머니투데이 보도(D램익스체인지 인용, 2026-11-19 확인). 제품 표기가 '16GB'로 섞여 있어 칩 현물(16Gb)로 본다 — 가정
+  - {product: DDR5 16Gb, date: 2026-03-18, usd: 39.8, source: "https://www.mt.co.kr/industry/2026/03/31/2026033116262368227", note: "3월 고점"}
+  - {product: DDR5 16Gb, date: 2026-03-27, usd: 37.5, source: "https://www.mt.co.kr/industry/2026/03/31/2026033116262368227", note: "한 달 전 대비 -5.2%"}
+  - {product: DDR5 16Gb, date: 2026-10-13, usd: 59.9, source: "https://www.mt.co.kr/en/industry/2026/10/15/2026101415332169555", note: "전일 +0.8%, 한 달 +10.2%, 사상 최고"}
