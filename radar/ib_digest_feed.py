@@ -22,7 +22,17 @@ from pollers import common  # noqa: E402
 STATE = "ib_digest_feed"
 TYPE_HI = re.compile(r"Initiat|Upgrade|Downgrade|Raise|Cut|Primer|Deep ?Dive|Black ?Book|Outlook|Model|Forecast|개시|상향|하향|입문", re.I)
 TYPE_MID = re.compile(r"First ?Take|Earnings|Review|Q[1-4]|[1-4]Q", re.I)
-MAX_PICK = 1      # 회차당 해석본 1건(2026-11-12 마스터 지시)
+MAX_PICK = 1      # 한 통에 리포트 1건(2026-11-12 마스터 지시 — 같은 리포트를 여러 통으로 나누지 않는다)
+MAX_SEND = 3      # 회차당 통수 — 고르지 않고 매크로 외 전건을 차례로(2026-11-18 마스터 지시), 남은 것은 다음 회차
+# 매크로(금리·환율·경제·전략·자산배분·원자재 시황) 자료는 해설하지 않는다(2026-11-18 마스터 지시 "매크로 외 산업 및 기업 관련 pdf는 읽도록").
+# 파일 이름으로 가른다 — 애매하면 산업·기업 쪽으로 둔다(놓치는 쪽보다 한 통 더 보내는 쪽).
+MACRO = re.compile(r"Rates|\bFX\b|Macro|Economics? (Outlook|Indicators|Analyst)|Economics 20|Treasur|Fixed Income|Strategy|Equity Outlook|Global Outlook|"
+                   r"Market Review|Week Ahead|Inflation|Indicators|Kickstart|HY and Leveraged|Precious Metals|Oil 2027|Iron Ore|USD-CNY|CTA.Report|"
+                   r"China Insights|Chart of the Week|Volatility|^Barclays - 2027 Outlook|EM Equity", re.I)
+
+
+def is_macro(name):
+    return bool(MACRO.search(str(name or "").replace("_", " ")))
 MSG_MAX = 3800    # 텔레그램 한 통(4,096자) 안
 
 
@@ -43,7 +53,7 @@ def candidates(rows=None, st=None, cfg=None):
     out, keys = [], set()
     themes = None
     for r in rows:
-        if r["cls"] != "IB 리포트" or r["id"] in seen or r["status"] not in ("text", "digest"):
+        if r["cls"] != "IB 리포트" or r["id"] in seen or r["status"] not in ("text", "digest", "image"):
             continue
         k = report_key(r["name"])
         if k in sent_keys or k in keys:   # 이미 보낸 리포트·이번 목록 안의 중복 사본
@@ -72,7 +82,8 @@ def candidates(rows=None, st=None, cfg=None):
         if r.get("broker") and r["broker"] != "미확인":
             s += 0.5
         out.append({"id": r["id"], "name": r["name"], "broker": r.get("broker"), "doc_date": r.get("doc_date"), "entities": r["entities"],
-                    "chars": int(r.get("chars") or 0), "prescore": s, "why": why, "text": f"radar/inbox/notion_files/{r['id']}.txt", "digest": r["status"] == "digest"})
+                    "chars": int(r.get("chars") or 0), "prescore": s, "why": why, "text": f"radar/inbox/notion_files/{r['id']}.txt", "digest": r["status"] == "digest",
+                    "scanned": r["status"] == "image", "macro": is_macro(r["name"])})   # scanned = 이미지 PDF → --pages로 페이지를 그림으로 읽는다
     return sorted(out, key=lambda x: -x["prescore"]), st
 
 
@@ -84,8 +95,13 @@ def status(now=None):
         return {"due": False, "error": type(e).__name__}
     if "done" in st and "baseline" in st and not common.load_state(STATE, {}).get("baseline"):
         common.save_state(STATE, st)   # 첫 기준선 저장
-    return {"due": bool(cands), "n": len(cands), "top": [{k: c[k] for k in ("id", "name", "broker", "doc_date", "entities", "prescore", "why", "text")} for c in cands[:8]],
-            "max_pick": MAX_PICK}
+    macro = [c["id"] for c in cands if c["macro"]]
+    if macro:   # 매크로는 해설하지 않고 본 것으로 표시(결정론)
+        done(macro)
+    cands = [c for c in cands if not c["macro"]]
+    return {"due": bool(cands), "n": len(cands), "skipped_macro": len(macro),
+            "top": [{k: c[k] for k in ("id", "name", "broker", "doc_date", "entities", "prescore", "why", "text", "scanned")} for c in cands[:MAX_SEND]],
+            "max_send": MAX_SEND}
 
 
 def message(picks, rows=None):
@@ -106,7 +122,7 @@ def message(picks, rows=None):
 def check(picks, rows=None):
     bad = []
     if len(picks) != MAX_PICK:
-        bad.append(f"고른 리포트 {len(picks)}건 — 회차당 {MAX_PICK}건만(2026-11-12 마스터 지시)")
+        bad.append(f"한 통에 리포트 {len(picks)}건 — {MAX_PICK}건만(2026-11-12 마스터 지시)")
     for p in picks:
         miss = [k for k in ("why", "conclusion", "logic", "gap", "weak", "next") if not str(p.get(k) or "").strip()]
         if miss:
@@ -153,6 +169,14 @@ def main(argv):
         if ok:
             done([p["id"] for p in picks], sent=True)
         print("[IB Digest] 발송" if ok else "[IB Digest] 발송 실패")
+        return 0
+    if argv[:1] == ["--check"]:   # 보내지 않고 관문만(해설 문안 검사)
+        bad = check(json.loads(Path(argv[1]).read_text(encoding="utf-8")))
+        print("통과" if not bad else "고칠 것: " + " · ".join(bad))
+        return 1 if bad else 0
+    if argv[:1] == ["--pages"]:   # 이미지 PDF 페이지 PNG(git 제외 폴더)
+        import channel_check_feed
+        print("\n".join(channel_check_feed.pages(argv[1])))
         return 0
     if argv[:1] == ["--done"]:
         done(argv[1:])

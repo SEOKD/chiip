@@ -31,6 +31,7 @@ STORE = common.ROOT / "knowledge" / "notion" / "library.csv"
 DIGESTS = common.ROOT / "knowledge" / "notion" / "digests"
 CACHE = common.ROOT / "radar" / "inbox" / "notion_files"
 IMG = CACHE / "images"
+IMAGE_CHARS = 300   # 이보다 글자가 적으면 이미지 PDF(스캔·그림 압축본)
 FIELDS = ["id", "name", "kind", "cls", "page", "broker", "doc_date", "entities", "related", "status", "chars", "added", "reference"]
 FILE_RE = re.compile(r"notion-file-block://([0-9a-f-]{36})/[0-9a-f-]{36}\?[^\s\"'<>\\]*?name=([^\s\"'<>&\\]+)")
 XNS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
@@ -183,9 +184,11 @@ def put(data, rows, cos):
                 text = pdf_text(p) if row["kind"] == "pdf" else xlsx_text(p)
                 if row["kind"] == "pdf":
                     pdf_images(p, row["id"])
-            if len(text.strip()) < 50:
-                raise ValueError("글자를 뽑지 못했다")
             (CACHE / f"{row['id']}.txt").write_text(text, encoding="utf-8")
+            if len(text.strip()) < IMAGE_CHARS:   # 글자 없는 이미지 PDF — 실패가 아니라 페이지를 그림으로 읽을 자료(2026-11-18, IB Report 11/18분 약 30건)
+                row.update({"status": "image", "chars": len(text.strip())})
+                done += 1
+                continue
             main_ids = match(row["name"], "", cos)   # 파일 이름 = 주 대상, 본문에만 나오면 관련 회사
             row.update({"status": "text", "chars": len(text), "entities": ";".join(main_ids), "related": ";".join(x for x in match("", text, cos) if x not in main_ids)})
             done += 1

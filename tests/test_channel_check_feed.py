@@ -36,3 +36,14 @@ class TestChannelCheck(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestIbDigestMacro(unittest.TestCase):
+    def test_macro_names(self):
+        import ib_digest_feed as D
+        for n in ("GS - 2027 Global Rates Outlook", "GS - 2027 Global FX Outlook - Timing the Turn.pdf", "MS - US Economics Outlook",
+                  "Citi - Global Macro Strategy", "CTA_Report_20261117.pdf", "MS - Iron Ore Chartbook"):
+            self.assertTrue(D.is_macro(n), n)
+        for n in ("Bernstein - US Semis - Intel and AMD", "MS - SpaceX (SPCX) - SpaceX Economics, 10 Takeaways.pdf",
+                  "Bernstein - China Semicap - HBM Shortage Drives More DRAM Capex.pdf", "Citi - Hesai (HSAI.US)"):
+            self.assertFalse(D.is_macro(n), n)
