@@ -2887,7 +2887,8 @@
   ],
   "orders_label": "Net Bookings",
   "backlog_label": null,
-  "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표, USD 환산)·company_segments_and_kpis"
+  "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표, USD 환산)·company_segments_and_kpis",
+  "orders_note": "ASML은 2026년부터 분기 수주(Net Bookings) 공시를 중단하고 연간 수주잔고만 공개한다(2025-01 4Q24 실적 발표)"
  },
  "main_metric": "eps",
  "main_metric_why": "향후 12개월 EBITDA 중 감가상각이 4%뿐이고 회사가 EPS·순이익으로 실적을 낸다",
