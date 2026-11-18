@@ -216,7 +216,16 @@ def _at(rows, idx):
 def actest_chart(dp):
     """분기 매출·EPS 실적 vs 컨센서스 — 지난 4개 분기는 실적과 발표 직전 추정, 앞으로 3개 분기는 컨센서스만"""
     cons = dp.get("consensus") or {}
-    rows = cons.get("surprise") or []
+    rows = list(cons.get("surprise") or [])
+    import re as _re
+    qk = lambda k: (f"{k[:4]}Q{(int(k[5:7]) - 1) // 3 + 1}" if _re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(k)) else k)   # '2026-12-31' → '2026Q4'(2026-11-19 KLA: 추정이 날짜 키라 분기 사이에 끼어 정렬됐다)
+    # 매출 실적 행이 4개보다 적으면 분기 실적 이력(quarters_hist, 원 단위 → 백만)으로 채운다 — 지난 분기 컨센서스는 없으면 비워 둔다(KLA: 3Q26만 매출 행이 있었다)
+    have = {r["period"] for r in rows if r.get("metric") == "매출"}
+    eps_q = sorted({r["period"] for r in rows if r.get("metric") == "EPS"})
+    hist = {qk(str(r.get("period"))[:10]): r.get("rev") for r in (dp.get("quarters_hist") or {}).get("q") or [] if r.get("rev")}
+    for q in eps_q[-4:]:
+        if q not in have and hist.get(q):
+            rows.append({"period": q, "metric": "매출", "actual": round(hist[q] / 1e6, 1), "est": None, "unit": "M"})
     panels = []
     tag = sym(dp).strip()
     for metric, name, scale in (("매출", f"매출({tag}M)" if tag == "$" else f"매출({tag} M)", 1.0), ("EPS", f"EPS({tag})", 1.0)):
@@ -226,10 +235,10 @@ def actest_chart(dp):
         act = [None if r.get("actual") is None else round(r["actual"] * (k if r.get("unit") == past[0].get("unit") else 1.0), 3) for r in past]
         est = [None if r.get("est") is None else round(r["est"] * (k if r.get("unit") == past[0].get("unit") else 1.0), 3) for r in past]
         if metric == "매출":
-            fut = sorted((k, v * 1000) for k, v in (cons.get("quarters_est") or {}).items())
+            fut = sorted((qk(k), v * 1000) for k, v in (cons.get("quarters_est") or {}).items())
         else:
             fut = sorted((r["period"], r["to"]) for r in ((cons.get("revisions") or {}).get("rows") or []) if r.get("metric") == "EPS")
-            fut = sorted({**dict(fut), **(cons.get("eps_quarters_est") or {})}.items())   # Fiscal.ai 분기 추정이 있으면 그것을 먼저
+            fut = sorted({**dict(fut), **{qk(k): v for k, v in (cons.get("eps_quarters_est") or {}).items()}}.items())   # Fiscal.ai 분기 추정이 있으면 그것을 먼저
         for k, v in [x for x in fut if x[0] not in cats][:3]:
             cats.append(k)
             act.append(None)
