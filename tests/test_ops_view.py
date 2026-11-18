@@ -41,6 +41,18 @@ class TestCycle(unittest.TestCase):
         self.assertIn("1.30", s["blocks"][0]["text"])
         self.assertEqual(ov.cycle_section({"ops": {"q": [{"period": p, "rev": 1} for p in P]}}), None)   # 재고 없으면 절 없음
 
+    def test_bb_ratio_and_disclosure_stop(self):
+        # 2026-11-19 ASML: 분기 수주 공시 중단 뒤 B/B가 소리 없이 비었다 — 비율 그대로(×100 아님) + 이유 표기
+        rows = [{"period": p, "rev": 100, "cogs": 60, "inventory": 50, "orders": 130 if p < "2026" else None} for p in P]
+        s = ov.cycle_section({"ops": {"q": rows, "orders_note": "회사가 분기 수주 공시를 중단"}})
+        c = [b for b in s["blocks"] if b.get("type") == "chart"][0]["chart"]
+        bb = [v for _, v in c["series"][0]["points"] if v is not None]
+        self.assertTrue(c["multi_axis"])
+        self.assertEqual(bb[-1], 1.3)
+        self.assertIn("25-12 뒤 B/B 없음(회사가 분기 수주 공시를 중단)", c["title"])
+        self.assertIn("2025-12 뒤 분기는 B/B를 계산할 수 없다", s["blocks"][0]["text"])
+        self.assertEqual(c["series"][0]["points"][-1], ["26-03", None])   # 빈 분기도 시간 순서를 지킨다
+
 
 class TestImplied(unittest.TestCase):
     def test_parse_atm_straddle_after_earnings(self):

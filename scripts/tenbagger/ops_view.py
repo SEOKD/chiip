@@ -164,11 +164,21 @@ def cycle_section(dp):
            "-" if r["dio"] is None else f"{r['dio']:.0f}", pc(r["inv_yoy"]), pc(r["rev_yoy"])] for r in rows]
     B = [{"type": "hl", "text": head},
          {"type": "table", "title": "수주/출하 비율 × 재고 — 분기별", "headers": ["분기 말", "B/B(분기)", "B/B(4분기)", "재고 일수", "재고 전년 대비", "매출 전년 대비(4분기)"], "rows": tb}]
-    series = [{"name": "재고 일수", "color": "b", "values": [None if r["dio"] is None else round(r["dio"]) for r in rows]}]
-    if any(r.get("bb4") is not None for r in rows):
-        series.insert(0, {"name": "B/B(4분기)×100", "color": "c", "values": [None if r["bb4"] is None else round(r["bb4"] * 100) for r in rows]})
-    B.append({"type": "chart", "chart": {"kind": "bars", "w": 440, "title": "수주/출하 비율 × 재고 일수 — 분기별(B/B 100 = 수주와 출하가 같다)" if len(series) > 1 else "재고 일수 — 분기별(수주 자료가 없어 수주/출하 비율 없음)", "unit": "",
-                                         "categories": [r["period"][2:7] for r in rows], "series": series}})
+    # B/B는 비율 그대로(×100 하지 않는다, 마스터 지시 2026-11-19) — 단위가 다른 재고 일수와는 축을 나눈다(왼쪽 B/B, 오른쪽 재고 일수)
+    lab_q = lambda r: r["period"][2:7]
+    series = [{"name": "재고 일수(오른쪽 축)", "color": "b", "axis": "dio", "points": [[lab_q(r), None if r["dio"] is None else round(r["dio"])] for r in rows]}]
+    has_bb = any(r.get("bb4") is not None for r in rows)
+    stop = ""
+    if has_bb:
+        series.insert(0, {"name": "B/B 4개 분기(왼쪽 축, 1.0 = 수주와 출하가 같다)", "color": "c", "axis": "bb", "points": [[lab_q(r), None if r.get("bb4") is None else round(r["bb4"], 2)] for r in rows]})
+        last_bb = max(r["period"] for r in rows if r.get("bb4") is not None)
+        if last_bb < rows[-1]["period"]:   # 2026-11-19 ASML: 2026년부터 분기 수주(Net Bookings) 공시를 중단 — 그 뒤 B/B가 소리 없이 비었다
+            why = (dp.get("ops") or {}).get("orders_note") or "회사가 그 뒤 분기 수주를 공시하지 않는다"
+            stop = f" · {last_bb[2:7]} 뒤 B/B 없음({why})"
+            B[0]["text"] += f" {last_bb[:7]} 뒤 분기는 B/B를 계산할 수 없다 — {why}."
+    B.append({"type": "chart", "chart": {"kind": "line", "multi_axis": True, "w": 440,
+                                         "title": ("수주/출하 비율(B/B) × 재고 일수 — 분기별" + stop) if has_bb else "재고 일수 — 분기별(수주 자료가 없어 수주/출하 비율 없음)", "unit": "",
+                                         "series": series}})
     B.append({"type": "p", "text": "B/B가 1을 넘으면 받은 주문이 내보낸 물건보다 많아 잔고가 쌓이고, 재고가 매출보다 빨리 늘면 수요보다 생산이 앞선다는 뜻이다. 둘을 함께 봐야 '주문이 많아 쌓이는 재고'와 '안 팔려 쌓이는 재고'를 가른다."})
     return {"h2": "수주·출하·재고 사이클", "blocks": B}
 
