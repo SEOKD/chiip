@@ -815,6 +815,41 @@
   verified: true
   enabled: true
 
+- id: src-wsj-main
+  name: WSJ 주요 기사 — 종목·산업 관련 (Google News 색인, 섹션별)
+  category: F-뉴스
+  module: rss
+  method: rss
+  # 마스터 지시 2026-11-19 "Pulse는 WSJ 메인 기사를 잘 긁어와봐. 특히 주식 종목과 산업에 관련된 메인 기사를 잘 파악하도록"
+  # (예: Patriot 미사일 레이온 공급 병목 기사 — 감시 종목 이름이 제목에 없어 src-news7-focus로는 못 잡던 유형).
+  # wsj.com robots.txt가 일반 수집기 전부를 막으므로 사이트 직접 접속 금지 — Google News 색인 제목·링크만(마스터 선택 'Google News 경로').
+  # 한 질의 100건 상한 → 섹션 경로로 나눠 묻는다. 본문은 유료벽이라 Pulse는 같은 사건의 1차 자료·다른 매체 사본으로 본문 확인 관문을 통과시킨다.
+  feed_queries:
+    - {q: "site:wsj.com/business when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com/tech when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com/finance when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com/economy when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com/world when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com/politics when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com when:1d", hl: en-US, gl: US}
+  # 종목·산업 관련만 — 회사·실적·거래·공급·생산·규제·무역·방위·에너지·AI·반도체 어휘. 세계·정치 섹션의 순수 외교·선거 기사는 이 어휘가 없으면 빠진다
+  include_regex: '(Inc\b|Corp\b|Co\.|shares?|stocks?|investors?|earnings|profit|revenue|sales|deal|merger|acqui|IPO|buyout|stake|billion|million|CEO|chief executive|company|companies|maker|supplier|supply|shortage|factory|plant|production|output|capacity|contract|order|tariff|export|import|sanction|trade|subsid|regulat|antitrust|FTC|SEC\b|Pentagon|defense|missile|munition|weapons?|drone|shipbuild|chip|semiconductor|AI\b|artificial intelligence|data cent|cloud|power grid|electricity|utility|nuclear|oil|gas|LNG|mining|rare earth|lithium|battery|EV\b|robot|satellite|launch|bank|lender|fund|Fed\b|rates?\b|inflation|bond|market)'
+  exclude_regex: '(^Opinion|\| Opinion|Review:|Recipe|Wine|Fashion|Style|Mansion|Real Estate|Home of the Day|House of the Day|Crossword|Puzzle|Obituar|Print Edition|Book Review|Sports?\b|NFL|NBA|MLB|Travel|Word on the Street|The Wall Street Journal &)'
+  min_title_words: 5
+  max_age_days: 2
+  publisher: WSJ
+  endpoint_doc: "https://news.google.com/rss"
+  auth: none
+  scope: [글로벌]
+  interval_min: 15
+  run_on: local
+  language: en
+  doc_type: 기사
+  terms_note: "2026-11-19 확인: wsj.com robots.txt 'User-agent: *' Disallow: / (검색엔진만 허용) → 사이트 직접 접속 금지, 본문 유료벽 우회 금지. Google News 색인 제목·링크만. feeds.a.dj.com 공식 RSS는 2025-01 이후 정지·403. news.google.com RSS 경로 robots 판단은 TODO_MASTER 21-53 대기(마스터가 Google News 경로를 선택, 2026-11-19)"
+  reliability_default: 2차
+  verified: true
+  enabled: true
+
 # ===== I. 부가가치 엔진 재료 (§21.14, ADR-010) — run_hourly 작업(레이더 판정·알림 아님, module 없음) =====
 - id: src-dticker
   name: 딘스티커 Dean's Ticker 공개 채널(마스터 운영) — 읽기 전용

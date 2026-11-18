@@ -64,6 +64,7 @@
    - 미보도 원문이 없으면 억지로 채우지 않는다 — 메시지에 "미보도 원문 없음(검토 n건, 보도 확인으로 제외 m건)"이라고 쓴다.
    - 기록: outputs/article/sources/<YYYYMMDD>.md에 덧붙이고 log.csv에 행 추가(③ 파이낸싱도 같은 log.csv, source_class '파이낸싱').
 
+1-1w. WSJ 주요 — sources 중 source_class 'WSJ 주요'(src-wsj-main, Google News 색인 제목). wsj.com은 열지 않는다(robots·유료벽). 같은 사건의 1차 자료나 다른 매체 사본을 WebSearch로 찾아 읽고 'read'에 그 주소를 쓴다. 상장 종목·산업 고리(누가 공급하나·누가 수혜·피해인가)로 풀이한다. 산업 연결이 없는 정치·외교 기사는 넘긴다(2026-11-19 마스터 지시).
 1-2. ③ AI 파이낸싱 — sources 중 source_class '파이낸싱'(config/financing_watch.yaml 발행사의 SEC 424B·FWP·S-3ASR·8-K 2.03·3.02 등 + 자금 조달 제목의 보도자료·9개 매체 기사). **미보도 규칙을 적용하지 않는다** — 이미 보도됐어도 가져온다. 값어치는 자본 구조·조건·참여자에 있다.
    - 같은 사건(발행사·증권·날짜)은 한 건으로 묶는다. 이미 보낸 사건은 새 사실(참여자·클래스·규모·가격·조건 변경)이 있을 때만 '갱신'으로 다시 보낸다(log.csv source_class '파이낸싱'으로 대조).
    - 1차 출처를 연다: 8-K 본문·EX-99.1(보도자료)·EX-1.1(인수 계약)·EX-10(투자 계약), 424B 표지·'The Offering' 요약, 회사 IR 보도자료. 뉴스 제목만 있으면 해당 회사의 SEC 제출(EDGAR submissions)과 IR 페이지를 찾아 연다.
