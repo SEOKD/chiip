@@ -24,3 +24,5 @@
 - `get-active-watchlist`는 활성 목록을 바꿀 수 있어 쓰지 않는다.
 - config/discovery.yaml의 tradingview 생성 구역을 손으로 고치지 않는다.
 - 저장소 커밋은 하지 않는다(마스터 세션에서 일괄 커밋).
+
+**TradingView 한도(2026-11-18 마스터 지시 — 11/18 06:21 동기화를 일일 한도로 못 하고 '성공'으로 끝났다):** 10분 냉각이면 한 번 기다렸다 다시 부른다. 일일 한도면 동기화하지 않고 끝내되 마지막 문장에 '동기화 못 함(TradingView 한도)'을 쓴다. 와치리스트 스냅숏(`radar/state/tv_watchlists.json`)이 새로 쓰이지 않으면 Catchup(`scripts/ops/catchup.py produced`)이 다음 회차(3시간마다)에 다시 돌린다.

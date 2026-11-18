@@ -11,6 +11,8 @@
   5. 후보가 바닥나면(주 21건) 알파 5.0 미만 산정 종목, 그다음 알파 5.0 이상 중 7일 지난 종목
 사용: py scripts/tenbagger/pick_report.py            → JSON 한 줄(id·name·ticker·reason)
       py scripts/tenbagger/pick_report.py --done <id> <ticker> <html 경로> <치입 판단 한 줄>   → log.csv에 기록, 대기열에서 제거
+      py scripts/tenbagger/pick_report.py --blocked <id> "<막힌 이유>"   → 이 종목을 BLOCK_HOURS 동안 건너뛴다(2026-11-18: ASML이 13·18·22시 세 회차 모두 같은 관문에서 멈췄다)
+      py scripts/tenbagger/pick_report.py --unblock <id>
 """
 import csv
 import json
@@ -107,9 +109,29 @@ def non_ai_turn(today):
     return lambda cid, ticker: (lambda t: bool(t) and not sector_map.is_ai(t))(sector_map.tag(cid, ticker))
 
 
+BLOCKED = ROOT / "outputs" / "tenbagger" / "reports" / "blocked.json"
+BLOCK_HOURS = 20   # 막힌 종목은 이만큼 건너뛰고 다음 후보로 — 같은 날 남은 회차가 같은 종목에서 다시 멈추지 않게
+
+
+def blocked_ids(now=None):
+    from datetime import datetime, timedelta as _td
+    if not BLOCKED.exists():
+        return set()
+    now = now or datetime.now()
+    d = json.loads(BLOCKED.read_text(encoding="utf-8"))
+    return {k for k, v in d.items() if datetime.fromisoformat(v["at"]) + _td(hours=BLOCK_HOURS) > now}
+
+
+def block(eid, why):
+    from datetime import datetime
+    d = json.loads(BLOCKED.read_text(encoding="utf-8")) if BLOCKED.exists() else {}
+    d[eid] = {"at": datetime.now().isoformat(timespec="minutes"), "why": why}
+    BLOCKED.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def pick(today=None):
     today = today or date.today()
-    done = recent(today)
+    done = recent(today) | blocked_ids()   # 막힌 종목은 다음 후보로(2026-11-18)
     uni = _universe()
     for q in queue_lines():
         key = q["key"]
@@ -177,6 +199,15 @@ def done(eid, ticker, html_path, view, today=None):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
+    if argv and argv[0] == "--blocked":
+        block(argv[1], argv[2] if len(argv) > 2 else "막힘")
+        print(f"[텐배거 리포트] {argv[1]} {BLOCK_HOURS}시간 건너뜀 — 다시 고르면 다음 후보")
+        return 0
+    if argv and argv[0] == "--unblock":
+        d = json.loads(BLOCKED.read_text(encoding="utf-8")) if BLOCKED.exists() else {}
+        d.pop(argv[1], None)
+        BLOCKED.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+        return 0
     if argv and argv[0] == "--done":
         done(*argv[1:5])
         print("[텐배거 리포트] 기록 완료")

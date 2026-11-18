@@ -75,6 +75,28 @@ def _dt(s):
     return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
 
 
+def produced(tid, slot, now):
+    """실행이 '성공'이어도 산출물이 없으면 누락이다(2026-11-18: Analysis 13·18·22시가 ASML 관문에서 멈추고도 '성공', TradingView 동기화도 한도로 못 했는데 '성공' — Catchup이 '18개 정상'으로 넘겼다).
+    True = 산출물 있음 · False = 없음 · None = 판정 대상 아님/아직 이르다"""
+    if tid == "chiip-tenbagger-report":   # 그 회차 시작 뒤 텔레그램까지 나간 리포트(발행 기록)가 있어야 한다
+        if now - slot < timedelta(hours=2):
+            return None
+        for f in (ROOT / "outputs" / "tenbagger" / "reports" / "delivery").glob("*.json"):
+            try:
+                at = (json.loads(f.read_text(encoding="utf-8")).get("telegram") or {}).get("at")
+            except ValueError:
+                continue
+            if at and slot <= _dt(at) <= slot + timedelta(hours=3):
+                return True
+        return False
+    if tid == "chiip-tv-sync":   # 와치리스트 스냅숏이 그 회차 뒤에 새로 쓰였어야 한다
+        f = ROOT / "radar" / "state" / "tv_watchlists.json"
+        if now - slot < timedelta(minutes=40):
+            return None
+        return f.exists() and datetime.fromtimestamp(f.stat().st_mtime, KST) >= slot - timedelta(minutes=1)
+    return None
+
+
 def judge(doc, state=None):
     state = state if state is not None else (json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {})
     now = _dt(doc["now"]) if doc.get("now") else datetime.now(KST)
@@ -104,9 +126,13 @@ def judge(doc, state=None):
         if any(r.get("status") in ("running", "starting", "pending") for r in runs):
             out["waiting"].append(tid)
             continue
+        empty = False
         if any(r.get("status") not in ("failed", "error", "cancelled", "stopped") for r in runs):
-            out["ok"] += 1
-            continue
+            if produced(tid, slot, now) is not False:
+                out["ok"] += 1
+                continue
+            empty = True   # '성공'인데 산출물 없음
+
         key = slot.isoformat()
         if (state.get(tid) or {}).get("slot") == key:
             out["skipped"].append(tid)   # 이 회차는 이미 재실행했다
@@ -114,7 +140,7 @@ def judge(doc, state=None):
         if now - slot > timedelta(hours=MAX_AGE_H):
             out["stale"].append({"taskId": tid, "slot": key})
             continue
-        out["rerun"].append({"taskId": tid, "title": t.get("title") or tid, "slot": key, "why": "실패" if runs else "실행 기록 없음"})
+        out["rerun"].append({"taskId": tid, "title": t.get("title") or tid, "slot": key, "why": "성공 표시지만 산출물 없음" if empty else ("실패" if runs else "실행 기록 없음")})
     return out
 
 

@@ -86,6 +86,32 @@ def put_ohlcv_tv(cid, resp, symbol=None):
     return len(rows)
 
 
+def put_ohlcv_ec(cid, resp):
+    """Easyconomics company_price_history(yfinance, 실제 고가·저가) → ohlcv.csv — TradingView 한도(10분 냉각·일일 한도)일 때 대체(2026-11-18).
+    응답({"data": [{date, open, high, low, close, volume}]} 또는 열 묶음 {"d","o","h","l","c","v"})을 기존 실측 봉(근사 아님)과 날짜로 합친다 — 최근 몇 달만 받아도 된다"""
+    from datetime import datetime
+    data = resp.get("data", resp)
+    if isinstance(data, dict) and "d" in data:
+        data = [dict(zip(("date", "open", "high", "low", "close", "volume"), x)) for x in zip(*(data[k] for k in ("d", "o", "h", "l", "c", "v")))]
+    new = {r["date"][:10]: (r["open"], r["high"], r["low"], r["close"], r.get("volume") or 0) for r in data
+           if None not in (r.get(k) for k in ("open", "high", "low", "close")) and r["high"] >= max(r["open"], r["close"]) - 1e-6 and r["low"] <= min(r["open"], r["close"]) + 1e-6}
+    d = ROOT / "knowledge" / "models" / "companies" / cid
+    f = d / "ohlcv.csv"
+    old = {}
+    if f.exists() and "근사" not in f.read_text(encoding="utf-8").split("\n", 1)[0]:   # 실측 봉만 이어 붙인다
+        for line in f.read_text(encoding="utf-8").splitlines():
+            if line and not line.startswith(("#", "date")):
+                x = line.split(",")
+                old[x[0]] = tuple(float(v) for v in x[1:6])
+    rows = {**old, **new}
+    if len(rows) < 60:
+        raise SystemExit(f"Easyconomics 일봉 {len(rows)}개 — 60개 이상 필요(period 1y 이상으로 받는다)")
+    head = f"# source: Easyconomics(yfinance) 일봉 실제 고가·저가" + (" + 이전 실측 봉" if old else "") + f" 조회 {datetime.now().strftime('%Y-%m-%d %H:%M')} KST"
+    d.mkdir(parents=True, exist_ok=True)
+    f.write_text("\n".join([head, "date,o,h,l,c,v"] + [f"{k},{round(v[0], 4)},{round(v[1], 4)},{round(v[2], 4)},{round(v[3], 4)},{int(v[4])}" for k, v in sorted(rows.items())]) + "\n", encoding="utf-8")
+    return len(rows), len(new)
+
+
 def put_eps_history(cid, out):
     """eps_history.js 출력 → datapack consensus.eps_history (그림 5·8 재료, 2026-10-30)"""
     p = ROOT / "knowledge" / "models" / "companies" / cid / "datapack.json"
@@ -163,6 +189,10 @@ def main(argv):
     if len(argv) >= 3 and argv[0] == "--ohlcv":
         n, m = put_ohlcv(argv[1], Path(argv[2]).read_text(encoding="utf-8"))
         print(f"[Fiscal.ai→일봉] {argv[1]} 일봉 {n} · 월봉 {m}(고저 근사)")
+        return 0
+    if len(argv) >= 3 and argv[0] == "--ohlcv-ec":
+        n, k = put_ohlcv_ec(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")))
+        print(f"[Easyconomics→일봉] {argv[1]} 일봉 {n}(새 {k}, 실제 고가·저가)")
         return 0
     if len(argv) >= 3 and argv[0] == "--ohlcv-tv":
         n = put_ohlcv_tv(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")), argv[3] if len(argv) > 3 else None)
