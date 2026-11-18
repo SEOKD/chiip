@@ -52,6 +52,16 @@ holdings:
     since: 2026-11-19                       # 마스터 지시 "Berto Acquisition Corp.(TACO)를 Portfolio Watchlist에 넣어라"
     status: 관심
     pin: true                               # 마스터 직접 지정 — 자동 제외·알파 표기 관문 예외
+  - id: us-lth
+    ticker: LTH
+    name: Life Time Group Holdings, Inc.
+    cik: 1869198                            # SEC company_tickers.json 확인(2026-11-19)
+    exchange: NYSE
+    names: ["Life Time Group Holdings", "Life Time", "LTH"]
+    related: ["Planet Fitness", "Xponential Fitness", "Equinox"]
+    since: 2026-11-19                       # 마스터 지시 "Life Time Group Holdings를 Portfolio Watchlist에 넣어라"
+    status: 관심
+    pin: true                               # 마스터 직접 지정 — 자동 제외·알파 표기 관문 예외
   - id: co-marvell
     ticker: MRVL
     name: Marvell Technology
