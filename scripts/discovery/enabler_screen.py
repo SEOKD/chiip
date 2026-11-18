@@ -172,10 +172,10 @@ def emit(out, today=None):
         sig = (f"반복 매출({', '.join(x['recurring'])}) × 투자 물결({', '.join(x['waves'])})"
                + (" · 주력 물결 반복" if x.get("focus") else "") + (" · 기존 방식 대체" if x["substitute"] else "") + (" · 핵심성 어구" if x["critical"] else ""))
         rows.append({"channel": "enabler", "kind": kind, "market": "us", "ticker": x["ticker"], "name": x["name"], "signal": sig,
-                     "strength": x["strength"], "date": x["last"],
+                     "strength": x["strength"], "date": (today or date.today()).isoformat(),   # 탐지일 — 서류 제출일(x['last'])을 쓰면 선별 45일 창에서 빠진다(2026-11-18 버그)
                      "url": f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={x['cik']}&type=10-K",
                      "mcap_usd": x.get("float_usd"),
-                     "extra": {"cik": x["cik"], "sic": x.get("sic"), "waves": x["waves"], "recurring": x["recurring"], "adsh": x["adsh"],
+                     "extra": {"cik": x["cik"], "filed": x["last"], "sic": x.get("sic"), "waves": x["waves"], "recurring": x["recurring"], "adsh": x["adsh"],
                                "lease_share": x.get("lease_share"), "float_basis": "공시 유통 시가총액(10-K 표지)"}})
     return len(L.add(rows, today))
 
