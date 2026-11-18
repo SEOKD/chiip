@@ -41,6 +41,17 @@ holdings:
     since: 2026-11-03                       # 2026-10-30 종료 후 마스터 지시로 와치리스트 재등록
     status: 관심
     pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
+  - id: us-taco
+    ticker: TACO
+    name: Berto Acquisition Corp.
+    cik: 2033122                            # SEC company_tickers.json 확인(2026-11-19) — 유닛 TACOU·워런트 TACOW
+    exchange: Nasdaq
+    names: ["Berto Acquisition Corp.", "Berto Acquisition", "AMPERA", "TACO"]
+    related: ["Bloom Energy", "Solaris Energy Infrastructure", "Oklo"]
+    kind: spac                              # 스팩 — 합병 대상 AMPERA(초임계 CO2 발전 모듈형 가스 발전기, 장기 토륨 원자로 개발, 매출 0 — config/company_lines.yaml TB-20261118-TACO)
+    since: 2026-11-19                       # 마스터 지시 "Berto Acquisition Corp.(TACO)를 Portfolio Watchlist에 넣어라"
+    status: 관심
+    pin: true                               # 마스터 직접 지정 — 자동 제외·알파 표기 관문 예외
   - id: co-marvell
     ticker: MRVL
     name: Marvell Technology
