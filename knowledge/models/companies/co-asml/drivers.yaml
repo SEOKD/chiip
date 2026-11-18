@@ -1,0 +1,105 @@
+auto: true
+id: co-asml
+name: ASML Holding
+ticker: ASML
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  EU: 0.2
+  US: 0.2
+  TW: 0.35
+  KR: 0.25
+tax: 0.15
+horizon: 10
+as_of: '2026-11-18'
+market:
+  date: '2026-11-18'
+  price: 1383.11
+  shares: 0.3841
+  net_debt: -12.257
+  source: 가격 = 2026-11-17 나스닥 ADR 종가 $1,383.11(Easyconomics 일봉, ADR 1:1). 주식 수 384.1M주(2026-06-28,
+    Fiscal.ai). 현금·단기투자 $14.49B·장기차입 $2.23B = 3Q26(9/27) 재무상태표 Fiscal.ai 표준화 달러 환산(분기말
+    €1 = $1.1378)
+rev0: 48.9215
+ic0: 12.85
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.236
+      end: 0.03
+      decay: 0.9
+    margin:
+      m0: 0.4182
+      target: 0.4715
+      year_target: 3
+      lr: 0.32
+      lam: 0.35
+      anchors:
+      - 0.453
+      - 0.4715
+    s2c: 3.53
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.3708
+      end: 0.034999999999999996
+      decay: 0.9
+    margin:
+      m0: 0.4182
+      target: 0.4981
+      year_target: 3
+      lr: 0.32
+      lam: 0.25
+      anchors:
+      - 0.453
+      - 0.4715
+    s2c: 4.059
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.0899
+      end: 0.024999999999999998
+      decay: 0.8
+    margin:
+      m0: 0.4182
+      target: 0.4448
+      year_target: 3
+      lr: 0.32
+      lam: 0.5
+      anchors:
+      - 0.453
+      - 0.4715
+    s2c: 3.0
+mc:
+  sigma_growth: 0.0702
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [48.372, 49.471] (3Q26 실적(2026-10-14) FY26 매출 가이던스 €44~45B, 달러
+    환산 €1 = $1.0994)
+  growth: 컨센서스 1년차 23.6%, 2년차 23.6%
+  margin: 1~2년차 컨센서스 45.3%, 47.1% 고정 → 목표 47%(3년차, 덮어쓰기) → 장기 수렴 32%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 3.53
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 9.0%~37.1%
+  probs: '근거 계산 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25} — 다음 해 매출 성장 분포로 계산
+    — 약세 +16.3% 아래·강세 +30.3% 위 확률. 내부 관점(컨센서스 +23.6%, σ 10.7%: 범위 28.1% ÷ d2(27) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 15%(기본) → 32%: ASML GAAP 영업이익률 FY19~25 23.6~36.3%(Fiscal.ai
+    연간 실적), 독점 구조 — 15%는 역사에 없는 값'
+  shares: 완전 희석 = 기본 0.3841(2026-06-28) + 옵션·RSU·워런트·전환 0.0000 — 3Q 희석 가중 383.5M주
+    — 기본과 차이 미미(0으로 둠)
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-18
+- '어닝콜 위험: 캐파 제약(광학 공급) — 수요가 있어도 출하가 막힌다'
+- '어닝콜 위험: 중국 매출 약 20% — 수출통제·중국 DUV 국산화'
+- '어닝콜 위험: Mistral 재평가 같은 일회성 이익이 3Q EPS를 부풀림'
+evidence:
+- https://fiscal.ai/company/ENXTAM-ASML
+- https://www.sec.gov/Archives/edgar/data/937966/000162828026065813/pressreleasefinancialresul.htm
+- https://www.sec.gov/Archives/edgar/data/937966/000162828026011378/asml-20251231.htm
+- Fiscal.ai MCP 2026-11-18 — 표준화 재무(USD 환산)·세그먼트·자체 추정·13F
+- Easyconomics 3Q26 실적 정리·일봉(2026-11-18)
+- Quantral 커뮤니티 신호(2026-11-18)
