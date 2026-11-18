@@ -109,6 +109,14 @@ channels:
     dedupe_days: 28
     prior: {excess: 0.02, horizon_d: 365, sd: 0.15, source: "Jensen·Kelly·Pedersen 2023 팩터 축소(표본 외 기울기 0.26~0.57) — 롱 온리 상위는 학술 롱숏보다 작다(조사 B)"}
     alert: {kinds: [], min_strength: 10.1}
+  enabler:
+    name: 핵심 솔루션·반복 매출
+    markets: [us]
+    kinds: {rental: 렌탈 함대, lease: 리스, consumable: 설치 기반 소모품, service: 장기 서비스 계약}
+    lens: enabler
+    dedupe_days: 90
+    prior: {excess: 0.02, horizon_d: 365, sd: 0.15, source: "효과 미검증 사전값(2026-11-18, ADR-047) — 반복 매출·전환 비용 기업의 품질 프리미엄(Novy-Marx 2013 수익성 계열) × 감쇠 0.5로 잡은 보수적 값"}
+    alert: {kinds: [], min_strength: 10.1}
   # 기존 채널(이미 있는 파이프라인 — 장부에 기록만, 선별 경로는 그대로)
   spac:
     name: SPAC

@@ -1,0 +1,1441 @@
+{
+ "as_of": "2026-11-18",
+ "since": "2025-05-27",
+ "companies": 246,
+ "cut": {
+  "size": 75,
+  "no_float": 59
+ },
+ "leads": [
+  {
+   "cik": "1712189",
+   "name": "Target Hospitality Corp.",
+   "ticker": "TH",
+   "sic": "7000",
+   "recurring": {
+    "rental": 5,
+    "lease": 1
+   },
+   "waves": {
+    "datacenter": 6
+   },
+   "substitute": 0,
+   "critical": 1,
+   "last": "2026-05-11",
+   "adsh": "0001104659-26-058542",
+   "float_usd": 227771256,
+   "lease_share": 0.143,
+   "focus": true,
+   "strength": 9.0
+  },
+  {
+   "cik": "1120914",
+   "name": "PDF SOLUTIONS INC",
+   "ticker": "PDFS",
+   "sic": "7372",
+   "recurring": {
+    "lease": 2,
+    "consumable": 2,
+    "service": 2
+   },
+   "waves": {
+    "grid": 3,
+    "semis_fab": 3
+   },
+   "substitute": 0,
+   "critical": 1,
+   "last": "2026-02-24",
+   "adsh": "0001437749-26-005366",
+   "float_usd": 641000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.5
+  },
+  {
+   "cik": "1590584",
+   "name": "Civeo Corp",
+   "ticker": "CVEO",
+   "sic": "7000",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "lng_energy": 2
+   },
+   "substitute": 3,
+   "critical": 1,
+   "last": "2026-07-30",
+   "adsh": "0001590584-26-000078",
+   "float_usd": 276806089,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.5
+  },
+  {
+   "cik": "1921865",
+   "name": "ASP Isotopes Inc.",
+   "ticker": "ASPI",
+   "sic": "2890",
+   "recurring": {
+    "lease": 12
+   },
+   "waves": {
+    "grid": 2,
+    "lng_energy": 2,
+    "nuclear": 7,
+    "infrastructure": 1
+   },
+   "substitute": 0,
+   "critical": 1,
+   "last": "2026-05-20",
+   "adsh": "0001193125-26-232658",
+   "float_usd": 399800000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "1697500",
+   "name": "Solaris Energy Infrastructure, Inc.",
+   "ticker": "SEI",
+   "sic": "3533",
+   "recurring": {
+    "rental": 5,
+    "lease": 6
+   },
+   "waves": {
+    "grid": 11
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-08-06",
+   "adsh": "0001628280-26-054349",
+   "float_usd": 959438489,
+   "lease_share": 0.438,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "1647088",
+   "name": "WillScot Holdings Corp",
+   "ticker": "WSC",
+   "sic": "7350",
+   "recurring": {
+    "rental": 3,
+    "lease": 2
+   },
+   "waves": {
+    "grid": 5
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-02-19",
+   "adsh": "0001647088-26-000011",
+   "float_usd": 4900000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "1337013",
+   "name": "InfuSystem Holdings, Inc",
+   "ticker": "INFU",
+   "sic": "3841",
+   "recurring": {
+    "rental": 2,
+    "lease": 1,
+    "consumable": 1,
+    "service": 1
+   },
+   "waves": {
+    "grid": 5
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-27",
+   "adsh": "0001628280-26-012804",
+   "float_usd": 122267022,
+   "lease_share": 0.209,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "928054",
+   "name": "FLOTEK INDUSTRIES INC/CN/",
+   "ticker": "FTK",
+   "sic": "2890",
+   "recurring": {
+    "rental": 2,
+    "lease": 1,
+    "service": 1
+   },
+   "waves": {
+    "lng_energy": 4
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-03-16",
+   "adsh": "0000928054-26-000020",
+   "float_usd": 204700000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "703604",
+   "name": "Distribution Solutions Group, Inc.",
+   "ticker": "DSGR",
+   "sic": "5080",
+   "recurring": {
+    "rental": 1,
+    "lease": 2
+   },
+   "waves": {
+    "grid": 3
+   },
+   "substitute": 0,
+   "critical": 5,
+   "last": "2026-11-05",
+   "adsh": "0000703604-26-000051",
+   "float_usd": 258112845,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "813762",
+   "name": "ICAHN ENTERPRISES L.P.",
+   "ticker": "IEP",
+   "sic": "2911",
+   "recurring": {
+    "rental": 1,
+    "lease": 2
+   },
+   "waves": {
+    "grid": 3
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-11-04",
+   "adsh": "0001104659-26-122308",
+   "float_usd": 630000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "1664703",
+   "name": "Bloom Energy Corp",
+   "ticker": "BE",
+   "sic": "3620",
+   "recurring": {
+    "service": 3
+   },
+   "waves": {
+    "grid": 2,
+    "datacenter": 1
+   },
+   "substitute": 2,
+   "critical": 0,
+   "last": "2026-02-09",
+   "adsh": "0001628280-26-006516",
+   "float_usd": 3900000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "1770787",
+   "name": "10x Genomics, Inc.",
+   "ticker": "TXG",
+   "sic": "3826",
+   "recurring": {
+    "consumable": 1,
+    "service": 1
+   },
+   "waves": {
+    "datacenter": 2
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-11-06",
+   "adsh": "0001628280-26-071199",
+   "float_usd": 1300000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 8.0
+  },
+  {
+   "cik": "1709682",
+   "name": "Custom Truck One Source, Inc.",
+   "ticker": "CTOS",
+   "sic": "7359",
+   "recurring": {
+    "rental": 26,
+    "lease": 9
+   },
+   "waves": {
+    "grid": 32,
+    "infrastructure": 3
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-10-26",
+   "adsh": "0001709682-26-000046",
+   "float_usd": 291400000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.5
+  },
+  {
+   "cik": "1821159",
+   "name": "EVgo Inc.",
+   "ticker": "EVGO",
+   "sic": "7500",
+   "recurring": {
+    "rental": 2,
+    "lease": 6
+   },
+   "waves": {
+    "grid": 2,
+    "infrastructure": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-09",
+   "adsh": "0001821159-26-000034",
+   "float_usd": 464900000,
+   "lease_share": 0.015,
+   "focus": true,
+   "strength": 7.5
+  },
+  {
+   "cik": "1552275",
+   "name": "Sunoco LP",
+   "ticker": "SUN",
+   "sic": "2911",
+   "recurring": {
+    "rental": 2,
+    "lease": 2
+   },
+   "waves": {
+    "grid": 2,
+    "lng_energy": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-19",
+   "adsh": "0001552275-26-000021",
+   "float_usd": 5800000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.5
+  },
+  {
+   "cik": "1043000",
+   "name": "SONIDA SENIOR LIVING, INC.",
+   "ticker": "SNDA",
+   "sic": "8050",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 2,
+   "critical": 1,
+   "last": "2026-03-12",
+   "adsh": "0001043000-26-000009",
+   "float_usd": 155900000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.5
+  },
+  {
+   "cik": "1474735",
+   "name": "GENERAC HOLDINGS INC.",
+   "ticker": "GNRC",
+   "sic": "3621",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "datacenter": 1
+   },
+   "substitute": 5,
+   "critical": 1,
+   "last": "2026-11-03",
+   "adsh": "0001437749-26-034665",
+   "float_usd": 8000000000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.5
+  },
+  {
+   "cik": "1042893",
+   "name": "Innovex International, Inc.",
+   "ticker": "INVX",
+   "sic": "3533",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "infrastructure": 1
+   },
+   "substitute": 1,
+   "critical": 1,
+   "last": "2026-05-05",
+   "adsh": "0001193125-26-206528",
+   "float_usd": 599100000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.5
+  },
+  {
+   "cik": "1805385",
+   "name": "Evolv Technologies Holdings, Inc.",
+   "ticker": "EVLV",
+   "sic": "3577",
+   "recurring": {
+    "lease": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-03-10",
+   "adsh": "0001805385-26-000012",
+   "float_usd": 999000000,
+   "lease_share": 0.575,
+   "focus": false,
+   "strength": 7.5
+  },
+  {
+   "cik": "2032966",
+   "name": "TIC Solutions, Inc.",
+   "ticker": "TIC",
+   "sic": "7389",
+   "recurring": {
+    "consumable": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 1,
+   "last": "2026-03-12",
+   "adsh": "0001628280-26-017015",
+   "float_usd": 583200000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.5
+  },
+  {
+   "cik": "1811210",
+   "name": "Lucid Group, Inc.",
+   "ticker": "LCID",
+   "sic": "3711",
+   "recurring": {
+    "lease": 18
+   },
+   "waves": {
+    "grid": 12,
+    "infrastructure": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-09",
+   "adsh": "0001628280-26-072216",
+   "float_usd": 2700000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "67716",
+   "name": "MDU RESOURCES GROUP INC",
+   "ticker": "MDU",
+   "sic": "1400",
+   "recurring": {
+    "lease": 13
+   },
+   "waves": {
+    "grid": 10,
+    "infrastructure": 3
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-08-06",
+   "adsh": "0000067716-26-000072",
+   "float_usd": 3394621007,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1825079",
+   "name": "Velo3D, Inc.",
+   "ticker": "VELO",
+   "sic": "3559",
+   "recurring": {
+    "lease": 6,
+    "consumable": 6,
+    "service": 1
+   },
+   "waves": {
+    "grid": 13
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-10",
+   "adsh": "0001193125-26-455458",
+   "float_usd": 101300000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1777393",
+   "name": "ChargePoint Holdings, Inc.",
+   "ticker": "CHPT",
+   "sic": "3690",
+   "recurring": {
+    "lease": 12
+   },
+   "waves": {
+    "grid": 6,
+    "infrastructure": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-09-04",
+   "adsh": "0001628280-26-060770",
+   "float_usd": 212100000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1468748",
+   "name": "Kodiak Sciences Inc.",
+   "ticker": "KOD",
+   "sic": "2836",
+   "recurring": {
+    "rental": 8
+   },
+   "waves": {
+    "grid": 6,
+    "infrastructure": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-12",
+   "adsh": "0001193125-26-458399",
+   "float_usd": 121600000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1609151",
+   "name": "Weave Communications, Inc.",
+   "ticker": "WEAV",
+   "sic": "7372",
+   "recurring": {
+    "lease": 5,
+    "service": 1
+   },
+   "waves": {
+    "grid": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-08-06",
+   "adsh": "0001609151-26-000074",
+   "float_usd": 532100000,
+   "lease_share": 0.028,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1484612",
+   "name": "Outset Medical, Inc.",
+   "ticker": "OM",
+   "sic": "3845",
+   "recurring": {
+    "consumable": 4,
+    "service": 2
+   },
+   "waves": {
+    "grid": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-13",
+   "adsh": "0001193125-26-051278",
+   "float_usd": 334700000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "3197",
+   "name": "CECO ENVIRONMENTAL CORP",
+   "ticker": "CECO",
+   "sic": "3564",
+   "recurring": {
+    "consumable": 6
+   },
+   "waves": {
+    "grid": 2,
+    "semis_fab": 2,
+    "infrastructure": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-03-02",
+   "adsh": "0001193125-26-085815",
+   "float_usd": 832700000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1019849",
+   "name": "PENSKE AUTOMOTIVE GROUP, INC.",
+   "ticker": "PAG",
+   "sic": "5500",
+   "recurring": {
+    "rental": 4,
+    "lease": 1
+   },
+   "waves": {
+    "grid": 5
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-04-30",
+   "adsh": "0001628280-26-028868",
+   "float_usd": 3088386118,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1796209",
+   "name": "APi Group Corp",
+   "ticker": "APG",
+   "sic": "7340",
+   "recurring": {
+    "service": 4
+   },
+   "waves": {
+    "grid": 3,
+    "infrastructure": 1
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-25",
+   "adsh": "0001628280-26-011620",
+   "float_usd": 12700000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "851520",
+   "name": "EXPONENT INC",
+   "ticker": "EXPO",
+   "sic": "8742",
+   "recurring": {
+    "rental": 3
+   },
+   "waves": {
+    "grid": 2,
+    "lng_energy": 1
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-27",
+   "adsh": "0001193125-26-082508",
+   "float_usd": 3000000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1022321",
+   "name": "GENESIS ENERGY LP",
+   "ticker": "GEL",
+   "sic": "4610",
+   "recurring": {
+    "rental": 3
+   },
+   "waves": {
+    "grid": 2,
+    "lng_energy": 1
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-18",
+   "adsh": "0001022321-26-000008",
+   "float_usd": 1855000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1861107",
+   "name": "Ceribell, Inc.",
+   "ticker": "CBLL",
+   "sic": "3845",
+   "recurring": {
+    "lease": 3
+   },
+   "waves": {
+    "grid": 2,
+    "lng_energy": 1
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-08-10",
+   "adsh": "0001193125-26-342574",
+   "float_usd": 417200000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "909494",
+   "name": "TUCOWS INC /PA/",
+   "ticker": "TCX",
+   "sic": "7374",
+   "recurring": {
+    "service": 3
+   },
+   "waves": {
+    "grid": 2,
+    "datacenter": 1
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-03-12",
+   "adsh": "0001437749-26-008009",
+   "float_usd": 132200000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "884624",
+   "name": "Orthofix Medical Inc.",
+   "ticker": "OFIX",
+   "sic": "3841",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "grid": 1,
+    "lng_energy": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-05-05",
+   "adsh": "0001193125-26-205003",
+   "float_usd": 440200000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.0
+  },
+  {
+   "cik": "1323468",
+   "name": "GLOBAL PARTNERS LP",
+   "ticker": "GLP",
+   "sic": "5171",
+   "recurring": {
+    "rental": 1,
+    "lease": 1
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-27",
+   "adsh": "0001104659-26-021381",
+   "float_usd": 1500000000,
+   "lease_share": 0.005,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1300514",
+   "name": "LAS VEGAS SANDS CORP",
+   "ticker": "LVS",
+   "sic": "7011",
+   "recurring": {
+    "rental": 1,
+    "lease": 1
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-06",
+   "adsh": "0001300514-26-000013",
+   "float_usd": 13023793216,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1616000",
+   "name": "Xenia Hotels & Resorts, Inc.",
+   "ticker": "XHR",
+   "sic": "7011",
+   "recurring": {
+    "rental": 1,
+    "lease": 1
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-24",
+   "adsh": "0001628280-26-011060",
+   "float_usd": 1190000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1590895",
+   "name": "Caesars Entertainment, Inc.",
+   "ticker": "CZR",
+   "sic": "7011",
+   "recurring": {
+    "rental": 1,
+    "lease": 1
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-17",
+   "adsh": "0001590895-26-000011",
+   "float_usd": 5600000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1492691",
+   "name": "Knight-Swift Transportation Holdings Inc.",
+   "ticker": "KNX",
+   "sic": "4213",
+   "recurring": {
+    "rental": 1,
+    "lease": 1
+   },
+   "waves": {
+    "infrastructure": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-19",
+   "adsh": "0001492691-26-000016",
+   "float_usd": 7075782710,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1375205",
+   "name": "UR-ENERGY INC",
+   "ticker": "URG",
+   "sic": "1040",
+   "recurring": {
+    "lease": 2
+   },
+   "waves": {
+    "grid": 1,
+    "nuclear": 1
+   },
+   "substitute": 0,
+   "critical": 1,
+   "last": "2026-03-10",
+   "adsh": "0001104659-26-025923",
+   "float_usd": 300200000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.0
+  },
+  {
+   "cik": "1109354",
+   "name": "BRUKER CORP",
+   "ticker": "BRKR",
+   "sic": "3826",
+   "recurring": {
+    "lease": 1,
+    "consumable": 1
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-27",
+   "adsh": "0001193125-26-082523",
+   "float_usd": 4251097535,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1021860",
+   "name": "NOV Inc.",
+   "ticker": "NOV",
+   "sic": "3533",
+   "recurring": {
+    "consumable": 1,
+    "service": 1
+   },
+   "waves": {
+    "lng_energy": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-12",
+   "adsh": "0001193125-26-048350",
+   "float_usd": 4600000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 7.0
+  },
+  {
+   "cik": "1609253",
+   "name": "California Resources Corp",
+   "ticker": "CRC",
+   "sic": "1311",
+   "recurring": {
+    "service": 2
+   },
+   "waves": {
+    "grid": 1,
+    "infrastructure": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-03-02",
+   "adsh": "0001609253-26-000051",
+   "float_usd": 3803313982,
+   "lease_share": null,
+   "focus": false,
+   "strength": 7.0
+  },
+  {
+   "cik": "1759509",
+   "name": "Lyft, Inc.",
+   "ticker": "LYFT",
+   "sic": "7389",
+   "recurring": {
+    "rental": 12
+   },
+   "waves": {
+    "grid": 12
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-06",
+   "adsh": "0001628280-26-071225",
+   "float_usd": 6300000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1819974",
+   "name": "SkyWater Technology, Inc",
+   "ticker": "SKYT",
+   "sic": "3674",
+   "recurring": {
+    "lease": 8
+   },
+   "waves": {
+    "semis_fab": 8
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-08-07",
+   "adsh": "0001819974-26-000031",
+   "float_usd": 312500000,
+   "lease_share": 0.006,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1984060",
+   "name": "Atlas Energy Solutions Inc.",
+   "ticker": "AESI",
+   "sic": "1311",
+   "recurring": {
+    "rental": 6
+   },
+   "waves": {
+    "grid": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-03",
+   "adsh": "0001193125-26-445547",
+   "float_usd": 1100000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1726445",
+   "name": "Seer, Inc.",
+   "ticker": "SEER",
+   "sic": "3826",
+   "recurring": {
+    "consumable": 6
+   },
+   "waves": {
+    "grid": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-10",
+   "adsh": "0001193125-26-455566",
+   "float_usd": 113800000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1874178",
+   "name": "Rivian Automotive, Inc. / DE",
+   "ticker": "RIVN",
+   "sic": "3711",
+   "recurring": {
+    "service": 6
+   },
+   "waves": {
+    "grid": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-10-29",
+   "adsh": "0001874178-26-000066",
+   "float_usd": 14300000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1792580",
+   "name": "Ovintiv Inc.",
+   "ticker": "OVV",
+   "sic": "1311",
+   "recurring": {
+    "service": 6
+   },
+   "waves": {
+    "lng_energy": 6
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-03",
+   "adsh": "0001193125-26-445603",
+   "float_usd": 9780270102,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1844452",
+   "name": "Intuitive Machines, Inc.",
+   "ticker": "LUNR",
+   "sic": "3812",
+   "recurring": {
+    "service": 3
+   },
+   "waves": {
+    "grid": 3
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-13",
+   "adsh": "0001628280-26-073512",
+   "float_usd": 1300000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "71829",
+   "name": "NPK International Inc.",
+   "ticker": "NPKI",
+   "sic": "7350",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-27",
+   "adsh": "0000071829-26-000009",
+   "float_usd": 683700000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "2009684",
+   "name": "Seaport Entertainment Group Inc.",
+   "ticker": "SEG",
+   "sic": "7990",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-03-04",
+   "adsh": "0001104659-26-023561",
+   "float_usd": 142445101,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1868778",
+   "name": "Informatica Inc.",
+   "ticker": "INFA",
+   "sic": "7372",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "datacenter": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2025-11-06",
+   "adsh": "0001868778-25-000028",
+   "float_usd": 2100000000,
+   "lease_share": 0.002,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "61986",
+   "name": "MANITOWOC CO INC",
+   "ticker": "MTW",
+   "sic": "3531",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "nuclear": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-18",
+   "adsh": "0001193125-26-057356",
+   "float_usd": 405900000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1759824",
+   "name": "ALTA EQUIPMENT GROUP INC.",
+   "ticker": "ALTG",
+   "sic": "5084",
+   "recurring": {
+    "rental": 2
+   },
+   "waves": {
+    "infrastructure": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-26",
+   "adsh": "0001193125-26-076932",
+   "float_usd": 162100000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1816431",
+   "name": "Quantum-Si Inc",
+   "ticker": "QSI",
+   "sic": "3829",
+   "recurring": {
+    "consumable": 2
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-03-03",
+   "adsh": "0001816431-26-000011",
+   "float_usd": 286300000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "21535",
+   "name": "COHU INC",
+   "ticker": "COHU",
+   "sic": "3825",
+   "recurring": {
+    "consumable": 2
+   },
+   "waves": {
+    "semis_fab": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-17",
+   "adsh": "0001437749-26-004339",
+   "float_usd": 879400000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1833756",
+   "name": "Leonardo DRS, Inc.",
+   "ticker": "DRS",
+   "sic": "3812",
+   "recurring": {
+    "consumable": 2
+   },
+   "waves": {
+    "defense": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2025-10-29",
+   "adsh": "0001833756-25-000010",
+   "float_usd": 3508000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1673743",
+   "name": "Hinge Health, Inc.",
+   "ticker": "HNGE",
+   "sic": "7374",
+   "recurring": {
+    "service": 2
+   },
+   "waves": {
+    "grid": 2
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-11-09",
+   "adsh": "0001628280-26-072251",
+   "float_usd": 1500000000,
+   "lease_share": null,
+   "focus": true,
+   "strength": 6.5
+  },
+  {
+   "cik": "1385280",
+   "name": "Cinemark Holdings, Inc.",
+   "ticker": "CNK",
+   "sic": "7830",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-11-03",
+   "adsh": "0001193125-26-444406",
+   "float_usd": 3400000000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "1771706",
+   "name": "Vireo Growth Inc.",
+   "ticker": "VREOF",
+   "sic": "2834",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 0,
+   "critical": 1,
+   "last": "2026-08-14",
+   "adsh": "0001104659-26-097118",
+   "float_usd": 345970203,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "750004",
+   "name": "Light & Wonder, Inc.",
+   "ticker": "LNWO",
+   "sic": "7373",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 0,
+   "critical": 0,
+   "last": "2026-02-24",
+   "adsh": "0000750004-26-000012",
+   "float_usd": 6338303809,
+   "lease_share": 0.182,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "1661181",
+   "name": "Organogenesis Holdings Inc.",
+   "ticker": "ORGO",
+   "sic": "2834",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-02-26",
+   "adsh": "0001193125-26-076730",
+   "float_usd": 299400000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "1857154",
+   "name": "Krispy Kreme, Inc.",
+   "ticker": "DNUT",
+   "sic": "5400",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-05-08",
+   "adsh": "0001857154-26-000029",
+   "float_usd": 248900000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "789570",
+   "name": "MGM Resorts International",
+   "ticker": "MGM",
+   "sic": "7011",
+   "recurring": {
+    "rental": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-07-29",
+   "adsh": "0000789570-26-000076",
+   "float_usd": 5800000000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "790526",
+   "name": "RadNet, Inc.",
+   "ticker": "RDNT",
+   "sic": "8071",
+   "recurring": {
+    "service": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-03-02",
+   "adsh": "0001628280-26-013337",
+   "float_usd": 4100000000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "1677703",
+   "name": "CONDUENT Inc",
+   "ticker": "CNDT",
+   "sic": "7389",
+   "recurring": {
+    "service": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 0,
+   "critical": 6,
+   "last": "2026-11-05",
+   "adsh": "0001677703-26-000154",
+   "float_usd": 411512508,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  },
+  {
+   "cik": "1840856",
+   "name": "SOUNDHOUND AI, INC.",
+   "ticker": "SOUN",
+   "sic": "7372",
+   "recurring": {
+    "service": 1
+   },
+   "waves": {
+    "grid": 1
+   },
+   "substitute": 1,
+   "critical": 0,
+   "last": "2026-11-09",
+   "adsh": "0001840856-26-000028",
+   "float_usd": 3580200000,
+   "lease_share": null,
+   "focus": false,
+   "strength": 6.5
+  }
+ ]
+}

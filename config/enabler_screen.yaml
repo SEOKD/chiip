@@ -1,0 +1,53 @@
+# '핵심 솔루션 + 반복 매출' 발굴 채널 (마스터 지시 2026-11-18, NPKI 유형, ADR-047, scripts/discovery/enabler_screen.py)
+# 마스터: "밸류체인의 일부에 불과하지만 핵심 솔루션을 제공하고, 단순 소모품을 넘어 리스 구조로 반복 매출까지 내는 종목"
+# 방법: SEC EDGAR 전문 검색(efts, 10-K·10-Q 최근 lookback_days)에서 ① 반복 매출 모델 어구 × ② 투자 물결(capex wave) 어구가 같은 서류에 함께 나오는 회사를 찾고,
+#       ③ 대체·침투(기존 방식 대체) 어구 ④ 핵심성(작업에 꼭 필요) 어구가 겹치면 가점. 서로 다른 어구 묶음을 많이 맞출수록 강하다(독립 신호의 수렴).
+# 점수는 단서 강도(0~10)일 뿐이다 — 경쟁우위·매출은 판단 틀(knowledge/methods/sector_lenses/enabler.md) 카드로만. 수치는 사전값(prm-enab-*).
+
+lookback_days: 540          # 최근 10-K 한 번 + 10-Q 몇 번이 들어오게(약 18개월)
+forms: "10-K,10-Q"
+max_pages: 3                # 질의당 100건 × 3쪽
+pause_s: 0.25               # SEC 초당 10회 상한 아래(프로젝트 User-Agent)
+
+recurring:                  # ① 반복 매출 모델 — 종류(kind)별. 2026-11-18 첫 실행(단서 965개, 대기업·일반 어구 범람) 뒤 일반 어구를 뺐다
+  rental: ['"rental fleet"', '"rental revenue"', '"rental income"']
+  lease: ['"lease revenue"', '"leasing revenue"']
+  consumable: ['"installed base" "consumables"', '"recurring revenue" "consumables"']
+  service: ['"long-term service agreements"', '"recurring revenue" "service contracts"']
+
+waves:                      # ② 투자 물결 — 최종 수요가 커지는 곳(어구는 그 수요가 회사 서류에 나오는지)
+  grid: ['"transmission" "utilities"', '"transmission and distribution"', '"grid modernization"']
+  datacenter: ['"data center construction"', '"hyperscale"']
+  lng_energy: ['"liquefied natural gas"']
+  semis_fab: ['"semiconductor fabrication"', '"semiconductor manufacturing facilities"']
+  defense: ['"defense budget"']
+  nuclear: ['"small modular reactors"', '"nuclear power plants"']
+  infrastructure: ['"Infrastructure Investment and Jobs Act"']
+
+substitute: ['"replace traditional"', '"alternative to traditional"', '"conversion from"', '"displace"', '"penetration"']        # ③ 기존 방식 대체·침투 여지
+critical: ['"mission-critical"', '"site access"', '"required by regulation"']                    # ④ 작업에 꼭 필요(핵심성) — '"critical to"'는 너무 흔해 뺐다
+
+size:                       # 규모 관문 — SEC XBRL frames의 공시 유통 시가총액(dei:EntityPublicFloat, 10-K 표지, 한 번 호출로 전 제출사)
+  frames: [CY2025Q2I, CY2024Q2I]   # 최근부터, 없는 회사는 그 앞 해
+  min_usd: 100000000        # $0.1B — 너무 작으면 유동성·자료가 없다
+  max_usd: 15000000000      # $15B — 더 크면 10배 경로가 없다(텐배거 구간)
+lease_share:                # 리스·렌탈 수익 비중 — XBRL us-gaap:OperatingLeaseLeaseIncome ÷ 매출(Revenues 또는 RevenueFromContractWithCustomer…)
+  years: [CY2025, CY2024]
+  min: 0.10                 # 10% 이상이면 가점(태그를 안 쓰는 회사 — NPKI처럼 렌탈을 매출에 합치는 곳 — 는 가점 없음이지 감점 아님)
+
+strength:                   # 단서 강도 = base + 반복 매출 + 물결 + 집중 + 대체 + 핵심성 + 리스 비중 (상한 10)
+  # 2026-11-18 세 번째 실행: 기준 사례 NPKI가 빠졌다 — 물결 하나에 집중한 순수 사업자(pure play)가 여러 물결을 조금씩 걸친 대기업보다 점수가 낮았다.
+  # 이 유형은 '한 물결에 깊게'가 장점이라, 첫 물결·첫 반복 종류는 1점, 추가는 0.5점, 주력 물결이 여러 서류에서 거듭 나오면 집중 가점.
+  base: 3.5
+  first_recurring: 1.0
+  extra_recurring: 0.5      # 두 번째 종류부터(최대 1개분)
+  first_wave: 1.0
+  extra_wave: 0.5           # 두 번째 물결부터(최대 1개분)
+  focus_hits: 2             # 주력 물결 하나의 반복×물결 짝이 이만큼 이상(여러 서류) → +focus
+  focus: 1.0
+  substitute: 1.0
+  critical: 1.0
+  lease_share: 1.0
+  min_emit: 6.5
+exclude_names: "TRUST|REIT|BANCORP|BANK|FINANCIAL|CAPITAL CORP|ACQUISITION|FUND|PROPERTIES|REALTY|LEASING CORP|AUTHORITY|HOLDINGS CORP II"   # 임대 부동산·금융·스팩·공기업
+exclude_sic: ["60", "61", "62", "63", "64", "65", "67", "48", "49", "751", "01", "02"]   # SIC 앞자리 — 금융·보험·부동산·지주(60~67), 통신(48), 전력·가스 유틸리티(49 — 물결의 고객이지 공급자가 아니다), 자동차 렌털(751), 농지(01·02). 2026-11-18 두 번째 실행 뒤
