@@ -210,20 +210,28 @@ def cost_rows(dp, hist=None):
             continue
         ch = {n: change(s, n)[0] for n in (3, 6, 12)}
         hit = -pct * ch[12] if pct is not None and ch[12] is not None else None   # 전가 0% 가정
-        rows.append({"name": c["name"], "stage": c.get("stage"), "pct_rev": pct, "ch3": ch[3], "ch6": ch[6], "ch12": ch[12], "month": max(s),
+        rows.append({"name": c["name"], "stage": c.get("stage"), "pct_rev": pct, "ch3": ch[3], "ch6": ch[6], "ch12": ch[12], "month": max(s), "s": s,
                      "d_gpm": hit if c.get("stage") == "매출원가" else 0.0, "d_opm": hit})
     return rows, unmapped
 
 
 def index_name(ref):
     """'ppi:valve' → config/trade_ppi.yaml inputs.valve.name('산업용 밸브·유량 제어 부품') — 코드가 그림에 그대로 나갔다(2026-11-15 FIX)"""
-    if not str(ref or "").startswith("ppi:"):
+    ref = str(ref or "")
+    if not ref.startswith(("ppi:", "ppi_id:")):
         return ref
     import yaml
     from pathlib import Path
     cfg = yaml.safe_load((Path(__file__).resolve().parents[2] / "config" / "trade_ppi.yaml").read_text(encoding="utf-8")) or {}
-    item = (cfg.get("inputs") or {}).get(ref.split(":", 1)[1]) or {}
-    return f"{item['name']} PPI" if item.get("name") else ref
+    kind, _, key = ref.partition(":")
+    if kind == "ppi":
+        item = (cfg.get("inputs") or {}).get(key) or {}
+        return f"{item['name']} PPI" if item.get("name") else ref
+    # 'ppi_id:PCU335931335931' — 같은 미국 PPI 코드를 쓰는 입력 품목 이름(2026-11-19: 코드가 그림에 그대로 나갔다)
+    for item in (cfg.get("inputs") or {}).values():
+        if str(((item.get("ppi") or {}).get("us")) or "") == key and item.get("name"):
+            return f"{item['name']} PPI"
+    return f"미국 PPI({key})"
 
 
 def price_rows(dp, hist=None, cpi=None):
@@ -232,7 +240,7 @@ def price_rows(dp, hist=None, cpi=None):
         s = series(p.get("index"), hist, cpi)
         y, m = change(s, 12)
         comp = (p.get("company") or {}).get("yoy")
-        out.append({"business": p.get("business"), "index": p.get("index"), "label": p.get("label") or index_name(p.get("index")), "idx12": y, "month": m,
+        out.append({"business": p.get("business"), "index": p.get("index"), "label": p.get("label") or index_name(p.get("index")), "s": s, "idx12": y, "month": m,
                     "company": comp, "basis": (p.get("company") or {}).get("basis"), "power": comp - y if None not in (comp, y) else None})
     return out
 
@@ -264,23 +272,47 @@ def price_sentences(br):
     return out
 
 
-def pricing_chart(br):
-    short = lambda x: str(x).split("(")[0].strip()   # 괄호 설명을 빼야 휴대폰 폭에서 기준 달이 보인다(2026-11-14)
-    rows = [{"label": f"원가 PPI {short(r['name'])}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "b" if (r["ch12"] or 0) > 0 else "d", "value": round(r["ch12"] * 100, 1)}]} for r in br["costs"] if r["ch12"] is not None]
-    for r in br["prices"]:
-        if r["idx12"] is not None:
-            rows.append({"label": f"판매가 {short(r['label'])}({r['month'][2:]})", "bars": [{"name": "1년 변화", "color": "c", "value": round(r["idx12"] * 100, 1)}]})
-        if r["company"] is not None:
-            rows.append({"label": f"회사 가격 {r['business']}", "bars": [{"name": "1년 변화", "color": "a", "value": round(r["company"] * 100, 1)}]})
-    if not rows:
+def pricing_chart(br, months=24):
+    """원가 물가 vs 판매가 물가 추이 — 최근 months개월, 첫 달 = 100(마스터 지시 2026-11-19 "추이를 나타내는 그래프로 바꿔 원가 물가와 판매가 물가가
+    얼마나 격차가 나는지 직관적으로"). 굵은 두 선 = 원가(매출 대비 비중 가중)·판매가(평균), 얇은 점선 = 항목별. 제목에 지금 격차(%p)와 뜻"""
+    costs = [r for r in br["costs"] if r.get("s")]
+    prices = [r for r in br["prices"] if r.get("s")]
+    if not costs or not prices:
         return None
-    # 제목에 뜻과 결론을 쓴다(마스터 지시 2026-11-15 "이 시각물이 의미하는 바도 제목에 제대로 명시하라. 의미를 풀이")
-    title = "원가 물가 vs 판매가 물가 — 1년 변화(원가가 판매가보다 더 오르면 단가를 올리지 못하는 만큼 마진이 줄어든다)"
-    if br.get("spread") is not None:
-        sp = br["spread"] * 100
-        title += (f": 판매가 쪽 물가가 원가보다 {sp:.1f}%p 더 올라 단가 전가 여지가 있다" if sp >= 0 else
-                  f": 원가가 판매가 쪽 물가보다 {-sp:.1f}%p 더 올라 단가 인상이 따라가지 못하면 마진 압박")
-    return {"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 150, "title": title, "unit": "%", "rows": rows[:8]}}
+    end = min(max(r["s"]) for r in costs + prices)
+    axis = [_back(end, n) for n in range(months - 1, -1, -1)]
+
+    def ffill(s):   # 빠진 달(미발표·분기 지수)은 직전 값으로 — 시작은 모든 지수에 값이 있는 첫 달
+        out, last = {}, None
+        for m in sorted(set(axis) | {k for k in s if k <= axis[-1]}):
+            last = s.get(m, last)
+            if m in axis and last is not None:
+                out[m] = last
+        return out
+    for r in costs + prices:
+        r["_f"] = ffill(r["s"])
+    axis = [m for m in axis if all(m in r["_f"] for r in costs + prices)]
+    if len(axis) < 3:
+        return None
+    for r in costs + prices:
+        r["s"] = r.pop("_f")
+    reb = lambda s: {m: s[m] / s[axis[0]] * 100 for m in axis}
+    C = [(reb(r["s"]), r.get("pct_rev") or 0, r["name"]) for r in costs]
+    P = [(reb(r["s"]), str(r.get("label") or r.get("index"))) for r in prices]
+    wsum = sum(w for _, w, _ in C) or len(C)
+    cost = {m: sum(x[m] * (w or 1) for x, w, _ in C) / (wsum if any(w for _, w, _ in C) else len(C)) for m in axis}
+    price = {m: sum(x[m] for x, _ in P) / len(P) for m in axis}
+    gap = cost[axis[-1]] - price[axis[-1]]
+    lab = lambda m: f"{m[2:4]}.{m[5:7]}"
+    series = [{"name": f"원가 물가{'(가중)' if len(C) > 1 else ''} {cost[axis[-1]] - 100:+.1f}%", "color": "b", "points": [[lab(m), round(cost[m], 1)] for m in axis]},
+              {"name": f"판매가 물가{'(평균)' if len(P) > 1 else ''} {price[axis[-1]] - 100:+.1f}%", "color": "c", "points": [[lab(m), round(price[m], 1)] for m in axis]}]
+    if len(C) > 1:
+        series += [{"name": f"원가 · {str(n).split('(')[0].strip()}", "color": "b", "dash": True, "points": [[lab(m), round(x[m], 1)] for m in axis]} for x, _, n in C]
+    if len(P) > 1:
+        series += [{"name": f"판매가 · {n.split('(')[0].strip()}", "color": "c", "dash": True, "points": [[lab(m), round(x[m], 1)] for m in axis]} for x, n in P]
+    verdict = (f"원가가 판매가보다 {gap:.1f}%p 더 올라 단가를 못 올리면 마진 압박" if gap > 0.5 else
+               f"판매가가 원가보다 {-gap:.1f}%p 더 올라 마진 여유" if gap < -0.5 else "둘이 비슷하게 움직인다")
+    return {"type": "chart", "chart": {"kind": "line", "title": f"원가 물가 vs 판매가 물가 — 최근 {len(axis)}개월({lab(axis[0])} = 100): {verdict}", "unit": "", "series": series}}
 
 
 def change_at(s, month, n=12, step_back=2):

@@ -57,3 +57,15 @@ class TestOneTable(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTrendChart(unittest.TestCase):   # 2026-11-19 — 막대 대신 추이(시작 = 100), 격차를 제목에
+    def test_trend_lines_and_gap(self):
+        months = [f"{2024 + (i + 10) // 12}-{(i + 10) % 12 + 1:02d}" for i in range(24)]
+        hist = {"inputs": {"power": {"ppi": {"us": {m: 100 + i for i, m in enumerate(months)}}}}, "us_raw": {"X1": {m: 100 + i * 0.2 for i, m in enumerate(months)}}}
+        dp = {"margin": {"costs": [{"name": "전력", "stage": "매출원가", "pct_rev": 0.1, "input": "power"}]}, "pricing": [{"business": "A", "index": "ppi_id:X1"}]}
+        c = iv.pricing_chart(iv.bridge(dp, hist, {}))["chart"]
+        self.assertEqual(c["kind"], "line")
+        self.assertEqual([s["points"][0][1] for s in c["series"][:2]], [100.0, 100.0])
+        self.assertIn("마진 압박", c["title"])
+        self.assertIn("미국 PPI(X1)", c["series"][1]["name"] + iv.index_name("ppi_id:X1"))
