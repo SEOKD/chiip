@@ -374,7 +374,7 @@ def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, por
     trend = next((dict(b["chart"]) for b in E if "멀티플 프리미엄 추이" in str(b["chart"].get("title")) and want in str(b["chart"].get("metric"))), None)
     prem = None if trend else get(E, "멀티플 프리미엄")   # 최근 4개 분기 추이가 있으면 그것을(마스터 지시 2026-11-06)
     if trend:
-        trend["title"] = f"멀티플 프리미엄({trend['metric']}, 최근 4개 분기말)"
+        trend["title"] = f"멀티플 프리미엄({trend['metric']}, 최근 4개 분기말 절대값 — 대상 vs 동종 중앙값)"
         parts["멀티플 프리미엄"] = trend
     if prem:
         want = "EV/EBITDA" if mm["basis"] != "pe_fwd" else "P/E"

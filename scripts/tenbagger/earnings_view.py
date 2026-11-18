@@ -170,23 +170,25 @@ def premium_trend(dp):
     for k, name in (("pe_fwd", "Fwd 1Y P/E"), ("ev_ebitda_fwd", "Fwd 1Y EV/EBITDA")):
         own = {str(r["date"])[:7]: r["value"] for r in (dp.get("history") or {}).get(k) or [] if r.get("value") and str(r["date"])[5:7] in ("03", "06", "09", "12")}
         months = sorted(own)[-4:]
-        vals = []
+        vals, meds = [], []
         for m in months:
             pv = sorted(r[k] for p in dp.get("peers") or [] for r in p.get("hist_q") or [] if str(r.get("date"))[:7] == m and r.get(k) and r[k] > 0)
             med = (pv[len(pv) // 2] if len(pv) % 2 else (pv[len(pv) // 2 - 1] + pv[len(pv) // 2]) / 2) if len(pv) >= 2 else None
             vals.append(round((own[m] / med - 1) * 100) if med else None)
+            meds.append(round(med, 1) if med else None)
         if sum(v is not None for v in vals) >= 2:
-            out.append({"metric": name, "months": months, "values": vals})
+            out.append({"metric": name, "months": months, "values": vals, "own": [round(own[m], 1) for m in months], "peer": meds})
     if not out:   # 선행 배수 이력 원천이 없는 한국·일본 상장(Fiscal.ai 미수록) — 분기말 후행 P/E로(2026-11-15 삼양식품: 1개 분기만 나왔다)
         own = {str(r["date"])[:7]: r["value"] for r in (dp.get("history") or {}).get("pe_ttm") or [] if r.get("value")}
         months = sorted(own)[-4:]
-        vals = []
+        vals, meds = [], []
         for m in months:
             pv = sorted(r["pe_ttm"] for p in dp.get("peers") or [] for r in p.get("hist_q") or [] if str(r.get("date"))[:7] == m and r.get("pe_ttm") and r["pe_ttm"] > 0)
             med = (pv[len(pv) // 2] if len(pv) % 2 else (pv[len(pv) // 2 - 1] + pv[len(pv) // 2]) / 2) if len(pv) >= 2 else None
             vals.append(round((own[m] / med - 1) * 100) if med else None)
+            meds.append(round(med, 1) if med else None)
         if sum(v is not None for v in vals) >= 2:
-            out.append({"metric": "Trailing P/E(선행 이력 없음)", "months": months, "values": vals})
+            out.append({"metric": "Trailing P/E(선행 이력 없음)", "months": months, "values": vals, "own": [round(own[m], 1) for m in months], "peer": meds})
     return out
 
 
@@ -293,12 +295,15 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
         B.append({"type": "table", "title": "멀티플 프리미엄 — 동종 중앙값 대비 (성장 조정 = 배수 ÷ 최근 분기 전년 대비 매출 성장%, 한 분기 성장이라 변동이 크다)",
                   "headers": ["지표", "대상", "동종 중앙값(범위)", "프리미엄", "성장 조정 프리미엄"],
                   "rows": [[r["metric"], f"{r['value']:.1f}배", f"{r['peer_median']:.1f}배 ({r['lo']:.1f}~{r['hi']:.1f}, {r['n']}사)", f"**{_pct(r['premium'], 0)}**", _pct(r["growth_adj_premium"], 0)] for r in pm]})
-        B.append({"type": "chart", "chart": {"kind": "bars", "title": "멀티플 프리미엄 (%) — 0 = 동종 중앙값", "unit": "%", "categories": [r["metric"] for r in pm],
-                  "series": [{"name": "단순", "color": "c", "values": [round(r["premium"] * 100) for r in pm]},
-                             {"name": "성장 조정", "color": "d", "values": [round(r["growth_adj_premium"] * 100) if r["growth_adj_premium"] is not None else None for r in pm]}]}})
+        B.append({"type": "chart", "chart": {"kind": "bars", "title": "멀티플 프리미엄 — 현재 배수(배)", "unit": "배", "categories": [r["metric"] for r in pm],   # 절대값(2026-11-19)
+                  "series": [{"name": "대상", "color": "c", "values": [round(r["value"], 1) for r in pm]},
+                             {"name": "동종 중앙값", "color": "e", "values": [round(r["peer_median"], 1) for r in pm]}]}})
     for tr in premium_trend(dp):
-        B.append({"type": "chart", "chart": {"kind": "bars", "trend": True, "title": f"멀티플 프리미엄 추이 — {tr['metric']}, 최근 4개 분기말 (%, 0 = 동종 중앙값)", "unit": "%", "metric": tr["metric"],
-                  "categories": tr["months"], "series": [{"name": tr["metric"], "color": "c", "values": tr["values"]}]}})
+        prem = " · ".join(f"{m[2:4]}.{m[5:7]} {v:+d}%" for m, v in zip(tr["months"], tr["values"]) if v is not None)
+        B.append({"type": "chart", "chart": {"kind": "bars", "trend": True, "title": f"멀티플 프리미엄 추이 — {tr['metric']}, 분기말 절대값(배)", "unit": "배", "metric": tr["metric"],   # 절대값(마스터 지시 2026-11-19 "%가 아니라 절대값, 분기 말일 기준")
+                  "categories": [f"{m[:4]}-{m[5:7]}말" for m in tr["months"]],
+                  "series": [{"name": f"대상 {tr['metric']}", "color": "c", "values": tr.get("own") or tr["values"]},
+                             {"name": f"동종 중앙값(프리미엄 {prem})", "color": "e", "values": tr.get("peer") or [None] * len(tr["months"])}]}})
     if not B:
         return None
     return {"h2": "어닝콜 변화·컨센서스·멀티플 프리미엄·EPS 리비전", "blocks": B}
