@@ -1,0 +1,107 @@
+auto: true
+id: us-algm
+name: Allegro MicroSystems
+ticker: ALGM
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.1
+  ROW: 0.9
+tax: 0.12
+horizon: 10
+as_of: '2026-11-17'
+market:
+  date: '2026-11-17'
+  price: 28.23
+  shares: 0.190576
+  net_debt: 0.110066
+  source: 가격 = 2026-11-17 종가 $28.23. 주식 = 10-Q 표지 186,483,352주. 현금 $193.0M(2026-09-25).
+    차입 = 정기 대출 $285.6M + 유동성 $1.5M + 리스 $10.2M + 유동 리스 $5.7M(10-Q 재무상태표). 9/30 정기
+    대출 $25M 자발 상환은 다음 분기 반영
+rev0: 1.123
+ic0: 1.113956
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.1932
+      end: 0.03
+      decay: 0.795
+    margin:
+      m0: 0.1609
+      target: 0.2289
+      year_target: 3
+      lr: 0.24
+      lam: 0.35
+      anchors:
+      - 0.2027
+      - 0.2289
+    s2c: 0.905
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.2912
+      end: 0.034999999999999996
+      decay: 0.8450000000000001
+    margin:
+      m0: 0.1609
+      target: 0.2629
+      year_target: 3
+      lr: 0.24
+      lam: 0.25
+      anchors:
+      - 0.2027
+      - 0.2289
+    s2c: 1.041
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.0775
+      end: 0.024999999999999998
+      decay: 0.6950000000000001
+    margin:
+      m0: 0.1609
+      target: 0.1949
+      year_target: 3
+      lr: 0.24
+      lam: 0.5
+      anchors:
+      - 0.2027
+      - 0.2289
+    s2c: 0.769
+mc:
+  sigma_growth: 0.0534
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 1.123
+  growth: 컨센서스 1년차 19.3%, 2년차 16.0%
+  margin: 1~2년차 컨센서스 20.3%, 22.9% 고정 → 목표 23%(3년차, 덮어쓰기) → 장기 수렴 24%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.905
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 7.7%~29.1%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +13.5% 아래·강세 +24.2% 위 확률. 내부 관점(컨센서스 +19.3%, σ 13.8%: 범위 21.4% ÷ d2(5) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률: 회사 목표 총이익률 55% 초과와 영업비용 비중(2Q 조정 31%) 하락으로 조정 영업이익률이 FY29
+    28%(컨센서스)로 간다. SBC(매출의 5.1%)를 빼 GAAP 기준 약 24%로 둔다. 앞선 사이클 고점 FY23 GAAP 영업이익률 약
+    25%(Fiscal.ai 연간)와도 맞다'
+  shares: '완전 희석 = 기본 0.186483352(2026-10-26) + 옵션·RSU·워런트·전환 0.0041 — 10-Q 주석: 미가득
+    RSU 2,632,235주 + PSU 1,460,559주(2026-09-25), 스톡'
+notes:
+- 자동 생성(build_drivers) 2026-11-18 — 데이터 묶음 2026-11-17
+- '어닝콜 위험: 데이터센터 800V 프로그램 추가 지연 시 FY27 2배 목표 부담'
+- '어닝콜 위험: 테스트 캐파 제약으로 출하 제한 가능'
+- '어닝콜 위험: 웨이퍼·원자재·에너지 원가 인플레이션(1~2분기 시차)'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/866291/000119312526233537/algm-20260327.htm
+- https://www.sec.gov/Archives/edgar/data/866291/000119312526439990/algm-20260925.htm
+- https://www.sec.gov/Archives/edgar/data/866291/000119312526436963/algm-ex99_1.htm
+- https://www.sec.gov/Archives/edgar/data/866291/000119312526275011/algm-20260617.htm
+- https://fiscal.ai/company/NasdaqGS-ALGM
+- Fiscal.ai MCP 2026-11-18 — 표준화 손익·재무상태표·현금흐름, 자체 추정, 2Q·1Q FY27 어닝콜 전문(요지만), 13F·내부자·펀드
+  서한
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
+- Easyconomics company_profile(yfinance)·earnings_summary_dates 2026-11-18
+- Quantral get_company_score·signals 2026-11-18
