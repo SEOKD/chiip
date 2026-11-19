@@ -525,7 +525,27 @@ def narrative_block(eid, today=None):
     return out
 
 
+REPORT_DELTA = 0.5   # 2026-11-19 마스터 지시 "알파 감지 보고가 너무 잦다. 알파 변화가 크게(±0.5 이상) 발생할 경우만 보고하도록"
+
+
+def should_report(eid, alpha_total, st=None):
+    """직전에 보고한 알파 대비 ±REPORT_DELTA 이상 움직였을 때만 보고. 처음 보고하는 종목(기록 없음)은 보고한다. 점수가 없으면 보고하지 않는다"""
+    if alpha_total is None:
+        return False
+    last = (st if st is not None else common.load_state("alpha_reported", {})).get(eid)
+    return last is None or abs(float(alpha_total) - float(last["alpha"])) >= REPORT_DELTA - 1e-9
+
+
+def mark_reported(eid, alpha_total):
+    st = common.load_state("alpha_reported", {})
+    st[eid] = {"alpha": round(float(alpha_total), 2), "at": common.iso(common.now_kst())}
+    common.save_state("alpha_reported", st)
+
+
 def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None, refs=None, alpha_row=None):
+    if send and not should_report(eid, alpha_total):
+        print(f"[알파 감지 보고 생략] {eid}: 알파 {alpha_total} — 직전 보고 대비 ±{REPORT_DELTA} 미만")
+        return None, False
     if alpha_row is not None:
         alpha_row = {**alpha_row, "id": eid}   # 점수 변화 원인 풀이(why_changed)용
     import run as v2run
@@ -564,6 +584,8 @@ def evaluate_and_send(eid, reasons, alpha_total, send, c_all, update_note=None, 
                 "published_at": common.iso(common.now_kst())}
         ref = notify.remember_alert(item, "ALPHA", what=f"{r['name']} 알파 감지 3요인", impact=" / ".join(reasons[:2]))
         sent = notify.send(text, "ALPHA", ref=ref)
+        if sent:
+            mark_reported(eid, alpha_total)
     return text, sent
 
 
