@@ -1,0 +1,8 @@
+# TradingView MCP 하루 호출 예산 (2026-11-19 마스터 지시, 훅 .claude/hooks/tv_budget.py, 상태 radar/state/tv_budget.json)
+# 관측(세션 기록): 11-14~16 KST 하루 149~194건 통과 → 11-17 90건째(직전 24h 97건) 'daily usage limit + 10분 냉각', 이후 이틀 넘게 냉각 반복.
+# 정확한 한도는 TradingView가 공개하지 않아 미확인 — 관측된 가장 낮은 차단점 90보다 아래로 잡는다.
+daily_budget: 70          # 하루(06:00 KST 시작) 호출 상한
+sync_reserve: 12          # 06:00~07:00 KST에는 이만큼을 TradingView 동기화(06:20)에 남긴다
+day_start_hour: 6
+reserve_until_hour: 7
+# 작업별 하루 몫(지시서 기준, 합 ≤ 70): 동기화 12 · Analysis 3회 × 9 = 27 · Pulse·Ten-bagger 15 · Valuation Queue 8 · Flow 5 · 기타 3

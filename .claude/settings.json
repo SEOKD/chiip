@@ -19,6 +19,16 @@
             "timeout": 20
           }
         ]
+      },
+      {
+        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/tv_budget.py\" pre",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PostToolUse": [
@@ -40,6 +50,16 @@
             "timeout": 20
           }
         ]
+      },
+      {
+        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/tv_budget.py\" post",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PostToolUseFailure": [
@@ -50,6 +70,16 @@
             "type": "command",
             "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/code_guard.py\" post",
             "timeout": 20
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/tv_budget.py\" post",
+            "timeout": 10
           }
         ]
       }
