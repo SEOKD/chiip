@@ -1,0 +1,104 @@
+auto: true
+id: us-klic
+name: Kulicke and Soffa Industries
+ticker: KLIC
+unit: B$
+unit_usd: 1000000000.0
+industry: semicap
+region_mix:
+  China: 0.56
+  Asia_ex_China: 0.39
+  US: 0.05
+tax: 0.15
+horizon: 10
+as_of: '2026-11-19'
+market:
+  date: '2026-11-19'
+  price: 66.99
+  shares: 0.053622
+  net_debt: -0.517026
+  source: 가격 = 2026-11-18 종가 $66.99(TradingView, 실적 발표는 그날 장 마감 뒤 — 반응 미반영) · 기본 주식
+    수 52,322천 주(4Q 기본 가중평균, 2026-10-03 — 10-Q 표지 2026-07-31 52,329,115주와 0.01% 차이)
+    · 현금 $329.0M + 단기투자 $188.0M = $517.0M(2026-10-03, 4Q 보도자료 재무상태표) · 차입 없음 · 운영
+    리스 부채 $38.5M(6.6 + 32.0)
+rev0: 1.48
+ic0: 0.503557
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: -0.0878
+      end: 0.03
+      decay: 0.7
+    margin:
+      m0: 0.2293
+      target: 0.2033
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.1883
+      - 0.2033
+    s2c: 2.349
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.2162
+      end: 0.034999999999999996
+      decay: 0.75
+    margin:
+      m0: 0.2293
+      target: 0.2233
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.1883
+      - 0.2033
+    s2c: 2.701
+  bear:
+    prob: 0.35
+    growth:
+      start: -0.3919
+      end: 0.024999999999999998
+      decay: 0.6
+    margin:
+      m0: 0.2293
+      target: 0.1833
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.1883
+      - 0.2033
+    s2c: 1.997
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2027 1.48
+  growth: 컨센서스 1년차 -8.8%, 2년차 5.2%
+  margin: 1~2년차 컨센서스 18.8%, 20.3% 고정 → 목표 20%(3년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.349
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 -39.2%~21.6%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 -24.0% 아래·강세 +6.4% 위 확률. 내부 관점(컨센서스 -8.8%, σ 44.3%: 범위 60.8% ÷ d2(4) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: 완전 희석 = 기본 0.052322(2026-10-03) + 옵션·RSU·워런트·전환 0.0013 — 4Q 희석 가중평균 53,624천
+    주 − 기본 52,322천 주 ≈ 130만 주(RSU·PSU, 4Q 보도자
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-19
+- '어닝콜 위험: 현금 전환 약함 — 4Q 영업현금 $25.4M vs 순이익 $73.2M, 매출채권 $425M(1년 전 $184M)'
+- '어닝콜 위험: 중국 OSAT 3곳이 9개월 매출 39%, 매출채권의 50%(10-Q)'
+- '어닝콜 위험: 중국 업체 가격 경쟁으로 중국 ASP 하락(10-K)'
+evidence:
+- 4Q FY26 실적 보도자료(8-K EX-99.1, 2026-11-18) https://www.sec.gov/Archives/edgar/data/56978/000005697826000038/ex991liveq42026.htm
+- 3Q FY26 10-Q(2026-08-06) https://www.sec.gov/Archives/edgar/data/56978/000005697826000032/klic-20260704.htm
+- FY25 10-K(2025-11-20) https://www.sec.gov/Archives/edgar/data/56978/000005697825000081/klic-20251004.htm
+- CEO 선임 8-K(2026-08-13) https://www.sec.gov/Archives/edgar/data/56978/000005697826000034/klic-20260813.htm
+- 패널 레벨 APTURA WSX 보도자료(2026-11-18) https://www.prnewswire.com/news-releases/kulicke--soffa-accelerates-industry-shift-to-panel-level-capability-for-ai-applications-302943622.html
+- 3Q FY26 어닝콜(2026-08-05) — Easyconomics 실적 정리
+- Fiscal.ai(재무·추정·세그먼트·13F·펀드 레터) · Zacks(의견·목표가) Data provided by Zacks Investment
+  Research, Inc., www.zacksdata.com · TradingView 일봉·월봉
