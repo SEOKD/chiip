@@ -142,7 +142,7 @@ def targets_product(slug, view=None, c=None):
     bom = json.loads((product_dir(slug) / "bom.json").read_text(encoding="utf-8"))
     d = product_dir(slug) / "images"
     out = [{"scope": "industry", "id": slug, "kind": "product", "n": 1, "name": bom["product"], "what": bom.get("what") or bom["product"], "dir": d}]
-    if len(confirmed(bom)) >= c["min_confirmed_parts"]:
+    if (c.get("per_industry_report_max") or {}).get("exploded", 1) > 0 and len(confirmed(bom)) >= c["min_confirmed_parts"]:
         out.append({"scope": "industry", "id": slug, "kind": "exploded", "n": 1, "name": bom["product"], "bom": bom, "dir": d, "view": view})
     return out
 

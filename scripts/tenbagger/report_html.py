@@ -121,6 +121,9 @@ table,.dash,.tiles,.cinfo{font-variant-numeric:tabular-nums}
 .w p b,.w li b,.card>b:first-child~* b,.bx .br b{color:var(--em);font-weight:700}
 .w u{text-decoration:underline;text-decoration-color:var(--ul);text-decoration-thickness:2px;text-underline-offset:3px}
 .w mark{background:linear-gradient(transparent 55%,var(--mk) 55%);color:inherit;padding:0 1px}
+/* 강조 더(마스터 지시 2026-11-19) — 숫자 = 굵은 남색, 판단 이름표 = 색 꼬리표, 첫 문장 = 스포트라이트, 미확인 = 흐림 */
+.w b.num{color:var(--em);font-weight:700;background:none;padding:0}.tag{display:inline-block;font-size:.82em;font-weight:700;color:#fff;background:var(--c);border-radius:5px;padding:0 6px;margin-right:2px;line-height:1.5}
+.spot{font-weight:700;background:linear-gradient(transparent 62%,var(--mk) 62%);padding:0 1px}.unk{color:var(--mut);font-style:italic}.rt{font-weight:700}
 .up{color:var(--b);font-weight:600}.dn{color:var(--c);font-weight:600}
 h2{border-top-color:var(--c)}h3{border-left:4px solid var(--c);padding-left:9px;line-height:1.4}
 .card>b:first-child{color:var(--c)}.lead b{color:var(--fg)}
@@ -151,6 +154,44 @@ def t(s):
     s = re.sub(r"==(.+?)==", r"<mark>\1</mark>", s)
     s = _UP.sub(r'<span class="up">\1</span>', s)
     return _DN.sub(r'<span class="dn">\1</span>', s)
+
+
+_NUM = re.compile(r"((?:US)?\$[\d][\d.,]*(?:[BMKT]|조|억)?(?:~\$?[\d][\d.,]*[BMKT]?)?|₩[\d][\d.,]*|[\d][\d.,]*(?:배|bp|억 엔|조 원|억 원|만 원)(?![가-힣])|[\d][\d.,]*(?:~[\d.,]+)?%(?!p))")
+_TAG = re.compile(r"(?:(?<=^)|(?<=[\s>(]))(올라갈 조건|내려갈 조건|확인|무효화|결론|핵심|주의|반증|리스크|좋아진 것은|나빠진 것은|부담은|새로 생긴 쟁점은|관찰)(?=\s?:|은 |는 )")
+_RATE = re.compile(r"\b(Strong Buy|Buy|Neutral|Strong Sell|Sell)\b")
+_SENT = re.compile(r"^(.+?[다음됨함]\.)(\s+)(?=\S)")
+
+
+def _text_only(html_s, fn):
+    """태그 바깥 글자에만 fn — 이미 넣은 태그·속성은 건드리지 않는다. 두 번째 인자 = 굵게(b·mark) 안인가"""
+    out, depth = [], 0
+    for x in re.split(r"(<[^>]+>)", html_s):
+        if x.startswith("<"):
+            depth += 1 if x in ("<b>", "<mark>", '<span class="up">', '<span class="dn">') else (-1 if x in ("</b>", "</mark>", "</span>") else 0)   # t()가 만드는 span은 부호 %뿐
+            out.append(x)
+        else:
+            out.append(fn(x, depth > 0))
+    return "".join(out)
+
+
+def tp(s, lead=False):
+    """본문 글 강조(마스터 지시 2026-11-19 "Analysis의 글 가독성을 높이기 위해 볼드, 밑줄, 스포트라이트, 색상 등을 더 많이").
+    t()에 더해 ① 금액·배수·%·bp 숫자 = 굵은 남색 ② '올라갈 조건:'·'확인:'·'결론' 같은 판단 이름표 = 색 꼬리표 ③ 등급 낱말 = 색
+    ④ '미확인' = 흐린 기울임 ⑤ lead=True면 문단 첫 문장(결론 문장) = 스포트라이트(옅은 형광 + 굵게). 표·그림 글자에는 쓰지 않는다(t만)"""
+    h = t(s)
+
+    def fn(x, in_bold):
+        if not in_bold:
+            x = _NUM.sub(r'<b class="num">\1</b>', x)
+        x = _TAG.sub(r'<span class="tag">\1</span>', x)
+        x = _RATE.sub(lambda m: f'<span class="rate-{"buy" if "Buy" in m.group(1) else ("sell" if "Sell" in m.group(1) else "mid")} rt">{m.group(1)}</span>', x)
+        return x.replace("미확인", '<i class="unk">미확인</i>')
+    h = _text_only(h, fn)
+    if lead:
+        m = _SENT.match(h)
+        if m and len(h) > len(m.group(1)) + 20 and "<b>" not in m.group(1) and "<mark>" not in m.group(1) and "<br>" not in m.group(1):
+            h = f'<span class="spot">{m.group(1)}</span>{m.group(2)}' + h[m.end():]
+    return h
 
 
 def _legend(series):
@@ -928,13 +969,13 @@ def short_paras(text, limit=170):
 def block(b):
     k = b.get("type")
     if k == "p":
-        return "".join(f"<p>{t(x)}</p>" for x in short_paras(b.get("text")))
+        return "".join(f"<p>{tp(x, lead=i == 0)}</p>" for i, x in enumerate(short_paras(b.get("text"))))
     if k == "h3":
         return f"<h3>{t(b.get('text'))}</h3>"
     if k == "hl":
-        return f'<div class="hl sm">{t(b.get("text"))}</div>'
+        return f'<div class="hl sm">{tp(b.get("text"))}</div>'
     if k == "ul":
-        return "<ul>" + "".join(f"<li>{t(i)}</li>" for i in b.get("items") or []) + "</ul>"
+        return "<ul>" + "".join(f"<li>{tp(i)}</li>" for i in b.get("items") or []) + "</ul>"
     if k == "table":
         head = "".join(f"<th>{t(h)}</th>" for h in b.get("headers") or [])
         rows = "".join("<tr>" + "".join(f"<td>{t(c)}</td>" for c in r) + "</tr>" for r in b.get("rows") or [])
@@ -1272,12 +1313,12 @@ def render3(d):
              f'<title>{t(d["company"])} 텐배거 리포트</title><style>{CSS}</style></head><body><div class="w">',
              f'<h1>{t(d["title"])}</h1>' + (f'<p class="sub">{t(d["subtitle"])}</p>' if d.get("subtitle") else ""),
              f'<p class="lead">{t(d["date"])} · {t(d["company"])}({t(d["ticker"])}) · 기업: {t(d["biz"])}</p>']
-    parts.append(f'<div class="verdict"><b>Chiip View</b><br>{t(v.get("view"))}</div>')
+    parts.append(f'<div class="verdict"><b>Chiip View</b><br>{tp(v.get("view"), lead=True)}</div>')
     if d.get("tiles"):
         parts.append('<div class="dash">' + "".join(
             f'<div><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="s">{t(x.get("sub"))}</div></div>' for x in d["tiles"]) + "</div>")
     if d.get("summary"):
-        parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a")).replace(chr(10), "<br>")}</div>' for s in d["summary"]) + "</div>")
+        parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(f'<div><b class="q">{t(s.get("q"))}</b>{tp(s.get("a")).replace(chr(10), "<br>")}</div>' for s in d["summary"]) + "</div>")
     figs = figures(d, images=True)
     if figs or d.get("gallery_photos"):   # 사진도 한눈에 보기에(2026-11-07)
         parts.append("<h2>한눈에 보기</h2><div class=\"gal\">" + "".join(f"<div>{block(b)}</div>" for _, b in figs) + "".join(f"<div>{block(b)}</div>" for b in d.get("gallery_photos") or []) + "</div>")
@@ -1310,10 +1351,10 @@ def render(d):
             f"컨빅션 {v['confidence']}" if v.get("confidence") else None,
             f"알파 {alpha}/10" if alpha is not None else None,
             f"업사이드 {up:+.0%}" if up is not None else None) if x)
-        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{t(v.get("view"))}</div>')
+        parts.append(f'<div class="verdict"><b>Chiip View</b> {badges}<br>{tp(v.get("view"), lead=True)}</div>')
     if d.get("summary"):
         parts.append("<h2>한 장 요약</h2><div class=\"ans\">" + "".join(
-            f'<div><b class="q">{t(s.get("q"))}</b>{t(s.get("a")).replace(chr(10), "<br>")}</div>' for s in d["summary"]) + "</div>")
+            f'<div><b class="q">{t(s.get("q"))}</b>{tp(s.get("a")).replace(chr(10), "<br>")}</div>' for s in d["summary"]) + "</div>")
     if d.get("tiles"):
         parts.append('<div class="tiles">' + "".join(
             f'<div class="tile"><div class="k">{t(x.get("k"))}</div><div class="v {x.get("tone", "")}">{t(x.get("v"))}</div><div class="k">{t(x.get("sub"))}</div></div>'

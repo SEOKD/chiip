@@ -13,8 +13,8 @@ batch_discount: 0.5
 monthly_budget_usd: 19.0              # Chiip 장부 한도 — 구글 예산 ₩30,000보다 낮게(구글 비용 기록이 최대 24시간 늦다), 2026-11-13 마스터 지시
 google_cap_krw: 30000                 # 참고값(Budgets & caps). Chiip이 바꾸지 않는다
 industry_share: 0.4                   # 산업 리포트 몫(장부 scope=industry 합계) — 종목 리포트 이미지가 밀려나지 않게
-per_company_max: {product: 1, service: 0, exploded: 1}   # 2026-11-13 마스터 지시
-per_industry_report_max: {total: 3, exploded: 2}
+per_company_max: {product: 1, service: 0, exploded: 0}   # 2026-11-19 마스터 지시 "Google API 비용을 아끼기 위해 제품 사진만, 분해도 제외"(이전 exploded 1, 2026-11-13)
+per_industry_report_max: {total: 3, exploded: 0}         # 2026-11-19 같은 지시(이전 exploded 2)
 min_confirmed_parts: 1                # 2026-11-08 마스터 지시 "BOM에 부품 1개라도 있으면 분해도에" (이전 6개)
 bom_auto:                             # datapack에 bom이 없으면 회사·업계 기술 자료를 웹 검색으로(scripts/tenbagger/bom_discover.py)
   enabled: true
