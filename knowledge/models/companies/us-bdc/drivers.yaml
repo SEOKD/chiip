@@ -1,0 +1,101 @@
+auto: true
+id: us-bdc
+name: Belden
+ticker: BDC
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.6
+  EU: 0.25
+  ROW: 0.15
+tax: 0.22
+horizon: 10
+as_of: '2026-11-20'
+market:
+  date: '2026-11-20'
+  price: 104.21
+  shares: 0.0396
+  net_debt: 2.803431
+  source: 가격 = 2026-11-18 종가 $104.21(Easyconomics 일봉) · 주식 수 39,100,023주(3Q26 10-Q
+    표지, 2026-10-22) · 현금 $380.7M·장기차입 $3,050.4M(유동 $18.5M 포함)·운용리스 부채 $133.7M(3Q26
+    10-Q 2026-09-27, SEC XBRL) → debt = 차입 + 리스
+rev0: 3.382
+ic0: 4.1954
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.1827
+      end: 0.035
+      decay: 0.3
+    margin:
+      m0: 0.1455
+      target: 0.1565
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.1535
+      - 0.1565
+    s2c: 0.75
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2567
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.1455
+      target: 0.1765
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.1535
+      - 0.1565
+    s2c: 0.862
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1088
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.1455
+      target: 0.1365
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.1535
+      - 0.1565
+    s2c: 0.637
+mc:
+  sigma_growth: 0.037
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [3.372, 3.392] (3Q26 실적 발표(8-K EX-99.1, 2026-10-29)·어닝콜)
+  growth: 컨센서스 1년차 18.3%, 2년차 7.0%
+  margin: 1~2년차 컨센서스 15.3%, 15.7% 고정 → 목표 16%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 0.75
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 10.9%~25.7%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +14.6% 아래·강세 +22.0% 위 확률. 내부 관점(컨센서스 +18.3%, σ 7.8%: 범위 14.8% ÷ d2(8) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.039100023(2026-10-22) + 옵션·RSU·워런트·전환 0.0005 — 3Q26 10-Q:
+    희석 가중주식 39.08M − 기본 약 38.6M ≈ 0.5M, 반희석 제외 증권 0.5'
+notes:
+- 자동 생성(build_drivers) 2026-11-20 — 데이터 묶음 2026-11-20
+- '어닝콜 위험: Wi-Fi 7 스위치 칩셋·컴퓨팅 부품 부족(RUCKUS 출하 제한)'
+- '어닝콜 위험: 순레버리지 3.9배'
+- '어닝콜 위험: 구리 등 투입 원가 상승'
+evidence:
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000913142&type=10-Q
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000913142&type=8-K
+- https://investor.belden.com
+- Fiscal.ai 표준화 재무·추정·세그먼트(NYSE_BDC)
+- Easyconomics 실적 정리(3Q26)·일봉(yfinance)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
