@@ -112,7 +112,22 @@ def non_ai_turn(today):
 BLOCKED = ROOT / "outputs" / "tenbagger" / "reports" / "blocked.json"
 BLOCK_HOURS = 20   # 막힌 종목은 이만큼 건너뛰고 다음 후보로 — 같은 날 남은 회차가 같은 종목에서 다시 멈추지 않게
 # 다음 실적 시즌 전에는 풀리지 않는 사유는 길게 건너뛴다(2026-11-19 22시: 이오테크닉스가 11/16·11/19 두 번 '어닝콜 스크립트 없음'으로 회차를 날렸다)
-BLOCK_LONG = {"어닝콜 스크립트": 24 * 45}
+BLOCK_LONG = {"어닝콜 스크립트": 24 * 45, "Fiscal.ai에 없": 24 * 45, "Company not found": 24 * 45}   # Fiscal 미수록(OTC 등)도 다음 시즌까지(2026-11-20 Netlist)
+
+
+def kr_no_script(k, uni):
+    """한국 종목인데 datapack에 어닝콜 스크립트가 없으면 True — 고르기 전에 거른다(2026-11-20: 22시·재실행 두 회차가 한국 종목 3곳에서 0건).
+    스크립트를 입수하면 datapack call.script{kind, source, date}를 채우면 다시 후보가 된다. 마스터 요청 대기열은 거르지 않는다"""
+    u = uni.get(k) or {}
+    tk = str(u.get("ticker") or "")
+    if not (tk.endswith((".KO", ".KQ")) or (tk[:6].isdigit() and len(tk.split(".")[0]) == 6)):
+        return False
+    dp = ROOT / "knowledge" / "models" / "companies" / k / "datapack.json"
+    try:
+        sc = ((json.loads(dp.read_text(encoding="utf-8")).get("call") or {}).get("script") or {}) if dp.exists() else {}
+    except ValueError:
+        sc = {}
+    return not (sc.get("source") and sc.get("kind") and sc.get("date"))
 
 
 def _hours(why):
@@ -164,6 +179,7 @@ def pick(today=None):
         rows = sorted(((k, v) for k, v in (d.get("rows") or {}).items() if (v.get("total") or 0) >= float(d.get("threshold", 5.0))),
                       key=lambda kv: -(kv[1].get("total") or 0))
         bal = non_ai_turn(today)
+        rows = [(k, v) for k, v in rows if not kr_no_script(k, uni)]
         for k, v in rows:
             if k not in done and (not bal or bal(k, uni.get(k, {}).get("ticker"))):
                 u = uni.get(k, {})
