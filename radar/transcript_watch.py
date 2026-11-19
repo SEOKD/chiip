@@ -123,7 +123,30 @@ def due(now=None, st=None):
     last = st.get("last_check")
     waiting = pending(st, now)
     check = bool(waiting) and (not last or datetime.fromisoformat(last) + timedelta(minutes=EVERY_MIN) <= now)
-    return {"due": check or bool(to_summarize(st)), "check": check, "waiting": len(waiting), "to_summarize": len(to_summarize(st))}
+    cal = calendar_stale(now)
+    return {"due": check or bool(to_summarize(st)) or bool(cal), "check": check, "waiting": len(waiting), "to_summarize": len(to_summarize(st)),
+            "calendar": cal}
+
+
+WATCH = common.ROOT / "config" / "earnings_watch.yaml"
+CAL_MAX_H = 6   # 실적 일정이 이보다 오래되면 다시 받는다
+
+
+def calendar_stale(now=None):
+    """실적 일정을 다시 받아야 하나 — 감시 목록이 일정보다 나중에 바뀌었거나(2026-11-19 PANW: 07:48 일정 뒤 편입돼 어닝콜 대기에서 빠짐)
+    일정이 CAL_MAX_H시간보다 오래됐으면 이유 문자열, 아니면 None. 그동안 일정은 Portfolio 아침 회차에서만 받았다"""
+    now = now or datetime.now(timezone.utc)
+    if not CAL.exists():
+        return "일정 파일 없음"
+    try:
+        fetched = datetime.fromisoformat(json.loads(CAL.read_text(encoding="utf-8")).get("fetched"))
+    except (TypeError, ValueError):
+        return "일정 받은 시각 없음"
+    if WATCH.exists() and datetime.fromtimestamp(WATCH.stat().st_mtime, timezone.utc) > fetched:
+        return "감시 목록이 일정 뒤에 바뀜"
+    if now - fetched > timedelta(hours=CAL_MAX_H):
+        return f"일정이 {CAL_MAX_H}시간 넘음"
+    return None
 
 
 def _rel(p):
