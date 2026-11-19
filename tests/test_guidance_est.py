@@ -18,5 +18,14 @@ class T1(unittest.TestCase):
         self.assertEqual(out[-1], "장후 -6.1%")
 
 
+class T2(unittest.TestCase):
+    def test_cash_lines_in_results(self):   # 2026-11-19 ROAD FY26
+        x = "FY26 Results\n- 매출 $3.674B (est. $3.659B)\n- OCF $344.0M\n- CAPEX $182.1M (est. $195.0M)\n- FCF $161.8M\n\n장전 +1.3%"
+        out = notify.guidance_est(x).split("\n")
+        self.assertIn("- OCF $344.0M (est. 없음)", out)
+        self.assertIn("- CAPEX $182.1M (est. $195.0M)", out)
+        self.assertIn("- FCF $161.8M (est. 없음)", out)
+
+
 if __name__ == "__main__":
     unittest.main()

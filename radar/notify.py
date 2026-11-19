@@ -240,16 +240,24 @@ def send_photo(path, caption="", level="P1"):
     return ok
 
 
+CASH_LINE = re.compile(r"^\s*-\s*(OCF|CAPEX|FCF)(?![A-Za-z])")   # 실적 절에서도 est.가 있어야 하는 줄 — 값은 earnings_est.js pick(분기 reported, 연간 fy_current)
+
+
 def guidance_est(text):
     """실적 피드 Guidance 절의 수치 줄에 (est. …)가 없으면 '(est. 없음)'을 붙이고 빠진 줄을 기록한다(마스터 지시 2026-11-11
     "Guidance에도 컨센서스(est.)가 붙도록 — 가끔씩 빠져 있더라"). 조용히 빠지지 않게 하는 마지막 관문 — 값은 scripts/fiscal/templates/earnings_est.js가 고른다"""
-    out, inside, gaps = [], False, []
+    out, inside, results, gaps = [], False, False, []
     for line in (text or "").split("\n"):
-        if re.search(r"Guidance\s*$", line.strip()):
-            inside = True
+        if re.search(r"Results\s*$", line.strip()):
+            results, inside = True, False
+        elif re.search(r"Guidance\s*$", line.strip()):
+            inside, results = True, False
         elif not line.strip() or not line.lstrip().startswith("-"):
             inside = inside and line.lstrip().startswith("-")
         elif inside and re.search(r"\d", line) and "(est." not in line and "est." not in line:
+            gaps.append(line.strip())
+            line = line.rstrip() + " (est. 없음)"
+        elif results and CASH_LINE.match(line) and "est." not in line:   # 실적 절 현금흐름 줄(2026-11-19 ROAD FY26 OCF·CAPEX·FCF est. 누락)
             gaps.append(line.strip())
             line = line.rstrip() + " (est. 없음)"
         out.append(line)
