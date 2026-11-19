@@ -75,14 +75,19 @@ def _y(v):
 
 
 # ---------- ① 항목별 가치 ----------
+ROIC_CAP = 1.0   # ±100% 넘는 ROIC는 투하자본이 0 근처라는 뜻 — 비운다
+
+
 def _roic(nopat, ic, rev):
     """NOPAT ÷ 투하자본. 투하자본이 음수면 음수로 낸다(마스터 지시 2026-11-15 — 고객 선수금이 운전자본을 크게 음수로 만드는 회사, FIX).
-    투하자본이 매출의 5%보다 작으면(0 근처) 비율이 수천 %로 튀어 뜻이 없다 — None(표에 사유)"""
+    투하자본이 0 근처라 비율이 ±100%를 넘으면 뜻이 없다 — None(그림 제목에 사유).
+    2026-11-19 ORN: '투하자본 < 매출 5%' 기준이 영업권 제외 투하자본(고객 선수금으로 작다)을 9개 분기나 지워 추이가 끊겼다 — 비율 크기로 판단한다"""
     if ic is None or nopat is None or ic == 0:
         return None
-    if rev and abs(ic) < 0.05 * abs(rev):
+    r = nopat / ic
+    if abs(r) > ROIC_CAP or (rev and abs(ic) < 0.01 * abs(rev)):
         return None
-    return nopat / ic
+    return r
 
 
 def items(a):
@@ -517,8 +522,8 @@ def roic_chart(path, n_hist, wacc):
     notes = []
     if any(x["ic_incl"] is not None and x["ic_incl"] < 0 for x in rows):
         notes.append("투하자본이 음수인 분기는 ROIC도 음수(고객 선수금 등 음의 운전자본이 자본을 대신 댄다)")
-    if any(x["roic_incl"] is None and x.get("ic_incl") is not None for x in rows):
-        notes.append("투하자본이 매출의 5%보다 작은 분기는 비율이 수천 %로 튀어 비움")
+    if any((x["roic_incl"] is None and x.get("ic_incl") is not None) or (x["roic_excl"] is None and x.get("ic_excl") is not None) for x in rows):
+        notes.append("투하자본이 0 근처라 ROIC가 ±100%를 넘는 분기는 비움")
     out = {"kind": "line", "title": f"ROIC 추이 — TTM, 최근 {len(act)}개 분기" + (f" + 다음 {len(est)}개 분기 추정(컨센서스 NOPAT)" if est else "") + (" · " + " · ".join(notes) if notes else ""), "unit": "%", "series": series}
     if est:
         out["est_from"] = est[0]["q"]

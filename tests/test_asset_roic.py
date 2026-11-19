@@ -353,7 +353,8 @@ class TestNegativeCapital(unittest.TestCase):   # 2026-11-15 FIX
     def test_negative_ic_gives_negative_roic(self):
         import asset_roic_view as A
         self.assertAlmostEqual(A._roic(100.0, -500.0, 1000.0), -0.2)
-        self.assertIsNone(A._roic(100.0, 20.0, 1000.0))   # 매출의 5%보다 작은 투하자본은 비운다
+        self.assertIsNone(A._roic(100.0, 20.0, 1000.0))   # ROIC 500% — 투하자본이 0 근처라 비운다
+        self.assertAlmostEqual(A._roic(14.1, 29.2, 824.4), 14.1 / 29.2)   # 2026-11-19 ORN: 매출 4%짜리 투하자본도 ROIC 48%면 그린다
 
     def test_mistagged_10q_annual_ignored(self):
         import asset_pack as P

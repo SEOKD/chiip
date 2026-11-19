@@ -107,13 +107,20 @@ def rule40_blocks(dp):
     return [{"type": "hl", "text": text}, {"type": "table", "title": "Rule of 40 — 성장과 수익성의 합", "headers": hd, "rows": tb}, {"type": "chart", "chart": chart}]
 
 
+def _d(v):
+    return f"{v:.1f}" if v < 10 else f"{v:.0f}"
+
+
 def cycle(dp):
     """[{period, bb, bb4, dio, inv_yoy, rev_yoy}] — 재고가 없으면 []"""
     q = _q(dp)
     ops = {r["period"]: r for r in ((dp.get("ops") or {}).get("q") or [])}
+    # 보도자료에서 읽은 분기말 잔고(datapack ops_backlog — ops는 Fiscal.ai 갱신 때 통째로 바뀌므로 따로 둔다, 2026-11-19 ORN: Fiscal에 잔고 KPI가 없어 B/B가 비었다)
+    blx = {str(x["period"])[:7]: x for x in dp.get("ops_backlog") or [] if x.get("backlog") is not None}
     for r in q:
         o = ops.get(r["period"]) or {}
-        r["_orders"], r["_inv"], r["_bl"] = o.get("orders"), o.get("inventory"), o.get("backlog")
+        x = blx.get(str(r["period"])[:7]) or {}
+        r["_orders"], r["_inv"], r["_bl"] = o.get("orders"), o.get("inventory"), o.get("backlog") if o.get("backlog") is not None else x.get("backlog")
     if not any(r["_orders"] is not None for r in q):   # 수주 미공시·잔고 공시 — 수주 = 매출 + 잔고 증가(2026-11-15 FIX: 잔고 16개 분기가 있는데 B/B가 비었다). 인수로 잔고가 붙으면 부풀 수 있다
         for a, b in zip(q, q[1:]):
             if a.get("_bl") is not None and b.get("_bl") is not None and b.get("rev"):
@@ -155,19 +162,21 @@ def cycle_section(dp):
         parts.append(f"최근 4개 분기 수주/출하 비율(Book-to-Bill, {lab}) {last['bb4']:.2f}" + (f", 이번 분기 {last['bb']:.2f}" if last.get("bb") is not None else ""))
     if last.get("dio") is not None:
         d0 = rows[0].get("dio")
-        parts.append(f"재고 일수 {last['dio']:.0f}일" + (f"({rows[0]['period'][:7]} {d0:.0f}일에서)" if d0 else ""))
+        parts.append(f"재고 일수 {_d(last['dio'])}일" + (f"({rows[0]['period'][:7]} {_d(d0)}일에서)" if d0 else ""))
     if last.get("inv_yoy") is not None and last.get("rev_yoy") is not None:
         parts.append(f"재고 전년 대비 {pc(last['inv_yoy'])} vs 매출(4개 분기) {pc(last['rev_yoy'])}")
     qd = quadrant(last, c)
     head = "**" + (qd + ".** " if qd else "수주 미공시 — 재고만 본다.** ") + " · ".join(parts) + "."
     tb = [[r["period"][:7], "-" if r["bb"] is None else f"{r['bb']:.2f}", "-" if r["bb4"] is None else f"{r['bb4']:.2f}",
-           "-" if r["dio"] is None else f"{r['dio']:.0f}", pc(r["inv_yoy"]), pc(r["rev_yoy"])] for r in rows]
+           "-" if r["dio"] is None else _d(r["dio"]), pc(r["inv_yoy"]), pc(r["rev_yoy"])] for r in rows]
     B = [{"type": "hl", "text": head},
          {"type": "table", "title": "수주/출하 비율 × 재고 — 분기별", "headers": ["분기 말", "B/B(분기)", "B/B(4분기)", "재고 일수", "재고 전년 대비", "매출 전년 대비(4분기)"], "rows": tb}]
     # B/B는 비율 그대로(×100 하지 않는다, 마스터 지시 2026-11-19) — 단위가 다른 재고 일수와는 축을 나눈다(왼쪽 B/B, 오른쪽 재고 일수)
     lab_q = lambda r: r["period"][2:7]
-    series = [{"name": "재고 일수(오른쪽 축)", "color": "b", "axis": "dio", "points": [[lab_q(r), None if r["dio"] is None else round(r["dio"])] for r in rows]}]
     has_bb = any(r.get("bb4") is not None for r in rows)
+    # 재고 일수는 10일 미만이면 소수 첫째 자리(2026-11-19 ORN: 재고가 매출원가의 1% 남짓이라 정수로 반올림하면 모든 분기가 1로 평평했다)
+    dig = 1 if max((r["dio"] or 0) for r in rows) < 10 else 0
+    series = [{"name": "재고 일수(오른쪽 축)" if has_bb else "재고 일수", "color": "b", "axis": "dio", "points": [[lab_q(r), None if r["dio"] is None else round(r["dio"], dig)] for r in rows]}]
     stop = ""
     if has_bb:
         series.insert(0, {"name": "B/B 4개 분기(왼쪽 축, 1.0 = 수주와 출하가 같다)", "color": "c", "axis": "bb", "points": [[lab_q(r), None if r.get("bb4") is None else round(r["bb4"], 2)] for r in rows]})
@@ -176,8 +185,9 @@ def cycle_section(dp):
             why = (dp.get("ops") or {}).get("orders_note") or "회사가 그 뒤 분기 수주를 공시하지 않는다"
             stop = f" · {last_bb[2:7]} 뒤 B/B 없음({why})"
             B[0]["text"] += f" {last_bb[:7]} 뒤 분기는 B/B를 계산할 수 없다 — {why}."
-    B.append({"type": "chart", "chart": {"kind": "line", "multi_axis": True, "w": 440,
-                                         "title": ("수주/출하 비율(B/B) × 재고 일수 — 분기별" + stop) if has_bb else "재고 일수 — 분기별(수주 자료가 없어 수주/출하 비율 없음)", "unit": "",
+    thin = "" if has_bb or dig == 0 else " · 재고가 매출원가의 1% 안팎이라 재고 사이클의 뜻은 작다"
+    B.append({"type": "chart", "chart": {"kind": "line", "multi_axis": has_bb, "w": 440,
+                                         "title": ("수주/출하 비율(B/B) × 재고 일수 — 분기별" + stop) if has_bb else f"재고 일수 — 분기별(수주 자료가 없어 수주/출하 비율 없음){thin}", "unit": "" if has_bb else "일",
                                          "series": series}})
     B.append({"type": "p", "text": "B/B가 1을 넘으면 받은 주문이 내보낸 물건보다 많아 잔고가 쌓이고, 재고가 매출보다 빨리 늘면 수요보다 생산이 앞선다는 뜻이다. 둘을 함께 봐야 '주문이 많아 쌓이는 재고'와 '안 팔려 쌓이는 재고'를 가른다."})
     return {"h2": "수주·출하·재고 사이클", "blocks": B}

@@ -88,3 +88,14 @@ class TestSegmentVsPrice(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestOrnCase(unittest.TestCase):   # 2026-11-19 ORN — 잔고는 보도자료(ops_backlog)로, 작은 재고 일수는 소수로
+    def test_backlog_side_table_and_small_dio(self):
+        rows = [{"period": p, "rev": 100, "cogs": 90, "inventory": 1.2} for p in P]
+        bl = [{"period": p, "backlog": 300 + 10 * i} for i, p in enumerate(P)]
+        s = ov.cycle_section({"ops": {"q": rows}, "ops_backlog": bl})
+        c = [b for b in s["blocks"] if b.get("type") == "chart"][0]["chart"]
+        self.assertTrue(c["multi_axis"])
+        self.assertEqual(c["series"][0]["points"][-1][1], 1.1)   # (100+10)/100 4개 분기
+        self.assertEqual(c["series"][1]["points"][-1][1], 1.2)   # 1.2 ÷ (360/365) = 1.22 — 정수 반올림이면 1로 평평
