@@ -67,6 +67,8 @@ telegram_filter:
     - "Wall Street Journal"
     - "WSJ"
     - "The Information"
+    - "日本経済新聞"              # 2026-11-19 마스터 지시 — 닛케이 산업·상장기업 기사(src-nikkei-main·src-nikkei-asia)
+    - "Nikkei Asia"
     - "Business Insider"
     - "CNBC"
     - "Seeking Alpha"            # 2026-10-28 추가(마스터 지시). 기고 분석 글은 의견

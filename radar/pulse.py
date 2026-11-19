@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"WSJ 주요": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"WSJ 주요": 6, "닛케이 주요": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -40,6 +40,7 @@ PAPER_EVERY_H = 6      # arXiv는 하루 한 번 갱신·robots Crawl-delay 15 �
 DEAL_ITEMS = {"1.01": "중요 계약", "7.01": "공정공시(FD)", "8.01": "기타 중요 사건"}
 # 원본 분류(소스 id 접두) — 여기 없는 소스는 넣지 않는다
 CLASSES = [("WSJ 주요", ("src-wsj-main",)),   # WSJ 섹션별 주요 기사 중 종목·산업 관련(Google News 색인, 2026-11-19 마스터 지시 — Patriot 레이온 기사처럼 감시 종목명이 없는 산업 기사)
+           ("닛케이 주요", ("src-nikkei-main", "src-nikkei-asia")),   # 니혼게이자이 산업·상장기업 기사(Google News 색인, 2026-11-19 마스터 지시)
            ("숏 리포트", ("src-short-sites", "src-company-sites")),   # 운용사 원문 사이트·대상 회사 사이트(2026-11-09 시의성 점검 — 둘 다 분류표에 없어 Pulse가 집지 않았다)
            ("포지션", ("src-cftc",)),
            ("채용 공고", ("src-semianalysis-jobs", "src-job-boards", "src-kr-foreign-hiring")),   # 해외 반도체 한국 채용(2026-11-11)
@@ -60,7 +61,7 @@ CLASSES = [("WSJ 주요", ("src-wsj-main",)),   # WSJ 섹션별 주요 기사 �
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg")),
            ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"))]   # src-consumer-macro = 미·일·유럽·영국 소비 통계 새 달에 문턱 넘은 업종(radar/consumer_macro.py, 2026-11-14)   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
-CLASS_W = {"WSJ 주요": 7, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"WSJ 주요": 7, "닛케이 주요": 7, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -176,6 +177,8 @@ def relevant(it, cls):
     if it.get("source_id") in ("src-tw-revenue-surge", "src-cn-hk-disclosure", "src-price-move"):   # 중문 원문·지도 밖 후보 — 수집기가 업종·중요 공시로 이미 거름(2026-11-09)
         return True
     if it.get("source_id") in ("src-semianalysis-jobs", "src-job-boards", "src-partner-trace", "src-gamma-blog", "src-kr-foreign-hiring", "src-deal-watch", "src-tickertrends", "src-ipo-watch"):   # 수집기가 메모리·한국 공고만 넣는다(2026-11-11)
+        return True
+    if cls == "닛케이 주요":   # 원천이 산업·기업 어휘로 이미 거름, 일본어 원문이 정상(2026-11-19)
         return True
     if cls == "WSJ 주요":   # 원천(src-wsj-main)이 종목·산업 어휘로 이미 거름(2026-11-19)
         return True
