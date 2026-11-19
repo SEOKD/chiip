@@ -1,0 +1,106 @@
+auto: true
+id: us-belfa
+name: Bel Fuse
+ticker: BELFB
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 1.0
+tax: 0.17
+horizon: 10
+as_of: '2026-11-19'
+market:
+  date: '2026-11-19'
+  price: 225.64
+  shares: 0.014386
+  net_debt: -0.186795
+  source: 가격 = 2026-11-18 BELFB 종가 $225.64(Easyconomics·Fiscal.ai 일봉 일치). 주식 수 = Class
+    B 12,324,839 + Class A 2,115,263 × 0.951(3Q 비GAAP EPS A $2.92 ÷ B $3.07 — 배당 차등)
+    = B 환산 14.336M(10-Q 표지 2026-10-31). Class A 실거래가는 $174.71(B보다 23% 낮다)라 시장 시가총액은
+    B $2.78B + A $0.37B = $3.15B, B 환산 시가총액은 $3.23B. 현금 $333.1M, 차입 0(5월 증자 대금으로 리볼버
+    $197.5M 전액 상환). 부채성 = Enercon 잔여 20% 상환 부채 $114.0M(10-Q — Letter Agreement로 금액
+    고정, 유동부채) + 운용 리스 $32.3M = $146.3M
+rev0: 0.8397
+ic0: 0.746581
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.173
+      end: 0.035
+      decay: 0.372
+    margin:
+      m0: 0.175
+      target: 0.215
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.21
+      - 0.215
+    s2c: 1.052
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2981
+      end: 0.04
+      decay: 0.422
+    margin:
+      m0: 0.175
+      target: 0.235
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.21
+      - 0.215
+    s2c: 1.21
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.048
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.175
+      target: 0.195
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.21
+      - 0.215
+    s2c: 0.894
+mc:
+  sigma_growth: 0.0625
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.8297, 0.8497] (3Q26 보도자료(2026-10-28, 8-K EX-99.1) https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm:
+    4Q26 매출 $220~240M, 총이익률 40.0~42.0%. 연간 = 1~3Q 실적 $609.7M + 4Q 범위(계산). EPS 가이던스
+    없음)'
+  growth: 컨센서스 1년차 17.3%, 2년차 8.6%
+  margin: 1~2년차 컨센서스 21.0%, 21.5% 고정 → 목표 22%(3년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.052
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 4.8%~29.8%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +11.1% 아래·강세 +23.6% 위 확률. 내부 관점(컨센서스 +17.3%, σ 13.2%: 범위 25.0% ÷ d2(8) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.014336(2026-10-31) + 옵션·RSU·워런트·전환 0.0001 — 10-Q: 희석·기본 EPS
+    차이 Class B $0.01(3Q). 미가득 제한주식 소량 — 기본 대비 0.'
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-19
+- '어닝콜 위험: 원자재 전반 물가 상승(3Q 콜)'
+- '어닝콜 위험: 멕시코 페소·이스라엘 셰켈 강세로 ADRS 총이익률 39.6%(−150bp)'
+- '어닝콜 위험: 재고 $224.7M(연초 $167.3M) — 수요 대비 선제 확보'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm
+- https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm
+- https://www.sec.gov/Archives/edgar/data/729580/000143774926025619/belfa20260630_10q.htm
+- https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm
+- https://www.sec.gov/Archives/edgar/data/729580/000143774926014903/belfa20260331_10q.htm
+- 3Q26 어닝콜(2026-10-29)
+- 2Q26 어닝콜(2026-07-30)
+- https://www.sec.gov/Archives/edgar/data/729580/000143774926037485/0001437749-26-037485-index.htm

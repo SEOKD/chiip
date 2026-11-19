@@ -1,0 +1,4184 @@
+{
+ "id": "us-belfa",
+ "as_of": "2026-11-19",
+ "unit": "B$",
+ "name": "Bel Fuse",
+ "ticker": "BELFB",
+ "industry": "electronics",
+ "region_mix": {
+  "US": 1.0
+ },
+ "tax": 0.17,
+ "industry_note": "전원(데이터센터·AI 서버·산업)·자성 부품·고신뢰 커넥터(항공·방산). 2026-03부터 두 사업부 — ITDS(산업·데이터 솔루션)·ADRS(항공·방산·고신뢰). Class A(BELFA, 의결권)·Class B(BELFB) 2종",
+ "profile": {
+  "price": 225.64,
+  "shares_basic": 0.014336,
+  "shares_date": "2026-10-31",
+  "cash": 0.333122,
+  "debt": 0.146327,
+  "source": "가격 = 2026-11-18 BELFB 종가 $225.64(Easyconomics·Fiscal.ai 일봉 일치). 주식 수 = Class B 12,324,839 + Class A 2,115,263 × 0.951(3Q 비GAAP EPS A $2.92 ÷ B $3.07 — 배당 차등) = B 환산 14.336M(10-Q 표지 2026-10-31). Class A 실거래가는 $174.71(B보다 23% 낮다)라 시장 시가총액은 B $2.78B + A $0.37B = $3.15B, B 환산 시가총액은 $3.23B. 현금 $333.1M, 차입 0(5월 증자 대금으로 리볼버 $197.5M 전액 상환). 부채성 = Enercon 잔여 20% 상환 부채 $114.0M(10-Q — Letter Agreement로 금액 고정, 유동부채) + 운용 리스 $32.3M = $146.3M"
+ },
+ "dilution": {
+  "potential_total": 5e-05,
+  "date": "2026-10-31",
+  "source": "10-Q: 희석·기본 EPS 차이 Class B $0.01(3Q). 미가득 제한주식 소량 — 기본 대비 0.3% 미만으로 근사(미대조)"
+ },
+ "financials": {
+  "rev_ttm": 0.785624,
+  "ebit_ttm": 0.127453,
+  "invested_capital": 0.746581,
+  "capex_ttm": 0.01446,
+  "da_ttm": 0.0275,
+  "sbc_ttm": 0.0102,
+  "basis": "gaap",
+  "note": "TTM = 4Q25~3Q26 합. EBIT = GAAP 영업이익(Fiscal 표준화 25.8+23.7+38.4+39.6, 3Q는 10-Q $39.553M) $127.5M. 비GAAP 영업이익 TTM $146.0M(보도자료 정의: + SBC·구조조정·언아웃 조정·인수 비용). 투하자본 = 자기자본 $933.4M + Enercon 20% 부채 $114.0M + 리스 $32.3M − 현금 $333.1M = $746.6M. CAPEX TTM $14.5M"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.8397,
+   "FY2027": 0.985,
+   "FY2028": 1.07
+  },
+  "rev_low": {
+   "FY2027": 0.88,
+   "FY2028": 0.86
+  },
+  "rev_high": {
+   "FY2027": 1.09,
+   "FY2028": 1.28
+  },
+  "ebit_margin": {
+   "FY2026": 0.188,
+   "FY2027": 0.223,
+   "FY2028": 0.228
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "note": "매출·EBIT 이익률 = Fiscal.ai 자체 추정(4Q26 회사 가이던스 $220~240M 포함, FY27 $985M·조정 EBIT $220M). 조정 EPS = Street 컨센서스(Class B, 8명 — Alpha Vantage·yfinance). Fiscal 자체 EPS 모델(FY27 $2.11)은 실적(3Q 조정 EPS $3.07)과 어긋나 쓰지 않는다. Street 매출 FY27 $949M(9명, 범위 $904~986M)은 Fiscal보다 낮다. 분기 EPS 2Q~4Q27은 FY27 $12.34에서 1Q27 $2.80을 뺀 몫을 Fiscal 분기 EBIT 비율로 나눈 추정. Zacks 커버리지 없음",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 175.938,
+    "est": 172.007,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-17"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 178.491,
+    "est": 172.07,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 210.685,
+    "est": 206.46,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 220.51,
+    "est": 215.744,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.98,
+    "est": 1.582,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-02-17"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 1.81,
+    "est": 1.622,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 2.9,
+    "est": 2.3986,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": 3.07,
+    "est": 2.7322,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-10-28"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 30.933,
+    "est": null,
+    "est_src": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-02-17"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 27.852,
+    "est": null,
+    "est_src": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 41.959,
+    "est": null,
+    "est_src": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "M$",
+    "actual": 45.239,
+    "est": null,
+    "est_src": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-10-28"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 9,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-19",
+   "source": "yfinance",
+   "target_mean": 323.33,
+   "target_high": 360,
+   "target_low": 300
+  },
+  "n_analysts": 8,
+  "eps": {
+   "FY2026": 10.9,
+   "FY2027": 12.34
+  },
+  "eps_low": {
+   "FY2026": 10.55,
+   "FY2027": 10.75
+  },
+  "eps_high": {
+   "FY2026": 11.31,
+   "FY2027": 13.61
+  },
+  "quarters_est": {
+   "2026-12-31": 0.23,
+   "2027-03-31": 0.236,
+   "2027-06-30": 0.244,
+   "2027-09-30": 0.251,
+   "2027-12-31": 0.254,
+   "2028-03-31": 0.24,
+   "2028-06-30": 0.2725,
+   "2028-09-30": 0.2765
+  },
+  "eps_quarters_est": {
+   "2026-12-31": 3.06,
+   "2027-03-31": 2.8,
+   "2027-06-30": 3.0,
+   "2027-09-30": 3.23,
+   "2027-12-31": 3.31
+  },
+  "source": "Fiscal.ai company_estimates(2026-10-30·11-03), Alpha Vantage EARNINGS_ESTIMATES(2026-11-19), Easyconomics company_profile(yfinance)",
+  "revisions": {
+   "as_of": "2026-11-19",
+   "prev_date": "2026-08-21",
+   "basis": "직전 = 2Q 콜(7/30) 뒤 90일 전 컨센서스(Alpha Vantage eps_estimate_average_90_days_ago, 8명), 지금 = 같은 원천 평균. 같은 기간끼리",
+   "rows": [
+    {
+     "period": "4Q26",
+     "metric": "EPS",
+     "from": 2.372,
+     "to": 3.057
+    },
+    {
+     "period": "1Q27",
+     "metric": "EPS",
+     "from": 2.147,
+     "to": 2.798
+    },
+    {
+     "period": "FY26",
+     "metric": "EPS",
+     "from": 9.83,
+     "to": 10.9
+    },
+    {
+     "period": "FY27",
+     "metric": "EPS",
+     "from": 10.678,
+     "to": 12.34
+    }
+   ]
+  },
+  "price_window": {
+   "from": 242.43,
+   "to": 225.64,
+   "from_date": "2026-07-29",
+   "to_date": "2026-11-18",
+   "note": "2Q 실적 발표일(7/29 장 마감 뒤) 종가 → 지금(Easyconomics 일봉)"
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.8297,
+   0.8497
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "gm_next": [
+   0.4,
+   0.42
+  ],
+  "source": "3Q26 보도자료(2026-10-28, 8-K EX-99.1) https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm: 4Q26 매출 $220~240M, 총이익률 40.0~42.0%. 연간 = 1~3Q 실적 $609.7M + 4Q 범위(계산). EPS 가이던스 없음",
+  "next": {
+   "period": "4Q26(2026-12-31 종료)",
+   "rev": 230.0,
+   "rev_range": [
+    220.0,
+    240.0
+   ],
+   "rev_cons": 230.1,
+   "gm_range": [
+    0.4,
+    0.42
+   ],
+   "unit": "$M",
+   "basis": "회사 가이던스 — 컨센서스는 발표 뒤 값(9명)"
+  },
+  "fy": {
+   "note": "연간 숫자 가이던스 없음 — 1Q27은 '보통의 계절 감소가 아닐 수 있다'(3Q 콜, 매출의 약 절반이 항공·방산)"
+  }
+ },
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-07-30",
+  "tone": "up",
+  "guidance_direction": "raise",
+  "source": "3Q26 어닝콜(2026-10-29) 질의응답, 직전 2Q26 어닝콜(2026-07-30)",
+  "kpis": {
+   "rev_3q_m": 220.5,
+   "rev_yoy": 0.232,
+   "gm_3q": 0.409,
+   "adj_ebitda_margin": 0.238,
+   "eps_adj_3q": 3.07,
+   "itds_rev_m": 113.9,
+   "itds_yoy": 0.378,
+   "adrs_rev_m": 106.6,
+   "adrs_yoy": 0.107,
+   "backlog_m": 680.3,
+   "backlog_oct_m": 742.4,
+   "cash_m": 333.1,
+   "inventory_m": 224.7
+  },
+  "guidance_changes": [
+   "4Q26 매출 $220~240M(중간 $230M) — 4Q는 보통 2·3Q보다 줄어드는데 이번엔 3Q $220.5M 이상",
+   "4Q 총이익률 40~42%(3Q 40.9%)"
+  ],
+  "new_topics": [
+   "10/31 수주잔고 $742.4M — 데이터 솔루션 고객의 2027 출하분 주문",
+   "1Q27도 보통의 계절 감소가 아닐 수 있다(매출 절반이 항공·방산)",
+   "원자재 전반 물가 상승 — 고객에게 대부분 전가"
+  ],
+  "dropped_topics": [
+   "2Q 콜의 '6분기 연속 B/B 1 초과' 표현이 '사상 최대 수주'로 바뀜"
+  ],
+  "analyst_focus": [
+   "Northland — 4Q 계절성 역행·A&D 신규 프로그램",
+   "JPMorgan — 믹스 전환·M&A 우선순위",
+   "Needham — AI 고객 프로그램·설계 채택",
+   "Craig-Hallum — 가격 인상 효과·방산 예산",
+   "Bank of America — 유통 재고·가격 탄력·1Q 계절성",
+   "Baird·Citigroup — ITDS 영업 레버리지·CAPEX"
+  ],
+  "risks": [
+   "원자재 전반 물가 상승(3Q 콜)",
+   "멕시코 페소·이스라엘 셰켈 강세로 ADRS 총이익률 39.6%(−150bp)",
+   "재고 $224.7M(연초 $167.3M) — 수요 대비 선제 확보",
+   "중국 생산 면적 56%·이스라엘 공장(10-K)",
+   "Enercon 잔여 20% 매입 $114.0M 지급 예정"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "item": "4Q 가이던스 계절성 역행",
+    "label": "4Q $220~240M",
+    "prior": "3Q 가이던스 중간 $215M(2Q 콜)",
+    "latest": "4Q $220~240M — 통상 4Q는 감소",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "item": "수주잔고 급증",
+    "label": "잔고 $742M",
+    "prior": "6/30 수주잔고 $594.7M(2Q 10-Q)",
+    "latest": "9/30 $680.3M, 10/31 $742.4M(ITDS 연초 대비 +92.8%)",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   },
+   {
+    "id": "D3",
+    "kind": "신규",
+    "item": "1Q27 계절 감소 약화",
+    "label": "1Q 계절성 약화",
+    "prior": "1Q는 춘절로 감소(과거)",
+    "latest": "1Q27도 보통의 감소가 아닐 수 있다(3Q 콜)",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "3Q26 어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D4",
+    "kind": "업데이트",
+    "item": "가격 인상 반영",
+    "label": "ITDS GM 42.7%",
+    "prior": "가격 인상은 3Q부터 반영(2Q 콜), 2Q ITDS 총이익률 38.8%",
+    "latest": "3Q ITDS 총이익률 42.7%(+470bp YoY)",
+    "driver": "margin_m0",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "id": "D5",
+    "kind": "부정",
+    "item": "원자재·환율 압력",
+    "label": "ADRS GM −150bp",
+    "prior": "2Q ADRS 총이익률 41.1%",
+    "latest": "3Q ADRS 39.6% — 페소·셰켈 강세, 원자재 상승",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 0.8,
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "id": "D6",
+    "kind": "반복",
+    "item": "캐파 여유",
+    "label": "캐파 충분",
+    "prior": "캐파는 주된 걱정이 아니다(2Q 콜)",
+    "latest": "현재 시설로 캐파 문제 없음, CAPEX 낮게 유지(3Q 콜)",
+    "driver": "s2c",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q26 어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D7",
+    "kind": "신규",
+    "item": "Enercon 20% 금액 고정",
+    "label": "Enercon $114M 확정",
+    "prior": "잔여 20% 풋·콜 — 가격 조정 조항",
+    "latest": "Letter Agreement로 상환액 $114.0M 고정·부채 재분류, 2026 언아웃 $5.0M(10-Q)",
+    "driver": "net_debt",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   }
+  ]
+ },
+ "sources": [
+  "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm",
+  "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm",
+  "https://www.sec.gov/Archives/edgar/data/729580/000143774926025619/belfa20260630_10q.htm",
+  "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+  "https://www.sec.gov/Archives/edgar/data/729580/000143774926014903/belfa20260331_10q.htm",
+  "3Q26 어닝콜(2026-10-29)",
+  "2Q26 어닝콜(2026-07-30)",
+  "https://www.sec.gov/Archives/edgar/data/729580/000143774926037485/0001437749-26-037485-index.htm"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-19T13:40+09:00",
+  "fiscal_profile": {
+   "price": 225.64,
+   "market_cap": 3.258,
+   "total_cash": 0.333122,
+   "total_debt": 0.146327,
+   "balance_date": "2026-09-30",
+   "total_debt_note": "개요 원값 총차입 $32.3M(리스만, yfinance·Fiscal 표준 재무상태표 차입 0) + 10-Q Enercon 잔여 20% 상환 부채 $114.0M(유동부채 'Redeemable noncontrolling interest liability', 금액 고정 — 차입 성격)을 합쳐 대조",
+   "note": "Fiscal calculated_market_cap $3.26B(BELFB 가격 × 전체 주식). companyKey NASDAQ_BELFB 조회가 BELFA 회사 키로 연결됨"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "4Q25": 0.175938,
+    "1Q26": 0.178491,
+    "2Q26": 0.210685,
+    "3Q26": 0.22051
+   },
+   "op_income": {
+    "4Q25": 0.0258,
+    "1Q26": 0.0237,
+    "2Q26": 0.0384,
+    "3Q26": 0.039553
+   }
+  },
+  "nongaap_op": [
+   30.933,
+   27.852,
+   41.959,
+   45.239
+  ],
+  "shares": {
+   "class_a": 2115263,
+   "class_b": 12324839,
+   "date": "2026-10-31"
+  },
+  "eps_adj_b": [
+   1.98,
+   1.81,
+   2.9,
+   3.07
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "source": "Fiscal.ai·SEC 10-Q·8-K EX-99.1·Easyconomics(yfinance)·Alpha Vantage. 대체 원천: TradingView 일일 한도 초과로 일봉은 Easyconomics(yfinance) 실측",
+  "shares_cover_implied": 0.014439,
+  "balance_2026_09_30": {
+   "equity": 0.933371,
+   "debt_current": 0.114038,
+   "debt_lt": 0.0,
+   "lease_current": 0.008689,
+   "lease_lt": 0.023575,
+   "cash": 0.333122,
+   "st_investments": 0.0,
+   "inventory": 0.224712,
+   "goodwill": 0.216895,
+   "intangibles": 0.214292,
+   "note": "debt_current = Enercon 20% 상환 부채(10-Q)"
+  },
+  "estimates_sales_m": {
+   "2026Q1": 178.491,
+   "2026Q2": 210.685,
+   "2026Q3": 220.51,
+   "2026Q4": 230.0,
+   "2027Q1": 236.0,
+   "2027Q2": 244.0,
+   "2027Q3": 251.0,
+   "2027Q4": 254.0,
+   "2028Q1": 239.88,
+   "2028Q2": 272.52,
+   "2028Q3": 276.46,
+   "2028Q4": 281.13
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 18.33,
+  "ev_ebitda_fwd": 13.63,
+  "pe_fwd2": 17.13,
+  "ev_ebitda_fwd2": 11.49,
+  "pe_fwd3": 15.78,
+  "ev_ebitda_fwd3": 10.55
+ },
+ "forward": {
+  "as_of": "2026-11-18",
+  "ntm": {
+   "eps": 12.31,
+   "ebitda": 232498613,
+   "ebit": 202641786,
+   "revenue": 961000000,
+   "rev_ttm": 785624000
+  },
+  "horizons": {
+   "2": {
+    "eps": 13.17,
+    "ebitda": 275819007,
+    "ext": 0
+   },
+   "3": {
+    "eps": 14.3,
+    "ebitda": 300290491.79,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "street",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정). BELFB 대상 EPS는 Fiscal 자체 모델 EPS(NTM $2.06)가 실적(3Q26 조정 EPS $3.07)과 어긋나 Street 컨센서스 EPS(4Q26 $3.06 + FY27 $12.34 × 0.75 = NTM $12.31, 8명 — Alpha Vantage·yfinance)로 대체, Fwd 2Y·3Y는 Fiscal FY27→FY28 EPS 성장률(+9%) 연장 추정. Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "peers": [
+  {
+   "name": "Vicor",
+   "ticker": "VICR",
+   "key": "NASDAQ_VICR",
+   "rev": 0.560699,
+   "ebit_margin": 0.249,
+   "growth": 0.27,
+   "mcap": 6.719,
+   "pb": 7.41,
+   "debt": 0.0,
+   "cash": 0.513,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "ev_sales": 11.068,
+   "pe_fwd": 27.77,
+   "ev_ebitda_fwd": 19.96,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 54.53,
+     "ev_ebitda_fwd": 34.68
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 59.85,
+     "ev_ebitda_fwd": 40.13
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 74.83,
+     "ev_ebitda_fwd": 51.75
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 58.37,
+     "ev_ebitda_fwd": 38.56
+    }
+   ],
+   "pe_fwd2": 20.9,
+   "ev_ebitda_fwd2": 15.31,
+   "pe_fwd3": 16.53,
+   "ev_ebitda_fwd3": 12.23,
+   "ntm_ebit_margin": 0.3508,
+   "ntm_growth": 0.4635
+  },
+  {
+   "name": "Advanced Energy",
+   "ticker": "AEIS",
+   "key": "NASDAQ_AEIS",
+   "rev": 2.2709,
+   "ebit_margin": 0.16,
+   "growth": 0.317,
+   "mcap": 8.72,
+   "pb": 5.48,
+   "debt": 1.266,
+   "cash": 1.425,
+   "goodwill": 0.299,
+   "intangibles": 0.102,
+   "ev_sales": 3.77,
+   "pe_fwd": 12.01,
+   "ev_ebitda_fwd": 11.19,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 28.22,
+     "ev_ebitda_fwd": 20.9
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 38.82,
+     "ev_ebitda_fwd": 29.65
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 39.92,
+     "ev_ebitda_fwd": 31.83
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 20.75,
+     "ev_ebitda_fwd": 16.48
+    }
+   ],
+   "pe_fwd2": 9.58,
+   "ev_ebitda_fwd2": 9.1,
+   "pe_fwd3": 8.09,
+   "ev_ebitda_fwd3": 7.84,
+   "ntm_ebit_margin": 0.2658,
+   "ntm_growth": 0.3876
+  },
+  {
+   "name": "Littelfuse",
+   "ticker": "LFUS",
+   "key": "NASDAQ_LFUS",
+   "rev": 2.756,
+   "ebit_margin": 0.055,
+   "growth": 0.187,
+   "mcap": 9.824,
+   "pb": 3.61,
+   "debt": 0.63,
+   "cash": 0.825,
+   "goodwill": 1.205,
+   "intangibles": 0.538,
+   "ev_sales": 3.494,
+   "pe_fwd": 18.01,
+   "ev_ebitda_fwd": 11.89,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 20.23,
+     "ev_ebitda_fwd": 9.46
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 24.75,
+     "ev_ebitda_fwd": 13.15
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 32.38,
+     "ev_ebitda_fwd": 16.21
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.97,
+     "ev_ebitda_fwd": 13.23
+    }
+   ],
+   "pe_fwd2": 16.05,
+   "ev_ebitda_fwd2": 11.06,
+   "pe_fwd3": 14.74,
+   "ev_ebitda_fwd3": 10.55,
+   "ntm_ebit_margin": 0.235,
+   "ntm_growth": 0.1602
+  },
+  {
+   "name": "Amphenol",
+   "ticker": "APH",
+   "key": "NYSE_APH",
+   "rev": 33.047,
+   "ebit_margin": 0.277,
+   "growth": 0.576,
+   "mcap": 188.48,
+   "pb": 11.0,
+   "debt": 17.871,
+   "cash": 5.301,
+   "goodwill": 17.696,
+   "intangibles": 5.344,
+   "ev_sales": 6.084,
+   "pe_fwd": 21.21,
+   "ev_ebitda_fwd": 13.27,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 17.64,
+     "ev_ebitda_fwd": 21.53
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 13.82,
+     "ev_ebitda_fwd": 16.09
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 16.86,
+     "ev_ebitda_fwd": 19.1
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 26.94,
+     "ev_ebitda_fwd": 16.02
+    }
+   ],
+   "pe_fwd2": 18.76,
+   "ev_ebitda_fwd2": 12.09,
+   "pe_fwd3": 16.3,
+   "ev_ebitda_fwd3": 10.77,
+   "ntm_ebit_margin": 0.2988,
+   "ntm_growth": 0.3609
+  },
+  {
+   "name": "TE Connectivity",
+   "ticker": "TEL",
+   "key": "NYSE_TEL",
+   "rev": 19.885,
+   "ebit_margin": 0.201,
+   "growth": 0.152,
+   "mcap": 60.805,
+   "pb": 4.48,
+   "debt": 5.639,
+   "cash": 1.697,
+   "goodwill": 7.42,
+   "intangibles": 2.031,
+   "ev_sales": 3.256,
+   "pe_fwd": 15.54,
+   "ev_ebitda_fwd": 10.96,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 21.46,
+     "ev_ebitda_fwd": 14.5
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 19.11,
+     "ev_ebitda_fwd": 12.15
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 16.53,
+     "ev_ebitda_fwd": 11.27
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 16.39,
+     "ev_ebitda_fwd": 10.92
+    }
+   ],
+   "pe_fwd2": 13.73,
+   "ev_ebitda_fwd2": 9.83,
+   "pe_fwd3": 12.4,
+   "ev_ebitda_fwd3": 8.97,
+   "ntm_ebit_margin": 0.2291,
+   "ntm_growth": 0.1189
+  }
+ ],
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai company_financials_standardized(분기 손익 4개 합·최근 분기 재무상태표)·calculated_market_cap·ratio_price_to_book, 조회 2026-11-19. 동종 = 전원(Vicor·Advanced Energy)·회로 보호(Littelfuse)·커넥터(Amphenol·TE Connectivity). LFUS EBIT 이익률은 손상차손 반영 GAAP",
+ "ops": {
+  "q": [
+   {
+    "period": "2022-12-31",
+    "rev": 169203000,
+    "cogs": 116696000,
+    "inventory": 172465000,
+    "ocf": 16188000,
+    "capex": -3220000,
+    "fcf": 12968000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 172344000,
+    "cogs": 118680000,
+    "inventory": 165814000,
+    "ocf": 16835000,
+    "capex": -3761000,
+    "fcf": 13074000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 168777000,
+    "cogs": 113240000,
+    "inventory": 157265000,
+    "ocf": 23821000,
+    "capex": -3320000,
+    "fcf": 20501000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 158682000,
+    "cogs": 103217000,
+    "inventory": 139997000,
+    "ocf": 40769000,
+    "capex": -2578000,
+    "fcf": 38191000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 140010000,
+    "cogs": 88827000,
+    "inventory": 136540000,
+    "ocf": 26924000,
+    "capex": -2467000,
+    "fcf": 24457000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 128090000,
+    "cogs": 80012000,
+    "inventory": 130459000,
+    "ocf": 6150000,
+    "capex": -2929000,
+    "fcf": 3221000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 133205000,
+    "cogs": 79809000,
+    "inventory": 127931000,
+    "ocf": 32194000,
+    "capex": -1349000,
+    "fcf": 30845000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 123638000,
+    "cogs": 78961000,
+    "inventory": 124885000,
+    "ocf": 27376000,
+    "capex": -3628000,
+    "fcf": 23748000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 149859000,
+    "cogs": 93652000,
+    "inventory": 161370000,
+    "ocf": 8344000,
+    "capex": -6202000,
+    "fcf": 2142000,
+    "backlog": 381600000.0
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 152238000,
+    "cogs": 93419000,
+    "inventory": 164815000,
+    "ocf": 8147000,
+    "capex": -2790000,
+    "fcf": 5357000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 168299000,
+    "cogs": 103216000,
+    "inventory": 164648000,
+    "ocf": 20717000,
+    "capex": -3928000,
+    "fcf": 16789000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 178980000,
+    "cogs": 107840000,
+    "inventory": 166112000,
+    "ocf": 22180000,
+    "capex": -1860000,
+    "fcf": 20320000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 175938000,
+    "cogs": 106562000,
+    "inventory": 167270000,
+    "ocf": 29568000,
+    "capex": -3424000,
+    "fcf": 26144000,
+    "backlog": 439100000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 178491000,
+    "cogs": 108893000,
+    "inventory": 181234000,
+    "ocf": 13828000,
+    "capex": -2643000,
+    "fcf": 11185000,
+    "backlog": 531300000.0,
+    "orders": 270691000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 210685000,
+    "cogs": 126718000,
+    "inventory": 200226000,
+    "ocf": 17934000,
+    "capex": -2247000,
+    "fcf": 15687000,
+    "backlog": 594700000.0,
+    "orders": 274085000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 220510000,
+    "cogs": 130229000,
+    "inventory": 224712000,
+    "ocf": 34194000,
+    "capex": -6146000,
+    "fcf": 28048000,
+    "backlog": 680300000.0,
+    "orders": 306110000
+   }
+  ],
+  "orders_label": "수주(계산 = 잔고 변화 + 매출)",
+  "backlog_label": "Order backlog(10-K·10-Q MD&A)",
+  "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표) + 수주잔고는 10-K(2025-12-31 $439.1M, 2024-12-31 $381.6M)·10-Q(3/31 $531.3M, 6/30 $594.7M, 9/30 $680.3M) MD&A, 분기 수주는 잔고 변화 + 매출로 계산(1Q26 dataMate 인수 잔고 포함 가능)"
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_BELFB",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2015-12-31",
+    "rev": 135200000,
+    "cogs": 109200000,
+    "gp": 26000000,
+    "sga": 20400000,
+    "rd": null,
+    "da": null,
+    "other": 600000,
+    "op": 5100000
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 121200000,
+    "cogs": 98100000,
+    "gp": 23100000,
+    "sga": 17700000,
+    "rd": null,
+    "da": null,
+    "other": 108800000,
+    "op": -103400000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 131600000,
+    "cogs": 105900000,
+    "gp": 25700000,
+    "sga": 18000000,
+    "rd": null,
+    "da": null,
+    "other": -2200000,
+    "op": 10000000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 128800000,
+    "cogs": 102200000,
+    "gp": 26600000,
+    "sga": 19400000,
+    "rd": null,
+    "da": null,
+    "other": 2100000,
+    "op": 5100000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 118500000,
+    "cogs": 94000000,
+    "gp": 24600000,
+    "sga": 16000000,
+    "rd": null,
+    "da": null,
+    "other": 2100000,
+    "op": 6500000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 113700000,
+    "cogs": 90300000,
+    "gp": 23400000,
+    "sga": 21000000,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": 2400000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 131600000,
+    "cogs": 102500000,
+    "gp": 29100000,
+    "sga": 21700000,
+    "rd": null,
+    "da": null,
+    "other": 100000,
+    "op": 7300000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 126400000,
+    "cogs": 98700000,
+    "gp": 27700000,
+    "sga": 20900000,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": 6800000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 119900000,
+    "cogs": 97800000,
+    "gp": 22200000,
+    "sga": 21100000,
+    "rd": null,
+    "da": null,
+    "other": 100000,
+    "op": 1000000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 118300000,
+    "cogs": 97100000,
+    "gp": 21100000,
+    "sga": 20700000,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": 400000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 140700000,
+    "cogs": 111700000,
+    "gp": 29000000,
+    "sga": 18300000,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": 10700000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 146500000,
+    "cogs": 117300000,
+    "gp": 29200000,
+    "sga": 18700000,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": 10500000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 142700000,
+    "cogs": 82800000,
+    "gp": 59900000,
+    "sga": 24900000,
+    "rd": null,
+    "da": null,
+    "other": 200000,
+    "op": 5300000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 125400000,
+    "cogs": 94600000,
+    "gp": 30700000,
+    "sga": 19200000,
+    "rd": 7200000,
+    "da": null,
+    "other": 900000,
+    "op": 3400000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 127400000,
+    "cogs": 100700000,
+    "gp": 26700000,
+    "sga": 19200000,
+    "rd": 6900000,
+    "da": null,
+    "other": 4700000,
+    "op": -4000000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 124500000,
+    "cogs": 95900000,
+    "gp": 28600000,
+    "sga": 18500000,
+    "rd": 6200000,
+    "da": null,
+    "other": 8600000,
+    "op": -4700000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 115100000,
+    "cogs": 91300000,
+    "gp": 23900000,
+    "sga": 20500000,
+    "rd": 6700000,
+    "da": null,
+    "other": 12800000,
+    "op": -16100000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 104000000,
+    "cogs": 78200000,
+    "gp": 25800000,
+    "sga": 20700000,
+    "rd": 6100000,
+    "da": null,
+    "other": 100000,
+    "op": -1100000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 121200000,
+    "cogs": 89900000,
+    "gp": 31300000,
+    "sga": 19100000,
+    "rd": 6100000,
+    "da": null,
+    "other": 0,
+    "op": 6100000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 124500000,
+    "cogs": 91200000,
+    "gp": 33300000,
+    "sga": 19400000,
+    "rd": 5700000,
+    "da": null,
+    "other": 100000,
+    "op": 8100000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 116100000,
+    "cogs": 86800000,
+    "gp": 29400000,
+    "sga": 19600000,
+    "rd": 5700000,
+    "da": null,
+    "other": 2200000,
+    "op": 1900000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 110600000,
+    "cogs": 86400000,
+    "gp": 24300000,
+    "sga": 21000000,
+    "rd": 5000000,
+    "da": null,
+    "other": 6200000,
+    "op": -7900000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 138700000,
+    "cogs": 104500000,
+    "gp": 34200000,
+    "sga": 21800000,
+    "rd": 5500000,
+    "da": null,
+    "other": 300000,
+    "op": 6600000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 147000000,
+    "cogs": 111000000,
+    "gp": 36000000,
+    "sga": 21200000,
+    "rd": 5900000,
+    "da": null,
+    "other": 800000,
+    "op": 8100000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 147100000,
+    "cogs": 107900000,
+    "gp": 39300000,
+    "sga": 21900000,
+    "rd": 5600000,
+    "da": null,
+    "other": 500000,
+    "op": 11300000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 136700000,
+    "cogs": 102600000,
+    "gp": 34100000,
+    "sga": 21000000,
+    "rd": 5000000,
+    "da": null,
+    "other": null,
+    "op": 8100000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 170600000,
+    "cogs": 125100000,
+    "gp": 45500000,
+    "sga": 24000000,
+    "rd": 4700000,
+    "da": null,
+    "other": 0,
+    "op": 16800000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 177700000,
+    "cogs": 126200000,
+    "gp": 51500000,
+    "sga": 22200000,
+    "rd": 4900000,
+    "da": null,
+    "other": 5600000,
+    "op": 18900000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 169200000,
+    "cogs": 116700000,
+    "gp": 52500000,
+    "sga": 25100000,
+    "rd": 5900000,
+    "da": null,
+    "other": 3300000,
+    "op": 18200000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 172300000,
+    "cogs": 118700000,
+    "gp": 53700000,
+    "sga": 25300000,
+    "rd": 5200000,
+    "da": null,
+    "other": 3500000,
+    "op": 19600000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 168800000,
+    "cogs": 113200000,
+    "gp": 55500000,
+    "sga": 25100000,
+    "rd": 6000000,
+    "da": null,
+    "other": 4400000,
+    "op": 20000000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 158700000,
+    "cogs": 103200000,
+    "gp": 55500000,
+    "sga": 23700000,
+    "rd": 5300000,
+    "da": null,
+    "other": 2200000,
+    "op": 24200000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 140000000,
+    "cogs": 88800000,
+    "gp": 51200000,
+    "sga": 24900000,
+    "rd": 6000000,
+    "da": null,
+    "other": 3700000,
+    "op": 16600000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 128100000,
+    "cogs": 80000000,
+    "gp": 48100000,
+    "sga": 24900000,
+    "rd": 5200000,
+    "da": null,
+    "other": 100000,
+    "op": 17900000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 133200000,
+    "cogs": 79800000,
+    "gp": 53400000,
+    "sga": 24100000,
+    "rd": 6000000,
+    "da": null,
+    "other": 600000,
+    "op": 22600000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 123600000,
+    "cogs": 79000000,
+    "gp": 44700000,
+    "sga": 26700000,
+    "rd": 5400000,
+    "da": null,
+    "other": 1100000,
+    "op": 11400000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 149900000,
+    "cogs": 93700000,
+    "gp": 56200000,
+    "sga": 34800000,
+    "rd": 6900000,
+    "da": null,
+    "other": 1700000,
+    "op": 12800000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 152200000,
+    "cogs": 93400000,
+    "gp": 58800000,
+    "sga": 29500000,
+    "rd": 7200000,
+    "da": null,
+    "other": -2900000,
+    "op": 25000000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 168300000,
+    "cogs": 103200000,
+    "gp": 65100000,
+    "sga": 30900000,
+    "rd": 8100000,
+    "da": null,
+    "other": 4400000,
+    "op": 21700000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 179000000,
+    "cogs": 107800000,
+    "gp": 71100000,
+    "sga": 32800000,
+    "rd": 7500000,
+    "da": null,
+    "other": 3700000,
+    "op": 27100000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 175900000,
+    "cogs": 106600000,
+    "gp": 69400000,
+    "sga": 32600000,
+    "rd": 8000000,
+    "da": null,
+    "other": 3000000,
+    "op": 25800000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 178500000,
+    "cogs": 108900000,
+    "gp": 69600000,
+    "sga": 36700000,
+    "rd": 8500000,
+    "da": null,
+    "other": 700000,
+    "op": 23700000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 210700000,
+    "cogs": 126700000,
+    "gp": 84000000,
+    "sga": 36300000,
+    "rd": 9000000,
+    "da": null,
+    "other": 300000,
+    "op": 38400000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 220500000,
+    "cogs": 130200000,
+    "gp": 90300000,
+    "sga": 39400000,
+    "rd": 8800000,
+    "da": null,
+    "other": 2500000,
+    "op": 39600000
+   }
+  ]
+ },
+ "assets": {
+  "as_of": "3Q26",
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "note_periods": [
+   "2025-12-31",
+   "2024-12-31"
+  ],
+  "ppe": [
+   {
+    "name": "토지",
+    "kind": "land",
+    "gross": [
+     0.13,
+     0.115
+    ]
+   },
+   {
+    "name": "건물·개량",
+    "kind": "building",
+    "gross": [
+     16.408,
+     19.385
+    ],
+    "accum": [
+     null,
+     null
+    ]
+   },
+   {
+    "name": "기계·장비",
+    "kind": "equipment",
+    "gross": [
+     103.445,
+     99.747
+    ],
+    "accum": [
+     null,
+     null
+    ]
+   },
+   {
+    "name": "건설 중",
+    "kind": "cip",
+    "gross": [
+     7.114,
+     5.243
+    ]
+   }
+  ],
+  "ppe_accum": [
+   78.669,
+   76.611
+  ],
+  "intangibles": [
+   {
+    "name": "영업권",
+    "kind": "goodwill",
+    "gross": [
+     214.821,
+     208.036
+    ],
+    "accum": [
+     0,
+     0
+    ],
+    "acquired": true
+   },
+   {
+    "name": "특허·라이선스·기술",
+    "kind": "finite",
+    "gross": [
+     56.417,
+     56.628
+    ],
+    "accum": [
+     15.642,
+     12.589
+    ],
+    "acquired": true
+   },
+   {
+    "name": "고객관계",
+    "kind": "finite",
+    "gross": [
+     187.723,
+     186.683
+    ],
+    "accum": [
+     48.936,
+     36.953
+    ],
+    "acquired": true,
+    "life": [
+     17,
+     17
+    ]
+   },
+   {
+    "name": "상표",
+    "kind": "indefinite",
+    "gross": [
+     38.563,
+     38.337
+    ],
+    "accum": [
+     0.159,
+     0.158
+    ],
+    "acquired": true
+   }
+  ],
+  "dep_annual": [
+   {
+    "year": 2025,
+    "dep": 11.8,
+    "amort": 14.8
+   },
+   {
+    "year": 2024,
+    "dep": 9.9,
+    "amort": 6.5
+   }
+  ],
+  "quarters": [
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "da": 3.636,
+    "ppe_net": 36.735,
+    "ppe_gross": 117.714
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "da": 5.698,
+    "ppe_net": 47.879,
+    "ppe_gross": 124.49
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "da": 6.684,
+    "ppe_net": 47.271,
+    "ppe_gross": 121.222
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "da": 6.6,
+    "ppe_net": 48.704,
+    "ppe_gross": 124.779
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "da": 6.652,
+    "ppe_net": 47.555,
+    "ppe_gross": 124.896
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "da": 6.656,
+    "ppe_net": 48.428,
+    "ppe_gross": 127.097
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "da": 6.624,
+    "ppe_net": 48.479,
+    "ppe_gross": 130.638
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "da": 6.911,
+    "ppe_net": 47.051,
+    "ppe_gross": 129.968
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "da": 7.271,
+    "ppe_net": 50.32,
+    "ppe_gross": 135.191
+   }
+  ],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기)",
+  "roic": {
+   "periods": [
+    "TTM 3Q26",
+    "TTM 3Q25"
+   ],
+   "rev": [
+    785.624,
+    649.376
+   ],
+   "ebit": [
+    127.414,
+    97.593
+   ],
+   "acq_amort": [
+    14.8,
+    6.5
+   ],
+   "tax_rate": 0.2,
+   "lease_liab": [
+    32.264,
+    23.098,
+    23.259
+   ],
+   "lease_rate": 0.06,
+   "impairment_cum": 101.65,
+   "capital": {
+    "nwc": [
+     250.221,
+     208.481,
+     134.642
+    ],
+    "ppe": [
+     50.32,
+     47.555,
+     36.735
+    ],
+    "rou": [
+     31.579,
+     21.98,
+     22.901
+    ],
+    "goodwill": [
+     216.895,
+     214.643,
+     26.922
+    ],
+    "intangibles": [
+     214.292,
+     221.212,
+     45.85
+    ],
+    "other": [
+     26.994,
+     23.973,
+     31.117
+    ]
+   },
+   "note": "SEC 공시 데이터 자동 초안 — 운전자본 = 매출채권 + 재고 + 선급 − (매입채무 + 미지급비용 + 선수수익), 현금 제외. 손상 누계는 공시 데이터 수록분"
+  },
+  "hist": [
+   {
+    "q": "4Q22",
+    "end": "2022-12-31",
+    "rev": 169.203,
+    "ebit": 18.202,
+    "cogs": 116.696,
+    "capex": 3.22,
+    "da": 3.259,
+    "amort": null,
+    "bal": {
+     "ar": 107.274,
+     "inv": 172.465,
+     "prepaid": 13.159,
+     "ap": 64.589,
+     "accrued": 50.873,
+     "deferred_rev": 8.847,
+     "ppe": 36.833,
+     "rou": 21.551,
+     "goodwill": 25.099,
+     "intangibles": 54.111,
+     "other": 27.686
+    },
+    "lease": 21.612
+   },
+   {
+    "q": "1Q23",
+    "end": "2023-03-31",
+    "rev": 172.344,
+    "ebit": 19.638,
+    "cogs": 118.68,
+    "capex": 3.761,
+    "da": 3.236,
+    "amort": null,
+    "bal": {
+     "ar": 108.965,
+     "inv": 165.814,
+     "prepaid": 13.446,
+     "ap": 60.237,
+     "accrued": 47.618,
+     "deferred_rev": 7.145,
+     "ppe": 38.498,
+     "rou": 20.322,
+     "goodwill": 25.4,
+     "intangibles": 53.163,
+     "other": 27.789
+    },
+    "lease": 20.311
+   },
+   {
+    "q": "2Q23",
+    "end": "2023-06-30",
+    "rev": 168.777,
+    "ebit": 27.359,
+    "cogs": 113.24,
+    "capex": 3.32,
+    "da": 3.335,
+    "amort": null,
+    "bal": {
+     "ar": 106.913,
+     "inv": 157.265,
+     "prepaid": 11.797,
+     "ap": 51.754,
+     "accrued": 55.855,
+     "deferred_rev": 3.542,
+     "ppe": 38.446,
+     "rou": 22.771,
+     "goodwill": 25.897,
+     "intangibles": 52.021,
+     "other": 30.593
+    },
+    "lease": 22.804
+   },
+   {
+    "q": "3Q23",
+    "end": "2023-09-30",
+    "rev": 158.682,
+    "ebit": 24.512,
+    "cogs": 103.217,
+    "capex": 2.578,
+    "da": 3.391,
+    "amort": null,
+    "bal": {
+     "ar": 94.265,
+     "inv": 139.997,
+     "prepaid": 11.875,
+     "ap": 43.984,
+     "accrued": 55.256,
+     "deferred_rev": 2.94,
+     "ppe": 38.193,
+     "rou": 21.66,
+     "goodwill": 25.463,
+     "intangibles": 50.662,
+     "other": 31.315
+    },
+    "lease": 21.741
+   },
+   {
+    "q": "4Q23",
+    "end": "2023-12-31",
+    "rev": 140.01,
+    "ebit": 16.467,
+    "cogs": 88.827,
+    "capex": 2.467,
+    "da": 3.35,
+    "amort": null,
+    "bal": {
+     "ar": 84.129,
+     "inv": 136.54,
+     "prepaid": 19.819,
+     "ap": 40.441,
+     "accrued": 54.657,
+     "deferred_rev": 3.046,
+     "ppe": 36.533,
+     "rou": 20.481,
+     "goodwill": 26.642,
+     "intangibles": 49.391,
+     "other": 28.022
+    },
+    "lease": 20.562
+   },
+   {
+    "q": "1Q24",
+    "end": "2024-03-31",
+    "rev": 128.09,
+    "ebit": 17.854,
+    "cogs": 80.012,
+    "capex": 2.929,
+    "da": 3.684,
+    "amort": null,
+    "bal": {
+     "ar": 83.458,
+     "inv": 130.459,
+     "prepaid": 20.052,
+     "ap": 32.818,
+     "accrued": 36.772,
+     "deferred_rev": 2.606,
+     "ppe": 36.036,
+     "rou": 21.328,
+     "goodwill": 25.347,
+     "intangibles": 47.868,
+     "other": 29.379
+    },
+    "lease": 21.457
+   },
+   {
+    "q": "2Q24",
+    "end": "2024-06-30",
+    "rev": 133.205,
+    "ebit": 22.623,
+    "cogs": 79.809,
+    "capex": 1.349,
+    "da": 3.439,
+    "amort": null,
+    "bal": {
+     "ar": 81.153,
+     "inv": 127.931,
+     "prepaid": 17.233,
+     "ap": 36.415,
+     "accrued": 38.916,
+     "deferred_rev": 2.32,
+     "ppe": 35.082,
+     "rou": 21.945,
+     "goodwill": 25.415,
+     "intangibles": 46.715,
+     "other": 29.756
+    },
+    "lease": 22.123
+   },
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "rev": 123.638,
+    "ebit": 11.447,
+    "cogs": 78.961,
+    "capex": 3.628,
+    "da": 3.636,
+    "amort": null,
+    "bal": {
+     "ar": 75.998,
+     "inv": 124.885,
+     "prepaid": 15.586,
+     "ap": 37.139,
+     "accrued": 42.109,
+     "deferred_rev": 2.579,
+     "ppe": 36.735,
+     "rou": 22.901,
+     "goodwill": 26.922,
+     "intangibles": 45.85,
+     "other": 31.117
+    },
+    "lease": 23.259
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "rev": 149.859,
+    "ebit": 12.373,
+    "cogs": 93.652,
+    "capex": 6.202,
+    "da": 5.698,
+    "amort": null,
+    "bal": {
+     "ar": 111.376,
+     "inv": 161.37,
+     "prepaid": 24.525,
+     "ap": 49.182,
+     "accrued": 53.031,
+     "deferred_rev": 6.12,
+     "ppe": 47.879,
+     "rou": 25.125,
+     "goodwill": 208.036,
+     "intangibles": 231.948,
+     "other": 29.813
+    },
+    "lease": 25.717
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "rev": 152.238,
+    "ebit": 25.023,
+    "cogs": 93.419,
+    "capex": 2.79,
+    "da": 6.684,
+    "amort": null,
+    "bal": {
+     "ar": 103.643,
+     "inv": 164.815,
+     "prepaid": 25.647,
+     "ap": 46.11,
+     "accrued": 37.784,
+     "deferred_rev": 5.458,
+     "ppe": 47.271,
+     "rou": 24.962,
+     "goodwill": 208.047,
+     "intangibles": 228.391,
+     "other": 28.155
+    },
+    "lease": 25.889
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "rev": 168.299,
+    "ebit": 29.86,
+    "cogs": 103.216,
+    "capex": 3.928,
+    "da": 6.6,
+    "amort": null,
+    "bal": {
+     "ar": 121.241,
+     "inv": 164.648,
+     "prepaid": 25.708,
+     "ap": 53.685,
+     "accrued": 40.623,
+     "deferred_rev": 12.29,
+     "ppe": 48.704,
+     "rou": 23.93,
+     "goodwill": 211.286,
+     "intangibles": 225.006,
+     "other": 26.142
+    },
+    "lease": 25.075
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "rev": 178.98,
+    "ebit": 30.337,
+    "cogs": 107.84,
+    "capex": 1.86,
+    "da": 6.652,
+    "amort": null,
+    "bal": {
+     "ar": 126.007,
+     "inv": 166.112,
+     "prepaid": 28.733,
+     "ap": 54.219,
+     "accrued": 46.042,
+     "deferred_rev": 12.11,
+     "ppe": 47.555,
+     "rou": 21.98,
+     "goodwill": 214.643,
+     "intangibles": 221.212,
+     "other": 23.973
+    },
+    "lease": 23.098
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "rev": 175.938,
+    "ebit": 25.776,
+    "cogs": 106.562,
+    "capex": 3.424,
+    "da": 6.656,
+    "amort": null,
+    "bal": {
+     "ar": 121.49,
+     "inv": 167.27,
+     "prepaid": 28.454,
+     "ap": 52.99,
+     "accrued": 49.71,
+     "deferred_rev": 9.767,
+     "ppe": 48.428,
+     "rou": 22.868,
+     "goodwill": 214.821,
+     "intangibles": 217.966,
+     "other": 24.31
+    },
+    "lease": 23.896
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "rev": 178.491,
+    "ebit": 23.666,
+    "cogs": 108.893,
+    "capex": 2.643,
+    "da": 6.624,
+    "amort": null,
+    "bal": {
+     "ar": 120.036,
+     "inv": 181.234,
+     "prepaid": 27.053,
+     "ap": 63.965,
+     "accrued": 42.727,
+     "deferred_rev": 8.54,
+     "ppe": 48.479,
+     "rou": 20.761,
+     "goodwill": 224.812,
+     "intangibles": 214.141,
+     "other": 25.144
+    },
+    "lease": 21.648
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "rev": 210.685,
+    "ebit": 38.419,
+    "cogs": 126.718,
+    "capex": 2.247,
+    "da": 6.911,
+    "amort": null,
+    "bal": {
+     "ar": 155.884,
+     "inv": 200.226,
+     "prepaid": 25.374,
+     "ap": 87.612,
+     "accrued": 45.009,
+     "deferred_rev": 10.579,
+     "ppe": 47.051,
+     "rou": 33.354,
+     "goodwill": 217.598,
+     "intangibles": 218.201,
+     "other": 26.719
+    },
+    "lease": 34.262
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "rev": 220.51,
+    "ebit": 39.553,
+    "cogs": 130.229,
+    "capex": 6.146,
+    "da": 7.271,
+    "amort": null,
+    "bal": {
+     "ar": 156.178,
+     "inv": 224.712,
+     "prepaid": 23.128,
+     "ap": 92.49,
+     "accrued": 50.802,
+     "deferred_rev": 10.505,
+     "ppe": 50.32,
+     "rou": 31.579,
+     "goodwill": 216.895,
+     "intangibles": 214.292,
+     "other": 26.994
+    },
+    "lease": 32.264
+   }
+  ],
+  "intangible_cap": {
+   "rd": [
+    [
+     2010,
+     11.4
+    ],
+    [
+     2011,
+     12.0
+    ],
+    [
+     2012,
+     12.4
+    ],
+    [
+     2013,
+     14.1
+    ],
+    [
+     2014,
+     21.5
+    ],
+    [
+     2015,
+     27.7
+    ],
+    [
+     2016,
+     26.7
+    ],
+    [
+     2017,
+     28.8
+    ],
+    [
+     2018,
+     29.487
+    ],
+    [
+     2019,
+     26.925
+    ],
+    [
+     2020,
+     23.611
+    ],
+    [
+     2021,
+     21.891
+    ],
+    [
+     2022,
+     20.238
+    ],
+    [
+     2023,
+     22.487
+    ],
+    [
+     2024,
+     23.586
+    ],
+    [
+     2025,
+     30.867
+    ]
+   ],
+   "sga": [
+    [
+     2009,
+     30.055
+    ],
+    [
+     2010,
+     40.443
+    ],
+    [
+     2011,
+     39.284
+    ],
+    [
+     2012,
+     39.571
+    ],
+    [
+     2013,
+     45.803
+    ],
+    [
+     2014,
+     72.061
+    ],
+    [
+     2015,
+     77.952
+    ],
+    [
+     2016,
+     71.005
+    ],
+    [
+     2017,
+     84.655
+    ],
+    [
+     2018,
+     82.6
+    ],
+    [
+     2019,
+     77.416
+    ],
+    [
+     2020,
+     78.704
+    ],
+    [
+     2021,
+     86.612
+    ],
+    [
+     2022,
+     92.342
+    ],
+    [
+     2023,
+     99.091
+    ],
+    [
+     2024,
+     110.616
+    ],
+    [
+     2025,
+     125.828
+    ]
+   ]
+  },
+  "missing": [
+   "유형자산 항목별 누적상각·내용연수(10-K 주석에 합계 누적상각 $78.7M만 공시)"
+  ],
+  "ppe_note": "10-K 2025 주석 9(유형자산)·주석 7(무형자산) — 2025-12-31, 2024-12-31. 금액 $M"
+ },
+ "sbc_pct_rev": 0.013,
+ "sbc_note": "비GAAP 영업이익은 SBC를 더한 값 — SBC 매출 대비 약 1.3%(9개월 $8.2M ÷ $609.7M)",
+ "next_event": {
+  "date": "2027-02-17(추정)",
+  "tag": "4Q26 실적 — 4Q 가이던스 $220~240M 달성·1Q27 가이던스·수주잔고(회사 일정 미공지, 작년 2/17 기준 추정)"
+ },
+ "main_metric": "eps",
+ "main_metric_why": "회사는 비GAAP EPS·조정 EBITDA를 함께 내고 Street 컨센서스는 EPS 기준",
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "Fwd 1Y P/E 18.3배는 동종 5곳(Vicor·Advanced Energy·Littelfuse·Amphenol·TE Connectivity) 중앙값 18.0배와 같다. FY27 EPS 성장 +13%에 수주잔고 $742M(TTM 매출의 0.94배)가 가시성을 준다. 반면 Class A 할인·내부자 매도·중국 생산 면적 56%가 할인 요인이라 판단 조정 0"
+ },
+ "moat": {
+  "summary": "해자는 '방산·항공 고신뢰 인증과 설계 채택'과 '다지역 생산 기반'이다. AI 전원은 성장 동력이지만 대형 전원 회사와 경쟁해 해자는 아직 보통이다.",
+  "items": [
+   {
+    "kind": "방산·항공 고신뢰 인증·설계 채택(Cinch·Stewart·Enercon)",
+    "verdict": "보통",
+    "claim": "군용 커넥터·전원은 플랫폼 설계에 들어가면 수년간 교체되지 않고, 공장 인증·고객 감사가 진입 장벽이다",
+    "evidence": "2Q 방산 매출 $66.5M(+28.4%), 3Q A&D 수주잔고 사상 최대·슬로바키아 공장 유럽 방산 인증(2Q·3Q 콜), ADRS 9개월 총이익률 40.7%(EX-99.1)",
+    "quant": "ADRS 총이익률 39.6~41.1%(분기)",
+    "falsifier": "ADRS 총이익률 37% 아래 2분기 연속",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "kind": "데이터센터·네트워킹 전원·자성 부품 설계 채택",
+    "verdict": "보통",
+    "claim": "AI·데이터 고객의 전원·자성 부품에 설계로 들어가 2027 출하분까지 주문을 받았다",
+    "evidence": "ITDS 3Q 매출 $113.9M(+37.8%)·총이익률 42.7%, ITDS 수주잔고 연초 대비 +92.8%, 10/31 잔고 $742.4M(10-Q)",
+    "quant": "ITDS 총이익률 38.0% → 42.7%(YoY)",
+    "falsifier": "ITDS 수주잔고 2분기 연속 감소",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   },
+   {
+    "kind": "다지역 생산 기반(8개국 18곳)",
+    "verdict": "보통",
+    "claim": "중국·인도·슬로바키아·이스라엘·멕시코·미국에 공장이 있어 고객이 원하는 지역에서 만든다",
+    "evidence": "10-K Item 2 — 8개국 1.875M sq ft, 3Q 콜 '특정 고객은 생산 지역에 강한 의견'",
+    "quant": "중국 생산 면적 56%(10-K)",
+    "falsifier": "관세·수출 통제로 중국 생산분 이전 비용이 총이익률을 200bp 이상 낮춤",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm"
+   },
+   {
+    "kind": "가격 전가력",
+    "verdict": "보통",
+    "claim": "2~3월 가격 인상을 새 주문에 반영해 원자재 상승을 넘겼다",
+    "evidence": "3Q 총이익률 40.9%(+120bp YoY), 콜 '대부분 전가'(3Q 콜)",
+    "quant": "9개월 총이익률 40.0%(+100bp)",
+    "falsifier": "4Q 총이익률 40% 미만(가이던스 하단 이탈)",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   }
+  ]
+ },
+ "ronic_spread": 0.04,
+ "ronic_why": "해자 4개 모두 보통 — 인증·설계 채택은 지키지만 AI 전원 경쟁이 세다",
+ "recurring": {
+  "none": "부품·전원 장치를 주문 단위로 판다 — 구독·서비스 반복 매출 공시 없음"
+ },
+ "backlog": {
+  "conversion_months": 10.4,
+  "book_to_bill": 1.4,
+  "coverage_next_fy": 0.6,
+  "revenue_growth": 0.232,
+  "source": "수주잔고 $680.3M(9/30, 10-Q) ÷ TTM 월평균 매출 $65.5M ≈ 10.4개월(계산). B/B = 1~3Q 수주(잔고 변화 + 매출, 계산) $850.9M ÷ 매출 $609.7M = 1.40. 다음 연도 가시성 = 10/31 잔고 $742.4M × 80%(10-K: 1월 잔고의 80~85%가 그해 출하) ÷ FY27 매출 컨센서스 $985M ≈ 60%(추정). 10% 초과 고객 없음(10-K)"
+ },
+ "customers": {
+  "as_of": "2026-06-30",
+  "period": "2Q26(콜 공시 금액 기준)",
+  "summary": "10% 넘는 단일 고객은 없다(10-K 2025). 2Q 매출 $210.7M 중 방산이 $66.5M(32%)로 가장 크고, ITDS(데이터 솔루션·산업·네트워킹)가 48%다. 3Q 콜은 AI 고객 노출이 커졌지만 일반 데이터 고객 안에서는 최종 용도 가시성이 떨어진다고 했다.",
+  "items": [
+   {
+    "name": "방산(미국·유럽·이스라엘 프라임·정부, 집계)",
+    "alias": "Defense",
+    "share": 0.316,
+    "prior": 0.308,
+    "basis": "공시",
+    "buys": "군용 전원(Enercon)·커넥터(Cinch)·광 연결",
+    "source": "2Q26 어닝콜(2026-07-30) — 방산 $66.5M ÷ $210.7M(계산), 1년 전 $51.8M ÷ $168.3M(+28.4% 역산)",
+    "why": "콜 공시 금액"
+   },
+   {
+    "name": "상업 항공·산업·운송(ADRS 나머지, 집계)",
+    "alias": "ADRS others",
+    "share": 0.209,
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "고신뢰 커넥터·케이블 조립품",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926025619/belfa20260630_10q.htm",
+    "why": "ADRS 2Q $110.5M − 방산 $66.5M = $44.0M ÷ $210.7M(계산)"
+   },
+   {
+    "name": "데이터 솔루션·네트워킹·산업 전원(ITDS, 집계)",
+    "alias": "ITDS",
+    "share": 0.476,
+    "prior": 0.456,
+    "basis": "공시",
+    "buys": "데이터센터·AI 서버 전원, 자성 부품, 회로 보호, 이더넷 연결",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926025619/belfa20260630_10q.htm",
+    "why": "ITDS 2Q $100.2M ÷ $210.7M(세그먼트, 계산)"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-11-19",
+  "reported_backlog": 0.6803,
+  "backlog_label": "수주잔고(9/30, 10-Q)",
+  "summary": "개별 수주 금액 공시는 없다. 회사 전체 수주잔고는 9/30 $680.3M(연초 대비 +54.9%), 10/31 $742.4M이다. 늘어난 몫은 데이터 솔루션 고객의 2027 출하분이다(10-Q). 잔고는 취소·연기될 수 있다.",
+  "items": [
+   {
+    "name": "회사 전체 수주잔고(9/30)",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 0.6803,
+    "progress": "미확인",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "speed": "1월 잔고의 80~85%가 그해 출하(10-K)",
+    "blockers": [
+     "고객 일정 변경·취소 가능(10-Q)",
+     "부품 조달·리드타임"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm",
+    "start": "2026-10",
+    "end": "2027-12",
+    "note": "10/31 $742.4M"
+   },
+   {
+    "name": "데이터 솔루션 2027 출하 주문(10월 증가분)",
+    "kind": "order",
+    "status": "확정",
+    "total": 0.0621,
+    "progress": 0.0,
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "speed": "2027 출하 요청일",
+    "blockers": [
+     "AI 고객 프로그램 일정"
+    ],
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm",
+    "start": "2027-01",
+    "end": "2027-12",
+    "note": "10/31 $742.4M − 9/30 $680.3M(계산) — 회사는 증가 원인을 데이터 솔루션 주문으로 밝혔다",
+    "no_sum": true
+   },
+   {
+    "name": "유럽 방산 설계 채택(슬로바키아·영국)",
+    "kind": "order",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "speed": "작게 시작해 커진다(3Q 콜)",
+    "blockers": [
+     "유럽 국방 예산 집행",
+     "플랫폼 양산 일정"
+    ],
+    "source": "2Q26 어닝콜(2026-07-30)",
+    "start": "2026-04",
+    "end": "미확인",
+    "note": "2Q 콜 유럽 방산 설계 채택 8건"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q GAAP 매출원가는 매출의 59.1%로 1년 전 60.2%보다 낮다 — 2~3월 가격 인상과 ITDS 믹스 덕이다. 원가 항목별 몫은 공시되지 않아 추정이다. 10-K 원자재 구매 약정은 $81.5M(2025 말)이고 3Q 콜은 원자재 전반의 물가 상승을 말했다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.17898,
+    "cogs": 0.10784,
+    "rd": 0.007549,
+    "sga": 0.032804,
+    "other": 0.00045
+   },
+   {
+    "period": "2Q26",
+    "rev": 0.210685,
+    "cogs": 0.126718,
+    "rd": 0.009,
+    "sga": 0.0363,
+    "other": 0.0003
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.22051,
+    "cogs": 0.130229,
+    "rd": 0.008795,
+    "sga": 0.039437,
+    "other": 0.002496
+   }
+  ],
+  "costs": [
+   {
+    "name": "원자재·구매 부품(반도체·구리·자성 코어·PCB·금속 접점)",
+    "stage": "매출원가",
+    "pct_rev": 0.38,
+    "prior_pct": 0.385,
+    "fixed": 0.05,
+    "driver": "부품 단가·물량",
+    "basis": "추정",
+    "source": "10-K 원자재 구매 약정 $81.5M·공급 절 — 비중 미공시",
+    "input": "copper"
+   },
+   {
+    "name": "제조 인건비·간접비(중국·인도·멕시코·슬로바키아)",
+    "stage": "매출원가",
+    "pct_rev": 0.13,
+    "prior_pct": 0.135,
+    "fixed": 0.6,
+    "driver": "현지 임금·환율(페소·셰켈)",
+    "basis": "추정",
+    "source": "10-K 설비 절·3Q 콜"
+   },
+   {
+    "name": "물류·관세",
+    "stage": "매출원가",
+    "pct_rev": 0.03,
+    "prior_pct": 0.03,
+    "fixed": 0.1,
+    "driver": "관세(IEEPA 판결 뒤 대체 관세)·운임",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   },
+   {
+    "name": "감가상각",
+    "stage": "매출원가",
+    "pct_rev": 0.015,
+    "prior_pct": 0.016,
+    "fixed": 1.0,
+    "driver": "분기 D&A $7.3M 중 유형자산분",
+    "basis": "추정",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "name": "기타",
+    "stage": "매출원가",
+    "pct_rev": 0.0356,
+    "prior_pct": 0.0365,
+    "fixed": 0.3,
+    "driver": "매출원가 − 위 항목",
+    "basis": "추정",
+    "source": "계산"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.0399,
+    "prior_pct": 0.0422,
+    "fixed": 0.8,
+    "driver": "전원·커넥터 설계",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.1788,
+    "prior_pct": 0.1833,
+    "fixed": 0.6,
+    "driver": "영업 인력·SBC·무형 상각",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "name": "기타 영업비용(언아웃 조정·구조조정)",
+    "stage": "기타",
+    "pct_rev": 0.0113,
+    "prior_pct": 0.0025,
+    "fixed": 0.0,
+    "driver": "Enercon 언아웃 조정 $2.4M(3Q)",
+    "basis": "공시",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   }
+  ],
+  "products": [
+   {
+    "name": "ITDS(산업·데이터 솔루션)",
+    "rev_share": 0.517,
+    "gpm": 0.427,
+    "gpm_basis": "공시 — 3Q 세그먼트 총이익률(EX-99.1)",
+    "bom": [
+     {
+      "item": "전력 반도체(MOSFET·GaN·컨트롤러 IC)",
+      "share": [
+       0.25,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "10-K 제품 절",
+      "pass_through": "미확인",
+      "why": "전원 효율·전력 밀도를 정하는 부품",
+      "input": "discrete_semi"
+     },
+     {
+      "item": "자성 부품 원료(구리선·페라이트 코어)",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "10-K 제품 절(변압기·인덕터 자체 생산)",
+      "pass_through": "미확인",
+      "why": "변압기·인덕터 원가 — 새 주문 가격 인상으로 일부 전가(3Q 콜), 비율 미공시",
+      "input": "copper"
+     },
+     {
+      "item": "PCB·수동 부품·기구",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "10-K",
+      "pass_through": "미확인",
+      "why": "전원 보드·하우징",
+      "input": "pcb"
+     }
+    ]
+   },
+   {
+    "name": "ADRS(항공·방산·고신뢰)",
+    "rev_share": 0.483,
+    "gpm": 0.396,
+    "gpm_basis": "공시 — 3Q 세그먼트 총이익률(EX-99.1)",
+    "bom": [
+     {
+      "item": "커넥터 금속 접점·하우징(구리 합금·도금)",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "10-K 제품 절(Cinch·Stewart)",
+      "pass_through": "미확인",
+      "why": "고신뢰 커넥터 원가 — 새 주문 가격 인상으로 일부 전가(3Q 콜), 비율 미공시",
+      "input": "copper"
+     },
+     {
+      "item": "광섬유·케이블",
+      "share": [
+       0.15,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "10-K(확장 빔 광 커넥터·케이블 조립품)",
+      "pass_through": "미확인",
+      "why": "광 연결 제품",
+      "input": "fiber_connector"
+     },
+     {
+      "item": "군용 전원 모듈 부품(Enercon)",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "10-K 인수 절",
+      "pass_through": "미확인",
+      "why": "방산 전원",
+      "input": "discrete_semi"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "단일 공급원 부품이 있지만 대체품을 구할 수 있다고 회사는 본다(10-K). 3Q 콜은 상위 공급사들의 리드타임이 길어졌고 재고를 쌓아 출하를 지킨다고 했다 — 재고는 연초 $167.3M에서 $224.7M으로 늘었다.",
+  "links": [
+   {
+    "item": "전력 반도체(MOSFET·GaN·컨트롤러 IC)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미확인(단일 공급원 포함)",
+      "role": "전원 핵심 부품",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm"
+     }
+    ],
+    "qualified": 2,
+    "capacity": "빠듯",
+    "capacity_basis": "상위 공급사 리드타임 증가(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 6,
+    "requal_basis": "추정 — 전원 설계 부품 교체 시 고객 재인증",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "장기계약",
+    "secured_note": "원자재 구매 약정 $81.5M(2025 말, 10-K) — 장기계약에 가장 가까운 분류",
+    "why": "데이터센터 전원 출하 상한",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+    "input": "discrete_semi",
+    "qualified_basis": "10-K: 단일 공급원 품목도 대체품을 구할 수 있다고 회사가 봄 — 공급사 수 미공시라 2로 보수적 추정"
+   },
+   {
+    "item": "구리·자성 소재",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미확인",
+      "role": "구리선·페라이트 코어",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "중국·인도",
+    "secured": "현물",
+    "why": "자성 부품·커넥터 원가",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+    "input": "copper"
+   },
+   {
+    "item": "PCB",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미확인",
+      "role": "전원 보드",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "전원 보드",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+    "input": "pcb"
+   },
+   {
+    "item": "광섬유·케이블",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미확인",
+      "role": "광 커넥터·케이블 조립품 소재",
+      "status": "공시",
+      "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "광 연결 제품",
+    "relief": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+    "input": "fiber_connector"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-11-19",
+  "unit": "미확인(제품 대수·캐파 수치 미공시)",
+  "summary": "8개국 18곳에서 만든다(10-K, 1.875M sq ft, 98% 임차). 중국 3곳이 생산 면적의 56%다. 3Q 콜에서 '지금 시설로 캐파는 문제가 아니다'라고 했고, CAPEX는 9개월 $11.0M(매출의 1.8%)로 낮다. 증설보다 자동화·공장 간 물량 배분으로 늘린다.",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "회사 발언: 현재 시설로 캐파 문제 없음(3Q 콜), 캐파는 주된 걱정이 아니다(2Q 콜)",
+   "source": "3Q26 어닝콜(2026-10-29)"
+  },
+  "plans": [
+   {
+    "name": "슬로바키아 공장 방산 인증 전환",
+    "add": "미확인",
+    "stage": "가동",
+    "online": "2Q26",
+    "capex": "미확인",
+    "blocker": "유럽 방산 수주 규모",
+    "source": "2Q26 어닝콜(2026-07-30)",
+    "add_note": "산업용 전원 공장을 방산 생산 인증 공장으로 바꿨다(2Q 콜)",
+    "capex_note": "미공시"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2024",
+    "capex": 0.0141,
+    "rev": 0.5348,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2025",
+    "capex": 0.012,
+    "rev": 0.6754,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.0149,
+    "rev": 0.8397,
+    "kind": "컨센서스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.024,
+    "rev": 0.985,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "FY24·FY25 = Fiscal.ai 분기 현금흐름 합, FY26·FY27 = Fiscal.ai 추정(CAPEX $14.9M·$24M)",
+  "sites": [],
+  "sites_none": "소유 생산 시설은 슬로바키아 35,000 sq ft 1곳뿐(전체의 2%) — 나머지 임차라 위성 판독 등록은 하지 않는다",
+  "facilities": {
+   "count": 18,
+   "count_basis": "10-K 2025 Item 2 주요 제조 시설 표 18곳(본사·비제조 공간 294,000 sq ft 제외)",
+   "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+   "items": [
+    {
+     "name": "Dongguan",
+     "location": "중국 둥관",
+     "owned": "임차",
+     "use": "자성 부품",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 36%(10-K)",
+     "area": {
+      "value": 661000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Shenzhen",
+     "location": "중국 선전",
+     "owned": "임차",
+     "use": "전원·보호",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 100%(10-K)",
+     "area": {
+      "value": 227000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Guangxi",
+     "location": "중국 광시",
+     "owned": "임차",
+     "use": "자성 부품",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 90%(10-K)",
+     "area": {
+      "value": 243000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Mumbai",
+     "location": "인도 뭄바이",
+     "owned": "임차",
+     "use": "전원·보호",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 66%(10-K)",
+     "area": {
+      "value": 53000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Haryana",
+     "location": "인도 하리아나",
+     "owned": "임차",
+     "use": "전원·보호",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 90%(10-K)",
+     "area": {
+      "value": 36000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Netanya",
+     "location": "이스라엘 네타냐",
+     "owned": "임차",
+     "use": "전원·보호(Enercon)",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 70%(10-K)",
+     "area": {
+      "value": 60000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Dubnica nad Vahom(소유)",
+     "location": "슬로바키아",
+     "owned": "소유",
+     "use": "전원·보호",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 50%(10-K)",
+     "area": {
+      "value": 35000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Dubnica nad Vahom(임차)",
+     "location": "슬로바키아",
+     "owned": "임차",
+     "use": "전원·보호",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 100%(10-K)",
+     "area": {
+      "value": 70000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Worksop",
+     "location": "영국",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 83%(10-K)",
+     "area": {
+      "value": 51000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Chelmsford",
+     "location": "영국",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 80%(10-K)",
+     "area": {
+      "value": 17000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Dominican Republic",
+     "location": "도미니카공화국",
+     "owned": "임차",
+     "use": "자성 부품",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 85%(10-K)",
+     "area": {
+      "value": 33000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Cananea",
+     "location": "멕시코 카나네아",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 60%(10-K)",
+     "area": {
+      "value": 30000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Reynosa",
+     "location": "멕시코 레이노사",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 56%(10-K)",
+     "area": {
+      "value": 88000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Glen Rock",
+     "location": "미국 펜실베이니아",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 60%(10-K)",
+     "area": {
+      "value": 74000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Waseca",
+     "location": "미국 미네소타",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 83%(10-K)",
+     "area": {
+      "value": 128000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "McAllen",
+     "location": "미국 텍사스",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 56%(10-K)",
+     "area": {
+      "value": 40000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Melbourne",
+     "location": "미국 플로리다",
+     "owned": "임차",
+     "use": "커넥터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 64%(10-K)",
+     "area": {
+      "value": 13000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    },
+    {
+     "name": "Belmont",
+     "location": "미국 뉴햄프셔",
+     "owned": "임차",
+     "use": "전원·보호",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 미공시 — 제조 사용 비율 90%(10-K)",
+     "area": {
+      "value": 16000,
+      "unit": "sq ft",
+      "source": "10-K 2025 Item 2"
+     }
+    }
+   ]
+  }
+ },
+ "segments_hist": {
+  "source": "8-K EX-99.1(3Q26 세그먼트 표·YTD)·2Q26 어닝콜(ADRS $110.5M, +20.6%) — 1Q = YTD − 2Q − 3Q(계산), 2026-03 세그먼트 재편으로 2025 이전 이력 없음",
+  "segments": {
+   "ADRS(항공·방산·고신뢰)": [
+    {
+     "period": "2025-03-31",
+     "rev": 83350000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 91600000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 96298000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 99778000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 110500000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 106596000
+    }
+   ],
+   "ITDS(산업·데이터 솔루션)": [
+    {
+     "period": "2025-03-31",
+     "rev": 68883000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 76700000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 82682000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 78713000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 100185000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 113914000
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "as_of": "2026-11-19",
+  "summary": "CEO Farouq Tuweiq는 CFO 출신으로 2025년 CEO가 됐다. 창업 가문(Bernstein)의 Daniel Bernstein은 이사·10% 이상 주주다. 경영진·이사 장내 매수는 최근 1년 0건이고 매도가 이어졌다(CEO $7.9M 2026-02, Bernstein $634K 2026-11). 정계 연결은 공개 기록상 미확인이다.",
+  "people": [
+   {
+    "name": "Farouq Tuweiq",
+    "role": "President & CEO",
+    "since": "2025(정확한 날짜 미확인)",
+    "profile": "Bel CFO를 거쳐 CEO(위임장·Form 4)",
+    "business": "2024 Enercon 인수·2026 세그먼트 재편 주도(콜)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926011998/belfa20260303_def14a.htm"
+   },
+   {
+    "name": "Lynn Hutkin",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "3Q·2Q 콜 재무 설명",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "name": "Daniel Bernstein",
+    "role": "Director, 10% 이상 주주",
+    "since": "미확인",
+    "profile": "전 President & CEO(2025-05 Form 4 표기)",
+    "business": "창업 가문",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926037485/0001437749-26-037485-index.htm"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "창업 가문 지배(Class A 의결권) — 경영 연속성(가설)",
+    "strength": 2,
+    "exposure": 0.0,
+    "basis": "연결이 매출을 만든다는 근거 없음",
+    "evidence": "https://www.sec.gov/Archives/edgar/data/729580/000143774926011998/belfa20260303_def14a.htm"
+   }
+  ]
+ },
+ "ma": {
+  "deals": [
+   {
+    "target": "Enercon Technologies(80%)",
+    "closed": "2024-11-14",
+    "price": 0.3256,
+    "target_rev": 0.1366,
+    "financing": {
+     "cash": 0.0856,
+     "debt": 0.24,
+     "new_shares": 0
+    },
+    "synergies": [
+     {
+      "type": "매출",
+      "name": "Enercon 전원 × Cinch 커넥터 교차 판매(유럽 방산)",
+      "run_rate": 0.02,
+      "full_year": 2028,
+      "prob": 0.4,
+      "margin": 0.25,
+      "mechanism": "Enercon 군용 전원과 Cinch 커넥터를 같은 방산 플랫폼에 함께 넣는다 — 유럽 설계 채택 8건(2Q 콜). 금액은 회사 미공시라 추정",
+      "source": "2Q26 어닝콜(2026-07-30) — 규모 추정"
+     }
+    ],
+    "note": "인수가 = 마감 때 현금 $325.6M(현금 $85.6M + 리볼버 $240M, 10-K). 2025 Enercon 매출 $136.6M(10-K). 잔여 20%는 $114.0M으로 2027 초 매입 예정(10-Q). 차입은 2026-05 증자로 전액 상환"
+   },
+   {
+    "target": "dataMate",
+    "closed": "2026-03-05",
+    "price": 0.016,
+    "target_rev": 0.0143,
+    "financing": {
+     "cash": 0.016,
+     "debt": 0,
+     "new_shares": 0
+    },
+    "synergies": [
+     {
+      "type": "매출",
+      "name": "이더넷·브로드밴드 연결 교차 판매",
+      "run_rate": 0.005,
+      "full_year": 2027,
+      "prob": 0.5,
+      "margin": 0.3,
+      "mechanism": "ITDS 데이터 고객에 dataMate 제품을 함께 판다 — 금액 미공시라 추정",
+      "source": "10-Q(9개월 매출 $10.7M)"
+     }
+    ],
+    "note": "target_rev = 3Q 분기 기여 $4.9M(3Q 콜) 연환산 근사가 아니라 9개월 $10.7M × 4/3(계산)"
+   }
+  ],
+  "acquirer": {
+   "tax": 0.17,
+   "year0": 2026
+  },
+  "note": "Methode Electronics에서 dataMate 인수(10-Q)"
+ },
+ "pq": {
+  "none": "ASP·출하 대수를 공시하지 않는다 — 업종 PPI 대용"
+ },
+ "sync": {
+  "why": "ITDS 매출은 자성 부품·전원(변압기·인덕터) 교역과 물가를, ADRS는 커넥터 물가를 따라가야 한다",
+  "products": [
+   {
+    "name": "ITDS(산업·데이터 솔루션)",
+    "segment": "ITDS(산업·데이터 솔루션)",
+    "hs": "850423",
+    "share": 0.517,
+    "inputs": [
+     "transformer"
+    ]
+   },
+   {
+    "name": "ADRS(항공·방산·고신뢰)",
+    "segment": "ADRS(항공·방산·고신뢰)",
+    "hs": "853670",
+    "share": 0.483,
+    "inputs": [
+     "fiber_connector"
+    ]
+   }
+  ],
+  "indicators": [
+   {
+    "label": "미국 PPI 변압기(자성 부품 대용)",
+    "source": "ppi",
+    "input": "transformer",
+    "country": "us",
+    "segment": "ITDS(산업·데이터 솔루션)",
+    "why": "업종 대용 PPI"
+   },
+   {
+    "label": "미국 PPI 배선 기구(커넥터 대용)",
+    "source": "ppi",
+    "input": "fiber_connector",
+    "country": "us",
+    "segment": "ADRS(항공·방산·고신뢰)",
+    "why": "업종 대용 PPI"
+   },
+   {
+    "label": "EU 변압기 수입(HS 8504.23)",
+    "source": "trade",
+    "input": "transformer",
+    "country": "eu",
+    "segment": "ITDS(산업·데이터 솔루션)",
+    "why": "교역 대용"
+   }
+  ]
+ },
+ "pricing": [
+  {
+   "business": "ITDS(산업·데이터 솔루션)",
+   "segment": "ITDS(산업·데이터 솔루션)",
+   "index": "ppi:transformer",
+   "company": {
+    "yoy": null,
+    "basis": "ASP 미공시 — 2~3월 새 주문 가격 인상(3Q 콜)"
+   }
+  },
+  {
+   "business": "ADRS(항공·방산·고신뢰)",
+   "segment": "ADRS(항공·방산·고신뢰)",
+   "index": "ppi:fiber_connector",
+   "company": {
+    "yoy": null,
+    "basis": "ASP 미공시"
+   }
+  }
+ ],
+ "midterm": {
+  "exposure": {
+   "chips_subsidy": 0.0,
+   "tariff_codify": 0.8,
+   "defense_budget": 0.5
+  },
+  "sub": "electronics",
+  "etf": "NASDAQ:SMH",
+  "why": "CHIPS 보조금 수혜 없음. 중국 생산 면적 56%라 관세가 큰 채널이고, 매출 약 1/3이 방산이라 국방 세출이 두 번째 채널"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(병목) 틀로 본다 — 섹터 렌즈 해당 없음"
+ },
+ "social": {
+  "few": true,
+  "as_of": "2026-11-19",
+  "summary": "언급 적음 — Quantral 24시간·7일 언급 0건, 월간 요약 없음. 잡힌 신호는 내부자 매도 공시(11/18 이사·10% 주주 $634K, ITDS 사장 $317K)뿐이다.",
+  "narratives": [],
+  "views": [],
+  "turn": "미확인"
+ },
+ "photos": [],
+ "revision_events": [
+  {
+   "date": "2026-02-17",
+   "kind": "실적",
+   "tag": "4Q25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-03-05",
+   "kind": "내러티브",
+   "tag": "dataMate 인수·세그먼트 재편",
+   "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+  },
+  {
+   "date": "2026-04-29",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-12",
+   "kind": "내러티브",
+   "tag": "Class B 증자 $266(1.725M주)",
+   "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926025619/belfa20260630_10q.htm"
+  },
+  {
+   "date": "2026-07-29",
+   "kind": "실적",
+   "tag": "2Q26 실적 — 방산 +28%",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-28",
+   "kind": "실적",
+   "tag": "3Q26 실적 — 4Q $220~240M",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "events": [
+  {
+   "date": "2026-05-13",
+   "tag": "증자 가격 결정 다음 날 −10.5%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-06-30",
+   "tag": "종가 고점 $333.04(장중 $335.29)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-02",
+   "tag": "원인 미확인 — 하루 −16.1%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-07",
+   "tag": "원인 미확인 — 하루 −9.3%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-30",
+   "tag": "2Q26 실적 다음 날 +4.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-04",
+   "tag": "원인 미확인 — 하루 +9.4%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-09-14",
+   "tag": "원인 미확인 — 하루 −8.0%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "원인 미확인 — 하루 −9.4%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "3Q26 실적 다음 날 +3.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "JPMorgan 목표가 $330 → $360(Overweight)",
+   "kind": "의견 변경"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "중간선거 뒤 AI 하드웨어 급락 — 이틀 −18%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-16",
+   "tag": "원인 미확인 — 하루 −7.7%(같은 날 내부자 매도 예정 신고)",
+   "kind": "업종"
+  }
+ ],
+ "terms": {
+  "ITDS": "Bel의 산업·데이터 솔루션 사업부(전원·자성 부품·회로 보호)",
+  "ADRS": "Bel의 항공·방산·고신뢰 사업부(커넥터·군용 전원)",
+  "PSU": "서버용 전원 공급 장치",
+  "자성 부품": "변압기·인덕터처럼 코일과 코어로 전기를 바꾸는 부품",
+  "확장 빔 광 커넥터": "렌즈로 빛을 넓혀 먼지·진동에 강한 광 커넥터",
+  "GaN": "질화갈륨 전력 반도체",
+  "MOSFET": "전력 스위칭 트랜지스터",
+  "페라이트 코어": "자성 부품에 쓰는 산화철 계열 자심",
+  "Enercon": "Bel이 2024년 80%를 인수한 이스라엘 군용 전원 회사",
+  "Cinch": "Bel의 커넥터 자회사",
+  "Stewart": "Bel의 커넥터 브랜드(Stewart Connector)",
+  "dataMate": "Bel이 2026년 인수한 이더넷·브로드밴드 연결 회사",
+  "Letter Agreement": "Enercon 잔여 지분 정산 조건을 고친 서면 합의",
+  "CR": "미국 의회 계속결의(예산 미성립 때 전년 수준 집행)",
+  "NDAA": "미국 국방수권법",
+  "IEEPA": "미국 국제비상경제권한법",
+  "A&D": "항공·방산",
+  "OEM": "완제품 제조사",
+  "HS": "국제 상품 분류 코드",
+  "CHIPS": "미국 반도체 지원법",
+  "EV": "기업가치",
+  "RSU": "양도 제한 조건부 주식 보상",
+  "SBC": "주식 보상 비용",
+  "HP": "추세를 뽑는 통계 필터(Hodrick-Prescott)",
+  "PRC": "중국",
+  "SAR": "특별행정구",
+  "CODM": "최고 운영 의사결정자",
+  "ET": "미국 동부 시간",
+  "EVP": "수석 부사장",
+  "VP": "부사장",
+  "SMD": "표면 실장 부품",
+  "SMPS": "스위칭 모드 전원",
+  "I/O": "입출력",
+  "IC": "집적회로",
+  "RF": "무선 주파수",
+  "JP": "일본"
+ },
+ "names": [
+  "Bel Fuse",
+  "Bel",
+  "BELFA",
+  "BELFB",
+  "Enercon",
+  "Enercon Technologies",
+  "Cinch",
+  "Stewart",
+  "dataMate",
+  "Vicor",
+  "Advanced Energy",
+  "Littelfuse",
+  "Amphenol",
+  "TE Connectivity",
+  "Delta",
+  "Lite-On",
+  "Murata",
+  "JPMorgan",
+  "Needham",
+  "Northland",
+  "Northland Capital Markets",
+  "Craig-Hallum",
+  "Bank of America",
+  "Gabelli",
+  "Gabelli Funds",
+  "Oppenheimer",
+  "Baird",
+  "Citigroup",
+  "Litchfield Hills",
+  "Litchfield Hills Research",
+  "Boston Partners",
+  "Lord, Abbett",
+  "Fisher Asset Management",
+  "Hound Partners",
+  "KeyBank",
+  "FF3 Holdings",
+  "Quantral",
+  "Farouq Tuweiq",
+  "Lynn Hutkin",
+  "Daniel Bernstein",
+  "Stephen Dawson",
+  "Netanya",
+  "Dubnica nad Vahom",
+  "Worksop",
+  "Chelmsford",
+  "Cananea",
+  "Reynosa",
+  "Glen Rock",
+  "Waseca",
+  "McAllen",
+  "Melbourne",
+  "Belmont",
+  "Dongguan",
+  "Shenzhen",
+  "Guangxi",
+  "Mumbai",
+  "Haryana",
+  "Three Part Advisors",
+  "TE",
+  "MD&A",
+  "MD"
+ ],
+ "narrative": {
+  "as_of": "2026-11-19",
+  "stage": "컨센서스",
+  "crowding": "중간 — 셀사이드 9명 전원 매수, 13F 256곳(3Q 증가 77·감소 86), 공매도 유통주식의 7.4%, Quantral 7일 언급 0건",
+  "summary": "AI 데이터센터 전원과 방산이라는 두 성장 축으로 1년 반 만에 4배가 됐다(2025-06 $74 → 2026-06 $333). 6월 고점 뒤 5월 증자 물량·AI 하드웨어 조정·내부자 매도로 32% 내렸지만, 실적과 수주잔고는 그사이 계속 늘었다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "매수 9·보유 0·매도 0(9명)"
+     ],
+     [
+      "목표가 평균",
+      "$323(범위 $300~360)"
+     ],
+     [
+      "FY27 EPS 컨센서스",
+      "$12.34(8명, 30일 전 $10.71)"
+     ],
+     [
+      "FY26 EPS 컨센서스",
+      "$10.90(+54% YoY)"
+     ]
+    ],
+    "read": "커버리지 전원이 매수다. 3Q 실적 뒤 30일 동안 FY27 EPS가 15% 올랐고 하향은 0건이다. 10/30 JPMorgan 목표가 $330 → $360, Needham $300 유지."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유 기관",
+      "256곳(3Q26)"
+     ],
+     [
+      "증가·감소",
+      "77곳 증가 · 86곳 감소"
+     ],
+     [
+      "상위 매수",
+      "Boston Partners·Lord Abbett·Fisher(각 +3만~6만 주)"
+     ],
+     [
+      "내부자 장내",
+      "매수 0 · 매도 다수(최근 1년)"
+     ]
+    ],
+    "read": "기관 수는 줄인 곳이 조금 많다. 5월 증자 때 새 주식 1.725M주가 들어갔다. 경영진·이사는 1년 내내 팔기만 했다(CEO $7.9M 2026-02)."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral 7일",
+      "언급 0건"
+     ],
+     [
+      "ApeWisdom",
+      "목록 밖"
+     ],
+     [
+      "공매도",
+      "유통주식의 7.4%(yfinance)"
+     ]
+    ],
+    "read": "리테일 대화는 거의 없다. 소형주라 주가가 업종 사건에 크게 흔들린다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "업종 사건",
+      "11/4~5 AI 하드웨어 급락 이틀 −18%"
+     ],
+     [
+      "7/2",
+      "원인 미확인 하루 −16%"
+     ]
+    ],
+    "read": "주가는 회사 발표보다 AI 하드웨어 업종 흐름에 더 크게 움직였다."
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 데이터센터 전원·자성 부품 램프",
+    "thesis": "AI 서버·네트워크 고객의 전원·자성 부품 주문이 2027 출하분까지 쌓여 ITDS가 30%대 성장을 잇는다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "ITDS 3Q $113.9M(+37.8%)·총이익률 42.7%, ITDS 잔고 연초 대비 +92.8%, 10/31 전사 잔고 $742.4M",
+    "status": "강화",
+    "falsifier": "4Q ITDS 매출 YoY +20% 미만 또는 4Q 말 잔고 $680M 아래",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   },
+   {
+    "name": "방산 수요(미국·유럽·이스라엘)",
+    "thesis": "탄약 보충·유럽 재무장으로 군용 전원·커넥터 주문이 수년간 늘어난다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2Q 방산 $66.5M(+28.4%), A&D 잔고 사상 최대(3Q 콜), 유럽 설계 채택 8건(2Q 콜)",
+    "status": "유지",
+    "falsifier": "ADRS 매출 2분기 연속 YoY 감소",
+    "source": "3Q26 어닝콜(2026-10-29)"
+   },
+   {
+    "name": "가격 전가·믹스 개선",
+    "thesis": "새 주문 가격 인상과 저마진 제품 단종으로 총이익률이 40%대 초반에 자리 잡는다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "3Q 총이익률 40.9%(+120bp), 4Q 가이던스 40~42%",
+    "status": "강화",
+    "falsifier": "4Q 총이익률 40% 미만",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "name": "순현금 M&A 옵션",
+    "thesis": "순현금 $333M(Enercon 20% 지급 $114M 전)으로 인수를 더한다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "현금 $333.1M·차입 0, 리볼버 한도 $400M(10-Q)",
+    "status": "유지",
+    "falsifier": "1년 안 인수 없음·자사주도 없음",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   },
+   {
+    "name": "반대 내러티브 — 희석·내부자 매도·업종 베타",
+    "thesis": "5월 증자 희석, 경영진의 꾸준한 매도, AI 하드웨어 업종 급락 때 −10% 안팎 하루 움직임이 배수를 누른다",
+    "inputs": "배수",
+    "who": {
+     "sell": "약",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "Class B 주식 +16.9%(10.54M → 12.32M), 내부자 장내 매수 0, 고점 대비 −32%",
+    "status": "강화",
+    "falsifier": "경영진 장내 매수 또는 자사주 매입 재개",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   }
+  ],
+  "lead": {
+   "summary": "Bel은 데이터센터·산업용 전원과 자성 부품(ITDS), 방산·항공용 고신뢰 커넥터와 군용 전원(ADRS)을 만든다. 3Q 매출 $220.5M(+23%), 조정 EPS $3.07이고 수주잔고는 10월 말 $742M로 1년 매출에 가깝다. 주가는 6월 고점보다 32% 낮지만 이익 추정은 그사이 올랐다.",
+   "value_story": "기업가치는 ① ITDS의 AI·데이터 전원 주문이 2027 출하분까지 매출로 바뀌는 속도 ② 방산 주문의 지속 ③ 총이익률 40%대 유지에 달려 있다. 수주잔고 $742M과 B/B 1.4(계산)가 2027 매출 가시성을 주고, 순현금이 인수 여력을 준다. 반대로 Class A·B 이중 구조와 내부자 매도가 배수를 누른다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 18.3배로 동종 5곳(Vicor·Advanced Energy·Littelfuse·Amphenol·TE Connectivity) 중앙값 18.0배와 같다. 6월 고점 때는 약 30배였다(추정 — $333 ÷ 당시 다음 4개 분기 EPS 약 $11).",
+    "eps": "FY26 조정 EPS 컨센서스 $10.90(+54%), FY27 $12.34(+13%) — 3Q 뒤 30일 동안 FY27이 15% 올랐다."
+   },
+   "why_excited": "2025년 하반기부터 AI 데이터센터 전원 주문과 방산 매출이 함께 늘고 Enercon 인수 효과가 더해져 분기 EPS가 $1.35(1Q25)에서 $3.07(3Q26)로 커졌다. 식은 이유는 세 가지다 — 5월 $266 증자(1.725M주), 7월 초 AI 하드웨어 조정(하루 −16%), 경영진 매도. 3Q ADRS 총이익률이 150bp 내린 것도 실망 요인이었다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "ITDS(산업·데이터 솔루션)",
+     "what": "데이터센터·AI 서버 전원, 변압기·인덕터 같은 자성 부품, 퓨즈·회로 보호, 이더넷 연결",
+     "use": "AI 서버·네트워크 장비·산업 설비·유통 채널",
+     "money": "3Q 매출 $113.9M(52%), 총이익률 42.7%",
+     "name_en": "Server power supply unit",
+     "what_en": "a rack server power supply unit opened to show transformer, inductors, power transistors on heatsinks, capacitors, fan and printed circuit board",
+     "bom": {
+      "name_en": "Server power supply unit",
+      "as_of": "2026-11-19",
+      "this_company_product": false,
+      "items": [
+       {
+        "no": 1,
+        "part": "변압기(자성 부품)",
+        "part_en": "power transformer",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "자체 생산(Bel 자성 부품)",
+        "source": "10-K 제품 절"
+       },
+       {
+        "no": 2,
+        "part": "인덕터",
+        "part_en": "power inductor",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "자체 생산(Bel 자성 부품)",
+        "source": "10-K 제품 절"
+       },
+       {
+        "no": 3,
+        "part": "전력 반도체(MOSFET)",
+        "part_en": "power MOSFET transistors on heatsink",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K 공급 절"
+       },
+       {
+        "no": 4,
+        "part": "커패시터",
+        "part_en": "electrolytic capacitors",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       },
+       {
+        "no": 5,
+        "part": "냉각 팬",
+        "part_en": "cooling fan",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       },
+       {
+        "no": 6,
+        "part": "PCB",
+        "part_en": "printed circuit board",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "ADRS(항공·방산·고신뢰)",
+     "what": "군용·항공 고신뢰 커넥터(Cinch), 확장 빔 광 커넥터, 군용 전원(Enercon), RF 부품",
+     "use": "미사일·전투 차량·함정·항공기·산업 장비",
+     "money": "3Q 매출 $106.6M(48%), 총이익률 39.6%",
+     "name_en": "Rugged military connector",
+     "what_en": "a rugged circular military connector shown exploded with metal shell, insulator insert, contact pins, coupling nut and seals",
+     "bom": {
+      "name_en": "Rugged military connector",
+      "as_of": "2026-11-19",
+      "this_company_product": false,
+      "items": [
+       {
+        "no": 1,
+        "part": "금속 쉘",
+        "part_en": "metal shell",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "자체 가공(추정)",
+        "source": "10-K 제품 절"
+       },
+       {
+        "no": 2,
+        "part": "절연 인서트",
+        "part_en": "insulator insert",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       },
+       {
+        "no": 3,
+        "part": "접점 핀(도금 구리 합금)",
+        "part_en": "gold plated contact pins",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       },
+       {
+        "no": 4,
+        "part": "결합 너트",
+        "part_en": "coupling nut",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       },
+       {
+        "no": 5,
+        "part": "실링",
+        "part_en": "environmental seals",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       },
+       {
+        "no": 6,
+        "part": "백셸·케이블",
+        "part_en": "backshell with cable",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "10-K"
+       }
+      ]
+     }
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "2026-03 사업부를 세 제품군에서 두 최종시장 사업부(ITDS·ADRS)로 재편, Enercon 인수로 매출의 약 절반이 항공·방산",
+     "evidence": "10-Q 주석 16·3Q 콜",
+     "drives": "배수",
+     "status": "진행 중",
+     "falsifier": "재편 뒤 영업비용률 상승"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "저마진 제품 단종과 AI 데이터 전원 비중 확대",
+     "evidence": "ITDS 총이익률 38.0% → 42.7%(EX-99.1), 저마진 물량 정리(3Q 콜)",
+     "drives": "이익률",
+     "status": "확인",
+     "falsifier": "ITDS 총이익률 40% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "고밀도 서버 전원·확장 빔 광 커넥터 — 제품 사양 우위는 이 회차에 수치로 확인하지 못함",
+     "evidence": "10-K 제품 절",
+     "drives": "점유율",
+     "status": "미확인",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(주문→출하 리드타임 미공시라 피어 비교 불가) — 상위 공급사 리드타임이 길어져 재고를 쌓아 납기를 지킨다(3Q 콜)",
+     "evidence": "3Q26 어닝콜(2026-10-29)",
+     "drives": "성장",
+     "status": "확인",
+     "falsifier": "재고 증가에도 매출 둔화"
+    },
+    {
+     "lens": "M&A",
+     "change": "Enercon 80%(2024-11), dataMate(2026-03, 약 $16M), Enercon 잔여 20% $114.0M 매입 예정",
+     "evidence": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "Enercon 매입 지연·추가 인수 없음"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "ITDS는 데이터센터·네트워크 CAPEX, ADRS는 국방 조달 예산과 항공기 생산 CAPEX",
+     "evidence": "10-Q 세그먼트·2Q 콜",
+     "drives": "성장",
+     "status": "확인",
+     "falsifier": "하이퍼스케일러 2027 CAPEX 축소",
+     "budgets": [
+      {
+       "business": "ITDS(산업·데이터 솔루션)",
+       "budget": "CAPEX",
+       "line": "데이터센터·AI 서버·네트워크 장비 투자",
+       "share": 0.517,
+       "driver": "AI 인프라 투자",
+       "evidence": "3Q $113.9M ÷ $220.5M(계산)"
+      },
+      {
+       "business": "ADRS(항공·방산·고신뢰)",
+       "budget": "혼합",
+       "line": "국방 조달 예산(정부 OPEX·조달)·항공기 생산",
+       "share": 0.483,
+       "driver": "탄약 보충·유럽 재무장·항공기 생산률",
+       "evidence": "3Q $106.6M ÷ $220.5M(계산)"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(이 회차에 국방 세출 의결 기록을 확인하지 못함 — 회사는 미국이 계속결의로 운영 중이고 탄약 보충 자금 집행이 수요에 못 미친다고 했다)",
+     "evidence": "3Q26 어닝콜(2026-10-29)",
+     "drives": "성장",
+     "status": "미확인",
+     "falsifier": "해당 없음"
+    },
+    "orders": {
+     "change": "해당 없음(IEEPA 관세는 2026-02-20 대법원 판결로 무효 — 대체 법률 관세 가능성을 회사가 감시 중, 10-Q)",
+     "evidence": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm",
+     "drives": "이익률",
+     "status": "미확인",
+     "falsifier": "해당 없음"
+    },
+    "laws": {
+     "change": "해당 없음(회사가 밝힌 직접 수혜 법안 없음)",
+     "evidence": "https://www.sec.gov/Archives/edgar/data/729580/000143774926005354/belfb20251231d_10k.htm",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음"
+    }
+   }
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 20,
+   "net_margin": 0.15,
+   "opm": 0.21,
+   "basis": "출구 P/E 20배는 동종 중앙 18.0배보다 조금 높다(AI 전원 성장 프리미엄). 순이익률 15%·영업이익률 21%는 3Q 비GAAP 순이익률 20.0%보다 낮고 FY27 컨센서스 조정 EBIT 이익률 22.3%에 가깝다(비GAAP 순이익엔 무형 상각 가산이 있어 보수적으로)"
+  },
+  "base": {
+   "eps": 9.76,
+   "opm": 0.186,
+   "basis": "TTM 비GAAP EPS(Class B) $9.76(1.98+1.81+2.90+3.07, 보도자료·yfinance), 비GAAP 영업이익률 18.6%($146.0M ÷ $785.6M)"
+  },
+  "refs": [
+   {
+    "label": "FY26 EPS 컨센서스",
+    "value": 10.9
+   },
+   {
+    "label": "FY27 EPS 컨센서스",
+    "value": 12.34
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "주가 약 $451 — 출구 20배면 EPS 약 $22.6, 매출 약 $2.2B",
+    "outlook": "FY27 컨센서스 $985M의 2.2배 — AI 전원이 ITDS를 매년 30% 넘게 키우고 인수를 더할 때만"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "EPS 약 $34, 매출 약 $3.2B",
+    "outlook": "동종 Vicor·Advanced Energy 규모를 넘어야 한다 — 큰 인수 없이는 경로가 안 보인다"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "EPS 약 $56",
+    "outlook": "경로 없음"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "EPS 약 $113",
+    "outlook": "경로 없음"
+   }
+  },
+  "summary": "2배는 AI 전원 성장과 인수가 함께 갈 때만 조건부로 열리고, 3배 이상은 지금 사업 규모로는 경로가 없다."
+ },
+ "weakest": "10/31 수주잔고 $742.4M이 2027 매출로 바뀌는 속도 — 데이터 솔루션 고객 주문이 취소·연기되지 않는지. 확인: 4Q26 실적(2027-02 중순 추정)의 잔고·B/B",
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "수주잔고가 1년 매출에 가깝고 EPS가 15% 올랐는데 주가는 고점 −32% — 배수만 내려갔다",
+    "evidence": [
+     "잔고 $742.4M(TTM 매출 0.94배)",
+     "FY27 EPS 30일 +15%",
+     "Fwd 1Y P/E 18.3배(6월 약 30배)"
+    ],
+    "falsifier": "4Q 말 잔고 $680M 아래"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "방산과 AI 전원 두 축이라 한쪽이 꺾여도 버틴다",
+    "evidence": [
+     "ADRS 48%·ITDS 52%",
+     "방산 +28%(2Q)",
+     "ITDS +38%(3Q)"
+    ],
+    "falsifier": "두 사업부 모두 YoY 성장 10% 미만"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "동종 중앙값과 같은 배수 — 성장은 가격에 들어 있다",
+    "evidence": [
+     "Fwd 1Y P/E 18.3배 vs 동종 18.0배",
+     "FY27 EPS 성장 +13%"
+    ],
+    "falsifier": "FY27 EPS 컨센서스 $13.5 이상으로 상향"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "경영진이 1년 내내 팔고 5월에 $266로 증자했다 — 회사 스스로 비싸다고 본 가격이다",
+    "evidence": [
+     "내부자 장내 매수 0",
+     "CEO $7.9M 매도(2026-02)",
+     "Class B +16.9% 증가"
+    ],
+    "falsifier": "경영진 장내 매수"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "중국 생산 56%·이스라엘 공장에 관세·지정학 위험이 크고, AI 하드웨어 조정 때 하루 −10~16%다",
+    "evidence": [
+     "중국 생산 면적 56%(10-K)",
+     "7/2 −16.1%, 11/5 −9.9%",
+     "재고 $224.7M(+34%)"
+    ],
+    "falsifier": "중국 생산 비중 축소 계획·4Q 총이익률 41% 이상"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "이익은 오르는데 배수만 내려갔다."
+     },
+     {
+      "seat": "Buy",
+      "text": "두 성장 축이 서로를 받친다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "배수는 동종과 같다 — 공짜가 아니다."
+     },
+     {
+      "seat": "Sell",
+      "text": "내부자와 회사가 팔고 있다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "생산 지역과 업종 베타가 위험이다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "증자 대금으로 차입 $197.5M을 갚았다 — 희석은 이자 절감으로 일부 돌아왔다.",
+      "to": "Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "동종 배수가 같아도 B/B 1.4는 동종 대부분보다 높다(계산).",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "B/B는 잔고 변화로 계산한 값이고 인수 잔고가 섞였을 수 있다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "잔고는 취소될 수 있다고 10-Q가 적었다.",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "재고 $57M 증가는 수요가 꺾이면 손실이 된다.",
+      "to": "Strong Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "4Q 가이던스가 계절 감소를 지웠다 — 수요가 꺾인 신호는 없다.",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "슬로바키아 인증으로 유럽 방산은 중국과 무관하게 큰다.",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Neutral",
+      "text": "유럽 설계 채택은 작게 시작한다고 회사가 말했다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "11/18에도 이사·ITDS 사장이 팔았다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "IEEPA 무효 뒤 대체 관세가 나오면 원가가 다시 오른다.",
+      "to": "Neutral"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "리비전에 비해 배수 하락이 과하다 — Buy로 한 단계 내려 동의."
+     },
+     {
+      "seat": "Buy",
+      "text": "두 축 성장 유지."
+     },
+     {
+      "seat": "Neutral",
+      "text": "4Q 잔고와 1Q 가이던스까지 지켜본다."
+     },
+     {
+      "seat": "Sell",
+      "text": "내부자 매도가 신호다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "지정학·베타 위험."
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Neutral"
+   },
+   "reason": "이익 추정은 오르고 수주잔고는 1년 매출에 가깝지만, 배수가 이미 동종 중앙값(18.0배)에 있고 ROIC·장기 이익률로 본 합리적 배수는 그보다 낮다. 내부자 매도·증자는 할인 이유를 보탠다. 4Q 잔고와 1Q 가이던스(2027-02)가 가시성을 확인하기 전까지 중립",
+   "dissent": "강세 측은 2Q 실적 뒤 주가 하락이 모두 배수에서 나왔고 EPS 추정은 16% 올랐다는 점을 근거로 Buy를 지킨다"
+  }
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "이익은 오르고 배수만 내렸다",
+    "claim": "FY27 EPS 30일 +15%, 주가 고점 대비 −32%",
+    "evidence": "Alpha Vantage 추정 이력·일봉",
+    "variant": "시장은 AI 하드웨어 업종으로 묶어 팔았지만 회사 숫자는 잔고·리비전 모두 올랐다",
+    "proof": "4Q 실적의 잔고·1Q 가이던스",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926033795/ex_1007041.htm"
+   },
+   {
+    "title": "잔고 $742M이 2027을 덮는다",
+    "claim": "10/31 잔고 $742.4M, 1~3Q B/B 1.40(계산)",
+    "evidence": "10-Q MD&A",
+    "variant": "FY27 매출 컨센서스 $949~985M의 약 60%를 이미 주문으로 가졌다(추정)",
+    "proof": "4Q 말 잔고와 B/B 1 이상 유지",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926034634/belfa20260930_10q.htm"
+   },
+   {
+    "title": "내부자 매도와 증자",
+    "claim": "최근 1년 장내 매수 0, 5월 $266 증자",
+    "evidence": "Form 4·10-Q",
+    "variant": "경영진 매도는 보상 주식 현금화일 수 있다 — 매수 0은 사실이지만 이유는 미확인",
+    "proof": "경영진 장내 매수·자사주 재개",
+    "source": "https://www.sec.gov/Archives/edgar/data/729580/000143774926037485/0001437749-26-037485-index.htm"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-06-30",
+    "status": "완료",
+    "kind": "생성",
+    "event": "AI 전원·방산 기대 — 종가 고점 $333.04",
+    "reaction": "이후 −32%"
+   },
+   {
+    "date": "2026-07-02",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "원인 미확인 급락",
+    "reaction": "하루 −16.1%"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "중간선거 뒤 AI 하드웨어 급락",
+    "reaction": "이틀 −18%"
+   },
+   {
+    "date": "2027-02(추정)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26 실적·1Q27 가이던스",
+    "check": "4Q 매출 $230M 이상, 잔고 $742M 유지, 1Q 가이던스 $215M 이상",
+    "then": "셋이 맞으면 FY27 추정 상향, 잔고 감소면 배수 정체"
+   },
+   {
+    "date": "2027 초",
+    "status": "예정",
+    "kind": "확인",
+    "event": "Enercon 잔여 20% 매입($114.0M)",
+    "check": "지급 완료·추가 조건",
+    "then": "ADRS 이익 100% 귀속"
+   }
+  ],
+  "trade": {
+   "watch": "지지 구간이 약세 시나리오 가격과 겹치는 곳 — 11/5 종가 저점 $195.94 근처",
+   "confirm": "4Q 실적 잔고 유지·1Q 가이던스 계절 감소 없음",
+   "invalid": "11/5 종가 저점 $195.94 이탈과 함께 잔고 감소",
+   "trim": "목표주가 근처에서는 Fwd 1Y P/E가 6월 고점 배수에 얼마나 다가섰는지 본다",
+   "style": "업종 사건 날 −8~16% 하루 움직임이 반복됐다(7/2, 10/22, 11/4~5, 11/16)"
+  }
+ }
+}
