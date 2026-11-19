@@ -1,0 +1,104 @@
+auto: true
+id: us-orn
+name: Orion Group Holdings
+ticker: ORN
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.25
+horizon: 10
+as_of: '2026-11-19'
+market:
+  date: '2026-11-19'
+  price: 7.38
+  shares: 0.040796
+  net_debt: 0.152144
+  source: 가격 = 2026-11-18 종가 $7.38(Fiscal.ai·Easyconomics 일치). 주식 수 40,659,250주(3Q26
+    10-Q 표지 2026-10-27). 현금 $5.7M(제한 현금 없음). 차입 = 총차입 $110.2M(리볼버 $29.0M·인수 기한부 대출
+    $40.0M·장비 대출 $14.9M·판매자 어음 $10.4M·기타 $15.9M) + 금융 리스 $16.8M + 운용 리스 $30.9M(10-Q
+    2026-09-30). 보도자료는 총차입을 $109M로 반올림해 적었다
+rev0: 0.925
+ic0: 0.325305
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.0541
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.0145
+      target: 0.03
+      year_target: 4
+      lr: 0.035
+      lam: 0.35
+      anchors:
+      - 0.0214
+    s2c: 2.851
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.1568
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.0145
+      target: 0.05
+      year_target: 4
+      lr: 0.035
+      lam: 0.25
+      anchors:
+      - 0.0214
+    s2c: 3.279
+  bear:
+    prob: 0.35
+    growth:
+      start: -0.0486
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.0145
+      target: 0.01
+      year_target: 4
+      lr: 0.035
+      lam: 0.5
+      anchors:
+      - 0.0214
+    s2c: 2.423
+mc:
+  sigma_growth: 0.0514
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.9, 0.95] (3Q26 실적 보도자료(8-K EX-99.1, 2026-10-27) https://www.sec.gov/Archives/edgar/data/1402829/000140282926000056/orn-ex99d1.htm)
+  growth: 컨센서스 1년차 5.4%, 2년차 6.7%
+  margin: 1년차 컨센서스 2.1% 고정 → 목표 3%(4년차, 덮어쓰기) → 장기 수렴 4%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.851
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -4.9%~15.7%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +0.3% 아래·강세 +10.5% 위 확률. 내부 관점(컨센서스 +5.4%, σ 15.0%: 범위 20.5% ÷ d2(4) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 영업이익률(GAAP) 3.0%(4년차)·수렴 3.5%: 2024·2025 실적 1.4%·1.7%, 컨센서스 FY2027
+    2.1%. 회사는 콘크리트 EBITDA 이익률 ''한 자릿수 중반'', 해상은 이익률 변동이 크다고 말한다(3Q 콜). 규칙 기본 장기 15%는
+    고정가 시공 업종 역사에 없는 값'
+  shares: '완전 희석 = 기본 0.04065925(2026-10-27) + 옵션·RSU·워런트·전환 0.0001 — 3Q26 10-Q 주당이익
+    주석: 희석 가능 주식 136,874주(스톡옵션·PSU·ESPP). 미가득 제한주'
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-19
+- '어닝콜 위험: 고객 발주 지연으로 잔고 정체($645M, 작년 말 $640M)'
+- '어닝콜 위험: 2026년 FCF 음수 가능성(데릭 바지선·장비 투자)'
+- '어닝콜 위험: 콘크리트 데이터센터 비중 약 절반 — 한 업종 집중'
+evidence:
+- Orion 3Q26 10-Q(2026-10-28) https://www.sec.gov/Archives/edgar/data/1402829/000140282926000059/orn-20260930x10q.htm
+- Orion 3Q26 실적 보도자료(8-K EX-99.1, 2026-10-27) https://www.sec.gov/Archives/edgar/data/1402829/000140282926000056/orn-ex99d1.htm
+- Orion 2Q26 10-Q(2026-07-29) https://www.sec.gov/Archives/edgar/data/1402829/000140282926000046/orn-20260630x10q.htm
+- Orion FY2025 10-K(2026-03-04) https://www.sec.gov/Archives/edgar/data/1402829/000140282926000011/orn-20251231x10k.htm
+- 8-K 이사 선임(2026-11-12) https://www.sec.gov/Archives/edgar/data/1402829/000140282926000061/orn-20261111x8k.htm
+- Form 4 내부자 매수(2026-08-04) https://www.sec.gov/Archives/edgar/data/1402829/000209943326000003/0002099433-26-000003-index.htm
+- Orion 이사 선임 보도자료(2026-11-11) https://www.globenewswire.com/news-release/2026/11/11/3401133/9652/en/orion-group-holdings-appoints-mark-a-handley-to-board-of-directors.html
+- Fiscal.ai MCP 2026-11-19 — 표준화 재무·자체 추정·Forward 배수·13F·펀드 레터·어닝콜(3Q26·2Q26)
+- Easyconomics company_profile·company_price_history(yfinance) 2026-11-19
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
