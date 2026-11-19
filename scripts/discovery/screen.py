@@ -192,6 +192,20 @@ def _diverse(rows, n):
         return rows[:n]
 
 
+def lynch_tag(cid, fund):
+    """피터 린치 분류(ADR-048, 마스터 지시 2026-11-19) — (분류, 10배 경로 여부). datapack이 있으면 그것, 없으면 발굴 펀더멘털 행. 자료 없음 = (None, None)"""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tenbagger"))
+        import lynch
+    except Exception:
+        return None, None
+    x = lynch.for_entity(cid) or (lynch.from_fund(fund[cid]) if cid in (fund or {}) else None)
+    if not x:
+        return None, None
+    r = lynch.classify(x)
+    return (None, None) if r["cat"] == "미확인" else (r["cat"], r["tenbagger"])
+
+
 def run(today=None):
     today = today or date.today()
     cfg = _y("config/discovery.yaml")
@@ -216,6 +230,10 @@ def run(today=None):
     rows += asia_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
     rows += rotation_rows(fund, att, tv, caps, quiet, w, {r["id"] for r in rows})
     rows += channel_rows(rows, fund, att, tv, caps, quiet, w)
+    for r in rows:   # 10배 경로가 없는 린치 분류(자산주·대형우량주·저성장주)는 선별 통과·심층 대기열에서 뺀다(ADR-048)
+        r["lynch"], ten = lynch_tag(r["id"], fund)
+        if ten is False and r["stage"] == "② 선별 통과":
+            r["stage"] = "① 아이디어(린치: 10배 경로 없는 분류)"
     rows.sort(key=lambda r: -(r["score"] or 0))
     deep = _diverse([r for r in rows if r["stage"] == "② 선별 통과"], DEEP_MAX)   # 섹터 할당량(2026-11-13 종목 범위 확대, ADR-025)
     for r in deep:
@@ -224,10 +242,10 @@ def run(today=None):
     f = lambda v: "-" if v is None else f"{v:.1f}"
     L = [f"# Chiip Ten-bagger Discovery 선별 {today.isoformat()}", "",
          f"펀더멘털 확보 {sum(1 for r in rows if r['id'] in fund)}/{len(rows)} · 관심도 {len(att)}/{len(rows)} · 커버리지 {len(cov)}", "",
-         "| 순위 | 종목 | 시장·코드 | 테마 | 점수 | edge | 성장 | 커버 공백 | 관심 가속 | 쏠림 | 밸류 | 규모 | 조용한 상승 | 단계 | 빠진 자료 |", "|" + "---|" * 15]
+         "| 순위 | 종목 | 시장·코드 | 테마 | 린치 분류 | 점수 | edge | 성장 | 커버 공백 | 관심 가속 | 쏠림 | 밸류 | 규모 | 조용한 상승 | 단계 | 빠진 자료 |", "|" + "---|" * 16]
     for i, r in enumerate(rows, 1):
         c = r["comp"]
-        L.append(f"| {i} | {r['name']} | {r['market']} {r['code']} | {r['theme']} | **{f(r['score'])}** | {f(c['edge'])} | {f(c['growth'])} | {f(c['coverage_gap'])} | "
+        L.append(f"| {i} | {r['name']} | {r['market']} {r['code']} | {r['theme']} | {r.get('lynch') or '-'} | **{f(r['score'])}** | {f(c['edge'])} | {f(c['growth'])} | {f(c['coverage_gap'])} | "
                  f"{f(c['attention_accel'])} | {f(c['crowding'])} | {f(c['valuation'])} | {f(c['size_fit'])} | {f(c.get('quiet'))} | {r['stage']} | {', '.join(r['missing']) or '-'} |")
     L += ["", "## 판단 카드 대기열(edge 미판정 상위 — 판단 틀로 카드를 쓰면 선별 통과 후보가 된다)"] + \
          [f"- {r['id']} {r['name']}({r['market']} {r['code']}) · 점수 {f(r['score'])} · {r['theme']}" for r in card_queue(rows)]

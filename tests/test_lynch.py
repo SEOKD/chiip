@@ -52,5 +52,13 @@ class TestClassify(unittest.TestCase):
         self.assertIsNone(L.pulse_line(None))
 
 
+class TestScreen(unittest.TestCase):   # 발굴 스크린 린치 열(2026-11-19)
+    def test_lynch_tag_from_fund(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "discovery"))
+        import screen
+        self.assertEqual(screen.lynch_tag("zz-none", {"zz-none": {"eps_ttm": 1.0, "eps_fwd": 1.03, "mcap_usd": 3e10, "price": 30}}), ("저성장주", False))
+        self.assertEqual(screen.lynch_tag("zz-none2", {}), (None, None))
+
+
 if __name__ == "__main__":
     unittest.main()
