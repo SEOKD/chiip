@@ -86,13 +86,6 @@ def section(daily, target):
     if lv["resistance"]:
         B.append({"type": "table", "title": "일봉 저항", "headers": ["저항", "가격", "현재가 대비", "근거 기법(강도)"],
                   "rows": [[f"저항 {i + 1}", _m(g["mid"]), _p(g["mid"] / lv["price"] - 1), f"{' · '.join(sorted({x['src'] for x in g['items']}))}({g['strength']:.1f})"] for i, g in enumerate(lv["resistance"])]})
-    b = daily[-120:]
-    lo_v, hi_v = min(x["l"] for x in b), max(x["h"] for x in b)
-    hl = [{"y": g["mid"], "label": f"지지 {i + 1} {_m(g['mid'])}", "color": "d"} for i, g in enumerate(lv["support"]) if g["mid"] >= lo_v * 0.85]
-    hl += [{"y": g["mid"], "label": f"저항 {i + 1} {_m(g['mid'])}", "color": "b"} for i, g in enumerate(lv["resistance"]) if g["mid"] <= hi_v * 1.25]
-    if target and target <= hi_v * 1.6:
-        hl.append({"y": target, "label": f"목표주가 {_m(target)}", "color": "c"})
-    B.append({"type": "chart", "chart": {"kind": "candle", "title": "일봉 지지·저항과 목표주가", "unit": "$", "bars": [[x["date"], x["o"], x["h"], x["l"], x["c"]] for x in b], "hlines": hl,
-                                         "note": f"일봉 지배 스윙: {lv['swing']['basis']}. 강도 = 같은 가격대에 겹친 서로 다른 기법의 가중 합."}})
+    # 일봉 지지·저항과 목표주가 그림은 뺐다 — 목표주가 선은 한눈에 보기 첫 일봉에(마스터 지시 2026-11-19). 지지·저항 값은 위 표에 남는다
     B.append({"type": "p", "text": "일봉만 쓴다(주봉·월봉 제외). 손익비 = 목표주가까지 업사이드 ÷ 다음 지지까지 하방. 가격대별 기대값 참고표이며 매수·매도 시점 지시가 아니다."})
     return {"h2": "매수 위치(일봉)", "blocks": B, "place": where}
