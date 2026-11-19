@@ -2636,7 +2636,7 @@
    }
   ],
   "orders_label": null,
-  "backlog_label": null,
+  "backlog_label": "수주잔고(분기 실적 보도자료)",
   "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표)·company_segments_and_kpis"
  },
  "assets": {
@@ -5483,5 +5483,52 @@
    "trim": "목표주가 근처에서는 잔고 증가 속도와 영업현금흐름을 다시 본다",
    "style": "실적 다음 날 −24.1%(7/29)·+13.4%(4/30)·−11.8%(3/5)처럼 크게 움직였다. 거래량이 하루 수십만 주라 이벤트 직전 추격을 경계한다"
   }
- }
+ },
+ "ops_backlog": [
+  {
+   "period": "2024-09-30",
+   "backlog": 690500000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282925000002/orn-20250304xex99d1.htm"
+  },
+  {
+   "period": "2024-12-31",
+   "backlog": 729100000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282925000002/orn-20250304xex99d1.htm"
+  },
+  {
+   "period": "2025-03-31",
+   "backlog": 839700000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282925000023/orn-20250429xex99d1.htm"
+  },
+  {
+   "period": "2025-06-30",
+   "backlog": 745700000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000155837025009770/orn-20250729xex99d1.htm"
+  },
+  {
+   "period": "2025-09-30",
+   "backlog": 679000000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282925000057/orn-20251028xex99d1.htm"
+  },
+  {
+   "period": "2025-12-31",
+   "backlog": 640000000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282926000006/orn-20260303xex99d1.htm"
+  },
+  {
+   "period": "2026-03-31",
+   "backlog": 668000000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282926000034/orn-20260428xex99d1.htm"
+  },
+  {
+   "period": "2026-06-30",
+   "backlog": 722000000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282926000044/orn-20260728xex99d1.htm"
+  },
+  {
+   "period": "2026-09-30",
+   "backlog": 645000000,
+   "source": "https://www.sec.gov/Archives/edgar/data/1402829/000140282926000056/orn-ex99d1.htm"
+  }
+ ]
 }
