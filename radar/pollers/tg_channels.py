@@ -246,11 +246,40 @@ def collect(handle, get=fetch, pause=1.0, now=None):
     return new
 
 
+STALE_DAYS = 5
+MOVE_RE = re.compile(r"(옮겼|이전|이사|새로운 채널|새 채널|new channel|moved)", re.I)
+
+
+def stale_channels(now=None, days=STALE_DAYS):
+    """마지막 글이 days일보다 오래된 채널 — 마지막 글이 다른 t.me 채널로 이전을 알리면 moved_to를 붙인다
+    (2026-11-19 점검: aethersemiresearch가 11/06 aethersemiconductor로 옮긴 뒤 13일 동안 아무도 몰랐다)"""
+    now = now or common.now_kst()
+    out = []
+    for c in config()["channels"]:
+        if c.get("disabled"):
+            continue
+        posts = load(c["handle"])
+        if not posts:
+            continue
+        last = posts[max(posts)]
+        try:
+            age = (now - datetime.fromisoformat(last["at"])).days
+        except (TypeError, ValueError):
+            continue
+        if age < days:
+            continue
+        mv = [m for m in re.findall(r"t\.me/([A-Za-z0-9_]{4,})", last.get("text") or "") if m.lower() != c["handle"].lower()]
+        out.append({"handle": c["handle"], "days": age, "moved_to": mv[0] if mv and MOVE_RE.search(last.get("text") or "") else None})
+    return out
+
+
 def poll(env=None):
     """run_poll용. 인박스 항목은 돌려주지 않는다"""
     st = common.load_state(STATE, {})
     fails, closed, total = [], [], 0
     for c in config()["channels"]:
+        if c.get("disabled"):   # 이전·폐쇄한 채널(config에 이유를 적는다)
+            continue
         try:
             n = collect_by_id(c["handle"]) if c.get("mode") == "by_id" else collect(c["handle"])
             if n is None:
@@ -260,9 +289,11 @@ def poll(env=None):
         except Exception as exc:
             fails.append(f"{c['handle']}: {type(exc).__name__}")
         time.sleep(1.0)
-    st.update({"at": common.iso(common.now_kst()), "new": total, "closed": closed, "fails": fails})
+    stale = stale_channels()
+    st.update({"at": common.iso(common.now_kst()), "new": total, "closed": closed, "fails": fails, "stale": stale})
     common.save_state(STATE, st)
-    common.record_health(SOURCE_ID, not fails or len(fails) < len(config()["channels"]), "; ".join(fails) or None)
+    common.record_health(SOURCE_ID, not fails or len(fails) < len(config()["channels"]),
+                         "; ".join(fails + [f"{s['handle']} {s['days']}일 무소식" + (f" → 이전 {s['moved_to']}" if s.get("moved_to") else "") for s in stale]) or None)
     return []
 
 

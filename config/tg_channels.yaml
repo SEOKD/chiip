@@ -7,7 +7,8 @@ channels:
   - {handle: kwusa}
   - {handle: insidertracking}
   - {handle: bornlupin}
-  - {handle: aethersemiresearch, always: true, mode: by_id}   # 웹 목록이 꺼져 있어 글별 공개 페이지를 번호로 읽는다(로그인 없음)
+  - {handle: aethersemiconductor, always: true}   # 2026-11-19 점검: aethersemiresearch가 2026-11-06 이 채널로 이전(텔레그램 계정 제재) — 웹 목록 공개
+  - {handle: aethersemiresearch, always: true, mode: by_id, disabled: true}   # (구) 채널 — 11/06 이전 공지 뒤 새 글 없음   # 웹 목록이 꺼져 있어 글별 공개 페이지를 번호로 읽는다(로그인 없음)
   - {handle: clawnewssummary}
   - {handle: easobi_ai}
   - {handle: ked_epic_ai, always: true}
