@@ -188,7 +188,7 @@ def premium_trend(dp):
             vals.append(round((own[m] / med - 1) * 100) if med else None)
             meds.append(round(med, 1) if med else None)
         if sum(v is not None for v in vals) >= 2:
-            out.append({"metric": "Trailing P/E(선행 이력 없음)", "months": months, "values": vals, "own": [round(own[m], 1) for m in months], "peer": meds})
+            out.append({"metric": "분기말 후행 P/E(대상 선행 추정 이력 없음)", "months": months, "values": vals, "own": [round(own[m], 1) for m in months], "peer": meds})
     return out
 
 

@@ -123,7 +123,7 @@ class TestValuationAudit(unittest.TestCase):
 
     def test_cbrs_datapack_matches_raw(self):
         r = datapack_check.check(datapack_check.load("us-cbrs"))
-        self.assertEqual([c for c in r["checks"] if c["status"] != "통과" and not c["name"].startswith(("기준 멀티플", "자산 구성", "동종 규모"))], [])   # 옛 묶음은 Fwd 1Y 재료·자산 구성(점수 밖)만 경고 · 동종 규모는 실제 경고(CBRS 1/5곳, ADR-042)
+        self.assertEqual([c for c in r["checks"] if c["status"] != "통과" and not c["name"].startswith(("멀티플 프리미엄 추이", "기준 멀티플", "자산 구성", "동종 규모"))], [])   # 옛 묶음은 Fwd 1Y 재료·자산 구성(점수 밖)만 경고 · 동종 규모는 실제 경고(CBRS 1/5곳, ADR-042) · 프리미엄 추이 재료는 옛 CBRS 묶음에 없다(2026-11-19 경고)
 
     def test_checker_catches_old_errors(self):
         p = datapack_check.load("us-cbrs")

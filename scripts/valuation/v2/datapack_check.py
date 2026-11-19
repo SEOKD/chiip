@@ -143,6 +143,11 @@ def check(p):
         nq = sum(1 for x in peers if x.get("hist_q"))
         add("멀티플 프리미엄 추이 재료(동종 분기말 배수 2곳 이상)", "통과" if nq >= 2 else "실패",
             f"동종 {nq}/{len(peers)}곳 hist_q — 동종 배수는 scripts/fiscal/templates/forward_multiples.js → adapter --forward-multiples로 받는다(손으로 채우면 추이가 없다)")
+    if not own_q and peers:   # 대상 Fwd 1Y 이력이 없으면(Zacks 미수록) 분기말 후행 P/E로 추이를 만든다(2026-11-19 BELFB: 현재값 1개만 나왔다). Fiscal.ai 미수록(한국·일본)은 재료가 없을 수 있어 경고
+        oq = len((p.get("history") or {}).get("pe_ttm") or [])
+        nq = sum(1 for x in peers if any(r.get("pe_ttm") for r in x.get("hist_q") or []))
+        add("멀티플 프리미엄 추이 재료(대상 선행 이력 없음 → 분기말 후행 P/E)", "통과" if oq >= 2 and nq >= 2 else "경고",
+            f"대상 {oq}개 분기 · 동종 {nq}/{len(peers)}곳 — scripts/fiscal/templates/trailing_pe_q.js → adapter --trailing-pe")
     mult, why = multiples.choose_basis(p)   # Fwd 1Y 이익 멀티플이 기준(마스터 지시 2026-10-30)
     add("기준 멀티플 Fwd 1Y(이익 지표)", "통과" if mult != "ev_sales" else "경고", f"{multiples.BASES[mult]} · {why}")
     mb, rb = cons.get("margin_basis"), cons.get("rev_basis")

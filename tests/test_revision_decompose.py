@@ -67,4 +67,28 @@ class TestKrActest(unittest.TestCase):
         self.assertEqual(p["est"][1], 825000.0)
         t = earnings_view.premium_trend(dp)
         self.assertEqual(len(t[0]["values"]), 3)
-        self.assertIn("Trailing", t[0]["metric"])
+        self.assertIn("후행", t[0]["metric"])
+
+    def test_trailing_pe_adapter(self):   # 2026-11-19 BELFB: Zacks 미수록이라 대상 Fwd 이력이 비어 프리미엄이 1개 분기만 — 분기말 후행 P/E로 같은 잣대
+        import importlib.util
+        import tempfile
+        from pathlib import Path
+        spec = importlib.util.spec_from_file_location("fadapter", Path(__file__).resolve().parents[1] / "scripts" / "fiscal" / "adapter.py")
+        ad = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(ad)
+        with tempfile.TemporaryDirectory() as tmp:
+            d = Path(tmp) / "knowledge" / "models" / "companies" / "x"
+            d.mkdir(parents=True)
+            (d / "datapack.json").write_text(json.dumps({"history": {"pe_fwd": []}, "peers": [
+                {"key": "NASDAQ_A", "ticker": "A", "hist_q": [{"date": "2026-06-30", "pe_fwd": 20.0}]}, {"key": "NYSE_B", "ticker": "B"}]}), encoding="utf-8")
+            ad.ROOT = Path(tmp)
+            out = {"target": [{"date": "2026-03-31", "pe_ttm": 30.0}, {"date": "2026-06-30", "pe_ttm": 33.0}],
+                   "peers": {"NASDAQ_A": [{"date": "2026-03-31", "pe_ttm": 20.0}, {"date": "2026-06-30", "pe_ttm": 22.0}],
+                             "NYSE_B": [{"date": "2026-03-27", "pe_ttm": 30.0}, {"date": "2026-06-26", "pe_ttm": 33.0}]}}
+            self.assertEqual(ad.put_trailing_pe("x", out), (2, 2))
+            dp = json.loads((d / "datapack.json").read_text(encoding="utf-8"))
+        self.assertEqual(dp["peers"][0]["hist_q"][1], {"date": "2026-06-30", "pe_fwd": 20.0, "pe_ttm": 22.0})   # 같은 분기말은 합친다
+        import earnings_view
+        t = earnings_view.premium_trend(dp)
+        self.assertEqual(t[0]["peer"], [25.0, 27.5])
+        self.assertEqual(t[0]["values"], [20, 20])

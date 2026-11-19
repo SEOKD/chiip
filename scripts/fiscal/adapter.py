@@ -166,6 +166,33 @@ def put_forward(cid, out):
     return {k: now.get(k) for k in ("pe_fwd", "pe_fwd2", "pe_fwd3", "ev_ebitda_fwd", "ev_ebitda_fwd2", "ev_ebitda_fwd3")}, n, len(out.get("history") or [])
 
 
+def put_trailing_pe(cid, out):
+    """trailing_pe_q.js 출력 → datapack history.pe_ttm(대상 분기말) · peers[].hist_q[].pe_ttm(같은 분기말). 반환: (대상 점 수, 채운 동종 수)
+    대상 Fwd 1Y 이력이 없을 때(Fiscal.ai에 Zacks 컨센서스 미수록, 2026-11-19 BELFB) 멀티플 프리미엄 4개 분기 추이를 같은 잣대(후행 P/E)로 만든다"""
+    p = ROOT / "knowledge" / "models" / "companies" / cid / "datapack.json"
+    dp = json.loads(p.read_text(encoding="utf-8"))
+    dp.setdefault("history", {})["pe_ttm"] = [{"date": r["date"], "value": r["pe_ttm"]} for r in out.get("target") or [] if r.get("pe_ttm")]
+    by_key = {k: v for k, v in (out.get("peers") or {}).items()}
+    by_ticker = {k.split("_", 1)[-1]: v for k, v in by_key.items()}
+    n = 0
+    for row in dp.get("peers") or []:
+        v = by_key.get(row.get("key")) or by_ticker.get(row.get("ticker"))
+        if not v:
+            continue
+        hq = row.setdefault("hist_q", [])
+        for r in v:
+            same = next((x for x in hq if str(x.get("date", ""))[:7] == r["date"][:7]), None)
+            if same:
+                same["pe_ttm"] = r["pe_ttm"]
+            else:
+                hq.append({"date": r["date"], "pe_ttm": r["pe_ttm"]})
+        hq.sort(key=lambda x: str(x.get("date")))
+        n += 1
+    dp["history"]["pe_ttm_source"] = out.get("source")
+    p.write_text(json.dumps(dp, ensure_ascii=False, indent=1), encoding="utf-8")
+    return len(dp["history"]["pe_ttm"]), n
+
+
 def put_key(cid, key, url=None):
     d = (yaml.safe_load(KEYS.read_text(encoding="utf-8")) if KEYS.exists() else None) or {}
     head = "".join(l + "\n" for l in KEYS.read_text(encoding="utf-8").splitlines() if l.startswith("#")) if KEYS.exists() else ""
@@ -205,6 +232,10 @@ def main(argv):
     if len(argv) >= 3 and argv[0] == "--forward-multiples":
         now, n, h = put_forward(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")))
         print(f"[Fiscal.ai→Fwd 1Y·2Y·3Y 멀티플] {argv[1]} {now} · 동종 {n}곳 · 과거 {h}개월")
+        return 0
+    if len(argv) >= 3 and argv[0] == "--trailing-pe":
+        h, n = put_trailing_pe(argv[1], json.loads(Path(argv[2]).read_text(encoding="utf-8")))
+        print(f"[Fiscal.ai→분기말 후행 P/E] {argv[1]} 대상 {h}개 분기 · 동종 {n}곳")
         return 0
     if len(argv) >= 3 and argv[0] == "--key":
         put_key(argv[1], argv[2], argv[3] if len(argv) > 3 else None)
