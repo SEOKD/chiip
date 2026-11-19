@@ -10,7 +10,7 @@
   선점형·스팟·약정가는 뺀다(2026-11-16 마스터 지시 "가격 종류를 하나로 통일"과 같은 원칙). '문의'는 값 없음.
 정가는 계단식으로 바뀐다 — 관측일 사이는 직전 관측값을 잇고(계단선), 관측일에 점을 찍는다.
   바뀐 날짜는 '두 관측일 사이'로만 안다. 그 구간을 change 목록에 함께 적는다.
-결정론: 매일 10:00~11:00 KST 첫 Pulse 회차에 due(주말 포함). 숫자·그림은 여기서, 풀이 2~4문장(read)만 모델 몫.
+결정론: 매일 10:00~11:00 KST 첫 Pulse 회차에 due(주말 포함). 그림은 START(2026-01-01)부터 오늘까지 — 해가 바뀌어도 리셋하지 않고 이어 그린다. 숫자·그림은 여기서, 풀이 2~4문장(read)만 모델 몫.
 사용: py radar/gpu_daily.py --backfill [2026-01-01]   # 아카이브 역수집(요청 사이 6초, 이어받기 가능)
       py radar/gpu_daily.py --chart [시작일]           # 그림만 그려 경로·요약 출력
       py radar/gpu_daily.py --status                  # Pulse 관문(JSON)
@@ -43,6 +43,7 @@ CDX = "https://web.archive.org/cdx/search/cdx"
 TARGETS = {"Nebius": "nebius.com/prices", "CoreWeave": "www.coreweave.com/pricing",
            "AWS": "b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json"}
 READ_MAX = 600
+START = "2026-01-01"   # 2026-11-19 마스터 지시 "2026년 YTD로 하나 그려놓고 여기서 매일 업데이트하며 추이를 이어가도록" — 해가 바뀌어도 이 날부터 잇는다
 
 
 # ---------- 아카이브 역수집 ----------
@@ -321,8 +322,9 @@ def _panel(page, box, g, S, d0, d1):
         v += step
     m = date(d0.year, d0.month, 1)
     while m <= d1:
-        if m >= d0 and (m.month % 2 == 1 or span < 200):
-            _txt(page, (X(m) - 6, y1 + 11), f"{m.month}월", 7, MUTED)
+        every = 1 if span < 200 else (2 if span < 550 else 3)
+        if m >= d0 and (m.month - 1) % every == 0:
+            _txt(page, (X(m) - 6, y1 + 11), f"{m.year % 100}.1" if m.month == 1 and m.year != d0.year else f"{m.month}월", 7, MUTED)
         m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
     page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
     ends, missing = [], []
@@ -367,7 +369,7 @@ def chart(since=None, until=None, path=None):
     import pymupdf
     from memory_spot import _txt
     now = common.now_kst()
-    since = since or f"{now.year}-01-01"
+    since = since or START
     until = until or now.date().isoformat()
     S = series(observations(), since, until)
     if not S:
@@ -376,7 +378,7 @@ def chart(since=None, until=None, path=None):
     doc = pymupdf.open()
     page = doc.new_page(width=760, height=720)
     page.draw_rect(page.rect, color=None, fill=SURF)
-    _txt(page, (36, 34), f"GPU 렌털비 추이 — 온디맨드 정가 $/GPU·시 ({since[:4]} YTD)", 15, INK)
+    _txt(page, (36, 34), f"GPU 렌털비 추이 — 온디맨드 정가 $/GPU·시 ({_ymd(since)}~)", 15, INK)
     _txt(page, (36, 52), f"기준 {until} · 계단선 = 관측값을 다음 관측까지 유지, 점 = 가격이 바뀐 것을 처음 본 날", 8.5, INK2)
     x = 36
     for p in PROVS:   # 범례(세 계열 — 끝 이름표와 함께)
@@ -411,12 +413,16 @@ def summary(S, since, until, png=""):
     return out
 
 
+def _ymd(s):
+    return f"{s[:4]}.{int(s[5:7])}.{int(s[8:10])}"
+
+
 def _md(s):
     return f"{int(s[5:7])}/{int(s[8:10])}" if s else "?"
 
 
 def caption(summ, read=""):
-    L = ["[Chiip Pulse] GPU 렌털비 추이", f"온디맨드 정가 $/GPU·시 · {summ['until']} 기준 ({summ['since'][:4]} YTD)", ""]
+    L = ["[Chiip Pulse] GPU 렌털비 추이", f"온디맨드 정가 $/GPU·시 · {summ['until']} 기준 ({_ymd(summ['since'])}~)", ""]
     for r in summ["gpus"]:
         parts = []
         for p in PROVS:
@@ -428,7 +434,7 @@ def caption(summ, read=""):
             if c["first"][0] > summ["since"]:   # 연초 값이 없다(출시·아카이브 공백) — 첫 관측일부터
                 ch = f"{_md(c['first'][0])}부터" + (f" {c['ytd']:+.0f}%" if moved else "")
             else:
-                ch = f"연초 대비 {c['ytd']:+.0f}%" if moved else ""
+                ch = f"{_ymd(summ['since'])} 대비 {c['ytd']:+.0f}%" if moved else ""
             parts.append(f"{p} ${c['usd']:,.2f}" + (f"({ch})" if ch else ""))
         L.append(f"■ {r['gpu']}: " + " · ".join(parts))
     flat = [p for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]
