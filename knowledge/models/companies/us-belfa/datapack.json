@@ -570,7 +570,26 @@
  },
  "history": {
   "pe_fwd": [],
-  "ev_ebitda_fwd": []
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 36.48
+   },
+   {
+    "date": "2026-03-31",
+    "value": 47.71
+   },
+   {
+    "date": "2026-06-30",
+    "value": 85.18
+   },
+   {
+    "date": "2026-09-30",
+    "value": 61.49
+   }
+  ],
+  "pe_ttm_source": "Fiscal.ai company_ratios LTM ratio_price_to_earnings(분기말 가격 ÷ 최근 4개 분기 GAAP EPS)"
  },
  "peers": [
   {
@@ -593,22 +612,26 @@
     {
      "date": "2025-12-31",
      "pe_fwd": 54.53,
-     "ev_ebitda_fwd": 34.68
+     "ev_ebitda_fwd": 34.68,
+     "pe_ttm": 41.99
     },
     {
      "date": "2026-03-31",
      "pe_fwd": 59.85,
-     "ev_ebitda_fwd": 40.13
+     "ev_ebitda_fwd": 40.13,
+     "pe_ttm": 53.85
     },
     {
      "date": "2026-06-30",
      "pe_fwd": 74.83,
-     "ev_ebitda_fwd": 51.75
+     "ev_ebitda_fwd": 51.75,
+     "pe_ttm": 121.72
     },
     {
      "date": "2026-09-30",
      "pe_fwd": 58.37,
-     "ev_ebitda_fwd": 38.56
+     "ev_ebitda_fwd": 38.56,
+     "pe_ttm": 75.64
     }
    ],
    "pe_fwd2": 20.9,
@@ -638,22 +661,26 @@
     {
      "date": "2025-12-31",
      "pe_fwd": 28.22,
-     "ev_ebitda_fwd": 20.9
+     "ev_ebitda_fwd": 20.9,
+     "pe_ttm": 54.52
     },
     {
      "date": "2026-03-31",
      "pe_fwd": 38.82,
-     "ev_ebitda_fwd": 29.65
+     "ev_ebitda_fwd": 29.65,
+     "pe_ttm": 67.94
     },
     {
      "date": "2026-06-30",
      "pe_fwd": 39.92,
-     "ev_ebitda_fwd": 31.83
+     "ev_ebitda_fwd": 31.83,
+     "pe_ttm": 69.57
     },
     {
      "date": "2026-09-30",
      "pe_fwd": 20.75,
-     "ev_ebitda_fwd": 16.48
+     "ev_ebitda_fwd": 16.48,
+     "pe_ttm": 40.55
     }
    ],
    "pe_fwd2": 9.58,
@@ -681,6 +708,18 @@
    "ev_ebitda_fwd": 11.89,
    "hist_q": [
     {
+     "date": "2025-03-29",
+     "pe_ttm": 52.89
+    },
+    {
+     "date": "2025-06-28",
+     "pe_ttm": 52.72
+    },
+    {
+     "date": "2025-09-27",
+     "pe_ttm": 54.93
+    },
+    {
      "date": "2025-12-31",
      "pe_fwd": 20.23,
      "ev_ebitda_fwd": 9.46
@@ -698,7 +737,8 @@
     {
      "date": "2026-09-30",
      "pe_fwd": 29.97,
-     "ev_ebitda_fwd": 13.23
+     "ev_ebitda_fwd": 13.23,
+     "pe_ttm": 351.82
     }
    ],
    "pe_fwd2": 16.05,
@@ -728,22 +768,26 @@
     {
      "date": "2025-12-31",
      "pe_fwd": 17.64,
-     "ev_ebitda_fwd": 21.53
+     "ev_ebitda_fwd": 21.53,
+     "pe_ttm": 40.46
     },
     {
      "date": "2026-03-31",
      "pe_fwd": 13.82,
-     "ev_ebitda_fwd": 16.09
+     "ev_ebitda_fwd": 16.09,
+     "pe_ttm": 36.2
     },
     {
      "date": "2026-06-30",
      "pe_fwd": 16.86,
-     "ev_ebitda_fwd": 19.1
+     "ev_ebitda_fwd": 19.1,
+     "pe_ttm": 44.08
     },
     {
      "date": "2026-09-30",
      "pe_fwd": 26.94,
-     "ev_ebitda_fwd": 16.02
+     "ev_ebitda_fwd": 16.02,
+     "pe_ttm": 36.65
     }
    ],
    "pe_fwd2": 18.76,
@@ -773,22 +817,26 @@
     {
      "date": "2025-12-31",
      "pe_fwd": 21.46,
-     "ev_ebitda_fwd": 14.5
+     "ev_ebitda_fwd": 14.5,
+     "pe_ttm": 33.55
     },
     {
      "date": "2026-03-31",
      "pe_fwd": 19.11,
-     "ev_ebitda_fwd": 12.15
+     "ev_ebitda_fwd": 12.15,
+     "pe_ttm": 20.65
     },
     {
      "date": "2026-06-30",
      "pe_fwd": 16.53,
-     "ev_ebitda_fwd": 11.27
+     "ev_ebitda_fwd": 11.27,
+     "pe_ttm": 19.39
     },
     {
      "date": "2026-09-30",
      "pe_fwd": 16.39,
-     "ev_ebitda_fwd": 10.92
+     "ev_ebitda_fwd": 10.92,
+     "pe_ttm": 19.76
     }
    ],
    "pe_fwd2": 13.73,
