@@ -38,6 +38,17 @@ def save(st):
     STATE.write_text(json.dumps(st, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+def task_of(inp):
+    """예약 작업 이름 — 세션 기록 첫머리의 scheduled-task 이름(없으면 사람 세션 = None)"""
+    try:
+        head = Path(inp.get("transcript_path") or "").read_text(encoding="utf-8", errors="replace")[:6000]
+    except Exception:
+        return None
+    import re
+    m = re.search(r'scheduled-task name=\\*"([\w.-]+)', head)
+    return m.group(1) if m else None
+
+
 def deny(msg):
     print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": msg}}, ensure_ascii=False))
 
@@ -61,16 +72,16 @@ def main(mode):
             save(st)
             return deny(f"TradingView 한도 대기 중({bu[11:16]} KST까지) — 부르지 말고 대체 경로(Easyconomics·Fiscal.ai)나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml)")
         budget = int(c.get("daily_budget", 70))
-        reserve = int(c.get("sync_reserve", 12))
-        early = now.hour < c.get("reserve_until_hour", 7) and now.hour >= c.get("day_start_hour", 6)
-        is_sync = "watchlist" in tool or st.get("sync_session") == inp.get("session_id")
-        limit = budget if (is_sync or not early) else budget - reserve
+        # 우선 작업(Analysis 그래프, 2026-11-19 마스터 지시 "Analysis에서 TradingView 그래프를 가져오는 걸 우선순위로")은 예산 전부, 나머지는 우선 몫을 남긴 만큼만
+        task = task_of(inp)
+        if task:
+            st.setdefault("tasks", {})[str(inp.get("session_id"))[:8]] = task
+        prio = task in (c.get("priority_tasks") or [])
+        limit = budget if prio else budget - int(c.get("priority_reserve", 30))
         if st.get("used", 0) >= limit:
             st["denied"] = st.get("denied", 0) + 1
             save(st)
             return deny(f"TradingView 오늘 예산 {st.get('used')}/{budget}건 소진 — 다음 06:00 KST까지 부르지 않는다. 대체 경로를 쓰거나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml)")
-        if "watchlist" in tool:
-            st["sync_session"] = inp.get("session_id")
         st["used"] = st.get("used", 0) + 1
         st.setdefault("by_session", {})
         sid = str(inp.get("session_id") or "?")[:8]
