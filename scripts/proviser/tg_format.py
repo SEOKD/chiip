@@ -1,7 +1,8 @@
-"""Proviser 일일 텔레그램 양식 관문 (마스터 지시 2026-11-19 "* Portfolio와 * Weekly 사이에 문단 띄어쓰기는 한 번만 적용하라").
+"""Proviser 일일 텔레그램 양식 관문.
 
-점수 목록(`* 이름 x.x(±d.d)` 줄들)은 핵심 3개(Pulse·Analysis·Portfolio) 다음에 빈 줄 정확히 하나, 나머지 점수 줄 사이에는 빈 줄 없음.
-글 전체에서 빈 줄이 두 줄 이상 겹치면 한 줄로 줄인다. 숫자·문장은 건드리지 않는다.
+마스터 지시 2026-11-19(두 번째, 예시 양식): 점수 목록(`* 이름 x.x(±d.d)`)은 빈 줄 없이 한 덩어리로 붙이고,
+그 아래 본문 문단은 모두 `■`로 시작한다. 문단 사이에는 빈 줄 하나. 겹친 빈 줄은 한 줄로 줄인다. 숫자·문장은 건드리지 않는다.
+(같은 날 첫 지시 "핵심 3개와 나머지 사이 빈 줄 한 번"은 이 예시 양식으로 대체됐다)
 사용: py scripts/proviser/tg_format.py <tg.txt>          # 파일을 고쳐 쓰고 결과를 출력
       py scripts/proviser/tg_format.py <tg.txt> --send   # 고친 뒤 notify.send(…, 'PROVISER')
 """
@@ -9,8 +10,8 @@ import re
 import sys
 from pathlib import Path
 
-CORE = ("Pulse", "Analysis", "Portfolio")
 SCORE = re.compile(r"^\* \S")
+HEAD = re.compile(r"^\[Chiip Proviser")
 
 
 def fix(text):
@@ -18,13 +19,14 @@ def fix(text):
     idx = [i for i, l in enumerate(lines) if SCORE.match(l)]
     if idx:
         a, b = idx[0], idx[-1]
-        scores = [l for l in lines[a:b + 1] if l.strip()]
-        core = [l for l in scores if re.match(r"^\* (%s) (\d|신규)" % "|".join(CORE), l)]   # 'Pulse Weekend'은 핵심이 아니다
-        rest = [l for l in scores if l not in core]
-        block = core + ([""] if core and rest else []) + rest
-        lines = lines[:a] + block + lines[b + 1:]
-    out = re.sub(r"\n{3,}", "\n\n", "\n".join(lines))
-    return out
+        lines = lines[:a] + [l for l in lines[a:b + 1] if l.strip()] + lines[b + 1:]
+    out = []
+    for l in lines:
+        s = l.strip()
+        if s and not SCORE.match(s) and not HEAD.match(s) and not s.startswith("■"):
+            l = "■" + s
+        out.append(l)
+    return re.sub(r"\n{3,}", "\n\n", "\n".join(out))
 
 
 def main(argv):
