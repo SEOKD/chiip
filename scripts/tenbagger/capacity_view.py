@@ -18,6 +18,7 @@ datapack "capacity":
                              "capacity": {"value": 20000, "unit": "웨이퍼/월", "source": "출처"} 또는 "미확인",
                              "capacity_basis": "시설별 캐파 미공시",                                       # capacity가 미확인이면 이유
                              "status": "가동"}]}                                                          # FAC_STATUS 중 하나
+   "estimate": {...}   # 회사가 캐파를 공시하지 않으면 넣는다 — 면적·판매·재무 지표·콜 발언·IB 추정을 합친 추정(scripts/tenbagger/capa_model.py 맨 위, 마스터 지시 2026-11-19)
   생산 설비가 없는 회사: {"none": "이유"} → 절을 넣지 않는다.
 
 금지표대로 투자 발표를 공급 증가로 세지 않는다: 착공 이후 단계만 '착공 이상' 합계에 넣고, 명목 캐파와 가동률 반영 실효 캐파를 나눈다.
@@ -28,6 +29,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ladder import _money  # noqa: E402
 import site_view  # noqa: E402
+import capa_model  # noqa: E402   # 캐파 미공시 → 여러 방법 결합 추정(2026-11-19)
 
 UNKNOWN = "미확인"
 STAGES = ("발표", "인허가", "착공", "장비 반입", "가동", "양산")
@@ -113,6 +115,7 @@ def check(cap):
         if _num(y.get("capex")) is None or not _num(y.get("rev")) or y.get("kind") not in KINDS:
             raise ValueError(f"capacity.capex {y.get('period')}: capex·rev·kind({KINDS})가 필요하다")
     site_view.check(cap)
+    capa_model.check(cap.get("estimate"))
 
 
 def _cap(v, unit):
@@ -138,8 +141,15 @@ def section(dp):
         head += " " + site_view.headline(dp, unit)
     if cap.get("summary"):
         head += " " + str(cap["summary"])
+    est = capa_model.estimate(cap) if c["now"] is None else None   # 공시 캐파가 없을 때만 추정(마스터 지시 2026-11-19)
+    if est:
+        head = capa_model.headline(est) + " " + head.replace(f"**현재 명목 캐파 {_cap(None, unit)}, 가동률 {UNKNOWN}.**", "").strip()
     B = [{"type": "hl", "text": head}]
-    B.extend(facility_blocks(cap))
+    if est:
+        B += [{"type": "chart", "chart": capa_model.chart(est)}, capa_model.table(est)]
+        if (cap["estimate"].get("unit_basis")):
+            B.append({"type": "p", "text": f"단위: {cap['estimate']['unit_basis']}"})
+    B.extend(facility_blocks(cap, est))
     if c["pending"]:
         B.append({"type": "table", "title": "생산능력 확충 계획", "headers": ["계획", "단계", "증설", "가동 시점", "CAPEX"],
                   "rows": [[p["name"], p["stage"], _cap(_num(p.get("add")), unit), p["online"], UNKNOWN if _num(p.get("capex")) is None else _money(p["capex"], money)] for p in c["pending"]]})
@@ -167,7 +177,7 @@ def _fcap(f):
     return f"{cv['value']:,.0f} {cv['unit']}" if isinstance(cv, dict) else UNKNOWN
 
 
-def facility_blocks(cap):
+def facility_blocks(cap, est=None):
     """생산시설 목록 — 몇 곳, 이름·위치·생산능력(마스터 지시 2026-11-08). 시설별 캐파를 둘 이상 알면 그 막대, 모르면 공시 면적을 대용으로 그린다"""
     fac = cap.get("facilities") or {}
     items = fac.get("items") or []
@@ -192,6 +202,8 @@ def facility_blocks(cap):
     if len(known) >= 2 and len(units) == 1:
         B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 160, "title": f"시설별 생산능력({units.pop()}, 큰 순)", "unit": "",
                                              "rows": [{"label": f["name"], "bars": [{"name": "생산능력", "color": "c", "value": f["capacity"]["value"]}]} for f in sorted(known, key=lambda f: -f["capacity"]["value"])]}})
+    elif est and capa_model.site_chart(est, fac, is_production):   # 면적 대신 결합 추정을 면적 × 제조 사용 비율로 배분(2026-11-19)
+        B.append({"type": "chart", "chart": capa_model.site_chart(est, fac, is_production)})
     elif has_area:
         # 면적 그림은 생산시설만, 면적 큰 순(마스터 지시 2026-11-08 "오피스 말고 생산시설만 다루고 면적 상위 순으로") — 표에는 모든 시설이 남는다
         prod = [f for f in items if (f.get("area") or {}).get("value") and is_production(f)]
@@ -220,6 +232,9 @@ def charts(dp):
             steps.append(("발표까지 반영", c["now"] + c["add_all"], "e"))
     ladder = {"kind": "hbars", "w": 480, "label_w": 150, "title": f"생산능력 현재와 확충 계획({unit})", "unit": "",
               "rows": [{"label": n, "bars": [{"name": n, "color": col, "value": round(v, 1)}]} for n, v, col in steps]} if steps else None
+    est = capa_model.estimate(cap) if c["now"] is None else None
+    if est:   # 공시 캐파가 없으면 방법별 추정 그림(2026-11-19)
+        ladder = capa_model.chart(est)
     money = dp.get("unit", "B$")
     years = {"kind": "hbars", "w": 480, "label_w": 150, "title": "CAPEX의 매출 대비 비중", "unit": "%",
              "rows": [{"label": f"{y['period']} {_money(y['capex'], money)}", "bars": [{"name": y["kind"], "color": "c" if y["kind"] == "실적" else "e", "value": round(y["pct"] * 100, 1)}]} for y in c["years"]]}
@@ -232,5 +247,9 @@ def summary_item(dp):
         return None
     c = compute(dp)
     y = c["years"][-1]
+    est = capa_model.estimate(cap) if c["now"] is None else None
+    if est:
+        a = f"추정 캐파 {capa_model._f(est['mid'])} {est['unit']}(범위 {capa_model._f(est['lo'])}~{capa_model._f(est['hi'])})" + (f", 가동률 약 {est['use']:.0%}" if est["use"] is not None else "") + f"(공시 없음, 여러 방법 결합). {y['period']} CAPEX는 매출의 {y['pct']:.1%}다."
+        return {"q": "생산능력은 얼마나 늘어나나?", "a": a, "auto": True}
     a = f"현재 명목 캐파 {_cap(c['now'], cap['unit'])}, 착공 이상 증설 {_cap(c['add_firm'], cap['unit'])}. {y['period']} CAPEX는 매출의 {y['pct']:.1%}다."
     return {"q": "생산능력은 얼마나 늘어나나?", "a": a, "auto": True}
