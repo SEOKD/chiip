@@ -14,6 +14,7 @@ list_scheduled_tasks·list_task_runs 결과를 JSON으로 저장하면, 이 스�
       py scripts/ops/catchup.py --mark <taskId> <slot ISO>
 """
 import json
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -75,6 +76,9 @@ def _dt(s):
     return datetime.fromisoformat(str(s).replace("Z", "+00:00"))
 
 
+LIMIT_RE = re.compile(r"한도|limit|rate.?limit|quota|냉각", re.I)   # 외부 호출 한도로 못 한 회차(재실행해도 같은 결과)
+
+
 def produced(tid, slot, now):
     """실행이 '성공'이어도 산출물이 없으면 누락이다(2026-11-18: Analysis 13·18·22시가 ASML 관문에서 멈추고도 '성공', TradingView 동기화도 한도로 못 했는데 '성공' — Catchup이 '18개 정상'으로 넘겼다).
     True = 산출물 있음 · False = 없음 · None = 판정 대상 아님/아직 이르다"""
@@ -132,6 +136,11 @@ def judge(doc, state=None):
                 out["ok"] += 1
                 continue
             empty = True   # '성공'인데 산출물 없음
+            # TradingView 일일 한도로 못 한 회차는 지금 다시 돌려도 같은 한도에 걸린다(2026-11-18·19 06:20 동기화) — 재실행·알림 대신 대기
+            if any(LIMIT_RE.search(str(r.get("summary") or "") + str(r.get("error") or "")) for r in runs):
+                out["waiting"].append(tid)
+                out.setdefault("limit_hold", []).append(tid)
+                continue
 
         key = slot.isoformat()
         if (state.get(tid) or {}).get("slot") == key:
