@@ -25,7 +25,7 @@
 **TradingView 한도·막힌 종목(필수, 2026-11-18 마스터 지시 — 11/18 13·18·22시 세 회차가 모두 ASML을 고른 뒤 일봉 관문에서 멈춰 하루 2건만 냈다):**
 - **10분 냉각**이면 한 번 기다렸다가(최대 10분) 다시 부른다. **일일 한도**이거나 다시 막히면 TradingView를 쓰지 않는다.
 - **실측 일봉 대체:** Easyconomics `company_price_history`(market 맞춰, period `1y` — 처음 받는 종목, 기존 실측 일봉이 있으면 `3mo`로 최근만)를 파일로 저장해 `py scripts/fiscal/adapter.py --ohlcv-ec <id> <파일>`. 열 묶음 `{"d":[…],"o":[…],"h":[…],"l":[…],"c":[…],"v":[…]}`로 줄여 적어도 된다. 기존 실측 봉과 날짜로 합치고 머리 주석이 '실제 고가·저가'라 일봉 관문을 통과한다. 1년치면 100주선은 빠질 수 있다 — 그대로 둔다.
-- **그래도 막히면 같은 회차에서 다음 종목:** `py scripts/tenbagger/pick_report.py --blocked <id> "<막힌 이유>"`(20시간 건너뜀) → 다시 `pick_report.py`로 다음 후보를 받아 그 종목을 쓴다. 한 회차에 두 종목까지. 리포트 0건으로 끝나면 마지막 문장에 '리포트 0건(사유)'을 쓴다 — Catchup이 발행 기록(텔레그램 발송 시각)으로 다시 돌린다.
+- **그래도 막히면 같은 회차에서 다음 종목:** `py scripts/tenbagger/pick_report.py --blocked <id> "<막힌 이유>"`(20시간 건너뜀) → 다시 `pick_report.py`로 다음 후보를 받아 그 종목을 쓴다. 한 회차에 세 종목까지(2026-11-20 — 22시 회차가 두 종목 모두 막혀 0건으로 끝났다). 한국 종목 '어닝콜 스크립트 없음'은 이유에 그 말을 넣으면 45일(다음 실적 시즌까지) 건너뛴다. 리포트 0건으로 끝나면 마지막 문장에 '리포트 0건(사유)'을 쓴다 — Catchup이 발행 기록(텔레그램 발송 시각)으로 다시 돌린다.
 
 **시세 갱신(필수, ADR-042 — 2026-11-15):** 회차를 시작하면 먼저 `py radar/markets/prices_free.py --tv-symbols`로 동인 있는 종목의 TradingView 기호(50개씩)를 받고, 묶음마다 TradingView `get_symbol_data_batch`(columns ["close"])를 불러 응답을 하나의 JSON({기호: 종가})으로 저장한 뒤 `py radar/markets/prices_free.py --tv-put <파일> --date <종가 날짜>`로 `prices/<종목 id>.csv`에 넣는다. 엔진(`run.resolve_market`)은 datapack 스냅숏보다 새 가격을 쓴다. 평가 가격이 7일 넘으면 경고, 14일 넘으면 발행이 멈춘다(ADR-041).
 

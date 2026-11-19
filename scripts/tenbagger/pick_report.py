@@ -111,6 +111,12 @@ def non_ai_turn(today):
 
 BLOCKED = ROOT / "outputs" / "tenbagger" / "reports" / "blocked.json"
 BLOCK_HOURS = 20   # 막힌 종목은 이만큼 건너뛰고 다음 후보로 — 같은 날 남은 회차가 같은 종목에서 다시 멈추지 않게
+# 다음 실적 시즌 전에는 풀리지 않는 사유는 길게 건너뛴다(2026-11-19 22시: 이오테크닉스가 11/16·11/19 두 번 '어닝콜 스크립트 없음'으로 회차를 날렸다)
+BLOCK_LONG = {"어닝콜 스크립트": 24 * 45}
+
+
+def _hours(why):
+    return next((h for k, h in BLOCK_LONG.items() if k in str(why or "")), BLOCK_HOURS)
 
 
 def blocked_ids(now=None):
@@ -119,7 +125,7 @@ def blocked_ids(now=None):
         return set()
     now = now or datetime.now()
     d = json.loads(BLOCKED.read_text(encoding="utf-8"))
-    return {k for k, v in d.items() if datetime.fromisoformat(v["at"]) + _td(hours=BLOCK_HOURS) > now}
+    return {k for k, v in d.items() if datetime.fromisoformat(v["at"]) + _td(hours=_hours(v.get("why"))) > now}
 
 
 def block(eid, why):
@@ -201,7 +207,7 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if argv and argv[0] == "--blocked":
         block(argv[1], argv[2] if len(argv) > 2 else "막힘")
-        print(f"[텐배거 리포트] {argv[1]} {BLOCK_HOURS}시간 건너뜀 — 다시 고르면 다음 후보")
+        print(f"[텐배거 리포트] {argv[1]} {_hours(' '.join(argv[2:]))}시간 건너뜀 — 다시 고르면 다음 후보")
         return 0
     if argv and argv[0] == "--unblock":
         d = json.loads(BLOCKED.read_text(encoding="utf-8")) if BLOCKED.exists() else {}
