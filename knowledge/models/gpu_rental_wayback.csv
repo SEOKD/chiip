@@ -1,0 +1,399 @@
+date,provider,gpu,config,usd_per_gpu_hr,node_usd_hr,gpus_per_node,snapshot,source_url
+2025-12-18,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,pricelist:20251218215508,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20251218215508/us-east-1/index.csv
+2026-01-29,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,pricelist:20260129082055,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260129082055/us-east-1/index.csv
+2026-03-26,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,pricelist:20260326154455,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260326154455/us-east-1/index.csv
+2026-05-29,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,pricelist:20260529053858,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260529053858/us-east-1/index.csv
+2026-07-28,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,pricelist:20260728175247,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260728175247/us-east-1/index.csv
+2026-09-21,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,20260921210002,https://web.archive.org/web/20260921210002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-09-30,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,20260930084109,https://web.archive.org/web/20260930084109id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-09,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,20261009174249,https://web.archive.org/web/20261009174249id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20%28N.%20Virginia%29/Linux/index.json
+2026-10-15,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,20261015042906,https://web.archive.org/web/20261015042906id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-25,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,20261025155002,https://web.archive.org/web/20261025155002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-11-15,AWS,B200,p6-b200.48xlarge,14.24,113.9328,8,20261115162015,https://web.archive.org/web/20261115162015id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-05-29,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,pricelist:20260529053858,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260529053858/us-east-1/index.csv
+2026-07-28,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,pricelist:20260728175247,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260728175247/us-east-1/index.csv
+2026-09-21,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,20260921210002,https://web.archive.org/web/20260921210002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-09-30,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,20260930084109,https://web.archive.org/web/20260930084109id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-09,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,20261009174249,https://web.archive.org/web/20261009174249id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20%28N.%20Virginia%29/Linux/index.json
+2026-10-15,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,20261015042906,https://web.archive.org/web/20261015042906id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-25,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,20261025155002,https://web.archive.org/web/20261025155002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-11-15,AWS,B300,p6-b300.48xlarge,17.8,142.416,8,20261115162015,https://web.archive.org/web/20261115162015id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2025-12-18,AWS,H100,p5.48xlarge,6.88,55.04,8,pricelist:20251218215508,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20251218215508/us-east-1/index.csv
+2026-01-29,AWS,H100,p5.48xlarge,6.88,55.04,8,pricelist:20260129082055,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260129082055/us-east-1/index.csv
+2026-03-26,AWS,H100,p5.48xlarge,6.88,55.04,8,pricelist:20260326154455,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260326154455/us-east-1/index.csv
+2026-05-29,AWS,H100,p5.48xlarge,6.88,55.04,8,pricelist:20260529053858,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260529053858/us-east-1/index.csv
+2026-07-28,AWS,H100,p5.48xlarge,6.88,55.04,8,pricelist:20260728175247,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260728175247/us-east-1/index.csv
+2026-09-21,AWS,H100,p5.48xlarge,6.88,55.04,8,20260921210002,https://web.archive.org/web/20260921210002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-09-30,AWS,H100,p5.48xlarge,6.88,55.04,8,20260930084109,https://web.archive.org/web/20260930084109id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-09,AWS,H100,p5.48xlarge,6.88,55.04,8,20261009174249,https://web.archive.org/web/20261009174249id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20%28N.%20Virginia%29/Linux/index.json
+2026-10-15,AWS,H100,p5.48xlarge,6.88,55.04,8,20261015042906,https://web.archive.org/web/20261015042906id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-25,AWS,H100,p5.48xlarge,6.88,55.04,8,20261025155002,https://web.archive.org/web/20261025155002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-11-15,AWS,H100,p5.48xlarge,6.88,55.04,8,20261115162015,https://web.archive.org/web/20261115162015id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2025-12-18,AWS,H200,p5en.48xlarge,7.91,63.296,8,pricelist:20251218215508,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20251218215508/us-east-1/index.csv
+2026-01-29,AWS,H200,p5en.48xlarge,7.91,63.296,8,pricelist:20260129082055,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260129082055/us-east-1/index.csv
+2026-03-26,AWS,H200,p5en.48xlarge,7.91,63.296,8,pricelist:20260326154455,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260326154455/us-east-1/index.csv
+2026-05-29,AWS,H200,p5en.48xlarge,7.91,63.296,8,pricelist:20260529053858,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260529053858/us-east-1/index.csv
+2026-07-28,AWS,H200,p5en.48xlarge,7.91,63.296,8,pricelist:20260728175247,https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonEC2/20260728175247/us-east-1/index.csv
+2026-09-21,AWS,H200,p5en.48xlarge,7.91,63.296,8,20260921210002,https://web.archive.org/web/20260921210002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-09-30,AWS,H200,p5en.48xlarge,7.91,63.296,8,20260930084109,https://web.archive.org/web/20260930084109id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-09,AWS,H200,p5en.48xlarge,7.91,63.296,8,20261009174249,https://web.archive.org/web/20261009174249id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20%28N.%20Virginia%29/Linux/index.json
+2026-10-15,AWS,H200,p5en.48xlarge,7.91,63.296,8,20261015042906,https://web.archive.org/web/20261015042906id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-10-25,AWS,H200,p5en.48xlarge,7.91,63.296,8,20261025155002,https://web.archive.org/web/20261025155002id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2026-11-15,AWS,H200,p5en.48xlarge,7.91,63.296,8,20261115162015,https://web.archive.org/web/20261115162015id_/https://b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json
+2025-12-16,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20251216064621,https://web.archive.org/web/20251216064621id_/https://coreweave.com/pricing
+2025-12-17,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20251217231756,https://web.archive.org/web/20251217231756id_/https://coreweave.com/pricing
+2025-12-20,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20251220231821,https://web.archive.org/web/20251220231821id_/https://www.coreweave.com/pricing
+2025-12-31,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20251231180725,https://web.archive.org/web/20251231180725id_/http://www.coreweave.com/pricing
+2026-01-06,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20260106014605,https://web.archive.org/web/20260106014605id_/https://www.coreweave.com/pricing
+2026-01-18,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20260118105519,https://web.archive.org/web/20260118105519id_/http://www.coreweave.com/pricing
+2026-01-22,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20260122183416,https://web.archive.org/web/20260122183416id_/https://www.coreweave.com/pricing
+2026-01-23,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20260123012337,https://web.archive.org/web/20260123012337id_/http://www.coreweave.com/pricing
+2026-02-25,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20260225001139,https://web.archive.org/web/20260225001139id_/https://www.coreweave.com/pricing
+2026-03-13,CoreWeave,B200,NVIDIA B200,8.6,68.8,8,20260313081744,https://web.archive.org/web/20260313081744id_/https://coreweave.com/pricing
+2026-04-15,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260415105017,https://web.archive.org/web/20260415105017id_/https://coreweave.com/pricing
+2026-04-17,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260417110551,https://web.archive.org/web/20260417110551id_/https://www.coreweave.com/pricing
+2026-04-29,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260429003247,https://web.archive.org/web/20260429003247id_/https://coreweave.com/pricing
+2026-05-10,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260510055757,https://web.archive.org/web/20260510055757id_/https://coreweave.com/pricing
+2026-05-12,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260512101710,https://web.archive.org/web/20260512101710id_/https://www.coreweave.com/pricing
+2026-05-21,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260521183256,https://web.archive.org/web/20260521183256id_/https://www.coreweave.com/pricing
+2026-05-27,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260527123707,https://web.archive.org/web/20260527123707id_/https://www.coreweave.com/pricing
+2026-06-05,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260605195952,https://web.archive.org/web/20260605195952id_/https://www.coreweave.com/pricing
+2026-06-09,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260609091229,https://web.archive.org/web/20260609091229id_/https://www.coreweave.com/pricing
+2026-06-16,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260616152356,https://web.archive.org/web/20260616152356id_/http://www.coreweave.com/pricing
+2026-06-26,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260626170907,https://web.archive.org/web/20260626170907id_/https://www.coreweave.com/pricing
+2026-07-11,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260711021026,https://web.archive.org/web/20260711021026id_/https://www.coreweave.com/pricing
+2026-07-15,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260715014110,https://web.archive.org/web/20260715014110id_/https://www.coreweave.com/pricing
+2026-07-27,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260727103436,https://web.archive.org/web/20260727103436id_/https://www.coreweave.com/pricing
+2026-07-30,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260730110208,https://web.archive.org/web/20260730110208id_/https://www.coreweave.com/pricing
+2026-08-03,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260803103255,https://web.archive.org/web/20260803103255id_/https://www.coreweave.com/pricing
+2026-08-07,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260807161600,https://web.archive.org/web/20260807161600id_/https://www.coreweave.com/pricing
+2026-08-12,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260812172250,https://web.archive.org/web/20260812172250id_/https://www.coreweave.com/pricing
+2026-08-19,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260819042517,https://web.archive.org/web/20260819042517id_/https://www.coreweave.com/pricing
+2026-08-23,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260823142941,https://web.archive.org/web/20260823142941id_/https://www.coreweave.com/pricing
+2026-08-31,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260831143010,https://web.archive.org/web/20260831143010id_/https://www.coreweave.com/pricing
+2026-09-04,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260904032932,https://web.archive.org/web/20260904032932id_/https://www.coreweave.com/pricing
+2026-09-05,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260905051030,https://web.archive.org/web/20260905051030id_/https://www.coreweave.com/pricing
+2026-09-07,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260907065857,https://web.archive.org/web/20260907065857id_/https://www.coreweave.com/pricing
+2026-09-15,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260915165022,https://web.archive.org/web/20260915165022id_/https://www.coreweave.com/pricing
+2026-09-17,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260917130055,https://web.archive.org/web/20260917130055id_/https://www.coreweave.com/pricing
+2026-09-19,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260919173039,https://web.archive.org/web/20260919173039id_/https://www.coreweave.com/pricing
+2026-09-23,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260923185135,https://web.archive.org/web/20260923185135id_/https://www.coreweave.com/pricing
+2026-09-28,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260928065618,https://web.archive.org/web/20260928065618id_/https://www.coreweave.com/pricing
+2026-09-29,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20260929073336,https://web.archive.org/web/20260929073336id_/https://www.coreweave.com/pricing
+2026-10-01,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261001003124,https://web.archive.org/web/20261001003124id_/https://www.coreweave.com/pricing
+2026-10-03,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261003162112,https://web.archive.org/web/20261003162112id_/https://www.coreweave.com/pricing
+2026-10-09,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261009051204,https://web.archive.org/web/20261009051204id_/https://www.coreweave.com/pricing
+2026-10-12,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261012065454,https://web.archive.org/web/20261012065454id_/https://www.coreweave.com/pricing
+2026-10-14,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261014195200,https://web.archive.org/web/20261014195200id_/https://www.coreweave.com/pricing
+2026-10-15,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261015190918,https://web.archive.org/web/20261015190918id_/https://www.coreweave.com/pricing
+2026-10-19,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261019070005,https://web.archive.org/web/20261019070005id_/https://www.coreweave.com/pricing
+2026-10-26,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261026080300,https://web.archive.org/web/20261026080300id_/https://www.coreweave.com/pricing
+2026-11-02,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261102074948,https://web.archive.org/web/20261102074948id_/https://www.coreweave.com/pricing
+2026-11-03,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261103034433,https://web.archive.org/web/20261103034433id_/https://www.coreweave.com/pricing
+2026-11-09,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261109074436,https://web.archive.org/web/20261109074436id_/https://www.coreweave.com/pricing
+2026-11-15,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261115165128,https://web.archive.org/web/20261115165128id_/https://www.coreweave.com/pricing
+2026-11-16,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261116074600,https://web.archive.org/web/20261116074600id_/https://www.coreweave.com/pricing
+2026-11-17,CoreWeave,B200,NVIDIA HGX B200,8.6,68.8,8,20261117070235,https://web.archive.org/web/20261117070235id_/https://www.coreweave.com/pricing
+2026-04-15,CoreWeave,B300,NVIDIA HGX B300,,,8,20260415105017,https://web.archive.org/web/20260415105017id_/https://coreweave.com/pricing
+2026-04-17,CoreWeave,B300,NVIDIA HGX B300,,,8,20260417110551,https://web.archive.org/web/20260417110551id_/https://www.coreweave.com/pricing
+2026-04-29,CoreWeave,B300,NVIDIA HGX B300,,,8,20260429003247,https://web.archive.org/web/20260429003247id_/https://coreweave.com/pricing
+2026-05-10,CoreWeave,B300,NVIDIA HGX B300,,,8,20260510055757,https://web.archive.org/web/20260510055757id_/https://coreweave.com/pricing
+2026-05-12,CoreWeave,B300,NVIDIA HGX B300,,,8,20260512101710,https://web.archive.org/web/20260512101710id_/https://www.coreweave.com/pricing
+2026-05-21,CoreWeave,B300,NVIDIA HGX B300,,,8,20260521183256,https://web.archive.org/web/20260521183256id_/https://www.coreweave.com/pricing
+2026-05-27,CoreWeave,B300,NVIDIA HGX B300,,,8,20260527123707,https://web.archive.org/web/20260527123707id_/https://www.coreweave.com/pricing
+2026-06-05,CoreWeave,B300,NVIDIA HGX B300,,,8,20260605195952,https://web.archive.org/web/20260605195952id_/https://www.coreweave.com/pricing
+2026-06-09,CoreWeave,B300,NVIDIA HGX B300,,,8,20260609091229,https://web.archive.org/web/20260609091229id_/https://www.coreweave.com/pricing
+2026-06-16,CoreWeave,B300,NVIDIA HGX B300,,,8,20260616152356,https://web.archive.org/web/20260616152356id_/http://www.coreweave.com/pricing
+2026-06-26,CoreWeave,B300,NVIDIA HGX B300,,,8,20260626170907,https://web.archive.org/web/20260626170907id_/https://www.coreweave.com/pricing
+2026-07-11,CoreWeave,B300,NVIDIA HGX B300,,,8,20260711021026,https://web.archive.org/web/20260711021026id_/https://www.coreweave.com/pricing
+2026-07-15,CoreWeave,B300,NVIDIA HGX B300,,,8,20260715014110,https://web.archive.org/web/20260715014110id_/https://www.coreweave.com/pricing
+2026-07-27,CoreWeave,B300,NVIDIA HGX B300,,,8,20260727103436,https://web.archive.org/web/20260727103436id_/https://www.coreweave.com/pricing
+2026-07-30,CoreWeave,B300,NVIDIA HGX B300,,,8,20260730110208,https://web.archive.org/web/20260730110208id_/https://www.coreweave.com/pricing
+2026-08-03,CoreWeave,B300,NVIDIA HGX B300,,,8,20260803103255,https://web.archive.org/web/20260803103255id_/https://www.coreweave.com/pricing
+2026-08-07,CoreWeave,B300,NVIDIA HGX B300,,,8,20260807161600,https://web.archive.org/web/20260807161600id_/https://www.coreweave.com/pricing
+2026-08-12,CoreWeave,B300,NVIDIA HGX B300,,,8,20260812172250,https://web.archive.org/web/20260812172250id_/https://www.coreweave.com/pricing
+2026-08-19,CoreWeave,B300,NVIDIA HGX B300,,,8,20260819042517,https://web.archive.org/web/20260819042517id_/https://www.coreweave.com/pricing
+2026-08-23,CoreWeave,B300,NVIDIA HGX B300,,,8,20260823142941,https://web.archive.org/web/20260823142941id_/https://www.coreweave.com/pricing
+2026-08-31,CoreWeave,B300,NVIDIA HGX B300,,,8,20260831143010,https://web.archive.org/web/20260831143010id_/https://www.coreweave.com/pricing
+2026-09-04,CoreWeave,B300,NVIDIA HGX B300,,,8,20260904032932,https://web.archive.org/web/20260904032932id_/https://www.coreweave.com/pricing
+2026-09-05,CoreWeave,B300,NVIDIA HGX B300,,,8,20260905051030,https://web.archive.org/web/20260905051030id_/https://www.coreweave.com/pricing
+2026-09-07,CoreWeave,B300,NVIDIA HGX B300,,,8,20260907065857,https://web.archive.org/web/20260907065857id_/https://www.coreweave.com/pricing
+2026-09-15,CoreWeave,B300,NVIDIA HGX B300,,,8,20260915165022,https://web.archive.org/web/20260915165022id_/https://www.coreweave.com/pricing
+2026-09-17,CoreWeave,B300,NVIDIA HGX B300,,,8,20260917130055,https://web.archive.org/web/20260917130055id_/https://www.coreweave.com/pricing
+2026-09-19,CoreWeave,B300,NVIDIA HGX B300,,,8,20260919173039,https://web.archive.org/web/20260919173039id_/https://www.coreweave.com/pricing
+2026-09-23,CoreWeave,B300,NVIDIA HGX B300,,,8,20260923185135,https://web.archive.org/web/20260923185135id_/https://www.coreweave.com/pricing
+2026-09-28,CoreWeave,B300,NVIDIA HGX B300,,,8,20260928065618,https://web.archive.org/web/20260928065618id_/https://www.coreweave.com/pricing
+2026-09-29,CoreWeave,B300,NVIDIA HGX B300,,,8,20260929073336,https://web.archive.org/web/20260929073336id_/https://www.coreweave.com/pricing
+2026-10-01,CoreWeave,B300,NVIDIA HGX B300,,,8,20261001003124,https://web.archive.org/web/20261001003124id_/https://www.coreweave.com/pricing
+2026-10-03,CoreWeave,B300,NVIDIA HGX B300,,,8,20261003162112,https://web.archive.org/web/20261003162112id_/https://www.coreweave.com/pricing
+2026-10-09,CoreWeave,B300,NVIDIA HGX B300,,,8,20261009051204,https://web.archive.org/web/20261009051204id_/https://www.coreweave.com/pricing
+2026-10-12,CoreWeave,B300,NVIDIA HGX B300,,,8,20261012065454,https://web.archive.org/web/20261012065454id_/https://www.coreweave.com/pricing
+2026-10-14,CoreWeave,B300,NVIDIA HGX B300,,,8,20261014195200,https://web.archive.org/web/20261014195200id_/https://www.coreweave.com/pricing
+2026-10-15,CoreWeave,B300,NVIDIA HGX B300,,,8,20261015190918,https://web.archive.org/web/20261015190918id_/https://www.coreweave.com/pricing
+2026-10-19,CoreWeave,B300,NVIDIA HGX B300,,,8,20261019070005,https://web.archive.org/web/20261019070005id_/https://www.coreweave.com/pricing
+2026-10-26,CoreWeave,B300,NVIDIA HGX B300,,,8,20261026080300,https://web.archive.org/web/20261026080300id_/https://www.coreweave.com/pricing
+2026-11-02,CoreWeave,B300,NVIDIA HGX B300,,,8,20261102074948,https://web.archive.org/web/20261102074948id_/https://www.coreweave.com/pricing
+2026-11-03,CoreWeave,B300,NVIDIA HGX B300,,,8,20261103034433,https://web.archive.org/web/20261103034433id_/https://www.coreweave.com/pricing
+2026-11-09,CoreWeave,B300,NVIDIA HGX B300,,,8,20261109074436,https://web.archive.org/web/20261109074436id_/https://www.coreweave.com/pricing
+2026-11-15,CoreWeave,B300,NVIDIA HGX B300,,,8,20261115165128,https://web.archive.org/web/20261115165128id_/https://www.coreweave.com/pricing
+2026-11-16,CoreWeave,B300,NVIDIA HGX B300,,,8,20261116074600,https://web.archive.org/web/20261116074600id_/https://www.coreweave.com/pricing
+2026-11-17,CoreWeave,B300,NVIDIA HGX B300,,,8,20261117070235,https://web.archive.org/web/20261117070235id_/https://www.coreweave.com/pricing
+2025-12-16,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20251216064621,https://web.archive.org/web/20251216064621id_/https://coreweave.com/pricing
+2025-12-17,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20251217231756,https://web.archive.org/web/20251217231756id_/https://coreweave.com/pricing
+2025-12-20,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20251220231821,https://web.archive.org/web/20251220231821id_/https://www.coreweave.com/pricing
+2025-12-31,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20251231180725,https://web.archive.org/web/20251231180725id_/http://www.coreweave.com/pricing
+2026-01-06,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260106014605,https://web.archive.org/web/20260106014605id_/https://www.coreweave.com/pricing
+2026-01-18,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260118105519,https://web.archive.org/web/20260118105519id_/http://www.coreweave.com/pricing
+2026-01-22,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260122183416,https://web.archive.org/web/20260122183416id_/https://www.coreweave.com/pricing
+2026-01-23,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260123012337,https://web.archive.org/web/20260123012337id_/http://www.coreweave.com/pricing
+2026-02-25,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260225001139,https://web.archive.org/web/20260225001139id_/https://www.coreweave.com/pricing
+2026-03-13,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260313081744,https://web.archive.org/web/20260313081744id_/https://coreweave.com/pricing
+2026-04-15,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260415105017,https://web.archive.org/web/20260415105017id_/https://coreweave.com/pricing
+2026-04-17,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260417110551,https://web.archive.org/web/20260417110551id_/https://www.coreweave.com/pricing
+2026-04-29,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260429003247,https://web.archive.org/web/20260429003247id_/https://coreweave.com/pricing
+2026-05-10,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260510055757,https://web.archive.org/web/20260510055757id_/https://coreweave.com/pricing
+2026-05-12,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260512101710,https://web.archive.org/web/20260512101710id_/https://www.coreweave.com/pricing
+2026-05-21,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260521183256,https://web.archive.org/web/20260521183256id_/https://www.coreweave.com/pricing
+2026-05-27,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260527123707,https://web.archive.org/web/20260527123707id_/https://www.coreweave.com/pricing
+2026-06-05,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260605195952,https://web.archive.org/web/20260605195952id_/https://www.coreweave.com/pricing
+2026-06-09,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260609091229,https://web.archive.org/web/20260609091229id_/https://www.coreweave.com/pricing
+2026-06-16,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260616152356,https://web.archive.org/web/20260616152356id_/http://www.coreweave.com/pricing
+2026-06-26,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260626170907,https://web.archive.org/web/20260626170907id_/https://www.coreweave.com/pricing
+2026-07-11,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260711021026,https://web.archive.org/web/20260711021026id_/https://www.coreweave.com/pricing
+2026-07-15,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260715014110,https://web.archive.org/web/20260715014110id_/https://www.coreweave.com/pricing
+2026-07-27,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260727103436,https://web.archive.org/web/20260727103436id_/https://www.coreweave.com/pricing
+2026-07-30,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260730110208,https://web.archive.org/web/20260730110208id_/https://www.coreweave.com/pricing
+2026-08-03,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260803103255,https://web.archive.org/web/20260803103255id_/https://www.coreweave.com/pricing
+2026-08-07,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260807161600,https://web.archive.org/web/20260807161600id_/https://www.coreweave.com/pricing
+2026-08-12,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260812172250,https://web.archive.org/web/20260812172250id_/https://www.coreweave.com/pricing
+2026-08-19,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260819042517,https://web.archive.org/web/20260819042517id_/https://www.coreweave.com/pricing
+2026-08-23,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260823142941,https://web.archive.org/web/20260823142941id_/https://www.coreweave.com/pricing
+2026-08-31,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260831143010,https://web.archive.org/web/20260831143010id_/https://www.coreweave.com/pricing
+2026-09-04,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260904032932,https://web.archive.org/web/20260904032932id_/https://www.coreweave.com/pricing
+2026-09-05,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260905051030,https://web.archive.org/web/20260905051030id_/https://www.coreweave.com/pricing
+2026-09-07,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260907065857,https://web.archive.org/web/20260907065857id_/https://www.coreweave.com/pricing
+2026-09-15,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260915165022,https://web.archive.org/web/20260915165022id_/https://www.coreweave.com/pricing
+2026-09-17,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260917130055,https://web.archive.org/web/20260917130055id_/https://www.coreweave.com/pricing
+2026-09-19,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260919173039,https://web.archive.org/web/20260919173039id_/https://www.coreweave.com/pricing
+2026-09-23,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260923185135,https://web.archive.org/web/20260923185135id_/https://www.coreweave.com/pricing
+2026-09-28,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260928065618,https://web.archive.org/web/20260928065618id_/https://www.coreweave.com/pricing
+2026-09-29,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20260929073336,https://web.archive.org/web/20260929073336id_/https://www.coreweave.com/pricing
+2026-10-01,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261001003124,https://web.archive.org/web/20261001003124id_/https://www.coreweave.com/pricing
+2026-10-03,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261003162112,https://web.archive.org/web/20261003162112id_/https://www.coreweave.com/pricing
+2026-10-09,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261009051204,https://web.archive.org/web/20261009051204id_/https://www.coreweave.com/pricing
+2026-10-12,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261012065454,https://web.archive.org/web/20261012065454id_/https://www.coreweave.com/pricing
+2026-10-14,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261014195200,https://web.archive.org/web/20261014195200id_/https://www.coreweave.com/pricing
+2026-10-15,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261015190918,https://web.archive.org/web/20261015190918id_/https://www.coreweave.com/pricing
+2026-10-19,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261019070005,https://web.archive.org/web/20261019070005id_/https://www.coreweave.com/pricing
+2026-10-26,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261026080300,https://web.archive.org/web/20261026080300id_/https://www.coreweave.com/pricing
+2026-11-02,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261102074948,https://web.archive.org/web/20261102074948id_/https://www.coreweave.com/pricing
+2026-11-03,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261103034433,https://web.archive.org/web/20261103034433id_/https://www.coreweave.com/pricing
+2026-11-09,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261109074436,https://web.archive.org/web/20261109074436id_/https://www.coreweave.com/pricing
+2026-11-15,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261115165128,https://web.archive.org/web/20261115165128id_/https://www.coreweave.com/pricing
+2026-11-16,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261116074600,https://web.archive.org/web/20261116074600id_/https://www.coreweave.com/pricing
+2026-11-17,CoreWeave,H100,NVIDIA HGX H100,6.16,49.24,8,20261117070235,https://web.archive.org/web/20261117070235id_/https://www.coreweave.com/pricing
+2025-12-16,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20251216064621,https://web.archive.org/web/20251216064621id_/https://coreweave.com/pricing
+2025-12-17,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20251217231756,https://web.archive.org/web/20251217231756id_/https://coreweave.com/pricing
+2025-12-20,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20251220231821,https://web.archive.org/web/20251220231821id_/https://www.coreweave.com/pricing
+2025-12-31,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20251231180725,https://web.archive.org/web/20251231180725id_/http://www.coreweave.com/pricing
+2026-01-06,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260106014605,https://web.archive.org/web/20260106014605id_/https://www.coreweave.com/pricing
+2026-01-18,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260118105519,https://web.archive.org/web/20260118105519id_/http://www.coreweave.com/pricing
+2026-01-22,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260122183416,https://web.archive.org/web/20260122183416id_/https://www.coreweave.com/pricing
+2026-01-23,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260123012337,https://web.archive.org/web/20260123012337id_/http://www.coreweave.com/pricing
+2026-02-25,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260225001139,https://web.archive.org/web/20260225001139id_/https://www.coreweave.com/pricing
+2026-03-13,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260313081744,https://web.archive.org/web/20260313081744id_/https://coreweave.com/pricing
+2026-04-15,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260415105017,https://web.archive.org/web/20260415105017id_/https://coreweave.com/pricing
+2026-04-17,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260417110551,https://web.archive.org/web/20260417110551id_/https://www.coreweave.com/pricing
+2026-04-29,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260429003247,https://web.archive.org/web/20260429003247id_/https://coreweave.com/pricing
+2026-05-10,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260510055757,https://web.archive.org/web/20260510055757id_/https://coreweave.com/pricing
+2026-05-12,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260512101710,https://web.archive.org/web/20260512101710id_/https://www.coreweave.com/pricing
+2026-05-21,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260521183256,https://web.archive.org/web/20260521183256id_/https://www.coreweave.com/pricing
+2026-05-27,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260527123707,https://web.archive.org/web/20260527123707id_/https://www.coreweave.com/pricing
+2026-06-05,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260605195952,https://web.archive.org/web/20260605195952id_/https://www.coreweave.com/pricing
+2026-06-09,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260609091229,https://web.archive.org/web/20260609091229id_/https://www.coreweave.com/pricing
+2026-06-16,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260616152356,https://web.archive.org/web/20260616152356id_/http://www.coreweave.com/pricing
+2026-06-26,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260626170907,https://web.archive.org/web/20260626170907id_/https://www.coreweave.com/pricing
+2026-07-11,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260711021026,https://web.archive.org/web/20260711021026id_/https://www.coreweave.com/pricing
+2026-07-15,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260715014110,https://web.archive.org/web/20260715014110id_/https://www.coreweave.com/pricing
+2026-07-27,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260727103436,https://web.archive.org/web/20260727103436id_/https://www.coreweave.com/pricing
+2026-07-30,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260730110208,https://web.archive.org/web/20260730110208id_/https://www.coreweave.com/pricing
+2026-08-03,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260803103255,https://web.archive.org/web/20260803103255id_/https://www.coreweave.com/pricing
+2026-08-07,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260807161600,https://web.archive.org/web/20260807161600id_/https://www.coreweave.com/pricing
+2026-08-12,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260812172250,https://web.archive.org/web/20260812172250id_/https://www.coreweave.com/pricing
+2026-08-19,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260819042517,https://web.archive.org/web/20260819042517id_/https://www.coreweave.com/pricing
+2026-08-23,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260823142941,https://web.archive.org/web/20260823142941id_/https://www.coreweave.com/pricing
+2026-08-31,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260831143010,https://web.archive.org/web/20260831143010id_/https://www.coreweave.com/pricing
+2026-09-04,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260904032932,https://web.archive.org/web/20260904032932id_/https://www.coreweave.com/pricing
+2026-09-05,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260905051030,https://web.archive.org/web/20260905051030id_/https://www.coreweave.com/pricing
+2026-09-07,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260907065857,https://web.archive.org/web/20260907065857id_/https://www.coreweave.com/pricing
+2026-09-15,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260915165022,https://web.archive.org/web/20260915165022id_/https://www.coreweave.com/pricing
+2026-09-17,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260917130055,https://web.archive.org/web/20260917130055id_/https://www.coreweave.com/pricing
+2026-09-19,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260919173039,https://web.archive.org/web/20260919173039id_/https://www.coreweave.com/pricing
+2026-09-23,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260923185135,https://web.archive.org/web/20260923185135id_/https://www.coreweave.com/pricing
+2026-09-28,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260928065618,https://web.archive.org/web/20260928065618id_/https://www.coreweave.com/pricing
+2026-09-29,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20260929073336,https://web.archive.org/web/20260929073336id_/https://www.coreweave.com/pricing
+2026-10-01,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261001003124,https://web.archive.org/web/20261001003124id_/https://www.coreweave.com/pricing
+2026-10-03,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261003162112,https://web.archive.org/web/20261003162112id_/https://www.coreweave.com/pricing
+2026-10-09,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261009051204,https://web.archive.org/web/20261009051204id_/https://www.coreweave.com/pricing
+2026-10-12,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261012065454,https://web.archive.org/web/20261012065454id_/https://www.coreweave.com/pricing
+2026-10-14,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261014195200,https://web.archive.org/web/20261014195200id_/https://www.coreweave.com/pricing
+2026-10-15,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261015190918,https://web.archive.org/web/20261015190918id_/https://www.coreweave.com/pricing
+2026-10-19,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261019070005,https://web.archive.org/web/20261019070005id_/https://www.coreweave.com/pricing
+2026-10-26,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261026080300,https://web.archive.org/web/20261026080300id_/https://www.coreweave.com/pricing
+2026-11-02,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261102074948,https://web.archive.org/web/20261102074948id_/https://www.coreweave.com/pricing
+2026-11-03,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261103034433,https://web.archive.org/web/20261103034433id_/https://www.coreweave.com/pricing
+2026-11-09,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261109074436,https://web.archive.org/web/20261109074436id_/https://www.coreweave.com/pricing
+2026-11-15,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261115165128,https://web.archive.org/web/20261115165128id_/https://www.coreweave.com/pricing
+2026-11-16,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261116074600,https://web.archive.org/web/20261116074600id_/https://www.coreweave.com/pricing
+2026-11-17,CoreWeave,H200,NVIDIA HGX H200,6.3,50.44,8,20261117070235,https://web.archive.org/web/20261117070235id_/https://www.coreweave.com/pricing
+2025-12-27,Nebius,B200,NVIDIA HGX B200,5.5,,,20251227222718,https://web.archive.org/web/20251227222718id_/https://nebius.com/prices
+2026-02-20,Nebius,B200,NVIDIA HGX B200,5.5,,,20260220095958,https://web.archive.org/web/20260220095958id_/https://nebius.com/prices
+2026-02-22,Nebius,B200,NVIDIA HGX B200,5.5,,,20260222074828,https://web.archive.org/web/20260222074828id_/https://nebius.com/prices
+2026-03-01,Nebius,B200,NVIDIA HGX B200,5.5,,,20260301091903,https://web.archive.org/web/20260301091903id_/https://nebius.com/prices
+2026-03-04,Nebius,B200,NVIDIA HGX B200,5.5,,,20260304092007,https://web.archive.org/web/20260304092007id_/https://nebius.com/prices
+2026-04-02,Nebius,B200,NVIDIA HGX B200,5.5,,,20260402090033,https://web.archive.org/web/20260402090033id_/https://nebius.com/prices
+2026-05-07,Nebius,B200,NVIDIA HGX B200,5.5,,,20260507111158,https://web.archive.org/web/20260507111158id_/https://nebius.com/prices
+2026-07-12,Nebius,B200,NVIDIA HGX B200,7.15,,,20260712235400,https://web.archive.org/web/20260712235400id_/https://nebius.com/prices
+2026-07-29,Nebius,B200,NVIDIA HGX B200,7.15,,,20260729143110,https://web.archive.org/web/20260729143110id_/https://nebius.com/prices
+2026-08-19,Nebius,B200,NVIDIA HGX B200,7.15,,,20260819203018,https://web.archive.org/web/20260819203018id_/https://nebius.com/prices
+2026-08-20,Nebius,B200,NVIDIA HGX B200,7.15,,,20260820084315,https://web.archive.org/web/20260820084315id_/https://nebius.com/prices
+2026-08-22,Nebius,B200,NVIDIA HGX B200,7.15,,,20260822195814,https://web.archive.org/web/20260822195814id_/https://nebius.com/prices
+2026-08-31,Nebius,B200,NVIDIA HGX B200,7.15,,,20260831080700,https://web.archive.org/web/20260831080700id_/https://nebius.com/prices
+2026-09-01,Nebius,B200,NVIDIA HGX B200,7.15,,,20260901040136,https://web.archive.org/web/20260901040136id_/https://nebius.com/prices
+2026-09-02,Nebius,B200,NVIDIA HGX B200,7.15,,,20260902080524,https://web.archive.org/web/20260902080524id_/https://nebius.com/prices
+2026-09-07,Nebius,B200,NVIDIA HGX B200,7.15,,,20260907065947,https://web.archive.org/web/20260907065947id_/https://nebius.com/prices
+2026-09-09,Nebius,B200,NVIDIA HGX B200,7.15,,,20260909111734,https://web.archive.org/web/20260909111734id_/https://nebius.com/prices
+2026-09-15,Nebius,B200,NVIDIA HGX B200,7.15,,,20260915165115,https://web.archive.org/web/20260915165115id_/https://nebius.com/prices
+2026-09-21,Nebius,B200,NVIDIA HGX B200,7.15,,,20260921070322,https://web.archive.org/web/20260921070322id_/https://nebius.com/prices
+2026-09-23,Nebius,B200,NVIDIA HGX B200,7.15,,,20260923185137,https://web.archive.org/web/20260923185137id_/https://nebius.com/prices
+2026-09-26,Nebius,B200,NVIDIA HGX B200,7.15,,,20260926001828,https://web.archive.org/web/20260926001828id_/https://nebius.com/prices
+2026-10-01,Nebius,B200,NVIDIA HGX B200,7.15,,,20261001030509,https://web.archive.org/web/20261001030509id_/https://nebius.com/prices
+2026-10-03,Nebius,B200,NVIDIA HGX B200,7.15,,,20261003005801,https://web.archive.org/web/20261003005801id_/https://nebius.com/prices
+2026-10-06,Nebius,B200,NVIDIA HGX B200,7.15,,,20261006004020,https://web.archive.org/web/20261006004020id_/https://nebius.com/prices
+2026-10-07,Nebius,B200,NVIDIA HGX B200,7.15,,,20261007003714,https://web.archive.org/web/20261007003714id_/https://nebius.com/prices
+2026-10-08,Nebius,B200,NVIDIA HGX B200,7.15,,,20261008011134,https://web.archive.org/web/20261008011134id_/https://nebius.com/prices
+2026-10-11,Nebius,B200,NVIDIA HGX B200,7.15,,,20261011230859,https://web.archive.org/web/20261011230859id_/https://nebius.com/prices
+2026-10-12,Nebius,B200,NVIDIA HGX B200,7.15,,,20261012065524,https://web.archive.org/web/20261012065524id_/https://nebius.com/prices
+2026-10-13,Nebius,B200,NVIDIA HGX B200,8.5,,,20261013032820,https://web.archive.org/web/20261013032820id_/https://nebius.com/prices
+2026-10-19,Nebius,B200,NVIDIA HGX B200,8.5,,,20261019070127,https://web.archive.org/web/20261019070127id_/https://nebius.com/prices
+2026-10-22,Nebius,B200,NVIDIA HGX B200,8.5,,,20261022171523,https://web.archive.org/web/20261022171523id_/https://nebius.com/prices
+2026-10-25,Nebius,B200,NVIDIA HGX B200,8.5,,,20261025040312,https://web.archive.org/web/20261025040312id_/https://nebius.com/prices
+2026-10-26,Nebius,B200,NVIDIA HGX B200,8.5,,,20261026064705,https://web.archive.org/web/20261026064705id_/https://nebius.com/prices
+2026-11-01,Nebius,B200,NVIDIA HGX B200,8.5,,,20261101112335,https://web.archive.org/web/20261101112335id_/https://nebius.com/prices
+2026-11-02,Nebius,B200,NVIDIA HGX B200,8.5,,,20261102064506,https://web.archive.org/web/20261102064506id_/https://nebius.com/prices
+2026-11-09,Nebius,B200,NVIDIA HGX B200,8.5,,,20261109064542,https://web.archive.org/web/20261109064542id_/https://nebius.com/prices
+2026-11-12,Nebius,B200,NVIDIA HGX B200,8.5,,,20261112150606,https://web.archive.org/web/20261112150606id_/https://nebius.com/prices
+2026-11-15,Nebius,B200,NVIDIA HGX B200,8.5,,,20261115165229,https://web.archive.org/web/20261115165229id_/https://nebius.com/prices
+2026-11-16,Nebius,B200,NVIDIA HGX B200,8.5,,,20261116161039,https://web.archive.org/web/20261116161039id_/https://nebius.com/prices
+2026-04-02,Nebius,B300,NVIDIA HGX B300,6.1,,,20260402090033,https://web.archive.org/web/20260402090033id_/https://nebius.com/prices
+2026-05-07,Nebius,B300,NVIDIA HGX B300,6.1,,,20260507111158,https://web.archive.org/web/20260507111158id_/https://nebius.com/prices
+2026-07-12,Nebius,B300,NVIDIA HGX B300,7.85,,,20260712235400,https://web.archive.org/web/20260712235400id_/https://nebius.com/prices
+2026-07-29,Nebius,B300,NVIDIA HGX B300,7.85,,,20260729143110,https://web.archive.org/web/20260729143110id_/https://nebius.com/prices
+2026-08-19,Nebius,B300,NVIDIA HGX B300,7.85,,,20260819203018,https://web.archive.org/web/20260819203018id_/https://nebius.com/prices
+2026-08-20,Nebius,B300,NVIDIA HGX B300,7.85,,,20260820084315,https://web.archive.org/web/20260820084315id_/https://nebius.com/prices
+2026-08-22,Nebius,B300,NVIDIA HGX B300,7.85,,,20260822195814,https://web.archive.org/web/20260822195814id_/https://nebius.com/prices
+2026-08-31,Nebius,B300,NVIDIA HGX B300,7.85,,,20260831080700,https://web.archive.org/web/20260831080700id_/https://nebius.com/prices
+2026-09-01,Nebius,B300,NVIDIA HGX B300,7.85,,,20260901040136,https://web.archive.org/web/20260901040136id_/https://nebius.com/prices
+2026-09-02,Nebius,B300,NVIDIA HGX B300,7.85,,,20260902080524,https://web.archive.org/web/20260902080524id_/https://nebius.com/prices
+2026-09-07,Nebius,B300,NVIDIA HGX B300,7.85,,,20260907065947,https://web.archive.org/web/20260907065947id_/https://nebius.com/prices
+2026-09-09,Nebius,B300,NVIDIA HGX B300,7.85,,,20260909111734,https://web.archive.org/web/20260909111734id_/https://nebius.com/prices
+2026-09-15,Nebius,B300,NVIDIA HGX B300,7.85,,,20260915165115,https://web.archive.org/web/20260915165115id_/https://nebius.com/prices
+2026-09-21,Nebius,B300,NVIDIA HGX B300,7.85,,,20260921070322,https://web.archive.org/web/20260921070322id_/https://nebius.com/prices
+2026-09-23,Nebius,B300,NVIDIA HGX B300,7.85,,,20260923185137,https://web.archive.org/web/20260923185137id_/https://nebius.com/prices
+2026-09-26,Nebius,B300,NVIDIA HGX B300,7.85,,,20260926001828,https://web.archive.org/web/20260926001828id_/https://nebius.com/prices
+2026-10-01,Nebius,B300,NVIDIA HGX B300,7.85,,,20261001030509,https://web.archive.org/web/20261001030509id_/https://nebius.com/prices
+2026-10-03,Nebius,B300,NVIDIA HGX B300,7.85,,,20261003005801,https://web.archive.org/web/20261003005801id_/https://nebius.com/prices
+2026-10-06,Nebius,B300,NVIDIA HGX B300,7.85,,,20261006004020,https://web.archive.org/web/20261006004020id_/https://nebius.com/prices
+2026-10-07,Nebius,B300,NVIDIA HGX B300,7.85,,,20261007003714,https://web.archive.org/web/20261007003714id_/https://nebius.com/prices
+2026-10-08,Nebius,B300,NVIDIA HGX B300,7.85,,,20261008011134,https://web.archive.org/web/20261008011134id_/https://nebius.com/prices
+2026-10-11,Nebius,B300,NVIDIA HGX B300,7.85,,,20261011230859,https://web.archive.org/web/20261011230859id_/https://nebius.com/prices
+2026-10-12,Nebius,B300,NVIDIA HGX B300,7.85,,,20261012065524,https://web.archive.org/web/20261012065524id_/https://nebius.com/prices
+2026-10-13,Nebius,B300,NVIDIA HGX B300,9.5,,,20261013032820,https://web.archive.org/web/20261013032820id_/https://nebius.com/prices
+2026-10-19,Nebius,B300,NVIDIA HGX B300,9.5,,,20261019070127,https://web.archive.org/web/20261019070127id_/https://nebius.com/prices
+2026-10-22,Nebius,B300,NVIDIA HGX B300,9.5,,,20261022171523,https://web.archive.org/web/20261022171523id_/https://nebius.com/prices
+2026-10-25,Nebius,B300,NVIDIA HGX B300,9.5,,,20261025040312,https://web.archive.org/web/20261025040312id_/https://nebius.com/prices
+2026-10-26,Nebius,B300,NVIDIA HGX B300,9.5,,,20261026064705,https://web.archive.org/web/20261026064705id_/https://nebius.com/prices
+2026-11-01,Nebius,B300,NVIDIA HGX B300,9.5,,,20261101112335,https://web.archive.org/web/20261101112335id_/https://nebius.com/prices
+2026-11-02,Nebius,B300,NVIDIA HGX B300,9.5,,,20261102064506,https://web.archive.org/web/20261102064506id_/https://nebius.com/prices
+2026-11-09,Nebius,B300,NVIDIA HGX B300,9.5,,,20261109064542,https://web.archive.org/web/20261109064542id_/https://nebius.com/prices
+2026-11-12,Nebius,B300,NVIDIA HGX B300,9.5,,,20261112150606,https://web.archive.org/web/20261112150606id_/https://nebius.com/prices
+2026-11-15,Nebius,B300,NVIDIA HGX B300,9.5,,,20261115165229,https://web.archive.org/web/20261115165229id_/https://nebius.com/prices
+2026-11-16,Nebius,B300,NVIDIA HGX B300,9.5,,,20261116161039,https://web.archive.org/web/20261116161039id_/https://nebius.com/prices
+2025-12-27,Nebius,H100,NVIDIA HGX H100,2.95,,,20251227222718,https://web.archive.org/web/20251227222718id_/https://nebius.com/prices
+2026-02-20,Nebius,H100,NVIDIA HGX H100,2.95,,,20260220095958,https://web.archive.org/web/20260220095958id_/https://nebius.com/prices
+2026-02-22,Nebius,H100,NVIDIA HGX H100,2.95,,,20260222074828,https://web.archive.org/web/20260222074828id_/https://nebius.com/prices
+2026-03-01,Nebius,H100,NVIDIA HGX H100,2.95,,,20260301091903,https://web.archive.org/web/20260301091903id_/https://nebius.com/prices
+2026-03-04,Nebius,H100,NVIDIA HGX H100,2.95,,,20260304092007,https://web.archive.org/web/20260304092007id_/https://nebius.com/prices
+2026-04-02,Nebius,H100,NVIDIA HGX H100,2.95,,,20260402090033,https://web.archive.org/web/20260402090033id_/https://nebius.com/prices
+2026-05-07,Nebius,H100,NVIDIA HGX H100,2.95,,,20260507111158,https://web.archive.org/web/20260507111158id_/https://nebius.com/prices
+2026-07-12,Nebius,H100,NVIDIA HGX H100,3.85,,,20260712235400,https://web.archive.org/web/20260712235400id_/https://nebius.com/prices
+2026-07-29,Nebius,H100,NVIDIA HGX H100,3.85,,,20260729143110,https://web.archive.org/web/20260729143110id_/https://nebius.com/prices
+2026-08-19,Nebius,H100,NVIDIA HGX H100,3.85,,,20260819203018,https://web.archive.org/web/20260819203018id_/https://nebius.com/prices
+2026-08-20,Nebius,H100,NVIDIA HGX H100,3.85,,,20260820084315,https://web.archive.org/web/20260820084315id_/https://nebius.com/prices
+2026-08-22,Nebius,H100,NVIDIA HGX H100,3.85,,,20260822195814,https://web.archive.org/web/20260822195814id_/https://nebius.com/prices
+2026-08-31,Nebius,H100,NVIDIA HGX H100,3.85,,,20260831080700,https://web.archive.org/web/20260831080700id_/https://nebius.com/prices
+2026-09-01,Nebius,H100,NVIDIA HGX H100,3.85,,,20260901040136,https://web.archive.org/web/20260901040136id_/https://nebius.com/prices
+2026-09-02,Nebius,H100,NVIDIA HGX H100,3.85,,,20260902080524,https://web.archive.org/web/20260902080524id_/https://nebius.com/prices
+2026-09-07,Nebius,H100,NVIDIA HGX H100,3.85,,,20260907065947,https://web.archive.org/web/20260907065947id_/https://nebius.com/prices
+2026-09-09,Nebius,H100,NVIDIA HGX H100,3.85,,,20260909111734,https://web.archive.org/web/20260909111734id_/https://nebius.com/prices
+2026-09-15,Nebius,H100,NVIDIA HGX H100,3.85,,,20260915165115,https://web.archive.org/web/20260915165115id_/https://nebius.com/prices
+2026-09-21,Nebius,H100,NVIDIA HGX H100,3.85,,,20260921070322,https://web.archive.org/web/20260921070322id_/https://nebius.com/prices
+2026-09-23,Nebius,H100,NVIDIA HGX H100,3.85,,,20260923185137,https://web.archive.org/web/20260923185137id_/https://nebius.com/prices
+2026-09-26,Nebius,H100,NVIDIA HGX H100,3.85,,,20260926001828,https://web.archive.org/web/20260926001828id_/https://nebius.com/prices
+2026-10-01,Nebius,H100,NVIDIA HGX H100,3.85,,,20261001030509,https://web.archive.org/web/20261001030509id_/https://nebius.com/prices
+2026-10-03,Nebius,H100,NVIDIA HGX H100,3.85,,,20261003005801,https://web.archive.org/web/20261003005801id_/https://nebius.com/prices
+2026-10-06,Nebius,H100,NVIDIA HGX H100,3.85,,,20261006004020,https://web.archive.org/web/20261006004020id_/https://nebius.com/prices
+2026-10-07,Nebius,H100,NVIDIA HGX H100,3.85,,,20261007003714,https://web.archive.org/web/20261007003714id_/https://nebius.com/prices
+2026-10-08,Nebius,H100,NVIDIA HGX H100,3.85,,,20261008011134,https://web.archive.org/web/20261008011134id_/https://nebius.com/prices
+2026-10-11,Nebius,H100,NVIDIA HGX H100,3.85,,,20261011230859,https://web.archive.org/web/20261011230859id_/https://nebius.com/prices
+2026-10-12,Nebius,H100,NVIDIA HGX H100,3.85,,,20261012065524,https://web.archive.org/web/20261012065524id_/https://nebius.com/prices
+2026-10-13,Nebius,H100,NVIDIA HGX H100,4.5,,,20261013032820,https://web.archive.org/web/20261013032820id_/https://nebius.com/prices
+2026-10-19,Nebius,H100,NVIDIA HGX H100,4.5,,,20261019070127,https://web.archive.org/web/20261019070127id_/https://nebius.com/prices
+2026-10-22,Nebius,H100,NVIDIA HGX H100,4.5,,,20261022171523,https://web.archive.org/web/20261022171523id_/https://nebius.com/prices
+2026-10-25,Nebius,H100,NVIDIA HGX H100,4.5,,,20261025040312,https://web.archive.org/web/20261025040312id_/https://nebius.com/prices
+2026-10-26,Nebius,H100,NVIDIA HGX H100,4.5,,,20261026064705,https://web.archive.org/web/20261026064705id_/https://nebius.com/prices
+2026-11-01,Nebius,H100,NVIDIA HGX H100,4.5,,,20261101112335,https://web.archive.org/web/20261101112335id_/https://nebius.com/prices
+2026-11-02,Nebius,H100,NVIDIA HGX H100,4.5,,,20261102064506,https://web.archive.org/web/20261102064506id_/https://nebius.com/prices
+2026-11-09,Nebius,H100,NVIDIA HGX H100,4.5,,,20261109064542,https://web.archive.org/web/20261109064542id_/https://nebius.com/prices
+2026-11-12,Nebius,H100,NVIDIA HGX H100,4.5,,,20261112150606,https://web.archive.org/web/20261112150606id_/https://nebius.com/prices
+2026-11-15,Nebius,H100,NVIDIA HGX H100,4.5,,,20261115165229,https://web.archive.org/web/20261115165229id_/https://nebius.com/prices
+2026-11-16,Nebius,H100,NVIDIA HGX H100,4.5,,,20261116161039,https://web.archive.org/web/20261116161039id_/https://nebius.com/prices
+2025-12-27,Nebius,H200,NVIDIA HGX H200,3.5,,,20251227222718,https://web.archive.org/web/20251227222718id_/https://nebius.com/prices
+2026-02-20,Nebius,H200,NVIDIA HGX H200,3.5,,,20260220095958,https://web.archive.org/web/20260220095958id_/https://nebius.com/prices
+2026-02-22,Nebius,H200,NVIDIA HGX H200,3.5,,,20260222074828,https://web.archive.org/web/20260222074828id_/https://nebius.com/prices
+2026-03-01,Nebius,H200,NVIDIA HGX H200,3.5,,,20260301091903,https://web.archive.org/web/20260301091903id_/https://nebius.com/prices
+2026-03-04,Nebius,H200,NVIDIA HGX H200,3.5,,,20260304092007,https://web.archive.org/web/20260304092007id_/https://nebius.com/prices
+2026-04-02,Nebius,H200,NVIDIA HGX H200,3.5,,,20260402090033,https://web.archive.org/web/20260402090033id_/https://nebius.com/prices
+2026-05-07,Nebius,H200,NVIDIA HGX H200,3.5,,,20260507111158,https://web.archive.org/web/20260507111158id_/https://nebius.com/prices
+2026-07-12,Nebius,H200,NVIDIA HGX H200,4.5,,,20260712235400,https://web.archive.org/web/20260712235400id_/https://nebius.com/prices
+2026-07-29,Nebius,H200,NVIDIA HGX H200,4.5,,,20260729143110,https://web.archive.org/web/20260729143110id_/https://nebius.com/prices
+2026-08-19,Nebius,H200,NVIDIA HGX H200,4.5,,,20260819203018,https://web.archive.org/web/20260819203018id_/https://nebius.com/prices
+2026-08-20,Nebius,H200,NVIDIA HGX H200,4.5,,,20260820084315,https://web.archive.org/web/20260820084315id_/https://nebius.com/prices
+2026-08-22,Nebius,H200,NVIDIA HGX H200,4.5,,,20260822195814,https://web.archive.org/web/20260822195814id_/https://nebius.com/prices
+2026-08-31,Nebius,H200,NVIDIA HGX H200,4.5,,,20260831080700,https://web.archive.org/web/20260831080700id_/https://nebius.com/prices
+2026-09-01,Nebius,H200,NVIDIA HGX H200,4.5,,,20260901040136,https://web.archive.org/web/20260901040136id_/https://nebius.com/prices
+2026-09-02,Nebius,H200,NVIDIA HGX H200,4.5,,,20260902080524,https://web.archive.org/web/20260902080524id_/https://nebius.com/prices
+2026-09-07,Nebius,H200,NVIDIA HGX H200,4.5,,,20260907065947,https://web.archive.org/web/20260907065947id_/https://nebius.com/prices
+2026-09-09,Nebius,H200,NVIDIA HGX H200,4.5,,,20260909111734,https://web.archive.org/web/20260909111734id_/https://nebius.com/prices
+2026-09-15,Nebius,H200,NVIDIA HGX H200,4.5,,,20260915165115,https://web.archive.org/web/20260915165115id_/https://nebius.com/prices
+2026-09-21,Nebius,H200,NVIDIA HGX H200,4.5,,,20260921070322,https://web.archive.org/web/20260921070322id_/https://nebius.com/prices
+2026-09-23,Nebius,H200,NVIDIA HGX H200,4.5,,,20260923185137,https://web.archive.org/web/20260923185137id_/https://nebius.com/prices
+2026-09-26,Nebius,H200,NVIDIA HGX H200,4.5,,,20260926001828,https://web.archive.org/web/20260926001828id_/https://nebius.com/prices
+2026-10-01,Nebius,H200,NVIDIA HGX H200,4.5,,,20261001030509,https://web.archive.org/web/20261001030509id_/https://nebius.com/prices
+2026-10-03,Nebius,H200,NVIDIA HGX H200,4.5,,,20261003005801,https://web.archive.org/web/20261003005801id_/https://nebius.com/prices
+2026-10-06,Nebius,H200,NVIDIA HGX H200,4.5,,,20261006004020,https://web.archive.org/web/20261006004020id_/https://nebius.com/prices
+2026-10-07,Nebius,H200,NVIDIA HGX H200,4.5,,,20261007003714,https://web.archive.org/web/20261007003714id_/https://nebius.com/prices
+2026-10-08,Nebius,H200,NVIDIA HGX H200,4.5,,,20261008011134,https://web.archive.org/web/20261008011134id_/https://nebius.com/prices
+2026-10-11,Nebius,H200,NVIDIA HGX H200,4.5,,,20261011230859,https://web.archive.org/web/20261011230859id_/https://nebius.com/prices
+2026-10-12,Nebius,H200,NVIDIA HGX H200,4.5,,,20261012065524,https://web.archive.org/web/20261012065524id_/https://nebius.com/prices
+2026-10-13,Nebius,H200,NVIDIA HGX H200,5.4,,,20261013032820,https://web.archive.org/web/20261013032820id_/https://nebius.com/prices
+2026-10-19,Nebius,H200,NVIDIA HGX H200,5.4,,,20261019070127,https://web.archive.org/web/20261019070127id_/https://nebius.com/prices
+2026-10-22,Nebius,H200,NVIDIA HGX H200,5.4,,,20261022171523,https://web.archive.org/web/20261022171523id_/https://nebius.com/prices
+2026-10-25,Nebius,H200,NVIDIA HGX H200,5.4,,,20261025040312,https://web.archive.org/web/20261025040312id_/https://nebius.com/prices
+2026-10-26,Nebius,H200,NVIDIA HGX H200,5.4,,,20261026064705,https://web.archive.org/web/20261026064705id_/https://nebius.com/prices
+2026-11-01,Nebius,H200,NVIDIA HGX H200,5.4,,,20261101112335,https://web.archive.org/web/20261101112335id_/https://nebius.com/prices
+2026-11-02,Nebius,H200,NVIDIA HGX H200,5.4,,,20261102064506,https://web.archive.org/web/20261102064506id_/https://nebius.com/prices
+2026-11-09,Nebius,H200,NVIDIA HGX H200,5.4,,,20261109064542,https://web.archive.org/web/20261109064542id_/https://nebius.com/prices
+2026-11-12,Nebius,H200,NVIDIA HGX H200,5.4,,,20261112150606,https://web.archive.org/web/20261112150606id_/https://nebius.com/prices
+2026-11-15,Nebius,H200,NVIDIA HGX H200,5.4,,,20261115165229,https://web.archive.org/web/20261115165229id_/https://nebius.com/prices
+2026-11-16,Nebius,H200,NVIDIA HGX H200,5.4,,,20261116161039,https://web.archive.org/web/20261116161039id_/https://nebius.com/prices

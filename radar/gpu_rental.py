@@ -51,9 +51,10 @@ def _money(s):
     return float(m.group(1).replace(",", "")) if m else None
 
 
-def nebius():
+def nebius(text=None):
+    """text를 주면 그 본문(인터넷 아카이브 스냅숏 등)을 읽는다 — radar/gpu_daily.py 역수집"""
     url = "https://nebius.com/prices"
-    t = _get(url).replace('\\"', '"')
+    t = (_get(url) if text is None else text).replace('\\"', '"')
     rows = []
     for tb in re.finditer(r'"content":\[(\["Item".*?\])\]', t):
         try:
@@ -76,9 +77,9 @@ def nebius():
     return rows
 
 
-def coreweave():
+def coreweave(text=None):
     url = "https://www.coreweave.com/pricing"
-    s = html.unescape(re.sub(r"<script.*?</script>|<style.*?</style>", " ", _get(url), flags=re.S))
+    s = html.unescape(re.sub(r"<script.*?</script>|<style.*?</style>", " ", _get(url) if text is None else text, flags=re.S))
     s = re.sub(r"(\s*\|\s*)+", " | ", re.sub(r"<[^>]+>", " | ", s))
     rows, seen = [], set()
     for m in re.finditer(r"\| ((?:NVIDIA|AMD) [^|]{2,40}) \| On-Demand Price: \| (\$[0-9.,]+ \| )?/ Hour \| Spot Price: \| (\$[0-9.,]+|N/A) \|.{0,200}?\| (\d+)(?:\^\d+)? \| GPU Count", s):   # NVL72는 '4^1'(인스턴스당 GPU 4개)
@@ -186,9 +187,9 @@ AWS_TYPES = {"p5.48xlarge": "H100", "p5en.48xlarge": "H200", "p6-b200.48xlarge":
              "g6e.48xlarge": "L40S", "g7e.48xlarge": "RTX PRO 6000"}
 
 
-def aws():
+def aws(raw=None):
     import gzip
-    b = common.http_get(AWS_URL, timeout=60)
+    b = common.http_get(AWS_URL, timeout=60) if raw is None else raw
     if b[:2] == b"\x1f\x8b":
         b = gzip.decompress(b)
     region = next(iter(json.loads(b)["regions"].values()))

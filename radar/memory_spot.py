@@ -323,7 +323,32 @@ def status(now=None):
         png, summ = chart()
     except (Exception, SystemExit) as e:
         return {"due": False, "error": f"{type(e).__name__}: {str(e)[:120]}"}
-    return {"due": True, "png": str(png), "summary": summ}
+    out = {"due": True, "png": str(png), "summary": summ}
+    try:   # TrendForce 공개 현물가 그림(따로 보냄, 2026-11-19 마스터 지시) — 실패해도 메리츠 그림은 나간다
+        tpng, tsumm, _ = trendforce()
+        out["trendforce"] = {"png": str(tpng), "series": tsumm["series"]}
+    except (Exception, SystemExit) as e:
+        out["trendforce"] = {"error": f"{type(e).__name__}: {str(e)[:120]}"}
+    return out
+
+
+def trendforce():
+    """→ (png, 요약, 설명) — radar/trendforce_spot.py 그림 + 메리츠 기반 추정과의 같은 날 대조 한 줄.
+    메리츠 글(D+1일 아침)은 D일 세션 값이라 TrendForce D일 값은 D 다음 4일 안의 첫 메리츠 점과 맞춘다"""
+    import trendforce_spot as T
+    png, ts = T.chart()
+    comp = []
+    try:
+        cfg = config()
+        s = series(read_rows(), cfg.get("dram", "DDR5 16Gb"), ts["since"], cfg.get("anchors"))
+        d, tv = ts["series"][0]["last"]
+        d = date.fromisoformat(d)
+        nxt = [(x, v) for x, v in s["points"] if d < x <= d + timedelta(days=4)] if s and s["unit"] == "USD" else []
+        if nxt and tv:
+            comp.append(f"· 같은 세션 메리츠 변화율 기반 Chiip 추정 DDR5 16Gb ${nxt[0][1]:,.2f} — TrendForce 대비 {(nxt[0][1] / tv - 1) * 100:+.1f}%")
+    except Exception:
+        pass
+    return png, ts, T.caption(ts, comp)
 
 
 def caption(summ, read=""):
@@ -349,6 +374,11 @@ def send(read=""):
         st = common.load_state(STATE, {})
         st["sent"] = common.now_kst().date().isoformat()
         common.save_state(STATE, st)
+        try:   # TrendForce 그림은 따로 한 장(개인 봇 한정 — 약관 서면 동의 조항, 마스터 결정 2026-11-19)
+            tpng, _, tcap = trendforce()
+            notify.send_photo(tpng, tcap[:1000], "P1")
+        except (Exception, SystemExit) as e:
+            print(f"[Memory Spot] TrendForce 그림 생략 {type(e).__name__}")
     return ok
 
 

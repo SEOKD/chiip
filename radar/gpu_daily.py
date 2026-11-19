@@ -1,0 +1,495 @@
+"""Chiip Pulse — GPU 렌털비 일일 추이 그래프 (마스터 지시 2026-11-19 "Pulse로 매일 GPU 렌탈비 추이도 보내줘. H100, H200, B200, B300
+네 개 상품만 가져오고 Nebius, CoreWeave, AWS 세 개의 서비스에서 집계해줘")
+
+원천(모두 공개 가격표, 로그인·유료 데이터 없음):
+  · knowledge/models/gpu_rental.csv — radar/gpu_rental.py가 6시간마다 세 곳 가격표를 직접 수집(2026-11-10~)
+  · knowledge/models/gpu_rental_wayback.csv — 인터넷 아카이브(web.archive.org, robots 허용)에 남은 같은 가격표 스냅숏을
+    --backfill로 역수집해 그 이전 구간을 채운다. 스냅숏 주소를 행마다 남긴다. 아카이브에 AWS 가격 JSON은 2026-09부터라
+    AWS는 공식 가격표 API(Price List, 공개·키 없음)의 월별 판으로 채운다(aws_pricelist, 관측일 = 판 게시일).
+가격: 세 곳 모두 온디맨드 정가 $/GPU·시. CoreWeave·AWS는 8 GPU 노드(인스턴스) 가격 ÷ 8, AWS는 미국 동부·리눅스.
+  선점형·스팟·약정가는 뺀다(2026-11-16 마스터 지시 "가격 종류를 하나로 통일"과 같은 원칙). '문의'는 값 없음.
+정가는 계단식으로 바뀐다 — 관측일 사이는 직전 관측값을 잇고(계단선), 관측일에 점을 찍는다.
+  바뀐 날짜는 '두 관측일 사이'로만 안다. 그 구간을 change 목록에 함께 적는다.
+결정론: 매일 10:00~11:00 KST 첫 Pulse 회차에 due(주말 포함). 숫자·그림은 여기서, 풀이 2~4문장(read)만 모델 몫.
+사용: py radar/gpu_daily.py --backfill [2026-01-01]   # 아카이브 역수집(요청 사이 6초, 이어받기 가능)
+      py radar/gpu_daily.py --chart [시작일]           # 그림만 그려 경로·요약 출력
+      py radar/gpu_daily.py --status                  # Pulse 관문(JSON)
+      py radar/gpu_daily.py --send <json>             # {"read": "..."} → 그림+설명 마스터 개인 봇
+"""
+import csv
+import gzip
+import html
+import json
+import math
+import re
+import sys
+import time
+from datetime import date, timedelta
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pollers import common  # noqa: E402
+import gpu_rental  # noqa: E402
+
+STATE = "gpu_daily"
+GPUS = ["H100", "H200", "B200", "B300"]
+PROVS = ["Nebius", "CoreWeave", "AWS"]
+WINDOW = (10, 11)   # KST 시 — 이 사이 첫 Pulse 회차(매일)
+LIVE = common.ROOT / "knowledge" / "models" / "gpu_rental.csv"
+WB = common.ROOT / "knowledge" / "models" / "gpu_rental_wayback.csv"
+OUT = common.ROOT / "radar" / "inbox" / "gpu_daily"   # 매일 그림(git 제외)
+WB_FIELDS = ["date", "provider", "gpu", "config", "usd_per_gpu_hr", "node_usd_hr", "gpus_per_node", "snapshot", "source_url"]
+CDX = "https://web.archive.org/cdx/search/cdx"
+TARGETS = {"Nebius": "nebius.com/prices", "CoreWeave": "www.coreweave.com/pricing",
+           "AWS": "b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json"}
+READ_MAX = 600
+
+
+# ---------- 아카이브 역수집 ----------
+def _wb_get(url, tries=3):
+    for k in range(tries):
+        try:
+            b = common.http_get(url, timeout=90)
+            return gzip.decompress(b) if b[:2] == b"\x1f\x8b" else b
+        except Exception:
+            if k == tries - 1:
+                raise
+            time.sleep(30 * (k + 1))   # 아카이브는 빠른 연속 요청을 끊는다 — 물러섰다가 다시
+
+
+def snapshots(prov, since):
+    q = f"{CDX}?url={TARGETS[prov]}&from={since.replace('-', '')}&output=json&filter=statuscode:200&collapse=timestamp:8&fl=timestamp,original"
+    d = json.loads(_wb_get(q))
+    return [(t, o) for t, o in d[1:]]
+
+
+def _cells(t):
+    t = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", t)
+    t = re.sub(r"(?s)<!--.*?-->", "", t)
+    s = html.unescape(re.sub(r"<[^>]+>", "\x00", t))
+    return [re.sub(r"\s+", " ", x).strip() for x in s.split("\x00") if x.strip()]
+
+
+NUMC = re.compile(r"^[0-9][0-9,.\-]*(\^\d+)?$")
+PRICE = re.compile(r"^(?:from )?\$\s?([0-9][0-9,]*\.?\d*)(?:\s*/\s*Hour)?$", re.I)
+
+
+def _cell_rows(c, name_re, per_node):
+    """옛 페이지 구조용 — 'GPU 이름 | 숫자 칸들 | $가격' 줄. per_node면 첫 숫자 칸 = GPU 수, 가격 ÷ GPU 수.
+    숫자 칸 없이 바로 $가 오는 카드('as low as' 약정가)는 표가 아니라서 건너뛴다"""
+    out = {}
+    for i, x in enumerate(c):
+        m = name_re.match(x)
+        if not m or m.group(1) in out:
+            continue
+        nums, price, contact = [], None, False
+        for y in c[i + 1:i + 10]:
+            if y == x:
+                continue
+            if name_re.match(y) or y.startswith(("NVIDIA ", "AMD ")) or re.match(r"^\d+ × ", y):
+                break
+            if re.match(r"(?i)contact", y):
+                contact = True
+                break
+            p = PRICE.match(y)
+            if p:
+                price = float(p.group(1).replace(",", ""))
+                break
+            if NUMC.match(y):
+                nums.append(y)
+        if not nums or (price is None and not contact):
+            continue
+        n = int(nums[0].split("^")[0].replace(",", "")) if per_node else 1
+        out[m.group(1)] = {"gpu": m.group(1), "config": x, "usd_per_gpu_hr": round(price / n, 2) if price is not None and n else None,
+                           "node_usd_hr": price if per_node else None, "gpus_per_node": n if per_node else None}
+    return list(out.values())
+
+
+NEB_NAME = re.compile(r"^(?:1 × |NVIDIA (?:HGX )?)(H100|H200|B200|B300)(?: SXM\d?| GPU)?$")
+CW_NAME = re.compile(r"^NVIDIA (?:HGX )?(H100|H200|B200|B300)$")
+
+
+def parse_snapshot(prov, raw):
+    """스냅숏 본문 → [{gpu, config, usd_per_gpu_hr, node_usd_hr, gpus_per_node}] (온디맨드, 네 GPU만)"""
+    if prov == "AWS":
+        rows = gpu_rental.aws(raw)
+    else:
+        t = raw.decode("utf-8", "ignore")
+        fn = gpu_rental.nebius if prov == "Nebius" else gpu_rental.coreweave
+        rows = [r for r in fn(t) if not r["term"].startswith(("선점형", "스팟"))]
+        ok = [r for r in rows if r["gpu"] in GPUS]
+        if not ok:   # 옛 구조 — 칸 순서로 읽는다
+            rows = _cell_rows(_cells(t), NEB_NAME if prov == "Nebius" else CW_NAME, prov == "CoreWeave")
+    out = {}
+    for r in rows:
+        g = r["gpu"]
+        cfg = r.get("config") or ""
+        if g not in GPUS or re.search(r"PCIe|NVL|GH200|GB", cfg, re.I):
+            continue
+        out.setdefault(g, {k: r.get(k) for k in ("gpu", "config", "usd_per_gpu_hr", "node_usd_hr", "gpus_per_node")})
+    return list(out.values())
+
+
+def _wb_read():
+    if not WB.exists():
+        return []
+    with WB.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def backfill(since="2025-12-01", pause=6.0, provs=None):
+    """아카이브 스냅숏(하루 1개)을 읽어 gpu_rental_wayback.csv에 더한다. 이미 읽은 스냅숏은 건너뛴다(이어받기)"""
+    st = common.load_state(STATE, {})
+    done = set(st.get("wb_done") or [])
+    rows = _wb_read()
+    added = 0
+    for prov in provs or PROVS:
+        try:
+            snaps = snapshots(prov, since)
+        except Exception as e:
+            print(f"[GPU Daily] {prov} 스냅숏 목록 실패 {type(e).__name__}")
+            continue
+        time.sleep(pause)
+        for ts, orig in snaps:
+            k = f"{prov}|{ts}"
+            if k in done:
+                continue
+            url = f"https://web.archive.org/web/{ts}id_/{orig}"
+            try:
+                got = parse_snapshot(prov, _wb_get(url))
+            except Exception as e:
+                print(f"[GPU Daily] {prov} {ts} 실패 {type(e).__name__}")
+                time.sleep(pause)
+                continue
+            d = f"{ts[:4]}-{ts[4:6]}-{ts[6:8]}"
+            for r in got:
+                rows.append({"date": d, "provider": prov, **r, "snapshot": ts, "source_url": url})
+                added += 1
+            done.add(k)
+            print(f"[GPU Daily] {prov} {d} " + ", ".join(f"{r['gpu']} {r['usd_per_gpu_hr']}" for r in got))
+            st["wb_done"] = sorted(done)
+            common.save_state(STATE, st)
+            with WB.open("w", encoding="utf-8", newline="") as f:
+                w = csv.DictWriter(f, fieldnames=WB_FIELDS, extrasaction="ignore")
+                w.writeheader()
+                w.writerows(sorted(rows, key=lambda r: (r["provider"], r["gpu"], r["date"])))
+            time.sleep(pause)
+    return added
+
+
+PL = "https://pricing.us-east-1.amazonaws.com"
+
+
+def aws_pricelist(months=("2026-01", "2026-03", "2026-05", "2026-07"), dry=False):
+    """AWS 공식 가격표 API(Price List, 공개·키 없음)의 월별 판으로 AWS 이력을 채운다 — 아카이브에 AWS 가격 JSON은 2026-09부터만 있다.
+    판마다 미국 동부 EC2 CSV(약 300MB)를 흘려 읽으며 네 인스턴스 온디맨드 리눅스 줄만 뽑는다(파일은 저장하지 않는다).
+    관측일 = 판 게시일(버전 id 날짜)"""
+    import urllib.request
+    idx = json.loads(common.http_get(f"{PL}/offers/v1.0/aws/AmazonEC2/index.json", timeout=60))["versions"]
+    want = {it: g for it, g in gpu_rental.AWS_TYPES.items() if g in GPUS}
+    st = common.load_state(STATE, {})
+    done = set(st.get("wb_done") or [])
+    rows, added = _wb_read(), 0
+    for ver, v in sorted(idx.items()):
+        if v["versionEffectiveBeginDate"][:7] not in months or f"AWSPL|{ver}" in done:
+            continue
+        url = f"{PL}/offers/v1.0/aws/AmazonEC2/{ver}/us-east-1/index.csv"
+        if dry:
+            print(url)
+            continue
+        req = urllib.request.Request(url, headers={"User-Agent": common.UA})
+        head, got = None, {}
+        with urllib.request.urlopen(req, timeout=120) as r:
+            for raw in r:
+                line = raw.decode("utf-8", "ignore")
+                if head is None:
+                    if line.startswith('"SKU"'):
+                        head = next(csv.reader([line]))
+                    continue
+                if "48xlarge" not in line or '"OnDemand"' not in line or not any(f'"{it}"' in line for it in want):
+                    continue
+                c = dict(zip(head, next(csv.reader([line]))))
+                if (c.get("TermType") == "OnDemand" and c.get("Operating System") == "Linux" and c.get("Tenancy") == "Shared" and c.get("Pre Installed S/W") == "NA"
+                        and c.get("CapacityStatus") == "Used" and c.get("Unit") == "Hrs" and c.get("Instance Type") in want
+                        and "BoxUsage" in (c.get("usageType") or c.get("Usage Type") or "")
+                        and (c.get("MarketOption") or "OnDemand") == "OnDemand" and c.get("License Model") in (None, "", "No License required")):
+                    p = float(c["PricePerUnit"])
+                    if p > 0:   # 0원 줄(용량 예약 등 다른 시장 옵션)은 뺀다
+                        got.setdefault(c["Instance Type"], set()).add(p)
+        for k, v in got.items():
+            if len(v) > 1:
+                print(f"[GPU Daily] {ver} {k} 후보 여럿 {sorted(v)} — 최저값")
+        got = {k: min(v) for k, v in got.items()}
+        d = f"{ver[:4]}-{ver[4:6]}-{ver[6:8]}"
+        for it, p in got.items():
+            rows.append({"date": d, "provider": "AWS", "gpu": want[it], "config": it, "usd_per_gpu_hr": round(p / 8, 2), "node_usd_hr": round(p, 4),
+                         "gpus_per_node": 8, "snapshot": f"pricelist:{ver}", "source_url": url})
+            added += 1
+        print(f"[GPU Daily] AWS 가격표 판 {ver} → " + ", ".join(f"{want[k]} {v / 8:.2f}" for k, v in got.items()))
+        done.add(f"AWSPL|{ver}")
+        st["wb_done"] = sorted(done)
+        common.save_state(STATE, st)
+        with WB.open("w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=WB_FIELDS, extrasaction="ignore")
+            w.writeheader()
+            w.writerows(sorted(rows, key=lambda r: (r["provider"], r["gpu"], r["date"])))
+    return added
+
+
+# ---------- 시계열 ----------
+def _num(v):
+    try:
+        return float(v) if v not in (None, "") else None
+    except ValueError:
+        return None
+
+
+def observations():
+    """(제공사, GPU) → {날짜: 가격 또는 None(문의)}. 직접 수집값이 같은 날 아카이브값보다 우선"""
+    obs = {(p, g): {} for p in PROVS for g in GPUS}
+    for r in _wb_read():
+        k = (r["provider"], r["gpu"])
+        if k in obs:
+            obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
+    if LIVE.exists():
+        with LIVE.open(encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                k = (r["provider"], r["gpu"])
+                if k not in obs or not r["term"].startswith("온디맨드") or re.search(r"PCIe|NVL|GH200|GB", r["config"], re.I):
+                    continue
+                obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
+    return obs
+
+
+def series(obs, since, until):
+    """계단선 — 시작일 이전 마지막 관측값을 시작일 값으로 잇는다. 값 없는(문의) 관측은 선을 끊는다"""
+    out = {}
+    for k, o in obs.items():
+        ds = sorted(o)
+        before = [d for d in ds if d < since]
+        pts = [(since, o[before[-1]])] if before else []
+        pts += [(d, o[d]) for d in ds if since <= d <= until]
+        if not any(v is not None for _, v in pts):
+            continue
+        steps, last = [], None   # 값이 바뀐 구간(직전 관측일 ~ 바뀐 관측일)
+        prev_d = None
+        for d, v in pts:
+            if v is not None and last is not None and abs(v - last) >= 0.005:
+                steps.append({"from": prev_d, "to": d, "old": last, "new": v, "pct": (v / last - 1) * 100})
+            if v is not None:
+                last, prev_d = v, d
+        vals = [(d, v) for d, v in pts if v is not None]
+        out[k] = {"points": pts, "observed": [d for d in ds if since <= d <= until], "first": vals[0], "last": vals[-1],
+                  "steps": steps, "chg": (vals[-1][1] / vals[0][1] - 1) * 100 if vals[0][1] else None}
+    return out
+
+
+def value_at(s, d):
+    v = None
+    for x, y in s["points"]:
+        if x <= d and y is not None:
+            v = y
+    return v
+
+
+# ---------- 그림(PyMuPDF — 새 패키지 없이) ----------
+# 범주 색 = 고정 순서 첫 세 칸(파랑·주황·청록, dataviz 기본 팔레트 — 세 칸까지 전 쌍 색각 검증 통과로 문서화). 글자는 잉크색.
+COL = {"Nebius": (0.165, 0.471, 0.839), "CoreWeave": (0.922, 0.408, 0.204), "AWS": (0.106, 0.686, 0.478)}
+INK, INK2, MUTED, GRID, SURF = (0.043, 0.043, 0.043), (0.322, 0.318, 0.306), (0.537, 0.529, 0.506), (0.882, 0.878, 0.851), (0.988, 0.988, 0.984)
+
+
+def _d(s):
+    return date.fromisoformat(s) if isinstance(s, str) else s
+
+
+def _panel(page, box, g, S, d0, d1):
+    from memory_spot import _nice, _txt
+    x0, y0, x1, y1 = box
+    mine = {p: S[(p, g)] for p in PROVS if (p, g) in S}
+    vals = [v for s in mine.values() for _, v in s["points"] if v is not None]
+    hi = max(vals) if vals else 1
+    step = _nice(hi / 4)
+    top = math.ceil(hi * 1.08 / step) * step
+    span = max((d1 - d0).days, 1)
+    X = lambda d: x0 + (x1 - x0) * (_d(d) - d0).days / span   # noqa: E731
+    Y = lambda v: y1 - (y1 - y0) * v / top                     # noqa: E731
+    _txt(page, (x0, y0 - 12), g, 12, INK)
+    v = 0.0
+    while v <= top + 1e-9:
+        page.draw_line((x0, Y(v)), (x1, Y(v)), color=GRID, width=0.5)
+        _txt(page, (x0 - 5, Y(v) + 3), f"${v:,.0f}", 7, MUTED, right=True)
+        v += step
+    m = date(d0.year, d0.month, 1)
+    while m <= d1:
+        if m >= d0 and (m.month % 2 == 1 or span < 200):
+            _txt(page, (X(m) - 6, y1 + 11), f"{m.month}월", 7, MUTED)
+        m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
+    page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
+    ends, missing = [], []
+    for p in PROVS:
+        s = mine.get(p)
+        if not s:
+            missing.append(p)
+            continue
+        segs, cur, last = [], [], None   # 계단선 — 값 없는(문의) 관측에서 끊는다
+        pts = s["points"] + ([(d1.isoformat(), s["points"][-1][1])] if s["points"][-1][1] is not None else [])
+        for d, v in pts:
+            if v is None:
+                if cur:
+                    segs.append(cur)
+                cur, last = [], None
+                continue
+            if last is not None:
+                cur.append((X(d), Y(last)))
+            cur.append((X(d), Y(v)))
+            last = v
+        if cur:
+            segs.append(cur)
+        for sg in segs:
+            if len(sg) > 1:
+                page.draw_polyline(sg, color=SURF, width=3.6)   # 겹치는 선 사이 바탕색 테두리
+                page.draw_polyline(sg, color=COL[p], width=1.8)
+        for st in s["steps"]:   # 값이 바뀐 것을 처음 본 관측일
+            page.draw_circle((X(st["to"]), Y(st["new"])), 2.6, color=SURF, fill=COL[p], width=0.8)
+        ends.append([Y(s["last"][1]), p, s["last"][1]])
+    ends.sort()
+    for i in range(1, len(ends)):   # 끝 이름표 겹침 풀기(최소 10pt 간격)
+        ends[i][0] = max(ends[i][0], ends[i - 1][0] + 10)
+    for y, p, v in ends:
+        page.draw_circle((x1 + 6, y - 2.5), 2.6, color=COL[p], fill=COL[p])
+        _txt(page, (x1 + 11, y + 0.5), f"${v:,.2f}", 7.5, INK)
+    if missing:
+        _txt(page, (x0 + 4, y0 + 10), " · ".join(missing) + " 공개 정가 없음(문의)", 7, INK2)
+
+
+def chart(since=None, until=None, path=None):
+    """→ (png 경로, 요약 dict)"""
+    import pymupdf
+    from memory_spot import _txt
+    now = common.now_kst()
+    since = since or f"{now.year}-01-01"
+    until = until or now.date().isoformat()
+    S = series(observations(), since, until)
+    if not S:
+        raise SystemExit("[GPU Daily] 자료 없음 — gpu_rental.csv·--backfill 확인")
+    d0, d1 = _d(since), _d(until)
+    doc = pymupdf.open()
+    page = doc.new_page(width=760, height=720)
+    page.draw_rect(page.rect, color=None, fill=SURF)
+    _txt(page, (36, 34), f"GPU 렌털비 추이 — 온디맨드 정가 $/GPU·시 ({since[:4]} YTD)", 15, INK)
+    _txt(page, (36, 52), f"기준 {until} · 계단선 = 관측값을 다음 관측까지 유지, 점 = 가격이 바뀐 것을 처음 본 날", 8.5, INK2)
+    x = 36
+    for p in PROVS:   # 범례(세 계열 — 끝 이름표와 함께)
+        page.draw_line((x, 72), (x + 18, 72), color=COL[p], width=2)
+        _txt(page, (x + 23, 75), p, 9, INK)
+        x += 110
+    boxes = [(70, 110, 320, 370), (440, 110, 690, 370), (70, 430, 320, 680), (440, 430, 690, 680)]
+    for g, box in zip(GPUS, boxes):
+        _panel(page, box, g, S, d0, d1)
+    _txt(page, (36, 708), "자료: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드 가격표(미국 동부·리눅스, 8 GPU 인스턴스÷8). "
+         "이전 구간은 인터넷 아카이브 스냅숏·AWS 가격표 API 월별 판. 관측 사이는 직전 값 유지.", 7, MUTED)
+    OUT.mkdir(parents=True, exist_ok=True)
+    path = Path(path or OUT / f"gpu_trend_{until.replace('-', '')}.png")
+    page.get_pixmap(dpi=150).save(str(path))
+    return path, summary(S, since, until, str(path))
+
+
+def summary(S, since, until, png=""):
+    out = {"since": since, "until": until, "png": png, "gpus": []}
+    d7 = (_d(until) - timedelta(days=7)).isoformat()
+    for g in GPUS:
+        row = {"gpu": g, "prov": {}}
+        for p in PROVS:
+            s = S.get((p, g))
+            if not s:
+                continue
+            last = s["last"]
+            w = value_at(s, d7)
+            row["prov"][p] = {"usd": last[1], "first": list(s["first"]), "ytd": s["chg"], "1w": (last[1] / w - 1) * 100 if w else None,
+                              "steps": [{**x, "pct": round(x["pct"], 1)} for x in s["steps"]]}
+        out["gpus"].append(row)
+    return out
+
+
+def _md(s):
+    return f"{int(s[5:7])}/{int(s[8:10])}" if s else "?"
+
+
+def caption(summ, read=""):
+    L = ["[Chiip Pulse] GPU 렌털비 추이", f"온디맨드 정가 $/GPU·시 · {summ['until']} 기준 ({summ['since'][:4]} YTD)", ""]
+    for r in summ["gpus"]:
+        parts = []
+        for p in PROVS:
+            c = r["prov"].get(p)
+            if not c:
+                parts.append(f"{p} 문의")
+                continue
+            moved = c["ytd"] is not None and abs(c["ytd"]) >= 0.5
+            if c["first"][0] > summ["since"]:   # 연초 값이 없다(출시·아카이브 공백) — 첫 관측일부터
+                ch = f"{_md(c['first'][0])}부터" + (f" {c['ytd']:+.0f}%" if moved else "")
+            else:
+                ch = f"연초 대비 {c['ytd']:+.0f}%" if moved else ""
+            parts.append(f"{p} ${c['usd']:,.2f}" + (f"({ch})" if ch else ""))
+        L.append(f"■ {r['gpu']}: " + " · ".join(parts))
+    flat = [p for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]
+    if flat:
+        L.append(f"· {'·'.join(flat)}: 이 기간 정가 변경 없음")
+    recent =sorted([(r["gpu"], p, x) for r in summ["gpus"] for p, c in r["prov"].items() for x in c["steps"]], key=lambda t: t[2]["to"], reverse=True)
+    if recent:
+        L += ["", "■ 최근 가격 변경(바뀐 날은 두 관측일 사이)"]
+        L += [f"* {p} {g} ${x['old']:.2f}→${x['new']:.2f} ({x['pct']:+.1f}%, {_md(x['from'])}~{_md(x['to'])})" for g, p, x in recent[:6]]
+    if read:
+        L += ["", "■ 풀이", read.strip()]
+    L += ["", "CoreWeave·AWS는 8 GPU 노드 가격÷8, AWS는 미국 동부·리눅스"]
+    return "\n".join(L)
+
+
+def status(now=None):
+    """Pulse 관문 — 매일 10~11시 KST, 하루 1회(주말 포함)"""
+    now = now or common.now_kst()
+    st = common.load_state(STATE, {})
+    today = now.date().isoformat()
+    if not (WINDOW[0] <= now.hour < WINDOW[1]) or st.get("sent") == today:
+        return {"due": False}
+    try:
+        png, summ = chart(until=today)
+    except (Exception, SystemExit) as e:
+        return {"due": False, "error": f"{type(e).__name__}: {str(e)[:120]}"}
+    return {"due": True, "png": str(png), "summary": summ, "preview": caption(summ)}
+
+
+def send(read=""):
+    import notify
+    png, summ = chart()
+    cap = caption(summ, read)
+    ok = notify.send_photo(png, cap, "P2") if len(cap) <= 1000 else (notify.send_photo(png, caption(summ)[:1000], "P2") and notify.send(cap, "P2"))
+    if ok:
+        st = common.load_state(STATE, {})
+        st["sent"] = common.now_kst().date().isoformat()
+        common.save_state(STATE, st)
+    return ok
+
+
+def main(argv):
+    sys.stdout.reconfigure(encoding="utf-8")
+    if argv[:1] == ["--backfill"]:
+        print(f"[GPU Daily] 아카이브 {backfill(argv[1] if len(argv) > 1 else '2025-12-01')}행")
+    elif argv[:1] == ["--chart"]:
+        png, summ = chart(argv[1] if len(argv) > 1 else None)
+        print(caption(summ))
+        print(png)
+    elif argv[:1] == ["--send"]:
+        d = json.loads(Path(argv[1]).read_text(encoding="utf-8")) if len(argv) > 1 else {}
+        read = (d.get("read") or "").strip()
+        if len(read) > READ_MAX:
+            raise SystemExit(f"read {len(read)}자 — {READ_MAX}자 이내")
+        if re.search(r"(사라[.!\s]|사라$|팔아라|매수하라|매도하라|비중 확대|비중 축소)", read):
+            raise SystemExit("GPU Daily 관문 — 매매 지시 표현")
+        print("[GPU Daily] 발송" if send(read) else "[GPU Daily] 발송 실패")
+    else:
+        print(json.dumps(status(), ensure_ascii=False, indent=1, default=str))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
