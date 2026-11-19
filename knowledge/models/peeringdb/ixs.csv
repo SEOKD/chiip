@@ -1,0 +1,4 @@
+date,ix_id,name,ports,capacity_mbps
+2026-11-20,1,Equinix Ashburn,424,29357200
+2026-11-20,26,AMS-IX,1001,67496151
+2026-11-20,31,DE-CIX Frankfurt,1230,109042550

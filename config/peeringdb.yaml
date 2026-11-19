@@ -1,0 +1,31 @@
+# PeeringDB 대체 데이터 — 데이터센터·상호접속 시계열 (마스터 지시 2026-11-20 "넣어라", ADR-049, 수집기 radar/pollers/peeringdb.py)
+# 이용 조건: AUP의 허용 목적 '인터넷 연구·분석'(개인 리서치, 비상업). 표적 질의만 — 전체 복제·sync·since= 전체 동기화 금지, 대량 재배포 금지,
+# 익명 GET(인증 생략), common.contact_ua(), 요청 사이 6초·하루 1회·회차당 요청 8건 이하. 429면 그 회차는 멈춘다(fail-closed).
+# 저장은 숫자만(개수·용량·새 연결 시설 ID·날짜) — 연락처·사람 이름은 저장하지 않는다. 원표는 공개 채널(딘스티커 등)에 올리지 않는다.
+gap_sec: 6
+max_requests: 8
+facilities:   # net_count(입주 네트워크 수)·ix_count 추이 — 고른 이유
+  1: {name: "Equinix DC Ashburn", why: "북버지니아 — 세계 최대 데이터센터 군집, 하이퍼스케일러 접속 허브"}
+  6: {name: "Equinix SV1/5/10 San Jose", why: "실리콘밸리 상호접속 허브"}
+  60: {name: "Equinix FR5 Frankfurt", why: "유럽 최대 상호접속 시설(DE-CIX)"}
+  45: {name: "Equinix LD8 London", why: "런던 상호접속 허브(LINX)"}
+  452: {name: "Equinix TY2 Tokyo", why: "일본 상호접속 허브"}
+  10: {name: "Digital Realty NYC 60 Hudson", why: "Digital Realty 대표 상호접속 시설"}
+  40: {name: "Digital Realty London LHR20", why: "Digital Realty 유럽 거점"}
+networks:     # 새로 접속한 시설(netfac)·IX(netixlan) — 고른 이유: 하이퍼스케일러·AI 클라우드의 지역 확장 흔적
+  433: {name: Google, asn: 15169, kind: 하이퍼스케일러}
+  694: {name: Microsoft, asn: 8075, kind: 하이퍼스케일러}
+  1418: {name: Amazon, asn: 16509, kind: 하이퍼스케일러}
+  979: {name: Meta, asn: 32934, kind: 하이퍼스케일러}
+  1905: {name: Oracle Cloud, asn: 31898, kind: 하이퍼스케일러}
+  33996: {name: CoreWeave, asn: 33425, kind: AI 클라우드}
+  36279: {name: Nebius, asn: 213291, kind: AI 클라우드}
+  39205: {name: Lambda Cloud, asn: 398090, kind: AI 클라우드}
+  37006: {name: Crusoe, asn: 26356, kind: AI 클라우드}
+ixs:          # 총 포트 용량(접속 포트 speed 합, Mbps) — 고른 이유: 트래픽 수요 대리 지표
+  31: {name: "DE-CIX Frankfurt", why: "세계 최대급 IX"}
+  26: {name: "AMS-IX", why: "유럽 대표 IX"}
+  1: {name: "Equinix Ashburn", why: "북버지니아 IX"}
+alerts:       # Pulse 원본으로 넘길 의미 있는 변화
+  fac_net_jump_pct: 5        # 시설 net_count가 직전 대비 5% 이상 증가
+  new_fac_kinds: [AI 클라우드, 하이퍼스케일러]   # 이 종류 네트워크의 새 시설 접속

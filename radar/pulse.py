@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"WSJ 주요": 6, "닛케이 주요": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"데이터센터 접속": 4, "WSJ 주요": 6, "닛케이 주요": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -61,7 +61,7 @@ CLASSES = [("WSJ 주요", ("src-wsj-main",)),   # WSJ 섹션별 주요 기사 �
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg")),
            ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"))]   # src-consumer-macro = 미·일·유럽·영국 소비 통계 새 달에 문턱 넘은 업종(radar/consumer_macro.py, 2026-11-14)   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
-CLASS_W = {"WSJ 주요": 7, "닛케이 주요": 7, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"데이터센터 접속": 6, "WSJ 주요": 7, "닛케이 주요": 7, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -743,6 +743,32 @@ def fetch_discovery_channels(st):
     return out
 
 
+def fetch_peeringdb(st):
+    """PeeringDB 의미 있는 변화(2026-11-20 마스터 지시, ADR-049) — 하이퍼스케일러·AI 클라우드의 새 시설·IX 접속, 시설 입주 네트워크 수 급증.
+    radar/pollers/peeringdb.py가 쓴 changes.json에서 아직 안 보낸 것만. 원표는 싣지 않는다(공개 채널 금지)"""
+    p = common.ROOT / "knowledge" / "models" / "peeringdb" / "changes.json"
+    if not p.exists():
+        return []
+    ch = json.loads(p.read_text(encoding="utf-8"))
+    key = lambda x: json.dumps(x, sort_keys=True, ensure_ascii=False)   # noqa: E731
+    seen = set(st.get("peeringdb_seen") or [])
+    out = []
+    for x in ch:
+        k = key(x)
+        if k in seen:
+            continue
+        seen.add(k)
+        if x["type"] == "fac_net_jump":
+            title = f"[데이터센터 접속] {x['fac']} 입주 네트워크 {x['from']} → {x['to']}"
+        else:
+            title = f"[데이터센터 접속] {x['net']}({x['kind']}) 새 {'시설' if x['type'] == 'new_fac' else 'IX'} 접속 — PeeringDB {x.get('fac_id') or x.get('ix_id')}번"
+        out.append({"source_id": "src-peeringdb", "source_class": "데이터센터 접속", "url": "https://www.peeringdb.com/", "title": title,
+                    "published_at": x["date"], "detected_at": common.iso(common.now_kst()), "language": "ko", "ticker": "", "entities_matched": [],
+                    "snippet": "PeeringDB 자가 등록 정보(1차 판정, 미검증 — 접속 등록은 용량·매출이 아니다)"})
+    st["peeringdb_seen"] = sorted(seen)[-2000:]
+    return out
+
+
 def candidates(sources, watch):
     """원본에 나온 미국 상장 티커 중 감시 목록 밖 — 텐배거 발굴 재료(결정은 모델)"""
     c = {}
@@ -813,7 +839,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("발굴 채널", fetch_discovery_channels), ("시의성 뉴스", fetch_news)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("발굴 채널", fetch_discovery_channels), ("데이터센터 접속", fetch_peeringdb), ("시의성 뉴스", fetch_news)):
         try:
             sources += fn(st)
         except Exception as exc:

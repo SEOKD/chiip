@@ -52,6 +52,7 @@ market:   # 시장·산업 원천 — gather.py --market (2026-11-11 마스터 �
   - {id: market_regime, cmd: "radar/market_regime.py", use: "거시·위험 국면"}
   - {id: eia, cmd: "radar/eia.py --show", use: "EIA 전력 통계"}
   - {id: gpu_rental, cmd: "radar/gpu_rental.py --table", use: "GPU 렌털료"}
+  - {id: peeringdb, cmd: "radar/pollers/peeringdb.py --show", use: "데이터센터 입주 네트워크 수·IX 포트 용량·하이퍼스케일러/AI 클라우드 새 시설 접속(ADR-049, 원표는 공개 채널 금지)"}
   - {id: trade_ppi, cmd: "radar/trade_ppi.py --status", use: "무역·PPI 최신 달·급변"}
   - {id: alphavantage, cmd: "radar/alphavantage.py --calendar", use: "감시 미국 종목 실적 일정(3개월)"}
   - {id: revision_breadth, cmd: "scripts/tenbagger/breadth.py --sectors", use: "섹터 단위 추정치 수정 폭(EPS 30·90일 순 비율·확산, 2026-11-14) — 업종 이익 추정 흐름"}
