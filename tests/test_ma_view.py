@@ -26,6 +26,16 @@ class TestMA(unittest.TestCase):
         self.assertEqual(s["h2"], "M&A 시너지")
         self.assertIsNone(mv.section({"ma": {"none": "없음"}}))
 
+    def test_one_chart_one_axis(self):   # 2026-11-19 MTZ — 램프·가치 vs 웃돈·EPS 효과를 한 그림, 인수 전 EPS 대비 %로
+        charts = [b["chart"] for b in mv.section(DP)["blocks"] if b["type"] == "chart"]
+        self.assertEqual(len(charts), 1)
+        c = charts[0]
+        self.assertEqual((c["kind"], c["unit"]), ("line", "%"))
+        self.assertIn("웃돈", c["title"])
+        total, parts = c["series"][0]["points"], c["series"][1:]
+        for i, (_, v) in enumerate(total):   # 구성 요소 합 = EPS 효과 합계
+            self.assertAlmostEqual(sum(s["points"][i][1] for s in parts), v, delta=0.3)
+
 
 if __name__ == "__main__":
     unittest.main()

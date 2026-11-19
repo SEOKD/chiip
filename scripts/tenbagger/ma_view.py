@@ -52,8 +52,16 @@ def deal_model(d, acq, r):
         for i in range(len(years)):
             ni = eps0 * sh + d.get("target_ni", 0.0) + total[i] * (1 - tax) - interest
             eps.append(ni / (sh + fin.get("new_shares", 0.0)) / eps0 - 1)
+    bridge = {}
+    if eps0 and sh:   # EPS 효과 분해 — 기존 EPS 대비 %, 합 = EPS 효과(2026-11-19 한 그림·한 축)
+        den = (sh + fin.get("new_shares", 0.0)) * eps0
+        bridge["대상 순이익"] = [d.get("target_ni", 0.0) / den] * len(years)
+        for k, vals in by_type.items():
+            bridge[f"시너지 · {k}"] = [v * (1 - tax) / den for v in vals]
+        bridge["인수 차입 이자"] = [-interest / den] * len(years)
+        bridge["신주 희석"] = [eps0 * sh / den - 1] * len(years)
     paid = d["price"] * d["premium"] / (1 + d["premium"]) if d.get("premium") is not None else None
-    return {"years": years, "by_type": by_type, "total": total, "full": full, "value": value, "paid_premium": paid, "eps": eps,
+    return {"years": years, "by_type": by_type, "total": total, "full": full, "value": value, "paid_premium": paid, "eps": eps, "bridge": bridge,
             "multiple": d["price"] / d["target_ebitda"] if d.get("target_ebitda") else None,
             "multiple_syn": d["price"] / (d["target_ebitda"] + full) if d.get("target_ebitda") else None}
 
@@ -92,18 +100,23 @@ def section(dp, r=0.09):
         if m["eps"]:
             head += f" EPS 효과는 {m['years'][0]}년 {_p(m['eps'][0])}에서 {m['years'][-1]}년 {_p(m['eps'][-1])}."
         B.append({"type": "hl", "text": head})
-        B.append({"type": "chart", "chart": {"kind": "bars", "stack": True, "title": f"{d['target']} 시너지 램프(종류별, 확률 가중)", "unit": unit.strip(),
-                                             "categories": [str(y) for y in m["years"]],
-                                             "series": [{"name": k, "color": cols.get(k, "b"), "values": [round(v, 3) for v in vals]} for k, vals in m["by_type"].items()]}})
-        bars = [["시너지 가치(세후, 통합 비용 차감)", m["value"]]]
-        if m["paid_premium"] is not None:
-            bars.append(["낸 웃돈", m["paid_premium"]])
-        B.append({"type": "chart", "chart": {"kind": "hbars", "w": 480, "label_w": 180, "title": "시너지 가치 vs 웃돈", "unit": unit.strip(),
-                                             "rows": [{"label": a, "bars": [{"name": a, "color": "d" if i == 0 else "b", "value": round(v, 3)}]} for i, (a, v) in enumerate(bars)]}})
+        # 램프(금액)·가치 vs 웃돈(금액)·EPS 효과(%)를 세 그림으로 나누지 않고 한 그림·한 축으로(마스터 지시 2026-11-19, MTZ)
+        # — 단위가 다른 금액은 '인수 전 EPS 대비 %' 기여로 바꿔 같은 축에 둔다. 굵은 선 = EPS 효과 합계, 점선 = 구성 요소(합 = 굵은 선)
         if m["eps"]:
-            B.append({"type": "chart", "chart": {"kind": "line", "title": "EPS 효과(인수 기업, 기존 대비)", "unit": "%", "series": [{"name": "EPS 효과", "color": "c", "points": [[str(y), round(e * 100, 1)] for y, e in zip(m["years"], m["eps"])]}]}})
+            pts = lambda vals: [[str(y), round(v * 100, 1)] for y, v in zip(m["years"], vals)]
+            ser = [{"name": f"EPS 효과(합계) {_p(m['eps'][-1])}", "color": "a", "points": pts(m["eps"])}]
+            bc = {"대상 순이익": "d", "인수 차입 이자": "b", "신주 희석": "e"}
+            ser += [{"name": k, "color": bc.get(k, cols.get(k.split(" · ")[-1], "c")), "dash": True, "points": pts(v)} for k, v in m["bridge"].items() if any(abs(x) >= 0.0005 for x in v)]
+            vs = (f" · 시너지 가치 {_m(m['value'], unit)} vs 웃돈 {_m(m['paid_premium'], unit)}" if m["paid_premium"] is not None else f" · 시너지 가치 {_m(m['value'], unit)}(웃돈 미확인)")
+            B.append({"type": "chart", "chart": {"kind": "line", "unit": "%", "series": ser,
+                                                 "title": f"{d['target']} 인수 효과 — 인수 전 EPS 대비 %, 굵은 선 = 합계{vs}"}})
+        else:
+            B.append({"type": "chart", "chart": {"kind": "bars", "stack": True, "title": f"{d['target']} 시너지 램프(종류별, 확률 가중) · 시너지 가치 {_m(m['value'], unit)}", "unit": unit.strip(),
+                                                 "categories": [str(y) for y in m["years"]],
+                                                 "series": [{"name": k, "color": cols.get(k, "b"), "values": [round(v, 3) for v in vals]} for k, vals in m["by_type"].items()]}})
         B.append({"type": "table", "title": f"{d['target']} 시너지가 생기는 길", "headers": ["종류", "시너지", "연 규모", "완성", "확률", "어떻게 생기나", "근거"],
                   "rows": [[s["type"], s["name"], _m(s["run_rate"], unit) + (f"(이익률 {s['margin'] * 100:.0f}%)" if s["type"] == "매출" and s.get("margin") is not None else ""),
                             str(s["full_year"]), f"{s.get('prob', 1) * 100:.0f}%", s.get("mechanism", ""), s.get("source", "")] for s in d["synergies"]]})
-    B.append({"type": "p", "text": f"시너지 가치 = 세후 이익 기여 5년 + 말기 가치(할인율 {r * 100:.0f}%, 성장 0) − 통합 비용. 매출 시너지는 그 매출의 이익률만 반영하고, 모든 시너지에 실현 확률을 곱했다."})
+    B.append({"type": "p", "text": "그림의 구성 요소(대상 순이익·시너지·인수 차입 이자·신주 희석)를 더하면 EPS 효과 합계다. 시너지는 세후·확률 가중이다. "
+                                   f"시너지 가치 = 세후 이익 기여 5년 + 말기 가치(할인율 {r * 100:.0f}%, 성장 0) − 통합 비용. 매출 시너지는 그 매출의 이익률만 반영하고, 모든 시너지에 실현 확률을 곱했다."})
     return {"h2": "M&A 시너지", "blocks": B}
