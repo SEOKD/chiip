@@ -692,10 +692,15 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     if nq and at is not None:
         d["gallery"] = [c for c in d["gallery"] if c not in nq]
         d["gallery"][at + 1:at + 1] = nq
-    # 분기 감가 비율 그림은 빼다(마스터 지시 2026-11-19 "이 그래프는 빼자") — 값은 본문 자산 절의 표에 남는다
-    d["gallery"] = [c for c in d["gallery"] if not str(c.get("title", "")).startswith("분기 감가 비율")]
+    # 분기 감가 비율은 자산별 변화율과 ROIC 추이 사이(마스터 지시 2026-11-19)
+    dep = [c for c in d["gallery"] if str(c.get("title", "")).startswith("분기 감가 비율")]
+    roic_at = next((i for i, c in enumerate(d["gallery"]) if str(c.get("title", "")).startswith("ROIC 추이")), None)
+    if dep and roic_at is not None:
+        d["gallery"] = [c for c in d["gallery"] if c not in dep]
+        roic_at = next(i for i, c in enumerate(d["gallery"]) if str(c.get("title", "")).startswith("ROIC 추이"))
+        d["gallery"][roic_at:roic_at] = dep
     # 수주/출하 비율 × 재고 일수는 수주·파이프라인 확실성 사다리 바로 아래(마스터 지시 2026-11-15)
-    bb = [c for c in d["gallery"] if str(c.get("title", "")).startswith("수주/출하 비율")]
+    bb = [c for c in d["gallery"] if str(c.get("title", "")).startswith("수주/출하 비율 × 재고")]
     lad = next((i for i, c in enumerate(d["gallery"]) if c.get("kind") == "pipeline"), None)
     if bb and lad is not None:
         d["gallery"] = [c for c in d["gallery"] if c not in bb]
