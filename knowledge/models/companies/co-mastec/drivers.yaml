@@ -1,0 +1,108 @@
+﻿# 2026-11-19 Analysis 회차: datapack 기준 자동판으로 갱신 + 비지배지분 유지
+auto: true
+id: co-mastec
+name: MasTec
+ticker: MTZ
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.93
+  CA: 0.07
+minority: 0.1472  # 비지배지분 장부가(총자본 4.1994 − 지배주주 자본 4.0522, 3Q 10-Q)
+tax: 0.24
+horizon: 10
+as_of: '2026-11-19'
+market:
+  date: '2026-11-19'
+  price: 174.89
+  shares: 0.081046
+  net_debt: 3.709284
+  source: 가격 = 2026-11-18 종가 $174.89(Easyconomics 일봉·Fiscal.ai 일치). 주식 수 80,300,833주(3Q26
+    10-Q 표지 2026-10-26). 현금 $481.8M·총차입 $4,191.1M(금융리스 포함, 3Q26 10-Q 차입 주석)
+rev0: 18.3
+ic0: 8.4448
+scenarios:
+  base:
+    prob: 0.43
+    growth:
+      start: 0.2022
+      end: 0.035
+      decay: 0.498
+    margin:
+      m0: 0.047
+      target: 0.06
+      year_target: 4
+      lr: 0.065
+      lam: 0.35
+      anchors:
+      - 0.053
+    s2c: 2.048
+  bull:
+    prob: 0.27
+    growth:
+      start: 0.306
+      end: 0.04
+      decay: 0.548
+    margin:
+      m0: 0.047
+      target: 0.08
+      year_target: 4
+      lr: 0.065
+      lam: 0.25
+      anchors:
+      - 0.053
+    s2c: 2.355
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1038
+      end: 0.030000000000000002
+      decay: 0.398
+    margin:
+      m0: 0.047
+      target: 0.04
+      year_target: 4
+      lr: 0.065
+      lam: 0.5
+      anchors:
+      - 0.053
+    s2c: 1.741
+mc:
+  sigma_growth: 0.0505
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [18.3, 18.3] (https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm)
+  growth: 컨센서스 1년차 20.2%, 2년차 11.8%
+  margin: 1년차 컨센서스 5.3% 고정 → 목표 6%(4년차, 덮어쓰기) → 장기 수렴 6%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.048
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 10.4%~30.6%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} → 모델 조정 {''bear'': 0.3,
+    ''base'': 0.43, ''bull'': 0.27}(잔고가 1년 새 46% 늘어 다음 해 매출의 하방이 막혀 있다. 반대로 파이프라인
+    지연·통신 부진이 이어지면 이익률이 매출만큼 오르지 않는다 — 강세 쪽을 조금 낮춘다) — 다음 해 매출 성장 분포로 계산 — 약세 +15.3%
+    아래·강세 +25.4% 위 확률. 내부 관점(컨센서스 +20.2%, σ 9.9%: 범위 20.2% ÷ d2(11) × 1.5) 100% —
+    외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 영업이익률(GAAP) 6.0%(4년차)·수렴 6.5%: TTM 4.9%, 컨센서스 FY2027 5.3%. 인수 무형자산
+    상각($75M/분기)이 GAAP 이익률을 누른다. 동종 중앙 TTM 6.8%(PWR·DY·MYRG·EME·PRIM) — 규칙 기본 수렴 15%는
+    시공업 이익 구조와 맞지 않는다'
+  shares: '완전 희석 = 기본 0.080300833(2026-10-26) + 옵션·RSU·워런트·전환 0.0007 — 3Q26 10-Q 주당이익
+    주석: 잠재 주식 = 희석 효과 743천 주 + 반희석 약 2천 주(3Q 가중 평'
+notes:
+- 자동 생성(build_drivers) 2026-11-19 — 데이터 묶음 2026-11-19
+- '어닝콜 위험: 파이프라인 인허가 지연이 4Q에도 이어질 위험'
+- '어닝콜 위험: 통신 고객의 하반기 지출 이연'
+- '어닝콜 위험: 인수 차입으로 순레버리지 2.5배'
+evidence:
+- MasTec 3Q26 10-Q(2026-10-29) https://www.sec.gov/Archives/edgar/data/15615/000001561526000125/mtz-20260930.htm
+- MasTec 3Q26 실적 보도자료(8-K EX-99.1, Item 2.02, 2026-10-29) https://www.sec.gov/Archives/edgar/data/15615/000001561526000127/mtz930268-kex991.htm
+- MasTec 2Q26 실적 보도자료(8-K EX-99.1, 2026-07-30) https://www.sec.gov/Archives/edgar/data/15615/000001561526000095/mtz630268-kex991.htm
+- MasTec FY2025 10-K(2026-02-26) https://www.sec.gov/Archives/edgar/data/15615/000001561526000020/mtz-20251231.htm
+- Superior 인수 차입 8-K(2026-07-20) https://www.sec.gov/Archives/edgar/data/15615/000119312526309077/d123535d8k.htm
+- 5.85% 선순위채 인수 계약 8-K(2026-08-10) https://www.sec.gov/Archives/edgar/data/15615/000119312526342507/d165744d8k.htm
+- Superior 매도인 지분 재판매 등록(424B7, 2026-07-31) https://www.sec.gov/Archives/edgar/data/15615/000119312526328838/d162972d424b7.htm
+- 3Q26·2Q26 어닝콜 전문
+- Fiscal.ai 재무·추정·Forward 배수·세그먼트·13F(2026-11-18)
+- Easyconomics 일봉·기업 개요(2026-11-18)
+
