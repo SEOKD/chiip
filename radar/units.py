@@ -15,8 +15,18 @@ import re
 CHIIP_RE = re.compile(r"(?<![가-힣])치입(?![니력])")
 
 
+KO_TERMS = (("테제", "투자 논리"),)   # 마스터 지시 2026-11-19 "테제라는 말 쓰지 마라. 한국어로 써라" — 조사(의·를·가·와·로)는 그대로 맞는다
+
+
+def ko_terms(text):
+    for a, b in KO_TERMS:
+        text = text.replace(a, b)
+    return text
+
+
 def chiip_name(text):
-    return CHIIP_RE.sub("Chiip", text or "")
+    """발송·리포트 렌더 직전 공통 표기 — 'Chiip' 이름 통일 + 외래 용어 한국어화(KO_TERMS)"""
+    return ko_terms(CHIIP_RE.sub("Chiip", text or ""))
 
 _NUM = r"\d[\d,]*(?:\.\d+)?"
 _USD = r"\s*(?:\$|달러|USD|불)"
