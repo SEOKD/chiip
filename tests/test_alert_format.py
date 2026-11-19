@@ -39,7 +39,8 @@ class TestAlertFormat(unittest.TestCase):
         head, prof, pts = msg.split("\n\n")
         self.assertTrue(head.startswith("Quanta Services(PWR)｜<a href="))
         self.assertTrue(head.endswith("21:05"))   # 오늘이 아니면 날짜가 붙는다
-        self.assertEqual(prof, "☞ 모델 · 성장 · 내러티브")   # 한 줄로 잇는다(2026-10-30)
+        self.assertEqual(prof.splitlines()[0], "☞ 모델 · 성장 · 내러티브")   # 한 줄로 잇는다(2026-10-30)
+        self.assertTrue(all(x.startswith("린치 분류: ") for x in prof.splitlines()[1:]))   # 그 아래 피터 린치 분류 한 줄(2026-11-19, 자료가 있을 때만)
         self.assertEqual(pts.splitlines(), ["• a", "• b", "• c"])   # 핵심은 3개까지
         self.assertNotIn("P1", msg)                                  # 등급 코드 비노출 유지
 

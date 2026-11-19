@@ -8754,3 +8754,179 @@ params:
     data: knowledge/models/discovery/leads.csv(channel guru, kind thesis)·knowledge/models/guru/thesis_evidence.json
     last_fit: null
     oos_metric: null
+- id: prm-lynch-size-small
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#size.small_usd
+  value: 2000000000
+  unit: USD
+  status: prior
+  prior:
+    value: 2000000000
+    basis: '1단계 크기 — 큰 회사는 작게, 작은 회사는 크게 움직인다. 소형 = 시가총액 $2B 이하(현대 소형주 통상 구간으로 옮김)'
+    source: 'Peter Lynch & John Rothchild, One Up On Wall Street(1989) ch.7 — 마스터 제공 요약 노트 The Peter Lynch Playbook(@mjbaldbard)'
+  fit:
+    method: 분류 뒤 2년 수익률 분포로 크기 경계를 표본 외 비교(stepwise)
+    target: 크기 구간별 10배 도달 비율
+    data: knowledge/models/alpha/ · radar/state/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-size-large
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#size.large_usd
+  value: 50000000000
+  unit: USD
+  status: prior
+  prior:
+    value: 50000000000
+    basis: '대형 = 시가총액 $50B 이상 — 10배는 드물다(고성장이어도 기대치를 낮춘다)'
+    source: 'One Up On Wall Street(1989) ch.7 — 요약 노트 LYNCH STOCK CLASSIFICATION SYSTEM'
+  fit:
+    method: 분류 뒤 2년 수익률 분포로 표본 외 비교(stepwise)
+    target: 크기 구간별 10배 도달 비율
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-growth-slow-max
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#growth.slow_max
+  value: 0.06
+  unit: 연 EPS 성장(소수)
+  status: prior
+  prior:
+    value: 0.06
+    basis: '저성장주 = GNP보다 조금 빠른 연 2~4% 성장 — 명목 성장 여유를 두어 6% 미만'
+    source: 'One Up On Wall Street(1989) ch.7 Slow Growers'
+  fit:
+    method: 분류 뒤 2년 수익률로 경계 표본 외 비교(stepwise)
+    target: 저성장주 구간의 2년 초과수익 ≤ 0
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-growth-fast-min
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#growth.fast_min
+  value: 0.18
+  unit: 연 EPS 성장(소수)
+  status: prior
+  prior:
+    value: 0.18
+    basis: '고성장주 = 연 20~25% 성장(대형우량주 10~12%) — 경계를 18%로'
+    source: 'One Up On Wall Street(1989) ch.7 Fast Growers·Stalwarts'
+  fit:
+    method: 분류 뒤 2년 수익률로 경계 표본 외 비교(stepwise)
+    target: 고성장주 구간의 10배 도달 비율
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-growth-fast-max
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#growth.fast_max_credible
+  value: 0.50
+  unit: 연 EPS 성장(소수)
+  status: prior
+  prior:
+    value: 0.50
+    basis: '50%를 넘는 성장은 오래 지속되기 어렵다 — 반대 근거로 표시'
+    source: 'One Up On Wall Street(1989) ch.7·13'
+  fit:
+    method: 표시 규칙 — 피팅 대상 아님(반대 근거 문구)
+    target: null
+    data: null
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-cyc-drawdown
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#cyclical.rev_drawdown
+  value: 0.20
+  unit: TTM 매출 고점 대비 하락(소수)
+  status: prior
+  prior:
+    value: 0.20
+    basis: '경기순환주 = 매출·이익이 경기에 따라 크게 오르내린다 — 과거 TTM 매출 20% 넘는 하락 이력. 적자→흑자 이력은 매출이 그 0.75배 이상 빠졌을 때만 근거(성장 기업의 적자 탈출과 구분)'
+    source: 'One Up On Wall Street(1989) ch.7 Cyclicals — 자체 규칙화'
+  fit:
+    method: 분류 뒤 2년 수익률 변동성으로 표본 외 비교(stepwise)
+    target: 순환 판정 종목의 수익률 분산이 다른 분류보다 큰가
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-turn-drop
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#turnaround.eps_drop
+  value: 0.50
+  unit: TTM 영업이익 3년 고점 대비 감소(소수)
+  status: prior
+  prior:
+    value: 0.50
+    basis: '회생주 = 이익이 무너진(음수 또는 절반 이하) 회사에 다음 해 회복이 예상될 때'
+    source: 'One Up On Wall Street(1989) ch.7 Turnarounds'
+  fit:
+    method: 분류 뒤 2년 수익률로 표본 외 비교(stepwise)
+    target: 회생 판정 종목의 2년 수익률 분포(10배·−80% 양 꼬리)
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-asset-pb
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#asset_play.pb_max
+  value: 1.0
+  unit: 배
+  status: prior
+  prior:
+    value: 1.0
+    basis: '자산주 = 시장이 놓친 자산 — P/B 1배 이하'
+    source: 'One Up On Wall Street(1989) ch.7 Asset Plays'
+  fit:
+    method: 분류 뒤 2년 수익률로 표본 외 비교(stepwise)
+    target: 자산주 구간의 2~5배 도달 비율
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-asset-netcash
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#asset_play.net_cash_share
+  value: 0.30
+  unit: 순현금 ÷ 시가총액
+  status: prior
+  prior:
+    value: 0.30
+    basis: '자산주 — 순현금이 시가총액의 30% 이상(숨은 자산의 대리 지표)'
+    source: 'One Up On Wall Street(1989) ch.7 Asset Plays — 자체 규칙화'
+  fit:
+    method: 분류 뒤 2년 수익률로 표본 외 비교(stepwise)
+    target: 자산주 구간의 2~5배 도달 비율
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-tenbagger-cap
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#tenbagger_cap
+  value: 4.9
+  unit: 점(10점 만점)
+  status: prior
+  prior:
+    value: 4.9
+    basis: '10배 경로가 있는 분류는 고성장주·회생주·경기순환주뿐(RISK/REWARD 표) — 나머지는 알파 관문 5.0 아래로'
+    source: 'The Peter Lynch Playbook 요약 노트 RISK/REWARD FOR ALL CLASSIFICATIONS · Beating the Street(1993)'
+  fit:
+    method: 상한 적용 전후 알파 통과 종목의 표본 외 성과 비교(stepwise)
+    target: 통과 종목의 기저율 대비 2년 성과
+    data: knowledge/models/alpha/latest.json 이력
+    last_fit: null
+    oos_metric: null
+- id: prm-lynch-ratio-good
+  model: tenbagger.lynch
+  binding: config/lynch.yaml#lynch_ratio_good
+  value: 2.0
+  unit: (EPS 성장% + 배당%) ÷ P/E
+  status: prior
+  prior:
+    value: 2.0
+    basis: '(장기 성장률 + 배당수익률) ÷ P/E — 1 미만 불리, 1.5 괜찮음, 2 이상 매력'
+    source: 'One Up On Wall Street(1989) ch.13'
+  fit:
+    method: 표시 기준 — 2년 수익률과 순위 상관으로 표본 외 점검
+    target: 린치 비율 순위와 2년 수익률 순위
+    data: knowledge/models/alpha/
+    last_fit: null
+    oos_metric: null

@@ -1,0 +1,39 @@
+# 피터 린치 6분류(마스터 지시 2026-11-19 "The Peter Lynch Playbook을 Analysis·Pulse·Ten-bagger 종목 분석 알고리즘에 100% 반영")
+# 원전: Peter Lynch & John Rothchild, One Up On Wall Street(1989) ch.7·13·16, Beating the Street(1993). 마스터가 준 자료는 그 두 책의 요약 노트(@mjbaldbard).
+# 모든 상수는 knowledge/models/params/registry.yaml prm-lynch-* 에 사전값·출처와 함께 등록 — 피팅은 분류 뒤 2년 수익률로(scripts/fit/stepwise.py).
+
+size:                       # 1단계: 크기 먼저 — 큰 회사는 작게, 작은 회사는 크게 움직인다
+  small_usd: 2.0e+9         # 이하 = 소형(10배 경로가 열려 있다)
+  large_usd: 50.0e+9        # 이상 = 대형(10배는 드물다 — 고성장이어도 기대치를 낮춘다)
+
+growth:                     # 2단계: 이야기 — 장기 EPS 성장률(컨센서스 2~3년 CAGR, 없으면 매출)
+  slow_max: 0.06            # 미만 = 저성장주(Slow Grower, 린치: GNP보다 조금 빠른 2~4%)
+  fast_min: 0.18            # 이상 = 고성장주(Fast Grower, 린치: 연 20~25%) · 사이 = 대형우량주(Stalwart, 10~12%)
+  fast_max_credible: 0.50   # 넘으면 지속 가능성 의심 표시(린치: 50% 성장은 오래 못 간다)
+
+cyclical:                   # 경기순환주 — 업종 목록 또는 실적 이력의 깊은 골
+  industries: [memory, semis_memory, semicap, semiconductor_equipment, steel, metals, mining, chemicals, autos, auto, airlines, shipping,
+               energy, oil_gas, oilfield_services, homebuilders, building_materials, paper, rail, trucking, machinery, construction_machinery, commodity]
+  rev_drawdown: 0.20        # 과거 TTM 매출이 고점 대비 20% 넘게 빠진 적이 있으면 순환 이력
+  op_negative_cycles: 1     # TTM 영업이익이 음수였다가 회복한 적이 있으면 순환 이력(회생 조건과 함께 본다)
+
+turnaround:                 # 회생주 — 이익이 무너졌다가 회복이 예상될 때
+  eps_drop: 0.50            # TTM 이익(영업이익)이 3년 고점 대비 50% 넘게 줄었거나 음수
+  recover_min: 0.0          # 그리고 다음 해 컨센서스 이익이 TTM보다 크고 양수
+
+asset_play:                 # 자산주 — 시장이 놓친 자산
+  pb_max: 1.0               # P/B 1배 이하
+  net_cash_share: 0.30      # 또는 순현금이 시가총액의 30% 이상
+  growth_cap: 0.18          # 단, 고성장(이 값 이상)이면 자산주로 보지 않는다
+
+expect:                     # 분류별 기대 수익·위험(플레이북 RISK/REWARD 표)
+  고성장주: {return: "10~100배", down: "-80~100%", risk: 고, tenbagger: true}
+  회생주:   {return: "10배", down: "-80~100%", risk: 고, tenbagger: true}
+  경기순환주: {return: "10배", down: "-80~100%", risk: 고, tenbagger: true}
+  자산주:   {return: "2~5배", down: "작다", risk: 저, tenbagger: false}
+  대형우량주: {return: "2년 +50%", down: "-20%", risk: 저, tenbagger: false}
+  저성장주: {return: "0%", down: "작다", risk: 저, tenbagger: false}
+
+tenbagger_cap: 4.9          # 10배 경로가 없는 분류(자산주·대형우량주·저성장주)는 텐배거 가능성 점수를 이 값 아래로(알파 관문 5.0 미만)
+lynch_ratio_good: 2.0       # (EPS 성장% + 배당수익률%) ÷ P/E — 2 이상 매력, 1 미만 비싸다(OUWS ch.13)
+peg_fair: 1.0               # P/E = 성장률이면 적정, 절반이면 매우 매력, 2배면 매우 불리

@@ -109,13 +109,32 @@ def combine(judg, c, social=None):
     return rows
 
 
+def _lynch():
+    try:
+        import sys
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tenbagger"))
+        import lynch
+        return lynch
+    except Exception:   # 분류 모듈이 없어도 점수는 낸다
+        return None
+
+
 def finalize():
     c = cfg()
     prev = json.loads(LATEST.read_text(encoding="utf-8")) if LATEST.exists() else {"rows": {}}
     rows = combine(load_judgments(), c)
     nm = names()
+    lyn = _lynch()
     for cid, r in rows.items():
         r["name"] = nm.get(cid, cid)
+        if lyn and r["total"] is not None:   # 피터 린치 분류 — 10배 경로가 없는 분류(자산주·대형우량주·저성장주)는 관문 아래로(마스터 지시 2026-11-19)
+            x = lyn.for_entity(cid)
+            res = lyn.classify(x) if x else None
+            if res and res["cat"] != "미확인":
+                r["lynch"] = res["cat"]
+                r["total"], why = lyn.cap_score(r["total"], res)
+                if why:
+                    r["lynch_cap"] = why
         p = (prev.get("rows") or {}).get(cid, {}).get("total")
         r["delta"] = None if p is None or r["total"] is None else round(r["total"] - p, 2)
     th = float(c["threshold"])

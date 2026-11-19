@@ -599,6 +599,19 @@ def profile_line(lines):
     return " · ".join(PROFILE_HEAD_RE.sub("", l.strip()).rstrip(" .") for l in lines if l and l.strip())
 
 
+def lynch_line(entity_ids):
+    """첫 종목의 피터 린치 분류 한 줄 — datapack·발굴 펀더멘털이 없으면 None(알림은 그대로 나간다)"""
+    ids = [e for e in (entity_ids or []) if e]
+    if not ids:
+        return None
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts" / "tenbagger"))
+        import lynch
+        return lynch.pulse_line(lynch.for_entity(ids[0]))
+    except Exception:
+        return None
+
+
 def format_item(level, item, what=None, impact=None, card_id=None, biz=None, points=None, profile=None, synergy=None):
     """실시간 알림 — 마스터 지시 2026-10-29 양식:
         종목(종목코드)｜기사(원문 링크)｜시간
@@ -617,6 +630,9 @@ def format_item(level, item, what=None, impact=None, card_id=None, biz=None, poi
     prof = company_profile(item.get("entities_matched"), profile, biz)
     if prof:
         parts.append("☞ " + html.escape(profile_line(prof), quote=False))
+    ly = lynch_line(item.get("entities_matched"))   # 피터 린치 분류 한 줄(마스터 지시 2026-11-19)
+    if ly:
+        parts[-1 if prof else 0] += "\n" + html.escape(ly, quote=False)
     pts = [p.strip() for p in (points or []) if p and p.strip()][:3] or snippet_points(item)
     lines = [f"• {html.escape(p, quote=False)}" for p in pts]
     if synergy and synergy.strip():

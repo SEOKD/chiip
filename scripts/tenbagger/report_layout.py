@@ -48,6 +48,7 @@ import ma_view  # noqa: E402
 import flow  # noqa: E402
 import input_view  # noqa: E402
 import leader_view  # noqa: E402
+import lynch  # noqa: E402   # 피터 린치 6분류(마스터 지시 2026-11-19)
 import levels  # noqa: E402
 import margin_view  # noqa: E402
 import narrative_view  # noqa: E402
@@ -579,6 +580,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     auto.append(supply_view.summary_item(dp))
     if capacity_sec:
         auto.append(capacity_view.summary_item(dp))
+    auto.append(lynch.summary_item(dp))   # 피터 린치 분류·기대 수익·팔 때(마스터 지시 2026-11-19)
     d["summary"] = auto + keep
     price, zones = price_charts(entity)
     for c in price:   # 한눈에 보기 첫 일봉에 목표주가 선(마스터 지시 2026-11-19 — 본문 '일봉 지지·저항과 목표주가' 그림을 빼고 여기로)
@@ -658,6 +660,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
             out.append(part)
     money = lambda x: f"{cur}{x:,.2f}B"
     out += [x for x in [ma_view.section(dp)] if x]   # M&A 시너지(2026-11-03 마스터 지시)
+    out.append(lynch.section(dp))   # 피터 린치 분류 — 크기·이야기·기대 수익·점검표(마스터 지시 2026-11-19)
     out += [moat_section(dp), leader_view.report_section(dp, r, money), {"h2": "약세 논리 및 셀온 조건", "blocks": bear_blocks}, {"h2": "어닝콜 변화", "blocks": earnings_blocks(esec)}] + [x for x in [sync_view.section(dp), pq_view.section(dp)] if x] + [val] + [x for x in [entry_view.section(flow.load_ohlcv(entity), pt["target"])] if x] + [debate_view.section(dp, deb)]   # 매수 위치(일봉, 2026-11-03)   # 거시 지표 싱크로율(2026-11-03 마스터 지시)
     d["support"] = next((f"{cur}{v:,.2f} {t}" for c in price if c["title"] == "일봉" for t, v in (c.get("levels") or [])[:1]), "")   # 수급은 한눈에 보기 그림만(마스터 지시 2026-11-01)
     import social_view   # 커뮤니티 내러티브(Quantral, 2026-11-07 마스터 지시) — 그래프는 아래에서 한눈에 보기로 옮긴다
