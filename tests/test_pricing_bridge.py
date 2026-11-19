@@ -69,3 +69,15 @@ class TestTrendChart(unittest.TestCase):   # 2026-11-19 — 막대 대신 추이
         self.assertEqual([s["points"][0][1] for s in c["series"][:2]], [100.0, 100.0])
         self.assertIn("마진 압박", c["title"])
         self.assertIn("미국 PPI(X1)", c["series"][1]["name"] + iv.index_name("ppi_id:X1"))
+
+    def test_only_two_lines(self):   # 2026-11-19 MTZ — 항목별 점선 없이 원가(가중)·판매가(평균) 두 선만
+        months = [f"{2024 + (i + 10) // 12}-{(i + 10) % 12 + 1:02d}" for i in range(24)]
+        ser = lambda k: {m: 100 + i * k for i, m in enumerate(months)}
+        hist = {"inputs": {"power": {"ppi": {"us": ser(1)}}, "steel": {"ppi": {"us": ser(2)}}}, "us_raw": {"X1": ser(0.2), "X2": ser(0.5)}}
+        dp = {"margin": {"costs": [{"name": "전력", "stage": "매출원가", "pct_rev": 0.1, "input": "power"}, {"name": "철강", "stage": "매출원가", "pct_rev": 0.2, "input": "steel"}]},
+              "pricing": [{"business": "A", "index": "ppi_id:X1"}, {"business": "B", "index": "ppi_id:X2"}]}
+        c = iv.pricing_chart(iv.bridge(dp, hist, {}))["chart"]
+        self.assertEqual(len(c["series"]), 2)
+        self.assertTrue(c["series"][0]["name"].startswith("원가 물가(가중)"))
+        self.assertTrue(c["series"][1]["name"].startswith("판매가 물가(평균)"))
+        self.assertFalse(any(s.get("dash") for s in c["series"]))

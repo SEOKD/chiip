@@ -274,7 +274,7 @@ def price_sentences(br):
 
 def pricing_chart(br, months=24):
     """원가 물가 vs 판매가 물가 추이 — 최근 months개월, 첫 달 = 100(마스터 지시 2026-11-19 "추이를 나타내는 그래프로 바꿔 원가 물가와 판매가 물가가
-    얼마나 격차가 나는지 직관적으로"). 굵은 두 선 = 원가(매출 대비 비중 가중)·판매가(평균), 얇은 점선 = 항목별. 제목에 지금 격차(%p)와 뜻"""
+    얼마나 격차가 나는지 직관적으로"). 두 선만 = 원가(매출 대비 비중 가중)·판매가(평균) — 항목별 점선은 뺐다(2026-11-19). 제목에 지금 격차(%p)와 뜻"""
     costs = [r for r in br["costs"] if r.get("s")]
     prices = [r for r in br["prices"] if r.get("s")]
     if not costs or not prices:
@@ -306,10 +306,7 @@ def pricing_chart(br, months=24):
     lab = lambda m: f"{m[2:4]}.{m[5:7]}"
     series = [{"name": f"원가 물가{'(가중)' if len(C) > 1 else ''} {cost[axis[-1]] - 100:+.1f}%", "color": "b", "points": [[lab(m), round(cost[m], 1)] for m in axis]},
               {"name": f"판매가 물가{'(평균)' if len(P) > 1 else ''} {price[axis[-1]] - 100:+.1f}%", "color": "c", "points": [[lab(m), round(price[m], 1)] for m in axis]}]
-    if len(C) > 1:
-        series += [{"name": f"원가 · {str(n).split('(')[0].strip()}", "color": "b", "dash": True, "points": [[lab(m), round(x[m], 1)] for m in axis]} for x, _, n in C]
-    if len(P) > 1:
-        series += [{"name": f"판매가 · {n.split('(')[0].strip()}", "color": "c", "dash": True, "points": [[lab(m), round(x[m], 1)] for m in axis]} for x, n in P]
+    # 항목별 점선은 그리지 않는다 — 원가(가중)·판매가(평균) 두 선만(마스터 지시 2026-11-19, MTZ). 항목 구성은 아래 표에 있다
     verdict = (f"원가가 판매가보다 {gap:.1f}%p 더 올라 단가를 못 올리면 마진 압박" if gap > 0.5 else
                f"판매가가 원가보다 {-gap:.1f}%p 더 올라 마진 여유" if gap < -0.5 else "둘이 비슷하게 움직인다")
     return {"type": "chart", "chart": {"kind": "line", "title": f"원가 물가 vs 판매가 물가 — 최근 {len(axis)}개월({lab(axis[0])} = 100): {verdict}", "unit": "", "series": series}}
