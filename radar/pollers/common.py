@@ -232,6 +232,31 @@ _PREFER = None
 _RELATED = None
 
 
+_AMBIG = None
+
+
+def _ambiguous():
+    """일반 단어와 겹치는 짧은 이름 → (이름 집합, 필요한 문맥, 거부 문맥) — config/entity_overrides.yaml ambiguous.
+    2026-11-20 마스터 지시("Community Unity Bank에 Unity가 적혀 있다고 이걸 가져오면 어떻게 하나?"): 'Unity'만으로 Unity Software를 붙였다"""
+    global _AMBIG
+    if _AMBIG is None:
+        ov = load_yaml("config/entity_overrides.yaml") or {}
+        _AMBIG = {eid: ({n.lower() for n in r.get("names") or []}, re.compile(r["need"], re.I) if r.get("need") else None,
+                        re.compile(r["reject"], re.I) if r.get("reject") else None) for eid, r in (ov.get("ambiguous") or {}).items()}
+    return _AMBIG
+
+
+def _ambig_ok(eid, name, text):
+    """일반어 이름 하나로 잡힌 건 — 문맥 단어가 있고 거부 문맥이 없을 때만 실체로 인정한다"""
+    a = _ambiguous().get(eid)
+    if not a or name.lower() not in a[0]:
+        return True
+    names, need, reject = a
+    if reject and reject.search(text):
+        return False
+    return bool(need and need.search(text))
+
+
 def match_entities(text):
     global _ALIAS_CACHE
     if _ALIAS_CACHE is None:
@@ -240,6 +265,8 @@ def match_entities(text):
     low = text.lower()
     for eid, names in _ALIAS_CACHE.items():
         for n in names:
+            if not _ambig_ok(eid, n, text):
+                continue
             # 짧은 영문 약칭은 단어 경계로
             if re.fullmatch(r"[A-Za-z]{2,4}", n):
                 if re.search(rf"\b{re.escape(n)}\b", text):

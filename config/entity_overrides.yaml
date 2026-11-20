@@ -11,3 +11,16 @@ related:    # 문맥이 맞으면 상대방 실체도 붙인다(2차 전파) —
   - {from: jp-sbg, when: 'turbine|タービン|터빈|gas plant|gas-fired|power plant|9\.2 ?GW', add: [co-gevernova], why: "SB Energy 오하이오 9.2GW 가스발전 터빈 슬롯 예약(2026-05 소프트뱅크 발표) — 공급사 GE Vernova(그 밖 공급사는 미확인)"}
 tv_symbols:  # TradingView 대응표(config/tradingview_symbols.csv)에 없는 감시 종목 — 급변 감시(radar/move_watch.py)가 쓴다
   jp-sbg: {symbol: "TSE:9984", name: "SoftBank Group", ticker: "9984"}
+ambiguous:  # 일반 단어와 겹치는 이름 — 이 이름 하나만 잡히면 need 문맥이 있어야, reject 문맥이 없어야 실체로 붙인다(radar/pollers/common.py _ambig_ok)
+            # 2026-11-20 마스터 지시("Community Unity Bank에 Unity가 적혀 있다고 이걸 가져오면 어떻게 하나?"). 전체 이름(Unity Software 등)은 그대로 잡힌다
+  us-u:       {names: [Unity], need: 'game|gaming|engine|Vector|LevelPlay|ironSource|AppLovin|Bromberg|developer|ad network|advertis|runtime|\(U\)|NYSE: ?U\b|게임|엔진|유니티', reject: 'Unity Bank|Community Unity|Unity Health|Credit Union|Unity Party|national unity|unity government'}
+  us-xyz:     {names: [Block], need: 'Square|Cash App|Afterpay|Bitcoin|Jack Dorsey|Dorsey|fintech|payments?|\(XYZ\)|NYSE: ?XYZ|블록|스퀘어'}
+  us-flex:    {names: [Flex, Axiom], need: 'Flex Ltd|EMS|contract manufactur|data ?center|power|\(FLEX\)|Nasdaq: ?FLEX|플렉스'}
+  us-carr:    {names: [Carrier], need: 'HVAC|heat pump|Viessmann|cooling|chiller|air condition|\(CARR\)|NYSE: ?CARR|캐리어', reject: 'aircraft carrier|carrier group|wireless carrier|mobile carrier|ocean carrier|air carrier|common carrier|항공모함|통신사'}
+  us-toast:   {names: [Toast], need: 'restaurant|point[- ]of[- ]sale|POS|fintech|payments?|\(TOST\)|NYSE: ?TOST|토스트'}
+  us-sn:      {names: [Shark, Ninja], need: 'SharkNinja|appliance|vacuum|blender|air fryer|\(SN\)|NYSE: ?SN\b|샤크닌자'}
+  co-credo:   {names: [Credo], need: 'AEC|active electrical cable|SerDes|retimer|optical|data ?center|\(CRDO\)|Nasdaq: ?CRDO|크레도'}
+  co-rogers:  {names: [Rogers], need: 'Rogers Corp|laminate|circuit material|elastomer|EV|\(ROG\)|NYSE: ?ROG\b|로저스', reject: 'Rogers Communications|Rogers Centre|Rogers Cup'}
+  us-fac:     {names: [Factorial], need: 'solid[- ]state|battery|batteries|Mercedes|Stellantis|전고체|배터리'}
+  us-plxs:    {names: [Plexus], need: 'EMS|contract manufactur|\(PLXS\)|Nasdaq: ?PLXS|플렉서스', reject: 'solar plexus|brachial plexus'}
+  gb-cohort:  {names: [Cohort], need: 'Cohort plc|defen[cs]e|SEA|MASS|ELAC|\(CHRT\)|LSE: ?CHRT|코호트'}

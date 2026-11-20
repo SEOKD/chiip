@@ -138,7 +138,8 @@ def wire_candidates(item, days=3, now=None):
             except ValueError:
                 continue
             hay = f"{it.get('title', '')} {it.get('snippet', '')} {it.get('ticker', '')}"
-            if (name and len(name) >= 3 and name in hay.lower()) or (tick and re.search(rf"[:\s]{re.escape(tick)}\b", hay)):
+            # 티커는 거래소 표기('NYSE: U')나 괄호('(U)')로만 — 2026-11-20 티커 U가 'Texas, U.S.'의 ' U'에 걸려 Canadian Solar 보도자료가 은행 기사 본문으로 붙었다
+            if (name and len(name) >= 3 and name in hay.lower()) or (tick and re.search(rf"(?:NASDAQ|NYSE|Nasdaq|AMEX|TSX)[^:()]{{0,25}}:\s*{re.escape(tick)}(?![\w.])|\({re.escape(tick)}\)", hay)):
                 out.append(it)
     earn = re.compile(r"results|earnings|quarter|financial", re.I)
     return sorted(out, key=lambda x: (not earn.search(x.get("title", "")), x.get("published_at", "")), reverse=False)
