@@ -3986,12 +3986,30 @@
  },
  "pricing": [
   {
-   "business": "BASX 액체 냉각",
-   "segment": "BASX",
-   "index": "ppi:valve",
+   "business": "AAON 옥상형 공조기",
+   "segment": "AAON Oklahoma",
+   "index": "ppi:hvac_equipment",
    "company": {
     "yoy": null,
-    "basis": "3Q 코일 마진 개선의 가장 큰 몫이 가격(콜) — 수치 미공시. 비교 지수는 산업용 밸브·유량 제어(대용)"
+    "basis": "3Q 콜: 코일 마진 개선의 가장 큰 몫이 가격 — 수치 미공시. 비교 지수 = 미국 공조·상업용 냉동 장비 PPI(미국 산업 분류 333415)"
+   }
+  },
+  {
+   "business": "코일 제품",
+   "segment": "AAON Coil Products",
+   "index": "ppi:hvac_equipment",
+   "company": {
+    "yoy": null,
+    "basis": "3Q 콜: 코일 마진 개선의 가장 큰 몫이 가격 — 수치 미공시. 비교 지수 = 미국 공조·상업용 냉동 장비 PPI(미국 산업 분류 333415)"
+   }
+  },
+  {
+   "business": "BASX 액체 냉각",
+   "segment": "BASX",
+   "index": "ppi:hvac_equipment",
+   "company": {
+    "yoy": null,
+    "basis": "데이터센터 액체 냉각(CDU)·맞춤 공조 — 비교 지수 = 공조·상업용 냉동 장비 PPI(이전 산업용 밸브 PPI는 3월 한 번 뛴 뒤 평탄해 판매가 흐름을 대표하지 못했다, 2026-11-20)"
    }
   }
  ],
