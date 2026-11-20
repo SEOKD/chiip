@@ -4,3 +4,10 @@ date,id,ticker,status,verdict,alpha,scored_on,grade,upside,added_by,pin,reason
 2026-11-20,co-quanta-services,PWR,관심,제외,5.0,20261107,,,master,True,알파 5.00 < 6.0
 2026-11-20,us-mtd,MTD,관심,제외,1.78,20261106,,,master,True,알파 1.78 < 6.0
 2026-11-20,co-enchantedrock,EROC,보유,재점검,4.57,20261114,Buy,0.3476783691959231,master,False,보유 · 알파 4.57 < 6.0 — 투자 논리·킬 조건 점검
+2026-11-20,us-bksy,BKSY,관심,제외,5.32,20261120,,,master,True,알파 5.32 < 6.0
+2026-11-20,us-lscc,LSCC,관심,제외,4.86,20261120,,,master,True,알파 4.86 < 6.0
+2026-11-20,us-ccxi,AGLT,관심,제외,4.33,20261120,,,master,True,알파 4.33 < 6.0
+2026-11-20,us-taco,TACO,관심,제외,4.24,20261120,,,master,True,알파 4.24 < 6.0
+2026-11-20,us-lth,LTH,관심,제외,3.7,20261120,,,master,True,알파 3.70 < 6.0
+2026-11-20,us-fwona,FWONA,관심,제외,2.9,20261120,,,master,True,알파 2.90 < 6.0
+2026-11-20,co-enchantedrock,EROC,보유,재점검,4.57,20261114,Buy,0.3476783691959231,master,False,보유 · 알파 4.57 < 6.0 — 투자 논리·킬 조건 점검
