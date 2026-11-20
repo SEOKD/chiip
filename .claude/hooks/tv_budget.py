@@ -76,7 +76,16 @@ def main(mode):
         task = task_of(inp)
         if task:
             st.setdefault("tasks", {})[str(inp.get("session_id"))[:8]] = task
-        prio = task in (c.get("priority_tasks") or [])
+        # 시간대 독점(2026-11-21 마스터 지시 "이번 주 Weekly에 유럽·일본·한국·대만·홍콩 주간 상승률 순위가 빠졌다"):
+        # 토요일 07:00~07:15에 다른 세션 3곳이 한도를 먼저 써서 Weekly 지역 스크리너가 막혔다 → 정한 시간대에는 only 작업만 부른다
+        for h in c.get("holds") or []:
+            if task and now.weekday() in (h.get("weekdays") or []) and h.get("from", "00:00") <= now.strftime("%H:%M") < h.get("until", "24:00") \
+                    and not any(str(task or "").startswith(p) for p in h.get("only") or []):
+                st["denied"] = st.get("denied", 0) + 1
+                save(st)
+                return deny(f"TradingView {h.get('from')}~{h.get('until')} KST는 {', '.join(h.get('only') or [])} 몫 — 지금은 부르지 말고 대체 경로를 쓰거나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml holds)")
+        prio = task in (c.get("priority_tasks") or []) or any(now.weekday() in (h.get("weekdays") or []) and str(task or "").startswith(p)
+                                                               for h in c.get("holds") or [] for p in h.get("only") or [])
         limit = budget if prio else budget - int(c.get("priority_reserve", 30))
         if st.get("used", 0) >= limit:
             st["denied"] = st.get("denied", 0) + 1

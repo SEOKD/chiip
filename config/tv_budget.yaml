@@ -6,3 +6,8 @@ priority_tasks: [chiip-tenbagger-report, chiip-analysis-samyang-once]   # 우선
 priority_reserve: 30      # 다른 작업은 하루 예산에서 이만큼을 남긴 만큼(40건)만 쓴다. Analysis 3회 × 약 9건 = 27
 day_start_hour: 6
 # TradingView 와치리스트 동기화는 토요일 08:00 주 1회(2026-11-19 마스터 지시) — 그날 다른 작업 몫 안에서 쓴다
+# 시간대 독점(2026-11-21 마스터 지시 "이번 주 Weekly에 유럽·일본·한국·대만·홍콩 주간 상승률 순위가 빠졌다") — 그 시간에는 only 작업(예약 작업 이름 앞부분)만 부른다.
+# 47주차: 토 07:00~07:15 Pulse Weekend 5건·Industry 5건이 먼저 쓰고 Weekly는 1건째에 계정 한도(11건)로 막혔다. 사람 세션은 막지 않는다. weekdays: 월=0 … 토=5·일=6
+holds:
+  - {weekdays: [5], from: "06:00", until: "10:30", only: [chiip-weekly]}
+  # - {weekdays: [6], from: "06:00", until: "06:40", only: [chiip-weekly]}   # 일요일 보충 회차 chiip-weekly-fill(docs/tasks/chiip-weekly-fill.md) — 예약 작업 등록 후 켠다(2026-11-21 앱이 등록 거부, 마스터 승인 대기)

@@ -132,8 +132,9 @@ def collect(force=False):
     return len(rows_out), len(rows_out)
 
 
-def put(src, wid=None):
-    """Weekly Review 모델이 TradingView 스크리너(change|1W)로 뽑아 쓴 JSON → 주차 CSV(2026-10-31 재설계, 지시서 .claude/skills/weekly-review)"""
+def put(src, wid=None, merge=False):
+    """Weekly Review 모델이 TradingView 스크리너(change|1W)로 뽑아 쓴 JSON → 주차 CSV(2026-10-31 재설계, 지시서 .claude/skills/weekly-review)
+    merge=True: 새 파일에 있는 지역만 바꾸고 다른 지역 행은 둔다 — 빠진 지역 보충(chiip-weekly-fill, 2026-11-21 마스터 지시)"""
     rows = json.loads(Path(src).read_text(encoding="utf-8"))
     import yaml   # 업종은 config/weekly_review.yaml themes 중 하나(2026-11-14 마스터 지시 "섹터 분류를 제대로 해라")
     themes = (yaml.safe_load((common.ROOT / "config" / "weekly_review.yaml").read_text(encoding="utf-8")) or {}).get("themes") or {}
@@ -142,6 +143,10 @@ def put(src, wid=None):
         raise SystemExit(f"업종이 분류표에 없음: {', '.join(bad)} — config/weekly_review.yaml themes에서 고른다")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     path = OUT_DIR / f"{wid or week_id()}.csv"
+    if merge and path.exists():
+        new = {r.get("region") for r in rows}
+        with path.open(encoding="utf-8") as f:
+            rows = [r for r in csv.DictReader(f) if r.get("region") not in new] + rows
     with path.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=COLS, lineterminator="\n", extrasaction="ignore")
         w.writeheader()
@@ -166,6 +171,7 @@ if __name__ == "__main__":
         list_exchanges()
     elif "--put" in sys.argv:
         i = sys.argv.index("--put")
-        print(put(sys.argv[i + 1], sys.argv[i + 2] if len(sys.argv) > i + 2 else None))
+        wid = sys.argv[i + 2] if len(sys.argv) > i + 2 and not sys.argv[i + 2].startswith("--") else None
+        print(put(sys.argv[i + 1], wid, merge="--merge" in sys.argv))
     else:
         print(collect(force="--force" in sys.argv))
