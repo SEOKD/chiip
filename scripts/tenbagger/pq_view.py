@@ -544,9 +544,7 @@ def section(dp, history=None, db=sv.HS_DB, fred_cache=None):
         series += [{"name": "P 투영", "color": "e", "points": [lastp] + [[p["q"], round(p["g_p"] * 100, 1)] for p in c["proj"]]},
                    {"name": "Q 투영", "color": "d", "points": [lastq] + [[p["q"], round(p["g_q"] * 100, 1)] for p in c["proj"]]}]
     B.append({"type": "chart", "chart": {"kind": "line", "title": "매출 증가율의 가격·물량 분해와 8분기 전망(전년 대비)", "unit": "%", "series": series}})
-    B.append({"type": "chart", "chart": {"kind": "bars", "title": "분기별 매출 증가율 분해", "unit": "%", "categories": [r["q"] for r in rows[-8:]],
-                                         "series": [{"name": "가격(P)", "color": "b", "values": [round(r["g_p"] * 100, 1) for r in rows[-8:]]},
-                                                    {"name": "물량(Q)", "color": "c", "values": [round(r["g_q"] * 100, 1) for r in rows[-8:]]}]}})
+    # '분기별 매출 증가율 분해' 막대는 뺐다 — 위 선 그림과 같은 값(마스터 지시 2026-11-20)
     per = c.get("period") or {}
     B.append({"type": "table", "title": "P·Q 사이클 정량", "headers": ["항목", "가격(P)", "물량(Q)"],
               "rows": [["최근 4분기 평균 기여", _pct(c["mp"]), _pct(c["mq"])], ["강도(0~10, 자기 이력 z)", f"{c['p_score']:.1f}", f"{c['q_score']:.1f}"],
