@@ -18,10 +18,15 @@ CHIIP_RE = re.compile(r"(?<![가-힣])치입(?![니력])")
 KO_TERMS = (("테제", "투자 논리"),)   # 마스터 지시 2026-11-19 "테제라는 말 쓰지 마라. 한국어로 써라" — 조사(의·를·가·와·로)는 그대로 맞는다
 
 
+# 마스터 지시 2026-11-20 "Chiip 관점이라고 하지 말고 제 관점이라고 명시하라. 다른 비슷한 표기도 마찬가지다" — 견해를 뜻하는 3인칭 표기를 1인칭으로.
+# 'Chiip View'(절 제목)·'Chiip 추정·계산'(숫자 출처 표시)·기능 이름(Chiip Pulse 등)은 대상이 아니다
+SELF_RE = re.compile(r"(?:Chiip|치입)(?:의)?\s*(관점|판단|시각|견해|의견|해석)")
+
+
 def ko_terms(text):
     for a, b in KO_TERMS:
         text = text.replace(a, b)
-    return text
+    return SELF_RE.sub(r"제 \1", text)
 
 
 def chiip_name(text):

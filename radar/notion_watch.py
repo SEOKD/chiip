@@ -285,7 +285,9 @@ def run_job(job, tok):
 
 
 ROLE_EN = {"IB": "IB", "Insights": "Insight", "Informations": "Information", "Stocks": "Stocks", "채널체크": "Channel Check"}
-SECTION = ("결론", "핵심", "Chiip 판단", "반대 근거", "다음 확인", "기업", "산업")
+SECTION = ("결론", "핵심", "Chiip 판단", "Chiip View", "Chiip 관점", "치입 판단", "뷰", "반대 근거", "다음 확인", "기업", "산업")
+# 2026-11-20 마스터 양식: 절 머리는 '■'를 붙이고(■결론: ■핵심 ■뷰: ■반대 근거: ■다음 확인:), 'Chiip 판단·Chiip View'는 '뷰'로 쓴다
+VIEW_RE = r"^(?:Chiip|치입)\s*(?:판단|View|관점|뷰)\s*(?=[:：]|$)"
 
 
 def tidy(text):
@@ -304,7 +306,7 @@ def tidy(text):
             if "1차 판정" in l:
                 l = re.sub(r"\s*\(1차 판정[^)]*\)", "", l)
                 tail.append("1차 판정·미검증")
-        if re.match(r"^\(?1차 판정[,·]?\s*미검증\)?$", l.strip()):
+        if re.match(r"^\(?1차 판정[,·]?\s*미검증(\s*·\s*공개 자료 기반 분석이며 투자 권유가 아님\.?)?\)?$", l.strip()):   # 두 꼬리가 한 줄로 와도 뺀다(2026-11-20)
             tail.append("1차 판정·미검증")
             continue
         if re.match(r"^(상세|상세 파일|파일)\s*[:：]\s*(outputs|knowledge|radar)/", l.strip()):
@@ -313,9 +315,13 @@ def tidy(text):
             tail.append("공개 자료 기반 분석이며 투자 권유가 아님")
             continue
         l = re.sub(r"^\s*[-*·]\s+", "• ", l)
-        if i > 0 and any(l.startswith(x) for x in SECTION) and out and out[-1] != "":
+        if i > 0:
+            l = re.sub(VIEW_RE, "뷰", l.lstrip("■ "))  if re.match(r"^■?\s*" + VIEW_RE[1:], l) else l
+            if any(re.match(rf"^■?\s*{re.escape(x)}\s*([:：]|$)", l) for x in SECTION):
+                l = "■" + l.lstrip("■ ")
+        if i > 0 and l.startswith("■") and out and out[-1] != "":
             out.append("")
-        if l == "" and (not out or out[-1] == ""):
+        if l == "" and (not out or out[-1] == "" or out[-1] == "■핵심"):   # ■핵심 바로 아래는 빈 줄 없이 목록(2026-11-20 마스터 양식)
             continue
         out.append(l)
     while out and out[-1] == "":
