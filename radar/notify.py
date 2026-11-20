@@ -76,6 +76,7 @@ def code_gloss(text):
 def brand(text):
     """발송 직전 표기 통일 — 예약 작업·스크립트가 어떤 머리말을 쓰든 텔레그램에는 'Chiip'으로, 등급 코드(P0~P3)는 빼고 나간다"""
     text = re.sub(r"(?m)^[ \t]*보강 적용:.*(\n|$)", "", chiip_name(tw_hk_names(text)))
+    text = re.sub(r"\s*·\s*전문\s*\+\s*\d+(?:\.\d+)?\s*h\b", "", text)   # '전문 +1.5h'(전문 게재 지연) 표기는 내보내지 않는다(마스터 지적 2026-11-20)
     text = re.sub(r"(?m)^[ \t]*\[?Data provided by Zacks Investment Research.*(\n|$)", "", text)   # 피드에는 Zacks 표기 줄을 쓰지 않는다(마스터 지시 2026-11-11)   # 프로바이저 번호는 기록 파일에만(P-20261029-03)
     # 회사 설명 줄의 '모델:'·'성장:'·'내러티브:' 머리말은 빼고 내용만(마스터 지시 2026-10-30)
     text = re.sub(r"(?m)^(☞\s*)?(?:비즈니스\s*)?(?:모델|성장(?:\s*동력)?|내러티브)\s*[:：]\s*", r"\1", text)
