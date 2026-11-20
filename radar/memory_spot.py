@@ -490,7 +490,11 @@ def send(read=""):
     update()
     png, summ = combined_chart()
     cap = caption(summ, read)
-    ok = notify.send_photo(png, cap[:1000], "P1") if len(cap) <= 1000 else (notify.send_photo(png, caption(summ)[:1000], "P1") and notify.send(cap, "P1"))
+    # 그림과 풀이는 한 통(사진 설명)으로만 — 따로 글을 보내지 않는다(마스터 지시 2026-11-20 "풀이 피드를 따로 내지 말고 그래프 제공하는 피드에 같이 설명을 넣어라")
+    base = caption(summ)
+    room = 1000 - len(base) - 2
+    cap = caption(summ, read if len(read.strip()) <= room else read.strip()[:max(room - 1, 0)].rsplit(' ', 1)[0] + '…') if read and room > 20 else base
+    ok = notify.send_photo(png, cap[:1000], "P1")
     if ok:
         st = common.load_state(STATE, {})
         st["sent"] = common.now_kst().date().isoformat()
