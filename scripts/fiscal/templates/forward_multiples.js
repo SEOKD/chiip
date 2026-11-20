@@ -65,24 +65,43 @@ async () => {
   // 과거 레인지 — 월말 Fwd 1Y P/E·EV/EBITDA. 동종사는 최근 4개 분기말만(멀티플 프리미엄 추이 재료, 마스터 지시 2026-11-06)
   const histOf = async (key, qs, quarterEnds) => {
     const z = await codemode.company_analyst_estimates({ companyKey: key, history: true }).catch(() => ({ history: [] }));
-    const hist = id => {
+    const hist = (id, pt = "Quarterly") => {
       const m = {};
-      (z.history || []).filter(h => h.metricId === id && h.periodType === "Quarterly" && h.mean != null).forEach(h => { (m[h.reportDate] = m[h.reportDate] || []).push([h.asOf || "", h.mean]); });
+      (z.history || []).filter(h => h.metricId === id && h.periodType === pt && h.mean != null).forEach(h => { (m[h.reportDate] = m[h.reportDate] || []).push([h.asOf || "", h.mean]); });
       Object.values(m).forEach(a => a.sort((x, y) => (x[0] < y[0] ? -1 : 1)));
       return m;
     };
     const he = hist("analyst_eps");
     const hb = hist("analyst_ebitda");
-    const ntmAt = (h, d) => {
+    const heA = hist("analyst_eps", "Annual");
+    const hbA = hist("analyst_ebitda", "Annual");
+    // 다음 4개 분기 추정 합. 분기 추정 이력이 4개 분기를 못 채우면(2026-11-20 BDC: 이력이 2026-12 분기까지라 3월 이후가 모두 비어
+    // 멀티플 프리미엄 추이가 현재값 1개만 나왔다) ① 연간 추정 두 해를 남은 날짜로 가중(NTM = w·FY1 + (1−w)·FY2) ② 그것도 없으면 남은 3개 분기 × 4/3
+    const knownAt = (h, e, d) => (h[e] || []).filter(r => r[0] <= d).slice(-1)[0];
+    const ntmAt = (h, d, hA) => {
       const ends = Object.keys(h).filter(e => e > d).sort().slice(0, 4);
-      if (ends.length < 4) return null;
-      let s = 0;
-      for (const e of ends) {
-        const known = h[e].filter(r => r[0] <= d).slice(-1)[0];
-        if (!known) return null;
-        s += known[1];
+      if (ends.length === 4) {
+        let s = 0;
+        for (const e of ends) {
+          const k = knownAt(h, e, d);
+          if (!k) { s = null; break; }
+          s += k[1];
+        }
+        if (s != null) return s;
       }
-      return s;
+      const fy = Object.keys(hA || {}).filter(e => e > d).sort().slice(0, 2);
+      if (fy.length === 2) {
+        const a = knownAt(hA, fy[0], d), b = knownAt(hA, fy[1], d);
+        if (a && b) {
+          const w = Math.min(1, Math.max(0, (new Date(fy[0]) - new Date(d)) / (365 * 864e5)));
+          return w * a[1] + (1 - w) * b[1];
+        }
+      }
+      if (ends.length === 3) {
+        const v = ends.map(e => knownAt(h, e, d));
+        if (v.every(Boolean)) return v.reduce((x, y) => x + y[1], 0) * 4 / 3;
+      }
+      return null;
     };
     const px = await codemode.company_stock_prices({ companyKey: key }).catch(() => ({ prices: [] }));
     const rows = (px.prices || []).filter(p => p.closePrice != null).sort((a, b) => (a.date < b.date ? -1 : 1));
@@ -97,8 +116,8 @@ async () => {
     ends = quarterEnds ? ends.filter(r => ["03", "06", "09", "12"].includes(r.date.slice(5, 7))).slice(-4) : ends.slice(-36);
     const out = [];
     ends.forEach(r => {
-      const eps = ntmAt(he, r.date);
-      const eb = ntmAt(hb, r.date);
+      const eps = ntmAt(he, r.date, heA);
+      const eb = ntmAt(hb, r.date, hbA);
       const m = mcAt[r.date];
       const net = ndAt(r.date);
       const row = { date: r.date, pe_fwd: eps > 0 ? Math.round(r.closePrice / eps * 100) / 100 : null,
