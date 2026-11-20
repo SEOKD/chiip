@@ -312,7 +312,7 @@ def chart(since=None, dram=None, nand=None, path=None):
 
 
 def status(now=None):
-    """Pulse 관문 — 평일 10~11시 KST, 하루 1회"""
+    """Pulse 관문 — 평일 10~11시 KST, 하루 1회. 그림은 합친 한 장(combined_chart)"""
     now = now or common.now_kst()
     st = common.load_state(STATE, {})
     today = now.date().isoformat()
@@ -320,65 +320,181 @@ def status(now=None):
         return {"due": False}
     try:
         update()
-        png, summ = chart()
+        png, summ = combined_chart()
     except (Exception, SystemExit) as e:
         return {"due": False, "error": f"{type(e).__name__}: {str(e)[:120]}"}
-    out = {"due": True, "png": str(png), "summary": summ}
-    try:   # TrendForce 공개 현물가 그림(따로 보냄, 2026-11-19 마스터 지시) — 실패해도 메리츠 그림은 나간다
-        tpng, tsumm, _ = trendforce()
-        out["trendforce"] = {"png": str(tpng), "series": tsumm["series"]}
-    except (Exception, SystemExit) as e:
-        out["trendforce"] = {"error": f"{type(e).__name__}: {str(e)[:120]}"}
+    return {"due": True, "png": str(png), "summary": summ}
+
+
+# ---------- 합친 한 장 (마스터 지시 2026-11-20 "트렌드포스 파이프라인을 기본으로 하되 메리츠에서 제공하는 D램익스체인지 데이터로 보강하는 식으로
+# 하나의 그래프만 제공하라") ----------
+# 뼈대 = TrendForce 공개 현물표 Session Average(달러, 관측일). 관측이 없는 세션(아카이브 공백·공개 페이지 갱신 지연)은
+# 직전 TrendForce 관측값 × 메리츠 채널 변화율로 이은 비율(같은 기간 메리츠 추정 시계열의 상대 변화)로 채운다 — 다음 TrendForce 관측이 오면 그 값으로 돌아간다.
+# 메리츠 글(D+1일 아침)은 D일 세션 값 → 메리츠 점의 세션 날짜 = 글 날짜의 직전 평일.
+# NAND는 주 1회 갱신이고 공개 페이지 날짜 표기가 한 주씩 늦게 남는 때가 있어(톱니 원인) 관측 사이는 보강하지 않고 마지막 관측 뒤만 보강한다
+PAIRS = (("DDR5 16Gb", "DDR5 16Gb (2Gx8) 4800/5600", "DRAM", True), ("MLC 64Gb", "MLC 64Gb 8GBx8", "NAND", False))
+
+
+def _prev_weekday(d):
+    d -= timedelta(days=1)
+    while d.weekday() >= 5:
+        d -= timedelta(days=1)
+    return d
+
+
+def blend(tf_pts, m_pts, interior=True):
+    """tf_pts [(세션일, $)], m_pts [(글 날짜, 추정값)] → [(날짜, $, 'tf'|'mz')].
+    두 TrendForce 관측 a·b 사이의 빈 세션은 메리츠 모양을 쓰되 b에서 TrendForce 값과 만나게 로그 선형으로 보정한다
+    (보정 없이 이으면 다음 관측에서 값이 되돌아가 톱니가 생긴다 — 2026-11-20 첫 그림). 마지막 관측 뒤는 메리츠 변화율 그대로"""
+    import bisect
+    tf = sorted(tf_pts)
+    mz = {_prev_weekday(x): v for x, v in m_pts}   # 세션일 기준
+    mk = sorted(mz)
+
+    def m_at(d):   # d 이하 마지막 메리츠 값
+        i = bisect.bisect_right(mk, d)
+        return mz[mk[i - 1]] if i else None
+    out = []
+    for i, (a, va) in enumerate(tf):
+        out.append((a, va, "tf"))
+        b = tf[i + 1] if i + 1 < len(tf) else None
+        ma = m_at(a)
+        if not ma:
+            continue
+        gap = [d for d in mk if d > a and (b is None or d < b[0])] if (interior or b is None) else []   # interior=False면 관측 사이는 관측끼리 잇는다
+        corr = 1.0
+        if b:
+            mb = m_at(b[0])
+            corr = (b[1] / va) / (mb / ma) if mb else 1.0
+        for d in gap:
+            f = (d - a).days / (b[0] - a).days if b else 0.0
+            out.append((d, va * mz[d] / ma * corr ** f, "mz"))
     return out
 
 
-def trendforce():
-    """→ (png, 요약, 설명) — radar/trendforce_spot.py 그림 + 메리츠 기반 추정과의 같은 날 대조 한 줄.
-    메리츠 글(D+1일 아침)은 D일 세션 값이라 TrendForce D일 값은 D 다음 4일 안의 첫 메리츠 점과 맞춘다"""
+def relabel_last(tf_pts, trow_chg, mrows, product):
+    """TrendForce 공개 페이지의 NAND 'Last Update' 날짜가 한 주 늦게 남는 경우가 있다(2026-11-19 확인: 11-09 표기에 11/16 변화율 +0.42%).
+    마지막 관측의 변화율이 그 뒤 메리츠 세션의 1D 변화율과 같으면(±0.02%p, 0이 아닌 값) 그 세션 값으로 날짜를 옮겨 이중 계산을 막는다"""
+    if not tf_pts or trow_chg in (None, "", 0) or float(trow_chg) == 0:
+        return tf_pts
+    t, v = tf_pts[-1]
+    for r in sorted(mrows, key=lambda r: r["posted_at"]):
+        s = _prev_weekday(_d(r["posted_at"]))
+        if r["product"] == product and t < s <= t + timedelta(days=10) and float(r["d1"] or 0) and abs(float(r["d1"]) - float(trow_chg)) <= 0.02:
+            return tf_pts[:-1] + [(s, v)]
+    return tf_pts
+
+
+def combined(since=None):
     import trendforce_spot as T
-    png, ts = T.chart()
-    comp = []
-    try:
-        cfg = config()
-        s = series(read_rows(), cfg.get("dram", "DDR5 16Gb"), ts["since"], cfg.get("anchors"))
-        d, tv = ts["series"][0]["last"]
-        d = date.fromisoformat(d)
-        nxt = [(x, v) for x, v in s["points"] if d < x <= d + timedelta(days=4)] if s and s["unit"] == "USD" else []
-        if nxt and tv:
-            comp.append(f"· 같은 세션 메리츠 변화율 기반 Chiip 추정 DDR5 16Gb ${nxt[0][1]:,.2f} — TrendForce 대비 {(nxt[0][1] / tv - 1) * 100:+.1f}%")
-    except Exception:
-        pass
-    return png, ts, T.caption(ts, comp)
+    cfg = config()
+    since = since or f"{common.now_kst().year}-01-01"
+    rows, trows = read_rows(), T.read_rows()
+    out = []
+    for mprod, tprod, kind, interior in PAIRS:
+        ts = T.series(tprod, since, trows)
+        ms = series(rows, mprod, since, cfg.get("anchors"))
+        if not ts:
+            continue
+        last_row = max((r for r in trows if r["item"] == tprod), key=lambda r: r["date"], default={})
+        tf_pts = relabel_last(ts["points"], last_row.get("chg"), rows, mprod)
+        if tf_pts[-1][0] != ts["last"][0]:
+            ts["last"] = tf_pts[-1]
+        pts = blend(tf_pts, ms["points"] if ms else [], interior)
+        pts = [p for p in pts if p[0] >= ts["points"][0][0]]
+        last = pts[-1]
+
+        def back(days, pts=pts, last=last):
+            ref = last[0] - timedelta(days=days)
+            old = [p for p in pts if p[0] <= ref]
+            return (last[1] / old[-1][1] - 1) * 100 if old and (ref - old[-1][0]).days <= 10 else None   # NAND는 주 1회 관측
+        base = ts["base"]
+        out.append({"kind": kind, "product": tprod, "points": pts, "base": base, "last": last, "tf_last": ts["last"],
+                    "n_tf": sum(1 for p in pts if p[2] == "tf"), "n_mz": sum(1 for p in pts if p[2] == "mz"),
+                    "chg": {"1W": back(7), "1M": back(30), "YTD": (last[1] / base[1] - 1) * 100}})
+    if len(out) < 2:
+        raise SystemExit("[Memory Spot] TrendForce 자료 부족 — radar/trendforce_spot.py --backfill/run")
+    return since, out
+
+
+def combined_chart(since=None, path=None):
+    import pymupdf
+    from trendforce_spot import INK, INK2, MUTED, GRID, SURF
+    since, S = combined(since)
+    blue = (0.165, 0.471, 0.839)
+    doc = pymupdf.open()
+    page = doc.new_page(width=720, height=660)
+    page.draw_rect(page.rect, color=None, fill=SURF)
+    _txt(page, (36, 34), f"메모리 현물가격 — {since[:4]} YTD", 15, INK)
+    _txt(page, (36, 52), "점 = TrendForce 공개 현물표 Session Average(관측) · 점 없는 구간 = 메리츠 채널 D램익스체인지 변화율로 직전 관측에서 이어 붙인 보강값", 8, INK2)
+    for s, box in zip(S, ((80, 100, 690, 320), (80, 400, 690, 620))):
+        x0, y0, x1, y1 = box
+        ys = [v for _, v, _ in s["points"]]
+        lo, hi = min(ys), max(ys)
+        step = _nice((hi - lo) / 4 or hi * 0.05 or 1)
+        lo, hi = math.floor(lo / step) * step, math.ceil(hi * 1.12 / step) * step
+        d0, d1 = s["points"][0][0], s["points"][-1][0]
+        span = max((d1 - d0).days, 1)
+        X = lambda d: x0 + (x1 - x0) * (d - d0).days / span   # noqa: E731
+        Y = lambda v: y1 - (y1 - y0) * (v - lo) / (hi - lo)    # noqa: E731
+        unit = "주 1회 갱신" if s["kind"] == "NAND" else "일별"
+        _txt(page, (x0, y0 - 22), f"{s['kind']} {s['product']} 현물 (달러, {unit})", 12, INK)
+        v = lo
+        while v <= hi + 1e-9:
+            page.draw_line((x0, Y(v)), (x1, Y(v)), color=GRID, width=0.6)
+            _txt(page, (x0 - 6, Y(v) + 3), f"${v:,.0f}", 8, MUTED, right=True)
+            v += step
+        m = date(d0.year, d0.month, 1)
+        while m <= d1:
+            if m >= d0:
+                _txt(page, (X(m) - 8, y1 + 13), f"{m.month}월", 8, MUTED)
+            m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
+        page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
+        page.draw_polyline([(X(d), Y(v)) for d, v, _ in s["points"]], color=blue, width=1.6)
+        tfp = [(X(d), Y(v)) for d, v, src in s["points"] if src == "tf"]
+        if len(tfp) <= 140:
+            for p in tfp:
+                page.draw_circle(p, 1.4, color=blue, fill=blue)
+        ld, lv, lsrc = s["last"]
+        page.draw_circle((X(ld), Y(lv)), 3.2, color=SURF if lsrc == "tf" else blue, fill=blue if lsrc == "tf" else SURF, width=1.2)
+        c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
+        _txt(page, (x0 + 8, y0 + 16), f"{ld.strftime('%m/%d')} ${lv:,.2f}{' (보강)' if lsrc == 'mz' else ''}   {c}", 10, INK)
+        tl = s["tf_last"]
+        _txt(page, (x0 + 8, y0 + 30), f"TrendForce 마지막 관측 {tl[0].strftime('%m/%d')} ${tl[1]:,.2f} · 관측 {s['n_tf']}일 + 보강 {s['n_mz']}일 · 기준 {s['base'][0].strftime('%y/%m/%d')} ${s['base'][1]:,.2f}", 8, INK2)
+    _txt(page, (36, 648), "자료: TrendForce(DRAMeXchange) 공개 현물가격표 + 공개 텔레그램 채널(merITz_tech)의 D램익스체인지 변화율. 보강값은 Chiip 계산. 개인 열람용.", 7.5, MUTED)
+    OUT.mkdir(parents=True, exist_ok=True)
+    path = Path(path or OUT / f"spot_combined_{S[0]['last'][0].strftime('%Y%m%d')}.png")
+    page.get_pixmap(dpi=150).save(str(path))
+    summ = {"since": since, "png": str(path), "series": [{"kind": s["kind"], "product": s["product"], "last": [s["last"][0].isoformat(), s["last"][1], s["last"][2]],
+                                                          "tf_last": [s["tf_last"][0].isoformat(), s["tf_last"][1]], "chg": s["chg"], "n_tf": s["n_tf"], "n_mz": s["n_mz"]} for s in S]}
+    return path, summ
 
 
 def caption(summ, read=""):
-    L = ["[Chiip Memory Spot]", f"DRAM·NAND 현물가격 추정 ({summ['since'][:4]} YTD)", ""]
+    L = ["[Chiip Memory Spot]", f"DRAM·NAND 현물가격 ({summ['since'][:4]} YTD · TrendForce 기본, 메리츠 변화율 보강)", ""]
     for s in summ["series"]:
-        v = s["last"][1]
-        lab = f"${v:,.2f}" if s["unit"] == "USD" else f"지수 {v:,.1f}"
+        d, v, src = s["last"]
         c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
-        L.append(f"■ {s['product']}: {lab} ({s['last'][0][5:].replace('-', '/')}) — {c}")
+        tag = "보강" if src == "mz" else "TrendForce"
+        L.append(f"■ {s['product']}: ${v:,.2f} ({d[5:].replace('-', '/')}, {tag}) — {c}")
+        if src == "mz":
+            L.append(f"  · TrendForce 마지막 공개 {s['tf_last'][0][5:].replace('-', '/')} ${s['tf_last'][1]:,.2f}에서 메리츠 변화율로 이어 붙임")
     if read:
         L += ["", "■ 풀이", read.strip()]
-    L += ["", "변화율 출처는 공개 텔레그램 채널(D램익스체인지 인용), 가격은 Chiip 추정"]
+    L += ["", "자료: TrendForce 공개 현물표(개인 열람용, 재배포 금지) + 공개 텔레그램 채널 D램익스체인지 변화율"]
     return "\n".join(L)
 
 
 def send(read=""):
     import notify
     update()
-    png, summ = chart()
+    png, summ = combined_chart()
     cap = caption(summ, read)
     ok = notify.send_photo(png, cap[:1000], "P1") if len(cap) <= 1000 else (notify.send_photo(png, caption(summ)[:1000], "P1") and notify.send(cap, "P1"))
     if ok:
         st = common.load_state(STATE, {})
         st["sent"] = common.now_kst().date().isoformat()
         common.save_state(STATE, st)
-        try:   # TrendForce 그림은 따로 한 장(개인 봇 한정 — 약관 서면 동의 조항, 마스터 결정 2026-11-19)
-            tpng, _, tcap = trendforce()
-            notify.send_photo(tpng, tcap[:1000], "P1")
-        except (Exception, SystemExit) as e:
-            print(f"[Memory Spot] TrendForce 그림 생략 {type(e).__name__}")
     return ok
 
 

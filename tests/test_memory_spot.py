@@ -59,5 +59,18 @@ class MemorySpot(unittest.TestCase):
         self.assertTrue(math.isclose(s["misfit_pct"], 0, abs_tol=1e-9))
 
 
+class Blend(unittest.TestCase):   # TrendForce 기본 + 메리츠 보강(2026-11-20)
+    def test_bridge_meets_next_obs_and_tail(self):
+        tf = [(date(2026, 1, 5), 100.0), (date(2026, 1, 9), 110.0)]
+        mz = [(date(2026, 1, 6), 50.0), (date(2026, 1, 7), 52.0), (date(2026, 1, 8), 53.0), (date(2026, 1, 9), 54.0), (date(2026, 1, 10), 55.0), (date(2026, 1, 13), 56.1)]
+        out = M.blend(tf, mz)   # 메리츠 글 날짜 → 세션 = 직전 평일
+        tail = [p for p in out if p[0] > date(2026, 1, 9)]
+        self.assertTrue(all(src == "mz" for _, _, src in tail))
+        self.assertAlmostEqual(tail[-1][1], 110.0 * 56.1 / 55.0)   # 마지막 관측 뒤는 메리츠 변화율 그대로
+        mid = [v for d, v, src in out if src == "mz" and d < date(2026, 1, 9)]
+        self.assertTrue(all(100.0 < v < 110.0 for v in mid))      # 사이 구간은 다음 관측에 맞게 보정
+        self.assertEqual([p for p in M.blend(tf, mz, interior=False) if p[0] < date(2026, 1, 9) and p[2] == "mz"], [])
+
+
 if __name__ == "__main__":
     unittest.main()

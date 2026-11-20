@@ -42,8 +42,9 @@ class GpuDaily(unittest.TestCase):
         self.assertAlmostEqual(s["chg"], (4.5 / 2.95 - 1) * 100)
         self.assertNotIn(("CoreWeave", "B300"), S)   # 값이 하나도 없으면 선 없음
         cap = D.caption(D.summary(S, "2026-01-01", "2026-11-19"))
-        self.assertIn("Nebius $4.50(2026.1.1 대비 +53%)", cap)
-        self.assertIn("CoreWeave 문의", cap)
+        self.assertIn("H100  4.50", cap)   # 간략 양식(2026-11-20)
+        self.assertIn("최근 변경: Nebius 1종 +17%(7/12~11/19)", cap)
+        self.assertLessEqual(len(cap.splitlines()), 8)
 
     def test_status_window(self):
         for h in (9, 11, 23):   # 10~11시 밖은 열지 않는다(그림도 그리지 않는다)

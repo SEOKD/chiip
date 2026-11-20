@@ -42,7 +42,7 @@ WB_FIELDS = ["date", "provider", "gpu", "config", "usd_per_gpu_hr", "node_usd_hr
 CDX = "https://web.archive.org/cdx/search/cdx"
 TARGETS = {"Nebius": "nebius.com/prices", "CoreWeave": "www.coreweave.com/pricing",
            "AWS": "b0.p.awsstatic.com/pricing/2.0/meteredUnitMaps/ec2/USD/current/ec2-ondemand-without-sec-sel/US%20East%20(N.%20Virginia)/Linux/index.json"}
-READ_MAX = 600
+READ_MAX = 200   # 2026-11-20 마스터 지시 "텔레그램 피드도 간략히 설명하도록 하라. 지금 설명은 너무 길다" — 풀이 1~2문장
 START = "2026-01-01"   # 2026-11-19 마스터 지시 "2026년 YTD로 하나 그려놓고 여기서 매일 업데이트하며 추이를 이어가도록" — 해가 바뀌어도 이 날부터 잇는다
 
 
@@ -421,32 +421,29 @@ def _md(s):
     return f"{int(s[5:7])}/{int(s[8:10])}" if s else "?"
 
 
+SHORT = {"Nebius": "Nebius", "CoreWeave": "CW", "AWS": "AWS"}
+
+
 def caption(summ, read=""):
-    L = ["[Chiip Pulse] GPU 렌털비 추이", f"온디맨드 정가 $/GPU·시 · {summ['until']} 기준 ({_ymd(summ['since'])}~)", ""]
+    """간략 양식(마스터 지시 2026-11-20 "텔레그램 피드도 간략히 설명하도록 하라. 지금 설명은 너무 길다") —
+    머리 1줄 · GPU별 세 곳 가격 1줄씩 · 가장 최근 가격 변경 1줄(같은 제공사·같은 구간은 한 줄로 묶음) · 풀이 1~2문장. 자세한 계단은 그림에"""
+    L = [f"[Chiip Pulse] GPU 렌털비 {_md(summ['until'])} · 온디맨드 $/GPU·시 ({' · '.join(SHORT[p] for p in PROVS)})"]
     for r in summ["gpus"]:
-        parts = []
-        for p in PROVS:
-            c = r["prov"].get(p)
-            if not c:
-                parts.append(f"{p} 문의")
-                continue
-            moved = c["ytd"] is not None and abs(c["ytd"]) >= 0.5
-            if c["first"][0] > summ["since"]:   # 연초 값이 없다(출시·아카이브 공백) — 첫 관측일부터
-                ch = f"{_md(c['first'][0])}부터" + (f" {c['ytd']:+.0f}%" if moved else "")
-            else:
-                ch = f"{_ymd(summ['since'])} 대비 {c['ytd']:+.0f}%" if moved else ""
-            parts.append(f"{p} ${c['usd']:,.2f}" + (f"({ch})" if ch else ""))
-        L.append(f"■ {r['gpu']}: " + " · ".join(parts))
-    flat = [p for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]
+        L.append(f"{r['gpu']}  " + " · ".join(f"{r['prov'][p]['usd']:.2f}" if p in r["prov"] else "문의" for p in PROVS))
+    ev = {}
+    for r in summ["gpus"]:
+        for p, c in r["prov"].items():
+            for x in c["steps"]:
+                ev.setdefault((p, x["from"], x["to"]), []).append(x["pct"])
+    if ev:
+        (p, a, b), pcts = max(ev.items(), key=lambda kv: kv[0][2])
+        rng = f"{min(pcts):+.0f}%" if round(min(pcts)) == round(max(pcts)) else f"{min(pcts):+.0f}~{max(pcts):.0f}%"
+        L.append(f"최근 변경: {p} {len(pcts)}종 {rng}({_md(a)}~{_md(b)})")
+    flat = [SHORT[p] for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]
     if flat:
-        L.append(f"· {'·'.join(flat)}: 이 기간 정가 변경 없음")
-    recent =sorted([(r["gpu"], p, x) for r in summ["gpus"] for p, c in r["prov"].items() for x in c["steps"]], key=lambda t: t[2]["to"], reverse=True)
-    if recent:
-        L += ["", "■ 최근 가격 변경(바뀐 날은 두 관측일 사이)"]
-        L += [f"* {p} {g} ${x['old']:.2f}→${x['new']:.2f} ({x['pct']:+.1f}%, {_md(x['from'])}~{_md(x['to'])})" for g, p, x in recent[:6]]
+        L.append(f"{'·'.join(flat)} 연초 이후 정가 변동 없음")
     if read:
-        L += ["", "■ 풀이", read.strip()]
-    L += ["", "CoreWeave·AWS는 8 GPU 노드 가격÷8, AWS는 미국 동부·리눅스"]
+        L += ["", read.strip()]
     return "\n".join(L)
 
 
