@@ -240,7 +240,8 @@ def send_photo(path, caption="", level="P1"):
     return ok
 
 
-CASH_LINE = re.compile(r"^\s*-\s*(OCF|CAPEX|FCF)(?![A-Za-z])")   # 실적 절에서도 est.가 있어야 하는 줄 — 값은 earnings_est.js pick(분기 reported, 연간 fy_current)
+CASH_LINE = re.compile(r"^\s*-\s*(매출|GPM|OPM|EBITDA(?: 마진)?|EPS|OCF|CAPEX|FCF)(?![A-Za-z])")   # 2026-11-20 OPM 등 실적 절 est. 대상 지표 전체(신규수주·잔고·부문 매출은 대상 아님)
+HEAD_RE = re.compile(r"^(?!-)[^\n]{0,40}\b(Results|Guidance)\b")   # 절 머리 — 'FY27 Guidance (Megger 편입)'처럼 꼬리가 붙어도
 
 
 def guidance_est(text):
@@ -248,12 +249,14 @@ def guidance_est(text):
     "Guidance에도 컨센서스(est.)가 붙도록 — 가끔씩 빠져 있더라"). 조용히 빠지지 않게 하는 마지막 관문 — 값은 scripts/fiscal/templates/earnings_est.js가 고른다"""
     out, inside, results, gaps = [], False, False, []
     for line in (text or "").split("\n"):
-        if re.search(r"Results\s*$", line.strip()):
+        if HEAD_RE.match(line.strip()) and "Results" in line:   # 'FY26 Results'·'4Q FY26 Results (확정)'처럼 꼬리가 붙어도
             results, inside = True, False
-        elif re.search(r"Guidance\s*$", line.strip()):
+        elif HEAD_RE.match(line.strip()) and "Guidance" in line:   # 'FY27 Guidance (Megger 편입)' — 2026-11-20 ESE에서 꼬리 때문에 관문을 비켜 갔다
             inside, results = True, False
-        elif not line.strip() or not line.lstrip().startswith("-"):
-            inside = inside and line.lstrip().startswith("-")
+        elif not line.strip():
+            pass   # 머리 아래 빈 줄은 절을 끝내지 않는다(2026-11-20 — 실제 피드는 머리 다음에 빈 줄이 있어 Guidance 절 전체가 관문을 비켜 갔다)
+        elif not line.lstrip().startswith("-"):
+            inside = results = False   # 주가 줄 같은 본문 줄이 오면 절이 끝난다
         elif inside and re.search(r"\d", line) and "(est." not in line and "est." not in line:
             gaps.append(line.strip())
             line = line.rstrip() + " (est. 없음)"

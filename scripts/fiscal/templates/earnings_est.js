@@ -40,7 +40,8 @@ async () => {
       return null;
     };
     o.opm_adjusted = ratio("ebit_adjusted", "analyst_ebit", "adjusted"); o.opm = ratio("ebit", null, "gaap");
-    o.gpm = ratio("gross_profit", null, "gaap");                                   // Fiscal 매출총이익은 GAAP 기준 — 조정 GPM 줄에도 붙이고 기준 차이는 기록 파일에
+    o.gpm = ratio("gross_profit", null, "gaap");
+    o.ebitda_margin = ratio("ebitda_adjusted", "analyst_ebitda", "adjusted");   // 2026-11-20 — FY 가이던스 'EBITDA 마진' 줄 est.(ESE FY27)                                   // Fiscal 매출총이익은 GAAP 기준 — 조정 GPM 줄에도 붙이고 기준 차이는 기록 파일에
     return o;
   };
   // 연간 가이던스 est.(마스터 지시 2026-11-11 "Guidance에도 컨센서스(est.)가 붙도록 — 가끔 빠져 있더라"): 그때까지 분기만 골라 'FY Guidance' 줄은 늘 비었다(CLFD FY27 매출).

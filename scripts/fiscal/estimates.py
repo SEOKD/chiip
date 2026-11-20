@@ -168,6 +168,33 @@ def apply_surprise(out, stored, ec=None, first="zacks", yf=None, tally=None):
     return done
 
 
+PICK_SECTIONS = (("reported", "reported"), ("guidance", "guidance_period"), ("fy_current", "fy_current_period"), ("fy_next", "fy_next_period"))
+FROZEN_METRICS = ("revenue", "ebitda_adjusted", "ebit_adjusted", "eps_adjusted", "eps_gaap", "gross_profit", "operating_cash_flow", "capex", "free_cash_flow")
+RATIOS = (("opm_adjusted", "ebit_adjusted", "adjusted"), ("gpm", "gross_profit", "gaap"), ("ebitda_margin", "ebitda_adjusted", "adjusted"))
+
+
+def fill_frozen(out, stored):
+    """earnings_est.js 칸이 비면(발표 뒤 Fiscal이 연간·다음 분기 칸을 가이던스로 덮어써 '발표 전 값'이 사라짐) 발표일 전에 얼려 둔 Fiscal 값으로 채운다.
+    이익률은 얼린 Fiscal 분자 ÷ 얼린 Fiscal 매출(같은 제공처 쌍)일 때만(2026-11-20 ESE FY27 EBITDA 마진·OPM est. 누락). 채운 칸 수를 돌려준다"""
+    pick, ed, n = out.get("pick") or {}, out.get("earningsDate"), 0
+    for sec, pk in PICK_SECTIONS:
+        p, rd = pick.get(sec), out.get(pk)
+        if p is None or not rd:
+            continue
+        fz = frozen(stored, out.get("key"), str(rd)[:10], ed)
+        for m in FROZEN_METRICS:
+            if p.get(m) is None and m in fz:
+                r = fz[m]
+                p[m] = {"est": float(r["mean"]), "src": f"fiscal-frozen:{r['source']}", "asOf": r["as_of"], "saved": r["saved"]}
+                n += 1
+        for name, num, basis in RATIOS:
+            if p.get(name) is None and num in fz and "revenue" in fz and float(fz["revenue"]["mean"]):
+                p[name] = {"est": float(fz[num]["mean"]) / float(fz["revenue"]["mean"]), "src": f"fiscal-frozen:{fz[num]['source']}÷fiscal-frozen:{fz['revenue']['source']}",
+                           "asOf": fz[num]["as_of"], "basis": basis, "derived": True}
+                n += 1
+    return n
+
+
 def apply_pick(out, stored, ec=None, first="zacks", yf=None):
     """earnings_est.js의 reported 칸을 같은 순서로 보완한다"""
     pick = (out.get("pick") or {}).get("reported")
@@ -256,8 +283,12 @@ def main(argv):
         return 0
     if a.pick:
         out = load(a.pick)
-        done = apply_pick(out, read_store(), ec, a.first or "zacks", yf)
+        stored = read_store()
+        nf = fill_frozen(out, stored)   # 얼린 발표 전 Fiscal 값으로 빈 칸(가이던스·연간 포함) 먼저 — 2026-11-20
+        done = apply_pick(out, stored, ec, a.first or "zacks", yf)
         print(json.dumps(out, ensure_ascii=False))
+        if nf:
+            print(f"[실적 est.] 얼린 발표 전 값으로 {nf}칸 채움", file=sys.stderr)
         print(f"[실적 est.] {report(done)}", file=sys.stderr)
         return 0
     if a.street:
