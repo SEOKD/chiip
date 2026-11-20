@@ -1,0 +1,6 @@
+date,id,ticker,status,verdict,alpha,scored_on,grade,upside,added_by,pin,reason
+2026-11-20,us-cbrs,CBRS,관심,제외,5.8,20261114,,,master,True,알파 5.80 < 6.0
+2026-11-20,co-amat,AMAT,관심,제외,5.43,20261114,,,earnings-sweep,False,알파 5.43 < 6.0
+2026-11-20,co-quanta-services,PWR,관심,제외,5.0,20261107,,,master,True,알파 5.00 < 6.0
+2026-11-20,us-mtd,MTD,관심,제외,1.78,20261106,,,master,True,알파 1.78 < 6.0
+2026-11-20,co-enchantedrock,EROC,보유,재점검,4.57,20261114,Buy,0.3476783691959231,master,False,보유 · 알파 4.57 < 6.0 — 투자 논리·킬 조건 점검

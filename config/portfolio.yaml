@@ -84,7 +84,9 @@ holdings:
     sub: power_infra
     related: ["MasTec", "MYR Group", "Primoris", "EMCOR", "Sterling Infrastructure", "Dycom"]
     since: 2026-10-29
-    status: 관심
+    status: 종료
+    ended: 2026-11-20
+    end_reason: "알파 5.00 < 6.0 — 장부 자동 제외(마스터 지시 2026-11-20)"
     pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: us-cbrs
     ticker: CBRS
@@ -96,7 +98,9 @@ holdings:
     sub: accelerator
     related: ["Etched", "Groq", "SambaNova", "G42", "MBZUAI", "Paricon"]
     since: 2026-10-29
-    status: 관심
+    status: 종료
+    ended: 2026-11-20
+    end_reason: "알파 5.80 < 6.0 — 장부 자동 제외(마스터 지시 2026-11-20)"
     pin: true                    # 마스터 직접 지정 유지(2026-11-17 마스터 지시 "pin 달아 유지" — 알파 6 미만이어도 자동 제외·표기 관문 예외)
   - id: us-lscc
     ticker: LSCC
@@ -130,7 +134,9 @@ holdings:
     names: ["Mettler-Toledo", "Mettler Toledo", "메틀러 톨레도"]
     related: ["Sartorius", "Thermo Fisher", "Waters", "Agilent"]
     since: 2026-11-06   # 마스터 지시 "Watchlist에 메틀러 톨레도 MTD와 포뮬러 1 FWONA를 넣어라"
-    status: 관심
+    status: 종료
+    ended: 2026-11-20
+    end_reason: "알파 1.78 < 6.0 — 장부 자동 제외(마스터 지시 2026-11-20)"
     pin: true           # 마스터가 직접 넣은 종목 — 자동 제외 대상에서 뺀다(빼려면 마스터가 직접)
   - id: us-fwona
     ticker: FWONA
