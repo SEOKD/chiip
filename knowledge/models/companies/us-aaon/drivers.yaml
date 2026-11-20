@@ -1,0 +1,102 @@
+auto: true
+id: us-aaon
+name: AAON
+ticker: AAON
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.97
+  ROW: 0.03
+tax: 0.23
+horizon: 10
+as_of: '2026-11-20'
+market:
+  date: '2026-11-20'
+  price: 77.08
+  shares: 0.083469
+  net_debt: 0.403036
+  source: 가격 = 2026-11-19 종가 $77.08(Easyconomics 일봉) · 주식 수 82,459,251주(3Q26 10-Q
+    재무상태표, 2026-09-30 — 표지 11/5 82,462,535주) · 현금 $13K + 제한 현금 $3.66M · 차입 = 리볼버 $386.7M
+    + 운용리스 부채 $20.0M(유동 $3.8M·장기 $16.2M) (3Q26 10-Q, 2026-09-30)
+rev0: 2.502
+ic0: 1.487781
+scenarios:
+  base:
+    prob: 0.35
+    growth:
+      start: 0.1791
+      end: 0.035
+      decay: 0.581
+    margin:
+      m0: 0.122
+      target: 0.155
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.143
+      - 0.155
+    s2c: 1.5
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.3389
+      end: 0.04
+      decay: 0.631
+    margin:
+      m0: 0.122
+      target: 0.175
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.143
+      - 0.155
+    s2c: 1.725
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.0008
+      end: 0.030000000000000002
+      decay: 0.481
+    margin:
+      m0: 0.122
+      target: 0.135
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.143
+      - 0.155
+    s2c: 1.275
+mc:
+  sigma_growth: 0.0849
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [2.4804, 2.5236] (3Q26 실적 발표(8-K 2026-11-09)·어닝콜)
+  growth: 컨센서스 1년차 17.9%, 2년차 11.9%
+  margin: 1~2년차 컨센서스 14.3%, 15.5% 고정 → 목표 16%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 1.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -0.1%~33.9%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.35, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +8.9% 아래·강세 +25.9% 위 확률. 내부 관점(컨센서스 +17.9%, σ 18.8%: 범위 34.0% ÷ d2(7) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.082459251(2026-09-30) + 옵션·RSU·워런트·전환 0.0010 — 3Q26 10-Q 반희석
+    제외 증권 1,010,498주(옵션·RSU·PSU). 희석 효과 주식 1.10M은 '
+notes:
+- 자동 생성(build_drivers) 2026-11-20 — 데이터 묶음 2026-11-20
+- '어닝콜 위험: 내부통제 중대 취약점(BASX 매출 인식·결산)'
+- '어닝콜 위험: 데이터센터 프로젝트 지연·취소'
+- '어닝콜 위험: Memphis 가동률 상승 속도'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/824142/000082414226000088/aaon-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/824142/000082414226000005/aaon-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/824142/000082414226000083/aaon-20261109.htm
+- https://www.sec.gov/Archives/edgar/data/824142/000162828026073758/aaon-20261110.htm
+- https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000824142&type=10-Q/A
+- Fiscal.ai 표준화 재무·추정·세그먼트(NASDAQ_AAON)
+- Easyconomics 실적 정리(3Q26)·일봉(yfinance)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
