@@ -1,0 +1,70 @@
+# AI 밸류체인 전력 섹터 — 입법·연방 규제·주 규제 추적 장부 (마스터 지시 2026-11-20 "AI 밸류체인의 전력 섹터에서 이 같은 입법과 주 규제 상황을
+# 팔로업하는 게 중요한데 왜 안하고 있나? 파이프라인과 시스템을 점검하라")
+# 수집: radar/power_policy.py(run_poll 30분) — 항목마다 Google News 질의(공식 의회 사이트 congress.gov·govtrack·senate.gov는 자동 접속 403, 2026-11-20 확인).
+# 판단: 기사 문구에서 '단계 낱말'을 찾아 장부(knowledge/policy/power_tracker.json)의 현재 단계보다 앞선 단계면 '단계 변화 후보'로 inbox(P1) →
+#       Pulse '전력 정책'이 1차 출처(의회 기록·관보·PUC 명령)로 확인한 뒤 해설하고 `py radar/power_policy.py --set <id> <단계> <근거URL>`로 장부를 올린다.
+#       기사 낱말만으로 단계를 올리지 않는다(법안 발의·규칙안 → 시행 금지표). 단계 낱말이 없는 새 기사는 '진행 기사'로 하루 한 번 묶어 넘긴다.
+# 항목 추가·종료는 이 파일만 고친다. 종료는 status: closed.
+stages:
+  bill: [발의, 위원회 통과, 하원 통과, 상원 토론 종결, 상원 통과, 양원 조정, 대통령 서명, 시행]
+  rule: [지시·청원, 규칙안, 의견 수렴, 최종 규칙, 재심·소송, 시행]
+  state: [신청·법안, 심리·위원회, 합의안·본회의, 승인·통과, 시행]
+stage_words:   # 기사 제목·요약의 낱말 → 단계(정규식, 대소문자 무시). 위에서부터 먼저 맞는 것
+  bill:
+    대통령 서명: '(president|trump|white house)\W+(\w+\W+){0,3}signs?\b|signed into law'   # 'might become law' 같은 전망 문장은 단계가 아니다
+    양원 조정: 'conference committee|reconcil(e|ing) (the )?(house|senate) versions'
+    상원 통과: '(senate|upper chamber) (passes|passed|approves|approved|clears|cleared)\b|passed the senate|clears? the senate'
+    상원 토론 종결: 'cloture|filibuster|substitute amendment|motion to proceed'
+    하원 통과: '(house) (passes|passed|approves|approved)|passed the house'
+    위원회 통과: 'committee (advances|approves|passes|markup)|marks? up'
+  rule:
+    시행: 'takes effect|effective date|goes into effect'
+    재심·소송: 'rehearing|petition for review|sued|lawsuit|court'
+    최종 규칙: 'final rule|order no\.|issues? (a )?final|approves? (the )?rule'
+    의견 수렴: 'comments? (due|deadline|period)|technical conference'
+    규칙안: 'proposed rule|NOPR|ANOPR|notice of proposed'
+  state:
+    시행: 'takes effect|effective|in effect'
+    승인·통과: 'approv(es|ed)|signed|passes|passed|adopt(s|ed)|order(s|ed)'
+    합의안·본회의: 'settlement|stipulation|floor vote|full (house|senate)'
+    심리·위원회: 'hearing|testimony|committee|docket'
+items:
+  - id: fed-permitting-hr2347
+    kind: bill
+    name: 연방 인허가 개혁법(H.R. 2347) — 발전·송전 연방 심사 단축, 데이터센터 에너지 비용 부담
+    queries: ['"permitting reform" Senate', '"H.R. 2347"', 'permitting bill "data centers" Senate vote']
+    match: 'BAAJA|2347|(senate|congress|federal|house)\W+(\w+\W+){0,6}permitting|permitting\W+(\w+\W+){0,4}(bill|senate|congress)'
+    stage: 상원 토론 종결   # 2026-11-18 상원 대체 수정안 69-27 채택·예산규칙 면제 70-26(thehill), 최종 표결 미정 — 1차 출처 확인 대기
+    stage_evidence: "https://thehill.com/policy/energy-environment/6227652-baaja-bipartisan-permitting-reform-bill-vote/"
+    stage_date: 2026-11-18
+    why: 송전·발전 인허가 기간 → 변압기·차단기·가스터빈·케이블 발주 시점, 데이터센터 전력 비용 배분
+    exposure: [co-hdhyundaielec, co-hyosunghi, co-lselectric, co-gevernova, co-powell, co-prysmian, co-quanta, co-eaton, co-vertiv]
+  - id: ferc-large-load
+    kind: rule
+    name: FERC 대형 부하(데이터센터) 계통 연계 규칙 — 에너지부 지시에 따른 규칙 제정
+    queries: ['FERC ("large load" OR "large loads") interconnection data center', 'FERC co-location data center PJM']
+    match: 'FERC|large load|co-locat'
+    stage: 규칙안   # 단계·날짜는 첫 회차가 1차 출처(FERC 보도자료·관보)로 확인해 고친다 — 지금 값은 미확인
+    why: 데이터센터 계통 연계 순서·비용 분담 → 현장 발전(가스엔진·연료전지·터빈) 수요와 송전 설비 투자
+  - id: pjm-capacity-large-load
+    kind: state
+    name: PJM 용량 시장·대형 부하 편입 규칙(지역 송전 운영자, FERC 승인 사안)
+    queries: ['PJM capacity auction data center', 'PJM "large load" OR "co-location" FERC']
+    match: 'PJM'
+    stage: 심리·위원회
+    why: 미국 최대 데이터센터 지역의 전력 가격·연계 속도 → 발전사·가스발전 설비
+    exposure: [co-vistra, co-constellation, co-talen, co-gevernova]
+  - id: tx-large-load
+    kind: state
+    name: 텍사스 대형 부하 규칙(ERCOT·PUCT, 상원법안 SB6 이행)
+    queries: ['ERCOT "large load" data center PUCT', 'Texas PUC data center rule interconnection']
+    match: 'ERCOT|PUCT|Texas'
+    stage: 시행   # 법 자체는 시행, 이행 규칙 단계는 첫 회차가 확인
+    why: 텍사스 데이터센터 연계·감축 의무 → 현장 발전·배터리 수요
+  - id: state-dc-tariffs
+    kind: state
+    name: 주별 데이터센터 전력 요금(대형 부하 요금 등급) — 오하이오·버지니아·조지아·인디애나·애리조나·오리건
+    queries: ['data center tariff utility commission approves', '"large load tariff" data center', 'data center electricity rates state regulators']
+    match: 'tariff|rate class|large load|utility commission|PUCO|SCC|PSC|IURC|ratepayer'
+    stage: 심리·위원회
+    why: 데이터센터 전기 요금·최소 계약 의무 → 하이퍼스케일러 부지 선택·현장 발전 경제성

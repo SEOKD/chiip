@@ -1,0 +1,32 @@
+{
+ "fed-permitting-hr2347": {
+  "stage": "상원 토론 종결",
+  "date": "2026-11-18",
+  "evidence": "https://thehill.com/policy/energy-environment/6227652-baaja-bipartisan-permitting-reform-bill-vote/",
+  "history": []
+ },
+ "ferc-large-load": {
+  "stage": "규칙안",
+  "date": "",
+  "evidence": "",
+  "history": []
+ },
+ "pjm-capacity-large-load": {
+  "stage": "심리·위원회",
+  "date": "",
+  "evidence": "",
+  "history": []
+ },
+ "tx-large-load": {
+  "stage": "시행",
+  "date": "",
+  "evidence": "",
+  "history": []
+ },
+ "state-dc-tariffs": {
+  "stage": "심리·위원회",
+  "date": "",
+  "evidence": "",
+  "history": []
+ }
+}

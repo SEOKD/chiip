@@ -518,6 +518,24 @@
 # ===== G. 정책·행정명령 — 미국(연방·주·지방)·EU·회원국·일본·대만·중국 (§21.12) =====
 # 1차 공식 RSS가 열리면 직접 받고 include_regex로 분야 글만 남긴다. 자동 접속을 막는 곳(METI·MOEA·MOFCOM·상무부 403 등)은
 # 우회하지 않고 Google News를 정부 도메인(site:)으로 제한해 받는다. doc_type 규제·정책은 텔레그램 매체 제한 대상이 아님.
+- id: src-power-policy
+  name: 전력 입법·연방 규제·주 규제 추적 장부(H.R. 2347·FERC 대형 부하·PJM·텍사스·주별 데이터센터 요금)
+  category: L-미국정부
+  module: power_policy
+  entry: run
+  method: rss
+  endpoint_doc: "config/power_policy.yaml · radar/power_policy.py · https://news.google.com/rss"
+  auth: none
+  scope: [미국]
+  interval_min: 30
+  run_on: local
+  language: en
+  doc_type: 정책
+  note: "run_hourly가 돌린다(2026-11-20 마스터 지시). congress.gov·govtrack·senate.gov는 자동 접속 403 — Congress.gov API 키(CONGRESS_API_KEY) 대기"
+  terms_note: "Google News 색인 제목·링크만(TODO_MASTER 21-53 Google News 경로 판단 대기, WSJ·닛케이와 같은 처리). 단계는 1차 출처로만 올린다"
+  reliability_default: 2차(보도 색인) → 1차 확인
+  enabled: false   # run_poll이 아니라 run_hourly가 돌린다(원천 목록·건강 표시용 등록)
+
 - id: src-policy-us-fed
   name: 미국 연방 공식 RSS(백악관 뉴스·팩트시트, NIST·CHIPS, 에너지부)
   category: L-미국정부
