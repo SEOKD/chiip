@@ -117,6 +117,35 @@ def xlsx_text(raw):
     return "\n".join(lines)
 
 
+PDF_MAX = 12000   # 한 PDF에서 판단 재료로 넘기는 글자 수 상한
+
+
+def pdf_body(block_id, url):
+    """첨부 PDF 본문 — 자료실(radar/notion_library.py)이 이미 뽑은 텍스트가 있으면 그것을, 없으면 내려받아 pdftotext로 뽑는다.
+    추출 원문은 radar/inbox/notion_files/(git 제외)에만 둔다. 글자가 거의 없으면(그림 PDF) 그 사실을 적는다"""
+    import tempfile
+    import notion_library as NL
+    cached = NL.CACHE / f"{block_id}.txt"
+    try:
+        if cached.exists():
+            text = cached.read_text(encoding="utf-8", errors="replace")
+        elif url:
+            d = Path(tempfile.mkdtemp())
+            pdf = d / "a.pdf"
+            pdf.write_bytes(urllib.request.urlopen(url, timeout=90).read())
+            text = NL.pdf_text(pdf)
+            NL.CACHE.mkdir(parents=True, exist_ok=True)
+            cached.write_text(text, encoding="utf-8")
+        else:
+            return "(첨부 PDF 주소 없음)"
+    except Exception as exc:
+        return f"(첨부 PDF 읽기 실패: {type(exc).__name__})"
+    body = re.sub(r"[ \t]+", " ", text).strip()
+    if len(body) < 200:
+        return f"(첨부 PDF 글자 {len(body)}자 — 그림 위주 PDF일 수 있다. py radar/channel_check_feed.py --pages {block_id}로 페이지를 그림으로 떠서 읽는다)"
+    return "[PDF 본문]\n" + body[:PDF_MAX] + ("\n…(이하 생략)" if len(body) > PDF_MAX else "")
+
+
 def page_text(pid, tok=None, depth=3):
     lines = []
     for b in children(pid, tok):
@@ -134,7 +163,9 @@ def page_text(pid, tok=None, depth=3):
             f = body.get("file") or body.get("external") or {}
             name = body.get("name") or f.get("url", "").split("?")[0].rsplit("/", 1)[-1]
             lines.append(f"[첨부 {name}]")
-            if name.lower().endswith((".xlsx", ".csv", ".txt")) and f.get("url"):
+            if name.lower().endswith(".pdf"):   # PDF도 읽는다(2026-11-20 마스터 지시 "Notion의 Telegram Feed 페이지에 올라오는 pdf도 읽도록 하라")
+                lines.append(pdf_body(b["id"], f.get("url")))
+            elif name.lower().endswith((".xlsx", ".csv", ".txt")) and f.get("url"):
                 try:
                     raw = urllib.request.urlopen(f["url"], timeout=60).read()
                     lines.append(xlsx_text(raw) if name.lower().endswith(".xlsx") else raw.decode("utf-8", "replace")[:20000])
