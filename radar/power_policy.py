@@ -84,6 +84,11 @@ def run(get=None):
     for it in c.get("items") or []:
         if it.get("status") == "closed":
             continue
+        if it.get("congress"):
+            try:
+                items += congress_actions(it, tr, c, seen, get)
+            except Exception as exc:
+                errs.append(f"{it['id']} 의회 기록: {type(exc).__name__}")
         entries = []
         for q in it.get("queries") or []:
             try:
@@ -107,6 +112,60 @@ def run(get=None):
     common.record_health(SOURCE_ID, not errs or len(errs) < sum(len(i.get("queries") or []) for i in c.get("items") or []), "; ".join(errs[:3]) or None)
     jumps = sum(1 for i in items if (i.get("extra") or {}).get("stage_jump") or i.get("stage_jump"))
     return f"전력 정책 기사 {len(items)}건(단계 변화 후보 {jumps}) · 새로 저장 {len(saved)}" + (f" · 문제 {', '.join(errs[:3])}" if errs else "")
+
+
+CONGRESS_API = "https://api.congress.gov/v3/bill/{congress}/{type}/{number}/actions?format=json&limit=50&api_key={key}"
+BILL_PAGE = {"hr": "house-bill", "s": "senate-bill", "hjres": "house-joint-resolution", "sjres": "senate-joint-resolution"}
+# 의회 행동 문구 → 단계(위에서부터, 대소문자 무시) — Congress.gov 'actions'의 text
+ACTION_STAGE = (
+    ("대통령 서명", r"became public law|signed by president"),
+    ("하원 수정안 처리·양원 조정", r"(resolving differences|house agreed to senate amendment|conference report)"),
+    ("상원 통과", r"passed senate|passed/agreed to in senate"),
+    ("상원 토론 종결", r"cloture on the measure invoked|cloture motion on the measure|substitute amendment"),
+    ("하원 통과", r"passed house|passed/agreed to in house|on passage passed"),
+    ("위원회 통과", r"ordered to be reported|reported by"),
+)
+
+
+def action_stage(text):
+    for st, pat in ACTION_STAGE:
+        if re.search(pat, text or "", re.I):
+            return st
+    return None
+
+
+def congress_actions(item, tr, c, seen, get):
+    """Congress.gov API 행동 기록(1차 자료) — 새 행동은 진행 항목, 장부보다 앞선 단계면 장부를 바로 올리고 '단계 확정(의회 기록)' 항목.
+    키(CONGRESS_API_KEY)가 없으면 조용히 건너뛴다. 키는 주소에만 쓰고 기록·출력에는 쓰지 않는다"""
+    key = common.load_env().get("CONGRESS_API_KEY")
+    if not key:
+        return []
+    g = item["congress"]
+    acts = json.loads(get(CONGRESS_API.format(key=key, **g)))["actions"]
+    page = f"https://www.congress.gov/bill/{g['congress']}th-congress/{BILL_PAGE.get(g['type'], g['type'])}/{g['number']}/all-actions"
+    out, order = [], (c.get("stages") or {}).get("bill") or []
+    rec = tr[item["id"]]
+    for a in sorted(acts, key=lambda x: (x.get("actionDate") or "", x.get("actionTime") or "")):
+        text = a.get("text") or ""
+        sig = f"congress:{item['id']}:{a.get('actionDate')}:{hashlib.sha1(text.encode()).hexdigest()[:10]}"
+        st = action_stage(text)
+        if st and ahead(st, rec.get("stage"), "bill", c):
+            rec["history"].append({"stage": rec.get("stage"), "date": rec.get("date"), "evidence": rec.get("evidence")})
+            rec.update({"stage": st, "date": a.get("actionDate"), "evidence": page, "by": "congress.gov 행동 기록"})
+            jump = True
+        else:
+            jump = False
+        if sig in seen:
+            continue
+        seen.add(sig)
+        if not st and not jump:
+            continue   # 단계와 무관한 절차 행동('Considered by Senate')은 넘기지 않는다
+        head = f"[전력 정책·{item['name'].split(' — ')[0]}] " + (f"단계 확정(의회 기록) → {st} · " if jump else f"의회 기록 · {st} · ")
+        out.append(common.make_item(SOURCE_ID, sig.split(":", 1)[1].replace(":", "-"), page, head + text[:220], f"{a.get('actionDate')}T00:00:00-05:00",
+                                    "정책", "en", text[:400],
+                                    extra={"policy_item": item["id"], "stage_hint": st, "stage_jump": jump, "stage_confirmed": jump,
+                                           "entities_hint": item.get("exposure") or [], "source_class": "1차(의회 행동 기록)"}))
+    return out
 
 
 def poll(env=None):
