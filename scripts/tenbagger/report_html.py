@@ -43,7 +43,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "radar"))
 from units import chiip_name, fx_units, money_units  # noqa: E402
 
-COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)", "f": "var(--fg)"}   # f = 합계·기준선(점선과 함께, 2026-11-14)
+COLORS = {"a": "var(--a)", "b": "var(--b)", "c": "var(--c)", "d": "var(--d)", "e": "var(--e)", "f": "var(--fg)", "g": "#9b6bd6"}   # g = 보라(2026-11-20 — 자산별 변화율에서 a(흰색 계열)가 합계 점선과 같아 보였다)   # f = 합계·기준선(점선과 함께, 2026-11-14)
 # 그래프 글자가 viewBox 밖으로 나가 잘리지 않게(마스터 지시 2026-11-08 "Analysis 리포트에 글자가 양식 밖으로 빠져 나가서 잘리지 않도록 하라")
 # 브라우저가 실제 글자 폭을 잰 뒤 viewBox를 글자까지 넓힌다 — 축 숫자·끝 이름표·범례가 오른쪽·왼쪽 끝에서 잘리던 문제(2026-11-08 AXTI 리포트 23곳 실측)
 FIT_JS = ("<script>(function(){"

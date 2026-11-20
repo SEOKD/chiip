@@ -496,7 +496,7 @@ def change_chart(H, F):
     last = H[-1]["bal"]
     cand = [k for k in ASSET_LINES if (base["bal"].get(k) or 0) > 0 and (last.get(k) or 0) > 0]
     cand = sorted(cand, key=lambda k: -last[k])[:5]
-    cols = ["c", "a", "b", "d", "e"]
+    cols = ["c", "g", "b", "d", "e"]   # 합계 점선(f = 글자색)과 겹치지 않게 a 대신 보라 g(마스터 지시 2026-11-20)
     series = [{"name": ASSET_LINES[k], "color": cols[i], "points": [[x["q"], _r1((x["bal"][k] / base["bal"][k] - 1) * 100) if x["bal"].get(k) is not None else None] for x in rows]}
               for i, k in enumerate(cand)]
     ic0 = sum(cap_of(base).values())
