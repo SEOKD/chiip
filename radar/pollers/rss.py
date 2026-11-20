@@ -218,8 +218,14 @@ def poll_source(src):
         st[src["id"]] = {**stats, "window": window, "queries": len(f7), "done": done7, "at": common.iso(common.now_kst())}
         if f7:
             st.setdefault("cursor", {})[src["id"]] = (cur + done7) % len(f7)
-        if window == "1d" and not stats.get("deferred"):   # 쓸어 담기는 묶음을 다 돈 회차만 끝난 것으로 본다
-            st.setdefault("sweep", {})[src["id"]] = common.iso(common.now_kst())
+        if window == "1d":   # 쓸어 담기는 여러 회차에 걸쳐 묶음을 한 바퀴 다 돌면 끝난 것으로 본다
+            # (2026-11-20 점검: '시간 상한 미루기 없이 한 회차에 다 돈 경우'만 끝으로 쳐서 11-17 이후 매 회차 when:1d로만 돌았다 —
+            #  무거운 질의·포화로 감지 지연 중앙값 194분. 이제 누적 묶음 수로 판정해 평소 회차는 when:6h로 돌아간다)
+            prog = st.setdefault("sweep_done", {})
+            prog[src["id"]] = prog.get(src["id"], 0) + done7
+            if f7 and prog[src["id"]] >= len(f7):
+                st.setdefault("sweep", {})[src["id"]] = common.iso(common.now_kst())
+                prog[src["id"]] = 0
         common.save_state("focus7_stats", st)
     if failed and len(failed) == len(urls):
         raise RuntimeError("피드 전부 실패: " + "; ".join(failed[:3]))

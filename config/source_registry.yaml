@@ -832,6 +832,7 @@
     - {q: "site:wsj.com/world when:1d", hl: en-US, gl: US}
     - {q: "site:wsj.com/politics when:1d", hl: en-US, gl: US}
     - {q: "site:wsj.com when:1d", hl: en-US, gl: US}
+    - {q: "site:wsj.com when:2h", hl: en-US, gl: US}   # 최신분 우선(2026-11-20 점검 — 1d 질의는 관련도순 100건이라 새 글이 늦게 잡혔다)
   # 종목·산업 관련만 — 회사·실적·거래·공급·생산·규제·무역·방위·에너지·AI·반도체 어휘. 세계·정치 섹션의 순수 외교·선거 기사는 이 어휘가 없으면 빠진다
   include_regex: '(Inc\b|Corp\b|Co\.|shares?|stocks?|investors?|earnings|profit|revenue|sales|deal|merger|acqui|IPO|buyout|stake|billion|million|CEO|chief executive|company|companies|maker|supplier|supply|shortage|factory|plant|production|output|capacity|contract|order|tariff|export|import|sanction|trade|subsid|regulat|antitrust|FTC|SEC\b|Pentagon|defense|missile|munition|weapons?|drone|shipbuild|chip|semiconductor|AI\b|artificial intelligence|data cent|cloud|power grid|electricity|utility|nuclear|oil|gas|LNG|mining|rare earth|lithium|battery|EV\b|robot|satellite|launch|bank|lender|fund|Fed\b|rates?\b|inflation|bond|market)'
   exclude_regex: '(^Opinion|\| Opinion|Review:|Recipe|Wine|Fashion|Style|Mansion|Real Estate|Home of the Day|House of the Day|Crossword|Puzzle|Obituar|Print Edition|Book Review|Sports?\b|NFL|NBA|MLB|Travel|Word on the Street|The Wall Street Journal &)'
@@ -867,6 +868,7 @@
     - {q: "site:nikkei.com (買収 OR 出資 OR 提携 OR 経営統合 OR 増産 OR 設備投資 OR 受注 OR 新工場 OR 値上げ) when:1d", hl: ja, gl: JP}
     - {q: "site:nikkei.com (防衛 OR 原発 OR 電力 OR 造船 OR 自動車 OR 電池 OR 商社 OR 鉄鋼 OR 化学) when:1d", hl: ja, gl: JP}
     - {q: "site:nikkei.com when:1d", hl: ja, gl: JP}
+    - {q: "site:nikkei.com when:2h", hl: ja, gl: JP}   # 최신분 우선(2026-11-20 점검 — 감지 지연 중앙값 330분)
   include_regex: '(決算|業績|売上|営業利益|純利益|最終利益|赤字|黒字|増益|減益|増収|減収|上方修正|下方修正|株価|株式|上場|TOB|買収|出資|提携|統合|子会社|増産|減産|生産|工場|設備投資|受注|納入|供給|調達|値上げ|値下げ|価格|半導体|電子部品|装置|素材|AI|データセンター|電力|原発|防衛|造船|自動車|EV|電池|商社|鉄鋼|化学|銀行|証券|保険|社長|CEO|企業|メーカー|輸出|輸入|関税|規制|補助金|日銀|金利|円安|円高)'
   exclude_regex: '(適時開示|日経転職|:日経電子版|日経会社情報DIGITAL|日経クロステック|日経ビジネス|日経xwoman|日経エンタテインメント|社説|春秋|私見卓見|スポーツ|囲碁|将棋|レシピ|訃報|おくやみ|NIKKEI STYLE|プラス1|旅|ワイン|映画|書評|天気|交通事故|殺人|逮捕)'
   max_age_days: 2
@@ -894,6 +896,7 @@
     - {q: "site:asia.nikkei.com/Economy when:1d", hl: en-US, gl: US}
     - {q: "site:asia.nikkei.com/Spotlight when:1d", hl: en-US, gl: US}
     - {q: "site:asia.nikkei.com when:1d", hl: en-US, gl: US}
+    - {q: "site:asia.nikkei.com when:2h", hl: en-US, gl: US}   # 최신분 우선(2026-11-20 점검)
   include_regex: '(Inc\b|Corp\b|Co\.|shares?|stocks?|investors?|earnings|profit|revenue|sales|deal|merger|acqui|IPO|buyout|stake|billion|million|yen\b|CEO|chief executive|company|companies|maker|supplier|supply|shortage|factory|plant|production|output|capacity|contract|order|tariff|export|import|sanction|trade|subsid|regulat|chip|semiconductor|AI\b|artificial intelligence|data cent|cloud|power|electricity|nuclear|LNG|rare earth|lithium|battery|EV\b|robot|satellite|shipbuild|defense|bank|BOJ|Bank of Japan|rates?\b|inflation|market)'
   exclude_regex: '(^Opinion|\| Opinion|Life & Arts|Recipe|Travel|Sports?\b|Obituar|Podcast|Quiz|Crossword|The Big Story:)'
   min_title_words: 5
