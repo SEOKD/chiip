@@ -634,9 +634,8 @@ def format_item(level, item, what=None, impact=None, card_id=None, biz=None, poi
     prof = company_profile(item.get("entities_matched"), profile, biz)
     if prof:
         parts.append("☞ " + html.escape(profile_line(prof), quote=False))
-    ly = lynch_line(item.get("entities_matched"))   # 피터 린치 분류 한 줄(마스터 지시 2026-11-19)
-    if ly:
-        parts[-1 if prof else 0] += "\n" + html.escape(ly, quote=False)
+    # 피터 린치 분류 한 줄은 내보내지 않는다(2026-11-20 마스터 지시 "'린치 분류: 고성장주(중형) — 기대 10~100배 · 하방 -80~100%' 이 표현은 어렵다. 제외하라").
+    # 분류는 선별 관문(scripts/alpha/score.py·discovery/screen.py)과 텐배거 리포트 '피터 린치 분류' 절에만 남는다. lynch_line()은 호출 호환용
     pts = [p.strip() for p in (points or []) if p and p.strip()][:3] or snippet_points(item)
     lines = [f"• {html.escape(p, quote=False)}" for p in pts]
     if synergy and synergy.strip():
