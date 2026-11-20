@@ -45,3 +45,31 @@ class TestFlow(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestEasyconomicsFallback(unittest.TestCase):
+    """TradingView 한도 때 대체 시세(2026-11-21 마스터 지시 "요새 왜 Flow 안 가져다주나?")"""
+
+    def _files(self, d, at):
+        import json as _j
+        rows = [{"symbol": "SPY", "change": -1.5, "rel_volume": 1.2, "price": 600}, {"symbol": "SMH", "change": -10.6, "rel_volume": 2.75, "price": 400.06}]
+        p = Path(d) / "ec.json"
+        p.write_text(_j.dumps({"data": {"quote_as_of": at, "rows": rows}}), encoding="utf-8")
+        return [p]
+
+    def test_fresh_quotes_map_to_symbols(self):
+        import tempfile
+        from datetime import datetime, timezone
+        with tempfile.TemporaryDirectory() as d:
+            q, at, why = F.from_easyconomics(self._files(d, "2026-11-20T20:50:00+00:00"), now=datetime(2026, 11, 20, 21, 0, tzinfo=timezone.utc))
+        self.assertEqual(q["NASDAQ:SMH"]["change"], -10.6)
+        self.assertEqual(q["AMEX:SPY"]["relative_volume_10d_calc"], 1.2)
+        self.assertEqual(why, "")
+
+    def test_stale_quotes_rejected(self):
+        import tempfile
+        from datetime import datetime, timezone
+        with tempfile.TemporaryDirectory() as d:
+            q, at, why = F.from_easyconomics(self._files(d, "2026-11-19T21:00:00+00:00"), now=datetime(2026, 11, 20, 14, 50, tzinfo=timezone.utc))
+        self.assertEqual(q, {})
+        self.assertIn("쓰지 않음", why)

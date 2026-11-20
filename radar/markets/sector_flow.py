@@ -230,8 +230,63 @@ def tick(path, out=None, now=None):
     return {"session": sess, "result": r, "vs_open": cmp_, "streaks": stk, "text": text}
 
 
+EC_MAX_AGE_MIN = 45   # 대체 시세가 이보다 오래되면 쓰지 않는다(장초에 전날 종가로 보내지 않게)
+
+
+def from_easyconomics(paths, now=None, c=None):
+    """TradingView가 막혔을 때 대체 시세 — Easyconomics etf_list(q=심볼) 응답들 → tick 입력 {심볼: {change, relative_volume_10d_calc}}.
+    2026-11-21 마스터 지시("요새 왜 Flow 안 가져다주나?"): 11-18부터 TradingView 계정 일일 한도가 아침에 차서 회차가 전부 조용히 끝났다.
+    등락(change, %)은 같은 정의, 상대 거래량은 3개월 평균 대비(rel_volume)라 10일 기준과 다르다 — 본문에 표시. VIX 등 ETF가 아닌 심볼은 빠진다.
+    반환 (quotes, 시세 시각 또는 None, 사유). 시세가 EC_MAX_AGE_MIN보다 오래되면 quotes를 비운다"""
+    c = c or cfg()
+    now = now or datetime.now(KST)
+    want = {s.split(":")[-1].upper(): s for s in symbols(c)}
+    quotes, at = {}, None
+    for p in paths:
+        try:
+            raw = json.loads(Path(p).read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        d = raw.get("data", raw) or {}
+        if d.get("quote_as_of"):
+            t = datetime.fromisoformat(d["quote_as_of"].replace("Z", "+00:00"))
+            at = t if at is None or t < at else at
+        for r in d.get("rows") or []:
+            s = want.get(str(r.get("symbol") or "").upper())
+            if s and r.get("change") is not None:
+                quotes[s] = {"change": r["change"], "relative_volume_10d_calc": r.get("rel_volume"), "close": r.get("price")}
+    if at is None:
+        return {}, None, "시세 시각 없음"
+    age = (now - at).total_seconds() / 60
+    if age > EC_MAX_AGE_MIN:
+        return {}, at, f"대체 시세가 {age:.0f}분 전 것이라 쓰지 않음"
+    return quotes, at, ""
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
+    if "--ec" in argv:   # 대체 시세(Easyconomics etf_list 응답 파일들) → --tick과 같은 출력
+        i = argv.index("--ec")
+        files = []
+        for a in argv[i + 1:]:   # 다음 '--' 옵션 전까지가 응답 파일
+            if a.startswith("--"):
+                break
+            files.append(a)
+        out = argv[argv.index("--out") + 1] if "--out" in argv else None
+        q, at, why = from_easyconomics(files)
+        if not q:
+            print(f"대체 시세 실패 — {why}. 조용히 끝낸다")
+            return
+        tmp = DIR / "_ec_tick.json"
+        DIR.mkdir(parents=True, exist_ok=True)
+        tmp.write_text(json.dumps({"data": q}, ensure_ascii=False), encoding="utf-8")
+        res = tick(tmp, None)
+        miss = [s for s in symbols() if s not in q]
+        text = res["text"] + f"\n시세: 대체 원천(TradingView 한도) · 거래량은 3개월 평균 대비" + (f" · 빠진 심볼 {len(miss)}개" if miss else "")
+        if out:
+            Path(out).write_text(text, encoding="utf-8")
+        print(text)
+        return
     if "--session" in argv:
         print(session()[0])
     elif "--symbols" in argv:
