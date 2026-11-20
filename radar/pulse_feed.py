@@ -82,14 +82,13 @@ def icon_for(x):
 def block(n, x):
     icon = icon_for(x)   # 번호(①②…)는 쓰지 않는다(2026-11-20 마스터 지시)
     head = f"**{icon} {x['name']} {x['code']}｜{x['event']}**" if x.get("code") else f"**{icon} {x['name']}｜{x['event']}**"
-    score = f"인사이트 {x['insight']}/10" +(f" · {x['basis'][:MAX_BASIS]}" if x.get("basis") else "")
     parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
     if x.get("against"):
         parts.append(f"**■ 반대**\n· {x['against']}")
     if x.get("next"):
         parts.append(f"**■ 다음 확인**\n· {x['next']}")
     parts.append(links(x.get("links")))
-    parts.append(f"**■ 정량**\n{score}")   # 정량 지표는 건의 맨 아래(2026-11-03 마스터 지시)
+    # ■ 정량(인사이트 점수·근거 종류) 문단은 내보내지 않는다(2026-11-20 마스터 지시 "마지막 문단(■ 정량)은 빼라. 앞으로도 그렇게 하라") — 점수는 정렬·기록에만
     return "\n\n".join(parts)
 
 
