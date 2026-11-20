@@ -28,7 +28,7 @@ class TestBuild(unittest.TestCase):
 
     def test_highest_insight_first(self):
         t = self.text()
-        self.assertLess(t.index("① Alphabet"), t.index("② Meta"))
+        self.assertLess(t.index(" Alphabet "), t.index(" Meta "))   # 번호 없이 인사이트 순(2026-11-20)
 
     def test_passes_format_check(self):
         self.assertEqual(pulse_check.check(self.text()), [])

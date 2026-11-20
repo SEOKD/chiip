@@ -34,8 +34,54 @@ def links(rows):
     return " · ".join(f"[{a}]({b})" for a, b in rows or []) or "출처 미확인"
 
 
+# 머리 이모지는 회사 업종으로 정한다(2026-11-20 마스터 지시 "이모찌도 회사에 어울리는 이모찌를 써라. ⚡를 쓰면 삼성전자가 전력망 기업으로 보이잖니").
+# 감시 목록(config/valuation.yaml·earnings_watch.yaml)의 sub → 이모지. 목록에 없거나 업종을 모르면 모델이 쓴 icon(없으면 📌)
+SUB_EMOJI = (("memory|storage", "💾"), ("conglomerate", "🏢"), ("accelerator|edge_ai|edge_compute", "🧠"),
+             ("semicap|equipment|materials|substrate|foundry|semis|semi_ip|eda_ip|analog|power_semi|fpga|timing|rf|mcu|auto_semi|test_measurement", "🔬"),
+             ("networking|optical|fiber|telecom|comms|iot", "🌐"), ("nuclear", "☢️"), ("battery", "🔋"),
+             ("power_infra|utility|dc_power|power_epc|power_services|geothermal|energy_storage", "⚡"),
+             ("defense|drones", "🛡️"), ("space", "🛰️"), ("aerospace", "✈️"), ("software|hyperscaler|neocloud", "☁️"),
+             ("server|ems", "🖥️"), ("cooling", "❄️"), ("robotics", "🤖"), ("components|instruments|sensing|lasers|optics|precision", "🔩"),
+             ("payments|legal_finance", "💳"), ("offshore_drilling", "🛢️"), ("media|gaming", "🎬"), ("fitness", "🏋️"), ("cro", "💊"),
+             ("consumer|beauty", "🛍️"), ("education", "🎓"), ("engineering|industrial|workforce|construction", "🏗️"), ("pc_peripherals", "⌨️"))
+_SUBS = None
+
+
+def _subs():
+    global _SUBS
+    if _SUBS is None:
+        import yaml
+        _SUBS = {}
+        root = Path(__file__).resolve().parents[1]
+        for f in ("config/valuation.yaml", "config/earnings_watch.yaml"):
+            try:
+                d = yaml.safe_load((root / f).read_text(encoding="utf-8")) or {}
+            except OSError:
+                continue
+            for v in d.values():
+                for u in v if isinstance(v, list) else []:
+                    if isinstance(u, dict) and u.get("code") and u.get("sub"):
+                        _SUBS.setdefault(str(u["code"]).split(".")[0].upper(), u["sub"])
+    return _SUBS
+
+
+ICON_OVERRIDE = {"005930": "💾"}   # 삼성전자 — 감시 목록 sub는 conglomerate지만 Chiip이 보는 축은 메모리·반도체
+
+
+def icon_for(x):
+    code = str(x.get("code") or "").split(".")[0].upper()
+    if code in ICON_OVERRIDE:
+        return ICON_OVERRIDE[code]
+    sub = _subs().get(str(x.get("code") or "").split(".")[0].upper())
+    for pat, emo in SUB_EMOJI:
+        if sub and re.search(pat, sub):
+            return emo
+    return x.get("icon") or "📌"
+
+
 def block(n, x):
-    head = f"**{x['icon']} {CIRCLED[n]} {x['name']} {x['code']}｜{x['event']}**" if x.get("code") else f"**{x['icon']} {CIRCLED[n]} {x['name']}｜{x['event']}**"
+    icon = icon_for(x)   # 번호(①②…)는 쓰지 않는다(2026-11-20 마스터 지시)
+    head = f"**{icon} {x['name']} {x['code']}｜{x['event']}**" if x.get("code") else f"**{icon} {x['name']}｜{x['event']}**"
     score = f"인사이트 {x['insight']}/10" +(f" · {x['basis'][:MAX_BASIS]}" if x.get("basis") else "")
     parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
     if x.get("against"):
