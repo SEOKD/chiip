@@ -1,0 +1,113 @@
+auto: true
+id: us-mvis
+name: MicroVision
+ticker: MVIS
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.75
+  Europe: 0.15
+  Asia: 0.1
+tax: 0.21
+horizon: 10
+as_of: '2026-11-20'
+market:
+  date: '2026-11-20'
+  price: 0.861
+  shares: 0.052867
+  net_debt: 0.013656
+  source: 가격 = 11/19 종가 $0.861(Fiscal.ai·Easyconomics 일봉 $0.86). 주식 수 = 3Q 10-Q 표지
+    34,047,688주(10/21, 9/30 32.43M + 10월 전환 1.33M). 현금 = 9/30 $28.89M(제한 현금 $1.45M
+    제외). 차입 = 전환사채 장부가 $22.60M + 운용 리스 $19.93M + 금융 리스 $0.03M(9/30). 10/5 전환사채 $6.6M
+    현금 상환, 11/12 원금 잔액 $7.8M(8-K) — 9/30 대비 현금·차입이 함께 줄었다
+rev0: 0.0125
+ic0: 0.036402
+scenarios:
+  base:
+    prob: 0.75
+    growth:
+      start: 0.68
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: -7.28
+      target: -1.132
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - -2.738
+      - -1.132
+    s2c: 0.5
+  bull:
+    prob: 0.1
+    growth:
+      start: 1.56
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: -7.28
+      target: -1.052
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - -2.738
+      - -1.132
+    s2c: 0.575
+  bear:
+    prob: 0.15
+    growth:
+      start: -0.04
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: -7.28
+      target: -1.212
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - -2.738
+      - -1.132
+    s2c: 0.425
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.01, 0.015] (3Q26 실적 8-K EX-99.1(2026-10-28): 2026 매출 $10M~15M
+    유지, 2027 매출 2026 수준의 최소 2배, 2027 영업 현금 소진 약 $40M(지금 수준에서 약 1/3 감소). 콜: 출하 대기 고객
+    PO 약 $10M, 재고 대부분 확보)'
+  growth: 컨센서스 1년차 68.0%, 2년차 81.0%
+  margin: 1~2년차 컨센서스 -273.8%, -113.2% 고정 → 목표 -113%(3년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -4.0%~156.0%
+  probs: '근거 계산 {''bear'': 0.05, ''base'': 0.9, ''bull'': 0.05} → 모델 조정 {''bear'':
+    0.15, ''base'': 0.75, ''bull'': 0.1}(계속기업 주석과 2027 소진 목표($40M)가 현금($28.9M, 10월
+    상환 전)보다 커서 증자 없이는 기본 시나리오가 성립하지 않는다. 표본 1명 추정이라 계산 확률을 그대로 믿기 어려워 약세를 높인다) — 다음
+    해 매출 성장 분포로 계산 — 약세 +32.0% 아래·강세 +112.0% 위 확률. 내부 관점(컨센서스 +68.0%, σ 22.0%: 추정
+    범위 없음 — 5% + 0.25 × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.034048(2026-10-21) + 옵션·RSU·워런트·전환 0.0188 — 3Q 10-Q 주당손실 주석(9/30):
+    옵션 19천·미가득 RSU·PSU 1,517천·워런트 7,183천 '
+notes:
+- 자동 생성(build_drivers) 2026-11-20 — 데이터 묶음 2026-11-20
+- '어닝콜 위험: 계속기업 불확실성 주석(10-Q) — 12개월 자금 부족 가능성'
+- '어닝콜 위험: 2027 소진 목표 $40M vs 9/30 현금 $28.9M(10월 전환사채 $6.6M 상환 전)'
+- '어닝콜 위험: ATM 잔여 $41.1M·워런트 718만 주·전환사채 잔액 $7.8M 희석'
+evidence:
+- 3Q26 10-Q(SEC, 2026-10-30) https://www.sec.gov/Archives/edgar/data/65770/000149315226049319/form10-q.htm
+- 3Q26 실적 8-K EX-99.1(Item 2.02, 2026-10-28) https://www.sec.gov/Archives/edgar/data/65770/000149315226048989/ex99-1.htm
+- 레드먼드 임차 해지·전환사채 잔액 8-K/A(2026-11-13) https://www.sec.gov/Archives/edgar/data/65770/000149315226051559/form8-ka.htm
+- $2.50 공모·워런트 8-K(2026-08-17) https://www.sec.gov/Archives/edgar/data/65770/000149315226038743/form8-k.htm
+- 1:15 주식 병합 8-K(2026-07-22) https://www.sec.gov/Archives/edgar/data/65770/000149315226034194/form8-k.htm
+- CFO 선임 8-K(2026-08-10) https://www.sec.gov/Archives/edgar/data/65770/000149315226036772/form8-k.htm
+- 3Q26 어닝콜(2026-10-28)
+- 2Q26 어닝콜(2026-08-06)
+- Fiscal.ai 표준화 재무·추정(11/20 조회)
+- Easyconomics(yfinance) 일봉·개요(11/20 조회)
+- Quantral 커뮤니티 신호(11/20)
+- 회사 보도자료 2026-11-16 https://ir.microvision.com/news/press-releases/detail/489/microvision-lidar-powers-commercial-driverless-trucking-at
+- 회사 보도자료 2026-11-19 https://ir.microvision.com/news/press-releases/detail/490/microvision-and-blue-band-to-support-3-million-federally

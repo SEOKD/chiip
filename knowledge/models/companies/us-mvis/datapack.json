@@ -1,0 +1,3420 @@
+{
+ "id": "us-mvis",
+ "as_of": "2026-11-20",
+ "unit": "B$",
+ "name": "MicroVision",
+ "ticker": "MVIS",
+ "industry": "electronics",
+ "region_mix": {
+  "US": 0.75,
+  "Europe": 0.15,
+  "Asia": 0.1
+ },
+ "tax": 0.21,
+ "industry_note": "산업·국방·자동차용 라이다(LiDAR) 센서와 인식 소프트웨어 — 매출 초기 단계, 현금 소진, 계속기업 불확실성 주석. 업종 값 electronics는 초소형·적자 기업 위험을 덜 반영한다",
+ "profile": {
+  "price": 0.861,
+  "shares_basic": 0.034048,
+  "shares_date": "2026-10-21",
+  "cash": 0.02889,
+  "debt": 0.042546,
+  "source": "가격 = 11/19 종가 $0.861(Fiscal.ai·Easyconomics 일봉 $0.86). 주식 수 = 3Q 10-Q 표지 34,047,688주(10/21, 9/30 32.43M + 10월 전환 1.33M). 현금 = 9/30 $28.89M(제한 현금 $1.45M 제외). 차입 = 전환사채 장부가 $22.60M + 운용 리스 $19.93M + 금융 리스 $0.03M(9/30). 10/5 전환사채 $6.6M 현금 상환, 11/12 원금 잔액 $7.8M(8-K) — 9/30 대비 현금·차입이 함께 줄었다"
+ },
+ "dilution": {
+  "options": 1.9e-05,
+  "rsu": 0.001517,
+  "warrants": 0.007183,
+  "convertible": 0.0101,
+  "potential_total": 0.018819,
+  "date": "2026-10-21",
+  "atm_remaining_usd": 0.0411,
+  "source": "3Q 10-Q 주당손실 주석(9/30): 옵션 19천·미가득 RSU·PSU 1,517천·워런트 7,183천 주(대부분 행사가 $2.50, 8월 공모분 680만 주), 전환 가능 주식 15,457천 주. 전환사채 원금이 11/12 $7.8M으로 줄어 전환 주식은 지금 가격 기준 약 1,010만 주로 다시 계산(원금 × 110% ÷ 약 $0.85, Chiip 추정). ATM 잔여 $41.1M — 지금 주가로 다 쓰면 약 4,800만 주(+140%, Chiip 계산)"
+ },
+ "financials": {
+  "rev_ttm": 0.005031,
+  "ebit_ttm": -0.110453,
+  "invested_capital": 0.036402,
+  "capex_ttm": 0.002059,
+  "da_ttm": 0.009751,
+  "sbc_ttm": 0.0046,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26 합(Fiscal.ai 표준화 손익): 매출 $0.223M + $0.935M + $1.473M + $2.400M = $5.03M, 영업손익 −41.41 −23.49 −24.21 −21.34 = −$110.45M(4Q25에 재고 평가손 등 매출원가 $16.3M 포함). 투하자본 = 자기자본 $22.75M + 차입·리스 $42.55M − 현금 $28.89M = $36.40M. CAPEX·D&A = 4개 분기 합. SBC = 9M26 $3.45M × 4/3(4Q25 미대조, 추정)"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.0125,
+   "FY2027": 0.021,
+   "FY2028": 0.038
+  },
+  "rev_low": {
+   "FY2026": 0.01,
+   "FY2027": 0.012,
+   "FY2028": 0.018
+  },
+  "rev_high": {
+   "FY2026": 0.015,
+   "FY2027": 0.032,
+   "FY2028": 0.065
+  },
+  "ebit_margin": {
+   "FY2026": -7.28,
+   "FY2027": -2.738,
+   "FY2028": -1.132
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "note": "커버리지 1명(콜 질문자 AmerX, 목표가 $1.70 — yfinance). Zacks 추정 없음(11/20). Fiscal.ai 자체 추정(agentic consensus, 10/31): 4Q26 매출 $7.69M(가이던스 환산), FY2027 $21.0M($12~32M), FY2028 $38.0M($18~65M), 조정 EBITDA FY26 −$62.4M·FY27 −$39.9M·FY28 −$27.5M. FY2026 범위는 회사 가이던스 $10~15M. EPS FY2026 −$3.90(−$4.60~−$3.30) — 9M 실적 −$3.18. 2026 조정 EBITDA는 분기 추정 합과 연간 추정이 다르다(연간 우선)",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.223,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-04"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -1.8,
+    "est": -0.75,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-04"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -12,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-03-04"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.935,
+    "est": 0.1,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-13"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -1.2,
+    "est": -0.75,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-13"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -17.202,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-13"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 1.473,
+    "est": 1,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -1.66,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -18.823,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-08-06"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 2.4,
+    "est": 4.122,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-10-07",
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.45,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-10-28"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -11.066,
+    "est": -14.486,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-10-24",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-28"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 0,
+   "buy": 1,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "as_of": "2026-11-20",
+   "source": "yfinance",
+   "target_mean": 1.7,
+   "target_high": 1.7,
+   "target_low": 1.7
+  },
+  "rev_range": {
+   "FY2027": [
+    0.012,
+    0.032
+   ],
+   "FY2028": [
+    0.018,
+    0.065
+   ]
+  },
+  "eps": {
+   "FY2026": -3.9
+  },
+  "eps_range": {
+   "FY2026": [
+    -4.6,
+    -3.3
+   ]
+  },
+  "n_analysts": 1,
+  "quarters_est": {
+   "2026Q4": 0.007692,
+   "2027Q1": 0.0035,
+   "2027Q2": 0.0045,
+   "2027Q3": 0.0055,
+   "2027Q4": 0.0075,
+   "2028Q1": 0.007924,
+   "2028Q2": 0.007787,
+   "2028Q3": 0.012156,
+   "2028Q4": 0.010132
+  },
+  "quarters_act": {
+   "2025Q4": 0.000223,
+   "2026Q1": 0.000935,
+   "2026Q2": 0.001473,
+   "2026Q3": 0.0024
+  },
+  "eps_quarters_est": {
+   "2027Q1": -0.712,
+   "2027Q4": -0.709
+  },
+  "ebitda": {
+   "FY2026": -0.0624,
+   "FY2027": -0.0399,
+   "FY2028": -0.0275
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.01,
+   0.015
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "rev_fy1_note": "2027 매출은 2026의 최소 2배",
+  "opcash_burn_fy1": 0.04,
+  "source": "3Q26 실적 8-K EX-99.1(2026-10-28): 2026 매출 $10M~15M 유지, 2027 매출 2026 수준의 최소 2배, 2027 영업 현금 소진 약 $40M(지금 수준에서 약 1/3 감소). 콜: 출하 대기 고객 PO 약 $10M, 재고 대부분 확보",
+  "next": {
+   "period": "4Q26 매출 $5.2~10.2M(연간 범위 − 9M $4.81M, 계산)"
+  }
+ },
+ "call": {
+  "date": "2026-10-28",
+  "prev_date": "2026-08-06",
+  "tone": "flat",
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_3q_m": 2.4,
+   "gm_3q": 0.5,
+   "opex_3q_m": 22.5,
+   "adj_ebitda_3q_m": -11.1,
+   "german_grant_m": 6.3,
+   "ocf_3q_m": -13.6,
+   "cash_m": 28.9,
+   "po_awaiting_m": 10.0,
+   "movia_engagements": 70,
+   "rif_pct": 0.28
+  },
+  "guidance_changes": [
+   "2026 매출 $10M~15M 유지",
+   "2027 매출 2026의 최소 2배 처음 제시",
+   "2027 영업 현금 소진 약 $40M 처음 제시(2Q는 2026 영업+CAPEX 소진 약 $60M)",
+   "매출총이익률은 '변동' — 2Q의 2026년 40~45% 가이던스 대신 장기 40~50% 발언"
+  ],
+  "new_topics": [
+   "10/26 전 세계 인력 약 28% 감원(주로 함부르크), 비용 약 $4.0M",
+   "출하 대기 고객 PO 약 $10M, 재고 대부분 확보",
+   "독일 정부 R&D 보조금 $6.3M 현금 수령(3Q 기타수익)",
+   "MOVIA Pro 10월 양산 출시, MOVIA 고객 관여 약 25 → 70곳",
+   "Scantinel ELS-FP — AI 데이터센터 광연결용 외부 광원 모듈",
+   "Blue-Band 독점 제휴로 교통 시스템(ITS) 시장 진입",
+   "Overland AI 등 무인 지상 차량 국방 프로그램",
+   "MicroVision Semiconductor가 정부 주계약자의 맞춤 반도체 설계에 선정",
+   "비핵심 자산 현금화·'깨끗한 자본' 조달 검토"
+  ],
+  "dropped_topics": [
+   "2Q의 2026 영업+CAPEX 소진 약 $60M 가이던스 — 3Q에는 2026 숫자 없이 2027 $40M만",
+   "2Q의 2026 매출총이익률 40~45% 가이던스",
+   "2Q의 'MOVIA S 10월 출시' — 3Q에는 MOVIA Pro 출시로 말한다"
+  ],
+  "analyst_focus": [
+   "AmerX — MicroVision Semiconductor의 외부 매출 가능성",
+   "AmerX — 산업·국방·ITS 동시 확대의 원인",
+   "AmerX — 매출총이익률 40~50% 유지 여부",
+   "AmerX — 28% 감원이 영업비용 28% 감소로 이어지나"
+  ],
+  "risks": [
+   "계속기업 불확실성 주석(10-Q) — 12개월 자금 부족 가능성",
+   "2027 소진 목표 $40M vs 9/30 현금 $28.9M(10월 전환사채 $6.6M 상환 전)",
+   "ATM 잔여 $41.1M·워런트 718만 주·전환사채 잔액 $7.8M 희석",
+   "PO 출하가 공급사 의존('일부 공급망 의존 남음', CFO)",
+   "고객 이름 대부분 비공개 — 3Q 매출의 74%가 국방 고객 2곳",
+   "2Q 매출총이익률은 Luminar에서 싸게 산 IRIS 재고 덕(10-Q) — 재고 소진 뒤 하락 가능"
+  ],
+  "source": "3Q26 어닝콜(2026-10-28)·3Q 10-Q·3Q 실적 8-K EX-99.1. 직전 = 2Q 콜(2026-08-06)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "신규",
+    "item": "2027 매출 2026의 최소 2배",
+    "label": "2027 매출 2배",
+    "prior": "2Q: 2027 숫자 없음(MOVIA S가 2027 의미 있는 몫)",
+    "latest": "3Q: 2026 수준의 최소 2배, 2026 말 확정 PO가 받침",
+    "driver": "growth_start",
+    "shift": 0.2,
+    "confidence": 0.8,
+    "source": "3Q 실적 8-K·콜"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "2027 영업 현금 소진 약 $40M",
+    "label": "2027 소진 $40M",
+    "prior": "2Q: 2026 영업+CAPEX 소진 약 $60M",
+    "latest": "3Q: 2027 약 $40M(약 1/3 감소)",
+    "driver": "margin_m0",
+    "shift": 0.05,
+    "confidence": 0.8,
+    "source": "3Q 실적 8-K·콜"
+   },
+   {
+    "id": "F3",
+    "kind": "업데이트",
+    "item": "추가 감원 28%(주로 함부르크)",
+    "label": "28% 감원",
+    "prior": "1Q: 레드먼드 13% 감원",
+    "latest": "10/26 전 세계 약 28% 감원, 비용 약 $4.0M, 2027 1Q까지",
+    "driver": "margin_m0",
+    "shift": 0.03,
+    "confidence": 1.0,
+    "source": "3Q 10-Q 주석 15"
+   },
+   {
+    "id": "F4",
+    "kind": "신규",
+    "item": "출하 대기 PO 약 $10M",
+    "label": "대기 PO $10M",
+    "prior": "2Q: 공급 상황에 따라 3·4Q 출하 시점이 정해진다",
+    "latest": "3Q: 약 $10M PO, 재고 대부분 확보",
+    "driver": "rev0",
+    "shift": 0.001,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "3Q 매출 $2.4M — 발표 전 추정 미달",
+    "label": "3Q 매출 미달",
+    "prior": "발표 전 추정 $4.1M(가이던스 환산)",
+    "latest": "$2.4M(1H 합과 같음)",
+    "driver": "rev0",
+    "shift": -0.001,
+    "confidence": 1.0,
+    "source": "3Q 실적 8-K"
+   },
+   {
+    "id": "F6",
+    "kind": "업데이트",
+    "item": "MOVIA 고객 관여 25 → 70곳",
+    "label": "MOVIA 관여 70곳",
+    "prior": "2Q: 25곳 이상 평가·견적",
+    "latest": "3Q: 70곳 이상, MOVIA Pro 10월 출시",
+    "driver": "growth_start",
+    "shift": 0.05,
+    "confidence": 0.3,
+    "source": "3Q·2Q 콜"
+   },
+   {
+    "id": "F7",
+    "kind": "신규",
+    "item": "Scantinel ELS-FP AI 데이터센터 광연결",
+    "label": "AI 광연결",
+    "prior": "2Q: 칩 위 라이다용 광집적회로",
+    "latest": "3Q: 광연결 외부 광원 모듈 소개",
+    "driver": "growth_decay",
+    "shift": 0.01,
+    "confidence": 0.3,
+    "source": "3Q 실적 8-K·콜"
+   },
+   {
+    "id": "F8",
+    "kind": "부정",
+    "item": "계속기업 불확실성 주석 유지",
+    "label": "계속기업 주석",
+    "prior": "2Q 10-Q 같은 주석",
+    "latest": "3Q 10-Q: 상반기 높은 소진과 현재 유동성으로 12개월 계속기업 의문",
+    "driver": "wacc",
+    "shift": 0.01,
+    "confidence": 1.0,
+    "source": "3Q 10-Q 주석 1"
+   },
+   {
+    "id": "F9",
+    "kind": "반복",
+    "item": "2026 매출 $10~15M 유지",
+    "label": "2026 가이던스",
+    "prior": "$10~15M",
+    "latest": "같음, 9M $4.81M",
+    "driver": "rev0",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   }
+  ]
+ },
+ "scenario_probs": {
+  "bear": 0.6,
+  "base": 0.3,
+  "bull": 0.1
+ },
+ "sources": [
+  "3Q26 10-Q(SEC, 2026-10-30) https://www.sec.gov/Archives/edgar/data/65770/000149315226049319/form10-q.htm",
+  "3Q26 실적 8-K EX-99.1(Item 2.02, 2026-10-28) https://www.sec.gov/Archives/edgar/data/65770/000149315226048989/ex99-1.htm",
+  "레드먼드 임차 해지·전환사채 잔액 8-K/A(2026-11-13) https://www.sec.gov/Archives/edgar/data/65770/000149315226051559/form8-ka.htm",
+  "$2.50 공모·워런트 8-K(2026-08-17) https://www.sec.gov/Archives/edgar/data/65770/000149315226038743/form8-k.htm",
+  "1:15 주식 병합 8-K(2026-07-22) https://www.sec.gov/Archives/edgar/data/65770/000149315226034194/form8-k.htm",
+  "CFO 선임 8-K(2026-08-10) https://www.sec.gov/Archives/edgar/data/65770/000149315226036772/form8-k.htm",
+  "3Q26 어닝콜(2026-10-28)",
+  "2Q26 어닝콜(2026-08-06)",
+  "Fiscal.ai 표준화 재무·추정(11/20 조회)",
+  "Easyconomics(yfinance) 일봉·개요(11/20 조회)",
+  "Quantral 커뮤니티 신호(11/20)",
+  "회사 보도자료 2026-11-16 https://ir.microvision.com/news/press-releases/detail/489/microvision-lidar-powers-commercial-driverless-trucking-at",
+  "회사 보도자료 2026-11-19 https://ir.microvision.com/news/press-releases/detail/490/microvision-and-blue-band-to-support-3-million-federally"
+ ],
+ "raw": {
+  "retrieved_at": "2026-11-20T22:40:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_MVIS",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqCM-MVIS",
+   "price": 0.861,
+   "market_cap": 0.029316,
+   "total_cash": 0.02889,
+   "total_debt": 0.042546,
+   "shares_outstanding": 0.034048,
+   "as_of": "2026-11-19",
+   "balance_date": "2026-09-30",
+   "note": "Fiscal.ai calculated_market_cap $29.93M은 주식 수 34.76M 기준 — 10-Q 표지 주식(34,047,688) × 11/19 종가 $0.861 = $29.32M(yfinance 시총과 같다)로 맞춘다"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.000223,
+    "2026Q1": 0.000935,
+    "2026Q2": 0.001473,
+    "2026Q3": 0.0024
+   },
+   "op_income": {
+    "2025Q4": -0.041411,
+    "2026Q1": -0.023494,
+    "2026Q2": -0.024211,
+    "2026Q3": -0.021337
+   },
+   "note": "Fiscal.ai 표준화 손익 = 10-Q 손익"
+  },
+  "estimates_sales_m": {
+   "2026Q1": 0.935,
+   "2026Q2": 1.473,
+   "2026Q3": 2.4,
+   "2026Q4": 7.692,
+   "2027Q1": 3.5,
+   "2027Q2": 4.5,
+   "2027Q3": 5.5,
+   "2027Q4": 7.5
+  },
+  "balance_2026_09_30": {
+   "cash": 0.02889,
+   "st_investments": 0.0,
+   "lease_current": 0.005255,
+   "lease_lt": 0.014696,
+   "equity": 0.022746,
+   "derivative_liab": 0.006331,
+   "warrant_liab": 0.004928,
+   "inventory": 0.004403,
+   "shares": 0.03243,
+   "debt_current": 0.022595
+  },
+  "balance_after": {
+   "date": "2026-11-12",
+   "note": "10/5 전환사채 $6.6M 현금 상환, 10월 전환 $1.5M(133만 주), 11/12 원금 잔액 $7.8M(8-K). 최소 현금 조건 $17.5M → $10.9M. 레드먼드 리스 부채 약 $10.6M 감소(11/30 효력), 해지 대가 현금 $0.56M + 보증금 $0.92M"
+  },
+  "yfinance": {
+   "ev": 0.042971,
+   "short_pct_float": 0.1846,
+   "short_ratio": 4.35,
+   "inst_own": 0.165,
+   "insider_own": 0.084,
+   "high_52w": 15.3,
+   "low_52w": 0.8,
+   "ma50": 1.325,
+   "ma200": 5.726,
+   "employees": 190,
+   "target": 1.7,
+   "n_analysts": 1,
+   "as_of": "2026-11-19"
+  },
+  "shares_cover_implied": 0.034048,
+  "sec": {
+   "antidilutive_2026_09_30": 0.024176
+  },
+  "tenq_2026_09_30": {
+   "purchase_commitments": "MOVIA L 위탁 생산 약정($9.3M·$1.8M) 중 미결 $2.3M을 $0.6M에 정산, 이익 $1.7M(주석 12). 다른 구매 약정 공시 없음",
+   "restricted_cash": "$1.45M(유동 $0.26M + 비유동 $1.18M)",
+   "customers_10pct": "3Q 국방 고객 3곳 39%·35%·10%, 9M 국방 2곳 31%·20%·산업 1곳 15%·자동차 OEM 1곳 10%. 매출채권의 90%가 이 고객들",
+   "gov_support": "독일 정부 R&D 보조금 $6.3M 현금(3Q 기타수익 $7.97M의 대부분)",
+   "liquidity": "현금 $28.9M + ATM 잔여 $41.1M = 잠재 유동성 $70.0M. 전환사채 최소 현금 조건(당시 $17.5M, 10월 $10.9M). 계속기업 불확실성 주석",
+   "source": "https://www.sec.gov/Archives/edgar/data/65770/000149315226049319/form10-q.htm",
+   "earnings_8k": "3Q 실적 8-K(Item 2.02·9.01) 2026-10-28 0001493152-26-048989"
+  },
+  "retrieved_at_facts": "2026-11-20T22:30+09:00 EDGAR 제출 목록·3Q 10-Q 본문·8-K 6건, 3Q·2Q 콜 전문",
+  "estimates_sales_note": "2026Q1~Q3 실적, 2026Q4·2027 Fiscal.ai 자체 추정(10/31)"
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_MVIS",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2021-12-31",
+    "rev": 557000,
+    "cogs": 48000,
+    "gp": 509000,
+    "sga": 6648000,
+    "rd": 6482000,
+    "da": null,
+    "other": 0,
+    "op": -12621000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 350000,
+    "cogs": 4000,
+    "gp": 346000,
+    "sga": 5877000,
+    "rd": 7593000,
+    "da": null,
+    "other": null,
+    "op": -13124000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 314000,
+    "cogs": 18000,
+    "gp": 296000,
+    "sga": 6265000,
+    "rd": 7700000,
+    "da": null,
+    "other": null,
+    "op": -13669000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 782000,
+    "cogs": 544000,
+    "gp": 238000,
+    "sga": 8737000,
+    "rd": 12692000,
+    "da": null,
+    "other": null,
+    "op": -21191000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 329000,
+    "cogs": 701000,
+    "gp": -372000,
+    "sga": 9692000,
+    "rd": 13851000,
+    "da": null,
+    "other": 15000,
+    "op": -23900000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 1047000,
+    "cogs": 625000,
+    "gp": 422000,
+    "sga": 8743000,
+    "rd": 15584000,
+    "da": null,
+    "other": 10000,
+    "op": -23895000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 5101000,
+    "cogs": 902000,
+    "gp": 4199000,
+    "sga": 9517000,
+    "rd": 14580000,
+    "da": null,
+    "other": 9000,
+    "op": -19889000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 956000,
+    "cogs": 1277000,
+    "gp": -321000,
+    "sga": 9078000,
+    "rd": 17311000,
+    "da": null,
+    "other": null,
+    "op": -26710000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 1900000,
+    "cogs": 1554000,
+    "gp": 346000,
+    "sga": 7746000,
+    "rd": 14204000,
+    "da": null,
+    "other": 3027000,
+    "op": -24631000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 190000,
+    "cogs": 583000,
+    "gp": -393000,
+    "sga": 6599000,
+    "rd": 8736000,
+    "da": null,
+    "other": 22000,
+    "op": -15706000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 1650000,
+    "cogs": 4116000,
+    "gp": -2466000,
+    "sga": 5923000,
+    "rd": 8764000,
+    "da": null,
+    "other": 989000,
+    "op": -18472000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 589000,
+    "cogs": 550000,
+    "gp": 39000,
+    "sga": 6676000,
+    "rd": 7403000,
+    "da": null,
+    "other": null,
+    "op": -14040000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 155000,
+    "cogs": 716000,
+    "gp": -561000,
+    "sga": 6437000,
+    "rd": 7658000,
+    "da": null,
+    "other": null,
+    "op": -14656000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 241000,
+    "cogs": 957000,
+    "gp": -716000,
+    "sga": 4027000,
+    "rd": 7978000,
+    "da": null,
+    "other": null,
+    "op": -12721000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 223000,
+    "cogs": 16325000,
+    "gp": -16102000,
+    "sga": 3185000,
+    "rd": 8681000,
+    "da": null,
+    "other": 1201000,
+    "op": -41411000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 935000,
+    "cogs": 572000,
+    "gp": 363000,
+    "sga": 9511000,
+    "rd": 14445000,
+    "da": null,
+    "other": 9000,
+    "op": -23494000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 1473000,
+    "cogs": 831000,
+    "gp": 642000,
+    "sga": 9211000,
+    "rd": 15702000,
+    "da": null,
+    "other": 0,
+    "op": -24211000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 2400000,
+    "cogs": 1201000,
+    "gp": 1199000,
+    "sga": 9359000,
+    "rd": 13180000,
+    "da": null,
+    "other": 0,
+    "op": -21337000
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": null,
+  "ev_ebitda_fwd": null,
+  "pe_fwd2": null,
+  "ev_ebitda_fwd2": null,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": null
+ },
+ "forward": {
+  "as_of": "2026-11-20",
+  "ntm": {
+   "eps": null,
+   "ebitda": -46509000,
+   "ebit": -66658000,
+   "revenue": 21192000,
+   "rev_ttm": 5031000
+  },
+  "horizons": {
+   "2": {
+    "eps": null,
+    "ebitda": -34419725,
+    "ext": 0
+   },
+   "3": {
+    "eps": null,
+    "ebitda": null,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "ops": {
+  "q": [
+   {
+    "period": "2022-12-31",
+    "rev": 0,
+    "cogs": 33000,
+    "inventory": 1861000,
+    "ocf": -8403000,
+    "capex": -2342000,
+    "fcf": null
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 782000,
+    "cogs": 544000,
+    "inventory": 3116000,
+    "ocf": -13482000,
+    "capex": -615000,
+    "fcf": null
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 329000,
+    "cogs": 701000,
+    "inventory": 2933000,
+    "ocf": -16642000,
+    "capex": -869000,
+    "fcf": null
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 1047000,
+    "cogs": 625000,
+    "inventory": 3616000,
+    "ocf": -20388000,
+    "capex": -497000,
+    "fcf": null
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 5101000,
+    "cogs": 902000,
+    "inventory": 3874000,
+    "ocf": -16578000,
+    "capex": 46000,
+    "fcf": null
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 956000,
+    "cogs": 1277000,
+    "inventory": 3738000,
+    "ocf": -20759000,
+    "capex": -114000,
+    "fcf": null
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 1900000,
+    "cogs": 1554000,
+    "inventory": 4203000,
+    "ocf": -18634000,
+    "capex": -166000,
+    "fcf": null
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 190000,
+    "cogs": 583000,
+    "inventory": 4486000,
+    "ocf": -14091000,
+    "capex": 9000,
+    "fcf": null
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 1650000,
+    "cogs": 4116000,
+    "inventory": 2294000,
+    "ocf": -15056000,
+    "capex": -103000,
+    "fcf": null
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 589000,
+    "cogs": 550000,
+    "inventory": 2534000,
+    "ocf": -14098000,
+    "capex": -99000,
+    "fcf": null
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 155000,
+    "cogs": 716000,
+    "inventory": 6128000,
+    "ocf": -12729000,
+    "capex": -208000,
+    "fcf": null
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 241000,
+    "cogs": 957000,
+    "inventory": 8131000,
+    "ocf": -16488000,
+    "capex": -128000,
+    "fcf": null
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 223000,
+    "cogs": 16325000,
+    "inventory": 745000,
+    "ocf": -15405000,
+    "capex": -244000,
+    "fcf": null
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 935000,
+    "cogs": 572000,
+    "inventory": 4028000,
+    "ocf": -16443000,
+    "capex": -143000,
+    "fcf": null
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 1473000,
+    "cogs": 831000,
+    "inventory": 3660000,
+    "ocf": -19145000,
+    "capex": -305000,
+    "fcf": null
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 2400000,
+    "cogs": 1201000,
+    "inventory": 4403000,
+    "ocf": -13636000,
+    "capex": -1367000,
+    "fcf": null
+   }
+  ],
+  "orders_label": null,
+  "backlog_label": null,
+  "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표)·company_segments_and_kpis"
+ },
+ "assets": {
+  "as_of": "3Q26",
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "note_periods": [
+   "2025-12-31",
+   "2024-12-31"
+  ],
+  "ppe": [
+   {
+    "name": "유형자산 합계(항목 미분해)",
+    "kind": "other",
+    "gross": [
+     26.146,
+     27.281
+    ],
+    "accum": [
+     null,
+     null
+    ],
+    "split": false
+   }
+  ],
+  "ppe_accum": [
+   21.866,
+   20.22
+  ],
+  "intangibles": [
+   {
+    "name": "무형자산 합계(항목 미분해)",
+    "kind": "finite",
+    "gross": [
+     16.027,
+     20.172
+    ],
+    "accum": [
+     -5.938,
+     -5.019
+    ],
+    "acquired": true,
+    "split": false
+   }
+  ],
+  "dep_annual": [
+   {
+    "year": 2025,
+    "dep": 1.4,
+    "amort": 0.9
+   },
+   {
+    "year": 2024,
+    "dep": 2.1,
+    "amort": 2.1
+   }
+  ],
+  "quarters": [
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "da": 1.676,
+    "ppe_net": 7.668,
+    "ppe_gross": 27.82
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "da": 1.674,
+    "ppe_net": 7.061,
+    "ppe_gross": 27.281
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "da": 1.408,
+    "ppe_net": 6.816,
+    "ppe_gross": 27.534
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "da": 1.544,
+    "ppe_net": 6.739,
+    "ppe_gross": 28.033
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "da": 1.395,
+    "ppe_net": 6.574,
+    "ppe_gross": 28.115
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "da": 1.477,
+    "ppe_net": 4.28,
+    "ppe_gross": 26.146
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "da": 2.368,
+    "ppe_net": 17.3,
+    "ppe_gross": 40.235
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "da": 2.976,
+    "ppe_net": 15.787,
+    "ppe_gross": 40.13
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "da": 2.93,
+    "ppe_net": 15.736,
+    "ppe_gross": 41.5
+   }
+  ],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기)",
+  "roic": {
+   "periods": [
+    "TTM 3Q26",
+    "TTM 3Q25"
+   ],
+   "rev": [
+    5.031,
+    2.635
+   ],
+   "ebit": [
+    -110.453,
+    -59.889
+   ],
+   "acq_amort": [
+    0.9,
+    2.1
+   ],
+   "tax_rate": 0.21,
+   "lease_liab": [
+    19.925,
+    17.588,
+    13.811
+   ],
+   "lease_rate": 0.056,
+   "impairment_cum": 0.0,
+   "capital": {
+    "nwc": [
+     -3.458,
+     10.047,
+     2.195
+    ],
+    "ppe": [
+     15.736,
+     6.574,
+     7.668
+    ],
+    "rou": [
+     16.84,
+     15.365,
+     12.09
+    ],
+    "goodwill": [
+     3.677,
+     0.0,
+     0.0
+    ],
+    "intangibles": [
+     13.358,
+     10.281,
+     12.563
+    ],
+    "other": [
+     -1.321,
+     -1.68,
+     -0.134
+    ]
+   },
+   "note": "SEC 공시 데이터 자동 초안 — 운전자본 = 매출채권 + 재고 + 선급 − (매입채무 + 미지급비용 + 선수수익), 현금 제외. 손상 누계는 공시 데이터 수록분"
+  },
+  "hist": [
+   {
+    "q": "4Q22",
+    "end": "2022-12-31",
+    "rev": 0.0,
+    "ebit": -13.995,
+    "cogs": 0.033,
+    "capex": 2.342,
+    "da": 0.821,
+    "amort": -0.03,
+    "bal": {
+     "ar": 0.0,
+     "inv": 1.861,
+     "prepaid": 2.306,
+     "ap": 2.061,
+     "accrued": 2.058,
+     "deferred_rev": null,
+     "ppe": 6.83,
+     "rou": 14.579,
+     "goodwill": null,
+     "intangibles": 0.075,
+     "other": 0
+    },
+    "lease": 15.675
+   },
+   {
+    "q": "1Q23",
+    "end": "2023-03-31",
+    "rev": 0.782,
+    "ebit": -21.191,
+    "cogs": 0.544,
+    "capex": 0.615,
+    "da": 2.524,
+    "amort": 0.4,
+    "bal": {
+     "ar": 0.506,
+     "inv": 3.116,
+     "prepaid": 2.182,
+     "ap": 3.629,
+     "accrued": 4.223,
+     "deferred_rev": null,
+     "ppe": 10.284,
+     "rou": 14.746,
+     "goodwill": null,
+     "intangibles": 19.0,
+     "other": -0.017
+    },
+    "lease": 15.939
+   },
+   {
+    "q": "2Q23",
+    "end": "2023-06-30",
+    "rev": 0.329,
+    "ebit": -23.9,
+    "cogs": 0.701,
+    "capex": 0.869,
+    "da": 1.627,
+    "amort": 0.6,
+    "bal": {
+     "ar": 0.821,
+     "inv": 2.933,
+     "prepaid": 2.332,
+     "ap": 1.89,
+     "accrued": 6.595,
+     "deferred_rev": null,
+     "ppe": 9.949,
+     "rou": 14.422,
+     "goodwill": null,
+     "intangibles": 18.321,
+     "other": -0.081
+    },
+    "lease": 15.656
+   },
+   {
+    "q": "3Q23",
+    "end": "2023-09-30",
+    "rev": 1.047,
+    "ebit": -23.895,
+    "cogs": 0.625,
+    "capex": 0.497,
+    "da": 2.137,
+    "amort": 0.6,
+    "bal": {
+     "ar": 0.74,
+     "inv": 3.616,
+     "prepaid": 5.765,
+     "ap": 2.294,
+     "accrued": 7.204,
+     "deferred_rev": null,
+     "ppe": 9.461,
+     "rou": 14.223,
+     "goodwill": null,
+     "intangibles": 17.766,
+     "other": -0.597
+    },
+    "lease": 15.459
+   },
+   {
+    "q": "4Q23",
+    "end": "2023-12-31",
+    "rev": 5.101,
+    "ebit": -19.889,
+    "cogs": 0.902,
+    "capex": -0.046,
+    "da": 1.576,
+    "amort": 0.5,
+    "bal": {
+     "ar": 0.949,
+     "inv": 3.874,
+     "prepaid": 4.89,
+     "ap": 2.271,
+     "accrued": 8.64,
+     "deferred_rev": null,
+     "ppe": 9.032,
+     "rou": 13.758,
+     "goodwill": null,
+     "intangibles": 17.235,
+     "other": -0.614
+    },
+    "lease": 15.037
+   },
+   {
+    "q": "1Q24",
+    "end": "2024-03-31",
+    "rev": 0.956,
+    "ebit": -26.71,
+    "cogs": 1.277,
+    "capex": 0.114,
+    "da": 1.8,
+    "amort": 0.6,
+    "bal": {
+     "ar": 1.121,
+     "inv": 3.738,
+     "prepaid": 4.302,
+     "ap": 2.161,
+     "accrued": 9.971,
+     "deferred_rev": null,
+     "ppe": 8.549,
+     "rou": 13.212,
+     "goodwill": null,
+     "intangibles": 16.662,
+     "other": -0.27
+    },
+    "lease": 14.525
+   },
+   {
+    "q": "2Q24",
+    "end": "2024-06-30",
+    "rev": 1.9,
+    "ebit": -24.631,
+    "cogs": 1.554,
+    "capex": 0.166,
+    "da": 1.77,
+    "amort": 0.6,
+    "bal": {
+     "ar": 1.97,
+     "inv": 4.203,
+     "prepaid": 3.646,
+     "ap": 1.448,
+     "accrued": 8.894,
+     "deferred_rev": null,
+     "ppe": 8.131,
+     "rou": 12.348,
+     "goodwill": null,
+     "intangibles": 13.081,
+     "other": -0.12
+    },
+    "lease": 14.049
+   },
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "rev": 0.19,
+    "ebit": -15.706,
+    "cogs": 0.583,
+    "capex": -0.009,
+    "da": 1.676,
+    "amort": 0.5,
+    "bal": {
+     "ar": 0.232,
+     "inv": 4.486,
+     "prepaid": 4.857,
+     "ap": 1.487,
+     "accrued": 5.893,
+     "deferred_rev": null,
+     "ppe": 7.668,
+     "rou": 12.09,
+     "goodwill": null,
+     "intangibles": 12.563,
+     "other": -0.134
+    },
+    "lease": 13.811
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "rev": 1.65,
+    "ebit": -18.472,
+    "cogs": 4.116,
+    "capex": 0.103,
+    "da": 1.674,
+    "amort": 0.5,
+    "bal": {
+     "ar": 0.926,
+     "inv": 2.294,
+     "prepaid": 4.287,
+     "ap": 1.132,
+     "accrued": 2.542,
+     "deferred_rev": null,
+     "ppe": 7.061,
+     "rou": 16.746,
+     "goodwill": null,
+     "intangibles": 10.972,
+     "other": -1.733
+    },
+    "lease": 18.636
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "rev": 0.589,
+    "ebit": -14.04,
+    "cogs": 0.55,
+    "capex": 0.099,
+    "da": 1.408,
+    "amort": 0.2,
+    "bal": {
+     "ar": 0.252,
+     "inv": 2.534,
+     "prepaid": 7.1,
+     "ap": 1.268,
+     "accrued": 2.194,
+     "deferred_rev": null,
+     "ppe": 6.816,
+     "rou": 16.306,
+     "goodwill": null,
+     "intangibles": 10.739,
+     "other": -1.688
+    },
+    "lease": 18.415
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "rev": 0.155,
+    "ebit": -14.656,
+    "cogs": 0.716,
+    "capex": 0.208,
+    "da": 1.544,
+    "amort": 0.3,
+    "bal": {
+     "ar": 0.104,
+     "inv": 6.128,
+     "prepaid": 5.468,
+     "ap": 1.564,
+     "accrued": 2.267,
+     "deferred_rev": null,
+     "ppe": 6.739,
+     "rou": 16.123,
+     "goodwill": null,
+     "intangibles": 10.51,
+     "other": -1.735
+    },
+    "lease": 18.648
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "rev": 0.241,
+    "ebit": -12.721,
+    "cogs": 0.957,
+    "capex": 0.128,
+    "da": 1.395,
+    "amort": 0.2,
+    "bal": {
+     "ar": 0.04,
+     "inv": 8.131,
+     "prepaid": 6.969,
+     "ap": 1.339,
+     "accrued": 3.754,
+     "deferred_rev": null,
+     "ppe": 6.574,
+     "rou": 15.365,
+     "goodwill": null,
+     "intangibles": 10.281,
+     "other": -1.68
+    },
+    "lease": 17.588
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "rev": 0.223,
+    "ebit": -41.411,
+    "cogs": 16.325,
+    "capex": 0.244,
+    "da": 1.477,
+    "amort": 0.2,
+    "bal": {
+     "ar": 0.047,
+     "inv": 0.745,
+     "prepaid": 4.989,
+     "ap": 1.628,
+     "accrued": 5.426,
+     "deferred_rev": null,
+     "ppe": 4.28,
+     "rou": 14.075,
+     "goodwill": null,
+     "intangibles": 0.032,
+     "other": -1.486
+    },
+    "lease": 17.515
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "rev": 0.935,
+    "ebit": -23.494,
+    "cogs": 0.572,
+    "capex": 0.143,
+    "da": 2.368,
+    "amort": 0.2,
+    "bal": {
+     "ar": 0.732,
+     "inv": 4.028,
+     "prepaid": 2.858,
+     "ap": 4.537,
+     "accrued": 7.542,
+     "deferred_rev": 0.411,
+     "ppe": 17.3,
+     "rou": 17.929,
+     "goodwill": 3.677,
+     "intangibles": 13.662,
+     "other": -1.347
+    },
+    "lease": 21.244
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "rev": 1.473,
+    "ebit": -24.211,
+    "cogs": 0.831,
+    "capex": 0.305,
+    "da": 2.976,
+    "amort": 0.3,
+    "bal": {
+     "ar": 0.915,
+     "inv": 3.66,
+     "prepaid": 2.021,
+     "ap": 5.876,
+     "accrued": 7.511,
+     "deferred_rev": 0.253,
+     "ppe": 15.787,
+     "rou": 17.655,
+     "goodwill": 3.677,
+     "intangibles": 13.684,
+     "other": -1.424
+    },
+    "lease": 20.862
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "rev": 2.4,
+    "ebit": -21.337,
+    "cogs": 1.201,
+    "capex": 1.367,
+    "da": 2.93,
+    "amort": 0.4,
+    "bal": {
+     "ar": 1.404,
+     "inv": 4.403,
+     "prepaid": 2.887,
+     "ap": 6.356,
+     "accrued": 5.664,
+     "deferred_rev": 0.132,
+     "ppe": 15.736,
+     "rou": 16.84,
+     "goodwill": 3.677,
+     "intangibles": 13.358,
+     "other": -1.321
+    },
+    "lease": 19.925
+   }
+  ],
+  "intangible_cap": {
+   "rd": [
+    [
+     2009,
+     24.577
+    ],
+    [
+     2010,
+     21.6
+    ],
+    [
+     2011,
+     15.279
+    ],
+    [
+     2012,
+     12.851
+    ],
+    [
+     2013,
+     10.544
+    ],
+    [
+     2014,
+     9.067
+    ],
+    [
+     2015,
+     8.68
+    ],
+    [
+     2016,
+     12.134
+    ],
+    [
+     2017,
+     15.096
+    ],
+    [
+     2018,
+     24.666
+    ],
+    [
+     2019,
+     18.661
+    ],
+    [
+     2020,
+     9.84
+    ],
+    [
+     2021,
+     24.111
+    ],
+    [
+     2022,
+     30.413
+    ],
+    [
+     2023,
+     56.707
+    ],
+    [
+     2024,
+     49.015
+    ],
+    [
+     2025,
+     31.72
+    ]
+   ],
+   "sga": [
+    [
+     2009,
+     14.54
+    ],
+    [
+     2010,
+     15.252
+    ],
+    [
+     2011,
+     13.314
+    ],
+    [
+     2012,
+     11.252
+    ],
+    [
+     2013,
+     8.757
+    ],
+    [
+     2014,
+     7.005
+    ],
+    [
+     2015,
+     7.879
+    ],
+    [
+     2016,
+     8.743
+    ],
+    [
+     2017,
+     10.156
+    ],
+    [
+     2018,
+     9.523
+    ],
+    [
+     2019,
+     8.133
+    ],
+    [
+     2020,
+     5.917
+    ],
+    [
+     2021,
+     22.256
+    ],
+    [
+     2022,
+     24.041
+    ],
+    [
+     2023,
+     36.689
+    ],
+    [
+     2024,
+     29.346
+    ],
+    [
+     2025,
+     20.325
+    ]
+   ]
+  },
+  "missing": [
+   "유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)",
+   "무형자산 항목(10-K 주석에서 모델이 채움)"
+  ]
+ },
+ "main_metric": "eps",
+ "main_metric_why": "선행 EPS·EBITDA가 모두 적자다(다음 4개 분기 조정 EBITDA 약 −$46.5M). 이익 배수를 쓸 수 없어 EV/매출로 내려간다",
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai 표준화 재무(최근 4분기 매출·영업이익, 2026-09-30 재무상태표)·company_daily_ratios(11/19). 상장 라이다 4곳(Ouster·Hesai·Aeva·Innoviz). Hesai 매출·현금은 위안화를 7.1로 나눠 달러로 바꿨다(계산)",
+ "peers": [
+  {
+   "ticker": "OUST",
+   "rev": 0.224707,
+   "ebit_margin": -0.2564,
+   "mcap": 1.946834,
+   "pb": 3.47,
+   "debt": 0.0,
+   "cash": 0.419796,
+   "ev_sales": 6.86,
+   "growth": 0.637,
+   "goodwill": 0.038525,
+   "intangibles": 0.030791,
+   "ntm_growth": 0.214
+  },
+  {
+   "ticker": "HSAI",
+   "rev": 0.508474,
+   "ebit_margin": 0.0438,
+   "mcap": 1.970528,
+   "pb": 1.46,
+   "debt": 0.0,
+   "cash": 0.984955,
+   "ev_sales": 2.05,
+   "growth": 0.314,
+   "goodwill": 0.0,
+   "intangibles": 0.017748,
+   "pe_fwd": 20.75,
+   "ev_ebitda_fwd": 12.89,
+   "ntm_growth": 0.118,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 28.54,
+     "ev_ebitda_fwd": 29.33
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 22.24,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 19.69,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 16.87,
+     "ev_ebitda_fwd": null
+    }
+   ]
+  },
+  {
+   "ticker": "AEVA",
+   "rev": 0.024688,
+   "ebit_margin": -5.586,
+   "mcap": 0.643745,
+   "pb": 14.88,
+   "debt": 0.0,
+   "cash": 0.147502,
+   "ev_sales": 24.23,
+   "growth": 0.629,
+   "goodwill": 0.0,
+   "intangibles": 0.00015,
+   "ntm_growth": 0.505
+  },
+  {
+   "ticker": "INVZ",
+   "rev": 0.049989,
+   "ebit_margin": -1.735,
+   "mcap": 0.032854,
+   "pb": 0.55,
+   "debt": 0.0,
+   "cash": 0.054403,
+   "ev_sales": 0.24,
+   "growth": 0.032,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "ntm_growth": -0.026
+  }
+ ],
+ "next_event": {
+  "date": "2027-03-04",
+  "tag": "4Q26 실적(날짜 미공지 — 2026년 4Q25 발표는 3/4, 추정)"
+ },
+ "events": [
+  {
+   "date": "2026-01-02",
+   "tag": "Scantinel 자산 인수 마감(1/1)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-02-03",
+   "tag": "Luminar 라이다 자산 $33.0M 인수 마감",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-02-24",
+   "tag": "전환사채 $43.0M 교환·발행(2028-03 만기)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-03-05",
+   "tag": "4Q25 실적 다음 날 −29.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-14",
+   "tag": "1Q26 실적 다음 날 −21.1%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-06-02",
+   "tag": "−31.7%(원인 미확인)",
+   "kind": "news"
+  },
+  {
+   "date": "2026-07-22",
+   "tag": "1:15 주식 병합 발표(8/1 효력)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-08-06",
+   "tag": "2Q26 실적·매출총이익률 가이던스 상향",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-14",
+   "tag": "주당 $2.50 공모·워런트 680만 주, −40.6%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-08-27",
+   "tag": "CFO Christine Chambers 취임",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "3Q26 실적·2027 소진 $40M 목표·28% 감원",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-06",
+   "tag": "레드먼드 임차 2건 해지 계약(의무 $12.8M 감소)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "전환사채 잔액 $7.8M 공시",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-16",
+   "tag": "Kodiak AI 무인 트럭 라이다 보도자료",
+   "kind": "news"
+  },
+  {
+   "date": "2026-11-19",
+   "tag": "Blue-Band와 루이빌 $3M 연방 지원 교통 사업",
+   "kind": "news"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-03",
+   "kind": "내러티브",
+   "tag": "Luminar 라이다 자산 인수"
+  },
+  {
+   "date": "2026-03-04",
+   "kind": "실적",
+   "tag": "4Q25 실적, 2026 매출 $10~15M 제시",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-13",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "2Q26 실적, GM 가이던스 상향",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-14",
+   "kind": "내러티브",
+   "tag": "$2.50 공모·워런트"
+  },
+  {
+   "date": "2026-10-28",
+   "kind": "실적",
+   "tag": "3Q26 매출 $2.4M, 28% 감원",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "multiple_view": {
+  "adj": -0.3,
+  "why": "동종 EV/매출 중앙값(약 4.5배)은 현금이 시총보다 많은 Hesai·Ouster·Aeva가 끌어올린다. 계속기업 주석이 있고 2027 소진($40M)이 현금보다 큰 회사에 그대로 쓰면 과대라 상한(−30%)까지 내린다. 같은 처지의 Innoviz는 0.24배다"
+ },
+ "scenario_probs_why": "계속기업 주석과 2027 소진 목표($40M)가 현금($28.9M, 10월 상환 전)보다 커서 증자 없이는 기본 시나리오가 성립하지 않는다. 표본 1명 추정이라 계산 확률을 그대로 믿기 어려워 약세를 높인다",
+ "overrides": {},
+ "recurring": {
+  "share": 0.0,
+  "kind": "센서 하드웨어 판매 — 소프트웨어·서비스 반복 매출 공시 없음",
+  "base": "IRIS 기존 고객(Luminar에서 이어받은 산업·국방 고객)과 MOVIA 고객",
+  "base_growth": null,
+  "retention": null,
+  "years_to_recurring": 3,
+  "source": "3Q 10-Q 매출 인식(시점 인식 센서 판매가 대부분). 반복 매출은 양산 프로그램(장기 개발 계약 → 양산 납품) 단계에서 생긴다 — 약 3년(추정)"
+ },
+ "backlog": {
+  "conversion_months": 12.5,
+  "book_to_bill": null,
+  "rpo_12m_share": null,
+  "coverage_next_fy": null,
+  "revenue_growth": 3.81,
+  "top_customer_share": 0.39,
+  "source": "3Q 콜: 출하 대기 PO 약 $10M ÷ 3Q 월평균 매출 $0.8M = 약 12.5개월(계산). RPO 주석 없음. 3Q 최대 고객 39%(10-Q)"
+ },
+ "ma": {
+  "deals": [
+   {
+    "target": "Luminar 라이다 자산",
+    "closed": "2026-02-03",
+    "price": 0.033177,
+    "target_rev": null,
+    "integration_cost": 0.0028,
+    "financing": {
+     "cash": 0.033177,
+     "debt": 0.0,
+     "rate": 0.0,
+     "new_shares": 0
+    },
+    "synergies": [
+     {
+      "type": "원가",
+      "name": "레드먼드 → 올랜도 통합",
+      "run_rate": 0.0122,
+      "full_year": 2027,
+      "prob": 0.7,
+      "mechanism": "레드먼드 임차 2건 해지(의무 $12.8M 감소)와 13%·28% 감원으로 중복 인력·시설을 없앤다",
+      "source": "10-Q 주석 15·8-K/A 2026-11-13(연간 효과는 2026 소진 $60M → 2027 $40M 차이의 일부, Chiip 추정)"
+     },
+     {
+      "type": "매출",
+      "name": "IRIS 재고·고객 재가동",
+      "run_rate": 0.01,
+      "full_year": 2027,
+      "prob": 0.5,
+      "margin": 0.45,
+      "mechanism": "Luminar 파산으로 끊긴 IRIS 산업·국방 고객에 싸게 산 재고로 다시 공급",
+      "source": "3Q 콜(2026 매출의 70~80%가 IRIS, 2Q 콜) — 금액은 Chiip 추정"
+     }
+    ]
+   },
+   {
+    "target": "Scantinel 자산",
+    "closed": "2026-01-01",
+    "price": 0.002244,
+    "target_rev": 0.0,
+    "integration_cost": 0.0001,
+    "financing": {
+     "cash": 0.002244,
+     "debt": 0.0,
+     "rate": 0.0,
+     "new_shares": 0
+    },
+    "synergies": [
+     {
+      "type": "매출",
+      "name": "FMCW 라이다·광연결 모듈",
+      "run_rate": 0.002,
+      "full_year": 2028,
+      "prob": 0.2,
+      "margin": 0.4,
+      "mechanism": "1550nm FMCW 광집적회로를 라이다와 AI 데이터센터 광연결 모듈(ELS-FP)에 쓴다",
+      "source": "3Q 실적 8-K — 금액 추정"
+     }
+    ]
+   }
+  ],
+  "acquirer": {
+   "eps": null,
+   "shares": 0.034048,
+   "tax": 0.21,
+   "year0": 2026
+  },
+  "note": "Luminar 자산은 파산 법원 승인 경매($33.0M + 이행비 $0.2M, 영업권 $3.68M), Scantinel은 독일 회생 절차 중 $2.2M(염가매수 이익 $0.15M). 3Q까지 Scantinel 매출 0, 순손실 9M $3.3M(10-Q)"
+ },
+ "pq": {
+  "none": "매출이 분기 $0.2~2.4M 초기 출하라 가격·물량 사이클을 잴 수 없다(ASP·출하 대수 미공시)"
+ },
+ "sync": {
+  "none": "매출이 초기 출하 단계(분기 $0.2~2.4M)라 무역·PPI 지표와 시차 상관을 잴 의미가 없다"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인 병목 틀(sector_data 해당 없음)"
+ },
+ "midterm": {
+  "exposure": {
+   "defense": 0.4,
+   "tariff_codify": 0.8
+  },
+  "sub": "electronics",
+  "etf": "SMH",
+  "basis": "3Q 매출의 84%가 국방 고객 3곳(10-Q). NDAA 준수·미국 생산을 내세운다(콜). 정부 직접 계약은 미공시 — 노출은 가설"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "조정 없음"
+ },
+ "names": [
+  "MicroVision",
+  "Luminar",
+  "Luminar Technologies",
+  "Scantinel",
+  "Scantinel Photonics",
+  "Ouster",
+  "Hesai",
+  "Aeva",
+  "Innoviz",
+  "AEye",
+  "Kodiak",
+  "Kodiak AI",
+  "Overland AI",
+  "Lake Fusion Technologies",
+  "Timberline Aerospace",
+  "Blue-Band",
+  "Robinson Unmanned",
+  "Avular",
+  "JAE Green",
+  "AmerX",
+  "WestPark",
+  "WestPark Capital",
+  "Deutsche Bank",
+  "Mizuho",
+  "Craig-Hallum",
+  "Ropes & Gray",
+  "Glen DeVos",
+  "Christine Chambers",
+  "Drew Markham",
+  "Simon Biddiscombe",
+  "Stephen Hrynewich",
+  "Steve Hrynewich",
+  "Black Forest Engineering",
+  "Fusemachines",
+  "PetMed Express",
+  "RealNetworks",
+  "Rosetta Stone",
+  "Redmond East Office Park",
+  "Millennium",
+  "Vanguard",
+  "Hudson Bay",
+  "Nasdaq",
+  "ZF",
+  "Casey Ryan",
+  "James",
+  "DeVos"
+ ],
+ "terms": {
+  "IRIS": "Luminar에서 인수한 1550nm 장거리 라이다",
+  "HALO": "IRIS 다음 세대의 작고 싼 1550nm 장거리 라이다",
+  "MOVIA": "MicroVision의 단·중거리 플래시 라이다 제품군",
+  "MOVIA L": "기존 플래시 라이다",
+  "MOVIA Pro": "2026-10 출시한 MOVIA 새 세대(옛 이름 MOVIA S)",
+  "MOVIA S": "MOVIA Pro의 개발 단계 이름",
+  "MOVIA Air": "드론 탑재용 라이다·카메라 매핑 장치",
+  "MAVIN": "MEMS 거울 905nm 장거리 라이다",
+  "ELS-FP": "AI 데이터센터 광연결용 외부 광원 모듈",
+  "FMCW": "주파수를 바꿔 쏘아 거리·속도를 함께 재는 방식",
+  "MSI": "MicroVision Semiconductor(콜로라도스프링스 맞춤 반도체 설계 조직)",
+  "NDAA": "미국 국방수권법(중국산 부품 배제 조항)",
+  "ITS": "지능형 교통 시스템",
+  "UGV": "무인 지상 차량",
+  "ISR": "정보·감시·정찰",
+  "ADAS": "첨단 운전자 보조 시스템",
+  "OEM": "완성품 제조사",
+  "Tier 1": "완성차에 직접 납품하는 1차 부품사",
+  "ATM": "시장가 수시 유상증자",
+  "VWAP": "거래량 가중 평균 가격",
+  "PO": "구매 주문서",
+  "MEMS": "미세 전자기계 소자",
+  "ASIC": "특정 용도 맞춤 반도체",
+  "InGaAs": "인듐갈륨비소(1550nm 빛 수광 소재)",
+  "FCC": "미국 연방통신위원회",
+  "LiDAR": "레이저로 거리를 재는 센서",
+  "lidar": "레이저로 거리를 재는 센서",
+  "ToF": "빛이 돌아오는 시간으로 거리를 재는 방식",
+  "SoC": "시스템온칩",
+  "PIC": "광집적회로",
+  "FP": "작은 폼팩터 패키지",
+  "MD&A": "10-Q 경영진 재무 분석",
+  "MD": "10-Q 경영진 재무 분석(MD&A)",
+  "JP": "일본"
+ },
+ "pipeline": {
+  "as_of": "2026-10-28",
+  "reported_backlog": 0.01,
+  "backlog_label": "출하 대기 고객 PO 약 $10M(3Q 콜)",
+  "summary": "숫자로 확인되는 것은 출하 대기 PO 약 $10M뿐이다. 건설·광산 장비 OEM 장기 개발 계약, 정부 주계약자 반도체 설계 선정, Blue-Band 제휴는 금액이 공시되지 않았고 자동차 양산 수주는 없다",
+  "items": [
+   {
+    "name": "출하 대기 고객 PO",
+    "status": "확정",
+    "total": 0.01,
+    "progress": 0.0,
+    "margin": 0.5,
+    "speed": "재고 대부분 확보, 4Q에 IRIS 출하가 크게 늘 것(CEO)",
+    "start": "2026-10",
+    "end": "2026-12",
+    "blockers": [
+     "일부 공급망 의존(CFO)",
+     "출하 시점"
+    ],
+    "source": "3Q 콜",
+    "margin_basis": "3Q 전사 매출총이익률 50%(10-Q) — 건별 미공시"
+   },
+   {
+    "name": "건설·광산 장비 OEM 장기 개발 계약",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "IRIS → HALO 전환 경로",
+    "start": "2026",
+    "end": "미확인",
+    "blockers": [
+     "HALO 양산 샘플(2027 초)",
+     "계약 금액 미공시"
+    ],
+    "source": "3Q 실적 8-K"
+   },
+   {
+    "name": "정부 주계약자 맞춤 반도체 설계(MSI)",
+    "status": "확정",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "선정 단계",
+    "start": "2026",
+    "end": "미확인",
+    "blockers": [
+     "금액 미공시"
+    ],
+    "source": "3Q 실적 8-K"
+   },
+   {
+    "name": "Blue-Band ITS 제휴·루이빌 사업",
+    "status": "조건부",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "제휴 발표(10월), 루이빌 $3M 연방 지원 사업 참여(11/19)",
+    "start": "2026-10",
+    "end": "미확인",
+    "blockers": [
+     "사업 총액 $3M 중 MicroVision 몫 미공시"
+    ],
+    "source": "회사 보도자료 2026-11-19·3Q 콜"
+   },
+   {
+    "name": "아시아태평양 자율주행 시범",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "IRIS 시범, HALO 전환 가능",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "양산 결정"
+    ],
+    "source": "3Q 실적 8-K"
+   },
+   {
+    "name": "MOVIA Pro 고객 70곳",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "10월 출시, 평가·견적",
+    "start": "2026-10",
+    "end": "미확인",
+    "blockers": [
+     "평가 → 양산 전환"
+    ],
+    "source": "3Q 콜",
+    "note": "출시 초기 이익률이 얇다(CEO, 3Q 콜)"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "센서 조립 라인(대수 미공시)",
+  "summary": "IRIS는 Luminar에서 이어받은 올랜도 공장에서 만들고, MOVIA L은 외부 위탁 생산사가 만들었다. 2026년 레드먼드의 엔지니어링·제조·공급망을 올랜도로 모았고 레드먼드 임차는 11/30 끝난다. 명목 캐파·가동률은 공시하지 않는다",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "10-Q는 올랜도 생산 시설을 언급하지만 생산 능력 수치는 없다",
+   "source": "3Q 10-Q 주석 15·3Q 콜"
+  },
+  "plans": [
+   {
+    "name": "올랜도 MOVIA 생산 확충",
+    "stage": "발표",
+    "online": "2027",
+    "capex": "미확인",
+    "source": "2Q 콜('올랜도 캐파 확충' 발언, 수치 미확인)",
+    "blocker": "자금·수요 확인",
+    "add": "미확인"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 0.000679,
+    "rev": 0.001208,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 3Q26",
+    "capex": 0.002059,
+    "rev": 0.005031,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.0026,
+    "rev": 0.0125,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "현금흐름표 유형자산 구매(FY2025 4개 분기 합 $0.68M, 9M26 $1.82M). FY2026은 Fiscal.ai 추정",
+  "facilities": {
+   "count": 6,
+   "count_basis": "3Q 10-Q 리스 주석: 레드먼드 2곳(11/30 해지), 함부르크·콜로라도스프링스·올랜도·버지니아 샹틸리 사무실, 버지니아 워런턴 활주로(2026-09 만기·연장 옵션). 활주로는 시험장이라 시설 수에서 뺐다",
+   "source": "https://www.sec.gov/Archives/edgar/data/65770/000149315226049319/form10-q.htm",
+   "items": [
+    {
+     "name": "올랜도 시설",
+     "location": "미국 플로리다 Orlando",
+     "owned": "임차",
+     "use": "본사·IRIS 생산·연구",
+     "capacity": "미확인",
+     "capacity_basis": "생산 능력 미공시",
+     "status": "가동",
+     "lease_note": "임차(Luminar에서 승계, 2029-07까지)"
+    },
+    {
+     "name": "레드먼드 시설 2곳",
+     "location": "미국 워싱턴 Redmond",
+     "owned": "임차",
+     "use": "시험·사무·연구실(약 17,000·36,000제곱피트)",
+     "capacity": "미확인",
+     "capacity_basis": "사무·시험 시설",
+     "status": "매각·폐쇄 예정",
+     "lease_note": "임차",
+     "note": "임차 해지 2026-11-30(8-K/A)"
+    },
+    {
+     "name": "함부르크 사무실",
+     "location": "독일 Hamburg",
+     "owned": "임차",
+     "use": "MOVIA 엔지니어링",
+     "capacity": "미확인",
+     "capacity_basis": "사무 시설 — 28% 감원 대상 다수",
+     "status": "가동",
+     "lease_note": "임차(2029-10까지)"
+    },
+    {
+     "name": "콜로라도스프링스 사무실",
+     "location": "미국 콜로라도 Colorado Springs",
+     "owned": "임차",
+     "use": "맞춤 반도체 설계(MSI)",
+     "capacity": "미확인",
+     "capacity_basis": "설계 조직",
+     "status": "가동",
+     "lease_note": "임차(2028-05까지)"
+    },
+    {
+     "name": "샹틸리 사무실",
+     "location": "미국 버지니아 Chantilly",
+     "owned": "임차",
+     "use": "국방 영업",
+     "capacity": "미확인",
+     "capacity_basis": "사무 시설",
+     "status": "가동",
+     "lease_note": "임차(2028-02까지)"
+    }
+   ]
+  },
+  "sites_none": "소유 공장이 없다(모든 시설 임차)"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "3Q26",
+  "summary": "3Q 매출의 84%가 국방 고객 3곳(39%·35%·10%)이다. 9개월로는 국방 2곳 51%, 산업 1곳 15%, 자동차 OEM 1곳 10%. 회사가 이름을 밝힌 고객은 Overland AI·Lake Fusion Technologies·Kodiak AI 정도이고 10% 고객의 이름은 공시하지 않는다",
+  "items": [
+   {
+    "name": "국방 고객 A",
+    "alias": "Security & Defense customer(39%)",
+    "share": 0.39,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "IRIS·MOVIA L",
+    "source": "3Q 10-Q 신용 위험 집중",
+    "why": "이름 미공시"
+   },
+   {
+    "name": "국방 고객 B",
+    "alias": "Security & Defense customer(35%)",
+    "share": 0.35,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "MOVIA L(10-Q '국방 고객에 MOVIA L 출하')",
+    "source": "3Q 10-Q",
+    "why": "이름 미공시"
+   },
+   {
+    "name": "국방 고객 C",
+    "alias": "Security & Defense customer(10%)",
+    "share": 0.1,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "센서",
+    "source": "3Q 10-Q",
+    "why": "이름 미공시"
+   },
+   {
+    "name": "산업 고객(무인 트럭·광산 등)",
+    "alias": "industrial customers",
+    "share": [
+     0.1,
+     0.16
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "IRIS",
+    "source": "3Q 10-Q(9M 산업 1곳 15%)·회사 보도자료 2026-11-16(Kodiak AI)",
+    "why": "나머지 16%를 산업·기타로 나눔 — Kodiak AI가 그중 하나인지는 가설"
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-10-28",
+  "summary": "10-Q는 부품 대부분을 단일·소수 공급원에서 산다고 적는다. IRIS는 올랜도에서 조립하고 1550nm 레이저·수광부·맞춤 칩이 핵심이다. 콜에서 CFO는 '일부 공급망 의존이 남아 있다'고 했고 CEO는 4Q에 '핵심 공급사가 완전히 붙어' 출하가 늘 것이라고 했다. 공급사 이름은 공시하지 않는다",
+  "links": [
+   {
+    "item": "1550nm 레이저 광원",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "이름 비공개",
+      "role": "광원·광섬유 증폭",
+      "status": "공시",
+      "source": "3Q 10-Q 단일·소수 공급원 문구"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "4Q 출하가 공급사 대응에 달렸다(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 12,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "현물",
+    "why": "IRIS 거리 성능의 핵심",
+    "relief": "미확인 — '핵심 공급사 참여'는 회사 말",
+    "source": "3Q 콜·10-Q",
+    "input": "laser_diode",
+    "requal_basis": "추정 — 국방·차량 센서 광원 재인증은 통상 반년~1년 반(업계 일반, 회사 미공시)",
+    "qualified_basis": "10-Q '단일·소수 공급원' 문구 — 1곳으로 본다(추정)"
+   },
+   {
+    "item": "InGaAs 수광부·수신 칩",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "MicroVision Semiconductor(설계)·외부 파운드리(미공시)",
+      "role": "수신 칩 설계·제조",
+      "status": "회사 발표",
+      "source": "3Q 콜(MSI가 IRIS·HALO 칩 설계)"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국(설계)",
+    "secured": "내재화",
+    "why": "1550nm 빛을 받는 소재",
+    "relief": "미확인",
+    "source": "3Q 콜",
+    "input": "logic-ic"
+   },
+   {
+    "item": "광학 부품(렌즈·창)",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "이름 비공개",
+      "role": "광학",
+      "status": "추정",
+      "source": "라이다 일반 구조"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "광학 정렬",
+    "relief": "미확인",
+    "source": "추정",
+    "input": "optical_lens"
+   },
+   {
+    "item": "MOVIA 위탁 생산",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "이름 비공개 위탁 생산사",
+      "role": "MOVIA L 생산",
+      "status": "공시",
+      "source": "3Q 10-Q 주석 12(구매 약정 정산 $0.6M)"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "여유",
+    "capacity_basis": "미결 약정 $2.3M을 $0.6M에 정산 — 재고가 남았다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 9,
+    "top_share": 1.0,
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "현물",
+    "why": "MOVIA L 재고",
+    "relief": "해소 — 약정 정산",
+    "source": "3Q 10-Q",
+    "input": "pcb",
+    "requal_basis": "추정 — 위탁 조립 라인 이전(회사 미공시)"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q 매출총이익률은 50%(2Q 44%)다. Luminar에서 싸게 산 IRIS 재고와 올랜도 설비를 쓴 덕이라고 회사가 적었다. 매출 $2.4M에 연구개발 $13.2M·판관비 $9.4M이 붙어 영업손실은 $21.3M이다. 3Q 순손실이 $12.2M으로 작은 것은 독일 정부 보조금 $6.3M·워런트 평가이익 $3.6M 덕이다",
+  "periods": [
+   {
+    "period": "2Q26",
+    "rev": 0.001473,
+    "cogs": 0.000831,
+    "rd": 0.015702,
+    "sga": 0.009211,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.0024,
+    "cogs": 0.001201,
+    "rd": 0.01318,
+    "sga": 0.009359,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "연구개발(인력·HALO·MOVIA)",
+    "stage": "연구개발",
+    "pct_rev": 5.49,
+    "prior_pct": 10.66,
+    "fixed": 0.85,
+    "driver": "인력(28% 감원 대상)",
+    "basis": "공시",
+    "source": "3Q 10-Q 손익"
+   },
+   {
+    "name": "판관비(인수·재무 일회성 포함)",
+    "stage": "판관비",
+    "pct_rev": 3.9,
+    "prior_pct": 6.25,
+    "fixed": 0.9,
+    "driver": "인력·법무·일회성 재무 비용 $1.2M(3Q)",
+    "basis": "공시",
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "name": "센서 매출원가(부품·조립·간접비)",
+    "stage": "매출원가",
+    "pct_rev": 0.5,
+    "prior_pct": 0.564,
+    "fixed": 0.4,
+    "driver": "IRIS 재고 원가·부품 단가",
+    "basis": "공시",
+    "source": "3Q 10-Q 매출원가 $1.20M / 매출 $2.40M",
+    "input": "laser_diode"
+   }
+  ],
+  "products": [
+   {
+    "name": "IRIS 장거리 라이다",
+    "rev_share": 0.75,
+    "gpm": 0.5,
+    "gpm_basis": "3Q 전사 매출총이익률(제품별 미공시)",
+    "bom": [
+     {
+      "item": "1550nm 레이저 광원",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "1550nm 라이다 일반 구조",
+      "input": "laser_diode",
+      "pass_through": "미확인",
+      "why": "광원·증폭기가 원가의 큰 몫"
+     },
+     {
+      "item": "InGaAs 수광부·수신 칩",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "3Q 콜(MSI 칩 설계)",
+      "input": "logic-ic",
+      "pass_through": "미확인",
+      "why": "맞춤 칩"
+     },
+     {
+      "item": "광학 부품(렌즈·창)",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "추정",
+      "input": "optical_lens",
+      "pass_through": "미확인",
+      "why": "광학 정렬"
+     },
+     {
+      "item": "제어 보드·하우징·조립",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "추정",
+      "input": "pcb",
+      "pass_through": "미확인",
+      "why": "올랜도 조립 인건비"
+     }
+    ],
+    "rev_share_basis": "2026 매출의 70~80%가 IRIS(2Q 콜) — 가운데 값"
+   },
+   {
+    "name": "MOVIA 단거리 라이다",
+    "rev_share": 0.2,
+    "gpm": 0.3,
+    "gpm_basis": "추정 — 출시 초기라 이익률이 얇다(CEO, 3Q 콜), 전사 50%보다 낮게",
+    "bom": [
+     {
+      "item": "레이저 광원 배열",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "플래시 라이다 일반 구조",
+      "input": "laser_diode",
+      "pass_through": "미확인",
+      "why": "광원"
+     },
+     {
+      "item": "수광 센서 칩",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "추정",
+      "input": "logic-ic",
+      "pass_through": "미확인",
+      "why": "수광 배열"
+     },
+     {
+      "item": "보드·하우징·위탁 조립",
+      "share": [
+       0.3,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "10-Q(위탁 생산)",
+      "input": "pcb",
+      "pass_through": "미확인",
+      "why": "위탁 생산"
+     }
+    ]
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-20",
+  "summary": "CEO Glen DeVos와 2026-08 취임한 CFO Christine Chambers가 회사를 이끈다. 2026년 경영진의 장내 매수 기록은 이번 조사에서 찾지 못했고 공시된 거래는 RSU 가득·세금 원천징수뿐이다. 정계·대형 고객과의 공개 연결은 확인하지 못했다",
+  "people": [
+   {
+    "name": "Glen DeVos",
+    "role": "CEO",
+    "since": "미확인",
+    "profile": "자동차 업계 출신(3Q 콜 본인 발언). 상세 경력은 위임장 미대조 — 미확인",
+    "business": "2026-06 RSU 가득 361,500주·세금 원천징수 처분(Form 4, 병합 전 주식 수)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "3Q 콜·Form 4"
+   },
+   {
+    "name": "Christine Chambers",
+    "role": "CFO(2026-08-27~)",
+    "since": "2026",
+    "profile": "Fusemachines·PetMed Express·RealNetworks CFO, Rosetta Stone 재무 임원(8-K)",
+    "business": "기본급 $425K, 입사 RSU $1.0M(8-K)",
+    "political": "미확인",
+    "alumni": "University of Washington MBA(8-K)",
+    "social": "미확인",
+    "source": "https://www.sec.gov/Archives/edgar/data/65770/000149315226036772/form8-k.htm"
+   },
+   {
+    "name": "Simon Biddiscombe",
+    "role": "이사회 집행 부의장",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "2026-06·10 RSU 가득(Form 4)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "Form 4"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Luminar 파산 경매 인수로 IRIS 고객을 이어받음",
+    "strength": 3,
+    "exposure": "2026 매출의 70~80%(2Q 콜)",
+    "basis": "회사 발언",
+    "evidence": "2Q 콜"
+   }
+  ]
+ },
+ "moat": {
+  "summary": "해자는 Luminar에서 싸게 산 1550nm IRIS 기술과 미국 생산·NDAA 준수다. 다만 국방·산업 고객 몇 곳에 매출이 몰려 있고 경쟁사(Ouster·Hesai)가 현금과 규모에서 앞선다",
+  "items": [
+   {
+    "kind": "1550nm 장거리 기술(IRIS·HALO)",
+    "verdict": "보통",
+    "claim": "1550nm는 야간 투시경에 잡히지 않고 장거리 감지가 좋아 국방·무인 트럭에 맞는다",
+    "evidence": "Luminar 인수 개발 기술 $9.4M·고객 관계 $3.1M 계상(10-Q 주석 4). 3Q 매출 84%가 국방 고객(10-Q)",
+    "quant": "개발 기술 장부가 $9.4M",
+    "falsifier": "HALO 양산 샘플이 2027 상반기에 나오지 않는다"
+   },
+   {
+    "kind": "미국 생산·NDAA 준수",
+    "verdict": "보통",
+    "claim": "중국산 라이다 배제(NDAA·FCC 조치)로 국방·로보택시 고객이 미국산을 찾는다",
+    "evidence": "3Q 콜 CEO 'FCC 조치가 순풍'. Hesai 등 중국 경쟁사는 국방 조달에서 빠진다",
+    "quant": "미확인",
+    "falsifier": "국방 고객이 Ouster 등 다른 미국 공급사로 옮긴다"
+   },
+   {
+    "kind": "제품 폭(단·장거리, 905·1550nm)",
+    "verdict": "약함",
+    "claim": "한 회사가 단거리 MOVIA부터 장거리 IRIS까지 판다",
+    "evidence": "포트폴리오 설명(10-Q 주석 1) — 매출 전환 기록은 아직 짧다",
+    "quant": "9M 매출 $4.81M",
+    "falsifier": "MOVIA Pro 매출이 2027년에도 분기 $1M 미만"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-20",
+  "stage": "소멸",
+  "crowding": "낮음",
+  "summary": "'라이다 2.0 — Luminar 자산을 싸게 사서 매출을 키운다'는 이야기는 매출 성장(3Q $2.4M, 전년 10배)으로 일부 확인됐지만, 그 사이 회사는 전환사채·$2.50 공모·1:15 주식 병합으로 버텼다. 주가는 1년 전 종가 $15.00(병합 반영)에서 $0.86으로 −94%다. 쟁점은 매출이 아니라 2027 소진 $40M을 어떻게 메우느냐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "1명 Buy",
+      "커버리지가 사실상 1곳(AmerX)",
+      "컨센서스"
+     ],
+     [
+      "목표가",
+      "$1.70(1명)",
+      "지금 주가 +98% — 표본 1명",
+      "컨센서스"
+     ],
+     [
+      "추정",
+      "FY2027 매출 $21.0M($12~32M), 조정 EBITDA −$39.9M",
+      "회사 가이던스(2배 이상)와 맞춘 값",
+      "컨센서스"
+     ],
+     [
+      "콜 질문",
+      "전화 질문은 AmerX 1곳, 나머지는 개인 투자자 서면 질문",
+      "기관 관심이 얕다",
+      "3Q 콜"
+     ]
+    ],
+    "read": "셀사이드는 1곳뿐이다. 목표가는 기대의 증거일 뿐 독립 확인이 아니다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유",
+      "61곳, 541만 주(3Q)",
+      "주식 수의 약 16% — 순변화 −1만 주, 늘린 곳 0",
+      "13F"
+     ],
+     [
+      "공매도",
+      "유동 주식의 18.5%, 상환 4.4일",
+      "매출 초기 소형주에 공매도가 두껍다",
+      "yfinance"
+     ],
+     [
+      "내부자",
+      "2026 장내 매수 0건, RSU 가득·세금 처분만",
+      "신호 약함",
+      "Form 4"
+     ],
+     [
+      "자금 조달",
+      "2026-02 전환사채 $43.0M, 08 $2.50 공모 $17.0M + 워런트",
+      "주가 하락 구간에서 주식을 판다",
+      "8-K·10-Q"
+     ]
+    ],
+    "read": "바이사이드 수급의 핵심 변수는 회사의 증자·전환사채 전환과 공매도다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral 7일",
+      "언급 없음(null)",
+      "관심이 식었다",
+      "Quantral"
+     ],
+     [
+      "ApeWisdom",
+      "순위 밖",
+      "레딧 관심 없음",
+      "ApeWisdom"
+     ],
+     [
+      "X 언급 수",
+      "미수집",
+      "유료 키를 쓰지 않는다",
+      "-"
+     ]
+    ],
+    "read": "2021년 레딧 밈 종목이던 시절과 달리 리테일 관심은 거의 사라졌다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "2026-08-14",
+      "$2.50 공모·워런트",
+      "당일 −40.6%",
+      "8-K"
+     ],
+     [
+      "2026-10-28",
+      "3Q 매출 기록·2027 소진 $40M",
+      "다음 날 +10.8% 뒤 11/19까지 −40%",
+      "회사 보도자료"
+     ],
+     [
+      "2026-11-16",
+      "Kodiak AI 무인 트럭 라이다",
+      "당일 −1.9%",
+      "회사 보도자료"
+     ]
+    ],
+    "read": "고객 뉴스가 나와도 희석 걱정이 주가를 누르는 국면이다."
+   }
+  },
+  "factors": [
+   {
+    "name": "Luminar 자산의 매출 전환",
+    "thesis": "파산한 Luminar의 IRIS 재고·고객을 $33M에 사서 매출을 빠르게 만든다",
+    "inputs": "매출·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "3Q 매출 $2.4M(전년 $0.24M), 매출총이익률 50%, 2026 매출의 70~80%가 IRIS — 다만 3Q 매출은 발표 전 추정 $4.1M(가이던스 환산)에 못 미쳤다",
+    "status": "약화",
+    "falsifier": "4Q 매출이 $5.2M(가이던스 하단 환산)에 못 미친다",
+    "source": "3Q 10-Q·2Q 콜"
+   },
+   {
+    "name": "국방·미국산 라이다 수요",
+    "thesis": "NDAA·FCC 조치로 중국산이 빠진 국방·무인 차량 시장을 미국산 1550nm가 차지한다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "3Q 매출의 84%가 국방 고객 3곳",
+    "status": "강화",
+    "falsifier": "국방 고객 2곳 집중이 2027년에도 풀리지 않는다",
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "name": "비용 절감과 소진 축소",
+    "thesis": "레드먼드 통합·28% 감원으로 2027 소진을 $40M까지 줄인다",
+    "inputs": "이익률·위험",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "3Q 영업비용 $22.5M(1H 평균 $24.4M), 레드먼드 임차 의무 $12.8M 감소",
+    "status": "유지",
+    "falsifier": "1Q27 영업 현금 사용이 분기 $10M을 넘는다",
+    "source": "3Q 10-Q·8-K/A"
+   },
+   {
+    "name": "AI 데이터센터 광연결(Scantinel)",
+    "thesis": "FMCW 광집적회로를 AI 데이터센터 광연결 모듈로 판다",
+    "inputs": "TAM",
+    "who": {
+     "sell": "약",
+     "buy": "약",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "매출 0, 9M 순손실 $3.3M",
+    "status": "유지",
+    "falsifier": "2027년 안 광연결 고객 발표가 없다",
+    "source": "3Q 실적 8-K·10-Q"
+   },
+   {
+    "name": "반대 내러티브 — 희석 기계",
+    "thesis": "30년 넘게 증자로 버텨 온 회사가 2027에도 현금보다 큰 소진을 증자로 메운다",
+    "inputs": "WACC·주식 수",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "누적 결손 $1.03B, 2026 주식 수 20.4M → 34.0M(+67%), 계속기업 주석",
+    "status": "강화",
+    "falsifier": "비희석 자금(자산 매각·라이선스) $20M 이상 확보",
+    "source": "3Q 10-Q"
+   }
+  ],
+  "lead": {
+   "summary": "MicroVision의 기업가치는 **늘어나는 라이다 매출이 현금이 바닥나기 전에 소진을 메우느냐**로 정해진다. 3Q 매출은 $2.4M(전년 10배), 매출총이익률 50%, 영업손실 $21.3M이다. 9/30 현금은 $28.9M인데 회사는 2027 소진을 약 $40M으로 잡았고 10-Q에 계속기업 불확실성을 적었다. 주가는 $0.86(11/19)로 1년 전 $15.00(병합 반영)의 6%다.",
+   "value_story": "MicroVision은 파산한 Luminar의 1550nm IRIS를 사 와 국방·산업 고객에 판다. 값은 세 숫자로 갈린다. 2027 매출(회사는 2026의 2배 이상), 매출총이익률(40~50%), 그리고 소진을 메우려 찍을 주식 수다. 시가총액은 $29M, 기업가치는 약 $43M으로 다음 4개 분기 매출 추정 $21.2M의 2배 남짓이다.",
+   "premium": {
+    "multiple": "선행 이익이 모두 적자라 P/E·EV/EBITDA를 쓸 수 없고 EV/매출로 본다. 다음 4개 분기 매출 기준 약 2.0배로 Ouster 6.9배·Hesai 2.0배보다 낮고 같은 처지의 Innoviz 0.24배보다 높다.",
+    "eps": "EPS 추정은 사실상 1명이다. FY2026 −$3.90은 9개월 실적 −$3.18에 4Q 손실을 더한 값이다. 2026년 주식 수가 67% 늘어 주당 손실이 줄어 보이는 효과도 있다."
+   },
+   "why_excited": "2026년 2월 Luminar 자산 인수 뒤 '라이다 2.0'과 2026 매출 $10~15M 가이던스가 나왔지만 주가는 3월부터 계속 내렸다. 식은 이유는 셋이다. 분기 매출이 1H에 합쳐 $2.4M에 그쳤고, 회사가 전환사채 전환·$2.50 공모로 주식을 계속 찍었으며, 10-Q에 계속기업 의문이 적혔다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "자동차 OEM 개발 회사에서 국방·산업에 센서를 파는 회사로 바뀌는 중",
+     "evidence": "3Q 매출 84% 국방 고객(전년 3Q는 자동차 80%·12%, 10-Q)",
+     "drives": "both",
+     "status": "진행 중",
+     "falsifier": "2027 매출이 2026의 2배에 못 미친다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "IRIS(장거리)에서 MOVIA Pro·HALO로 제품을 넓힌다",
+     "evidence": "MOVIA 관여 70곳(3Q 콜), HALO 양산 샘플 2027 초",
+     "drives": "revision",
+     "status": "미증명",
+     "falsifier": "MOVIA Pro 이익률이 IRIS보다 크게 낮게 굳는다"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "1550nm ToF(IRIS·HALO)와 FMCW(Scantinel)를 함께 가진다",
+     "evidence": "Luminar·Scantinel 개발 기술 계상(10-Q 주석 4)",
+     "drives": "multiple",
+     "status": "일부 확인",
+     "falsifier": "HALO 고객 평가 결과가 IRIS보다 나쁘다"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "PO 출하가 공급사 대응에 달려 있다 — 출하 대기 PO $10M을 4Q에 얼마나 내보내나",
+     "evidence": "3Q 콜: 출하 대기 PO 약 $10M, 재고 대부분 확보, 일부 공급망 의존. 주문→출하 리드타임은 공시하지 않아 PO 잔고 ÷ 월 매출(약 12.5개월, 계산)로 본다",
+     "lead_time": {
+      "unit": "개월",
+      "now": 12.5,
+      "basis": "출하 대기 PO 약 $10M ÷ 3Q 월평균 매출 $0.8M(계산) — 주문→출하 리드타임 공시가 없어 PO 잔고 소화 기간으로 대신한다",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Ouster",
+        "value": "미확인"
+       },
+       {
+        "name": "Hesai",
+        "value": "미확인"
+       }
+      ]
+     },
+     "drives": "revision",
+     "status": "미증명",
+     "falsifier": "4Q 매출 $5.2M 미만"
+    },
+    {
+     "lens": "M&A",
+     "change": "Luminar 라이다 자산($33.2M)·Scantinel($2.2M) 인수",
+     "evidence": "10-Q 주석 4",
+     "drives": "both",
+     "status": "통합 중",
+     "falsifier": "Luminar 승계 고객 이탈"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "국방 고객은 무인 차량·드론 조달 예산(CAPEX 성격), 산업 고객은 자율 장비 개발·도입 예산에서 돈이 나온다",
+     "evidence": "3Q 10-Q 고객 구성·3Q 콜",
+     "drives": "매출",
+     "status": "진행 중",
+     "falsifier": "국방 예산 지연으로 PO 출하가 밀린다",
+     "budgets": [
+      {
+       "business": "국방 무인 차량·드론 센서",
+       "budget": "CAPEX",
+       "line": "국방 조달·시제 예산",
+       "share": 0.84,
+       "driver": "무인 지상·항공 프로그램 수",
+       "evidence": "3Q 10-Q 고객 집중"
+      },
+      {
+       "business": "산업 자율 장비 센서",
+       "budget": "혼합",
+       "line": "장비 개발(OPEX)·양산 도입(CAPEX)",
+       "share": 0.16,
+       "driver": "무인 트럭·광산 장비 도입",
+       "evidence": "3Q 10-Q·3Q 실적 8-K"
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "kind": "제품",
+     "name": "IRIS 장거리 라이다",
+     "what": "1550nm ToF 장거리 고체형 라이다(Luminar에서 인수)",
+     "use": "무인 트럭·광산 장비·국방 무인 차량",
+     "money": "센서 판매 — 2026 매출의 70~80%(2Q 콜)",
+     "name_en": "long range automotive lidar sensor",
+     "what_en": "A compact rectangular long range lidar sensor unit with a dark front optical window, mounted on a vehicle roof, shown as a clean product render on a neutral background",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "1550nm 레이저 광원",
+        "part_en": "1550 nm laser source module",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "회사 개요(1550nm 센서)"
+       },
+       {
+        "no": 2,
+        "part": "InGaAs 수광부",
+        "part_en": "InGaAs photodetector receiver",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "MSI 설계",
+        "source": "3Q 콜(MSI가 IRIS 칩 설계)"
+       },
+       {
+        "no": 3,
+        "part": "빔 스캐닝 장치",
+        "part_en": "beam scanning mechanism",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "장거리 고체형 라이다 구조"
+       },
+       {
+        "no": 4,
+        "part": "수신 신호 처리 칩",
+        "part_en": "receiver signal processing chip",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "MSI 설계",
+        "source": "3Q 콜"
+       },
+       {
+        "no": 5,
+        "part": "광학 창·렌즈",
+        "part_en": "optical window and lenses",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "라이다 일반 구조"
+       },
+       {
+        "no": 6,
+        "part": "제어 보드·하우징",
+        "part_en": "control board and housing",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "올랜도 조립",
+        "source": "3Q 콜(올랜도 생산)"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "MOVIA 단거리 라이다",
+     "what": "움직이는 부품 없는 플래시 라이다(MOVIA L·Pro·Air)",
+     "use": "무인 지상 차량·드론·로봇·물류",
+     "money": "센서 판매 — MOVIA Pro 10월 출시, 고객 관여 70곳"
+    },
+    {
+     "kind": "제품",
+     "name": "HALO 차세대 장거리 라이다",
+     "what": "IRIS보다 작고 싸고 전력이 적은 1550nm 라이다",
+     "use": "교통 시스템·산업·자동차",
+     "money": "양산 샘플 2027 초 — 매출 전"
+    },
+    {
+     "kind": "서비스",
+     "name": "Scantinel·MSI",
+     "what": "FMCW 광집적회로와 맞춤 반도체 설계",
+     "use": "차세대 라이다·AI 데이터센터 광연결·정부 반도체 설계",
+     "money": "매출 0(Scantinel), 정부 주계약자 설계 선정(금액 미공시)"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "독일 정부 R&D 보조금 $6.3M 현금 수령(3Q). 미국 정부 직접 계약은 미공시",
+     "evidence": "3Q 10-Q MD&A",
+     "drives": "both",
+     "status": "일회성",
+     "falsifier": "-",
+     "house": {
+      "level": 1,
+      "why": "미국 의회 관련 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "FCC의 외국산 로봇 부품 조치를 회사가 순풍으로 꼽는다(3Q 콜)",
+     "evidence": "3Q 콜 CEO 발언 — 조치 원문 미대조",
+     "drives": "revision",
+     "status": "가설",
+     "falsifier": "조치 철회",
+     "house": {
+      "level": 1,
+      "why": "행정 조치 — 의회 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "NDAA의 중국산 부품 배제 조항이 국방 고객의 미국산 선호를 만든다",
+     "evidence": "3Q 콜(IRIS·HALO NDAA 준수)",
+     "drives": "revision",
+     "status": "시행 중",
+     "falsifier": "-"
+    }
+   }
+  }
+ },
+ "social": {
+  "as_of": "2026-11-20",
+  "summary": "추적 언급은 24시간·7일 모두 없다(null). 최근 잡힌 것은 미국 특허 등록 1건(11/3)뿐이고 월간 요약도 없다",
+  "few": true,
+  "views": [
+   {
+    "side": "약세",
+    "claim": "언급 적음 — 강세·약세 논지를 담은 추적 글이 없다",
+    "basis": "-",
+    "source": "Quantral",
+    "date": "2026-11-20",
+    "check": "사실관계 미확인"
+   }
+  ],
+  "narratives": [],
+  "turn": "월간 요약 없음 — 2021년 레딧 밈 종목 시기 이후 추적 언급이 거의 없다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "EV $43M에 2027 매출 $21M(추정)이면 2배다. 매출총이익률 50%의 매출이 붙기 시작했다",
+    "evidence": [
+     "3Q 매출 $2.4M, 전년 10배(10-Q)",
+     "출하 대기 PO 약 $10M(콜)",
+     "목표가 $1.70(1명)"
+    ],
+    "falsifier": "4Q 매출 $5.2M 미만"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "28% 감원과 레드먼드 해지로 2027 소진이 $40M으로 준다. 매출이 2배면 손실이 빠르게 줄어든다",
+    "evidence": [
+     "레드먼드 의무 $12.8M 감소(8-K/A)",
+     "3Q 영업비용 $22.5M(1H 평균 $24.4M)",
+     "전환사채 잔액 $43.0M → $7.8M"
+    ],
+    "falsifier": "1Q27 영업 현금 사용 $10M 초과"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "매출은 늘지만 고객 3곳이 84%이고 이름이 없다. 증자 규모를 모르면 주당 가치를 정할 수 없다",
+    "evidence": [
+     "3Q 국방 고객 39%·35%·10%(10-Q)",
+     "커버리지 1명",
+     "ATM 잔여 $41.1M"
+    ],
+    "falsifier": "비희석 자금 $20M 이상 확보"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "현금 $28.9M에서 10월에 $6.6M을 갚았고 2027 소진은 $40M이다. 지금 가격의 ATM은 주식 수를 두 배 넘게 늘린다",
+    "evidence": [
+     "10/5 전환사채 $6.6M 현금 상환(10-Q 주석 16)",
+     "계속기업 주석",
+     "ATM 전부 쓰면 약 4,800만 주(계산)"
+    ],
+    "falsifier": "2027 상반기까지 증자 없이 현금 $15M 이상 유지"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "30년 넘게 이익을 못 냈고 누적 결손이 $1.03B다. 2026에만 주식이 67% 늘었다. 기저율은 희석 뒤 소멸이다",
+    "evidence": [
+     "누적 결손 $1.03B(10-Q)",
+     "주식 수 20.4M → 34.0M",
+     "1:15 병합(8/1)"
+    ],
+    "falsifier": "분기 영업 현금흐름 흑자"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "EV는 다음 해 매출의 2배다"
+     },
+     {
+      "seat": "Buy",
+      "text": "소진이 1/3 준다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "증자 규모를 모른다"
+     },
+     {
+      "seat": "Sell",
+      "text": "현금이 1년을 못 간다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "희석 뒤 소멸이 기저율이다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "EV의 절반은 리스·전환사채다. 주주 몫 시총은 $29M이다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "2025년과 달리 지금은 매출총이익률 50%의 매출이 있다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "$40M은 목표이고 3Q 영업 현금 사용은 보조금 $6.3M을 받고도 $13.6M이다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "전환사채 잔액이 $7.8M으로 줄어 최소 현금 조건도 $10.9M으로 낮아졌다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "고객 이름이 없다는 것 자체가 위험이다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "Kodiak AI·Overland AI처럼 이름이 나오기 시작했다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "그 둘의 매출 몫은 공시되지 않았다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "CFO는 비핵심 자산 현금화로 비희석 자금을 찾겠다고 했다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "금액도 시점도 없다. 8월에도 결국 $2.50 공모였다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "목표가 $1.70은 1명의 값이다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "4Q 매출을 보고 다시 본다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "1Q27 소진이 가를 자료다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "비희석 자금 공시가 상향 조건이다"
+     },
+     {
+      "seat": "Sell",
+      "text": "다음 증자 조건을 본다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "영업 현금 흑자 전엔 의견을 유지한다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Sell",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Sell",
+    "Strong Sell": "Strong Sell"
+   },
+   "reason": "매출은 늘지만 2027 소진이 현금보다 커서 지금 주주 몫이 희석될 가능성이 가장 크다. 살아남은 반박은 현금 부족과 고객 집중이다",
+   "dissent": "EV/매출 2배는 라이다 동종보다 낮아 비희석 자금이 오면 되돌림이 크다(Strong Buy)"
+  }
+ },
+ "ladder": {
+  "exit": {
+   "ev_sales": 2.5,
+   "pe": 25,
+   "net_margin": 0.12,
+   "opm": 0.15,
+   "shares": 0.12,
+   "basis": "출구 P/E 25배는 흑자 라이다 동종 Hesai Fwd 1Y 20.8배보다 조금 높게(추정). OPM 15%·순이익률 12%는 매출총이익률 45% 하드웨어 회사의 정상 상태 가정(추정). 주식 수 1.2억 주는 지금 3,405만 주에 희석 증권 1,882만 주와 ATM 잔여·추가 증자(약 6,700만 주)를 더한 값(추정)"
+  },
+  "base": {
+   "eps": -5.11,
+   "opm": -21.95,
+   "basis": "최근 4개 분기 GAAP EPS 합(−$1.80 −$1.20 −$1.66 −$0.45). 흑자 해가 추정에 없어 EPS CAGR은 쓰지 않는다"
+  },
+  "refs": [
+   {
+    "label": "FY2027 매출 추정",
+    "value": 0.021
+   },
+   {
+    "label": "FY2028 매출 추정",
+    "value": 0.038
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "시가총액 약 $59M. 4Q 매출이 가이던스 중간($7.7M)에 닿고 비희석 자금이 확인되면 8월 공모가($2.50) 아래 구간을 되찾는다",
+    "outlook": "4Q 실적(2027-03)과 1Q27 소진이 가를 자료다"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "시가총액 약 $88M. 증자 뒤 주식 수 기준으로는 매출 $60M 이상과 영업이익 흑자가 필요하다",
+    "outlook": "FY2028 매출 추정 $38M으로도 모자란다"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $146M. 매출 약 $100M 규모와 OPM 15%가 필요하다",
+    "outlook": "5년 안 근거가 될 자료가 없다"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $293M. 국방·산업 표준 센서 공급사가 돼 매출 $200M 수준이 돼야 한다",
+    "outlook": "기저율로 계속기업 주석이 있는 초소형주의 10배는 희귀 사건이다"
+   }
+  },
+  "summary": "2배는 4Q 매출과 비희석 자금이 함께 와야 열리고, 3배부터는 증자 뒤 주식 수를 넘는 흑자 전환이 필요하다."
+ },
+ "photos": [],
+ "playbook": {
+  "points": [
+   {
+    "title": "Luminar 재고가 매출이 된다",
+    "claim": "파산 경매로 산 IRIS 재고·고객이 2026~2027 매출을 만든다",
+    "evidence": "3Q 매출 $2.4M(전년 $0.24M), 매출총이익률 50%(싸게 산 재고 덕, 10-Q), 출하 대기 PO 약 $10M(콜)",
+    "variant": "시장은 EV/다음 해 매출 2배로 라이다 동종(Ouster 6.9배)보다 낮게 본다. 다만 이익률은 싼 재고가 끝나면 내려갈 수 있다",
+    "proof": "4Q 매출 $5.2M 이상과 매출총이익률 40% 이상(2027-03 4Q 실적)",
+    "source": "3Q 10-Q·콜"
+   },
+   {
+    "title": "소진이 1/3 준다",
+    "claim": "레드먼드 통합과 28% 감원으로 2027 영업 현금 소진이 약 $40M이 된다",
+    "evidence": "레드먼드 임차 의무 $12.8M 감소(8-K/A), 감원 비용 약 $4.0M(10-Q 주석 15), 3Q 영업비용 1H 평균보다 7.5% 낮음",
+    "variant": "$40M도 9/30 현금 $28.9M보다 크다 — 소진 축소는 증자 규모를 줄일 뿐 없애지 못한다",
+    "proof": "1Q27 영업 현금 사용 분기 $10M 이하(2027-05)",
+    "source": "3Q 실적 8-K·10-Q"
+   },
+   {
+    "title": "희석이 주당 가치를 정한다",
+    "claim": "ATM 잔여 $41.1M·워런트·전환사채가 지금 주주 몫을 줄인다",
+    "evidence": "2026 주식 수 20.4M → 34.0M(+67%), 계속기업 주석, ATM을 지금 가격에 다 쓰면 약 4,800만 주(계산)",
+    "variant": "CFO는 비핵심 자산 현금화·전략 제휴로 '깨끗한 자본'을 찾겠다고 했다 — 금액·시점은 없다",
+    "proof": "비희석 자금 공시 또는 새 증자 조건(4Q 실적·10-K)",
+    "source": "3Q 10-Q·콜"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-03-05",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "4Q25 실적 뒤",
+    "reaction": "−29.5%"
+   },
+   {
+    "date": "2026-08-14",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "$2.50 공모·워런트",
+    "reaction": "−40.6%"
+   },
+   {
+    "date": "2026-10-29",
+    "status": "완료",
+    "kind": "생성",
+    "event": "3Q 매출 기록·2027 소진 $40M",
+    "reaction": "+10.8% 뒤 11/19까지 −40%"
+   },
+   {
+    "date": "2026-11-12",
+    "status": "완료",
+    "kind": "확인",
+    "event": "전환사채 잔액 $7.8M 공시",
+    "reaction": "−4.4%"
+   },
+   {
+    "date": "2027-03(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26 실적·10-K",
+    "check": "4Q 매출 $5.2M(가이던스 하단 환산), 매출총이익률 40%, 연말 현금, 계속기업 주석 유지 여부",
+    "then": "매출 하단 이상·비희석 자금이면 기본, 매출 미달·새 증자면 약세"
+   },
+   {
+    "date": "2027 상반기(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "HALO 양산 전 샘플 공급",
+    "check": "고객 평가 착수 발표",
+    "then": "공급 시작이면 강세 쪽, 지연이면 약세 쪽"
+   },
+   {
+    "date": "2027-05(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "1Q27 실적",
+    "check": "영업 현금 사용 분기 $10M 이하",
+    "then": "넘으면 2027 $40M 목표가 흔들린다"
+   }
+  ],
+  "trade": {
+   "watch": "지금 가격 아래 지지 구간 — 주가가 주당 현금(약 $0.85, 9/30 기준 기본 주식)에 붙어 있어 사업 가치에 값이 거의 없다",
+   "confirm": "4Q 매출 가이던스 하단 이상과 비희석 자금(자산 매각·라이선스) 공시",
+   "invalid": "4Q 매출 $5.2M 미만, 새 ATM·공모, 나스닥 최소 호가($1) 미달 통지",
+   "trim": "고객 발표 직후 급등 — 2026년에는 발표 뒤 공모·전환이 따라왔다",
+   "style": "하루 ±15~40% 움직이는 종목이라 발표 당일 추격은 변동성이 크다 — 가격·조건 틀이며 매매 지시가 아니다"
+  }
+ }
+}
