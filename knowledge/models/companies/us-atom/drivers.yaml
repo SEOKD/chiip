@@ -1,0 +1,95 @@
+auto: true
+id: us-atom
+name: Atomera
+ticker: ATOM
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 0.75
+  Asia: 0.25
+tax: 0.21
+horizon: 10
+as_of: '2026-11-20'
+market:
+  date: '2026-11-20'
+  price: 2.31
+  shares: 0.043669
+  net_debt: -0.031899
+  source: 가격 = 11/19 종가(Fiscal.ai·Easyconomics) · 주식 수 = 3Q 10-Q 재무상태표 39,083천 주(9/30)
+    · 현금 = 현금 $23.27M + 단기 투자 $11.56M = $34.83M(9/30) · 차입 0, 리스 부채 $2.93M(운용 $2.73M
+    + 금융 $0.20M)
+rev0: 0.000219
+ic0: 0.000895
+scenarios:
+  base:
+    prob: 0.7
+    growth:
+      start: 3.5662
+      end: 0.035
+      decay: 0.415
+    margin:
+      m0: -109.6941
+      target: 0.1955
+      year_target: 4
+      lr: 0.15
+      lam: 0.35
+    s2c: 0.5
+  bull:
+    prob: 0.15
+    growth:
+      start: 19.5479
+      end: 0.04
+      decay: 0.46499999999999997
+    margin:
+      m0: -109.6941
+      target: 0.2755
+      year_target: 4
+      lr: 0.15
+      lam: 0.25
+    s2c: 0.575
+  bear:
+    prob: 0.15
+    growth:
+      start: 0.1416
+      end: 0.030000000000000002
+      decay: 0.31499999999999995
+    margin:
+      m0: -109.6941
+      target: 0.1155
+      year_target: 4
+      lr: 0.15
+      lam: 0.5
+    s2c: 0.425
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 0.000219
+  growth: 컨센서스 1년차 356.6%, 2년차 150.0%
+  margin: 출발 TTM EBIT 이익률 -10969.4% → 목표 동종 4사 중앙값 19.6%(4년)
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 14.2%~1954.8%
+  probs: '근거 계산 {''bear'': 0.05, ''base'': 0.9, ''bull'': 0.05} → 모델 조정 {''bear'':
+    0.15, ''base'': 0.7, ''bull'': 0.15}(상업 라이선스 없이 10년 넘게 매출 $0.5M 안팎에 머물렀고(2017~2026),
+    2025-10 STMicro 프로젝트가 멈춘 전례가 있어 약세를 높게 본다. 표본 1명 추정이라 계산 확률을 그대로 믿기 어렵다) — 다음
+    해 매출 성장 분포로 계산 — 약세 +185.4% 아래·강세 +1155.7% 위 확률. 내부 관점(컨센서스 +356.6%, σ 94.2%:
+    추정 범위 없음 — 5% + 0.25 × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.039083(2026-09-30) + 옵션·RSU·워런트·전환 0.0046 — 3Q 10-Q 주당손실 주석:
+    옵션 3,407천·미가득 RSU 1,055천·미가득 제한주 124천 주, 워런'
+notes:
+- 자동 생성(build_drivers) 2026-11-20 — 데이터 묶음 2026-11-20
+- '어닝콜 위험: 매출 0 분기 — 웨이퍼 납품이 들쭉날쭉'
+- '어닝콜 위험: 장비 리스 단가 급등(300mm 월 $133K → $250K)과 2027 비용 미정'
+- '어닝콜 위험: 라이선스 체결 시점 미제시'
+evidence:
+- 3Q26 10-Q(SEC, 2026-10-30) https://www.sec.gov/Archives/edgar/data/1420520/000168316826008195/atomera_i10q-093026.htm
+- 3Q26 실적 8-K(Item 2.02, 2026-10-29) https://www.sec.gov/Archives/edgar/data/1420520/000168316826008161/atomera_8k.htm
+- 2Q26 10-Q(SEC, 2026-08-06) https://www.sec.gov/Archives/edgar/data/1420520/000168316826006050/atomera_i10q-063026.htm
+- 3Q26 어닝콜(2026-10-29)
+- 2Q26 어닝콜(2026-08-04)
+- Fiscal.ai 표준화 재무·추정(11/20 조회)
+- Easyconomics(yfinance) 일봉·개요(11/20 조회)
+- Quantral 커뮤니티 신호(11/20)

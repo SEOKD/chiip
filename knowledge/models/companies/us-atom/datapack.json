@@ -1,0 +1,3080 @@
+{
+ "id": "us-atom",
+ "name": "Atomera",
+ "ticker": "ATOM",
+ "as_of": "2026-11-20",
+ "unit": "B$",
+ "industry": "semiconductor",
+ "region_mix": {
+  "US": 0.75,
+  "Asia": 0.25
+ },
+ "tax": 0.21,
+ "main_metric": "eps",
+ "main_metric_why": "매출이 거의 없는 기술 라이선스 단계라 EPS·EBITDA 모두 적자다(4Q25~3Q26 매출 $0.22M, 영업손실 $24.0M). 선행 이익 배수를 쓸 수 없어 EV/매출로 내려가며, 매출 기반이 너무 작아 배수는 참고용이다",
+ "profile": {
+  "price": 2.31,
+  "shares_basic": 0.039083,
+  "shares_date": "2026-09-30",
+  "cash": 0.034828,
+  "debt": 0.002929,
+  "source": "가격 = 11/19 종가(Fiscal.ai·Easyconomics) · 주식 수 = 3Q 10-Q 재무상태표 39,083천 주(9/30) · 현금 = 현금 $23.27M + 단기 투자 $11.56M = $34.83M(9/30) · 차입 0, 리스 부채 $2.93M(운용 $2.73M + 금융 $0.20M)"
+ },
+ "dilution": {
+  "options": 0.003407,
+  "rsu": 0.001055,
+  "restricted": 0.000124,
+  "warrants": 0.0,
+  "potential_total": 0.004586,
+  "date": "2026-09-30",
+  "atm_remaining_usd": 0.04,
+  "source": "3Q 10-Q 주당손실 주석: 옵션 3,407천·미가득 RSU 1,055천·미가득 제한주 124천 주, 워런트 없음. 2025 ATM(Craig-Hallum, 한도 $50.0M) 잔여는 공시 없음 — 2025-05 이후 판매분을 빼면 약 $40M(Chiip 추정). 지금 주가로 다 쓰면 약 1,700만 주(+44%, Chiip 계산)"
+ },
+ "financials": {
+  "rev_ttm": 0.000219,
+  "ebit_ttm": -0.024023,
+  "invested_capital": 0.000895,
+  "capex_ttm": 5.1e-05,
+  "da_ttm": 0.001345,
+  "sbc_ttm": 0.006227,
+  "rev_growth_ttm": null,
+  "basis": "GAAP",
+  "note": "TTM = 4Q25~3Q26 합(Fiscal.ai 표준화 손익): 매출 $0.050M + $0.011M + $0.158M + $0 = $0.219M, 영업손익 −4.612 −6.324 −6.759 −6.328 = −$24.02M. 투하자본 = 자기자본 $32.79M + 리스 $2.93M − 현금·단기투자 $34.83M = $0.90M. CAPEX·D&A·SBC = 4개 분기 현금흐름표 합. D&A의 대부분은 금융 리스 장비 상각"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.000219,
+   "FY2027": 0.001,
+   "FY2028": 0.0025
+  },
+  "rev_basis": "gaap",
+  "rev_range": {
+   "FY2027": [
+    0.00025,
+    0.0045
+   ],
+   "FY2028": [
+    0.0003,
+    0.01
+   ]
+  },
+  "ebit_margin": {},
+  "margin_basis": "gaap",
+  "n_analysts": 1,
+  "eps": {
+   "FY2026": -0.48,
+   "FY2027": -0.4
+  },
+  "eps_range": {
+   "FY2027": [
+    -0.4,
+    -0.4
+   ]
+  },
+  "quarters_est": {
+   "2026Q4": 5e-05,
+   "2027Q1": 0.00015,
+   "2027Q2": 0.0002,
+   "2027Q3": 0.000277,
+   "2027Q4": 0.000373,
+   "2028Q1": 0.00082,
+   "2028Q2": 0.000756,
+   "2028Q3": 0.000417,
+   "2028Q4": 0.000507
+  },
+  "quarters_act": {
+   "2025Q4": 5e-05,
+   "2026Q1": 1.1e-05,
+   "2026Q2": 0.000158,
+   "2026Q3": 0.0
+  },
+  "eps_quarters_est": {},
+  "note": "커버리지 1명(Craig-Hallum, 콜 질문자). Zacks 추정 없음(11/20). Fiscal.ai 자체 추정(agentic consensus, 9/30)은 매출만: 4Q26 $0.15M, FY2027 $1.0M($0.25~4.5M), FY2028 $2.5M($0.3~10M). FY2026 매출은 9개월 실적 $0.169M + 4Q 회사 예상 약 $0.05M = $0.219M(Fiscal 모델 $0.319M보다 낮다). EPS는 Alpha Vantage 1명 추정(FY2026 −$0.48, FY2027 −$0.40) — FY2026은 9개월 실적 −$0.49만으로 이미 넘어 낡은 값이다. 의견 Strong Buy 1명·목표가 $8.50(11/17, Fiscal ratings)",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.05,
+    "est": 0.1,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-12"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.14,
+    "est": -0.14,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-12"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -3.265,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-02-12"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.011,
+    "est": 0.075,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.17,
+    "est": -0.133,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -4.909,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-05"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0.158,
+    "est": 0.1,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-04"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.17,
+    "est": -0.13,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-04"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -5.012,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-08-04"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "M$",
+    "actual": 0,
+    "est": 0.1,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "gaap",
+    "earnings_date": "2026-10-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "$",
+    "actual": -0.15,
+    "est": -0.12,
+    "est_src": "yfinance",
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-10-29"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "M$",
+    "actual": -4.6,
+    "est": -4.739,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-29"
+   }
+  ],
+  "ratings": {
+   "strong_buy": 1,
+   "buy": 0,
+   "hold": 0,
+   "sell": 0,
+   "strong_sell": 0,
+   "target_mean": 8.5,
+   "target_high": 8.5,
+   "target_low": 8.5,
+   "n_targets": 1,
+   "as_of": "2026-11-17",
+   "source": "fiscal"
+  },
+  "rev_low": {
+   "FY2027": 0.00025,
+   "FY2028": 0.0003
+  },
+  "rev_high": {
+   "FY2027": 0.0045,
+   "FY2028": 0.01
+  }
+ },
+ "guidance": {
+  "rev_fy0": null,
+  "opex_nongaap_fy0": [
+   0.0185,
+   0.01875
+  ],
+  "rev_next_q": 5e-05,
+  "source": "3Q26 콜(2026-10-29): 2026 non-GAAP 영업비용 $18.5M ±$0.25M 범위의 상단(2Q부터 유지), 4Q 웨이퍼 납품 매출 약 $50K, 10/1 200mm 장비 2027년분 리스 선납 약 $1.4M으로 4Q 영업 현금 사용 일시 증가. 2027 비용 가이던스 없음(장비 리스 협상 중). 매출 가이던스 없음",
+  "next": {
+   "period": "4Q26 매출 약 $50K(회사 예상, 컨센서스 $150K)"
+  }
+ },
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai 표준화 재무(최근 4분기 매출·영업이익, 2026-09-30 재무상태표)·company_ratios latest(11/19). 반도체 IP 라이선스 3곳(CEVA·Rambus·Arteris)과 화합물 기판 1곳(AXT). 매출 전 단계 반도체 소재 IP 상장 동종사는 없다",
+ "peers": [
+  {
+   "ticker": "CEVA",
+   "rev": 0.116411,
+   "ebit_margin": -0.0951,
+   "mcap": 0.7303,
+   "pb": 2.13,
+   "debt": 0.0,
+   "cash": 0.22068,
+   "ev_sales": 4.52,
+   "growth": 0.083,
+   "goodwill": 0.058308,
+   "intangibles": 0.0,
+   "pe_fwd": 34.59,
+   "ev_ebitda_fwd": 110.4,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 38.77,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 32.44,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 71.56,
+     "ev_ebitda_fwd": null
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 51.84,
+     "ev_ebitda_fwd": null
+    }
+   ],
+   "pe_fwd2": 32.89,
+   "ev_ebitda_fwd2": 110.92,
+   "pe_fwd3": 23.72,
+   "ev_ebitda_fwd3": 78.89,
+   "ntm_ebit_margin": 0.1818,
+   "ntm_growth": 0.1382
+  },
+  {
+   "ticker": "RMBS",
+   "rev": 0.796107,
+   "ebit_margin": 0.363,
+   "mcap": 8.1596,
+   "pb": 5.76,
+   "debt": 0.0,
+   "cash": 0.776907,
+   "ev_sales": 9.3,
+   "growth": 0.173,
+   "goodwill": 0.286812,
+   "intangibles": 0.0,
+   "pe_fwd": 21.34,
+   "ev_ebitda_fwd": 18.16,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 31.47,
+     "ev_ebitda_fwd": 21.15
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 26.72,
+     "ev_ebitda_fwd": 18.78
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 41.74,
+     "ev_ebitda_fwd": 30.9
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 31.68,
+     "ev_ebitda_fwd": 22.6
+    }
+   ],
+   "pe_fwd2": 19.77,
+   "ev_ebitda_fwd2": 17.04,
+   "pe_fwd3": 18.15,
+   "ev_ebitda_fwd3": 15.8,
+   "ntm_ebit_margin": 0.4624,
+   "ntm_growth": 0.1845
+  },
+  {
+   "ticker": "AIP",
+   "rev": 0.092981,
+   "ebit_margin": -0.4624,
+   "mcap": 0.9405,
+   "pb": 14.28,
+   "debt": 0.002256,
+   "cash": 0.104183,
+   "ev_sales": 9.09,
+   "growth": 0.41,
+   "goodwill": 0.035156,
+   "intangibles": 0.0,
+   "pe_fwd": 630.33,
+   "ev_ebitda_fwd": 100.24,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 74.62
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 80.76
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 268.35
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 120.99
+    }
+   ],
+   "pe_fwd2": 128.32,
+   "ev_ebitda_fwd2": 38.27,
+   "pe_fwd3": 82.69,
+   "ev_ebitda_fwd3": 25.75,
+   "ntm_ebit_margin": 0.0018,
+   "ntm_growth": 0.2051
+  },
+  {
+   "ticker": "AXTI",
+   "rev": 0.170964,
+   "ebit_margin": 0.1955,
+   "mcap": 2.2898,
+   "pb": 2.51,
+   "debt": 0.0,
+   "cash": 0.553938,
+   "ev_sales": 11.01,
+   "growth": 0.891,
+   "goodwill": 0.0,
+   "intangibles": 0.0,
+   "pe_fwd": 10.92,
+   "ev_ebitda_fwd": 7.81,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 104.48
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 432.76,
+     "ev_ebitda_fwd": 234.61
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 137.73,
+     "ev_ebitda_fwd": 183.26
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 41.77,
+     "ev_ebitda_fwd": 34.82
+    }
+   ],
+   "pe_fwd2": 8.17,
+   "ev_ebitda_fwd2": 3.83,
+   "pe_fwd3": 5.54,
+   "ev_ebitda_fwd3": 2.5,
+   "ntm_ebit_margin": 0.4746,
+   "ntm_growth": 1.9069
+  }
+ ],
+ "next_event": {
+  "date": "2027-02-11",
+  "tag": "4Q26 실적·웨비나(날짜 미공지, 2월 중순 추정 — 2026년은 2/12)"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-20T13:30:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "NASDAQ_ATOM",
+   "terminalUrl": "https://fiscal.ai/company/NasdaqCM-ATOM",
+   "price": 2.31,
+   "market_cap": 0.090283,
+   "total_cash": 0.034828,
+   "total_debt": 0.002929,
+   "shares_outstanding": 0.039083,
+   "as_of": "2026-11-19",
+   "balance_date": "2026-09-30"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 5e-05,
+    "2026Q1": 1.1e-05,
+    "2026Q2": 0.000158,
+    "2026Q3": 0.0
+   },
+   "op_income": {
+    "2025Q4": -0.004612,
+    "2026Q1": -0.006324,
+    "2026Q2": -0.006759,
+    "2026Q3": -0.006328
+   },
+   "note": "Fiscal.ai 표준화 손익"
+  },
+  "estimates_sales_m": {
+   "2026Q1": 0.011,
+   "2026Q2": 0.158,
+   "2026Q3": 0.0,
+   "2026Q4": 0.05,
+   "2027Q1": 0.15,
+   "2027Q2": 0.2,
+   "2027Q3": 0.277,
+   "2027Q4": 0.373
+  },
+  "balance_2026_09_30": {
+   "cash": 0.023268,
+   "st_investments": 0.01156,
+   "debt": 0.0,
+   "equity": 0.032794,
+   "ppe_net": 6.2e-05,
+   "rou_operating": 0.002731,
+   "shares": 0.039083,
+   "lease_current": 0.002106,
+   "lease_lt": 0.000823
+  },
+  "prev_balance_2026_06_30": {
+   "cash": 0.015146,
+   "st_investments": 0.023206,
+   "equity": 0.037075
+  },
+  "yfinance": {
+   "ev": 0.058384,
+   "short_pct_float": 0.1667,
+   "short_ratio": 8.77,
+   "inst_own": 0.497,
+   "insider_own": 0.034,
+   "high_52w": 12.365,
+   "low_52w": 1.892,
+   "ma50": 3.573,
+   "ma200": 5.506,
+   "employees": 21,
+   "as_of": "2026-11-19"
+  },
+  "shares_cover_implied": 0.039083,
+  "sec": {
+   "antidilutive_2026_09_30": 0.004586
+  },
+  "tenq_2026_09_30": {
+   "purchase_commitments": "중요 구매 약정 공시 없음(주석 9 — 소송 없음). 약정 성격의 지출은 장비 리스: 300mm 에피 증착 장비 월 $133,125(2025-08~2026-04) → 2026-08 3개월 연장(~2026-10) 월 $250,000, 그 뒤 조건 협상 중. 200mm 에피 장비(애리조나 Tempe) 월 $95,000, 2027-12까지 연장하며 2027년분 약 $1.4M 10/1 일시 선납",
+   "restricted_cash": "공시 없음",
+   "customers_10pct": "10% 고객 표 없음. 9M26 매출 $169K = 북미 $127K + 아시아태평양 $42K, 전부 시점 인식(웨이퍼 납품). 2Q 매출은 주로 '대형 IDM 고객'(2Q 콜)",
+   "gov_support": "없음. PowerAmerica GaN 전력 과제는 선정되지 않은 것으로 회사가 추정(2Q 콜, 과제 규모 약 $0.3M)",
+   "atm_9m": "2025 ATM으로 약 130만 주, 평균 $2.47, 순 $3.1M(모두 1Q). 2·3Q 판매 없음. 2026-02-24 등록 직접공모 500만 주 × $5.00, 순 $23.6M",
+   "liquidity": "현금·단기투자 $34.8M, 운전자본 $30.6M, 9M 영업 현금 사용 $11.7M. 회사는 향후 12개월 자금이 충분하다고 적었다",
+   "leases": "본사(캘리포니아 Los Gatos) 2031-03까지 연장, Tempe 사무실은 애리조나주립대 연구 협력 조건부 3년 임차",
+   "source": "https://www.sec.gov/Archives/edgar/data/1420520/000168316826008195/atomera_i10q-093026.htm",
+   "earnings_8k": "3Q 실적 8-K(Item 2.02·9.01) 2026-10-29 0001683168-26-008161"
+  },
+  "retrieved_at_facts": "2026-11-20T13:40+09:00 EDGAR 제출 목록·3Q 10-Q 본문, 3Q·2Q 콜 전문",
+  "estimates_sales_note": "2026Q1~Q3 실적, 2026Q4 회사 예상(약 50K 달러), 2027 Fiscal.ai 자체 추정(agentic consensus 9/30)"
+ },
+ "events": [
+  {
+   "date": "2025-10-22",
+   "tag": "STMicro 프로젝트 진행 안 함 공시, −32.6%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2025-10-28",
+   "tag": "3Q25 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-02-12",
+   "tag": "4Q25 실적·GAA 목표 제시",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-02-24",
+   "tag": "등록 직접공모 500만 주 × $5.00",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-04-24",
+   "tag": "Synopsys GaN 모델링 협력 확대, +38.9%",
+   "kind": "news"
+  },
+  {
+   "date": "2026-05-05",
+   "tag": "1Q26 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-05-26",
+   "tag": "GaN-on-Si RF 성능 발표 전후 급등, 종가 고점 $12.11",
+   "kind": "news"
+  },
+  {
+   "date": "2026-06-17",
+   "tag": "CEO·CFO·CTO 계획 매도 $0.74M(Form 4)",
+   "kind": "news"
+  },
+  {
+   "date": "2026-08-04",
+   "tag": "2Q26 실적·GAA 마일스톤",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "IQE와 RF GaN-on-Si 공동개발 계약",
+   "kind": "news"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "3Q26 실적(매출 0)·GAA 3곳",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "−8.6%(원인 미확인)",
+   "kind": "news"
+  },
+  {
+   "date": "2026-11-17",
+   "tag": "−8.2%(원인 미확인)",
+   "kind": "news"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-12",
+   "kind": "실적",
+   "tag": "4Q25 실적, GAA 연내 목표",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-05-05",
+   "kind": "실적",
+   "tag": "1Q26 실적, GaN 해법 소개",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-04",
+   "kind": "실적",
+   "tag": "2Q26 실적, GAA 마일스톤",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-22",
+   "kind": "내러티브",
+   "tag": "IQE 공동개발 계약"
+  },
+  {
+   "date": "2026-10-29",
+   "kind": "실적",
+   "tag": "3Q26 매출 0, GAA 3곳",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-08-04",
+  "tone": "flat",
+  "guidance_direction": "maintain",
+  "kpis": {
+   "rev_3q_m": 0.0,
+   "op_loss_3q_m": -6.33,
+   "nongaap_opex_3q_m": 4.6,
+   "net_loss_3q_m": -6.0,
+   "cash_st_inv_m": 34.8,
+   "ocf_3q_m": -3.2,
+   "shares_m": 39.1,
+   "gaa_engaged": 3,
+   "starting_wafer_apps": 6,
+   "rev_4q_expected_m": 0.05
+  },
+  "guidance_changes": [
+   "2026 non-GAAP 영업비용 $18.5M ±$0.25M 범위 상단 유지",
+   "4Q 매출 약 $50K(웨이퍼 납품) 처음 제시",
+   "10/1 200mm 장비 2027년분 리스 선납 약 $1.4M — 4Q 현금 사용 일시 증가",
+   "2027 비용 가이던스는 장비 리스 협상 뒤로"
+  ],
+  "new_topics": [
+   "GAA 4개사 중 3곳과 작업(2Q는 2곳), 2곳은 고객 실리콘에 MST 증착 단계",
+   "IQE와 RF GaN-on-Si 공동개발 계약(전력용 GaN도 포함)",
+   "4F² 수직 채널 DRAM용 MST — SISPAD 논문(9월)",
+   "HBM 베이스 다이(로직 공정)에 GAA 노하우 적용",
+   "NAND CMOS 다이를 셀 어레이 크기에 맞추는 MST 용도",
+   "시작 웨이퍼 제품군 'Prima'(용도 2 → 6개)와 소자 내 증착 'Selecta' 브랜드",
+   "대기압 장비 증착으로 처리량 확대 검토",
+   "STMicro와 '결국 거래할 것' 발언(발표 없음)"
+  ],
+  "dropped_topics": [
+   "2Q에 말한 'GAA 첫 고객 라이선스 협상이 빠르면 연말~그 직후' 시점 — 3Q에는 일정 언급 없음",
+   "2Q의 RF SOI 두 번째 JDA 파트너 웨이퍼 결과",
+   "PowerAmerica 과제"
+  ],
+  "analyst_focus": [
+   "Craig-Hallum — GAA 첫 고객 진척·세 번째 고객 계기",
+   "Craig-Hallum — 4F² DRAM 단계",
+   "Craig-Hallum — IQE의 참여 동기(고객 견인 여부)",
+   "Craig-Hallum — RF SOI 고처리량 공정 성숙도",
+   "Craig-Hallum — Prima가 먼저 양산에 갈지",
+   "Craig-Hallum — 2027 영업비용·인력"
+  ],
+  "risks": [
+   "매출 0 분기 — 웨이퍼 납품이 들쭉날쭉",
+   "장비 리스 단가 급등(300mm 월 $133K → $250K)과 2027 비용 미정",
+   "라이선스 체결 시점 미제시",
+   "ATM 잔여로 인한 희석",
+   "경영진 계획 매도 지속"
+  ],
+  "source": "3Q26 어닝콜(2026-10-29)·3Q 10-Q·3Q 실적 8-K. 직전 = 2Q 콜(2026-08-04)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "GAA 고객 2곳 → 3곳(4곳 중)",
+    "label": "GAA 3곳",
+    "prior": "2Q: 4곳 중 2곳 작업, 1곳 마일스톤 통과",
+    "latest": "3Q: 3곳 작업(2곳은 고객 실리콘 증착), 4번째와 대화",
+    "driver": "growth_start",
+    "shift": 0.1,
+    "confidence": 0.5,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F2",
+    "kind": "부정",
+    "item": "GAA 라이선스 협상 시점 언급 소멸",
+    "label": "라이선스 시점 소멸",
+    "prior": "2Q: 순조로우면 연말~그 직후 설치 논의, 재시도면 약 9개월 지연",
+    "latest": "3Q: 마일스톤을 다 밝힐 수 없고 시점은 보기 어렵다",
+    "driver": "growth_start",
+    "shift": -0.2,
+    "confidence": 0.5,
+    "source": "3Q·2Q 콜"
+   },
+   {
+    "id": "F3",
+    "kind": "신규",
+    "item": "IQE RF GaN-on-Si 공동개발",
+    "label": "IQE 공동개발",
+    "prior": "GaN 신규 고객 평가",
+    "latest": "IQE가 MST 실리콘 위 GaN 에피를 최적화, 6개월 안 튜닝 뒤 두어 달 인증이면 판매 가능하다는 CEO 설명",
+    "driver": "growth_start",
+    "shift": 0.15,
+    "confidence": 0.3,
+    "source": "3Q 콜·회사 보도자료 2026-10-22"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "3Q 매출 0",
+    "label": "3Q 매출 0",
+    "prior": "2Q $158K(대형 IDM 웨이퍼)",
+    "latest": "3Q $0, 4Q 약 $50K 예상",
+    "driver": "rev0",
+    "shift": -0.0001,
+    "confidence": 1.0,
+    "source": "3Q 실적 8-K"
+   },
+   {
+    "id": "F5",
+    "kind": "부정",
+    "item": "장비 리스 단가 상승",
+    "label": "장비 리스 상승",
+    "prior": "300mm 장비 월 $133K, 연 약 $1.8M",
+    "latest": "2026-08~10 월 $250K, 이후 협상 중. 2027 비용 가이던스 보류",
+    "driver": "margin_m0",
+    "shift": -0.02,
+    "confidence": 0.8,
+    "source": "3Q 10-Q 주석 7·3Q 콜"
+   },
+   {
+    "id": "F6",
+    "kind": "신규",
+    "item": "메모리 용도 확대(4F² DRAM·HBM 베이스·NAND)",
+    "label": "메모리 용도",
+    "prior": "2Q: 4F² 개념·NAND 주변회로 기회 발견",
+    "latest": "3Q: DRAM·NAND 양쪽 메모리사 방문, 초기 단계",
+    "driver": "growth_decay",
+    "shift": 0.01,
+    "confidence": 0.3,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F7",
+    "kind": "반복",
+    "item": "2026 영업비용 가이던스 상단 유지",
+    "label": "비용 가이던스",
+    "prior": "$18.5M ±$0.25M 상단",
+    "latest": "같음",
+    "driver": "margin_m0",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "F8",
+    "kind": "반복",
+    "item": "대형 아날로그·전력 IDM 프로그램",
+    "label": "IDM 프로그램",
+    "prior": "2Q: 계획대로, 새 소자 데이터 수신",
+    "latest": "3Q: 웨이퍼 런 진행, 다음 노드 채택 목표",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 0.5,
+    "source": "3Q 콜"
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": -0.3,
+  "why": "동종 EV/매출(4.5~11.0배)은 매출 $0.09~0.80B가 있는 IP·기판 회사 값이다. 4개 분기 매출 $0.22M인 라이선스 전 단계 Atomera에 그대로 쓰면 과대라 상한(−30%)까지 내린다"
+ },
+ "scenario_probs": {
+  "bear": 0.45,
+  "base": 0.35,
+  "bull": 0.2
+ },
+ "scenario_probs_why": "상업 라이선스 없이 10년 넘게 매출 $0.5M 안팎에 머물렀고(2017~2026), 2025-10 STMicro 프로젝트가 멈춘 전례가 있어 약세를 높게 본다. 표본 1명 추정이라 계산 확률을 그대로 믿기 어렵다",
+ "overrides": {},
+ "recurring": {
+  "share": 0.0,
+  "kind": "로열티·MSTcad 라이선스 — 아직 반복 매출 없음",
+  "base": "양산 라이선스 0건(2023 STMicro 상업 라이선스는 2025-10 프로젝트 중단)",
+  "base_growth": null,
+  "retention": null,
+  "years_to_recurring": 3,
+  "source": "10-Q 사업 설명(라이선스 → 양산 → 로열티 순). 첫 로열티까지 라이선스 체결·고객 공정 인증·설계·양산이 남아 약 3년(추정)"
+ },
+ "backlog": {
+  "none": "수주 잔고·잔여 이행 의무를 공시하지 않는다. 매출은 웨이퍼 납품 시점 인식뿐이다"
+ },
+ "ma": {
+  "none": "최근 3년 인수·합병 없음(10-Q)"
+ },
+ "pq": {
+  "none": "매출이 분기 $0~0.16M 웨이퍼 납품 수수료라 가격·물량 사이클을 잴 수 없다"
+ },
+ "sync": {
+  "none": "매출이 고객 평가용 웨이퍼 납품이라 무역·PPI 지표와 시차 상관을 잴 의미가 없다"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인 병목 틀(sector_data 해당 없음)"
+ },
+ "midterm": {
+  "exposure": {
+   "chips_act": 0.2
+  },
+  "sub": "semis",
+  "etf": "SOXX",
+  "basis": "정부 매출·보조금 없음. CHIPS 과제 응모만 했다(2Q 콜). 노출은 업종 반응 정도(가설)"
+ },
+ "target_view": {
+  "adj": 0.0,
+  "why": "조정 없음"
+ },
+ "names": [
+  "Atomera",
+  "Synopsys",
+  "IQE",
+  "STMicroelectronics",
+  "STMicro",
+  "Craig-Hallum",
+  "Oppenheimer",
+  "CEVA",
+  "Rambus",
+  "Arteris",
+  "AXT",
+  "TSMC",
+  "Samsung",
+  "Intel",
+  "Rapidus",
+  "Applied Materials",
+  "ASM",
+  "Lam Research",
+  "SK hynix",
+  "Micron",
+  "Kioxia",
+  "Arizona State University",
+  "PowerAmerica",
+  "Bibaud",
+  "Mears",
+  "Laurencio",
+  "Mike Bishop",
+  "Silicon",
+  "Technology",
+  "Mears Silicon Technology"
+ ],
+ "terms": {
+  "MST": "Atomera의 산소 원자층을 끼운 실리콘 초격자 박막(Mears Silicon Technology)",
+  "MSTcad": "MST 효과를 TCAD에서 시뮬레이션하는 Atomera 소프트웨어",
+  "Prima": "MST를 미리 입힌 시작 웨이퍼 제품군",
+  "Selecta": "고객 소자 공정 중간에 MST를 선택 증착하는 제품군",
+  "GAA": "게이트가 채널을 사방에서 감싸는 차세대 트랜지스터",
+  "CFET": "n·p 트랜지스터를 위아래로 쌓는 GAA 다음 구조",
+  "4F²": "수직 채널로 셀 면적을 줄인 차세대 DRAM 셀 구조",
+  "HBM": "고대역폭 메모리",
+  "RF SOI": "절연막 위 실리콘으로 만든 무선 주파수 스위치용 기판",
+  "GaN-on-Si": "실리콘 기판 위에 키운 질화갈륨",
+  "GaN": "질화갈륨",
+  "HBT": "이종접합 바이폴라 트랜지스터",
+  "trench FET": "홈 안에 게이트를 판 전력 트랜지스터",
+  "TCAD": "반도체 공정·소자 시뮬레이션",
+  "SISPAD": "반도체 공정·소자 시뮬레이션 국제 학회",
+  "IMS": "국제 마이크로파 심포지엄",
+  "JDA": "공동개발 계약",
+  "ATM": "시장가 수시 유상증자",
+  "IDM": "설계·생산을 함께 하는 반도체 회사",
+  "EDA": "반도체 설계 자동화 소프트웨어",
+  "CMOS": "상보형 금속산화물 반도체",
+  "LPDDR": "저전력 모바일 DRAM",
+  "TAM": "전체 시장 규모",
+  "CHIPS": "미국 반도체 지원법(CHIPS Act)",
+  "ASU": "애리조나주립대",
+  "NAND": "낸드 플래시",
+  "DRAM": "디램",
+  "epi": "에피택시 결정 성장",
+  "SBC": "주식보상비용",
+  "FET": "전계효과 트랜지스터",
+  "RF": "무선 주파수",
+  "SOI": "절연막 위 실리콘",
+  "SiC": "탄화규소",
+  "USPTO": "미국 특허청",
+  "JP": "일본"
+ },
+ "pipeline": {
+  "as_of": "2026-10-29",
+  "reported_backlog": null,
+  "backlog_label": "수주 잔고 공시 없음",
+  "summary": "계약서로 확인되는 것은 IQE 공동개발 계약과 MSTcad·평가 용역뿐이다. 매출을 바꿀 상업 라이선스는 한 건도 체결되지 않았고, GAA 3곳·대형 IDM·메모리사는 평가 단계다",
+  "items": [
+   {
+    "name": "GAA 로직 고객 3곳(4곳 중)",
+    "status": "협상",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "2곳은 고객 실리콘 증착·물리 검증 마일스톤 진행, 1곳은 초기 평가",
+    "start": "2025",
+    "end": "미확인",
+    "blockers": [
+     "전기 특성 결과",
+     "고객 팹 설치 위한 라이선스 체결",
+     "재시도 시 약 9개월 지연(2Q 콜)"
+    ],
+    "source": "3Q·2Q 콜"
+   },
+   {
+    "name": "대형 아날로그·전력 IDM 다음 노드",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "웨이퍼 런 반복, 전기 시험·양산성 준비",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "공정 인증",
+     "고객 설계 채택"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "IQE RF GaN-on-Si 공동개발",
+    "status": "확정",
+    "total": "미확인",
+    "progress": 0.1,
+    "margin": "미확인",
+    "speed": "작업 시작, CEO는 6개월 튜닝 + 두어 달 인증 시나리오 제시",
+    "start": "2026-10",
+    "end": "미확인",
+    "blockers": [
+     "성능 재현",
+     "IQE 고객 확보",
+     "계약 금액 미공시"
+    ],
+    "source": "회사 보도자료 2026-10-22·3Q 콜"
+   },
+   {
+    "name": "STMicro 재협력",
+    "status": "협상",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "2025-10 기존 프로젝트 중단 뒤 사업부와 재논의",
+    "start": "2023",
+    "end": "미확인",
+    "blockers": [
+     "발표된 계약 없음"
+    ],
+    "source": "3Q 콜·2025-10 공시 보도"
+   },
+   {
+    "name": "메모리(4F² DRAM·HBM 베이스·NAND)",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "시뮬레이션 논문·고객 방문, 초기 단계",
+    "start": "2026-06",
+    "end": "미확인",
+    "blockers": [
+     "실리콘 데이터",
+     "고객 평가 착수"
+    ],
+    "source": "3Q·2Q 콜"
+   },
+   {
+    "name": "RF SOI·전력(trench FET·HBT) 고객",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "margin": "미확인",
+    "speed": "여러 고객 평가, 고처리량 공정 개발",
+    "start": "미확인",
+    "end": "미확인",
+    "blockers": [
+     "양산 처리량",
+     "기판 공급망"
+    ],
+    "source": "3Q 콜"
+   },
+   {
+    "name": "4Q26 웨이퍼 납품",
+    "status": "확정",
+    "total": 5e-05,
+    "progress": 0.0,
+    "margin": "미확인",
+    "speed": "4Q 인식 예상",
+    "start": "2026-10",
+    "end": "2026-12",
+    "blockers": [
+     "웨이퍼 납품 시점이 들쭉날쭉(CFO)"
+    ],
+    "source": "3Q 콜"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "MST 증착 장비(임차, 대)",
+  "summary": "생산 설비를 소유하지 않는다. 고객 평가용 MST 웨이퍼는 임차한 300mm·200mm 에피 증착 장비 2대로 만든다. 300mm 장비 리스료가 2026-08 월 $250K로 뛰었고 그 뒤 조건은 협상 중이다. 양산은 고객이 자기 팹 장비에 MST를 설치해 하는 구조다",
+  "current": {
+   "nameplate": 2,
+   "utilization": "미확인",
+   "basis": "3Q 10-Q 리스 주석 — 300mm 에피 장비 1대, 200mm 에피 장비 1대(Tempe)",
+   "source": "3Q 10-Q 주석 7"
+  },
+  "plans": [],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 4.9e-05,
+    "rev": 6.5e-05,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 3Q26",
+    "capex": 5.1e-05,
+    "rev": 0.000219,
+    "kind": "실적"
+   }
+  ],
+  "capex_source": "현금흐름표 유형자산 구매(FY2025 = 4개 분기 합 $49K). 장비는 사지 않고 리스로 쓴다 — 리스료는 영업비용",
+  "facilities": {
+   "count": 4,
+   "count_basis": "3Q 10-Q 리스 주석: 본사·Tempe 사무실 2곳과 임차 증착 장비 2대. 장비가 놓인 300mm 장비의 위치는 공시하지 않는다",
+   "source": "https://www.sec.gov/Archives/edgar/data/1420520/000168316826008195/atomera_i10q-093026.htm",
+   "items": [
+    {
+     "name": "본사",
+     "location": "미국 캘리포니아 Los Gatos",
+     "owned": "임차",
+     "use": "경영·연구개발(2031-03까지)",
+     "capacity": "미확인",
+     "capacity_basis": "사무 시설",
+     "status": "가동"
+    },
+    {
+     "name": "Tempe 사무실",
+     "location": "미국 애리조나 Tempe",
+     "owned": "임차",
+     "use": "연구개발, 애리조나주립대 연구 협력 조건",
+     "capacity": "미확인",
+     "capacity_basis": "사무·연구 시설",
+     "status": "가동"
+    },
+    {
+     "name": "300mm 에피 증착 장비",
+     "location": "미확인",
+     "owned": "임차",
+     "use": "고객 평가·시연 웨이퍼 MST 증착",
+     "capacity": "미확인",
+     "capacity_basis": "처리량 미공시",
+     "status": "가동"
+    },
+    {
+     "name": "200mm 에피 증착 장비",
+     "location": "미국 애리조나 Tempe",
+     "owned": "임차",
+     "use": "RF SOI·GaN 등 200mm 시작 웨이퍼",
+     "capacity": "미확인",
+     "capacity_basis": "처리량 미공시",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "소유 공장·팹이 없다(장비·사무실 모두 임차)"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "9M26",
+  "summary": "9개월 매출 $169K는 북미 $127K·아시아태평양 $42K의 웨이퍼 납품이고, 2Q 매출은 주로 대형 IDM 고객 몫이다. 고객 이름은 공시하지 않는다. 회사가 이름을 밝힌 상대는 IQE(공동개발)·Synopsys(시뮬레이션 협력)·STMicro(과거 라이선스)뿐이다",
+  "items": [
+   {
+    "name": "대형 아날로그·전력 IDM",
+    "alias": "large IDM customer",
+    "share": [
+     0.6,
+     0.75
+    ],
+    "prior": "미확인",
+    "basis": "추정",
+    "buys": "평가용 MST 웨이퍼 납품",
+    "source": "2Q 콜 '주로 대형 IDM 고객'·3Q 10-Q 지역별 매출",
+    "why": "2Q $158K의 대부분 — 북미 매출($127K) 안에 있다고 보고 9M 몫을 추정"
+   },
+   {
+    "name": "아시아태평양 고객",
+    "alias": "Asia Pacific",
+    "share": 0.25,
+    "prior": 0.0,
+    "basis": "공시",
+    "buys": "웨이퍼 납품",
+    "source": "3Q 10-Q 지역별 매출 $42K / $169K",
+    "why": "이름 미공시"
+   },
+   {
+    "name": "GAA 로직 제조사 3곳",
+    "alias": "Gate-All-Around customers",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "공시",
+    "buys": "평가(매출 미발생)",
+    "source": "3Q 콜",
+    "why": "GAA를 개발하는 4곳은 공개 정보로 TSMC·Samsung·Intel·Rapidus로 추정되나 어느 3곳인지는 가설"
+   },
+   {
+    "name": "IQE",
+    "alias": "IQE",
+    "share": 0.0,
+    "prior": 0.0,
+    "basis": "공시",
+    "buys": "공동개발(금액 미공시)",
+    "source": "회사 보도자료 2026-10-22",
+    "why": "양산 시 MST 웨이퍼 생산자가 될 수 있다(CEO)"
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-10-29",
+  "summary": "병목은 자기 증착 장비와 측정·소자 제작 외주다. 장비를 사지 않고 빌려 쓰는데, 업계 증설로 장비 리스·계측·소자 제작 단가가 크게 올랐다(CFO). 양산 단계에서는 고객 팹의 표준 에피 장비를 그대로 쓴다고 회사는 말한다",
+  "links": [
+   {
+    "item": "300mm 에피 증착 장비 리스",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "이름 비공개 임대인",
+      "role": "300mm 에피 장비 임대",
+      "status": "공시",
+      "source": "3Q 10-Q 주석 7"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "리스료 월 $133K → $250K(2026-08), CFO '공급이 매우 빠듯'",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "단기 리스",
+    "why": "GAA·고객 시연 웨이퍼의 유일한 300mm 장비",
+    "relief": "미확인 — 조건 협상 중",
+    "source": "3Q 10-Q·콜",
+    "input": "semicap"
+   },
+   {
+    "item": "200mm 에피 증착 장비 리스",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "이름 비공개 임대인(Tempe)",
+      "role": "200mm 에피 장비 임대",
+      "status": "공시",
+      "source": "3Q 10-Q 주석 7"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "여유",
+    "capacity_basis": "2027-12까지 월 $95K 수준으로 연장, 2027년분 선납",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": 1.0,
+    "region": "미국",
+    "secured": "선납 리스",
+    "why": "Prima 시작 웨이퍼(RF SOI·GaN)",
+    "relief": "일부 — 2027년분 확보",
+    "source": "3Q 10-Q",
+    "input": "semicap"
+   },
+   {
+    "item": "계측·소자 제작 외주",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "외주 계측·팹 서비스(이름 비공개)",
+      "role": "측정·소자 제작",
+      "status": "회사 발표",
+      "source": "2Q·3Q 콜"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "CFO가 단가 상승을 '상당하다'고 표현",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "건별",
+    "why": "고객에게 보일 전기 특성 데이터",
+    "relief": "미확인",
+    "source": "2Q·3Q 콜"
+   },
+   {
+    "item": "GaN 에피 성장",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "IQE",
+      "role": "MST 실리콘 위 GaN 에피 공동개발",
+      "status": "회사 발표",
+      "source": "회사 보도자료 2026-10-22"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": "미확인",
+    "region": "영국",
+    "secured": "공동개발",
+    "why": "GaN-on-Si 상용화 경로",
+    "relief": "미확인",
+    "source": "3Q 콜"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q 매출이 0이라 이익률을 잴 수 없어 매출이 있던 1·2Q로 본다. 분기 영업비용은 $6.2~6.9M(연구개발·판관, SBC 약 $1.7M 포함)이고 핵심은 장비 리스·계측·소자 제작 외주와 인건비다. 손실을 일부 메우는 것은 이자 수익(3Q $0.33M)이다",
+  "periods": [
+   {
+    "period": "1Q26",
+    "rev": 1.1e-05,
+    "cogs": 0.000126,
+    "rd": 0.003457,
+    "sga": 0.002752,
+    "other": 0.0
+   },
+   {
+    "period": "2Q26",
+    "rev": 0.000158,
+    "cogs": 2.6e-05,
+    "rd": 0.003287,
+    "sga": 0.003604,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "연구개발(장비 리스·계측·인력)",
+    "stage": "연구개발",
+    "pct_rev": 20.8,
+    "prior_pct": 20.8,
+    "fixed": 0.85,
+    "driver": "장비 리스료·외주 계측 단가",
+    "basis": "공시",
+    "source": "2Q 10-Q 손익(3Q는 매출 0이라 2Q 기준)"
+   },
+   {
+    "name": "판관비(SBC·법무 포함)",
+    "stage": "판관비",
+    "pct_rev": 22.8,
+    "prior_pct": 22.8,
+    "fixed": 0.9,
+    "driver": "인력·특허 법무·주식보상",
+    "basis": "공시",
+    "source": "2Q 10-Q 손익"
+   },
+   {
+    "name": "웨이퍼 납품 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.165,
+    "prior_pct": "미확인",
+    "fixed": 0.5,
+    "driver": "기판·증착",
+    "basis": "공시",
+    "source": "2Q 손익 매출원가 $26K / 매출 $158K"
+   }
+  ],
+  "products": [
+   {
+    "name": "평가용 MST 웨이퍼·MSTcad",
+    "rev_share": 1.0,
+    "gpm": 0.835,
+    "gpm_basis": "2Q26 매출 $158K − 매출원가 $26K(3Q는 매출 0)",
+    "bom": [
+     {
+      "item": "실리콘 기판(200·300mm)",
+      "share": [
+       0.3,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "웨이퍼 납품 사업 일반",
+      "input": "doped_wafer",
+      "pass_through": "미확인",
+      "why": "기판 가격"
+     },
+     {
+      "item": "MST 증착(장비 시간·가스)",
+      "share": [
+       0.3,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "10-Q 리스 주석",
+      "pass_through": "미확인",
+      "why": "장비 리스료가 원가에 배분되는지는 미공시"
+     },
+     {
+      "item": "측정·검사",
+      "share": [
+       0.1,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "콜 발언",
+      "pass_through": "미확인",
+      "why": "외주 계측 단가"
+     }
+    ]
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-20",
+  "summary": "CEO Bibaud·CTO Mears(MST 발명자)·CFO Laurencio 세 명이 회사를 이끈다. 세 명 모두 10b5-1 계획 매도를 이어 왔고 장내 매수 기록은 이번 조사에서 찾지 못했다. 정계·대형 고객과의 공개 연결은 확인하지 못했다",
+  "people": [
+   {
+    "name": "Scott Bibaud",
+    "role": "President·CEO·이사",
+    "since": "미확인",
+    "profile": "10-K 경영진 소개 미대조 — 미확인",
+    "business": "10b5-1 계획 매도(2026-06 $0.47M 등, Form 4)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "Form 4·3Q 콜"
+   },
+   {
+    "name": "Robert J. Mears",
+    "role": "공동창업자·CTO",
+    "since": "2001",
+    "profile": "MST 발명자(회사 옛 이름 Mears Technologies)",
+    "business": "2026-06-08 $8.42에 $0.46M 계획 매도(Form 4)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "Form 4·회사 개요"
+   },
+   {
+    "name": "Francis Laurencio",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "미확인",
+    "business": "2026-02-20 $7.25에 $0.16M 매도(Form 4)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "Form 4"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "IQE·Synopsys·이름 비공개 장비 파트너와 공식 협력",
+    "strength": 2,
+    "exposure": "미확인",
+    "basis": "협력 금액 미공시",
+    "evidence": "회사 보도자료·3Q 콜"
+   }
+  ]
+ },
+ "moat": {
+  "summary": "해자는 MST 박막 특허와 고객 실리콘에 넣어 본 경험이다. 다만 20년 넘게 상업 양산 고객이 없어 특허가 돈이 된다는 증거는 아직 없다",
+  "items": [
+   {
+    "kind": "MST 특허·노하우",
+    "verdict": "보통",
+    "claim": "산소를 끼운 실리콘 초격자로 도펀트 확산을 막는 방법을 특허로 묶었다",
+    "evidence": "2026년에도 GAA 초격자 소자(8/11)·RF SOI 초격자 구조(10/13)·DRAM 감지증폭기(8/18) 미국 특허 등록(USPTO). 2Q 콜에서 CEO는 제3자가 새 소재를 들이는 일은 드물다고 설명",
+    "quant": "특허 총수 미확인",
+    "falsifier": "GAA 고객이 MST 없이 다른 도펀트 차단층(탄소 도핑 등)을 채택"
+   },
+   {
+    "kind": "고객 실리콘 접근",
+    "verdict": "약함",
+    "claim": "GAA 4곳 중 2곳이 자기 실리콘을 맡겼다",
+    "evidence": "3Q 콜 — 고객 실리콘 증착 단계 2곳, 초기 평가 1곳. 다만 라이선스·매출 전환 기록이 없다",
+    "quant": "GAA 3곳 작업",
+    "falsifier": "2027년 안 GAA 라이선스 0건"
+   },
+   {
+    "kind": "장비 비종속",
+    "verdict": "미확인",
+    "claim": "표준 에피 장비에서 MST를 증착할 수 있어 고객이 새 장비를 살 필요가 없다",
+    "evidence": "3Q 콜 CEO 발언 — 회사 주장일 뿐 고객 팹 설치 사례는 공시되지 않았다",
+    "quant": "미확인",
+    "falsifier": "양산 처리량을 위해 전용 장비가 필요"
+   }
+  ]
+ },
+ "narrative": {
+  "as_of": "2026-11-20",
+  "stage": "소멸",
+  "crowding": "낮음",
+  "summary": "'GAA·GaN·메모리에 모두 쓰이는 원자 단위 소재 IP'라는 이야기는 2~5월에 주가를 $2대에서 종가 $12.11(5/26)까지 끌어올렸다가 꺼졌다(11/19 $2.31, 고점 대비 −81%). 지금 쟁점은 기술이 아니라 첫 상업 라이선스가 언제 오느냐, 그 전까지 현금 $34.8M이 얼마나 버티느냐다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "의견 분포",
+      "1명 Strong Buy",
+      "커버리지가 사실상 1곳(Craig-Hallum)",
+      "컨센서스"
+     ],
+     [
+      "목표가",
+      "$8.50(1명, 11/17)",
+      "지금 주가의 3.7배 — 표본 1명",
+      "컨센서스"
+     ],
+     [
+      "추정",
+      "FY2027 매출 $1.0M($0.25~4.5M), EPS −$0.40(1명)",
+      "매출 추정 자체가 작다",
+      "컨센서스"
+     ],
+     [
+      "콜 질문",
+      "모든 질문이 Craig-Hallum과 개인 투자자 서면 질문",
+      "기관 커버리지가 얕다",
+      "3Q 콜"
+     ]
+    ],
+    "read": "셀사이드는 1곳뿐이고 그 1곳이 증자 주관사(Craig-Hallum)다. 목표가는 기대의 증거일 뿐 독립 확인이 아니다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "약 50%",
+      "yfinance 기준",
+      "보유 집계"
+     ],
+     [
+      "공매도",
+      "유동 주식의 16.7%, 상환 8.8일",
+      "매출 없는 소형주에 공매도가 두껍다",
+      "yfinance"
+     ],
+     [
+      "내부자",
+      "CEO·CFO·CTO 계획 매도 반복(2026-06 $0.74M·09 $0.13M), 매수 기록 없음",
+      "10b5-1 계획 — 신호 강도는 약하다",
+      "Form 4"
+     ],
+     [
+      "자금 조달",
+      "2026-02 직접공모 500만 주 × $5.00, 1Q ATM 130만 주",
+      "주가가 오를 때 주식을 판다",
+      "10-Q"
+     ]
+    ],
+    "read": "바이사이드 수급의 핵심 변수는 회사의 증자와 공매도다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral 7일",
+      "언급 없음(null)",
+      "관심이 식었다",
+      "Quantral"
+     ],
+     [
+      "레딧",
+      "5월 WSB 댓글 1건 수준",
+      "언급 적음",
+      "Quantral"
+     ],
+     [
+      "X 언급 수",
+      "미수집",
+      "유료 키를 쓰지 않는다",
+      "-"
+     ]
+    ],
+    "read": "리테일 관심은 5월 급등 때 뒤로 거의 사라졌다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "2026-04-24",
+      "Synopsys GaN 협력 확대",
+      "당일 +38.9%",
+      "보도 제목"
+     ],
+     [
+      "2026-10-22",
+      "IQE 공동개발 계약",
+      "10/22 +2.0%, 11/19까지 −25% — 계약 뉴스에도 하락",
+      "회사 보도자료"
+     ],
+     [
+      "2026-10-30",
+      "매출 0 분기가 라이선스 공백을 보여 준다는 실적 기사",
+      "실적 뒤 하락 지속",
+      "보도 제목"
+     ]
+    ],
+    "read": "뉴스가 기술 진척이어도 매출이 붙지 않으면 주가가 반응하지 않는 국면이다."
+   }
+  },
+  "factors": [
+   {
+    "name": "GAA 표준 소재 편입",
+    "thesis": "GAA 고객 하나가 MST를 쓰면 다른 회사도 따라 쓰는 도미노가 된다(CEO)",
+    "inputs": "TAM·첫 매출 시점",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "4곳 중 3곳 작업, 2곳 고객 실리콘 증착 단계",
+    "status": "유지",
+    "falsifier": "2027년 말까지 GAA 라이선스 0건",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "GaN-on-Si RF의 새 시장",
+    "thesis": "비싼 SiC 기판 대신 실리콘 위 GaN으로 RF SOI급 성능을 내면 RF 프런트엔드 일부가 넘어온다",
+    "inputs": "TAM·첫 매출 시점",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "RF GaN 시장 약 $1.2B → 수년 안 약 $2B(회사 제시), IQE 공동개발",
+    "status": "강화",
+    "falsifier": "IQE 샘플 웨이퍼가 2027년 상반기 안에 고객에게 가지 않는다",
+    "source": "3Q 콜·회사 보도자료 2026-10-22"
+   },
+   {
+    "name": "AI 메모리 용도(4F²·HBM·NAND)",
+    "thesis": "AI로 메모리사가 새 구조를 서두르며 MST가 공정 단계를 줄인다",
+    "inputs": "TAM",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "시뮬레이션 논문 1편, 고객 방문 — 실리콘 데이터 없음",
+    "status": "유지",
+    "falsifier": "메모리사 평가 착수 발표가 1년 안에 없다",
+    "source": "3Q 콜"
+   },
+   {
+    "name": "현금 활주로",
+    "thesis": "현금 $34.8M과 분기 현금 사용 약 $3~4M이면 약 2년 버틴다",
+    "inputs": "위험·주식 수",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "9M 영업 현금 사용 $11.7M, 4Q는 리스 선납 $1.4M 추가",
+    "status": "약화",
+    "falsifier": "2027 비용이 장비 리스 인상으로 $22M을 넘는다",
+    "source": "3Q 10-Q"
+   },
+   {
+    "name": "반대 내러티브 — 20년째 '곧' 라이선스",
+    "thesis": "2001년 창업 뒤 상업 양산 고객 없이 증자로 버텨 온 회사의 반복",
+    "inputs": "WACC·주식 수",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "2017~2026 연 매출 $0.1~0.6M, 누적 결손 $260M, 2025-10 STMicro 프로젝트 중단",
+    "status": "강화",
+    "falsifier": "상업 라이선스(업프런트 금액 공시) 체결",
+    "source": "10-Q·Fiscal.ai 분기 손익"
+   }
+  ],
+  "lead": {
+   "summary": "Atomera의 기업가치는 **MST를 쓰겠다는 첫 양산 라이선스가 언제 오느냐 × 그때까지 현금이 버티느냐**로 정해진다. 3Q 매출은 0, 영업손실은 $6.3M, 현금·단기투자는 $34.8M이다. GAA 고객이 2곳에서 3곳으로 늘었고 IQE와 GaN 공동개발 계약을 맺었지만, 2Q에 말한 라이선스 협상 시점은 3Q에 사라졌다. 주가는 $2.31(11/19)로 5/26 종가 고점 $12.11의 19%다.",
+   "value_story": "Atomera는 칩을 만들지 않고 박막 공정을 빌려준다. 값은 세 숫자로 갈린다. 첫 상업 라이선스의 업프런트 금액, 양산 웨이퍼당 로열티, 그리고 그때까지 찍을 주식 수다. 셋 다 아직 없다. 시가총액 $90M 중 현금이 $35M이라 시장은 나머지 약 $55M을 'MST가 표준이 될 옵션'으로 산다.",
+   "premium": {
+    "multiple": "선행 이익이 모두 적자라 P/E·EV/EBITDA를 쓸 수 없고 EV/매출로 내려간다. EV는 약 $58M, 4개 분기 매출은 $0.22M이라 배수는 260배를 넘는다. 매출이 있는 IP 동종(CEVA 4.5배·Arteris 9.1배·Rambus 9.3배)과 직접 비교할 수 없는 구간이다.",
+    "eps": "EPS 추정은 1명뿐이다. FY2027 −$0.40은 2026년 실적 페이스(9개월 −$0.49)보다 손실이 작다는 가정이다. 장비 리스 인상이 반영되면 내려갈 수 있다."
+   },
+   "why_excited": "2026년 2월 4Q 실적에서 GAA 고객 확보를 연간 목표로 내걸고, 4월 Synopsys GaN 협력, 5월 GaN-on-Si RF 성능 발표가 이어져 종가가 $2.27(1/2)에서 $12.11(5/26)까지 갔다. 식은 이유는 셋이다. 그 사이 회사가 $5.00에 500만 주를 팔았고 경영진도 계획 매도를 했다. 분기 매출은 $0~0.16M에 머물렀다. 3Q 콜에서는 라이선스 시점 언급이 사라졌다.",
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "소자 내 증착(Selecta) 중심에서 시작 웨이퍼(Prima)로 빠른 상용화 경로를 앞세우는 중",
+     "evidence": "Prima 용도 1년 새 2 → 6개, IQE가 MST 웨이퍼 생산자가 될 수 있다는 CEO 설명(3Q 콜)",
+     "drives": "both",
+     "status": "진행 중",
+     "falsifier": "2027년 Prima 웨이퍼 판매 매출이 분기 $0.5M을 넘지 못한다"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "해당 없음 — 매출이 평가용 웨이퍼 납품뿐이라 믹스를 말할 단계가 아니다",
+     "evidence": "9M26 매출 $169K 전부 시점 인식 납품(10-Q)",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "첫 업프런트 라이선스 매출"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "산소 원자층을 끼운 실리콘 초격자가 도펀트 확산을 막아 GAA·수직 DRAM·GaN-on-Si의 공정 문제를 푼다",
+     "evidence": "SISPAD 2026 4F² 논문, GaN-on-Si 선형성 기준 대비 약 1,000배(회사 자료), 2026년 미국 특허 3건 이상 등록. 제3자 양산 검증은 없다",
+     "drives": "multiple",
+     "status": "일부 확인",
+     "falsifier": "GAA 고객 전기 특성 결과가 기준에 못 미쳐 재시도"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "해당 없음(라이선스 사업이라 주문→납품 리드타임이 없다 — 평가에서 라이선스까지의 기간이 실행 속도다)",
+     "evidence": "2Q 콜에서 CEO는 순조로우면 연말~그 직후, 재시도면 약 9개월 더라고 했다. 3Q에는 일정을 말하지 않았다. 반도체 신소재 채택은 장비사가 고객 팹에 장비를 넣어 시험하는 경로가 보통이다(2Q 콜 CEO 설명)",
+     "drives": "both",
+     "status": "미증명",
+     "falsifier": "2027-02 4Q 콜까지 라이선스 협상 진척 언급 없음"
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음 — 최근 3년 인수 없음",
+     "evidence": "10-Q",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "-"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "고객의 돈은 R&D 평가 예산(OPEX)에서 나오고, 라이선스·로열티는 양산 공정 예산(CAPEX 연동)에서 나온다",
+     "evidence": "지금 매출은 평가용 웨이퍼 수수료(10-Q). 로열티는 고객 양산 웨이퍼 수에 비례하는 구조(10-Q 사업 설명)",
+     "drives": "매출",
+     "status": "미증명",
+     "falsifier": "반도체 설비투자 감속으로 신공정 도입이 늦어진다",
+     "budgets": [
+      {
+       "business": "평가용 웨이퍼·MSTcad",
+       "budget": "OPEX",
+       "line": "고객 공정 개발 R&D 예산",
+       "share": 1.0,
+       "driver": "신공정 평가 수",
+       "evidence": "3Q 10-Q 매출 주석"
+      },
+      {
+       "business": "상업 라이선스·로열티",
+       "budget": "혼합",
+       "line": "업프런트는 R&D, 로열티는 양산 웨이퍼 원가",
+       "share": 0.0,
+       "driver": "고객 양산 웨이퍼 수",
+       "evidence": "10-Q 사업 설명"
+      }
+     ]
+    }
+   ],
+   "products": [
+    {
+     "kind": "기술",
+     "name": "MST(Mears Silicon Technology)",
+     "what": "산소 원자층을 끼운 두께 100~300Å 실리콘 초격자 박막",
+     "use": "GAA 로직·DRAM·RF SOI·전력·GaN-on-Si 트랜지스터 성능·누설 개선",
+     "money": "평가 웨이퍼 수수료 → 라이선스 업프런트 → 양산 로열티. 지금은 평가 단계",
+     "name_en": "silicon superlattice thin film wafer",
+     "what_en": "A 300 mm silicon wafer with an ultra thin engineered epitaxial superlattice film deposited on top, shown with a cutaway of layered crystal structure under a transistor channel",
+     "bom": {
+      "items": [
+       {
+        "no": 1,
+        "part": "실리콘 기판(200·300mm)",
+        "part_en": "silicon substrate wafer",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "3Q 10-Q 리스 주석(200·300mm 장비)"
+       },
+       {
+        "no": 2,
+        "part": "MST 초격자층(산소 단원자층 + 실리콘)",
+        "part_en": "oxygen inserted silicon superlattice layer",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Atomera(임차 에피 장비)",
+        "source": "회사 개요·10-Q"
+       },
+       {
+        "no": 3,
+        "part": "실리콘 캡층",
+        "part_en": "epitaxial silicon cap layer",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Atomera",
+        "source": "회사 개요(MST 위 실리콘 성장)"
+       },
+       {
+        "no": 4,
+        "part": "트랜지스터 채널",
+        "part_en": "transistor channel",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "고객 공정",
+        "source": "3Q 콜"
+       },
+       {
+        "no": 5,
+        "part": "도펀트 차단 영역",
+        "part_en": "dopant diffusion blocking region",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "MST 효과",
+        "source": "3Q 콜(인 확산 차단)"
+       },
+       {
+        "no": 6,
+        "part": "GaN 에피층(GaN-on-Si 용도)",
+        "part_en": "gallium nitride epitaxial layer",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "IQE(공동개발)",
+        "source": "회사 보도자료 2026-10-22"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "Prima 시작 웨이퍼",
+     "what": "MST를 미리 입힌 웨이퍼(RF SOI·GaN-on-Si·메모리 등 6개 용도)",
+     "use": "고객이 사서 바로 공정에 투입",
+     "money": "웨이퍼 판매·라이선스. 양산이 Selecta보다 빠를 것이라는 게 CEO 판단"
+    },
+    {
+     "kind": "제품",
+     "name": "Selecta 공정",
+     "what": "고객 소자 공정 중간에 MST를 선택 증착",
+     "use": "GAA·전력 소자·HBT",
+     "money": "고객 팹 설치 라이선스 + 로열티"
+    },
+    {
+     "kind": "소프트웨어",
+     "name": "MSTcad",
+     "what": "MST 효과를 Synopsys TCAD에서 시뮬레이션하는 소프트웨어",
+     "use": "고객 설계·공정 평가",
+     "money": "라이선스 수수료(기간 인식) — 9M26 매출 없음"
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음 — 정부 보조금·과제 매출 없음(PowerAmerica 미선정 추정, 2Q 콜)",
+     "evidence": "3Q 10-Q·2Q 콜",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "CHIPS 연구 과제 선정",
+     "house": {
+      "level": 1,
+      "why": "관련 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "관련 의결 없음"
+     }
+    },
+    "orders": {
+     "change": "해당 없음 — 회사에 직접 닿는 행정명령 없음. 대중국 수출통제는 고객(아시아태평양 매출 25%) 쪽 간접 변수",
+     "evidence": "3Q 10-Q 지역 매출",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "MST 관련 품목 통제",
+     "house": {
+      "level": 1,
+      "why": "행정명령 — 의회 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음 — CHIPS Act 연구 과제 응모 정도",
+     "evidence": "2Q 콜",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "-"
+    }
+   }
+  }
+ },
+ "social": {
+  "as_of": "2026-11-20",
+  "summary": "추적 언급은 24시간·7일 모두 없다(null). 최근 3개월에 잡힌 것은 IQE 계약을 반긴 X 글 1건과 특허 등록·내부자 매도 공시뿐이다",
+  "few": true,
+  "views": [
+   {
+    "side": "강세",
+    "claim": "IQE가 웨이퍼를 만들어 파운드리·IDM에 공급하면 상업 잠재력이 크다는 글",
+    "basis": "IQE 공동개발 계약",
+    "source": "X",
+    "date": "2026-10-22",
+    "check": "확인"
+   },
+   {
+    "side": "약세",
+    "claim": "언급 적음 — 약세 논지를 담은 추적 글이 없다",
+    "basis": "-",
+    "source": "Quantral",
+    "date": "2026-11-20",
+    "check": "사실관계 미확인"
+   }
+  ],
+  "narratives": [
+   {
+    "channel": "X",
+    "theme": "IQE 계약으로 GaN-on-Si 상용화 기대",
+    "expectation": "상향",
+    "vs_fact": "확인",
+    "share": 1.0
+   }
+  ],
+  "turn": "월간 요약 없음 — 5월 급등기 레딧 댓글 1건, 10월 X 글 1건만 잡혔다"
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "시총 $90M에 현금이 $35M이다. GAA 한 곳만 라이선스해도 표준 소재가 된다",
+    "evidence": [
+     "현금·단기투자 $34.8M, 무차입(10-Q)",
+     "GAA 4곳 중 3곳 작업(3Q 콜)",
+     "목표가 $8.50(1명)"
+    ],
+    "falsifier": "2027년 GAA 라이선스 0건"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "Prima·IQE 경로는 Selecta보다 빨라 2027년 첫 웨이퍼 판매가 가능하다",
+    "evidence": [
+     "IQE 공동개발(10/22)",
+     "Prima 용도 2 → 6개",
+     "CEO '6개월 튜닝 + 두어 달 인증'"
+    ],
+    "falsifier": "2027 상반기 IQE 샘플 공급 없음"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "진척 발표는 많지만 값을 정할 숫자(라이선스 금액·로열티·고객 이름)가 하나도 없다",
+    "evidence": [
+     "3Q 매출 0",
+     "라이선스 시점 언급 소멸",
+     "추정 1명"
+    ],
+    "falsifier": "업프런트 금액이 있는 상업 라이선스 공시"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "비용은 오르고 매출은 없어 주가가 오를 때마다 주식이 풀린다",
+    "evidence": [
+     "300mm 장비 리스 월 $133K → $250K",
+     "2026-02 $5.00 직접공모 500만 주",
+     "ATM 잔여 약 $40M(추정)"
+    ],
+    "falsifier": "2027 비용 가이던스가 $19M 이하"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "2001년 창업 뒤 상업 양산 0건, STMicro도 2025-10 프로젝트를 멈췄다. 기저율은 실패다",
+    "evidence": [
+     "2017~2026 연 매출 $0.1~0.6M",
+     "누적 결손 $260M",
+     "2025-10 STMicro 중단 공시 −32.6%"
+    ],
+    "falsifier": "상업 라이선스 체결"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "현금이 시총의 39%다"
+     },
+     {
+      "seat": "Buy",
+      "text": "Prima 경로가 빠르다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "값을 정할 숫자가 없다"
+     },
+     {
+      "seat": "Sell",
+      "text": "증자가 가격을 누른다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "20년 기저율은 실패다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "현금은 분기 $3~4M씩 줄고 4Q에는 리스 선납 $1.4M이 더 나간다. 받침이 아니라 시계다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "GAA 고객이 자기 실리콘을 맡긴 것은 과거와 다른 단계다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "IQE는 금액을 밝히지 않았고, 2Q의 RF SOI 두 번째 JDA는 3Q에 말이 없다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "2·3Q에는 ATM을 쓰지 않았다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Neutral",
+      "text": "라이선스가 늦어질수록 증자 규모가 커진다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "CEO는 지금까지 마일스톤을 하나도 놓치지 않았다고 했다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "놓치지 않았다는 것도 회사 말이다. 고객 확인은 없다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "STMicro와는 여전히 '결국 거래할 것'이라고 했다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "같은 말을 2025년에도 했고 프로젝트는 멈췄다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "경영진은 $8~9대에서 계획 매도를 했다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "GAA 전기 특성 결과를 기다린다",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "IQE 샘플 공급 시점이 다음 가를 자료다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "업프런트 금액 공시가 상향 조건이다"
+     },
+     {
+      "seat": "Sell",
+      "text": "2027 비용 가이던스를 보고 다시 본다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "라이선스 전엔 의견을 유지한다",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Sell",
+    "Strong Sell": "Sell"
+   },
+   "reason": "현금이 시총의 39%라 하방이 일부 받쳐지지만 라이선스 금액·시점이 없다. 살아남은 반박은 비용 상승과 증자다",
+   "dissent": "20년 기저율로 보면 라이선스 전 매수는 근거가 약하다(Strong Sell)"
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 30,
+   "net_margin": 0.4,
+   "opm": 0.5,
+   "shares": 0.06,
+   "basis": "출구 P/E 30배는 흑자 반도체 IP 동종 Fwd 1Y(Rambus 21.3배·CEVA 34.6배)의 가운데. OPM 50%·순이익률 40%는 로열티 중심 IP 회사의 정상 상태 가정(추정). 주식 수 6,000만 주는 지금 3,908만 주에 희석 증권 459만 주와 라이선스 전까지의 증자(약 1,600만 주)를 더한 값(추정)"
+  },
+  "base": {
+   "eps": -0.63,
+   "opm": -109.7,
+   "basis": "최근 4개 분기 GAAP EPS 합(−$0.14 −$0.17 −$0.17 −$0.15). 흑자 해가 컨센서스에 없어 EPS CAGR은 쓰지 않는다"
+  },
+  "refs": [
+   {
+    "label": "FY2027 매출 컨센서스(1명)",
+    "value": 0.001
+   },
+   {
+    "label": "FY2028 매출 컨센서스",
+    "value": 0.0025
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "시가총액 약 $180M. 첫 상업 라이선스(업프런트 수백만 달러)와 IQE Prima 샘플 공급이 함께 확인되면 2026년 5월 수준의 기대가 돌아온다",
+    "outlook": "2027년 GAA 전기 특성 결과와 IQE 튜닝 결과가 가를 자료다"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "시가총액 약 $270M. P/E 30배면 순이익 약 $9M, 매출 약 $22M이 필요하다 — 양산 로열티가 붙어야 한다",
+    "outlook": "로열티 매출이 시작될 시점을 회사가 제시하지 않았다"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $450M — 2021년 고점 수준. GAA 또는 메모리 양산 고객 1곳 이상의 로열티가 필요하다",
+    "outlook": "5년 안 근거가 될 자료가 아직 없다"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "시가총액 약 $900M. 매출 $75M 수준의 로열티 — GAA 표준 소재 편입이 전제다",
+    "outlook": "기저율로 매출 전 반도체 소재 IP의 10배는 희귀 사건이다"
+   }
+  },
+  "summary": "2배는 첫 라이선스와 Prima 샘플 공급이 함께 와야 열리고, 3배부터는 양산 로열티가 붙어야 한다."
+ },
+ "photos": [],
+ "sources": [
+  "3Q26 10-Q(SEC, 2026-10-30) https://www.sec.gov/Archives/edgar/data/1420520/000168316826008195/atomera_i10q-093026.htm",
+  "3Q26 실적 8-K(Item 2.02, 2026-10-29) https://www.sec.gov/Archives/edgar/data/1420520/000168316826008161/atomera_8k.htm",
+  "2Q26 10-Q(SEC, 2026-08-06) https://www.sec.gov/Archives/edgar/data/1420520/000168316826006050/atomera_i10q-063026.htm",
+  "3Q26 어닝콜(2026-10-29)",
+  "2Q26 어닝콜(2026-08-04)",
+  "Fiscal.ai 표준화 재무·추정(11/20 조회)",
+  "Easyconomics(yfinance) 일봉·개요(11/20 조회)",
+  "Quantral 커뮤니티 신호(11/20)"
+ ],
+ "multiples_now": {
+  "pe_fwd": null,
+  "ev_ebitda_fwd": null,
+  "pe_fwd2": null,
+  "ev_ebitda_fwd2": null,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": null
+ },
+ "forward": {
+  "as_of": "2026-11-19",
+  "ntm": {
+   "eps": null,
+   "ebitda": null,
+   "ebit": null,
+   "revenue": null,
+   "rev_ttm": 219000
+  },
+  "horizons": {
+   "2": {
+    "eps": null,
+    "ebitda": -21583020,
+    "ext": 0
+   },
+   "3": {
+    "eps": null,
+    "ebitda": null,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": null,
+   "ev_ebitda_fwd": null
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "NASDAQ_ATOM",
+  "currency": "USD",
+  "q": [
+   {
+    "period": "2017-12-31",
+    "rev": 110000,
+    "cogs": -39000,
+    "gp": 71000,
+    "sga": 1399000,
+    "rd": 1324000,
+    "da": null,
+    "other": null,
+    "op": -2652000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 96000,
+    "cogs": 113000,
+    "gp": -17000,
+    "sga": 1466000,
+    "rd": 1738000,
+    "da": null,
+    "other": null,
+    "op": -3221000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 71000,
+    "cogs": null,
+    "gp": 71000,
+    "sga": 1568000,
+    "rd": 2127000,
+    "da": null,
+    "other": null,
+    "op": -3624000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 70000,
+    "cogs": 20000,
+    "gp": 50000,
+    "sga": 1713000,
+    "rd": 2057000,
+    "da": null,
+    "other": null,
+    "op": -3720000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 254000,
+    "cogs": 204000,
+    "gp": 50000,
+    "sga": 1479000,
+    "rd": 1746000,
+    "da": null,
+    "other": null,
+    "op": -3175000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 138000,
+    "cogs": -477000,
+    "gp": 109000,
+    "sga": 1397000,
+    "rd": 1818000,
+    "da": null,
+    "other": null,
+    "op": -3106000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 62000,
+    "cogs": 13000,
+    "gp": 49000,
+    "sga": 1670000,
+    "rd": 2062000,
+    "da": null,
+    "other": null,
+    "op": -3683000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 400000,
+    "cogs": null,
+    "gp": 400000,
+    "sga": 1779000,
+    "rd": 2229000,
+    "da": null,
+    "other": null,
+    "op": -3608000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 375000,
+    "cogs": -81000,
+    "gp": 294000,
+    "sga": 1973000,
+    "rd": 2339000,
+    "da": null,
+    "other": null,
+    "op": -4018000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 2000,
+    "cogs": 0,
+    "gp": 2000,
+    "sga": 1914000,
+    "rd": 2743000,
+    "da": null,
+    "other": null,
+    "op": -4655000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 5000,
+    "cogs": 0,
+    "gp": 5000,
+    "sga": 1888000,
+    "rd": 2523000,
+    "da": null,
+    "other": null,
+    "op": -4406000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 550000,
+    "cogs": 28000,
+    "gp": 522000,
+    "sga": 2327000,
+    "rd": 2992000,
+    "da": null,
+    "other": null,
+    "op": -4797000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 18000,
+    "cogs": 33000,
+    "gp": -15000,
+    "sga": 2161000,
+    "rd": 2858000,
+    "da": null,
+    "other": null,
+    "op": -5034000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 72000,
+    "cogs": 74000,
+    "gp": -2000,
+    "sga": 2039000,
+    "rd": 2589000,
+    "da": null,
+    "other": null,
+    "op": -4630000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 22000,
+    "cogs": 3000,
+    "gp": 19000,
+    "sga": 2060000,
+    "rd": 2759000,
+    "da": null,
+    "other": null,
+    "op": -4800000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 23000,
+    "cogs": 13000,
+    "gp": 10000,
+    "sga": 2059000,
+    "rd": 2823000,
+    "da": null,
+    "other": null,
+    "op": -4872000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 4000,
+    "cogs": null,
+    "gp": 4000,
+    "sga": 2212000,
+    "rd": 3255000,
+    "da": null,
+    "other": null,
+    "op": -5463000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 0,
+    "cogs": 62000,
+    "gp": -62000,
+    "sga": 2189000,
+    "rd": 3004000,
+    "da": null,
+    "other": null,
+    "op": -5255000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 11000,
+    "cogs": 128000,
+    "gp": -117000,
+    "sga": 2372000,
+    "rd": 3304000,
+    "da": null,
+    "other": null,
+    "op": -5793000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 50000,
+    "cogs": 131000,
+    "gp": -81000,
+    "sga": 1791000,
+    "rd": 2740000,
+    "da": null,
+    "other": null,
+    "op": -4612000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 11000,
+    "cogs": 126000,
+    "gp": -115000,
+    "sga": 2752000,
+    "rd": 3457000,
+    "da": null,
+    "other": null,
+    "op": -6324000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 158000,
+    "cogs": 26000,
+    "gp": 132000,
+    "sga": 3604000,
+    "rd": 3287000,
+    "da": null,
+    "other": null,
+    "op": -6759000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 0,
+    "cogs": 0,
+    "gp": 0,
+    "sga": 2681000,
+    "rd": 3647000,
+    "da": null,
+    "other": null,
+    "op": -6328000
+   }
+  ],
+  "note": "매출 0 분기(2025-06-30·2026-09-30)는 quarters.py가 매출 0을 빼서 손으로 되살렸다(Fiscal.ai 표준화 손익 값 그대로, 2025-06 매출은 Fiscal null → yfinance 실적 0)"
+ },
+ "assets": {
+  "as_of": "3Q26",
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "note_periods": [
+   "2025-12-31",
+   "2024-12-31"
+  ],
+  "ppe": [
+   {
+    "name": "유형자산 합계(항목 미분해)",
+    "kind": "other",
+    "gross": [
+     0.49,
+     0.456
+    ],
+    "accum": [
+     null,
+     null
+    ],
+    "split": false
+   }
+  ],
+  "ppe_accum": [
+   0.43,
+   0.397
+  ],
+  "intangibles": [],
+  "dep_annual": [
+   {
+    "year": 2025,
+    "dep": 0.048,
+    "amort": 0.0
+   },
+   {
+    "year": 2024,
+    "dep": 0.054,
+    "amort": 0.0
+   }
+  ],
+  "quarters": [
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "da": 0.012,
+    "ppe_net": 0.063,
+    "ppe_gross": null
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "da": 0.012,
+    "ppe_net": 0.059,
+    "ppe_gross": 0.456
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "da": 0.012,
+    "ppe_net": 0.052,
+    "ppe_gross": null
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "da": 0.012,
+    "ppe_net": 0.05,
+    "ppe_gross": null
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "da": 0.011,
+    "ppe_net": 0.051,
+    "ppe_gross": null
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "da": 0.013,
+    "ppe_net": 0.06,
+    "ppe_gross": 0.49
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "da": 0.009,
+    "ppe_net": 0.051,
+    "ppe_gross": null
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "da": 0.006,
+    "ppe_net": 0.059,
+    "ppe_gross": null
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "da": 0.01,
+    "ppe_net": 0.062,
+    "ppe_gross": null
+   }
+  ],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기)",
+  "roic": {
+   "periods": [
+    "TTM 3Q26",
+    "TTM 3Q25"
+   ],
+   "rev": [
+    0.219,
+    0.038
+   ],
+   "ebit": [
+    -24.023,
+    -21.383
+   ],
+   "acq_amort": [
+    0.0,
+    0.0
+   ],
+   "tax_rate": 0.21,
+   "lease_liab": [
+    2.731,
+    0.064,
+    0.338
+   ],
+   "lease_rate": 0.0875,
+   "impairment_cum": 0.0,
+   "capital": {
+    "nwc": [
+     -0.934,
+     -0.351,
+     -0.572
+    ],
+    "ppe": [
+     0.062,
+     0.051,
+     0.063
+    ],
+    "rou": [
+     2.731,
+     0.092,
+     0.341
+    ]
+   },
+   "note": "SEC 공시 데이터 자동 초안 — 운전자본 = 매출채권 + 재고 + 선급 − (매입채무 + 미지급비용 + 선수수익), 현금 제외. 손상 누계는 공시 데이터 수록분"
+  },
+  "hist": [
+   {
+    "q": "4Q22",
+    "end": "2022-12-31",
+    "rev": 0.005,
+    "ebit": -4.406,
+    "cogs": 0.0,
+    "capex": 0.013,
+    "da": 0.019,
+    "amort": null,
+    "bal": {
+     "ar": null,
+     "inv": null,
+     "prepaid": 0.418,
+     "ap": 0.397,
+     "accrued": 0.173,
+     "deferred_rev": 0.001,
+     "ppe": 0.158,
+     "rou": 0.7,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.766
+   },
+   {
+    "q": "1Q23",
+    "end": "2023-03-31",
+    "rev": 0.0,
+    "ebit": -5.167,
+    "cogs": 0.0,
+    "capex": 0.015,
+    "da": 0.02,
+    "amort": null,
+    "bal": {
+     "ar": null,
+     "inv": null,
+     "prepaid": 0.303,
+     "ap": 0.423,
+     "accrued": 0.242,
+     "deferred_rev": 0.001,
+     "ppe": 0.153,
+     "rou": 0.648,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.722
+   },
+   {
+    "q": "2Q23",
+    "end": "2023-06-30",
+    "rev": 0.0,
+    "ebit": -5.36,
+    "cogs": 0.0,
+    "capex": 0.003,
+    "da": 0.02,
+    "amort": null,
+    "bal": {
+     "ar": null,
+     "inv": null,
+     "prepaid": 0.65,
+     "ap": 0.562,
+     "accrued": 0.218,
+     "deferred_rev": null,
+     "ppe": 0.135,
+     "rou": 0.631,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.659
+   },
+   {
+    "q": "3Q23",
+    "end": "2023-09-30",
+    "rev": 0.0,
+    "ebit": -5.353,
+    "cogs": 0.0,
+    "capex": 0.013,
+    "da": 0.02,
+    "amort": null,
+    "bal": {
+     "ar": null,
+     "inv": null,
+     "prepaid": 0.392,
+     "ap": 0.462,
+     "accrued": 0.23,
+     "deferred_rev": null,
+     "ppe": 0.129,
+     "rou": 0.574,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.61
+   },
+   {
+    "q": "4Q23",
+    "end": "2023-12-31",
+    "rev": 0.55,
+    "ebit": -4.797,
+    "cogs": 0.028,
+    "capex": 0.0,
+    "da": 0.017,
+    "amort": null,
+    "bal": {
+     "ar": 0.0,
+     "inv": null,
+     "prepaid": 0.244,
+     "ap": 0.618,
+     "accrued": 0.222,
+     "deferred_rev": 0.0,
+     "ppe": 0.1,
+     "rou": 0.517,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.559
+   },
+   {
+    "q": "1Q24",
+    "end": "2024-03-31",
+    "rev": 0.018,
+    "ebit": -5.034,
+    "cogs": 0.033,
+    "capex": 0.0,
+    "da": 0.017,
+    "amort": null,
+    "bal": {
+     "ar": 0.0,
+     "inv": null,
+     "prepaid": 0.328,
+     "ap": 0.601,
+     "accrued": 0.21,
+     "deferred_rev": 0.017,
+     "ppe": 0.083,
+     "rou": 0.459,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.457
+   },
+   {
+    "q": "2Q24",
+    "end": "2024-06-30",
+    "rev": 0.072,
+    "ebit": -4.63,
+    "cogs": 0.074,
+    "capex": 0.006,
+    "da": 0.013,
+    "amort": null,
+    "bal": {
+     "ar": 0.006,
+     "inv": null,
+     "prepaid": 0.578,
+     "ap": 0.646,
+     "accrued": 0.249,
+     "deferred_rev": 0.013,
+     "ppe": 0.075,
+     "rou": 0.401,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.393
+   },
+   {
+    "q": "3Q24",
+    "end": "2024-09-30",
+    "rev": 0.022,
+    "ebit": -4.8,
+    "cogs": 0.003,
+    "capex": 0.0,
+    "da": 0.012,
+    "amort": null,
+    "bal": {
+     "ar": 0.006,
+     "inv": null,
+     "prepaid": 0.388,
+     "ap": 0.786,
+     "accrued": 0.172,
+     "deferred_rev": 0.008,
+     "ppe": 0.063,
+     "rou": 0.341,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.338
+   },
+   {
+    "q": "4Q24",
+    "end": "2024-12-31",
+    "rev": 0.023,
+    "ebit": -4.872,
+    "cogs": 0.013,
+    "capex": 0.008,
+    "da": 0.012,
+    "amort": null,
+    "bal": {
+     "ar": 0.006,
+     "inv": null,
+     "prepaid": 0.24,
+     "ap": 0.492,
+     "accrued": 0.239,
+     "deferred_rev": 0.004,
+     "ppe": 0.059,
+     "rou": 0.28,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.282
+   },
+   {
+    "q": "1Q25",
+    "end": "2025-03-31",
+    "rev": 0.004,
+    "ebit": -5.463,
+    "cogs": 0.0,
+    "capex": 0.004,
+    "da": 0.012,
+    "amort": null,
+    "bal": {
+     "ar": 0.0,
+     "inv": null,
+     "prepaid": 0.335,
+     "ap": 0.761,
+     "accrued": 0.195,
+     "deferred_rev": 0.0,
+     "ppe": 0.052,
+     "rou": 0.218,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.184
+   },
+   {
+    "q": "2Q25",
+    "end": "2025-06-30",
+    "rev": 0.0,
+    "ebit": -5.255,
+    "cogs": 0.062,
+    "capex": 0.01,
+    "da": 0.012,
+    "amort": null,
+    "bal": {
+     "ar": 0.0,
+     "inv": null,
+     "prepaid": 0.659,
+     "ap": 0.665,
+     "accrued": 0.207,
+     "deferred_rev": 0.0,
+     "ppe": 0.05,
+     "rou": 0.155,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.124
+   },
+   {
+    "q": "3Q25",
+    "end": "2025-09-30",
+    "rev": 0.011,
+    "ebit": -5.793,
+    "cogs": 0.128,
+    "capex": 0.013,
+    "da": 0.011,
+    "amort": null,
+    "bal": {
+     "ar": 0.137,
+     "inv": null,
+     "prepaid": 0.517,
+     "ap": 0.617,
+     "accrued": 0.244,
+     "deferred_rev": 0.144,
+     "ppe": 0.051,
+     "rou": 0.092,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.064
+   },
+   {
+    "q": "4Q25",
+    "end": "2025-12-31",
+    "rev": 0.05,
+    "ebit": -4.612,
+    "cogs": 0.131,
+    "capex": 0.022,
+    "da": 0.013,
+    "amort": null,
+    "bal": {
+     "ar": 0.0,
+     "inv": null,
+     "prepaid": 0.338,
+     "ap": 0.608,
+     "accrued": 0.168,
+     "deferred_rev": 0.007,
+     "ppe": 0.06,
+     "rou": 0.884,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 0.859
+   },
+   {
+    "q": "1Q26",
+    "end": "2026-03-31",
+    "rev": 0.011,
+    "ebit": -6.324,
+    "cogs": 0.126,
+    "capex": 0.0,
+    "da": 0.009,
+    "amort": null,
+    "bal": {
+     "ar": 0.041,
+     "inv": null,
+     "prepaid": 0.788,
+     "ap": 0.677,
+     "accrued": 0.213,
+     "deferred_rev": 0.096,
+     "ppe": 0.051,
+     "rou": 1.176,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 1.197
+   },
+   {
+    "q": "2Q26",
+    "end": "2026-06-30",
+    "rev": 0.158,
+    "ebit": -6.759,
+    "cogs": 0.026,
+    "capex": 0.016,
+    "da": 0.006,
+    "amort": null,
+    "bal": {
+     "ar": 0.041,
+     "inv": null,
+     "prepaid": 0.542,
+     "ap": 0.569,
+     "accrued": 0.297,
+     "deferred_rev": 0.0,
+     "ppe": 0.059,
+     "rou": 1.128,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 1.164
+   },
+   {
+    "q": "3Q26",
+    "end": "2026-09-30",
+    "rev": 0.0,
+    "ebit": -6.328,
+    "cogs": 0.0,
+    "capex": 0.013,
+    "da": 0.01,
+    "amort": null,
+    "bal": {
+     "ar": 0.041,
+     "inv": null,
+     "prepaid": 0.456,
+     "ap": 0.868,
+     "accrued": 0.522,
+     "deferred_rev": 0.0,
+     "ppe": 0.062,
+     "rou": 2.731,
+     "goodwill": null,
+     "intangibles": null,
+     "other": null
+    },
+    "lease": 2.731
+   }
+  ],
+  "intangible_cap": {
+   "rd": [
+    [
+     2015,
+     2.022
+    ],
+    [
+     2016,
+     3.993
+    ],
+    [
+     2017,
+     5.826
+    ],
+    [
+     2018,
+     7.318
+    ],
+    [
+     2019,
+     7.748
+    ],
+    [
+     2020,
+     8.424
+    ],
+    [
+     2021,
+     8.779
+    ],
+    [
+     2022,
+     10.038
+    ],
+    [
+     2023,
+     12.525
+    ],
+    [
+     2024,
+     11.029
+    ],
+    [
+     2025,
+     12.303
+    ]
+   ],
+   "sga": []
+  },
+  "missing": [
+   "영업권",
+   "무형자산",
+   "기타 영업자산·부채",
+   "유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)",
+   "무형자산 항목(10-K 주석에서 모델이 채움)"
+  ]
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "GAA 도미노",
+    "claim": "GAA 한 곳이 MST를 쓰면 나머지도 따라와 첨단 로직 표준 소재가 된다",
+    "evidence": "4곳 중 3곳 작업, 2곳은 고객 실리콘 증착 단계(3Q 콜). 2Q 1곳 마일스톤 통과",
+    "variant": "시장은 매출 0만 보고 GAA 진척에 값을 거의 주지 않는다(EV 약 $58M). 다만 라이선스 시점 언급이 사라진 것은 시장 판단 쪽 근거다",
+    "proof": "GAA 고객 전기 특성 결과와 라이선스 협상 공시(2027-02 4Q 콜)",
+    "source": "3Q·2Q 콜"
+   },
+   {
+    "title": "Prima가 먼저 온다",
+    "claim": "고객 공정 인증이 필요 없는 시작 웨이퍼(Prima)가 로열티보다 먼저 매출을 만든다",
+    "evidence": "Prima 용도 1년 새 2 → 6개, IQE 공동개발(10/22) — CEO는 6개월 튜닝 + 두어 달 인증이면 판매 가능하다고 설명",
+    "variant": "컨센서스 FY2027 매출 $1.0M(1명)은 Prima 판매를 거의 담지 않는다. 반대로 IQE 계약 금액이 없어 숫자로 확인할 수 없다",
+    "proof": "IQE MST GaN-on-Si 샘플 웨이퍼의 고객 공급 발표(2027 상반기)",
+    "source": "3Q 콜·회사 보도자료 2026-10-22"
+   },
+   {
+    "title": "현금이 하방을 일부 받친다",
+    "claim": "시총의 39%가 현금이라 사업 가치는 약 $55M에 불과하다",
+    "evidence": "현금·단기투자 $34.8M, 무차입, 분기 영업 현금 사용 $3.2~4.6M(10-Q)",
+    "variant": "현금은 줄어드는 받침이다 — 장비 리스 인상으로 2027 비용이 늘면 1년 반 안에 다시 증자해야 한다",
+    "proof": "2027 영업비용 가이던스와 4Q 현금(2027-02)",
+    "source": "3Q 10-Q"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2025-10-22",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "STMicro 프로젝트 진행 안 함 공시",
+    "reaction": "−32.6%"
+   },
+   {
+    "date": "2026-02-13",
+    "status": "완료",
+    "kind": "생성",
+    "event": "4Q25 실적 뒤 GAA 목표 제시",
+    "reaction": "+64.0%"
+   },
+   {
+    "date": "2026-04-24",
+    "status": "완료",
+    "kind": "생성",
+    "event": "Synopsys GaN 모델링 협력 확대",
+    "reaction": "+38.9%"
+   },
+   {
+    "date": "2026-10-29",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "3Q 매출 0·라이선스 시점 언급 소멸",
+    "reaction": "10/30 +1.2% 뒤 11/19까지 −31%"
+   },
+   {
+    "date": "2027-02(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26 실적·웨비나",
+    "check": "GAA 전기 특성 결과, 2027 영업비용 가이던스($20M 문턱)",
+    "then": "결과 양호·비용 $20M 이하면 기본, 언급 없고 비용 초과면 약세"
+   },
+   {
+    "date": "2027 상반기(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "IQE GaN-on-Si 튜닝 결과·샘플 공급",
+    "check": "고객 샘플 공급 발표 여부",
+    "then": "공급 시작이면 강세 쪽, 지연이면 약세 쪽"
+   },
+   {
+    "date": "2027-02~03(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "FY2026 10-K",
+    "check": "ATM 사용액·잔여 한도, 300mm 장비 리스 새 조건",
+    "then": "새 증자 프로그램이면 약세"
+   }
+  ],
+  "trade": {
+   "watch": "지금 가격 아래 지지 구간 — 주당 현금(약 $0.80, 완전 희석) 위의 옵션 값이 얼마나 남는지 본다",
+   "confirm": "업프런트 금액이 있는 상업 라이선스 공시 또는 IQE 샘플 웨이퍼 고객 공급 발표",
+   "invalid": "2027-02 4Q 콜에서 GAA 결과·라이선스 언급 없음, 2027 비용 가이던스 $20M 초과, 새 증자 프로그램",
+   "trim": "라이선스 발표 직후 급등 — 2026년 2·4·5월처럼 발표 뒤 증자가 따라왔다",
+   "style": "뉴스 하루에 ±30~60% 움직이는 종목이라 발표 당일 추격은 변동성이 크다 — 가격·조건 틀이며 매매 지시가 아니다"
+  }
+ }
+}
