@@ -169,6 +169,12 @@ screen:
 trade:
   months: 120
   census_country: {KR: "5800", JP: "5880", CN: "5700", TW: "5830", VN: "5520", FR: "4279"}
+  share:   # HTS 10단위 나라별 비중·물량·단가(radar/trade_share.py, 2026-11-21 마스터 지시 — USITC DataWeb 그래프와 같은 통계를 Census API로)
+    months: 120
+    alert_pp: 5        # 주목 나라 비중이 전월 대비 이만큼(%p) 움직이면 Pulse(사전값 — 등록부 prm-tshare-alert-pp)
+    alert_yoy: 0.3     # 주목 나라 수입액 전년 대비 ±30% 이상이면 Pulse(사전값 — prm-tshare-alert-yoy)
+    items:
+      - {hts: "1902300060", name: "라면 등 기타 면류(통조림·냉동 제외)", focus: KR, partners: [KR, JP, CN, TW, VN], ids: [kr-samyang], why: "불닭 대미 수출 — HS 6단위(190230)보다 좁아 한국 비중 70~80%, 마스터 제시 그래프(USITC DataWeb)와 같은 품목"}
   items:
     - {hs: "330499", name: 기초화장품(스킨케어), partners: [KR, FR, JP, CN], ids: [kr-apr, kr-silicon2], why: "K뷰티 대미 셀인 — 한국산 스킨케어 수입"}
     - {hs: "3304", name: 화장품 전체, partners: [KR, CN, FR, JP], primary: {us-elf: CN}, ids: [kr-apr, kr-silicon2, us-elf], why: "e.l.f.는 중국 생산 비중이 높다 — 중국산은 관세·재고 축적 영향도 섞인다"}

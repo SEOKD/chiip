@@ -8930,3 +8930,35 @@ params:
     data: knowledge/models/alpha/
     last_fit: null
     oos_metric: null
+- id: prm-tshare-alert-pp
+  model: consumer.trade_share
+  binding: config/consumer.yaml#trade.share.alert_pp
+  value: 5
+  unit: "%p"
+  status: prior
+  prior:
+    value: 5
+    basis: 주목 나라 수입 비중 전월 대비 변동 알림 문턱
+    source: Chiip 가정(라면 HTS 1902300060 한국 비중 2019~2026 월 변동 관찰 — 미검증)
+  fit:
+    method: 알림 뒤 해당 회사 분기 매출 서프라이즈와의 관계(표본 30건 이후)
+    target: 알림의 정보 가치
+    data: knowledge/models/consumer/trade_share.csv
+    last_fit: null
+    oos_metric: null
+- id: prm-tshare-alert-yoy
+  model: consumer.trade_share
+  binding: config/consumer.yaml#trade.share.alert_yoy
+  value: 0.3
+  unit: 비율
+  status: prior
+  prior:
+    value: 0.3
+    basis: 주목 나라 수입액 전년 대비 변동 알림 문턱
+    source: Chiip 가정(미검증)
+  fit:
+    method: 알림 뒤 해당 회사 분기 매출 서프라이즈와의 관계(표본 30건 이후)
+    target: 알림의 정보 가치
+    data: knowledge/models/consumer/trade_share.csv
+    last_fit: null
+    oos_metric: null

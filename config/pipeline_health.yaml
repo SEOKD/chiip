@@ -22,6 +22,7 @@ jobs:
   consumer-macro: consumer_macro   # 한국 외 소비 통계(2026-11-14)
   consumer-discovery: consumer_discovery
   discovery-filings: discovery_filings   # 발굴 채널 공시(2026-11-15)
+  src-trade-share: trade_share   # 미국 수입 HTS 10단위 나라별 비중(2026-11-21)
   src-peeringdb: pollers.peeringdb   # PeeringDB 데이터센터·상호접속(2026-11-20, ADR-049)
   guru13f: guru13f                       # 구루 13F(2026-11-15)
   kr-theme-news: kr_theme_news           # 국장 테마 기사 수(2026-11-15)
@@ -35,6 +36,7 @@ files:
   - {id: fiscal, path: knowledge/models/estimates/snapshots.csv, max_age_h: 36}
   - {id: consumer-macro, path: knowledge/models/consumer_trends/macro_latest.json, max_age_h: 30}
   - {id: consumer-discovery, path: knowledge/models/consumer_trends/discovery_latest.json, max_age_h: 36}
+  - {id: trade-share, path: knowledge/models/consumer/trade_share.csv, max_age_h: 50}   # 하루 1회
   - {id: peeringdb, path: knowledge/models/peeringdb/facilities.csv, max_age_h: 50}   # 하루 1회(429면 다음 날)
   - {id: discovery-filings, path: knowledge/models/discovery/channels_latest.json, max_age_h: 30}   # 발굴 채널 선별(매시 공시 수집 뒤 갱신)
   - {id: src-insider-buys, path: knowledge/models/discovery/insider_latest.json, max_age_h: 30}    # 내부자 매수 요약(매 회차 갱신 — 주말에도 다시 쓴다)

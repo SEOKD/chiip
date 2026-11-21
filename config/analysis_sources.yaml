@@ -16,6 +16,7 @@ sources:
   - {id: midterm, region: all, kind: script, cmd: "scripts/policy/midterm_impact.py {id}", use: "2026 중간선거 영향 점수 → datapack midterm"}
   - {id: trade_ppi, region: all, kind: script, cmd: "radar/trade_ppi.py --need {id}", fail_if: "연결된 input 없음", use: "무역·PPI 연결 → margin·supply input, sync"}
   - {id: trade_hs, region: all, kind: script, cmd: "radar/trade_hs.py --company {id}", fail_if: "연결 HS: 없음", use: "BOM 품목과 겹치는 HS 급등(단서)"}
+  - {id: trade_share, region: all, kind: script, cmd: "radar/trade_share.py --about {id}", use: "미국 수입 중 나라별 비중·물량·단가(HTS 10단위, Census — USITC DataWeb과 같은 통계). 연결 품목 없으면 '해당 없음'(2026-11-21)"}
   - {id: site_imagery, region: all, kind: script, cmd: "radar/site_imagery.py --company {id}", use: "시설 위성 판독 — 시설이 없으면 '해당 없음'"}
   - {id: market_regime, region: all, kind: script, cmd: "radar/market_regime.py", use: "거시·위험 국면 — 할인율·배수 맥락"}
   - {id: eia, region: us, kind: script, cmd: "radar/eia.py --show", use: "EIA 전력 통계(RTO 수요·주별 상업용 판매·계획 가스터빈·엔진·배터리) — 전력·발전 설비 종목 수요 근거(2026-11-09)"}
