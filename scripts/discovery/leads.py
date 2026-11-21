@@ -39,7 +39,8 @@ FIELDS = ["lead_id", "date", "channel", "kind", "market", "ticker", "tv", "name"
 EV_FIELDS = ["date", "lead_id", "event", "note"]
 PX_FIELDS = ["date", "tv", "close", "source"]
 REGIONS = ("us", "jp", "kr", "tw", "hk", "uk", "eu")
-HORIZONS = (30, 91, 182, 365)   # 달력 일 — 성적표 평가 시점(주 1회 시세라 ±7일 오차)
+HORIZONS = (30, 91, 182, 365, 730, 1095)   # 달력 일 — 성적표 평가 시점(주 1회 시세라 ±7일 오차). 730·1095 = 텐배거는 3~5년 복리라 긴 기간도 잰다(2026-11-21)
+TAIL_X = 1.0                    # 오른쪽 꼬리 — 수익률 +100%(2배) 이상 비율. 멱법칙 채널은 중앙값이 아니라 평균과 꼬리로 본다(Bessembinder 2018·2024)
 PX_TOL = 10                     # 평가 시점 뒤 이 일수 안의 첫 시세를 쓴다(없으면 그 시점은 아직 '미측정')
 STALE_D = 3                     # 공개일이 탐지일보다 이만큼 넘게 앞서면 탐지일을 성적표 기준일로(extra.detected)
 MIN_N = 30                      # 채널별 결과 30건 전에는 다시 맞추지 않는다(등록부 prm-dch-min-n, 조사 A — Beta 축소·30건 뒤 재피팅)
@@ -308,6 +309,18 @@ def forward(r, px, c=None):
     return out
 
 
+def tail(excess, rets):
+    """오른쪽 꼬리 지표 — 90분위 초과, 2배 이상 비율, 상위 10%가 전체 양(+)의 초과에서 차지하는 몫"""
+    if not excess:
+        return {}
+    xs = sorted(excess)
+    p90 = xs[min(len(xs) - 1, int(0.9 * (len(xs) - 1) + 0.5))]
+    pos = sum(x for x in xs if x > 0)
+    k = max(1, round(len(xs) * 0.1))
+    return {"p90_excess": round(p90, 4), "tail_2x": round(sum(1 for r in rets if r >= TAIL_X) / len(rets), 3) if rets else None,
+            "top10_share": round(sum(x for x in xs[-k:] if x > 0) / pos, 3) if pos > 0 else None}
+
+
 def scorecard(today=None, write=True):
     """채널·종류별 n·측정 수·적중률(시장 대비 초과 > 0)·초과수익 중앙값 — 사전값(prior.excess)과 나란히. 표본 30 미만은 '표본 부족'"""
     today = today or today_kst()
@@ -317,11 +330,13 @@ def scorecard(today=None, write=True):
     agg = {}
     passed = {e["lead_id"] for e in read(EVENTS) if e.get("event") == "triage_pass"}
     for r in active():
-        g = agg.setdefault(r["channel"], {"n": 0, "kinds": {}, "h": {h: [] for h in HORIZONS}, "pass": {h: [] for h in HORIZONS}, "reject": {h: [] for h in HORIZONS}})
+        g = agg.setdefault(r["channel"], {"n": 0, "kinds": {}, "h": {h: [] for h in HORIZONS}, "r": {h: [] for h in HORIZONS},
+                                          "pass": {h: [] for h in HORIZONS}, "reject": {h: [] for h in HORIZONS}})
         g["n"] += 1
         g["kinds"][r["kind"]] = g["kinds"].get(r["kind"], 0) + 1
         for h, v in forward(r, px, c).items():
             g["h"][h].append(v["excess"])
+            g["r"][h].append(v["ret"])
             g["pass" if r["lead_id"] in passed else "reject"][h].append(v["excess"])
     out = {"as_of": today.isoformat(), "min_n": MIN_N, "beta_prior": BETA_PRIOR, "channels": {}}
     for ch, g in sorted(agg.items()):
@@ -333,7 +348,8 @@ def scorecard(today=None, write=True):
                 row["horizons"][str(h)] = {"n": len(xs), "hit": round(hits / len(xs), 3), "hit_shrunk": round((hits + BETA_PRIOR) / (len(xs) + 2 * BETA_PRIOR), 3),
                                            "median_excess": round(statistics.median(xs), 4), "mean_excess": round(sum(xs) / len(xs), 4), "enough": len(xs) >= MIN_N,
                                            "pass_median": round(statistics.median(g["pass"][h]), 4) if g["pass"][h] else None, "pass_n": len(g["pass"][h]),
-                                           "reject_median": round(statistics.median(g["reject"][h]), 4) if g["reject"][h] else None, "reject_n": len(g["reject"][h])}
+                                           "reject_median": round(statistics.median(g["reject"][h]), 4) if g["reject"][h] else None, "reject_n": len(g["reject"][h]),
+                                           **tail(xs, g["r"][h])}
         out["channels"][ch] = row
     if write:
         SCORECARD.parent.mkdir(parents=True, exist_ok=True)
@@ -349,6 +365,17 @@ def scorecard(today=None, write=True):
             pr = row["prior"]
             L.append(f"| {row['name']} | {row['leads']} | {h3.get('n', 0)} | {fm(h3.get('hit'), False)}({fm(h3.get('hit_shrunk'), False)}) | {fm(h3.get('median_excess'))} | "
                      f"{fm(h3.get('pass_median'))}/{fm(h3.get('reject_median'))} | {h12.get('n', 0)} | {fm(h12.get('median_excess'))} | {fm(pr.get('excess'))}·{pr.get('horizon_d', '—')}일 |")
+        tl = []
+        for ch, row in out["channels"].items():
+            for hh in ("365", "730", "1095"):
+                t = row["horizons"].get(hh) or {}
+                if t.get("n"):
+                    tl.append(f"- {row['name']} {hh}일(n={t['n']}): 평균 초과 {t['mean_excess'] * 100:+.1f}% vs 중앙 {t['median_excess'] * 100:+.1f}% · 2배 이상 {t['tail_2x'] * 100:.0f}% · "
+                              f"상위 10%가 이익의 {t['top10_share'] * 100:.0f}%" if t.get("top10_share") is not None else
+                              f"- {row['name']} {hh}일(n={t['n']}): 평균 초과 {t['mean_excess'] * 100:+.1f}% vs 중앙 {t['median_excess'] * 100:+.1f}% · 2배 이상 {t['tail_2x'] * 100:.0f}%")
+        if tl:
+            L += ["", "## 오른쪽 꼬리(1년 이상) — 텐배거형 채널은 중앙값이 아니라 평균과 꼬리로 본다", "대부분 종목은 지고 소수가 전체 이익을 만든다(Bessembinder 2018·2024). "
+                  "중앙값이 음수여도 평균이 양수이고 2배 이상 비율이 사전 기저율(5년 3배 6.8%·10배 0.69%)을 넘으면 그 채널은 제 몫을 한다."] + tl
         L += ["", "성적표는 채널 가중을 고르는 재료이지 종목 추천이 아니다. 피팅은 표본 외 검정(scripts/fit/stepwise.py)을 통과할 때만."]
         (OUTD / f"scorecard_{today.strftime('%Y%m%d')}.md").write_text("\n".join(L) + "\n", encoding="utf-8")
     return out

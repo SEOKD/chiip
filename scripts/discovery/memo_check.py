@@ -136,6 +136,20 @@ def check(d):
         warns.append("가격 내포 성장·기저율 분위 없음(역DCF) — 바깥 관점 미확인")
     elif pc > PCTILE_WARN and len(ev) < 4:
         warns.append(f"내포 성장 {pc:.0f}분위 > {PCTILE_WARN} — 새 1차 출처 2개 이상이 없으면 성공 확률을 절반으로 본다")
+    # 구루 교차 점검(2026-11-21 마스터 지시, config/tenbagger_playbook.yaml) — 12개월 시나리오만으로는 5~10년 복리 경로를 못 본다.
+    # 여섯 관점(성장 여지·해자와 자본수익률·재투자·사람·변화의 방향·5배 경로)과 보유 규율을 gate.from_date 이후 메모부터 요구한다
+    try:
+        import sys as _sys
+        _sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tenbagger"))
+        import playbook as _pb
+        _c = _pb.cfg()
+        if d0 >= date.fromisoformat(_c["gate"]["from_date"]) or d.get("playbook"):
+            pf, pw, ps_ = _pb.check(d.get("playbook"), d.get("verdict") or "focus", _c)
+            fails += [f"구루 교차 점검 — {x}" for x in pf]
+            warns += [f"구루 교차 점검 — {x}" for x in pw]
+            nums["playbook"] = ps_
+    except (OSError, ImportError, KeyError) as exc:   # 설정이 없으면 이 관문만 건너뛴다(경고)
+        warns.append(f"구루 교차 점검을 못 돌렸다: {exc}")
     rt = d.get("red_team") or {}
     if not rt.get("verdict") or rt.get("answered") is not True:
         fails.append("red-team 판정과 답 없음")

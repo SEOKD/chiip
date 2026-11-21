@@ -15,11 +15,13 @@ argument-hint: "[발굴 | 카드 <회사> | 점검]"
 ## 카드 (`knowledge/models/tenbagger/cards/TB-YYYYMMDD-NN.md`, 템플릿 `_template.md`)
 - 10배 경로를 숫자로: TAM × 점유율 × 마진 → 5년 이익 → 출구 배수(등록부 id) → 내포 시가총액 / 현재. 10배에 필요한 가정과 그 확률(판단).
 - 가격 내포 기대: 지금 주가가 이미 가정하는 성장(역DCF).
+- **구루 교차 점검**(2026-11-21 마스터 지시, `knowledge/methods/tenbagger_playbook.md`): `py scripts/tenbagger/playbook.py <회사 id>`로 10배 산술·ROIC·재투자율·2년 뒤 EPS 변화·유동성 국면을 먼저 뽑고, 머리말 `playbook:` 칸에 여섯 관점(성장 여지·해자와 자본수익률·재투자 복리·사람과 문화·변화의 방향·5배 경로)을 통과·미달·미확인 + 이유 + 근거로 적는다. 가장 약한 관점(dissent)과 보유 규율(투자 논리 지표 2개 이상)도 적고 `py scripts/tenbagger/playbook.py --check <카드>`로 확인한다. 모르면 미확인 — 미확인은 통과가 아니다. 비중·금액은 쓰지 않는다.
 - 킬 조건 2~4개(측정 가능), 다음 카탈리스트, 반대 검증(`red-team`), 부가가치 원천.
 - `prediction-log`에 측정 가능한 중간 예측 1개 이상 등록(owner 치입, origin 카드 id).
 
 ## 가상 추적 (`knowledge/models/tenbagger/watch.csv`)
 - 등록 시 가격·날짜·시가총액(공개 시세, 출처 기록. 모르면 '미확인'으로 두고 다음 점검 때 채움). 행은 지우지 않는다.
+- 월 1회 점검 때 `py scripts/tenbagger/playbook.py --drawdowns` — 고점 대비 −50% 이상 종목은 **재심사**(제외가 아니다): 킬 조건과 투자 논리 지표를 1차 자료로 다시 확인해 지표가 살아 있으면 유지, 죽었으면 종료. 가격만으로 종료하지 않는다.
 - 월 1회 점검: 킬 조건 충족 → status 종료 + close_reason. 1·3·5년 성과를 기준지수 대비로 — 성적표이자 요인 가중치 피팅 재료(`model-lab`).
 
 ## 알파 점수 (마스터 지시 2026-10-28, `config/alpha.yaml`) — '텐배거 가능성' 10점
