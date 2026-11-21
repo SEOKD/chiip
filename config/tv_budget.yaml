@@ -1,13 +1,14 @@
 # TradingView MCP 하루 호출 예산 (2026-11-19 마스터 지시, 훅 .claude/hooks/tv_budget.py, 상태 radar/state/tv_budget.json)
 # 관측(세션 기록): 11-14~16 KST 하루 149~194건 통과 → 11-17 90건째(직전 24h 97건) 'daily usage limit + 10분 냉각', 이후 이틀 넘게 냉각 반복.
 # 정확한 한도는 TradingView가 공개하지 않아 미확인 — 관측된 가장 낮은 차단점 90보다 아래로 잡는다.
-daily_budget: 70          # 하루(06:00 KST 시작) 호출 상한
+daily_budget: 25          # 하루(06:00 KST 시작) 호출 상한 — 2026-11-21 70→25(11/20·21은 06시 뒤 7·13건째에 TradingView 일일 한도, 직전 24시간 28·57건)
 priority_tasks: [chiip-tenbagger-report, chiip-analysis-samyang-once]   # 우선 작업(2026-11-19 마스터 지시: Analysis TradingView 그래프 우선) — 예산 전부 쓸 수 있다
-priority_reserve: 30      # 다른 작업은 하루 예산에서 이만큼을 남긴 만큼(40건)만 쓴다. Analysis 3회 × 약 9건 = 27
+priority_reserve: 12      # 다른 작업은 하루 예산에서 이만큼을 남긴 만큼(13건)만 쓴다 — Analysis 우선 몫(2026-11-21 30→12, 예산 축소에 맞춤)
+block_hours_after_daily: 24   # TradingView '일일 한도'가 걸리면 이 시간 동안 부르지 않는다(06시에 풀어도 바로 다시 걸렸다, 2026-11-21)
 day_start_hour: 6
 # TradingView 와치리스트 동기화는 토요일 08:00 주 1회(2026-11-19 마스터 지시) — 그날 다른 작업 몫 안에서 쓴다
 # 시간대 독점(2026-11-21 마스터 지시 "이번 주 Weekly에 유럽·일본·한국·대만·홍콩 주간 상승률 순위가 빠졌다") — 그 시간에는 only 작업(예약 작업 이름 앞부분)만 부른다.
 # 47주차: 토 07:00~07:15 Pulse Weekend 5건·Industry 5건이 먼저 쓰고 Weekly는 1건째에 계정 한도(11건)로 막혔다. 사람 세션은 막지 않는다. weekdays: 월=0 … 토=5·일=6
 holds:
   - {weekdays: [5], from: "06:00", until: "10:30", only: [chiip-weekly]}
-  # - {weekdays: [6], from: "06:00", until: "06:40", only: [chiip-weekly]}   # 일요일 보충 회차 chiip-weekly-fill(docs/tasks/chiip-weekly-fill.md) — 예약 작업 등록 후 켠다(2026-11-21 앱이 등록 거부, 마스터 승인 대기)
+  - {weekdays: [6], from: "06:00", until: "06:40", only: [chiip-weekly]}   # 일요일 보충 회차 chiip-weekly-fill(docs/tasks/chiip-weekly-fill.md) — 마스터가 앱에서 직접 등록(2026-11-21)
