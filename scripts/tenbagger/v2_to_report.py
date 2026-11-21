@@ -178,7 +178,7 @@ def kr_call_gap(dp):
     if sc.get("source") and sc.get("kind") and sc.get("date"):
         return None
     return ("한국 종목인데 어닝콜 스크립트를 입수하지 못했다 — 리포트로 쓰지 않는다(마스터 지시 2026-11-15). "
-            "텔레그램 채널(radar/pollers/tg_channels.py --about)·Fiscal.ai 전문·회사 녹취에서 찾으면 datapack call.script{kind, source, date}에 적고, 없으면 이 종목을 건너뛰고 다음 후보를 고른다")
+            "`py scripts/tenbagger/call_source.py <id> --search`(Fiscal.ai 전문 → TradingView 문서 → 텔레그램 Fundeasyearnings Q&A, 2026-11-21)·텔레그램 채널(radar/pollers/tg_channels.py --about)·회사 녹취에서 찾으면 `call_source.py --put`으로 datapack call.script에 적고, 없으면 이 종목을 건너뛰고 다음 후보를 고른다")
 
 
 def earnings_section(entity, r):
