@@ -151,6 +151,11 @@ def build(rows=None, today=None, write=True):
     if rows is None:
         rows = list(csv.DictReader(LIVE.open(encoding="utf-8", newline=""))) if LIVE.exists() else []
         rows = wayback(c) + rows   # 아카이브 과거값 먼저 — 같은 날 직접 수집값이 이긴다
+        try:   # 내부용 원천(Ornn — git 제외 CSV)
+            import gpu_rental
+            rows += sorted(gpu_rental.internal_rows(), key=lambda r: r["date"])
+        except Exception:
+            pass
     res = classify(daily_last(rows), today, c)
     out = {"as_of": common.iso(common.now_kst()), "classify_days": c["classify_days"], "series": res,
            "daily": [x["key"] for x in res if x["cls"] == "daily"], "stale": stale(res, today, c),

@@ -19,6 +19,7 @@
 사용: py radar/gpu_daily.py --backfill [2026-01-01]   # 아카이브 역수집(요청 사이 6초, 이어받기 가능)
       py radar/gpu_daily.py --backfill-index [2026-01-01]   # Silicon Data 지수 아카이브 역수집
       py radar/gpu_daily.py --backfill-flopper   # Flopper 제공사 중앙값 30일치(페이지에 든 일별 값)
+      py radar/gpu_daily.py --backfill-ornn      # Ornn 실거래 지수 공개 이력(3개월) — 내부용
       py radar/gpu_daily.py --chart [시작일]           # 그림만 그려 경로·요약 출력
       py radar/gpu_daily.py --status                  # Pulse 관문(JSON)
       py radar/gpu_daily.py --send <json>             # {"read": "..."} → 그림+설명 마스터 개인 봇
@@ -42,10 +43,12 @@ STATE = "gpu_daily"
 GPUS = ["H100", "H200", "B200", "B300"]
 PROVS = ["Nebius", "CoreWeave", "AWS"]
 IDX = "Silicon Data 지수"   # 시장 지수 참고선(2026-11-21) — 제공사가 아니다
+ORN = "Ornn 지수"   # 실거래 정산 일일 지수(radar/gpu_rental.ornn) — 내부용: 마스터 개인 봇 그림·캡션만(약관, 마스터 결정 2026-11-21 "붙여")
 FLP = "Flopper 시장 중앙값"   # 제공사 30여 곳 온디맨드 최저가의 그날 중앙값(radar/gpu_rental.flopper, 2026-11-21 마스터 지시 "일일 데이터 변동이 있는 파이프라인을 찾고 …")
 # 참고선(매일 움직이는 시장 값) — (이름, 수집 term 앞부분, 색, 점선, 끝 이름표 꼬리, 범례). 정가와 정의가 달라 직접 비교하지 않는다
-REFS = [(IDX, "시장 지수", (0.42, 0.42, 0.40), "[3 2] 0", " 지수", "시장 지수(Silicon Data, 참고)"),
-        (FLP, "시장 중앙값", (0.22, 0.22, 0.21), "[1 1.6] 0", " 중앙", "제공사 중앙값(Flopper, 참고)")]
+REFS = [(IDX, "시장 지수", (0.42, 0.42, 0.40), "[3 2] 0", " 지수", "시장 지수(Silicon Data)"),
+        (FLP, "시장 중앙값", (0.22, 0.22, 0.21), "[1 1.6] 0", " 중앙", "제공사 중앙값(Flopper)"),
+        (ORN, "시장 지수", (0.50, 0.33, 0.66), "[5 2 1 2] 0", " 실거래", "실거래 지수(Ornn)")]
 REFN = [r[0] for r in REFS]
 WINDOW = (10, 11)   # KST 시 — 이 사이 첫 Pulse 회차(매일)
 LIVE = common.ROOT / "knowledge" / "models" / "gpu_rental.csv"
@@ -218,6 +221,15 @@ def backfill_flopper():
     return added
 
 
+def backfill_ornn():
+    """Ornn 공개 이력(GPU별 최근 3개월 일별) → 내부용 CSV(radar/inbox/gpu_ornn.csv, git 제외 — 이미 있는 날은 그대로). 놓친 날이 생기면 다시 돌린다(2026-11-21)"""
+    have = {(r["provider"], r["gpu"], r["date"]) for r in gpu_rental.internal_rows()}
+    now = common.iso(common.now_kst())
+    new = [{**r, "date": r["date_obs"], "retrieved_at": now} for r in gpu_rental.ornn_history() if (ORN, r["gpu"], r["date_obs"]) not in have]
+    gpu_rental.write_internal(new)
+    return len(new)
+
+
 def backfill(since="2025-12-01", pause=6.0, provs=None):
     """아카이브 스냅숏(하루 1개)을 읽어 gpu_rental_wayback.csv에 더한다. 이미 읽은 스냅숏은 건너뛴다(이어받기)"""
     st = common.load_state(STATE, {})
@@ -335,7 +347,7 @@ def observations():
             obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
     if LIVE.exists():
         with LIVE.open(encoding="utf-8", newline="") as f:
-            for r in csv.DictReader(f):
+            for r in list(csv.DictReader(f)) + gpu_rental.internal_rows():   # 내부용(Ornn)은 git 제외 CSV에서
                 k = (r["provider"], r["gpu"])
                 if k not in obs:
                     continue
@@ -490,26 +502,27 @@ def chart(since=None, until=None, path=None):
         raise SystemExit("[GPU Daily] 자료 없음 — gpu_rental.csv·--backfill 확인")
     d0, d1 = _d(since), _d(until)
     doc = pymupdf.open()
-    page = doc.new_page(width=760, height=732)
+    page = doc.new_page(width=760, height=744)
     page.draw_rect(page.rect, color=None, fill=SURF)
     _txt(page, (36, 34), f"GPU 렌털비 추이 — 온디맨드 정가 $/GPU·시 ({_ymd(since)}~)", 15, INK)
-    _txt(page, (36, 52), f"기준 {until} · 실선 = 정가(다음 관측까지 유지), 점선 사선 = 두 관측 사이 어느 날 바뀜, 회색 점선 = 시장 참고값", 8.5, INK2)
+    _txt(page, (36, 52), f"기준 {until} · 실선 = 정가(다음 관측까지 유지), 점선 사선 = 두 관측 사이 어느 날 바뀜, 회색·보라 점선 = 시장 참고값(정가와 정의가 다름)", 8.5, INK2)
     x = 36
     for p in PROVS:   # 범례(세 계열 — 끝 이름표와 함께)
         page.draw_line((x, 72), (x + 18, 72), color=COL[p], width=2)
         _txt(page, (x + 23, 75), p, 9, INK)
-        x += 92
+        x += 84
     for name, _, col, dash, _, leg in REFS:   # 참고선 범례 — 같은 줄 이어서(둘째 줄은 칸 제목과 겹친다)
         if any(k[0] == name for k in S):
             page.draw_line((x, 72), (x + 18, 72), color=col, width=1.4, dashes=dash)
             _txt(page, (x + 23, 75), leg, 9, INK2)
-            x += 192
+            x += 23 + sum(9.2 if ord(ch) > 0x1100 else 5.0 for ch in leg) + 16   # 글자 폭 어림 — 범례가 오른쪽 끝을 넘지 않게
     boxes = [(70, 110, 320, 370), (440, 110, 690, 370), (70, 430, 320, 680), (440, 430, 690, 680)]
     for g, box in zip(GPUS, boxes):
         _panel(page, box, g, S, d0, d1)
     _txt(page, (36, 704), "자료: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드 가격표(미국 동부·리눅스, 8 GPU 인스턴스÷8). "
          "이전 구간은 인터넷 아카이브 스냅숏·AWS 가격표 API 월별 판.", 7, MUTED)
     _txt(page, (36, 715), "시장 지수: Silicon Data 공개 페이지 헤드라인 값 인용(거래 가격 기반 지수, 2026-07-28 이전은 아카이브 없음). 정가와 정의가 달라 직접 비교하지 않는다.", 7, MUTED)
+    _txt(page, (36, 737), "실거래 지수: Ornn Compute Price Index(실제 임대 거래 정산, 미 동부 자정 기준 일 1회) — 개인 참고용, 재배포하지 않는다.", 7, MUTED)
     _txt(page, (36, 726), "제공사 중앙값: Flopper.io GPU별 가격 페이지의 제공사별 일별 최저 온디맨드가(15~31곳)의 그날 중앙값 — 정가 모음이며 거래가가 아니다.", 7, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"gpu_trend_{until.replace('-', '')}.png")
@@ -577,7 +590,7 @@ def caption(summ, read=""):
         rng = f"{min(pcts):+.0f}%" if round(min(pcts)) == round(max(pcts)) else f"{min(pcts):+.0f}~{max(pcts):.0f}%"
         L.append(f"최근 변경: {p} {len(pcts)}종 {rng}({_md(a)}~{_md(b)})")
     refs = summ.get("refs") or ({IDX: summ["index"]} if summ.get("index") else {})
-    for name, head in ((IDX, "시장 지수"), (FLP, "제공사 중앙값")):   # 참고값 한 줄씩(2026-11-21) — 정가가 평평해도 시장 움직임이 보이게
+    for name, head in ((IDX, "시장 지수"), (ORN, "실거래 지수(Ornn)"), (FLP, "제공사 중앙값")):   # 참고값 한 줄씩(2026-11-21) — 정가가 평평해도 시장 움직임이 보이게
         ix = refs.get(name) or {}
         if ix:
             L.append(f"{head} " + " · ".join(f"{g} {x['usd']:.2f}" + (f"({x['1w']:+.1f}%)" if x.get("1w") is not None else "") for g, x in ix.items()) + " · 1주")
@@ -623,7 +636,9 @@ def send(read=""):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if argv[:1] == ["--backfill-flopper"]:
+    if argv[:1] == ["--backfill-ornn"]:
+        print(f"[GPU Daily] Ornn 지수 {backfill_ornn()}행")
+    elif argv[:1] == ["--backfill-flopper"]:
         print(f"[GPU Daily] Flopper 중앙값 {backfill_flopper()}행")
     elif argv[:1] == ["--backfill-index"]:
         print(f"[GPU Daily] 지수 아카이브 {backfill_index(argv[1] if len(argv) > 1 else '2026-01-01')}행")

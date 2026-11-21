@@ -23,11 +23,13 @@ from pollers import common  # noqa: E402
 
 sys.path.insert(0, str(common.ROOT / "scripts" / "weekly"))
 import gpu_rent  # noqa: E402   # 시세 읽기·변화율 함수(원래 Weekly 블록) 재사용
+import gpu_rental  # noqa: E402   # 내부용 Ornn CSV 위치(ORNN_CSV)
 
 STATE = "gpu_weekly"
 IDX = "Silicon Data 지수"
 FLP = "Flopper 시장 중앙값"   # 제공사 온디맨드 최저가의 그날 중앙값(radar/gpu_rental.flopper, 2026-11-21)
-REFS = [(IDX, "시장 지수", "참고 시장 지수(Silicon Data)"), (FLP, "시장 중앙값", "참고 제공사 중앙값(Flopper)")]
+REFS = [(IDX, "시장 지수", "참고 시장 지수(Silicon Data)"), ("Ornn 지수", "시장 지수", "참고 실거래 지수(Ornn)"),   # Ornn은 내부용(개인 봇만, 2026-11-21 마스터 결정)
+        (FLP, "시장 중앙값", "참고 제공사 중앙값(Flopper)")]
 HOUR = 6          # 월요일 06:00 KST 이후
 READ_MAX = 600
 # 2026-11-16 마스터 지시 "Nebius와 CoreWeave, AWS 세 곳만 … 가격 종류를 하나로 통일" — 세 곳 모두 온디맨드 정가만(스팟·지수·Lambda 뺌)
@@ -72,7 +74,9 @@ def _lambda_series(rows, g, pick):
 
 def table(as_of, rows=None):
     """GPU × 원천 — (지금, 7일 전, 변화율 %). 7일 전 값이 없으면(추적 첫 주) 추적 시작일 값과 비교하고 그 날짜를 적는다"""
-    rows = rows if rows is not None else gpu_rent._rows()
+    if rows is None:   # 참고값 과거분(아카이브·페이지 내장 이력) 먼저, 직접 수집분이 같은 날을 덮는다. 내부용 Ornn은 git 제외 CSV(2026-11-21)
+        import gpu_movers
+        rows = gpu_movers.wayback() + gpu_rent._rows() + gpu_rent._rows(gpu_rental.ORNN_CSV)
     day = str(as_of)[:10]
     prev = (date.fromisoformat(day) - timedelta(days=7)).isoformat()
     out = []

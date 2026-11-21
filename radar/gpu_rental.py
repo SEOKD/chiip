@@ -177,7 +177,7 @@ def table(rows):
     L = ["| GPU | 제공사 | 구성 | 조건 | $/GPU·시 | 비고 |", "|---|---|---|---|---|---|"]
     order = {g: i for i, g in enumerate(GPU_ORDER)}
     for r in sorted(rows, key=lambda r: (order.get(r["gpu"], 99), r["gpu"], r["provider"], r["term"])):
-        if r["gpu"] not in order:
+        if r["gpu"] not in order or r["provider"] in INTERNAL_ONLY:   # 내부용 원천(Ornn)은 비교표·Analysis 데이터 허브에 내지 않는다
             continue
         p = "-" if r.get("usd_per_gpu_hr") in (None, "") else f"${float(r['usd_per_gpu_hr']):.2f}"
         L.append(f"| {r['gpu']} | {r['provider']} | {r['config']} | {r['term']} | {p} | {r.get('note') or ''} |")
@@ -283,25 +283,96 @@ def gcp_spot(text=None):
     return rows
 
 
+# Ornn Compute Price Index(OCPI) — 실거래 정산 일일 지수(미 동부 자정 정산). robots는 이 두 경로만 Allow, 자체 문서는 '무료·키 없음'.
+#   약관(data.ornn.com/terms 2026-05-29)은 서면 허락 없는 체계적 수집·리포트 재게시를 금지 — 마스터가 '내부용으로 붙여'로 결정(2026-11-21 "붙여").
+#   그래서: 하루 1회만 읽고, 마스터 개인 텔레그램 그림·캡션·주간 점검에만 쓴다. 리포트·노션·공개 산출물·비교표(--table, Analysis 데이터 허브)에는 넣지 않는다(INTERNAL_ONLY).
+ORNN_ALL = "https://data.ornn.com/api/public-index/daily-index/all"
+ORNN_HIST = "https://data.ornn.com/api/public-index/gpu/{}/index-history"
+ORNN_GPU = {"H100 SXM": "H100", "H200": "H200", "B200": "B200", "B300": "B300", "A100 SXM4": "A100"}
+ORNN_NOTE = "Ornn OCPI 실거래 정산 지수 — 내부용(약관: 리포트·공개 재게시 금지, 마스터 결정 2026-11-21)"
+INTERNAL_ONLY = {"Ornn 지수"}
+ORNN_CSV = common.ROOT / "radar" / "inbox" / "gpu_ornn.csv"   # 내부용 원천 행은 git 제외 폴더에만(TrendForce 개인 봇 한정과 같은 방식) — gpu_rental.csv·아카이브 CSV에 넣지 않는다
+
+
+def internal_rows():
+    """내부용(Ornn) 저장 행 — 일일 그림·판별기·주간 점검이 읽는다"""
+    if not ORNN_CSV.exists():
+        return []
+    with ORNN_CSV.open(encoding="utf-8", newline="") as f:
+        return [r for r in csv.DictReader(f) if r.get("date")]
+
+
+def write_internal(rows, replace=False):
+    """내부용 행 저장 — replace면 (제공사·GPU·날짜)가 같은 옛 행을 새 값으로 바꾼다"""
+    old = internal_rows()
+    if replace:
+        keys = {(r["provider"], r["gpu"], r["date"]) for r in rows}
+        old = [r for r in old if (r["provider"], r["gpu"], r["date"]) not in keys]
+    ORNN_CSV.parent.mkdir(parents=True, exist_ok=True)
+    with ORNN_CSV.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(sorted(old + rows, key=lambda r: (r["provider"], r["gpu"], r["date"], r.get("retrieved_at") or "")))
+
+
+def _ornn_row(gt, v, d, url):
+    return {"provider": "Ornn 지수", "gpu": ORNN_GPU[gt], "config": f"OCPI {gt}", "term": "시장 지수(실거래 정산)", "usd_per_gpu_hr": float(v),
+            "date_obs": d, "note": ORNN_NOTE, "source_url": url}
+
+
+def ornn(raw=None):
+    """→ 가장 최근 정산일의 GPU별 지수 행(H100·H200·B200·B300·A100)"""
+    j = json.loads(_get(ORNN_ALL) if raw is None else raw)
+    return [_ornn_row(x["gpu_type"], x["index_value"], str(x.get("date") or j.get("date"))[:10], ORNN_ALL)
+            for x in j.get("data") or [] if x.get("gpu_type") in ORNN_GPU and x.get("index_value") is not None and x.get("region", "global") == "global"]
+
+
+def ornn_history(raws=None, pause=2.0):
+    """→ GPU별 최근 3개월 일별 지수 행(공개 이력 'public-3mo') — radar/gpu_daily.py --backfill-ornn"""
+    import time
+    import urllib.parse
+    rows = []
+    for i, gt in enumerate(ORNN_GPU):
+        url = ORNN_HIST.format(urllib.parse.quote(gt))
+        if raws is None:
+            if i:
+                time.sleep(pause)
+            try:
+                j = json.loads(_get(url))
+            except Exception:
+                continue
+        else:
+            j = json.loads(raws.get(gt) or "{}")
+        rows += [_ornn_row(gt, x["index_value"], x["timestamp"][:10], url) for x in j.get("data") or [] if x.get("index_value") is not None]
+    return rows
+
+
 def run():
     st = common.load_state("gpu_rental", {})
     now = common.iso(common.now_kst())
     today = now[:10]
     rows, errs = [], []
-    daily = (("Flopper", flopper), ("Google Cloud 스팟", gcp_spot))   # 매일 움직이는 원천은 하루 한 번만 읽는다(원천이 하루 단위로 갱신)
-    once = tuple(x for x in daily if (st.get("daily_read") or {}).get(x[0]) != today)
+    daily = (("Flopper", flopper), ("Google Cloud 스팟", gcp_spot), ("Ornn", ornn))   # 매일 움직이는 원천은 하루 한 번만 읽는다(원천이 하루 단위로 갱신)
+    # 하루의 시작 — Ornn은 미 동부 자정(KST 14시 무렵) 정산이라 KST 15시부터를 그날로 친다(정산 전에 읽고 하루를 놓치지 않게)
+    from datetime import timedelta
+    dkey = {n: (common.now_kst() - timedelta(hours=15 if n == "Ornn" else 0)).date().isoformat() for n, _ in daily}
+    once = tuple(x for x in daily if (st.get("daily_read") or {}).get(x[0]) != dkey[x[0]])
     for name, fn in (("Nebius", nebius), ("CoreWeave", coreweave), ("Lambda", lambda_), ("Silicon Data", silicon_data), ("AWS", aws)) + once:
         try:
             got = fn()
             rows += got
             if got and (name, fn) in daily:   # 읽기에 성공한 날만 표시 — 실패하면 다음 회차가 다시 읽는다
-                st.setdefault("daily_read", {})[name] = today
+                st.setdefault("daily_read", {})[name] = dkey[name]
             if not got:
                 errs.append(f"{name} 0행(페이지 구조 변경?)")
         except Exception as exc:
             errs.append(f"{name} {type(exc).__name__}")
-    for r in rows:
-        r.update({"date": today, "retrieved_at": now})
+    for r in rows:   # 정산일이 따로 있는 원천(Ornn — 미 동부 자정 정산)은 그 날짜로 적는다(아카이브 이력과 날짜가 어긋나지 않게)
+        r.update({"date": r.get("date_obs") or today, "retrieved_at": now})
+    inner = [r for r in rows if r["provider"] in INTERNAL_ONLY]
+    rows = [r for r in rows if r["provider"] not in INTERNAL_ONLY]
+    if inner:
+        write_internal(inner, replace=True)
     if rows:
         new = not CSV.exists()
         with CSV.open("a", encoding="utf-8", newline="") as f:

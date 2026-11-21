@@ -72,6 +72,18 @@ class Movers(unittest.TestCase):
         got = {r["gpu"]: r["usd_per_gpu_hr"] for r in R.gcp_spot(t)}
         self.assertEqual(got, {"H100": 6.588, "B200": 5.45})
 
+    def test_ornn_rows_and_internal_only(self):
+        import json
+        import gpu_rental as R
+        raw = json.dumps({"date": "2026-11-20T05:00:00.000Z", "data": [
+            {"gpu_type": "H100 SXM", "region": "global", "index_value": 2.9, "date": "2026-11-20T05:00:00.000Z"},
+            {"gpu_type": "RTX 5090", "region": "global", "index_value": 0.67, "date": "2026-11-20T05:00:00.000Z"}]})
+        got = R.ornn(raw)
+        self.assertEqual([(r["gpu"], r["usd_per_gpu_hr"], r["date_obs"]) for r in got], [("H100", 2.9, "2026-11-20")])
+        hist = R.ornn_history({"B200": json.dumps({"data": [{"timestamp": "2026-11-19T05:00:00.000Z", "index_value": 9.0}]})})
+        self.assertEqual([(r["gpu"], r["date_obs"]) for r in hist], [("B200", "2026-11-19")])
+        self.assertNotIn("Ornn", R.table(got))   # 내부용 — 비교표(Analysis 데이터 허브)에 내지 않는다
+
     def test_daily_caption_warns_stale(self):
         import gpu_daily as D
         cap = D.caption({"until": TODAY, "gpus": [], "index": {}, "stale": ["Silicon Data 지수 정체 7일(마지막 변화 11/14)"]})
