@@ -18,6 +18,7 @@
 결정론: 매일 10:00~11:00 KST 첫 Pulse 회차에 due(주말 포함). 그림은 START(2026-01-01)부터 오늘까지 — 해가 바뀌어도 리셋하지 않고 이어 그린다. 숫자·그림은 여기서, 풀이 2~4문장(read)만 모델 몫.
 사용: py radar/gpu_daily.py --backfill [2026-01-01]   # 아카이브 역수집(요청 사이 6초, 이어받기 가능)
       py radar/gpu_daily.py --backfill-index [2026-01-01]   # Silicon Data 지수 아카이브 역수집
+      py radar/gpu_daily.py --backfill-flopper   # Flopper 제공사 중앙값 30일치(페이지에 든 일별 값)
       py radar/gpu_daily.py --chart [시작일]           # 그림만 그려 경로·요약 출력
       py radar/gpu_daily.py --status                  # Pulse 관문(JSON)
       py radar/gpu_daily.py --send <json>             # {"read": "..."} → 그림+설명 마스터 개인 봇
@@ -41,9 +42,15 @@ STATE = "gpu_daily"
 GPUS = ["H100", "H200", "B200", "B300"]
 PROVS = ["Nebius", "CoreWeave", "AWS"]
 IDX = "Silicon Data 지수"   # 시장 지수 참고선(2026-11-21) — 제공사가 아니다
+FLP = "Flopper 시장 중앙값"   # 제공사 30여 곳 온디맨드 최저가의 그날 중앙값(radar/gpu_rental.flopper, 2026-11-21 마스터 지시 "일일 데이터 변동이 있는 파이프라인을 찾고 …")
+# 참고선(매일 움직이는 시장 값) — (이름, 수집 term 앞부분, 색, 점선, 끝 이름표 꼬리, 범례). 정가와 정의가 달라 직접 비교하지 않는다
+REFS = [(IDX, "시장 지수", (0.42, 0.42, 0.40), "[3 2] 0", " 지수", "시장 지수(Silicon Data, 참고)"),
+        (FLP, "시장 중앙값", (0.22, 0.22, 0.21), "[1 1.6] 0", " 중앙", "제공사 중앙값(Flopper, 참고)")]
+REFN = [r[0] for r in REFS]
 WINDOW = (10, 11)   # KST 시 — 이 사이 첫 Pulse 회차(매일)
 LIVE = common.ROOT / "knowledge" / "models" / "gpu_rental.csv"
 WB = common.ROOT / "knowledge" / "models" / "gpu_rental_wayback.csv"
+MOVERS = common.ROOT / "knowledge" / "models" / "gpu_rental_movers.json"   # 계열별 변동 성격(radar/gpu_movers.py)
 OUT = common.ROOT / "radar" / "inbox" / "gpu_daily"   # 매일 그림(git 제외)
 WB_FIELDS = ["date", "provider", "gpu", "config", "usd_per_gpu_hr", "node_usd_hr", "gpus_per_node", "snapshot", "source_url"]
 CDX = "https://web.archive.org/cdx/search/cdx"
@@ -192,6 +199,25 @@ def backfill_index(since="2026-01-01", pause=6.0):
     return added
 
 
+def backfill_flopper():
+    """Flopper 페이지에 든 제공사별 일별 온디맨드가 30일치 → 날짜별 중앙값을 아카이브 CSV에 채운다(이미 있는 날은 그대로).
+    수집기는 매일 그날 값만 쌓으므로 놓친 날이 생기면 이걸 다시 돌려 메운다(2026-11-21)"""
+    rows = _wb_read()
+    have = {(r["provider"], r["gpu"], r["date"]) for r in rows}
+    stamp = common.now_kst().strftime("%Y%m%d")
+    added = 0
+    for r in gpu_rental.flopper(history=True):
+        k = (FLP, r["gpu"], r["date_obs"])
+        if r["gpu"] not in GPUS or k in have:
+            continue
+        rows.append({"date": r["date_obs"], "provider": FLP, "gpu": r["gpu"], "config": r["config"], "usd_per_gpu_hr": r["usd_per_gpu_hr"],
+                     "snapshot": f"flopper-{stamp}", "source_url": r["source_url"]})
+        have.add(k)
+        added += 1
+    _wb_write(rows)
+    return added
+
+
 def backfill(since="2025-12-01", pause=6.0, provs=None):
     """아카이브 스냅숏(하루 1개)을 읽어 gpu_rental_wayback.csv에 더한다. 이미 읽은 스냅숏은 건너뛴다(이어받기)"""
     st = common.load_state(STATE, {})
@@ -302,7 +328,7 @@ def _num(v):
 def observations():
     """(제공사, GPU) → {날짜: 가격 또는 None(문의)}. 직접 수집값이 같은 날 아카이브값보다 우선.
     (IDX, GPU) = Silicon Data 시장 지수(참고선) — 같은 날 여러 번 읽었으면 그날 마지막 값"""
-    obs = {(p, g): {} for p in PROVS + [IDX] for g in GPUS}
+    obs = {(p, g): {} for p in PROVS + REFN for g in GPUS}
     for r in _wb_read():
         k = (r["provider"], r["gpu"])
         if k in obs:
@@ -313,15 +339,16 @@ def observations():
                 k = (r["provider"], r["gpu"])
                 if k not in obs:
                     continue
-                if r["provider"] == IDX:
-                    if r["term"].startswith("시장 지수") and _num(r["usd_per_gpu_hr"]) is not None:
+                if r["provider"] in REFN:
+                    if r["term"].startswith(dict((x[0], x[1]) for x in REFS)[r["provider"]]) and _num(r["usd_per_gpu_hr"]) is not None:
                         obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
                     continue
                 if not r["term"].startswith("온디맨드") or re.search(r"PCIe|NVL|GH200|GB", r["config"], re.I):
                     continue
                 obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
     for g in GPUS:
-        obs[(IDX, g)] = index_clean(obs[(IDX, g)])
+        for n in REFN:
+            obs[(n, g)] = index_clean(obs[(n, g)])
     return obs
 
 
@@ -369,7 +396,7 @@ def value_at(s, d):
 # ---------- 그림(PyMuPDF — 새 패키지 없이) ----------
 # 범주 색 = 고정 순서 첫 세 칸(파랑·주황·청록, dataviz 기본 팔레트 — 세 칸까지 전 쌍 색각 검증 통과로 문서화). 글자는 잉크색.
 COL = {"Nebius": (0.165, 0.471, 0.839), "CoreWeave": (0.922, 0.408, 0.204), "AWS": (0.106, 0.686, 0.478)}
-IDXC = (0.42, 0.42, 0.40)   # 시장 지수 참고선 — 회색 점선(범주 색과 겹치지 않는다)
+IDXC = REFS[0][2]   # 시장 지수 참고선 색(옛 이름 — REFS가 원본)
 INK, INK2, MUTED, GRID, SURF = (0.043, 0.043, 0.043), (0.322, 0.318, 0.306), (0.537, 0.529, 0.506), (0.882, 0.878, 0.851), (0.988, 0.988, 0.984)
 
 
@@ -381,8 +408,8 @@ def _panel(page, box, g, S, d0, d1):
     from memory_spot import _nice, _txt
     x0, y0, x1, y1 = box
     mine = {p: S[(p, g)] for p in PROVS if (p, g) in S}
-    idx = S.get((IDX, g))
-    vals = [v for s in list(mine.values()) + ([idx] if idx else []) for _, v in s["points"] if v is not None]
+    refs = [(r, S[(r[0], g)]) for r in REFS if (r[0], g) in S]
+    vals = [v for s in list(mine.values()) + [x for _, x in refs] for _, v in s["points"] if v is not None]
     hi = max(vals) if vals else 1
     step = _nice(hi / 4)
     top = math.ceil(hi * 1.08 / step) * step
@@ -403,11 +430,11 @@ def _panel(page, box, g, S, d0, d1):
         m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
     page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
     ends, missing = [], []
-    if idx:   # 시장 지수 참고선(2026-11-21) — 매일 움직이는 거래 가격. 제공사 선 아래에 깐다
+    for (name, _, col, dash, _, _), idx in refs:   # 참고선(2026-11-21) — 매일 움직이는 시장 값. 제공사 선 아래에 깐다
         sg = [(X(d), Y(v)) for d, v in idx["points"] if v is not None and d >= d0.isoformat()]
         if len(sg) > 1:
-            page.draw_polyline(sg, color=IDXC, width=1.3, dashes="[3 2] 0")
-        ends.append([Y(idx["last"][1]), IDX, idx["last"][1]])
+            page.draw_polyline(sg, color=col, width=1.3, dashes=dash)
+        ends.append([Y(idx["last"][1]), name, idx["last"][1]])
     for p in PROVS:
         s = mine.get(p)
         if not s:
@@ -443,9 +470,10 @@ def _panel(page, box, g, S, d0, d1):
     for i in range(1, len(ends)):   # 끝 이름표 겹침 풀기(최소 10pt 간격)
         ends[i][0] = max(ends[i][0], ends[i - 1][0] + 10)
     for y, p, v in ends:
-        c = IDXC if p == IDX else COL[p]
+        ref = next((r for r in REFS if r[0] == p), None)
+        c = ref[2] if ref else COL[p]
         page.draw_circle((x1 + 6, y - 2.5), 2.6, color=c, fill=c)
-        _txt(page, (x1 + 11, y + 0.5), f"${v:,.2f}" + (" 지수" if p == IDX else ""), 7.5, INK2 if p == IDX else INK)
+        _txt(page, (x1 + 11, y + 0.5), f"${v:,.2f}" + (ref[4] if ref else ""), 7.5, INK2 if ref else INK)
     if missing:
         _txt(page, (x0 + 4, y0 + 10), " · ".join(missing) + " 공개 정가 없음(문의)", 7, INK2)
 
@@ -462,24 +490,27 @@ def chart(since=None, until=None, path=None):
         raise SystemExit("[GPU Daily] 자료 없음 — gpu_rental.csv·--backfill 확인")
     d0, d1 = _d(since), _d(until)
     doc = pymupdf.open()
-    page = doc.new_page(width=760, height=720)
+    page = doc.new_page(width=760, height=732)
     page.draw_rect(page.rect, color=None, fill=SURF)
     _txt(page, (36, 34), f"GPU 렌털비 추이 — 온디맨드 정가 $/GPU·시 ({_ymd(since)}~)", 15, INK)
-    _txt(page, (36, 52), f"기준 {until} · 실선 = 정가(다음 관측까지 유지), 점선 사선 = 두 관측 사이 어느 날 바뀜, 회색 점선 = 시장 지수", 8.5, INK2)
+    _txt(page, (36, 52), f"기준 {until} · 실선 = 정가(다음 관측까지 유지), 점선 사선 = 두 관측 사이 어느 날 바뀜, 회색 점선 = 시장 참고값", 8.5, INK2)
     x = 36
     for p in PROVS:   # 범례(세 계열 — 끝 이름표와 함께)
         page.draw_line((x, 72), (x + 18, 72), color=COL[p], width=2)
         _txt(page, (x + 23, 75), p, 9, INK)
-        x += 110
-    if any(k[0] == IDX for k in S):
-        page.draw_line((x, 72), (x + 18, 72), color=IDXC, width=1.4, dashes="[3 2] 0")
-        _txt(page, (x + 23, 75), "시장 지수(Silicon Data, 참고)", 9, INK2)
+        x += 92
+    for name, _, col, dash, _, leg in REFS:   # 참고선 범례 — 같은 줄 이어서(둘째 줄은 칸 제목과 겹친다)
+        if any(k[0] == name for k in S):
+            page.draw_line((x, 72), (x + 18, 72), color=col, width=1.4, dashes=dash)
+            _txt(page, (x + 23, 75), leg, 9, INK2)
+            x += 192
     boxes = [(70, 110, 320, 370), (440, 110, 690, 370), (70, 430, 320, 680), (440, 430, 690, 680)]
     for g, box in zip(GPUS, boxes):
         _panel(page, box, g, S, d0, d1)
     _txt(page, (36, 704), "자료: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드 가격표(미국 동부·리눅스, 8 GPU 인스턴스÷8). "
          "이전 구간은 인터넷 아카이브 스냅숏·AWS 가격표 API 월별 판.", 7, MUTED)
     _txt(page, (36, 715), "시장 지수: Silicon Data 공개 페이지 헤드라인 값 인용(거래 가격 기반 지수, 2026-07-28 이전은 아카이브 없음). 정가와 정의가 달라 직접 비교하지 않는다.", 7, MUTED)
+    _txt(page, (36, 726), "제공사 중앙값: Flopper.io GPU별 가격 페이지의 제공사별 일별 최저 온디맨드가(15~31곳)의 그날 중앙값 — 정가 모음이며 거래가가 아니다.", 7, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"gpu_trend_{until.replace('-', '')}.png")
     page.get_pixmap(dpi=150).save(str(path))
@@ -500,15 +531,22 @@ def summary(S, since, until, png=""):
             row["prov"][p] = {"usd": last[1], "first": list(s["first"]), "ytd": s["chg"], "1w": (last[1] / w - 1) * 100 if w else None,
                               "steps": [{**x, "pct": round(x["pct"], 1)} for x in s["steps"]]}
         out["gpus"].append(row)
-    out["index"] = {}
-    for g in GPUS:   # 시장 지수 참고(2026-11-21) — 지금 값·1주 변화·4주 변화
-        s = S.get((IDX, g))
-        if not s:
-            continue
-        last = s["last"]
-        w, m = value_at(s, d7), value_at(s, (_d(until) - timedelta(days=28)).isoformat())
-        out["index"][g] = {"usd": last[1], "day": last[0], "1w": (last[1] / w - 1) * 100 if w else None,
-                           "4w": (last[1] / m - 1) * 100 if m else None, "first": list(s["first"])}
+    out["refs"] = {}
+    for name in REFN:   # 참고선(2026-11-21) — 지금 값·1주 변화·4주 변화
+        for g in GPUS:
+            s = S.get((name, g))
+            if not s:
+                continue
+            last = s["last"]
+            w, m = value_at(s, d7), value_at(s, (_d(until) - timedelta(days=28)).isoformat())
+            out["refs"].setdefault(name, {})[g] = {"usd": last[1], "day": last[0], "1w": (last[1] / w - 1) * 100 if w else None,
+                                                   "4w": (last[1] / m - 1) * 100 if m else None, "first": list(s["first"])}
+    out["index"] = out["refs"].get(IDX, {})
+    try:   # 매일 움직여야 할 원천이 멈췄는지(radar/gpu_movers.py, 2026-11-21) — 멈춘 지수를 '평평한 시장'으로 읽지 않게
+        mv = json.loads(MOVERS.read_text(encoding="utf-8"))
+        out["stale"] = (mv.get("stale") or []) if str(mv.get("as_of", ""))[:10] >= (_d(until) - timedelta(days=1)).isoformat() else []
+    except Exception:
+        out["stale"] = []
     return out
 
 
@@ -538,9 +576,13 @@ def caption(summ, read=""):
         (p, a, b), pcts = max(ev.items(), key=lambda kv: kv[0][2])
         rng = f"{min(pcts):+.0f}%" if round(min(pcts)) == round(max(pcts)) else f"{min(pcts):+.0f}~{max(pcts):.0f}%"
         L.append(f"최근 변경: {p} {len(pcts)}종 {rng}({_md(a)}~{_md(b)})")
-    ix = summ.get("index") or {}
-    if ix:   # 시장 지수 한 줄(2026-11-21) — 정가가 평평해도 시장 움직임이 보이게
-        L.append("시장 지수 " + " · ".join(f"{g} {x['usd']:.2f}" + (f"({x['1w']:+.1f}%)" if x.get("1w") is not None else "") for g, x in ix.items()) + " · 1주")
+    refs = summ.get("refs") or ({IDX: summ["index"]} if summ.get("index") else {})
+    for name, head in ((IDX, "시장 지수"), (FLP, "제공사 중앙값")):   # 참고값 한 줄씩(2026-11-21) — 정가가 평평해도 시장 움직임이 보이게
+        ix = refs.get(name) or {}
+        if ix:
+            L.append(f"{head} " + " · ".join(f"{g} {x['usd']:.2f}" + (f"({x['1w']:+.1f}%)" if x.get("1w") is not None else "") for g, x in ix.items()) + " · 1주")
+    for s in summ.get("stale") or []:
+        L.append(f"주의: {s} — 원천 갱신 멈춤 의심")
     flat = [SHORT[p] for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]
     if flat:
         L.append(f"{'·'.join(flat)} 연초 이후 정가 변동 없음")
@@ -581,7 +623,9 @@ def send(read=""):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if argv[:1] == ["--backfill-index"]:
+    if argv[:1] == ["--backfill-flopper"]:
+        print(f"[GPU Daily] Flopper 중앙값 {backfill_flopper()}행")
+    elif argv[:1] == ["--backfill-index"]:
         print(f"[GPU Daily] 지수 아카이브 {backfill_index(argv[1] if len(argv) > 1 else '2026-01-01')}행")
     elif argv[:1] == ["--backfill"]:
         print(f"[GPU Daily] 아카이브 {backfill(argv[1] if len(argv) > 1 else '2025-12-01')}행")

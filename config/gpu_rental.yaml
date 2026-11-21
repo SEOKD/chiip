@@ -1,0 +1,38 @@
+# GPU 렌털료 변동 구조 — radar/gpu_movers.py가 읽는다
+# 2026-11-21 마스터 지시 "GPU 렌털비는 일일 데이터 변동이 있는 파이프라인을 찾고 이 값이 매일 변할 경우 업데이트할 수 있는 구조를 만들어라"
+# 계열 = (제공사, GPU, 구성, 조건). 매 수집 회차(run_hourly 360분)가 최근 classify_days일의 '하루 마지막 값'으로 계열마다 변동 성격을 다시 잰다.
+#   daily      관측일 사이 값이 바뀐 비율 ≥ daily_ratio — 시장 가격(지수·마켓). 작은 움직임은 그림·캡션으로만, 알림은 문턱을 넘을 때
+#   occasional 기간 안에 한 번 이상 바뀜 — 정가 개편 진행 중일 수 있다. 바뀔 때마다 알림
+#   sticky     기간 내내 같은 값 — 정가. 바뀌면 그 자체가 소식이라 알림
+classify_days: 14
+min_obs_days: 4          # 관측일이 이보다 적으면 'new'(판정 보류)
+daily_ratio: 0.3
+stale_days: 5            # expect: daily 원천의 GPU 계열이 전부 이 일수 넘게 같은 값이면 '정체'(원천 갱신 멈춤 의심) — 수집 문제 목록에 올린다
+alert:
+  daily_pct: 5.0         # daily 계열: 전 관측일 대비 ±5% 이상
+  week_pct: 10.0         # daily 계열: 7일 전 대비 ±10% 이상(완만한 누적 변화)
+# 원천별 기대 성격·쓰임. role: 참고선 = 일일 그림(radar/gpu_daily.py) 각 칸에 회색 점선으로 그린다(정가와 정의가 달라 직접 비교하지 않는다)
+# 새 일일 원천을 붙일 때: radar/gpu_rental.py에 수집 함수를 넣고(약관·robots 확인 후) 여기 한 줄 추가 → 분류·알림·그림·주간 점검이 따라온다
+# expect: daily = 매일 움직여야 함(멈추면 정체 경고) · probe = 매일 바뀔 수 있다고 하나 미검증(판별기가 재기만, 경고 없음) · sticky = 정가
+# term이 있으면 아카이브 CSV(gpu_rental_wayback.csv)의 그 원천 과거값도 판별에 넣는다
+sources:
+  - {provider: "Silicon Data 지수", expect: daily, role: 참고선, term: "시장 지수(인용)", note: "거래 가격 기반 시장 지수, 공개 페이지 헤드라인 인용(데이터셋·API 유료 미사용)"}
+  - {provider: "Flopper 시장 중앙값", expect: daily, role: 참고선, term: "시장 중앙값(온디맨드)", note: "flopper.io/pricing/<gpu> 페이지에 든 제공사 15~31곳 일별 최저 온디맨드가의 중앙값. robots Allow(Crawl-delay 1, /api/ 금지 — HTML만), 약관 페이지 없음(2026-11-21). 하루 1회·페이지 사이 1.5초"}
+  - {provider: "Google Cloud 스팟", expect: probe, note: "cloud.google.com/spot-vms/pricing(us-central1) — '하루 한 번까지 바뀔 수 있다'는 문구뿐, 실제 변동 미검증. robots 허용·Google 약관은 robots 준수 자동 접근 허용. 하루 1회"}
+  - {provider: Nebius, expect: sticky}
+  - {provider: CoreWeave, expect: sticky}
+  - {provider: Lambda, expect: sticky}
+  - {provider: AWS, expect: sticky}
+# 마스터 판단 대기 — 품질은 가장 좋으나 약관이 걸린다(2026-11-21)
+pending_master:
+  - {name: Ornn Compute Price Index(OCPI), endpoint: "data.ornn.com/api/public-index/daily-index/all · /gpu/<GPU>/index-history", why: "실거래 정산 일일 지수(H100·H200·B200·B300·A100, 3개월 이력), robots는 이 경로 Allow, 자체 문서는 '무료·키 없음'이라 안내. 그러나 약관(data.ornn.com/terms 2026-05-29)은 서면 허락 없는 체계적 수집·API 응답 수집과 리포트 재게시를 금지 — 마스터 결정 또는 Ornn 서면 허락 필요"}
+# 검토 후 뺀 일일 후보(2026-11-21) — 다시 보지 않게 적어 둔다
+rejected:
+  - {name: RunPod GraphQL, why: "약관(2026-03-24) — 봇·스크립트 등 자동 접근 금지. 값도 정가(재고만 바뀜)"}
+  - {name: Shadeform 인스턴스 API, why: "약관(2026-08-06) — 서면 허락 없는 체계적 수집·자동화 금지. 값은 각 클라우드 정가"}
+  - {name: gpus.io, why: "약관(2026-06-05) — API 외 스크래핑 금지, API는 유료 구독"}
+  - {name: GetDeploying 데이터셋 CSV, why: "CC BY 4.0이나 약관 §5·§8이 자동 접근을 따로 제한, 그리고 주 단위(일일 아님)"}
+  - {name: SF Compute·TensorDock·Prime Intellect·Hyperbolic, why: "로그인·키 필요 또는 API 폐기"}
+  - {name: Vast.ai 마켓, why: "약관(vast.ai/terms 2026-09-01판) 금지 행위 18·7·10항 — 자동 조회·가격 데이터베이스 구축 금지, API 키 필요"}
+  - {name: AWS EC2 스팟 공개 JSON(website.spot.ec2.aws.a2z.com/spot.js), why: "p5.48xlarge 값이 2026-09-30 아카이브와 11-21이 같다 — 공개본 갱신 멈춤"}
+  - {name: Azure Retail Prices API 스팟, why: "effectiveStartDate 2026-01·03 — 월 단위 갱신, 일일 변동 아님"}

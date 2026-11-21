@@ -10,6 +10,8 @@ GPU 제품별 렌털료를 추적해줘. 실리콘 데이터, 트렌드포스 �
 단위: 모두 '달러/GPU·시간'으로 맞춘다. 맞출 수 없으면(NVL72 랙 '문의', 노드 단위만 있고 GPU 수 불명) 가격을 비우고 note에 '비교 불가'.
 저장: knowledge/models/gpu_rental.csv(누적 스냅숏) · knowledge/models/gpu_rental_latest.json · outputs/gpu_rental/<날짜>.md(제품별 비교표)
 알림: 같은 (제공사·GPU·구성·조건) 가격이 바뀌면 inbox src-gpu-rental, TrendForce 새 가격 보도자료는 src-trendforce-pr → Pulse '보도자료'.
+  2026-11-21부터 계열마다 변동 성격을 잰다(radar/gpu_movers.py, config/gpu_rental.yaml) — 매일 움직이는 계열(시장 지수)은
+  전일 대비 ±5%·1주 ±10% 문턱을 넘을 때 하루 한 번만, 정가는 바뀌면 알린다. 매일 움직여야 할 원천이 멈추면 '정체'를 문제 목록에 올린다.
 사용: py radar/gpu_rental.py          # 수집·저장·변화 알림(run_hourly 360분)
       py radar/gpu_rental.py --table  # 최신 비교표 출력
 """
@@ -205,35 +207,101 @@ def aws(raw=None):
     return rows
 
 
+# ---------- 매일 움직이는 원천(2026-11-21 마스터 지시 "GPU 렌털비는 일일 데이터 변동이 있는 파이프라인을 찾고 …") ----------
+# Flopper.io — GPU별 가격 페이지에 제공사 30여 곳의 '일별 최저 온디맨드 가격' 30일치가 들어 있다. robots.txt Allow /(Crawl-delay 1, /api/·/go/ 금지 —
+#   HTML만 읽는다), 약관 페이지 없음(2026-11-21 확인: /terms·/terms-of-service·/legal 404). 제공사 정가를 모은 값이라 거래가는 아니다.
+#   그날 제공사별 값의 중앙값 = 'Flopper 시장 중앙값'(페이지의 Market median과 같은 정의). 페이지마다 1.5초 쉰다.
+FLOPPER = {"H100": "nvidia-h100", "H200": "nvidia-h200", "B200": "nvidia-b200", "B300": "nvidia-b300", "A100": "nvidia-a100", "MI300X": "amd-instinct-mi300x"}
+FL_SERIES = re.compile(r'\{key:"[^"]*",label:"([^"]*)",pricingType:"([^"]*)",points:\[(.*?)\]\}')
+FL_POINT = re.compile(r'day:"(\d{4}-\d{2}-\d{2})",usd:([0-9.]+)')
+
+
+def flopper_days(t, ptype="on-demand"):
+    """페이지 본문 → {날짜: [제공사별 그날 최저 온디맨드 $/GPU·시]} (같은 제공사 계열이 두 번 나오면 한 번만)"""
+    seen, days = set(), {}
+    for label, pt, pts in FL_SERIES.findall(t):
+        if pt != ptype or label in seen:
+            continue
+        seen.add(label)
+        for d, u in FL_POINT.findall(pts):
+            days.setdefault(d, []).append(float(u))
+    return days
+
+
+def _median(v):
+    v = sorted(v)
+    n = len(v)
+    return (v[n // 2] if n % 2 else (v[n // 2 - 1] + v[n // 2]) / 2) if n else None
+
+
+def flopper(texts=None, history=False, pause=1.5):
+    """→ 오늘(페이지의 가장 최근 날) 행. history=True면 페이지에 든 30일 전부(radar/gpu_daily.py --backfill-flopper)"""
+    import time
+    rows = []
+    for i, (g, slug) in enumerate(FLOPPER.items()):
+        url = f"https://flopper.io/pricing/{slug}"
+        if texts is None:
+            if i:
+                time.sleep(pause)
+            t = _get(url)
+        else:
+            t = texts.get(url) or ""
+        days = flopper_days(t)
+        for d in (sorted(days) if history else sorted(days)[-1:]):
+            v = days[d]
+            if len(v) < 3:
+                continue
+            rows.append({"provider": "Flopper 시장 중앙값", "gpu": g, "config": f"{g} 온디맨드 제공사 중앙값", "term": "시장 중앙값(온디맨드)",
+                         "usd_per_gpu_hr": round(_median(v), 3), "date_obs": d,
+                         "note": f"제공사 {len(v)}곳 그날 최저 온디맨드가의 중앙값(최저 ${min(v):.2f}) — 정가 모음, 거래가 아님", "source_url": url})
+    return rows
+
+
+# Google Cloud 스팟 VM 공개 가격 페이지 — "Spot prices … can change up to once every day"(페이지 문구). robots 허용, Google 약관은 robots를 지키는
+#   자동 접근을 막지 않는다(2026-11-21 확인). 서버가 그려 주는 기본 지역(us-central1)만. 머신 가격(CPU·메모리 포함) ÷ GPU 수. 매일 움직이는지는 판별기가 잰다
+GCP_SPOT = "https://cloud.google.com/spot-vms/pricing"
+GCP_TYPES = {"a3-highgpu-8g": "H100", "a3-ultragpu-8g": "H200", "a4-highgpu-8g": "B200", "a2-ultragpu-8g": "A100"}
+
+
+def gcp_spot(text=None):
+    import gzip
+    if text is None:
+        b = common.http_get(GCP_SPOT, headers={"Accept-Encoding": "gzip"}, timeout=90)
+        text = (gzip.decompress(b) if b[:2] == b"\x1f\x8b" else b).decode("utf-8", "ignore")
+    rows = []
+    for mt, g in GCP_TYPES.items():
+        i = text.find(mt)
+        if i < 0:
+            continue
+        seg = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", text[i:i + 1500])))
+        m = re.match(re.escape(mt) + r" .*?GPUs?: (\d+) .*?\$([0-9.,]+) / 1 hour", seg)
+        if not m:
+            continue
+        n, p = int(m.group(1)), float(m.group(2).replace(",", ""))
+        rows.append({"provider": "Google Cloud 스팟", "gpu": g, "config": mt, "term": "스팟(us-central1)", "usd_per_gpu_hr": round(p / n, 3),
+                     "node_usd_hr": round(p, 4), "gpus_per_node": n, "note": "머신 가격(CPU·메모리 포함)÷GPU 수, us-central1", "source_url": GCP_SPOT})
+    return rows
+
+
 def run():
     st = common.load_state("gpu_rental", {})
     now = common.iso(common.now_kst())
     today = now[:10]
     rows, errs = [], []
-    for name, fn in (("Nebius", nebius), ("CoreWeave", coreweave), ("Lambda", lambda_), ("Silicon Data", silicon_data), ("AWS", aws)):
+    daily = (("Flopper", flopper), ("Google Cloud 스팟", gcp_spot))   # 매일 움직이는 원천은 하루 한 번만 읽는다(원천이 하루 단위로 갱신)
+    once = tuple(x for x in daily if (st.get("daily_read") or {}).get(x[0]) != today)
+    for name, fn in (("Nebius", nebius), ("CoreWeave", coreweave), ("Lambda", lambda_), ("Silicon Data", silicon_data), ("AWS", aws)) + once:
         try:
             got = fn()
             rows += got
+            if got and (name, fn) in daily:   # 읽기에 성공한 날만 표시 — 실패하면 다음 회차가 다시 읽는다
+                st.setdefault("daily_read", {})[name] = today
             if not got:
                 errs.append(f"{name} 0행(페이지 구조 변경?)")
         except Exception as exc:
             errs.append(f"{name} {type(exc).__name__}")
     for r in rows:
         r.update({"date": today, "retrieved_at": now})
-    prev = {tuple(k.split("||")): v for k, v in (st.get("last") or {}).items()}
-    alerts = []
-    for r in rows:
-        k, p = key(r), r.get("usd_per_gpu_hr")
-        old = prev.get(k)
-        if prev and old is not None and p is not None and abs(p - old) >= 0.005:
-            ch = (p / old - 1) * 100 if old else 0
-            alerts.append(common.make_item("src-gpu-rental", f"{'-'.join(k)}-{today}-{p}", r["source_url"],
-                                           f"[GPU 렌털료] {r['provider']} {r['config']} {r['term']} ${old:.2f} → ${p:.2f}/GPU·시({ch:+.1f}%)",
-                                           now, "보도자료", "ko", f"{r['gpu']} · {r.get('note') or ''}", extra={"source_class": "보도자료", "gpu": r["gpu"]}))
-    try:
-        alerts += trendforce(st)
-    except Exception as exc:
-        errs.append(f"TrendForce {type(exc).__name__}")
     if rows:
         new = not CSV.exists()
         with CSV.open("a", encoding="utf-8", newline="") as f:
@@ -241,6 +309,45 @@ def run():
             if new:
                 w.writeheader()
             w.writerows(rows)
+    # 계열별 변동 성격(2026-11-21 마스터 지시 "일일 데이터 변동이 있는 파이프라인을 찾고 이 값이 매일 변할 경우 업데이트할 수 있는 구조") —
+    # 매일 움직이는 계열(시장 지수)은 문턱을 넘을 때 하루 한 번만, 정가는 바뀌면 알린다. 매일 움직여야 할 원천이 멈추면 문제 목록에 올린다
+    mv = {}
+    try:
+        import gpu_movers
+        mo = gpu_movers.build()
+        mv = gpu_movers.by_key(mo["series"])
+        errs += mo["stale"]
+    except Exception as exc:
+        errs.append(f"변동 판별 {type(exc).__name__}")
+        gpu_movers = None
+    prev = {tuple(k.split("||")): v for k, v in (st.get("last") or {}).items()}
+    alerted = {k: d for k, d in (st.get("mv_alerted") or {}).items() if d == today}
+    alerts = []
+    for r in rows:
+        k, p = key(r), r.get("usd_per_gpu_hr")
+        old = prev.get(k)
+        if not (prev and old is not None and p is not None and abs(p - old) >= 0.005):
+            continue
+        info = mv.get((r["provider"], r["gpu"], r["config"], r["term"]))
+        daily = bool(info and info["cls"] == "daily")
+        if gpu_movers and not gpu_movers.gate(info, old, p):
+            continue
+        if daily and "||".join(k) in alerted:   # 일일 계열은 하루 한 번
+            continue
+        ch = (p / old - 1) * 100 if old else 0
+        title = (f"[GPU 렌털료] {r['provider']} {r['config']} ${p:.2f}/GPU·시 — 전일 대비 {info['dd']:+.1f}%" + (f" · 1주 {info['w1']:+.1f}%" if info.get("w1") is not None else "")
+                 if daily else f"[GPU 렌털료] {r['provider']} {r['config']} {r['term']} ${old:.2f} → ${p:.2f}/GPU·시({ch:+.1f}%)")
+        alerts.append(common.make_item("src-gpu-rental", f"{'-'.join(k)}-{today}-{p}", r["source_url"], title,
+                                       now, "보도자료", "ko", f"{r['gpu']} · {'매일 움직이는 시장 지수 — 문턱 넘은 변화' if daily else (r.get('note') or '')}",
+                                       extra={"source_class": "보도자료", "gpu": r["gpu"], "series_class": info["cls"] if info else "new"}))
+        if daily:
+            alerted["||".join(k)] = today
+    st["mv_alerted"] = alerted
+    try:
+        alerts += trendforce(st)
+    except Exception as exc:
+        errs.append(f"TrendForce {type(exc).__name__}")
+    if rows:
         LATEST.write_text(json.dumps({"as_of": now, "rows": rows, "errors": errs}, ensure_ascii=False, indent=1), encoding="utf-8")
         OUTD.mkdir(parents=True, exist_ok=True)
         (OUTD / f"{today.replace('-', '')}.md").write_text(f"# GPU 렌털료 비교 {today}\n\n단위 달러/GPU·시간. 공개 가격표 기준(세금 별도). Silicon Data는 시장 지수 인용.\n\n" + table(rows) + "\n", encoding="utf-8")

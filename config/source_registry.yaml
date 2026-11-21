@@ -1360,7 +1360,7 @@
   reliability_default: 1차(회사 채용 페이지)
   enabled: false
 - id: src-gpu-rental
-  name: GPU 렌털료 — Nebius·CoreWeave·Lambda 공개 가격표, Silicon Data 공개 지수 헤드라인, TrendForce 가격 보도자료(src-trendforce-pr)
+  name: GPU 렌털료 — Nebius·CoreWeave·Lambda·AWS 공개 가격표, Silicon Data 공개 지수 헤드라인, Flopper 제공사 중앙값, Google Cloud 스팟, TrendForce 가격 보도자료(src-trendforce-pr)
   category: I-가격
   module: gpu_rental
   entry: run
@@ -1372,7 +1372,7 @@
   run_on: local
   language: en
   doc_type: 보도자료
-  terms_note: "2026-11-10 마스터 지시. robots 허용 확인(nebius·coreweave·lambda·silicondata·trendforce). 공개 가격만, Silicon Data는 헤드라인 값 인용(데이터셋·API 유료 미사용), TrendForce 유료 본문 미수집. run_hourly가 돌린다"
+  terms_note: "2026-11-10 마스터 지시. robots 허용 확인(nebius·coreweave·lambda·silicondata·trendforce). 공개 가격만, Silicon Data는 헤드라인 값 인용(데이터셋·API 유료 미사용), TrendForce 유료 본문 미수집. 2026-11-21 Flopper(robots Allow·Crawl-delay 1, /api/ 미사용, 약관 페이지 없음)·Google Cloud 스팟 페이지(robots 허용) 하루 1회 추가 — 원천별 기대 성격·탈락 사유 config/gpu_rental.yaml. run_hourly가 돌린다"
   reliability_default: 1차(회사 가격표) / 인용(지수)
   enabled: false
 - id: src-yt-ir
