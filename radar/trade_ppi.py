@@ -265,12 +265,14 @@ def trade_estat(app, hs, tables, metas):
         codes = [c for c in meta["codes"] if c.startswith(hs)]
         if not codes:
             continue
-        doc = json.loads(get(f"https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId={app}&statsDataId={table}&lang=J&cdCat01={','.join(codes[:100])}&cdCat02={','.join(meta['months'])}&metaGetFlg=N&cntGetFlg=N", timeout=90))
+        doc = json.loads(get(f"https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData?appId={app}&statsDataId={table}&lang=J&cdCat01={','.join(codes[:100])}&cdCat02={','.join(meta['months'])}&cdTime={y}000000&metaGetFlg=N&cntGetFlg=N", timeout=90))
         rows = doc["GET_STATS_DATA"]["STATISTICAL_DATA"].get("DATA_INF", {}).get("VALUE") or []
         for r in rows if isinstance(rows, list) else [rows]:
             try:
                 v = float(r["$"])
             except ValueError:
+                continue
+            if str(r.get("@time") or "")[:4] not in ("", str(y)):   # 지난해 표는 여러 해(예: 2021~2025년)를 한 표에 담는다 — 그 해 줄만(2026-11-22: 다섯 해를 모두 더해 전년 값이 약 5배였다)
                 continue
             k = f"{y}-{meta['months'][r['@cat02']]:02d}"
             total[k] = total.get(k, 0.0) + v

@@ -163,3 +163,21 @@ class TestReport(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestEstatMultiYearTable(unittest.TestCase):
+    """지난해 표가 여러 해(2021~2025년)를 담아도 그 해 줄만 더한다(2026-11-22 — 다섯 해가 더해져 전년 값이 약 5배였다)"""
+
+    def test_only_table_year_rows(self):
+        import json as _json
+        from unittest import mock
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "radar"))
+        import trade_ppi as TP
+        meta = {"codes": ["854232021"], "months": {"410": 9}, "area": {"50103": "大韓民国"}}
+        rows = [{"@cat01": "854232021", "@cat02": "410", "@area": "50103", "@time": f"{y}000000", "$": "100"} for y in (2025, 2024, 2023)]
+        doc = _json.dumps({"GET_STATS_DATA": {"STATISTICAL_DATA": {"DATA_INF": {"VALUE": rows}}}})
+        with mock.patch.object(TP, "get", return_value=doc) as g, mock.patch.object(TP, "estat_meta", return_value=meta):
+            total, parts = TP.trade_estat("app", "854232", {2025: "t"}, {"t": meta})
+        self.assertEqual(total, {"2025-09": 100.0})
+        self.assertEqual(parts["大韓民国"], {"2025-09": 100.0})
+        self.assertIn("cdTime=2025000000", g.call_args[0][0])
