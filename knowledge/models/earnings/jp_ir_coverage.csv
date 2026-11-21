@@ -1,67 +1,97 @@
 id,doc_pages,latest_period,presentation,tanshin,transcript,qa,qa_format,external,state
-co-tel,2,FY2027Q2,True,True,True,False,요지,YouTube,전문·Q&A 있음
+co-tel,2,FY2027Q2,True,True,True,True,요지,YouTube,전문·Q&A 있음
 co-advantest,2,FY2026Q4,False,False,False,False,요지,YouTube,전문·Q&A 없음
 co-disco,1,FY2026Q4,True,True,False,False,없음,YouTube,전문·Q&A 없음
 co-lasertec,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-screen,2,FY2026Q1,False,False,False,True,요지,없음,전문·Q&A 있음
-jp-kokusai,1,FY2026Q1,False,False,False,True,요지,없음,전문·Q&A 있음
-jp-tokyoseimitsu,3,FY2026Q1,True,True,False,True,요지,YouTube,전문·Q&A 있음
-jp-towa,1,FY2026Q1,True,True,False,False,요지,YouTube,전문·Q&A 없음
-jp-ebara,3,FY2026Q2,False,False,True,True,요지,YouTube,전문·Q&A 있음
-jp-shibaura,0,,False,False,False,False,요지,없음,자료실 미발견
-jp-ushio,2,FY2026Q1,True,True,False,False,전문,YouTube,전문·Q&A 없음
+jp-screen,2,FY2026Q2,False,False,False,True,요지,없음,전문·Q&A 있음
+jp-kokusai,1,FY2026Q2,True,False,False,True,요지,없음,전문·Q&A 있음
+jp-tokyoseimitsu,3,FY2026Q2,True,True,False,True,요지,YouTube,전문·Q&A 있음
+jp-towa,1,FY2026Q4,False,False,False,False,요지,YouTube,전문·Q&A 없음
+jp-seikohgiken,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-seikogroup,1,FY2026Q2,True,False,False,False,없음,YouTube,전문·Q&A 없음
+jp-ebara,3,FY2026Q3,True,False,True,True,요지,YouTube,전문·Q&A 있음
+jp-shibaura,4,,False,False,False,False,요지,없음,기간 판독 실패
+jp-ushio,2,FY2026Q2,True,True,False,False,전문,YouTube,전문·Q&A 없음
 jp-hamamatsu,0,,False,False,False,False,없음,없음,자료실 미발견
 co-ibiden,1,FY2026Q2,True,False,False,True,요지,없음,전문·Q&A 있음
 co-shinetsu,3,FY2026Q2,False,True,False,True,요지,없음,전문·Q&A 있음
-jp-sumco,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-resonac,3,FY2026Q2,True,True,False,False,요지,없음,전문·Q&A 없음
+jp-sumco,4,,False,False,False,False,없음,없음,기간 판독 실패
+jp-resonac,3,FY2026Q3,True,True,False,False,요지,없음,전문·Q&A 없음
 co-ajinomoto,1,FY2026Q4,True,False,False,False,요지,없음,전문·Q&A 없음
-co-nittobo,0,,False,False,False,False,없음(영상만),없음,자료실 미발견
-jp-tok,2,FY2026Q2,False,True,False,False,없음(영상만),없음,전문·Q&A 없음
-jp-hoya,2,FY2026Q2,True,True,False,False,없음,없음,전문·Q&A 없음
-jp-agc,0,,False,False,False,False,전문(발표부),YouTube,자료실 미발견
-jp-neg,0,,False,False,False,False,요지,없음,자료실 미발견
-jp-dnp,3,FY2026Q1,True,True,False,False,요지,YouTube,전문·Q&A 없음
-jp-toppan,0,,False,False,False,False,없음,YouTube,자료실 미발견
+co-nittobo,4,,False,False,False,False,없음(영상만),없음,기간 판독 실패
+jp-tok,2,FY2026Q3,False,True,False,False,없음(영상만),로그미,전문·Q&A 없음
+jp-hoya,3,FY2026Q2,True,True,True,False,전문(발표부),없음,전문·Q&A 있음
+jp-agc,4,,False,False,False,False,전문(발표부),YouTube,기간 판독 실패
+jp-neg,4,,False,False,False,False,요지,없음,기간 판독 실패
+jp-dnp,3,FY2026Q2,True,True,True,True,요지,YouTube,전문·Q&A 있음
+jp-toppan,4,,False,False,False,False,없음,YouTube,기간 판독 실패
 jp-mitsuikinzoku,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-sumibe,1,FY2026Q4,True,False,False,False,요지,없음,전문·Q&A 없음
-jp-jxmetals,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-meiko,0,,False,False,False,False,없음,없음,자료실 미발견
-co-fujikura,0,,False,False,False,False,없음,YouTube,자료실 미발견
-jp-furukawa,2,FY2026Q1,True,True,False,False,요지,YouTube,전문·Q&A 없음
+jp-sumibe,3,FY2026Q4,True,False,False,False,요지,없음,전문·Q&A 없음
+jp-jxmetals,4,,False,False,False,False,없음,없음,기간 판독 실패
+jp-meiko,4,,False,False,False,False,없음,없음,기간 판독 실패
+co-fujikura,4,,False,False,False,False,없음,YouTube,기간 판독 실패
+jp-furukawa,3,FY2026Q2,True,True,False,False,요지,YouTube,전문·Q&A 없음
 jp-sumiden,0,,False,False,False,False,없음(영상만),YouTube,자료실 미발견
-jp-murata,2,FY2026Q2,True,True,False,False,없음(영상만),YouTube,전문·Q&A 없음
+jp-murata,2,FY2026Q2,True,True,True,False,없음(영상만),YouTube,전문·Q&A 있음
 jp-tdk,1,FY2026Q2,True,True,False,False,요지,YouTube,전문·Q&A 없음
-jp-taiyoyuden,0,,False,False,False,False,요지,없음,자료실 미발견
-jp-kyocera,3,FY2027Q1,True,True,True,False,전문,없음,전문·Q&A 있음
-jp-kioxia,1,FY2026Q2,False,True,False,False,요지,없음,전문·Q&A 없음
+jp-taiyoyuden,4,,False,False,False,False,요지,없음,기간 판독 실패
+jp-kyocera,3,FY2027Q2,True,True,True,False,전문,없음,전문·Q&A 있음
+jp-kioxia,1,,False,False,False,False,요지,없음,기간 판독 실패
 jp-renesas,1,,False,False,False,False,요지,YouTube,기간 판독 실패
-jp-socionext,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-rohm,3,FY2026Q1,False,True,False,False,없음,YouTube,전문·Q&A 없음
-co-hitachi,0,,False,False,False,False,없음,없음,자료실 미발견
-co-melco,1,,False,False,False,False,요지,YouTube,기간 판독 실패
-co-mhi,1,FY2026Q1,True,True,False,True,요지,YouTube,전문·Q&A 있음
+jp-socionext,1,FY2025Q4,True,True,False,False,요지,YouTube,전문·Q&A 없음
+jp-rohm,3,FY2026Q2,False,True,False,False,요지,YouTube,전문·Q&A 없음
+co-hitachi,2,,False,False,False,False,없음,없음,기간 판독 실패
+co-melco,1,,False,False,False,False,요지,없음,기간 판독 실패
+co-mhi,1,FY2026Q2,True,True,False,True,요지,YouTube,전문·Q&A 있음
 jp-fujielectric,3,FY2026Q2,False,True,False,False,요지,YouTube,전문·Q&A 없음
-jp-sakura,3,FY2026Q2,True,True,False,False,없음(영상만),로그미,전문·Q&A 없음
-jp-sbg,3,FY2026Q4,True,True,True,False,전문,YouTube,전문·Q&A 있음
-jp-uniontool,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-micronics,0,,False,False,False,False,없음,없음,자료실 미발견
-jp-khi,1,FY2026Q1,True,False,True,False,전문,없음,전문·Q&A 있음
+jp-sakura,3,FY2026Q2,True,True,True,False,없음(영상만),로그미,전문·Q&A 있음
+jp-sbg,1,FY2026Q4,True,True,True,False,전문,YouTube,전문·Q&A 있음
+jp-uniontool,4,,False,False,False,False,없음,없음,기간 판독 실패
+jp-micronics,4,,False,False,False,False,없음,없음,기간 판독 실패
+jp-khi,1,FY2026Q2,True,False,True,False,전문,없음,전문·Q&A 있음
 jp-ihi,3,FY2026Q4,True,False,False,False,없음(영상만),YouTube,전문·Q&A 없음
 jp-subaru,1,FY2025Q2,True,False,False,False,없음,YouTube,전문·Q&A 없음
-jp-jsw,2,FY2026Q1,False,True,False,False,요지,YouTube,전문·Q&A 없음
-jp-hosoya,0,,False,False,False,False,전문(발표부),없음,자료실 미발견
-jp-tokyokeiki,3,FY2025Q4,True,True,True,False,요지,YouTube;로그미,전문·Q&A 있음
-jp-nof,1,FY2025Q4,False,False,True,False,요지,없음,전문·Q&A 있음
-jp-shimadzu,1,FY2026Q1,True,True,False,True,요지,YouTube;로그미,전문·Q&A 있음
-jp-oki,0,,False,False,False,False,요지,YouTube,자료실 미발견
-jp-takaratomy,0,,False,False,False,False,요지,YouTube,자료실 미발견
-jp-sanrio,0,,False,False,False,False,요지,YouTube,자료실 미발견
-jp-bandainamco,3,,False,False,False,False,요지,없음,기간 판독 실패
-jp-capcom,3,FY2026Q2,False,True,True,False,없음(영상만),YouTube,전문·Q&A 있음
+jp-jsw,2,FY2026Q2,True,True,False,False,요지,YouTube,전문·Q&A 없음
+jp-hosoya,4,,False,False,False,False,전문(발표부),없음,기간 판독 실패
+jp-tokyokeiki,3,,False,False,False,False,없음,없음,기간 판독 실패
+jp-nof,1,FY2026Q2,False,False,True,False,전문(발표부),없음,전문·Q&A 있음
+jp-shimadzu,1,FY2026Q2,True,True,False,True,요지,YouTube;로그미,전문·Q&A 있음
+jp-oki,1,,False,False,False,False,요지,YouTube,기간 판독 실패
+jp-takaratomy,4,,False,False,False,False,요지,YouTube,기간 판독 실패
+jp-sanrio,4,,False,False,False,False,요지,YouTube,기간 판독 실패
+jp-bandainamco,1,,False,False,False,False,요지,없음,기간 판독 실패
+jp-capcom,3,,False,False,False,False,없음,없음,기간 판독 실패
 jp-nintendo,0,,False,False,False,False,없음,없음,자료실 미발견
 jp-konami,0,,False,False,False,False,없음,없음,자료실 미발견
 jp-squareenix,0,,False,False,False,False,없음,없음,자료실 미발견
 jp-toei-anim,3,FY2026Q2,False,True,False,False,없음,없음,전문·Q&A 없음
-jp-kadokawa,1,FY2026Q1,True,True,False,False,요지,없음,전문·Q&A 없음
+jp-kadokawa,1,FY2026Q2,True,True,False,False,요지,없음,전문·Q&A 없음
 jp-asics,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-6777,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-186a,3,FY2026Q1,True,True,True,False,요지,YouTube;로그미,전문·Q&A 있음
+jp-290a,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-gmopg,3,FY2026Q4,True,True,True,False,전문(발표부),없음,전문·Q&A 있음
+jp-4182,2,FY2026Q2,True,True,False,False,요지,YouTube,전문·Q&A 없음
+jp-4568,3,FY2026Q2,True,True,False,False,없음(영상만),없음,전문·Q&A 없음
+jp-6367,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-6376,4,,False,False,False,False,요지,없음,기간 판독 실패
+jp-6407,3,FY2026Q2,False,True,False,False,요지,YouTube,전문·Q&A 없음
+jp-6517,1,FY2026Q2,True,True,False,False,없음,YouTube,전문·Q&A 없음
+jp-6728,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-6752,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-6814,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-7003,3,FY2026Q2,True,True,False,False,없음,YouTube,전문·Q&A 없음
+jp-7453,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-7532,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-7552,4,,False,False,False,False,없음,없음,기간 판독 실패
+jp-8001,3,,False,False,False,False,전문,YouTube,기간 판독 실패
+jp-8002,3,FY2026Q4,False,False,False,True,요지,YouTube,전문·Q&A 있음
+jp-8031,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-8053,0,,False,False,False,False,없음,YouTube,자료실 미발견
+jp-8058,3,FY2026Q2,True,True,False,False,요지,없음,전문·Q&A 없음
+jp-8306,1,FY2026Q4,False,False,False,False,요지,없음,전문·Q&A 없음
+jp-8697,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-9101,2,FY2026Q2,False,True,False,False,없음(영상만),없음,전문·Q&A 없음
+jp-9104,1,FY2025Q4,False,True,False,False,없음,YouTube,전문·Q&A 없음
+jp-9107,0,,False,False,False,False,없음,없음,자료실 미발견
+jp-9983,0,,False,False,False,False,요지,없음,자료실 미발견
