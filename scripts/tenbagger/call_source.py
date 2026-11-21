@@ -2,6 +2,9 @@
 "Analysis에서 종목 어닝콜을 참조할 때 Fiscal.ai에 없다면 TradingView 또는 텔레그램 채널 https://t.me/Fundeasyearnings을 참조할 수 있는 구조")
 
 순서와 이유
+  ⓪ 회사 공식 IR — 일본·대만·홍콩·중국 수집기(jp_ir_qa·tw_hk_ir·cn_ir)가 받은편지함에 넣은 질의응답·전문(2026-11-22 마스터 지시 "일본 종목 어닝콜 전사 확인은
+     공식 IR 채널을 1순위로", 같은 날 "대만, 홍콩, 중국 IR 파이프라인도 점검하고 보완하라"). 회사가 낸 원문이라 ①보다 먼저 본다. 원문은 git 제외 폴더(local_text).
+     프로필에 access(봇 차단·robots 금지)가 있으면 우회하지 않고 ①로 넘어간다.
   ① Fiscal.ai `company_ir_events` → `company_ir_events_transcript` — 회사 전문(1순위, ADR-014).
   ② TradingView `mcp-tv-get-documents`(Quartr 제공, 분류 call_transcript) → `mcp-tv-get-document-view`(transcript·summary) — 전문 또는 Q&A 요약.
      radar/jp_tv_docs.py가 일본 종목에 쓰던 경로를 전 종목으로 넓힌다. 호출 상한: 한 메시지에 호출 하나(2026-11-02 사고).
@@ -147,13 +150,67 @@ def tv_blocked(now=None):
     return bu if datetime.fromisoformat(bu) > now else None
 
 
+IR_QA = re.compile(r"^(src-jp-ir-qa|src-tw-hk-ir-qa|src-cn-ir-qa)_[0-9a-f]+\.json$")
+
+
+def company_find(eid, days=120, now=None, root=None):
+    """회사 공식 IR 수집분 — [{date, title, url, kind, grade, local_text, source}] 최근 것 먼저"""
+    now = now or datetime.now()
+    base = (root or ROOT) / "radar" / "inbox"
+    out = []
+    for d in sorted(base.glob("20[0-9][0-9][01][0-9][0-3][0-9]"), reverse=True):
+        try:
+            if (now - datetime.strptime(d.name, "%Y%m%d")).days > days:
+                break
+        except ValueError:
+            continue
+        for f in d.iterdir():
+            if not IR_QA.match(f.name):
+                continue
+            try:
+                it = json.loads(f.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            ents = it.get("entities_matched")
+            if eid not in (ents if isinstance(ents, list) else re.findall(r"[\w.-]+", str(ents))):
+                continue
+            if str(it.get("grade") or "A") not in ("A", "B"):   # C = 제3자 전사(StockAnalysis 등) — 회사 원문이 아니다
+                continue
+            out.append({"date": it.get("doc_date") or str(it.get("published_at") or "")[:10], "title": it.get("title"), "url": it.get("url"),
+                        "kind": "전문" if it.get("kind") == "transcript" else "Q&A 정리", "grade": it.get("grade"),
+                        "local_text": it.get("local_text"), "source": it.get("source_id")})
+    return sorted(out, key=lambda x: x["date"] or "", reverse=True)
+
+
+def ir_access(eid):
+    """공식 IR 프로필의 access 메모(봇 차단·robots 금지) — 없으면 None"""
+    try:
+        import yaml
+    except ImportError:
+        return None
+    for f in ("jp_ir.yaml", "tw_hk_ir.yaml"):
+        try:
+            d = yaml.safe_load((ROOT / "config" / f).read_text(encoding="utf-8")) or {}
+        except OSError:
+            continue
+        c = (d.get("companies") or {}).get(eid)
+        if isinstance(c, dict) and c.get("access"):
+            return c["access"]
+    return None
+
+
 def plan(eid, search=False):
     dp = _dp(eid)
     tk = _ticker(eid, dp)
     key = fiscal_key(eid)
     tg = tg_find(tk, search=search)
     best = next((x for x in tg if x.get("has_qa")), None)
+    ir = company_find(eid)
+    blocked = ir_access(eid)
     steps = [
+        {"order": 0, "source": "company", "ready": bool(ir), "found": ir[:3],
+         "do": ("가장 최근 문서의 local_text를 읽어 datapack call에 — --put <id> company <전문|Q&A 정리> <date> <url>" if ir else
+                (f"공식 IR 자동 접근 불가({blocked}) — 건너뛰고 ①" if blocked else "회사 공식 IR 수집분 없음(120일) — ①"))},
         {"order": 1, "source": "fiscal", "ready": bool(key), "key": key,
          "do": "mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__execute_code 에 code 본문" if key else "Fiscal 키 없음 — 건너뛰고 ②",
          "code": FISCAL_CODE.format(key=key) if key else None},

@@ -26,3 +26,36 @@ companies:
   tw-kingslide: {name: King Slide, market: tw, code: "2059", site: "https://www.kingslide.com"}
   hk-popmart: {name: Pop Mart, market: hk, code: "9992", site: "https://www.popmart.com"}
   hk-2050: {name: Zhejiang Sanhua, market: hk, code: "2050", site: "https://www.zjshc.com"}
+  # 2026-11-22 감시 목록(tw_financials.universe)에 있는데 IR 프로필이 없던 대만 29곳 + 홍콩 단독 상장 3곳(마스터 지시 "대만, 홍콩, 중국 IR 파이프라인도 점검하고 보완하라").
+  # 홈페이지 첫 화면을 robots를 지켜 열어 200을 확인한 곳만 site를 적는다. 자료실(doc_pages)은 --discover가 찾는다.
+  # access가 있는 곳은 공식 IR을 자동으로 못 읽는다 — 우회하지 않고 TradingView·Fiscal.ai로 바로 간다(call_source 단계표).
+  tw-mediatek: {name: MediaTek, market: tw, code: "2454", site: "https://corp.mediatek.com", ir_pages: ["https://corp.mediatek.com/investor-relations"]}
+  tw-honhai: {name: Hon Hai, market: tw, code: "2317", site: "https://www.honhai.com"}
+  tw-largan: {name: Largan Precision, market: tw, code: "3008", site: "https://www.largan.com.tw"}
+  tw-genius: {name: Genius Electronic Optical, market: tw, code: "3406", site: "https://www.gseo.com"}
+  tw-tripod: {name: Tripod Technology, market: tw, code: "3044", site: "https://www.tripod-tech.com"}
+  tw-nanyatech: {name: Nanya Technology, market: tw, code: "2408", site: "https://www.nanya.com"}
+  tw-winbond: {name: Winbond, market: tw, code: "2344", site: "https://www.winbond.com"}
+  tw-alchip: {name: Alchip, market: tw, code: "3661", site: "https://www.alchip.com"}
+  tw-guc: {name: Global Unichip, market: tw, code: "3443", site: "https://www.guc-asic.com"}
+  tw-faraday: {name: Faraday Technology, market: tw, code: "3035", site: "https://www.faraday-tech.com"}
+  tw-aspeed: {name: ASPEED, market: tw, code: "5274", site: "https://www.aspeedtech.com"}
+  tw-kyec: {name: King Yuan Electronics, market: tw, code: "2449", site: "https://www.kyec.com.tw"}
+  tw-pti: {name: Powertech Technology, market: tw, code: "6239", site: "https://www.pti.com.tw"}
+  tw-chroma: {name: Chroma ATE, market: tw, code: "2360", site: "https://www.chromaate.com"}
+  tw-allring: {name: All Ring Tech, market: tw, code: "6187", site: "https://www.allring-tech.com.tw"}
+  tw-nanyapcb: {name: Nan Ya PCB, market: tw, code: "8046", site: "https://www.nanyapcb.com.tw"}
+  tw-holystone: {name: Holy Stone Enterprise, market: tw, code: "3026", site: "https://www.holystone.com.tw"}
+  tw-gigabyte: {name: Gigabyte, market: tw, code: "2376", site: "https://www.gigabyte.com"}
+  tw-wistron: {name: Wistron, market: tw, code: "3231", site: "https://www.wistron.com"}
+  tw-inventec: {name: Inventec, market: tw, code: "2356", site: "https://www.inventec.com"}
+  tw-umc: {name: UMC, market: tw, code: "2303", site: "https://www.umc.com", access: "봇 차단(403)"}
+  tw-ememory: {name: eMemory, market: tw, code: "3529", site: "https://www.ememory.com.tw", access: "봇 차단(403)"}
+  tw-kinsus: {name: Kinsus, market: tw, code: "3189", site: "https://www.kinsus.com.tw", access: "접속 거부(401)"}
+  tw-winsemi: {name: WIN Semiconductors, market: tw, code: "3105", site: "https://www.winfoundry.com", access: "robots 금지"}
+  tw-ventec: {name: Ventec, market: tw, code: "6672", site: "https://www.venteclaminates.com", access: "robots 금지"}
+  # 주소 미확인 4곳(2026-11-22 접속 실패·다른 회사 사이트) — 넣지 않았다: 8358 Co-Tech, 6640 Gallant Micro, 5443 Gallant Precision, 7734 Ingentec
+  hk-9903: {name: Iluvatar CoreX, market: hk, code: "9903", site: "https://www.iluvatar.com"}
+  hk-6082: {name: Biren Technology, market: hk, code: "6082", site: "https://www.birentech.com"}
+  hk-9880: {name: UBTech Robotics, market: hk, code: "9880", site: "https://www.ubtrobot.com"}
+  hk-3696: {name: InSilico Medicine, market: hk, code: "3696", site: "https://insilico.com", access: "robots 금지"}

@@ -4,6 +4,8 @@
 비공식 경로: StockAnalysis 공개 전사 목록(/quote/tpe/{코드}/transcripts/, /quote/hkg/{코드}/transcripts/). 새 분기가 보이면 C등급으로 싣는다. 유료 구역은 열지 않는다.
 읽은 문서는 IR 처리 장부(radar/ir_ledger.py)를 거쳐 Pulse가 분석한다. robots·요청 간격은 jp_ir_qa.fetch를 따른다.
 사용: py radar/pollers/tw_hk_ir.py --discover   # 자료실을 찾아 상태에 넣고 경로표를 쓴다
+점검(2026-11-22 마스터 지시 "대만, 홍콩, 중국 IR 파이프라인도 점검하고 보완하라"): 프로필에 access(봇 차단·robots 금지)가 있으면 공식 경로를 부르지 않는다(우회 금지 —
+call_source 단계표가 TradingView·Fiscal.ai로 넘긴다). StockAnalysis에 그 종목 전사 목록이 없으면(404) 오류가 아니라 '없음'으로 친다.
 """
 import argparse
 import csv
@@ -86,6 +88,8 @@ def save_text(cid, d, text):
 
 
 def official(cid, c, cs, today, items, first):
+    if c.get("access"):   # 자동으로 못 읽는 공식 사이트 — 부르지 않는다
+        return
     pages = c.get("doc_pages") or cs.get("doc_pages") or []
     rows, seen = [], set(cs.get("seen") or [])
     for pg in pages:
@@ -109,7 +113,12 @@ def unofficial(cid, c, cs, items, first):
     """StockAnalysis 공개 전사 목록 — 가장 최근 분기만 본다"""
     market = {"tw": "tpe", "hk": "hkg"}[c["market"]]
     code = str(c["code"]).zfill(4)
-    links = transcript_links(qa._text(qa.fetch(f"https://stockanalysis.com/quote/{market}/{code}/transcripts/")))
+    try:
+        links = transcript_links(qa._text(qa.fetch(f"https://stockanalysis.com/quote/{market}/{code}/transcripts/")))
+    except Exception as exc:
+        if getattr(exc, "code", None) == 404:   # 그 종목 전사 목록 자체가 없다 — 오류 아님
+            return
+        raise
     if not links:
         return
     href, slug, q, y = links[-1]
@@ -153,6 +162,10 @@ def discover():
         site = c["site"].rstrip("/")
         starts = list(c.get("ir_pages") or []) + [site + p for p in ("/investors/", "/investor/", "/ir/", "/en/investors/", "/zh-TW/investors/", "/")]
         pages, note = list(c.get("doc_pages") or cs.get("doc_pages") or []), ""
+        if c.get("access"):   # 봇 차단·robots 금지 — 탐색하지 않고 기록만
+            rows.append({"id": cid, "market": c["market"], "route": "자동 접근 불가", "pages": "", "docs": 0, "note": c["access"], "unofficial": latest_transcript(c)})
+            print(cid, rows[-1]["route"], rows[-1]["note"], rows[-1]["unofficial"], flush=True)
+            continue
         if not pages:
             try:
                 pages = deep(starts, c)

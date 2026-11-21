@@ -81,5 +81,22 @@ class TestCnIr(unittest.TestCase):
         self.assertEqual(got[0]["start"], "2026-11-10 15:00:00")
 
 
+class TestHk(unittest.TestCase):
+    """홍콩 — cninfo 港股 칸(2026-11-22 마스터 지시 '대만, 홍콩, 중국 IR 파이프라인도 점검하고 보완하라')"""
+    def test_hk_titles(self):
+        k = cn_ir.hk_kind
+        self.assertEqual(k("截至2026年6月30日止六个月中期业绩公告"), "report")
+        self.assertEqual(k("二零二六年中期报告"), "report")
+        self.assertEqual(k("正面盈利预告"), "prelim")
+        self.assertEqual(k("二零二六年第三季度最新业务状况"), "prelim")
+        for t in ("翌日披露报表 - [股份购回]", "董事会会议通告", "海外监管公告 - 第六届董事会决议公告", "截至2026年6月30日止六个月的中期业绩公告及授出奖励之补充公告"):
+            self.assertIsNone(k(t), t)
+
+    def test_hk_ticker_and_entity(self):
+        self.assertEqual(cn_ir.ticker_of("09903"), "9903.HK")
+        self.assertEqual(cn_ir.ticker_of("688012"), "688012.SH")
+        self.assertEqual(cn_ir.ticker_of("300223"), "300223.SZ")
+
+
 if __name__ == "__main__":
     unittest.main()

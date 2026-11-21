@@ -9,6 +9,10 @@
   ③ 全景网 路演天下 rs.p5w.net(robots.txt 'Allow: /') 공개 조회 — 선전 상장사(00xxxx·30xxxx) 대부분과 일부 상하이 상장사의 业绩说明会
      질문·경영진 답변(마스터 승인 2026-11-17 "붙여라"). 질문자(가린 휴대폰 번호)는 저장하지 않는다. 모든 회사가 쓰지는 않는다(北方华创은 2022년 이후 없음).
 대상: config/cn_semis.yaml + cn_hk_disclosure.targets()['cn'](와치리스트 SSE·SZSE·아시아 스크리너 중국 후보).
+홍콩(2026-11-22 마스터 지시 "대만, 홍콩, 중국 IR 파이프라인도 점검하고 보완하라"): 홍콩 종목(5자리 코드 — cn_hk_disclosure.targets()['hk'] + config/tw_hk_ir.yaml market hk)도
+  cninfo 港股 칸(column=hke, 같은 공개 조회)으로 본다. HKEXnews는 약관(제5조 자동 수집 금지)으로 새로 기대지 않는다(TODO 21-53 ②).
+  A·H 동시 상장(cninfo orgId가 같은 A주가 있다)이면 홍콩 공시 대신 그 A주를 본다 — 업적 설명회 질의응답(上证路演·全景网)은 A주 쪽에만 있다.
+  홍콩 단독 상장은 업적 공고·중기 보고·연보·영업 수치 공고(src-cn-ir-docs)만 — 홍콩 회사는 설명회 전문을 거의 내지 않는다(공식 IR 자료실은 tw_hk_ir.py).
 출력: 받은편지함 항목 src-cn-ir-qa(질의응답·스크립트 → Pulse 'IR 질의응답') · src-cn-ir-docs(정기보고 등 → 'IR 자료'). 같은 문서는 한 번만.
 사용: py radar/pollers/cn_ir.py                 # 한 회차(run_poll이 poll())
       py radar/pollers/cn_ir.py --about 688012   # 한 종목 최근 120일(Analysis 원천, 받은편지함에 넣지 않고 출력만)
@@ -53,15 +57,70 @@ SKIP = re.compile(r"摘要|英文|更正|补充|取消|延期|提示性|关于�
 
 
 def universe():
-    """{6자리 코드: {name, en, ko, sub}}"""
+    """{6자리 코드: {name, en, ko, sub}} + 홍콩 {5자리 코드: {name, hk: True}}"""
     out = {}
     for c in (common.load_yaml("config/cn_semis.yaml") or {}).get("companies") or []:
         out[str(c["code"]).zfill(6)] = c
     try:
-        for code, name in cnd.targets()["cn"].items():
-            out.setdefault(code, {"code": code, "name": name})
+        tg = cnd.targets()
     except Exception:
-        pass
+        tg = {"cn": {}, "hk": {}}
+    for code, name in tg.get("cn", {}).items():
+        out.setdefault(code, {"code": code, "name": name})
+    hk = dict(tg.get("hk", {}))
+    for cid, c in ((common.load_yaml("config/tw_hk_ir.yaml") or {}).get("companies") or {}).items():
+        if c.get("market") == "hk":
+            hk.setdefault(str(c["code"]).zfill(5), c.get("name"))
+    for code, name in hk.items():
+        out.setdefault(code, {"code": code, "name": name, "hk": True})
+    return out
+
+
+# 홍콩 공고 제목(cninfo 港股 칸은 간체 중문) — 실적·보고·영업 수치만. 설명회 전문은 A주 쪽(上证路演·全景网)에서 받는다
+HK_KINDS = [("report", re.compile(r"业绩公告|中期报告|年度报告|年报|季度业绩|季度报告|全年业绩|末期业绩")),
+            ("prelim", re.compile(r"盈利预告|盈利警告|正面盈利|负面盈利|营运数据|经营数据|出货量|业务状况|业务最新情况|营运最新情况"))]
+HK_SKIP = re.compile(r"海外监管公告|代表委任表格|证券变动月报表|翌日披露|通告|通函|章程|董事会会议|董事名单|更正|补充|延迟|英文")
+
+
+def hk_kind(title):
+    t = re.sub(r"\s+", "", title)
+    if HK_SKIP.search(t):
+        return None
+    return next((k for k, rx in HK_KINDS if rx.search(t)), None)
+
+
+def hk_org(code, cache):
+    """홍콩 5자리 코드 → [cninfo orgId, 같은 orgId의 A주 코드 또는 None]. 한 번 찾으면 상태에 둔다"""
+    if code not in cache:
+        hit = json.loads(cnd._post(cnd.CN_SEARCH, f"keyWord={code}&maxNum=6".encode()).decode("utf-8"))
+        org = next((h["orgId"] for h in hit if h.get("code") == code and h.get("category") == "港股"), None)
+        a = None
+        if org:
+            time.sleep(PAUSE_S)
+            name = next((h.get("zwjc") for h in hit if h.get("code") == code), "") or ""
+            more = json.loads(cnd._post(cnd.CN_SEARCH, f"keyWord={urllib.parse.quote(name)}&maxNum=6".encode()).decode("utf-8")) if name else []
+            a = next((h["code"] for h in hit + more if h.get("orgId") == org and h.get("category") == "A股"), None)
+        cache[code] = [org, a]
+    return cache[code]
+
+
+def hk_docs(code, org, days, now):
+    """cninfo 港股 — [(시각, 제목, PDF 주소, 공시 id, 종류)]. 3쪽(90건)까지 — 자사주 매입 일보가 많은 회사(泡泡玛特)는 실적 공고가 뒤로 밀린다"""
+    out, more = [], True
+    for page in (1, 2, 3):
+        if not more:
+            break
+        body = (f"pageNum={page}&pageSize=30&column=hke&tabName=fulltext&searchkey=&stock={code},{org}&category=&"
+                f"seDate={(now - timedelta(days=days)).date()}~{now.date()}&isHLtitle=true").encode()
+        rows = json.loads(cnd._post(cnd.CNINFO, body).decode("utf-8")).get("announcements") or []
+        more = len(rows) >= 30
+        for r in rows:
+            t = re.sub(r"<[^>]+>", "", r.get("announcementTitle") or "").strip()
+            k = hk_kind(t)
+            if k:
+                out.append((datetime.fromtimestamp((r.get("announcementTime") or 0) / 1000, CST), t,
+                            "http://static.cninfo.com.cn/" + (r.get("adjunctUrl") or ""), str(r.get("announcementId")), k))
+        time.sleep(PAUSE_S)
     return out
 
 
@@ -241,23 +300,32 @@ def save_text(code, key, title, url, text):
 
 
 def entity_of(code, _cache={}):
-    """와치리스트에 있으면 그 회사 id(config/tradingview_symbols.csv), 없으면 cn-<코드>"""
+    """와치리스트에 있으면 그 회사 id(config/tradingview_symbols.csv·tw_hk_ir.yaml), 없으면 cn-<코드>·hk-<코드>"""
     if not _cache:
         import csv
         with (common.ROOT / "config" / "tradingview_symbols.csv").open(encoding="utf-8", newline="") as f:
             for r in csv.DictReader(f):
                 if r.get("exchange") in ("SSE", "SZSE") and r.get("entity_id"):
                     _cache[r["ticker"].zfill(6)] = r["entity_id"]
+                elif r.get("exchange") == "HKEX" and r.get("entity_id"):
+                    _cache[r["ticker"].zfill(5)] = r["entity_id"]
+        for cid, c in ((common.load_yaml("config/tw_hk_ir.yaml") or {}).get("companies") or {}).items():
+            if c.get("market") == "hk":
+                _cache.setdefault(str(c["code"]).zfill(5), cid)
         _cache.setdefault("_", "")
-    return _cache.get(code) or f"cn-{code}"
+    return _cache.get(code) or (f"hk-{int(code)}" if len(code) == 5 else f"cn-{code}")
+
+
+def ticker_of(code):
+    return f"{int(code):04d}.HK" if len(code) == 5 else f"{code}.{'SH' if code[:1] in '68' else 'SZ'}"
 
 
 def item(code, c, key, kind, title, url, when, text, path, grade="A"):
     qa_kind = kind in ("qa", "transcript")
     name = c.get("ko") or c.get("en") or c.get("name") or code
-    extra = {"entities_matched": [entity_of(code)], "publisher": c.get("name"), "kind": kind, "period": period(title), "doc_date": when.date().isoformat(),
+    extra = {"entities_matched": [entity_of(c.get("h_share") or code)], "publisher": c.get("name"), "kind": kind, "period": period(title), "doc_date": when.date().isoformat(),
              "local_text": path, "chars": len(text), "grade": grade, "tier": "전문·스크립트" if kind == "transcript" else "Q&A" if kind == "qa" else kind,
-             "lang": "zh", "ticker": f"{code}.{'SH' if code[:1] in '68' else 'SZ'}"}
+             "lang": "zh", "ticker": ticker_of(code)}
     return common.make_item(SRC_QA if qa_kind else SRC_DOC, hashlib.sha1(key.encode()).hexdigest()[:16], url, f"{name}({code}) IR: {title[:80]}",
                             when.astimezone(common.KST).isoformat(timespec="minutes"), "IR 질의응답" if qa_kind else "IR 자료", "zh",
                             f"{kind} · {period(title) or '기간 미확인'} · 글자 {len(text)}", extra=extra)
@@ -267,6 +335,31 @@ def collect(code, c, st, now, days=LOOK_D, first=False, seed_new=True):
     """한 종목 — 새 문서 항목 목록"""
     seen = set(st.setdefault("seen", []))
     out = []
+    if len(code) == 5:   # 홍콩
+        org, a = hk_org(code, st.setdefault("hk_org", {}))
+        if a:   # A·H 동시 상장 — A주가 대상에 없으면 여기서 A주를 본다(설명회 질의응답은 A주 쪽에만)
+            st["seen"] = sorted(seen)[-5000:]
+            return [] if a in universe() else collect(a, {**c, "code": a, "h_share": code}, st, now, days, first, seed_new)
+        seeded = st.setdefault("hk_seeded", [])
+        seed = first or (seed_new and code not in seeded)   # 처음 보는 홍콩 종목은 지금 있는 공고를 씨앗으로만
+        for when, title, url, aid, kind in (hk_docs(code, org, days, now) if org else []):
+            key = f"cninfo:{aid}"
+            if key in seen:
+                continue
+            seen.add(key)
+            if seed:
+                continue
+            try:
+                text = qa.to_text(url, common.http_get(url, timeout=60))
+            except Exception:
+                text = ""
+            path = save_text(code, key, title, url, text) if text else ""
+            out.append(item(code, c, key, kind, title, url, when, text, path))
+            time.sleep(PAUSE_S)
+        if seed_new and org and code not in seeded:
+            seeded.append(code)
+        st["seen"] = sorted(seen)[-5000:]
+        return out
     org = cnd.cn_org(code, st.setdefault("org", {}))
     if org:
         for when, title, url, aid, kind in cn_docs(code, org, days, now):
@@ -368,6 +461,7 @@ def about(code, days=120):
 
 
 def main(argv):
+    sys.stdout.reconfigure(encoding="utf-8")
     if "--about" in argv:
         for it in about(argv[argv.index("--about") + 1]):
             print(it["published_at"][:10], it["source_id"], it["title"], it.get("chars"))

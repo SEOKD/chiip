@@ -62,5 +62,25 @@ class TestPut(unittest.TestCase):
         self.assertIsNone(v2_to_report.kr_call_gap({"ticker": "039030", **dp}))
 
 
+class TestCompanyIr(unittest.TestCase):
+    """⓪ 회사 공식 IR(2026-11-22 마스터 지시 — 일본·대만·홍콩·중국 공식 IR 1순위)"""
+    def test_finds_latest_qa_for_entity_only(self):
+        with tempfile.TemporaryDirectory() as t:
+            root = Path(t)
+            for day, name, ent, kind in (("20261120", "src-cn-ir-qa_aa01.json", ["cn-688126"], "transcript"),
+                                         ("20261110", "src-tw-hk-ir-qa_bb02.json", "['co-tsmc']", "qa"),
+                                         ("20261121", "src-cn-ir-docs_cc03.json", ["cn-688126"], "report"),
+                                         ("20260601", "src-cn-ir-qa_dd04.json", ["cn-688126"], "transcript")):
+                d = root / "radar" / "inbox" / day
+                d.mkdir(parents=True, exist_ok=True)
+                (d / name).write_text(json.dumps({"source_id": name.split("_")[0], "entities_matched": ent, "kind": kind, "doc_date": f"{day[:4]}-{day[4:6]}-{day[6:]}",
+                                                  "url": "u", "title": "t", "grade": "A"}), encoding="utf-8")
+            now = datetime(2026, 11, 22)
+            got = cs.company_find("cn-688126", now=now, root=root)
+            self.assertEqual([(g["date"], g["kind"]) for g in got], [("2026-11-20", "전문")])   # 자료(docs)와 120일 밖은 빼고
+            self.assertEqual(cs.company_find("co-tsmc", now=now, root=root)[0]["kind"], "Q&A 정리")
+            self.assertEqual(cs.company_find("co-tsm", now=now, root=root), [])   # 이름 일부만 같으면 아니다
+
+
 if __name__ == "__main__":
     unittest.main()
