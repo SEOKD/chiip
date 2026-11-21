@@ -116,7 +116,7 @@ class TestSummaryLayout(unittest.TestCase):
         self.assertEqual(t["headers"], ["상태", "계약", "계약 총액", "진척", "기간", "비고"])
         self.assertEqual([r[0] for r in t["rows"]], ["확정", "확정", "확정", "MOU"])
         self.assertIn("7세대 드릴십", t["rows"][1][5])
-        self.assertEqual(t["rows"][3][2:4], ["금액 비공개", "비공개"])
+        self.assertEqual(t["rows"][3][2:4], ["금액 비공개", "-"])   # 진척을 모르면 쓰지 않는다(2026-11-21)
 
     def test_terms(self):
         sec = pv.report_section(dp(item()))
@@ -143,3 +143,24 @@ class TestLadder(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestEstimate(unittest.TestCase):   # 2026-11-21 — 진척 미확인 표기 안 함, 금액 비공개는 근거가 있을 때만 추정
+    def _dp(self, est):
+        return {"unit": "B$", "consensus": {"rev": {"FY2027": 2.0}}, "pipeline": {"as_of": "2026-11-01", "reported_backlog": 1.0, "items": [
+            {"name": "A", "status": "확정", "total": 0.4, "progress": "미확인", "margin": "미확인", "blockers": ["x"], "source": "s"},
+            {"name": "B", "status": "확정", "total": "미확인", "progress": "미확인", "margin": "미확인", "blockers": ["x"], "source": "s", "estimate": est}]}}
+
+    def test_methods(self):
+        self.assertAlmostEqual(pv.estimate(self._dp(None)["pipeline"]["items"][1] | {"estimate": {"method": "share_x_revenue", "share": [0.1, 0.2], "revenue": "FY2027", "years": 2, "basis": "b", "source": "s"}}, self._dp(None)), 0.6)
+        dp = self._dp({"method": "residual", "basis": "b", "source": "s"})
+        self.assertAlmostEqual(pv.estimate(dp["pipeline"]["items"][1], dp), 0.6)
+        self.assertIsNone(pv.estimate(dp["pipeline"]["items"][1] | {"estimate": {"method": "units_x_price", "units": 10, "basis": "b", "source": "s"}}, dp))   # 단가 없으면 추정 안 함
+
+    def test_labels(self):
+        dp = self._dp({"method": "comparable", "value": 0.2, "scale": 1.5, "basis": "b", "source": "s"})
+        lines = pv.summary_lines(dp)
+        self.assertTrue(any("추정 $0.30B" in l for l in lines))
+        self.assertFalse(any("진척" in l for l in lines))   # 진척을 모르면 쓰지 않는다
+        dp2 = self._dp(None)
+        self.assertTrue(any("금액 비공개" in l for l in pv.summary_lines(dp2)))

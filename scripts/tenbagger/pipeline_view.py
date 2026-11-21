@@ -19,6 +19,13 @@ datapack "pipeline":
     item: "kind": "backlog"(회사 전체 잔고 행 — 합계 줄로만, 목록에서 뺀다) · "region" · "short"(요약용 이름)
           "note"(비고 칸 — 선박 연식·세대 같은 괄호 설명은 여기로) · "included_in"(예 "신규 $0.8B" → "(신규 $0.8B에 포함)") · "when"(시점 직접 지정)
   수주·파이프라인이 없는 회사: {"none": "구독 소프트웨어라 개별 수주가 없다"} → 절을 넣지 않는다.
+  금액 비공개 건의 추정(마스터 지시 2026-11-21 "금액을 추정할 수 있는 선에서 모델링을 통해 추정하라. 추정이 안 되면 하지 마라"):
+    item "estimate": {"method": ESTIMATORS 중 하나, 입력…, "basis": "입력 근거", "source": "출처"} — total이 '미확인'일 때만 쓴다.
+      units_x_price   {units, price, years=1}                 물량 × 단가 × 기간
+      share_x_revenue {share 또는 [lo, hi], revenue 숫자 또는 'FY2027'(컨센서스 매출 키), years=1}  고객 매출 몫 × 매출 × 기간
+      residual        {}                                      공시 잔고(reported_backlog) − 금액을 아는 다른 잔고 항목 합(이 방법은 한 건만)
+      comparable      {value, scale=1}                        비슷한 공개 계약 금액 × 규모 비율
+    결과는 '추정'으로만 표시하고 확정 합계·확실성 몫에는 넣지 않는다. 입력을 근거로 댈 수 없으면 estimate를 쓰지 않는다 — 그대로 '금액 비공개'.
 """
 import sys
 from pathlib import Path
@@ -72,12 +79,43 @@ def speed_of(x, as_of):
     return {"plan": plan, "gap": gap, "finish": finish, "delay": delay, "grade": grade}
 
 
+ESTIMATORS = ("units_x_price", "share_x_revenue", "residual", "comparable")
+
+
+def estimate(x, dp):
+    """금액 비공개 건의 추정값(리포트 단위) 또는 None — 입력이 모자라면 None(지어내지 않는다)"""
+    e = x.get("estimate") or {}
+    if _num(x.get("total")) is not None or e.get("method") not in ESTIMATORS or not e.get("basis") or not e.get("source"):
+        return None
+    years = _num(e.get("years")) or 1.0
+    if e["method"] == "units_x_price":
+        u, pr = _num(e.get("units")), _num(e.get("price"))
+        return u * pr * years if u is not None and pr is not None else None
+    if e["method"] == "share_x_revenue":
+        sh = e.get("share")
+        sh = sum(sh) / len(sh) if isinstance(sh, list) and sh and all(_num(v) is not None for v in sh) else _num(sh)
+        rv = e.get("revenue")
+        rv = _num(rv) if _num(rv) is not None else _num(((dp or {}).get("consensus") or {}).get("rev", {}).get(str(rv)))
+        return sh * rv * years if sh is not None and rv is not None else None
+    if e["method"] == "residual":
+        pl = (dp or {}).get("pipeline") or {}
+        b = _num(pl.get("reported_backlog"))
+        if b is None or sum(1 for y in pl.get("items") or [] if (y.get("estimate") or {}).get("method") == "residual") != 1:
+            return None
+        known = sum(_num(y.get("total")) or 0 for y in pl.get("items") or [] if y is not x and y.get("kind") != "backlog" and not y.get("no_sum") and y.get("status") == FIRM)
+        return b - known if b - known > 0 else None
+    if e["method"] == "comparable":
+        v = _num(e.get("value"))
+        return v * (_num(e.get("scale")) or 1.0) if v is not None else None
+    return None
+
+
 def compute(dp):
     pl, out = (dp or {}).get("pipeline") or {}, []
     as_of = str(pl.get("as_of") or "")
     for x in pl.get("items") or []:
         total, p, m = _num(x.get("total")), progress_of(x), _num(x.get("margin"))
-        out.append({**x, "total": total, "p": p, "m": m, "speed_calc": speed_of(x, as_of),
+        out.append({**x, "total": total, "p": p, "m": m, "speed_calc": speed_of(x, as_of), "est": estimate(x, dp),
                     "rev_now": total * p if total is not None and p is not None else None,
                     "gain_now": total * p * m if None not in (total, p, m) else None,
                     "gain_full": total * m if None not in (total, m) else None})
@@ -112,6 +150,9 @@ def check(pl):
             raise ValueError(f"pipeline {name}: margin이 필요하다(모르면 '미확인')")
         if _num(x.get("margin")) is not None and not x.get("margin_basis"):
             raise ValueError(f"pipeline {name}: margin_basis가 필요하다")
+        e = x.get("estimate")
+        if e and (e.get("method") not in ESTIMATORS or not e.get("basis") or not e.get("source")):
+            raise ValueError(f"pipeline {name}: estimate는 method({ESTIMATORS})·basis·source가 필요하다 — 근거가 없으면 쓰지 않는다")
 
 
 HIDDEN = "비공개"   # 진척도를 모를 때 — 단독 '미확인' 대신 무엇을 모르는지(2026-11-13 마스터 지시)
@@ -122,7 +163,16 @@ def _pct(p):
 
 
 def _prog(p):
-    return "진척 " + _pct(p)
+    return "" if p is None else "진척 " + _pct(p)   # 모르면 쓰지 않는다(마스터 지시 2026-11-21 "진척 미확인은 표기하지 마라")
+
+
+def _amt(x, unit):
+    """계약 총액 칸 — 공시 금액, 없으면 추정(근거 방법), 그것도 없으면 '금액 비공개'"""
+    if x.get("total") is not None:
+        return _m(x["total"], unit)
+    if x.get("est") is not None:
+        return f"추정 {_m(x['est'], unit)}"
+    return "금액 비공개"
 
 
 TIERS = (("확정",), ("조건부",), ("협상", "프레임워크"), ("MOU", "파이프라인"))
@@ -242,9 +292,10 @@ def section3(dp):
     B.append({"type": "hl", "text": head})
     rows = []
     for x in c["items"]:
-        size = (_m(x["total"], unit) if x["total"] is not None else "") + (f" · 마진 {x['m'] * 100:.0f}%" if x["m"] is not None else "")
-        when = f"{x.get('start') or '?'} → {x.get('end') or '?'}" if x.get("start") or x.get("end") else ""
-        rows.append({"label": x["name"], "total": x["total"], "pct": x["p"], "size": size.strip(" ·"), "status": x["status"], "when": when})
+        size = (_m(x["total"], unit) if x["total"] is not None else (f"추정 {_m(x['est'], unit)}" if x.get("est") is not None else "")) + (f" · 마진 {x['m'] * 100:.0f}%" if x["m"] is not None else "")
+        st, en = (x.get("start") if x.get("start") not in (None, UNKNOWN) else None), (x.get("end") if x.get("end") not in (None, UNKNOWN) else None)
+        when = f"{st} → {en}" if st and en else (f"{st} 시작" if st else (f"{en}까지" if en else ""))   # 모르는 끝은 '→ 미확인' 대신 생략(2026-11-21)
+        rows.append({"label": x["name"], "total": x["total"], "est": x.get("est"), "pct": x["p"], "size": size.strip(" ·"), "status": x["status"], "when": when})
     # 확실성 사다리(마스터 지시 2026-11-08 "수주·파이프라인 시각물이 직관적이지 못하다") — 단계별 띠, 색 = 확실성, 길이 = 금액, 진한 몫 = 진척도
     tiers = {"확정": ("확정",), "조건부": ("조건부",), "협상·프레임워크": ("협상", "프레임워크"), "MOU·파이프라인": ("MOU", "파이프라인")}
     fmt = {n: _money(sum(x["total"] for x in c["items"] if x["status"] in ks and x["total"] is not None and not x.get("no_sum")), unit)
@@ -252,8 +303,8 @@ def section3(dp):
     B.append({"type": "chart", "chart": {"kind": "pipeline", "title": "수주·파이프라인 확실성 사다리", "rows": rows, "fmt": fmt}})
     ob = ordered(c["items"])   # 본문 표는 상태별로 묶는다(2026-11-13 마스터 지시)
     B.append({"type": "table", "title": "수주 목록", "headers": ["상태", "계약", "계약 총액", "진척", "기간", "비고"],
-              "rows": [[x["status"], x["name"] + (f"({x['region']})" if x.get("region") else ""), _m(x["total"], unit) if x["total"] is not None else "금액 비공개",
-                        _pct(x["p"]), _period(x), " ".join(v for v in (x.get("note") or "", _inc(x)) if v) or "-"] for x in ob]})
+              "rows": [[x["status"], x["name"] + (f"({x['region']})" if x.get("region") else ""), _amt(x, unit),
+                        "-" if x["p"] is None else _pct(x["p"]), _period(x), " ".join(v for v in (x.get("note") or "", _inc(x)) if v) or "-"] for x in ob]})
     B.append({"type": "table", "title": "실행 속도와 방해 요인", "headers": ["항목", "상태", "실행 속도", "방해 요인"], "rows": [[x["name"], x["status"], speed_text(x), " · ".join(x["blockers"])] for x in ob]})
     return {"h2": "수주·파이프라인", "blocks": B}
 
@@ -278,7 +329,7 @@ def summary_lines(dp):
         if x["status"] != FIRM:
             L.append(f"- {name} — 미확정")
             continue
-        parts = [x["status"], _m(x["total"], unit) if x["total"] is not None else "금액 비공개", _prog(x["p"]), _when(x, c["as_of"])]
+        parts = [x["status"], _amt(x, unit), _prog(x["p"]), _when(x, c["as_of"])]
         L.append(f"- {name} — " + " · ".join(v for v in parts if v) + (f" {_inc(x)}" if _inc(x) else ""))
     if pl.get("summary"):
         L.append(str(pl["summary"]))

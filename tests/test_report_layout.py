@@ -211,7 +211,7 @@ class TestPipelineChart(unittest.TestCase):
     def test_progress_chart_shows_unknown(self):
         s = rh.chart_progress({"rows": [{"label": "A", "total": 2.0, "pct": 0.5, "size": "$2B", "status": "확정"}, {"label": "B", "total": None, "pct": None, "size": "미확인", "status": "파이프라인"}]})
         self.assertIn("진척 50%", s)
-        self.assertIn("진척 미확인", s)
+        self.assertNotIn("진척 미확인", s)   # 2026-11-21 마스터 지시 — 모르면 쓰지 않는다
         self.assertIn("stroke-dasharray", s)
 
     def test_section_drops_profit_table(self):

@@ -406,9 +406,9 @@ def chart_progress(c):
         tot, pct = r.get("total"), r.get("pct")
         wid = max(full * math.sqrt(tot / top), 40) if tot else 60
         fill = wid * min(max(pct or 0, 0), 1)
-        tag = "진척 미확인" if pct is None else f"진척 {pct * 100:.0f}%"
+        tag = "" if pct is None else f"진척 {pct * 100:.0f}%"   # 모르면 쓰지 않는다(2026-11-21)
         g.append(f'<text x="{L}" y="{y + 11}" style="fill:var(--fg);font-size:12px;font-weight:600">{t(r.get("label"))}</text>')
-        g.append(f'<text x="{L}" y="{y + 25}" style="font-size:10.5px">{t(r.get("size"))} · {tag} · {t(r.get("status"))}</text>')
+        g.append(f'<text x="{L}" y="{y + 25}" style="font-size:10.5px">{t(" · ".join(v for v in (r.get("size"), tag, r.get("status")) if v))}</text>')
         dash = ' stroke-dasharray="4 3"' if not tot else ""
         g.append(f'<rect x="{L}" y="{y + 31}" width="{wid:.1f}" height="12" rx="4" fill="var(--line)" stroke="var(--mut)" stroke-width="0.6"{dash}/>')
         if fill > 0:
@@ -430,7 +430,7 @@ def chart_pipeline(c):
     W, L = 360, 6   # 휴대폰 폭에서 글자가 줄지 않게 좁게 그린다(다른 그림보다 글이 많다)
     full = W - 2 * L
     unit = c.get("money", "")
-    top = max([r["total"] for r in rows if r.get("total")] + [0]) or 1
+    top = max([r.get("total") or r.get("est") or 0 for r in rows] + [0]) or 1   # 추정 막대도 같은 눈금(2026-11-21)
     tiers = [(n, [r for r in rows if r.get("status") in keys], col) for n, keys, col in PIPE_TIERS]
     g, y = [], 4
     known = [(n, sum(r["total"] for r in rs if r.get("total")), col) for n, rs, col in tiers]
@@ -471,11 +471,15 @@ def chart_pipeline(c):
                 if p:
                     g.append(f'<rect x="{L + 8}" y="{y}" width="{max(wid * min(p, 1), 3):.1f}" height="12" rx="3" fill="{COLORS[col]}"/>')
                 tx = L + 14 + wid
+            elif r.get("est"):   # 금액 비공개 건의 추정(2026-11-21) — 점선 테두리 막대, 길이 = 추정 금액
+                wid = max((full - 150) * math.sqrt(r["est"] / top), 24)
+                g.append(f'<rect x="{L + 8}" y="{y}" width="{wid:.1f}" height="12" rx="3" fill="{COLORS[col]}" fill-opacity="0.10" stroke="{COLORS[col]}" stroke-dasharray="3 2"/>')
+                tx = L + 14 + wid
             else:
                 g.append(f'<rect x="{L + 8}" y="{y}" width="74" height="12" rx="3" fill="none" stroke="{COLORS[col]}" stroke-dasharray="3 2"/>'
                          f'<text x="{L + 13}" y="{y + 9.5}" style="font-size:9.5px">금액 비공개</text>')
                 tx = L + 90
-            info = " · ".join(x for x in (r.get("size"), "진척 미확인" if r.get("pct") is None else f"진척 {r['pct'] * 100:.0f}%", r.get("when")) if x)
+            info = " · ".join(x for x in (r.get("size"), None if r.get("pct") is None else f"진척 {r['pct'] * 100:.0f}%", r.get("when")) if x)   # 진척을 모르면 쓰지 않는다(2026-11-21)
             g.append(f'<text x="{tx:.1f}" y="{y + 10}" style="font-size:11.5px">{t(info)}</text>')
             y += 22
         g.insert(len(g) - (len(g) - 0), "")
