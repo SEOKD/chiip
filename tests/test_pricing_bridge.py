@@ -81,3 +81,9 @@ class TestTrendChart(unittest.TestCase):   # 2026-11-19 — 막대 대신 추이
         self.assertTrue(c["series"][0]["name"].startswith("원가 물가(가중)"))
         self.assertTrue(c["series"][1]["name"].startswith("판매가 물가(평균)"))
         self.assertFalse(any(s.get("dash") for s in c["series"]))
+
+    def test_same_index_flagged(self):   # 2026-11-21 IQE — 원가·판매가가 같은 지수면 '비교 불가'
+        months = [f"{2024 + (i + 10) // 12}-{(i + 10) % 12 + 1:02d}" for i in range(24)]
+        hist = {"inputs": {"w": {"ppi": {"us": {m: 100 + i for i, m in enumerate(months)}}}}}
+        dp = {"margin": {"costs": [{"name": "기판", "stage": "매출원가", "pct_rev": 0.3, "input": "w"}]}, "pricing": [{"business": "A", "index": "ppi:w"}]}
+        self.assertIn("비교 불가", iv.pricing_chart(iv.bridge(dp, hist, {}))["chart"]["title"])

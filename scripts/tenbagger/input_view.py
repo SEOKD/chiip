@@ -309,6 +309,9 @@ def pricing_chart(br, months=24):
     # 항목별 점선은 그리지 않는다 — 원가(가중)·판매가(평균) 두 선만(마스터 지시 2026-11-19, MTZ). 항목 구성은 아래 표에 있다
     verdict = (f"원가가 판매가보다 {gap:.1f}%p 더 올라 단가를 못 올리면 마진 압박" if gap > 0.5 else
                f"판매가가 원가보다 {-gap:.1f}%p 더 올라 마진 여유" if gap < -0.5 else "둘이 비슷하게 움직인다")
+    # 원가와 판매가가 같은 지수면 두 선이 겹쳐 원가 선이 안 보이고 비교도 뜻이 없다(2026-11-21 IQE: 기판 원가와 판매가 모두 반도체 PPI)
+    if all(abs(cost[m] - price[m]) < 0.05 for m in axis):
+        verdict = "비교 불가 — 원가와 판매가를 같은 물가 지수로 잡았다(두 선이 겹친다)"
     return {"type": "chart", "chart": {"kind": "line", "title": f"원가 물가 vs 판매가 물가 — 최근 {len(axis)}개월({lab(axis[0])} = 100): {verdict}", "unit": "", "series": series}}
 
 
