@@ -214,8 +214,54 @@ def _at(rows, idx):
     return rows[idx] if -len(rows) <= idx < len(rows) else None
 
 
+def half_chart(dp):
+    """반기 보고 회사(영국 AIM·유럽 일부) — 반기 매출·EPS 실적과 컨센서스(2026-11-21 IQE: 분기 값이 반기 ÷ 2로 만든 가짜라 같은 값이 두 번,
+    EPS 실적은 비어 있었다). 실적 = datapack halves_hist[{period:'2026H1', end, rev(원 단위), eps}], 지난 반기 추정 = surprise 분기 추정 두 개의 합,
+    앞으로 = 분기 컨센서스(quarters_est·eps_quarters_est)를 반기로 묶은 것(두 분기가 다 있을 때만). 파운드 EPS는 펜스(p)"""
+    import re as _re
+    H = sorted((dp.get("halves_hist") or []), key=lambda r: r["period"])[-4:]
+    if len(H) < 2:
+        return None
+    cons = dp.get("consensus") or {}
+    tag = sym(dp).strip()
+    pence = tag == "£"
+    half = lambda k: (f"{k[:4]}H{1 if int(k[5:7]) <= 6 else 2}" if _re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(k)) else
+                      f"{str(k)[:4]}H{1 if str(k)[-1] in '12' else 2}" if _re.fullmatch(r"\d{4}Q[1-4]", str(k)) else None)
+    def pairs(d):   # {분기 키: 값} → {반기: 합} — 두 분기가 다 있을 때만
+        acc = {}
+        for k, v in (d or {}).items():
+            h = half(k)
+            if h and v is not None:
+                acc.setdefault(h, []).append(v)
+        return {h: sum(v) for h, v in acc.items() if len(v) == 2}
+    past_est = {"매출": pairs({r["period"]: r.get("est") for r in cons.get("surprise") or [] if r.get("metric") == "매출"}),
+                "EPS": pairs({r["period"]: r.get("est") for r in cons.get("surprise") or [] if r.get("metric") == "EPS"})}
+    fut = {"매출": pairs(cons.get("quarters_est")), "EPS": pairs(cons.get("eps_quarters_est"))}
+    k_eps = 100.0 if pence else 1.0
+    panels = []
+    for metric, name, conv in (("매출", f"매출({tag} M)", lambda v: round(v / 1e6, 1)), ("EPS", "EPS(p)" if pence else f"EPS({tag})", lambda v: round(v * k_eps, 2))):
+        key = "rev" if metric == "매출" else "eps"
+        cats = [r["period"] for r in H]
+        act = [None if r.get(key) is None else conv(r[key]) for r in H]
+        est_unit = (lambda v: round(v * 1000, 1)) if metric == "매출" else (lambda v: round(v * k_eps, 2))   # 매출 추정은 B 단위
+        est = [None if past_est[metric].get(c) is None else (round(past_est[metric][c], 1) if metric == "매출" else round(past_est[metric][c] * k_eps, 2)) for c in cats]
+        for h, v in sorted(fut[metric].items()):
+            if h > cats[-1] and len([c for c in cats if c > H[-1]["period"]]) < 3:
+                cats.append(h)
+                act.append(None)
+                est.append(est_unit(v))
+        panels.append({"name": name, "categories": cats, "actual": act, "est": est})
+    both = panels[0]["categories"]
+    panels = [{**p, "actual": [dict(zip(p["categories"], p["actual"])).get(c) for c in both], "est": [dict(zip(p["categories"], p["est"])).get(c) for c in both], "categories": both} for p in panels]
+    return {"kind": "actest", "title": "반기 매출·EPS 실적과 컨센서스 — 반기 보고 회사라 분기 실적이 없다", "panels": panels}
+
+
 def actest_chart(dp):
     """분기 매출·EPS 실적 vs 컨센서스 — 지난 4개 분기는 실적과 발표 직전 추정, 앞으로 3개 분기는 컨센서스만"""
+    if dp.get("halves_hist"):   # 반기 보고 회사(2026-11-21 IQE)
+        h = half_chart(dp)
+        if h:
+            return h
     cons = dp.get("consensus") or {}
     rows = list(cons.get("surprise") or [])
     import re as _re

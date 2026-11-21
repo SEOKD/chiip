@@ -92,3 +92,18 @@ class TestKrActest(unittest.TestCase):
         t = earnings_view.premium_trend(dp)
         self.assertEqual(t[0]["peer"], [25.0, 27.5])
         self.assertEqual(t[0]["values"], [20, 20])
+
+
+class TestHalfChart(unittest.TestCase):   # 2026-11-21 IQE — 반기 보고 회사는 반기 그림, 파운드 EPS는 펜스
+    def test_half_panels(self):
+        import report_layout
+        dp = {"currency_symbol": "£", "halves_hist": [{"period": "2025H2", "rev": 52e6, "eps": -0.0122}, {"period": "2026H1", "rev": 64.6e6, "eps": -0.0125}],
+              "consensus": {"surprise": [{"period": "2026Q1", "metric": "매출", "est": 31.5}, {"period": "2026Q2", "metric": "매출", "est": 31.5}],
+                            "quarters_est": {"2026-09-30": 0.0359, "2026-12-31": 0.0358, "2027-03-31": 0.0458},
+                            "eps_quarters_est": {"2026-09-30": -0.0051, "2026-12-31": -0.0051}}}
+        c = report_layout.actest_chart(dp)
+        rev, eps = c["panels"]
+        self.assertEqual(rev["categories"], ["2025H2", "2026H1", "2026H2"])   # 2027H1은 한 분기뿐이라 뺀다
+        self.assertEqual(rev["est"], [None, 63.0, 71.7])
+        self.assertEqual(eps["name"], "EPS(p)")
+        self.assertEqual(eps["actual"][:2], [-1.22, -1.25])
