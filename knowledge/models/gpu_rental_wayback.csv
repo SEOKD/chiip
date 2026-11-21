@@ -397,3 +397,202 @@ date,provider,gpu,config,usd_per_gpu_hr,node_usd_hr,gpus_per_node,snapshot,sourc
 2026-11-12,Nebius,H200,NVIDIA HGX H200,5.4,,,20261112150606,https://web.archive.org/web/20261112150606id_/https://nebius.com/prices
 2026-11-15,Nebius,H200,NVIDIA HGX H200,5.4,,,20261115165229,https://web.archive.org/web/20261115165229id_/https://nebius.com/prices
 2026-11-16,Nebius,H200,NVIDIA HGX H200,5.4,,,20261116161039,https://web.archive.org/web/20261116161039id_/https://nebius.com/prices
+2026-07-28,Silicon Data 지수,B200,B200 지수 SDB200RT,5.63,,,20260728210508,https://web.archive.org/web/20260728210508id_/https://www.silicondata.com/products/silicon-index/h100
+2026-07-30,Silicon Data 지수,B200,B200 지수 SDB200RT,5.66,,,20260730170442,https://web.archive.org/web/20260730170442id_/https://www.silicondata.com/products/silicon-index/h100
+2026-08-13,Silicon Data 지수,B200,B200 지수 SDB200RT,68.0,,,20260813003002,https://web.archive.org/web/20260813003002id_/https://www.silicondata.com/products/silicon-index/h100
+2026-09-29,Silicon Data 지수,B200,B200 지수 SDB200RT,5.88,,,20260929154643,https://web.archive.org/web/20260929154643id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-02,Silicon Data 지수,B200,B200 지수 SDB200RT,5.86,,,20261002093619,https://web.archive.org/web/20261002093619id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-10,Silicon Data 지수,B200,B200 지수 SDB200RT,5.93,,,20261010130218,https://web.archive.org/web/20261010130218id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-12,Silicon Data 지수,B200,B200 지수 SDB200RT,5.94,,,20261012181926,https://web.archive.org/web/20261012181926id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-15,Silicon Data 지수,B200,B200 지수 SDB200RT,6.01,,,20261015152144,https://web.archive.org/web/20261015152144id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-16,Silicon Data 지수,B200,B200 지수 SDB200RT,6.01,,,20261016234048,https://web.archive.org/web/20261016234048id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-17,Silicon Data 지수,B200,B200 지수 SDB200RT,6.01,,,20261017014156,https://web.archive.org/web/20261017014156id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-18,Silicon Data 지수,B200,B200 지수 SDB200RT,6.26,,,20261018233922,https://web.archive.org/web/20261018233922id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-20,Silicon Data 지수,B200,B200 지수 SDB200RT,6.14,,,20261020001219,https://web.archive.org/web/20261020001219id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-21,Silicon Data 지수,B200,B200 지수 SDB200RT,6.14,,,20261021000414,https://web.archive.org/web/20261021000414id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-22,Silicon Data 지수,B200,B200 지수 SDB200RT,6.29,,,20261022233955,https://web.archive.org/web/20261022233955id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-24,Silicon Data 지수,B200,B200 지수 SDB200RT,6.45,,,20261024234215,https://web.archive.org/web/20261024234215id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-25,Silicon Data 지수,B200,B200 지수 SDB200RT,6.6,,,20261025234011,https://web.archive.org/web/20261025234011id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-28,Silicon Data 지수,B200,B200 지수 SDB200RT,6.47,,,20261028234112,https://web.archive.org/web/20261028234112id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-30,Silicon Data 지수,B200,B200 지수 SDB200RT,6.47,,,20261030000129,https://web.archive.org/web/20261030000129id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-31,Silicon Data 지수,B200,B200 지수 SDB200RT,6.64,,,20261031235016,https://web.archive.org/web/20261031235016id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-01,Silicon Data 지수,B200,B200 지수 SDB200RT,6.5,,,20261101234002,https://web.archive.org/web/20261101234002id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-04,Silicon Data 지수,B200,B200 지수 SDB200RT,6.54,,,20261104002828,https://web.archive.org/web/20261104002828id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-05,Silicon Data 지수,B200,B200 지수 SDB200RT,6.7,,,20261105171343,https://web.archive.org/web/20261105171343id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-06,Silicon Data 지수,B200,B200 지수 SDB200RT,6.7,,,20261106000913,https://web.archive.org/web/20261106000913id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-08,Silicon Data 지수,B200,B200 지수 SDB200RT,6.8,,,20261108000611,https://web.archive.org/web/20261108000611id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-10,Silicon Data 지수,B200,B200 지수 SDB200RT,6.84,,,20261110001924,https://web.archive.org/web/20261110001924id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-11,Silicon Data 지수,B200,B200 지수 SDB200RT,6.97,,,20261111000038,https://web.archive.org/web/20261111000038id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-12,Silicon Data 지수,B200,B200 지수 SDB200RT,6.97,,,20261112235558,https://web.archive.org/web/20261112235558id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-14,Silicon Data 지수,B200,B200 지수 SDB200RT,6.87,,,20261114162626,https://web.archive.org/web/20261114162626id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-15,Silicon Data 지수,B200,B200 지수 SDB200RT,6.87,,,20261115235121,https://web.archive.org/web/20261115235121id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-16,Silicon Data 지수,B200,B200 지수 SDB200RT,6.94,,,20261116233744,https://web.archive.org/web/20261116233744id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-17,Silicon Data 지수,B200,B200 지수 SDB200RT,7.1,,,20261117233815,https://web.archive.org/web/20261117233815id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-18,Silicon Data 지수,B200,B200 지수 SDB200RT,6.94,,,20261118234119,https://web.archive.org/web/20261118234119id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-19,Silicon Data 지수,B200,B200 지수 SDB200RT,6.94,,,20261119234458,https://web.archive.org/web/20261119234458id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-20,Silicon Data 지수,B200,B200 지수 SDB200RT,7.1,,,20261120233810,https://web.archive.org/web/20261120233810id_/https://www.silicondata.com/products/silicon-index/h100
+2026-09-29,Silicon Data 지수,B300,B300 지수,6.92,,,20260929154643,https://web.archive.org/web/20260929154643id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-02,Silicon Data 지수,B300,B300 지수,6.78,,,20261002093619,https://web.archive.org/web/20261002093619id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-02,Silicon Data 지수,B300,B300 지수,6.78,,,20261002093639,https://web.archive.org/web/20261002093639id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-10,Silicon Data 지수,B300,B300 지수,6.71,,,20261010130218,https://web.archive.org/web/20261010130218id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-10,Silicon Data 지수,B300,B300 지수,6.71,,,20261010130233,https://web.archive.org/web/20261010130233id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-12,Silicon Data 지수,B300,B300 지수,6.65,,,20261012181926,https://web.archive.org/web/20261012181926id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-12,Silicon Data 지수,B300,B300 지수,6.65,,,20261012181944,https://web.archive.org/web/20261012181944id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-15,Silicon Data 지수,B300,B300 지수,6.77,,,20261015152144,https://web.archive.org/web/20261015152144id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-15,Silicon Data 지수,B300,B300 지수,6.77,,,20261015162143,https://web.archive.org/web/20261015162143id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-16,Silicon Data 지수,B300,B300 지수,6.96,,,20261016234048,https://web.archive.org/web/20261016234048id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-16,Silicon Data 지수,B300,B300 지수,6.96,,,20261016234421,https://web.archive.org/web/20261016234421id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-17,Silicon Data 지수,B300,B300 지수,6.96,,,20261017014156,https://web.archive.org/web/20261017014156id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-17,Silicon Data 지수,B300,B300 지수,7.01,,,20261017234041,https://web.archive.org/web/20261017234041id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-18,Silicon Data 지수,B300,B300 지수,7.01,,,20261018233922,https://web.archive.org/web/20261018233922id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-18,Silicon Data 지수,B300,B300 지수,7.01,,,20261018234117,https://web.archive.org/web/20261018234117id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-20,Silicon Data 지수,B300,B300 지수,7.02,,,20261020002640,https://web.archive.org/web/20261020002640id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-21,Silicon Data 지수,B300,B300 지수,7.02,,,20261021000414,https://web.archive.org/web/20261021000414id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-21,Silicon Data 지수,B300,B300 지수,7.02,,,20261021003333,https://web.archive.org/web/20261021003333id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-22,Silicon Data 지수,B300,B300 지수,7.02,,,20261022014642,https://web.archive.org/web/20261022014642id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-22,Silicon Data 지수,B300,B300 지수,7.35,,,20261022233955,https://web.archive.org/web/20261022233955id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-24,Silicon Data 지수,B300,B300 지수,7.53,,,20261024234215,https://web.archive.org/web/20261024234215id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-24,Silicon Data 지수,B300,B300 지수,7.53,,,20261024234651,https://web.archive.org/web/20261024234651id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-25,Silicon Data 지수,B300,B300 지수,7.53,,,20261025234011,https://web.archive.org/web/20261025234011id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-25,Silicon Data 지수,B300,B300 지수,7.53,,,20261025234151,https://web.archive.org/web/20261025234151id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-28,Silicon Data 지수,B300,B300 지수,7.56,,,20261028001340,https://web.archive.org/web/20261028001340id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-28,Silicon Data 지수,B300,B300 지수,7.56,,,20261028234112,https://web.archive.org/web/20261028234112id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-30,Silicon Data 지수,B300,B300 지수,7.56,,,20261030000129,https://web.archive.org/web/20261030000129id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-30,Silicon Data 지수,B300,B300 지수,7.56,,,20261030010229,https://web.archive.org/web/20261030010229id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-31,Silicon Data 지수,B300,B300 지수,7.56,,,20261031235016,https://web.archive.org/web/20261031235016id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-31,Silicon Data 지수,B300,B300 지수,7.56,,,20261031235154,https://web.archive.org/web/20261031235154id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-01,Silicon Data 지수,B300,B300 지수,7.56,,,20261101234002,https://web.archive.org/web/20261101234002id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-01,Silicon Data 지수,B300,B300 지수,7.56,,,20261101234013,https://web.archive.org/web/20261101234013id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-02,Silicon Data 지수,B300,B300 지수,7.55,,,20261102234129,https://web.archive.org/web/20261102234129id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-03,Silicon Data 지수,B300,B300 지수,7.55,,,20261103175231,https://web.archive.org/web/20261103175231id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-04,Silicon Data 지수,B300,B300 지수,7.55,,,20261104002828,https://web.archive.org/web/20261104002828id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-04,Silicon Data 지수,B300,B300 지수,7.55,,,20261104014905,https://web.archive.org/web/20261104014905id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-05,Silicon Data 지수,B300,B300 지수,7.55,,,20261105003322,https://web.archive.org/web/20261105003322id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-05,Silicon Data 지수,B300,B300 지수,7.56,,,20261105171343,https://web.archive.org/web/20261105171343id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-06,Silicon Data 지수,B300,B300 지수,7.56,,,20261106000913,https://web.archive.org/web/20261106000913id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-06,Silicon Data 지수,B300,B300 지수,7.56,,,20261106003953,https://web.archive.org/web/20261106003953id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-08,Silicon Data 지수,B300,B300 지수,7.69,,,20261108000611,https://web.archive.org/web/20261108000611id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-08,Silicon Data 지수,B300,B300 지수,7.69,,,20261108005200,https://web.archive.org/web/20261108005200id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-09,Silicon Data 지수,B300,B300 지수,7.69,,,20261109001945,https://web.archive.org/web/20261109001945id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-10,Silicon Data 지수,B300,B300 지수,7.68,,,20261110001924,https://web.archive.org/web/20261110001924id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-10,Silicon Data 지수,B300,B300 지수,7.68,,,20261110004738,https://web.archive.org/web/20261110004738id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-11,Silicon Data 지수,B300,B300 지수,7.68,,,20261111000038,https://web.archive.org/web/20261111000038id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-11,Silicon Data 지수,B300,B300 지수,7.68,,,20261111002415,https://web.archive.org/web/20261111002415id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-12,Silicon Data 지수,B300,B300 지수,7.67,,,20261112235558,https://web.archive.org/web/20261112235558id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-13,Silicon Data 지수,B300,B300 지수,7.67,,,20261113000917,https://web.archive.org/web/20261113000917id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-14,Silicon Data 지수,B300,B300 지수,7.67,,,20261114002411,https://web.archive.org/web/20261114002411id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-14,Silicon Data 지수,B300,B300 지수,7.67,,,20261114162626,https://web.archive.org/web/20261114162626id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-15,Silicon Data 지수,B300,B300 지수,7.67,,,20261115235121,https://web.archive.org/web/20261115235121id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-15,Silicon Data 지수,B300,B300 지수,7.67,,,20261115235622,https://web.archive.org/web/20261115235622id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-16,Silicon Data 지수,B300,B300 지수,7.65,,,20261116233744,https://web.archive.org/web/20261116233744id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-16,Silicon Data 지수,B300,B300 지수,7.65,,,20261116234018,https://web.archive.org/web/20261116234018id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-17,Silicon Data 지수,B300,B300 지수,7.65,,,20261117233815,https://web.archive.org/web/20261117233815id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-17,Silicon Data 지수,B300,B300 지수,7.65,,,20261117234046,https://web.archive.org/web/20261117234046id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-18,Silicon Data 지수,B300,B300 지수,7.47,,,20261118234119,https://web.archive.org/web/20261118234119id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-19,Silicon Data 지수,B300,B300 지수,7.47,,,20261119000331,https://web.archive.org/web/20261119000331id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-19,Silicon Data 지수,B300,B300 지수,7.47,,,20261119234458,https://web.archive.org/web/20261119234458id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-20,Silicon Data 지수,B300,B300 지수,7.59,,,20261120233810,https://web.archive.org/web/20261120233810id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-20,Silicon Data 지수,B300,B300 지수,7.59,,,20261120233950,https://web.archive.org/web/20261120233950id_/https://www.silicondata.com/products/silicon-index/b200
+2026-07-28,Silicon Data 지수,H100,H100 지수 SDH100RT,7.17,,,20260728220312,https://web.archive.org/web/20260728220312id_/https://www.silicondata.com/products/silicon-index/b200
+2026-08-12,Silicon Data 지수,H100,H100 지수 SDH100RT,68.0,,,20260812234229,https://web.archive.org/web/20260812234229id_/https://www.silicondata.com/products/silicon-index/b200
+2026-09-11,Silicon Data 지수,H100,H100 지수 SDH100RT,2.64,,,20260911072016,https://web.archive.org/web/20260911072016id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-02,Silicon Data 지수,H100,H100 지수 SDH100RT,2.77,,,20261002093639,https://web.archive.org/web/20261002093639id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-10,Silicon Data 지수,H100,H100 지수 SDH100RT,2.85,,,20261010130233,https://web.archive.org/web/20261010130233id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-12,Silicon Data 지수,H100,H100 지수 SDH100RT,2.85,,,20261012181944,https://web.archive.org/web/20261012181944id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-15,Silicon Data 지수,H100,H100 지수 SDH100RT,2.81,,,20261015162143,https://web.archive.org/web/20261015162143id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-16,Silicon Data 지수,H100,H100 지수 SDH100RT,2.83,,,20261016234421,https://web.archive.org/web/20261016234421id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-17,Silicon Data 지수,H100,H100 지수 SDH100RT,2.82,,,20261017234041,https://web.archive.org/web/20261017234041id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-18,Silicon Data 지수,H100,H100 지수 SDH100RT,2.83,,,20261018234117,https://web.archive.org/web/20261018234117id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-20,Silicon Data 지수,H100,H100 지수 SDH100RT,2.84,,,20261020002640,https://web.archive.org/web/20261020002640id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-21,Silicon Data 지수,H100,H100 지수 SDH100RT,2.85,,,20261021003333,https://web.archive.org/web/20261021003333id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-22,Silicon Data 지수,H100,H100 지수 SDH100RT,2.86,,,20261022014642,https://web.archive.org/web/20261022014642id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-24,Silicon Data 지수,H100,H100 지수 SDH100RT,2.88,,,20261024234651,https://web.archive.org/web/20261024234651id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-25,Silicon Data 지수,H100,H100 지수 SDH100RT,2.89,,,20261025234151,https://web.archive.org/web/20261025234151id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-28,Silicon Data 지수,H100,H100 지수 SDH100RT,2.89,,,20261028001340,https://web.archive.org/web/20261028001340id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-30,Silicon Data 지수,H100,H100 지수 SDH100RT,2.9,,,20261030010229,https://web.archive.org/web/20261030010229id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-31,Silicon Data 지수,H100,H100 지수 SDH100RT,2.92,,,20261031235154,https://web.archive.org/web/20261031235154id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-01,Silicon Data 지수,H100,H100 지수 SDH100RT,2.93,,,20261101234013,https://web.archive.org/web/20261101234013id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-02,Silicon Data 지수,H100,H100 지수 SDH100RT,2.94,,,20261102234129,https://web.archive.org/web/20261102234129id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-03,Silicon Data 지수,H100,H100 지수 SDH100RT,2.96,,,20261103175231,https://web.archive.org/web/20261103175231id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-04,Silicon Data 지수,H100,H100 지수 SDH100RT,2.96,,,20261104014905,https://web.archive.org/web/20261104014905id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-05,Silicon Data 지수,H100,H100 지수 SDH100RT,2.96,,,20261105003322,https://web.archive.org/web/20261105003322id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-06,Silicon Data 지수,H100,H100 지수 SDH100RT,2.97,,,20261106003953,https://web.archive.org/web/20261106003953id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-08,Silicon Data 지수,H100,H100 지수 SDH100RT,3.04,,,20261108005200,https://web.archive.org/web/20261108005200id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-09,Silicon Data 지수,H100,H100 지수 SDH100RT,3.0,,,20261109001945,https://web.archive.org/web/20261109001945id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-10,Silicon Data 지수,H100,H100 지수 SDH100RT,3.01,,,20261110004738,https://web.archive.org/web/20261110004738id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-11,Silicon Data 지수,H100,H100 지수 SDH100RT,3.06,,,20261111002415,https://web.archive.org/web/20261111002415id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-13,Silicon Data 지수,H100,H100 지수 SDH100RT,3.06,,,20261113000917,https://web.archive.org/web/20261113000917id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-14,Silicon Data 지수,H100,H100 지수 SDH100RT,3.1,,,20261114002411,https://web.archive.org/web/20261114002411id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-15,Silicon Data 지수,H100,H100 지수 SDH100RT,3.1,,,20261115235622,https://web.archive.org/web/20261115235622id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-16,Silicon Data 지수,H100,H100 지수 SDH100RT,3.08,,,20261116234018,https://web.archive.org/web/20261116234018id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-17,Silicon Data 지수,H100,H100 지수 SDH100RT,3.07,,,20261117234046,https://web.archive.org/web/20261117234046id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-19,Silicon Data 지수,H100,H100 지수 SDH100RT,3.01,,,20261119000331,https://web.archive.org/web/20261119000331id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-20,Silicon Data 지수,H100,H100 지수 SDH100RT,3.08,,,20261120233950,https://web.archive.org/web/20261120233950id_/https://www.silicondata.com/products/silicon-index/b200
+2026-07-28,Silicon Data 지수,H200,H200 지수,3.08,,,20260728210508,https://web.archive.org/web/20260728210508id_/https://www.silicondata.com/products/silicon-index/h100
+2026-07-28,Silicon Data 지수,H200,H200 지수,3.08,,,20260728220312,https://web.archive.org/web/20260728220312id_/https://www.silicondata.com/products/silicon-index/b200
+2026-07-30,Silicon Data 지수,H200,H200 지수,3.09,,,20260730170442,https://web.archive.org/web/20260730170442id_/https://www.silicondata.com/products/silicon-index/h100
+2026-08-12,Silicon Data 지수,H200,H200 지수,68.0,,,20260812234229,https://web.archive.org/web/20260812234229id_/https://www.silicondata.com/products/silicon-index/b200
+2026-08-13,Silicon Data 지수,H200,H200 지수,68.0,,,20260813003002,https://web.archive.org/web/20260813003002id_/https://www.silicondata.com/products/silicon-index/h100
+2026-09-11,Silicon Data 지수,H200,H200 지수,3.3,,,20260911072016,https://web.archive.org/web/20260911072016id_/https://www.silicondata.com/products/silicon-index/b200
+2026-09-29,Silicon Data 지수,H200,H200 지수,3.29,,,20260929154643,https://web.archive.org/web/20260929154643id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-02,Silicon Data 지수,H200,H200 지수,3.37,,,20261002093619,https://web.archive.org/web/20261002093619id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-02,Silicon Data 지수,H200,H200 지수,3.37,,,20261002093639,https://web.archive.org/web/20261002093639id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-10,Silicon Data 지수,H200,H200 지수,3.39,,,20261010130218,https://web.archive.org/web/20261010130218id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-10,Silicon Data 지수,H200,H200 지수,3.39,,,20261010130233,https://web.archive.org/web/20261010130233id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-12,Silicon Data 지수,H200,H200 지수,3.35,,,20261012181926,https://web.archive.org/web/20261012181926id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-12,Silicon Data 지수,H200,H200 지수,3.35,,,20261012181944,https://web.archive.org/web/20261012181944id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-15,Silicon Data 지수,H200,H200 지수,3.39,,,20261015152144,https://web.archive.org/web/20261015152144id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-15,Silicon Data 지수,H200,H200 지수,3.37,,,20261015162143,https://web.archive.org/web/20261015162143id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-16,Silicon Data 지수,H200,H200 지수,3.45,,,20261016234048,https://web.archive.org/web/20261016234048id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-16,Silicon Data 지수,H200,H200 지수,3.45,,,20261016234421,https://web.archive.org/web/20261016234421id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-17,Silicon Data 지수,H200,H200 지수,3.45,,,20261017014156,https://web.archive.org/web/20261017014156id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-17,Silicon Data 지수,H200,H200 지수,3.51,,,20261017234041,https://web.archive.org/web/20261017234041id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-18,Silicon Data 지수,H200,H200 지수,3.51,,,20261018233922,https://web.archive.org/web/20261018233922id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-18,Silicon Data 지수,H200,H200 지수,3.51,,,20261018234117,https://web.archive.org/web/20261018234117id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-20,Silicon Data 지수,H200,H200 지수,3.45,,,20261020001219,https://web.archive.org/web/20261020001219id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-21,Silicon Data 지수,H200,H200 지수,3.53,,,20261021000414,https://web.archive.org/web/20261021000414id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-21,Silicon Data 지수,H200,H200 지수,3.53,,,20261021003333,https://web.archive.org/web/20261021003333id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-22,Silicon Data 지수,H200,H200 지수,3.47,,,20261022014642,https://web.archive.org/web/20261022014642id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-22,Silicon Data 지수,H200,H200 지수,3.51,,,20261022233955,https://web.archive.org/web/20261022233955id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-24,Silicon Data 지수,H200,H200 지수,3.48,,,20261024234215,https://web.archive.org/web/20261024234215id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-24,Silicon Data 지수,H200,H200 지수,3.48,,,20261024234651,https://web.archive.org/web/20261024234651id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-25,Silicon Data 지수,H200,H200 지수,3.47,,,20261025234011,https://web.archive.org/web/20261025234011id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-25,Silicon Data 지수,H200,H200 지수,3.47,,,20261025234151,https://web.archive.org/web/20261025234151id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-28,Silicon Data 지수,H200,H200 지수,3.47,,,20261028001340,https://web.archive.org/web/20261028001340id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-28,Silicon Data 지수,H200,H200 지수,3.47,,,20261028234112,https://web.archive.org/web/20261028234112id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-30,Silicon Data 지수,H200,H200 지수,3.48,,,20261030000129,https://web.archive.org/web/20261030000129id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-30,Silicon Data 지수,H200,H200 지수,3.48,,,20261030010229,https://web.archive.org/web/20261030010229id_/https://www.silicondata.com/products/silicon-index/b200
+2026-10-31,Silicon Data 지수,H200,H200 지수,3.48,,,20261031235016,https://web.archive.org/web/20261031235016id_/https://www.silicondata.com/products/silicon-index/h100
+2026-10-31,Silicon Data 지수,H200,H200 지수,3.48,,,20261031235154,https://web.archive.org/web/20261031235154id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-01,Silicon Data 지수,H200,H200 지수,3.46,,,20261101234002,https://web.archive.org/web/20261101234002id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-01,Silicon Data 지수,H200,H200 지수,3.46,,,20261101234013,https://web.archive.org/web/20261101234013id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-02,Silicon Data 지수,H200,H200 지수,3.45,,,20261102234129,https://web.archive.org/web/20261102234129id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-03,Silicon Data 지수,H200,H200 지수,3.52,,,20261103175231,https://web.archive.org/web/20261103175231id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-04,Silicon Data 지수,H200,H200 지수,3.52,,,20261104002828,https://web.archive.org/web/20261104002828id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-04,Silicon Data 지수,H200,H200 지수,3.52,,,20261104014905,https://web.archive.org/web/20261104014905id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-05,Silicon Data 지수,H200,H200 지수,3.51,,,20261105003322,https://web.archive.org/web/20261105003322id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-05,Silicon Data 지수,H200,H200 지수,3.51,,,20261105171343,https://web.archive.org/web/20261105171343id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-06,Silicon Data 지수,H200,H200 지수,3.51,,,20261106000913,https://web.archive.org/web/20261106000913id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-06,Silicon Data 지수,H200,H200 지수,3.51,,,20261106003953,https://web.archive.org/web/20261106003953id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-08,Silicon Data 지수,H200,H200 지수,3.53,,,20261108000611,https://web.archive.org/web/20261108000611id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-08,Silicon Data 지수,H200,H200 지수,3.53,,,20261108005200,https://web.archive.org/web/20261108005200id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-09,Silicon Data 지수,H200,H200 지수,3.55,,,20261109001945,https://web.archive.org/web/20261109001945id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-10,Silicon Data 지수,H200,H200 지수,3.48,,,20261110001924,https://web.archive.org/web/20261110001924id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-10,Silicon Data 지수,H200,H200 지수,3.48,,,20261110004738,https://web.archive.org/web/20261110004738id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-11,Silicon Data 지수,H200,H200 지수,3.48,,,20261111000038,https://web.archive.org/web/20261111000038id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-11,Silicon Data 지수,H200,H200 지수,3.48,,,20261111002415,https://web.archive.org/web/20261111002415id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-12,Silicon Data 지수,H200,H200 지수,3.52,,,20261112235558,https://web.archive.org/web/20261112235558id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-13,Silicon Data 지수,H200,H200 지수,3.52,,,20261113000917,https://web.archive.org/web/20261113000917id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-14,Silicon Data 지수,H200,H200 지수,3.6,,,20261114002411,https://web.archive.org/web/20261114002411id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-14,Silicon Data 지수,H200,H200 지수,3.6,,,20261114162626,https://web.archive.org/web/20261114162626id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-15,Silicon Data 지수,H200,H200 지수,3.5,,,20261115235121,https://web.archive.org/web/20261115235121id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-15,Silicon Data 지수,H200,H200 지수,3.5,,,20261115235622,https://web.archive.org/web/20261115235622id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-16,Silicon Data 지수,H200,H200 지수,3.57,,,20261116233744,https://web.archive.org/web/20261116233744id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-16,Silicon Data 지수,H200,H200 지수,3.57,,,20261116234018,https://web.archive.org/web/20261116234018id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-17,Silicon Data 지수,H200,H200 지수,3.55,,,20261117233815,https://web.archive.org/web/20261117233815id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-17,Silicon Data 지수,H200,H200 지수,3.55,,,20261117234046,https://web.archive.org/web/20261117234046id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-18,Silicon Data 지수,H200,H200 지수,3.55,,,20261118234119,https://web.archive.org/web/20261118234119id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-19,Silicon Data 지수,H200,H200 지수,3.55,,,20261119000331,https://web.archive.org/web/20261119000331id_/https://www.silicondata.com/products/silicon-index/b200
+2026-11-19,Silicon Data 지수,H200,H200 지수,3.74,,,20261119234458,https://web.archive.org/web/20261119234458id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-20,Silicon Data 지수,H200,H200 지수,3.74,,,20261120233810,https://web.archive.org/web/20261120233810id_/https://www.silicondata.com/products/silicon-index/h100
+2026-11-20,Silicon Data 지수,H200,H200 지수,3.74,,,20261120233950,https://web.archive.org/web/20261120233950id_/https://www.silicondata.com/products/silicon-index/b200

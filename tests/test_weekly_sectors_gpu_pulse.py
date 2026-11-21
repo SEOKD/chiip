@@ -54,6 +54,17 @@ class TestGpuWeekly(unittest.TestCase):
         for gone in ("지수", "Lambda", "스팟"):
             self.assertNotIn(gone, msg)
 
+    def test_index_reference_line_not_in_movers(self):
+        rows = [{"date": d, "provider": "Silicon Data 지수", "gpu": "H100", "config": "H100 지수", "term": "시장 지수(인용)", "usd_per_gpu_hr": v}
+                for d, v in (("2026-11-16", "3.00"), ("2026-11-23", "2.90"), ("2026-11-23", "3.09"))]
+        rows += [{"date": d, "provider": "Nebius", "gpu": "H100", "config": "NVIDIA HGX H100", "term": "온디맨드", "usd_per_gpu_hr": "4.50"}
+                 for d in ("2026-11-16", "2026-11-23")]
+        t = gpu_weekly.table("2026-11-23", rows)
+        self.assertEqual(t["moved"], [])                                   # 세 곳 정가만 '움직인 지표'
+        self.assertEqual(t["index"], [("H100", 3.09, t["index"][0][2])])   # 그날 마지막 값
+        self.assertAlmostEqual(t["index"][0][2], 3.0, places=1)
+        self.assertIn("참고 시장 지수(Silicon Data) H100 $3.09(+3.0%)", gpu_weekly.message(t, ""))
+
     def test_due_only_monday_after_six_once_per_week(self):
         with mock.patch.object(gpu_weekly.common, "load_state", return_value={}), mock.patch.object(gpu_weekly, "table", return_value={"rows": [1], "moved": [], "as_of": "2026-11-16", "prev": "2026-11-09"}), \
                 mock.patch.object(gpu_weekly, "message", return_value=""):

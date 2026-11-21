@@ -51,5 +51,43 @@ class GpuDaily(unittest.TestCase):
             self.assertEqual(D.status(datetime(2026, 11, 21, h, 30, tzinfo=KST)), {"due": False})
 
 
+class MarketIndex(unittest.TestCase):
+    """2026-11-21 마스터 지시 "GPU 임대료 집계가 잘 안 되는 것 같다. 추이가 제대로 안 나오기 때문이다" — 정가는 평평해서 시장 지수 참고선을 함께"""
+
+    def test_index_summary_and_caption(self):
+        obs = {("CoreWeave", "H100"): {"2025-12-16": 6.16, "2026-11-21": 6.16},
+               (D.IDX, "H100"): {"2026-07-28": 2.60, "2026-11-14": 3.00, "2026-11-21": 3.09}}
+        S = D.series(obs, "2026-01-01", "2026-11-21")
+        summ = D.summary(S, "2026-01-01", "2026-11-21")
+        self.assertAlmostEqual(summ["index"]["H100"]["1w"], 3.0, places=1)
+        self.assertNotIn(D.IDX, [p for r in summ["gpus"] for p in r["prov"]])   # 제공사 줄에 섞지 않는다
+        cap = D.caption(summ)
+        self.assertIn("시장 지수 H100 3.09(+3.0%)", cap)
+        self.assertIn("CW 연초 이후 정가 변동 없음", cap)
+
+    def test_chart_draws_with_index_and_gap(self):
+        import tempfile
+        obs = {("Nebius", "H100"): {"2025-12-27": 2.95, "2026-05-07": 2.95, "2026-07-12": 3.85},
+               (D.IDX, "H100"): {"2026-07-28": 2.6, "2026-11-21": 3.08}}
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(D, "observations", return_value=obs):
+            png, summ = D.chart("2026-01-01", "2026-11-21", path=Path(d) / "g.png")
+            self.assertTrue(png.exists())
+        self.assertIn("H100", summ["index"])
+
+    def test_index_outliers_dropped(self):
+        o = {"2026-07-28": 7.17, "2026-08-12": 68.0, "2026-09-11": 2.64, "2026-10-02": 2.77, "2026-10-10": 2.85, "2026-11-20": 3.08}
+        self.assertEqual(sorted(D.index_clean(o)), ["2026-09-11", "2026-10-02", "2026-10-10", "2026-11-20"])
+
+    def test_silicon_data_reads_given_text(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "radar"))
+        import gpu_rental
+        u = gpu_rental.SD_PAGES[0]
+        t = ('<div><span>H200</span><span>Bloomberg ticker:</span><span>--</span><a>View</a></div>'
+             '<div class="text-[30px] font">$3.74</div>')
+        got = gpu_rental.silicon_data({u: t})
+        self.assertEqual([(r["gpu"], r["usd_per_gpu_hr"]) for r in got], [("H200", 3.74)])
+
+
 if __name__ == "__main__":
     unittest.main()

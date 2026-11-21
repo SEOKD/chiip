@@ -129,10 +129,11 @@ def lambda_():
     return rows
 
 
-def silicon_data():
+def silicon_data(texts=None):
+    """texts = {페이지 주소: 본문}을 주면 그 본문(인터넷 아카이브 스냅숏)을 읽는다 — radar/gpu_daily.py 지수 역수집(2026-11-21)"""
     rows, seen = [], set()
-    for url in SD_PAGES:
-        t = _get(url)
+    for url in (texts or SD_PAGES):
+        t = _get(url) if texts is None else texts[url]
         for m in re.finditer(r"text-\[30px\][^>]*>\$([0-9.]+)<", t):
             pre = t[m.start() - 900:m.start()]
             ctx = re.sub(r"(\s*\|\s*)+", " | ", html.unescape(re.sub(r"<[^>]+>", " | ", pre[:pre.rfind("<")])))

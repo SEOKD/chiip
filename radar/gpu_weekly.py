@@ -4,6 +4,9 @@ Pulse에서 매주 월요일 아침 6시마다 렌탈료의 전주 대비 변화
 결정론: 매주 월요일 06:00 KST 이후 첫 Pulse 회차에 due. 숫자는 모두 여기서 계산한다(원천 knowledge/models/gpu_rental.csv, radar/gpu_rental.py 6시간마다).
   GPU별 Nebius·CoreWeave·AWS 온디맨드 정가(2026-11-16 마스터 지시 — 세 곳·가격 종류 하나) — 기준일(월요일) 값과 7일 전 이전 마지막 값 대비 변화율.
   Nebius 선점형은 15분 단위 스팟 변동가의 공개 하한이라 주간 비교에 쓰지 않는다(Weekly 블록과 같은 원칙).
+시장 지수 참고 줄(2026-11-21 마스터 지시 "GPU 임대료 집계가 잘 안 되는 것 같다. 추이가 제대로 안 나오기 때문이다"): 세 곳 정가는
+  몇 달에 한 번만 바뀌어 주간 비교가 거의 늘 '변화 없음'이다 — Silicon Data 시장 지수(공개 헤드라인 인용)의 전주 대비를 '참고' 한 줄로 붙인다.
+  '움직인 지표'(세 곳 정가)에는 넣지 않는다(2026-11-16 '가격 종류 하나' 원칙 유지 — 정의가 다른 값을 섞지 않는다).
 모델 몫: 풀이 2~4문장(read) — 무엇이 얼마나 움직였고, 왜(공급·수요·세대 교체·가격표 개편 등 근거가 있을 때만), 무엇을 바꾸나.
   값이 하나도 안 움직였으면 '변화 없음'과 그 의미 한 문장. 근거 없는 원인은 쓰지 않는다.
 사용: py radar/gpu_weekly.py --status        # 이번 주 점검 표(JSON)
@@ -22,6 +25,7 @@ sys.path.insert(0, str(common.ROOT / "scripts" / "weekly"))
 import gpu_rent  # noqa: E402   # 시세 읽기·변화율 함수(원래 Weekly 블록) 재사용
 
 STATE = "gpu_weekly"
+IDX = "Silicon Data 지수"
 HOUR = 6          # 월요일 06:00 KST 이후
 READ_MAX = 600
 # 2026-11-16 마스터 지시 "Nebius와 CoreWeave, AWS 세 곳만 … 가격 종류를 하나로 통일" — 세 곳 모두 온디맨드 정가만(스팟·지수·Lambda 뺌)
@@ -85,7 +89,17 @@ def table(as_of, rows=None):
     moved = [(r["gpu"], k, r[k]["wk"]) for r in out for k, *_ in COLS if r[k]["wk"] not in (None, 0.0)]
     compared = sum(1 for r in out for k, *_ in COLS if r[k]["wk"] is not None)
     bases = sorted({r[k]["base"] for r in out for k, *_ in COLS if r[k].get("base")})
-    return {"as_of": day, "prev": prev, "rows": out, "moved": moved, "compared": compared, "base": bases[0] if bases else None}
+    idx = []
+    for g in gpu_rent.GPUS[:4]:   # H100·H200·B200·B300
+        s = {}   # 같은 날 여러 번 읽었으면 그날 마지막 값(일일 그림 radar/gpu_daily.py와 같은 규칙 — 정가처럼 최저값을 고르지 않는다)
+        for r in rows:
+            if r["provider"] == IDX and r["gpu"] == g and r["term"].startswith("시장 지수") and gpu_rent._num(r["usd_per_gpu_hr"]) is not None:
+                s[r["date"]] = gpu_rent._num(r["usd_per_gpu_hr"])
+        _, now = gpu_rent._at(s, day)
+        d_then, then = gpu_rent._at(s, prev)
+        if now is not None:
+            idx.append((g, now, gpu_rent._chg(now, then) if d_then else None))
+    return {"as_of": day, "prev": prev, "rows": out, "moved": moved, "compared": compared, "base": bases[0] if bases else None, "index": idx}
 
 
 def status(now=None):
@@ -129,6 +143,8 @@ def message(t, read):
         lines.append("비교할 전주 값이 아직 없다")
     if t.get("base"):
         lines.append(f"(추적 첫 주라 {_md(t['base'])} 대비)")
+    if t.get("index"):   # 시장 지수 참고(2026-11-21) — 정가와 정의가 달라 '움직인 지표'에 섞지 않는다
+        lines.append("참고 시장 지수(Silicon Data) " + " · ".join(f"{g} ${v:.2f}" + (f"({c:+.1f}%)" if c is not None else "") for g, v, c in t["index"]))
     if read:
         lines += ["", read.strip()]
     for r in t["rows"]:

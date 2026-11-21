@@ -10,8 +10,14 @@
   선점형·스팟·약정가는 뺀다(2026-11-16 마스터 지시 "가격 종류를 하나로 통일"과 같은 원칙). '문의'는 값 없음.
 정가는 계단식으로 바뀐다 — 관측일 사이는 직전 관측값을 잇고(계단선), 관측일에 점을 찍는다.
   바뀐 날짜는 '두 관측일 사이'로만 안다. 그 구간을 change 목록에 함께 적는다.
+시장 지수(2026-11-21 마스터 지시 "GPU 임대료 집계가 잘 안 되는 것 같다. 추이가 제대로 안 나오기 때문이다. 이유를 점검하고 문제를 해결하라"):
+  세 곳 정가는 몇 달에 한 번만 바뀐다(CoreWeave·AWS는 연중 그대로) — 정가만으로는 시장 임대료의 움직임이 보이지 않는다.
+  그래서 각 칸에 Silicon Data 시장 지수(거래 가격 기반 $/GPU·시, 공개 페이지 헤드라인 인용 — 데이터셋·API는 유료라 쓰지 않는다)를
+  회색 점선 '참고선'으로 함께 그린다. 지수 과거값은 같은 공개 페이지의 인터넷 아카이브 스냅숏(2026-07-28~)으로 채운다(--backfill-index).
+  정가가 두 관측 사이에서 바뀌면 그 구간을 점선 사선으로 그린다(그 사이 어느 날 바뀜 — 바뀐 날을 지어내지 않는다).
 결정론: 매일 10:00~11:00 KST 첫 Pulse 회차에 due(주말 포함). 그림은 START(2026-01-01)부터 오늘까지 — 해가 바뀌어도 리셋하지 않고 이어 그린다. 숫자·그림은 여기서, 풀이 2~4문장(read)만 모델 몫.
 사용: py radar/gpu_daily.py --backfill [2026-01-01]   # 아카이브 역수집(요청 사이 6초, 이어받기 가능)
+      py radar/gpu_daily.py --backfill-index [2026-01-01]   # Silicon Data 지수 아카이브 역수집
       py radar/gpu_daily.py --chart [시작일]           # 그림만 그려 경로·요약 출력
       py radar/gpu_daily.py --status                  # Pulse 관문(JSON)
       py radar/gpu_daily.py --send <json>             # {"read": "..."} → 그림+설명 마스터 개인 봇
@@ -34,6 +40,7 @@ import gpu_rental  # noqa: E402
 STATE = "gpu_daily"
 GPUS = ["H100", "H200", "B200", "B300"]
 PROVS = ["Nebius", "CoreWeave", "AWS"]
+IDX = "Silicon Data 지수"   # 시장 지수 참고선(2026-11-21) — 제공사가 아니다
 WINDOW = (10, 11)   # KST 시 — 이 사이 첫 Pulse 회차(매일)
 LIVE = common.ROOT / "knowledge" / "models" / "gpu_rental.csv"
 WB = common.ROOT / "knowledge" / "models" / "gpu_rental_wayback.csv"
@@ -136,6 +143,53 @@ def _wb_read():
         return []
     with WB.open(encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
+
+
+def _wb_write(rows):
+    with WB.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=WB_FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(sorted(rows, key=lambda r: (r["provider"], r["gpu"], r["date"], r.get("snapshot") or "")))
+
+
+def backfill_index(since="2026-01-01", pause=6.0):
+    """Silicon Data 공개 지수 페이지(gpu_rental.SD_PAGES)의 아카이브 스냅숏 → 네 GPU 지수 헤드라인 값(이어받기).
+    한 페이지에 자기 GPU 카드가 없고 다른 GPU 카드들이 있어(H100 페이지엔 H100 카드 없음) 두 페이지를 모두 읽는다"""
+    st = common.load_state(STATE, {})
+    done = set(st.get("wb_done") or [])
+    rows, added = _wb_read(), 0
+    for page in gpu_rental.SD_PAGES:
+        orig = page.split("://", 1)[1]
+        try:
+            snaps = json.loads(_wb_get(f"{CDX}?url={orig}&from={since.replace('-', '')}&output=json&filter=statuscode:200&collapse=timestamp:8&fl=timestamp"))[1:]
+        except Exception as e:
+            print(f"[GPU Daily] 지수 스냅숏 목록 실패 {type(e).__name__}")
+            continue
+        time.sleep(pause)
+        for (ts,) in snaps:
+            k = f"SD|{orig}|{ts}"
+            if k in done:
+                continue
+            url = f"https://web.archive.org/web/{ts}id_/{page}"
+            try:
+                got = gpu_rental.silicon_data({page: _wb_get(url).decode("utf-8", "ignore")})
+            except Exception as e:
+                print(f"[GPU Daily] 지수 {ts} 실패 {type(e).__name__}")
+                time.sleep(pause)
+                continue
+            d = f"{ts[:4]}-{ts[4:6]}-{ts[6:8]}"
+            got = [r for r in got if r["gpu"] in GPUS and r.get("usd_per_gpu_hr")]
+            for r in got:
+                rows.append({"date": d, "provider": IDX, "gpu": r["gpu"], "config": r["config"], "usd_per_gpu_hr": r["usd_per_gpu_hr"],
+                             "snapshot": ts, "source_url": url})
+                added += 1
+            done.add(k)
+            print(f"[GPU Daily] 지수 {d} " + ", ".join(f"{r['gpu']} {r['usd_per_gpu_hr']}" for r in got))
+            st["wb_done"] = sorted(done)
+            common.save_state(STATE, st)
+            _wb_write(rows)
+            time.sleep(pause)
+    return added
 
 
 def backfill(since="2025-12-01", pause=6.0, provs=None):
@@ -246,8 +300,9 @@ def _num(v):
 
 
 def observations():
-    """(제공사, GPU) → {날짜: 가격 또는 None(문의)}. 직접 수집값이 같은 날 아카이브값보다 우선"""
-    obs = {(p, g): {} for p in PROVS for g in GPUS}
+    """(제공사, GPU) → {날짜: 가격 또는 None(문의)}. 직접 수집값이 같은 날 아카이브값보다 우선.
+    (IDX, GPU) = Silicon Data 시장 지수(참고선) — 같은 날 여러 번 읽었으면 그날 마지막 값"""
+    obs = {(p, g): {} for p in PROVS + [IDX] for g in GPUS}
     for r in _wb_read():
         k = (r["provider"], r["gpu"])
         if k in obs:
@@ -256,10 +311,28 @@ def observations():
         with LIVE.open(encoding="utf-8", newline="") as f:
             for r in csv.DictReader(f):
                 k = (r["provider"], r["gpu"])
-                if k not in obs or not r["term"].startswith("온디맨드") or re.search(r"PCIe|NVL|GH200|GB", r["config"], re.I):
+                if k not in obs:
+                    continue
+                if r["provider"] == IDX:
+                    if r["term"].startswith("시장 지수") and _num(r["usd_per_gpu_hr"]) is not None:
+                        obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
+                    continue
+                if not r["term"].startswith("온디맨드") or re.search(r"PCIe|NVL|GH200|GB", r["config"], re.I):
                     continue
                 obs[k][r["date"]] = _num(r["usd_per_gpu_hr"])
+    for g in GPUS:
+        obs[(IDX, g)] = index_clean(obs[(IDX, g)])
     return obs
+
+
+def index_clean(o, lo=0.6, hi=1.6):
+    """시장 지수 이상값 제거 — 아카이브 옛 스냅숏에 자리표시 값(2026-08-12~13 모든 카드 $68.0)과 이름표가 어긋난 값(07-28 H100 $7.17,
+    앞뒤 2.6~3.1)이 있다. 원자료(csv)는 그대로 두고, 그 GPU 시리즈 중앙값의 lo~hi배 밖 값만 그림·요약에서 뺀다"""
+    vs = sorted(v for v in o.values() if v is not None)
+    if len(vs) < 5:
+        return o
+    med = vs[len(vs) // 2]
+    return {d: v for d, v in o.items() if v is not None and lo * med <= v <= hi * med}
 
 
 def series(obs, since, until):
@@ -296,6 +369,7 @@ def value_at(s, d):
 # ---------- 그림(PyMuPDF — 새 패키지 없이) ----------
 # 범주 색 = 고정 순서 첫 세 칸(파랑·주황·청록, dataviz 기본 팔레트 — 세 칸까지 전 쌍 색각 검증 통과로 문서화). 글자는 잉크색.
 COL = {"Nebius": (0.165, 0.471, 0.839), "CoreWeave": (0.922, 0.408, 0.204), "AWS": (0.106, 0.686, 0.478)}
+IDXC = (0.42, 0.42, 0.40)   # 시장 지수 참고선 — 회색 점선(범주 색과 겹치지 않는다)
 INK, INK2, MUTED, GRID, SURF = (0.043, 0.043, 0.043), (0.322, 0.318, 0.306), (0.537, 0.529, 0.506), (0.882, 0.878, 0.851), (0.988, 0.988, 0.984)
 
 
@@ -307,7 +381,8 @@ def _panel(page, box, g, S, d0, d1):
     from memory_spot import _nice, _txt
     x0, y0, x1, y1 = box
     mine = {p: S[(p, g)] for p in PROVS if (p, g) in S}
-    vals = [v for s in mine.values() for _, v in s["points"] if v is not None]
+    idx = S.get((IDX, g))
+    vals = [v for s in list(mine.values()) + ([idx] if idx else []) for _, v in s["points"] if v is not None]
     hi = max(vals) if vals else 1
     step = _nice(hi / 4)
     top = math.ceil(hi * 1.08 / step) * step
@@ -328,12 +403,17 @@ def _panel(page, box, g, S, d0, d1):
         m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
     page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
     ends, missing = [], []
+    if idx:   # 시장 지수 참고선(2026-11-21) — 매일 움직이는 거래 가격. 제공사 선 아래에 깐다
+        sg = [(X(d), Y(v)) for d, v in idx["points"] if v is not None and d >= d0.isoformat()]
+        if len(sg) > 1:
+            page.draw_polyline(sg, color=IDXC, width=1.3, dashes="[3 2] 0")
+        ends.append([Y(idx["last"][1]), IDX, idx["last"][1]])
     for p in PROVS:
         s = mine.get(p)
         if not s:
             missing.append(p)
             continue
-        segs, cur, last = [], [], None   # 계단선 — 값 없는(문의) 관측에서 끊는다
+        segs, cur, last, gaps = [], [], None, []   # 계단선 — 값 없는(문의) 관측에서 끊는다
         pts = s["points"] + ([(d1.isoformat(), s["points"][-1][1])] if s["points"][-1][1] is not None else [])
         for d, v in pts:
             if v is None:
@@ -341,9 +421,12 @@ def _panel(page, box, g, S, d0, d1):
                     segs.append(cur)
                 cur, last = [], None
                 continue
-            if last is not None:
-                cur.append((X(d), Y(last)))
-            cur.append((X(d), Y(v)))
+            if last is not None and abs(v - last) >= 0.005:   # 두 관측 사이 어느 날 바뀜 — 점선 사선(바뀐 날을 지어내지 않는다)
+                gaps.append((cur[-1], (X(d), Y(v))))
+                segs.append(cur)
+                cur = [(X(d), Y(v))]
+            else:
+                cur.append((X(d), Y(v)))
             last = v
         if cur:
             segs.append(cur)
@@ -351,6 +434,8 @@ def _panel(page, box, g, S, d0, d1):
             if len(sg) > 1:
                 page.draw_polyline(sg, color=SURF, width=3.6)   # 겹치는 선 사이 바탕색 테두리
                 page.draw_polyline(sg, color=COL[p], width=1.8)
+        for a, b in gaps:
+            page.draw_line(a, b, color=COL[p], width=1.3, dashes="[2 2] 0")
         for st in s["steps"]:   # 값이 바뀐 것을 처음 본 관측일
             page.draw_circle((X(st["to"]), Y(st["new"])), 2.6, color=SURF, fill=COL[p], width=0.8)
         ends.append([Y(s["last"][1]), p, s["last"][1]])
@@ -358,8 +443,9 @@ def _panel(page, box, g, S, d0, d1):
     for i in range(1, len(ends)):   # 끝 이름표 겹침 풀기(최소 10pt 간격)
         ends[i][0] = max(ends[i][0], ends[i - 1][0] + 10)
     for y, p, v in ends:
-        page.draw_circle((x1 + 6, y - 2.5), 2.6, color=COL[p], fill=COL[p])
-        _txt(page, (x1 + 11, y + 0.5), f"${v:,.2f}", 7.5, INK)
+        c = IDXC if p == IDX else COL[p]
+        page.draw_circle((x1 + 6, y - 2.5), 2.6, color=c, fill=c)
+        _txt(page, (x1 + 11, y + 0.5), f"${v:,.2f}" + (" 지수" if p == IDX else ""), 7.5, INK2 if p == IDX else INK)
     if missing:
         _txt(page, (x0 + 4, y0 + 10), " · ".join(missing) + " 공개 정가 없음(문의)", 7, INK2)
 
@@ -379,17 +465,21 @@ def chart(since=None, until=None, path=None):
     page = doc.new_page(width=760, height=720)
     page.draw_rect(page.rect, color=None, fill=SURF)
     _txt(page, (36, 34), f"GPU 렌털비 추이 — 온디맨드 정가 $/GPU·시 ({_ymd(since)}~)", 15, INK)
-    _txt(page, (36, 52), f"기준 {until} · 계단선 = 관측값을 다음 관측까지 유지, 점 = 가격이 바뀐 것을 처음 본 날", 8.5, INK2)
+    _txt(page, (36, 52), f"기준 {until} · 실선 = 정가(다음 관측까지 유지), 점선 사선 = 두 관측 사이 어느 날 바뀜, 회색 점선 = 시장 지수", 8.5, INK2)
     x = 36
     for p in PROVS:   # 범례(세 계열 — 끝 이름표와 함께)
         page.draw_line((x, 72), (x + 18, 72), color=COL[p], width=2)
         _txt(page, (x + 23, 75), p, 9, INK)
         x += 110
+    if any(k[0] == IDX for k in S):
+        page.draw_line((x, 72), (x + 18, 72), color=IDXC, width=1.4, dashes="[3 2] 0")
+        _txt(page, (x + 23, 75), "시장 지수(Silicon Data, 참고)", 9, INK2)
     boxes = [(70, 110, 320, 370), (440, 110, 690, 370), (70, 430, 320, 680), (440, 430, 690, 680)]
     for g, box in zip(GPUS, boxes):
         _panel(page, box, g, S, d0, d1)
-    _txt(page, (36, 708), "자료: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드 가격표(미국 동부·리눅스, 8 GPU 인스턴스÷8). "
-         "이전 구간은 인터넷 아카이브 스냅숏·AWS 가격표 API 월별 판. 관측 사이는 직전 값 유지.", 7, MUTED)
+    _txt(page, (36, 704), "자료: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드 가격표(미국 동부·리눅스, 8 GPU 인스턴스÷8). "
+         "이전 구간은 인터넷 아카이브 스냅숏·AWS 가격표 API 월별 판.", 7, MUTED)
+    _txt(page, (36, 715), "시장 지수: Silicon Data 공개 페이지 헤드라인 값 인용(거래 가격 기반 지수, 2026-07-28 이전은 아카이브 없음). 정가와 정의가 달라 직접 비교하지 않는다.", 7, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"gpu_trend_{until.replace('-', '')}.png")
     page.get_pixmap(dpi=150).save(str(path))
@@ -410,6 +500,15 @@ def summary(S, since, until, png=""):
             row["prov"][p] = {"usd": last[1], "first": list(s["first"]), "ytd": s["chg"], "1w": (last[1] / w - 1) * 100 if w else None,
                               "steps": [{**x, "pct": round(x["pct"], 1)} for x in s["steps"]]}
         out["gpus"].append(row)
+    out["index"] = {}
+    for g in GPUS:   # 시장 지수 참고(2026-11-21) — 지금 값·1주 변화·4주 변화
+        s = S.get((IDX, g))
+        if not s:
+            continue
+        last = s["last"]
+        w, m = value_at(s, d7), value_at(s, (_d(until) - timedelta(days=28)).isoformat())
+        out["index"][g] = {"usd": last[1], "day": last[0], "1w": (last[1] / w - 1) * 100 if w else None,
+                           "4w": (last[1] / m - 1) * 100 if m else None, "first": list(s["first"])}
     return out
 
 
@@ -439,6 +538,9 @@ def caption(summ, read=""):
         (p, a, b), pcts = max(ev.items(), key=lambda kv: kv[0][2])
         rng = f"{min(pcts):+.0f}%" if round(min(pcts)) == round(max(pcts)) else f"{min(pcts):+.0f}~{max(pcts):.0f}%"
         L.append(f"최근 변경: {p} {len(pcts)}종 {rng}({_md(a)}~{_md(b)})")
+    ix = summ.get("index") or {}
+    if ix:   # 시장 지수 한 줄(2026-11-21) — 정가가 평평해도 시장 움직임이 보이게
+        L.append("시장 지수 " + " · ".join(f"{g} {x['usd']:.2f}" + (f"({x['1w']:+.1f}%)" if x.get("1w") is not None else "") for g, x in ix.items()) + " · 1주")
     flat = [SHORT[p] for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]
     if flat:
         L.append(f"{'·'.join(flat)} 연초 이후 정가 변동 없음")
@@ -479,7 +581,9 @@ def send(read=""):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if argv[:1] == ["--backfill"]:
+    if argv[:1] == ["--backfill-index"]:
+        print(f"[GPU Daily] 지수 아카이브 {backfill_index(argv[1] if len(argv) > 1 else '2026-01-01')}행")
+    elif argv[:1] == ["--backfill"]:
         print(f"[GPU Daily] 아카이브 {backfill(argv[1] if len(argv) > 1 else '2025-12-01')}행")
     elif argv[:1] == ["--chart"]:
         png, summ = chart(argv[1] if len(argv) > 1 else None)
