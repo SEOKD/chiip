@@ -263,6 +263,97 @@ def from_easyconomics(paths, now=None, c=None):
     return quotes, at, ""
 
 
+# ---- 키 API 대체 시세(2026-11-22 마스터 지시 "Flow 태스크 시 TradingView가 안될 경우를 대비해 … 다른 우회 경로를 찾고 파이프라인을 설계하라") ----
+# 점검(2026-11-22): 로그인 없는 웹 경로는 모두 탈락 — Yahoo(robots Disallow /·약관 §2(d)(9) 자동 수집 금지), Finviz(내보내기 robots 금지·약관 미확인),
+#   Investing.com(데이터 사용·저장 금지 문구), MarketScreener(robots부터 접근 거부), Stooq(robots Disallow /·봇 차단), Cboe(403), Nasdaq API(robots Disallow /).
+#   통과 = 무료 키 API: Tiingo IEX(개인·내부 사용 허용, 여러 티커 1회 호출, 시간당 50회) → Twelve Data(무료 800 크레딧/일·분당 8, 평균 거래량 포함).
+#   보유 키 EODHD는 무료 20회/일(이미 다른 작업이 씀), Alpha Vantage는 25회/일이라 35종목에 모자라 쓰지 않는다. 키는 마스터가 무료 가입(TODO).
+API_ORDER = ("tiingo", "twelvedata")
+
+
+def _http_json(url):
+    return json.loads(common.http_get(url, timeout=30).decode("utf-8"))
+
+
+def from_tiingo(key, syms, now, fetch=_http_json):
+    """Tiingo IEX 최신 시세 — 1회 호출. 거래량은 IEX 거래소 몫뿐이라 상대 거래량은 쓰지 않는다(1.0)"""
+    tick = {s.split(":")[-1].lower(): s for s in syms}
+    rows = fetch(f"https://api.tiingo.com/iex/?tickers={','.join(tick)}&token={key}")
+    q, at = {}, None
+    for r in rows or []:
+        s = tick.get(str(r.get("ticker") or "").lower())
+        last, prev = r.get("last") or r.get("tngoLast"), r.get("prevClose")
+        if s and last and prev:
+            q[s] = {"change": round((last / prev - 1) * 100, 3), "relative_volume_10d_calc": None, "close": last}
+            t = r.get("timestamp") or r.get("lastSaleTimestamp")
+            if t:
+                t = datetime.fromisoformat(str(t).replace("Z", "+00:00"))
+                at = t if at is None or t < at else at
+    return q, at, "Tiingo IEX · 거래량 미반영"
+
+
+def from_twelvedata(key, syms, now, fetch=_http_json, pause=61):
+    """Twelve Data /quote — 무료 분당 8크레딧이라 8개씩 끊어 부른다(35종목 ≈ 5분). 상대 거래량 = volume ÷ average_volume"""
+    import time
+    tick = {s.split(":")[-1].upper(): s for s in syms}
+    names, q, at = list(tick), {}, None
+    for i in range(0, len(names), 8):
+        if i:
+            time.sleep(pause)
+        d = fetch(f"https://api.twelvedata.com/quote?symbol={','.join(names[i:i + 8])}&apikey={key}")
+        d = {names[i]: d} if "symbol" in d else d
+        for k, r in d.items():
+            s = tick.get(str(k).upper())
+            if not s or not isinstance(r, dict) or r.get("percent_change") in (None, ""):
+                continue
+            vol, avg = float(r.get("volume") or 0), float(r.get("average_volume") or 0)
+            q[s] = {"change": float(r["percent_change"]), "relative_volume_10d_calc": round(vol / avg, 2) if avg else None, "close": float(r.get("close") or 0)}
+            if r.get("timestamp"):
+                t = datetime.fromtimestamp(int(r["timestamp"]), timezone.utc)
+                at = t if at is None or t < at else at
+    return q, at, "Twelve Data · 거래량은 평균 대비"
+
+
+def from_api(now=None, env=None, fetchers=None):
+    """키가 있는 원천을 차례로 — (quotes, 시각, 원천 이름, 사유). 시세가 EC_MAX_AGE_MIN보다 오래되면 다음 원천"""
+    now = now or datetime.now(KST)
+    env = env if env is not None else common.load_env()
+    fetchers = fetchers or {"tiingo": ("TIINGO_API_KEY", from_tiingo), "twelvedata": ("TWELVEDATA_API_KEY", from_twelvedata)}
+    syms = [s for s in symbols() if not s.upper().endswith("VIX")]
+    why = []
+    for name in API_ORDER:
+        env_key, fn = fetchers[name]
+        if not env.get(env_key):
+            why.append(f"{name} 키 없음")
+            continue
+        try:
+            q, at, label = fn(env[env_key], syms, now)
+        except Exception as exc:
+            why.append(f"{name} {type(exc).__name__}")
+            continue
+        if not q or at is None:
+            why.append(f"{name} 시세 없음")
+            continue
+        age = (now - at).total_seconds() / 60
+        if age > EC_MAX_AGE_MIN:
+            why.append(f"{name} {age:.0f}분 전 시세")
+            continue
+        return q, at, label, ""
+    return {}, None, "", " · ".join(why)
+
+
+def _fallback_text(q, label, out):
+    DIR.mkdir(parents=True, exist_ok=True)
+    tmp = DIR / "_ec_tick.json"
+    tmp.write_text(json.dumps({"data": q}, ensure_ascii=False), encoding="utf-8")
+    res = tick(tmp, None)
+    miss = [s for s in symbols() if s not in q]
+    text = res["text"] + "\n" + f"시세: 대체 원천(TradingView 한도) · {label}" + (f" · 빠진 심볼 {len(miss)}개" if miss else "")
+    if out:
+        Path(out).write_text(text, encoding="utf-8")
+    print(text)
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if "--ec" in argv:   # 대체 시세(Easyconomics etf_list 응답 파일들) → --tick과 같은 출력
@@ -286,6 +377,13 @@ def main(argv):
         if out:
             Path(out).write_text(text, encoding="utf-8")
         print(text)
+        return
+    if "--api" in argv:   # 3단 대체(키 API) — Easyconomics도 실패했을 때
+        q, at, label, why = from_api()
+        if not q:
+            print(f"대체 시세 실패 — {why}. 조용히 끝낸다")
+            return
+        _fallback_text(q, label, argv[argv.index("--out") + 1] if "--out" in argv else None)
         return
     if "--session" in argv:
         print(session()[0])

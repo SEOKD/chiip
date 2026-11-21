@@ -73,3 +73,32 @@ class TestEasyconomicsFallback(unittest.TestCase):
             q, at, why = F.from_easyconomics(self._files(d, "2026-11-19T21:00:00+00:00"), now=datetime(2026, 11, 20, 14, 50, tzinfo=timezone.utc))
         self.assertEqual(q, {})
         self.assertIn("쓰지 않음", why)
+
+
+class ApiFallback(unittest.TestCase):
+    """키 API 대체 시세(2026-11-22 마스터 지시 "TradingView가 안될 경우를 대비해 … 다른 우회 경로")"""
+    def test_tiingo_then_twelvedata(self):
+        from datetime import datetime, timezone, timedelta
+        import importlib, sys
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "radar" / "markets"))
+        SF = importlib.import_module("sector_flow")
+        now = datetime(2026, 11, 23, 15, 45, tzinfo=timezone(timedelta(hours=-5)))
+        old = now - timedelta(hours=20)
+        tiingo = lambda key, syms, n: ({"AMEX:SPY": {"change": 1.0}}, old, "T")  # noqa: E731
+        twelve = lambda key, syms, n: ({"AMEX:SPY": {"change": 0.5, "relative_volume_10d_calc": 1.2}}, now - timedelta(minutes=16), "D")  # noqa: E731
+        q, at, label, why = SF.from_api(now, {"TIINGO_API_KEY": "x", "TWELVEDATA_API_KEY": "y"},
+                                        {"tiingo": ("TIINGO_API_KEY", tiingo), "twelvedata": ("TWELVEDATA_API_KEY", twelve)})
+        self.assertEqual(label, "D")   # Tiingo 시세가 오래돼 Twelve Data로
+        q, at, label, why = SF.from_api(now, {}, {"tiingo": ("TIINGO_API_KEY", tiingo), "twelvedata": ("TWELVEDATA_API_KEY", twelve)})
+        self.assertEqual(q, {})
+        self.assertIn("키 없음", why)
+
+    def test_twelvedata_parse(self):
+        import importlib, sys
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "radar" / "markets"))
+        SF = importlib.import_module("sector_flow")
+        fake = lambda url: {"SPY": {"percent_change": "-1.2", "volume": "300", "average_volume": "100", "close": "600", "timestamp": 1763930700},  # noqa: E731
+                            "XLK": {"percent_change": "2.0", "volume": "50", "average_volume": "100", "timestamp": 1763930700}}
+        q, at, _ = SF.from_twelvedata("k", ["AMEX:SPY", "AMEX:XLK"], None, fetch=fake, pause=0)
+        self.assertEqual(q["AMEX:SPY"]["relative_volume_10d_calc"], 3.0)
+        self.assertEqual(q["AMEX:XLK"]["change"], 2.0)
