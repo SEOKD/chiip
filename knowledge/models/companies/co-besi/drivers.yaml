@@ -1,0 +1,113 @@
+auto: true
+id: co-besi
+name: BE Semiconductor
+ticker: BESI
+unit: BEUR
+unit_usd: 1099400000.0
+industry: semicap
+region_mix:
+  CN: 0.4
+  TW: 0.13
+  US: 0.06
+  KR: 0.05
+  other: 0.36
+tax: 0.15
+horizon: 10
+as_of: '2026-11-21'
+market:
+  date: '2026-11-21'
+  price: 142.7
+  shares: 0.080822
+  net_debt: -0.236556
+  source: 가격 = Fiscal.ai XAMS_BESI 11/20 종가 €142.70. 주식 수 80.82M = Fiscal calculated_market_cap
+    €11.533B ÷ 종가(유통 주식 근사). 현금 €591.9M = 현금 €371.9M + 단기 예금 €220.0M, 차입 €355.3M =
+    장기차입 €345.3M + 리스 €10.0M(3Q26 말 Fiscal 표준화 재무상태표)
+rev0: 1.0086
+ic0: 0.4255
+scenarios:
+  base:
+    prob: 0.7
+    growth:
+      start: 0.2889
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.4265
+      target: 0.4476
+      year_target: 3
+      lr: 0.35
+      lam: 0.35
+      anchors:
+      - 0.4515
+      - 0.4476
+    s2c: 2.079
+  bull:
+    prob: 0.15
+    growth:
+      start: 0.5467
+      end: 0.034999999999999996
+      decay: 0.35
+    margin:
+      m0: 0.4265
+      target: 0.4676
+      year_target: 3
+      lr: 0.35
+      lam: 0.25
+      anchors:
+      - 0.4515
+      - 0.4476
+    s2c: 2.391
+  bear:
+    prob: 0.15
+    growth:
+      start: 0.041
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.4265
+      target: 0.4276
+      year_target: 3
+      lr: 0.35
+      lam: 0.5
+      anchors:
+      - 0.4515
+      - 0.4476
+    s2c: 1.767
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.9541, 1.0631] (Besi 3Q26 실적 발표·어닝콜(2026-10-22) — 4Q26 매출 3Q
+    대비 보합 ±5%, 매출총이익률 63~65%, 영업비용 3Q 대비 +5~10%)
+  growth: 컨센서스 1년차 28.9%, 2년차 10.0%
+  margin: 1~2년차 컨센서스 45.1%, 44.8% 고정 → 목표 45%(3년차, 덮어쓰기) → 장기 수렴 35%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.079
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 4.1%~54.7%
+  probs: '근거 계산 {''bear'': 0.15, ''base'': 0.7, ''bull'': 0.15} — 다음 해 매출 성장 분포로 계산
+    — 약세 +16.5% 아래·강세 +41.8% 위 확률. 내부 관점(컨센서스 +28.9%, σ 12.2%: 추정 범위 없음 — 5% + 0.25
+    × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 35%: 2021~2025 영업이익률 30~45%(Fiscal 실적)의 사이클 평균. 기본값 15%는 Besi에
+    너무 낮다(판단)'
+  shares: '완전 희석 = 기본 0.080822(2026-11-20) + 옵션·RSU·워런트·전환 0.0000 — 1년 새 장기차입 €526.4M
+    → €345.3M, 자기자본 €361.2M → €662.1M — 전환사채가 '
+notes:
+- 자동 생성(build_drivers) 2026-11-21 — 데이터 묶음 2026-11-21
+- '어닝콜 위험: HBM 하이브리드 본딩 채택 지연 — 메모리 품귀가 낮은 적층·TC 본딩 사용을 늘린다'
+- '어닝콜 위험: 4Q 인도 지연 — 수주가 매출로 바뀌는 시점이 밀린다'
+- '어닝콜 위험: 중국 비중 — 3Q 수주의 40%'
+evidence:
+- https://fiscal.ai/company/ENXTAM-BESI
+- https://www.besi.com/investor-relations/
+- https://www.besi.com/investor-relations/financial-reports/
+- https://www.thelec.kr/news/articleView.html?idxno=59804
+- Reuters 2026-03-13(딘스티커 인용) — Besi 인수 제안 검토 보도
+- '보강 적용: R-20261119-01·R-20261118-01·R-20261116-01·R-20261113-01·R-20261110-01·R-20261107-01·R-20261103-01·R-20261031-01(연차보고서
+  미대조 — 미확인 표기)·D-20261120-01·D-20261119-01·D-20261118-01·D-20261111-01·D-20261110-01'
+- '타일 대조: 가이던스 타일 €283M = guidance.next 중간 €283.4M(3Q €283.4M × 보합) · 목표주가 €107·Neutral·업사이드
+  −25%·손익비 0.1 = 판단 문장·피드'
+- '산식 대조: 기본 16.3배 × €6.05 = €98.6 → €99 · 강세 20.4배 × €7.60 = €155.0 → 카드 €155(±€1
+  안)'
+- '일봉 대조: ohlcv.csv 마지막 날짜 2026-11-20 = 평가 가격 날짜(€142.70) — 11/20 한 봉은 Fiscal 시가·종가(고가·저가
+  근사, 문장에 안 씀)'
