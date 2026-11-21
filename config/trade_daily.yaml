@@ -1,0 +1,19 @@
+# Chiip Trade — 매일 아침 품목 하나의 수출입 추이 (마스터 지시 2026-11-21 "매일 아침 특정 재화 품목에 대한 수출입 데이터 추이를 가져와라 … 국가는 시장 관심사에 따라 임의로 정해라", radar/trade_daily.py)
+# 원천: us = USITC DataWeb API(미국 수입·수출, 월간 나라별 — 토큰 USITC_DATAWEB_TOKEN), jp = 일본 재무성 무역통계(radar/trade_hs.py가 받은 e-Stat, 천 엔)
+# 한국 → 미국 = 미국의 한국산 수입, 미국 → 한국 = 미국의 대한국 수출, 일본 → 한국 = 일본의 대한국 수출(상대국 통계로 본다 — 역방향 레이더와 같은 생각)
+# 고르는 법(결정론): 새 달 통계가 나온 품목 > 최근 2일 Chiip 발송 글에 keywords가 많이 나온 품목 > 가장 오래 안 보낸 품목. 같은 품목은 min_gap_days 안에 다시 보내지 않는다(새 달은 예외).
+window: [7, 10]        # 발송 시간대(KST) — 하루 1회
+min_gap_days: 6
+months_shown: 6
+dataweb_gap_sec: 2
+# valid_from: 이 달 앞의 값은 쓰지 않는다 — 일본 시계열은 2025년 값이 2026년의 3~4배로 끊겨 있다(전 세계 합계도 같이 끊김, 2026-11-21 발견 — radar/trade_hs.py 일본 수집분 단위·중복 점검 필요). 비중은 맞지만 전년 대비는 틀리므로 2026-01부터만 쓴다.
+items:
+  - {key: dram_kr_us, name: "DRAM(1Gb 초과)", route: "한국 → 미국", src: us, flow: Import, code: "8542320036", partner: "South Korea", keywords: [DRAM, 디램, D램, HBM, 메모리, SK하이닉스, 삼성전자, Micron, 마이크론], why: "메모리 가격 급등기 — 한국산 DRAM 대미 통관액·개당 단가", memory: true}
+  - {key: nand_kr_us, name: "플래시·EEPROM 메모리", route: "한국 → 미국", src: us, flow: Import, code: "8542320051", partner: "South Korea", keywords: [NAND, 낸드, SSD, 플래시, 키옥시아, 샌디스크], why: "NAND 플래시가 이 분류에 든다(HTS 분류상 EEPROM) — 한국산 대미 통관액", memory: true}
+  - {key: dram_tw_us, name: "DRAM(1Gb 초과)", route: "대만 → 미국", src: us, flow: Import, code: "8542320036", partner: "Taiwan", keywords: [DRAM, 난야, 마이크론, 대만], why: "마이크론 대만 생산분·모듈 경유 물량"}
+  - {key: semicap_us_kr, name: "반도체 제조 장비", route: "미국 → 한국", src: us, flow: Export, code: "848620", partner: "South Korea", keywords: [장비, AMAT, 램리서치, Lam, KLA, 증설, CAPEX, 팹], why: "한국 팹 증설의 선행 흔적 — 미국 장비 대한국 수출"}
+  - {key: semicap_jp_kr, name: "반도체 제조 장비(HS 8486)", route: "일본 → 한국", src: jp, flow: export, code: "8486", partner: "大韓民国", valid_from: "2026-01", keywords: [도쿄일렉트론, TEL, 스크린, 장비, 증설], why: "일본 장비 대한국 수출 — 미국 장비와 함께 한국 CAPEX 대조"}
+  - {key: transformer_kr_us, name: "대형 변압기(10MVA 초과)", route: "한국 → 미국", src: us, flow: Import, code: "850423", partner: "South Korea", keywords: [변압기, HD현대일렉트릭, 효성중공업, LS일렉트릭, 전력기기, 송전], why: "미국 전력망 수요 — 한국산 초고압 변압기 통관"}
+  - {key: ramen_kr_us, name: "라면 등 기타 면류", route: "한국 → 미국", src: us, flow: Import, code: "1902300060", partner: "South Korea", keywords: [라면, 불닭, 삼양], why: "불닭 대미 수출 — 마스터 제시 그래프 품목"}
+  - {key: skincare_kr_us, name: "기초화장품", route: "한국 → 미국", src: us, flow: Import, code: "330499", partner: "South Korea", keywords: [화장품, K뷰티, 에이피알, 실리콘투, 스킨케어], why: "K뷰티 대미 셀인"}
+  - {key: memory_us_kr, name: "메모리 반도체(전체)", route: "미국 → 한국", src: us, flow: Export, code: "854232", partner: "South Korea", keywords: [마이크론, 메모리], why: "미국산 메모리 대한국 수출 — 반대 방향 대조"}

@@ -73,6 +73,68 @@ def run(name, token=None):
     return {"query": name, "tables": len(tb), "rows": sum(len(t["rows"]) for t in tb)}
 
 
+# ── 직접 질의(2026-11-21 토큰 입력 뒤 시험: 저장한 질의 없이 runReport에 본문을 보내면 된다) ──
+MEASURES = {"Import": ["CONS_CUSTOMS_VALUE", "CONS_FIR_UNIT_QUANT"],   # 소비용 수입 통관가·제1수량(GEN_FIR_UNIT_QUANT는 없는 이름 — 서버가 거부)
+            "Export": ["FAS_VALUE"]}                                     # 국산품 수출 FAS(수량을 함께 넣으면 빈 표)
+MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
+
+def body(trade, code, years, by_country=True):
+    """runReport 본문 — 공식 안내의 예시 본문에서 월간·나라별·품목 자릿수만 바꾼 것"""
+    return {"savedQueryType": "", "savedQueryName": "", "savedQueryDesc": "", "isOwner": True, "runMonthly": False, "unitConversion": "0", "manualConversions": [],
+            "reportOptions": {"tradeType": trade, "classificationSystem": "HTS"},
+            "searchOptions": {
+                "MiscGroup": {"districts": {"aggregation": "Aggregate District", "districtGroups": {"userGroups": []}, "districts": [], "districtsExpanded": [], "districtsSelectType": "all"},
+                              "importPrograms": {"aggregation": None, "importPrograms": [], "programsSelectType": "all"},
+                              "extImportPrograms": {"aggregation": "Aggregate CSC", "extImportPrograms": [], "extImportProgramsExpanded": [], "programsSelectType": "all"},
+                              "provisionCodes": {"aggregation": "Aggregate RPCODE", "provisionCodesSelectType": "all", "rateProvisionCodes": [], "rateProvisionCodesExpanded": [],
+                                                 "rateProvisionGroups": {"systemGroups": []}}},
+                "commodities": {"aggregation": "Break Out Commodities", "codeDisplayFormat": "YES", "commodities": [code], "commoditiesExpanded": [], "commoditiesManual": code,
+                                "commodityGroups": {"systemGroups": [], "userGroups": []}, "commoditySelectType": "list", "granularity": str(len(code)),
+                                "groupGranularity": None, "searchGranularity": None, "showHTSValidDetails": True},
+                "componentSettings": {"dataToReport": MEASURES[trade], "scale": "1", "timeframeSelectType": "fullYears", "years": [str(y) for y in years],
+                                      "startDate": None, "endDate": None, "startMonth": None, "endMonth": None, "yearsTimeline": "Monthly"},
+                "countries": {"aggregation": "Break Out Countries" if by_country else "Aggregate Countries", "countries": [], "countriesExpanded": [], "countriesSelectType": "all",
+                              "countryGroups": {"systemGroups": [], "userGroups": []}}},
+            "sortingAndDataFormat": {"DataSort": {"columnOrder": [], "fullColumnOrder": [], "sortOrder": []},
+                                     "reportCustomizations": {"exportCombineTables": False, "totalRecords": "20000", "exportRawData": False}},
+            "deletedCountryUserGroups": [], "deletedCommodityUserGroups": [], "deletedDistrictUserGroups": []}
+
+
+def _num(v):
+    try:
+        return float(str(v).replace(",", ""))
+    except ValueError:
+        return 0.0
+
+
+def flatten(tb):
+    """월간·나라별 표 → {(나라, 'YYYY-MM'): [값, 수량 또는 None]} (첫 표 = 값, 둘째 표 = 수량)"""
+    out = {}
+    for k, t in enumerate(tb[:2]):
+        cols = t["columns"]
+        if "Year" not in cols or "January" not in cols:
+            continue
+        iy, ic, im = cols.index("Year"), cols.index("Country") if "Country" in cols else None, cols.index("January")
+        for r in t["rows"]:
+            ctry = r[ic] if ic is not None else "WORLD"
+            for j, v in enumerate(r[im:im + 12]):
+                out.setdefault((ctry, f"{r[iy]}-{j + 1:02d}"), [0.0, None])[k] = _num(v)
+    return out
+
+
+def monthly(trade, code, years, token=None):
+    """미국 수입('Import')·수출('Export') 월간 나라별 — 토큰 없으면 None(키 대기)"""
+    token = token or common.load_env().get("USITC_DATAWEB_TOKEN")
+    if not token:
+        return None
+    resp = call("/api/v2/report2/runReport", token, body(trade, code, years))
+    err = (resp.get("dto") or {}).get("errors")
+    if err:
+        raise RuntimeError(str(err)[:160])
+    return flatten(tables(resp))
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()

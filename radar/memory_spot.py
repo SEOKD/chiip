@@ -481,6 +481,13 @@ def caption(summ, read=""):
             L.append(f"  · TrendForce 마지막 공개 {s['tf_last'][0][5:].replace('-', '/')} ${s['tf_last'][1]:,.2f}에서 메리츠 변화율로 이어 붙임")
     if read:
         L += ["", "■ 풀이", read.strip()]
+    try:   # 한국산 DRAM·플래시 대미 통관액 참조(USITC DataWeb 월간, 2026-11-21 마스터 지시 "현물가 보고에도 DataWeb을 참조할 수 있으면 참조하라")
+        import trade_daily
+        ref = trade_daily.memory_line()
+        if ref:
+            L += ["", ref]
+    except Exception:
+        pass
     L += ["", "자료: TrendForce 공개 현물표(개인 열람용, 재배포 금지) + 공개 텔레그램 채널 D램익스체인지 변화율"]
     return "\n".join(L)
 

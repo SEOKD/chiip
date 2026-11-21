@@ -62,3 +62,9 @@
 - `radar/tickertrends.py`가 하루 1회 소비·검색·소셜 관심의 90일 가속을 본다(`config/tickertrends.yaml`). 유료 API — 키(`TICKERTRENDS_API_KEY`)가 들어오면 켜진다.
 - 약관이 내부 업무용 한정·제3자 공유 금지다. 수치는 마스터 개인 Pulse와 내부 판단 입력으로만 쓰고, 기사·리포트·노션·공개 산출물에 옮기지 않는다(항목 `internal_only`). 저장 파일은 git에 올리지 않는다.
 - 관심 가속은 실적이 아니다 — 판단에 쓸 때는 실적 동인(매출·KPI)과의 연결을 따로 확인한다.
+
+## Chiip Trade — 매일 아침 수출입 추이(2026-11-21 마스터 지시)
+- `radar/trade_daily.py`(설정 `config/trade_daily.yaml`): 매일 07~10시 KST 품목 하나를 골라 그래프 1장과 최근 6개월 표를 개인 봇으로 보낸다. 고르는 순서는 새 달 통계 > 최근 이틀 발송 글의 관련 낱말 수 > 가장 오래 안 본 품목. 모델 없이 스크립트가 한다.
+- 원천: 미국 수입·수출은 USITC DataWeb API(`radar/usitc_dataweb.py monthly`, 토큰 `USITC_DATAWEB_TOKEN` 6개월마다 재발급), 일본 대한국 수출입은 일본 무역통계(trade_hs). 한국 → 미국은 미국의 한국산 수입으로 본다(상대국 통계).
+- 메모리 현물가 보고(`radar/memory_spot.py`) 끝에 한국산 DRAM·플래시 대미 통관액 한 줄을 붙인다(월간 값이라 현물가와 직접 비교하지 않는다).
+- HTS 10단위 나라별 비중 시계열은 `radar/trade_share.py`(Census API).
