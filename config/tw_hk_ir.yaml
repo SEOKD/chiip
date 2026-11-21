@@ -1,7 +1,8 @@
 # 대만·홍콩 IR 프로필 (마스터 지시 2026-11-01) → radar/pollers/tw_hk_ir.py, knowledge/methods/tw_hk_ir_qa_procedure.md
 # 회사마다 doc_pages(자료실)·ir_pages(탐색 시작)·kinds(그 회사 문서 이름, 정규식)를 적는다. 자료실이 비면 --discover가 찾는다.
 companies:
-  co-tsmc: {name: TSMC, market: tw, code: "2330", site: "https://investor.tsmc.com", doc_pages: ["https://investor.tsmc.com/chinese/quarterly-results"], kinds: {transcript: "Transcript|法說會紀錄|Management Report"}}
+  # TSMC: 목록 페이지(quarterly-results)는 2026-11-22부터 403, 분기 페이지는 열린다 → doc_tpl로 최근 2개 분기(tw_hk_ir.tpl_pages)
+  co-tsmc: {name: TSMC, market: tw, code: "2330", site: "https://investor.tsmc.com", doc_tpl: "https://investor.tsmc.com/english/quarterly-results/{y}/q{q}", kinds: {transcript: "Transcript|法說會紀錄|Management Report"}}
   co-unimicron: {name: Unimicron, market: tw, code: "3037", site: "https://www.unimicron.com"}
   co-ase: {name: ASE, market: tw, code: "3711", site: "https://ase.aseglobal.com"}
   co-delta: {name: Delta Electronics, market: tw, code: "2308", site: "https://www.deltaww.com", ir_pages: ["https://www.deltaww.com/en-US/investors/"]}

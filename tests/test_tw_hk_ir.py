@@ -62,5 +62,13 @@ class TestPulseClass(unittest.TestCase):
         self.assertGreaterEqual(len(ir.config()["companies"]), 25)
 
 
+class TestTpl(unittest.TestCase):
+    def test_recent_quarter_pages(self):
+        c = {"doc_tpl": "https://x/{y}/q{q}"}
+        self.assertEqual(ir.tpl_pages(c, date(2026, 11, 22)), ["https://x/2026/q3", "https://x/2026/q2"])
+        self.assertEqual(ir.tpl_pages(c, date(2027, 2, 1)), ["https://x/2026/q4", "https://x/2026/q3"])
+        self.assertEqual(ir.tpl_pages({}, date(2026, 11, 22)), [])
+
+
 if __name__ == "__main__":
     unittest.main()

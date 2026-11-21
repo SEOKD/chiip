@@ -87,13 +87,34 @@ def save_text(cid, d, text):
     return str(p.relative_to(common.ROOT))
 
 
+def tpl_pages(c, today, n=2):
+    """doc_tpl('…/{y}/q{q}') → 최근 n개 분기 페이지. 목록 페이지는 막히고 분기 페이지만 열리는 회사(TSMC 2026-11-22 목록 403)"""
+    tpl = c.get("doc_tpl")
+    if not tpl:
+        return []
+    y, q = today.year, (today.month - 1) // 3 + 1
+    out = []
+    for _ in range(n):
+        q -= 1
+        if q == 0:
+            y, q = y - 1, 4
+        out.append(tpl.format(y=y, q=q))
+    return out
+
+
 def official(cid, c, cs, today, items, first):
     if c.get("access"):   # 자동으로 못 읽는 공식 사이트 — 부르지 않는다
         return
-    pages = c.get("doc_pages") or cs.get("doc_pages") or []
+    pages = tpl_pages(c, today) or c.get("doc_pages") or cs.get("doc_pages") or []
     rows, seen = [], set(cs.get("seen") or [])
+    errs = []
     for pg in pages:
-        rows += scan(qa._text(qa.fetch(pg)), pg, c)
+        try:
+            rows += scan(qa._text(qa.fetch(pg)), pg, c)
+        except Exception as exc:   # 한 페이지가 막혀도(TSMC 분기 페이지 일부 403, 2026-11-22) 나머지는 읽는다
+            errs.append(exc)
+    if errs and len(errs) == len(pages):
+        raise errs[0]
     new = [d for d in rows if d["key"] not in seen and d["kind"] != "video"]
     keep = {d["key"] for d in fresh_docs(rows, today)}
     for d in new:
@@ -161,7 +182,7 @@ def discover():
         cs = st["companies"].setdefault(cid, {"seen": []})
         site = c["site"].rstrip("/")
         starts = list(c.get("ir_pages") or []) + [site + p for p in ("/investors/", "/investor/", "/ir/", "/en/investors/", "/zh-TW/investors/", "/")]
-        pages, note = list(c.get("doc_pages") or cs.get("doc_pages") or []), ""
+        pages, note = list(tpl_pages(c, docs.date.today()) or c.get("doc_pages") or cs.get("doc_pages") or []), ""
         if c.get("access"):   # 봇 차단·robots 금지 — 탐색하지 않고 기록만
             rows.append({"id": cid, "market": c["market"], "route": "자동 접근 불가", "pages": "", "docs": 0, "note": c["access"], "unofficial": latest_transcript(c)})
             print(cid, rows[-1]["route"], rows[-1]["note"], rows[-1]["unofficial"], flush=True)

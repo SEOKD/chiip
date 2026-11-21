@@ -1,26 +1,55 @@
 id,market,route,pages,docs,note,unofficial
-co-tsmc,tw,자료실 미확인,https://investor.tsmc.com/chinese/quarterly-results,0,HTTPError,StockAnalysis 2026Q3
+co-tsmc,tw,회사 자료실,https://investor.tsmc.com/english/quarterly-results/{y}/q{q},4,목록 403·분기 페이지 일부 403 — doc_tpl,StockAnalysis 2026Q3
 co-unimicron,tw,자료실 미확인,,0,robots 금지,
 co-ase,tw,자료실 미확인,,0,HTTPError403,StockAnalysis 2026Q3
 co-delta,tw,회사 자료실,https://www.deltaww.com/en-US/investors/analyst-meeting,2,,StockAnalysis 2025Q4
-co-elitematerial,tw,회사 자료실,https://www.emctw.com/en-global/presentation_materials/index,12,,
+co-elitematerial,tw,회사 자료실,https://www.emctw.com/en-global/presentation_materials/index,13,,
 co-quanta,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2025Q2
-co-wiwynn,tw,회사 자료실,https://www.wiwynn.com/investors/;https://www.wiwynn.com/investors,36,,
-co-accton,tw,자료실 미확인,,0,문서 링크 없음,
+co-wiwynn,tw,회사 자료실,https://www.wiwynn.com/investors/;https://www.wiwynn.com/investors,38,,
+co-accton,tw,회사 자료실,https://www.accton.com/tw/investor-conference/;https://www.accton.com/tw/investor-conference-20251107/;https://www.accton.com/tw/investor-conference-20241108/,3,,
 tw-yageo,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2025Q4
-tw-walsintech,tw,자료실 미확인,,0,URLError,
+tw-walsintech,tw,자료실 미확인,,0,문서 링크 없음,
 tw-taiwanglass,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
 tw-tuc,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
 tw-iteq,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
 tw-gce,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
 tw-topoint,tw,자료실 미확인,,0,문서 링크 없음,
 tw-winway,tw,자료실 미확인,,0,문서 링크 없음,
-tw-mpi,tw,회사 자료실,https://www.mpi-corporation.com/investors-relationship/shareholder-services/,8,,
+tw-mpi,tw,회사 자료실,https://www.mpi-corporation.com/investors-relationship/shareholder-services/,9,,
 tw-chpt,tw,자료실 미확인,,0,문서 링크 없음,
 tw-avc,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2026Q2
 tw-auras,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
-tw-bizlink,tw,자료실 미확인,,0,문서 링크 없음,StockAnalysis 2026Q2
+tw-bizlink,tw,자료실 미확인,,0,문서 링크 없음,StockAnalysis 2026Q3
 tw-lotes,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
 tw-kingslide,tw,자료실 미확인,,0,URLError,
 hk-popmart,hk,자료실 미확인,,0,문서 링크 없음,
 hk-2050,hk,회사 자료실,https://www.zjshc.com/investor/hkstock.html,3,,
+tw-mediatek,tw,회사 자료실,https://www.mediatek.com/zh-cn/investor-relations/financial-information;https://www.mediatek.com/zh-tw/investor-relations/financial-information;https://www.mediatek.com/investor-relations/financial-information,1013,,StockAnalysis 2026Q3
+tw-honhai,tw,회사 자료실,https://www.honhai.com/zh-tw/investor-relations/investor-relations-activities/investor-conference;https://www.honhai.com/zh-tw/investor-relations/shareholders-services/shareholders-meetings,28,,
+tw-largan,tw,자료실 미확인,,0,문서 링크 없음,
+tw-genius,tw,회사 자료실,https://www.gseo.com/investor-relations,2,,
+tw-tripod,tw,자료실 미확인,,0,문서 링크 없음,
+tw-nanyatech,tw,자료실 미확인,,0,문서 링크 없음,StockAnalysis 2026Q3
+tw-winbond,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-alchip,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2026Q3
+tw-guc,tw,자료실 미확인,,0,문서 링크 없음,
+tw-faraday,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-aspeed,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-kyec,tw,자료실 미확인,,0,문서 링크 없음,
+tw-pti,tw,자료실 미확인,,0,문서 링크 없음,
+tw-chroma,tw,자료실 미확인,,0,문서 링크 없음,StockAnalysis 2026Q3
+tw-allring,tw,자료실 미확인,,0,문서 링크 없음,
+tw-nanyapcb,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,
+tw-holystone,tw,회사 자료실,https://www.holystone.com.tw/page_details.php?&mlevel1=4&mlevel2=55;https://www.holystone.com.tw/page_details.php?&mlevel1=4&mlevel2=66,14,,
+tw-gigabyte,tw,자료실 미확인,,0,문서 링크 없음,
+tw-wistron,tw,자료실 미확인,,0,화면이 스크립트로 그려짐,StockAnalysis 2022Q4
+tw-inventec,tw,회사 자료실,https://www.inventec.com/zh-TW/investor/9;https://www.inventec.com/,7,,
+tw-umc,tw,자동 접근 불가,,0,봇 차단(403),StockAnalysis 2026Q3
+tw-ememory,tw,자동 접근 불가,,0,봇 차단(403),
+tw-kinsus,tw,자동 접근 불가,,0,접속 거부(401),
+tw-winsemi,tw,자동 접근 불가,,0,robots 금지,
+tw-ventec,tw,자동 접근 불가,,0,robots 금지,
+hk-9903,hk,자료실 미확인,,0,문서 링크 없음,
+hk-6082,hk,자료실 미확인,,0,문서 링크 없음,
+hk-9880,hk,자료실 미확인,,0,문서 링크 없음,
+hk-3696,hk,자동 접근 불가,,0,robots 금지,StockAnalysis 2026Q2
