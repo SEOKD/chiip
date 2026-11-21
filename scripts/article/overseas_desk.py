@@ -176,6 +176,8 @@ def data_lane(now, c):
             if v and v.get("yoy") is not None and abs(v["yoy"]) >= link["ppi_yoy"] and str(v.get("period")) >= fresh and reg != "hk":
                 hits.append({"what": f"{names.get(reg, reg)} 생산자물가 {v['yoy']:+.1%}({v['period']})", "size": abs(v["yoy"]) / link["ppi_yoy"]})
         for reg, v in (m.get("trade") or {}).items():
+            if reg in ("jp", "tw", "tw_goods"):   # jp: 2026-11-21 검증에서 재무성 원자료와 불일치(메모리 9월 장부 ¥53.4B vs 원자료 ¥196.3B — 세목 누락 추정, TODO 원인 조사 전까지 제외) · tw: 구조가 달라 대만 PPI 세부로 본다
+                continue
             rows = [(reg, v)] if "yoy" in v else [(f"{reg}←{p}", pv) for p, pv in (v.get("partners") or {}).items() if p == "KR"]
             for label, pv in rows:
                 if pv.get("yoy") is not None and abs(pv["yoy"]) >= link["trade_yoy"] and pv["yoy"] > -0.6 and str(pv.get("period")) >= fresh:   # −60% 아래 급감은 부분 집계·분류 변경일 수 있어 후보로 올리지 않는다(원자료 확인 대상)
