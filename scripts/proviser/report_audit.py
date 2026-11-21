@@ -14,6 +14,10 @@
 대상: outputs/tenbagger/reports/log.csv에서 date = 그날인 행 중 가장 최근 3건. 다른 날짜 파일은 열지도 고치지도 않는다.
 사용: py scripts/proviser/report_audit.py [--date YYYY-MM-DD] [--write]
       py scripts/proviser/report_audit.py --final <id> <사실> <과정> <결론> <정량> <반증> [fixes=n] [--date …] --write
+주간 회차(2026-11-22 마스터 지시 "Proviser가 리포트를 업데이트하는 건 1주일에 한 번씩만 하라. 일요일 오전 10시에 한 주 동안 발행한 리포트 전부를 점검해
+수치가 잘못된 부분을 점검하도록"): --week [--date 그 일요일] — 그날까지 7일(월~일) 동안 발행한 리포트 전부(3건 상한 없음). 일일 회차는 리포트를 고치지 않는다.
+      py scripts/proviser/report_audit.py --week --write
+      py scripts/proviser/report_audit.py --week --final <id> <사실> <과정> <결론> <정량> <반증> fixes=n --write
 """
 import csv
 import json
@@ -58,6 +62,29 @@ def day_reports(day, c=None):
         r["json"] = str(Path(r["html"]).with_suffix(".json"))
         out.append(r)
     return out
+
+
+def week_reports(end, c=None):
+    """end(일요일)까지 7일 동안 발행한 리포트 전부 — 같은 종목을 다시 쓴 경우 마지막 것만(옛 날짜분은 prune_reports가 지운다)"""
+    start = (date.fromisoformat(end) - timedelta(days=6)).isoformat()
+    if not LOG.exists():
+        return []
+    with LOG.open(encoding="utf-8", newline="") as f:
+        rows = [r for r in csv.DictReader(f) if start <= (r.get("date") or "") <= end]
+    off = ROOT / "knowledge" / "models" / "tenbagger" / "off_cycle.csv"
+    if off.exists():
+        with off.open(encoding="utf-8", newline="") as f:
+            skip = {(r["date"], r["id"]) for r in csv.DictReader(f)}
+        rows = [r for r in rows if (r.get("date"), r.get("id")) not in skip]
+    last = {}
+    for r in rows:
+        last[r.get("id")] = r
+    out = []
+    for r in last.values():
+        r["json"] = str(Path(r["html"]).with_suffix(".json"))
+        if Path(r["json"]).exists():
+            out.append(r)
+    return sorted(out, key=lambda r: (r.get("date"), r.get("id")))
 
 
 def _text(d):
@@ -200,15 +227,18 @@ def final_score(auto, rubric, c=None):
     return round((1 - w) * rub + w * auto, 1), round(rub, 1)
 
 
-def write_audit(day, results):
+def write_audit(day, results, week=False):
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / f"{day.replace('-', '')}.json").write_text(json.dumps({"date": day, "reports": results}, ensure_ascii=False, indent=1), encoding="utf-8")
-    L = [f"# 당일 텐배거 리포트 점검 {day} (Chiip Proviser)", "", f"대상 {len(results)}건(그날 최근 3건) — 다른 날짜 리포트는 다루지 않는다.", ""]
+    stem = day.replace('-', '') + ("_week" if week else "")
+    (OUT / f"{stem}.json").write_text(json.dumps({"date": day, "week": week, "reports": results}, ensure_ascii=False, indent=1), encoding="utf-8")
+    head = (f"# 주간 텐배거 리포트 점검 {day} (Chiip Proviser, 일요일 10:00)" if week else f"# 당일 텐배거 리포트 점검 {day} (Chiip Proviser)")
+    scope = (f"대상 {len(results)}건(지난 7일 동안 발행한 리포트 전부) — 수치 오류를 1차 출처로 다시 맞춘다." if week else f"대상 {len(results)}건(그날 최근 3건) — 다른 날짜 리포트는 다루지 않는다.")
+    L = [head, "", scope, ""]
     for res in results:
         L += [f"## {res['ticker']} ({res['id']}) — 자동 점수 {res['auto']}/10", "", "| 축 | 점검 | 결과 | 내용 |", "|---|---|---|---|"]
         L += [f"| {x['axis']} | {x['name']} | {x['status']} | {x['detail']} |" for x in res["checks"]]
         L += ["", "### 프로바이저 판단(모델이 채움)", "- 사실: ", "- 과정: ", "- 결론: ", "- 정량: ", "- 반증: ", "- 정정: ", ""]
-    p = OUT / f"{day.replace('-', '')}.md"
+    p = OUT / f"{stem}.md"
     p.write_text("\n".join(L), encoding="utf-8")
     return p
 
@@ -226,7 +256,9 @@ def record_final(day, rid, ticker, auto, rubric, final, rub, fixes):
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     day = argv[argv.index("--date") + 1] if "--date" in argv else date.today().isoformat()
-    reps = day_reports(day)
+    week = "--week" in argv
+    argv = [a for a in argv if a != "--week"]
+    reps = week_reports(day) if week else day_reports(day)
     if not reps:
         print(f"[리포트 점검] {day} 리포트 없음")
         return 0
@@ -234,7 +266,7 @@ def main(argv):
         rid = argv[1]
         r = next((x for x in reps if x["id"] == rid), None)
         if not r:
-            print(f"[리포트 점검] {day}의 3건에 {rid} 없음 — 당일 3건만 다룬다")
+            print(f"[리포트 점검] {day} {'주간 대상' if week else '당일 3건'}에 {rid} 없음")
             return 1
         nums = [a for a in argv[2:] if a != "--write" and not a.startswith("fixes=") and a != "--date" and a != day]
         rubric = [float(x) for x in nums[:5]]
@@ -243,14 +275,14 @@ def main(argv):
         final, rub = final_score(res["auto"], rubric)
         print(f"[{r['ticker']}] 최종 {final:.1f} = 0.6 × 루브릭 {rub} + 0.4 × 자동 {res['auto']} · 정정 {fixes}건")
         if "--write" in argv:
-            record_final(day, rid, r["ticker"], res["auto"], rubric, final, rub, fixes)
+            record_final(r.get("date") or day, rid, r["ticker"], res["auto"], rubric, final, rub, fixes)
         return 0
     results = [audit(r) for r in reps]
     for res in results:
         fails = [x["name"] for x in res["checks"] if x["status"] == "실패"]
         print(f"[{res['ticker']}] 자동 {res['auto']}/10 · 실패 {len(fails)}" + (f": {', '.join(fails)}" if fails else ""))
     if "--write" in argv:
-        print(f"→ {write_audit(day, results).relative_to(ROOT).as_posix()}")
+        print(f"→ {write_audit(day, results, week).relative_to(ROOT).as_posix()}")
     return 0
 
 

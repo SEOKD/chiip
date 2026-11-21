@@ -1,0 +1,13 @@
+# Chiip Proviser — 주간 리포트 점검 (일요일 10:00)
+
+마스터 지시 2026-11-22: "Proviser가 리포트를 업데이트하는 건 1주일에 한 번씩만 하라. 일요일 오전 10시에 한 주 동안 발행한 리포트 전부를 점검해 수치가 잘못된 부분을 점검하도록 하라."
+일일 Proviser(23:00, `docs/tasks/chiip-proviser.md`)는 리포트를 점검·수정하지 않는다. 리포트를 고치는 것은 이 회차뿐이다.
+
+1. 대상: `py scripts/proviser/report_audit.py --week --write` — 오늘(일요일)까지 7일(월~일) 동안 발행한 Analysis(텐배거) 리포트 전부. 같은 종목을 다시 쓴 경우 마지막 것만. 주기 밖 회차(`knowledge/models/tenbagger/off_cycle.csv`)는 뺀다. 결과 `docs/proviser/reports/<YYYYMMDD>_week.md`.
+2. 점검의 중심은 **수치**다. 리포트마다 머리 타일(주가·시가총액·업사이드·목표주가·멀티플·가이던스)·Chiip View·한 장 요약·핵심 표의 숫자를 1차 출처(8-K EX-99.1·10-Q·회사 IR·Fiscal.ai 원자료 auditUrl)와 datapack으로 다시 대조한다 — 숫자마다 출처·일치 여부. 단위(£·$·¥·₩, B·M·펜스)·기간(분기·반기·TTM)·계산(비율·합계·증감률)도 확인한다. 과정·결론·반증은 `docs/tasks/chiip-proviser.md` 6-3 c의 기준으로 함께 본다.
+3. 최종 점수: `py scripts/proviser/report_audit.py --week --final <id> <사실> <과정> <결론> <정량> <반증> fixes=<정정 수> --write`(행 날짜는 그 리포트 발행일).
+4. 고친다(틀렸을 때만): `docs/tasks/chiip-proviser.md` 6-3 e 절차 그대로 — 리포트 JSON·`corrections`·필요하면 datapack → `v2_to_report.py --merge` → `report_html.py` → 렌더 확인 → '정정 기록 — Chiip Proviser HH:MM' → Artifact 같은 주소 재게시 → 정정 리포트만 텔레그램 '[수정판 — Proviser 정정 n건 …]' 1통(정정이 없는 리포트는 보내지 않는다). 목표주가·등급은 규칙 엔진이 다시 계산한 값만 쓴다.
+5. 글(맞춤법·오타·가독성) 수정도 이 회차에서 함께 — `py scripts/proviser/text_lint.py <리포트 md>` 후보를 6-4 b 기준으로 판단, 숫자·판단·인용은 바꾸지 않는다.
+6. 같은 수치 오류가 두 리포트 이상에서 나오면 그 원인을 Analysis 지시서·엔진으로 올린다(`docs/proviser/chiip-tenbagger.md` 보강 지시) — 다음 주 리포트에서 반복되지 않게.
+7. 끝에 텔레그램 1통(레벨 'PROVISER'): 점검 n건 · 정정 n건(종목·무엇을 전 → 후) · 반복 오류와 올린 보강. 정정이 0이면 한 줄.
+8. 금지: D:\local-only 읽기, 이번 주 밖 리포트 수정, 목표주가·등급을 손으로 바꾸기, 매매·비중 표현.

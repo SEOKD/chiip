@@ -70,3 +70,19 @@ class TestReportAudit(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestWeek(unittest.TestCase):   # 2026-11-22 마스터 지시 — 주 1회 일요일, 그 주 리포트 전부(3건 상한 없음)
+    def test_week_reports_all_in_window_latest_per_id(self):
+        import tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            log = d / "log.csv"
+            rows = [("2026-11-15", "a"), ("2026-11-16", "a"), ("2026-11-17", "b"), ("2026-11-18", "c"), ("2026-11-19", "d"), ("2026-11-22", "b"), ("2026-11-23", "e")]
+            for day, rid in rows:
+                (d / f"{day}_{rid}.json").write_text("{}", encoding="utf-8")
+            log.write_text("date,id,ticker,html,view\n" + "".join(f"{day},{rid},{rid.upper()},{d / f'{day}_{rid}.html'},x\n" for day, rid in rows), encoding="utf-8")
+            with mock.patch.object(ra, "LOG", log), mock.patch.object(ra, "ROOT", d):
+                got = [(r["date"], r["id"]) for r in ra.week_reports("2026-11-22")]
+        self.assertEqual(got, [("2026-11-16", "a"), ("2026-11-18", "c"), ("2026-11-19", "d"), ("2026-11-22", "b")])
