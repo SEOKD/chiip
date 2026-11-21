@@ -60,6 +60,16 @@
             "timeout": 10
           }
         ]
+      },
+      {
+        "matcher": "mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__.*|mcp__easyconomics__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/connector_watch.py\" post",
+            "timeout": 10
+          }
+        ]
       }
     ],
     "PostToolUseFailure": [
@@ -79,6 +89,16 @@
           {
             "type": "command",
             "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/tv_budget.py\" post",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "mcp__4056a804-908b-4b7a-b720-ace3a2bcabc9__.*|mcp__easyconomics__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "py -3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/connector_watch.py\" failure",
             "timeout": 10
           }
         ]

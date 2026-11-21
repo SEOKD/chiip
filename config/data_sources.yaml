@@ -82,3 +82,17 @@ outage:
       prices: [tradingview: mcp-tv-get-ohlcv(일봉은 원래 TradingView가 정본)]
       transcripts: [easyconomics: earnings_call_transcript, alphavantage: radar/alphavantage.py --transcript]
       forward_multiples: [tradingview: mcp-tv-get-symbol-data(price_earnings_forward 등) — 이력 레인지는 대체 없음(미확인)]
+
+# 커넥터 대체(2026-11-22 마스터 지시 "Tingo, Twelvedata, Apify 모두 API Key를 넣어뒀다. TradingView, Fiscal.ai 등 커넥터가 막힐 경우 다른 대안으로 이를 쓰도록 하는 시스템을 설계하라")
+# 시세·일봉은 스크립트가 직접 부르는 키 API로 — radar/market_data.py(순서·하루 상한). 커넥터 막힘은 훅이 기록·안내한다:
+#   TradingView → .claude/hooks/tv_budget.py(예산·냉각, 거부 문구가 market_data로 보낸다) · Fiscal.ai·Easyconomics → .claude/hooks/connector_watch.py
+#   (한도·인증·서버 오류 → radar/state/channel_down.json, 대체 안내를 모델에 붙인다). 상태: py radar/market_data.py --status
+market_data:
+  quote: [tiingo, twelvedata, eodhd]      # Tiingo IEX 1회에 여러 티커(미국) → Twelve Data 8개씩·평균 거래량 → EODHD 무료 20회/일(해외 최후)
+  history: [tiingo, twelvedata, eodhd]
+  daily_cap: {tiingo: 900, twelvedata: 700, eodhd: 15}   # 무료 한도(Tiingo 1,000/일·50/시, Twelve Data 800크레딧/일·8/분, EODHD 20/일)보다 아래
+connector_fallback:
+  tradingview: "시세·일봉 radar/market_data.py · ETF 시세 Easyconomics etf_list · 스크리너 Easyconomics screener_scan · 일본 컨센서스 대체 없음"
+  fiscal: "재무·추정 Easyconomics(2순위, source_router) · 주가 radar/market_data.py · 어닝콜 Easyconomics earnings_call_transcript·alphavantage"
+  easyconomics: "주가 radar/market_data.py · 재무 Fiscal.ai · 추정 Zacks(Fiscal.ai)"
+  apify: "렌더링 대행만 — robots·약관이 허용한 페이지가 자바스크립트로만 그려질 때(radar/apify_fetch.py). 약관이 자동 수집을 막은 사이트(Investegate·LSE·Yahoo 등)를 Apify로 우회하지 않는다"

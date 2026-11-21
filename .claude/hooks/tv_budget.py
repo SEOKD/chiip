@@ -70,7 +70,7 @@ def main(mode):
         if bu and now < datetime.fromisoformat(bu):
             st["denied"] = st.get("denied", 0) + 1
             save(st)
-            return deny(f"TradingView 한도 대기 중({bu[11:16]} KST까지) — 부르지 말고 대체 경로(Easyconomics·Fiscal.ai)나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml)")
+            return deny(f"TradingView 한도 대기 중({bu[11:16]} KST까지) — 부르지 말고 대체 경로(시세·일봉 py radar/market_data.py quote|history, ETF·스크리너 Easyconomics — py radar/market_data.py --status)나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml)")
         budget = int(c.get("daily_budget", 70))
         # 우선 작업(Analysis 그래프, 2026-11-19 마스터 지시 "Analysis에서 TradingView 그래프를 가져오는 걸 우선순위로")은 예산 전부, 나머지는 우선 몫을 남긴 만큼만
         task = task_of(inp)
@@ -83,20 +83,20 @@ def main(mode):
                     and not any(str(task or "").startswith(p) for p in h.get("only") or []):
                 st["denied"] = st.get("denied", 0) + 1
                 save(st)
-                return deny(f"TradingView {h.get('from')}~{h.get('until')} KST는 {', '.join(h.get('only') or [])} 몫 — 지금은 부르지 말고 대체 경로를 쓰거나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml holds)")
+                return deny(f"TradingView {h.get('from')}~{h.get('until')} KST는 {', '.join(h.get('only') or [])} 몫 — 지금은 부르지 말고 대체 경로(시세·일봉 py radar/market_data.py quote|history, ETF·스크리너 Easyconomics — py radar/market_data.py --status)를 쓰거나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml holds)")
         prio = task in (c.get("priority_tasks") or []) or any(now.weekday() in (h.get("weekdays") or []) and str(task or "").startswith(p)
                                                                for h in c.get("holds") or [] for p in h.get("only") or [])
         limit = budget if prio else budget - int(c.get("priority_reserve", 30))
         if st.get("used", 0) >= limit:
             st["denied"] = st.get("denied", 0) + 1
             save(st)
-            return deny(f"TradingView 오늘 예산 {st.get('used')}/{budget}건 소진 — 다음 06:00 KST까지 부르지 않는다. 대체 경로를 쓰거나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml)")
+            return deny(f"TradingView 오늘 예산 {st.get('used')}/{budget}건 소진 — 다음 06:00 KST까지 부르지 않는다. 대체 경로(시세·일봉 py radar/market_data.py quote|history, ETF·스크리너 Easyconomics — py radar/market_data.py --status)를 쓰거나 '한도로 못 함'으로 끝낸다(config/tv_budget.yaml)")
         # 작업별 하루 상한(2026-11-22 마스터 지시 "Pulse 줄이기" — 11/16~20 Pulse가 하루 32~103건으로 전체의 절반 이상을 썼다)
         cap = (c.get("task_caps") or {}).get(task) if task else None
         if cap is not None and st.get("by_task", {}).get(task, 0) >= int(cap):
             st["denied"] = st.get("denied", 0) + 1
             save(st)
-            return deny(f"TradingView {task} 오늘 몫 {cap}건 소진 — 부르지 말고 대체 경로를 쓰거나 그 줄을 빼고 끝낸다(config/tv_budget.yaml task_caps)")
+            return deny(f"TradingView {task} 오늘 몫 {cap}건 소진 — 부르지 말고 대체 경로(시세·일봉 py radar/market_data.py quote|history, ETF·스크리너 Easyconomics — py radar/market_data.py --status)를 쓰거나 그 줄을 빼고 끝낸다(config/tv_budget.yaml task_caps)")
         if task:
             st.setdefault("by_task", {})[task] = st.get("by_task", {}).get(task, 0) + 1
         st["used"] = st.get("used", 0) + 1
