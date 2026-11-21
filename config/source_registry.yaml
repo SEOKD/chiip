@@ -399,6 +399,23 @@
   verified: true
   enabled: true
 
+- id: src-uk-ir
+  name: 영국 상장사 규제 공시(RNS)·보도자료 — 회사 IR 페이지 공개 피드(Investis XML·RSS·Design Portfolio JSON·뉴스 목록)
+  category: B-기업1차
+  module: uk_ir
+  entry: poll
+  method: rss
+  endpoint_doc: "radar/pollers/uk_ir.py 맨 위 · config/uk_ir.yaml(회사·피드·제외 사유)"
+  auth: none
+  scope: [글로벌]
+  interval_min: 10
+  run_on: local
+  language: en
+  doc_type: 공시
+  terms_note: "2026-11-22 마스터 지시 '1번 기준으로 파이프라인을 만들어라'. Investegate(약관 3.3·3.4·4.3·이용 정책)·LSE(프로그램 접근 금지)는 쓰지 않는다. 회사 IR 페이지가 쓰는 피드만, robots 확인(BrighterIR·Incapsula·Azure WAF 사이트 제외), 제목·링크만 저장"
+  reliability_default: 1차(회사 공시)
+  verified: true
+  enabled: true
 - id: src-partner-trace
   name: 협업 흔적 — 협업사 뉴스룸·기술 블로그·학회의 삼성·SK하이닉스 언급, 블로그 미확인 주장의 공개 근거
   category: L7-협업

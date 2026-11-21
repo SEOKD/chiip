@@ -57,7 +57,7 @@ CLASSES = [("WSJ 주요", ("src-wsj-main",)),   # WSJ 섹션별 주요 기사 �
            ("원자력·위성", ("src-nuclear-", "src-space-")),   # NRC·에너지부·우주개발청 등(2026-10-31 마스터 지시, knowledge/methods/nuclear_space_lens.md)
            ("방위", ("src-defense-",)),   # 각국 국방 조달·예산·방위 기업 뉴스룸(2026-10-29 마스터 지시, config/defense.yaml)
            ("논문", ("src-arxiv-", "src-openalex")),
-           ("보도자료", ("src-prn", "src-bw", "src-ir-press", "src-newsroom-", "src-assoc-", "src-gpu-rental", "src-trendforce-pr")),   # GPU 렌털료 변화·TrendForce 가격 보도자료(2026-11-10)
+           ("보도자료", ("src-prn", "src-bw", "src-ir-press", "src-newsroom-", "src-assoc-", "src-gpu-rental", "src-trendforce-pr", "src-uk-ir")),   # GPU 렌털료 변화·TrendForce 가격 보도자료(2026-11-10)
            ("공시", ("src-sec-filings", "src-sec-self", "src-sec-deals", "src-edgar-fts", "src-dart", "src-tw-revenue-surge", "src-cn-hk-disclosure", "src-edinet")),   # 대만 월매출 급증·중국·홍콩 원문 공시(2026-11-09 대만·중국 발굴 보완)   # src-dart = SK하이닉스만(2026-11-06 마스터 지시 "SK하이닉스만 켜")
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg")),
            ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"))]   # src-consumer-macro = 미·일·유럽·영국 소비 통계 새 달에 문턱 넘은 업종(radar/consumer_macro.py, 2026-11-14)   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)

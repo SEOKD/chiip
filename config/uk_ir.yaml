@@ -1,0 +1,19 @@
+# 영국 상장사 규제 공시(RNS)·보도자료 — 회사 IR 페이지가 쓰는 공개 피드 (radar/pollers/uk_ir.py, 원천 src-uk-ir)
+# 마스터 지시 2026-11-22 "1번 기준으로 파이프라인을 만들어라" — Investegate(약관 3.3·3.4·4.3, 이용 정책이 복제·상업 이용 금지)·LSE(약관이 프로그램 접근 금지)
+#   대신 회사 자기 IR 페이지의 피드만 쓴다. 2026-11-22 점검: robots 허용·약관에 자동 접근 금지 없음(일부 '개인·내부 사용' 복제 조항 → 제목·링크·요약만 저장).
+# kind: investis = Investis 공시 XML(otp.tools.investis.com/clients/uk/<slug>/rns/xml-feed.aspx — 회사 IR 페이지의 iframe 경로, 문서화 안 된 경로라 바뀔 수 있다)
+#       rss = 회사 RSS · dp = Design Portfolio JSON(회사 IR 페이지 iframe이 부르는 주소) · html = 서버가 그린 뉴스 목록(제목·날짜)
+# 제외(2026-11-22): BAE Systems(Incapsula 봇 차단 — robots·약관도 못 읽음, 우회하지 않음) · Smiths Group(Azure WAF 차단) ·
+#   IQE·Raspberry Pi·XP Power(공시 위젯 BrighterIR — robots Disallow /, 약관이 로봇·크롤러 금지) · Spectris(KKR 인수로 상장 폐지) · Gooch & Housego(Arlington 인수 완료)
+#   → BAE·Smiths·IQE·RPI·XPP는 SEC·보도자료 배포처·뉴스 레이더에 계속 걸린다. 새 회사는 여기 한 줄(robots·약관 확인 후).
+companies:
+  - {tidm: QQ., id: co-qinetiq, name: QinetiQ, kind: investis, feed: "https://otp.tools.investis.com/clients/uk/qinetiq1/rns/xml-feed.aspx", page: "https://www.qinetiq.com/en/investors/regulatory-news"}
+  - {tidm: CHG, id: co-chemring, name: Chemring, kind: investis, feed: "https://otp.tools.investis.com/clients/uk/chemring_group_plc1/rns/xml-feed.aspx", page: "https://www.chemring.com/investors/regulatory-news"}
+  - {tidm: RR., id: co-rollsroyce, name: Rolls-Royce, kind: investis, feed: "https://otp.tools.investis.com/clients/uk/rolls_royce2/rns/xml-feed.aspx", page: "https://www.rolls-royce.com/investors/regulatory-news.aspx"}
+  - {tidm: OXIG, id: co-oxinst, name: Oxford Instruments, kind: investis, feed: "https://otp.tools.investis.com/clients/uk/oxford_instruments_plc/rns/xml-feed.aspx", page: "https://www.oxinst.com/investors/investor-news"}
+  - {tidm: RSW, id: co-renishaw, name: Renishaw, kind: investis, feed: "https://otp.tools.investis.com/clients/uk/renishaw_plc/rns/xml-feed.aspx", page: "https://www.renishaw.com/en/investors--22615"}
+  - {tidm: BAB, id: gb-babcock, name: Babcock International, kind: rss, feed: "https://www.babcockinternational.com/feed/", page: "https://www.babcockinternational.com/investors/regulatory-news/", note: "보도·뉴스 피드(RNS 전부는 아님)"}
+  - {tidm: DSCV, id: co-discoverie, name: discoverIE, kind: rss, feed: "https://discoverieplc.com/rss/pressrelease.aspx", page: "https://discoverieplc.com", note: "robots Crawl-delay 10"}
+  - {tidm: CHRT, id: gb-cohort, name: Cohort, kind: dp, feed: "https://ir.design-portfolio.co.uk/api/companies/83/articles?itemsPerPage=10&page=1", page: "https://www.cohortplc.com/news/regulatory-news"}
+  - {tidm: CWR, id: eu-cwr, name: Ceres Power, kind: dp, feed: "https://ir.design-portfolio.co.uk/api/companies/124/articles?itemsPerPage=10&page=1", page: "https://www.ceres.tech/investors/regulatory-news/"}
+  - {tidm: HLMA, id: co-halma, name: Halma, kind: html, feed: "https://www.halma.com/news", page: "https://www.halma.com/news", note: "서버가 그린 뉴스 목록 — 공시 전체 목록은 자바스크립트 위젯"}
