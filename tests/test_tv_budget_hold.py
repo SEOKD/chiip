@@ -69,3 +69,21 @@ class TestMoversMerge(unittest.TestCase):
                 p, n = W.put(src2, "2026-W47", merge=True)
             regions = [r["region"] for r in _csv.DictReader(open(p, encoding="utf-8"))]
         self.assertEqual(sorted(regions), ["JP", "US"])
+
+
+class TestTaskCap(unittest.TestCase):   # 2026-11-22 마스터 지시 "Pulse 줄이기" — 작업별 하루 상한
+    def test_pulse_capped(self):
+        cfg = {**CFG, "holds": [], "task_caps": {"chiip-pulse": 2}}
+        FakeDT.NOW = datetime(2026, 11, 23, 10, 0, tzinfo=H.KST)
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(H, "STATE", Path(d) / "s.json"), \
+                mock.patch.object(H, "cfg", return_value=cfg), mock.patch.object(H, "datetime", FakeDT):
+            outs = []
+            for task in ("chiip-pulse", "chiip-pulse", "chiip-pulse", "chiip-portfolio"):
+                with mock.patch.object(H, "task_of", return_value=task), \
+                        mock.patch("sys.stdin", io.StringIO(json.dumps({"tool_name": "mcp-tv-get-symbol-data", "session_id": "abc"}))), \
+                        mock.patch("sys.stdout", new_callable=io.StringIO) as out:
+                    H.main("pre")
+                    outs.append(out.getvalue())
+        self.assertEqual(outs[:2], ["", ""])
+        self.assertIn("task_caps", outs[2])
+        self.assertEqual(outs[3], "")   # 다른 작업은 그대로

@@ -4,6 +4,9 @@
 daily_budget: 25          # 하루(06:00 KST 시작) 호출 상한 — 2026-11-21 70→25(11/20·21은 06시 뒤 7·13건째에 TradingView 일일 한도, 직전 24시간 28·57건)
 priority_tasks: [chiip-tenbagger-report, chiip-analysis-samyang-once]   # 우선 작업(2026-11-19 마스터 지시: Analysis TradingView 그래프 우선) — 예산 전부 쓸 수 있다
 priority_reserve: 12      # 다른 작업은 하루 예산에서 이만큼을 남긴 만큼(13건)만 쓴다 — Analysis 우선 몫(2026-11-21 30→12, 예산 축소에 맞춤)
+task_caps:                # 작업별 하루 상한(2026-11-22 마스터 지시 "Pulse 줄이기") — 11/16~20 Pulse가 하루 32~103건(일본 전사 조회 88%·주가 줄 12%).
+  chiip-pulse: 5          # 일본 전사 조회는 radar/jp_tv_docs.py가 하루 3종목(11-21), 나머지는 실적 주가 줄(장전·장후 등락은 TradingView만 준다) — 넘으면 주가 줄을 뺀다
+  chiip-pulse-weekend: 2
 block_hours_after_daily: 24   # TradingView '일일 한도'가 걸리면 이 시간 동안 부르지 않는다(06시에 풀어도 바로 다시 걸렸다, 2026-11-21)
 day_start_hour: 6
 # TradingView 와치리스트 동기화는 토요일 08:00 주 1회(2026-11-19 마스터 지시) — 그날 다른 작업 몫 안에서 쓴다
