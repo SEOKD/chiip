@@ -29,6 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "radar"))
 sys.path.insert(0, str(ROOT / "scripts" / "industry"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 KST = timezone(timedelta(hours=9))
 OUT = ROOT / "outputs" / "article" / "pitch"
 NUM_RE = re.compile(r"[\d.,]+\s*(%|%p|억|조|원|엔|\$|B|M|배|GW|MW|장|개)")
@@ -288,6 +289,22 @@ def gather(now):
                           "basis": f"{it.get('source_class')} · 지금 단계: {dossier.get('stage_note', '')}", "links": [["원문", it.get("url")]],
                           "why": "나타나야 할 서류: " + " / ".join((dossier.get("expected") or [])[:3]) + " — 흔적은 정황, 단계(보도·발언·안건·의결·계약)를 나눈다(금지표: 지방 안건 상정 → 투자 확정)",
                           "next": "사람이 확인할 곳: " + " / ".join(dossier.get("blocked") or [])})
+    # ⑩ 해외 데스크(2026-11-21 마스터 지시 — 일·중·대만·미·EU·영 상장사 자료와 수출입·PPI에서 삼성전자·SK하이닉스·삼성전기·LG이노텍·DB하이텍 연결 소재,
+    #    국내 미보도 사전 추정 포함. scripts/article/overseas_desk.py, 편집 기준 knowledge/methods/article_yama_playbook.md)
+    try:
+        import overseas_desk
+        for x in overseas_desk.run(now)[:12]:
+            if x["rank_score"] < 6.5:
+                continue
+            cands.append({"src": f"해외 데스크({x['lane']})", "at": x.get("seen") or now.isoformat(timespec="minutes"), "name": x["title"], "ids": list(x.get("ids") or []),
+                          "company_names": [x["counterparty"]], "counterparty": (x["counterparty"], x["korea"], x.get("role", "")),
+                          "event": x["title"], "insight": round(x["rank_score"] * 0.8, 1), "primary": x.get("primary", True), "basis": f"{x['country']} {x['class']}",
+                          "links": [["원문", x["url"]]] if x.get("url") else [], "docs": [str(x.get("doc"))],
+                          "why": f"야마 유형 '{x['archetype']}' — {x['lead_frame']}" + (f" · 읽는 법: {x['angle']}" if x.get("angle") else ""),
+                          "next": (x.get("caution") or "") + (f" 국내 채널 3일 언급 {x['kr_mentions_3d']}건(사전 추정 — 한국어 검색으로 확인)" if x.get("kr_mentions_3d") is not None else ""),
+                          "desk": {k: x.get(k) for k in ("lane", "country", "class", "kind", "archetype", "parts", "rank_score")}})
+    except Exception as exc:   # 데스크가 죽어도 기존 풀은 나간다
+        cands.append({"src": "해외 데스크(오류)", "at": now.isoformat(timespec="minutes"), "name": f"overseas_desk 실패: {type(exc).__name__}", "ids": [], "event": str(exc)[:120], "insight": 0, "primary": False})
     return cands, (by_code, info, ind_of, korea_ind)
 
 

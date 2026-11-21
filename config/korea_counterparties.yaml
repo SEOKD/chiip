@@ -63,6 +63,55 @@ counterparties:
   - {names: ["Amkor", "ASE", "日月光"], ids: [], korea: [삼성전자, SK하이닉스], role: "후공정 외주"}
   - {names: ["Arm"], ids: [], korea: [삼성전자], role: "설계 IP"}
 
+  # ── 해외 데스크 확장(2026-11-21 마스터 지시 — 중국 상장사, DB하이텍(8인치 파운드리·전력 반도체) 상대방, 삼성전기·LG이노텍 경쟁·고객) ──
+  # 관계 확정이 아니라 감시 목록이다. 역할은 업계에 널리 알려진 품목 기준이고 기사에 쓸 때는 1차 출처로 다시 확인한다
+  - {names: ["SMIC", "中芯国际", "中芯國際"], ids: [], korea: [삼성전자, DB하이텍], role: "파운드리 경쟁(성숙·선단 공정 가격·가동률)"}
+  - {names: ["Hua Hong", "华虹", "華虹"], ids: [], korea: [DB하이텍], role: "8인치·전력 반도체 파운드리 경쟁"}
+  - {names: ["CXMT", "长鑫", "長鑫"], ids: [], korea: [삼성전자, SK하이닉스], role: "D램 경쟁(중국 증설·가격)"}
+  - {names: ["YMTC", "长江存储", "長江存儲"], ids: [], korea: [삼성전자, SK하이닉스], role: "낸드 경쟁(중국 증설)"}
+  - {names: ["GigaDevice", "兆易创新"], ids: [], korea: [삼성전자, SK하이닉스], role: "니치 메모리 경쟁(범용 D램·노어 가격)"}
+  - {names: ["Montage Technology", "澜起科技"], ids: [], korea: [삼성전자, SK하이닉스], role: "DDR5 인터페이스 칩 공급(서버 D램 전환 속도)"}
+  - {names: ["NAURA", "北方华创"], ids: [], korea: [삼성전자, SK하이닉스], role: "중국 장비 국산화(한국 팹 중국 법인·장비 경쟁)"}
+  - {names: ["AMEC", "中微公司"], ids: [], korea: [삼성전자, SK하이닉스], role: "중국 식각 장비(장비 경쟁)"}
+  - {names: ["BOE", "京东方"], ids: [], korea: [삼성디스플레이, LG디스플레이], role: "패널 경쟁(OLED 증설·애플 공급)"}
+  - {names: ["Sunny Optical", "舜宇光学"], ids: [], korea: [LG이노텍, 삼성전기], role: "카메라 모듈·렌즈 경쟁"}
+  - {names: ["Luxshare", "立讯精密"], ids: [], korea: [LG이노텍], role: "애플 공급망 경쟁(모듈 조립)"}
+  - {names: ["Cowell", "高伟电子"], ids: [], korea: [LG이노텍], role: "애플 카메라 모듈 경쟁"}
+  - {names: ["Fenghua", "风华高科"], ids: [], korea: [삼성전기], role: "MLCC 경쟁(중국)"}
+  - {names: ["Sanhuan", "三环集团"], ids: [], korea: [삼성전기], role: "MLCC·세라믹 경쟁(중국)"}
+  - {names: ["Shennan Circuits", "深南电路"], ids: [], korea: [삼성전기, LG이노텍], role: "패키지 기판 경쟁(중국)"}
+  - {names: ["Yageo", "國巨"], ids: [], korea: [삼성전기], role: "MLCC·수동부품 경쟁(가격 인상 공지)"}
+  - {names: ["Largan", "大立光"], ids: [], korea: [LG이노텍, 삼성전기], role: "스마트폰 렌즈 경쟁·애플 공급"}
+  - {names: ["Kinsus", "景碩"], ids: [], korea: [삼성전기, LG이노텍], role: "ABF 기판 경쟁"}
+  - {names: ["Nan Ya PCB", "南電"], ids: [], korea: [삼성전기, LG이노텍], role: "ABF 기판 경쟁"}
+  - {names: ["Zhen Ding", "臻鼎"], ids: [], korea: [삼성전기, LG이노텍], role: "기판·FPCB 경쟁(애플 공급망)"}
+  - {names: ["UMC", "聯電", "联电"], ids: [], korea: [DB하이텍, 삼성전자], role: "성숙 공정 파운드리 경쟁(8인치 가격·가동률)"}
+  - {names: ["Vanguard International", "世界先進"], ids: [], korea: [DB하이텍], role: "8인치 파운드리 경쟁(전력·디스플레이 구동칩)"}
+  - {names: ["PSMC", "力積電"], ids: [], korea: [DB하이텍, 삼성전자], role: "성숙 공정 파운드리·메모리 경쟁"}
+  - {names: ["Nanya Technology", "南亞科"], ids: [], korea: [삼성전자, SK하이닉스], role: "범용 D램 경쟁(계약가 선행)"}
+  - {names: ["Winbond", "華邦"], ids: [], korea: [삼성전자, SK하이닉스], role: "니치 D램·노어 경쟁(가격 선행)"}
+  - {names: ["Phison", "群聯"], ids: [], korea: [삼성전자, SK하이닉스], role: "낸드 컨트롤러·모듈 고객(낸드 가격·배정 발언)"}
+  - {names: ["GlobalFoundries"], ids: [], korea: [DB하이텍, 삼성전자], role: "성숙·특화 공정 파운드리 경쟁"}
+  - {names: ["Tower Semiconductor"], ids: [], korea: [DB하이텍], role: "아날로그·전력 특화 파운드리 경쟁"}
+  - {names: ["X-FAB"], ids: [], korea: [DB하이텍], role: "아날로그·SiC 특화 파운드리 경쟁(유럽)"}
+  - {names: ["Texas Instruments"], ids: [], korea: [DB하이텍, 삼성전자], role: "아날로그·전력 반도체 경쟁(재고·가격 사이클 선행)"}
+  - {names: ["onsemi", "ON Semiconductor"], ids: [], korea: [DB하이텍, 삼성전자], role: "전력 반도체(SiC) 경쟁·이미지센서 경쟁"}
+  - {names: ["Wolfspeed"], ids: [], korea: [DB하이텍, SK실트론], role: "SiC 웨이퍼·소자 경쟁"}
+  - {names: ["AT&S"], ids: [], korea: [삼성전기, LG이노텍], role: "FC-BGA 기판 경쟁(유럽)"}
+  - {names: ["Intel"], ids: [], korea: [삼성전자, 삼성전기, SKC], role: "파운드리 경쟁·유리 기판·메모리 고객"}
+  - {names: ["Western Digital", "Sandisk", "SanDisk"], ids: [], korea: [삼성전자, SK하이닉스], role: "낸드·HDD 경쟁(가격·감산 발언)"}
+  - {names: ["Seagate"], ids: [], korea: [삼성전자, SK하이닉스], role: "스토리지 수요(HDD 부족 → 기업용 SSD 대체 수요)"}
+  - {names: ["Dell Technologies", "Hewlett Packard Enterprise", "Super Micro", "Supermicro"], ids: [], korea: [삼성전자, SK하이닉스, 삼성전기], role: "서버 고객(메모리 원가·배정 발언)"}
+  - {names: ["Meta Platforms", "Microsoft", "Alphabet", "Amazon"], ids: [], korea: [삼성전자, SK하이닉스], role: "최종 수요(설비투자·메모리 장기계약)"}
+  - {names: ["ASM International", "ASMI"], ids: [], korea: [삼성전자, SK하이닉스], role: "증착(ALD) 장비 공급사(유럽)"}
+  - {names: ["VAT Group"], ids: [], korea: [삼성전자, SK하이닉스], role: "진공 밸브 공급사(유럽, 팹 투자 선행)"}
+  - {names: ["Aixtron"], ids: [], korea: [삼성전자, DB하이텍], role: "화합물(GaN·SiC) 증착 장비 공급사(유럽)"}
+  - {names: ["Soitec"], ids: [], korea: [삼성전자], role: "SOI 웨이퍼 공급사(유럽)"}
+  - {names: ["Oxford Instruments"], ids: [], korea: [삼성전자, SK하이닉스], role: "식각·증착 연구 장비 공급사(영국)"}
+  - {names: ["IQE"], ids: [], korea: [삼성전자], role: "화합물 에피 웨이퍼 공급사(영국)"}
+  - {names: ["Kulicke & Soffa", "Kulicke and Soffa"], ids: [], korea: [삼성전자, SK하이닉스, 한미반도체], role: "본딩 장비 공급사·경쟁(메모리 패키지 방식 변화)"}
+  - {names: ["Onto Innovation", "Camtek", "Nova Ltd"], ids: [], korea: [삼성전자, SK하이닉스], role: "HBM·첨단 패키지 검사 장비 공급사"}
+
 # ⑦ 연구·학회·협회 — 원천 id 접두어와 걸러 낼 단어(한국 기업 이름 또는 감시 기술). 논문·학회·협회 자료는 국내 언론보다 빨리 나온다
 research_sources: ["src-arxiv-", "src-openalex", "src-research-feeds", "src-assoc-", "src-conf"]
 research_terms: "Samsung|SK hynix|SK Hynix|LG Display|LG Energy|Samsung SDI|Hanmi|HBM|high bandwidth memory|hybrid bonding|DRAM|NAND|OLED|MLCC|FC-BGA|glass substrate|CXL|backside power|GAA|EUV|solid-state batter|삼성|하이닉스|LG"

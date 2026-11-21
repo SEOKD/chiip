@@ -17,23 +17,34 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 LOG = ROOT / "outputs" / "article" / "pitch" / "log.csv"
 KST = timezone(timedelta(hours=9))
-CIRCLED = "①②③④⑤"
+CIRCLED = "①②③④⑤⑥⑦⑧⑨"
 
 
 def count(text):
-    return len(re.findall(r"(?m)^기사[①②③④⑤]", text))
+    return len(re.findall(r"(?m)^기사[①②③④⑤⑥⑦⑧⑨]", text))
 
 
-def buttons(day, n):
-    row = [(f"{CIRCLED[i]} 채택", f"pitch:{day}:{i + 1}:y") for i in range(n)]
+def buttons(day, n, start=1):
+    """start = 첫 기사 번호 — 같은 날 추가 회차(해외 데스크 수동 실행 등)는 앞 회차 다음 번호부터"""
+    row = [(f"{CIRCLED[start - 1 + i]} 채택", f"pitch:{day}:{start + i}:y") for i in range(n)]
     return [row, [("모두 패스", f"pitch:{day}:0:n")]]
 
 
-def send(day):
+def send(day, suffix="", start=1):
+    """<날짜><suffix>_tg.txt를 보낸다. 2026-11-22 회차부터 기록 파일의 국내 미보도 검색 기록이 관문을 통과해야 한다
+    (마스터 지시 2026-11-21 "국내 매체와 기자들이 쓰지 않은 주제로" — scripts/article/overseas_desk.py novelty_gate)"""
     sys.path.insert(0, str(ROOT / "radar"))
     import notify
-    text = (ROOT / "outputs" / "article" / "pitch" / f"{day}_tg.txt").read_text(encoding="utf-8")
-    return notify.send(text, "PITCH", buttons=buttons(day, max(1, count(text))))
+    import overseas_desk
+    pitch = ROOT / "outputs" / "article" / "pitch"
+    md = pitch / f"{day}{suffix}.md"
+    if day >= overseas_desk.cfg()["novelty"]["required_from"].replace("-", "") or suffix:
+        bad = overseas_desk.novelty_gate(md.read_text(encoding="utf-8")) if md.exists() else [f"{md.name} 없음"]
+        if bad:
+            print("[기사 소재] 국내 미보도 관문 미통과 — " + " · ".join(bad))
+            return False
+    text = (pitch / f"{day}{suffix}_tg.txt").read_text(encoding="utf-8")
+    return notify.send(text, "PITCH", buttons=buttons(day, max(1, count(text)), start))
 
 
 def mark(day, n, verdict, log=LOG):
@@ -76,8 +87,9 @@ def on_callback(data, log=LOG):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if len(argv) >= 2 and argv[0] == "send":
-        print("[기사 소재] 발송" if send(argv[1]) else "[기사 소재] 발송 실패")
+    if len(argv) >= 2 and argv[0] == "send":   # send <YYYYMMDD> [suffix] [첫 기사 번호]
+        ok = send(argv[1], argv[2] if len(argv) > 2 else "", int(argv[3]) if len(argv) > 3 else 1)
+        print("[기사 소재] 발송" if ok else "[기사 소재] 발송 실패")
         return 0
     print(__doc__)
     return 0

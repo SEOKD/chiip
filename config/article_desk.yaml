@@ -1,0 +1,94 @@
+# 해외 데스크 — 해외 상장사 자료·통계에서 한국 전자부품·반도체 기사 소재를 찾는 알고리즘 설정
+# (마스터 지시 2026-11-21 "일본·중국·대만·미국·EU·영국 상장 기업의 실적 결산 자료·어닝콜 스크립트·보도자료·기술자료·학회 논문을 보고
+#  삼성전자·SK하이닉스·삼성전기·LG이노텍·DB하이텍 등과 연관 있는 최신 정보를 찾고 경제신문 관점으로 기사 거리인지 판단해 매일 제공.
+#  국내 매체와 기자들이 쓰지 않은 주제로. 각국 수출입 통계·PPI 변화를 삼성전자·SK하이닉스와 연관시켜도 된다")
+# 엔진 scripts/article/overseas_desk.py · 편집 기준 knowledge/methods/article_yama_playbook.md · 후보 풀 연결 scripts/article/pitch_pool.py ⑩
+window_hours: 48            # 문서 레인이 보는 기간(상대방 실적 자료는 발표 10일까지 — pitch_pool ③과 같다)
+doc_max_age_days: 10
+top: 12
+# 문서 레인이 읽는 수집함 원천(이미 수집 중인 것만 — 새 원천을 붙이지 않는다. robots·약관 점검은 원천 등록부)
+doc_sources:
+  결산·IR:    [src-jp-ir-docs, src-tw-hk-ir-docs, src-fiscal-ir-docs, src-sec-filings, src-jp-disclosure, src-tw-disclosure, src-cn-hk-disclosure]
+  콜·질의응답: [src-jp-ir-qa, src-tw-hk-ir-qa, src-cn-ir-qa, src-cn-ir]
+  보도자료:    [src-ir-press, src-prn, src-bw, src-company-sites, src-newsroom-nvidia, src-trendforce-pr]
+  논문·학회:   [src-arxiv-, src-openalex, src-research-feeds, src-assoc-, src-conf]
+doc_weight: {"콜·질의응답": 2.0, "결산·IR": 1.8, "보도자료": 1.3, "논문·학회": 1.0}   # 문서의 격 — 경영진이 숫자로 답한 문서가 가장 세다
+# 일상 공고(자사주·배당 절차·주총 소집·인사)는 기사 소재가 아니다
+routine: "アナリスト|レーティング|目標株価|株価|急落|日経平均|銘柄|捐贈|買回|庫藏股|投資論壇|受邀參加|法人說明會之相關|背書保證|資金貸與|回购|回購|注销|股东大会|股東會|董事會通過盈餘|配当|自己株式|Upcoming Event|to Present at|Conference Call Scheduled|Dividend|인사|株主総会|注意交易|awards?\\b"
+# 숫자·증설·가격·고객 같은 '뉴스 단어'가 제목에 있으면 가점
+news_words: "capacity|expan|price|pricing|guidance|outlook|record|shortage|allocation|qualif|ramp|HBM|DRAM|NAND|MLCC|FC-?BGA|glass|hybrid bond|8-inch|200mm|SiC|GaN|增产|扩产|擴產|涨价|漲價|產能|产能|訂單|订单|値上げ|増産|倍増|生産2倍|能力増強|新工場|上方修正|下方修正|業績予想|受注"
+# 야마 유형(편집국 기사 틀) — 상대방의 역할이 유형을 정한다. 본문 전개·필수 확인·데스크 킬 질문은 playbook 문서
+archetypes:
+  customer:   {name: "고객이 먼저 말했다", lead: "<고객사>가 <문서>에서 <한국 기업 품목>의 <물량·가격·일정>을 숫자로 밝혔다 — 한국 기업은 아직 말하지 않은 숫자다"}
+  competitor: {name: "경쟁사의 수", lead: "<경쟁사>가 <증설·가격·수주>를 내놨다 — <한국 기업>의 <점유율·가격·가동률>에 닿는다"}
+  supplier:   {name: "공급사 장부에 찍힌 한국", lead: "<장비·소재사>의 <한국 매출·수주·납기> 숫자가 <한국 기업>의 <투자·전환 속도>를 먼저 보여 준다"}
+  data:       {name: "통계가 먼저 움직였다", lead: "<나라> <통계>의 <품목>이 <기간> <변화율> 움직였다 — <한국 기업> 실적 발표보다 <n>주 앞선 숫자다"}
+  tech:       {name: "기술 변곡", lead: "<기관·기업> 연구진이 <한계>를 <방법>으로 넘겼다 — <한국 기업 제품>의 <채택·경쟁> 조건이 바뀐다"}
+  silence:    {name: "사라진 문장", lead: "<상대방>이 지난 분기까지 쓰던 <표현·숫자>를 이번 자료에서 뺐다"}
+# 역할 문구 → 유형
+role_kind:
+  customer: "고객|수요|최종"
+  competitor: "경쟁"
+  supplier: "공급|장비|소재|웨이퍼|레지스트|마스크|테스터|본딩|본더|증착|세정|IP|외주|동박|필름|유리|타깃|센서"
+# 한국어 통용 이름(국내 채널 언급 수를 셀 때 쓴다 — 없으면 영문 이름만 센다)
+ko_names:
+  NVIDIA: [엔비디아]
+  AMD: [AMD]
+  Broadcom: [브로드컴]
+  Apple: [애플]
+  TSMC: [TSMC]
+  Micron: [마이크론]
+  ASML: [ASML]
+  Applied Materials: [어플라이드, AMAT]
+  Lam Research: [램리서치]
+  Tokyo Electron: [도쿄일렉트론, TEL]
+  Advantest: [어드반테스트, 아드반테스트]
+  Disco: [디스코]
+  Murata: [무라타]
+  TDK: [TDK]
+  Ibiden: [이비덴]
+  Kioxia: [키옥시아]
+  SMIC: [SMIC, 중신궈지]
+  Hua Hong: [화홍]
+  CXMT: [CXMT, 창신메모리]
+  YMTC: [YMTC, 양쯔메모리]
+  GigaDevice: [기가디바이스]
+  BOE: [BOE]
+  Sunny Optical: [서니옵티컬, 써니옵티컬]
+  Yageo: [야교, 야게오]
+  UMC: [UMC]
+  Vanguard: [뱅가드, VIS]
+  GlobalFoundries: [글로벌파운드리]
+  Tower Semiconductor: [타워세미]
+  Texas Instruments: [텍사스인스트루먼트, TI]
+  Infineon: [인피니언]
+  Intel: [인텔]
+  Western Digital: [웨스턴디지털]
+  Sandisk: [샌디스크]
+  Nanya: [난야]
+  Winbond: [윈본드]
+  Largan: [라간]
+  AT&S: [AT&S]
+  Unimicron: [유니마이크론]
+# 통계 레인 — knowledge/models/trade_ppi/latest.json의 품목(config/trade_ppi.yaml inputs 키) → 한국 기업·읽는 법
+# ppi_yoy / trade_yoy 문턱을 넘으면 후보. 통계는 금액(가격×물량)이고 특정 기업 매출이 아니다(금지표) — angle은 '무엇과 맞대 볼지'
+data_links:
+  memory:             {korea: [삼성전자, SK하이닉스], ppi_yoy: 0.15, trade_yoy: 0.5, angle: "메모리 수입액·생산자물가 — 고정가 인상과 물량 중 무엇이 끄는지, 한국산 몫(수입처 비중) 변화"}
+  logic-ic:           {korea: [삼성전자, DB하이텍], ppi_yoy: 0.10, trade_yoy: 0.4, angle: "로직·파운드리 가격 — 성숙 공정(8인치) 가격 인상 여부와 대만·중국 파운드리 대비"}
+  discrete_semi:      {korea: [DB하이텍, 삼성전자], ppi_yoy: 0.08, trade_yoy: 0.3, angle: "전력·개별 반도체 — 8인치 파운드리 가동률과 중국산 몫"}
+  passive_components: {korea: [삼성전기], ppi_yoy: 0.06, trade_yoy: 0.3, angle: "MLCC·수동부품 — 일본(무라타·TDK)·한국 수입처 비중과 AI 서버용 고용량 믹스"}
+  pcb:                {korea: [삼성전기, LG이노텍], ppi_yoy: 0.10, trade_yoy: 0.3, angle: "기판 가격 — FC-BGA·서버 기판 수급, 대만·일본 기판사 가격 인상과 대조"}
+  semicap:            {korea: [삼성전자, SK하이닉스], ppi_yoy: 0.05, trade_yoy: 0.4, angle: "반도체 장비 교역 — 한국 팹 장비 반입의 거울(투자 발표 → 장비 반입 확인)"}
+  semicap_assembly:   {korea: [SK하이닉스, 삼성전자, 한미반도체], ppi_yoy: 0.05, trade_yoy: 0.4, angle: "후공정 장비(본더) 교역 — HBM 증설 속도의 거울"}
+  server:             {korea: [삼성전자, SK하이닉스, 삼성전기], ppi_yoy: 0.10, trade_yoy: 0.5, angle: "서버 출하액 — 메모리·MLCC·기판 최종 수요"}
+  copper:             {korea: [삼성전기, LG이노텍], ppi_yoy: 0.25, trade_yoy: 0.5, angle: "구리 가격 — 기판·동박 원가 전가 여부"}
+  optical_module:     {korea: [삼성전자, SK하이닉스], ppi_yoy: 0.10, trade_yoy: 0.4, angle: "광 모듈 — AI 데이터센터 증설 속도(메모리 수요 선행)"}
+tw_ppi_links:        # 대만 생산자물가 세부(주계총처) — 품목 이름 일부 → 한국 기업
+  "半導體": {korea: [삼성전자, SK하이닉스, DB하이텍], yoy: 0.15}
+  "被動電子元件": {korea: [삼성전기], yoy: 0.06}
+  "印刷電路板": {korea: [삼성전기, LG이노텍], yoy: 0.10}
+# 국내 미보도 관문(기록 파일 검사) — 기사마다 한국어 검색 기록이 이만큼 있어야 발송된다
+novelty:
+  min_queries: 2
+  verdicts: [국내 미보도, 후속 각도, 숫자 미보도]
+  required_from: "2026-11-22"
