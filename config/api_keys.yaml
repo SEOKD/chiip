@@ -1,0 +1,20 @@
+# API 키·토큰 만료 알림 (마스터 지시 2026-11-22 "API 키를 업데이트해야 할 경우 만료되기 전에 Pulse로 알려주는 시스템", radar/key_expiry.py)
+# 값은 여기에 쓰지 않는다 — 이름·발급일·유효 기간만. 키는 로컬 전용 .env에만 있다.
+# issued + valid_days 또는 expires(YYYY-MM-DD)를 적으면 만료 remind_days 전마다 한 번씩 알린다.
+# 둘 다 없으면 '만료일 미확인' — 연결 수집기(health)의 인증 오류가 연속으로 나면 알린다.
+# 새 키를 받으면 issued를 그 날짜로 고친다(알림 기록이 새 만료일 기준으로 다시 시작된다).
+remind_days: [30, 14, 7, 3, 1, 0]
+auth_error_count: 3        # health 연속 오류가 이만큼이고 문구가 인증 오류면 알린다
+keys:
+  - {env: USITC_DATAWEB_TOKEN, name: "USITC DataWeb 토큰", issued: "2026-11-21", valid_days: 180, health: [trade-daily, src-usitc-dataweb],
+     how: "dataweb.usitc.gov 로그인 → API 탭 → Generate Token → .env의 USITC_DATAWEB_TOKEN 교체(knowledge/methods/usitc_dataweb.md)", used_by: "Chiip Trade(매일 아침 수출입)·메모리 현물가 참조"}
+  - {env: CENSUS_API_KEY, name: "미국 Census API 키", health: [src-trade-share, trade-hs], how: "api.census.gov/data/key_signup.html", used_by: "무역 통계"}
+  - {env: DART_API_KEY, name: "OpenDART 키", health: [src-dart], how: "opendart.fss.or.kr 인증키 관리", used_by: "한국 공시"}
+  - {env: NOTION_TOKEN, name: "노션 통합 토큰", health: [notion-watch], how: "notion.so/my-integrations", used_by: "노션 감시·게시"}
+  - {env: ESTAT_APP_ID, name: "일본 e-Stat 앱 ID", health: [trade-hs], how: "e-stat.go.jp API 마이페이지", used_by: "일본 무역통계"}
+  - {env: FRED_API_KEY, name: "FRED 키", health: [], how: "fred.stlouisfed.org/docs/api/api_key.html", used_by: "거시 지표"}
+  - {env: EIA_API_KEY, name: "EIA 키", health: [], how: "eia.gov/opendata", used_by: "전력 통계"}
+  - {env: BLS_API_KEY, name: "BLS 키", health: [], how: "bls.gov/developers", used_by: "PPI"}
+  - {env: ALPHA_VANTAGE_API_KEY, name: "Alpha Vantage 키", health: [], how: "alphavantage.co/support", used_by: "실적 일정 보조"}
+  - {env: GEMINI_API_KEY, name: "Gemini 키", health: [], how: "aistudio.google.com/apikey", used_by: "리포트 그림"}
+  - {env: TELEGRAM_BOT_TOKEN, name: "텔레그램 봇 토큰", health: [], how: "BotFather", used_by: "모든 알림"}

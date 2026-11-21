@@ -28,6 +28,7 @@ JOBS = [  # (job id, module, interval_min)
     ("src-press-wire", "pollers.press_wire", 60),  # PR Newswire·Business Wire — 주 수집은 run_poll src-press-fast(5분, 2026-11-11), 여기는 예비
     ("src-spac-watch", "pollers.spac_watch", 30),
     ("src-trade-share", "trade_share", 1440),  # 미국 수입 HTS 10단위 나라별 비중(Census, 2026-11-21 마스터 지시)
+    ("key-expiry", "key_expiry", 1440),  # API 키·토큰 만료 알림(2026-11-22 마스터 지시)
     ("trade-daily", "trade_daily", 30),  # Chiip Trade — 매일 아침 07~10시 품목 하나 수출입 추이(DataWeb·일본 무역통계, 하루 1회는 모듈이 지킨다, 2026-11-21 마스터 지시)
     ("src-peeringdb", "pollers.peeringdb", 1440),  # PeeringDB 데이터센터·상호접속 시계열(표적 익명 질의 하루 1회, 2026-11-20 마스터 지시, ADR-049)  # SPAC 감지·생애 단계 장부(SIC 6770 EDGAR 검색 + S2~S4 후속 추적, 2026-11-04 마스터 지시 1단계)
     ("src-weekly-movers", "markets.weekly_movers", 30),  # EODHD 주간 상승률 — 모듈이 토 06~09시·주 1회만 실제 실행
