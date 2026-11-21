@@ -289,6 +289,13 @@ def duplicate_of(item, hours=12, now=None):
         j = len(w & aw) / len(w | aw)
         if j >= 0.7 or (ents & set(a.get("entities") or []) and j >= 0.5):
             return a.get("title")
+    try:   # Pulse가 이미 보낸 사건(2026-11-22 마스터 지시 "Pulse가 중복된 정보를 여러 번 …" — radar/story_ledger.py)
+        import story_ledger
+        m = story_ledger.match(story_ledger.codes_of(ents), [_title(item)], [item.get("url")], now, hours, only="pulse")
+        if m:
+            return f"Pulse {(m.get('at') or '')[11:16]} {m.get('text') or ''}"
+    except Exception:
+        pass
     return None
 
 

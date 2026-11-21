@@ -12,6 +12,9 @@ Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴�
   예외(2026-11-14 마스터 개정): 본문을 못 읽었어도 헤드라인만으로 알파 요소 점수가 0.5 이상 움직이는 건은 "headline_alpha": "요소 ±값 — 이유"를
   쓰면 통과한다. 이때 근거 첫 줄에 '본문 미확인 · 헤드라인 기준'을 밝힌다.
 사용: py radar/pulse_feed.py <json>   → 같은 이름 _tg.txt(끝의 _feed를 뗀다)를 쓰고 양식 점검 결과를 출력
+  중복 관문(2026-11-22 마스터 지시 "Pulse가 중복된 정보를 여러 번 텔레그램 피드로 보내는 것 같다"): 이미 보낸 사건(실시간 알림·이전 Pulse,
+  radar/story_ledger.py)은 빼고 '[중복 — 뺌]'으로 출력한다. 새 사실이 있으면 건에 "update": "새 사실 한 줄" → 머리 '갱신 —'.
+  전부 빠지면 _tg.txt를 만들지 않고 종료 코드 3(보내지 않는다).
 잠금 평가기 pulse_check.py가 그대로 재도록 판단은 **굵게**, 근거·반대·다음 확인은 · 줄로 쓴다.
 """
 import json
@@ -151,6 +154,65 @@ def unread(d):
     return bad
 
 
+DEEP_KEEP = 7   # 실시간 알림이 먼저 보낸 사건이라도 인사이트 7 이상 판단은 남긴다(알림은 사실 한 줄뿐 — 2026-10-29 '속보 판단' 지시의 몫)
+
+
+def _codes(code):
+    return [c for c in re.split(r"[·,/\s]+", str(code or "")) if c]
+
+
+def _urls(x):
+    out = [x.get("read")] + [l[1] for l in x.get("links") or [] if len(l) > 1]
+    if x.get("link") and len(x["link"]) > 1:
+        out.append(x["link"][1])
+    return [u for u in out if u and str(u).startswith("http")]
+
+
+def _source_titles(src):
+    """같은 회차 펄스 파일(radar/pulse/<YYYYMMDD_HHMM>.json)의 원천 — 주소 → (제목, 종목 id)"""
+    stamp = src.stem.removesuffix("_feed").removesuffix("_tg")
+    f = Path(__file__).resolve().parent / "pulse" / f"{stamp}.json"
+    try:
+        d = json.loads(f.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    import story_ledger
+    return {story_ledger.norm_url(s.get("url")): (s.get("title") or "", s.get("entities_matched") or []) for s in d.get("sources") or [] if s.get("url")}
+
+
+def dedupe(d, src, now=None):
+    """이미 보낸 사건(실시간 알림·이전 Pulse, radar/story_ledger.py) 건을 뺀다(마스터 지시 2026-11-22 "Pulse가 중복된 정보를 여러 번 … 바꾸도록 하라").
+    새 사실이 있으면 모델이 건에 "update": "새 사실 한 줄"을 쓴다 → 남기고 머리에 '갱신 —'. → (새 d, 뺀 건 [(이름, 사유)], 장부에 남길 줄)"""
+    import story_ledger
+    feed = src.stem.removesuffix("_feed")
+    titles = _source_titles(src)
+    keep, drop, rows = {"items": [], "brief": []}, [], []
+    for kind in ("items", "brief"):
+        for x in d.get(kind) or []:
+            urls = _urls(x)
+            src_t = [titles[story_ledger.norm_url(u)] for u in urls if story_ledger.norm_url(u) in titles]
+            codes = set(_codes(x.get("code")))
+            if not codes:   # 건에 종목이 없을 때만 원천 종목으로 — 한 보고서가 여러 종목을 다루면 다른 종목 줄끼리 묶였다(하나증권 PSK·SK하이닉스)
+                for _, ents in src_t:
+                    codes |= story_ledger.codes_of(ents)
+            head = x.get("event") or x.get("line") or ""
+            texts = [head] + [t for t, _ in src_t]
+            m = story_ledger.match(codes, texts, urls, now, skip_feed=feed)
+            if m and not (x.get("update") or "").strip():
+                if not (kind == "items" and m["ch"] == "alert" and (x.get("insight") or 0) >= DEEP_KEEP):
+                    drop.append((f"{x.get('name')} {x.get('code') or ''}".strip(), f"{m['why']} — {(m.get('at') or '')[11:16]} {'Pulse' if m['ch'] == 'pulse' else '실시간 알림'} '{str(m.get('text') or '')[:40]}'"))
+                    continue
+            if m and (x.get("update") or "").strip():   # 갱신 — 새 사실을 머리에
+                x = dict(x)
+                k = "event" if kind == "items" else "line"
+                if not str(x.get(k) or "").startswith("갱신"):
+                    x[k] = f"갱신 — {x['update'].strip()}" if kind == "brief" else f"갱신 — {x.get(k)}"
+            keep[kind].append(x)
+            rows.append({"codes": sorted(codes), "text": head, "titles": [t for t, _ in src_t][:3], "urls": [story_ledger.norm_url(u) for u in urls],
+                         "entities": sorted({e for _, ents in src_t for e in ents}), "feed": feed})
+    return dict(d, **keep), drop, rows
+
+
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     src = Path(argv[0])
@@ -160,9 +222,18 @@ def main(argv):
         print("본문 미확인 — 보내지 않는다(마스터 지시 2026-11-14): " + " · ".join(bad)
               + " → 원문(fulltext.url 또는 WebSearch로 찾은 사본)을 열어 읽고 'read'에 그 주소를 쓴다. 못 읽으면 그 건을 빼고 py radar/fulltext.py --hold <item_id>")
         return 2
-    text = build(d)
+    import story_ledger
+    story_ledger.forget_feed(src.stem.removesuffix("_feed"))   # 같은 묶음 재실행 — 앞서 남긴 줄은 지우고 다시 잰다
+    d, dropped, rows = dedupe(d, src)
+    for name, why in dropped:
+        print(f"[중복 — 뺌] {name}: {why} (새 사실이 있으면 그 건에 \"update\": \"새 사실 한 줄\"을 쓰고 다시 실행)")
     out = src.with_name(src.stem.removesuffix("_feed") + "_tg.txt")
+    if not (d.get("items") or d.get("brief")):
+        print("모두 이미 보낸 사건 — 묶음을 만들지 않는다(텔레그램 보내지 않음)")
+        return 3
+    text = build(d)
     out.write_text(text, encoding="utf-8")
+    story_ledger.record(rows)
     print(out)
     rows = pulse_check.check(text)
     for name, head, detail in rows:

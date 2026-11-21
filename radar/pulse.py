@@ -632,6 +632,14 @@ def atom_earnings(uni, seen, st):
     return out
 
 
+def _sent_recent(now):
+    try:
+        import story_ledger
+        return story_ledger.brief_list(now)
+    except Exception:
+        return []
+
+
 def fetch_alerts(st, since=None):
     """속보 판단(2026-10-29 마스터 지시 "단순 정보 전달이 아니라 밸류 판단과 인사이트가 핵심"): 실시간 레이더가 지난 회차 이후 보낸
     P0·P1(radar/state/alerts.json) 중 아직 판단하지 않은 것 — 펄스가 인사이트 판단 틀(knowledge/methods/insight_framework.md)로 깊게 본다.
@@ -874,6 +882,12 @@ def run(now=None, peek=False):
     for it in sources:
         it["score"] = score(it, it["source_class"])
     sources.sort(key=lambda x: -x["score"])
+    try:   # 이미 보낸 원문(실시간 알림·이전 Pulse)은 모델에 다시 넘기지 않는다(2026-11-22 마스터 지시 "Pulse가 중복된 정보를 여러 번 …", radar/story_ledger.py).
+        import story_ledger   # 속보 판단(알림을 깊게 보는 몫)·IR 질의응답·실적은 제 장부가 따로 있어 그대로 둔다
+        sent_urls = {u for e in story_ledger.recent(now) for u in e.get("urls") or []}
+        sources = [s for s in sources if s.get("source_class") in ("속보 판단", "IR 질의응답", "실적") or story_ledger.norm_url(s.get("url")) not in sent_urls]
+    except Exception as exc:
+        errors.append(f"보낸 사건 장부: {type(exc).__name__}")
     import ir_ledger   # 당기 전문·Q&A는 처리 기록이 남을 때까지 다시 싣는다(2026-11-01 마스터 지시)
     if not peek:
         ir_ledger.track(sources, now)
@@ -991,6 +1005,7 @@ def run(now=None, peek=False):
     import origin   # 재인용 기사는 원보도로 바꿔 모델에 넘긴다(2026-11-02 마스터 지시)
     data = {"run_at": common.iso(now), "since": since, "counts": counts, "errors": errors,
             "sources": [{k: origin.apply(s, now).get(k) for k in keep} for s in picked],
+            "sent_recent": _sent_recent(now),   # 지난 24시간 보낸 사건 — 같은 사건은 새 사실이 있을 때만 "update"로(pulse_feed 중복 관문)
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
             "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "channel_check": mcc, "gpu_weekly": gpu, "memory_spot": mspot, "gpu_daily": gday, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
