@@ -117,3 +117,15 @@ companies:
   jp-9104: {site: "https://www.mol.co.jp"}
   jp-9107: {site: "https://www.kline.co.jp"}
   jp-9983: {site: "https://www.fastretailing.com"}
+  # 2026-11-22 감시 목록(config/jp_watch.yaml)에 있는데 IR 설정이 없던 11곳 중 홈페이지를 확인한 곳(마스터 지시 '공식 IR 1순위'). 자료실은 jp_ir_docs 자동 탐색이 찾는다
+  jp-429a: {site: "https://www.tekscend.com"}   # 테크센드포토마스크 — 홈페이지 200 확인
+  jp-7018: {site: "https://www.naikaizosen.co.jp"}
+  jp-7022: {site: "https://www.sanoyas.co.jp"}
+  jp-8309: {site: "https://www.smtg.jp"}   # smth.jp → smtg.jp로 넘어간다
+  jp-9434: {site: "https://www.softbank.jp"}
+  jp-mtg: {site: "https://www.mtg.gr.jp"}
+  jp-oxide: {site: "https://www.opt-oxide.com"}
+  jp-fujitsu: {site: "https://global.fujitsu", access: "봇 차단(429)"}   # 자동 요청에 429 — 공식 IR을 자동으로 못 읽어 TradingView로 바로 간다
+  jp-nec: {site: "https://jpn.nec.com", access: "봇 차단(403)"}   # 자동 요청에 403
+  jp-howa: {site: "https://www.howa.co.jp"}   # 2026-11-22 접속 시간 초과 — 첫 탐색에서 다시 확인
+  # jp-ishikawa(6208 石川製作所): 같은 이름의 다른 회사 사이트만 확인돼 넣지 않았다 — 주소 미확인

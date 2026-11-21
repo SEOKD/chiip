@@ -98,3 +98,25 @@ class TestPut(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestIrFirst(unittest.TestCase):   # 2026-11-22 마스터 지시 — 공식 IR 1순위, TradingView는 대체
+    def test_ir_doc_closes_target_and_readable_waits(self):
+        now = datetime(2026, 11, 20, 10, 0, tzinfo=KST)
+        st = {"targets": {}}
+        with mock.patch.object(jt, "companies", return_value={"a": {"code": "1111"}, "b": {"code": "2222"}}), \
+                mock.patch.object(jt, "tier", return_value=1), \
+                mock.patch.object(jt, "ir_readable", side_effect=lambda c: c == "a"), \
+                mock.patch.object(jt, "ir_found", return_value={}):
+            jt.refresh(st, now, seen={"a": "2026-11-19", "b": "2026-11-19"})
+        a, b = st["targets"]["a"], st["targets"]["b"]
+        self.assertEqual((a["route"], b["route"]), ("ir_first", "tv_only"))
+        self.assertGreater(a["next_at"], b["next_at"])          # IR을 읽을 수 있으면 3영업일 뒤에야 TradingView
+        self.assertEqual([r["id"] for r in jt.batch(st, now)], ["b"])
+        with mock.patch.object(jt, "companies", return_value={}), \
+                mock.patch.object(jt, "ir_found", return_value={"a": {"date": "2026-11-20", "url": "u", "title": "質疑応答"}}):
+            jt.refresh(st, now, seen={})
+        self.assertEqual(st["targets"]["a"]["status"], "ir")   # 공식 IR에 질의응답이 오르면 닫는다
+
+    def test_business_days_skip_weekend(self):
+        self.assertEqual(jt._after_bd("2026-11-20", 3).date().isoformat(), "2026-11-26")   # 금 → 월(23일 휴장)·화·수

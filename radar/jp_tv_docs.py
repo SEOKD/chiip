@@ -28,6 +28,56 @@ WAIT_DAYS = 10
 EVERY_MIN = 1440   # 2026-11-21 마스터 지시 'TradingView 한도 조정 세 가지 적용' — 20분 → 하루 1회(11/20 TradingView 호출 56건 중 Pulse 43건이 이 조회)
 MAX_PER_RUN = 3
 BACKOFF_H = (6, 12, 24, 48, 72)
+# 공식 IR 1순위(2026-11-22 마스터 지시 "일본 종목 어닝콜 전사 확인은 일본 상장 기업의 공식 IR 채널을 참조하는 걸 1순위로") —
+# 회사 IR(radar/pollers/jp_ir_qa.py·jp_ir_docs.py)이 결산 뒤 질의응답·스피치·전사를 올리면 TradingView를 부르지 않는다('ir'로 닫는다).
+# IR을 읽을 수 있는 회사는 결산 공시 뒤 IR_GRACE_BD 영업일을 기다렸다가 그래도 없을 때만 TradingView(대체 경로)로 간다.
+# IR을 못 읽는 회사(robots로 막힌 외부 대행·E-IR·Xj-Storage·IR Pocket, 또는 IR 설정 없음)는 바로 TradingView.
+# 11/09~21 사례: TOWA는 11/10 IR에 질의응답 PDF가 올라왔는데도 TradingView를 4번 불렀다 만료.
+IR_GRACE_BD = 3
+IR_DOC_RE = re.compile(r"質疑|Ｑ＆Ａ|Q\s?&\s?A|スピーチ|書き?起こし|ログ|transcript|script", re.I)
+IR_UNREADABLE = ("E-IR", "Xj-Storage", "IR Pocket", "봇 차단")
+
+
+def ir_found(now, look_days=None):
+    """{id: {"date", "url", "title"}} — 공식 IR에서 받은 질의응답·스피치·전사 중 가장 최근(레이더 수집함 src-jp-ir-qa·src-jp-ir-docs)"""
+    out = {}
+    for k in range((look_days or LOOK_DAYS) + 1):
+        day = common.INBOX / (now - timedelta(days=k)).strftime("%Y%m%d")
+        for f in day.glob("*.json") if day.exists() else []:
+            try:
+                it = json.loads(f.read_text(encoding="utf-8"))
+            except ValueError:
+                continue
+            src, title = it.get("source_id"), str(it.get("title") or "")
+            if src != "src-jp-ir-qa" and not (src == "src-jp-ir-docs" and IR_DOC_RE.search(title)):
+                continue
+            d = str(it.get("published_at"))[:10]
+            for cid in it.get("entities_matched") or []:
+                if d > out.get(cid, {}).get("date", ""):
+                    out[cid] = {"date": d, "url": it.get("url"), "title": title}
+    return out
+
+
+def ir_readable(cid):
+    """공식 IR 자료실을 자동으로 읽을 수 있는 회사인가 — 설정이 있고, robots로 막히지 않았고, 자바스크립트·대행 목록이 아닌 곳"""
+    c = ((common.load_yaml("config/jp_ir.yaml") or {}).get("companies") or {}).get(cid)
+    if not c or cid in ir_blocked() or any(a in str(c.get("access") or "") for a in IR_UNREADABLE):
+        return False
+    # 실제로 자료실·IR 페이지를 찾은 회사만(설정만 있고 탐색이 못 찾은 34곳은 기다려도 IR에서 안 나온다 — 2026-11-22 점검)
+    qa = (common.load_state("jp_ir_qa", {}).get("companies") or {}).get(cid) or {}
+    docs = (common.load_state("jp_ir_docs", {}).get("companies") or {}).get(cid) or {}
+    return bool(qa.get("pages") or docs.get("pages") or c.get("doc_pages") or c.get("ir_pages"))
+
+
+def _after_bd(day, n):
+    """day(YYYY-MM-DD) 뒤 n 영업일(주말·도쿄증권거래소 휴장일 제외)"""
+    hol = set(str(x) for x in (common.load_yaml("config/jp_ir.yaml") or {}).get("holidays") or [])
+    d = datetime.fromisoformat(day)
+    while n > 0:
+        d += timedelta(days=1)
+        if d.weekday() < 5 and d.date().isoformat() not in hol:
+            n -= 1
+    return d
 
 
 def companies():
@@ -75,8 +125,15 @@ def refresh(st, now, seen=None):
     for cid, day in (results_seen(now) if seen is None else seen).items():
         c, cur = names.get(cid), rows.get(cid)
         if c and (not cur or day > cur["date"] and cur["status"] != "wait"):
+            readable = ir_readable(cid)
+            first = max(now, _after_bd(day, IR_GRACE_BD).replace(hour=9, tzinfo=now.tzinfo)) if readable else now   # 공식 IR 1순위 — IR을 읽을 수 있으면 유예 뒤에만 TradingView
             rows[cid] = {"id": cid, "symbol": f"TSE:{c['code']}", "code": c["code"], "name": c.get("en") or cid, "date": day, "tier": tier(cid),
-                         "status": "wait", "tries": 0, "next_at": common.iso(now)}
+                         "status": "wait", "tries": 0, "next_at": common.iso(first), "route": "ir_first" if readable else "tv_only"}
+    found = ir_found(now)
+    for r in rows.values():   # 공식 IR에 결산 뒤 질의응답·전사가 올라왔으면 TradingView를 부르지 않는다
+        hit = found.get(r["id"])
+        if r["status"] == "wait" and hit and hit["date"] >= (datetime.fromisoformat(r["date"]) - timedelta(days=1)).date().isoformat():
+            r.update(status="ir", ir_doc=hit, ir_at=common.iso(now))
     cut = (now - timedelta(days=WAIT_DAYS)).date().isoformat()
     for r in rows.values():
         if r["status"] == "wait" and r["date"] < cut:
