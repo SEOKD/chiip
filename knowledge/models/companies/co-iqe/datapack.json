@@ -601,7 +601,9 @@
  },
  "history": {
   "pe_fwd": [],
-  "ev_ebitda_fwd": []
+  "ev_ebitda_fwd": [],
+  "ttm_meaningless": true,
+  "ttm_note": "Fiscal.ai LTM EV/EBITDA 분기말: 25-06 −8.9배, 25-09 −11.9배, 25-12 −21.3배, 26-03 611배, 26-06 75.4배 — GAAP EBITDA가 적자·0 근처라 추이로 쓰지 않는다. XLON_IQE는 Zacks 컨센서스 미수록(2026-11-21 확인)이라 과거 선행 배수도 없다"
  },
  "quarters_hist": {
   "source": "Fiscal.ai company_financials_standardized (반기 보고 — 분기 값은 반기 ÷ 2)",
