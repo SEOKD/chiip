@@ -99,9 +99,8 @@ def main(mode):
         return None
     resp = json.dumps(inp.get("tool_response") or inp.get("error") or "", ensure_ascii=False)
     if "TOOL_QUOTA_EXCEEDED" in resp or "cooldown" in resp.lower():
-        if "daily usage limit" in resp:
-            nxt = (now + timedelta(days=1)).replace(hour=c.get("day_start_hour", 6), minute=0, second=0, microsecond=0) if now.hour >= c.get("day_start_hour", 6) else now.replace(hour=c.get("day_start_hour", 6), minute=0, second=0, microsecond=0)
-            st["blocked_until"] = nxt.isoformat()
+        if "daily usage limit" in resp:   # 2026-11-21: 다음 06시에 풀면 곧바로 다시 걸렸다 → 걸린 뒤 block_hours_after_daily시간 쉰다
+            st["blocked_until"] = (now + timedelta(hours=float(c.get("block_hours_after_daily", 24)))).isoformat()
         else:
             st["blocked_until"] = (now + timedelta(minutes=11)).isoformat()
         st["last_quota"] = now.isoformat()

@@ -5,7 +5,7 @@ TradingView 문서 도구(Quartr 제공)에 일본 어닝콜 전사·Q&A·요약
 결정론 스크립트는 TradingView MCP를 부를 수 없어 transcript_watch.py처럼 '대상 목록 → 모델 호출 → 결과 넣기'로 돈다.
   대상: 지난 21일 적시공시 미러에 결산 제목이 뜬 일본 감시 회사(run_hourly가 한 시간마다 갱신)
   순서: 보유·알파 5+·노션 Stocks > 알파 산정 종목 > 나머지
-  주기: 20분에 3종목까지. 없으면 6·12·24·48·72시간 뒤 다시 보고, 발표 후 10일이 지나면 만료
+  주기: 하루 1회 3종목까지(2026-11-21, 이전 20분). 없으면 6·12·24·48·72시간 뒤 다시 보고, 발표 후 10일이 지나면 만료
 호출 상한(2026-11-02 사고): 66종목을 한 번에 조회해 TradingView가 1분 정지하고 '계속하면 하루 정지'를 경고했다. 한 메시지에 호출 하나, 회차당 MAX_PER_RUN을 넘기지 않는다.
 사용: py radar/jp_tv_docs.py              # 이번 회차 대상(JSON)
       py radar/jp_tv_docs.py --put <파일>  # {"TSE:6857": get_documents 출력} → 새로 찾은 전사
@@ -25,7 +25,7 @@ SOURCE = "src-jp-disclosure"
 RESULT_RE = re.compile(r"決算|四半期")
 LOOK_DAYS = 21
 WAIT_DAYS = 10
-EVERY_MIN = 20
+EVERY_MIN = 1440   # 2026-11-21 마스터 지시 'TradingView 한도 조정 세 가지 적용' — 20분 → 하루 1회(11/20 TradingView 호출 56건 중 Pulse 43건이 이 조회)
 MAX_PER_RUN = 3
 BACKOFF_H = (6, 12, 24, 48, 72)
 

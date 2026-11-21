@@ -35,7 +35,7 @@ class TestBatch(unittest.TestCase):
     def test_waits_between_checks(self):
         st = dict(state(2), last_check=(NOW - timedelta(minutes=5)).isoformat())
         self.assertFalse(jt.status(NOW, st)["due"])
-        st["last_check"] = (NOW - timedelta(minutes=25)).isoformat()
+        st["last_check"] = (NOW - timedelta(minutes=jt.EVERY_MIN + 5)).isoformat()   # 2026-11-21 하루 1회로
         self.assertEqual(len(jt.status(NOW, st)["check"]), 2)
 
 
