@@ -18,6 +18,8 @@ playbook 칸(메모 머리말 YAML 또는 카드 머리말):
       moat_returns: {…}   reinvestment: {…}   people: {…}   change: {…}   mispricing: {…}
     dissent: {view: change, why: "가장 약한 관점과 이유"}
     hold: {kpis: ["수주잔고 YoY", "매출총이익률"], rule: "가격만 −50%면 재심사, 지표가 살아 있으면 유지"}
+이름 주의: Analysis 리포트의 datapack "playbook"(투자 포인트·모멘텀 타임라인·가격 틀 — playbook_view.py, 2026-11-16)은 이 파일과 다른 것이다.
+리포트 본문의 구루 교차 점검 절은 guru_view.py가 만들고 datapack "guru" 칸을 쓴다(같은 구조, check(…, "report")는 통과 개수를 요구하지 않는다).
 지표·연구 보조이며 매매·비중 지시가 아니다. 모르는 값은 None(미확인) — 그럴듯하게 채우지 않는다.
 사용: py scripts/tenbagger/playbook.py <회사 id>      # 산술 + 국면
       py scripts/tenbagger/playbook.py --check <메모.md>
@@ -36,7 +38,9 @@ ROOT = Path(__file__).resolve().parents[2]
 CO = ROOT / "knowledge" / "models" / "companies"
 VERDICTS = ("pass", "fail", "unknown")
 KO = {"pass": "통과", "fail": "미달", "unknown": "미확인"}
-EVID = re.compile(r"https?://\S+|[\w./\-]+\.(md|json|yaml|csv|html|htm|pdf)\b|10-[KQ]|8-K|DEF 14A|20-F|사업보고서|분기보고서|決算短信")
+# '통과'의 근거로 치는 것 — URL, 저장소 파일, 서류 이름(영문 양식·한글 통칭·일본 결산 자료). 서류를 가리키지 않는 문장('경영진이 그렇게 말했다')은 근거가 아니다
+EVID = re.compile(r"https?://\S+|[\w./\-]+\.(md|json|yaml|csv|html|htm|pdf)\b|10-[KQ]|8-K|6-K|S-1|DEF 14A|20-F|40-F|Form 4|13[DFG]|Annual Report"
+                  r"|사업보고서|분기보고서|반기보고서|연차보고서|위임장|실적 발표|결산|어닝콜|콜 전문|공시|決算短信|有価証券報告書")
 
 
 def cfg():
@@ -56,9 +60,9 @@ def cagr(multiple, years):
 
 
 def required(c=None):
-    """{배수: {년: 연 성장률}} — 10배는 5년 58.5%·7년 39.0%·10년 25.9%"""
+    """{배수: {년: 연 성장률}} — 10배는 5년 58.5%·7년 38.9%·10년 25.9%. 표시할 때 한 번만 반올림하게 여섯 자리로 둔다(네 자리로 줄였다가 39.0%로 찍힌 적이 있다)"""
     a = (c or cfg())["arithmetic"]
-    return {m: {y: round(cagr(m, y), 4) for y in a["years"]} for m in a["multiples"]}
+    return {m: {y: round(cagr(m, y), 6) for y in a["years"]} for m in a["multiples"]}
 
 
 def two_engines(target, years, multiple_change):
@@ -173,7 +177,7 @@ def check(pb, verdict="focus", c=None):
         fails.append(f"판단 기간(horizon_years) {hz} — {g['horizon'][0]}~{g['horizon'][1]}년")
     req, tm = None, pb.get("target_multiple")
     if isinstance(tm, (int, float)) and tm > 1 and isinstance(hz, (int, float)) and hz > 0:
-        req = round(cagr(tm, hz), 4)          # 목표 배수 ÷ 판단 기간 = 필요한 연 성장률
+        req = round(cagr(tm, hz), 6)          # 목표 배수 ÷ 판단 기간 = 필요한 연 성장률
         if req >= c["arithmetic"]["rare_cagr"]:
             warns.append(f"{hz:g}년에 {tm:g}배는 연 {req * 100:.1f}% — 희소한 경로다(문턱 {c['arithmetic']['rare_cagr'] * 100:.0f}%). 기간을 늘리거나 근거를 더 댄다")
     got = pb.get("views") or {}
