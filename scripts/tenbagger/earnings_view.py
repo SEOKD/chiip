@@ -192,6 +192,21 @@ def premium_trend(dp):
     return out
 
 
+def trend_gap_reason(dp):
+    """추이를 못 그리는 구체적 이유(2026-11-21 IQE) — 대상 선행 이력·후행 이력·동종 분기말 배수 중 무엇이 비었나"""
+    h = dp.get("history") or {}
+    own_fwd = any(h.get(k) for k in ("pe_fwd", "ev_ebitda_fwd"))
+    own_ttm = bool(h.get("pe_ttm"))
+    peer_q = sum(1 for p in dp.get("peers") or [] if p.get("hist_q"))
+    if not own_fwd and not own_ttm:
+        why = "대상 과거 배수 없음 — 애널리스트 추정 이력이 없어 과거 선행 배수를 못 만들고"
+        why += (", 후행 이익이 적자·0 근처라 후행 배수도 뜻이 없다" if h.get("ttm_meaningless") else ", 분기말 후행 배수도 넣지 않았다")
+        return why
+    if peer_q < 2:
+        return f"동종 분기말 배수가 {peer_q}곳뿐"
+    return "대상과 동종의 분기말이 2개 분기 이상 겹치지 않는다"
+
+
 def premiums(now, peers):
     """대상 배수 ÷ 동종 중앙값 − 1. 성장 조정 = (배수 ÷ 성장%) 끼리 비교 — 성장이 0 이하인 동종은 제외"""
     def rows(metrics):
@@ -299,9 +314,9 @@ def report_section(dp, co, mcap, wacc, g_term, unit="B$"):
                   "series": [{"name": "대상", "color": "c", "values": [round(r["value"], 1) for r in pm]},
                              {"name": "동종 중앙값", "color": "e", "values": [round(r["peer_median"], 1) for r in pm]}]}})
     for tr in premium_trend(dp):
-        prem = " · ".join(f"{m[2:4]}.{m[5:7]} {v:+d}%" for m, v in zip(tr["months"], tr["values"]) if v is not None)
+        prem = " · ".join(("현재" if m == "now" else f"{m[2:4]}.{m[5:7]}") + f" {v:+d}%" for m, v in zip(tr["months"], tr["values"]) if v is not None)
         B.append({"type": "chart", "chart": {"kind": "bars", "trend": True, "title": f"멀티플 프리미엄 추이 — {tr['metric']}, 분기말 절대값(배)", "unit": "배", "metric": tr["metric"],   # 절대값(마스터 지시 2026-11-19 "%가 아니라 절대값, 분기 말일 기준")
-                  "categories": [f"{m[:4]}-{m[5:7]}말" for m in tr["months"]],
+                  "categories": ["현재" if m == "now" else f"{m[:4]}-{m[5:7]}말" for m in tr["months"]],
                   "series": [{"name": f"대상 {tr['metric']}", "color": "c", "values": tr.get("own") or tr["values"]},
                              {"name": f"동종 중앙값(프리미엄 {prem})", "color": "e", "values": tr.get("peer") or [None] * len(tr["months"])}]}})
     if not B:

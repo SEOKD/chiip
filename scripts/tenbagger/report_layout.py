@@ -408,7 +408,12 @@ def earnings_blocks(esec):
     return out + ([read] if read else [])
 
 
-def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None, capacity=(None, None), customers=None, site=None):
+def earnings_view_reason(dp):
+    import earnings_view
+    return earnings_view.trend_gap_reason(dp) if hasattr(earnings_view, "trend_gap_reason") else None
+
+
+def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, portfolio=None, supply=None, capacity=(None, None), customers=None, site=None, gap_reason=None):
     """한눈에 보기 — 그림을 모은 뒤 GALLERY 순서로 낸다. 순서를 바꾸려면 GALLERY만 고친다"""
     E = [b for b in (esec or {}).get("blocks") or [] if b.get("type") == "chart"]
     get = lambda blocks, key: next((dict(b["chart"]) for b in blocks if key in str((b.get("chart") or {}).get("title"))), None)
@@ -437,7 +442,7 @@ def gallery(price, actest, ev_chart, s, esec, mm, flow_sec, sec, zones=None, por
         idx = [i for i, c in enumerate(prem["categories"]) if want in c and "1Y" in c] or [i for i, c in enumerate(prem["categories"]) if want in c]   # 기준 Fwd 1Y만(2026-11-15 LBRT: 1Y·2Y·3Y 현재값이 나란히 나와 기준이 바뀐 것처럼 보였다)
         series = [{**x, "values": [x["values"][i] for i in idx]} for x in prem["series"]]
         # 분기 추이 재료(자기 월말 배수·동종사 분기말 배수)가 없으면 현재값만 — 이유를 제목에 밝힌다(2026-11-07 삼성전자: Fiscal.ai 미수록 종목)
-        why = "최근 4개 분기 추이 재료 없음(동종 분기말 배수 또는 대상 월말 배수)"
+        why = ("최근 4개 분기 추이 없음: " + gap_reason) if gap_reason else "최근 4개 분기 추이 재료 없음(동종 분기말 배수 또는 대상 월말 배수)"   # 구체적 이유(2026-11-21 IQE)
         prem.update({"title": f"멀티플 프리미엄({prem['categories'][idx[0]] if idx else want} 현재값 — {why})", "categories": [prem["categories"][i] for i in idx], "series": [x for x in series if any(v is not None for v in x["values"])]})
         parts["멀티플 프리미엄"] = prem
     F = [b for b in (flow_sec or {}).get("blocks") or [] if b.get("type") == "chart"]
@@ -651,7 +656,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         raise SystemExit("datapack playbook 재료가 모자란다: " + " · ".join(playbook_view.check(dp)))
     view = next((h for h in mm.get("horizons") or [] if h["h"] == 1), None)
     pchart = narrative_view.portfolio_chart(dp)
-    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, pchart, supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp), site_view.chart(dp))
+    d["gallery"] = gallery(price, actest_chart(dp), rational_chart(view) if view else None, s, esec, mm, xs.get("flow"), sec, zones, pchart, supply_view.chart(dp), capacity_view.charts(dp), customer_view.chart(dp), site_view.chart(dp), gap_reason=earnings_view_reason(dp))
     model = d.get("sections") or []
     find = lambda *keys: [x for x in model if x.get("h2", "").startswith(keys)]
     bear_blocks = [b for x in find("반대 검증") for b in x.get("blocks") or []]
