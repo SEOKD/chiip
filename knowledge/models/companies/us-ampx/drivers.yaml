@@ -1,0 +1,104 @@
+auto: true
+id: us-ampx
+name: Amprius Technologies
+ticker: AMPX
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.31
+  OTHER: 0.69
+tax: 0.21
+horizon: 10
+as_of: '2026-11-21'
+market:
+  date: '2026-11-21'
+  price: 5.77
+  shares: 0.167954
+  net_debt: -0.053606
+  source: 가격 = 11/20 종가 $5.77(Fiscal.ai·Easyconomics 일치, TradingView는 일일 한도). 주식 수
+    = 3Q 10-Q 재무상태표 146,634,469주(9/30). 현금 $60.7M(제한 현금 $1.16M 별도). 차입 0, 리스 부채 $7.08M(유동
+    $1.18M + 비유동 $5.90M)
+rev0: 0.145
+ic0: 0.071089
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.3448
+      end: 0.03
+      decay: 0.801
+    margin:
+      m0: -0.11
+      target: -0.064
+      year_target: 2
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - -0.064
+    s2c: 1.786
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.6255
+      end: 0.034999999999999996
+      decay: 0.8510000000000001
+    margin:
+      m0: -0.11
+      target: -0.041
+      year_target: 2
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - -0.064
+    s2c: 2.054
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.1034
+      end: 0.024999999999999998
+      decay: 0.7010000000000001
+    margin:
+      m0: -0.11
+      target: -0.087
+      year_target: 2
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - -0.064
+    s2c: 1.518
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.145, 0.145] (3Q26 콜(2026-11-10)·실적 8-K EX-99.1: 2026 매출 $145M(8월
+    ''최소 $140M''에서 세 번째 상향), 조정 EBITDA ''최소 $2.5M''(8월 ''$4M 초과''에서 하향, 조정표 전망 열 $2.72M),
+    매출총이익률 최소 28%, 순손실 $10M 이하, EPS −$0.07 이하(주식 1억 4,340만 주 가정), CAPEX $10M 미만. 4Q
+    매출은 가이던스에서 계산하면 약 $43.3M)'
+  growth: 컨센서스 1년차 34.5%, 2년차 28.2%
+  margin: 1년차 컨센서스 -6.4% 고정 → 목표 -6%(2년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.786
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 10.3%~62.6%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.35, ''bull'': 0.3} → 모델 조정 {''bear'':
+    0.35, ''base'': 0.45, ''bull'': 0.2}(가이던스 세 번 상향·잔여 이행 의무 $46M(1년 내)로 2027 매출
+    하단은 받쳐지지만, 2027 EPS 컨센서스가 11/13에 흑자에서 적자로 바뀌었고 우크라이나 비중이 커 휴전 시 수요 공백이 생길 수 있어
+    약세를 조금 높인다) — 다음 해 매출 성장 분포로 계산 — 약세 +22.4% 아래·강세 +48.5% 위 확률. 내부 관점(컨센서스 +34.5%,
+    σ 29.0%: 범위 52.2% ÷ d2(7) × 1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.146634(2026-09-30) + 옵션·RSU·워런트·전환 0.0213 — 3Q 10-Q 주당손실 주석:
+    워런트 10,474,559(공모 9,330,959·사모 140,000 행사가 '
+notes:
+- 자동 생성(build_drivers) 2026-11-21 — 데이터 묶음 2026-11-21
+- '어닝콜 위험: 우크라이나 매출 3Q $8.7M(22%) — 휴전 시 일회용 드론 수요 변화'
+- '어닝콜 위험: 중국 Berzelius 의존과 NDAA 2028 국산 조달 요건'
+- '어닝콜 위험: 운임이 매출의 11%(항공 운송)'
+evidence:
+- 3Q26 10-Q(SEC, 2026-11-12) https://www.sec.gov/Archives/edgar/data/1899287/000189928726000071/ampx-20260930.htm
+- 3Q26 실적 8-K EX-99.1(Item 2.02, 2026-11-10) https://www.sec.gov/Archives/edgar/data/1899287/000189928726000069/ampx-2026x11x03x8kex991.htm
+- 3Q26 어닝콜(2026-11-10)
+- 2Q26 어닝콜(2026-08-04)
+- Fiscal.ai 표준화 재무·추정(11/21 조회)
+- Easyconomics(yfinance) 일봉·개요(11/21 조회)
+- Quantral 커뮤니티 신호(11/21)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
