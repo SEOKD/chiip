@@ -1,0 +1,107 @@
+auto: true
+id: co-iqe
+name: IQE
+ticker: IQE
+unit: BGBP
+unit_usd: 1326390000.0
+industry: semiconductor
+region_mix:
+  US: 0.4
+  other: 0.45
+  EU: 0.15
+tax: 0.25
+horizon: 10
+as_of: '2026-11-21'
+market:
+  date: '2026-11-21'
+  price: 0.258
+  shares: 1.33307
+  net_debt: 0.0123
+  source: 가격 = 11/20 종가 25.80펜스(£0.258). 주식 수 1,333.1M = 시가총액 £343.9M ÷ 종가(4월 £81M
+    증자 반영 — 1H26 가중평균 1,145.9M은 증자 전 기간 포함). 현금 £41.6M(1H26 말, 11/17 거래 갱신 £41.5M),
+    차입 £53.9M = MACOM 전환사채 £11.4M + 리스 £42.5M(유동 £5.5M + 비유동 £37.1M), 은행 차입 0
+rev0: 0.14395
+ic0: 0.1606
+scenarios:
+  base:
+    prob: 0.6
+    growth:
+      start: 0.2157
+      end: 0.03
+      decay: 0.9
+    margin:
+      m0: -0.114
+      target: 0.12
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.091
+      - 0.1
+    s2c: 2.5
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.3894
+      end: 0.034999999999999996
+      decay: 0.9
+    margin:
+      m0: -0.114
+      target: 0.2
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.091
+      - 0.1
+    s2c: 2.875
+  bear:
+    prob: 0.2
+    growth:
+      start: 0.042
+      end: 0.024999999999999998
+      decay: 0.8
+    margin:
+      m0: -0.114
+      target: 0.04
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.091
+      - 0.1
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0868
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: '회사 가이던스 중간값 [0.1362, 0.1517] (IQE 거래 갱신(2026-11-17): FY26 매출 전년 대비 +40% 초과,
+    조정 EBITDA 10파운드 중반(£M), 은행 차입 없음·현금 £41.5M, 2027 수주 커버리지 강함)'
+  growth: 컨센서스 1년차 21.6%, 2년차 22.3%
+  margin: 1~2년차 컨센서스 9.1%, 10.0% 고정 → 목표 12%(3년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.726 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 4.2%~38.9%
+  probs: '근거 계산 {''bear'': 0.2, ''base'': 0.6, ''bull'': 0.2} — 다음 해 매출 성장 분포로 계산
+    — 약세 +12.9% 아래·강세 +30.3% 위 확률. 내부 관점(컨센서스 +21.6%, σ 10.4%: 추정 범위 없음 — 5% + 0.25
+    × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '① 증분 매출÷투하자본 2.5: 회사는 기존 설비로 큰 증설 없이 생산을 크게 늘릴 수 있다고 말했고(FY25 콜) CAPEX가
+    매출의 6~7%다 — TTM 0.73은 저가동률 자산을 분모로 쓴 값이라 증분 투자에 맞지 않는다(판단). ② FY28 이익률 앵커 10%:
+    Fiscal FY28 영업이익률 5.1%는 3·4분기 EBIT −£3.7M(조정 EBITDA £13M대와 모순)이 섞인 모델 값으로 보여 FY27
+    9.1%보다 조금 높은 10%로 둔다(판단). ③ 3년차 목표 12%·장기 15%: 2015~2017 영업이익률 15~26%(Fiscal 실적,
+    반기) 정상 가동기 평균보다 낮게'
+  shares: 완전 희석 = 기본 1.33307(2026-11-20) + 옵션·RSU·워런트·전환 0.0000 — MACOM 전환사채 액면 £15M(장부
+    £11.4M)의 전환가·전환 주식 수와 스톡옵션 잔량은 이번 회차 연
+notes:
+- 자동 생성(build_drivers) 2026-11-21 — 데이터 묶음 2026-11-21
+- '어닝콜 위험: InP 기판 공급 병목 — 회사가 직접 꼽았다'
+- '어닝콜 위험: GAAP 영업손실 지속(TTM −£14.8M) — 조정 EBITDA 흑자와 차이'
+- '어닝콜 위험: MACOM 쏠림 — 10% 주주 겸 LTA 고객, 매출 몫 미공시'
+evidence:
+- IQE 거래 갱신(2026-11-17, RNS) https://www.londonstockexchange.com/news-article/IQE/iqe-plc-trading-update/17407932
+- Semiconductor Today 거래 갱신 보도(2026-11-17) https://semiconductor-today.com/news_items/2026/nov/iqe-171126.shtml
+- IQE 1H26 실적 발표·콜(2026-09-07) https://fiscal.ai/company/AIM-IQE
+- IQE FY25 실적 발표·콜(2026-05-28) https://fiscal.ai/company/AIM-IQE
+- Fiscal.ai IQE https://fiscal.ai/company/AIM-IQE
+- Reuters — UK's IQE lifts annual forecast again(2026-11-17)

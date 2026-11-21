@@ -1,0 +1,2636 @@
+{
+ "id": "co-iqe",
+ "name": "IQE",
+ "ticker": "IQE",
+ "unit": "BGBP",
+ "currency_symbol": "£",
+ "unit_usd": 1326390000.0,
+ "industry": "semiconductor",
+ "region_mix": {
+  "US": 0.4,
+  "other": 0.45,
+  "EU": 0.15
+ },
+ "tax": 0.25,
+ "profile": {
+  "price": 0.258,
+  "shares_basic": 1.33307,
+  "shares_date": "2026-11-20",
+  "cash": 0.0416,
+  "debt": 0.0539,
+  "source": "가격 = 11/20 종가 25.80펜스(£0.258). 주식 수 1,333.1M = 시가총액 £343.9M ÷ 종가(4월 £81M 증자 반영 — 1H26 가중평균 1,145.9M은 증자 전 기간 포함). 현금 £41.6M(1H26 말, 11/17 거래 갱신 £41.5M), 차입 £53.9M = MACOM 전환사채 £11.4M + 리스 £42.5M(유동 £5.5M + 비유동 £37.1M), 은행 차입 0"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-11-20",
+  "source": "MACOM 전환사채 액면 £15M(장부 £11.4M)의 전환가·전환 주식 수와 스톡옵션 잔량은 이번 회차 연차보고서·증자 서류 미대조 — 0으로 두고 위험 절에 '미확인'으로 적는다"
+ },
+ "financials": {
+  "rev_ttm": 0.1166,
+  "ebit_ttm": -0.0148,
+  "invested_capital": 0.1606,
+  "capex_ttm": 0.0076,
+  "da_ttm": 0.0214,
+  "sbc_ttm": 0.0044,
+  "basis": "IFRS(GAAP)",
+  "note": "TTM = 2H25 £52.05M + 1H26 £64.56M = £116.6M(반기 보고), 영업손실 £14.8M. 투하자본 = 자기자본 £148.3M + 전환사채 £11.4M + 리스 £42.5M − 현금 £41.6M = £160.6M. 감가상각 £21.4M, 주식보상 £4.4M(현금흐름표), CAPEX £7.6M"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 0.1362,
+   "FY2027": 0.175,
+   "FY2028": 0.214
+  },
+  "rev_low": {
+   "FY2026": 0.126,
+   "FY2027": 0.15,
+   "FY2028": 0.17
+  },
+  "rev_high": {
+   "FY2026": 0.1517,
+   "FY2027": 0.2,
+   "FY2028": 0.255
+  },
+  "ebit_margin": {
+   "FY2026": -0.114,
+   "FY2027": 0.091,
+   "FY2028": 0.051
+  },
+  "ebitda": {
+   "FY2026": 0.0115,
+   "FY2027": 0.03,
+   "FY2028": 0.051
+  },
+  "ebitda_low": {
+   "FY2026": 0.0078,
+   "FY2027": 0.018,
+   "FY2028": 0.028
+  },
+  "ebitda_high": {
+   "FY2026": 0.0376,
+   "FY2027": 0.042,
+   "FY2028": 0.075
+  },
+  "eps": {
+   "FY2026": -0.0228,
+   "FY2027": 0.0047,
+   "FY2028": 0.015
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "n_analysts": null,
+  "ebit_margin_note": "IFRS EBIT ÷ 매출(Fiscal 추정). EBITDA는 조정 EBITDA(회사 가이던스 기준). FY26 조정 EBITDA 추정 £11.5M은 11/17 상향(10파운드 중반) 전 값이다",
+  "ratings": {},
+  "ratings_note": "애널리스트 의견·목표가 데이터 없음(Zacks 미수록). 1H26 콜 질문 증권사: Deutsche Bank·Panmure Liberum",
+  "quarters_est": {
+   "2026-09-30": 0.0359,
+   "2026-12-31": 0.0358,
+   "2027-03-31": 0.0458,
+   "2027-06-30": 0.0449,
+   "2027-09-30": 0.0421,
+   "2027-12-31": 0.0423
+  },
+  "eps_quarters_est": {
+   "2026-09-30": -0.0051,
+   "2026-12-31": -0.0051,
+   "2027-03-31": 0.0015,
+   "2027-06-30": 0.0015,
+   "2027-09-30": 0.0015,
+   "2027-12-31": 0.0015
+  },
+  "surprise": [
+   {
+    "period": "2025Q3",
+    "report_date": "2025-09-30",
+    "metric": "매출",
+    "unit": "£M",
+    "actual": 26.02,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-28",
+    "note": "반기 보고 — 분기 값은 반기 ÷ 2"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "£M",
+    "actual": 26.02,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-28",
+    "note": "반기 보고 — 분기 값은 반기 ÷ 2"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "£M",
+    "actual": 32.28,
+    "est": 31.5,
+    "est_src": "Fiscal.ai 발표 전 추정",
+    "basis": "gaap",
+    "earnings_date": "2026-09-07",
+    "note": "반기 보고 — 분기 값은 반기 ÷ 2"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "£M",
+    "actual": 32.28,
+    "est": 31.5,
+    "est_src": "Fiscal.ai 발표 전 추정",
+    "basis": "gaap",
+    "earnings_date": "2026-09-07",
+    "note": "반기 보고 — 분기 값은 반기 ÷ 2"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "£M",
+    "actual": 3.02,
+    "est": 2.56,
+    "est_src": "Fiscal.ai 발표 전 조정 EBITDA 추정",
+    "basis": "adjusted",
+    "earnings_date": "2026-09-07",
+    "note": "반기 보고 — 분기 값은 반기 ÷ 2"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "£M",
+    "actual": 3.02,
+    "est": 2.56,
+    "est_src": "Fiscal.ai 발표 전 조정 EBITDA 추정",
+    "basis": "adjusted",
+    "earnings_date": "2026-09-07",
+    "note": "반기 보고 — 분기 값은 반기 ÷ 2"
+   }
+  ],
+  "source": "Fiscal.ai 자체 추정(company_estimates, Agentic Consensus·회사 가이던스) 2026-11-21 조회 — Zacks 커버리지 없음"
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.1362,
+   0.1517
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "adjusted",
+  "source": "IQE 거래 갱신(2026-11-17): FY26 매출 전년 대비 +40% 초과, 조정 EBITDA 10파운드 중반(£M), 은행 차입 없음·현금 £41.5M, 2027 수주 커버리지 강함",
+  "next": {
+   "period": "FY26(2026-12 결산)",
+   "rev": 136.2,
+   "rev_range": [
+    136.2,
+    151.7
+   ],
+   "rev_cons": 136.2,
+   "ebitda_range": [
+    14,
+    16
+   ],
+   "unit": "£M",
+   "basis": "회사 가이던스: FY26 매출 성장 '+40% 초과' — 하한 = FY25 £97.3M × 1.40 = £136.2M(계산). 상한은 회사가 내지 않아 컨센서스 상단 £151.7M을 썼다. 조정 EBITDA '10파운드 중반(mid-teens £M)' — £14~16M은 표현을 숫자로 옮긴 해석"
+  },
+  "trail": [
+   "2026-05-28 FY25 콜: 매출 +20% 초과, 조정 EBITDA 한 자릿수 후반~10파운드 초반",
+   "2026-07 거래 갱신: 매출 +30% 초과, 조정 EBITDA 10파운드 초반",
+   "2026-09-07 1H 콜: 재확인 — 계속기업 검토에 2026·2027 각각 +30% 이상 성장 가정",
+   "2026-11-17 거래 갱신: 매출 +40% 초과, 조정 EBITDA 10파운드 중반"
+  ],
+  "long_term": "장기 목표 없음 — 2027년 전략 재설정(5개년 계획·새 사업부 보고)에서 이익률·매출 목표를 낸다고 예고(1H 콜)",
+  "basis_note": "같은 해(FY26)·같은 기준(IFRS 매출). 회사는 하한(+40% 초과)만 내 상한은 컨센서스 상단으로 채웠다 — 중간값은 하한보다 6% 높다"
+ },
+ "call": {
+  "date": "2026-09-07",
+  "prev_date": "2026-05-28",
+  "tone": "up",
+  "guidance_direction": "raise",
+  "tone_delta": 1.0,
+  "kpis": {
+   "rev_1h26_gbp_m": 64.6,
+   "rev_growth": 0.43,
+   "wireless_gbp_m": 26.0,
+   "photonics_gbp_m": 38.5,
+   "adj_ebitda_gbp_m": 6.0,
+   "cash_gbp_m": 41.6,
+   "adj_net_cash_gbp_m": 30.2
+  },
+  "guidance_changes": [
+   "FY26 매출 성장 +20% 초과(5월) → +30% 초과(7월, 1H 콜 재확인) → +40% 초과(11/17)",
+   "FY26 조정 EBITDA 한 자릿수 후반~10파운드 초반(5월) → 10파운드 초반(7월) → 10파운드 중반(11/17)",
+   "계속기업 검토에 2026·2027 각 +30% 이상 성장 가정(1H 발표 — 2027 가이던스는 아님)"
+  ],
+  "new_topics": [
+   "Tower Semiconductor와 다년 InP 공급 계약",
+   "AI·데이터센터 고객 $14M 양산 주문",
+   "Quintessent(양자 광학)와 구매 계약",
+   "하반기 기존 GaAs 반응기를 InP로 전환해 캐파 확대",
+   "InP 기판이 업계 병목 — 공급사 물량 배정을 잠그는 중",
+   "LSE 메인 시장 이전 목표 1H27",
+   "COO Matt Geen 선임",
+   "2027년 전략 재설정·새 사업부 보고"
+  ],
+  "dropped_topics": [
+   "대만 공장 매각 — 전략 검토 종결로 대만을 유지(지정학 분산 거점으로 설명)",
+   "은행 차입 상환 압박 — 4월 증자 뒤 은행 차입 0"
+  ],
+  "analyst_focus": [
+   "Deutsche Bank — 볼륨 주문의 성격과 Aixtron G4 반응기 6인치 InP 전환 능력",
+   "Panmure Liberum — 추가 LTA 조건과 Newport 빈 클린룸을 채울 조건",
+   "(질문자 회사 미확인) — 국방·위성통신, InP 전환 CAPEX, 이익률 목표, 가격 결정력, InP 기판 전략"
+  ],
+  "risks": [
+   "InP 기판 공급 병목 — 회사가 직접 꼽았다",
+   "GAAP 영업손실 지속(TTM −£14.8M) — 조정 EBITDA 흑자와 차이",
+   "MACOM 쏠림 — 10% 주주 겸 LTA 고객, 매출 몫 미공시",
+   "반기 보고라 실적 확인 간격이 6개월",
+   "4월 증자로 주식 수가 약 35% 늘었다(1H26 가중평균 대비, 계산)"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "item": "FY26 매출 가이던스",
+    "label": "매출 +40% 초과",
+    "prior": "+20% 초과(FY25 콜)",
+    "latest": "+40% 초과(11/17)",
+    "driver": "growth_start",
+    "shift": 0.15,
+    "confidence": 0.8,
+    "source": "IQE 거래 갱신(2026-11-17)"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "item": "조정 EBITDA 가이던스",
+    "label": "EBITDA 10파운드 중반",
+    "prior": "한 자릿수 후반~10파운드 초반",
+    "latest": "10파운드 중반(£M)",
+    "driver": "margin_m0",
+    "shift": 0.03,
+    "confidence": 0.8,
+    "source": "IQE 거래 갱신(2026-11-17)"
+   },
+   {
+    "id": "D3",
+    "kind": "신규",
+    "item": "다년 공급 계약",
+    "label": "Tower·MACOM LTA",
+    "prior": "MACOM LTA만(4월)",
+    "latest": "Tower InP 다년 계약·$14M AI 주문·Quintessent",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "id": "D4",
+    "kind": "신규",
+    "item": "InP 캐파 전환",
+    "label": "GaAs→InP 반응기 전환",
+    "prior": "기존 설비 여유(FY25 콜)",
+    "latest": "하반기 반응기 전환 시작(1H 콜)",
+    "driver": "s2c",
+    "shift": 0.05,
+    "confidence": 0.5,
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "id": "D5",
+    "kind": "부정",
+    "item": "InP 기판 병목",
+    "label": "InP 기판 병목",
+    "prior": "언급 없음(FY25 콜)",
+    "latest": "기판이 물량 증가의 병목(1H 콜)",
+    "driver": "growth_start",
+    "shift": -0.03,
+    "confidence": 0.5,
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "id": "D6",
+    "kind": "업데이트",
+    "item": "재무 구조",
+    "label": "은행 차입 0",
+    "prior": "조정 순차입 £31.5M(FY25 말)",
+    "latest": "조정 순현금 £30.2M(1H26 말)",
+    "driver": "net_debt",
+    "shift": -0.06,
+    "confidence": 1.0,
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   }
+  ],
+  "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+ },
+ "sources": [
+  "IQE 거래 갱신(2026-11-17, RNS) https://www.londonstockexchange.com/news-article/IQE/iqe-plc-trading-update/17407932",
+  "Semiconductor Today 거래 갱신 보도(2026-11-17) https://semiconductor-today.com/news_items/2026/nov/iqe-171126.shtml",
+  "IQE 1H26 실적 발표·콜(2026-09-07) https://fiscal.ai/company/AIM-IQE",
+  "IQE FY25 실적 발표·콜(2026-05-28) https://fiscal.ai/company/AIM-IQE",
+  "Fiscal.ai IQE https://fiscal.ai/company/AIM-IQE",
+  "Reuters — UK's IQE lifts annual forecast again(2026-11-17)"
+ ],
+ "weakest": "FY27 매출 £175M(+28%)와 조정 EBITDA £30M — InP 기판 배정과 반응기 전환 속도, 그리고 MACOM 외 고객의 LTA가 이 가정을 받친다. GAAP 영업이익 흑자 전환은 FY27 추정에서도 이익률 9%대에 그친다",
+ "as_of": "2026-11-21",
+ "scenario_probs": {},
+ "scenario_probs_why": "계산값 그대로 — 조정 이유 없음",
+ "peers": [
+  {
+   "name": "Coherent",
+   "ticker": "COHR",
+   "key": "NYSE_COHR",
+   "rev": 5.963,
+   "ebit_margin": 0.263,
+   "growth": 0.52,
+   "mcap": 27.81,
+   "why": "InP·GaAs 레이저·트랜시버 수직계열 — IQE의 광통신 에피 수요와 같은 AI 광 사이클",
+   "pe_fwd": 16,
+   "ev_ebitda_fwd": 13.33,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 31.94,
+     "ev_ebitda_fwd": 20.74
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 34.97,
+     "ev_ebitda_fwd": 23.34
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 48.92,
+     "ev_ebitda_fwd": 30.78
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 27.81,
+     "ev_ebitda_fwd": 17.96
+    }
+   ],
+   "pe_fwd2": 11.19,
+   "ev_ebitda_fwd2": 9.35,
+   "pe_fwd3": 8.64,
+   "ev_ebitda_fwd3": 7.26,
+   "ntm_ebit_margin": 0.2632,
+   "ntm_growth": 0.5214
+  },
+  {
+   "name": "Lumentum",
+   "ticker": "LITE",
+   "key": "NASDAQ_LITE",
+   "rev": 2.823,
+   "ebit_margin": 0.483,
+   "growth": 1.13,
+   "mcap": 31.5,
+   "why": "InP 레이저(EML·CW) 칩 회사 — 광통신 InP 에피의 최종 수요처",
+   "pe_fwd": 14.61,
+   "ev_ebitda_fwd": 11.09,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 51.95,
+     "ev_ebitda_fwd": 34.19
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 52.04,
+     "ev_ebitda_fwd": 33.27
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 49.71,
+     "ev_ebitda_fwd": 35.05
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 40.3,
+     "ev_ebitda_fwd": 28.75
+    }
+   ],
+   "pe_fwd2": 10.7,
+   "ev_ebitda_fwd2": 7.88,
+   "pe_fwd3": 8.49,
+   "ev_ebitda_fwd3": 6.34,
+   "ntm_ebit_margin": 0.4827,
+   "ntm_growth": 1.1287
+  },
+  {
+   "name": "Soitec",
+   "ticker": "SOI",
+   "key": "XPAR_SOI",
+   "rev": 0.59,
+   "ebit_margin": 0.076,
+   "growth": 0.15,
+   "mcap": 3.0,
+   "why": "유럽 엔지니어드 웨이퍼(SOI·GaN·SiC) 상업 공급사 — 같은 '웨이퍼 소재' 사업 모델",
+   "pe_fwd": 108.25,
+   "ev_ebitda_fwd": 18.68,
+   "pe_fwd2": 34.24,
+   "ev_ebitda_fwd2": 13.32,
+   "pe_fwd3": 21.37,
+   "ev_ebitda_fwd3": 9.9,
+   "ntm_ebit_margin": 0.0759,
+   "ntm_growth": 0.1482
+  },
+  {
+   "name": "AXT",
+   "ticker": "AXTI",
+   "key": "NASDAQ_AXTI",
+   "rev": 0.129,
+   "ebit_margin": 0.475,
+   "growth": 1.91,
+   "mcap": 1.515,
+   "why": "InP·GaAs 기판 공급사 — IQE의 원재료 공급 쪽이자 InP 병목의 수혜 회사",
+   "pe_fwd": 9.58,
+   "ev_ebitda_fwd": 6.64,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 104.48
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 432.76,
+     "ev_ebitda_fwd": 234.61
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 137.73,
+     "ev_ebitda_fwd": 183.26
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 41.77,
+     "ev_ebitda_fwd": 34.82
+    }
+   ],
+   "pe_fwd2": 7.17,
+   "ev_ebitda_fwd2": 3.26,
+   "pe_fwd3": 4.86,
+   "ev_ebitda_fwd3": 2.13,
+   "ntm_ebit_margin": 0.4746,
+   "ntm_growth": 1.9069
+  }
+ ],
+ "peers_source": "Fiscal.ai company_peers(직접 경쟁 VPEC·IntelliEPI·LandMark는 추정 없음 → 제외) + 화합물 반도체 소재·광부품 동종",
+ "raw": {
+  "retrieved_at": "2026-11-21T22:40:00+09:00",
+  "source": "Fiscal.ai company_financials_standardized(반기)·company_estimates·company_daily_ratios, Easyconomics company_profile(yfinance)",
+  "fiscal_profile": {
+   "price": 0.258,
+   "market_cap": 0.34393,
+   "total_cash": 0.0416,
+   "total_debt": 0.0539,
+   "balance_date": "2026-06-30",
+   "auditUrl": "https://fiscal.ai/company/AIM-IQE"
+  },
+  "shares_cover_implied": 1.33307,
+  "quarters_gaap": {
+   "rev": {
+    "2025-09-30": 0.026023,
+    "2025-12-31": 0.026023,
+    "2026-03-31": 0.032279,
+    "2026-06-30": 0.032279
+   },
+   "op_income": {
+    "2025-09-30": -0.003303,
+    "2025-12-31": -0.003303,
+    "2026-03-31": -0.0040725,
+    "2026-06-30": -0.0040725
+   },
+   "note": "반기 보고 — Fiscal 분기 값은 반기 ÷ 2"
+  },
+  "balance_2026_06_30": {
+   "equity": 0.1483,
+   "debt_current": 0.0,
+   "debt_lt": 0.01141,
+   "lease_current": 0.00546,
+   "lease_lt": 0.03707,
+   "cash": 0.0416,
+   "st_investments": 0.0
+  },
+  "estimates_sales_m": {
+   "2026-03-31": 32.279,
+   "2026-06-30": 32.279,
+   "2026-09-30": 35.895,
+   "2026-12-31": 35.767,
+   "2027-03-31": 45.802,
+   "2027-06-30": 44.857,
+   "2027-09-30": 42.058,
+   "2027-12-31": 42.283,
+   "2028-03-31": 55.426,
+   "2028-06-30": 55.685,
+   "2028-09-30": 51.357,
+   "2028-12-31": 51.532
+  },
+  "yf_profile": {
+   "shares_outstanding": 1333072106,
+   "market_cap_gbp": 343932608,
+   "high_52w_p": 72.9,
+   "low_52w_p": 4.75,
+   "institution_ownership": 0.38,
+   "insider_ownership": 0.28
+  },
+  "half_years": {
+   "1H25": {
+    "rev": 45.25,
+    "gp": 0.53
+   },
+   "2H25": {
+    "rev": 52.05,
+    "gp": 0.82
+   },
+   "1H26": {
+    "rev": 64.56,
+    "gp": 5.99,
+    "adj_ebitda": 6.0,
+    "wireless": 26.0,
+    "photonics": 38.5
+   },
+   "FY25": {
+    "rev": 97.3,
+    "adj_ebitda": 3.2
+   },
+   "unit": "£M"
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": null,
+  "ev_ebitda_fwd": 17.12,
+  "pe_fwd2": null,
+  "ev_ebitda_fwd2": 9.12,
+  "pe_fwd3": null,
+  "ev_ebitda_fwd3": 5.84
+ },
+ "forward": {
+  "as_of": "2026-11-20",
+  "ntm": {
+   "eps": -0.007243810000000001,
+   "ebitda": 22260287,
+   "ebit": 590066,
+   "revenue": 162321269,
+   "rev_ttm": 116604000
+  },
+  "horizons": {
+   "2": {
+    "eps": 0.01242069,
+    "ebitda": 41800294,
+    "ext": 0
+   },
+   "3": {
+    "eps": 0.02350916,
+    "ebitda": 65286665.5,
+    "ext": 2
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": null,
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized (반기 보고 — 분기 값은 반기 ÷ 2)",
+  "key": "XLON_IQE",
+  "currency": "GBP",
+  "q": [
+   {
+    "period": "2015-09-30",
+    "rev": 30402500,
+    "cogs": 21196000,
+    "gp": 9206500,
+    "sga": 4146000,
+    "rd": null,
+    "da": null,
+    "other": -2593500,
+    "op": 8043500
+   },
+   {
+    "period": "2015-12-31",
+    "rev": 30402500,
+    "cogs": 21196000,
+    "gp": 9206500,
+    "sga": 4146000,
+    "rd": null,
+    "da": null,
+    "other": -2593500,
+    "op": 8043500
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 31505000,
+    "cogs": 22883000,
+    "gp": 8622000,
+    "sga": 4135000,
+    "rd": null,
+    "da": null,
+    "other": -1150000,
+    "op": 5637000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 31505000,
+    "cogs": 22883000,
+    "gp": 8622000,
+    "sga": 4135000,
+    "rd": null,
+    "da": null,
+    "other": -1150000,
+    "op": 5637000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 34848500,
+    "cogs": 26386000,
+    "gp": 8462500,
+    "sga": 4183000,
+    "rd": null,
+    "da": null,
+    "other": -416000,
+    "op": 4695500
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 34848500,
+    "cogs": 26386000,
+    "gp": 8462500,
+    "sga": 4183000,
+    "rd": null,
+    "da": null,
+    "other": 423000,
+    "op": 3856500
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 35185000,
+    "cogs": 26832500,
+    "gp": 8352500,
+    "sga": 4460000,
+    "rd": null,
+    "da": null,
+    "other": 2000,
+    "op": 3890500
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 35185000,
+    "cogs": 26832500,
+    "gp": 8352500,
+    "sga": 4460000,
+    "rd": null,
+    "da": null,
+    "other": 2000,
+    "op": 3890500
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 42091500,
+    "cogs": 31045000,
+    "gp": 11046500,
+    "sga": 6331000,
+    "rd": null,
+    "da": null,
+    "other": 9000,
+    "op": 4706500
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 42091500,
+    "cogs": 31045000,
+    "gp": 11046500,
+    "sga": 6331000,
+    "rd": null,
+    "da": null,
+    "other": 9000,
+    "op": 4706500
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 36698000,
+    "cogs": 28639500,
+    "gp": 8058500,
+    "sga": 5581500,
+    "rd": null,
+    "da": null,
+    "other": -824000,
+    "op": 3301000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 36698000,
+    "cogs": 28639500,
+    "gp": 8058500,
+    "sga": 5581500,
+    "rd": null,
+    "da": null,
+    "other": -824000,
+    "op": 3301000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 41447500,
+    "cogs": 30780500,
+    "gp": 10667000,
+    "sga": 9362500,
+    "rd": null,
+    "da": null,
+    "other": 275500,
+    "op": 1029000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 41447500,
+    "cogs": 30780500,
+    "gp": 10667000,
+    "sga": 9362500,
+    "rd": null,
+    "da": null,
+    "other": 275500,
+    "op": 1029000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 33360000,
+    "cogs": 28064000,
+    "gp": 5296000,
+    "sga": 6833500,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": -1537500
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 33360000,
+    "cogs": 28064000,
+    "gp": 5296000,
+    "sga": 6833500,
+    "rd": null,
+    "da": null,
+    "other": 0,
+    "op": -1537500
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 36647500,
+    "cogs": 31251500,
+    "gp": 5396000,
+    "sga": 11315000,
+    "rd": null,
+    "da": null,
+    "other": 1944500,
+    "op": -7863500
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 36647500,
+    "cogs": 31251500,
+    "gp": 5396000,
+    "sga": 11315000,
+    "rd": null,
+    "da": null,
+    "other": 1944500,
+    "op": -7863500
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 44931000,
+    "cogs": 35260500,
+    "gp": 9670500,
+    "sga": 12130000,
+    "rd": null,
+    "da": null,
+    "other": 42500,
+    "op": -2502000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 44931000,
+    "cogs": 35260500,
+    "gp": 9670500,
+    "sga": 12130000,
+    "rd": null,
+    "da": null,
+    "other": 42500,
+    "op": -2502000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 44077000,
+    "cogs": 37172500,
+    "gp": 6904500,
+    "sga": 5218500,
+    "rd": null,
+    "da": null,
+    "other": 1985000,
+    "op": -256500
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 44077000,
+    "cogs": 37172500,
+    "gp": 6904500,
+    "sga": 5218500,
+    "rd": null,
+    "da": null,
+    "other": 1900000,
+    "op": -256500
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 39772000,
+    "cogs": 33668000,
+    "gp": 6104000,
+    "sga": 7003000,
+    "rd": null,
+    "da": null,
+    "other": 68000,
+    "op": -967000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 39772000,
+    "cogs": 33668000,
+    "gp": 6104000,
+    "sga": 7003000,
+    "rd": null,
+    "da": null,
+    "other": 68000,
+    "op": -967000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 37276000,
+    "cogs": 34558000,
+    "gp": 2718000,
+    "sga": 11846500,
+    "rd": null,
+    "da": null,
+    "other": -106500,
+    "op": -9022000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 37276000,
+    "cogs": 34558000,
+    "gp": 2718000,
+    "sga": 4469500,
+    "rd": null,
+    "da": null,
+    "other": 7270500,
+    "op": -9022000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 43099000,
+    "cogs": 35922500,
+    "gp": 7176500,
+    "sga": 8257000,
+    "rd": null,
+    "da": null,
+    "other": 2635000,
+    "op": -3715500
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 43099000,
+    "cogs": 35922500,
+    "gp": 7176500,
+    "sga": 8257000,
+    "rd": null,
+    "da": null,
+    "other": 2635000,
+    "op": -3715500
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 40648000,
+    "cogs": 34633000,
+    "gp": 6015000,
+    "sga": 7348500,
+    "rd": null,
+    "da": null,
+    "other": 31907000,
+    "op": -32772500
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 40648000,
+    "cogs": 34633000,
+    "gp": 6015000,
+    "sga": 7348500,
+    "rd": null,
+    "da": null,
+    "other": 30971000,
+    "op": -32772500
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 26008000,
+    "cogs": 28120500,
+    "gp": -2112500,
+    "sga": 8202000,
+    "rd": null,
+    "da": null,
+    "other": -497500,
+    "op": -9817000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 26008000,
+    "cogs": 28120500,
+    "gp": -2112500,
+    "sga": 8202000,
+    "rd": null,
+    "da": null,
+    "other": -497500,
+    "op": -9817000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 31618000,
+    "cogs": 28341500,
+    "gp": 3276500,
+    "sga": 8041000,
+    "rd": null,
+    "da": null,
+    "other": -2012000,
+    "op": -3072500
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 31618000,
+    "cogs": 28341500,
+    "gp": 3276500,
+    "sga": 8041000,
+    "rd": null,
+    "da": null,
+    "other": -1372000,
+    "op": -3072500
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 33009000,
+    "cogs": 30513000,
+    "gp": 2496000,
+    "sga": 8105500,
+    "rd": null,
+    "da": null,
+    "other": 459500,
+    "op": -6069000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 33009000,
+    "cogs": 30513000,
+    "gp": 2496000,
+    "sga": 8105500,
+    "rd": null,
+    "da": null,
+    "other": 459500,
+    "op": -6069000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 26008000,
+    "cogs": 26281000,
+    "gp": -273000,
+    "sga": 6885500,
+    "rd": null,
+    "da": null,
+    "other": 3251500,
+    "op": -10410000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 26008000,
+    "cogs": 26281000,
+    "gp": -273000,
+    "sga": 6885500,
+    "rd": null,
+    "da": null,
+    "other": 3251500,
+    "op": -10410000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 22627000,
+    "cogs": 22361500,
+    "gp": 265500,
+    "sga": 8152500,
+    "rd": null,
+    "da": null,
+    "other": 3839500,
+    "op": -11726500
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 22627000,
+    "cogs": 22361500,
+    "gp": 265500,
+    "sga": 8152500,
+    "rd": null,
+    "da": null,
+    "other": 3839500,
+    "op": -11726500
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 26023000,
+    "cogs": 25612500,
+    "gp": 410500,
+    "sga": 5726500,
+    "rd": null,
+    "da": null,
+    "other": 2070500,
+    "op": -3303000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 26023000,
+    "cogs": 25612500,
+    "gp": 410500,
+    "sga": 5726500,
+    "rd": null,
+    "da": null,
+    "other": 2070500,
+    "op": -3303000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 32279000,
+    "cogs": 29282500,
+    "gp": 2996500,
+    "sga": 7030500,
+    "rd": null,
+    "da": null,
+    "other": 38500,
+    "op": -4072500
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 32279000,
+    "cogs": 29282500,
+    "gp": 2996500,
+    "sga": 7030500,
+    "rd": null,
+    "da": null,
+    "other": 38500,
+    "op": -4072500
+   }
+  ]
+ },
+ "main_metric": "ebitda",
+ "main_metric_why": "회사가 조정 EBITDA로 가이던스를 내고, 선행 EPS는 FY26 적자·FY27 £0.005로 배수가 의미 없다",
+ "peers_basis": "ntm",
+ "moat": {
+  "summary": "해자는 '40년 가까이 쌓은 상업(머천트) 에피 공정 레시피와 고객 인증'에서 나온다. 다만 매출총이익률이 한 자릿수라 가격 결정력은 아직 약하다",
+  "items": [
+   {
+    "kind": "재료 폭·공정 레시피",
+    "verdict": "보통",
+    "claim": "InP·GaAs·GaN·GaSb 네 재료계를 모두 상업 공급하는 몇 안 되는 에피 회사다",
+    "evidence": "1H 콜: 재료계 포트폴리오가 업계에서 가장 넓다고 설명, InP 웨이퍼 수십 년 생산 경험(FY25 콜)",
+    "quant": "Photonics 1H26 £38.5M(+45%), Wireless £26.0M(+40%)",
+    "falsifier": "주요 고객이 InP 에피를 자체 생산(내재화)으로 돌림"
+   },
+   {
+    "kind": "고객 인증·LTA",
+    "verdict": "보통",
+    "claim": "에피 웨이퍼는 고객 소자 공정에 맞춰 인증받아 공급사 교체에 시간이 걸리고, 이제 다년 계약으로 묶였다",
+    "evidence": "MACOM 다년 계약·지분 투자, Tower InP 다년 계약, AI 고객 $14M 주문(1H 콜)",
+    "quant": "LTA 금액 미공시",
+    "falsifier": "LTA 고객이 다른 에피 공급사(VPEC·IntelliEPI 등)를 이중 인증하고 물량을 옮김"
+   },
+   {
+    "kind": "가격 결정력",
+    "verdict": "약함",
+    "claim": "가동률이 낮던 시기 원가를 못 덮어 매출총이익률이 한 자릿수다",
+    "evidence": "1H26 매출총이익률 9.3%(£5.99M ÷ £64.56M, 계산), FY25 1.4%. 회사: '가격 인상은 레버 중 하나'(1H 콜)",
+    "quant": "매출총이익률 0.8%(1H25) → 9.3%(1H26)",
+    "falsifier": "LTA 갱신에서 가격 인상이 확인되고 매출총이익률 20% 이상"
+   },
+   {
+    "kind": "빈 클린룸(빠른 증설)",
+    "verdict": "보통",
+    "claim": "Newport에 빈 클린룸이 있어 새 건물 없이 반응기만 들이면 된다",
+    "evidence": "1H 콜: 클린룸 여유가 충분, 반응기만 추가",
+    "quant": "여유 면적 미공시",
+    "falsifier": "고객 선급금 없이 증설을 미루다 경쟁사가 물량을 가져감"
+   }
+  ]
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "Fwd 1Y EV/EBITDA 17.1배는 동종 4곳 중앙보다 높지만 동종은 이익률 26~48%의 수직계열·기판 회사다. IQE는 GAAP 적자·반기 보고·고객 쏠림이 있어 판단 조정은 −10%"
+ },
+ "next_event": {
+  "date": "2027-03-31",
+  "tag": "FY26 실적(날짜 미확정 — 통상 3~4월, FY25는 전략 검토로 5/28에 늦게 냈다) — 2027 가이던스·새 사업부 보고"
+ },
+ "terms": {
+  "에피택셜 웨이퍼": "기판 위에 결정 박막을 층층이 길러 소자 구조를 미리 새긴 웨이퍼",
+  "에피": "에피택셜(박막 결정 성장)의 줄임말",
+  "InP": "인듐인 — 광통신 레이저·수광 소자용 화합물 반도체",
+  "GaAs": "갈륨비소 — RF 증폭기·VCSEL용 화합물 반도체",
+  "GaN": "질화갈륨 — 전력·RF·마이크로LED용 화합물 반도체",
+  "GaSb": "갈륨안티모나이드 — 적외선 센서용 화합물 반도체",
+  "VCSEL": "웨이퍼 표면으로 빛을 내는 레이저 — 3D 센싱·짧은 거리 광통신",
+  "MOCVD": "유기금속 가스로 박막을 기르는 에피 장비",
+  "MBE": "진공에서 분자빔으로 박막을 기르는 에피 장비",
+  "반응기": "에피 박막을 기르는 MOCVD·MBE 장비 한 대",
+  "마이크로LED": "아주 작은 LED — 칩 간 광 연결·디스플레이용",
+  "CPO": "광 엔진을 스위치 칩 옆에 함께 패키징한 광전 통합 부품",
+  "LTA": "다년 장기 공급 계약",
+  "전환사채": "정해진 가격에 주식으로 바꿀 수 있는 채권",
+  "AIM": "런던증권거래소 성장 기업 시장",
+  "메인 시장": "런던증권거래소 본 시장(FTSE 지수 편입 대상)",
+  "Aixtron G4": "Aixtron의 MOCVD 반응기 모델",
+  "CMOS++": "IQE가 정리한 실리콘 위 화합물 반도체 사업부",
+  "RF": "무선 주파수(통신용 전파) 소자",
+  "EML": "변조기를 붙인 광통신 레이저",
+  "Newport": "IQE 웨일스 Newport 생산 거점",
+  "HP": "추세와 순환을 나누는 통계 필터(호드릭-프레스콧)",
+  "HBT": "이종접합 트랜지스터 — 스마트폰 RF 증폭기 소자",
+  "pHEMT": "고전자이동도 트랜지스터 — RF 스위치·저잡음 증폭 소자",
+  "LED": "발광 다이오드",
+  "SiC": "탄화규소 — GaN RF 소자를 올리는 기판",
+  "TMGa": "트리메틸갈륨 — 갈륨 박막용 유기금속 원료",
+  "TMIn": "트리메틸인듐 — 인듐 박막용 유기금속 원료",
+  "Wireless": "IQE 무선 RF 에피 사업부",
+  "Photonics": "IQE 광 소자 에피 사업부"
+ },
+ "names": [
+  "IQE",
+  "MACOM",
+  "Tower Semiconductor",
+  "Quintessent",
+  "Coherent",
+  "COHR",
+  "Lumentum",
+  "LITE",
+  "Soitec",
+  "SOI",
+  "AXT",
+  "AXTI",
+  "VPEC",
+  "Visual Photonics Epitaxy",
+  "IntelliEPI",
+  "LandMark Optoelectronics",
+  "Wolfspeed",
+  "Aixtron",
+  "Veeco",
+  "Sumitomo Electric",
+  "JX Advanced Metals",
+  "HSBC",
+  "Deutsche Bank",
+  "Panmure Liberum",
+  "Reuters",
+  "Jutta Meier",
+  "Matt Geen",
+  "Robert Dennehy",
+  "David O'Carroll",
+  "Cardiff",
+  "FTSE",
+  "LSE",
+  "NVIDIA",
+  "엔비디아",
+  "JX",
+  "JP",
+  "BGBP"
+ ],
+ "narrative": {
+  "as_of": "2026-11-21",
+  "stage": "확산",
+  "crowding": "중간(영국 AIM 리테일 거래 비중 큼 — 내부자·기관 66% 보유, 리테일 집계 없음)",
+  "summary": "AI 데이터센터 광통신이 InP 에피웨이퍼 품귀를 만들고, 부채에 눌렸던 상업 에피 회사가 MACOM 투자로 살아나 그 수요를 받는다는 이야기다. 주가는 1년 새 5배가 됐지만 4월 고점보다 59% 낮다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "콜 질문 증권사",
+      "2곳(Deutsche Bank·Panmure Liberum)"
+     ],
+     [
+      "의견·목표가",
+      "데이터 없음(미확인)"
+     ],
+     [
+      "FY27 매출 추정",
+      "£175M(범위 £150~200M)"
+     ],
+     [
+      "콜 질문 초점",
+      "LTA 추가·InP 전환·Newport 증설 조건"
+     ]
+    ],
+    "read": "커버리지가 좁다. 질문은 '얼마나 더 LTA를 맺나'와 '빈 클린룸을 언제 채우나'에 몰렸다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "전략 주주",
+      "MACOM 약 10%(4월 £45M 투자 — 보도·회사 발표)"
+     ],
+     [
+      "기관·내부자 보유",
+      "기관 38%·내부자 28%(yfinance 개요)"
+     ],
+     [
+      "13F",
+      "해당 없음(영국 상장)"
+     ]
+    ],
+    "read": "MACOM 지분과 이사 2명 파견이 하단 지지 논리다. 정지 협약(standstill)이 없다고 회사가 밝혀 인수 옵션 이야기도 붙는다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral",
+      "미수록"
+     ],
+     [
+      "ApeWisdom",
+      "언급 없음"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "언급 없음(딘스티커 4/28 MACOM LTA 글 1건)"
+     ]
+    ],
+    "read": "한국·미국 리테일 집계는 거의 없다. 영국 AIM 개인 투자자 거래가 주가를 크게 흔든다(하루 ±15~40% 날이 1년에 30번 넘게 있었다, 계산)."
+   },
+   "media": {
+    "metrics": [
+     [
+      "11/17 거래 갱신",
+      "주가 보합(0.0%)"
+     ],
+     [
+      "11/20",
+      "−13.3%(원인 미확인)"
+     ],
+     [
+      "4/28 증자 발표 무렵",
+      "−18.5%"
+     ]
+    ],
+    "read": "Reuters는 '데이터센터 부품 수요로 연간 전망을 또 올렸다'고 썼다. 상향에도 주가가 반응하지 않은 것은 기대가 이미 앞섰다는 신호로 읽힌다(추정)."
+   }
+  },
+  "factors": [
+   {
+    "name": "InP 광통신 품귀",
+    "thesis": "AI 데이터센터 800G·1.6T 광 트랜시버가 InP 레이저·수광 칩을 늘리고, 상업 InP 에피 공급이 모자란다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "Photonics 1H26 +45%, FY26 가이던스 +40% 초과",
+    "status": "강화",
+    "falsifier": "2027 상반기 InP 에피 주문이 줄거나 LTA 고객이 물량을 내재화",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "MACOM 전략 투자",
+    "thesis": "MACOM이 지분 10%와 다년 계약으로 IQE를 공급망에 묶었다 — 생존 위험이 사라졌다",
+    "inputs": "할인율·배수",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "£81M 증자(MACOM £45M), 은행 차입 0, 순현금 £30.2M",
+    "status": "유지",
+    "falsifier": "MACOM 매출 몫이 줄거나 LTA 물량이 최소치에 머묾",
+    "source": "IQE FY25 실적 발표·콜(2026-05-28)"
+   },
+   {
+    "name": "가동률 레버리지",
+    "thesis": "고정비가 큰 에피 공장은 가동률이 오르면 이익이 매출보다 빨리 는다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "매출총이익률 0.8%(1H25) → 9.3%(1H26), 조정 EBITDA £6.0M",
+    "status": "강화",
+    "falsifier": "2H26 매출총이익률이 1H26보다 낮음",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "메인 시장 이전·FTSE 편입",
+    "thesis": "1H27 LSE 메인 시장 이전으로 기관 자금 접근이 넓어진다",
+    "inputs": "배수",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "multiple",
+    "quant": "목표 1H27",
+    "status": "유지",
+    "falsifier": "이전 일정 연기",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "반대 내러티브 — 희석과 기판 병목",
+    "thesis": "주식 수가 크게 늘었고, InP 기판이 막히면 매출 성장이 가이던스를 넘기 어렵다",
+    "inputs": "성장·주당 가치",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "강"
+    },
+    "drives": "both",
+    "quant": "1H26 가중평균 1,145.9M → 현재 1,333.1M(+16%, 계산), 회사가 InP 기판을 병목으로 언급",
+    "status": "강화",
+    "falsifier": "FY26 매출이 +40% 상한 이상으로 나오고 추가 증자 없음",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   }
+  ],
+  "lead": {
+   "summary": "IQE의 기업가치는 **AI 데이터센터 광통신용 InP 에피웨이퍼 품귀를 빈 공장 가동률로 얼마나 빨리 이익에 바꾸느냐**에 달려 있다. FY26 매출 가이던스는 세 번 올라 +40% 초과가 됐지만, 주가는 4월 고점보다 59% 낮고 11/20 하루 −13%였다.",
+   "value_story": "1H26 매출의 60%가 Photonics(광통신 InP·VCSEL·적외선·국방), 40%가 Wireless(스마트폰·인프라 RF GaAs·GaN)다. 공장 고정비가 커서 매출이 오르면 매출총이익률이 빠르게 오른다 — 0.8%(1H25) → 9.3%(1H26).",
+   "premium": {
+    "multiple": "Fwd 1Y EV/EBITDA 17.1배로 동종 4곳 중앙보다 높다 — 이익이 이제 막 흑자로 돌아서는 회사라 배수가 높게 보인다. Fwd 2Y는 9.1배",
+    "eps": "선행 EPS는 FY26 적자, FY27 £0.005 — 조정 EBITDA FY26 가이던스 10파운드 중반, FY27 컨센서스 £30M"
+   },
+   "why_excited": "2025년 11월 5펜스였던 주가는 MACOM 투자 협상·InP 품귀 기대로 2026년 4월 72.9펜스(장중)까지 13배가 됐다. 4월 말 증자 확정 뒤 하루 −18.5%를 시작으로 기대가 식었고, 11/17 가이던스 상향에도 주가가 움직이지 않다가 11/20 −13%로 25.8펜스까지 내려왔다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "Photonics",
+     "what": "빛을 내고 받는 소자용 에피웨이퍼 — InP 레이저·수광, GaAs VCSEL, GaSb 적외선",
+     "use": "AI 데이터센터 광 트랜시버, 3D 센싱, 국방 적외선",
+     "money": "1H26 매출의 60%(£38.5M, +45%)",
+     "rev_share": 0.596,
+     "rev_share_prev": 0.587,
+     "mix_basis": "1H26 £38.5M ÷ £64.6M, 1H25 £26.6M(계산 — +45% 역산) ÷ £45.25M",
+     "name_en": "InP photonics epitaxial wafer",
+     "what_en": "a round compound-semiconductor wafer with thin crystal layers grown on top, used to make laser chips",
+     "bom": {
+      "name_en": "InP laser epitaxial wafer",
+      "items": [
+       {
+        "no": 1,
+        "part": "InP 기판",
+        "part_en": "indium phosphide substrate",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "외부 기판사(AXT·Sumitomo Electric·JX 등 — IQE별 공급사 미공시)",
+        "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+       },
+       {
+        "no": 2,
+        "part": "버퍼층",
+        "part_en": "buffer layer",
+        "kind": "박막",
+        "confidence": "확인",
+        "supplier": "IQE 자체 성장",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 3,
+        "part": "활성층(양자우물)",
+        "part_en": "active quantum well layers",
+        "kind": "박막",
+        "confidence": "확인",
+        "supplier": "IQE 자체 성장",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 4,
+        "part": "클래딩층",
+        "part_en": "cladding layer",
+        "kind": "박막",
+        "confidence": "확인",
+        "supplier": "IQE 자체 성장",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 5,
+        "part": "접촉층",
+        "part_en": "contact layer",
+        "kind": "박막",
+        "confidence": "확인",
+        "supplier": "IQE 자체 성장",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 6,
+        "part": "유기금속 전구체",
+        "part_en": "metal-organic precursor",
+        "kind": "소재",
+        "confidence": "확인",
+        "supplier": "미공개",
+        "source": "MOCVD 공정 원리"
+       }
+      ],
+      "as_of": "2026-11-21",
+      "this_company_product": true
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "Wireless",
+     "what": "무선 주파수 소자용 에피웨이퍼 — GaAs HBT·pHEMT, GaN-on-SiC",
+     "use": "스마트폰 RF 프런트엔드, 5G 기지국, 위성통신",
+     "money": "1H26 매출의 40%(£26.0M, +40%)",
+     "rev_share": 0.403,
+     "rev_share_prev": 0.411,
+     "mix_basis": "1H26 £26.0M ÷ £64.6M, 1H25 £18.6M(계산 — +40% 역산) ÷ £45.25M",
+     "name_en": "GaAs RF epitaxial wafer",
+     "what_en": "a compound-semiconductor wafer with grown crystal layers for radio-frequency amplifier chips"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "부채 많은 스팟 주문 공급사 → 순현금·다년 계약 공급사",
+     "evidence": "조정 순차입 £31.5M(FY25 말) → 순현금 £30.2M(1H26 말), MACOM·Tower LTA",
+     "drives": "할인율·배수",
+     "status": "진행 중",
+     "falsifier": "추가 증자 또는 LTA 해지"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "Photonics(InP) 비중 확대",
+     "evidence": "Photonics 비중 58.7%(1H25) → 59.6%(1H26, 계산), 회사: 믹스 개선이 이익률을 올렸다(1H 콜)",
+     "drives": "이익률",
+     "status": "진행 중",
+     "falsifier": "Photonics 성장률이 Wireless 아래로"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "6인치 InP 에피·GaN-on-Si 마이크로LED(칩 간 광 연결)",
+     "evidence": "Aixtron G4 반응기 6인치 InP 전환 질문(1H 콜), 마이크로LED가 GaN 전력을 거의 앞섰다(1H 콜)",
+     "drives": "성장",
+     "status": "개발",
+     "falsifier": "6인치 InP 고객 인증 지연"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "새 건물 없이 기존 반응기를 InP로 바꿔 캐파를 늘린다",
+     "evidence": "하반기 반응기 전환 시작(1H 콜)",
+     "drives": "성장 시점",
+     "status": "진행 중",
+     "falsifier": "2H26 Photonics 매출이 1H26 이하",
+     "lead_time": {
+      "now": [
+       1,
+       3
+      ],
+      "unit": "개월",
+      "basis": "주문→출하 — IQE 리드타임 미공시. 맞춤 에피 웨이퍼 업계 통상 4~12주를 쓴 추정(추정)",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "VPEC",
+        "value": "미확인"
+       },
+       {
+        "name": "IntelliEPI",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "피투자 — MACOM 지분 약 10%, 정지 협약 없음",
+     "evidence": "FY25 콜: MACOM 추가 지분 확대를 막는 협약이 없다",
+     "drives": "배수",
+     "status": "확정(투자), 인수는 미확인",
+     "falsifier": "MACOM 지분 매각"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "고객의 소자 생산 원가(OPEX·재료비)에서 나온다 — 그 뒤에는 하이퍼스케일러 데이터센터 CAPEX",
+     "evidence": "에피웨이퍼는 칩 회사의 원재료 구매",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "광 트랜시버 재고 조정",
+     "budgets": [
+      {
+       "business": "Photonics",
+       "budget": "혼합",
+       "line": "칩 회사 재료비 ← 하이퍼스케일러 광 인프라 CAPEX",
+       "share": 0.6,
+       "driver": "800G·1.6T 광 모듈 출하",
+       "evidence": "IQE 1H26 실적 발표·콜(2026-09-07)"
+      },
+      {
+       "business": "Wireless",
+       "budget": "OPEX",
+       "line": "스마트폰·기지국 RF 칩 회사 재료비",
+       "share": 0.4,
+       "driver": "스마트폰 RF 콘텐츠·5G",
+       "evidence": "IQE 1H26 실적 발표·콜(2026-09-07)"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "영국·미국 반도체 보조금 수령 공시 미확인 — 미국 국방 프로그램 예산 집행이 Photonics를 밀었다(1H 콜)",
+     "evidence": "IQE 1H26 실적 발표·콜(2026-09-07)",
+     "drives": "국방 수요",
+     "status": "시행(예산 집행)",
+     "falsifier": "미국 국방 예산 집행 지연",
+     "house": {
+      "level": 4,
+      "why": "FY26 국방 세출이 하원을 통과·집행돼 1H26 국방 프로그램 자금이 풀렸다(회사 설명) — IQE 개별 세출 항목은 없다"
+     },
+     "senate": {
+      "level": 4,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "중국의 갈륨·게르마늄·인듐 관련 수출통제 — 원소재 가격·조달 위험",
+     "evidence": "InP 기판 병목(1H 콜) — 통제와의 직접 연결은 미확인",
+     "drives": "원가",
+     "status": "시행",
+     "falsifier": "통제 완화",
+     "house": {
+      "level": 1,
+      "why": "의회 의결 대상 아님 — 외국 정부 조치"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(IQE 매출을 직접 바꾸는 계류 법안 미확인)",
+     "evidence": "미확인",
+     "drives": "-",
+     "status": "해당 없음",
+     "falsifier": "-"
+    }
+   }
+  }
+ },
+ "margin": {
+  "as_of": "2026-06-30",
+  "basis": "GAAP",
+  "summary": "1H26 매출원가는 매출의 90.7%로 1년 전 98.8%보다 8.1%p 낮다. 매출이 43% 늘었는데 공장 고정비는 거의 그대로여서 매출총이익률이 0.8%에서 9.3%로 올랐다",
+  "periods": [
+   {
+    "period": "1H25",
+    "rev": 0.04525,
+    "cogs": 0.04472,
+    "rd": 0.0,
+    "sga": 0.01631,
+    "other": 0.0
+   },
+   {
+    "period": "2H25",
+    "rev": 0.05205,
+    "cogs": 0.05123,
+    "rd": 0.0,
+    "sga": 0.01145,
+    "other": 0.0
+   },
+   {
+    "period": "1H26",
+    "rev": 0.06456,
+    "cogs": 0.05857,
+    "rd": 0.0,
+    "sga": 0.01406,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "기판·원소재",
+    "stage": "매출원가",
+    "pct_rev": 0.33,
+    "prior_pct": 0.33,
+    "fixed": 0.0,
+    "driver": "InP·GaAs 기판, 유기금속 전구체 단가와 물량",
+    "basis": "추정",
+    "source": "원가 구성 미공시 — 에피 업계 통상 비중(추정)",
+    "input": "doped_wafer"
+   },
+   {
+    "name": "생산 인력",
+    "stage": "매출원가",
+    "pct_rev": 0.24,
+    "prior_pct": 0.31,
+    "fixed": 0.7,
+    "driver": "영국·미국·대만 공장 인력(직원 약 460명)",
+    "basis": "추정",
+    "source": "인건비 원가 배분 미공시"
+   },
+   {
+    "name": "감가상각(원가분)",
+    "stage": "매출원가",
+    "pct_rev": 0.135,
+    "prior_pct": 0.24,
+    "fixed": 1.0,
+    "driver": "반응기·클린룸 감가상각",
+    "basis": "추정",
+    "source": "1H26 감가상각 £9.8M(매출의 15.2%) 중 원가 배분 미공시 — 대부분 원가로 추정"
+   },
+   {
+    "name": "에너지·가스·유지보수",
+    "stage": "매출원가",
+    "pct_rev": 0.12,
+    "prior_pct": 0.06,
+    "fixed": 0.5,
+    "driver": "영국 전력 단가, 반응기 유지보수·전환",
+    "basis": "추정",
+    "source": "나머지 일부(추정)"
+   },
+   {
+    "name": "기타 원가",
+    "stage": "매출원가",
+    "pct_rev": 0.082,
+    "prior_pct": 0.048,
+    "fixed": 0.3,
+    "driver": "재고 평가·물류",
+    "basis": "추정",
+    "source": "나머지(계산)"
+   },
+   {
+    "name": "판매·관리·연구개발",
+    "stage": "판관비",
+    "pct_rev": 0.218,
+    "prior_pct": 0.36,
+    "fixed": 0.8,
+    "driver": "본사·연구개발 인력(연구개발비 별도 공시 미대조)",
+    "basis": "공시",
+    "source": "https://fiscal.ai/company/AIM-IQE"
+   }
+  ],
+  "products": [
+   {
+    "name": "Photonics",
+    "rev_share": 0.596,
+    "gpm": 0.093,
+    "gpm_basis": "회사 전체 매출총이익률(1H26) — 사업부별 총이익 미공시",
+    "bom": [
+     {
+      "item": "InP·GaAs 기판",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "회사가 InP 기판을 병목으로 언급(1H 콜) — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "InP 기판 단가·배정",
+      "input": "doped_wafer"
+     },
+     {
+      "item": "유기금속 전구체·가스",
+      "share": [
+       0.05,
+       0.12
+      ],
+      "basis": "추정",
+      "source": "MOCVD 공정 원리 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "인듐·갈륨 원소재 가격",
+      "input": "indium"
+     },
+     {
+      "item": "반응기 감가상각·가동 비용",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "1H26 감가상각 £9.8M(매출의 15.2%)",
+      "pass_through": "미확인",
+      "why": "가동률"
+     }
+    ]
+   },
+   {
+    "name": "Wireless",
+    "rev_share": 0.403,
+    "gpm": 0.093,
+    "gpm_basis": "회사 전체 매출총이익률(1H26)",
+    "bom": [
+     {
+      "item": "GaAs·SiC 기판",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "기판 단가",
+      "input": "doped_wafer"
+     },
+     {
+      "item": "유기금속 전구체·가스",
+      "share": [
+       0.05,
+       0.12
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "갈륨 원소재 가격",
+      "input": "indium"
+     },
+     {
+      "item": "반응기 감가상각·가동 비용",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "감가상각 공시",
+      "pass_through": "미확인",
+      "why": "가동률"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-07",
+  "summary": "IQE의 병목은 장비가 아니라 InP 기판이다. 회사는 기판이 물량 증가를 막는 병목이라며 공급사 배정을 잠그고 있다고 말했다(1H 콜). 기판 공급사 이름과 계약 조건은 공시되지 않았다",
+  "links": [
+   {
+    "item": "InP·GaAs 기판",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개(업계 공급사: AXT·Sumitomo Electric·JX Advanced Metals)",
+      "role": "InP·GaAs 단결정 기판",
+      "status": "추정",
+      "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+     }
+    ],
+    "qualified": 3,
+    "qualified_basis": "업계 주요 InP 기판사 3곳(AXT·Sumitomo Electric·JX Advanced Metals) — IQE가 몇 곳을 인증했는지는 미공시(추정)",
+    "capacity": "빠듯",
+    "capacity_basis": "회사: InP 기판이 물량 증가의 병목(1H 콜). AXT FY 매출 성장 추정 +191%(Fiscal, 계산)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 9,
+    "top_share": "미확인",
+    "region_share": 0.9,
+    "region": "일본·중국",
+    "secured": "배정 확보 중",
+    "why": "InP 에피 매출의 상한을 정한다. 재인증 9개월은 기판 교체 때 에피 공정·고객 소자 재검증 기간 추정(업계 통상 6~12개월), 지역 집중 90%는 주요 3사의 생산지(일본·중국) 기준 추정",
+    "relief": "미확인",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)",
+    "input": "doped_wafer"
+   },
+   {
+    "item": "MOCVD 반응기",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "Aixtron",
+      "role": "G4 등 MOCVD 반응기(콜 질문)",
+      "status": "회사 발표",
+      "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "여유",
+    "capacity_basis": "기존 반응기를 GaAs→InP로 전환 — 새 장비 없이 캐파를 늘린다(1H 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "독일",
+    "secured": "보유 설비",
+    "why": "전환 기간 동안 생산에서 빠지는 것이 주 비용",
+    "relief": "미확인",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "item": "유기금속 전구체·가스",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "TMIn·TMGa·포스핀·아르신",
+      "status": "추정",
+      "source": "MOCVD 공정 원리"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "인듐·갈륨 원소재 가격이 원가에 닿는다",
+    "relief": "미확인",
+    "source": "MOCVD 공정 원리",
+    "input": "indium"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-07",
+  "unit": "웨이퍼(공시 없음)",
+  "summary": "거점별 명목 캐파와 가동률은 공시하지 않는다. 회사는 모든 거점에 큰 투자 없이 생산을 늘릴 여유가 있고, Newport에 빈 클린룸이 있다고 말한다(FY25·1H 콜). CAPEX는 매출의 6~7%로 가볍다",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "명목 캐파·가동률 미공시 — 'FY25 조정 EBITDA £3.2M은 낮은 가동률 탓'(FY25 콜)",
+   "source": "IQE FY25 실적 발표·콜(2026-05-28)"
+  },
+  "plans": [
+   {
+    "name": "GaAs→InP 반응기 전환",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2H26~(회사 설명)",
+    "capex": "미확인",
+    "blocker": "InP 기판 배정, 전환 동안 생산 손실",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)",
+    "add_note": "대수·캐파 미공시",
+    "capex_note": "새 반응기보다 훨씬 작다(1H 콜)"
+   },
+   {
+    "name": "Newport 빈 클린룸 반응기 추가",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "고객 확약·선급금 없으면 증설하지 않는다(1H 콜)",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)",
+    "add_note": "LTA·선급금이 조건",
+    "capex_note": "미확인"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2024",
+    "capex": 0.0089,
+    "rev": 0.118,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2025",
+    "capex": 0.0076,
+    "rev": 0.0973,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 1H26",
+    "capex": 0.0076,
+    "rev": 0.1166,
+    "kind": "실적"
+   }
+  ],
+  "capex_source": "Fiscal.ai 현금흐름(FY2024 £8.9M은 근사 — 연차보고서 미대조)",
+  "sites": [],
+  "sites_none": "시설 위성 판독 등록은 다음 회차 — 연차보고서 시설 목록 미대조",
+  "facilities": {
+   "count": 4,
+   "count_basis": "회사 설명상 영국·미국·대만에 생산 거점(1H·FY25 콜, Fiscal 개요) — 연차보고서 시설 목록 미대조, 미국 거점 이름 미대조라 count에만 센다",
+   "source": "https://fiscal.ai/company/AIM-IQE",
+   "items": [
+    {
+     "name": "Cardiff 본사·생산",
+     "location": "영국 웨일스 Cardiff",
+     "owned": "미확인",
+     "use": "본사·에피 생산",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "거점별 캐파 미공시"
+    },
+    {
+     "name": "Newport 거점",
+     "location": "영국 웨일스 Newport",
+     "owned": "미확인",
+     "use": "에피 생산 — 빈 클린룸 보유",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "빈 클린룸 면적 미공시(1H 콜)"
+    },
+    {
+     "name": "대만 거점",
+     "location": "대만(도시 미대조)",
+     "owned": "미확인",
+     "use": "에피 생산 — 매각 검토 뒤 유지",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "거점별 캐파 미공시"
+    }
+   ]
+  }
+ },
+ "customers": {
+  "as_of": "2026-09-07",
+  "period": "1H26",
+  "summary": "IQE는 고객별 매출 몫을 공시하지 않는다(이번 회차 연차보고서 미대조). 이름이 나온 고객은 MACOM(지분 10%·다년 계약), Tower Semiconductor(InP 다년 계약), AI·데이터센터 고객($14M 주문, 이름 미공개), Quintessent다",
+  "items": [
+   {
+    "name": "MACOM",
+    "share": "미확인",
+    "basis": "회사 발표",
+    "buys": "GaN·GaAs·InP 에피(다년 계약)",
+    "source": "IQE FY25 실적 발표·콜(2026-05-28)",
+    "why": "회사: MACOM은 성장 동인의 하나지만 다른 고객 상세는 밝히지 않는다(FY25 콜)",
+    "prior": "미확인"
+   },
+   {
+    "name": "Tower Semiconductor",
+    "share": "미확인",
+    "basis": "회사 발표",
+    "buys": "InP 에피(다년 계약 — 실리콘 포토닉스 파운드리)",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)",
+    "why": "계약 금액 미공시",
+    "prior": "미확인"
+   },
+   {
+    "name": "AI·데이터센터 고객(이름 미공개)",
+    "alias": "an AI and data center customer",
+    "share": [
+     0.04,
+     0.08
+    ],
+    "basis": "추정",
+    "buys": "광통신 에피 양산 주문 $14M",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)",
+    "why": "$14M ≈ £10.6M(환율 1.326, 계산) ÷ FY26 매출 하한 £136.2M = 7.8%가 상한 — 인식 기간 미공시라 하단은 그 절반(추정)",
+    "prior": "미확인"
+   },
+   {
+    "name": "Quintessent",
+    "share": "미확인",
+    "basis": "회사 발표",
+    "buys": "양자·광 집적용 에피(구매 계약)",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)",
+    "why": "금액 미공시",
+    "prior": "미확인"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-11-17",
+  "summary": "건별 금액이 나온 것은 AI·데이터센터 고객 $14M 주문뿐이다. 회사는 2027 수주 커버리지가 '강하다'고만 했다(11/17)",
+  "items": [
+   {
+    "name": "AI·데이터센터 고객 양산 주문",
+    "kind": "order",
+    "status": "확정",
+    "total": 0.0106,
+    "progress": "미확인",
+    "progress_basis": "인식 일정 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2026-08",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "InP 기판 배정"
+    ],
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "MACOM 다년 공급 계약",
+    "kind": "backlog",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "금액·물량 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2026-04",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "MACOM 최종 수요"
+    ],
+    "source": "IQE FY25 실적 발표·콜(2026-05-28)"
+   },
+   {
+    "name": "Tower InP 다년 계약",
+    "kind": "backlog",
+    "status": "확정",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "금액 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2026-06",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "InP 기판",
+     "Tower 실리콘 포토닉스 램프"
+    ],
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "2027 수주 커버리지",
+    "kind": "pipeline",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "'강한 커버리지' — 금액 미공시(11/17)",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2027-01",
+    "end": "2027-12",
+    "speed": "미확인",
+    "blockers": [
+     "InP 기판",
+     "반응기 전환 속도"
+    ],
+    "source": "IQE 거래 갱신(2026-11-17)"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-21",
+  "summary": "CEO Jutta Meier가 전략 검토·MACOM 투자·LTA 전환을 이끌었다. MACOM 임원 2명이 비상임 이사로 들어왔다. 정계 연결은 공개 기록상 미확인",
+  "people": [
+   {
+    "name": "Jutta Meier",
+    "role": "CEO",
+    "since": "미확인",
+    "profile": "스팟 주문 → 다년 계약 전환, 증설은 고객 확약·선급금이 있을 때만이라는 원칙을 콜에서 밝힘",
+    "business": "MACOM 전략 투자 협상(FY25 콜)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "Matt Geen",
+    "role": "COO(1H26 선임)",
+    "since": "2026",
+    "profile": "운영 효율·가동률 개선 담당(1H 콜)",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "name": "Robert Dennehy",
+    "role": "비상임 이사(MACOM COO)",
+    "since": "2026",
+    "profile": "MACOM 파견 이사(FY25 콜)",
+    "business": "MACOM",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "IQE FY25 실적 발표·콜(2026-05-28)"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "MACOM 지분 약 10%·이사 2명·다년 계약",
+    "strength": 4,
+    "exposure": 0.0,
+    "basis": "MACOM 매출 몫 미공시 — 노출 0으로 둔다",
+    "evidence": "IQE FY25 실적 발표·콜(2026-05-28)"
+   }
+  ]
+ },
+ "social": {
+  "none": "Quantral 미수록 — 레딧·X 관심 집계 없음(ApeWisdom·텔레그램 공개 채널도 언급 없음)"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수 없음. 2026-04 전략 검토가 MACOM 지분 투자로 끝났고(IQE는 피투자 쪽), 대만 공장 매각은 철회"
+ },
+ "pq": {
+  "none": "반기 보고에 출하량·평균 판매가를 공시하지 않는다 — 업종 PPI 대용"
+ },
+ "sync": {
+  "why": "IQE 매출은 화합물 반도체 웨이퍼(HS 3818) 교역과 광 부품 수요를 따라간다",
+  "products": [
+   {
+    "name": "Photonics",
+    "segment": "Photonics",
+    "hs": "381800",
+    "share": 0.6,
+    "inputs": [
+     "doped_wafer"
+    ]
+   }
+  ],
+  "indicators": [
+   {
+    "label": "미국 도핑 화합물 웨이퍼 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "381800",
+    "segment": "Photonics",
+    "why": "IQE 매출의 약 40%가 미국(회사 지역 구분 추정) — 미국 칩 회사의 에피·기판 반입"
+   },
+   {
+    "label": "대만 레이저 다이오드 수출",
+    "source": "hs",
+    "reporter": "tw",
+    "flow": "export",
+    "hs": "854141",
+    "segment": "Photonics",
+    "why": "InP 레이저 칩 최종 수요의 거울"
+   }
+  ]
+ },
+ "pricing": [
+  {
+   "business": "Photonics",
+   "segment": "Photonics",
+   "index": "ppi:doped_wafer",
+   "company": {
+    "yoy": null,
+    "basis": "미확인 — 평균 판매가 미공시. 1H 콜: 가격 인상은 레버 중 하나"
+   }
+  }
+ ],
+ "recurring": {
+  "share": null,
+  "kind": "다년 계약 반복 주문",
+  "base": "LTA 고객 MACOM·Tower(금액 미공시)",
+  "years_to_recurring": null,
+  "source": "반복 매출 비중 미공시 — 미확인"
+ },
+ "backlog": {
+  "book_to_bill": null,
+  "revenue_growth": 1.43,
+  "conversion_months": null,
+  "source": "수주 잔고 금액 미공시 — 2027 수주 커버리지 '강함'(11/17)"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(병목) 틀로 본다 — 섹터 렌즈 해당 없음(원천 장부 sector_data '해당 없음')"
+ },
+ "midterm": {
+  "exposure": {
+   "chips_subsidy": 0.2
+  },
+  "sub": "semis",
+  "etf": "NASDAQ:SMH",
+  "why": "영국 회사 — 미국 정책은 미국 거점·국방 프로그램 고객을 통해서만 닿는다(미국 매출 비중 약 40% 추정)"
+ },
+ "events": [
+  {
+   "date": "2026-01-12",
+   "tag": "+42.2%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-03-03",
+   "tag": "+36.8%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-04-13",
+   "tag": "+32.7%(원인 미확인)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-04-22",
+   "tag": "장중 고점 72.9p",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-04-28",
+   "tag": "MACOM 투자·증자 발표 무렵 −18.5%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-05-28",
+   "tag": "FY25 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-07-21",
+   "tag": "+30.5%(7월 거래 갱신 시기 — 날짜 미대조)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-09-07",
+   "tag": "1H26 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "AI 하드웨어 급락일 −12.2%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-17",
+   "tag": "거래 갱신 — 매출 +40% 초과",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-20",
+   "tag": "−13.3%(원인 미확인)",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-04-27",
+   "kind": "내러티브",
+   "tag": "전략 검토 종결·MACOM 투자",
+   "source": "IQE FY25 실적 발표·콜(2026-05-28)"
+  },
+  {
+   "date": "2026-05-28",
+   "kind": "실적",
+   "tag": "FY25 실적 — 2026 +20% 초과",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-09-07",
+   "kind": "실적",
+   "tag": "1H26 실적 — +43%",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-11-17",
+   "kind": "내러티브",
+   "tag": "가이던스 +40% 초과",
+   "source": "IQE 거래 갱신(2026-11-17)"
+  }
+ ],
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "가이던스가 세 번 올랐는데 주가는 고점의 35%다 — InP 품귀 국면의 상업 에피 회사를 Fwd 2Y EV/EBITDA 9배에 산다",
+    "evidence": [
+     "FY26 매출 +40% 초과",
+     "Fwd 2Y EV/EBITDA 9.1배",
+     "순현금 £30.2M"
+    ],
+    "falsifier": "FY26 실적에서 2H 매출총이익률이 1H26(9.3%)보다 낮음"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "가동률 레버리지는 이제 시작 — 매출총이익률 0.8% → 9.3%",
+    "evidence": [
+     "1H26 매출 +43%",
+     "조정 EBITDA £6.0M"
+    ],
+    "falsifier": "2027 가이던스가 +30% 아래"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "방향은 맞지만 Fwd 1Y EV/EBITDA 17.1배는 동종(이익률 26~48%)보다 비싸고 GAAP 이익은 아직 적자다",
+    "evidence": [
+     "Fwd 1Y EV/EBITDA 17.1배",
+     "TTM 영업손실 £14.8M"
+    ],
+    "falsifier": "FY26 GAAP 영업이익 흑자"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "InP 기판이 병목이면 매출 상한은 IQE가 아니라 기판사가 정한다 — 이익은 AXT 같은 기판사로 간다",
+    "evidence": [
+     "회사가 기판 병목 언급",
+     "AXT 선행 영업이익률 47%(Fiscal 추정, 계산)"
+    ],
+    "falsifier": "IQE 매출총이익률 20% 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "주식 수가 늘고 전환사채가 남았다. 상향에도 주가가 빠지는 것은 기대가 앞섰다는 뜻이다",
+    "evidence": [
+     "주식 1,333M(1H26 가중평균 대비 +16%)",
+     "11/17 상향 뒤 −13%"
+    ],
+    "falsifier": "추가 증자 없이 메인 시장 이전"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "가이던스 +20% → +30% → +40%. 주가는 반대로 갔다."
+     },
+     {
+      "seat": "Buy",
+      "text": "공장이 차기 시작했다. 이익은 매출보다 빨리 는다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "17배는 흑자 전환 직전 회사의 배수다. 싸지 않다."
+     },
+     {
+      "seat": "Sell",
+      "text": "기판이 막히면 성장도 막힌다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "희석과 전환사채가 주당 가치를 깎는다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "Fwd 2Y로 보면 9.1배다. 이익이 두 배가 되는 해를 봐야 한다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "회사는 기판 배정을 잠그고 있다고 말했고, 매출은 이미 +43%다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "레버리지는 가동률이 계속 오를 때만 맞다. 반응기 전환 기간엔 생산이 빠진다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "가이던스가 올라도 매출총이익률 9%는 원가를 겨우 넘긴 수준이다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "11/20 하루 −13%가 시장의 답이다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "증자로 은행 빚이 0이 됐다. 생존 할인이 사라진 값이다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "전환 비용은 새 반응기보다 훨씬 작다고 회사가 말했다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "FY27 EBITDA £30M 범위가 £18~42M이다. 9배의 분모가 넓다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "MACOM 몫이 공시되지 않는다. 한 고객 쏠림일 수 있다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "전환사채 전환가도 모른다. 희석 상한을 알 수 없다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "가이던스와 가격의 괴리가 크다는 판단 유지.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "가동률 레버리지 판단 유지.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "FY26 실적의 2H 이익률 확인까지 중립."
+     },
+     {
+      "seat": "Sell",
+      "text": "기판 병목 위험은 남지만 매출 성장은 인정한다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "희석 위험은 남는다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "가이던스 세 번 상향과 가동률 레버리지는 반박되지 않았지만, GAAP 적자·InP 기판 병목·희석 정보 부족 때문에 FY27 EBITDA £30M을 그대로 믿기 어렵다는 반박도 살아남았다",
+   "dissent": "강세 측은 Fwd 2Y 9배가 InP 품귀 국면의 상업 에피 회사로는 낮다고 본다"
+  }
+ },
+ "ladder": {
+  "exit": {
+   "ev_ebitda": 11,
+   "ebitda_margin": 0.25,
+   "opm": 0.15,
+   "net_margin": 0.11,
+   "basis": "출구 EV/EBITDA 11배는 동종 Fwd 1Y 중앙 근처. 이익률은 FY28 컨센서스 조정 EBITDA 마진 24%(£51M ÷ £214M, 계산)와 2017년 정점기 영업이익률 약 11~13%(Fiscal 실적)를 넘는 회복을 가정"
+  },
+  "base": {
+   "ebitda_margin": 0.11,
+   "basis": "FY26 가이던스 조정 EBITDA 10파운드 중반(£15M 해석) ÷ 매출 하한 £136.2M ≈ 11%(계산)",
+   "cagr_from": {
+    "eps": 0.0047,
+    "year": 1,
+    "name": "FY27 조정 EPS 컨센서스"
+   }
+  },
+  "refs": [
+   {
+    "label": "FY26 조정 EBITDA 가이던스(£M)",
+    "value": 15
+   },
+   {
+    "label": "FY27 조정 EBITDA 컨센서스(£M)",
+    "value": 30
+   },
+   {
+    "label": "FY28 조정 EBITDA 컨센서스(£M)",
+    "value": 51
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "FY28 컨센서스(매출 £214M·조정 EBITDA £51M)가 맞고 배수가 동종 수준을 지켜야 한다",
+    "outlook": "InP 품귀가 2028년까지 이어질 때"
+   },
+   "3": {
+    "verdict": "조건부",
+    "path": "매출 £300M 안팎·EBITDA 마진 25% — Newport 빈 클린룸을 LTA로 채워야 한다",
+    "outlook": "추가 LTA·선급금 증설이 확인될 때"
+   },
+   "5": {
+    "verdict": "경로 미확인",
+    "path": "상업 InP 에피 시장을 사실상 독점하거나 6인치 InP·마이크로LED가 새 시장을 열어야 한다",
+    "outlook": "공개 근거 없음"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "에피 시장 크기와 기판 병목으로 보아 경로 없음",
+    "outlook": "경로 없음"
+   }
+  },
+  "summary": "시가총액 £344M이라 2·3·5·10배를 본다. 2·3배는 InP 품귀가 2028년까지 이어지고 빈 클린룸을 LTA로 채울 때 열리고, 10배는 닫혀 있다"
+ },
+ "overrides": {
+  "margin_base": {
+   "target": 0.12,
+   "year_target": 3,
+   "lr": 0.15,
+   "anchors": [
+    0.091,
+    0.1
+   ]
+  },
+  "s2c": 2.5,
+  "why": "① 증분 매출÷투하자본 2.5: 회사는 기존 설비로 큰 증설 없이 생산을 크게 늘릴 수 있다고 말했고(FY25 콜) CAPEX가 매출의 6~7%다 — TTM 0.73은 저가동률 자산을 분모로 쓴 값이라 증분 투자에 맞지 않는다(판단). ② FY28 이익률 앵커 10%: Fiscal FY28 영업이익률 5.1%는 3·4분기 EBIT −£3.7M(조정 EBITDA £13M대와 모순)이 섞인 모델 값으로 보여 FY27 9.1%보다 조금 높은 10%로 둔다(판단). ③ 3년차 목표 12%·장기 15%: 2015~2017 영업이익률 15~26%(Fiscal 실적, 반기) 정상 가동기 평균보다 낮게"
+ },
+ "ronic_spread": 0.0,
+ "ronic_why": "가격 결정력이 약하고(매출총이익률 9%) 기판 병목으로 이익이 공급망 위쪽에 쌓일 수 있어 초과수익을 두지 않는다",
+ "photos": [],
+ "playbook": {
+  "points": [
+   {
+    "title": "가이던스 세 번 상향, 주가는 고점 대비 −59%",
+    "claim": "FY26 매출 가이던스가 5월 +20% 초과에서 11월 +40% 초과까지 올랐는데 주가는 4/21 종가 고점 63.0p에서 25.8p로 내려왔다",
+    "evidence": "5월·7월·11월 세 차례 상향, 조정 EBITDA 10파운드 중반",
+    "variant": "시장은 테마 열기(MACOM 투자 기대)를 먼저 사고 먼저 팔았다 — 실적 숫자는 오히려 기대보다 빨리 좋아졌다",
+    "proof": "FY26 실적의 매출이 £140M 이상, 2H 조정 EBITDA £9M 이상",
+    "source": "IQE 거래 갱신(2026-11-17)"
+   },
+   {
+    "title": "가동률 레버리지",
+    "claim": "매출 +43%에 매출총이익률이 0.8%에서 9.3%로 올랐다 — 고정비 공장의 이익은 매출보다 빨리 는다",
+    "evidence": "1H26 매출 £64.6M·매출총이익 £6.0M, 1H25 £45.3M·£0.5M",
+    "variant": "시장은 GAAP 적자(TTM −£14.8M)를 보지만 증분 매출의 이익 전환율이 높다 — 1H 증분 매출 £19.3M 중 £5.5M이 매출총이익으로 갔다(계산)",
+    "proof": "2H26 매출총이익률 10% 이상",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   },
+   {
+    "title": "병목은 IQE가 아니라 기판",
+    "claim": "InP 에피 수요는 넘치지만 InP 기판이 물량 증가를 막는다고 회사가 말했다",
+    "evidence": "1H 콜 — 기판 공급사 배정을 잠그는 중",
+    "variant": "시장은 'IQE가 InP 품귀의 수혜주'로 보지만 이익의 큰 몫은 기판사(선행 영업이익률 47%)에 쌓일 수 있다",
+    "proof": "FY26 실적에서 2H Photonics 매출이 1H(£38.5M)보다 큰가",
+    "source": "IQE 1H26 실적 발표·콜(2026-09-07)"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-04-28",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "전략 검토 종결·MACOM 투자·증자 발표 무렵",
+    "reaction": "−18.5%"
+   },
+   {
+    "date": "2026-05-28",
+    "status": "완료",
+    "kind": "생성",
+    "event": "FY25 실적 — 2026 매출 +20% 초과 가이던스",
+    "reaction": "−6.0%"
+   },
+   {
+    "date": "2026-09-07",
+    "status": "완료",
+    "kind": "확인",
+    "event": "1H26 실적 — 매출 +43%, 은행 차입 0",
+    "reaction": "+3.3%"
+   },
+   {
+    "date": "2026-11-17",
+    "status": "완료",
+    "kind": "확인",
+    "event": "거래 갱신 — 매출 +40% 초과",
+    "reaction": "0.0%"
+   },
+   {
+    "date": "2027-01(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "FY26 거래 갱신",
+    "check": "FY26 매출 £140M 이상",
+    "then": "충족 → 기본 유지, £136M 근처 → 약세 쪽"
+   },
+   {
+    "date": "2027-03~04(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "FY26 실적·2027 가이던스",
+    "check": "2027 매출 +30% 이상, 2H 매출총이익률 10% 이상",
+    "then": "충족 → 기본~강세, +20% 미만 → 약세"
+   },
+   {
+    "date": "2027-1H(예상)",
+    "status": "예정",
+    "kind": "생성",
+    "event": "LSE 메인 시장 이전·전략 재설정",
+    "check": "장기 이익률 목표 제시, FTSE 편입",
+    "then": "목표가 영업이익률 15% 이상이면 강세 쪽"
+   }
+  ],
+  "trade": {
+   "watch": "지지 구간이 약세 시나리오 가격과 겹치는 곳",
+   "confirm": "FY26 매출 £140M 이상과 2027 가이던스 +30% 이상",
+   "invalid": "2027 가이던스 +20% 미만 또는 추가 증자",
+   "trim": "목표주가 근처에서 Fwd 1Y EV/EBITDA가 동종 대비 프리미엄을 넓힐 때",
+   "style": "하루 ±15% 이상 움직인 날이 1년에 30번 넘는 종목이다(계산) — 이벤트 전후 추격을 경계"
+  }
+ }
+}
