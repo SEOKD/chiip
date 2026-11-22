@@ -45,3 +45,4 @@
 사건 심층은 takeaways·sensitivity·exposure만 필수. 추정·배수 수치는 Fiscal.ai·TradingView를 함께 대조한다(위 comps 규칙과 같다). 함께 고친 결함: 주간·분기 리포트 머리에 '사건 때 심층'이 찍히던 것(`industry_html.CYCLE`), 선정 표가 렌더 때 순위를 다시 매겨 그날 고른 산업이 빠지던 것(picks.csv 발행일 상위 3을 쓴다).
 
 **시각물(2026-11-22 마스터 지시 "시각물이 부족하다. 시각물을 많이 만들어 가독성을 높여라")**: 주간·분기 조립기가 데이터팩 숫자로 그래프를 자동으로 그리고(`scripts/industry/auto_charts.py`), 데이터팩 `tiles`·`charts`로 본문 숫자 그래프를 더한다. 그래프 8개 미만이거나 타일이 없으면 렌더가 '[시각물 부족]'을 찍는다. 절차는 `docs/tasks/chiip-industry-weekly.md` 3단계.
+- **IB 자료 출처는 리포트 제목만**(2026-11-22 마스터 지시 "Weekly 리포트에서 마스터 노션 IB 자료 요지라는 말을 빼고 리포트 제목만 넣어라"): 주간 산업 리포트는 렌더 때 `radar/notion_library.py` `title_cites_obj`가 '마스터 노션 IB 자료 요지(MS 2026-11-09)'를 그 리포트 제목으로, 출처 줄 '마스터 노션 IB 자료: … (요지만, 외부 공유 금지)'를 제목만으로 바꾼다(증권사·날짜는 이 리포트가 참조한 자료에서 먼저 찾는다). 파일 이름이 코드·번호뿐인 자료는 `config/notion_library.yaml` `titles`에 원문 제목을 적는다 — 요지를 쓸 때 함께. datapack에는 지금처럼 써도 된다.

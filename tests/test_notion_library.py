@@ -75,3 +75,18 @@ class TestLibrary(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestTitleCites(unittest.TestCase):
+    """Weekly(산업 주간) 리포트는 'IB 자료 요지' 문구 대신 리포트 제목만(2026-11-22 마스터 지시)"""
+
+    def test_inline_and_source_line(self):
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "radar"))
+        import notion_library as NL
+        d = {"a": "이익 절벽 (마스터 노션 IB 자료 요지(MS 2026-11-09))", "b": "(마스터 노션 IB 자료 요지(Citi 전문가 대담 2026-11-14))",
+             "sources": ["마스터 노션 IB 자료: MS 2026-11-09 MS_Memory_Key_Debate_20261109_1658.pdf (요지만, 외부 공유 금지)"]}
+        out = NL.title_cites_obj(d, rows=[])
+        self.assertEqual(out["a"], "이익 절벽 (MS Memory Key Debate)")
+        self.assertEqual(out["sources"], ["MS Memory Key Debate"])
+        self.assertNotIn("마스터 노션", str(out))
+        self.assertIn("Citi 전문가 대담 2026-11-14", out["b"])   # 못 찾은 자료는 문구만 빼고 그대로

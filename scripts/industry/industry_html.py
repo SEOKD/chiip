@@ -27,6 +27,10 @@ def render(d):
     for key in ("title", "date", "industry", "event"):
         if not d.get(key):
             raise ValueError(f"필수 항목 없음: {key}")
+    if d.get("cycle") == "weekly":   # 주간 산업 리포트는 IB 자료 출처를 리포트 제목만으로(2026-11-22 마스터 지시 — radar/notion_library.py title_cites)
+        sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "radar"))
+        import notion_library
+        d = notion_library.title_cites_obj(d)
     d = rh.scrub(json.loads(rh.plain(json.dumps(d, ensure_ascii=False))))
     t = rh.t
     parts = [f'<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'

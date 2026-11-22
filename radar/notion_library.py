@@ -445,6 +445,80 @@ def industry_gate(dp, key, sub=None, members=()):
     return {**dp, "sources": src + [c for c in cites if c not in src]}
 
 
+BROKER_ALIAS = {"MS": "MS|Morgan[ _]?Stanley", "GS": "GS|Goldman", "JPM": "JPM|JP[ _]?Morgan", "BofA": "BofA|BOFA|BOA|boa|Bank of America", "Citi": "Citi", "Bernstein": "Bernstein",
+                "UBS": "UBS", "Barclays": "Barclays", "Nomura": "Nomura", "Mizuho": "Mizuho", "Jefferies": "Jefferies", "Wedbush": "Wedbush", "Cantor": "Cantor", "Evercore": "Evercore"}
+CITE_LINE = re.compile(r"마스터 노션 (?:IB )?자료: (.+?\.(?:pdf|xlsx)) ?\(요지만, 외부 공유 금지\)")
+CITE_INLINE = re.compile(r"마스터 노션 IB (?:자료 )?요지\(([^()]*)\)")
+
+
+def doc_title(name):
+    """파일 이름 → 리포트 제목(확장자·밑줄·앞머리 날짜와 증권사 접두 반복을 걷는다)"""
+    try:
+        fixed = next((v for k, v in (config().get("titles") or {}).items() if str(name).endswith(k)), None)   # 파일 이름이 제목이 아닌 자료(예: MS_SKOREA_20261109_1658.pdf)는 config/notion_library.yaml titles에 제목을 적는다
+    except Exception:
+        fixed = None
+    if fixed:
+        return fixed
+    t = re.sub(r"\.(pdf|xlsx)$", "", str(name), flags=re.I).replace("_", " ")
+    t = re.sub(r"^(?:(?:MS|GS|JPM|BofA|Citi|UBS) )?20\d\d-\d\d-\d\d ", "", t)
+    t = re.sub(r"^\d{6} ", "", t)                                          # 앞머리 날짜(261113)
+    t = re.sub(r"( 20\d\d[- ]?\d\d[- ]?\d\d)?( \d{4,})*$", "", t)        # 꼬리의 날짜·문서 번호
+    return re.sub(r"\s+", " ", t).strip()
+
+
+def title_cites_obj(obj, rows=None):
+    """리포트 JSON(dict·list) 안의 모든 글에 title_cites를 적용한다 — 출처 줄의 파일 이름은 리포트 전체에서 모은다"""
+    flat = []
+
+    def walk(x, fn):
+        if isinstance(x, str):
+            return fn(x)
+        if isinstance(x, list):
+            return [walk(v, fn) for v in x]
+        if isinstance(x, dict):
+            return {k: walk(v, fn) for k, v in x.items()}
+        return x
+    walk(obj, lambda t: flat.append(t) or t)
+    names = [m.group(1) for t in flat for m in CITE_LINE.finditer(t)]
+    if rows is None:
+        try:
+            rows = read()
+        except Exception:
+            rows = []
+    return walk(obj, lambda t: title_cites(t, rows, names) if "마스터 노션" in t else t)
+
+
+def title_cites(text, rows=None, extra=()):
+    """리포트 글의 '마스터 노션 IB 자료 요지(MS 2026-11-09)'·'마스터 노션 IB 자료: … (요지만, 외부 공유 금지)'를 리포트 제목만으로
+    (2026-11-22 마스터 지시 "Weekly 리포트에서 마스터 노션 IB 자료 요지라는 말을 빼고 리포트 제목만 넣어라").
+    (증권사, 날짜)는 같은 글의 출처 줄에 있는 파일에서 먼저 찾고, 없으면 자료실 목록에서 찾는다. 못 찾은 조각은 그대로 두고 앞의 문구만 뺀다"""
+    names = list(extra) + [m.group(1) for m in CITE_LINE.finditer(text)]
+    if rows is None:
+        try:
+            rows = read()
+        except Exception:
+            rows = []
+    lib = [r["name"] for r in rows if r.get("cls") == "IB 리포트"]
+
+    def find(broker, day):
+        pat = re.compile(BROKER_ALIAS.get(broker, re.escape(broker)))
+        keys = (day, day.replace("-", ""), day.replace("-", "_"), day[2:].replace("-", ""))
+        hit = [n for n in names if pat.search(n) and any(k in n for k in keys)] or [n for n in lib if pat.search(n) and any(k in n for k in keys)]   # 이 리포트가 실제로 참조한 자료 먼저
+        return list(dict.fromkeys(doc_title(n) for n in hit))[:2]
+
+    def inline(m):
+        out = []
+        for tok in re.split(r",\s*", m.group(1)):
+            d = re.search(r"20\d\d-\d\d-\d\d", tok)
+            titles = [t for b in re.split(r"[·/]", tok.split(" ")[0]) for t in (find(b.strip(), d.group(0)) if d else [])]
+            out.append(" · ".join(titles) if titles else tok.strip())
+        return ", ".join(out)
+
+    text = CITE_INLINE.sub(inline, text)
+    text = CITE_LINE.sub(lambda m: doc_title(m.group(1)), text)
+    return re.sub(r"마스터 노션 IB (?:자료 )?요지", "IB 리포트", text).replace("마스터 노션 IB 자료, 외부 공유 금지", "IB 리포트").replace("마스터 노션 IB 자료", "IB 리포트")
+
+
 def citations(rows, cid, cfg):
     return [f"마스터 노션 자료: {r['broker']} {r['doc_date'] or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ") for r in usable(rows, cid, cfg) if r["status"] == "digest"]
 
