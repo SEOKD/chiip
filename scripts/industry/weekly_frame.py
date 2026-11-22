@@ -19,6 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import event_frame as E  # noqa: E402
 import logic as LG  # noqa: E402
+import auto_charts as AC  # noqa: E402
 import weekly_pick as W  # noqa: E402
 
 
@@ -133,7 +134,7 @@ def build(dp, cfg=None):
     return {"kind": "industry_weekly", "cycle": "weekly", "id": f"weekly-{dp['industry']}-{dp['week']}", "title": dp["title"], "subtitle": dp.get("subtitle", ""),
             "date": dp["date"], "industry": dp.get("industry_name") or W.cfg()["industries"][dp["industry"]]["name"], "event": f"{dp['week']} 주간 산업",
             "value_add": dp.get("value_add", []), "verdict": {"view": nar["view"]}, "ratings": [{"name": r["name"], "rating": r["rating"]} for r in rows],
-            "tiles": dp.get("tiles") or [], "summary": [{"q": q, "a": a} for q, a in nar["summary"]], "gallery": [], "sections": sec,
+            "tiles": dp.get("tiles") or [], "summary": [{"q": q, "a": a} for q, a in nar["summary"]], "gallery": AC.place(sec, AC.auto(dp, rows)), "sections": sec,
             "sources": dp["sources"], "terms": dp.get("terms") or {}, "names": dp.get("names") or [], "image_plan": image_plan}
 
 

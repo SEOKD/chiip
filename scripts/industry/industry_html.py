@@ -11,6 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tenbagger"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "radar"))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import report_html as rh  # noqa: E402
 
 DISCLAIMER = ("산업 판단 등급(Attractive·In-Line·Cautious)은 규칙이 계산한 산업 판단이며 개별 종목 매매·비중·금액 지시가 아니다 · "
@@ -70,6 +71,13 @@ def main(argv):
     a = p.with_name(p.stem + "_artifact.html")
     a.write_text(artifact_html(d), encoding="utf-8")
     print(f"[Industry Report] {p.with_suffix('.html')} · {a}")
+    # 시각물 하한(2026-11-22 마스터 지시 "시각물이 부족하다. 시각물을 많이 만들어 가독성을 높여라") — 11·22 주간은 표 25개·그래프 0개였다
+    import auto_charts as AC
+    n = AC.count(d)
+    if n < AC.MIN_CHARTS:
+        print(f"[시각물 부족] 그래프 {n}개 < {AC.MIN_CHARTS}개 — 데이터팩 charts에 본문 숫자로 그래프를 더하고 다시 조립한다(scripts/industry/auto_charts.py)")
+    if not d.get("tiles"):
+        print("[시각물 부족] 머리 수치 타일(tiles)이 없다 — 데이터팩 tiles에 핵심 숫자 4~5개")
     return 0
 
 

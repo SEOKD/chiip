@@ -35,6 +35,7 @@ PowerShell에서 py·git이 안 잡히면 `$env:Path = [Environment]::GetEnviron
    **logic 블록 필수(2026-11-09부터, ADR-020)** — 한 문장 결론·핵심 논쟁 2개 이상·동인 분해(물량 × 가격)·가격 내포 기대(출처)·시나리오 3개(확률 합 1)·이익 풀·인과 사슬(증거 유형). 형식은 scripts/industry/logic.py 맨 위.
    겸업 회사는 그 산업 사업부 매출로만 말한다(config/industry_segments.yaml 풀이 있으면 장부 값, 없으면 Fiscal.ai 세그먼트 자료) — 회사 전체 성장을 산업 성장으로 쓰지 않는다.
    이미지는 산업 이미지 지시서(ADR-017) 조건일 때만 `images`에 — 제품 BOM은 knowledge/models/products/.
+   **시각물(2026-11-22 마스터 지시 "Chiip Industry 11·22 잘 만들었는데, 시각물이 부족하다. 시각물을 많이 만들어 가독성을 높여라")**: 조립기가 데이터팩의 구조화 숫자(segments·scenarios·estimates·revisions·valuation_history·drivers·market_size·checkpoints)로 그래프를 자동으로 그린다(`scripts/industry/auto_charts.py`). 그 위에 datapack `tiles`(머리 수치 4~5개 — 리포트의 가장 중요한 숫자) 와 `charts`(본문 숫자로 그린 그래프 6개 이상 — 주가 2주 변화·가격·현물 지표 전후·마진 전후·수요·공급 증가율·민감도·수급 등)를 직접 적는다. `charts` 형식은 report_html 차트 그대로에 `"after": "<그 표 제목 앞부분>"`(그 표 뒤에) 또는 `"gallery": true`(한눈에 보기, 3~4개). 새 숫자를 만들지 않고 본문·표에 있는 값만, 제목에 데이터 제공처 이름을 넣지 않는다(렌더가 지운다). 렌더가 '[시각물 부족]'을 찍으면(그래프 8개 미만·타일 없음) 채우고 다시 조립한다. 본보기 knowledge/models/industries/weekly/2026-W47-dram-hbm.
 4. **조립·렌더**: `py scripts/industry/weekly_frame.py <폴더> --predictions` → `py scripts/industry/industry_html.py outputs/industry/<날짜>_weekly-<산업>.json`. 관문을 못 넘으면 빈칸을 채우지 않고 고친다.
 5. **게시**: `_artifact.html`을 claude.ai 비공개 Artifact로, 노션 Industry 아래 '주간 산업' 하위 페이지(없으면 만든다)에 리포트 페이지(요약 + 링크).
    `py scripts/industry/tg_feed.py outputs/industry/<날짜>_weekly-<산업>.json --artifact <url> --notion <url>` — **보내지 않는다**(--send 없이). 양식 점검을 넘겨 `_tg.txt`만 남긴다.

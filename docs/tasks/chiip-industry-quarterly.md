@@ -26,6 +26,7 @@
      → 동인 분해(물량 × 가격, ref로 회사 사업부와 대조) → 가격 내포 기대(시장이 이미 가정한 숫자) → 시나리오 3개(확률 합 1) → 사이클 지표 3개(선행·동행·후행) → 이익 풀 → 인과 사슬(고리마다 증거 유형).
    - 서술(narrative): 무엇이 바뀌었나 → 왜 → 누가 유리해졌나 → 사이클 → 반대 검증 → 반증 조건. 숫자는 장부 값만.
    - 사업군 2~4개마다 pool·market(다음 분기 컨센서스 내포 성장 등, %p)·expected·confidence. 확신도는 근거만큼만. 겸업 회사의 전사 컨센서스를 사업군 시장 기대로 쓰지 않는다(전업 회사 값이나 사업부 가이던스).
+   - **시각물(2026-11-22 마스터 지시 "Chiip Industry 11·22 잘 만들었는데, 시각물이 부족하다. 시각물을 많이 만들어 가독성을 높여라")**: 조립기가 데이터팩의 구조화 숫자(segments·scenarios·estimates·revisions·valuation_history·drivers·market_size·checkpoints)로 그래프를 자동으로 그린다(`scripts/industry/auto_charts.py`). 그 위에 datapack `tiles`(머리 수치 4~5개 — 리포트의 가장 중요한 숫자) 와 `charts`(본문 숫자로 그린 그래프 6개 이상 — 주가 2주 변화·가격·현물 지표 전후·마진 전후·수요·공급 증가율·민감도·수급 등)를 직접 적는다. `charts` 형식은 report_html 차트 그대로에 `"after": "<그 표 제목 앞부분>"`(그 표 뒤에) 또는 `"gallery": true`(한눈에 보기, 3~4개). 새 숫자를 만들지 않고 본문·표에 있는 값만, 제목에 데이터 제공처 이름을 넣지 않는다(렌더가 지운다). 렌더가 '[시각물 부족]'을 찍으면(그래프 8개 미만·타일 없음) 채우고 다시 조립한다. 본보기 knowledge/models/industries/weekly/2026-W47-dram-hbm.
 3. `py scripts/industry/quarter_frame.py <분기> <산업> --predictions` → `py scripts/industry/industry_html.py outputs/industry/<날짜>_quarterly-<산업>-<분기>.json`.
 4. 게시: `_artifact.html`을 claude.ai 비공개 Artifact로. 노션 Industry → '분기 결산' 아래 리포트 페이지(요약 + 링크).
    `py scripts/industry/tg_feed.py <json> --artifact <url> --notion <url> --send`(마스터 개인 봇만).

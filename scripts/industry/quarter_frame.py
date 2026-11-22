@@ -24,6 +24,7 @@ sys.path.insert(0, str(ROOT / "radar"))
 import event_frame as E  # noqa: E402
 import industry_segments as S  # noqa: E402
 import logic as LG  # noqa: E402
+import auto_charts as AC  # noqa: E402
 import industry_quarter as IQ  # noqa: E402
 import weekly_frame as WF  # noqa: E402
 import weekly_pick as W  # noqa: E402
@@ -219,7 +220,7 @@ def build(quarter, industry, dp, c=None):
     return {"kind": "industry_quarterly", "cycle": "quarterly", "id": f"quarterly-{industry}-{quarter}", "title": dp["title"], "subtitle": dp.get("subtitle", ""),
             "date": dp["date"], "industry": name, "event": f"{quarter} 분기 결산", "value_add": dp.get("value_add", []), "verdict": {"view": nar["view"]},
             "ratings": [{"name": r["name"], "rating": r["rating"]} for r in segs], "tiles": tiles[:4], "summary": [{"q": q, "a": a} for q, a in nar["summary"]],
-            "gallery": [], "sections": sec, "sources": dp["sources"], "terms": dp.get("terms") or {}, "names": dp.get("names") or [], "image_plan": image_plan}
+            "gallery": AC.place(sec, AC.auto(dp, None)), "sections": sec, "sources": dp["sources"], "terms": dp.get("terms") or {}, "names": dp.get("names") or [], "image_plan": image_plan}
 
 
 def main(argv):
