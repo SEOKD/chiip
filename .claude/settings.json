@@ -21,7 +21,7 @@
         ]
       },
       {
-        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*",
+        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*|mcp__claude_ai_TradingView__.*",
         "hooks": [
           {
             "type": "command",
@@ -62,7 +62,7 @@
         ]
       },
       {
-        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*",
+        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*|mcp__claude_ai_TradingView__.*",
         "hooks": [
           {
             "type": "command",
@@ -94,7 +94,7 @@
         ]
       },
       {
-        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*",
+        "matcher": "mcp__101aca71-f224-48d5-a4b3-c2f866dda943__.*|mcp__claude_ai_TradingView__.*",
         "hooks": [
           {
             "type": "command",

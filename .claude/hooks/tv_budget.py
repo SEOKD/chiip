@@ -73,15 +73,34 @@ def cached(c, tool, args, now):
     return f if now - at < timedelta(minutes=ttl_min(c, tool)) else None
 
 
-def task_of(inp):
-    """예약 작업 이름 — 세션 기록 첫머리의 scheduled-task 이름(없으면 사람 세션 = None)"""
+def _head_task(path):
+    import re
     try:
-        head = Path(inp.get("transcript_path") or "").read_text(encoding="utf-8", errors="replace")[:6000]
+        with open(path, encoding="utf-8", errors="replace") as f:
+            head = f.read(20000)   # 파일 전체가 아니라 첫머리만(세션 기록은 수 MB)
     except Exception:
         return None
-    import re
     m = re.search(r'scheduled-task name=\\*"([\w.-]+)', head)
     return m.group(1) if m else None
+
+
+def task_of(inp):
+    """예약 작업 이름 — 세션 기록 첫머리의 scheduled-task 이름(없으면 사람 세션 = None).
+    서브에이전트 호출은 부모 세션 기록(<세션>/subagents/agent-*.jsonl → <세션>.jsonl, 또는 session_id)으로 찾는다(2026-11-22 마스터 승인 —
+    11/15 서브에이전트 152건이 '사람 세션'으로 잡혀 작업별 상한·시간대 독점을 피했다)"""
+    tp = Path(str(inp.get("transcript_path") or ""))
+    cands = [tp]
+    if tp.parent.name == "subagents":
+        cands.append(tp.parent.parent.with_suffix(".jsonl"))
+    sid = str(inp.get("session_id") or "")
+    if sid and tp.parent.exists():
+        root = tp.parent.parent if tp.parent.name == "subagents" else tp.parent
+        cands.append((root.parent if tp.parent.name == "subagents" else root) / f"{sid}.jsonl")
+    for c in cands:
+        t = _head_task(c) if str(c) not in ("", ".") else None
+        if t:
+            return t
+    return None
 
 
 def deny(msg):
@@ -146,6 +165,11 @@ def main(mode):
             st["denied"] = st.get("denied", 0) + 1
             save(st)
             return deny(f"TradingView {task} 오늘 몫 {cap}건 소진 — 부르지 말고 대체 경로(시세·일봉 py radar/market_data.py quote|history, ETF·스크리너 Easyconomics — py radar/market_data.py --status)를 쓰거나 그 줄을 빼고 끝낸다(config/tv_budget.yaml task_caps)")
+        tcap = (c.get("tool_caps") or {}).get(short(tool))
+        if tcap is not None and st.get("by_tool", {}).get(short(tool), 0) >= int(tcap):
+            st["denied"] = st.get("denied", 0) + 1
+            save(st)
+            return deny(f"TradingView {short(tool)} 오늘 몫 {tcap}건 소진 — 알림은 만들지 말고 리포트·피드에 가격 문턱만 적는다(config/tv_budget.yaml tool_caps)")
         if task:
             st.setdefault("by_task", {})[task] = st.get("by_task", {}).get(task, 0) + 1
         st["used"] = st.get("used", 0) + 1
