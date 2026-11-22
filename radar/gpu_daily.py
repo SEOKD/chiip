@@ -15,6 +15,10 @@
   그래서 각 칸에 Silicon Data 시장 지수(거래 가격 기반 $/GPU·시, 공개 페이지 헤드라인 인용 — 데이터셋·API는 유료라 쓰지 않는다)를
   회색 점선 '참고선'으로 함께 그린다. 지수 과거값은 같은 공개 페이지의 인터넷 아카이브 스냅숏(2026-07-28~)으로 채운다(--backfill-index).
   정가가 두 관측 사이에서 바뀌면 그 구간을 점선 사선으로 그린다(그 사이 어느 날 바뀜 — 바뀐 날을 지어내지 않는다).
+일일 그림(2026-11-23 마스터 지시 "GPU Rental 비용은 일일 추이를 파악할 수 있는 파이프라인을 찾고 이를 토대로 그래프를 새로 그려라"):
+  그림의 선을 매일 움직이는 세 계열(Ornn 실거래 지수·Silicon Data 시장 지수·Flopper 제공사 중앙값)로 바꿨다. 기간은 일일 계열이 처음 관측된 날부터,
+  세로축은 값 범위에 맞춘다. 세 곳 정가는 칸 제목 아래 글 한 줄과 캡션으로만 싣는다(몇 달에 한 번 바뀌는 계단이라 선으로 그리면 일일 움직임을 누른다).
+  옛 정가 계단 그림은 chart_list로 남겼다(일일 계열이 없을 때만).
 결정론: 매일 10:00~11:00 KST 첫 Pulse 회차에 due(주말 포함). 그림은 START(2026-01-01)부터 오늘까지 — 해가 바뀌어도 리셋하지 않고 이어 그린다. 숫자·그림은 여기서, 풀이 2~4문장(read)만 모델 몫.
 사용: py radar/gpu_daily.py --backfill [2026-01-01]   # 아카이브 역수집(요청 사이 6초, 이어받기 가능)
       py radar/gpu_daily.py --backfill-index [2026-01-01]   # Silicon Data 지수 아카이브 역수집
@@ -490,8 +494,127 @@ def _panel(page, box, g, S, d0, d1):
         _txt(page, (x0 + 4, y0 + 10), " · ".join(missing) + " 공개 정가 없음(문의)", 7, INK2)
 
 
+# 일일 그림(2026-11-23 마스터 지시 "GPU Rental 비용은 일일 추이를 파악할 수 있는 파이프라인을 찾고 이를 토대로 그래프를 새로 그려라")
+# 매일 움직이는 계열이 주인공이다 — (이름, 색, 범례, 끝 이름표 꼬리). 색은 범주 고정 순서(파랑·주황·청록). 정가는 칸 제목 아래 글 한 줄로만
+DAILY = [(ORN, (0.165, 0.471, 0.839), "실거래 지수(Ornn)", " 실거래"),
+         (IDX, (0.922, 0.408, 0.204), "시장 지수(Silicon Data)", " 지수"),
+         (FLP, (0.106, 0.686, 0.478), "제공사 중앙값(Flopper)", " 중앙")]
+
+
+def daily_window(obs, since, until):
+    """일일 계열이 처음 관측된 날부터 그린다(그 전은 빈 칸이라 추이가 눌린다). 일일 계열이 없으면 None"""
+    firsts = [min(d for d, v in o.items() if v is not None) for (p, _), o in obs.items() if p in REFN and any(v is not None for v in o.values())]
+    firsts = [d for d in firsts if d <= until]
+    return max(since, min(firsts)) if firsts else None
+
+
+def _daily_axis(vals):
+    """(아래, 위, 눈금) — 0부터가 아니라 값 범위에 맞춘다(일일 움직임이 보이게)"""
+    lo, hi = min(vals), max(vals)
+    pad = max((hi - lo) * 0.08, hi * 0.01)
+    step = _nice_step((hi - lo + 2 * pad) / 4)
+    bottom = max(0.0, math.floor((lo - pad) / step) * step)
+    top = math.ceil((hi + pad) / step) * step
+    return bottom, top, step
+
+
+def _nice_step(x):
+    e = 10 ** math.floor(math.log10(x)) if x > 0 else 1
+    return next(m * e for m in (1, 2, 2.5, 5, 10) if m * e >= x)
+
+
+def _daily_panel(page, box, g, obs, S, d0, d1):
+    from memory_spot import _txt
+    x0, y0, x1, y1 = box
+    lines = []
+    for name, col, _, tail in DAILY:
+        pts = sorted((d, v) for d, v in (obs.get((name, g)) or {}).items() if v is not None and d0.isoformat() <= d <= d1.isoformat())
+        if pts:
+            lines.append((name, col, tail, pts))
+    _txt(page, (x0, y0 - 22), g, 12, INK)
+    lp = [f"{SHORT[p]} ${S[(p, g)]['last'][1]:,.2f}" for p in PROVS if (p, g) in S]   # 정가(온디맨드) — 몇 달에 한 번 바뀌는 값이라 글로만
+    _txt(page, (x0, y0 - 9), "정가 " + (" · ".join(lp) if lp else "공개 정가 없음"), 7.5, MUTED)
+    if not lines:
+        _txt(page, (x0 + 4, y0 + 14), "일일 계열 없음", 8, INK2)
+        return
+    bottom, top, step = _daily_axis([v for _, _, _, pts in lines for _, v in pts])
+    span = max((d1 - d0).days, 1)
+    X = lambda d: x0 + (x1 - x0) * (_d(d) - d0).days / span   # noqa: E731
+    Y = lambda v: y1 - (y1 - y0) * (v - bottom) / (top - bottom)   # noqa: E731
+    v = bottom
+    while v <= top + 1e-9:
+        page.draw_line((x0, Y(v)), (x1, Y(v)), color=GRID, width=0.5)
+        _txt(page, (x0 - 5, Y(v) + 3), f"${v:,.2f}" if step < 1 else (f"${v:,.1f}" if step % 1 else f"${v:,.0f}"), 7, MUTED, right=True)   # 눈금 2.5면 소수 한 자리(반올림한 $12가 아니다)
+        v += step
+    m = date(d0.year, d0.month, 1)
+    while m <= d1:   # 달 첫날 눈금 + 보름 눈금(기간이 짧을 때)
+        for day in ((1, 15) if span <= 150 else (1,)):
+            t = date(m.year, m.month, day)
+            if d0 <= t <= d1:
+                page.draw_line((X(t), y1), (X(t), y1 + 3), color=MUTED, width=0.5)
+                _txt(page, (X(t) - 8, y1 + 12), f"{t.month}/{t.day}", 7, MUTED)
+        m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
+    page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
+    ends = []
+    for name, col, tail, pts in lines:
+        sg = [(X(d), Y(v)) for d, v in pts]
+        if len(sg) > 1:
+            page.draw_polyline(sg, color=SURF, width=3.2)   # 겹치는 선 사이 바탕색 테두리
+            page.draw_polyline(sg, color=col, width=1.6)
+        page.draw_circle(sg[-1], 2.4, color=SURF, fill=col, width=0.8)
+        ends.append([sg[-1][1], col, f"${pts[-1][1]:,.2f}{tail}"])
+    ends.sort(key=lambda e: e[0])
+    for i in range(1, len(ends)):   # 끝 이름표 겹침 풀기
+        ends[i][0] = max(ends[i][0], ends[i - 1][0] + 10)
+    for y, col, s in ends:
+        page.draw_circle((x1 + 7, y - 2.5), 2.4, color=col, fill=col)
+        _txt(page, (x1 + 12, y + 0.5), s, 7.5, INK)
+
+
 def chart(since=None, until=None, path=None):
-    """→ (png 경로, 요약 dict)"""
+    """일일 추이 그림 → (png 경로, 요약 dict). 매일 움직이는 계열(실거래 지수·시장 지수·제공사 중앙값)이 선이고 정가는 글 한 줄이다.
+    일일 계열이 하나도 없으면 옛 정가 계단 그림(chart_list)으로 그린다"""
+    import pymupdf
+    from memory_spot import _txt
+    now = common.now_kst()
+    since = since or START
+    until = until or now.date().isoformat()
+    obs = observations()
+    S = series(obs, since, until)
+    if not S:
+        raise SystemExit("[GPU Daily] 자료 없음 — gpu_rental.csv·--backfill 확인")
+    w0 = daily_window(obs, since, until)
+    if not w0:
+        return chart_list(since, until, path)
+    d0, d1 = _d(w0), _d(until)
+    doc = pymupdf.open()
+    page = doc.new_page(width=760, height=744)
+    page.draw_rect(page.rect, color=None, fill=SURF)
+    _txt(page, (36, 34), f"GPU 임대료 일일 추이 — 시장 가격 $/GPU·시 ({_ymd(w0)}~)", 15, INK)
+    _txt(page, (36, 52), f"기준 {until} · 선 = 매일 움직이는 시장 값(관측일을 이었다), 세로축은 값 범위에 맞췄다(0부터가 아니다) · 정가는 칸마다 글로", 8.5, INK2)
+    x = 36
+    for name, col, leg, _ in DAILY:
+        if any(k[0] == name for k in S):
+            page.draw_line((x, 72), (x + 18, 72), color=col, width=2)
+            _txt(page, (x + 23, 75), leg, 9, INK)
+            x += 23 + sum(9.2 if ord(ch) > 0x1100 else 5.0 for ch in leg) + 18
+    boxes = [(70, 122, 320, 370), (440, 122, 690, 370), (70, 442, 320, 680), (440, 442, 690, 680)]
+    for g, box in zip(GPUS, boxes):
+        _daily_panel(page, box, g, obs, S, d0, d1)
+    _txt(page, (36, 704), "실거래 지수: Ornn Compute Price Index(실제 임대 거래 정산, 미 동부 자정 기준 일 1회) — 개인 참고용, 재배포하지 않는다.", 7, MUTED)
+    _txt(page, (36, 715), "시장 지수: Silicon Data 공개 페이지 헤드라인 값 인용(거래 가격 기반 지수). 읽은 날만 점이 있고 그 사이는 이었다.", 7, MUTED)
+    _txt(page, (36, 726), "제공사 중앙값: Flopper.io GPU별 가격 페이지의 제공사별 일별 최저 온디맨드가(15~31곳)의 그날 중앙값 — 정가 모음이며 거래가가 아니다.", 7, MUTED)
+    _txt(page, (36, 737), "정가: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드(미국 동부·리눅스, 8 GPU 인스턴스÷8). 세 계열은 정의가 달라 수준을 직접 비교하지 않는다.", 7, MUTED)
+    OUT.mkdir(parents=True, exist_ok=True)
+    path = Path(path or OUT / f"gpu_trend_{until.replace('-', '')}.png")
+    page.get_pixmap(dpi=150).save(str(path))
+    summ = summary(S, since, until, str(path))
+    summ["daily_since"] = w0
+    return path, summ
+
+
+def chart_list(since=None, until=None, path=None):
+    """옛 그림 — 세 곳 온디맨드 정가 계단선 + 시장 참고선(2026-11-19~22). 일일 계열이 없을 때만 쓴다 → (png 경로, 요약 dict)"""
     import pymupdf
     from memory_spot import _txt
     now = common.now_kst()
@@ -577,7 +700,13 @@ SHORT = {"Nebius": "Nebius", "CoreWeave": "CW", "AWS": "AWS"}
 def caption(summ, read=""):
     """간략 양식(마스터 지시 2026-11-20 "텔레그램 피드도 간략히 설명하도록 하라. 지금 설명은 너무 길다") —
     머리 1줄 · GPU별 세 곳 가격 1줄씩 · 가장 최근 가격 변경 1줄(같은 제공사·같은 구간은 한 줄로 묶음) · 풀이 1~2문장. 자세한 계단은 그림에"""
-    L = [f"[Chiip Pulse] GPU 렌털비 {_md(summ['until'])} · 온디맨드 $/GPU·시 ({' · '.join(SHORT[p] for p in PROVS)})"]
+    L = [f"[Chiip Pulse] GPU 임대료 일일 추이 {_md(summ['until'])} · $/GPU·시"]
+    refs = summ.get("refs") or ({IDX: summ["index"]} if summ.get("index") else {})
+    for name, head in ((ORN, "실거래 지수(Ornn)"), (IDX, "시장 지수"), (FLP, "제공사 중앙값")):   # 매일 움직이는 값이 먼저(2026-11-23) — 그림의 선과 같은 순서
+        ix = refs.get(name) or {}
+        if ix:
+            L.append(f"{head} " + " · ".join(f"{g} {x['usd']:.2f}" + (f"({x['1w']:+.1f}%)" if x.get("1w") is not None else "") for g, x in ix.items()) + " · 1주")
+    L.append(f"정가({' · '.join(SHORT[p] for p in PROVS)}, 온디맨드)")
     for r in summ["gpus"]:
         L.append(f"{r['gpu']}  " + " · ".join(f"{r['prov'][p]['usd']:.2f}" if p in r["prov"] else "문의" for p in PROVS))
     ev = {}
@@ -589,11 +718,6 @@ def caption(summ, read=""):
         (p, a, b), pcts = max(ev.items(), key=lambda kv: kv[0][2])
         rng = f"{min(pcts):+.0f}%" if round(min(pcts)) == round(max(pcts)) else f"{min(pcts):+.0f}~{max(pcts):.0f}%"
         L.append(f"최근 변경: {p} {len(pcts)}종 {rng}({_md(a)}~{_md(b)})")
-    refs = summ.get("refs") or ({IDX: summ["index"]} if summ.get("index") else {})
-    for name, head in ((IDX, "시장 지수"), (ORN, "실거래 지수(Ornn)"), (FLP, "제공사 중앙값")):   # 참고값 한 줄씩(2026-11-21) — 정가가 평평해도 시장 움직임이 보이게
-        ix = refs.get(name) or {}
-        if ix:
-            L.append(f"{head} " + " · ".join(f"{g} {x['usd']:.2f}" + (f"({x['1w']:+.1f}%)" if x.get("1w") is not None else "") for g, x in ix.items()) + " · 1주")
     for s in summ.get("stale") or []:
         L.append(f"주의: {s} — 원천 갱신 멈춤 의심")
     flat = [SHORT[p] for p in PROVS if any(p in r["prov"] for r in summ["gpus"]) and not any(r["prov"].get(p, {}).get("steps") for r in summ["gpus"])]

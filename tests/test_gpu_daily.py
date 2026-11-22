@@ -74,6 +74,33 @@ class MarketIndex(unittest.TestCase):
             png, summ = D.chart("2026-01-01", "2026-11-21", path=Path(d) / "g.png")
             self.assertTrue(png.exists())
         self.assertIn("H100", summ["index"])
+        self.assertEqual(summ["daily_since"], "2026-07-28")   # 일일 계열이 처음 관측된 날부터 그린다(2026-11-23)
+
+    def test_daily_window_axis_and_caption_order(self):
+        obs = {("Nebius", "H100"): {"2025-12-27": 2.95}, (D.IDX, "H100"): {"2026-09-11": 2.9, "2026-11-21": 3.1},
+               (D.ORN, "H100"): {"2026-08-22": 2.7, "2026-11-21": 2.9}, (D.FLP, "H100"): {}}
+        self.assertEqual(D.daily_window(obs, "2026-01-01", "2026-11-21"), "2026-08-22")
+        self.assertEqual(D.daily_window(obs, "2026-10-01", "2026-11-21"), "2026-10-01")       # 요청한 시작일보다 앞서지 않는다
+        self.assertIsNone(D.daily_window({("Nebius", "H100"): {"2025-12-27": 2.95}}, "2026-01-01", "2026-11-21"))
+        bottom, top, step = D._daily_axis([2.46, 3.63])
+        self.assertLessEqual(bottom, 2.46)
+        self.assertGreaterEqual(top, 3.63)
+        self.assertGreater(bottom, 0)                                                         # 0부터가 아니다 — 일일 움직임이 보이게
+        self.assertAlmostEqual((top - bottom) / step, round((top - bottom) / step))
+        S = D.series(obs, "2026-01-01", "2026-11-21")
+        cap = D.caption(D.summary(S, "2026-01-01", "2026-11-21")).splitlines()
+        self.assertIn("일일 추이", cap[0])
+        self.assertTrue(cap[1].startswith("실거래 지수(Ornn)"))                               # 매일 움직이는 값이 정가보다 먼저
+        self.assertLess(next(i for i, x in enumerate(cap) if x.startswith("시장 지수")), next(i for i, x in enumerate(cap) if x.startswith("정가(")))
+
+    def test_chart_falls_back_to_list_prices_without_daily_series(self):
+        import tempfile
+        from unittest import mock
+        obs = {("Nebius", "H100"): {"2025-12-27": 2.95, "2026-07-12": 3.85}}
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(D, "observations", return_value=obs):
+            png, summ = D.chart("2026-01-01", "2026-11-21", path=Path(d) / "g.png")
+            self.assertTrue(png.exists())
+        self.assertNotIn("daily_since", summ)
 
     def test_index_outliers_dropped(self):
         o = {"2026-07-28": 7.17, "2026-08-12": 68.0, "2026-09-11": 2.64, "2026-10-02": 2.77, "2026-10-10": 2.85, "2026-11-20": 3.08}
