@@ -120,6 +120,9 @@ def status(now=None):
         prev = next((r for r in reversed(rs) if r["date"] <= cut), None)
         peak = max(rs, key=lambda r: r["value"])
         out.update({"open": last.get("open"), "proprietary": last.get("proprietary")})
+        ap = approx_rows()
+        if ap:
+            out.update({"ytd_base": ap[0]["value"], "ytd": round(last["value"] / ap[0]["value"] - 1, 4)})
         if not prev and last.get("wk_ago"):   # 쌓인 지 1주 미만 — 페이지 '7일 보기'의 첫 점으로
             prev = {"date": last["wk_ago_date"], "value": float(last["wk_ago"])}
         out.update({"last": last["date"], "value": last["value"],
@@ -129,39 +132,57 @@ def status(now=None):
     return out
 
 
+APPROX = common.ROOT / "knowledge" / "models" / "token_index_ytd_approx.csv"   # 2026-01-01~11-19 — 마스터 제공 그래프 판독 근사(실측 아님, 2026-11-22)
+YTD_START = "2026-01-01"   # 마스터 지시 2026-11-22 "Token Price Index의 YTD 그래프를 그리고 11월 22일부터 집계하라"
+
+
+def approx_rows():
+    if not APPROX.exists():
+        return []
+    with APPROX.open(encoding="utf-8") as f:
+        return [{"date": r["date"], "value": float(r["value"])} for r in csv.DictReader(f)]
+
+
 def chart(path=PNG):
+    """YTD 한 장 — 회색 점선 = 판독 근사(1/1~11/19), 빨간 실선 = Chiip 수집(11/22 수집 시작, 하루 1점)"""
     import pymupdf
     from memory_spot import _nice, _txt
-    rs = rows()
+    rs, ap = rows(), approx_rows()
+    d0 = date.fromisoformat(YTD_START)
+    d1 = max(date.fromisoformat(rs[-1]["date"]) if rs else d0, date.fromisoformat(ap[-1]["date"]) if ap else d0) + timedelta(days=3)
     doc = pymupdf.open()
-    page = doc.new_page(width=720, height=400)
+    page = doc.new_page(width=720, height=420)
     page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
-    _txt(page, (36, 34), "LLM 토큰 지출 가중 가격 지수(Silicon Data SDLLMTK)", 15, (0.05, 0.05, 0.05))
-    _txt(page, (36, 52), f"혼합 추론 토큰 가격 지수 · 일별 공개 헤드라인 값 · {rs[0]['date']} ~ {rs[-1]['date']}", 8.5, (0.4, 0.4, 0.4))
-    x0, y0, x1, y1 = 70, 80, 660, 350
-    ys = [r["value"] for r in rs]
-    lo, hi = min(ys), max(ys)
-    step = _nice(max(hi - lo, 0.05) / 4)
-    bot, top = (lo // step) * step, (hi // step + 1) * step
-    X = lambda i: x0 + (x1 - x0) * i / max(len(ys) - 1, 1)   # noqa: E731
+    _txt(page, (36, 34), "LLM 토큰 가격 지수 YTD(Silicon Data SDLLMTK)", 15, (0.05, 0.05, 0.05))
+    _txt(page, (36, 52), f"혼합 추론 토큰 가격 지수 · {YTD_START} ~ {rs[-1]['date'] if rs else ''}", 8.5, (0.4, 0.4, 0.4))
+    x0, y0, x1, y1 = 60, 80, 640, 360
+    ys = [r["value"] for r in rs + ap]
+    step = _nice(max(max(ys) - min(ys), 0.2) / 5)
+    bot, top = (min(ys) // step) * step, (max(ys) // step + 1) * step
+    X = lambda d: x0 + (x1 - x0) * (date.fromisoformat(d) - d0).days / max((d1 - d0).days, 1)   # noqa: E731
     Y = lambda v: y1 - (y1 - y0) * (v - bot) / (top - bot)   # noqa: E731
     v = bot
     while v <= top + 1e-9:
         page.draw_line((x0, Y(v)), (x1, Y(v)), color=(0.9, 0.9, 0.9), width=0.5)
         _txt(page, (x0 - 6, Y(v) + 3), f"{v:.2f}", 7, (0.45, 0.45, 0.45), right=True)
         v += step
-    for i in range(1, len(ys)):
-        page.draw_line((X(i - 1), Y(ys[i - 1])), (X(i), Y(ys[i])), color=(0.85, 0.15, 0.2), width=1.6)
-    if len(ys) == 1:
-        page.draw_circle((X(0), Y(ys[0])), 2.5, color=(0.85, 0.15, 0.2), fill=(0.85, 0.15, 0.2))
-    _txt(page, (x1 + 6, Y(ys[-1]) + 3), f"{ys[-1]:.4f}", 8, (0.85, 0.15, 0.2))
-    seen = set()
-    for i, r in enumerate(rs):
-        m = r["date"][:7]
-        if m not in seen:
-            seen.add(m)
-            _txt(page, (X(i) - 8, y1 + 14), f"{int(r['date'][5:7])}월", 7, (0.45, 0.45, 0.45))
-    _txt(page, (36, 388), "자료: Silicon Data 공개 페이지 헤드라인 값 인용(데이터셋·API 미사용). Chiip가 매일 1점씩 쌓은 값", 7, (0.5, 0.5, 0.5))
+    for m in range(1, 13):
+        dm = date(d0.year, m, 1)
+        if dm <= d1:
+            _txt(page, (X(dm.isoformat()) - 6, y1 + 14), f"{m}월", 7, (0.45, 0.45, 0.45))
+    for a, b in zip(ap, ap[1:]):
+        page.draw_line((X(a["date"]), Y(a["value"])), (X(b["date"]), Y(b["value"])), color=(0.6, 0.6, 0.6), width=1.2, dashes="[3 2] 0")
+    red = (0.85, 0.15, 0.2)
+    for a, b in zip(rs, rs[1:]):
+        page.draw_line((X(a["date"]), Y(a["value"])), (X(b["date"]), Y(b["value"])), color=red, width=1.8)
+    for r in rs[-1:]:
+        page.draw_circle((X(r["date"]), Y(r["value"])), 2.6, color=red, fill=red)
+        _txt(page, (X(r["date"]) + 6, Y(r["value"]) + 3), f"{r['value']:.4f}", 8, red)
+    page.draw_line((x0, 382), (x0 + 22, 382), color=(0.6, 0.6, 0.6), width=1.2, dashes="[3 2] 0")
+    _txt(page, (x0 + 28, 385), "1/1~11/19 판독 근사(마스터 제공 그래프 눈금 판독, 실측 아님)", 7.5, (0.4, 0.4, 0.4))
+    page.draw_line((x0 + 300, 382), (x0 + 322, 382), color=red, width=1.8)
+    _txt(page, (x0 + 328, 385), "Chiip 수집(11/22부터, 공개 헤드라인 값 하루 1점)", 7.5, (0.4, 0.4, 0.4))
+    _txt(page, (36, 408), "자료: Silicon Data LLM Token Expenditure Index 공개 페이지 헤드라인 값 인용(데이터셋·API 미사용)", 7, (0.5, 0.5, 0.5))
     page.get_pixmap(dpi=150).save(str(path))
     return path
 
@@ -171,6 +192,7 @@ def caption(s, read):
     lines = [f"[Chiip Pulse] LLM 토큰 가격 지수 — {s['last']} {s['value']:.4f}",
              f"■ 전주 대비 {pct(s['wow'])}" + (f"({s['wow_base']} 대비)" if s.get("wow_base") else ""),
              f"■ 개방형 모델 {s.get('open') or '-'} · 독점형 모델 {s.get('proprietary') or '-'}",
+             f"■ 연초 대비 {pct(s['ytd'])}(1/1 판독 근사 {s['ytd_base']:.2f} 기준)" if s.get("ytd") is not None else "",
              *([f"■ 추적 이후 고점 {s['peak']:.4f}({s['peak_date']}) 대비 {pct(s['from_peak'])}"] if s.get("n", 0) >= 5 else [])]
     if read:
         lines += ["", read.strip()]
@@ -188,7 +210,7 @@ def send(path, now=None):
         return False
     read = json.loads(Path(path).read_text(encoding="utf-8")).get("read", "") if path else ""
     # 쌓인 점이 3개 미만이면 그림 없이 글만(점 하나짜리 그림은 뜻이 없다)
-    ok = notify.send_photo(chart(), caption(s, read), "P2") if s.get("n", 0) >= 3 else notify.send(caption(s, read), "P2")
+    ok = notify.send_photo(chart(), caption(s, read), "P2")   # YTD 그림(판독 근사 + 수집값, 2026-11-22 마스터 지시)
     if ok:
         st = common.load_state(STATE, {})
         st["sent_week"] = week_key(now)
