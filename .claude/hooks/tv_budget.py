@@ -101,6 +101,12 @@ def main(mode):
         st = {"day": day, "used": 0, "blocked_until": st.get("blocked_until"), "denied": 0}
     tool = str(inp.get("tool_name") or "")
     if mode == "pre":
+        task = task_of(inp)
+        # Proviser는 TradingView를 부르지 않는다(2026-11-22 마스터 지시 "Provisor로 Analysis Report의 주가 반응을 Revised할 때는 TradingView를 이용하지 마라")
+        if task and any(str(task).startswith(p) for p in c.get("deny_tasks") or []):
+            st["denied"] = st.get("denied", 0) + 1
+            save(st)
+            return deny(f"{task}는 TradingView를 쓰지 않는다 — 주가 반응·일봉은 knowledge/models/companies/<id>/ohlcv.csv, 모자라면 py radar/market_data.py history <심볼> (Tiingo·Twelve Data·EODHD), 미국 외는 Fiscal.ai company_stock_prices로 읽는다(config/tv_budget.yaml deny_tasks)")
         hit = cached(c, tool, inp.get("tool_input"), now)
         if hit:   # 같은 조회가 TTL 안에 있다 — 예산을 쓰지 않고 파일을 읽게 한다
             st["cache_hits"] = st.get("cache_hits", 0) + 1

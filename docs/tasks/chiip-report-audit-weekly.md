@@ -10,4 +10,5 @@
 5. 글(맞춤법·오타·가독성) 수정도 이 회차에서 함께 — `py scripts/proviser/text_lint.py <리포트 md>` 후보를 6-4 b 기준으로 판단, 숫자·판단·인용은 바꾸지 않는다.
 6. 같은 수치 오류가 두 리포트 이상에서 나오면 그 원인을 Analysis 지시서·엔진으로 올린다(`docs/proviser/chiip-tenbagger.md` 보강 지시) — 다음 주 리포트에서 반복되지 않게.
 7. 끝에 텔레그램 1통(레벨 'PROVISER'): 점검 n건 · 정정 n건(종목·무엇을 전 → 후) · 반복 오류와 올린 보강. 정정이 0이면 한 줄.
+7-1. **주가 반응을 다시 읽을 때 TradingView를 쓰지 않는다**(2026-11-22 마스터 지시 "Provisor로 Analysis Report의 주가 반응을 Revised할 때는 TradingView를 이용하지 마라"). 순서: 그 종목 `knowledge/models/companies/<id>/ohlcv.csv` → 모자라면 `py radar/market_data.py history <심볼>`(Tiingo·Twelve Data·EODHD) → 미국 외는 Fiscal.ai `company_stock_prices`. 훅(`config/tv_budget.yaml` deny_tasks)이 이 회차의 TradingView 호출을 거부한다. 반응일은 8-K 접수 시각(장전·장후)으로 정한다.
 8. 금지: D:\local-only 읽기, 이번 주 밖 리포트 수정, 목표주가·등급을 손으로 바꾸기, 매매·비중 표현.
