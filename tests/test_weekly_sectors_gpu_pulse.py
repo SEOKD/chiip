@@ -65,9 +65,12 @@ class TestGpuWeekly(unittest.TestCase):
         self.assertAlmostEqual(t["index"][0][2], 3.0, places=1)
         self.assertIn("참고 시장 지수(Silicon Data) H100 $3.09(+3.0%)", gpu_weekly.message(t, ""))
 
+    def test_weekly_feed_stopped(self):   # 2026-11-23 마스터 지시 — 주간 피드 중단, 일일 Ornn으로
+        self.assertFalse(gpu_weekly.status(datetime(2026, 11, 16, 9, 0, tzinfo=KST))["due"])
+
     def test_due_only_monday_after_six_once_per_week(self):
-        with mock.patch.object(gpu_weekly.common, "load_state", return_value={}), mock.patch.object(gpu_weekly, "table", return_value={"rows": [1], "moved": [], "as_of": "2026-11-16", "prev": "2026-11-09"}), \
-                mock.patch.object(gpu_weekly, "message", return_value=""):
+        with mock.patch.object(gpu_weekly, "STOPPED", False), mock.patch.object(gpu_weekly.common, "load_state", return_value={}), mock.patch.object(gpu_weekly, "table", return_value={"rows": [1], "moved": [], "as_of": "2026-11-16", "prev": "2026-11-09"}), \
+                mock.patch.object(gpu_weekly, "feed", return_value=""):
             self.assertFalse(gpu_weekly.status(datetime(2026, 11, 16, 5, 50, tzinfo=KST))["due"])
             self.assertTrue(gpu_weekly.status(datetime(2026, 11, 16, 6, 0, tzinfo=KST))["due"])
             self.assertFalse(gpu_weekly.status(datetime(2026, 11, 17, 6, 0, tzinfo=KST))["due"])
