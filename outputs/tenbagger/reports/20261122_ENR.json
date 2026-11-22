@@ -1636,7 +1636,7 @@
      "rows": [
       [
        "크기",
-       "대형(시가총액 101.0B$)"
+       "대형(시가총액 €101.0B)"
       ],
       [
        "장기 성장",
@@ -3916,9 +3916,39 @@
      ]
     }
    ]
+  },
+  {
+   "h2": "정정 기록 — Chiip Proviser 2026-11-22 10:31(주간 점검)",
+   "blocks": [
+    {
+     "type": "table",
+     "headers": [
+      "무엇을(전 → 후)",
+      "왜",
+      "근거"
+     ],
+     "rows": [
+      [
+       "'대형(시가총액 101.0B$)' → '대형(시가총액 €101.0B)'",
+       "현지 통화 시가총액에 달러 기호가 붙었다",
+       "시가총액 타일 €100.96B"
+      ]
+     ]
+    },
+    {
+     "type": "p",
+     "text": "목표주가·구매 등급·시나리오 값은 그대로다."
+    }
+   ]
   }
  ],
- "corrections": [],
+ "corrections": [
+  {
+   "from": "대형(시가총액 101.0B$)",
+   "to": "대형(시가총액 €101.0B)",
+   "by": "Chiip Proviser 2026-11-22"
+  }
+ ],
  "sources": [
   "마스터 노션 자료: JPM 2026-10-29 JPM_GE_Vernova_Power_SRA_2026-10-29_5510883.pdf (요지만, 외부 공유 금지)",
   "마스터 노션 자료: 미확인 Americas_Utilities_Power_IPPs_Updating__into_3Q_pullback_presents_compelling_opportunity_f.pdf (요지만, 외부 공유 금지)",
