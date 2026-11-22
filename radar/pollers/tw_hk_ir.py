@@ -67,9 +67,21 @@ def fresh_docs(rows, today, fresh_days=21):
         if d["date"]:
             if (today - docs.date.fromisoformat(d["date"])).days <= fresh_days:
                 out.append(d)
-        elif d["period"] and d["period"] == latest:
+        elif d["period"] and d["period"] == latest and not stale_period(d["period"], today):
             out.append(d)
     return out
+
+
+def stale_period(p, today, grace=45):
+    """날짜 없는 자료 — 분기 끝 + grace일(대만 분기 실적 공시 기한 45일)이 지났으면 지난 자료(2026-11-22: 10/15 TSMC 3Q26 보고서가 11/22에 발송됐다)"""
+    import re as _re
+    m = _re.match(r"FY(\d{4})Q([1-4])", p or "")
+    if not m:
+        return False
+    y, q = int(m.group(1)), int(m.group(2))
+    from datetime import date, timedelta
+    end = (date(y, 3 * q, 1) + timedelta(days=31)).replace(day=1) - timedelta(days=1)
+    return (today - end).days > grace
 
 
 def _item(cid, c, d, text, path):
@@ -110,16 +122,20 @@ def official(cid, c, cs, today, items, first):
     errs = []
     for pg in pages:
         try:
-            rows += scan(qa._text(qa.fetch(pg)), pg, c)
+            rows += [dict(d, page=pg) for d in scan(qa._text(qa.fetch(pg)), pg, c)]
         except Exception as exc:   # 한 페이지가 막혀도(TSMC 분기 페이지 일부 403, 2026-11-22) 나머지는 읽는다
             errs.append(exc)
     if errs and len(errs) == len(pages):
         raise errs[0]
     new = [d for d in rows if d["key"] not in seen and d["kind"] != "video"]
     keep = {d["key"] for d in fresh_docs(rows, today)}
+    # 새로 읽기 시작한 페이지(주소 틀 변경 등)의 자료는 그 회사가 기준선을 마쳤어도 첫 회차처럼 기록만(2026-11-22 TSMC doc_tpl 도입 뒤 지난 분기 보고서 발송)
+    old_pages = set(cs.get("pages_based") or [])
+    fresh_page = {d["key"] for pg in pages if pg not in old_pages for d in rows if d.get("page") == pg} if cs.get("pages_based") is not None else set()
+    cs["pages_based"] = sorted(old_pages | set(pages))[-200:]
     for d in new:
         seen.add(d["key"])
-        if first or d["key"] not in keep:   # 첫 회차와 과거 자료는 기록만
+        if first or d["key"] not in keep or d["key"] in fresh_page:   # 첫 회차·과거 자료·새 페이지 첫 회는 기록만
             continue
         text = qa.to_text(d["url"], qa.fetch(d["url"], 60))
         items.append(_item(cid, c, d, text, save_text(cid, d, text)))
