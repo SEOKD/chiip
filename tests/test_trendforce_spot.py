@@ -33,6 +33,31 @@ class TrendForceSpot(unittest.TestCase):
         self.assertNotIn(("2025-12-31", "DDR4 16Gb 2Gx8"), r)               # 고정거래가 표는 뺀다
         self.assertFalse(any("DIMM" in k[1] for k in r))                    # 모듈 표도 뺀다
 
+    def test_parse_wafer_spot_table(self):
+        """IB 리포트가 그리는 NAND 웨이퍼 현물(2026-11-23) — 머리가 'Weekly High'인 'Wafer Spot Price'표도 읽는다"""
+        cells = ["NAND Flash Spot Price", "Last Update 2026-11-09 14:40 (GMT+8)", "Item", "Daily High", "Daily Low", "Session High", "Session Low", "Session Average", "Session Change", "History",
+                 "MLC 64Gb 8GBx8", "56.00", "41.50", "56.00", "41.50", "44.174", "▲", "0.42 %",
+                 "NAND Flash Contract Price", "Last Update 2026-09-30 10:00 (GMT+8)", "Item", "High", "Low", "Average", "Average Change", "Low Change", "History",
+                 "NAND 64Gb 8Gx8 MLC", "23.70", "23.30", "23.528", "▲", "0.44 %", "▲", "0.43 %",
+                 "Wafer Spot Price", "Last Update 2026-11-09 14:40 (GMT+8)", "Item", "Weekly High", "Weekly Low", "Session High", "Session Low", "Session Average", "Session Change", "History",
+                 "512Gb TLC", "19.00", "12.00", "19.00", "12.00", "14.267", "▼", "-11.67 %", "256Gb TLC", "20.00", "16.80", "20.00", "16.80", "18.142", "▼", "-1.21 %",
+                 "Memory Card Spot Price", "Last Update 2026-11-09 14:40 (GMT+8)", "Item", "Daily High", "Daily Low", "Session High", "Session Low", "Session Average", "Session Change", "History",
+                 "MicroSD 16GB", "2.70", "2.40", "2.70", "2.40", "2.525", "▼", "-2.89 %"]
+        html = "<table>" + "".join(f"<tr><td>{x}</td></tr>" for x in cells) + "</table>"
+        r = {x["item"]: x for x in T.parse(html)}
+        self.assertEqual(sorted(r), ["MLC 64Gb 8GBx8", "Wafer 256Gb TLC", "Wafer 512Gb TLC"])   # 고정거래가·메모리카드 표는 뺀다
+        self.assertEqual((r["Wafer 512Gb TLC"]["avg"], r["Wafer 512Gb TLC"]["chg"], r["Wafer 512Gb TLC"]["table"]), (14.267, -11.67, "NAND 웨이퍼"))
+        self.assertEqual(r["MLC 64Gb 8GBx8"]["avg"], 44.174)
+        self.assertEqual(T.NAND, "Wafer 512Gb TLC")
+
+    def test_parse_weekly_wafer_post(self):
+        txt = "Memory Price Weekly Update — NAND\n26년 11월 2일\n\n512Gb TLC $16.152🔻 YoY +252.97%⛔️\n256Gb TLC $18.365⏸️ YoY +675.55%⏸️\n128Gb TLC $9.967⏸️\n\n* 시가총액 $421.02B"
+        r = T.parse_wafer_post(txt, "https://t.me/x/1")
+        self.assertEqual([(x["date"], x["item"], x["avg"]) for x in r],
+                         [("2026-11-02", "Wafer 512Gb TLC", 16.152), ("2026-11-02", "Wafer 256Gb TLC", 18.365), ("2026-11-02", "Wafer 128Gb TLC", 9.967)])
+        self.assertTrue(all(x["updated"].endswith("00:00") and x["source"].startswith("tg:") for x in r))   # 공개 현물표 관측이 같은 날 있으면 그쪽이 이긴다
+        self.assertEqual(T.parse_wafer_post("Memory Price Weekly Update — DRAM\n26년 11월 13일\nDDR5 16G: $60.233"), [])
+
     def test_merge_keeps_latest_update_and_series(self):
         with tempfile.TemporaryDirectory() as d:
             T.OUT, T.ROWS = Path(d), Path(d) / "rows.csv"

@@ -11,7 +11,11 @@
   아카이브 이력은 스냅숏이 있는 날만 있다 — 빈 날은 선으로 잇고 점은 관측일에만 찍는다.
 run(): run_hourly 360분 — 공개 페이지 2쪽을 읽어 새 갱신분만 더한다(모델 없음).
 그림: radar/memory_spot.py가 평일 10~11시 메리츠 기반 추정 그림 다음에 이 그림을 따로 보낸다.
+NAND 품목(2026-11-23): NAND 칸은 'Wafer Spot'표의 512Gb TLC 웨이퍼(IB 리포트가 그리는 주류 3D NAND)를 쓴다. 옛 MLC 64Gb 칩 현물은 구형 품목이라
+  추이가 다르다(위 NAND 설명). 웨이퍼표도 주 1회 갱신이고, 공개 페이지에는 512Gb·256Gb·128Gb TLC만 있다(1Tb TLC는 없다).
 사용: py radar/trendforce_spot.py              # 공개 페이지 읽기(run)
+      py radar/trendforce_spot.py --wafer-fill [2026-01-01]       # 공개 채널 주간 글로 웨이퍼 빈 주 채우기
+      py radar/trendforce_spot.py --backfill-wafer [2025-12-01]   # 웨이퍼표 과거값(아카이브 플래시 페이지 다시 읽기)
       py radar/trendforce_spot.py --backfill [2025-12-01]
       py radar/trendforce_spot.py --chart [시작일]
 """
@@ -34,7 +38,12 @@ FIELDS = ["date", "updated", "table", "item", "high", "low", "avg", "chg", "sour
 PAGES = {"dram": "https://www.trendforce.com/price/dram/dram_spot", "flash": "https://www.trendforce.com/price/flash/flash_spot"}
 WB_TARGETS = ["www.dramexchange.com/", "www.trendforce.com/price/dram/dram_spot", "www.trendforce.com/price/flash/flash_spot"]
 DRAM = "DDR5 16Gb (2Gx8) 4800/5600"
-NAND = "MLC 64Gb 8GBx8"
+NAND_CHIP = "MLC 64Gb 8GBx8"   # 옛 NAND 칸(2026-11-19~23) — 구형 MLC 칩 현물. 웨이퍼 이력이 없을 때만 쓴다
+# 2026-11-23 마스터 지시 "IB 리포트의 NAND 스팟 그림(NAND wafer 512Gb TLC, 출처 TrendForce)과 Chiip 추이가 다르다 — 문제를 파악하고 해결해":
+# 원인은 품목이었다. Chiip은 같은 공개 페이지의 'NAND Flash Spot'(SLC·MLC 칩 — 산업·구형 수요)표만 읽었고, IB가 그리는 건 'Wafer Spot'(TLC 웨이퍼 — 주류 3D NAND)표다.
+# 웨이퍼표는 머리가 'Weekly High'라 현물표 판별('Daily High')에서 빠져 있었다. 2026년 MLC 64Gb는 줄곧 올랐고(+528%) 512Gb TLC 웨이퍼는 2~3월 고점 뒤 내렸다 — 서로 다른 시장이다
+NAND = "Wafer 512Gb TLC"
+WAFER = re.compile(r"^\d+\s*(?:Gb|Tb)\s+(?:TLC|QLC|MLC)$", re.I)
 ITEM = re.compile(r"^(?:DDR\d|SLC|MLC|TLC|QLC)\b(?!.*DIMM)")
 MON = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 
@@ -69,16 +78,17 @@ def parse(text):
     """페이지 본문 → [{date, updated, table, item, high, low, avg, chg}] — 'Daily High' 머리가 있는 현물표만"""
     import gpu_daily
     c = gpu_daily._cells(text)
-    out, upd, daily, table = [], None, False, ""
+    out, upd, daily, table, wafer = [], None, False, "", False
     for i, x in enumerate(c):
         if x.startswith("Last Update"):
             upd = _updated(x)
             head = c[i + 1:i + 12]
-            daily = "Daily High" in head
+            wafer = c[i - 1].strip().lower().startswith("wafer spot") if i else False   # 'Wafer Spot Price' 표(주 1회, 머리 'Weekly High')
+            daily = "Daily High" in head or (wafer and "Weekly High" in head)
             prev = " ".join(c[max(0, i - 4):i])
             table = "NAND" if re.search(r"NAND|Flash", prev, re.I) else ("DRAM" if "DRAM" in prev else "")
             continue
-        if not (upd and daily and ITEM.match(x)):
+        if not (upd and daily and (WAFER.match(x.strip()) if wafer else ITEM.match(x))):
             continue
         nums, pct = [], None
         for y in c[i + 1:i + 10]:
@@ -93,8 +103,8 @@ def parse(text):
                 break
         if len(nums) < 5:
             continue
-        item = canon(x)
-        out.append({"date": upd[:10], "updated": upd, "table": table or ("NAND" if item.startswith(("SLC", "MLC", "TLC", "QLC")) else "DRAM"),
+        item = "Wafer " + re.sub(r"\s+", " ", x.strip()) if wafer else canon(x)
+        out.append({"date": upd[:10], "updated": upd, "table": "NAND 웨이퍼" if wafer else table or ("NAND" if item.startswith(("SLC", "MLC", "TLC", "QLC")) else "DRAM"),
                     "item": item, "high": nums[2], "low": nums[3], "avg": nums[4], "chg": pct})
     return out
 
@@ -133,18 +143,23 @@ def run():
         except Exception as e:
             errs.append(f"{k} {type(e).__name__}")
     n = merge(got) if got else 0
+    try:   # 웨이퍼 주간값 보강 — 수집기가 받아 둔 채널 글에서(네트워크 없음)
+        n += wafer_fill()
+    except Exception as e:
+        errs.append(f"wafer_fill {type(e).__name__}")
     st = common.load_state(STATE, {})
     st["last_run"] = common.iso(common.now_kst())
     common.save_state(STATE, st)
     return f"TrendForce 현물 {len(got)}행 · 새 날짜 {n}" + (f" · 문제 {', '.join(errs)}" if errs else "")
 
 
-def backfill(since="2025-12-01", pause=6.0):
+def backfill(since="2025-12-01", pause=6.0, done_key="wb_done", targets=None):
+    """done_key·targets: 웨이퍼표 이력은 이미 읽은 스냅숏을 다시 읽어야 한다 — --backfill-wafer가 플래시 페이지만 따로 센다"""
     import gpu_daily
     st = common.load_state(STATE, {})
-    done = set(st.get("wb_done") or [])
+    done = set(st.get(done_key) or [])
     total = 0
-    for tgt in WB_TARGETS:
+    for tgt in targets or WB_TARGETS:
         q = f"{gpu_daily.CDX}?url={tgt}&from={since.replace('-', '')}&output=json&filter=statuscode:200&collapse=timestamp:8&fl=timestamp,original"
         try:
             snaps = json.loads(gpu_daily._wb_get(q))[1:]
@@ -166,12 +181,63 @@ def backfill(since="2025-12-01", pause=6.0):
             n = merge(got)
             total += n
             done.add(k)
-            st["wb_done"] = sorted(done)
+            st[done_key] = sorted(done)
             common.save_state(STATE, st)
             dd = sorted({r["date"] for r in got})
             print(f"[TrendForce] {tgt[:24]} {ts[:8]} → {len(got)}행 {dd} 새 {n}")
             time.sleep(pause)
     return total
+
+
+# ---------- 웨이퍼 주간값 보강(공개 텔레그램 채널) ----------
+# 아카이브에는 웨이퍼표가 든 스냅숏이 드물다(2026년 18주). 공개 채널 Badonions(config/tg_channels.yaml 수집 대상)의 주간 글
+# 'Memory Price Weekly Update — NAND'가 같은 웨이퍼 현물(512Gb·256Gb·128Gb TLC, 달러)을 날짜와 함께 싣는다 — 빈 주를 이 값으로 채운다.
+# 공개 현물표 관측이 있는 날은 그 값을 둔다(merge가 갱신 시각이 늦은 쪽을 쓰므로 보강 행은 00:00으로 넣는다). 본문은 저장하지 않는다
+WAFER_CH = "Badonions"
+WAFER_POST = re.compile(r"Memory Price Weekly Update\s*[—\-]\s*NAND\s*(\d{2})년\s*(\d{1,2})월\s*(\d{1,2})일")
+WAFER_LINE = re.compile(r"(\d+\s*(?:Gb|Tb)\s+(?:TLC|QLC))\s*\$\s*([\d.]+)", re.I)
+
+
+def parse_wafer_post(text, url=""):
+    """주간 NAND 글 1건 → 웨이퍼 행(없으면 빈 목록)"""
+    m = WAFER_POST.search(text or "")
+    if not m:
+        return []
+    d = f"20{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
+    return [{"date": d, "updated": f"{d} 00:00", "table": "NAND 웨이퍼", "item": "Wafer " + re.sub(r"\s+", " ", a.strip()), "high": "", "low": "",
+             "avg": float(b), "chg": "", "source": f"tg:{WAFER_CH}", "url": url} for a, b in WAFER_LINE.findall(text[m.end():m.end() + 400])]
+
+
+def wafer_fill(since=None, pause=1.2, max_pages=400):
+    """since가 있으면 공개 미리보기(t.me/s)를 거슬러 읽고, 없으면 수집기가 받아 둔 글(radar/inbox/tg_channels)만 본다 → 새 날짜 수"""
+    got = []
+    if since:
+        from pollers import tg_channels as TG
+        url, pages = f"https://t.me/s/{WAFER_CH}", 0
+        while pages < max_pages:
+            page = TG.parse(TG.fetch(url))
+            pages += 1
+            if not page:
+                break
+            for q in page:
+                got += parse_wafer_post(q.get("text") or "", q.get("url") or "")
+            low = min(q["id"] for q in page)
+            if min(q["at"] for q in page)[:10] < since or low <= 1:
+                break
+            url = f"https://t.me/s/{WAFER_CH}?before={low}"
+            time.sleep(pause)
+    else:
+        f = common.ROOT / "radar" / "inbox" / "tg_channels" / f"{WAFER_CH}.jsonl"
+        if f.exists():
+            for line in f.read_text(encoding="utf-8").splitlines():
+                try:
+                    q = json.loads(line)
+                except ValueError:
+                    continue
+                got += parse_wafer_post(str(q.get("text") or ""), str(q.get("url") or ""))
+    have = {(r["date"], r["item"]) for r in read_rows()}
+    got = [r for r in got if (r["date"], r["item"]) not in have]   # 공개 현물표 관측이 있는 날은 건드리지 않는다
+    return merge(got) if got else 0
 
 
 # ---------- 시계열·그림 ----------
@@ -237,7 +303,8 @@ def chart(since=None, path=None):
     from memory_spot import _txt
     since = since or f"{common.now_kst().year}-01-01"
     rows = read_rows()
-    S = [series(DRAM, since, rows), series(NAND, since, rows)]
+    nand = NAND if series(NAND, since, rows) else NAND_CHIP   # 웨이퍼 이력이 아직 없으면 옛 칩 현물로
+    S = [series(DRAM, since, rows), series(nand, since, rows)]
     if not all(S):
         raise SystemExit("[TrendForce] 자료 부족 — --backfill 또는 run 먼저")
     doc = pymupdf.open()
@@ -246,7 +313,7 @@ def chart(since=None, path=None):
     _txt(page, (36, 34), f"TrendForce 메모리 현물가격 — {since[:4]} YTD", 15, INK)
     _txt(page, (36, 52), "Session Average(달러) · 공개 가격 페이지와 인터넷 아카이브 스냅숏으로 모은 관측값", 8.5, INK2)
     _panel(page, (80, 100, 690, 320), S[0], f"DRAM {DRAM} 현물 (달러)")
-    _panel(page, (80, 390, 690, 590), S[1], f"NAND {NAND} 현물 (달러, 주 1회 갱신)")
+    _panel(page, (80, 390, 690, 590), S[1], f"NAND {nand.replace('Wafer ', '웨이퍼 ')} 현물 (달러, 주 1회 갱신)")
     _txt(page, (36, 622), "자료: TrendForce(DRAMeXchange) 공개 현물가격표. 아카이브 스냅숏이 없는 날은 선으로 이었다. 개인 열람용.", 7.5, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"tf_{S[0]['last'][0].strftime('%Y%m%d')}.png")
@@ -268,7 +335,7 @@ def caption(summ, compare=()):
     for s in summ["series"]:
         d, v = s["last"]
         c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
-        L.append(f"■ {s['item']}: ${v:,.2f} ({d[5:].replace('-', '/')}) — {c}")
+        L.append(f"■ {s['item'].replace('Wafer ', 'NAND 웨이퍼 ')}: ${v:,.2f} ({d[5:].replace('-', '/')}) — {c}")
     if compare:
         L += [""] + list(compare)
     L += ["", "자료: TrendForce 공개 가격표(개인 열람용, 재배포 금지)"]
@@ -277,7 +344,11 @@ def caption(summ, compare=()):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if argv[:1] == ["--backfill"]:
+    if argv[:1] == ["--wafer-fill"]:   # 공개 채널 주간 글로 웨이퍼 빈 주 채우기(공개 미리보기를 거슬러 읽는다)
+        print(f"[TrendForce] 웨이퍼 보강 새 날짜 {wafer_fill(argv[1] if len(argv) > 1 else '2026-01-01')}행")
+    elif argv[:1] == ["--backfill-wafer"]:   # 웨이퍼표 이력 — 플래시 페이지 스냅숏을 다시 읽는다(이어받기 가능)
+        print(f"[TrendForce] 웨이퍼 새 날짜 {backfill(argv[1] if len(argv) > 1 else '2025-12-01', done_key='wf_done', targets=[WB_TARGETS[-1]])}행")
+    elif argv[:1] == ["--backfill"]:
         print(f"[TrendForce] 새 날짜 {backfill(argv[1] if len(argv) > 1 else '2025-12-01')}행")
     elif argv[:1] == ["--chart"]:
         print(json.dumps(chart(argv[1] if len(argv) > 1 else None)[1], ensure_ascii=False, indent=1))

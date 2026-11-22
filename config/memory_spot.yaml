@@ -3,6 +3,7 @@
 channels: [merITz_tech]
 dram: DDR5 16Gb     # 그래프에 그릴 DRAM 제품(채널 표기 그대로)
 nand: MLC 64Gb      # 그래프에 그릴 NAND 제품
+# 합친 그림의 NAND 칸은 2026-11-23부터 TrendForce 'Wafer Spot'표의 512Gb TLC 웨이퍼다(IB 리포트와 같은 품목, radar/trendforce_spot.py NAND). 아래 nand_daily는 웨이퍼 이력이 없어 옛 MLC 칩으로 돌아갈 때만 쓰인다
 nand_daily: true    # 합친 그림의 NAND 칸을 일별로(2026-11-23 마스터 지시) — 주 1회 관측 사이를 채널 1D 변화율로 채운다. false = 관측점만 잇기
 # anchors: 달러 기준점 — 공개 보도에 나온 같은 제품 현물 평균가(D램익스체인지 인용)와 날짜·출처. 없으면 지수로 그린다.
 # 여러 개면 중앙값으로 배율을 정하고 나머지와의 어긋남(misfit)을 그래프 요약에 남긴다.

@@ -409,16 +409,19 @@ def combined(since=None):
     since = since or f"{common.now_kst().year}-01-01"
     rows, trows = read_rows(), T.read_rows()
     out = []
-    for mprod, tprod, kind, interior in PAIRS:
+    pairs = list(PAIRS)
+    if T.series(T.NAND, since, trows):   # NAND 칸 = 512Gb TLC 웨이퍼(2026-11-23 — IB 리포트와 같은 품목). 채널 글에는 이 품목의 변화율이 없어 관측점만 잇는다
+        pairs[1] = (None, T.NAND, "NAND", False)
+    for mprod, tprod, kind, interior in pairs:
         ts = T.series(tprod, since, trows)
-        ms = series(rows, mprod, since, cfg.get("anchors"))
+        ms = series(rows, mprod, since, cfg.get("anchors")) if mprod else None
         if not ts:
             continue
         last_row = max((r for r in trows if r["item"] == tprod), key=lambda r: r["date"], default={})
         tf_pts = relabel_last(ts["points"], last_row.get("chg"), rows, mprod)
         if tf_pts[-1][0] != ts["last"][0]:
             ts["last"] = tf_pts[-1]
-        daily = kind == "NAND" and cfg.get("nand_daily", True)   # NAND도 관측 사이를 일별로 채운다(2026-11-23) — 1D를 그대로 쌓은 경로로
+        daily = kind == "NAND" and bool(mprod) and cfg.get("nand_daily", True)   # NAND도 관측 사이를 일별로 채운다(2026-11-23) — 1D를 그대로 쌓은 경로로
         pts = blend(tf_pts, raw_path(rows, mprod), True) if daily else blend(tf_pts, ms["points"] if ms else [], interior)
         pts = [p for p in pts if p[0] >= ts["points"][0][0]]
         last = pts[-1]
@@ -459,7 +462,7 @@ def combined_chart(since=None, path=None):
         unit = "일별" if s.get("daily") else "주 1회 갱신"
         if s["kind"] == "NAND" and s.get("daily"):
             unit = "일별 — 고시가 바뀐 날에 움직인다"
-        _txt(page, (x0, y0 - 22), f"{s['kind']} {s['product']} 현물 (달러, {unit})", 12, INK)
+        _txt(page, (x0, y0 - 22), f"{s['kind']} {s['product'].replace('Wafer ', '웨이퍼 ')} 현물 (달러, {unit})", 12, INK)
         v = lo
         while v <= hi + 1e-9:
             page.draw_line((x0, Y(v)), (x1, Y(v)), color=GRID, width=0.6)
@@ -497,7 +500,7 @@ def caption(summ, read=""):
         d, v, src = s["last"]
         c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
         tag = "보강" if src == "mz" else "TrendForce"
-        L.append(f"■ {s['product']}: ${v:,.2f} ({d[5:].replace('-', '/')}, {tag}) — {c}")
+        L.append(f"■ {s['product'].replace('Wafer ', 'NAND 웨이퍼 ')}: ${v:,.2f} ({d[5:].replace('-', '/')}, {tag}) — {c}")
         if src == "mz":
             L.append(f"  · TrendForce 마지막 공개 {s['tf_last'][0][5:].replace('-', '/')} ${s['tf_last'][1]:,.2f}에서 메리츠 변화율로 이어 붙임")
     if read:
