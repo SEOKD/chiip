@@ -416,6 +416,24 @@
   reliability_default: 1차(회사 공시)
   verified: true
   enabled: true
+- id: src-nrc-aps
+  name: 미국 원자력규제위원회(NRC) ADAMS 공개 문서 — 감시 원자력 회사의 인허가 신청·추가 자료 요구·안전성 평가·허가
+  category: A-정부
+  module: nrc_aps
+  entry: poll
+  method: api
+  endpoint_doc: "https://adams-api-developer.nrc.gov/ · APS API Guide(adams-search.nrc.gov/assets/APS-API-Guide.pdf) · radar/pollers/nrc_aps.py · config/nrc_aps.yaml"
+  auth: key
+  key_env: NRC_APS_KEY
+  scope: [글로벌]
+  interval_min: 60
+  run_on: local
+  language: en
+  doc_type: 공시
+  terms_note: "2026-11-22 마스터 키 입력(TODO 21-64). 연방 정부 공공 저작물(17 U.S.C. §105), 무료 구독 키. 제목·종류·도켓·링크만 저장(본문 미저장)"
+  reliability_default: 1차(연방 규제 서류)
+  verified: true
+  enabled: true
 - id: src-partner-trace
   name: 협업 흔적 — 협업사 뉴스룸·기술 블로그·학회의 삼성·SK하이닉스 언급, 블로그 미확인 주장의 공개 근거
   category: L7-협업

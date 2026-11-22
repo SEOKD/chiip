@@ -1,0 +1,16 @@
+# 미국 원자력규제위원회(NRC) ADAMS 공개 문서 — 인허가 신청·추가 자료 요구(RAI)·안전성 평가·허가·검사 보고서 (radar/pollers/nrc_aps.py, 원천 src-nrc-aps)
+# 마스터 지시 2026-11-22 "NRC_APS_KEY를 넣었다"(TODO 21-64) — 연방 정부 공공 저작물(17 U.S.C. §105), 무료 구독 키(Ocp-Apim-Subscription-Key, .env NRC_APS_KEY)
+# 회사마다 문서의 작성 기관·수신 기관(AuthorAffiliation·AddresseeAffiliation)에 names 중 하나가 들어간 새 문서(DateAddedTimestamp 최근)만 본다. 새 회사는 여기 한 줄.
+companies:
+  - {id: co-oklo, ticker: OKLO, names: [Oklo]}
+  - {id: co-nuscale, ticker: SMR, names: [NuScale]}
+  - {id: us-leu, ticker: LEU, names: [Centrus, American Centrifuge Operating]}
+  - {id: us-bwxt, ticker: BWXT, names: [BWX Technologies, BWXT]}
+  - {id: co-constellation, ticker: CEG, names: [Constellation Energy, Constellation Nuclear]}
+  - {id: co-vistra, ticker: VST, names: [Vistra]}
+  - {id: us-nne, ticker: NNE, names: [Nano Nuclear]}
+  - {id: us-terrapower, ticker: "", names: [TerraPower]}
+  - {id: us-xenergy, ticker: "", names: ["X-Energy"]}
+  - {id: us-kairos, ticker: "", names: [Kairos Power]}
+# 신호가 되는 문서 종류(이 낱말이 문서 종류·제목에 있으면 inbox, 나머지는 장부에만) — 정례 검사·월간 보고는 소음
+signal: "(?i)application|license|permit|construction|operating|safety evaluation|environmental (assessment|impact)|request for additional information|RAI|acceptance|docketing|approval|exemption|amendment|topical report|design certification|hearing|order"
