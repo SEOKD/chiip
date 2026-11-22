@@ -1,0 +1,3276 @@
+{
+ "id": "co-siemensenergy",
+ "name": "Siemens Energy",
+ "ticker": "ENR",
+ "unit": "BEUR",
+ "currency_symbol": "€",
+ "unit_usd": 1097270000.0,
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "EU": 0.42,
+  "US": 0.3,
+  "other": 0.28
+ },
+ "tax": 0.27,
+ "profile": {
+  "price": 118.32,
+  "shares_basic": 0.8533,
+  "shares_date": "2026-09-30",
+  "cash": 11.156,
+  "debt": 2.975,
+  "customer_deposits": 11.156,
+  "source": "가격 = XETRA 11/20 종가 €118.32(Fiscal.ai·Easyconomics 일치). 주식 수 853.3M = FY26 말 유통 주식(Fiscal 표준화). 현금 €11.156B, 차입 €2.975B(단기 €0.453B + 장기 €2.522B, 4Q 실적 자료와 일치 — 리스 포함 여부는 연차보고서 게시 전이라 미대조). 비지배지분 €0.510B와 연금 충당 €0.382B는 넣지 않았다(주주가치를 약 1% 높게 잡는 쪽). 계약부채 €28.573B가 현금보다 커서 현금 전액을 고객 선수금 몫으로 잡았다. 회사 기준 조정 순현금은 €7.8B"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-09-30",
+  "source": "FY26 희석 가중 주식 수 = 기본(851M). 자사주 FY26 €3.1B 매입, FY30까지 최대 €9B 추가(연 약 €3B) — 주식 수 감소는 반영하지 않았다"
+ },
+ "financials": {
+  "rev_ttm": 44.243,
+  "ebit_ttm": 5.211,
+  "invested_capital": 3.535,
+  "capex_ttm": 1.97,
+  "da_ttm": 1.377,
+  "sbc_ttm": null,
+  "basis": "IFRS",
+  "note": "TTM = FY26(2025-10~2026-09) 매출 €44.243B, 영업이익 €5.211B(11.8%). 투하자본 = 자기자본 €11.716B + 차입 €2.975B − 현금 €11.156B = €3.535B — 고객 선수금(계약부채 €28.6B)이 운전자본을 대신 대 주는 구조라 작게 나온다. CAPEX €1.970B, 감가상각 €1.377B"
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 51.5,
+   "FY2028": 58.0,
+   "FY2029": 65.0
+  },
+  "rev_low": {
+   "FY2027": 49.6,
+   "FY2028": 54.0,
+   "FY2029": 59.0
+  },
+  "rev_high": {
+   "FY2027": 53.2,
+   "FY2028": 61.8,
+   "FY2029": 70.5
+  },
+  "ebit_margin": {
+   "FY2027": 0.1404,
+   "FY2028": 0.1614,
+   "FY2029": 0.1798
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "n_analysts": 17,
+  "ebit_margin_note": "IFRS EBIT ÷ 매출(Fiscal 추정 €7.23B·€9.36B·€11.69B). 회사 기준 특별항목 제외 이익(PbSI)은 FY27 €7.4~7.7B",
+  "source": "Fiscal.ai 자체 추정(2026-11-12 갱신) 1순위. 범위 상단·애널리스트 수는 회사 집계 컨센서스(17명, 2026-11-04 — 실적 발표 전)",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 9675,
+    "est": 9880,
+    "est_src": "딘스티커 실적 정리(2026-02-12) 인용 컨센서스",
+    "basis": "gaap",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 10294,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 11447,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 12826,
+    "est": 12578,
+    "est_src": "회사 집계 컨센서스 FY26 €43,994M − 1~3Q 실적(계산)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-11"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 1159,
+    "est": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 1164,
+    "est": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 1623,
+    "est": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-08-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 1540,
+    "est": 1466,
+    "est_src": "회사 집계 컨센서스 FY26 PbSI €5,412M − 1~3Q 실적(계산)",
+    "basis": "adjusted",
+    "earnings_date": "2026-11-11"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 0.79,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-11"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 0.89,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-05-12"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 1.28,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-08-05"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 1.49,
+    "est": 1.36,
+    "est_src": "회사 집계 컨센서스 FY26 EPS €4.32 − 1~3Q 기본 EPS(계산)",
+    "basis": "gaap",
+    "earnings_date": "2026-11-11"
+   }
+  ],
+  "eps": {
+   "FY2027": 5.92,
+   "FY2028": 8.0,
+   "FY2029": 9.95
+  },
+  "eps_low": {
+   "FY2027": 5.92,
+   "FY2028": 6.0,
+   "FY2029": 6.78
+  },
+  "eps_high": {
+   "FY2027": 6.23,
+   "FY2028": 9.76,
+   "FY2029": 12.38
+  },
+  "ratings": {},
+  "ratings_note": "의견 분포 데이터 없음(Fiscal.ai·Easyconomics 모두 빈칸). 보도: 애널리스트 28명 중 21명 매수(Börsen-Zeitung 2026-11-19) — 1차 미대조",
+  "company_compiled": {
+   "as_of": "2026-11-04",
+   "n": 17,
+   "FY2027": {
+    "rev": 50.314,
+    "pbsi": 7.41,
+    "net_income": 5.532,
+    "eps": 6.23
+   },
+   "FY2028": {
+    "rev": 57.032,
+    "pbsi": 9.615,
+    "eps": 8.34
+   },
+   "source": "https://assets.siemens-energy.com/dam/a8069152-9950-4596-91ee-b4f8011b4957/2026-11-04-SE-Consensus_Summary---Q4-FY26-pdf_Original%20file.pdf"
+  },
+  "quarters_est": {
+   "2026-12-31": 11.7,
+   "2027-03-31": 12.3,
+   "2027-06-30": 13.3,
+   "2027-09-30": 14.2,
+   "2027-12-31": 13.3146,
+   "2028-03-31": 13.9634,
+   "2028-06-30": 14.6794,
+   "2028-09-30": 16.0427,
+   "2028-12-31": 15.0843,
+   "2029-03-31": 15.7811,
+   "2029-06-30": 16.3122,
+   "2029-09-30": 17.8225
+  },
+  "eps_quarters_est": {
+   "2026-12-31": 1.19,
+   "2027-03-31": 1.35,
+   "2027-06-30": 1.57,
+   "2027-09-30": 1.81,
+   "2027-12-31": 1.7,
+   "2028-03-31": 1.86,
+   "2028-06-30": 2.05,
+   "2028-09-30": 2.4,
+   "2028-12-31": 2.19,
+   "2029-03-31": 2.37,
+   "2029-06-30": 2.5,
+   "2029-09-30": 2.9
+  },
+  "surprise_note": "EBIT 행은 회사 기준 특별항목 제외 이익(PbSI), EPS는 기본 EPS(회사 발표). 1~3Q 발표 전 추정은 기록이 없어 비웠다. 분기 표기는 달력 분기(2026Q3 = 회계 4Q FY26)",
+  "price_window": {
+   "from": "2026-08-04",
+   "from_price": 150.86,
+   "to": "2026-11-20",
+   "to_price": 118.32
+  }
+ },
+ "guidance": {
+  "rev_fy0": [
+   50.44,
+   51.32
+  ],
+  "ebit_margin_fy0": 0.14,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "source": "4Q FY26 실적 발표(2026-11-11) — FY27 비교 기준 매출 성장 14~16%, 특별항목 제외 이익률 14~16%, 순이익 약 €5B, 세전 FCF 약 €10B",
+  "note": "매출 범위 = FY26 €44.243B × 1.14~1.16(계산, 환율·포트폴리오 효과 제외). 이익률 0.14는 가이던스 14~16%에서 특별항목 약 −€0.7B(매출의 약 1.4%)를 뺀 IFRS 근사(계산)",
+  "next": {
+   "period": "FY27(2026-10~2027-09)",
+   "rev": 50880,
+   "rev_range": [
+    50437,
+    51322
+   ],
+   "rev_cons": 51500,
+   "eps_cons": 5.92,
+   "unit": "€M",
+   "basis": "회사 가이던스(4Q FY26 실적 발표): 비교 기준 매출 성장 14~16% — FY26 €44,243M 기준 범위 €50,437~51,322M, 중간 €50,880M(계산). 특별항목 제외 이익률 14~16%, 순이익 약 €5B. 분기 가이던스는 내지 않는다"
+  },
+  "fy": {
+   "note": "세그먼트 FY27: 가스 서비스 성장 24~26%·이익률 18~20%, 그리드 22~24%·21~23%, 산업 전환 0~2%·11~13%, 지멘스 가메사 −3~−1%·0~2%"
+  },
+  "long_term": "FY30 목표(2026-11-11 신규): 매출 €70B 초과(비교 기준 연 12~14% 성장), 특별항목 제외 이익률 20~22%(상표 사용료 제외), 두 자릿수 EPS 성장. 직전 중기 목표는 FY28 이익률 14~16%였고 이것을 FY27에 1년 앞당겨 달성하겠다고 했다"
+ },
+ "call": {
+  "date": "2026-11-11",
+  "prev_date": "2026-08-05",
+  "tone": "up",
+  "guidance_direction": "raise",
+  "tone_delta": 0.5,
+  "kpis": {
+   "rev_fy26_beur": 44.243,
+   "pbsi_fy26_beur": 5.486,
+   "pbsi_margin_fy26": 0.124,
+   "orders_fy26_beur": 68.102,
+   "backlog_beur": 164,
+   "book_to_bill_fy26": 1.54,
+   "orders_4q_beur": 14.818,
+   "fcf_pretax_fy26_beur": 8.799,
+   "gas_commitments_gw": 104,
+   "gas_firm_gw": 65,
+   "gas_slots_gw": 39,
+   "datacenter_backlog_beur": 15,
+   "service_backlog_beur": 71,
+   "dividend_eur": 2.3
+  },
+  "guidance_changes": [
+   "FY26 가이던스(8월): 성장 14~16%·이익률 10~12%·순이익 약 €4B·세전 FCF 약 €8B → 실적 15.5%·12.4%·€4.1B·€8.8B — 이익률·현금 모두 상단 초과",
+   "FY27 가이던스 신규: 성장 14~16%, 이익률 14~16% — 직전 FY28 목표를 1년 앞당김",
+   "FY30 목표 신규: 매출 €70B 초과, 이익률 20~22%",
+   "주주환원: FY28까지 최대 €10B → FY30까지 €25B 초과(자사주 최대 €9B 추가)"
+  ],
+  "new_topics": [
+   "데이터센터 관련 고객 잔고 약 €15B — 전체 €164B의 약 9%(첫 정량 공개)",
+   "가스터빈 슬롯 예약 39GW가 FY27에 FY26 주문보다 좋은 마진으로 확정 주문으로 바뀔 것이라는 설명",
+   "가스 서비스 매출이 FY35까지 2배 이상 — 1GW당 20년 서비스 매출 €400M 초과",
+   "산업 전환 사업 분리(공동 투자자 유치, 의미 있는 소수 지분 유지)",
+   "인도 법인 지분 2028년 51%로 확대 약속",
+   "FY27 CAPEX 매출의 5~6%, 이후 4% 아래로"
+  ],
+  "dropped_topics": [
+   "3Q 콜의 '시장 둔화 조짐 없음' 표현과 분기 최대 수주(€17.9B) — 4Q 수주는 €14.8B로 줄었다",
+   "관세 영향 언급 없음(4Q 자료·콜 발췌 범위)"
+  ],
+  "analyst_focus": [
+   "Morgan Stanley — 슬롯 예약 39GW의 주문 전환과 취소 위험",
+   "JPMorgan — 가스 전망이 데이터센터에 기대는 정도",
+   "BofA·Citi — 그리드 이익률 22% → 25% 경로",
+   "UBS·Evercore — 가스 신규 장비·서비스 가격",
+   "Oddo BHF — FY27 세전 FCF €10B의 선수금 의존",
+   "HSBC — 지멘스 가메사 8~10% 이익률 조건",
+   "Goldman Sachs·Bernstein — 자본 배분과 인수·합병"
+  ],
+  "risks": [
+   "4Q 가스터빈 확정 주문 약 2GW(3Q 15GW) — 예약 전환 시점이 FY27로 밀림",
+   "세전 FCF가 선수금·예약금에 기댄다 — FY26 계약부채 증가 €5.8B",
+   "지멘스 가메사 FY26 세전 FCF −€1.58B, FY27 매출 감소 가이던스",
+   "미국 데이터센터 규제·수요 둔화 우려(11/4·11/20 주가 급락의 배경으로 보도)"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "신규",
+    "item": "FY30 중기 목표",
+    "label": "FY30 이익률 20~22%",
+    "prior": "FY28 이익률 14~16%(2025-11 목표)",
+    "latest": "FY30 매출 €70B 초과·이익률 20~22%",
+    "driver": "margin_target",
+    "shift": 0.04,
+    "confidence": 0.5,
+    "source": "Siemens Energy 4Q FY26 실적 발표·어닝콜(2026-11-11)"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "item": "다음 해 이익률 가이던스",
+    "label": "FY27 이익률 14~16%",
+    "prior": "FY26 10~12%(8월 재확인)",
+    "latest": "FY27 14~16% — FY28 목표 1년 조기",
+    "driver": "margin_m0",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "Siemens Energy 4Q FY26 실적 발표·어닝콜(2026-11-11)"
+   },
+   {
+    "id": "D3",
+    "kind": "부정",
+    "item": "분기 수주",
+    "label": "4Q 수주 €14.8B",
+    "prior": "3Q €17.9B(분기 최대)",
+    "latest": "4Q €14.8B — 회사 집계 컨센서스 €15.5B 미달, 가스 확정 주문 약 2GW",
+    "driver": "growth_start",
+    "shift": -0.01,
+    "confidence": 1.0,
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   },
+   {
+    "id": "D4",
+    "kind": "업데이트",
+    "item": "가스터빈 약정",
+    "label": "약정 104GW",
+    "prior": "95GW(잔고 69 + 예약 26)",
+    "latest": "104GW(잔고 65 + 예약 39)",
+    "driver": "growth_end",
+    "shift": 0.003,
+    "confidence": 0.8,
+    "source": "Siemens Energy 4Q FY26 실적 발표·어닝콜(2026-11-11)"
+   },
+   {
+    "id": "D5",
+    "kind": "신규",
+    "item": "서비스 장기 전망",
+    "label": "서비스 매출 2배",
+    "prior": "1GW당 서비스 기회 약 €400M 언급(3Q 질문)",
+    "latest": "FY35까지 가스 서비스 매출 2배 이상, 신규 장기 서비스 계약 마진 +5%p",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "Siemens Energy 4Q FY26 어닝콜(2026-11-11)"
+   },
+   {
+    "id": "D6",
+    "kind": "신규",
+    "item": "데이터센터 노출",
+    "label": "데이터센터 잔고 €15B",
+    "prior": "정량 공개 없음",
+    "latest": "잔고 €164B 중 약 €15B(약 9%)",
+    "driver": "growth_start",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "Siemens Energy 4Q FY26 어닝콜(2026-11-11)"
+   }
+  ],
+  "script": {
+   "kind": "전문",
+   "source": "https://fiscal.ai/company/XTRA-ENR",
+   "date": "2026-11-11",
+   "via": "fiscal"
+  },
+  "source": "Siemens Energy 4Q FY26 실적 발표·어닝콜(2026-11-11) · 3Q FY26 실적 발표·어닝콜(2026-08-05)",
+  "guidance_note": "FY26은 이익률·현금이 가이던스 상단을 넘었고 FY27·FY30 목표를 올려 톤은 상향. 다만 4Q 수주는 줄었다"
+ },
+ "sources": [
+  "4Q FY26 실적 자료(2026-11-11): https://assets.siemens-energy.com/dam/23e549e5-fb37-4db4-99d3-b4ff00539ccb/ER_Q4_26_EN_final-pdf_Original%20file.pdf",
+  "4Q FY26 애널리스트 발표 자료: https://assets.siemens-energy.com/dam/991522b0-f8bd-4c08-bc2a-b4ff00538589/2026-11-11_Q4_Analyst_presentation_final_-pdf_Original%20file.pdf",
+  "3Q FY26 실적 자료(2026-08-05): https://assets.siemens-energy.com/dam/30018eed-275d-4e73-811e-b49d004cdc3d/2026-08-05-Earnings_Release_Q3_FY26_EN-pdf_Original%20file.pdf",
+  "회사 집계 컨센서스(2026-11-04): https://assets.siemens-energy.com/dam/a8069152-9950-4596-91ee-b4f8011b4957/2026-11-04-SE-Consensus_Summary---Q4-FY26-pdf_Original%20file.pdf",
+  "2025 자본시장의 날 가스 서비스 자료: https://assets.siemens-energy.com/dam/5fc093ca-4fd8-482c-8390-b39b004f66f3/251120_CMD-2025_Gas_Services_FINAL-pdf_Original%20file.pdf",
+  "미국 $1B 투자 발표(2026-02-03): https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-is-investing--1-billion-and-creating-highly-skill.html",
+  "뉘른베르크 변압기 공장 €220M 투자(2025-09-05): https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-invests--220-million.html",
+  "회사 소개 자료(2026-02): https://assets.siemens-energy.com/dam/292f4f99-1c6d-4799-aa7b-b12400fc58c9/Siemens-Energy_Company-Presentation-pdf_Original%20file.pdf",
+  "독일 연방네트워크청 장기 용량 입찰 결과(2026-11-03): https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/DE/2026/20261103_StromVKG.html",
+  "IR 자료실: https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html",
+  "라이선스 자료 요지 포함 — 외부 공유 금지"
+ ],
+ "weakest": "FY27 매출 +15%와 이익률 14~16% — 가스터빈 예약 39GW의 확정 전환과 선수금 유입이 이어져야 한다. 다음 확인: 1Q FY27 실적(2027-02 추정)",
+ "as_of": "2026-11-22",
+ "scenario_probs": {},
+ "scenario_probs_why": "계산값 그대로 — 조정 이유 없음",
+ "peers": [
+  {
+   "name": "GE Vernova",
+   "ticker": "GEV",
+   "key": "NYSE_GEV",
+   "rev": 40.14,
+   "ebit_margin": 0.13,
+   "growth": 0.22,
+   "mcap": 168.7,
+   "why": "가스터빈·그리드·풍력 — 사업 구성이 가장 가까운 직접 경쟁사",
+   "ntm_ebit_margin": 0.1302,
+   "ntm_growth": 0.2197,
+   "pe_fwd": 33.34,
+   "ev_ebitda_fwd": 21.55,
+   "pe_fwd2": 26.75,
+   "ev_ebitda_fwd2": 17.92,
+   "pe_fwd3": 20.02,
+   "ev_ebitda_fwd3": 13.6,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 36.95
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 25.43
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 33.63
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 24.88
+    }
+   ]
+  },
+  {
+   "name": "ABB",
+   "ticker": "ABBN",
+   "key": "XSWX_ABBN",
+   "rev": 33.68,
+   "ebit_margin": 0.22,
+   "growth": 0.125,
+   "mcap": 133.1,
+   "why": "전력화·송배전 기기 — 그리드 사업 비교",
+   "ntm_ebit_margin": 0.2199,
+   "ntm_growth": 0.1249,
+   "pe_fwd": 22.51,
+   "ev_ebitda_fwd": 14.69,
+   "pe_fwd2": 19.81,
+   "ev_ebitda_fwd2": 13.33,
+   "pe_fwd3": 17.68,
+   "ev_ebitda_fwd3": 12.11,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 28.87
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 29.15
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 39.09
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 34.43
+    }
+   ]
+  },
+  {
+   "name": "Schneider Electric",
+   "ticker": "SU",
+   "key": "XPAR_SU",
+   "rev": 42.04,
+   "ebit_margin": 0.199,
+   "growth": 0.142,
+   "mcap": 127.4,
+   "why": "배전·데이터센터 전력 기기 — 유럽 전기장비 대형주",
+   "ntm_ebit_margin": 0.1989,
+   "ntm_growth": 0.1423,
+   "pe_fwd": 21.11,
+   "ev_ebitda_fwd": 12.64,
+   "pe_fwd2": 18.19,
+   "ev_ebitda_fwd2": 11.45,
+   "pe_fwd3": 16.83,
+   "ev_ebitda_fwd3": 10.77,
+   "hist_q": [
+    {
+     "date": "2025-09-30",
+     "pe_ttm": 31.85
+    },
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 32.05
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 29.28
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 34.3
+    }
+   ]
+  },
+  {
+   "name": "Eaton",
+   "ticker": "ETN",
+   "key": "NYSE_ETN",
+   "rev": 29.15,
+   "ebit_margin": 0.209,
+   "growth": 0.183,
+   "mcap": 110.2,
+   "why": "미국 전력 기기 — 데이터센터 전력 수요 비교",
+   "ntm_ebit_margin": 0.2087,
+   "ntm_growth": 0.1834,
+   "pe_fwd": 18.9,
+   "ev_ebitda_fwd": 14.45,
+   "pe_fwd2": 17.0,
+   "ev_ebitda_fwd2": 12.84,
+   "pe_fwd3": 14.94,
+   "ev_ebitda_fwd3": 11.46,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 30.48
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 34.96
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 43.35
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 42.93
+    }
+   ]
+  },
+  {
+   "name": "Vestas",
+   "ticker": "VWS",
+   "key": "XCSE_VWS",
+   "rev": 20.64,
+   "ebit_margin": 0.092,
+   "growth": 0.051,
+   "mcap": 23.7,
+   "why": "풍력 터빈 — 지멘스 가메사 직접 경쟁사",
+   "ntm_ebit_margin": 0.0921,
+   "ntm_growth": 0.0508,
+   "pe_fwd": 17.55,
+   "ev_ebitda_fwd": null,
+   "pe_fwd2": 15.62,
+   "ev_ebitda_fwd2": null,
+   "pe_fwd3": 12.7,
+   "ev_ebitda_fwd3": null,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 30.15
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 30.29
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 22.66
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 23.43
+    }
+   ]
+  }
+ ],
+ "peers_source": "Fiscal.ai 2026-11-20 — TTM 매출·선행 EBIT 이익률·성장(다음 4개 분기 추정 ÷ TTM). 시총은 Fiscal 달러 환산값을 €1 = $1.0973으로 바꿨다(Vestas·ABB는 현지 통화 시총이라 달러 환산값 사용). Mitsubishi Heavy·Hitachi는 Fiscal 추정이 없어 뺐다",
+ "raw": {
+  "retrieved_at": "2026-11-22T09:40+09:00",
+  "source": "Fiscal.ai MCP(XETR_ENR)·Easyconomics(yfinance)",
+  "fiscal_profile": {
+   "companyKey": "XETR_ENR",
+   "terminalUrl": "https://fiscal.ai/company/XTRA-ENR",
+   "price": 118.32,
+   "market_cap": 100.966,
+   "total_cash": 11.156,
+   "total_debt": 2.975,
+   "shares_outstanding": 0.8533,
+   "as_of": "2026-11-20",
+   "balance_date": "2026-09-30",
+   "note": "시총 = calculated_market_cap 2026-11-20. Easyconomics(yfinance) 시총 €100.67B·주식 850.8M과 0.3% 차이",
+   "shares_cover": 0.8533
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 9.675,
+    "2026Q1": 10.294,
+    "2026Q2": 11.447,
+    "2026Q3": 12.826
+   },
+   "op_income": {
+    "2025Q4": 0.962,
+    "2026Q1": 1.062,
+    "2026Q2": 1.515,
+    "2026Q3": 1.671
+   },
+   "note": "Fiscal.ai 표준화 손익(IFRS, 유로, 달력 분기 표기)"
+  },
+  "balance_20260930": {
+   "cash": 11.156,
+   "receivables": 8.785,
+   "contract_assets": 5.679,
+   "inventory": 12.076,
+   "ppe": 8.248,
+   "goodwill": 9.493,
+   "intangibles": 2.909,
+   "contract_liabilities": 28.573,
+   "debt_lt": 2.975,
+   "pension": 0.382,
+   "equity": 11.716,
+   "minority": 0.51,
+   "treasury": -3.097,
+   "total_assets": 65.626,
+   "payables": 6.522,
+   "source": "Fiscal.ai 표준화 재무상태표·4Q FY26 실적 자료(2026-09-30)",
+   "debt_note": "단기 €0.453B + 장기 €2.522B 합계"
+  },
+  "prior_bs_20250930": {
+   "cash": 9.162,
+   "contract_liabilities": 22.321,
+   "debt_total": 3.966,
+   "equity": 10.675,
+   "inventory": 10.377,
+   "ppe": 7.14,
+   "source": "Fiscal.ai 표준화 재무상태표(2025-09-30)"
+  },
+  "estimates_sales_m": {
+   "2027Q1": 11700,
+   "2027Q2": 12300,
+   "2027Q3": 13300,
+   "2027Q4": 14200
+  },
+  "estimates_sales_m_note": "회계 분기 표기(FY27 1Q = 2026-12 분기) — Fiscal.ai 추정, 합계 €51,500M",
+  "segments_fy26_meur": {
+   "gas_services": {
+    "orders": 32847,
+    "rev": 14503,
+    "pbsi": 2385,
+    "backlog": 74000
+   },
+   "grid": {
+    "orders": 23979,
+    "rev": 14106,
+    "pbsi": 2660,
+    "backlog": 52000
+   },
+   "toi": {
+    "orders": 6348,
+    "rev": 5847,
+    "pbsi": 707,
+    "backlog": 8000
+   },
+   "gamesa": {
+    "orders": 5857,
+    "rev": 10562,
+    "pbsi": 8,
+    "backlog": 31000
+   }
+  },
+  "service_rev_meur": {
+   "group_fy26": 14168,
+   "group_fy25": 13473,
+   "gas_fy26": 8300,
+   "gas_fy25": 7973
+  },
+  "ohlcv_note": "일봉 = Easyconomics(yfinance) 2025-11-20~2026-11-20 실제 고가·저가 254봉. 월봉 = Fiscal.ai 시가·종가(고가·저가 근사 — 문장에 쓰지 않는다). TradingView 일일 한도로 대조 못 함. 1년치라 100주선은 없다",
+  "annual_report": {
+   "note": "FY26 연차보고서는 아직 게시 전(전년은 12/11 게시) — 구매 약정·10% 초과 고객·인건비·재료비·리스 부채는 이번 회차 '미확인'. 미국 SEC 공시 대상 아님"
+  },
+  "wrong_ticker_sources": "데이터 허브의 alphavantage·sec_ftd 출력은 뉴욕 상장 Energizer(ENR)의 값이라 쓰지 않았다",
+  "shares_cover_implied": 0.8533
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "XETR_ENR",
+  "currency": "EUR",
+  "q": [
+   {
+    "period": "2019-09-30",
+    "rev": 8294000000,
+    "cogs": 7195000000,
+    "gp": 1097000000,
+    "sga": 702000000,
+    "rd": 318000000,
+    "da": null,
+    "other": -12000000,
+    "op": 89000000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 6373000000,
+    "cogs": 5723000000,
+    "gp": 650000000,
+    "sga": 704000000,
+    "rd": 210000000,
+    "da": null,
+    "other": -27000000,
+    "op": -237000000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 6780000000,
+    "cogs": 5883000000,
+    "gp": 897000000,
+    "sga": 684000000,
+    "rd": 238000000,
+    "da": null,
+    "other": -6000000,
+    "op": -18000000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 6675000000,
+    "cogs": 6759000000,
+    "gp": -83000000,
+    "sga": 935000000,
+    "rd": 242000000,
+    "da": null,
+    "other": 38000000,
+    "op": -1298000000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 7630000000,
+    "cogs": 6953000000,
+    "gp": 675000000,
+    "sga": 780000000,
+    "rd": 296000000,
+    "da": null,
+    "other": 38000000,
+    "op": -438000000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 6541000000,
+    "cogs": 5538000000,
+    "gp": 1002000000,
+    "sga": 633000000,
+    "rd": 236000000,
+    "da": null,
+    "other": -31000000,
+    "op": 164000000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 6484000000,
+    "cogs": 5471000000,
+    "gp": 1013000000,
+    "sga": 629000000,
+    "rd": 289000000,
+    "da": null,
+    "other": -13000000,
+    "op": 109000000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 7262000000,
+    "cogs": 6563000000,
+    "gp": 699000000,
+    "sga": 660000000,
+    "rd": 285000000,
+    "da": null,
+    "other": -26000000,
+    "op": -221000000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 8196000000,
+    "cogs": 7494000000,
+    "gp": 703000000,
+    "sga": 760000000,
+    "rd": 346000000,
+    "da": null,
+    "other": 4000000,
+    "op": -408000000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 5956000000,
+    "cogs": 5242000000,
+    "gp": 715000000,
+    "sga": 664000000,
+    "rd": 226000000,
+    "da": null,
+    "other": -17000000,
+    "op": -159000000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 6583000000,
+    "cogs": 5865000000,
+    "gp": 717000000,
+    "sga": 649000000,
+    "rd": 265000000,
+    "da": null,
+    "other": 3000000,
+    "op": -199000000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 7280000000,
+    "cogs": 6836000000,
+    "gp": 444000000,
+    "sga": 679000000,
+    "rd": 270000000,
+    "da": null,
+    "other": 71000000,
+    "op": -577000000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 9186000000,
+    "cogs": 7722000000,
+    "gp": 1464000000,
+    "sga": 785000000,
+    "rd": 318000000,
+    "da": null,
+    "other": 0,
+    "op": 361000000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 7064000000,
+    "cogs": 6615000000,
+    "gp": 449000000,
+    "sga": 714000000,
+    "rd": 234000000,
+    "da": null,
+    "other": -19000000,
+    "op": -480000000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 8028000000,
+    "cogs": 7030000000,
+    "gp": 998000000,
+    "sga": 723000000,
+    "rd": 294000000,
+    "da": null,
+    "other": -13000000,
+    "op": -7000000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 7506000000,
+    "cogs": 8677000000,
+    "gp": -1171000000,
+    "sga": 713000000,
+    "rd": 296000000,
+    "da": null,
+    "other": -25000000,
+    "op": -2155000000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 8521000000,
+    "cogs": 8044000000,
+    "gp": 477000000,
+    "sga": 846000000,
+    "rd": 299000000,
+    "da": null,
+    "other": -52000000,
+    "op": -615000000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 7649000000,
+    "cogs": 6581000000,
+    "gp": 1068000000,
+    "sga": 727000000,
+    "rd": 230000000,
+    "da": null,
+    "other": -1703000000,
+    "op": 1813000000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 8278000000,
+    "cogs": 7063000000,
+    "gp": 1216000000,
+    "sga": 866000000,
+    "rd": 291000000,
+    "da": null,
+    "other": -376000000,
+    "op": 436000000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 8797000000,
+    "cogs": 7658000000,
+    "gp": 1139000000,
+    "sga": 884000000,
+    "rd": 326000000,
+    "da": null,
+    "other": -126000000,
+    "op": 55000000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 9741000000,
+    "cogs": 8660000000,
+    "gp": 1081000000,
+    "sga": 911000000,
+    "rd": 362000000,
+    "da": null,
+    "other": -13000000,
+    "op": -179000000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 8942000000,
+    "cogs": 7543000000,
+    "gp": 1399000000,
+    "sga": 752000000,
+    "rd": 310000000,
+    "da": null,
+    "other": -62000000,
+    "op": 399000000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 9962000000,
+    "cogs": 7990000000,
+    "gp": 1972000000,
+    "sga": 906000000,
+    "rd": 290000000,
+    "da": null,
+    "other": 219000000,
+    "op": 557000000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 9745000000,
+    "cogs": 8205000000,
+    "gp": 1541000000,
+    "sga": 851000000,
+    "rd": 291000000,
+    "da": null,
+    "other": -511000000,
+    "op": 909000000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 10428000000,
+    "cogs": 8760000000,
+    "gp": 1667000000,
+    "sga": 983000000,
+    "rd": 320000000,
+    "da": null,
+    "other": 81000000,
+    "op": 283000000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 9675000000,
+    "cogs": 7582000000,
+    "gp": 2093000000,
+    "sga": 807000000,
+    "rd": 238000000,
+    "da": null,
+    "other": 86000000,
+    "op": 962000000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 10294000000,
+    "cogs": 8037000000,
+    "gp": 2257000000,
+    "sga": 924000000,
+    "rd": 290000000,
+    "da": null,
+    "other": -20000000,
+    "op": 1062000000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 11447000000,
+    "cogs": 8778000000,
+    "gp": 2669000000,
+    "sga": 872000000,
+    "rd": 311000000,
+    "da": null,
+    "other": -29000000,
+    "op": 1515000000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 12826000000,
+    "cogs": 9997000000,
+    "gp": 2829000000,
+    "sga": 1023000000,
+    "rd": 343000000,
+    "da": null,
+    "other": -209000000,
+    "op": 1671000000
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 19.98,
+  "ev_ebitda_fwd": 10.68,
+  "pe_fwd2": 14.79,
+  "ev_ebitda_fwd2": 8.68,
+  "pe_fwd3": 11.89,
+  "ev_ebitda_fwd3": 7.27
+ },
+ "forward": {
+  "as_of": "2026-11-20",
+  "ntm": {
+   "eps": 5.92169,
+   "ebitda": 9245873790,
+   "ebit": 7725000001,
+   "revenue": 51500000000,
+   "rev_ttm": 44242000000
+  },
+  "horizons": {
+   "2": {
+    "eps": 7.99795,
+    "ebitda": 11371427484,
+    "ext": 0
+   },
+   "3": {
+    "eps": 9.952229999999998,
+    "ebitda": 13591981179,
+    "ext": 0
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정). 과거 Fwd 이력 없음(company_analyst_estimates 미수록)"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 55.74
+   },
+   {
+    "date": "2026-03-31",
+    "value": 55.78
+   },
+   {
+    "date": "2026-06-30",
+    "value": 53.31
+   },
+   {
+    "date": "2026-09-30",
+    "value": 32.63
+   }
+  ],
+  "pe_ttm_source": "Fiscal.ai company_ratios LTM ratio_price_to_earnings(분기말 가격 ÷ 최근 4개 분기 GAAP EPS)"
+ },
+ "ops": {
+  "q": [
+   {
+    "period": "2022-12-31",
+    "inventory": 8520000000,
+    "ocf": 118000000,
+    "capex": -233000000
+   },
+   {
+    "period": "2023-03-31",
+    "inventory": 8747000000,
+    "ocf": -159000000,
+    "capex": -261000000
+   },
+   {
+    "period": "2023-06-30",
+    "inventory": 9228000000,
+    "ocf": 212000000,
+    "capex": -267000000
+   },
+   {
+    "period": "2023-09-30",
+    "inventory": 8961000000,
+    "ocf": 1451000000,
+    "capex": -467000000,
+    "orders": 10577000000,
+    "backlog": 112000000000
+   },
+   {
+    "period": "2023-12-31",
+    "inventory": 9341000000,
+    "ocf": -132000000,
+    "capex": -234000000,
+    "orders": 15381000000,
+    "backlog": 118000000000
+   },
+   {
+    "period": "2024-03-31",
+    "inventory": 9818000000,
+    "ocf": 613000000,
+    "capex": -316000000,
+    "orders": 9470000000,
+    "backlog": 119000000000
+   },
+   {
+    "period": "2024-06-30",
+    "inventory": 10285000000,
+    "ocf": 937000000,
+    "capex": -314000000,
+    "orders": 10362000000,
+    "backlog": 120000000000
+   },
+   {
+    "period": "2024-09-30",
+    "inventory": 9792000000,
+    "ocf": 1470000000,
+    "capex": -650000000,
+    "orders": 15013000000,
+    "backlog": 123000000000
+   },
+   {
+    "period": "2024-12-31",
+    "inventory": 10820000000,
+    "ocf": 1694000000,
+    "capex": -258000000,
+    "orders": 13668000000,
+    "backlog": 131000000000
+   },
+   {
+    "period": "2025-03-31",
+    "inventory": 10724000000,
+    "ocf": 1567000000,
+    "capex": -330000000,
+    "orders": 14433000000,
+    "backlog": 133000000000
+   },
+   {
+    "period": "2025-06-30",
+    "inventory": 10675000000,
+    "ocf": 718000000,
+    "capex": -451000000,
+    "orders": 16613000000,
+    "backlog": 136000000000
+   },
+   {
+    "period": "2025-09-30",
+    "inventory": 10377000000,
+    "ocf": 1842000000,
+    "capex": -685000000,
+    "orders": 14214000000,
+    "backlog": 138000000000
+   },
+   {
+    "period": "2025-12-31",
+    "inventory": 11052000000,
+    "ocf": 3154000000,
+    "capex": -347000000,
+    "orders": 17609000000,
+    "backlog": 146000000000
+   },
+   {
+    "period": "2026-03-31",
+    "inventory": 11407000000,
+    "ocf": 2080000000,
+    "capex": -364000000,
+    "orders": 17749000000,
+    "backlog": 154000000000
+   },
+   {
+    "period": "2026-06-30",
+    "inventory": 11996000000,
+    "ocf": 2525000000,
+    "capex": -414000000,
+    "orders": 17926000000,
+    "backlog": 162000000000
+   },
+   {
+    "period": "2026-09-30",
+    "inventory": 12076000000,
+    "ocf": 2199000000,
+    "capex": -845000000,
+    "orders": 14818000000,
+    "backlog": 164000000000
+   }
+  ],
+  "orders_label": "Total Orders",
+  "backlog_label": "Total Order Backlog",
+  "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표)·company_segments_and_kpis"
+ },
+ "industry_why": "가스터빈·변압기·HVDC·풍력 터빈을 만드는 중전기 장비 회사",
+ "region_why": "FY26 지역 매출: 유럽·CIS·중동·아프리카 52.8%, 미주 34.8%, 아시아·호주 12.5%(Fiscal.ai 세그먼트, 계산). 미주 중 미국 몫과 EMEA 중 유럽 몫은 미공시라 근사",
+ "main_metric": "eps",
+ "main_metric_why": "다음 12개월 EBITDA €9.2B 중 감가상각이 16%뿐이고 회사가 순이익·EPS 성장을 목표로 제시한다",
+ "peers_basis": "ntm",
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "Fwd 1Y P/E 20.0배는 동종 5곳 중앙(21.1배)보다 조금 낮다. 다음 해 EPS 성장(+35%)은 동종보다 빠르지만 풍력 손실 이력과 선수금에 기댄 현금흐름이 할인 요인이라 판단 조정은 0"
+ },
+ "next_event": {
+  "date": "2027-02-10",
+  "tag": "1Q FY27 실적(날짜 미확정 — 전년 2/11 기준 추정) — 가스터빈 예약 39GW의 확정 주문 전환, 분기 수주"
+ },
+ "ronic_spread": 0.03,
+ "ronic_why": "가스터빈 3사 과점과 서비스 설치 기반 — 다만 풍력 사업이 자본수익률을 깎는다",
+ "terms": {
+  "HVDC": "먼 거리로 전기를 손실 적게 보내는 초고압 직류 송전",
+  "슬롯 예약": "가스터빈 생산 순번을 예약금을 내고 잡아 두는 계약 — 확정 주문 전 단계",
+  "HL급": "Siemens Energy의 최대형·최고 효율 가스터빈 등급",
+  "SG15": "Siemens Gamesa 15MW급 해상풍력 터빈",
+  "Omterra": "Siemens Energy가 2026년 7월 발표한 새 회사 이름",
+  "FID": "사업 최종 투자 결정",
+  "BTM": "전력망을 거치지 않고 데이터센터 옆에서 직접 전기를 만드는 자가 발전",
+  "StromVKG": "독일 발전소 용량 확보 법 — 가스 발전소 신규 건설 입찰의 근거",
+  "LTSA": "가스터빈 장기 서비스 계약",
+  "GIS": "가스 절연 개폐장치",
+  "IFRS": "국제회계기준",
+  "HP": "추세와 순환을 나누는 통계 필터(호드릭-프레스콧)",
+  "PbSI": "구조조정 같은 일회성 항목을 뺀 회사 기준 이익",
+  "CMD": "회사가 중기 목표를 설명하는 자본시장의 날 행사",
+  "GOES": "변압기 철심에 쓰는 방향성 전기강판",
+  "IGBT": "큰 전류를 켜고 끄는 전력반도체",
+  "CIS": "옛 소련 지역 국가 모임(독립국가연합)",
+  "EMEA": "유럽·중동·아프리카 지역 묶음",
+  "HL": "Siemens Energy 최대형 가스터빈 등급 이름",
+  "JP": "일본",
+  "RPO": "계약은 했지만 아직 매출로 잡지 않은 잔여 이행 의무"
+ },
+ "names": [
+  "Siemens Energy",
+  "ENR",
+  "Siemens",
+  "Siemens AG",
+  "Siemens Gamesa",
+  "GE Vernova",
+  "GEV",
+  "ABB",
+  "Schneider Electric",
+  "Eaton",
+  "Vestas",
+  "Mitsubishi Heavy",
+  "Hitachi Energy",
+  "Hitachi",
+  "Goldman Sachs",
+  "Morgan Stanley",
+  "JPMorgan",
+  "BofA",
+  "Citi",
+  "UBS",
+  "Evercore",
+  "Oddo BHF",
+  "HSBC",
+  "Bernstein",
+  "Berenberg",
+  "Deutsche Bank",
+  "Jefferies",
+  "Barclays",
+  "RBC",
+  "Kepler Cheuvreux",
+  "DZ Bank",
+  "Börsen-Zeitung",
+  "Reuters",
+  "TenneT",
+  "Amprion",
+  "50Hertz",
+  "National Grid",
+  "Vattenfall",
+  "SSE",
+  "Williams",
+  "Dynamis",
+  "SoftBank",
+  "thyssenkrupp",
+  "Arafura",
+  "TDK",
+  "Končar",
+  "Air Liquide",
+  "Linde",
+  "Capgemini",
+  "DWS",
+  "Ananym Capital",
+  "LEAG",
+  "RWE",
+  "S&P",
+  "Moody's",
+  "TPG",
+  "Triton",
+  "Fermi",
+  "XETRA",
+  "DAX",
+  "Nvidia",
+  "AG",
+  "BHF",
+  "GE",
+  "Oddo",
+  "SE"
+ ],
+ "events": [
+  {
+   "date": "2026-08-05",
+   "tag": "3Q FY26 실적 — 수주 €17.9B",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-08-31",
+   "tag": "산업 전환 사업 분리 계획 보도 −5.0%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-09-14",
+   "tag": "원인 미확인 −8.0%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-22",
+   "tag": "원인 미확인 −8.6%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-04",
+   "tag": "미국 중간선거 뒤 데이터센터 규제 우려(보도) −8.0%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-10",
+   "tag": "자사주 최대 €9B 추가 발표",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "4Q FY26 실적·FY30 목표 +10.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-20",
+   "tag": "AI 연관주 동반 급락(보도) −6.6%",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2025-11-14",
+   "kind": "실적",
+   "tag": "4Q FY25 실적 — 중기 목표 상향·배당 재개",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-02-11",
+   "kind": "실적",
+   "tag": "1Q FY26 실적 — 수주 €17.6B",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-05-12",
+   "kind": "실적",
+   "tag": "2Q FY26 실적 — FY26 가이던스 상향",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-08-05",
+   "kind": "실적",
+   "tag": "3Q FY26 실적 — 가메사 첫 분기 흑자",
+   "q": "3Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-11-04",
+   "kind": "내러티브",
+   "tag": "미국 중간선거 뒤 데이터센터 규제 우려",
+   "source": "Stuttgarter Zeitung(2026-11-04)"
+  },
+  {
+   "date": "2026-11-11",
+   "kind": "실적",
+   "tag": "4Q FY26 실적 — FY30 목표·자사주 €9B",
+   "q": "4Q26",
+   "session": "before"
+  }
+ ],
+ "segments_hist": {
+  "source": "Fiscal.ai company_segments_and_kpis(분기)",
+  "segments": {
+   "가스 서비스": [
+    {
+     "period": "2023-09-30",
+     "rev": 2794000000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 2670000000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 2644000000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 2739000000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 2742000000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 2823000000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 3163000000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 3118000000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 3094000000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 3097000000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 3478000000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 3756000000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 4172000000
+    }
+   ],
+   "그리드 테크놀로지": [
+    {
+     "period": "2023-09-30",
+     "rev": 2021000000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 2082000000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 2195000000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 2299000000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 2704000000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 2480000000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 2861000000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 2819000000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 3145000000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 3054000000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 3067000000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 3624000000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 4362000000
+    }
+   ],
+   "지멘스 가메사": [
+    {
+     "period": "2023-09-30",
+     "rev": 2592000000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 2043000000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 2314000000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 2569000000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 3082000000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 2418000000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 2706000000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 2506000000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 2744000000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 2355000000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 2526000000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 2743000000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 2939000000
+    }
+   ],
+   "산업 전환": [
+    {
+     "period": "2023-09-30",
+     "rev": 1217000000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 1140000000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 1273000000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 1316000000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 1380000000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 1337000000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 1411000000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 1361000000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 1614000000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 1303000000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 1422000000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 1527000000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 1596000000
+    }
+   ]
+  }
+ },
+ "pricing": [
+  {
+   "business": "가스 서비스",
+   "segment": "가스 서비스",
+   "index": "ppi:gas_turbine",
+   "company": {
+    "yoy": null,
+    "basis": "미확인 — 판매가 미공시. 신규 장비 잔고 마진이 FY26에 14%p 올랐다고만 밝힘"
+   }
+  },
+  {
+   "business": "그리드 테크놀로지",
+   "segment": "그리드 테크놀로지",
+   "index": "ppi:transformer",
+   "company": {
+    "yoy": null,
+    "basis": "미확인 — 판매가 미공시. 그리드 잔고 마진 FY22 이후 +12%p"
+   }
+  }
+ ],
+ "sync": {
+  "why": "가스 서비스는 고객의 가스터빈 반입, 그리드는 변압기 반입을 따라간다 — 미주 매출이 35%라 미국 수입 지표를 본다",
+  "products": [
+   {
+    "name": "가스 서비스",
+    "segment": "가스 서비스",
+    "hs": "841182",
+    "share": 0.33,
+    "inputs": [
+     "gas_turbine"
+    ]
+   },
+   {
+    "name": "그리드 테크놀로지",
+    "segment": "그리드 테크놀로지",
+    "hs": "850423",
+    "share": 0.32,
+    "inputs": [
+     "transformer",
+     "copper"
+    ]
+   }
+  ],
+  "indicators": [
+   {
+    "label": "미국 대형 가스터빈 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "841182",
+    "segment": "가스 서비스",
+    "why": "미국 발전·데이터센터용 대형 가스터빈 반입"
+   },
+   {
+    "label": "미국 대형 변압기 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "850423",
+    "segment": "그리드 테크놀로지",
+    "why": "미국 전력망 변압기 부족분의 수입"
+   }
+  ]
+ },
+ "pq": {
+  "none": "제품별 출하 대수·평균 판매가를 분기 재무로 공시하지 않는다(가스터빈 GW 수주만 공개) — 업종 PPI 대용"
+ },
+ "ma": {
+  "none": "최근 3년 인수는 소형(터빈 블레이드용 세라믹 코어 회사, 금액 미공개)뿐이라 시너지 수치가 없다. 인도 육상풍력 매각(2025-12 종결)과 산업 전환 사업 분리(진행 중)는 매각 쪽이다"
+ },
+ "midterm": {
+  "exposure": {
+   "infra_grid": 0.5,
+   "clean_energy_credit": 0.2
+  },
+  "sub": "power_infra",
+  "etf": "NASDAQ:GRID",
+  "why": "미주 매출이 35%이고 FY26 미국 수주가 €27.7B(전체의 41%)다. 풍력은 미국 비중이 작아 세액공제 노출은 낮게 잡았다"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(전력 병목) 틀로 본다 — 섹터 렌즈 해당 없음"
+ },
+ "recurring": {
+  "share": 0.32,
+  "kind": "장기 서비스 계약(가스터빈 정비·부품)·풍력 유지보수",
+  "base": "가스 서비스 장기 서비스 계약 평균 17년(3Q 콜), 서비스 수주잔고 약 €71B(4Q 발표 자료), 풍력 설치 기반 155GW 초과",
+  "base_growth": 0.05,
+  "years_to_recurring": 0,
+  "source": "FY26 서비스 매출 €14,168M ÷ 매출 €44,243M(계산, 4Q 실적 자료). 가스 서비스는 서비스 비중 57%(€8,300M ÷ €14,503M)"
+ },
+ "backlog": {
+  "conversion_months": 44.5,
+  "coverage_next_fy": 0.85,
+  "book_to_bill": 1.54,
+  "rpo_growth": 0.188,
+  "revenue_growth": 0.132,
+  "source": "잔고 €164B ÷ FY26 월평균 매출 €3.69B(계산). FY27 매출의 약 85%가 잔고로 덮임(4Q 발표 자료). 잔고 €138B → €164B(+18.8%), FY26 수주 ÷ 매출 1.54. 취소율 미공시"
+ },
+ "customers": {
+  "as_of": "2026-09-30",
+  "period": "FY26",
+  "summary": "고객 이름별 매출 몫과 10% 초과 고객은 공시하지 않는다(FY26 연차보고서 게시 전). 지역으로는 FY26 매출의 53%가 유럽·중동·아프리카, 35%가 미주다. 데이터센터 관련 고객은 수주잔고 €164B 중 약 €15B(약 9%)다",
+  "items": [
+   {
+    "name": "유럽·CIS·중동·아프리카 고객(집계)",
+    "alias": "EMEA",
+    "share": 0.528,
+    "prior": 0.529,
+    "basis": "공시",
+    "buys": "HVDC 변환소·변압기(송전망 운영사), 해상풍력 터빈, 사우디 복합화력 가스터빈",
+    "source": "https://fiscal.ai/company/XTRA-ENR",
+    "why": "FY26 €23,344M ÷ €44,243M(계산), FY25 €20,690M ÷ €39,077M"
+   },
+   {
+    "name": "미주 고객(집계)",
+    "alias": "Americas",
+    "share": 0.348,
+    "prior": 0.305,
+    "basis": "공시",
+    "buys": "대형·중형 가스터빈과 서비스(전력회사·데이터센터 자가 발전), 대형 변압기",
+    "source": "https://fiscal.ai/company/XTRA-ENR",
+    "why": "FY26 €15,390M ÷ €44,243M(계산), FY25 €11,934M. FY26 미국 수주 €27.7B(+70.8%)"
+   },
+   {
+    "name": "아시아·호주 고객(집계)",
+    "alias": "Asia, Australia",
+    "share": 0.125,
+    "prior": 0.165,
+    "basis": "공시",
+    "buys": "대만·인도 가스터빈, 송변전 기기",
+    "source": "https://fiscal.ai/company/XTRA-ENR",
+    "why": "FY26 €5,510M ÷ €44,243M(계산), FY25 €6,454M — 인도 육상풍력 매각으로 줄었다"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "summary": "수주잔고는 €164B로 1년 새 €26B 늘었고 FY27 매출의 약 85%를 덮는다. 다만 4Q 가스터빈 확정 주문은 약 2GW에 그쳤고, 예약 39GW가 FY27에 확정으로 바뀌는지가 관건이다",
+  "new_since": {
+   "label": "FY26 수주",
+   "total": 68.102
+  },
+  "items": [
+   {
+    "name": "전체 수주잔고",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 164.0,
+    "progress": "미확인",
+    "progress_basis": "계약별 인식 미공시 — 서비스 약 €71B, 가스 €74B·그리드 €52B·가메사 €31B·산업 전환 €8B",
+    "margin": 0.15,
+    "margin_kind": "특별항목 제외 이익률",
+    "margin_basis": "FY27 가이던스 14~16% 중간",
+    "start": "2026-10",
+    "end": "2034-09",
+    "speed": "FY27 매출의 약 85% 커버, 그리드 잔고 가시성 2~8년",
+    "blockers": [
+     "가스터빈 블레이드 등 부품 공급",
+     "공장 증설 가동 시점",
+     "고객 현장 인허가·계통 연결"
+    ],
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   },
+   {
+    "name": "가스터빈 슬롯 예약 39GW",
+    "kind": "pipeline",
+    "status": "프레임워크",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "예약금 수령 — 확정 주문 아님. 4Q에 14GW 추가, 전환 0",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "회사: FY26 주문보다 좋은 마진",
+    "start": "2027-01",
+    "end": "2030-12",
+    "speed": "회사는 FY27 안 확정 전환을 예상",
+    "blockers": [
+     "고객 자금 조달·전력 구매 계약",
+     "미국 주별 데이터센터 규제",
+     "예약 취소·순번 재배정"
+    ],
+    "source": "Siemens Energy 4Q FY26 어닝콜(2026-11-11)"
+   },
+   {
+    "name": "50Hertz NordSee Connector 2 변환 시스템 2GW(독일)",
+    "kind": "pipeline",
+    "status": "조건부",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": 0.0,
+    "progress_basis": "2026-06 낙찰, 수주 계상은 FY27 예정(회사 보도자료)",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2027-01",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "인허가"
+    ],
+    "source": "https://assets.siemens-energy.com/dam/8c98ab91-992c-44ca-aafd-b46c008b9fbd/Siemens_Energy_Press_Release_NSC2_EN-pdf_Original%20file.pdf"
+   },
+   {
+    "name": "Zeevonk 해상풍력 약 1GW(네덜란드)",
+    "kind": "pipeline",
+    "status": "협상",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": 0.0,
+    "progress_basis": "2026-11-18 공급사 선정 — 최종 투자 결정 전",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "미확인",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "최종 투자 결정"
+    ],
+    "source": "https://www.offshorewind.biz/2026/11/18/siemens-gamesas-155-mw-turbines-for-1-gw-dutch-offshore-wind-farm"
+   },
+   {
+    "name": "Berwick Bank B 해상풍력 1.4GW(영국)",
+    "kind": "pipeline",
+    "status": "협상",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": 0.0,
+    "progress_basis": "2026-11 우선공급사 선정 — 최종 투자 결정은 2027년 말 예상(보도)",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2028-01",
+    "end": "미확인",
+    "speed": "미확인",
+    "blockers": [
+     "최종 투자 결정",
+     "영국 차액계약 입찰"
+    ],
+    "source": "https://t.me/js_Enews/70"
+   }
+  ]
+ },
+ "moat": {
+  "summary": "해자는 '대형 가스터빈을 만들 수 있는 회사가 세계에 셋뿐이고, 한번 깔린 터빈은 20년 가까이 서비스 매출을 낸다'는 데서 나온다. 풍력은 해자가 약하다",
+  "items": [
+   {
+    "kind": "대형 가스터빈 과점",
+    "verdict": "강함",
+    "claim": "대형 가스터빈은 GE Vernova·Siemens Energy·Mitsubishi Heavy 세 곳이 나눠 갖고, 생산 순번이 FY28까지 매진이다",
+    "evidence": "100MW 초과 가스터빈 3Q 점유율 42%(3Q 콜), 약정 104GW, 세계 제조 캐파 약 130GW vs FY26 수요 140~150GW(4Q 발표 자료)",
+    "quant": "신규 장비 잔고 마진 FY22 이후 +26%p",
+    "falsifier": "신규 장비 가격 하락이나 예약 취소가 분기 10GW를 넘음"
+   },
+   {
+    "kind": "서비스 설치 기반",
+    "verdict": "강함",
+    "claim": "깔린 터빈이 장기 서비스 계약으로 20년 가까이 반복 매출을 낸다",
+    "evidence": "장기 서비스 계약 평균 17년(3Q 콜), 서비스 잔고 약 €71B, FY26 서비스 매출 €14.2B(매출의 32%)",
+    "quant": "신규 서비스 계약 마진이 기존 잔고보다 약 5%p 높음",
+    "falsifier": "서비스 매출 성장률이 2년 연속 5% 아래"
+   },
+   {
+    "kind": "송전 기기 제조망과 납기",
+    "verdict": "보통",
+    "claim": "변압기·HVDC는 공장과 숙련 인력이 병목이라 먼저 증설한 회사가 가격을 정한다",
+    "evidence": "그리드 잔고 €52B(+25%), FY25~30 공장 37곳에 약 €4B 투자, FY26 그리드 이익률 18.9%(4Q 실적 자료)",
+    "quant": "그리드 잔고 마진 FY22 이후 +12%p",
+    "falsifier": "유럽 변압기 가격 하락, 경쟁사 증설로 납기 단축"
+   },
+   {
+    "kind": "풍력 터빈",
+    "verdict": "약함",
+    "claim": "풍력은 FY26에야 손익분기에 닿았고 과거 육상 터빈 품질 문제로 큰 손실을 냈다",
+    "evidence": "지멘스 가메사 FY26 특별항목 제외 이익 €8M(0.1%), 세전 FCF −€1.58B(4Q 실적 자료)",
+    "quant": "FY25 −€1,364M → FY26 +€8M",
+    "falsifier": "FY27 이익률이 0~2% 가이던스를 밑돔"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "FY26 매출원가는 매출의 77.7%로 1년 전 83.2%보다 5.4%p 낮다. 풍력 손실이 사라지고 가스·그리드 가격이 올라 매출총이익률이 16.8%에서 22.3%로, 영업이익률이 5.5%에서 11.8%로 올랐다",
+  "periods": [
+   {
+    "period": "FY25",
+    "rev": 39.077,
+    "cogs": 32.498,
+    "rd": 1.21,
+    "sga": 3.492,
+    "other": -0.272
+   },
+   {
+    "period": "FY26",
+    "rev": 44.243,
+    "cogs": 34.395,
+    "rd": 1.183,
+    "sga": 3.626,
+    "other": -0.171
+   }
+  ],
+  "costs": [
+   {
+    "name": "재료·구매 부품",
+    "stage": "매출원가",
+    "pct_rev": 0.48,
+    "prior_pct": 0.51,
+    "fixed": 0.0,
+    "driver": "주·단조품, 터빈 블레이드, 전기강판, 구리, 전력반도체 단가와 물량",
+    "basis": "추정",
+    "source": "FY26 연차보고서 게시 전 — 재료비 미공시, 중전기 업계 통상 비중",
+    "input": "copper"
+   },
+   {
+    "name": "생산·프로젝트 인건비",
+    "stage": "매출원가",
+    "pct_rev": 0.21,
+    "prior_pct": 0.225,
+    "fixed": 0.6,
+    "driver": "직원 10.8만 명(FY25 10.3만), 임금 인상, 증설 채용",
+    "basis": "추정",
+    "source": "인건비 미공시 — 추정"
+   },
+   {
+    "name": "감가상각(매출원가분)",
+    "stage": "매출원가",
+    "pct_rev": 0.026,
+    "prior_pct": 0.038,
+    "fixed": 1.0,
+    "driver": "공장 증설 — 상각·손상 FY25 €1,781M → FY26 €1,377M",
+    "basis": "추정",
+    "source": "4Q FY26 실적 자료(전체 상각의 매출원가 배분은 미공시)"
+   },
+   {
+    "name": "보증·프로젝트 충당·기타",
+    "stage": "매출원가",
+    "pct_rev": 0.061,
+    "prior_pct": 0.059,
+    "fixed": 0.2,
+    "driver": "풍력 품질 충당, 프로젝트 원가 초과, 운송",
+    "basis": "추정",
+    "source": "나머지(계산)"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.027,
+    "prior_pct": 0.031,
+    "fixed": 0.9,
+    "driver": "가스터빈·그리드·풍력 개발 — FY27 약 €1.3B 예정",
+    "basis": "공시",
+    "source": "4Q FY26 실적 자료"
+   },
+   {
+    "name": "판매·관리",
+    "stage": "판관비",
+    "pct_rev": 0.082,
+    "prior_pct": 0.089,
+    "fixed": 0.7,
+    "driver": "영업·관리 인력, 상표 사용료(FY30경 종료)",
+    "basis": "공시",
+    "source": "4Q FY26 실적 자료"
+   }
+  ],
+  "products": [
+   {
+    "name": "가스 서비스",
+    "rev_share": 0.328,
+    "gpm": 0.223,
+    "gpm_basis": "회사 전체 매출총이익률 대용 — 세그먼트별 총이익 미공시(세그먼트 특별항목 제외 이익률 16.4%)",
+    "bom": [
+     {
+      "item": "터빈 블레이드·베인",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "고온부 단결정 주조 부품 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "니켈 초합금·세라믹 코어 단가, 주조 수율"
+     },
+     {
+      "item": "대형 주·단조품",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "로터·케이싱 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "특수강 단가와 단조 설비 가동률",
+      "input": "stainless_steel"
+     },
+     {
+      "item": "발전기·전장",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "구리 권선·절연재 단가",
+      "input": "copper"
+     }
+    ]
+   },
+   {
+    "name": "그리드 테크놀로지",
+    "rev_share": 0.319,
+    "gpm": 0.223,
+    "gpm_basis": "회사 전체 매출총이익률 대용(세그먼트 특별항목 제외 이익률 18.9%)",
+    "bom": [
+     {
+      "item": "방향성 전기강판",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "변압기 철심 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "전기강판 단가"
+     },
+     {
+      "item": "구리 권선",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "변압기 권선 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "구리 가격",
+      "input": "copper"
+     },
+     {
+      "item": "전력반도체 밸브",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "HVDC 변환소 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "IGBT 모듈 단가",
+      "input": "discrete_semi"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "가장 약한 고리는 가스터빈 고온부 블레이드다. CEO가 2024년에 병목으로 지목했고, 회사는 블레이드 자회사 완전 소유와 세라믹 코어 회사 인수로 안쪽에 끌어들였다. 변압기용 전기강판·구리는 업계 전반의 제약이다. 공급사별 물량·단일 공급원 여부는 FY26 연차보고서 게시 전이라 미확인이다",
+  "links": [
+   {
+    "item": "터빈 블레이드·베인",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Advanced Airfoil Components(자회사)",
+      "role": "단결정 블레이드 주조 — 완전 소유로 전환",
+      "status": "회사 발표",
+      "source": "https://www.siemens-energy.com/us/en/home/press-releases/siemens-energy-assumes-full-ownership-advanced-airfoil-components-announces-roadmap.html"
+     },
+     {
+      "name": "Capital Injection Ceramics(인수)",
+      "role": "블레이드 주조용 세라믹 코어",
+      "status": "보도",
+      "source": "https://teitimes.com/post/siemens-energy-buys-capital-injection-ceramics-limited"
+     }
+    ],
+    "qualified": 2,
+    "qualified_basis": "자회사 1곳 + 외부 소수(CEO: 공급사가 몇 곳뿐) — 최소 2곳으로 본 추정",
+    "capacity": "빠듯",
+    "capacity_basis": "CEO가 블레이드를 병목으로 지목(2024-02 보도), 경쟁사 Mitsubishi Heavy도 블레이드 캐파에 ¥500B 투자(2026-11)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 24,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국·영국",
+    "secured": "내재화",
+    "why": "고온부 부품이 없으면 터빈 출하가 멈춘다. 재인증 24개월은 단결정 블레이드 주조사 신규 인증 기간 추정(업계 통상 2년 안팎)",
+    "relief": "미확인 — 자회사 증설의 가동·수율 근거 없음",
+    "source": "https://www.cleanenergywire.org/news/turbine-production-bottleneck-threatens-plans-new-german-gas-power-plants-industry"
+   },
+   {
+    "item": "대형 주·단조품",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "로터·케이싱 단조",
+      "status": "추정",
+      "source": "https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "회사 언급 못 찾음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "대형 터빈 로터는 만들 수 있는 단조 설비가 적다",
+    "relief": "미확인",
+    "source": "https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html",
+    "input": "stainless_steel"
+   },
+   {
+    "item": "방향성 전기강판",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "thyssenkrupp",
+      "role": "해상풍력 변압기용 저탄소 전기강판",
+      "status": "보도",
+      "source": "https://www.steelorbis.com/steel-news/latest-news/thyssenkrupp-to-supply-carbon-reduced-electrical-steel-to-siemens-energy-1328769.htm"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "미국 대형 변압기 납기 최장 4년 — 전기강판·구리가 원인으로 꼽힘(업계 보도 2026-05)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 0.95,
+    "region": "생산 지역 안 조달",
+    "secured": "미확인",
+    "why": "변압기 철심 소재",
+    "relief": "미확인",
+    "source": "https://pv-magazine-usa.com/2026/05/11/u-s-transformer-market-faces-severe-supply-constraints-as-lead-times-extend-to-four-years/"
+   },
+   {
+    "item": "구리 권선",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "권선용 구리",
+      "status": "추정",
+      "source": "https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html"
+     }
+    ],
+    "qualified": 4,
+    "qualified_basis": "범용 원자재 — 공급사 다수(판단)",
+    "capacity": "여유",
+    "capacity_basis": "범용 원자재 — 가격 위험이지 물량 위험은 아니다(판단)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": 3,
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "복수구매",
+    "why": "변압기·발전기 권선 — 범용 원자재라 가격 위험이지 물량 위험은 아니다(판단, 재인증 3개월은 추정)",
+    "relief": "미확인",
+    "source": "https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html",
+    "input": "copper"
+   },
+   {
+    "item": "전력반도체 밸브",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "HVDC 변환소용 IGBT 모듈",
+      "status": "추정",
+      "source": "https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "회사 언급 못 찾음",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "HVDC 변환소 핵심 부품",
+    "relief": "미확인",
+    "source": "https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html",
+    "input": "discrete_semi"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "GW/년(가스터빈 전 기종)",
+  "summary": "가스터빈 생산은 FY25~27 평균 약 22GW(160대)에서 FY28~30 평균 30GW 초과(210~230대)로 늘린다. 변압기·개폐장치도 2030년까지 약 50% 늘린다. 증설은 기존 공장 안에서 하고, FY27 CAPEX는 매출의 5~6%로 정점이다. 순번은 FY28까지 매진이다",
+  "current": {
+   "nameplate": 22,
+   "utilization": "미확인",
+   "basis": "FY25~27 평균 약 160대·22GW(2025 자본시장의 날 자료). 대형 약 35대·중형 약 80대/년(3Q FY26 발표 자료 인용 보도). 가동률 미공시 — FY28까지 매진",
+   "source": "https://assets.siemens-energy.com/dam/5fc093ca-4fd8-482c-8390-b39b004f66f3/251120_CMD-2025_Gas_Services_FINAL-pdf_Original%20file.pdf"
+  },
+  "plans": [
+   {
+    "name": "가스터빈 증설(기존 공장 — 대형 35 → 약 50대, 중형 80 → 약 100대)",
+    "add": 8,
+    "stage": "착공",
+    "online": "2027-10",
+    "capex": "미확인",
+    "blocker": "블레이드·주단조품 공급, 숙련 인력",
+    "source": "https://assets.siemens-energy.com/dam/5fc093ca-4fd8-482c-8390-b39b004f66f3/251120_CMD-2025_Gas_Services_FINAL-pdf_Original%20file.pdf",
+    "add_note": "22GW → 30GW 초과(FY28~30 평균). 대형 터빈 추가분은 FY27부터 가동한다고 회사가 밝혔다 — 장비 반입·수율은 미확인",
+    "capex_note": "항목별 금액 미공시 — 그룹 평균 연 약 €2B"
+   },
+   {
+    "name": "미국 제조 확대(샬럿 대형 터빈 재개·미시시피 개폐장치 신공장 등)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": 0.911,
+    "blocker": "인허가·채용 1,500명",
+    "source": "https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-is-investing--1-billion-and-creating-highly-skill.html",
+    "add_note": "시설별 캐파 미공시",
+    "capex_note": "$1.0B ÷ 1.0973"
+   },
+   {
+    "name": "뉘른베르크 변압기 공장 확장",
+    "add": "미확인",
+    "stage": "착공",
+    "online": "2028-01",
+    "capex": 0.22,
+    "blocker": "숙련 인력 350명 채용",
+    "source": "https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-invests--220-million.html",
+    "add_note": "변압기 캐파 +50%(단위 미공시)",
+    "capex_note": "€220M"
+   },
+   {
+    "name": "그리드 공장 37곳 투자(FY25~30)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2030-09",
+    "capex": 4.0,
+    "blocker": "전기강판·구리 공급",
+    "source": "Siemens Energy 4Q FY26 어닝콜(2026-11-11)",
+    "add_note": "변압기·개폐장치 캐파 FY26 → FY30 50% 초과 확대 — 개별 공장(뉘른베르크 등)은 착공했지만 묶음 전체는 발표 단계로 둔다(중복 합산 방지)",
+    "capex_note": "약 €4B(뉘른베르크·미국·오스트리아 포함분과 겹침)"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2024",
+    "capex": 1.514,
+    "rev": 34.465,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2025",
+    "capex": 1.724,
+    "rev": 39.077,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 1.97,
+    "rev": 44.243,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2027",
+    "capex": 2.8,
+    "rev": 50.88,
+    "kind": "가이던스"
+   }
+  ],
+  "capex_source": "4Q FY26 실적 자료(유형·무형자산 취득). FY27 = 매출 가이던스 중간 €50.88B × 5~6% 중간(계산)",
+  "sites": [],
+  "sites_none": "시설 위성 판독 등록은 다음 회차 — FY26 연차보고서 시설 목록 게시 전(생산 거점 62곳)",
+  "facilities": {
+   "count": 62,
+   "count_basis": "회사 소개 자료(2026-02) 9쪽의 생산 거점 수 — 미주 22·유럽·중동·아프리카 23·아시아·호주 17. 소유·임차 구분은 연차보고서 미대조",
+   "source": "https://assets.siemens-energy.com/dam/292f4f99-1c6d-4799-aa7b-b12400fc58c9/Siemens-Energy_Company-Presentation-pdf_Original%20file.pdf",
+   "items": [
+    {
+     "name": "뉘른베르크 변압기 공장",
+     "location": "독일 뉘른베르크",
+     "owned": "미확인",
+     "use": "대형 전력 변압기·변환기 부품",
+     "status": "증설 중",
+     "capacity": "미확인",
+     "capacity_basis": "캐파 단위 미공시 — 2028년까지 +50%"
+    },
+    {
+     "name": "샬럿 공장",
+     "location": "미국 노스캐롤라이나 샬럿",
+     "owned": "미확인",
+     "use": "대형 전력 변압기, 대형 가스터빈 제조 재개",
+     "status": "증설 중",
+     "capacity": {
+      "value": 24,
+      "unit": "변압기 대/년(최대 57대 계획)",
+      "source": "보도(Manufacturing Dive 2024)"
+     },
+     "capacity_basis": "회사 1차 자료 미대조"
+    },
+    {
+     "name": "탬파 공장",
+     "location": "미국 플로리다 탬파",
+     "owned": "미확인",
+     "use": "가스터빈 블레이드·베인",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "미공시"
+    },
+    {
+     "name": "바이츠 변압기 공장",
+     "location": "오스트리아 바이츠",
+     "owned": "미확인",
+     "use": "변압기 개발·생산",
+     "status": "증설 중",
+     "capacity": "미확인",
+     "capacity_basis": "미공시 — €95M 확장(2028 초 가동 예정, 보도)"
+    },
+    {
+     "name": "자그레브 변압기 합작 공장",
+     "location": "크로아티아 자그레브",
+     "owned": "미확인",
+     "use": "대형 전력 변압기 — 합작 51%",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "미공시"
+    },
+    {
+     "name": "베를린 전해조 공장",
+     "location": "독일 베를린",
+     "owned": "미확인",
+     "use": "수소 전해조 — 합작",
+     "status": "가동",
+     "capacity": {
+      "value": 1,
+      "unit": "GW/년(초기)",
+      "source": "회사 보도자료(2023-11)"
+     },
+     "capacity_basis": "현재 가동률 미확인"
+    },
+    {
+     "name": "헐 블레이드 공장",
+     "location": "영국 헐",
+     "owned": "미확인",
+     "use": "해상풍력 블레이드",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "미공시"
+    },
+    {
+     "name": "르아브르 공장",
+     "location": "프랑스 르아브르",
+     "owned": "미확인",
+     "use": "해상풍력 나셀·블레이드",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "미공시"
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "as_of": "2026-11-22",
+  "summary": "CEO Christian Bruch와 CFO Maria Ferraro가 2020년 분사 때부터 회사를 이끈다. 감독이사회 의장은 전 Siemens AG CEO Joe Kaeser다. 옛 모회사 Siemens AG 지분은 5% 안팎으로 줄었다",
+  "people": [
+   {
+    "name": "Christian Bruch",
+    "role": "CEO",
+    "since": "2020",
+    "profile": "Linde 부사장·Linde Engineering 대표를 거쳐 2020-05 취임, 계약 2030-04까지",
+    "business": "Linde 출신 — 산업가스·플랜트 업계",
+    "political": "2026-02 미국 투자 발표 때 미국 행정부에 정책 안정성을 요청(보도)",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.siemens-energy.com/global/en/home/press-releases/supervisory-board-extends-contract-with-ceo-christian-bruch-.html"
+   },
+   {
+    "name": "Maria Ferraro",
+    "role": "CFO",
+    "since": "2020",
+    "profile": "Siemens Digital Industries CFO 출신, 계약 2027-11까지",
+    "business": "Capgemini 이사(2022~)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.capgemini.com/be-en/about-us/management-and-governance/board-of-directors/maria-ferraro/"
+   },
+   {
+    "name": "Joe Kaeser",
+    "role": "감독이사회 의장",
+    "since": "미확인",
+    "profile": "전 Siemens AG CEO — 의장 재선임, 임기는 FY2028 주총까지",
+    "business": "Siemens AG와의 상표 사용 계약·분사 관계",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.siemens-energy.com/global/en/home/press-releases/joe-kaeser-reelected-as-chairman-of-the-supervisory-board-of-sie.html"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "Siemens AG — 상표 사용 계약(FY30경 종료)·잔여 지분 5% 안팎·인도 법인 지분 거래",
+    "strength": 4,
+    "exposure": 0.0,
+    "basis": "Siemens AG를 통한 매출 몫 미공시 — 노출 0으로 둔다",
+    "evidence": "4Q FY26 어닝콜(상표 사용료 제외 기준 FY30 목표), 지분 통지 공시(2026-04·09)"
+   }
+  ]
+ },
+ "social": {
+  "none": "Quantral 미수록 — 레딧·X 관심 집계 없음(독일 상장)"
+ },
+ "photos": [],
+ "ladder": {
+  "exit": {
+   "pe": 20,
+   "net_margin": 0.13,
+   "opm": 0.2,
+   "basis": "출구 P/E 20배는 지금 Fwd 1Y P/E(20.0배)와 동종 중앙(21.1배) 수준. 영업이익률은 회사 FY30 목표 20~22%의 하단, 순이익률은 세율 27%·비지배지분을 뺀 값"
+  },
+  "base": {
+   "eps": 4.39,
+   "opm": 0.118,
+   "basis": "최근 4개 분기 희석 EPS 합 €4.39(0.78 + 0.88 + 1.26 + 1.47, IFRS)"
+  },
+  "refs": [
+   {
+    "label": "FY27 EPS 컨센서스",
+    "value": 5.92
+   },
+   {
+    "label": "FY28 EPS 컨센서스",
+    "value": 8.0
+   },
+   {
+    "label": "FY29 EPS 컨센서스",
+    "value": 9.95
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "회사 FY30 목표(매출 €70B 초과·이익률 20~22%)를 그대로 달성하고 P/E 20배를 지켜야 한다",
+    "outlook": "잔고 €164B와 가격 인상분이 받치지만, 풍력 8~10% 이익률과 예약 39GW의 확정 전환이 조건이다"
+   }
+  },
+  "summary": "시가총액 €101B(약 $111B)라 2배만 본다. 2배는 회사 FY30 목표를 다 채우는 경우에 열린다."
+ },
+ "narrative": {
+  "as_of": "2026-11-22",
+  "stage": "컨센서스",
+  "crowding": "중간~높음(콜 질문 증권사 18곳, 애널리스트 28명 중 21명 매수 — 보도)",
+  "summary": "AI 데이터센터와 전력망 교체로 가스터빈·변압기가 모자란다는 이야기의 유럽 대표 종목이다. 4월 고점 뒤 −37%로, 시장은 '데이터센터 전력 수요가 꺾이면 예약이 주문으로 안 바뀐다'는 걱정을 가격에 넣었다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "콜 질문 증권사",
+      "18곳(Goldman Sachs·Morgan Stanley·JPMorgan·BofA 등)"
+     ],
+     [
+      "의견 분포",
+      "28명 중 21명 매수(보도, 미대조)"
+     ],
+     [
+      "FY27 EPS 컨센서스",
+      "€5.92~6.23"
+     ],
+     [
+      "최근 변경",
+      "11/12 JPMorgan 목표가 상향, 11/13 Goldman Sachs 목표가 하향·Oddo BHF 상향(보도)"
+     ]
+    ],
+    "read": "질문은 수요 규모가 아니라 예약의 주문 전환, 그리드 이익률 경로, 현금흐름의 질에 몰렸다. IB 요지(마스터 노션, 라이선스): 한 하우스는 FY30까지 주주환원이 시장 집계보다 많고 GE Vernova 대비 배수 격차가 좁혀질 여지를 본다 — 기대의 증거로만 쓴다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유",
+      "해당 없음(미국 상장 아님)"
+     ],
+     [
+      "행동주의",
+      "Ananym Capital — 풍력 분사 요구(2025-12, 보도)"
+     ],
+     [
+      "Siemens AG 지분",
+      "14.96% → 5% 안팎(2026-04·09 통지, 보도)"
+     ],
+     [
+      "자사주",
+      "FY26 €3.1B, FY30까지 최대 €9B 추가"
+     ]
+    ],
+    "read": "옛 모회사가 지분을 계속 팔아 왔다 — 오버행은 줄었지만 끝났는지는 미확인이다. 독일 대형 기관은 풍력 분사를 시기상조로 봤다(보도)."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral",
+      "미수록"
+     ],
+     [
+      "ApeWisdom",
+      "해당 없음"
+     ],
+     [
+      "국내 텔레그램 공개 채널",
+      "11/11 실적·Q&A 정리 다수"
+     ]
+    ],
+    "read": "미국 리테일 집계는 없다. 국내 채널은 4Q 실적을 'SoftBank 계열의 전력장비 조달 축소 우려를 덜었다'는 쪽으로 읽었다 — 시장 반응의 증거이지 사실이 아니다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "실적 반응",
+      "11/11 +10.8%"
+     ],
+     [
+      "업종 사건",
+      "11/4 −8.0%, 11/20 −6.6%"
+     ],
+     [
+      "고점 대비",
+      "4/24 종가 €187.62 → −37%"
+     ]
+    ],
+    "read": "독일 언론은 급락의 배경으로 미국 중간선거 뒤 데이터센터 규제 우려와 AI 연관주 동반 하락을 들었다(보도, 단일 출처)."
+   }
+  },
+  "factors": [
+   {
+    "name": "가스터빈 부족과 가격",
+    "thesis": "세계 캐파(약 130GW)가 수요(140~150GW)에 못 미쳐 순번이 FY28까지 매진이고 가격이 오른다",
+    "inputs": "성장·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "약정 104GW, 신규 장비 잔고 마진 FY26 +14%p",
+    "status": "유지",
+    "falsifier": "예약 39GW 중 FY27 확정 전환이 절반 아래",
+    "source": "Siemens Energy 4Q FY26 실적 발표·어닝콜(2026-11-11)"
+   },
+   {
+    "name": "서비스 장기 성장",
+    "thesis": "지금 파는 터빈이 2030년대 서비스 매출을 만든다",
+    "inputs": "성장 지속·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "서비스 잔고 €71B, FY35까지 가스 서비스 매출 2배 이상(회사 목표)",
+    "status": "강화",
+    "falsifier": "신규 서비스 계약 마진 우위(+5%p) 소멸",
+    "source": "Siemens Energy 4Q FY26 어닝콜(2026-11-11)"
+   },
+   {
+    "name": "전력망 교체",
+    "thesis": "선진국 전력망 절반 이상이 2040년까지 교체 대상이라 변압기·HVDC 수요가 길다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "그리드 잔고 €52B(+25%), FY26 이익률 18.9%",
+    "status": "유지",
+    "falsifier": "유럽 그리드 가격 하락으로 FY27 이익률 21% 미달",
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   },
+   {
+    "name": "현금과 주주환원",
+    "thesis": "선수금이 쌓여 현금이 넘치고 FY30까지 €25B 넘게 돌려준다",
+    "inputs": "배수",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "FY26 세전 FCF €8.8B, 배당 €0.70 → €2.30, 자사주 최대 €9B 추가",
+    "status": "강화",
+    "falsifier": "FY27 세전 FCF가 €8B 아래",
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   },
+   {
+    "name": "풍력 정상화",
+    "thesis": "지멘스 가메사가 손익분기를 넘어 FY30 8~10% 이익률로 간다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "FY25 −€1,364M → FY26 +€8M",
+    "status": "강화",
+    "falsifier": "FY27 이익률 0% 아래",
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   },
+   {
+    "name": "반대 내러티브 — 데이터센터 둔화·예약 취소·선수금 현금",
+    "thesis": "데이터센터 전력 수요가 꺾이면 예약이 주문으로 바뀌지 않고, 선수금 유입이 줄어 현금흐름이 정점을 지난다. 2001~2004년 가스터빈 대량 취소 전례가 있다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "4Q 확정 주문 약 2GW(3Q 15GW), FY26 계약부채 증가 €5.8B, 4/24 고점 뒤 −37%",
+    "status": "강화",
+    "falsifier": "1Q·2Q FY27에 예약 20GW 이상이 확정 주문으로 전환",
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)·IB 요지(마스터 노션)"
+   }
+  ],
+  "lead": {
+   "summary": "Siemens Energy의 기업가치는 **가스터빈과 송전 기기의 부족이 얼마나 오래가는가**에 달려 있다. FY26 이익률은 6.0%에서 12.4%로 뛰었고 수주잔고는 €164B이지만, 주가는 4월 고점보다 37% 낮다.",
+   "value_story": "매출의 33%가 가스 서비스(가스터빈과 정비), 32%가 그리드 테크놀로지(변압기·HVDC), 24%가 지멘스 가메사(풍력), 13%가 산업 전환이다. 이익은 가스와 그리드 두 사업에서 나오고(FY26 특별항목 제외 이익 €5.0B), 풍력은 이제 막 손익분기다. 고객이 순번을 잡으려고 미리 내는 돈(계약부채 €28.6B)이 현금을 만든다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 20.0배로 동종 5곳 중앙(21.1배)보다 조금 낮다 — GE Vernova(33.3배)와의 격차가 크다",
+    "eps": "FY26 희석 EPS €4.37, FY27 컨센서스 €5.92~6.23(+35~43%), FY28 €8.00"
+   },
+   "why_excited": "2025~2026년 투자자들은 분기마다 올라가는 가이던스, 풍력 흑자 전환, 데이터센터발 가스터빈 주문에 열광해 주가를 1년 반 만에 €25에서 €188까지 올렸다. 4월 이후에는 데이터센터 투자 지속성에 대한 의심, 미국 중간선거 뒤 규제 우려, 4Q 수주 감소가 겹쳐 기대가 식었다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "가스 서비스",
+     "what": "발전용 대형·중형 가스터빈과 20년 가까운 장기 정비 계약",
+     "use": "전력회사 복합화력, 데이터센터 자가 발전, 사우디·대만 발전소",
+     "money": "FY26 매출의 33%(€14.5B), 서비스가 57%",
+     "name_en": "heavy-duty gas turbine",
+     "what_en": "a large industrial gas turbine for power plants with compressor, combustors and turbine section on a single shaft",
+     "bom": {
+      "name_en": "heavy-duty power generation gas turbine",
+      "as_of": "2026-11-22",
+      "this_company_product": true,
+      "items": [
+       {
+        "no": 1,
+        "part": "터빈 블레이드·베인",
+        "part_en": "turbine blades and vanes",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Advanced Airfoil Components(자회사)·탬파 공장",
+        "source": "회사 보도자료(2026-02-03)"
+       },
+       {
+        "no": 2,
+        "part": "압축기",
+        "part_en": "axial compressor section",
+        "kind": "모듈",
+        "confidence": "추정",
+        "supplier": "자체 생산(추정)",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 3,
+        "part": "연소기",
+        "part_en": "combustion chambers",
+        "kind": "모듈",
+        "confidence": "추정",
+        "supplier": "자체 생산(추정)",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 4,
+        "part": "로터 축",
+        "part_en": "forged rotor shaft",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 5,
+        "part": "케이싱",
+        "part_en": "outer casing",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 6,
+        "part": "발전기",
+        "part_en": "electric generator",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "자체 생산 — 포트페인 공장이 발전기 구리·절연 부품",
+        "source": "회사 보도자료(2026-02-03)"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "그리드 테크놀로지",
+     "what": "대형 변압기, HVDC 변환소, 개폐장치",
+     "use": "송전망 운영사의 노후 설비 교체, 해상풍력 연결, 데이터센터 전력 공급",
+     "money": "FY26 매출의 32%(€14.1B), 이익률 18.9%",
+     "name_en": "large power transformer",
+     "what_en": "a large oil-filled high-voltage power transformer with bushings and cooling radiators"
+    },
+    {
+     "kind": "제품",
+     "name": "지멘스 가메사",
+     "what": "해상·육상 풍력 터빈과 유지보수",
+     "use": "유럽 해상풍력 단지",
+     "money": "FY26 매출의 24%(€10.6B), 이익률 0.1%",
+     "name_en": "offshore wind turbine",
+     "what_en": "a 15 MW class offshore wind turbine nacelle and blades"
+    },
+    {
+     "kind": "제품",
+     "name": "산업 전환",
+     "what": "산업용 증기터빈·압축기·전해조",
+     "use": "석유·가스, 화학 플랜트",
+     "money": "FY26 매출의 13%(€5.8B) — 공동 투자자와 분리 추진",
+     "name_en": "industrial compressor train",
+     "what_en": "an industrial turbo compressor train"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "풍력 손실에 눌린 회사 → 가스·그리드가 이익을 끌고 풍력은 손익분기",
+     "evidence": "특별항목 제외 이익률 6.0%(FY25) → 12.4%(FY26), 가메사 −€1,364M → +€8M",
+     "drives": "이익률·배수",
+     "status": "진행 중",
+     "falsifier": "FY27 이익률 14% 미달"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "가격이 오른 신규 주문과 마진 높은 서비스 계약이 잔고를 채운다",
+     "evidence": "신규 장비 잔고 마진 FY22 이후 +26%p, 신규 서비스 계약 마진 +5%p(4Q 콜)",
+     "drives": "이익률",
+     "status": "진행 중",
+     "falsifier": "잔고 마진 개선 중단"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "최대형 HL급 가스터빈 효율 64% 기록, 반도체 변압기 시제품 2028년 예정",
+     "evidence": "영국 Keadby 2 복합화력 효율 64.18%(회사 자료), 4Q 콜",
+     "drives": "점유율",
+     "status": "유지",
+     "falsifier": "경쟁사 대형 터빈 수주 점유 역전"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "가스터빈 납기는 3~4년 이상으로 길어졌다 — 경쟁사는 더 길다",
+     "evidence": "3Q 콜(납기 3~4년 이상), 경쟁사 발표",
+     "drives": "성장 시점",
+     "status": "지연",
+     "falsifier": "증설 가동이 FY27에서 밀림",
+     "lead_time": {
+      "now": [
+       36,
+       48
+      ],
+      "unit": "개월",
+      "basis": "주문→인도 — '3~4년 이상'(3Q 콜)",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "GE Vernova",
+        "value": 60,
+        "note": "2032년 순번 접수 중(2026-10 발표 인용 보도)"
+       },
+       {
+        "name": "Mitsubishi Heavy",
+        "value": 54,
+        "note": "인도가 2031년으로 밀림(2026-10 보도)"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "산업 전환 사업 분리(공동 투자자), 인도 법인 지분 2028년 51%로 확대, 블레이드 공급망 소형 인수",
+     "evidence": "4Q 콜 — 인도 지분에 €3.5~4.5B 배정(국내 채널 Q&A 정리, 콜 대조)",
+     "drives": "자본 배분",
+     "status": "진행 중",
+     "falsifier": "분리 무산"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "고객의 설비투자(발전소·송전망·데이터센터 전력)에서 나오고, 서비스는 운영 예산에서 나온다",
+     "evidence": "서비스 매출 32%, 데이터센터 잔고 약 9%",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "전력회사·하이퍼스케일러 2027 CAPEX 축소",
+     "budgets": [
+      {
+       "business": "가스 서비스(신규 장비)",
+       "budget": "CAPEX",
+       "line": "발전소·데이터센터 자가 발전 설비투자",
+       "share": 0.14,
+       "driver": "전력 수요 증가·노후 석탄 대체",
+       "evidence": "FY26 가스 서비스 매출 중 신규 장비 43%(계산)"
+      },
+      {
+       "business": "가스 서비스(정비)",
+       "budget": "OPEX",
+       "line": "발전소 운영·정비 예산",
+       "share": 0.19,
+       "driver": "가동 시간·설치 대수",
+       "evidence": "가스 서비스 서비스 매출 €8.3B"
+      },
+      {
+       "business": "그리드 테크놀로지",
+       "budget": "CAPEX",
+       "line": "송전망 운영사 규제 자산 투자",
+       "share": 0.32,
+       "driver": "노후망 교체·재생에너지 연결",
+       "evidence": "그리드 잔고 €52B"
+      },
+      {
+       "business": "지멘스 가메사",
+       "budget": "CAPEX",
+       "line": "발전 사업자의 풍력 단지 투자",
+       "share": 0.24,
+       "driver": "해상풍력 입찰",
+       "evidence": "가메사 잔고 €31B"
+      },
+      {
+       "business": "산업 전환",
+       "budget": "혼합",
+       "line": "플랜트 설비투자·정비",
+       "share": 0.13,
+       "driver": "석유·가스·화학 투자",
+       "evidence": "산업 전환 매출 €5.8B"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "독일 발전소 용량 확보 법(StromVKG) — 첫 장기 용량 입찰에서 약 5.2GW 낙찰(2026-11-03), 2차 입찰 12/29. 터빈 공급사는 미공개",
+     "evidence": "독일 연방네트워크청 발표(2026-11-03), 연방의회 2026-07-09·연방참사원 07-10 통과",
+     "drives": "유럽 가스터빈 수요",
+     "status": "시행",
+     "falsifier": "2차 입찰 유찰·EU 보조금 심사 지연",
+     "house": {
+      "level": 1,
+      "why": "독일 법 — 미국 의회 의결 대상 아님"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "미국 연방에너지규제위원회가 대형 부하(데이터센터) 계통 연결 개편을 6개 계통 운영자에게 명령(2026-06-18, 최종 규칙 아님)",
+     "evidence": "보도 — 원문 미대조",
+     "drives": "미국 데이터센터 자가 발전·가스터빈 수요",
+     "status": "규칙안",
+     "falsifier": "최종 규칙이 자가 발전을 제한",
+     "house": {
+      "level": 1,
+      "why": "독립 규제기관 명령 — 의회 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "EU 전력망 패키지 — 인허가 부분 잠정 합의(2026-11-18), 정식 채택 전",
+     "evidence": "보도 — 원문 미대조",
+     "drives": "유럽 송전망 투자(그리드 사업)",
+     "status": "발의",
+     "falsifier": "최종 채택 무산"
+    }
+   }
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "이익률이 1년에 두 배가 됐고 잔고가 FY27 매출의 85%를 덮는데 Fwd 2Y P/E는 14.8배다",
+    "evidence": [
+     "이익률 6.0% → 12.4%",
+     "잔고 €164B",
+     "Fwd 2Y P/E 14.8배"
+    ],
+    "falsifier": "FY27 이익률 14% 미달"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "GE Vernova 33배와의 격차는 풍력 손실 이력 때문인데 풍력은 손익분기를 넘었다",
+    "evidence": [
+     "Fwd 1Y P/E 20.0배 vs GE Vernova 33.3배",
+     "가메사 FY26 +€8M"
+    ],
+    "falsifier": "가메사 FY27 적자 전환"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "4Q 가스 확정 주문이 2GW뿐이다 — 예약 39GW가 주문으로 바뀌는 것을 보고 판단해야 한다",
+    "evidence": [
+     "4Q 수주 €14.8B(3Q €17.9B)",
+     "예약 39GW는 확정 주문 아님"
+    ],
+    "falsifier": "1Q FY27 가스 확정 주문 10GW 이상"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "현금흐름이 선수금에 기댄다 — 주문이 둔화하면 FCF가 먼저 꺾인다",
+    "evidence": [
+     "FY26 계약부채 증가 €5.8B vs 세전 FCF €8.8B",
+     "계약부채 €28.6B > 현금 €11.2B"
+    ],
+    "falsifier": "FY27 세전 FCF €10B 달성"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "데이터센터 전력 수요가 꺾이면 2001~2004년처럼 가스터빈 예약·주문이 취소된다",
+    "evidence": [
+     "4/24 고점 뒤 −37%",
+     "미국 주별 데이터센터 규제 논의"
+    ],
+    "falsifier": "데이터센터 관련 잔고 비중이 낮게 유지된 채 수주 증가"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "이익률 12.4%, 잔고 €164B. 2년 뒤 이익의 15배다."
+     },
+     {
+      "seat": "Buy",
+      "text": "GE Vernova보다 40% 싸다. 풍력이 흑자로 돌아섰다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "4Q 가스 확정 주문은 2GW다. 예약은 주문이 아니다."
+     },
+     {
+      "seat": "Sell",
+      "text": "현금의 3분의 2가 선수금이다. 지속되지 않는다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "데이터센터가 멈추면 예약부터 취소된다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "데이터센터 관련 잔고는 €15B, 전체의 9%다. 데이터센터를 뺀 수요도 2년에 50% 늘었다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "회사는 FY27 FCF의 약 75%가 이익에서 나온다고 했다. 선수금만이 아니다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "9%는 직접 계약분이다. 전력회사 주문 뒤의 데이터센터 수요는 회사도 가르지 못했다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "75%는 회사 설명이다. FY26 계약부채 증가 €5.8B는 현금흐름표 숫자다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "4Q 수주가 컨센서스 €15.5B에 못 미쳤다. 둔화는 이미 시작됐다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "FY26 가스 신규 주문 42GW는 사상 최대다. 한 분기 2GW는 계약 시점 문제다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "서비스 잔고 €71B는 취소되지 않는다. 터빈이 깔리면 정비는 따라온다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Sell",
+      "text": "FCF 가이던스 €10B가 맞는지는 2월에 선수금 흐름으로 확인할 수 있다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "FY27 순이익 가이던스 약 €5B는 실적 전 컨센서스 €5.5B보다 낮다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "가메사 FY27 매출은 줄고 세전 FCF는 −€1.58B였다. 흑자는 아직 종이 위다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "이익과 잔고가 가격보다 앞서 있다는 판단 유지.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "배수 격차는 풍력 정상화와 함께 좁혀진다. 매수 유지.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "예약 전환과 선수금 흐름을 2월에 확인할 때까지 중립."
+     },
+     {
+      "seat": "Sell",
+      "text": "현금의 질 우려는 남지만 잔고 커버리지 85%는 인정한다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "취소 전례가 있는 산업이다. 위험은 낮게 볼 수 없다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "이익률 개선·잔고 커버리지 85%·서비스 잔고 €71B는 반박되지 않았다. 그러나 4Q 확정 주문 2GW와 선수금에 기댄 현금흐름도 반박되지 않았고, 이를 가를 숫자는 2월에야 나온다 — 규칙 등급을 옮길 새 근거가 없다",
+   "dissent": "강세 측은 FY26 가스 신규 주문 42GW가 사상 최대이고 한 분기 2GW는 계약 시점 문제라고 본다"
+  }
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "이익률이 1년에 두 배, 가격은 고점 대비 −37%",
+    "claim": "특별항목 제외 이익률 6.0% → 12.4%, FY27 가이던스 14~16%인데 주가는 4/24 종가 고점 €187.62보다 37% 낮다",
+    "evidence": "4Q FY26 실적 자료·일봉",
+    "variant": "시장은 데이터센터 수요 둔화를 걱정하지만 FY27 매출의 85%가 이미 잔고에 있고 데이터센터 직접 노출은 잔고의 9%다",
+    "proof": "2027-02 1Q FY27 실적의 이익률과 수주",
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   },
+   {
+    "title": "장비 다음에 오는 서비스",
+    "claim": "서비스 잔고 €71B, 장기 서비스 계약 평균 17년, 신규 계약 마진은 기존보다 5%p 높다",
+    "evidence": "4Q FY26 발표 자료·3Q 콜",
+    "variant": "시장은 신규 주문(GW)을 보지만 이익의 지속성은 2030년대 서비스가 만든다 — 장비 주문이 줄어도 서비스 매출은 깔린 대수를 따라간다",
+    "proof": "가스 서비스 서비스 매출 성장률(FY26 약 +4%에서 상승 여부)",
+    "source": "Siemens Energy 4Q FY26 어닝콜(2026-11-11)"
+   },
+   {
+    "title": "GE Vernova와의 배수 격차",
+    "claim": "Fwd 1Y P/E 20.0배 vs GE Vernova 33.3배, 다음 해 EPS 성장은 +35%",
+    "evidence": "동종 배수 표",
+    "variant": "격차의 이유였던 풍력 손실은 FY26에 사라졌다. 남은 할인은 선수금에 기댄 현금과 4Q 수주 감소다",
+    "proof": "가메사 FY27 이익률 0~2% 달성, 예약 39GW 확정 전환",
+    "source": "Siemens Energy 4Q FY26 실적 발표(2026-11-11)"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-02-11",
+    "status": "완료",
+    "kind": "생성",
+    "event": "1Q FY26 실적 — 수주 €17.6B",
+    "reaction": "+8.4%"
+   },
+   {
+    "date": "2026-05-12",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "2Q FY26 실적 — 가이던스 상향에도 하락",
+    "reaction": "−5.1%"
+   },
+   {
+    "date": "2026-11-04",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "미국 중간선거 뒤 데이터센터 규제 우려(보도)",
+    "reaction": "−8.0%"
+   },
+   {
+    "date": "2026-11-11",
+    "status": "완료",
+    "kind": "생성",
+    "event": "4Q FY26 실적·FY30 목표·자사주 €9B",
+    "reaction": "+10.8%"
+   },
+   {
+    "date": "2026-11-20",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "AI 연관주 동반 급락(보도)",
+    "reaction": "−6.6%"
+   },
+   {
+    "date": "2026-12-29",
+    "status": "예정",
+    "kind": "매크로",
+    "event": "독일 장기 용량 2차 입찰",
+    "check": "낙찰 물량과 가스 발전 비중",
+    "then": "낙찰 확대 → 유럽 가스터빈 수요 근거, 유찰 → 중립"
+   },
+   {
+    "date": "2027-02-10(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "1Q FY27 실적",
+    "check": "가스터빈 확정 주문 10GW 이상, 분기 수주 €15B 이상, 이익률 14% 이상",
+    "then": "충족 → 기본~강세, 확정 주문 5GW 미만 → 약세"
+   }
+  ],
+  "trade": {
+   "watch": "일봉 지지 구간이 약세 시나리오 가격과 겹치는 곳",
+   "confirm": "1Q FY27 가스터빈 확정 주문 10GW 이상과 FY27 가이던스 유지",
+   "invalid": "예약 취소 공시 또는 FY27 FCF 가이던스 하향",
+   "trim": "목표주가 근처에서 Fwd 1Y P/E가 동종 중앙을 넘어설 때",
+   "style": "최근 6개월에 하루 5% 넘는 움직임이 18번 — AI 전력 테마와 함께 크게 흔들린다"
+  }
+ },
+ "guru": {
+  "horizon_years": 5,
+  "views": {
+   "runway": {
+    "verdict": "unknown",
+    "why": "회사 목표는 FY30 매출 €70B 초과(연 12~14%)지만 컨센서스 경로로는 5년 2배에 못 미친다",
+    "evidence": "https://assets.siemens-energy.com/dam/991522b0-f8bd-4c08-bc2a-b4ff00538589/2026-11-11_Q4_Analyst_presentation_final_-pdf_Original%20file.pdf"
+   },
+   "moat_returns": {
+    "verdict": "pass",
+    "why": "대형 가스터빈 3사 과점과 서비스 잔고 €71B, 투하자본수익률이 자본비용을 넘는다",
+    "evidence": "https://assets.siemens-energy.com/dam/991522b0-f8bd-4c08-bc2a-b4ff00538589/2026-11-11_Q4_Analyst_presentation_final_-pdf_Original%20file.pdf"
+   },
+   "reinvestment": {
+    "verdict": "unknown",
+    "why": "증설은 기존 공장 안에서 하고 남는 현금은 환원한다 — 재투자율이 낮아 복리 성장은 제한적이다",
+    "evidence": "https://assets.siemens-energy.com/dam/23e549e5-fb37-4db4-99d3-b4ff00539ccb/ER_Q4_26_EN_final-pdf_Original%20file.pdf"
+   },
+   "people": {
+    "verdict": "pass",
+    "why": "2020년부터 같은 CEO·CFO가 풍력 위기를 넘기고 가이던스를 연속 초과 달성했다",
+    "evidence": "https://assets.siemens-energy.com/dam/23e549e5-fb37-4db4-99d3-b4ff00539ccb/ER_Q4_26_EN_final-pdf_Original%20file.pdf"
+   },
+   "change": {
+    "verdict": "unknown",
+    "why": "이익은 늘고 있지만 2년 뒤 EPS 변화 계산값이 미확인이고 4Q 수주가 줄었다",
+    "evidence": "https://assets.siemens-energy.com/dam/23e549e5-fb37-4db4-99d3-b4ff00539ccb/ER_Q4_26_EN_final-pdf_Original%20file.pdf"
+   },
+   "mispricing": {
+    "verdict": "fail",
+    "why": "시가총액 €101B에서 5배는 경로가 없다 — 2배가 회사 목표를 다 채우는 경우다",
+    "evidence": "https://assets.siemens-energy.com/dam/991522b0-f8bd-4c08-bc2a-b4ff00538589/2026-11-11_Q4_Analyst_presentation_final_-pdf_Original%20file.pdf"
+   }
+  },
+  "dissent": {
+   "view": "mispricing",
+   "why": "대형주라 배수 확장 여지가 작고 상방은 회사 FY30 목표 달성에 묶여 있다"
+  },
+  "hold": {
+   "kpis": [
+    "가스터빈 확정 주문(GW)과 예약 전환",
+    "특별항목 제외 이익률",
+    "세전 FCF와 계약부채 증감"
+   ],
+   "rule": "가격만 빠지고 세 지표가 살아 있으면 투자 논리는 유지된다"
+  }
+ },
+ "overrides": {
+  "margin_base": {
+   "lr": 0.16
+  },
+  "why": "장기 수렴 이익률 16%: FY29 컨센서스 18%·회사 FY30 목표 20~22%에서 사이클 정상화와 풍력(목표 8~10%) 몫을 감안해 낮췄다. 기본값 15%는 가스·그리드 잔고 마진 개선(FY22 이후 +12~26%p)을 반영하지 못한다(판단)"
+ }
+}

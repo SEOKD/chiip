@@ -1,0 +1,110 @@
+auto: true
+id: co-siemensenergy
+name: Siemens Energy
+ticker: ENR
+unit: BEUR
+unit_usd: 1097270000.0
+industry: electrical_equipment
+region_mix:
+  EU: 0.42
+  US: 0.3
+  other: 0.28
+tax: 0.27
+horizon: 10
+as_of: '2026-11-22'
+market:
+  date: '2026-11-22'
+  price: 118.32
+  shares: 0.8533
+  net_debt: 2.975
+  source: 가격 = XETRA 11/20 종가 €118.32(Fiscal.ai·Easyconomics 일치). 주식 수 853.3M = FY26
+    말 유통 주식(Fiscal 표준화). 현금 €11.156B, 차입 €2.975B(단기 €0.453B + 장기 €2.522B, 4Q 실적 자료와
+    일치 — 리스 포함 여부는 연차보고서 게시 전이라 미대조). 비지배지분 €0.510B와 연금 충당 €0.382B는 넣지 않았다(주주가치를 약
+    1% 높게 잡는 쪽). 계약부채 €28.573B가 현금보다 커서 현금 전액을 고객 선수금 몫으로 잡았다. 회사 기준 조정 순현금은 €7.8B
+rev0: 50.88
+ic0: 3.535
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.1399
+      end: 0.03
+      decay: 0.825
+    margin:
+      m0: 0.14
+      target: 0.1798
+      year_target: 3
+      lr: 0.16
+      lam: 0.35
+      anchors:
+      - 0.1614
+      - 0.1798
+    s2c: 6.0
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2146
+      end: 0.034999999999999996
+      decay: 0.875
+    margin:
+      m0: 0.14
+      target: 0.1998
+      year_target: 3
+      lr: 0.16
+      lam: 0.25
+      anchors:
+      - 0.1614
+      - 0.1798
+    s2c: 6.9
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0613
+      end: 0.024999999999999998
+      decay: 0.725
+    margin:
+      m0: 0.14
+      target: 0.1598
+      year_target: 3
+      lr: 0.16
+      lam: 0.5
+      anchors:
+      - 0.1614
+      - 0.1798
+    s2c: 5.1
+mc:
+  sigma_growth: 0.0383
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [50.44, 51.32] (4Q FY26 실적 발표(2026-11-11) — FY27 비교 기준 매출 성장 14~16%,
+    특별항목 제외 이익률 14~16%, 순이익 약 €5B, 세전 FCF 약 €10B)
+  growth: 컨센서스 1년차 14.0%, 2년차 12.1%
+  margin: 1~2년차 컨센서스 16.1%, 18.0% 고정 → 목표 18%(3년차, 덮어쓰기) → 장기 수렴 16%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 6.0
+  range: 컨센서스 최저·최고 추정(FY2028) → 1년차 성장 6.1%~21.5%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +10.1% 아래·강세 +17.7% 위 확률. 내부 관점(컨센서스 +14.0%, σ 6.6%: 범위 15.3% ÷ d2(17) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 16%: FY29 컨센서스 18%·회사 FY30 목표 20~22%에서 사이클 정상화와 풍력(목표 8~10%)
+    몫을 감안해 낮췄다. 기본값 15%는 가스·그리드 잔고 마진 개선(FY22 이후 +12~26%p)을 반영하지 못한다(판단)'
+  shares: 완전 희석 = 기본 0.8533(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — FY26 희석 가중 주식 수 =
+    기본(851M). 자사주 FY26 €3.1B 매입, FY30까지 최대 €9B
+notes:
+- 자동 생성(build_drivers) 2026-11-22 — 데이터 묶음 2026-11-22
+- '어닝콜 위험: 4Q 가스터빈 확정 주문 약 2GW(3Q 15GW) — 예약 전환 시점이 FY27로 밀림'
+- '어닝콜 위험: 세전 FCF가 선수금·예약금에 기댄다 — FY26 계약부채 증가 €5.8B'
+- '어닝콜 위험: 지멘스 가메사 FY26 세전 FCF −€1.58B, FY27 매출 감소 가이던스'
+evidence:
+- '4Q FY26 실적 자료(2026-11-11): https://assets.siemens-energy.com/dam/23e549e5-fb37-4db4-99d3-b4ff00539ccb/ER_Q4_26_EN_final-pdf_Original%20file.pdf'
+- '4Q FY26 애널리스트 발표 자료: https://assets.siemens-energy.com/dam/991522b0-f8bd-4c08-bc2a-b4ff00538589/2026-11-11_Q4_Analyst_presentation_final_-pdf_Original%20file.pdf'
+- '3Q FY26 실적 자료(2026-08-05): https://assets.siemens-energy.com/dam/30018eed-275d-4e73-811e-b49d004cdc3d/2026-08-05-Earnings_Release_Q3_FY26_EN-pdf_Original%20file.pdf'
+- '회사 집계 컨센서스(2026-11-04): https://assets.siemens-energy.com/dam/a8069152-9950-4596-91ee-b4f8011b4957/2026-11-04-SE-Consensus_Summary---Q4-FY26-pdf_Original%20file.pdf'
+- '2025 자본시장의 날 가스 서비스 자료: https://assets.siemens-energy.com/dam/5fc093ca-4fd8-482c-8390-b39b004f66f3/251120_CMD-2025_Gas_Services_FINAL-pdf_Original%20file.pdf'
+- '미국 $1B 투자 발표(2026-02-03): https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-is-investing--1-billion-and-creating-highly-skill.html'
+- '뉘른베르크 변압기 공장 €220M 투자(2025-09-05): https://www.siemens-energy.com/global/en/home/press-releases/siemens-energy-invests--220-million.html'
+- '회사 소개 자료(2026-02): https://assets.siemens-energy.com/dam/292f4f99-1c6d-4799-aa7b-b12400fc58c9/Siemens-Energy_Company-Presentation-pdf_Original%20file.pdf'
+- '독일 연방네트워크청 장기 용량 입찰 결과(2026-11-03): https://www.bundesnetzagentur.de/SharedDocs/Pressemitteilungen/DE/2026/20261103_StromVKG.html'
+- 'IR 자료실: https://www.siemens-energy.com/global/en/home/investor-relations/publications-ad-hoc.html'
+- 라이선스 자료 요지 포함 — 외부 공유 금지
