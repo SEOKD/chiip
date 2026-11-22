@@ -186,8 +186,10 @@ def chart(it, rows, path):
 def caption(it, rows, why, c):
     lines, trend = summary(it, rows, int(c.get("months_shown", 6)))
     src = f"USITC DataWeb · 미국 {'수입' if it['flow'] == 'Import' else '수출'} · HTS {it['code']}" if it["src"] == "us" else f"일본 무역통계 · 대한국 {'수출' if it['flow'] == 'export' else '수입'} · HS {it['code']}"
-    return "\n".join([f"[Chiip Trade] {it['route']} {it['name']} — {sorted(rows)[-1]}", it["why"], "", *lines, "", trend,
-                      f"오늘 고른 이유: {why}", f"자료: {src}. 월간 통관 통계(나라·품목 합계, 회사 매출 아님)"])
+    # '오늘 고른 이유' 줄은 내보내지 않는다(2026-11-22 마스터 지시) — 고른 이유는 상태 기록에만. '자료' 앞 ■, '대한국' → '대한민국'
+    text = "\n".join([f"[Chiip Trade] {it['route']} {it['name']} — {sorted(rows)[-1]}", it["why"], "", *lines, "", trend,
+                      f"■ 자료: {src}. 월간 통관 통계(나라·품목 합계, 회사 매출 아님)"])
+    return text.replace("대한국", "대한민국")
 
 
 def memory_line():
