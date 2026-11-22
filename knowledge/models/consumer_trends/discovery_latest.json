@@ -1,49 +1,501 @@
 {
- "as_of": "2026-11-15T00:08:56+09:00",
- "day": "2026-11-15",
+ "as_of": "2026-11-22T03:40:42+09:00",
+ "day": "2026-11-22",
  "rising": {
-  "apple": [],
-  "steam": [],
+  "apple": [
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-free",
+    "rank": 6,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Quince: Luxury Essentials",
+    "artist": "Lastbrand Inc",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-free",
+    "rank": 7,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Google Home",
+    "artist": "Google",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-free",
+    "rank": 12,
+    "prev_rank": 92,
+    "kind": "급상승",
+    "name": "PlayStation App",
+    "artist": "PlayStation Mobile Inc.",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-paid",
+    "rank": 10,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Face Witness",
+    "artist": "Denis Michkarev",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-paid",
+    "rank": 20,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Little Light: Daily Gospel",
+    "artist": "BRADLEY HOGAN,RIVAS DEVINE",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-paid",
+    "rank": 24,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Satisfy: ASMR Fidget Toys",
+    "artist": "Pietro Messineo (CZ)",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 2,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Kaoポチモ！",
+    "artist": "Kao Corporation",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 7,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Qoo10(キューテン)",
+    "artist": "eBay Japan G.K.",
+    "issuer": {
+     "ticker": "EBAY",
+     "company": "이베이"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 11,
+    "prev_rank": 76,
+    "kind": "급상승",
+    "name": "UNIQLOアプリ-ユニクロアプリ",
+    "artist": "UNIQLO CO., LTD.",
+    "issuer": {
+     "ticker": "9983.T",
+     "company": "패스트리테일링"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 20,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "PUNIKKO",
+    "artist": "LIFESTYLE CO., LTD. (App)",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 25,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "イオンお買物",
+    "artist": "AEON RETAIL Co.,Ltd",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-paid",
+    "rank": 3,
+    "prev_rank": 77,
+    "kind": "급상승",
+    "name": "Auday - Watch録音とAIの振り返り",
+    "artist": "航江 郭",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-paid",
+    "rank": 15,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Trila",
+    "artist": "Yoshinori Suzuki",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-paid",
+    "rank": 19,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "BiuBiuBiu - 空気銃",
+    "artist": "承远 李",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 4,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Google Home",
+    "artist": "Google",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 8,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Flying Tiger Copenhagen Club",
+    "artist": "Flying Tiger Copenhagen",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 13,
+    "prev_rank": 65,
+    "kind": "급상승",
+    "name": "McDonald’s U.K.",
+    "artist": "McDonald's Restaurants",
+    "issuer": {
+     "ticker": "MCD",
+     "company": "맥도날드"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 18,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "PlayStation App",
+    "artist": "PlayStation Mobile Inc.",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-paid",
+    "rank": 6,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Subwhere AR",
+    "artist": "Stefan Almqvist",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-paid",
+    "rank": 14,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Face Witness",
+    "artist": "Denis Michkarev",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "de",
+    "feed": "top-free",
+    "rank": 17,
+    "prev_rank": 67,
+    "kind": "급상승",
+    "name": "Roborock",
+    "artist": "Beijing Roborock Technology Co., Ltd.",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "de",
+    "feed": "top-paid",
+    "rank": 22,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "MobileFamilyTree 11",
+    "artist": "Synium Software GmbH",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "fr",
+    "feed": "top-paid",
+    "rank": 20,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Face Witness",
+    "artist": "Denis Michkarev",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "fr",
+    "feed": "top-paid",
+    "rank": 21,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "MobileFamilyTree 11",
+    "artist": "Synium Software GmbH",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "fr",
+    "feed": "top-paid",
+    "rank": 23,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "HeartWatch: Moniteur Cardiaque",
+    "artist": "Tantsissa",
+    "issuer": null
+   }
+  ],
+  "steam": [
+   {
+    "source": "steam",
+    "country": "us",
+    "rank": 1,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "us",
+    "rank": 2,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "us",
+    "rank": 10,
+    "kind": "신규 진입",
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "publisher": "PlayStation Publishing LLC",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 1,
+    "kind": "신규 진입",
+    "name": "WITCH ON THE HOLY NIGHT",
+    "publisher": "Aniplex Inc.",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 2,
+    "kind": "신규 진입",
+    "name": "DRAGON QUEST MONSTERS: The Withered World",
+    "publisher": "Square Enix",
+    "issuer": {
+     "ticker": "9684.T",
+     "company": "스퀘어에닉스"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 3,
+    "kind": "신규 진입",
+    "name": "FINAL FANTASY VII REBIRTH",
+    "publisher": "Square Enix",
+    "issuer": {
+     "ticker": "9684.T",
+     "company": "스퀘어에닉스"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 5,
+    "kind": "신규 진입",
+    "name": "FINAL FANTASY VII REMAKE INTERGRADE",
+    "publisher": "Square Enix",
+    "issuer": {
+     "ticker": "9684.T",
+     "company": "스퀘어에닉스"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 6,
+    "kind": "신규 진입",
+    "name": "Magical Girl Witch Trials",
+    "publisher": "Re,AER|CIRCLE LINE GAMES",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 7,
+    "kind": "신규 진입",
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "publisher": "PlayStation Publishing LLC",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 9,
+    "kind": "신규 진입",
+    "name": "DEATH STRANDING 2: ON THE BEACH",
+    "publisher": "PlayStation Publishing LLC|KOJIMA PRODUCTIONS",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 1,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 2,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 3,
+    "kind": "신규 진입",
+    "name": "Grand Theft Auto V Enhanced",
+    "publisher": "Rockstar Games",
+    "issuer": {
+     "ticker": "TTWO",
+     "company": "테이크투"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 4,
+    "kind": "신규 진입",
+    "name": "Grand Theft Auto V Enhanced",
+    "publisher": "Rockstar Games",
+    "issuer": {
+     "ticker": "TTWO",
+     "company": "테이크투"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 5,
+    "kind": "신규 진입",
+    "name": "Steam Controller",
+    "publisher": "Valve",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 6,
+    "kind": "신규 진입",
+    "name": "EA SPORTS FC™ 27",
+    "publisher": "Electronic Arts",
+    "issuer": {
+     "ticker": "EA",
+     "company": "일렉트로닉아츠"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 9,
+    "kind": "신규 진입",
+    "name": "Forza Horizon 6",
+    "publisher": "Xbox Game Studios",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 10,
+    "kind": "신규 진입",
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "publisher": "PlayStation Publishing LLC",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   }
+  ],
   "wiki": [
    {
     "source": "wiki",
     "project": "en.wikipedia",
-    "title": "The Legend of Zelda: Ocarina of Time",
-    "views7": 148997,
-    "base7": 34203,
-    "accel": 4.4,
-    "brand": {
-     "ticker": "7974.T",
-     "company": "닌텐도",
-     "term": "the legend of zelda",
-     "group": "f0"
-    },
-    "kind": "브랜드",
-    "through": "2026-11-13"
-   },
-   {
-    "source": "wiki",
-    "project": "en.wikipedia",
-    "title": "The Legend of Zelda: Ocarina of Time (2026 video game)",
-    "views7": 128961,
-    "base7": 33027,
-    "accel": 3.9,
-    "brand": {
-     "ticker": "7974.T",
-     "company": "닌텐도",
-     "term": "the legend of zelda",
-     "group": "f0"
-    },
-    "kind": "브랜드",
-    "through": "2026-11-13"
-   },
-   {
-    "source": "wiki",
-    "project": "en.wikipedia",
-    "title": "Grand Theft Auto V",
-    "views7": 103440,
-    "base7": 26425,
-    "accel": 3.9,
+    "title": "Grand Theft Auto (video game)",
+    "views7": 146807,
+    "base7": 0,
+    "accel": 146808.0,
     "brand": {
      "ticker": "TTWO",
      "company": "테이크투",
@@ -51,31 +503,63 @@
      "group": "f9"
     },
     "kind": "브랜드",
-    "through": "2026-11-13"
+    "through": "2026-11-20"
    },
    {
     "source": "wiki",
-    "project": "ja.wikipedia",
-    "title": "ゼルダの伝説 時のオカリナ",
-    "views7": 54590,
-    "base7": 13054,
-    "accel": 4.2,
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto: Vice City",
+    "views7": 146227,
+    "base7": 0,
+    "accel": 146228.0,
     "brand": {
-     "ticker": "7974.T",
-     "company": "닌텐도",
-     "term": "ゼルダの伝説",
-     "group": "f0"
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
     },
     "kind": "브랜드",
-    "through": "2026-11-13"
+    "through": "2026-11-20"
    },
    {
     "source": "wiki",
-    "project": "de.wikipedia",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto: San Andreas",
+    "views7": 145198,
+    "base7": 0,
+    "accel": 145199.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto III",
+    "views7": 126653,
+    "base7": 0,
+    "accel": 126654.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
     "title": "Grand Theft Auto VI",
-    "views7": 48397,
-    "base7": 9277,
-    "accel": 5.2,
+    "views7": 2225340,
+    "base7": 201964,
+    "accel": 11.0,
     "brand": {
      "ticker": "TTWO",
      "company": "테이크투",
@@ -83,80 +567,251 @@
      "group": "b26"
     },
     "kind": "브랜드",
-    "through": "2026-11-13"
-   }
-  ],
-  "trends": [
+    "through": "2026-11-20"
+   },
    {
-    "source": "trends",
-    "geo": "DE",
-    "query": "gta 6 deal",
-    "traffic": 500,
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto IV",
+    "views7": 177095,
+    "base7": 2069,
+    "accel": 85.5,
     "brand": {
      "ticker": "TTWO",
      "company": "테이크투",
-     "term": "gta 6",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto",
+    "views7": 535201,
+    "base7": 23788,
+    "accel": 22.5,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 384551,
+    "base7": 46845,
+    "accel": 8.2,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto",
+    "views7": 116868,
+    "base7": 6099,
+    "accel": 19.2,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto VI",
+    "views7": 204086,
+    "base7": 20399,
+    "accel": 10.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto vi",
      "group": "b26"
-    }
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 50605,
+    "base7": 3644,
+    "accel": 13.9,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "fr.wikipedia",
+    "title": "Grand Theft Auto",
+    "views7": 81403,
+    "base7": 3492,
+    "accel": 23.3,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "fr.wikipedia",
+    "title": "Grand Theft Auto VI",
+    "views7": 123646,
+    "base7": 13820,
+    "accel": 8.9,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto vi",
+     "group": "b26"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "fr.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 40581,
+    "base7": 8044,
+    "accel": 5.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
    }
-  ]
+  ],
+  "trends": []
  },
  "alerts": [
   {
-   "source": "wiki",
-   "project": "en.wikipedia",
-   "title": "The Legend of Zelda: Ocarina of Time",
-   "views7": 148997,
-   "base7": 34203,
-   "accel": 4.4,
-   "brand": {
-    "ticker": "7974.T",
-    "company": "닌텐도",
-    "term": "the legend of zelda",
-    "group": "f0"
+   "source": "apple",
+   "country": "jp",
+   "feed": "top-free",
+   "rank": 7,
+   "prev_rank": null,
+   "kind": "신규 진입",
+   "name": "Qoo10(キューテン)",
+   "artist": "eBay Japan G.K.",
+   "issuer": {
+    "ticker": "EBAY",
+    "company": "이베이"
    },
-   "kind": "브랜드",
-   "through": "2026-11-13",
-   "also_wikis": [
-    "ja"
-   ],
-   "headline": "닌텐도 'The Legend of Zelda: Ocarina o' 위키(en) 7일 조회 148,997 ×4.4 · ja 위키도 급증"
+   "headline": "이베이 앱 'Qoo10(キューテン)' JP 무료 7위 신규 진입"
   },
   {
-   "source": "wiki",
-   "project": "en.wikipedia",
-   "title": "Grand Theft Auto V",
-   "views7": 103440,
-   "base7": 26425,
-   "accel": 3.9,
-   "brand": {
-    "ticker": "TTWO",
-    "company": "테이크투",
-    "term": "grand theft auto",
-    "group": "f9"
+   "source": "steam",
+   "country": "us",
+   "rank": 10,
+   "kind": "신규 진입",
+   "name": "Ghost of Tsushima DIRECTOR'S CUT",
+   "publisher": "PlayStation Publishing LLC",
+   "issuer": {
+    "ticker": "SONY/6758.T",
+    "company": "소니"
    },
-   "kind": "브랜드",
-   "through": "2026-11-13",
-   "also_wikis": [
-    "de"
-   ],
-   "headline": "테이크투 'Grand Theft Auto V' 위키(en) 7일 조회 103,440 ×3.9 · de 위키도 급증"
+   "headline": "소니 게임 'Ghost of Tsushima DIRECTOR'S C' 스팀 US 판매 10위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 2,
+   "kind": "신규 진입",
+   "name": "DRAGON QUEST MONSTERS: The Withered World",
+   "publisher": "Square Enix",
+   "issuer": {
+    "ticker": "9684.T",
+    "company": "스퀘어에닉스"
+   },
+   "headline": "스퀘어에닉스 게임 'DRAGON QUEST MONSTERS: The Wit' 스팀 JP 판매 2위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 3,
+   "kind": "신규 진입",
+   "name": "FINAL FANTASY VII REBIRTH",
+   "publisher": "Square Enix",
+   "issuer": {
+    "ticker": "9684.T",
+    "company": "스퀘어에닉스"
+   },
+   "headline": "스퀘어에닉스 게임 'FINAL FANTASY VII REBIRTH' 스팀 JP 판매 3위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 5,
+   "kind": "신규 진입",
+   "name": "FINAL FANTASY VII REMAKE INTERGRADE",
+   "publisher": "Square Enix",
+   "issuer": {
+    "ticker": "9684.T",
+    "company": "스퀘어에닉스"
+   },
+   "headline": "스퀘어에닉스 게임 'FINAL FANTASY VII REMAKE INTER' 스팀 JP 판매 5위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 7,
+   "kind": "신규 진입",
+   "name": "Ghost of Tsushima DIRECTOR'S CUT",
+   "publisher": "PlayStation Publishing LLC",
+   "issuer": {
+    "ticker": "SONY/6758.T",
+    "company": "소니"
+   },
+   "headline": "소니 게임 'Ghost of Tsushima DIRECTOR'S C' 스팀 JP 판매 7위 신규 진입"
   }
  ],
  "baseline_days": {
-  "apple": 2,
-  "steam": 2,
-  "wiki": 36,
-  "trends": 2
+  "apple": 9,
+  "steam": 9,
+  "wiki": 43,
+  "trends": 9
  },
  "baseline_from": {
-  "apple": null,
-  "steam": null
+  "apple": "2026-11-15",
+  "steam": "2026-11-15"
  },
  "collected": {
   "apple": 10,
   "steam": 30,
-  "wiki": 10,
+  "wiki": 4,
   "trends": 50
  },
  "errors": [],

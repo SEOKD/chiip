@@ -1,18 +1,18 @@
 {
- "day": "2026-11-15",
- "macro_as_of": "2026-11-15T06:37:21+09:00",
- "discovery_as_of": "2026-11-15T00:08:56+09:00",
+ "day": "2026-11-22",
+ "macro_as_of": "2026-11-22T07:38:10+09:00",
+ "discovery_as_of": "2026-11-22T03:40:42+09:00",
  "heat": {
   "us": [
    {
     "id": "us-sporting",
     "name": "스포츠·취미·악기·서점",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0934,
-    "accel_pp": -2.26,
-    "z": 1.67,
-    "real_yoy3": 0.0504,
+    "month": "2026-10",
+    "yoy3": 0.0914,
+    "accel_pp": -1.55,
+    "z": 1.7,
+    "real_yoy3": null,
     "flag": null,
     "noisy": false,
     "exposure": [
@@ -24,61 +24,13 @@
     ]
    },
    {
-    "id": "us-misc",
-    "name": "기타 소매(펫·선물 등)",
-    "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.1298,
-    "accel_pp": 2.73,
-    "z": 0.82,
-    "real_yoy3": null,
-    "flag": null,
-    "noisy": false,
-    "exposure": [
-     "CHWY",
-     "PETS",
-     "FIVE"
-    ]
-   },
-   {
-    "id": "us-building",
-    "name": "건자재·원예",
-    "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0516,
-    "accel_pp": 0.88,
-    "z": 0.59,
-    "real_yoy3": null,
-    "flag": null,
-    "noisy": false,
-    "exposure": [
-     "HD",
-     "LOW"
-    ]
-   },
-   {
-    "id": "us-electronics",
-    "name": "전자·가전점",
-    "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0761,
-    "accel_pp": 0.51,
-    "z": 0.57,
-    "real_yoy3": 0.0397,
-    "flag": null,
-    "noisy": false,
-    "exposure": [
-     "BBY"
-    ]
-   },
-   {
     "id": "us-nonstore",
     "name": "무점포(온라인 포함)",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0753,
-    "accel_pp": -1.64,
-    "z": 0.22,
+    "month": "2026-10",
+    "yoy3": 0.1037,
+    "accel_pp": 1.72,
+    "z": 1.49,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -92,13 +44,78 @@
     ]
    },
    {
+    "id": "us-misc",
+    "name": "기타 소매(펫·선물 등)",
+    "region": "미국",
+    "month": "2026-10",
+    "yoy3": 0.1374,
+    "accel_pp": 3.67,
+    "z": 1.05,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CHWY",
+     "PETS",
+     "FIVE"
+    ]
+   },
+   {
+    "id": "us-electronics",
+    "name": "전자·가전점",
+    "region": "미국",
+    "month": "2026-10",
+    "yoy3": 0.0824,
+    "accel_pp": 2.01,
+    "z": 0.94,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "BBY"
+    ]
+   },
+   {
+    "id": "us-building",
+    "name": "건자재·원예",
+    "region": "미국",
+    "month": "2026-10",
+    "yoy3": 0.05,
+    "accel_pp": -0.27,
+    "z": 0.59,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "HD",
+     "LOW"
+    ]
+   },
+   {
+    "id": "us-furniture",
+    "name": "가구·인테리어",
+    "region": "미국",
+    "month": "2026-10",
+    "yoy3": 0.0319,
+    "accel_pp": 4.43,
+    "z": 0.57,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "RH",
+     "WSM",
+     "W"
+    ]
+   },
+   {
     "id": "us-total",
     "name": "소매+외식 합계",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0546,
-    "accel_pp": -0.11,
-    "z": 0.06,
+    "month": "2026-10",
+    "yoy3": 0.0637,
+    "accel_pp": 0.66,
+    "z": 0.31,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -108,10 +125,10 @@
     "id": "us-genmerch",
     "name": "종합소매(할인점·창고형)",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0415,
-    "accel_pp": 0.26,
-    "z": 0.05,
+    "month": "2026-10",
+    "yoy3": 0.0416,
+    "accel_pp": 0.2,
+    "z": 0.07,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -127,31 +144,14 @@
     ]
    },
    {
-    "id": "us-furniture",
-    "name": "가구·인테리어",
-    "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0028,
-    "accel_pp": 1.56,
-    "z": 0.0,
-    "real_yoy3": null,
-    "flag": null,
-    "noisy": false,
-    "exposure": [
-     "RH",
-     "WSM",
-     "W"
-    ]
-   },
-   {
     "id": "us-clothing",
     "name": "의류·잡화점",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.045,
-    "accel_pp": -0.73,
-    "z": -0.18,
-    "real_yoy3": 0.0088,
+    "month": "2026-10",
+    "yoy3": 0.044,
+    "accel_pp": -0.43,
+    "z": -0.14,
+    "real_yoy3": null,
     "flag": null,
     "noisy": false,
     "exposure": [
@@ -169,11 +169,11 @@
     "id": "us-foodsvc",
     "name": "외식·주점",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.0599,
-    "accel_pp": 2.26,
-    "z": -0.4,
-    "real_yoy3": 0.0258,
+    "month": "2026-10",
+    "yoy3": 0.0652,
+    "accel_pp": 1.96,
+    "z": -0.32,
+    "real_yoy3": null,
     "flag": null,
     "noisy": false,
     "exposure": [
@@ -192,11 +192,11 @@
     "id": "us-grocery",
     "name": "식품·음료점",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": 0.006,
-    "accel_pp": -0.93,
-    "z": -1.15,
-    "real_yoy3": -0.0157,
+    "month": "2026-10",
+    "yoy3": 0.0076,
+    "accel_pp": -0.54,
+    "z": -1.07,
+    "real_yoy3": null,
     "flag": null,
     "noisy": false,
     "exposure": [
@@ -209,10 +209,10 @@
     "id": "us-health",
     "name": "건강·개인용품점(드럭·화장품)",
     "region": "미국",
-    "month": "2026-09",
-    "yoy3": -0.0142,
-    "accel_pp": 0.45,
-    "z": -2.1,
+    "month": "2026-10",
+    "yoy3": -0.0016,
+    "accel_pp": 1.73,
+    "z": -1.65,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -595,9 +595,9 @@
     "id": "jp-inb-hk",
     "name": "방일객 홍콩",
     "region": "일본",
-    "month": "2026-09",
-    "yoy3": 0.2053,
-    "accel_pp": 16.56,
+    "month": "2026-10",
+    "yoy3": 0.0406,
+    "accel_pp": -25.59,
     "z": -0.32,
     "real_yoy3": null,
     "flag": null,
@@ -608,9 +608,9 @@
     "id": "jp-inb-kr",
     "name": "방일객 한국",
     "region": "일본",
-    "month": "2026-09",
-    "yoy3": 0.2873,
-    "accel_pp": 13.82,
+    "month": "2026-10",
+    "yoy3": 0.241,
+    "accel_pp": 6.25,
     "z": -0.34,
     "real_yoy3": null,
     "flag": null,
@@ -621,9 +621,9 @@
     "id": "jp-inb-tw",
     "name": "방일객 대만",
     "region": "일본",
-    "month": "2026-09",
-    "yoy3": 0.1561,
-    "accel_pp": -0.62,
+    "month": "2026-10",
+    "yoy3": 0.0875,
+    "accel_pp": -9.97,
     "z": -0.4,
     "real_yoy3": null,
     "flag": null,
@@ -634,10 +634,10 @@
     "id": "jp-inb-total",
     "name": "방일객 합계",
     "region": "일본",
-    "month": "2026-09",
-    "yoy3": -0.0481,
-    "accel_pp": 0.46,
-    "z": -0.45,
+    "month": "2026-10",
+    "yoy3": -0.045,
+    "accel_pp": -1.1,
+    "z": -0.44,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -653,10 +653,10 @@
     "id": "jp-inb-us",
     "name": "방일객 미국",
     "region": "일본",
-    "month": "2026-09",
-    "yoy3": 0.0067,
-    "accel_pp": -2.74,
-    "z": -0.48,
+    "month": "2026-10",
+    "yoy3": 0.0151,
+    "accel_pp": -2.79,
+    "z": -0.47,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -666,10 +666,10 @@
     "id": "jp-inb-cn",
     "name": "방일객 중국",
     "region": "일본",
-    "month": "2026-09",
-    "yoy3": -0.5388,
-    "accel_pp": 4.28,
-    "z": -0.85,
+    "month": "2026-10",
+    "yoy3": -0.5106,
+    "accel_pp": 6.71,
+    "z": -0.83,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -858,9 +858,9 @@
     "name": "독일 식품·음료·담배",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": -0.0042,
-    "accel_pp": -0.14,
-    "z": 0.31,
+    "yoy3": -0.0035,
+    "accel_pp": -0.18,
+    "z": 0.32,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -982,9 +982,9 @@
     "name": "독일 문화·레저 용품(책·스포츠·장난감)",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": 0.0095,
-    "accel_pp": -0.61,
-    "z": 0.1,
+    "yoy3": 0.0109,
+    "accel_pp": -0.5,
+    "z": 0.11,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -998,8 +998,8 @@
     "name": "독일 가정용품 전문점(가구·가전·철물)",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": -0.0162,
-    "accel_pp": 0.06,
+    "yoy3": -0.0166,
+    "accel_pp": -0.06,
     "z": 0.08,
     "real_yoy3": null,
     "flag": null,
@@ -1039,9 +1039,9 @@
     "name": "독일 통신판매·온라인",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": 0.0277,
-    "accel_pp": -2.4,
-    "z": -0.04,
+    "yoy3": 0.0254,
+    "accel_pp": -2.69,
+    "z": -0.07,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1093,6 +1093,22 @@
     "exposure": []
    },
    {
+    "id": "eu-de-electronics",
+    "name": "독일 정보통신기기 전문점",
+    "region": "독일",
+    "month": "2026-09",
+    "yoy3": 0.0106,
+    "accel_pp": -12.57,
+    "z": -0.17,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": [
+     "CEC.DE 세코노미(미디어마크트)",
+     "FNAC.PA 프낙다르티"
+    ]
+   },
+   {
     "id": "eu-fr-nonfood",
     "name": "프랑스 비식품(연료 제외)",
     "region": "프랑스",
@@ -1104,22 +1120,6 @@
     "flag": null,
     "noisy": false,
     "exposure": []
-   },
-   {
-    "id": "eu-de-electronics",
-    "name": "독일 정보통신기기 전문점",
-    "region": "독일",
-    "month": "2026-09",
-    "yoy3": 0.0045,
-    "accel_pp": -13.24,
-    "z": -0.24,
-    "real_yoy3": null,
-    "flag": null,
-    "noisy": false,
-    "exposure": [
-     "CEC.DE 세코노미(미디어마크트)",
-     "FNAC.PA 프낙다르티"
-    ]
    },
    {
     "id": "eu-fr-sporting_hobby",
@@ -1247,9 +1247,9 @@
     "name": "독일 소매 합계(연료 제외)",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": -0.0136,
-    "accel_pp": -2.81,
-    "z": -0.51,
+    "yoy3": -0.0126,
+    "accel_pp": -2.78,
+    "z": -0.48,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1312,9 +1312,9 @@
     "name": "독일 비식품(연료 제외)",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": -0.0193,
-    "accel_pp": -4.45,
-    "z": -0.75,
+    "yoy3": -0.0184,
+    "accel_pp": -4.39,
+    "z": -0.73,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1382,9 +1382,9 @@
     "name": "독일 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
     "region": "독일",
     "month": "2026-09",
-    "yoy3": -0.0583,
-    "accel_pp": -8.37,
-    "z": -1.56,
+    "yoy3": -0.0562,
+    "accel_pp": -8.15,
+    "z": -1.53,
     "real_yoy3": null,
     "flag": "down",
     "noisy": false,
@@ -1439,23 +1439,10 @@
     "id": "uk-nonstore",
     "name": "무점포 판매액(원계열 지수)",
     "region": "영국",
-    "month": "2026-09",
-    "yoy3": 0.0847,
-    "accel_pp": -2.54,
-    "z": 1.36,
-    "real_yoy3": null,
-    "flag": null,
-    "noisy": false,
-    "exposure": []
-   },
-   {
-    "id": "uk-household",
-    "name": "가정용품점 판매량",
-    "region": "영국",
-    "month": "2026-09",
-    "yoy3": 0.0527,
-    "accel_pp": -1.83,
-    "z": 1.08,
+    "month": "2026-10",
+    "yoy3": 0.1133,
+    "accel_pp": 0.17,
+    "z": 1.8,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1465,10 +1452,10 @@
     "id": "uk-food",
     "name": "식품점 판매량",
     "region": "영국",
-    "month": "2026-09",
-    "yoy3": 0.0003,
-    "accel_pp": -0.43,
-    "z": 0.96,
+    "month": "2026-10",
+    "yoy3": 0.0073,
+    "accel_pp": 0.6,
+    "z": 1.27,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1479,13 +1466,26 @@
     ]
    },
    {
+    "id": "uk-household",
+    "name": "가정용품점 판매량",
+    "region": "영국",
+    "month": "2026-10",
+    "yoy3": 0.0333,
+    "accel_pp": -3.4,
+    "z": 1.07,
+    "real_yoy3": null,
+    "flag": null,
+    "noisy": false,
+    "exposure": []
+   },
+   {
     "id": "uk-total",
     "name": "소매 판매량 합계(SA 지수)",
     "region": "영국",
-    "month": "2026-09",
-    "yoy3": 0.0154,
-    "accel_pp": -0.35,
-    "z": 0.65,
+    "month": "2026-10",
+    "yoy3": 0.0174,
+    "accel_pp": -0.41,
+    "z": 0.82,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1495,10 +1495,10 @@
     "id": "uk-nonfood",
     "name": "비식품점 판매량",
     "region": "영국",
-    "month": "2026-09",
-    "yoy3": 0.0257,
-    "accel_pp": -1.7,
-    "z": 0.09,
+    "month": "2026-10",
+    "yoy3": 0.015,
+    "accel_pp": -2.93,
+    "z": 0.04,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1508,10 +1508,10 @@
     "id": "uk-clothing",
     "name": "의류·신발점 판매량",
     "region": "영국",
-    "month": "2026-09",
-    "yoy3": 0.004,
-    "accel_pp": -5.37,
-    "z": -0.39,
+    "month": "2026-10",
+    "yoy3": -0.0103,
+    "accel_pp": -6.1,
+    "z": -0.46,
     "real_yoy3": null,
     "flag": null,
     "noisy": false,
@@ -1546,9 +1546,9 @@
    "name": "독일 기타 상품 전문점(의류·신발·화장품·약국·시계 등)",
    "region": "독일",
    "month": "2026-09",
-   "yoy3": -0.0583,
-   "accel_pp": -8.37,
-   "z": -1.56,
+   "yoy3": -0.0562,
+   "accel_pp": -8.15,
+   "z": -1.53,
    "real_yoy3": null,
    "flag": "down",
    "noisy": false,
@@ -1646,89 +1646,581 @@
  ],
  "alerts": [
   {
-   "source": "wiki",
-   "project": "en.wikipedia",
-   "title": "The Legend of Zelda: Ocarina of Time",
-   "views7": 148997,
-   "base7": 34203,
-   "accel": 4.4,
-   "brand": {
-    "ticker": "7974.T",
-    "company": "닌텐도",
-    "term": "the legend of zelda",
-    "group": "f0"
+   "source": "apple",
+   "country": "jp",
+   "feed": "top-free",
+   "rank": 7,
+   "prev_rank": null,
+   "kind": "신규 진입",
+   "name": "Qoo10(キューテン)",
+   "artist": "eBay Japan G.K.",
+   "issuer": {
+    "ticker": "EBAY",
+    "company": "이베이"
    },
-   "kind": "브랜드",
-   "through": "2026-11-13",
-   "also_wikis": [
-    "ja"
-   ],
-   "headline": "닌텐도 'The Legend of Zelda: Ocarina o' 위키(en) 7일 조회 148,997 ×4.4 · ja 위키도 급증"
+   "headline": "이베이 앱 'Qoo10(キューテン)' JP 무료 7위 신규 진입"
   },
   {
-   "source": "wiki",
-   "project": "en.wikipedia",
-   "title": "Grand Theft Auto V",
-   "views7": 103440,
-   "base7": 26425,
-   "accel": 3.9,
-   "brand": {
-    "ticker": "TTWO",
-    "company": "테이크투",
-    "term": "grand theft auto",
-    "group": "f9"
+   "source": "steam",
+   "country": "us",
+   "rank": 10,
+   "kind": "신규 진입",
+   "name": "Ghost of Tsushima DIRECTOR'S CUT",
+   "publisher": "PlayStation Publishing LLC",
+   "issuer": {
+    "ticker": "SONY/6758.T",
+    "company": "소니"
    },
-   "kind": "브랜드",
-   "through": "2026-11-13",
-   "also_wikis": [
-    "de"
-   ],
-   "headline": "테이크투 'Grand Theft Auto V' 위키(en) 7일 조회 103,440 ×3.9 · de 위키도 급증"
+   "headline": "소니 게임 'Ghost of Tsushima DIRECTOR'S C' 스팀 US 판매 10위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 2,
+   "kind": "신규 진입",
+   "name": "DRAGON QUEST MONSTERS: The Withered World",
+   "publisher": "Square Enix",
+   "issuer": {
+    "ticker": "9684.T",
+    "company": "스퀘어에닉스"
+   },
+   "headline": "스퀘어에닉스 게임 'DRAGON QUEST MONSTERS: The Wit' 스팀 JP 판매 2위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 3,
+   "kind": "신규 진입",
+   "name": "FINAL FANTASY VII REBIRTH",
+   "publisher": "Square Enix",
+   "issuer": {
+    "ticker": "9684.T",
+    "company": "스퀘어에닉스"
+   },
+   "headline": "스퀘어에닉스 게임 'FINAL FANTASY VII REBIRTH' 스팀 JP 판매 3위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 5,
+   "kind": "신규 진입",
+   "name": "FINAL FANTASY VII REMAKE INTERGRADE",
+   "publisher": "Square Enix",
+   "issuer": {
+    "ticker": "9684.T",
+    "company": "스퀘어에닉스"
+   },
+   "headline": "스퀘어에닉스 게임 'FINAL FANTASY VII REMAKE INTER' 스팀 JP 판매 5위 신규 진입"
+  },
+  {
+   "source": "steam",
+   "country": "jp",
+   "rank": 7,
+   "kind": "신규 진입",
+   "name": "Ghost of Tsushima DIRECTOR'S CUT",
+   "publisher": "PlayStation Publishing LLC",
+   "issuer": {
+    "ticker": "SONY/6758.T",
+    "company": "소니"
+   },
+   "headline": "소니 게임 'Ghost of Tsushima DIRECTOR'S C' 스팀 JP 판매 7위 신규 진입"
   }
  ],
  "rising": {
-  "apple": [],
-  "steam": [],
+  "apple": [
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-free",
+    "rank": 6,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Quince: Luxury Essentials",
+    "artist": "Lastbrand Inc",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-free",
+    "rank": 7,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Google Home",
+    "artist": "Google",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-free",
+    "rank": 12,
+    "prev_rank": 92,
+    "kind": "급상승",
+    "name": "PlayStation App",
+    "artist": "PlayStation Mobile Inc.",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-paid",
+    "rank": 10,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Face Witness",
+    "artist": "Denis Michkarev",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-paid",
+    "rank": 20,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Little Light: Daily Gospel",
+    "artist": "BRADLEY HOGAN,RIVAS DEVINE",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "us",
+    "feed": "top-paid",
+    "rank": 24,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Satisfy: ASMR Fidget Toys",
+    "artist": "Pietro Messineo (CZ)",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 2,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Kaoポチモ！",
+    "artist": "Kao Corporation",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 7,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Qoo10(キューテン)",
+    "artist": "eBay Japan G.K.",
+    "issuer": {
+     "ticker": "EBAY",
+     "company": "이베이"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 11,
+    "prev_rank": 76,
+    "kind": "급상승",
+    "name": "UNIQLOアプリ-ユニクロアプリ",
+    "artist": "UNIQLO CO., LTD.",
+    "issuer": {
+     "ticker": "9983.T",
+     "company": "패스트리테일링"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 20,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "PUNIKKO",
+    "artist": "LIFESTYLE CO., LTD. (App)",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-free",
+    "rank": 25,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "イオンお買物",
+    "artist": "AEON RETAIL Co.,Ltd",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-paid",
+    "rank": 3,
+    "prev_rank": 77,
+    "kind": "급상승",
+    "name": "Auday - Watch録音とAIの振り返り",
+    "artist": "航江 郭",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-paid",
+    "rank": 15,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Trila",
+    "artist": "Yoshinori Suzuki",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "jp",
+    "feed": "top-paid",
+    "rank": 19,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "BiuBiuBiu - 空気銃",
+    "artist": "承远 李",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 4,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Google Home",
+    "artist": "Google",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 8,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Flying Tiger Copenhagen Club",
+    "artist": "Flying Tiger Copenhagen",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 13,
+    "prev_rank": 65,
+    "kind": "급상승",
+    "name": "McDonald’s U.K.",
+    "artist": "McDonald's Restaurants",
+    "issuer": {
+     "ticker": "MCD",
+     "company": "맥도날드"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-free",
+    "rank": 18,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "PlayStation App",
+    "artist": "PlayStation Mobile Inc.",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-paid",
+    "rank": 6,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Subwhere AR",
+    "artist": "Stefan Almqvist",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "gb",
+    "feed": "top-paid",
+    "rank": 14,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Face Witness",
+    "artist": "Denis Michkarev",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "de",
+    "feed": "top-free",
+    "rank": 17,
+    "prev_rank": 67,
+    "kind": "급상승",
+    "name": "Roborock",
+    "artist": "Beijing Roborock Technology Co., Ltd.",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "de",
+    "feed": "top-paid",
+    "rank": 22,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "MobileFamilyTree 11",
+    "artist": "Synium Software GmbH",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "fr",
+    "feed": "top-paid",
+    "rank": 20,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "Face Witness",
+    "artist": "Denis Michkarev",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "fr",
+    "feed": "top-paid",
+    "rank": 21,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "MobileFamilyTree 11",
+    "artist": "Synium Software GmbH",
+    "issuer": null
+   },
+   {
+    "source": "apple",
+    "country": "fr",
+    "feed": "top-paid",
+    "rank": 23,
+    "prev_rank": null,
+    "kind": "신규 진입",
+    "name": "HeartWatch: Moniteur Cardiaque",
+    "artist": "Tantsissa",
+    "issuer": null
+   }
+  ],
+  "steam": [
+   {
+    "source": "steam",
+    "country": "us",
+    "rank": 1,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "us",
+    "rank": 2,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "us",
+    "rank": 10,
+    "kind": "신규 진입",
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "publisher": "PlayStation Publishing LLC",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 1,
+    "kind": "신규 진입",
+    "name": "WITCH ON THE HOLY NIGHT",
+    "publisher": "Aniplex Inc.",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 2,
+    "kind": "신규 진입",
+    "name": "DRAGON QUEST MONSTERS: The Withered World",
+    "publisher": "Square Enix",
+    "issuer": {
+     "ticker": "9684.T",
+     "company": "스퀘어에닉스"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 3,
+    "kind": "신규 진입",
+    "name": "FINAL FANTASY VII REBIRTH",
+    "publisher": "Square Enix",
+    "issuer": {
+     "ticker": "9684.T",
+     "company": "스퀘어에닉스"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 5,
+    "kind": "신규 진입",
+    "name": "FINAL FANTASY VII REMAKE INTERGRADE",
+    "publisher": "Square Enix",
+    "issuer": {
+     "ticker": "9684.T",
+     "company": "스퀘어에닉스"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 6,
+    "kind": "신규 진입",
+    "name": "Magical Girl Witch Trials",
+    "publisher": "Re,AER|CIRCLE LINE GAMES",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 7,
+    "kind": "신규 진입",
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "publisher": "PlayStation Publishing LLC",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "jp",
+    "rank": 9,
+    "kind": "신규 진입",
+    "name": "DEATH STRANDING 2: ON THE BEACH",
+    "publisher": "PlayStation Publishing LLC|KOJIMA PRODUCTIONS",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 1,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 2,
+    "kind": "신규 진입",
+    "name": "Steam Machine",
+    "publisher": "",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 3,
+    "kind": "신규 진입",
+    "name": "Grand Theft Auto V Enhanced",
+    "publisher": "Rockstar Games",
+    "issuer": {
+     "ticker": "TTWO",
+     "company": "테이크투"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 4,
+    "kind": "신규 진입",
+    "name": "Grand Theft Auto V Enhanced",
+    "publisher": "Rockstar Games",
+    "issuer": {
+     "ticker": "TTWO",
+     "company": "테이크투"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 5,
+    "kind": "신규 진입",
+    "name": "Steam Controller",
+    "publisher": "Valve",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 6,
+    "kind": "신규 진입",
+    "name": "EA SPORTS FC™ 27",
+    "publisher": "Electronic Arts",
+    "issuer": {
+     "ticker": "EA",
+     "company": "일렉트로닉아츠"
+    }
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 9,
+    "kind": "신규 진입",
+    "name": "Forza Horizon 6",
+    "publisher": "Xbox Game Studios",
+    "issuer": null
+   },
+   {
+    "source": "steam",
+    "country": "de",
+    "rank": 10,
+    "kind": "신규 진입",
+    "name": "Ghost of Tsushima DIRECTOR'S CUT",
+    "publisher": "PlayStation Publishing LLC",
+    "issuer": {
+     "ticker": "SONY/6758.T",
+     "company": "소니"
+    }
+   }
+  ],
   "wiki": [
    {
     "source": "wiki",
     "project": "en.wikipedia",
-    "title": "The Legend of Zelda: Ocarina of Time",
-    "views7": 148997,
-    "base7": 34203,
-    "accel": 4.4,
-    "brand": {
-     "ticker": "7974.T",
-     "company": "닌텐도",
-     "term": "the legend of zelda",
-     "group": "f0"
-    },
-    "kind": "브랜드",
-    "through": "2026-11-13"
-   },
-   {
-    "source": "wiki",
-    "project": "en.wikipedia",
-    "title": "The Legend of Zelda: Ocarina of Time (2026 video game)",
-    "views7": 128961,
-    "base7": 33027,
-    "accel": 3.9,
-    "brand": {
-     "ticker": "7974.T",
-     "company": "닌텐도",
-     "term": "the legend of zelda",
-     "group": "f0"
-    },
-    "kind": "브랜드",
-    "through": "2026-11-13"
-   },
-   {
-    "source": "wiki",
-    "project": "en.wikipedia",
-    "title": "Grand Theft Auto V",
-    "views7": 103440,
-    "base7": 26425,
-    "accel": 3.9,
+    "title": "Grand Theft Auto (video game)",
+    "views7": 146807,
+    "base7": 0,
+    "accel": 146808.0,
     "brand": {
      "ticker": "TTWO",
      "company": "테이크투",
@@ -1736,31 +2228,63 @@
      "group": "f9"
     },
     "kind": "브랜드",
-    "through": "2026-11-13"
+    "through": "2026-11-20"
    },
    {
     "source": "wiki",
-    "project": "ja.wikipedia",
-    "title": "ゼルダの伝説 時のオカリナ",
-    "views7": 54590,
-    "base7": 13054,
-    "accel": 4.2,
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto: Vice City",
+    "views7": 146227,
+    "base7": 0,
+    "accel": 146228.0,
     "brand": {
-     "ticker": "7974.T",
-     "company": "닌텐도",
-     "term": "ゼルダの伝説",
-     "group": "f0"
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
     },
     "kind": "브랜드",
-    "through": "2026-11-13"
+    "through": "2026-11-20"
    },
    {
     "source": "wiki",
-    "project": "de.wikipedia",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto: San Andreas",
+    "views7": 145198,
+    "base7": 0,
+    "accel": 145199.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto III",
+    "views7": 126653,
+    "base7": 0,
+    "accel": 126654.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
     "title": "Grand Theft Auto VI",
-    "views7": 48397,
-    "base7": 9277,
-    "accel": 5.2,
+    "views7": 2225340,
+    "base7": 201964,
+    "accel": 11.0,
     "brand": {
      "ticker": "TTWO",
      "company": "테이크투",
@@ -1768,29 +2292,160 @@
      "group": "b26"
     },
     "kind": "브랜드",
-    "through": "2026-11-13"
-   }
-  ],
-  "trends": [
+    "through": "2026-11-20"
+   },
    {
-    "source": "trends",
-    "geo": "DE",
-    "query": "gta 6 deal",
-    "traffic": 500,
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto IV",
+    "views7": 177095,
+    "base7": 2069,
+    "accel": 85.5,
     "brand": {
      "ticker": "TTWO",
      "company": "테이크투",
-     "term": "gta 6",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto",
+    "views7": 535201,
+    "base7": 23788,
+    "accel": 22.5,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "en.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 384551,
+    "base7": 46845,
+    "accel": 8.2,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto",
+    "views7": 116868,
+    "base7": 6099,
+    "accel": 19.2,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto VI",
+    "views7": 204086,
+    "base7": 20399,
+    "accel": 10.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto vi",
      "group": "b26"
-    }
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "de.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 50605,
+    "base7": 3644,
+    "accel": 13.9,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "fr.wikipedia",
+    "title": "Grand Theft Auto",
+    "views7": 81403,
+    "base7": 3492,
+    "accel": 23.3,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "fr.wikipedia",
+    "title": "Grand Theft Auto VI",
+    "views7": 123646,
+    "base7": 13820,
+    "accel": 8.9,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto vi",
+     "group": "b26"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
+   },
+   {
+    "source": "wiki",
+    "project": "fr.wikipedia",
+    "title": "Grand Theft Auto V",
+    "views7": 40581,
+    "base7": 8044,
+    "accel": 5.0,
+    "brand": {
+     "ticker": "TTWO",
+     "company": "테이크투",
+     "term": "grand theft auto",
+     "group": "f9"
+    },
+    "kind": "브랜드",
+    "through": "2026-11-20"
    }
-  ]
+  ],
+  "trends": []
  },
  "baseline_days": {
-  "apple": 2,
-  "steam": 2,
-  "wiki": 36,
-  "trends": 2
+  "apple": 9,
+  "steam": 9,
+  "wiki": 43,
+  "trends": 9
  },
  "series_file": "knowledge/models/consumer_trends/macro_series.csv",
  "sources": "출처: 미국 Census·BLS(FRED 경유) · 総務省統計局 家計調査(e-Stat) · 日本政府観光局（JNTO） · Eurostat · ONS · 애플 앱 순위 RSS · 스팀 상점 · Wikimedia 조회수 · Google Trends 급상승"
