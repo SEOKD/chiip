@@ -32,6 +32,7 @@ REFS = [(IDX, "시장 지수", "참고 시장 지수(Silicon Data)"), ("Ornn 지
         (FLP, "시장 중앙값", "참고 제공사 중앙값(Flopper)")]
 HOUR = 6          # 월요일 06:00 KST 이후
 READ_MAX = 300   # 2026-11-23 마스터 지시 "시각물과 간략한 설명만" — 600 → 300자
+STOPPED = True   # 2026-11-23 — 주간 피드는 보내지 않는다(일일 Ornn으로 대체)
 FEED_REFS = (IDX, "Ornn 지수")   # 2026-11-23 마스터 지시 "Silicon Data와 Ornn에 의거해" — 피드는 두 지수만(정가 표·Flopper는 상태 기록에만)
 CHART = common.ROOT / "radar" / "state" / "gpu_weekly.png"
 # 2026-11-16 마스터 지시 "Nebius와 CoreWeave, AWS 세 곳만 … 가격 종류를 하나로 통일" — 세 곳 모두 온디맨드 정가만(스팟·지수·Lambda 뺌)
@@ -116,6 +117,8 @@ def status(now=None):
     """Pulse 관문 — 월요일 06:00 이후, 이번 주 미완료면 due"""
     now = now or common.now_kst()
     st = common.load_state(STATE, {})
+    if STOPPED:   # 2026-11-23 마스터 지시 "Ornn 지수만 보내도록 하라. 일일 집계하라" — 주간 피드 대신 radar/gpu_daily.py 일일 Ornn 그림
+        return {"due": False, "note": "주간 피드 중단 — 일일 Ornn(gpu_daily)"}
     if now.weekday() != 0 or now.hour < HOUR or st.get("done") == week_key(now):
         return {"due": False}
     try:
@@ -180,22 +183,23 @@ def series(rows, name, g, days=56):
     return sorted((d, v) for d, v in s.items() if d >= cut)
 
 
-def chart(rows=None, path=CHART):
-    """GPU 4개 칸 × Silicon Data 시장 지수(파랑)·Ornn 실거래 지수(보라), 최근 8주 — 2026-11-23 마스터 지시 '시각물'"""
+def chart(rows=None, path=CHART, names=(IDX, "Ornn 지수"), days=56, title="GPU 렌털 지수 — 최근 8주($/GPU·시)",
+          sub="파랑 Silicon Data 시장 지수(공개 헤드라인 인용) · 보라 Ornn 실거래 지수(내부용) — 정의가 달라 수준은 비교하지 않는다"):
+    """GPU 4개 칸 × 지수 선 — 2026-11-23 마스터 지시 '시각물'. 일일 Ornn 그림(radar/gpu_daily.py)도 이 함수를 쓴다"""
     import pymupdf
     from memory_spot import _nice, _txt
     if rows is None:
         import gpu_movers
         rows = gpu_movers.wayback() + gpu_rent._rows() + gpu_rent._rows(gpu_rental.ORNN_CSV)
-    cols = {IDX: (0.13, 0.36, 0.75), "Ornn 지수": (0.55, 0.25, 0.70)}
+    cols = {k: v for k, v in {IDX: (0.13, 0.36, 0.75), "Ornn 지수": (0.55, 0.25, 0.70)}.items() if k in names}
     doc = pymupdf.open()
     page = doc.new_page(width=720, height=560)
     page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
-    _txt(page, (36, 32), "GPU 렌털 지수 — 최근 8주($/GPU·시)", 15, (0.05, 0.05, 0.05))
-    _txt(page, (36, 50), "파랑 Silicon Data 시장 지수(공개 헤드라인 인용) · 보라 Ornn 실거래 지수(내부용) — 정의가 달라 수준은 비교하지 않는다", 8, (0.4, 0.4, 0.4))
+    _txt(page, (36, 32), title, 15, (0.05, 0.05, 0.05))
+    _txt(page, (36, 50), sub, 8, (0.4, 0.4, 0.4))
     boxes = [(60, 80, 340, 290), (420, 80, 700, 290), (60, 330, 340, 540), (420, 330, 700, 540)]
     for g, (x0, y0, x1, y1) in zip(gpu_rent.GPUS[:4], boxes):
-        ss = {n: series(rows, n, g) for n in cols}
+        ss = {n: series(rows, n, g, days) for n in cols}
         pts = [v for s in ss.values() for _, v in s]
         _txt(page, (x0, y0 - 8), g, 11, (0.1, 0.1, 0.1))
         if not pts:
