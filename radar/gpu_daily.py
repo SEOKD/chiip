@@ -16,6 +16,7 @@
   회색 점선 '참고선'으로 함께 그린다. 지수 과거값은 같은 공개 페이지의 인터넷 아카이브 스냅숏(2026-07-28~)으로 채운다(--backfill-index).
   정가가 두 관측 사이에서 바뀌면 그 구간을 점선 사선으로 그린다(그 사이 어느 날 바뀜 — 바뀐 날을 지어내지 않는다).
 일일 그림(2026-11-23 마스터 지시 "GPU Rental 비용은 일일 추이를 파악할 수 있는 파이프라인을 찾고 이를 토대로 그래프를 새로 그려라"):
+  같은 날 다시 "GPU 임대료는 실거래가만 가져와" → 그림·캡션은 Ornn 실거래 지수 하나만 쓴다(아래 설명 중 다른 계열·정가 표기는 수집에만 남는다).
   그림의 선을 매일 움직이는 세 계열(Ornn 실거래 지수·Silicon Data 시장 지수·Flopper 제공사 중앙값)로 바꿨다. 기간은 일일 계열이 처음 관측된 날부터,
   세로축은 값 범위에 맞춘다. 세 곳 정가는 칸 제목 아래 글 한 줄과 캡션으로만 싣는다(몇 달에 한 번 바뀌는 계단이라 선으로 그리면 일일 움직임을 누른다).
   옛 정가 계단 그림은 chart_list로 남겼다(일일 계열이 없을 때만).
@@ -496,14 +497,14 @@ def _panel(page, box, g, S, d0, d1):
 
 # 일일 그림(2026-11-23 마스터 지시 "GPU Rental 비용은 일일 추이를 파악할 수 있는 파이프라인을 찾고 이를 토대로 그래프를 새로 그려라")
 # 매일 움직이는 계열이 주인공이다 — (이름, 색, 범례, 끝 이름표 꼬리). 색은 범주 고정 순서(파랑·주황·청록). 정가는 칸 제목 아래 글 한 줄로만
-DAILY = [(ORN, (0.165, 0.471, 0.839), "실거래 지수(Ornn)", " 실거래"),
-         (IDX, (0.922, 0.408, 0.204), "시장 지수(Silicon Data)", " 지수"),
-         (FLP, (0.106, 0.686, 0.478), "제공사 중앙값(Flopper)", " 중앙")]
+# 2026-11-23 마스터 지시 "GPU 임대료는 실거래가만 가져와" — 그림·캡션은 실거래 지수(Ornn) 하나만. 시장 지수·제공사 중앙값·정가는 뺐다(수집은 계속)
+DAILY = [(ORN, (0.165, 0.471, 0.839), "실거래 지수(Ornn)", "")]
+DAILYN = [x[0] for x in DAILY]
 
 
 def daily_window(obs, since, until):
     """일일 계열이 처음 관측된 날부터 그린다(그 전은 빈 칸이라 추이가 눌린다). 일일 계열이 없으면 None"""
-    firsts = [min(d for d, v in o.items() if v is not None) for (p, _), o in obs.items() if p in REFN and any(v is not None for v in o.values())]
+    firsts = [min(d for d, v in o.items() if v is not None) for (p, _), o in obs.items() if p in DAILYN and any(v is not None for v in o.values())]
     firsts = [d for d in firsts if d <= until]
     return max(since, min(firsts)) if firsts else None
 
@@ -531,12 +532,17 @@ def _daily_panel(page, box, g, obs, S, d0, d1):
         pts = sorted((d, v) for d, v in (obs.get((name, g)) or {}).items() if v is not None and d0.isoformat() <= d <= d1.isoformat())
         if pts:
             lines.append((name, col, tail, pts))
-    _txt(page, (x0, y0 - 22), g, 12, INK)
-    lp = [f"{SHORT[p]} ${S[(p, g)]['last'][1]:,.2f}" for p in PROVS if (p, g) in S]   # 정가(온디맨드) — 몇 달에 한 번 바뀌는 값이라 글로만
-    _txt(page, (x0, y0 - 9), "정가 " + (" · ".join(lp) if lp else "공개 정가 없음"), 7.5, MUTED)
+    _txt(page, (x0, y0 - 12), g, 12, INK)
     if not lines:
-        _txt(page, (x0 + 4, y0 + 14), "일일 계열 없음", 8, INK2)
+        _txt(page, (x0 + 4, y0 + 14), "실거래 지수 없음", 8, INK2)
         return
+    ref = S.get((ORN, g))
+    if ref:   # 지금 값과 1주·4주 변화 — 선 하나라 숫자를 칸 안에 적는다
+        last = ref["last"]
+        w = value_at(ref, (d1 - timedelta(days=7)).isoformat())
+        m4 = value_at(ref, (d1 - timedelta(days=28)).isoformat())
+        chg = " · ".join(f"{k} {(last[1] / v - 1) * 100:+.1f}%" for k, v in (("1주", w), ("4주", m4)) if v)
+        _txt(page, (x0 + 60, y0 - 12), f"{_md(last[0])} ${last[1]:,.2f}   {chg}", 9, INK2)
     bottom, top, step = _daily_axis([v for _, _, _, pts in lines for _, v in pts])
     span = max((d1 - d0).days, 1)
     X = lambda d: x0 + (x1 - x0) * (_d(d) - d0).days / span   # noqa: E731
@@ -590,8 +596,8 @@ def chart(since=None, until=None, path=None):
     doc = pymupdf.open()
     page = doc.new_page(width=760, height=744)
     page.draw_rect(page.rect, color=None, fill=SURF)
-    _txt(page, (36, 34), f"GPU 임대료 일일 추이 — 시장 가격 $/GPU·시 ({_ymd(w0)}~)", 15, INK)
-    _txt(page, (36, 52), f"기준 {until} · 선 = 매일 움직이는 시장 값(관측일을 이었다), 세로축은 값 범위에 맞췄다(0부터가 아니다) · 정가는 칸마다 글로", 8.5, INK2)
+    _txt(page, (36, 34), f"GPU 임대료 일일 추이 — 실거래가 $/GPU·시 ({_ymd(w0)}~)", 15, INK)
+    _txt(page, (36, 52), f"기준 {until} · 실제 임대 거래 정산 지수(일 1회) · 세로축은 값 범위에 맞췄다(0부터가 아니다)", 8.5, INK2)
     x = 36
     for name, col, leg, _ in DAILY:
         if any(k[0] == name for k in S):
@@ -601,10 +607,7 @@ def chart(since=None, until=None, path=None):
     boxes = [(70, 122, 320, 370), (440, 122, 690, 370), (70, 442, 320, 680), (440, 442, 690, 680)]
     for g, box in zip(GPUS, boxes):
         _daily_panel(page, box, g, obs, S, d0, d1)
-    _txt(page, (36, 704), "실거래 지수: Ornn Compute Price Index(실제 임대 거래 정산, 미 동부 자정 기준 일 1회) — 개인 참고용, 재배포하지 않는다.", 7, MUTED)
-    _txt(page, (36, 715), "시장 지수: Silicon Data 공개 페이지 헤드라인 값 인용(거래 가격 기반 지수). 읽은 날만 점이 있고 그 사이는 이었다.", 7, MUTED)
-    _txt(page, (36, 726), "제공사 중앙값: Flopper.io GPU별 가격 페이지의 제공사별 일별 최저 온디맨드가(15~31곳)의 그날 중앙값 — 정가 모음이며 거래가가 아니다.", 7, MUTED)
-    _txt(page, (36, 737), "정가: Nebius·CoreWeave 공개 가격표, AWS EC2 온디맨드(미국 동부·리눅스, 8 GPU 인스턴스÷8). 세 계열은 정의가 달라 수준을 직접 비교하지 않는다.", 7, MUTED)
+    _txt(page, (36, 715), "자료: Ornn Compute Price Index(실제 임대 거래 정산, 미 동부 자정 기준 일 1회) — 개인 참고용, 재배포하지 않는다.", 7, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"gpu_trend_{until.replace('-', '')}.png")
     page.get_pixmap(dpi=150).save(str(path))
@@ -702,6 +705,17 @@ def caption(summ, read=""):
     머리 1줄 · GPU별 세 곳 가격 1줄씩 · 가장 최근 가격 변경 1줄(같은 제공사·같은 구간은 한 줄로 묶음) · 풀이 1~2문장. 자세한 계단은 그림에"""
     L = [f"[Chiip Pulse] GPU 임대료 일일 추이 {_md(summ['until'])} · $/GPU·시"]
     refs = summ.get("refs") or ({IDX: summ["index"]} if summ.get("index") else {})
+    if refs.get(ORN):   # 실거래가만(2026-11-23 마스터 지시 "GPU 임대료는 실거래가만 가져와") — GPU마다 한 줄: 지금 값, 1주·4주 변화
+        L[0] = f"[Chiip Pulse] GPU 임대료 실거래가 {_md(summ['until'])} · $/GPU·시"
+        for g, x in refs[ORN].items():
+            chg = " · ".join(f"{k} {x[key]:+.1f}%" for k, key in (("1주", "1w"), ("4주", "4w")) if x.get(key) is not None)
+            L.append(f"{g}  {x['usd']:.2f}" + (f" ({chg})" if chg else ""))
+        for s in summ.get("stale") or []:
+            if "Ornn" in s:
+                L.append(f"주의: {s} — 원천 갱신 멈춤 의심")
+        if read:
+            L += ["", read.strip()]
+        return "\n".join(L)
     for name, head in ((ORN, "실거래 지수(Ornn)"), (IDX, "시장 지수"), (FLP, "제공사 중앙값")):   # 매일 움직이는 값이 먼저(2026-11-23) — 그림의 선과 같은 순서
         ix = refs.get(name) or {}
         if ix:
