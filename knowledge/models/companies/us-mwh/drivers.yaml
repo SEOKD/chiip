@@ -1,0 +1,111 @@
+auto: true
+id: us-mwh
+name: SOLV Energy
+ticker: MWH
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-22'
+market:
+  date: '2026-11-22'
+  price: 24.69
+  shares: 0.207639
+  net_debt: -0.334958
+  source: 가격 = 2026-11-20 종가 $24.69(Easyconomics·Fiscal.ai 일치). 주식 수 = Class A 131,444,011
+    + Class B 71,265,259 = 202,709,270주(3Q26 10-Q 표지 2026-11-09, Class B는 LLC 지분과
+    묶여 Class A로 1:1 교환 — 경제적 지분 동등 전제). 현금 $422.1M(10-Q 2026-09-30). 차입 = 유동 차입 $6.9M
+    + 장기 차입 $15.8M + 리스 유동 $17.8M + 리스 비유동 $46.7M = $87.2M(Fiscal.ai 표준화 재무상태표 2026-09-30,
+    Easyconomics 총차입 $87.2M과 같다). 2026-11-13 묶음의 $69.4M은 유동 리스 $17.8M을 빠뜨린 값. 세금 수취
+    약정(TRA) 부채는 차입에 넣지 않았다(금액은 10-Q 주석 확인 필요)
+rev0: 4.075
+ic0: 0.635774
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.232
+      end: 0.035
+      decay: 0.541
+    margin:
+      m0: 0.0742
+      target: 0.0975
+      year_target: 3
+      lr: 0.09
+      lam: 0.35
+      anchors:
+      - 0.0903
+      - 0.0975
+    s2c: 5.762
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.3248
+      end: 0.04
+      decay: 0.5910000000000001
+    margin:
+      m0: 0.0742
+      target: 0.1175
+      year_target: 3
+      lr: 0.09
+      lam: 0.25
+      anchors:
+      - 0.0903
+      - 0.0975
+    s2c: 6.626
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1392
+      end: 0.030000000000000002
+      decay: 0.44100000000000006
+    margin:
+      m0: 0.0742
+      target: 0.0775
+      year_target: 3
+      lr: 0.09
+      lam: 0.5
+      anchors:
+      - 0.0903
+      - 0.0975
+    s2c: 4.898
+mc:
+  sigma_growth: 0.0464
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [4.03, 4.12] (3Q26 실적 보도자료(8-K EX-99.1, 2026-11-12) https://www.sec.gov/Archives/edgar/data/2065636/000119312526456918/d255358dex991.htm)
+  growth: 컨센서스 1년차 33.4%, 2년차 19.7% → 덮어쓰기 1년차 23.2%
+  margin: 1~2년차 컨센서스 9.0%, 9.8% 고정 → 목표 10%(3년차, 덮어쓰기) → 장기 수렴 9%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 5.762
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +18.6% 아래·강세 +27.8% 위 확률. 내부 관점(컨센서스 +23.2%, σ 9.0%: 범위 18.6% ÷ d2(11) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '1년차 성장 33.4% → 23.2%: FY2027 매출 추정이 둘로 갈린다(모델 추정 $5.44B, 애널리스트 3명 $4.60B)
+    — 두 값의 중간 $5.02B를 쓴다. 4Q26 내재 매출 $1,205M을 연으로 환산하면 $4.82B라 높은 쪽 추정만 쓰면 성장을 과대
+    계상한다. 장기 수렴 영업이익률 15%(기본) → 9%: 일괄 도급 시공은 고정가 위험을 지는 업종이고 FY2028 컨센서스 9.8%가 상단이다(동종
+    시공사 GAAP 영업이익률 2~15%)'
+  shares: '완전 희석 = 기본 0.202709(2026-11-09) + 옵션·RSU·워런트·전환 0.0049 — 3Q26 희석 가중평균 132.16M
+    − 기본 가중평균 127.23M = 4.93M주(Class A 기준, '
+notes:
+- 자동 생성(build_drivers) 2026-11-22 — 데이터 묶음 2026-11-22
+- '어닝콜 위험: 4Q 내재 조정 EBITDA 이익률 약 12.4%(계산) — 3Q 13.9%보다 낮다. 회사는 계절성과 보수적 공정 계획이라 답했다'
+- '어닝콜 위험: 총 잔고의 약 1/3이 저장 관련 — 관세·우려 국가 부품 규정에 민감'
+- '어닝콜 위험: 총 잔고 $9.18B 중 본계약분(잔여 이행 의무)은 $3.27B'
+evidence:
+- SOLV Energy 3Q26 10-Q(2026-11-12) https://www.sec.gov/Archives/edgar/data/2065636/000206563626000005/mwh-20260930.htm
+- SOLV Energy 3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-12) https://www.sec.gov/Archives/edgar/data/2065636/000119312526456918/d255358dex991.htm
+- SOLV Energy 2Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-08-13) https://www.sec.gov/Archives/edgar/data/2065636/000119312526347858/d82759dex991.htm
+- SOLV Energy FY2025 10-K(2026-03-25) https://www.sec.gov/Archives/edgar/data/2065636/000119312526124117/d31834d10k.htm
+- 세컨더리 공모 투자설명서(424B4, 2026-05-29) https://www.sec.gov/Archives/edgar/data/2065636/000119312526248671/d150146d424b4.htm
+- IPO 투자설명서(424B4, 2026-02-11) https://www.sec.gov/Archives/edgar/data/2065636/000119312526046879/d12408d424b4.htm
+- Fiscal.ai MCP 2026-11-22 — 표준화 재무·자체 추정·Forward 배수·세그먼트 KPI·13F·펀드 레터·어닝콜 전문(3Q26·2Q26)
+  https://fiscal.ai/company/NasdaqGS-MWH
+- Easyconomics company_profile·company_price_history·earnings_summary_dates(yfinance)
+  2026-11-22
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
