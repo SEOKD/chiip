@@ -12,6 +12,9 @@ Spot Price 가격을 추정해 그래프로 그려라. 데이터 파이프라인
   달러 환산: config/memory_spot.yaml anchors(공개 보도에 나온 현물 평균가·날짜·출처)로 배율을 정한다. 기준점이 없으면 지수(기간 첫날=100)만.
 저장: radar/inbox/memory_spot/(git 제외 — 유료 원자료의 파생 수치라 저장소에 커밋하지 않는다). 그래프·피드는 마스터 개인 봇으로만.
 Pulse: 평일 10:00~11:00 KST 첫 회차가 연다(status due, 하루 1회).
+NAND 일별(2026-11-23 마스터 지시 "메모리 현물 가격 트렌드 추이는 NAND도 DRAM처럼 일일 추이를 파악할 수 있도록 해라"):
+  합친 그림(combined_chart)의 NAND 칸은 주 1회 관측점 사이를 채널 글의 1D 변화율을 그대로 쌓은 경로(raw_path)로 채운다.
+  NAND 현물 고시는 대부분의 날에 그대로라 선이 계단처럼 보인다 — 자료 누락이 아니다. config/memory_spot.yaml nand_daily: false면 옛 방식.
 사용: py radar/memory_spot.py --backfill 2026-01-01      # 채널 공개 미리보기를 거슬러 읽어 지난 줄 채우기(로그인 없음)
       py radar/memory_spot.py --update                    # 수집기(radar/inbox/tg_channels/*.jsonl)의 새 줄 반영
       py radar/memory_spot.py --chart [시작일]              # 그래프 PNG + 요약 JSON
@@ -335,6 +338,21 @@ def status(now=None):
 PAIRS = (("DDR5 16Gb", "DDR5 16Gb (2Gx8) 4800/5600", "DRAM", True), ("MLC 64Gb", "MLC 64Gb 8GBx8", "NAND", False))
 
 
+def raw_path(rows, product):
+    """채널 글의 1D 변화율을 그대로 곱해 만든 일별 경로 [(글 날짜, 배율)] — 고시가 바뀐 날에만 움직인다.
+    estimate()의 최소제곱 경로는 1W·1M 제약을 함께 맞추느라 변화를 여러 날에 퍼뜨린다. NAND처럼 며칠에 한 번 바뀌는 값은
+    1D를 그대로 쌓아야 '어느 날 바뀌었나'가 보인다(2026-11-23 마스터 지시 "NAND도 DRAM처럼 일일 추이"). 글이 빠진 날의 변화는
+    여기에 없다 — blend가 다음 관측값과 만나게 보정한다"""
+    x, out = 1.0, []
+    for r in sorted((r for r in rows if r["product"] == product), key=lambda r: r["posted_at"]):
+        try:
+            x *= 1 + float(r["d1"] or 0) / 100
+        except ValueError:
+            continue
+        out.append((_d(r["posted_at"]), x))
+    return out
+
+
 def _prev_weekday(d):
     d -= timedelta(days=1)
     while d.weekday() >= 5:
@@ -400,7 +418,8 @@ def combined(since=None):
         tf_pts = relabel_last(ts["points"], last_row.get("chg"), rows, mprod)
         if tf_pts[-1][0] != ts["last"][0]:
             ts["last"] = tf_pts[-1]
-        pts = blend(tf_pts, ms["points"] if ms else [], interior)
+        daily = kind == "NAND" and cfg.get("nand_daily", True)   # NAND도 관측 사이를 일별로 채운다(2026-11-23) — 1D를 그대로 쌓은 경로로
+        pts = blend(tf_pts, raw_path(rows, mprod), True) if daily else blend(tf_pts, ms["points"] if ms else [], interior)
         pts = [p for p in pts if p[0] >= ts["points"][0][0]]
         last = pts[-1]
 
@@ -409,7 +428,7 @@ def combined(since=None):
             old = [p for p in pts if p[0] <= ref]
             return (last[1] / old[-1][1] - 1) * 100 if old and (ref - old[-1][0]).days <= 10 else None   # NAND는 주 1회 관측
         base = ts["base"]
-        out.append({"kind": kind, "product": tprod, "points": pts, "base": base, "last": last, "tf_last": ts["last"],
+        out.append({"kind": kind, "product": tprod, "points": pts, "base": base, "last": last, "tf_last": ts["last"], "daily": kind == "DRAM" or daily,
                     "n_tf": sum(1 for p in pts if p[2] == "tf"), "n_mz": sum(1 for p in pts if p[2] == "mz"),
                     "chg": {"1W": back(7), "1M": back(30), "YTD": (last[1] / base[1] - 1) * 100}})
     if len(out) < 2:
@@ -437,7 +456,9 @@ def combined_chart(since=None, path=None):
         span = max((d1 - d0).days, 1)
         X = lambda d: x0 + (x1 - x0) * (d - d0).days / span   # noqa: E731
         Y = lambda v: y1 - (y1 - y0) * (v - lo) / (hi - lo)    # noqa: E731
-        unit = "주 1회 갱신" if s["kind"] == "NAND" else "일별"
+        unit = "일별" if s.get("daily") else "주 1회 갱신"
+        if s["kind"] == "NAND" and s.get("daily"):
+            unit = "일별 — 고시가 바뀐 날에 움직인다"
         _txt(page, (x0, y0 - 22), f"{s['kind']} {s['product']} 현물 (달러, {unit})", 12, INK)
         v = lo
         while v <= hi + 1e-9:

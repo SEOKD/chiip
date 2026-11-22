@@ -72,5 +72,26 @@ class Blend(unittest.TestCase):   # TrendForce 기본 + 메리츠 보강(2026-11
         self.assertEqual([p for p in M.blend(tf, mz, interior=False) if p[0] < date(2026, 1, 9) and p[2] == "mz"], [])
 
 
+class TestNandDaily(unittest.TestCase):
+    """NAND도 일별로(2026-11-23 마스터 지시) — 1D를 그대로 쌓은 경로가 관측 사이를 채운다"""
+    ROWS = [{"product": "MLC 64Gb", "posted_at": f"2026-01-{d:02d}T09:00:00+09:00", "d1": v} for d, v in
+            ((6, "0.0"), (7, "0.0"), (8, "2.0"), (9, "0.0"), (12, "0.0"), (13, "1.0"), (14, ""))]
+
+    def test_raw_path_moves_only_on_change_days(self):
+        path = M.raw_path(self.ROWS + [{"product": "DDR5 16Gb", "posted_at": "2026-01-08T09:00:00+09:00", "d1": "9.9"}], "MLC 64Gb")
+        vals = [round(v, 4) for _, v in path]
+        self.assertEqual(vals, [1.0, 1.0, 1.02, 1.02, 1.02, 1.0302, 1.0302])      # 다른 제품은 섞지 않고, 빈 1D는 변화 없음으로
+        self.assertEqual(path[2][0], date(2026, 1, 8))
+
+    def test_blend_keeps_step_day_between_weekly_observations(self):
+        tf = [(date(2026, 1, 5), 10.0), (date(2026, 1, 12), 10.3)]                 # 주 1회 관측 — 한 주에 +3%
+        pts = M.blend(tf, M.raw_path(self.ROWS, "MLC 64Gb"), True)
+        mid = {d: v for d, v, src in pts if src == "mz" and d < date(2026, 1, 12)}
+        self.assertEqual(sorted(mid), [date(2026, 1, 6), date(2026, 1, 7), date(2026, 1, 8), date(2026, 1, 9)])   # 세션 = 글 날짜의 직전 평일
+        self.assertGreater(mid[date(2026, 1, 7)] / mid[date(2026, 1, 6)] - 1, 0.015)   # 1/8 글의 +2%는 1/7 세션에서 계단으로 보인다
+        self.assertLess(abs(mid[date(2026, 1, 8)] / mid[date(2026, 1, 7)] - 1), 0.005)  # 그 밖의 날은 거의 그대로(관측값과 만나는 보정만)
+        self.assertEqual(pts[-1][2], "mz")                                          # 마지막 관측 뒤도 일별로 잇는다
+
+
 if __name__ == "__main__":
     unittest.main()
