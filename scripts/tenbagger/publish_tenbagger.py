@@ -100,11 +100,18 @@ def prepare(src, extra=(), title=None, dry=False):
     html = src.with_suffix(".html")
     if not html.exists():
         raise SystemExit(f"HTML 없음: {html} — report_html.py 먼저")
+    # 발행 전 결정론 점검(2026-11-22 마스터 지시 "Analysis Report 초안에서 실수를 최소화하도록") — 실패가 있으면 올리지 않는다.
+    # 고친 뒤 merge·렌더를 다시 돌리고 prepare를 다시 부른다. 마스터만 CHIIP_PREPUBLISH=warn으로 경고로 낮출 수 있다.
+    import os
+    import prepublish_check
+    fails = [x for x in prepublish_check.run(src) if x["status"] == "실패"]
+    if fails and os.environ.get("CHIIP_PREPUBLISH") != "warn":
+        raise SystemExit("[발행 전 점검 실패] 고친 뒤 다시 prepare\n" + "\n".join(f"  {x['name']} — {x['detail']}" for x in fails))
     built = report_md.build(src)
     files = [html, src, Path(built["md"]), *map(Path, built["charts"]), *[Path(e) for e in extra if Path(e).exists()]]
     ttl = title or f"텐배거 리포트 {d.get('date')} {d.get('company')}({d.get('ticker')})"
-    if dry:
-        links, commit = [f"(dry) {rel(f)}" for f in files], "dry"
+    if dry:   # 시험 실행은 상태 파일·발행 장부·노션 본문을 건드리지 않는다(2026-11-22 — dry가 TACO 상태의 GitHub 링크를 '(dry)'로 덮었다)
+        return {"dry": [rel(f) for f in files], "prepublish": "통과"}
     else:
         import prune_reports   # 같은 종목 옛 리포트는 GitHub에서 지운다(마스터 지시 2026-11-04)
         gone = prune_reports.drop(src.stem)
