@@ -19,7 +19,7 @@
   - 커뮤니티가 말하는 숫자(매출·백로그 등)는 주장이다. 사실로 쓸 때는 1차 자료(보도자료·공시·Fiscal.ai)로 확인한 것만 쓰고, 확인하지 못하면 "커뮤니티 주장"으로 표시한다.
   - 관심 순위는 펀더멘털이 아니다(금지표: 주가 급등 → 펀더멘털 변화). 매매·비중·금액 지시는 쓰지 않는다.
   - 감시 종목(포커스·포트폴리오)이 순위에 있으면 note 끝에 "Chiip 판단과의 차이"를 한 줄 덧붙인다.
-- **발행:** `py scripts/quantral/weekly.py --render <주차>` → `py scripts/publish_report.py outputs/quantral/<주차>.html --title "Chiip Quantral <주차>" --attach --replace --caption <요약 파일>`(--replace: GitHub의 옛 주차 HTML을 빼고 새 파일로 덮는다, 2026-11-15 마스터 지시) → 텔레그램은 헤드라인 + 상위 5(티커·언급 수·내러티브 한 구절) 1통 + **HTML 파일 첨부**(2026-11-15 마스터 지시 "html 파일로 제공하도록 해" — 링크 대신, GitHub 게시는 보관용).
+- **발행:** `py scripts/quantral/weekly.py --render <주차>` → `py scripts/publish_report.py outputs/quantral/<주차>.html --title "Chiip Quantral <주차>" --attach --replace --caption <요약 파일>`(--replace: GitHub의 옛 주차 HTML을 빼고 새 파일로 덮는다, 2026-11-15 마스터 지시) → 텔레그램은 **HTML 파일 1통, 헤드라인 + 상위 5(티커·언급 수·내러티브 한 구절)는 그 파일의 캡션**(2026-11-22 마스터 지시 "하나의 피드에 리포트 html 링크만 제공하게 하라. github 링크는 안 줘도 된다" — 글 따로 보내지 않고 GitHub 링크 줄을 넣지 않는다)(2026-11-15 마스터 지시 "html 파일로 제공하도록 해" — 링크 대신, GitHub 게시는 보관용).
 - **근거 글 읽기**(2026-11-15 마스터 지시 "Quantral에서 집계하는 X, 서브스택, 레딧의 글을 최대한 참조해 내러티브를 설명하도록 하라" — W46 내러티브 흐름에 집계 글에서 확인되지 않는 표현(서명 운동·중앙은행 등)과 순위 밖 종목(AVGO)이 섞였고, Substack 0건인데 'Reddit·X·Substack'으로 표기했다):
   - 상위 15 종목 이야기마다 `get_story(id)`를 nextCursor 끝까지(이야기당 상한 200건) 읽고, 상위 10은 `get_company_signals`의 그 주 글(Substack 포함)도 읽는다. 채널별 읽은 수만 `--reads`로 넘긴다 — 본문·작성자는 저장하지 않는다.
   - report.json의 theme·note마다 `basis`(근거 이야기 id)와 `points`(channel·stance·gist·story) 3개 이상. 읽은 글에 있는 채널은 채널마다 1개 이상, 강세·약세 양쪽. theme 종목은 basis 이야기에 나온 종목만. 읽은 글에 없는 주장은 넣지 않는다(Chiip 판단은 'Chiip 판단과의 차이' 한 줄로만).

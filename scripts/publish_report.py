@@ -116,9 +116,13 @@ def main(argv):
         import notify
         cap = Path(a.caption).read_text(encoding="utf-8").strip() if a.caption and Path(a.caption).exists() else a.caption.strip()
         if a.attach:   # 요약 글 1통 + HTML 파일 첨부(GitHub 게시는 보관용으로 그대로) — Quantral 2026-11-15 마스터 지시 "html 파일로 제공하도록 해"
-            print("텔레그램:", notify.send(cap or f"[Chiip Report] {a.title}", "REPORT"))
-            for f in a.files:
-                print("첨부:", notify.send_document(f, caption=a.title, level="REPORT"))
+            # 한 피드 = HTML 파일 1통, 요약은 파일 캡션으로 — GitHub 링크 줄은 뺀다(2026-11-22 마스터 지시 "하나의 피드에 리포트 html 링크만 제공하게 하라. github 링크는 안 줘도 된다")
+            cap = chr(10).join(l for l in (cap or a.title).splitlines() if "github.com" not in l and "위 첨부" not in l).strip()
+            for i, f in enumerate(a.files):
+                c = cap if i == 0 else a.title
+                if len(c) > 1000:   # 텔레그램 캡션 한도 — 넘으면 요약을 잘라 낸다(글 1통을 따로 보내지 않는다)
+                    c = c[:997].rsplit(chr(10), 1)[0] + chr(10) + "…"
+                print("첨부:", notify.send_document(f, caption=c, level="REPORT"))
             return 0
         text = (cap + "\n\n" if cap else f"[Chiip Report] {a.title}\n") + "\n".join(links) + "\n(비공개 저장소 — 로그인 필요)"
         print("텔레그램:", notify.send(text, "REPORT"))
