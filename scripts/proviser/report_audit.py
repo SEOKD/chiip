@@ -32,7 +32,7 @@ ROOT = Path(__file__).resolve().parents[2]
 LOG = ROOT / "outputs" / "tenbagger" / "reports" / "log.csv"
 OUT = ROOT / "docs" / "proviser" / "reports"
 SCORES = OUT / "report_scores.csv"
-DEFAULT = {"max_per_day": 3, "auto_weight": 0.4, "price_tol": 0.02, "ratio_tol": 0.05,
+DEFAULT = {"max_per_day": 3, "week_max": 10, "auto_weight": 0.4, "price_tol": 0.02, "ratio_tol": 0.05,
            "required": {"밸류에이션(맥킨지·IB)": "밸류에이션 — 맥킨지", "멀티플(동종·할인 분해)": "합리적 멀티플|동종사|할인 분해",
                         "어닝콜 변화·컨센서스": "어닝콜 변화", "내러티브": "내러티브", "수급": "수급", "가격 구간(피보나치)": "피보나치|가격 구간",
                         "판단 시나리오": "판단 시나리오|시나리오", "반대 검증": "반대 검증", "킬 조건·체크리스트": "킬 조건"}}
@@ -84,7 +84,29 @@ def week_reports(end, c=None):
         r["json"] = str(Path(r["html"]).with_suffix(".json"))
         if Path(r["json"]).exists():
             out.append(r)
-    return sorted(out, key=lambda r: (r.get("date"), r.get("id")))
+    out = sorted(out, key=lambda r: (r.get("date"), r.get("id")))
+    cap = int((c or cfg()).get("week_max", 10))
+    if len(out) > cap:   # 주 10건 상한(2026-11-22 마스터 지시 "한 주 발행한 리포트를 모두 처리하기에는 토큰 사용량이 크니 10개로 제한을 둬라")
+        out = pick_week(out, cap)
+    return out
+
+
+def pick_week(rows, cap):
+    """발행 전 점검(prepublish_check) 실패가 많은 순, 같으면 최근 발행 순으로 cap건 — 고칠 것이 많은 리포트부터(모델 없음·네트워크 없음)"""
+    sys.path.insert(0, str(ROOT / "scripts" / "tenbagger"))
+    import prepublish_check
+    scored = []
+    for r in rows:
+        try:
+            n = sum(1 for x in prepublish_check.run(ROOT / r["json"], sec=False) if x["status"] == "실패")
+        except Exception:
+            n = 0
+        r["prepublish_fails"] = n
+        scored.append(r)
+    keep = sorted(sorted(scored, key=lambda r: r.get("date") or "", reverse=True), key=lambda r: -r["prepublish_fails"])[:cap]
+    left = [r.get("ticker") for r in scored if r not in keep]
+    print(f"[주간 점검] {len(rows)}건 중 {cap}건(발행 전 점검 실패 많은 순) — 이번 주 제외: {', '.join(map(str, left))}")
+    return sorted(keep, key=lambda r: (r.get("date"), r.get("id")))
 
 
 def _text(d):
