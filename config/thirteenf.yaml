@@ -1,10 +1,9 @@
 # 13F 시즌 → Pulse 기관 매입·매도 순위 (마스터 지시 2026-11-08 "13F가 공시되면 Pulse를 통해 종목별 매입 및 매도 기관 수 상위순으로 정리하도록 구조를 설계하라")
 # 구현 radar/thirteenf.py, 수집 본보기 scripts/fiscal/templates/holders_batch.js, 절차 docs/channels/pulse.md '13F 시즌'
 # 13F-HR 마감 = 분기 말 + 45일(주말이면 다음 영업일). 대부분 마감 직전 며칠에 몰린다 → 세 번 모은다.
-rounds:                   # 마감일 기준 날짜 차 — 잠정(마감 전 일부)·주(마감 다음 날)·확정(늦은 정정·제출 반영)
-  - {name: 잠정, offset: -2}
-  - {name: 주, offset: 1}
-  - {name: 확정, offset: 7}
+rounds:                   # 2026-11-23 마스터 지시 "13F 기관 수급은 분기별 13F 마감일에만 가져오도록 해" — 잠정(D−2)·주(D+1)·확정(D+7) 세 번 → 마감일 한 번
+  - {name: 마감, offset: 0}
+send_window_days: 1       # 마감일(KST)과 다음 날까지만 보낸다 — 미국 동부 마감(밤) 제출분이 한국 시각 다음 날 아침에 들어오므로. 그 뒤로는 그 분기를 보내지 않는다
 universe: market          # 2026-11-14 마스터 지시 "와치리스트 종목 말고 주식시장 종목 전체" — SEC 13F 정보표 원문 전수(radar/thirteenf_market.py, ADR-034). fiscal_us = 예전 감시 미국 종목(Fiscal.ai 1쪽)
 send_coverage: 0.95       # 시장 전체: 그 시점까지 제출된 13F-HR 중 이 비율 이상을 받아 둔 뒤에만 보낸다
 batch: 20                 # execute_code 한 번에 부를 종목 수

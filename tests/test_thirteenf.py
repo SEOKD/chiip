@@ -53,7 +53,7 @@ class TestThirteenF(unittest.TestCase):
         self.assertIn("순매도 250곳", msg)
         tf.sent(now)
         self.assertFalse(tf.status(now)["due"])
-        self.assertTrue(tf.status(datetime(2026, 11, 23, 9, tzinfo=tf.KST))["due"])   # 확정 차례는 다시 연다
+        self.assertFalse(tf.status(datetime(2026, 11, 23, 9, tzinfo=tf.KST))["due"])   # 마감일 창(D~D+1)이 지나면 다시 열지 않는다(2026-11-23 마스터 지시)
 
 
 if __name__ == "__main__":

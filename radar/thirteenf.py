@@ -84,6 +84,8 @@ def status(now=None):
     if not cur:
         return {"due": False}
     rnd = cur[-1]
+    if (now.date() - dl).days > int(cfg().get("send_window_days", 1)):   # 마감일에만(2026-11-23 마스터 지시) — 창이 지나면 그 분기는 보내지 않는다
+        return {"due": False, "quarter": f"{y}Q{q}", "note": f"마감일 {dl.isoformat()} 창 지남"}
     st = _load(STATE, {})
     key = f"{y}Q{q}:{rnd}"
     if (cfg().get("universe") or "") == "market":   # 시장 전체(2026-11-14) — 수집은 결정론(thirteenf_market, run_hourly). 거의 다 모였을 때만 보낸다
