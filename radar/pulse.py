@@ -987,7 +987,7 @@ def run(now=None, peek=False):
     except Exception as exc:
         body_hold = []
         errors.append(f"본문 보류: {type(exc).__name__}")
-    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due") and not gpu.get("due") and not mspot.get("due") and not gday.get("due") and not rreq.get("due"):
+    if not sources and not body_hold and (not q or busy) and not tw.get("due") and not jp.get("due") and not ex.get("due") and not heal.get("due") and not soc.get("due") and not i13.get("due") and not fdocs.get("due") and not iq.get("due") and not iev.get("due") and not ibd.get("due") and not gpu.get("due") and not tki.get("due") and not mspot.get("due") and not gday.get("due") and not rreq.get("due"):
         if not peek:
             common.save_state(STATE, st)
         return None, (f"[펄스] 새 원본 없음 · 알파 산정 대기 {len(q)}{'(valuation-queue 실행 창)' if busy and q else ''}"
