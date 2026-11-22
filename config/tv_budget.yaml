@@ -15,3 +15,17 @@ day_start_hour: 6
 holds:
   - {weekdays: [5], from: "06:00", until: "10:30", only: [chiip-weekly]}
   - {weekdays: [6], from: "06:00", until: "06:40", only: [chiip-weekly]}   # 일요일 보충 회차 chiip-weekly-fill(docs/tasks/chiip-weekly-fill.md) — 마스터가 앱에서 직접 등록(2026-11-21)
+# 공용 응답 캐시(2026-11-22 마스터 지시 "TradingView 호출을 효율적으로") — 같은 도구·같은 인자는 이 분 안에 다시 부르지 않고 radar/state/tv_cache/ 파일을 읽는다.
+# 11/22: 08:20에 11건째 일일 한도, 세션 6곳. 일봉·스크리너는 장 마감 뒤 하루 안 바뀌어 길게, 뉴스·시세는 짧게. 키 = 도구 이름 일부.
+cache_ttl_min:
+  get-ohlcv: 360
+  run-screener: 180
+  get-economic: 720
+  get-documents: 720
+  get-document-view: 1440
+  get-news-story: 1440
+  get-news: 60
+  get-symbol-data: 30
+  technicals: 60
+  search-: 1440
+  default: 60

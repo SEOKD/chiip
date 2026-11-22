@@ -6,8 +6,14 @@
    보수적으로 관측된 가장 낮은 차단점(90)보다 아래인 하루 예산을 코드로 지킨다.
 pre  : 오늘(KST) 사용 수가 예산 이상이거나, 한도·냉각 오류 뒤 막힘 시각 전이면 호출 거부(deny). 06:00~07:00 KST 전에는 TradingView 동기화 몫(reserve)을 남긴다.
 post : 응답에 TOOL_QUOTA_EXCEEDED가 있으면 막힘 시각 설정 — 냉각이면 11분, 'daily usage limit'이면 다음 날 06:00 KST까지(냉각 중 재시도가 한도를 늘리지 않게).
+공용 캐시(2026-11-22 마스터 지시 "TradingView 호출을 효율적으로 하도록 시스템을 다듬어라" — 실제 한도가 하루 11건 안팎인데 세션 6곳이 같은 조회를 되풀이했다):
+  post가 읽기 도구(get-·search-·run-screener·technicals) 응답을 radar/state/tv_cache/<키>.json에 저장하고,
+  pre가 같은 도구·같은 인자를 TTL(config cache_ttl_min) 안에 다시 부르면 호출 대신 그 파일을 읽으라고 거부한다 — 예산을 쓰지 않는다.
+  쓰기 도구(알림·와치리스트·파인 저장)는 캐시하지 않는다. 오늘 도구별 사용 수는 상태 by_tool.
 설정 config/tv_budget.yaml, 상태 radar/state/tv_budget.json. 훅 오류는 작업을 막지 않는다(허용).
 """
+import hashlib
+import re
 import json
 import sys
 from datetime import datetime, timedelta, timezone
@@ -38,6 +44,35 @@ def save(st):
     STATE.write_text(json.dumps(st, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
+CACHE = ROOT / "radar" / "state" / "tv_cache"
+READ = re.compile(r"(get-|search-|run-screener|technicals)")
+
+
+def short(tool):
+    return tool.split("__")[-1].replace("mcp-tv-", "").replace("mcp-watchlist-", "watchlist-")
+
+
+def cache_key(tool, args):
+    return hashlib.sha1((short(tool) + json.dumps(args or {}, sort_keys=True, ensure_ascii=False)).encode()).hexdigest()[:16]
+
+
+def ttl_min(c, tool):
+    t = c.get("cache_ttl_min") or {}
+    return next((float(v) for k, v in t.items() if k != "default" and k in short(tool)), float(t.get("default", 60)))
+
+
+def cached(c, tool, args, now):
+    """→ 유효한 캐시 파일 경로 또는 None"""
+    if not READ.search(short(tool)) or not c.get("cache_ttl_min"):
+        return None
+    f = CACHE / f"{cache_key(tool, args)}.json"
+    try:
+        at = datetime.fromisoformat(json.loads(f.read_text(encoding="utf-8"))["at"])
+    except Exception:
+        return None
+    return f if now - at < timedelta(minutes=ttl_min(c, tool)) else None
+
+
 def task_of(inp):
     """예약 작업 이름 — 세션 기록 첫머리의 scheduled-task 이름(없으면 사람 세션 = None)"""
     try:
@@ -66,6 +101,11 @@ def main(mode):
         st = {"day": day, "used": 0, "blocked_until": st.get("blocked_until"), "denied": 0}
     tool = str(inp.get("tool_name") or "")
     if mode == "pre":
+        hit = cached(c, tool, inp.get("tool_input"), now)
+        if hit:   # 같은 조회가 TTL 안에 있다 — 예산을 쓰지 않고 파일을 읽게 한다
+            st["cache_hits"] = st.get("cache_hits", 0) + 1
+            save(st)
+            return deny(f"TradingView 같은 조회 캐시 있음({ttl_min(c, tool):.0f}분 이내) — 다시 부르지 말고 Read로 {hit} 의 response를 읽어 쓴다(예산 절약, config/tv_budget.yaml cache_ttl_min)")
         bu = st.get("blocked_until")
         if bu and now < datetime.fromisoformat(bu):
             st["denied"] = st.get("denied", 0) + 1
@@ -100,6 +140,7 @@ def main(mode):
         if task:
             st.setdefault("by_task", {})[task] = st.get("by_task", {}).get(task, 0) + 1
         st["used"] = st.get("used", 0) + 1
+        st.setdefault("by_tool", {})[short(tool)] = st.get("by_tool", {}).get(short(tool), 0) + 1
         st.setdefault("by_session", {})
         sid = str(inp.get("session_id") or "?")[:8]
         st["by_session"][sid] = st["by_session"].get(sid, 0) + 1
@@ -113,6 +154,10 @@ def main(mode):
             st["blocked_until"] = (now + timedelta(minutes=11)).isoformat()
         st["last_quota"] = now.isoformat()
         save(st)
+    elif mode == "post" and READ.search(short(tool)) and inp.get("tool_response") and '"isError": true' not in resp:
+        CACHE.mkdir(parents=True, exist_ok=True)
+        (CACHE / f"{cache_key(tool, inp.get('tool_input'))}.json").write_text(json.dumps(
+            {"at": now.isoformat(), "tool": short(tool), "args": inp.get("tool_input"), "response": inp.get("tool_response")}, ensure_ascii=False), encoding="utf-8")
     return None
 
 
