@@ -31,7 +31,9 @@ FLP = "Flopper 시장 중앙값"   # 제공사 온디맨드 최저가의 그날 
 REFS = [(IDX, "시장 지수", "참고 시장 지수(Silicon Data)"), ("Ornn 지수", "시장 지수", "참고 실거래 지수(Ornn)"),   # Ornn은 내부용(개인 봇만, 2026-11-21 마스터 결정)
         (FLP, "시장 중앙값", "참고 제공사 중앙값(Flopper)")]
 HOUR = 6          # 월요일 06:00 KST 이후
-READ_MAX = 600
+READ_MAX = 300   # 2026-11-23 마스터 지시 "시각물과 간략한 설명만" — 600 → 300자
+FEED_REFS = (IDX, "Ornn 지수")   # 2026-11-23 마스터 지시 "Silicon Data와 Ornn에 의거해" — 피드는 두 지수만(정가 표·Flopper는 상태 기록에만)
+CHART = common.ROOT / "radar" / "state" / "gpu_weekly.png"
 # 2026-11-16 마스터 지시 "Nebius와 CoreWeave, AWS 세 곳만 … 가격 종류를 하나로 통일" — 세 곳 모두 온디맨드 정가만(스팟·지수·Lambda 뺌)
 COLS = [("Nebius", "Nebius", lambda r: r["term"].startswith("온디맨드")),
         ("CoreWeave", "CoreWeave", lambda r: r["term"].startswith("온디맨드")),
@@ -122,7 +124,7 @@ def status(now=None):
         return {"due": False, "error": type(e).__name__}
     if not t["rows"]:
         return {"due": False, "error": "시세 없음"}
-    return {"due": True, "week": week_key(now), **t, "preview": message(t, "")}
+    return {"due": True, "week": week_key(now), **t, "preview": feed(t, "")}
 
 
 def _cell(c):
@@ -167,6 +169,75 @@ def message(t, read):
     return "\n".join(lines)
 
 
+def series(rows, name, g, days=56):
+    """그림용 — 원천·GPU별 최근 days일 일별 값(같은 날 여러 번이면 마지막)"""
+    term = next(t for n, t, _ in REFS if n == name)
+    s = {}
+    for r in rows:
+        if r["provider"] == name and r["gpu"] == g and r["term"].startswith(term) and gpu_rent._num(r["usd_per_gpu_hr"]) is not None:
+            s[r["date"]] = gpu_rent._num(r["usd_per_gpu_hr"])
+    cut = (common.now_kst().date() - timedelta(days=days)).isoformat()
+    return sorted((d, v) for d, v in s.items() if d >= cut)
+
+
+def chart(rows=None, path=CHART):
+    """GPU 4개 칸 × Silicon Data 시장 지수(파랑)·Ornn 실거래 지수(보라), 최근 8주 — 2026-11-23 마스터 지시 '시각물'"""
+    import pymupdf
+    from memory_spot import _nice, _txt
+    if rows is None:
+        import gpu_movers
+        rows = gpu_movers.wayback() + gpu_rent._rows() + gpu_rent._rows(gpu_rental.ORNN_CSV)
+    cols = {IDX: (0.13, 0.36, 0.75), "Ornn 지수": (0.55, 0.25, 0.70)}
+    doc = pymupdf.open()
+    page = doc.new_page(width=720, height=560)
+    page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
+    _txt(page, (36, 32), "GPU 렌털 지수 — 최근 8주($/GPU·시)", 15, (0.05, 0.05, 0.05))
+    _txt(page, (36, 50), "파랑 Silicon Data 시장 지수(공개 헤드라인 인용) · 보라 Ornn 실거래 지수(내부용) — 정의가 달라 수준은 비교하지 않는다", 8, (0.4, 0.4, 0.4))
+    boxes = [(60, 80, 340, 290), (420, 80, 700, 290), (60, 330, 340, 540), (420, 330, 700, 540)]
+    for g, (x0, y0, x1, y1) in zip(gpu_rent.GPUS[:4], boxes):
+        ss = {n: series(rows, n, g) for n in cols}
+        pts = [v for s in ss.values() for _, v in s]
+        _txt(page, (x0, y0 - 8), g, 11, (0.1, 0.1, 0.1))
+        if not pts:
+            _txt(page, (x0 + 10, (y0 + y1) / 2), "값 없음", 9, (0.5, 0.5, 0.5))
+            continue
+        days = sorted({d for s in ss.values() for d, _ in s})
+        d0, d1 = date.fromisoformat(days[0]), date.fromisoformat(days[-1])
+        step = _nice(max(max(pts) - min(pts), 0.5) / 4)
+        bot, top = (min(pts) // step) * step, (max(pts) // step + 1) * step
+        X = lambda d: x0 + (x1 - x0) * (date.fromisoformat(d) - d0).days / max((d1 - d0).days, 1)   # noqa: E731
+        Y = lambda v: y1 - (y1 - y0) * (v - bot) / (top - bot)   # noqa: E731
+        v = bot
+        while v <= top + 1e-9:
+            page.draw_line((x0, Y(v)), (x1, Y(v)), color=(0.92, 0.92, 0.92), width=0.5)
+            _txt(page, (x0 - 4, Y(v) + 3), f"${v:.1f}", 6.5, (0.5, 0.5, 0.5), right=True)
+            v += step
+        _txt(page, (x0, y1 + 11), d0.strftime("%m/%d"), 6.5, (0.5, 0.5, 0.5))
+        _txt(page, (x1 - 22, y1 + 11), d1.strftime("%m/%d"), 6.5, (0.5, 0.5, 0.5))
+        for n, s in ss.items():
+            for a, b in zip(s, s[1:]):
+                page.draw_line((X(a[0]), Y(a[1])), (X(b[0]), Y(b[1])), color=cols[n], width=1.5)
+            if s:
+                page.draw_circle((X(s[-1][0]), Y(s[-1][1])), 2.2, color=cols[n], fill=cols[n])
+                _txt(page, (X(s[-1][0]) - 30, Y(s[-1][1]) - 5), f"${s[-1][1]:.2f}", 7, cols[n])
+    page.get_pixmap(dpi=150).save(str(path))
+    return path
+
+
+def feed(t, read):
+    """텔레그램 캡션(2026-11-23 마스터 지시 "Silicon Data와 Ornn에 의거해 시각물과 간략한 설명만") — 두 지수 한 줄씩 + 풀이"""
+    d0 = date.fromisoformat(t["as_of"])
+    since = t.get("base") or t["prev"]
+    heads = {n: h for n, _, h in REFS}
+    lines = [f"[Chiip Pulse] GPU 렌털 지수 주간 ({_md(since)} → {d0.strftime('%m/%d')})", ""]
+    for name in FEED_REFS:
+        if (t.get("refs") or {}).get(name):
+            lines.append(f"■{heads[name].replace('참고 ', '')} " + " · ".join(f"{g} ${v:.2f}" + (f"({c:+.1f}%)" if c is not None else "") for g, v, c in t["refs"][name]))
+    if read:
+        lines += ["", read.strip()]
+    return chr(10).join(lines)
+
+
 def send(path, now=None, deliver=None):
     now = now or common.now_kst()
     read = (json.loads(Path(path).read_text(encoding="utf-8")).get("read") or "").strip()
@@ -175,10 +246,10 @@ def send(path, now=None, deliver=None):
     if len(read) > READ_MAX:
         raise ValueError(f"read {len(read)}자 — {READ_MAX}자 이내")
     t = table(now.date().isoformat())
-    text = message(t, read)
+    text = feed(t, read)
     if deliver is None:
         import notify
-        deliver = lambda s: notify.send(s, "P2")
+        deliver = lambda s: notify.send_photo(chart(), s, "P2")   # 그림 + 짧은 캡션 1통(2026-11-23)
     ok = deliver(text)
     if ok:
         st = common.load_state(STATE, {})
@@ -192,6 +263,8 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if "--status" in argv:
         print(json.dumps(status(), ensure_ascii=False, indent=1, default=str))
+    elif "--chart" in argv:
+        print(chart())
     elif "--send" in argv:
         print(json.dumps(send(argv[argv.index("--send") + 1]), ensure_ascii=False, indent=1))
     else:
