@@ -24,3 +24,4 @@
   - 상위 15 종목 이야기마다 `get_story(id)`를 nextCursor 끝까지(이야기당 상한 200건) 읽고, 상위 10은 `get_company_signals`의 그 주 글(Substack 포함)도 읽는다. 채널별 읽은 수만 `--reads`로 넘긴다 — 본문·작성자는 저장하지 않는다.
   - report.json의 theme·note마다 `basis`(근거 이야기 id)와 `points`(channel·stance·gist·story) 3개 이상. 읽은 글에 있는 채널은 채널마다 1개 이상, 강세·약세 양쪽. theme 종목은 basis 이야기에 나온 종목만. 읽은 글에 없는 주장은 넣지 않는다(Chiip 판단은 'Chiip 판단과의 차이' 한 줄로만).
   - `--render`가 관문(`evidence_gate`)으로 막는다. W47 회차부터 적용. 리포트 머리 표기는 실제 읽은 글 수(예 'X 1,240 · Reddit 310 · Substack 0')로 쓴다.
+- **노션 기록**(2026-11-22 마스터 지시 "Quantral html 링크도 Notion Weekly 페이지에 서브 페이지를 만들어 기록해놔라"): 발행 뒤 `config/notion.yaml` pages.weekly 아래에 하위 페이지 'Chiip Quantral <주차>'를 만든다(이미 있으면 같은 페이지를 갱신). 본문 = GitHub HTML 링크(publish_report.py가 찍는 `blob/<커밋>/outputs/quantral/<주차>.html`)·헤드라인 한 줄·기준시각·'관심 순위는 펀더멘털이 아니며 투자 권유가 아님'. 작성자·글 본문은 쓰지 않는다. 첫 기록 2026-W47.
