@@ -960,6 +960,11 @@ def run(now=None, peek=False):
         gpu = gpu_weekly.status(now)
     except Exception as exc:
         gpu = {"due": False, "error": type(exc).__name__}
+    try:   # LLM 토큰 가격 지수 주간(2026-11-22 마스터 지시 "Token Price Index도 수집해봐. 매주 일요일 오후 6시에 보내줘." — 일요일 18:00 이후 첫 회차)
+        import token_index
+        tki = token_index.status(now)
+    except Exception as exc:
+        tki = {"due": False, "error": type(exc).__name__}
     try:   # DRAM·NAND 현물가격 추정 그래프(2026-11-19 마스터 지시 — 평일 10~11시 첫 회차, radar/memory_spot.py)
         import memory_spot
         mspot = memory_spot.status(now)
@@ -1008,7 +1013,7 @@ def run(now=None, peek=False):
             "sent_recent": _sent_recent(now),   # 지난 24시간 보낸 사건 — 같은 사건은 새 사실이 있을 때만 "update"로(pulse_feed 중복 관문)
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "channel_check": mcc, "gpu_weekly": gpu, "memory_spot": mspot, "gpu_daily": gday, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "channel_check": mcc, "gpu_weekly": gpu, "token_index": tki, "memory_spot": mspot, "gpu_daily": gday, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if body_hold:
         fulltext.offered([h["item"]["item_id"] for h in body_hold], now)
