@@ -67,7 +67,8 @@ class TestTrendChart(unittest.TestCase):   # 2026-11-19 — 막대 대신 추이
         c = iv.pricing_chart(iv.bridge(dp, hist, {}))["chart"]
         self.assertEqual(c["kind"], "line")
         self.assertEqual([s["points"][0][1] for s in c["series"][:2]], [100.0, 100.0])
-        self.assertIn("마진 압박", c["title"])
+        self.assertTrue(c["title"].startswith("원가 물가 vs 판매가 물가 — 최근 "))   # 제목은 짧게(2026-11-22)
+        self.assertNotIn(":", c["title"])
         self.assertIn("미국 PPI(X1)", c["series"][1]["name"] + iv.index_name("ppi_id:X1"))
 
     def test_only_two_lines(self):   # 2026-11-19 MTZ — 항목별 점선 없이 원가(가중)·판매가(평균) 두 선만

@@ -312,7 +312,7 @@ def pricing_chart(br, months=24):
     # 원가와 판매가가 같은 지수면 두 선이 겹쳐 원가 선이 안 보이고 비교도 뜻이 없다(2026-11-21 IQE: 기판 원가와 판매가 모두 반도체 PPI)
     if all(abs(cost[m] - price[m]) < 0.05 for m in axis):
         verdict = "비교 불가 — 원가와 판매가를 같은 물가 지수로 잡았다(두 선이 겹친다)"
-    return {"type": "chart", "chart": {"kind": "line", "title": f"원가 물가 vs 판매가 물가 — 최근 {len(axis)}개월({lab(axis[0])} = 100): {verdict}", "unit": "", "series": series}}
+    return {"type": "chart", "chart": {"kind": "line", "title": f"원가 물가 vs 판매가 물가 — 최근 {len(axis)}개월" + ("(비교 불가 — 같은 물가 지수)" if verdict.startswith("비교 불가") else ""), "unit": "", "series": series}}   # 제목은 짧게(마스터 지시 2026-11-22) — 격차는 범례 숫자에
 
 
 def change_at(s, month, n=12, step_back=2):
