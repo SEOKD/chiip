@@ -143,6 +143,13 @@ def summary(it, rows, n=6):
     return lines, trend
 
 
+def share_title(it):
+    """비중 그래프 제목 — 수출은 '전 세계 수출 중 <도착국> 비중', 수입은 '전 세계 수입 중 <출발국> 비중'(마스터 지시 2026-11-22)"""
+    a, _, b = (x.strip() for x in it["route"].partition("→"))
+    exp = str(it.get("flow", "")).lower() == "export"
+    return f"{a} 전 세계 수출 중 {b} 비중(%)" if exp else f"{b} 전 세계 수입 중 {a} 비중(%)"
+
+
 def chart(it, rows, path):
     """위: 상대국 금액(월), 아래: 전체 대비 비중(%) — PyMuPDF(새 패키지 없음, memory_spot과 같은 방식)"""
     import pymupdf
@@ -157,7 +164,7 @@ def chart(it, rows, path):
     div = 1e5 if it["src"] == "jp" else 1e6
     lab = "억 엔" if it["src"] == "jp" else "백만 달러"
     series = [(f"{it['route']} 금액({lab})", [int(rows[m]["value"]) / div for m in months], (0.13, 0.36, 0.75), (80, 95, 690, 290)),
-              ("전체 대비 비중(%)", [100 * int(rows[m]["value"]) / int(rows[m]["world"]) if int(rows[m]["world"]) else 0 for m in months], (0.80, 0.33, 0.10), (80, 350, 690, 515))]
+              (share_title(it), [100 * int(rows[m]["value"]) / int(rows[m]["world"]) if int(rows[m]["world"]) else 0 for m in months], (0.80, 0.33, 0.10), (80, 350, 690, 515))]
     for title, ys, col, (x0, y0, x1, y1) in series:
         hi = max(ys) or 1
         step = ms._nice(hi / 4)
