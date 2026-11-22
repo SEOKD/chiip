@@ -102,6 +102,9 @@ def main(mode):
     tool = str(inp.get("tool_name") or "")
     if mode == "pre":
         task = task_of(inp)
+        if not task:   # 진단(2026-11-22): 11/22 오전 예약 작업 11건이 모두 작업 미식별로 기록됐다 — 받은 경로와 파일 존재 여부를 남긴다
+            tp = str(inp.get("transcript_path") or "")
+            st["undetected"] = (st.get("undetected", []) + [{"at": now.strftime("%H:%M"), "sid": str(inp.get("session_id"))[:8], "path": tp[-80:], "exists": Path(tp).exists() if tp else False}])[-10:]
         # Proviser는 TradingView를 부르지 않는다(2026-11-22 마스터 지시 "Provisor로 Analysis Report의 주가 반응을 Revised할 때는 TradingView를 이용하지 마라")
         if task and any(str(task).startswith(p) for p in c.get("deny_tasks") or []):
             st["denied"] = st.get("denied", 0) + 1
