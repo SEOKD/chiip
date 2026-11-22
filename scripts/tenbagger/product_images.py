@@ -23,6 +23,7 @@ import csv
 import hashlib
 import io
 import json
+import os
 import sys
 import urllib.error
 import urllib.request
@@ -375,9 +376,26 @@ def save(t, raw, mime, model, size, batch, usd, c=None):
     return meta
 
 
+def no_regen():
+    """다시 그리지 않는 회차 — Proviser 점검·정정(2026-11-22 마스터 지시 "Proviser로 Analysis Report를 점검할 때 이미지는 두 번 생성하지 않도록 하라").
+    CHIIP_NO_REGEN=1 또는 --no-regen. 정정으로 BOM·이름이 바뀌어 해시가 달라져도 있는 그림을 그대로 쓰고, 없으면 그리지 않는다(이름표는 렌더러가 새 BOM으로 붙인다)"""
+    return os.environ.get("CHIIP_NO_REGEN") == "1"
+
+
+def existing(t):
+    """해시·기한과 무관하게 이미 그린 그림(검수 통과분)"""
+    m = load_meta(t)
+    if m and (t["dir"] / m.get("file", "")).exists() and (m.get("check") or {}).get("result") in ("pass", None):
+        return m
+    return None
+
+
 def make_one(t, batch=False, c=None):
     """(상태, 메타 또는 사유)"""
     c = c or cfg()
+    if no_regen():
+        m = existing(t)
+        return ("cached", m) if m else ("no_regen", "Proviser 회차 — 새로 그리지 않음")
     hit = cached(t, c)
     if hit:
         return "cached", hit
@@ -422,6 +440,9 @@ def ensure(t, c=None, qa=None):
     import image_qa
     c = c or cfg()
     qa = qa or image_qa.review
+    if no_regen():
+        m = existing(t)
+        return ("cached", m) if m else ("no_regen", "Proviser 회차 — 새로 그리지 않음")
     hit = cached(t, c)
     if hit and (hit.get("check") or {}).get("result") == "pass":
         return "cached", hit
@@ -594,7 +615,10 @@ def main(argv):
     ap.add_argument("--view", choices=["cross-section"])
     ap.add_argument("--only", choices=["exploded", "product", "service"])
     ap.add_argument("--batch", action="store_true")
+    ap.add_argument("--no-regen", action="store_true", help="있는 그림만 쓰고 새로 그리지 않는다(Proviser 점검·정정, 2026-11-22)")
     a = ap.parse_args(argv)
+    if a.no_regen:
+        os.environ["CHIIP_NO_REGEN"] = "1"
     c = cfg()
     if a.cmd == "ledger":
         print(json.dumps({"month": date.today().isoformat()[:7], "usd": month_spend(), "industry_usd": month_spend("industry"), "budget": c["monthly_budget_usd"],
