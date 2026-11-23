@@ -970,6 +970,11 @@ def run(now=None, peek=False):
         mspot = memory_spot.status(now)
     except Exception as exc:
         mspot = {"due": False, "error": type(exc).__name__}
+    try:   # DDR5 RDIMM 32GB·64GB 현물·64GB 계약가 그래프(2026-11-23 마스터 지시 — Badonions 채널 주간 글이 새로 오면 1통, radar/rdimm_spot.py)
+        import rdimm_spot
+        rdm = rdimm_spot.status()
+    except Exception as exc:
+        rdm = {"due": False, "error": type(exc).__name__}
     try:   # GPU 렌털비 일일 추이 그래프(2026-11-19 마스터 지시 — 매일 10~11시 첫 회차, H100·H200·B200·B300 × Nebius·CoreWeave·AWS, radar/gpu_daily.py)
         import gpu_daily
         gday = gpu_daily.status(now)
@@ -1013,7 +1018,7 @@ def run(now=None, peek=False):
             "sent_recent": _sent_recent(now),   # 지난 24시간 보낸 사건 — 같은 사건은 새 사실이 있을 때만 "update"로(pulse_feed 중복 관문)
             "candidates": candidates(sources, watch)[:20],
             "queue": {"alpha": [{"id": x["id"], "name": x.get("name"), "reason": x.get("reason")} for x in q], "busy": busy},
-            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "channel_check": mcc, "gpu_weekly": gpu, "token_index": tki, "memory_spot": mspot, "gpu_daily": gday, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
+            "transcripts": tw, "jp_transcripts": jp, "exclusive": ex, "repair": heal, "social": soc, "inst13f": i13, "fiscal_ir_docs": fdocs, "industry_quarter": iq, "industry_event": iev, "ib_digest": ibd, "channel_check": mcc, "gpu_weekly": gpu, "token_index": tki, "memory_spot": mspot, "rdimm_spot": rdm, "gpu_daily": gday, "report_requests": rreq, "body_hold": body_hold, "tg_other": st.pop("tg_other", []), "deliver_max": DELIVER_MAX, "earnings_max": EARNINGS_MAX}
     ir_ledger.offered([s["url"] for s in data["sources"] if s.get("source_class") == ir_ledger.CLASS], now)
     if body_hold:
         fulltext.offered([h["item"]["item_id"] for h in body_hold], now)
