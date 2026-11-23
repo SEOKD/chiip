@@ -1,0 +1,105 @@
+auto: true
+id: us-ceco
+name: CECO Environmental
+ticker: CECO
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.6
+  ROW: 0.4
+tax: 0.24
+horizon: 10
+as_of: '2026-11-23'
+market:
+  date: '2026-11-23'
+  price: 48.01
+  shares: 0.060614
+  net_debt: 0.569261
+  source: 가격 = 2026-11-20 종가 $48.01(Tiingo 실측 일봉) · 주식 수 58,613,676주(3Q26 10-Q 재무상태표,
+    2026-09-30 — 표지 11/4 58,627,222주) · 현금 $72.1M(제한 현금 $1.6M 별도) · 차입 $599.3M(리볼버
+    $371.5M + 기간대출 $232.1M + 합작 대출 $4.2M − 할인 $8.5M) + 운용리스 부채 $42.0M(유동 $9.0M·장기
+    $33.0M) (3Q26 10-Q, 2026-09-30)
+rev0: 1.3375
+ic0: 2.658037
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.6449
+      end: 0.035
+      decay: 0.3
+    margin:
+      m0: 0.118
+      target: 0.195
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.189
+      - 0.195
+    s2c: 0.9
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.7196
+      end: 0.04
+      decay: 0.35
+    margin:
+      m0: 0.118
+      target: 0.2335
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.189
+      - 0.195
+    s2c: 1.035
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.5701
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.118
+      target: 0.1565
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.189
+      - 0.195
+    s2c: 0.765
+mc:
+  sigma_growth: 0.0374
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [1.3, 1.375] (3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-09)·3Q26
+    어닝콜)
+  growth: 컨센서스 1년차 64.5%, 2년차 12.7%
+  margin: 1~2년차 컨센서스 18.9%, 19.5% 고정 → 목표 20%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 0.9
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 57.0%~72.0%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +60.7% 아래·강세 +68.2% 위 확률. 내부 관점(컨센서스 +64.5%, σ 7.9%: 범위 15.0% ÷ d2(8) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.058613676(2026-09-30) + 옵션·RSU·워런트·전환 0.0020 — 3Q26 10-Q:
+    잠재 희석 증권 약 200만 주(순손실이라 희석 EPS 계산에서 제외), 반희석 제외 증'
+notes:
+- 자동 생성(build_drivers) 2026-11-23 — 데이터 묶음 2026-11-23
+- '어닝콜 위험: 대형 발전 프로젝트 일정 지연·주문 취소(고객 취소권)'
+- '어닝콜 위험: 선거 뒤 정책 변화·AI 데이터센터 투자 심리(회사 언급)'
+- '어닝콜 위험: 중동 대형 수처리 프로젝트 지연'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/3197/000119312526453470/ceco-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/3197/000119312526452685/ceco-ex99_1.htm
+- https://www.sec.gov/Archives/edgar/data/3197/000119312526085815/ceco-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/3197/000110465926068661/tm2616015d2_8k.htm
+- https://www.sec.gov/Archives/edgar/data/3197/000110465926047714/tm2611145-7_424b3.htm
+- https://www.sec.gov/Archives/edgar/data/3197/000119312526413794/ceco-20261002.htm
+- Fiscal.ai 표준화 재무·추정·전문(NASDAQ_CECO)
+- Easyconomics 회사 개요(yfinance)·실적 정리 — 동종 5사 시가총액·차입·현금은 대체 원천(Fiscal.ai 막힘)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
