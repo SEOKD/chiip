@@ -1,0 +1,111 @@
+auto: true
+id: co-munters
+name: Munters
+ticker: MTRS
+unit: BSEK
+unit_usd: 97762200.0
+industry: electrical_equipment
+region_mix:
+  US: 0.6
+  EU: 0.26
+  other: 0.14
+tax: 0.22
+horizon: 10
+as_of: '2026-11-23'
+market:
+  date: '2026-11-23'
+  price: 126.9
+  shares: 0.182541
+  net_debt: 8.517
+  source: 가격 = 2026-11-20 종가 SEK 126.90(Easyconomics·yfinance, Fiscal.ai 종가와 일치).
+    주식 수 182,541,440주(yfinance, 3Q26 가중 평균 183M와 일치). 현금 SEK 1,368M. 차입 = 유동 차입 928M
+    + 장기 차입 5,559M + 리스 부채(유동 207M + 장기 1,823M) = SEK 8,517M(Fiscal.ai 표준화 재무상태표 2026-09-30,
+    yfinance 총차입 8,517M과 일치). 계약부채(고객 선수금) SEK 4,094M이 현금보다 커서 현금 전액을 고객 선수금 몫으로 잡았다
+rev0: 15.448
+ic0: 12.817
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.22
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.1
+      target: 0.125
+      year_target: 3
+      lr: 0.13
+      lam: 0.35
+      anchors:
+      - 0.1165
+      - 0.1277
+    s2c: 1.206
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.33
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.1
+      target: 0.145
+      year_target: 3
+      lr: 0.13
+      lam: 0.25
+      anchors:
+      - 0.1165
+      - 0.1277
+    s2c: 1.387
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.097
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.1
+      target: 0.105
+      year_target: 3
+      lr: 0.13
+      lam: 0.5
+      anchors:
+      - 0.1165
+      - 0.1277
+    s2c: 1.025
+mc:
+  sigma_growth: 0.0583
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 15.448
+  growth: 컨센서스 1년차 13.3%, 2년차 12.6% → 덮어쓰기 1년차 22.0%
+  margin: 1~2년차 컨센서스 11.7%, 12.8% 고정 → 목표 12%(3년차, 덮어쓰기) → 장기 수렴 13%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.206
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 9.7%~33.0% (덮어쓰기만큼 이동)
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +15.9% 아래·강세 +27.5% 위 확률. 내부 관점(컨센서스 +22.0%, σ 10.5%: 추정 범위 없음 — 5% + 0.25
+    × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '① 1년차 성장 22%: 컨센서스 칸(Fiscal.ai 자체 추정)의 FY26 매출 15.45B는 7/17 고정값이라 3Q
+    실적(같은 추정을 12% 상회)과 ''4Q DCT 인도가 3Q보다 는다''는 3Q 콜 답변을 담지 못한다 — 1~3Q 실적 11.86B에 4Q를
+    3Q 수준(4.47B)으로만 봐도 FY26은 약 16.3B다. 잔고 SEK 28B의 상당 부분이 2027 인도라는 발언(3Q 콜)과 yfinance
+    선행 EPS 7.96(Fiscal 6.5보다 높음)을 반영해 FY27 약 18.8B(15.45 × 1.22)로 둔다. ② 장기 영업이익률(IFRS)
+    13%: 규칙 기본값 15%는 회사가 밝혀 온 조정 EBITA 중기 목표 14%(2Q 콜)보다 높다 — 인수 무형 상각(매출의 약 1%p)을
+    빼면 IFRS 13%가 상한에 가깝다. 최근 TTM은 7.9%'
+  shares: 완전 희석 = 기본 0.18254144(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 발행 184,457,817주
+    − 자기주식 1,916,377주 = 유통 182,541,440주(3Q26 보고서
+notes:
+- 자동 생성(build_drivers) 2026-11-23 — 데이터 묶음 2026-11-23
+- '어닝콜 위험: DCT 매출은 늘었는데 마진은 내려갔다 — 새 제품(칠러·CDU·CRAH) 초기 효율, 재작업, 부품 부족, 관세 2%p'
+- '어닝콜 위험: 영업현금흐름 3Q −SEK 216M, 재고 1년 새 2,046M → 3,791M, 레버리지 3.4배'
+- '어닝콜 위험: 잔고 일부는 원가가 오르기 전 가격으로 받았다 — 가격 조항은 일정 범위를 넘어야 발동'
+evidence:
+- Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf
+- Munters 3Q26 발표자료 https://www.munters.com/globalassets/digizuite/35802-en-munters-q3-presentation-2026.pdf
+- Munters 3Q26 어닝콜(2026-10-23)
+- Munters 연차보고서 2025 https://www.munters.com/globalassets/story-page-import-images/munters-annual-and-sustainability-report-20252.pdf
+- Munters 자본시장의 날 보도자료(2026-11-11) https://www.munters.com/globalassets/story-page-import-images/release4.pdf
+- Munters 자본시장의 날 CEO 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36087-en-ceo-presentation-cmd-2026.pdf
+- Munters 자본시장의 날 CFO 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36086-en-cfo-presentation-cmd-2026.pdf
+- Munters 자본시장의 날 DCT 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36085-en-dct-presentation-cmd-2026.pdf
+- https://www.munters.com/en-se/news-media/press-releases/

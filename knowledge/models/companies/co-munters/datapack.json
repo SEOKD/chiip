@@ -1,0 +1,3580 @@
+{
+ "id": "co-munters",
+ "name": "Munters",
+ "ticker": "MTRS",
+ "unit": "BSEK",
+ "currency_symbol": "SEK ",
+ "unit_usd": 97762200.0,
+ "industry": "electrical_equipment",
+ "region_mix": {
+  "US": 0.6,
+  "EU": 0.26,
+  "other": 0.14
+ },
+ "tax": 0.22,
+ "profile": {
+  "price": 126.9,
+  "shares_basic": 0.18254144,
+  "shares_date": "2026-09-30",
+  "cash": 1.368,
+  "debt": 8.517,
+  "customer_deposits": 1.368,
+  "source": "가격 = 2026-11-20 종가 SEK 126.90(Easyconomics·yfinance, Fiscal.ai 종가와 일치). 주식 수 182,541,440주(yfinance, 3Q26 가중 평균 183M와 일치). 현금 SEK 1,368M. 차입 = 유동 차입 928M + 장기 차입 5,559M + 리스 부채(유동 207M + 장기 1,823M) = SEK 8,517M(Fiscal.ai 표준화 재무상태표 2026-09-30, yfinance 총차입 8,517M과 일치). 계약부채(고객 선수금) SEK 4,094M이 현금보다 커서 현금 전액을 고객 선수금 몫으로 잡았다"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "date": "2026-09-30",
+  "source": "발행 184,457,817주 − 자기주식 1,916,377주 = 유통 182,541,440주(3Q26 보고서 p.10). 장기 인센티브 2023·2024·2025 프로그램은 모두 현금 기반이라 잠재 희석 주식이 없다(연차보고서 Note 34)"
+ },
+ "financials": {
+  "rev_ttm": 15.452,
+  "ebit_ttm": 1.222,
+  "invested_capital": 12.817,
+  "capex_ttm": 0.932,
+  "da_ttm": 0.792,
+  "sbc_ttm": null,
+  "rev_growth_ttm": 0.0273,
+  "basis": "IFRS",
+  "note": "TTM = 4Q25 3,594 + 1Q26 3,580 + 2Q26 3,805 + 3Q26 4,473 = SEK 15,452M. IFRS 영업이익 161 + 306 + 323 + 432 = SEK 1,222M(7.9%). 투하자본 = 자기자본 5,668 + 차입 6,487 + 리스 2,030 − 현금 1,368 = SEK 12,817M. CAPEX TTM = 유형 654(177+142+197+138) + 무형 278(75+56+78+69) = 932M. D&A TTM = 198+186+199+209 = 792M(현금흐름표 분기 합). 주식 보상 비용은 표준화 재무에 별도 표시 없음"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 15.448,
+   "FY2027": 17.5,
+   "FY2028": 19.7
+  },
+  "rev_low": {
+   "FY2026": 15.177,
+   "FY2027": 15.6,
+   "FY2028": 16.8
+  },
+  "rev_high": {
+   "FY2026": 15.787,
+   "FY2027": 19.2,
+   "FY2028": 22.3
+  },
+  "ebit_margin": {
+   "FY2026": 0.1,
+   "FY2027": 0.1165,
+   "FY2028": 0.1277
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "n_analysts": null,
+  "ebit_margin_note": "IFRS EBIT ÷ 매출(Fiscal.ai 추정 SEK 1.544B·2.038B·2.516B, 2026-11-21 조회). 조정 EBIT FY27 2.42B(13.8%)·FY28 2.88B(14.6%)",
+  "source": "Fiscal.ai 자체 추정(company_estimates, 2026-11-22 조회 — FY26 매출은 2026-07-17 고정값, FY27·28은 Agentic Consensus 2026-09-30, 신뢰도 '낮음') 1순위. 애널리스트 조사 컨센서스가 아니다. Easyconomics(yfinance): 선행 EPS SEK 7.96·선행 P/E 15.9배, 3Q26 발표 전 추정 매출 SEK 4.46B·EPS SEK 1.27. Zacks 수록 없음",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "SEK M",
+    "actual": 3594,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "SEK",
+    "actual": -0.04,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "SEK M",
+    "actual": 358,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBITDA",
+    "unit": "SEK M",
+    "actual": 474,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-01-30"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "SEK M",
+    "actual": 3580,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "SEK",
+    "actual": 0.68,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "SEK M",
+    "actual": 390,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBITDA",
+    "unit": "SEK M",
+    "actual": 498,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-29"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "SEK M",
+    "actual": 3805,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-17"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "SEK",
+    "actual": 1.11,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-17"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBITDA",
+    "unit": "SEK M",
+    "actual": 530,
+    "est": null,
+    "est_src": null,
+    "est_asof": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-17"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "SEK M",
+    "actual": 4473,
+    "est": 3998.402,
+    "est_src": "fiscal:guidance_calculated",
+    "est_asof": "2026-07-17",
+    "basis": "gaap",
+    "earnings_date": "2026-10-23",
+    "pair": {
+     "easyconomics": 4460.0
+    },
+    "note": "발표 전 추정 두 값 — Fiscal.ai 자체 추정 3,998M(7/17 고정) vs Easyconomics 실적 정리의 추정 4,460M"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "SEK",
+    "actual": 1.16,
+    "est": 1.003,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "gaap",
+    "earnings_date": "2026-10-23",
+    "pair": {
+     "easyconomics": 1.27
+    },
+    "note": "발표 전 추정 두 값 — Fiscal.ai 자체 추정 1.00 vs Easyconomics 1.27"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "SEK M",
+    "actual": 546,
+    "est": 463.531,
+    "est_src": "fiscal:model",
+    "est_asof": "2026-10-05",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-23"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBITDA",
+    "unit": "SEK M",
+    "actual": 663,
+    "est": 572.531,
+    "est_src": "fiscal:agentic_consensus",
+    "est_asof": "2026-09-30",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-23"
+   }
+  ],
+  "eps": {
+   "FY2026": 4.21,
+   "FY2027": 6.5,
+   "FY2028": 8.3
+  },
+  "eps_low": {
+   "FY2026": 3.8,
+   "FY2027": 4.6,
+   "FY2028": 5.4
+  },
+  "eps_high": {
+   "FY2026": 4.6,
+   "FY2027": 8.4,
+   "FY2028": 11.0
+  },
+  "ebit": {
+   "FY2027": 2.42,
+   "FY2028": 2.88
+  },
+  "ratings": {},
+  "ratings_note": "Fiscal.ai·Easyconomics(yfinance)·Zacks 어디에도 의견 분포·목표가가 없다(북유럽 증권사 커버리지는 채널 밖) — 비워 둔다",
+  "quarters_est": {
+   "2026-03": 3.58,
+   "2026-06": 3.805,
+   "2026-09": 4.473,
+   "2026-12": 3.5896,
+   "2027-03": 4.05,
+   "2027-06": 4.3,
+   "2027-09": 5.054,
+   "2027-12": 4.096,
+   "2028-03": 4.4335,
+   "2028-06": 4.8169
+  },
+  "quarters_est_note": "2026-03~09는 실적, 이후 Fiscal.ai 자체 추정(Agentic Consensus·모델, 신뢰도 '낮음'). 4Q26 추정 SEK 3.59B는 2026-07-17에 고정된 값으로 3Q 실적(4.47B)과 3Q 콜의 '4Q DCT 인도 증가' 발언을 반영하지 않았다",
+  "eps_quarters_est": {
+   "2026-12": 1.26,
+   "2027-03": 1.348,
+   "2027-06": 1.6,
+   "2027-09": 1.778,
+   "2027-12": 1.778,
+   "2028-03": 2.075,
+   "2028-06": 2.075
+  },
+  "two_estimates": "다음 12개월 EPS — Fiscal.ai 자체 추정 SEK 5.98(P/E 21.2배) vs yfinance 선행 EPS SEK 7.96(P/E 15.9배, 대상 기간 미표시). 리포트에는 범위로 쓴다"
+ },
+ "guidance": {
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "source": "자본시장의 날(2026-11-11) 보도자료·CFO 자료 — 중기(3~5년) 목표: 매출 연평균 성장 14% 초과(유지), 조정 EBITA 이익률 14% 초과(수준 유지·정의 변경), 조정 ROCE 15% 초과(신설, 3Q26 11.5%), 레버리지 포부 1.5~2.5배(3Q26 3.4배), 배당 순이익의 30~50%. 2026 전망(3Q 보고서): 순매출 증가·조정 EBITA 이익률 하반기 개선(숫자 없음)",
+  "note": "연간 매출 가이던스 없음 — 기준점은 Fiscal FY2026 추정 SEK 15.448B(1~3Q 실적 11.858 + 4Q 추정)",
+  "long_term": "2030년 순매출 SEK 30B 포부(2025년 14.7B, 유기 성장 + 인수 — CEO 자료 p.16). 조정 EBITA 이익률 14% 초과(새 정의 기준 2026년 9개월 누적 9.7%)",
+  "next": {},
+  "next_note": "회사 가이던스 없음 — 회사는 분기·연간 숫자 가이던스를 내지 않는다. 컨센서스 칸의 4Q 매출 SEK 3,590M·EPS SEK 1.26은 7월에 고정된 추정이라 3Q 실적(SEK 4,473M)과 '4Q DCT 인도 증가' 발언을 담지 못했다"
+ },
+ "call": {
+  "date": "2026-10-23",
+  "prev_date": "2026-07-17",
+  "tone": "down",
+  "tone_delta": -0.9,
+  "guidance_direction": "maintain",
+  "guidance_note": "실적 변화 레이더: 톤 7.6 → 6.7(−0.9), 전망은 유지(숫자 가이던스 없음). 주문·잔고는 더 강해졌고 이익·현금 전환 설명은 더 조심스러워졌다",
+  "kpis": {
+   "order_intake_yoy": 0.7,
+   "book_to_bill": 1.6,
+   "backlog_bsek": 28.0,
+   "backlog_yoy": 1.78,
+   "net_sales_yoy": 0.18,
+   "dct_book_to_bill": 2.7,
+   "dct_sales_qoq": 0.3,
+   "dct_service_yoy": 0.41,
+   "airtech_margin": 0.129,
+   "airtech_margin_ex_fee": 0.104,
+   "cancel_fee_msek": 50,
+   "owc_pct_sales": 0.042,
+   "capex_pct_sales_q": 0.046,
+   "capex_pct_sales_ltm": 0.06,
+   "leverage": 3.4,
+   "dct_tariff_pp": 0.02,
+   "foodtech_arr_yoy": 0.18,
+   "airtech_savings_msek": 180,
+   "airtech_savings_target_msek": 250
+  },
+  "guidance_changes": [
+   "2026 전망 유지 — 회사는 매출·이익 숫자 가이던스를 내지 않는다",
+   "DCT 2026 매출 성장: 2Q '30~40% 범위, 30%는 확실' → 3Q '정확한 숫자에서 벗어나고 싶다, 우리 운영 기준으로는 달성이 합리적'",
+   "DCT 10%대 후반 마진: 2Q '공급망을 풀면 도달해야 한다' → 3Q '중기 과제, 시점은 말하지 않겠다'",
+   "재고: 4Q에도 조금 더 늘고 연말에 안정",
+   "CAPEX: 2025년과 같은 범위(유지)",
+   "레버리지: 3.2배 → 3.4배, 장기 지향 1.5~2.5배(고정 목표 아님) — 개선이 예상보다 늦다고 인정"
+  ],
+  "new_topics": [
+   "CEO 교체 — Stefan Aspman이 첫 실적 콜을 진행",
+   "수주잔고 SEK 28B(전년 대비 +178%), 주문 +70%, DCT 수주 ÷ 매출 2.7",
+   "AirTech 대형 주문 1건 전체 취소 — 취소 수수료 약 SEK 50M이 AirTech 마진을 2.5%p 올렸다",
+   "버지니아 공장 365,000 sq ft에 200,000 sq ft 추가",
+   "일부 제품 가격이 연초보다 20% 넘게 올랐다(업계 30~40%보다는 낮다고 답변)",
+   "2027년 물량은 상당 부분 수주 완료 — 지금 받는 주문은 2028년 인도에 가깝다",
+   "대형 주문 개별 발표를 그만둔다(일상 사업의 일부)",
+   "영업현금흐름 마이너스 — DCT 재고 증가와 매출채권 증가",
+   "부족 부품으로 코일을 지목"
+  ],
+  "dropped_topics": [
+   "2Q의 '공급 차질로 못 낸 매출 약 SEK 300M' 같은 차질 금액 — 3Q에는 금액을 말하지 않았다",
+   "2Q 전 CEO의 'FoodTech를 빼고도 몇 년 안에 매출 SEK 20B 이상' 발언 — 3Q 콜에는 없다(11/11 자본시장의 날로 넘김)",
+   "2Q의 AirTech '13%대 복귀' 조건(분기 주문 SEK 2B 이상) 설명 — 3Q는 12.9%를 달성했다고만 설명"
+  ],
+  "analyst_focus": [
+   "UBS — DCT 한 분기 지연이 그대로인가, 2026년 30% 성장, 10%대 후반 마진 시점, 4Q 대형 주문 인도 약 SEK 2.5B",
+   "SEB — DCT 관세 영향 2%p로 축소, 재고가 언제 풀리나",
+   "ABG Sundal Collier — 버지니아 램프업 병목, 주문 취소가 늘 위험",
+   "Handelsbanken — 칠러 부품 미국 현지화 비중, 2027년 수요 논의",
+   "Nordea — 대형 주문·선수금 조건·이중 주문 위험",
+   "DNB Carnegie — 신규 주문 가격 인상 폭, 잔고의 2027·2028 인도 배분",
+   "Jefferies — DCT 마진을 누르는 요인과 대응",
+   "Pareto Securities — DCT 믹스, 취소 수수료를 뺀 AirTech 기초 마진",
+   "Kepler — 신규 고객 비중, 경쟁사의 원스톱 제품군"
+  ],
+  "risks": [
+   "DCT 매출은 늘었는데 마진은 내려갔다 — 새 제품(칠러·CDU·CRAH) 초기 효율, 재작업, 부품 부족, 관세 2%p",
+   "영업현금흐름 3Q −SEK 216M, 재고 1년 새 2,046M → 3,791M, 레버리지 3.4배",
+   "잔고 일부는 원가가 오르기 전 가격으로 받았다 — 가격 조항은 일정 범위를 넘어야 발동",
+   "회사가 숫자 가이던스를 내지 않아 4Q 인도 규모는 애널리스트 추정(약 SEK 2.5B)에 대한 '그렇다'는 답변이 전부",
+   "AirTech 12.9% 마진 중 2.5%p는 일회성 취소 수수료",
+   "미주·대형 고객 집중 — 회사도 '대형 경쟁사보다 고객 집중도가 조금 높다'고 인정"
+  ],
+  "source": "Munters 3Q26 어닝콜(2026-10-23) · Munters 2Q26 어닝콜(2026-07-17) · Fiscal.ai 표준화 재무",
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "item": "수주잔고",
+    "label": "잔고 SEK 28B",
+    "prior": "2Q 잔고 전년 대비 +151%, 수주 ÷ 매출 2.3",
+    "latest": "3Q 잔고 SEK 28B(+178%), 주문 +70%, 수주 ÷ 매출 1.6",
+    "driver": "growth_decay",
+    "shift": 0.02,
+    "confidence": 1.0,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "item": "DCT 매출 램프",
+    "label": "DCT 매출 +30%(전분기)",
+    "prior": "2Q DCT 매출 감소 — 공급 차질로 약 SEK 300M 미인식",
+    "latest": "3Q DCT 매출 전분기 +30%로 사상 최대, 그룹 매출 +18%",
+    "driver": "rev0",
+    "shift": 0.3,
+    "confidence": 1.0,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D3",
+    "kind": "부정",
+    "item": "DCT 마진 회복 시점",
+    "label": "DCT 마진 시점 후퇴",
+    "prior": "2Q: 공급망을 풀면 10%대 후반에 도달해야 한다, 하반기 개선",
+    "latest": "3Q: 10%대 후반은 중기 과제, 시점 미제시. 3Q DCT 마진은 하락",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D4",
+    "kind": "업데이트",
+    "item": "AirTech 마진",
+    "label": "AirTech 마진 12.9%",
+    "prior": "2Q: 13%대 복귀까지 몇 분기 더",
+    "latest": "3Q 12.9%(취소 수수료 제외 10.4%), 비용 절감 SEK 180M 달성(목표 250M)",
+    "driver": "margin_m0",
+    "shift": 0.003,
+    "confidence": 1.0,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D5",
+    "kind": "부정",
+    "item": "현금흐름·레버리지",
+    "label": "영업현금 마이너스",
+    "prior": "2Q 영업현금흐름 SEK +573M, 레버리지 3.2배",
+    "latest": "3Q 영업현금흐름 SEK −216M, 레버리지 3.4배 — 재고 +654M·매출채권 +447M",
+    "driver": "net_debt",
+    "shift": 0.25,
+    "confidence": 1.0,
+    "source": "3Q 콜·Fiscal.ai 현금흐름표"
+   },
+   {
+    "id": "D6",
+    "kind": "신규",
+    "item": "2027·2028 인도 가시성",
+    "label": "2027 물량 대부분 수주",
+    "prior": "2Q: 주문은 주로 2026·2027 인도, 일부 2028",
+    "latest": "3Q: 2027 물량은 상당 부분 찼고 신규 주문은 2028 인도에 가깝다",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.8,
+    "source": "3Q 콜"
+   },
+   {
+    "id": "D7",
+    "kind": "신규",
+    "item": "신규 주문 가격",
+    "label": "일부 제품 가격 +20%↑",
+    "prior": "2Q: 그룹 가격 인상 2.8%, 잔고 가격 반영은 약 반년 늦다",
+    "latest": "3Q: 일부 제품 가격이 연초보다 20% 넘게 올랐다. 잔고 일부는 예전 가격",
+    "driver": "margin_lr",
+    "shift": 0.003,
+    "confidence": 0.5,
+    "source": "3Q 콜"
+   }
+  ],
+  "script": {
+   "kind": "전문",
+   "source": "Fiscal.ai company_ir_events_transcript q3-2026 https://fiscal.ai/company/OM-MTRS",
+   "date": "2026-10-23",
+   "via": "fiscal"
+  }
+ },
+ "sources": [
+  "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf",
+  "Munters 3Q26 발표자료 https://www.munters.com/globalassets/digizuite/35802-en-munters-q3-presentation-2026.pdf",
+  "Munters 3Q26 어닝콜(2026-10-23)",
+  "Munters 연차보고서 2025 https://www.munters.com/globalassets/story-page-import-images/munters-annual-and-sustainability-report-20252.pdf",
+  "Munters 자본시장의 날 보도자료(2026-11-11) https://www.munters.com/globalassets/story-page-import-images/release4.pdf",
+  "Munters 자본시장의 날 CEO 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36087-en-ceo-presentation-cmd-2026.pdf",
+  "Munters 자본시장의 날 CFO 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36086-en-cfo-presentation-cmd-2026.pdf",
+  "Munters 자본시장의 날 DCT 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36085-en-dct-presentation-cmd-2026.pdf",
+  "https://www.munters.com/en-se/news-media/press-releases/"
+ ],
+ "weakest": "FY27 매출 +13%와 EBIT 이익률 10→12.8% — 데이터센터 냉각 수주·증설 램프가 가른다. 다음 확인: 4Q26 실적(2027-01~02 예정, 일자 미확인)",
+ "as_of": "2026-11-23",
+ "scenario_probs": {},
+ "scenario_probs_why": "계산값 그대로 — 조정 이유 없음",
+ "peers": [
+  {
+   "name": "Vertiv",
+   "ticker": "VRT",
+   "key": "NYSE_VRT",
+   "rev": 13.117,
+   "ebit_margin": 0.2014,
+   "mcap": 64.012,
+   "pb": 11.63,
+   "debt": 3.357,
+   "cash": 3.712,
+   "ev_sales": 4.85,
+   "growth": 0.353,
+   "goodwill": 2.2796,
+   "intangibles": 1.7361,
+   "why": "데이터센터 전력·냉각 1위 — DCT의 직접 경쟁(칠러·CRAH·CDU)",
+   "pe_fwd": 17.95,
+   "ev_ebitda_fwd": 12.52,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 30.98,
+     "ev_ebitda_fwd": 22.02
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 37.62,
+     "ev_ebitda_fwd": 27.33
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 45.78,
+     "ev_ebitda_fwd": 33.2
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 28.74,
+     "ev_ebitda_fwd": 20.47
+    }
+   ],
+   "pe_fwd2": 14.58,
+   "ev_ebitda_fwd2": 10.25,
+   "pe_fwd3": 11.57,
+   "ev_ebitda_fwd3": 8.16,
+   "ntm_ebit_margin": 0.2519,
+   "ntm_growth": 0.4274
+  },
+  {
+   "name": "Modexus(옛 Modine)",
+   "ticker": "MOD",
+   "key": "NYSE_MOD",
+   "rev": 3.628,
+   "ebit_margin": 0.1009,
+   "mcap": 6.632,
+   "pb": 5.39,
+   "debt": 0.867,
+   "cash": 0.151,
+   "ev_sales": 2.03,
+   "growth": 0.3507,
+   "goodwill": 0.29,
+   "intangibles": 0.185,
+   "why": "데이터센터 칠러(Airedale)·열교환기 — 미국 칠러 증설 경쟁",
+   "pe_fwd": 14.51,
+   "ev_ebitda_fwd": 11.77,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 24.82,
+     "ev_ebitda_fwd": 11.97
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 28.37,
+     "ev_ebitda_fwd": 17.71
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 30.87,
+     "ev_ebitda_fwd": 19.93
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 21.21,
+     "ev_ebitda_fwd": 13.4
+    }
+   ],
+   "pe_fwd2": 10.75,
+   "ev_ebitda_fwd2": 7.82,
+   "pe_fwd3": 7.88,
+   "ev_ebitda_fwd3": 5.87,
+   "ntm_ebit_margin": 0.159,
+   "ntm_growth": -0.0392
+  },
+  {
+   "name": "nVent",
+   "ticker": "NVT",
+   "key": "NYSE_NVT",
+   "rev": 5.295,
+   "ebit_margin": 0.1781,
+   "mcap": 16.457,
+   "pb": 4.0,
+   "debt": 2.346,
+   "cash": 1.122,
+   "ev_sales": 3.34,
+   "growth": 0.4795,
+   "goodwill": 2.676,
+   "intangibles": 1.757,
+   "why": "액체 냉각 CDU·매니폴드 — 데이터센터 냉각 수요의 다른 층",
+   "pe_fwd": 15.9,
+   "ev_ebitda_fwd": 10.99,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 25.19,
+     "ev_ebitda_fwd": 16.52
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 27.19,
+     "ev_ebitda_fwd": 17.61
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 32.14,
+     "ev_ebitda_fwd": 20.73
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 25.17,
+     "ev_ebitda_fwd": 16.59
+    }
+   ],
+   "pe_fwd2": 12.48,
+   "ev_ebitda_fwd2": 9.09,
+   "pe_fwd3": 10.76,
+   "ev_ebitda_fwd3": 8.03,
+   "ntm_ebit_margin": 0.2155,
+   "ntm_growth": 0.3225
+  },
+  {
+   "name": "Trane Technologies",
+   "ticker": "TT",
+   "key": "NYSE_TT",
+   "rev": 23.227,
+   "ebit_margin": 0.178,
+   "mcap": 84.557,
+   "pb": 9.29,
+   "debt": 4.218,
+   "cash": 1.227,
+   "ev_sales": 3.77,
+   "growth": 0.177,
+   "goodwill": null,
+   "intangibles": null,
+   "why": "상업용 공조·데이터센터 칠러 대형사",
+   "pe_fwd": 22.77,
+   "ev_ebitda_fwd": 16.81,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.43,
+     "ev_ebitda_fwd": 18.94
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 27.55,
+     "ev_ebitda_fwd": 19.84
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 31.13,
+     "ev_ebitda_fwd": 21.9
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 26.24,
+     "ev_ebitda_fwd": 18.98
+    }
+   ],
+   "pe_fwd2": 19.48,
+   "ev_ebitda_fwd2": 14.75,
+   "pe_fwd3": 17.24,
+   "ev_ebitda_fwd3": 13.38,
+   "ntm_ebit_margin": 0.1896,
+   "ntm_growth": 0.1395
+  },
+  {
+   "name": "Alfa Laval",
+   "ticker": "ALFA",
+   "key": "XSTO_ALFA",
+   "rev": 71.778,
+   "ebit_margin": 0.166,
+   "mcap": 210.796,
+   "pb": 4.25,
+   "debt": 21.023,
+   "cash": 7.21,
+   "ev_sales": 3.14,
+   "growth": 0.078,
+   "goodwill": null,
+   "intangibles": null,
+   "why": "스웨덴 상장 열교환기·유체 장비 — 같은 시장·통화의 산업재 비교(단위 SEK B)",
+   "pe_fwd": 21.71,
+   "ev_ebitda_fwd": 13.99,
+   "pe_fwd2": 19.15,
+   "ev_ebitda_fwd2": 12.55,
+   "pe_fwd3": 17.81,
+   "ev_ebitda_fwd3": 11.61,
+   "ntm_ebit_margin": 0.1771,
+   "ntm_growth": 0.0723
+  }
+ ],
+ "peers_source": "ntm 동종 = 데이터센터 냉각·공조 5곳: Vertiv·Modexus(옛 Modine)·nVent·Trane(미국 상장, 단위 B$)과 Alfa Laval(스톡홀름, BSEK). 선행 배수 = Fiscal.ai forward(다음 4개 분기 추정, 2026-11-20). 매출·시총·차입·현금·P/B·EV/매출 = Easyconomics(yfinance) 2026-11-20. Vertiv·Modexus·nVent의 영업이익률·성장률·영업권은 각 사 최근 10-Q 기준 TTM(2026-11-16 Vertiv 리포트 데이터 묶음), Trane·Alfa Laval의 영업이익률·성장률은 yfinance 최근 분기 기준(영업권·무형 미확인). Alfa Laval은 분기말 선행 배수 이력 없음",
+ "raw": {
+  "retrieved_at": "2026-11-22T22:30+09:00",
+  "fiscal_profile": {
+   "companyKey": "XSTO_MTRS",
+   "terminalUrl": "https://fiscal.ai/company/OM-MTRS",
+   "price": 126.9,
+   "market_cap": 23.165,
+   "total_cash": 1.368,
+   "total_debt": 8.517,
+   "shares_outstanding": 0.18254144,
+   "as_of": "2026-11-20",
+   "balance_date": "2026-09-30",
+   "note": "시총 = 182.54M주 × SEK 126.90 = SEK 23.16B(yfinance market_cap 23.16B 일치). total_debt = 차입 6,487M(유동 928 + 장기 5,559) + 리스 2,030M(유동 207 + 장기 1,823) = 8,517M(yfinance 총차입과 일치)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 3.594,
+    "2026Q1": 3.58,
+    "2026Q2": 3.805,
+    "2026Q3": 4.473
+   },
+   "op_income": {
+    "2025Q4": 0.161,
+    "2026Q1": 0.306,
+    "2026Q2": 0.323,
+    "2026Q3": 0.432
+   },
+   "adj_ebit": {
+    "2025Q4": 0.358,
+    "2026Q1": 0.39,
+    "2026Q2": null,
+    "2026Q3": 0.546
+   },
+   "adj_ebitda": {
+    "2025Q4": 0.474,
+    "2026Q1": 0.498,
+    "2026Q2": 0.53,
+    "2026Q3": 0.663
+   },
+   "eps_ifrs": {
+    "2025Q4": -0.04,
+    "2026Q1": 0.68,
+    "2026Q2": 1.11,
+    "2026Q3": 1.16
+   },
+   "note": "Fiscal.ai 표준화 손익(IFRS)·company_estimates 실적 칸(조정 값은 회사 조정 지표)"
+  },
+  "balance_20260930": {
+   "cash": 1.368,
+   "debt_current": 0.928,
+   "debt_lt": 5.559,
+   "lease_current": 0.207,
+   "lease_lt": 1.823,
+   "equity": 5.668,
+   "minority": 0.007,
+   "receivables": 2.764,
+   "inventory": 3.791,
+   "unearned_revenue": 4.094,
+   "payables": 2.38,
+   "ppe": 4.159,
+   "intangibles": 3.466,
+   "goodwill": 5.858,
+   "total_assets": 24.019,
+   "source": "Fiscal.ai 표준화 재무상태표 2026-09-30(SEK B)"
+  },
+  "cashflow_q": {
+   "2025Q3": {
+    "ocf": 0.375,
+    "capex_ppe": -0.095,
+    "capex_intang": -0.054
+   },
+   "2025Q4": {
+    "ocf": 0.603,
+    "capex_ppe": -0.177,
+    "capex_intang": -0.075,
+    "acq": -0.336
+   },
+   "2026Q1": {
+    "ocf": 0.387,
+    "capex_ppe": -0.142,
+    "capex_intang": -0.056,
+    "acq": -0.172
+   },
+   "2026Q2": {
+    "ocf": 0.573,
+    "capex_ppe": -0.197,
+    "capex_intang": -0.078,
+    "inventory": -0.903,
+    "unearned": 0.96
+   },
+   "2026Q3": {
+    "ocf": -0.216,
+    "capex_ppe": -0.138,
+    "capex_intang": -0.069,
+    "inventory": -0.654,
+    "unearned": 0.216,
+    "receivables": -0.447
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1": 3580.0,
+   "2026Q2": 3805.0,
+   "2026Q3": 4473.0,
+   "2026Q4": 3589.6,
+   "2027Q1": 4050.0,
+   "2027Q2": 4300.0,
+   "2027Q3": 5054.0,
+   "2027Q4": 4096.0
+  },
+  "estimates_sales_m_note": "2026Q1~Q3 = 실적, 2026Q4 = Fiscal.ai 자체 추정(7/17 고정), 2027 = Agentic Consensus(9/30)",
+  "easyconomics": {
+   "profile": {
+    "price": 126.9,
+    "market_cap": 23.1645,
+    "enterprise_value": 30.3205,
+    "pe_ttm": 43.9,
+    "pe_fwd": 15.94,
+    "eps_fwd": 7.96,
+    "eps_ttm": 2.89,
+    "total_debt": 8.517,
+    "total_cash": 1.368,
+    "institution_ownership": 0.795,
+    "insider_ownership": 0.0018,
+    "high_52w": 212.4,
+    "low_52w": 123.65,
+    "ma50": 133.69,
+    "ma200": 168.88,
+    "employees": 5511
+   },
+   "earnings_summary_2026-10-23": {
+    "rev_est": "SEK 4.46B",
+    "eps_est": "SEK 1.27"
+   }
+  },
+  "dilutive_securities": "SEC 등록 회사가 아니라 XBRL 희석 증권 항목 없음 — 연차보고서 인센티브 프로그램 주석으로 대조",
+  "channel_note": "2026-11-22 22시 회차: TradingView 일일 한도(시세·일봉은 Easyconomics 대체). Fiscal.ai 세그먼트·KPI는 '이 회사 미제공' 응답 — 세그먼트는 회사 분기보고서에서 옮긴다",
+  "shares_cover_implied": 0.18255,
+  "prior_balance_20250930": {
+   "cash": 2.421,
+   "debt_current": 1.955,
+   "debt_lt": 5.115,
+   "lease_current": 0.274,
+   "lease_lt": 1.502,
+   "equity": 5.078,
+   "inventory": 2.046,
+   "unearned_revenue": 2.109,
+   "receivables": 1.921,
+   "ppe": 3.429,
+   "intangibles": 3.222,
+   "goodwill": 5.735,
+   "total_assets": 21.137
+  },
+  "segments_q": {
+   "periods": [
+    "2024-09-30",
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-09-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30",
+    "2026-09-30"
+   ],
+   "unit": "SEK M",
+   "airtech": {
+    "orders": [
+     1529,
+     1821,
+     2051,
+     1695,
+     1567,
+     1987,
+     1932,
+     3358,
+     1774
+    ],
+    "sales": [
+     2011,
+     2260,
+     1844,
+     1708,
+     1770,
+     1868,
+     1779,
+     1998,
+     2191
+    ],
+    "adj_ebita": [
+     264,
+     212,
+     88,
+     126,
+     124,
+     115,
+     142,
+     219,
+     283
+    ],
+    "backlog": [
+     3327,
+     2986,
+     2917,
+     2893,
+     2697,
+     2782,
+     3007,
+     4485,
+     4135
+    ]
+   },
+   "dct": {
+    "orders": [
+     898,
+     1787,
+     1108,
+     1402,
+     2164,
+     9215,
+     2293,
+     4853,
+     4907
+    ],
+    "sales": [
+     1012,
+     1315,
+     1505,
+     1522,
+     1556,
+     1322,
+     1403,
+     1356,
+     1789
+    ],
+    "adj_ebita": [
+     235,
+     260,
+     344,
+     320,
+     304,
+     182,
+     202,
+     153,
+     174
+    ],
+    "backlog": [
+     6464,
+     7604,
+     6508,
+     6076,
+     6581,
+     13787,
+     15172,
+     19185,
+     22927
+    ]
+   },
+   "foodtech": {
+    "orders": [
+     221,
+     393,
+     439,
+     584,
+     435,
+     409,
+     484,
+     504,
+     402
+    ],
+    "sales": [
+     239,
+     354,
+     413,
+     404,
+     486,
+     449,
+     416,
+     462,
+     502
+    ],
+    "adj_ebita": [
+     64,
+     74,
+     67,
+     69,
+     95,
+     67,
+     61,
+     72,
+     88
+    ],
+    "backlog": [
+     497,
+     697,
+     665,
+     805,
+     756,
+     714,
+     813,
+     871,
+     789
+    ]
+   },
+   "group": {
+    "orders": [
+     2646,
+     3994,
+     3556,
+     3666,
+     4159,
+     11604,
+     4700,
+     8699,
+     7070
+    ],
+    "sales": [
+     3254,
+     3923,
+     3714,
+     3606,
+     3798,
+     3594,
+     3580,
+     3805,
+     4473
+    ],
+    "adj_ebita": [
+     532,
+     505,
+     502,
+     491,
+     511,
+     358,
+     390,
+     417,
+     546
+    ],
+    "backlog": [
+     10289,
+     11287,
+     10090,
+     9774,
+     10034,
+     17282,
+     18991,
+     24542,
+     27851
+    ]
+   },
+   "note": "조정 EBITA는 변경 전 정의(4Q26 보고부터 영업용 무형자산 상각을 더하지 않는 새 정의 — 새 정의로 9개월 누적 이익률 9.7%, 기존 11.4%). 3Q26 AirTech 이익률 12.9% 중 약 2.5%p는 주문 취소 수수료, DCT에는 관세 약 −2%p",
+   "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+  },
+  "q3_company": {
+   "rev": 4473,
+   "cogs": 3236,
+   "gross_profit": 1237,
+   "selling": 372,
+   "admin": 307,
+   "rd": 132,
+   "adj_ebita": 546,
+   "ebit": 391,
+   "iac": -64,
+   "net_income": 211,
+   "eps": 1.16,
+   "ocf": -216,
+   "net_debt": 7412,
+   "leverage": 3.4,
+   "roce": 0.096,
+   "prior_3q25": {
+    "rev": 3798,
+    "cogs": 2611,
+    "gross_profit": 1187,
+    "selling": 350,
+    "admin": 343,
+    "rd": 113,
+    "adj_ebita": 511,
+    "ebit": 381,
+    "ocf": 389,
+    "net_debt": 6707,
+    "leverage": 2.8,
+    "roce": 0.119
+   },
+   "note": "회사 EBIT SEK 391M과 표준화 재무 영업이익 432M의 차이 41M은 기타 영업손익·비교가능성 항목 분류 차이(미대조)",
+   "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf p.1·5·12~15"
+  },
+  "checks_4": {
+   "purchase_commitments": "미확인 — 연차보고서 Note 28에 구매 약정 금액 없음(우발채무 SEK 256M: 은행·보험 보증 251M). 2026-11-11 Lordan 합작 7년 공급 계약(물량·납기·가격 약정, 금액 미공시)",
+   "restricted_cash": "미확인(별도 표시 없음)",
+   "customers_10pct": "DCT 대형 고객 1곳이 2025년 그룹 순매출의 14%(2024년 15%) — 연차보고서 Note 5",
+   "gov_support": "연구개발 보조금 SEK 16M(2024년 22M, Note 9). 버지니아 지역 인센티브 금액 미확인",
+   "source": "Munters 연차보고서 2025 https://www.munters.com/globalassets/story-page-import-images/munters-annual-and-sustainability-report-20252.pdf"
+  }
+ },
+ "multiples_now": {
+  "pe_fwd": 21.2,
+  "ev_ebitda_fwd": 10.54,
+  "pe_fwd2": 15.86,
+  "ev_ebitda_fwd2": 8.77,
+  "pe_fwd3": 12.66,
+  "ev_ebitda_fwd3": 7.55
+ },
+ "forward": {
+  "as_of": "2026-11-20",
+  "ntm": {
+   "eps": 5.9849499999999995,
+   "ebitda": 2763361881,
+   "ebit": 2293442251,
+   "revenue": 16993620413,
+   "rev_ttm": 15452000000
+  },
+  "horizons": {
+   "2": {
+    "eps": 8.00229,
+    "ebitda": 3320371695,
+    "ext": 0
+   },
+   "3": {
+    "eps": 10.019515235681563,
+    "ebitda": 3858480406.551724,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": []
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized (SEK, 백만 단위 반올림 값)",
+  "key": "XSTO_MTRS",
+  "currency": "SEK",
+  "q": [
+   {
+    "period": "2016-03-31",
+    "rev": 1220000000,
+    "cogs": 791000000,
+    "gp": 429000000,
+    "sga": 320000000,
+    "rd": 35000000,
+    "da": null,
+    "other": 0,
+    "op": 74000000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 1438000000,
+    "cogs": 922000000,
+    "gp": 516000000,
+    "sga": 333000000,
+    "rd": 37000000,
+    "da": null,
+    "other": -3000000,
+    "op": 149000000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 1560000000,
+    "cogs": 1029000000,
+    "gp": 531000000,
+    "sga": 371000000,
+    "rd": 33000000,
+    "da": null,
+    "other": null,
+    "op": 127000000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 1823000000,
+    "cogs": 1190000000,
+    "gp": 633000000,
+    "sga": 401000000,
+    "rd": 33000000,
+    "da": null,
+    "other": null,
+    "op": 199000000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 1519000000,
+    "cogs": 1001000000,
+    "gp": 518000000,
+    "sga": 404000000,
+    "rd": 38000000,
+    "da": null,
+    "other": null,
+    "op": 76000000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 1723000000,
+    "cogs": 1157000000,
+    "gp": 566000000,
+    "sga": 423000000,
+    "rd": 43000000,
+    "da": null,
+    "other": null,
+    "op": 100000000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 1552000000,
+    "cogs": 1031000000,
+    "gp": 521000000,
+    "sga": 361000000,
+    "rd": 44000000,
+    "da": null,
+    "other": null,
+    "op": 116000000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 1811000000,
+    "cogs": 1268000000,
+    "gp": 542000000,
+    "sga": 377000000,
+    "rd": 42000000,
+    "da": null,
+    "other": null,
+    "op": 123000000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 1601000000,
+    "cogs": 1098000000,
+    "gp": 503000000,
+    "sga": 386000000,
+    "rd": 47000000,
+    "da": null,
+    "other": null,
+    "op": 70000000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 1939000000,
+    "cogs": 1314000000,
+    "gp": 625000000,
+    "sga": 407000000,
+    "rd": 48000000,
+    "da": null,
+    "other": null,
+    "op": 170000000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 1559000000,
+    "cogs": 1019000000,
+    "gp": 540000000,
+    "sga": 355000000,
+    "rd": 46000000,
+    "da": null,
+    "other": null,
+    "op": 139000000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 1757000000,
+    "cogs": 1122000000,
+    "gp": 634000000,
+    "sga": 426000000,
+    "rd": 53000000,
+    "da": null,
+    "other": null,
+    "op": 155000000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 1620000000,
+    "cogs": 1093000000,
+    "gp": 528000000,
+    "sga": 445000000,
+    "rd": 51000000,
+    "da": null,
+    "other": null,
+    "op": 32000000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 1877000000,
+    "cogs": 1235000000,
+    "gp": 643000000,
+    "sga": 410000000,
+    "rd": 48000000,
+    "da": null,
+    "other": null,
+    "op": 185000000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 1813000000,
+    "cogs": 1223000000,
+    "gp": 590000000,
+    "sga": 369000000,
+    "rd": 46000000,
+    "da": null,
+    "other": null,
+    "op": 175000000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 1842000000,
+    "cogs": 1271000000,
+    "gp": 571000000,
+    "sga": 355000000,
+    "rd": 53000000,
+    "da": null,
+    "other": null,
+    "op": 163000000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 1566000000,
+    "cogs": 1058000000,
+    "gp": 508000000,
+    "sga": 350000000,
+    "rd": 48000000,
+    "da": null,
+    "other": null,
+    "op": 110000000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 1773000000,
+    "cogs": 1141000000,
+    "gp": 632000000,
+    "sga": 355000000,
+    "rd": 43000000,
+    "da": null,
+    "other": null,
+    "op": 234000000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 1833000000,
+    "cogs": 1231000000,
+    "gp": 603000000,
+    "sga": 311000000,
+    "rd": 54000000,
+    "da": null,
+    "other": null,
+    "op": 238000000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 1841000000,
+    "cogs": 1235000000,
+    "gp": 606000000,
+    "sga": 339000000,
+    "rd": 41000000,
+    "da": null,
+    "other": null,
+    "op": 226000000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 1612000000,
+    "cogs": 1075000000,
+    "gp": 537000000,
+    "sga": 326000000,
+    "rd": 37000000,
+    "da": null,
+    "other": null,
+    "op": 174000000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 1822000000,
+    "cogs": 1190000000,
+    "gp": 632000000,
+    "sga": 358000000,
+    "rd": 40000000,
+    "da": null,
+    "other": null,
+    "op": 234000000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 1857000000,
+    "cogs": 1295000000,
+    "gp": 562000000,
+    "sga": 343000000,
+    "rd": 40000000,
+    "da": null,
+    "other": null,
+    "op": 179000000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 2057000000,
+    "cogs": 1434000000,
+    "gp": 622000000,
+    "sga": 372000000,
+    "rd": 45000000,
+    "da": null,
+    "other": null,
+    "op": 205000000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 2121000000,
+    "cogs": 1502000000,
+    "gp": 619000000,
+    "sga": 402000000,
+    "rd": 58000000,
+    "da": null,
+    "other": null,
+    "op": 159000000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 2610000000,
+    "cogs": 1865000000,
+    "gp": 745000000,
+    "sga": 461000000,
+    "rd": 52000000,
+    "da": null,
+    "other": null,
+    "op": 232000000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 2644000000,
+    "cogs": 1870000000,
+    "gp": 774000000,
+    "sga": 475000000,
+    "rd": 58000000,
+    "da": null,
+    "other": null,
+    "op": 241000000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 3011000000,
+    "cogs": 2131000000,
+    "gp": 879000000,
+    "sga": 541000000,
+    "rd": 68000000,
+    "da": null,
+    "other": 2000000,
+    "op": 268000000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 3175000000,
+    "cogs": 2208000000,
+    "gp": 967000000,
+    "sga": 541000000,
+    "rd": 72000000,
+    "da": null,
+    "other": 0,
+    "op": 354000000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 3536000000,
+    "cogs": 2414000000,
+    "gp": 1122000000,
+    "sga": 611000000,
+    "rd": 80000000,
+    "da": null,
+    "other": 2000000,
+    "op": 429000000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 3560000000,
+    "cogs": 2418000000,
+    "gp": 1142000000,
+    "sga": 591000000,
+    "rd": 94000000,
+    "da": null,
+    "other": 3000000,
+    "op": 454000000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 3659000000,
+    "cogs": 2467000000,
+    "gp": 1191000000,
+    "sga": 642000000,
+    "rd": 115000000,
+    "da": null,
+    "other": 3000000,
+    "op": 431000000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 3154000000,
+    "cogs": 2064000000,
+    "gp": 1089000000,
+    "sga": 577000000,
+    "rd": 87000000,
+    "da": null,
+    "other": 3000000,
+    "op": 422000000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 3256000000,
+    "cogs": 2011000000,
+    "gp": 1245000000,
+    "sga": 612000000,
+    "rd": 100000000,
+    "da": null,
+    "other": 4000000,
+    "op": 529000000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 3254000000,
+    "cogs": 2083000000,
+    "gp": 1171000000,
+    "sga": 607000000,
+    "rd": 100000000,
+    "da": null,
+    "other": 2000000,
+    "op": 462000000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 3923000000,
+    "cogs": 2637000000,
+    "gp": 1287000000,
+    "sga": 769000000,
+    "rd": 121000000,
+    "da": null,
+    "other": 3000000,
+    "op": 394000000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 3714000000,
+    "cogs": 2490000000,
+    "gp": 1224000000,
+    "sga": 725000000,
+    "rd": 120000000,
+    "da": null,
+    "other": 1000000,
+    "op": 378000000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 3606000000,
+    "cogs": 2426000000,
+    "gp": 1180000000,
+    "sga": 689000000,
+    "rd": 125000000,
+    "da": null,
+    "other": -2000000,
+    "op": 368000000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 3798000000,
+    "cogs": 2611000000,
+    "gp": 1187000000,
+    "sga": 693000000,
+    "rd": 113000000,
+    "da": null,
+    "other": 2000000,
+    "op": 379000000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 3594000000,
+    "cogs": 2564000000,
+    "gp": 1030000000,
+    "sga": 738000000,
+    "rd": 129000000,
+    "da": null,
+    "other": 2000000,
+    "op": 161000000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 3580000000,
+    "cogs": 2536000000,
+    "gp": 1044000000,
+    "sga": 621000000,
+    "rd": 117000000,
+    "da": null,
+    "other": 0,
+    "op": 306000000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 3805000000,
+    "cogs": 2687000000,
+    "gp": 1119000000,
+    "sga": 660000000,
+    "rd": 135000000,
+    "da": null,
+    "other": 1000000,
+    "op": 323000000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 4473000000,
+    "cogs": 3236000000,
+    "gp": 1237000000,
+    "sga": 679000000,
+    "rd": 132000000,
+    "da": null,
+    "other": -6000000,
+    "op": 432000000
+   }
+  ]
+ },
+ "price_source": "Easyconomics(yfinance) 2026-11-20 종가 SEK 126.90 — TradingView 일일 한도로 대체",
+ "main_metric": "eps",
+ "main_metric_why": "선행 EPS가 흑자이고 감가상각이 선행 EBITDA의 약 17%로 절반에 못 미친다. 회사는 조정 EBITA 이익률을 목표 지표로 쓰지만 숫자 가이던스는 내지 않는다",
+ "peers_basis": "ntm",
+ "sbc_pct_rev": 0.0,
+ "events": [
+  {
+   "date": "2026-07-17",
+   "tag": "2Q26 실적 — 주문 +140%·수주 ÷ 매출 2.3, 하루 +9.4%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-09-18",
+   "tag": "9월 하락(8/31 종가 167.95 → 9/18 130.00, −22.6%) — 원인 미확인",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-10-23",
+   "tag": "3Q26 실적 — 주문 +70%·잔고 SEK 28B, 시가 +9.7% 뒤 종가 +4.0%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "11/4~5 이틀 −10.5% — 데이터센터 인프라 업종 동반 약세",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "자본시장의 날 — 재무 목표 갱신·데이터센터 냉각 증설 발표, 하루 +2.2%",
+   "kind": "sector"
+  },
+  {
+   "date": "2026-11-20",
+   "tag": "하루 −7.8% — 같은 날 Vertiv −10.1%·Modexus −7.4%·nVent −5.8%(업종 동반 급락, 원인 미확인)",
+   "kind": "sector"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-29",
+   "kind": "실적",
+   "tag": "4Q25 실적 — 하루 +2.4%(장중 저점 151.0)",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-04-28",
+   "kind": "실적",
+   "tag": "1Q26 실적 — 하루 −2.2%",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-07-17",
+   "kind": "실적",
+   "tag": "2Q26 실적·주문 +140% — 하루 +9.4%",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-23",
+   "kind": "실적",
+   "tag": "3Q26 실적·잔고 SEK 28B — 하루 +4.0%",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "pq": {
+  "none": "출하 대수·단가를 공시하지 않는다 — 주문 설계 프로젝트라 같은 단위의 ASP가 없다. 업종 물가 대용으로 잰다"
+ },
+ "sync": {
+  "why": "Munters가 파는 것은 산업·데이터센터용 공조·냉각 장비다 — 미국 상업용 공조·냉동 장비 물가와 같은 방향이어야 하고, 원가 쪽은 압축기·알루미늄(열교환기 핀) 물가를 본다",
+  "indicators": [
+   {
+    "label": "미국 상업용 공조·냉동 장비 PPI",
+    "source": "ppi",
+    "input": "hvac_equipment",
+    "country": "us",
+    "why": "자기 제품과 같은 품목군 가격"
+   },
+   {
+    "label": "미국 냉동·공조용 압축기 PPI",
+    "source": "ppi",
+    "input": "hvac_compressor",
+    "country": "us",
+    "why": "칠러 핵심 원가 품목"
+   },
+   {
+    "label": "미국 알루미늄 판재 PPI",
+    "source": "ppi",
+    "input": "aluminum",
+    "country": "us",
+    "why": "코일·열교환기 핀 원가"
+   }
+  ]
+ },
+ "pricing": [
+  {
+   "business": "데이터센터 냉각(DCT)",
+   "index": "ppi:hvac_equipment",
+   "company": {
+    "yoy": null,
+    "basis": "단가 미공시 — 3Q 콜: 일부 제품 가격이 연초보다 20% 넘게 인상. 잔고 일부는 예전 가격"
+   }
+  },
+  {
+   "business": "산업용 제습·공기 처리(AirTech)",
+   "index": "ppi:hvac_equipment",
+   "company": {
+    "yoy": null,
+    "basis": "단가 미공시 — 2Q 콜: 그룹 전체 가격 인상 2.8%(AirTech 단독 수치 아님)"
+   }
+  }
+ ],
+ "midterm": {
+  "exposure": {
+   "infra_grid": 0.6,
+   "clean_energy_credit": 0.1
+  },
+  "sub": "power_infra",
+  "etf": "NASDAQ:GRID",
+  "why": "2025년 외부 매출의 54%가 미국이고(연차보고서 Note 5) 데이터센터 냉각이 성장 축 — 전력망·데이터센터 인프라 채널. 스웨덴 상장·SEK 보고 회사라 노출을 미국 상장 동종보다 낮게 잡았다"
+ },
+ "social": {
+  "none": "Quantral 미수록 — 레딧·X 관심 집계 없음(ApeWisdom·텔레그램 공개 채널·딘스티커에도 언급 없음)"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(병목) 틀로 본다 — 섹터 렌즈 해당 없음(원천 장부 sector_data '해당 없음')"
+ },
+ "photos": [],
+ "photos_note": "위키미디어 공용에서 Munters 제품·공장 사진을 찾지 못했다(2026-11-22 검색 4건 — 문서·인물 사진뿐)",
+ "moat": {
+  "summary": "해자는 '제습·증발 냉각 핵심 부품(데시칸트 로터·증발 패드)을 직접 만들고, 데이터센터 냉각을 SyCool·칠러·CRAH·CDU까지 넓힌 제품 폭'이다. 다만 새 제품군의 마진은 아직 증명되지 않았고, 대형 경쟁사(Vertiv·Trane)는 규모가 훨씬 크다.",
+  "items": [
+   {
+    "kind": "제습·증발 냉각 핵심 부품 내재화",
+    "verdict": "보통",
+    "claim": "데시칸트 로터와 증발 패드를 자체 생산해 시스템과 부품 양쪽에서 판다 — 경쟁사가 납품하지 못할 때 주문이 몰린다",
+    "evidence": "2Q26 콜: AirTech 주문의 44%가 서비스·부품, 패드·로터 주문 증가(다른 업체가 납품하지 못한 수요). 3Q26 콜: 중국 배터리 공정용 부품 판매",
+    "quant": "AirTech 3Q26 마진 12.9%(취소 수수료 제외 10.4%)",
+    "falsifier": "AirTech 분기 주문이 SEK 2B 아래로 2개 분기 연속 내려가고 마진이 10% 아래"
+   },
+   {
+    "kind": "데이터센터 냉각 제품 폭과 대형 고객 관계",
+    "verdict": "보통",
+    "claim": "SyCool·증발식에서 칠러·CRAH·CDU로 넓혀 하이퍼스케일러·코로케이션 프로젝트에 여러 제품으로 들어간다",
+    "evidence": "3Q26 콜: DCT 수주 ÷ 매출 2.7, 신규·기존 고객 모두 수주, 2027 물량 상당 부분 수주 완료. 계약부채(고객 선수금) SEK 4,094M(1년 전 2,109M)",
+    "quant": "그룹 수주잔고 SEK 28B = TTM 매출 15.45B의 1.8배(계산)",
+    "falsifier": "DCT 수주 ÷ 매출이 2개 분기 연속 1 아래이고 계약부채가 줄어든다"
+   },
+   {
+    "kind": "설치 기반 서비스",
+    "verdict": "보통",
+    "claim": "설치한 장비의 정비·부품·개조가 반복 매출을 만든다",
+    "evidence": "3Q26 콜: DCT 서비스 매출 전년 대비 +41%. 2Q26 콜: AirTech 주문의 44%가 서비스·부품",
+    "quant": "미확인(그룹 서비스 매출 비중은 분기보고서 대조 전)",
+    "falsifier": "서비스 성장률이 장비 성장률을 2년 연속 크게 밑돈다"
+   },
+   {
+    "kind": "새 제품군 제조 원가 경쟁력",
+    "verdict": "약함",
+    "claim": "칠러·CDU·새 CRAH는 버지니아에서 처음 만드는 제품이라 아직 효율이 낮다",
+    "evidence": "3Q26 콜: DCT 마진 하락 — 믹스·부품 부족·램프업 비효율·재작업, 10%대 후반 마진은 중기 과제",
+    "quant": "미확인(DCT 분기 마진 수치는 분기보고서 대조 전)",
+    "falsifier": "해당 없음 — 지금이 약한 상태다. DCT 마진이 2개 분기 연속 오르면 '보통'으로 올린다"
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "병목은 수요가 아니라 부품과 새 공장이다. 2Q에는 팬·밸브, 3Q에는 코일이 모자랐고, 부품 하나가 빠지면 버지니아 라인의 흐름 생산이 깨져 다 만든 장비도 매출로 잡지 못한다. 회사는 '최악은 지났지만 아직 유동적'이라고 말한다.",
+  "links": [
+   {
+    "item": "코일(열교환기)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(외부 구매)",
+      "role": "칠러·CRAH용 코일",
+      "status": "회사 발표",
+      "source": "Munters 3Q26 어닝콜(2026-10-23)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "3Q 콜 CFO: 코일이 다른 부품보다 더 모자랐고, 그래서 반제품 재고가 쌓였다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "유럽·미국(미확인)",
+    "secured": "현물+안전재고",
+    "why": "코일이 없으면 조립을 끝내지 못해 매출 인식이 밀린다",
+    "relief": "진행 중 — 대체 공급사 검증·안전재고 확보(3Q 콜), 해소 근거 없음",
+    "source": "Munters 3Q26 어닝콜(2026-10-23)",
+    "input": "aluminum"
+   },
+   {
+    "item": "팬",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(유럽 대형 팬 제조사)",
+      "role": "칠러·CRAH용 팬",
+      "status": "회사 발표",
+      "source": "Munters 3Q26 어닝콜(2026-10-23)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "2Q 콜: 팬은 시장 전체가 납품이 빠듯하다. 3Q 콜: 대형 팬 제조사 일부는 유럽에 있다, 고객과 대체 팬 사용을 협의",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "유럽",
+    "secured": "현물",
+    "why": "고객이 지정한 팬이 없으면 대체품을 다시 승인받아야 한다",
+    "relief": "진행 중 — 대체 팬을 고객과 함께 검증",
+    "source": "Munters 2Q26 어닝콜(2026-07-17) · Munters 3Q26 어닝콜(2026-10-23)"
+   },
+   {
+    "item": "압축기",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Danfoss",
+      "role": "칠러 압축기(콜에서 공급사 예로 언급 — 공급 비중 미확인)",
+      "status": "회사 발표",
+      "source": "Munters 3Q26 어닝콜(2026-10-23)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "보통",
+    "capacity_basis": "3Q 콜: 핵심 부품은 업계 전체가 수입에 의존, 압축기 부족을 직접 말하지는 않았다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "유럽",
+    "secured": "현물",
+    "why": "칠러 원가의 큰 몫이고 수입 관세가 붙는다",
+    "relief": "해당 없음 — 수입을 유지하고 관세는 프로젝트 가격에 반영한다는 방침",
+    "source": "Munters 3Q26 어닝콜(2026-10-23)",
+    "input": "hvac_compressor"
+   },
+   {
+    "item": "밸브·스트레이너 등 소형 부품",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공시(미국 현지 공급사로 전환 중)",
+      "role": "배관 부품",
+      "status": "회사 발표",
+      "source": "Munters 3Q26 어닝콜(2026-10-23)"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "보통",
+    "capacity_basis": "2Q 콜: 밸브도 빠듯했다. 3Q 콜: 소형 품목 현지화는 순조롭다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미국",
+    "secured": "현물",
+    "why": "미국산 부품 구성표를 갖추는 속도가 관세 부담을 정한다",
+    "relief": "부분 — DCT 관세 영향 4%p(고점) → 3%p(2Q) → 2%p(3Q)",
+    "source": "Munters 2Q26 어닝콜(2026-07-17) · Munters 3Q26 어닝콜(2026-10-23)",
+    "input": "valve"
+   },
+   {
+    "item": "버지니아 공장 조립 라인·숙련 인력",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "자체 공장(버지니아)",
+      "role": "칠러·CRAH·CDU 조립",
+      "status": "회사 발표",
+      "source": "Munters 3Q26 어닝콜(2026-10-23)"
+     }
+    ],
+    "qualified": 1,
+    "capacity": "빠듯",
+    "capacity_basis": "3Q 콜: 가동률이 목표에 못 미쳐 매출 증가가 이익으로 떨어지지 않는다(가동률 수치 비공개)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 1.0,
+    "region_share": "미확인",
+    "region": "미국",
+    "secured": "내재화",
+    "why": "새 제품 세 가지를 새 공장에서 처음 만든다 — 재작업이 마진을 깎는다",
+    "relief": "진행 중 — 200,000 sq ft 추가, 운영 효율 전담팀·단기 컨설턴트 투입. 가동·수율 수치 없음",
+    "source": "Munters 3Q26 어닝콜(2026-10-23)"
+   }
+  ]
+ },
+ "terms": {
+  "DCT": "Data Center Technologies, Munters의 데이터센터 냉각 사업부",
+  "AirTech": "Munters의 산업용 제습·공기 처리 사업부",
+  "FoodTech": "Munters의 축산·식품 기후 제어·소프트웨어 사업부",
+  "SyCool": "Munters의 냉매 자연 순환식 데이터센터 냉각 장치",
+  "CRAH": "냉수로 전산실 공기를 식히는 공조기",
+  "CDU": "액체 냉각 랙에 냉각수를 보내는 분배 장치",
+  "칠러": "냉수를 만들어 보내는 냉동기",
+  "데시칸트 로터": "습기를 빨아들이는 흡습제를 입힌 회전 바퀴, 제습기의 핵심 부품",
+  "증발 패드": "물을 증발시켜 공기를 식히는 냉각 매체",
+  "조정 EBITA": "무형자산 상각과 일회성 항목을 빼기 전 영업이익, Munters의 목표 지표",
+  "ARR": "연간 반복 매출",
+  "B/B": "수주 ÷ 매출",
+  "EMEA": "유럽·중동·아프리카",
+  "APAC": "아시아·태평양",
+  "sq ft": "제곱피트",
+  "PPI": "생산자물가지수",
+  "HP": "추세와 순환을 나누는 통계 필터",
+  "AI": "인공지능",
+  "IFRS": "국제회계기준",
+  "TTM": "최근 4개 분기 합",
+  "NTM": "향후 12개월",
+  "VOC": "휘발성 유기 화합물",
+  "MTech": "Munters가 인수한 축산 소프트웨어 회사 MTech Systems",
+  "Speria": "Munters FoodTech가 매각 대상으로 떼어 낸 사업 이름",
+  "ROCE": "사용 자본 대비 영업이익 비율",
+  "코로케이션": "여러 임차 기업에 전산실 공간을 빌려주는 데이터센터 사업자",
+  "하이퍼스케일러": "초대형 클라우드·AI 데이터센터 운영 기업",
+  "Geoclima": "Munters가 2024년 인수한 이탈리아 칠러 회사",
+  "Lordan": "Munters와 텍사스 코일 합작사를 세우는 열교환기 제조사",
+  "드라이룸": "습도를 극히 낮춘 배터리 생산 공간",
+  "SaaS": "구독형 소프트웨어",
+  "RPO": "이미 계약됐지만 아직 매출로 잡지 않은 잔여 이행 의무",
+  "JP": "일본",
+  "BSEK": "십억 스웨덴 크로나"
+ },
+ "names": [
+  "Munters",
+  "MTRS",
+  "Vertiv",
+  "VRT",
+  "Modexus",
+  "Modine",
+  "MOD",
+  "nVent",
+  "NVT",
+  "Trane Technologies",
+  "Trane",
+  "TT",
+  "Alfa Laval",
+  "ALFA",
+  "UBS",
+  "SEB",
+  "ABG Sundal Collier",
+  "Handelsbanken",
+  "Nordea",
+  "DNB Carnegie",
+  "Jefferies",
+  "Pareto Securities",
+  "Kepler",
+  "Danfoss",
+  "FAM",
+  "Nasdaq Stockholm",
+  "AgriWebb",
+  "Optifarm",
+  "Geoclima",
+  "Amesbury",
+  "Wallenberg Investments Holding",
+  "Lordan",
+  "Sandvik",
+  "Electrolux",
+  "Ansell",
+  "Pareto",
+  "AB",
+  "ABG",
+  "DNB",
+  "Munters Group AB"
+ ],
+ "overrides": {
+  "growth_base": {
+   "start": 0.22,
+   "end": 0.035,
+   "decay": 0.9
+  },
+  "margin_base": {
+   "target": 0.125,
+   "lr": 0.13,
+   "year_target": 3
+  },
+  "why": "① 1년차 성장 22%: 컨센서스 칸(Fiscal.ai 자체 추정)의 FY26 매출 15.45B는 7/17 고정값이라 3Q 실적(같은 추정을 12% 상회)과 '4Q DCT 인도가 3Q보다 는다'는 3Q 콜 답변을 담지 못한다 — 1~3Q 실적 11.86B에 4Q를 3Q 수준(4.47B)으로만 봐도 FY26은 약 16.3B다. 잔고 SEK 28B의 상당 부분이 2027 인도라는 발언(3Q 콜)과 yfinance 선행 EPS 7.96(Fiscal 6.5보다 높음)을 반영해 FY27 약 18.8B(15.45 × 1.22)로 둔다. ② 장기 영업이익률(IFRS) 13%: 규칙 기본값 15%는 회사가 밝혀 온 조정 EBITA 중기 목표 14%(2Q 콜)보다 높다 — 인수 무형 상각(매출의 약 1%p)을 빼면 IFRS 13%가 상한에 가깝다. 최근 TTM은 7.9%"
+ },
+ "multiple_view": {
+  "adj": -0.1,
+  "why": "신임 CEO 첫 분기, DCT 새 제품 마진 미증명, 레버리지 3.4배·영업현금흐름 마이너스 — 실행 할인 10%. 잔고 SEK 28B의 가시성은 규칙(수주 프리미엄)이 이미 반영한다"
+ },
+ "next_event": {
+  "date": "2027-01-28",
+  "tag": "4Q26·연간 실적 — DCT 조정 EBITA 이익률이 9.7%에서 돌아서는지, 4Q DCT 인도 규모, 영업현금흐름"
+ },
+ "segments_hist": {
+  "segments": {
+   "산업용 제습·공기 처리(AirTech)": [
+    {
+     "period": "2024-09-30",
+     "rev": 2011000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 2260000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 1844000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 1708000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 1770000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 1868000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 1779000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 1998000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 2191000000.0
+    }
+   ],
+   "데이터센터 냉각(DCT)": [
+    {
+     "period": "2024-09-30",
+     "rev": 1012000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 1315000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 1505000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 1522000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 1556000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 1322000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 1403000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 1356000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 1789000000.0
+    }
+   ],
+   "축산 제어·소프트웨어(FoodTech)": [
+    {
+     "period": "2024-09-30",
+     "rev": 239000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 354000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 413000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 404000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 486000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 449000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 416000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 462000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 502000000.0
+    }
+   ]
+  },
+  "source": "Munters 분기보고서 5건의 사업부 표(3Q25·FY25·1Q26·2Q26·3Q26 보고서, 계속영업 기준) — 회사는 사업부별 9개 분기 단일 표를 내지 않는다. 9개 분기뿐이라 계절성 판정은 표본이 짧다"
+ },
+ "ops": {
+  "q": [
+   {
+    "period": "2024-09-30",
+    "orders": 2646000000.0,
+    "backlog": 10289000000.0
+   },
+   {
+    "period": "2024-12-31",
+    "orders": 3994000000.0,
+    "backlog": 11287000000.0
+   },
+   {
+    "period": "2025-03-31",
+    "orders": 3556000000.0,
+    "backlog": 10090000000.0
+   },
+   {
+    "period": "2025-06-30",
+    "orders": 3666000000.0,
+    "backlog": 9774000000.0
+   },
+   {
+    "period": "2025-09-30",
+    "orders": 4159000000.0,
+    "backlog": 10034000000.0,
+    "inventory": 2046000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "orders": 11604000000.0,
+    "backlog": 17282000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "orders": 4700000000.0,
+    "backlog": 18991000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "orders": 8699000000.0,
+    "backlog": 24542000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "orders": 7070000000.0,
+    "backlog": 27851000000.0,
+    "inventory": 3791000000.0
+   }
+  ],
+  "orders_label": "수주(Order intake)",
+  "backlog_label": "수주잔고(Order backlog)",
+  "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf p.12 분기 개요 · 재고는 p.12 재무상태표"
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "IFRS",
+  "summary": "3Q 매출총이익률은 27.6%로 1년 전 31.2%보다 3.6%p 낮다. 이익률이 높던 DCT가 새 제품(칠러·CDU·CRAH) 램프와 관세로 조정 EBITA 이익률 19.5% → 9.7%가 된 것이 원인이다. 판매·관리비 비중은 18.2% → 15.2%로 줄어 영업이익률 하락을 10.0% → 8.7%로 막았다",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 3.798,
+    "cogs": 2.611,
+    "rd": 0.113,
+    "sga": 0.693,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 4.473,
+    "cogs": 3.236,
+    "rd": 0.132,
+    "sga": 0.679,
+    "other": 0.035
+   }
+  ],
+  "costs": [
+   {
+    "name": "재료·구매 부품",
+    "stage": "매출원가",
+    "pct_rev": 0.455,
+    "prior_pct": 0.43,
+    "fixed": 0.0,
+    "driver": "압축기·코일·팬·강재 단가, DCT 수입 부품 관세",
+    "basis": "추정",
+    "source": "2025 연간 성격별 비용의 재료비 SEK 6,509M ÷ 순매출 14,712M = 44.2%(연차보고서 Note 6) — 분기 값은 미공시라 DCT 비중 확대를 반영한 추정",
+    "input": "aluminum"
+   },
+   {
+    "name": "생산 인건비",
+    "stage": "매출원가",
+    "pct_rev": 0.17,
+    "prior_pct": 0.165,
+    "fixed": 0.5,
+    "driver": "버지니아 신규 인력 숙련도·재작업, 임금",
+    "basis": "추정",
+    "source": "2025 연간 인건비 3,980M(27.1%) 중 생산 몫 미공시 — 추정"
+   },
+   {
+    "name": "감가상각(생산분)",
+    "stage": "매출원가",
+    "pct_rev": 0.03,
+    "prior_pct": 0.028,
+    "fixed": 1.0,
+    "driver": "신공장 리스 사용권·설비 감가상각",
+    "basis": "추정",
+    "source": "분기 감가상각 SEK 209M(매출의 4.7%) 중 매출원가 배분 미공시"
+   },
+   {
+    "name": "물류·보증·기타 제조",
+    "stage": "매출원가",
+    "pct_rev": 0.068,
+    "prior_pct": 0.064,
+    "fixed": 0.2,
+    "driver": "운송·설치·보증 충당, 관세",
+    "basis": "추정",
+    "source": "매출원가 72.3%에서 위 세 항목을 뺀 나머지(계산)"
+   },
+   {
+    "name": "판매비",
+    "stage": "판관비",
+    "pct_rev": 0.083,
+    "prior_pct": 0.092,
+    "fixed": 0.6,
+    "driver": "영업 인력·수수료",
+    "basis": "공시",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf p.13"
+   },
+   {
+    "name": "관리비",
+    "stage": "판관비",
+    "pct_rev": 0.069,
+    "prior_pct": 0.09,
+    "fixed": 0.8,
+    "driver": "본사·전산 시스템·AirTech 비용 절감 프로그램(절감 SEK 180M 달성, 목표 250M)",
+    "basis": "공시",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf p.13"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.03,
+    "prior_pct": 0.03,
+    "fixed": 0.9,
+    "driver": "칠러·CDU·제습 신제품 개발",
+    "basis": "공시",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf p.13"
+   }
+  ],
+  "products": [
+   {
+    "name": "데이터센터 냉각(DCT)",
+    "rev_share": 0.38,
+    "gpm": 0.276,
+    "gpm_basis": "그룹 매출총이익률(3Q26) 대용 — 사업부 매출총이익 미공시. DCT 조정 EBITA 이익률은 9.7%",
+    "bom": [
+     {
+      "item": "압축기",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "칠러 원가의 큰 몫이라고 회사가 설명(3Q 콜) — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "수입 부품이라 관세가 붙는다",
+      "input": "hvac_compressor"
+     },
+     {
+      "item": "코일(열교환기)",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "비중 미공시 — 3Q에 가장 모자랐던 부품(3Q 콜)",
+      "pass_through": "미확인",
+      "why": "알루미늄·구리 단가와 공급 부족",
+      "input": "aluminum"
+     },
+     {
+      "item": "팬",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "유럽 대형 팬 제조사 납기"
+     },
+     {
+      "item": "밸브·스트레이너 등 소형 부품",
+      "share": [
+       0.05,
+       0.1
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "미국 현지 조달 전환 속도",
+      "input": "valve"
+     }
+    ]
+   },
+   {
+    "name": "산업용 제습·공기 처리(AirTech)",
+    "rev_share": 0.507,
+    "gpm": 0.276,
+    "gpm_basis": "그룹 매출총이익률 대용 — 사업부 매출총이익 미공시. AirTech 조정 EBITA 이익률 12.9%(취소 수수료 제외 10.4%)",
+    "bom": [
+     {
+      "item": "데시칸트 로터",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "자체 생산(스웨덴 Tobo) — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "흡습제·기재 원가, 자체 공장 가동률"
+     },
+     {
+      "item": "팬·모터",
+      "share": [
+       0.1,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "전동기 단가"
+     },
+     {
+      "item": "판금·케이싱",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "강재·알루미늄 단가",
+      "input": "aluminum"
+     }
+    ]
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "생산 면적 천 m²",
+  "summary": "회사는 캐파를 대수·금액으로 밝히지 않고 면적으로만 말한다. 생산 거점은 25곳 남짓, DCT 6곳 합계 약 100,000 m²다. 버지니아 Daleville는 2026년 9월 20,000 m²를 더해 52,000 m²가 됐지만 가동률이 목표에 못 미친다(3Q 콜, 수치 비공개). 새 투자는 작다 — 이탈리아 칠러 공장 확장 약 €25M와 텍사스 코일 합작 $9.5M",
+  "current": {
+   "nameplate": 100,
+   "utilization": "미확인",
+   "basis": "DCT 생산 거점 6곳 합계 약 100,000 m²(자본시장의 날 DCT 자료 p.3·6) — 면적이지 생산량이 아니다. 가동률은 '목표 미달'이라고만 밝혔다(3Q 콜)",
+   "source": "Munters 자본시장의 날 DCT 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36085-en-dct-presentation-cmd-2026.pdf"
+  },
+  "plans": [
+   {
+    "name": "버지니아 Daleville 증설(칠러 현지 생산·시험실)",
+    "add": 20,
+    "stage": "가동",
+    "online": "2026-09",
+    "capex": "미확인",
+    "blocker": "신규 인력 숙련·재작업, 코일·팬 부족",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2026/munters-completes-expansion-of-data-center-cooling-campus-in-daleville-virginia/",
+    "capex_note": "증설분은 리스 — 투자액 미공시"
+   },
+   {
+    "name": "이탈리아 Ronchi dei Legionari 칠러 공장 확장",
+    "add": 10,
+    "stage": "발표",
+    "online": "2027-11",
+    "capex": 0.275,
+    "blocker": "부지 인수·건설, 유럽 칠러 수요",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2026/munters-announces-investments-to-strengthen-data-center-supply-chain-and-capacity/",
+    "capex_note": "약 €25M — 유로당 11크로나로 환산(계산). '앞으로 1년에 걸쳐' 구축",
+    "add_note": "생산 면적 약 10,000 m² + 칠러 시험실, 유럽·아시아 일부용 칠러 능력 2배"
+   },
+   {
+    "name": "텍사스 코일 합작(Lordan 55%·Munters 45%)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "2027-11",
+    "capex": 0.097,
+    "blocker": "합작 공장 건설·인증 — 생산 개시는 12~18개월 뒤",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2026/munters-announces-investments-to-strengthen-data-center-supply-chain-and-capacity/",
+    "capex_note": "$9.5M — 달러당 10.2크로나로 환산(계산). 7년 공급 계약"
+   },
+   {
+    "name": "스웨덴 Tobo 로터 공장 증설·현대화",
+    "add": "미확인",
+    "stage": "착공",
+    "online": "2026-12",
+    "capex": 0.25,
+    "blocker": "설비 설치 일정",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2025/munters-invests-in-expansion-of-the-tobo-factory/",
+    "capex_note": "SEK 250M, 2026년 완료 예정"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2025",
+    "capex": 0.6,
+    "rev": 14.712,
+    "kind": "실적"
+   },
+   {
+    "period": "9M26",
+    "capex": 0.678,
+    "rev": 11.858,
+    "kind": "실적"
+   },
+   {
+    "period": "TTM 3Q26",
+    "capex": 0.932,
+    "rev": 15.452,
+    "kind": "실적"
+   }
+  ],
+  "capex_source": "FY2025는 유형자산 투자만(연차보고서 Note 14), 9M26은 유형 476M + 무형 202M(3Q 보고서 p.15), TTM은 현금흐름표 분기 합. 2026년 CAPEX는 '2025년과 같은 범위'(3Q 콜, 숫자 없음)",
+  "sites": [],
+  "sites_none": "제조 시설의 상당 부분이 임차다(연차보고서 Note 15) — 사이트별 소유 여부가 공시되지 않아 소유 확인 시설이 없다",
+  "facilities": {
+   "count": 25,
+   "count_basis": "자본시장의 날 CEO 자료 p.5: 약 25곳 = AirTech 13 + Clean Technologies 3 + DCT 6 + FoodTech 4(브라질 Curitiba는 중복 집계). 3Q 보고서는 '25곳 초과'. FoodTech 4곳과 일부 AirTech 거점은 위치·면적 미공시라 개수에만 센다",
+   "source": "Munters 자본시장의 날 CEO 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36087-en-ceo-presentation-cmd-2026.pdf",
+   "items": [
+    {
+     "name": "Daleville 캠퍼스",
+     "location": "미국 버지니아 Daleville",
+     "owned": "임차",
+     "use": "DCT 전 제품·연구개발·시험",
+     "status": "가동",
+     "area": {
+      "value": 52000.0,
+      "unit": "m²",
+      "source": "자본시장의 날 DCT 자료 p.6·회사 보도자료"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산량 미공시 — 직원 약 600명, 2026년 증설분은 리스"
+    },
+    {
+     "name": "Selma 공장",
+     "location": "미국 텍사스 Selma",
+     "owned": "미확인",
+     "use": "DCT CRAH·공조기",
+     "status": "가동",
+     "area": {
+      "value": 14000.0,
+      "unit": "m²",
+      "source": "자본시장의 날 DCT 자료 p.6·회사 보도자료"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산량 미공시"
+    },
+    {
+     "name": "Cork 공장",
+     "location": "아일랜드 Cork",
+     "owned": "미확인",
+     "use": "DCT 유럽용 전 제품",
+     "status": "가동",
+     "area": {
+      "value": 20000.0,
+      "unit": "m²",
+      "source": "자본시장의 날 DCT 자료 p.6·회사 보도자료"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산량 미공시"
+    },
+    {
+     "name": "Ronchi dei Legionari 공장(Geoclima)",
+     "location": "이탈리아 Ronchi dei Legionari",
+     "owned": "미확인",
+     "use": "DCT 칠러·드라이쿨러",
+     "status": "가동",
+     "area": {
+      "value": 8000.0,
+      "unit": "m²",
+      "source": "자본시장의 날 DCT 자료 p.6·회사 보도자료"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산량 미공시 — 확장 뒤 칠러 능력 2배(회사 발표)"
+    },
+    {
+     "name": "Bowin 공장(Geoclima)",
+     "location": "태국 Bowin",
+     "owned": "미확인",
+     "use": "DCT 보조 칠러",
+     "status": "가동",
+     "area": {
+      "value": 2000.0,
+      "unit": "m²",
+      "source": "자본시장의 날 DCT 자료 p.6·회사 보도자료"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산량 미공시"
+    },
+    {
+     "name": "Curitiba 공장",
+     "location": "브라질 Curitiba",
+     "owned": "미확인",
+     "use": "중남미용 CRAH(조직상 AirTech)",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "면적·생산량 미공시"
+    },
+    {
+     "name": "Amesbury 공장",
+     "location": "미국 매사추세츠 Amesbury",
+     "owned": "임차",
+     "use": "AirTech 제습 주력",
+     "status": "가동",
+     "area": {
+      "value": 40000.0,
+      "unit": "m²",
+      "source": "자본시장의 날 DCT 자료 p.6·회사 보도자료"
+     },
+     "capacity": "미확인",
+     "capacity_basis": "생산량 미공시 — 2025년 5월 개소"
+    },
+    {
+     "name": "Tobo 공장",
+     "location": "스웨덴 Tobo",
+     "owned": "미확인",
+     "use": "AirTech 제습 로터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "면적·생산량 미공시 — SEK 250M 증설 진행 중"
+    },
+    {
+     "name": "Jiangyin 공장",
+     "location": "중국 Jiangyin",
+     "owned": "미확인",
+     "use": "AirTech 중국 제조 통합",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "면적·생산량 미공시 — 2025년 완공"
+    },
+    {
+     "name": "Monterrey 공장",
+     "location": "멕시코 Monterrey",
+     "owned": "미확인",
+     "use": "AirTech 가습 매체",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "면적·생산량 미공시 — 증설 진행 중"
+    }
+   ]
+  }
+ },
+ "customers": {
+  "as_of": "2025-12-31",
+  "period": "FY2025",
+  "summary": "고객 이름은 공개되지 않는다. 공시로 확인되는 단일 고객은 DCT 대형 고객 1곳뿐이고 2025년 그룹 순매출의 14%(2024년 15%)다. 나머지 86%의 고객별 몫은 공시되지 않았다. 사업부로 보면 2025년 매출의 49%가 AirTech(식품·제약·배터리·상업), 40%가 DCT(2025년 DCT 매출의 85%가 코로케이션·14%가 하이퍼스케일러), 12%가 FoodTech(육계·산란계 농장)이고, 2025년 외부 매출의 54%가 미국이다",
+  "items": [
+   {
+    "name": "DCT 대형 고객 1곳",
+    "alias": "연차보고서 Note 5의 10% 초과 고객(이름 비공개)",
+    "share": 0.14,
+    "prior": 0.15,
+    "basis": "공시",
+    "buys": "데이터센터 냉각 장비",
+    "source": "Munters 연차보고서 2025 https://www.munters.com/globalassets/story-page-import-images/munters-annual-and-sustainability-report-20252.pdf",
+    "why": "2025년 그룹 순매출의 14%, 2024년 15%(Note 5 p.145)"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "reported_backlog": 27.851,
+  "backlog_label": "수주잔고",
+  "summary": "잔고 SEK 27.9B의 82%(22.9B)가 DCT이고 인도는 주로 2027~2028년이다. 연도별 금액은 공시되지 않았다. 2025-12-02 발표 칠러 주문 $82M은 2026년 인도분이라 목록에서 뺐다. 회사는 3Q부터 대형 주문을 따로 발표하지 않는다",
+  "items": [
+   {
+    "name": "미국 하이퍼스케일러 맞춤 CRAH",
+    "region": "미국",
+    "status": "확정",
+    "total": 2.0,
+    "included_in": "잔고 SEK 27.9B",
+    "progress": "미확인",
+    "progress_basis": "건별 진척 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2026-12",
+    "end": "2028-03",
+    "speed": "미확인",
+    "blockers": [
+     "부품 공급",
+     "고객 현장 일정"
+    ],
+    "note": "2025-11-12 발표, 약 $215M — 단일 고객 최대 — 발표 금액 기준(일부는 이미 매출로 인식됐을 수 있다)",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2025/munters-wins-record-orders-with-a-total-value-of-215-musd-for-data-center-equipment/"
+   },
+   {
+    "name": "미국 코로케이션 칠러(버지니아 생산)",
+    "region": "미국",
+    "status": "확정",
+    "total": 0.84,
+    "included_in": "잔고 SEK 27.9B",
+    "progress": "미확인",
+    "progress_basis": "건별 진척 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2026-10",
+    "end": "2027-03",
+    "speed": "미확인",
+    "blockers": [
+     "부품 공급",
+     "고객 현장 일정"
+    ],
+    "note": "2025-12-11 발표 — 발표 금액 기준(일부는 이미 매출로 인식됐을 수 있다)",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2025/munters-wins-840-msek-data-center-chiller-order/"
+   },
+   {
+    "name": "미국 코로케이션 CRAH·CDU·칠러(기존 고객)",
+    "region": "미국",
+    "status": "확정",
+    "total": 2.1,
+    "included_in": "잔고 SEK 27.9B",
+    "progress": "미확인",
+    "progress_basis": "건별 진척 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2026-10",
+    "end": "2028-03",
+    "speed": "미확인",
+    "blockers": [
+     "부품 공급",
+     "고객 현장 일정"
+    ],
+    "note": "2025-12-31 발표 — 발표 금액 기준(일부는 이미 매출로 인식됐을 수 있다)",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2025/munters-wins-record-orders-for-data-center-equipment-with-a-total-value-of-2.1-bsek"
+   },
+   {
+    "name": "미국 코로케이션 모듈형 AI 냉각(CDU·CRAH)",
+    "region": "미국",
+    "status": "확정",
+    "total": 2.0,
+    "included_in": "잔고 SEK 27.9B",
+    "progress": "미확인",
+    "progress_basis": "건별 진척 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2027-01",
+    "end": "2028-03",
+    "speed": "미확인",
+    "blockers": [
+     "부품 공급",
+     "고객 현장 일정"
+    ],
+    "note": "2026-04-24 발표, 2Q26 수주 — 발표 금액 기준(일부는 이미 매출로 인식됐을 수 있다)",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2026/munters-wins-order-of-bsek-2.0-for-a-modular-ai-cooling-solution"
+   },
+   {
+    "name": "그 밖의 수주잔고",
+    "status": "확정",
+    "total": 20.911,
+    "progress": "미확인",
+    "progress_basis": "DCT는 진행 기준 매출 인식 — 건별 진척 미공시",
+    "margin": 0.276,
+    "margin_kind": "매출총이익률",
+    "margin_basis": "3Q26 그룹 매출총이익률(잔고 일부는 원가가 오르기 전 가격)",
+    "start": "2026-10",
+    "end": "2028-12",
+    "speed": "3Q 수주 ÷ 매출 1.6(DCT 2.7)",
+    "blockers": [
+     "버지니아 공장 숙련·재작업",
+     "코일·팬 부족",
+     "잔고 일부의 옛 가격"
+    ],
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf",
+    "note": "공시 잔고 SEK 27,851M − 발표된 대형 주문 4건 SEK 6.94B(계산)"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 21.6,
+  "book_to_bill": 2.08,
+  "rpo_growth": 1.78,
+  "revenue_growth": 0.178,
+  "top_customer_share": 0.14,
+  "source": "잔고 SEK 27,851M ÷ TTM 월평균 매출 1,288M = 21.6개월(계산). 최근 4개 분기 수주 32,073M ÷ 매출 15,452M = 2.08(계산). 잔고 전년 대비 +178%, 3Q 매출 +17.8%(3Q 보고서). 취소: 1Q26 배터리 프로젝트 $28M, 3Q AirTech 대형 주문 1건 — 취소율은 미공시"
+ },
+ "recurring": {
+  "share": 0.28,
+  "kind": "서비스·부품·SaaS",
+  "base": "설치 대수 미공시 — FoodTech SaaS 연간 반복 매출 SEK 378M(1년 전 321M)",
+  "years_to_recurring": 0,
+  "source": "3Q26 그룹 매출의 서비스 14% + 부품 14% = 28%(1년 전 24%, 3Q 보고서 p.4). 회사의 장기 포부는 3분의 1 초과"
+ },
+ "ma": {
+  "none": "최근 3년에 Geoclima(칠러, 2024-10)·Hotraco(2024-10, 현금 대가 SEK 746M)·Airprotech(2024-05)·MTech 잔여 지분(2025)을 인수하고 FoodTech Equipment를 팔았지만(2025-05, 매각가 SEK 1,197M), 회사가 금액 기준 시너지와 대부분의 개별 인수가를 공시하지 않아 시너지 모델을 세울 수 없다. Geoclima는 인수 6개월 안에 미국 판매·첫해 신규 고객 10곳 이상이라고 회사가 밝혔다"
+ },
+ "leaders": {
+  "as_of": "2026-11-23",
+  "summary": "CEO가 2026년 9월에 바뀌었다. 새 CEO Stefan Aspman은 2022~2026년 DCT 사업부장이었다 — 지금 마진이 무너진 그 사업을 키운 사람이다. 최대주주는 발렌베리 계열 Wallenberg Investments Holding(28.3%)이고 이사회 의장이 그쪽 이사를 겸한다",
+  "people": [
+   {
+    "name": "Stefan Aspman",
+    "role": "CEO",
+    "since": "2026-09-14",
+    "profile": "DCT 사업부장 2022~2026, 그룹 영업 혁신 총괄 2021~2022, 그 전 Sandvik 10년 이상",
+    "business": "Sandvik 출신 — 전 CEO Klas Forsström과 같은 회사 경력",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.munters.com/en-se/news-media/press-releases/2026/munters-accelerates-ceo-transition-and-announces-changes-to-group-management/"
+   },
+   {
+    "name": "Magnus Nicolin",
+    "role": "이사회 의장",
+    "since": "2022-05",
+    "profile": "전 Ansell CEO, FAM 이사 겸임(대주주로부터 비독립)",
+    "business": "Wallenberg Investments Holding(FAM)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.munters.com/en-se/about-us/corporate-governance/board-of-directors/"
+   },
+   {
+    "name": "Katharina Fischer",
+    "role": "CFO",
+    "since": "2023",
+    "profile": "Electrolux 약 20년",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.munters.com/en-se/about-us/corporate-governance/management-team/"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "최대주주 Wallenberg Investments Holding 28.3%(2026-09-30)",
+    "strength": 4,
+    "exposure": 0.0,
+    "basis": "주주 관계가 닿는 매출은 공시되지 않았다 — 노출 0으로 둔다. 장기 주주가 있어 레버리지 3.4배 국면에서 자본 조달 선택지가 넓다는 점만 정성으로 본다",
+    "evidence": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf p.10"
+   }
+  ]
+ },
+ "region_why": "12개월 누적 매출: Americas 60%·EMEA 26%·APAC 14%(자본시장의 날 CEO 자료 p.5)",
+ "narrative": {
+  "as_of": "2026-11-23",
+  "stage": "확산",
+  "crowding": "낮음(리테일 집계 없음 — 북유럽 기관 중심, 기관 보유 약 80%)",
+  "summary": "제습기 회사가 AI 데이터센터 냉각 회사로 바뀐다는 이야기다. 수주잔고는 1년 새 SEK 10.0B에서 27.9B가 됐지만, 그 잔고를 만드는 DCT의 이익률은 19.5%에서 9.7%로 반 토막 났다. 시장은 '잔고가 이익으로 바뀌는가'를 의심하고 주가는 5월 종가 고점보다 40% 낮다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "3Q 콜 질문 증권사",
+      "9곳(UBS·SEB·ABG Sundal Collier·Handelsbanken·Nordea·DNB Carnegie·Jefferies·Pareto 등)"
+     ],
+     [
+      "의견·목표가",
+      "데이터 없음(미확인)"
+     ],
+     [
+      "FY27 EPS 추정",
+      "SEK 6.5(범위 4.6~8.4)"
+     ]
+    ],
+    "read": "질문은 수요가 아니라 실행에 몰렸다 — DCT 마진 회복 시점, 4Q 인도 규모, 재고와 현금, 주문 취소·이중 주문 위험. 의견 분포 데이터는 없다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "최대주주",
+      "Wallenberg Investments Holding 28.3%"
+     ],
+     [
+      "국민연금 계열",
+      "스웨덴 4차 국민연금기금 6.1%·스웨덴 3차 국민연금기금 2.9%"
+     ],
+     [
+      "13F",
+      "해당 없음(미국 상장 아님)"
+     ]
+    ],
+    "read": "발렌베리 계열 장기 주주가 28%를 들고 있어 레버리지 3.4배 국면에서도 자금 조달 선택지가 있다. 기관 매매 변화는 미국 공시 대상이 아니라 미확인이다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral",
+      "미수록"
+     ],
+     [
+      "ApeWisdom",
+      "언급 없음"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "언급 없음"
+     ]
+    ],
+    "read": "리테일 관심 집계가 없다 — 스웨덴 기관 종목이다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "3Q 실적일",
+      "+4.0%(장중 +11.4%에서 반납)"
+     ],
+     [
+      "자본시장의 날",
+      "+2.2%"
+     ],
+     [
+      "11/20 업종 급락",
+      "−7.8%"
+     ]
+    ],
+    "read": "좋은 수주 숫자에는 장 초반에 오르고 마진·현금 숫자를 보고 되돌리는 흐름이 3Q 실적일에 나왔다. 11월에는 데이터센터 인프라 업종과 함께 움직였다."
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 데이터센터 냉각 수주",
+    "thesis": "하이퍼스케일러·코로케이션의 AI 증설이 칠러·CRAH·CDU 주문으로 들어와 잔고가 2028년 인도분까지 찼다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "DCT 잔고 SEK 6.6B → 22.9B(1년), DCT 수주 ÷ 매출 2.7",
+    "status": "강화",
+    "falsifier": "DCT 수주 ÷ 매출이 2개 분기 연속 1 아래",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   {
+    "name": "제품 폭 확대(칠러·CDU)",
+    "thesis": "Geoclima 인수로 칠러를 얻어 한 프로젝트에 여러 제품을 묶어 판다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "12개월 DCT 수주의 49%가 칠러, 33% CRAH, 10% CDU",
+    "status": "강화",
+    "falsifier": "칠러 수주 비중이 줄고 DCT 마진이 계속 한 자릿수",
+    "source": "Munters 자본시장의 날 DCT 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36085-en-dct-presentation-cmd-2026.pdf"
+   },
+   {
+    "name": "서비스·부품 반복 매출",
+    "thesis": "설치 기반이 커지면서 서비스·부품 비중이 올라 이익의 질이 좋아진다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "서비스+부품 24% → 28%(3Q), DCT 서비스 +41%",
+    "status": "유지",
+    "falsifier": "서비스+부품 비중이 25% 아래로 후퇴",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   {
+    "name": "AirTech 회복",
+    "thesis": "배터리 주문 급감 뒤 식품·제약·부품으로 바닥을 지나 마진이 돌아온다",
+    "inputs": "이익률",
+    "who": {
+     "sell": "중",
+     "buy": "약",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "조정 EBITA 이익률 4.8%(1Q25) → 12.9%(3Q26, 취소 수수료 제외 10.4%)",
+    "status": "강화",
+    "falsifier": "분기 수주가 SEK 1.7B 아래로 2개 분기 연속",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   {
+    "name": "반대 내러티브 — 잔고는 늘어도 이익은 줄어든다",
+    "thesis": "새 제품을 새 공장에서 만드는 비용, 옛 가격으로 받은 잔고, 관세가 겹쳐 매출이 늘수록 마진이 내려가고 현금이 묶인다",
+    "inputs": "이익률·위험",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "DCT 조정 EBITA 이익률 22.8%(1Q25) → 9.7%(3Q26), 영업현금흐름 −SEK 216M, 레버리지 3.4배",
+    "status": "강화",
+    "falsifier": "4Q26·1Q27 DCT 이익률이 2개 분기 연속 상승하고 영업현금흐름이 플러스",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   }
+  ],
+  "lead": {
+   "summary": "Munters의 기업가치는 **SEK 27.9B 수주잔고가 어떤 마진으로 매출이 되느냐**에 달려 있다. 잔고의 82%가 데이터센터 냉각(DCT)인데, DCT 조정 EBITA 이익률은 1년 새 19.5%에서 9.7%로 내려왔고 3Q 영업현금흐름은 마이너스였다.",
+   "value_story": "12개월 매출의 51%가 산업용 제습·공기 처리(AirTech), 38%가 DCT, 12%가 축산 제어·소프트웨어(FoodTech)다. 성장은 DCT에서 나온다 — DCT 수주는 4개 분기 합 SEK 21.3B로 같은 기간 DCT 매출 5.9B의 3.6배다(계산). 이익은 반대다. 3Q 조정 EBITA SEK 546M 중 AirTech가 283M, DCT는 174M뿐이다. 회사 목표는 그룹 조정 EBITA 이익률 14% 초과이고, DCT 자료는 숙련·장기 공급 계약·자동화로 +4~6%p를 올리는 경로를 제시했다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 21.2배로 동종 5곳 중앙(17.9배)보다 높다 — 다만 이익이 눌린 해의 배수이고 Fwd 2Y는 15.9배다",
+    "eps": "FY26 EPS 추정 SEK 4.21 → FY27 6.5(+54%) → FY28 8.3"
+   },
+   "why_excited": "2025년 11~12월 한 달 반 사이 대형 DCT 주문 네 건(합계 약 SEK 5.7B)이 발표되고 4Q25 수주가 SEK 11.6B로 뛰자 투자자들은 'AI 냉각 수혜주'로 다시 값을 매겼고 주가는 2026년 5월 종가 SEK 210.6까지 갔다. 그 뒤 2Q에 공급 차질로 DCT 매출이 줄고, 3Q에 매출은 사상 최대인데 마진이 더 내려가고 CEO가 바뀌면서 기대가 식었다. 지금 시장이 묻는 것은 수요가 아니라 버지니아 공장의 실행이다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "산업용 제습·공기 처리(AirTech)",
+     "what": "데시칸트 로터로 공기 중 습기를 빼는 산업용 제습기와 공기 처리 장비, 서비스·부품",
+     "use": "식품·제약 공장, 배터리 드라이룸, 상업 건물",
+     "money": "12개월 매출 SEK 7.8B(51%), 3Q 조정 EBITA 이익률 12.9%",
+     "name_en": "industrial desiccant dehumidifier",
+     "what_en": "a large industrial desiccant dehumidification unit with a rotating desiccant wheel, fans and ducting in a factory",
+     "bom": {
+      "name_en": "industrial desiccant dehumidifier",
+      "as_of": "2026-11-23",
+      "this_company_product": true,
+      "items": [
+       {
+        "no": 1,
+        "part": "데시칸트 로터",
+        "part_en": "desiccant rotor wheel",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Munters 자체 생산(스웨덴 Tobo)",
+        "source": "Tobo 공장 증설 보도자료(2025)"
+       },
+       {
+        "no": 2,
+        "part": "공정 팬",
+        "part_en": "process air fan",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 3,
+        "part": "재생 히터",
+        "part_en": "regeneration heater",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 4,
+        "part": "판금 케이싱",
+        "part_en": "sheet metal casing",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "제품",
+     "name": "데이터센터 냉각(DCT)",
+     "what": "데이터센터 열을 식히는 칠러·CRAH·CDU·SyCool",
+     "use": "미국 하이퍼스케일러·코로케이션의 AI 데이터센터",
+     "money": "12개월 매출 SEK 5.9B(38%), 3Q 조정 EBITA 이익률 9.7%",
+     "name_en": "data center air-cooled chiller",
+     "what_en": "a large outdoor air-cooled chiller unit with rows of condenser fans on top, used for data center cooling",
+     "bom": {
+      "name_en": "data center air-cooled chiller",
+      "as_of": "2026-11-23",
+      "this_company_product": true,
+      "items": [
+       {
+        "no": 1,
+        "part": "압축기",
+        "part_en": "compressor",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Danfoss(콜에서 공급사 예로 언급 — 비중 미확인)",
+        "source": "Munters 3Q26 어닝콜(2026-10-23)"
+       },
+       {
+        "no": 2,
+        "part": "코일(열교환기)",
+        "part_en": "condenser coil heat exchanger",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "외부 구매 — 2027년 말부터 Lordan 합작 공장(예정)",
+        "source": "Munters 자본시장의 날 보도자료(2026-11-11) https://www.munters.com/globalassets/story-page-import-images/release4.pdf"
+       },
+       {
+        "no": 3,
+        "part": "팬",
+        "part_en": "condenser fan",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "유럽 대형 팬 제조사(이름 미공시)",
+        "source": "Munters 3Q26 어닝콜(2026-10-23)"
+       },
+       {
+        "no": 4,
+        "part": "밸브·배관",
+        "part_en": "valves and piping",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미국 현지 공급사로 전환 중(이름 미공시)",
+        "source": "Munters 3Q26 어닝콜(2026-10-23)"
+       },
+       {
+        "no": 5,
+        "part": "제어반",
+        "part_en": "control panel",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "축산 제어·소프트웨어(FoodTech)",
+     "what": "축사 기후 컨트롤러와 농장 관리 소프트웨어(브랜드 Speria)",
+     "use": "육계·산란계 농장과 계열화 업체",
+     "money": "12개월 매출 SEK 1.8B(12%), SaaS 연간 반복 매출 SEK 378M — 매각 검토 중",
+     "name_en": "poultry house climate controller",
+     "what_en": "a wall-mounted climate controller panel inside a modern poultry house"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "제습기 회사 → 데이터센터 냉각이 잔고의 82%인 회사",
+     "evidence": "잔고 SEK 27.9B 중 DCT 22.9B(3Q 보고서)",
+     "drives": "성장·배수",
+     "status": "진행 중",
+     "falsifier": "DCT 수주 ÷ 매출 1 아래"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "서비스·부품 비중 확대, 반대로 DCT 안에서는 마진 낮은 칠러 비중 확대",
+     "evidence": "서비스+부품 24% → 28%, DCT 이익률 19.5% → 9.7%",
+     "drives": "이익률",
+     "status": "혼재",
+     "falsifier": "DCT 이익률 2개 분기 연속 하락"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "공랭에서 액체 냉각(CDU)·고용량 칠러로 제품 확장",
+     "evidence": "12개월 DCT 수주의 10%가 CDU, 2026-04 모듈형 AI 냉각 SEK 2.0B 수주",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "CDU 수주 비중 정체"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "주문은 2027~2028년 인도분 — 버지니아 공장 가동률이 목표에 못 미친다",
+     "evidence": "3Q 콜·대형 주문 보도자료의 인도 시기",
+     "drives": "성장 시점·이익률",
+     "status": "지연",
+     "falsifier": "4Q DCT 매출이 3Q(SEK 1,789M)를 넘고 이익률 상승",
+     "lead_time": {
+      "now": [
+       6,
+       27
+      ],
+      "unit": "개월",
+      "basis": "주문→인도 — 2025-12 칠러 주문은 2026년 중, 2025-11·12 대형 주문은 2026년 말~2028년 1분기 인도(보도자료)",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Vertiv",
+        "value": "미확인"
+       },
+       {
+        "name": "Modexus",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "Geoclima(칠러) 인수로 제품 폭 확대, FoodTech는 매각 검토 — 팔리면 순차입이 준다",
+     "evidence": "자본시장의 날 CFO 자료 p.10, 3Q 보고서",
+     "drives": "성장·재무 위험",
+     "status": "진행 중",
+     "falsifier": "FoodTech 매각 무산"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "DCT는 고객의 데이터센터 건설 CAPEX, AirTech는 공장 설비투자와 유지보수 예산이 섞인다",
+     "evidence": "3Q 보고서 서비스·부품 비중",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "미국 코로케이션 CAPEX 축소",
+     "budgets": [
+      {
+       "business": "산업용 제습·공기 처리(AirTech)",
+       "budget": "혼합",
+       "line": "공장 설비투자 + 유지보수(서비스 19%·부품 27%)",
+       "share": 0.51,
+       "driver": "식품·제약 증설, 설치 기반 교체",
+       "evidence": "3Q 보고서 p.7"
+      },
+      {
+       "business": "데이터센터 냉각(DCT)",
+       "budget": "CAPEX",
+       "line": "데이터센터 건설·냉각 설비 투자",
+       "share": 0.38,
+       "driver": "AI 데이터센터 증설",
+       "evidence": "3Q 보고서 p.8"
+      },
+      {
+       "business": "축산 제어·소프트웨어(FoodTech)",
+       "budget": "혼합",
+       "line": "축사 설비투자 + 소프트웨어 구독",
+       "share": 0.12,
+       "driver": "농장 자동화",
+       "evidence": "3Q 보고서 p.9"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(수령이 확인된 것은 연구개발 보조금 SEK 16M뿐 — 버지니아 지역 인센티브 금액 미확인)",
+     "evidence": "연차보고서 Note 9",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음",
+     "house": {
+      "level": 1,
+      "why": "Munters 관련 세출 논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "미국 수입 관세 — DCT 수입 부품에 붙어 3Q DCT 이익률을 약 2%p 깎았다(4Q25 4%p)",
+     "evidence": "3Q 보고서 p.8",
+     "drives": "이익률",
+     "status": "시행",
+     "falsifier": "미국산 부품 구성표 완성으로 영향 0",
+     "house": {
+      "level": 1,
+      "why": "행정부 관세 조치 — 의회 의결 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(직접 연관 입법 미확인)",
+     "evidence": "-",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음"
+    }
+   }
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 20,
+   "net_margin": 0.085,
+   "opm": 0.13,
+   "basis": "출구 P/E 20배는 동종 중앙(17.9배)과 지금 Fwd 1Y 21.2배 사이. 영업이익률 13%는 회사 목표(조정 EBITA 14% 초과)에서 인수 무형 상각을 뺀 수준, 순이익률은 이자·세율 31%를 반영"
+  },
+  "base": {
+   "eps": 2.91,
+   "opm": 0.079,
+   "basis": "최근 4개 분기 EPS 합 SEK 2.91(−0.04 + 0.68 + 1.11 + 1.16, IFRS), TTM 영업이익률 7.9%"
+  },
+  "refs": [
+   {
+    "label": "FY26 EPS 추정",
+    "value": 4.21
+   },
+   {
+    "label": "FY27 EPS 추정",
+    "value": 6.5
+   },
+   {
+    "label": "FY28 EPS 추정",
+    "value": 8.3
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "매출이 회사의 2030년 포부(SEK 30B)에 가깝게 가고 영업이익률이 13%로 돌아와야 한다",
+    "outlook": "잔고 SEK 27.9B가 매출 경로는 받치지만 DCT 마진이 9.7%에서 10%대 후반으로 돌아오는 근거는 아직 계획뿐"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "2030년 포부를 넘는 매출과 14% 넘는 이익률이 함께 필요하다",
+    "outlook": "공개 근거 없음"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "매출이 지금의 4배를 넘어야 한다",
+    "outlook": "경로 없음"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "냉각 장비 시장 크기와 경쟁 구도로 보아 닿기 어렵다",
+    "outlook": "경로 없음"
+   }
+  },
+  "summary": "시가총액 SEK 23.2B라 2·3·5·10배를 본다. 2배는 2030년 매출 포부와 13% 이익률이 함께 맞아야 열리고, 5배 이상은 닫혀 있다."
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "잔고가 매출의 1.8배인데 주가는 고점의 60% — 마진만 돌아오면 Fwd 2Y P/E 15.9배는 싸다",
+    "evidence": [
+     "잔고 SEK 27.9B(+178%)",
+     "Fwd 2Y P/E 15.9배",
+     "DCT 이익률 개선 경로 +4~6%p(회사 자료)"
+    ],
+    "falsifier": "1Q27까지 DCT 이익률이 10%를 넘지 못함"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "2027년 물량은 대부분 수주됐고 신규 주문 가격은 20% 넘게 올랐다 — 이익은 늦게 따라온다",
+    "evidence": [
+     "수주 ÷ 매출 4개 분기 2.08",
+     "일부 제품 가격 연초 대비 +20% 초과(3Q 콜)"
+    ],
+    "falsifier": "4Q DCT 매출이 3Q보다 줄어듦"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수요는 증명됐고 실행은 증명되지 않았다 — 회사가 숫자 가이던스도 마진 회복 시점도 주지 않는다",
+    "evidence": [
+     "DCT 이익률 19.5% → 9.7%",
+     "10%대 후반 마진은 '중기 과제'(3Q 콜)"
+    ],
+    "falsifier": "DCT 이익률 2개 분기 연속 상승"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "매출이 늘수록 현금이 묶인다 — 레버리지 3.4배에서 재고가 더 늘면 증자나 자산 매각이 필요하다",
+    "evidence": [
+     "3Q 영업현금흐름 −SEK 216M",
+     "재고 SEK 2,046M → 3,791M",
+     "순차입 ÷ 조정 EBITDA 3.4배"
+    ],
+    "falsifier": "4Q 영업현금흐름 플러스와 레버리지 하락"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "잔고 일부는 옛 가격이고 고객 한 곳이 매출의 14%다 — 취소·지연이 나오면 고정비만 남는다",
+    "evidence": [
+     "1Q26 배터리 $28M 취소·3Q AirTech 대형 주문 취소",
+     "DCT 대형 고객 1곳 = 2025 매출의 14%"
+    ],
+    "falsifier": "DCT 취소 없이 잔고가 2개 분기 더 증가"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "잔고가 1년 새 2.8배다. 주가는 고점에서 40% 빠졌다."
+     },
+     {
+      "seat": "Buy",
+      "text": "2027년은 이미 팔렸다. 가격도 올려 받고 있다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "DCT 마진이 반 토막이다. 언제 돌아오는지 회사도 말하지 않는다."
+     },
+     {
+      "seat": "Sell",
+      "text": "3Q에 현금이 빠졌다. 레버리지 3.4배다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "취소가 이미 두 번 나왔다. 고객 한 곳이 14%다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "마진이 내려간 이유는 새 공장 숙련과 관세다. 둘 다 시간이 푸는 문제고 관세 영향은 4%p에서 2%p로 줄었다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "고객 선수금이 SEK 4,094M로 1년 새 두 배다. 재고는 고객 돈으로 쌓고 있다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "+4~6%p 경로는 회사 스스로 '예시'라고 했다. 약속이 아니다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "선수금이 늘었는데도 영업현금흐름이 −216M이다. 4Q에도 재고가 더 는다고 했다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "가격을 20% 올린 것은 새 주문이다. 지금 인도하는 잔고는 옛 가격이다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "취소 두 건은 배터리·AirTech다. DCT 잔고는 취소 없이 3개 분기 연속 늘었다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "AirTech는 4.8%에서 12.9%까지 왔다. 이 회사는 마진을 고쳐 본 적이 있다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "12.9% 중 2.5%p는 취소 수수료다. 기초 체력은 10.4%다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "Fwd 2Y 15.9배는 EPS가 SEK 2.91에서 8.0으로 간다는 추정 위에 있다. 그 추정의 신뢰도는 낮다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "DCT 사업을 맡았던 사람이 CEO가 됐다. 마진이 무너진 시기의 책임자다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "실행 위험은 인정한다. 그래도 잔고의 크기가 가격보다 크다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "1월 28일 DCT 마진을 보고 다시 판단한다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "마진 방향이 확인될 때까지 중립."
+     },
+     {
+      "seat": "Sell",
+      "text": "선수금이 완충이라는 점은 받아들인다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "DCT 취소가 없다는 점은 인정한다. 현금 위험은 남는다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Neutral",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "잔고와 선수금이 수요와 완충을 증명한다는 반박은 살아남았고, 마진 회복 시점이 없고 영업현금흐름이 마이너스라는 반박도 살아남았다 — 방향을 가를 숫자가 1월 28일에 나온다",
+   "dissent": "강세 측은 잔고가 매출의 1.8배인 회사를 Fwd 2Y P/E 15.9배에 두는 것 자체가 과한 할인이라고 본다"
+  }
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "잔고는 매출의 1.8배",
+    "claim": "수주잔고 SEK 27.9B가 2027~2028년 매출 경로를 이미 정해 놓았다",
+    "evidence": "잔고 +178%, 최근 4개 분기 수주 ÷ 매출 2.08, 고객 선수금 SEK 4,094M",
+    "variant": "컨센서스 칸의 FY27 매출 SEK 17.5B(+13%)는 7~9월에 고정된 추정이라 3Q 수주를 다 담지 못했다 — 매출 쪽 위험은 시장 생각보다 작다",
+    "proof": "4Q 매출이 3Q(SEK 4,473M)를 넘는지",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   {
+    "title": "문제는 수요가 아니라 DCT 마진",
+    "claim": "DCT 조정 EBITA 이익률이 19.5%에서 9.7%로 내려왔다",
+    "evidence": "새 제품 램프·재작업·부품 부족·관세 2%p(3Q 보고서·콜)",
+    "variant": "시장은 마진 하락을 구조적 경쟁 심화로 볼 수 있지만, 회사 설명은 새 공장 숙련과 옛 가격 잔고다 — 어느 쪽인지는 4Q·1Q 숫자가 가른다",
+    "proof": "4Q26·1Q27 DCT 이익률이 2개 분기 연속 상승",
+    "source": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   {
+    "title": "현금이 먼저 시험받는다",
+    "claim": "레버리지 3.4배에서 재고가 4Q에도 더 는다",
+    "evidence": "3Q 영업현금흐름 −SEK 216M, 재고 SEK 3,791M, 포부 1.5~2.5배",
+    "variant": "FoodTech 매각이 성사되면 순차입이 한 번에 준다 — 회사가 레버리지 복귀 수단으로 명시했다",
+    "proof": "FoodTech 매각 계약과 4Q 영업현금흐름",
+    "source": "Munters 자본시장의 날 CFO 발표자료(2026-11-11)"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-07-17",
+    "status": "완료",
+    "kind": "생성",
+    "event": "2Q 실적 — 수주 +140%, 수주 ÷ 매출 2.3",
+    "reaction": "+9.4%"
+   },
+   {
+    "date": "2026-09-14",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "CEO 교체 앞당김 — 9월 주가 하락 구간(8/31 → 9/18 −22.6%, 원인 미확인)",
+    "reaction": "9월 −20.5%"
+   },
+   {
+    "date": "2026-10-23",
+    "status": "완료",
+    "kind": "생성",
+    "event": "3Q 실적 — 잔고 SEK 27.9B, DCT 마진은 하락",
+    "reaction": "+4.0%"
+   },
+   {
+    "date": "2026-11-11",
+    "status": "완료",
+    "kind": "확인",
+    "event": "자본시장의 날 — 14% 이익률 목표 유지, ROCE 15% 목표 신설",
+    "reaction": "+2.2%"
+   },
+   {
+    "date": "2026-11-20",
+    "status": "완료",
+    "kind": "매크로",
+    "event": "데이터센터 인프라 업종 동반 급락(원인 미확인)",
+    "reaction": "−7.8%"
+   },
+   {
+    "date": "2027-01-28",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26·연간 실적",
+    "check": "DCT 조정 EBITA 이익률 9.7% 초과, 그룹 매출 SEK 4,473M 초과, 영업현금흐름 플러스",
+    "then": "셋 다 충족 → 기본~강세, DCT 이익률 추가 하락 → 약세"
+   },
+   {
+    "date": "2027년 상반기(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "FoodTech 매각 결과",
+    "check": "매각 계약과 대금, 순차입 ÷ 조정 EBITDA 3배 아래",
+    "then": "성사 → 재무 위험 할인 축소, 무산 → 레버리지 우려 지속"
+   },
+   {
+    "date": "2027-01~02(예상)",
+    "status": "예정",
+    "kind": "매크로",
+    "event": "미국 하이퍼스케일러·코로케이션 2027년 CAPEX 가이던스",
+    "check": "전년 대비 증가 유지",
+    "then": "증가 → DCT 수주 지속, 축소 → 취소·지연 위험"
+   }
+  ],
+  "trade": {
+   "watch": "지지 구간이 약세 시나리오 가격과 가까운 곳",
+   "confirm": "1월 28일 DCT 이익률 반등과 영업현금흐름 플러스",
+   "invalid": "DCT 이익률 추가 하락과 DCT 주문 취소",
+   "trim": "목표주가 근처에서 DCT 이익률이 아직 한 자릿수일 때",
+   "style": "실적일 장중 변동이 크다 — 3Q 실적일 장중 +11.4%에서 종가 +4.0%로 되돌렸다"
+  }
+ },
+ "guru": {
+  "horizon_years": 5,
+  "views": {
+   "runway": {
+    "verdict": "unknown",
+    "why": "추정 매출 경로는 연 12.9%로 5년 2배(연 14.9%)에 못 미치지만, 회사는 2030년 SEK 30B(연 15% 남짓)를 포부로 내걸었고 잔고가 매출의 1.8배다 — 포부에는 인수가 섞여 있어 판정을 보류한다",
+    "evidence": "Munters 자본시장의 날 CEO 발표자료(2026-11-11) https://www.munters.com/globalassets/digizuite/36087-en-ceo-presentation-cmd-2026.pdf"
+   },
+   "moat_returns": {
+    "verdict": "fail",
+    "why": "ROIC 7.4%·회사 ROCE 9.6%로 자본비용에 못 미치고, 새 제품군 마진이 아직 증명되지 않았다",
+    "evidence": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   "reinvestment": {
+    "verdict": "fail",
+    "why": "영업현금흐름이 마이너스이고 레버리지 3.4배라 성장을 내부 현금으로 대지 못한다",
+    "evidence": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   "people": {
+    "verdict": "unknown",
+    "why": "CEO 취임 두 달 — DCT 사업부장 출신이고 장기 대주주(28.3%)가 있지만 성과를 판단할 기록이 없다",
+    "evidence": "CEO 교체 보도자료(2026-09)"
+   },
+   "change": {
+    "verdict": "pass",
+    "why": "잔고 +178%와 2년 뒤 EPS 추정 +34%로 방향은 위다 — 단 마진 회복이 전제다",
+    "evidence": "Munters 3Q26 분기보고서(2026-10-23) https://www.munters.com/globalassets/story-page-import-images/munters-interim-report-jan-sep-20262.pdf"
+   },
+   "mispricing": {
+    "verdict": "fail",
+    "why": "5배는 매출이 지금의 4배를 넘어야 해 경로가 없다 — 2배만 조건부로 열려 있다",
+    "evidence": "이 리포트의 2·3·5·10배 경로 계산"
+   }
+  },
+  "dissent": {
+   "view": "moat_returns",
+   "why": "수주는 늘었는데 자본수익률은 내려갔다 — 성장이 가치를 만드는지 아직 모른다"
+  },
+  "hold": {
+   "kpis": [
+    "DCT 조정 EBITA 이익률",
+    "DCT 수주 ÷ 매출",
+    "순차입 ÷ 조정 EBITDA"
+   ],
+   "rule": "가격만 빠지고 DCT 이익률이 오르면 유지, 이익률과 수주가 함께 꺾이면 논리가 깨진다"
+  }
+ }
+}
