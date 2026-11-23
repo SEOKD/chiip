@@ -47,19 +47,26 @@ class Ledger(unittest.TestCase):
         self.assertEqual(d["items"], [])
         self.assertIn("20분 안", drop[0][1])
 
-    def test_deep_judgment_of_alert_kept(self):
+    def test_deep_judgment_of_alert_dropped(self):   # 2026-11-24 마스터 지시 "Pulse로 중복된 소식을 전달하지 마라"
         self.alert(9, "Intel landing Microsoft for EMIB", "https://news.google.com/rss/articles/abc")
         d, drop, _ = F.dedupe(self.feed([self.item(insight=8)]), Path("x/20261121_1200_feed.json"), NOW)
-        self.assertEqual(len(d["items"]), 1)
+        self.assertEqual(d["items"], [])
 
-    def test_update_kept_with_head(self):
+    def test_update_also_dropped(self):
         L.record([{"codes": ["INTC"], "text": "마이크로소프트, 자체 Azure 칩에 EMIB 패키징 채택 발표", "urls": [L.norm_url("https://www.intel.com/newsroom/emib")], "feed": "20261121_0110"}],
                  NOW - timedelta(hours=2))
         d, drop, _ = F.dedupe(self.feed([self.item(update="구글도 EMIB 채택 확인")]), Path("x/20261121_1200_feed.json"), NOW)
-        self.assertEqual(drop, [])
-        self.assertTrue(d["items"][0]["event"].startswith("갱신 — "))
-        d, drop, _ = F.dedupe(self.feed([self.item()]), Path("x/20261121_1200_feed.json"), NOW)
+        self.assertEqual(d["items"], [])
         self.assertEqual(drop[0][1].split(" — ")[0], "같은 원문")
+
+    def test_relay_links_cut_and_relay_only_dropped(self):   # 오리지널 소스만
+        x = self.item(links=[["보도자료(Business Wire)", "https://www.businesswire.com/news/home/1/en/"], ["보도자료 사본", "https://www.stocktitan.net/news/BWXT/x.html"]])
+        d, drop, _ = F.dedupe(self.feed([x]), Path("x/20261121_1200_feed.json"), NOW)
+        self.assertEqual([l[1] for l in d["items"][0]["links"]], ["https://www.businesswire.com/news/home/1/en/"])
+        y = self.item(links=[["요약", "https://seekingalpha.com/news/1"]], read="https://seekingalpha.com/news/1")
+        d, drop, _ = F.dedupe(self.feed([y]), Path("x/20261121_1200_feed.json"), NOW)
+        self.assertEqual(d["items"], [])
+        self.assertIn("오리지널 소스 없음", drop[0][1])
 
     def test_similar_korean_head_same_ticker_dropped_hours_later(self):
         L.record([{"codes": ["000660"], "text": "키옥시아 CB 주식 전환 결정 — 간접 지분 14.1%", "urls": [], "feed": "20261120_1614"}], NOW - timedelta(minutes=98))

@@ -307,7 +307,7 @@ EVENT_TYPES = [   # (종류, 회사가 스스로 발표하는 사건인가, 정�
     ("return", True, re.compile(r"buyback|repurchase|dividend|自社株買い|自己株式|増配|配当|자사주|배당", re.I)),
     ("equity", True, re.compile(r"offering|convertible|private placement|公募|新株|第三者割当|転換社債|유상증자|전환사채", re.I)),
     ("contract", True, re.compile(r"contract|order|agreement|supply deal|受注|契約|수주|공급계약", re.I)),
-    ("deal", False, re.compile(r"acqui|merger|takeover|in talks|nears? (a )?deal|買収|TOB|ＴＯＢ|인수|합병", re.I)),
+    ("deal", False, re.compile(r"acqui|merger|\bbuys?\b|\bbought\b|takeover|in talks|nears? (a )?deal|買収|TOB|ＴＯＢ|인수|합병", re.I)),
     ("short", False, re.compile(r"short seller|short report|we are short|空売り|공매도", re.I)),
     ("rating", False, re.compile(r"upgrade|downgrade|price target|initiat|目標株価|レーティング|목표주가|투자의견", re.I)),
     ("legal", False, re.compile(r"lawsuit|probe|investigation|antitrust|DOJ|FTC|SAMR|ban\b|tariff|export control|訴訟|調査|소송|조사", re.I)),
@@ -355,21 +355,23 @@ def commit(item, now=None):
 def event_gate(item, level, now=None, window_h=24):
     """P0·P1을 보내기 전 사건 단위 판정 → (보낼지, 앞머리, 사유).
     ① 회사 발표형 사건(실적·가이던스·설비투자·주주환원·증자·계약)은 원문(공시·보도자료)만 보낸다 — 파생 기사는 P2(단독·관계자 보도는 예외)
-    ② 같은 사건은 24시간에 한 번 — 단, 기사로 먼저 나간 사건의 원문이 나중에 오면 '[원문 확인]'으로 한 번 더"""
+    ② 같은 사건은 24시간에 한 번 — 원문이 나중에 와도 다시 보내지 않는다
+    ③ 오리지널 소스만(2026-11-24 마스터 지시 "Pulse로 중복된 소식을 전달하지 마라. 소식은 오리지널 소스만 가져오도록 하라", radar/source_origin.py):
+       재인용·요약·사본 매체(Seeking Alpha·stocktitan·야후 등)는 보내지 않고, 인수·합병도 원문 또는 단독 보도만"""
     now = now or common.now_kst()
     etype, company_originated = event_type(item)
     primary = is_primary(item)
-    if level in ("P0", "P1") and company_originated and not primary and not SCOOP_RE.search(_title(item)):
-        return False, "", f"원문 중심 — 회사 발표형 사건({etype})의 파생 기사"
+    if level in ("P0", "P1") and not primary:
+        import source_origin as origin
+        if origin.is_relay(item.get("url"), item.get("title"), _publisher(item)):
+            return False, "", f"오리지널 소스만 — 재인용 매체({_publisher(item) or origin.host(item.get('url'))})"
+        if (company_originated or etype == "deal") and not SCOOP_RE.search(_title(item)):
+            return False, "", f"원문 중심 — 회사 발표형 사건({etype})의 파생 기사"
     key = event_key(item)
     st = common.load_state("events_sent", {})
     prev = st.get(key)
     fresh = prev and datetime.fromisoformat(prev["at"]) > now - timedelta(hours=window_h)
     if fresh:
-        if primary and not prev.get("primary"):
-            st[key] = {"at": prev["at"], "primary": True}
-            common.save_state("events_sent", st)
-            return True, "[원문 확인] ", "기사로 먼저 나간 사건의 원문"
         return False, "", f"같은 사건 이미 발송({prev['at'][11:16]})"
     st[key] = {"at": common.iso(now), "primary": primary}
     for k in [k for k, v in st.items() if datetime.fromisoformat(v["at"]) < now - timedelta(days=3)]:

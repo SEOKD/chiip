@@ -13,7 +13,8 @@ Report 피드처럼 엔진이 조립한다. 모델은 내용만 JSON으로 쓴�
   쓰면 통과한다. 이때 근거 첫 줄에 '본문 미확인 · 헤드라인 기준'을 밝힌다.
 사용: py radar/pulse_feed.py <json>   → 같은 이름 _tg.txt(끝의 _feed를 뗀다)를 쓰고 양식 점검 결과를 출력
   중복 관문(2026-11-22 마스터 지시 "Pulse가 중복된 정보를 여러 번 텔레그램 피드로 보내는 것 같다"): 이미 보낸 사건(실시간 알림·이전 Pulse,
-  radar/story_ledger.py)은 빼고 '[중복 — 뺌]'으로 출력한다. 새 사실이 있으면 건에 "update": "새 사실 한 줄" → 머리 '갱신 —'.
+  radar/story_ledger.py)은 빼고 '[중복 — 뺌]'으로 출력한다. 갱신으로도 다시 보내지 않는다(2026-11-24 마스터 지시 "Pulse로 중복된 소식을 전달하지 마라.
+  소식은 오리지널 소스만 가져오도록 하라") — 재인용·사본 링크는 빼고, 원출처 링크가 하나도 없으면 그 건을 뺀다(radar/source_origin.py).
   전부 빠지면 _tg.txt를 만들지 않고 종료 코드 3(보내지 않는다).
 잠금 평가기 pulse_check.py가 그대로 재도록 판단은 **굵게**, 근거·반대·다음 확인은 · 줄로 쓴다.
 """
@@ -154,7 +155,7 @@ def unread(d):
     return bad
 
 
-DEEP_KEEP = 7   # 실시간 알림이 먼저 보낸 사건이라도 인사이트 7 이상 판단은 남긴다(알림은 사실 한 줄뿐 — 2026-10-29 '속보 판단' 지시의 몫)
+DEEP_KEEP = 7   # (쓰지 않음 — 2026-11-24 마스터 지시로 실시간 알림이 보낸 사건은 심층 판단으로도 다시 보내지 않는다)
 
 
 def _codes(code):
@@ -180,9 +181,26 @@ def _source_titles(src):
     return {story_ledger.norm_url(s.get("url")): (s.get("title") or "", s.get("entities_matched") or []) for s in d.get("sources") or [] if s.get("url")}
 
 
+def original_only(x, kind):
+    """출처 링크에서 재인용·요약·사본 매체를 뺀다(2026-11-24 마스터 지시 "소식은 오리지널 소스만", radar/source_origin.py).
+    남는 링크가 없으면 (None, 뺀 매체). 'read'(본문 확인 주소)는 증빙이라 그대로 둔다 → (건, 뺀 매체)"""
+    import source_origin as origin
+    if kind == "brief":
+        l = x.get("link") or []
+        if len(l) > 1 and origin.is_relay(l[1]):
+            return None, [origin.host(l[1])]
+        return x, []
+    rows = [l for l in x.get("links") or [] if len(l) > 1]
+    keep = [l for l in rows if not origin.is_relay(l[1]) and not re.search(r"사본|copy|mirror", str(l[0]), re.I)]
+    cut = [origin.host(l[1]) for l in rows if l not in keep]
+    if rows and not keep:
+        return None, cut
+    return (dict(x, links=keep) if cut else x), cut
+
+
 def dedupe(d, src, now=None):
     """이미 보낸 사건(실시간 알림·이전 Pulse, radar/story_ledger.py) 건을 뺀다(마스터 지시 2026-11-22 "Pulse가 중복된 정보를 여러 번 … 바꾸도록 하라").
-    새 사실이 있으면 모델이 건에 "update": "새 사실 한 줄"을 쓴다 → 남기고 머리에 '갱신 —'. → (새 d, 뺀 건 [(이름, 사유)], 장부에 남길 줄)"""
+    갱신·심층 판단으로도 다시 보내지 않는다(2026-11-24). → (새 d, 뺀 건 [(이름, 사유)], 장부에 남길 줄)"""
     import story_ledger
     feed = src.stem.removesuffix("_feed")
     titles = _source_titles(src)
@@ -197,16 +215,15 @@ def dedupe(d, src, now=None):
                     codes |= story_ledger.codes_of(ents)
             head = x.get("event") or x.get("line") or ""
             texts = [head] + [t for t, _ in src_t]
+            name = f"{x.get('name')} {x.get('code') or ''}".strip()
             m = story_ledger.match(codes, texts, urls, now, skip_feed=feed)
-            if m and not (x.get("update") or "").strip():
-                if not (kind == "items" and m["ch"] == "alert" and (x.get("insight") or 0) >= DEEP_KEEP):
-                    drop.append((f"{x.get('name')} {x.get('code') or ''}".strip(), f"{m['why']} — {(m.get('at') or '')[11:16]} {'Pulse' if m['ch'] == 'pulse' else '실시간 알림'} '{str(m.get('text') or '')[:40]}'"))
-                    continue
-            if m and (x.get("update") or "").strip():   # 갱신 — 새 사실을 머리에
-                x = dict(x)
-                k = "event" if kind == "items" else "line"
-                if not str(x.get(k) or "").startswith("갱신"):
-                    x[k] = f"갱신 — {x['update'].strip()}" if kind == "brief" else f"갱신 — {x.get(k)}"
+            if m:   # 같은 사건은 한 번만 — 갱신·심층 판단으로도 다시 보내지 않는다(2026-11-24 마스터 지시 "Pulse로 중복된 소식을 전달하지 마라")
+                drop.append((name, f"{m['why']} — {(m.get('at') or '')[11:16]} {'Pulse' if m['ch'] == 'pulse' else '실시간 알림'} '{str(m.get('text') or '')[:40]}'"))
+                continue
+            x, cut = original_only(x, kind)
+            if x is None:
+                drop.append((name, f"오리지널 소스 없음 — 재인용·사본 링크만({', '.join(cut)})"))
+                continue
             keep[kind].append(x)
             rows.append({"codes": sorted(codes), "text": head, "titles": [t for t, _ in src_t][:3], "urls": [story_ledger.norm_url(u) for u in urls],
                          "entities": sorted({e for _, ents in src_t for e in ents}), "feed": feed})
@@ -226,7 +243,7 @@ def main(argv):
     story_ledger.forget_feed(src.stem.removesuffix("_feed"))   # 같은 묶음 재실행 — 앞서 남긴 줄은 지우고 다시 잰다
     d, dropped, rows = dedupe(d, src)
     for name, why in dropped:
-        print(f"[중복 — 뺌] {name}: {why} (새 사실이 있으면 그 건에 \"update\": \"새 사실 한 줄\"을 쓰고 다시 실행)")
+        print(f"[중복·재인용 — 뺌] {name}: {why}")
     out = src.with_name(src.stem.removesuffix("_feed") + "_tg.txt")
     if not (d.get("items") or d.get("brief")):
         print("모두 이미 보낸 사건 — 묶음을 만들지 않는다(텔레그램 보내지 않음)")

@@ -223,5 +223,25 @@ class TestEventGate(unittest.TestCase):
             self.assertTrue(promote.event_gate(scoop, "P1", now)[0])             # 단독·관계자 보도는 원문이 없으니 예외
             self.assertFalse(promote.event_gate(dict(scoop, title="Marvell in talks to buy Lumentum - The Information"), "P1", now)[0])
 
+    def test_relay_and_late_original_not_sent(self):   # 2026-11-24 마스터 지시 "중복된 소식 금지 · 오리지널 소스만"
+        st = {}
+        load = lambda n, d=None: st.setdefault(n, d if d is not None else {})
+        save = lambda n, data: st.__setitem__(n, data)
+        now = datetime(2026, 11, 23, 17, 3, tzinfo=KST)
+        relay = {"title": "Trump calls for Nvidia to rehire Jensen Huang (NVDA:NASDAQ) - Seeking Alpha", "entities_matched": ["co-nvidia"],
+                 "url": "https://news.google.com/rss/articles/x", "doc_type": "기사", "source_id": "src-news7-focus"}
+        deal = {"title": "ABB Buys German Cooling Firm Ziehl-Abegg for $2.2 Billion - Bloomberg.com", "entities_matched": ["co-abb"],
+                "url": "https://news.google.com/rss/articles/y", "doc_type": "기사", "source_id": "src-news7-focus"}
+        ir = {"title": "ABB to acquire Ziehl-Abegg", "entities_matched": ["co-abb"], "url": "https://new.abb.com/news/detail/1",
+              "doc_type": "보도자료", "source_id": "src-newsroom-abb"}
+        scoop = {"title": "Marvell Is Said to Near Deal for Lumentum - Bloomberg", "entities_matched": ["co-marvell"], "doc_type": "기사", "source_id": "src-news7-focus"}
+        late = {"title": "Marvell to acquire Lumentum", "entities_matched": ["co-marvell"], "doc_type": "보도자료", "source_id": "src-newsroom-mrvl"}
+        with mock.patch.object(promote.common, "load_state", side_effect=load), mock.patch.object(promote.common, "save_state", side_effect=save):
+            self.assertIn("재인용", promote.event_gate(relay, "P1", now)[2])
+            self.assertFalse(promote.event_gate(deal, "P1", now)[0])    # 인수 발표를 옮긴 기사
+            self.assertTrue(promote.event_gate(ir, "P1", now)[0])       # 회사 원문
+            self.assertTrue(promote.event_gate(scoop, "P1", now)[0])
+            self.assertFalse(promote.event_gate(late, "P1", now)[0])    # 단독 뒤 원문도 다시 보내지 않는다
+
     def test_cjk_duplicate_words(self):
         self.assertTrue(promote._words("イビデン、今期経常を上方修正"))

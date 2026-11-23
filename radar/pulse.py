@@ -883,11 +883,16 @@ def run(now=None, peek=False):
         it["score"] = score(it, it["source_class"])
     sources.sort(key=lambda x: -x["score"])
     try:   # 이미 보낸 원문(실시간 알림·이전 Pulse)은 모델에 다시 넘기지 않는다(2026-11-22 마스터 지시 "Pulse가 중복된 정보를 여러 번 …", radar/story_ledger.py).
-        import story_ledger   # 속보 판단(알림을 깊게 보는 몫)·IR 질의응답·실적은 제 장부가 따로 있어 그대로 둔다
+        import story_ledger   # IR 질의응답·실적은 제 장부가 따로 있어 그대로 둔다. 속보 판단(이미 보낸 알림)도 다시 싣지 않는다(2026-11-24 마스터 지시 "Pulse로 중복된 소식을 전달하지 마라")
         sent_urls = {u for e in story_ledger.recent(now) for u in e.get("urls") or []}
-        sources = [s for s in sources if s.get("source_class") in ("속보 판단", "IR 질의응답", "실적") or story_ledger.norm_url(s.get("url")) not in sent_urls]
+        sources = [s for s in sources if s.get("source_class") in ("IR 질의응답", "실적") or story_ledger.norm_url(s.get("url")) not in sent_urls]
     except Exception as exc:
         errors.append(f"보낸 사건 장부: {type(exc).__name__}")
+    try:   # 오리지널 소스만(2026-11-24 마스터 지시 "소식은 오리지널 소스만 가져오도록 하라", radar/source_origin.py) — 재인용·요약·사본 매체 원천은 모델에 넘기지 않는다
+        import source_origin as origin
+        sources = [s for s in sources if not origin.is_relay(s.get("url"), s.get("title"), s.get("publisher") or origin.publisher_of(s.get("title")))]
+    except Exception as exc:
+        errors.append(f"원출처 판정: {type(exc).__name__}")
     import ir_ledger   # 당기 전문·Q&A는 처리 기록이 남을 때까지 다시 싣는다(2026-11-01 마스터 지시)
     if not peek:
         ir_ledger.track(sources, now)
