@@ -274,7 +274,7 @@ def merged():
 # ---------- 그래프 ----------
 def chart(path=None):
     """Chiip 양식(2026-11-23 마스터 지시 "참고 자료의 양식이 아니라 Chiip의 양식대로") — radar/memory_spot.py와 같은 흰 바탕 두 칸:
-    위 = 32GB·64GB 현물과 64GB 계약가(점선), 아래 = 64GB 현물 − 계약(월말)"""
+    32GB·64GB 현물과 64GB 계약가(점선) 한 칸. 현물−계약 막대는 뺐다(2026-11-23 마스터 지시) — 요약 숫자(spread_last)로만 남는다"""
     import pymupdf
     from memory_spot import _txt
     spot, contract, fit = merged()
@@ -283,7 +283,7 @@ def chart(path=None):
     INK, MUT, GRID = (0.05, 0.05, 0.05), (0.4, 0.4, 0.4), (0.88, 0.89, 0.91)
     C64, C32, BAR = (0.13, 0.36, 0.75), (0.80, 0.33, 0.10), (0.62, 0.70, 0.84)
     doc = pymupdf.open()
-    page = doc.new_page(width=720, height=640)
+    page = doc.new_page(width=720, height=470)
     page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
     d0, d1 = spot[0][0], spot[-1][0]
     span = max((d1 - d0).days, 1)
@@ -311,30 +311,29 @@ def chart(path=None):
         return (lambda d: x0 + (x1 - x0) * (d - d0).days / span), (lambda v: y1 - (y1 - y0) * v / vmax)
 
     top = max(r[2] for r in spot)
-    X, Y = frame((80, 100, 690, 360), "현물가와 계약가 (달러/모듈)", (int(top * 1.12 / 800) + 1) * 800, 800)
+    X, Y = frame((80, 100, 600, 410), "현물가(실선)와 64GB 계약가(점선) — 달러/모듈", (int(top * 1.12 / 800) + 1) * 800, 800)
+    tags = []   # 선 끝 이름표는 오른쪽 여백에 두고 서로 12pt 넘게 띄운다(2026-11-23 마스터 지시 "문구가 겹치지 않도록")
     for idx, col, name in ((2, C64, "64GB 현물"), (1, C32, "32GB 현물")):
         pts = [pymupdf.Point(X(r[0]), Y(r[idx])) for r in spot]
         page.draw_polyline(pts, color=col, width=1.6, lineJoin=1, lineCap=1)
         page.draw_circle(pts[-1], 2.6, color=col, fill=col)
-        _txt(page, (pts[-1].x - 9, pts[-1].y + 13), f"{name} ${spot[-1][idx]:,.0f}", 8, col, right=True)
+        tags.append([pts[-1].y + 3, f"{name} ${spot[-1][idx]:,.0f}", col])
     if contract:
         cp = [pymupdf.Point(X(d), Y(v)) for d, v in contract]
         page.draw_polyline(cp, color=C64, width=1.3, dashes="[4 3] 0")
-        _txt(page, (cp[-1].x + 5, cp[-1].y + 3), f"64GB 계약가 ${contract[-1][1]:,.0f}", 8, C64)
+        tags.append([cp[-1].y + 3, f"64GB 계약 ${contract[-1][1]:,.0f}({contract[-1][0].strftime('%y.%m')})", C64])
+    tags.sort(key=lambda t: t[0])
+    for i in range(1, len(tags)):
+        tags[i][0] = max(tags[i][0], tags[i - 1][0] + 12)
+    for y, text, col in tags:
+        _txt(page, (608, y), text, 8, col)
     pk = max(spot, key=lambda r: r[2])
     page.draw_circle(pymupdf.Point(X(pk[0]), Y(pk[2])), 2.2, color=C64, fill=(1, 1, 1))
     _txt(page, (X(pk[0]) - 4, Y(pk[2]) - 7), f"고점 ${pk[2]:,.0f} ({pk[0].strftime('%m/%d')})", 8, MUT, right=True)
-    if spread:
-        smax = (int(max(v for _, v in spread) * 1.15 / 400) + 1) * 400
-        X2, Y2 = frame((80, 430, 690, 590), "64GB 현물 - 계약가 (달러/모듈, 월말)", smax, 400)
-        bw = 610 * 20 / span
-        for d, v in spread:
-            page.draw_rect((X2(d) - bw / 2, Y2(v), X2(d) + bw / 2, Y2(0)), color=None, fill=BAR)
-            _txt(page, (X2(d) + 9, Y2(v) - 4), f"{v:,.0f}", 7.5, MUT, right=True)
     n_exact = sum(1 for r in spot if r[3] != "그림 판독")
     note = (f"자료: 공개 텔레그램 채널(Badonions) 주간 RDIMM 현물 — 글자 값 {n_exact}주는 정확, 그 밖 이력·계약가는 그림 판독"
-            + (f"(글자 값 대비 최대 ±${fit['max_abs_resid']})" if fit.get("max_abs_resid") is not None else "") + " → Chiip 재구성. 원자료 아님.")
-    _txt(page, (36, 622), note, 7.5, (0.45, 0.45, 0.45))
+            + (f"(글자 값 대비 최대 ±${fit['max_abs_resid']})" if fit.get("max_abs_resid") is not None else "") + " → Chiip 재구성. 원자료 아님. 32GB 계약가는 공개 원천 없음.")
+    _txt(page, (36, 452), note, 7.5, (0.45, 0.45, 0.45))
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"rdimm_{d1.strftime('%Y%m%d')}.png")
     page.get_pixmap(dpi=150).save(str(path))
