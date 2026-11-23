@@ -34,6 +34,7 @@ MACRO = re.compile(r"Rates|\bFX\b|Macro|Economics? (Outlook|Indicators|Analyst)|
 def is_macro(name):
     return bool(MACRO.search(str(name or "").replace("_", " ")))
 MSG_MAX = 3800    # 텔레그램 한 통(4,096자) 안
+DAILY_MAX = 10    # 하루(KST)에 읽어 해설하는 리포트 수 상한(2026-11-23 마스터 지시) — 남은 것은 다음 날
 
 
 def report_key(name):
@@ -99,9 +100,17 @@ def status(now=None):
     if macro:   # 매크로는 해설하지 않고 본 것으로 표시(결정론)
         done(macro)
     cands = [c for c in cands if not c["macro"]]
-    return {"due": bool(cands), "n": len(cands), "skipped_macro": len(macro),
+    left = left_today()
+    cands = cands[:left]
+    return {"due": bool(cands), "left_today": left, "n": len(cands), "skipped_macro": len(macro),
             "top": [{k: c[k] for k in ("id", "name", "broker", "doc_date", "entities", "prescore", "why", "text", "scanned")} for c in cands[:MAX_SEND]],
-            "max_send": MAX_SEND}
+            "max_send": min(MAX_SEND, left)}
+
+
+def left_today(now=None):
+    st = common.load_state(STATE, {})
+    day = (now or common.now_kst()).date().isoformat()
+    return max(0, DAILY_MAX - int((st.get("daily") or {}).get(day, 0)))
 
 
 def message(picks, rows=None):
@@ -153,6 +162,9 @@ def done(ids, sent=False, rows=None):
         keys = {report_key(names.get(i, "")) for i in ids} - {""}
         st["sent_keys"] = sorted(set(st.get("sent_keys") or []) | keys)
         ids |= {r["id"] for r in rows if report_key(r["name"]) in keys}
+    if sent:   # 하루 상한 집계(보낸 리포트 수)
+        day = common.now_kst().date().isoformat()
+        st["daily"] = {day: int((st.get("daily") or {}).get(day, 0)) + len(keys)}   # 오늘 것만 남긴다
     st["done"] = sorted(set(st.get("done") or []) | ids)
     common.save_state(STATE, st)
 
@@ -162,6 +174,8 @@ def main(argv):
     if argv[:1] == ["--send"]:
         picks = json.loads(Path(argv[1]).read_text(encoding="utf-8"))
         bad = check(picks)
+        if left_today() < len(picks):
+            bad.append(f"오늘 리포트 {DAILY_MAX}건 상한 도달 — 다음 날(2026-11-23 마스터 지시)")
         if bad:
             raise SystemExit("IB Digest 관문 — " + " · ".join(bad))
         import notify
