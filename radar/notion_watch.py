@@ -35,6 +35,7 @@ INBOX = common.ROOT / "radar" / "notion" / "inbox"
 QUEUE = common.ROOT / "radar" / "state" / "notion_jobs.json"
 LOCK = common.ROOT / "radar" / "state" / "notion_worker.lock"
 REPORTS = common.ROOT / "outputs" / "report" / "notion"
+REF_ONLY = re.compile(r"telegram\s*feed", re.I)   # 2026-11-23 마스터 지시 "Notion의 Telegram Feed 페이지에 올리는 건 해설한 뒤 텔레그램 피드로 제공하지 마라. 이는 Analysis나 Pulse, Ten-bagger 등에 참조하는 자료로 써라" — 해설 작업(대기열)에 넣지 않는다. 자료실(notion_library)이 색인해 모든 기능이 참조한다
 ROLES = {"insights": 1, "informations": 2}   # 역할 → 하위 페이지를 몇 단계까지 볼지. Stocks는 탐지하지 않는다(마스터 지시 2026-11-11 "Notion 탐지할 때 Stocks는 제외") — Analysis·텐배거는 Stocks를 계속 읽는다
 SETTLE_MIN = 10
 WATCH_EVERY_MIN = 5
@@ -205,6 +206,11 @@ def detect(tok, now=None, dry=False):
             if edited and now - datetime.fromisoformat(edited.replace("Z", "+00:00")) < timedelta(minutes=SETTLE_MIN):
                 continue      # 아직 쓰는 중일 수 있음 — 다음 회차에
             d = notion_state.decide(role, pid, title, edited, st)
+            if d in ("NEW", "CHANGED") and (REF_ONLY.search(title or "") or REF_ONLY.search(parent or "")):
+                if not dry:   # 참조 자료 전용 — 해설·텔레그램 없음. 본문은 ref_ 파일로 남겨 notion_library --need가 기능에 내준다
+                    INBOX.mkdir(parents=True, exist_ok=True)
+                    (INBOX / f"ref_{pid.replace('-', '')}.md").write_text(f"# {title}" + chr(10) + f"참조 자료(Telegram Feed) / 상위: {parent or '-'} / 수정: {edited}" + chr(10) * 2 + page_text(pid, tok), encoding="utf-8")
+                continue
             if d in ("NEW", "CHANGED") and pid not in queued:
                 found.append({"page_id": pid, "role": role, "title": title, "parent": parent, "edited": edited, "kind": d})
     if not dry:
