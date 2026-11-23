@@ -43,7 +43,8 @@ def tf_points(kind, since):
         pts = [(date.fromisoformat(r["date"]), float(r["avg"])) for r in rdimm_spot.tf_read()]
     else:
         import trendforce_spot
-        pts = [(date.fromisoformat(r["date"]), float(r["avg"])) for r in trendforce_spot.read_rows() if r["item"] == SPEC[kind]["tf_item"] and r["avg"] not in ("", None)]
+        pts = [(date.fromisoformat(r["date"]), float(r["avg"])) for r in trendforce_spot.read_rows() if r["item"] == SPEC[kind]["tf_item"] and r["avg"] not in ("", None)
+               and not str(r.get("source", "")).startswith("tg:")]   # 텔레그램 채널(Badonions) 보강 값은 쓰지 않는다 — 레퍼런스일 뿐(2026-11-23 마스터 지시)
     return sorted(p for p in set(pts) if p[0] >= since)
 
 
