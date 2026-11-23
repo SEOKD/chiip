@@ -970,7 +970,7 @@ def run(now=None, peek=False):
         mspot = memory_spot.status(now)
     except Exception as exc:
         mspot = {"due": False, "error": type(exc).__name__}
-    try:   # DDR5 RDIMM 32GB·64GB 현물·64GB 계약가 그래프(2026-11-23 마스터 지시 — Badonions 채널 주간 글이 새로 오면 1통, radar/rdimm_spot.py)
+    try:   # DRAM·NAND 현물가 보고(2026-11-23 마스터 지시 — radar/spot_report.py)
         import spot_report   # 2026-11-23 마스터 지시 — Badonions는 소스로 쓰지 않는다. TrendForce(위)·DRAMeXchange(아래) 두 칸 양식, DRAM·NAND 각각 새 값이 올 때마다
         rdm = spot_report.status()
         mspot = {"due": False, "superseded": "spot_report"}   # 옛 합친 현물 그래프(평일 10~11시)는 새 양식이 대신한다

@@ -449,6 +449,8 @@ def caption(summ, read=""):
     return "\n".join(lines + ["", "자료: TrendForce"])
 
 
+# 2026-11-23 마스터 지시 "Badonions는 레퍼런스일 뿐이지 이를 소스로 쓰지 마라" — 이 파일의 채널 글·그림 판독 경로(update·backfill·digitize·chart·send)는
+# 더는 보고에 쓰이지 않는다. 보고는 radar/spot_report.py가 TrendForce 공개 표(tf_update·tf_read)만 읽는다. 아래 status·send도 Pulse에서 부르지 않는다.
 def status():
     """Pulse 관문 — 아직 보내지 않은 새 RDIMM 글(숫자 있음)이 있으면 due"""
     st = common.load_state(STATE, {})

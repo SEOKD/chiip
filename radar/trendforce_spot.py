@@ -109,11 +109,16 @@ def parse(text):
     return out
 
 
+# Badonions 채널 값은 참조용이다 — 보충하지 않는다(2026-11-23 마스터 지시 "Badonion 데이터는 참조용이라니까 보충하지 말라고").
+# 정기 수집(run)은 채널 보강(wafer_fill)을 부르지 않고, 이미 들어와 있던 채널 값(source 'tg:…')은 읽을 때 걸러 어느 그래프·계산에도 쓰이지 않는다.
+REF_FILL = False
+
+
 def read_rows():
     if not ROWS.exists():
         return []
     with ROWS.open(encoding="utf-8", newline="") as f:
-        return list(csv.DictReader(f))
+        return [r for r in csv.DictReader(f) if REF_FILL or not str(r.get("source", "")).startswith("tg:")]
 
 
 def merge(new):
@@ -144,7 +149,8 @@ def run():
             errs.append(f"{k} {type(e).__name__}")
     n = merge(got) if got else 0
     try:   # 웨이퍼 주간값 보강 — 수집기가 받아 둔 채널 글에서(네트워크 없음)
-        n += wafer_fill()
+        if REF_FILL:
+            n += wafer_fill()
     except Exception as e:
         errs.append(f"wafer_fill {type(e).__name__}")
     st = common.load_state(STATE, {})
@@ -345,6 +351,8 @@ def caption(summ, compare=()):
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     if argv[:1] == ["--wafer-fill"]:   # 공개 채널 주간 글로 웨이퍼 빈 주 채우기(공개 미리보기를 거슬러 읽는다)
+        if not REF_FILL:
+            raise SystemExit("[TrendForce] 채널 보강은 꺼져 있다 — Badonions는 참조용(2026-11-23 마스터 지시)")
         print(f"[TrendForce] 웨이퍼 보강 새 날짜 {wafer_fill(argv[1] if len(argv) > 1 else '2026-01-01')}행")
     elif argv[:1] == ["--backfill-wafer"]:   # 웨이퍼표 이력 — 플래시 페이지 스냅숏을 다시 읽는다(이어받기 가능)
         print(f"[TrendForce] 웨이퍼 새 날짜 {backfill(argv[1] if len(argv) > 1 else '2025-12-01', done_key='wf_done', targets=[WB_TARGETS[-1]])}행")
