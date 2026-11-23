@@ -44,6 +44,16 @@ class TestRdimm(unittest.TestCase):
         old = R.parse_post({"id": 2, "text": "RDIMM Spot Price\n26년 11월 2일", "url": "u"})
         self.assertEqual((old["obs_date"], old["gb32"]), ("2026-11-02", ""))     # 숫자 없는 옛 글은 날짜·그림만
 
+    def test_trendforce_module_row(self):
+        """원 출처 — TrendForce 공개 '모듈 현물가' 표의 32GB RDIMM 행(2026-11-23 마스터 지시 "원 출처를 찾아라")"""
+        page = ("<li>Module Spot Price</li><li>GDDR Spot Price</li><h3>Module Spot Price</h3><span>Last Update 2026-11-16 14:40 (GMT+8)</span>"
+                "<table><tr><td>DDR5 UDIMM 16GB 4800/5600</td><td>283.00</td><td>227.00</td><td>283.00</td><td>227.00</td><td>244.333</td><td>▼</td><td>-0.27 %</td></tr>"
+                "<tr><td>DDR5 RDIMM 32GB 4800/5600</td><td>2,000.00</td><td>1,750.00</td><td>2,000.00</td><td>1,750.00</td><td>1,865.00</td><td>▼</td><td>-4.36 %</td></tr>"
+                "<tr><td>DDR4 UDIMM 16GB 3200</td><td>183.00</td></tr></table>")
+        r = R.parse_module(page)
+        self.assertEqual((r["date"], r["high"], r["low"], r["avg"], r["chg"]), ("2026-11-16", 2000.0, 1750.0, 1865.0, -4.36))
+        self.assertIsNone(R.parse_module("<h3>DRAM Spot Price</h3>"))
+
     def test_digitize_synthetic_chart(self):
         start, end = date(2024, 10, 7), date(2026, 11, 23)
         span = (end - start).days

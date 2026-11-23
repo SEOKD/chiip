@@ -127,6 +127,93 @@ def exact_points(posts=None):
     return dict(sorted(out.items()))
 
 
+# ---------- 원 출처: TrendForce(DRAMeXchange) 공개 '모듈 현물가' 표 ----------
+# 2026-11-23 마스터 지시 "Badonions는 원 출처가 아니잖아. Badonions가 쓴 원 출처를 찾아라" → 확인: trendforce.com/price/dram/dram_spot 페이지의
+# 'Module Spot Price' 표에 'DDR5 RDIMM 32GB 4800/5600' 행(주간 고가·저가·세션 평균·변화율)이 있고, 11/16 값 1,865.00·−4.36%가 채널 글과 같다.
+# 공개 표에는 32GB만 있다 — 64GB 현물과 64GB 계약가는 공개 표에 없어(유료 회원 자료로 추정) 채널 글·그림에서 계속 가져온다.
+# TrendForce 약관은 수집·재배포를 제한한다 — radar/trendforce_spot.py와 같은 조건(마스터 승인 '켜라, 개인 봇 한정', git 제외 저장)으로만 쓴다.
+TF_PAGE = "https://www.trendforce.com/price/dram/dram_spot"
+TF_CSV = OUT / "tf_module.csv"
+TF_FIELDS = ["date", "updated", "high", "low", "avg", "chg", "source"]
+TF_ROW = re.compile(r"Module Spot Price.*?Last Update\s*(\d{4}-\d{2}-\d{2})\s*([\d:]+)?.*?DDR5 RDIMM 32GB[^|]*\|(.*?)(?:DDR4 UDIMM|DDR5 UDIMM|$)", re.S)
+
+
+def parse_module(page):
+    """TrendForce 가격 페이지 → 32GB RDIMM 한 줄(없으면 None)"""
+    import html as _h
+    txt = re.sub(r"\s+", " ", _h.unescape(re.sub(r"<[^>]+>", " | ", page)))
+    m = None
+    for hit in re.finditer(r"Module Spot Price(?= (?:\| )+Last Update)", txt):   # 메뉴의 같은 이름이 아니라 표 머리
+        m = TF_ROW.search(txt[hit.start():hit.start() + 3000])
+        if m:
+            break
+    if not m:
+        return None
+    nums = re.findall(r"-?[\d,]+\.\d+", m.group(3))
+    if len(nums) < 6:
+        return None
+    v = [float(x.replace(",", "")) for x in nums[:6]]
+    down = "▼" in m.group(3)
+    return {"date": m.group(1), "updated": f"{m.group(1)} {m.group(2) or ''}".strip(), "high": v[0], "low": v[1], "avg": v[4], "chg": -abs(v[5]) if down else v[5]}
+
+
+def tf_read():
+    if not TF_CSV.exists():
+        return []
+    with TF_CSV.open(encoding="utf-8", newline="") as f:
+        return list(csv.DictReader(f))
+
+
+def tf_merge(rows):
+    best = {r["date"]: r for r in tf_read()}
+    new = 0
+    for r in rows:
+        if r and r["date"] not in best:
+            new += 1
+        if r and (r["date"] not in best or str(best[r["date"]].get("source", "")).startswith("wayback")):
+            best[r["date"]] = r
+    OUT.mkdir(parents=True, exist_ok=True)
+    with TF_CSV.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, TF_FIELDS, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(sorted(best.values(), key=lambda r: r["date"]))
+    return new
+
+
+def tf_update():
+    r = parse_module(common.http_get(TF_PAGE, timeout=30).decode("utf-8", "ignore"))
+    return tf_merge([{**r, "source": "trendforce"}]) if r else 0
+
+
+def tf_backfill(since="2024-10-01", pause=6.0):
+    """인터넷 아카이브에 남은 같은 페이지 스냅숏에서 지난 주간 값을 채운다(하루 1개, 천천히)"""
+    import gpu_daily
+    st = common.load_state(STATE, {})
+    done, total = set(st.get("wb_done") or []), 0
+    for tgt in ("www.trendforce.com/price/dram/dram_spot", "www.dramexchange.com/"):
+        q = f"{gpu_daily.CDX}?url={tgt}&from={since.replace('-', '')}&output=json&filter=statuscode:200&collapse=timestamp:8&fl=timestamp,original"
+        try:
+            snaps = json.loads(gpu_daily._wb_get(q))[1:]
+        except Exception as e:
+            print(f"[RDIMM Spot] {tgt} 스냅숏 목록 실패 {type(e).__name__}", flush=True)
+            continue
+        for ts, orig in snaps:
+            if f"{tgt}|{ts}" in done:
+                continue
+            time.sleep(pause)
+            try:
+                r = parse_module(gpu_daily._wb_get(f"https://web.archive.org/web/{ts}id_/{orig}").decode("utf-8", "ignore"))
+            except Exception as e:
+                print(f"[RDIMM Spot] {ts} 실패 {type(e).__name__}", flush=True)
+                continue
+            total += tf_merge([{**r, "source": f"wayback:{ts}"}]) if r else 0
+            done.add(f"{tgt}|{ts}")
+            st["wb_done"] = sorted(done)
+            common.save_state(STATE, st)
+        print(f"[RDIMM Spot] {tgt}: 스냅숏 {len(snaps)}개 · 새 주간 값 누적 {total}", flush=True)
+    return total
+
+
 # ---------- ② 그림 판독 ----------
 def _is_cyan(c):
     return c[1] > 150 and c[2] > 150 and c[0] < 135 and abs(c[1] - c[2]) < 45
@@ -267,6 +354,11 @@ def merged():
     dg = json.loads(SERIES.read_text(encoding="utf-8")) if SERIES.exists() else {"spot": [], "contract": [], "fit": {}}
     pts = {date.fromisoformat(d): (a, b, "그림 판독") for d, a, b in dg["spot"]}
     pts.update(exact_points())
+    for r in tf_read():   # 32GB는 원 출처(TrendForce 모듈 현물 세션 평균)가 있으면 그 값 — 갱신일이 든 주의 월요일 칸에 넣는다
+        d = date.fromisoformat(r["date"])
+        d -= timedelta(days=d.weekday())
+        if d in pts and pts[d][2] != "글자":
+            pts[d] = (float(r["avg"]), pts[d][1], "TrendForce")
     spot = [[d, v[0], v[1], v[2]] for d, v in sorted(pts.items())]
     return spot, [[date.fromisoformat(d), v] for d, v in dg["contract"]], dg.get("fit") or {}
 
@@ -331,7 +423,7 @@ def chart(path=None):
     page.draw_circle(pymupdf.Point(X(pk[0]), Y(pk[2])), 2.2, color=C64, fill=(1, 1, 1))
     _txt(page, (X(pk[0]) - 4, Y(pk[2]) - 7), f"고점 ${pk[2]:,.0f} ({pk[0].strftime('%m/%d')})", 8, MUT, right=True)
     n_exact = sum(1 for r in spot if r[3] != "그림 판독")
-    note = "자료: Badonions"   # 출처는 한 단어로(2026-11-23 마스터 지시) — 판독 여부·잔차는 요약(summary.json)과 문서에 남긴다
+    note = "자료: TrendForce"   # 출처는 한 단어로(2026-11-23 마스터 지시) — 판독 여부·잔차는 요약(summary.json)과 문서에 남긴다
     _txt(page, (36, 452), note, 7.5, (0.45, 0.45, 0.45))
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"rdimm_{d1.strftime('%Y%m%d')}.png")
@@ -354,7 +446,7 @@ def caption(summ, read=""):
              + (f" · 계약가 ${summ['contract_last'][1]:,.0f}({summ['contract_last'][0][:7]}, 그림 판독)" if summ.get("contract_last") else "")]
     if read.strip():
         lines += ["", read.strip()]
-    return "\n".join(lines + ["", "자료: Badonions"])
+    return "\n".join(lines + ["", "자료: TrendForce"])
 
 
 def status():
@@ -362,6 +454,10 @@ def status():
     st = common.load_state(STATE, {})
     try:
         update()
+        try:
+            tf_update()
+        except Exception:
+            pass
         ex = exact_points()
         newest = max((d for d, v in ex.items() if v[2] == "글자"), default=None)
         if not newest or st.get("sent") == newest.isoformat():
@@ -376,6 +472,10 @@ def status():
 def send(read=""):
     import notify
     update()
+    try:
+        tf_update()
+    except Exception:
+        pass
     run_digitize()
     png, summ = chart()
     ok = notify.send_photo(png, caption(summ, read)[:1000], "P1")
@@ -391,7 +491,9 @@ def main(argv):
     if argv[:1] == ["--backfill"]:
         backfill(argv[1] if len(argv) > 1 else "2026-01-01")
     elif argv[:1] == ["--update"]:
-        print(f"[RDIMM Spot] RDIMM 글 {update()}건")
+        print(f"[RDIMM Spot] RDIMM 글 {update()}건 · TrendForce 모듈표 새 값 {tf_update()}")
+    elif argv[:1] == ["--tf-backfill"]:
+        print(f"[RDIMM Spot] TrendForce 모듈표 지난 값 {tf_backfill(*argv[1:2])}건")
     elif argv[:1] == ["--digitize"]:
         out = run_digitize(*argv[1:3])
         print(f"[RDIMM Spot] 판독 {len(out['spot'])}주 · 계약가 {len(out['contract'])}개월 · {out['fit']}")
