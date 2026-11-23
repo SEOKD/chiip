@@ -331,8 +331,7 @@ def chart(path=None):
     page.draw_circle(pymupdf.Point(X(pk[0]), Y(pk[2])), 2.2, color=C64, fill=(1, 1, 1))
     _txt(page, (X(pk[0]) - 4, Y(pk[2]) - 7), f"고점 ${pk[2]:,.0f} ({pk[0].strftime('%m/%d')})", 8, MUT, right=True)
     n_exact = sum(1 for r in spot if r[3] != "그림 판독")
-    note = (f"자료: 공개 텔레그램 채널(Badonions) 주간 RDIMM 현물 — 글자 값 {n_exact}주는 정확, 그 밖 이력·계약가는 그림 판독"
-            + (f"(글자 값 대비 최대 ±${fit['max_abs_resid']})" if fit.get("max_abs_resid") is not None else "") + " → Chiip 재구성. 원자료 아님. 32GB 계약가는 공개 원천 없음.")
+    note = "자료: Badonions"   # 출처는 한 단어로(2026-11-23 마스터 지시) — 판독 여부·잔차는 요약(summary.json)과 문서에 남긴다
     _txt(page, (36, 452), note, 7.5, (0.45, 0.45, 0.45))
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"rdimm_{d1.strftime('%Y%m%d')}.png")
@@ -355,7 +354,7 @@ def caption(summ, read=""):
              + (f" · 계약가 ${summ['contract_last'][1]:,.0f}({summ['contract_last'][0][:7]}, 그림 판독)" if summ.get("contract_last") else "")]
     if read.strip():
         lines += ["", read.strip()]
-    return "\n".join(lines + ["", "자료: 공개 텔레그램 채널 주간 값 + 그림 판독(Chiip 재구성)"])
+    return "\n".join(lines + ["", "자료: Badonions"])
 
 
 def status():
