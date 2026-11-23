@@ -336,6 +336,10 @@ def status(now=None):
 # 메리츠 글(D+1일 아침)은 D일 세션 값 → 메리츠 점의 세션 날짜 = 글 날짜의 직전 평일.
 # NAND는 주 1회 갱신이고 공개 페이지 날짜 표기가 한 주씩 늦게 남는 때가 있어(톱니 원인) 관측 사이는 보강하지 않고 마지막 관측 뒤만 보강한다
 PAIRS = (("DDR5 16Gb", "DDR5 16Gb (2Gx8) 4800/5600", "DRAM", True), ("MLC 64Gb", "MLC 64Gb 8GBx8", "NAND", False))
+# 2026-11-23 마스터 지시 "DRAM 스팟은 DDR4 8Gb도, NAND 스팟에도 1Tb TLC 현물을 같이 — 일일 집계, DRAM 두 추이는 한 그래프에, NAND도":
+# 칸마다 두 품목을 한 그래프에 그린다. 1Tb TLC 웨이퍼는 TrendForce 공개 웨이퍼표(512·256·128Gb TLC)에 없다 — 자료가 생기면 바로 그리고, 없으면 그림에 '공개 원천 없음'
+SERIES = (("DDR5 16Gb", "DDR5 16Gb (2Gx8) 4800/5600", "DRAM", True), ("DDR4 8Gb", "DDR4 8Gb (1Gx8) 3200", "DRAM", True),
+          (None, "Wafer 512Gb TLC", "NAND", False), (None, "Wafer 1Tb TLC", "NAND", False))
 
 
 def raw_path(rows, product):
@@ -422,14 +426,15 @@ def combined(since=None):
     cfg = config()
     since = since or f"{common.now_kst().year}-01-01"
     rows, trows = read_rows(), T.read_rows()
-    out = []
-    pairs = list(PAIRS)
-    if T.series(T.NAND, since, trows):   # NAND 칸 = 512Gb TLC 웨이퍼(2026-11-23 — IB 리포트와 같은 품목). 채널 글에는 이 품목의 변화율이 없어 관측점만 잇는다
-        pairs[1] = (None, T.NAND, "NAND", False)
+    out, missing = [], []
+    pairs = list(SERIES)
+    if not T.series(T.NAND, since, trows):   # 웨이퍼표가 없으면 옛 MLC 64Gb 칩 현물로
+        pairs = [p for p in pairs if p[2] == "DRAM"] + [PAIRS[1]]
     for mprod, tprod, kind, interior in pairs:
         ts = T.series(tprod, since, trows)
         ms = series(rows, mprod, since, cfg.get("anchors")) if mprod else None
         if not ts:
+            missing.append((kind, tprod))
             continue
         last_row = max((r for r in trows if r["item"] == tprod), key=lambda r: r["date"], default={})
         tf_pts = relabel_last(ts["points"], last_row.get("chg"), rows, mprod)
@@ -451,8 +456,9 @@ def combined(since=None):
         out.append({"kind": kind, "product": tprod, "points": pts, "base": base, "last": last, "tf_last": ts["last"], "daily": kind == "DRAM" or daily,
                     "n_tf": sum(1 for p in pts if p[2] == "tf"), "n_mz": sum(1 for p in pts if p[2] == "mz"),
                     "chg": {"1W": back(7), "1M": back(30), "YTD": (last[1] / base[1] - 1) * 100}})
-    if len(out) < 2:
+    if {s["kind"] for s in out} != {"DRAM", "NAND"}:
         raise SystemExit("[Memory Spot] TrendForce 자료 부족 — radar/trendforce_spot.py --backfill/run")
+    combined.missing = missing
     return since, out
 
 
@@ -462,24 +468,28 @@ def combined_chart(since=None, path=None):
     since, S = combined(since)
     blue = (0.165, 0.471, 0.839)
     doc = pymupdf.open()
-    page = doc.new_page(width=720, height=660)
+    page = doc.new_page(width=720, height=670)
     page.draw_rect(page.rect, color=None, fill=SURF)
     _txt(page, (36, 34), f"메모리 현물가격 — {since[:4]} YTD", 15, INK)
     _txt(page, (36, 52), "점 = TrendForce 공개 현물표 Session Average(관측) · 점 없는 구간 = 메리츠 채널 D램익스체인지 변화율로 직전 관측에서 이어 붙인 보강값", 8, INK2)
-    for s, box in zip(S, ((80, 100, 690, 320), (80, 400, 690, 620))):
+    colors = (blue, (0.902, 0.494, 0.133))   # 칸마다 두 품목을 한 그래프에(2026-11-23 마스터 지시)
+    short = lambda p: p.replace("Wafer ", "").replace(" (2Gx8) 4800/5600", "").replace(" (1Gx8) 3200", "")   # noqa: E731
+    for kind, box in (("DRAM", (80, 112, 690, 320)), ("NAND", (80, 412, 690, 620))):
+        G = [s for s in S if s["kind"] == kind]
+        if not G:
+            continue
         x0, y0, x1, y1 = box
-        ys = [v for _, v, _ in s["points"]]
+        ys = [v for s in G for _, v, _ in s["points"]]
         lo, hi = min(ys), max(ys)
         step = _nice((hi - lo) / 4 or hi * 0.05 or 1)
-        lo, hi = math.floor(lo / step) * step, math.ceil(hi * 1.12 / step) * step
-        d0, d1 = s["points"][0][0], s["points"][-1][0]
+        lo, hi = math.floor(lo / step) * step, math.ceil(hi * 1.25 / step) * step
+        d0, d1 = min(s["points"][0][0] for s in G), max(s["points"][-1][0] for s in G)
         span = max((d1 - d0).days, 1)
         X = lambda d: x0 + (x1 - x0) * (d - d0).days / span   # noqa: E731
         Y = lambda v: y1 - (y1 - y0) * (v - lo) / (hi - lo)    # noqa: E731
-        unit = "일별" if s.get("daily") else "주 1회 갱신"
-        if s["kind"] == "NAND" and s.get("daily"):
-            unit = "일별 — 주간 고시값을 다음 고시까지 유지" if "Wafer" in s["product"] else "일별 — 고시가 바뀐 날에 움직인다"
-        _txt(page, (x0, y0 - 22), f"{s['kind']} {s['product'].replace('Wafer ', '웨이퍼 ')} 현물 (달러, {unit})", 12, INK)
+        wafer = any("Wafer" in s["product"] for s in G)
+        unit = "일별 — 주간 고시값을 다음 고시까지 유지" if wafer else "일별"
+        _txt(page, (x0, y0 - 34), f"{kind} 현물 — {' · '.join(short(s['product']) for s in G)} (달러, {unit})", 12, INK)
         v = lo
         while v <= hi + 1e-9:
             page.draw_line((x0, Y(v)), (x1, Y(v)), color=GRID, width=0.6)
@@ -491,23 +501,30 @@ def combined_chart(since=None, path=None):
                 _txt(page, (X(m) - 8, y1 + 13), f"{m.month}월", 8, MUTED)
             m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
         page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
-        page.draw_polyline([(X(d), Y(v)) for d, v, _ in s["points"]], color=blue, width=1.6)
-        tfp = [(X(d), Y(v)) for d, v, src in s["points"] if src == "tf"]
-        if len(tfp) <= 140:
-            for p in tfp:
-                page.draw_circle(p, 1.4, color=blue, fill=blue)
-        ld, lv, lsrc = s["last"]
-        page.draw_circle((X(ld), Y(lv)), 3.2, color=SURF if lsrc == "tf" else blue, fill=blue if lsrc == "tf" else SURF, width=1.2)
-        c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
-        _txt(page, (x0 + 8, y0 + 16), f"{ld.strftime('%m/%d')} ${lv:,.2f}{' (보강)' if lsrc == 'mz' else ''}   {c}", 10, INK)
-        tl = s["tf_last"]
-        _txt(page, (x0 + 8, y0 + 30), f"TrendForce 마지막 관측 {tl[0].strftime('%m/%d')} ${tl[1]:,.2f} · 관측 {s['n_tf']}일 + 보강 {s['n_mz']}일 · 기준 {s['base'][0].strftime('%y/%m/%d')} ${s['base'][1]:,.2f}", 8, INK2)
-    _txt(page, (36, 648), "자료: TrendForce(DRAMeXchange) 공개 현물가격표 + 공개 텔레그램 채널(merITz_tech)의 D램익스체인지 변화율. 보강값은 Chiip 계산. 개인 열람용.", 7.5, MUTED)
+        for i, (s, col) in enumerate(zip(G, colors)):
+            page.draw_polyline([(X(d), Y(v)) for d, v, _ in s["points"]], color=col, width=1.6)
+            tfp = [(X(d), Y(v)) for d, v, src in s["points"] if src == "tf"]
+            if len(tfp) <= 140:
+                for p in tfp:
+                    page.draw_circle(p, 1.3, color=col, fill=col)
+            ld, lv, lsrc = s["last"]
+            page.draw_circle((X(ld), Y(lv)), 3.2, color=SURF if lsrc == "tf" else col, fill=col if lsrc == "tf" else SURF, width=1.2)
+            c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
+            ty = y0 - 16 + i * 14
+            page.draw_line((x0 + 8, ty - 3), (x0 + 22, ty - 3), color=col, width=2.4)
+            tl = s["tf_last"]
+            tail = f" · TrendForce 마지막 {tl[0].strftime('%m/%d')}" if lsrc == "mz" else ""
+            _txt(page, (x0 + 28, ty), f"{short(s['product'])}  {ld.strftime('%m/%d')} ${lv:,.2f}{' (보강)' if lsrc == 'mz' else ''}   {c}{tail}", 9, INK)
+        gone = [short(p) for k, p in getattr(combined, "missing", []) if k == kind]
+        if gone:
+            _txt(page, (x0 + 8, y1 - 8), f"{' · '.join(gone)}: 공개 원천 없음(TrendForce 공개 웨이퍼표는 512·256·128Gb TLC만) — 자료가 생기면 이 그래프에 함께 그린다", 8, INK2)
+    _txt(page, (36, 658), "자료: TrendForce(DRAMeXchange) 공개 현물가격표 + 공개 텔레그램 채널(merITz_tech)의 D램익스체인지 변화율. 보강값은 Chiip 계산. 개인 열람용.", 7.5, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"spot_combined_{S[0]['last'][0].strftime('%Y%m%d')}.png")
     page.get_pixmap(dpi=150).save(str(path))
     summ = {"since": since, "png": str(path), "series": [{"kind": s["kind"], "product": s["product"], "last": [s["last"][0].isoformat(), s["last"][1], s["last"][2]],
-                                                          "tf_last": [s["tf_last"][0].isoformat(), s["tf_last"][1]], "chg": s["chg"], "n_tf": s["n_tf"], "n_mz": s["n_mz"]} for s in S]}
+                                                          "tf_last": [s["tf_last"][0].isoformat(), s["tf_last"][1]], "chg": s["chg"], "n_tf": s["n_tf"], "n_mz": s["n_mz"]} for s in S],
+            "missing": [p for _, p in getattr(combined, "missing", [])]}
     return path, summ
 
 
@@ -520,6 +537,8 @@ def caption(summ, read=""):
         L.append(f"■ {s['product'].replace('Wafer ', 'NAND 웨이퍼 ')}: ${v:,.2f} ({d[5:].replace('-', '/')}, {tag}) — {c}")
         if src == "mz":
             L.append(f"  · TrendForce 마지막 공개 {s['tf_last'][0][5:].replace('-', '/')} ${s['tf_last'][1]:,.2f}에서 메리츠 변화율로 이어 붙임")
+    for p in summ.get("missing") or []:
+        L.append(f"■ {p.replace('Wafer ', 'NAND 웨이퍼 ')}: 공개 원천 없음(미확인)")
     if read:
         L += ["", "■ 풀이", read.strip()]
     try:   # 한국산 DRAM·플래시 대미 통관액 참조(USITC DataWeb 월간, 2026-11-21 마스터 지시 "현물가 보고에도 DataWeb을 참조할 수 있으면 참조하라")
