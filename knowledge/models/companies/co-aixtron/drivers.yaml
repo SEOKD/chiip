@@ -1,0 +1,107 @@
+auto: true
+id: co-aixtron
+name: Aixtron
+ticker: AIXA
+unit: BEUR
+unit_usd: 1097270000.0
+industry: semicap
+region_mix:
+  EU: 0.15
+  US: 0.15
+  other: 0.7
+tax: 0.3
+horizon: 10
+as_of: '2026-11-23'
+market:
+  date: '2026-11-23'
+  price: 29.42
+  shares: 0.113386
+  net_debt: -0.281825
+  source: 가격 = 11/20 XETRA 종가 €29.42(Fiscal.ai·Easyconomics 일치, 11/23은 개장 전). 주식 수
+    112.786M(3Q26 재무상태표). 현금·기타 유동 금융자산 €944.8M(3Q 콜 '유동성 €945M'). 차입 = 전환사채 부채 요소
+    약 €354M(유동성 €945M − 순금융자산 €591M, 3Q 콜 — 계산). 고객 선수금(계약부채) €309.0M은 납품으로 소진될 몫
+rev0: 0.56
+ic0: 0.44
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.5714
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.1821
+      target: 0.285
+      year_target: 3
+      lr: 0.22
+      lam: 0.35
+      anchors:
+      - 0.2739
+      - 0.285
+    s2c: 1.239
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.8214
+      end: 0.034999999999999996
+      decay: 0.35
+    margin:
+      m0: 0.1821
+      target: 0.3364
+      year_target: 3
+      lr: 0.22
+      lam: 0.25
+      anchors:
+      - 0.2739
+      - 0.285
+    s2c: 1.425
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.3214
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.1821
+      target: 0.2335
+      year_target: 3
+      lr: 0.22
+      lam: 0.5
+      anchors:
+      - 0.2739
+      - 0.285
+    s2c: 1.053
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.53, 0.59] (Aixtron 3Q26 실적 발표·어닝콜(2026-10-29) — FY26 매출 €560M
+    ± €30M, 매출총이익률 약 42%, EBIT 이익률 17~20%(4월 상향한 가이던스 유지))
+  growth: 컨센서스 1년차 57.1%, 2년차 13.6%
+  margin: 1~2년차 컨센서스 27.4%, 28.5% 고정 → 목표 28%(3년차, 덮어쓰기) → 장기 수렴 22%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.239
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 32.1%~82.1%
+  probs: '근거 계산 {''bear'': 0.25, ''base'': 0.5, ''bull'': 0.25} — 다음 해 매출 성장 분포로 계산
+    — 약세 +44.6% 아래·강세 +69.6% 위 확률. 내부 관점(컨센서스 +57.1%, σ 19.3%: 추정 범위 없음 — 5% + 0.25
+    × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 22%: FY2021~2025 영업이익률 23.1%·22.6%·24.9%·20.7%·18.0%(Fiscal.ai
+    실적, 계산)의 평균 약 22%. 기본값 15%는 Aixtron에 너무 낮다(판단)'
+  shares: '완전 희석 = 기본 0.112786(2026-09-30) + 옵션·RSU·워런트·전환 0.0006 — 임직원 보상 약 0.6M주(희석
+    가중 − 유통, 근사). 전환사채 €450M(무이표, 2031-04 만기, '
+notes:
+- 자동 생성(build_drivers) 2026-11-23 — 데이터 묶음 2026-11-23
+- '어닝콜 위험: 매출이 수주가 아니라 공급망·인력 램프에 묶여 있다 — 회사도 2027년 생산 능력을 아직 답하지 못했다'
+- '어닝콜 위험: 4Q 매출총이익률이 3Q 48%보다 낮아진다(회사 예고)'
+- '어닝콜 위험: 광전자 수주가 장비 수주의 68% — 레이저 업체 15곳 안팎이 수주의 약 80%(2Q 콜)'
+evidence:
+- https://fiscal.ai/company/XTRA-AIXA
+- https://www.aixtron.com/en/investors
+- https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf
+- https://www.investegate.co.uk/announcement/eqs/aixtron-se--0np9/eqs-news-aixtron-se-successfully-placed-eur-/9522368
+- https://www.investegate.co.uk/announcement/eqs/aixtron-se--0np9/eqs-adhoc-aixtron-se-to-expand-global-footpr-/9492353
+- https://compoundsemiconductor.net/article/125734/Aixtron_reports_strong_increase_in_orders
+- https://www.semiconductor-today.com/news_items/2026/nov/aixtron-111126.shtml
+- https://www.mida.gov.my/media-release/aixrons-new-facility-in-penang-reinforces-malaysias-position-as-important-hub-for-advanced-semiconductor-manufacturing/
+- https://www.aixtron.com/investoren/publikationen/2023/en/Sustainability%20Report%202023.pdf

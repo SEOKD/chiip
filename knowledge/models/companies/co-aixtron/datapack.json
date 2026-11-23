@@ -1,0 +1,3035 @@
+{
+ "id": "co-aixtron",
+ "name": "Aixtron",
+ "ticker": "AIXA",
+ "industry": "semicap",
+ "unit": "BEUR",
+ "currency_symbol": "€",
+ "unit_usd": 1097270000.0,
+ "region_mix": {
+  "EU": 0.15,
+  "US": 0.15,
+  "other": 0.7
+ },
+ "region_mix_note": "지역 매출 비중은 이번 회차 미대조(추정) — 3Q 콜: 첫 대형 수주는 미국·유럽, 지금은 일본·대만·싱가포르·중국으로 확산",
+ "tax": 0.3,
+ "as_of": "2026-11-23",
+ "profile": {
+  "price": 29.42,
+  "shares_basic": 0.112786,
+  "shares_date": "2026-09-30",
+  "cash": 0.944825,
+  "debt": 0.354,
+  "customer_deposits": 0.309,
+  "source": "가격 = 11/20 XETRA 종가 €29.42(Fiscal.ai·Easyconomics 일치, 11/23은 개장 전). 주식 수 112.786M(3Q26 재무상태표). 현금·기타 유동 금융자산 €944.8M(3Q 콜 '유동성 €945M'). 차입 = 전환사채 부채 요소 약 €354M(유동성 €945M − 순금융자산 €591M, 3Q 콜 — 계산). 고객 선수금(계약부채) €309.0M은 납품으로 소진될 몫"
+ },
+ "dilution": {
+  "potential_total": 0.0006,
+  "date": "2026-09-30",
+  "source": "임직원 보상 약 0.6M주(희석 가중 − 유통, 근사). 전환사채 €450M(무이표, 2031-04 만기, 전환가 €50.375 → 약 8.93M주, 자본금의 약 7.9%)은 주가가 전환가 아래라 차입으로만 잡았다 — 주가가 €50.4를 넘으면 주식 수 +7.9%"
+ },
+ "financials": {
+  "rev_ttm": 0.545143,
+  "ebit_ttm": 0.107069,
+  "invested_capital": 0.44,
+  "capex_ttm": 0.0306,
+  "da_ttm": 0.0208,
+  "sbc_ttm": 0.0033,
+  "basis": "IFRS",
+  "note": "TTM = 4Q25 €187.0M + 1Q26 €59.4M + 2Q26 €115.1M + 3Q26 €183.6M = €545.1M, 영업이익 €58.0M − €22.3M + €14.7M + €56.7M = €107.1M. 투하자본 = 자기자본 €1,030.8M + 전환사채 부채 €354M − 현금·단기투자 €944.8M = €440.0M(리스 부채는 표준화 재무상태표에 따로 없어 미포함). CAPEX = 유형 €26.5M + 무형 €4.1M, 감가상각 €20.8M, 주식보상 €3.3M"
+ },
+ "sbc_pct_rev": 0.006,
+ "main_metric": "eps",
+ "main_metric_why": "회사가 EBIT·순이익으로 실적을 설명하고 감가상각이 EBITDA의 약 10%뿐이다",
+ "consensus": {
+  "rev": {
+   "FY2026": 0.56,
+   "FY2027": 0.88,
+   "FY2028": 1.0
+  },
+  "rev_low": {
+   "FY2026": 0.53,
+   "FY2027": 0.74,
+   "FY2028": 0.75
+  },
+  "rev_high": {
+   "FY2026": 0.59,
+   "FY2027": 1.02,
+   "FY2028": 1.25
+  },
+  "ebit_margin": {
+   "FY2026": 0.1821,
+   "FY2027": 0.2739,
+   "FY2028": 0.285
+  },
+  "eps": {
+   "FY2026": 0.651,
+   "FY2027": 1.504,
+   "FY2028": 1.821
+  },
+  "eps_low": {
+   "FY2026": 0.551,
+   "FY2027": 0.962,
+   "FY2028": 0.91
+  },
+  "eps_high": {
+   "FY2026": 0.741,
+   "FY2027": 2.081,
+   "FY2028": 2.74
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin_note": "IFRS EBIT ÷ 매출(Fiscal.ai 추정 €102M·€241M·€285M, 2026-11-21 조회) — 회사는 조정 실적을 내지 않는다. FY26 회사 가이던스 EBIT 이익률 17~20%",
+  "n_analysts": null,
+  "ratings": {},
+  "ratings_note": "애널리스트 의견 분포·목표가 데이터 없음(Zacks 미수록, yfinance 0건). 3Q 콜 질문 증권사 9곳(HSBC·Kepler Cheuvreux·Jefferies·Bank of America·Metzler·Berenberg·JPMorgan·BNP Paribas·ODDO BHF)",
+  "source": "Fiscal.ai 자체 추정(company_estimates — FY26은 회사 가이던스, FY27·28은 Agentic Consensus, 2026-11-20 갱신). Zacks 애널리스트 조사가 아니다",
+  "quarters_est": {
+   "2026-12-31": 0.201904,
+   "2027-03-31": 0.21,
+   "2027-06-30": 0.215,
+   "2027-09-30": 0.225,
+   "2027-12-31": 0.23,
+   "2028-03-31": 0.105278,
+   "2028-06-30": 0.204954,
+   "2028-09-30": 0.328053,
+   "2028-12-31": 0.361715
+  },
+  "eps_quarters_est": {
+   "2026-12-31": 0.361,
+   "2027-03-31": 0.35,
+   "2027-06-30": 0.367,
+   "2027-09-30": 0.39,
+   "2027-12-31": 0.398,
+   "2028-03-31": 0.026,
+   "2028-06-30": 0.32,
+   "2028-09-30": 0.684,
+   "2028-12-31": 0.791
+  },
+  "quarters_est_note": "FY2028 분기 추정은 1분기 €105M → 4분기 €362M로 분기 배분이 불안정하다(모델 산출) — 연간 €1.0B만 쓴다",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 187.0,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-26"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 59.4,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-30"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 115.1,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-30"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 183.6,
+    "est": 180.0,
+    "est_src": "회사 가이던스 중간값 €180M ± €20M(2Q 콜)",
+    "basis": "gaap",
+    "earnings_date": "2026-10-29"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 58.0,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-26"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": -22.3,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-30"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 14.7,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-30"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 56.7,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-10-29"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 0.42,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-02-26"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": -0.19,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-30"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 0.17,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-30"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 0.31,
+    "est": 0.37,
+    "est_src": "Fiscal.ai 발표 전 추정(2026-10-28)",
+    "basis": "gaap",
+    "earnings_date": "2026-10-29"
+   }
+  ],
+  "surprise_note": "4Q25~2Q26은 발표 전 추정 기록이 없어 비웠다(지어내지 않는다). Aixtron은 조정(Non-GAAP) 실적을 내지 않아 IFRS 값으로 맞댄다. 3Q 수주 €274.9M은 보도된 애널리스트 중앙 추정 €214.6M을 웃돌았다(업계 매체 보도)"
+ },
+ "guidance": {
+  "rev_fy0": [
+   0.53,
+   0.59
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29) — FY26 매출 €560M ± €30M, 매출총이익률 약 42%, EBIT 이익률 17~20%(4월 상향한 가이던스 유지)",
+  "next": {
+   "period": "4Q26(2026-12 분기)",
+   "rev": 201.9,
+   "rev_range": [
+    171.9,
+    231.9
+   ],
+   "rev_cons": 201.9,
+   "eps_cons": 0.36,
+   "unit": "€M",
+   "basis": "연간 가이던스 €560M ± €30M − 1~3분기 실적 €358.1M = 4분기 €201.9M(범위 €171.9~231.9M, 계산). 회사는 4분기 출하가 3분기(€183.6M)보다 더 늘어난다고 말했다(3Q 콜)"
+  },
+  "fy": {
+   "rev": [
+    530,
+    590
+   ],
+   "gm": 0.42,
+   "ebit_margin": [
+    0.17,
+    0.2
+   ],
+   "unit": "€M",
+   "note": "FY26 — 1분기 인력 감축 일회성 비용(한 자릿수 중반 €M) 포함"
+  },
+  "long_term": "FY27 공식 가이던스는 2027-03-04 FY26 실적 때 제시 — 회사는 '2027년은 2026년을 분명히 웃돈다'고만 말했다(3Q 콜)",
+  "rev_note": "회사는 매출이 수주가 아니라 생산·공급망 램프 속도에 묶여 있다고 설명한다 — 분기 출하 €59M → €115M → €184M → 약 €200M"
+ },
+ "call": {
+  "date": "2026-10-29",
+  "prev_date": "2026-07-30",
+  "tone": "up",
+  "guidance_direction": "maintain",
+  "tone_delta": 0.5,
+  "kpis": {
+   "rev_3q_meur": 183.6,
+   "orders_3q_meur": 274.9,
+   "orders_9m_meur": 660.9,
+   "backlog_equipment_meur": 549.4,
+   "gm_3q": 0.476,
+   "ebit_margin_3q": 0.309,
+   "ocf_3q_meur": 138.4,
+   "fcf_3q_meur": 128,
+   "advance_payments_meur": 309.0,
+   "opto_share_of_equipment_orders": 0.68,
+   "power_share_of_equipment_orders": 0.24,
+   "aftersales_9m_meur": 88,
+   "lead_time_months": 12
+  },
+  "guidance_changes": [
+   "FY26 매출 €560M ± €30M·매출총이익률 약 42%·EBIT 이익률 17~20% 유지(2Q 콜과 같음)",
+   "FY26 CAPEX 전망 약 €55M(2Q 콜) → 약 €40M(3Q 콜)",
+   "수주 전망: '분기 €200M 안팎'(2Q 콜) → '지금의 강한 수준(€275M)을 유지하거나 더 늘린다'(3Q 콜)",
+   "FY27: '2026년을 분명히 웃돈다' — 숫자는 2027-03-04에 제시"
+  ],
+  "new_topics": [
+   "리드타임이 6~9개월에서 약 12개월로 늘었다 — 3Q 수주는 2027년 3분기 전후 매출",
+   "GaN 전력반도체: 고객 가동률이 정상으로 돌아왔고 300mm GaN 장비를 2027년 두 자릿수 대수로 준비(고객 2곳 이상)",
+   "SiC: 첫 신규 장비 주문이 들어오기 시작 — 2027년 점진 회복 전망",
+   "InP 기판 부족으로 150mm 전환이 늦어진다 — 고객이 75·100mm에 더 오래 머물러 장비 대수 수요가 늘어난다",
+   "3Q 매출총이익률 48%는 제품·지역 믹스 덕이고 4Q는 낮아진다(구형 G4·G5와 중국 비중 증가)",
+   "2027년에 연구개발비를 다시 늘릴 계획 — 늘어난 매출총이익이 모두 EBIT로 가지 않는다",
+   "말레이시아 페낭 공장은 2027년 가을부터 사용, 클린룸은 1단계에 3분의 1만 설치"
+  ],
+  "dropped_topics": [
+   "2Q 콜의 '중동 지정학 영향 점검' 언급은 3Q 준비 발언에서 빠졌다"
+  ],
+  "analyst_focus": [
+   "HSBC — 분기 수주 €275M을 연 환산하면 €1.1B인데 2027년 매출은 어디까지 가능한가",
+   "Jefferies — 가격 인상 여지와 리드타임이 길어진 원인",
+   "Bank of America — 분기 €200M 생산 능력을 얼마나 더 올릴 수 있나, SiC 회복 폭",
+   "Kepler Cheuvreux — 150mm InP 전환과 페낭 증설의 원가 효과",
+   "JPMorgan — 300mm GaN에서의 입지",
+   "BNP Paribas — 현금 €945M의 쓰임(자사주 매입 여부)",
+   "ODDO BHF — 플러거블과 CPO의 수주 기여, 전력반도체 수주 지속성",
+   "Metzler — VCSEL 레이저의 위협, 4Q 매출총이익률"
+  ],
+  "risks": [
+   "매출이 수주가 아니라 공급망·인력 램프에 묶여 있다 — 회사도 2027년 생산 능력을 아직 답하지 못했다",
+   "4Q 매출총이익률이 3Q 48%보다 낮아진다(회사 예고)",
+   "광전자 수주가 장비 수주의 68% — 레이저 업체 15곳 안팎이 수주의 약 80%(2Q 콜)",
+   "전환사채 €450M — 주가가 전환가 €50.375를 넘으면 주식 수 약 +7.9%",
+   "중국 비중과 수출통제(지역 매출 비중은 이번 회차 미대조)"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "업데이트",
+    "item": "분기 수주 수준",
+    "label": "수주 €275M 유지",
+    "prior": "분기 €200M 안팎 전망(2Q 콜)",
+    "latest": "3Q €274.9M(+122% YoY), 이 수준 유지·확대 전망(3Q 콜)",
+    "driver": "growth_start",
+    "shift": 0.05,
+    "confidence": 0.8,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D2",
+    "kind": "부정",
+    "item": "리드타임",
+    "label": "리드타임 12개월",
+    "prior": "6~9개월",
+    "latest": "약 12개월 — 공급망·인력 램프가 제약",
+    "driver": "growth_start",
+    "shift": -0.02,
+    "confidence": 0.8,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D3",
+    "kind": "신규",
+    "item": "GaN 전력반도체 장비",
+    "label": "300mm GaN 준비",
+    "prior": "기술 논의는 뜨겁지만 주문으로 이어지지 않았다(2Q 콜)",
+    "latest": "가동률 정상화, 2027년 300mm GaN 장비 두 자릿수 대수 준비(고객 2곳 이상)",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D4",
+    "kind": "업데이트",
+    "item": "SiC 장비",
+    "label": "SiC 첫 신규 주문",
+    "prior": "설치 장비 가동률 낮음, 고객 신중(2Q 콜)",
+    "latest": "가동률 개선, 첫 신규 장비 주문 — 2027년 점진 회복",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.5,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D5",
+    "kind": "신규",
+    "item": "InP 150mm 전환 지연",
+    "label": "150mm 전환 지연",
+    "prior": "장비를 100mm로 깔되 150mm 전환 준비(2Q 콜)",
+    "latest": "기판 부족으로 2027년 150mm 장비 비중이 약 30% → 25%로 내려간다 — 장비 대수 수요 증가",
+    "driver": "growth_start",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D6",
+    "kind": "부정",
+    "item": "2027년 연구개발비",
+    "label": "R&D 증액 계획",
+    "prior": "언급 없음",
+    "latest": "2027년 연구개발비를 다시 늘린다 — 매출총이익 증가분이 모두 EBIT로 가지 않는다",
+    "driver": "margin_target",
+    "shift": -0.01,
+    "confidence": 0.5,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "id": "D7",
+    "kind": "반복",
+    "item": "FY26 가이던스",
+    "label": "FY26 가이던스 유지",
+    "prior": "매출 €560M ± €30M, EBIT 이익률 17~20%",
+    "latest": "같음",
+    "driver": "rev0",
+    "shift": 0.0,
+    "confidence": 1.0,
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   }
+  ],
+  "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29) · Aixtron 2Q26 실적 발표·어닝콜(2026-07-30)",
+  "guidance_note": "연간 숫자 가이던스는 그대로지만 수주 전망·전력반도체 회복·2027년 방향이 모두 한 단계 올라가 톤은 상향"
+ },
+ "raw": {
+  "retrieved_at": "2026-11-23T13:40:00+09:00",
+  "source": "Fiscal.ai company_financials_standardized·company_estimates·company_ratios·company_ir_events_transcript, Easyconomics company_profile(yfinance)·company_price_history",
+  "fiscal_profile": {
+   "companyKey": "XETR_AIXA",
+   "terminalUrl": "https://fiscal.ai/company/XTRA-AIXA",
+   "price": 29.42,
+   "market_cap": 3.31816,
+   "total_cash": 0.944825,
+   "total_debt": 0.354,
+   "shares_outstanding": 0.112786,
+   "as_of": "2026-11-20",
+   "balance_date": "2026-09-30",
+   "note": "시총 = Fiscal.ai calculated_market_cap 2026-11-20(€3,318.2M). 현금 = 현금 €250.4M + 단기 금융자산 €694.4M. 차입 = 전환사채 부채 요소 약 €354M(표준화 재무상태표 장기부채 €360.9M − 기타 €6.9M, 3Q 콜의 유동성 €945M − 순금융자산 €591M과 일치). yfinance 총차입 €357.4M(리스 포함)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.187047,
+    "2026Q1": 0.059378,
+    "2026Q2": 0.115105,
+    "2026Q3": 0.183613
+   },
+   "op_income": {
+    "2025Q4": 0.057967,
+    "2026Q1": -0.022282,
+    "2026Q2": 0.014684,
+    "2026Q3": 0.0567
+   },
+   "eps": {
+    "2025Q4": 0.42,
+    "2026Q1": -0.19,
+    "2026Q2": 0.17,
+    "2026Q3": 0.31
+   },
+   "note": "Fiscal.ai 표준화 손익(IFRS, 유로)"
+  },
+  "balance_20260930": {
+   "cash": 0.2504,
+   "st_investments": 0.6944,
+   "receivables": 0.1102,
+   "inventory": 0.3233,
+   "ppe": 0.2424,
+   "goodwill": 0.072157,
+   "intangibles": 0.008096,
+   "debt_lt": 0.354,
+   "lease_lt": 0.0,
+   "equity": 1.030835,
+   "total_assets": 1.79,
+   "payables": 0.0408,
+   "unearned_revenue": 0.309,
+   "source": "Fiscal.ai 표준화 재무상태표(3Q26 2026-09-30, 유로). 리스 부채는 표준화 항목에 따로 없어 0으로 둠(미확인)"
+  },
+  "prior_bs_20250930": {
+   "cash_total": 0.1534,
+   "inventory": 0.3158,
+   "unearned_revenue": 0.0725,
+   "debt_lt": 0.0,
+   "equity": 0.8619,
+   "total_assets": 1.0102,
+   "source": "Fiscal.ai 표준화 재무상태표(3Q25)"
+  },
+  "cashflow_q": {
+   "2026-09-30": {
+    "ocf": 138400000,
+    "capex_ppe": -8300000,
+    "capex_intangible": -2800000,
+    "da": 5800000,
+    "sbc": 800000
+   },
+   "2026-06-30": {
+    "ocf": 119000000,
+    "capex_ppe": -5300000,
+    "capex_intangible": -300000,
+    "da": 5300000,
+    "sbc": 800000,
+    "debt_issued": 444100000
+   },
+   "2026-03-31": {
+    "ocf": 53600000,
+    "capex_ppe": -4900000,
+    "capex_intangible": -200000,
+    "da": 5200000,
+    "sbc": 800000
+   },
+   "2025-12-31": {
+    "ocf": 79900000,
+    "capex_ppe": -8000000,
+    "capex_intangible": -800000,
+    "da": 4500000,
+    "sbc": 900000
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1": 59.378,
+   "2026Q2": 115.105,
+   "2026Q3": 183.613,
+   "2026Q4": 201.904,
+   "2027Q1": 210.0,
+   "2027Q2": 215.0,
+   "2027Q3": 225.0,
+   "2027Q4": 230.0,
+   "2028Q1": 105.28,
+   "2028Q2": 204.95,
+   "2028Q3": 328.05,
+   "2028Q4": 361.72
+  },
+  "convertible": {
+   "principal_meur": 450,
+   "coupon": 0,
+   "maturity": "2031-04",
+   "conversion_price": 50.375,
+   "shares_m": 8.93,
+   "placed": "2026-04-15",
+   "source": "EQS-News: AIXTRON SE successfully placed EUR 450 million convertible bonds(2026-04-15)"
+  },
+  "orders": {
+   "q3_26_meur": 274.9,
+   "q3_25_meur": 124.0,
+   "nine_m_26_meur": 660.9,
+   "backlog_equipment_20260930_meur": 549.4,
+   "backlog_20250930_meur": 286.5,
+   "backlog_20251231_meur": 257.8,
+   "source": "Aixtron 3Q26 실적 발표(2026-10-29, 업계 매체 전재로 대조)"
+  },
+  "annual": {
+   "FY2021": {
+    "rev": 428954000,
+    "op": 98978000,
+    "eps": 0.85
+   },
+   "FY2022": {
+    "rev": 463167000,
+    "op": 104696000,
+    "eps": 0.89
+   },
+   "FY2023": {
+    "rev": 629879000,
+    "op": 156767000,
+    "eps": 1.29
+   },
+   "FY2024": {
+    "rev": 633159000,
+    "op": 131233000,
+    "eps": 0.94
+   },
+   "FY2025": {
+    "rev": 556552000,
+    "op": 100291000,
+    "eps": 0.76
+   }
+  },
+  "ohlcv_note": "일봉 = Easyconomics company_price_history 1년(실제 고가·저가, TradingView 일일 한도로 대체). 2026-06-23 거래량 0은 원천 값 그대로",
+  "estimates_sales_m_note": "2026년 1~3Q는 실적, 4Q부터 Fiscal.ai 추정(4Q = 연간 가이던스 − 1~3Q 실적)",
+  "shares_cover_implied": 0.112786,
+  "annual_report": {
+   "note": "R-20261031-01 네 곳(구매 약정·제한 현금·10% 초과 고객·정부 지원)은 Aixtron 2025 연차보고서 미대조 — 이번 회차 미확인. 미국 SEC 공시 대상 아님"
+  }
+ },
+ "sources": [
+  "https://fiscal.ai/company/XTRA-AIXA",
+  "https://www.aixtron.com/en/investors",
+  "https://www.aixtron.com/investoren/publikationen/2026/englisch/Half-Year%20Group%20Financial%20Report_2026.pdf",
+  "https://www.investegate.co.uk/announcement/eqs/aixtron-se--0np9/eqs-news-aixtron-se-successfully-placed-eur-/9522368",
+  "https://www.investegate.co.uk/announcement/eqs/aixtron-se--0np9/eqs-adhoc-aixtron-se-to-expand-global-footpr-/9492353",
+  "https://compoundsemiconductor.net/article/125734/Aixtron_reports_strong_increase_in_orders",
+  "https://www.semiconductor-today.com/news_items/2026/nov/aixtron-111126.shtml",
+  "https://www.mida.gov.my/media-release/aixrons-new-facility-in-penang-reinforces-malaysias-position-as-important-hub-for-advanced-semiconductor-manufacturing/",
+  "https://www.aixtron.com/investoren/publikationen/2023/en/Sustainability%20Report%202023.pdf"
+ ],
+ "peers": [
+  {
+   "name": "Veeco Instruments",
+   "ticker": "VECO",
+   "key": "NASDAQ_VECO",
+   "rev": 0.7262,
+   "ebit_margin": 0.034,
+   "growth": 0.404,
+   "mcap": 2.073,
+   "pb": 2.24,
+   "debt": 0.2268,
+   "cash": 0.4825,
+   "ev_sales": 2.55,
+   "goodwill": 0.215,
+   "intangibles": 0.004,
+   "why": "MOCVD·이온빔·레이저 어닐 장비 — 화합물 반도체 MOCVD 직접 경쟁(달러)",
+   "pe_fwd": 14.36,
+   "ev_ebitda_fwd": 12.15,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 19.05,
+     "ev_ebitda_fwd": null,
+     "pe_ttm": 48.44
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 17.54,
+     "ev_ebitda_fwd": null,
+     "pe_ttm": 89.11
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 27.97,
+     "ev_ebitda_fwd": null,
+     "pe_ttm": 210.56
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 20.6,
+     "ev_ebitda_fwd": null,
+     "pe_ttm": 129.75
+    }
+   ],
+   "pe_fwd2": 9.72,
+   "ev_ebitda_fwd2": 8.36,
+   "pe_fwd3": 8.02,
+   "ev_ebitda_fwd3": 6.98,
+   "ntm_ebit_margin": 0.1679,
+   "ntm_growth": 0.4042
+  },
+  {
+   "name": "ASM International",
+   "ticker": "ASM",
+   "key": "XAMS_ASM",
+   "rev": 3.7233,
+   "ebit_margin": 0.309,
+   "growth": 0.474,
+   "mcap": 31.329,
+   "debt": 0.0,
+   "cash": 1.3387,
+   "ev_sales": 8.05,
+   "goodwill": 0.3413,
+   "intangibles": 1.0636,
+   "why": "원자층 증착·에피택시 장비 — 같은 유럽 증착 장비, SiC 에피 경쟁",
+   "pe_fwd": 20.23,
+   "ev_ebitda_fwd": 13.79,
+   "pe_fwd2": 15.86,
+   "ev_ebitda_fwd2": 11.26,
+   "pe_fwd3": 14.38,
+   "ev_ebitda_fwd3": 10.31,
+   "ntm_ebit_margin": 0.3452,
+   "ntm_growth": 0.4745,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 35.21
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 31.6
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 45.77
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 43.72
+    }
+   ]
+  },
+  {
+   "name": "BE Semiconductor",
+   "ticker": "BESI",
+   "key": "XAMS_BESI",
+   "rev": 0.8845,
+   "ebit_margin": 0.405,
+   "growth": 0.406,
+   "mcap": 11.533,
+   "debt": 0.3453,
+   "cash": 0.5919,
+   "ev_sales": 12.77,
+   "goodwill": 0.0451,
+   "intangibles": 0.1024,
+   "why": "유럽 중형 반도체 장비 — AI 데이터센터 수주로 수주가 급증한 같은 구간",
+   "pe_fwd": 24.96,
+   "ev_ebitda_fwd": 18.91,
+   "pe_fwd2": 21.17,
+   "ev_ebitda_fwd2": 16.29,
+   "pe_fwd3": 19.94,
+   "ev_ebitda_fwd3": 15.47,
+   "ntm_ebit_margin": 0.4479,
+   "ntm_growth": 0.4058,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 80.57
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 93.69
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 109.58
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 52.84
+    }
+   ]
+  },
+  {
+   "name": "Applied Materials",
+   "ticker": "AMAT",
+   "key": "NASDAQ_AMAT",
+   "rev": 34.446,
+   "ebit_margin": 0.322,
+   "growth": 0.356,
+   "mcap": 240.166,
+   "pb": 9.2,
+   "debt": 6.532,
+   "cash": 9.339,
+   "ev_sales": 6.89,
+   "goodwill": 3.875,
+   "intangibles": 0.339,
+   "why": "증착 장비 대형주 — 전력반도체 에피 장비도 판다(달러)",
+   "pe_fwd": 16.05,
+   "ev_ebitda_fwd": 13.41,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.98,
+     "ev_ebitda_fwd": 22.74
+    },
+    {
+     "date": "2026-01-25",
+     "pe_ttm": 33
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 28.57,
+     "ev_ebitda_fwd": 26.72
+    },
+    {
+     "date": "2026-04-26",
+     "pe_ttm": 39.16
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 51.19,
+     "ev_ebitda_fwd": 41.68
+    },
+    {
+     "date": "2026-07-26",
+     "pe_ttm": 46.23
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.47,
+     "ev_ebitda_fwd": 24.66
+    },
+    {
+     "date": "2026-10-25",
+     "pe_ttm": 29.89
+    }
+   ],
+   "pe_fwd2": 12.93,
+   "ev_ebitda_fwd2": 10.82,
+   "pe_fwd3": 11.25,
+   "ev_ebitda_fwd3": 9.53,
+   "ntm_ebit_margin": 0.364,
+   "ntm_growth": 0.3557
+  }
+ ],
+ "peers_basis": "ntm",
+ "peers_source": "Fiscal.ai 2026-11-23 — TTM 매출·TTM 영업이익률, 성장 = 다음 4개 분기 추정 매출 ÷ TTM − 1, 시총 calculated_market_cap. 금액은 각 회사 보고 통화(Veeco·Applied는 달러, 나머지 유로) B 단위",
+ "next_event": {
+  "date": "2027-03-04",
+  "tag": "4Q26·FY26 실적과 FY27 공식 가이던스(회사가 3Q 콜에서 밝힌 날짜)"
+ },
+ "terms": {
+  "MOCVD": "금속 유기 화합물 가스를 흘려 웨이퍼 위에 결정 박막을 기르는 증착 방식",
+  "에피택시": "웨이퍼 위에 같은 결정 방향으로 얇은 반도체 층을 기르는 공정",
+  "InP": "인화인듐 — 데이터센터 광통신 레이저를 만드는 화합물 반도체",
+  "GaN": "질화갈륨 — 고속·고효율 전력 변환 소자와 LED에 쓰는 화합물 반도체",
+  "SiC": "탄화규소 — 고전압 전력반도체 소재",
+  "G10-AsP": "Aixtron의 비소·인 계열(레이저·광소자용) 최신 MOCVD 장비",
+  "G10-GaN": "Aixtron의 질화갈륨 전력반도체용 최신 MOCVD 장비",
+  "G10-SiC": "Aixtron의 탄화규소 에피택시 장비",
+  "G5+": "Aixtron의 이전 세대 질화갈륨 MOCVD 장비",
+  "서셉터": "반응기 안에서 웨이퍼를 받쳐 가열하는 흑연 원판",
+  "EML": "전계 흡수 변조기를 붙인 고속 광통신 레이저",
+  "VCSEL": "웨이퍼 면에 수직으로 빛을 내는 단거리용 레이저",
+  "CPO": "광 엔진을 스위치·GPU 칩 옆에 함께 패키징한 광전 통합 부품",
+  "LPO": "신호 처리 칩을 뺀 저전력 광 모듈 방식",
+  "PIC": "여러 광소자를 한 칩에 모은 광 집적회로",
+  "800V HVDC": "AI 데이터센터 랙에 800볼트 직류를 직접 보내는 전력 구조",
+  "SST": "전력반도체로 전압을 바꾸는 반도체 변압기",
+  "마이크로LED": "수십 마이크로미터 크기 LED를 화소로 쓰는 디스플레이·광연결 소자",
+  "애프터세일즈": "설치한 장비의 부품·서비스·업그레이드 매출",
+  "전환사채": "정해진 가격에 주식으로 바꿀 수 있는 채권",
+  "IFRS": "국제회계기준",
+  "HP": "추세와 순환을 나누는 통계 필터(호드릭-프레스콧)",
+  "MATCH": "동맹국 장비 수출통제 정렬 법안(MATCH Act)",
+  "AsP": "비소·인 계열 화합물 반도체(레이저·광소자용)",
+  "GaAs": "갈륨비소 — 레이저·무선 소자용 화합물 반도체",
+  "JP": "일본",
+  "LED": "발광 다이오드",
+  "RPO": "아직 매출로 인식하지 않은 계약 잔액"
+ },
+ "names": [
+  "Aixtron",
+  "AIXTRON",
+  "AIXA",
+  "Veeco",
+  "Veeco Instruments",
+  "VECO",
+  "ASM International",
+  "ASM",
+  "Besi",
+  "BESI",
+  "BE Semiconductor",
+  "Applied Materials",
+  "AMAT",
+  "NVIDIA",
+  "Infineon",
+  "Lumentum",
+  "Aeluma",
+  "LightCounting",
+  "HSBC",
+  "Kepler Cheuvreux",
+  "Kepler",
+  "Jefferies",
+  "Bank of America",
+  "BofA",
+  "Metzler",
+  "Berenberg",
+  "JPMorgan",
+  "BNP Paribas",
+  "ODDO BHF",
+  "Goldman Sachs",
+  "Meta",
+  "Ray-Ban",
+  "XETRA",
+  "RWTH",
+  "Linklaters",
+  "MIDA"
+ ],
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "Fwd 1Y P/E 20.1배는 동종 4곳 중앙(18.1배)과 비슷하다. 수주잔고가 1년 새 거의 두 배가 된 것은 프리미엄 요인이지만, 매출이 공급망 램프에 묶여 있고 분기 실적 변동이 커(1Q26 영업손실) 판단 조정은 두지 않는다"
+ },
+ "events": [
+  {
+   "date": "2026-07-28",
+   "tag": "원인 미확인 −10.1%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-30",
+   "tag": "2Q26 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "원인 미확인 −12.7%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-16",
+   "tag": "3Q 예비 실적 — 수주 약 €275M(보도 10/19, 발표 시각 미대조)",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-10-29",
+   "tag": "3Q26 실적",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "AI 하드웨어 업종 급락 −9.8%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-12",
+   "tag": "Aeluma의 G10-AsP 선택 발표",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-20",
+   "tag": "원인 미확인 −9.5%",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-02-26",
+   "kind": "실적",
+   "tag": "4Q25·FY25 실적과 FY26 가이던스",
+   "q": "4Q25",
+   "session": "before"
+  },
+  {
+   "date": "2026-04-15",
+   "kind": "내러티브",
+   "tag": "FY26 가이던스 상향과 전환사채 €450M 발행",
+   "source": "EQS-News(2026-04-15)"
+  },
+  {
+   "date": "2026-04-30",
+   "kind": "실적",
+   "tag": "1Q26 실적 — 광전자 수주 변곡",
+   "q": "1Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-07-30",
+   "kind": "실적",
+   "tag": "2Q26 실적 — 광전자가 장비 수주의 75%",
+   "q": "2Q26",
+   "session": "before"
+  },
+  {
+   "date": "2026-10-29",
+   "kind": "실적",
+   "tag": "3Q26 실적 — 수주 €274.9M",
+   "q": "3Q26",
+   "session": "before"
+  }
+ ],
+ "pricing": [
+  {
+   "business": "MOCVD 장비",
+   "index": "ppi_id:PCU333242333242",
+   "company": {
+    "yoy": 0.0,
+    "basis": "회사: 가격을 유지한다 — 대량 주문 할인도, 과도한 인상도 하지 않는다(3Q 콜)"
+   }
+  }
+ ],
+ "sync": {
+  "why": "Aixtron 매출은 고객(레이저·전력반도체 업체)의 증착 장비 반입을 따라간다 — 반도체 제조장비(HS 8486) 수입 지표",
+  "products": [
+   {
+    "name": "광전자 장비",
+    "hs": "848620",
+    "share": 0.46,
+    "inputs": [
+     "semicap"
+    ]
+   }
+  ],
+  "indicators": [
+   {
+    "label": "미국 반도체 제조장비 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "848620",
+    "why": "미국 레이저 업체의 InP 증설 반입"
+   },
+   {
+    "label": "대만 반도체 제조장비 수입",
+    "source": "hs",
+    "reporter": "tw",
+    "flow": "import",
+    "hs": "848620",
+    "why": "대만 화합물 반도체·광소자 업체 반입"
+   }
+  ]
+ },
+ "pq": {
+  "none": "제품별 출하 대수·평균 판매가를 공시하지 않는다 — 회사는 가격을 유지한다고만 말한다(3Q 콜). 업종 PPI 대용"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수·합병 없음(2024년 이탈리아 토리노 인근 생산 부지 취득은 자산 취득)"
+ },
+ "midterm": {
+  "exposure": {
+   "chips_subsidy": 0.2,
+   "tariff_codify": 0.2
+  },
+  "sub": "semicap",
+  "etf": "NASDAQ:SMH",
+  "why": "Aixtron은 독일 회사이고 미국 매출 비중은 이번 회차 미대조다 — 미국 정책은 미국 레이저·전력반도체 고객의 증설을 통해서만 닿는다"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인(병목) 틀로 본다 — 섹터 렌즈 해당 없음(원천 장부 sector_data '해당 없음')"
+ },
+ "recurring": {
+  "share": 0.25,
+  "kind": "애프터세일즈(부품·서비스·업그레이드)",
+  "base": "설치 대수 미공시(미확인)",
+  "years_to_recurring": 0,
+  "source": "Aixtron 3Q26 어닝콜(2026-10-29) — 1~3분기 애프터세일즈 €88M(+10% YoY), 매출의 25%(1년 전 22%)"
+ },
+ "backlog": {
+  "book_to_bill": 1.85,
+  "conversion_months": 12,
+  "rpo_growth": 0.918,
+  "source": "1~3분기 수주 €660.9M ÷ 매출 €358.1M = 1.85(계산). 장비 수주잔고 €549.4M(2026-09-30)은 1년 전 €286.5M보다 91.8% 많다(계산). 리드타임 약 12개월(3Q 콜). 잔고 중 2027년 인식분은 미공시"
+ },
+ "customers": {
+  "none": "단일 고객별 매출 몫을 분기 자료에 내지 않는다(연차보고서의 10% 초과 고객 공시는 이번 회차 미대조). 회사는 레이저 업체 약 15곳이 수주의 80%가량이라고만 밝혔고(2Q 콜), 이름이 확인된 고객은 G10-AsP를 고른 Aeluma(2026-11-12 회사 발표, 금액 미공시)다. 용도별 매출 몫은 포트폴리오 절에 있다"
+ },
+ "pipeline": {
+  "as_of": "2026-09-30",
+  "summary": "장비 수주잔고는 1년 전 €286.5M의 1.9배다. 대부분이 InP 광통신 레이저용 장비이고 리드타임이 약 12개월이라 2027년 매출을 먼저 채운다. 1~3분기 수주는 €660.9M이다",
+  "items": [
+   {
+    "name": "장비 수주잔고",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 0.5494,
+    "progress": "미확인",
+    "progress_basis": "잔고는 미출하분이다 — 건별 인식 미공시",
+    "margin": 0.42,
+    "margin_kind": "매출총이익률",
+    "margin_basis": "FY26 가이던스 약 42%",
+    "start": "2026-10",
+    "end": "2027-09",
+    "speed": "리드타임 약 12개월(이전 6~9개월)",
+    "blockers": [
+     "공급사 증설 속도",
+     "조립·설치 인력 채용"
+    ],
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)",
+    "note": "선수금 €309.0M 수령 — 대부분 InP 광통신 레이저용"
+   },
+   {
+    "name": "300mm GaN 전력반도체 장비",
+    "kind": "pipeline",
+    "status": "협상",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "2027년 두 자릿수 대수를 준비 중(고객 2곳 이상) — 금액 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2027-01",
+    "end": "2027-12",
+    "speed": "200mm·300mm 양쪽 대량 주문 협의 중",
+    "blockers": [
+     "AI 데이터센터 800V 전력 구조 채택 시점",
+     "고객 팹 준비"
+    ],
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "name": "SiC 에피 장비 회복 수요",
+    "kind": "pipeline",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "progress_basis": "첫 신규 주문 접수 — 금액 미공시",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "-",
+    "start": "2027-01",
+    "end": "2027-12",
+    "speed": "GaN보다 느리다(회사 설명)",
+    "blockers": [
+     "전기차 수요",
+     "고객 과잉 설비 소진"
+    ],
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   }
+  ],
+  "reported_backlog": 0.5494,
+  "backlog_label": "장비 수주잔고"
+ },
+ "moat": {
+  "summary": "해자는 '화합물 반도체 고객의 공정이 Aixtron 장비 위에서 개발됐다'는 데서 나온다. 다만 점유율 숫자는 공개 자료로 확인하지 못했고, 매출은 사이클을 크게 탄다",
+  "items": [
+   {
+    "kind": "공정 기준 장비",
+    "verdict": "보통",
+    "claim": "GaN 전력반도체와 InP 레이저 고객이 개발·시험 생산을 Aixtron 장비에서 해 왔다",
+    "evidence": "회사: GaN 전력 고객의 개발·파일럿·양산 준비가 모두 G5+·G10-GaN에서 이뤄졌다(2Q 콜). 레이저 업체 약 15곳이 수주의 80%(2Q 콜), 3Q 수주 €274.9M(+122% YoY)",
+    "quant": "시장 점유율 숫자는 미확인(회사 설명만 있음)",
+    "falsifier": "선두 레이저·GaN 고객이 Veeco 등 다른 MOCVD로 양산 라인을 채움"
+   },
+   {
+    "kind": "공정 전환 비용",
+    "verdict": "보통",
+    "claim": "고객은 장비 하나가 아니라 생산 라인 전체의 레시피를 다시 맞춰야 해 공급사를 쉽게 바꾸지 않는다",
+    "evidence": "회사: 웨이퍼 크기 전환도 라인 전체를 바꿔야 해 느리다 — SiC 200mm는 2023~24년 예상에서 2027년으로 밀렸다(3Q 콜). G10은 75·100mm에서 150mm로 재구성 가능",
+    "quant": "애프터세일즈가 매출의 25%(1년 전 22%)",
+    "falsifier": "애프터세일즈 비중 하락과 고객 이탈 공시"
+   },
+   {
+    "kind": "가격 규율과 선수금",
+    "verdict": "보통",
+    "claim": "대량 주문에도 할인하지 않고 선수금을 받아 증산 자금을 댄다",
+    "evidence": "선수금 €309.0M(1년 전 €72.5M), 2Q 말 선수금이 장비 수주잔고의 약 43%(2Q 콜). 가격 유지 방침(3Q 콜)",
+    "quant": "3Q 매출총이익률 47.6%(1년 전 38.8%)",
+    "falsifier": "FY27 매출총이익률 가이던스가 42% 아래"
+   },
+   {
+    "kind": "300mm GaN 선점",
+    "verdict": "약함",
+    "claim": "300mm GaN 장비가 2027년 대량 출하에 들어가면 다음 세대 기준 장비가 된다",
+    "evidence": "미확인 — 2027년 두 자릿수 대수 '준비'(3Q 콜), 확정 수주 금액 미공시",
+    "quant": "미확인",
+    "falsifier": "300mm GaN 고객이 다른 장비사를 선택"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "GAAP",
+  "summary": "3Q 매출원가는 매출의 52.4%로 1년 전 61.2%보다 8.8%p 낮다. 최신 G10 장비와 유리한 지역 믹스 덕이라 회사는 4Q가 더 낮다고 예고했다. 연구개발·판관비 비중은 29.5%에서 20.1%로 줄어 영업이익률이 12.9%에서 30.9%로 올랐다",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.119555,
+    "cogs": 0.07318,
+    "rd": 0.02369,
+    "sga": 0.011587,
+    "other": -0.00437
+   },
+   {
+    "period": "2Q26",
+    "rev": 0.115105,
+    "cogs": 0.068315,
+    "rd": 0.022175,
+    "sga": 0.013777,
+    "other": -0.003846
+   },
+   {
+    "period": "3Q26",
+    "rev": 0.183613,
+    "cogs": 0.096276,
+    "rd": 0.022816,
+    "sga": 0.014075,
+    "other": -0.006254
+   }
+  ],
+  "costs": [
+   {
+    "name": "구매 부품·모듈",
+    "stage": "매출원가",
+    "pct_rev": 0.36,
+    "prior_pct": 0.4,
+    "fixed": 0.0,
+    "driver": "반응기 부품·가스 모듈·자동화 모듈 단가와 물량, 제품 세대 믹스",
+    "basis": "추정",
+    "source": "원가 구성 미공시 — 장비 업계 통상 비중",
+    "input": "semicap"
+   },
+   {
+    "name": "생산 인력·간접비",
+    "stage": "매출원가",
+    "pct_rev": 0.09,
+    "prior_pct": 0.125,
+    "fixed": 0.6,
+    "driver": "독일·영국 조립·시험 인력, 가동률",
+    "basis": "추정",
+    "source": "추정 — 생산 인력 비용 미공시"
+   },
+   {
+    "name": "감가상각(매출원가분)",
+    "stage": "매출원가",
+    "pct_rev": 0.015,
+    "prior_pct": 0.02,
+    "fixed": 1.0,
+    "driver": "생산·시험 설비 감가상각",
+    "basis": "추정",
+    "source": "분기 감가상각 €5.8M 중 매출원가 배분 미공시"
+   },
+   {
+    "name": "설치·보증·물류·기타",
+    "stage": "매출원가",
+    "pct_rev": 0.059,
+    "prior_pct": 0.067,
+    "fixed": 0.2,
+    "driver": "현장 설치, 보증 충당, 운송",
+    "basis": "추정",
+    "source": "나머지(계산)"
+   },
+   {
+    "name": "연구개발",
+    "stage": "연구개발",
+    "pct_rev": 0.124,
+    "prior_pct": 0.198,
+    "fixed": 0.9,
+    "driver": "300mm GaN·차세대 장비 개발 인력과 재료비",
+    "basis": "공시",
+    "source": "https://fiscal.ai/company/XTRA-AIXA"
+   },
+   {
+    "name": "판매·관리",
+    "stage": "판관비",
+    "pct_rev": 0.077,
+    "prior_pct": 0.097,
+    "fixed": 0.7,
+    "driver": "영업·고객 지원·본사 관리",
+    "basis": "공시",
+    "source": "https://fiscal.ai/company/XTRA-AIXA"
+   },
+   {
+    "name": "기타 영업손익(보조금 등)",
+    "stage": "기타",
+    "pct_rev": -0.034,
+    "prior_pct": -0.037,
+    "fixed": 0.5,
+    "driver": "연구개발 보조금·환차손익",
+    "basis": "공시",
+    "source": "https://fiscal.ai/company/XTRA-AIXA"
+   }
+  ],
+  "products": [
+   {
+    "name": "광전자 장비",
+    "rev_share": 0.46,
+    "gpm": 0.476,
+    "gpm_basis": "회사 전체 매출총이익률(3Q26) — 제품별 총이익 미공시",
+    "bom": [
+     {
+      "item": "반응기 챔버·서셉터",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "장비 구조상 최대 원가 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "흑연·석영 정밀 가공품 단가",
+      "input": "semicap"
+     },
+     {
+      "item": "가스 공급·제어 모듈",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "유량 제어기·밸브 단가"
+     },
+     {
+      "item": "웨이퍼 이송 자동화",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "카세트 자동 이송 로봇 단가"
+     },
+     {
+      "item": "가열·전원·진공",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "히터·전원·펌프 단가"
+     }
+    ]
+   },
+   {
+    "name": "애프터세일즈",
+    "rev_share": 0.25,
+    "gpm": 0.476,
+    "gpm_basis": "회사 전체 매출총이익률 대용 — 미공시",
+    "bom": [
+     {
+      "item": "교체 부품(서셉터 등)",
+      "share": [
+       0.4,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "소모 부품 단가",
+      "input": "semicap"
+     },
+     {
+      "item": "현장 서비스 인력",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "서비스 엔지니어 인건비"
+     },
+     {
+      "item": "업그레이드 키트",
+      "share": [
+       0.1,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "구형 장비 개조 부품"
+     }
+    ]
+   },
+   {
+    "name": "전력반도체 장비",
+    "rev_share": 0.14,
+    "gpm": 0.476,
+    "gpm_basis": "회사 전체 매출총이익률 대용 — 회사는 G10 세대 마진이 더 높다고만 설명",
+    "bom": [
+     {
+      "item": "반응기 챔버·서셉터",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "고온 공정용 코팅 흑연 부품",
+      "input": "semicap"
+     },
+     {
+      "item": "가스 공급·제어 모듈",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "유량 제어기·밸브 단가"
+     },
+     {
+      "item": "웨이퍼 이송 자동화",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "200·300mm 이송 모듈"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "Aixtron은 모듈을 외부 협력사에서 받아 독일·영국에서 조립·시험한다. 병목은 특정 부품이 아니라 협력사와 자사의 증산 속도다 — 리드타임이 6~9개월에서 약 12개월로 늘었고 일부 협력사는 더 늘리기 어렵다고 해 2·3번째 공급사를 붙이고 있다(3Q 콜). 공급사 이름은 미공개다",
+  "links": [
+   {
+    "item": "반응기 챔버·서셉터",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "흑연·석영 정밀 가공",
+      "status": "추정",
+      "source": "https://www.aixtron.com/en/investors"
+     }
+    ],
+    "qualified": 1,
+    "qualified_basis": "추정 — 회사가 일부 품목에 2·3번째 공급사를 붙이는 중이라고 밝혀 지금은 단독 공급 품목이 있다(3Q 콜)",
+    "capacity": "빠듯",
+    "capacity_basis": "회사: 특정 부품 하나가 모자란 것은 아니지만 일부 협력사는 더 늘리기 어렵다고 밝힘(3Q 콜)",
+    "lead_weeks": 52,
+    "lead_normal": 33,
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "장기계약",
+    "why": "박막 균일도를 결정하는 핵심 부품",
+    "relief": "협력사가 건물 임차·설비 구매·채용으로 증산 중 — 가동 확인 전",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)",
+    "input": "semicap",
+    "secured_basis": "추정 — 협력사 프로그램으로 공동 증산(계약 형태 미공시)",
+    "lead_basis": "장비 전체 주문→출하 약 12개월(평시 6~9개월의 중간 7.5개월) — 부품 단위 리드타임은 미공시"
+   },
+   {
+    "item": "가스 공급·제어 모듈",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "유량 제어기·밸브·배관 모듈",
+      "status": "추정",
+      "source": "https://www.aixtron.com/en/investors"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "원료 가스 유량 정밀 제어",
+    "relief": "미확인",
+    "source": "https://www.aixtron.com/en/investors"
+   },
+   {
+    "item": "웨이퍼 이송 자동화",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "카세트 이송 로봇",
+      "status": "추정",
+      "source": "https://www.aixtron.com/en/investors"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "미확인",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "양산용 자동화",
+    "relief": "미확인",
+    "source": "https://www.aixtron.com/en/investors"
+   },
+   {
+    "item": "조립·설치 인력",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "Aixtron 자체 채용",
+      "role": "조립·시험·현장 설치 엔지니어",
+      "status": "회사 발표",
+      "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+     }
+    ],
+    "qualified": "해당 없음",
+    "qualified_basis": "자체 인력",
+    "capacity": "빠듯",
+    "capacity_basis": "회사: 제약은 설비가 아니라 채용·협력사 증산 속도(3Q 콜)",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "독일·영국",
+    "secured": "채용 진행",
+    "why": "분기 출하를 €59M에서 약 €200M로 1년 안에 3배 넘게 늘리는 중",
+    "relief": "채용 진행 중 — 2027년 생산 능력은 2027-03 가이던스에서 제시",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "€M(분기 출하 매출)",
+  "summary": "명목 캐파는 공시하지 않는다. 회사는 '설비 한계는 없고 증산 속도가 한계'라고 설명한다 — 분기 출하는 1Q €59M에서 3Q €184M로 늘었고 4Q는 약 €200M을 겨냥한다. 말레이시아 페낭 공장은 2027년 가을부터 쓴다",
+  "current": {
+   "nameplate": "미확인",
+   "utilization": "미확인",
+   "basis": "명목 캐파 미공시 — 3Q26 실제 출하 매출 €183.6M, 4Q 약 €200M 목표(3Q 콜)",
+   "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+  },
+  "plans": [
+   {
+    "name": "말레이시아 페낭 신공장 1단계",
+    "add": "미확인",
+    "stage": "착공",
+    "online": "2027-10",
+    "capex": 0.04,
+    "blocker": "클린룸 단계 증설(단계마다 6~7개월)",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29) · EQS-Adhoc(2026-03-26)",
+    "add_note": "증가분 미공시 — 건물 전체를 짓되 1단계는 클린룸 가능 면적의 3분의 1만 설치. 기초·파일 공사 완료, 1층 거의 완료(3Q 콜)",
+    "capex_note": "2026~2027년 약 €40M(회사 발표)"
+   },
+   {
+    "name": "독일·영국 기존 사업장 증산(임차 공간·협력사)",
+    "add": "미확인",
+    "stage": "발표",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "협력사 증산·채용",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)",
+    "add_note": "회사: 필요하면 건물·생산 공간을 더 빌릴 수 있다",
+    "capex_note": "미확인"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2023",
+    "capex": 0.0626,
+    "rev": 0.6299,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2024",
+    "capex": 0.0987,
+    "rev": 0.6332,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2025",
+    "capex": 0.0278,
+    "rev": 0.5566,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.04,
+    "rev": 0.56,
+    "kind": "가이던스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.05,
+    "rev": 0.88,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "Fiscal.ai 현금흐름 — 유형자산 취득 + 무형자산 취득. FY26은 회사 가이던스 약 €40M(3Q 콜)",
+  "sites": [],
+  "sites_none": "시설 위성 판독 등록은 다음 회차 — 연차보고서 시설 목록 미대조, 페낭 공장은 건설 중",
+  "facilities": {
+   "count": 4,
+   "count_basis": "회사 발표·지속가능성 보고서에 나온 생산·개발 거점 4곳 — Herzogenrath·Cambridge·페낭(건설 중)과 2024년 취득한 이탈리아 토리노 인근 생산 부지(현재 상태 미확인이라 목록에서 뺐다). 연차보고서 시설 목록 미대조",
+   "source": "https://www.aixtron.com/investoren/publikationen/2023/en/Sustainability%20Report%202023.pdf",
+   "items": [
+    {
+     "name": "Herzogenrath 본사·생산",
+     "location": "독일 Herzogenrath",
+     "owned": "미확인",
+     "use": "본사·연구개발·장비 조립과 시험, 300mm 클린룸 혁신센터",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "거점별 캐파 미공시",
+     "area": {
+      "value": 61806,
+      "unit": "㎡",
+      "source": "2023 지속가능성 보고서 — 부지 61,806㎡(생산 10,295㎡)"
+     }
+    },
+    {
+     "name": "Cambridge 사업장",
+     "location": "영국 Cambridge",
+     "owned": "미확인",
+     "use": "개발·장비 생산",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "거점별 캐파 미공시"
+    },
+    {
+     "name": "페낭 신공장",
+     "location": "말레이시아 페낭",
+     "owned": "미확인",
+     "use": "100·150·200mm 장비 조립·시험, 현지 조달",
+     "status": "건설 중",
+     "capacity": "미확인",
+     "capacity_basis": "2027년 가을 사용, 2027년 말 첫 출하 목표 — 증가분 미공시"
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "as_of": "2026-11-23",
+  "summary": "CEO Felix Grawert 박사와 CFO Christian Danninger 박사가 콜을 이끈다. 정계·동문 연결은 공개 기록으로 확인하지 못했다",
+  "people": [
+   {
+    "name": "Felix Grawert",
+    "role": "CEO",
+    "since": "미확인",
+    "profile": "3Q 콜에서 광전자·GaN·SiC 시장과 증산 계획을 직접 설명",
+    "business": "레이저·전력반도체 고객과 장기 공급 협의(용량 예약·선수금 계약)를 직접 언급(3Q 콜)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.aixtron.com/en/investors"
+   },
+   {
+    "name": "Christian Danninger",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "3Q 콜에서 재무·현금 사용 방침 설명 — 선수금은 아직 번 돈이 아니라 자사주 매입 재원으로 보지 않는다",
+    "business": "미확인",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.aixtron.com/en/investors"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "레이저 업체 약 15곳과의 장기 공급 관계",
+    "strength": 3,
+    "exposure": 0.46,
+    "basis": "광전자 장비가 매출의 약 46%(1~3Q26, 계산) — 경영진 개인 연결이 매출을 만들었다는 뜻이 아니다",
+    "evidence": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   }
+  ]
+ },
+ "social": {
+  "none": "Quantral 미수록 — 레딧·X 관심 집계 없음(ApeWisdom·텔레그램 공개 채널도 언급 없음)"
+ },
+ "narrative": {
+  "as_of": "2026-11-23",
+  "stage": "확산",
+  "crowding": "낮음~중간(리테일 집계 없음, 콜 질문 증권사 9곳, 기관 보유 약 62%)",
+  "summary": "AI 데이터센터 광통신 레이저 증설의 '삽'을 파는 회사라는 이야기다. 주가는 1년 전 €17에서 6월 €60까지 올랐다가 €29로 내려왔다. 그사이 수주잔고는 계속 늘어, 시장의 의심은 수요가 아니라 '얼마나 빨리 매출로 바꾸나'와 '사이클이 얼마나 가나'에 있다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "콜 질문 증권사",
+      "9곳(HSBC·Kepler Cheuvreux·Jefferies·Bank of America·JPMorgan 등)"
+     ],
+     [
+      "의견·목표가 분포",
+      "데이터 없음(미확인)"
+     ],
+     [
+      "IB 목표가 사례",
+      "JPMorgan €52.50 유지(11/18, IB 커버리지 장부)"
+     ],
+     [
+      "질문 초점",
+      "2027년 매출 상한·리드타임·가격·300mm GaN"
+     ]
+    ],
+    "read": "질문 대부분이 '수주 €275M이 2027년 매출 €1B로 이어지나'에 몰렸다. 셀사이드는 수요가 아니라 생산 능력과 시점을 묻는다. 의견 분포 데이터는 없다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유",
+      "해당 없음(미국 상장 아님)"
+     ],
+     [
+      "기관 보유",
+      "약 62%(yfinance)"
+     ],
+     [
+      "지분 변동 공시",
+      "Goldman Sachs 의결권 변동 통지(11/11·11/16)"
+     ],
+     [
+      "전환사채",
+      "€450M — 헤지 목적 기존 주식 동시 매출"
+     ]
+    ],
+    "read": "전환사채 투자자의 헤지 매도와 대형 IB의 의결권 변동 통지가 보인다. 기관 보유 변화 방향은 미국 공시 대상이 아니라 미확인이다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral",
+      "미수록"
+     ],
+     [
+      "ApeWisdom",
+      "언급 없음"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "해당 글 없음"
+     ],
+     [
+      "딘스티커",
+      "3/26 페낭 증설 글 1건"
+     ]
+    ],
+    "read": "리테일 관심 집계가 거의 없다 — 유럽 기관 중심 종목이다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "3Q 실적 반응",
+      "10/29 +8.5%"
+     ],
+     [
+      "업종 사건",
+      "11/5 −9.8%, 11/20 −9.5%"
+     ],
+     [
+      "업계 매체",
+      "수주 +122%·잔고 €549.4M 보도"
+     ],
+     [
+      "회사 발표",
+      "11/12 Aeluma G10-AsP 선택"
+     ]
+    ],
+    "read": "업계 매체는 수주 급증과 광전자 비중을, 금융 매체는 전환사채와 주가 급등락을 주로 다뤘다."
+   }
+  },
+  "factors": [
+   {
+    "name": "AI 광통신 레이저 증설",
+    "thesis": "800G 이상 광 모듈·CPO 수요가 InP 레이저 증설로 이어지고, 레이저를 기르는 MOCVD 장비 주문이 늘어난다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "3Q 수주 €274.9M(+122% YoY), 광전자가 장비 수주의 68%, 잔고 €549.4M",
+    "status": "강화",
+    "falsifier": "4Q26·1Q27 수주가 €200M 아래",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "name": "InP 기판 부족이 장비 대수를 늘린다",
+    "thesis": "150mm 기판이 모자라 고객이 75·100mm에 머물면 같은 생산량에 장비가 더 필요하다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "2027년 150mm 장비 비중 약 30% → 25%(3Q 콜)",
+    "status": "강화",
+    "falsifier": "150mm InP 기판 공급이 풀려 고객이 기존 G10을 재구성",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "name": "전력반도체 회복(GaN·SiC)",
+    "thesis": "AI 데이터센터 800V 전력 구조가 GaN·SiC 소자 수요를 만들고 2027년에 장비 주문으로 돌아온다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "전력이 3Q 장비 수주의 24%, 300mm GaN 두 자릿수 대수 준비",
+    "status": "강화",
+    "falsifier": "2027년 상반기 전력 수주가 3Q 수준을 밑돈다",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "name": "선수금이 대는 증산",
+    "thesis": "고객이 선수금을 내고 줄을 서 증산 자금과 가시성을 함께 준다",
+    "inputs": "이익률·배수",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "선수금 €309.0M(1년 전 €72.5M), 1~3분기 영업현금흐름 €311M",
+    "status": "강화",
+    "falsifier": "선수금 잔액 감소와 주문 취소 공시",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "name": "반대 내러티브 — 증산 한계와 사이클",
+    "thesis": "매출은 공급망 램프에 묶여 있고, 화합물 반도체 장비는 2023년 SiC처럼 투자 물결이 끝나면 수주가 급감한다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "리드타임 6~9개월 → 12개월, FY25 매출 −12%(계산), 1Q26 영업손실 €22.3M",
+    "status": "유지",
+    "falsifier": "FY27 가이던스 매출이 €880M 이상이고 수주가 €250M 이상 유지",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   }
+  ],
+  "lead": {
+   "summary": "Aixtron의 기업가치는 **AI 데이터센터 광통신 레이저 증설이 얼마나 오래 가고, 그 수주를 얼마나 빨리 매출로 바꾸느냐**에 달려 있다. 3Q 수주는 €274.9M로 1년 새 2.2배, 장비 수주잔고는 €549.4M로 거의 두 배가 됐지만 리드타임은 약 12개월로 늘었다.",
+   "value_story": "화합물 반도체(InP·GaN·SiC) 박막을 기르는 MOCVD 장비를 판다. 1~3분기 장비 매출의 61%가 광전자(레이저), 19%가 전력반도체, 18%가 LED·마이크로LED이고 애프터세일즈가 전체 매출의 25%다. 이익은 출하량에 크게 좌우된다 — 분기 매출이 €59M일 때 영업손실, €184M일 때 영업이익률 30.9%다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 20.1배로 동종 4곳 중앙(18.1배)과 비슷하다 — 수주 급증에 비해 프리미엄이 거의 없다",
+    "eps": "FY26 EPS 컨센서스 €0.65, FY27 €1.50(+131%)"
+   },
+   "why_excited": "2026년 상반기 투자자들은 광전자 수주 변곡(1Q)과 4월 가이던스 상향에 열광해 주가를 €17에서 6월 €60까지 올렸다. 하반기에는 2Q 매출이 1년 전보다 16% 적었고 매출이 공급망 램프에 묶여 있다는 점, AI 하드웨어 업종 급락이 겹쳐 €29까지 식었다. 수주와 잔고는 그사이에도 늘었다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "광전자 장비",
+     "what": "InP·GaAs 레이저 박막을 기르는 MOCVD 장비(G10-AsP 등)",
+     "use": "데이터센터 광 모듈·CPO용 레이저 업체",
+     "money": "1~3Q26 매출의 약 46%(장비 매출의 61%)",
+     "rev_share": 0.46,
+     "name_en": "MOCVD epitaxy system for indium phosphide lasers",
+     "what_en": "a cleanroom metal-organic chemical vapor deposition reactor that grows thin crystal layers on small compound semiconductor wafers",
+     "bom": {
+      "name_en": "planetary MOCVD reactor system",
+      "items": [
+       {
+        "no": 1,
+        "part": "반응기 챔버",
+        "part_en": "reactor chamber",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Aixtron 자체 설계",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 2,
+        "part": "서셉터",
+        "part_en": "graphite susceptor disc holding wafers",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 3,
+        "part": "가스 주입부",
+        "part_en": "gas injector",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "Aixtron 자체 설계",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 4,
+        "part": "가스 공급 캐비닛",
+        "part_en": "gas mixing cabinet",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 5,
+        "part": "웨이퍼 이송 자동화 모듈",
+        "part_en": "cassette-to-cassette wafer transfer module",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 6,
+        "part": "가열 장치",
+        "part_en": "heater assembly",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미확인",
+        "source": "회사 제품 소개"
+       },
+       {
+        "no": 7,
+        "part": "진공 펌프·배기",
+        "part_en": "vacuum pump and exhaust",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미확인",
+        "source": "장비 구조(추정)"
+       }
+      ],
+      "as_of": "2026-11-23",
+      "this_company_product": true
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "애프터세일즈",
+     "what": "설치한 장비의 교체 부품·서비스·업그레이드",
+     "use": "기존 고객의 가동 장비",
+     "money": "1~3Q26 €88M, 매출의 25%",
+     "rev_share": 0.25,
+     "name_en": "after-sales spare parts and service",
+     "what_en": "spare parts and field service for installed deposition systems"
+    },
+    {
+     "kind": "제품",
+     "name": "전력반도체 장비",
+     "what": "GaN·SiC 전력 소자 박막을 기르는 장비(G10-GaN·G10-SiC)",
+     "use": "AI 데이터센터 800V 전력 변환, 전기차 인버터용 소자 업체",
+     "money": "1~3Q26 매출의 약 14%(장비 매출의 19%)",
+     "rev_share": 0.14,
+     "name_en": "MOCVD system for gallium nitride and silicon carbide power devices",
+     "what_en": "a deposition system for 200 mm and 300 mm power semiconductor wafers"
+    },
+    {
+     "kind": "제품",
+     "name": "LED·마이크로LED 장비",
+     "what": "LED·마이크로LED 박막용 MOCVD 장비",
+     "use": "증강현실 안경용 마이크로LED, 조명·디스플레이",
+     "money": "1~3Q26 매출의 약 13.5%(장비 매출의 18%)",
+     "rev_share": 0.135,
+     "name_en": "MOCVD system for LED and micro LED",
+     "what_en": "a deposition system for LED wafers"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "LED·전력반도체 사이클 회사 → AI 광통신 레이저 장비가 주력",
+     "evidence": "광전자가 장비 매출의 61%(1~3Q26), 장비 수주의 68%(3Q)",
+     "drives": "성장·배수",
+     "status": "진행 중",
+     "falsifier": "광전자 수주 비중이 50% 아래로 내려가며 총수주 감소"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "최신 G10 세대 비중이 늘면 매출총이익률이 오른다",
+     "evidence": "매출총이익률 38.8%(3Q25) → 47.6%(3Q26). 단 회사는 4Q가 더 낮다고 예고",
+     "drives": "이익률",
+     "status": "진행 중",
+     "falsifier": "FY27 매출총이익률 가이던스 42% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "300mm GaN 장비와 두꺼운 SiC 에피층(2~3kV 소자)",
+     "evidence": "300mm GaN 2027년 두 자릿수 대수 준비, G10-SiC 두꺼운 에피 고객 평가(3Q 콜)",
+     "drives": "성장",
+     "status": "태동",
+     "falsifier": "300mm GaN 고객이 다른 장비사를 선택"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "리드타임이 6~9개월에서 약 12개월로 늘었다 — 수요가 증산 속도를 앞선다",
+     "evidence": "3Q 콜",
+     "drives": "성장 시점",
+     "status": "지연",
+     "falsifier": "분기 출하가 €250M 이상으로 올라가며 리드타임 단축",
+     "lead_time": {
+      "now": 12,
+      "unit": "개월",
+      "basis": "주문→출하(3Q 콜, 신규 고객 기준 약 12개월)",
+      "prior": [
+       6,
+       9
+      ],
+      "prior_when": "2026년 상반기",
+      "peers": [
+       {
+        "name": "Veeco",
+        "value": "미확인"
+       },
+       {
+        "name": "ASM International",
+        "value": "미확인"
+       }
+      ]
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 인수 없음 — 전환사채 자금 용도에 인수가 포함돼 있으나 발표된 건 없음)",
+     "evidence": "EQS-News(2026-04-15)",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "고객 CAPEX(레이저·전력반도체 생산 설비 투자)에서 나온다",
+     "evidence": "레이저 업체의 신규 팹 건설·증설(2Q·3Q 콜)",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "레이저 업체 2027 CAPEX 축소 발표",
+     "budgets": [
+      {
+       "business": "광전자 장비",
+       "budget": "CAPEX",
+       "line": "InP 레이저 팹 증설",
+       "share": 0.46,
+       "driver": "AI 데이터센터 광 모듈 수요",
+       "evidence": "3Q 콜"
+      },
+      {
+       "business": "애프터세일즈",
+       "budget": "OPEX",
+       "line": "장비 유지보수·소모 부품 예산",
+       "share": 0.25,
+       "driver": "설치 장비 가동률",
+       "evidence": "3Q 콜"
+      },
+      {
+       "business": "전력반도체 장비",
+       "budget": "CAPEX",
+       "line": "GaN·SiC 에피 설비 투자",
+       "share": 0.14,
+       "driver": "800V 데이터센터 전력·전기차",
+       "evidence": "3Q 콜"
+      },
+      {
+       "business": "LED·마이크로LED 장비",
+       "budget": "CAPEX",
+       "line": "LED·마이크로LED 설비 투자",
+       "share": 0.135,
+       "driver": "증강현실 안경",
+       "evidence": "3Q 콜"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "독일·EU 연구개발 보조금 수령(금액 미공시) — 미국 재정정책 직접 대상 아님",
+     "evidence": "2Q 콜: 연구개발 보조금 증가가 영업비용을 상쇄",
+     "drives": "영업비용",
+     "status": "시행",
+     "falsifier": "보조금 축소 공시",
+     "house": {
+      "level": 1,
+      "why": "미국 의회 세출 대상 아님"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "대중국 장비 수출통제 — 화합물 반도체 MOCVD의 통제 범위와 Aixtron 중국 비중은 이번 회차 미대조",
+     "evidence": "3Q 콜: 4Q는 중국 비중이 늘어 매출총이익률이 낮아진다",
+     "drives": "중국 매출",
+     "status": "시행",
+     "falsifier": "MOCVD 장비가 통제 목록에 추가",
+     "house": {
+      "level": 1,
+      "why": "의회 의결 대상 아님 — 행정 규칙"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "MATCH Act(동맹국 장비 수출통제 정렬 법안) — 발의 단계",
+     "evidence": "IB 노트 요지(2026-11)",
+     "drives": "중국 매출",
+     "status": "발의",
+     "falsifier": "최종 문구에서 화합물 반도체 장비 제외"
+    }
+   }
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 22,
+   "net_margin": 0.19,
+   "opm": 0.27,
+   "basis": "출구 P/E 22배는 동종 중앙(18.1배)과 Aixtron 자체 Fwd 1Y P/E 20.1배보다 조금 높게 — 성장 구간 장비주. 영업이익률 27%는 FY27 컨센서스, 순이익률은 세율 30% 반영"
+  },
+  "base": {
+   "eps": 0.71,
+   "opm": 0.196,
+   "basis": "최근 4개 분기 EPS 합 €0.71(0.42 − 0.19 + 0.17 + 0.31, IFRS)"
+  },
+  "refs": [
+   {
+    "label": "FY26 EPS 컨센서스",
+    "value": 0.651
+   },
+   {
+    "label": "FY27 EPS 컨센서스",
+    "value": 1.504
+   },
+   {
+    "label": "FY28 EPS 컨센서스",
+    "value": 1.821
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "매출이 FY28 컨센서스 €1.0B의 약 1.5배가 돼야 한다 — 광전자 수주가 유지되고 GaN·SiC가 함께 회복",
+    "outlook": "2028~2029년 이야기. 주가가 €50.4를 넘으면 전환사채로 주식 수 +7.9%",
+    "exit": {
+     "shares": 0.1217
+    }
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "분기 수주 €500M대가 지속돼야 한다",
+    "outlook": "공개 근거 없음"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "화합물 반도체 MOCVD 시장 크기로 보아 닿기 어렵다",
+    "outlook": "경로 없음"
+   },
+   "10": {
+    "verdict": "닫힘",
+    "path": "장비 시장 크기상 경로 없음",
+    "outlook": "경로 없음"
+   }
+  },
+  "summary": "시가총액 €3.3B라 2·3·5·10배를 본다. 2배는 광전자와 전력반도체가 함께 가는 경우에만 열리고, 5배 이상은 닫혀 있다."
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "수주잔고가 1년 새 거의 두 배인데 주가는 고점의 절반이고 Fwd 1Y P/E는 동종 수준이다",
+    "evidence": [
+     "장비 수주잔고 €549.4M(+92% YoY)",
+     "3Q 수주 €274.9M(+122% YoY)",
+     "Fwd 1Y P/E 20.1배"
+    ],
+    "falsifier": "4Q 수주가 €200M 아래"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "선수금 €309M과 리드타임 12개월이 2027년 매출을 미리 채웠다",
+    "evidence": [
+     "선수금 €309.0M",
+     "1~3분기 수주 ÷ 매출 1.85"
+    ],
+    "falsifier": "FY27 가이던스 매출이 €800M 아래"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수요는 맞지만 매출 상한은 증산 속도가 정하고 회사도 아직 답을 못 한다",
+    "evidence": [
+     "리드타임 6~9개월 → 12개월",
+     "분기 출하 약 €200M"
+    ],
+    "falsifier": "분기 출하 €250M 이상 확인"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "3Q 매출총이익률 48%는 믹스 효과이고 2027년 연구개발 증액이 이익률을 누른다",
+    "evidence": [
+     "회사: 4Q 매출총이익률은 3Q보다 낮다",
+     "2027년 R&D 증액 계획"
+    ],
+    "falsifier": "FY27 EBIT 이익률 가이던스 25% 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "화합물 반도체 장비는 투자 물결이 끝나면 수주가 급감한다 — 2023년 SiC가 그랬다",
+    "evidence": [
+     "FY25 매출 €556.6M(FY24 €633.2M)",
+     "1Q26 영업손실 €22.3M",
+     "광전자가 수주의 68%"
+    ],
+    "falsifier": "레이저 업체 2027~28 증설 계획 유지"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "잔고는 두 배, 주가는 반 토막이다. 숫자와 가격이 반대로 갔다."
+     },
+     {
+      "seat": "Buy",
+      "text": "선수금 €309M이 들어와 있다. 2027년 매출은 이미 주문돼 있다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "수요보다 출하가 문제다. 분기 €200M이 지금 한계다."
+     },
+     {
+      "seat": "Sell",
+      "text": "3Q 마진은 믹스가 만든 고점이다. 회사가 직접 그렇게 말했다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "수주의 68%가 한 용도다. 2023년 SiC 물결의 끝을 기억해야 한다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Strong Sell",
+      "text": "SiC는 고객 몇 곳이었고 지금은 레이저 업체 15곳이 세계 여러 지역에서 주문한다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Neutral",
+      "text": "출하는 €59M에서 €184M로 두 분기 만에 3배가 됐다. 증산은 실제로 되고 있다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "잔고 €549M을 모두 2027년에 내도 FY27 €880M까지는 €330M이 더 필요하다. 애프터세일즈와 신규 수주로 채워야 한다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "FY27 EPS €1.50은 EBIT 이익률 27%를 가정한다. R&D 증액과 4Q 믹스를 넣으면 높다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Buy",
+      "text": "선수금은 주문 취소 때 돌려줄 수도 있는 부채다. 번 돈이 아니라고 CFO가 말했다."
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "분기 매출 €184M에 영업이익률 30.9%가 이미 나왔다. €220M이면 27%는 보수적이다."
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "애프터세일즈가 매출의 25%다. 수주가 식어도 바닥이 예전보다 높다."
+     },
+     {
+      "seat": "Neutral",
+      "to": "Sell",
+      "text": "마진 우려는 맞지만 Fwd P/E 20배는 동종 중앙 수준이다. 비싸다고 하기 어렵다."
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "동종 수준 배수에 사이클 정점 이익을 곱하면 싸 보이는 것이 당연하다."
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "150mm 전환이 늦어 장비가 더 팔린다는 것은 뒤집으면 전환 뒤 수요 공백이다."
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "잔고와 가격의 괴리가 크다는 판단은 유지하되 출하 상한은 인정한다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Buy",
+      "text": "2027-03 가이던스 전까지는 Buy를 유지한다.",
+      "moved": "Buy"
+     },
+     {
+      "seat": "Neutral",
+      "text": "FY27 가이던스의 생산 능력 숫자를 보고 정한다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Sell",
+      "text": "배수가 동종 수준이라는 점은 받아들인다.",
+      "moved": "Neutral"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "사이클 위험은 그대로지만 지금 잔고는 2027년을 덮는다.",
+      "moved": "Sell"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "잔고 €549.4M·선수금 €309.0M·수주 ÷ 매출 1.85는 반박되지 않았다. 그러나 지금 가격이 이미 FY2027 EPS €1.50을 동종 수준 배수로 담고 있고, 매출 상한을 증산 속도가 정한다는 반박이 살아남아 규칙 등급 Neutral을 유지했다",
+   "dissent": "강세 측은 3월 FY27 가이던스가 €880M을 넘으면 배수가 다시 넓어진다고 보고, 약세 측은 광전자 한 용도에 쏠린 수주가 2023년 SiC처럼 급감할 수 있다고 본다"
+  }
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "잔고는 두 배, 주가는 고점의 절반",
+    "claim": "장비 수주잔고 €549.4M(1년 전 €286.5M), 주가는 6/22 종가 고점 €60.42에서 −51%",
+    "evidence": "3Q26 실적 발표·일봉",
+    "variant": "시장은 '매출이 안 따라온다'를 수요 둔화처럼 가격에 넣었다 — 회사 설명은 수요가 아니라 증산 속도 문제다",
+    "proof": "2027-03-04 FY27 가이던스 매출과 분기 출하 능력",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "title": "선수금이 증산 비용을 댄다",
+    "claim": "선수금 €309.0M, 1~3분기 영업현금흐름 €311M — 증산에 외부 자금이 필요 없다",
+    "evidence": "3Q26 재무상태표·콜",
+    "variant": "현금 €945M 가운데 선수금과 전환사채를 빼면 실제 여유는 작다 — 회사도 자사주 매입에 선을 그었다",
+    "proof": "4Q 선수금 잔액과 주문 취소 여부",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   },
+   {
+    "title": "전력반도체가 두 번째 다리",
+    "claim": "GaN 가동률 정상화, 300mm GaN 장비 2027년 두 자릿수 대수 준비, SiC 첫 신규 주문",
+    "evidence": "3Q 콜 — 전력이 장비 수주의 24%",
+    "variant": "컨센서스 논의는 광전자에 몰려 있다 — 전력 회복이 겹치면 수주 수준이 한 단계 더 오른다",
+    "proof": "2027년 상반기 전력 수주와 300mm GaN 확정 주문 발표",
+    "source": "Aixtron 3Q26 실적 발표·어닝콜(2026-10-29)"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-04-15",
+    "status": "완료",
+    "kind": "생성",
+    "event": "FY26 가이던스 상향(4월 중순)",
+    "reaction": "+20.3%"
+   },
+   {
+    "date": "2026-07-30",
+    "status": "완료",
+    "kind": "확인",
+    "event": "2Q26 실적 — 광전자가 장비 수주의 75%",
+    "reaction": "+3.3%"
+   },
+   {
+    "date": "2026-10-29",
+    "status": "완료",
+    "kind": "생성",
+    "event": "3Q26 실적 — 수주 €274.9M, 잔고 €549.4M",
+    "reaction": "+8.5%"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "AI 하드웨어 업종 급락",
+    "reaction": "−9.8%"
+   },
+   {
+    "date": "2027-01(예상)",
+    "status": "예정",
+    "kind": "매크로",
+    "event": "레이저·광 모듈 업체 실적의 2027 증설 계획",
+    "check": "InP 레이저 CAPEX 확대 유지 여부",
+    "then": "유지 → 기본·강세, 축소 → 약세 쪽"
+   },
+   {
+    "date": "2027-03-04",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26·FY26 실적과 FY27 가이던스",
+    "check": "4Q 수주 €250M 이상, FY27 매출 가이던스 €880M 이상, 매출총이익률 42% 이상",
+    "then": "충족 → 기본에서 강세 쪽, 수주 €200M 미만 → 약세"
+   }
+  ],
+  "trade": {
+   "watch": "지금 가격 아래 지지 구간이 약세 시나리오 가격과 겹치는 곳",
+   "confirm": "4Q 수주 €250M 이상과 FY27 매출 가이던스 €880M 이상",
+   "invalid": "분기 수주가 €200M 아래로 내려가고 선수금 잔액이 줄어든다",
+   "trim": "목표주가 근처에서 Fwd 1Y P/E가 동종 중앙보다 크게 높아질 때",
+   "style": "10월 이후 하루 −9~13% 움직임이 네 번 나왔다 — 업종 급락에 크게 흔들린다"
+  }
+ },
+ "guru": {
+  "horizon_years": 5,
+  "views": {
+   "runway": {
+    "verdict": "pass",
+    "why": "추정 매출 경로가 FY26 €560M → FY28 €1.0B(연 33.6%)로 5년 2배 속도를 넘고 수주잔고가 2027년을 덮는다",
+    "evidence": "Aixtron 3Q26 분기보고서·실적 발표(2026-10-29) https://www.aixtron.com/en/investors"
+   },
+   "moat_returns": {
+    "verdict": "pass",
+    "why": "ROIC 19.8%로 자본비용을 웃돌고 고객 공정이 Aixtron 장비 위에서 개발됐다 — 단 점유율 숫자는 확인하지 못했다",
+    "evidence": "Aixtron 3Q26 분기보고서(2026-10-29) https://www.aixtron.com/en/investors"
+   },
+   "reinvestment": {
+    "verdict": "unknown",
+    "why": "증산 자금이 유보 이익이 아니라 고객 선수금에서 나와 재투자 수익률을 재기 어렵다(재투자율 12.5%)"
+   },
+   "people": {
+    "verdict": "unknown",
+    "why": "경영진 임기·보상 구조를 연차보고서로 대조하지 못했다 — 가격 유지·선수금 방침은 콜에서 확인"
+   },
+   "change": {
+    "verdict": "unknown",
+    "why": "수주·잔고 방향은 위지만 2년 뒤 EPS 추정이 다음 12개월보다 2.6% 낮게 나온다 — FY28 분기 추정이 불안정하다"
+   },
+   "mispricing": {
+    "verdict": "fail",
+    "why": "5배는 화합물 반도체 장비 시장 크기로 경로가 없다 — 2배만 조건부로 열려 있다",
+    "evidence": "이 리포트의 2·3·5·10배 경로 계산"
+   }
+  },
+  "dissent": {
+   "view": "change",
+   "why": "광전자 한 용도가 수주의 68%라 투자 물결이 끝나면 방향이 빠르게 바뀔 수 있다"
+  },
+  "hold": {
+   "kpis": [
+    "분기 장비 수주",
+    "장비 수주잔고",
+    "매출총이익률"
+   ],
+   "rule": "가격만 빠지고 수주가 €250M 이상이면 유지, 수주와 선수금이 함께 줄면 논리가 깨진다"
+  }
+ },
+ "photos": [],
+ "scenario_probs": {},
+ "scenario_probs_why": "계산값 그대로 — 조정 이유 없음",
+ "weakest": "FY27 매출 €0.88B(+57%)와 EBIT 이익률 27% — 매출은 수요가 아니라 증산 속도에 묶여 있고 회사는 2027년 생산 능력을 아직 밝히지 않았다. 다음 확인: 2027-03-04 FY27 가이던스",
+ "overrides": {
+  "margin_base": {
+   "lr": 0.22
+  },
+  "why": "장기 수렴 이익률 22%: FY2021~2025 영업이익률 23.1%·22.6%·24.9%·20.7%·18.0%(Fiscal.ai 실적, 계산)의 평균 약 22%. 기본값 15%는 Aixtron에 너무 낮다(판단)"
+ },
+ "multiples_now": {
+  "pe_fwd": 20.05,
+  "ev_ebitda_fwd": 9.05,
+  "pe_fwd2": 20.59,
+  "ev_ebitda_fwd2": 9.29,
+  "pe_fwd3": 14.43,
+  "ev_ebitda_fwd3": 6.85
+ },
+ "forward": {
+  "as_of": "2026-11-20",
+  "ntm": {
+   "eps": 1.467228,
+   "ebitda": 262365291,
+   "ebit": 230882730,
+   "revenue": 851904000,
+   "rev_ttm": 545143000
+  },
+  "horizons": {
+   "2": {
+    "eps": 1.4287798,
+    "ebitda": 255498458,
+    "ext": 0
+   },
+   "3": {
+    "eps": 2.038708458174276,
+    "ebitda": 346385989.22042054,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 22.77
+   },
+   {
+    "date": "2026-03-31",
+    "value": 62.88
+   },
+   {
+    "date": "2026-06-30",
+    "value": 103.18
+   },
+   {
+    "date": "2026-09-30",
+    "value": 53.41
+   }
+  ],
+  "pe_ttm_source": "Fiscal.ai company_ratios LTM ratio_price_to_earnings(분기말 가격 ÷ 최근 4개 분기 GAAP EPS)"
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "XETR_AIXA",
+  "currency": "EUR",
+  "q": [
+   {
+    "period": "2015-12-31",
+    "rev": 62482000,
+    "cogs": 42846000,
+    "gp": 19636000,
+    "sga": 6774000,
+    "rd": 14357000,
+    "da": null,
+    "other": 6000,
+    "op": -1501000
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 21424000,
+    "cogs": 18307000,
+    "gp": 3117000,
+    "sga": 6752000,
+    "rd": 13340000,
+    "da": null,
+    "other": -2246000,
+    "op": -14729000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 34062000,
+    "cogs": 27185000,
+    "gp": 6877000,
+    "sga": 7313000,
+    "rd": 12667000,
+    "da": null,
+    "other": -1955000,
+    "op": -11148000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 51153000,
+    "cogs": 34231000,
+    "gp": 16922000,
+    "sga": 7048000,
+    "rd": 13570000,
+    "da": null,
+    "other": -266000,
+    "op": -3430000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 89838000,
+    "cogs": 60488000,
+    "gp": 29350000,
+    "sga": 9768000,
+    "rd": 14360000,
+    "da": null,
+    "other": -2696000,
+    "op": 7918000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 53597000,
+    "cogs": 39981000,
+    "gp": 13616000,
+    "sga": 6890000,
+    "rd": 19668000,
+    "da": null,
+    "other": -199000,
+    "op": -12743000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 60552000,
+    "cogs": 45856000,
+    "gp": 14696000,
+    "sga": 7753000,
+    "rd": 19793000,
+    "da": null,
+    "other": -1540000,
+    "op": -11310000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 62181000,
+    "cogs": 37481000,
+    "gp": 24700000,
+    "sga": 7837000,
+    "rd": 12805000,
+    "da": null,
+    "other": -499000,
+    "op": 4557000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 54052000,
+    "cogs": 33073000,
+    "gp": 20979000,
+    "sga": 4767000,
+    "rd": 16521000,
+    "da": null,
+    "other": -24735000,
+    "op": 24426000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 62393000,
+    "cogs": 35575000,
+    "gp": 26818000,
+    "sga": 6543000,
+    "rd": 13726000,
+    "da": null,
+    "other": -1355000,
+    "op": 7904000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 55162000,
+    "cogs": 31333000,
+    "gp": 23829000,
+    "sga": 6754000,
+    "rd": 13235000,
+    "da": null,
+    "other": -253000,
+    "op": 4093000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 63367000,
+    "cogs": 35775000,
+    "gp": 27592000,
+    "sga": 6751000,
+    "rd": 13068000,
+    "da": null,
+    "other": -906000,
+    "op": 8679000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 87889000,
+    "cogs": 48507000,
+    "gp": 39382000,
+    "sga": 7695000,
+    "rd": 12175000,
+    "da": null,
+    "other": -1278000,
+    "op": 20790000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 68661000,
+    "cogs": 41965000,
+    "gp": 26696000,
+    "sga": 6072000,
+    "rd": 12785000,
+    "da": null,
+    "other": -1907000,
+    "op": 9746000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 63329000,
+    "cogs": 37444000,
+    "gp": 25885000,
+    "sga": 6744000,
+    "rd": 12542000,
+    "da": null,
+    "other": -2712000,
+    "op": 9311000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 52561000,
+    "cogs": 30421000,
+    "gp": 22140000,
+    "sga": 6714000,
+    "rd": 14667000,
+    "da": null,
+    "other": -4733000,
+    "op": 5492000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 75076000,
+    "cogs": 41052000,
+    "gp": 34024000,
+    "sga": 6870000,
+    "rd": 14961000,
+    "da": null,
+    "other": -2255000,
+    "op": 14448000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 40964000,
+    "cogs": 26366000,
+    "gp": 14598000,
+    "sga": 7436000,
+    "rd": 14423000,
+    "da": null,
+    "other": -6156000,
+    "op": -1105000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 56036000,
+    "cogs": 33159000,
+    "gp": 22877000,
+    "sga": 7327000,
+    "rd": 14215000,
+    "da": null,
+    "other": -1930000,
+    "op": 3265000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 64137000,
+    "cogs": 38353000,
+    "gp": 25784000,
+    "sga": 6269000,
+    "rd": 12554000,
+    "da": null,
+    "other": -1226000,
+    "op": 8187000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 108110000,
+    "cogs": 63082000,
+    "gp": 45028000,
+    "sga": 6641000,
+    "rd": 17187000,
+    "da": null,
+    "other": -3283000,
+    "op": 24483000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 49544000,
+    "cogs": 32239000,
+    "gp": 17305000,
+    "sga": 7832000,
+    "rd": 11864000,
+    "da": null,
+    "other": -1725000,
+    "op": -666000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 67687000,
+    "cogs": 39835000,
+    "gp": 27852000,
+    "sga": 9571000,
+    "rd": 14878000,
+    "da": null,
+    "other": -2196000,
+    "op": 5599000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 130827000,
+    "cogs": 74538000,
+    "gp": 56289000,
+    "sga": 8049000,
+    "rd": 13739000,
+    "da": null,
+    "other": -1680000,
+    "op": 36181000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 180896000,
+    "cogs": 100863000,
+    "gp": 80033000,
+    "sga": 9935000,
+    "rd": 16328000,
+    "da": null,
+    "other": -4094000,
+    "op": 57864000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 88591000,
+    "cogs": 52654000,
+    "gp": 35937000,
+    "sga": 9368000,
+    "rd": 14113000,
+    "da": null,
+    "other": -1778000,
+    "op": 14234000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 102484000,
+    "cogs": 64684000,
+    "gp": 37800000,
+    "sga": 9475000,
+    "rd": 13221000,
+    "da": null,
+    "other": -2088000,
+    "op": 17192000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 88866000,
+    "cogs": 49540000,
+    "gp": 39326000,
+    "sga": 9855000,
+    "rd": 14018000,
+    "da": null,
+    "other": -754000,
+    "op": 16207000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 183226000,
+    "cogs": 101018000,
+    "gp": 82208000,
+    "sga": 11741000,
+    "rd": 16374000,
+    "da": null,
+    "other": -2970000,
+    "op": 57063000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 77231000,
+    "cogs": 46111000,
+    "gp": 31120000,
+    "sga": 11131000,
+    "rd": 19156000,
+    "da": null,
+    "other": -2649000,
+    "op": 3482000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 173443000,
+    "cogs": 99975000,
+    "gp": 73468000,
+    "sga": 12032000,
+    "rd": 19804000,
+    "da": null,
+    "other": -2990000,
+    "op": 44622000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 164994000,
+    "cogs": 88796000,
+    "gp": 76198000,
+    "sga": 11188000,
+    "rd": 20822000,
+    "da": null,
+    "other": -1090000,
+    "op": 45278000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 214211000,
+    "cogs": 115965000,
+    "gp": 98246000,
+    "sga": 12303000,
+    "rd": 27900000,
+    "da": null,
+    "other": -5341000,
+    "op": 63384000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 118315000,
+    "cogs": 74527000,
+    "gp": 43788000,
+    "sga": 11337000,
+    "rd": 22940000,
+    "da": null,
+    "other": -430000,
+    "op": 9941000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 131779000,
+    "cogs": 82667000,
+    "gp": 49112000,
+    "sga": 11750000,
+    "rd": 24567000,
+    "da": null,
+    "other": -33000,
+    "op": 12828000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 156326000,
+    "cogs": 89233000,
+    "gp": 67093000,
+    "sga": 11852000,
+    "rd": 21203000,
+    "da": null,
+    "other": -3462000,
+    "op": 37500000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 226739000,
+    "cogs": 124261000,
+    "gp": 102478000,
+    "sga": 11113000,
+    "rd": 22655000,
+    "da": null,
+    "other": -2254000,
+    "op": 70964000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 112535000,
+    "cogs": 78396000,
+    "gp": 34139000,
+    "sga": 13864000,
+    "rd": 17659000,
+    "da": null,
+    "other": -674000,
+    "op": 3290000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 137415000,
+    "cogs": 81681000,
+    "gp": 55734000,
+    "sga": 11816000,
+    "rd": 18367000,
+    "da": null,
+    "other": 1985000,
+    "op": 23566000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 119555000,
+    "cogs": 73180000,
+    "gp": 46375000,
+    "sga": 11587000,
+    "rd": 23690000,
+    "da": null,
+    "other": -4370000,
+    "op": 15468000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 187047000,
+    "cogs": 100930000,
+    "gp": 86117000,
+    "sga": 11202000,
+    "rd": 21400000,
+    "da": null,
+    "other": -4452000,
+    "op": 57967000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 59378000,
+    "cogs": 48619000,
+    "gp": 10759000,
+    "sga": 12452000,
+    "rd": 24810000,
+    "da": null,
+    "other": -4221000,
+    "op": -22282000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 115105000,
+    "cogs": 68315000,
+    "gp": 46790000,
+    "sga": 13777000,
+    "rd": 22175000,
+    "da": null,
+    "other": -3846000,
+    "op": 14684000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 183613000,
+    "cogs": 96276000,
+    "gp": 87337000,
+    "sga": 14075000,
+    "rd": 22816000,
+    "da": null,
+    "other": -6254000,
+    "op": 56700000
+   }
+  ]
+ },
+ "customers_groups_note": {
+  "as_of": "2026-09-30",
+  "period": "1~3Q26",
+  "summary": "Aixtron은 고객 이름별 매출 몫을 내지 않는다. 용도별로는 1~3분기 장비 매출의 61%가 광전자(레이저), 19%가 GaN·SiC 전력반도체, 18%가 LED·마이크로LED이고, 애프터세일즈가 전체 매출의 25%다. 회사는 레이저 업체 약 15곳이 수주의 80%가량을 차지한다고 말했다(2Q 콜)",
+  "items": [
+   {
+    "name": "광전자(레이저) 고객(집계)",
+    "alias": "Optoelectronics",
+    "share": 0.46,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "InP 레이저용 MOCVD 장비(G10-AsP 등)",
+    "source": "Aixtron 3Q26 어닝콜(2026-10-29)",
+    "why": "장비 매출(전체의 75%) × 광전자 61% = 약 46%(계산)"
+   },
+   {
+    "name": "애프터세일즈 고객(집계)",
+    "alias": "After-sales",
+    "share": 0.25,
+    "prior": 0.22,
+    "basis": "공시",
+    "buys": "부품·서비스·업그레이드",
+    "source": "Aixtron 3Q26 어닝콜(2026-10-29)",
+    "why": "1~3분기 €88M — 매출의 25%(회사 발표)"
+   },
+   {
+    "name": "GaN·SiC 전력반도체 고객(집계)",
+    "alias": "Power electronics",
+    "share": 0.14,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "G10-GaN·G10-SiC·G5+ 장비",
+    "source": "Aixtron 3Q26 어닝콜(2026-10-29)",
+    "why": "장비 매출 75% × 19% = 약 14%(계산)"
+   },
+   {
+    "name": "LED·마이크로LED 고객(집계)",
+    "alias": "LED and microLED",
+    "share": 0.135,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "LED·마이크로LED용 MOCVD 장비",
+    "source": "Aixtron 3Q26 어닝콜(2026-10-29)",
+    "why": "장비 매출 75% × 18% = 약 13.5%(계산)"
+   },
+   {
+    "name": "Aeluma",
+    "alias": "Aeluma",
+    "share": "미확인",
+    "basis": "회사 발표",
+    "buys": "G10-AsP — 광검출기·레이저 생산 확대용",
+    "source": "Aixtron 보도자료(2026-11-12)",
+    "why": "장비 선택 발표 — 금액·대수 미공시",
+    "prior": "미확인"
+   }
+  ]
+ }
+}
