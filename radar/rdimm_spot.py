@@ -273,72 +273,71 @@ def merged():
 
 # ---------- 그래프 ----------
 def chart(path=None):
+    """Chiip 양식(2026-11-23 마스터 지시 "참고 자료의 양식이 아니라 Chiip의 양식대로") — radar/memory_spot.py와 같은 흰 바탕 두 칸:
+    위 = 32GB·64GB 현물과 64GB 계약가(점선), 아래 = 64GB 현물 − 계약(월말)"""
     import pymupdf
     from memory_spot import _txt
     spot, contract, fit = merged()
     if len(spot) < 4:
         raise SystemExit("[RDIMM Spot] 자료 부족 — --update, --digitize 먼저")
-    BG, PL, FG, MUT = (0.043, 0.075, 0.125), (0.059, 0.106, 0.192), (0.93, 0.94, 0.96), (0.58, 0.62, 0.70)
-    BLUE, CYAN, BAR = (0.31, 0.51, 0.87), (0.27, 0.80, 0.78), (0.24, 0.27, 0.33)
-    W, H = 960, 480
+    INK, MUT, GRID = (0.05, 0.05, 0.05), (0.4, 0.4, 0.4), (0.88, 0.89, 0.91)
+    C64, C32, BAR = (0.13, 0.36, 0.75), (0.80, 0.33, 0.10), (0.62, 0.70, 0.84)
     doc = pymupdf.open()
-    page = doc.new_page(width=W, height=H)
-    page.draw_rect(page.rect, color=None, fill=BG)
-    x0, y0, x1, y1 = 78, 104, W - 82, H - 62
-    page.draw_rect((x0, y0, x1, y1), color=None, fill=PL)
+    page = doc.new_page(width=720, height=640)
+    page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
     d0, d1 = spot[0][0], spot[-1][0]
-    span = (d1 - d0).days * 1.04
-    X = lambda d: x0 + (x1 - x0) * (d - d0).days / span                      # noqa: E731
-    top = max(max(a, b) for _, a, b, _ in spot)
-    ymax = (int(top / 800) + 1) * 800 if top % 800 > 480 else int(top / 800) * 800 + 480
-    Y = lambda v: y1 - (y1 - y0) * v / ymax                                   # noqa: E731
+    span = max((d1 - d0).days, 1)
+    last, prev = spot[-1], spot[-2]
     at64 = lambda d: min(spot, key=lambda r: abs((r[0] - d).days))[2]         # noqa: E731
     spread = [(d, at64(d) - v) for d, v in contract]
-    smax = max([s for _, s in spread] + [1]) * 1.12
-    smax = (int(smax / 400) + 1) * 400
-    YS = lambda v: y1 - (y1 - y0) * v / smax                                  # noqa: E731
-    bw = (x1 - x0) * 22 / span
-    for d, sp in spread:                                                      # 막대 = 64GB 현물 − 계약(월말)
-        cx = X(d)   # 원본처럼 월말 날짜에 막대를 둔다
-        page.draw_rect((cx - bw / 2, YS(sp), cx + bw / 2, y1), color=None, fill=BAR)
-    for v in range(0, int(ymax) + 1, 800):
-        _txt(page, (x0 - 8, Y(v) + 3), f"{v:,}", 8.5, MUT, right=True)
-        page.draw_line((x0, Y(v)), (x1, Y(v)), color=(0.10, 0.16, 0.26), width=0.5)
-    for v in range(0, int(smax) + 1, 400):
-        _txt(page, (x1 + 8, YS(v) + 3), f"{v:,}", 8.5, MUT)
-    m = d0.replace(day=1)
-    while m <= d1:
-        if m >= d0 and m.month % 2 == 0:
-            _txt(page, (X(m) - 11, y1 + 16), f"{m.year % 100}.{m.month:02d}", 8.5, MUT)
-        m = (m.replace(day=28) + timedelta(days=4)).replace(day=1)
-    for idx, col in ((2, CYAN), (1, BLUE)):
+    _txt(page, (36, 34), "DDR5 RDIMM 현물·계약가 추이", 15, INK)
+    _txt(page, (36, 52), f"기준 {d1.isoformat()} · 32GB ${last[1]:,.0f}({(last[1] / prev[1] - 1) * 100:+.1f}%) · 64GB ${last[2]:,.0f}({(last[2] / prev[2] - 1) * 100:+.1f}%) — 괄호는 주간 변화", 8.5, MUT)
+
+    def frame(box, title, vmax, step):
+        x0, y0, x1, y1 = box
+        _txt(page, (x0, y0 - 10), title, 10, INK)
+        for v in range(0, int(vmax) + 1, step):
+            y = y1 - (y1 - y0) * v / vmax
+            page.draw_line((x0, y), (x1, y), color=GRID, width=0.5)
+            _txt(page, (x0 - 6, y + 3), f"{v:,}", 7.5, MUT, right=True)
+        m = d0.replace(day=1)
+        while m <= d1:
+            if m >= d0 and m.month % 3 == 1:
+                x = x0 + (x1 - x0) * (m - d0).days / span
+                page.draw_line((x, y1), (x, y1 + 3), color=MUT, width=0.5)
+                _txt(page, (x - 11, y1 + 13), f"{m.year % 100}.{m.month:02d}", 7.5, MUT)
+            m = (m.replace(day=28) + timedelta(days=4)).replace(day=1)
+        page.draw_line((x0, y1), (x1, y1), color=MUT, width=0.7)
+        return (lambda d: x0 + (x1 - x0) * (d - d0).days / span), (lambda v: y1 - (y1 - y0) * v / vmax)
+
+    top = max(r[2] for r in spot)
+    X, Y = frame((80, 100, 690, 360), "현물가와 계약가 (달러/모듈)", (int(top * 1.12 / 800) + 1) * 800, 800)
+    for idx, col, name in ((2, C64, "64GB 현물"), (1, C32, "32GB 현물")):
         pts = [pymupdf.Point(X(r[0]), Y(r[idx])) for r in spot]
-        page.draw_polyline(pts, color=col, width=2.0, lineJoin=1, lineCap=1)
-        page.draw_circle(pts[-1], 3.2, color=col, fill=col)
+        page.draw_polyline(pts, color=col, width=1.6, lineJoin=1, lineCap=1)
+        page.draw_circle(pts[-1], 2.6, color=col, fill=col)
+        _txt(page, (pts[-1].x - 9, pts[-1].y + 13), f"{name} ${spot[-1][idx]:,.0f}", 8, col, right=True)
     if contract:
-        page.draw_polyline([pymupdf.Point(X(d), Y(v)) for d, v in contract], color=CYAN, width=1.8, dashes="[5 4] 0")
-    last = spot[-1]
-    _txt(page, (28, 34), "DDR5 RDIMM 현물·계약가와 64GB 현물-계약 차이", 16, FG)
-    sub = f"{d0.isoformat()} ~ {d1.isoformat()}" + (f" | 계약가: {contract[-1][0].strftime('%Y-%m')}까지" if contract else "")
-    _txt(page, (28, 52), sub, 9, MUT)
-    head = f"32GB ${last[1]:,.0f} | 64GB ${last[2]:,.0f}" + (f" | 차이 ${spread[-1][1]:,.0f}({contract[-1][0].strftime('%m/%d')})" if spread else "")
-    _txt(page, (W - 28, 52), head, 9.5, CYAN, right=True)
-    lx = 150
-    for name, col, dash in (("32GB 현물", BLUE, None), ("64GB 현물", CYAN, None), ("64GB 계약가", CYAN, "[5 4] 0")):
-        page.draw_line((lx, 78), (lx + 40, 78), color=col, width=2.0, dashes=dash)
-        _txt(page, (lx + 48, 82), name, 9.5, FG)
-        lx += 150
-    page.draw_rect((lx, 71, lx + 40, 85), color=None, fill=BAR)
-    _txt(page, (lx + 48, 82), "64GB 현물 - 계약", 9.5, FG)
-    page.insert_text((22, (y0 + y1) / 2 + 60), "Price (USD/module)", fontsize=9, color=MUT, rotate=90)
-    page.insert_text((W - 16, (y0 + y1) / 2 + 80), "64GB Spot - Contract (USD/module)", fontsize=9, color=MUT, rotate=90)
+        cp = [pymupdf.Point(X(d), Y(v)) for d, v in contract]
+        page.draw_polyline(cp, color=C64, width=1.3, dashes="[4 3] 0")
+        _txt(page, (cp[-1].x + 5, cp[-1].y + 3), f"64GB 계약가 ${contract[-1][1]:,.0f}", 8, C64)
+    pk = max(spot, key=lambda r: r[2])
+    page.draw_circle(pymupdf.Point(X(pk[0]), Y(pk[2])), 2.2, color=C64, fill=(1, 1, 1))
+    _txt(page, (X(pk[0]) - 4, Y(pk[2]) - 7), f"고점 ${pk[2]:,.0f} ({pk[0].strftime('%m/%d')})", 8, MUT, right=True)
+    if spread:
+        smax = (int(max(v for _, v in spread) * 1.15 / 400) + 1) * 400
+        X2, Y2 = frame((80, 430, 690, 590), "64GB 현물 - 계약가 (달러/모듈, 월말)", smax, 400)
+        bw = 610 * 20 / span
+        for d, v in spread:
+            page.draw_rect((X2(d) - bw / 2, Y2(v), X2(d) + bw / 2, Y2(0)), color=None, fill=BAR)
+            _txt(page, (X2(d) + 9, Y2(v) - 4), f"{v:,.0f}", 7.5, MUT, right=True)
     n_exact = sum(1 for r in spot if r[3] != "그림 판독")
-    note = (f"자료: 공개 텔레그램 채널 Badonions 주간 'RDIMM Spot Price' — 글자 값 {n_exact}주(정확), 그 밖 이력·계약가는 그림 판독"
-            + (f"(글자 값 대비 최대 ±${fit['max_abs_resid']})" if fit.get("max_abs_resid") is not None else "") + " · Chiip 재구성, 원자료 아님")
-    _txt(page, (28, H - 18), note, 7.8, MUT)
+    note = (f"자료: 공개 텔레그램 채널(Badonions) 주간 RDIMM 현물 — 글자 값 {n_exact}주는 정확, 그 밖 이력·계약가는 그림 판독"
+            + (f"(글자 값 대비 최대 ±${fit['max_abs_resid']})" if fit.get("max_abs_resid") is not None else "") + " → Chiip 재구성. 원자료 아님.")
+    _txt(page, (36, 622), note, 7.5, (0.45, 0.45, 0.45))
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"rdimm_{d1.strftime('%Y%m%d')}.png")
-    page.get_pixmap(dpi=160).save(str(path))
+    page.get_pixmap(dpi=150).save(str(path))
     prev = spot[-2]
     summ = {"png": str(path), "as_of": d1.isoformat(), "gb32": last[1], "gb64": last[2],
             "wow32": round((last[1] / prev[1] - 1) * 100, 2), "wow64": round((last[2] / prev[2] - 1) * 100, 2),
