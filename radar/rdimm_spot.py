@@ -235,7 +235,7 @@ def digitize(path, end, anchors, start=START):
             eom = nxt - timedelta(days=1)
             if x_of(eom) > cx1 + 2:
                 break
-            if x_of(eom) >= cx0:
+            if x_of(eom) >= cx0 - t["size"][0] / 200:   # 점선 첫 점이 한두 화소 어긋나도 그 달을 놓치지 않는다(800px 그림에서 2025-12가 빠졌다)
                 contract.append([eom.isoformat(), val(_at(t["contract"], x_of(eom)))])
             m = nxt
     return {"spot": spot, "contract": contract, "image": str(path), "end": end.isoformat(),
