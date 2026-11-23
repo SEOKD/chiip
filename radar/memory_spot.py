@@ -314,6 +314,15 @@ def chart(since=None, dram=None, nand=None, path=None):
     return path, json.loads(json.dumps(summ, default=str))
 
 
+def cfm_run():
+    """CFM闪存市场 웨이퍼 시세 하루 1회(개인 봇 한정, radar/cfm_wafer.py) — 실패해도 그림은 TrendForce만으로 나간다"""
+    try:
+        import cfm_wafer
+        return cfm_wafer.run()
+    except Exception as e:
+        return f"CFM 웨이퍼 {type(e).__name__}"
+
+
 def status(now=None):
     """Pulse 관문 — 평일 10~11시 KST, 하루 1회. 그림은 합친 한 장(combined_chart)"""
     now = now or common.now_kst()
@@ -323,6 +332,7 @@ def status(now=None):
         return {"due": False}
     try:
         update()
+        cfm_run()
         png, summ = combined_chart()
     except (Exception, SystemExit) as e:
         return {"due": False, "error": f"{type(e).__name__}: {str(e)[:120]}"}
@@ -456,6 +466,29 @@ def combined(since=None):
         out.append({"kind": kind, "product": tprod, "points": pts, "base": base, "last": last, "tf_last": ts["last"], "daily": kind == "DRAM" or daily,
                     "n_tf": sum(1 for p in pts if p[2] == "tf"), "n_mz": sum(1 for p in pts if p[2] == "mz"),
                     "chg": {"1W": back(7), "1M": back(30), "YTD": (last[1] / base[1] - 1) * 100}})
+    try:   # CFM闪存市场 웨이퍼 일별 종가(1Tb·512Gb TLC) — 개인 봇 한정(2026-11-23 마스터 결정). 중국 유통 호가라 TrendForce 선에 잇지 않고 별도 선으로
+        import cfm_wafer as C
+        for item in C.ITEMS:
+            cs = C.series(item, since)
+            if not cs:
+                continue
+            pts = hold_daily([(d, v, "cfm") for d, v in cs["points"]], cs["last"][0])
+            last = (cs["last"][0], cs["last"][1], "cfm")
+
+            def back(days, pts=pts, last=last):
+                ref = last[0] - timedelta(days=days)
+                old = [p for p in pts if p[0] <= ref]
+                return (last[1] / old[-1][1] - 1) * 100 if old and (ref - old[-1][0]).days <= 10 else None
+            chg = {"1W": back(7), "1M": back(30)}
+            if cs["ytd_base"]:
+                chg["YTD"] = (last[1] / cs["ytd_base"][1] - 1) * 100
+            else:   # 공개 이력은 최근 반년뿐 — 첫 기록 이후 변화
+                chg[f"{cs['first'][0].strftime('%m/%d')} 이후"] = (last[1] / cs["first"][1] - 1) * 100
+            out.append({"kind": "NAND", "product": f"CFM {item}", "src": "cfm", "points": pts, "base": cs["first"], "last": last, "tf_last": cs["last"],
+                        "daily": True, "n_tf": 0, "n_mz": 0, "chg": chg})
+            missing = [m for m in missing if m[1] != f"Wafer {item}"]
+    except Exception as e:
+        print(f"[Memory Spot] CFM 웨이퍼 건너뜀 {type(e).__name__}", file=sys.stderr)
     if {s["kind"] for s in out} != {"DRAM", "NAND"}:
         raise SystemExit("[Memory Spot] TrendForce 자료 부족 — radar/trendforce_spot.py --backfill/run")
     combined.missing = missing
@@ -472,7 +505,9 @@ def combined_chart(since=None, path=None):
     page.draw_rect(page.rect, color=None, fill=SURF)
     _txt(page, (36, 34), f"메모리 현물가격 — {since[:4]} YTD", 15, INK)
     _txt(page, (36, 52), "점 = TrendForce 공개 현물표 Session Average(관측) · 점 없는 구간 = 메리츠 채널 D램익스체인지 변화율로 직전 관측에서 이어 붙인 보강값", 8, INK2)
-    colors = (blue, (0.902, 0.494, 0.133))   # 칸마다 두 품목을 한 그래프에(2026-11-23 마스터 지시)
+    if any(s.get("src") == "cfm" for s in S):
+        _txt(page, (36, 64), "점선 = CFM(chinaflashmarket.com) 웨이퍼 종가(중국 영업일) — 중국 유통 호가로 TrendForce와 수준이 달라 잇지 않고 따로 그린다", 8, INK2)   # 그림 글꼴에 간체자가 없다 — 한자 표기는 설명문에
+    orange = (0.902, 0.494, 0.133)   # 칸마다 품목들을 한 그래프에(2026-11-23 마스터 지시) — 512Gb·DDR5 파랑, 1Tb·DDR4 주황, CFM은 점선
     short = lambda p: p.replace("Wafer ", "").replace(" (2Gx8) 4800/5600", "").replace(" (1Gx8) 3200", "")   # noqa: E731
     for kind, box in (("DRAM", (80, 112, 690, 320)), ("NAND", (80, 412, 690, 620))):
         G = [s for s in S if s["kind"] == kind]
@@ -488,8 +523,11 @@ def combined_chart(since=None, path=None):
         X = lambda d: x0 + (x1 - x0) * (d - d0).days / span   # noqa: E731
         Y = lambda v: y1 - (y1 - y0) * (v - lo) / (hi - lo)    # noqa: E731
         wafer = any("Wafer" in s["product"] for s in G)
-        unit = "일별 — 주간 고시값을 다음 고시까지 유지" if wafer else "일별"
-        _txt(page, (x0, y0 - 34), f"{kind} 현물 — {' · '.join(short(s['product']) for s in G)} (달러, {unit})", 12, INK)
+        cfm = any(s.get("src") == "cfm" for s in G)
+        if wafer:
+            _txt(page, (x0, y0 - 34), "NAND 웨이퍼 현물 (달러, 일별 — TrendForce 주간 고시값은 다음 고시까지 유지)", 12, INK)
+        else:
+            _txt(page, (x0, y0 - 34), f"{kind} 현물 — {' · '.join(short(s['product']) for s in G)} (달러, 일별)", 12, INK)
         v = lo
         while v <= hi + 1e-9:
             page.draw_line((x0, Y(v)), (x1, Y(v)), color=GRID, width=0.6)
@@ -501,8 +539,10 @@ def combined_chart(since=None, path=None):
                 _txt(page, (X(m) - 8, y1 + 13), f"{m.month}월", 8, MUTED)
             m = date(m.year + (m.month == 12), m.month % 12 + 1, 1)
         page.draw_line((x0, y1), (x1, y1), color=MUTED, width=0.6)
-        for i, (s, col) in enumerate(zip(G, colors)):
-            page.draw_polyline([(X(d), Y(v)) for d, v, _ in s["points"]], color=col, width=1.6)
+        for i, s in enumerate(G):
+            col = orange if ("1Tb" in s["product"] or "DDR4" in s["product"]) else blue
+            dash = "[4 3] 0" if s.get("src") == "cfm" else None
+            page.draw_polyline([(X(d), Y(v)) for d, v, _ in s["points"]], color=col, width=1.6, dashes=dash)
             tfp = [(X(d), Y(v)) for d, v, src in s["points"] if src == "tf"]
             if len(tfp) <= 140:
                 for p in tfp:
@@ -511,19 +551,24 @@ def combined_chart(since=None, path=None):
             page.draw_circle((X(ld), Y(lv)), 3.2, color=SURF if lsrc == "tf" else col, fill=col if lsrc == "tf" else SURF, width=1.2)
             c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
             ty = y0 - 16 + i * 14
-            page.draw_line((x0 + 8, ty - 3), (x0 + 22, ty - 3), color=col, width=2.4)
+            page.draw_line((x0 + 8, ty - 3), (x0 + 22, ty - 3), color=col, width=2.4, dashes=dash)
             tl = s["tf_last"]
             tail = f" · TrendForce 마지막 {tl[0].strftime('%m/%d')}" if lsrc == "mz" else ""
-            _txt(page, (x0 + 28, ty), f"{short(s['product'])}  {ld.strftime('%m/%d')} ${lv:,.2f}{' (보강)' if lsrc == 'mz' else ''}   {c}{tail}", 9, INK)
+            label = ("TrendForce " if cfm and s.get("src") != "cfm" else "") + short(s["product"])
+            _txt(page, (x0 + 28, ty), f"{label}  {ld.strftime('%m/%d')} ${lv:,.2f}{' (보강)' if lsrc == 'mz' else ''}   {c}{tail}", 9, INK)
         gone = [short(p) for k, p in getattr(combined, "missing", []) if k == kind]
         if gone:
             _txt(page, (x0 + 8, y1 - 8), f"{' · '.join(gone)}: 공개 원천 없음(TrendForce 공개 웨이퍼표는 512·256·128Gb TLC만) — 자료가 생기면 이 그래프에 함께 그린다", 8, INK2)
-    _txt(page, (36, 658), "자료: TrendForce(DRAMeXchange) 공개 현물가격표 + 공개 텔레그램 채널(merITz_tech)의 D램익스체인지 변화율. 보강값은 Chiip 계산. 개인 열람용.", 7.5, MUTED)
+    src_line = "자료: TrendForce(DRAMeXchange) 공개 현물가격표 + 공개 텔레그램 채널(merITz_tech)의 D램익스체인지 변화율"
+    if any(s.get("src") == "cfm" for s in S):
+        src_line += " + CFM(chinaflashmarket.com) 공개 시세"
+    _txt(page, (36, 658), src_line + ". 보강값은 Chiip 계산. 개인 열람용.", 7.5, MUTED)
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"spot_combined_{S[0]['last'][0].strftime('%Y%m%d')}.png")
     page.get_pixmap(dpi=150).save(str(path))
     summ = {"since": since, "png": str(path), "series": [{"kind": s["kind"], "product": s["product"], "last": [s["last"][0].isoformat(), s["last"][1], s["last"][2]],
-                                                          "tf_last": [s["tf_last"][0].isoformat(), s["tf_last"][1]], "chg": s["chg"], "n_tf": s["n_tf"], "n_mz": s["n_mz"]} for s in S],
+                                                          "tf_last": [s["tf_last"][0].isoformat(), s["tf_last"][1]], "chg": s["chg"], "n_tf": s["n_tf"], "n_mz": s["n_mz"],
+                                                          "src": s.get("src", "tf")} for s in S],
             "missing": [p for _, p in getattr(combined, "missing", [])]}
     return path, summ
 
@@ -532,11 +577,18 @@ def caption(summ, read=""):
     L = ["[Chiip Memory Spot]", f"DRAM·NAND 현물가격 ({summ['since'][:4]} YTD · TrendForce 기본, 메리츠 변화율 보강)", ""]
     for s in summ["series"]:
         d, v, src = s["last"]
+        if src == "cfm":
+            continue
         c = " · ".join(f"{k} {x:+.1f}%" for k, x in s["chg"].items() if x is not None)
         tag = "보강" if src == "mz" else "TrendForce"
         L.append(f"■ {s['product'].replace('Wafer ', 'NAND 웨이퍼 ')}: ${v:,.2f} ({d[5:].replace('-', '/')}, {tag}) — {c}")
         if src == "mz":
             L.append(f"  · TrendForce 마지막 공개 {s['tf_last'][0][5:].replace('-', '/')} ${s['tf_last'][1]:,.2f}에서 메리츠 변화율로 이어 붙임")
+    C = [s for s in summ["series"] if s["last"][2] == "cfm"]
+    cfm = bool(C)
+    if C:   # CFM은 한 줄로(설명 1000자 안에 풀이 자리를 남긴다) — 중국 유통 호가, TrendForce와 잇지 않는다
+        parts = [f"{s['product'][4:]} ${s['last'][1]:,.2f}(1M {s['chg']['1M']:+.1f}%)" if s["chg"].get("1M") is not None else f"{s['product'][4:]} ${s['last'][1]:,.2f}" for s in C]
+        L.append(f"■ NAND 웨이퍼 CFM 종가({C[0]['last'][0][5:].replace('-', '/')}, 중국 유통 호가·TrendForce와 따로): " + " · ".join(parts))
     for p in summ.get("missing") or []:
         L.append(f"■ {p.replace('Wafer ', 'NAND 웨이퍼 ')}: 공개 원천 없음(미확인)")
     if read:
@@ -548,13 +600,14 @@ def caption(summ, read=""):
             L += ["", ref]
     except Exception:
         pass
-    L += ["", "자료: TrendForce 공개 현물표(개인 열람용, 재배포 금지) + 공개 텔레그램 채널 D램익스체인지 변화율"]
+    L += ["", "자료: TrendForce 공개 현물표(개인 열람용, 재배포 금지) + 공개 텔레그램 채널 D램익스체인지 변화율" + (" + 来源：CFM闪存市场(개인 열람용)" if cfm else "")]
     return "\n".join(L)
 
 
 def send(read=""):
     import notify
     update()
+    cfm_run()
     png, summ = combined_chart()
     cap = caption(summ, read)
     # 그림과 풀이는 한 통(사진 설명)으로만 — 따로 글을 보내지 않는다(마스터 지시 2026-11-20 "풀이 피드를 따로 내지 말고 그래프 제공하는 피드에 같이 설명을 넣어라")
