@@ -390,6 +390,20 @@ def blend(tf_pts, m_pts, interior=True):
     return out
 
 
+def hold_daily(pts, until):
+    """[(날짜, $, src)] → 평일마다 한 점. 관측 없는 평일은 직전 값을 'hold'로 유지(새 값을 지어내지 않는다)"""
+    by = {d: (v, s) for d, v, s in pts}
+    out, d, cur = [], pts[0][0], None
+    while d <= max(until, pts[-1][0]):
+        if d in by:
+            cur = by[d][0]
+            out.append((d, cur, by[d][1]))
+        elif d.weekday() < 5 and cur is not None:
+            out.append((d, cur, "hold"))
+        d += timedelta(days=1)
+    return out
+
+
 def relabel_last(tf_pts, trow_chg, mrows, product):
     """TrendForce 공개 페이지의 NAND 'Last Update' 날짜가 한 주 늦게 남는 경우가 있다(2026-11-19 확인: 11-09 표기에 11/16 변화율 +0.42%).
     마지막 관측의 변화율이 그 뒤 메리츠 세션의 1D 변화율과 같으면(±0.02%p, 0이 아닌 값) 그 세션 값으로 날짜를 옮겨 이중 계산을 막는다"""
@@ -423,8 +437,11 @@ def combined(since=None):
             ts["last"] = tf_pts[-1]
         daily = kind == "NAND" and bool(mprod) and cfg.get("nand_daily", True)   # NAND도 관측 사이를 일별로 채운다(2026-11-23) — 1D를 그대로 쌓은 경로로
         pts = blend(tf_pts, raw_path(rows, mprod), True) if daily else blend(tf_pts, ms["points"] if ms else [], interior)
+        if kind == "NAND" and not mprod:   # 웨이퍼는 주 1회 고시 — 일별 축에 고시값을 다음 고시까지 그대로 둔다(2026-11-23 "NAND도 DRAM처럼 일일 기준 집계")
+            pts = hold_daily(pts, min(common.now_kst().date(), pts[-1][0] + timedelta(days=10)))
+            daily = True
         pts = [p for p in pts if p[0] >= ts["points"][0][0]]
-        last = pts[-1]
+        last = max((p for p in pts if p[2] != "hold"), key=lambda p: p[0])
 
         def back(days, pts=pts, last=last):
             ref = last[0] - timedelta(days=days)
@@ -461,7 +478,7 @@ def combined_chart(since=None, path=None):
         Y = lambda v: y1 - (y1 - y0) * (v - lo) / (hi - lo)    # noqa: E731
         unit = "일별" if s.get("daily") else "주 1회 갱신"
         if s["kind"] == "NAND" and s.get("daily"):
-            unit = "일별 — 고시가 바뀐 날에 움직인다"
+            unit = "일별 — 주간 고시값을 다음 고시까지 유지" if "Wafer" in s["product"] else "일별 — 고시가 바뀐 날에 움직인다"
         _txt(page, (x0, y0 - 22), f"{s['kind']} {s['product'].replace('Wafer ', '웨이퍼 ')} 현물 (달러, {unit})", 12, INK)
         v = lo
         while v <= hi + 1e-9:
