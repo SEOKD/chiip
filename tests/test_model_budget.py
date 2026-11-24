@@ -28,11 +28,13 @@ class TestParse(unittest.TestCase):
     def test_utc_and_unreadable(self):
         self.assertEqual(MB.parse("You've hit your session limit · resets 7:30am (UTC)", NOW)[1], datetime(2026, 11, 24, 16, 30, tzinfo=KST))
         kind, until = MB.parse("You've hit your usage limit.", NOW)
-        self.assertEqual(until, NOW + timedelta(minutes=MB.DEFAULT_HOLD_MIN))
+        self.assertEqual(until, datetime(2026, 11, 24, 8, 0, tzinfo=KST))   # 다음 정시
 
     def test_headless_phrase_without_reset_holds_an_hour(self):   # claude -p 실제 문구(11/24 08:57 실행 장부)
         got = MB.parse("You've reached your Fable limit. Switch to another model, or manage usage credits at https://claude.ai/settings/usage", NOW)
-        self.assertEqual(got, ("Fable", NOW + timedelta(minutes=MB.DEFAULT_HOLD_MIN)))
+        self.assertEqual(got, ("Fable", datetime(2026, 11, 24, 8, 0, tzinfo=KST)))
+        self.assertEqual(MB.next_check(datetime(2026, 11, 24, 15, 49, tzinfo=KST)), datetime(2026, 11, 24, 16, 0, tzinfo=KST))   # 11/24 실제 — 16:52가 아니라
+        self.assertEqual(MB.next_check(datetime(2026, 11, 24, 15, 57, tzinfo=KST)), datetime(2026, 11, 24, 17, 0, tzinfo=KST))   # 5분 안이면 그다음 정시
 
     def test_old_epoch_phrase(self):
         ts = int(datetime(2026, 11, 24, 16, 0, tzinfo=KST).timestamp())
@@ -81,7 +83,7 @@ class TestHold(StateCase):
         MB.note(text, "t", NOW)
         with mock.patch("notify.send") as send:
             MB.alert_once(NOW + timedelta(minutes=1))
-            later = NOW + timedelta(minutes=MB.DEFAULT_HOLD_MIN + MB.GRACE_MIN + 1)
+            later = MB.next_check(NOW) + timedelta(minutes=MB.GRACE_MIN + 1)
             self.assertIsNone(MB.blocked(later))
             MB.note(text, "t", later)   # 한 시간 뒤 다시 걸림
             self.assertTrue(MB.blocked(later + timedelta(minutes=1)))

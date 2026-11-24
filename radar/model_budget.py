@@ -27,7 +27,8 @@ from pollers import common  # noqa: E402
 
 STATE = "model_budget"
 GRACE_MIN = 3          # 재개 시각 뒤 여유
-DEFAULT_HOLD_MIN = 60  # 한도 문구는 있는데 재개 시각을 못 읽으면
+DEFAULT_HOLD_MIN = 60  # 한도 문구는 있는데 재개 시각을 못 읽으면 — 최대 이만큼(다음 정시까지, next_check)
+MIN_HOLD_MIN = 5       # 정시가 이보다 가까우면 그다음 정시
 MAX_HOLD_DAYS = 8      # 잘못 읽은 날짜로 오래 멈추지 않게
 # 앱 예약: "You've hit your Fable limit · resets 4pm (Asia/Seoul)" · 헤드리스(claude -p): "You've reached your Fable limit. Switch to another model…"(재개 시각 없음)
 # 옛 문구: "Claude AI usage limit reached|1764000000"(재개 시각 epoch), "5-hour limit reached · resets 3pm"
@@ -45,8 +46,15 @@ class Hold(RuntimeError):
     """모델 사용 한도 대기 — 실패가 아니다. 받는 쪽은 작업을 남겨 두고 재개 뒤 다시 한다"""
 
 
+def next_check(now):
+    """재개 시각이 없는 한도 문구 → 다음 정시(2026-11-24: 헤드리스 문구엔 시각이 없어 매번 60분을 잡았다 — 15:49에 걸려 16:52까지 막혀
+    16:00 리셋 뒤 52분을 놀았다. 앱 문구의 리셋은 'resets 4pm'처럼 정시라 정시마다 한 번 확인한다)"""
+    top = now.replace(minute=0, second=0, microsecond=0) + timedelta(hours=1)
+    return top if top - now >= timedelta(minutes=MIN_HOLD_MIN) else top + timedelta(hours=1)
+
+
 def parse(text, now=None):
-    """한도 문구 → (종류, 재개 시각 KST) 또는 None. 재개 시각을 못 읽으면 지금 + DEFAULT_HOLD_MIN"""
+    """한도 문구 → (종류, 재개 시각 KST) 또는 None. 재개 시각을 못 읽으면 다음 정시(next_check)"""
     now = now or common.now_kst()
     text = str(text or "")
     m = next((x for x in (rx.search(text) for rx in LIMIT_RES) if x), None)
@@ -59,7 +67,7 @@ def parse(text, now=None):
         return kind, min(at, now + timedelta(days=MAX_HOLD_DAYS))
     r = RESET_RE.search(m.group("rest") or "")
     if not r:
-        return kind, now + timedelta(minutes=DEFAULT_HOLD_MIN)
+        return kind, next_check(now)
     off = TZ.get((r.group("tz") or "Asia/Seoul").strip().lower(), 9)
     tz = timezone(timedelta(hours=off))
     local = now.astimezone(tz)
@@ -70,14 +78,14 @@ def parse(text, now=None):
     if ap == "am" and h == 12:
         h = 0
     if h > 23 or mi > 59:
-        return kind, now + timedelta(minutes=DEFAULT_HOLD_MIN)
+        return kind, next_check(now)
     if r.group("mon") and r.group("mon").lower()[:3] in MON:
         mon, day = MON[r.group("mon").lower()[:3]], int(r.group("day"))
         year = local.year + (1 if mon < local.month - 6 else 0)
         try:
             at = datetime(year, mon, day, h, mi, tzinfo=tz)
         except ValueError:
-            return kind, now + timedelta(minutes=DEFAULT_HOLD_MIN)
+            return kind, next_check(now)
     else:
         at = local.replace(hour=h, minute=mi, second=0, microsecond=0)
         if at <= local:
@@ -143,7 +151,7 @@ def alert_once(now=None):
     st = blocked(now)
     if not st or st.get("alerted") == st.get("since"):   # 한도 구간(since)마다 한 번
         return False
-    eta = f"{when(st)} KST 재개 예정" if st.get("reset_known") else f"재개 시각이 문구에 없어 {DEFAULT_HOLD_MIN}분마다 한 번만 다시 확인합니다"
+    eta = f"{when(st)} KST 재개 예정" if st.get("reset_known") else "재개 시각이 문구에 없어 정시마다 한 번만 다시 확인합니다"
     try:
         import notify
         notify.send(f"[Chiip Ops] 모델 사용 한도({st.get('kind')}) — {eta}. 그때까지 판단 회차(Pulse·Ten-bagger·Analysis 등)는 "
