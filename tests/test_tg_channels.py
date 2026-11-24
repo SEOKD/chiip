@@ -96,7 +96,8 @@ class TestChannels(unittest.TestCase):
         self.assertEqual(notify.readable("**■ 결론**\n- 하나\n- 둘"), "**■ 결론**\n- 하나\n- 둘")
 
     def test_config_has_all_channels(self):
-        self.assertEqual(len(tg.config()["channels"]), 17)   # 2026-11-10 js_Enews 추가(마스터 지시)
+        # 2026-11-10 js_Enews 추가(마스터 지시) → 17, 2026-11-19 aethersemiconductor(이전한 새 채널, 2012785f)·silvermansachs_routine(abb23975) 추가 → 19
+        self.assertEqual(len(tg.config()["channels"]), 19)
 
 
 if __name__ == "__main__":

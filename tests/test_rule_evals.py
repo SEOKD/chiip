@@ -204,15 +204,19 @@ class TestPeek(unittest.TestCase):
     def test_peek_does_not_touch_state(self):
         with mock.patch.object(pulse_trigger.pulse, "inbox_items", return_value=[{"source_class": "x", "title": "t"}]), mock.patch.object(pulse_trigger.pulse, "score", return_value=1), \
                 mock.patch.object(pulse_trigger.pulse, "fetch_alerts", return_value=[]), mock.patch.object(pulse_trigger.pulse, "alpha_queue", return_value=[]), \
-                mock.patch.object(pulse_trigger.common, "load_state", return_value={}), mock.patch.object(pulse_trigger.common, "save_state") as save:
-            for name in ("fetch_papers", "fetch_deals", "fetch_financing", "fetch_shorts", "fetch_new_listings", "fetch_consumer_spikes"):
-                setattr(self, name, mock.patch.object(pulse_trigger.pulse, name, return_value=[]))
-                getattr(self, name).start()
-                self.addCleanup(getattr(self, name).stop)
+                mock.patch.object(pulse_trigger.common, "load_state", return_value={}), mock.patch.object(pulse_trigger.common, "save_state") as save, \
+                mock.patch("github_usage.due", return_value=False), mock.patch.object(pulse_trigger.notify, "send") as send:
+            # 수집 함수는 모두 막는다 — 새로 붙은 함수(실적·텔레그램·뉴스 등)가 실제 네트워크를 타 13초 걸렸다(2026-11-24 회귀 시험 정리)
+            for name in [n for n in dir(pulse_trigger.pulse) if n.startswith("fetch_")]:
+                p = mock.patch.object(pulse_trigger.pulse, name, return_value=[])
+                p.start()
+                self.addCleanup(p.stop)
             material, msg = pulse_trigger.pulse.run(peek=True)
         self.assertTrue(material)
         self.assertIn("모델 회차", msg)
-        save.assert_not_called()
+        # 판정만 하는 peek는 Pulse 자기 상태(워터마크·잠금)를 쓰지 않는다. 하위 장부의 첫 기준선 저장은 load_state를 빈 값으로 막은 탓이라 세지 않는다
+        self.assertNotIn(pulse_trigger.pulse.STATE, [c.args[0] for c in save.call_args_list])
+        send.assert_not_called()
 
 
 class TestVerifierLock(unittest.TestCase):

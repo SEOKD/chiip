@@ -19,8 +19,10 @@ class TestBudgetLens(unittest.TestCase):
     def test_box_shows_per_business_budget(self):
         box = next(b for b in nv.lens_boxes({"lenses": [LENS]}) if b["title"] == "고객의 지출 예산")
         row = dict(box["lines"])["사업별 예산"]
-        self.assertIn("Grow(광고) — 고객 OPEX(앱 개발사 이용자 확보 광고비), 매출의 70%", row)
-        self.assertIn("Create(엔진 구독) — 고객 OPEX", row)
+        # 비중(결론)부터, 분류마다 한 줄(dffc9a08 — '매출의 59%: 사업 — 고객 CAPEX(…) · 동인: …', 비중 큰 순)
+        self.assertIn("**매출의 70%**: Grow(광고) — 고객 OPEX(앱 개발사 이용자 확보 광고비)", row)
+        self.assertIn("비중 미확인: Create(엔진 구독) — 고객 OPEX", row)
+        self.assertLess(row.index("매출의 70%"), row.index("비중 미확인"))
 
     def test_legacy_name_still_read_and_flags_missing_split(self):
         box = next(b for b in nv.lens_boxes({"lenses": [{"lens": "CAPEX 낙수효과", "change": "해당 없음(소프트웨어)"}]}) if b["title"] == "고객의 지출 예산")

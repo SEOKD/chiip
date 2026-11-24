@@ -11,7 +11,13 @@ sys.path.insert(0, str(ROOT / "radar"))
 sys.path.insert(0, str(ROOT / "scripts" / "focus"))
 
 from pollers import common, gate  # noqa: E402
-import score  # noqa: E402
+import importlib.util  # noqa: E402
+
+# scripts/alpha/score.py와 이름이 같아, 전체 시험에서 먼저 불린 알파 score가 sys.modules에 남아 이 시험이 엉뚱한 모듈을 읽었다(2026-11-24 회귀 시험 정리).
+# 포커스 score는 파일 경로로 고유한 이름을 붙여 읽는다
+_spec = importlib.util.spec_from_file_location("focus_score", ROOT / "scripts" / "focus" / "score.py")
+score = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(score)
 
 
 def item(doc_type, ents=(), title="t", publisher=None, iid="x:1"):

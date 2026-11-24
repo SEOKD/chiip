@@ -51,8 +51,14 @@ class TestDeliveryGate(unittest.TestCase):
         self.src = rep / "20261030_TST.json"
         self.src.write_text(json.dumps(DOC, ensure_ascii=False), encoding="utf-8")
         self.src.with_suffix(".html").write_text("<html></html>", encoding="utf-8")
+        # 2026-11-22부터 prepare(dry=True)는 상태 파일을 쓰지 않는다(dry가 실제 리포트의 GitHub 링크를 덮던 오류 수정, b014f40d).
+        # 발행 순서 관문을 재려면 진짜 prepare를 돌리되 GitHub 게시·옛 리포트 정리만 가짜로 바꾼다(2026-11-24 회귀 시험 정리)
+        fake_prune = type(sys)("prune_reports")
+        fake_prune.drop, fake_prune.remove = (lambda stem: []), (lambda stem: None)
         self.p = [patch.object(pt, "REP", rep), patch.object(pt, "STATE", rep / "delivery"), patch.object(pt, "LEDGER", rep / "delivery.csv"),
-                  patch.object(pt, "NOTION_LOG", rep / "notion_log.csv"), patch.object(pt, "ROOT", rep)]
+                  patch.object(pt, "NOTION_LOG", rep / "notion_log.csv"), patch.object(pt, "ROOT", rep),
+                  patch.object(pt.publish_report, "publish", side_effect=lambda files, title, drop=(): ([f"https://github.com/x/{Path(f).name}" for f in files], "abc1234")),
+                  patch.dict(sys.modules, {"prune_reports": fake_prune})]
         for x in self.p:
             x.start()
 
@@ -65,8 +71,15 @@ class TestDeliveryGate(unittest.TestCase):
         with self.assertRaises(SystemExit):
             pt.send(self.src, dry=True)
 
-    def test_notion_fail_then_followup(self):
+    def test_dry_prepare_leaves_no_state(self):   # 2026-11-22 — 시험 실행이 실제 상태·장부를 덮지 않는다
         r = pt.prepare(self.src, dry=True)
+        self.assertIn("dry", r)
+        self.assertIsNone(pt.load(self.src))
+        with self.assertRaises(SystemExit):
+            pt.send(self.src, dry=True)
+
+    def test_notion_fail_then_followup(self):
+        r = pt.prepare(self.src)
         self.assertTrue(r["github_md"].endswith("20261030_TST.md"))
         self.assertTrue(Path(self.tmp.name, r["notion_body"]).exists())
         pt.notion(self.src, fail="커넥터 오류")
@@ -86,7 +99,7 @@ class TestDeliveryGate(unittest.TestCase):
         self.assertIn("skipped", pt.send(self.src, dry=True))   # 노션이 뒤늦게 올라가도 후속 알림 없음, 두 번 보내지 않는다
 
     def test_full_success_message_has_both_links(self):
-        r = pt.prepare(self.src, dry=True)
+        r = pt.prepare(self.src)
         art = Path(self.tmp.name, r["artifact_page"]).read_text(encoding="utf-8")
         self.assertTrue(art.startswith("<title>TST 텐배거 리포트 10·30</title>"))   # 게시 뼈대가 씌워지므로 doctype·body 없음
         self.assertNotIn("<body>", art)
@@ -108,11 +121,11 @@ class TestDeliveryGate(unittest.TestCase):
         return src
 
     def test_new_date_overwrites_existing_page(self):
-        pt.prepare(self.src, dry=True)
+        pt.prepare(self.src)
         pt.artifact(self.src, url="https://claude.ai/code/artifact/a")
         pt.notion(self.src, page="https://app.notion.com/p/old", stock="https://app.notion.com/p/st")
         later = self.later_report()
-        r = pt.prepare(later, dry=True)
+        r = pt.prepare(later)
         pt.artifact(later, url="https://claude.ai/code/artifact/a")
         self.assertEqual((r["notion_existing_page"], r["notion_stock_page"]), ("https://app.notion.com/p/old", "https://app.notion.com/p/st"))
         pt.notion(later, page="https://app.notion.com/p/old?pvs=204")
@@ -121,11 +134,11 @@ class TestDeliveryGate(unittest.TestCase):
         self.assertEqual(pt.notion_rows()[0]["stock_page"], "https://app.notion.com/p/st")
 
     def test_second_page_refused_until_old_removed(self):
-        pt.prepare(self.src, dry=True)
+        pt.prepare(self.src)
         pt.artifact(self.src, url="https://claude.ai/code/artifact/a")
         pt.notion(self.src, page="https://app.notion.com/p/old")
         later = self.later_report()
-        pt.prepare(later, dry=True)
+        pt.prepare(later)
         pt.artifact(later, url="https://claude.ai/code/artifact/a")
         with self.assertRaises(SystemExit):
             pt.notion(later, page="https://app.notion.com/p/new")

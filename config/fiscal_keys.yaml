@@ -79,6 +79,9 @@ keys:
   no-kongsberg:
     checked: '2026-10-30'
     key: OB_KOG
+  us-imsr:
+    checked: '2026-11-24'
+    key: NASDAQ_IMSR
   us-lth:
     checked: '2026-11-13'
     key: NYSE_LTH
@@ -161,6 +164,9 @@ keys:
   us-vsat:
     checked: '2026-10-31'
     key: NASDAQ_VSAT
+  us-xe:
+    checked: '2026-11-24'
+    key: NASDAQ_XE
   us-yss:
     checked: '2026-10-31'
     key: NYSE_YSS

@@ -26,6 +26,16 @@ def tagged():
     return dp
 
 
+# 미국 PPI 이력(history.json 꼴) — 12개월 −2.0%(DATA의 전년비와 같게), 6개월 −1.0%, 3개월 −0.5%
+HIST = {"inputs": {"memory": {"ppi": {"us": {"2025-09": 100.0, "2026-03": 99.0, "2026-06": 98.5, "2026-09": 98.0}}}}}
+
+
+def assert_only_unmapped(tc, blocks):
+    """표·수치 없이 미연결 공개 문단만 남았나"""
+    tc.assertFalse([b for b in blocks if b.get("type") != "p"], blocks)
+    tc.assertTrue(all("미연결" in b["text"] and "%" not in b["text"] for b in blocks), blocks)
+
+
 class TestParsers(unittest.TestCase):
     def test_jsonstat_months(self):
         doc = {"id": ["freq", "geo", "time"], "size": [1, 1, 3], "value": {"0": 1.5, "2": 2.5}, "dimension": {"time": {"category": {"index": {"2026-01": 0, "2026-02": 1, "2026-03": 2}}}}}
@@ -134,7 +144,8 @@ class TestReport(unittest.TestCase):
         self.assertAlmostEqual(cover, 0.6 * 0.6 * 0.5 / 0.6)
 
     def test_blocks_show_proxy_mark_and_source(self):
-        text = str(iv.margin_blocks(tagged(), DATA))
+        # 2026-11-14(a3f3cdf3)부터 3·6·12개월 변화는 이력 파일(history.json)로 잰다 — 실제 파일 대신 고정 이력을 넘긴다(2026-11-24 회귀 시험 정리)
+        text = str(iv.margin_blocks(tagged(), DATA, HIST, {}))
         self.assertIn("-2.0%*", text)
         self.assertIn("+4.0%", text)
         self.assertIn("OPM은", text)
@@ -145,14 +156,14 @@ class TestReport(unittest.TestCase):
     def test_valuation_line(self):
         self.assertIn("투입 물가 점검", iv.valuation_line(tagged(), DATA)["text"])
 
-    def test_untagged_report_stays_quiet(self):
+    def test_untagged_report_stays_quiet(self):   # 표·수치는 없고, 남는 것은 '물가 지수를 붙이지 못한 항목(미연결)' 공개 한 줄뿐(a3f3cdf3 설계)
         dp = {"margin": MARGIN, "supply": DP["supply"]}
-        self.assertEqual(iv.margin_blocks(dp, DATA), [])
+        assert_only_unmapped(self, iv.margin_blocks(dp, DATA, {}, {}))
         self.assertEqual(iv.supply_blocks(dp, DATA), [])
         self.assertIsNone(iv.valuation_line(dp, DATA))
 
     def test_no_data_file_stays_quiet(self):
-        self.assertEqual(iv.margin_blocks(tagged(), {}), [])
+        assert_only_unmapped(self, iv.margin_blocks(tagged(), {}, {}, {}))
 
     def test_unknown_input_stops(self):
         dp = tagged()

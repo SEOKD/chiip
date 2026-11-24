@@ -84,5 +84,5 @@ class TestWeek(unittest.TestCase):   # 2026-11-22 마스터 지시 — 주 1회 
                 (d / f"{day}_{rid}.json").write_text("{}", encoding="utf-8")
             log.write_text("date,id,ticker,html,view\n" + "".join(f"{day},{rid},{rid.upper()},{d / f'{day}_{rid}.html'},x\n" for day, rid in rows), encoding="utf-8")
             with mock.patch.object(ra, "LOG", log), mock.patch.object(ra, "ROOT", d):
-                got = [(r["date"], r["id"]) for r in ra.week_reports("2026-11-22")]
+                got = [(r["date"], r["id"]) for r in ra.week_reports("2026-11-22", {"week_max": 10})]   # 설정을 넘긴다 — ROOT를 임시 폴더로 바꿔 config/proviser.yaml이 없다(주 10건 상한 e6c7fd6c 뒤, 2026-11-24 정리)
         self.assertEqual(got, [("2026-11-16", "a"), ("2026-11-18", "c"), ("2026-11-19", "d"), ("2026-11-22", "b")])

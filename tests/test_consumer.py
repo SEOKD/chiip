@@ -2,6 +2,7 @@
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "radar"))
@@ -54,7 +55,9 @@ class TestPhase(unittest.TestCase):
                 "b": {"q": quarters([100, 100, 100, 100, 102, 102, 102, 102, 103, 125])},
                 "c": {"q": quarters([100, 100, 100, 100, 150, 150, 150, 150, 160, 150], inv=[10] * 5 + [10, 10, 10, 10, 18])}}
         retail = {"c": {"crowding_pct": 95, "accel": 1.0}}
-        rows, watch = consumer.evaluate(CFG, fund, {}, retail, {})
+        # evaluate는 넘긴 지도에 실제 자동 지도(config/consumer_auto.yaml, d73e9650)를 더한다 — 시험 지도만 보게 막는다(2026-11-24 회귀 시험 정리)
+        with mock.patch.object(consumer, "all_companies", side_effect=lambda cfg: cfg.get("companies") or []):
+            rows, watch = consumer.evaluate(CFG, fund, {}, retail, {})
         ph = {r["id"]: r["phase"] for r in rows}
         self.assertEqual(ph, {"a": "structural", "b": "upcycle", "c": "late", "d": "nodata"})
         self.assertIn("a", watch)

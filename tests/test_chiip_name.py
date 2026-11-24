@@ -12,7 +12,11 @@ from units import chiip_name  # noqa: E402
 
 class TestChiipName(unittest.TestCase):
     def test_word_is_replaced(self):
-        for a, b in (("치입 판단", "Chiip 판단"), ("[치입 펄스]", "[Chiip 펄스]"), ("치입은 본다", "Chiip은 본다"), ("(치입 계산)", "(Chiip 계산)")):
+        for a, b in (("[치입 펄스]", "[Chiip 펄스]"), ("치입은 본다", "Chiip은 본다"), ("(치입 계산)", "(Chiip 계산)")):
+            self.assertEqual(chiip_name(a), b)
+
+    def test_view_is_first_person(self):   # 2026-11-20 마스터 지시 '견해는 1인칭' — 'Chiip 판단·관점·시각'은 '제 …'(249ed234)
+        for a, b in (("치입 판단", "제 판단"), ("치입 관점", "제 관점"), ("Chiip 시각", "제 시각")):
             self.assertEqual(chiip_name(a), b)
 
     def test_ordinary_korean_is_untouched(self):

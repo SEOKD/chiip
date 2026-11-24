@@ -18,8 +18,9 @@ import report_html  # noqa: E402
 
 
 def plain(h):
-    """부호 % 색 꼬리표(span.up·dn)를 벗긴 HTML"""
-    return re.sub(r'<span class="(?:up|dn)">([^<]*)</span>', r'\1', h)
+    """부호 % 색 꼬리표(span.up·dn)와 숫자 강조(b.num — bca89b33 '금액·배수·% 굵은 남색')를 벗긴 HTML"""
+    h = re.sub(r'<span class="(?:up|dn)">([^<]*)</span>', r'\1', h)
+    return re.sub(r'<b class="num">([^<]*)</b>', r'\1', h)
 import report_md  # noqa: E402
 import report_notion  # noqa: E402
 import revision_view as rv  # noqa: E402
