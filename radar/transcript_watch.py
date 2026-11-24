@@ -33,7 +33,11 @@ TPL = common.ROOT / "scripts" / "fiscal" / "templates" / "transcript_check.js"
 EARN = common.ROOT / "outputs" / "article" / "earnings"
 WAIT_DAYS = 10        # 발표 뒤 이 기간까지 전문을 기다린다
 CALL_LAG_H = 1        # 예정 시각 + 이 시간이 지나야 콜이 끝난 것으로 본다
-EVERY_MIN = 20        # 대기 건이 있을 때 확인 간격
+EVERY_MIN = 20        # 대기 건이 있을 때 확인 간격 — 콜이 끝난 지 24시간 안(STEPS 첫 칸)
+# 2026-11-24 점검 D2(docs/audit/20261124_pipeline_audit.md): 찾은 전문 121건의 게재 지연은 중앙 8.1시간·90% 11.9시간·99% 24시간 안, 48시간 넘은 건 0건.
+# 그런데 대기는 10일(WAIT_DAYS)이고 20분마다 확인해, 오래된 대기 건이 Pulse 모델 회차를 계속 열었다(11/22~24 회차 204번 중 93번이 이 확인).
+# 콜 종료 뒤 경과로 간격을 늘린다: 24시간 안 20분 · 48시간 안 2시간 · 그 뒤 12시간(10일까지 기다리는 것은 그대로)
+STEPS = ((24, 20), (48, 120), (None, 720))
 MAX_CHECK = 36        # 한 번에 확인하는 건수(execute_code 60초 안)
 PT_ONLY = ("XKRX_",)  # 전문을 기다리지 않는 시장 — 당기·직전 PT로 정리한다
 
@@ -116,16 +120,29 @@ def to_summarize(st):
     return sorted([r for r in st.get("events", {}).values() if r["status"] == "found"], key=lambda r: (r.get("tier", 2), r["utc"]))
 
 
+def interval_min(r, now):
+    """이 대기 건의 확인 간격(분) — 콜이 끝난 뒤 경과 시간으로 STEPS에서 고른다"""
+    try:
+        age = (now - datetime.fromisoformat(r["utc"])).total_seconds() / 3600 - CALL_LAG_H
+    except (KeyError, TypeError, ValueError):
+        return EVERY_MIN
+    for lim, every in STEPS:
+        if lim is None or age <= lim:
+            return every
+    return EVERY_MIN
+
+
 def due(now=None, st=None):
-    """펄스 관문용 — 확인할 대기 건이 있고 마지막 확인 뒤 EVERY_MIN이 지났거나, 정리할 전문이 남았으면 True"""
+    """펄스 관문용 — 확인할 대기 건이 있고 마지막 확인 뒤 간격(대기 건 중 가장 짧은 것, STEPS)이 지났거나, 정리할 전문이 남았으면 True"""
     now = now or datetime.now(timezone.utc)
     st = refresh(st if st is not None else common.load_state(STATE, {}), now)
     last = st.get("last_check")
     waiting = pending(st, now)
-    check = bool(waiting) and (not last or datetime.fromisoformat(last) + timedelta(minutes=EVERY_MIN) <= now)
+    every = min((interval_min(r, now) for r in waiting), default=EVERY_MIN)
+    check = bool(waiting) and (not last or datetime.fromisoformat(last) + timedelta(minutes=every) <= now)
     cal = calendar_stale(now)
     return {"due": check or bool(to_summarize(st)) or bool(cal), "check": check, "waiting": len(waiting), "to_summarize": len(to_summarize(st)),
-            "calendar": cal}
+            "calendar": cal, "every_min": every}
 
 
 WATCH = common.ROOT / "config" / "earnings_watch.yaml"

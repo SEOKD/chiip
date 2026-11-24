@@ -206,6 +206,8 @@ def write(pid):
     exe = shutil.which("claude")
     if not exe:
         raise RuntimeError("claude CLI 없음")
+    import model_budget   # 사용 한도 대기 중이면 띄우지 않는다(2026-11-24 점검 D1)
+    model_budget.guard()
     cmd = [exe, "-p", f"/article-draft {pid}", "--model", MODEL, "--output-format", "json",
            "--allowedTools", "Read,Glob,Grep,Write,Edit,WebSearch,WebFetch,Bash(py scripts/*),Bash(py radar/*)",
            "--permission-mode", "dontAsk", "--permission-prompts", "none"]
@@ -214,6 +216,7 @@ def write(pid):
                           stdin=subprocess.DEVNULL, timeout=2400, creationflags=flags)
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     if proc.returncode != 0 or out.get("is_error"):
+        model_budget.check_failure(str(out.get("result", proc.stderr)), "article_draft")
         raise RuntimeError(f"claude 실패({proc.returncode}): {str(out.get('result', proc.stderr))[:200]}")
 
 

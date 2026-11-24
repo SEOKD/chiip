@@ -277,6 +277,8 @@ def run_job(job, tok):
     exe = shutil.which("claude")
     if not exe:
         raise RuntimeError("claude CLI 없음")
+    import model_budget   # 사용 한도 대기 중이면 띄우지 않는다 — Hold는 실패가 아니라 대기(작업을 남긴다, 2026-11-24 점검 D1)
+    model_budget.guard()
     prompt = f"/notion-intake {job['role']} {job['page_id']} {job['inbox']}"
     cmd = [exe, "-p", prompt, "--model", MODEL.get(job["role"], "sonnet"), "--output-format", "json",
            "--allowedTools", "Read,Glob,Grep,Write,Edit,WebSearch,WebFetch,Bash(py scripts/*),Bash(py radar/*)",
@@ -286,6 +288,7 @@ def run_job(job, tok):
                           stdin=subprocess.DEVNULL, timeout=2400, creationflags=flags)
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     if proc.returncode != 0 or out.get("is_error"):
+        model_budget.check_failure(str(out.get("result", proc.stderr)), "notion_watch")
         raise RuntimeError(f"claude 실패({proc.returncode}): {str(out.get('result', proc.stderr))[:200]}")
     return out
 
@@ -401,6 +404,9 @@ def worker():
                     pass
                 notion_state.mark(job["page_id"], edited, str(tg.relative_to(common.ROOT).as_posix()) if tg.exists() else "")
             except Exception as exc:
+                if type(exc).__name__ == "Hold":   # 모델 사용 한도 — 실패로 표시하지 않고 대기열에 남겨 재개 뒤 이 작업부터(2026-11-24 점검 D1)
+                    common.record_health(SOURCE_ID, False, f"대기 {job['title'][:30]}: {exc}")
+                    break
                 common.record_health(SOURCE_ID, False, f"작업 실패 {job['title'][:30]}: {exc}")
                 notify.send(f"[노션 감시] '{job['title'][:40]}' 처리 실패 — {type(exc).__name__}. 다음 회차에 다시 시도하지 않음(수정하면 재감지)", "NOTION")
                 notion_state.mark(job["page_id"], job.get("edited"), "실패")

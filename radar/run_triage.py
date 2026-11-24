@@ -89,6 +89,8 @@ def claude_exe():
 
 
 def run_claude(prompt, model, schema=None, timeout=900):
+    import model_budget   # 사용 한도 대기 중이면 띄우지 않는다 — Hold(RuntimeError)를 던진다(2026-11-24 점검 D1)
+    model_budget.guard()
     cmd = [claude_exe(), "-p", prompt, "--model", model, "--output-format", "json",
            "--allowedTools", "Read,Glob,Grep,Write,Edit,Bash(py scripts/*)",
            "--permission-mode", "dontAsk", "--permission-prompts", "none"]
@@ -101,6 +103,7 @@ def run_claude(prompt, model, schema=None, timeout=900):
     calls_today(1)
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     if proc.returncode != 0 or out.get("is_error"):
+        model_budget.check_failure(str(out.get("result", proc.stderr)), "run_claude")   # 한도 문구면 Hold
         raise RuntimeError(f"claude 실패({proc.returncode}): {str(out.get('result', proc.stderr))[:200]}")
     return out
 

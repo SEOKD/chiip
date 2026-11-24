@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 import notify  # noqa: E402
 import pulse  # noqa: E402
+import model_budget  # noqa: E402
 import run_ledger  # noqa: E402
 
 STATE = "pulse_trigger"
@@ -86,10 +87,16 @@ def launch(c):
     ok = proc.returncode == 0 and not out.get("is_error") and (ran or yielded)
     usage = out.get("usage") or {}
     denied = [denial(d) for d in out.get("permission_denials") or []]
+    error, hold = None, None
+    if not ok:   # 실패 문구를 남긴다 — 사용 한도면 재개 시각까지 다시 띄우지 않는다(2026-11-24 점검 D1, radar/model_budget.py)
+        detail = str(out.get("result") or proc.stderr or proc.stdout or "")[:300]
+        hold = model_budget.note(detail, "pulse_trigger")
+        error = (f"사용 한도({hold.get('kind')}) · {model_budget.when(hold)} 재개" if hold
+                 else f"종료 코드 {proc.returncode}" + ("" if ran else " · 관문 미실행") + (f" · {detail[:120]}" if detail.strip() else ""))
     return ok, {"seconds": round(time.time() - start), "cost_usd": out.get("total_cost_usd"), "turns": out.get("num_turns"), "ran": ran, "yielded": yielded, "denied": denied[:8],
                 "models": sorted(out.get("modelUsage") or {}),
                 "input_tokens": usage.get("input_tokens"), "output_tokens": usage.get("output_tokens"),
-                "error": None if ok else f"종료 코드 {proc.returncode}" + ("" if ran else " · 관문 미실행")}
+                "error": error, "budget_hold": bool(hold)}
 
 
 def urgent(c, now=None):
@@ -145,6 +152,10 @@ def main(argv):
         run_ledger.record("gate", "chiip-pulse", outcome="종료", via="trigger")
         common.save_state(STATE, st)
         return 0
+    if model_budget.blocked(now):   # 사용 한도 — 재개 전에는 띄워도 4초 만에 실패한다(2026-11-24 점검 D1). 상한을 세지 않고 정지 알림 대신 한도 알림 한 번
+        model_budget.alert_once(now)
+        common.save_state(STATE, st)
+        return 0
     stalled = app_stalled(c, now)
     if stalled and st.get("stall_alert") != stalled:   # 정지 구간마다 한 번만
         st["stall_alert"] = stalled
@@ -160,7 +171,8 @@ def main(argv):
     if count >= c["daily_model_cap"]:
         if st.get("cap_alert") != day:
             st["cap_alert"] = day
-            alert(f"오늘 모델 회차 상한 {c['daily_model_cap']}회에 닿아 멈췄습니다. 수집은 계속되고 자료는 다음 날 회차가 잡습니다.")
+            alert(f"오늘 문턱의 비상 모델 회차 상한 {c['daily_model_cap']}회에 닿아 비상 경로만 멈췄습니다. 수집과 앱 예약 Pulse는 계속되고, "
+                  "남은 자료는 앱 예약 회차(없으면 다음 날 비상 회차)가 잡습니다.")
         common.save_state(STATE, st)
         return 0
     st["count"] = {day: count + 1}
@@ -169,6 +181,11 @@ def main(argv):
     run_ledger.record("model", "chiip-pulse", ok=ok, **fields)
     st = common.load_state(STATE, {})
     st["heartbeat"] = common.iso(common.now_kst())
+    if fields.get("budget_hold"):   # 한도 실패는 상한에서 돌려주고 연속 실패로 세지 않는다 — 한도 알림 한 번으로 갈음
+        st["count"] = {day: max(0, (st.get("count") or {}).get(day, 1) - 1)}
+        model_budget.alert_once()
+        common.save_state(STATE, st)
+        return 1
     st["fails"] = 0 if ok else st.get("fails", 0) + 1
     if st["fails"] == c["fail_alert_after"]:
         alert(f"모델 회차가 {st['fails']}번 연속 실패했습니다({fields.get('error')}). 자료는 남아 있어 다음 회차가 다시 시도합니다.")

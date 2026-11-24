@@ -125,7 +125,8 @@ class TestPulseTrigger(unittest.TestCase):
                         mock.patch.object(pulse_trigger.common, "load_state", side_effect=lambda *a: dict(self.st)),
                         mock.patch.object(pulse_trigger.common, "save_state", side_effect=lambda _, s: self.st.update(s)),
                         mock.patch.object(pulse_trigger.common, "stay_awake"),
-                        mock.patch.object(pulse_trigger.run_ledger, "record")]
+                        mock.patch.object(pulse_trigger.run_ledger, "record"),
+                        mock.patch.object(pulse_trigger, "app_stalled", return_value=None)]   # 실제 실행 장부(앱 예약 정지 여부)를 읽지 않게 — 2026-11-24 점검: 한도로 앱이 멈춘 날 알림이 하나 더 세졌다
         for p in self.patches:
             p.start()
             self.addCleanup(p.stop)

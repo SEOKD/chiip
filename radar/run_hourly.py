@@ -105,6 +105,11 @@ JOBS = [  # (job id, module, interval_min)
 # run_poll과 같게 ① 밀린 비율(경과 ÷ 주기) 큰 작업부터 ② 작업마다 별도 프로세스 + 시간 한도 ③ 예산을 넘기면 새 작업을 시작하지 않는다.
 BUDGET_MIN = 24
 JOB_TIMEOUT_MIN = 10
+# 긴 작업(2026-11-24 점검 D3, docs/audit/20261124_pipeline_audit.md): 일괄 10분 한도에 끊겨 끝나지 못하던 작업 — trade-ppi(마지막 성공 11/10)·
+# trade-hs(성공 기록 없음, 급등 품목 파일 9일 묵음)·src-attention(성공 기록 없음, 13번 연속 시간 초과)·jp-ir-audit(주 1회, 약 10분).
+# 시간 초과도 실행으로 기록돼(mark_run) 다음 날 같은 한도에 다시 끊겼다. 이 작업들은 한도만큼 예산이 남은 회차에만 시작하고, 모자라면 다음 회차로 미룬다
+# (밀린 비율이 커져 곧 회차 맨 앞에 선다). 25분 + 시작 비용은 Windows 작업 30분 한도 안이다
+HEAVY = {"trade-ppi": 25, "trade-hs": 25, "src-attention": 25, "jp-ir-audit": 25}
 RADAR_JOBS = ("src-fedreg", "src-legistar", "korea-watch")  # 레이더 inbox에 새 항목을 넣는 작업
 
 
@@ -165,15 +170,21 @@ def main(argv):
     t0 = time.monotonic()
     due = [(j, m, e) for j, m, e in JOBS if force or common.is_due(j, e)]
     due.sort(key=lambda x: -overdue(x[0], x[2]))
-    new_radar, left = False, []
+    new_radar, left, heavy_left = False, [], []
     for jid, mod, every in due:
         spent = (time.monotonic() - t0) / 60
         if spent >= BUDGET_MIN:
             left.append(jid)
             continue
-        new_radar |= run_child(jid, min(JOB_TIMEOUT_MIN, BUDGET_MIN + 4 - spent) * 60)
+        limit, room = HEAVY.get(jid, JOB_TIMEOUT_MIN), BUDGET_MIN + 4 - spent
+        if jid in HEAVY and room < limit:   # 긴 작업은 한도만큼 시간이 남은 회차에만(D3)
+            heavy_left.append(jid)
+            continue
+        new_radar |= run_child(jid, min(limit, room) * 60)
     if left:
         print(f"시간 예산 {BUDGET_MIN}분 소진 — 다음 회차로: {', '.join(left)}")
+    if heavy_left:
+        print(f"긴 작업은 {max(HEAVY[j] for j in heavy_left)}분이 남은 회차에 — 다음 회차로: {', '.join(heavy_left)}")
     if new_radar:
         import run_triage
         run_triage.main([])

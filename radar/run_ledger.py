@@ -94,10 +94,39 @@ def report(days=7, root=ROOT):
     tg = [p for g in TG.values() for p in root.glob(g) if p.stat().st_mtime >= first]
     linked = sum(text_sha(p.read_text(encoding="utf-8", errors="replace")) in sent for p in tg)
     gates = [r for r in rs if r["kind"] == "gate"]
+    models = [r for r in rs if r["kind"] == "model"]
     return {"rows": len(rs), "kinds": dict(Counter(r["kind"] for r in rs)),
             "versioned": sum(bool(r.get("commit")) for r in rs) / len(rs),
             "tg_files": len(tg), "tg_linked": linked,
-            "empty_gate_rate": sum(r.get("outcome") == "종료" for r in gates) / len(gates) if gates else None}
+            "empty_gate_rate": sum(r.get("outcome") == "종료" for r in gates) / len(gates) if gates else None,
+            "headless": {"runs": len(models), "failed": sum(not r.get("ok") for r in models), "budget_hold": sum(bool(r.get("budget_hold")) for r in models)},
+            "pulse": pulse_yield(days, root)}
+
+
+# 회차를 여는 '처리할 일' 표시 — radar/pulse.py가 회차 파일에 남긴다(2026-11-24 점검 D2)
+DUE_KEYS = ("transcripts", "jp_transcripts", "exclusive", "repair", "social", "inst13f", "fiscal_ir_docs", "industry_event", "ib_digest", "channel_check",
+            "gpu_weekly", "token_index", "memory_spot", "spot_report", "gpu_daily", "report_requests")
+
+
+def pulse_yield(days=7, root=ROOT):
+    """Pulse 모델 회차 효율(2026-11-24 점검 D2) — 회차 파일(radar/pulse/*.json) 중 텔레그램 묶음(_tg.txt)을 낸 비율과, 회차를 연 이유.
+    11/17~23: 회차 738번 중 발송 80번(11%). 회차를 연 이유는 텔레그램 채널 글이 아니라 늘 켜진 '처리할 일' 표시(어닝콜 전문 확인·IB Digest·커뮤니티 급증)였다"""
+    start = datetime.now(KST) - timedelta(days=days)
+    runs, sent, why = 0, 0, Counter()
+    for p in sorted((root / "radar" / "pulse").glob("2*.json")):
+        try:
+            if datetime.strptime(p.stem, "%Y%m%d_%H%M").replace(tzinfo=KST) < start:
+                continue
+            d = json.loads(p.read_text(encoding="utf-8"))
+        except (ValueError, OSError):
+            continue
+        runs += 1
+        sent += (root / "outputs" / "article" / "sources" / f"{p.stem}_tg.txt").exists()
+        why.update(k for k in DUE_KEYS if isinstance(d.get(k), dict) and d[k].get("due"))
+        why.update(f"원천:{c}" for c in {s.get("source_class") for s in d.get("sources") or []})
+        if d.get("body_hold"):
+            why["body_hold"] += 1
+    return {"model_runs": runs, "with_send": sent, "yield": round(sent / runs, 3) if runs else None, "opened_by": dict(why.most_common(10))}
 
 
 if __name__ == "__main__":
