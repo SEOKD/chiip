@@ -62,3 +62,5 @@ knowledge/models/backtest/frames/
 knowledge/models/backtest/prices/
 # TickerTrends 수치 — 약관 내부용·제3자 공유 금지(2026-11-12)
 knowledge/models/tickertrends/
+knowledge/models/consumer_market/
+radar/drop/viral_launch/

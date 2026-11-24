@@ -1,0 +1,37 @@
+# Consumer Trends 판매 채널 층 (마스터 지시 2026-11-24 "Tickertrends·Jungle Scout·Fastmoss·Viral Launch를 Consumer Trends의 데이터 파이프라인으로 연결하라")
+# radar/consumer_market.py가 하루 1회 돈다. 기존 두 층(공식 통계·상향식 관심) 위에 '실제로 어디서 얼마나 팔리나'를 더한다.
+#
+# 원천 4곳 — 모두 유료. 키·내보내기 파일이 없으면 '키 대기'로 건너뛴다(마스터는 가입·키 발급만, docs/TODO_MASTER.md).
+#   tickertrends  브랜드·제품 검색·소셜 관심     radar/tickertrends.py가 수집 → 이 모듈은 latest.json을 읽어 합친다(호출 중복 없음)
+#   junglescout   아마존 판매 순위·추정 매출     공식 API developer.junglescout.com (2026-11-24 개요 페이지 확인)
+#                 헤더 Authorization: KEY_NAME:API_KEY · X-API-Type: junglescout · Accept: application/vnd.junglescout.v1+json
+#                 POST /api/product_database_query?marketplace=us · 300회/분. 키: JUNGLESCOUT_KEY_NAME, JUNGLESCOUT_API_KEY
+#   fastmoss      틱톡샵 판매 순위·GMV 추이      공식 API openapi.fastmoss.com (2026-11-24 문서 확인) · Authorization: Bearer <client_secret>
+#                 POST /product/v1/rank/topSelling · /product/v1/salesTrend · 호출당 $0.01부터(pagesize 10 단위). 키: FASTMOSS_API_KEY
+#                 광고 성과 엔드포인트는 문서에 없음('API coming') — 크리에이터 순위(/creator/v1/rank/topEcommerce)까지만
+#   viral_launch  아마존 판매 순위·브랜드 추정 매출  공개 API 확인 못 함 → 마스터가 화면에서 내보낸 CSV를 radar/drop/viral_launch/에 넣으면 읽는다(로그인 자동화·스크래핑 금지)
+# 경계: 네 곳 모두 유료 라이선스 — 수치는 내부용(internal_only). 저장 knowledge/models/consumer_market/(git 제외). 기사·리포트·노션·공개 산출물에 수치를 옮기지 않는다.
+#   약관 원문은 키 발급 때 다시 읽는다(Jungle Scout junglescout.com/terms-of-use, FastMoss 약관 — 2026-11-24 미확인).
+# 금지표: 순위·추정 매출 상승 → 회사 매출 확정 아님(추정치, 채널 하나). 아마존·틱톡샵 비중이 작은 회사는 신호가 약하다.
+
+alert:
+  new_top: 20            # 이 순위 안에 처음 들어온 매핑 브랜드 제품만 알림(prm 운영 가정, 피팅 전)
+  growth_rate: 1.0       # FastMoss growth_rate(전기 대비) 이 값 이상
+
+junglescout:
+  max_calls: 30
+  queries:               # product_database_query attributes(문서 예시 형태). 매출 순 상위
+    - {marketplace: us, categories: ["Beauty & Personal Care"], sort: "-revenue", size: 50}
+    - {marketplace: us, categories: ["Clothing, Shoes & Jewelry"], sort: "-revenue", size: 50}
+    - {marketplace: us, categories: ["Toys & Games"], sort: "-revenue", size: 50}
+    - {marketplace: us, categories: ["Grocery & Gourmet Food"], sort: "-revenue", size: 50}
+    - {marketplace: jp, categories: ["Beauty"], sort: "-revenue", size: 50}
+
+fastmoss:
+  max_calls: 20
+  regions: [US, GB, JP, DE, FR]
+  orderby: gmv
+  pagesize: 50           # 쿼터 = ceil(50/10)=5배
+
+viral_launch:
+  drop_dir: radar/drop/viral_launch   # CSV 머리줄에서 Brand·Product·ASIN·Rank·Revenue·Sales 비슷한 칸을 찾는다

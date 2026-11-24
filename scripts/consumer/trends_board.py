@@ -127,6 +127,11 @@ def render(macro, disc, day):
         L += [f"- {r['geo']} '{r['query']}' {r['traffic']:,}+ → {r['brand']['company']}" for r in t[:10]]
     if (macro.get("errors") or []) or ((disc or {}).get("errors") or []):
         L += ["", f"수집 오류: {'; '.join((macro.get('errors') or []) + ((disc or {}).get('errors') or []))}"]
+    try:   # 판매 채널 층(2026-11-24 마스터 지시) — 연결 상태·매핑만, 유료 수치는 옮기지 않는다
+        import consumer_market
+        L += ["", "## ■ 판매 채널(아마존·틱톡샵·검색 관심 — 유료·내부용)", ""] + consumer_market.board_lines()
+    except Exception as exc:
+        L += ["", f"판매 채널 층 읽기 실패: {type(exc).__name__}"]
     L += ["", SOURCES, ""]
     return "\n".join(L), h, flagged, pr
 
