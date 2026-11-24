@@ -1,0 +1,105 @@
+auto: true
+id: co-rogers
+name: Rogers Corp
+ticker: ROG
+unit: B$
+unit_usd: 1000000000.0
+industry: electronics
+region_mix:
+  US: 0.28
+  CN: 0.32
+  EU: 0.29
+  ROW: 0.11
+tax: 0.27
+horizon: 10
+as_of: '2026-11-24'
+market:
+  date: '2026-11-24'
+  price: 120.72
+  shares: 0.0179
+  net_debt: -0.2222
+  source: 가격 = 2026-11-23 종가 $120.72(Tiingo 실측 일봉, Fiscal.ai 종가와 같음) · 주식 수 17.8M주(3Q26
+    10-Q 재무상태표 보통주 $17.8M·액면 $1, 표지 2026-10-23 17,795,440주) · 현금 $206.1M + 단기투자(정기예금)
+    $30.3M = $236.4M · 차입 0(회전 한도 미인출), 리스 부채 $14.2M(유동 $3.4M + 장기 $10.8M) — 3Q26
+    10-Q
+rev0: 0.8734
+ic0: 0.9999
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.0763
+      end: 0.03
+      decay: 0.9
+    margin:
+      m0: 0.1167
+      target: 0.155
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.1328
+      - 0.155
+    s2c: 0.9
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.145
+      end: 0.034999999999999996
+      decay: 0.9
+    margin:
+      m0: 0.1167
+      target: 0.175
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.1328
+      - 0.155
+    s2c: 1.035
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.0133
+      end: 0.024999999999999998
+      decay: 0.8
+    margin:
+      m0: 0.1167
+      target: 0.135
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.1328
+      - 0.155
+    s2c: 0.765
+mc:
+  sigma_growth: 0.0329
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.8684, 0.8784] (3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-10-27)·3Q26
+    어닝콜(2026-10-27))
+  growth: 컨센서스 1년차 7.6%, 2년차 8.5%
+  margin: 1~2년차 컨센서스 13.3%, 15.5% 고정 → 목표 16%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 0.9
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 1.3%~14.5%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +4.5% 아래·강세 +11.1% 위 확률. 내부 관점(컨센서스 +7.6%, σ 9.6%: 범위 13.2% ÷ d2(4) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.0178(2026-09-30) + 옵션·RSU·워런트·전환 0.0001 — 3Q26 10-Q 손익계산서:
+    희석 가중평균 17.9M주 − 기본 17.8M주 = 약 0.1M주(양도제한조건'
+notes:
+- 자동 생성(build_drivers) 2026-11-24 — 데이터 묶음 2026-11-24
+- '어닝콜 위험: 원자재 부족과 구리 등 원자재 가격 상승(4Q에도 역풍)'
+- '어닝콜 위험: 중국 세라믹 신공장 가동 초기 비용'
+- '어닝콜 위험: 매출의 32%가 중국 고객(3Q26)'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/84748/000008474826000057/rog-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/84748/000008474826000055/q32026resultsannouncement.htm
+- https://www.sec.gov/Archives/edgar/data/84748/000008474826000007/rog-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/84748/000114036126010927/ny20055473x1_def14a.htm
+- https://www.sec.gov/Archives/edgar/data/84748/000008474826000036/rog-20260519.htm
+- https://www.sec.gov/Archives/edgar/data/84748/000008474826000048/rog-20260630.htm
+- https://www.sec.gov/Archives/edgar/data/84748/000008474826000046/rog-20260728.htm
