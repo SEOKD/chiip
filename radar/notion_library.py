@@ -389,6 +389,26 @@ def unread(rows, cid, cfg, today=None):
     return prim + [r for r in rel if r["status"] != "digest"]   # 관련성 상위 n건 안에서 요지가 없는 것만
 
 
+def _is_ib(r):
+    return r.get("page") == "IB Report" and r.get("kind") == "pdf"
+
+
+def analysis_docs(rows, cid, cfg, n=None):
+    """Analysis가 볼 노션 자료 — IB Report PDF는 그 종목과 연관된 것 중 최신 날짜 n건만(마스터 지시 2026-11-24 "최대 3개만 참고하도록 하라.
+    3개 자료는 최신 날짜 순이어야 한다" — 토큰 절약), IB Report 밖 자료(게시글 첨부·xlsx 등)는 전처럼 usable 전부"""
+    n = int(cfg.get("analysis_ib_max", 3) if n is None else n)
+    u = usable(rows, cid, cfg)
+    ib = sorted([r for r in u if _is_ib(r) and r["status"] in ("text", "digest")],
+                key=lambda r: (r.get("doc_date") or r.get("added") or ""), reverse=True)[:n]
+    return [r for r in u if not _is_ib(r)] + ib
+
+
+def analysis_unread(rows, cid, cfg, today=None):
+    """Analysis 조립 관문 — 고른 IB PDF 최대 3건 + IB 밖 자료(주 대상 전부·관련 45일)에서 요지 없는 것"""
+    keep = {r["id"] for r in analysis_docs(rows, cid, cfg)}
+    return [r for r in unread(rows, cid, cfg, today) if not _is_ib(r)] + [r for r in analysis_docs(rows, cid, cfg) if _is_ib(r) and r["status"] != "digest" and r["id"] in keep]
+
+
 def industry_docs(rows, key, cfg, sub=None, members=()):
     """산업 리포트가 참조할 노션 자료(마스터 지시 2026-11-08 "산업 리포트 쓸 때 노션의 IB 리포트를 참조하라 — Quantum 리포트엔 Quantum computing FAQ BOA.pdf").
     세 경로: ① config industry_refs(산업 키 정규식 → 파일 이름 패턴, 신흥 산업처럼 세부 산업 분류에 없는 키) ② 그 세부 산업(sub)을 다루는 업종·테마 리포트(themes)
@@ -523,13 +543,19 @@ def citations(rows, cid, cfg):
     return [f"마스터 노션 자료: {r['broker']} {r['doc_date'] or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ") for r in usable(rows, cid, cfg) if r["status"] == "digest"]
 
 
-def need(q, now=None):
+def analysis_citations(rows, cid, cfg):
+    return [f"마스터 노션 자료: {r['broker']} {r['doc_date'] or ''} {r['name']} (요지만, 외부 공유 금지)".replace("  ", " ") for r in analysis_docs(rows, cid, cfg) if r["status"] == "digest"]
+
+
+def need(q, now=None, analysis=False):
     cfg, rows, cos = config(), read(), companies()
     cid = resolve(q, cos) or q
     st = common.load_state("notion_library", {})
     age = (now or common.now_kst()) - datetime.fromisoformat(st["synced"]) if st.get("synced") else None
     print(f"[노션 자료] {cid}" + (" · 색인 갱신 필요" if age is None or age > timedelta(hours=cfg["stale_h"]) else ""))
-    for r in usable(rows, cid, cfg):
+    if analysis:
+        print(f"Analysis 모드 — IB Report PDF는 최신 {cfg.get('analysis_ib_max', 3)}건만(2026-11-24 마스터 지시)")
+    for r in (analysis_docs(rows, cid, cfg) if analysis else usable(rows, cid, cfg)):
         if r["status"] == "digest":
             print(f"요지 있음 | {r['name']} | knowledge/notion/digests/{r['id']}.md")
         elif r["status"] == "text":
@@ -577,6 +603,7 @@ def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser()
     ap.add_argument("--need")
+    ap.add_argument("--analysis", action="store_true")   # Analysis: IB Report PDF 최신 3건만(2026-11-24)
     ap.add_argument("--industry")   # 산업 키 → 참조할 노션 자료(2026-11-08)
     ap.add_argument("--sync")
     ap.add_argument("--queue", action="store_true")
@@ -621,7 +648,7 @@ def main(argv):
         print(f"[노션 자료] 새 첨부 {len(new)}건 · 텍스트 {done}건" + (f" · 실패 {failed[:5]}" if failed else ""))
         return 0
     if a.need:
-        need(a.need)
+        need(a.need, analysis=a.analysis)
         return 0
     if a.sync:
         new = sync(Path(a.sync).read_text(encoding="utf-8"), rows, cfg, companies(), date.today().isoformat())

@@ -362,9 +362,9 @@ def main(argv):
             sys.path.insert(0, str(ROOT / "radar"))
             import notion_library as nlib
             lib_rows, lib_cfg = nlib.read(), nlib.config()
-            left = nlib.unread(lib_rows, a.entity, lib_cfg)
+            left = nlib.analysis_unread(lib_rows, a.entity, lib_cfg)   # IB PDF는 최신 3건만(2026-11-24 마스터 지시)
             if left:
-                raise SystemExit("노션 자료의 요지가 없다(마스터 지시 2026-11-01) — py radar/notion_library.py --need " + a.entity + " 뒤 요지를 쓴다: " + ", ".join(r["name"] for r in left))
+                raise SystemExit("노션 자료의 요지가 없다(마스터 지시 2026-11-01) — py radar/notion_library.py --need " + a.entity + " --analysis" + " 뒤 요지를 쓴다: " + ", ".join(r["name"] for r in left))
             kr_gap = kr_call_gap(dp)
             if kr_gap:
                 raise SystemExit(kr_gap)
@@ -372,7 +372,7 @@ def main(argv):
             gap = gather.missing(a.entity)
             if gap:
                 raise SystemExit("종목별 원천이 빠졌다 — py scripts/tenbagger/gather.py " + a.entity + " 를 돌리고 MCP 원천은 --mark로 적는다(config/analysis_sources.yaml): " + " · ".join(gap))
-            d["sources"] = list(dict.fromkeys((d.get("sources") or []) + nlib.citations(lib_rows, a.entity, lib_cfg)))
+            d["sources"] = list(dict.fromkeys((d.get("sources") or []) + nlib.analysis_citations(lib_rows, a.entity, lib_cfg)))
             co = v2run.load_company(a.entity)
             sel = multiples.select_multiple(r["_mm"], dp, report_layout.config()["multiple_select"])
             fx = d.get("corrections") or []
