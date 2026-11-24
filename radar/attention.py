@@ -21,6 +21,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 from pollers import rss  # noqa: E402
+import resume  # noqa: E402
 
 OUT = common.ROOT / "knowledge" / "models" / "discovery"
 CSV = OUT / "attention.csv"
@@ -202,19 +203,32 @@ def collect():
     srcs = cfg.get("sources") or {}
     src = {k: v.get("enabled") for k, v in srcs.items()}
     days = int(cfg.get("window_days", 7))
-    today = common.now_kst().strftime("%Y-%m-%d")
     rows, notes = [], []
     cands = candidates()
+    # 584종목 × 뉴스 4줄이라 25분 한도에 끊겼다(13번 연속 시간 초과, 2026-11-24) — 단계·종목마다 기록하고 다음 회차가 이어받는다.
+    # 한 주기의 줄은 주기 시작일로 적는다(자정을 넘겨 이어받아도 날짜가 섞이지 않게)
+    cur = collect.cursor = resume.Cursor("attention", resume.digest([cfg, sorted(cands)]))
+    today = cur.st["start"]
     tg = {}
     if src.get("telegram"):
-        t = srcs["telegram"]
-        tg, st = tg_counts(t.get("channels") or [], cands, days, int(t.get("max_pages", 25)))
-        notes.append(f"텔레그램 {sum(1 for v in st.values() if v.get('msgs'))}/{len(st)}채널")
+        if not cur.done("telegram"):
+            t = srcs["telegram"]
+            tg, st = tg_counts(t.get("channels") or [], cands, days, int(t.get("max_pages", 25)))
+            cur.mark("telegram", {"counts": tg, "note": f"텔레그램 {sum(1 for v in st.values() if v.get('msgs'))}/{len(st)}채널"})
+        tg = cur.get("telegram")["counts"]
+        notes.append(cur.get("telegram")["note"])
     xs = {}
     if src.get("x"):
-        xs, note = x_counts(cands, srcs["x"], days=days)
-        notes.append(note)
+        if not cur.done("x"):
+            xs, note = x_counts(cands, srcs["x"], days=days)
+            cur.mark("x", {"counts": xs, "note": note})
+        xs = cur.get("x")["counts"]
+        notes.append(cur.get("x")["note"])
     for cid, c in cands.items():
+        if cur.done(f"co {cid}"):
+            rows += [tuple(r) for r in cur.get(f"co {cid}")]
+            continue
+        n0 = len(rows)
         if cid in tg:
             rows.append((today, cid, "telegram", tg[cid]))
         if cid in xs:
@@ -232,13 +246,16 @@ def collect():
             rows.append((today, cid, "substack", gnews_count(f"{q} site:substack.com", days=days)))
             rows.append((today, cid, "research_feeds", research_feed_count([en, local], days)))
         rows.append((today, cid, "sellside_events", sellside_count(cid, days)))
+        cur.mark(f"co {cid}", rows[n0:])
         time.sleep(0.3)
     if src.get("retail"):   # 레딧·X 직접 접속 없이 모으는 리테일 채널(마스터 지시 2026-11-01, radar/retail_channels.py)
-        import retail_channels
-        more, nt, snap = retail_channels.collect(cands, today, srcs["retail"])
-        retail_channels.save(snap)
-        rows += more
-        notes.append(f"리테일 {len(more)}행" + (f"({', '.join(nt)})" if nt else ""))
+        if not cur.done("retail"):
+            import retail_channels
+            more, nt, snap = retail_channels.collect(cands, today, srcs["retail"])
+            retail_channels.save(snap)
+            cur.mark("retail", {"rows": more, "note": f"리테일 {len(more)}행" + (f"({', '.join(nt)})" if nt else "")})
+        rows += [tuple(r) for r in cur.get("retail")["rows"]]
+        notes.append(cur.get("retail")["note"])
     return rows, notes
 
 
@@ -283,6 +300,8 @@ def run():
         if new:
             w.writerow(["date", "id", "source", "count7d"])
         w.writerows(rows)
+    if getattr(collect, "cursor", None):
+        collect.cursor.finish()   # 줄을 적은 뒤에 비운다 — 이어받은 주기가 두 번 적히지 않게
     with CSV.open(encoding="utf-8", newline="") as f:
         all_rows = [(r["date"], r["id"], r["source"], r["count7d"]) for r in csv.DictReader(f)]
     today = common.now_kst().strftime("%Y-%m-%d")

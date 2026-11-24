@@ -110,6 +110,10 @@ JOB_TIMEOUT_MIN = 10
 # 시간 초과도 실행으로 기록돼(mark_run) 다음 날 같은 한도에 다시 끊겼다. 이 작업들은 한도만큼 예산이 남은 회차에만 시작하고, 모자라면 다음 회차로 미룬다
 # (밀린 비율이 커져 곧 회차 맨 앞에 선다). 25분 + 시작 비용은 Windows 작업 30분 한도 안이다
 HEAVY = {"trade-ppi": 25, "trade-hs": 25, "src-attention": 25, "jp-ir-audit": 25}
+# 25분에도 끊긴 작업(trade-ppi 11/24 12:01)은 단계마다 진행을 적는다(radar/resume.py). 시간 초과 때 진행이 늘었으면 하루 뒤가 아니라
+# RETRY_MIN 뒤에 이어 돌린다. 진행이 그대로면 예전처럼 다음 날 — 막힌 원천이 매 회차를 잡아먹지 않게
+RESUMABLE = {"trade-ppi": "trade_ppi", "trade-hs": "trade_hs", "src-attention": "attention"}
+RETRY_MIN = 120
 RADAR_JOBS = ("src-fedreg", "src-legistar", "korea-watch")  # 레이더 inbox에 새 항목을 넣는 작업
 
 
@@ -140,14 +144,31 @@ def run_job(jid, mod):
     return False
 
 
-def run_child(jid, timeout_s):
+def retry_soon(jid, every, minutes=RETRY_MIN):
+    """마지막 실행 시각을 당겨 적어 minutes 뒤에 다시 due가 되게 한다"""
+    from datetime import timedelta
+    s = common.load_state("last_run")
+    s[jid] = common.iso(common.now_kst() - timedelta(minutes=max(every - minutes, 0)))
+    common.save_state("last_run", s)
+
+
+def run_child(jid, timeout_s, every=None):
     """작업 하나를 별도 프로세스로 — 멈춰도 그 작업만 끊긴다"""
     import os
     import subprocess
+    import resume
+    name = RESUMABLE.get(jid)
+    before = resume.progress(name) if name else 0
     try:
         r = subprocess.run([sys.executable, str(Path(__file__)), "--child", jid], capture_output=True, timeout=timeout_s,
                            env={**os.environ, "PYTHONIOENCODING": "utf-8"}, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     except subprocess.TimeoutExpired:
+        after = resume.progress(name) if name else 0
+        if name and after > before and every:
+            common.record_health(jid, False, f"시간 초과 {timeout_s / 60:.0f}분 — {after}단계까지 진행, {RETRY_MIN}분 뒤 이어서(radar/resume.py)")
+            retry_soon(jid, every)
+            print(f"{jid}: 시간 초과({timeout_s / 60:.0f}분) — {before}→{after}단계, {RETRY_MIN}분 뒤 이어서")
+            return False
         common.record_health(jid, False, f"시간 초과 {timeout_s / 60:.0f}분 — 다음 회차에 다시(run_hourly 작업별 한도)")
         common.mark_run(jid)
         print(f"{jid}: 시간 초과({timeout_s / 60:.0f}분)")
@@ -180,7 +201,7 @@ def main(argv):
         if jid in HEAVY and room < limit:   # 긴 작업은 한도만큼 시간이 남은 회차에만(D3)
             heavy_left.append(jid)
             continue
-        new_radar |= run_child(jid, min(limit, room) * 60)
+        new_radar |= run_child(jid, min(limit, room) * 60, every=every)
     if left:
         print(f"시간 예산 {BUDGET_MIN}분 소진 — 다음 회차로: {', '.join(left)}")
     if heavy_left:

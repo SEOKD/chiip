@@ -22,6 +22,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
+import resume  # noqa: E402
 
 CONFIG = common.ROOT / "config" / "trade_ppi.yaml"
 LATEST = common.ROOT / "knowledge" / "models" / "trade_ppi" / "latest.json"
@@ -339,7 +340,14 @@ def collect(cfg, today, env):
     tables = (attempt("e-stat 표", lambda: estat_tables(estat, today)) or {}) if estat else {}
     metas = {}
     hist = {k: {"ppi": {}, "trade": {}} for k in cfg["inputs"]}
+    cur = resume.Cursor("trade_ppi", resume.digest(cfg), today=today)   # 입력마다 결과를 적어 끊겨도 다음 회차가 이어받는다(2026-11-24, 25분에도 끊김)
     for k, v in cfg["inputs"].items():
+        if cur.done(k):
+            saved = cur.get(k)
+            out[k], hist[k] = saved["out"], saved["hist"]
+            errors += saved["errors"]
+            continue
+        n0 = len(errors)
         p, o = v["ppi"], out[k]
         pm = lambda c, s: (hist[k]["ppi"].__setitem__(c, s) if s else None) or ppi_metric(s)
         tm = lambda c, s: (hist[k]["trade"].__setitem__(c, s) if s else None) or trade_metric(s or {})
@@ -385,7 +393,9 @@ def collect(cfg, today, env):
         if tables:
             total, parts = attempt(f"e-stat {k}", lambda: trade_estat(estat, v["hs"], tables, metas)) or ({}, {})
             o["trade"]["jp"] = {**(tm("jp", total) or {}), "partners": shares(parts), "unit": "JPY thousand"}
+        cur.mark(k, {"out": out[k], "hist": hist[k], "errors": errors[n0:]})
     collect.hist = hist
+    collect.cursor = cur
     collect.taiwan = taiwan_view(cfg, tw_ppi, tw_mof)
     return out, gaps, errors
 
@@ -419,6 +429,8 @@ def run(today=None):
                 if prev.get(p) is not None and abs(prev[p] - val) > 1e-9 and not any(r.get("input") == k and r["market"] == mkt and r["period"] == p and r["new"] == val for r in revs):
                     revs.append({"input": k, "series": (cfg["inputs"][k]["ppi"].get(mkt)), "market": mkt, "period": p, "old": prev[p], "new": val, "at": common.iso(common.now_kst())})
     HISTORY.write_text(json.dumps({"as_of": today.isoformat(), "inputs": new_hist, "us_raw": old.get("us_raw") or {}, "revisions": revs[-500:]}, ensure_ascii=False), encoding="utf-8")
+    if getattr(collect, "cursor", None):
+        collect.cursor.finish()   # 한 주기 끝 — 다음 날은 처음부터
     return f"입력 {len(inputs)}개, PPI {filled}칸, 공백 {len(gaps)}건, 오류 {len(errors)}건"
 
 

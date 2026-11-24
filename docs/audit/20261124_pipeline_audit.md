@@ -71,6 +71,7 @@
 ### D3 긴 수집 작업 시간 한도 — `radar/run_hourly.py` `HEAVY`
 - 반영: trade-ppi·trade-hs·src-attention·jp-ir-audit은 25분 한도로 돌린다. 예산이 그만큼 남은 회차에만 시작하고, 모자라면 다음 회차로 미룬다(밀린 비율이 커져 곧 맨 앞에 선다). Windows 작업 30분 한도 안이다.
 - 확인 대기: 25분 안에 끝나는지는 다음 회차의 health 기록으로 본다. 넘으면 작업을 나눠 이어받게 고쳐야 한다.
+- 결과(11/24 12:01): trade-ppi가 25분에도 끊겼다(44개 입력 × 7개국 Comext + HMRC·Census·e-Stat). 이어받기로 고쳤다 — `radar/resume.py` 커서가 단계(trade-ppi 입력 하나, trade-hs 묶음 하나, src-attention 종목 하나)를 마칠 때마다 결과를 `radar/state/resume_<이름>.json`에 적고 다음 회차는 끝난 단계를 건너뛴다. 시간 초과 때 진행이 늘었으면 run_hourly가 하루 뒤가 아니라 120분 뒤에 다시 돌린다(`RESUMABLE`·`RETRY_MIN`). 진행이 그대로면 예전처럼 다음 날 — 막힌 원천이 매 회차를 잡아먹지 않게. 설정이 바뀌거나 주기 시작이 이틀을 넘으면 처음부터. src-attention은 한 주기의 줄을 주기 시작일로 적는다. 시험 `tests/test_resume.py`.
 
 ### D4 예측 판정 고리 — `scripts/score_predictions.py`, `.claude/skills/model-lab/SKILL.md` agent 8번
 - 반영: 형식 검사 `--check`(칸 수·기한·확률·주체·판정값 1/0), 판정 대기 목록 `--due N`. Model Laboratory가 매일 하루 5건까지 1차 출처로 판정한다(그 행의 resolved_on·outcome·notes만). '치입'·'Chiip' 표기를 한 주체로 묶어 채점한다. 사후 수정 금지 원칙대로 칸이 밀린 행은 고치지 않고 알리기만 한다.

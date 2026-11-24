@@ -20,6 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from pollers import common  # noqa: E402
 import trade_ppi as tp  # noqa: E402
+import resume  # noqa: E402
 
 DB = common.ROOT / "radar" / "state" / "trade_hs.sqlite"
 SURGE = common.ROOT / "knowledge" / "models" / "trade_ppi" / "surge.json"
@@ -108,8 +109,11 @@ def collect(c, cfg, today, env, errors):
             errors.append(f"{label}: {type(e).__name__}")
             return None
 
+    cur = collect.cursor = resume.Cursor("trade_hs", resume.digest(cfg), today=today)   # 묶음마다 기록 — 끊겨도 다음 회차가 이어받는다(2026-11-24)
     key = env.get("CENSUS_API_KEY")
     for flow in FLOWS:
+        if cur.done(f"census {flow}"):
+            continue
         for p in missing_months(c, "us", flow, start, end, cfg["months_per_run"]) if key else []:
             res = guard(f"census {flow} {p}", lambda: census_month(flow, p, key))
             if res and res[0]:
@@ -117,21 +121,27 @@ def collect(c, cfg, today, env, errors):
                 c.executemany("INSERT OR REPLACE INTO names VALUES(?,?)", list(res[1].items()))
                 c.commit()
             time.sleep(PAUSE)
+        cur.mark(f"census {flow}")
     codes = universe(c, cfg["chapters"])
     for flow in FLOWS:
         for i in range(0, len(codes), CHUNK):
+            step = f"comext {flow} {resume.digest(codes[i:i + CHUNK])}"   # 품목 목록이 늘어도 같은 묶음만 건너뛴다
+            if cur.done(step):
+                continue
             rows = guard(f"comext {flow} {i}", lambda: comext_rows(codes[i:i + CHUNK], flow, start)) or []
             got += store(c, [("eu", flow, WORLD, h, p, v, "EUR") for h, p, v in rows])
+            cur.mark(step)
             time.sleep(PAUSE)
     app = env.get("ESTAT_APP_ID")
     metas = {}
     for jflow, flow in (("輸入", "import"), ("輸出", "export")):   # 수출 추가(2026-11-04 점검: 일본 수출 0건 — 장비·소재 수출 선행 지표가 비어 있었다)
         tables = (guard(f"e-stat 표 {jflow}", lambda: tp.estat_tables(app, today, jflow)) or {}) if app else {}
-        for hs in cfg["chapters"] if tables else []:
+        for hs in [h for h in cfg["chapters"] if not cur.done(f"e-stat {jflow} {h}")] if tables else []:
             res = guard(f"e-stat {jflow} {hs}", lambda: tp.trade_estat(app, hs, tables, metas))
             if res:
                 got += store(c, [("jp", flow, WORLD, hs, p, v, "JPY thousand") for p, v in res[0].items()])
                 got += store(c, [("jp", flow, a, hs, p, v, "JPY thousand") for a, s in res[1].items() for p, v in s.items()])
+            cur.mark(f"e-stat {jflow} {hs}")
             time.sleep(PAUSE)
     conf = tp.config()["taiwan"]
     table = guard("tw trade", lambda: tp.tw_trade_table(tp.get(tp.dataset_url(conf["trade_dataset"]), timeout=90))) or {}
@@ -259,13 +269,18 @@ def run(today=None, env=None):
     c = connect()
     env = common.load_env() if env is None else env   # env={}(시험)는 실제 키를 읽지 않는다
     got = collect(c, cfg, today, env, errors)
-    got += consumer_partners(c, today, env, errors)   # 소비재 품목 나라별(2026-11-14)
+    cur = getattr(collect, "cursor", None)
+    if not (cur and cur.done("consumer")):
+        got += consumer_partners(c, today, env, errors)   # 소비재 품목 나라별(2026-11-14)
+        cur and cur.mark("consumer")
     if not got and errors:
         raise RuntimeError("무역 시계열을 받지 못했다: " + "; ".join(errors[:3]))
     rows = surge(c, cfg)
     SURGE.parent.mkdir(parents=True, exist_ok=True)
     SURGE.write_text(json.dumps({"as_of": today.isoformat(), "rows": rows, "errors": errors[:20]}, ensure_ascii=False, indent=1), encoding="utf-8")
     c.close()
+    if cur:
+        cur.finish()
     return f"저장 {got}행, 급등 {len(rows)}건, 오류 {len(errors)}건"
 
 
