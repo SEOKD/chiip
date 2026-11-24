@@ -66,6 +66,22 @@ class TestRunHourlyRetry(TmpState):
         self.assertLess((common.now_kst() - datetime.fromisoformat(last)).total_seconds(), 60)
 
 
+class TestRunJobHealth(TmpState):
+    def run_mod(self, fn):
+        mod = mock.Mock(run=fn)
+        with mock.patch.object(run_hourly.importlib, "import_module", return_value=mod), mock.patch.object(common, "mark_run"):
+            run_hourly.run_job("job-x", "m")
+        return common.load_state("health").get("job-x") or {}
+
+    def test_success_recorded(self):
+        self.assertTrue(self.run_mod(lambda: "ok").get("last_ok"))
+
+    def test_module_own_failure_kept(self):
+        h = self.run_mod(lambda: common.record_health("job-x", False, "키 없음") or "실패")
+        self.assertIsNone(h.get("last_ok"))
+        self.assertEqual(h["error_count"], 1)
+
+
 class TestWired(unittest.TestCase):
     def test_collectors_use_cursor(self):
         for f, name in (("trade_ppi.py", '"trade_ppi"'), ("trade_hs.py", '"trade_hs"'), ("attention.py", '"attention"')):

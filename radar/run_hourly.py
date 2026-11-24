@@ -128,9 +128,14 @@ def overdue(jid, every):
 
 def run_job(jid, mod):
     """작업 하나 — 새 레이더 항목이 생겼으면 True"""
+    before = common.load_state("health").get(jid)
     try:
         res = importlib.import_module(mod).run()
         print(jid, res)
+        # 성공도 적는다(2026-11-24): 모듈이 스스로 적지 않는 작업은 돌아도 last_ok가 비어 trade-ppi·trade-hs가 '성공 없음'으로 보였다.
+        # 모듈이 이 회차에 직접 적었으면(실패를 적고 정상 반환하는 alphavantage·cpi-release·kr-exports·semianalysis-jobs) 그대로 둔다
+        if common.load_state("health").get(jid) == before:
+            common.record_health(jid, True)
         return jid in RADAR_JOBS and bool(res[1])
     except RuntimeError as exc:
         common.record_health(jid, False, exc)
