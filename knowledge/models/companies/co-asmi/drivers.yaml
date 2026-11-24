@@ -1,0 +1,109 @@
+auto: true
+id: co-asmi
+name: ASM International
+ticker: ASM
+unit: BEUR
+unit_usd: 1105200000.0
+industry: semicap
+region_mix:
+  Asia: 0.8
+  US: 0.15
+  EU: 0.05
+tax: 0.21
+horizon: 10
+as_of: '2026-11-25'
+market:
+  date: '2026-11-25'
+  price: 637.4
+  shares: 0.049182
+  net_debt: -1.2448
+  source: 가격 = 2026-11-24 암스테르담 종가 €637.4(실측 일봉). 주식 수 48.98M = Fiscal.ai 시가총액 €31,221M
+    ÷ 종가(3Q 기본 가중평균 48.9M과 일치). 현금 €1,338.7M = 3Q26 말 재무상태표. 차입금 없음 — €93.9M은 리스 부채(2순위
+    원천 값). ASMPT 지분 24.6%(장부 €907.7M)는 순현금에 넣지 않았다
+rev0: 4.255
+ic0: 3.4284
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.3749
+      end: 0.03
+      decay: 0.3
+    margin:
+      m0: 0.3197
+      target: 0.3386
+      year_target: 3
+      lr: 0.27
+      lam: 0.35
+      anchors:
+      - 0.3336
+      - 0.3386
+    s2c: 1.086
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.5394
+      end: 0.034999999999999996
+      decay: 0.35
+    margin:
+      m0: 0.3197
+      target: 0.3586
+      year_target: 3
+      lr: 0.27
+      lam: 0.25
+      anchors:
+      - 0.3336
+      - 0.3386
+    s2c: 1.249
+  bear:
+    prob: 0.25
+    growth:
+      start: 0.1986
+      end: 0.024999999999999998
+      decay: 0.3
+    margin:
+      m0: 0.3197
+      target: 0.3186
+      year_target: 3
+      lr: 0.27
+      lam: 0.5
+      anchors:
+      - 0.3336
+      - 0.3386
+    s2c: 0.923
+mc:
+  sigma_growth: 0.0852
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [4.255, 4.255] (ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28) — 4Q
+    매출 €1.23B(고정 환율, 범위 폭은 이번 회차 미대조), FY26 매출총이익률 약 52%, 판관비 매출의 약 8%, CAPEX €250M
+    초과, 2027년 매출 €5.7B 초과(고정 환율))
+  growth: 컨센서스 1년차 37.5%, 2년차 13.0%
+  margin: 1~2년차 컨센서스 33.4%, 33.9% 고정 → 목표 34%(3년차, 덮어쓰기) → 장기 수렴 27%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.086
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 19.9%~53.9%
+  probs: '근거 계산 {''bear'': 0.25, ''base'': 0.45, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +28.7% 아래·강세 +45.7% 위 확률. 내부 관점(컨센서스 +37.5%, σ 14.4%: 추정 범위 없음 — 5% + 0.25
+    × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 영업이익률 27%: 조정 영업이익률이 2021~2025년 26~30%, 2026년 33%대다. 장비 사이클 평균과
+    중국 믹스 하락을 감안해 최근 정점(33%)보다 낮게 둔다(판단)'
+  shares: 완전 희석 = 기본 0.048982(2026-11-24) + 옵션·RSU·워런트·전환 0.0002 — 3Q26 희석 가중평균 49.1M
+    − 기본 48.9M = 약 0.2M주(임직원 주식 보상). 전환사채·워런트
+notes:
+- 자동 생성(build_drivers) 2026-11-25 — 데이터 묶음 2026-11-25
+- '어닝콜 위험: 2027년 가이던스는 고객 계획 공유에 근거한다 — 구매 주문으로 덮인 것은 평소처럼 3~6개월치뿐(CFO: 가시성이 확실성은
+  아니다)'
+- '어닝콜 위험: 부품 공급망이 빠듯하다 — CFO가 위험이 있다고 인정, 핵심 협력사에 인력을 상주시키고 신규 협력사를 인증 중'
+- '어닝콜 위험: 중국은 2027년 성장에 기여하지 않고 MATCH Act(동맹국 장비 수출통제 정렬 법안) 영향은 회사도 추정하지 않는다. 중국
+  매출은 이익률이 높아 비중이 줄면 믹스가 나빠진다'
+evidence:
+- ASM International 3Q26 실적 보도자료(2026-10-27)·투자자 프레젠테이션 — https://www.asm.com/investors
+- ASM International 3Q26 어닝콜(2026-10-28)·2Q26 어닝콜(2026-07-29)
+- ASM International 자사주 매입 개시 발표(2026-11-11) — https://www.globenewswire.com/en/news/technology-telecom
+- ASM International 감독이사회 후보 지명(2026-10-30) — https://www.globenewswire.com/news-release/2026/10/30/3392042/0/en/asm-proposes-denise-koopmans-for-appointment-to-the-supervisory-board.html
+- Fiscal.ai XAMS_ASM 표준화 재무·추정·세그먼트 KPI(2026-11-25 조회) — https://fiscal.ai/company/ENXTAM-ASM
+- Easyconomics company_profile·company_price_history(yfinance, 2026-11-25 조회)
+- 노션 IB 자료 요지 3건(중국 장비 수입 추적 10월분·메모리 2027~28 전망·NAND 업체 노트) — 라이선스 자료 요지 포함, 외부 공유
+  금지

@@ -1,0 +1,3376 @@
+{
+ "name": "ASM International",
+ "ticker": "ASM",
+ "unit": "BEUR",
+ "currency_symbol": "€",
+ "unit_usd": 1105200000.0,
+ "industry": "semicap",
+ "region_mix": {
+  "Asia": 0.8,
+  "US": 0.15,
+  "EU": 0.05
+ },
+ "tax": 0.21,
+ "profile": {
+  "price": 637.4,
+  "shares_basic": 0.048982,
+  "shares_date": "2026-11-24",
+  "cash": 1.3387,
+  "debt": 0.0939,
+  "source": "가격 = 2026-11-24 암스테르담 종가 €637.4(실측 일봉). 주식 수 48.98M = Fiscal.ai 시가총액 €31,221M ÷ 종가(3Q 기본 가중평균 48.9M과 일치). 현금 €1,338.7M = 3Q26 말 재무상태표. 차입금 없음 — €93.9M은 리스 부채(2순위 원천 값). ASMPT 지분 24.6%(장부 €907.7M)는 순현금에 넣지 않았다"
+ },
+ "dilution": {
+  "potential_total": 0.0002,
+  "date": "2026-09-30",
+  "source": "3Q26 희석 가중평균 49.1M − 기본 48.9M = 약 0.2M주(임직원 주식 보상). 전환사채·워런트 없음. 자사주 €300M 매입이 11/11 시작돼 주식 수는 줄어드는 방향"
+ },
+ "financials": {
+  "rev_ttm": 3.7233,
+  "ebit_ttm": 1.1504,
+  "invested_capital": 3.4284,
+  "capex_ttm": 0.2621,
+  "da_ttm": 0.2679,
+  "sbc_ttm": 0.0536,
+  "basis": "IFRS",
+  "note": "TTM 매출 = 4Q25 €698.3M + 1Q26 €862.5M + 2Q26 €1,003.1M + 3Q26 €1,159.4M. 영업이익(보고) = 170.5 + 278.2 + 322.8 + 378.9. 투하자본 = 자기자본 4,673.2 + 리스 93.9 − 현금 1,338.7. CAPEX = 유형자산 취득 4Q25 106.2 + 1Q26 38.3 + 2Q26 63(2Q 콜 — 표준화 값 164.5는 이상치로 보고 회사 발언 사용) + 3Q26 54.6. 감가상각 = 2Q26 표준화 값(185.1)이 이상치라 나머지 세 분기 평균 × 4(추정). SBC = 12.8 + 12.0 + 13.6 + 15.2"
+ },
+ "consensus": {
+  "rev": {
+   "FY2026": 4.265,
+   "FY2027": 5.85,
+   "FY2028": 6.61
+  },
+  "rev_low": {
+   "FY2026": 4.195,
+   "FY2027": 5.1,
+   "FY2028": 5.2
+  },
+  "rev_high": {
+   "FY2026": 4.33,
+   "FY2027": 6.55,
+   "FY2028": 7.8
+  },
+  "ebit_margin": {
+   "FY2026": 0.3341,
+   "FY2027": 0.348,
+   "FY2028": 0.353
+  },
+  "eps": {
+   "FY2026": 24.3,
+   "FY2027": 34.2,
+   "FY2028": 39.6
+  },
+  "eps_low": {
+   "FY2026": 23.5,
+   "FY2027": 28.0,
+   "FY2028": 28.0
+  },
+  "eps_high": {
+   "FY2026": 25.1,
+   "FY2027": 39.5,
+   "FY2028": 49.0
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "ebit_margin_note": "조정 EBIT ÷ 매출(€1,425M·€2,036M·€2,333M, 2026-10-29 기준 추정)",
+  "n_analysts": null,
+  "ratings": {},
+  "ratings_note": "애널리스트 의견 분포·목표가 집계 데이터 없음(Zacks 미수록, yfinance 0건). 3Q 콜 질문 증권사 11곳",
+  "source": "Fiscal.ai 자체 추정(company_estimates, 2026-10-29 갱신, 2026-11-25 조회) — Zacks 커버리지 없음",
+  "quarters_est": {
+   "2026-12-31": 1.24,
+   "2027-03-31": 1.3,
+   "2027-06-30": 1.43,
+   "2027-09-30": 1.52,
+   "2027-12-31": 1.6,
+   "2028-03-31": 1.579377,
+   "2028-06-30": 1.708167,
+   "2028-09-30": 1.701032,
+   "2028-12-31": 1.621425
+  },
+  "eps_quarters_est": {
+   "2026-12-31": 6.913,
+   "2027-03-31": 7.5,
+   "2027-06-30": 8.3,
+   "2027-09-30": 8.9,
+   "2027-12-31": 9.5,
+   "2028-03-31": 10.177,
+   "2028-06-30": 10.474,
+   "2028-09-30": 10.173,
+   "2028-12-31": 8.776
+  },
+  "quarters_est_note": "FY2028 분기 추정은 신뢰 등급 '낮음'(모델 산출)",
+  "surprise": [
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 698.3,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-04"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 3.38,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-03-04"
+   },
+   {
+    "period": "2025Q4",
+    "report_date": "2025-12-31",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 175.2,
+    "est": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-03-04"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 862.5,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-21"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 4.86,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-04-21"
+   },
+   {
+    "period": "2026Q1",
+    "report_date": "2026-03-31",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 285.9,
+    "est": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-04-21"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 1003.1,
+    "est": 980.0,
+    "est_src": "회사 가이던스(2Q 콜에서 밝힌 값)",
+    "basis": "gaap",
+    "earnings_date": "2026-07-28"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 5.8,
+    "est": null,
+    "basis": "gaap",
+    "earnings_date": "2026-07-28"
+   },
+   {
+    "period": "2026Q2",
+    "report_date": "2026-06-30",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 330.5,
+    "est": null,
+    "basis": "adjusted",
+    "earnings_date": "2026-07-28"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "매출",
+    "unit": "€M",
+    "actual": 1159.4,
+    "est": 1100.0,
+    "est_src": "fiscal:guidance",
+    "basis": "gaap",
+    "earnings_date": "2026-10-27"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EPS",
+    "unit": "€",
+    "actual": 6.27,
+    "est": 6.402,
+    "est_src": "fiscal:agentic_consensus",
+    "basis": "gaap",
+    "earnings_date": "2026-10-27"
+   },
+   {
+    "period": "2026Q3",
+    "report_date": "2026-09-30",
+    "metric": "EBIT",
+    "unit": "€M",
+    "actual": 386.7,
+    "est": 377.326,
+    "est_src": "fiscal:model",
+    "basis": "adjusted",
+    "earnings_date": "2026-10-27"
+   }
+  ],
+  "surprise_note": "4Q25·1Q26은 발표 전 추정 기록이 없어 비웠다. EPS는 IFRS 희석 EPS(회사가 조정 EPS를 따로 내지 않음 — 환산 손익과 ASMPT 지분 손익이 섞인다). EBIT는 조정 영업이익"
+ },
+ "sbc_pct_rev": 0.0144,
+ "call": {
+  "date": "2026-10-28",
+  "prev_date": "2026-07-29",
+  "tone": "up",
+  "guidance_direction": "raise",
+  "tone_delta": 0.5,
+  "kpis": {
+   "rev_3q_meur": 1159.4,
+   "rev_yoy_cc": 0.44,
+   "equipment_rev_meur": 936.4,
+   "spares_services_rev_meur": 223.1,
+   "gm_3q": 0.52,
+   "adj_op_margin_3q": 0.334,
+   "sga_pct_rev": 0.076,
+   "gross_rd_meur": 144,
+   "fcf_3q_meur": 313,
+   "cash_beur": 1.3,
+   "capex_3q_meur": 55,
+   "working_capital_days": 43,
+   "headcount_added": 400,
+   "buyback_new_meur": 300,
+   "asmpt_stake": 0.246
+  },
+  "guidance_changes": [
+   "2027년 매출 가이던스 신설: €5.7B 초과(고정 환율) — 2Q 콜은 '2027년은 기존 목표 범위 상단을 넘는다'까지만 말했다",
+   "FY26 매출총이익률 약 51%(2Q 콜) → 약 52%(3Q 콜)",
+   "FY26 판관비 매출의 8.5% 미만(2Q 콜) → 약 8%(3Q 콜)",
+   "FY26 매출 성장: 4Q 가이던스 €1.23B 기준 고정 환율 약 +35%, 장비 매출은 +40% 초과"
+  ],
+  "new_topics": [
+   "1.4nm가 3Q 선단 로직·파운드리 매출의 두 자릿수 비중으로 처음 잡혔고 2027년에는 2nm보다 큰 최대 기여 노드가 된다",
+   "DRAM 주변회로 FinFET이 6F² 구조로 앞당겨져 2027년부터 들어온다 — ALD 층수는 평면 구조의 약 3배",
+   "유동성 탄소(flowable carbon) PECVD 장비 XP8 Vertos 출시 — 양산 라인에 적용됨",
+   "광 검출기용 4족 원소 에피택시로 실리콘 포토닉스·CPO에 진입",
+   "신규 자사주 매입 €300M(직전 €150M은 9/14 완료)",
+   "제조 공간은 지금 매출의 약 3배까지 감당 — 병목은 건물이 아니라 부품 공급망"
+  ],
+  "dropped_topics": [
+   "2Q 콜의 '4F² DRAM 2028~2030년 양산' 일정 언급이 '4F² 전환은 예상보다 늦어질 수 있다'로 바뀌었다"
+  ],
+  "analyst_focus": [
+   "BNP Paribas — 2027년 매출이 수주잔고로 얼마나 덮여 있나",
+   "Berenberg — €5.7B가 보수적인 숫자인가, 리드타임 6개월인데 하반기를 어떻게 보나",
+   "UBS — DRAM FinFET 조기 도입과 부품 부족 품목",
+   "Oddo BHF·HSBC — 매출총이익률 52%에서 더 오를 수 있나",
+   "Redburn Atlantic — 수요는 강한데 왜 구매 주문으로 바뀌지 않았나",
+   "Kepler Cheuvreux·Morgan Stanley — 중국 수요와 2027년 믹스가 이익률에 주는 영향",
+   "Deutsche Bank — 부품 협력사 확보를 위한 선급·의무 구매 계약 여부"
+  ],
+  "risks": [
+   "2027년 가이던스는 고객 계획 공유에 근거한다 — 구매 주문으로 덮인 것은 평소처럼 3~6개월치뿐(CFO: 가시성이 확실성은 아니다)",
+   "부품 공급망이 빠듯하다 — CFO가 위험이 있다고 인정, 핵심 협력사에 인력을 상주시키고 신규 협력사를 인증 중",
+   "중국은 2027년 성장에 기여하지 않고 MATCH Act(동맹국 장비 수출통제 정렬 법안) 영향은 회사도 추정하지 않는다. 중국 매출은 이익률이 높아 비중이 줄면 믹스가 나빠진다",
+   "3Q에 개발비 손상 €7M — 자본화 개발비(무형자산 €1,063.6M)가 크다"
+  ],
+  "deltas": [
+   {
+    "id": "D1",
+    "kind": "신규",
+    "item": "2027년 매출 가이던스",
+    "label": "2027 매출 €5.7B+",
+    "prior": "2027년은 기존 목표 범위 상단 초과(2Q 콜, 숫자 없음)",
+    "latest": "2027년 매출 €5.7B 초과(고정 환율), 2030 목표 3년 조기 달성",
+    "driver": "growth_start",
+    "shift": 0.04,
+    "confidence": 0.8,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D2",
+    "kind": "업데이트",
+    "item": "FY26 매출총이익률",
+    "label": "총이익률 52%",
+    "prior": "약 51%(2Q 콜)",
+    "latest": "약 52%(3Q 콜) — 일부 제품 가격 인상, 부품 원가는 반대 방향",
+    "driver": "margin_m0",
+    "shift": 0.008,
+    "confidence": 0.8,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D3",
+    "kind": "업데이트",
+    "item": "1.4nm 기여 시점과 크기",
+    "label": "1.4nm 첫 매출",
+    "prior": "2026년 하반기 파일럿 라인에서 첫 기여 예상(2Q 콜)",
+    "latest": "3Q 선단 로직 매출의 두 자릿수 비중, 2027년 최대 기여 노드(3Q 콜)",
+    "driver": "growth_start",
+    "shift": 0.02,
+    "confidence": 0.5,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D4",
+    "kind": "업데이트",
+    "item": "DRAM FinFET 도입 시점",
+    "label": "DRAM FinFET 2027",
+    "prior": "FinFET 주변회로·4F² 2028~2030년(2Q 콜)",
+    "latest": "FinFET은 6F²로 당겨져 2027년, ALD 층수 약 3배. 4F²는 지연 가능(3Q 콜)",
+    "driver": "growth_end",
+    "shift": 0.01,
+    "confidence": 0.5,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D5",
+    "kind": "신규",
+    "item": "2027년 영업비용 비율",
+    "label": "판관비 7% 미만",
+    "prior": "2030년 목표: 순연구개발 두 자릿수 초반·판관비 7% 미만",
+    "latest": "같은 비율을 2027년에 적용(3Q 콜)",
+    "driver": "margin_target",
+    "shift": 0.01,
+    "confidence": 0.8,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D6",
+    "kind": "부정",
+    "item": "부품 공급망과 중국",
+    "label": "공급망·중국 위험",
+    "prior": "공급망 부담 증가, 중국 성숙 로직 강세(2Q 콜)",
+    "latest": "공급 위험 인정·협력사 상주, 중국은 2027년 성장 기여 없음, MATCH Act 영향 미정(3Q 콜)",
+    "driver": "growth_start",
+    "shift": -0.02,
+    "confidence": 0.5,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "id": "D7",
+    "kind": "신규",
+    "item": "PECVD 유동성 탄소",
+    "label": "유동성 탄소 PECVD",
+    "prior": "언급 적음",
+    "latest": "XP8 Vertos 출시, 양산 적용 — ALD 밖으로 소재 설계 역량 확장(3Q 콜)",
+    "driver": "growth_end",
+    "shift": 0.005,
+    "confidence": 0.3,
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   }
+  ],
+  "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28) · ASM 2Q26 실적 발표(2026-07-28)·어닝콜(2026-07-29)",
+  "guidance_note": "분기·연간 숫자가 모두 올라갔고 2027년 숫자 가이던스를 처음으로 일찍 냈다 — 톤 상향"
+ },
+ "sources": [
+  "ASM International 3Q26 실적 보도자료(2026-10-27)·투자자 프레젠테이션 — https://www.asm.com/investors",
+  "ASM International 3Q26 어닝콜(2026-10-28)·2Q26 어닝콜(2026-07-29)",
+  "ASM International 자사주 매입 개시 발표(2026-11-11) — https://www.globenewswire.com/en/news/technology-telecom",
+  "ASM International 감독이사회 후보 지명(2026-10-30) — https://www.globenewswire.com/news-release/2026/10/30/3392042/0/en/asm-proposes-denise-koopmans-for-appointment-to-the-supervisory-board.html",
+  "Fiscal.ai XAMS_ASM 표준화 재무·추정·세그먼트 KPI(2026-11-25 조회) — https://fiscal.ai/company/ENXTAM-ASM",
+  "Easyconomics company_profile·company_price_history(yfinance, 2026-11-25 조회)",
+  "노션 IB 자료 요지 3건(중국 장비 수입 추적 10월분·메모리 2027~28 전망·NAND 업체 노트) — 라이선스 자료 요지 포함, 외부 공유 금지"
+ ],
+ "id": "co-asmi",
+ "as_of": "2026-11-25",
+ "raw": {
+  "retrieved_at": "2026-11-25T06:20:00+09:00",
+  "source": "Fiscal.ai company_financials_standardized·company_estimates·company_segments_and_kpis·company_ir_events_transcript(XAMS_ASM), Easyconomics company_profile·company_price_history(yfinance)",
+  "fiscal_profile": {
+   "companyKey": "XAMS_ASM",
+   "terminalUrl": "https://fiscal.ai/company/ENXTAM-ASM",
+   "price": 637.4,
+   "market_cap": 31.221103,
+   "total_cash": 1.3387,
+   "total_debt": 0.0939,
+   "shares_outstanding": 0.048982,
+   "as_of": "2026-11-24",
+   "balance_date": "2026-09-30",
+   "auditUrl": "https://fiscal.ai/company/ENXTAM-ASM/audit-filings/?file=https%253A%252F%252Fapi.fiscal.ai%252Fv1%252Ffiling%252F0000000633-26-28042702%252Fpdf%253Fticker%253DASM%2526exchange%253DXAMS&pageNumber=9",
+   "note": "시총 = Fiscal.ai calculated_market_cap 2026-11-24. 차입 = 리스 부채 €93.9M(yfinance total_debt — 표준화 재무상태표에는 차입 항목 없음)"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2025Q4": 0.6983,
+    "2026Q1": 0.8625,
+    "2026Q2": 1.0031,
+    "2026Q3": 1.1594
+   },
+   "op_income": {
+    "2025Q4": 0.1705,
+    "2026Q1": 0.2782,
+    "2026Q2": 0.3228,
+    "2026Q3": 0.3789
+   },
+   "eps": {
+    "2025Q4": 3.38,
+    "2026Q1": 4.86,
+    "2026Q2": 5.8,
+    "2026Q3": 6.27
+   },
+   "adj_ebit": {
+    "2025Q4": 0.1752,
+    "2026Q1": 0.2859,
+    "2026Q2": 0.3305,
+    "2026Q3": 0.3867
+   },
+   "note": "Fiscal.ai 표준화 손익(IFRS, 유로)"
+  },
+  "balance_20260930": {
+   "cash": 1.3387,
+   "st_investments": 0.0,
+   "receivables": 1.0466,
+   "inventory": 0.6871,
+   "ppe": 0.7479,
+   "goodwill": 0.3413,
+   "intangibles": 1.0636,
+   "lt_investments": 0.9077,
+   "debt_st": 0.0,
+   "debt_lt": 0.0,
+   "debt": 0.0,
+   "lease": 0.0939,
+   "lease_lt": 0.0939,
+   "equity": 4.6732,
+   "total_assets": 6.5578,
+   "payables": 0.3718,
+   "unearned_revenue": 0.7374,
+   "source": "Fiscal.ai 표준화 재무상태표(3Q26 2026-09-30, 유로). 리스는 표준화 항목에 따로 없어 yfinance total_debt €93.9M"
+  },
+  "prior_bs_20250930": {
+   "cash": 1.0785,
+   "inventory": 0.5456,
+   "receivables": 0.673,
+   "unearned_revenue": 0.5832,
+   "equity": 3.8376,
+   "total_assets": 5.2458,
+   "source": "Fiscal.ai 표준화 재무상태표(3Q25)"
+  },
+  "cashflow_q": {
+   "2026-09-30": {
+    "ocf": 416800000.0,
+    "capex_ppe": -54600000.0,
+    "capex_intangible": -58700000.0,
+    "da": 70200000.0,
+    "sbc": 15200000.0,
+    "buyback": -149500000.0
+   },
+   "2026-06-30": {
+    "ocf": 466300000.0,
+    "capex_ppe": -164500000.0,
+    "capex_intangible": -67200000.0,
+    "da": 185100000.0,
+    "sbc": 13600000.0,
+    "dividends": -159200000.0,
+    "note": "유형자산 취득·감가상각이 회사 발언(2Q CAPEX €63M)과 다르다 — 표준화 이상치"
+   },
+   "2026-03-31": {
+    "ocf": 43800000.0,
+    "capex_ppe": -38300000.0,
+    "capex_intangible": -52100000.0,
+    "da": 61300000.0,
+    "sbc": 12000000.0
+   },
+   "2025-12-31": {
+    "ocf": 163700000.0,
+    "capex_ppe": -106200000.0,
+    "capex_intangible": -69300000.0,
+    "da": 69400000.0,
+    "sbc": 12800000.0,
+    "acquisitions": -81500000.0
+   }
+  },
+  "estimates_sales_m": {
+   "2026Q1": 862.5,
+   "2026Q2": 1003.1,
+   "2026Q3": 1159.4,
+   "2026Q4": 1240.0,
+   "2027Q1": 1300.0,
+   "2027Q2": 1430.0,
+   "2027Q3": 1520.0,
+   "2027Q4": 1600.0,
+   "2028Q1": 1579.4,
+   "2028Q2": 1708.2,
+   "2028Q3": 1701.0,
+   "2028Q4": 1621.4
+  },
+  "estimates_sales_m_note": "2026년 1~3Q는 실적, 4Q부터 Fiscal.ai 추정",
+  "orders": {
+   "new_orders_fy25_meur": 2976.4,
+   "new_orders_fy24_meur": 3000.0,
+   "backlog_20251231_meur": 1246.9,
+   "backlog_20241231_meur": 1565.7,
+   "q4_25_new_orders_meur": 802.8,
+   "note": "2026년부터 분기 수주를 내지 않고 수주잔고는 연 1회 공시(3Q 콜: 'once a year we disclose backlog')",
+   "source": "Fiscal.ai KPI(회사 공시)·ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+  },
+  "annual": {
+   "FY2021": {
+    "rev": 1729900000.0,
+    "op": 491500000.0,
+    "eps": 10.11
+   },
+   "FY2022": {
+    "rev": 2410900000.0,
+    "op": 632400000.0,
+    "eps": 7.93
+   },
+   "FY2023": {
+    "rev": 2634300000.0,
+    "op": 653700000.0,
+    "eps": 15.18
+   },
+   "FY2024": {
+    "rev": 2932700000.0,
+    "op": 802100000.0,
+    "eps": 13.89
+   },
+   "FY2025": {
+    "rev": 3173200000.0,
+    "op": 938000000.0,
+    "eps": 14.7
+   }
+  },
+  "eps_q": {
+   "2024-09-30": 2.59,
+   "2024-12-31": 4.58,
+   "2025-03-31": -0.59,
+   "2025-06-30": 4.1,
+   "2025-09-30": 7.82,
+   "2025-12-31": 3.38,
+   "2026-03-31": 4.86,
+   "2026-06-30": 5.8,
+   "2026-09-30": 6.27
+  },
+  "ohlcv_note": "일봉 = Easyconomics company_price_history 1년(실제 고가·저가) — TradingView 일일 한도로 대체 원천. 100주선 등 장기 지표는 빠진다",
+  "antidilutive": "SEC XBRL 대상 아님(네덜란드 상장) — 희석 가중평균 − 기본 가중평균으로 대신",
+  "annual_report": {
+   "note": "R-20261031-01 네 곳(구매 약정·제한 현금·10% 초과 고객·정부 지원)은 ASM 2025 연차보고서 원문을 이번 회차에 대조하지 못했다 — 반대 검증 '자료 한계'에 적는다"
+  },
+  "gather_note": "데이터 허브의 alphavantage·sec_ftd·finra_si·텔레그램 Fundeasyearnings 'ASM' 결과는 미국 티커 ASM(다른 회사)이라 쓰지 않았다",
+  "shares_cover_implied": 0.048982
+ },
+ "overrides": {
+  "margin_base": {
+   "lr": 0.27
+  },
+  "why": "장기 수렴 영업이익률 27%: 조정 영업이익률이 2021~2025년 26~30%, 2026년 33%대다. 장비 사이클 평균과 중국 믹스 하락을 감안해 최근 정점(33%)보다 낮게 둔다(판단)"
+ },
+ "quarters_hist": {
+  "source": "Fiscal.ai company_financials_standardized",
+  "key": "XAMS_ASM",
+  "currency": "EUR",
+  "q": [
+   {
+    "period": "2015-12-31",
+    "rev": 144709000,
+    "cogs": 80718000,
+    "gp": 63991000,
+    "sga": 24727000,
+    "rd": 22798000,
+    "da": null,
+    "other": -819000,
+    "op": 17285000
+   },
+   {
+    "period": "2016-03-31",
+    "rev": 142435000,
+    "cogs": 79914000,
+    "gp": 62521000,
+    "sga": 22497000,
+    "rd": 20786000,
+    "da": null,
+    "other": 452000,
+    "op": 18786000
+   },
+   {
+    "period": "2016-06-30",
+    "rev": 138726000,
+    "cogs": 77974000,
+    "gp": 60751000,
+    "sga": 20980000,
+    "rd": 22085000,
+    "da": null,
+    "other": 999000,
+    "op": 16688000
+   },
+   {
+    "period": "2016-09-30",
+    "rev": 144210000,
+    "cogs": 80466000,
+    "gp": 63744000,
+    "sga": 21372000,
+    "rd": 24241000,
+    "da": null,
+    "other": 1303000,
+    "op": 16828000
+   },
+   {
+    "period": "2016-12-31",
+    "rev": 172560000,
+    "cogs": 95076000,
+    "gp": 77483000,
+    "sga": 23149000,
+    "rd": 24018000,
+    "da": null,
+    "other": 378000,
+    "op": 29938000
+   },
+   {
+    "period": "2017-03-31",
+    "rev": 156836000,
+    "cogs": 89407000,
+    "gp": 67429000,
+    "sga": 23010000,
+    "rd": 24525000,
+    "da": null,
+    "other": 492000,
+    "op": 19402000
+   },
+   {
+    "period": "2017-06-30",
+    "rev": 214466000,
+    "cogs": 121293000,
+    "gp": 93173000,
+    "sga": 25194000,
+    "rd": 25095000,
+    "da": null,
+    "other": 199000,
+    "op": 42685000
+   },
+   {
+    "period": "2017-09-30",
+    "rev": 178090000,
+    "cogs": 108907000,
+    "gp": 69183000,
+    "sga": 25921000,
+    "rd": 22481000,
+    "da": null,
+    "other": -1000,
+    "op": 20783000
+   },
+   {
+    "period": "2017-12-31",
+    "rev": 181540000,
+    "cogs": 109703000,
+    "gp": 71837000,
+    "sga": 25025000,
+    "rd": 20676000,
+    "da": null,
+    "other": 91000,
+    "op": 26046000
+   },
+   {
+    "period": "2018-03-31",
+    "rev": 158974000,
+    "cogs": 98818000,
+    "gp": 60156000,
+    "sga": 27219000,
+    "rd": 20998000,
+    "da": null,
+    "other": 149000,
+    "op": 11790000
+   },
+   {
+    "period": "2018-06-30",
+    "rev": 208677000,
+    "cogs": 120827000,
+    "gp": 87850000,
+    "sga": 29685000,
+    "rd": 19913000,
+    "da": null,
+    "other": null,
+    "op": 38252000
+   },
+   {
+    "period": "2018-09-30",
+    "rev": 195744000,
+    "cogs": 115708000,
+    "gp": 80036000,
+    "sga": 30196000,
+    "rd": 21839000,
+    "da": null,
+    "other": null,
+    "op": 28000000
+   },
+   {
+    "period": "2018-12-31",
+    "rev": 254687000,
+    "cogs": 148431000,
+    "gp": 106255000,
+    "sga": 34162000,
+    "rd": 25839000,
+    "da": null,
+    "other": 29000,
+    "op": 46226000
+   },
+   {
+    "period": "2019-03-31",
+    "rev": 248780000,
+    "cogs": 145945000,
+    "gp": 102835000,
+    "sga": 33900000,
+    "rd": 21902000,
+    "da": null,
+    "other": null,
+    "op": 47033000
+   },
+   {
+    "period": "2019-06-30",
+    "rev": 363311000,
+    "cogs": 148932000,
+    "gp": 214379000,
+    "sga": 40321000,
+    "rd": 23817000,
+    "da": null,
+    "other": 80000,
+    "op": 150161000
+   },
+   {
+    "period": "2019-09-30",
+    "rev": 271166000,
+    "cogs": 156241000,
+    "gp": 114925000,
+    "sga": 34189000,
+    "rd": 30066000,
+    "da": null,
+    "other": 28000,
+    "op": 50642000
+   },
+   {
+    "period": "2019-12-31",
+    "rev": 400603000,
+    "cogs": 194279000,
+    "gp": 206324000,
+    "sga": 40409000,
+    "rd": 35061000,
+    "da": null,
+    "other": null,
+    "op": 130854000
+   },
+   {
+    "period": "2020-03-31",
+    "rev": 325139000,
+    "cogs": 180307000,
+    "gp": 144832000,
+    "sga": 35750000,
+    "rd": 30963000,
+    "da": null,
+    "other": null,
+    "op": 78119000
+   },
+   {
+    "period": "2020-06-30",
+    "rev": 341811000,
+    "cogs": 176723000,
+    "gp": 165088000,
+    "sga": 41023000,
+    "rd": 36467000,
+    "da": null,
+    "other": null,
+    "op": 87598000
+   },
+   {
+    "period": "2020-09-30",
+    "rev": 314558000,
+    "cogs": 157523000,
+    "gp": 157036000,
+    "sga": 38770000,
+    "rd": 34360000,
+    "da": null,
+    "other": null,
+    "op": 83906000
+   },
+   {
+    "period": "2020-12-31",
+    "rev": 346614000,
+    "cogs": 190001000,
+    "gp": 156613000,
+    "sga": 41879000,
+    "rd": 37213000,
+    "da": null,
+    "other": null,
+    "op": 77521000
+   },
+   {
+    "period": "2021-03-31",
+    "rev": 394015000,
+    "cogs": 198967000,
+    "gp": 195048000,
+    "sga": 40456000,
+    "rd": 30594000,
+    "da": null,
+    "other": -531000,
+    "op": 124529000
+   },
+   {
+    "period": "2021-06-30",
+    "rev": 411691000,
+    "cogs": 213795000,
+    "gp": 197896000,
+    "sga": 45830000,
+    "rd": 33707000,
+    "da": null,
+    "other": 4000,
+    "op": 118359000
+   },
+   {
+    "period": "2021-09-30",
+    "rev": 432864000,
+    "cogs": 228749000,
+    "gp": 204116000,
+    "sga": 48297000,
+    "rd": 38069000,
+    "da": null,
+    "other": 475000,
+    "op": 117275000
+   },
+   {
+    "period": "2021-12-31",
+    "rev": 491340000,
+    "cogs": 260269000,
+    "gp": 231072000,
+    "sga": 54968000,
+    "rd": 48827000,
+    "da": null,
+    "other": -4019000,
+    "op": 131296000
+   },
+   {
+    "period": "2022-03-31",
+    "rev": 516944000,
+    "cogs": 269785000,
+    "gp": 247159000,
+    "sga": 60612000,
+    "rd": 43504000,
+    "da": null,
+    "other": 65000,
+    "op": 142978000
+   },
+   {
+    "period": "2022-06-30",
+    "rev": 559457000,
+    "cogs": 293510000,
+    "gp": 265947000,
+    "sga": 67543000,
+    "rd": 50879000,
+    "da": null,
+    "other": -65000,
+    "op": 147590000
+   },
+   {
+    "period": "2022-09-30",
+    "rev": 609761000,
+    "cogs": 316490000,
+    "gp": 293271000,
+    "sga": 72531000,
+    "rd": 60719000,
+    "da": null,
+    "other": 78000,
+    "op": 159943000
+   },
+   {
+    "period": "2022-12-31",
+    "rev": 724765000,
+    "cogs": 388261000,
+    "gp": 336504000,
+    "sga": 75998000,
+    "rd": 78764000,
+    "da": null,
+    "other": -182000,
+    "op": 181924000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 710028000,
+    "cogs": 359468000,
+    "gp": 350560000,
+    "sga": 71110000,
+    "rd": 75250000,
+    "da": null,
+    "other": -14000,
+    "op": 204214000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 669144000,
+    "cogs": 346089000,
+    "gp": 323055000,
+    "sga": 74938000,
+    "rd": 77485000,
+    "da": null,
+    "other": -45000,
+    "op": 170677000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 622265000,
+    "cogs": 322876000,
+    "gp": 299389000,
+    "sga": 78028000,
+    "rd": 73982000,
+    "da": null,
+    "other": 78000,
+    "op": 147301000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 632895000,
+    "cogs": 334203000,
+    "gp": 298692000,
+    "sga": 84564000,
+    "rd": 82580000,
+    "da": null,
+    "other": -151000,
+    "op": 131548000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 639010000,
+    "cogs": 301191000,
+    "gp": 337819000,
+    "sga": 74146000,
+    "rd": 76559000,
+    "da": null,
+    "other": null,
+    "op": 187114000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 706090000,
+    "cogs": 354109000,
+    "gp": 351981000,
+    "sga": 88654000,
+    "rd": 85741000,
+    "da": null,
+    "other": 0,
+    "op": 177586000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 778600000,
+    "cogs": 394200000,
+    "gp": 384400000,
+    "sga": 77400000,
+    "rd": 99200000,
+    "da": null,
+    "other": -7400000,
+    "op": 215200000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 809000000,
+    "cogs": 401900000,
+    "gp": 407200000,
+    "sga": 76600000,
+    "rd": 108300000,
+    "da": null,
+    "other": null,
+    "op": 222300000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 839200000,
+    "cogs": 391400000,
+    "gp": 447800000,
+    "sga": 77500000,
+    "rd": 104100000,
+    "da": null,
+    "other": null,
+    "op": 266200000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 835600000,
+    "cogs": 402400000,
+    "gp": 433200000,
+    "sga": 73900000,
+    "rd": 100800000,
+    "da": null,
+    "other": null,
+    "op": 258500000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 800000000,
+    "cogs": 385100000,
+    "gp": 414900000,
+    "sga": 69700000,
+    "rd": 102500000,
+    "da": null,
+    "other": null,
+    "op": 242800000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 698300000,
+    "cogs": 350600000,
+    "gp": 347700000,
+    "sga": 75500000,
+    "rd": 101700000,
+    "da": null,
+    "other": null,
+    "op": 170500000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 862500000,
+    "cogs": 402700000,
+    "gp": 459900000,
+    "sga": 79500000,
+    "rd": 102200000,
+    "da": null,
+    "other": null,
+    "op": 278200000
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 1003100000,
+    "cogs": 482000000,
+    "gp": 521100000,
+    "sga": 82600000,
+    "rd": 115700000,
+    "da": null,
+    "other": null,
+    "op": 322800000
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 1159400000,
+    "cogs": 556300000,
+    "gp": 603200000,
+    "sga": 91400000,
+    "rd": 132900000,
+    "da": null,
+    "other": null,
+    "op": 378900000
+   }
+  ]
+ },
+ "multiples_now": {
+  "pe_fwd": 20.16,
+  "ev_ebitda_fwd": 13.74,
+  "pe_fwd2": 15.8,
+  "ev_ebitda_fwd2": 11.21,
+  "pe_fwd3": 14.33,
+  "ev_ebitda_fwd3": 10.27
+ },
+ "forward": {
+  "as_of": "2026-11-24",
+  "ntm": {
+   "eps": 31.61282,
+   "ebitda": 2321094930,
+   "ebit": 1894900000,
+   "revenue": 5490000000,
+   "rev_ttm": 3723300000
+  },
+  "horizons": {
+   "2": {
+    "eps": 40.3236,
+    "ebitda": 2843735482,
+    "ext": 0
+   },
+   "3": {
+    "eps": 44.46695421052631,
+    "ebitda": 3104871378.6556396,
+    "ext": 3
+   }
+  },
+  "guided": {
+   "eps": false,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "fiscal",
+   "ev_ebitda_fwd": "fiscal"
+  },
+  "source": "Fiscal.ai Forward 배수(다음 4개 분기 추정) → Street Forward. 과거 = 월말 가격 ÷ 그 시점 다음 4개 분기 추정(company_analyst_estimates history). Data provided by Zacks Investment Research, Inc., www.zacksdata.com"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 35.21
+   },
+   {
+    "date": "2026-03-31",
+    "value": 31.6
+   },
+   {
+    "date": "2026-06-30",
+    "value": 45.77
+   },
+   {
+    "date": "2026-09-30",
+    "value": 43.72
+   }
+  ],
+  "pe_ttm_source": "Fiscal.ai company_ratios LTM ratio_price_to_earnings(분기말 가격 ÷ 최근 4개 분기 GAAP EPS)"
+ },
+ "ops": {
+  "q": [
+   {
+    "period": "2022-12-31",
+    "rev": 724765000,
+    "cogs": 388261000,
+    "inventory": 538425000,
+    "ocf": 103792000,
+    "capex": -36782000,
+    "fcf": null,
+    "orders": 828600000
+   },
+   {
+    "period": "2023-03-31",
+    "rev": 710028000,
+    "cogs": 359468000,
+    "inventory": 575078000,
+    "ocf": 210356000,
+    "capex": -26428000,
+    "fcf": null,
+    "orders": 647400000
+   },
+   {
+    "period": "2023-06-30",
+    "rev": 669144000,
+    "cogs": 346089000,
+    "inventory": 581770000,
+    "ocf": 152381000,
+    "capex": -44145000,
+    "fcf": null,
+    "orders": 485800000
+   },
+   {
+    "period": "2023-09-30",
+    "rev": 622265000,
+    "cogs": 322876000,
+    "inventory": 574455000,
+    "ocf": 207628000,
+    "capex": -58527000,
+    "fcf": null,
+    "orders": 627400000
+   },
+   {
+    "period": "2023-12-31",
+    "rev": 632895000,
+    "cogs": 334203000,
+    "inventory": 525690000,
+    "ocf": 165522000,
+    "capex": -25432000,
+    "fcf": null,
+    "orders": 677500000
+   },
+   {
+    "period": "2024-03-31",
+    "rev": 639010000,
+    "cogs": 301191000,
+    "inventory": 576440000,
+    "ocf": 142384000,
+    "capex": -31265000,
+    "fcf": null,
+    "orders": 697900000
+   },
+   {
+    "period": "2024-06-30",
+    "rev": 706090000,
+    "cogs": 354109000,
+    "inventory": 578400000,
+    "ocf": 195016000,
+    "capex": -36135000,
+    "fcf": null,
+    "orders": 755400000
+   },
+   {
+    "period": "2024-09-30",
+    "rev": 778600000,
+    "cogs": 394200000,
+    "inventory": 553225000,
+    "ocf": 295200000,
+    "capex": -30000000,
+    "fcf": null,
+    "orders": 815300000
+   },
+   {
+    "period": "2024-12-31",
+    "rev": 809000000,
+    "cogs": 401900000,
+    "inventory": 567000000,
+    "ocf": 265000000,
+    "capex": -70500000,
+    "fcf": null,
+    "orders": 731400000
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 839200000,
+    "cogs": 391400000,
+    "inventory": 573800000,
+    "ocf": 346500000,
+    "capex": -29700000,
+    "fcf": null,
+    "orders": 834200000
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 835600000,
+    "cogs": 402400000,
+    "inventory": 545200000,
+    "ocf": 237800000,
+    "capex": -117900000,
+    "fcf": null,
+    "orders": 702500000
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 800000000,
+    "cogs": 385100000,
+    "inventory": 545600000,
+    "ocf": 312800000,
+    "capex": -38500000,
+    "fcf": null,
+    "orders": 636800000
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 698300000,
+    "cogs": 350600000,
+    "inventory": 552100000,
+    "ocf": 163700000,
+    "capex": -106200000,
+    "fcf": null,
+    "orders": 802800000
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 862500000,
+    "cogs": 402700000,
+    "inventory": 579600000,
+    "ocf": 43800000,
+    "capex": -38300000,
+    "fcf": null,
+    "orders": null
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 1003100000,
+    "cogs": 482000000,
+    "inventory": 615800000,
+    "ocf": 466300000,
+    "capex": -164500000,
+    "fcf": null,
+    "orders": null
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 1159400000,
+    "cogs": 556300000,
+    "inventory": 687100000,
+    "ocf": 416800000,
+    "capex": -54600000,
+    "fcf": null,
+    "orders": null
+   }
+  ],
+  "orders_label": "New Orders",
+  "backlog_label": null,
+  "source": "Fiscal.ai company_financials_standardized(재무상태표·현금흐름표)·company_segments_and_kpis"
+ },
+ "region_mix_note": "FY2025 지역 매출(회사 공시, Fiscal.ai 세그먼트): 아시아 €2,544.1M·미국 €486.9M·유럽 €142.2M ÷ €3,173.2M. 중국 단독 비중은 이번 회차 미대조",
+ "main_metric": "eps",
+ "main_metric_why": "회사·컨센서스 모두 EPS와 조정 영업이익률을 기준으로 쓴다(감가상각 비중 작음)",
+ "sbc_note": "SBC TTM €53.6M ÷ 매출 €3,723.3M. 회사 조정 영업이익은 인수 무형자산 상각만 빼고 주식 보상은 비용에 남긴다",
+ "guidance": {
+  "rev_fy0": [
+   4.255,
+   4.255
+  ],
+  "rev_basis": "gaap",
+  "margin_basis": "non_gaap",
+  "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28) — 4Q 매출 €1.23B(고정 환율, 범위 폭은 이번 회차 미대조), FY26 매출총이익률 약 52%, 판관비 매출의 약 8%, CAPEX €250M 초과, 2027년 매출 €5.7B 초과(고정 환율)",
+  "next": {
+   "period": "4Q26(2026-12 분기)",
+   "rev": 1230.0,
+   "rev_cons": 1240.0,
+   "eps_cons": 6.91,
+   "unit": "€M",
+   "basis": "회사 4Q 매출 가이던스 중간값 €1.23B(고정 환율, 3Q 실적 발표)"
+  },
+  "fy": {
+   "rev": [
+    4255,
+    4255
+   ],
+   "gm": 0.52,
+   "unit": "€M",
+   "note": "FY26 = 1~3분기 실적 €3,025.0M + 4Q 가이던스 €1,230M = €4,255M(계산). 회사 표현은 '고정 환율 기준 약 +35%'"
+  },
+  "long_term": "2027년 매출 €5.7B 초과(고정 환율) — 2025 Investor Day의 2030 목표를 3년 앞당김. 2027년 순연구개발비는 매출의 두 자릿수 초반, 판관비는 7% 미만. 새 이익률 목표는 2027년 하반기 Investor Day에서 제시 예정",
+  "rev_note": "회사는 수요가 아니라 부품 공급망이 출하의 한계라고 설명한다. 수주잔고는 연 1회(4Q 실적)만 공시한다"
+ },
+ "peers": [
+  {
+   "name": "Applied Materials",
+   "ticker": "AMAT",
+   "key": "NASDAQ_AMAT",
+   "rev": 34.446,
+   "ebit_margin": 0.3314,
+   "growth": 0.2143,
+   "mcap": 257.57,
+   "pb": 9.87,
+   "debt": 6.532,
+   "cash": 11.439,
+   "ev_sales": 7.4,
+   "why": "증착·식각 종합 장비 — ALD·에피택시·PECVD 직접 경쟁(달러)",
+   "goodwill": 3.875,
+   "intangibles": 0.339,
+   "pe_fwd": 17.22,
+   "ev_ebitda_fwd": 14.39,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 26.98,
+     "ev_ebitda_fwd": 22.74
+    },
+    {
+     "date": "2026-01-25",
+     "pe_ttm": 33
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 28.57,
+     "ev_ebitda_fwd": 26.72
+    },
+    {
+     "date": "2026-04-26",
+     "pe_ttm": 39.16
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 51.19,
+     "ev_ebitda_fwd": 41.68
+    },
+    {
+     "date": "2026-07-26",
+     "pe_ttm": 46.23
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 29.47,
+     "ev_ebitda_fwd": 24.66
+    },
+    {
+     "date": "2026-10-25",
+     "pe_ttm": 29.89
+    }
+   ],
+   "pe_fwd2": 13.87,
+   "ev_ebitda_fwd2": 11.61,
+   "pe_fwd3": 12.07,
+   "ev_ebitda_fwd3": 10.23,
+   "ntm_ebit_margin": 0.364,
+   "ntm_growth": 0.3557
+  },
+  {
+   "name": "Lam Research",
+   "ticker": "LRCX",
+   "key": "NASDAQ_LRCX",
+   "rev": 26.128,
+   "ebit_margin": 0.3735,
+   "growth": 0.3336,
+   "mcap": 245.06,
+   "pb": 17.62,
+   "debt": 3.735,
+   "cash": 7.437,
+   "ev_sales": 9.24,
+   "why": "식각·증착 — ALD·몰리브덴 증착 경쟁(달러)",
+   "pe_fwd": 19.27,
+   "ev_ebitda_fwd": 15.36,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 33.6,
+     "ev_ebitda_fwd": 26.86,
+     "pe_ttm": 36.49
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 33.82,
+     "ev_ebitda_fwd": 26.16,
+     "pe_ttm": 39.89
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 54.32,
+     "ev_ebitda_fwd": 44.64,
+     "pe_ttm": 65.81
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 33.59,
+     "ev_ebitda_fwd": 27.25,
+     "pe_ttm": 46.98
+    }
+   ],
+   "pe_fwd2": 16.57,
+   "ev_ebitda_fwd2": 13.04,
+   "pe_fwd3": 16.1,
+   "ev_ebitda_fwd3": 12.8,
+   "ntm_ebit_margin": 0.3993,
+   "ntm_growth": 0.4154
+  },
+  {
+   "name": "KLA",
+   "ticker": "KLAC",
+   "key": "NASDAQ_KLAC",
+   "rev": 14.506,
+   "ebit_margin": 0.4264,
+   "growth": 0.1582,
+   "mcap": 173.29,
+   "pb": 26.57,
+   "debt": 5.723,
+   "cash": 7.95,
+   "ev_sales": 12.01,
+   "why": "공정 제어·계측 — 같은 선단 로직·메모리 투자 주기(달러)",
+   "goodwill": 1.79,
+   "intangibles": 0.213,
+   "pe_fwd": 20.15,
+   "ev_ebitda_fwd": 16.51,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 25.39,
+     "pe_ttm": 35.28
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": null,
+     "ev_ebitda_fwd": 25.98,
+     "pe_ttm": 41.59
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 60.34,
+     "ev_ebitda_fwd": 48.54,
+     "pe_ttm": 82.43
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 33.69,
+     "ev_ebitda_fwd": 26.84,
+     "pe_ttm": 48.73
+    }
+   ],
+   "pe_fwd2": 17.6,
+   "ev_ebitda_fwd2": 14.18,
+   "pe_fwd3": 16.0,
+   "ev_ebitda_fwd3": 13.14,
+   "ntm_ebit_margin": 0.4684,
+   "ntm_growth": 0.4369
+  },
+  {
+   "name": "ASML",
+   "ticker": "ASML",
+   "key": "NASDAQ_ASML",
+   "rev": 39.474,
+   "ebit_margin": 0.3855,
+   "growth": 0.2254,
+   "mcap": 513.13,
+   "pb": 21.32,
+   "debt": 1.963,
+   "cash": 17.439,
+   "ev_sales": 11.64,
+   "why": "노광 — 같은 네덜란드 전공정 장비, 2nm·1.4nm 주기(유로)",
+   "goodwill": 4.589,
+   "intangibles": 0.583,
+   "pe_fwd": 22.08,
+   "ev_ebitda_fwd": 17.35,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_fwd": 37.92,
+     "ev_ebitda_fwd": 27.89,
+     "pe_ttm": 36.9
+    },
+    {
+     "date": "2026-03-31",
+     "pe_fwd": 37.55,
+     "ev_ebitda_fwd": 27.88,
+     "pe_ttm": 43.61
+    },
+    {
+     "date": "2026-06-30",
+     "pe_fwd": 50.96,
+     "ev_ebitda_fwd": 35.6,
+     "pe_ttm": 57.17
+    },
+    {
+     "date": "2026-09-30",
+     "pe_fwd": 36.74,
+     "ev_ebitda_fwd": 25.37,
+     "pe_ttm": 43.74
+    }
+   ],
+   "pe_fwd2": 19.62,
+   "ev_ebitda_fwd2": 15.62,
+   "pe_fwd3": 14.35,
+   "ev_ebitda_fwd3": 11.64,
+   "ntm_ebit_margin": 0.4547,
+   "ntm_growth": 0.4156
+  },
+  {
+   "name": "BE Semiconductor",
+   "ticker": "BESI",
+   "key": "XAMS_BESI",
+   "rev": 0.8845,
+   "ebit_margin": 0.4054,
+   "growth": 0.5292,
+   "mcap": 11.493,
+   "pb": 27.14,
+   "debt": 0.345,
+   "cash": 0.812,
+   "ev_sales": 12.73,
+   "why": "후공정 본딩 장비 — 같은 암스테르담 상장 장비주(유로)",
+   "goodwill": 0.045,
+   "intangibles": 0.102,
+   "pe_fwd": 24.88,
+   "ev_ebitda_fwd": 18.84,
+   "pe_fwd2": 21.1,
+   "ev_ebitda_fwd2": 16.23,
+   "pe_fwd3": 19.87,
+   "ev_ebitda_fwd3": 15.42,
+   "ntm_ebit_margin": 0.4479,
+   "ntm_growth": 0.4058,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 80.57
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 93.69
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 109.58
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 52.84
+    }
+   ]
+  },
+  {
+   "name": "Aixtron",
+   "ticker": "AIXA",
+   "key": "XETR_AIXA",
+   "rev": 0.5451,
+   "ebit_margin": 0.1964,
+   "growth": -0.0857,
+   "mcap": 3.024,
+   "pb": 2.93,
+   "debt": 0.354,
+   "cash": 0.945,
+   "ev_sales": 3.81,
+   "why": "화합물 반도체 증착(MOCVD) 장비 — 유럽 증착 장비(유로)",
+   "goodwill": 0.072,
+   "intangibles": 0.008,
+   "pe_fwd": 18.27,
+   "ev_ebitda_fwd": 7.92,
+   "pe_fwd2": 18.76,
+   "ev_ebitda_fwd2": 8.13,
+   "pe_fwd3": 13.15,
+   "ev_ebitda_fwd3": 6.0,
+   "ntm_ebit_margin": 0.271,
+   "ntm_growth": 0.5627,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 22.77
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 62.88
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 103.18
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 53.41
+    }
+   ]
+  }
+ ],
+ "peers_basis": "ttm",
+ "peers_source": "Fiscal.ai company_estimates(최근 4개 분기 실적 합)·daily_ratios(시가총액·EV/매출·P/B)·표준화 재무상태표(2026-11-25 조회). 금액은 각 회사 보고 통화 B. KLA 2025-12·2026-03 Fwd P/E 이력(3배대)은 자료 오류로 보고 뺐다",
+ "own": {
+  "ev_sales": 8.03,
+  "pb": 6.66,
+  "growth": 0.1338,
+  "ebit_margin": 0.309
+ },
+ "next_event": {
+  "date": "2027-02-23",
+  "tag": "4Q26·FY26 실적 발표(확정 일정) — 연말 수주잔고와 2027년 가이던스 갱신, 콜은 2/24(추정)"
+ },
+ "events": [
+  {
+   "date": "2026-07-29",
+   "tag": "2Q26 실적 발표 다음 날 −4.8%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-07-30",
+   "tag": "원인 미확인 +9.5%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-09-14",
+   "tag": "원인 미확인 −8.6%(자사주 €150M 매입 완료일)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "원인 미확인 −7.2%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-28",
+   "tag": "3Q26 실적·2027 가이던스 다음 날 +4.1%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "원인 미확인 −7.6%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "원인 미확인 −7.0%(AI 하드웨어 업종 급락 구간)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-11",
+   "tag": "자사주 €300M 매입 개시 발표 +7.0%",
+   "kind": "8-K"
+  },
+  {
+   "date": "2026-11-20",
+   "tag": "원인 미확인 −7.2%",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-23",
+   "tag": "증권사 투자의견 상향 보도 +8.3%",
+   "kind": "의견"
+  },
+  {
+   "date": "2026-11-24",
+   "tag": "원인 미확인 −8.0%",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-03-04",
+   "kind": "실적",
+   "tag": "4Q25·FY25 실적",
+   "q": "4Q25",
+   "session": "after"
+  },
+  {
+   "date": "2026-04-21",
+   "kind": "실적",
+   "tag": "1Q26 실적",
+   "q": "1Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-07-28",
+   "kind": "실적",
+   "tag": "2Q26 실적 — 분기 매출 첫 €1B",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-27",
+   "kind": "실적",
+   "tag": "3Q26 실적과 2027년 매출 €5.7B 초과 가이던스",
+   "q": "3Q26",
+   "session": "after"
+  }
+ ],
+ "segments_hist": {
+  "segments": {
+   "장비": [
+    {
+     "period": "2019-12-31",
+     "rev": 344800000
+    },
+    {
+     "period": "2020-03-31",
+     "rev": 269300000
+    },
+    {
+     "period": "2020-06-30",
+     "rev": 264400000
+    },
+    {
+     "period": "2020-09-30",
+     "rev": 242300000
+    },
+    {
+     "period": "2020-12-31",
+     "rev": 275400000
+    },
+    {
+     "period": "2021-03-31",
+     "rev": 319100000
+    },
+    {
+     "period": "2021-06-30",
+     "rev": 334900000
+    },
+    {
+     "period": "2021-09-30",
+     "rev": 354500000
+    },
+    {
+     "period": "2021-12-31",
+     "rev": 399600000
+    },
+    {
+     "period": "2022-03-31",
+     "rev": 427500000
+    },
+    {
+     "period": "2022-06-30",
+     "rev": 467200000
+    },
+    {
+     "period": "2022-09-30",
+     "rev": 511600000
+    },
+    {
+     "period": "2022-12-31",
+     "rev": 627300000
+    },
+    {
+     "period": "2023-03-31",
+     "rev": 603600000
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 565800000
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 515100000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 521400000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 514300000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 563600000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 603400000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 621800000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 668000000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 673700000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 630600000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 485200000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 675700000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 794300000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 936400000
+    }
+   ],
+   "부품·서비스": [
+    {
+     "period": "2019-12-31",
+     "rev": 55800000
+    },
+    {
+     "period": "2020-03-31",
+     "rev": 55800000
+    },
+    {
+     "period": "2020-06-30",
+     "rev": 77400000
+    },
+    {
+     "period": "2020-09-30",
+     "rev": 72300000
+    },
+    {
+     "period": "2020-12-31",
+     "rev": 71200000
+    },
+    {
+     "period": "2021-03-31",
+     "rev": 74900000
+    },
+    {
+     "period": "2021-06-30",
+     "rev": 76800000
+    },
+    {
+     "period": "2021-09-30",
+     "rev": 78400000
+    },
+    {
+     "period": "2021-12-31",
+     "rev": 91800000
+    },
+    {
+     "period": "2022-03-31",
+     "rev": 89400000
+    },
+    {
+     "period": "2022-06-30",
+     "rev": 92200000
+    },
+    {
+     "period": "2022-09-30",
+     "rev": 98100000
+    },
+    {
+     "period": "2022-12-31",
+     "rev": 97600000
+    },
+    {
+     "period": "2023-03-31",
+     "rev": 106400000
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 103300000
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 107200000
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 111500000
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 124700000
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 142500000
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 175200000
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 187200000
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 171200000
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 161900000
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 169400000
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 213100000
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 186800000
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 208700000
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 223100000
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(분기, 회사 공시 Equipment·Spares & Services 매출) 2019-12~2026-09"
+ },
+ "pricing": [
+  {
+   "business": "장비",
+   "segment": "장비",
+   "index": "ppi_id:PCU333242333242",
+   "company": {
+    "yoy": 0.0,
+    "basis": "회사: 일부 제품은 제공 가치에 맞춰 가격을 올렸다(3Q 콜) — 인상 폭 미공시라 0으로 둠"
+   }
+  }
+ ],
+ "sync": {
+  "why": "ASM 매출은 고객(파운드리·메모리 업체)의 전공정 장비 반입을 따라간다 — 반도체 제조장비(HS 848620) 통관과 장비 PPI를 본다. 매출의 80%가 아시아라 미국 수입은 일부만 설명한다",
+  "products": [
+   {
+    "name": "장비",
+    "segment": "장비",
+    "hs": "848620",
+    "share": 0.81,
+    "inputs": [
+     "semicap"
+    ]
+   }
+  ],
+  "indicators": [
+   {
+    "label": "미국 반도체 제조장비 수입",
+    "source": "hs",
+    "reporter": "us",
+    "flow": "import",
+    "hs": "848620",
+    "segment": "장비",
+    "why": "미국 선단 로직 팹(애리조나 등) 장비 반입"
+   },
+   {
+    "label": "미국 반도체 제조장비 PPI",
+    "source": "ppi",
+    "input": "semicap",
+    "country": "us",
+    "segment": "장비",
+    "why": "장비 판매가 물가 대용"
+   }
+  ]
+ },
+ "pq": {
+  "none": "회사가 장비 출하 대수·평균 판매가를 공시하지 않는다 — 업종 장비 PPI 대용으로만 잰다"
+ },
+ "ma": {
+  "none": "최근 3년 안에 조건이 공시로 확인된 인수가 없다. 2025년 현금흐름표에 사업 인수 지급 €157.6M이 있으나 대상·조건을 이번 회차에 1차 자료로 대조하지 못했다(미확인)"
+ },
+ "midterm": {
+  "exposure": {
+   "chips_subsidy": 0.3,
+   "tariff_codify": 0.2
+  },
+  "sub": "semicap",
+  "etf": "NASDAQ:SMH",
+  "why": "네덜란드 회사이고 미국 매출은 FY2025 15%다. 미국 정책은 고객의 미국 팹 투자(보조금·세액공제)와 애리조나 Scottsdale 신사옥, 대중국 수출통제를 거쳐 간접적으로 닿는다"
+ },
+ "sector_kpis": {
+  "none": "AI 밸류체인 종목 — 병목 틀로 본다"
+ },
+ "social": {
+  "none": "Quantral 미수록"
+ },
+ "recurring": {
+  "share": 0.192,
+  "kind": "부품·서비스(성과 기반 서비스 포함)",
+  "base": "설치 대수 미공시(미확인)",
+  "base_growth": 0.317,
+  "years_to_recurring": 0,
+  "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28) — 3Q 부품·서비스 매출 €223.1M(매출의 19.2%, 1년 전 €169.4M 대비 +31.7% 계산). 고객 팹 가동률이 높아 부품 수요가 강하다는 설명"
+ },
+ "backlog": {
+  "conversion_months": 4.5,
+  "rpo_growth": -0.204,
+  "revenue_growth": 0.449,
+  "source": "수주잔고는 평소 3~6개월치(3Q 콜 CFO) — 중간 4.5개월. 연말 잔고 €1,565.7M(2024) → €1,246.9M(2025) −20.4%. 2026년 분기 수주·잔고는 내지 않는다(다음 공시 2027-02-23). 매출 성장은 3Q26 전년 대비"
+ },
+ "customers": {
+  "none": "고객 이름별 매출 몫을 분기 자료에 내지 않는다(연차보고서의 주요 고객 집중 공시는 이번 회차 미대조). 용도별·지역별 집계만 있다 — 아래 집계 참고"
+ },
+ "customers_groups_note": {
+  "as_of": "2026-09-30",
+  "period": "1H26(용도)·FY2025(지역)",
+  "summary": "ASM은 고객 이름별 매출 몫을 내지 않는다. 1H26 장비 매출의 77%가 로직·파운드리, 15%가 메모리, 8%가 전력·아날로그·웨이퍼다. 지역으로는 FY2025 매출의 80%가 아시아다.",
+  "items": [
+   {
+    "name": "로직·파운드리 고객(집계)",
+    "alias": "Logic/foundry",
+    "share": 0.62,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "GAA 2nm·1.4nm용 ALD·에피택시, 중국 성숙 로직용 장비",
+    "source": "ASM 2Q26 실적 발표(2026-07-28)·어닝콜(2026-07-29)",
+    "why": "장비 매출(3Q 전체의 80.8%) × 1H26 로직·파운드리 77% = 약 62%(계산)"
+   },
+   {
+    "name": "부품·서비스 고객(집계)",
+    "alias": "Spares & services",
+    "share": 0.19,
+    "prior": 0.21,
+    "basis": "공시",
+    "buys": "예비 부품·성과 기반 서비스",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "why": "3Q26 €223.1M ÷ €1,159.4M"
+   },
+   {
+    "name": "메모리 고객(집계)",
+    "alias": "Memory",
+    "share": 0.12,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "HBM용 고성능 DRAM의 ALD·에피택시",
+    "source": "ASM 2Q26 실적 발표(2026-07-28)·어닝콜(2026-07-29)",
+    "why": "장비 80.8% × 1H26 메모리 15% = 약 12%(계산). 회사는 하반기 메모리가 상반기보다 크게 늘었다고 밝힘"
+   },
+   {
+    "name": "전력·아날로그·웨이퍼 고객(집계)",
+    "alias": "Power/analog/wafer",
+    "share": 0.06,
+    "prior": "미확인",
+    "basis": "공시",
+    "buys": "SiC·실리콘 에피택시, 수직로",
+    "source": "ASM 2Q26 실적 발표(2026-07-28)·어닝콜(2026-07-29)",
+    "why": "장비 80.8% × 8% = 약 6%(계산)"
+   }
+  ]
+ },
+ "pipeline": {
+  "as_of": "2025-12-31",
+  "summary": "ASM은 수주잔고를 연 1회만 낸다. 2025년 말 잔고는 €1,246.9M로 1년 전보다 20% 적었지만, 2026년 매출은 그 뒤 분기마다 최고치를 새로 썼다 — 잔고가 평소 3~6개월치라 잔고보다 고객의 증설 계획 공유가 2027년 가이던스의 근거다.",
+  "items": [
+   {
+    "name": "수주잔고(2025년 말)",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 1.2469,
+    "progress": "미확인",
+    "progress_basis": "2025년 말 잔고는 2026년 상반기에 대부분 매출로 바뀌었을 것으로 보이나 건별 인식은 미공시",
+    "margin": 0.52,
+    "margin_kind": "매출총이익률",
+    "margin_basis": "FY26 가이던스 약 52%",
+    "start": "2026-01",
+    "end": "2026-06",
+    "speed": "주문 → 출하 3~6개월",
+    "blockers": [
+     "부품 공급망(가스 공급 부품 등)",
+     "현장 서비스 인력"
+    ],
+    "source": "ASM FY2025 실적(회사 공시 KPI)·ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "note": "다음 잔고 공시는 2027-02-23"
+   },
+   {
+    "name": "2027년 고객 증설 계획(가이던스 근거)",
+    "kind": "pipeline",
+    "status": "파이프라인",
+    "total": "미확인",
+    "progress": "미확인",
+    "progress_basis": "구매 주문으로 바뀌지 않은 고객 계획 — 회사 가이던스는 매출 €5.7B 초과",
+    "start": "2027-01",
+    "end": "2027-12",
+    "speed": "미확인",
+    "blockers": [
+     "구매 주문 전환 전(CFO: 가시성이 확실성은 아니다)",
+     "부품 공급",
+     "MATCH Act 등 수출통제"
+    ],
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "note": "확정 수주가 아니다 — 1.4nm 양산 투자와 DRAM FinFET이 핵심",
+    "margin": "미확인",
+    "margin_kind": "매출총이익률",
+    "margin_basis": "미확인"
+   }
+  ],
+  "reported_backlog": 1.2469,
+  "backlog_label": "수주잔고(2025-12-31, 연 1회 공시)"
+ },
+ "moat": {
+  "summary": "해자는 선단 공정의 단일 웨이퍼 ALD에서 먼저 공정 기준 장비로 채택된 자리와, 전구체 분자를 직접 설계하는 소재 역량에서 나온다. 점유율 숫자는 회사 자료를 이번 회차에 대조하지 못해 판정을 한 단계 낮춘 항목이 있다.",
+  "items": [
+   {
+    "kind": "선단 ALD 공정 기준 장비",
+    "verdict": "강함",
+    "claim": "GAA 2nm에서 채택된 ALD·에피택시 공정이 1.4nm에서 층수와 점유율이 함께 늘어난다",
+    "evidence": "3Q 콜: 1.4nm에서 대응 시장과 점유율이 2nm보다 모두 커지고 몰리브덴 ALD 수주 확보(2Q 콜). 2026년 장비 매출 +40% 초과로 부품·서비스보다 빨리 자라 점유율 상승을 뒷받침. 매출총이익률 52%",
+    "quant": "장비 매출 3Q +48%(고정 환율) · 매출총이익률 52.0%",
+    "falsifier": "1.4nm 양산 투자에서 ALD·에피택시 채택 층을 경쟁사가 가져간다"
+   },
+   {
+    "kind": "소재·전구체 설계",
+    "verdict": "보통",
+    "claim": "새 분자를 직접 설계해 공정을 만든다 — ALD 밖(PECVD)으로 확장",
+    "evidence": "3Q 콜: 자체 설계 분자로 만든 유동성 탄소 PECVD(XP8 Vertos)가 양산 라인에 들어갔다. 순연구개발비 매출의 11.5%(3Q)",
+    "quant": "3Q 총 연구개발 지출 €144M(+14%)",
+    "falsifier": "신제품이 양산 채택 뒤 반복 주문으로 이어지지 않는다(개발비 손상 반복)"
+   },
+   {
+    "kind": "설치 기반 부품·서비스",
+    "verdict": "보통",
+    "claim": "깔린 장비가 부품·성과 기반 서비스 매출을 만든다",
+    "evidence": "3Q 부품·서비스 €223.1M(+31% 고정 환율), 매출의 19.2%",
+    "quant": "부품·서비스 FY2023 €428.5M → FY2025 €715.7M",
+    "falsifier": "고객 팹 가동률 하락으로 부품 매출이 두 분기 연속 감소"
+   },
+   {
+    "kind": "시장 점유율",
+    "verdict": "해당 없음",
+    "claim": "단일 웨이퍼 ALD 점유율 숫자",
+    "evidence": "미확인 — 회사 Investor Day 자료를 이번 회차에 대조하지 못했다",
+    "quant": "미확인",
+    "falsifier": "미확인"
+   }
+  ]
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "IFRS",
+  "summary": "3Q 매출원가는 매출의 48.0%로 1년 전 48.1%와 같다. 이익률을 올린 것은 영업 레버리지다 — 판관비가 매출의 8.7%에서 7.9%로, 순연구개발비가 12.8%에서 11.5%로 내려갔다. 회사는 가격 인상과 부품 원가 상승이 서로 상쇄된다고 설명한다.",
+  "periods": [
+   {
+    "period": "3Q25",
+    "rev": 0.8,
+    "cogs": 0.3851,
+    "rd": 0.1025,
+    "sga": 0.0697,
+    "other": 0.0
+   },
+   {
+    "period": "2Q26",
+    "rev": 1.0031,
+    "cogs": 0.482,
+    "rd": 0.1157,
+    "sga": 0.0826,
+    "other": 0.0
+   },
+   {
+    "period": "3Q26",
+    "rev": 1.1594,
+    "cogs": 0.5563,
+    "rd": 0.1329,
+    "sga": 0.0914,
+    "other": 0.0
+   }
+  ],
+  "costs": [
+   {
+    "name": "구매 부품·모듈",
+    "stage": "매출원가",
+    "pct_rev": 0.36,
+    "prior_pct": 0.36,
+    "fixed": 0.0,
+    "driver": "가스 공급 부품·챔버·RF 전원 단가와 물량, 제품·고객 믹스",
+    "basis": "추정",
+    "source": "원가 구성 미공시 — 장비 업계 통상 비중",
+    "input": "semicap"
+   },
+   {
+    "name": "제조 인건비·간접비",
+    "stage": "매출원가",
+    "pct_rev": 0.08,
+    "prior_pct": 0.081,
+    "fixed": 0.5,
+    "driver": "싱가포르·한국 공장 가동과 현장 서비스 인력(3Q 인원 +400명)",
+    "basis": "추정",
+    "source": "원가 구성 미공시"
+   },
+   {
+    "name": "감가상각·기타 매출원가",
+    "stage": "매출원가",
+    "pct_rev": 0.04,
+    "prior_pct": 0.04,
+    "fixed": 0.8,
+    "driver": "공장·평가 장비 상각",
+    "basis": "추정",
+    "source": "원가 구성 미공시 — 매출원가 48.0%에서 위 두 항목을 뺀 나머지"
+   },
+   {
+    "name": "순연구개발비",
+    "stage": "연구개발",
+    "pct_rev": 0.115,
+    "prior_pct": 0.128,
+    "fixed": 0.8,
+    "driver": "총 연구개발 지출 − 개발비 자본화 + 상각·손상(3Q 손상 €7M)",
+    "basis": "공시",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "name": "판관비",
+    "stage": "판관비",
+    "pct_rev": 0.079,
+    "prior_pct": 0.087,
+    "fixed": 0.6,
+    "driver": "인원·성과 연동 변동비 — 회사 기준(조정)으로는 7.6%",
+    "basis": "공시",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   }
+  ],
+  "products": [
+   {
+    "name": "장비",
+    "rev_share": 0.808,
+    "gpm": 0.52,
+    "gpm_basis": "회사 전체 매출총이익률(3Q26) — 제품별 총이익 미공시",
+    "bom": [
+     {
+      "item": "가스 공급 부품(질량유량제어기·밸브)",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "비중 미공시 — 3Q 콜 질의에서 대표 병목 부품으로 거론",
+      "pass_through": "미확인",
+      "why": "ALD는 전구체 펄스 제어가 핵심이라 가스 부품 비중이 높다",
+      "input": "semicap"
+     },
+     {
+      "item": "반응 챔버·히터·서셉터",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "장비 구조상 최대 원가 — 비중 미공시",
+      "pass_through": "미확인",
+      "why": "정밀 가공품·세라믹 단가",
+      "input": "semicap"
+     },
+     {
+      "item": "RF 전원·정합기",
+      "share": [
+       0.08,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "플라즈마 ALD·PECVD에 필요",
+      "input": "semicap"
+     },
+     {
+      "item": "웨이퍼 이송 플랫폼·제어부",
+      "share": [
+       0.15,
+       0.25
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "로봇·진공 이송·제어 전장",
+      "input": "semicap"
+     }
+    ]
+   },
+   {
+    "name": "부품·서비스",
+    "rev_share": 0.192,
+    "gpm": 0.52,
+    "gpm_basis": "회사 전체 매출총이익률(3Q26)을 그대로 씀 — 부문별 총이익 미공시",
+    "bom": [
+     {
+      "item": "예비 부품 원가",
+      "share": [
+       0.4,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "소모성 챔버 부품",
+      "input": "semicap"
+     },
+     {
+      "item": "현장 서비스 인건비",
+      "share": [
+       0.3,
+       0.5
+      ],
+      "basis": "추정",
+      "source": "비중 미공시 — 3Q 인원 증가의 큰 몫이 운영·현장 서비스",
+      "pass_through": "미확인",
+      "why": "성과 기반 서비스 계약 수행"
+     },
+     {
+      "item": "물류·기타",
+      "share": [
+       0.05,
+       0.15
+      ],
+      "basis": "추정",
+      "source": "비중 미공시",
+      "pass_through": "미확인",
+      "why": "부품 재고·운송"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "as_of": "2026-09-30",
+  "summary": "ASM은 부품·모듈을 협력사에서 받아 싱가포르와 한국에서 조립한다. 회사는 건물 캐파가 아니라 부품 공급망이 출하의 한계라고 말한다 — 핵심 협력사에 인력을 상주시키고 신규 협력사를 인증하는 중이며 공급사 이름과 품목별 수치는 공개하지 않는다.",
+  "links": [
+   {
+    "item": "가스 공급 부품(질량유량제어기·밸브)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "유량 제어 부품",
+      "status": "추정",
+      "source": "https://www.asm.com/investors"
+     }
+    ],
+    "qualified": 2,
+    "qualified_basis": "추정 — 회사가 소수 핵심 협력사에 인력을 상주시키고 신규 협력사를 인증 중이라고 밝혀 지금은 2곳 안팎으로 본다(3Q 콜, 수치 미공시)",
+    "capacity": "빠듯",
+    "capacity_basis": "회사: 공급망이 '매우 어렵고 위험이 있다'고 인정(3Q 콜). 품목 이름은 애널리스트 질문에서 나온 예시이고 회사가 특정하지 않았다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": 0.6,
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "복수구매",
+    "secured_basis": "추정 — 신규 협력사 인증으로 복수화 중, 선급금은 지금까지 많지 않다(3Q 콜 CFO)",
+    "why": "ALD 전구체 공급을 제어하는 필수 부품",
+    "relief": "핵심 협력사 상주·신규 협력사 인증 중 — 물량 확보 확인 전",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "input": "semicap",
+    "top_share_basis": "추정 — 질량유량제어기 세계 1위 업체 점유율 약 60%라는 업계 통용 수치(이번 회차 미대조, ASM의 실제 공급사는 미공개)"
+   },
+   {
+    "item": "반응 챔버·히터·서셉터",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "정밀 가공·세라믹",
+      "status": "추정",
+      "source": "https://www.asm.com/investors"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "회사가 신규 협력사를 인증 중이라고만 밝힘(3Q 콜)",
+    "capacity": "빠듯",
+    "capacity_basis": "품목별 수급 미공시 — 회사는 공급망 전반이 빠듯하다고만 설명",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "secured_basis": "필요하면 선급금을 낼 수 있으나 지금까지는 많지 않다(3Q 콜 CFO)",
+    "why": "막질 균일도를 정하는 핵심 부품",
+    "relief": "신규 협력사 인증 중 — 가동 확인 전",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "input": "semicap"
+   },
+   {
+    "item": "RF 전원·정합기",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "플라즈마 전원",
+      "status": "추정",
+      "source": "https://www.asm.com/investors"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "회사가 신규 협력사를 인증 중이라고만 밝힘(3Q 콜)",
+    "capacity": "미확인",
+    "capacity_basis": "품목별 수급 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "secured_basis": "필요하면 선급금을 낼 수 있으나 지금까지는 많지 않다(3Q 콜 CFO)",
+    "why": "플라즈마 ALD·PECVD 필수",
+    "relief": "미확인",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "input": "semicap"
+   },
+   {
+    "item": "웨이퍼 이송 플랫폼·제어부",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공개",
+      "role": "로봇·제어 전장",
+      "status": "추정",
+      "source": "https://www.asm.com/investors"
+     }
+    ],
+    "qualified": "미확인",
+    "qualified_basis": "회사가 신규 협력사를 인증 중이라고만 밝힘(3Q 콜)",
+    "capacity": "미확인",
+    "capacity_basis": "품목별 수급 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "secured_basis": "필요하면 선급금을 낼 수 있으나 지금까지는 많지 않다(3Q 콜 CFO)",
+    "why": "모든 장비 공통 플랫폼",
+    "relief": "미확인",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)",
+    "input": "semicap"
+   }
+  ]
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "€B(연 매출 환산)",
+  "summary": "회사는 제조 공간이 지금 매출의 약 3배를 감당한다고 밝혔다 — 3Q 매출 연율 €4.6B 기준 약 €13.9B(계산)다. 지난 몇 년 싱가포르·한국 공장을 먼저 늘려 둔 결과이고, 지금 설비투자의 큰 몫은 애리조나 Scottsdale 신사옥이다. 건물이 아니라 부품이 병목이므로 이 숫자를 판매 가능 물량으로 읽으면 안 된다.",
+  "current": {
+   "nameplate": 13.9,
+   "utilization": 0.33,
+   "basis": "회사: 제조 공간은 지금 매출의 약 3배 지원(3Q 콜) — 3Q 매출 €1,159.4M × 4 × 3 = €13.9B(계산). 가동률 약 3분의 1은 그 역수",
+   "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+  },
+  "plans": [
+   {
+    "name": "Scottsdale 신사옥(애리조나)",
+    "add": "미확인",
+    "stage": "착공",
+    "online": "미확인",
+    "capex": "미확인",
+    "blocker": "미확인",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28) · ASM 2Q26 실적 발표(2026-07-28)·어닝콜(2026-07-29)",
+    "add_note": "연구개발·기술 거점 성격 — 생산 캐파 증가분 미공시",
+    "capex_note": "FY26 CAPEX €250M 초과의 가장 큰 몫(금액 미공시)"
+   }
+  ],
+  "capex": [
+   {
+    "period": "FY2023",
+    "capex": 0.1541,
+    "rev": 2.6343,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2024",
+    "capex": 0.1679,
+    "rev": 2.9327,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2025",
+    "capex": 0.2185,
+    "rev": 3.1732,
+    "kind": "실적"
+   },
+   {
+    "period": "FY2026",
+    "capex": 0.25,
+    "rev": 4.255,
+    "kind": "가이던스"
+   },
+   {
+    "period": "FY2027",
+    "capex": 0.3,
+    "rev": 5.85,
+    "kind": "컨센서스"
+   }
+  ],
+  "capex_source": "Fiscal.ai 현금흐름 — 유형자산 취득(자본화 개발비 제외). FY26은 회사 가이던스 '€250M 초과'의 하한, FY27은 컨센서스",
+  "sites": [],
+  "sites_none": "시설 위성 판독 등록은 다음 회차 — 연차보고서 시설 주소 미대조, Scottsdale 신사옥은 건설 중",
+  "facilities": {
+   "count": 4,
+   "count_basis": "어닝콜에서 회사가 이름을 밝힌 거점 — 싱가포르·한국(핵심 제조), Scottsdale(건설 중), Almere 본사. 연차보고서 시설 목록은 이번 회차 미대조라 실제 거점은 더 많다",
+   "source": "https://www.asm.com/investors",
+   "items": [
+    {
+     "name": "싱가포르 제조 거점",
+     "location": "싱가포르",
+     "owned": "미확인",
+     "use": "장비 조립·시험(핵심 제조 거점)",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "거점별 캐파 미공시 — 전사 합계로 '매출의 약 3배 공간'만 공시"
+    },
+    {
+     "name": "한국 제조·연구 거점",
+     "location": "대한민국 경기도 화성",
+     "owned": "미확인",
+     "use": "장비 조립과 연구개발(핵심 제조 거점)",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "거점별 캐파 미공시"
+    },
+    {
+     "name": "Scottsdale 신사옥",
+     "location": "미국 애리조나주 Scottsdale",
+     "owned": "미확인",
+     "use": "북미 연구개발·기술 거점(건설 중)",
+     "status": "건설 중",
+     "capacity": "미확인",
+     "capacity_basis": "생산 캐파 미공시"
+    },
+    {
+     "name": "Almere 본사",
+     "location": "네덜란드 Almere",
+     "owned": "미확인",
+     "use": "본사·연구개발",
+     "status": "가동",
+     "capacity": "미확인",
+     "capacity_basis": "생산 거점 아님"
+    }
+   ]
+  }
+ },
+ "leaders": {
+  "as_of": "2026-11-25",
+  "summary": "CEO Hichem M'Saad와 CFO Paul Verhagen이 콜을 이끈다. 정계·동문 연결은 공개 자료에서 확인하지 못했다. ASM은 ASMPT 지분 24.6%를 들고 있다.",
+  "people": [
+   {
+    "name": "Hichem M'Saad",
+    "role": "CEO",
+    "since": "미확인",
+    "profile": "콜에서 스스로 PECVD 분야 15년 경력을 언급 — 1.4nm·DRAM 로드맵과 신제품을 직접 설명",
+    "business": "선단 로직 고객이 2029~2030년, 1.0nm 로드맵까지 공유한다고 밝힘(3Q 콜)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.asm.com/investors"
+   },
+   {
+    "name": "Paul Verhagen",
+    "role": "CFO",
+    "since": "미확인",
+    "profile": "가이던스·자본 배분(자사주 €300M)·공급망 위험을 설명",
+    "business": "협력사 확보를 위한 선급금 가능성 언급(3Q 콜)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.asm.com/investors"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "선단 로직·파운드리 고객과의 조기 증설 계획 공유",
+    "strength": 3,
+    "exposure": 0.62,
+    "basis": "로직·파운드리가 매출의 약 62%(계산) — 경영진 개인 연결이 매출을 만들었다는 뜻이 아니다",
+    "evidence": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   }
+  ]
+ },
+ "terms": {
+  "ALD": "원자층 증착 — 원자 한 층씩 막을 쌓는 공정",
+  "PEALD": "플라즈마를 쓰는 원자층 증착",
+  "PECVD": "플라즈마 화학 기상 증착",
+  "에피택시": "웨이퍼 위에 결정 방향을 맞춰 단결정 막을 기르는 공정",
+  "GAA": "게이트가 채널 네 면을 감싸는 트랜지스터 구조",
+  "나노시트": "GAA 트랜지스터의 얇은 판 모양 채널",
+  "FinFET": "지느러미 모양 채널의 입체 트랜지스터",
+  "6F²": "현재 DRAM 셀 배치 구조",
+  "4F²": "수직 채널을 쓰는 차세대 DRAM 셀 구조",
+  "HBM": "고대역폭 메모리 — AI 가속기용 적층 DRAM",
+  "HVM": "대량 양산",
+  "XP8 Vertos": "ASM의 유동성 탄소 PECVD 장비",
+  "유동성 탄소": "좁고 깊은 구조 안으로 흘러 들어가 채우는 탄소 막",
+  "CPO": "광 부품을 칩 패키지 안에 넣는 방식",
+  "MATCH Act": "동맹국 반도체 장비 수출통제를 미국 수준으로 맞추려는 미국 법안",
+  "WFE": "웨이퍼 팹 장비 투자",
+  "ASMPT": "ASM이 지분 24.6%를 가진 홍콩 상장 후공정 장비 회사",
+  "몰리브덴 ALD": "배선 저항을 낮추려고 몰리브덴 금속을 원자층으로 쌓는 공정",
+  "Scottsdale": "미국 애리조나주 도시 — ASM 북미 신사옥 부지",
+  "성과 기반 서비스": "장비 가동 성과에 연동해 대가를 받는 서비스 계약",
+  "IFRS": "국제회계기준",
+  "CMD": "회사 투자자 설명회",
+  "SiC": "탄화규소 — 전력반도체 소재",
+  "고정 환율": "환율 변동을 뺀 성장률 기준",
+  "HP": "추세와 순환을 나누는 통계 필터(호드릭-프레스콧)",
+  "MATCH": "동맹국 장비 수출통제 정렬 법안(MATCH Act)",
+  "BIS": "미국 상무부 산업안보국",
+  "RF": "고주파 전원",
+  "RPO": "잔여 이행 의무",
+  "XP8": "ASM의 다중 챔버 장비 플랫폼"
+ },
+ "names": [
+  "ASM International",
+  "ASM",
+  "ASML",
+  "Applied Materials",
+  "AMAT",
+  "Lam Research",
+  "LRCX",
+  "KLA",
+  "KLAC",
+  "BE Semiconductor",
+  "BESI",
+  "Aixtron",
+  "AIXA",
+  "BNP Paribas",
+  "Berenberg",
+  "UBS",
+  "Oddo BHF",
+  "Bank of America",
+  "Redburn Atlantic",
+  "HSBC",
+  "JP Morgan",
+  "JPMorgan",
+  "Kepler Cheuvreux",
+  "Morgan Stanley",
+  "Deutsche Bank",
+  "Barclays",
+  "AlphaValue",
+  "BHF",
+  "BNP",
+  "JP",
+  "Oddo"
+ ],
+ "photos": [],
+ "assets": {
+  "unit": "$M",
+  "source": "SEC 공시 데이터(10-K·10-Q) 자동 초안 — scripts/tenbagger/asset_pack.py",
+  "ppe": [],
+  "intangibles": [],
+  "dep_annual": [],
+  "quarters": [],
+  "da_note": "손익계산서 감가상각·상각비(SEC 공시 데이터, 4분기 = 연간 − 1~3분기). 분기 유형자산 총액이 없어 순액 기준",
+  "missing": [
+   "분기 감가상각·유형자산(순액) 9분기",
+   "분기 매출·영업이익 8분기",
+   "유형자산 항목별 총액·내용연수(10-K 주석에서 모델이 채움)",
+   "무형자산 항목(10-K 주석에서 모델이 채움)"
+  ]
+ },
+ "multiple_view": {
+  "adj": 0.0,
+  "why": "Fwd 1Y P/E 20.2배는 동종 6곳 중앙(19.7배)과 거의 같다. 1.4nm에서 층수와 점유율이 함께 늘어나는 구조적 성장은 프리미엄 근거지만, 2027년 가이던스가 구매 주문이 아니라 고객 계획에 기대고 중국 믹스가 줄어드는 점이 상쇄한다 — 판단 조정 없음"
+ },
+ "scenario_probs": {},
+ "scenario_probs_why": "조정 없음 — 계산값 사용",
+ "weakest": "2027년 매출 €5.7B 초과 가이던스가 구매 주문이 아니라 고객의 증설 계획 공유에 근거한다는 고리 — 수주잔고는 평소처럼 3~6개월치이고 다음 잔고 공시는 2027-02-23이다",
+ "narrative": {
+  "as_of": "2026-11-25",
+  "stage": "컨센서스",
+  "crowding": "중간(리테일 집계 없음, 콜 질문 증권사 11곳, 기관 보유 약 65%)",
+  "summary": "GAA 트랜지스터와 HBM이 원자층 증착 층수를 늘린다는 이야기는 이미 컨센서스다. 주가는 1년 전 €477에서 6월 €1,079까지 올랐다가 AI 설비투자 축소 우려와 수출통제 강화로 €637까지 내려왔다 — 이야기는 그대로인데 업종 배수가 줄었다.",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "콜 질문 증권사",
+      "11곳(BNP Paribas·Berenberg·UBS·Oddo BHF·Bank of America·Redburn Atlantic·HSBC·JP Morgan·Kepler Cheuvreux·Morgan Stanley·Deutsche Bank)"
+     ],
+     [
+      "의견 분포·목표가 집계",
+      "데이터 없음"
+     ],
+     [
+      "11월 의견 변경 보도",
+      "AlphaValue 매수 상향(11/23 보도), Barclays 비중 확대 유지(11/9 보도)"
+     ],
+     [
+      "IB 업종 전망(요지)",
+      "WFE 2027년 +38%·2028년 +19% 전망과, 2028년 메모리 수급 완화·AI 투자 축소 하방 시나리오가 함께 나온다"
+     ]
+    ],
+    "read": "질문은 '2027년 €5.7B가 주문으로 얼마나 덮였나'와 '총이익률 52%가 더 오르나'에 몰렸다. 셀사이드는 수요보다 가시성의 질과 2028년 지속성을 묻는다."
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "13F 보유",
+      "해당 없음(미국 상장 아님)"
+     ],
+     [
+      "기관 보유",
+      "약 65%(2순위 원천)"
+     ],
+     [
+      "내부자 보유",
+      "약 4.7%(2순위 원천)"
+     ],
+     [
+      "유럽 롱온리 펀드",
+      "3분기에 AI 설비투자 수혜주 비중을 줄였으나 아직 벤치마크보다 많다(IB 포지션 분석 요지, 2026-11-20)"
+     ]
+    ],
+    "read": "유럽 액티브 펀드가 AI 설비투자 수혜주를 덜어내는 흐름이 10~11월 하락과 겹친다. 회사는 자사주 €300M 매입으로 맞섰다."
+   },
+   "retail": {
+    "metrics": [
+     [
+      "Quantral",
+      "미수록"
+     ],
+     [
+      "레딧 언급 순위",
+      "집계 없음"
+     ],
+     [
+      "텔레그램 공개 채널",
+      "회사 직접 언급 글 없음(21일)"
+     ]
+    ],
+    "read": "리테일 관심 집계가 거의 없다 — 유럽 기관 중심 종목이다."
+   },
+   "media": {
+    "metrics": [
+     [
+      "3Q 실적 반응",
+      "10/28 +4.1%"
+     ],
+     [
+      "자사주 매입 개시",
+      "11/11 +7.0%"
+     ],
+     [
+      "11월 급락일",
+      "11/5 −7.0%, 11/20 −7.2%, 11/24 −8.0%(원인 미확인)"
+     ]
+    ],
+    "read": "실적과 자사주 소식에는 올랐지만 업종 급락일마다 7~8%씩 내려 상승분을 지웠다."
+   }
+  },
+  "factors": [
+   {
+    "name": "GAA 1.4nm에서 ALD·에피택시 층수 확대",
+    "thesis": "2nm에서 구조 전환에 집중했던 고객이 1.4nm에서는 성능을 뽑아내려고 소재·공정 단계를 늘린다 — 대응 시장과 점유율이 함께 커진다",
+    "inputs": "성장·배수",
+    "who": {
+     "sell": "강",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "both",
+    "quant": "1.4nm가 3Q 선단 로직 매출의 두 자릿수 비중, 2027년 최대 기여 노드(회사)",
+    "status": "강화",
+    "falsifier": "1.4nm 양산 투자가 2028년 뒤로 밀리거나 채택 층을 경쟁사가 가져감",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "name": "HBM·DRAM FinFET",
+    "thesis": "HBM용 고성능 DRAM 증설과 주변회로 FinFET 조기 도입이 메모리에서 ALD 층수를 늘린다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "FinFET ALD 층수 약 3배(회사), 메모리는 1H26 장비 매출의 15%",
+    "status": "강화",
+    "falsifier": "2028년 DRAM 수급 완화로 메모리 증설이 줄어듦",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "name": "2027년 매출 €5.7B 조기 가이던스",
+    "thesis": "2030년 목표를 3년 앞당긴다는 숫자가 2027년 추정을 받친다",
+    "inputs": "성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "FY2027 매출 컨센서스 €5.85B(+37%), EPS €34.2(+41%)",
+    "status": "유지",
+    "falsifier": "2027-02-23 연말 수주잔고가 2025년 말(€1,246.9M)보다 크게 늘지 않음",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "name": "AI 설비투자 축소·수출통제(반대 내러티브)",
+    "thesis": "2028년 AI 투자 증가율이 꺾이거나 MATCH Act가 중국 매출을 막으면 장비 배수와 추정이 함께 내려간다",
+    "inputs": "배수·성장",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "동종 Fwd 1Y P/E가 9월 말 30배 안팎에서 지금 20배 안팎으로 줄었다. 중국 장비 수입은 10월 전월 대비 −10%(IB 통관 집계 요지)",
+    "status": "강화",
+    "falsifier": "대형 클라우드 업체가 2027~2028년 설비투자 계획을 올리고 수출통제 법안이 완화됨",
+    "source": "IB 자료 요지(2026-11) · Fiscal.ai 동종 배수 이력"
+   },
+   {
+    "name": "부품 공급망 병목",
+    "thesis": "수요가 아니라 부품이 출하 상한을 정한다",
+    "inputs": "성장",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "revision",
+    "quant": "제조 공간은 매출의 약 3배, 그러나 CFO가 공급 위험 인정",
+    "status": "유지",
+    "falsifier": "4Q 매출이 가이던스 €1.23B에 못 미침",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   }
+  ],
+  "lead": {
+   "summary": "ASM의 기업가치는 **1.4nm와 DRAM에서 원자층 증착·에피택시 층수가 얼마나 늘고, 2027년 매출 €5.7B 초과가 실제 주문으로 얼마나 빨리 확인되느냐**에 달려 있다.",
+   "value_story": "웨이퍼 위에 원자 한 층씩 막을 쌓는 ALD 장비와 단결정 막을 기르는 에피택시 장비를 판다. 3Q 매출의 81%가 장비, 19%가 부품·서비스다. 장비 매출의 77%(1H26)가 로직·파운드리에서 나온다. 트랜지스터가 GAA로 바뀌고 노드가 2nm에서 1.4nm로 갈수록 ALD·에피택시 공정 단계가 늘어난다는 것이 가치의 뼈대다.",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 20.2배로 동종 6곳 중앙(19.7배)과 거의 같다 — 9월 말 이후 업종 배수가 함께 줄어 프리미엄이 남아 있지 않다",
+    "eps": "FY26 EPS 컨센서스 €24.3 → FY27 €34.2(+41%) → FY28 €39.6(+16%)"
+   },
+   "why_excited": "2026년 상반기 투자자들은 분기 매출이 처음 €1B를 넘고 2nm 투자가 이어지자 주가를 €477에서 6월 22일 종가 €1,079까지 올렸다. 하반기에는 실적이 더 좋아졌는데도 식었다 — AI 설비투자가 2028년에 꺾일 수 있다는 걱정과 대중국 수출통제 강화로 장비 업종 배수가 30배 안팎에서 20배 안팎으로 내려왔기 때문이다.",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "장비",
+     "what": "ALD·에피택시·PECVD·수직로 증착 장비",
+     "use": "선단 로직·파운드리(2nm·1.4nm), HBM용 DRAM, 전력·아날로그 팹",
+     "money": "3Q26 매출의 81% — 장비 판매",
+     "rev_share": 0.808,
+     "name_en": "single-wafer atomic layer deposition system",
+     "what_en": "a cleanroom semiconductor atomic layer deposition tool with multiple process chambers around a central wafer handling platform"
+    },
+    {
+     "kind": "서비스",
+     "name": "부품·서비스",
+     "what": "예비 부품과 성과 기반 서비스",
+     "use": "설치된 장비를 돌리는 팹",
+     "money": "3Q26 매출의 19% — 반복 매출",
+     "rev_share": 0.192,
+     "name_en": "spare parts and field service for deposition tools",
+     "what_en": "replacement chamber parts and field service for semiconductor deposition tools"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "틈새 ALD 장비 회사 → 선단 로직 전환마다 대응 시장이 커지는 증착 장비 회사",
+     "evidence": "FY2021 매출 €1.73B → FY2026 가이던스 약 €4.26B, 2027년 €5.7B 초과 가이던스",
+     "drives": "성장·배수",
+     "status": "진행 중",
+     "falsifier": "1.4nm에서 ALD·에피택시 채택 층이 2nm보다 늘지 않음"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "1.4nm·HBM용 DRAM 비중 상승, 부품·서비스 +31%",
+     "evidence": "3Q 매출총이익률 52.0%, FY26 약 52%(종전 약 51%)",
+     "drives": "이익률",
+     "status": "진행 중",
+     "falsifier": "중국 비중 하락으로 매출총이익률이 51% 아래로 내려감"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "몰리브덴 ALD·나노시트 에피택시·유동성 탄소 PECVD·광 검출기 에피택시",
+     "evidence": "3Q 콜: XP8 Vertos 양산 적용, 1.4nm 몰리브덴 ALD 수주(2Q 콜)",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "신제품 개발비 손상이 반복됨(3Q €7M)"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "주문에서 출하까지 3~6개월 — 부품 부족에도 3Q 매출을 가이던스 상단으로 맞춤",
+     "evidence": "3Q 콜 CFO: 수주잔고는 보통 3~6개월치",
+     "drives": "성장",
+     "status": "유지",
+     "falsifier": "4Q 매출이 가이던스 €1.23B에 못 미침",
+     "lead_time": {
+      "now": [
+       3,
+       6
+      ],
+      "unit": "개월",
+      "basis": "주문 → 출하",
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "Aixtron",
+        "value": 12,
+        "source": "Aixtron 3Q26 어닝콜(2026-10-29)"
+       }
+      ],
+      "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28) · Aixtron 3Q26 어닝콜(2026-10-29)"
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음(최근 3년 안에 조건이 확인된 인수 없음 — 2025년 인수 지급 €157.6M은 대상 미확인)",
+     "evidence": "Fiscal.ai 현금흐름표",
+     "drives": "해당 없음",
+     "status": "해당 없음",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "장비는 고객 설비투자, 부품·서비스는 고객 운영 예산",
+     "evidence": "3Q 장비 €936.4M·부품·서비스 €223.1M",
+     "drives": "성장",
+     "status": "진행 중",
+     "falsifier": "파운드리·메모리 업체가 2027년 설비투자 계획을 낮춤",
+     "budgets": [
+      {
+       "business": "장비",
+       "budget": "CAPEX",
+       "line": "파운드리·메모리 업체의 전공정 장비 투자(WFE)",
+       "share": 0.808,
+       "driver": "2nm·1.4nm 증설, HBM용 DRAM 증설",
+       "evidence": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+      },
+      {
+       "business": "부품·서비스",
+       "budget": "OPEX",
+       "line": "팹 운영·유지보수 예산",
+       "share": 0.192,
+       "driver": "팹 가동률과 설치 대수",
+       "evidence": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "미국 반도체 보조금·투자 세액공제는 고객의 미국 팹 투자를 거쳐 간접 영향 — ASM 직접 수령 여부는 미확인",
+     "evidence": "미국 매출 FY2025 15%, 애리조나 Scottsdale 신사옥 건설(3Q 콜)",
+     "drives": "미국 매출",
+     "status": "시행",
+     "falsifier": "보조금·세액공제 축소 입법",
+     "house": {
+      "level": 1,
+      "why": "ASM 관련 세출 의결 확인 없음 — 이번 회차 미대조"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "대중국 장비 수출통제(미국 BIS 규칙·네덜란드 수출 허가) — 중국 매출 비중은 이번 회차 미대조",
+     "evidence": "3Q 콜: 중국은 2027년 성장에 기여하지 않고 중국 매출은 이익률이 높다",
+     "drives": "중국 매출·이익률",
+     "status": "시행",
+     "falsifier": "증착 장비 통제 범위가 성숙 공정까지 넓어짐",
+     "house": {
+      "level": 1,
+      "why": "의회 의결 대상 아님 — 행정 규칙"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "MATCH Act — 회사는 영향이 있다고 보지만 크기는 추정하지 않는다. 법안 단계는 이번 회차 미대조",
+     "evidence": "3Q 콜 CFO 발언",
+     "drives": "중국 매출",
+     "status": "발의",
+     "falsifier": "최종 문구에서 동맹국 증착 장비가 빠짐"
+    }
+   }
+  }
+ },
+ "ladder": {
+  "exit": {
+   "pe": 22,
+   "net_margin": 0.27,
+   "opm": 0.33,
+   "basis": "출구 P/E 22배는 동종 중앙(19.7배)과 ASM 자체 Fwd 1Y P/E 20.2배보다 조금 높다 — 선단 공정 비중이 큰 증착 장비라는 점을 반영. 순이익률 27%·영업이익률 33%는 2026년 수준"
+  },
+  "base": {
+   "eps": 20.31,
+   "opm": 0.309,
+   "basis": "최근 4개 분기 IFRS 희석 EPS 합 €20.31(3.38 + 4.86 + 5.80 + 6.27)"
+  },
+  "refs": [
+   {
+    "label": "FY26 EPS 컨센서스",
+    "value": 24.3
+   },
+   {
+    "label": "FY27 EPS 컨센서스",
+    "value": 34.2
+   },
+   {
+    "label": "FY28 EPS 컨센서스",
+    "value": 39.6
+   }
+  ],
+  "steps": {
+   "2": {
+    "verdict": "조건부",
+    "path": "EPS가 FY28 컨센서스 €39.6를 넘어 €58 안팎이 돼야 한다 — 매출 약 €10B에 순이익률 27%. 1.4nm 양산과 DRAM FinFET이 2029년까지 이어져야 한다",
+    "outlook": "2029~2030년 이야기. 제조 공간은 매출 3배까지 있지만 2028년 이후 수요는 고객 로드맵 공유 단계"
+   },
+   "3": {
+    "verdict": "경로 미확인",
+    "path": "매출 €15B 안팎 — 증착 장비 시장 안에서 점유율이 크게 올라가고 PECVD·패키징이 새 축이 돼야 한다",
+    "outlook": "공개 근거 없음"
+   },
+   "5": {
+    "verdict": "닫힘",
+    "path": "증착 장비 시장 크기로 보아 닿기 어렵다",
+    "outlook": "경로 없음"
+   }
+  },
+  "summary": "시가총액 €31B(약 $35B)라 2·3·5배를 본다. 2배는 1.4nm 양산과 메모리 확장이 2029년까지 이어질 때만 열리고, 3배부터는 공개 근거가 없다."
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "2027년 매출 €5.7B 초과를 회사가 넉 달 일찍 숫자로 냈는데 주가는 고점보다 41% 낮고 배수는 동종 수준이다",
+    "evidence": [
+     "2027년 매출 가이던스 €5.7B 초과",
+     "6/22 종가 고점 €1,079 → €637.4",
+     "Fwd 1Y P/E 20.2배(동종 중앙 19.7배)"
+    ],
+    "falsifier": "2027-02-23 연말 수주잔고가 2025년 말 수준에 머묾"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "1.4nm에서 층수와 점유율이 함께 늘어 FY27 EPS €34.2(+41%)가 지켜질 가능성이 높다",
+    "evidence": [
+     "1.4nm가 3Q 선단 로직 매출의 두 자릿수 비중",
+     "FY27 EPS 컨센서스 €34.2",
+     "자사주 매입 €300M"
+    ],
+    "falsifier": "FY27 EPS 추정이 €30 아래로 내려감"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "이익은 좋지만 가격이 이미 FY27 +41%를 담고 있고 가이던스는 주문이 아니라 고객 계획이다",
+    "evidence": [
+     "수주잔고는 평소 3~6개월치",
+     "Fwd 1Y P/E 20.2배",
+     "분기 수주 미공시"
+    ],
+    "falsifier": "연말 잔고 급증 또는 2028년 수요 공백 확인"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "2028년 성장률이 +13%로 꺾이는 추정에 20배는 비싸고 중국 믹스가 줄면 이익률이 내려간다",
+    "evidence": [
+     "FY28 매출 컨센서스 +13%",
+     "중국은 2027년 성장 기여 없음",
+     "DCF 기본 가치는 시가총액의 53%"
+    ],
+    "falsifier": "2028년 매출 추정이 +25% 이상으로 올라감"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "AI 설비투자가 2028년에 멈추면 장비 주문이 먼저 꺾이고 자본화 개발비 €1.06B가 손상 위험이 된다",
+    "evidence": [
+     "메모리 2028년 수급 완화 전망(IB 요지)",
+     "무형자산 €1,063.6M",
+     "3Q 개발비 손상 €7M"
+    ],
+    "falsifier": "대형 클라우드 업체가 2028년 설비투자 증가를 안내함"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "회사가 2030년 목표를 3년 당겼다. 그 숫자를 낸 뒤 주가는 오히려 내려왔다."
+     },
+     {
+      "seat": "Buy",
+      "text": "FY27 EPS €34.2에 20배면 동종과 같은 값이다. 1.4nm 점유율 상승분은 값에 없다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "좋은 회사와 좋은 가격은 다르다. 가이던스의 근거가 주문이 아니다."
+     },
+     {
+      "seat": "Sell",
+      "text": "FY28 성장이 +13%로 꺾이는 추정에 20배를 줄 이유가 약하다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "장비주는 주문이 꺾이기 전에 주가가 먼저 꺾인다. 지금이 그 초입일 수 있다."
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "잔고가 3~6개월치인 것은 늘 그랬다. 그런데 올해 분기마다 가이던스 상단을 맞췄다.",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Buy",
+      "text": "FY28 +13%는 신뢰 등급이 낮은 모델 추정이다. 회사는 2028년도 성장한다고 했다.",
+      "to": "Sell"
+     },
+     {
+      "seat": "Neutral",
+      "text": "'가시성이 확실성은 아니다'는 CFO 본인의 말이다. 분기 수주도 이제 내지 않는다.",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "회사 발언과 추정이 다르면 추정이 올라가야 하는데, 10월 말 이후 추정은 그대로다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "중국이 빠지면 총이익률 52%부터 내려간다. CFO가 믹스 역풍을 인정했다.",
+      "to": "Buy"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "무형자산은 채택된 공정의 개발비다. 3Q 손상 €7M은 매출의 0.6%다.",
+      "to": "Strong Sell"
+     },
+     {
+      "seat": "Buy",
+      "text": "2월 23일 잔고 공시가 그 의심을 푼다. 석 달 안에 가를 자료가 있다.",
+      "to": "Neutral"
+     },
+     {
+      "seat": "Neutral",
+      "text": "그 자료가 나오기 전까지는 판단을 올릴 근거가 없다는 뜻이기도 하다.",
+      "to": "Buy"
+     },
+     {
+      "seat": "Sell",
+      "text": "고점 대비 −41%는 싸다는 증거가 아니다. 동종 배수도 같이 내려왔다.",
+      "to": "Strong Buy"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "DCF 기본 가치가 시가총액의 절반 남짓이다. 배수 경로만 믿기엔 격차가 크다.",
+      "to": "Neutral"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "Buy로 한 단계 내린다 — 잔고 공시 전이라는 점은 인정한다."
+     },
+     {
+      "seat": "Buy",
+      "text": "Buy 유지 — 1.4nm 기여가 2027년 최대라는 회사 발언을 근거로 둔다."
+     },
+     {
+      "seat": "Neutral",
+      "text": "Neutral 유지 — 2월 23일 잔고와 2027년 가이던스 갱신을 본 뒤 다시 잰다."
+     },
+     {
+      "seat": "Sell",
+      "text": "Neutral로 한 단계 올린다 — 현금 €1.34B와 자사주 매입이 하방을 받친다."
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "Sell로 한 단계 올린다 — 2028년 공백은 아직 추정이지 확인된 사실이 아니다."
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "3Q 실적·2027년 가이던스·1.4nm 기여는 반박되지 않았다. 그러나 가이던스의 근거가 구매 주문이 아니고 분기 수주를 내지 않아, 2027-02-23 연말 수주잔고 전에는 지금 배수(동종 수준)를 넘는 값을 줄 근거가 모자란다는 데 다수가 동의했다.",
+   "dissent": "강세 측은 1.4nm 점유율 상승이 배수에 없다고 보고, 약세 측은 2028년 성장 둔화와 중국 믹스 하락이 추정에 덜 반영됐다고 본다."
+  }
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "가이던스는 올랐고 가격은 내려왔다",
+    "claim": "10/27 2027년 매출 €5.7B 초과 가이던스 뒤 주가는 €743에서 €637로 내려왔다(−14%)",
+    "evidence": "3Q26 실적 발표·실측 일봉",
+    "variant": "시장은 가이던스보다 2028년 AI 설비투자와 수출통제를 값에 넣고 있다 — 회사 숫자가 아니라 업종 배수가 가격을 움직였다",
+    "proof": "2027-02-23 연말 수주잔고와 2027년 가이던스 갱신",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "title": "1.4nm는 2nm보다 큰 노드가 된다",
+    "claim": "1.4nm가 3Q 선단 로직 매출의 두 자릿수 비중으로 처음 잡혔고 2027년 최대 기여 노드라고 회사가 밝혔다",
+    "evidence": "3Q 콜 CEO·CFO 발언",
+    "variant": "컨센서스 FY27 매출 €5.85B는 가이던스 하한(€5.7B)과 거의 같다 — 1.4nm 점유율 상승분이 추정에 크게 얹혀 있지 않다",
+    "proof": "4Q·1Q 실적의 1.4nm 비중과 장비 매출 성장률",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   },
+   {
+    "title": "병목은 건물이 아니라 부품이다",
+    "claim": "제조 공간은 매출의 약 3배인데 CFO는 부품 공급 위험을 인정했다",
+    "evidence": "3Q 콜",
+    "variant": "설비투자 부담 없이 매출이 늘 수 있다는 뜻이지만, 2027년 상한은 협력사 증산이 정한다 — 시장이 묻는 '수요'보다 '공급'이 변수다",
+    "proof": "4Q 매출이 가이던스 €1.23B를 맞추는지, 재고·선급금 변화",
+    "source": "ASM 3Q26 실적 발표(2026-10-27)·어닝콜(2026-10-28)"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-04-22",
+    "status": "완료",
+    "kind": "생성",
+    "event": "1Q26 실적 발표 다음 날",
+    "reaction": "+7.1%"
+   },
+   {
+    "date": "2026-06-22",
+    "status": "완료",
+    "kind": "생성",
+    "event": "종가 고점 €1,079(장비 업종 동반 상승)",
+    "reaction": "1년 저점 대비 2.3배"
+   },
+   {
+    "date": "2026-07-29",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "2Q26 실적 발표 다음 날(분기 매출 첫 €1B)",
+    "reaction": "−4.8%"
+   },
+   {
+    "date": "2026-10-28",
+    "status": "완료",
+    "kind": "생성",
+    "event": "3Q26 실적·2027년 매출 €5.7B 초과 가이던스 다음 날",
+    "reaction": "+4.1%"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "완료",
+    "kind": "매크로",
+    "event": "AI 하드웨어 업종 급락(매크로·섹터)",
+    "reaction": "−7.0%"
+   },
+   {
+    "date": "2026-11-11",
+    "status": "완료",
+    "kind": "생성",
+    "event": "자사주 €300M 매입 개시",
+    "reaction": "+7.0%"
+   },
+   {
+    "date": "2027-02-23",
+    "status": "예정",
+    "kind": "확인",
+    "event": "4Q26·FY26 실적 — 연말 수주잔고, 2027년 가이던스 갱신",
+    "check": "수주잔고 €1.8B 이상(2025년 말 €1,246.9M의 약 1.4배 — 2027년 성장률 +34%에 맞는 수준, 계산)",
+    "then": "충족: 가이던스가 주문으로 확인돼 FY27 추정이 지켜진다 / 미달: 가이던스 신뢰가 깎여 추정과 배수가 함께 내려갈 수 있다"
+   },
+   {
+    "date": "2027-04-20",
+    "status": "예정",
+    "kind": "확인",
+    "event": "1Q27 실적(추정 일정)",
+    "check": "매출 €1.30B 이상(컨센서스)",
+    "then": "충족: 분기 경로 유지 / 미달: 부품 병목이 매출을 누른다는 신호"
+   }
+  ],
+  "trade": {
+   "watch": "지금 가격 아래 차트 지지 구간이 약세 시나리오 가격에 가까워지는 곳",
+   "confirm": "연말 수주잔고 €1.8B 이상과 2027년 매출 가이던스 €5.7B 초과 유지",
+   "invalid": "2027년 가이던스를 낮추거나 4Q 매출이 €1.23B에 못 미친다",
+   "trim": "목표주가 근처에서 Fwd 1Y P/E가 동종 중앙보다 크게 높아질 때",
+   "style": "11월에만 하루 −7~8% 움직임이 세 번 나왔다 — 업종 급락에 크게 흔들린다"
+  }
+ },
+ "guru": {
+  "horizon_years": 5,
+  "views": {
+   "runway": {
+    "verdict": "pass",
+    "why": "추정 매출 경로가 FY26 €4.26B → FY28 €6.61B(연 24.5%)로 5년 2배 속도를 넘고 회사가 2027년 €5.7B 초과를 가이던스로 냈다",
+    "evidence": "ASM 3Q26 실적 발표(2026-10-27) https://www.asm.com/investors"
+   },
+   "moat_returns": {
+    "verdict": "pass",
+    "why": "ROIC 26.5%로 자본비용(10.9%)을 웃돌고 매출총이익률 52%를 유지한다 — 단 점유율 숫자는 이번 회차에 대조하지 못했다",
+    "evidence": "ASM 3Q26 실적 발표(2026-10-27) https://www.asm.com/investors"
+   },
+   "reinvestment": {
+    "verdict": "unknown",
+    "why": "이익을 연구개발 자본화와 자사주·배당으로 나눠 쓴다 — 재투자율과 증분 수익률을 연차보고서로 재지 못했다(계산 재투자율 0%)"
+   },
+   "people": {
+    "verdict": "unknown",
+    "why": "경영진 임기·보상 구조를 연차보고서로 대조하지 못했다 — 자본 배분(자사주 €150M 완료·€300M 신규)은 콜에서 확인"
+   },
+   "change": {
+    "verdict": "pass",
+    "why": "2년 뒤 EPS 추정이 다음 12개월보다 27.6% 높고 1.4nm·DRAM FinFET이 2027년에 겹친다",
+    "evidence": "ASM 3Q26 어닝콜(2026-10-28) https://www.asm.com/investors"
+   },
+   "mispricing": {
+    "verdict": "fail",
+    "why": "5배는 증착 장비 시장 크기로 경로가 없다 — 2배만 조건부로 열려 있다",
+    "evidence": "이 리포트의 2·3·5배 경로 계산"
+   }
+  },
+  "dissent": {
+   "view": "runway",
+   "why": "2027년 숫자의 근거가 구매 주문이 아니라 고객 계획이고 FY28 추정 성장은 +13%로 꺾인다"
+  },
+  "hold": {
+   "kpis": [
+    "연말 수주잔고",
+    "장비 매출 성장률",
+    "매출총이익률",
+    "1.4nm 매출 비중"
+   ],
+   "rule": "가격만 빠지고 연말 잔고와 2027년 가이던스가 유지되면 논리는 그대로다. 가이던스 하향이나 총이익률 51% 아래는 논리가 깨지는 신호다"
+  }
+ }
+}
