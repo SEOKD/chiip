@@ -403,6 +403,22 @@ def analysis_docs(rows, cid, cfg, n=None):
     return [r for r in u if not _is_ib(r)] + ib
 
 
+def excerpt(fid, cfg=None):
+    """긴 IB PDF는 앞부분만(마스터 지시 2026-11-24 "Yes, cap it" — 요약·투자의견·추정 변경·핵심 표가 앞에 몰려 있다). 앞 analysis_read_chars자를
+    radar/inbox/notion_files/<id>_head.txt(git 제외)로 잘라 그 경로를 돌려준다. 원문이 그보다 짧으면 원문 경로"""
+    n = int((cfg or config()).get("analysis_read_chars", 60000))
+    src = common.ROOT / "radar" / "inbox" / "notion_files" / f"{fid}.txt"
+    if not src.exists():
+        return f"radar/inbox/notion_files/{fid}.txt"
+    t = src.read_text(encoding="utf-8", errors="replace")
+    if len(t) <= n:
+        return f"radar/inbox/notion_files/{fid}.txt"
+    cut = t.rfind("\n", 0, n)
+    out = src.with_name(f"{fid}_head.txt")
+    out.write_text(t[:cut if cut > n * 0.8 else n] + "\n\n[이하 생략 — Analysis는 앞부분만 읽는다(config/notion_library.yaml analysis_read_chars)]", encoding="utf-8")
+    return f"radar/inbox/notion_files/{fid}_head.txt"
+
+
 def analysis_unread(rows, cid, cfg, today=None):
     """Analysis 조립 관문 — 고른 IB PDF 최대 3건 + IB 밖 자료(주 대상 전부·관련 45일)에서 요지 없는 것"""
     keep = {r["id"] for r in analysis_docs(rows, cid, cfg)}
@@ -558,6 +574,8 @@ def need(q, now=None, analysis=False):
     for r in (analysis_docs(rows, cid, cfg) if analysis else usable(rows, cid, cfg)):
         if r["status"] == "digest":
             print(f"요지 있음 | {r['name']} | knowledge/notion/digests/{r['id']}.md")
+        elif r["status"] == "text" and analysis:
+            print(f"요지 작성 필요 | {r['name']} | id {r['id']} | 앞부분만 {excerpt(r['id'], cfg)} (원문 {r['chars']}자 중 앞 {int(cfg.get('analysis_read_chars', 60000)):,}자)")
         elif r["status"] == "text":
             print(f"요지 작성 필요 | {r['name']} | id {r['id']} | 원문 radar/inbox/notion_files/{r['id']}.txt ({r['chars']}자)")
         else:
