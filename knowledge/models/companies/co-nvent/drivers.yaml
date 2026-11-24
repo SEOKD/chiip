@@ -1,0 +1,119 @@
+auto: true
+id: co-nvent
+name: nVent Electric
+ticker: NVT
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.85
+  EU: 0.11
+  APAC: 0.04
+tax: 0.22
+horizon: 10
+as_of: '2026-11-24'
+market:
+  date: '2026-11-24'
+  price: 111.92
+  shares: 0.163898
+  net_debt: 2.9741
+  source: '가격 = 2026-11-23 종가 $111.92(Fiscal.ai·Easyconomics 일봉 일치) · 주식 수 161,598,060주(3Q26
+    10-Q, 2026-09-30) · 현금 $1,121.8M · 차입 = 총차입 $2,181.4M(유동 $13.8M + 장기 $2,167.6M,
+    10-Q 차입 주석) + 운용리스 $164.5M(유동 $35.7M + 비유동 $128.8M, 10-Q 기타 부채 주석). 주의: 2026-10-01
+    Maverick Power 인수($1.75B 현금)가 이 재무상태표 뒤에 종결됐다 — raw.post_balance_2026_10_01 ·
+    **인수 반영(계산):** 10/1 Maverick 대금 $1.75B 지급과 신규 차입 $0.85B(기간대출 $0.6B + 리볼버 $0.25B,
+    10-Q 주석 10)를 더해 현금 $0.2218B·차입 $3.1959B로 고쳤다(순차입 $2.974B — raw.post_balance_2026_10_01).
+    컨센서스 FY2027이 Maverick을 포함하므로 순차입도 같은 기준으로 맞춘다'
+rev0: 5.78125
+ic0: 7.0866
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.28
+      end: 0.035
+      decay: 0.354
+    margin:
+      m0: 0.1849
+      target: 0.2036
+      year_target: 3
+      lr: 0.18
+      lam: 0.35
+      anchors:
+      - 0.1923
+      - 0.2036
+    s2c: 2.5
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.4011
+      end: 0.04
+      decay: 0.40399999999999997
+    margin:
+      m0: 0.1849
+      target: 0.2236
+      year_target: 3
+      lr: 0.18
+      lam: 0.25
+      anchors:
+      - 0.1923
+      - 0.2036
+    s2c: 2.875
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.1416
+      end: 0.030000000000000002
+      decay: 0.3
+    margin:
+      m0: 0.1849
+      target: 0.1836
+      year_target: 3
+      lr: 0.18
+      lam: 0.5
+      anchors:
+      - 0.1923
+      - 0.2036
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0649
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [5.7618, 5.8007] (3Q26 실적 발표(8-K 2026-10-30)·어닝콜(2026-10-30))
+  growth: 컨센서스 1년차 28.0%, 2년차 12.2%
+  margin: 1~2년차 컨센서스 19.2%, 20.4% 고정 → 목표 20%(3년차, 덮어쓰기) → 장기 수렴 18%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.747 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 14.2%~40.1%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +21.1% 아래·강세 +34.1% 위 확률. 내부 관점(컨센서스 +28.0%, σ 15.4%: 범위 25.9% ÷ d2(6) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '장기 수렴 이익률 15%(기본) → 18%: GAAP 영업이익률이 2021~2026 15~19%(Fiscal 연간 실적)였고
+    FY28 추정 20.4% — 15%로 떨어뜨리는 것은 자기 역사보다 낮다(근거 중간) · 매출/투하자본 0.747 → 2.5: 장부 투하자본
+    $7.09B 가운데 영업권·인수 무형자산이 $4.43B(9/30) + Maverick $1.75B라 장부 기준 회전율은 인수 가격을 반영할
+    뿐 앞으로의 유기적 성장에 드는 자본을 말해 주지 않는다. 최근 1년 유기적 증분은 매출 약 +$1.6B에 순투자 약 $0.25B(CAPEX
+    $131M − 감가상각 약 $70M + 운전자본 약 $0.18B, 계산)로 증분 회전율 약 6이다. CAPEX는 매출의 2.5%. 추가 인수를
+    계속한다는 회사 방침을 감안해 장부(0.82)와 유기적 증분(약 6) 사이 보수적 값 2.5를 쓴다(근거 중간)'
+  shares: '완전 희석 = 기본 0.16159806(2026-09-30) + 옵션·RSU·워런트·전환 0.0023 — 3Q26 10-Q 주당이익
+    주석: 옵션·RSU·PSU 희석 효과 2.3M주(희석 가중 164.0M − 기본 '
+notes:
+- 자동 생성(build_drivers) 2026-11-24 — 데이터 묶음 2026-11-24
+- '어닝콜 위험: 4Q 가이던스는 Maverick 편입에도 매출이 전 분기와 비슷하다 — 회사는 계절성과 협력사 공급 제약을 반영했다고 설명'
+- '어닝콜 위험: 유기적 수주 증가율(두 자릿수 초반)이 매출 증가율(40%대)을 두 분기 연속 밑돈다'
+- '어닝콜 위험: Maverick 4Q 영업이익률 10%대 중반 — 4Q 증분 이익률이 20%대 초반으로 낮아진다'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1720635/000162828026068596/nvt-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1720635/000162828026068391/q32026nvtpressrelease.htm
+- https://www.sec.gov/Archives/edgar/data/1720635/000162828026068391/nvt-20261030.htm
+- https://www.sec.gov/Archives/edgar/data/1720635/000110465926111938/tm2626249d1_8k.htm
+- https://www.sec.gov/Archives/edgar/data/1720635/000110465926107974/tm2625115d3_ex99-1.htm
+- https://investors.nvent.com/press-releases/press-release-details/2026/nVent-Electric-plc-Third-Quarter-2026-Financial-Results-Available-on-Companys-Website/default.aspx
+- https://www.globenewswire.com/news-release/2026/10/27/3388902/0/en/nvent-expands-engineered-buildings-manufacturing-capacity-with-new-u-s-production-facility.html
+- https://www.globenewswire.com/news-release/2026/11/16/3404164/0/en/nvent-features-expanded-liquid-cooling-and-power-portfolio-at-sc26.html
+- https://fiscal.ai/company/NYSE-NVT
+- https://fiscal.ai/company/NYSE-NVT/audit-filings/?file=https%253A%252F%252Fapi.fiscal.ai%252Fv1%252Ffiling%252F0001628280-26-068596%252Fpdf%253Fticker%253DNVT%2526exchange%253DNYSE&pageNumber=4
+- Fiscal.ai 표준화 재무·추정·세그먼트·어닝콜 전문(NYSE_NVT)
+- SEC XBRL companyfacts(CIK 1720635)
+- Easyconomics 실적 정리·개요·일봉(yfinance)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
