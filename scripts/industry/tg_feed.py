@@ -101,30 +101,41 @@ def split_title(title):
     return (t.split(" — ", 1) + [""])[:2] if " — " in t else (t, "")
 
 
+MEANING = {"Attractive": "유리", "In-Line": "중립", "Cautious": "신중"}
+
+
+def takeaways(take):
+    """결론 한 줄을 문장 단위 📌 줄로 — 두 문장이면 두 줄"""
+    parts = [x.strip() for x in re.split(r"(?<=\.)\s+", str(take or "")) if x.strip()]
+    return [f"📌 {x if x.endswith('.') else x + '.'}" for x in parts[:3]]
+
+
 def build(d, artifact=None, notion=None):
-    """간결한 양식(2026-11-25 마스터 지시 '가독성이 떨어진다 — 직관적으로 이해할 수 있게 간결하게'):
-    머리 → 주제(굵게)·결론 한 줄 → 판단 등급 → 핵심(질문 꼬리표 + 답 첫 문장 하나, 최대 5) → 숫자(기간 묶음) → 다음 확인(최대 3) → 링크"""
+    """직관 양식(2026-11-25 마스터 지시 '배치·구성·표기를 더 직관적으로'):
+    머리 → 주제(굵게) → 📌 결론 문장들 → 📊 숫자 → 판단(등급 뜻 병기) → 왜(질문 ▸ / 답 ↳, 최대 5) → ⏭ 다음 확인 → 링크"""
     kind = KIND.get(d.get("cycle") or ("event" if d.get("kind") == "industry_event" else ""), "산업 리포트")
     date = str(d.get("date") or "")
     head, take = split_title(d["title"])
     L = [f"[Chiip Industry · {kind} · {date[5:].replace('-', '/')}]", "", f"**{head}**"]
-    if take:
-        L.append(take)
     if d.get("event") and kind == KIND["event"]:   # 분기·주간은 머리에 이미 종류가 있어 '사건' 줄을 뺀다
         L.append(f"사건: {first_sentence(d['event'], 90)}")
-    L += [""] + ratings_lines(d.get("ratings"))
-    qa = d.get("summary") or []
-    if qa:
-        L += ["", "**핵심**"]
-        for x in qa[:5]:
-            L.append(f"• **{x['q'].rstrip('?？ ')}** — {brief_answer(x['a'])}")
+    if take:
+        L += [""] + takeaways(take)
     nums = number_lines(d.get("tiles"))
     if nums:
-        L += ["", "**숫자**"] + nums
+        L += [""] + [f"📊 {x[2:]}" for x in nums]
+    rl = ratings_lines(d.get("ratings"))
+    if rl:
+        L += ["", "**판단**(규칙 계산)"] + [re.sub(r"\*\*(\S+?)\*\*", lambda m: f"**{m.group(1)}**({MEANING.get(m.group(1), '')})" if m.group(1) in MEANING else m.group(0), x, 1) for x in rl]
+    qa = d.get("summary") or []
+    if qa:
+        L += ["", "**왜**"]
+        for x in qa[:5]:
+            L += [f"▸ {x['q'].rstrip('?？ ')}?", f"   ↳ {brief_answer(x['a'])}"]
     cps = checkpoints(d, 3)
     if cps:
-        L += ["", "**다음 확인**"] + cps
-    links = [f"[리포트]({artifact})" if artifact else "", f"[노션]({notion})" if notion else ""]
+        L += ["", "**⏭ 다음 확인**"] + cps
+    links = [f"[📄 리포트]({artifact})" if artifact else "", f"[노션]({notion})" if notion else ""]
     if any(links):
         L += ["", " · ".join(x for x in links if x)]
     L += ["", DISCLAIMER]
