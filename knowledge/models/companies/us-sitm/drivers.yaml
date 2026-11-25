@@ -1,0 +1,116 @@
+auto: true
+id: us-sitm
+name: SiTime
+ticker: SITM
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-25'
+market:
+  date: '2026-11-25'
+  price: 378.29
+  shares: 0.031367
+  net_debt: 1.006803
+  source: 가격 = 2026-11-24 종가 $378.29(TradingView 실측 일봉) · 주식 수 30,209,731주(3Q26 10-Q
+    표지, 2026-11-01 — 9/30 뒤 변동은 양도제한 주식 귀속분뿐) · 현금 $324.4M(단기투자 없음) · 차입 = 0% 전환사채
+    장부가 $1,319.1M(원금 $1,350M) + 운용리스 부채 $12.0M(3Q26 10-Q 2026-09-30). 모든 주식 수·주당 값은
+    3대1 분할 전 기준
+rev0: 1.0573
+ic0: 4.500119
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.6268
+      end: 0.035
+      decay: 0.56
+    margin:
+      m0: 0.307
+      target: 0.3719
+      year_target: 3
+      lr: 0.27
+      lam: 0.35
+      anchors:
+      - 0.3651
+      - 0.3719
+    s2c: 3.0
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.9484
+      end: 0.04
+      decay: 0.6100000000000001
+    margin:
+      m0: 0.307
+      target: 0.4044
+      year_target: 3
+      lr: 0.27
+      lam: 0.25
+      anchors:
+      - 0.3651
+      - 0.3719
+    s2c: 3.45
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.3232
+      end: 0.030000000000000002
+      decay: 0.4600000000000001
+    margin:
+      m0: 0.307
+      target: 0.3394
+      year_target: 3
+      lr: 0.27
+      lam: 0.5
+      anchors:
+      - 0.3651
+      - 0.3719
+    s2c: 2.55
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [1.0523, 1.0623] (3Q26 어닝콜(2026-11-04, 가이던스는 콜에서만 제시 — 8-K EX-99.1에는
+    숫자 없음) · 3Q26 10-Q Note 2(프로포마) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000077/sitm-20260930.htm)
+  growth: 컨센서스 1년차 62.7%, 2년차 36.6%
+  margin: 1~2년차 컨센서스 36.5%, 37.2% 고정 → 목표 37%(3년차, 덮어쓰기) → 장기 수렴 27%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 3.0
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 32.3%~94.8%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +47.5% 아래·강세 +78.8% 위 확률. 내부 관점(컨센서스 +62.7%, σ 40.3%: 범위 62.5% ÷ d2(5) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '① 매출 ÷ 투하자본: TTM 매출 ÷ 투하자본 0.15는 TPD 인수 영업권·무형자산 $4.2B 때문이라 증분 투자를 나타내지
+    못한다. 팹리스라 늘어나는 매출에 필요한 자본은 매출채권·재고·시험 장비다 — 2026-09-30 유형 운전자본(매출채권 $202.9M +
+    재고 $111.4M + 유형자산 $124.5M − 매입채무 $34.1M − 미지급 $84.3M = $320.4M) ÷ 3Q 연환산 매출 $1,195M
+    = 3.7회전이고, 새 본사·시험 장비 투자를 감안해 3.0으로 둔다. ② 장기 이익률: 규칙 기본값 15%는 매출총이익률 70%인 팹리스
+    타이밍 사업에 맞지 않는다. 주식보상을 비용으로 넣은 동종 GAAP 영업이익률이 Rambus 36%·Monolithic Power 30%·MACOM
+    23%·Microchip 21%이므로 27%로 둔다'
+  shares: '완전 희석 = 기본 0.030209731(2026-09-30) + 옵션·RSU·워런트·전환 0.0012 — 3Q26 10-Q Note
+    7 — 미귀속 양도제한 주식 676,359 + 성과조건부 409,154 + 다년  · 전환사채 판정: 0% 전환사채 2031 외가격(전환가
+    1040.47 > 가격 378.29) — 차입'
+notes:
+- 자동 생성(build_drivers) 2026-11-25 — 데이터 묶음 2026-11-25
+- '어닝콜 위험: TPD 웨이퍼 공급 제약이 2027년 내내 — 수요가 있어도 출하가 막힐 수 있다'
+- '어닝콜 위험: TPD 제조·시험·보관을 Renesas 전환 서비스 계약에 의존(말레이시아 Renesas 계열)'
+- '어닝콜 위험: 소비자 고객 1곳 $42.7M(3Q 매출의 14.3%) — 스마트폰 플랫폼 확대에 기대는 매출'
+evidence:
+- SiTime 3Q26 10-Q(2026-11-04) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000077/sitm-20260930.htm
+- 3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-04 접수 16:16 ET) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000076/sitm-q326x8kxexx991.htm
+- 2Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-08-05) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000059/sitm-q226x8kxexx991.htm
+- 1Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-05-06) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000040/sitm-q126x8kxexx991.htm
+- 4Q25 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-02-04) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000007/sitm-q425x8kxexx991.htm
+- FY2025 10-K https://www.sec.gov/Archives/edgar/data/1451809/000145180926000012/sitm-20251231.htm
+- Renesas 타이밍 사업 인수 발표 보도자료(8-K EX-99.1, 2026-02-04) https://www.sec.gov/Archives/edgar/data/1451809/000119312526037802/d35227dex991.htm
+- 인수 종결·한도 대출 8-K(2026-07-01, Item 1.01·2.01·2.03·3.02) https://www.sec.gov/Archives/edgar/data/1451809/000119312526291561/d71116d8k.htm
+- 0% 전환사채 2031 발행 8-K(2026-05-22) https://www.sec.gov/Archives/edgar/data/1451809/000119312526237180/d47334d8k.htm
+- TPD 1H26 재무·프로포마 재무(8-K/A, 2026-09-09) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000068/sitm-20260630.htm
+- 2026년 위임장(DEF 14A, 2026-04-15) https://www.sec.gov/Archives/edgar/data/1451809/000145180926000026/sitm-20260414.htm
+- 3Q26·2Q26 어닝콜(2026-11-04·2026-08-05)
+- '시세: TradingView NASDAQ:SITM 실측 일봉 https://www.tradingview.com/symbols/NASDAQ-SITM/'
+- 회사 보도자료(2026-11-17, 클록 2개 제품군) https://investor.sitime.com/news/news-details/2026/SiTime-Addresses-2-Billion-Opportunity-in-Data-Center-Bandwidth-Upgrades-with-Two-New-Clock-Families/default.aspx
