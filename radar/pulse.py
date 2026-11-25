@@ -843,8 +843,11 @@ def fetch_telegram(st):
     if not mark:   # 처음 켤 때는 지금 이후 글만
         return []
     cfg, out, other = tg.config(), [], st.setdefault("tg_other", [])
+    wrap = re.compile(cfg["skip_market_wrap"]) if cfg.get("skip_market_wrap") else None
     for r in tg.dedupe(tg.since(mark)):
         text = r["text"]
+        if wrap and wrap.search(text[:300]):   # 코스피 시황은 보내지 않는다(2026-11-25 마스터 지시) — tg_other에도 넣지 않는다
+            continue
         if not tg.relevant(r, cfg, TECH_RE):
             if text or r.get("image"):
                 other.append({"channel": r["channel"], "at": r["at"][:16], "text": text[:100] or "[사진]", "url": r["url"], "image": r.get("image") or "", "image_files": r.get("image_files") or []})
