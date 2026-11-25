@@ -1,0 +1,103 @@
+auto: true
+id: co-nittobo
+name: Nittobo
+ticker: '3110'
+unit: BJPY
+unit_usd: 6281131.0
+industry: electronics
+region_mix:
+  JP: 0.45
+  ASIA: 0.45
+  US: 0.05
+  EU: 0.05
+tax: 0.31
+rf_local: 0.02722  # 일본 10년 국채 11/24(TradingView TVC:JP10Y) — 엔화 현금흐름은 엔 금리로 할인(run.py 147행, 2026-11-08 수기 동인의 rf_local 유지)
+horizon: 10
+as_of: '2026-11-25'
+market:
+  date: '2026-11-25'
+  price: 2398.5
+  shares: 0.18203
+  net_debt: 4.99
+  source: 가격 = TradingView 11/24 종가 ¥2,398.5. 주식 = 발행 188,615,060주 − 자기주식 6,584,740주
+    = 182,030,320주(9/30, 2Q 결산단신 2쪽 — 2026-07-01 1:5 분할 반영). 현금·예금 ¥46,639M. 차입 =
+    단기 ¥3,858M + 1년 내 장기 ¥7,638M + 사채 ¥10,000M + 장기 ¥28,949M = ¥50,445M, 여기에 리스 부채
+    ¥1,184M(유동 329 + 비유동 855)을 더한 ¥51,629M(9/30 중간 연결 재무상태표)
+rev0: 143.0
+ic0: 196.818
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.15
+      end: 0.03
+      decay: 0.8
+    margin:
+      m0: 0.2378
+      target: 0.25
+      year_target: 3
+      lr: 0.15
+      lam: 0.4
+    s2c: 1.3
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.21
+      end: 0.025
+      decay: 0.8500000000000001
+    margin:
+      m0: 0.2378
+      target: 0.2939
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+    s2c: 1.495
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.09
+      end: 0.015
+      decay: 0.7000000000000001
+    margin:
+      m0: 0.2378
+      target: 0.2061
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+    s2c: 1.105
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [143.0, 143.0] (2Q 결산단신(2026-11-05) 4쪽 https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym2/213883/00.pdf
+    · 2Q 결산설명자료 10쪽 https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym3/213884/00.pdf)
+  growth: 컨센서스 없음 — 기본 10% 가정(약함) → 덮어쓰기 1년차 15.0%
+  margin: 출발 24% → 목표 25%(3년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.657 → 덮어쓰기 1.3
+  range: 고·저 추정 없음 — 1년차 성장 ±40%
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +12.0% 아래·강세 +18.0% 위 확률. 내부 관점(컨센서스 +15.0%, σ 8.8%: 추정 범위 없음 — 5% + 0.25
+    × |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: 매출은 FY3/27 +21%(가이던스)에서 T글라스 3배 증설(2027년 7월 출하)이 이어지는 동안 15%로 출발해 감속한다고
+    본다. 이익률은 하반기 계획 23.9%에서 스페셜 글라스 믹스와 판가 협의로 3년 뒤 25%. 용해로·직기 집약 사업이라 증분 매출/투하자본은
+    1.3(TTM 0.66 — 증설 중이라 낮다)
+  shares: '완전 희석 = 기본 0.18203032(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 2Q 결산단신 1쪽 희석
+    EPS 칸이 비어 있다(잠재 주식 없음). 임원 주식 보상은 신탁이 보유한 기발행 '
+notes:
+- 자동 생성(build_drivers) 2026-11-25 — 데이터 묶음 2026-11-25
+- '어닝콜 위험: 저CTE 유리 경쟁사 증설·고객 인증 진행(회사: 실제 시장 유입량은 보기 어렵다)'
+- '어닝콜 위험: NER글라스 점유율 하락 가능성'
+- '어닝콜 위험: 중동 정세에 따른 전력·연료·물류비 상승(가이던스에 반영)'
+evidence:
+- '2Q FY3/27 결산단신(2026-11-05): https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym2/213883/00.pdf'
+- '2Q FY3/27 결산설명자료: https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym3/213884/00.pdf'
+- '2Q 결산설명회 주요 질의응답: https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym3/217524/00.pdf'
+- '1Q FY3/27 결산단신(2026-08-05): https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym2/209581/00.pdf'
+- 'FY3/26 결산단신(2026-05-12): https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym2/202884/00.pdf'
+- '3Q FY3/26 결산단신(2026-02-05): https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym2/197563/00.pdf'
+- '1Q 결산설명자료: https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym3/209582/00.pdf'
+- '1Q 결산설명회 주요 질의응답: https://ssl4.eir-parts.net/doc/3110/ir_material_for_fiscal_ym3/210047/00.pdf'
+- '시세·환율(TradingView): https://www.tradingview.com/symbols/TSE-3110/'
+- '회사 IR 자료실: https://www.nittobo.co.jp/eng/ir/library/financial_results.htm'
