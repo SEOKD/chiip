@@ -5,7 +5,8 @@
                 scripts/portfolio/watchlist.py의 자동 편입은 이 기준을 통과한 종목만 넣는다(entry_ok)
   2. 유지 심사   주 1회(ISO 주차당 한 번). 경고 = 알파 하락(문턱 아래·직전 대비 1점↓) · 테제 훼손(킬 발동) · 장기 무변화(30일 새 정보 없음) · 편입 기준 미충족
                 서로 다른 주 2회 연속 경고 → '제외 후보'. '미확인'은 경고가 아니라 메모(없는 숫자로 빼지 않는다)
-  3. 제외        자동 삭제 없음 — 제외 후보를 목록·사유로 마스터에게 보고하고, 마스터가 승인하면 마스터 세션이 `--apply <id …>`로 status: 종료 반영
+  3. 제외        2026-11-25 마스터 지시(회전율)부터 review.auto_apply: true면 제외 후보를 바로 status: 종료하고 사후 보고한다(pin 제외).
+                false면 예전처럼 마스터 승인 뒤 `--apply <id …>`
   4. 출력        knowledge/models/portfolio/watch_review_latest.json · watch_review_log.csv · radar/state/watch_review.json(연속 주차)
                 Daily에는 변화가 있을 때만 한두 문장(`--daily`), 주간 리뷰에는 전체 심사표(`--table`)
 보유(status: 보유)는 심사 대상이 아니다. 지표·연구 관리이며 매매 지시가 아니다. 마스터 포지션 파일은 읽지 않는다.
@@ -247,6 +248,11 @@ def run(dry=False, today=None, killed=()):
            "changes": [{"ticker": r["ticker"], "from": before.get(r["id"]), "to": r["verdict"]} for r in changes],
            "proposals": _j(STATE.with_name("watch_proposals.json"), []),
            "note": "제외 후보는 마스터 승인 뒤에만 반영 — 자동 삭제 없음"}
+    if c["review"].get("auto_apply"):   # 2026-11-25 마스터 지시(회전율) — 제외 후보를 바로 종료하고 사후 보고(pin은 그대로)
+        pins = {h["id"] for h in holdings if h.get("pin")}
+        gone = [r["id"] for r in rows if r["verdict"] == "제외 후보" and r["id"] not in pins]
+        out["note"] = "제외 후보는 바로 종료(사후 보고, 2026-11-25 마스터 지시) — pin 종목은 빼지 않는다"
+        out["auto_removed"] = [] if dry or not gone else apply(gone, today.isoformat(), reason="자동 종료(경고 2주 연속)")
     if not dry:
         LATEST.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
         STATE.parent.mkdir(parents=True, exist_ok=True)
@@ -323,8 +329,8 @@ def table(out=None):
     return "\n".join(ls)
 
 
-def apply(ids, today=None, port=PORT):
-    """마스터 승인분만 status: 종료로(지우지 않는다). 마스터 세션에서만 부른다"""
+def apply(ids, today=None, port=PORT, reason="마스터 승인 제외"):
+    """status: 종료로(지우지 않는다). 2026-11-25부터 run()이 auto_apply면 제외 후보에 바로 부른다(사후 보고)"""
     today = today or datetime.now(KST).date().isoformat()
     text = port.read_text(encoding="utf-8")
     rows = {r["id"]: r for r in _j(LATEST).get("rows") or []}
@@ -334,7 +340,7 @@ def apply(ids, today=None, port=PORT):
         if not m or "status: 관심" not in m[1]:
             continue
         why = " / ".join((rows.get(iid) or {}).get("warnings") or []) or "마스터 승인"
-        body = re.sub(r"(?m)^    status: 관심[ \t]*$", f"    status: 종료\n    ended: {today}\n    ended_reason: \"마스터 승인 제외 — {why}\"", m[1], count=1)
+        body = re.sub(r"(?m)^    status: 관심[ \t]*$", f"    status: 종료\n    ended: {today}\n    ended_reason: \"{reason} — {why}\"", m[1], count=1)
         text = text[:m.start(1)] + body + text[m.end(1):]
         done.append(iid)
     if done:

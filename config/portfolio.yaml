@@ -4,7 +4,7 @@
 # 2026-10-30 마스터가 알려준 수량·평균 매입가는 개인 금융 정보라 저장소에 두지 않는다 → config/portfolio_positions.local.yaml(git 제외, 이 PC에만). 평가손익(사실)만 계산한다. 치입은 투자자문이 아니다 — 추가 매수·매도 시점·비중은 제시하지 않고, 사실·지표·일정만.
 # status: 보유 / 관심(와치리스트 — 팔로업은 같게, 손익 없음) / 종료
 # 실체 확인: SEC EDGAR 회사 검색·submissions(cik), easyconomics 회사 개요 (2026-10-29)
-updated: 2026-11-06   # 2026-11-06 MTD·FWONA 와치리스트 추가 · 2026-11-05 BKSY 와치리스트 추가 · 2026-11-05 AEIS 와치리스트 제외 · 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
+updated: 2026-11-25   # 2026-11-06 MTD·FWONA 와치리스트 추가 · 2026-11-05 BKSY 와치리스트 추가 · 2026-11-05 AEIS 와치리스트 제외 · 마스터 지시: 보유 EROC·INIO(수량·평단은 로컬 파일) · 와치리스트 PWR·CBRS·LSCC·CCXI·AEIS · MRVL 종료
 holdings:
   - id: co-enchantedrock
     ticker: EROC
@@ -17,6 +17,17 @@ holdings:
     related: ["Bloom Energy", "VoltaGrid", "Generac", "Caterpillar", "Cummins", "Solaris"]
     since: 2026-10-29
     status: 보유
+    thesis: "현장 발전(마이크로그리드)으로 데이터센터 전력 공백을 메운다 — 납품은 증명됐고, 값은 2028년 연 2.1GW를 누가 채우느냐가 가른다"
+    kpis:                                   # 투자 논리 지표 — 가격이 아니라 이 지표로 유지·종료를 가른다(마스터 지시 2026-11-25 운용 카드)
+      - "분기 매출이 가이던스 안인가(4Q $211~240M)"
+      - "수주잔고(4Q $2.0B 이상이면 강세, $1.6B 아래면 훼손)"
+      - "2028년분 신규 계약 마진 20% 이상"
+    kills:                                  # 2026-11-14 Analysis 셀온 조건에서 옮김
+      - "4Q 매출이 $211M 아래이거나 2026 매출이 $435M 아래로 끝난다"
+      - "4Q 잔고가 $1.6B 아래로 줄고 분기 뒤 $300M+가 반영되지 않는다"
+      - "대형 고객의 납기 연기·계약 축소 공시"
+      - "12/7 뒤 대주주 등록 매각(S-3·Form 144)으로 유동 주식이 2배 이상"
+    card_source: outputs/tenbagger/reports/20261114_EROC.json
   - id: co-innio
     ticker: INIO                            # 마스터 표기 'INNIO' — 실제 Nasdaq 티커는 INIO
     name: INNIO N.V.
@@ -28,6 +39,18 @@ holdings:
     related: ["Caterpillar", "Cummins", "Wartsila", "Rolls-Royce", "GE Vernova", "Bloom Energy", "Siemens Energy"]
     since: 2026-10-29
     status: 보유
+    thesis: "가스엔진 발전(Jenbacher·Waukesha)으로 데이터센터 현장 전력을 판다 — 값은 싸졌고, 대주주 매각 소화와 4Q 수주가 배수 회복을 가른다"
+    kpis:                                   # 투자 논리 지표(마스터 지시 2026-11-25 운용 카드)
+      - "12개월 수주/매출 2.0 이상(4Q, 2027-02경)"
+      - "데이터센터 고객 수주 취소·연기 없음"
+      - "장비 마진 15% 이상"
+    kills:                                  # 2026-11-07 Analysis 셀온 조건에서 옮김
+      - "4Q 12개월 수주/매출이 2.0 미만이고 장비 잔고가 줄어든다"
+      - "데이터센터 고객의 수주 취소·연기 공시"
+      - "장비 마진 2분기 연속 15% 미만"
+      - "kW당 가격 $600 아래 또는 Caterpillar·Wärtsilä 대형 증설"
+      - "주요 주주가 큰 할인으로 매각"
+    card_source: outputs/tenbagger/reports/20261107_INIO.json
   - id: us-ccxi
     ticker: CCXI
     name: Churchill Capital Corp XI
@@ -178,7 +201,10 @@ holdings:
     names: ["AXT INC"]
     related: []
     since: 2026-11-07
-    status: 관심
+    status: 종료
+    ended: 2026-11-25
+    ended_reason: "마스터 리셋(2026-11-25 '실제 포지션인 EROC과 INIO를 제외하고 나머지를 모두 리셋') — 기준을 다시 통과하면 재편입할 수 있다"
+    reentry: true
     added_by: earnings-sweep                 # 실적 발표 알파 점검 2026-10-01_2026-11-07 — 알파 7.3 ≥ 7.0
     alpha_floor: 7.0
   - id: co-wdc
@@ -187,7 +213,10 @@ holdings:
     names: ["WESTERN DIGITAL CORP"]
     related: []
     since: 2026-11-07
-    status: 관심
+    status: 종료
+    ended: 2026-11-25
+    ended_reason: "마스터 리셋(2026-11-25 '실제 포지션인 EROC과 INIO를 제외하고 나머지를 모두 리셋') — 기준을 다시 통과하면 재편입할 수 있다"
+    reentry: true
     added_by: earnings-sweep                 # 실적 발표 알파 점검 2026-10-01_2026-11-07 — 알파 7.2 ≥ 7.0
     alpha_floor: 7.0
 

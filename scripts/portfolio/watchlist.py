@@ -121,7 +121,8 @@ def decide(holdings, mt, c, st, today):
     watch = {h["id"]: h for h in holdings if h.get("status") == "관심" and h.get("added_by") == "chiip" and not h.get("pin")}
     sweep = {h["id"]: h for h in holdings if h.get("status") == "관심" and h.get("added_by") == SWEEP and not h.get("pin")}
     held = {h["id"] for h in holdings if h.get("status") in ("보유", "관심")}
-    held |= {h["id"] for h in holdings if h.get("status") == "종료" and h.get("added_by") != "chiip"}   # 마스터가 뺀 종목은 자동으로 다시 넣지 않는다(2026-11-05 AEIS 제외 지시)
+    held |= {h["id"] for h in holdings if h.get("status") == "종료" and h.get("added_by") != "chiip" and not h.get("reentry")}   # 마스터가 뺀 종목은 자동으로 다시 넣지 않는다(2026-11-05 AEIS 제외 지시). reentry: true(2026-11-25 마스터 리셋분)는 기준을 다시 통과하면 넣는다
+    held |= {h["id"] for h in holdings if h.get("status") in ("보유", "관심")}   # 같은 id 블록이 여러 개일 때 살아 있는 블록이 우선
     adds, drops, k = [], [], cuts(mt, c)
     for iid, h in watch.items():
         why = failing(mt.get(iid, {}), c, k)
