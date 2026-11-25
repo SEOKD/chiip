@@ -56,6 +56,15 @@ def tf_points(kind, since):
     return sorted(p for p in set(pts) if p[0] >= since)
 
 
+def continuous_tail(pts, gap=21):
+    """마지막 값에서 거꾸로 가며 gap일 넘게 빈 곳 앞을 잘라 낸다 — 공백 없는 시계열만(2026-11-25 마스터 지시)"""
+    pts = sorted(pts)
+    for i in range(len(pts) - 1, 0, -1):
+        if (pts[i][0] - pts[i - 1][0]).days > gap:
+            return pts[i:]
+    return pts
+
+
 def dx_series(kind, since):
     if kind == "dram":
         import qpx_spot
@@ -138,11 +147,18 @@ def chart(kind, today=None, path=None):
     since = since_day(today)
     tf = tf_points(kind, since)
     dx, unit = dx_series(kind, since)
+    span = "지난 12개월"
+    if kind == "dram":   # 공백 없이 이어지는 마지막 구간만 그린다(2026-11-25 마스터 지시)
+        tf, dx = continuous_tail(tf), continuous_tail(dx)
+        starts = [s[0][0] for s in (tf, dx) if s]
+        if starts:
+            since = min(starts)
+            span = f"연속 구간 {since.strftime('%y.%m.%d')}~"
     doc = pymupdf.open()
     page = doc.new_page(width=720, height=640)
     page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
     _txt(page, (36, 34), sp["title"], 15, INK)
-    _txt(page, (36, 52), f"기준 {today.isoformat()} · 지난 12개월", 8.5, MUT)
+    _txt(page, (36, 52), f"기준 {today.isoformat()} · {span}", 8.5, MUT)
     _panel(page, (80, 100, 610, 320), tf, C_TF, sp["tf_name"], sp["src_up"], since, today)
     dx_title = sp["dx_name"] + (" (달러)" if unit == "USD" else f" (지수, {dx[0][0].strftime('%y.%m.%d')}=100)" if dx else "")
     _panel(page, (80, 390, 610, 590), dx, C_DX, dx_title, sp["src_dn"], since, today, money=unit == "USD")
