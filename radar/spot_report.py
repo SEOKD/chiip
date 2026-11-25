@@ -114,6 +114,10 @@ def _panel(page, box, pts, color, title, source, d0, d1, money=True):
             page.draw_line((X(m), y1), (X(m), y1 + 3), color=MUT, width=0.5)
             _txt(page, (X(m) - 11, y1 + 13), f"{m.year % 100}.{m.month:02d}", 7.5, MUT)
         m = (m.replace(day=28) + timedelta(days=4)).replace(day=1)
+    if span < 62 and len(pts) <= 10:   # 연속 구간이 두 달이 안 되면 월 눈금 대신 관측 날짜를 적는다
+        for d, _ in pts:
+            page.draw_line((X(d), y1), (X(d), y1 + 3), color=MUT, width=0.5)
+            _txt(page, (X(d) - 11, y1 + 13), d.strftime("%m/%d"), 7.5, MUT)
     page.draw_line((x0, y1), (x1, y1), color=MUT, width=0.7)
     line = [pymupdf.Point(X(d), Y(val)) for d, val in pts]
     seg = [line[0]]   # 관측이 3주 넘게 빈 구간은 잇지 않는다 — 없는 값을 직선으로 그리지 않는다
@@ -133,7 +137,7 @@ def _panel(page, box, pts, color, title, source, d0, d1, money=True):
     val = f"${last[1]:,.0f}" if money and last[1] >= 100 else f"${last[1]:,.2f}" if money else f"{last[1]:,.1f}"
     _txt(page, (x1 + 6, line[-1].y + 3), f"{val} ({last[0].strftime('%m/%d')})", 8, color)
     pk = max(pts, key=lambda p: p[1])
-    if pk != last:
+    if pk != last and pk != pts[0] and len(pts) >= 4:   # 점이 적거나 첫 점이 고점이면 표시 생략(글자 겹침)
         page.draw_circle(pymupdf.Point(X(pk[0]), Y(pk[1])), 2.2, color=color, fill=(1, 1, 1))
         pv = f"${pk[1]:,.0f}" if money and pk[1] >= 100 else f"${pk[1]:,.2f}" if money else f"{pk[1]:,.1f}"
         _txt(page, (X(pk[0]) - 4, Y(pk[1]) - 7), f"고점 {pv} ({pk[0].strftime('%m/%d')})", 7.5, MUT, right=True)
@@ -148,20 +152,19 @@ def chart(kind, today=None, path=None):
     tf = tf_points(kind, since)
     dx, unit = dx_series(kind, since)
     span = "지난 12개월"
-    if kind == "dram":   # 공백 없이 이어지는 마지막 구간만 그린다(2026-11-25 마스터 지시)
-        tf, dx = continuous_tail(tf), continuous_tail(dx)
-        starts = [s[0][0] for s in (tf, dx) if s]
-        if starts:
-            since = min(starts)
-            span = f"연속 구간 {since.strftime('%y.%m.%d')}~"
+    # 공백 없이 이어지는 마지막 구간만 그린다(2026-11-25 마스터 지시 — DRAM·NAND). 칸마다 자기 구간을 가로축으로 쓴다
+    tf, dx = continuous_tail(tf), continuous_tail(dx)
+    s_tf = tf[0][0] if tf else since
+    s_dx = dx[0][0] if dx else since
+    span = "연속 구간만" + (f" {s_tf.strftime('%y.%m.%d')}~" if s_tf == s_dx else "")
     doc = pymupdf.open()
     page = doc.new_page(width=720, height=640)
     page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
     _txt(page, (36, 34), sp["title"], 15, INK)
     _txt(page, (36, 52), f"기준 {today.isoformat()} · {span}", 8.5, MUT)
-    _panel(page, (80, 100, 610, 320), tf, C_TF, sp["tf_name"], sp["src_up"], since, today)
+    _panel(page, (80, 100, 610, 320), tf, C_TF, sp["tf_name"], sp["src_up"], s_tf, today)
     dx_title = sp["dx_name"] + (" (달러)" if unit == "USD" else f" (지수, {dx[0][0].strftime('%y.%m.%d')}=100)" if dx else "")
-    _panel(page, (80, 390, 610, 590), dx, C_DX, dx_title, sp["src_dn"], since, today, money=unit == "USD")
+    _panel(page, (80, 390, 610, 590), dx, C_DX, dx_title, sp["src_dn"], s_dx, today, money=unit == "USD")
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"{kind}_{today.strftime('%Y%m%d')}.png")
     page.get_pixmap(dpi=150).save(str(path))
