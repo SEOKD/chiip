@@ -4,6 +4,8 @@
  DRAMeXchange … 두 DRAM Spot Price 지표가 업데이트될 때마다 보고 … NAND도 같은 경로 … 시계열은 지난 12개월")
 
 양식(흰 바탕 두 칸, 12개월):
+  ※ 2026-11-25 마스터 지시로 DRAM 두 칸은 qpx.kr 모듈 현물로 바꿨다 — 위 DDR5 RDIMM 32GB 4800/5600, 아래 DDR5 UDIMM 16GB 4800/5600
+    (radar/qpx_spot.py, 원 출처 TrendForce). 아래 DRAM 설명 두 줄은 옛 양식이다. NAND는 그대로.
   DRAM  위 = DDR5 RDIMM 32GB 모듈 현물(TrendForce 공개 'Module Spot Price' 표의 세션 평균, 주 1회 — radar/rdimm_spot.py tf_update)
         아래 = DDR5 16Gb 칩 현물(DRAMeXchange — 공개 텔레그램 채널 merITz_tech의 일별 변화율을 이어 붙인 값, radar/memory_spot.py)
   NAND  위 = 512Gb TLC 웨이퍼 현물(TrendForce 공개 'Wafer Spot' 표 — radar/trendforce_spot.py)
@@ -26,8 +28,11 @@ from pollers import common  # noqa: E402
 OUT = common.ROOT / "radar" / "inbox" / "spot_report"
 STATE = "spot_report"
 SPEC = {
-    "dram": {"title": "DRAM 현물가 추이", "tf_name": "DDR5 RDIMM 32GB 모듈 현물 (달러/모듈)", "dx_product": "DDR5 16Gb", "dx_name": "DDR5 16Gb 칩 현물"},
-    "nand": {"title": "NAND 현물가 추이", "tf_name": "512Gb TLC 웨이퍼 현물 (달러)", "tf_item": "Wafer 512Gb TLC", "dx_product": "MLC 64Gb", "dx_name": "MLC 64Gb 칩 현물"},
+    # DRAM은 두 칸 모두 qpx.kr 모듈 현물(원 출처 TrendForce) — 2026-11-25 마스터 지시, radar/qpx_spot.py
+    "dram": {"title": "DRAM 모듈 현물가 추이", "tf_name": "DDR5 RDIMM 32GB 4800/5600 모듈 현물 (달러/모듈)", "dx_name": "DDR5 UDIMM 16GB 4800/5600 모듈 현물",
+             "src_up": "TrendForce (qpx.kr)", "src_dn": "TrendForce (qpx.kr)"},
+    "nand": {"title": "NAND 현물가 추이", "tf_name": "512Gb TLC 웨이퍼 현물 (달러)", "tf_item": "Wafer 512Gb TLC", "dx_product": "MLC 64Gb", "dx_name": "MLC 64Gb 칩 현물",
+             "src_up": "TrendForce", "src_dn": "DRAMeXchange"},
 }
 INK, MUT, GRID = (0.05, 0.05, 0.05), (0.4, 0.4, 0.4), (0.88, 0.89, 0.91)
 C_TF, C_DX = (0.13, 0.36, 0.75), (0.80, 0.33, 0.10)
@@ -39,8 +44,11 @@ def since_day(today=None):
 
 def tf_points(kind, since):
     if kind == "dram":
+        import qpx_spot
         import rdimm_spot
-        pts = [(date.fromisoformat(r["date"]), float(r["avg"])) for r in rdimm_spot.tf_read()]
+        q = qpx_spot.points("rdimm32")
+        first = q[0][0] if q else date.max   # qpx 표(약 3개월) 앞은 TrendForce 직접 수집 주간 이력으로 잇는다 — 같은 원 출처·같은 품목
+        pts = q + [(date.fromisoformat(r["date"]), float(r["avg"])) for r in rdimm_spot.tf_read() if date.fromisoformat(r["date"]) < first]
     else:
         import trendforce_spot
         pts = [(date.fromisoformat(r["date"]), float(r["avg"])) for r in trendforce_spot.read_rows() if r["item"] == SPEC[kind]["tf_item"] and r["avg"] not in ("", None)
@@ -49,6 +57,9 @@ def tf_points(kind, since):
 
 
 def dx_series(kind, since):
+    if kind == "dram":
+        import qpx_spot
+        return qpx_spot.points("udimm16", since), "USD"
     import memory_spot
     s = memory_spot.series(memory_spot.read_rows(), SPEC[kind]["dx_product"], since.isoformat(), memory_spot.config().get("anchors"))
     return ([(d, v) for d, v in s["points"]], s["unit"]) if s else ([], "")
@@ -132,9 +143,9 @@ def chart(kind, today=None, path=None):
     page.draw_rect(page.rect, color=None, fill=(1, 1, 1))
     _txt(page, (36, 34), sp["title"], 15, INK)
     _txt(page, (36, 52), f"기준 {today.isoformat()} · 지난 12개월", 8.5, MUT)
-    _panel(page, (80, 100, 610, 320), tf, C_TF, sp["tf_name"], "TrendForce", since, today)
+    _panel(page, (80, 100, 610, 320), tf, C_TF, sp["tf_name"], sp["src_up"], since, today)
     dx_title = sp["dx_name"] + (" (달러)" if unit == "USD" else f" (지수, {dx[0][0].strftime('%y.%m.%d')}=100)" if dx else "")
-    _panel(page, (80, 390, 610, 590), dx, C_DX, dx_title, "DRAMeXchange", since, today, money=unit == "USD")
+    _panel(page, (80, 390, 610, 590), dx, C_DX, dx_title, sp["src_dn"], since, today, money=unit == "USD")
     OUT.mkdir(parents=True, exist_ok=True)
     path = Path(path or OUT / f"{kind}_{today.strftime('%Y%m%d')}.png")
     page.get_pixmap(dpi=150).save(str(path))
@@ -160,10 +171,10 @@ def caption(summ, read=""):
     t, d = summ.get("trendforce"), summ.get("dramexchange")
     lines = [f"[Chiip Spot] {SPEC[summ['kind']]['title']} — {summ['as_of']}"]
     if t:
-        lines.append(f"{summ['tf_name'].split(' (')[0]}: ${t['last'][1]:,.2f}({t['last'][0][5:]}) · 1주 {_pct(t['chg_1w'])} · 1개월 {_pct(t['chg_1m'])} — TrendForce")
+        lines.append(f"{summ['tf_name'].split(' (')[0]}: ${t['last'][1]:,.2f}({t['last'][0][5:]}) · 1주 {_pct(t['chg_1w'])} · 1개월 {_pct(t['chg_1m'])} — {SPEC[summ['kind']]['src_up']}")
     if d:
         v = f"${d['last'][1]:,.2f}" if summ["dx_unit"] == "USD" else f"지수 {d['last'][1]:,.1f}"
-        lines.append(f"{summ['dx_name']}: {v}({d['last'][0][5:]}) · 1주 {_pct(d['chg_1w'])} · 1개월 {_pct(d['chg_1m'])} — DRAMeXchange")
+        lines.append(f"{summ['dx_name']}: {v}({d['last'][0][5:]}) · 1주 {_pct(d['chg_1w'])} · 1개월 {_pct(d['chg_1m'])} — {SPEC[summ['kind']]['src_dn']}")
     if read.strip():
         lines += ["", read.strip()]
     return "\n".join(lines)
@@ -185,6 +196,11 @@ def status():
     except Exception:
         pass
     try:
+        import qpx_spot
+        qpx_spot.update()   # 6시간에 한 번만 실제로 읽는다
+    except Exception:
+        pass
+    try:
         import rdimm_spot
         rdimm_spot.tf_update()
     except Exception:
@@ -199,7 +215,7 @@ def status():
                 out[kind] = {"due": False}
                 continue
             png, summ = chart(kind)
-            out[kind] = {"due": True, "png": str(png), "summary": summ, "updated": ["TrendForce" if n == "tf" else "DRAMeXchange" for n in upd]}
+            out[kind] = {"due": True, "png": str(png), "summary": summ, "updated": [SPEC[kind]["src_up"] if n == "tf" else SPEC[kind]["src_dn"] for n in upd]}
         except (Exception, SystemExit) as e:
             out[kind] = {"due": False, "error": f"{type(e).__name__}: {str(e)[:120]}"}
     return out
