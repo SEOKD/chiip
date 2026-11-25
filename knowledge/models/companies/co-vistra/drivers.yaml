@@ -1,0 +1,86 @@
+id: co-vistra
+name: Vistra
+ticker: VST
+unit: B$
+unit_usd: 1000000000
+industry: power_ipp
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-25'
+market:
+  date: '2026-11-24'
+  price: 120.72
+  shares: 0.339395
+  net_debt: 25.73
+  source: 가격 = 2026-11-24 종가 $120.72(TradingView 실측 일봉) · 주식 수 339,394,683(3Q26 10-Q 표지 2026-11-02, Cogentrix 대가 500만 주 포함) · 순차입 = 9/30 차입·리스 $22.095B − 현금 $2.743B + 우선주 A 상환 $1.0B + Cogentrix 현금 $2.2B + 인수 차입 상환 $1.7B = $24.25B(프로포마, 계산) + 남은 우선주 $1.476B = $25.73B. 회사 발언 순차입/조정 EBITDA 약 2.8배와 맞는다
+  why: datapack profile은 2026-09-30 재무상태표(순차입 19.35)이고, 동인은 그 뒤 확정된 Cogentrix 인수 현금 2.2·인수 차입 상환 1.7·우선주 A 상환 1.0과 남은 우선주 1.476을 더한 프로포마다(3Q26 8-K Liquidity·10-Q 후속 사건)
+rev0: 21.7
+ic0: 30.64   # 9/30 투하자본 25.815(자본 6.463 + 차입·리스 22.095 − 현금 2.743) + Cogentrix 인수 대가 4.825(현금 2.2 + 차입 1.7 + 주식 0.925) — 프로포마, 계산
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.06
+      end: 0.025
+      decay: 0.6
+    margin:
+      m0: 0.249
+      target: 0.235
+      year_target: 2
+      lr: 0.21
+      lam: 0.2
+    s2c: 0.8
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.1
+      end: 0.03
+      decay: 0.7
+    margin:
+      m0: 0.249
+      target: 0.27
+      year_target: 3
+      lr: 0.23
+      lam: 0.15
+    s2c: 0.9
+  bear:
+    prob: 0.25
+    growth:
+      start: -0.04
+      end: 0.02
+      decay: 0.5
+    margin:
+      m0: 0.249
+      target: 0.19
+      year_target: 2
+      lr: 0.17
+      lam: 0.3
+    s2c: 0.7
+mc:
+  sigma_growth: 0.04
+  sigma_margin: 0.025
+  sigma_s2c: 0.1
+  sigma_wacc: 0.005
+provenance:
+  rev0: 'FY2026 매출 = Fiscal.ai 자체 추정 $21.7B(범위 $20.9~22.4B). LTM(2026-09-30) $20.588B, FY2025 $17.738B'
+  growth: 'Fiscal.ai 추정 FY2027 $22.3B(+2.8%)·FY2028 $23.2B(+4.0%)는 Cogentrix(가스 10기·약 5,500MW, 10/30 완료) 편입을 다 담지 않은 것으로 보인다 —
+    회사 2027 조정 EBITDA 가이던스 $7.7~8.5B(언론 헤드라인 11/06, 1차 원문 대조 대기)를 근거로 기본 1년차 6%로 올렸다(근거 약함)'
+  margin: 'GAAP EBIT 이익률 FY26 추정 24.9%($5.4B) → FY27 22.6% → FY28 22.8%(Fiscal.ai). 발전사업 이익률은 전력 가격 연동 — 장기 21%(근거 약함)'
+  s2c: 'LTM 매출 ÷ 투하자본 = 20.6 ÷ 27.4 = 0.75 → 0.8(발전 설비는 자본 집약)'
+  range: '약세 −4%는 FY27 최저 $20.8B, 강세 10%는 FY27 최고 $23.8B 근처'
+  probs: '3Q 조정 EBITDA $2.378B(+50% 이상)·연간 가이던스 상향·좁힘·자사주 확대(보도자료 11/06), Meta Perry PPA vs 중간선거 뒤 텍사스 정책 불확실성으로 KeyBanc
+    하향(11/04)·12개월 신저가 → 강세·약세 0.25 대칭(정책 경로가 양방향)'
+notes:
+- 신규 작성 2026-11-09(대기열 '작성', 알파 5.3 진입·3Q 실적 2026-11-06). 컨센서스 미입력(manual_consensus.csv에 행 없음)
+- '2026-11-25 갱신: 3Q26 10-Q 재무상태표와 Cogentrix 인수·우선주 A 상환을 프로포마로 반영(순차입 25.73·투하자본 30.64). 시나리오 동인은 11/09 값 유지'
+- '발전사업자는 매출 성장보다 전력 가격·용량 가격·장기 계약(PPA) 비중이 가치를 정한다. 이 매출×이익률 DCF는 근사다'
+- 계속가치 RONIC = WACC(기본)
+- '가정 점검 2026-11-09: 업종을 power_utility(베타 0.48, WACC 6.3%, 기본 1.43배)에서 power_ipp(베타 1.1 추정)로 바꿨다 — 규제 유틸리티 베타는 전력 가격 위험을 지는 IPP 할인율을 과소 계상한다'
+- 'Zacks 목표가 평균 $195.7(19명, $125~255)·의견 평균 1.3(Strong Buy 18·Hold 1) — Data provided by Zacks Investment Research, Inc., www.zacksdata.com'
+evidence:
+- Vistra 3Q 2026 실적 보도자료 https://www.prnewswire.com/news-releases/vistra-reports-third-quarter-2026-results-302931798.html
+- Vistra Cogentrix 인수 완료 https://www.prnewswire.com/news-releases/vistra-completes-acquisition-of-cogentrix-energy-expanding-diverse-generation-fleet-302925088.html
+- Vistra 시리즈 A 우선주 상환 https://www.prnewswire.com/news-releases/vistra-announces-redemption-of-all-outstanding-series-a-preferred-stock-302910429.html
+- Fiscal.ai 회사 페이지 https://fiscal.ai/company/NYSE-VST
