@@ -23,7 +23,7 @@ class TestBuild(unittest.TestCase):
 
     def test_order_follows_report_feed(self):
         t = self.text()
-        heads = [t.index(x) for x in ("**■ 결론**", "**■ 근거**", "**■ 반대**", "**■ 다음 확인**", "[8-K 원문]")]
+        heads = [t.index(x) for x in ("**■ 결론**", "**■ 근거**", "**■ 반대·다음 확인**", "· 반대:", "· 다음:", "[8-K 원문]")]
         self.assertEqual(heads, sorted(heads))
 
     def test_highest_insight_first(self):
@@ -55,6 +55,16 @@ class TestBuild(unittest.TestCase):
 
     def test_readable_keeps_section_with_its_list(self):
         self.assertIn("**■ 근거**\n· 1~3Q", notify.readable(self.text()))
+
+
+class TestConcise(unittest.TestCase):
+    """간결 관문(2026-11-25 마스터 지시)"""
+    def test_short_item_passes(self):
+        self.assertEqual(pulse_feed.wordy({"items": [ITEM]}), [])
+
+    def test_long_view_flagged(self):
+        bad = pulse_feed.wordy({"items": [dict(ITEM, view="가" * 61, why=["나" * 56] * 4)]})
+        self.assertEqual({k for _, k, _, _ in bad}, {"view", "why", "why 줄 수"})
 
 
 if __name__ == "__main__":

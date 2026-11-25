@@ -87,13 +87,35 @@ def block(n, x):
     icon = icon_for(x)   # 번호(①②…)는 쓰지 않는다(2026-11-20 마스터 지시)
     head = f"**{icon} {x['name']} {x['code']}｜{x['event']}**" if x.get("code") else f"**{icon} {x['name']}｜{x['event']}**"
     parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
-    if x.get("against"):
-        parts.append(f"**■ 반대**\n· {x['against']}")
-    if x.get("next"):
-        parts.append(f"**■ 다음 확인**\n· {x['next']}")
+    chk = ([f"· 반대: {x['against']}"] if x.get("against") else []) + ([f"· 다음: {x['next']}"] if x.get("next") else [])
+    if chk:   # 반대·다음 확인은 한 문단으로(2026-11-25 마스터 지시 "직관적으로 읽히게 간결하게")
+        parts.append("**■ 반대·다음 확인**\n" + "\n".join(chk))
     parts.append(links(x.get("links")))
     # ■ 정량(인사이트 점수·근거 종류) 문단은 내보내지 않는다(2026-11-20 마스터 지시 "마지막 문단(■ 정량)은 빼라. 앞으로도 그렇게 하라") — 점수는 정렬·기록에만
     return "\n\n".join(parts)
+
+
+# 간결 관문(2026-11-25 마스터 지시 "Pulse로 보내는 글이 직관적으로 읽히게 간결하게") — 넘으면 보내지 않고 고쳐 쓰게 한다
+LIMITS = {"event": 40, "biz": 45, "view": 60, "why": 55, "against": 55, "next": 55, "line": 70}
+
+
+def wordy(d):
+    """한도를 넘은 칸 — [(이름, 칸, 길이, 한도)]"""
+    bad = []
+    for x in d.get("items") or []:
+        nm = x.get("name", "")
+        for k in ("event", "biz", "view", "against", "next"):
+            if len(str(x.get(k) or "")) > LIMITS[k]:
+                bad.append((nm, k, len(str(x[k])), LIMITS[k]))
+        for w in x.get("why") or []:
+            if len(w) > LIMITS["why"]:
+                bad.append((nm, "why", len(w), LIMITS["why"]))
+        if len(x.get("why") or []) > MAX_WHY:
+            bad.append((nm, "why 줄 수", len(x["why"]), MAX_WHY))
+    for b in d.get("brief") or []:
+        if len(str(b.get("line") or "")) > LIMITS["line"]:
+            bad.append((b.get("name", ""), "line", len(b["line"]), LIMITS["line"]))
+    return bad
 
 
 def brief_line(b):
@@ -248,6 +270,12 @@ def main(argv):
     if not (d.get("items") or d.get("brief")):
         print("모두 이미 보낸 사건 — 묶음을 만들지 않는다(텔레그램 보내지 않음)")
         return 3
+    long = wordy(d)
+    if long:
+        for nm, k, n, lim in long:
+            print(f"[너무 김] {nm} {k}: {n}자 > {lim}자")
+        print("간결 관문 — 보내지 않는다(2026-11-25 마스터 지시). 한 문장 한 사실로 줄이고 수식어·배경 설명을 뺀 뒤 다시 돌린다(숫자·미확인 표시는 남긴다)")
+        return 4
     text = build(d)
     out.write_text(text, encoding="utf-8")
     story_ledger.record(rows)
