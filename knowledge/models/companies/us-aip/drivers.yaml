@@ -1,0 +1,109 @@
+auto: true
+id: us-aip
+name: Arteris
+ticker: AIP
+unit: B$
+unit_usd: 1000000000.0
+industry: semiconductor
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-25'
+market:
+  date: '2026-11-25'
+  price: 17.48
+  shares: 0.055835
+  net_debt: -0.1111
+  source: 가격 = 2026-11-24 종가 $17.48(TradingView 실측 일봉) · 주식 수 49,735,064주(3Q26 10-Q
+    표지, 2026-10-29) · 현금 = 현금 $71.0M + 단기투자 $33.2M + 장기투자 $16.1M = $120.3M · 차입 =
+    벤더 금융 $4.3M + 운용리스 $4.9M = $9.2M(금융 차입 없음) — 3Q26 10-Q 재무상태표(2026-09-30)
+rev0: 0.099
+ic0: -0.0453
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.1717
+      end: 0.035
+      decay: 0.816
+    margin:
+      m0: -0.323
+      target: 0.12
+      year_target: 6
+      lr: 0.2
+      lam: 0.35
+      anchors:
+      - -0.2271
+      - -0.1761
+    s2c: 2.5
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.2525
+      end: 0.04
+      decay: 0.866
+    margin:
+      m0: -0.323
+      target: 0.1935
+      year_target: 6
+      lr: 0.2
+      lam: 0.25
+      anchors:
+      - -0.2271
+      - -0.1761
+    s2c: 2.875
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.0909
+      end: 0.030000000000000002
+      decay: 0.716
+    margin:
+      m0: -0.323
+      target: 0.0465
+      year_target: 6
+      lr: 0.2
+      lam: 0.5
+      anchors:
+      - -0.2271
+      - -0.1761
+    s2c: 2.125
+mc:
+  sigma_growth: 0.0404
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.0985, 0.0995] (3Q26 실적 보도자료(8-K Item 2.02, 2026-11-05) https://www.sec.gov/Archives/edgar/data/1667011/000162828026071063/aip-20261105.htm
+    · 3Q26 어닝콜(2026-11-05))
+  growth: 컨센서스 1년차 17.2%, 2년차 14.7%
+  margin: 1~2년차 컨센서스 -22.7%, -17.6% 고정 → 목표 12%(6년차, 덮어쓰기) → 장기 수렴 20%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.5 → 덮어쓰기 2.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 9.1%~25.3%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +13.1% 아래·강세 +21.2% 위 확률. 내부 관점(컨센서스 +17.2%, σ 8.5%: 범위 16.2% ÷ d2(8) × 1.5)
+    100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: 매출총이익률 87%인 IP 사업이라 규모가 커지면 영업 레버리지가 크다. 매출 연 17%·조정 영업비 연 8.5% 증가(회사
+    모델)를 6년 이으면 조정 영업이익률 약 28%, 주식보상(매출의 약 14%로 하락 가정)을 빼면 GAAP 약 12~14%(계산) — 6년차
+    12%, 장기 20%로 둔다(Rambus GAAP 36%보다 낮게). 투하자본이 음수(선수 수익 $112M)라 매출÷투하자본은 자산 경량 IP
+    기준 2.5로 둔다 — 근거 약함
+  shares: 완전 희석 = 기본 0.0497351(2026-09-30) + 옵션·RSU·워런트·전환 0.0061 — 3Q26 10-Q 주당손실
+    주석 — 반희석으로 뺀 잠재 주식 6,133,011주(양도제한·성과조건부 주식 4
+notes:
+- 자동 생성(build_drivers) 2026-11-25 — 데이터 묶음 2026-11-25
+- '어닝콜 위험: 주식보상이 매출의 28%(최근 4개 분기) — GAAP 영업손실 $43.0M'
+- '어닝콜 위험: ACV + 로열티 순증 둔화와 잔여 이행 의무 정체(직전 분기와 같은 $135M대)'
+- '어닝콜 위험: 중국 고객 매출 24.5%(FY2025)'
+evidence:
+- Arteris 3Q26 10-Q(2026-11-05) https://www.sec.gov/Archives/edgar/data/1667011/000162828026071154/aip-20260930.htm
+- Arteris 3Q26 실적 보도자료(8-K Item 2.02, 2026-11-05) https://www.sec.gov/Archives/edgar/data/1667011/000162828026071063/aip-20261105.htm
+- Arteris FY2025 10-K(2026-02-12) https://www.sec.gov/Archives/edgar/data/1667011/000162828026007726/aip-20251231.htm
+- Arteris 2026년 위임장(DEF 14A, 2026-04-21) https://www.sec.gov/Archives/edgar/data/1667011/000119312526166706/d885938ddef14a.htm
+- CFO 선임 8-K(Item 5.02, 2026-08-06) https://www.sec.gov/Archives/edgar/data/1667011/000119312526336887/d148163d8k.htm
+- 3Q26·2Q26 어닝콜 전문(2026-11-05·2026-08-06, Fiscal.ai)
+- 'Fiscal.ai MCP 2026-11-25: 표준화 손익·재무상태표·현금흐름, company_estimates, 13F·내부자 거래, 펀드
+  레터 · Zacks 추정·목표가(Data provided by Zacks Investment Research, Inc., www.zacksdata.com)'
+- Easyconomics company_profile(yfinance) 2026-11-25 — 분기 추정 대조·의견 분포
+- TradingView NASDAQ:AIP 일봉 520개(2026-11-25 조회)
+- Quantral 커뮤니티 신호(2026-11-25)
