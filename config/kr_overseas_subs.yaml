@@ -1,0 +1,36 @@
+# 국내 전자 기업 해외 법인 감시(마스터 지시 2026-11-26 "국내 전자 기업들의 해외 법인 관련 이슈도 즉각 챙겨올 수 있는 정보 파이프라인을 구축하라"
+#   — 계기: LG전자 인도법인 지분 2% 추가 매각 공시, 2026-11-25 인도 거래소). radar/overseas_subs.py가 읽는다.
+# 모회사 이름(ko·en) × 국가·'법인' 표현, 또는 법인 고유 이름이 나오면 Pulse '해외 법인' 유형으로 넘긴다.
+parents:
+  - {id: co-samsung-electronics, ko: [삼성전자], en: [Samsung Electronics]}
+  - {id: co-skhynix, ko: [SK하이닉스, 하이닉스], en: [SK hynix, SK Hynix]}
+  - {id: co-lg-electronics, ko: [LG전자, 엘지전자], en: [LG Electronics]}
+  - {id: co-lg-display, ko: [LG디스플레이], en: [LG Display]}
+  - {id: co-samsung-display, ko: [삼성디스플레이], en: [Samsung Display]}
+  - {id: co-lg-innotek, ko: [LG이노텍], en: [LG Innotek]}
+  - {id: co-semco, ko: [삼성전기], en: [Samsung Electro-Mechanics]}
+  - {id: co-samsung-sdi, ko: [삼성SDI], en: [Samsung SDI]}
+  - {id: co-lges, ko: [LG에너지솔루션, LG엔솔], en: [LG Energy Solution]}
+  - {id: co-sk-on, ko: [SK온], en: [SK On]}
+  - {id: co-db-hitek, ko: [DB하이텍], en: [DB HiTek]}
+countries_ko: [미국, 인도, 베트남, 중국, 멕시코, 폴란드, 헝가리, 체코, 인도네시아, 브라질, 일본, 대만, 유럽, 태국, 필리핀, 말레이시아, 튀르키예, 캐나다, 해외, 현지]
+countries_en: [India, Vietnam, America, US, U.S., USA, Mexico, Poland, Hungary, Czech, China, Indonesia, Brazil, Europe, Thailand, Philippines, Malaysia, Canada, Texas, Indiana, Arizona, Georgia, Michigan, Ohio, Tennessee, Kentucky]
+unit_ko: [법인, 공장, 자회사, 생산기지, 생산법인, 판매법인, 합작법인, 현지법인]
+unit_en: [unit, subsidiary, arm, plant, factory, fab, joint venture, JV, listing, IPO, stake, block deal]
+# 고유 이름 — 이름만 나와도 잡는다(상장 법인은 거래소·티커 병기)
+subsidiaries:
+  - {parent: co-lg-electronics, names: [LG Electronics India, LGEINDIA, LG전자 인도법인, LG전자인도], listed: "NSE·BSE LGEINDIA (2025-10 상장, 모회사 85%)"}
+  - {parent: co-samsung-electronics, names: [Harman International, 하만, Samsung Austin Semiconductor, 삼성 오스틴, 테일러 팹, Taylor fab, Samsung Electronics Vietnam, Samsung Electronics HCMC]}
+  - {parent: co-skhynix, names: [Solidigm, 솔리다임, SK hynix America, West Lafayette, 웨스트라피엣, 인디애나 패키징]}
+  - {parent: co-lg-display, names: [LG Display Guangzhou, LG디스플레이 광저우]}
+  - {parent: co-lges, names: [Ultium Cells, 얼티엄셀즈, LG Energy Solution Arizona, LGES Michigan, L-H Battery]}
+  - {parent: co-sk-on, names: [BlueOval SK, 블루오벌SK, SK Battery America]}
+  - {parent: co-samsung-sdi, names: [StarPlus Energy, 스타플러스 에너지, Samsung SDI Hungary]}
+  - {parent: co-semco, names: [Samsung Electro-Mechanics Philippines, Samsung Electro-Mechanics Vietnam, 삼성전기 필리핀, 삼성전기 베트남, 삼성전기 톈진]}
+  - {parent: co-lg-innotek, names: [LG Innotek Vietnam, LG이노텍 베트남]}
+# 해외 현지 언론 RSS — robots.txt 허용 확인(2026-11-26). 제목·링크·요지만, 매칭된 글만 남긴다. 인도 NSE·BSE·Economic Times는 자동 접근 차단이라 쓰지 않는다
+feeds:
+  - {id: livemint-companies, url: "https://www.livemint.com/rss/companies", country: 인도}
+  - {id: bs-companies, url: "https://www.business-standard.com/rss/companies-101.rss", country: 인도}
+  - {id: vnexpress-business, url: "https://e.vnexpress.net/rss/business.rss", country: 베트남}
+feed_every_min: 30

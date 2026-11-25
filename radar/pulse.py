@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"무역 비중": 4, "데이터센터 접속": 4, "WSJ 주요": 6, "닛케이 주요": 6, "전력 정책": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"해외 법인": 6, "무역 비중": 4, "데이터센터 접속": 4, "WSJ 주요": 6, "닛케이 주요": 6, "전력 정책": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -62,7 +62,7 @@ CLASSES = [("WSJ 주요", ("src-wsj-main",)),   # WSJ 섹션별 주요 기사 �
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg")),
            ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"))]   # src-consumer-macro = 미·일·유럽·영국 소비 통계 새 달에 문턱 넘은 업종(radar/consumer_macro.py, 2026-11-14)   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
-CLASS_W = {"무역 비중": 6, "데이터센터 접속": 6, "WSJ 주요": 7, "닛케이 주요": 7, "전력 정책": 8, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"해외 법인": 8, "무역 비중": 6, "데이터센터 접속": 6, "WSJ 주요": 7, "닛케이 주요": 7, "전력 정책": 8, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -831,6 +831,17 @@ def alpha_queue():
     return [x for x in q if x.get("kind") == "알파 산정"]
 
 
+def fetch_overseas_subs(st):
+    """국내 전자 기업 해외 법인 소식(마스터 지시 2026-11-26 — radar/overseas_subs.py). 수집함·텔레그램·딘스티커·해외 현지 언론 RSS"""
+    import overseas_subs
+    sub = st.setdefault("overseas_subs", {})
+    now = common.iso(common.now_kst())
+    mark = sub.get("mark") or common.iso(common.now_kst() - timedelta(hours=2))
+    out = overseas_subs.scan(mark, sub, feeds="unittest" not in sys.modules)
+    sub["mark"] = now
+    return out[:TOP["해외 법인"]]
+
+
 def fetch_telegram(st):
     """공개 텔레그램 채널(마스터 지시 2026-11-01). 걸린 글은 원본으로, 나머지는 st['tg_other']에 모아 회차가 열릴 때 넘긴다"""
     from pollers import tg_channels as tg
@@ -877,7 +888,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("발굴 채널", fetch_discovery_channels), ("데이터센터 접속", fetch_peeringdb), ("무역 비중", fetch_trade_share), ("시의성 뉴스", fetch_news)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("발굴 채널", fetch_discovery_channels), ("데이터센터 접속", fetch_peeringdb), ("무역 비중", fetch_trade_share), ("시의성 뉴스", fetch_news), ("해외 법인", fetch_overseas_subs)):
         try:
             sources += fn(st)
         except Exception as exc:
