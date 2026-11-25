@@ -40,13 +40,35 @@ def short_what(text, limit=70):
     return t if len(t) <= limit else t[:limit - 1].rstrip(" ,·") + "…"
 
 
+def _plain(name):
+    """판단 대상 이름 — 괄호 풀이(다음 분기·가이던스 등)는 리포트에 두고 피드에서는 뺀다(2026-11-25 마스터 지시 '간결하게')"""
+    return re.sub(r"\s*\([^()]*\)", "", str(name)).strip() or str(name)
+
+
 def ratings_lines(ratings):
     order, groups = [], {}
     for r in ratings or []:
         if r["rating"] not in groups:
             order.append(r["rating"])
-        groups.setdefault(r["rating"], []).append(r["name"])
+        groups.setdefault(r["rating"], []).append(_plain(r["name"]))
     return [f"{ICON.get(k, '•')} **{k}** — {', '.join(groups[k])}" for k in order]
+
+
+def number_lines(tiles, n=3):
+    """같은 지표의 기간 변형(예: 매출(전분기)·매출(전년))은 한 줄로 묶는다 — '매출 +15.9% 전분기 · +35.8% 전년 ($6.6B)'"""
+    order, groups, subs = [], {}, {}
+    for t in tiles or []:
+        k = str(t.get("k") or "")
+        m = re.match(r"^(.*?)\(([^()]*)\)$", k)
+        base, period = (m.group(1), m.group(2)) if m else (k, "")
+        base = re.sub(r"\s*\([^()]*\)", "", base).strip()
+        if base not in groups:
+            order.append(base)
+        groups.setdefault(base, []).append(f"{t['v']} {period}".strip())
+        sub = str(t.get("sub") or "").split("(")[0].split(" · ")[0].strip()
+        if sub and base not in subs and len(sub) <= 24 and "근거" not in sub and "기준" not in sub:   # '2사 기준'·'근거 100%' 같은 메모는 뺀다
+            subs[base] = sub
+    return [f"• {b} {' · '.join(groups[b])}" + (f" ({subs[b]})" if b in subs else "") for b in order[:n]]
 
 
 def checkpoints(d, n=4):
@@ -62,24 +84,46 @@ def checkpoints(d, n=4):
     return [f"• {r['기한'][5:].replace('-', '/')} {short_what(r['무엇'])} — {r.get('확률', '')}".rstrip(" —") for r in rows[:n]]
 
 
+def brief_answer(text, limit=80):
+    """답 첫 문장 하나. '투자다.'처럼 너무 짧으면 다음 문장의 첫 절(쉼표·'고' 앞)까지만 붙인다 — 말줄임표 없이"""
+    one = first_sentence(text, limit, min_len=0)
+    if len(one) >= 14:
+        return one
+    rest = re.sub(r"\s+", " ", re.sub(r"\([^()]*\)", "", str(text))).strip()[len(one):].strip()
+    m = re.match(r"(.+?)(?:, |고 |며 |\.)", rest)
+    nxt = (m.group(1) if m else rest)[: limit - len(one)].rstrip(" ,")
+    return f"{one} {nxt}".strip() if nxt else one
+
+
+def split_title(title):
+    """'주제 — 결론' 제목은 굵은 주제 한 줄 + 결론 한 줄로 나눈다"""
+    t = str(title or "")
+    return (t.split(" — ", 1) + [""])[:2] if " — " in t else (t, "")
+
+
 def build(d, artifact=None, notion=None):
+    """간결한 양식(2026-11-25 마스터 지시 '가독성이 떨어진다 — 직관적으로 이해할 수 있게 간결하게'):
+    머리 → 주제(굵게)·결론 한 줄 → 판단 등급 → 핵심(질문 꼬리표 + 답 첫 문장 하나, 최대 5) → 숫자(기간 묶음) → 다음 확인(최대 3) → 링크"""
     kind = KIND.get(d.get("cycle") or ("event" if d.get("kind") == "industry_event" else ""), "산업 리포트")
     date = str(d.get("date") or "")
-    L = [f"[Chiip Industry Report · {kind} · {date[5:].replace('-', '/')}]", "", f"**{d['title']}**"]
-    if d.get("event"):
+    head, take = split_title(d["title"])
+    L = [f"[Chiip Industry · {kind} · {date[5:].replace('-', '/')}]", "", f"**{head}**"]
+    if take:
+        L.append(take)
+    if d.get("event") and kind == KIND["event"]:   # 분기·주간은 머리에 이미 종류가 있어 '사건' 줄을 뺀다
         L.append(f"사건: {first_sentence(d['event'], 90)}")
-    L += ["", "**산업 판단**(규칙 계산)"] + ratings_lines(d.get("ratings"))
+    L += [""] + ratings_lines(d.get("ratings"))
     qa = d.get("summary") or []
     if qa:
         L += ["", "**핵심**"]
-        for i, x in enumerate(qa[:5], 1):
-            L.append(f"{'①②③④⑤'[i - 1]} {x['q'].rstrip('?')} → {first_sentence(x['a'])}")
-    tiles = d.get("tiles") or []
-    if tiles:
-        L += ["", "**숫자**"] + [f"• {t['v']} — {t['k']}" + (f"({t['sub'].split('(')[0].strip()})" if t.get("sub") and len(t["sub"].split("(")[0]) <= 24 else "") for t in tiles[:4]]
-    cps = checkpoints(d)
+        for x in qa[:5]:
+            L.append(f"• **{x['q'].rstrip('?？ ')}** — {brief_answer(x['a'])}")
+    nums = number_lines(d.get("tiles"))
+    if nums:
+        L += ["", "**숫자**"] + nums
+    cps = checkpoints(d, 3)
     if cps:
-        L += ["", "**다음 확인**(날짜 · 무엇 · Chiip 확률)"] + cps
+        L += ["", "**다음 확인**"] + cps
     links = [f"[리포트]({artifact})" if artifact else "", f"[노션]({notion})" if notion else ""]
     if any(links):
         L += ["", " · ".join(x for x in links if x)]

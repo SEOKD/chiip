@@ -18,14 +18,24 @@ D = {"kind": "industry_event", "date": "2026-11-08", "title": "제목", "event":
 
 
 class TestIndustryTg(unittest.TestCase):
+    def test_concise(self):   # 2026-11-25 마스터 지시 '간결하게'
+        d = dict(D, kind="industry", cycle="quarterly", title="후공정 결산 — 첨단 패키징 +51%",
+                 ratings=[{"name": "ASE 사업부(다음 분기 = 10~12월)", "rating": "In-Line"}],
+                 tiles=[{"k": "매출(전분기)", "v": "+15.9%", "sub": "$6.6B · 2사"}, {"k": "매출(전년)", "v": "+35.8%", "sub": "2사 기준"}])
+        t = tg.build(d)
+        self.assertIn("**후공정 결산**" + chr(10) + "첨단 패키징 +51%", t)
+        self.assertIn("⚪ **In-Line** — ASE 사업부", t)
+        self.assertNotIn("사건:", t)
+        self.assertIn("• 매출 +15.9% 전분기 · +35.8% 전년 ($6.6B)", t)
+
     def test_layout(self):
         t = tg.build(D, "https://a", "https://n")
-        self.assertTrue(t.startswith("[Chiip Industry Report · 사건 때 심층 · 11/08]"))
+        self.assertTrue(t.startswith("[Chiip Industry · 사건 때 심층 · 11/08]"))
         self.assertIn("🟢 **Attractive** — A", t)
         self.assertIn("⚪ **In-Line** — B, C", t)
-        self.assertIn("그렇다. 데이터센터·AI 4개사 PAC 기부의 46%가 민주 후보에게 갔다.", t)   # 짧은 첫 문장은 잇고 괄호는 뺀다
+        self.assertIn("• **민주당도 돈을 받았나** — 그렇다. 데이터센터·AI 4개사 PAC 기부의 46%가 민주 후보에게 갔다", t)   # 짧은 첫 문장은 다음 문장 첫 절까지, 괄호는 뺀다
         self.assertNotIn("두 번째 문장", t)
-        self.assertIn("• 173GW — 파이프라인(전체의 50%)", t)
+        self.assertIn("• 파이프라인 173GW (전체의 50%)", t)
         self.assertLess(t.index("01/20"), t.index("04/30"))   # 날짜 순
         self.assertNotIn("(행정명령", t)
         self.assertEqual(tg.check(t), [])
