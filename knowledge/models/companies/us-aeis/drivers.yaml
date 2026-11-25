@@ -1,0 +1,108 @@
+auto: true
+id: us-aeis
+name: Advanced Energy Industries
+ticker: AEIS
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 1.0
+tax: 0.16
+horizon: 10
+as_of: '2026-11-26'
+market:
+  date: '2026-11-26'
+  price: 197.03
+  shares: 0.041182
+  net_debt: -0.1587
+  source: 가격 = 2026-11-25 종가 $197.03(TradingView 실측 일봉) · 주식 수 40,481,991주(3Q26 10-Q
+    표지, 2026-10-28) · 현금 $1,424.6M·차입 $1,265.9M(2028 전환사채 $136.4M + 2031 전환사채 장부가
+    $1,129.5M, 2026-09-30 재무상태표). 10월 2일 2028 전환사채 잔액 $136.4M을 현금으로 갚고 초과분을 0.5M주로
+    줬다 — 현금과 차입이 같이 줄어 순차입은 같고, 표지 주식 수에는 그 0.5M주가 들어 있다. 10월 자사주 매입 약 $30M은 반영 전
+rev0: 2.5165
+ic0: 1.5741
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: 0.2694
+      end: 0.035
+      decay: 0.532
+    margin:
+      m0: 0.199
+      target: 0.235
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.235
+      - 0.235
+    s2c: 1.443
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.3541
+      end: 0.04
+      decay: 0.5820000000000001
+    margin:
+      m0: 0.199
+      target: 0.255
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.235
+      - 0.235
+    s2c: 1.659
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1889
+      end: 0.030000000000000002
+      decay: 0.43200000000000005
+    margin:
+      m0: 0.199
+      target: 0.215
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.235
+      - 0.235
+    s2c: 1.227
+mc:
+  sigma_growth: 0.0413
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [2.4915, 2.5415] (3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-02)
+    https://www.sec.gov/Archives/edgar/data/927003/000092700326000037/aeis-ex99d1.htm
+    · 3Q26 어닝콜(2026-11-02))
+  growth: 컨센서스 1년차 26.9%, 2년차 16.0%
+  margin: 1~2년차 컨센서스 23.5%, 23.5% 고정 → 목표 24%(3년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.443
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 18.9%~35.4%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.4, ''bull'': 0.3} — 다음 해 매출 성장 분포로 계산
+    — 약세 +22.9% 아래·강세 +31.2% 위 확률. 내부 관점(컨센서스 +26.9%, σ 7.6%: 범위 16.5% ÷ d2(12) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.040481991(2026-10-28) + 옵션·RSU·워런트·전환 0.0007 — 3Q26 10-Q Note
+    11 — 미귀속 양도제한·성과조건부 주식 0.7M주(2026-09-30 공시값,  · 전환사채 판정: 0% 전환사채 2031 외가격(전환가
+    508.78 > 가격 197.03) — 차입'
+notes:
+- 자동 생성(build_drivers) 2026-11-26 — 데이터 묶음 2026-11-26
+- '어닝콜 위험: IC·PCB·특수 세라믹 공급 제약 — 분기 마지막 4~6주에 부품이 몰려 들어온다'
+- '어닝콜 위험: 고객이 주문을 통지 없이 줄이거나 미룰 수 있다(10-K: 장기 구매 약정 없음, 적기 공급 보관함 방식)'
+- '어닝콜 위험: 상위 고객 3곳이 매출의 54%(FY2025)'
+evidence:
+- Advanced Energy 3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-02) https://www.sec.gov/Archives/edgar/data/927003/000092700326000037/aeis-ex99d1.htm
+- Advanced Energy 3Q26 10-Q(2026-11-02) https://www.sec.gov/Archives/edgar/data/927003/000092700326000039/aeis-20260930x10q.htm
+- Advanced Energy 2Q26 실적 보도자료(8-K EX-99.1, 2026-08-03) https://www.sec.gov/Archives/edgar/data/927003/000092700326000030/aeis-20260803xex99d1.htm
+- Advanced Energy 1Q26 실적 보도자료(8-K EX-99.1, 2026-05-04) https://www.sec.gov/Archives/edgar/data/927003/000092700326000012/aeis-20260504xex99d1.htm
+- Advanced Energy 4Q25 실적 보도자료(8-K EX-99.1, 2026-02-10) https://www.sec.gov/Archives/edgar/data/927003/000092700326000005/aeis-20260210xex99d1.htm
+- Advanced Energy FY2025 10-K(2026-02-13) https://www.sec.gov/Archives/edgar/data/927003/000110465926014731/aeis-20251231x10k.htm
+- Advanced Energy 2026년 위임장(DEF 14A, 2026-03-26) https://www.sec.gov/Archives/edgar/data/927003/000110465926035159/aeis-20260507xdef14a.htm
+- 전환사채 발행 8-K(Item 1.01·2.03·3.02, 2026-05-18) https://www.sec.gov/Archives/edgar/data/927003/000110465926063191/tm2612734d5_8k.htm
+- 3Q26 어닝콜(2026-11-02) · 2Q26 어닝콜 요약(2026-08-03)
+- TradingView 실측 일봉 NASDAQ:AEIS(2019-09-30~2026-11-25)
+- IB 업종 리포트 요지 3건(마스터 노션 자료실, 2026-11-06~17 — 라이선스 자료 요지 포함, 외부 공유 금지)
