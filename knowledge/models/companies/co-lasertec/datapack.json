@@ -1,0 +1,2368 @@
+{
+ "id": "co-lasertec",
+ "name": "Lasertec",
+ "ticker": "6920",
+ "as_of": "2026-11-26",
+ "unit": "BJPY",
+ "currency_symbol": "¥",
+ "unit_usd": 6283775,
+ "usd_per_unit": 0.0062838,
+ "industry": "semicap",
+ "industry_why": "매출 전부가 반도체·평판디스플레이 마스크와 웨이퍼의 검사·계측 장비와 그 서비스다(회사 사업 설명)",
+ "region_mix": {
+  "TW": 0.4,
+  "KR": 0.2,
+  "US": 0.15,
+  "JP": 0.1,
+  "CN": 0.1,
+  "OTHER": 0.05
+ },
+ "region_why": "가정이다 — 지역별 매출은 유가증권보고서에 있으나 이번 회차에 원문을 열지 못했다. 해외 법인 거점(대만 신주·타이난·타이중·가오슝, 한국 화성·평택·천안, 미국 오리건·애리조나·아이다호·텍사스·뉴욕, 중국 7곳)으로 고객 분포를 가늠했다",
+ "tax": 0.3,
+ "main_metric": "eps",
+ "main_metric_why": "흑자이고 감가상각이 EBITDA의 5% 미만인 팹라이트 회사다. 회사 가이던스도 영업이익·순이익·EPS다",
+ "profile": {
+  "price": 30550.0,
+  "shares_basic": 0.089704,
+  "shares_date": "2026-09-30",
+  "cash": 110.768,
+  "debt": 0.0,
+  "customer_deposits": 0.0,
+  "div_yield": 0.0115,
+  "source": "가격 = TradingView 11/26 종가 ¥30,550. 주식 = 가이던스 순이익 ¥90,000M ÷ 가이던스 EPS ¥1,003.3 = 89,704천 주(자기주식 제외, 1Q EPS ¥119.72 역산 89,660천 주와 0.05% 차이). 현금 ¥110.8B·차입 0 = 공개 시세 개요의 최근 분기(2026-09-30) 값. 선수금 ¥87.0B(6월 말 ¥44.2B)는 1Q 결산단신을 인용한 해설 기사 — 장비 인도에 묶인 영업 부채(이자 없는 운전자본)라 차입처럼 빼지 않았다"
+ },
+ "leases": {
+  "liab": 0.0,
+  "rate": null,
+  "in_debt": true,
+  "source": "리스 부채 미확인(결산단신 원문 미열람) — 본사·이노베이션 파크 중심의 팹라이트 구조라 0으로 둠"
+ },
+ "dilution": {
+  "potential_total": 0.0,
+  "options": 0.0,
+  "rsu": 0,
+  "warrants": 0,
+  "converts_shares": 0.0,
+  "date": "2026-09-30",
+  "source": "잠재 주식 미확인(결산단신 원문 미열람). 전환사채·워런트 발행 공시는 수집함에 없다 — 0으로 둠"
+ },
+ "financials": {
+  "rev_ttm": 216.683,
+  "ebit_ttm": 94.3,
+  "invested_capital": 128.741,
+  "capex_ttm": 1.883,
+  "da_ttm": 4.27,
+  "sbc_ttm": 0.0,
+  "basis": "일본 기준(J-GAAP) 연결",
+  "note": "TTM = 2Q FY6/26~1Q FY6/27 네 분기 합: 매출 74,087 + 41,281 + 60,946 + 40,369 = ¥216,683M, 영업이익 36,263 + 15,200 + 27,068 + 15,769 = ¥94,300M. 투하자본 = 자기자본 ¥239.509B(9월 말) + 차입 0 − 현금 ¥110.768B. CAPEX = FY6/26 투자활동 현금흐름 −¥1,883M 전체(근사, 설비투자만의 값은 미확인). 감가상각 ¥4.27B = TTM 매출 × (EBITDA 마진 45.49% − 영업이익률 43.52%) 역산(추정)"
+ },
+ "peers_basis": "ntm",
+ "peers_source": "공개 시세 개요(11/25~26). 공정 제어·노광·전공정 장비 6곳 — KLA(마스크·웨이퍼 검사 최대 경쟁사), ASML(EUV 노광), Applied Materials, Lam Research, Onto Innovation, 디스코. 달러 값은 ¥159.14/$로 환산. 차입·현금은 받지 못해 EV/매출은 P/S 근사. 도쿄일렉트론·SCREEN은 개요의 선행 P/E(6.1·8.1배)가 분할·기간 불일치로 보여 뺐다",
+ "peers": [
+  {
+   "ticker": "KLA",
+   "key": "NASDAQ:KLAC",
+   "rev": 2300.3,
+   "ebit_margin": 0.426,
+   "mcap": 27833.6,
+   "pb": 26.8,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 12.1,
+   "growth": 0.289,
+   "pe_fwd": 18.9,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 35.28
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 41.59
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 82.43
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 48.73
+    }
+   ]
+  },
+  {
+   "ticker": "ASML",
+   "key": "NASDAQ:ASML",
+   "rev": 6292.9,
+   "ebit_margin": 0.386,
+   "mcap": 79920.1,
+   "pb": null,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 12.7,
+   "growth": 0.552,
+   "pe_fwd": 20.6,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-12-31",
+     "pe_ttm": 36.9
+    },
+    {
+     "date": "2026-03-29",
+     "pe_ttm": 43.61
+    },
+    {
+     "date": "2026-06-28",
+     "pe_ttm": 57.17
+    },
+    {
+     "date": "2026-09-27",
+     "pe_ttm": 43.74
+    }
+   ]
+  },
+  {
+   "ticker": "Applied Materials",
+   "key": "NASDAQ:AMAT",
+   "rev": 5459.4,
+   "ebit_margin": 0.329,
+   "mcap": 39307.6,
+   "pb": 9.5,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 7.2,
+   "growth": 0.531,
+   "pe_fwd": 12.7,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2026-01-25",
+     "pe_ttm": 33.0
+    },
+    {
+     "date": "2026-04-26",
+     "pe_ttm": 39.16
+    },
+    {
+     "date": "2026-07-26",
+     "pe_ttm": 46.23
+    },
+    {
+     "date": "2026-10-25",
+     "pe_ttm": 29.89
+    }
+   ]
+  },
+  {
+   "ticker": "Lam Research",
+   "key": "NASDAQ:LRCX",
+   "rev": 4179.2,
+   "ebit_margin": 0.37,
+   "mcap": 36777.3,
+   "pb": 16.6,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 8.8,
+   "growth": 0.544,
+   "pe_fwd": 15.1,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2025-12-28",
+     "pe_ttm": 36.49
+    },
+    {
+     "date": "2026-03-29",
+     "pe_ttm": 39.89
+    },
+    {
+     "date": "2026-06-28",
+     "pe_ttm": 65.81
+    },
+    {
+     "date": "2026-09-27",
+     "pe_ttm": 46.98
+    }
+   ]
+  },
+  {
+   "ticker": "Onto Innovation",
+   "key": "NYSE:ONTO",
+   "rev": 208.9,
+   "ebit_margin": 0.227,
+   "mcap": 1336.8,
+   "pb": 4.3,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 6.4,
+   "growth": 0.878,
+   "pe_fwd": 13.4,
+   "ev_ebitda_fwd": null,
+   "hist_q": [
+    {
+     "date": "2026-01-03",
+     "pe_ttm": 59.67
+    },
+    {
+     "date": "2026-03-31",
+     "pe_ttm": 95.83
+    },
+    {
+     "date": "2026-06-30",
+     "pe_ttm": 142.27
+    },
+    {
+     "date": "2026-09-30",
+     "pe_ttm": 101.26
+    }
+   ]
+  },
+  {
+   "ticker": "디스코",
+   "key": "TSE:6146",
+   "rev": 497.7,
+   "ebit_margin": 0.444,
+   "mcap": 4579.0,
+   "pb": 7.3,
+   "debt": null,
+   "cash": null,
+   "ev_sales": 9.2,
+   "growth": 0.364,
+   "pe_fwd": 31.0,
+   "ev_ebitda_fwd": null
+  }
+ ],
+ "scenario_probs_why": "조정 없음 — 계산된 확률을 그대로 쓴다",
+ "target_view": {
+  "adj": 0,
+  "why": "조정 없음"
+ },
+ "multiple_view": {
+  "adj": 0,
+  "why": "조정 없음 — 검수 시점에 따라 분기 실적이 크게 흔들리는 점과 수주 전망 상향은 해자 판정과 내러티브 단계에 이미 들어 있다"
+ },
+ "next_event": {
+  "date": "2027-02-01",
+  "tag": "2Q FY6/27 결산 발표(예정, 시세 원천 일정 기준 — 회사 확정 공지 전) — 10~12월 매출 ¥79.6B 컨센서스와 통기 가이던스 유지 여부"
+ },
+ "guidance": {
+  "rev_fy0": [
+   290.0,
+   290.0
+  ],
+  "op_fy0": 125.0,
+  "ebit_margin_fy0": 0.431,
+  "ni_fy0": 90.0,
+  "eps_fy0": 1003.3,
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "long_term": "중기 경영 계획은 2024년 7월~2030년 6월 6개년이다. 숫자 목표는 회사 사이트 전략 쪽에 없다(매출 극대화와 추가 성장을 지향한다는 문장만). 연구개발비는 매출의 5~10%를 쓴다고 밝힌다",
+  "history": "FY6/27 가이던스: 8/6 매출 ¥290.0B·영업이익 ¥125.0B·경상이익 ¥125.0B·순이익 ¥90.0B·EPS ¥1,003.3·배당 ¥351 → 10/30 그대로 유지. 수주 전망만 ¥300~400B → ¥400~500B로 올렸다. FY6/26은 1/30에 매출 ¥200B → ¥220B로 올렸고 실제는 ¥230.5B였다",
+  "source": "1Q 결산 속보의 회사 예상 표 https://kabutan.jp/news/?b=k202610300246 · 수주 전망 상향은 결산설명자료를 인용한 해설 https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/",
+  "next": {
+   "period": "FY6/27",
+   "rev": 290000,
+   "rev_cons": 301085,
+   "eps": 1003.3,
+   "eps_cons": 1111.3,
+   "unit": "¥M",
+   "note": "회사는 분기·상반기 가이던스를 내지 않는다(상반기 예상 칸 공란) — 통기 가이던스와 통기 컨센서스를 맞댔다. 다음 분기(2Q) 컨센서스는 매출 ¥79,617M·EPS ¥311.13"
+  }
+ },
+ "raw": {
+  "retrieved_at": "2026-11-26T19:00:00+09:00",
+  "fiscal_profile": {
+   "companyKey": "XJPX_6920",
+   "price": 30550.0,
+   "market_cap": 2740.5,
+   "total_cash": 110.768,
+   "total_debt": 0.0,
+   "shares_outstanding": 0.089704,
+   "as_of": "2026-11-26",
+   "balance_date": "2026-09-30",
+   "note": "Fiscal.ai는 Lasertec 키(XJPX_6920)를 갖고 있지만 내주는 것은 세그먼트·KPI뿐이다(availableDatasets = segments_and_kpis). 재무·추정·전문·IR 일정은 없다. 가격·현금·차입은 공개 시세 개요와 TradingView 값",
+   "auditUrl": "https://www.tradingview.com/symbols/TSE-6920/"
+  },
+  "quarters_gaap": {
+   "rev": {
+    "2026Q2": 74.087,
+    "2026Q3": 41.281,
+    "2026Q4": 60.946,
+    "2027Q1": 40.369
+   },
+   "op_income": {
+    "2026Q2": 36.263,
+    "2026Q3": 15.2,
+    "2026Q4": 27.068,
+    "2027Q1": 15.769
+   },
+   "note": "회계연도 분기(6월 결산): 2027Q1 = 2026년 7~9월. 株探 3개월 실적 표(결산단신 XBRL 기반) https://kabutan.jp/stock/finance?code=6920"
+  },
+  "balance_2026_09_30": {
+   "equity": 239.509,
+   "debt_lt": 0.0,
+   "leases": 0.0,
+   "cash": 110.768,
+   "st_investments": 0.0,
+   "advances_received": 87.0,
+   "total_assets": 366.413,
+   "source": "자기자본 ¥239,509M·총자산 ¥366,413M·자기자본비율 65.4% = 株探 재무 표(1Q 결산단신). 현금 ¥110.8B = 공개 시세 개요. 선수금 ¥87.0B = 해설 기사 인용. 6월 말 자기자본 ¥246,828M·총자산 ¥336,650M"
+  },
+  "estimates_sales_m": {
+   "2027Q1(실적)": 40369,
+   "2027Q2": 79617,
+   "2027Q3": 90550,
+   "2027Q4": 90549
+  },
+  "estimates_note": "단위 ¥백만. 2027Q2 = 시세 원천 다음 분기 추정(11/15 저장). 2027Q3·Q4 = FY6/27 매출 컨센서스 ¥301,085M − 1Q 실적 − 2Q 추정을 반씩 나눈 값(계산)",
+  "consensus_sources": {
+   "FY6/27": "시세 원천(TradingView 종목 칸, 2026-11-15 저장): 매출 ¥301,085M·EPS ¥1,111.3. 애널리스트 수 미확인",
+   "1Q": "1Q 매출 ¥40,369M vs 추정 ¥53,809M(−25.0%), EPS ¥119.72 vs ¥206.16(−41.9%) — 시세 원천",
+   "FY6/28": "컨센서스 미확인. 일본 증권사 한 곳의 8/17 추정 매출 ¥400B·영업이익 ¥186B·EPS ¥1,493.9는 한 곳 값이라 범위 상단으로만 본다",
+   "kabuyoho": "IFIS 제목(수집함): FY6/27 경상이익 예상이 11/17 주 −0.9%, 11/24 주 −0.5%. 미국계 대형 증권 목표가 11/17 ¥53,000 상향 → 11/24 ¥52,000 하향, 강세 유지"
+  },
+  "sec_checks": {
+   "note": "일본 상장사라 SEC 10-K·10-Q가 없다. 회사 IR 문서(결산단신·설명자료·유가증권보고서)는 robots.txt가 전체를 막은 호스트(ssl4.eir-parts.net)에 있어 열지 않았다 — TDnet도 같다. 네 곳 대응: ① 구매 약정 — 미확인 ② 제한 현금 — 미확인 ③ 10% 초과 고객 — 유가증권보고서에 있으나 미열람(미확인) ④ 정부 지원 — 미확인. 1차 수치는 회사 사이트의 업적 보고(FY6/26)와 결산단신 XBRL 기반 표로 대신했다"
+  },
+  "source_coverage": {
+   "fiscal": "세그먼트·KPI만(분기 매출 3분류, 연간 수주·잔고)",
+   "easyconomics": "company_profile(jp)·company_peers 가능 · 재무 요약(jp) 미지원 · 실적 정리 미지원",
+   "yfinance": "Easyconomics 경유 개요(가격·시총·현금·마진·선행 EPS)와 동종",
+   "zacks": "미지원",
+   "tradingview": "시세·일봉·다음 분기·회계연도 추정(저장값). 전문 문서 0건",
+   "company": "회사 사이트 본문(업적 보고·전략·임원·거점)"
+  },
+  "rf_local": {
+   "JP10Y": 0.02722,
+   "as_of": "2026-11-24",
+   "source": "TradingView TVC:JP10Y"
+  },
+  "shares_cover_implied": 0.089704
+ },
+ "consensus": {
+  "rev": {
+   "FY2027": 301.085
+  },
+  "rev_basis": "gaap",
+  "margin_basis": "gaap",
+  "ebit_margin": {
+   "FY2027": 0.46
+  },
+  "n_analysts": null,
+  "revisions_90d": {},
+  "quarters_est": {
+   "2027Q2": 79.617,
+   "2027Q3": 90.55,
+   "2027Q4": 90.549
+  },
+  "quarters_act": {
+   "2026Q2": 74.087,
+   "2026Q3": 41.281,
+   "2026Q4": 60.946,
+   "2027Q1": 40.369
+  },
+  "eps_quarters_est": {
+   "2027Q2": 311.13
+  },
+  "ratings": {},
+  "note": "Fiscal.ai·Zacks 추정 미지원. FY6/27 매출 컨센서스 ¥301.1B·EPS ¥1,111.3은 가이던스(¥290.0B·¥1,003.3)보다 높다. 영업이익 컨센서스는 공개 칸이 없어 EPS 컨센서스를 가이던스의 순이익 ÷ 영업이익 비율(0.72)로 되짚어 ¥138.5B(이익률 46%)로 계산했다(Chiip 계산). 애널리스트 수·의견 분포는 공개 자료로 얻지 못했다",
+  "surprise": [
+   {
+    "period": "2026Q2",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 74087,
+    "est": 59380,
+    "est_src": "마스터 채널 실적 정리 인용",
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EBIT",
+    "unit": "백만 엔",
+    "actual": 36263,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q2",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 296.7,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 41281,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EBIT",
+    "unit": "백만 엔",
+    "actual": 15200,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q3",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 123.3,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 60946,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "EBIT",
+    "unit": "백만 엔",
+    "actual": 27068,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2026Q4",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 230.1,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "매출",
+    "unit": "백만 엔",
+    "actual": 40369,
+    "est": 53809,
+    "est_src": "시세 원천",
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "EBIT",
+    "unit": "백만 엔",
+    "actual": 15769,
+    "est": null,
+    "est_src": null,
+    "basis": "gaap"
+   },
+   {
+    "period": "2027Q1",
+    "metric": "EPS",
+    "unit": "엔",
+    "actual": 119.72,
+    "est": 206.16,
+    "est_src": "시세 원천",
+    "basis": "gaap"
+   }
+  ],
+  "surprise_note": "지난 분기 컨센서스는 확인된 것만 적었다. 2Q FY6/26 매출 추정 ¥59.38B는 마스터 채널의 실적 정리에 실린 값이다. 장비는 고객 검수 때 매출로 잡혀 분기 매출이 ¥40B~¥92B 사이를 오간다",
+  "price_window": {
+   "from": 46680,
+   "to": 30550,
+   "note": "FY6/26 결산 발표(8/6 장 마감 뒤) 전날 8/5 종가 ¥46,680 → 11/26 ¥30,550(TradingView 일봉)"
+  }
+ },
+ "call": {
+  "date": "2026-10-30",
+  "prev_date": "2026-08-06",
+  "tone": "flat",
+  "tone_delta": null,
+  "guidance_direction": "maintain",
+  "source": "콜 원천 없음(① Fiscal.ai 전문 없음 ② TradingView 문서 0건 ③ 텔레그램 Fundeasyearnings 글 없음 확인) — 1Q 결산 속보 표와 결산설명자료를 인용한 해설, 8월 결산 리포트로 썼다. 회사 설명회 질의응답 원문은 열지 못했다",
+  "kpis": {
+   "rev_1q_b": 40.369,
+   "op_1q_b": 15.769,
+   "opm_1q": 0.391,
+   "opm_1q_prior": 0.493,
+   "equip_rev_1q_b": 23.849,
+   "service_rev_1q_b": 16.011,
+   "sga_1q_b": 8.266,
+   "sga_1q_prior_b": 6.079,
+   "advances_b": 87.0,
+   "advances_prior_b": 44.2,
+   "ocf_1q_b": 39.1,
+   "order_outlook_fy_b": [
+    400,
+    500
+   ],
+   "backlog_fy26_b": 322.964
+  },
+  "guidance_changes": [
+   "FY6/27 수주 전망 ¥300~400B → ¥400~500B(FY6/26 실적 ¥237.5B)",
+   "통기 매출 ¥290.0B·영업이익 ¥125.0B·순이익 ¥90.0B·EPS ¥1,003.3 유지",
+   "배당 예상 ¥351 유지(FY6/26 ¥329)"
+  ],
+  "new_topics": [
+   "수주 전망을 석 달 만에 하단·상단 ¥100B씩 올렸다",
+   "선수금이 6월 말 ¥44.2B에서 9월 말 ¥87.0B로 늘었다",
+   "1Q 영업현금흐름 ¥39.1B(전년 동기 ¥5.9B)",
+   "판관비가 ¥6.08B에서 ¥8.27B로 늘었다(연구개발비 증가 계획 ¥16.3B → ¥20.0B와 같은 방향)"
+  ],
+  "dropped_topics": [
+   "8월에 설명한 A200HiT 고객 평가·A300 상반기 수주 진행 상황은 10월 자료에서 확인하지 못했다(원문 미열람)"
+  ],
+  "risks": [
+   "1Q 영업이익 진척률 12.6% — 남은 세 분기에 분기 평균 ¥36.4B가 필요하다",
+   "검수가 한 분기 밀리면 통기 가이던스가 흔들린다",
+   "영업이익률 39.1%(전년 49.3%) — 판관비 증가가 구조적인지 미확인",
+   "고객 설비투자 축소(AI 투자 지속성 논쟁)",
+   "회사가 수주를 연간으로만 공개해 분기 확인이 안 된다"
+  ],
+  "qa_focus": [
+   "콜 질의응답 원문 미확보 — 질문 초점 미확인"
+  ],
+  "answer": "회사 답변 없음 — 설명회 질의응답 원문을 얻지 못했다. 쟁점(수주가 검수·매출로 언제 바뀌나)에 대한 회사 답은 2월 2Q 결산에서 확인한다",
+  "tone_note": "실적은 컨센서스를 크게 밑돌았지만(매출 −25.0%) 통기 가이던스를 지키고 수주 전망을 올렸다 — 실적 가이던스가 그대로라 톤은 flat으로 둔다(수주 전망 상향은 변화 항목에 따로 적었다)",
+  "deltas": [
+   {
+    "id": "F1",
+    "kind": "업데이트",
+    "item": "FY6/27 수주 전망",
+    "label": "수주 전망 ¥400~500B",
+    "prior": "¥300~400B(8월)",
+    "latest": "¥400~500B(10/30)",
+    "driver": "growth_start",
+    "shift": 0.04,
+    "confidence": 0.8,
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   {
+    "id": "F2",
+    "kind": "신규",
+    "item": "선수금 잔액",
+    "label": "선수금 ¥87.0B",
+    "prior": "¥44.2B(6월 말)",
+    "latest": "¥87.0B(9월 말)",
+    "driver": "net_debt",
+    "shift": -5.0,
+    "confidence": 1.0,
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   {
+    "id": "F3",
+    "kind": "부정",
+    "item": "1Q 영업이익률",
+    "label": "1Q 이익률 39.1%",
+    "prior": "49.3%(전년 1Q)·44.4%(직전 분기)",
+    "latest": "39.1%",
+    "driver": "margin_m0",
+    "shift": -0.01,
+    "confidence": 1.0,
+    "source": "https://kabutan.jp/news/?b=k202610300246"
+   },
+   {
+    "id": "F4",
+    "kind": "부정",
+    "item": "판관비 증가",
+    "label": "판관비 ¥8.3B",
+    "prior": "¥6.08B(전년 1Q)",
+    "latest": "¥8.27B",
+    "driver": "margin_target",
+    "shift": -0.005,
+    "confidence": 0.5,
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   {
+    "id": "F5",
+    "kind": "업데이트",
+    "item": "서비스 매출",
+    "label": "서비스 +31.2%",
+    "prior": "¥12.2B(전년 1Q)",
+    "latest": "¥16.0B",
+    "driver": "margin_lr",
+    "shift": 0.005,
+    "confidence": 1.0,
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   {
+    "id": "F6",
+    "kind": "반복",
+    "item": "통기 가이던스",
+    "label": "통기 가이던스 유지",
+    "prior": "매출 ¥290.0B·영업이익 ¥125.0B",
+    "latest": "같음",
+    "driver": "rev0",
+    "shift": 0.0,
+    "confidence": 0.8,
+    "source": "https://kabutan.jp/news/?b=k202610300246"
+   }
+  ]
+ },
+ "customers": {
+  "none": "회사가 주요 고객별 매출을 유가증권보고서에만 적는데 그 문서가 robots.txt로 막힌 호스트에 있어 이번 회차에 열지 못했다(미확인). EUV 노광을 양산에 쓰는 회사는 선단 로직 파운드리와 메모리 몇 곳뿐이라 고객 집중은 높다고 보는 것이 맞지만, 이름과 몫은 확인 전이라 쓰지 않는다"
+ },
+ "margin": {
+  "as_of": "2026-09-30",
+  "basis": "J-GAAP",
+  "summary": "1Q 매출총이익률 59.5%(전년 60.6%)는 거의 그대로인데 판관비가 ¥6.08B에서 ¥8.27B로 늘고 매출이 25.5% 줄어 영업이익률이 49.3%에서 39.1%로 내려갔다. 이익률을 정하는 것은 원가가 아니라 검수 물량이다 — 판관비는 분기마다 비슷하게 나가는데 장비 매출은 검수 때 한꺼번에 잡힌다",
+  "periods": [
+   {
+    "period": "1Q FY6/26",
+    "rev": 54.171,
+    "cogs": 21.364,
+    "rd": 0.0,
+    "sga": 6.079,
+    "other": 0.0
+   },
+   {
+    "period": "1Q FY6/27",
+    "rev": 40.369,
+    "cogs": 16.334,
+    "rd": 0.0,
+    "sga": 8.266,
+    "other": 0.0
+   }
+  ],
+  "periods_note": "매출원가 = 매출 − (영업이익 + 판관비)로 계산했다. 연구개발비는 판관비 안에 있고 분기 값은 따로 공시되지 않는다(연간 FY6/25 ¥11.68B → FY6/26 ¥16.29B → FY6/27 계획 ¥20.0B)",
+  "costs": [
+   {
+    "name": "외주 제조·부품(광학계·광원·스테이지)",
+    "stage": "매출원가",
+    "pct_rev": 0.3,
+    "prior_pct": "미확인",
+    "fixed": 0.0,
+    "driver": "장비 출하 대수와 기종 구성(ACTIS는 건별 채산 차이)",
+    "basis": "추정",
+    "source": "회사 전략(생산 외주, 팹라이트) https://www.lasertec.co.jp/en/ir/plan/strategy.html — 비중 미공시"
+   },
+   {
+    "name": "서비스 원가·기타 매출원가",
+    "stage": "매출원가",
+    "pct_rev": 0.105,
+    "prior_pct": "미확인",
+    "fixed": 0.6,
+    "driver": "현지 서비스 인력·교체 부품",
+    "basis": "추정",
+    "source": "매출원가 40.5%에서 위 항목을 뺀 나머지 — 비중 미공시"
+   },
+   {
+    "name": "연구개발비",
+    "stage": "판관비",
+    "pct_rev": 0.124,
+    "prior_pct": 0.075,
+    "fixed": 1.0,
+    "driver": "A200HiT·A300·차세대 검사 장비 개발",
+    "basis": "추정",
+    "source": "FY6/27 계획 ¥20.0B ÷ 4 = 분기 ¥5.0B ÷ 1Q 매출 ¥40.4B. 전년은 FY6/26 ¥16.29B ÷ 4 ÷ ¥54.2B(8월 결산 리포트 https://media.rakuten-sec.net/articles/-/53216)"
+   },
+   {
+    "name": "그 밖의 판관비(인건비·판매)",
+    "stage": "판관비",
+    "pct_rev": 0.081,
+    "prior_pct": 0.037,
+    "fixed": 0.8,
+    "driver": "인력 1,335명, 해외 법인 5곳",
+    "basis": "추정",
+    "source": "판관비 20.5%에서 연구개발비 추정을 뺀 나머지"
+   }
+  ],
+  "products": [
+   {
+    "name": "반도체 관련 장비",
+    "rev_share": 0.591,
+    "mix_basis": "1Q 반도체 관련 장비 ¥23,849M ÷ ¥40,369M",
+    "gpm": 0.6,
+    "gpm_basis": "추정 — 품목별 매출총이익률 미공시. 전사 59.5%와 같다고 둠",
+    "bom": [
+     {
+      "item": "검사 광원(EUV 광원·심자외선 레이저)",
+      "share": [
+       0.2,
+       0.35
+      ],
+      "basis": "추정",
+      "source": "회사 제품 설명(액티닉 = 노광과 같은 EUV 빛으로 검사, MATRICS는 266nm 레이저) https://www.lasertec.co.jp/ir/plan/message.html",
+      "pass_through": "미확인",
+      "why": "EUV 빛을 장비 안에서 만들어야 해 장비에서 가장 비싼 모듈로 본다(추정)",
+      "input": "laser_diode"
+     },
+     {
+      "item": "검사 광학계(반사 미러·렌즈)",
+      "share": [
+       0.2,
+       0.3
+      ],
+      "basis": "추정",
+      "source": "회사 제품 설명(광학 설계 최적화로 A150 대비 검사 속도 3배) https://www.lasertec.co.jp/ir/plan/message.html",
+      "pass_through": "미확인",
+      "why": "EUV는 렌즈를 통과하지 못해 다층막 반사 미러를 쓴다",
+      "input": "optical_lens"
+     },
+     {
+      "item": "고정밀 X-Y 스테이지·진공 챔버",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "회사 제품 설명(MAGICS에 고정밀 X-Y 스테이지 탑재) https://www.lasertec.co.jp/ir/plan/message.html",
+      "pass_through": "미확인",
+      "why": "결함 좌표를 나노미터 단위로 내야 한다"
+     },
+     {
+      "item": "고속 검사 회로·이미지 센서",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "회사 제품 설명(고속 검사 회로 기술) https://www.lasertec.co.jp/ir/plan/message.html",
+      "pass_through": "미확인",
+      "why": "검사 속도가 장비 값을 정한다"
+     },
+     {
+      "item": "외주 조립·시험",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "회사 전략(생산을 제3자에 맡긴다) https://www.lasertec.co.jp/en/ir/plan/strategy.html",
+      "pass_through": "미확인",
+      "why": "팹라이트 — 조립을 협력사가 한다"
+     }
+    ]
+   },
+   {
+    "name": "서비스",
+    "rev_share": 0.397,
+    "mix_basis": "1Q 서비스 ¥16,011M ÷ ¥40,369M",
+    "gpm": 0.6,
+    "gpm_basis": "추정 — 미공시. 전사와 같다고 둠",
+    "bom": [
+     {
+      "item": "현지 서비스 엔지니어 인건비",
+      "share": [
+       0.4,
+       0.6
+      ],
+      "basis": "추정",
+      "source": "해외 법인 거점 https://www.lasertec.co.jp/en/company/agent.html",
+      "pass_through": "미확인",
+      "why": "고객 팹 옆에 상주한다"
+     },
+     {
+      "item": "교체 부품·소모품",
+      "share": [
+       0.25,
+       0.4
+      ],
+      "basis": "추정",
+      "source": "장비 유지보수 구조",
+      "pass_through": "미확인",
+      "why": "광원·광학 부품 교체"
+     },
+     {
+      "item": "개조·업그레이드 재료",
+      "share": [
+       0.1,
+       0.2
+      ],
+      "basis": "추정",
+      "source": "장비 유지보수 구조",
+      "pass_through": "미확인",
+      "why": "설치 장비 성능 개선"
+     }
+    ]
+   }
+  ]
+ },
+ "supply": {
+  "none": "공급망 점수를 낼 재료가 없다 — 회사가 생산 협력사와 부품 공급사의 이름·수·계약 방식을 공개하지 않아 품목마다 확인된 요인이 네 개에 못 미친다. 확인된 것은 생산을 협력사에 맡긴다는 점(회사 전략), ACTIS의 수주에서 출하까지 약 14개월이라는 점(8월 결산 리포트), 수요가 급증하면 제때 생산하지 못할 수 있다고 회사가 위험 요인에 적었다는 점이다. 약한 고리는 EUV 검사 광원·반사 광학계처럼 만들 수 있는 곳이 적은 모듈과 협력사 조립 능력으로 본다(추정)"
+ },
+ "capacity": {
+  "as_of": "2026-09-30",
+  "unit": "배(장비 생산능력 지수, FY6/26 = 1)",
+  "summary": "회사는 생산능력을 대수로 밝히지 않는다. 생산을 협력사에 맡겨 자체 설비투자가 매출의 1% 안팎이고, 능력을 가늠할 숫자는 수주잔고 ¥323.0B와 ACTIS 리드타임 약 14개월뿐이다. 수주 전망 ¥400~500B를 소화하려면 협력사 조립 능력이 함께 늘어야 한다 — 증설 계획과 단계는 공개 자료로 확인하지 못했다",
+  "current": {
+   "nameplate": 1.0,
+   "utilization": "미확인",
+   "basis": "지수 기준(FY6/26 = 1). 대수·가동률 미공시",
+   "source": "https://www.lasertec.co.jp/en/ir/plan/strategy.html"
+  },
+  "plans": [],
+  "capex": [
+   {
+    "period": "FY6/25",
+    "capex": 2.42,
+    "rev": 251.477,
+    "kind": "실적"
+   },
+   {
+    "period": "FY6/26",
+    "capex": 1.883,
+    "rev": 230.485,
+    "kind": "실적"
+   }
+  ],
+  "capex_note": "투자활동 현금흐름 전체(FY6/25 −¥2,420M, FY6/26 −¥1,883M, 株探 현금흐름 표)를 설비투자 근사로 썼다. FY6/27 설비투자 계획은 미확인. 영업현금흐름은 FY6/26 ¥48.5B",
+  "facilities": {
+   "count": 2,
+   "count_basis": "회사 사이트 '오시는 길'에 이름이 나온 국내 거점 2곳. 해외 법인 5곳(미국·한국·대만·중국·싱가포르)은 판매·서비스 거점이라 생산시설로 세지 않았다. 유가증권보고서 설비 항목은 미열람",
+   "source": "https://www.lasertec.co.jp/en/company/profile/access.html",
+   "items": [
+    {
+     "name": "본사",
+     "location": "일본 가나가와현 요코하마시 고호쿠구 신요코하마 2-10-1",
+     "owned": "미확인",
+     "use": "본사·개발",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 생산능력 미공시 — 생산은 협력사 외주",
+     "status": "가동"
+    },
+    {
+     "name": "Lasertec Innovation Park",
+     "location": "일본 가나가와현 요코하마시 고호쿠구 도리야마초 555",
+     "owned": "미확인",
+     "use": "개발·조립·시험(용도는 회사 사이트에 설명 없음 — 추정)",
+     "capacity": "미확인",
+     "capacity_basis": "시설별 생산능력 미공시",
+     "status": "가동"
+    }
+   ]
+  },
+  "sites_none": "생산을 협력사에 맡기는 팹라이트 회사라 위성으로 증설 진척을 읽을 자체 공장이 없다. 이노베이션 파크는 용도·소유를 1차 자료로 확인한 뒤 등록한다"
+ },
+ "pipeline": {
+  "as_of": "2026-06-30",
+  "reported_backlog": 322.964,
+  "backlog_label": "수주잔고(FY6/26 말)",
+  "summary": "회사는 수주를 연간으로만 공개한다. FY6/27 수주 전망 ¥400~500B는 가이던스이고 확정 수주가 아니다",
+  "items": [
+   {
+    "name": "전사 수주잔고",
+    "kind": "backlog",
+    "status": "확정",
+    "total": 322.964,
+    "progress": "미확인",
+    "margin": "미확인",
+    "start": "2026-07",
+    "end": "2027-12",
+    "blockers": [
+     "고객 검수 시점",
+     "협력사 조립 능력"
+    ],
+    "note": "반도체 관련 장비 ¥301.3B · 기타 제품 ¥4.3B · 서비스 ¥17.3B. ACTIS 리드타임 약 14개월",
+    "source": "https://www.lasertec.co.jp/ir/plan/message.html · Fiscal.ai KPI"
+   },
+   {
+    "name": "FY6/27 신규 수주 전망",
+    "status": "파이프라인",
+    "total": "미확인",
+    "no_sum": true,
+    "progress": "미확인",
+    "margin": "미확인",
+    "when": "2026-07~2027-06",
+    "blockers": [
+     "A200HiT 고객 평가",
+     "A300 수주 시점",
+     "고객 설비투자 계획"
+    ],
+    "note": "회사 전망 ¥400~500B(8월 ¥300~400B). 선수금이 석 달에 ¥44.2B → ¥87.0B로 늘었다",
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   }
+  ]
+ },
+ "backlog": {
+  "conversion_months": 13.4,
+  "book_to_bill": 1.03,
+  "revenue_growth": -0.083,
+  "source": "수주잔고 ¥322,964M ÷ FY6/27 가이던스 월평균 매출 ¥24.2B = 13.4개월. FY6/26 수주 ¥237,504M ÷ 매출 ¥230,485M = 1.03. 취소: FY6/25 4분기에 ACTIS 1대 취소가 있었다(증권사 리포트 추정)"
+ },
+ "recurring": {
+  "share": 0.288,
+  "kind": "설치 장비 유지보수·개조 서비스",
+  "base": "설치 대수 미공시 — 누적 출하가 늘수록 커진다",
+  "base_growth": 0.365,
+  "years_to_recurring": 0,
+  "source": "TTM 서비스 ¥62,455M ÷ 매출 ¥216,683M. 서비스 매출 FY6/24 ¥28.97B → FY6/25 ¥42.96B → FY6/26 ¥58.65B(+36.5%)"
+ },
+ "moat": {
+  "summary": "해자는 EUV 빛으로 마스크 패턴을 직접 검사하는 장비를 양산 공급하는 사실상 유일한 회사라는 점과, 깔린 장비가 만드는 서비스 매출이다. 영업이익률 40%대가 그 결과다. 약점은 고객이 몇 곳뿐이고 매출이 검수 시점에 묶여 있다는 것이다",
+  "items": [
+   {
+    "kind": "EUV 액티닉 마스크 검사의 사실상 독점",
+    "verdict": "강함",
+    "claim": "노광과 같은 EUV 파장으로 패턴 마스크 결함을 찾는 장비(ACTIS)를 양산 라인에 공급한다 — 회사는 진입한 틈새에서 점유율 100%를 지향한다고 밝힌다",
+    "evidence": "회사 전략 '글로벌 니치에서 100% 점유율 지향' https://www.lasertec.co.jp/en/ir/plan/strategy.html. ACTIS 매출 FY6/25 ¥114.8B → FY6/26 ¥70.5B, 수주 −¥10.5B → ¥62.0B(회사 자료 집계 https://media.rakuten-sec.net/articles/-/53216)",
+    "quant": "영업이익률 FY6/25 48.9% → FY6/26 45.7% → FY6/27 가이던스 43.1%",
+    "falsifier": "경쟁사의 EUV 패턴 마스크 검사 장비가 양산 팹에 채택됐다는 고객·경쟁사 발표"
+   },
+   {
+    "kind": "설치 기반 서비스",
+    "verdict": "강함",
+    "claim": "깔린 장비가 늘수록 유지보수 매출이 쌓인다 — 장비 매출이 줄어든 해에도 서비스는 늘었다",
+    "evidence": "서비스 매출 FY6/24 ¥28.97B → FY6/25 ¥42.96B → FY6/26 ¥58.65B(+36.5%), 1Q FY6/27 ¥16.0B(+31.2%) https://www.lasertec.co.jp/ir/plan/message.html",
+    "quant": "TTM 매출의 28.8%",
+    "falsifier": "서비스 매출 증가율이 두 분기 연속 한 자릿수"
+   },
+   {
+    "kind": "팹라이트 자본 효율",
+    "verdict": "보통",
+    "claim": "생산을 맡기고 개발에 집중해 설비투자가 매출의 1% 안팎이다",
+    "evidence": "투자활동 현금흐름 FY6/26 −¥1.9B vs 영업현금흐름 ¥48.5B(株探 현금흐름 표). 인력의 70%가 엔지니어(회사 전략)",
+    "quant": "TTM 영업이익 ¥94.3B ÷ 투하자본 ¥128.7B",
+    "falsifier": "협력사 병목으로 납기가 밀려 수주가 매출로 바뀌지 못한다"
+   }
+  ]
+ },
+ "leaders": {
+  "as_of": "2026-11-26",
+  "summary": "사장은 2024년 7월에 바뀌었다. 센도다 데쓰야 사장은 2008년 입사한 기술·영업 출신이고, 15년 동안 사장이던 오카바야시 오사무가 회장으로 남아 있다. 정계·동문·사모임 연결은 공개 기록에서 확인하지 못했다",
+  "people": [
+   {
+    "name": "센도다 데쓰야",
+    "role": "대표이사 사장·CEO",
+    "since": "2024-07",
+    "profile": "2008년 입사 → 2020년 기술2부장 → 2022년 집행임원·솔루션영업1부장 → 2023년 이사 부사장·영업 총괄 → 2024년 7월 대표이사 사장",
+    "business": "미국·한국·대만·중국·싱가포르 법인 이사 겸직(2024년 9월~)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.lasertec.co.jp/en/company/officer/sendoda.html"
+   },
+   {
+    "name": "오카바야시 오사무",
+    "role": "이사 회장·집행임원",
+    "since": "2024-07(사장 재임 2009-07~2024-07)",
+    "profile": "2001년 입사 → 2003년 이사 → 미국·한국 법인 사장 → 2009년 대표이사 사장 → 2024년 회장. 경영기획·컴플라이언스·품질·기술관리 담당",
+    "business": "대만 법인 회장(2026년 9월~)·중국 법인 회장(2026년 11월~)",
+    "political": "미확인",
+    "alumni": "미확인",
+    "social": "미확인",
+    "source": "https://www.lasertec.co.jp/en/company/officer/okabayashi.html"
+   }
+  ],
+  "value": [
+   {
+    "network": "비즈니스",
+    "link": "경영진이 해외 법인 5곳 이사·회장을 겸직한다 — 고객 팹 옆 서비스 거점(대만 4곳·한국 3곳·미국 7곳·중국 8곳)",
+    "strength": 5,
+    "exposure": 62.455,
+    "basis": "현지 법인이 맡는 서비스 매출 TTM 전체(¥62.5B)를 노출로 잡았다",
+    "evidence": "https://www.lasertec.co.jp/en/company/agent.html"
+   }
+  ]
+ },
+ "sync": {
+  "none": "장비 매출이 고객 검수 시점에 한꺼번에 잡혀 분기 매출이 ¥40B~¥92B를 오간다 — 월 무역·PPI 지표와 분기 매출의 상관이 뜻을 갖지 못한다. 일본의 반도체 검사 장비 수출(HS 9031) 품목 연결은 다음 회차 과제"
+ },
+ "pq": {
+  "none": "회사가 장비 출하 대수와 평균 단가를 공시하지 않는다. 기종별 단가 차이(A150 → A200HiT → A300)가 커서 업종 PPI로 대신 재면 뜻이 달라진다"
+ },
+ "ma": {
+  "none": "최근 3년 안 인수·합병이 확인되지 않았다(회사 연혁·수집함)"
+ },
+ "social": {
+  "none": "Quantral 미수록"
+ },
+ "midterm": {
+  "exposure": {
+   "chips_subsidy": 0.1,
+   "tariff_codify": 0.03
+  },
+  "sub": "semicap",
+  "etf": "SMH",
+  "why": "미국 직접 매출 몫은 미확인(가정 15%). 고객의 미국 팹 투자를 거치는 간접 노출이라 정책 채널 점수는 낮게 둔다"
+ },
+ "events": [
+  {
+   "date": "2026-06-22",
+   "tag": "종가 고점 ¥57,490(장중 고점은 6/19 ¥58,580)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-07-28",
+   "tag": "−14.0%, 원인 미확인",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-08-07",
+   "tag": "FY6/26 결산·FY6/27 첫 가이던스 다음 날 −13.5%",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-10-15",
+   "tag": "−13.6%, 원인 미확인",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-10-30",
+   "tag": "1Q 결산 발표일(장 마감 뒤 발표) −8.8% — 미국 기술주 실적 실망에 반도체주 동반 하락(보도)",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-02",
+   "tag": "1Q 결산 다음 거래일 +8.0% — 수주 전망 상향",
+   "kind": "earnings"
+  },
+  {
+   "date": "2026-11-05",
+   "tag": "−14.2%, 원인 미확인",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-16",
+   "tag": "−12.8%, 원인 미확인",
+   "kind": "업종"
+  },
+  {
+   "date": "2026-11-17",
+   "tag": "미국계 대형 증권 목표가 ¥53,000으로 상향(강세 유지, 제목 기준)",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-24",
+   "tag": "같은 증권사 목표가 ¥52,000으로 하향(강세 유지, 제목 기준) · 주가 +9.8%",
+   "kind": "rating"
+  },
+  {
+   "date": "2026-11-25",
+   "tag": "−11.7%, 원인 미확인",
+   "kind": "업종"
+  }
+ ],
+ "revision_events": [
+  {
+   "date": "2026-01-30",
+   "kind": "실적",
+   "tag": "2Q FY6/26 결산·통기 상향",
+   "q": "2Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-04-30",
+   "kind": "실적",
+   "tag": "3Q FY6/26 결산",
+   "q": "3Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-08-06",
+   "kind": "실적",
+   "tag": "FY6/26 결산·FY6/27 첫 가이던스",
+   "q": "4Q26",
+   "session": "after"
+  },
+  {
+   "date": "2026-10-30",
+   "kind": "실적",
+   "tag": "1Q FY6/27 결산·수주 전망 상향",
+   "q": "1Q27",
+   "session": "after"
+  }
+ ],
+ "sources": [
+  "FY6/26 업적 보고(회사 사이트): https://www.lasertec.co.jp/ir/plan/message.html",
+  "1Q FY6/27 결산 속보·회사 예상 표(결산단신 XBRL 기반): https://kabutan.jp/news/?b=k202610300246",
+  "분기·연간 실적, 현금흐름, 재무 표: https://kabutan.jp/stock/finance?code=6920",
+  "1Q 결산 해설(결산단신·결산설명자료 인용 — 수주 전망, 선수금, 판관비): https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/",
+  "FY6/26 결산 리포트(회사 자료 집계 — 기종별 매출·수주, 리드타임, 연구개발비): https://media.rakuten-sec.net/articles/-/53216",
+  "회사 전략·중기 경영 계획: https://www.lasertec.co.jp/en/ir/plan/strategy.html",
+  "위험 요인: https://www.lasertec.co.jp/en/ir/plan/risk.html",
+  "임원 약력: https://www.lasertec.co.jp/en/company/officer/",
+  "거점: https://www.lasertec.co.jp/en/company/agent.html · https://www.lasertec.co.jp/en/company/profile/access.html",
+  "세그먼트 분기 매출·연간 수주·잔고: Fiscal.ai company_segments_and_kpis(XJPX_6920)",
+  "시세·일봉: TradingView TSE:6920(2026-11-26)",
+  "동종 6곳·개요: Easyconomics company_profile·company_peers(yfinance 출처)"
+ ],
+ "multiples_now": {
+  "pe_fwd": 28.0,
+  "pe_fwd2": 23.5,
+  "pe_fwd3": 20.4,
+  "ev_ebitda_fwd": 18.4
+ },
+ "forward": {
+  "as_of": "2026-11-26",
+  "ntm": {
+   "eps": 1092.17,
+   "ebitda": 143.0,
+   "ebit": 138.5,
+   "revenue": 301.085,
+   "rev_ttm": 216.683
+  },
+  "horizons": {
+   "2": {
+    "eps": 1300.0,
+    "ext": 1
+   },
+   "3": {
+    "eps": 1500.0,
+    "ext": 1
+   }
+  },
+  "guided": {
+   "eps": true,
+   "ebitda": false
+  },
+  "src": {
+   "pe_fwd": "street"
+  },
+  "source": "Fwd 1Y EPS ¥1,092 = 공개 시세 개요의 선행 EPS(동종과 같은 기준). 시세 원천의 FY6/27 EPS 컨센서스는 ¥1,111, 회사 가이던스는 ¥1,003.3이다. 2Y ¥1,300·3Y ¥1,500은 Chiip 추정 — 수주잔고 ¥323B와 수주 전망 ¥400~500B가 FY6/28 매출 ¥360~370B로 이어지고 영업이익률이 43%에 머문다는 가정. 일본 증권사 한 곳의 FY6/28 EPS 추정 ¥1,494보다 낮게 잡았다"
+ },
+ "history": {
+  "pe_fwd": [],
+  "ev_ebitda_fwd": [],
+  "pe_ttm": [
+   {
+    "date": "2025-12-31",
+    "value": 30.67
+   },
+   {
+    "date": "2026-03-31",
+    "value": 33.83
+   },
+   {
+    "date": "2026-06-30",
+    "value": 57.68
+   },
+   {
+    "date": "2026-09-30",
+    "value": 53.43
+   }
+  ],
+  "pe_ttm_source": "대상 = TradingView 분기말 종가(12/30 ¥29,645·3/31 ¥33,350·6/30 ¥49,700·9/30 ¥41,130) ÷ 그 분기까지 네 분기 EPS 합(결산단신). 동종 = Fiscal.ai company_ratios LTM P/E(분기말 가격 ÷ 최근 4개 분기 GAAP EPS). 디스코는 값이 없다"
+ },
+ "segments_hist": {
+  "segments": {
+   "반도체 관련 장비": [
+    {
+     "period": "2022-06-30",
+     "rev": 32613000000.0
+    },
+    {
+     "period": "2022-09-30",
+     "rev": 21448000000.0
+    },
+    {
+     "period": "2022-12-31",
+     "rev": 23117000000.0
+    },
+    {
+     "period": "2023-03-31",
+     "rev": 19642000000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 66521000000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 41781000000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 39289000000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 54596000000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 46084000000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 25681000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 77399000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 30487000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 69398000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 41752000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 56564000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 26348000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 43426000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 23849000000.0
+    }
+   ],
+   "서비스": [
+    {
+     "period": "2022-06-30",
+     "rev": 3871000000.0
+    },
+    {
+     "period": "2022-09-30",
+     "rev": 4147000000.0
+    },
+    {
+     "period": "2022-12-31",
+     "rev": 5133000000.0
+    },
+    {
+     "period": "2023-03-31",
+     "rev": 4075000000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 5565000000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 5368000000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 7632000000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 6253000000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 9717000000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 9960000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 12214000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 8876000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 11909000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 12202000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 15670000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 14191000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 16583000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 16011000000.0
+    }
+   ],
+   "기타 제품": [
+    {
+     "period": "2022-06-30",
+     "rev": 327000000.0
+    },
+    {
+     "period": "2022-09-30",
+     "rev": 127000000.0
+    },
+    {
+     "period": "2022-12-31",
+     "rev": 1125000000.0
+    },
+    {
+     "period": "2023-03-31",
+     "rev": 611000000.0
+    },
+    {
+     "period": "2023-06-30",
+     "rev": 1314000000.0
+    },
+    {
+     "period": "2023-09-30",
+     "rev": 155000000.0
+    },
+    {
+     "period": "2023-12-31",
+     "rev": 762000000.0
+    },
+    {
+     "period": "2024-03-31",
+     "rev": 1363000000.0
+    },
+    {
+     "period": "2024-06-30",
+     "rev": 501000000.0
+    },
+    {
+     "period": "2024-09-30",
+     "rev": 1095000000.0
+    },
+    {
+     "period": "2024-12-31",
+     "rev": 2616000000.0
+    },
+    {
+     "period": "2025-03-31",
+     "rev": 502000000.0
+    },
+    {
+     "period": "2025-06-30",
+     "rev": 1339000000.0
+    },
+    {
+     "period": "2025-09-30",
+     "rev": 216000000.0
+    },
+    {
+     "period": "2025-12-31",
+     "rev": 1852000000.0
+    },
+    {
+     "period": "2026-03-31",
+     "rev": 743000000.0
+    },
+    {
+     "period": "2026-06-30",
+     "rev": 936000000.0
+    },
+    {
+     "period": "2026-09-30",
+     "rev": 508000000.0
+    }
+   ]
+  },
+  "source": "Fiscal.ai company_segments_and_kpis(XJPX_6920, 분기) — 회사 결산단신의 품목별 매출"
+ },
+ "quarters_hist": {
+  "source": "株探 3개월 실적 표(결산단신 XBRL 기반) 8개 분기. 매출총이익·판관비는 값을 확인한 두 분기(1Q FY6/26·1Q FY6/27)만 적었다",
+  "key": "TSE:6920",
+  "currency": "JPY",
+  "q": [
+   {
+    "period": "2024-12-31",
+    "rev": 92231000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 47740000000.0
+   },
+   {
+    "period": "2025-03-31",
+    "rev": 39867000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 15629000000.0
+   },
+   {
+    "period": "2025-06-30",
+    "rev": 82642000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 43552000000.0
+   },
+   {
+    "period": "2025-09-30",
+    "rev": 54171000000.0,
+    "cogs": 21364000000.0,
+    "gp": 32807000000.0,
+    "sga": 6079000000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 26728000000.0
+   },
+   {
+    "period": "2025-12-31",
+    "rev": 74087000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 36263000000.0
+   },
+   {
+    "period": "2026-03-31",
+    "rev": 41281000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 15200000000.0
+   },
+   {
+    "period": "2026-06-30",
+    "rev": 60946000000.0,
+    "cogs": null,
+    "gp": null,
+    "sga": null,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 27068000000.0
+   },
+   {
+    "period": "2026-09-30",
+    "rev": 40369000000.0,
+    "cogs": 16334000000.0,
+    "gp": 24035000000.0,
+    "sga": 8266000000.0,
+    "rd": null,
+    "da": null,
+    "other": null,
+    "op": 15769000000.0
+   }
+  ],
+  "eps": {
+   "2024-12-31": 381.3,
+   "2025-03-31": 104.0,
+   "2025-06-30": 354.4,
+   "2025-09-30": 211.5,
+   "2025-12-31": 296.7,
+   "2026-03-31": 123.3,
+   "2026-06-30": 230.1,
+   "2026-09-30": 119.72
+  },
+  "eps_note": "희석 전 EPS(결산단신). 분할 없음"
+ },
+ "terms": {
+  "ACTIS": "노광과 같은 EUV 빛으로 패턴 마스크의 결함을 찾는 Lasertec 검사 장비",
+  "MATRICS": "심자외선 레이저로 마스크 결함을 찾는 Lasertec 검사 장비 — 한 세대 앞 기술",
+  "MAGICS": "회로를 그리기 전 마스크 원판의 결함을 찾는 Lasertec 검사 장비",
+  "OPTELICS": "Lasertec 레이저 현미경 제품군",
+  "액티닉": "실제 노광에 쓰는 것과 같은 파장의 빛으로 검사하는 방식",
+  "A150": "ACTIS의 현 주력 기종",
+  "A200HiT": "A150보다 검사 속도를 3배로 올린 ACTIS 신기종",
+  "A300": "차세대 고해상도 EUV 노광기용 마스크를 검사하는 ACTIS 기종",
+  "마스크 블랭크": "회로 패턴을 그리기 전의 마스크 원판",
+  "포토마스크": "웨이퍼에 옮길 회로 패턴이 그려진 원판",
+  "펠리클": "마스크에 먼지가 앉지 않게 덮는 얇은 보호막",
+  "마스크숍": "반도체 회사 안에서 마스크를 만들고 검사하는 부서",
+  "검수": "고객이 설치된 장비의 성능을 확인하고 인수하는 절차 — 이때 매출로 잡힌다",
+  "선수금": "고객이 장비 값을 미리 낸 돈",
+  "팹라이트": "생산을 대부분 외부 협력사에 맡기고 개발에 집중하는 방식",
+  "고NA EUV": "렌즈 구경을 키워 더 가는 회로를 그리는 차세대 EUV 노광",
+  "결산단신": "일본 상장사가 분기마다 내는 실적 속보 공시",
+  "EUV": "극자외선 — 파장 13.5nm의 빛으로 가장 가는 회로를 그리는 노광 기술",
+  "NA": "개구수 — 렌즈가 빛을 모으는 능력, 클수록 더 가는 회로를 그린다",
+  "UXM": "화합물 반도체 웨이퍼 속 결함을 입체로 보는 레이저 현미경 기종",
+  "BJPY": "10억 엔",
+  "TW": "대만",
+  "KR": "한국",
+  "US": "미국",
+  "JP": "일본",
+  "CN": "중국",
+  "OTHER": "기타 지역"
+ },
+ "names": [
+  "Lasertec",
+  "레이저텍",
+  "KLA",
+  "ASML",
+  "Applied Materials",
+  "Lam Research",
+  "Onto Innovation",
+  "디스코",
+  "TSMC",
+  "도쿄일렉트론",
+  "SCREEN",
+  "TradingView",
+  "SMH",
+  "IFIS",
+  "NVIDIA",
+  "Intel",
+  "Micron"
+ ],
+ "narrative": {
+  "as_of": "2026-11-26",
+  "stage": "확산",
+  "crowding": "보통",
+  "summary": "EUV 노광이 늘면 마스크 검사가 늘고, 그 검사를 EUV 빛으로 하는 장비는 이 회사만 만든다는 이야기다. FY6/26에는 수주 공백으로 매출이 줄었고, 지금은 AI 투자가 선단 로직과 DRAM의 EUV 층을 늘려 수주가 돌아온다는 이야기로 바뀌었다. 주가는 6월 고점에서 47% 내려와 있다 — 수주는 올랐는데 매출과 이익은 아직 따라오지 않았고, 11월 반도체주 급락이 겹쳤다",
+  "layers": {
+   "sell_side": {
+    "metrics": [
+     [
+      "목표주가(미국계 대형 증권)",
+      "¥52,000",
+      "강세 유지, 11/17 ¥53,000에서 하향",
+      "11/24 제목"
+     ],
+     [
+      "목표주가(일본 증권사 리서치)",
+      "¥58,000",
+      "유지",
+      "8/17"
+     ],
+     [
+      "FY6/27 매출 컨센서스",
+      "¥301.1B",
+      "가이던스 ¥290.0B 위",
+      "11/15"
+     ],
+     [
+      "FY6/27 EPS 컨센서스",
+      "¥1,111",
+      "가이던스 ¥1,003 위",
+      "11/15"
+     ]
+    ],
+    "read": "컨센서스는 가이던스보다 높다 — 시장은 수주 전망 상향이 올해 매출로도 이어진다고 본다. 다만 FY6/27 경상이익 예상은 11월 둘째·셋째 주 연속으로 조금씩 내려갔다(−0.9%, −0.5%). 애널리스트 수와 의견 분포는 공개 자료로 얻지 못했다. 업종 자료(마스터 노션, 라이선스 요지): 중국의 10월 광학 공정제어 장비 수입이 전년보다 91% 늘어 검사·계측 수요가 살아 있다는 방증이 있고, 유럽 메모리 투자자 면담에서는 2028년 데이터센터 지연과 클라우드 회사의 설비투자 지속성 걱정이 컸다 — 둘 다 업종 단서이고 Lasertec 매출로 바로 잇지 않는다"
+   },
+   "buy_side": {
+    "metrics": [
+     [
+      "기관 보유",
+      "59.6%",
+      "공개 시세 개요",
+      "11/26"
+     ],
+     [
+      "내부자·관계 보유",
+      "9.0%",
+      "공개 시세 개요",
+      "11/26"
+     ]
+    ],
+    "read": "분기 보유 변화 자료는 일본에 없어 미확인. 대량보유 보고는 이번 회차에 조회하지 못했다. 신용 매수 잔고가 매도 잔고의 5.91배다(株探, 11/26)"
+   },
+   "retail": {
+    "metrics": [
+     [
+      "텔레그램 공개 채널",
+      "직접 언급 0건",
+      "최근 수집분",
+      "11/26"
+     ],
+     [
+      "일 거래량",
+      "60일 평균 451만 주",
+      "11/26 526만 주",
+      "TradingView"
+     ],
+     [
+      "커뮤니티 집계",
+      "미수록",
+      "",
+      "11/26"
+     ]
+    ],
+    "read": "일본 개인 투자자 사이에서 거래대금 상위에 늘 드는 종목이다 — 하루 8% 넘게 움직인 날이 최근 150거래일에 21번이다. 한국 공개 채널에서는 최근 직접 언급이 없었다. 채널 글은 시장 반응의 증거이고 사실이 아니다"
+   },
+   "media": {
+    "metrics": [
+     [
+      "보도 초점",
+      "수주 전망 상향 vs 1Q 감익",
+      "11/2 +8.0%",
+      "株探·시황 보도"
+     ]
+    ],
+    "read": "일본 매체는 1Q 경상이익 46% 감소와 수주 전망 상향을 함께 전했다. 8월에는 FY6/27 순이익 예상이 시장 예상 평균에 못 미쳤다는 제목이 나왔다"
+   }
+  },
+  "factors": [
+   {
+    "name": "수주 회복",
+    "thesis": "수주가 FY6/25 ¥105.2B에서 FY6/26 ¥237.5B로 돌아왔고 회사는 FY6/27 ¥400~500B를 본다",
+    "inputs": "매출 성장",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "중"
+    },
+    "drives": "both",
+    "quant": "수주 전망 ¥300~400B → ¥400~500B, 선수금 ¥44.2B → ¥87.0B",
+    "status": "강화",
+    "falsifier": "2Q 결산(2027년 2월)에서 수주 전망을 낮추거나 선수금이 줄어든다",
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   {
+    "name": "EUV 층 증가와 고NA 전환",
+    "thesis": "선단 로직에 더해 DRAM이 EUV 층을 늘리고, 차세대 노광기용 마스크 검사(A300)로 단가가 오른다",
+    "inputs": "매출 성장·이익률",
+    "who": {
+     "sell": "강",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "ACTIS 수주 FY6/25 −¥10.5B → FY6/26 ¥62.0B. A300 수주는 회사 예상 단계(미확정)",
+    "status": "유지",
+    "falsifier": "A300 수주가 FY6/27 안에 나오지 않는다",
+    "source": "https://media.rakuten-sec.net/articles/-/53216"
+   },
+   {
+    "name": "서비스 매출 누적",
+    "thesis": "깔린 장비가 늘어 서비스가 장비 사이클을 메운다",
+    "inputs": "이익률·반복 매출",
+    "who": {
+     "sell": "중",
+     "buy": "중",
+     "retail": "약"
+    },
+    "drives": "multiple",
+    "quant": "서비스 FY6/26 ¥58.65B(+36.5%), 1Q ¥16.0B(+31.2%), TTM 매출의 28.8%",
+    "status": "강화",
+    "falsifier": "서비스 증가율 두 분기 연속 한 자릿수",
+    "source": "https://www.lasertec.co.jp/ir/plan/message.html"
+   },
+   {
+    "name": "검수 지연과 가이던스 미달 위험",
+    "thesis": "1Q 영업이익 진척률이 12.6%다 — 남은 세 분기에 분기 평균 ¥36.4B를 벌어야 한다",
+    "inputs": "EPS 리비전",
+    "who": {
+     "sell": "중",
+     "buy": "강",
+     "retail": "중"
+    },
+    "drives": "revision",
+    "quant": "1Q 매출 ¥40.4B vs 컨센서스 ¥53.8B(−25.0%), EPS ¥119.72 vs ¥206.16",
+    "status": "강화",
+    "falsifier": "2Q 매출이 컨센서스 ¥79.6B를 넘는다",
+    "source": "https://kabutan.jp/news/?b=k202610300246"
+   },
+   {
+    "name": "AI 투자 지속성 논쟁(반대 내러티브)",
+    "thesis": "11월 반도체·AI주 급락 — 고객 설비투자가 2028년에 꺾이면 수주 전망도 내려간다",
+    "inputs": "멀티플",
+    "who": {
+     "sell": "약",
+     "buy": "강",
+     "retail": "강"
+    },
+    "drives": "multiple",
+    "quant": "11월 하루 −10% 넘는 날 세 번(11/5 −14.2%, 11/16 −12.8%, 11/25 −11.7%)",
+    "status": "강화",
+    "falsifier": "2027년 1~2월 주요 파운드리·메모리 회사의 설비투자 가이던스가 늘어난다",
+    "source": "TradingView 일봉"
+   }
+  ],
+  "lead": {
+   "summary": "Lasertec(6920)은 요코하마에 본사를 둔 반도체 검사 장비 회사다. EUV 노광에 쓰는 마스크의 결함을 EUV 빛으로 찾는 장비를 양산 공급하는 사실상 유일한 회사이고, 생산을 협력사에 맡겨 영업이익률이 40%대다. FY6/26 매출은 ¥230.5B(−8.3%)였고 FY6/27은 ¥290.0B(+25.8%)를 예상한다. 1Q는 매출 ¥40.4B(−25.5%)·영업이익 ¥15.8B(−41.0%)로 부진했지만 수주 전망을 ¥400~500B로 올렸다",
+   "value_story": "Fwd 1Y P/E 28.0배로 장비 동종 6곳 중앙값 17.0배보다 65% 높다. 6월 고점에서는 가이던스 EPS의 57배였다. 프리미엄의 근거는 독점 지위와 40%대 이익률이고, 깎이는 이유는 분기 실적이 검수 시점에 따라 두 배씩 흔들린다는 점이다. 지금 가격이 맞으려면 수주 ¥400~500B가 FY6/28 매출로 바뀌어야 한다",
+   "premium": {
+    "multiple": "Fwd 1Y P/E 28.0배, 동종 6곳 중앙값 17.0배(KLA 18.9·ASML 20.6·Applied Materials 12.7·Lam Research 15.1·Onto Innovation 13.4·디스코 31.0 — 공개 시세 개요의 선행 EPS 기준이라 회사마다 기간이 조금 다르다)",
+    "eps": "EPS는 FY6/25 ¥938.6 → FY6/26 ¥863.0 → FY6/27 가이던스 ¥1,003.3(+16.3%), 컨센서스 ¥1,111. 1Q EPS ¥119.72는 컨센서스 ¥206.16을 42% 밑돌았다"
+   },
+   "why_excited": "2025년 11월 ¥26,000대에서 2026년 6월 22일 종가 ¥57,490까지 두 배가 됐다 — 수주가 바닥을 지나 돌아오고 DRAM까지 EUV 검사 수요가 넓어진다는 기대였다. 8월 FY6/27 가이던스가 시장 예상 평균에 못 미쳐 다음 날 −13.5%, 10월 30일 1Q 감익, 11월 반도체주 급락이 이어져 지금은 고점보다 47% 낮다. 식은 것은 수주가 아니라 '올해 이익이 따라오느냐'에 대한 믿음이다",
+   "products": [
+    {
+     "kind": "제품",
+     "name": "반도체 관련 장비",
+     "what": "EUV·심자외선 마스크 검사 장비, 마스크 원판 검사 장비, 웨이퍼 검사 장비",
+     "use": "선단 로직·메모리 회사의 마스크숍과 양산 팹",
+     "money": "장비 판매(고객 검수 때 매출)",
+     "rev_share": 0.591,
+     "rev_share_prev": 0.771,
+     "mix_basis": "1Q 반도체 관련 장비 ¥23,849M ÷ ¥40,369M, 전년 ¥41,752M ÷ ¥54,171M",
+     "name_en": "actinic EUV photomask inspection system",
+     "what_en": "A large cleanroom semiconductor inspection tool that scans a square photomask plate with extreme ultraviolet light inside a vacuum chamber to find pattern defects",
+     "use_en": "a large white cleanroom inspection machine with a vacuum chamber, a square photomask on a precision stage, reflective mirror optics and an electronics rack",
+     "bom": {
+      "as_of": "2026-11-26",
+      "items": [
+       {
+        "no": 1,
+        "part": "EUV 검사 광원",
+        "part_en": "compact EUV light source module",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "회사 제품 설명(액티닉 EUV 패턴 마스크 검사) https://www.lasertec.co.jp/ir/plan/message.html"
+       },
+       {
+        "no": 2,
+        "part": "검사 광학계(반사 미러)",
+        "part_en": "reflective multilayer mirror optics assembly",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미공시(자체 설계)",
+        "source": "회사 제품 설명(광학 설계 최적화) https://www.lasertec.co.jp/ir/plan/message.html"
+       },
+       {
+        "no": 3,
+        "part": "고속 검사 회로·이미지 센서",
+        "part_en": "high speed image sensor and inspection electronics rack",
+        "kind": "모듈",
+        "confidence": "확인",
+        "supplier": "미공시(자체 기술)",
+        "source": "회사 제품 설명(고속 검사 회로 기술) https://www.lasertec.co.jp/ir/plan/message.html"
+       },
+       {
+        "no": 4,
+        "part": "고정밀 X-Y 스테이지",
+        "part_en": "high precision X-Y mask stage",
+        "kind": "부품",
+        "confidence": "확인",
+        "supplier": "미공시",
+        "source": "회사 제품 설명(고정밀 X-Y 스테이지 탑재) https://www.lasertec.co.jp/ir/plan/message.html"
+       },
+       {
+        "no": 5,
+        "part": "포토마스크(검사 대상)",
+        "part_en": "square photomask plate on the stage",
+        "kind": "검사 대상",
+        "confidence": "확인",
+        "supplier": "고객 마스크숍",
+        "source": "회사 제품 설명 https://www.lasertec.co.jp/en/ir/individuals/euv.html"
+       },
+       {
+        "no": 6,
+        "part": "진공 챔버",
+        "part_en": "stainless steel vacuum chamber enclosure",
+        "kind": "부품",
+        "confidence": "추정",
+        "supplier": "미공시",
+        "source": "EUV 빛은 공기에 흡수돼 진공이 필요하다(기술 일반) — 회사 자료 미확인"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "서비스",
+     "name": "서비스",
+     "what": "설치한 장비의 유지보수·부품 교체·개조",
+     "use": "고객 팹 옆 현지 법인이 맡는다",
+     "money": "서비스 계약·부품 판매(반복 매출)",
+     "rev_share": 0.397,
+     "rev_share_prev": 0.225,
+     "mix_basis": "1Q 서비스 ¥16,011M ÷ ¥40,369M, 전년 ¥12,202M ÷ ¥54,171M",
+     "name_en": "field service for inspection tools",
+     "what_en": "Maintenance and parts replacement for installed mask inspection tools",
+     "use_en": "service engineer maintaining an inspection tool in a cleanroom"
+    },
+    {
+     "kind": "제품",
+     "name": "기타 제품",
+     "what": "평판디스플레이 마스크 검사 장비, 레이저 현미경",
+     "use": "디스플레이 회사, 연구소·소재 회사",
+     "money": "장비 판매",
+     "rev_share": 0.013,
+     "rev_share_prev": 0.004,
+     "mix_basis": "1Q 기타 제품 ¥508M ÷ ¥40,369M, 전년 ¥216M ÷ ¥54,171M",
+     "name_en": "confocal laser scanning microscope",
+     "what_en": "A benchtop laser scanning microscope for surface measurement",
+     "use_en": "a benchtop laser microscope on a lab table"
+    }
+   ],
+   "lenses": [
+    {
+     "lens": "구조적 체질 변화",
+     "change": "장비만 팔던 회사에서 서비스가 TTM 매출의 28.8%인 회사로 — 장비 매출이 17.2% 준 FY6/26에도 서비스는 36.5% 늘었다",
+     "evidence": "https://www.lasertec.co.jp/ir/plan/message.html",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "서비스 매출 증가율 두 분기 연속 한 자릿수"
+    },
+    {
+     "lens": "고부가 믹스 확장",
+     "change": "A150 → A200HiT → A300으로 갈수록 단가가 오른다. 다만 회사는 기종 구성 변화로 FY6/27 매출총이익률이 내려간다고 본다(영업이익률 45.7% → 43.1%)",
+     "evidence": "https://media.rakuten-sec.net/articles/-/53216",
+     "drives": "both",
+     "status": "유지",
+     "falsifier": "FY6/27 영업이익률이 가이던스 43.1% 아래"
+    },
+    {
+     "lens": "기술 혁신",
+     "change": "FY6/26에 신제품 네 개 — 검사 속도 3배인 ACTIS A200HiT, 마스크 원판 검사 MAGICS M9750/M9751, 심자외선 MATRICS X712, 화합물 반도체용 현미경 OPTELICS UXM",
+     "evidence": "https://www.lasertec.co.jp/ir/plan/message.html",
+     "drives": "multiple",
+     "status": "강화",
+     "falsifier": "A200HiT 고객 평가 탈락"
+    },
+    {
+     "lens": "실행 속도",
+     "change": "ACTIS는 수주에서 출하까지 약 14개월이다 — 수주가 늘어도 매출은 한 해 뒤에 온다",
+     "evidence": "https://media.rakuten-sec.net/articles/-/53216",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "리드타임이 더 길어진다는 회사 언급",
+     "lead_time": {
+      "now": 14,
+      "prior": "미확인",
+      "prior_when": "미확인",
+      "peers": [
+       {
+        "name": "KLA",
+        "value": "미확인"
+       },
+       {
+        "name": "ASML",
+        "value": "미확인"
+       }
+      ],
+      "unit": "개월",
+      "basis": "ACTIS 수주→출하(8월 결산 리포트). 동종은 같은 기준 값을 확인하지 못했다"
+     }
+    },
+    {
+     "lens": "M&A",
+     "change": "해당 없음 — 최근 3년 인수가 확인되지 않았다",
+     "evidence": "회사 연혁",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    },
+    {
+     "lens": "고객의 지출 예산",
+     "change": "장비는 고객의 설비투자, 서비스는 고객의 운영비에서 나온다",
+     "evidence": "https://www.lasertec.co.jp/ir/plan/message.html",
+     "drives": "revision",
+     "status": "강화",
+     "falsifier": "주요 파운드리·메모리 회사의 설비투자 가이던스 하향",
+     "budgets": [
+      {
+       "business": "반도체 관련 장비",
+       "budget": "CAPEX",
+       "line": "선단 로직·메모리 회사의 EUV 공정 설비투자(마스크숍·팹)",
+       "share": 0.591,
+       "driver": "EUV 노광 층 수·새 공정 노드 투자",
+       "evidence": "https://www.lasertec.co.jp/ir/plan/message.html"
+      },
+      {
+       "business": "서비스",
+       "budget": "OPEX",
+       "line": "팹 운영·유지보수비",
+       "share": 0.397,
+       "driver": "설치 대수·가동률",
+       "evidence": "https://www.lasertec.co.jp/ir/plan/message.html"
+      },
+      {
+       "business": "기타 제품",
+       "budget": "CAPEX",
+       "line": "디스플레이·연구 장비 투자",
+       "share": 0.013,
+       "driver": "디스플레이 투자·연구 예산",
+       "evidence": "https://www.lasertec.co.jp/ir/plan/message.html"
+      }
+     ]
+    }
+   ],
+   "policy": {
+    "fiscal": {
+     "change": "해당 없음(Lasertec을 겨냥한 미국·일본 재정정책 미확인). 고객 쪽 반도체 보조금은 Lasertec 매출로 바로 잇지 않는다",
+     "evidence": "미확인",
+     "drives": "revision",
+     "status": "유지",
+     "falsifier": "해당 없음",
+     "house": {
+      "level": 1,
+      "why": "관련 논의 없음"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "orders": {
+     "change": "미국의 대중국 반도체 장비 수출통제가 넓어지면 중국 매출(몫 미확인)이 영향을 받는다 — 회사는 상하이·난징·베이징 등 8곳에 거점이 있다. 통제 대상 품목 해당 여부는 원문 미확인",
+     "evidence": "https://www.lasertec.co.jp/en/company/agent.html",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "마스크 검사 장비를 겨냥한 통제 품목 추가",
+     "house": {
+      "level": 1,
+      "why": "관련 법안 미확인"
+     },
+     "senate": {
+      "level": 1,
+      "why": "같음"
+     }
+    },
+    "laws": {
+     "change": "해당 없음(회사를 겨냥한 미국·일본 법안 미확인)",
+     "evidence": "미확인",
+     "drives": "multiple",
+     "status": "유지",
+     "falsifier": "해당 없음"
+    }
+   }
+  }
+ },
+ "playbook": {
+  "points": [
+   {
+    "title": "수주는 두 배, 매출은 아직",
+    "claim": "수주 전망이 FY6/26 실적의 1.7~2.1배인데 올해 매출 가이던스는 +25.8%다 — 차이는 FY6/28로 넘어간다",
+    "evidence": "수주 FY6/26 ¥237.5B → FY6/27 전망 ¥400~500B. ACTIS 리드타임 약 14개월. 선수금 ¥44.2B → ¥87.0B",
+    "variant": "시장은 1Q 감익과 진척률 12.6%를 보고 올해 이익을 깎는다. 제 판단은 올해가 아니라 FY6/28이 논점이라는 것이다 — 수주가 전망 하단만 채워도 FY6/28 매출은 ¥360B대가 가능하다. 다만 회사가 수주를 연간으로만 내 분기 확인이 안 된다",
+    "proof": "2027년 2월 2Q 결산 — 수주 전망 유지와 선수금 추가 증가",
+    "source": "https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   {
+    "title": "프리미엄은 독점 값, 할인은 검수 값",
+    "claim": "동종보다 65% 높은 배수는 독점과 이익률로 설명되지만 분기 변동성이 그 배수를 흔든다",
+    "evidence": "Fwd 1Y P/E 28.0배 vs 동종 중앙값 17.0배. 분기 매출 ¥40B~¥92B, 결산 다음 날 반응 −14.0%·+0.6%·−13.5%·+8.0%",
+    "variant": "배수만 보면 비싸다. 서비스가 TTM 매출의 28.8%로 커져 변동이 줄어드는 방향이라는 점은 배수에 덜 반영됐다고 본다 — 반대로 고객이 몇 곳뿐이라 한 곳의 투자 연기가 곧 가이던스 미달이다",
+    "proof": "FY6/27 서비스 매출 ¥70B 이상",
+    "source": "https://www.lasertec.co.jp/ir/plan/message.html"
+   },
+   {
+    "title": "가이던스 미달 위험은 2월에 갈린다",
+    "claim": "2Q(10~12월) 매출 컨센서스 ¥79.6B는 1Q의 두 배다 — 여기서 밀리면 통기 가이던스가 흔들린다",
+    "evidence": "1Q 영업이익 ¥15.8B, 통기 ¥125.0B의 12.6%. 남은 세 분기 분기 평균 ¥36.4B 필요. 지난해 2Q는 ¥36.3B였다",
+    "variant": "컨센서스 EPS ¥1,111은 가이던스 ¥1,003보다 높다 — 시장은 미달이 아니라 초과를 넣고 있다. 1Q를 본 뒤에도 경상이익 예상 하향 폭은 주당 1% 안쪽이다",
+    "proof": "2Q 매출 ¥79.6B·영업이익 ¥36B 이상",
+    "source": "https://kabutan.jp/news/?b=k202610300246"
+   }
+  ],
+  "momentum": [
+   {
+    "date": "2026-01-30",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "2Q FY6/26 결산·통기 상향 — 매출이 추정을 넘었는데도 다음 날 급락",
+    "reaction": "-14.0%"
+   },
+   {
+    "date": "2026-04-30",
+    "status": "완료",
+    "kind": "생성",
+    "event": "3Q FY6/26 결산 — 이후 6월 22일 종가 고점 ¥57,490까지 상승",
+    "reaction": "+0.6%"
+   },
+   {
+    "date": "2026-08-06",
+    "status": "완료",
+    "kind": "소멸",
+    "event": "FY6/26 결산·FY6/27 첫 가이던스 — 순이익 예상이 시장 예상 평균 하회",
+    "reaction": "-13.5%"
+   },
+   {
+    "date": "2026-10-30",
+    "status": "완료",
+    "kind": "생성",
+    "event": "1Q FY6/27 결산 — 감익이지만 수주 전망 ¥400~500B로 상향",
+    "reaction": "+8.0%"
+   },
+   {
+    "date": "2026-11-05",
+    "status": "완료",
+    "kind": "매크로",
+    "event": "11월 반도체·AI주 급락 구간(11/5·11/16·11/25, 개별 원인 미확인)",
+    "reaction": "-14.2%"
+   },
+   {
+    "date": "2027-02-01(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "2Q FY6/27 결산",
+    "check": "매출 ¥79.6B·영업이익 ¥36B 이상, 수주 전망 ¥400~500B 유지, 선수금 ¥87B 이상",
+    "then": "채우면 가이던스 미달 걱정이 줄어든다(기본~강세), 못 채우면 통기 하향 위험이 가격에 들어온다(약세)"
+   },
+   {
+    "date": "2027-01~02(예상)",
+    "status": "예정",
+    "kind": "매크로",
+    "event": "주요 파운드리·메모리 회사의 2027년 설비투자 가이던스",
+    "check": "EUV 공정 투자 증가 유지",
+    "then": "하향이면 수주 전망이 먼저 깎인다"
+   },
+   {
+    "date": "2027-04 말(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "3Q FY6/27 결산",
+    "check": "A300 수주 여부와 통기 가이던스 유지",
+    "then": "A300 수주가 확인되면 FY6/28 단가 상승 경로가 열린다"
+   },
+   {
+    "date": "2027-08 초(예상)",
+    "status": "예정",
+    "kind": "확인",
+    "event": "FY6/27 결산·FY6/28 가이던스",
+    "check": "FY6/27 수주 실적 ¥400B 이상, FY6/28 매출 가이던스 +20% 이상",
+    "then": "수주가 매출로 바뀌는지의 첫 확인"
+   }
+  ],
+  "trade": {
+   "watch": "지금 가격 아래 일봉 지지 구간이다. 11월 25일 장중 저점 ¥29,040과 2025년 11월 19일 종가 저점 ¥26,330이 그 아래 자리다",
+   "confirm": "2Q 매출 ¥79.6B 이상과 수주 전망 유지, 그리고 주가가 50일선 위에서 주간 마감",
+   "invalid": "통기 가이던스를 낮추거나 수주 전망을 ¥400B 아래로 되돌린다",
+   "trim": "목표주가 부근은 Fwd 1Y P/E가 다시 30배대 중반으로 올라가는 자리다 — 수주가 매출로 바뀌는 숫자가 나오기 전에는 그 프리미엄의 근거가 약하다",
+   "style": "하루 8% 넘게 움직인 날이 최근 150거래일에 21번이다. 결산 다음 날 변동이 특히 크다(1월 −14.0%, 8월 −13.5%) — 가격·조건 틀이며 매매·비중 지시가 아니다"
+  }
+ },
+ "guru": {
+  "horizon_years": 5,
+  "views": {
+   "runway": {
+    "verdict": "pass",
+    "why": "수주가 FY6/26 ¥237.5B에서 FY6/27 전망 ¥400~500B로 늘고 EUV 검사 수요가 선단 로직에서 DRAM으로 넓어진다 — 다만 수주 전망은 가이던스이고 확정이 아니다",
+    "evidence": "FY6/26 업적 보고 https://www.lasertec.co.jp/ir/plan/message.html · 1Q 해설 https://www.vlsi.kr/ja/why-lasertec-stock-rose-after-q1-earnings-ja/"
+   },
+   "moat_returns": {
+    "verdict": "pass",
+    "why": "TTM 영업이익 ¥94.3B에 투하자본 ¥128.7B — 세후로도 자본수익률이 50% 안팎이고 영업이익률은 40%대다",
+    "evidence": "株探 실적·재무 표 https://kabutan.jp/stock/finance?code=6920"
+   },
+   "reinvestment": {
+    "verdict": "unknown",
+    "why": "설비투자가 매출의 1% 안팎이라 이익을 사업에 다시 넣을 곳이 연구개발뿐이다(¥16.3B → ¥20.0B). 남는 현금은 배당(성향 35% 목표)과 현금 보유로 간다 — 재투자 복리가 아니라 현금 창출형이다",
+    "evidence": "FY6/26 업적 보고 https://www.lasertec.co.jp/ir/plan/message.html"
+   },
+   "people": {
+    "verdict": "unknown",
+    "why": "사장이 2024년 7월에 바뀌었다. 경영진 지분·보상 구조는 유가증권보고서를 열지 못해 대조하지 못했다",
+    "evidence": "미확인"
+   },
+   "change": {
+    "verdict": "pass",
+    "why": "수주 전망을 석 달 만에 올렸고 선수금이 두 배가 됐다. FY6/27 EPS 가이던스 +16.3%, 그 뒤 해도 수주가 받친다 — 다만 1Q 실적은 컨센서스를 크게 밑돌았다",
+    "evidence": "1Q 결산 속보 https://kabutan.jp/news/?b=k202610300246"
+   },
+   "mispricing": {
+    "verdict": "fail",
+    "why": "5년 5배에는 시가총액 ¥13.7T가 필요하다 — 마스크 검사라는 틈새의 크기로는 닿기 어렵다. 2배 경로는 수주가 매출로 바뀌면 열려 있다",
+    "evidence": "밸류에이션 계산"
+   }
+  },
+  "dissent": {
+   "view": "reinvestment",
+   "why": "틈새 독점이라 번 돈을 같은 수익률로 다시 넣을 곳이 없다 — 성장은 고객의 EUV 투자에 달려 있고 회사가 정하지 못한다"
+  },
+  "hold": {
+   "kpis": [
+    "연간 수주(전망 ¥400~500B)",
+    "선수금 잔액",
+    "서비스 매출 증가율",
+    "영업이익률(가이던스 43.1%)"
+   ],
+   "rule": "가격만 빠지고 수주 전망과 선수금이 살아 있으면 투자 논리는 유지된다. 수주 전망을 낮추면 다시 본다"
+  }
+ },
+ "debate": {
+  "panel": [
+   {
+    "seat": "Strong Buy",
+    "thesis": "수주가 두 배가 되는 독점 장비사를 고점의 절반 값에 준다",
+    "evidence": [
+     "수주 전망 ¥400~500B vs FY6/26 ¥237.5B",
+     "6/22 종가 ¥57,490 → ¥30,550"
+    ],
+    "falsifier": "수주 전망 하향"
+   },
+   {
+    "seat": "Buy",
+    "thesis": "선수금이 석 달에 두 배 — 수주가 실제로 들어오고 있다",
+    "evidence": [
+     "선수금 ¥44.2B → ¥87.0B",
+     "1Q 영업현금흐름 ¥39.1B"
+    ],
+    "falsifier": "2Q 선수금 감소"
+   },
+   {
+    "seat": "Neutral",
+    "thesis": "수주는 좋지만 동종보다 65% 비싼 배수에 이미 들어 있다",
+    "evidence": [
+     "Fwd 1Y P/E 28.0배 vs 동종 17.0배"
+    ],
+    "falsifier": "2Q 매출 ¥79.6B 초과와 통기 상향"
+   },
+   {
+    "seat": "Sell",
+    "thesis": "진척률 12.6%로는 통기 가이던스가 위험하다",
+    "evidence": [
+     "1Q 영업이익 ¥15.8B ÷ 통기 ¥125.0B",
+     "1Q 매출이 컨센서스를 25% 밑돌았다"
+    ],
+    "falsifier": "2Q 영업이익 ¥36B 이상"
+   },
+   {
+    "seat": "Strong Sell",
+    "thesis": "고객 몇 곳의 설비투자에 묶인 회사가 AI 투자 정점 논쟁 속에 28배다",
+    "evidence": [
+     "11월 하루 −10% 넘는 날 세 번",
+     "수주는 연간으로만 공개"
+    ],
+    "falsifier": "주요 고객의 2027년 설비투자 가이던스 상향"
+   }
+  ],
+  "rounds": [
+   {
+    "round": "개회",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "수주 전망 하단 ¥400B만 해도 지난해의 1.7배다. 리드타임 14개월이면 FY6/28 매출이 받는다"
+     },
+     {
+      "seat": "Buy",
+      "text": "전망은 말이지만 선수금 ¥87.0B는 돈이다. 석 달 새 ¥42.8B가 들어왔다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "좋은 소식은 11월 2일 +8.0%에 반영됐다. 28배는 동종 여섯 곳 가운데 디스코 다음으로 높다"
+     },
+     {
+      "seat": "Sell",
+      "text": "남은 세 분기에 분기 평균 ¥36.4B를 벌어야 한다. 지난해 가장 좋았던 분기가 ¥36.3B였다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "회사가 수주를 분기로 내지 않는다. 확인할 수 없는 전망에 28배를 주는 셈이다"
+     }
+    ]
+   },
+   {
+    "round": "반박1",
+    "remarks": [
+     {
+      "seat": "Neutral",
+      "to": "Strong Buy",
+      "text": "고점 대비 낙폭은 싸다는 근거가 아니다. 6월의 57배가 지나쳤다는 뜻이기도 하다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Buy",
+      "text": "선수금은 취소되면 돌려준다. FY6/25 4분기에 ACTIS 취소가 실제로 있었다"
+     },
+     {
+      "seat": "Strong Buy",
+      "to": "Sell",
+      "text": "FY6/26에도 1월에 가이던스를 올렸고 실제는 그보다 ¥10.5B 더 나왔다. 이 회사 가이던스는 보수적이었다"
+     },
+     {
+      "seat": "Buy",
+      "to": "Strong Sell",
+      "text": "분기 수주는 없어도 선수금과 영업현금흐름이 분기마다 나온다. 볼 숫자는 있다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Neutral",
+      "text": "중립이 가장 위험하다. 가이던스가 깎이면 이익과 배수가 함께 내려간다"
+     }
+    ]
+   },
+   {
+    "round": "반박2",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "to": "Neutral",
+      "text": "동종은 식각·증착 장비다. 경쟁자가 없는 검사 장비와 같은 배수로 볼 수 없다"
+     },
+     {
+      "seat": "Neutral",
+      "to": "Buy",
+      "text": "가이던스가 보수적이라는 것은 지난해 한 번의 경험이다. 올해는 판관비가 36% 늘었다"
+     },
+     {
+      "seat": "Sell",
+      "to": "Strong Buy",
+      "text": "FY6/27 영업이익률 가이던스가 43.1%로 2년 연속 내려간다. 독점이면 이익률이 왜 내려가나"
+     },
+     {
+      "seat": "Buy",
+      "to": "Sell",
+      "text": "연구개발비를 ¥16.3B에서 ¥20.0B로 늘려서다. 신기종 두 개를 동시에 내는 해의 비용이다"
+     },
+     {
+      "seat": "Strong Sell",
+      "to": "Strong Buy",
+      "text": "고객이 2028년 투자를 줄이면 수주 전망부터 내려간다. 11월 주가가 그 걱정을 말한다"
+     }
+    ]
+   },
+   {
+    "round": "최종",
+    "remarks": [
+     {
+      "seat": "Strong Buy",
+      "text": "한 단계 내려 Buy. 수주는 맞지만 2월 결산 전에는 진척률 반박을 넘지 못한다"
+     },
+     {
+      "seat": "Buy",
+      "text": "Buy 유지. 선수금과 현금흐름이 수주를 받친다"
+     },
+     {
+      "seat": "Neutral",
+      "text": "Neutral 유지. 배수와 수주가 서로를 상쇄한다"
+     },
+     {
+      "seat": "Sell",
+      "text": "한 단계 올려 Neutral. 가이던스 이력과 선수금 반박은 인정한다"
+     },
+     {
+      "seat": "Strong Sell",
+      "text": "한 단계 올려 Sell. 설비투자 가이던스가 나오는 1~2월까지는 낮게 본다"
+     }
+    ]
+   }
+  ],
+  "final": {
+   "rating": "Neutral",
+   "votes": {
+    "Strong Buy": "Buy",
+    "Buy": "Buy",
+    "Neutral": "Neutral",
+    "Sell": "Neutral",
+    "Strong Sell": "Sell"
+   },
+   "reason": "수주 전망 상향·선수금 두 배·보수적이던 가이던스 이력이 살아남았고, 동종보다 65% 높은 배수·진척률 12.6%·분기 수주 미공개도 살아남았다. 2월 2Q 결산이 둘을 가른다",
+   "dissent": "Strong Sell 자리: 확인할 수 없는 연간 수주 전망에 독점 프리미엄을 줄 수 없다"
+  }
+ },
+ "supply_draft": {
+  "as_of": "2026-11-26",
+  "summary": "생산을 외부 협력사에 맡기는 팹라이트 구조라 공급망이 곧 생산능력이다. 회사는 협력사·부품 공급사 이름을 공개하지 않는다. 가장 약한 고리는 EUV 검사 광원과 반사 광학계처럼 만들 수 있는 곳이 적은 모듈이고, ACTIS의 수주에서 출하까지 약 14개월이 그 결과다",
+  "links": [
+   {
+    "item": "검사 광원(EUV 광원·심자외선 레이저)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "EUV 검사 광원 모듈",
+      "status": "추정",
+      "source": "https://www.lasertec.co.jp/ir/plan/message.html"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "빠듯",
+    "capacity_basis": "ACTIS 리드타임 약 14개월(8월 결산 리포트) — 어느 부품이 길게 만드는지는 미공시",
+    "lead_weeks": 60,
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "EUV 파장의 빛을 장비 안에서 내는 광원은 만드는 곳이 적다",
+    "relief": "미확인",
+    "source": "https://media.rakuten-sec.net/articles/-/53216",
+    "input": "laser_diode"
+   },
+   {
+    "item": "검사 광학계(반사 미러·렌즈)",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "EUV 다층막 미러·광학 부품",
+      "status": "추정",
+      "source": "https://www.lasertec.co.jp/ir/plan/message.html"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "회사 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "광학 설계가 검사 감도와 속도를 정한다 — 자체 설계, 제작처 미공시",
+    "relief": "미확인",
+    "source": "https://www.lasertec.co.jp/ir/plan/message.html",
+    "input": "optical_lens"
+   },
+   {
+    "item": "외주 조립·시험",
+    "critical": true,
+    "suppliers": [
+     {
+      "name": "미공시(생산 협력사)",
+      "role": "장비 조립",
+      "status": "회사 발표",
+      "source": "https://www.lasertec.co.jp/en/ir/plan/strategy.html"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "회사: 수요가 급증하면 제때 생산하지 못할 위험을 위험 요인에 적었다",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": 1.0,
+    "region": "일본(요코하마 중심, 추정)",
+    "secured": "미확인",
+    "why": "수주가 FY6/26 ¥237.5B에서 FY6/27 ¥400~500B로 늘면 협력사 조립 능력이 납기를 정한다",
+    "relief": "미확인",
+    "source": "https://www.lasertec.co.jp/en/ir/plan/risk.html"
+   },
+   {
+    "item": "고속 검사 회로·이미지 센서",
+    "critical": false,
+    "suppliers": [
+     {
+      "name": "미공시",
+      "role": "센서·검사 회로 부품",
+      "status": "추정",
+      "source": "https://www.lasertec.co.jp/ir/plan/message.html"
+     }
+    ],
+    "qualified": "미확인",
+    "capacity": "미확인",
+    "capacity_basis": "회사 미공시",
+    "lead_weeks": "미확인",
+    "lead_normal": "미확인",
+    "requal_months": "미확인",
+    "top_share": "미확인",
+    "region_share": "미확인",
+    "region": "미확인",
+    "secured": "미확인",
+    "why": "검사 회로는 자체 기술이라고 밝힌다",
+    "relief": "미확인",
+    "source": "https://www.lasertec.co.jp/ir/plan/message.html"
+   }
+  ]
+ }
+}
