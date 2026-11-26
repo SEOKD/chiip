@@ -1,0 +1,205 @@
+id: co-fujikura
+name: Fujikura
+ticker: '5803'
+unit: BJPY
+unit_usd: 6349206.35
+industry: electrical_equipment
+region_mix:
+  US: 0.455
+  ASIA: 0.26
+  JP: 0.168
+  EU: 0.087
+  OTHER: 0.03
+tax: 0.245
+horizon: 10
+as_of: '2026-11-26'
+market:
+  date: '2026-11-26'
+  price: 2077.0
+  shares: 1.656198
+  net_debt: -137.342
+  source: 가격 = TradingView TSE:5803 11/26 종가 ¥2,077. 주식 = 발행 1,775,180,526주 − 자기주식
+    118,982,067주 = 1,656,198,459주(9/30, 2Q 결산단신 2쪽 — 2026-04-01 1:6 분할 반영). 현금·예금
+    ¥244,826M, 차입 = 단기차입 40,534 + CP 20,000 + 1년 내 사채 10,000 + 사채 10,000 + 장기차입 26,950
+    = ¥107,484M(2Q 결산단신 3쪽, 데이터 파일 유이자부채와 일치). 배당 = FY3/27 계획 ¥80
+rev0: 1768.0
+ic0: 589.874
+scenarios:
+  base:
+    prob: 0.6
+    growth:
+      start: -0.04
+      end: 0.025
+      decay: 0.6
+    margin:
+      m0: 0.2426
+      target: 0.2
+      year_target: 2
+      lr: 0.17
+      lam: 0.4
+    s2c: 2.0
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.06
+      end: 0.04
+      decay: 0.65
+    margin:
+      m0: 0.2426
+      target: 0.2773
+      year_target: 2
+      lr: 0.17
+      lam: 0.25
+    s2c: 2.3
+  bear:
+    prob: 0.2
+    growth:
+      start: -0.14
+      end: 0.030000000000000002
+      decay: 0.5
+    margin:
+      m0: 0.2426
+      target: 0.1227
+      year_target: 2
+      lr: 0.17
+      lam: 0.5
+    s2c: 1.7
+mc:
+  sigma_growth: 0.05
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [1768.0, 1768.0] (2Q 결산단신(2026-11-10) 2쪽 https://ssl4.eir-parts.net/doc/5803/tdnet/2909047/00.pdf
+    · 2Q 결산설명자료 17~18쪽 https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217565/00.pdf
+    · 1Q 결산설명자료 18쪽 https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/210022/00.pdf)
+  growth: 컨센서스 없음 — 기본 10% 가정(약함) → 덮어쓰기 1년차 -4.0%
+  margin: 출발 24% → 목표 20%(2년차, 덮어쓰기) → 장기 수렴 17%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.527 → 덮어쓰기 2.0
+  range: 고·저 추정 없음 — 1년차 성장 ±40% → 순서 깨짐, ±40%로 -14.0%~6.0%
+  probs: '근거 계산 {''bear'': 0.2, ''base'': 0.6, ''bull'': 0.2} — 다음 해 매출 성장 분포로 계산
+    — 약세 -9.0% 아래·강세 +1.0% 위 확률. 내부 관점(컨센서스 -4.0%, σ 6.0%: 추정 범위 없음 — 5% + 0.25 ×
+    |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: FY3/27 매출 ¥1,768B에는 미국 외 단납기 대형 안건이 들어 있다(상반기 영업이익 기여 ¥63.2B). 회사는 하반기에
+    확실한 새 대형 안건이 없다고 했고 하반기 영업이익률 가이던스는 21.5%(상반기 27.1%)다. 그래서 FY3/28 매출 −4%, 이익률은
+    2년 안에 20%로 내려온다고 본다. 장기 이익률 17%는 일·미 증설(최대 ¥300B)로 광섬유 부족이 풀린 뒤의 값 — 회사 스스로 새
+    공장의 목적을 가격 경쟁이 심해져도 버틸 원가 경쟁력이라고 말했다. 자본 회전 2.0은 증설 반영(TTM 2.5)
+  shares: 완전 희석 = 기본 1.656198459(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 2Q 결산단신 1쪽 잠재주식
+    조정 후 EPS 칸이 비어 있다(잠재 주식 없음). 임원 주식 보상은 주식 교부
+notes:
+- 2026-11-26 리포트 회차 — 11/11 수기 동인(성장 +15%·가격 3,121엔, 1차 미대조)을 2Q 결산단신·설명자료 대조 뒤 데이터 묶음 기반 동인으로 바꿨다
+- 자동 생성(build_drivers) 2026-11-26 — 데이터 묶음 2026-11-26
+- '어닝콜 위험: 단납기 대형 안건 종료 뒤 공백(회사: 후속 수주는 고객 투자 계획에 달렸고 전망을 제시하기 어렵다)'
+- '어닝콜 위험: 미국 납입 비중 상승에 따른 이익률 하락·관세'
+- '어닝콜 위험: 외부 조달 광섬유 가격 상승'
+evidence:
+- '2Q FY3/27 결산단신(2026-11-10): https://ssl4.eir-parts.net/doc/5803/tdnet/2909047/00.pdf'
+- '2Q 결산설명자료: https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217565/00.pdf'
+- '2Q 토픽스: https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217564/00.pdf'
+- '데이터 파일(2Q): https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217563/00.pdf'
+- '1Q 결산설명회 질의응답 요지(2026-08-18): https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/210980/00.pdf'
+- '1Q FY3/27 결산단신(2026-08-07): https://ssl4.eir-parts.net/doc/5803/tdnet/2866589/00.pdf'
+- '1Q 결산설명자료: https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/210022/00.pdf'
+- '회사 결산 자료 목록: https://www.fujikura.co.jp/ir/financials/'
+id: co-fujikura
+name: Fujikura
+ticker: '5803'
+unit: BJPY
+unit_usd: 6349206.35
+industry: electrical_equipment
+region_mix:
+  US: 0.455
+  ASIA: 0.26
+  JP: 0.168
+  EU: 0.087
+  OTHER: 0.03
+tax: 0.245
+horizon: 10
+as_of: '2026-11-26'
+market:
+  date: '2026-11-26'
+  price: 2077.0
+  shares: 1.656198
+  net_debt: -137.342
+  source: 가격 = TradingView TSE:5803 11/26 종가 ¥2,077. 주식 = 발행 1,775,180,526주 − 자기주식
+    118,982,067주 = 1,656,198,459주(9/30, 2Q 결산단신 2쪽 — 2026-04-01 1:6 분할 반영). 현금·예금
+    ¥244,826M, 차입 = 단기차입 40,534 + CP 20,000 + 1년 내 사채 10,000 + 사채 10,000 + 장기차입 26,950
+    = ¥107,484M(2Q 결산단신 3쪽, 데이터 파일 유이자부채와 일치). 배당 = FY3/27 계획 ¥80
+rev0: 1768.0
+ic0: 589.874
+scenarios:
+  base:
+    prob: 0.6
+    growth:
+      start: -0.04
+      end: 0.025
+      decay: 0.6
+    margin:
+      m0: 0.2426
+      target: 0.2
+      year_target: 2
+      lr: 0.17
+      lam: 0.4
+    s2c: 2.0
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.06
+      end: 0.04
+      decay: 0.65
+    margin:
+      m0: 0.2426
+      target: 0.2773
+      year_target: 2
+      lr: 0.17
+      lam: 0.25
+    s2c: 2.3
+  bear:
+    prob: 0.2
+    growth:
+      start: -0.14
+      end: 0.030000000000000002
+      decay: 0.5
+    margin:
+      m0: 0.2426
+      target: 0.1227
+      year_target: 2
+      lr: 0.17
+      lam: 0.5
+    s2c: 1.7
+mc:
+  sigma_growth: 0.05
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [1768.0, 1768.0] (2Q 결산단신(2026-11-10) 2쪽 https://ssl4.eir-parts.net/doc/5803/tdnet/2909047/00.pdf
+    · 2Q 결산설명자료 17~18쪽 https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217565/00.pdf
+    · 1Q 결산설명자료 18쪽 https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/210022/00.pdf)
+  growth: 컨센서스 없음 — 기본 10% 가정(약함) → 덮어쓰기 1년차 -4.0%
+  margin: 출발 24% → 목표 20%(2년차, 덮어쓰기) → 장기 수렴 17%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 2.527 → 덮어쓰기 2.0
+  range: 고·저 추정 없음 — 1년차 성장 ±40% → 순서 깨짐, ±40%로 -14.0%~6.0%
+  probs: '근거 계산 {''bear'': 0.2, ''base'': 0.6, ''bull'': 0.2} — 다음 해 매출 성장 분포로 계산
+    — 약세 -9.0% 아래·강세 +1.0% 위 확률. 내부 관점(컨센서스 -4.0%, σ 6.0%: 추정 범위 없음 — 5% + 0.25 ×
+    |성장률|) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: FY3/27 매출 ¥1,768B에는 미국 외 단납기 대형 안건이 들어 있다(상반기 영업이익 기여 ¥63.2B). 회사는 하반기에
+    확실한 새 대형 안건이 없다고 했고 하반기 영업이익률 가이던스는 21.5%(상반기 27.1%)다. 그래서 FY3/28 매출 −4%, 이익률은
+    2년 안에 20%로 내려온다고 본다. 장기 이익률 17%는 일·미 증설(최대 ¥300B)로 광섬유 부족이 풀린 뒤의 값 — 회사 스스로 새
+    공장의 목적을 가격 경쟁이 심해져도 버틸 원가 경쟁력이라고 말했다. 자본 회전 2.0은 증설 반영(TTM 2.5)
+  shares: 완전 희석 = 기본 1.656198459(2026-09-30) + 옵션·RSU·워런트·전환 0.0000 — 2Q 결산단신 1쪽 잠재주식
+    조정 후 EPS 칸이 비어 있다(잠재 주식 없음). 임원 주식 보상은 주식 교부
+notes:
+- 자동 생성(build_drivers) 2026-11-26 — 데이터 묶음 2026-11-26
+- '어닝콜 위험: 단납기 대형 안건 종료 뒤 공백(회사: 후속 수주는 고객 투자 계획에 달렸고 전망을 제시하기 어렵다)'
+- '어닝콜 위험: 미국 납입 비중 상승에 따른 이익률 하락·관세'
+- '어닝콜 위험: 외부 조달 광섬유 가격 상승'
+evidence:
+- '2Q FY3/27 결산단신(2026-11-10): https://ssl4.eir-parts.net/doc/5803/tdnet/2909047/00.pdf'
+- '2Q 결산설명자료: https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217565/00.pdf'
+- '2Q 토픽스: https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217564/00.pdf'
+- '데이터 파일(2Q): https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/217563/00.pdf'
+- '1Q 결산설명회 질의응답 요지(2026-08-18): https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/210980/00.pdf'
+- '1Q FY3/27 결산단신(2026-08-07): https://ssl4.eir-parts.net/doc/5803/tdnet/2866589/00.pdf'
+- '1Q 결산설명자료: https://ssl4.eir-parts.net/doc/5803/ir_material_for_fiscal_ym/210022/00.pdf'
+- '회사 결산 자료 목록: https://www.fujikura.co.jp/ir/financials/'
