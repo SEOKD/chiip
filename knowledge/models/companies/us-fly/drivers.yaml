@@ -1,0 +1,115 @@
+auto: true
+id: us-fly
+name: Firefly Aerospace
+ticker: FLY
+unit: B$
+unit_usd: 1000000000.0
+industry: aerospace_defense
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-26'
+market:
+  date: '2026-11-26'
+  price: 18.14
+  shares: 0.184372
+  net_debt: -0.462547
+  source: 가격 = 2026-11-25 종가 $18.14(실측 일봉) · 주식 수 171,627천 주(3Q26 10-Q 재무상태표, 2026-09-30)
+    · 현금 $409.3M + 단기투자 $125.4M = $534.7M(제한 현금 없음) · 차입성 부채 $72.2M = 어음 $25.1M +
+    운용·금융 리스 $47.1M. 신용 한도 $305M은 미인출. AST 계약 대가(현금 $400M·AST 주식)는 9월 말 뒤 체결이라 들어
+    있지 않다
+rev0: 0.445
+ic0: 0.680979
+scenarios:
+  base:
+    prob: 0.3
+    growth:
+      start: 0.573
+      end: 0.035
+      decay: 0.8
+    margin:
+      m0: -0.75
+      target: 0.0
+      year_target: 5
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - -0.443
+      - -0.213
+    s2c: 1.5
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.8651
+      end: 0.04
+      decay: 0.8500000000000001
+    margin:
+      m0: -0.75
+      target: 0.08
+      year_target: 5
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - -0.443
+      - -0.213
+    s2c: 1.725
+  bear:
+    prob: 0.35
+    growth:
+      start: 0.2809
+      end: 0.030000000000000002
+      decay: 0.7000000000000001
+    margin:
+      m0: -0.75
+      target: -0.08
+      year_target: 5
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - -0.443
+      - -0.213
+    s2c: 1.275
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.44, 0.45] (3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-10)·3Q26
+    어닝콜)
+  growth: 컨센서스 1년차 57.3%, 2년차 64.3% → 덮어쓰기 1년차 57.3%
+  margin: 1~2년차 컨센서스 -44.3%, -21.3% 고정 → 목표 0%(5년차, 덮어쓰기) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.539 → 덮어쓰기 1.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 28.1%~86.5% (덮어쓰기만큼 이동)
+  probs: '근거 계산 {''bear'': 0.35, ''base'': 0.3, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +42.7% 아래·강세 +71.9% 위 확률. 내부 관점(컨센서스 +57.3%, σ 34.6%: 범위 58.4% ÷ d2(6) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '재투자 효율 1.5: 자동값 0.54는 TTM 매출 ÷ 투하자본 $681M인데 그 투하자본의 $611M이 SciTec 인수
+    영업권·무형자산이다. 이를 뺀 영업 투하자본은 약 $70M이고, 최근 12개월 설비투자 $68.7M에 매출은 $256M 늘었다. 성장에 드는
+    자본을 인수 대가 기준으로 재면 성장할수록 가치가 깎여 약세·기본·강세 순서가 뒤집혔다 — 방산·우주 제조 수준인 1.5로 뒀다(추정). 이익률
+    경로: 1~2년차는 컨센서스(조정 EBIT −37%·−14%에서 주식 보상 7%p 차감)를 그대로 쓰고, 5년차(FY2030)에 주식 보상
+    차감 뒤 손익분기로 뒀다. 장기 15%는 자동값 그대로다. 조정 EBIT 이익률이 3Q26 −71% → FY2027 추정 −37% → FY2028
+    추정 −14%로 해마다 20%p 안팎 좋아지는 추세를 이은 값이다(추정 — 컨센서스에 흑자 해가 없어 근거가 약하다). 성장 감속 0.8:
+    자동 감속은 강세 5년 매출 연 104%(5년 뒤 약 $15B)를 그려 계약·설비 근거가 없다. 2027~2029년 매출에는 AST 3년 계약(약
+    $1.3B)이 들어가 2030년에 빠지고, 발사 매출은 아직 분기 $5M 안팎이다 — 1년차 +57% 뒤 성장률이 해마다 20%씩 줄어드는
+    것으로 뒀다(기본 5년 뒤 매출 약 $2.3B, 추정). 이 경로의 2년차 매출 약 $1.03B는 컨센서스 하단 $1.15B보다 낮다'
+  shares: '완전 희석 = 기본 0.171627(2026-09-30) + 옵션·RSU·워런트·전환 0.0127 — 3Q26 10-Q: 옵션
+    7,597천 주(가중 행사가 $1.47) — 자사주법으로 7,597 × (1 − 1'
+notes:
+- 자동 생성(build_drivers) 2026-11-26 — 데이터 묶음 2026-11-26
+- '어닝콜 위험: AST 대가 지급은 마일스톤 조건 — 엔진·IP·용역을 제때 넘기지 못하면 지급과 매출이 밀린다(10-Q 위험 요인)'
+- '어닝콜 위험: Alpha Block II 첫 비행(Flight 8)과 발사 빈도 — 2025년 4월 비행 이상, 9월 시험대 사고 이력'
+- '어닝콜 위험: Eclipse 첫 발사 시점을 회사가 확정하지 않았다'
+evidence:
+- Firefly Aerospace 3Q26 실적 보도자료(8-K Item 2.02 EX-99.1, 2026-11-10) https://www.sec.gov/Archives/edgar/data/1860160/000186016026000030/fly-ex99_1.htm
+- Firefly Aerospace 3Q26 10-Q(2026-11-10) https://www.sec.gov/Archives/edgar/data/1860160/000186016026000031/fly-20260930.htm
+- Firefly Aerospace FY2025 10-K(2026-03-19) https://www.sec.gov/Archives/edgar/data/1860160/000119312526116309/fly-20251231.htm
+- 2026 위임장(DEF 14A, 2026-04-17) https://www.sec.gov/Archives/edgar/data/1860160/000119312526161474/fly-20260417.htm
+- 보통주 공모 투자설명서(424B4, 2026-05-28) https://www.sec.gov/Archives/edgar/data/1860160/000119312526249159/d104612d424b4.htm
+- Fiscal.ai NASDAQ_FLY 표준화 재무·세그먼트 KPI·자체 추정·애널리스트 추정 이력(2026-11-26 조회). Data provided
+  by Zacks Investment Research, Inc., www.zacksdata.com
+- 'Easyconomics 실적 정리(2026-11-10 콜)·회사 개요(yfinance) — 2순위·대체 원천: 동종 6사 재무, 3Q26 어닝콜
+  질의응답 정리'
+- '실측 일봉: Tiingo(radar/market_data.py history) — TradingView NASDAQ:FLY 1D와 대조'
+- Quantral 커뮤니티 신호·월간 요약(2026-11-26 조회)
