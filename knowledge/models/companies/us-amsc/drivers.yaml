@@ -1,0 +1,111 @@
+auto: true
+id: us-amsc
+name: American Superconductor
+ticker: AMSC
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.58
+  ROW: 0.42
+tax: 0.21
+horizon: 10
+as_of: '2026-11-27'
+market:
+  date: '2026-11-27'
+  price: 21.23
+  shares: 0.048883
+  net_debt: -0.1627
+  source: 가격 = 2026-11-25 종가 $21.23(TradingView 실측 일봉) · 주식 수 48,455,057주(2Q FY2026
+    10-Q 표지, 2026-10-30) · 현금 $169.9M(제한 현금 $12.0M 별도 — 유동 $7.3M + 비유동 $4.7M) · 차입
+    없음, 리스 부채 $7.2M(유동 $1.4M + 비유동 $5.8M) — 2026-09-30 재무상태표. Comtrafo 인수 조건부 대가 부채
+    $30.5M(유동 $6.2M + 비유동 $24.3M)은 차입에 넣지 않았다 — 실적 목표 달성 때 현금으로 나갈 수 있는 돈이다
+rev0: 0.3656
+ic0: 0.4194
+scenarios:
+  base:
+    prob: 0.35
+    growth:
+      start: 0.1807
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.0589
+      target: 0.0921
+      year_target: 2
+      lr: 0.1
+      lam: 0.35
+      anchors:
+      - 0.0921
+    s2c: 1.5
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.1846
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.0589
+      target: 0.1121
+      year_target: 2
+      lr: 0.1
+      lam: 0.25
+      anchors:
+      - 0.0921
+    s2c: 1.725
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.1513
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.0589
+      target: 0.0721
+      year_target: 2
+      lr: 0.1
+      lam: 0.5
+      anchors:
+      - 0.0921
+    s2c: 1.275
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [0.3642, 0.367] (https://www.sec.gov/Archives/edgar/data/880807/000143774926034935/ex_1006437.htm)
+  growth: 컨센서스 1년차 18.1%, 2년차 16.9%
+  margin: 1년차 컨센서스 9.2% 고정 → 목표 9%(2년차, 덮어쓰기) → 장기 수렴 10%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 0.832 → 덮어쓰기 1.5
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 15.1%~18.5%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.25, ''bull'': 0.45} → 모델 조정 {''bear'':
+    0.3, ''base'': 0.35, ''bull'': 0.35}(계산 확률(약세 30·기본 25·강세 45%)에서 강세 10%p를 기본으로
+    옮겼다 — 계산은 매출 추정 범위만 보는데, 이 범위는 4명의 것이고 회사가 다음 분기 가이던스 하한을 $85M에서 $80M으로 내렸으며 EPS
+    추정이 석 달째 내려오고 있다) — 다음 해 매출 성장 분포로 계산 — 약세 +16.6% 아래·강세 +18.3% 위 확률. 내부 관점(컨센서스
+    +18.1%, σ 3.0%: 범위 3.3% ÷ d2(4) × 1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  overrides: '증분 매출/투하자본: 자동값은 영업권 $176M이 든 투하자본 기준이라 낮게 나온다 — 영업권·무형을 뺀 투하자본 약 $0.23B
+    기준 TTM 매출 회전 1.5를 쓴다(판단). 장기 수렴 영업이익률 10%: 가장 먼 애널리스트 추정 FY2027 9.2%, 회사 목표는 비GAAP
+    순이익률 10%대 초반(주식보상 5.5%p 차감 전) — 기본값 15%는 근거가 없다'
+  shares: 완전 희석 = 기본 0.048455057(2026-10-30) + 옵션·RSU·워런트·전환 0.0004 — FY2025 10-K(2026-03-31)
+    — 희석 계산에서 빠진 성과 조건부 제한 주식 등 428,111주
+notes:
+- 자동 생성(build_drivers) 2026-11-27 — 데이터 묶음 2026-11-27
+- '어닝콜 위험: 분기 매출이 사업 인도 시점에 따라 흔들린다 — 3Q 가이던스 하한 $80M은 2Q 실적보다 15% 낮다'
+- '어닝콜 위험: 수주가 전 분기 $130M 초과에서 $95M 초과로 내려왔다(수주 ÷ 매출 약 1.0)'
+- '어닝콜 위험: Inox Wind 한 곳이 분기 매출의 18% — 인도 풍력 설치 속도에 묶여 있다'
+evidence:
+- 2Q FY2026 10-Q(2026-11-04) https://www.sec.gov/Archives/edgar/data/880807/000143774926034936/amsc20260930_10q.htm
+- FY2025 10-K(2026-05-27) https://www.sec.gov/Archives/edgar/data/880807/000143774926018542/amsc20260331_10k.htm
+- 2026년 위임장(2026-06-18) https://www.sec.gov/Archives/edgar/data/880807/000119312526275809/d129644ddef14a.htm
+- 2Q FY2026 실적 보도자료(8-K EX-99.1, 2026-11-04) https://www.sec.gov/Archives/edgar/data/880807/000143774926034935/ex_1006437.htm
+- 1Q FY2026 실적 보도자료(8-K EX-99.1, 2026-08-05) https://www.sec.gov/Archives/edgar/data/880807/000143774926025921/ex_978081.htm
+- 4Q FY2025 실적 보도자료(8-K EX-99.1, 2026-05-27) https://www.sec.gov/Archives/edgar/data/880807/000143774926018539/ex_919739.htm
+- 3Q FY2025 실적 보도자료(8-K EX-99.1, 2026-02-04) https://www.sec.gov/Archives/edgar/data/880807/000143774926002977/ex_895205.htm
+- Comtrafo 인수 종결 8-K(2025-12-10) https://www.sec.gov/Archives/edgar/data/880807/000119312525314153/d24846d8k.htm
+- NWL 인수 8-K(2024-08-05) https://www.sec.gov/Archives/edgar/data/880807/000119312524193425/d878518d8k.htm
+- 유상증자 8-K(2025-06-11) https://www.sec.gov/Archives/edgar/data/880807/000119312525139243/d795155d8k.htm
+- Fiscal.ai MCP 2026-11-27 — 표준화 재무·추정·의견·어닝콜 전문(q2-2026·q1-2026)·13F·펀드 레터 https://fiscal.ai/company/NasdaqGS-AMSC
+- TradingView NASDAQ:AMSC 일봉 760개(2026-11-25까지)
+- Easyconomics company_profile(yfinance)·earnings_summary_dates(대체 원천 대조)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
