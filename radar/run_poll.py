@@ -24,6 +24,11 @@ LOCK = common.STATE / "run_poll.lock"
 # 그래서 ① 밀린 비율(경과 ÷ 주기) 큰 원천부터 ② 원천마다 별도 프로세스 + 시간 한도(멈춰도 그 원천만 끊긴다) ③ 예산을 넘기면 새 원천을 시작하지 않는다.
 BUDGET_MIN = 22
 SOURCE_TIMEOUT_MIN = 8
+# 원천 병렬(2026-11-26 마스터 지시 "Pulse의 정보 전달 속도가 느린 것 같아 … 속도를 높여"): 한 줄로 돌면 주기 15분 원천(WSJ·닛케이)도
+# 감지 중앙값 35분이었다(앞 원천들이 끝나길 기다림). 원천마다 별도 프로세스라 동시에 돌려도 서로 막지 않는다 — 공유 상태 쓰기는 common.state_lock
+PARALLEL = 6
+TRIAGE_LOCK = common.STATE / "run_triage.lock"
+TIMING = common.STATE / "run_poll_timing.log"
 
 
 def overdue(src):
@@ -82,7 +87,7 @@ def acquire_lock():
     if LOCK.exists():
         from datetime import datetime, timedelta
         age = common.now_kst() - datetime.fromtimestamp(LOCK.stat().st_mtime, common.KST)
-        if age < timedelta(minutes=15):
+        if age < timedelta(minutes=5):   # 잠금은 짧은 앞·뒤 단계에만 걸린다(2026-11-26) — 5분 넘게 남은 잠금은 죽은 회차의 것
             return False
     LOCK.write_text(str(os.getpid()), encoding="utf-8")
     return True
@@ -486,10 +491,13 @@ def main(argv=None):
         child(args.child)
         return 0
     if not acquire_lock():
-        print("다른 폴링이 실행 중 — 건너뜀")
+        print("다른 폴링이 앞 단계 실행 중 — 건너뜀")
         return 0
-    start_tg_keeper()
+    # 잠금은 짧은 앞·뒤 단계에만 건다(2026-11-26 속도 점검). 수집 단계는 잠금 없이 원천별 '실행 중' 표시로 — 느린 원천(9개 매체 뉴스 8분)이
+    # 도는 동안에도 2분 뒤 다음 회차가 5분 주기 원천(텔레그램·보도자료 빠른 길·블룸버그)을 돌린다
+    import time
     try:
+        start_tg_keeper()
         env = common.load_env()
         try:  # 텔레그램 '⭐ 노션 기록' 버튼·답장 메모 처리 → 노션 인텔 아카이브(§21.13)
             import telegram_inbox
@@ -504,24 +512,59 @@ def main(argv=None):
         new_total, hot = [], set()
         if not args.only:
             new_total, hot = fast_feeds()
-        import time
-        t0 = time.time()
-        due = [x for x in registry() if (not args.only or x["id"] == args.only)
+        due = [x for x in registry() if (not args.only or x["id"] == args.only) and not running(x["id"])
                and (args.force or x["id"] in hot or common.is_due(x["id"], interval(x)))]
         due.sort(key=lambda x: (x["id"] not in hot, -overdue(x)))   # 급한 원천(hot) → 가장 밀린 원천 순
-        for i, src in enumerate(due):
+        for x in due:
+            mark_running(x["id"])
+    finally:
+        LOCK.unlink(missing_ok=True)
+    t0 = time.time()
+    took, skipped = {}, 0
+
+    def one(src):
+        try:
             left = BUDGET_MIN * 60 - (time.time() - t0)
             if left < 60:
-                print(f"회차 시간 예산 {BUDGET_MIN}분 소진 — 남은 {len(due) - i}개는 다음 회차(가장 밀린 순으로 먼저)")
-                break
+                return src["id"], None, -1
+            s0 = time.time()
             new = run_child(src, min(float(src.get("timeout_min") or SOURCE_TIMEOUT_MIN) * 60, left))   # 원천별 한도(등록부 timeout_min — 9개 매체 뉴스는 혼자 8.3분)
+            return src["id"], new, time.time() - s0
+        finally:
+            done_running(src["id"])
+
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=PARALLEL) as ex:   # 급한 원천(hot) → 가장 밀린 원천 순으로 먼저 자리를 잡는다
+        for sid, new, sec in ex.map(one, due):
+            if sec < 0:
+                skipped += 1
+                continue
+            took[sid] = sec
             if new:
                 new_total.extend(new)
-        if args.baseline:
-            import run_triage
-            run_triage.mark_triaged(it["item_id"] for it in new_total)
-            print(f"기준선 기록 {len(new_total)}건 — 알림·판정 없음")
-            return 0
+    if skipped:
+        print(f"회차 시간 예산 {BUDGET_MIN}분 소진 — 남은 {skipped}개는 다음 회차(가장 밀린 순으로 먼저)")
+    try:   # 회차 시간 기록 — 느려지면 어느 원천 탓인지 바로 본다
+        slow = sorted(took.items(), key=lambda kv: -kv[1])[:3]
+        with TIMING.open("a", encoding="utf-8") as f:
+            f.write(f"{common.iso(common.now_kst())} 수집 {time.time() - t0:.0f}s 원천 {len(took)}/{len(due)} 신규 {len(new_total)} 느림 "
+                    + " ".join(f"{k}={v:.0f}s" for k, v in slow) + "\n")
+    except OSError:
+        pass
+    if args.baseline:
+        import run_triage
+        run_triage.mark_triaged(it["item_id"] for it in new_total)
+        print(f"기준선 기록 {len(new_total)}건 — 알림·판정 없음")
+        return 0
+    # 뒤 단계(규칙 선알림·빠른 길·P1 묶음)는 다시 잠금 — 두 회차가 같은 항목을 겹쳐 보내지 않게. 앞 단계가 잡고 있으면 잠깐 기다린다
+    for _ in range(60):
+        if acquire_lock():
+            break
+        time.sleep(2)
+    else:
+        print("뒤 단계 잠금 대기 2분 초과 — 새 항목은 안전망(fast_sweep)·다음 판정이 처리")
+        new_total = []
+    try:
         if new_total:
             sent = deterministic_p0(new_total)
             if sent:
@@ -535,12 +578,53 @@ def main(argv=None):
             print(f"빠른 길 안전망 {len(late)}건 재판정 · 발송 {len(fast)}건")
         notify.flush_p1()
         prune_inbox()
-        if new_total and not args.no_triage:
-            import run_triage
-            run_triage.main([])
-        return 0
     finally:
         LOCK.unlink(missing_ok=True)
+    # 모델 판정은 수집 잠금을 푼 뒤에 — 판정이 몇 분 걸려도 다음 수집 회차(2분 간격)가 막히지 않는다(2026-11-26).
+    # 판정끼리는 겹치지 않게 별도 잠금. 판정 중이면 건너뛴다 — 새 항목은 판정 안 된 채 남아 다음 판정이 함께 처리한다
+    if new_total and not args.no_triage and _triage_lock():
+        try:
+            import run_triage
+            run_triage.main([])
+        finally:
+            TRIAGE_LOCK.unlink(missing_ok=True)
+    return 0
+
+
+RUNNING = common.STATE / "running"
+
+
+def running(sid):
+    """이 원천을 다른 회차가 지금 수집 중인가 — 표시가 원천 한도+2분보다 오래되면 죽은 회차로 본다"""
+    p = RUNNING / sid
+    if not p.exists():
+        return False
+    return time_since(p) < (SOURCE_TIMEOUT_MIN + 2) * 60 * 2
+
+
+def time_since(p):
+    import time
+    return time.time() - p.stat().st_mtime
+
+
+def mark_running(sid):
+    RUNNING.mkdir(parents=True, exist_ok=True)
+    (RUNNING / sid).write_text(str(os.getpid()), encoding="utf-8")
+
+
+def done_running(sid):
+    (RUNNING / sid).unlink(missing_ok=True)
+
+
+def _triage_lock():
+    from datetime import datetime, timedelta
+    if TRIAGE_LOCK.exists():
+        age = common.now_kst() - datetime.fromtimestamp(TRIAGE_LOCK.stat().st_mtime, common.KST)
+        if age < timedelta(minutes=20):
+            print("다른 판정이 실행 중 — 이번 새 항목은 다음 판정이 처리")
+            return False
+    TRIAGE_LOCK.write_text(str(os.getpid()), encoding="utf-8")
+    return True
 
 
 if __name__ == "__main__":

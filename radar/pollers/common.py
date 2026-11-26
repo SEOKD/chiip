@@ -340,7 +340,8 @@ def _read_json(path, default):
 
 def _write_json(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(".tmp")
+    import threading
+    tmp = path.with_suffix(f".{os.getpid()}.{threading.get_ident()}.tmp")   # 원천 병렬 수집(2026-11-26) — 쓰는 쪽마다 다른 임시 파일
     tmp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
     tmp.replace(path)
 
@@ -353,7 +354,45 @@ def save_state(name, data):
     _write_json(STATE / f"{name}.json", data)
 
 
+class state_lock:
+    """공유 상태(seen·health·last_run) 읽고-고치고-쓰기를 프로세스 사이에서 한 번에 하나만(2026-11-26 Pulse 속도 점검 — 원천 병렬 수집).
+    잠금 파일을 O_EXCL로 만든다. 30초 넘게 남은 잠금은 죽은 프로세스의 것으로 보고 치운다. 10초 안에 못 얻으면 잠금 없이 진행(수집을 멈추지 않는다)"""
+    def __init__(self, name="state"):
+        self.p = STATE / f".{name}.lock"
+
+    def __enter__(self):
+        import time
+        self.mine = False
+        end = time.time() + 10
+        while time.time() < end:
+            try:
+                fd = os.open(str(self.p), os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.close(fd)
+                self.mine = True
+                return self
+            except FileExistsError:
+                try:
+                    if time.time() - self.p.stat().st_mtime > 30:
+                        self.p.unlink(missing_ok=True)
+                        continue
+                except OSError:
+                    pass
+                time.sleep(0.05)
+            except OSError:
+                break
+        return self
+
+    def __exit__(self, *a):
+        if self.mine:
+            self.p.unlink(missing_ok=True)
+
+
 def record_health(source_id, ok, error=None):
+    with state_lock():
+        _record_health(source_id, ok, error)
+
+
+def _record_health(source_id, ok, error=None):
     h = load_state("health")
     e = h.setdefault(source_id, {"last_ok": None, "last_error": None, "error_count": 0})
     if ok:
@@ -373,9 +412,10 @@ def is_due(source_id, interval_min):
 
 
 def mark_run(source_id):
-    s = load_state("last_run")
-    s[source_id] = iso(now_kst())
-    save_state("last_run", s)
+    with state_lock():
+        s = load_state("last_run")
+        s[source_id] = iso(now_kst())
+        save_state("last_run", s)
 
 
 def interval_for(tier, when=None):
@@ -420,6 +460,11 @@ def save_new_items(items):
     """처음 보는 항목만 inbox에 저장하고 반환. 저장 전 수집 관문(뉴스 7곳·포커스 종목, pollers/gate.py)을 거친다"""
     from . import gate
     items = gate.apply(items)
+    with state_lock():
+        return _save_new(items)
+
+
+def _save_new(items):
     seen = load_state("seen")
     new = []
     for it in items:

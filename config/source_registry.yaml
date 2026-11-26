@@ -895,7 +895,7 @@
   endpoint_doc: "https://news.google.com/rss"
   auth: none
   scope: [글로벌]
-  interval_min: 15
+  interval_min: 5   # 2026-11-26 속도 점검 — 가벼운 RSS, 감지 중앙값 35분이었다
   run_on: local
   language: en
   doc_type: 기사
@@ -929,7 +929,7 @@
   endpoint_doc: "https://news.google.com/rss"
   auth: none
   scope: [글로벌]
-  interval_min: 15
+  interval_min: 5   # 2026-11-26 속도 점검 — 가벼운 RSS, 감지 중앙값 35분이었다
   run_on: local
   language: ja
   doc_type: 기사
@@ -958,7 +958,7 @@
   endpoint_doc: "https://news.google.com/rss"
   auth: none
   scope: [글로벌]
-  interval_min: 15
+  interval_min: 5   # 2026-11-26 속도 점검 — 가벼운 RSS, 감지 중앙값 35분이었다
   run_on: local
   language: en
   doc_type: 기사
