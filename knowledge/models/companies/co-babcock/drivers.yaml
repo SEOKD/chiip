@@ -1,0 +1,103 @@
+auto: true
+id: co-babcock
+name: Babcock & Wilcox
+ticker: BW
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.71
+  ROW: 0.29
+tax: 0.24
+horizon: 10
+as_of: '2026-11-26'
+market:
+  date: '2026-11-26'
+  price: 3.74
+  shares: 0.148389
+  net_debt: 0.367741
+  source: 가격 = 2026-11-25 종가 $3.74(TradingView 실측 일봉) · 주식 수 145,446,002주(3Q26 10-Q
+    표지, 2026-11-03) · 현금 $71.2M(제한 현금 $57.7M 제외) · 차입성 부채 $438.9M = 차입·선순위 채권 장부가
+    $202.5M(원금 $180.5M + 미상각 프리미엄 $22.0M) + 금융리스 $27.3M + 운용리스 $17.4M + 7.75% 시리즈
+    A 우선주 청산가 $191.7M(보통주보다 앞서는 청구권이라 차입에 더했다). 연금·퇴직급여 부채 $153.0M은 넣지 않았다 — 약세 논리에서
+    따로 다룬다
+rev0: 1.12
+ic0: 0.2856
+scenarios:
+  base:
+    prob: 0.25
+    growth:
+      start: 0.2054
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.021
+      target: 0.072
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.069
+      - 0.072
+    s2c: 3.0
+  bull:
+    prob: 0.35
+    growth:
+      start: 0.3191
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.021
+      target: 0.0975
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.069
+      - 0.072
+    s2c: 3.45
+  bear:
+    prob: 0.4
+    growth:
+      start: 0.1338
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.021
+      target: 0.0465
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.069
+      - 0.072
+    s2c: 2.55
+mc:
+  sigma_growth: 0.0463
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 컨센서스 FY2026 1.12
+  growth: 컨센서스 1년차 20.5%, 2년차 40.7%
+  margin: 1~2년차 컨센서스 6.9%, 7.2% 고정 → 목표 7%(3년차) → 장기 수렴 15%
+  s2c: 재무 재구성 증분 매출/투하자본 3.0
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 13.4%~31.9%
+  probs: '근거 계산 {''bear'': 0.4, ''base'': 0.25, ''bull'': 0.35} — 다음 해 매출 성장 분포로 계산
+    — 약세 +17.0% 아래·강세 +26.2% 위 확률. 내부 관점(컨센서스 +20.5%, σ 13.5%: 범위 18.5% ÷ d2(4) ×
+    1.5) 100% — 외부 관점 꺼짐(SEC 전 상장사 표본 없음)'
+  shares: '완전 희석 = 기본 0.145446002(2026-11-03) + 옵션·RSU·워런트·전환 0.0029 — 3Q26 10-Q:
+    미가득 RSU 294.3만 주(미인식 비용 $18.9M). 고객 워런트 1,046만 주('
+notes:
+- 자동 생성(build_drivers) 2026-11-26 — 데이터 묶음 2026-11-26
+- '어닝콜 위험: Base Electron 한 고객에 잔고의 87%·매출채권 $147.8M 집중'
+- '어닝콜 위험: 현장 숙련 인력(용접·배관·전기) 부족으로 시공 원가 상승 — 2Q·3Q 연속 한 프로젝트에서 발생'
+- '어닝콜 위험: 데이터센터 인허가·주민 반발과 선거 뒤 주 정부 규제 강화'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/1630805/000163080526000080/e-2026q3earningsrelease.htm
+- https://www.sec.gov/Archives/edgar/data/1630805/000163080526000082/bw-20260930.htm
+- https://www.sec.gov/Archives/edgar/data/1630805/000163080526000018/bw-20251231.htm
+- https://www.sec.gov/Archives/edgar/data/1630805/000110465926042128/tm261491-4_def14a.htm
+- https://www.sec.gov/Archives/edgar/data/1630805/000163080526000068/bw-20260630.htm
+- 3Q26 어닝콜(2026-11-09)·2Q26 어닝콜(2026-08-10)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com
