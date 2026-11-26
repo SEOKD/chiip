@@ -1,0 +1,15 @@
+# Chiip Breadth — S&P 500·NASDAQ 100 시장 폭 경보(마스터 지시 2026-11-26 "경보형으로 구축"). 엔진 radar/breadth.py
+# 매 거래일 장 마감 뒤 계산은 하고, 아래 문턱을 '새로 넘은 날'에만 그림 1장을 보낸다. 문턱은 사전값 — 표본이 쌓이면 등록부로 옮겨 피팅한다.
+indices:
+  spx: {name: S&P 500, etf: IVV, fred: SP500}
+  ndx: {name: NASDAQ 100, etf: QQQ, fred: NASDAQ100}
+days_chart: 130          # 그림 구간(약 2분기)
+alerts:
+  ma200_cross: 50        # 200일선 위 비율이 50%를 위·아래로 돌파
+  ad20_low: 80           # 20일 등락비율이 80 아래로 진입
+  ad20_high: 130         # 130 위로 진입(과열)
+  new_low_pct: 10        # 신저가 종목 비율 10% 이상으로 진입
+  diverge_index_gap: 1.0 # 지수가 52주 고점 1% 안인데
+  diverge_ma200_max: 60  #   200일선 위 비율이 60% 미만(좁은 상승)
+  dd30_jump_pp: 5        # 고점 대비 -30% 밑 비율이 5거래일 사이 5%p 이상 늘어남
+  cooldown_days: 10      # 같은 종류 경보는 10거래일에 한 번(2026-11-26 백테스트: 쿨다운 없이 160일 34회 → 너무 잦음)
