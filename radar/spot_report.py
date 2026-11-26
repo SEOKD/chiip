@@ -51,8 +51,7 @@ def tf_points(kind, since):
         pts = q + [(date.fromisoformat(r["date"]), float(r["avg"])) for r in rdimm_spot.tf_read() if date.fromisoformat(r["date"]) < first]
     else:
         import trendforce_spot
-        pts = [(date.fromisoformat(r["date"]), float(r["avg"])) for r in trendforce_spot.read_rows() if r["item"] == SPEC[kind]["tf_item"] and r["avg"] not in ("", None)
-               and not str(r.get("source", "")).startswith("tg:")]   # 텔레그램 채널(Badonions) 보강 값은 쓰지 않는다 — 레퍼런스일 뿐(2026-11-23 마스터 지시)
+        pts = trendforce_spot.wafer_series(SPEC[kind]["tf_item"])   # 주간 인사이트 글 정본 + 빈 주만 공개표·아카이브(2026-11-26). 채널(Badonions) 값은 쓰지 않는다
     return sorted(p for p in set(pts) if p[0] >= since)
 
 

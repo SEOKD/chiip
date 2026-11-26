@@ -75,5 +75,26 @@ class TrendForceSpot(unittest.TestCase):
             self.assertEqual(s["n"], 2)
 
 
+
+
+class TestInsights(unittest.TestCase):
+    """TrendForce 주간 인사이트 글 → 512Gb TLC 웨이퍼(2026-11-26 마스터 지시 "다른 파이프라인을 찾아라")"""
+    def test_price_and_week_monday(self):
+        import trendforce_spot as T
+        r = T.parse_insight("<p>Spot prices of 512Gb TLC wafers dropped by 9.19% this week (October 26), with average quotations arriving at US$16.883.</p>", "2026-10-28T15:15:17")
+        self.assertEqual((r["date"], r["avg"], r["chg"]), ("2026-10-26", 16.883, -9.19))
+
+    def test_change_only_and_wrong_paren_date(self):
+        import trendforce_spot as T
+        r = T.parse_insight("<p>Spot prices of 512Gb TLC wafers rose 4.55% this week (November 9).</p>", "2026-11-18T10:00:00")
+        self.assertEqual((r["date"], r["avg"], r["chg"]), ("2026-11-16", None, 4.55))   # 괄호 날짜가 아니라 글이 올라온 주 월요일
+
+    def test_series_drops_typo(self):
+        import trendforce_spot as T
+        rows = [{"date": "2026-06-08", "item": "Wafer 512Gb TLC", "avg": "20.638", "chg": "-0.22", "source": "tf-insights"},
+                {"date": "2026-06-15", "item": "Wafer 512Gb TLC", "avg": "21.431", "chg": "-1.0", "source": "tf-insights"}]   # 글의 -1.00%와 맞지 않는 값
+        self.assertEqual([str(d) for d, _ in T.wafer_series(rows=rows)], ["2026-06-08"])
+
+
 if __name__ == "__main__":
     unittest.main()

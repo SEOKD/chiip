@@ -18,6 +18,7 @@ NAND 품목(2026-11-23): NAND 칸은 'Wafer Spot'표의 512Gb TLC 웨이퍼(IB �
       py radar/trendforce_spot.py --backfill-wafer [2025-12-01]   # 웨이퍼표 과거값(아카이브 플래시 페이지 다시 읽기)
       py radar/trendforce_spot.py --backfill [2025-12-01]
       py radar/trendforce_spot.py --chart [시작일]
+      py radar/trendforce_spot.py --insights [쪽수]    # TrendForce 주간 인사이트 글에서 512Gb TLC 웨이퍼 주간값(기본 3쪽 = NAND 태그 글 약 300건)
 """
 import csv
 import json
@@ -148,6 +149,10 @@ def run():
         except Exception as e:
             errs.append(f"{k} {type(e).__name__}")
     n = merge(got) if got else 0
+    try:   # 웨이퍼 주간값 — TrendForce 주간 인사이트 글(2026-11-26)
+        n += insights_update()
+    except Exception as e:
+        errs.append(f"insights {type(e).__name__}")
     try:   # 웨이퍼 주간값 보강 — 수집기가 받아 둔 채널 글에서(네트워크 없음)
         if REF_FILL:
             n += wafer_fill()
@@ -157,6 +162,105 @@ def run():
     st["last_run"] = common.iso(common.now_kst())
     common.save_state(STATE, st)
     return f"TrendForce 현물 {len(got)}행 · 새 날짜 {n}" + (f" · 문제 {', '.join(errs)}" if errs else "")
+
+
+# ---------- TrendForce 주간 인사이트 글(2026-11-26 마스터 지시 "NAND 512Gb TLC 가격 집계가 제대로 안 된다. 다른 파이프라인을 찾아라") ----------
+# 공개 현물표는 그 주 값만 보여 주고 아카이브 스냅숏은 듬성듬성이다(19주). TrendForce 뉴스의 주간 '[Insights] Memory Spot Price Update' 글이
+# 512Gb TLC 웨이퍼 주간 평균가를 정확한 값으로 적는다 → WordPress 공개 목록(NAND 태그, robots 허용, 검색 API는 쓰지 않는다)에서 글을 받아 문장을 읽는다.
+NEWS_API = "https://www.trendforce.com/news/wp-json/wp/v2/posts"
+NAND_TAG = 1178
+NAND_CAT = 13          # 뉴스 카테고리 'NAND Flash' — 태그(NAND)에는 빠진 주간 글이 있다
+SENT_RE = re.compile(r"[^.]*?512Gb TLC wafers?(?:[^.]|\.\d)*", re.S)
+DOWN_RE = re.compile(r"drop|fell|fall|declin|down|slip|dip|sink|sank|slid|decreas|lower|retreat|eas", re.I)
+
+
+def parse_insight(html_text, posted):
+    """글 본문 → {date(글이 올라온 주 월요일), avg 또는 None, chg 또는 None, said}. 512Gb TLC 문장이 없으면 None.
+    가격은 그 문장(없으면 NAND 단락 뒤 600자) 안의 첫 'US$', 변화율은 그 문장의 첫 'n%'와 방향 동사.
+    괄호 날짜는 쓰지 않는다 — 11/18 글이 'November 9', 11/25 글이 'November 16'처럼 한 주씩 틀린 적이 있다(공개표와 대조, 2026-11-26)"""
+    import html as H
+    t = re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", " ", html_text)))
+    m = SENT_RE.search(t)
+    if not m:
+        return None
+    sent = m.group(0)
+    pc = re.search(r"([\d.]+)\s?%", sent)
+    chg = None
+    if pc:
+        chg = float(pc.group(1).rstrip("."))
+        if DOWN_RE.search(sent[:pc.start()][-60:]) or DOWN_RE.search(sent[:pc.start()]):
+            chg = -chg
+    px = re.search(r"US\$\s?(\d+(?:\.\d+)?)", sent)
+    in_sent = bool(px)
+    if not px:   # 문장 밖이면 '512Gb'가 다시 나오는 뒤 문장 안에서만
+        nxt = re.search(r"512Gb[^.]*(?:\.\d[^.]*)*", t[m.end():m.end() + 800])
+        px = re.search(r"US\$\s?(\d+(?:\.\d+)?)", nxt.group(0)) if nxt else None
+    pd = date.fromisoformat(posted[:10])
+    wk = pd - timedelta(days=pd.weekday())
+    paren = re.search(r"\(([A-Z][a-z]+\.? \d{1,2})\)", sent)
+    return {"date": wk.isoformat(), "item": "Wafer 512Gb TLC", "avg": float(px.group(1)) if px else None, "chg": chg, "said": paren.group(1) if paren else "", "in_sent": in_sent or bool(px)}
+
+
+def insights_update(pages=1, pause=2.0):
+    """NAND Flash 카테고리 최신 글 pages×100건의 주간 인사이트에서 512Gb TLC 웨이퍼 값을 더한다 → 새로 더한 행 수.
+    가격이 적힌 주는 그 값(source tf-insights), 변화율만 적힌 주는 직전 주 값 × (1+변화율)로 잇는다(source tf-insights-chg, 파생값)"""
+    found, seen = [], set()
+    for key, val in (("categories", NAND_CAT), ("tags", NAND_TAG)):   # 카테고리·태그 어느 한쪽에만 붙은 주간 글이 있다 — 둘 다 훑는다
+        for pg in range(1, pages + 1):
+            rows = json.loads(common.http_get(NEWS_API, {key: val, "per_page": 100, "page": pg, "_fields": "date,link,title,content"}, timeout=60).decode("utf-8"))
+            for x in rows:
+                if "Memory Spot Price Update" in x["title"]["rendered"] and x["link"] not in seen:
+                    seen.add(x["link"])
+                    r = parse_insight(x["content"]["rendered"], x["date"])
+                    if r:
+                        found.append({**r, "updated": x["date"], "url": x["link"]})
+            if len(rows) < 100:
+                break
+            time.sleep(pause)
+    found.sort(key=lambda r: r["date"])
+    out, prev = [], None
+    for r in found:
+        near = prev and (date.fromisoformat(r["date"]) - date.fromisoformat(prev["date"])).days <= 8
+        if r["avg"] is not None and near and r["chg"] is not None and abs((r["avg"] / prev["avg"] - 1) * 100 - r["chg"]) > 2:
+            r["avg"] = None   # 글의 다른 품목 가격(1Tb 등)을 집었거나 오기 — 변화율로 잇는다
+        if r["avg"] is not None and near and r["chg"] is None and not 0.7 < r["avg"] / prev["avg"] < 1.3:
+            r["avg"] = None
+        if r["avg"] is not None and not near and not r.get("in_sent"):
+            r["avg"] = None
+        if r["avg"] is not None:
+            src = "tf-insights"
+        elif prev and r["chg"] is not None and (date.fromisoformat(r["date"]) - date.fromisoformat(prev["date"])).days <= 8:
+            r["avg"], src = round(prev["avg"] * (1 + r["chg"] / 100), 3), "tf-insights-chg"
+        else:
+            prev = None
+            continue
+        row = {"date": r["date"], "item": r["item"], "avg": r["avg"], "chg": "" if r["chg"] is None else r["chg"], "updated": r["updated"],
+               "table": "Wafer Spot", "high": "", "low": "", "source": src, "url": r["url"]}
+        out.append(row)
+        prev = row
+    return merge(out) if out else 0
+
+
+def wafer_series(item="Wafer 512Gb TLC", rows=None):
+    """그림용 웨이퍼 주간 시계열 [(date, avg)] — 주간 인사이트 글(주 날짜가 글에 명시)을 정본으로.
+    ① 인사이트 값이 글에 적힌 주간 변화율과 2%p 넘게 어긋나면(오기 의심) 뺀다
+    ② 공개표(live)·아카이브 값은 인사이트가 없는 주(±3일)만 채운다"""
+    rows = [r for r in (rows if rows is not None else read_rows()) if r["item"] == item and r.get("avg") not in ("", None)
+            and not str(r.get("source", "")).startswith("tg:")]
+    ins = sorted((date.fromisoformat(r["date"]), float(r["avg"]), r.get("chg")) for r in rows if str(r.get("source")).startswith("tf-insights"))
+    keep = []
+    for d, v, c in ins:
+        if keep and c not in ("", None) and (d - keep[-1][0]).days <= 8 and abs((v / keep[-1][1] - 1) * 100 - float(c)) > 2:
+            continue   # 직전 주 대비 실제 변화가 글의 변화율과 2%p 넘게 다르다 — 오기 의심
+        keep.append((d, v))
+    for r in rows:
+        if str(r.get("source")).startswith("tf-insights"):
+            continue
+        d = date.fromisoformat(r["date"])
+        if any(abs((d - k).days) <= 3 for k, _ in keep):
+            continue
+        keep.append((d, float(r["avg"])))
+    return sorted(set(keep))
 
 
 def backfill(since="2025-12-01", pause=6.0, done_key="wb_done", targets=None):
@@ -350,7 +454,9 @@ def caption(summ, compare=()):
 
 def main(argv):
     sys.stdout.reconfigure(encoding="utf-8")
-    if argv[:1] == ["--wafer-fill"]:   # 공개 채널 주간 글로 웨이퍼 빈 주 채우기(공개 미리보기를 거슬러 읽는다)
+    if argv[:1] == ["--insights"]:
+        print(f"[TrendForce] 주간 인사이트 새 날짜 {insights_update(int(argv[1]) if len(argv) > 1 else 3)}행")
+    elif argv[:1] == ["--wafer-fill"]:   # 공개 채널 주간 글로 웨이퍼 빈 주 채우기(공개 미리보기를 거슬러 읽는다)
         if not REF_FILL:
             raise SystemExit("[TrendForce] 채널 보강은 꺼져 있다 — Badonions는 참조용(2026-11-23 마스터 지시)")
         print(f"[TrendForce] 웨이퍼 보강 새 날짜 {wafer_fill(argv[1] if len(argv) > 1 else '2026-01-01')}행")
