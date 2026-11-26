@@ -23,7 +23,54 @@ TONE = {"Attractive": "red", "Cautious": "blue", "In-Line": ""}
 CYCLE = {"weekly": "주간 산업", "quarterly": "분기 결산"}
 
 
+SUP = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
+SRC_HINT = re.compile(r"요지|콜|공시|보도|자료|리포트|장부|전사본|보고서|발표|IR|10-[KQ]|8-K|Fiscal|\d{4}-\d{2}")
+
+
+def _tail_paren(s):
+    """문장 끝 괄호(중첩 허용) — (본문, 괄호 속) 또는 None"""
+    s = s.rstrip()
+    if not s.endswith(")"):
+        return None
+    depth = 0
+    for i in range(len(s) - 1, -1, -1):
+        depth += {")": 1, "(": -1}.get(s[i], 0)
+        if depth == 0:
+            inner, body = s[i + 1:-1], s[:i].rstrip()
+            return (body, inner) if body and SRC_HINT.search(inner) else None
+    return None
+
+
+def footnotes(d):
+    """본문 끝 출처 괄호를 각주로 뺀다(2026-11-26 마스터 지시 "출처 괄호 표시를 하지 마라. 각주로 빼서 맨 아래 소형 폰트로")
+    대상: 본문 블록 text·items, 한 장 요약 답. 같은 출처는 같은 번호."""
+    notes = []
+
+    def cut(s):
+        if not isinstance(s, str):
+            return s
+        m = _tail_paren(s)
+        if not m:
+            return s
+        body, src = m
+        if src not in notes:
+            notes.append(src)
+        return body + str(notes.index(src) + 1).translate(SUP)
+
+    for s in d.get("summary") or []:
+        s["a"] = cut(s.get("a"))
+    for sec in d.get("sections") or []:
+        for b in sec.get("blocks") or []:
+            if "text" in b:
+                b["text"] = cut(b["text"])
+            if isinstance(b.get("items"), list):
+                b["items"] = [cut(x) for x in b["items"]]
+    return notes
+
+
 def render(d):
+    d = json.loads(json.dumps(d, ensure_ascii=False))
+    notes = footnotes(d)
     for key in ("title", "date", "industry", "event"):
         if not d.get(key):
             raise ValueError(f"필수 항목 없음: {key}")
@@ -54,6 +101,9 @@ def render(d):
     parts.append('<nav class="toc">' + "".join(f'<a href="#s{i}">{t(n)}</a>' for i, n in enumerate(names)) + "</nav>")
     for i, s in enumerate(d.get("sections") or []):
         parts.append(f"<section id=\"s{i}\"><h2>{t(s.get('h2'))}</h2>" + "".join(rh.block(b) for b in s.get("blocks") or []) + "</section>")
+    if notes:
+        parts.append('<div class="foot" style="font-size:11px;line-height:1.5"><b>각주</b><br>'
+                     + "<br>".join(f"{str(i).translate(SUP)} {t(n)}" for i, n in enumerate(notes, 1)) + "</div>")
     src = "; ".join(t(x) for x in d.get("sources") or [])
     parts.append(f'<div class="foot">출처: {src or "미기재"}<br>{DISCLAIMER}</div></div>{rh.FIT_JS}</body></html>')
     return rh.money_units(rh.fx_units(rh.chiip_name("".join(parts).replace("치입 판단", "Chiip View"))))
