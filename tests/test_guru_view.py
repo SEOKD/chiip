@@ -144,7 +144,8 @@ class TestSection(unittest.TestCase):
 class TestSummary(unittest.TestCase):
     def test_summary_item(self):
         s = gv.summary_item(dict(DP, guru=guru()), None, c=CFG, liq=LIQ)
-        self.assertEqual(s["q"], "구루 여섯 관점으로 보면 어떤가?")
+        self.assertEqual(s["q"], gv.Q)
+        self.assertTrue(s["a"].startswith("**피터 린치 분류:**"))   # 린치는 구루 줄 안(2026-11-27)
         self.assertTrue(s["auto"])
         self.assertIn("**통과 4 · 미달 1 · 미확인 1**", s["a"])
         self.assertIn("판단 기간 7년, 그 안에 10배면 연 38.9%가 필요하다", s["a"])
@@ -153,17 +154,40 @@ class TestSummary(unittest.TestCase):
 
     def test_summary_without_judgment(self):
         s = gv.summary_item(DP, None, c=CFG, liq=LIQ)
-        self.assertTrue(s["a"].startswith("판정 미확인"))
+        self.assertIn("여섯 관점 판정 미확인", s["a"])
         self.assertIn("ROIC 15.0%", s["a"])
 
 
 class TestWiring(unittest.TestCase):
     def test_layout_calls_guru_view_after_lynch(self):
         src = (ROOT / "scripts" / "tenbagger" / "report_layout.py").read_text(encoding="utf-8")
-        self.assertLess(src.index("auto.append(lynch.summary_item(dp))"), src.index("auto.append(guru_view.summary_item("))
-        self.assertLess(src.index("out.append(lynch.section(dp))"), src.index("out.append(guru_sec)"))
+        self.assertNotIn("auto.append(lynch.summary_item(dp))", src)   # 린치는 구루 안으로(마스터 지시 2026-11-27)
+        self.assertNotIn("out.append(lynch.section(dp))", src)
         self.assertLess(src.index("out.append(guru_sec)"), src.index("moat_section(dp), leader_view.report_section"))
         self.assertIn("guru_view.GATE_FROM", src)
+
+    def test_lynch_inside_guru_section(self):
+        sec = gv.section(dict(DP, guru=guru()), None, c=CFG, liq=LIQ)
+        h3 = [b["text"] for b in sec["blocks"] if b["type"] == "h3"]
+        self.assertTrue(any(t.startswith("피터 린치 분류") for t in h3))
+
+    def test_people_pack_line(self):
+        import people_pack as pp
+        self.assertIn("people_pack 없음", pp.line(None))
+        l = pp.line({"form4_12m": {"filings": 5, "buy_n": 1, "buy_usd": 2e6, "sell_n": 2, "sell_usd": 1e6, "sell_planned_n": 2}, "proxy": {"date": "2026-03-01"}})
+        self.assertIn("장내 매수 1건 $2.0M", l)
+        self.assertIn("사전 계획 2건", l)
+        self.assertIn("위임장 2026-03-01", l)
+        x = '<nonDerivativeTransaction><transactionCode>S</transactionCode><transactionShares><value>100</value></transactionShares><transactionPricePerShare><value>10</value></transactionPricePerShare></nonDerivativeTransaction><aff10b5One>1</aff10b5One>'
+        self.assertEqual(pp.form4(x), [("S", 1000.0, True)])
+
+    def test_broad_reinvestment(self):
+        import playbook as pb
+        dp = {"financials": {"rev_ttm": 10, "ebit_ttm": 2, "invested_capital": 8, "capex_ttm": 0.5, "da_ttm": 0.5, "rnd_ttm": 1, "acq_ttm": 0.5}, "tax": 0.0}
+        a = pb.arithmetic(dp)
+        self.assertEqual(a["reinvest_rate"], 0.0)
+        self.assertEqual(a["reinvest_broad"], 0.5)   # (0 + 0.5 + 1) ÷ (2 + 1)
+        self.assertEqual(a["rnd_share"], 0.1)
 
     def test_gate_date_and_wording(self):
         self.assertRegex(gv.GATE_FROM, r"^\d{4}-\d{2}-\d{2}$")

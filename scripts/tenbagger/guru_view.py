@@ -1,6 +1,9 @@
 """구루 교차 점검 — 여섯 관점 (Analysis 리포트 절 · 한 장 요약 한 줄. 마스터 지시 2026-11-21 → 2026-11-22 "넣어라", ADR-050)
 
-배치: 한 장 요약 '피터 린치라면 어느 분류인가?' 다음 줄, 본문 '피터 린치 분류' 다음 절.
+배치: 한 장 요약 한 줄(린치 분류를 앞에 붙인다), 본문 한 절 — 피터 린치 분류는 이 절 안 첫 소절이다(마스터 지시 2026-11-27 "피터린치 항목을 구루들 평가 항목에 넣어라").
+미확인을 줄이는 재료(2026-11-27): 사람 = datapack people_pack(py scripts/tenbagger/people_pack.py <id> --write — Form 4·위임장),
+재투자 = financials.acq_ttm(인수 지출)·rnd_ttm(연구개발) → 넓은 재투자율. 판정이 갈릴 때는 무게가 실린 쪽으로 통과·미달을 쓰고 이유에 반대 근거를 적는다 —
+미확인은 판정할 재료 자체가 없을 때만 쓴다.
 숫자는 scripts/tenbagger/playbook.py가 계산하고(결정론) 판정은 모델이 datapack "guru"에 쓴다.
 datapack "playbook"(투자 포인트·모멘텀 타임라인·가격 틀 — playbook_view.py)과 다른 칸이다. 이름이 비슷해 헷갈리지 않게 여기는 "guru"다.
 
@@ -22,11 +25,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import lynch  # noqa: E402
+import people_pack  # noqa: E402
 import playbook  # noqa: E402
 
 GATE_FROM = "2026-11-23"   # 이 날짜 리포트부터 datapack guru 필수(2026-11-22 마스터 "넣어라" — 진행 중인 당일 회차는 멈추지 않게 하루 뒤부터)
 H2 = "구루 교차 점검"
-Q = "구루 여섯 관점으로 보면 어떤가?"
+Q = "구루들은 어떻게 보는가 — 피터 린치 분류와 여섯 관점"
 ORDER = ("runway", "moat_returns", "reinvestment", "people", "change", "mispricing")
 KO = {"pass": "통과", "fail": "미달", "unknown": "미확인"}
 UNKNOWN = "미확인"
@@ -46,7 +51,7 @@ def check(dp, c=None):
     return fails
 
 
-def numbers(a, liq, wacc=None, hz=None):
+def numbers(a, liq, wacc=None, hz=None, pp=None):
     """관점별 스크립트 숫자 한 줄 — 칸이 없으면 '미확인'"""
     rp = a.get("rev_path")
     run = (f"매출 경로 {rp['from']}→{rp['to']} 연 {_pct(rp['cagr'])}, 2배까지 {a['years_to_double']}년" if rp and a.get("years_to_double") is not None
@@ -56,11 +61,13 @@ def numbers(a, liq, wacc=None, hz=None):
         rein = "설비 재투자율 0%(설비투자가 감가상각 이하 — 연구개발·인수로 하는 재투자는 이 숫자에 없다)"
     else:
         rein = f"설비 재투자율 {_pct(a.get('reinvest_rate'))} · 지속 가능 성장 {_pct(a.get('sustainable_growth'))}(근사)"
+    if a.get("reinvest_broad") is not None:
+        rein += f" · 넓은 재투자율 {_pct(a['reinvest_broad'])}(설비 + 인수 + 연구개발)" + (f" · 연구개발 매출의 {_pct(a['rnd_share'])}" if a.get("rnd_share") is not None else "")
     rein += f" · 소유주 이익 수익률 {_pct(a.get('owner_earnings_yield'))}(근사)"
     chg = f"2년 뒤 EPS {_pct(a.get('eps_change_24m'), True)}(다음 12개월 대비) · 유동성 국면 {liq[0]}"
     y = hz if isinstance(hz, (int, float)) and hz > 0 else 7
     mis = f"{y:g}년에 5배 = 연 {_pct(playbook.cagr(5, y))} · 10배 = 연 {_pct(playbook.cagr(10, y))}" + (f" · Fwd P/E {a['pe_fwd']:.1f}배" if isinstance(a.get("pe_fwd"), (int, float)) else "")
-    return {"runway": run, "moat_returns": moat, "reinvestment": rein, "people": "서류로 확인(계산 없음)", "change": chg, "mispricing": mis}
+    return {"runway": run, "moat_returns": moat, "reinvestment": rein, "people": people_pack.line(pp), "change": chg, "mispricing": mis}
 
 
 def conflicts(g, a, wacc=None):
@@ -103,14 +110,16 @@ def _materials(dp, entity, c, liq):
 def summary_item(dp, entity=None, wacc=None, c=None, liq=None):
     c, a, liq = _materials(dp, entity, c, liq)
     g = (dp or {}).get("guru")
-    num = numbers(a, liq, wacc, (g or {}).get("horizon_years"))
+    num = numbers(a, liq, wacc, (g or {}).get("horizon_years"), (dp or {}).get("people_pack"))
+    ly = lynch.summary_item(dp or {})["a"]
+    ly = "**피터 린치 분류:** " + ly + " "
     if not isinstance(g, dict):
-        return {"q": Q, "a": f"판정 미확인 — 계산한 숫자만 싣는다. {num['runway']} · {num['moat_returns']} · {num['change']}.", "auto": True}
+        return {"q": Q, "a": ly + f"여섯 관점 판정 미확인 — 계산한 숫자만 싣는다. {num['runway']} · {num['moat_returns']} · {num['change']}.", "auto": True}
     n = _counts(g)
     ds = g.get("dissent") or {}
     weak = (c["views"].get(ds.get("view")) or {}).get("name")
     hz = g.get("horizon_years")
-    txt = f"**통과 {n['pass']} · 미달 {n['fail']} · 미확인 {n['unknown']}**(여섯 관점). "
+    txt = ly + f"**통과 {n['pass']} · 미달 {n['fail']} · 미확인 {n['unknown']}**(여섯 관점). "
     if weak:
         txt += f"가장 약한 관점은 {weak} — {str(ds.get('why') or '').rstrip('.')}. "
     if isinstance(hz, (int, float)) and hz > 0:
@@ -127,7 +136,7 @@ def section(dp, entity=None, wacc=None, c=None, liq=None):
     has = isinstance(g, dict)
     g = g if has else {}
     hz = g.get("horizon_years")
-    num = numbers(a, liq, wacc, hz)
+    num = numbers(a, liq, wacc, hz, (dp or {}).get("people_pack"))
     views, src = g.get("views") or {}, []
     boxes = []   # 관점마다 설명 박스 하나 — 글이 긴 칸을 표에 넣으면 오른쪽 정렬로 읽기 어렵다(2026-11-22 화면 확인)
     for k in ORDER:
@@ -148,6 +157,9 @@ def section(dp, entity=None, wacc=None, c=None, liq=None):
     if has:
         B.append({"type": "p", "text": "판정은 자체추론이고 숫자는 계산값이다."})
     B.append({"type": "boxes", "items": boxes})
+    # 피터 린치 분류 — 구루 절 안 소절(마스터 지시 2026-11-27). 분류는 통과·미달 개수에 넣지 않는다(판정이 아니라 기대치 틀)
+    ls = lynch.section(dp or {})
+    B += [{"type": "h3", "text": "피터 린치 분류 — 크기·이야기 유형·기대 수익"}] + ls["blocks"]
     bad = conflicts(g, a, wacc)
     if bad:
         B.append({"type": "ul", "items": [f"숫자와 판정이 어긋난다: {x}" for x in bad]})

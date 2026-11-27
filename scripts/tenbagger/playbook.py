@@ -132,6 +132,15 @@ def arithmetic(dp, entity=None, c=None):
         out["sustainable_growth"] = round(out["roic"] * rr, 4) if out["roic"] is not None else None
     else:
         out["reinvest_rate"] = out["sustainable_growth"] = None
+    # 넓은 재투자(2026-11-27 — '재투자 복리' 미확인 18건의 원인: 설비투자만 봐서 자산이 가벼운 회사는 0%로 나왔다)
+    # = (순설비투자 + 인수 지출 + 연구개발) ÷ (NOPAT + 연구개발). 연구개발을 투자로 보는 Damodaran식 근사 — 칸이 없으면 None
+    acq, rnd = fin.get("acq_ttm"), fin.get("rnd_ttm")
+    if nopat is not None and isinstance(capex, (int, float)) and isinstance(da, (int, float)) and (isinstance(acq, (int, float)) or isinstance(rnd, (int, float))):
+        base = nopat + (rnd or 0)
+        out["reinvest_broad"] = round((max(0.0, capex - da) + (acq or 0) + (rnd or 0)) / base, 4) if base > 0 else None
+        out["rnd_share"] = round(rnd / fin["rev_ttm"], 4) if isinstance(rnd, (int, float)) and isinstance(fin.get("rev_ttm"), (int, float)) and fin["rev_ttm"] > 0 else None
+    else:
+        out["reinvest_broad"] = out["rnd_share"] = None
     # 소유주 이익 근사(버핏 1986: 이익 + 비현금 비용 − 유지 설비투자) — 유지 설비투자 = 감가상각으로 가정, 주식 보상은 비용으로 뺀다
     price, sh = prof.get("price"), prof.get("shares_basic")
     mcap = price * sh if isinstance(price, (int, float)) and isinstance(sh, (int, float)) else None

@@ -631,7 +631,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
     auto.append(supply_view.summary_item(dp))
     if capacity_sec:
         auto.append(capacity_view.summary_item(dp))
-    auto.append(lynch.summary_item(dp))   # 피터 린치 분류·기대 수익·팔 때(마스터 지시 2026-11-19)
+    # 피터 린치 분류는 구루 교차 점검 줄·절 안으로 옮겼다(마스터 지시 2026-11-27 "피터린치 항목을 구루들 평가 항목에 넣어라") — guru_view가 lynch를 부른다
     import guru_view   # 구루 교차 점검 — 여섯 관점(마스터 지시 2026-11-22 "넣어라", ADR-050). guru_view.GATE_FROM 이후 리포트는 datapack guru가 없으면 멈춘다
     if (dp or {}).get("guru"):
         if guru_view.check(dp):
@@ -720,8 +720,7 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
             out.append(part)
     money = lambda x: f"{cur}{x:,.2f}B"
     out += [x for x in [ma_view.section(dp)] if x]   # M&A 시너지(2026-11-03 마스터 지시)
-    out.append(lynch.section(dp))   # 피터 린치 분류 — 크기·이야기·기대 수익·점검표(마스터 지시 2026-11-19)
-    guru_sec = guru_view.section(dp, entity, guru_wacc)   # 구루 교차 점검 — 피터 린치 분류 다음(마스터 지시 2026-11-22)
+    guru_sec = guru_view.section(dp, entity, guru_wacc)   # 구루 교차 점검 — 피터 린치 분류를 안에 품는다(2026-11-22, 2026-11-27)
     for w in guru_sec.pop("_warnings"):
         print(f"[구루 점검 경고] {w}")
     d["sources"] = list(dict.fromkeys((d.get("sources") or []) + guru_sec.pop("_sources")))
