@@ -8,7 +8,7 @@ import re
 import sys
 from pathlib import Path
 
-HEAD = re.compile(r"^\S*\s*[①-⑳]\s.*｜")
+HEAD = re.compile(r"^(?:\S*\s*[①-⑳]\s.*|\*\*\S+\s+[^｜·■]+)｜")   # 원 숫자 머리(옛 양식) 또는 굵은 '이모지 회사｜' 머리(2026-11-20 마스터 지시 "①를 쓰지마라")
 CUT = re.compile(r"^(─{3,}|간단히$|그 외 새 건 없음)")
 LINK = re.compile(r"https?://|출처 미확인")
 NUM = re.compile(r"(?<![A-Za-z\d.,/-])\d[\d,.]*(?![\dQqHh/-])")   # 3Q·FY26·10/29는 값이 아니다
@@ -30,6 +30,22 @@ def blocks(text):
     return out
 
 
+SEC = re.compile(r"^\**■\s*(기업|결론|근거|반대·다음 확인|반대|다음 확인)\**$")
+
+
+def section_map(rest):
+    """■ 문단 이름 → 그 아래 줄 목록. ■기업 문단이 없으면 빈 dict(옛 양식)"""
+    out, cur = {}, None
+    for x in rest:
+        m = SEC.match(x)
+        if m:
+            cur = m.group(1)
+            out[cur] = []
+        elif cur:
+            out[cur].append(x)
+    return out if "기업" in out else {}
+
+
 def check(text):
     """(점검 이름, 머리줄, 내용) 목록"""
     out = []
@@ -37,10 +53,18 @@ def check(text):
         head, rest = b[0], b[1:]
         if not LINK.search("\n".join(b)):
             out.append(("link", head, "출처 링크 없음"))
-        if not rest or rest[0].startswith(("**", "·", "인사이트")):
-            out.append(("company", head, "사업 1줄 없음"))
-        evidence = [x[1:].strip() for x in rest if x.startswith("·")]
-        out += [("judgment", head, x) for x in (y.strip("*") for y in rest if y.startswith("**")) if len(x) > MAX_JUDGMENT]
+        sec = section_map(rest)
+        if sec:   # ■기업·■결론·■근거 문단 양식(2026-11-27 마스터 지시) — 근거 수·길이는 ■근거 문단만 잰다
+            if not [x for x in sec.get("기업", []) if x.startswith("·") and x[1:].strip()]:
+                out.append(("company", head, "사업 1줄 없음"))
+            evidence = [x[1:].strip() for x in sec.get("근거", []) if x.startswith("·")]
+            judg = [x.lstrip("·").strip().strip("*") for x in sec.get("결론", []) if x.strip("·* ")]
+        else:   # 옛 양식(기업: 줄)
+            if not rest or rest[0].startswith(("**", "·", "인사이트")):
+                out.append(("company", head, "사업 1줄 없음"))
+            evidence = [x[1:].strip() for x in rest if x.startswith("·")]
+            judg = [y.strip("*") for y in rest if y.startswith("**")]
+        out += [("judgment", head, x) for x in judg if len(x) > MAX_JUDGMENT]
         out += [("evidence", head, x) for x in evidence if len(x) > MAX_EVIDENCE]
         out += [("numbers", head, x) for x in evidence if len(NUM.findall(x)) > MAX_NUMBERS]
         if len(evidence) > MAX_LINES:

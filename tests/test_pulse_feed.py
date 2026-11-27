@@ -17,7 +17,7 @@ ITEM = {"icon": "⚡", "name": "Alphabet", "code": "GOOGL", "event": "3Q 보통�
 LOW = dict(ITEM, name="Meta", code="META", insight=4, conviction=4)
 
 
-OLD = {"company", "count"}
+OLD = set()   # 2026-11-27 평가기가 ■기업 양식을 읽도록 고쳐 제외 없음
 
 
 class TestBuild(unittest.TestCase):
@@ -34,7 +34,6 @@ class TestBuild(unittest.TestCase):
         self.assertLess(t.index(" Alphabet "), t.index(" Meta "))   # 번호 없이 인사이트 순(2026-11-20)
 
     def test_passes_format_check(self):
-        # 잠금 평가기의 company·count는 옛 양식(기업: 줄) 기준 — 2026-11-27 ■기업 양식으로 바뀌어 제외(재잠금은 마스터 몫)
         self.assertEqual([r for r in pulse_check.check(self.text()) if r[0] not in OLD], [])
         self.assertEqual(pulse_check.unlinked(self.text()), [])
 
@@ -56,6 +55,10 @@ class TestBuild(unittest.TestCase):
         self.assertIn("· 삼성전기 009150 — 판가 증거는 아직 없음 [보도](https://x.example/a)", t)
         self.assertNotIn("그 외 새 건 없음", t)   # 2026-11-13 마스터 지시 — Pulse 끝 두 줄 삭제
         self.assertNotIn("투자 권유가 아님", t)
+
+    def test_new_format_flags_missing_company(self):
+        t = pulse_feed.build({"time": "16:24", "items": [dict(ITEM, biz="")]})
+        self.assertIn("company", [r[0] for r in pulse_check.check(t)])
 
     def test_readable_keeps_section_with_its_list(self):
         self.assertIn("**■근거**\n· 1~3Q", notify.readable(self.text()))
