@@ -1,0 +1,97 @@
+id: us-viav
+name: Viavi Solutions
+ticker: VIAV
+unit: B$
+unit_usd: 1000000000
+industry: telecom_equipment
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-28'
+market:
+  date: '2026-11-27'
+  price: 28.15
+  shares: 0.263148
+  net_debt: 0.1619
+  source: 2026-11-28 Analysis 회차 갱신 — 가격 = 2026-11-27 종가 $28.15(TradingView 실측 일봉). 주식 수 263.1M = 기본 246.0M(2026-10-03) + 주식보상 7.9M + 2031년 전환사채 초과분 9.2M(전환가 $13.79, 원금 현금·초과분 주식 결제 — 1Q FY27 10-Q Note 3·11). 순차입 = 전환사채 원금 0.25 + 선순위채 원금 0.4 + 운영리스 0.0407 − 현금·단기투자 0.5288. 아래는 11/14 작성 때의 기록이다 —
+    가격 = 2026-11-13 종가 $30.72(Fiscal.ai company_stock_prices). 주식 수 245,922,122(2026-10-31 기본, Fiscal.ai shares_outstanding) — 콜 기준 완전 희석 266.2M은
+    전환사채 희석을 포함한 값으로 보여(미확인) 차입으로 두고 주식 수에는 넣지 않았다(이중 계산 방지). 순차입 = 차입 $0.6425B(유동 0.2451 + 장기 0.3974) − 현금 $0.5288B(FY27 1Q 10-Q 2026-10-03,
+    Fiscal.ai 표준화). 리스 부채는 이번 조회에 없음(미확인)
+rev0: 2.0489  # FY2027(2027-07 결산) Zacks 컨센서스 $2.0489B(4명). 1Q 실적 $469.3M, 2Q 회사 가이던스 기반 Fiscal 추정 약 $522M
+ic0: 1.438  # 자기자본 1.3243 + 차입 0.6425 − 현금 0.5288
+scenarios:
+  base:
+    prob: 0.45
+    growth:
+      start: 0.156
+      end: 0.035
+      decay: 0.87
+    margin:
+      m0: 0.106
+      target: 0.245
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - 0.245
+      - 0.267
+    s2c: 2.0
+  bull:
+    prob: 0.25
+    growth:
+      start: 0.22
+      end: 0.04
+      decay: 0.85
+    margin:
+      m0: 0.106
+      target: 0.28
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - 0.25
+      - 0.28
+    s2c: 2.4
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.08
+      end: 0.03
+      decay: 0.6
+    margin:
+      m0: 0.106
+      target: 0.18
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - 0.20
+      - 0.20
+    s2c: 1.5
+mc:
+  sigma_growth: 0.07
+  sigma_margin: 0.02
+  sigma_s2c: 0.3
+  sigma_wacc: 0.005
+provenance:
+  rev0: Zacks 컨센서스 FY2027 $2.0489B(범위 $2.040~2.056B, 4명). 콜에서 증권사(Stifel)가 '$2B 연 환산' 전망을 언급 — 회사 연간 가이던스 숫자는 미확인
+  growth: 'Zacks 컨센서스 FY2028 $2.368B(+15.6%), FY2029 $2.70B(+14.0%, 1명) → 기본. 컨센서스 범위가 좁아(FY28 $2.329~2.424B) 강세·약세는 판단: 강세 +22%(데이터센터 테스트·NPO/CPO 광 테스트 확산),
+    약세 +8%(데이터센터 테스트 수요 정점·무선 회복 지연). Data provided by Zacks Investment Research, Inc., www.zacksdata.com'
+  margin: 'm0 = LTM GAAP 영업이익률 10.6%(영업이익 $0.179B ÷ 매출 $1.689B, 1Q 단독 17.4%). 앵커 = Zacks EBIT(비GAAP) FY27 29.5%·FY28 31.7% − SBC·기타 약 5%p(추정, 근거 약함) = 24.5%·26.7%.
+    1Q 비GAAP 영업이익률 29%에는 관세 환급 약 $11M(약 110bp)이 들어 있다(회사)'
+  s2c: TTM 매출 ÷ 투하자본 1.17(Spirent 사업 인수 영업권 포함). 계측 장비는 증분 자본이 작다 → 2.0(추정)
+  probs: '약세 30 / 기본 45 / 강세 25 — 1Q 매출 $469.3M(가이던스 상단 $460M 초과, +56.9% YoY), 2Q NSE 약 +14% QoQ 가이던스(증권사 질문 기준). 반대 근거: 실적 뒤 목표가 하향 3건(Needham $60→$53, UBS $44→$33 Neutral, B. Riley $60→$50, 11/5~6)과 갭 하락,
+    성장의 일부는 Spirent 편입(1Q $52.7M)이라 유기 성장은 더 낮다, 주가 10/5 약 $47 → 11/13 $30.7'
+notes:
+- "신규 작성 2026-11-14(chiip-valuation-queue-2 18시 회차) — 대기열 ‘실적: [SEC 8-K 실적·기타 중요 사항] VIAVI SOLUTIONS INC. / 알파 5.1 기준 진입’"
+- '가장 약한 가정: 비GAAP → 경제적 마진 차감 5%p(SBC·기타) — 10-Q SBC·무형자산 상각 주석으로 확인. 전환사채 희석(266.2M vs 245.9M, 약 8%)도 미반영'
+- '내러티브(knowledge/narratives/companies/us-viav.md, 확산): CPO·1.6T 테스트가 숫자 전환 직전 — upside +1 제안, gap 0. IB 흐름: 실적 뒤 목표가 하향 3건(Needham·UBS·B. Riley), Zacks 등급 Strong Buy 상향(11/13), Zacks 목표가 평균 $55.8(9명, 범위 $33~70, 의견 1.3)
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com. 콜 Q&A 초점: 12월 분기 NSE 성장 지속성(Stifel), 데이터센터 제품 사이클·광 회로 스위치(OCS) 모니터링·위성 무선(Needham), NPO/CPO 매출 시점(Rosenblatt)'
+- "커뮤니티 관심: 집계 없음"
+- 컨센서스 대조 — manual_consensus.csv 미입력. 기본 경로 = Zacks 컨센서스와 같음
+evidence:
+- 'Fiscal.ai MCP 2026-11-14 18시 조회: company_stock_prices·shares_outstanding·financials_standardized(LTM·분기 손익, 재무상태)·analyst_estimates·analyst_ratings(Zacks
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·company_estimates·ir_events_transcript(q1-2027, 2026-11-04)'
+- Viavi SEC 공시 목록 https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=VIAV&type=10-Q
+- 내러티브 근거 knowledge/narratives/evidence/us-viav.json
