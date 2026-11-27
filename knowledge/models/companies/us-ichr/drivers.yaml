@@ -1,0 +1,98 @@
+id: us-ichr
+name: Ichor Holdings
+ticker: ICHR
+unit: B$
+unit_usd: 1000000000
+industry: semicap
+region_mix:
+  US: 1.0
+tax: 0.21
+horizon: 10
+as_of: '2026-11-14'
+market:
+  date: '2026-11-25'
+  price: 25.64
+  shares: 0.038696
+  net_debt: -0.0618
+  why: 2026-11-27 Analysis 회차에서 시세·주식 수만 갱신 — 가격 2026-11-25 종가 $25.64(TradingView 실측), 완전 희석 주식 = 기본 37,557,045(2026-09-25, 10-Q) + 미확정 RSU 1,139,100. 순차입(리스 포함)은 그대로
+  source: 가격 = 2026-11-13 종가 $35.72(Fiscal.ai company_stock_prices). 주식 수 37,576,306(2026-10-27, 10-Q 표지 — 희석 차이 미확인).
+    순차입 = 차입 $0.1191B(유동 6.3 + 장기 112.8) + 리스 $0.0327B(12.0 + 20.7) − 현금 $0.2135B(3Q 10-Q 2026-09-25, Fiscal.ai 표준화)
+rev0: 1.2345  # FY2026 컨센서스(4명) — 1~3Q 실적 256.1 + 294.8 + 328.7 = $879.6M, 4Q 함의 약 $355M
+ic0: 0.8262  # 자기자본 0.8879 + 차입·리스 0.1518 − 현금 0.2135
+scenarios:
+  base:
+    prob: 0.5
+    growth:
+      start: 0.3116
+      end: 0.035
+      decay: 0.377
+    margin:
+      m0: 0.0166
+      target: 0.095
+      year_target: 4
+      lr: 0.08
+      lam: 0.35
+      anchors:
+      - 0.0593
+      - 0.094
+    s2c: 1.8
+  bull:
+    prob: 0.2
+    growth:
+      start: 0.38
+      end: 0.04
+      decay: 0.47
+    margin:
+      m0: 0.0166
+      target: 0.12
+      year_target: 4
+      lr: 0.08
+      lam: 0.25
+      anchors:
+      - 0.0593
+      - 0.094
+    s2c: 2.1
+  bear:
+    prob: 0.3
+    growth:
+      start: 0.18
+      end: 0.03
+      decay: 0.133
+    margin:
+      m0: 0.0166
+      target: 0.06
+      year_target: 4
+      lr: 0.08
+      lam: 0.5
+      anchors:
+      - 0.0593
+      - 0.094
+    s2c: 1.5
+mc:
+  sigma_growth: 0.1
+  sigma_margin: 0.015
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: Zacks 컨센서스 FY2026 $1.2345B(범위 $1.2342~1.2346B, 4명). 회사 4Q 가이던스 숫자는 이번 조회에서 받지 못함(콜 원고에서 매출 범위 문장 미발견 — 미확인)
+  growth: 'Zacks 컨센서스 FY2027 $1.6191B(+31.2%), FY2028 $1.8446B(+13.9%) → 기본. 컨센서스 최고·최저가 좁아(FY27 $1.610~1.6345B)
+    강세·약세는 판단: 강세 +38%·FY28 +20%(부품 제약 해소 + MFC 내재화), 약세 +18%·FY28 +5%(제약 지속·WFE 정체). Data provided by
+    Zacks Investment Research, Inc., www.zacksdata.com'
+  margin: '컨센서스 EBIT 이익률 FY26 6.9%·FY27 10.4%(비GAAP 판단) − SBC 약 1%(추정) = 앵커 5.9%·9.4%. m0 = LTM GAAP 영업이익률 1.7%.
+    목표 9.5%(4년차)는 과거 상승기 고점 영업이익률 약 10%(근거 약함 — 연도별 대조 전). 장기 수렴 8%는 계약 제조형 동종(UCTT) 수준(추정)'
+  s2c: TTM 매출 ÷ 투하자본 1.34. 클린룸·용접 캐파가 이미 깔려(회사) 증분 자본 부담이 낮다 → 1.8(추정). 재고 $330M가 운전자본을 키우는 점이 상한
+  probs: '약세 30 / 기본 50 / 강세 20 — 회사는 2027 매 분기 성장·이익 성장 > 매출 성장 2배를 말하지만, 부품(MFC) 공급 제약으로 목표가 하향
+    5건(11/3~11/9)이 나왔다. 제약 해소 시점이 미확인이라 약세를 강세보다 크게 둔다'
+notes:
+- "신규 작성 2026-11-14(chiip-valuation-queue-2 08:10 회차) — 대기열 ‘실적: [SEC 8-K 실적] ICHOR HOLDINGS / 알파 5.1 기준 진입’"
+- '가장 약한 가정: 장기 목표 영업이익률 9.5%(과거 고점 대조 전) — 다음 실적(4Q26)의 총이익률 17% 도달 여부와 10-K 과거 연도 영업이익률로 확인'
+- '시나리오 확률 근거: 증분 총이익률 33%(회사 기대 25~30% 초과), 3Q 총이익률 16%(한 분기 선행). 반대 근거: LTM 영업현금 −$38.4M, 부품 제약, 목표가 하향 집중'
+- '내러티브(knowledge/narratives/companies/us-ichr.md, 확산): 목표가 하향이 몰렸는데 회사 전망은 유지 — gap +1 제안. 숫자는 컨센서스 경로 그대로'
+- "커뮤니티 관심: 집계 없음"
+- '거시 맥락(동인 숫자 아님): 한국 10월 반도체 수출 $56.4B(+259% YoY) — 메모리 가격 강세가 메모리 CAPEX(WFE) 수요로 이어질 정황, 고객 쪽 흔적(Lam·AMAT 가이던스)으로 확인 필요'
+- 컨센서스 대조 — manual_consensus.csv 미입력. 기본 경로 = Zacks 컨센서스와 같음
+evidence:
+- 'Fiscal.ai MCP 2026-11-14 08시 조회: company_stock_prices·shares_outstanding·financials_standardized(LTM·분기 손익, 재무상태, 현금흐름)·analyst_estimates·analyst_ratings(Zacks
+  — Data provided by Zacks Investment Research, Inc., www.zacksdata.com)·ir_events_transcript(q3-2026)'
+- Ichor SEC 공시 목록 https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=ICHR&type=10-Q
+- 내러티브 근거 knowledge/narratives/evidence/us-ichr.json
