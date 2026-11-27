@@ -543,7 +543,7 @@ def section(dp, history=None, db=sv.HS_DB, fred_cache=None):
         lastp, lastq = hist_p[-1], hist_q[-1]
         series += [{"name": "P 투영", "color": "e", "points": [lastp] + [[p["q"], round(p["g_p"] * 100, 1)] for p in c["proj"]]},
                    {"name": "Q 투영", "color": "d", "points": [lastq] + [[p["q"], round(p["g_q"] * 100, 1)] for p in c["proj"]]}]
-    B.append({"type": "chart", "chart": {"kind": "line", "title": "매출 증가율의 가격·물량 분해와 8분기 전망(전년 대비)", "unit": "%", "series": series}})
+    B.append({"type": "chart", "chart": {"kind": "line", "title": "매출 증가율의 가격·물량 분해와 8분기 전망(전년 대비)", "unit": "%", "now": rows[-1]["q"], "series": series}})   # 수직 '현재' 선(마스터 지시 2026-11-27)
     # '분기별 매출 증가율 분해' 막대는 뺐다 — 위 선 그림과 같은 값(마스터 지시 2026-11-20)
     per = c.get("period") or {}
     B.append({"type": "table", "title": "P·Q 사이클 정량", "headers": ["항목", "가격(P)", "물량(Q)"],
