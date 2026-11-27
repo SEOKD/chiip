@@ -1,10 +1,13 @@
 """목표주가 (마스터 지시 2026-11-01 "현 시점 목표 주가를 월스트리트 IB 리서치 하우스 모델링으로 산정하고 이를 기준으로 업사이드를 측정. 기본 시나리오가 목표 주가라고 생각하면
 그것으로, 기본과 강세 사이에 도달할 확률이 높아 보이면 그 사이로. DCF 한 요인에만 의존하지 말고 차트 기법 상승 여력, 내러티브 멀티플 프리미엄 확정 여력까지 반영")
 
-약세~기본~강세 축에서 요인별로 가리키는 주가를 재고, 가중 평균한 기울기(tilt, −1~+1)만큼 기본에서 옮긴다. 0이면 기본, +1이면 강세, −1이면 약세다.
+2026-11-27 마스터 지시로 바꿨다 — "시장이 반영하는 게 베이스 시나리오 단일에서 다중 시나리오 수정가중평균으로 바뀌었다"(100% 반영):
+최종 목표주가 = 약세·기본·강세의 수정 가중평균. 요인(DCF·차트·내러티브·판단 조정)의 기울기(tilt, −1~+1)는 주가가 아니라 시나리오 확률을 옮긴다(build 참고).
 요인: 시나리오 확률 가중 · DCF 12개월 뒤 값 · 차트(일봉만 — 200일선·일봉 스윙 고점·피보나치 되돌림과 확장) · 내러티브 프리미엄 여력. 재료가 없는 요인은 빼고 나머지 비중을 다시 맞춘다.
 상수는 config/tenbagger.yaml target_price(등록부 prm-tb-pt-*). 판단 조정은 모델이 이유와 함께 datapack target_view {"adj": 0.1, "why": "..."}에 쓴다.
 """
+import math
+
 import levels
 
 CASE = {"약세": "bear", "강세": "bull"}
@@ -42,6 +45,8 @@ def narrative_price(s, stage, room, net_debt, shares):
     m0 = cases["기본"]["multiple"]
     m = m0 + abs(share) * (cases["강세" if share >= 0 else "약세"]["multiple"] - m0)
     k = cases["기본"]
+    if k.get("eps") is None and k.get("ebitda") is None and k.get("rev") is not None:   # EV/매출 기준(매출 전 기업, 2026-11-15)
+        return (m * k["rev"] - net_debt) / shares
     return k["eps"] * m if k.get("eps") is not None else (m * k["ebitda"] - net_debt) / shares
 
 
@@ -63,50 +68,77 @@ def reach(t, s):
     return at_base + w * (at_bear - at_base)
 
 
-def place(tilt):
-    if abs(tilt) < 0.05:
-        return "기본 시나리오"
-    return f"기본과 강세 사이(강세 쪽 {tilt:.0%})" if tilt > 0 else f"약세와 기본 사이(약세 쪽 {-tilt:.0%})"
+def modify(probs, tilt, lam):
+    """확률 수정 — p_i' ∝ p_i · exp(λ·tilt·x_i), x = 약세 −1 · 기본 0 · 강세 +1. tilt 0이면 모델 확률 그대로"""
+    x = {"약세": -1.0, "기본": 0.0, "강세": 1.0}
+    raw = {k: v * math.exp(lam * tilt * x[k]) for k, v in probs.items()}
+    t = sum(raw.values())
+    return {k: v / t for k, v in raw.items()}
+
+
+def place(tilt, p0=None, p1=None):
+    if p0 is None or abs(tilt) < 0.05:
+        return "시나리오 확률 가중평균"
+    return ("시나리오 수정 가중평균(강세 확률 " if tilt > 0 else "시나리오 수정 가중평균(약세 확률 ") + (
+        f"{p0['강세']:.0%}→{p1['강세']:.0%})" if tilt > 0 else f"{p0['약세']:.0%}→{p1['약세']:.0%})")
 
 
 def build(s, dcf_ratio, ke, stage, view, daily, net_debt, shares, cfg, street=None):
-    """{'target','upside','tilt','place','reach','factors','judge','why'} — s는 report_layout.scenario_build 결과, dcf_ratio는 기본 DCF 값 ÷ 시가총액.
-    dcf_ratio가 None이면(DCF 신뢰 점검 '산정 불가', ADR-039) DCF 요인을 빼고 나머지 비중을 다시 맞춘다 — 재료가 없는 차트 요인과 같은 규칙"""
+    """{'target','upside','tilt','place','reach','factors','judge','why','probs','probs_mod'}
+
+    최종 목표주가 = 약세·기본·강세의 '수정 가중평균'(마스터 지시 2026-11-27: "시장이 반영하는 게 베이스 시나리오 단일에서 다중 시나리오 수정가중평균으로
+    바뀌었다" — 이 논리를 100% 반영). 기본 시나리오 하나를 목표로 두지 않는다.
+      ① 출발점 = 모델 확률로 가중한 세 시나리오 평균
+      ② DCF 12개월 뒤 값·차트 상승 여력·내러티브 프리미엄 여력(+ 모델 판단 조정)이 가리키는 위치(−1~+1)를 가중해 기울기(tilt)를 만든다
+      ③ 기울기만큼 확률을 수정한다(modify, λ = cfg prob_lambda) — 주가를 옮기는 게 아니라 확률을 옮긴다
+      ④ 목표주가 = 수정 확률로 가중한 세 시나리오 평균. 그래서 항상 약세와 강세 사이에 있다
+    dcf_ratio가 None이면(DCF 신뢰 점검 '산정 불가', ADR-039) DCF 요인을 빼고 비중을 다시 맞춘다 — 재료가 없는 차트 요인과 같은 규칙"""
     w = cfg["weights"]
     chart = chart_target(daily, cfg["chart"])
-    rows = [{"key": "scenario", "name": "시나리오 확률 가중", "price": s["weighted"], "why": "약세·기본·강세 확률로 가중"}]
+    rows = []
     if dcf_ratio is not None:
         rows.append({"key": "dcf", "name": "DCF 12개월 뒤 값", "price": s["price"] * dcf_ratio * (1 + ke), "why": f"기본 DCF를 자기자본비용 {ke:.1%}로 1년 굴림"})
-    rows.append({"key": "narrative", "name": "내러티브 프리미엄 여력", "price": narrative_price(s, stage, cfg["narrative_room"], net_debt, shares), "why": f"단계 {stage or '미확인'}, 기본 이익에 옮긴 멀티플 적용"})
     if chart:
-        rows.insert(len(rows) - 1, {"key": "chart", "name": "차트 상승 여력", **chart})
+        rows.append({"key": "chart", "name": "차트 상승 여력", **chart})
+    rows.append({"key": "narrative", "name": "내러티브 프리미엄 여력", "price": narrative_price(s, stage, cfg["narrative_room"], net_debt, shares), "why": f"단계 {stage or '미확인'}, 기본 이익에 옮긴 멀티플 적용"})
     total = sum(w[x["key"]] for x in rows)
     for x in rows:
         x.update({"weight": w[x["key"]] / total, "signal": signal(x["price"], s)})
     judge = max(-cfg["judge_cap"], min(cfg["judge_cap"], float((view or {}).get("adj") or 0)))
     tilt = max(-1.0, min(1.0, sum(x["weight"] * x["signal"] for x in rows) + judge))
-    raw = s["base"] + tilt * ((s["bull"] - s["base"]) if tilt >= 0 else (s["base"] - s["bear"]))
+    vals = {"약세": s["bear"], "기본": s["base"], "강세": s["bull"]}
+    p0 = {k["name"]: float(k["prob"]) for k in s["cases"]}
+    t0 = sum(p0.values()) or 1.0
+    p0 = {k: v / t0 for k, v in p0.items()}
+    p1 = modify(p0, tilt, cfg.get("prob_lambda", 1.0))
+    anchor = sum(p0[k] * vals[k] for k in vals)
+    raw = sum(p1[k] * vals[k] for k in vals)
     target = float(round(raw)) if raw >= cfg["round_above"] else round(raw, 1)
-    return {"target": target, "upside": target / s["price"] - 1, "tilt": tilt, "place": place(tilt), "reach": reach(target, s), "factors": rows, "judge": judge,
-            "why": (view or {}).get("why"), "street": street}
+    return {"target": target, "upside": target / s["price"] - 1, "tilt": tilt, "place": place(tilt, p0, p1), "reach": reach(target, s), "factors": rows, "judge": judge,
+            "why": (view or {}).get("why"), "street": street, "anchor": anchor, "probs": p0, "probs_mod": p1}
 
 
 def table(pt, s):
     """밸류에이션 절의 산정 표"""
     cur = s["sym"]
-    rows = [[x["name"], f"{x['weight']:.0%}", f"{cur}{x['price']:,.0f}", f"{x['signal']:+.2f}", x["why"]] for x in pt["factors"]]
+    p0, p1 = pt.get("probs") or {}, pt.get("probs_mod") or {}
+    rows = [["① 시나리오 확률 가중평균(출발점)", "-", f"{cur}{pt.get('anchor', s.get('weighted', 0)):,.0f}", "-",
+             "약세·기본·강세 " + " · ".join(f"{p0.get(k, 0):.0%}" for k in ("약세", "기본", "강세"))]]
+    rows += [[f"② 확률 수정 요인 — {x['name']}", f"{x['weight']:.0%}", f"{cur}{x['price']:,.0f}", f"{x['signal']:+.2f}", x["why"]] for x in pt["factors"]]
     if pt["judge"]:
         rows.append(["판단 조정", "-", "-", f"{pt['judge']:+.2f}", str(pt.get("why") or "")])
     if pt.get("street"):
         rows.append(["애널리스트 평균(참고)", "-", f"{cur}{pt['street']:,.0f}", "-", "가중하지 않는 대조값"])
-    rows.append(["**목표주가**", "", f"**{cur}{pt['target']:,.0f}**", f"**{pt['tilt']:+.2f}**", pt["place"]])
-    return {"type": "table", "title": "목표주가 산정", "headers": ["요인", "비중", "가리키는 주가", "위치(−1 약세 · 0 기본 · +1 강세)", "근거"], "rows": rows}
+    rows.append(["③ 수정 확률", "", "", f"{pt['tilt']:+.2f}", "약세·기본·강세 " + " · ".join(f"{p1.get(k, 0):.0%}" for k in ("약세", "기본", "강세"))])
+    rows.append(["**④ 목표주가 = 수정 가중평균**", "", f"**{cur}{pt['target']:,.0f}**", "", pt["place"]])
+    return {"type": "table", "title": "목표주가 산정 — 기본 시나리오 단일이 아니라 세 시나리오의 수정 가중평균", "headers": ["단계·요인", "비중", "가리키는 주가", "기울기(−1 약세 · +1 강세)", "근거"], "rows": rows}
 
 
 def chart(pt, s):
     """요인별로 가리키는 주가와 목표주가를 그림으로 — 표를 읽지 않아도 어느 요인이 끌어올리고 내리는지 보이게(마스터 지시 2026-11-01)"""
     cur = s["sym"]
-    rows = [{"label": f"{x['name']} ({x['weight']:.0%})", "bars": [{"name": "요인", "color": "d" if x["price"] >= pt["target"] else "b", "value": round(x["price"], 1)}]} for x in pt["factors"]]
+    rows = [{"label": "시나리오 확률 가중평균", "bars": [{"name": "요인", "color": "d", "value": round(pt.get("anchor", 0), 1)}]}] if pt.get("anchor") else []
+    rows += [{"label": f"{x['name']} ({x['weight']:.0%})", "bars": [{"name": "요인", "color": "d" if x["price"] >= pt["target"] else "b", "value": round(x["price"], 1)}]} for x in pt["factors"]]
     rows.append({"label": "목표주가", "bars": [{"name": "목표주가", "color": "c", "value": pt["target"]}]})
     rows.append({"label": "현재 주가", "bars": [{"name": "현재", "color": "e", "value": s["price"]}]})
     return {"kind": "hbars", "w": 640, "label_w": 230, "title": f"목표주가 산정 — {pt['place']}, 도달 확률 약 {pt['reach']:.0%}", "unit": cur.strip(), "rows": rows}

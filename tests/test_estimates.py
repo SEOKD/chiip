@@ -209,7 +209,7 @@ class TestTargetPrice(unittest.TestCase):
         self.assertGreater(pt["target"], 100)
         self.assertLess(pt["target"], 150)
         self.assertEqual(pt["upside"], pt["target"] / 80 - 1)
-        self.assertIn("기본과 강세 사이", pt["place"])
+        self.assertIn("수정 가중평균(강세 확률", pt["place"])   # 2026-11-27 수정 가중평균
 
     def test_dcf_alone_does_not_set_the_target(self):
         low = tp.build(self.s(), 0.1, 0.1, "확산", None, [], 0, 1, self.CFG)

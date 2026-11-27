@@ -2206,6 +2206,22 @@ params:
     data: null
     last_fit: null
     oos_metric: null
+- id: prm-tb-pt-prob-lambda
+  model: tenbagger.report
+  binding: config/tenbagger.yaml#target_price.prob_lambda
+  value: 1.0
+  unit: 배수(지수)
+  status: prior
+  prior:
+    value: 1.0
+    basis: '초안 — 목표주가 = 세 시나리오 수정 가중평균(마스터 지시 2026-11-27 "시장이 반영하는 게 베이스 시나리오 단일에서 다중 시나리오 수정가중평균으로 바뀌었다"). 요인 기울기 ±1에서 강세·약세 확률을 e배 기울이는 지수 틸트(최대 엔트로피 재가중)'
+    source: null
+  fit:
+    method: 리포트 목표주가 뒤 12개월 도달 여부로 표본 외 점검 — λ 0.5·1.0·1.5 비교
+    target: 목표주가 도달률·브라이어 점수
+    data: null
+    last_fit: null
+    oos_metric: null
 - id: prm-tb-pt-judge-cap
   model: tenbagger.report
   binding: config/tenbagger.yaml#target_price.judge_cap
