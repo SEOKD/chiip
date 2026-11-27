@@ -34,7 +34,7 @@ MACRO = re.compile(r"Rates|\bFX\b|Macro|Economics? (Outlook|Indicators|Analyst)|
 def is_macro(name):
     return bool(MACRO.search(str(name or "").replace("_", " ")))
 MSG_MAX = 3800    # 텔레그램 한 통(4,096자) 안
-DAILY_MAX = 10    # 하루(KST)에 읽어 해설하는 리포트 수 상한(2026-11-23 마스터 지시) — 남은 것은 다음 날
+DAILY_MAX = 15    # 하루(KST)에 읽어 해설하는 리포트 수 상한(2026-11-23 10건 → 2026-11-28 마스터 지시 15건) — 남은 것은 다음 날
 
 
 def report_key(name):
@@ -96,10 +96,7 @@ def status(now=None):
         return {"due": False, "error": type(e).__name__}
     if "done" in st and "baseline" in st and not common.load_state(STATE, {}).get("baseline"):
         common.save_state(STATE, st)   # 첫 기준선 저장
-    macro = [c["id"] for c in cands if c["macro"]]
-    if macro:   # 매크로는 해설하지 않고 본 것으로 표시(결정론)
-        done(macro)
-    cands = [c for c in cands if not c["macro"]]
+    macro = []   # 매크로도 해설한다 — 모든 PDF를 읽는다(2026-11-28 마스터 지시 "산업·기업 리포트로 국한하지 말고 모든 pdf를 다 읽어라")
     left = left_today()
     cands = cands[:left]
     return {"due": bool(cands), "left_today": left, "n": len(cands), "skipped_macro": len(macro),
