@@ -285,7 +285,7 @@ def run_job(job, tok):
            "--permission-mode", "dontAsk", "--permission-prompts", "none"]
     flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
     proc = subprocess.run(cmd, cwd=common.ROOT, capture_output=True, text=True, encoding="utf-8",
-                          stdin=subprocess.DEVNULL, timeout=2400, creationflags=flags)
+                          stdin=subprocess.DEVNULL, timeout=2400, creationflags=flags, env=common.claude_env())
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
     if proc.returncode != 0 or out.get("is_error"):
         model_budget.check_failure(str(out.get("result", proc.stderr)), "notion_watch")

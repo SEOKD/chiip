@@ -94,6 +94,16 @@ def load_env():
     return env
 
 
+def claude_env(extra=None):
+    """헤드리스 claude 실행 환경 — 1년짜리 CLAUDE_CODE_OAUTH_TOKEN(secrets 폴더 .env)을 넘긴다.
+    여러 작업이 같은 로그인을 동시에 갱신하다 OAuth가 풀리는 일을 막는다(2026-11-27 마스터, claude setup-token). 값은 출력하지 않는다."""
+    env = {**os.environ, **(extra or {})}
+    tok = load_env().get("CLAUDE_CODE_OAUTH_TOKEN")
+    if tok:
+        env["CLAUDE_CODE_OAUTH_TOKEN"] = "".join(tok.split())   # 붙여넣기 줄바꿈·공백 제거
+    return env
+
+
 def load_watchlist():
     import csv
     with (ROOT / "config" / "watchlist.csv").open(encoding="utf-8", newline="") as f:

@@ -78,7 +78,7 @@ def launch(c):
     before = gate_mark()
     try:
         proc = subprocess.run(command(c, exe, prompt(c)), cwd=common.ROOT, capture_output=True, text=True, encoding="utf-8", stdin=subprocess.DEVNULL,
-                              env={**os.environ, "PYTHONIOENCODING": "utf-8", "CHIIP_PULSE_VIA": "trigger-model"}, timeout=c["timeout_min"] * 60, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+                              env=common.claude_env({"PYTHONIOENCODING": "utf-8", "CHIIP_PULSE_VIA": "trigger-model"}), timeout=c["timeout_min"] * 60, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     except subprocess.TimeoutExpired:
         return False, {"error": "시간 초과", "seconds": round(time.time() - start)}
     out = json.loads(proc.stdout) if proc.stdout.strip().startswith("{") else {}
