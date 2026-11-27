@@ -136,7 +136,9 @@ def cycle(dp):
         o4 = _ttm(q, "_orders", i)
         out.append({"period": r["period"], "bb": r["_orders"] / r["rev"] if r["_orders"] is not None else None, "bb4": o4 / rev4 if o4 and rev4 else None,
                     "dio": r["_inv"] / (cogs4 / 365) if cogs4 else None, "inv_yoy": r["_inv"] / prev_inv - 1 if prev_inv else None,
-                    "rev_yoy": rev4 / rev4p - 1 if rev4 and rev4p else None})
+                    "rev_yoy": rev4 / rev4p - 1 if rev4 and rev4p else None,
+                    "gpm": 1 - cogs4 / rev4 if cogs4 and rev4 else None})   # 4개 분기 매출총이익률 — 재고 일수의 뜻을 가르는 보강 재료(2026-11-27)
+
     return out[-8:]
 
 
@@ -186,8 +188,38 @@ def cycle_section(dp):
             stop = f" · {last_bb[2:7]} 뒤 B/B 없음({why})"
             B[0]["text"] += f" {last_bb[:7]} 뒤 분기는 B/B를 계산할 수 없다 — {why}."
     thin = "" if has_bb or dig == 0 else " · 재고가 매출원가의 1% 안팎이라 재고 사이클의 뜻은 작다"
-    B.append({"type": "chart", "chart": {"kind": "line", "multi_axis": has_bb, "w": 440,
-                                         "title": ("수주/출하 비율(B/B) × 재고 일수 — 분기별" + stop) if has_bb else f"재고 일수 — 분기별(수주 자료가 없어 수주/출하 비율 없음){thin}", "unit": "" if has_bb else "일",
+    # 재고 일수만 그리면 "그래서 무슨 뜻인가"가 남는다(마스터 지시 2026-11-27) — 수주 자료가 없을 때 두 선을 더한다:
+    #  ① 재고 증가율 − 매출 증가율(%p): 0보다 크면 재고가 매출보다 빨리 는다(일수 상승의 원인이 재고 쪽인지 매출 둔화 쪽인지)
+    #  ② 매출총이익률(4개 분기): 재고가 늘 때 마진이 버티면 수요 대비 준비, 마진이 꺾이면 안 팔린 재고(할인·평가손 앞)
+    reading = ""
+    if not has_bb:
+        gap = [[lab_q(r), None if r.get("inv_yoy") is None or r.get("rev_yoy") is None else round((r["inv_yoy"] - r["rev_yoy"]) * 100, 1)] for r in rows]
+        gpm = [[lab_q(r), None if r.get("gpm") is None else round(r["gpm"] * 100, 1)] for r in rows]
+        if any(v is not None for _, v in gap):
+            series[0]["name"] = "재고 일수(일)"
+            series.append({"name": "재고 증가율 − 매출 증가율(%p)", "color": "d", "axis": "gap", "points": gap})
+        if any(v is not None for _, v in gpm):
+            series[0]["name"] = "재고 일수(일)"
+            series.append({"name": "매출총이익률(%, 4개 분기)", "color": "a", "axis": "gpm", "points": gpm})
+        g_last = next((v for _, v in reversed(gap) if v is not None), None)
+        m = [v for _, v in gpm if v is not None]
+        d_ = [r["dio"] for r in rows if r.get("dio") is not None]
+        if len(d_) >= 2 and len(m) >= 2:
+            up, mg = d_[-1] > d_[0], m[-1] - m[0]
+            if up and mg >= 0:
+                reading = " — 재고 일수는 늘었지만 마진이 버틴다: 수요에 대비한 재고일 가능성"
+            elif up:
+                reading = f" — 재고 일수가 늘고 마진이 {mg:+.1f}%p: 안 팔린 재고 경고"
+            elif mg >= 0:
+                reading = " — 재고를 줄이며 마진도 지킨다: 건전"
+            else:
+                reading = f" — 재고는 줄었지만 마진이 {mg:+.1f}%p: 할인으로 재고를 덜어냈을 수 있다"
+            if g_last is not None:
+                reading += f"(최근 재고 증가율 − 매출 증가율 {g_last:+.1f}%p)"
+            B[0]["text"] += reading.replace(" — ", " ", 1) + "."
+    multi = has_bb or len(series) > 1
+    B.append({"type": "chart", "chart": {"kind": "line", "multi_axis": multi, "w": 440,
+                                         "title": ("수주/출하 비율(B/B) × 재고 일수 — 분기별" + stop) if has_bb else f"재고 일수 — 분기별{reading or ' (수주 자료가 없어 수주/출하 비율 없음)'}{thin}", "unit": "" if multi else "일",
                                          "series": series}})
     B.append({"type": "p", "text": "B/B가 1을 넘으면 받은 주문이 내보낸 물건보다 많아 잔고가 쌓이고, 재고가 매출보다 빨리 늘면 수요보다 생산이 앞선다는 뜻이다. 둘을 함께 봐야 '주문이 많아 쌓이는 재고'와 '안 팔려 쌓이는 재고'를 가른다."})
     return {"h2": "수주·출하·재고 사이클", "blocks": B}

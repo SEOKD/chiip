@@ -774,6 +774,15 @@ def assemble(d, dp, co, r, mm, sel, sec, esec, xs, entity):
         d["gallery"] = [c for c in d["gallery"] if c not in bb]
         lad = next(i for i, c in enumerate(d["gallery"]) if c.get("kind") == "pipeline")
         d["gallery"][lad + 1:lad + 1] = bb
+    # 재고 일수 그림은 'BOM 항목 가격 +10% 시 OPM 변화'와 '자산 구성' 사이(마스터 지시 2026-11-27) — 둘 중 하나만 있으면 그 옆, 둘 다 없으면 그대로
+    inv = [c for c in d["gallery"] if str(c.get("title", "")).startswith("재고 일수")]
+    if inv:
+        rest = [c for c in d["gallery"] if c not in inv]
+        opm = next((i for i, c in enumerate(rest) if str(c.get("title", "")).startswith("BOM 항목 가격")), None)
+        ast = next((i for i, c in enumerate(rest) if str(c.get("title", "")).startswith("자산 구성")), None)
+        at = opm + 1 if opm is not None else ast
+        if at is not None:
+            d["gallery"] = rest[:at] + inv + rest[at:]
     out[:] = [x for x in out if x.get("blocks")]
     d.update({"format": 3, "sections": out, "terms": dp.get("terms") or {}, "names": dp.get("names") or []})
 
