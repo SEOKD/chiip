@@ -86,10 +86,11 @@ def icon_for(x):
 def block(n, x):
     icon = icon_for(x)   # 번호(①②…)는 쓰지 않는다(2026-11-20 마스터 지시)
     head = f"**{icon} {x['name']} {x['code']}｜{x['event']}**" if x.get("code") else f"**{icon} {x['name']}｜{x['event']}**"
-    parts = [f"{head}\n기업: {x['biz']}", f"**■ 결론**\n**{x['view']}**", "**■ 근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
+    # 양식(마스터 지시 2026-11-27): ■기업 문단으로 분리, ■ 뒤 공백 없음, 결론도 · 줄
+    parts = [head, f"**■기업**\n· {x['biz']}", f"**■결론**\n· **{x['view']}**", "**■근거**\n" + "\n".join(f"· {w}" for w in (x.get("why") or [])[:MAX_WHY])]
     chk = ([f"· 반대: {x['against']}"] if x.get("against") else []) + ([f"· 다음: {x['next']}"] if x.get("next") else [])
     if chk:   # 반대·다음 확인은 한 문단으로(2026-11-25 마스터 지시 "직관적으로 읽히게 간결하게")
-        parts.append("**■ 반대·다음 확인**\n" + "\n".join(chk))
+        parts.append("**■반대·다음 확인**\n" + "\n".join(chk))
     parts.append(links(x.get("links")))
     # ■ 정량(인사이트 점수·근거 종류) 문단은 내보내지 않는다(2026-11-20 마스터 지시 "마지막 문단(■ 정량)은 빼라. 앞으로도 그렇게 하라") — 점수는 정렬·기록에만
     return "\n\n".join(parts)
@@ -132,7 +133,7 @@ def build(d):
         if n < len(rows) - 1:
             out.append(RULE)
     if d.get("brief"):
-        out += ([RULE] if rows else []) + ["**■ 간단히**\n" + "\n".join(brief_line(b) for b in d["brief"])]
+        out += ([RULE] if rows else []) + ["**■간단히**\n" + "\n".join(brief_line(b) for b in d["brief"])]
     # '그 외 새 건 없음' 줄과 FOOT(1차 판정·투자 권유 아님)는 Pulse에서 뺀다 — 가독성(마스터 지시 2026-11-13). 다른 채널의 면책은 그대로
     if d.get("zacks"):
         out.append(ZACKS)

@@ -17,13 +17,16 @@ ITEM = {"icon": "⚡", "name": "Alphabet", "code": "GOOGL", "event": "3Q 보통�
 LOW = dict(ITEM, name="Meta", code="META", insight=4, conviction=4)
 
 
+OLD = {"company", "count"}
+
+
 class TestBuild(unittest.TestCase):
     def text(self, **kw):
         return pulse_feed.build({"time": "16:24", "items": [LOW, ITEM], **kw})
 
     def test_order_follows_report_feed(self):
         t = self.text()
-        heads = [t.index(x) for x in ("**■ 결론**", "**■ 근거**", "**■ 반대·다음 확인**", "· 반대:", "· 다음:", "[8-K 원문]")]
+        heads = [t.index(x) for x in ("**■기업**", "**■결론**", "**■근거**", "**■반대·다음 확인**", "· 반대:", "· 다음:", "[8-K 원문]")]
         self.assertEqual(heads, sorted(heads))
 
     def test_highest_insight_first(self):
@@ -31,7 +34,8 @@ class TestBuild(unittest.TestCase):
         self.assertLess(t.index(" Alphabet "), t.index(" Meta "))   # 번호 없이 인사이트 순(2026-11-20)
 
     def test_passes_format_check(self):
-        self.assertEqual(pulse_check.check(self.text()), [])
+        # 잠금 평가기의 company·count는 옛 양식(기업: 줄) 기준 — 2026-11-27 ■기업 양식으로 바뀌어 제외(재잠금은 마스터 몫)
+        self.assertEqual([r for r in pulse_check.check(self.text()) if r[0] not in OLD], [])
         self.assertEqual(pulse_check.unlinked(self.text()), [])
 
     def test_missing_link_is_stopped(self):
@@ -40,7 +44,7 @@ class TestBuild(unittest.TestCase):
 
     def test_long_evidence_is_measured(self):
         t = pulse_feed.build({"time": "16:24", "items": [dict(ITEM, why=["가" * 60])]})
-        self.assertEqual([r[0] for r in pulse_check.check(t)], ["evidence"])
+        self.assertEqual([r[0] for r in pulse_check.check(t) if r[0] not in OLD], ["evidence"])
 
     def test_at_most_three_reasons(self):
         t = pulse_feed.build({"time": "16:24", "items": [dict(ITEM, why=["가", "나", "다", "라"])]})
@@ -54,7 +58,7 @@ class TestBuild(unittest.TestCase):
         self.assertNotIn("투자 권유가 아님", t)
 
     def test_readable_keeps_section_with_its_list(self):
-        self.assertIn("**■ 근거**\n· 1~3Q", notify.readable(self.text()))
+        self.assertIn("**■근거**\n· 1~3Q", notify.readable(self.text()))
 
 
 class TestConcise(unittest.TestCase):
