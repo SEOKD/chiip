@@ -237,7 +237,7 @@ def charts(dp):
         ladder = capa_model.chart(est)
     money = dp.get("unit", "B$")
     years = {"kind": "hbars", "w": 480, "label_w": 150, "title": "CAPEX의 매출 대비 비중", "unit": "%",
-             "rows": [{"label": f"{y['period']} {_money(y['capex'], money)}", "bars": [{"name": y["kind"], "color": "c" if y["kind"] == "실적" else "e", "value": round(y["pct"] * 100, 1)}]} for y in c["years"]]}
+             "rows": [{"label": f"{y['period']} {_money(y['capex'], money)}", "bars": [{"name": y["kind"], "color": {"실적": "c", "컨센서스": "g"}.get(y["kind"], "e"), "value": round(y["pct"] * 100, 1)}]} for y in c["years"]]}
     return ladder, years
 
 
