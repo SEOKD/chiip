@@ -32,7 +32,7 @@ STATE = "pulse"
 LOCK_MIN = 9           # 이전 회차가 이 시간 안에 시작돼 아직 안 끝났으면 건너뜀(회차 겹침 방지) — 5분 주기(2026-10-30 마스터 지시)에선 긴 회차가 다음 회차를 건너뛰게 하고, --end 없이 멈춘 잠금만 9분 뒤 풀린다
 LAST_PEEK = []        # 마지막 peek의 원본 목록(상태를 바꾸지 않는다)
 DELIVER_MAX = 10      # 한 회차에 보내는 소식 상한 — 접한 소식이 10건이면 10건 모두(2026-11-03 마스터 지시)
-TOP = {"해외 법인": 6, "무역 비중": 4, "데이터센터 접속": 4, "WSJ 주요": 6, "닛케이 주요": 6, "전력 정책": 6, "SemiAnalysis": 2, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
+TOP = {"해외 법인": 6, "무역 비중": 4, "데이터센터 접속": 4, "WSJ 주요": 6, "닛케이 주요": 6, "전력 정책": 6, "SemiAnalysis": 2, "리서치 기관": 4, "발굴 채널": 5, "섹터 확장": 4, "시의성 뉴스": 6, "포지션": 1, "주가 급변": 6, "SPAC": 6, "실적": 5, "속보 판단": 10, "텔레그램": 12, "IR 질의응답": 4, "IR 자료": 6, "소비재": 6, "숏 리포트": 8, "신규 상장": 8, "파이낸싱": 12, "방위": 8, "원자력·위성": 6, "공시": 15, "보도자료": 15, "논문": 12, "정부": 8}   # 유형별 상한 — 공시가 많은 날 논문이 밀려나지 않게
 EARNINGS_MAX = 5      # 같은 회차에 겹친 실적 발표는 유형 상한과 별개로 5건까지 넘긴다(2026-11-03 마스터 지시)
 EARNINGS_RE = re.compile(r"earnings|quarterly results|(first|second|third|fourth|1st|2nd|3rd|4th)[- ]quarter|fiscal (year|20\d\d)|\bQ[1-4]\b|決算|業績|실적|財報|營收", re.I)
 PAPER_FEEDS = {"src-arxiv-cset": "https://rss.arxiv.org/rss/cs.ET", "src-arxiv-appph": "https://rss.arxiv.org/rss/physics.app-ph"}
@@ -62,7 +62,7 @@ CLASSES = [("WSJ 주요", ("src-wsj-main",)),   # WSJ 섹션별 주요 기사 �
            ("정부", ("src-eia", "src-whitehouse", "src-policy-us-", "src-fedreg")),
            ("지표 발표", ("src-ppi-release", "src-cpi-release", "src-kr-exports", "src-consumer-macro"))]   # src-consumer-macro = 미·일·유럽·영국 소비 통계 새 달에 문턱 넘은 업종(radar/consumer_macro.py, 2026-11-14)   # BLS PPI 발표 직후 한두 문장(radar/ppi_release.py, 2026-11-13 마스터 지시)
 NEWS_MIN = 4   # 시의성 뉴스 문턱 — 막힌 P1·P0, 미판정·P2는 주요 매체+보유·T0가 겹칠 때(하루 2~3건, 2026-11-12 분포)(p2_digest.score)
-CLASS_W = {"해외 법인": 8, "무역 비중": 6, "데이터센터 접속": 6, "WSJ 주요": 7, "닛케이 주요": 7, "전력 정책": 8, "SemiAnalysis": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
+CLASS_W = {"해외 법인": 8, "무역 비중": 6, "데이터센터 접속": 6, "WSJ 주요": 7, "닛케이 주요": 7, "전력 정책": 8, "SemiAnalysis": 6, "리서치 기관": 6, "발굴 채널": 6, "지표 발표": 7, "섹터 확장": 5, "관심도 가속": 4, "딜 추적": 9, "시의성 뉴스": 5, "포지션": 3, "채용 공고": 7, "블로그 단신": 6, "협업 흔적": 6, "실적 일정": 4, "주가 급변": 8, "SPAC": 6, "실적": 9, "속보 판단": 8, "텔레그램": 2, "IR 질의응답": 6, "IR 자료": 6, "소비재": 5, "숏 리포트": 6, "신규 상장": 4, "파이낸싱": 4, "방위": 3, "원자력·위성": 3, "공시": 3, "보도자료": 2, "논문": 2, "정부": 1}
 NS_WORD_RE = re.compile(r"contract|award|order|tranche|launch|license|permit|approval|offtake|supply agreement|HALEU|selected|backlog", re.I)
 DEF_WORD_RE = re.compile(r"contract|award|order|procure|DSCA|Foreign Military|backlog|framework|Rahmenvertrag|Auftrag|commande|contrat|contrato|契約|受注", re.I)
 TECH_RE = re.compile(
@@ -187,6 +187,8 @@ def relevant(it, cls):
         return True
     if cls == "SemiAnalysis":   # 원천에서 SemiAnalysis 피드만 골랐다
         return True
+    if cls == "리서치 기관":   # IDC·Counterpoint·Dell'Oro·TechInsights — 영어 글만(IDC 피드엔 중·일 글이 섞인다)
+        return it.get("language") in (None, "en")
     if it.get("source_id") == "src-dart":   # 한국어 공시 원문이 정상 — 언어 필터 예외(2026-11-06)
         return True
     if cls == "소비재":   # 일본 적시공시 미러·한국어 원문 포함 — 지도 종목 + 실적·업적 문구로 이미 거름
@@ -221,6 +223,8 @@ def inbox_items(since):
             cls = "IR 질의응답" if it.get("ir_event") else class_of(it.get("source_id", ""))
             if it.get("source_id") == "src-research-feeds" and "semianalysis.com" in (it.get("url") or it.get("link") or ""):
                 cls = "SemiAnalysis"   # 새 글 단신 — 의견·추정(사실 아님), 공개 요약만(마스터 지시 2026-11-16 "Pulse에 넣어라")   # 대만 法說會 공고(2026-10-30) — 중문 원문이라 언어 필터 예외
+            elif it.get("source_id") == "src-research-feeds" and it.get("research_pulse"):
+                cls = "리서치 기관"   # 시장조사 기관 발간 자료(마스터 지시 2026-11-28) — 기관 추정·의견, 공개 요약만
             # 방위 지도 기업의 수주·계약 보도자료·공시(보도자료 배포처·SEC)도 방위로 모은다
             if cls in ("보도자료", "공시") and defense_hits(it.get("entities_matched") or [], it.get("title", "")) and DEF_WORD_RE.search(it.get("title", "")):
                 cls = "방위"

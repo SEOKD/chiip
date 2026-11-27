@@ -183,3 +183,32 @@ accounts:
     kind: 경영진
     why: "OpenAI 연산 확보·인프라 계약 발언 — HBM·가속기 수요 내러티브"
     x_handle: sama
+
+# ---- 시장조사 기관 발간 자료(마스터 지시 2026-11-28 "IDC, Omdia, Counterpoint 등 저명한 IT/AI 리서치 기관 발간 자료를 Pulse로") ----
+# pulse: true → Pulse 유형 '리서치 기관'. 공개 제목·요약만, 유료 본문은 읽지 않는다. 발표 수치는 '기관 추정'이지 사실이 아니다.
+# 2026-11-28 robots·접근 확인: IDC www(WordPress RSS, robots 전체 허용)·Dell'Oro(/feed/, wp-admin만 금지)·TechInsights(/rss.xml)·Counterpoint(/en/insights 목록, robots는 /api만 금지).
+# 제외: Omdia·Gartner·Yole — robots는 허용이나 서버가 자동 접근을 403으로 막는다(우회하지 않는다). LightCounting은 RSS 없음.
+  - id: rw-idc
+    name: IDC
+    kind: 리서치기관
+    why: "PC·스마트폰·서버·AI 인프라 출하·지출 추정의 업계 기준점"
+    feed: "https://www.idc.com/feed/"
+    pulse: true
+  - id: rw-counterpoint
+    name: Counterpoint Research
+    kind: 리서치기관
+    why: "스마트폰·파운드리 점유율·메모리 가격 영향 분기 추정"
+    html_list: {url: "https://www.counterpointresearch.com/en/insights", pattern: 'href="(/en/insights/[a-z0-9-]+)"', base: "https://www.counterpointresearch.com"}
+    pulse: true
+  - id: rw-delloro
+    name: Dell'Oro Group
+    kind: 리서치기관
+    why: "데이터센터 CAPEX·네트워크 장비·전력·냉각 시장 분기 추정"
+    feed: "https://www.delloro.com/feed/"
+    pulse: true
+  - id: rw-techinsights
+    name: TechInsights
+    kind: 리서치기관
+    why: "칩 분해·공정 분석 — 신제품의 실제 공정·메모리 탑재 확인"
+    feed: "https://www.techinsights.com/rss.xml"
+    pulse: true

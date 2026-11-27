@@ -31,7 +31,13 @@ def load_cfg():
 
 
 def _extra(acc):
-    return {"research_id": acc["id"], "research_kind": acc.get("kind"), "publisher": acc["name"], "tier": "글로벌"}
+    return {"research_id": acc["id"], "research_kind": acc.get("kind"), "publisher": acc["name"], "tier": "글로벌", "research_pulse": bool(acc.get("pulse"))}
+
+
+def _lang(title):
+    """IDC 피드는 중·일·한 글이 섞인다 — 제목 문자로 언어를 단다(2026-11-28)"""
+    import re
+    return "ja" if re.search("[぀-ヿ]", title or "") else "ko" if re.search("[가-힣]", title or "") else "zh" if re.search("[一-鿿]", title or "") else "en"
 
 
 def _recent(iso_s, days):
@@ -60,13 +66,47 @@ def poll_feeds(env=None):
                 continue
             items.append(common.make_item(
                 FEED_SRC, hashlib.sha1(e["link"].encode()).hexdigest()[:16], e["link"],
-                common.strip_tags(e["title"]), pub, "리서치", "en", common.strip_tags(e["desc"])[:200],
+                common.strip_tags(e["title"]), pub, "리서치", _lang(e["title"]), common.strip_tags(e["desc"])[:200],
                 extra=_extra(acc)))
+    for acc in [a for a in load_cfg().get("accounts", []) if a.get("html_list")]:
+        try:
+            items += _html_list(acc)
+        except Exception as exc:
+            errors.append(f"{acc['id']}: {type(exc).__name__}")
     if errors and len(errors) == len(accs):
         raise RuntimeError("리서치 피드 전부 실패: " + ", ".join(errors[:5]))
     if errors:
         print("리서치 피드 일부 실패:", ", ".join(errors))
     return items
+
+
+LIST_STATE = common.ROOT / "radar" / "state" / "research_lists.json"
+
+
+def _html_list(acc):
+    """RSS 없는 기관(Counterpoint 등)의 공개 목록 페이지 — 새로 나타난 링크만. 첫 실행은 기준선만 저장(옛 글 폭주 방지, 2026-11-28)"""
+    import re
+    h = acc["html_list"]
+    page = common.http_get(h["url"], timeout=25).decode("utf-8", "ignore")
+    links = list(dict.fromkeys(re.findall(h["pattern"], page)))
+    st = json.loads(LIST_STATE.read_text(encoding="utf-8")) if LIST_STATE.exists() else {}
+    old = st.get(acc["id"])
+    st[acc["id"]] = sorted(set(old or []) | set(links))[-3000:]
+    LIST_STATE.write_text(json.dumps(st, ensure_ascii=False), encoding="utf-8")
+    if old is None:
+        return []
+    out = []
+    for path in [x for x in links if x not in set(old)][:15]:
+        url = h["base"] + path
+        title = path.rstrip("/").split("/")[-1].replace("-", " ")
+        m = re.search(r'href="' + re.escape(path) + r'"[^>]*>(.*?)</a>', page, re.S)
+        if m and common.strip_tags(m.group(1)).strip():
+            title = common.strip_tags(m.group(1)).strip()
+            title = re.sub(r"^(PR|Data|Insight|Infographic|Report)(?=[A-Z])", "", title)   # 카드 머리 분류 글자
+            title = re.sub(r"(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}$", "", title).strip()
+        out.append(common.make_item(FEED_SRC, hashlib.sha1(url.encode()).hexdigest()[:16], url, title[:200],
+                                    common.iso(common.now_kst()), "리서치", "en", "", extra=_extra(acc)))
+    return out
 
 
 # ---------- X 공식 API ----------
