@@ -1,0 +1,109 @@
+auto: true
+id: us-enph
+name: Enphase Energy
+ticker: ENPH
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.8
+  EU: 0.2
+tax: 0.18
+horizon: 10
+as_of: '2026-11-28'
+market:
+  date: '2026-11-28'
+  price: 21.69
+  shares: 0.135294
+  net_debt: -0.3154
+  source: 가격 = 2026-11-27 종가 $21.69(TradingView 실측) · 주식 수 132,314,277주(3Q26 10-Q
+    표지, 2026-10-23) · 현금 = 현금성 $380.4M + 단기 투자 $551.4M = $931.8M(10-Q 유동성 절) · 차입
+    = 0% 전환사채 2028 원금 $575.0M + 운영리스 부채 $41.4M = $616.4M. 2026년 만기 전환사채 $632.5M은 2026년
+    3월 2일 현금 상환
+rev0: 1.1081
+ic0: 0.9266
+scenarios:
+  base:
+    prob: 0.4
+    growth:
+      start: -0.2058
+      end: 0.035
+      decay: 0.7
+    margin:
+      m0: 0.006
+      target: 0.0014
+      year_target: 3
+      lr: 0.15
+      lam: 0.35
+      anchors:
+      - -0.0253
+      - 0.0014
+    s2c: 1.307
+  bull:
+    prob: 0.3
+    growth:
+      start: 0.156
+      end: 0.04
+      decay: 0.75
+    margin:
+      m0: 0.006
+      target: 0.0214
+      year_target: 3
+      lr: 0.15
+      lam: 0.25
+      anchors:
+      - -0.0253
+      - 0.0014
+    s2c: 1.503
+  bear:
+    prob: 0.3
+    growth:
+      start: -0.3683
+      end: 0.030000000000000002
+      decay: 0.6
+    margin:
+      m0: 0.006
+      target: -0.0186
+      year_target: 3
+      lr: 0.15
+      lam: 0.5
+      anchors:
+      - -0.0253
+      - 0.0014
+    s2c: 1.111
+mc:
+  sigma_growth: 0.12
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [1.0931, 1.1231] (3Q26 8-K EX-99.1 https://www.sec.gov/Archives/edgar/data/1463101/000146310126000101/enph-20261027.htm
+    · 3Q26 어닝콜(2026-10-27))
+  growth: 컨센서스 1년차 -20.6%, 2년차 14.8%
+  margin: 1~2년차 컨센서스 -2.5%, 0.1% 고정 → 목표 0%(3년차) → 장기 수렴 15%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.307
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 -36.8%~15.6%
+  probs: '근거 계산 {''bear'': 0.3, ''base'': 0.3, ''bull'': 0.4} → 모델 조정 {''bear'': 0.3,
+    ''base'': 0.4, ''bull'': 0.3}(강세 경계(다음 해 매출 −2.5% 위)는 회사 2027년 틀(약 .0B, FY2026
+    대비 −10%)보다도 높다. 4Q 소진 판매가 −10% 줄고 미국 주거용 시장 역성장 전망(Roth 질문)이 있어 강세를 10%p 낮추고 기본에
+    더했다) — 다음 해 매출 성장 분포로 계산 — 약세 -28.7% 아래·강세 -2.5% 위 확률. 내부 관점(컨센서스 -20.6%, σ 26.5%:
+    범위 52.4% ÷ d2(9) × 1.5) 70% + 외부 관점(같은 규모 10~100억$ 실제 1년 성장, 중앙값 +5.0%) 30%'
+  shares: '완전 희석 = 기본 0.132314(2026-10-23) + 옵션·RSU·워런트·전환 0.0030 — 3Q26 10-Q — 희석
+    주식 수 135.198M주 − 기본 132.222M주 = 약 2.98M주(RSU· · 전환사채 판정: 0% 전환사채 2028 외가격(전환가
+    284.87 > 가격 21.69) — 차입'
+notes:
+- 자동 생성(build_drivers) 2026-11-28 — 데이터 묶음 2026-11-28
+- '어닝콜 위험: 미국 주거용 태양광 시장이 25D 세액공제 만료(2025-12-31) 뒤 30% 넘게 줄었다 — 3Q 미국 소진 판매 −35%
+  YoY, 업계 인허가 −35%'
+- '어닝콜 위험: 세이프하버 매출(3Q $85M → 4Q 약 $51M)이 줄면 핵심 매출이 그대로 드러난다'
+- '어닝콜 위험: 배터리 가격 인하 — 같은 물량에서 매출총이익률 하락(4Q 가이던스 40~43%)'
+evidence:
+- Enphase 3Q26 10-Q(2026-10-27) https://www.sec.gov/Archives/edgar/data/1463101/000146310126000102/enph-20260930.htm
+- Enphase 3Q26 실적 8-K(Item 2.02, 2026-10-27) https://www.sec.gov/Archives/edgar/data/1463101/000146310126000101/enph-20261027.htm
+- Enphase FY2025 10-K(2026-02-17) https://www.sec.gov/Archives/edgar/data/1463101/000146310126000013/enph-20251231.htm
+- 8-K 45X 세액공제 매각(Item 8.01, 2026-10-29) https://www.sec.gov/Archives/edgar/data/1463101/000146310126000104/enph-20261028.htm
+- 8-K 구조조정(Item 2.05·7.01, 2026-11-20) https://www.sec.gov/Archives/edgar/data/1463101/000146310126000112/enph-20261120.htm
+- 2026년 위임장(2026-04-01) https://www.sec.gov/Archives/edgar/data/1463101/000146310126000026/enph-20260401.htm
+- 3Q26 어닝콜(2026-10-27)
+- 2Q26 어닝콜(2026-07-28)
+- Form 4 내부자 거래(2026-11)
