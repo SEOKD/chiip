@@ -94,7 +94,7 @@ def parse_rss(xml):
     return out
 
 
-def _feeds(cfg, st, force=False):
+def _feeds(cfg, st, force=False, sid=SOURCE_ID):
     from datetime import datetime
     now = common.now_kst()
     last = st.get("feeds_at")
@@ -108,7 +108,7 @@ def _feeds(cfg, st, force=False):
                 yield {"url": it["url"], "title": it["title"], "text": f"{it['title']}\n{it['desc']}", "at": it["pub"], "seen": common.iso(now), "origin": f"rss-{f['id']}"}
         except Exception:
             ok = False
-    common.record_health(SOURCE_ID, ok, None if ok else "RSS 일부 실패")
+    common.record_health(sid, ok, None if ok else "RSS 일부 실패")
 
 
 def scan(since, st=None, cfg=None, feeds=True):

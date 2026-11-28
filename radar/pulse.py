@@ -835,6 +835,17 @@ def alpha_queue():
     return [x for x in q if x.get("kind") == "알파 산정"]
 
 
+def fetch_research_mentions(st):
+    """Omdia·Gartner 발표의 언론 2차 인용(마스터 지시 2026-11-28 — radar/research_mentions.py)"""
+    import research_mentions
+    sub = st.setdefault("research_mentions", {})
+    now = common.iso(common.now_kst())
+    mark = sub.get("mark") or common.iso(common.now_kst() - timedelta(hours=2))
+    out = research_mentions.scan(mark, sub, feeds="unittest" not in sys.modules)
+    sub["mark"] = now
+    return out[:TOP["리서치 기관"]]
+
+
 def fetch_overseas_subs(st):
     """국내 전자 기업 해외 법인 소식(마스터 지시 2026-11-26 — radar/overseas_subs.py). 수집함·텔레그램·딘스티커·해외 현지 언론 RSS"""
     import overseas_subs
@@ -892,7 +903,7 @@ def run(now=None, peek=False):
         sources += fetch_alerts(st, since)
     except Exception as exc:
         errors.append(f"속보 판단: {type(exc).__name__}")
-    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("발굴 채널", fetch_discovery_channels), ("데이터센터 접속", fetch_peeringdb), ("무역 비중", fetch_trade_share), ("시의성 뉴스", fetch_news), ("해외 법인", fetch_overseas_subs)):
+    for key, fn in (("실적", fetch_earnings), ("텔레그램", fetch_telegram), ("논문", fetch_papers), ("공시", fetch_deals), ("파이낸싱", fetch_financing), ("숏 리포트", fetch_shorts), ("신규 상장", fetch_new_listings), ("SPAC", fetch_spac), ("소비재", fetch_consumer_spikes), ("소비 트렌드", fetch_consumer_trends), ("발굴 채널", fetch_discovery_channels), ("데이터센터 접속", fetch_peeringdb), ("무역 비중", fetch_trade_share), ("시의성 뉴스", fetch_news), ("해외 법인", fetch_overseas_subs), ("리서치 기관", fetch_research_mentions)):
         try:
             sources += fn(st)
         except Exception as exc:
