@@ -1,0 +1,109 @@
+auto: true
+id: co-valmont
+name: Valmont Industries
+ticker: VMI
+unit: B$
+unit_usd: 1000000000.0
+industry: electrical_equipment
+region_mix:
+  US: 0.77
+  EU: 0.08
+  APAC: 0.09
+  LATAM: 0.06
+tax: 0.26
+horizon: 10
+as_of: '2026-11-28'
+market:
+  date: '2026-11-28'
+  price: 418.78
+  shares: 0.019294
+  net_debt: 0.773606
+  source: 가격 = 2026-11-27 종가 $418.78(TradingView 실측 일봉·Fiscal.ai·Easyconomics 일치).
+    주식 수 19,135,217(3Q26 10-Q 분기 말 발행 주식, Fiscal.ai 표준화 — 10-Q 표지 2026-10-23 기준은 19,139,921).
+    현금 $122.0M, 차입 = 장기 $756.1M + 유동 $0.2M + 운용리스 $139.4M(3Q26 10-Q 2026-09-26)
+rev0: 4.375
+ic0: 2.533227
+scenarios:
+  base:
+    prob: 0.2
+    growth:
+      start: 0.0789
+      end: 0.035
+      decay: 0.9
+    margin:
+      m0: 0.1478
+      target: 0.16
+      year_target: 4
+      lr: 0.155
+      lam: 0.35
+      anchors:
+      - 0.1462
+      - 0.1523
+    s2c: 1.693
+  bull:
+    prob: 0.4
+    growth:
+      start: 0.0931
+      end: 0.04
+      decay: 0.9
+    margin:
+      m0: 0.1478
+      target: 0.18
+      year_target: 4
+      lr: 0.155
+      lam: 0.25
+      anchors:
+      - 0.1462
+      - 0.1523
+    s2c: 1.947
+  bear:
+    prob: 0.4
+    growth:
+      start: 0.0498
+      end: 0.030000000000000002
+      decay: 0.8
+    margin:
+      m0: 0.1478
+      target: 0.14
+      year_target: 4
+      lr: 0.155
+      lam: 0.5
+      anchors:
+      - 0.1462
+      - 0.1523
+    s2c: 1.439
+mc:
+  sigma_growth: 0.03
+  sigma_margin: 0.02
+  sigma_s2c: 0.2
+  sigma_wacc: 0.005
+provenance:
+  rev0: 회사 가이던스 중간값 [4.3, 4.45] (3Q26 실적 보도자료(8-K EX-99.1, 2026-10-20) https://www.sec.gov/Archives/edgar/data/102729/000110465926117126/vmi-ex99d1.htm
+    · 3Q26·2Q26 어닝콜)
+  growth: 컨센서스 1년차 7.9%, 2년차 8.5%
+  margin: 1~2년차 컨센서스 14.6%, 15.2% 고정 → 목표 16%(4년차, 덮어쓰기) → 장기 수렴 16%
+  s2c: TTM 매출 ÷ 투하자본(평균 근사) 1.693
+  range: 컨센서스 최저·최고 추정(FY2027) → 1년차 성장 5.0%~9.3%
+  probs: '근거 계산 {''bear'': 0.4, ''base'': 0.2, ''bull'': 0.4} — 다음 해 매출 성장 분포로 계산
+    — 약세 +6.4% 아래·강세 +8.6% 위 확률. 내부 관점(컨센서스 +7.9%, σ 3.0%: 범위 4.3% ÷ d2(6) × 1.5)
+    70% + 외부 관점(같은 규모 10~100억$ 실제 1년 성장, 중앙값 +5.0%) 30%'
+  overrides: '목표 영업이익률 15%(규칙 기본) → 16%(4년차), 장기 15.5%: 3Q26 영업이익률이 이미 15.7%이고 회사
+    2029 목표는 17%다. 목표의 절반만 인정했다 — 철강 원가 지연과 경쟁 증설 때문에 17%를 그대로 쓰지 않는다'
+  shares: 완전 희석 = 기본 0.019135217(2026-09-26) + 옵션·RSU·워런트·전환 0.0002 — 3Q26 희석 가중 19,391천
+    − 기본 가중 19,232천 = 159천주(10-Q 손익). 희석 제외 옵
+notes:
+- 자동 생성(build_drivers) 2026-11-28 — 데이터 묶음 2026-11-28
+- '어닝콜 위험: 철강·아연 원가가 계속 오르면 가격 반영 지연(2~3개 분기)이 길어져 인프라 마진 회복이 2027년 하반기로 밀린다'
+- '어닝콜 위험: 4분기 내재 EPS $5.36은 3분기 $6.24보다 14% 낮다(계산)'
+- '어닝콜 위험: 북미 농업 +15.8%는 폭풍 복구 매출이 대부분 — 회사도 시장 회복이 아니라고 밝혔다'
+evidence:
+- https://www.sec.gov/Archives/edgar/data/102729/000010272926000007/vmi-20251227x10k.htm
+- https://www.sec.gov/Archives/edgar/data/102729/000010272926000050/vmi-20260926x10q.htm
+- https://www.sec.gov/Archives/edgar/data/102729/000110465926117126/vmi-ex99d1.htm
+- https://www.sec.gov/Archives/edgar/data/102729/000110465926085223/vmi-20260721x8k.htm
+- https://www.sec.gov/Archives/edgar/data/102729/000110465926074241/tm2617542d1_ex99-1.htm
+- https://www.sec.gov/Archives/edgar/data/102729/000110465926026141/tm261352-2_def14a.htm
+- https://fiscal.ai/company/NYSE-VMI
+- TradingView NYSE:VMI 일봉(2026-11-27)
+- Easyconomics company_profile·earnings_summary_dates VMI(2026-11-28)
+- Data provided by Zacks Investment Research, Inc., www.zacksdata.com (https://www.zacksdata.com)
