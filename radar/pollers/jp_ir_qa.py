@@ -347,18 +347,23 @@ def poll(env=None, only=None):
                 path = save_text(cid, u, text)
                 nm = names.get(cid, {})
                 label = (nm.get("ja") or [nm.get("en", cid)])[0]
+                dd = doc_date(t, u)   # 문서 자체 날짜(게재일) — 늦게 찾은 자료가 새 자료처럼 보이지 않게(2026-11-28)
+                late = dd and (now.date() - dd).days > 2
                 items.append(common.make_item(
                     SRC, hashlib.sha1(norm_url(u).encode()).hexdigest()[:16], u, f"{label}（{nm.get('code', '')}）IR 質疑応答: {t[:80]}",
-                    common.iso(now), "IR 질의응답", "ja", f"글자 {len(text)} · 로컬 {path.name}",
+                    f"{dd.isoformat()}T00:00:00+09:00" if dd else common.iso(now), "IR 질의응답", "ja", f"글자 {len(text)} · 로컬 {path.name}",
                     extra={"entities_matched": [cid], "local_text": str(path.relative_to(common.ROOT)), "chars": len(text),
                            "publisher": nm.get("en", cid), "source_class": "IR 질의응답",
                            "tier": (meta.get(u) or (1, "Q&A", "B"))[1], "grade": (meta.get(u) or (1, "Q&A", "B"))[2],
-                           "lang": (meta.get(u) or (0, 0, 0, 0, "ja"))[4]}))
+                           "lang": (meta.get(u) or (0, 0, 0, 0, "ja"))[4], "doc_date": dd.isoformat() if dd else None,
+                           "late_found_days": (now.date() - dd).days if late else 0}))
                 cs["seen"].append(u)
                 cs["latest_text"], cs["latest_url"] = str(path.relative_to(common.ROOT)), u
             cs["seen"] = cs["seen"][-300:]
         except Exception as exc:   # 회사 하나가 실패해도 나머지는 본다
             errors.append(f"{cid}: {type(exc).__name__}")
+        if not only:   # 이어보기 위치도 회사마다 저장(2026-11-28 — 8분 한도에 끊기면 끝의 저장이 안 돼 같은 회사만 반복, 소프트뱅크 Q&A 18일 지연)
+            st["next_index"] = (start + done) % max(len(ids), 1)
         common.save_state("jp_ir_qa", st)   # 회사마다 저장 — 회차가 끊겨도 탐색·기준선이 남는다
     if not only:
         st["next_index"] = (start + done) % max(len(ids), 1)
